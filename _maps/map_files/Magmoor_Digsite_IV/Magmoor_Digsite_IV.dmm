@@ -941,10 +941,6 @@
 /obj/structure/cable,
 /turf/open/floor/tile/bar,
 /area/magmoor/civilian/clean/shower)
-"aZV" = (
-/obj/effect/alien/egg,
-/turf/open/floor/cult,
-/area/magmoor/cave/west)
 "aZZ" = (
 /obj/structure/sign/directions/security{
 	dir = 4
@@ -4001,10 +3997,6 @@
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/magmoor/cave/north)
-"dhc" = (
-/obj/effect/alien/egg,
-/turf/open/floor/cult,
-/area/magmoor/cave/north)
 "dhd" = (
 /obj/machinery/door/airlock/multi_tile/mainship/comdoor/free_access{
 	name = "Decontamination"
@@ -6449,10 +6441,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/magmoor/civilian/arrival)
-"eTE" = (
-/obj/effect/alien/egg,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/magmoor/cave/west)
 "eUO" = (
 /turf/open/floor/plating/ground/concrete/lines{
 	dir = 9
@@ -11853,7 +11841,6 @@
 	dir = 8
 	},
 /obj/structure/cable,
-/obj/effect/alien/egg,
 /turf/open/floor/mainship/sterile/dark,
 /area/magmoor/medical/lobby)
 "jba" = (
@@ -12508,10 +12495,6 @@
 /turf/open/floor/mainship/sterile/corner{
 	dir = 8
 	},
-/area/magmoor/medical/lobby)
-"juS" = (
-/obj/effect/alien/egg,
-/turf/open/floor/mainship/sterile/side,
 /area/magmoor/medical/lobby)
 "juW" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -16065,10 +16048,6 @@
 	dir = 8
 	},
 /area/magmoor/mining/refinery)
-"mov" = (
-/obj/effect/alien/egg,
-/turf/open/floor/plating/ground/concrete/lines,
-/area/magmoor/cave/central)
 "moB" = (
 /obj/structure/rack,
 /obj/item/stack/sheet/mineral/uranium,
@@ -17165,7 +17144,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 5
 	},
-/obj/effect/alien/egg,
 /turf/open/floor/tile/dark2,
 /area/magmoor/mining/storage)
 "ndP" = (
@@ -17183,7 +17161,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/obj/effect/alien/egg,
 /turf/open/floor/tile/dark2,
 /area/magmoor/mining/storage)
 "nex" = (
@@ -19416,10 +19393,6 @@
 	dir = 8
 	},
 /area/magmoor/cargo/storage/south)
-"oHA" = (
-/obj/effect/alien/egg,
-/turf/open/floor/mainship/sterile/dark,
-/area/magmoor/medical/lobby)
 "oIl" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber{
 	dir = 4
@@ -24127,10 +24100,6 @@
 /obj/structure/cable,
 /turf/open/floor/wood,
 /area/magmoor/civilian/chapel)
-"rVP" = (
-/obj/effect/alien/egg,
-/turf/open/floor/tile/dark2,
-/area/magmoor/mining/storage)
 "rVQ" = (
 /obj/machinery/light{
 	dir = 8
@@ -24362,10 +24331,6 @@
 /obj/structure/plasticflaps,
 /turf/open/floor/plating,
 /area/magmoor/engi/storage)
-"sev" = (
-/obj/effect/alien/egg,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/magmoor/cave/north)
 "seQ" = (
 /turf/open/floor/plating/ground/concrete/lines,
 /area/magmoor/compound/east)
@@ -26880,10 +26845,6 @@
 	},
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/magmoor/compound/northwest)
-"tNb" = (
-/obj/effect/alien/egg,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/magmoor/cave/northwest)
 "tNd" = (
 /turf/closed/wall/r_wall,
 /area/magmoor/compound/northwest)
@@ -30284,10 +30245,6 @@
 	dir = 8
 	},
 /area/magmoor/compound/north)
-"wbB" = (
-/obj/effect/alien/egg,
-/turf/open/floor/cult,
-/area/magmoor/cave/northeast)
 "wbH" = (
 /obj/structure/closet/crate/freezer/rations,
 /obj/machinery/power/apc/drained{
@@ -31514,10 +31471,6 @@
 /obj/structure/table/reinforced,
 /turf/open/floor/mainship/mono,
 /area/magmoor/command/lobby/east)
-"wLf" = (
-/obj/effect/alien/egg,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/magmoor/cave/east)
 "wLl" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -34004,10 +33957,6 @@
 	dir = 6
 	},
 /area/magmoor/security/arrivals/south)
-"yeK" = (
-/obj/effect/alien/egg,
-/turf/open/floor/cult,
-/area/magmoor/cave/northwest)
 "yeZ" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -34059,10 +34008,6 @@
 	dir = 4
 	},
 /area/magmoor/cave/southwest)
-"ygw" = (
-/obj/effect/alien/egg,
-/turf/open/floor/plating/ground/concrete/lines,
-/area/magmoor/cave/east)
 "ygz" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
@@ -35512,7 +35457,7 @@ rwF
 fCp
 tvK
 erq
-eTE
+tvK
 tvK
 erq
 tvK
@@ -35743,7 +35688,7 @@ rwF
 rwF
 tvK
 fCp
-eTE
+tvK
 tvK
 tvK
 tvK
@@ -36440,10 +36385,10 @@ rwF
 rwF
 rwF
 rwF
-eTE
+tvK
 uHe
 kal
-aZV
+kal
 kal
 hfh
 kal
@@ -38056,7 +38001,7 @@ pGg
 bCo
 nqC
 nqC
-yeK
+nqC
 nqC
 nqC
 nqC
@@ -38285,7 +38230,7 @@ pGg
 nMN
 pGg
 pGg
-tNb
+pGg
 bCo
 nqC
 qlL
@@ -38525,7 +38470,7 @@ nqC
 nqC
 sWU
 cdv
-yeK
+nqC
 nqC
 nqC
 cYV
@@ -38751,7 +38696,7 @@ nMN
 nMN
 nMN
 pGg
-tNb
+pGg
 bCo
 nqC
 qlL
@@ -38990,7 +38935,7 @@ nqC
 nqC
 nqC
 nqC
-yeK
+nqC
 nqC
 nqC
 nqC
@@ -40896,9 +40841,9 @@ owr
 egY
 ppI
 mpv
-rVP
+mpq
 mII
-rVP
+mpq
 nOr
 ppI
 cAd
@@ -48291,7 +48236,7 @@ qkn
 qkn
 qkn
 qkn
-sev
+aMD
 aMD
 aMD
 qkn
@@ -49689,7 +49634,7 @@ qkn
 tTm
 nhd
 urr
-dhc
+urr
 urr
 nhd
 nhd
@@ -50158,7 +50103,7 @@ urr
 neL
 urr
 neL
-dhc
+urr
 urr
 urr
 urr
@@ -50390,7 +50335,7 @@ urr
 urr
 urr
 urr
-dhc
+urr
 urr
 neL
 neL
@@ -50621,7 +50566,7 @@ qkn
 tTm
 nhd
 urr
-dhc
+urr
 urr
 nhd
 nhd
@@ -51321,7 +51266,7 @@ ahL
 aMD
 aMD
 cRX
-sev
+aMD
 aMD
 aMD
 aMD
@@ -56496,7 +56441,7 @@ iIW
 iIW
 iIW
 wqh
-mov
+fJA
 vns
 dSd
 vns
@@ -57663,7 +57608,7 @@ fMA
 pwz
 mky
 eEq
-wLf
+eEq
 hUQ
 xRS
 qzx
@@ -57894,7 +57839,7 @@ jKd
 jRP
 fMA
 pwz
-ygw
+mky
 xRS
 eEq
 eEq
@@ -58122,7 +58067,7 @@ xDD
 mFa
 mFa
 jge
-juS
+ekV
 jFh
 jRP
 fMA
@@ -58819,7 +58764,7 @@ iSz
 iSz
 iSz
 iSz
-oHA
+iSz
 jfx
 iSz
 jFh
@@ -60183,7 +60128,7 @@ aNx
 aNx
 bgY
 aNx
-wbB
+aNx
 aNx
 aNx
 aNx
@@ -60418,7 +60363,7 @@ aNx
 aNx
 aOd
 aNx
-wbB
+aNx
 aNx
 aNx
 bal
@@ -60647,12 +60592,12 @@ idd
 aur
 aqg
 aNx
-wbB
 aNx
 aNx
 aNx
 aNx
-wbB
+aNx
+aNx
 aNx
 bal
 aqg
@@ -60882,7 +60827,7 @@ aNx
 aNx
 aNx
 aNx
-wbB
+aNx
 aNx
 aNx
 aNx

@@ -19913,10 +19913,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/north)
-"hEi" = (
-/obj/effect/alien/egg,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/north)
 "hEq" = (
 /obj/docking_port/stationary/crashmode,
 /turf/closed/wall/r_wall,
@@ -19978,18 +19974,10 @@
 /obj/effect/landmark/corpsespawner/scientist,
 /turf/open/floor/wood,
 /area/bigredv2/outside/nanotrasen_lab/inside)
-"isq" = (
-/obj/effect/alien/egg,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/southeast)
 "iug" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/closed/mineral/bigred,
 /area/bigredv2/caves/west)
-"ivR" = (
-/obj/effect/alien/egg,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/east)
 "izL" = (
 /obj/machinery/floodlight/landing,
 /turf/open/floor/marking/asteroidwarning{
@@ -20317,11 +20305,6 @@
 	},
 /turf/open/floor/plating,
 /area/bigredv2/caves/lambda_lab)
-"lBV" = (
-/obj/effect/alien/egg,
-/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/east)
 "lCt" = (
 /turf/open/floor/marking/asteroidwarning{
 	dir = 9
@@ -20386,14 +20369,6 @@
 /obj/docking_port/stationary/crashmode,
 /turf/closed/mineral/bigred,
 /area/bigredv2/caves/east)
-"mfj" = (
-/obj/effect/alien/egg,
-/turf/closed/mineral/bigred,
-/area/bigredv2/caves/northeast)
-"miv" = (
-/obj/effect/alien/egg,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/northeast)
 "mlt" = (
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/caves/north)
@@ -20854,10 +20829,6 @@
 	},
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/medical)
-"qtT" = (
-/obj/effect/alien/egg,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/southwest)
 "qvO" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/closed/wall/r_wall,
@@ -21064,11 +21035,6 @@
 /obj/structure/cable,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
-"sdD" = (
-/obj/effect/alien/egg,
-/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/south)
 "sfy" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -21452,10 +21418,6 @@
 "vDI" = (
 /turf/closed/mineral/bigred,
 /area/bigredv2/outside/w)
-"vFJ" = (
-/obj/effect/alien/egg,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/south)
 "vIl" = (
 /obj/structure/sign/poster{
 	dir = 1
@@ -24314,7 +24276,7 @@ puQ
 puQ
 hTy
 puQ
-qtT
+puQ
 puQ
 puQ
 puQ
@@ -24752,7 +24714,7 @@ puQ
 puQ
 uln
 puQ
-qtT
+puQ
 puQ
 puQ
 puQ
@@ -25620,12 +25582,12 @@ qqG
 puQ
 puQ
 puQ
-qtT
+puQ
 uln
 puQ
 puQ
 puQ
-qtT
+puQ
 puQ
 puQ
 puQ
@@ -25840,7 +25802,7 @@ puQ
 puQ
 puQ
 puQ
-qtT
+puQ
 puQ
 puQ
 puQ
@@ -38882,11 +38844,11 @@ hqP
 hqP
 ajG
 xEN
-vFJ
 xEN
 xEN
 xEN
-vFJ
+xEN
+xEN
 ajG
 dGX
 hqP
@@ -39531,11 +39493,11 @@ dGX
 xEN
 sQi
 xEN
-vFJ
-vFJ
 xEN
 xEN
-vFJ
+xEN
+xEN
+xEN
 xEN
 xEN
 xEN
@@ -39754,7 +39716,7 @@ xEN
 xEN
 xEN
 xEN
-vFJ
+xEN
 xEN
 xWD
 xEN
@@ -48929,7 +48891,7 @@ xpB
 xpB
 xpB
 xpB
-hEi
+xpB
 xpB
 abq
 qoL
@@ -49364,7 +49326,7 @@ xpB
 xpB
 xpB
 xpB
-hEi
+xpB
 abq
 qoL
 qVr
@@ -49925,7 +49887,7 @@ hqP
 xEN
 jWg
 xEN
-vFJ
+xEN
 xEN
 hqP
 hqP
@@ -50009,7 +49971,7 @@ qVr
 qoL
 uhF
 xpB
-hEi
+xpB
 xpB
 xpB
 xpB
@@ -50231,7 +50193,7 @@ vCh
 vCh
 vCh
 vCh
-miv
+vCh
 kKe
 dnl
 ptp
@@ -50578,7 +50540,7 @@ xEN
 xEN
 xEN
 xEN
-vFJ
+xEN
 xEN
 jWg
 xEN
@@ -50799,7 +50761,7 @@ xEN
 xEN
 xEN
 xEN
-sdD
+xWD
 xEN
 xEN
 xEN
@@ -51230,11 +51192,11 @@ xEN
 xEN
 xYz
 xEN
-vFJ
+xEN
 xEN
 jWg
 xWD
-vFJ
+xEN
 sQi
 xEN
 xEN
@@ -51878,7 +51840,7 @@ hqP
 hqP
 xEN
 xEN
-vFJ
+xEN
 xEN
 xEN
 xEN
@@ -60524,7 +60486,7 @@ uMP
 tzo
 tzo
 uMP
-ivR
+tzo
 tzo
 tzo
 tzo
@@ -60743,7 +60705,7 @@ tzo
 tzo
 tzo
 tzo
-ivR
+tzo
 tzo
 tzo
 uMP
@@ -62047,7 +62009,7 @@ tzo
 tzo
 tzo
 tzo
-ivR
+tzo
 tzo
 tzo
 uMP
@@ -62479,7 +62441,7 @@ oOR
 tzo
 tzo
 tzo
-ivR
+tzo
 tzo
 xJh
 tzo
@@ -62742,7 +62704,7 @@ jeY
 jeY
 jeY
 eve
-isq
+eve
 eve
 eve
 eve
@@ -63612,7 +63574,7 @@ eve
 eve
 eve
 eve
-isq
+eve
 eve
 loN
 jeY
@@ -63742,7 +63704,7 @@ dnl
 dnl
 dnl
 dnl
-mfj
+dnl
 dnl
 dnl
 ptP
@@ -63827,7 +63789,7 @@ jeY
 loN
 eve
 eve
-isq
+eve
 eve
 eve
 eve
@@ -64477,7 +64439,7 @@ eve
 eve
 mGX
 eve
-isq
+eve
 eve
 eve
 eve
@@ -64690,7 +64652,7 @@ eve
 eve
 eve
 eve
-isq
+eve
 eve
 mGX
 eve
@@ -65129,7 +65091,7 @@ eve
 mGX
 eve
 fwQ
-isq
+eve
 eve
 eve
 jeY
@@ -67188,7 +67150,7 @@ vCh
 ahw
 vCh
 uLR
-miv
+vCh
 vCh
 vCh
 vyZ
@@ -67376,7 +67338,7 @@ vCh
 vCh
 vCh
 ahw
-miv
+vCh
 vCh
 kKe
 vCh
@@ -67442,9 +67404,9 @@ xJh
 tzo
 tzo
 tzo
-ivR
 tzo
-ivR
+tzo
+tzo
 tzo
 tzo
 oOR
@@ -67663,7 +67625,7 @@ cfH
 yfA
 yfA
 yfA
-lBV
+yfA
 yfA
 ttZ
 ttZ
@@ -67841,7 +67803,7 @@ vCh
 uLR
 vCh
 vCh
-miv
+vCh
 ahw
 vCh
 dnl
@@ -68030,7 +67992,7 @@ vCh
 vCh
 ahw
 vCh
-miv
+vCh
 vCh
 vCh
 dnl
@@ -68240,7 +68202,7 @@ dnl
 vCh
 vCh
 vCh
-miv
+vCh
 vCh
 vCh
 ahw
@@ -68273,7 +68235,7 @@ vCh
 vCh
 vCh
 uLR
-miv
+vCh
 vCh
 vCh
 vCh
@@ -68310,7 +68272,7 @@ tzo
 yfA
 tzo
 tzo
-ivR
+tzo
 tzo
 tzo
 tzo
@@ -68486,7 +68448,7 @@ dnl
 vCh
 vCh
 vCh
-miv
+vCh
 ahw
 vCh
 uLR

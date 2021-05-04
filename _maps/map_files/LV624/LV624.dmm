@@ -14734,11 +14734,6 @@
 /obj/structure/flora/ausbushes/fullgrass,
 /turf/open/ground/grass/grass2,
 /area/lv624/ground/jungle3)
-"gkY" = (
-/obj/effect/alien/egg,
-/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/caves/central1)
 "gmG" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1,
 /turf/open/floor/plating/ground/dirt,
@@ -14825,11 +14820,6 @@
 	dir = 1
 	},
 /area/lv624/ground/compound/sw)
-"gPR" = (
-/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/obj/effect/alien/egg,
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/caves/east2)
 "gSB" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/wall/cult,
@@ -14857,10 +14847,6 @@
 	dir = 8
 	},
 /area/lv624/ground/compound/sw)
-"hoE" = (
-/obj/effect/alien/egg,
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/caves/east1)
 "hpN" = (
 /obj/machinery/floodlight/colony,
 /turf/open/floor/plating/ground/dirt,
@@ -15274,11 +15260,6 @@
 	dir = 1
 	},
 /area/lv624/ground/jungle7)
-"kTq" = (
-/obj/effect/alien/egg,
-/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/caves/east2)
 "kYu" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/closed/gm/dense,
@@ -15613,10 +15594,6 @@
 	},
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/compound/n)
-"nEC" = (
-/obj/effect/alien/egg,
-/turf/open/floor/engine/cult,
-/area/lv624/ground/caves/east2)
 "nFI" = (
 /obj/structure/prop/mainship/hangar_stencil/two,
 /turf/open/floor/marking/warning{
@@ -15958,11 +15935,6 @@
 	dir = 4
 	},
 /area/lv624/ground/jungle3)
-"rbd" = (
-/obj/effect/alien/egg,
-/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/caves/west2)
 "rbx" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
 	dir = 2
@@ -16081,10 +16053,6 @@
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/mineral,
 /area/lv624/ground/caves/central1)
-"sez" = (
-/obj/effect/alien/egg,
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/caves/east2)
 "seB" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 2
@@ -16160,10 +16128,6 @@
 	dir = 4
 	},
 /area/lv624/ground/jungle6)
-"thI" = (
-/obj/effect/alien/egg,
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/caves/west1)
 "tjA" = (
 /obj/machinery/floodlight/colony,
 /obj/structure/catwalk,
@@ -16244,10 +16208,6 @@
 /obj/effect/landmark/xeno_turret_spawn,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/west1)
-"umw" = (
-/obj/effect/alien/egg,
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/caves/central1)
 "unj" = (
 /obj/effect/spawner/modularmap/lv624/domes,
 /turf/open/space/basic,
@@ -16263,10 +16223,6 @@
 /obj/structure/flora/ausbushes/fullgrass,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/compound/c)
-"uqc" = (
-/obj/effect/alien/egg,
-/turf/open/floor/engine/cult,
-/area/lv624/ground/caves/west1)
 "usu" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -16633,10 +16589,6 @@
 /obj/structure/jungle/vines,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle9)
-"xUe" = (
-/obj/effect/alien/egg,
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/caves/west2)
 "xUE" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
@@ -18535,7 +18487,7 @@ adp
 adp
 adp
 adp
-uqc
+adp
 adp
 adp
 abk
@@ -18887,10 +18839,10 @@ adp
 adp
 adp
 abk
-uqc
 adp
 adp
-uqc
+adp
+adp
 adp
 adI
 adp
@@ -19388,7 +19340,7 @@ aej
 aej
 aej
 aej
-xUe
+aej
 aej
 jUj
 abb
@@ -19553,7 +19505,7 @@ aej
 aej
 aej
 aej
-xUe
+aej
 aaA
 aaa
 aaa
@@ -19562,7 +19514,7 @@ vIv
 aej
 aej
 aej
-xUe
+aej
 aal
 aej
 aal
@@ -19745,9 +19697,9 @@ aej
 aej
 aej
 aej
-xUe
 aej
-xUe
+aej
+aej
 jUj
 abb
 abb
@@ -20265,7 +20217,7 @@ aej
 aej
 acu
 vIv
-rbd
+vIv
 vIv
 vIv
 vIv
@@ -22255,7 +22207,7 @@ aaD
 aaD
 aai
 abc
-thI
+abc
 abc
 fDX
 abc
@@ -22413,7 +22365,7 @@ aej
 aej
 vIv
 aej
-xUe
+aej
 aej
 aej
 aai
@@ -22768,7 +22720,7 @@ aej
 aej
 aej
 aej
-xUe
+aej
 hzX
 aej
 aej
@@ -22971,7 +22923,7 @@ aaD
 aaD
 aai
 abc
-thI
+abc
 abc
 fDX
 abc
@@ -30102,7 +30054,7 @@ abf
 acs
 acs
 abf
-gkY
+lIv
 abf
 ace
 abf
@@ -30636,10 +30588,10 @@ abe
 scW
 acs
 abf
-umw
 abf
 abf
-gkY
+abf
+lIv
 acs
 abf
 abf
@@ -30834,7 +30786,7 @@ acs
 abf
 abf
 acs
-umw
+abf
 abf
 abe
 acN
@@ -31011,7 +30963,7 @@ lIv
 lIv
 lIv
 lIv
-gkY
+lIv
 lIv
 lIv
 cMZ
@@ -31719,12 +31671,12 @@ abf
 abf
 abf
 abf
-umw
+abf
 lIv
 abf
 abf
 acs
-umw
+abf
 abf
 abf
 abf
@@ -32436,7 +32388,7 @@ abf
 abf
 abf
 abf
-gkY
+lIv
 abf
 abf
 abf
@@ -40854,7 +40806,7 @@ abI
 abI
 abI
 abI
-sez
+abI
 abI
 aag
 aaf
@@ -41562,7 +41514,7 @@ abI
 abI
 abI
 abI
-sez
+abI
 abI
 abI
 wMO
@@ -44418,7 +44370,7 @@ aaf
 aaf
 aaj
 abI
-sez
+abI
 aar
 abI
 abI
@@ -44598,7 +44550,7 @@ abp
 abI
 abI
 abI
-gPR
+aar
 abI
 abI
 abI
@@ -44775,7 +44727,7 @@ aaf
 abp
 abr
 abr
-nEC
+abr
 abp
 tOe
 abI
@@ -44787,7 +44739,7 @@ aaf
 abI
 abI
 abI
-kTq
+aar
 abI
 abI
 abI
@@ -44811,7 +44763,7 @@ abi
 abi
 abo
 abi
-hoE
+abi
 abi
 abg
 tTs
@@ -44991,7 +44943,7 @@ abi
 abi
 abi
 abo
-hoE
+abi
 abg
 tTs
 abg
@@ -45322,7 +45274,7 @@ abI
 aaf
 aaf
 aaf
-sez
+abI
 abI
 juQ
 abI
@@ -46039,7 +45991,7 @@ abI
 aaj
 abI
 abI
-sez
+abI
 aar
 abI
 abI
