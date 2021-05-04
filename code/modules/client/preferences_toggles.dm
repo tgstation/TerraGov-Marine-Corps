@@ -340,3 +340,13 @@ GLOBAL_LIST_INIT(ghost_others_options, list(GHOST_OTHERS_SIMPLE, GHOST_OTHERS_DE
 
 	show_popup_menus = !show_popup_menus
 	to_chat(src, "<span class='interface'>Right click menu [show_popup_menus ? "en" : "dis"]abled.</span>")
+
+///Same thing as the character creator preference, but as a byond verb, because not everyone can reach it in tgui preference menu
+/client/verb/toggle_tgui_fancy()
+	set name = "Toggle TGUI Window Compability Mode"
+	set category = "Preferences"
+
+	usr.client.prefs.tgui_fancy = !usr.client.prefs.tgui_fancy
+	usr.client.prefs.save_preferences()
+	SStgui.update_user_uis(usr)
+	to_chat(src, "<span class='interface'>TGUI compatibility mode is now [usr.client.prefs.tgui_fancy ? "dis" : "en"]abled.</span>")
