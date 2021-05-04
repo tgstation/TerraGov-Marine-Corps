@@ -197,38 +197,101 @@
 		),
 	)
 
-/// HvH version of the vending machine, containing no snipers or slugs. and MGs, shotguns, grenades and scoped weapons are rarer
-/// want to get shotguns, scoped weapons and MGs? go to the cargo vendor instead.
-/obj/machinery/vending/marine/hvh
+
+/obj/machinery/vending/marine/shared/hvh
+	isshared = TRUE
+
+	contraband = list(/obj/item/explosive/grenade/smokebomb = 50)
+
 	products = list(
-		/obj/item/weapon/gun/pistol/standard_pistol = 25,
-		/obj/item/ammo_magazine/pistol/standard_pistol = 30,
-		/obj/item/weapon/gun/pistol/standard_heavypistol = 10,
-		/obj/item/ammo_magazine/pistol/standard_heavypistol = 25,
-		/obj/item/weapon/gun/revolver/standard_revolver = 15,
-		/obj/item/ammo_magazine/revolver/standard_revolver = 25,
-		/obj/item/weapon/gun/smg/standard_machinepistol = 20,
-		/obj/item/ammo_magazine/smg/standard_machinepistol = 30,
-		/obj/item/weapon/gun/pistol/standard_pocketpistol = 25,
-		/obj/item/ammo_magazine/pistol/standard_pocketpistol = 50,
-		/obj/item/weapon/gun/smg/standard_smg = 20,
-		/obj/item/ammo_magazine/smg/standard_smg = 30,
-		/obj/item/weapon/gun/rifle/standard_carbine = 25,
-		/obj/item/ammo_magazine/rifle/standard_carbine = 25,
-		/obj/item/weapon/gun/rifle/standard_assaultrifle = 25,
-		/obj/item/ammo_magazine/rifle/standard_assaultrifle = 25,
-		/obj/item/weapon/gun/rifle/standard_br = 2,
-		/obj/item/ammo_magazine/rifle/standard_br = 10,
-		/obj/item/weapon/gun/energy/lasgun/lasrifle = 10,
-		/obj/item/cell/lasgun/lasrifle = 20,
-		/obj/item/explosive/grenade/frag = 15,
-		/obj/item/attachable/bayonetknife = 20,
-		/obj/item/weapon/throwing_knife = 5,
-		/obj/item/storage/box/m94 = 5,
-		/obj/item/attachable/flashlight = 10,
-		/obj/item/explosive/grenade/mirage = 5,
-		/obj/item/weapon/powerfist = 3,
+		"Rifles" = list(
+			/obj/item/weapon/gun/rifle/standard_assaultrifle = 250,
+			/obj/item/ammo_magazine/rifle/standard_assaultrifle = 1000,
+			/obj/item/weapon/gun/rifle/standard_carbine = 250,
+			/obj/item/ammo_magazine/rifle/standard_carbine = 1000,
+			/obj/item/weapon/gun/rifle/tx11 = 250,
+			/obj/item/ammo_magazine/rifle/tx11 = 1000,
+			/obj/item/weapon/gun/energy/lasgun/lasrifle = 250,
+			/obj/item/cell/lasgun/lasrifle = 1000,
+		),
+		"SMGs" = list(
+			/obj/item/weapon/gun/smg/standard_smg = 250,
+			/obj/item/ammo_magazine/smg/standard_smg = 1000,
+			/obj/item/weapon/gun/smg/standard_machinepistol = 250,
+			/obj/item/ammo_magazine/smg/standard_machinepistol = 1000,
+			/obj/item/weapon/gun/smg/ppsh = 250,
+			/obj/item/ammo_magazine/smg/ppsh = 1000,
+			/obj/item/ammo_magazine/smg/ppsh/extended = 500,
+		),
+		"Sidearm" = list(
+			/obj/item/weapon/gun/pistol/standard_pistol = 250,
+			/obj/item/ammo_magazine/pistol/standard_pistol = 1000,
+			/obj/item/weapon/gun/pistol/standard_heavypistol = 250,
+			/obj/item/ammo_magazine/pistol/standard_heavypistol = 1000,
+			/obj/item/weapon/gun/revolver/standard_revolver = 250,
+			/obj/item/ammo_magazine/revolver/standard_revolver = 1000,
+			/obj/item/weapon/gun/pistol/standard_pocketpistol = 1000,
+			/obj/item/ammo_magazine/pistol/standard_pocketpistol = 1000,
+			/obj/item/weapon/gun/pistol/vp70 = 250,
+			/obj/item/ammo_magazine/pistol/vp70 = 1000,
+			/obj/item/weapon/gun/pistol/plasma_pistol = 250,
+			/obj/item/ammo_magazine/pistol/plasma_pistol = 1000,
+		),
+		"Specialized" = list(
+			/obj/item/weapon/gun/flamer/marinestandard = 4,
+			/obj/item/ammo_magazine/flamer_tank/backtank = 4,
+			/obj/item/ammo_magazine/flamer_tank/large = 20,
+			/obj/item/ammo_magazine/flamer_tank = 20,
+			/obj/item/weapon/shield/riot/marine = 6,
+			/obj/item/weapon/powerfist = 100,
+			/obj/item/weapon/throwing_knife = 500,
+			/obj/item/ammo_magazine/standard_smartmachinegun = 4,
+		),
+		"Grenades" = list(
+			/obj/item/explosive/grenade/frag = 600,
+			/obj/item/explosive/grenade/frag/m15 = 50,
+			/obj/item/explosive/grenade/incendiary = 50,
+			/obj/item/explosive/grenade/cloakbomb = 50,
+			/obj/item/explosive/grenade/drainbomb = 10,
+			/obj/item/explosive/grenade/mirage = 100,
+			/obj/item/storage/box/m94 = 200,
+			/obj/item/storage/box/m94/cas = 30,
+		),
+		"Attachments" = list(
+			/obj/item/attachable/bayonet = 1000,
+			/obj/item/attachable/compensator = 1000,
+			/obj/item/attachable/extended_barrel = 1000,
+			/obj/item/attachable/suppressor = 1000,
+			/obj/item/attachable/lace = 1000,
+			/obj/item/attachable/flashlight = 1000,
+			/obj/item/attachable/magnetic_harness = 1000,
+			/obj/item/attachable/reddot = 1000,
+			/obj/item/attachable/angledgrip = 1000,
+			/obj/item/attachable/bipod = 1000,
+			/obj/item/attachable/burstfire_assembly = 1000,
+			/obj/item/attachable/gyro = 1000,
+			/obj/item/attachable/lasersight = 1000,
+			/obj/item/attachable/verticalgrip = 1000,
+			/obj/item/attachable/stock/t19stock = 1000,
+			/obj/item/attachable/stock/t35stock = 1000,
+			/obj/item/attachable/attached_gun/flamer = 1000,
+			/obj/item/attachable/attached_gun/shotgun = 1000,
+			/obj/item/attachable/attached_gun/grenade = 1000,
+		),
+		"Boxes" = list(
+		/obj/item/ammo_magazine/box9mm = 100,
+		/obj/item/ammo_magazine/acp = 100,
+		/obj/item/ammo_magazine/magnum = 100,
+		/obj/item/ammo_magazine/box10x24mm = 100,
+		/obj/item/ammo_magazine/box10x26mm = 100,
+		/obj/item/ammo_magazine/box10x27mm = 100,
+		/obj/item/storage/box/ammo = 30,
+		),
 	)
+
+/obj/machinery/vending/marine/shared/hvh/team_one
+
+/obj/machinery/vending/marine/shared/hvh/team_two
 
 /obj/machinery/vending/marine/cargo_supply
 	name = "\improper Operational Supplies Vendor"
