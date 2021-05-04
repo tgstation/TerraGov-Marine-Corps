@@ -6,7 +6,7 @@
 	/// Cooldown between two use of that emote. Every emote has its own coodldown
 	var/cooldown = 5 SECONDS
 	/// If this custom emote is a say or a me
-	var/spoke_emote = TRUE
+	var/spoken_emote = TRUE
 
 /// Run the custome emote
 /datum/custom_emote/proc/run_custom_emote(mob/user)
