@@ -199,7 +199,6 @@
 
 
 /obj/machinery/vending/marine/shared/hvh
-	isshared = TRUE
 
 	contraband = list(/obj/item/explosive/grenade/smokebomb = 50)
 
