@@ -91,9 +91,9 @@
 /datum/emote/proc/check_cooldown(mob/user, intentional)
 	if(!intentional)
 		return TRUE
-	if(TIMER_COOLDOWN_CHECK(user, "Emote [key]"))
+	if(TIMER_COOLDOWN_CHECK(user, "emote[key]"))
 		return FALSE
-	TIMER_COOLDOWN_START(user, "Emote [key]", cooldown)
+	TIMER_COOLDOWN_START(user, "emote[key]", cooldown)
 	return TRUE
 
 /datum/emote/proc/get_sound(mob/living/user)

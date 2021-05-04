@@ -12,10 +12,10 @@
 /datum/custom_emote/proc/run_custom_emote(mob/user)
 	if(!message)
 		return
-	if(TIMER_COOLDOWN_CHECK(user, "Custom_emotes[id]"))
+	if(TIMER_COOLDOWN_CHECK(user, "custom_emotes[id]"))
 		to_chat(user, "<span class='notice'>You used that emote too recently.</span>")
 		return
-	TIMER_COOLDOWN_START(user, "Custom_emotes[id]", cooldown)
+	TIMER_COOLDOWN_START(user, "custom_emotes[id]", cooldown)
 	if(user.stat > CONSCIOUS)
 		to_chat(user, "<span class='notice'>You cannot use that emote while unconscious.</span>")
 		return
