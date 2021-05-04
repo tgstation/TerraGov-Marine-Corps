@@ -23,6 +23,8 @@
 
 /obj/structure/cocoon/Initialize(mapload, _hivenumber, mob/living/_victim)
 	. = ..()
+	if(!_hivenumber)
+		return
 	hivenumber =  _hivenumber
 	victim = _victim
 	victim.forceMove(src)
@@ -108,5 +110,6 @@
 	anchored = FALSE
 	
 /obj/structure/cocoon/opened_cocoon/Initialize()
+	. = ..()
 	new /obj/structure/bed/nest(loc)
 	new /obj/effect/alien/weeds/node(loc)
