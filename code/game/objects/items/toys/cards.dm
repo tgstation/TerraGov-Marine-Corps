@@ -38,11 +38,14 @@
 		qdel(I)
 		to_chat(user, "You place your cards on the bottom of the deck.")
 
-/obj/item/toy/deck/update_icon()
+/obj/item/toy/deck/update_icon_state()
 	switch(cards.len)
-		if(52) icon_state = "deck"
-		if(1 to 51) icon_state = "deck_open"
-		if(0) icon_state = "deck_empty"
+		if(52)
+			icon_state = "deck"
+		if(1 to 51)
+			icon_state = "deck_open"
+		if(0)
+			icon_state = "deck_empty"
 
 /obj/item/toy/deck/verb/draw_card()
 

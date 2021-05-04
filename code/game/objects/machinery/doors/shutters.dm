@@ -54,7 +54,7 @@
 	operating = FALSE
 
 
-/obj/machinery/door/poddoor/shutters/update_icon()
+/obj/machinery/door/poddoor/shutters/update_icon_state()
 	if(operating)
 		return
 	icon_state = "shutter[density]"
