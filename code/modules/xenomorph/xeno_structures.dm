@@ -38,6 +38,8 @@
 	var/datum/hive_status/associated_hive
 	var/silo_area
 	var/number_silo
+	///If killing the silo should not alert the hive
+	var/silent = FALSE
 	COOLDOWN_DECLARE(silo_damage_alert_cooldown)
 	COOLDOWN_DECLARE(silo_proxy_alert_cooldown)
 
@@ -54,6 +56,8 @@
 
 	for(var/i in RANGE_TURFS(XENO_SILO_DETECTION_RANGE, src))
 		RegisterSignal(i, COMSIG_ATOM_ENTERED, .proc/resin_silo_proxy_alert)
+	
+	RegisterSignal(SSdcs, COMSIG_GLOB_DROPSHIP_HIJACKED, .proc/destroy_silently)
 
 	SSminimaps.add_marker(src, z, hud_flags = MINIMAP_FLAG_XENO, iconstate = "silo")
 	return INITIALIZE_HINT_LATELOAD
@@ -81,19 +85,16 @@
 	if(associated_hive)
 		UnregisterSignal(associated_hive, list(COMSIG_HIVE_XENO_MOTHER_PRE_CHECK, COMSIG_HIVE_XENO_MOTHER_CHECK))
 
-		if(isdistressgamemode(SSticker.mode)) //Silo only matter on distress
-			var/datum/game_mode/infestation/distress/distress_mode
-			distress_mode = SSticker.mode
-			if (!(distress_mode.round_stage == INFESTATION_MARINE_CRASHING))//No need to notify the xenos shipside
-				associated_hive.xeno_message("A resin silo has been destroyed at [AREACOORD_NO_Z(src)]!", "xenoannounce", 5, FALSE,src.loc, 'sound/voice/alien_help2.ogg',FALSE , null, /obj/screen/arrow/silo_damaged_arrow)
-				associated_hive.handle_silo_death_timer()
-				associated_hive = null
-				notify_ghosts("\ A resin silo has been destroyed at [AREACOORD_NO_Z(src)]!", source = get_turf(src), action = NOTIFY_JUMP)
-
+	if (!(silent))//No need to notify the xenos shipside
+		associated_hive.xeno_message("A resin silo has been destroyed at [AREACOORD_NO_Z(src)]!", "xenoannounce", 5, FALSE,src.loc, 'sound/voice/alien_help2.ogg',FALSE , null, /obj/screen/arrow/silo_damaged_arrow)
+		associated_hive.handle_silo_death_timer()
+		associated_hive = null
+		notify_ghosts("\ A resin silo has been destroyed at [AREACOORD_NO_Z(src)]!", source = get_turf(src), action = NOTIFY_JUMP)
+		playsound(loc,'sound/effects/alien_egg_burst.ogg', 75)
+	
 	for(var/i in contents)
 		var/atom/movable/AM = i
 		AM.forceMove(get_step(center_turf, pick(CARDINAL_ALL_DIRS)))
-	playsound(loc,'sound/effects/alien_egg_burst.ogg', 75)
 
 	silo_area = null
 	center_turf = null
@@ -160,7 +161,11 @@
 	if(obj_integrity < max_integrity)
 		obj_integrity = min(obj_integrity + 25, max_integrity) //Regen 5 HP per sec
 
-
+///Signal handler to get rid of the silo without any alert
+/obj/structure/resin/silo/proc/destroy_silently()
+	SIGNAL_HANDLER
+	silent = TRUE
+	qdel(src)
 
 /obj/structure/resin/silo/proc/is_burrowed_larva_host(datum/source, list/mothers, list/silos)
 	SIGNAL_HANDLER
