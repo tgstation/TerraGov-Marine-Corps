@@ -1,0 +1,4 @@
+author: "Wayland-Smithy"
+delete-after: True
+changes: 
+  - spellcheck: "Clarified that the right click toggle button (en/dis)ables the context menu and not the entire button."
