@@ -27,7 +27,7 @@
 	new /obj/item/tool/surgery/FixOVein(src)
 	new /obj/item/stack/nanopaste(src)
 
-/obj/item/storage/surgical_tray/update_icon_state()
+/obj/item/storage/surgical_tray/update_icon()
 	if(!contents.len)
 		icon_state = "surgical_tray_e"
 	else

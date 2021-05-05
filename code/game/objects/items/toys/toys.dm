@@ -83,8 +83,8 @@
 		src.icon_state = "burst"
 		QDEL_IN(src, 5)
 
-/obj/item/toy/balloon/update_icon_state()
-	if(reagents.total_volume)
+/obj/item/toy/balloon/update_icon()
+	if(src.reagents.total_volume >= 1)
 		icon_state = "waterballoon"
 		item_state = "balloon"
 	else

@@ -28,7 +28,7 @@
 		for(var/i in 1 to spawn_number)
 			new spawn_type(src)
 
-/obj/item/storage/fancy/update_icon_state()
+/obj/item/storage/fancy/update_icon()
 	icon_state = "[icon_type]box[length(contents)]"
 
 /obj/item/storage/fancy/remove_from_storage(obj/item/W, atom/new_location)
@@ -145,7 +145,7 @@
 	for(var/i in 1 to storage_slots)
 		new /obj/item/clothing/mask/cigarette(src)
 
-/obj/item/storage/fancy/cigarettes/update_icon_state()
+/obj/item/storage/fancy/cigarettes/update_icon()
 	icon_state = "[initial(icon_state)][contents.len]"
 
 

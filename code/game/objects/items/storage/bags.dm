@@ -38,15 +38,14 @@
 	can_hold = list() // any
 	cant_hold = list(/obj/item/disk/nuclear)
 
-/obj/item/storage/bag/trash/update_icon_state()
+/obj/item/storage/bag/trash/update_icon()
 	if(contents.len == 0)
 		icon_state = "trashbag0"
 	else if(contents.len < 12)
 		icon_state = "trashbag1"
 	else if(contents.len < 21)
 		icon_state = "trashbag2"
-	else
-		icon_state = "trashbag3"
+	else icon_state = "trashbag3"
 
 
 // -----------------------------

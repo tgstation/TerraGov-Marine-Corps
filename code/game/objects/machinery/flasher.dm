@@ -33,8 +33,8 @@
 	density = TRUE
 
 
-/obj/machinery/flasher/update_icon_state()
-	if(!(machine_stat & NOPOWER))
+/obj/machinery/flasher/update_icon()
+	if ( !(machine_stat & NOPOWER) )
 		icon_state = "[base_state]1"
 	else
 		icon_state = "[base_state]1-p"

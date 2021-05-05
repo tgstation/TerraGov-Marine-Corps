@@ -55,7 +55,7 @@
 		update_icon()
 		soundloop.start()
 
-/obj/machinery/power/port_gen/update_icon_state()
+/obj/machinery/power/port_gen/update_icon()
 	icon_state = "[base_icon]"
 
 /obj/machinery/power/port_gen/process()

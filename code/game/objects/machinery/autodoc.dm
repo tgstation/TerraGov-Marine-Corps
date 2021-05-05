@@ -90,7 +90,7 @@
 	go_out(AUTODOC_NOTICE_NO_POWER)
 
 
-/obj/machinery/autodoc/update_icon_state()
+/obj/machinery/autodoc/update_icon()
 	if(machine_stat & NOPOWER)
 		icon_state = "autodoc_off"
 	else if(surgery)
@@ -935,7 +935,7 @@
 	return ..()
 
 
-/obj/machinery/autodoc_console/update_icon_state()
+/obj/machinery/autodoc_console/update_icon()
 	if(machine_stat & NOPOWER)
 		icon_state = "sleeperconsole-p"
 	else

@@ -315,7 +315,7 @@
 	else
 		to_chat(user, "<span class='warning'>Its defibrillator recharge unit does not have a power cell installed!</span>")
 
-/obj/item/storage/backpack/marine/corpsman/update_icon_state()
+/obj/item/storage/backpack/marine/corpsman/update_icon()
 	icon_state = icon_skin
 	if(cell?.charge >= 0)
 		switch(PERCENT(cell.charge/cell.maxcharge))

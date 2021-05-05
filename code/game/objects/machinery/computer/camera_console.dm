@@ -167,7 +167,7 @@
 	circuit = null
 
 
-/obj/machinery/computer/security/telescreen/update_icon_state()
+/obj/machinery/computer/security/telescreen/update_icon()
 	icon_state = initial(icon_state)
 	if(machine_stat & (BROKEN|DISABLED))
 		icon_state += "b"

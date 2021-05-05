@@ -65,11 +65,11 @@
 
 	var/amount_left = 7
 
-/obj/item/toy/gun_ammo/update_icon_state()
-	if(amount_left)
-		icon_state = "cap_ammo"
-	else
-		icon_state = "cap_ammo_e"
+	update_icon()
+		if(amount_left)
+			icon_state = "cap_ammo"
+		else
+			icon_state = "cap_ammo_e"
 
 
 /*

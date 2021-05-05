@@ -107,7 +107,7 @@
 	popup.set_content(dat)
 	popup.open()
 
-/obj/machinery/autolathe/update_icon_state()
+/obj/machinery/autolathe/update_icon()
 	icon_state = (CHECK_BITFIELD(machine_stat, PANEL_OPEN) ? "autolathe_t": "autolathe")
 
 /obj/machinery/autolathe/attackby(obj/item/I, mob/user, params)

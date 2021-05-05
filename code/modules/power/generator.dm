@@ -47,10 +47,14 @@
 				circ1 = null
 				circ2 = null
 
-/obj/machinery/power/generator/update_overlays()
-	. = ..()
-	if(lastgenlev != 0)
-		. += image('icons/obj/power.dmi', "teg-op[lastgenlev]")
+/obj/machinery/power/generator/update_icon()
+	if(machine_stat & (NOPOWER|BROKEN))
+		overlays.Cut()
+	else
+		overlays.Cut()
+
+		if(lastgenlev != 0)
+			overlays += image('icons/obj/power.dmi', "teg-op[lastgenlev]")
 
 /obj/machinery/power/generator/process()
 	if(!circ1 || !circ2 || !anchored || machine_stat & (BROKEN|NOPOWER))
