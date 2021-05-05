@@ -418,6 +418,10 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	medical = SKILL_MEDICAL_NOVICE
 	surgery = SKILL_SURGERY_AMATEUR
 
+/datum/skills/marine
+	name = "Terragov Marine"
+	construction = SKILL_CONSTRUCTION_PLASTEEL
+
 /datum/skills/SL/upp
 	name = "UPP Leader"
 	firearms = SKILL_FIREARMS_TRAINED
