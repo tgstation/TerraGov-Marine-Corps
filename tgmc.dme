@@ -343,6 +343,7 @@
 #include "code\datums\emergency_calls\xenobeta.dm"
 #include "code\datums\emergency_calls\xenocorrupted.dm"
 #include "code\datums\emergency_calls\xenozeta.dm"
+#include "code\datums\gamemodes\civil_war.dm"
 #include "code\datums\gamemodes\crash.dm"
 #include "code\datums\gamemodes\distress.dm"
 #include "code\datums\gamemodes\extended.dm"
