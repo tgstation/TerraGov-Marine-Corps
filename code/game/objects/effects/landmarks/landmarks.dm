@@ -120,7 +120,8 @@
 
 /obj/effect/landmark/weed_node
 	name = "xeno weed node spawn landmark"
-	icon_state = "tdome_observer"
+	icon = 'icons/Xeno/weeds.dmi'
+	icon_state = "weednode"
 
 /obj/effect/landmark/weed_node/Initialize()
 	GLOB.xeno_weed_node_turfs += loc
@@ -130,7 +131,8 @@
 
 /obj/effect/landmark/xeno_silo_spawn
 	name = "xeno silo spawn landmark"
-	icon_state = "tdome_observer"
+	icon = 'icons/Xeno/resin_silo.dmi'
+	icon_state = "weed_silo"
 
 /obj/effect/landmark/xeno_silo_spawn/Initialize()
 	GLOB.xeno_resin_silo_turfs += loc
@@ -139,7 +141,8 @@
 
 /obj/effect/landmark/xeno_turret_spawn
 	name = "xeno turret spawn landmark"
-	icon_state = "tdome_observer"
+	icon = 'icons/Xeno/acidturret.dmi'
+	icon_state = "acid_turret"
 
 /obj/effect/landmark/xeno_turret_spawn/Initialize()
 	GLOB.xeno_turret_turfs += loc
