@@ -90,6 +90,12 @@
 	ship_tag = "minidropship"
 	icon_state = "equip_base"
 
+/obj/effect/attach_point/weapon/minidropship/pointing_east
+	dir = 4
+
+/obj/effect/attach_point/weapon/minidropship/pointing_west
+	dir = 8
+
 /obj/effect/attach_point/crew_weapon
 	name = "rear attach point"
 	base_category = DROPSHIP_CREW_WEAPON
@@ -102,6 +108,9 @@
 
 /obj/effect/attach_point/crew_weapon/minidropship
 	ship_tag = "minidropship"
+
+/obj/effect/attach_point/crew_weapon/dropship1
+	ship_tag = "alamo"
 
 /obj/effect/attach_point/electronics
 	name = "electronic system attach point"
@@ -252,7 +261,7 @@
 			if(linked_shuttle)
 				linked_shuttle.equipments -= src
 				linked_shuttle = null
-				if(linked_console && linked_console.selected_equipment == src)
+				if(linked_console?.selected_equipment == src)
 					linked_console.selected_equipment = null
 		update_equipment()
 		return TRUE //removed or uninstalled equipment

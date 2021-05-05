@@ -32,6 +32,7 @@
 	bound_width = 96
 	bound_height = 96
 	max_integrity = 1000
+	resistance_flags = DROPSHIP_IMMUNE
 	///How many larva points one silo produce in one minute
 	var/larva_spawn_rate = 0.5
 	var/turf/center_turf
@@ -76,24 +77,23 @@
 		newt.tunnel_desc = "[AREACOORD_NO_Z(newt)]"
 		newt.name += " [name]"
 
-/obj/structure/resin/silo/Destroy()
-	GLOB.xeno_resin_silos -= src
+/obj/structure/resin/silo/obj_destruction(damage_amount, damage_type, damage_flag)
+	. = ..()
 	if(associated_hive)
 		UnregisterSignal(associated_hive, list(COMSIG_HIVE_XENO_MOTHER_PRE_CHECK, COMSIG_HIVE_XENO_MOTHER_CHECK))
+		associated_hive.xeno_message("A resin silo has been destroyed at [AREACOORD_NO_Z(src)]!", "xenoannounce", 5, FALSE,src.loc, 'sound/voice/alien_help2.ogg',FALSE , null, /obj/screen/arrow/silo_damaged_arrow)
+		associated_hive.handle_silo_death_timer()
+		associated_hive = null
+		notify_ghosts("\ A resin silo has been destroyed at [AREACOORD_NO_Z(src)]!", source = get_turf(src), action = NOTIFY_JUMP)
+		playsound(loc,'sound/effects/alien_egg_burst.ogg', 75)
+	
 
-		if(isdistressgamemode(SSticker.mode)) //Silo only matter on distress
-			var/datum/game_mode/infestation/distress/distress_mode
-			distress_mode = SSticker.mode
-			if (!(distress_mode.round_stage == INFESTATION_MARINE_CRASHING))//No need to notify the xenos shipside
-				associated_hive.xeno_message("A resin silo has been destroyed at [AREACOORD_NO_Z(src)]!", "xenoannounce", 5, FALSE,src.loc, 'sound/voice/alien_help2.ogg',FALSE , null, /obj/screen/arrow/silo_damaged_arrow)
-				associated_hive.handle_silo_death_timer()
-				associated_hive = null
-				notify_ghosts("\ A resin silo has been destroyed at [AREACOORD_NO_Z(src)]!", source = get_turf(src), action = NOTIFY_JUMP)
-
+/obj/structure/resin/silo/Destroy()
+	GLOB.xeno_resin_silos -= src
+	
 	for(var/i in contents)
 		var/atom/movable/AM = i
 		AM.forceMove(get_step(center_turf, pick(CARDINAL_ALL_DIRS)))
-	playsound(loc,'sound/effects/alien_egg_burst.ogg', 75)
 
 	silo_area = null
 	center_turf = null
@@ -159,8 +159,6 @@
 	//Regenerate if we're at less than max integrity
 	if(obj_integrity < max_integrity)
 		obj_integrity = min(obj_integrity + 25, max_integrity) //Regen 5 HP per sec
-
-
 
 /obj/structure/resin/silo/proc/is_burrowed_larva_host(datum/source, list/mothers, list/silos)
 	SIGNAL_HANDLER
