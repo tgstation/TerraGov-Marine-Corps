@@ -41685,6 +41685,10 @@
 	dir = 6
 	},
 /area/prison/hangar/main)
+"gBG" = (
+/obj/effect/landmark/dropship_start_location,
+/turf/open/floor/prison/bright_clean/two,
+/area/prison/yard)
 "gBP" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4
@@ -81826,7 +81830,7 @@ aWR
 hwj
 bjj
 bny
-bgQ
+gBG
 bpG
 bgQ
 bri

@@ -20961,6 +20961,12 @@
 "puQ" = (
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/southwest)
+"pvZ" = (
+/obj/effect/landmark/dropship_start_location,
+/turf/open/floor/plating/ground/mars/dirttosand{
+	dir = 5
+	},
+/area/bigredv2/outside/c)
 "pyW" = (
 /obj/structure/window/framed/colony,
 /obj/machinery/door/poddoor/shutters/mainship{
@@ -43618,7 +43624,7 @@ aBR
 aBR
 aBR
 aBR
-hlD
+pvZ
 aMd
 aMg
 aMg
