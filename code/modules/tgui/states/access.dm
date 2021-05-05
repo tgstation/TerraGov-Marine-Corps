@@ -1,8 +1,3 @@
-/*!
- * Copyright (c) 2020 Aleksej Komarov
- * SPDX-License-Identifier: MIT
- */
-
 /**
  * tgui state: access_state
  *
@@ -16,10 +11,10 @@ GLOBAL_DATUM_INIT(access_state, /datum/ui_state/access_state, new)
 	return user.access_can_use_topic(src_object)
 
 /mob/proc/access_can_use_topic(src_object)
-	return src.default_can_use_topic(src_object)
+	return default_can_use_topic(src_object)
 
 /mob/living/access_can_use_topic(src_object)
-	. = src.human_adjacent_can_use_topic(src_object)
+	. = human_adjacent_can_use_topic(src_object)
 
 	var/obj/O = src_object
 	if(!O?.allowed(src)) //No access? No ui!
@@ -28,4 +23,4 @@ GLOBAL_DATUM_INIT(access_state, /datum/ui_state/access_state, new)
 	. = min(., UI_INTERACTIVE)
 
 /mob/living/silicon/access_can_use_topic(src_object)
-	return src.default_can_use_topic(src_object)
+	return default_can_use_topic(src_object)

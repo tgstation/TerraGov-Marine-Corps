@@ -29,7 +29,6 @@ export const ShuttleControl = (props, context) => {
   return (
     <Window
       title="Shuttle Control Console"
-      resizable
       width={400}
       height={230}>
       <Window.Content>
