@@ -113,6 +113,18 @@
 	ext_pack.extract(src, user)
 	return TRUE
 
+/mob/living/carbon/human/fulton_act(mob/living/user, obj/item/I)
+	. = ..()
+	if(can_sell_human_body(src, user))
+		to_chat(user, "<span class='notice'>High command is not interested in this target.</span>")
+		return TRUE
+	if(stat != DEAD)
+		to_chat(user, "<span class='warning'>The extraction device buzzes, complaining. This one seems to be alive still.</span>")
+		return TRUE
+	var/obj/item/fulton_extraction_pack/ext_pack = I
+	ext_pack.extract(src, user)
+	return TRUE
+
 
 /obj/structure/table/fulton_act(mob/living/user, obj/item/I)
 	if(!flipped)
