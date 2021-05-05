@@ -97,6 +97,7 @@
 	list_reagents = list(
 		/datum/reagent/toxin/sleeptoxin = 8,
 		/datum/reagent/toxin/chloralhydrate = 2,
+	)
 
 /obj/item/reagent_containers/hypospray/autoinjector/dylovene
 	name = "dylovene autoinjector"
