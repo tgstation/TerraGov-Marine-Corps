@@ -160,8 +160,10 @@
 	var/on = FALSE
 	var/obj/effect/mist/mymist = null
 	var/ismist = FALSE //needs a var so we can make it linger~
-	var/watertemp = WATER_TEMP_NORMAL /// freezing, normal, or boiling
-	var/mobpresent = 0 /// Count of mobs present under the shower, this is to ease process()
+	/// freezing, normal, or boiling
+	var/watertemp = WATER_TEMP_NORMAL
+	/// Count of mobs present under the shower, this is to ease process()
+	var/mobpresent = 0
 	var/is_washing = FALSE
 
 /obj/machinery/shower/Initialize()
