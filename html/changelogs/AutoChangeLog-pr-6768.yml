@@ -1,0 +1,9 @@
+author: "DerrickChamberlain"
+delete-after: True
+changes: 
+  - qol: "Fixes engineering prep"
+  - qol: "adds Seed extractor to hydro"
+  - qol: "adds Research Fax machine"
+  - qol: "Fixes firedoors in medbay"
+  - qol: "adds firedoors to the new section of the Sulaco"
+  - qol: "Minor tweaks."
