@@ -489,13 +489,13 @@
 	///how much power the gun uses on this mode when shot.
 	var/charge_cost = 0
 	///the ammo datum this mode is.
-	var/ammo = null
+	var/datum/ammo/ammo = null
 	///how long it takes between each shot of that mode, same as gun fire delay.
 	var/fire_delay = 0
-	///Mostly for the laser carbine.
-	var/burst_amount = 4
+	///Gives guns a burst amount, editable.
+	var/burst_amount = 0
 	///gives firemode selections for guns.
-	var/gun_firemode_list = null
+	var/gun_firemode_list
 	///The gun firing sound of this mode.
 	var/fire_sound = null
 	///What message it sends to the user when you switch to this mode.
@@ -548,17 +548,15 @@
 	var/obj/screen/ammo/A = user.hud_used.ammo //The ammo HUD
 	A.update_hud(user)
 
-/obj/item/weapon/gun/energy/lasgun/lasrifle/update_item_state(mob/user) //Without this icon states for wielded guns won't show.
-	. = item_state
+/obj/item/weapon/gun/energy/lasgun/lasrifle/update_item_state(mob/user) //Without this override icon states for wielded guns won't show. because lasgun overrides and this has no charge icons
 	item_state = "[initial(icon_state)][flags_item & WIELDED ? "_w" : ""]"
 
-	return TRUE
 
 //TE Tier 1 Series//
 
 //TE Standard Laser rifle
 
-obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_rifle
+/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_rifle
 	name = "\improper Terra Experimental laser rifle"
 	desc = "A TerraGov standard issue laser rifle otherwise known as TE-R abbreviated has an integrated charge selector for normal and high settings. Uses standard Terra Experimntal, TE abbreviated power cells."
 	reload_sound = 'sound/weapons/guns/interact/standard_laser_rifle_reload.ogg'
@@ -606,11 +604,11 @@ obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_rifle
 	accuracy_mult_unwielded = 0.55
 	scatter_unwielded = 10
 	mode_list = list(
-		"Standard" = /datum/lasrifle/base/ter/te_standard,
-		"Overcharge" = /datum/lasrifle/base/ter/te_overcharge,
+		"Standard" = /datum/lasrifle/base/energy_rifle_mode/standard,
+		"Overcharge" = /datum/lasrifle/base/energy_rifle_mode/overcharge,
 	)
 
-/datum/lasrifle/base/ter/te_standard
+/datum/lasrifle/base/energy_rifle_mode/standard
 	charge_cost = 10
 	ammo = /datum/ammo/energy/lasgun/marine
 	fire_delay = 0.2 SECONDS
@@ -619,7 +617,7 @@ obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_rifle
 	fire_mode = GUN_FIREMODE_AUTOMATIC
 	icon_state = "ter"
 
-/datum/lasrifle/base/ter/te_overcharge
+/datum/lasrifle/base/energy_rifle_mode/overcharge
 	charge_cost = 20
 	ammo = /datum/ammo/energy/lasgun/marine/overcharge
 	fire_delay = 0.4 SECONDS
@@ -631,7 +629,7 @@ obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_rifle
 
 ///TE Standard Laser Pistol
 
-obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_pistol
+/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_pistol
 	name = "\improper Terra Experimental laser pistol"
 	desc = "A TerraGov standard issue laser pistol otherwise known as TE-P abbreviated has an integrated charge selector for normal, heat and taser settings. Uses standard Terra Experimntal, TE abbreviated power cells. "
 	reload_sound = 'sound/weapons/guns/interact/standard_laser_pistol_reload.ogg'
@@ -708,7 +706,7 @@ obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_pistol
 
 //TE Standard Laser Carbine
 
-obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_carbine
+/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_carbine
 	name = "\improper Terra Experimental laser carbine"
 	desc = "A TerraGov standard issue laser carbine otherwise known as TE-C abbreviated has an integrated charge selector for burst and scatter settings. Uses standard Terra Experimntal, TE abbreviated power cells."
 	reload_sound = 'sound/weapons/guns/interact/standard_laser_rifle_reload.ogg'
@@ -784,7 +782,7 @@ obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_carbine
 
 //TE Standard Sniper
 
-obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_sniper
+/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_sniper
 	name = "\improper Terra Experimental laser sniper rifle"
 	desc = "A Terra Experimental standard issue laser sniper rifle, otherwise known as TE-S abbreviated has an integrated charge selector for normal, high and heat settings. Uses standard Terra Experimntal, TE abbreviated power cells."
 	reload_sound = 'sound/weapons/guns/interact/standard_laser_sniper_reload.ogg'
@@ -849,7 +847,7 @@ obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_sniper
 	icon_state = "tes"
 	radial_icon_state = "laser_heat"
 
-obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_mlaser
+/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_mlaser
 	name = "\improper Terra Experimental laser machine gun"
 	desc = "A Terra Experimental standard issue machine laser gun otherwise known as TE-M abbreviated. Uses standard Terra Experimntal, TE abbreviated power cells."
 	reload_sound = 'sound/weapons/guns/interact/standard_machine_laser_reload.ogg'
