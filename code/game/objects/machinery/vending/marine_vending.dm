@@ -497,7 +497,7 @@
 		/obj/item/reagent_containers/hypospray/autoinjector/dylovene = 6,
 		/obj/item/reagent_containers/hypospray/autoinjector/hypervene = 4,
 		/obj/item/reagent_containers/hypospray/autoinjector/quickclot = 4,
-		/obj/item/reagent_containers/hypospray/autoinjector/dexalinplus = 0,
+		/obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus = 0,
 		/obj/item/reagent_containers/hypospray/autoinjector/quickclotplus = 0,
 		/obj/item/reagent_containers/hypospray/autoinjector/synaptizine = 0,
 		/obj/item/storage/pill_bottle/bicaridine = 3,
