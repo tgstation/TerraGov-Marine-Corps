@@ -5,7 +5,7 @@
 	/// Timer used to calculate how long till the hive collapse due to no ruler
 	var/orphan_hive_timer
 	/// Time between two bioscan
-	var/bioscan_interval = 15 MINUTES	
+	var/bioscan_interval = 15 MINUTES
 
 /datum/game_mode/infestation/scale_roles()
 	. = ..()
@@ -179,4 +179,3 @@
 /datum/game_mode/infestation/spawn_larva(mob/xeno_candidate, mob/living/carbon/xenomorph/mother)
 	var/datum/hive_status/normal/HS = GLOB.hive_datums[XENO_HIVE_NORMAL]
 	return HS.spawn_larva(xeno_candidate, mother)
-
