@@ -689,7 +689,7 @@
 	custom_metabolism = REAGENTS_METABOLISM * 0.25
 
 /datum/reagent/medicine/quickclot/on_mob_life(mob/living/L, metabolism)
-	L.blood_volume = 0.2
+	L.blood_volume += 0.2
 	if(!ishuman(L) || L.bodytemperature > 169) //only heals IB at cryogenic temperatures.
 		return ..()
 	var/mob/living/carbon/human/H = L
@@ -750,7 +750,7 @@
 	scannable = TRUE
 
 /datum/reagent/medicine/nanoblood/on_mob_life(mob/living/L, metabolism)
-	L.blood_volume = 2.4
+	L.blood_volume += 2.4
 	L.adjustToxLoss(effect_str)
 	L.adjustStaminaLoss(6*effect_str)
 	return ..()
