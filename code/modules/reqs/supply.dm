@@ -114,7 +114,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 						continue
 				if(ishuman(a))
 					var/mob/living/carbon/human/human_to_sell = a
-					if(human_to_sell.stat == DEAD && can_sell_human_body(faction))
+					if(human_to_sell.stat == DEAD && can_sell_human_body(human_to_sell, faction))
 						continue
 				if(is_type_in_typecache(a, GLOB.blacklisted_cargo_types))
 					return FALSE

@@ -30,7 +30,7 @@
 
 /// Return TRUE if the relation between the two factions are bad enough that a bounty is on the human_to_sell head
 /proc/can_sell_human_body(mob/living/carbon/human/human_to_sell, seller_faction)
-	switch(human_to_sell.faction)
+	switch(human_to_sell.seller_faction)
 		if(FACTION_NEUTRAL) //No one hates neutral
 			return FALSE
 		if(FACTION_TERRAGOV || FACTION_NANOTRASEN || FACTION_FREELANCERS)
