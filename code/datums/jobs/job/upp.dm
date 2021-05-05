@@ -3,7 +3,7 @@
 	access = ALL_ANTAGONIST_ACCESS
 	minimal_access = ALL_ANTAGONIST_ACCESS
 	skills_type = /datum/skills/crafty
-	faction = FACTION_UPP
+	faction = FACTION_USL
 
 //USL Gunner
 /datum/job/upp/standard

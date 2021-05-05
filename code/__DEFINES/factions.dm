@@ -10,6 +10,7 @@
 #define FACTION_SECTOIDS "Sectoids"
 #define FACTION_SOM "Sons of Mars"
 #define FACTION_UPP "Union of Progressive People"
+#define FACTION_USL "United Space Lepidoptera"
 #define FACTION_ALIEN "Alien"
 #define FACTION_SPIDER "Spider"
 #define FACTION_HIVEBOT "Hivebot"

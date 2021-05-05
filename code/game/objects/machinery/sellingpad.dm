@@ -26,7 +26,7 @@
 	if(!COOLDOWN_CHECK(src, selling_cooldown))
 		to_chat(user, "<span class='warning'>The [src] is still recharging! It will be ready in [round(COOLDOWN_TIMELEFT(src, selling_cooldown) / 10)] seconds.</span>")
 		return
-	var/can_sell
+	var/can_sell = FALSE
 	for(var/i in get_turf(src))
 		var/atom/movable/onpad = i
 		can_sell = FALSE
@@ -42,7 +42,7 @@
 				to_chat(user, "<span class='warning'>The [src] buzzes: High command is not interested in that bounty.</span>")
 				continue
 			if(sellhuman.stat != DEAD)
-				to_chat(user, "<span class='warning'>The [src] buzzes: This human is not dead cannot be sold.</span>")
+				to_chat(user, "<span class='warning'>The [src] buzzes: This bounty is not dead and cannot be sold.</span>")
 				continue
 			can_sell = TRUE
 		if(!can_sell)
