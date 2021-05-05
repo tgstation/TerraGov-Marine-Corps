@@ -39,7 +39,7 @@
 	. = ..()
 	if(!density)
 		return 1
-
+	
 	if(get_dir(loc, target) == dir)
 		return 0
 	else
@@ -58,7 +58,7 @@
 	return TRUE
 
 
-/obj/machinery/door/poddoor/railing/update_icon_state()
+/obj/machinery/door/poddoor/railing/update_icon()
 	if(density)
 		icon_state = "railing1"
 	else

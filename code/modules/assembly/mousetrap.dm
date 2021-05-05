@@ -20,12 +20,13 @@
 		playsound(src, 'sound/weapons/handcuffs.ogg', 30, TRUE, -3)
 
 
-/obj/item/assembly/mousetrap/update_icon_state()
+/obj/item/assembly/mousetrap/update_icon()
 	if(armed)
 		icon_state = "mousetraparmed"
 	else
 		icon_state = "mousetrap"
-	holder?.update_icon()
+	if(holder)
+		holder.update_icon()
 
 
 /obj/item/assembly/mousetrap/proc/triggered(mob/target, type = "feet")

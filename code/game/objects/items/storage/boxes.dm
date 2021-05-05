@@ -309,7 +309,7 @@
 	spawn_type = /obj/item/explosive/mine
 	spawn_number = 5
 
-/obj/item/storage/box/explosive_mines/update_icon_state()
+/obj/item/storage/box/explosive_mines/update_icon()
 	icon_state = initial(icon_state)
 	if(!length(contents))
 		icon_state += "_e"
@@ -357,7 +357,7 @@
 	spawn_type = /obj/item/explosive/grenade/frag
 	spawn_number = 25
 
-/obj/item/storage/box/nade_box/update_icon_state()
+/obj/item/storage/box/nade_box/update_icon()
 	icon_state = initial(icon_state)
 	if(!length(contents))
 		icon_state += "_e"
@@ -501,7 +501,7 @@
 
 	var/deployed = FALSE
 
-/obj/item/storage/box/ammo/update_icon_state()
+/obj/item/storage/box/ammo/update_icon()
 	if(!deployed)
 		icon_state = "[initial(icon_state)]"
 	else if(!(length(contents)))

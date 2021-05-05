@@ -12,7 +12,7 @@
 	icon_state = "drone_fab_idle"
 	var/busy = FALSE
 
-/obj/machinery/dropship_part_fabricator/update_icon_state()
+/obj/machinery/dropship_part_fabricator/update_icon()
 	if(machine_stat & NOPOWER)
 		icon_state = "drone_fab_nopower"
 		return

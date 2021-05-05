@@ -115,7 +115,7 @@
 	pressed = FALSE
 	update_icon()
 
-/obj/machinery/door_control/update_icon_state()
+/obj/machinery/door_control/update_icon()
 	if(machine_stat & NOPOWER)
 		icon_state = "doorctrl-p"
 	else if(pressed)

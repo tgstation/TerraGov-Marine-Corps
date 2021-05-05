@@ -26,7 +26,7 @@
 	update_icon()
 
 
-/obj/machinery/button/update_icon_state()
+/obj/machinery/button/update_icon()
 	if(machine_stat & (NOPOWER|BROKEN))
 		icon_state = "[initial(icon_state)]-p"
 	else
@@ -208,7 +208,7 @@
 	active = FALSE
 	update_icon()
 
-/obj/machinery/medical_help_button/update_icon_state()
+/obj/machinery/medical_help_button/update_icon()
 	if(machine_stat & NOPOWER)
 		icon_state = "doorctrl-p"
 	else

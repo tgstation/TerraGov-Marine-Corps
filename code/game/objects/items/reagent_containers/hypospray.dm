@@ -178,15 +178,14 @@
 	. = ..()
 	update_icon()
 
-/obj/item/reagent_containers/hypospray/update_icon_state()
-	if(!ismob(loc))
+/obj/item/reagent_containers/hypospray/update_icon()
+	if(ismob(loc))
+		if(inject_mode)
+			icon_state = "hypo_i"
+		else
+			icon_state = "hypo_d"
+	else
 		icon_state = "hypo"
-		return
-	if(inject_mode)
-		icon_state = "hypo_i"
-		return
-	icon_state = "hypo_d"
-
 
 /obj/item/reagent_containers/hypospray/advanced
 	icon_state = "hypo"

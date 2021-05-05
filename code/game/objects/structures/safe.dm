@@ -94,7 +94,7 @@ FLOOR SAFES
 		tumbler_2_pos = 0
 
 
-/obj/structure/safe/update_icon_state()
+/obj/structure/safe/update_icon()
 	if(open)
 		icon_state = "[initial(icon_state)]-open"
 	else

@@ -38,14 +38,14 @@
 	tray.linked_ob = src
 
 
-/obj/structure/orbital_cannon/update_icon_state()
+/obj/structure/orbital_cannon/update_icon()
 	if(chambered_tray)
 		icon_state = "OBC_chambered"
-		return
-	if(loaded_tray)
-		icon_state = "OBC_loaded"
 	else
-		icon_state = "OBC_unloaded"
+		if(loaded_tray)
+			icon_state = "OBC_loaded"
+		else
+			icon_state = "OBC_unloaded"
 
 
 /obj/structure/orbital_cannon/proc/load_tray(mob/user)
@@ -246,12 +246,13 @@
 	. = ..()
 
 
-/obj/structure/orbital_tray/update_overlays()
-	. = ..()
+/obj/structure/orbital_tray/update_icon()
+	overlays.Cut()
+	icon_state = "cannon_tray"
 	if(warhead)
-		. += image("cannon_tray_[warhead.warhead_kind]")
+		overlays += image("cannon_tray_[warhead.warhead_kind]")
 	if(fuel_amt)
-		. += image("cannon_tray_[fuel_amt]")
+		overlays += image("cannon_tray_[fuel_amt]")
 
 
 /obj/structure/orbital_tray/attackby(obj/item/I, mob/user, params)

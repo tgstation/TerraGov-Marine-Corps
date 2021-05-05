@@ -16,7 +16,7 @@
 	lit = !lit
 	update_icon()
 
-/obj/machinery/holosign/update_icon_state()
+/obj/machinery/holosign/update_icon()
 	if(!lit)
 		icon_state = "sign_off"
 	else

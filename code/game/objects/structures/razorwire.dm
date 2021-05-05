@@ -214,7 +214,7 @@
 		deconstruct(FALSE)
 		return TRUE
 
-/obj/structure/razorwire/update_icon_state()
+/obj/structure/razorwire/update_icon()
 	var/health_percent = round(obj_integrity/max_integrity * 100)
 	var/remaining = CEILING(health_percent, 25)
 	icon_state = "[base_icon_state]_[remaining]"
