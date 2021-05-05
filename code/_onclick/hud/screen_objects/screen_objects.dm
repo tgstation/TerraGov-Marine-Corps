@@ -683,7 +683,15 @@
 
 	var/obj/item/weapon/gun/G = user.get_active_held_item()
 
-	if(!G?.hud_enabled || !(G.flags_gun_features & GUN_AMMO_COUNTER))
+	//Checks if the user is interacting with a machine, and whether that machine is a deployed gun.
+	if(user.interactee && istype(user.interactee, /obj/machinery/mounted))
+		var/obj/machinery/mounted/mounted_gun = user.interactee
+		G = mounted_gun.gun
+
+	else if(!istype(G))
+		return
+
+	if(!G.hud_enabled || !(G.flags_gun_features & GUN_AMMO_COUNTER))
 		return
 
 	user.client.screen += src
@@ -699,7 +707,16 @@
 
 	var/obj/item/weapon/gun/G = user.get_active_held_item()
 
-	if(!istype(G) || !(G.flags_gun_features & GUN_AMMO_COUNTER) || !G.hud_enabled || !G.get_ammo_type() || isnull(G.get_ammo_count()))
+	//Same function as above
+	if(user.interactee && istype(user.interactee, /obj/machinery/mounted))
+		var/obj/machinery/mounted/mounted_gun = user.interactee
+		G = mounted_gun.gun
+
+	else if(!istype(G))
+		remove_hud(user)
+		return
+
+	if(!(G.flags_gun_features & GUN_AMMO_COUNTER) || !G.hud_enabled || !G.get_ammo_type() || isnull(G.get_ammo_count()))
 		remove_hud(user)
 		return
 
