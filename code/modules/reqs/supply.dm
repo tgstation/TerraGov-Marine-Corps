@@ -170,13 +170,7 @@ GLOBAL_LIST_EMPTY_TYPED(exports_types, /datum/supply_export)
 			if(SP.access)
 				A.req_access = list()
 				A.req_access += text2num(SP.access)
-
-			if(SP.randomised_num_contained)
-				if(length(SP.contains))
-					for(var/j in 1 to SP.randomised_num_contained)
-						contains += pick(SP.contains)
-			else
-				contains += SP.contains
+			contains += SP.contains
 
 		for(var/typepath in contains)
 			if(!typepath)

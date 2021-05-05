@@ -76,7 +76,7 @@ SUBSYSTEM_DEF(points)
 				containsname[path] = list("name" = initial(path.name), "count" = 1)
 			else
 				containsname[path]["count"]++
-		supply_packs_contents[pack] = list("name" = P.name, "container_name" = initial(P.containertype.name), "cost" = P.cost, "hidden" = P.hidden, "contains" = containsname)
+		supply_packs_contents[pack] = list("name" = P.name, "container_name" = initial(P.containertype.name), "cost" = P.cost, "contains" = containsname)
 
 
 /datum/controller/subsystem/points/fire(resumed = FALSE)
