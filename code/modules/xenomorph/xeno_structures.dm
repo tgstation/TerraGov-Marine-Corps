@@ -32,6 +32,7 @@
 	bound_width = 96
 	bound_height = 96
 	max_integrity = 1000
+	resistance_flags = UNACIDABLE | DROPSHIP_IMMUNE
 	///How many larva points one silo produce in one minute
 	var/larva_spawn_rate = 0.5
 	var/turf/center_turf
@@ -43,7 +44,6 @@
 
 /obj/structure/resin/silo/Initialize()
 	. = ..()
-	resistance_flags |= DROPSHIP_IMMUNE
 	var/static/number = 1
 	name = "[name] [number]"
 	number_silo = number
@@ -255,6 +255,7 @@
 	max_integrity = 1500
 	layer =  ABOVE_MOB_LAYER
 	density = TRUE
+	resistance_flags = UNACIDABLE | DROPSHIP_IMMUNE
 	///The hive it belongs to
 	var/datum/hive_status/associated_hive
 	///What kind of spit it uses
@@ -274,7 +275,6 @@
 
 /obj/structure/resin/xeno_turret/Initialize(mapload, hivenumber = XENO_HIVE_NORMAL)
 	. = ..()
-	resistance_flags |= DROPSHIP_IMMUNE
 	ammo = GLOB.ammo_list[/datum/ammo/xeno/acid/heavy/turret]
 	ammo.max_range = range + 2 //To prevent funny gamers to abuse the turrets that easily
 	potential_hostiles = list()
