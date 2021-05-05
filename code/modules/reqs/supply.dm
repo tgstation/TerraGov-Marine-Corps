@@ -114,6 +114,11 @@ GLOBAL_LIST_EMPTY_TYPED(exports_types, /datum/supply_export)
 					var/mob/living/L = a
 					if(L.stat == DEAD)
 						continue
+				if(ishuman(a))
+					var/mob/living/carbon/human/human_to_sell = a
+					if(human_to_sell.stat == DEAD)
+						continue
+					
 				if(is_type_in_typecache(a, GLOB.blacklisted_cargo_types))
 					return FALSE
 	return TRUE

@@ -26,7 +26,7 @@
 	if(!COOLDOWN_CHECK(src, selling_cooldown))
 		to_chat(user, "<span class='warning'>The [src] is still recharging! It will be ready in [round(COOLDOWN_TIMELEFT(src, selling_cooldown) / 10)] seconds.</span>")
 		return
-
+	var/can_sell
 	for(var/i in get_turf(src))
 		var/atom/movable/onpad = i
 		can_sell = FALSE

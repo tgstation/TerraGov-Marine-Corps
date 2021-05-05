@@ -42,13 +42,13 @@
 
 //Sectoid Leader
 /datum/job/sectoid/leader
+	job_category = JOB_CAT_COMMAND
 	title = "Sectoid Leader"
 	outfit = /datum/outfit/job/sectoid/leader
 
 
 /datum/outfit/job/sectoid/leader
 	name = "Sectoid Leader"
-	job_category = JOB_CAT_COMMAND
 	jobtype = /datum/job/sectoid/leader
 
 	id = /obj/item/card/id

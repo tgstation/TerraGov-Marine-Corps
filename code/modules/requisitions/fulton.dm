@@ -113,9 +113,8 @@
 	ext_pack.extract(src, user)
 	return TRUE
 
-/mob/living/carbon/human/fulton_act(mob/living/user, obj/item/I)
-	. = ..()
-	if(can_sell_human_body(src, user))
+/mob/living/carbon/humcannot extractan/fulton_act(mob/living/user, obj/item/I)
+	if(!can_sell_human_body(src, user))
 		to_chat(user, "<span class='notice'>High command is not interested in this target.</span>")
 		return TRUE
 	if(stat != DEAD)

@@ -30,7 +30,7 @@
 	SSpoints.supply_points[user.faction] += .
 
 /// Return TRUE if the relation between the two factions are bad enough that a bounty is on the human_to_sell head
-/proc/can_sell_human_body(mob/living/human/human_to_sell, mob/living/user_selling)
+/proc/can_sell_human_body(mob/living/carbon/human/human_to_sell, mob/living/user_selling)
 	switch(human_to_sell.faction)
 		if(FACTION_NEUTRAL) //No one hates neutral
 			return FALSE
