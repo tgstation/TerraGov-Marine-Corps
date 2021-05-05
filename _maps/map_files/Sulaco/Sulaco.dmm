@@ -85,8 +85,10 @@
 /area/sulaco/medbay/chemistry)
 "aao" = (
 /obj/structure/window/framed/mainship/white,
-/obj/machinery/door/firedoor/mainship,
 /obj/machinery/door/poddoor/shutters/opened/medbay{
+	dir = 2
+	},
+/obj/machinery/door/firedoor/mainship{
 	dir = 2
 	},
 /turf/open/floor/plating/platebotc,
@@ -216,14 +218,6 @@
 	dir = 9
 	},
 /area/sulaco/hangar/one)
-"aaL" = (
-/obj/structure/window/framed/mainship/white,
-/obj/machinery/door/firedoor/mainship,
-/obj/machinery/door/poddoor/shutters/opened/medbay{
-	dir = 2
-	},
-/turf/open/floor/plating/platebotc,
-/area/sulaco/medbay)
 "aaM" = (
 /obj/structure/window/framed/mainship/white,
 /obj/machinery/door/firedoor/mainship,
@@ -329,13 +323,7 @@
 	},
 /area/sulaco/medbay/west)
 "abc" = (
-/obj/machinery/holopad{
-	active_power_usage = 60;
-	desc = "It's a floor-mounted device for projecting holographic images. This one appears to have a smaller lense";
-	holo_range = 3;
-	idle_power_usage = 3;
-	name = "modifed holopad"
-	},
+/obj/machinery/holopad,
 /turf/open/floor/wood,
 /area/sulaco/liaison/quarters)
 "abe" = (
@@ -447,13 +435,15 @@
 /turf/closed/wall/mainship/gray/outer,
 /area/sulaco/showers)
 "abv" = (
-/obj/machinery/door/firedoor/mainship,
 /obj/machinery/door/poddoor/shutters/opened/medbay{
 	dir = 2
 	},
 /obj/machinery/door/airlock/multi_tile/mainship/medidoor/medbay{
 	id = null;
 	id_tag = "mbayexit"
+	},
+/obj/machinery/door/firedoor/mainship{
+	dir = 2
 	},
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 4
@@ -464,8 +454,9 @@
 /obj/machinery/door/poddoor/shutters/opened/medbay{
 	dir = 2
 	},
-/obj/machinery/door/firedoor/mainship,
-/obj/machinery/door/firedoor/mainship,
+/obj/machinery/door/firedoor/mainship{
+	dir = 2
+	},
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 4
 	},
@@ -613,9 +604,10 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
-/obj/machinery/door/firedoor/mainship,
 /obj/structure/window/framed/mainship/white,
-/obj/machinery/door/firedoor/mainship,
+/obj/machinery/door/firedoor/mainship{
+	dir = 2
+	},
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 1
 	},
@@ -627,9 +619,10 @@
 /obj/machinery/door/poddoor/shutters/opened/medbay{
 	dir = 2
 	},
-/obj/machinery/door/firedoor/mainship,
 /obj/structure/window/framed/mainship/white,
-/obj/machinery/door/firedoor/mainship,
+/obj/machinery/door/firedoor/mainship{
+	dir = 2
+	},
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 4
 	},
@@ -930,13 +923,7 @@
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
 	dir = 4
 	},
-/obj/machinery/holopad{
-	active_power_usage = 60;
-	desc = "It's a floor-mounted device for projecting holographic images. This one appears to have a smaller lense";
-	holo_range = 3;
-	idle_power_usage = 3;
-	name = "modifed holopad"
-	},
+/obj/machinery/holopad,
 /turf/open/floor/prison,
 /area/sulaco/hangar)
 "acY" = (
@@ -953,11 +940,10 @@
 /area/sulaco/medbay/surgery_one)
 "ada" = (
 /obj/machinery/holopad{
-	active_power_usage = 60;
-	desc = "It's a floor-mounted device for projecting holographic images. This one appears to have a smaller lense";
-	holo_range = 3;
-	idle_power_usage = 3;
-	name = "modifed holopad"
+	active_power_usage = 130;
+	desc = "It's a floor-mounted device for projecting holographic images. This one appears to have a larger lense.";
+	holo_range = 7;
+	name = "modfied holopad"
 	},
 /turf/open/floor/prison,
 /area/mainship/shipboard/weapon_room)
@@ -1647,6 +1633,9 @@
 /area/sulaco/cargo)
 "aeU" = (
 /obj/structure/window/framed/mainship/white,
+/obj/machinery/door/firedoor/mainship{
+	dir = 2
+	},
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 8
 	},
@@ -1759,6 +1748,8 @@
 /obj/item/clothing/glasses/meson,
 /obj/item/paper,
 /obj/item/tool/pen,
+/obj/item/explosive/grenade/chem_grenade/metalfoam,
+/obj/item/explosive/grenade/chem_grenade/metalfoam,
 /obj/item/clothing/head/welding{
 	desc = "A head-mounted face cover designed to protect the wearer completely from space-arc eye. This one appears reinforced to better protect the cranium. Rumored to have been made to thwart the efforts of sneaky Runers and hunters. A small inscription reads: 'D.C'";
 	flags_armor_features = 16;
@@ -2399,16 +2390,15 @@
 "alh" = (
 /obj/structure/table/mainship,
 /obj/machinery/door_control/mainship/req{
-	pixel_x = -6;
-	pixel_y = 8;
-	pixel_y = -5
-	},
-/obj/machinery/door_control/mainship/req{
 	id = "Reqshutters";
 	name = "Req Lockdown";
 	pixel_x = -6;
 	pixel_y = -1;
 	resistance_flags = 3
+	},
+/obj/machinery/door_control/mainship/req{
+	pixel_x = -6;
+	pixel_y = 8
 	},
 /turf/open/floor/prison,
 /area/sulaco/cargo/office)
@@ -2484,6 +2474,7 @@
 	},
 /obj/machinery/door/window/eastright,
 /obj/machinery/door/poddoor/shutters/mainship/req/ro,
+/obj/machinery/door/firedoor/mainship,
 /turf/open/floor/prison/marked,
 /area/sulaco/cargo/office)
 "alw" = (
@@ -2679,6 +2670,7 @@
 "amU" = (
 /obj/structure/window/framed/mainship/gray/toughened,
 /obj/machinery/door/poddoor/shutters/mainship/req/ro,
+/obj/machinery/door/firedoor/mainship,
 /turf/open/floor/plating/platebotc,
 /area/sulaco/cargo/office)
 "amW" = (
@@ -2708,7 +2700,7 @@
 /area/sulaco/engineering)
 "ang" = (
 /obj/machinery/camera/autoname,
-/obj/machinery/marine_selector/clothes/engi/alpha,
+/obj/machinery/marine_selector/clothes/engi,
 /turf/open/floor/prison,
 /area/sulaco/marine)
 "anh" = (
@@ -6274,9 +6266,10 @@
 /turf/open/floor/mainship/ai,
 /area/sulaco/command/ai)
 "aDI" = (
-/obj/structure/mirror,
-/turf/closed/wall/mainship/gray,
-/area/sulaco/showers)
+/obj/structure/window/framed/mainship/gray/toughened,
+/obj/machinery/door/firedoor/mainship,
+/turf/open/floor/plating/platebotc,
+/area/sulaco/cargo/office)
 "aDK" = (
 /obj/machinery/camera/autoname{
 	dir = 4
@@ -7186,13 +7179,7 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
-/obj/machinery/holopad{
-	active_power_usage = 60;
-	desc = "It's a floor-mounted device for projecting holographic images. This one appears to have a smaller lense";
-	holo_range = 3;
-	idle_power_usage = 3;
-	name = "modifed holopad"
-	},
+/obj/machinery/holopad,
 /turf/open/floor/prison/sterilewhite,
 /area/sulaco/cryosleep)
 "aJo" = (
@@ -7963,7 +7950,7 @@
 /obj/structure/window/reinforced/toughened{
 	desc = "Metal Laticed Glass, it looks remarkably thick, it is probably bullet proof, it appears to have a caustic barrier";
 	dir = 1;
-	max_integrity = 1200;
+	max_integrity = 1500;
 	name = "Protective AI Glass";
 	resistance_flags = 10
 	},
@@ -8218,7 +8205,7 @@
 /obj/structure/window/reinforced/toughened{
 	desc = "Metal Laticed Glass, it looks remarkably thick, it is probably bullet proof, it appears to have a caustic barrier";
 	dir = 8;
-	max_integrity = 1200;
+	max_integrity = 1500;
 	name = "Protective AI Glass";
 	resistance_flags = 10
 	},
@@ -9024,6 +9011,7 @@
 	dir = 4
 	},
 /obj/structure/table/mainship,
+/obj/machinery/faxmachine/research,
 /turf/open/floor/prison/whitegreen/full,
 /area/sulaco/research)
 "aUc" = (
@@ -9193,7 +9181,7 @@
 /obj/structure/window/reinforced/toughened{
 	desc = "Metal Laticed Glass, it looks remarkably thick, it is probably bullet proof, it appears to have a caustic barrier";
 	dir = 4;
-	max_integrity = 1200;
+	max_integrity = 1500;
 	name = "Protective AI Glass";
 	resistance_flags = 10
 	},
@@ -9860,13 +9848,7 @@
 /turf/closed/wall/mainship/gray/outer,
 /area/sulaco/cargo)
 "baW" = (
-/obj/machinery/holopad{
-	active_power_usage = 60;
-	desc = "It's a floor-mounted device for projecting holographic images. This one appears to have a smaller lense";
-	holo_range = 3;
-	idle_power_usage = 3;
-	name = "modifed holopad"
-	},
+/obj/machinery/holopad,
 /turf/open/floor/prison,
 /area/sulaco/telecomms/office)
 "bbd" = (
@@ -10224,13 +10206,7 @@
 /turf/open/floor/prison/plate,
 /area/sulaco/cargo)
 "bgd" = (
-/obj/machinery/holopad{
-	active_power_usage = 60;
-	desc = "It's a floor-mounted device for projecting holographic images. This one appears to have a smaller lense";
-	holo_range = 3;
-	idle_power_usage = 3;
-	name = "modifed holopad"
-	},
+/obj/machinery/holopad,
 /turf/open/floor/prison/red/full,
 /area/sulaco/hangar/one)
 "bgH" = (
@@ -10289,8 +10265,8 @@
 	pixel_y = -25
 	},
 /obj/structure/window/framed/mainship/gray/toughened,
-/obj/machinery/door/firedoor,
 /obj/machinery/door/poddoor/shutters/mainship/req/ro,
+/obj/machinery/door/firedoor/mainship,
 /turf/open/floor/plating/platebotc,
 /area/sulaco/cargo)
 "bjV" = (
@@ -10590,6 +10566,9 @@
 /obj/machinery/light/small{
 	dir = 8
 	},
+/obj/machinery/camera/autoname{
+	dir = 4
+	},
 /turf/open/floor/prison,
 /area/sulaco/bridge/quarters)
 "bVR" = (
@@ -10691,13 +10670,7 @@
 /turf/open/floor/plating,
 /area/sulaco/maintenance/lower_maint2)
 "cgK" = (
-/obj/machinery/holopad{
-	active_power_usage = 60;
-	desc = "It's a floor-mounted device for projecting holographic images. This one appears to have a smaller lense";
-	holo_range = 3;
-	idle_power_usage = 3;
-	name = "modifed holopad"
-	},
+/obj/machinery/holopad,
 /turf/open/floor/prison,
 /area/sulaco/hallway/central_hall3)
 "chQ" = (
@@ -11040,13 +11013,6 @@
 /obj/machinery/camera/autoname{
 	dir = 4
 	},
-/obj/machinery/holopad{
-	active_power_usage = 60;
-	desc = "It's a floor-mounted device for projecting holographic images. This one appears to have a smaller lense";
-	holo_range = 3;
-	idle_power_usage = 3;
-	name = "modifed holopad"
-	},
 /turf/open/floor/prison,
 /area/sulaco/marine)
 "cJZ" = (
@@ -11063,6 +11029,7 @@
 	id = "mfsouterhallwayshutters";
 	name = "Lower Foreship Lockdown Shutters"
 	},
+/obj/machinery/door/firedoor/mainship,
 /turf/open/floor/plating/platebotc,
 /area/sulaco/hydro)
 "cMp" = (
@@ -11511,7 +11478,6 @@
 /area/mainship/shipboard/weapon_room)
 "dFk" = (
 /obj/machinery/camera/autoname,
-/obj/machinery/robotic_fabricator,
 /turf/open/floor/prison/whitegreen{
 	dir = 5
 	},
@@ -11629,13 +11595,7 @@
 	dir = 6
 	},
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/holopad{
-	active_power_usage = 60;
-	desc = "It's a floor-mounted device for projecting holographic images. This one appears to have a smaller lense";
-	holo_range = 3;
-	idle_power_usage = 3;
-	name = "modifed holopad"
-	},
+/obj/machinery/holopad,
 /turf/open/floor/plating/mainship,
 /area/sulaco/engineering/engine)
 "dRt" = (
@@ -11797,6 +11757,9 @@
 /area/mainship/living/basketball)
 "ejj" = (
 /obj/machinery/light,
+/obj/structure/mirror{
+	pixel_y = -29
+	},
 /turf/open/floor/freezer,
 /area/sulaco/showers)
 "ejF" = (
@@ -11811,13 +11774,7 @@
 /area/space)
 "enq" = (
 /obj/structure/cable,
-/obj/machinery/holopad{
-	active_power_usage = 60;
-	desc = "It's a floor-mounted device for projecting holographic images. This one appears to have a smaller lense";
-	holo_range = 3;
-	idle_power_usage = 3;
-	name = "modifed holopad"
-	},
+/obj/machinery/holopad,
 /turf/open/floor/prison/cleanmarked,
 /area/mainship/command/self_destruct)
 "enF" = (
@@ -11875,7 +11832,9 @@
 /obj/machinery/door/poddoor/shutters/mainship/req/ro{
 	dir = 2
 	},
-/obj/machinery/door/firedoor,
+/obj/machinery/door/firedoor/mainship{
+	dir = 2
+	},
 /turf/open/floor/plating/platebotc,
 /area/sulaco/cargo)
 "euz" = (
@@ -11940,11 +11899,11 @@
 /area/mainship/shipboard/weapon_room)
 "eCZ" = (
 /obj/structure/table/reinforced,
-/obj/item/explosive/grenade/chem_grenade/metalfoam,
-/obj/item/explosive/grenade/chem_grenade/metalfoam,
-/obj/item/explosive/grenade/chem_grenade/metalfoam,
-/obj/item/explosive/grenade/chem_grenade/metalfoam,
 /obj/structure/cable,
+/obj/item/explosive/grenade/chem_grenade/metalfoam,
+/obj/item/explosive/grenade/chem_grenade/metalfoam,
+/obj/item/explosive/grenade/chem_grenade/metalfoam,
+/obj/item/explosive/grenade/chem_grenade/metalfoam,
 /obj/item/explosive/grenade/chem_grenade/metalfoam,
 /obj/item/explosive/grenade/chem_grenade/metalfoam,
 /obj/item/explosive/grenade/chem_grenade/metalfoam,
@@ -12062,6 +12021,7 @@
 /area/sulaco/command/ai)
 "eMG" = (
 /obj/structure/window/framed/mainship/gray/toughened,
+/obj/machinery/door/firedoor/mainship,
 /turf/open/floor/plating/platebotc,
 /area/sulaco/security)
 "eNh" = (
@@ -12233,6 +12193,9 @@
 	id = "mfsouterhallwayshutters";
 	name = "Lower Foreship Lockdown Shutters"
 	},
+/obj/machinery/door/firedoor/mainship{
+	dir = 2
+	},
 /turf/open/floor/plating/platebotc,
 /area/sulaco/cafeteria/kitchen)
 "fjF" = (
@@ -12372,13 +12335,7 @@
 /turf/closed/wall/mainship/gray,
 /area/sulaco/hallway/lower_foreship)
 "fwL" = (
-/obj/machinery/holopad{
-	active_power_usage = 60;
-	desc = "It's a floor-mounted device for projecting holographic images. This one appears to have a smaller lense";
-	holo_range = 3;
-	idle_power_usage = 3;
-	name = "modifed holopad"
-	},
+/obj/machinery/holopad,
 /turf/open/floor/prison,
 /area/sulaco/hallway/lower_foreship)
 "fys" = (
@@ -12403,10 +12360,10 @@
 /obj/machinery/door_control/unmeltable{
 	id = "prepblasteast";
 	name = "Dropship Prep door control";
-	pixel_x = 10;
+	pixel_x = -22;
 	pixel_y = 3
 	},
-/turf/closed/wall/mainship/gray,
+/turf/open/floor/prison/bright_clean,
 /area/sulaco/hangar)
 "fCm" = (
 /turf/open/floor/plating/plating_catwalk/prison,
@@ -12741,15 +12698,6 @@
 	},
 /turf/open/floor/prison,
 /area/sulaco/engineering/lower_engineering)
-"gkr" = (
-/obj/structure/window/framed/mainship/gray/toughened,
-/obj/machinery/door/poddoor/shutters/opened{
-	dir = 2;
-	id = "mfsouterhallwayshutters";
-	name = "Lower Foreship Lockdown Shutters"
-	},
-/turf/open/floor/plating/platebotc,
-/area/sulaco/hydro)
 "glp" = (
 /obj/machinery/firealarm{
 	dir = 8
@@ -13045,6 +12993,10 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
 /area/sulaco/bridge/quarters)
+"gSw" = (
+/obj/machinery/seed_extractor,
+/turf/open/floor/tile/hydro,
+/area/sulaco/hydro)
 "gTb" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
@@ -13911,13 +13863,7 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
-/obj/machinery/holopad{
-	active_power_usage = 60;
-	desc = "It's a floor-mounted device for projecting holographic images. This one appears to have a smaller lense";
-	holo_range = 3;
-	idle_power_usage = 3;
-	name = "modifed holopad"
-	},
+/obj/machinery/holopad,
 /turf/open/floor/carpet,
 /area/sulaco/liaison)
 "iEv" = (
@@ -14340,6 +14286,9 @@
 	dir = 2;
 	id = "mfsinnerhwshutters";
 	name = "Lower Foreship Lockdown Shutters"
+	},
+/obj/machinery/door/firedoor/mainship{
+	dir = 2
 	},
 /turf/open/floor/plating/platebotc,
 /area/mainship/living/basketball)
@@ -16391,6 +16340,11 @@
 /obj/docking_port/stationary/marine_dropship/crash_target,
 /turf/closed/wall/mainship/gray,
 /area/sulaco/bridge/quarters)
+"niZ" = (
+/obj/structure/window/framed/mainship/gray/toughened,
+/obj/machinery/door/firedoor/mainship,
+/turf/open/floor/plating/platebotc,
+/area/sulaco/hallway/lower_foreship)
 "nmW" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
@@ -16542,13 +16496,6 @@
 	dir = 1
 	},
 /obj/structure/cable,
-/obj/machinery/holopad{
-	active_power_usage = 60;
-	desc = "It's a floor-mounted device for projecting holographic images. This one appears to have a smaller lense";
-	holo_range = 3;
-	idle_power_usage = 3;
-	name = "modifed holopad"
-	},
 /turf/open/floor/prison,
 /area/sulaco/hallway/lower_foreship)
 "nIK" = (
@@ -16635,8 +16582,8 @@
 /area/sulaco/engineering/engine_monitoring)
 "nRb" = (
 /obj/structure/window/framed/mainship/gray/toughened,
-/obj/machinery/door/firedoor,
 /obj/machinery/door/poddoor/shutters/mainship/req/ro,
+/obj/machinery/door/firedoor/mainship,
 /turf/open/floor/plating/platebotc,
 /area/sulaco/cargo)
 "nSs" = (
@@ -16783,7 +16730,7 @@
 	},
 /area/space)
 "ocn" = (
-/obj/structure/window/framed/mainship/gray,
+/obj/structure/window/framed/mainship/gray/toughened,
 /obj/machinery/door/poddoor/open{
 	dir = 2;
 	id = "Reqshutters";
@@ -16801,7 +16748,9 @@
 /obj/machinery/door/poddoor/shutters/opened/medbay{
 	dir = 2
 	},
-/obj/machinery/door/firedoor/mainship,
+/obj/machinery/door/firedoor/mainship{
+	dir = 2
+	},
 /turf/open/floor/plating/platebotc,
 /area/sulaco/medbay)
 "ofF" = (
@@ -17561,6 +17510,9 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
+/obj/machinery/door/firedoor/mainship{
+	dir = 2
+	},
 /turf/open/floor/prison/sterilewhite,
 /area/sulaco/cafeteria/kitchen)
 "pjA" = (
@@ -17576,13 +17528,7 @@
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/self_destruct)
 "pkJ" = (
-/obj/machinery/holopad{
-	active_power_usage = 60;
-	desc = "It's a floor-mounted device for projecting holographic images. This one appears to have a smaller lense";
-	holo_range = 3;
-	idle_power_usage = 3;
-	name = "modifed holopad"
-	},
+/obj/machinery/holopad,
 /turf/open/floor/prison,
 /area/sulaco/cargo/office)
 "plb" = (
@@ -17668,13 +17614,7 @@
 /turf/open/floor/prison,
 /area/sulaco/hallway/central_hall3)
 "pnM" = (
-/obj/machinery/holopad{
-	active_power_usage = 60;
-	desc = "It's a floor-mounted device for projecting holographic images. This one appears to have a smaller lense";
-	holo_range = 3;
-	idle_power_usage = 3;
-	name = "modifed holopad"
-	},
+/obj/machinery/holopad,
 /turf/open/floor/prison/sterilewhite,
 /area/mainship/living/starboard_garden)
 "ppl" = (
@@ -17732,13 +17672,7 @@
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /obj/structure/cable,
-/obj/machinery/holopad{
-	active_power_usage = 60;
-	desc = "It's a floor-mounted device for projecting holographic images. This one appears to have a smaller lense";
-	holo_range = 3;
-	idle_power_usage = 3;
-	name = "modifed holopad"
-	},
+/obj/machinery/holopad,
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 1
 	},
@@ -17954,7 +17888,9 @@
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
 	dir = 4
 	},
-/turf/open/floor/prison,
+/turf/open/floor/prison/green{
+	dir = 1
+	},
 /area/sulaco/marine)
 "pMx" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
@@ -18024,7 +17960,9 @@
 /area/sulaco/maintenance/lower_maint)
 "pXe" = (
 /obj/structure/window/framed/mainship/gray/toughened,
-/obj/machinery/door/firedoor,
+/obj/machinery/door/firedoor/mainship{
+	dir = 2
+	},
 /turf/open/floor/plating/platebotc,
 /area/sulaco/cargo/office)
 "pXx" = (
@@ -18266,11 +18204,13 @@
 /area/sulaco/marine/chapel/chapel_office)
 "qyl" = (
 /obj/structure/window/framed/mainship/gray/toughened,
-/obj/structure/window/framed/mainship/gray/toughened,
 /obj/machinery/door/poddoor/shutters/opened{
 	dir = 2;
 	id = "mfsouterhallwayshutters";
 	name = "Lower Foreship Lockdown Shutters"
+	},
+/obj/machinery/door/firedoor/mainship{
+	dir = 2
 	},
 /turf/open/floor/plating/platebotc,
 /area/sulaco/hydro)
@@ -18514,7 +18454,7 @@
 "qWQ" = (
 /obj/structure/window/reinforced/toughened{
 	desc = "Metal Laticed Glass, it looks remarkably thick, it is probably bullet proof, it appears to have a caustic barrier";
-	max_integrity = 1200;
+	max_integrity = 1500;
 	name = "Protective AI Glass";
 	resistance_flags = 10
 	},
@@ -19037,6 +18977,12 @@
 	},
 /turf/open/floor/plating,
 /area/sulaco/maintenance/lower_maint)
+"rPI" = (
+/obj/machinery/door/firedoor/mainship{
+	dir = 2
+	},
+/turf/open/floor/prison/sterilewhite,
+/area/sulaco/cafeteria/kitchen)
 "rPM" = (
 /obj/machinery/door/airlock/mainship/marine/general{
 	dir = 1
@@ -20056,11 +20002,13 @@
 /turf/open/space,
 /area/space)
 "tzN" = (
-/obj/machinery/door/firedoor/mainship,
 /obj/machinery/door/poddoor/shutters/opened/medbay{
 	dir = 2
 	},
 /obj/structure/cable,
+/obj/machinery/door/firedoor/mainship{
+	dir = 2
+	},
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 1
 	},
@@ -20154,7 +20102,7 @@
 /turf/open/floor/prison,
 /area/sulaco/telecomms/office)
 "tKi" = (
-/obj/machinery/marine_selector/clothes/engi/alpha,
+/obj/machinery/marine_selector/clothes/engi,
 /turf/open/floor/prison,
 /area/sulaco/marine)
 "tOk" = (
@@ -20330,6 +20278,13 @@
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/manifold/yellow/hidden,
+/obj/machinery/holopad{
+	active_power_usage = 60;
+	desc = "It's a floor-mounted device for projecting holographic images. This one appears to have a smaller lense";
+	holo_range = 3;
+	idle_power_usage = 3;
+	name = "modifed holopad"
+	},
 /turf/open/floor/prison,
 /area/sulaco/hallway/lower_foreship)
 "ubQ" = (
@@ -20401,6 +20356,7 @@
 	id = "mfsouterhallwayshutters";
 	name = "Lower Foreship Lockdown Shutters"
 	},
+/obj/machinery/door/firedoor/mainship,
 /turf/open/floor/plating/platebotc,
 /area/mainship/living/basketball)
 "ujW" = (
@@ -20436,7 +20392,7 @@
 /area/sulaco/maintenance/upperdeck_AIcore_maint)
 "unp" = (
 /obj/structure/sink{
-	dir = 8
+	dir = 4
 	},
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 8
@@ -20591,6 +20547,9 @@
 "uHj" = (
 /obj/structure/window/reinforced{
 	dir = 1
+	},
+/obj/machinery/door/firedoor/mainship{
+	dir = 2
 	},
 /turf/open/floor/prison/sterilewhite,
 /area/sulaco/cafeteria/kitchen)
@@ -21119,6 +21078,7 @@
 	id = "mfshydroponics";
 	name = "Hydropnics Lockdown"
 	},
+/obj/machinery/door/firedoor/mainship,
 /turf/open/floor/plating/platebotc,
 /area/sulaco/hydro)
 "vNI" = (
@@ -21445,12 +21405,15 @@
 /turf/closed/wall/mainship/gray/outer,
 /area/sulaco/cafeteria/kitchen)
 "wpw" = (
+/obj/machinery/camera/autoname{
+	dir = 1
+	},
 /obj/machinery/door_control/unmeltable{
 	id = "s_umbilical";
 	name = "Air Lock Door Control";
-	pixel_y = 12
+	pixel_y = -20
 	},
-/turf/closed/wall/mainship/gray,
+/turf/open/floor/prison/bright_clean,
 /area/sulaco/hangar)
 "wqg" = (
 /obj/effect/decal/warning_stripes/thin{
@@ -21578,13 +21541,7 @@
 /obj/machinery/atmospherics/pipe/manifold/cyan/hidden/layer1,
 /obj/machinery/atmospherics/pipe/manifold/yellow/hidden,
 /obj/structure/cable,
-/obj/machinery/holopad{
-	active_power_usage = 60;
-	desc = "It's a floor-mounted device for projecting holographic images. This one appears to have a smaller lense";
-	holo_range = 3;
-	idle_power_usage = 3;
-	name = "modifed holopad"
-	},
+/obj/machinery/holopad,
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/sulaco/hallway/central_hall)
 "wDy" = (
@@ -21602,9 +21559,9 @@
 /area/mainship/command/self_destruct)
 "wDG" = (
 /obj/machinery/holopad{
-	active_power_usage = 160;
+	active_power_usage = 235;
 	desc = "It's a floor-mounted device for projecting holographic images. This one appears to have a significantly larger lense.";
-	holo_range = 9;
+	holo_range = 14;
 	name = "Marine Room holopad"
 	},
 /turf/open/floor/prison,
@@ -38648,9 +38605,9 @@ aIz
 mDu
 vgl
 vgl
-wIz
+niZ
 snA
-wIz
+niZ
 aDz
 aDz
 mFa
@@ -42767,7 +42724,7 @@ iRd
 aKI
 hLa
 aKJ
-gkr
+qyl
 mvV
 kny
 jLl
@@ -43533,7 +43490,7 @@ rxh
 qXN
 qXN
 aIg
-aKb
+gSw
 iRd
 aKK
 aNy
@@ -44524,7 +44481,7 @@ akZ
 akZ
 akZ
 ejj
-aDI
+aeH
 vFC
 akX
 abu
@@ -44570,7 +44527,7 @@ wIz
 phB
 xHk
 xHk
-wMZ
+rPI
 roW
 uXl
 wWw
@@ -44827,7 +44784,7 @@ fwb
 fDR
 xHk
 mvV
-wMZ
+rPI
 wMZ
 wMZ
 wMZ
@@ -45084,7 +45041,7 @@ xHk
 mvV
 xHk
 xHk
-wMZ
+rPI
 wMZ
 wMZ
 aMj
@@ -46340,7 +46297,7 @@ hSX
 gPi
 bPM
 pXe
-pXe
+aDI
 ali
 akh
 anG
@@ -50463,7 +50420,7 @@ dLt
 mQk
 leD
 aWG
-aaL
+odq
 iHS
 akM
 oxz
@@ -50720,7 +50677,7 @@ wVV
 pQL
 tkS
 aWG
-aaL
+odq
 wAz
 adf
 hNA
@@ -50977,7 +50934,7 @@ osv
 aWG
 xKR
 aWG
-aaL
+odq
 kMl
 ade
 qMM
@@ -51234,7 +51191,7 @@ osv
 aWG
 wXV
 aWG
-aaL
+odq
 wAz
 adf
 ajK
@@ -51491,7 +51448,7 @@ erP
 yha
 jPq
 aVv
-aaL
+odq
 kMl
 ade
 kMl
@@ -55605,7 +55562,7 @@ bPx
 aVZ
 aXq
 aPY
-fBQ
+aPY
 jvt
 nZF
 aPY
@@ -55862,7 +55819,7 @@ aVU
 aPF
 aPF
 idd
-aPF
+fBQ
 aPF
 aPF
 aTc
@@ -58441,8 +58398,8 @@ aPZ
 aPZ
 agy
 aPF
-tha
 wpw
+aPY
 rkI
 gHU
 aPY
