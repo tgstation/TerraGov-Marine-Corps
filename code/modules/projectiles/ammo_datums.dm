@@ -220,7 +220,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 20
 	penetration = 5
 	accurate_range = 5
-	sundering = 1.4
+	sundering = 1.65
 
 /datum/ammo/bullet/pistol/tiny
 	name = "light pistol bullet"
@@ -276,7 +276,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 30
 	penetration = 5
 	shrapnel_chance = 25
-	sundering = 2
+	sundering = 2.15
 
 /datum/ammo/bullet/pistol/incendiary
 	name = "incendiary pistol bullet"
