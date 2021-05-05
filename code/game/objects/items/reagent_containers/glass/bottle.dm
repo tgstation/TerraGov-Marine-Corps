@@ -212,11 +212,11 @@
 	icon_state = "bottle19"
 	list_reagents = list(/datum/reagent/medicine/dermaline = 30, /datum/reagent/medicine/meralyne = 30)
 
-/obj/item/reagent_containers/glass/bottle/ironsugar
-	name = "\improper Ironsugar bottle"
-	desc = "A small bottle. Contains a mixture of iron and sugar - used as an odd-tasting treatment for blood loss."
+/obj/item/reagent_containers/glass/bottle/nanoblood
+	name = "\improper Nanoblood bottle"
+	desc = "A small bottle. Contains nanoblood - used as a treatment for large amounts of blood loss."
 	icon_state = "bottle3"
-	list_reagents = list(/datum/reagent/iron = 30, /datum/reagent/consumable/sugar = 30)
+	list_reagents = list(/datum/reagent/medicine/nanoblood = 60)
 
 /obj/item/reagent_containers/glass/bottle/neurotoxin
 	name = "\improper Neurotoxin bottle"
