@@ -149,7 +149,7 @@
 
 /datum/reagent/medicine/oxycodone/on_mob_delete(mob/living/L, metabolism)
 	to_chat(L, "<span class='danger'>The room spins slightly as you start to come down off your painkillers!</span>")
-	addtimer(CALLBACK(L, /mob/living.proc/apply_effect/weaken, 3), 10 SECONDS)
+	addtimer(CALLBACK(L, /mob/living.proc/apply_effect(weaken), 3), 10 SECONDS)
 
 /datum/reagent/medicine/hydrocodone
 	name = "Hydrocodone"
@@ -427,7 +427,7 @@
 
 /datum/reagent/medicine/synaptizine/on_mob_delete(mob/living/L, metabolism)
 	to_chat(L, "<span class='danger'>The room spins as you start to come down off your stimulants!</span>")
-	addtimer(CALLBACK(L, /mob/living.proc/apply_effect/weaken, 15), 10 SECONDS)
+	addtimer(CALLBACK(L, /mob/living.proc/apply_effect(weaken), 15), 10 SECONDS)
 
 /datum/reagent/medicine/neuraline //injected by neurostimulator implant and medic-only injector
 	name = "Neuraline"
@@ -532,7 +532,7 @@
 
 /datum/reagent/medicine/russian_red/on_mob_delete(mob/living/L, metabolism)
 	to_chat(L, "<span class='danger'>Your muscles burn as you start to weaken, find safety!</span>")
-	addtimer(CALLBACK(L, /mob/living.proc/apply_effect/weaken, 100), 10 SECONDS)
+	addtimer(CALLBACK(L, /mob/living.proc/apply_effect(weaken), 100), 10 SECONDS)
 
 
 /datum/reagent/medicine/alkysine
