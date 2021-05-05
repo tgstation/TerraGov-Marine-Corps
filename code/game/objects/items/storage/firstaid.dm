@@ -238,7 +238,7 @@
 /obj/item/storage/syringe_case/nanoblood/PopulateContents()
 	. = ..()
 	new /obj/item/reagent_containers/syringe(src)
-	new /obj/item/reagent_containers/glass/bottle/inanoblood(src)
+	new /obj/item/reagent_containers/glass/bottle/nanoblood(src)
 	new /obj/item/reagent_containers/glass/bottle/nanoblood(src)
 
 /obj/item/storage/syringe_case/tricordrazine
