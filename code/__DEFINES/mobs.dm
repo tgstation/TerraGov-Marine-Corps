@@ -50,6 +50,7 @@
 #define CARBON_RECOVERY_OXYLOSS -5 //the amount of oxyloss recovery per successful breath tick.
 
 #define CARBON_KO_OXYLOSS 50
+#define HUMAN_CRITDRAG_OXYLOSS 3 //the amount of oxyloss taken per tile a human is dragged by a xeno while unconscious
 
 #define HEAT_DAMAGE_LEVEL_1 1 //Amount of damage applied when your body temperature just passes the 360.15k safety point
 #define HEAT_DAMAGE_LEVEL_2 2 //Amount of damage applied when your body temperature passes the 400K point
@@ -416,6 +417,11 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define STAMINA_EXHAUSTION_DEBUFF_STACKS	6 //Amount of slow and stagger stacks applied on stamina exhaustion events
 
 
+//Shock defines
+
+#define LIVING_SHOCK_EFFECT_COOLDOWN	10 SECONDS
+
+
 //Xeno Defines
 
 #define XENO_DEFAULT_ACID_PUDDLE_DAMAGE	14 //Standard damage dealt by acid puddles
@@ -472,6 +478,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define CASTE_ACID_BLOOD (1<<13) //The acid blood effect which damages humans near xenos that take damage
 #define CASTE_CAN_HOLD_JELLY (1<<14)//whether we can hold fireproof jelly in our hands
 #define CASTE_IS_STRONG (1<<15)//can tear open acided walls without being big
+#define CASTE_CAN_CORRUPT_GENERATOR (1<<16) //Can corrupt a generator
 
 //Charge-Crush
 #define CHARGE_OFF			0
@@ -518,8 +525,9 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define CRUSHER_CHARGE_TANK_MULTI		100
 
 //carrier defines
-#define CARRIER_HUGGER_THROW_SPEED 2
-#define CARRIER_HUGGER_THROW_DISTANCE 5
+#define CARRIER_HUGGER_THROW_SPEED			2
+#define CARRIER_HUGGER_THROW_DISTANCE		5
+#define CARRIER_SLASH_HUGGER_DAMAGE			23
 
 //Defiler defines
 #define DEFILER_GAS_CHANNEL_TIME				0.5 SECONDS
@@ -560,13 +568,6 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define SHRIKE_HEAL_RANGE 			3
 
 //Drone defines
-
-#define DRONE_SALVAGE_BIOMASS_WINDUP		5 SECONDS //Delay before the target is salvaged
-#define DRONE_SALVAGE_BIOMASS_RANGE			1
-#define DRONE_SALVAGE_BIOMASS_SALVAGE_RATIO	0.1 //Percentile of stored upgrade and evolution salvaged from the target
-#define DRONE_SALVAGE_COOLDOWN				60 SECONDS //Can only salvage one corpse per 60 seconds; try not to die *too* quickly.
-#define DRONE_SALVAGE_UPGRADE_FILTER_LIST	list(XENO_UPGRADE_THREE, XENO_UPGRADE_INVALID)
-#define DRONE_SALVAGE_EVOLUTION_FILTER_LIST	list(XENO_TIER_ZERO, XENO_TIER_THREE, XENO_TIER_FOUR)
 
 //Runner defines
 #define RUNNER_EVASION_DURATION						2 SECONDS //How long Evasion lasts.

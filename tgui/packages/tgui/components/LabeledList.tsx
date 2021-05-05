@@ -10,7 +10,7 @@ import { Box, unit } from './Box';
 import { Divider } from './Divider';
 
 type LabeledListProps = {
-  children: InfernoNode;
+  children?: any;
 };
 
 export const LabeledList = (props: LabeledListProps) => {
@@ -33,7 +33,7 @@ type LabeledListItemProps = {
   buttons?: InfernoNode,
   /** @deprecated */
   content?: any,
-  children?: InfernoNode;
+  children?: any;
 };
 
 const LabeledListItem = (props: LabeledListItemProps) => {

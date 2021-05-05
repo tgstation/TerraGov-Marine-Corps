@@ -2,11 +2,11 @@
 	name = "XN-43-H combat droid"
 	desc = "A prototype combat droid, first deployed as a prototype to fight the xeno menace in the frontier sytems."
 	icon_state = "droidcombat"
-	turret_type = "none yet"
 	move_delay = 2.4
 	max_integrity = 300
 	anchored = TRUE // no wheels
-	overlay_turret = FALSE //droids dont have guns, yet
+	turret_pattern = PATTERN_DROID
+	gunnoise = 'sound/weapons/guns/fire/laser.ogg'
 
 
 /obj/vehicle/unmanned/droid/process() //play beepy noise every 5 seconds for effect while active
@@ -49,7 +49,7 @@
 /obj/vehicle/unmanned/droid/scout/examine(mob/user, distance, infix, suffix)
 	. = ..()
 	if(ishuman(user))
-		to_chat(user, "Use <b>Right Click</b> when piloting the droid to activate it's cloak.")
+		to_chat(user, "Use <b>right click</b> when piloting the droid to activate its cloaking systems.")
 
 /obj/vehicle/unmanned/droid/scout/on_remote_toggle(datum/source, is_on, mob/user)
 	. = ..()

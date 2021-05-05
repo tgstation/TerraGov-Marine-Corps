@@ -40,7 +40,7 @@
 	spit_types = list(/datum/ammo/xeno/toxin/heavy, /datum/ammo/xeno/acid/heavy)
 
 	acid_spray_duration = 10 SECONDS
-	acid_spray_range = 4
+	acid_spray_range = 5
 	acid_spray_damage = 16
 	acid_spray_damage_on_hit = 35
 	acid_spray_structure_damage = 45
@@ -53,9 +53,10 @@
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/activable/psydrain,
+		/datum/action/xeno_action/activable/headbite,
+		/datum/action/xeno_action/activable/devour,
 		/datum/action/xeno_action/place_acidwell,
 		/datum/action/xeno_action/activable/corrosive_acid,
-		/datum/action/xeno_action/shift_spits,
 		/datum/action/xeno_action/activable/xeno_spit,
 		/datum/action/xeno_action/activable/spray_acid/cone,
 		/datum/action/xeno_action/toggle_pheromones,
@@ -174,4 +175,3 @@
 
 	// *** Pheromones *** //
 	aura_strength = 4.5
-

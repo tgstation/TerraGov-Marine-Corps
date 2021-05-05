@@ -105,6 +105,10 @@
 		to_chat(src, "<span class='warning'>We cannot evolve while in this stance.</span>")
 		return
 
+	if(LAZYLEN(stomach_contents))
+		to_chat(src, "<span class='warning'>We cannot evolve with a belly full.</span>")
+		return
+
 	var/new_caste_type
 	var/castepick
 	if(caste_type)
@@ -156,6 +160,11 @@
 	if(new_caste_type == /mob/living/carbon/xenomorph/queen) //Special case for dealing with queenae
 		if(is_banned_from(ckey, ROLE_XENO_QUEEN))
 			to_chat(src, "<span class='warning'>You are jobbanned from the Queen role.</span>")
+			return
+
+		var/datum/job/xenojob = SSjob.GetJobType(/datum/job/xenomorph/queen)
+		if(xenojob.required_playtime_remaining(client))
+			to_chat(src, "<span class='warning'>[get_exp_format(xenojob.required_playtime_remaining(client))] as [xenojob.get_exp_req_type()] required to play the queen role.</span>")
 			return
 
 		if(hive.living_xeno_queen)
@@ -232,7 +241,7 @@
 		else if(tier == XENO_TIER_TWO && TO_XENO_TIER_3_FORMULA(tierzeros + tierones, tiertwos, tierthrees))
 			to_chat(src, "<span class='warning'>The hive cannot support another Tier 3, wait for either more aliens to be born or someone to die.</span>")
 			return
-		else if(isdistress(SSticker.mode) && !hive.living_xeno_ruler && potential_queens == 1)
+		else if(SSticker.mode?.flags_round_type & MODE_XENO_RULER && !hive.living_xeno_ruler && potential_queens == 1)
 			if(isxenolarva(src) && new_caste_type != /mob/living/carbon/xenomorph/drone)
 				to_chat(src, "<span class='xenonotice'>The hive currently has no sister able to become a ruler! The survival of the hive requires from us to be a Drone!</span>")
 				return
@@ -360,6 +369,8 @@
 	new_xeno.upgrade_stored = upgrade_stored
 	while(new_xeno.upgrade_possible() && new_xeno.upgrade_stored >= new_xeno.xeno_caste.upgrade_threshold)
 		new_xeno.upgrade_xeno(new_xeno.upgrade_next(), TRUE)
+	var/obj/screen/zone_sel/selector = new_xeno.hud_used.zone_sel
+	selector?.set_selected_zone(zone_selected, new_xeno)
 	qdel(src)
 	INVOKE_ASYNC(new_xeno, /mob/living.proc/do_jitter_animation, 1000)
 

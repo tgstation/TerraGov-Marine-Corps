@@ -10,7 +10,7 @@
 	desc = "A thermoelectric generator sitting atop a plasma-filled borehole. This one is heavily damaged. Use a blowtorch, then wirecutters, and then a wrench to repair it."
 	anchored = TRUE
 	density = TRUE
-	resistance_flags = UNACIDABLE | INDESTRUCTIBLE
+	resistance_flags = UNACIDABLE | INDESTRUCTIBLE | DROPSHIP_IMMUNE
 	var/power_gen_percent = 0 //100,000W at full capacity
 	var/power_generation_max = 100000 //Full capacity
 	var/buildstate = GEOTHERMAL_HEAVY_DAMAGE //What state of building it are we on, 0-3, 1 is "broken", the default
@@ -30,8 +30,9 @@
 
 /obj/machinery/power/geothermal/Initialize()
 	. = ..()
-	RegisterSignal(SSdcs, list(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_XENO_HIVEMIND, COMSIG_GLOB_OPEN_SHUTTERS_EARLY), .proc/activate_corruption)
+	RegisterSignal(SSdcs, list(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_XENO_HIVEMIND, COMSIG_GLOB_OPEN_SHUTTERS_EARLY, COMSIG_GLOB_TADPOLE_LAUNCHED), .proc/activate_corruption)
 	update_icon()
+	SSminimaps.add_marker(src, z, hud_flags = MINIMAP_FLAG_ALL, iconstate = "generator")
 
 /obj/machinery/power/geothermal/examine(mob/user, distance, infix, suffix)
 	. = ..()
@@ -83,7 +84,7 @@
 ///Allow generators to generate psych points
 /obj/machinery/power/geothermal/proc/activate_corruption(datum/source)
 	SIGNAL_HANDLER
-	UnregisterSignal(SSdcs, list(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_XENO_HIVEMIND, COMSIG_GLOB_OPEN_SHUTTERS_EARLY), .proc/activate_corruption)
+	UnregisterSignal(SSdcs, list(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_XENO_HIVEMIND, COMSIG_GLOB_OPEN_SHUTTERS_EARLY, COMSIG_GLOB_TADPOLE_LAUNCHED))
 	corruption_on = TRUE
 	start_processing()
 
@@ -137,7 +138,13 @@
 
 /obj/machinery/power/geothermal/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
 	. = ..()
-	// Can't damage a broken generator
+	if(CHECK_BITFIELD(X.xeno_caste.caste_flags, CASTE_CAN_CORRUPT_GENERATOR) && is_corruptible)
+		to_chat(X, "<span class='notice'>You start to corrupt [src]</span>")
+		if(!do_after(X, 10 SECONDS, TRUE, src, BUSY_ICON_HOSTILE))
+			return
+		corrupt(X.hivenumber)
+		to_chat(X, "<span class='notice'>You have corrupted [src]</span>")
+		return
 	if(buildstate)
 		return
 	X.do_attack_animation(src, ATTACK_EFFECT_CLAW)
@@ -145,7 +152,6 @@
 	X.visible_message("<span class='danger'>\The [X] slashes at \the [src], tearing at it's components!</span>",
 		"<span class='danger'>We start slashing at \the [src], tearing at it's components!</span>")
 	fail_rate += 5 // 5% fail rate every attack
-
 
 /obj/machinery/power/geothermal/attack_hand(mob/living/user)
 	. = ..()

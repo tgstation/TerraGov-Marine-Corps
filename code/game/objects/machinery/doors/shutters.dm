@@ -54,7 +54,7 @@
 	operating = FALSE
 
 
-/obj/machinery/door/poddoor/shutters/update_icon()
+/obj/machinery/door/poddoor/shutters/update_icon_state()
 	if(operating)
 		return
 	icon_state = "shutter[density]"
@@ -113,6 +113,7 @@
 	desc = "Safety shutters to prevent dangerous depressurization during flight"
 	icon = 'icons/obj/doors/mainship/blastdoors_shutters.dmi'
 	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
+	id = "ghhjmugggggtgggbg" // do not have any button or thing have an ID assigned to this, it is a very bad idea.
 
 
 /obj/machinery/door/poddoor/shutters/mainship/open
@@ -151,12 +152,22 @@
 	layer = PODDOOR_OPEN_LAYER
 	icon_state = "shutter0"
 
+/obj/machinery/door/poddoor/shutters/barren
+	resistance_flags = UNACIDABLE
 
 /obj/machinery/door/poddoor/shutters/mainship/pressure
 	name = "pressure shutters"
 	density = FALSE
 	opacity = FALSE
 	resistance_flags = RESIST_ALL
+	icon_state = "shutter0"
+	open_layer = PODDOOR_CLOSED_LAYER
+	closed_layer = PODDOOR_CLOSED_LAYER
+
+/obj/machinery/door/poddoor/shutters/tadpole_cockpit
+	name = "pressure shutters"
+	density = FALSE
+	opacity = FALSE
 	icon_state = "shutter0"
 	open_layer = PODDOOR_CLOSED_LAYER
 	closed_layer = PODDOOR_CLOSED_LAYER

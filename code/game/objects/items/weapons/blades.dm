@@ -30,6 +30,7 @@
 	w_class = WEIGHT_CLASS_BULKY
 	flags_item = DRAINS_XENO
 
+	var/force_wielded = 40
 	var/obj/item/reagent_containers/glass/beaker/vial/beaker = null
 	var/datum/reagent/loaded_reagent = null
 	var/list/loadable_reagents = list(
@@ -63,13 +64,21 @@
 	. = .. ()
 	beaker = new /obj/item/reagent_containers/glass/beaker/vial
 
+/obj/item/weapon/claymore/harvester/equipped(mob/user, slot)
+	. = ..()
+	toggle_item_bump_attack(user, TRUE)
+
+/obj/item/weapon/claymore/harvester/dropped(mob/user)
+	. = ..()
+	toggle_item_bump_attack(user, FALSE)
+
 /obj/item/weapon/claymore/harvester/attackby(obj/item/I, mob/user)
 	if(user.do_actions)
-		return FALSE
+		return TRUE
 
 	if(istype(I, /obj/item/reagent_containers/pill))
 		to_chat(user, "<span class='rose'>[I] isn't compatible with [src].</span>")
-		return FALSE
+		return TRUE
 
 	var/trans
 	var/obj/item/reagent_containers/container = I
@@ -80,27 +89,27 @@
 
 	if(length(container.reagents.reagent_list) > 1)
 		to_chat(user, "<span class='rose'>The solution needs to be uniform and contain only a single type of reagent to be compatible.</span>")
-		return FALSE
+		return TRUE
 
 	if(beaker.reagents.total_volume && (container.reagents.reagent_list[1].type != beaker.reagents.reagent_list[1].type))
 		to_chat(user, "<span class='rose'>[src]'s internal storage can contain only one kind of solution at the same time. It currently contains <b>[beaker.reagents.reagent_list[1].name]</b></span>")
-		return FALSE
+		return TRUE
 
 	if(!locate(container.reagents.reagent_list[1].type) in loadable_reagents)
 		to_chat(user, "<span class='rose'>This reagent is not compatible with the weapon's mechanism. Check the engraved symbols for further information.</span>")
-		return FALSE
+		return TRUE
 
 	if(container.reagents.total_volume < 5)
 		to_chat(user, "<span class='rose'>At least 5u of the substance is needed.</span>")
-		return FALSE
+		return TRUE
 
 	if(beaker.reagents.total_volume >= 30)
 		to_chat(user, "<span class='rose'>The internal storage is full.</span>")
-		return FALSE
+		return TRUE
 
 	to_chat(user, "<span class='notice'>You begin filling up the [src] with [container.reagents.reagent_list[1]].</span>")
 	if(!do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_BAR, null, PROGRESS_BRASS))
-		return FALSE
+		return TRUE
 
 	trans = container.reagents.trans_to(beaker, container.amount_per_transfer_from_this)
 	to_chat(user, "<span class='rose'>You load [trans]u into the internal system. It now holds [beaker.reagents.total_volume]u.</span>")
@@ -111,7 +120,7 @@
 		to_chat(user, "<span class='rose'>The blade is powered with [loaded_reagent.name]. You can release the effect by stabbing a creature.</span>")
 		return FALSE
 
-	if(beaker.reagents.total_volume < 10)
+	if(beaker.reagents.total_volume < 5)
 		to_chat(user, "<span class='rose'>You don't have enough substance.</span>")
 		return FALSE
 
@@ -124,7 +133,7 @@
 		return FALSE
 
 	loaded_reagent = beaker.reagents.reagent_list[1]
-	beaker.reagents.remove_any(10)
+	beaker.reagents.remove_any(5)
 	return TRUE
 
 /obj/item/weapon/claymore/harvester/attack(mob/living/M, mob/living/user)
@@ -136,22 +145,29 @@
 
 	switch(loaded_reagent.type)
 		if(/datum/reagent/medicine/tramadol)
-			M.apply_status_effect(/datum/status_effect/incapacitating/harvester_slowdown, 2 SECONDS)
+			M.apply_damage(force*0.6, BRUTE, user.zone_selected)
+			M.apply_status_effect(/datum/status_effect/incapacitating/harvester_slowdown, 1 SECONDS)
 
 		if(/datum/reagent/medicine/kelotane)
-			var/turf/target = get_turf(M)
-			target.ignite()
 			var/list/cone_turfs = generate_cone(user, 2, 1, 91, Get_Angle(user, M.loc))
 			for(var/X in cone_turfs)
 				var/turf/T = X
-				T.ignite()
+				for(var/mob/living/victim in T)
+					victim.flamer_fire_act(10)
+					victim.apply_damage(max(0, 20 - 20*victim.hard_armor.getRating("fire")), BURN, user.zone_selected, victim.get_soft_armor("fire", user.zone_selected))
+					if(victim.IgniteMob())
+						victim.visible_message("<span class='danger'>[victim] bursts into flames!</span>","[isxeno(victim)?"<span class='xenodanger'>":"<span class='highdanger'>"]You burst into flames!</span>")
 
 		if(/datum/reagent/medicine/bicaridine)
-			to_chat(user, "<span class='rose'>You prepare to stab [M]!</span>")
-			if(!do_after(user, 2 SECONDS, TRUE, M, BUSY_ICON_DANGER))
-				return FALSE
+			if(isxeno(M))
+				return ..()
+			to_chat(user, "<span class='rose'>You prepare to stab <b>[M != user ? "[M]" : "yourself"]</b>!</span>")
 			new /obj/effect/temp_visual/telekinesis(get_turf(M))
-			M.heal_overall_damage(10, 0, TRUE)
+			if((M != user) && do_after(user, 2 SECONDS, TRUE, M, BUSY_ICON_DANGER))
+				M.heal_overall_damage(12.5, 0, TRUE)
+			else
+				M.adjustStaminaLoss(-30)
+				M.heal_overall_damage(6, 0, TRUE)
 			loaded_reagent = null
 			return FALSE
 
@@ -165,13 +181,12 @@
 	item_state = "machete"
 	force = 39
 
-
 /obj/item/weapon/claymore/mercsword/captain
 	name = "Ceremonial Sword"
 	desc = "A fancy ceremonial sword passed down from generation to generation. Despite this, it has been very well cared for, and is in top condition."
 	icon_state = "mercsword"
 	item_state = "machete"
-	force = 48
+	force = 55
 
 /obj/item/weapon/claymore/mercsword/machete
 	name = "\improper M2132 machete"

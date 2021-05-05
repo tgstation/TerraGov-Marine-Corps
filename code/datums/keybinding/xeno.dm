@@ -321,6 +321,12 @@
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_UNRELENTING_FORCE
 
+/datum/keybinding/xeno/unrelenting_force_select
+	name = "unrelenting_force_select"
+	full_name = "Shrike: Select Unrelenting Force"
+	description = ""
+	keybind_signal = COMSIG_XENOABILITY_UNRELENTING_FORCE_SELECT
+
 /datum/keybinding/xeno/psychic_heal
 	name = "psychic_cure"
 	full_name = "Shrike: Psychic Cure"
@@ -399,6 +405,12 @@
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_RAVAGE
 
+/datum/keybinding/xeno/ravage_select
+	name = "ravage select"
+	full_name = "Ravager: Select Ravage"
+	description = ""
+	keybind_signal = COMSIG_XENOABILITY_RAVAGE_SELECT
+
 /datum/keybinding/xeno/toggle_savage
 	name = "toggle_savage"
 	full_name = "Runner: Toggle Savage"
@@ -458,6 +470,13 @@
 	full_name = "Hivelord: Healing Infusion"
 	description = "Imbues a target xeno with healing energy, restoring extra Sunder and Health once every 2 seconds up to 5 times whenever it regenerates normally. 60 second duration."
 	keybind_signal = COMSIG_XENOABILITY_HEALING_INFUSION
+
+/datum/keybinding/xeno/scatter_spit
+	name = "scatter_spit"
+	full_name = "Spitter: Scatter Spit"
+	description = "Fires a scattershot of 6 acid globules which create acid puddles on impact or at the end of their range."
+	keybind_signal = COMSIG_XENOABILITY_SCATTER_SPIT
+
 
 //Wraith keybinds - BEGIN
 

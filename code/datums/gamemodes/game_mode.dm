@@ -2,8 +2,8 @@
 	var/name = ""
 	var/config_tag = null
 	var/votable = TRUE
-	var/probability = 0
 	var/required_players = 0
+	var/maximum_players = INFINITY
 	var/squads_max_number = 4
 
 	var/round_finished
@@ -13,6 +13,7 @@
 	var/round_time_fog
 	var/flags_round_type = NONE
 	var/flags_landmarks = NONE
+	var/flags_xeno_abilities = NONE
 
 	var/distress_cancelled = FALSE
 
@@ -437,8 +438,6 @@ Sensors indicate [numXenosShip || "no"] unknown lifeform signature[numXenosShip 
 		dat += "[GLOB.round_statistics.carrier_traps] hidey holes for huggers were made."
 	if(GLOB.round_statistics.sentinel_neurotoxin_stings)
 		dat += "[GLOB.round_statistics.sentinel_neurotoxin_stings] number of times Sentinels stung."
-	if(GLOB.round_statistics.drone_salvage_biomass)
-		dat += "[GLOB.round_statistics.drone_salvage_biomass] number of times Drones salvaged biomass from corpses."
 	if(GLOB.round_statistics.defiler_defiler_stings)
 		dat += "[GLOB.round_statistics.defiler_defiler_stings] number of times Defilers stung."
 	if(GLOB.round_statistics.defiler_neurogas_uses)
@@ -527,7 +526,7 @@ Sensors indicate [numXenosShip || "no"] unknown lifeform signature[numXenosShip 
 	return FALSE
 
 /datum/game_mode/infestation/distress/is_xeno_in_forbidden_zone(mob/living/carbon/xenomorph/xeno)
-	if(round_stage == DISTRESS_DROPSHIP_CRASHING)
+	if(round_stage == INFESTATION_MARINE_CRASHING)
 		return FALSE
 	if(isxenoresearcharea(get_area(xeno)))
 		return TRUE
@@ -630,6 +629,7 @@ Sensors indicate [numXenosShip || "no"] unknown lifeform signature[numXenosShip 
 	if(XENODEATHTIME_CHECK(xeno_candidate))
 		if(check_other_rights(xeno_candidate.client, R_ADMIN, FALSE))
 			if(tgui_alert(xeno_candidate, "You wouldn't normally qualify for this respawn. Are you sure you want to bypass it with your admin powers?", "Bypass Respawn", list("Yes", "No")) != "Yes")
+				log_admin("[key_name(xeno_candidate)] used his admin power to bypass respawn before his timer was over")
 				XENODEATHTIME_MESSAGE(xeno_candidate)
 				return FALSE
 		else

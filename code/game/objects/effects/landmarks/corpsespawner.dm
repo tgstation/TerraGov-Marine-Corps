@@ -30,7 +30,7 @@
 	var/corpseid = 0     //Just set to 1 if you want them to have an ID
 	var/corpseidjob = null // Needs to be in quotes, such as "Clown" or "Chef." This just determines what the ID reads as, not their access
 	var/corpseidaccess = null //This is for access. See access.dm for which jobs give what access. Use CAPTAIN if you want it to be all access.
-	var/corpseidicon = null //For setting it to be a gold, silver, centcomm etc ID
+	var/corpseidicon = null //For setting it to be a gold, silver, centcom etc ID
 	var/xenovictim = TRUE //whether this person was infected and killed by xenos
 
 
@@ -288,7 +288,7 @@
 	corpseshoes = /obj/item/clothing/shoes/jackboots
 	corpsesuit = /obj/item/clothing/suit/armor/vest/security
 	corpseback = /obj/item/storage/backpack/satchel
-	corpsebelt = /obj/item/storage/belt/gun/m4a3/vp70
+	corpsebelt = /obj/item/storage/belt/gun/pistol/m4a3/vp70
 	corpsegloves = /obj/item/clothing/gloves/marine/veteran/PMC
 	corpsehelmet = /obj/item/clothing/head/helmet/marine/veteran/PMC
 	corpsemask = /obj/item/clothing/mask/gas/PMC/damaged

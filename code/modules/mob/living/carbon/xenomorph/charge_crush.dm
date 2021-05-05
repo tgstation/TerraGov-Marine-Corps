@@ -17,6 +17,7 @@
 	action_icon_state = "ready_charge"
 	mechanics_text = "Toggles the movement-based charge on and off."
 	keybind_signal = COMSIG_XENOABILITY_TOGGLE_CHARGE
+	use_state_flags = XACT_USE_LYING
 	var/charge_type = CHARGE_CRUSH
 	var/next_move_limit = 0
 	var/turf/lastturf = null
@@ -285,6 +286,8 @@
 
 	if(isobj(crushed))
 		var/obj/crushed_obj = crushed
+		if(istype(crushed_obj, /obj/structure/resin/silo) || istype(crushed_obj, /obj/structure/resin/xeno_turret))
+			return precrush2signal(crushed_obj.post_crush_act(charger, src))
 		playsound(crushed_obj.loc, "punch", 25, 1)
 		var/crushed_behavior = crushed_obj.crushed_special_behavior()
 		crushed_obj.take_damage(precrush, BRUTE, "melee")
@@ -548,7 +551,7 @@
 		if(CHARGE_BULL_GORE)
 			if(world.time > charge_datum.next_special_attack)
 				charge_datum.next_special_attack = world.time + 2 SECONDS
-				INVOKE_ASYNC(src, /atom/.proc/attack_alien, charger,  0, BODY_ZONE_CHEST, FALSE, FALSE, FALSE, INTENT_HARM) //Free gore attack.
+				attack_alien_harm(charger, charger.xeno_caste.melee_damage, charger.zone_selected, FALSE, TRUE, TRUE) //Free gore attack.
 				emote_gored()
 				var/turf/destination = get_step(loc, charger.dir)
 				if(destination)

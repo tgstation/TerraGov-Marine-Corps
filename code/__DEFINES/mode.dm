@@ -43,10 +43,13 @@
 #define MODE_XENO_SPAWN_PROTECT	(1<<7)
 #define MODE_XENO_RULER			(1<<8)
 #define MODE_PSY_POINTS			(1<<9)
+#define MODE_HIJACK_POSSIBLE	(1<<10)
+#define MODE_DEAD_GRAB_FORBIDDEN (1<<11)
 
 #define MODE_LANDMARK_RANDOM_ITEMS			(1<<0)
 #define MODE_LANDMARK_SPAWN_XENO_TUNNELS	(1<<1)
 #define MODE_LANDMARK_SPAWN_MAP_ITEM		(1<<2)
+#define MODE_LANDMARK_SPAWN_XENO_TURRETS	(1<<3)
 
 #define MODE_INFESTATION_X_MAJOR		"Xenomorph Major Victory"
 #define MODE_INFESTATION_M_MAJOR		"Marine Major Victory"
@@ -54,26 +57,14 @@
 #define MODE_INFESTATION_M_MINOR		"Marine Minor Victory"
 #define MODE_INFESTATION_DRAW_DEATH		"DRAW: Mutual Annihilation"
 
+#define MODE_GENERIC_DRAW_NUKE			"DRAW: Nuclear Explosion"
+
 #define MODE_BATTLEFIELD_NT_MAJOR		"NT PMC Major Success"
 #define MODE_BATTLEFIELD_M_MAJOR		"Marine Major Success"
 #define MODE_BATTLEFIELD_NT_MINOR		"NT PMC Minor Success"
 #define MODE_BATTLEFIELD_M_MINOR		"Marine Minor Success"
 #define MODE_BATTLEFIELD_DRAW_STALEMATE "DRAW: Stalemate"
 #define MODE_BATTLEFIELD_DRAW_DEATH		"DRAW: My Friends Are Dead"
-
-// Crash gamemode
-#define MODE_CRASH_X_MAJOR		"Xenomorph Major Victory"
-#define MODE_CRASH_M_MAJOR		"Marine Major Victory"
-#define MODE_CRASH_X_MINOR		"Xenomorph Minor Victory"
-#define MODE_CRASH_M_MINOR		"Marine Minor Victory"
-#define MODE_CRASH_DRAW_DEATH	"DRAW: Mutual Annihilation"
-#define MODE_GENERIC_DRAW_NUKE			"DRAW: Nuclear Explosion"
-
-#define CRASH_DRAW (1 << 0)
-#define CRASH_XENO_MAJOR (1 << 1)
-#define CRASH_XENO_MINOR (1 << 2)
-#define CRASH_MARINE_MINOR (1 << 3)
-#define CRASH_MARINE_MAJOR (1 << 4)
 
 #define CRASH_EVAC_NONE "CRASH_EVAC_NONE"
 #define CRASH_EVAC_INPROGRESS "CRASH_EVAC_INPROGRESS"
@@ -112,6 +103,8 @@
 #define COOLDOWN_COMM_MESSAGE 	1 MINUTES
 #define COOLDOWN_COMM_CENTRAL 	30 SECONDS
 
+#define SUPPLY_POINT_MARINE_SPAWN 2.5
+
 #define XENO_AFK_TIMER			5 MINUTES
 
 #define DEATHTIME_CHECK(M) ((world.time - M.timeofdeath) < GLOB.respawntime)
@@ -126,8 +119,14 @@
 
 #define COUNT_IGNORE_ALIVE_SSD (COUNT_IGNORE_HUMAN_SSD|COUNT_IGNORE_XENO_SSD)
 
-#define SILO_PRICE 900
+#define SILO_PRICE 1200
 #define XENO_TURRET_PRICE 150
+
+#define SMALL_SILO_MAXIMUM_PLAYER_COUNT 30
 
 //The minimum round time before siloless timer can start (13:00)
 #define MINIMUM_TIME_SILO_LESS_COLLAPSE 36000 
+
+#define INFESTATION_MARINE_DEPLOYMENT 0
+#define INFESTATION_MARINE_CRASHING 1
+#define INFESTATION_DROPSHIP_CAPTURED_XENOS 2

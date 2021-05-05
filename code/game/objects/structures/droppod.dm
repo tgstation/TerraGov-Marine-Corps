@@ -1,6 +1,8 @@
 #define DROPPOD_READY 1
 #define DROPPOD_ACTIVE 2
 #define DROPPOD_LANDED 3
+GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transit, /turf/open/space, /turf/open/ground/empty, /turf/open/beach/sea, /turf/open/lavaland/lava))) // Don't drop at these tiles.
+
 ///Marine steel rain style drop pods, very cool!
 /obj/structure/droppod
 	name = "TGMC Zeus orbital drop pod"
@@ -22,6 +24,8 @@
 	var/drop_state = DROPPOD_READY
 	var/launch_time = 10 SECONDS
 	var/launch_allowed = TRUE
+	///If true, you can launch the droppod before drop pod delay
+	var/operation_started = FALSE
 	var/datum/turf_reservation/reserved_area
 	///after the pod finishes it's travelhow long it spends falling
 	var/falltime = 0.6 SECONDS
@@ -29,11 +33,19 @@
 /obj/structure/droppod/Initialize()
 	. = ..()
 	RegisterSignal(SSdcs, COMSIG_GLOB_DROPSHIP_HIJACKED, .proc/disable_launching)
+	RegisterSignal(SSdcs, list(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_XENO_HIVEMIND, COMSIG_GLOB_OPEN_SHUTTERS_EARLY, COMSIG_GLOB_TADPOLE_LAUNCHED), .proc/allow_drop)
 	GLOB.droppod_list += src
 
 /obj/structure/droppod/proc/disable_launching()
+	SIGNAL_HANDLER
 	launch_allowed = FALSE
 	UnregisterSignal(SSdcs, COMSIG_GLOB_DROPSHIP_HIJACKED)
+
+///Allow this droppod to ignore dropdelay
+/obj/structure/droppod/proc/allow_drop()
+	SIGNAL_HANDLER
+	operation_started = TRUE
+	UnregisterSignal(SSdcs, list(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_XENO_HIVEMIND, COMSIG_GLOB_OPEN_SHUTTERS_EARLY, COMSIG_GLOB_TADPOLE_LAUNCHED))
 
 /obj/structure/droppod/Destroy()
 	. = ..()
@@ -112,19 +124,22 @@
 /obj/structure/droppod/proc/checklanding(mob/user)
 	var/turf/target = locate(target_x, target_y, 2)
 	if(target.density)
-		to_chat(user, "<span class='warning'>Dense Landing zone detected. Invalid area.</span>")
+		to_chat(user, "<span class='warning'>Dense landing zone detected. Invalid area.</span>")
 		return FALSE
-	if(isspaceturf(target))
-		to_chat(user, "<span class='warning'>Location outside mission parameters. Invalid area.</span>")
+	if(is_type_in_typecache(target, GLOB.blocked_droppod_tiles))
+		to_chat(user, "<span class='warning'>Extremely lethal hazard detected on the target location. Invalid area.</span>")
 		return FALSE
 	var/area/targetarea = get_area(target)
+	if(targetarea.flags_area & NO_DROPPOD) // Thou shall not pass!
+		to_chat(user, "<span class='warning'>Location outside mission parameters. Invalid area.</span>")
+		return FALSE
 	if(!targetarea.outside)
 		to_chat(user, "<span class='warning'>Cannot launch pod at a roofed area.</span>")
 		return FALSE
 	for(var/x in target.contents)
 		var/atom/object = x
 		if(object.density)
-			to_chat(user, "<span class='warning'>Dense object detected in target location.</span>")
+			to_chat(user, "<span class='warning'>Dense object detected in target location. Invalid area.</span>")
 			return FALSE
 	to_chat(user, "<span class='notice'>Valid area confirmed!</span>")
 	return TRUE
@@ -139,7 +154,7 @@
 /obj/structure/droppod/proc/launchpod(mob/user)
 	if(!occupant)
 		return
-	if(world.time < SSticker.round_start_time + SSticker.mode.deploy_time_lock + DROPPOD_DEPLOY_DELAY)
+	if(!operation_started && world.time < SSticker.round_start_time + SSticker.mode.deploy_time_lock + DROPPOD_DEPLOY_DELAY)
 		to_chat(user, "<span class='notice'>Unable to launch, the ship has not yet reached the combat area.</span>")
 		return
 	if(!launch_allowed)

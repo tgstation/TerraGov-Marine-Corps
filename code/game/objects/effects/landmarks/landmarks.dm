@@ -135,6 +135,15 @@
 	. = ..()
 	return INITIALIZE_HINT_QDEL
 
+/obj/effect/landmark/xeno_turret_spawn
+	name = "xeno turret spawn landmark"
+	icon_state = "tdome_observer"
+
+/obj/effect/landmark/xeno_turret_spawn/Initialize()
+	GLOB.xeno_turret_turfs += loc
+	..()
+	return INITIALIZE_HINT_QDEL
+
 
 /obj/effect/landmark/nuke_spawn
 	name = "nuke spawn landmark"
@@ -143,6 +152,14 @@
 /obj/effect/landmark/nuke_spawn/Initialize()
 	GLOB.nuke_spawn_locs += loc
 	. = ..()
+	return INITIALIZE_HINT_QDEL
+
+/obj/effect/landmark/dropship_start_location
+	name = "dropship_start_location"
+
+/obj/effect/landmark/dropship_start_location/Initialize()
+	GLOB.minidropship_start_loc = loc
+	..()
 	return INITIALIZE_HINT_QDEL
 
 /obj/effect/landmark/weapon_spawn
@@ -316,7 +333,7 @@
 		/obj/item/weapon/gun/launcher/m81,
 		/obj/item/weapon/gun/rifle/standard_smartmachinegun,
 		/obj/item/weapon/gun/rifle/sectoid_rifle,
-		/obj/item/weapon/gun/rifle/m4ra,
+		/obj/item/weapon/gun/rifle/tx8,
 		/obj/item/weapon/gun/shotgun/pump/bolt,
 		/obj/item/weapon/gun/shotgun/pump/lever/mbx900,
 		/obj/item/weapon/gun/shotgun/pump/cmb,

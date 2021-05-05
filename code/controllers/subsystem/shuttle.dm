@@ -5,7 +5,7 @@ SUBSYSTEM_DEF(shuttle)
 	name = "Shuttle"
 	wait = 10
 	init_order = INIT_ORDER_SHUTTLE
-	flags = SS_KEEP_TIMING|SS_NO_TICK_CHECK
+	flags = SS_KEEP_TIMING
 	runlevels = RUNLEVEL_SETUP | RUNLEVEL_GAME
 
 	var/list/mobile = list()
@@ -131,9 +131,44 @@ SUBSYSTEM_DEF(shuttle)
 
 	return moveShuttleToDock(shuttleId, D, timed)
 
+/**
+ * Generate a transit and set it as a destination. The shuttle will stay in that transit until it is called again
+ * Because it uses standard shuttle code, the shuttle will do this : 
+ * Originport -> transit -> arrived to destination(will actually not move from transit, because destiantion = the transit)
+ * shuttleId : Id of the shuttle to move
+ * timed : If FALSE, the shuttle will instantly move to its destination
+ */
+/datum/controller/subsystem/shuttle/proc/moveShuttleToTransit(shuttleId, timed)
+	var/obj/docking_port/mobile/M = getShuttle(shuttleId)
+	var/obj/docking_port/stationary/D = generate_transit_dock(M)
+	if(!D)
+		return
+	moveShuttleToDock(shuttleId, D, timed)
+
+/**
+ * Skip the transit to directly go to the destination. This is not instantanious
+ * shuttleId : Id of the shuttle to move
+ * dockId : Id of the destination dockId
+ */
+/datum/controller/subsystem/shuttle/proc/moveShuttleQuickToDock(shuttleId, dockId)
+	var/obj/docking_port/stationary/D = getDock(dockId)
+	if(!D)
+		return
+	var/obj/docking_port/mobile/M = getShuttle(shuttleId)
+	if(!M)
+		return
+	M.set_mode(SHUTTLE_CALL)
+	moveShuttleToDock(shuttleId, D, TRUE)
+
+
+/**
+ * Move the shuttle to it's destination. If called normally, the shuttle will spool engines, then go to transit, then do its prearrival, then land on destination dock
+ * shuttleId : Id of the shuttle to move
+ * obj/docking_port/stationary/D : Reference of the destination dock
+ * timed: If FALSE, the shuttle will instantanly move to the destination dock
+ */
 /datum/controller/subsystem/shuttle/proc/moveShuttleToDock(shuttleId, obj/docking_port/stationary/D, timed)
 	var/obj/docking_port/mobile/M = getShuttle(shuttleId)
-
 	if(!M)
 		return 1
 	if(timed)

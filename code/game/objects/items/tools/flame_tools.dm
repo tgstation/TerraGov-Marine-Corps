@@ -33,13 +33,14 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	light_color = LIGHT_COLOR_FIRE
 	var/wax = 800
 
-/obj/item/tool/candle/update_icon()
+/obj/item/tool/candle/update_icon_state()
 	var/i
 	if(wax>150)
 		i = 1
 	else if(wax>80)
 		i = 2
-	else i = 3
+	else
+		i = 3
 	icon_state = "candle[i][heat ? "_lit" : ""]"
 
 /obj/item/tool/candle/Destroy()

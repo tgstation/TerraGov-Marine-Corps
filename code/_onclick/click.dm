@@ -32,19 +32,19 @@
 		usr.MouseWheelOn(src, delta_x, delta_y, params)
 
 
-/*
-	Standard mob ClickOn()
-	Handles exceptions: Buildmode, middle click, modified clicks, mech actions
-
-	After that, mostly just check your state, check whether you're holding an item,
-	check whether you're adjacent to the target, then pass off the click to whoever
-	is receiving it.
-	The most common are:
-	* mob/UnarmedAttack(atom, adjacent, params) - used here only when adjacent, with no item in hand; in the case of humans, checks gloves
-	* atom/attackby(item, user, params) - used only when adjacent
-	* item/afterattack(atom, user, adjacent, params) - used both ranged and adjacent when not handled by attackby
-	* mob/RangedAttack(atom, params) - used only ranged, only used for tk and laser eyes but could be changed
-*/
+/**
+ * Standard mob ClickOn()
+ * Handles exceptions: Buildmode, middle click, modified clicks, mech actions
+ *
+ * After that, mostly just check your state, check whether you're holding an item,
+ * check whether you're adjacent to the target, then pass off the click to whoever
+ * is receiving it.
+ * The most common are:
+ * * mob/UnarmedAttack(atom, adjacent, params) - used here only when adjacent, with no item in hand; in the case of humans, checks gloves
+ * * atom/attackby(item, user, params) - used only when adjacent
+ * * item/afterattack(atom, user, adjacent, params) - used both ranged and adjacent when not handled by attackby
+ * * mob/RangedAttack(atom, params) - used only ranged, only used for tk and laser eyes but could be changed
+ */
 /mob/proc/ClickOn(atom/A, location, params)
 
 	if(world.time <= next_click)
@@ -148,8 +148,9 @@
 			UnarmedAttack(A, TRUE, modifiers)
 	else
 		if(W)
-			if(A.Adjacent(src))
-				W.melee_attack_chain(src, A, params, modifiers["right"])
+			var/proximity = A.Adjacent(src)
+			if(!proximity || !A.attackby(W, src, params))
+				W.afterattack(A, src, proximity, params)
 		else
 			if(A.Adjacent(src))
 				A.attack_hand(src)
@@ -315,8 +316,6 @@ if(selected_ability.target_flags & flagname){\
 
 /mob/living/carbon/xenomorph/proc/ability_target(atom/A)
 	TARGET_FLAGS_MACRO(XABB_MOB_TARGET, /mob/living)
-	TARGET_FLAGS_MACRO(XABB_OBJ_TARGET, /obj)
-	TARGET_FLAGS_MACRO(XABB_WALL_TARGET, /turf/closed/wall)
 	if(selected_ability.target_flags & XABB_TURF_TARGET)
 		return get_turf(A)
 	return A
@@ -558,6 +557,9 @@ if(selected_ability.target_flags & flagname){\
 			modifiers["icon-y"] = num2text(ABS_PIXEL_TO_REL(text2num(modifiers["icon-y"])))
 			T.Click(location, control, list2params(modifiers))
 	. = TRUE
+
+/obj/screen/click_catcher/MouseMove(location, control, params)//This allow to catch mouse drag on click catcher, aka black tiles
+	return
 
 
 /* MouseWheelOn */

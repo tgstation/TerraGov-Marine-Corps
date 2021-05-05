@@ -90,6 +90,12 @@
 	ship_tag = "minidropship"
 	icon_state = "equip_base"
 
+/obj/effect/attach_point/weapon/minidropship/pointing_east
+	dir = 4
+
+/obj/effect/attach_point/weapon/minidropship/pointing_west
+	dir = 8
+
 /obj/effect/attach_point/crew_weapon
 	name = "rear attach point"
 	base_category = DROPSHIP_CREW_WEAPON
@@ -102,6 +108,9 @@
 
 /obj/effect/attach_point/crew_weapon/minidropship
 	ship_tag = "minidropship"
+
+/obj/effect/attach_point/crew_weapon/dropship1
+	ship_tag = "alamo"
 
 /obj/effect/attach_point/electronics
 	name = "electronic system attach point"
@@ -252,7 +261,7 @@
 			if(linked_shuttle)
 				linked_shuttle.equipments -= src
 				linked_shuttle = null
-				if(linked_console && linked_console.selected_equipment == src)
+				if(linked_console?.selected_equipment == src)
 					linked_console.selected_equipment = null
 		update_equipment()
 		return TRUE //removed or uninstalled equipment
@@ -672,6 +681,7 @@
 	var/obj/effect/overlay/blinking_laser/laser = new (target_turf)
 	addtimer(CALLBACK(SA, /obj/structure/ship_ammo.proc/detonate_on, target_turf, attackdir), ammo_travelling_time)
 	addtimer(CALLBACK(GLOBAL_PROC, .proc/qdel, laser), ammo_travelling_time)
+
 /obj/structure/dropship_equipment/weapon/heavygun
 	name = "\improper GAU-21 30mm cannon"
 	desc = "A dismounted GAU-21 'Rattler' 30mm rotary cannon. It seems to be missing its feed links and has exposed connection wires. Capable of firing 5200 rounds a minute, feared by many for its power. Earned the nickname 'Rattler' from the vibrations it would cause on dropships in its inital production run."

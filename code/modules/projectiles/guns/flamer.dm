@@ -22,7 +22,7 @@
 	attachable_allowed = list( //give it some flexibility.
 						/obj/item/attachable/flashlight,
 						/obj/item/attachable/magnetic_harness)
-	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
+	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY|GUN_WIELDED_STABLE_FIRING_ONLY
 	gun_skill_category = GUN_SKILL_HEAVY_WEAPONS
 	attachable_offset = list("rail_x" = 12, "rail_y" = 23)
 	fire_delay = 4
@@ -79,16 +79,14 @@
 	return TRUE
 
 
-/obj/item/weapon/gun/flamer/Fire(atom/target, mob/living/user, params, reflex)
-	set waitfor = 0
-
-	if(!able_to_fire(user))
+/obj/item/weapon/gun/flamer/Fire()
+	if(!able_to_fire(gun_user))
 		return
 
-	if(gun_on_cooldown(user))
+	if(gun_on_cooldown(gun_user))
 		return
 
-	var/turf/curloc = get_turf(user) //In case the target or we are expired.
+	var/turf/curloc = get_turf(gun_user) //In case the target or we are expired.
 	var/turf/targloc = get_turf(target)
 	if(!targloc || !curloc)
 		return //Something has gone wrong...
@@ -98,9 +96,9 @@
 		return
 
 	if(current_mag.current_rounds <= 0)
-		click_empty(user)
+		click_empty(gun_user)
 	else
-		unleash_flame(target, user)
+		INVOKE_ASYNC(src, .proc/unleash_flame, target, gun_user)
 
 /obj/item/weapon/gun/flamer/reload(mob/user, obj/item/ammo_magazine/magazine)
 	if(!magazine || !istype(magazine))
@@ -428,7 +426,7 @@
 	current_mag = /obj/item/ammo_magazine/flamer_tank/large
 	icon_state = "tl84"
 	item_state = "tl84"
-	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
+	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER|GUN_WIELDED_STABLE_FIRING_ONLY
 	attachable_offset = list("rail_x" = 10, "rail_y" = 23, "stock_x" = 16, "stock_y" = 13)
 	starting_attachment_types = list(
 		/obj/item/attachable/stock/t84stock,
@@ -544,18 +542,32 @@
 	var/obj/screen/ammo/A = user.hud_used.ammo
 	A.update_hud(user)
 
-/obj/item/weapon/gun/flamer/marinestandard/Fire(atom/target, mob/living/user, params, reflex)
+/obj/item/weapon/gun/flamer/marinestandard/Fire()
 	if(active_attachable && istype(active_attachable, /obj/item/attachable/hydro_cannon) && (world.time > last_use + 10))
-		extinguish(target,user) //Fire it.
+		INVOKE_ASYNC(src, .proc/extinguish, target, gun_user) //Fire it.
 		water_count -=7//reagents is not updated in this proc, we need water_count for a updated HUD
 		last_fired = world.time
 		last_use = world.time
-		var/obj/screen/ammo/A = user.hud_used.ammo
-		A.update_hud(user)
+		var/obj/screen/ammo/A = gun_user.hud_used.ammo
+		A.update_hud(gun_user)
 		return
-	if(user.skills.getRating("firearms") < 0 && !do_after(user, 1 SECONDS, TRUE, src))
-		return
+	if(gun_user.skills.getRating("firearms") < 0)
+		switch(windup_checked)
+			if(WEAPON_WINDUP_NOT_CHECKED)
+				INVOKE_ASYNC(src, .proc/do_windup)
+				return
+			if(WEAPON_WINDUP_CHECKING)
+				return
 	return ..()
+
+///Flamer windup called before firing
+/obj/item/weapon/gun/flamer/marinestandard/proc/do_windup()
+	windup_checked = WEAPON_WINDUP_CHECKING
+	if(!do_after(gun_user, 1 SECONDS, TRUE, src))
+		windup_checked = WEAPON_WINDUP_NOT_CHECKED
+		return
+	windup_checked = WEAPON_WINDUP_CHECKED
+	Fire()	
 
 /obj/item/weapon/gun/flamer/marinestandard/afterattack(atom/target, mob/user)
 	. = ..()

@@ -449,6 +449,12 @@
 	scannable = TRUE
 	toxpwr = 0
 
+/datum/reagent/toxin/xeno_neurotoxin/light
+	name = "Light Neurotoxin"
+	description = "A debilitating nerve toxin. Impedes motor control in high doses. Causes progressive loss of mobility over time. This one seems to be weaker enough to not remove other chemicals."
+	purge_list = null
+	purge_rate = 0
+
 
 /datum/reagent/toxin/xeno_neurotoxin/on_mob_life(mob/living/L, metabolism)
 	var/power
@@ -494,7 +500,7 @@
 	description = "A metabolic accelerant that dramatically increases the rate of larval growth in a host."
 	reagent_state = LIQUID
 	color = "#CF3600" // rgb: 207, 54, 0
-	purge_list = list(/datum/reagent/toxin/xeno_neurotoxin, /datum/reagent/medicine)
+	purge_list = list(/datum/reagent/medicine)
 	purge_rate = 3
 	overdose_threshold = REAGENTS_OVERDOSE
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL

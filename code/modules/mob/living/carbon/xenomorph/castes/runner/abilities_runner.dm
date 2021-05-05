@@ -6,6 +6,7 @@
 	action_icon_state = "savage_on"
 	mechanics_text = "Toggle on to add a vicious attack to your pounce."
 	keybind_signal = COMSIG_XENOABILITY_TOGGLE_SAVAGE
+	use_state_flags = XACT_USE_LYING
 
 /datum/action/xeno_action/toggle_savage/action_activate()
 	var/mob/living/carbon/xenomorph/X = owner

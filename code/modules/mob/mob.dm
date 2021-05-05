@@ -47,6 +47,7 @@
 		stat("Operation Time:", stationTimestamp("hh:mm"))
 		stat("Current Map:", length(SSmapping.configs) ? SSmapping.configs[GROUND_MAP].map_name : "Loading...")
 		stat("Current Ship:", length(SSmapping.configs) ? SSmapping.configs[SHIP_MAP].map_name : "Loading...")
+		stat("Game Mode:", "[GLOB.master_mode]")
 
 	if(statpanel("Game"))
 		if(client)

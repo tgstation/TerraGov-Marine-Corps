@@ -220,6 +220,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 		camera.toggle_cam(null, FALSE)
 	if(wearer.mind && wearer.assigned_squad && !sl_direction)
 		enable_sl_direction()
+	add_minimap()
 	to_chat(wearer, "<span class='notice'>You toggle the Squad HUD on.</span>")
 	playsound(loc, 'sound/machines/click.ogg', 15, 0, 1)
 
@@ -231,9 +232,52 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 		camera.toggle_cam(null, FALSE)
 	if(sl_direction)
 		disable_sl_direction()
+	remove_minimap()
 	to_chat(wearer, "<span class='notice'>You toggle the Squad HUD off.</span>")
 	playsound(loc, 'sound/machines/click.ogg', 15, 0, 1)
 
+/obj/item/radio/headset/mainship/proc/add_minimap()
+	var/type
+	switch(frequency)
+		if(FREQ_ALPHA)
+			type = /datum/action/minimap/alpha
+		if(FREQ_BRAVO)
+			type = /datum/action/minimap/bravo
+		if(FREQ_CHARLIE)
+			type = /datum/action/minimap/charlie
+		if(FREQ_DELTA)
+			type = /datum/action/minimap/delta
+		else
+			type = /datum/action/minimap/marine
+	var/datum/action/minimap/mini = new type
+	mini.give_action(wearer)
+	INVOKE_NEXT_TICK(src, .proc/update_minimap_icon, mini) //Mobs are spawned inside nullspace sometimes so this is to avoid that hijinks
+
+/obj/item/radio/headset/mainship/proc/update_minimap_icon(datum/action/minimap/mini)
+	SSminimaps.remove_marker(wearer)
+	if(!wearer.job || !wearer.job.minimap_icon)
+		return
+	if(wearer.assigned_squad)
+		SSminimaps.add_marker(wearer, wearer.z, mini.marker_flags, lowertext(wearer.assigned_squad.name)+"_"+wearer.job.minimap_icon)
+		return
+	SSminimaps.add_marker(wearer, wearer.z, mini.marker_flags, wearer.job.minimap_icon)
+
+/obj/item/radio/headset/mainship/proc/remove_minimap()
+	var/type
+	switch(frequency)
+		if(FREQ_ALPHA)
+			type = /datum/action/minimap/alpha
+		if(FREQ_BRAVO)
+			type = /datum/action/minimap/bravo
+		if(FREQ_CHARLIE)
+			type = /datum/action/minimap/charlie
+		if(FREQ_DELTA)
+			type = /datum/action/minimap/delta
+		else
+			type = /datum/action/minimap/marine
+	var/datum/action/minimap/mini = wearer.actions_by_path[type]
+	mini.remove_action(wearer)
+	SSminimaps.remove_marker(wearer)
 
 /obj/item/radio/headset/mainship/proc/enable_sl_direction()
 	if(!headset_hud_on)
@@ -244,7 +288,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 		wearer.hud_used.SL_locator.alpha = 128
 		if(wearer.assigned_squad.squad_leader == wearer)
 			SSdirection.set_leader(wearer.assigned_squad.tracking_id, wearer)
-			SSdirection.start_tracking("marine-sl", wearer)
+			SSdirection.start_tracking(TRACKING_ID_MARINE_COMMANDER, wearer)
 		else
 			SSdirection.start_tracking(wearer.assigned_squad.tracking_id, wearer)
 
@@ -262,7 +306,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 
 	if(wearer.assigned_squad.squad_leader == wearer)
 		SSdirection.clear_leader(wearer.assigned_squad.tracking_id)
-		SSdirection.stop_tracking("marine-sl", wearer)
+		SSdirection.stop_tracking(TRACKING_ID_MARINE_COMMANDER, wearer)
 	else
 		SSdirection.stop_tracking(wearer.assigned_squad.tracking_id, wearer)
 

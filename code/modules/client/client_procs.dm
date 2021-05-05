@@ -1,7 +1,7 @@
 #define UPLOAD_LIMIT			1000000	//Restricts client uploads to the server to 1MB
 #define UPLOAD_LIMIT_ADMIN		10000000	//Restricts admin uploads to the server to 10MB
 
-#define MAX_RECOMMENDED_CLIENT 1542
+#define MAX_RECOMMENDED_CLIENT 1549
 #define MIN_RECOMMENDED_CLIENT 1526
 #define REQUIRED_CLIENT_MAJOR 513
 #define REQUIRED_CLIENT_MINOR 1493
@@ -98,12 +98,7 @@
 		if("usr")
 			hsrc = mob
 		if("prefs")
-			if(inprefs)
-				return
-			inprefs = TRUE
-			. = prefs.process_link(usr, href_list)
-			inprefs = FALSE
-			return
+			stack_trace("This code path is no longer valid, migrate this to new TGUI prefs")
 		if("vars")
 			return view_var_Topic(href, href_list, hsrc)
 		if("vote")
@@ -485,7 +480,7 @@
 			screen |= O
 		O.appearance = MA
 		O.dir = D
-		O.screen_loc = "character_preview_map:0,[pos]"
+		O.screen_loc = "player_pref_map:[pos],1"
 
 
 /client/proc/clear_character_previews()

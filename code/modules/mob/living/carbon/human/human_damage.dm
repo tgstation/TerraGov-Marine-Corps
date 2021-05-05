@@ -23,8 +23,8 @@
 
 	var/health_deficiency = max((maxHealth - health), staminaloss)
 
-	if(health_deficiency >= 40)
-		add_movespeed_modifier(MOVESPEED_ID_DAMAGE_SLOWDOWN, TRUE, 0, NONE, TRUE, health_deficiency / 25)
+	if(health_deficiency >= 50)
+		add_movespeed_modifier(MOVESPEED_ID_DAMAGE_SLOWDOWN, TRUE, 0, NONE, TRUE, health_deficiency / 50)
 	else
 		remove_movespeed_modifier(MOVESPEED_ID_DAMAGE_SLOWDOWN)
 
@@ -341,9 +341,9 @@ In most cases it makes more sense to use apply_damage() instead! And make sure t
 
 	if(protection_aura)
 		if(brute)
-			brute = round(brute * ((15 - protection_aura) / 15))
+			brute = round(brute * ((10 - protection_aura) / 10))
 		if(burn)
-			burn = round(burn * ((15 - protection_aura) / 15))
+			burn = round(burn * ((10 - protection_aura) / 10))
 
 	SEND_SIGNAL(src, COMSIG_HUMAN_DAMAGE_TAKEN, brute + burn)
 

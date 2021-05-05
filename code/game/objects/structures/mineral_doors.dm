@@ -12,6 +12,7 @@
 
 	icon = 'icons/obj/doors/mineral_doors.dmi'
 	icon_state = "metal"
+	resistance_flags = DROPSHIP_IMMUNE
 
 	var/mineralType = "metal"
 	var/state = D_CLOSED

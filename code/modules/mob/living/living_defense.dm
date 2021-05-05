@@ -75,7 +75,7 @@
 		var/armor = run_armor_check(null, "melee")
 
 		if(armor < 1)
-			apply_damage(throw_damage, dtype, null, armor, is_sharp(O), has_edge(O))
+			apply_damage(throw_damage, dtype, null, armor, is_sharp(O), has_edge(O), TRUE)
 
 		if(O.item_fire_stacks)
 			fire_stacks += O.item_fire_stacks
@@ -239,8 +239,6 @@
 		if(CHECK_BITFIELD(S.smoke_traits, SMOKE_CAMO))
 			smokecloak_off()
 		return
-	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_CAMO))
-		smokecloak_on()
 	if(smoke_delay)
 		return FALSE
 	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_XENO) && (stat == DEAD || isnestedhost(src)))

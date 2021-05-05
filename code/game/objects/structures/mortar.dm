@@ -37,12 +37,6 @@
 		to_chat(user, "<span class='warning'>[src]'s barrel is still steaming hot. Wait a few seconds and stop firing it.</span>")
 		return
 
-	if(user.skills.getRating("engineer") < SKILL_ENGINEER_ENGI)
-		user.visible_message("<span class='notice'>[user] fumbles around figuring out how to use [src].</span>",
-		"<span class='notice'>You fumble around figuring out how to use [src].</span>")
-		var/fumbling_time = 4 SECONDS * ( SKILL_ENGINEER_ENGI - user.skills.getRating("engineer") )
-		if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
-			return
 	ui_interact(user)
 
 
@@ -145,13 +139,6 @@
 	if(istype(I, /obj/item/mortal_shell))
 		var/obj/item/mortal_shell/mortar_shell = I
 
-		if(user.skills.getRating("engineer") < SKILL_ENGINEER_ENGI)
-			user.visible_message("<span class='notice'>[user] fumbles around figuring out how to fire [src].</span>",
-			"<span class='notice'>You fumble around figuring out how to fire [src].</span>")
-			var/fumbling_time = 2 SECONDS * ( SKILL_ENGINEER_ENGI - user.skills.getRating("engineer") )
-			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
-				return
-
 		if(issynth(user) && !CONFIG_GET(flag/allow_synthetic_gun_use))
 			to_chat(user, "<span class='warning'>Your programming restricts operating heavy weaponry.</span>")
 			return
@@ -211,6 +198,22 @@
 		addtimer(CALLBACK(GLOBAL_PROC, .proc/playsound, T, 'sound/weapons/guns/misc/mortar_travel.ogg', 50, 1), travel_time)
 		addtimer(CALLBACK(src, .proc/detonate_shell, T, mortar_shell), travel_time + 45)//This should always be 45 ticks!
 
+	if(!istype(I, /obj/item/binoculars/tactical))
+		return
+	var/obj/item/binoculars/tactical/binocs = I
+	playsound(src, 'sound/effects/binoctarget.ogg', 35)
+	if(binocs.set_mortar(src))
+		to_chat(user, "<span class='notice'>You link the mortar to the [binocs] allowing for remote targeting.</span>")
+		return
+	to_chat(user, "<span class='notice'>You disconnect the [binocs] from their linked mortar.")
+
+///Proc called by tactical binoculars to send targeting information.
+/obj/structure/mortar/proc/recieve_target(turf/T, binocs, mob/user)
+	coords["targ_x"] = T.x
+	coords["targ_y"] = T.y
+	say("Remote targeting set by [user]. COORDINATES: X:[coords["targ_x"]] Y:[coords["targ_y"]] OFFSET: X:[coords["dial_x"]] Y:[coords["dial_y"]]")
+	playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
+
 /obj/structure/mortar/proc/detonate_shell(turf/target, obj/item/mortal_shell/mortar_shell)
 	target.ceiling_debris_check(2)
 	mortar_shell.detonate(target)
@@ -218,12 +221,6 @@
 	firing = FALSE
 
 /obj/structure/mortar/wrench_act(mob/living/user, obj/item/I)
-	if(user.skills.getRating("engineer") < SKILL_ENGINEER_ENGI)
-		user.visible_message("<span class='notice'>[user] fumbles around figuring out how to undeploy [src].</span>",
-		"<span class='notice'>You fumble around figuring out how to undeploy [src].</span>")
-		var/fumbling_time = 5 SECONDS * ( SKILL_ENGINEER_ENGI - user.skills.getRating("engineer"))
-		if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
-			return
 
 	if(fixed)
 		to_chat(user, "<span class='warning'>[src]'s supports are bolted and welded into the floor. It looks like it's going to be staying there.</span>")
@@ -249,7 +246,6 @@
 	new /obj/item/mortar_kit(loc)
 	qdel(src)
 
-
 /obj/structure/mortar/fixed
 	desc = "A manual, crew-operated mortar system intended to rain down 80mm goodness on anything it's aimed at. Uses manual targetting dials. Insert round to fire. This one is bolted and welded into the ground."
 	fixed = TRUE
@@ -261,16 +257,10 @@
 	icon = 'icons/Marine/mortar.dmi'
 	icon_state = "mortar_m402_carry"
 	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
-	w_class = WEIGHT_CLASS_HUGE //No dumping this in a backpack. Carry it, fatso
+	w_class = WEIGHT_CLASS_BULKY //No dumping this in most backpacks. Carry it, fatso
 
 
 /obj/item/mortar_kit/attack_self(mob/user)
-	if(user.skills.getRating("engineer") < SKILL_ENGINEER_ENGI)
-		user.visible_message("<span class='notice'>[user] fumbles around figuring out how to deploy [src].</span>",
-		"<span class='notice'>You fumble around figuring out how to deploy [src].</span>")
-		var/fumbling_time = 5 SECONDS * ( SKILL_ENGINEER_ENGI - user.skills.getRating("engineer") )
-		if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
-			return
 	if(!is_ground_level(user.z))
 		to_chat(user, "<span class='warning'>You cannot deploy [src] here.</span>")
 		return
@@ -295,7 +285,7 @@
 	desc = "An unlabeled 80mm mortar shell, probably a casing."
 	icon = 'icons/Marine/mortar.dmi'
 	icon_state = "mortar_ammo_cas"
-	w_class = WEIGHT_CLASS_HUGE
+	w_class = WEIGHT_CLASS_BULKY
 	flags_atom = CONDUCT
 
 /obj/item/mortal_shell/proc/detonate(turf/T)

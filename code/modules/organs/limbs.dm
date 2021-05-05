@@ -18,6 +18,8 @@
 	var/max_size = 0
 	var/last_dam = -1
 	var/supported = FALSE
+	///How many instances of damage the limb can take before its splints fall off
+	var/splint_health = 0
 
 	var/datum/armor/soft_armor
 	var/datum/armor/hard_armor
@@ -169,8 +171,8 @@
 			brute *= owner.species.brute_mod
 			burn *= owner.species.burn_mod
 		else
-			brute *= 0.66 //~2/3 damage for ROBOLIMBS
-			burn *= 0.66 //~2/3 damage for ROBOLIMBS
+			brute *= 0.50 // half damage for ROBOLIMBS
+			burn *= 0.50 // half damage for ROBOLIMBS
 
 	//High brute damage or sharp objects may damage internal organs
 	if(internal_organs && ((sharp && brute >= 10) || brute >= 20) && prob(5))
@@ -338,9 +340,12 @@
 		wounds += I
 		owner.custom_pain("You feel something rip in your [display_name]!", 1)
 
-	if(limb_status & LIMB_SPLINTED && damage > 5 && prob(50 + damage * 2.5)) //If they have it splinted, the splint won't hold.
-		remove_limb_flags(LIMB_SPLINTED)
-		to_chat(owner, "<span class='userdanger'>The splint on your [display_name] comes apart!</span>")
+	if(limb_status & LIMB_SPLINTED) //If they have it splinted and no splint health, the splint won't hold.
+		if(splint_health <= 0)
+			remove_limb_flags(LIMB_SPLINTED)
+			to_chat(owner, "<span class='userdanger'>The splint on your [display_name] comes apart!</span>")
+		else
+			splint_health = max(splint_health - damage, 0)
 
 	// first check whether we can widen an existing wound
 	var/datum/wound/W
@@ -1025,7 +1030,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	return ((limb_status & LIMB_BROKEN) && !(limb_status & LIMB_SPLINTED) && !(limb_status & LIMB_STABILIZED))
 
 /datum/limb/proc/is_malfunctioning()
-	return ((limb_status & LIMB_ROBOT) && prob(brute_dam + burn_dam))
+	return ((limb_status & LIMB_ROBOT) && (get_damage() > min_broken_damage))
 
 //for arms and hands
 /datum/limb/proc/process_grasp(obj/item/c_hand, hand_name)
@@ -1038,13 +1043,13 @@ Note that amputating the affected organ does in fact remove the infection from t
 			var/emote_scream = pick("screams in pain and", "lets out a sharp cry and", "cries out and")
 			owner.emote("me", 1, "[(owner.species && owner.species.species_flags & NO_PAIN) ? "" : emote_scream ] drops what they were holding in their [hand_name]!")
 	if(is_malfunctioning())
-		if(prob(10))
+		if(prob(5))
 			owner.dropItemToGround(c_hand)
 			owner.emote("me", 1, "drops what they were holding, their [hand_name] malfunctioning!")
 			new /datum/effect_system/spark_spread(owner, owner, 5, 0, TRUE, 1 SECONDS)
 
 
-/datum/limb/proc/apply_splints(obj/item/stack/medical/splint/S, mob/living/user, mob/living/carbon/human/target)
+/datum/limb/proc/apply_splints(obj/item/stack/medical/splint/S, applied_health, mob/living/user, mob/living/carbon/human/target)
 
 	if(!istype(user))
 		return
@@ -1053,7 +1058,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 		to_chat(user, "<span class='warning'>There's nothing there to splint!</span>")
 		return FALSE
 
-	if(limb_status & LIMB_SPLINTED)
+	if(limb_status & LIMB_SPLINTED && applied_health <= splint_health)
 		to_chat(user, "<span class='warning'>This limb is already splinted!</span>")
 		return FALSE
 
@@ -1074,6 +1079,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 		"[text1]",
 		"[text2]")
 		add_limb_flags(LIMB_SPLINTED)
+		splint_health = applied_health
 		return TRUE
 
 
@@ -1140,7 +1146,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	name = "l_arm"
 	display_name = "left arm"
 	icon_name = "l_arm"
-	max_damage = 100
+	max_damage = 125
 	min_broken_damage = 50
 	body_part = ARM_LEFT
 	cover_index = 7
@@ -1163,7 +1169,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	name = "r_arm"
 	display_name = "right arm"
 	icon_name = "r_arm"
-	max_damage = 100
+	max_damage = 125
 	min_broken_damage = 50
 	body_part = ARM_RIGHT
 	cover_index = 7

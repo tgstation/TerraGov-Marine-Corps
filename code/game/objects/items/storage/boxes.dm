@@ -309,7 +309,7 @@
 	spawn_type = /obj/item/explosive/mine
 	spawn_number = 5
 
-/obj/item/storage/box/explosive_mines/update_icon()
+/obj/item/storage/box/explosive_mines/update_icon_state()
 	icon_state = initial(icon_state)
 	if(!length(contents))
 		icon_state += "_e"
@@ -357,7 +357,7 @@
 	spawn_type = /obj/item/explosive/grenade/frag
 	spawn_number = 25
 
-/obj/item/storage/box/nade_box/update_icon()
+/obj/item/storage/box/nade_box/update_icon_state()
 	icon_state = initial(icon_state)
 	if(!length(contents))
 		icon_state += "_e"
@@ -403,6 +403,15 @@
 	max_storage_space = 30
 	spawn_number = 15
 	spawn_type = /obj/item/explosive/grenade/phosphorus
+
+/obj/item/storage/box/nade_box/razor_burn
+	name = "\improper RB grenade box"
+	desc = "A secure box holding 20 razor burn grenades. Used for quick flank coverage."
+	icon_state = "nade_razorburn"
+	storage_slots = 15
+	max_storage_space = 30
+	spawn_number = 15
+	spawn_type = /obj/item/explosive/grenade/chem_grenade/razorburn_smol
 
 /obj/item/storage/box/nade_box/plasma_drain_gas
 	name = "\improper M40-T gas grenade box"
@@ -475,6 +484,7 @@
 	max_w_class = 4
 	storage_slots = 30
 	max_storage_space = 60	//SMG and pistol sized (tiny and small) mags can fit all 30 slots, normal (LMG and AR) fit 20
+	use_to_pickup = TRUE
 	can_hold = list(
 		/obj/item/ammo_magazine/pistol,
 		/obj/item/ammo_magazine/smg,
@@ -491,7 +501,7 @@
 
 	var/deployed = FALSE
 
-/obj/item/storage/box/ammo/update_icon()
+/obj/item/storage/box/ammo/update_icon_state()
 	if(!deployed)
 		icon_state = "[initial(icon_state)]"
 	else if(!(length(contents)))

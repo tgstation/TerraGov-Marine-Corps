@@ -109,7 +109,7 @@
 	new /obj/item/storage/belt/security(src)
 	new /obj/item/flash(src)
 	new /obj/item/weapon/baton(src)
-	new /obj/item/clothing/tie/holster/waist(src)
+	new /obj/item/clothing/tie/storage/holster/waist(src)
 	new /obj/item/weapon/telebaton(src)
 	new /obj/item/clothing/head/beret/sec/hos(src)
 
@@ -269,7 +269,7 @@
 	new /obj/item/detective_scanner(src)
 	new /obj/item/clothing/suit/armor/det_suit(src)
 	new /obj/item/tool/taperoll/police(src)
-	new /obj/item/clothing/tie/holster/armpit(src)
+	new /obj/item/clothing/tie/storage/holster/armpit(src)
 
 
 /obj/structure/closet/secure_closet/detective/update_icon()
