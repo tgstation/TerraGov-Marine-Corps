@@ -15198,7 +15198,9 @@
 /area/shuttle/drop2/lz2)
 "mKq" = (
 /obj/machinery/computer/shuttle/shuttle_control/dropship,
-/obj/structure/table/reinforced,
+/obj/structure/table/reinforced/flipped{
+	dir = 1
+	},
 /turf/open/floor/marking/warning{
 	dir = 1
 	},
