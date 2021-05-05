@@ -46,6 +46,15 @@ Make your way to the cafeteria for some post-cryosleep chow, and then get equipp
 	"}
 	minimap_icon = "private"
 
+/datum/job/terragov/squad/standard/rebel 
+	faction = FACTION_TERRAGOV_REBEL
+	jobworth = list(
+		/datum/job/xenomorph = LARVA_POINTS_REGULAR,
+		/datum/job/terragov/squad/specialist = SPEC_POINTS_REGULAR,
+		/datum/job/terragov/squad/smartgunner/rebel = SMARTIE_POINTS_REGULAR,
+		/datum/job/terragov/silicon/synthetic/rebel = SYNTH_POINTS_REGULAR,
+	)
+
 /datum/job/terragov/squad/standard/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)
 	. = ..()
 	if(!ishuman(new_mob))
@@ -125,6 +134,10 @@ What you lack alone, you gain standing shoulder to shoulder with the men and wom
 	"}
 	minimap_icon = "engi"
 
+/datum/job/terragov/squad/engineer/rebel 
+	faction = FACTION_TERRAGOV_REBEL
+	jobworth = list(/datum/job/xenomorph = LARVA_POINTS_REGULAR, /datum/job/terragov/squad/specialist = SPEC_POINTS_MEDIUM, /datum/job/terragov/squad/smartgunner/rebel = SMARTIE_POINTS_MEDIUM, /datum/job/terragov/silicon/synthetic/rebel = SYNTH_POINTS_REGULAR)
+
 /datum/job/terragov/squad/engineer/radio_help_message(mob/M)
 	. = ..()
 	to_chat(M, {"\nYou have the equipment and skill to build fortifications, reroute power lines, and bunker down.
@@ -203,6 +216,10 @@ Your squaddies will look to you when it comes to construction in the field of ba
 		<b>Duty</b>: Tend the injuries of your fellow marines or related personnel, keep them at fighting strength. Evacuate those who are incapacitated or rendered incapable of fighting due to severe wounds or larvae infections.
 	"}
 	minimap_icon = "medic"
+
+/datum/job/terragov/squad/corpsman/rebel 
+	faction = FACTION_TERRAGOV_REBEL
+	jobworth = list(/datum/job/terragov/silicon/synthetic/rebel = SYNTH_POINTS_REGULAR, /datum/job/xenomorph = LARVA_POINTS_REGULAR, /datum/job/terragov/squad/specialist = SPEC_POINTS_MEDIUM, /datum/job/terragov/squad/smartgunner/rebel = SMARTIE_POINTS_MEDIUM)
 
 /datum/job/terragov/squad/corpsman/radio_help_message(mob/M)
 	. = ..()
@@ -293,6 +310,9 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 		<b>Duty</b>: Be the backline of your pointmen, provide heavy weapons support with your smart machine gun.
 	"}
 	minimap_icon = "smartgunner"
+
+/datum/job/terragov/squad/smartgunner/rebel 
+	faction = FACTION_TERRAGOV_REBEL
 
 /datum/job/terragov/squad/smartgunner/radio_help_message(mob/M)
 	. = ..()
@@ -404,7 +424,6 @@ You can serve a variety of roles, so choose carefully."})
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
 	jobworth = list(
 		/datum/job/xenomorph = LARVA_POINTS_REGULAR,
-		/datum/job/terragov/squad/specialist = SPEC_POINTS_HIGH,
 		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_HIGH,
 		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR,
 	)
@@ -419,6 +438,12 @@ You can serve a variety of roles, so choose carefully."})
 	"}
 	minimap_icon = "leader"
 
+/datum/job/terragov/squad/leader/rebel
+	faction = FACTION_TERRAGOV_REBEL
+	jobworth = list(
+		/datum/job/terragov/squad/smartgunner/rebel = SMARTIE_POINTS_HIGH,
+		/datum/job/terragov/silicon/synthetic/rebel = SYNTH_POINTS_REGULAR,
+	)
 
 /datum/job/terragov/squad/leader/radio_help_message(mob/M)
 	. = ..()
@@ -505,6 +530,10 @@ You are also in charge of communicating with command and letting them know about
 	job_flags = JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
 	jobworth = list(/datum/job/xenomorph = LARVA_POINTS_REGULAR, /datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR)
 	minimap_icon = "private"
+
+/datum/job/terragov/squad/vatgrown/rebel 
+	faction = FACTION_TERRAGOV_REBEL
+	jobworth = list(/datum/job/xenomorph = LARVA_POINTS_REGULAR, /datum/job/terragov/silicon/synthetic/rebel = SYNTH_POINTS_REGULAR)
 
 /datum/job/terragov/squad/vatgrown/return_spawn_type(datum/preferences/prefs)
 	return /mob/living/carbon/human/species/vatgrown
