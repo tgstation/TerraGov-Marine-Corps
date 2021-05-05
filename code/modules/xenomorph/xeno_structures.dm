@@ -32,7 +32,6 @@
 	bound_width = 96
 	bound_height = 96
 	max_integrity = 1000
-	resistance_flags = DROPSHIP_IMMUNE
 	///How many larva points one silo produce in one minute
 	var/larva_spawn_rate = 0.5
 	var/turf/center_turf
@@ -44,6 +43,7 @@
 
 /obj/structure/resin/silo/Initialize()
 	. = ..()
+	resistance_flags |= DROPSHIP_IMMUNE
 	var/static/number = 1
 	name = "[name] [number]"
 	number_silo = number
@@ -274,8 +274,9 @@
 
 /obj/structure/resin/xeno_turret/Initialize(mapload, hivenumber = XENO_HIVE_NORMAL)
 	. = ..()
+	resistance_flags |= DROPSHIP_IMMUNE
 	ammo = GLOB.ammo_list[/datum/ammo/xeno/acid/heavy/turret]
-	ammo.max_range = range + 2 //To prevent funny gamers to abuse the turrets that easily 
+	ammo.max_range = range + 2 //To prevent funny gamers to abuse the turrets that easily
 	potential_hostiles = list()
 	associated_hive = GLOB.hive_datums[hivenumber]
 	START_PROCESSING(SSobj, src)
@@ -320,9 +321,9 @@
 /obj/structure/resin/xeno_turret/update_overlays()
 	. = ..()
 	if(obj_integrity <= max_integrity / 2)
-		. += image('icons/Xeno/acidturret.dmi', src, "+turret_damage") 
+		. += image('icons/Xeno/acidturret.dmi', src, "+turret_damage")
 	if(CHECK_BITFIELD(resistance_flags, ON_FIRE))
-		. += image('icons/Xeno/acidturret.dmi', src, "+turret_on_fire") 
+		. += image('icons/Xeno/acidturret.dmi', src, "+turret_on_fire")
 
 /obj/structure/resin/xeno_turret/process()
 	//Turrets regen some HP, every 2 sec
@@ -394,7 +395,7 @@
 ///Look for the closest human in range and in light of sight. If no human is in range, will look for xenos of other hives
 /obj/structure/resin/xeno_turret/proc/get_target()
 	var/distance = range + 0.5 //we add 0.5 so if a potential target is at range, it is accepted by the system
-	var/buffer_distance 
+	var/buffer_distance
 	var/list/turf/path = list()
 	for (var/mob/living/nearby_hostile AS in potential_hostiles)
 		if(nearby_hostile.stat == DEAD)
@@ -438,7 +439,7 @@
 		if(nearby_xeno.stat == DEAD)
 			continue
 		potential_hostiles += nearby_xeno
-	
+
 
 ///Signal handler to make the turret shoot at its target
 /obj/structure/resin/xeno_turret/proc/shoot()
