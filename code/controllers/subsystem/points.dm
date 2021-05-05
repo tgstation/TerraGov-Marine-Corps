@@ -49,9 +49,19 @@ SUBSYSTEM_DEF(points)
 /datum/controller/subsystem/points/Initialize(timeofday)
 	ordernum = rand(1, 9000)
 
+	for(var/typepath in subtypesof(/datum/supply_export))
+		var/datum/supply_export/E = new typepath()
+		GLOB.exports_types[E.export_obj] = E
+
+	return ..()
+
+/// Prepare the global supply pack list at the gamemode start
+/datum/controller/subsystem/points/proc/prepare_supply_packs_list(is_HvH_mode = FALSE)
 	for(var/pack in subtypesof(/datum/supply_packs))
 		var/datum/supply_packs/P = pack
 		if(!initial(P.cost))
+			continue
+		if(is_HvH_mode && !initial(P.hvh_available))
 			continue
 		P = new pack()
 		if(!P.contains)
@@ -68,11 +78,6 @@ SUBSYSTEM_DEF(points)
 				containsname[path]["count"]++
 		supply_packs_contents[pack] = list("name" = P.name, "container_name" = initial(P.containertype.name), "cost" = P.cost, "hidden" = P.hidden, "contains" = containsname)
 
-	for(var/typepath in subtypesof(/datum/supply_export))
-		var/datum/supply_export/E = new typepath()
-		GLOB.exports_types[E.export_obj] = E
-
-	return ..()
 
 /datum/controller/subsystem/points/fire(resumed = FALSE)
 	dropship_points += DROPSHIP_POINT_RATE / (1 MINUTES / wait)
