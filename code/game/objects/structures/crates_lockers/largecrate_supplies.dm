@@ -180,7 +180,7 @@
 /obj/structure/largecrate/supply/ammo/standard_hmg
 	name = "\improper M56D ammunition drum case (x6)"
 	desc = "An ammunition case containing six M56D ammunition drums."
-	supplies = list(/obj/item/ammo_magazine/standard_hmg = 6)
+	supplies = list(/obj/item/ammo_magazine/mounted = 6)
 
 /obj/structure/largecrate/supply/ammo/standard_ammo
 	name = "large surplus ammuniton crate"

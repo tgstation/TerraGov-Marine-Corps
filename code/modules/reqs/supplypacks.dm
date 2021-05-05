@@ -563,7 +563,7 @@ AMMO
 
 /datum/supply_packs/ammo/m56d
 	name = "TL-102 mounted heavy smartgun ammo"
-	contains = list(/obj/item/ammo_magazine/standard_hmg)
+	contains = list(/obj/item/ammo_magazine/mounted)
 	cost = 10
 
 /datum/supply_packs/ammo/lasguncharger

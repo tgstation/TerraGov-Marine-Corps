@@ -76,6 +76,9 @@
 #define GUN_IS_AIMING				(1<<16)
 #define AUTO_AIM_MODE				(1<<17)
 #define GUN_WIELDED_STABLE_FIRING_ONLY	(1<<18)
+#define GUN_IS_DEPLOYABLE           (1<<19)
+#define GUN_NO_WIELDING             (1<<20)
+#define GUN_NO_FIRING_IN_HAND       (1<<21)
 
 #define GUN_FIREMODE_SEMIAUTO "semi-auto fire mode"
 #define GUN_FIREMODE_BURSTFIRE "burst-fire mode"

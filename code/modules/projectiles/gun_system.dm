@@ -129,6 +129,33 @@
 	///determines lower accuracy modifier in akimbo
 	var/lower_akimbo_accuracy = 1
 
+
+	//Deployed Stats
+
+	///Time it takes to deploy the gun
+	var/deploy_time = 0 SECONDS
+
+	///Var that determins the state of the gun, whether it is deployed within a machine, or not.
+	var/deployed = FALSE
+
+	///if TRUE the weapon cannot be picked up once deployed.
+	var/pickup_disabled = FALSE
+	///if TRUE the weapon cannot be rotated once deployed.
+	var/locked = FALSE
+
+	var/deploy_integrity = 100
+	var/deploy_max_integrity = 100
+
+	var/deployed_view_offset = 3
+
+	var/deploy_name = "Generic Gun"
+	var/deploy_desc = "gun go boom"
+	var/deploy_icon = 'icons/obj/items/gun.dmi'
+	var/deploy_icon_state = "gun"
+
+	var/deploy_icon_full
+	var/deploy_icon_empty
+
 //----------------------------------------------------------
 				//				    \\
 				// NECESSARY PROCS  \\
@@ -197,16 +224,16 @@
 
 /obj/item/weapon/gun/equipped(mob/user, slot)
 	unwield(user)
+	if(gun_user)
+		UnregisterSignal(gun_user, list(COMSIG_MOB_MOUSEDOWN, COMSIG_MOB_MOUSEUP, COMSIG_MOB_MOUSEDRAG))
+		gun_user.client.mouse_pointer_icon = initial(gun_user.client.mouse_pointer_icon)
+		gun_user = null	
 	if(ishandslot(slot))
 		gun_user = user
 		RegisterSignal(gun_user, COMSIG_MOB_MOUSEDOWN, .proc/start_fire) //All of this should and will be put inside an aiming component
 		RegisterSignal(gun_user, COMSIG_MOB_MOUSEUP, .proc/stop_fire)
 		RegisterSignal(gun_user, COMSIG_MOB_MOUSEDRAG, .proc/change_target)
 		return ..()
-	if(gun_user)
-		UnregisterSignal(gun_user, list(COMSIG_MOB_MOUSEDOWN, COMSIG_MOB_MOUSEUP, COMSIG_MOB_MOUSEDRAG))
-		gun_user.client.mouse_pointer_icon = initial(gun_user.client.mouse_pointer_icon)
-		gun_user = null
 	return ..()
 
 /obj/item/weapon/gun/removed_from_inventory(mob/user)
@@ -265,7 +292,12 @@
 		to_chat(user, "[dat.Join(" ")]")
 
 /obj/item/weapon/gun/wield(mob/user)
+	if(flags_gun_features & GUN_NO_WIELDING)
+		to_chat(user, "<span class='notice'>[src] cannot be fired by hand and must be deployed.</span>")
+		return
+	
 	. = ..()
+
 	if(!.)
 		return
 
@@ -305,6 +337,49 @@
 		toggle_aim_mode(user)
 
 	return TRUE
+
+/obj/item/weapon/gun/unique_action(mob/user)
+	if(flags_gun_features & GUN_IS_DEPLOYABLE) //If the gun can be deployed, it deploys when unique_action is called.
+		var/step = get_step(user, user.dir)
+		if(!ishuman(user)) 
+			return
+		if(check_blocked_turf(step))
+			to_chat(user, "<span class='warning'>There is insufficient room to deploy [src]!</span>")
+			return
+		if(!do_after(user, deploy_time, TRUE, src, BUSY_ICON_BUILD))
+			return
+		to_chat(user, "<span class='notice'>You deploy [src].</span>")
+		un_man()
+		user.temporarilyRemoveItemFromInventory(src)
+		var/obj/machinery/mounted/deploying = new(step)
+		deploying.deploy(src, user.dir)
+	return ..()
+
+///This is called once the gun is attempting to be used once deployed, this is so that the gun can fire without needing to be within the users hands.
+/obj/item/weapon/gun/proc/manned(mob/user)
+	if(!gun_user)
+		gun_user = user
+		RegisterSignal(gun_user, COMSIG_MOB_MOUSEDOWN, .proc/start_fire)
+		RegisterSignal(gun_user, COMSIG_MOB_MOUSEUP, .proc/stop_fire)
+		RegisterSignal(gun_user, COMSIG_MOB_MOUSEDRAG, .proc/change_target)
+		for(var/X in actions)
+			var/datum/action/A = X
+			A.give_action(gun_user)
+		var/obj/screen/ammo/hud = gun_user.hud_used.ammo
+		hud_enabled ? hud.add_hud(gun_user) : hud.remove_hud(gun_user)
+		hud.update_hud(gun_user)
+
+///Does the opposite of manned()
+/obj/item/weapon/gun/proc/un_man()
+	if(gun_user)
+		UnregisterSignal(gun_user, list(COMSIG_MOB_MOUSEDOWN, COMSIG_MOB_MOUSEUP, COMSIG_MOB_MOUSEDRAG))
+		gun_user.client.mouse_pointer_icon = initial(gun_user.client.mouse_pointer_icon)
+		for(var/X in actions)
+			var/datum/action/A = X
+			A.remove_action(gun_user)
+		var/obj/screen/ammo/hud = gun_user.hud_used.ammo
+		hud.remove_hud(gun_user)
+		gun_user = null
 
 
 //----------------------------------------------------------
@@ -500,16 +575,18 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 ///Check if the gun can fire and add it to bucket auto_fire system if needed, or just fire the gun if not
 /obj/item/weapon/gun/proc/start_fire(datum/source, atom/object, turf/location, control, params)
 	SIGNAL_HANDLER
+	
 	if(gun_on_cooldown(gun_user))
 		return
-	if(gun_user.hand && !isgun(gun_user.l_hand) || !gun_user.hand && !isgun(gun_user.r_hand)) // If the object in our active hand is not a gun, abort
-		return
-	if(gun_user.hand && isgun(gun_user.r_hand) || !gun_user.hand && isgun(gun_user.l_hand)) // If we have a gun in our inactive hand too, both guns get innacuracy maluses
-		dual_wield = TRUE
-	if(gun_user.in_throw_mode)
-		return
-	if(gun_user.Adjacent(object)) //Dealt with by attack code
-		return
+	if(!deployed) //Skips past many checks if the gun is deployed.
+		if(gun_user.hand && !isgun(gun_user.l_hand) || !gun_user.hand && !isgun(gun_user.r_hand)) // If the object in our active hand is not a gun, abort
+			return
+		if(gun_user.hand && isgun(gun_user.r_hand) || !gun_user.hand && isgun(gun_user.l_hand)) // If we have a gun in our inactive hand too, both guns get innacuracy maluses
+			dual_wield = TRUE
+		if(gun_user.in_throw_mode)
+			return
+		if(gun_user.Adjacent(object)) //Dealt with by attack code
+			return
 	if(QDELETED(object))
 		return
 	var/list/modifiers = params2list(params)
@@ -587,6 +664,10 @@ If you need to change up how a gun fires, just change these procs for that subty
 and you're good to go.
 */
 /obj/item/weapon/gun/proc/load_into_chamber(mob/user)
+
+	if(flags_gun_features & GUN_NO_FIRING_IN_HAND && !deployed)
+		to_chat(user, "<span class='notice'>You cannot fire [src] while it is not deployed.</span>")
+
 	//The workhorse of the bullet procs.
 
 	//Let's check on the active attachable. It loads ammo on the go, so it never chambers anything
@@ -683,7 +764,10 @@ and you're good to go.
 
 
 	play_fire_sound(gun_user)
-	muzzle_flash(firing_angle, gun_user)
+	if(deployed) //checks where to create the muzzle flash, if its deployed we dont want the flash coming out of the users eyeballs.
+		muzzle_flash(firing_angle, loc)
+	else
+		muzzle_flash(firing_angle, gun_user)
 	simulate_recoil(dual_wield, gun_user)
 
 	//This is where the projectile leaves the barrel and deals with projectile code only.
@@ -703,6 +787,9 @@ and you're good to go.
 
 	var/obj/screen/ammo/A = gun_user.hud_used.ammo //The ammo HUD
 	A.update_hud(gun_user)
+
+	if(deployed) //Updates the firing machines icon
+		loc.update_icon()
 
 	return TRUE
 
@@ -848,7 +935,7 @@ and you're good to go.
 	if(flags_gun_features & GUN_TRIGGER_SAFETY)
 		to_chat(user, "<span class='warning'>The safety is on!</span>")
 		return FALSE
-	if((flags_gun_features & GUN_WIELDED_FIRING_ONLY) && !(flags_item & WIELDED)) //If we're not holding the weapon with both hands when we should.
+	if((flags_gun_features & GUN_WIELDED_FIRING_ONLY) && !(flags_item & WIELDED) && !deployed) //If we're not holding the weapon with both hands when we should. Unless it is deployed.
 		to_chat(user, "<span class='warning'>You need a more secure grip to fire this weapon!")
 		return FALSE
 	if(LAZYACCESS(user.do_actions, src))
@@ -856,8 +943,53 @@ and you're good to go.
 		return FALSE
 	if((flags_gun_features & GUN_POLICE) && !police_allowed_check(user))
 		return FALSE
-	if((flags_gun_features & GUN_WIELDED_STABLE_FIRING_ONLY) && !wielded_stable())//If we must wait to finish wielding before shooting
+	if((flags_gun_features & GUN_WIELDED_STABLE_FIRING_ONLY) && !wielded_stable() && !deployed)//If we must wait to finish wielding before shooting. This doesnt matter if deployed.
 		to_chat(user, "<span class='warning'>You need a more secure grip to fire this weapon!")
+		return FALSE
+
+	if(deployed) //begins the check to see if the deployed gun can fire at the selected target.
+		if(!istype(loc, /obj/machinery/mounted))
+			stack_trace("[src] has been deployed yet it is not within a deployed machine.")
+			return FALSE
+		var/obj/machinery/mounted/parent = loc
+		
+		if(user.get_active_held_item()) //makes sure user has a free hand.
+			to_chat(usr, "<span class='warning'>You need a free hand to shoot the [parent].</span>")
+			return FALSE
+		var/mob/parent_user = parent.operator
+		if(user != parent_user)
+			CRASH("able_to_fire called by user ([user]) different from operator ([parent_user]).")
+
+		if(isnull(parent_user.loc) || isnull(parent.loc) || !parent.z || !target?.z == parent.z)
+			return FALSE
+		
+		var/angle = get_dir(parent, target)
+		var/direction = parent.dir
+	
+		if((direction & angle) && target.loc != loc && target.loc != parent_user.loc) //checks if target is in front of the gun, if so it allows firing.
+			parent_user.setDir(direction)
+			return TRUE
+		else if (!(direction & angle) && target.loc != loc && target.loc != parent_user.loc) //Checks if the target is 90 degrees from the gun, if so it rotates the gun to face the target.
+			if(locked)
+				to_chat(parent_user, "This one is anchored in place and cannot be rotated.")
+				return FALSE
+
+			var/list/leftright = LeftAndRightOfDir(direction)
+			var/left = leftright[1] - 1
+			var/right = leftright[2] + 1
+			if(left == (angle-1) || right == (angle+1))
+				var/turf/w = get_step(parent, REVERSE_DIR(angle))
+				if(parent_user.Move(w))
+					playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
+					parent_user.visible_message("<span class='notice'>[parent_user] rotates the [parent].</span>","<span class='notice'>You rotate the [parent].</span>")
+					parent.setDir(angle)
+					parent_user.set_interaction(parent)
+					return FALSE
+				else
+					to_chat(parent_user, "<span class='notice'>You cannot rotate [parent] that way.</span>")
+					return FALSE
+			else //this happens when the target is behind the deployed gun. You must face your enemies when shooting at them!
+				to_chat(parent_user, "<span class='warning'> [parent] cannot be rotated so violently.</span>")
 		return FALSE
 	return TRUE
 
@@ -990,7 +1122,7 @@ and you're good to go.
 
 	switch(gun_firemode)
 		if(GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOBURST, GUN_FIREMODE_AUTOMATIC) //Much higher chance on a burst or similar.
-			if(flags_item & WIELDED && wielded_stable())
+			if(flags_item & WIELDED && wielded_stable() || deployed) //if deployed, its pretty stable.
 				. += burst_amount * burst_scatter_mult
 			else
 				. += burst_amount * burst_scatter_mult * 5
@@ -1007,6 +1139,8 @@ and you're good to go.
 
 
 /obj/item/weapon/gun/proc/simulate_recoil(recoil_bonus = 0, mob/user)
+	if(deployed)
+		return TRUE
 	var/total_recoil = recoil_bonus
 	if(flags_item & WIELDED && wielded_stable())
 		total_recoil += recoil
