@@ -8,7 +8,6 @@
 	world.update_status()
 	client.images = list()
 	client.screen = list()				//remove hud items just in case
-	client.set_right_click_menu_mode(shift_to_open_context_menu)
 
 	if(!hud_used)
 		create_mob_hud()

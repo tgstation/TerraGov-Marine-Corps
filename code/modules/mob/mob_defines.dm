@@ -27,7 +27,6 @@
 	var/track_blood = 0
 	var/feet_blood_color
 	var/datum/skills/skills
-	var/shift_to_open_context_menu = TRUE
 
 
 	//Movement

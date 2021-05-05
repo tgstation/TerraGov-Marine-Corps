@@ -20,7 +20,6 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	hud_type = /datum/hud/ghost
 	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
 	dextrous = TRUE
-	shift_to_open_context_menu = FALSE
 
 	initial_language_holder = /datum/language_holder/universal
 	var/atom/movable/following = null
