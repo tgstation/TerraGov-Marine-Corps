@@ -51,9 +51,6 @@ export const Cargo = (props, context) => {
             {selectedMenu==="Previous Purchases" && (
               <OrderList type={shopping_history} readOnly={1} />
             )}
-            {selectedMenu==="Export History" && (
-              <Exports />
-            )}
             {selectedMenu==="Awaiting Delivery" && (
               <OrderList type={awaiting_delivery} readOnly={1} />
             )}
@@ -75,38 +72,6 @@ export const Cargo = (props, context) => {
         </Flex.Item>
       </Flex>
     </Window>
-  );
-};
-
-
-
-const Exports = (props, context) => {
-  const { act, data } = useBackend(context);
-
-  const {
-    export_history,
-  } = data;
-
-  return (
-    <Section title="Exports">
-      { export_history.map(entry => (
-        <Section
-          key={entry.id}
-          level={2}
-          title={"#"+entry.id}
-          buttons={entry.points+" points"}>
-          <Table>
-            {entry.exports.map(exp => (
-              <Table.Row key={exp.id}>
-                <Table.Cell>{exp.name}</Table.Cell>
-                <Table.Cell>x {exp.count}</Table.Cell>
-                <Table.Cell>{exp.points} points</Table.Cell>
-              </Table.Row>
-            ))}
-          </Table>
-        </Section>
-      ))}
-    </Section>
   );
 };
 
@@ -149,7 +114,6 @@ const Menu = (props, context) => {
     deniedrequests,
     approvedrequests,
     awaiting_delivery_orders,
-    export_history,
     shopping_history,
   } = data;
 
@@ -208,16 +172,10 @@ const Menu = (props, context) => {
         </Flex.Item>
       </Flex>
       { !readOnly && (
-        <>
-          <MenuButton
-            icon="history"
-            menuname="Previous Purchases"
-            condition={!shopping_history.length} />
-          <MenuButton
-            icon="shipping-fast"
-            menuname="Export History"
-            condition={!export_history.length} />
-        </>
+        <MenuButton
+          icon="history"
+          menuname="Previous Purchases"
+          condition={!shopping_history.length} />
       )}
       <Divider />
       <Flex>

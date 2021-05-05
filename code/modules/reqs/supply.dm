@@ -4,8 +4,6 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 		/obj/item/radio/beacon
 	)))
 
-GLOBAL_LIST_EMPTY_TYPED(exports_types, /datum/supply_export)
-
 /datum/supply_order
 	var/id
 	var/orderer
@@ -116,9 +114,8 @@ GLOBAL_LIST_EMPTY_TYPED(exports_types, /datum/supply_export)
 						continue
 				if(ishuman(a))
 					var/mob/living/carbon/human/human_to_sell = a
-					if(human_to_sell.stat == DEAD)
+					if(human_to_sell.stat == DEAD && can_sell_human_body(faction))
 						continue
-					
 				if(is_type_in_typecache(a, GLOB.blacklisted_cargo_types))
 					return FALSE
 	return TRUE
@@ -202,41 +199,15 @@ GLOBAL_LIST_EMPTY_TYPED(exports_types, /datum/supply_export)
 		SSpoints.shoppinglist -= "[SO.id]"
 		SSpoints.shopping_history += SO
 
-/datum/export_report
-	var/id
-	var/points
-	var/list/exports
 
 /obj/docking_port/mobile/supply/proc/sell()
-	var/list/exports = list()
-	var/points = 0
 	for(var/place in shuttle_areas)
 		var/area/shuttle/shuttle_area = place
 		for(var/atom/movable/AM in shuttle_area)
 			if(AM.anchored)
 				continue
-			var/atom/movable/atom_type = AM.type
-			if(isxeno(AM)) // deal with admin spawned upgrades
-				var/mob/living/carbon/xenomorph/X = AM
-				atom_type = X.xeno_caste.caste_type_path
-			if(GLOB.exports_types[atom_type])
-				var/datum/supply_export/E = GLOB.exports_types[atom_type]
-				if(!exports[atom_type])
-					exports[atom_type] = 0
-				exports[atom_type]++
-				points += E.cost
+			AM.supply_export(faction)
 			qdel(AM)
-	if(!points && !length(exports))
-		return
-	var/datum/export_report/ER = new
-	ER.id = ++SSpoints.ordernum
-	ER.points = points
-	ER.exports = list()
-	SSpoints.supply_points[faction] += points
-	for(var/i in exports)
-		var/atom/movable/A = i
-		ER.exports += list(list("name" = initial(A.name), "count" = exports[i], "points" = GLOB.exports_types[i].cost * exports[i]))
-	SSpoints.export_history += ER
 
 /obj/item/supplytablet
 	name = "ASRS tablet"
@@ -349,10 +320,6 @@ GLOBAL_LIST_EMPTY_TYPED(exports_types, /datum/supply_export)
 			packs += SP.type
 			cost += SP.cost
 		.["approvedrequests"] += list(list("id" = SO.id, "orderer" = SO.orderer, "orderer_rank" = SO.orderer_rank, "reason" = SO.reason, "cost" = cost, "packs" = packs, "authed_by" = SO.authorised_by))
-	.["export_history"] = list()
-	for(var/i in SSpoints.export_history)
-		var/datum/export_report/ER = i
-		.["export_history"] += list(list("id" = ER.id, "points" = ER.points, "exports" = ER.exports))
 	.["awaiting_delivery"] = list()
 	.["awaiting_delivery_orders"] = 0
 	for(var/i in SSpoints.shoppinglist)
@@ -451,7 +418,7 @@ GLOBAL_LIST_EMPTY_TYPED(exports_types, /datum/supply_export)
 		if("send")
 			if(SSshuttle.supply.mode == SHUTTLE_IDLE && is_mainship_level(SSshuttle.supply.z))
 				if (!SSshuttle.supply.check_blacklist())
-					to_chat(usr, "For safety reasons, the Automated Storage and Retrieval System cannot store live, non-xeno organisms, classified nuclear weaponry or homing beacons.")
+					to_chat(usr, "For safety reasons, the Automated Storage and Retrieval System cannot store live, friendlies, classified nuclear weaponry or homing beacons.")
 					playsound(SSshuttle.supply.return_center_turf(), 'sound/machines/buzz-two.ogg', 50, 0)
 				else
 					playsound(SSshuttle.supply.return_center_turf(), 'sound/machines/elevator_move.ogg', 50, 0)

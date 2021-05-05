@@ -38,7 +38,7 @@
 			can_sell = TRUE
 		if(ishuman(onpad))
 			var/mob/living/carbon/human/sellhuman = onpad
-			if(!can_sell_human_body(sellhuman, user))
+			if(!can_sell_human_body(sellhuman, user.faction))
 				to_chat(user, "<span class='warning'>The [src] buzzes: High command is not interested in that bounty.</span>")
 				continue
 			if(sellhuman.stat != DEAD)
@@ -47,7 +47,7 @@
 			can_sell = TRUE
 		if(!can_sell)
 			continue
-		. = onpad.supply_export(user)
+		. = onpad.supply_export(user.faction)
 		visible_message("<span class='notice'>The [src] buzzes: The [onpad] has been sold for [. ? . : "no"] point[. == 1 ? "" : "s"].</span>")
 		qdel(onpad)
 

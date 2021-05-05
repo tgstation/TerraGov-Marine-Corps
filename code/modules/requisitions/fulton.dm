@@ -27,7 +27,7 @@
 	if(!do_checks(spirited_away, user))
 		return
 	do_extract(spirited_away, user)
-	. = spirited_away.supply_export(user)
+	. = spirited_away.supply_export(user.faction)
 	user.visible_message("<span class='notice'>[user] finishes attaching [src] to [spirited_away] and activates it.</span>",\
 	"<span class='notice'>You attach the pack to [spirited_away] and activate it. This looks like it will yield [. ? . : "no"] point[. == 1 ? "" : "s"].</span>", null, 5)
 
@@ -113,8 +113,8 @@
 	ext_pack.extract(src, user)
 	return TRUE
 
-/mob/living/carbon/humcannot extractan/fulton_act(mob/living/user, obj/item/I)
-	if(!can_sell_human_body(src, user))
+/mob/living/carbon/human/fulton_act(mob/living/user, obj/item/I)
+	if(!can_sell_human_body(src, user.faction))
 		to_chat(user, "<span class='notice'>High command is not interested in this target.</span>")
 		return TRUE
 	if(stat != DEAD)

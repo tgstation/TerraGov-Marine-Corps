@@ -1536,7 +1536,6 @@
 #include "code\modules\recycling\recycler.dm"
 #include "code\modules\recycling\sortingmachinery.dm"
 #include "code\modules\reqs\supply.dm"
-#include "code\modules\reqs\supplyexports.dm"
 #include "code\modules\reqs\supplypacks.dm"
 #include "code\modules\requisitions\_supply_export.dm"
 #include "code\modules\requisitions\fulton.dm"
