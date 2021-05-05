@@ -5403,6 +5403,11 @@
 /obj/machinery/navbeacon,
 /turf/open/floor/marking/delivery,
 /area/magmoor/research/rnd)
+"eav" = (
+/obj/structure/table/reinforced,
+/obj/machinery/computer/shuttle/shuttle_control/dropship/two,
+/turf/open/floor/plating,
+/area/lv624/lazarus/console)
 "ebf" = (
 /obj/structure/plasticflaps,
 /turf/open/floor/plating,
@@ -10187,6 +10192,10 @@
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/mineral,
 /area/magmoor/cave/north)
+"hFY" = (
+/obj/effect/landmark/dropship_start_location,
+/turf/open/floor/plating/ground/mars/random/dirt,
+/area/magmoor/compound)
 "hGc" = (
 /obj/structure/table/reinforced,
 /obj/machinery/door/window,
@@ -12557,11 +12566,6 @@
 "jtl" = (
 /turf/open/floor/plating/ground/concrete/edge,
 /area/magmoor/cave/east)
-"jtx" = (
-/obj/structure/table/reinforced,
-/obj/machinery/computer/shuttle/shuttle_control/dropship/two,
-/turf/open/floor/plating,
-/area/lv624/lazarus/console)
 "jtA" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber{
 	dir = 8
@@ -15454,11 +15458,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/magmoor/cargo/storage)
-"lGc" = (
-/obj/machinery/computer/shuttle/shuttle_control/dropship,
-/obj/structure/table/reinforced,
-/turf/open/floor/plating,
-/area/magmoor/landing)
 "lGk" = (
 /turf/closed/wall/indestructible/mineral,
 /area/magmoor/compound/south)
@@ -16310,6 +16309,11 @@
 	dir = 10
 	},
 /area/magmoor/engi/power)
+"mtP" = (
+/obj/machinery/computer/shuttle/shuttle_control/dropship,
+/obj/structure/table/reinforced,
+/turf/open/floor/plating,
+/area/magmoor/landing)
 "mtS" = (
 /turf/closed/wall,
 /area/magmoor/civilian/clean/toilet)
@@ -52797,7 +52801,7 @@ qPY
 naI
 uYU
 bhT
-bhT
+hFY
 bhT
 mDe
 hkW
@@ -54707,7 +54711,7 @@ pVi
 uXC
 dxV
 pVi
-lGc
+mtP
 pVi
 jPH
 duF
@@ -74205,7 +74209,7 @@ kUd
 xSV
 xSV
 xSV
-jtx
+eav
 xSV
 xSV
 xSV

@@ -32,6 +32,7 @@
 	bound_width = 96
 	bound_height = 96
 	max_integrity = 1000
+	resistance_flags = DROPSHIP_IMMUNE
 	///How many larva points one silo produce in one minute
 	var/larva_spawn_rate = 0.5
 	var/turf/center_turf
@@ -65,9 +66,9 @@
 		new /obj/effect/alien/weeds/node(center_turf)
 	associated_hive = GLOB.hive_datums[XENO_HIVE_NORMAL]
 	if(associated_hive)
+		RegisterSignal(associated_hive, list(COMSIG_HIVE_XENO_MOTHER_PRE_CHECK, COMSIG_HIVE_XENO_MOTHER_CHECK), .proc/is_burrowed_larva_host)
 		if(length(GLOB.xeno_resin_silos) == 1)
 			associated_hive.give_larva_to_next_in_queue()
-		RegisterSignal(associated_hive, list(COMSIG_HIVE_XENO_MOTHER_PRE_CHECK, COMSIG_HIVE_XENO_MOTHER_CHECK), .proc/is_burrowed_larva_host)
 		associated_hive.handle_silo_death_timer()
 	silo_area = get_area(src)
 	var/turf/tunnel_turf = get_step(center_turf, NORTH)

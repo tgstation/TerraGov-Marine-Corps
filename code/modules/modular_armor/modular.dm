@@ -400,7 +400,8 @@
 
 	var/list/raw_colors = splittext(greyscale_colors, "#")
 	var/list/split_colors = list(new_color)
-	split_colors += "#[raw_colors[3]]" //gets the visor color and keeps it(for now, rhis allows visor coloring later)
+	if(length(raw_colors) >= 3) //for only single color helmets
+		split_colors += "#[raw_colors[3]]" //gets the visor color and keeps it(for now, rhis allows visor coloring later)
 	set_greyscale_colors(split_colors)
 	return TRUE
 
@@ -548,5 +549,5 @@
 	name = "Jaeger Pattern Infantry-Open Helmet"
 	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has Infantry markings and no visor."
 	icon_state = "infantryopen_helmet"
-	greyscale_colors = "#1861d5"
+	greyscale_colors = "#5B6036"
 	greyscale_config = /datum/greyscale_config/modularhelmet_infantry_open

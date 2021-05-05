@@ -372,6 +372,9 @@
 	///All shuttle_control computers that share at least one control flag is able to link to this shuttle
 	var/control_flags = NONE
 
+	///Reference of the shuttle docker holding the mobile docking port
+	var/obj/machinery/computer/camera_advanced/shuttle_docker/shuttle_computer
+
 /obj/docking_port/mobile/register()
 	. = ..()
 	SSshuttle.mobile += src
@@ -529,6 +532,8 @@
 
 
 /obj/docking_port/mobile/proc/on_prearrival()
+	if(destination.loc == loc)
+		return
 	if(destination)
 		playsound(destination.return_center_turf(), landing_sound, 60, 0)
 	playsound(return_center_turf(), landing_sound, 60, 0)
@@ -712,7 +717,7 @@
 	set_idle()
 
 /obj/docking_port/mobile/proc/check_effects()
-	if(!ripples.len)
+	if(!ripples.len && destination?.loc != loc)
 		if((mode == SHUTTLE_CALL) || (mode == SHUTTLE_RECALL))
 			var/tl = timeLeft(1)
 			if(tl <= SHUTTLE_RIPPLE_TIME)

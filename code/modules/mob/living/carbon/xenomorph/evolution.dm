@@ -370,7 +370,7 @@
 	while(new_xeno.upgrade_possible() && new_xeno.upgrade_stored >= new_xeno.xeno_caste.upgrade_threshold)
 		new_xeno.upgrade_xeno(new_xeno.upgrade_next(), TRUE)
 	var/obj/screen/zone_sel/selector = new_xeno.hud_used.zone_sel
-	selector.set_selected_zone(zone_selected, new_xeno)
+	selector?.set_selected_zone(zone_selected, new_xeno)
 	qdel(src)
 	INVOKE_ASYNC(new_xeno, /mob/living.proc/do_jitter_animation, 1000)
 

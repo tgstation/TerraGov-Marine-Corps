@@ -1691,13 +1691,6 @@
 	dir = 4
 	},
 /area/ice_colony/exterior/surface/valley/southeast)
-"agV" = (
-/obj/structure/table/reinforced,
-/obj/machinery/computer/shuttle/shuttle_control/dropship,
-/turf/open/floor/tile/dark/brown2{
-	dir = 4
-	},
-/area/lv624/lazarus/console)
 "agW" = (
 /obj/item/lightstick/anchored,
 /turf/open/floor/plating/ground/snow/layer2,
@@ -31448,6 +31441,10 @@
 	dir = 1
 	},
 /area/ice_colony/exterior/surface/landing_pad2)
+"ebw" = (
+/obj/effect/landmark/dropship_start_location,
+/turf/open/floor/plating/ground/snow/layer0,
+/area/ice_colony/exterior/surface/clearing/north)
 "edq" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
@@ -31500,6 +31497,16 @@
 	dir = 1
 	},
 /area/ice_colony/exterior/surface/cliff)
+"ewL" = (
+/obj/machinery/landinglight/ds1{
+	dir = 4
+	},
+/obj/structure/table/reinforced,
+/obj/machinery/computer/shuttle/shuttle_control/dropship/two,
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 4
+	},
+/area/ice_colony/exterior/surface/landing_pad)
 "eyy" = (
 /obj/effect/landmark/start/job/survivor,
 /turf/open/floor/tile/dark/yellow2,
@@ -31922,16 +31929,6 @@
 /obj/effect/alien/egg,
 /turf/open/floor/plating/ground/ice,
 /area/ice_colony/exterior/underground/caves)
-"iao" = (
-/obj/machinery/landinglight/ds1{
-	dir = 4
-	},
-/obj/structure/table/reinforced,
-/obj/machinery/computer/shuttle/shuttle_control/dropship/two,
-/turf/open/floor/plating/icefloor/warnplate{
-	dir = 4
-	},
-/area/ice_colony/exterior/surface/landing_pad)
 "iaC" = (
 /turf/closed/ice_rock/corners{
 	dir = 6
@@ -33130,6 +33127,13 @@
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/closed/ice_rock/southWall,
 /area/ice_colony/exterior/underground/caves/ice_w)
+"ruK" = (
+/obj/structure/table/reinforced,
+/obj/machinery/computer/shuttle/shuttle_control/dropship,
+/turf/open/floor/tile/dark/brown2{
+	dir = 4
+	},
+/area/lv624/lazarus/console)
 "rxl" = (
 /turf/open/floor/plating/ground/ice,
 /area/ice_colony/underground/maintenance/central)
@@ -41147,7 +41151,7 @@ abm
 abm
 abm
 adJ
-agV
+ruK
 abm
 adB
 abm
@@ -52245,7 +52249,7 @@ anu
 ahj
 akF
 akF
-akF
+ebw
 akF
 aij
 akF
@@ -82375,7 +82379,7 @@ aUP
 aUP
 aUP
 bbg
-iao
+ewL
 aXA
 aZw
 bbQ

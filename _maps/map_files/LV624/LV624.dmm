@@ -10229,13 +10229,6 @@
 	dir = 8
 	},
 /area/shuttle/drop1/lz1)
-"aXE" = (
-/obj/machinery/computer/shuttle/shuttle_control/dropship,
-/obj/structure/table/reinforced,
-/turf/open/floor/marking/warning{
-	dir = 1
-	},
-/area/lv624/lazarus/console)
 "aXF" = (
 /turf/open/floor/marking/warning/corner{
 	dir = 4
@@ -14578,6 +14571,13 @@
 "dEz" = (
 /turf/open/ground/coast/corner2,
 /area/lv624/ground/jungle9)
+"dEB" = (
+/obj/machinery/computer/shuttle/shuttle_control/dropship,
+/obj/structure/table/reinforced,
+/turf/open/floor/marking/warning{
+	dir = 1
+	},
+/area/lv624/lazarus/console)
 "dEQ" = (
 /obj/machinery/floodlight/colony{
 	dir = 4
@@ -15721,13 +15721,6 @@
 	},
 /turf/open/floor,
 /area/lv624/lazarus/security)
-"mLT" = (
-/obj/machinery/computer/shuttle/shuttle_control/dropship/two,
-/obj/structure/table/reinforced,
-/turf/open/floor/marking/warning{
-	dir = 4
-	},
-/area/lv624/lazarus/console)
 "mMl" = (
 /obj/structure/cable/layer1,
 /turf/open/floor/plating,
@@ -15853,6 +15846,13 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/compound/sw)
+"nQS" = (
+/obj/machinery/computer/shuttle/shuttle_control/dropship/two,
+/obj/structure/table/reinforced,
+/turf/open/floor/marking/warning{
+	dir = 4
+	},
+/area/lv624/lazarus/console)
 "nSy" = (
 /obj/effect/alien/weeds/node,
 /obj/structure/mineral_door/resin/thick,
@@ -16545,6 +16545,12 @@
 /obj/docking_port/stationary/crashmode,
 /turf/open/ground/river,
 /area/lv624/ground/river1)
+"uPM" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/effect/landmark/dropship_start_location,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/compound/c)
 "uVd" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating/ground/dirtgrassborder{
@@ -21362,7 +21368,7 @@ eYd
 jAh
 qQj
 jLW
-mLT
+nQS
 jTU
 aXb
 aXb
@@ -29594,7 +29600,7 @@ aMm
 aQQ
 aOi
 aOi
-aOi
+uPM
 aOi
 aOi
 aOi
@@ -42847,7 +42853,7 @@ aVk
 aVP
 aWt
 aWX
-aXE
+dEB
 aYi
 aWs
 aYi
