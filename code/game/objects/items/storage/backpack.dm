@@ -13,6 +13,10 @@
 	max_storage_space = 24
 	var/worn_accessible = FALSE //whether you can access its content while worn on the back
 
+	cant_hold = list(
+		/obj/item/weapon/gun/revolver/standard_revolver,
+	)
+
 /obj/item/storage/backpack/attack_hand(mob/living/user)
 	if(!worn_accessible && ishuman(user))
 		var/mob/living/carbon/human/H = user
