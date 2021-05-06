@@ -718,7 +718,7 @@ to_chat will check for valid clients itself already so no need to double check f
 	var/left_behind = 0
 	for(var/i in get_all_xenos())
 		var/mob/living/carbon/xenomorph/boarder = i
-		if(isalamoarea(get_area(boarder)))
+		if(isdropshiparea(get_area(boarder)))
 			continue
 		if(!is_ground_level(boarder.z))
 			continue
@@ -731,6 +731,7 @@ to_chat will check for valid clients itself already so no need to double check f
 	if(difference < 0)
 		if(xeno_job.total_positions < (-difference + xeno_job.current_positions))
 			xeno_job.set_job_positions(-difference + xeno_job.current_positions)
+
 	for(var/obj/structure/resin/silo/silo AS in GLOB.xeno_resin_silos)
 		if(!is_ground_level(silo.z))
 			continue
