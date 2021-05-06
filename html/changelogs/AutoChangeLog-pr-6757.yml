@@ -1,0 +1,4 @@
+author: "TiviPlus"
+delete-after: True
+changes: 
+  - qol: "Jaeger visors now glow in the dark, this can also be toggled with right clicking on the helmet"
