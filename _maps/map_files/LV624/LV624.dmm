@@ -19,9 +19,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/east2)
-"aak" = (
-/obj/effect/landmark/xeno_resin_wall,
-/area/lv624/ground/caves/east2)
 "aal" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/dirt,
@@ -29,9 +26,6 @@
 "aam" = (
 /obj/effect/landmark/weed_node,
 /turf/closed/mineral,
-/area/lv624/ground/caves/west2)
-"aan" = (
-/obj/effect/landmark/xeno_resin_wall,
 /area/lv624/ground/caves/west2)
 "aap" = (
 /obj/machinery/miner/damaged/platinum,
@@ -49,11 +43,6 @@
 /obj/machinery/miner/damaged/platinum,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/west2)
-"aay" = (
-/obj/effect/landmark/weed_node,
-/obj/effect/landmark/xeno_resin_door
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/caves/east2)
 "aaA" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/mineral,
@@ -208,11 +197,9 @@
 "abl" = (
 /turf/open/ground/coast/corner,
 /area/lv624/ground/river3)
-"abm" = (
-/obj/effect/landmark/xeno_resin_wall,
-/area/lv624/ground/caves/central1)
 "abn" = (
 /obj/effect/landmark/xeno_resin_wall,
+/turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/east2)
 "abo" = (
 /obj/effect/landmark/weed_node,
@@ -228,11 +215,9 @@
 /obj/effect/decal/remains/xeno,
 /turf/open/floor/engine/cult,
 /area/lv624/ground/caves/east2)
-"abu" = (
-/obj/effect/landmark/xeno_resin_wall,
-/area/lv624/ground/caves/west1)
 "abv" = (
 /obj/effect/landmark/xeno_resin_wall,
+/turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central1)
 "abw" = (
 /obj/effect/landmark/weed_node,
@@ -288,20 +273,10 @@
 /obj/structure/cable,
 /turf/open/floor/tile/blue/whitebluecorner,
 /area/lv624/lazarus/medbay)
-"abU" = (
-/obj/effect/landmark/monkey_spawn,
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/caves/east2)
 "ace" = (
 /obj/effect/landmark/start/job/xenomorph,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central1)
-"aci" = (
-/obj/effect/landmark/xeno_resin_wall,
-/area/lv624/ground/caves/west1)
-"acr" = (
-/obj/effect/landmark/xeno_resin_wall,
-/area/lv624/ground/caves/west2)
 "acs" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/dirt,
@@ -543,9 +518,6 @@
 /obj/effect/decal/remains/xeno,
 /turf/open/floor/engine/cult,
 /area/lv624/ground/caves/west1)
-"adA" = (
-/obj/effect/landmark/xeno_resin_wall,
-/area/lv624/ground/caves/central3)
 "adB" = (
 /obj/structure/window/reinforced{
 	dir = 1
@@ -749,7 +721,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/sand6)
 "aeu" = (
-/obj/structure/mineral_door/resin,
+/obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central3)
 "aew" = (
@@ -817,6 +789,7 @@
 /area/lv624/ground/sand6)
 "aeK" = (
 /obj/effect/landmark/xeno_resin_wall,
+/turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central3)
 "aeL" = (
 /obj/machinery/mineral/unloading_machine,
@@ -840,10 +813,6 @@
 "aeP" = (
 /turf/closed/wall/cult,
 /area/lv624/ground/caves/central3)
-"aeQ" = (
-/obj/effect/landmark/monkey_spawn,
-/turf/open/floor,
-/area/lv624/ground/sand8)
 "aeR" = (
 /obj/structure/largecrate/random,
 /turf/open/floor/plating/ground/dirt,
@@ -1288,6 +1257,7 @@
 /area/lv624/ground/sand2)
 "agS" = (
 /obj/effect/landmark/xeno_resin_wall,
+/turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/sand6)
 "agT" = (
 /obj/structure/disposalpipe/segment,
@@ -1341,6 +1311,7 @@
 /area/lv624/ground/sand3)
 "ahg" = (
 /obj/effect/landmark/xeno_resin_wall,
+/turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/sand3)
 "ahh" = (
 /turf/open/floor/plating/ground/dirt,
@@ -1373,6 +1344,7 @@
 /area/lv624/ground/caves/west1)
 "ahs" = (
 /obj/effect/landmark/xeno_resin_wall,
+/turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/sand2)
 "aht" = (
 /turf/open/floor/plating/ground/dirt,
@@ -3465,10 +3437,6 @@
 "atf" = (
 /turf/open/floor/plating/ground/dirtgrassborder/corner,
 /area/lv624/ground/compound/sw)
-"atg" = (
-/obj/effect/landmark/monkey_spawn,
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/sand1)
 "atj" = (
 /turf/open/ground/grass,
 /area/lv624/ground/compound/sw)
@@ -3702,13 +3670,6 @@
 	},
 /turf/open/floor/plating,
 /area/lv624/lazarus/fitness)
-"auy" = (
-/obj/effect/landmark/monkey_spawn,
-/obj/effect/decal/remains/human,
-/turf/open/floor/tile/purple/whitepurple{
-	dir = 5
-	},
-/area/lv624/lazarus/research)
 "auA" = (
 /obj/structure/jungle/vines,
 /turf/closed/gm/dense,
@@ -4923,10 +4884,6 @@
 /obj/structure/fence,
 /turf/open/ground/grass,
 /area/lv624/lazarus/quartstorage/outdoors)
-"aAp" = (
-/obj/effect/landmark/monkey_spawn,
-/turf/open/ground/grass,
-/area/lv624/ground/jungle7)
 "aAq" = (
 /obj/structure/jungle/vines,
 /turf/open/floor/plating/ground/dirtgrassborder/corner,
@@ -5326,10 +5283,6 @@
 "aCy" = (
 /turf/open/floor/plating/ground/dirtgrassborder/corner2,
 /area/lv624/ground/compound/n)
-"aCz" = (
-/obj/effect/landmark/monkey_spawn,
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/compound/n)
 "aCA" = (
 /turf/open/floor/plating/ground/dirtgrassborder,
 /area/lv624/ground/compound/n)
@@ -5515,7 +5468,7 @@
 /turf/closed/gm/dense,
 /area/lv624/ground/river1)
 "aDV" = (
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle5)
 "aDZ" = (
@@ -5545,7 +5498,7 @@
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/quartstorage)
 "aEu" = (
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/plating,
 /area/lv624/ground/river2)
 "aEx" = (
@@ -5929,10 +5882,6 @@
 	dir = 4
 	},
 /area/lv624/lazarus/fitness)
-"aGN" = (
-/obj/effect/landmark/monkey_spawn,
-/turf/open/ground/grass,
-/area/lv624/ground/jungle9)
 "aGO" = (
 /obj/structure/cargo_container/green{
 	dir = 8
@@ -6587,7 +6536,6 @@
 /obj/machinery/shower{
 	pixel_y = 16
 	},
-/obj/effect/landmark/monkey_spawn,
 /obj/machinery/light{
 	dir = 4
 	},
@@ -9738,10 +9686,6 @@
 "bci" = (
 /turf/open/ground/grass/grass2,
 /area/lv624/ground/jungle3)
-"bcj" = (
-/obj/effect/landmark/monkey_spawn,
-/turf/open/ground/grass,
-/area/lv624/ground/jungle3)
 "bck" = (
 /obj/structure/jungle/vines,
 /turf/open/ground/grass,
@@ -11934,7 +11878,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/wood{
 	icon_state = "wood-broken6"
 	},
@@ -12044,19 +11988,11 @@
 	dir = 4
 	},
 /area/lv624/ground/jungle1)
-"bpa" = (
-/obj/effect/landmark/monkey_spawn,
-/turf/open/floor/plating/ground/dirtgrassborder,
-/area/lv624/ground/jungle1)
 "bpb" = (
 /turf/open/floor/plating/ground/dirtgrassborder/corner2,
 /area/lv624/ground/jungle1)
 "bpe" = (
 /turf/open/floor/tile/whiteyellow/full,
-/area/lv624/ground/ruin)
-"bpf" = (
-/obj/effect/landmark/monkey_spawn,
-/turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/ruin)
 "bpg" = (
 /obj/structure/jungle/vines/heavy{
@@ -12181,10 +12117,6 @@
 /area/lv624/ground/jungle1)
 "bpT" = (
 /obj/item/weapon/claymore/mercsword/machete,
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/jungle1)
-"bpU" = (
-/obj/effect/landmark/monkey_spawn,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle1)
 "bpV" = (
@@ -12655,7 +12587,7 @@
 /area/lv624/ground/river2)
 "bze" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /obj/structure/cable,
 /turf/open/floor,
 /area/lv624/ground/compound/n)
@@ -12667,7 +12599,7 @@
 /turf/open/floor/tile/blue/taupebluecorner,
 /area/lv624/lazarus/sleep_male)
 "bEL" = (
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle1)
 "bFh" = (
@@ -12698,7 +12630,7 @@
 	},
 /area/lv624/ground/jungle7)
 "bKZ" = (
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor,
 /area/lv624/lazarus/quartstorage)
 "bLw" = (
@@ -12713,6 +12645,7 @@
 /area/lv624/lazarus/engineering)
 "bLL" = (
 /obj/effect/landmark/xeno_resin_wall,
+/turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/west1)
 "bNj" = (
 /obj/structure/flora/ausbushes/fernybush,
@@ -12738,7 +12671,7 @@
 /turf/open/floor,
 /area/lv624/ground/river2)
 "bQV" = (
-/obj/structure/resin/xeno_turret,
+/obj/effect/landmark/xeno_turret_spawn,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/east1)
 "bRK" = (
@@ -12763,14 +12696,14 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 10
 	},
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor,
 /area/lv624/ground/jungle6)
 "bXu" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
 	},
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/secure_storage)
 "bXM" = (
@@ -12804,7 +12737,7 @@
 /turf/open/floor/plating/ground/dirtgrassborder/corner,
 /area/lv624/ground/jungle6)
 "cec" = (
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/closed/wall/cult,
 /area/lv624/ground/caves/west1)
 "cev" = (
@@ -12818,7 +12751,7 @@
 /turf/open/floor/plating/ground/dirtgrassborder,
 /area/lv624/ground/jungle7)
 "chJ" = (
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /obj/structure/jungle/vines,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle2)
@@ -12828,11 +12761,11 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor,
 /area/lv624/lazarus/research)
 "chU" = (
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/tile/red/redtaupe{
 	dir = 9
 	},
@@ -12850,7 +12783,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 6
 	},
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor,
 /area/lv624/ground/jungle7)
 "cml" = (
@@ -12872,7 +12805,7 @@
 /area/lv624/ground/caves/east1)
 "cnu" = (
 /obj/structure/jungle/vines,
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle2)
 "cof" = (
@@ -12902,7 +12835,7 @@
 /turf/open/floor/plating,
 /area/shuttle/drop2/lz2)
 "ctW" = (
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/tile/green/whitegreencorner{
 	dir = 8
 	},
@@ -12926,7 +12859,7 @@
 	name = "Automatic Teller Machine";
 	pixel_y = 30
 	},
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/main_hall)
 "cMZ" = (
@@ -12939,7 +12872,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle9)
 "cRa" = (
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/ground/caves/east1)
 "cRw" = (
@@ -13018,10 +12951,6 @@
 	},
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/main_hall)
-"dnU" = (
-/obj/effect/landmark/weed_node,
-/obj/effect/landmark/xeno_resin_wall,
-/area/lv624/ground/caves/central1)
 "doj" = (
 /obj/structure/flora/ausbushes/fernybush,
 /turf/open/floor/plating/ground/dirt,
@@ -13038,7 +12967,7 @@
 "dqc" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/tile/purple/whitepurplecorner{
 	dir = 4
 	},
@@ -13068,7 +12997,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/engineering)
 "dsV" = (
@@ -13076,7 +13005,7 @@
 /area/lv624/ground/sand4)
 "duf" = (
 /obj/structure/jungle/vines,
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle6)
 "dul" = (
@@ -13090,7 +13019,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 5
 	},
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/main_hall)
 "duU" = (
@@ -13222,7 +13151,7 @@
 /turf/open/ground/grass,
 /area/lv624/ground/jungle6)
 "dQD" = (
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor,
 /area/lv624/ground/jungle6)
 "dRJ" = (
@@ -13236,7 +13165,7 @@
 /turf/open/floor/plating,
 /area/shuttle/drop2/lz2)
 "dWQ" = (
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/lazarus/quartstorage/outdoors)
 "dXe" = (
@@ -13286,12 +13215,12 @@
 	},
 /area/lv624/ground/jungle6)
 "eeq" = (
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/compound/c)
 "ejZ" = (
 /obj/effect/landmark/lv624/fog_blocker,
-/obj/structure/mineral_door/resin,
+/obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/east1)
 "ekB" = (
@@ -13323,10 +13252,6 @@
 /obj/effect/landmark/xeno_turret_spawn,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/west2)
-"euU" = (
-/obj/effect/landmark/xeno_resin_door
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/caves/east1)
 "eva" = (
 /obj/structure/jungle/vines/heavy,
 /turf/open/floor/plating/ground/dirtgrassborder/corner{
@@ -13372,7 +13297,7 @@
 /area/lv624/lazarus/engineering)
 "eGR" = (
 /obj/item/stack/sheet/metal,
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/tile/purple/taupepurple{
 	dir = 9
 	},
@@ -13399,7 +13324,7 @@
 /area/lv624/ground/compound/se)
 "eMf" = (
 /obj/effect/decal/cleanable/blood/oil,
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/lv624/lazarus/engineering)
@@ -13420,6 +13345,7 @@
 /area/lv624/ground/sand7)
 "eOl" = (
 /obj/effect/landmark/xeno_resin_wall,
+/turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/west2)
 "eTI" = (
 /obj/effect/decal/warning_stripes/thick{
@@ -13439,7 +13365,7 @@
 /turf/open/floor,
 /area/lv624/ground/compound/sw)
 "eVO" = (
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/tile/green/greentaupe{
 	dir = 1
 	},
@@ -13470,10 +13396,6 @@
 /obj/structure/window/framed/colony/reinforced,
 /turf/open/floor,
 /area/lv624/ground/jungle4)
-"fca" = (
-/obj/effect/landmark/monkey_spawn,
-/turf/closed/gm/dense,
-/area/lv624/ground/jungle3)
 "fcU" = (
 /obj/structure/jungle/planttop1,
 /turf/open/floor/plating/ground/dirt,
@@ -13529,7 +13451,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/main_hall)
 "fqJ" = (
@@ -13560,7 +13482,7 @@
 	dir = 1
 	},
 /obj/structure/cable,
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/research)
 "fvw" = (
@@ -13580,7 +13502,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/quartstorage)
 "fwQ" = (
@@ -13645,6 +13567,7 @@
 /area/lv624/ground/jungle9)
 "fLc" = (
 /obj/effect/landmark/xeno_resin_wall,
+/turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/east1)
 "fMC" = (
 /obj/effect/landmark/start/job/survivor,
@@ -13661,14 +13584,14 @@
 	},
 /area/lv624/ground/jungle3)
 "fOm" = (
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/plating/platebotc,
 /area/lv624/lazarus/quartstorage/outdoors)
 "fPs" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/plating/warning{
 	dir = 1
 	},
@@ -13696,7 +13619,7 @@
 	name = "\improper Hydroponics Dome"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/tile/green/greentaupe{
 	dir = 1
 	},
@@ -13722,7 +13645,7 @@
 	},
 /area/lv624/lazarus/research)
 "fXZ" = (
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/main_hall)
 "fZf" = (
@@ -13744,7 +13667,7 @@
 /turf/closed/wall/indestructible/mineral,
 /area/lv624/ground/caves/central1)
 "gbY" = (
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle9)
 "gef" = (
@@ -13776,18 +13699,13 @@
 /turf/open/ground/grass/grass2,
 /area/lv624/ground/jungle3)
 "gkt" = (
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/tile/purple/taupepurple{
 	dir = 9
 	},
 /area/lv624/lazarus/sleep_female)
-"gkY" = (
-/obj/effect/alien/egg,
-/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/caves/central1)
 "glu" = (
-/obj/effect/landmark/xeno_resin_door
+/obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/east2)
 "gmG" = (
@@ -13818,12 +13736,8 @@
 	dir = 1
 	},
 /area/lv624/ground/jungle9)
-"gqv" = (
-/obj/effect/landmark/monkey_spawn,
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/jungle9)
 "gqX" = (
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/river1)
 "gro" = (
@@ -13836,7 +13750,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/plating,
 /area/lv624/ground/sand8)
 "gso" = (
@@ -13870,7 +13784,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/compound/c)
 "gwG" = (
@@ -13883,8 +13797,8 @@
 /turf/closed/wall/indestructible/mineral,
 /area/lv624/ground/sand1)
 "gyP" = (
-/obj/effect/alien/weeds/node,
-/obj/structure/resin/xeno_turret,
+/obj/effect/landmark/weed_node,
+/obj/effect/landmark/xeno_turret_spawn,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central3)
 "gzj" = (
@@ -13966,7 +13880,6 @@
 	},
 /area/lv624/ground/jungle3)
 "gKR" = (
-/obj/effect/landmark/monkey_spawn,
 /obj/structure/jungle/vines/heavy,
 /turf/open/floor/plating/ground/dirtgrassborder{
 	dir = 4
@@ -13995,7 +13908,7 @@
 /turf/closed/gm/dense,
 /area/lv624/ground/jungle9)
 "gNJ" = (
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/ground/ruin)
 "gPc" = (
@@ -14005,14 +13918,10 @@
 	},
 /turf/open/floor/plating/platebotc,
 /area/lv624/lazarus/engineering)
-"gPR" = (
-/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/obj/item/xenosqdqsdqsd_egg,
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/caves/east2)
 "gRI" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /obj/effect/landmark/xeno_resin_wall,
+/turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central1)
 "gSB" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
@@ -14046,7 +13955,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/compound/sw)
 "hbr" = (
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/tile/whiteyellow,
 /area/lv624/lazarus/main_hall)
 "heg" = (
@@ -14070,12 +13979,8 @@
 	dir = 8
 	},
 /area/lv624/ground/compound/sw)
-"hoE" = (
-/obj/item/xenosqdqsdqsd_egg,
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/caves/east1)
 "hps" = (
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor,
 /area/lv624/ground/river3)
 "hpN" = (
@@ -14083,7 +13988,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle5)
 "hqK" = (
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/plating,
 /area/lv624/ground/river3)
 "hvg" = (
@@ -14108,7 +14013,7 @@
 /turf/closed/wall/cult,
 /area/lv624/ground/caves/west2)
 "hAe" = (
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle3)
 "hBa" = (
@@ -14132,14 +14037,14 @@
 /area/lv624/ground/river2)
 "hDI" = (
 /obj/effect/landmark/lv624/fog_blocker,
-/obj/structure/mineral_door/resin,
+/obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/sand1)
 "hIe" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 1
 	},
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/tile/purple/whitepurple{
 	dir = 5
 	},
@@ -14168,7 +14073,7 @@
 /turf/open/floor,
 /area/lv624/ground/jungle4)
 "hOw" = (
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/tile/white/warningstripe{
 	dir = 8
 	},
@@ -14240,7 +14145,7 @@
 	},
 /area/shuttle/drop1/lz1)
 "inF" = (
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/tile/blue/taupebluecorner,
 /area/lv624/lazarus/sleep_male)
 "iqA" = (
@@ -14250,7 +14155,7 @@
 /area/lv624/ground/jungle9)
 "iqR" = (
 /obj/structure/flora/ausbushes/fullgrass,
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle9)
 "irz" = (
@@ -14258,7 +14163,7 @@
 /turf/open/floor/plating/ground/dirtgrassborder/corner2,
 /area/lv624/ground/compound/c)
 "irD" = (
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/secure_storage)
 "iuG" = (
@@ -14276,14 +14181,14 @@
 	dir = 4;
 	on = 1
 	},
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/freezer,
 /area/lv624/lazarus/toilet)
 "ixx" = (
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/tile/blue/whitebluecorner,
 /area/lv624/lazarus/medbay)
 "ixC" = (
@@ -14306,7 +14211,7 @@
 /turf/open/ground/grass,
 /area/shuttle/drop2/lz2)
 "iID" = (
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/marking/warning{
 	dir = 4
 	},
@@ -14334,12 +14239,12 @@
 /area/lv624/ground/jungle6)
 "iNp" = (
 /obj/item/trash/raisins,
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/main_hall)
 "iQy" = (
 /obj/structure/cable,
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/grimy,
 /area/lv624/lazarus/captain)
 "iRk" = (
@@ -14376,7 +14281,7 @@
 /area/lv624/ground/river2)
 "iVw" = (
 /obj/structure/cable,
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/wood,
 /area/lv624/lazarus/chapel)
 "iVB" = (
@@ -14423,7 +14328,7 @@
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 4
 	},
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/grass,
 /area/lv624/lazarus/main_hall)
 "jmH" = (
@@ -14448,7 +14353,7 @@
 "jqR" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/compound/c)
 "juq" = (
@@ -14469,7 +14374,7 @@
 	dir = 8
 	},
 /obj/effect/decal/cleanable/blood/splatter/animated,
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/tile/purple/whitepurple{
 	dir = 5
 	},
@@ -14485,7 +14390,7 @@
 /turf/open/floor/plating/warning,
 /area/lv624/lazarus/engineering)
 "jzm" = (
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/wood/broken,
 /area/lv624/ground/ruin)
 "jzT" = (
@@ -14503,7 +14408,7 @@
 /area/lv624/ground/compound/n)
 "jGr" = (
 /obj/machinery/door/window/southleft,
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/tile/blue/whitebluecorner,
 /area/lv624/lazarus/medbay)
 "jGu" = (
@@ -14524,7 +14429,7 @@
 /area/lv624/ground/compound/sw)
 "jLx" = (
 /obj/structure/jungle/vines,
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle3)
 "jMR" = (
@@ -14539,7 +14444,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor,
 /area/lv624/ground/sand8)
 "jRN" = (
@@ -14565,7 +14470,7 @@
 /area/lv624/ground/river2)
 "jXb" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /obj/structure/cable,
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/research)
@@ -14606,7 +14511,7 @@
 	},
 /area/lv624/ground/jungle9)
 "knP" = (
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/compound/n)
 "krI" = (
@@ -14621,7 +14526,7 @@
 /area/lv624/ground/sand7)
 "ktw" = (
 /obj/structure/jungle/vines,
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor,
 /area/lv624/ground/river3)
 "kuh" = (
@@ -14667,6 +14572,7 @@
 "kFx" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /obj/effect/landmark/xeno_resin_wall,
+/turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central3)
 "kFH" = (
 /obj/structure/sign/redcross{
@@ -14726,7 +14632,7 @@
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/quartstorage)
 "kNl" = (
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor,
 /area/lv624/ground/sand5)
 "kOH" = (
@@ -14734,7 +14640,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/quartstorage)
 "kOK" = (
@@ -14759,18 +14665,13 @@
 	dir = 1
 	},
 /area/lv624/ground/jungle7)
-"kTq" = (
-/obj/item/xenosqdqsdqsd_egg,
-/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/caves/east2)
 "kWy" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/closed/gm/dense,
 /area/shuttle/drop2/lz2)
 "kYJ" = (
 /obj/structure/filingcabinet/chestdrawer,
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/grimy,
 /area/lv624/lazarus/hop)
 "kYR" = (
@@ -14817,10 +14718,11 @@
 "lgm" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /obj/effect/landmark/xeno_resin_wall,
+/turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/east1)
 "liW" = (
 /obj/structure/flora/ausbushes/fullgrass,
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/compound/c)
 "lkM" = (
@@ -14831,7 +14733,7 @@
 /area/lv624/lazarus/quartstorage)
 "lmx" = (
 /obj/item/clothing/head/hardhat/orange,
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/engineering)
 "lou" = (
@@ -14874,7 +14776,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle1)
 "lwm" = (
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/tile/green/whitegreencorner,
 /area/lv624/lazarus/main_hall)
 "lyK" = (
@@ -14901,7 +14803,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central1)
 "lGn" = (
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle7)
 "lGM" = (
@@ -14929,13 +14831,13 @@
 	dir = 4
 	},
 /obj/structure/cable,
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/quartstorage)
 "lNS" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /obj/structure/jungle/vines,
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle5)
 "lRu" = (
@@ -14965,7 +14867,7 @@
 /area/lv624/ground/caves/east1)
 "lXV" = (
 /obj/structure/cable,
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle6)
 "lYR" = (
@@ -14996,7 +14898,7 @@
 /area/lv624/ground/jungle9)
 "mbX" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /obj/structure/cable,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle7)
@@ -15007,12 +14909,12 @@
 	},
 /area/lv624/ground/jungle7)
 "mcP" = (
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor,
 /area/lv624/ground/river2)
 "mdd" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/obj/structure/mineral_door/resin,
+/obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/east2)
 "mdf" = (
@@ -15037,7 +14939,7 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/tile/blue/taupebluecorner,
 /area/lv624/lazarus/sleep_male)
 "mic" = (
@@ -15076,7 +14978,7 @@
 	},
 /area/lv624/ground/jungle2)
 "mqz" = (
-/obj/effect/landmark/xeno_resin_door
+/obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/engine/cult,
 /area/lv624/ground/caves/west1)
 "mre" = (
@@ -15122,7 +15024,7 @@
 /area/shuttle/drop2/lz2)
 "mwH" = (
 /obj/structure/jungle/vines,
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle5)
 "mxJ" = (
@@ -15169,7 +15071,7 @@
 /turf/open/floor,
 /area/lv624/lazarus/security)
 "mGO" = (
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/marking/bot,
 /area/lv624/ground/sand2)
 "mHB" = (
@@ -15188,7 +15090,7 @@
 /area/lv624/ground/compound/sw)
 "mKc" = (
 /obj/structure/flora/ausbushes/fullgrass,
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle6)
 "mKp" = (
@@ -15206,7 +15108,7 @@
 	},
 /area/lv624/lazarus/console)
 "mKG" = (
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/plating,
 /area/lv624/ground/river1)
 "mMx" = (
@@ -15222,7 +15124,7 @@
 "mNK" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/compound/n)
 "mPv" = (
@@ -15257,10 +15159,6 @@
 /obj/structure/flora/ausbushes/fullgrass,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle6)
-"ndI" = (
-/obj/effect/landmark/xeno_resin_door
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/caves/central1)
 "nhC" = (
 /obj/structure/sign/redcross,
 /turf/open/floor/plating/ground/dirtgrassborder{
@@ -15307,7 +15205,7 @@
 	},
 /area/lv624/ground/jungle3)
 "nqA" = (
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/plating,
 /area/lv624/ground/sand6)
 "nrr" = (
@@ -15320,15 +15218,15 @@
 /area/lv624/ground/jungle1)
 "ntP" = (
 /obj/item/tool/surgery/retractor,
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/tile/blue/whitebluecorner,
 /area/lv624/lazarus/medbay)
 "nvh" = (
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/tile/barber,
 /area/lv624/lazarus/kitchen)
 "nwN" = (
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/security)
 "nxQ" = (
@@ -15364,7 +15262,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 10
 	},
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/freezer,
 /area/lv624/lazarus/toilet)
 "nDy" = (
@@ -15386,10 +15284,6 @@
 	},
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle9)
-"nEC" = (
-/obj/item/xenosqdqsdqsd_egg,
-/turf/open/floor/engine/cult,
-/area/lv624/ground/caves/east2)
 "nFi" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -15407,7 +15301,7 @@
 /area/lv624/ground/compound/sw)
 "nLX" = (
 /obj/structure/jungle/vines,
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle8)
 "nMs" = (
@@ -15444,8 +15338,8 @@
 /turf/open/floor,
 /area/lv624/ground/jungle7)
 "nSy" = (
-/obj/effect/alien/weeds/node,
-/obj/structure/mineral_door/resin/thick,
+/obj/effect/landmark/weed_node,
+/obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/west2)
 "nTf" = (
@@ -15454,7 +15348,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/shuttle/drop2/lz2)
 "nUe" = (
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/quartstorage)
 "nVQ" = (
@@ -15471,14 +15365,14 @@
 "nYD" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/compound/sw)
 "nYM" = (
 /obj/machinery/status_display{
 	pixel_y = -32
 	},
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/quart)
 "nYN" = (
@@ -15488,11 +15382,11 @@
 "obw" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/compound/sw)
 "obH" = (
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/tile/chapel{
 	dir = 4
 	},
@@ -15504,7 +15398,7 @@
 /turf/open/ground/grass,
 /area/lv624/ground/jungle9)
 "odU" = (
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/quart)
 "oeN" = (
@@ -15542,7 +15436,7 @@
 /area/lv624/ground/sand5)
 "okX" = (
 /obj/effect/decal/warning_stripes/thin,
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/secure_storage)
 "ooP" = (
@@ -15573,7 +15467,7 @@
 	},
 /area/shuttle/drop1/lz1)
 "orL" = (
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/freezer,
 /area/lv624/lazarus/kitchen)
 "osZ" = (
@@ -15582,12 +15476,13 @@
 	},
 /area/lv624/ground/jungle4)
 "ouM" = (
-/obj/structure/mineral_door/resin,
+/obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/sand1)
 "ozL" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /obj/effect/landmark/xeno_resin_wall,
+/turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/west2)
 "oAh" = (
 /obj/structure/flora/ausbushes/fullgrass,
@@ -15600,7 +15495,7 @@
 /area/lv624/ground/jungle9)
 "oAo" = (
 /obj/effect/decal/warning_stripes/thin,
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/quartstorage)
 "oCh" = (
@@ -15677,10 +15572,6 @@
 	},
 /turf/open/floor,
 /area/lv624/ground/compound/n)
-"oWX" = (
-/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/obj/effect/landmark/xeno_resin_wall,
-/area/lv624/ground/caves/east2)
 "oZd" = (
 /obj/machinery/light,
 /obj/effect/decal/warning_stripes/thin{
@@ -15690,14 +15581,14 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/plating,
 /area/lv624/lazarus/engineering)
 "paG" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor,
 /area/lv624/ground/sand9)
 "paQ" = (
@@ -15707,7 +15598,7 @@
 /area/lv624/ground/jungle6)
 "pbH" = (
 /obj/item/frame/table,
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/main_hall)
 "pcc" = (
@@ -15720,7 +15611,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle9)
 "pei" = (
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/sand6)
 "phf" = (
@@ -15753,7 +15644,6 @@
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/canteen)
 "pqD" = (
-/obj/effect/landmark/monkey_spawn,
 /obj/structure/jungle/vines/heavy,
 /turf/open/floor/plating/ground/dirtgrassborder{
 	dir = 1
@@ -15848,11 +15738,11 @@
 /turf/open/floor,
 /area/lv624/ground/sand8)
 "pLl" = (
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor,
 /area/lv624/ground/sand2)
 "pMs" = (
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/plating,
 /area/lv624/lazarus/toilet)
 "pMV" = (
@@ -15870,7 +15760,7 @@
 	},
 /area/lv624/ground/jungle3)
 "pQg" = (
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor,
 /area/lv624/ground/compound/sw)
 "pRf" = (
@@ -15896,11 +15786,11 @@
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/main_hall)
 "pVk" = (
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/tile/bar,
 /area/lv624/lazarus/canteen)
 "pWa" = (
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/plating,
 /area/lv624/ground/sand8)
 "pXO" = (
@@ -15930,11 +15820,11 @@
 /turf/open/floor,
 /area/lv624/ground/jungle6)
 "qco" = (
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor,
 /area/lv624/ground/sand8)
 "qda" = (
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/compound/sw)
 "qdb" = (
@@ -15995,7 +15885,7 @@
 /turf/open/ground/river,
 /area/lv624/ground/jungle9)
 "quQ" = (
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle4)
 "qwB" = (
@@ -16003,7 +15893,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/compound/c)
 "qxe" = (
@@ -16016,7 +15906,7 @@
 /obj/item/stack/sheet/wood{
 	amount = 2
 	},
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/quartstorage)
 "qzs" = (
@@ -16081,7 +15971,7 @@
 	dir = 4
 	},
 /obj/structure/cable,
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/quartstorage)
 "qNG" = (
@@ -16091,7 +15981,7 @@
 /turf/open/floor/marking/bot,
 /area/lv624/ground/compound/sw)
 "qOb" = (
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/freezer,
 /area/lv624/lazarus/toilet)
 "qOh" = (
@@ -16135,12 +16025,12 @@
 /area/shuttle/drop1/lz1)
 "qTx" = (
 /obj/structure/flora/ausbushes/fullgrass,
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle3)
 "qUI" = (
 /obj/effect/decal/cleanable/vomit,
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/tile/blue/whiteblue{
 	dir = 10
 	},
@@ -16171,13 +16061,8 @@
 /obj/structure/jungle/vines/heavy,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle5)
-"rbd" = (
-/obj/item/xenosqdqsdqsd_egg,
-/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/caves/west2)
 "rfD" = (
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/tile/purple/whitepurplecorner{
 	dir = 4
 	},
@@ -16194,7 +16079,7 @@
 /area/lv624/ground/jungle9)
 "rkX" = (
 /obj/structure/cable,
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/freezer,
 /area/lv624/lazarus/toilet)
 "rmy" = (
@@ -16204,18 +16089,14 @@
 /turf/open/floor/plating,
 /area/shuttle/drop2/lz2)
 "roK" = (
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/plating,
 /area/lv624/lazarus/kitchen)
 "rry" = (
 /obj/effect/decal/cleanable/blood/splatter/animated,
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/grimy,
 /area/lv624/lazarus/hop)
-"rtd" = (
-/obj/effect/landmark/xeno_resin_door
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/caves/west2)
 "rtr" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating/ground/dirtgrassborder/corner{
@@ -16295,7 +16176,7 @@
 "rRg" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/research)
 "rSn" = (
@@ -16311,7 +16192,7 @@
 /turf/open/floor/plating/ground/dirtgrassborder,
 /area/lv624/ground/jungle9)
 "rWf" = (
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/marking/warning{
 	dir = 4
 	},
@@ -16332,7 +16213,7 @@
 	},
 /area/lv624/ground/river1)
 "rYf" = (
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/dirt,
 /area/shuttle/drop2/lz2)
 "sax" = (
@@ -16359,10 +16240,6 @@
 	dir = 4
 	},
 /area/lv624/ground/jungle7)
-"sez" = (
-/obj/item/xenosqdqsdqsd_egg,
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/caves/east2)
 "seB" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 2
@@ -16383,14 +16260,14 @@
 /area/lv624/ground/sand5)
 "sje" = (
 /obj/structure/jungle/vines/heavy,
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle9)
 "slv" = (
 /turf/closed/wall/r_wall,
 /area/lv624/ground/compound/sw)
 "sly" = (
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/tile/barber,
 /area/lv624/lazarus/main_hall)
 "srl" = (
@@ -16401,7 +16278,7 @@
 /area/lv624/ground/jungle3)
 "srC" = (
 /obj/structure/jungle/vines,
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/dirt,
 /area/shuttle/drop2/lz2)
 "ssJ" = (
@@ -16439,7 +16316,7 @@
 	},
 /area/lv624/ground/compound/sw)
 "sCc" = (
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/plating,
 /area/lv624/ground/sand7)
 "sEo" = (
@@ -16447,7 +16324,7 @@
 	dir = 4
 	},
 /obj/structure/cable,
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/compound/c)
 "sEw" = (
@@ -16465,7 +16342,7 @@
 "sGO" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/tile/bar,
 /area/lv624/lazarus/canteen)
 "sHi" = (
@@ -16494,7 +16371,7 @@
 "sIy" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/tile/green/whitegreen,
 /area/lv624/lazarus/main_hall)
 "sKi" = (
@@ -16506,6 +16383,7 @@
 "sLE" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /obj/effect/landmark/xeno_resin_wall,
+/turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/east2)
 "sMG" = (
 /obj/structure/flora/tree/jungle/small,
@@ -16541,7 +16419,7 @@
 /area/shuttle/drop2/lz2)
 "sRf" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/compound/c)
 "sRg" = (
@@ -16557,7 +16435,7 @@
 	dir = 8
 	},
 /obj/structure/cable,
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/secure_storage)
 "sZJ" = (
@@ -16567,14 +16445,14 @@
 /turf/open/floor,
 /area/lv624/ground/jungle6)
 "tal" = (
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle6)
 "tbr" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/compound/n)
 "tbQ" = (
@@ -16614,10 +16492,6 @@
 /obj/machinery/computer/intel_computer,
 /turf/open/floor/grimy,
 /area/lv624/lazarus/hop)
-"thI" = (
-/obj/item/xenosqdqsdqsd_egg,
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/caves/west1)
 "tjC" = (
 /obj/structure/largecrate/random/secure,
 /turf/open/floor,
@@ -16629,7 +16503,7 @@
 /turf/open/floor,
 /area/lv624/ground/jungle4)
 "tnr" = (
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle2)
 "tod" = (
@@ -16644,7 +16518,7 @@
 	dir = 4;
 	on = 1
 	},
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/tile/blue/whitebluecorner,
 /area/lv624/lazarus/medbay)
 "tqW" = (
@@ -16653,7 +16527,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/compound/sw)
 "tsn" = (
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/ruin)
 "ttY" = (
@@ -16669,7 +16543,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
 	},
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/quartstorage)
 "tyH" = (
@@ -16679,7 +16553,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/compound/sw)
 "tzz" = (
@@ -16697,7 +16571,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/shuttle/drop2/lz2)
 "tAq" = (
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/plating,
 /area/lv624/ground/sand9)
 "tCM" = (
@@ -16708,7 +16582,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/compound/sw)
 "tFc" = (
@@ -16716,7 +16590,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/main_hall)
 "tFK" = (
@@ -16786,7 +16660,7 @@
 "tWO" = (
 /obj/effect/landmark/weed_node,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/obj/effect/landmark/xeno_resin_door
+/obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/west2)
 "tXA" = (
@@ -16831,17 +16705,13 @@
 /area/lv624/ground/jungle1)
 "uhL" = (
 /obj/structure/jungle/vines,
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle9)
 "ujY" = (
 /obj/effect/landmark/xeno_turret_spawn,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/west1)
-"umw" = (
-/obj/item/xenosqdqsdqsd_egg,
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/caves/central1)
 "unj" = (
 /obj/effect/spawner/modularmap/lv624/domes,
 /turf/open/space/basic,
@@ -16859,10 +16729,6 @@
 /obj/structure/flora/ausbushes/fullgrass,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/compound/c)
-"uqc" = (
-/obj/item/xenosqdqsdqsd_egg,
-/turf/open/floor/engine/cult,
-/area/lv624/ground/caves/west1)
 "ush" = (
 /obj/item/reagent_containers/food/snacks/donkpocket,
 /obj/structure/flora/pottedplant,
@@ -16881,7 +16747,7 @@
 "usQ" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/compound/c)
 "usV" = (
@@ -16903,9 +16769,10 @@
 "uvP" = (
 /obj/effect/landmark/weed_node,
 /obj/effect/landmark/xeno_resin_wall,
+/turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/west2)
 "uvS" = (
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/compound/se)
 "uyV" = (
@@ -16923,7 +16790,7 @@
 	},
 /area/lv624/ground/jungle4)
 "uCI" = (
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle8)
 "uDs" = (
@@ -16933,7 +16800,7 @@
 	},
 /area/lv624/ground/jungle9)
 "uDD" = (
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/freezer,
 /area/lv624/lazarus/research)
 "uGq" = (
@@ -16957,6 +16824,7 @@
 "uMG" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /obj/effect/landmark/xeno_resin_wall,
+/turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/west1)
 "uMT" = (
 /obj/structure/largecrate/cow,
@@ -17067,7 +16935,7 @@
 "vAv" = (
 /obj/structure/fence,
 /obj/structure/jungle/vines/heavy,
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle7)
 "vAO" = (
@@ -17142,7 +17010,7 @@
 /area/lv624/ground/jungle6)
 "vLs" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/obj/effect/landmark/xeno_resin_door
+/obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/west2)
 "vMm" = (
@@ -17315,11 +17183,11 @@
 /turf/closed/gm/dense,
 /area/lv624/lazarus/quartstorage/outdoors)
 "wSv" = (
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor,
 /area/lv624/ground/jungle4)
 "wTm" = (
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/sand9)
 "wTX" = (
@@ -17369,7 +17237,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/compound/sw)
 "xmP" = (
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/closed/gm/dense,
 /area/lv624/ground/jungle7)
 "xnH" = (
@@ -17387,7 +17255,7 @@
 	},
 /area/lv624/ground/river3)
 "xpu" = (
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/tile/purple/whitepurple{
 	dir = 5
 	},
@@ -17441,13 +17309,9 @@
 /area/shuttle/drop2/lz2)
 "xDk" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/obj/effect/landmark/xeno_resin_door
+/obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/east1)
-"xDn" = (
-/obj/effect/landmark/xeno_resin_door
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/caves/west1)
 "xDO" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -17480,14 +17344,14 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/west1)
 "xPF" = (
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/closed/wall/indestructible/mineral,
 /area/lv624/ground/sand1)
 "xQg" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/research)
 "xQl" = (
@@ -17508,19 +17372,15 @@
 	dir = 8
 	},
 /area/lv624/ground/jungle9)
-"xUe" = (
-/obj/item/xenosqdqsdqsd_egg,
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/caves/west2)
 "xVe" = (
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/plating/warning,
 /area/lv624/lazarus/engineering)
 "xVM" = (
 /turf/open/space/basic,
 /area/lv624/lazarus/atmos)
 "xYk" = (
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/tile/blue/whitebluecorner,
 /area/lv624/lazarus/medbay)
 "xYN" = (
@@ -17545,7 +17405,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle5)
 "yfq" = (
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/tile/red/full,
 /area/lv624/lazarus/security)
 "ygm" = (
@@ -19332,7 +19192,7 @@ bck
 fvY
 bnD
 bol
-bpf
+hLW
 bpX
 hLW
 hLW
@@ -19425,7 +19285,7 @@ adp
 adp
 adp
 adp
-uqc
+adp
 adp
 adp
 abk
@@ -19558,7 +19418,7 @@ eOl
 uvP
 aal
 aej
-aaB
+aej
 aej
 aej
 aal
@@ -19733,14 +19593,14 @@ aaa
 aaa
 aaa
 ozL
-eOl
-eOl
+aej
+aej
 aej
 aej
 aej
 aal
 aej
-aej
+aaB
 aaa
 aaa
 jUj
@@ -19777,10 +19637,10 @@ adp
 adp
 adp
 abk
-uqc
 adp
 adp
-uqc
+adp
+adp
 adp
 adI
 adp
@@ -19912,8 +19772,8 @@ aaa
 aaa
 aaa
 ozL
-eOl
-uvP
+aej
+aej
 aej
 aej
 aej
@@ -20091,15 +19951,15 @@ aaa
 aaa
 aaa
 ozL
-eOl
-eOl
-eOl
-eOl
-eOl
-rtd
-rtd
-eOl
-eOl
+aej
+aej
+aej
+aej
+aej
+aej
+aej
+aej
+aej
 aaa
 jUj
 udq
@@ -20138,8 +19998,8 @@ bLL
 abk
 abk
 abk
-xDn
-xDn
+ahr
+ahr
 abk
 abk
 abk
@@ -20270,15 +20130,15 @@ aaa
 aaa
 aaa
 ozL
-eOl
-eOl
+aej
+aej
 aej
 etu
 aej
 aej
 aej
 aej
-xUe
+aej
 aej
 jUj
 udq
@@ -20443,7 +20303,7 @@ eOl
 aej
 aej
 aej
-xUe
+aej
 aaA
 aaa
 aaa
@@ -20452,7 +20312,7 @@ ozL
 eOl
 eOl
 aej
-xUe
+aej
 aal
 aej
 aal
@@ -20635,9 +20495,9 @@ aej
 aej
 aej
 aej
-xUe
 aej
-xUe
+aej
+aej
 jUj
 udq
 udq
@@ -20798,8 +20658,8 @@ aej
 vIv
 eOl
 eOl
-rtd
-rtd
+aat
+aat
 eOl
 eOl
 aaA
@@ -20812,7 +20672,7 @@ eOl
 eOl
 eOl
 eOl
-rtd
+aat
 nSy
 eOl
 eOl
@@ -20977,8 +20837,8 @@ aej
 vIv
 eOl
 eOl
-rtd
-rtd
+aat
+aat
 eOl
 eOl
 aaA
@@ -20991,8 +20851,8 @@ eOl
 eOl
 eOl
 eOl
-rtd
-rtd
+aat
+aat
 eOl
 eOl
 aaa
@@ -21155,7 +21015,7 @@ aej
 aej
 acu
 vIv
-rbd
+vIv
 vIv
 vIv
 ozL
@@ -21827,7 +21687,7 @@ bSW
 atj
 bcg
 bcg
-fca
+bcg
 bcg
 bcg
 bcg
@@ -22073,7 +21933,7 @@ aej
 abc
 abc
 abc
-abc
+ujY
 abb
 abb
 abb
@@ -22436,7 +22296,7 @@ abc
 abc
 abd
 abc
-abu
+bLL
 abc
 abc
 abc
@@ -22445,7 +22305,7 @@ abc
 abc
 ltn
 bLL
-bLL
+abc
 abc
 xLJ
 abc
@@ -22615,7 +22475,7 @@ abc
 abc
 abc
 abc
-abu
+bLL
 abc
 abd
 abc
@@ -22624,7 +22484,7 @@ abc
 abc
 fDX
 bLL
-bLL
+abc
 abc
 abc
 abc
@@ -22791,9 +22651,9 @@ bLL
 bLL
 fDX
 abc
-ujY
 abc
-abu
+abc
+bLL
 abc
 abc
 abc
@@ -22803,7 +22663,7 @@ abc
 abc
 fDX
 bLL
-bLL
+abc
 abd
 abc
 abc
@@ -22964,28 +22824,28 @@ aaa
 aai
 aai
 aai
-eOl
-bLL
-bLL
+aej
+abc
+abc
 bLL
 ltn
 abc
 abc
 abc
-abu
+bLL
 abc
 abd
 abc
-abu
-abu
+bLL
+bLL
 abd
 abc
 fDX
 bLL
-bLL
-bLL
-xDn
-xDn
+abc
+abc
+abc
+abc
 abk
 tMx
 udq
@@ -23145,13 +23005,13 @@ aaD
 aaD
 aai
 abc
-thI
+abc
 bLL
 fDX
 abc
 abc
 abd
-abu
+bLL
 abc
 abc
 abc
@@ -23164,7 +23024,7 @@ bLL
 bLL
 bLL
 ahr
-xDn
+ahr
 abk
 tMx
 udq
@@ -23303,7 +23163,7 @@ aej
 aej
 vLs
 aej
-xUe
+aej
 eOl
 eOl
 aai
@@ -23334,7 +23194,7 @@ abc
 abc
 abc
 abc
-abu
+bLL
 abc
 abc
 abc
@@ -23483,7 +23343,7 @@ aej
 tWO
 aej
 aej
-eOl
+aej
 uvP
 eOl
 aai
@@ -23502,9 +23362,9 @@ aaD
 aaF
 aaD
 aaE
-mqz
 abc
-xDn
+abc
+ahr
 fDX
 abc
 abc
@@ -23516,7 +23376,7 @@ abc
 abc
 abc
 abc
-abu
+bLL
 abc
 abc
 abd
@@ -23658,12 +23518,12 @@ aej
 aej
 aej
 aej
-xUe
+aej
 hzX
-rtd
-rtd
-eOl
-eOl
+aej
+aej
+aej
+aej
 eOl
 eOl
 aai
@@ -23854,22 +23714,22 @@ aaa
 aaa
 aaa
 aaA
-eOl
+aej
 aai
 aaD
 aaD
 aaD
 aai
 bLL
-thI
+abc
 bLL
 fDX
 abc
 abd
 abc
 abc
-abu
-abu
+bLL
+bLL
 abc
 abc
 abc
@@ -24033,8 +23893,8 @@ aaa
 aaa
 aaa
 aaA
-eOl
-eOl
+aej
+aej
 aai
 aai
 aai
@@ -24192,7 +24052,7 @@ aej
 aej
 aej
 aej
-aan
+eOl
 aej
 aaa
 aaa
@@ -24546,9 +24406,9 @@ aej
 aal
 aej
 aej
-aan
-aan
-aan
+eOl
+eOl
+eOl
 aej
 aej
 aej
@@ -24726,15 +24586,15 @@ aej
 aej
 aej
 aej
-aan
-aan
+eOl
+eOl
 aej
 aej
 aej
 aej
 aej
-hzX
-hzX
+vIv
+vIv
 aej
 aej
 aal
@@ -24761,13 +24621,13 @@ abc
 abc
 abc
 abc
-abu
+bLL
 bLL
 bLL
 bLL
 abc
 abc
-abu
+bLL
 abc
 abc
 abc
@@ -24869,7 +24729,7 @@ aZl
 fRf
 bch
 bch
-bcj
+bch
 bch
 bck
 bcg
@@ -24900,7 +24760,7 @@ aaa
 aai
 aej
 aej
-aan
+eOl
 aej
 aej
 aej
@@ -24913,8 +24773,8 @@ aej
 aej
 aej
 eOl
-hzX
-hzX
+vIv
+vIv
 aej
 aej
 aai
@@ -25082,7 +24942,7 @@ aej
 aej
 aej
 aej
-aan
+eOl
 aej
 aej
 aej
@@ -25093,7 +24953,7 @@ aal
 aej
 eOl
 eOl
-hzX
+vIv
 hzX
 hzX
 hzX
@@ -25122,14 +24982,14 @@ abc
 abd
 abc
 abk
-abu
+bLL
 abc
 abc
 abc
 abc
 abc
 abc
-abu
+bLL
 abk
 abk
 abk
@@ -25261,13 +25121,13 @@ aej
 aal
 aej
 aej
-aan
+eOl
 aej
 aej
 aej
 aej
 aej
-aan
+eOl
 aej
 aej
 aej
@@ -25298,7 +25158,7 @@ abc
 abc
 abc
 abc
-aci
+bLL
 abc
 abk
 bLL
@@ -25307,7 +25167,7 @@ abc
 abc
 abc
 abc
-abu
+bLL
 abk
 udq
 udq
@@ -25481,12 +25341,12 @@ abc
 abc
 abk
 bLL
-abu
-abu
+bLL
+bLL
 abc
 abd
 abc
-abu
+bLL
 abk
 udq
 udq
@@ -25654,8 +25514,8 @@ abc
 abc
 abc
 abc
-abu
-abu
+abc
+abc
 abc
 abc
 abk
@@ -25701,7 +25561,7 @@ fEo
 fEo
 fEo
 ara
-atg
+aqD
 aqD
 arH
 auC
@@ -25804,8 +25664,8 @@ aal
 aej
 aej
 aej
-aan
-aan
+eOl
+eOl
 aat
 aat
 aat
@@ -25820,10 +25680,10 @@ aaa
 aaa
 aaa
 aej
-aan
-acr
-acr
-aan
+eOl
+eOl
+eOl
+eOl
 aej
 aej
 aal
@@ -25833,8 +25693,8 @@ abc
 abc
 abc
 abc
-abu
-abu
+abc
+abc
 abc
 abc
 abc
@@ -25982,9 +25842,9 @@ aej
 aej
 aej
 aej
-aan
-aan
-aan
+eOl
+eOl
+eOl
 aej
 aej
 aej
@@ -26015,8 +25875,8 @@ abc
 abc
 abd
 abc
-abu
-abu
+abc
+abc
 abc
 abc
 abc
@@ -26027,9 +25887,9 @@ abk
 abk
 abk
 abk
-abu
-abu
-abu
+bLL
+bLL
+bLL
 abc
 abc
 abb
@@ -26155,15 +26015,15 @@ aaa
 aaa
 aej
 aej
-aan
+eOl
 aej
 aej
 aej
 aej
 aej
 aej
-aan
-aan
+eOl
+eOl
 aej
 aej
 aej
@@ -26194,8 +26054,8 @@ abc
 abc
 abc
 abc
-abu
-abu
+abc
+abc
 abc
 abc
 abc
@@ -26333,8 +26193,8 @@ aaa
 aaa
 aaa
 aej
-aan
-aan
+eOl
+eOl
 aej
 aej
 aal
@@ -26342,7 +26202,7 @@ aej
 aej
 aej
 aej
-aan
+eOl
 aej
 aal
 aej
@@ -26541,9 +26401,9 @@ aej
 aej
 aaa
 aaa
-aan
-aan
-aan
+eOl
+eOl
+eOl
 aej
 abc
 abc
@@ -26722,30 +26582,30 @@ aaa
 aaa
 aaa
 aaa
-aan
-aan
-abu
+eOl
+eOl
+bLL
 abc
 abc
-abu
-abu
+bLL
+bLL
 abc
 abc
-abu
-abu
+abc
+abc
 abc
 wLx
-abu
-abu
+abc
+abc
 abc
 abc
 bLL
 bLL
 bLL
 bLL
-abu
-abu
-abu
+bLL
+bLL
+bLL
 abc
 abc
 wLx
@@ -26875,8 +26735,8 @@ aej
 aej
 aej
 aej
-aan
-aan
+eOl
+eOl
 aej
 aej
 aat
@@ -26891,8 +26751,8 @@ aej
 eOl
 eOl
 eOl
-aan
-aan
+eOl
+eOl
 aaa
 aaa
 aaa
@@ -26910,18 +26770,18 @@ abc
 abc
 abc
 abc
-abu
-abu
 abc
 abc
-abu
-abu
+abc
+abc
+abc
+abc
 abc
 abb
 abb
 abb
 abb
-abu
+bLL
 abb
 abb
 abk
@@ -27055,8 +26915,8 @@ aej
 aej
 aej
 aej
-aan
-aan
+eOl
+eOl
 aej
 aat
 aej
@@ -27071,7 +26931,7 @@ aej
 aej
 aal
 aej
-aan
+eOl
 aaa
 aaa
 aaa
@@ -27234,13 +27094,13 @@ aej
 aej
 aej
 aej
-aan
-aan
-aan
-aan
 eOl
 eOl
-aan
+eOl
+eOl
+eOl
+eOl
+eOl
 aej
 aej
 aej
@@ -27414,14 +27274,14 @@ aej
 aej
 aej
 aej
-aan
-aan
-aan
+eOl
+eOl
+eOl
 aej
 aej
 eOl
 aej
-aan
+eOl
 aej
 aej
 eOl
@@ -27776,8 +27636,8 @@ aej
 aal
 aej
 aej
-aan
-aan
+eOl
+eOl
 aat
 aat
 aat
@@ -27811,7 +27671,7 @@ aeK
 acO
 adh
 acO
-adA
+aeK
 acO
 acO
 aeK
@@ -27950,9 +27810,9 @@ abf
 abf
 abf
 abf
-abv
-abv
-abv
+abf
+abf
+abf
 abf
 abf
 abv
@@ -28128,10 +27988,10 @@ abe
 acs
 abf
 abf
-abv
-abv
-abv
-abv
+abf
+abf
+abf
+abf
 abf
 acs
 abv
@@ -28307,10 +28167,10 @@ abe
 abf
 abf
 abf
-abv
-abv
-abv
-abv
+abf
+abf
+abf
+abf
 abf
 abf
 abv
@@ -28343,7 +28203,7 @@ aeP
 aeP
 acO
 adh
-adA
+aeK
 adh
 acO
 acO
@@ -28432,7 +28292,7 @@ aFB
 aFB
 aFB
 aJD
-gqv
+aEx
 aEx
 aEx
 aEx
@@ -28487,9 +28347,9 @@ abf
 abf
 acs
 abf
-abv
-abv
-abv
+abf
+abf
+abf
 abf
 abf
 abv
@@ -28522,7 +28382,7 @@ acO
 acO
 acO
 acO
-adA
+aeK
 acO
 acO
 acO
@@ -28667,7 +28527,7 @@ abf
 abf
 abf
 abf
-abv
+abf
 abf
 abf
 abf
@@ -28708,7 +28568,7 @@ acO
 acO
 acO
 acO
-adA
+aeK
 acO
 acO
 acO
@@ -28878,7 +28738,7 @@ acO
 acO
 acO
 acO
-adA
+aeK
 acO
 adh
 acO
@@ -29238,7 +29098,7 @@ acO
 acO
 acO
 acO
-adA
+aeK
 acO
 adh
 acO
@@ -30300,8 +30160,8 @@ acN
 acO
 acO
 acO
-adA
-adA
+aeK
+aeK
 acN
 acN
 acN
@@ -30629,11 +30489,11 @@ abe
 abe
 abe
 cMZ
-abm
-abm
-abm
-abm
-abm
+abv
+abv
+abv
+abv
+abv
 lIv
 abf
 ace
@@ -30808,11 +30668,11 @@ abe
 abe
 abe
 scW
-abm
-abm
-abm
-abm
-abm
+abf
+abf
+abf
+abf
+abv
 lIv
 abf
 abf
@@ -30838,8 +30698,8 @@ acO
 adh
 acO
 acO
-adA
-adA
+aeK
+aeK
 acO
 aeu
 acO
@@ -30990,9 +30850,9 @@ scW
 abf
 abf
 acs
-dnU
-abm
-gkY
+abf
+abv
+lIv
 abf
 ace
 abf
@@ -31019,8 +30879,8 @@ acO
 acN
 acN
 acN
-adA
-adA
+aeK
+aeK
 acO
 acO
 acO
@@ -31169,8 +31029,8 @@ scW
 abf
 cUA
 abf
-ndI
-ndI
+abf
+abH
 lIv
 acs
 abf
@@ -31348,8 +31208,8 @@ scW
 abf
 abf
 acs
-ndI
-ndI
+abf
+abH
 lIv
 abf
 ace
@@ -31464,7 +31324,7 @@ aJq
 aKe
 aGb
 aLA
-auy
+aGA
 auW
 aOo
 aEO
@@ -31526,10 +31386,10 @@ abe
 scW
 acs
 abf
-umw
-abm
-abm
-gkY
+abf
+abf
+abv
+lIv
 acs
 abf
 abf
@@ -31703,11 +31563,11 @@ abe
 abe
 abe
 scW
-abm
-abm
-abm
-abm
-abm
+abf
+abf
+abf
+abf
+abv
 lIv
 abf
 ace
@@ -31724,7 +31584,7 @@ acs
 abf
 abf
 acs
-umw
+abf
 abf
 abe
 acN
@@ -31882,11 +31742,11 @@ abe
 abe
 abe
 scW
-abm
-abm
-abm
-abm
-abm
+abv
+abv
+abv
+abv
+abv
 lFf
 abf
 abf
@@ -31901,7 +31761,7 @@ lIv
 lIv
 lIv
 lIv
-gkY
+lIv
 lIv
 lIv
 cMZ
@@ -32074,15 +31934,15 @@ ace
 abf
 ace
 lIv
-abm
-abm
-abm
-abm
-ndI
-ndI
-abm
-abm
-abm
+abv
+abv
+abv
+abv
+abH
+abH
+abv
+abv
+abv
 scW
 abe
 acN
@@ -32253,15 +32113,15 @@ abf
 abf
 abf
 lIv
-abm
-abm
-abm
-abm
-ndI
-ndI
-dnU
-abm
-abm
+abv
+abf
+abf
+abf
+abf
+abf
+abf
+abf
+abv
 scW
 oCG
 qaM
@@ -32432,15 +32292,15 @@ ace
 abf
 ace
 lIv
-abm
-abm
+abv
 abf
-abf
-acs
 abf
 abf
 acs
-abm
+abf
+abf
+acs
+abv
 scW
 oCG
 qaM
@@ -32609,17 +32469,17 @@ abf
 abf
 abf
 abf
-umw
+abf
 lIv
-abm
-abm
+abv
+abf
 acs
-umw
 abf
 abf
 abf
 abf
-abm
+abf
+abv
 scW
 oCG
 qaM
@@ -32790,15 +32650,15 @@ oph
 abf
 abf
 lFf
-abm
-abm
+abv
+abf
 abf
 abf
 abf
 cUA
 abf
-abm
-abm
+abv
+abv
 scW
 oCG
 qaM
@@ -32969,14 +32829,14 @@ abf
 acs
 abf
 lIv
-ndI
-ndI
+abH
 abf
 abf
 abf
 abf
 abf
-abm
+abf
+abv
 abe
 scW
 abe
@@ -33148,14 +33008,14 @@ abf
 abf
 abf
 lIv
-ndI
-ndI
+abH
+abf
 acs
 abf
 abf
 acs
-abm
-abm
+abv
+abv
 abe
 scW
 abe
@@ -33238,7 +33098,7 @@ les
 aAb
 aAb
 aAb
-aCz
+aAb
 aCZ
 cWu
 aAb
@@ -33326,14 +33186,14 @@ abf
 abf
 abf
 abf
-gkY
-abm
-abm
+lIv
+abv
 abf
 abf
 abf
-abm
-abm
+abf
+abv
+abv
 abe
 abe
 scW
@@ -33506,13 +33366,13 @@ abf
 abf
 acs
 lIv
-abm
-abm
+abv
 abf
 abf
 abf
-abm
-abm
+abf
+abv
+abv
 abe
 abe
 scW
@@ -33685,12 +33545,12 @@ abf
 abf
 abf
 lIv
-abm
-abm
+abv
 abf
-abm
-abm
-abm
+abf
+abv
+abv
+abv
 abe
 abe
 abe
@@ -33862,12 +33722,12 @@ abf
 abf
 abf
 abf
-abm
+abv
 gRI
-abm
-abm
-abm
-abm
+abv
+abv
+abv
+abv
 abe
 abe
 abe
@@ -34040,8 +33900,8 @@ abf
 abf
 abf
 abf
-abm
-abm
+abv
+abv
 cMZ
 scW
 scW
@@ -34752,11 +34612,11 @@ abf
 abf
 abf
 abf
-abm
+abv
 abH
 abH
 abH
-abm
+abv
 abe
 abe
 abe
@@ -34929,14 +34789,14 @@ abf
 abf
 abf
 abf
-abm
-abm
-abm
+abv
+abv
+abv
 abf
 abf
 abf
-abm
-abm
+abv
+abv
 abe
 abe
 abe
@@ -35106,16 +34966,16 @@ abf
 abf
 abf
 abf
-abm
-abm
-abm
+abv
+abv
+abv
 abe
-abm
-abm
+abv
+abv
 abf
 abf
 abf
-abm
+abv
 abe
 abe
 abe
@@ -35285,16 +35145,16 @@ abf
 abf
 abf
 abf
-abm
+abv
 abe
 abe
 abe
 abe
-abm
+abv
 abf
 abf
 abf
-abm
+abv
 abe
 abe
 abe
@@ -35464,16 +35324,16 @@ abf
 acs
 abf
 abf
-abm
+abv
 abe
 abe
 abe
 abe
-abm
+abv
 abf
 acs
 abf
-abm
+abv
 abe
 abe
 abe
@@ -35573,7 +35433,7 @@ axC
 aEx
 aKZ
 aFD
-aGN
+aES
 aES
 aET
 aIH
@@ -35643,17 +35503,17 @@ abf
 abf
 abf
 abf
-abm
+abv
 abe
 abe
 abe
 abe
-abm
+abv
 abf
 abf
 abf
-abm
-abm
+abv
+abv
 abe
 abe
 abf
@@ -35822,17 +35682,17 @@ abf
 abf
 abf
 abf
-abm
+abv
 abe
 abe
 abe
 abe
-abm
-abm
+abv
+abv
 abf
 abf
 abf
-abm
+abv
 abe
 abf
 abf
@@ -35995,20 +35855,20 @@ aab
 abe
 abe
 abe
-abm
+abv
 abf
 abf
 abf
 abf
-abm
-abm
+abv
+abv
 abe
 abe
 abe
 abe
 abe
-abm
-abm
+abv
+abv
 abf
 abf
 abf
@@ -36174,20 +36034,20 @@ aab
 abe
 abe
 abe
-abm
-abm
+abv
+abv
 abH
 abH
 aby
-abm
-abm
+abv
+abv
 abe
 abe
 abe
 abe
 abe
-abe
-abm
+abf
+abv
 abf
 abf
 abf
@@ -36354,12 +36214,12 @@ abe
 abe
 abe
 abe
-abm
+abv
 abf
 abf
 abf
 abf
-abm
+abv
 abe
 abe
 abe
@@ -37500,7 +37360,7 @@ alm
 alm
 qco
 alm
-aeQ
+alm
 amU
 ang
 aod
@@ -38508,7 +38368,7 @@ abe
 abf
 abf
 abf
-abm
+abv
 abe
 abe
 abe
@@ -38683,11 +38543,11 @@ abe
 abe
 abe
 abe
-abm
+abv
 abf
 abf
 abf
-abm
+abv
 abe
 abe
 abe
@@ -38862,11 +38722,11 @@ abe
 abe
 abe
 abe
-abm
+abv
 abf
 acs
 abf
-abm
+abv
 abe
 abe
 abe
@@ -39041,7 +38901,7 @@ abe
 abe
 abe
 abe
-abm
+abv
 abf
 abf
 abf
@@ -40474,12 +40334,12 @@ abe
 abe
 abe
 abe
-abm
+abv
 abf
 abf
 abf
 abf
-abm
+abv
 abe
 abe
 abe
@@ -40652,13 +40512,13 @@ abe
 abe
 abe
 abe
-abm
-abm
+abv
+abv
 abH
 aby
 abH
-abm
-abm
+abv
+abv
 abe
 abe
 aaf
@@ -40830,13 +40690,13 @@ abe
 abe
 abe
 abe
-abm
-abm
+abv
+abv
 abf
 abf
 abf
 abf
-abm
+abv
 aaf
 aaf
 aaf
@@ -40846,7 +40706,7 @@ abI
 abI
 aar
 abn
-abn
+abI
 aaf
 aaf
 aaf
@@ -41009,13 +40869,13 @@ abe
 abe
 abe
 abe
-abm
+abv
 abf
 abf
 abf
 abf
 abf
-abm
+abv
 aaf
 aaf
 aaf
@@ -41025,7 +40885,7 @@ abI
 abI
 aar
 abn
-abn
+abI
 abI
 abI
 aaj
@@ -41188,13 +41048,13 @@ abe
 abe
 abe
 abe
-abm
+abv
 abf
 abf
 abf
 abf
 abf
-abm
+abv
 aaf
 aaf
 aaf
@@ -41204,7 +41064,7 @@ abI
 abI
 aar
 abn
-abn
+abI
 abI
 abI
 abI
@@ -41366,14 +41226,14 @@ abe
 abe
 abe
 abe
-abm
-abm
+abv
+abv
 abf
 abf
 abf
 abf
-abm
-abm
+abv
+abv
 aaf
 aaf
 aaf
@@ -41383,7 +41243,7 @@ abI
 aaj
 aar
 abn
-abn
+abI
 abI
 abI
 ohL
@@ -41545,13 +41405,13 @@ abe
 abe
 abe
 abe
-abm
+abv
 abf
 abf
 acs
 abf
-abm
-abm
+abv
+abv
 abe
 aaf
 aaf
@@ -41562,7 +41422,7 @@ abI
 abI
 aar
 abn
-abn
+abI
 aaj
 abI
 abI
@@ -41724,12 +41584,12 @@ abe
 abe
 abe
 abe
-abm
+abv
 abf
 abf
 abf
 abf
-abm
+abv
 abe
 abe
 aaf
@@ -41741,10 +41601,10 @@ abI
 abI
 aar
 abn
-abn
 abI
 abI
-sez
+abI
+abI
 abI
 mdd
 abI
@@ -41920,7 +41780,7 @@ abI
 aaj
 aar
 glu
-glu
+abI
 abI
 abI
 abI
@@ -42099,7 +41959,7 @@ abI
 abI
 aar
 glu
-glu
+abI
 aaj
 abI
 aaf
@@ -42425,7 +42285,7 @@ bdi
 biN
 boZ
 bEL
-bpU
+boY
 bkk
 bdh
 bdh
@@ -42452,7 +42312,7 @@ abI
 abI
 abI
 abI
-sez
+abI
 abI
 abI
 wMO
@@ -42900,7 +42760,7 @@ arl
 arl
 awf
 arp
-aAp
+arW
 arW
 arY
 arW
@@ -43496,7 +43356,7 @@ bmo
 bdi
 bdh
 bdh
-bpa
+biM
 bpT
 bkk
 bdh
@@ -43801,7 +43661,7 @@ atl
 arW
 arW
 arW
-aAp
+arW
 aAo
 aEA
 aAk
@@ -44770,10 +44630,10 @@ aaf
 aaf
 aaf
 aaf
-abn
-abn
-abn
-abn
+abI
+abI
+abI
+abI
 abI
 abI
 abI
@@ -44949,10 +44809,10 @@ aaf
 aaf
 aaf
 aaf
-abn
-abn
-abn
-abn
+abI
+abI
+abI
+abI
 abI
 abI
 abI
@@ -44973,8 +44833,8 @@ dwM
 dwM
 aaf
 aaf
-aak
-aak
+abn
+abn
 abi
 abo
 abi
@@ -45131,7 +44991,7 @@ aag
 aar
 aar
 aar
-aay
+abI
 abI
 abI
 aaj
@@ -45308,9 +45168,9 @@ aaf
 aaf
 aaj
 abI
-sez
+abI
 aar
-glu
+abI
 abI
 abI
 abI
@@ -45488,8 +45348,8 @@ abp
 glu
 glu
 abn
-gPR
-abn
+aar
+abI
 abI
 abI
 abI
@@ -45665,10 +45525,10 @@ aaf
 abp
 abr
 abr
-nEC
+abr
 abp
 tOe
-abn
+abI
 abI
 abI
 abI
@@ -45677,9 +45537,9 @@ aaf
 abI
 abI
 abI
-kTq
+aar
 abn
-abn
+abI
 abI
 abI
 abI
@@ -45697,11 +45557,11 @@ xib
 abg
 abg
 abg
-fLc
-fLc
+abi
+abi
 abo
 abi
-hoE
+abi
 fLc
 abg
 tTs
@@ -45847,10 +45707,10 @@ abr
 wDI
 abr
 fgu
-abn
+abI
 aaj
 abI
-abU
+abI
 dwM
 dwM
 aaj
@@ -45858,7 +45718,7 @@ abI
 aap
 aar
 abn
-abn
+abI
 abI
 aaj
 abI
@@ -45875,13 +45735,13 @@ aNf
 xib
 abg
 abg
-fLc
-fLc
-fLc
 abi
 abi
-abo
-hoE
+abi
+abi
+abi
+abi
+abi
 abg
 tTs
 abg
@@ -46026,7 +45886,7 @@ abw
 abr
 abr
 fgu
-abn
+abI
 abI
 abI
 aaf
@@ -46037,7 +45897,7 @@ abI
 aaj
 aar
 abn
-abn
+abI
 abI
 abI
 abI
@@ -46054,13 +45914,13 @@ aNf
 xib
 abg
 abg
-fLc
-fLc
-fLc
-euU
-euU
-fLc
-fLc
+abi
+abi
+abi
+abi
+abo
+abi
+abi
 abg
 tTs
 abg
@@ -46205,18 +46065,18 @@ abt
 abr
 abw
 fgu
-abn
+abI
 abI
 abI
 abI
 aaf
 aaf
 aaf
-sez
+abI
 abI
 juQ
 abn
-abn
+abI
 abI
 abI
 abI
@@ -46377,14 +46237,14 @@ aab
 aaf
 aaf
 aag
-aak
+abI
 abp
 abr
 abr
 abr
 abp
-oWX
-abn
+abI
+abI
 abI
 abI
 abI
@@ -46395,7 +46255,7 @@ aaf
 abI
 aar
 glu
-aay
+abI
 abI
 aaj
 abI
@@ -46556,13 +46416,13 @@ aab
 aaf
 aaf
 aag
-oWX
-oWX
+abI
+abI
 fgu
 fgu
 fgu
-oWX
-oWX
+abI
+abI
 abI
 abI
 abI
@@ -46574,7 +46434,7 @@ abI
 abI
 juQ
 glu
-glu
+abI
 abI
 abI
 abI
@@ -46736,11 +46596,11 @@ aaf
 aaf
 aaf
 abI
-abn
-abn
-abn
-abn
-abn
+abI
+abI
+abI
+abI
+abI
 abI
 abI
 abI
@@ -46753,7 +46613,7 @@ abI
 abI
 aar
 abn
-abn
+abI
 abI
 abI
 abI
@@ -46929,10 +46789,10 @@ abI
 aaj
 abI
 abI
-sez
+abI
 aar
 abn
-abn
+abI
 abI
 aaj
 abI
@@ -47111,7 +46971,7 @@ abI
 aaf
 sLE
 abn
-abn
+abI
 abI
 abI
 abI

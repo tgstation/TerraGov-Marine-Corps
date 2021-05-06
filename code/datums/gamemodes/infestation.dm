@@ -10,7 +10,11 @@
 /datum/game_mode/infestation/post_setup()
 	. = ..()
 	for(var/i in GLOB.xeno_weed_node_turfs)
-		new /obj/effect/alien/weeds/node(i)
+		new /obj/effect/landmark/weed_node(i)
+	for(var/turf/T AS in GLOB.xeno_resin_wall_turfs)
+		T.ChangeTurf(/turf/closed/wall/resin, /turf/closed/wall/resin)
+	for(var/i in GLOB.xeno_resin_door_turfs)
+		new /obj/structure/mineral_door/resin(i)
 
 /datum/game_mode/infestation/scale_roles()
 	. = ..()
