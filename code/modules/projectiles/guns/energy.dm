@@ -570,7 +570,7 @@
 	load_method = CELL //codex stuff
 	ammo = /datum/ammo/energy/lasgun/marine
 	ammo_diff = null
-	cell_type = /obj/item/cell/lasgun/marine
+	cell_type = /obj/item/cell/lasgun/lasrifle/marine
 	charge_cost = 10
 	gun_firemode = GUN_FIREMODE_AUTOMATIC
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_AUTOMATIC)
@@ -644,7 +644,7 @@
 	load_method = CELL //codex stuff
 	ammo = /datum/ammo/energy/lasgun/marine
 	ammo_diff = null
-	cell_type = /obj/item/cell/lasgun/marine
+	cell_type = /obj/item/cell/lasgun/lasrifle/marine
 	charge_cost = 20
 	gun_firemode = GUN_FIREMODE_AUTOMATIC
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_AUTOMATIC)
@@ -720,7 +720,7 @@
 	load_method = CELL //codex stuff
 	ammo = /datum/ammo/energy/lasgun/marine
 	ammo_diff = null
-	cell_type = /obj/item/cell/lasgun/marine
+	cell_type = /obj/item/cell/lasgun/lasrifle/marine
 	charge_cost = 15
 	gun_firemode = GUN_FIREMODE_AUTOMATIC
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_BURSTFIRE)
@@ -796,7 +796,7 @@
 	load_method = CELL //codex stuff
 	ammo = /datum/ammo/energy/lasgun/marine/sniper
 	ammo_diff = null
-	cell_type = /obj/item/cell/lasgun/marine
+	cell_type = /obj/item/cell/lasgun/lasrifle/marine
 	charge_cost = 50
 	gun_firemode = GUN_FIREMODE_AUTOMATIC
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_AUTOMATIC)
@@ -825,7 +825,7 @@
 	scatter_unwielded = 10
 	mode_list = list(
 		"Standard" = /datum/lasrifle/base/energy_sniper_mode/standard,
-		"Overcharge" = /datum/lasrifle/base/energy_sniper_mode/heat,
+		"Heat" = /datum/lasrifle/base/energy_sniper_mode/heat,
 	)
 
 /datum/lasrifle/base/energy_sniper_mode/standard
@@ -861,7 +861,7 @@
 	load_method = CELL //codex stuff
 	ammo = /datum/ammo/energy/lasgun/marine/autolaser
 	ammo_diff = null
-	cell_type = /obj/item/cell/lasgun/marine
+	cell_type = /obj/item/cell/lasgun/lasrifle/marine
 	charge_cost = 3
 	gun_firemode = GUN_FIREMODE_AUTOMATIC
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_AUTOMATIC)

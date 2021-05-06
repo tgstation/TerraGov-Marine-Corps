@@ -42,7 +42,7 @@
 		/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_carbine = 10,
 		/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_mlaser = 10,
 		/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_pistol = 10,
-		/obj/item/cell/lasgun/marine = 125,
+		/obj/item/cell/lasgun/lasrifle/marine = 125,
 		/obj/item/weapon/gun/shotgun/pump/t35 = 10,
 		/obj/item/weapon/gun/shotgun/combat/standardmarine = 10,
 		/obj/item/ammo_magazine/shotgun = 10,
@@ -97,7 +97,7 @@
 			/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_carbine = 250,
 			/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_mlaser = 200,
 			/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_pistol = 250,
-			/obj/item/cell/lasgun/marine = 1000,
+			/obj/item/cell/lasgun/lasrifle/marine = 1000,
 		),
 		"SMGs" = list(
 			/obj/item/weapon/gun/smg/standard_smg = 250,
@@ -233,7 +233,7 @@
 		/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_carbine = 10,
 		/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_mlaser = 10,
 		/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_pistol = 10,
-		/obj/item/cell/lasgun/marine = 125,
+		/obj/item/cell/lasgun/lasrifle/marine = 125,
 		/obj/item/explosive/grenade/frag = 15,
 		/obj/item/attachable/bayonetknife = 20,
 		/obj/item/weapon/throwing_knife = 5,
@@ -350,7 +350,7 @@
 		/obj/item/ammo_magazine/standard_gpmg = 3,
 		/obj/item/ammo_magazine/rifle/standard_dmr = 5,
 		/obj/item/ammo_magazine/rifle/standard_br = 10,
-		/obj/item/cell/lasgun/marine = 125,
+		/obj/item/cell/lasgun/lasrifle/marine = 125,
 		/obj/item/ammo_magazine/pistol/plasma_pistol = 50,
 		/obj/item/ammo_magazine/shotgun/buckshot = 3,
 		/obj/item/ammo_magazine/shotgun/flechette = 3,
@@ -379,7 +379,7 @@
 
 	product_ads = "Power cell running low? Recharge here!;Need a charge?;Power up!;Electrifying!;Empower yourself!"
 	products = list(
-		/obj/item/cell/lasgun/marine = 10,
+		/obj/item/cell/lasgun/lasrifle/marine = 10,
 	)
 
 

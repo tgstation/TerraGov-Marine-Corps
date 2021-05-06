@@ -92,19 +92,10 @@
 	var/remaining = CEILING((charge / max(maxcharge, 1)) * 100, 25)
 	icon_state = "[base_ammo_icon]_[remaining]"
 
-/obj/item/cell/lasgun/marine
+/obj/item/cell/lasgun/lasrifle/marine
 	name = "\improper Terra Experimental standard battery"
-	desc = "A specialized high density battery used to power most marine laser guns."
+	desc = "A specialized high density battery used to power most standard marine laser guns."
 	base_ammo_icon = "te"
 	icon_state = "te"
 	maxcharge = 600
-	w_class = WEIGHT_CLASS_NORMAL
 	gun_type = /obj/item/weapon/gun/energy/lasgun
-
-/obj/item/cell/lasgun/marine/Initialize()
-	. = ..()
-	update_icon()
-
-/obj/item/cell/lasgun/marine/update_icon()
-	var/remaining = CEILING((charge / max(maxcharge, 1)) * 100, 25)
-	icon_state = "[base_ammo_icon]_[remaining]"
