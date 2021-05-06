@@ -536,6 +536,7 @@
 
 	cant_hold = list(
 		/obj/item/weapon/gun/revolver/standard_revolver,
+		/obj/item/weapon/gun/revolver/mateba,
 	)
 
 
