@@ -13,4 +13,4 @@ endmode
 
 mode Distress Signal
 	requiredplayers 2
-endmode 
+endmode
