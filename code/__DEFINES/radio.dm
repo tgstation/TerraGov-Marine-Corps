@@ -78,8 +78,21 @@
 #define FREQ_BRAVO		1363
 #define FREQ_CHARLIE	1365
 #define FREQ_DELTA		1367
+#define FREQ_AI			1369
 
-#define FREQ_AI			1383
+#define FREQ_COMMAND_REBEL 		1371
+#define FREQ_MEDICAL_REBEL		1373
+#define FREQ_ENGINEERING_REBEL	1375
+#define FREQ_CAS_REBEL			1377
+#define FREQ_REQUISITIONS_REBEL	1379
+
+#define FREQ_ALPHA_REBEL		1381
+#define FREQ_BRAVO_REBEL		1383
+#define FREQ_CHARLIE_REBEL		1385
+#define FREQ_DELTA_REBEL		1387
+
+#define FREQ_AI_REBEL			1389
+
 #define FREQ_STATUS_DISPLAYS 1435
 
 #define MIN_FREQ 1441 // ------------------------------------------------------
