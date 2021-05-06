@@ -35,15 +35,13 @@
 //Mode defines
 #define MODE_INFESTATION		(1<<0)
 #define MODE_NO_LATEJOIN		(1<<1)
+#define MODE_HAS_FINISHED		(1<<2)
 #define MODE_FOG_ACTIVATED 		(1<<3)
 #define MODE_INFECTION			(1<<4)
-#define MODE_HVH				(1<<5)
+#define MODE_HUMAN_ANTAGS		(1<<5)
 #define MODE_LZ_SHUTTERS		(1<<6)
 #define MODE_XENO_SPAWN_PROTECT	(1<<7)
 #define MODE_XENO_RULER			(1<<8)
-#define MODE_PSY_POINTS			(1<<9)
-#define MODE_HIJACK_POSSIBLE	(1<<10)
-#define MODE_DEAD_GRAB_FORBIDDEN (1<<11)
 
 #define MODE_LANDMARK_RANDOM_ITEMS			(1<<0)
 #define MODE_LANDMARK_SPAWN_XENO_TUNNELS	(1<<1)
@@ -58,11 +56,12 @@
 
 #define MODE_GENERIC_DRAW_NUKE			"DRAW: Nuclear Explosion"
 
-#define MODE_CIVIL_WAR_LOYALIST_MAJOR	"Loyalist Major Victory"
-#define MODE_CIVIL_WAR_LOYALIST_MINOR	"Loyalist Minor Victory"
-#define MODE_CIVIL_WAR_DRAW_DEATH		"DRAW: Mutual Annihilation"
-#define MODE_CIVIL_WAR_REBEL_MINOR		"Rebel Minor Victory"
-#define MODE_CIVIL_WAR_REBEL_MAJOR		"Rebel Major Victory"
+#define MODE_BATTLEFIELD_NT_MAJOR		"NT PMC Major Success"
+#define MODE_BATTLEFIELD_M_MAJOR		"Marine Major Success"
+#define MODE_BATTLEFIELD_NT_MINOR		"NT PMC Minor Success"
+#define MODE_BATTLEFIELD_M_MINOR		"Marine Minor Success"
+#define MODE_BATTLEFIELD_DRAW_STALEMATE "DRAW: Stalemate"
+#define MODE_BATTLEFIELD_DRAW_DEATH		"DRAW: My Friends Are Dead"
 
 #define CRASH_EVAC_NONE "CRASH_EVAC_NONE"
 #define CRASH_EVAC_INPROGRESS "CRASH_EVAC_INPROGRESS"
