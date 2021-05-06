@@ -48,9 +48,9 @@ Make your way to the cafeteria for some post-cryosleep chow, and then get equipp
 
 /datum/job/terragov/squad/standard/rebel 
 	faction = FACTION_TERRAGOV_REBEL
+	access = list(ACCESS_IFF_MARINE_REBEL, ACCESS_MARINE_PREP_REBEL)
 	jobworth = list(
 		/datum/job/xenomorph = LARVA_POINTS_REGULAR,
-		/datum/job/terragov/squad/specialist = SPEC_POINTS_REGULAR,
 		/datum/job/terragov/squad/smartgunner/rebel = SMARTIE_POINTS_REGULAR,
 		/datum/job/terragov/silicon/synthetic/rebel = SYNTH_POINTS_REGULAR,
 	)
@@ -136,6 +136,8 @@ What you lack alone, you gain standing shoulder to shoulder with the men and wom
 
 /datum/job/terragov/squad/engineer/rebel 
 	faction = FACTION_TERRAGOV_REBEL
+	access = list(ACCESS_IFF_MARINE_REBEL, ACCESS_MARINE_PREP_REBEL, ACCESS_MARINE_ENGPREP_REBEL, ACCESS_CIVILIAN_ENGINEERING, ACCESS_MARINE_REMOTEBUILD_REBEL, ACCESS_MARINE_ENGINEERING_REBEL)
+	minimal_access = list(ACCESS_IFF_MARINE_REBEL, ACCESS_MARINE_PREP_REBEL, ACCESS_MARINE_ENGPREP_REBEL, ACCESS_CIVILIAN_ENGINEERING, ACCESS_MARINE_DROPSHIP_REBEL, ACCESS_MARINE_REMOTEBUILD_REBEL, ACCESS_MARINE_ENGINEERING_REBEL)
 	jobworth = list(/datum/job/xenomorph = LARVA_POINTS_REGULAR, /datum/job/terragov/squad/specialist = SPEC_POINTS_MEDIUM, /datum/job/terragov/squad/smartgunner/rebel = SMARTIE_POINTS_MEDIUM, /datum/job/terragov/silicon/synthetic/rebel = SYNTH_POINTS_REGULAR)
 
 /datum/job/terragov/squad/engineer/radio_help_message(mob/M)
@@ -219,6 +221,8 @@ Your squaddies will look to you when it comes to construction in the field of ba
 
 /datum/job/terragov/squad/corpsman/rebel 
 	faction = FACTION_TERRAGOV_REBEL
+	access = list(ACCESS_IFF_MARINE_REBEL, ACCESS_MARINE_PREP_REBEL, ACCESS_MARINE_MEDPREP_REBEL, ACCESS_MARINE_MEDBAY_REBEL)
+	minimal_access = list(ACCESS_IFF_MARINE_REBEL, ACCESS_MARINE_PREP_REBEL, ACCESS_MARINE_MEDPREP_REBEL, ACCESS_MARINE_MEDBAY_REBEL, ACCESS_MARINE_DROPSHIP_REBEL)
 	jobworth = list(/datum/job/terragov/silicon/synthetic/rebel = SYNTH_POINTS_REGULAR, /datum/job/xenomorph = LARVA_POINTS_REGULAR, /datum/job/terragov/squad/specialist = SPEC_POINTS_MEDIUM, /datum/job/terragov/squad/smartgunner/rebel = SMARTIE_POINTS_MEDIUM)
 
 /datum/job/terragov/squad/corpsman/radio_help_message(mob/M)
@@ -313,6 +317,8 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 
 /datum/job/terragov/squad/smartgunner/rebel 
 	faction = FACTION_TERRAGOV_REBEL
+	access = list(ACCESS_IFF_MARINE_REBEL, ACCESS_MARINE_PREP_REBEL, ACCESS_MARINE_SMARTPREP_REBEL)
+	minimal_access = list(ACCESS_IFF_MARINE_REBEL, ACCESS_MARINE_PREP_REBEL, ACCESS_MARINE_SMARTPREP_REBEL, ACCESS_MARINE_DROPSHIP_REBEL)
 
 /datum/job/terragov/squad/smartgunner/radio_help_message(mob/M)
 	. = ..()
@@ -440,6 +446,8 @@ You can serve a variety of roles, so choose carefully."})
 
 /datum/job/terragov/squad/leader/rebel
 	faction = FACTION_TERRAGOV_REBEL
+	access = list(ACCESS_IFF_MARINE_REBEL, ACCESS_MARINE_PREP_REBEL, ACCESS_MARINE_LEADER_REBEL, ACCESS_MARINE_DROPSHIP_REBEL)
+	minimal_access = list(ACCESS_IFF_MARINE_REBEL, ACCESS_MARINE_PREP_REBEL, ACCESS_MARINE_LEADER_REBEL, ACCESS_MARINE_DROPSHIP_REBEL)
 	jobworth = list(
 		/datum/job/terragov/squad/smartgunner/rebel = SMARTIE_POINTS_HIGH,
 		/datum/job/terragov/silicon/synthetic/rebel = SYNTH_POINTS_REGULAR,
@@ -533,6 +541,8 @@ You are also in charge of communicating with command and letting them know about
 
 /datum/job/terragov/squad/vatgrown/rebel 
 	faction = FACTION_TERRAGOV_REBEL
+	access = list(ACCESS_IFF_MARINE_REBEL, ACCESS_MARINE_PREP_REBEL)
+	minimal_access = list(ACCESS_IFF_MARINE_REBEL, ACCESS_MARINE_PREP_REBEL, ACCESS_MARINE_DROPSHIP_REBEL)
 	jobworth = list(/datum/job/xenomorph = LARVA_POINTS_REGULAR, /datum/job/terragov/silicon/synthetic/rebel = SYNTH_POINTS_REGULAR)
 
 /datum/job/terragov/squad/vatgrown/return_spawn_type(datum/preferences/prefs)

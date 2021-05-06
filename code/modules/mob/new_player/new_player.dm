@@ -180,17 +180,6 @@
 	return "\nYou will have to wait at least [GLOB.respawntime * 0.1] or [GLOB.xenorespawntime * 0.1] seconds before being able to respawn as a marine or alien, respectively!"
 
 /mob/new_player/proc/late_choices()
-	if(!SSticker.mode.flags_round_type & MODE_HVH)
-		standard_late_choices()
-		return
-	faction_late_choices()
-
-/// Late choices but you will only see one faction's job
-/mob/new_player/proc/faction_late_choices()
-	
-
-/// Standard late choices in all gamemodes but civil war
-/mob/new_player/proc/standard_late_choices()
 	var/list/dat = list("<div class='notice'>Round Duration: [DisplayTimeText(world.time - SSticker.round_start_time)]</div>")
 	if(!GLOB.enter_allowed)
 		dat += "<div class='notice red'>You may no longer join the round.</div><br>"
