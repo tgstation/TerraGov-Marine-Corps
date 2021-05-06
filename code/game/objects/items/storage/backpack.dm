@@ -16,6 +16,8 @@
 	cant_hold = list(
 		/obj/item/weapon/gun/revolver/standard_revolver,
 		obj/item/weapon/gun/revolver/mateba,
+		/obj/item/weapon/gun/revolver/m44,
+
 	)
 
 /obj/item/storage/backpack/attack_hand(mob/living/user)
