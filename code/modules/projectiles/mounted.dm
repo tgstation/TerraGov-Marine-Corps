@@ -1,11 +1,6 @@
 //Machine to hold a deployed gun. It aquired nearly all of its variables from the gun itself.
 /obj/machinery/mounted
 
-	name = "Generic Mounted Gun"
-	desc = "big gun"
-	icon = 'icons/obj/items/gun.dmi'
-	icon_state = "gun"
-
 	anchored = TRUE
 	resistance_flags = XENO_DAMAGEABLE
 	density = TRUE
@@ -21,10 +16,10 @@
 	///Flags inhereted from the deployed gun to determin if it can be picked up, or rotated.
 	var/deploy_flags
 
-	///Icon state for when the gun has ammo.
-	var/icon_full = "turret" 
+	///Icon that is default to this gun, used to replace usage of initial(icon_state) since that does not default back to what the icon_state this gun is deployed with
+	var/default_icon
 	///Icon state for when the gun has no ammo.
-	var/icon_empty = "turret_e"
+	var/icon_empty
 	//this is amount of tiles we shift our vision towards guns direction when operated, currently its max is 7
 	var/view_tile_offset = 3
 
@@ -35,14 +30,12 @@
 		sentry_status_hud.add_to_hud(src)
 
 ///generates the icon based on how much ammo it has.
-/obj/machinery/mounted/update_icon() 
-	if(icon_empty)
-		if(!gun.current_mag || istype(gun, /obj/item/weapon/gun/launcher))
-			icon_state = "[icon_empty]"
-	if(icon_full)
-		icon_state = "[icon_full]"
+/obj/machinery/mounted/update_icon_state() 
+
+	if(!gun.current_mag)
+		icon_state = icon_empty
 	else
-		icon_state = initial(icon_state)
+		icon_state = default_icon
 	hud_set_machine_health()
 	hud_set_gun_ammo()
 
@@ -58,41 +51,21 @@
 	obj_integrity = gun.deploy_integrity
 	max_integrity = gun.deploy_max_integrity
 	view_tile_offset = gun.deploy_view_offset
-	
-	if(!gun.deploy_name)
-		name = gun.name
-	else
-		name = gun.deploy_name
-	
-	if(!gun.deploy_desc)
-		desc = gun.desc
-	else
-		desc = gun.deploy_desc
 
-	if(!gun.deploy_icon)
-		icon = gun.icon
-	else
-		icon = gun.deploy_icon
+	name = gun.deploy_name ? gun.deploy_name : gun.name
 
-	if(!gun.deploy_icon_state)
-		icon_state = gun.icon_state
-	else
-		icon_state = gun.deploy_icon_state
+	desc = gun.deploy_desc ? gun.deploy_desc : gun.desc
 
-	if(!gun.deploy_icon_full)
-		icon_full = gun.icon_state
-	else
-		icon_full = gun.deploy_icon_full
+	icon = gun.deploy_icon ? gun.deploy_icon : gun.icon
 
-	if(!gun.deploy_icon_empty)
-		icon_full = gun.icon_state
-	else
-		icon_full = gun.deploy_icon_empty
+	default_icon = gun.deploy_icon_state ? gun.deploy_icon_state : gun.icon_state
+
+	icon_empty = gun.deploy_icon_empty ? gun.deploy_icon_empty : icon_state
 
 	gun.deployed = TRUE
 
 	setDir(direction)
-	update_icon()
+	update_icon_state()
 
 ///Handles dissasembly
 /obj/machinery/mounted/proc/disassemble(mob/user)
@@ -117,6 +90,7 @@
 /obj/machinery/mounted/Destroy()
 	if(gun)
 		qdel(gun)
+		gun = null
 	if(operator)
 		operator.unset_interaction()
 	. = ..()
@@ -148,9 +122,8 @@
 		if(!operator.interactee)
 			stack_trace("/obj/machinery/mounted/interact called by user [human_user] with an operator with a null interactee: [operator].")
 			operator = null //this shouldn't happen, but just in case
-		else
-			to_chat(human_user, "<span class='warning'>Someone's already controlling it.</span>")
-			return TRUE
+		to_chat(human_user, "<span class='warning'>Someone's already controlling it.</span>")
+		return TRUE
 	if(human_user.interactee) //Make sure we're not manning two guns at once, tentacle arms.
 		to_chat(human_user, "<span class='warning'>You're already busy!</span>")
 		return TRUE
@@ -169,7 +142,7 @@
 	. = ..()
 	gun.examine(user)
 
-/obj/machinery/mounted/attackby(obj/item/I, mob/user, params) //This will be how we take it apart.
+/obj/machinery/mounted/attackby(obj/item/I, mob/user, params) //This handles reloading the gun, if its in acid cant touch it.
 	. = ..()
 
 	if(!ishuman(user))
@@ -223,7 +196,7 @@
 	"<span class='notice'>You repair [src].</span>")
 	playsound(loc, 'sound/items/welder2.ogg', 25, TRUE)
 	repair_damage(120)
-	update_icon()
+	update_icon_state()
 	return TRUE
 
 ///Reloads gun
@@ -241,14 +214,14 @@
 
 		if(gun.current_mag)
 			gun.unload(user,0,1)
-			update_icon()
+			update_icon_state()
 
 		var/tac_reload_time = max(0.5 SECONDS, 1.5 SECONDS - user.skills.getRating("firearms") * 5)
 		if(!do_after(user, tac_reload_time, TRUE, ammo_magazine))
 			return
 	
 		gun.reload(user, ammo_magazine)
-		update_icon()
+		update_icon_state()
 
 ///Sets the user as manning the internal gun
 /obj/machinery/mounted/on_set_interaction(mob/user)
@@ -264,7 +237,8 @@
 		user.client.pixel_x = 0
 		user.client.pixel_y = 0
 	operator = null
-	gun.un_man()
+	if(gun)
+		gun.un_man()
 
 ///makes sure you can see and or use the gun
 /obj/machinery/mounted/check_eye(mob/user)
@@ -286,18 +260,19 @@
 		stack_trace("[src] has its view_tile offset set higher than 7, please don't.")
 
 	user.client.change_view(WORLD_VIEW)
+	var/view_offset = view_tile_offset * 32
 	switch(dir)
 		if(NORTH)
 			user.client.pixel_x = 0
-			user.client.pixel_y = view_tile_offset * 32
+			user.client.pixel_y = view_offset
 		if(SOUTH)
 			user.client.pixel_x = 0
-			user.client.pixel_y = -1 * view_tile_offset * 32
+			user.client.pixel_y = -1 * view_offset
 		if(EAST)
-			user.client.pixel_x = view_tile_offset * 32
+			user.client.pixel_x = view_offset
 			user.client.pixel_y = 0
 		if(WEST)
-			user.client.pixel_x = -1 * view_tile_offset * 32
+			user.client.pixel_x = -1 * view_offset
 			user.client.pixel_y = 0
 
 //Mapbound version, it is initialized directly so it requires a gun to be set with it.

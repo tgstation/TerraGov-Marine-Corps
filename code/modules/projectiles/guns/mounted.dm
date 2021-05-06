@@ -60,7 +60,6 @@
     deploy_icon = 'icons/Marine/marine-hmg.dmi'
     deploy_icon_state = "turret"
 
-    deploy_icon_full = "turret"
     deploy_icon_empty = "turret_e"
 
 ///This and get_ammo_count is to make sure the ammo counter functions.
@@ -90,7 +89,6 @@
     deploy_desc = "A TL-102 heavy smartgun mounted upon a small reinforced post with sandbags to provide a small machinegun nest for all your defense purpose needs.</span>"
 
     deploy_icon_state = "entrenched"
-    deploy_icon_full = "entrenched"
     deploy_icon_empty = "entrenched_e"
 
 //This is my meme version, the first version of the TL-102 to have auto-fire, revel in its presence.

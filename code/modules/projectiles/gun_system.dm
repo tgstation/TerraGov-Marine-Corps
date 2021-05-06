@@ -158,8 +158,6 @@
 	///Icon state of the machine created once deployed, if null and deployed, it defaults to this objects icon_state
 	var/deploy_icon_state
 
-	///Icon state of the machine created once deployed and if it has ammo, if null and deployed, it defaults to this objects icon_state
-	var/deploy_icon_full
 	///Icon state of the machine created once deployed and if it does not have ammo, if null and deployed, it defaults to this objects icon_state
 	var/deploy_icon_empty
 
@@ -257,6 +255,8 @@
 		icon_state = base_gun_icon
 	update_item_state(user)
 	update_mag_overlay(user)
+	if(deployed)
+		loc.update_icon_state()
 
 
 /obj/item/weapon/gun/update_item_state(mob/user)
