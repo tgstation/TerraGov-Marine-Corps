@@ -15446,7 +15446,7 @@
 	},
 /area/lv624/ground/jungle2)
 "oph" = (
-/obj/structure/resin/xeno_turret,
+/obj/effect/landmark/xeno_turret_spawn,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central1)
 "oqF" = (
