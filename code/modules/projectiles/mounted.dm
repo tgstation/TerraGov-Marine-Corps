@@ -91,8 +91,7 @@
 	if(gun)
 		qdel(gun)
 		gun = null
-	if(operator)
-		operator.unset_interaction()
+	operator?.unset_interaction()
 	. = ..()
 
 ///Left in from old TL-102 code
@@ -120,7 +119,7 @@
 		return TRUE
 	if(operator) //If there is already a operator then they're manning it.
 		if(!operator.interactee)
-			stack_trace("/obj/machinery/mounted/interact called by user [human_user] with an operator with a null interactee: [operator].")
+			stack_trace("/obj/machinery/mounted/interact(mob/user) called by user [human_user] with an operator with a null interactee: [operator].")
 			operator = null //this shouldn't happen, but just in case
 		to_chat(human_user, "<span class='warning'>Someone's already controlling it.</span>")
 		return TRUE
@@ -237,8 +236,7 @@
 		user.client.pixel_x = 0
 		user.client.pixel_y = 0
 	operator = null
-	if(gun)
-		gun.un_man()
+	gun?.un_man()
 
 ///makes sure you can see and or use the gun
 /obj/machinery/mounted/check_eye(mob/user)
