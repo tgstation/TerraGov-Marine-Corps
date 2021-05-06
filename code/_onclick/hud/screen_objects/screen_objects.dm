@@ -688,7 +688,7 @@
 		var/obj/machinery/mounted/mounted_gun = user.interactee
 		G = mounted_gun.gun
 
-	else if(!istype(G))
+	else if(!istype(G)) //If it is not a deployed gun, makes sure the user is actually holding a gun.
 		return
 
 	if(!G.hud_enabled || !(G.flags_gun_features & GUN_AMMO_COUNTER))

@@ -22,7 +22,6 @@
 	. = ..()
 	new /obj/item/weapon/gun/mounted(src) //gun itself
 	new /obj/item/ammo_magazine/mounted(src) //ammo for the gun
-	new /obj/item/ammo_magazine/mounted(src)
 
 //TL-102, now with full auto. It is not a superclass of deployed guns, however there are a few varients.
 /obj/item/weapon/gun/mounted
@@ -68,14 +67,12 @@
 /obj/item/weapon/gun/mounted/get_ammo_type()
 	if(!ammo)
 		return list("unknown", "unknown")
-	else
-		return list(ammo.hud_state, ammo.hud_state_empty)
+	return list(ammo.hud_state, ammo.hud_state_empty)
 
 /obj/item/weapon/gun/mounted/get_ammo_count()
 	if(!current_mag)
 		return in_chamber ? 1 : 0
-	else
-		return in_chamber ? (current_mag.current_rounds + 1) : current_mag.current_rounds
+	return in_chamber ? (current_mag.current_rounds + 1) : current_mag.current_rounds
 
 ///Unmovable ship mounted version.
 /obj/item/weapon/gun/mounted/hsg_nest
@@ -85,9 +82,9 @@
 
     current_mag = /obj/item/ammo_magazine/mounted/hsg_nest
 
-    pickup_disabled = TRUE
+    deploy_flags = DEPLOYED_NO_PICKUP
 
-    deployed_view_offset = 6
+    deploy_view_offset = 6
 
     deploy_name = "\improper TL-102 heavy smartgun nest"
     deploy_desc = "A TL-102 heavy smartgun mounted upon a small reinforced post with sandbags to provide a small machinegun nest for all your defense purpose needs.</span>"

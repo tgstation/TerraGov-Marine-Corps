@@ -138,22 +138,29 @@
 	///Var that determins the state of the gun, whether it is deployed within a machine, or not.
 	var/deployed = FALSE
 
-	///if TRUE the weapon cannot be picked up once deployed.
-	var/pickup_disabled = FALSE
-	///if TRUE the weapon cannot be rotated once deployed.
-	var/locked = FALSE
+	///List of flags for deployed machine operation. Flags can be found in __Defines/conflict.dm 
+	var/deploy_flags
 
+	///The deployed weapons current integrity, this is used to keep track of the current weapons health.
 	var/deploy_integrity = 100
+	///The deployed machines max integrity, this is only used in machine repairing and does not change.
 	var/deploy_max_integrity = 100
 
-	var/deployed_view_offset = 3
+	///The amount of tiles the users view shifts once deployed and operated.
+	var/deploy_view_offset = 3
 
-	var/deploy_name = "Generic Gun"
-	var/deploy_desc = "gun go boom"
-	var/deploy_icon = 'icons/obj/items/gun.dmi'
-	var/deploy_icon_state = "gun"
+	///Name of the machine created once deployed, if null and deployed, it defaults to this objects name
+	var/deploy_name
+	///Description of the machine created once deployed, if null and deployed, it defaults to this objects description
+	var/deploy_desc
+	///Icon of the machine created once deployed, if null and deployed, it defaults to this objects icon
+	var/deploy_icon
+	///Icon state of the machine created once deployed, if null and deployed, it defaults to this objects icon_state
+	var/deploy_icon_state
 
+	///Icon state of the machine created once deployed and if it has ammo, if null and deployed, it defaults to this objects icon_state
 	var/deploy_icon_full
+	///Icon state of the machine created once deployed and if it does not have ammo, if null and deployed, it defaults to this objects icon_state
 	var/deploy_icon_empty
 
 //----------------------------------------------------------
@@ -357,29 +364,31 @@
 
 ///This is called once the gun is attempting to be used once deployed, this is so that the gun can fire without needing to be within the users hands.
 /obj/item/weapon/gun/proc/manned(mob/user)
-	if(!gun_user)
-		gun_user = user
-		RegisterSignal(gun_user, COMSIG_MOB_MOUSEDOWN, .proc/start_fire)
-		RegisterSignal(gun_user, COMSIG_MOB_MOUSEUP, .proc/stop_fire)
-		RegisterSignal(gun_user, COMSIG_MOB_MOUSEDRAG, .proc/change_target)
-		for(var/X in actions)
-			var/datum/action/A = X
-			A.give_action(gun_user)
-		var/obj/screen/ammo/hud = gun_user.hud_used.ammo
-		hud_enabled ? hud.add_hud(gun_user) : hud.remove_hud(gun_user)
-		hud.update_hud(gun_user)
+	if(gun_user)
+		return
+	gun_user = user
+	RegisterSignal(gun_user, COMSIG_MOB_MOUSEDOWN, .proc/start_fire)
+	RegisterSignal(gun_user, COMSIG_MOB_MOUSEUP, .proc/stop_fire)
+	RegisterSignal(gun_user, COMSIG_MOB_MOUSEDRAG, .proc/change_target)
+	for(var/X in actions)
+		var/datum/action/A = X
+		A.give_action(gun_user)
+	var/obj/screen/ammo/hud = gun_user.hud_used.ammo
+	hud_enabled ? hud.add_hud(gun_user) : hud.remove_hud(gun_user)
+	hud.update_hud(gun_user)
 
 ///Does the opposite of manned()
 /obj/item/weapon/gun/proc/un_man()
-	if(gun_user)
-		UnregisterSignal(gun_user, list(COMSIG_MOB_MOUSEDOWN, COMSIG_MOB_MOUSEUP, COMSIG_MOB_MOUSEDRAG))
-		gun_user.client.mouse_pointer_icon = initial(gun_user.client.mouse_pointer_icon)
-		for(var/X in actions)
-			var/datum/action/A = X
-			A.remove_action(gun_user)
-		var/obj/screen/ammo/hud = gun_user.hud_used.ammo
-		hud.remove_hud(gun_user)
-		gun_user = null
+	if(!gun_user)
+		return
+	UnregisterSignal(gun_user, list(COMSIG_MOB_MOUSEDOWN, COMSIG_MOB_MOUSEUP, COMSIG_MOB_MOUSEDRAG))
+	gun_user.client.mouse_pointer_icon = initial(gun_user.client.mouse_pointer_icon)
+	for(var/X in actions)
+		var/datum/action/A = X
+		A.remove_action(gun_user)
+	var/obj/screen/ammo/hud = gun_user.hud_used.ammo
+	hud.remove_hud(gun_user)
+	gun_user = null
 
 
 //----------------------------------------------------------
@@ -665,7 +674,7 @@ and you're good to go.
 */
 /obj/item/weapon/gun/proc/load_into_chamber(mob/user)
 
-	if(flags_gun_features & GUN_NO_FIRING_IN_HAND && !deployed)
+	if(flags_gun_features & GUN_NO_WIELDING && !deployed)
 		to_chat(user, "<span class='notice'>You cannot fire [src] while it is not deployed.</span>")
 
 	//The workhorse of the bullet procs.
@@ -970,7 +979,7 @@ and you're good to go.
 			parent_user.setDir(direction)
 			return TRUE
 		else if (!(direction & angle) && target.loc != loc && target.loc != parent_user.loc) //Checks if the target is 90 degrees from the gun, if so it rotates the gun to face the target.
-			if(locked)
+			if(parent.deploy_flags & DEPLOYED_NO_ROTATE)
 				to_chat(parent_user, "This one is anchored in place and cannot be rotated.")
 				return FALSE
 

@@ -78,12 +78,14 @@
 #define GUN_WIELDED_STABLE_FIRING_ONLY	(1<<18)
 #define GUN_IS_DEPLOYABLE           (1<<19)
 #define GUN_NO_WIELDING             (1<<20)
-#define GUN_NO_FIRING_IN_HAND       (1<<21)
 
 #define GUN_FIREMODE_SEMIAUTO "semi-auto fire mode"
 #define GUN_FIREMODE_BURSTFIRE "burst-fire mode"
 #define GUN_FIREMODE_AUTOMATIC "automatic fire mode"
 #define GUN_FIREMODE_AUTOBURST "auto-burst-fire mode"
+
+#define DEPLOYED_NO_PICKUP  (1<<0) //Disables mounted gun pickup
+#define DEPLOYED_NO_ROTATE  (1<<1) //Disables mounted guns abilities to rotate.
 
 //Gun attachable related flags.
 //flags_attach_features
