@@ -731,6 +731,7 @@ to_chat will check for valid clients itself already so no need to double check f
 	if(difference < 0)
 		if(xeno_job.total_positions < (-difference + xeno_job.current_positions))
 			xeno_job.set_job_positions(-difference + xeno_job.current_positions)
+
 	for(var/obj/structure/resin/silo/silo AS in GLOB.xeno_resin_silos)
 		if(!is_ground_level(silo.z))
 			continue
@@ -1180,7 +1181,10 @@ to_chat will check for valid clients itself already so no need to double check f
 	xeno_message("We don't have any silos! The hive will collapse if nothing is done", "xenoannounce", 6, TRUE)
 	D.siloless_hive_timer = addtimer(CALLBACK(D, /datum/game_mode.proc/siloless_hive_collapse), 5 MINUTES, TIMER_STOPPABLE)
 
-///Add a mob to the candidate queue, the first mobs of the queue will have priority on new larva spots
+/**
+ * Add a mob to the candidate queue, the first mobs of the queue will have priority on new larva spots
+ * return TRUE if the observer was added, FALSE if it was removed
+ */
 /datum/hive_status/proc/add_to_larva_candidate_queue(mob/dead/observer/observer)
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
 	var/stored_larva = xeno_job.total_positions - xeno_job.current_positions
@@ -1191,12 +1195,23 @@ to_chat will check for valid clients itself already so no need to double check f
 		attempt_to_spawn_larva(observer)
 		return
 	if(LAZYFIND(candidate, observer))
-		to_chat(observer, "<span class='warning'>You are already in queue!</span>")
-		return
+		remove_from_larva_candidate_queue(observer)
+		return FALSE
 	LAZYADD(candidate, observer)
 	RegisterSignal(observer, COMSIG_PARENT_QDELETING, .proc/clean_observer)
 	observer.larva_position =  LAZYLEN(candidate)
-	to_chat(observer, "<span class='warning'>There are no burrowed larvas or no silos. You are in position [observer.larva_position] to become a xeno</span>")
+	to_chat(observer, "<span class='warning'>There are no burrowed Larvae or no silos. You are in position [observer.larva_position] to become a Xenomorph.</span>")
+	return TRUE
+
+/// Remove an observer from the larva candidate queue
+/datum/hive_status/proc/remove_from_larva_candidate_queue(mob/dead/observer/observer)
+	LAZYREMOVE(candidate, observer)
+	UnregisterSignal(observer, COMSIG_PARENT_QDELETING)
+	to_chat(observer, "<span class='warning'>You left the Larva queue.</span>")
+	var/mob/dead/observer/observer_in_queue
+	for(var/i in 1 to LAZYLEN(candidate))
+		observer_in_queue = candidate[i]
+		observer_in_queue.larva_position = i
 
 ///Propose larvas until their is no more candidates, or no more burrowed
 /datum/hive_status/proc/give_larva_to_next_in_queue()

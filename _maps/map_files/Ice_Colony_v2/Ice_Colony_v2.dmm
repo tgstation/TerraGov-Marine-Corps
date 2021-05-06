@@ -31689,11 +31689,6 @@
 /obj/effect/alien/weeds/node,
 /turf/open/floor/plating,
 /area/ice_colony/underground/maintenance/central)
-"gkO" = (
-/obj/effect/turf_underlay/icefloor,
-/obj/structure/fence,
-/turf/closed/ice/thin/single,
-/area/ice_colony/exterior/surface/valley/southeast)
 "gly" = (
 /obj/effect/turf_underlay/icefloor,
 /obj/effect/alien/weeds/node,
@@ -32160,6 +32155,11 @@
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/ice_rock/southWall,
 /area/ice_colony/exterior/surface/cliff)
+"jPa" = (
+/obj/effect/turf_underlay/icefloor,
+/obj/structure/fence,
+/turf/closed/ice/thin/single,
+/area/ice_colony/exterior/surface/valley/southeast)
 "jPw" = (
 /obj/machinery/miner/damaged,
 /turf/open/floor/plating/ground/snow/layer2,
@@ -32637,11 +32637,6 @@
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/ice,
 /area/ice_colony/underground/maintenance/east)
-"nLv" = (
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
-/obj/structure/fence,
-/turf/open/floor/plating/ground/ice,
-/area/ice_colony/exterior/surface/valley/southeast)
 "nLw" = (
 /obj/machinery/computer/intel_computer,
 /turf/open/floor/tile/dark/yellow2{
@@ -32912,6 +32907,11 @@
 	dir = 10
 	},
 /area/ice_colony/exterior/surface/landing_pad)
+"pVD" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
+/obj/structure/fence,
+/turf/open/floor/plating/ground/ice,
+/area/ice_colony/exterior/surface/valley/southeast)
 "pYj" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/wall/r_wall,
@@ -33356,6 +33356,10 @@
 	dir = 9
 	},
 /area/ice_colony/exterior/surface/cliff)
+"toL" = (
+/obj/effect/landmark/dropship_start_location,
+/turf/open/floor/plating/ground/snow/layer0,
+/area/ice_colony/exterior/surface/clearing/north)
 "tto" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/closed/ice_rock/corners,
@@ -52245,7 +52249,7 @@ anu
 ahj
 akF
 akF
-akF
+toL
 akF
 aij
 akF
@@ -77997,7 +78001,7 @@ awL
 awL
 awL
 sGc
-nLv
+pVD
 nlt
 aUP
 aUP
@@ -83137,7 +83141,7 @@ aMt
 aMt
 aMt
 aMt
-gkO
+jPa
 aaU
 gtM
 aar

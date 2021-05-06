@@ -54,6 +54,8 @@
 /obj/machinery/computer/camera_advanced/remove_eye_control(mob/living/user)
 	if(!user)
 		return
+	if(!eyeobj)
+		return
 	for(var/V in actions)
 		var/datum/action/A = V
 		A.remove_action(user)
@@ -108,7 +110,7 @@
 		open_prompt(user)
 
 
-/obj/machinery/computer/camera_advanced/proc/open_prompt(mob/user)
+/obj/machinery/computer/camera_advanced/proc/open_prompt(mob/user, turf/premade_camera_location)
 	if(current_user)
 		to_chat(user, "The console is already in use!")
 		return
@@ -122,6 +124,11 @@
 		CreateEye()
 
 	if(!eyeobj.eye_initialized)
+		if(premade_camera_location)
+			eyeobj.eye_initialized = TRUE
+			give_eye_control(L)
+			eyeobj.setLoc(premade_camera_location)
+			return
 		var/camera_location
 		var/turf/myturf = get_turf(src)
 		if(eyeobj.use_static != USE_STATIC_NONE)
@@ -196,7 +203,7 @@
 /mob/camera/aiEye/remote
 	name = "Inactive Camera Eye"
 	ai_detector_visible = FALSE
-	var/sprint = 10
+	var/sprint = 10 //This number is not doing anything if it's not a multiple of 20
 	var/cooldown = 0
 	var/acceleration = FALSE
 	var/mob/living/eye_user = null
