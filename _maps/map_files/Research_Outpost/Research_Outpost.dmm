@@ -1015,10 +1015,6 @@
 	dir = 10
 	},
 /area/outpost/engineering)
-"fP" = (
-/obj/effect/landmark/dropship_start_location,
-/turf/open/floor/plating/ground/mars/random/sand,
-/area/outpost/yard/west)
 "fQ" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -4504,11 +4500,6 @@
 	dir = 5
 	},
 /area/outpost/hallway/east)
-"yy" = (
-/obj/structure/table/reinforced,
-/obj/machinery/computer/shuttle/shuttle_control/dropship1,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/outpost/lz1)
 "yB" = (
 /turf/closed/wall/r_wall,
 /area/outpost/science/security)
@@ -8078,6 +8069,10 @@
 /obj/item/tool/pen,
 /turf/open/floor/tile/dark/red2,
 /area/outpost/brig/gear_room)
+"RK" = (
+/obj/effect/landmark/dropship_start_location,
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/outpost/yard/west)
 "RL" = (
 /turf/open/floor/plating/ground/mars/dirttosand{
 	dir = 8
@@ -8400,6 +8395,11 @@
 	dir = 8
 	},
 /area/outpost/engineering/engine)
+"TC" = (
+/obj/structure/table/reinforced,
+/obj/machinery/computer/shuttle/shuttle_control/dropship,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/outpost/lz1)
 "TD" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
 	dir = 2
@@ -8797,6 +8797,13 @@
 	dir = 1
 	},
 /area/outpost/medbay)
+"VG" = (
+/obj/structure/table/reinforced,
+/obj/machinery/computer/shuttle/shuttle_control/dropship/two,
+/turf/open/floor/plating/ground/mars/dirttosand{
+	dir = 5
+	},
+/area/outpost/lz2)
 "VI" = (
 /obj/structure/largecrate/random/case,
 /turf/open/floor/tile/dark/brown2{
@@ -9488,13 +9495,6 @@
 "Zl" = (
 /turf/open/floor/plating/asteroidfloor,
 /area/outpost/arrivals)
-"Zm" = (
-/obj/structure/table/reinforced,
-/obj/machinery/computer/shuttle/shuttle_control/dropship1,
-/turf/open/floor/plating/ground/mars/dirttosand{
-	dir = 5
-	},
-/area/outpost/lz2)
 "Zn" = (
 /obj/machinery/door/airlock/mainship/research/glass/free_access{
 	dir = 8
@@ -21529,7 +21529,7 @@ Eb
 Eb
 gh
 Hc
-yy
+TC
 Hc
 Hc
 Hc
@@ -24348,7 +24348,7 @@ Jb
 Jb
 Jb
 Jb
-fP
+RK
 Jb
 Jb
 Jb
@@ -40357,7 +40357,7 @@ Hr
 gT
 BM
 hY
-Zm
+VG
 Qz
 Qz
 Qz

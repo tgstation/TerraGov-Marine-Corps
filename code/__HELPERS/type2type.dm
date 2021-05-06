@@ -273,6 +273,8 @@
 			return 'icons/mob/screen/clockwork.dmi'
 		if("White")
 			return 'icons/mob/screen/White.dmi'
+		if("Glass")
+			return 'icons/mob/screen/glass.dmi'
 	return 'icons/mob/screen/midnight.dmi'
 
 

@@ -1,0 +1,9 @@
+author: "TheOneAndMightyRed"
+delete-after: True
+changes: 
+  - rscadd: "Normandy dropship currently only on debugdalus"
+  - rscadd: "Shuttle Computer tgui"
+  - qol: "Shuttle computers (the on in hangar, CIC and LZs) now automatically relink to the active dropship"
+  - imageadd: "minor spritework on the normandy tileset"
+  - code_imp: "Multiple shuttles cannot have the same port as their destination"
+  - code_imp: "Changed shuttle computer typepaths to allow inheritance"
