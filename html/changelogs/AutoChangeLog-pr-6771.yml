@@ -1,5 +1,0 @@
-author: "Wayland-Smithy"
-delete-after: True
-changes: 
-  - bugfix: "Fixed resistance_flags for important xeno structures, unacidable + dropship immune."
-  - qol: "Added DROPSHIP_IMMUNE resistance flag to the VV bitfields list."
