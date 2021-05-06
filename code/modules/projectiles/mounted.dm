@@ -18,16 +18,15 @@
 	///Gun that does almost all the work when deployed. This type should not exist with a null 'gun'
 	var/obj/item/weapon/gun/gun
 
-	///Determines whether or not this can be picked up once its placed.
-	var/pickup_disabled = FALSE
+	///Flags inhereted from the deployed gun to determin if it can be picked up, or rotated.
+	var/deploy_flags
 
-	///Determines whether or not this can be turned once placed.
-	var/locked = FALSE
-
-	var/icon_full = "turret" //Icon state for when the gun has ammo.
-	var/icon_empty = "turret_e" //Empty
-	var/view_tile_offset = 3	//this is amount of tiles we shift our vision towards guns direction
-	var/view_tiles = WORLD_VIEW
+	///Icon state for when the gun has ammo.
+	var/icon_full = "turret" 
+	///Icon state for when the gun has no ammo.
+	var/icon_empty = "turret_e"
+	//this is amount of tiles we shift our vision towards guns direction when operated, currently its max is 7
+	var/view_tile_offset = 3
 
 /obj/machinery/mounted/Initialize()
 	. = ..()
@@ -55,19 +54,40 @@
 	gun = new_gun
 	gun.forceMove(src)
 
-	pickup_disabled = gun.pickup_disabled
-	locked = gun.locked
+	deploy_flags = gun.deploy_flags
 	obj_integrity = gun.deploy_integrity
 	max_integrity = gun.deploy_max_integrity
-	view_tile_offset = gun.deployed_view_offset
+	view_tile_offset = gun.deploy_view_offset
 	
-	name = gun.deploy_name
-	desc = gun.deploy_desc
-	icon = gun.deploy_icon
-	icon_state = gun.deploy_icon_state
+	if(!gun.deploy_name)
+		name = gun.name
+	else
+		name = gun.deploy_name
+	
+	if(!gun.deploy_desc)
+		desc = gun.desc
+	else
+		desc = gun.deploy_desc
 
-	icon_full = gun.deploy_icon_full
-	icon_empty = gun.deploy_icon_empty
+	if(!gun.deploy_icon)
+		icon = gun.icon
+	else
+		icon = gun.deploy_icon
+
+	if(!gun.deploy_icon_state)
+		icon_state = gun.icon_state
+	else
+		icon_state = gun.deploy_icon_state
+
+	if(!gun.deploy_icon_full)
+		icon_full = gun.icon_state
+	else
+		icon_full = gun.deploy_icon_full
+
+	if(!gun.deploy_icon_empty)
+		icon_full = gun.icon_state
+	else
+		icon_full = gun.deploy_icon_empty
 
 	gun.deployed = TRUE
 
@@ -76,7 +96,7 @@
 
 ///Handles dissasembly
 /obj/machinery/mounted/proc/disassemble(mob/user)
-	if(pickup_disabled)
+	if(deploy_flags & DEPLOYED_NO_PICKUP)
 		to_chat(user, "<span class='notice'>The [src] is anchored in place and cannot be disassembled.</span>")
 		return
 	to_chat(user, "<span class='notice'>You begin disassembling [src].</span>")
@@ -265,7 +285,7 @@
 	if(view_tile_offset > 7)
 		stack_trace("[src] has its view_tile offset set higher than 7, please don't.")
 
-	user.client.change_view(view_tiles)
+	user.client.change_view(WORLD_VIEW)
 	switch(dir)
 		if(NORTH)
 			user.client.pixel_x = 0
