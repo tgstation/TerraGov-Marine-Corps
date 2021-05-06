@@ -306,7 +306,7 @@
 
 	var/equipped_to_slot = flags_equip_slot & slotdefine2slotbit(slot)
 	if(equipped_to_slot) // flags_equip_slot is a bitfield
-		SEND_SIGNAL(src, COMSIG_ITEM_EQUIPPED_TO_SLOT, user)
+		SEND_SIGNAL(src, COMSIG_ITEM_EQUIPPED_TO_SLOT, user, slot)
 	else
 		SEND_SIGNAL(src, COMSIG_ITEM_EQUIPPED_NOT_IN_SLOT, user, slot)
 
