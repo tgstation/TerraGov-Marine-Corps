@@ -192,7 +192,7 @@
 	mobname = "Shaft Miner";
 	name = "Shaft Miner"
 	},
-/obj/structure/bed/nest,
+/obj/item/xenosqdqsdqsd_egg,
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves/northern)
 "aN" = (
@@ -204,7 +204,7 @@
 /area/icy_caves/caves/crashed_ship)
 "aP" = (
 /obj/effect/landmark/corpsespawner/doctor,
-/obj/structure/bed/nest,
+/obj/item/xenosqdqsdqsd_egg,
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves/northern)
 "aQ" = (
@@ -1366,10 +1366,6 @@
 	dir = 9
 	},
 /area/icy_caves/caves/east)
-"gj" = (
-/obj/effect/landmark/xeno_turret_spawn,
-/turf/open/floor/plating/ground/ice,
-/area/icy_caves/caves/south)
 "gk" = (
 /turf/closed/ice/thin/straight,
 /area/icy_caves/caves/east)
@@ -1680,6 +1676,11 @@
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves/west)
+"jE" = (
+/obj/structure/table/reinforced,
+/obj/machinery/computer/shuttle/shuttle_control/dropship,
+/turf/open/floor/plating/ground/snow,
+/area/lv624/lazarus/console)
 "jH" = (
 /obj/machinery/landinglight/ds1/delaythree{
 	dir = 4
@@ -2161,6 +2162,14 @@
 	},
 /turf/open/floor/tile/dark/brown2,
 /area/icy_caves/outpost/refinery)
+"mt" = (
+/obj/machinery/atmospherics/pipe/manifold/green/hidden{
+	dir = 1
+	},
+/obj/structure/cable,
+/obj/effect/landmark/dropship_start_location,
+/turf/open/floor/tile/dark,
+/area/icy_caves/outpost/outside)
 "mv" = (
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves)
@@ -3255,10 +3264,6 @@
 	dir = 8
 	},
 /area/icy_caves/outpost/medbay)
-"sB" = (
-/obj/effect/landmark/xeno_turret_spawn,
-/turf/open/floor/plating/ground/ice,
-/area/icy_caves/caves/northern)
 "sD" = (
 /obj/machinery/landinglight/ds1/delaythree{
 	dir = 8
@@ -3289,10 +3294,6 @@
 	dir = 1
 	},
 /area/icy_caves/outpost/security)
-"sP" = (
-/obj/effect/landmark/xeno_turret_spawn,
-/turf/open/floor/plating/ground/ice,
-/area/icy_caves/caves/west)
 "sQ" = (
 /obj/machinery/light/small,
 /turf/open/floor/freezer,
@@ -3933,11 +3934,6 @@
 	dir = 9
 	},
 /area/icy_caves/caves)
-"xF" = (
-/obj/structure/table/reinforced,
-/obj/machinery/computer/shuttle/shuttle_control/dropship1,
-/turf/open/floor/plating/ground/snow,
-/area/lv624/lazarus/console)
 "xH" = (
 /turf/closed/wall/r_wall,
 /area/space)
@@ -4759,6 +4755,11 @@
 	dir = 1
 	},
 /area/icy_caves/outpost/medbay)
+"El" = (
+/obj/structure/table/reinforced,
+/obj/machinery/computer/shuttle/shuttle_control/dropship/two,
+/turf/open/floor/tile/dark,
+/area/icy_caves/outpost/LZ2)
 "En" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
 	dir = 2
@@ -5761,10 +5762,6 @@
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/refinery)
-"LY" = (
-/obj/effect/landmark/xeno_turret_spawn,
-/turf/open/floor/plating/ground/ice,
-/area/icy_caves/caves/east)
 "LZ" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 1
@@ -6485,11 +6482,6 @@
 	dir = 4
 	},
 /area/icy_caves/caves)
-"RF" = (
-/obj/structure/table/reinforced,
-/obj/machinery/computer/shuttle/shuttle_control/dropship1,
-/turf/open/floor/tile/dark,
-/area/icy_caves/outpost/LZ2)
 "RG" = (
 /turf/closed/ice_rock/singleEnd{
 	dir = 1
@@ -6952,14 +6944,6 @@
 /obj/item/storage/fancy/vials,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/research)
-"Vj" = (
-/obj/machinery/atmospherics/pipe/manifold/green/hidden{
-	dir = 1
-	},
-/obj/structure/cable,
-/obj/effect/landmark/dropship_start_location,
-/turf/open/floor/tile/dark,
-/area/icy_caves/outpost/outside)
 "Vk" = (
 /obj/structure/cable,
 /turf/open/floor/plating/ground/snow,
@@ -11081,7 +11065,7 @@ WD
 UE
 AB
 Nr
-xF
+jE
 Zm
 bq
 BY
@@ -14431,7 +14415,7 @@ DK
 xa
 ZU
 ZW
-sP
+ZU
 ZU
 ZU
 ZU
@@ -17465,7 +17449,7 @@ pD
 XO
 XO
 HS
-Vj
+mt
 np
 np
 bf
@@ -21117,7 +21101,7 @@ ot
 Fu
 SR
 SR
-sB
+SR
 SR
 KU
 IC
@@ -21157,7 +21141,7 @@ ZB
 gq
 jA
 hJ
-gj
+ZT
 hR
 Xj
 ZT
@@ -23479,7 +23463,7 @@ wo
 YT
 YT
 Bz
-LY
+YT
 YT
 YT
 gc
@@ -26132,7 +26116,7 @@ SR
 YT
 YT
 YT
-LY
+YT
 YT
 YT
 YT
@@ -28827,7 +28811,7 @@ iQ
 kN
 kN
 kN
-RF
+El
 kN
 kN
 kN

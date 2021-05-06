@@ -128,6 +128,15 @@
 	. = ..()
 	return INITIALIZE_HINT_QDEL
 
+/obj/effect/landmark/xeno_resin_door
+	name = "xeno resin door spawn landmark"
+	icon = 'icons/Xeno/Effects.dmi'
+	icon_state = "resin"
+
+/obj/effect/landmark/xeno_resin_wall
+	name = "xeno resin wall spawn landmark"
+	icon = 'icons/Xeno/structures.dmi'
+	icon_state = "resin0"
 
 /obj/effect/landmark/xeno_silo_spawn
 	name = "xeno silo spawn landmark"
