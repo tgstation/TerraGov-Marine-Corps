@@ -88,10 +88,10 @@
 	take_damage(5, BURN, "fire")
 
 
-/obj/structure/flora/tree/update_icon()
-	overlays.Cut()
+/obj/structure/flora/tree/update_overlays()
+	. = ..()
 	if(on_fire)
-		overlays += "fire"
+		. += image(icon, "fire")
 
 /obj/structure/flora/stump
 	name = "stump"

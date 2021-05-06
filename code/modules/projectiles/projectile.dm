@@ -132,7 +132,7 @@
 	armor_type = ammo.armor_type
 
 //Target, firer, shot from. Ie the gun
-/obj/projectile/proc/fire_at(atom/target, atom/shooter, atom/source, range, speed, angle, recursivity)
+/obj/projectile/proc/fire_at(atom/target, atom/shooter, atom/source, range, speed, angle, recursivity, suppress_light = FALSE)
 	if(!isnull(speed))
 		projectile_speed = speed
 
@@ -282,8 +282,9 @@
 		qdel(src)
 		return
 
-	set_light_color(ammo.bullet_color)
-	set_light_on(TRUE)
+	if(!suppress_light)
+		set_light_color(ammo.bullet_color)
+		set_light_on(TRUE)
 
 	START_PROCESSING(SSprojectiles, src) //If no hits on the first moves, enter the processing queue for next.
 

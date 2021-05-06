@@ -37,6 +37,8 @@
 	var/turf/designating_target_loc
 	/// The console is unusable when jammed
 	var/jammed = FALSE
+	/// If the user wants to see with night vision on
+	var/nvg_vision_mode = FALSE
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/Initialize(mapload)
 	. = ..()
@@ -80,6 +82,10 @@
 		return
 	..()
 
+///Change the fly state of the shuttle, called when a new shuttle port is reached
+/obj/machinery/computer/camera_advanced/shuttle_docker/proc/shuttle_arrived()
+	return
+
 /obj/machinery/computer/camera_advanced/shuttle_docker/give_actions(mob/living/user)
 	if(jumpto_ports.len)
 		jump_action = new /datum/action/innate/camera_jump/shuttle_docker
@@ -99,7 +105,7 @@
 	if(QDELETED(shuttle_port))
 		shuttle_port = null
 		return
-
+	shuttle_port.shuttle_computer = src
 	eyeobj = new /mob/camera/aiEye/remote/shuttle_docker(null, src)
 	var/mob/camera/aiEye/remote/shuttle_docker/the_eye = eyeobj
 	the_eye.setDir(shuttle_port.dir)
@@ -133,7 +139,7 @@
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/remove_eye_control(mob/living/user)
 	. = ..()
-	if(QDELETED(user) || !user.client)
+	if(QDELETED(user) || !user.client || !eyeobj)
 		return
 	var/mob/camera/aiEye/remote/shuttle_docker/the_eye = eyeobj
 	var/list/to_remove = list()
@@ -235,6 +241,25 @@
 	y_offset = -Tmp
 	checkLandingSpot()
 
+/// Checks if the currently hovered area is accessible by the shuttle
+/obj/machinery/computer/camera_advanced/shuttle_docker/proc/check_hovering_spot(turf/next_turf)
+	if(!next_turf)
+		return
+	var/mob/camera/aiEye/remote/shuttle_docker/the_eye = eyeobj
+	var/list/image_cache = the_eye.placement_images
+	for(var/i in 1 to image_cache.len)
+		var/image/I = image_cache[i]
+		var/list/coords = image_cache[I]
+		var/turf/T = locate(next_turf.x + coords[1], next_turf.y + coords[2], next_turf.z)
+		var/area/A = get_area(T)
+		if(!A)
+			return FALSE
+		if(A.ceiling == CEILING_NONE || A.ceiling == CEILING_GLASS || A.ceiling ==CEILING_METAL)
+			continue
+		return FALSE
+	return TRUE
+
+
 /// Checks if the currently hovered area is a valid landing spot
 /obj/machinery/computer/camera_advanced/shuttle_docker/proc/checkLandingSpot()
 	var/mob/camera/aiEye/remote/shuttle_docker/the_eye = eyeobj
@@ -283,6 +308,10 @@
 		if(hidden_turf_info)
 			. = SHUTTLE_DOCKER_BLOCKED_BY_HIDDEN_PORT
 
+	for(var/obj/O in T)
+		if(CHECK_BITFIELD(O.resistance_flags, DROPSHIP_IMMUNE))
+			return SHUTTLE_DOCKER_BLOCKED
+
 	if(length(whitelist_turfs))
 		var/turf_type = hidden_turf_info ? hidden_turf_info[2] : T.type
 		if(!is_type_in_typecache(turf_type, whitelist_turfs))
@@ -316,10 +345,20 @@
 	use_static = USE_STATIC_NONE
 	var/list/placement_images = list()
 	var/list/placed_images = list()
+	/// If it is possible to have night vision, if false the user will get turf vision
+	var/nvg_vision_possible = TRUE
 
 /mob/camera/aiEye/remote/shuttle_docker/Initialize(mapload, obj/machinery/computer/camera_advanced/origin)
 	src.origin = origin
 	return ..()
+
+/mob/camera/aiEye/remote/shuttle_docker/relaymove(mob/user, direct)
+	var/turf/T = get_turf(get_step(src, direct))
+	var/obj/machinery/computer/camera_advanced/shuttle_docker/console = origin
+	if(console.check_hovering_spot(T) != nvg_vision_possible) //Cannot see in caves
+		nvg_vision_possible = !nvg_vision_possible
+		update_remote_sight(user)
+	setLoc(T)
 
 /mob/camera/aiEye/remote/shuttle_docker/setLoc(T)
 	..()
@@ -327,6 +366,14 @@
 	console.checkLandingSpot()
 
 /mob/camera/aiEye/remote/shuttle_docker/update_remote_sight(mob/living/user)
+	var/obj/machinery/computer/camera_advanced/shuttle_docker/console = origin
+	if(nvg_vision_possible && console.nvg_vision_mode)
+		user.see_in_dark = 6
+		user.sight = 0
+		user.lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE
+		user.sync_lighting_plane_alpha()
+		return TRUE
+	user.see_in_dark = 0
 	user.sight = BLIND|SEE_TURFS
 	user.lighting_alpha = LIGHTING_PLANE_ALPHA_INVISIBLE
 	user.sync_lighting_plane_alpha()

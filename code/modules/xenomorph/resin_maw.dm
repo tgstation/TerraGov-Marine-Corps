@@ -70,8 +70,8 @@
 	message_admins("A resin maw started digging at [AREACOORD(src)]!")
 	priority_announce("Warning: unusual seismic readings detected. Our data suggests that an unidentified entity is starting to burrow under the area of operations, likely affiliated by Xenomorphs. Terminate it as soon as possible.", title = "TGMC Intel Division")
 	xeno_message("A resin maw has started digging and will emerge at its destination in 5 minutes", "xenoannounce", hivenumber = associated_hive.hivenumber, target = src)
-	for(var/obj/structure/resin/silo/silo AS in GLOB.xeno_resin_silos)
-		silo.destroy_silently()
+	for(var/silo in GLOB.xeno_resin_silos)
+		qdel(silo)
 	SSpoints.xeno_points_by_hive[associated_hive.hivenumber] = 0
 	tunneling = TRUE
 	addtimer(CALLBACK(src, .proc/prepare_emerge, target), 10 SECONDS)
@@ -230,7 +230,7 @@
 	var/list/placed_images = list()
 
 /mob/camera/aiEye/remote/burrower_camera/setLoc(T)
-	..()
+	. = ..()
 	var/obj/structure/resin/resin_maw/maw = origin
 	maw?.checkExitSpot()
 

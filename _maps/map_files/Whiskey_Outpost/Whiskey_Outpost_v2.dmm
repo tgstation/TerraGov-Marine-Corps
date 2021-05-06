@@ -72,7 +72,7 @@
 /area/whiskey_outpost)
 "aw" = (
 /obj/structure/barricade/sandbags{
-	pixel_z = -7
+	pixel_y = -7
 	},
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost)
@@ -166,7 +166,7 @@
 /area/whiskey_outpost)
 "aQ" = (
 /obj/structure/barricade/sandbags{
-	pixel_z = -7
+	pixel_y = -7
 	},
 /obj/machinery/marine_turret/premade,
 /obj/machinery/light{
@@ -186,8 +186,8 @@
 /obj/structure/paper_bin,
 /obj/item/tool/pen,
 /obj/item/flashlight/lamp{
-	pixel_w = 6;
-	pixel_z = 10
+	pixel_x = 6;
+	pixel_y = 10
 	},
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost)
@@ -528,8 +528,8 @@
 	},
 /obj/structure/barricade/sandbags{
 	dir = 1;
-	pixel_w = 0;
-	pixel_z = 2
+	pixel_x = 0;
+	pixel_y = 2
 	},
 /turf/open/floor/plating/asteroidwarning{
 	dir = 5
@@ -646,8 +646,8 @@
 /area/whiskey_outpost/outside/north)
 "cz" = (
 /obj/structure/barricade/sandbags{
-	pixel_w = 0;
-	pixel_z = -7
+	pixel_x = 0;
+	pixel_y = -7
 	},
 /obj/structure/barricade/sandbags{
 	dir = 4
@@ -841,7 +841,7 @@
 /area/whiskey_outpost)
 "de" = (
 /obj/structure/barricade/sandbags{
-	pixel_z = -7
+	pixel_y = -7
 	},
 /turf/open/floor/plating/asteroidwarning,
 /area/whiskey_outpost/outside/north)
@@ -883,8 +883,8 @@
 "dp" = (
 /obj/structure/barricade/sandbags{
 	dir = 1;
-	pixel_w = 0;
-	pixel_z = 2
+	pixel_x = 0;
+	pixel_y = 2
 	},
 /turf/open/floor/plating/asteroidwarning{
 	dir = 1
@@ -946,8 +946,8 @@
 	},
 /obj/structure/barricade/sandbags{
 	dir = 1;
-	pixel_w = 0;
-	pixel_z = 2
+	pixel_x = 0;
+	pixel_y = 2
 	},
 /turf/open/floor/plating/warning{
 	dir = 9
@@ -969,7 +969,7 @@
 /area/whiskey_outpost)
 "dE" = (
 /obj/structure/barricade/sandbags{
-	pixel_z = -7
+	pixel_y = -7
 	},
 /obj/structure/barricade/sandbags{
 	dir = 8
@@ -990,7 +990,7 @@
 /area/whiskey_outpost)
 "dM" = (
 /obj/structure/barricade/sandbags{
-	pixel_z = -7
+	pixel_y = -7
 	},
 /obj/structure/barricade/sandbags{
 	dir = 4
@@ -1016,13 +1016,13 @@
 /area/whiskey_outpost/outside/north)
 "dS" = (
 /obj/structure/barricade/sandbags{
-	pixel_z = -7
+	pixel_y = -7
 	},
 /turf/open/floor/plating/ground/dirt,
 /area/whiskey_outpost/outside/north)
 "dT" = (
 /obj/structure/barricade/sandbags{
-	pixel_z = -7
+	pixel_y = -7
 	},
 /obj/structure/barricade/sandbags{
 	dir = 8
@@ -1084,7 +1084,7 @@
 /area/whiskey_outpost)
 "ef" = (
 /obj/structure/barricade/sandbags{
-	pixel_z = -7
+	pixel_y = -7
 	},
 /obj/structure/barricade/sandbags{
 	dir = 4
@@ -1235,7 +1235,7 @@
 /area/whiskey_outpost)
 "eL" = (
 /obj/structure/barricade/sandbags{
-	pixel_z = -7
+	pixel_y = -7
 	},
 /obj/machinery/marine_turret/premade,
 /turf/open/floor/plating/ground/dirtgrassborder/corner2{
@@ -1244,13 +1244,13 @@
 /area/whiskey_outpost/outside/north)
 "eM" = (
 /obj/structure/barricade/sandbags{
-	pixel_z = -7
+	pixel_y = -7
 	},
 /turf/open/floor/plating/ground/dirtgrassborder/corner2,
 /area/whiskey_outpost/outside/north)
 "eN" = (
 /obj/structure/barricade/sandbags{
-	pixel_z = -7
+	pixel_y = -7
 	},
 /turf/open/ground/jungle,
 /area/whiskey_outpost/outside/north)
@@ -1261,7 +1261,7 @@
 /area/whiskey_outpost)
 "eQ" = (
 /obj/structure/barricade/sandbags{
-	pixel_z = -7
+	pixel_y = -7
 	},
 /turf/open/floor/plating/ground/dirt,
 /area/whiskey_outpost/outside/east)
@@ -1428,7 +1428,7 @@
 /area/whiskey_outpost)
 "fh" = (
 /obj/structure/barricade/sandbags{
-	pixel_z = -7
+	pixel_y = -7
 	},
 /turf/open/floor/plating/ground/dirt,
 /area/whiskey_outpost/outside/west)
@@ -1609,7 +1609,7 @@
 /area/whiskey_outpost/outside/north)
 "fF" = (
 /obj/structure/barricade/sandbags{
-	pixel_z = -7
+	pixel_y = -7
 	},
 /turf/open/floor/plating/ground/dirt,
 /area/whiskey_outpost/outside/south)
@@ -1836,8 +1836,8 @@
 	},
 /obj/structure/barricade/sandbags{
 	dir = 1;
-	pixel_w = 0;
-	pixel_z = 2
+	pixel_x = 0;
+	pixel_y = 2
 	},
 /turf/open/floor/plating/warning{
 	dir = 5
@@ -2667,7 +2667,7 @@
 /area/whiskey_outpost/outside/east)
 "kI" = (
 /obj/structure/barricade/sandbags{
-	pixel_z = -7
+	pixel_y = -7
 	},
 /turf/open/floor/plating/warning,
 /area/whiskey_outpost)
@@ -2733,7 +2733,6 @@
 /area/whiskey_outpost/outside/south)
 "lb" = (
 /obj/effect/spawner/gibspawner/human,
-/obj/item/weapon/gun/pistol/m4a3,
 /turf/open/floor/plating/ground/dirt,
 /area/whiskey_outpost/outside/south)
 "lc" = (
@@ -2829,10 +2828,6 @@
 /obj/structure/flora/ausbushes/reedbush,
 /turf/open/ground/river,
 /area/whiskey_outpost/outside/south)
-"lx" = (
-/obj/item/weapon/gun/rifle/m41a1,
-/turf/open/ground/river,
-/area/whiskey_outpost/outside/south)
 "ly" = (
 /obj/structure/flora/ausbushes/stalkybush,
 /turf/open/ground/river,
@@ -2863,7 +2858,7 @@
 /area/whiskey_outpost/outside/south)
 "lE" = (
 /obj/structure/barricade/sandbags{
-	pixel_z = -7
+	pixel_y = -7
 	},
 /obj/effect/landmark/start/job/squadleader,
 /turf/open/floor/plating/asteroidfloor,
@@ -2877,19 +2872,18 @@
 /obj/structure/grille/broken,
 /obj/effect/decal/cleanable/blood/writing,
 /obj/item/shard,
-/obj/item/weapon/gun/pistol/m4a3,
 /turf/open/floor/plating,
 /area/whiskey_outpost/outside/south)
 "lH" = (
 /obj/structure/barricade/sandbags{
-	pixel_z = -7
+	pixel_y = -7
 	},
 /obj/effect/landmark/start/job/squadengineer,
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost)
 "lI" = (
 /obj/structure/barricade/sandbags{
-	pixel_z = -7
+	pixel_y = -7
 	},
 /obj/effect/landmark/start/job/squadmarine,
 /turf/open/floor/plating/asteroidfloor,
@@ -2900,7 +2894,7 @@
 /area/whiskey_outpost/outside/east)
 "lK" = (
 /obj/structure/barricade/sandbags{
-	pixel_z = -7
+	pixel_y = -7
 	},
 /turf/open/shuttle/dropship/eight,
 /area/whiskey_outpost/outside/east)
@@ -2971,11 +2965,6 @@
 /area/whiskey_outpost)
 "lW" = (
 /obj/structure/rack,
-/obj/item/mortal_shell/flash,
-/obj/item/mortal_shell/flash,
-/obj/item/mortal_shell/flash,
-/obj/item/mortal_shell/flash,
-/obj/item/mortal_shell/flash,
 /turf/open/floor/plating/asteroidplating,
 /area/whiskey_outpost)
 "lX" = (
@@ -3550,7 +3539,7 @@
 /area/whiskey_outpost/outside/north)
 "oE" = (
 /obj/structure/barricade/sandbags{
-	pixel_z = -7
+	pixel_y = -7
 	},
 /obj/structure/platform{
 	dir = 8
@@ -3601,7 +3590,7 @@
 /area/whiskey_outpost/outside/east)
 "oM" = (
 /obj/structure/barricade/sandbags{
-	pixel_z = -7
+	pixel_y = -7
 	},
 /obj/structure/platform_decoration{
 	dir = 8
@@ -3720,7 +3709,7 @@
 /area/whiskey_outpost/outside/north)
 "pe" = (
 /obj/structure/barricade/sandbags{
-	pixel_z = -7
+	pixel_y = -7
 	},
 /obj/structure/platform_decoration{
 	dir = 1
@@ -3745,7 +3734,7 @@
 /area/whiskey_outpost/outside/north)
 "ph" = (
 /obj/structure/barricade/sandbags{
-	pixel_z = -7
+	pixel_y = -7
 	},
 /obj/structure/platform_decoration,
 /turf/open/floor/plating/ground/dirt,
@@ -3860,7 +3849,7 @@
 	dir = 8
 	},
 /obj/structure/barricade/sandbags{
-	pixel_z = -7
+	pixel_y = -7
 	},
 /turf/open/floor/plating/asteroidplating,
 /area/whiskey_outpost)
@@ -4014,8 +4003,8 @@
 "qg" = (
 /obj/structure/barricade/sandbags{
 	dir = 1;
-	pixel_w = 0;
-	pixel_z = 2
+	pixel_x = 0;
+	pixel_y = 2
 	},
 /obj/structure/barricade/sandbags{
 	dir = 8
@@ -4099,7 +4088,7 @@
 /area/whiskey_outpost)
 "qs" = (
 /obj/structure/barricade/sandbags{
-	pixel_z = -7
+	pixel_y = -7
 	},
 /obj/structure/barricade/sandbags{
 	dir = 8
@@ -4252,8 +4241,8 @@
 "qN" = (
 /obj/structure/barricade/sandbags{
 	dir = 1;
-	pixel_w = 0;
-	pixel_z = 2
+	pixel_x = 0;
+	pixel_y = 2
 	},
 /turf/open/floor/plating/warning{
 	dir = 1
@@ -4283,8 +4272,8 @@
 	},
 /obj/structure/barricade/sandbags{
 	dir = 1;
-	pixel_w = 0;
-	pixel_z = 2
+	pixel_x = 0;
+	pixel_y = 2
 	},
 /turf/open/floor/plating/asteroidwarning{
 	dir = 9
@@ -4587,7 +4576,7 @@
 	},
 /obj/effect/ai_node,
 /obj/structure/barricade/sandbags{
-	pixel_z = -7
+	pixel_y = -7
 	},
 /turf/open/floor/plating/ground/dirt,
 /area/whiskey_outpost/outside/north)
@@ -4772,13 +4761,13 @@
 	dir = 4
 	},
 /obj/structure/barricade/sandbags{
-	pixel_z = -7
+	pixel_y = -7
 	},
 /turf/open/floor/plating/ground/dirt,
 /area/whiskey_outpost/outside/north)
 "vY" = (
 /obj/structure/barricade/sandbags{
-	pixel_z = -7
+	pixel_y = -7
 	},
 /turf/open/shuttle/dropship/five,
 /area/whiskey_outpost/outside/east)
@@ -5033,7 +5022,7 @@
 /area/whiskey_outpost)
 "Ap" = (
 /obj/structure/barricade/sandbags{
-	pixel_z = -7
+	pixel_y = -7
 	},
 /obj/structure/barricade/sandbags{
 	dir = 4
@@ -5153,7 +5142,7 @@
 /area/whiskey_outpost/outside/west)
 "Bp" = (
 /obj/structure/barricade/sandbags{
-	pixel_z = -7
+	pixel_y = -7
 	},
 /obj/structure/barricade/sandbags{
 	dir = 4
@@ -5317,7 +5306,7 @@
 	dir = 8
 	},
 /obj/structure/barricade/sandbags{
-	pixel_z = -7
+	pixel_y = -7
 	},
 /turf/open/floor/plating/ground/dirt,
 /area/whiskey_outpost/outside/north)
@@ -5331,8 +5320,8 @@
 	},
 /obj/structure/barricade/sandbags{
 	dir = 1;
-	pixel_w = 0;
-	pixel_z = 2
+	pixel_x = 0;
+	pixel_y = 2
 	},
 /turf/open/floor/plating/ground/dirt,
 /area/whiskey_outpost/outside/north)
@@ -5346,7 +5335,7 @@
 /area/whiskey_outpost)
 "Eu" = (
 /obj/structure/barricade/sandbags{
-	pixel_z = -7
+	pixel_y = -7
 	},
 /obj/structure/barricade/sandbags{
 	dir = 8
@@ -5384,8 +5373,8 @@
 /area/whiskey_outpost/outside/east)
 "EQ" = (
 /obj/structure/barricade/sandbags{
-	pixel_w = 0;
-	pixel_z = -7
+	pixel_x = 0;
+	pixel_y = -7
 	},
 /turf/open/floor/plating/warning{
 	dir = 2
@@ -5714,6 +5703,10 @@
 /obj/structure/barricade/plasteel,
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost/outside/west)
+"Lc" = (
+/obj/effect/landmark/dropship_start_location,
+/turf/open/floor/plating/asteroidfloor,
+/area/whiskey_outpost/outside/north)
 "Lj" = (
 /turf/open/floor/asteroidfloor,
 /area/whiskey_outpost/outside/east)
@@ -5804,7 +5797,7 @@
 /area/whiskey_outpost)
 "My" = (
 /obj/structure/barricade/sandbags{
-	pixel_z = -7
+	pixel_y = -7
 	},
 /obj/structure/barricade/sandbags{
 	dir = 4
@@ -5840,10 +5833,10 @@
 /area/whiskey_outpost)
 "Nr" = (
 /obj/structure/barricade/sandbags{
-	pixel_z = -7
+	pixel_y = -7
 	},
 /obj/structure/barricade/sandbags{
-	pixel_z = -7
+	pixel_y = -7
 	},
 /turf/open/floor/plating/ground/dirt,
 /area/whiskey_outpost/outside/north)
@@ -5918,7 +5911,7 @@
 /area/whiskey_outpost)
 "OR" = (
 /obj/structure/barricade/sandbags{
-	pixel_z = -7
+	pixel_y = -7
 	},
 /obj/structure/barricade/sandbags{
 	dir = 8
@@ -5931,7 +5924,7 @@
 /area/whiskey_outpost)
 "Pg" = (
 /obj/structure/barricade/sandbags{
-	pixel_z = -7
+	pixel_y = -7
 	},
 /turf/open/floor/plating/asteroidplating,
 /area/whiskey_outpost)
@@ -6099,7 +6092,7 @@
 /area/whiskey_outpost/outside/south)
 "Te" = (
 /obj/structure/barricade/sandbags{
-	pixel_z = -7
+	pixel_y = -7
 	},
 /turf/open/floor/plating/dmg1,
 /area/whiskey_outpost/outside/east)
@@ -6173,7 +6166,7 @@
 /area/whiskey_outpost)
 "Vc" = (
 /obj/structure/barricade/sandbags{
-	pixel_z = -7
+	pixel_y = -7
 	},
 /obj/structure/largecrate/supply/explosives/mines,
 /turf/open/floor/plating/asteroidfloor,
@@ -6202,7 +6195,7 @@
 /area/whiskey_outpost/outside/south)
 "Wl" = (
 /obj/structure/barricade/sandbags{
-	pixel_z = -7
+	pixel_y = -7
 	},
 /obj/structure/barricade/sandbags{
 	dir = 4
@@ -10190,7 +10183,7 @@ hw
 lf
 lf
 ld
-lx
+kA
 lB
 kA
 lM
@@ -17189,7 +17182,7 @@ fs
 fs
 fs
 fs
-fs
+Lc
 fs
 fs
 hX
