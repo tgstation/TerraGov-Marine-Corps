@@ -634,7 +634,10 @@
 			var/list/part = splittext(kb_name, ":")
 			var/id = text2num(part[2])
 			var/datum/custom_emote/emote = custom_emotes[id]
-			emote.message = params["sentence"]
+			var/new_message = params["sentence"]
+			if(length(new_message) > 300)
+				return
+			emote.message = new_message
 			custom_emotes[id] = emote
 
 		if("setEmoteType")
