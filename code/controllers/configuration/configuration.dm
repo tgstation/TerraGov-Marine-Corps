@@ -289,8 +289,6 @@
 				currentmode.squads_max_number = text2num(data)
 			if("deploytimelock")
 				currentmode.deploy_time_lock = text2num(data) MINUTES
-			if("votable")
-				currentmode.votable = text2num(data)
 			if("endmode")
 				currentmode = null
 			else
