@@ -888,6 +888,6 @@
 	scatter = 0
 	scatter_unwielded = 10
 	fire_delay = 0.2 SECONDS
-	accuracy_mult = -0.1
+	accuracy_mult = = 0.9
 	accuracy_mult_unwielded = 0.6
 	scatter_unwielded = 10
