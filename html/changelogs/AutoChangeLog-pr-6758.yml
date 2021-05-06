@@ -1,4 +1,0 @@
-author: "Walarks"
-delete-after: True
-changes: 
-  - balance: "added a check for whether there is a wall at/behind/left/right of a silo spot before being able to place one"

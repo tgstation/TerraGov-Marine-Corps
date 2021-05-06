@@ -1,4 +1,4 @@
 author: "SkeletalElite"
 delete-after: True
 changes: 
-  - imageadd: "Added new \"Glass\" UI style"
+  - balance: "You can tac reload while moving"
