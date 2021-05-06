@@ -207,41 +207,18 @@
 		),
 	)
 
-/// HvH version of the vending machine, containing no snipers or slugs. and MGs, shotguns, grenades and scoped weapons are rarer
-/// want to get shotguns, scoped weapons and MGs? go to the cargo vendor instead.
-/obj/machinery/vending/marine/hvh
+
+/obj/machinery/vending/marine/shared/hvh
+
+	contraband = list(/obj/item/explosive/grenade/smokebomb = 50)
+
 	products = list(
-		/obj/item/weapon/gun/pistol/standard_pistol = 25,
-		/obj/item/ammo_magazine/pistol/standard_pistol = 30,
-		/obj/item/weapon/gun/pistol/standard_heavypistol = 10,
-		/obj/item/ammo_magazine/pistol/standard_heavypistol = 25,
-		/obj/item/weapon/gun/revolver/standard_revolver = 15,
-		/obj/item/ammo_magazine/revolver/standard_revolver = 25,
-		/obj/item/weapon/gun/smg/standard_machinepistol = 20,
-		/obj/item/ammo_magazine/smg/standard_machinepistol = 30,
-		/obj/item/weapon/gun/pistol/standard_pocketpistol = 25,
-		/obj/item/ammo_magazine/pistol/standard_pocketpistol = 50,
-		/obj/item/weapon/gun/smg/standard_smg = 20,
-		/obj/item/ammo_magazine/smg/standard_smg = 30,
-		/obj/item/weapon/gun/rifle/standard_carbine = 25,
-		/obj/item/ammo_magazine/rifle/standard_carbine = 25,
-		/obj/item/weapon/gun/rifle/standard_assaultrifle = 25,
-		/obj/item/ammo_magazine/rifle/standard_assaultrifle = 25,
-		/obj/item/weapon/gun/rifle/standard_br = 2,
-		/obj/item/ammo_magazine/rifle/standard_br = 10,
-		/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_rifle = 10,
-		/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_carbine = 10,
-		/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_mlaser = 10,
-		/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_pistol = 10,
-		/obj/item/cell/lasgun/lasrifle/marine = 125,
-		/obj/item/explosive/grenade/frag = 15,
-		/obj/item/attachable/bayonetknife = 20,
-		/obj/item/weapon/throwing_knife = 5,
-		/obj/item/storage/box/m94 = 5,
-		/obj/item/attachable/flashlight = 10,
-		/obj/item/explosive/grenade/mirage = 5,
-		/obj/item/weapon/powerfist = 3,
+
 	)
+
+/obj/machinery/vending/marine/shared/hvh/team_one
+
+/obj/machinery/vending/marine/shared/hvh/team_two
 
 /obj/machinery/vending/marine/cargo_supply
 	name = "\improper Operational Supplies Vendor"
