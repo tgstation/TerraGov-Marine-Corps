@@ -25,42 +25,42 @@
 
 //TL-102, now with full auto. It is not a superclass of deployed guns, however there are a few varients.
 /obj/item/weapon/gun/mounted
-    name = "\improper TL-102 mounted heavy smartgun"
-    desc = "The TL-102 heavy machinegun, it's too heavy to be wielded or operated without the tripod. IFF capable. No extra work required, just deploy it. Can be repaired with a blowtorch once deployed."
+	name = "\improper TL-102 mounted heavy smartgun"
+	desc = "The TL-102 heavy machinegun, it's too heavy to be wielded or operated without the tripod. IFF capable. No extra work required, just deploy it. Can be repaired with a blowtorch once deployed."
 
-    w_class = WEIGHT_CLASS_HUGE
-    flags_equip_slot = ITEM_SLOT_BACK
-    icon = 'icons/Marine/marine-hmg.dmi'
-    icon_state = "turret_icon"
+	w_class = WEIGHT_CLASS_HUGE
+	flags_equip_slot = ITEM_SLOT_BACK
+	icon = 'icons/Marine/marine-hmg.dmi'
+	icon_state = "turret_icon"
 
-    fire_sound = 'sound/weapons/guns/fire/hmg2.ogg'
-    reload_sound = 'sound/weapons/guns/interact/minigun_cocked.ogg'
+	fire_sound = 'sound/weapons/guns/fire/hmg2.ogg'
+	reload_sound = 'sound/weapons/guns/interact/minigun_cocked.ogg'
 
-    current_mag = /obj/item/ammo_magazine/mounted
+	current_mag = /obj/item/ammo_magazine/mounted
 
-    gun_iff_signal = list(ACCESS_IFF_MARINE)
+	gun_iff_signal = list(ACCESS_IFF_MARINE)
 
-    scatter = 20
-    fire_delay = 2
+	scatter = 20
+	fire_delay = 2
 
-    burst_amount = 3
-    burst_delay = 1
-    extra_delay = 1
-    
-    flags_gun_features = GUN_AUTO_EJECTOR|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER|GUN_IS_DEPLOYABLE|GUN_NO_WIELDING|GUN_WIELDED_FIRING_ONLY
-    gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC)
+	burst_amount = 3
+	burst_delay = 1
+	extra_delay = 1
 
-    deploy_time = 5 SECONDS
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER|GUN_IS_DEPLOYABLE|GUN_NO_WIELDING|GUN_WIELDED_FIRING_ONLY
+	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC)
 
-    deploy_integrity = 300
-    deploy_max_integrity = 300
+	deploy_time = 5 SECONDS
 
-    deploy_name = "\improper TL-102 mounted heavy smartgun"
-    deploy_desc = "A deployed and mounted heavy smartgun, ready to rock. It fires specialized tungsten rounds for increased armor penetration. Can be repaired with a blowtorch."
-    deploy_icon = 'icons/Marine/marine-hmg.dmi'
-    deploy_icon_state = "turret"
+	deploy_integrity = 300
+	deploy_max_integrity = 300
 
-    deploy_icon_empty = "turret_e"
+	deploy_name = "\improper TL-102 mounted heavy smartgun"
+	deploy_desc = "A deployed and mounted heavy smartgun, ready to rock. It fires specialized tungsten rounds for increased armor penetration. Can be repaired with a blowtorch."
+	deploy_icon = 'icons/Marine/marine-hmg.dmi'
+	deploy_icon_state = "turret"
+
+	deploy_icon_empty = "turret_e"
 
 ///This and get_ammo_count is to make sure the ammo counter functions.
 /obj/item/weapon/gun/mounted/get_ammo_type()
@@ -75,42 +75,42 @@
 
 ///Unmovable ship mounted version.
 /obj/item/weapon/gun/mounted/hsg_nest
-    name = "\improper TL-102 heavy smartgun nest"
-    desc = "A TL-102 heavy smartgun mounted upon a small reinforced post with sandbags to provide a small machinegun nest for all your defense purpose needs.</span>"
-    icon = 'icons/Marine/marine-hmg.dmi'
+	name = "\improper TL-102 heavy smartgun nest"
+	desc = "A TL-102 heavy smartgun mounted upon a small reinforced post with sandbags to provide a small machinegun nest for all your defense purpose needs.</span>"
+	icon = 'icons/Marine/marine-hmg.dmi'
 
-    current_mag = /obj/item/ammo_magazine/mounted/hsg_nest
+	current_mag = /obj/item/ammo_magazine/mounted/hsg_nest
 
-    deploy_flags = DEPLOYED_NO_PICKUP
+	deploy_flags = DEPLOYED_NO_PICKUP
 
-    deploy_view_offset = 6
+	deploy_view_offset = 6
 
-    deploy_name = "\improper TL-102 heavy smartgun nest"
-    deploy_desc = "A TL-102 heavy smartgun mounted upon a small reinforced post with sandbags to provide a small machinegun nest for all your defense purpose needs.</span>"
+	deploy_name = "\improper TL-102 heavy smartgun nest"
+	deploy_desc = "A TL-102 heavy smartgun mounted upon a small reinforced post with sandbags to provide a small machinegun nest for all your defense purpose needs.</span>"
 
-    deploy_icon_state = "entrenched"
-    deploy_icon_empty = "entrenched_e"
+	deploy_icon_state = "entrenched"
+	deploy_icon_empty = "entrenched_e"
 
 //This is my meme version, the first version of the TL-102 to have auto-fire, revel in its presence.
 /obj/item/weapon/gun/mounted/death
-    name = "\improper Death incarnate"
-    desc = "It looks like a regular TL-102, however glowing archaeic writing glows faintly on its sides and top. It beckons for blood."
-    icon = 'icons/Marine/marine-hmg.dmi'
+	name = "\improper Death incarnate"
+	desc = "It looks like a regular TL-102, however glowing archaeic writing glows faintly on its sides and top. It beckons for blood."
+	icon = 'icons/Marine/marine-hmg.dmi'
 
 
-    gun_iff_signal = list()
+	gun_iff_signal = list()
 
-    aim_slowdown = 3
-    scatter = 30
+	aim_slowdown = 3
+	scatter = 30
 
-    fire_delay = 0.1
-    burst_amount = 3
-    burst_delay = 0.1
+	fire_delay = 0.1
+	burst_amount = 3
+	burst_delay = 0.1
 
-    aim_slowdown = 3
-    wield_delay = 5 SECONDS
+	aim_slowdown = 3
+	wield_delay = 5 SECONDS
 
-    flags_gun_features = GUN_AUTO_EJECTOR|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER|GUN_IS_DEPLOYABLE
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER|GUN_IS_DEPLOYABLE
 
-    deploy_name = "\improper Death incarnate"
-    deploy_desc = "It looks like a regular TL-102, however glowing archaeic writing glows faintly on its sides and top. It beckons for blood."
+	deploy_name = "\improper Death incarnate"
+	deploy_desc = "It looks like a regular TL-102, however glowing archaeic writing glows faintly on its sides and top. It beckons for blood."
