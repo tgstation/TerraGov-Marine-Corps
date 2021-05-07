@@ -49,7 +49,10 @@ SUBSYSTEM_DEF(job)
 		if(!job.map_check())
 			continue
 		occupations += job
-		name_occupations[job.title] = job
+		var/job_name = job.title
+		if(job.faction == FACTION_TERRAGOV_REBEL)
+			job_name += " Rebel"
+		name_occupations[job_name] = job
 		type_occupations[J] = job
 	sortTim(occupations, /proc/cmp_job_display_asc)
 

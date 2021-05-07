@@ -29,6 +29,6 @@ endmap
 map sulaco
 endmap
 
-map pillar_of_summer_and_winter
+map twin_pillars
 	voteweight 0
 endmap

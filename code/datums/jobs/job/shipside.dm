@@ -76,7 +76,9 @@ Godspeed, captain! And remember, you are not above the law."})
 	back = /obj/item/storage/backpack/marine/satchel
 
 /datum/outfit/job/command/captain/rebel 
+	jobtype = /datum/job/terragov/command/captain/rebel
 	ears = /obj/item/radio/headset/mainship/mcom/rebel
+
 
 /datum/job/terragov/command/captain/after_spawn(mob/living/new_mob, mob/user, latejoin)
 	. = ..()
@@ -183,6 +185,7 @@ Make the TGMC proud!"})
 	suit_store = /obj/item/storage/belt/gun/pistol/m4a3/fieldcommander/
 
 /datum/outfit/job/command/fieldcommander/rebel 
+	jobtype = /datum/job/terragov/command/fieldcommander/rebel
 	ears = /obj/item/radio/headset/mainship/mcom/rebel
 
 
@@ -262,6 +265,7 @@ You are in charge of logistics and the overwatch system. You are also in line to
 	back = /obj/item/storage/backpack/marine/satchel
 
 /datum/outfit/job/command/staffofficer/rebel 
+	jobtype = /datum/job/terragov/command/staffofficer/rebel
 	ears = /obj/item/radio/headset/mainship/mcom/rebel 
 
 //Pilot Officer
@@ -345,7 +349,8 @@ If you are not piloting, there is an autopilot fallback for command, but don't l
 	l_store = /obj/item/hud_tablet/pilot
 	back = /obj/item/storage/backpack/marine/satchel
 
-/datum/outfit/job/command/pilot/rebel 
+/datum/outfit/job/command/pilot/rebel
+	jobtype = /datum/job/terragov/command/pilot/rebel
 	ears = /obj/item/radio/headset/mainship/mcom/rebel
 
 
@@ -438,6 +443,7 @@ You are also next in the chain of command, should the bridge crew fall in the li
 	back = /obj/item/storage/backpack/marine/satchel/tech
 
 /datum/outfit/job/engineering/chief/rebel 
+	jobtype = /datum/job/terragov/engineering/chief/rebel
 	ears = /obj/item/radio/headset/mainship/mcom/rebel
 
 //Ship Engineer
@@ -520,6 +526,7 @@ requisitions line and later on to be ready to send supplies for marines who are 
 	back = /obj/item/storage/backpack/marine/engineerpack
 
 /datum/outfit/job/engineering/tech/rebel 
+	jobtype = /datum/job/terragov/engineering/tech/rebel
 	ears = /obj/item/radio/headset/mainship/st/rebel
 
 /datum/job/terragov/requisitions
@@ -613,6 +620,7 @@ A happy ship is a well-functioning ship."})
 	back = /obj/item/storage/backpack/marine/satchel
 
 /datum/outfit/job/requisitions/officer/rebel 
+	jobtype = /datum/job/terragov/requisitions/officer/rebel
 	ears = /obj/item/radio/headset/mainship/mcom/rebel
 
 /datum/job/terragov/medical
@@ -691,6 +699,7 @@ Make sure that the doctors and nurses are doing their jobs and keeping the marin
 	back = /obj/item/storage/backpack/marine/satchel
 
 /datum/outfit/job/medical/professor/rebel
+	jobtype = /datum/job/terragov/medical/professor/rebel
 	ears = /obj/item/radio/headset/mainship/mcom/rebel
 
 /datum/outfit/job/medical/professor/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
@@ -777,6 +786,7 @@ You are also an expert when it comes to medication and treatment. If you do not 
 	back = /obj/item/storage/backpack/marine/satchel
 
 /datum/outfit/job/medical/medicalofficer/rebel
+	jobtype = /datum/job/terragov/medical/medicalofficer/rebel
 	ears = /obj/item/radio/headset/mainship/doc/rebel
 
 /datum/outfit/job/medical/medicalofficer/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
@@ -850,6 +860,7 @@ While the Corporate Liaison is not your boss, it would be wise to consult them o
 	back = /obj/item/storage/backpack/marine/satchel
 
 /datum/outfit/job/medical/researcher/rebel
+	jobtype = /datum/job/terragov/medical/researcher/rebel
 	ears = /obj/item/radio/headset/mainship/doc/rebel
 
 /datum/job/terragov/civilian
@@ -999,6 +1010,7 @@ In addition, being a Synthetic gives you knowledge in every field and specializa
 	back = /obj/item/storage/backpack/marine/satchel
 
 /datum/outfit/job/civilian/synthetic/rebel 
+	jobtype = /datum/job/terragov/silicon/synthetic/rebel
 	ears = /obj/item/radio/headset/mainship/mcom/rebel
 
 

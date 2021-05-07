@@ -136,6 +136,7 @@ What you lack alone, you gain standing shoulder to shoulder with the men and wom
 
 /datum/job/terragov/squad/engineer/rebel 
 	faction = FACTION_TERRAGOV_REBEL
+	outfit = /datum/outfit/job/marine/engineer/rebel
 	access = list(ACCESS_IFF_MARINE_REBEL, ACCESS_MARINE_PREP_REBEL, ACCESS_MARINE_ENGPREP_REBEL, ACCESS_CIVILIAN_ENGINEERING, ACCESS_MARINE_REMOTEBUILD_REBEL, ACCESS_MARINE_ENGINEERING_REBEL)
 	minimal_access = list(ACCESS_IFF_MARINE_REBEL, ACCESS_MARINE_PREP_REBEL, ACCESS_MARINE_ENGPREP_REBEL, ACCESS_CIVILIAN_ENGINEERING, ACCESS_MARINE_DROPSHIP_REBEL, ACCESS_MARINE_REMOTEBUILD_REBEL, ACCESS_MARINE_ENGINEERING_REBEL)
 	jobworth = list(/datum/job/xenomorph = LARVA_POINTS_REGULAR, /datum/job/terragov/squad/specialist = SPEC_POINTS_MEDIUM, /datum/job/terragov/squad/smartgunner/rebel = SMARTIE_POINTS_MEDIUM, /datum/job/terragov/silicon/synthetic/rebel = SYNTH_POINTS_REGULAR)
@@ -152,6 +153,9 @@ Your squaddies will look to you when it comes to construction in the field of ba
 
 	id = /obj/item/card/id/dogtag
 	back = /obj/item/storage/backpack/marine/satchel
+
+/datum/outfit/job/marine/engineer/rebel
+	jobtype = /datum/job/terragov/squad/engineer/rebel
 
 /datum/outfit/job/marine/engineer/equipped
 	name = "Squad Engineer (Equipped)"
@@ -221,6 +225,7 @@ Your squaddies will look to you when it comes to construction in the field of ba
 
 /datum/job/terragov/squad/corpsman/rebel 
 	faction = FACTION_TERRAGOV_REBEL
+	outfit = /datum/outfit/job/marine/corpsman/rebel
 	access = list(ACCESS_IFF_MARINE_REBEL, ACCESS_MARINE_PREP_REBEL, ACCESS_MARINE_MEDPREP_REBEL, ACCESS_MARINE_MEDBAY_REBEL)
 	minimal_access = list(ACCESS_IFF_MARINE_REBEL, ACCESS_MARINE_PREP_REBEL, ACCESS_MARINE_MEDPREP_REBEL, ACCESS_MARINE_MEDBAY_REBEL, ACCESS_MARINE_DROPSHIP_REBEL)
 	jobworth = list(/datum/job/terragov/silicon/synthetic/rebel = SYNTH_POINTS_REGULAR, /datum/job/xenomorph = LARVA_POINTS_REGULAR, /datum/job/terragov/squad/specialist = SPEC_POINTS_MEDIUM, /datum/job/terragov/squad/smartgunner/rebel = SMARTIE_POINTS_MEDIUM)
@@ -237,6 +242,8 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 	id = /obj/item/card/id/dogtag
 	back = /obj/item/storage/backpack/marine/corpsman
 
+/datum/outfit/job/marine/corpsman/rebel
+	jobtype = /datum/job/terragov/squad/corpsman/rebel
 /datum/outfit/job/marine/corpsman/equipped
 	name = "Squad Corpsman (Equipped)"
 
@@ -317,6 +324,7 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 
 /datum/job/terragov/squad/smartgunner/rebel 
 	faction = FACTION_TERRAGOV_REBEL
+	outfit = /datum/outfit/job/marine/smartgunner/rebel
 	access = list(ACCESS_IFF_MARINE_REBEL, ACCESS_MARINE_PREP_REBEL, ACCESS_MARINE_SMARTPREP_REBEL)
 	minimal_access = list(ACCESS_IFF_MARINE_REBEL, ACCESS_MARINE_PREP_REBEL, ACCESS_MARINE_SMARTPREP_REBEL, ACCESS_MARINE_DROPSHIP_REBEL)
 
@@ -346,6 +354,9 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 
 	id = /obj/item/card/id/dogtag
 	back = /obj/item/storage/backpack/marine/satchel
+
+/datum/outfit/job/marine/smartgunner/rebel
+	jobtype = /datum/job/terragov/squad/smartgunner/rebel
 
 /datum/outfit/job/marine/smartgunner/equipped
 	name = "Squad Smartgunner (Equipped)"
@@ -446,6 +457,7 @@ You can serve a variety of roles, so choose carefully."})
 
 /datum/job/terragov/squad/leader/rebel
 	faction = FACTION_TERRAGOV_REBEL
+	outfit = /datum/outfit/job/marine/leader/rebel
 	access = list(ACCESS_IFF_MARINE_REBEL, ACCESS_MARINE_PREP_REBEL, ACCESS_MARINE_LEADER_REBEL, ACCESS_MARINE_DROPSHIP_REBEL)
 	minimal_access = list(ACCESS_IFF_MARINE_REBEL, ACCESS_MARINE_PREP_REBEL, ACCESS_MARINE_LEADER_REBEL, ACCESS_MARINE_DROPSHIP_REBEL)
 	jobworth = list(
@@ -465,6 +477,9 @@ You are also in charge of communicating with command and letting them know about
 
 	id = /obj/item/card/id/dogtag
 	back = /obj/item/storage/backpack/marine/satchel
+
+/datum/outfit/job/marine/leader/rebel
+	jobtype = /datum/job/terragov/squad/leader/rebel
 
 /datum/outfit/job/marine/leader/equipped
 	name = "Squad Leader (Equipped)"
@@ -541,6 +556,7 @@ You are also in charge of communicating with command and letting them know about
 
 /datum/job/terragov/squad/vatgrown/rebel 
 	faction = FACTION_TERRAGOV_REBEL
+	outfit = /datum/outfit/job/marine/vatgrown/rebel
 	access = list(ACCESS_IFF_MARINE_REBEL, ACCESS_MARINE_PREP_REBEL)
 	minimal_access = list(ACCESS_IFF_MARINE_REBEL, ACCESS_MARINE_PREP_REBEL, ACCESS_MARINE_DROPSHIP_REBEL)
 	jobworth = list(/datum/job/xenomorph = LARVA_POINTS_REGULAR, /datum/job/terragov/silicon/synthetic/rebel = SYNTH_POINTS_REGULAR)
@@ -552,3 +568,6 @@ You are also in charge of communicating with command and letting them know about
 	name = SQUAD_VATGROWN
 	jobtype = /datum/job/terragov/squad/vatgrown
 	id = /obj/item/card/id/dogtag
+
+/datum/outfit/job/marine/vatgrown/rebel
+	jobtype = /datum/job/terragov/squad/vatgrown/rebel
