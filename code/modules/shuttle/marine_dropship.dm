@@ -684,6 +684,17 @@
 	icon_state = "console2"
 	possible_destinations = "lz1;lz2;alamo;normandy"
 
+/obj/machinery/computer/shuttle/marine_dropship/three
+	name = "\improper 'Triumph' flight controls"
+	desc = "The flight controls for the 'Triumph' Dropship."
+	possible_destinations = "lz1;triumph"
+	req_one_access = list(ACCESS_MARINE_DROPSHIP_REBEL, ACCESS_MARINE_LEADER_REBEL)
+
+/obj/machinery/computer/shuttle/marine_dropship/four
+	name = "\improper 'Victory' flight controls"
+	desc = "The flight controls for the 'Victory' Dropship."
+	possible_destinations = "lz2;victory"
+
 /obj/machinery/door/poddoor/shutters/transit/afterShuttleMove(turf/oldT, list/movement_force, shuttle_dir, shuttle_preferred_direction, move_dir, rotation)
 	. = ..()
 	if(SSmapping.level_has_any_trait(z, list(ZTRAIT_MARINE_MAIN_SHIP, ZTRAIT_GROUND)))
@@ -989,6 +1000,229 @@
 /obj/structure/dropship_piece/two/rearwing/rightrrbottom
 	icon_state = "blue_rearwing_rrrb"
 	opacity = FALSE
+
+
+/obj/structure/dropship_piece/three
+	name = "\improper Triumph"
+
+/obj/structure/dropship_piece/three/front
+	icon_state = "brown_front"
+	opacity = FALSE
+
+/obj/structure/dropship_piece/three/front/right
+	icon_state = "brown_fr"
+
+/obj/structure/dropship_piece/three/front/left
+	icon_state = "brown_fl"
+
+
+/obj/structure/dropship_piece/three/cockpit/left
+	icon_state = "brown_cockpit_fl"
+
+/obj/structure/dropship_piece/three/cockpit/right
+	icon_state = "brown_cockpit_fr"
+
+
+/obj/structure/dropship_piece/three/weapon
+	opacity = FALSE
+
+/obj/structure/dropship_piece/three/weapon/leftleft
+	icon_state = "brown_weapon_ll"
+
+/obj/structure/dropship_piece/three/weapon/leftright
+	icon_state = "brown_weapon_lr"
+
+/obj/structure/dropship_piece/three/weapon/rightleft
+	icon_state = "brown_weapon_rl"
+
+/obj/structure/dropship_piece/three/weapon/rightright
+	icon_state = "brown_weapon_rr"
+
+
+/obj/structure/dropship_piece/three/wing
+	opacity = FALSE
+
+/obj/structure/dropship_piece/three/wing/left/top
+	icon_state = "brown_wing_lt"
+
+/obj/structure/dropship_piece/three/wing/left/bottom
+	icon_state = "brown_wing_lb"
+
+/obj/structure/dropship_piece/three/wing/right/top
+	icon_state = "brown_wing_rt"
+
+/obj/structure/dropship_piece/three/wing/right/bottom
+	icon_state = "brown_wing_rb"
+
+
+/obj/structure/dropship_piece/three/corner/middleleft
+	icon_state = "brown_middle_lc"
+
+/obj/structure/dropship_piece/three/corner/middleright
+	icon_state = "brown_middle_rc"
+
+/obj/structure/dropship_piece/three/corner/rearleft
+	icon_state = "brown_rear_lc"
+
+/obj/structure/dropship_piece/three/corner/rearright
+	icon_state = "brown_rear_rc"
+
+
+/obj/structure/dropship_piece/three/engine
+	opacity = FALSE
+
+/obj/structure/dropship_piece/three/engine/lefttop
+	icon_state = "brown_engine_lt"
+
+/obj/structure/dropship_piece/three/engine/righttop
+	icon_state = "brown_engine_rt"
+
+/obj/structure/dropship_piece/three/engine/leftbottom
+	icon_state = "brown_engine_lb"
+
+/obj/structure/dropship_piece/three/engine/rightbottom
+	icon_state = "brown_engine_rb"
+
+
+/obj/structure/dropship_piece/three/rearwing/lefttop
+	icon_state = "brown_rearwing_lt"
+
+/obj/structure/dropship_piece/three/rearwing/righttop
+	icon_state = "brown_rearwing_rt"
+
+/obj/structure/dropship_piece/three/rearwing/leftbottom
+	icon_state = "brown_rearwing_lb"
+
+/obj/structure/dropship_piece/three/rearwing/rightbottom
+	icon_state = "brown_rearwing_rb"
+
+/obj/structure/dropship_piece/three/rearwing/leftlbottom
+	icon_state = "brown_rearwing_llb"
+	opacity = FALSE
+
+/obj/structure/dropship_piece/three/rearwing/rightrbottom
+	icon_state = "brown_rearwing_rrb"
+	opacity = FALSE
+
+/obj/structure/dropship_piece/three/rearwing/leftllbottom
+	icon_state = "brown_rearwing_lllb"
+	opacity = FALSE
+
+/obj/structure/dropship_piece/three/rearwing/rightrrbottom
+	icon_state = "brown_rearwing_rrrb"
+	opacity = FALSE
+
+
+/obj/structure/dropship_piece/four
+	name = "\improper Victory"
+
+/obj/structure/dropship_piece/four/front
+	icon_state = "brown_front"
+	opacity = FALSE
+
+/obj/structure/dropship_piece/four/front/right
+	icon_state = "brown_fr"
+
+/obj/structure/dropship_piece/four/front/left
+	icon_state = "brown_fl"
+
+
+/obj/structure/dropship_piece/four/cockpit/left
+	icon_state = "brown_cockpit_fl"
+
+/obj/structure/dropship_piece/four/cockpit/right
+	icon_state = "brown_cockpit_fr"
+
+
+/obj/structure/dropship_piece/four/weapon
+	opacity = FALSE
+
+/obj/structure/dropship_piece/four/weapon/leftleft
+	icon_state = "brown_weapon_ll"
+
+/obj/structure/dropship_piece/four/weapon/leftright
+	icon_state = "brown_weapon_lr"
+
+/obj/structure/dropship_piece/four/weapon/rightleft
+	icon_state = "brown_weapon_rl"
+
+/obj/structure/dropship_piece/four/weapon/rightright
+	icon_state = "brown_weapon_rr"
+
+
+/obj/structure/dropship_piece/four/wing
+	opacity = FALSE
+
+/obj/structure/dropship_piece/four/wing/left/top
+	icon_state = "brown_wing_lt"
+
+/obj/structure/dropship_piece/four/wing/left/bottom
+	icon_state = "brown_wing_lb"
+
+/obj/structure/dropship_piece/four/wing/right/top
+	icon_state = "brown_wing_rt"
+
+/obj/structure/dropship_piece/four/wing/right/bottom
+	icon_state = "brown_wing_rb"
+
+
+/obj/structure/dropship_piece/four/corner/middleleft
+	icon_state = "brown_middle_lc"
+
+/obj/structure/dropship_piece/four/corner/middleright
+	icon_state = "brown_middle_rc"
+
+/obj/structure/dropship_piece/four/corner/rearleft
+	icon_state = "brown_rear_lc"
+
+/obj/structure/dropship_piece/four/corner/rearright
+	icon_state = "brown_rear_rc"
+
+
+/obj/structure/dropship_piece/four/engine
+	opacity = FALSE
+
+/obj/structure/dropship_piece/four/engine/lefttop
+	icon_state = "brown_engine_lt"
+
+/obj/structure/dropship_piece/four/engine/righttop
+	icon_state = "brown_engine_rt"
+
+/obj/structure/dropship_piece/four/engine/leftbottom
+	icon_state = "brown_engine_lb"
+
+/obj/structure/dropship_piece/four/engine/rightbottom
+	icon_state = "brown_engine_rb"
+
+
+/obj/structure/dropship_piece/four/rearwing/lefttop
+	icon_state = "brown_rearwing_lt"
+
+/obj/structure/dropship_piece/four/rearwing/righttop
+	icon_state = "brown_rearwing_rt"
+
+/obj/structure/dropship_piece/four/rearwing/leftbottom
+	icon_state = "brown_rearwing_lb"
+
+/obj/structure/dropship_piece/four/rearwing/rightbottom
+	icon_state = "brown_rearwing_rb"
+
+/obj/structure/dropship_piece/four/rearwing/leftlbottom
+	icon_state = "brown_rearwing_llb"
+	opacity = FALSE
+
+/obj/structure/dropship_piece/four/rearwing/rightrbottom
+	icon_state = "brown_rearwing_rrb"
+	opacity = FALSE
+
+/obj/structure/dropship_piece/four/rearwing/leftllbottom
+	icon_state = "brown_rearwing_lllb"
+	opacity = FALSE
+
+/obj/structure/dropship_piece/four/rearwing/rightrrbottom
+	icon_state = "brown_rearwing_rrrb"
+	opacity = FALSE
+
 
 //Dropship control console
 
