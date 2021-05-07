@@ -651,7 +651,7 @@
 /area/mainship/command/cic/rebel)
 "de" = (
 /obj/structure/window/framed/mainship/requisitions,
-/obj/machinery/door/poddoor/shutters/mainship/req/ro{
+/obj/machinery/door/poddoor/shutters/mainship/req/ro/rebel{
 	dir = 2
 	},
 /turf/open/floor/plating,
@@ -2535,7 +2535,7 @@
 "kT" = (
 /obj/structure/table/reinforced,
 /obj/machinery/door/window/northleft,
-/obj/machinery/door/poddoor/shutters/mainship/req/ro{
+/obj/machinery/door/poddoor/shutters/mainship/req/ro/rebel{
 	dir = 2
 	},
 /obj/machinery/door/firedoor/mainship{
@@ -2743,7 +2743,7 @@
 /obj/structure/sign/ROsign{
 	dir = 1
 	},
-/obj/machinery/door/poddoor/shutters/mainship/req/ro,
+/obj/machinery/door/poddoor/shutters/mainship/req/ro/rebel,
 /turf/open/floor/plating,
 /area/mainship/squads/req/rebel)
 "lz" = (
@@ -3182,7 +3182,7 @@
 	},
 /area/space)
 "nf" = (
-/obj/machinery/door/poddoor/shutters/mainship/req/ro{
+/obj/machinery/door/poddoor/shutters/mainship/req/ro/rebel{
 	dir = 2
 	},
 /obj/structure/window/framed/mainship/requisitions,
@@ -5594,11 +5594,11 @@
 	dir = 8
 	},
 /obj/structure/table/mainship,
-/obj/machinery/door_control/mainship/cic{
+/obj/machinery/door_control/mainship/cic/rebel{
 	pixel_x = -7;
 	pixel_y = 9
 	},
-/obj/machinery/door_control/mainship/cic/armory{
+/obj/machinery/door_control/mainship/cic/armory/rebel{
 	pixel_x = -7;
 	pixel_y = -5
 	},
@@ -5683,7 +5683,7 @@
 	dir = 4
 	},
 /obj/structure/cable,
-/obj/machinery/door_control/mainship/tcomms{
+/obj/machinery/door_control/mainship/tcomms/rebel{
 	pixel_y = 25
 	},
 /obj/structure/bed/chair/office/light,
@@ -12243,7 +12243,7 @@
 	pixel_y = 3
 	},
 /obj/item/whistle,
-/obj/machinery/door_control/mainship/req{
+/obj/machinery/door_control/mainship/req/rebel{
 	pixel_y = -5
 	},
 /turf/open/floor/mainship/mono,
@@ -12580,7 +12580,7 @@
 "SN" = (
 /obj/machinery/door/poddoor/mainship{
 	dir = 1;
-	id = "tcomms"
+	id = "tcomms_rebel"
 	},
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/telecomms/rebel)
@@ -12646,7 +12646,7 @@
 /area/mainship/squads/general/rebel)
 "Tb" = (
 /obj/structure/window/framed/mainship/requisitions,
-/obj/machinery/door/poddoor/shutters/mainship/req/ro,
+/obj/machinery/door/poddoor/shutters/mainship/req/ro/rebel,
 /turf/open/floor/plating,
 /area/mainship/squads/req/rebel)
 "Te" = (
