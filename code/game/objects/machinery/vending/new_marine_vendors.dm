@@ -824,6 +824,9 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 		/obj/item/clothing/mask/rebreather = list(CAT_MAS, "Rebreather", 0, "black"),
 	)
 
+/obj/machinery/marine_selector/clothes/commander/rebel 
+	req_access = list(ACCESS_MARINE_COMMANDER_REBEL)
+	vendor_role = /datum/job/terragov/command/fieldcommander/rebel
 
 /obj/machinery/marine_selector/clothes/synth
 	name = "M57 Synthetic Equipment Vendor"

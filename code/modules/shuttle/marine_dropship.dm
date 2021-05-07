@@ -99,6 +99,16 @@
 	id = "alamo"
 	roundstart_template = /datum/map_template/shuttle/dropship_one
 
+/obj/docking_port/stationary/marine_dropship/hangar/rebel
+	name = "Shipside 'Triumph' Hangar Pad"
+	id = "triumph"
+	roundstart_template = /datum/map_template/shuttle/dropship_three
+
+/obj/docking_port/stationary/marine_dropship/hangar/loyalist
+	name = "Shipside 'Victory' Hangar Pad"
+	id = "victory"
+	roundstart_template = /datum/map_template/shuttle/dropship_four
+
 /obj/docking_port/stationary/marine_dropship/hangar/two
 	name = "Shipside 'Normandy' Hangar Pad"
 	id = "normandy"
@@ -1125,6 +1135,18 @@
 	desc = "The remote controls for the 'Normandy' Dropship. Named after a department in France, noteworthy for the famous naval invasion of Normandy on the 6th of June 1944, a bloody but decisive victory in World War II and the campaign for the Liberation of France."
 	shuttleId = "normandy"
 	possible_destinations = "lz1;lz2;alamo;normandy"
+
+/obj/machinery/computer/shuttle/shuttle_control/dropship/rebel 
+	name = "\improper 'Triumph' dropship console"
+	desc = "The remote controls for the 'Triumph' Dropship."
+	shuttleId = "triumph"
+	possible_destinations = "lz1;triumph"
+
+/obj/machinery/computer/shuttle/shuttle_control/dropship/loyalist 
+	name = "\improper 'Victory' dropship console"
+	desc = "The remote controls for the 'Victory' Dropship."
+	shuttleId = "victory"
+	possible_destinations = "lz2;victory"
 
 /obj/machinery/computer/shuttle/shuttle_control/canterbury
 	name = "\improper 'Canterbury' shuttle console"
