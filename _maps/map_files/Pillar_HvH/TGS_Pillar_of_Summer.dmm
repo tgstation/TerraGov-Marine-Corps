@@ -1132,7 +1132,7 @@
 	},
 /area/mainship/command/cic/rebel)
 "fg" = (
-/obj/machinery/vending/marine/shared,
+/obj/machinery/vending/marine/shared/hvh,
 /obj/structure/window/reinforced,
 /obj/structure/window/reinforced{
 	dir = 4
@@ -1588,7 +1588,7 @@
 	},
 /area/mainship/shipboard/firing_range/rebel)
 "hx" = (
-/obj/machinery/vending/MarineMed,
+/obj/machinery/vending/MarineMed/rebel,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/lower_medical/rebel)
 "hy" = (
@@ -1848,7 +1848,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/living/pilotbunks/rebel)
 "ij" = (
-/obj/machinery/vending/MarineMed/Blood,
+/obj/machinery/vending/MarineMed/Blood/rebel,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/lower_medical/rebel)
 "il" = (
@@ -2104,7 +2104,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar/rebel)
 "jj" = (
-/obj/machinery/marine_selector/gear/medic,
+/obj/machinery/marine_selector/gear/medic/rebel,
 /turf/open/floor/mainship,
 /area/mainship/squads/general/rebel)
 "jk" = (
@@ -2159,7 +2159,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/engineering_workshop/rebel)
 "jw" = (
-/obj/machinery/vending/marine/shared,
+/obj/machinery/vending/marine/shared/hvh,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/pilotbunks/rebel)
 "jy" = (
@@ -2294,7 +2294,7 @@
 	},
 /area/mainship/shipboard/firing_range/rebel)
 "jS" = (
-/obj/machinery/marine_selector/clothes/engi,
+/obj/machinery/marine_selector/clothes/engi/rebel,
 /turf/open/floor/mainship,
 /area/mainship/squads/general/rebel)
 "jT" = (
@@ -2321,7 +2321,7 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/medical_science/rebel)
 "jY" = (
-/obj/machinery/marine_selector/clothes/leader,
+/obj/machinery/marine_selector/clothes/leader/rebel,
 /turf/closed/wall/mainship,
 /area/mainship/squads/general/rebel)
 "kb" = (
@@ -3898,7 +3898,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/shipboard/firing_range/rebel)
 "pG" = (
-/obj/machinery/vending/MarineMed,
+/obj/machinery/vending/MarineMed/rebel,
 /turf/open/floor/mainship,
 /area/mainship/squads/general/rebel)
 "pH" = (
@@ -3933,7 +3933,7 @@
 /obj/structure/window/reinforced{
 	dir = 8
 	},
-/obj/machinery/vending/marine/shared,
+/obj/machinery/vending/marine/shared/hvh,
 /turf/open/floor/mainship,
 /area/mainship/squads/general/rebel)
 "pN" = (
@@ -4213,7 +4213,7 @@
 /turf/open/floor/wood,
 /area/mainship/command/corporateliaison/rebel)
 "qM" = (
-/obj/machinery/vending/marine/shared,
+/obj/machinery/vending/marine/shared/hvh,
 /obj/structure/window/reinforced,
 /obj/structure/window/reinforced{
 	dir = 4
@@ -4700,7 +4700,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/living/briefing/rebel)
 "sx" = (
-/obj/machinery/marine_selector/clothes/leader,
+/obj/machinery/marine_selector/clothes/leader/rebel,
 /turf/open/floor/mainship,
 /area/mainship/squads/general/rebel)
 "sA" = (
@@ -4920,7 +4920,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/machinery/vending/marine_medic,
+/obj/machinery/vending/marine_medic/rebel,
 /obj/machinery/camera/autoname/mainship{
 	dir = 8
 	},
@@ -5497,7 +5497,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/shipboard/port_missiles/rebel)
 "vh" = (
-/obj/machinery/marine_selector/clothes/commander,
+/obj/machinery/marine_selector/clothes/commander/rebel,
 /turf/open/floor/carpet{
 	dir = 10;
 	icon_state = "carpetside"
@@ -5760,7 +5760,7 @@
 /turf/open/floor/freezer,
 /area/mainship/living/cafeteria_starboard/rebel)
 "wf" = (
-/obj/machinery/marine_selector/clothes/smartgun,
+/obj/machinery/marine_selector/clothes/smartgun/rebel,
 /turf/open/floor/mainship,
 /area/mainship/squads/general/rebel)
 "wg" = (
@@ -6084,7 +6084,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/machinery/marine_selector/clothes/synth,
+/obj/machinery/marine_selector/clothes/synth/rebel,
 /turf/open/floor/mainship/cargo,
 /area/mainship/engineering/upper_engineering/rebel)
 "xb" = (
@@ -7870,7 +7870,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/lower_hull/rebel)
 "CN" = (
-/obj/machinery/marine_selector/gear/smartgun,
+/obj/machinery/marine_selector/gear/smartgun/rebel,
 /turf/open/floor/mainship,
 /area/mainship/squads/general/rebel)
 "CP" = (
@@ -8617,7 +8617,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/lower_hull/rebel)
 "ER" = (
-/obj/machinery/vending/marine/shared,
+/obj/machinery/vending/marine/shared/hvh,
 /turf/open/floor/mainship/red/full,
 /area/mainship/command/cic/rebel)
 "ES" = (
@@ -9328,7 +9328,7 @@
 	dir = 8
 	},
 /obj/structure/window/reinforced,
-/obj/machinery/vending/marine/shared,
+/obj/machinery/vending/marine/shared/hvh,
 /turf/open/floor/mainship,
 /area/mainship/squads/general/rebel)
 "Hq" = (
@@ -9724,7 +9724,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/starboard_umbilical/rebel)
 "Ir" = (
-/obj/machinery/marine_selector/clothes/medic,
+/obj/machinery/marine_selector/clothes/medic/rebel,
 /turf/open/floor/mainship,
 /area/mainship/squads/general/rebel)
 "It" = (
@@ -10644,7 +10644,7 @@
 /turf/open/floor/mainship/floor,
 /area/mainship/command/self_destruct/rebel)
 "Ld" = (
-/obj/machinery/vending/marine/shared,
+/obj/machinery/vending/marine/shared/hvh,
 /turf/open/floor/mainship/red/full,
 /area/mainship/shipboard/firing_range/rebel)
 "Lf" = (
@@ -12834,7 +12834,7 @@
 /turf/open/floor/mainship/cargo/arrow,
 /area/mainship/shipboard/starboard_missiles/rebel)
 "TV" = (
-/obj/machinery/vending/marine/shared,
+/obj/machinery/vending/marine/shared/hvh,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/mainship,
 /area/mainship/squads/general/rebel)
@@ -12870,7 +12870,7 @@
 	},
 /area/mainship/living/cafeteria_starboard/rebel)
 "Um" = (
-/obj/machinery/vending/marine/shared,
+/obj/machinery/vending/marine/shared/hvh,
 /turf/open/floor/mainship,
 /area/mainship/squads/general/rebel)
 "Up" = (
@@ -12952,7 +12952,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req/rebel)
 "UD" = (
-/obj/machinery/marine_selector/gear/engi,
+/obj/machinery/marine_selector/gear/engi/rebel,
 /turf/open/floor/mainship,
 /area/mainship/squads/general/rebel)
 "UE" = (
@@ -13797,7 +13797,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hull/lower_hull/rebel)
 "YD" = (
-/obj/machinery/marine_selector/gear/leader,
+/obj/machinery/marine_selector/gear/leader/rebel,
 /turf/open/floor/mainship,
 /area/mainship/squads/general/rebel)
 "YE" = (
