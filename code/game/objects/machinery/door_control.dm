@@ -216,9 +216,16 @@
 	id = "cic_lockdown"
 	req_one_access = list(ACCESS_MARINE_BRIDGE)
 
+/obj/machinery/door_control/mainship/cic/rebel
+	id = "cic_lockdown_rebel"
+	req_one_access = list(ACCESS_MARINE_BRIDGE_REBEL)
+
 /obj/machinery/door_control/mainship/cic/armory
 	name = "Armory Lockdown"
 	id = "cic_armory"
+
+/obj/machinery/door_control/mainship/cic/armory/rebel
+	id = "cic_armory_armory"
 
 /obj/machinery/door_control/mainship/cic/hangar
 	name = "Hangar Lockdown"

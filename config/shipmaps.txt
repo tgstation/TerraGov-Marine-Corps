@@ -28,3 +28,7 @@ endmap
 
 map sulaco
 endmap
+
+map pillar_of_summer_and_winter
+	voteweight 0
+endmap
