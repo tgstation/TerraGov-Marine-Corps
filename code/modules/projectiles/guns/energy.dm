@@ -784,7 +784,7 @@
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_sniper
 	name = "\improper Terra Experimental laser sniper rifle"
-	desc = "A Terra Experimental standard issue laser sniper rifle, otherwise known as TE-S abbreviated has an integrated charge selector for normal, high and heat settings. Uses standard Terra Experimntal, TE abbreviated power cells."
+	desc = "The T-ES, a Terra Experimental standard issue laser sniper rifle, it has an integrated charge selector for normal, high and heat settings. Uses standard Terra Experimental (abbreviated as TE) power cells."
 	reload_sound = 'sound/weapons/guns/interact/standard_laser_sniper_reload.ogg'
 	fire_sound = 'sound/weapons/guns/fire/Laser Sniper Standard.ogg'
 	force = 20
