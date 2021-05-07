@@ -19,6 +19,7 @@
 	max_rounds = 300
 	default_ammo = /datum/ammo/bullet/smartgun
 	gun_type = null
+	icon_state_mini = "mag_gpmg"
 
 
 // Now we need a box for this.
@@ -328,7 +329,7 @@
 /obj/machinery/standard_hmg/take_damage(damage_amount, damage_type, damage_flag, effects, attack_dir, armour_penetration)
 	. = ..()
 	hud_set_machine_health()
-	
+
 
 /obj/machinery/standard_hmg/proc/load_into_chamber()
 	if(in_chamber)
