@@ -309,7 +309,7 @@
 	spawn_type = /obj/item/explosive/mine
 	spawn_number = 5
 
-/obj/item/storage/box/explosive_mines/update_icon()
+/obj/item/storage/box/explosive_mines/update_icon_state()
 	icon_state = initial(icon_state)
 	if(!length(contents))
 		icon_state += "_e"
@@ -357,7 +357,7 @@
 	spawn_type = /obj/item/explosive/grenade/frag
 	spawn_number = 25
 
-/obj/item/storage/box/nade_box/update_icon()
+/obj/item/storage/box/nade_box/update_icon_state()
 	icon_state = initial(icon_state)
 	if(!length(contents))
 		icon_state += "_e"
@@ -609,7 +609,7 @@
 		deployed = FALSE
 		update_icon()
 
-/obj/item/storage/box/magazine/update_icon()
+/obj/item/storage/box/magazine/update_icon_state()
 	. = ..()
 
 	//Clear all overlays for a fresh start

@@ -12,7 +12,7 @@
 	reload_delay = 2 SECONDS
 	w_class = WEIGHT_CLASS_NORMAL //making sure you can't sneak this onto your belt.
 	gun_type = /obj/item/weapon/gun/flamer
-	caliber = "UT-Napthal Fuel" //Ultra Thick Napthal Fuel, from the lore book.
+	caliber = CALIBER_FUEL_THICK //Ultra Thick Napthal Fuel, from the lore book.
 	flags_magazine = NONE
 	icon_state_mini = "tank"
 
@@ -30,7 +30,7 @@
 		FT.reagents.remove_reagent(/datum/reagent/fuel, fuel_transfer_amount)
 		current_rounds += fuel_transfer_amount
 		playsound(loc, 'sound/effects/refill.ogg', 25, 1, 3)
-		caliber = "Fuel"
+		caliber = CALIBER_FUEL
 		to_chat(user, "<span class='notice'>You refill [src] with [lowertext(caliber)].</span>")
 		update_icon()
 

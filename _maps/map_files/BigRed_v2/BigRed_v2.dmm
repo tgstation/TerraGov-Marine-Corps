@@ -378,11 +378,6 @@
 	},
 /turf/open/floor/plating,
 /area/bigredv2/outside/space_port)
-"aby" = (
-/obj/machinery/computer/shuttle/shuttle_control/dropship1,
-/obj/structure/table,
-/turf/open/floor/tile/dark,
-/area/lv624/lazarus/console)
 "abz" = (
 /obj/structure/table,
 /obj/effect/spawner/random/powercell,
@@ -518,14 +513,6 @@
 	},
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/north)
-"abZ" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/structure/table/reinforced,
-/obj/machinery/computer/shuttle/shuttle_control/dropship1,
-/turf/open/floor/asteroidfloor,
-/area/bigredv2/outside/space_port)
 "aca" = (
 /obj/machinery/light{
 	dir = 1
@@ -1190,7 +1177,7 @@
 /turf/open/floor/wood,
 /area/bigredv2/outside/marshal_office)
 "aeu" = (
-/obj/item/clothing/tie/holster/armpit,
+/obj/item/clothing/tie/storage/holster/armpit,
 /turf/open/floor/wood,
 /area/bigredv2/outside/marshal_office)
 "aev" = (
@@ -19633,13 +19620,6 @@
 /obj/structure/sign/safety/medical_supplies,
 /turf/closed/wall/r_wall,
 /area/bigredv2/caves/lambda_lab)
-"ehV" = (
-/obj/structure/table/reinforced,
-/obj/machinery/computer/shuttle/shuttle_control/dropship1,
-/turf/open/floor/marking/asteroidwarning{
-	dir = 4
-	},
-/area/shuttle/drop2/lz2)
 "ekm" = (
 /obj/structure/cable,
 /turf/open/floor,
@@ -19703,6 +19683,13 @@
 "ePI" = (
 /turf/open/floor/plating/ground/mars/random/dirt,
 /area/bigredv2/caves/west)
+"eQx" = (
+/obj/structure/table/reinforced,
+/obj/machinery/computer/shuttle/shuttle_control/dropship/two,
+/turf/open/floor/marking/asteroidwarning{
+	dir = 4
+	},
+/area/shuttle/drop2/lz2)
 "eRn" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
@@ -19828,6 +19815,12 @@
 /obj/structure/cable,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
+"fIW" = (
+/obj/effect/landmark/dropship_start_location,
+/turf/open/floor/plating/ground/mars/dirttosand{
+	dir = 5
+	},
+/area/bigredv2/outside/c)
 "fJR" = (
 /obj/item/tool/warning_cone,
 /turf/open/floor/asteroidfloor,
@@ -20105,6 +20098,14 @@
 /obj/docking_port/stationary/crashmode,
 /turf/open/floor/plating,
 /area/bigredv2/outside/cargo)
+"hIH" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/structure/table/reinforced,
+/obj/machinery/computer/shuttle/shuttle_control/dropship,
+/turf/open/floor/asteroidfloor,
+/area/bigredv2/outside/space_port)
 "hKr" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating/ground/mars/random/cave/rock,
@@ -21308,6 +21309,11 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor,
 /area/bigredv2/outside/general_offices)
+"skG" = (
+/obj/machinery/computer/shuttle/shuttle_control/dropship,
+/obj/structure/table,
+/turf/open/floor/tile/dark,
+/area/lv624/lazarus/console)
 "soj" = (
 /obj/machinery/power/apc/drained{
 	dir = 8
@@ -26164,7 +26170,7 @@ jLQ
 aaf
 abC
 aae
-abZ
+hIH
 aaf
 aaf
 aaf
@@ -31044,7 +31050,7 @@ mAw
 mAw
 mAw
 bht
-ehV
+eQx
 soj
 gMM
 gMM
@@ -31591,7 +31597,7 @@ aaM
 aaX
 aaL
 abn
-aby
+skG
 aaC
 abE
 aaw
@@ -43618,7 +43624,7 @@ aBR
 aBR
 aBR
 aBR
-hlD
+fIW
 aMd
 aMg
 aMg
