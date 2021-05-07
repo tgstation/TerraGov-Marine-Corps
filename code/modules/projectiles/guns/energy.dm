@@ -849,7 +849,7 @@
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_mlaser
 	name = "\improper Terra Experimental laser machine gun"
-	desc = "A Terra Experimental standard issue machine laser gun otherwise known as TE-M abbreviated. Uses standard Terra Experimntal, TE abbreviated power cells."
+	desc = "A Terra Experimental standard issue machine laser gun, often called as the TE-M by marines. It does not have a fire mode switch, unlike the other Terra Experimental laser prototypes. Uses standard Terra Experimental (abbreviated as TE) power cells."
 	reload_sound = 'sound/weapons/guns/interact/standard_machine_laser_reload.ogg'
 	fire_sound = 'sound/weapons/guns/fire/Laser Rifle Standard.ogg'
 	force = 20
