@@ -558,7 +558,7 @@
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_rifle
 	name = "\improper Terra Experimental laser rifle"
-	desc = "A TerraGov standard issue laser rifle otherwise known as TE-R abbreviated has an integrated charge selector for normal and high settings. Uses standard Terra Experimntal, TE abbreviated power cells."
+	desc = "A TerraGov standard issue laser rifle otherwise known as TE-R abbreviated has an integrated charge selector for normal and high settings. Uses standard Terra Experimental (abbreviated as TE) power cells."
 	reload_sound = 'sound/weapons/guns/interact/standard_laser_rifle_reload.ogg'
 	fire_sound = 'sound/weapons/guns/fire/Laser Rifle Standard.ogg'
 	force = 20
