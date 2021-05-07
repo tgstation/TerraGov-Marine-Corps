@@ -654,7 +654,6 @@
 	max_shells = 1 //codex
 	caliber = CALIBER_40MM //codex
 	load_method = SINGLE_CASING //codex
-	materials = list()
 	w_class = WEIGHT_CLASS_BULKY
 	flags_equip_slot = ITEM_SLOT_BACK|ITEM_SLOT_BELT
 	throw_speed = 2
