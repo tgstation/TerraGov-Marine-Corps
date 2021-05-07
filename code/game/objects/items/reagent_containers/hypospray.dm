@@ -334,7 +334,7 @@
 	name = "Nanoblood hypospray"
 	desc = "A hypospray loaded with nanoblood."
 	list_reagents = list(
-		/datum/reagent/medicine/nanoblood = 60
+		/datum/reagent/medicine/nanoblood = 60,
 	)
 
 /obj/item/reagent_containers/hypospray/advanced/tricordrazine
