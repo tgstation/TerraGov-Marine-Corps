@@ -536,7 +536,7 @@
 	icon_state = "bloodvendor"
 	icon_deny = "bloodvendor-deny"
 	product_ads = "The best blood on the market!"
-	req_access = list(ACCESS_MARINE_MEDBAY, ACCESS_MARINE_CHEMISTRY, ACCESS_MARINE_MEDPREP)
+	req_one_access = list(ACCESS_MARINE_MEDBAY, ACCESS_MARINE_CHEMISTRY, ACCESS_MARINE_MEDPREP)
 	products = list(
 		/obj/item/reagent_containers/blood/APlus = 5,
 		/obj/item/reagent_containers/blood/AMinus = 5,
