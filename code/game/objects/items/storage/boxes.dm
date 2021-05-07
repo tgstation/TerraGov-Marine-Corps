@@ -481,6 +481,8 @@
  * Deployable ammo box with fancy visuals of its contents
  * Visual content defined in the icon_state_mini var in /obj/item/ammo_magazine
  * All other visuals that are not a magazine defined in var/assoc_overlay
+ *
+ * Hardcoded to display stuff in a 2 row box.
  */
 /obj/item/storage/box/magazine
 	name = "\improper ammunition box"
@@ -611,13 +613,17 @@
 
 /obj/item/storage/box/magazine/update_icon_state()
 	. = ..()
+	update_visuals()
+
+/// Proc to redo all the overlays and the icon_state of the ammo box
+/obj/item/storage/box/magazine/proc/update_visuals()
 
 	//Clear all overlays for a fresh start
 	for(var/I in overlays)
 		overlays -= I
 	variety = 0
 
-	//Create an assoc list of every ammo type in the crate and have it's value be the total weight it takes up.
+	//Fill assoc list of every ammo type in the crate and have it's value be the total weight it takes up.
 	contents_weight = list()
 	for(var/obj/item/I in contents)
 		if(!contents_weight[I.type])
@@ -655,8 +661,9 @@
 			overlay_overflow -= adjustment
 			overlays_to_draw -= adjustment
 			total_overlays -= adjustment
-		for(var/i = 1, i <= overlays_to_draw, i++)
-			var/imagepixel_x = overlay_pixel_x + FLOOR((current_iteration / 2) - 0.5, 1) * shift_x
+
+		for(var/i = 1, i <= overlays_to_draw, i++) //Same mag type, but now we actually draw them since we know how many to draw
+			var/imagepixel_x = overlay_pixel_x + FLOOR((current_iteration / 2) - 0.5, 1) * shift_x //Shift to the right only after both vertical spaces are occupied.
 			var/imagepixel_y = overlay_pixel_y
 			if(MODULUS(current_iteration, 2) && (total_overlays - current_iteration) > 0) // We draw the top part first to account for overlaps.
 				imagepixel_y += shift_y
@@ -666,11 +673,9 @@
 			var/imagestate =  initial(relatedmag?.icon_state_mini)
 			if(!imagestate) //Might be a cell or a random item
 				for(var/A in assoc_overlay)
-					message_admins("[W] - [A]")
-					if(findtext("[W]", "[A]")) //istype is wacky
+					if(findtext("[W]", "[A]")) //istype is wacky when using assoc keys as types
 						imagestate = assoc_overlay[A]
 						break
 
 			overlays += image('icons/obj/items/storage/ammo_mini.dmi', icon_state = imagestate, pixel_x = imagepixel_x, pixel_y = imagepixel_y)
-			//message_admins("[current_iteration] : [W] - [i]/[overlays_to_draw]:[total_overlays] - [imageiconstate] - [imagepixel_x] : [imagepixel_y]")
 			current_iteration++
