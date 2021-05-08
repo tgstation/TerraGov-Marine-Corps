@@ -693,6 +693,8 @@
 /obj/item/storage/box/visual/grenade/phosphorus
 	name = "M40 HPDP grenade box"
 	desc = "A secure box holding 15 M40 HPDP white phosphorous grenades. War crimes for the entire platoon!"
+	storage_slots = 15
+	max_storage_space = 30
 	spawn_number = 15
 	spawn_type = /obj/item/explosive/grenade/phosphorus
 	closed_overlay = "grenade_box_overlay_phosphorus"
@@ -721,6 +723,8 @@
 /obj/item/storage/box/visual/grenade/razorburn
 	name = "Razorburn grenade box"
 	desc = "A secure box holding 15 razor burn grenades. Used for quick flank coverage."
+	storage_slots = 15
+	max_storage_space = 30
 	spawn_number = 15
 	spawn_type = /obj/item/explosive/grenade/chem_grenade/razorburn_smol
 	closed_overlay = "grenade_box_overlay_razorburn"
