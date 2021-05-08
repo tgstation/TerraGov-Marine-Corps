@@ -489,17 +489,17 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 /datum/action/xeno_action/activable/banish/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
 
+	if(owner.status_flags & INCORPOREAL) //We can't use this while phased out.
+		if(!silent)
+			to_chat(owner, "<span class='xenowarning'>We can't banish while incorporeal!</span>")
+		return FALSE
+
 	if(!ismovableatom(A) || iseffect(A) || CHECK_BITFIELD(A.resistance_flags, INDESTRUCTIBLE)) //Cannot banish non-movables/things that are supposed to be invul; also we ignore effects
 		if(!silent)
 			to_chat(owner, "<span class='xenowarning'>We cannot banish this!</span>")
 		return FALSE
 
 	var/mob/living/carbon/xenomorph/X = owner
-
-	if(owner.status_flags & INCORPOREAL) //We can't use this while phased out.
-		if(!silent)
-			to_chat(owner, "<span class='xenowarning'>We can't banish while incorporeal!</span>")
-		return FALSE
 
 	var/distance = get_dist(owner, A)
 	if(distance > X.xeno_caste.wraith_banish_range) //Needs to be in range.
