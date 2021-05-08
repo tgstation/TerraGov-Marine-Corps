@@ -163,19 +163,9 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	removed on a gun. can_be_removed is instead used when they
 	try to strip the gun.
 	*/
-	switch(slot)
-		if(ATTACHMENT_SLOT_RAIL)
-			master_gun.rail?.detach_from_master_gun(user)
-			master_gun.rail = src
-		if(ATTACHMENT_SLOT_MUZZLE)
-			master_gun.muzzle?.detach_from_master_gun(user)
-			master_gun.muzzle = src
-		if(ATTACHMENT_SLOT_UNDER)
-			master_gun.under?.detach_from_master_gun(user)
-			master_gun.under = src
-		if(ATTACHMENT_SLOT_STOCK)
-			master_gun.stock?.detach_from_master_gun(user)
-			master_gun.stock = src
+	var/obj/item/attachable/current_attachment = LAZYACCESS(master_gun.attachments, slot)
+	current_attachment?.detach_from_master_gun(user)
+	LAZYSET(master_gun.attachments, slot, src)
 
 	if(ishuman(user))
 		var/mob/living/carbon/human/wielder = user
@@ -241,15 +231,8 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	if(flags_attach_features & ATTACH_ACTIVATION)
 		activate_attachment(null, TRUE)
 
-	switch(slot)
-		if(ATTACHMENT_SLOT_RAIL)
-			master_gun.rail = null
-		if(ATTACHMENT_SLOT_MUZZLE)
-			master_gun.muzzle = null
-		if(ATTACHMENT_SLOT_UNDER)
-			master_gun.under = null
-		if(ATTACHMENT_SLOT_STOCK)
-			master_gun.stock = null
+	LAZYREMOVE(master_gun.attachments, slot)
+
 
 	master_gun.accuracy_mult				-= accuracy_mod
 	master_gun.accuracy_mult_unwielded		-= accuracy_unwielded_mod
@@ -289,6 +272,8 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 		master_gun.flags_gun_features &= ~GUN_SILENCED
 		master_gun.muzzle_flash = initial(master_gun.muzzle_flash)
 		master_gun.fire_sound = initial(master_gun.fire_sound)
+
+	master_gun.update_attachable(slot)
 
 	for(var/datum/action/action_to_update AS in master_gun.actions)
 		if(action_to_update.target != src)

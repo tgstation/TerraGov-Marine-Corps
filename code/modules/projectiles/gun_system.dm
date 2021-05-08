@@ -95,10 +95,7 @@
 	var/list/attachable_overlays	= list(ATTACHMENT_SLOT_MUZZLE, ATTACHMENT_SLOT_RAIL, ATTACHMENT_SLOT_UNDER, ATTACHMENT_SLOT_STOCK, ATTACHMENT_SLOT_MAGAZINE) //List of overlays so we can switch them in an out, instead of using Cut() on overlays.
 	var/list/attachable_offset 		= null		//Is a list, see examples of from the other files. Initiated on New() because lists don't initial() properly.
 	var/list/attachable_allowed		= null		//Must be the exact path to the attachment present in the list. Empty list for a default.
-	var/obj/item/attachable/muzzle 	= null		//Attachable slots. Only one item per slot.
-	var/obj/item/attachable/rail 	= null
-	var/obj/item/attachable/under 	= null
-	var/obj/item/attachable/stock 	= null
+	var/list/obj/item/attachable/attachments
 	var/obj/item/attachable/attached_gun/active_attachable = null //This will link to one of the above four, or remain null.
 	var/list/starting_attachment_types = null //What attachments this gun starts with THAT CAN BE REMOVED. Important to avoid nuking the attachments on restocking! Added on New()
 
@@ -177,14 +174,11 @@
 /obj/item/weapon/gun/Destroy()
 	ammo = null
 	active_attachable = null
-	if(muzzle)
-		QDEL_NULL(muzzle)
-	if(rail)
-		QDEL_NULL(rail)
-	if(under)
-		QDEL_NULL(under)
-	if(stock)
-		QDEL_NULL(stock)
+
+	if(attachments)
+		for(var/slot in attachments)
+			qdel(attachments[slot])
+			LAZYREMOVE(attachments, slot)
 	if(in_chamber)
 		QDEL_NULL(in_chamber)
 	if(current_mag)
@@ -239,17 +233,14 @@
 	else
 		dat += "The safety's off!<br>"
 
-	if(rail)
-		dat += "It has [icon2html(rail, user)] [rail.name] mounted on the top.<br>"
-	if(muzzle)
-		dat += "It has [icon2html(muzzle, user)] [muzzle.name] mounted on the front.<br>"
-	if(stock)
-		dat += "It has [icon2html(stock, user)] [stock.name] for a stock.<br>"
-	if(under)
-		dat += "It has [icon2html(under, user)] [under.name]"
-		if(under.flags_attach_features & ATTACH_WEAPON)
-			dat += " ([under.current_rounds]/[under.max_rounds])"
-		dat += " mounted underneath.<br>"
+	if(attachments)
+		for(var/slot in attachments)
+			var/obj/item/attachable/attachment = LAZYACCESS(attachments, slot)
+			if(attachment)
+				dat += "It has [icon2html(attachment, user)] [attachment.name]"
+				if(attachment.flags_attach_features & ATTACH_WEAPON)
+					dat += " ([attachment.current_rounds]/[attachment.max_rounds])"
+				dat += "mounted on the [attachment.slot] slot."
 
 	if(dat)
 		to_chat(user, "[dat.Join(" ")]")
