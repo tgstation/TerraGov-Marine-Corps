@@ -1,4 +1,0 @@
-author: "jroinc"
-delete-after: True
-changes: 
-  - bugfix: "fixed two exploits allowing production of arbitrarily large amounts of metal"
