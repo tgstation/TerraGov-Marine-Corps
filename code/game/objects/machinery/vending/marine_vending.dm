@@ -496,6 +496,7 @@
 		/obj/item/reagent_containers/hypospray/autoinjector/inaprovaline = 6,
 		/obj/item/reagent_containers/hypospray/autoinjector/dylovene = 6,
 		/obj/item/reagent_containers/hypospray/autoinjector/hypervene = 4,
+		/obj/item/reagent_containers/hypospray/autoinjector/isotonic = 4,
 		/obj/item/reagent_containers/hypospray/autoinjector/quickclot = 4,
 		/obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus = 0,
 		/obj/item/reagent_containers/hypospray/autoinjector/quickclotplus = 0,
