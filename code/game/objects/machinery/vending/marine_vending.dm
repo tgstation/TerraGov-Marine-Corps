@@ -155,9 +155,9 @@
 		),
 		"Grenades" = list(
 			/obj/item/explosive/grenade/frag = 600,
-			/obj/item/explosive/grenade/frag/m15 = 50,
+			/obj/item/explosive/grenade/frag/m15 = 30,
 			/obj/item/explosive/grenade/incendiary = 50,
-			/obj/item/explosive/grenade/cloakbomb = 50,
+			/obj/item/explosive/grenade/cloakbomb = 25,
 			/obj/item/explosive/grenade/drainbomb = 10,
 			/obj/item/explosive/grenade/mirage = 100,
 			/obj/item/storage/box/m94 = 200,
@@ -193,7 +193,8 @@
 		/obj/item/ammo_magazine/box10x24mm = 100,
 		/obj/item/ammo_magazine/box10x26mm = 100,
 		/obj/item/ammo_magazine/box10x27mm = 100,
-		/obj/item/storage/box/magazine = 30,
+		/obj/item/storage/box/visual/magazine = 30,
+		/obj/item/storage/box/visual/grenade = 10,
 		),
 	)
 
@@ -284,7 +285,8 @@
 		/obj/item/ammo_magazine/box10x24mm = 100,
 		/obj/item/ammo_magazine/box10x26mm = 100,
 		/obj/item/ammo_magazine/box10x27mm = 100,
-		/obj/item/storage/box/magazine = 30,
+		/obj/item/storage/box/visual/magazine = 30,
+		/obj/item/storage/box/visual/grenade = 10,
 		),
 	)
 
@@ -301,10 +303,11 @@
 	wrenchable = FALSE
 	req_one_access = list(ACCESS_MARINE_CARGO, ACCESS_MARINE_LOGISTICS)
 	products = list(
-		/obj/item/storage/box/nade_box = 2,
-		/obj/item/storage/box/nade_box/HIDP = 2,
-		/obj/item/storage/box/nade_box/M15 = 2,
-		/obj/item/storage/box/nade_box/plasma_drain_gas = 1,
+		/obj/item/storage/box/visual/grenade/frag = 2,
+		/obj/item/storage/box/visual/grenade/incendiary = 2,
+		/obj/item/storage/box/visual/grenade/M15 = 2,
+		/obj/item/storage/box/visual/grenade/drain = 1,
+		/obj/item/storage/box/visual/grenade/cloak = 1,
 		/obj/item/ammo_magazine/rifle/autosniper = 3,
 		/obj/item/ammo_magazine/rifle/tx8 = 3,
 		/obj/item/ammo_magazine/rocket/sadar = 3,
@@ -333,9 +336,10 @@
 /// HvH version of the vending machine, containing no ammo for spec weapons and restricted ones
 /obj/machinery/vending/marine/cargo_supply/hvh
 	products = list(
-		/obj/item/storage/box/magazine = 30,
-		/obj/item/storage/box/nade_box = 1,
-		/obj/item/storage/box/nade_box/HIDP = 1,
+		/obj/item/storage/box/visual/magazine = 30,
+		/obj/item/storage/box/visual/grenade = 10,
+		/obj/item/storage/box/visual/grenade/frag = 1,
+		/obj/item/storage/box/visual/grenade/incendiary = 1,
 		/obj/item/explosive/plastique = 2,
 		/obj/item/radio/headset/mainship/marine/alpha = 20,
 		/obj/item/radio/headset/mainship/marine/bravo = 20,
