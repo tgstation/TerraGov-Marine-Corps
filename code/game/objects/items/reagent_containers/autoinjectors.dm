@@ -218,8 +218,9 @@
 	icon_state = "autoinjector-7"
 	amount_per_transfer_from_this = 15
 	volume = 15
-	list_reagents = list(/datum/reagent/medicine/russian_red = 10,
-						/datum/reagent/medicine/ryetalyn = 5,
+	list_reagents = list(
+		/datum/reagent/medicine/russian_red = 10,
+		/datum/reagent/medicine/ryetalyn = 5,
 	)
 
 /obj/item/reagent_containers/hypospray/autoinjector/polyhexanide
