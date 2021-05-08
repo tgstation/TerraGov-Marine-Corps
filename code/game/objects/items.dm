@@ -667,17 +667,9 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 		return
 	var/zoom_device = zoomdevicename ? "\improper [zoomdevicename] of [src]" : "\improper [src]"
 
-	for(var/obj/item/I in user.contents)
-		if(I.zoom && I != src)
-			to_chat(user, "<span class='warning'>You are already looking through \the [zoom_device].</span>")
-			return //Return in the interest of not unzooming the other item. Check first in the interest of not fucking with the other clauses
 
 	if(is_blind(user))
 		to_chat(user, "<span class='warning'>You are too blind to see anything.</span>")
-		return
-
-	if(!user.dextrous)
-		to_chat(user, "<span class='warning'>You do not have the dexterity to use \the [zoom_device].</span>")
 		return
 
 	if(!zoom && user.tinttotal >= TINT_5)
@@ -705,6 +697,10 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 		return
 	TIMER_COOLDOWN_START(user, COOLDOWN_ZOOM, 2 SECONDS)
 
+	if(SEND_SIGNAL(user, COMSIG_ITEM_ZOOM) &  COMSIG_ITEM_ALREADY_ZOOMED)
+		to_chat(user, "<span class='warning'>You are already looking through another zoom device..</span>")
+		return
+
 	if(user.client)
 		user.client.change_view(VIEW_NUM_TO_STRING(viewsize))
 
@@ -729,10 +725,9 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 	"<span class='notice'>You peer through \the [zoom_device].</span>")
 	zoom = TRUE
 	onzoom(user)
-	if(user.interactee)
-		user.unset_interaction()
-	else if(!istype(src, /obj/item/attachable/scope))
-		user.set_interaction(src)
+
+/obj/item/proc/zoom_check_return(datum/source)
+	return COMSIG_ITEM_ALREADY_ZOOMED
 
 
 /obj/item/proc/zoom_item_turnoff(datum/source, mob/living/carbon/user)
@@ -741,10 +736,12 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 
 /obj/item/proc/onzoom(mob/living/user)
 	RegisterSignal(user, list(COMSIG_MOVABLE_MOVED, COMSIG_CARBON_SWAPPED_HANDS), .proc/zoom)
+	RegisterSignal(user, COMSIG_ITEM_ZOOM, .proc/zoom_check_return)
 	RegisterSignal(src, list(COMSIG_ITEM_EQUIPPED, COMSIG_ITEM_DROPPED), .proc/zoom_item_turnoff)
 
 /obj/item/proc/onunzoom(mob/living/user)
 	UnregisterSignal(user, list(COMSIG_MOVABLE_MOVED, COMSIG_CARBON_SWAPPED_HANDS))
+	UnregisterSignal(user, COMSIG_ITEM_ZOOM)
 	UnregisterSignal(src, list(COMSIG_ITEM_EQUIPPED, COMSIG_ITEM_DROPPED))
 
 
