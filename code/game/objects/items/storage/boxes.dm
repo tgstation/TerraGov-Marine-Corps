@@ -24,6 +24,16 @@
 #define BOX_OVERLAY_SHIFT_X 6
 #define BOX_OVERLAY_SHIFT_Y 4 //one less than the 6x5 sprite to make them overlap on each other a bit.
 
+#define BOX_MAGAZINE_OFFSET_X 5
+#define BOX_MAGAZINE_OFFSET_Y 11
+#define BOX_MAGAZINE_COLUMNS 4
+#define BOX_MAGAZINE_ROWS 2
+
+#define BOX_GRENADE_OFFSET_X 7
+#define BOX_GRENADE_OFFSET_Y 10
+#define BOX_GRENADE_COLUMNS 3
+#define BOX_GRENADE_ROWS 2
+
 
 /obj/item/storage/box
 	name = "box"
@@ -405,7 +415,8 @@
 		isopened = 1
 		icon_state = "mealpackopened"
 
-/** Fillable box
+/**
+ * # fillable box
  *
  * Deployable box with fancy visuals of its contents
  * Visual content defined in the icon_state_mini var in /obj/item
@@ -426,18 +437,19 @@
 	can_hold = list(
 		/obj/item, //This box should normally be unobtainable so here we go
 	)
-	///Assoc list linking each item to it's corresponding icon_state for the overlays if the atom does not have a item_state_mini var.
-	var/list/assoc_overlay = list()
 	///Assoc list of how much weight every item type takes. Used to determine how many overlays to make.
 	var/list/contents_weight = list()
-	///Initial offset of the overlays.
-	var/overlay_pixel_x = 5
-	var/overlay_pixel_y = 11
-	///Amount of overlay spaces per axis.
-	var/amt_horizontal = 4
-	var/amt_vertical = 2
-	///Amount of pixels to shift each overlay around only on one axis.
+	///Initial pixel_x offset of the overlays.
+	var/overlay_pixel_x = BOX_MAGAZINE_OFFSET_X
+	///Initial pixel_y offset of the overlays.
+	var/overlay_pixel_y = BOX_MAGAZINE_OFFSET_Y
+	///Amount of columns in the overlay grid.
+	var/amt_horizontal = BOX_MAGAZINE_COLUMNS
+	///Amount of rows in the overlay grid.
+	var/amt_vertical = BOX_MAGAZINE_ROWS
+	///Amount of pixels to shift each overlay for each column.
 	var/shift_x = BOX_OVERLAY_SHIFT_X
+	///Amount of pixels to shift each overlay for each row.
 	var/shift_y = BOX_OVERLAY_SHIFT_Y
 	///Whether or not the box is deployed on the ground
 	var/deployed = FALSE
@@ -455,7 +467,7 @@
 	max_overlays = amt_horizontal * amt_vertical
 	overlay_w_class = FLOOR(max_storage_space / max_overlays, 1)
 	can_hold -= cant_hold //Have cant_hold actually have a use
-	update_icon_state() //Getting the closed_overlay onto it
+	update_icon() //Getting the closed_overlay onto it
 
 /obj/item/storage/box/visual/examine(mob/user, distance, infix, suffix)
 	. = ..()
@@ -508,13 +520,7 @@
 
 /obj/item/storage/box/visual/update_icon_state()
 	. = ..()
-	update_visuals()
 
-/// Proc to redo all the overlays and the icon_state of the box
-/obj/item/storage/box/visual/proc/update_visuals()
-
-	//Clear all overlays for a fresh start
-	overlays.Cut()
 	variety = 0
 
 	//Fill assoc list of every item type in the crate and have it's value be the total weight it takes up.
@@ -527,8 +533,6 @@
 
 	if(!deployed)
 		icon_state = "[initial(icon_state)]"
-		if(closed_overlay)
-			overlays += image('icons/obj/items/storage/storage_boxes.dmi', icon_state = closed_overlay)
 		return
 	if(variety > max_overlays) // Too many items inside so lets make it cluttered
 		icon_state = "[initial(icon_state)]_mixed"
@@ -536,12 +540,25 @@
 
 	icon_state = "[initial(icon_state)]_open"
 
-	//Warning: Shitcode ahead.
+/obj/item/storage/box/visual/update_overlays()
+	. = ..()
+
+	//Clear all overlays for a fresh start
+	if(overlays)
+		overlays.Cut()
+
+	if(!deployed)
+		icon_state = "[initial(icon_state)]"
+		if(closed_overlay)
+			. += image('icons/obj/items/storage/storage_boxes.dmi', icon_state = closed_overlay)
+		return
+	if(variety > max_overlays) // Too many items inside so lets make it cluttered
+		return
 
 	//Determine the amount of overlays to draw
 	var/total_overlays = 0
-	for(var/W in contents_weight)
-		total_overlays += 1 + FLOOR(contents_weight[W] / overlay_w_class, 1)
+	for(var/Object in contents_weight)
+		total_overlays += 1 + FLOOR(contents_weight[Object] / overlay_w_class, 1)
 
 	//In case 6 overlays are for a LMG and then someone adds 7 unique tiny items into the mix
 	var/overlay_overflow = max(0, total_overlays - max_overlays)
@@ -549,28 +566,22 @@
 	//The Xth overlay being drawed.
 	var/current_iteration = 1
 
-	//Fun.exe has determined that the following lines contain 100% hardcoded shitcode. Maintainer discretion is advised.
-	for(var/W in contents_weight) //Max 8 items in contents_weight since otherwise the icon_state would be "mixed"
-		var/overlays_to_draw = 1 + FLOOR(contents_weight[W] / overlay_w_class, 1) //Always draw at least 1 icon per unique item and add additional icons if it takes a lot of space inside.
+	for(var/ObjTypepath in contents_weight) //Max [total_overlays] items in contents_weight since otherwise the icon_state would be "mixed"
+		var/overlays_to_draw = 1 + FLOOR(contents_weight[ObjTypepath] / overlay_w_class, 1) //Always draw at least 1 icon per unique item and add additional icons if it takes a lot of weight inside.
 		if(overlay_overflow)//This makes sure no matter the configuration, every item will get at least 1 spot in the mix.
 			var/adjustment = min(overlay_overflow, overlays_to_draw - 1)
 			overlay_overflow -= adjustment
 			overlays_to_draw -= adjustment
 			total_overlays -= adjustment
 
-		for(var/i = 1, i <= overlays_to_draw, i++) //Same item type, but now we actually draw them since we know how many to draw
+		for(var/i = 1 to overlays_to_draw) //Same item type, but now we actually draw them since we know how many to draw
 			var/imagepixel_x = overlay_pixel_x + FLOOR((current_iteration / amt_vertical) - 0.01, 1) * shift_x //Shift to the right only after all vertical spaces are occupied.
 			var/imagepixel_y = overlay_pixel_y + min(amt_vertical - WRAP(current_iteration - 1, 0, amt_vertical) - 1, total_overlays - current_iteration) * shift_y //Vertical shifting that draws the top overlays first if applicable
 			//Getting the mini icon_state to display
-			var/obj/item/relateditem = W
+			var/obj/item/relateditem = ObjTypepath
 			var/imagestate =  initial(relateditem.icon_state_mini)
-			if(!imagestate) //Might be a cell or a random item
-				for(var/A in assoc_overlay)
-					if(ispath(W, A))
-						imagestate = assoc_overlay[A]
-						break
 
-			overlays += image('icons/obj/items/items_mini.dmi', icon_state = imagestate, pixel_x = imagepixel_x, pixel_y = imagepixel_y)
+			. += image('icons/obj/items/items_mini.dmi', icon_state = imagestate, pixel_x = imagepixel_x, pixel_y = imagepixel_y)
 			current_iteration++
 
 // --MAG BOXES--
@@ -610,10 +621,6 @@
 		/obj/item/ammo_magazine/flamer_tank/backtank,
 		/obj/item/ammo_magazine/flamer_tank/backtank/X,
 	)
-	overlay_pixel_x = 5
-	overlay_pixel_y = 11
-	amt_horizontal = 4
-	amt_vertical = 2
 
 // --GRENADE BOXES--
 /obj/item/storage/box/visual/grenade
@@ -628,34 +635,33 @@
 		/obj/item/explosive/grenade,
 	)
 	cant_hold = list()
-	overlay_pixel_x = 7
-	overlay_pixel_y = 10
-	amt_horizontal = 3
-	amt_vertical = 2
-
+	overlay_pixel_x = BOX_GRENADE_OFFSET_X
+	overlay_pixel_y = BOX_GRENADE_OFFSET_Y
+	amt_horizontal = BOX_GRENADE_COLUMNS
+	amt_vertical = BOX_GRENADE_ROWS
 /obj/item/storage/box/visual/grenade/M15
-	name = "M15 grenade box"
+	name = "\improper M15 grenade box"
 	desc = "A secure box holding 25 M15 fragmentation grenades."
 	spawn_number = 25
 	spawn_type = /obj/item/explosive/grenade/frag/m15
 	closed_overlay = "grenade_box_overlay_m15"
 
 /obj/item/storage/box/visual/grenade/frag
-	name = "M40 HEDP grenade box"
+	name = "\improper M40 HEDP grenade box"
 	desc = "A secure box holding 25 M40 HEDP grenades. High explosive, don't store near the flamer fuel."
 	spawn_number = 25
 	spawn_type = /obj/item/explosive/grenade/frag
 	closed_overlay = "grenade_box_overlay_hedp"
 
 /obj/item/storage/box/visual/grenade/incendiary
-	name = "M40 HIDP grenade box"
+	name = "\improper M40 HIDP grenade box"
 	desc = "A secure box holding 25 M40 HIDP incendiary grenades. Warning: highly flammable!!."
 	spawn_number = 25
 	spawn_type = /obj/item/explosive/grenade/incendiary
 	closed_overlay = "grenade_box_overlay_hidp"
 
 /obj/item/storage/box/visual/grenade/phosphorus
-	name = "M40 HPDP grenade box"
+	name = "\improper M40 HPDP grenade box"
 	desc = "A secure box holding 15 M40 HPDP white phosphorous grenades. War crimes for the entire platoon!"
 	storage_slots = 15
 	max_storage_space = 30
@@ -664,28 +670,28 @@
 	closed_overlay = "grenade_box_overlay_phosphorus"
 
 /obj/item/storage/box/visual/grenade/impact
-	name = "M15 grenade box"
+	name = "\improper M15 grenade box"
 	desc = "A secure box holding 25 M40 IMDP impact grenades. High explosive, don't store near the flamer fuel."
 	spawn_number = 25
 	spawn_type = /obj/item/explosive/grenade/impact
 	closed_overlay = "grenade_box_overlay_impact"
 
 /obj/item/storage/box/visual/grenade/cloak
-	name = "M40-2 SCDP grenade box"
+	name = "\improper M40-2 SCDP grenade box"
 	desc = "A secure box holding 25 M40-2 SCDP cloak grenades. Don't blindly shoot into the smoke."
 	spawn_number = 25
 	spawn_type = /obj/item/explosive/grenade/cloakbomb
 	closed_overlay = "grenade_box_overlay_cloak"
 
 /obj/item/storage/box/visual/grenade/drain
-	name = "M40-T grenade box"
+	name = "\improper M40-T grenade box"
 	desc = "A secure box holding 25 M40-T gas grenades. 100% safe to use around masked marines."
 	spawn_number = 25
 	spawn_type = /obj/item/explosive/grenade/drainbomb
 	closed_overlay = "grenade_box_overlay_drain"
 
 /obj/item/storage/box/visual/grenade/razorburn
-	name = "Razorburn grenade box"
+	name = "razorburn grenade box"
 	desc = "A secure box holding 15 razor burn grenades. Used for quick flank coverage."
 	storage_slots = 15
 	max_storage_space = 30
@@ -694,15 +700,28 @@
 	closed_overlay = "grenade_box_overlay_razorburn"
 
 /obj/item/storage/box/visual/grenade/teargas
-	name = "M66 teargas grenade box"
+	name = "\improper M66 teargas grenade box"
 	desc = "A secure box holding 25 M66 tear gas grenades. Used for riot control."
 	spawn_number = 25
 	spawn_type = /obj/item/explosive/grenade/chem_grenade/teargas
 	closed_overlay = "grenade_box_overlay_teargas"
 
 /obj/item/storage/box/visual/grenade/training
-	name = "M07 training grenade box"
+	name = "\improper M07 training grenade box"
 	desc = "A secure box holding 25 M07 training grenades. Harmless and reusable."
 	spawn_number = 25
 	spawn_type = /obj/item/explosive/grenade/frag/training
 	closed_overlay = "grenade_box_overlay_training"
+
+#undef BOX_OVERLAY_SHIFT_X
+#undef BOX_OVERLAY_SHIFT_Y
+
+#undef BOX_MAGAZINE_OFFSET_X
+#undef BOX_MAGAZINE_OFFSET_Y
+#undef BOX_MAGAZINE_COLUMNS
+#undef BOX_MAGAZINE_ROWS
+
+#undef BOX_GRENADE_OFFSET_X
+#undef BOX_GRENADE_OFFSET_Y
+#undef BOX_GRENADE_COLUMNS
+#undef BOX_GRENADE_ROWS
