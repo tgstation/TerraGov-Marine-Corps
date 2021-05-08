@@ -27,7 +27,8 @@ They're all essentially identical when it comes to getting the job done.
 	var/used_casings = 0 //Just an easier way to track how many shells to eject later.
 	var/flags_magazine = AMMUNITION_REFILLABLE //flags specifically for magazines.
 	var/base_mag_icon //the default mag icon state.
-	var/icon_state_mini //The icon state used to represent this image in "icons/obj/items/storage/ammo_mini.dmi"
+	///The icon state used to represent this image in "icons/obj/items/storage/ammo_mini.dmi"
+	var/icon_state_mini
 
 /obj/item/ammo_magazine/Initialize(mapload, spawn_empty)
 	. = ..()

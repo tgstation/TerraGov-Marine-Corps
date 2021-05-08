@@ -21,6 +21,8 @@
 *  EDITED BY APOPHIS 09OCT2015 to prevent in-game abuse of boxes.
 */
 
+#define BOX_OVERLAY_SHIFT_X 6
+#define BOX_OVERLAY_SHIFT_Y 4 //one less than the 6x5 sprite to make them overlap on each other a bit.
 
 
 /obj/item/storage/box
@@ -485,8 +487,8 @@
  * Hardcoded to display stuff in a 2 row box.
  */
 /obj/item/storage/box/magazine
-	name = "\improper ammunition box"
-	desc = "This box is able to hold a wide variety of supplies."
+	name = "ammunition box"
+	desc = "This box is able to hold a wide variety of supplies, mainly military-grade ammunition."
 	icon = 'icons/obj/items/storage/ammo_boxes.dmi'
 	icon_state = "mag_box"
 	item_state = "mag_box"
@@ -541,12 +543,13 @@
 	var/list/contents_weight = list()
 	///Initial offset of the overlays.
 	var/overlay_pixel_x = 5
-	var/overlay_pixel_y = 11
-	///Amount of horizontal overlay spaces.
+	var/overlay_pixel_y = 10
+	///Amount of overlay spaces per axis.
 	var/amt_horizontal = 4
+	var/amt_vertical = 3
 	///Amount of pixels to shift each overlay around only on one axis.
-	var/shift_x = 6
-	var/shift_y = 4
+	var/shift_x = BOX_OVERLAY_SHIFT_X
+	var/shift_y = BOX_OVERLAY_SHIFT_Y
 	///Whether or not the box is deployed on the ground
 	var/deployed = FALSE
 	///Amount of different items in the ammo box.
@@ -558,28 +561,28 @@
 
 /obj/item/storage/box/magazine/Initialize(mapload, ...)
 	. = ..()
-	max_overlays = 2 * amt_horizontal
+	max_overlays = amt_horizontal * amt_vertical
 	overlay_w_class = FLOOR(max_storage_space / max_overlays, 1)
 	can_hold -= cant_hold //Have cant_hold actually have a use
 
 /obj/item/storage/box/magazine/examine(mob/user, distance, infix, suffix)
 	. = ..()
-	if (!deployed && !(loc == user)) //Closed and not in your posession
+	if (!deployed && !(loc == user)) //Closed and not in your possession
 		return
 	if(variety > max_overlays) //Too much shit inside, a literal clusterfuck of supplies
-		to_chat(user, "The inside is cluttered with all sorts of supplies.")
+		to_chat(user, "It's too cluttered with all of these supplies inside.")
 		return
 	if(variety <= 0) //empy
-		to_chat(user, "[src] is empty!")
+		to_chat(user, "The [src] is empty!")
 		return
-	to_chat(user, "Inside [src] you notice:")
+	to_chat(user, "Inside the [src] you notice:")
 	for(var/obj/I AS in contents_weight)
 		if(contents_weight[I] < overlay_w_class)
-			to_chat(user, "A bit of: [initial(I.name)]")
+			to_chat(user, "A bit of: [initial(I.name)].")
 		else if(contents_weight[I] < 3 * overlay_w_class)
-			to_chat(user, "Some of: [initial(I.name)]")
+			to_chat(user, "Some of: [initial(I.name)].")
 		else
-			to_chat(user, "A lot of: [initial(I.name)]")
+			to_chat(user, "A lot of: [initial(I.name)].")
 
 /obj/item/storage/box/magazine/attack_self(mob/user)
 	deployed = TRUE
@@ -619,13 +622,12 @@
 /obj/item/storage/box/magazine/proc/update_visuals()
 
 	//Clear all overlays for a fresh start
-	for(var/I in overlays)
-		overlays -= I
+	overlays.Cut()
 	variety = 0
 
 	//Fill assoc list of every ammo type in the crate and have it's value be the total weight it takes up.
 	contents_weight = list()
-	for(var/obj/item/I in contents)
+	for(var/obj/item/I AS in contents)
 		if(!contents_weight[I.type])
 			contents_weight[I.type] = 0
 			variety += 1
@@ -663,14 +665,11 @@
 			total_overlays -= adjustment
 
 		for(var/i = 1, i <= overlays_to_draw, i++) //Same mag type, but now we actually draw them since we know how many to draw
-			var/imagepixel_x = overlay_pixel_x + FLOOR((current_iteration / 2) - 0.5, 1) * shift_x //Shift to the right only after both vertical spaces are occupied.
-			var/imagepixel_y = overlay_pixel_y
-			if(MODULUS(current_iteration, 2) && (total_overlays - current_iteration) > 0) // We draw the top part first to account for overlaps.
-				imagepixel_y += shift_y
-
+			var/imagepixel_x = overlay_pixel_x + FLOOR((current_iteration / amt_vertical) - 0.01, 1) * shift_x //Shift to the right only after all vertical spaces are occupied.
+			var/imagepixel_y = overlay_pixel_y + min(amt_vertical - WRAP(current_iteration - 1, 0, amt_vertical) - 1, total_overlays - current_iteration) * shift_y //Vertical shifting that draws the top overlays first if applicable
 			//Getting the mini icon_state to display
 			var/obj/item/ammo_magazine/relatedmag = W
-			var/imagestate =  initial(relatedmag?.icon_state_mini)
+			var/imagestate =  initial(relatedmag.icon_state_mini)
 			if(!imagestate) //Might be a cell or a random item
 				for(var/A in assoc_overlay)
 					if(findtext("[W]", "[A]")) //istype is wacky when using assoc keys as types
