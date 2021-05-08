@@ -17,6 +17,7 @@ They're all essentially identical when it comes to getting the job done.
 	w_class = WEIGHT_CLASS_TINY
 	throw_speed = 2
 	throw_range = 6
+	icon_state_mini = "mag"
 	var/default_ammo = /datum/ammo/bullet
 	var/overcharge_ammo = /datum/ammo/bullet //Generally used for energy weapons
 	var/caliber = null // This is used for matching handfuls to each other or whatever the mag is. Calibers in _DEFINES/caliber.dm.
@@ -27,8 +28,6 @@ They're all essentially identical when it comes to getting the job done.
 	var/used_casings = 0 //Just an easier way to track how many shells to eject later.
 	var/flags_magazine = AMMUNITION_REFILLABLE //flags specifically for magazines.
 	var/base_mag_icon //the default mag icon state.
-	///The icon state used to represent this image in "icons/obj/items/storage/ammo_mini.dmi"
-	var/icon_state_mini
 
 /obj/item/ammo_magazine/Initialize(mapload, spawn_empty)
 	. = ..()

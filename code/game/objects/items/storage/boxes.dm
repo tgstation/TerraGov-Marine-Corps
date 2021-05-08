@@ -348,28 +348,6 @@
 	icon_state = "m50"
 	spawn_type = /obj/item/explosive/grenade/flare/cas
 
-
-/obj/item/storage/box/nade_box
-	name = "\improper M40 HEDP grenade box"
-	desc = "A secure box holding 25 M40 HEDP grenades. High explosive, don't store near the flamer fuel."
-	icon_state = "nade"
-	w_class = WEIGHT_CLASS_BULKY
-	storage_slots = 25
-	max_storage_space = 50
-	spawn_type = /obj/item/explosive/grenade/frag
-	spawn_number = 25
-
-/obj/item/storage/box/nade_box/update_icon_state()
-	icon_state = initial(icon_state)
-	if(!length(contents))
-		icon_state += "_e"
-
-/obj/item/storage/box/nade_box/training
-	name = "\improper M07 training grenade box"
-	desc = "A secure box holding 25 M07 training grenades. Harmless and reusable."
-	icon_state = "nade_train"
-	spawn_type = /obj/item/explosive/grenade/frag/training
-
 //ITEMS-----------------------------------//
 /obj/item/storage/box/lightstick
 	name = "box of lightsticks"
@@ -430,13 +408,13 @@
 /** Fillable box
  *
  * Deployable box with fancy visuals of its contents
- * Visual content defined in the icon_state_mini var in /obj/item/ammo_magazine
+ * Visual content defined in the icon_state_mini var in /obj/item
  * All other visuals that do not have a icon_state_mini defined are in var/assoc_overlay
  */
 /obj/item/storage/box/visual
 	name = "generic box"
 	desc = "This box is able to hold a wide variety of supplies."
-	icon = 'icons/obj/items/storage/ammo_boxes.dmi'
+	icon = 'icons/obj/items/storage/storage_boxes.dmi'
 	icon_state = "mag_box"
 	item_state = "mag_box"
 	w_class = WEIGHT_CLASS_HUGE
@@ -448,36 +426,22 @@
 	can_hold = list(
 		/obj/item, //This box should normally be unobtainable so here we go
 	)
-	///Assoc list linking each item to it's corresponding icon_state for the overlays if the item is not technically a magazine.
-	var/list/assoc_overlay = list(
-		/obj/item/cell/lasgun = "mag_cell",
-		/obj/item/explosive/grenade/frag/PMC = "grenade_red_white",
-		/obj/item/explosive/grenade/frag/m15 = "grenade_yellow",
-		/obj/item/explosive/grenade/frag/training = "grenade_white",
-		/obj/item/explosive/grenade/frag = "grenade_red",
-		/obj/item/explosive/grenade/incendiary = "grenade_orange",
-		/obj/item/explosive/grenade/smokebomb = "grenade_blue",
-		/obj/item/explosive/grenade/cloakbomb = "grenade_green",
-		/obj/item/explosive/grenade/drainbomb = "grenade_blue",
-		/obj/item/explosive/grenade/phosphorus = "grenade_cyan",
-		/obj/item/explosive/grenade/impact = "grenade_blue_white",
-		/obj/item/explosive/grenade = "grenade",
-		/obj/item = "", //Will default to the generic grey magazine blob thingies
-	)
+	///Assoc list linking each item to it's corresponding icon_state for the overlays if the atom does not have a item_state_mini var.
+	var/list/assoc_overlay = list()
 	///Assoc list of how much weight every item type takes. Used to determine how many overlays to make.
 	var/list/contents_weight = list()
 	///Initial offset of the overlays.
 	var/overlay_pixel_x = 5
-	var/overlay_pixel_y = 10
+	var/overlay_pixel_y = 11
 	///Amount of overlay spaces per axis.
 	var/amt_horizontal = 4
-	var/amt_vertical = 3
+	var/amt_vertical = 2
 	///Amount of pixels to shift each overlay around only on one axis.
 	var/shift_x = BOX_OVERLAY_SHIFT_X
 	var/shift_y = BOX_OVERLAY_SHIFT_Y
 	///Whether or not the box is deployed on the ground
 	var/deployed = FALSE
-	///Amount of different items in the ammo box.
+	///Amount of different items in the box.
 	var/variety = 0
 	///Amount of weight a single overlay can cover.
 	var/overlay_w_class = 0
@@ -546,14 +510,14 @@
 	. = ..()
 	update_visuals()
 
-/// Proc to redo all the overlays and the icon_state of the ammo box
+/// Proc to redo all the overlays and the icon_state of the box
 /obj/item/storage/box/visual/proc/update_visuals()
 
 	//Clear all overlays for a fresh start
 	overlays.Cut()
 	variety = 0
 
-	//Fill assoc list of every ammo type in the crate and have it's value be the total weight it takes up.
+	//Fill assoc list of every item type in the crate and have it's value be the total weight it takes up.
 	contents_weight = list()
 	for(var/obj/item/I AS in contents)
 		if(!contents_weight[I.type])
@@ -564,7 +528,7 @@
 	if(!deployed)
 		icon_state = "[initial(icon_state)]"
 		if(closed_overlay)
-			overlays += image('icons/obj/items/storage/ammo_boxes.dmi', icon_state = closed_overlay)
+			overlays += image('icons/obj/items/storage/storage_boxes.dmi', icon_state = closed_overlay)
 		return
 	if(variety > max_overlays) // Too many items inside so lets make it cluttered
 		icon_state = "[initial(icon_state)]_mixed"
@@ -587,26 +551,26 @@
 
 	//Fun.exe has determined that the following lines contain 100% hardcoded shitcode. Maintainer discretion is advised.
 	for(var/W in contents_weight) //Max 8 items in contents_weight since otherwise the icon_state would be "mixed"
-		var/overlays_to_draw = 1 + FLOOR(contents_weight[W] / overlay_w_class, 1) //Always draw at least 1 icon per unique mag and add additional icons if it takes a lot of space inside.
+		var/overlays_to_draw = 1 + FLOOR(contents_weight[W] / overlay_w_class, 1) //Always draw at least 1 icon per unique item and add additional icons if it takes a lot of space inside.
 		if(overlay_overflow)//This makes sure no matter the configuration, every item will get at least 1 spot in the mix.
 			var/adjustment = min(overlay_overflow, overlays_to_draw - 1)
 			overlay_overflow -= adjustment
 			overlays_to_draw -= adjustment
 			total_overlays -= adjustment
 
-		for(var/i = 1, i <= overlays_to_draw, i++) //Same mag type, but now we actually draw them since we know how many to draw
+		for(var/i = 1, i <= overlays_to_draw, i++) //Same item type, but now we actually draw them since we know how many to draw
 			var/imagepixel_x = overlay_pixel_x + FLOOR((current_iteration / amt_vertical) - 0.01, 1) * shift_x //Shift to the right only after all vertical spaces are occupied.
 			var/imagepixel_y = overlay_pixel_y + min(amt_vertical - WRAP(current_iteration - 1, 0, amt_vertical) - 1, total_overlays - current_iteration) * shift_y //Vertical shifting that draws the top overlays first if applicable
 			//Getting the mini icon_state to display
-			var/obj/item/ammo_magazine/relatedmag = W
-			var/imagestate =  initial(relatedmag.icon_state_mini)
+			var/obj/item/relateditem = W
+			var/imagestate =  initial(relateditem.icon_state_mini)
 			if(!imagestate) //Might be a cell or a random item
 				for(var/A in assoc_overlay)
 					if(ispath(W, A))
 						imagestate = assoc_overlay[A]
 						break
 
-			overlays += image('icons/obj/items/storage/ammo_mini.dmi', icon_state = imagestate, pixel_x = imagepixel_x, pixel_y = imagepixel_y)
+			overlays += image('icons/obj/items/items_mini.dmi', icon_state = imagestate, pixel_x = imagepixel_x, pixel_y = imagepixel_y)
 			current_iteration++
 
 // --MAG BOXES--
@@ -647,9 +611,9 @@
 		/obj/item/ammo_magazine/flamer_tank/backtank/X,
 	)
 	overlay_pixel_x = 5
-	overlay_pixel_y = 10
+	overlay_pixel_y = 11
 	amt_horizontal = 4
-	amt_vertical = 3
+	amt_vertical = 2
 
 // --GRENADE BOXES--
 /obj/item/storage/box/visual/grenade
