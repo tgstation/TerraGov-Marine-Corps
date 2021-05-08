@@ -543,10 +543,6 @@
 /obj/item/storage/box/visual/update_overlays()
 	. = ..()
 
-	//Clear all overlays for a fresh start
-	if(overlays)
-		overlays.Cut()
-
 	if(!deployed)
 		icon_state = "[initial(icon_state)]"
 		if(closed_overlay)
@@ -566,8 +562,8 @@
 	//The Xth overlay being drawed.
 	var/current_iteration = 1
 
-	for(var/ObjTypepath in contents_weight) //Max [total_overlays] items in contents_weight since otherwise the icon_state would be "mixed"
-		var/overlays_to_draw = 1 + FLOOR(contents_weight[ObjTypepath] / overlay_w_class, 1) //Always draw at least 1 icon per unique item and add additional icons if it takes a lot of weight inside.
+	for(var/obj_typepath in contents_weight) //Max [total_overlays] items in contents_weight since otherwise the icon_state would be "mixed"
+		var/overlays_to_draw = 1 + FLOOR(contents_weight[obj_typepath] / overlay_w_class, 1) //Always draw at least 1 icon per unique item and add additional icons if it takes a lot of weight inside.
 		if(overlay_overflow)//This makes sure no matter the configuration, every item will get at least 1 spot in the mix.
 			var/adjustment = min(overlay_overflow, overlays_to_draw - 1)
 			overlay_overflow -= adjustment
@@ -578,7 +574,7 @@
 			var/imagepixel_x = overlay_pixel_x + FLOOR((current_iteration / amt_vertical) - 0.01, 1) * shift_x //Shift to the right only after all vertical spaces are occupied.
 			var/imagepixel_y = overlay_pixel_y + min(amt_vertical - WRAP(current_iteration - 1, 0, amt_vertical) - 1, total_overlays - current_iteration) * shift_y //Vertical shifting that draws the top overlays first if applicable
 			//Getting the mini icon_state to display
-			var/obj/item/relateditem = ObjTypepath
+			var/obj/item/relateditem = obj_typepath
 			var/imagestate =  initial(relateditem.icon_state_mini)
 
 			. += image('icons/obj/items/items_mini.dmi', icon_state = imagestate, pixel_x = imagepixel_x, pixel_y = imagepixel_y)
