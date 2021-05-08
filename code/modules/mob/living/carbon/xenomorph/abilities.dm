@@ -87,6 +87,7 @@
 		H.internal_organs_by_name -= "brain"
 		H.internal_organs -= O
 		H.set_undefibbable()
+		ADD_TRAIT(H, TRAIT_PSY_DRAINED, TRAIT_PSY_DRAINED) //for xeno hud
 
 	X.do_attack_animation(victim, ATTACK_EFFECT_BITE)
 	playsound(victim, pick( 'sound/weapons/alien_tail_attack.ogg', 'sound/weapons/alien_bite1.ogg'), 50)
@@ -1025,7 +1026,7 @@
 		to_use.update_burst()
 		to_use.forceMove(hivesilo)
 		moved_human_number++
-	
+
 	succeed_activate()
 
 ////////////////////
