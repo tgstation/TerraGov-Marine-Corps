@@ -99,10 +99,12 @@
 
 /obj/item/helmet_module/binoculars/onzoom(mob/living/user)
 	RegisterSignal(user, list(COMSIG_MOVABLE_MOVED, COMSIG_MOB_MOUSEDOWN), .proc/toggle_module)//No shooting while zoomed
+	RegisterSignal(user, COMSIG_ITEM_ZOOM, .proc/zoom_check_return)
 	RegisterSignal(src, list(COMSIG_ITEM_EQUIPPED, COMSIG_ITEM_DROPPED), .proc/zoom_item_turnoff)
 
 /obj/item/helmet_module/binoculars/onunzoom(mob/living/user)
-	UnregisterSignal(user, list(COMSIG_MOVABLE_MOVED, COMSIG_MOB_MOUSEDOWN))	
+	UnregisterSignal(user, list(COMSIG_MOVABLE_MOVED, COMSIG_MOB_MOUSEDOWN))
+	UnregisterSignal(user, COMSIG_ITEM_ZOOM)
 	UnregisterSignal(src, list(COMSIG_ITEM_EQUIPPED, COMSIG_ITEM_DROPPED))
 
 /obj/item/helmet_module/antenna
