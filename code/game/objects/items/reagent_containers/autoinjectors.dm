@@ -49,8 +49,8 @@
 	list_reagents = list(
 		/datum/reagent/medicine/bicaridine = 10,
 		/datum/reagent/medicine/kelotane = 10,
-		/datum/reagent/medicine/tramadol = 7,
-		/datum/reagent/medicine/ryetalyn = 3,
+		/datum/reagent/medicine/tramadol = 5,
+		/datum/reagent/medicine/ryetalyn = 5,
 	)
 
 /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced
@@ -216,9 +216,11 @@
 	name = "Emergency autoinjector"
 	desc = "An autoinjector loaded with a single use of Russian Red. Restores a significant amount of stamina and heals a large amount of damage, but causes slight permanent damage."
 	icon_state = "autoinjector-7"
-	amount_per_transfer_from_this = 10
-	volume = 10
-	list_reagents = list(/datum/reagent/medicine/russian_red = 10)
+	amount_per_transfer_from_this = 15
+	volume = 15
+	list_reagents = list(/datum/reagent/medicine/russian_red = 10,
+						/datum/reagent/medicine/ryetalyn = 5,
+	)
 
 /obj/item/reagent_containers/hypospray/autoinjector/polyhexanide
 	name = "polyhexanide autoinjector"
