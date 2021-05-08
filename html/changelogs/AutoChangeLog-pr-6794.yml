@@ -1,0 +1,4 @@
+author: "Wayland-Smithy"
+delete-after: True
+changes: 
+  - qol: "Damage taken from harmful sand storms now comes with a combat log notification."
