@@ -126,7 +126,7 @@
 
 /datum/reagent/medicine/oxycodone/on_mob_add(mob/living/L, metabolism)
 	L.adjustStaminaLoss(-20*effect_str)
-	to_chat(L, "<span class='danger'>You feel a burst of energy revitalize you all of a sudden! You can do anything!</span>")
+	to_chat(L, "<span class='userdanger'>You feel a burst of energy revitalize you all of a sudden! You can do anything!</span>")
 
 /datum/reagent/medicine/oxycodone/on_mob_life(mob/living/L, metabolism)
 	L.reagent_pain_modifier += PAIN_REDUCTION_FULL
@@ -148,7 +148,7 @@
 			E.take_damage(3*effect_str, TRUE)
 
 /datum/reagent/medicine/oxycodone/on_mob_delete(mob/living/L, metabolism)
-	to_chat(L, "<span class='danger'>The room spins slightly as you start to come down off your painkillers!</span>")
+	to_chat(L, "<span class='userdanger'>The room spins slightly as you start to come down off your painkillers!</span>")
 	addtimer(CALLBACK(L, /mob/living.proc/Paralyze, 3), 10 SECONDS)
 
 /datum/reagent/medicine/hydrocodone
@@ -400,7 +400,7 @@
 
 /datum/reagent/medicine/synaptizine/on_mob_add(mob/living/L, metabolism)
 	L.adjustStaminaLoss(-30*effect_str)
-	to_chat(L, "<span class='danger'>You feel a burst of energy as the stimulants course through you! Time to go!</span>")
+	to_chat(L, "<span class='userdanger'>You feel a burst of energy as the stimulants course through you! Time to go!</span>")
 
 /datum/reagent/medicine/synaptizine/on_mob_life(mob/living/L, metabolism)
 	L.reagent_shock_modifier += PAIN_REDUCTION_MEDIUM
@@ -426,7 +426,7 @@
 	L.apply_damages(effect_str, effect_str, effect_str)
 
 /datum/reagent/medicine/synaptizine/on_mob_delete(mob/living/L, metabolism)
-	to_chat(L, "<span class='danger'>The room spins as you start to come down off your stimulants!</span>")
+	to_chat(L, "<span class='userdanger'>The room spins as you start to come down off your stimulants!</span>")
 	addtimer(CALLBACK(L, /mob/living.proc/Paralyze, 15), 10 SECONDS)
 
 /datum/reagent/medicine/neuraline //injected by neurostimulator implant and medic-only injector
