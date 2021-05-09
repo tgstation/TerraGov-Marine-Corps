@@ -50,6 +50,7 @@ type PlayerPreferencesData = {
   windowflashing: number,
   auto_fit_viewport: number,
   focus_chat: number,
+  mute_xeno_health_alert_messages: number,
   clientfps: number,
   chat_on_map: number,
   max_chat_length: number,
