@@ -2144,8 +2144,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar/rebel)
 "cce" = (
-/obj/docking_port/stationary/marine_dropship/hangar/loyalist,
-/obj/docking_port/stationary/marine_dropship/crash_target,
+/obj/docking_port/stationary/marine_dropship/hangar/one,
 /turf/open/floor/plating,
 /area/mainship/hallways/hangar)
 "ccl" = (
@@ -4054,7 +4053,6 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/command/cic)
 "dIZ" = (
-/obj/docking_port/stationary/marine_dropship/crash_target,
 /turf/closed/wall/mainship,
 /area/mainship/living/commandbunks)
 "dJb" = (
@@ -7212,7 +7210,6 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/lower_engine_monitoring/rebel)
 "gEw" = (
-/obj/docking_port/stationary/marine_dropship/crash_target,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
 "gEL" = (
@@ -13774,7 +13771,6 @@
 	},
 /area/mainship/living/cafeteria_starboard)
 "mgC" = (
-/obj/docking_port/stationary/marine_dropship/crash_target,
 /obj/machinery/vending/uniform_supply,
 /turf/open/floor/mainship,
 /area/mainship/living/cafeteria_starboard)
@@ -15660,7 +15656,6 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/lower_hull/rebel)
 "nLA" = (
-/obj/docking_port/stationary/marine_dropship/crash_target,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 1

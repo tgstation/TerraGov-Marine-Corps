@@ -116,10 +116,6 @@
 	shuttle_id = "triumph"
 	name = "Triumph"
 
-/datum/map_template/shuttle/dropship_four
-	shuttle_id = "victory"
-	name = "Victory"
-
 /datum/map_template/shuttle/cas
 	shuttle_id = "casplane"
 	name = "Condor Jet"
