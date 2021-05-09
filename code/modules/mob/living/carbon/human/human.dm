@@ -155,17 +155,17 @@
 
 /mob/living/carbon/human/attack_animal(mob/living/M as mob)
 	if(M.melee_damage == 0)
-		M.do_attack_animation(src, ATTACK_EFFECT_CLAW)
-		return
-	if(M.attack_sound)
-		playsound(loc, M.attack_sound, 25, 1)
-	visible_message("<span class='danger'>[M] [M.attacktext] [src]!</span>")
-	log_combat(M, src, "attacked")
-	var/damage = M.melee_damage
-	var/dam_zone = pick("chest", "l_hand", "r_hand", "l_leg", "r_leg")
-	var/datum/limb/affecting = get_limb(ran_zone(dam_zone))
-	var/armor = run_armor_check(affecting, "melee")
-	apply_damage(damage, BRUTE, affecting, armor, updating_health = TRUE)
+		M.emote("me", EMOTE_VISIBLE, "[M.friendly] [src]")
+	else
+		if(M.attack_sound)
+			playsound(loc, M.attack_sound, 25, 1)
+		visible_message("<span class='danger'>[M] [M.attacktext] [src]!</span>")
+		log_combat(M, src, "attacked")
+		var/damage = M.melee_damage
+		var/dam_zone = pick("chest", "l_hand", "r_hand", "l_leg", "r_leg")
+		var/datum/limb/affecting = get_limb(ran_zone(dam_zone))
+		var/armor = run_armor_check(affecting, "melee")
+		apply_damage(damage, BRUTE, affecting, armor, updating_health = TRUE)
 
 /mob/living/carbon/human/show_inv(mob/living/user)
 	var/obj/item/clothing/under/suit

@@ -30,6 +30,7 @@
 
 	evolves_to = list(
 		/mob/living/carbon/xenomorph/Defiler,
+		/mob/living/carbon/xenomorph/ravager,
 	)
 	deevolves_to = /mob/living/carbon/xenomorph/runner
 
