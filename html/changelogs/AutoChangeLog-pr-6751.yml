@@ -1,0 +1,4 @@
+author: "SkeletalElite"
+delete-after: True
+changes: 
+  - qol: "Context/right click/verb menu toggle now changes whether or not you must hold shift to access the menu instead of disabling it completely"
