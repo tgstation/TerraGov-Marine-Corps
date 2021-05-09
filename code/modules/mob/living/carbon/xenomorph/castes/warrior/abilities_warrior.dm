@@ -103,7 +103,7 @@
 	X.throw_at(get_step_towards(A, X), 6, 2, X)
 	lunge_target = A
 	RegisterSignal(X, COMSIG_MOVABLE_MOVED, .proc/check_if_lunge_possible)
-	check_if_lunge_possible(X, lunge_target)
+	check_if_lunge_possible(X)
 
 	succeed_activate()
 	add_cooldown()
