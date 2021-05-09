@@ -5,6 +5,7 @@
 /datum/action/xeno_action/activable/nightfall
 	name = "Nightfall"
 	action_icon_state = "nightfall"
+	ability_name = "Nightfall"
 	mechanics_text = "Shut down all electrical lights for 5 seconds"
 	cooldown_timer = 1 MINUTES
 	plasma_cost = 100
@@ -114,7 +115,7 @@
 	var/mob/living/carbon/xenomorph/X = owner
 
 	log_game("[key_name(owner)] has begun summoning hive in [AREACOORD(owner)]")
-	xeno_message("King: \The [owner] has begun a psychic summon in <b>[get_area(owner)]</b>!", 3, X.hivenumber)
+	xeno_message("King: \The [owner] has begun a psychic summon in <b>[get_area(owner)]</b>!", "xenoannounce", 3, X.hivenumber)
 	var/list/allxenos = X.hive.get_all_xenos()
 	for(var/mob/living/carbon/xenomorph/sister as() in allxenos)
 		sister.add_filter("summonoutline", 2, list("type" = "outline", "size" = 1, "color" = COLOR_VIOLET))

@@ -147,6 +147,14 @@
 
 // the smaller bulb light fixture
 
+/obj/machinery/light/Initialize(mapload, ...)
+	. = ..()
+	GLOB.lights += src
+
+/obj/machinery/light/Destroy()
+	. = ..()
+	GLOB.lights -= src
+
 /obj/machinery/light/small
 	icon_state = "bulb1"
 	base_state = "bulb"
