@@ -477,9 +477,9 @@
 		to_chat(user, "It's too cluttered with all of these supplies inside.")
 		return
 	if(variety <= 0) //empy
-		to_chat(user, "[src] is empty!")
+		to_chat(user, "It is empty!")
 		return
-	to_chat(user, "Inside [src] you notice:")
+	to_chat(user, "It contains:")
 	for(var/obj/I AS in contents_weight)
 		if(contents_weight[I] < overlay_w_class)
 			to_chat(user, "A bit of: [initial(I.name)].")
