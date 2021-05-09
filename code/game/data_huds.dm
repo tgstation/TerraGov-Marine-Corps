@@ -183,19 +183,22 @@
 	var/image/infection_hud = hud_list[XENO_EMBRYO_HUD] //State of the xeno embryo.
 	var/image/simple_status_hud = hud_list[STATUS_HUD_SIMPLE] //Status for the naked eye.
 	var/image/xeno_reagent = hud_list[XENO_REAGENT_HUD] // Displays active xeno reagents
+	var/static/image/neurotox_image = image('icons/mob/hud.dmi', src, "neurotoxin")
+	var/static/image/hemodile_image = image('icons/mob/hud.dmi', src, "hemodile")
+	var/static/image/transvitox_image = image('icons/mob/hud.dmi', src, "transvitox")
 
 	xeno_reagent.overlays.Cut()
-	xeno_reagent.icon_state = "hudblank"
+	xeno_reagent.icon_state = ""
 	if(stat != DEAD)
 
 		if(reagents.get_reagent_amount(/datum/reagent/toxin/xeno_neurotoxin))
-			xeno_reagent.overlays += image('icons/mob/hud.dmi', src, "neurotoxin")
+			xeno_reagent.overlays += neurotox_image
 
 		if(reagents.get_reagent_amount(/datum/reagent/toxin/xeno_hemodile))
-			xeno_reagent.overlays += image('icons/mob/hud.dmi', src, "hemodile")
+			xeno_reagent.overlays += hemodile_image
 
 		if(reagents.get_reagent_amount(/datum/reagent/toxin/xeno_transvitox))
-			xeno_reagent.overlays += image('icons/mob/hud.dmi', src, "transvitox")
+			xeno_reagent.overlays += transvitox_image
 
 	hud_list[XENO_REAGENT_HUD] = xeno_reagent
 
