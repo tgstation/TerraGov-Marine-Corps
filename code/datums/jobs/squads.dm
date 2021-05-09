@@ -124,7 +124,6 @@ GLOBAL_LIST_EMPTY(helmetmarkings_sl)
 		new_squaddie.equip_to_slot_or_del(headset, SLOT_EARS)
 
 	if(istype(headset))
-		headset.remove_minimap()
 		headset.set_frequency(radio_freq)
 		headset.recalculateChannels()
 		headset.add_minimap()
@@ -177,6 +176,7 @@ GLOBAL_LIST_EMPTY(helmetmarkings_sl)
 
 	var/obj/item/radio/headset/mainship/headset = leaving_squaddie.wear_ear
 	if(istype(headset))
+		headset.remove_minimap()
 		headset.set_frequency(initial(headset.frequency))
 
 	for(var/datum/data/record/sheet AS in GLOB.datacore.general)
