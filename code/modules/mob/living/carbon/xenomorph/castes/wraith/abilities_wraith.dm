@@ -534,6 +534,10 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	new /area/arrival(target_turf) //So we don't get instagibbed from the space area
 
 	for(var/mob/living/living_contents in banishment_target.contents) //Safety measure so living mobs inside the target don't get lost in Brazilspace forever
+		if(isxeno(banishment_target)) //If we're a xeno, disgorge all vored contents
+			var/mob/living/carbon/xenomorph/xeno_target = banishment_target
+			xeno_target.eject_victim()
+
 		living_contents.forceMove(banished_turf)
 
 	banishment_target.forceMove(target_turf)
