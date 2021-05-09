@@ -1,4 +1,0 @@
-author: "Surrealaser"
-delete-after: True
-changes: 
-  - code_imp: "Banished targets are now emptied of all living mobs before being sent to Brazilspace."
