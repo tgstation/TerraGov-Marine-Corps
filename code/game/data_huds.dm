@@ -184,17 +184,20 @@
 	var/image/simple_status_hud = hud_list[STATUS_HUD_SIMPLE] //Status for the naked eye.
 	var/image/xeno_reagent = hud_list[XENO_REAGENT_HUD] // Displays active xeno reagents
 
-	if(!reagents.get_reagent_amount(/datum/reagent/toxin/xeno_hemodile) && !reagents.get_reagent_amount(/datum/reagent/toxin/xeno_transvitox))
-		xeno_reagent.icon_state = ""
+	xeno_reagent.overlays.Cut()
+	xeno_reagent.icon_state = "hudblank"
+	if(stat != DEAD)
 
-	else if(reagents.get_reagent_amount(/datum/reagent/toxin/xeno_hemodile) && !reagents.get_reagent_amount(/datum/reagent/toxin/xeno_transvitox))
-		xeno_reagent.icon_state = "hemodile_icon"
+		if(reagents.get_reagent_amount(/datum/reagent/toxin/xeno_neurotoxin))
+			xeno_reagent.overlays += image('icons/mob/hud.dmi', src, "neurotoxin")
 
-	else if(reagents.get_reagent_amount(/datum/reagent/toxin/xeno_transvitox) && !reagents.get_reagent_amount(/datum/reagent/toxin/xeno_hemodile))
-		xeno_reagent.icon_state = "transvitox_icon"
+		if(reagents.get_reagent_amount(/datum/reagent/toxin/xeno_hemodile))
+			xeno_reagent.overlays += image('icons/mob/hud.dmi', src, "hemodile")
 
-	else if(reagents.get_reagent_amount(/datum/reagent/toxin/xeno_hemodile) && reagents.get_reagent_amount(/datum/reagent/toxin/xeno_transvitox))
-		xeno_reagent.icon_state = "hemodile_transvitox_icon"
+		if(reagents.get_reagent_amount(/datum/reagent/toxin/xeno_transvitox))
+			xeno_reagent.overlays += image('icons/mob/hud.dmi', src, "transvitox")
+
+	hud_list[XENO_REAGENT_HUD] = xeno_reagent
 
 	if(species.species_flags & IS_SYNTHETIC)
 		simple_status_hud.icon_state = ""
