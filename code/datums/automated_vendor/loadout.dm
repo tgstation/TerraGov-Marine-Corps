@@ -168,4 +168,5 @@
 	default.job = job
 	default.item_list = list()
 	default.add_item(/obj/item/clothing/under/marine/standard ,slot_w_uniform_str)
+	default.add_item(/obj/item/clothing/shoes/marine ,slot_shoes_str)
 	return default
