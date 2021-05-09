@@ -480,7 +480,7 @@
 		to_chat(user, "It is empty!")
 		return
 	to_chat(user, "It contains:")
-	for(var/obj/I AS in contents_weight)
+	for(var/obj/item/I AS in contents_weight)
 		if(contents_weight[I] < overlay_w_class)
 			to_chat(user, "A bit of: [initial(I.name)].")
 		else if(contents_weight[I] < 3 * overlay_w_class)
@@ -528,7 +528,7 @@
 	for(var/obj/item/I AS in contents)
 		if(!contents_weight[I.type])
 			contents_weight[I.type] = 0
-			variety += 1
+			variety++
 		contents_weight[I.type] += I.w_class
 
 	if(!deployed)
@@ -553,8 +553,8 @@
 
 	//Determine the amount of overlays to draw
 	var/total_overlays = 0
-	for(var/Object in contents_weight)
-		total_overlays += 1 + FLOOR(contents_weight[Object] / overlay_w_class, 1)
+	for(var/object in contents_weight)
+		total_overlays += 1 + FLOOR(contents_weight[object] / overlay_w_class, 1)
 
 	//In case 6 overlays are for a LMG and then someone adds 7 unique tiny items into the mix
 	var/overlay_overflow = max(0, total_overlays - max_overlays)
@@ -575,9 +575,8 @@
 			var/imagepixel_y = overlay_pixel_y + min(amt_vertical - WRAP(current_iteration - 1, 0, amt_vertical) - 1, total_overlays - current_iteration) * shift_y //Vertical shifting that draws the top overlays first if applicable
 			//Getting the mini icon_state to display
 			var/obj/item/relateditem = obj_typepath
-			var/imagestate =  initial(relateditem.icon_state_mini)
 
-			. += image('icons/obj/items/items_mini.dmi', icon_state = imagestate, pixel_x = imagepixel_x, pixel_y = imagepixel_y)
+			. += image('icons/obj/items/items_mini.dmi', icon_state = initial(relateditem.icon_state_mini), pixel_x = imagepixel_x, pixel_y = imagepixel_y)
 			current_iteration++
 
 // --MAG BOXES--
