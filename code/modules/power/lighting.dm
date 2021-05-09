@@ -257,12 +257,16 @@
 
 // attempt to set the light's on/off status
 // will not switch on if broken/burned/empty
-/obj/machinery/light/turn_light(mob/user, toggle_on)
+/obj/machinery/light/turn_light(mob/user, toggle_on, forced = FALSE)
 	if ((status != LIGHT_DISABLED) & (status != LIGHT_OK)) //Can't turn a broken light
 		return
 	. = ..()
-	if(!toggle_on)
+	if(. != CHECKS_PASSED)
+		return
+	if(forced && !toggle_on)
 		status = LIGHT_DISABLED
+	else
+		status = LIGHT_OK
 	update()
 
 // examine verb

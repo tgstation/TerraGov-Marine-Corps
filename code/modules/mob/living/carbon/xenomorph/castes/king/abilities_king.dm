@@ -19,7 +19,7 @@
 	return ..()
 
 /datum/action/xeno_action/activable/nightfall/use_ability()
-	playsound(target,'sound/magic/nightfall.ogg', 50, 1)
+	playsound(owner, 'sound/magic/nightfall.ogg', 50, 1)
 
 	for(var/atom/light AS in GLOB.lights)
 		light.turn_light(null, FALSE, duration, TRUE, TRUE, get_turf(owner), range)
@@ -61,17 +61,17 @@
 	for(var/turf/targetted AS in turfs)
 		targetted.add_filter("crushblur", 1, list("type"="radial_blur", "size" = 0.3))
 	if(!do_after(owner, 2 SECONDS, FALSE, owner, BUSY_ICON_DANGER))
-		for(var/turf/targetted as() in turfs)
+		for(var/turf/targetted AS in turfs)
 			targetted.remove_filter("crushblur")
 		return fail_activate()
 	succeed_activate()
 	add_cooldown()
 	A.visible_message("<span class='warning'> [A] collapses inward as it's gravity suddenly increases!</span>")
 	playsound(A, 'sound/effects/bomb_fall.ogg', 75, FALSE)
-	for(var/turf/targetted as() in turfs)
-		for(var/atom/movable/item as() in targetted.contents)
+	for(var/turf/targetted AS in turfs)
+		for(var/atom/movable/item AS in targetted.contents)
 			if(ismob(item))
-				return
+				continue
 			item.ex_act(EXPLODE_HEAVY)	//crushing without damaging the nearby area
 		addtimer(CALLBACK(targetted, /atom.proc/remove_filter, "crushblur"), 1 SECONDS)
 

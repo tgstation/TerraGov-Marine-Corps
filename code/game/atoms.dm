@@ -884,6 +884,8 @@ Proc for attack log creation, because really why not
 		return OUT_OF_REACH
 	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_LIGHT) && !forced)
 		return STILL_ON_COOLDOWN
+	if(cooldown <= 0)
+		cooldown = 1 SECONDS
 	TIMER_COOLDOWN_START(src, COOLDOWN_LIGHT, cooldown)
 	if(forced & !toggle_on) //Is true when turn light is called by nightfall
 		addtimer(CALLBACK(src, .proc/reset_light), cooldown + 1)
@@ -896,7 +898,7 @@ Proc for attack log creation, because really why not
 
 ///Turn on the light, should be called by a timer
 /atom/proc/reset_light()
-	turn_light(null, TRUE)
+	turn_light(null, TRUE, 1 SECONDS, FALSE, TRUE)
 
 /**
  * Recursive getter method to return a list of all ghosts orbitting this atom
