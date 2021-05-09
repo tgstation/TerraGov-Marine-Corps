@@ -184,8 +184,8 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	name = "Phase Shift"
 	action_icon_state = "phase_shift"
 	mechanics_text = "We force ourselves temporarily out of sync with reality, allowing us to become incorporeal and move through any physical obstacles for a short duration."
-	plasma_cost = 75
-	cooldown_timer = 20 SECONDS
+	plasma_cost = 25
+	cooldown_timer = 0.5 SECONDS //properly set per WRAITH_PHASE_SHIFT_COOLDOWN once the ability is fully used
 	keybind_signal = COMSIG_XENOABILITY_PHASE_SHIFT
 	var/turf/starting_turf = null
 	var/phase_shift_active = FALSE
@@ -193,6 +193,10 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 
 /datum/action/xeno_action/phase_shift/action_activate()
 	. = ..()
+
+	if(phase_shift_active) //Toggle off if phase shift is active
+		phase_shift_deactivate()
+		return
 
 	owner.visible_message("<span class='warning'>[owner.name] is becoming faint and translucent!</span>", \
 	"<span class='xenodanger'>We begin to move out of phase with reality....</span>") //Fluff
@@ -233,6 +237,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "wraith_phase_shifts") //Statistics
 
 	phase_shift_active = TRUE //Flag phase shift as being active
+	update_button_icon("phase_shift_off") //Set to resync icon while active
 	succeed_activate()
 	add_cooldown()
 
@@ -253,6 +258,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 		return
 
 	phase_shift_active = FALSE //Flag phase shift as being off
+	update_button_icon("phase_shift") //Revert the icon to phase shift
 
 	var/mob/living/carbon/xenomorph/wraith/ghost = owner
 
@@ -275,29 +281,56 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	addtimer(CALLBACK(ghost, /atom.proc/remove_filter, "wraith_phase_shift_windup_2"), 0.5 SECONDS)
 
 	var/current_turf = get_turf(ghost)
+	var/block_check //Are we trying to rematerialize in a solid object? Check.
 
-	if(isclosedturf(current_turf) || isspaceturf(current_turf)) //So we rematerialized in a solid wall/space for some reason; Darwin award winner folks.
-		to_chat(ghost, "<span class='highdanger'>As we idiotically rematerialize in an obviously unsafe position, we revert to where we slipped out of reality at great cost.</span>")
-		ghost.adjustFireLoss((ghost.health * 0.5), TRUE) //Lose half of our health
-		ghost.Paralyze(5 SECONDS * XENO_PARALYZE_NORMALIZATION_MULTIPLIER) //That oughta teach them.
+	if(isclosedturf(current_turf) || isspaceturf(current_turf)) //So we rematerialized in a solid wall/space
+		block_check = TRUE
+
+	else
+		for(var/obj/blocker in current_turf) //Check for object based blockers
+			if(blocker.density && !(blocker.flags_atom & ON_BORDER)) //If we find a dense, non-border obj we can't climb it's time to stop
+				if(!isstructure(blocker))
+					block_check = TRUE
+					break
+				var/obj/structure/blocker_structure = blocker
+				if(!blocker_structure.climbable)
+					block_check = TRUE
+					break
+
+	if(block_check) //We tried to rematerialize in a solid object/wall of some kind; return to sender
+		to_chat(ghost, "<span class='highdanger'>As we rematerialize in a solid object, we revert to where we slipped out of reality.</span>")
 		ghost.forceMove(starting_turf)
 		teleport_debuff_aoe(ghost) //Debuff when we reappear
-		starting_turf = null
-		return
 
 	var/distance = get_dist(current_turf, starting_turf)
-	var/phase_shift_stun_time = clamp(distance * 0.1 SECONDS, 0.5 SECONDS, 3 SECONDS) //Recovery time
-	ghost.ParalyzeNoChain(phase_shift_stun_time * XENO_PARALYZE_NORMALIZATION_MULTIPLIER)
+	var/phase_shift_plasma_cost = clamp(distance * 4, 0, 100) //We lose 4 additional plasma per tile travelled, up to a maximum of 100
+	var/plasma_deficit = ghost.plasma_stored - phase_shift_plasma_cost
+
+	ghost.use_plasma(phase_shift_plasma_cost) //Pay the extra cost
+
 	ghost.visible_message("<span class='warning'>[ghost] form wavers and becomes opaque.</span>", \
-	"<span class='highdanger'>We phase back into reality, our mind reeling from the experience. We estimate we will take [phase_shift_stun_time * 0.1] seconds to recover!</span>")
+	"<span class='xenodanger'>We phase back into reality[phase_shift_plasma_cost > 0 ? ", expending [phase_shift_plasma_cost] additional plasma for [distance] tiles travelled." : "."]")
+
+	if(plasma_deficit < 0) //If we don't have enough plasma, we pay in blood and sunder instead.
+		plasma_deficit *= -1 //Normalize to a positive value
+		to_chat(owner, "<span class='highdanger'>We haven't enough plasma to safely move back into phase, suffering [plasma_deficit] damage and sunder as our body is torn apart!</span>")
+		ghost.apply_damages(plasma_deficit)
+		ghost.adjust_sunder(plasma_deficit)
 
 	starting_turf = null
+	add_cooldown(WRAITH_PHASE_SHIFT_COOLDOWN) //Override the cooldown since we've actually used the ability
 
 /datum/action/xeno_action/phase_shift/on_cooldown_finish()
 	to_chat(owner, "<span class='xenodanger'>We are able to fade from reality again.</span>")
 	owner.playsound_local(owner, 'sound/effects/xeno_newlarva.ogg', 25, 0, 1)
 	return ..()
 
+/datum/action/xeno_action/phase_shift/update_button_icon(input) //So we display the proper icon
+	if(!input) //If we're not overriding, proceed as normal
+		return ..()
+	button.overlays.Cut()
+	button.overlays += image('icons/mob/actions.dmi', button, input)
+	return ..()
 
 // ***************************************
 // *********** Resync
@@ -305,7 +338,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 /datum/action/xeno_action/resync
 	name = "Resync"
 	action_icon_state = "resync"
-	mechanics_text = "Resynchronize with realspace, ending Phase Shift's effect."
+	mechanics_text = "Resynchronize with realspace, ending Phase Shift's effect and returning you to where the Phase Shift began."
 	cooldown_timer = 1 SECONDS //Token for anti-spam
 	keybind_signal = COMSIG_XENOABILITY_RESYNC
 
@@ -321,7 +354,9 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	. = ..()
 
 	var/datum/action/xeno_action/phase_shift/disable_shift = owner.actions_by_path[/datum/action/xeno_action/phase_shift]
+	owner.forceMove(disable_shift.starting_turf) //Return to our initial position, then cancel the shift
 	disable_shift.phase_shift_deactivate()
+	teleport_debuff_aoe(owner) //Debuff when we reappear
 
 	succeed_activate()
 	add_cooldown()
