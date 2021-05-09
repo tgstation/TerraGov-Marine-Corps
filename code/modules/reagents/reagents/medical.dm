@@ -512,28 +512,18 @@
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL/2.5 //and this makes the Critical OD 20
 	scannable = TRUE
 
-/datum/reagent/medicine/russian_red/on_mob_add(mob/living/L, metabolism)
-	L.adjustStaminaLoss(-50*effect_str)
-	to_chat(L, "<span class='danger'>Your body goes into overdrive under the influence of the drug! It won't last for long!</span>")
-
 /datum/reagent/medicine/russian_red/on_mob_life(mob/living/L, metabolism)
 	L.heal_limb_damage(10*effect_str, 10*effect_str)
 	L.adjustToxLoss(-2.5*effect_str)
-	L.adjustCloneLoss(0.5*effect_str)
+	L.adjustCloneLoss(effect_str)
 	return ..()
 
 /datum/reagent/medicine/russian_red/overdose_process(mob/living/L, metabolism)
 	L.apply_damages(effect_str, 0, 0)
-	L.adjustBrainLoss(effect_str, TRUE)
 
 /datum/reagent/medicine/russian_red/overdose_crit_process(mob/living/L, metabolism)
 	L.apply_damages(effect_str, 2*effect_str, effect_str)
-	L.adjustBrainLoss(effect_str, TRUE)
-
-/datum/reagent/medicine/russian_red/on_mob_delete(mob/living/L, metabolism)
-	to_chat(L, "<span class='danger'>Your muscles burn as you start to weaken, find safety!</span>")
-	addtimer(CALLBACK(L, /mob/living.proc/Paralyze, 100), 10 SECONDS)
-
+	L.adjustBrainLoss(2*effect_str, TRUE)
 
 /datum/reagent/medicine/alkysine
 	name = "Alkysine"
