@@ -748,6 +748,12 @@
 	L.blood_volume += 2.4
 	L.adjustToxLoss(effect_str)
 	L.adjustStaminaLoss(6*effect_str)
+	if(L.blood_volume < BLOOD_VOLUME_OKAY)
+		L.blood_volume += 2.4
+	if(L.blood_volume < BLOOD_VOLUME_BAD)
+		L.blood_volume = (BLOOD_VOLUME_BAD+1)
+		L.reagents.add_reagent(/datum/reagent/toxin,25)
+		L.AdjustSleeping(100)
 	return ..()
 
 /datum/reagent/medicine/nanoblood/overdose_process(mob/living/L, metabolism)
