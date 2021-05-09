@@ -308,6 +308,9 @@
 	name = "military-grade camera"
 	network = list("marinemainship")
 
+/obj/machinery/camera/autoname/mainship/rebelship
+	network = list("rebelmainship")
+
 //cameras installed inside the dropships, accessible via both cockpit monitor and ship camera computers
 /obj/machinery/camera/autoname/mainship/dropship_one
 	network = list("marinemainship", "dropship1")
