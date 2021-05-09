@@ -75,7 +75,7 @@
 	reset_squads()
 	spawn_characters()
 	transfer_characters()
-	SSpoints.prepare_supply_packs_list(CHECK_BITFIELD(flags_round_type, MODE_HVH))
+	SSpoints.prepare_supply_packs_list(CHECK_BITFIELD(flags_round_type, MODE_HUMAN_ONLY))
 	return TRUE
 
 
