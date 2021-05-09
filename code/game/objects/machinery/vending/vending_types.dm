@@ -215,8 +215,6 @@
 		/obj/item/reagent_containers/glass/bottle/tramadol = 4,
 		/obj/item/reagent_containers/glass/bottle/oxycodone = 4,
 		/obj/item/reagent_containers/glass/bottle/polyhexanide = 2,
-		/obj/item/reagent_containers/glass/bottle/neurotoxin = 1,
-		/obj/item/reagent_containers/glass/bottle/xeno_growthtoxin = 1,
 		/obj/item/storage/pill_bottle/peridaxon = 2,
 		/obj/item/stack/medical/advanced/bruise_pack = 5,
 		/obj/item/stack/medical/advanced/ointment = 5,
@@ -225,7 +223,14 @@
 		/obj/item/stack/medical/splint = 5,
 	)
 
-	contraband = list(/obj/item/reagent_containers/glass/bottle/toxin = 1)
+	contraband = list(
+		/obj/item/reagent_containers/glass/bottle/toxin = 1
+		/obj/item/reagent_containers/glass/bottle/neurotoxin = 1,
+		/obj/item/reagent_containers/glass/bottle/xeno_growthtoxin = 1,
+		/obj/item/reagent_containers/glass/bottle/neurotoxin/light = 1,
+		/obj/item/reagent_containers/glass/bottle/xeno_hemodile = 1,
+		/obj/item/reagent_containers/glass/bottle/xeno_transvitox = 1,
+	)
 
 	idle_power_usage = 211
 
