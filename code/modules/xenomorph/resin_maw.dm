@@ -1,3 +1,6 @@
+#define RESIN_MAW_DEVASTATION_SIZE 3
+#define RESIN_MAW_LEFT_CENTER_DEVASTATION 17
+
 /obj/structure/resin/resin_maw
 	name = "resin maw"
 	desc = "A giant burrowing maw created with the remains of a silo. The mouth is agape and it looks alive." //Need better name and desc
@@ -29,7 +32,6 @@
 	var/datum/action/innate/leave_maw/off_action
 	/// The action of seting the exit zone for the head of the maw
 	var/datum/action/innate/select_exit_location/chose_head_location
-
 
 /obj/structure/resin/resin_maw/Initialize()
 	. = ..()
@@ -79,8 +81,8 @@
 ///We create the ripples to signify where will the maw emerge
 /obj/structure/resin/resin_maw/proc/prepare_emerge(turf/middle_target)
 	var/list/turf/target_turfs = list()
-	for(var/x in -3 to 3)
-		for(var/y in -3 to 3)
+	for(var/x in -RESIN_MAW_DEVASTATION_SIZE to RESIN_MAW_DEVASTATION_SIZE)
+		for(var/y in -RESIN_MAW_DEVASTATION_SIZE to RESIN_MAW_DEVASTATION_SIZE)
 			var/turf/target = locate(middle_target.x + x, middle_target.y + y, middle_target.z)
 			new /obj/effect/abstract/ripple(target, 5 SECONDS)
 			target_turfs += target
@@ -96,7 +98,7 @@
 				to_gib.gib()
 				continue
 			qdel(to_destroy)
-	exit = new /obj/structure/resin/resin_maw(target_turfs[17]) //picking the 17th turf makes the resin maw perfectly centered in the destruction zone
+	exit = new /obj/structure/resin/resin_maw(target_turfs[RESIN_MAW_LEFT_CENTER_DEVASTATION]) //picking the 17th turf makes the resin maw perfectly centered in the destruction zone
 	exit.is_origin_of_resin_maw = FALSE
 	exit.exit = src
 	update_icon()
