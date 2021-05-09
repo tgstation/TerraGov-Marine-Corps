@@ -50,9 +50,9 @@
 
 	if(href_list["move"])
 		var/obj/docking_port/mobile/M = SSshuttle.getShuttle(shuttleId)
-		if(!(M.shuttle_flags & GAMEMODE_IMMUNE) && world.time < SSticker.round_start_time + SSticker.mode.deploy_time_lock)
+		/*if(!(M.shuttle_flags & GAMEMODE_IMMUNE) && world.time < SSticker.round_start_time + SSticker.mode.deploy_time_lock)
 			to_chat(usr, "<span class='warning'>The engines are still refueling.</span>")
-			return TRUE
+			return TRUE*/
 		if(!M.can_move_topic(usr))
 			return TRUE
 		if(!(href_list["move"] in valid_destinations()))

@@ -241,3 +241,8 @@
 /obj/machinery/computer/security/dropship/two
 	name = "\improper 'Normandy' camera controls"
 	network = list("dropship2")
+
+/obj/machinery/computer/security/dropship/three
+	name = "\improper 'Triump' camera controls"
+	network = list("dropship3")
+

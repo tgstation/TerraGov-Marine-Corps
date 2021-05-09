@@ -224,6 +224,11 @@
 	height = 13
 	width = 9
 
+/obj/docking_port/mobile/marine_dropship/three
+	name = "Triumph"
+	id = "triumph"
+	control_flags = SHUTTLE_REBEL_PRIMARY_DROPSHIP
+
 // queen calldown
 
 /obj/docking_port/mobile/marine_dropship/afterShuttleMove(turf/oldT, rotation)
@@ -1149,9 +1154,9 @@
 		return FALSE
 
 	var/obj/docking_port/mobile/M = SSshuttle.getShuttle(shuttleId)
-	if(!(M.shuttle_flags & GAMEMODE_IMMUNE) && world.time < SSticker.round_start_time + SSticker.mode.deploy_time_lock)
+	/*if(!(M.shuttle_flags & GAMEMODE_IMMUNE) && world.time < SSticker.round_start_time + SSticker.mode.deploy_time_lock)
 		to_chat(usr, "<span class='warning'>The engines are still refueling.</span>")
-		return TRUE
+		return TRUE*/
 
 	if(!M.can_move_topic(usr))
 		return TRUE
@@ -1260,6 +1265,7 @@
 	desc = "The remote controls for the 'Triumph' Dropship."
 	shuttleId = "triumph"
 	possible_destinations = "lz1;triumph"
+	compatible_control_flags = SHUTTLE_REBEL_PRIMARY_DROPSHIP
 
 /obj/machinery/computer/shuttle/shuttle_control/dropship/loyalist 
 	name = "\improper 'Alamo' dropship console"
@@ -1311,9 +1317,9 @@
 	message_admins("[ADMIN_TPMONTY(usr)] is launching the canterbury[!length(GLOB.active_nuke_list)? " early" : ""].")
 
 	var/obj/docking_port/mobile/M = SSshuttle.getShuttle(shuttleId)
-	if(!(M.shuttle_flags & GAMEMODE_IMMUNE) && world.time < SSticker.round_start_time + SSticker.mode.deploy_time_lock)
+	/*if(!(M.shuttle_flags & GAMEMODE_IMMUNE) && world.time < SSticker.round_start_time + SSticker.mode.deploy_time_lock)
 		to_chat(usr, "<span class='warning'>The engines are still refueling.</span>")
-		return TRUE
+		return TRUE*/
 	if(!M.can_move_topic(usr))
 		return TRUE
 
