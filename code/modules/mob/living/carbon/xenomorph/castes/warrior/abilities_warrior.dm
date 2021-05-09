@@ -104,7 +104,8 @@
 	lunge_target = A
 	RegisterSignal(lunge_target, COMSIG_PARENT_QDELETING, .proc/clean_lunge_target)
 	RegisterSignal(X, COMSIG_MOVABLE_MOVED, .proc/check_if_lunge_possible)
-	check_if_lunge_possible(X, lunge_target)
+	check_if_lunge_possible(X)
+
 	succeed_activate()
 	add_cooldown()
 	return TRUE
