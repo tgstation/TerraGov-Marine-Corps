@@ -1,0 +1,7 @@
+author: "Surrealaser"
+delete-after: True
+changes: 
+  - balance: "Phase Shift wind up increased from 1 second to 2 seconds. There is no stun upon phasing in anymore."
+  - balance: "Phase Shift initial cost reduced from 75 to 25 + 4 plasma per tile traveled when phasing in (max 100 extra). Wraiths take Brute damage + sunder equal to this extra plasma cost they cannot afford to pay from their plasma stores."
+  - balance: "Phasing In in any tile that you couldn't normally occupy (i.e. has dense non-climbables) reverts you to your initial location. However, you no longer take damage/stun for doing so."
+  - qol: "Phase Shift now has toggling behaviour; using it again while phased out Phases In at the space you currently occupy. Resync now cancels Phase Shift and reverts you to your initial location."
