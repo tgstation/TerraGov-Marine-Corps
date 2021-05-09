@@ -54,7 +54,7 @@
 	if(check_click_intercept(params, A))
 		return
 
-	if(notransform)
+	if(notransform && !CHECK_BITFIELD(A.resistance_flags, SELF_BANISHED)) //If we're in notransform stasis and we haven't banished ourselves, cancel out
 		return
 
 	if(SEND_SIGNAL(src, COMSIG_MOB_CLICKON, A, params) & COMSIG_MOB_CLICK_CANCELED)
