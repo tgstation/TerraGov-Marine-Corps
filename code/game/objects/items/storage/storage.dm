@@ -45,9 +45,6 @@
 	if(usr.lying_angle)
 		return
 
-	if(istype(usr.loc, /obj/vehicle/multitile/root/cm_armored)) // stops inventory actions in a mech/tank
-		return
-
 	if(over_object == usr && Adjacent(usr)) // this must come before the screen objects only block
 		open(usr)
 		return
@@ -255,9 +252,6 @@
 
 /obj/screen/storage/Click(location, control, params)
 	if(usr.incapacitated(TRUE))
-		return
-
-	if(istype(usr.loc, /obj/vehicle/multitile/root/cm_armored)) // stops inventory actions in a mech/tank
 		return
 
 	var/list/PL = params2list(params)

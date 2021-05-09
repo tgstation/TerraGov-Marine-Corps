@@ -25,11 +25,6 @@
 		return I.attack_obj(src, user)
 
 
-/obj/effect/alien/Crossed(atom/movable/O)
-	. = ..()
-	if(!QDELETED(src) && istype(O, /obj/vehicle/multitile/hitbox/cm_armored))
-		tank_collision(O)
-
 /obj/effect/alien/flamer_fire_act()
 	take_damage(50, BURN, "fire")
 

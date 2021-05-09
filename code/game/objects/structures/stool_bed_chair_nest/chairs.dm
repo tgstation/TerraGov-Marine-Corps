@@ -218,13 +218,6 @@
 	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
 	var/is_animating = 0
 
-/obj/structure/bed/chair/dropship/passenger/CanAllowThrough(atom/movable/mover, turf/target, height = 0, air_group = 0)
-	. = ..()
-	if(chair_state == DROPSHIP_CHAIR_UNFOLDED && istype(mover, /obj/vehicle/multitile) && !is_animating)
-		visible_message("<span class='danger'>[mover] slams into [src] and breaks it!</span>")
-		INVOKE_ASYNC(src, .proc/fold_down, TRUE)
-		return FALSE
-
 /obj/structure/bed/chair/dropship/passenger/Initialize()
 	. = ..()
 	chairbar = image("icons/obj/objects.dmi", "shuttle_bars")

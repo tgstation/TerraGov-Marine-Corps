@@ -187,11 +187,7 @@
 
 	victim.update_burst()
 
-	if(istype(victim.loc, /obj/vehicle/multitile/root))
-		var/obj/vehicle/multitile/root/V = victim.loc
-		V.handle_player_exit(src)
-	else
-		forceMove(get_turf(victim)) //moved to the turf directly so we don't get stuck inside a cryopod or another mob container.
+	forceMove(get_turf(victim)) //moved to the turf directly so we don't get stuck inside a cryopod or another mob container.
 	playsound(src, pick('sound/voice/alien_chestburst.ogg','sound/voice/alien_chestburst2.ogg'), 25)
 	GLOB.round_statistics.total_larva_burst++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "total_larva_burst")

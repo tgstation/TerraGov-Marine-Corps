@@ -56,7 +56,7 @@
 		return ..()
 	return TRUE
 
-GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj/vehicle/multitile/root/cm_armored, /obj/structure/razorwire)))
+GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj/structure/razorwire)))
 
 #define CONE_PART_MIDDLE (1<<0)
 #define CONE_PART_LEFT (1<<1)

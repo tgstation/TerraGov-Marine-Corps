@@ -1163,12 +1163,6 @@
 	if(!check_rights(R_ADMIN))
 		return
 
-	for(var/obj/vehicle/multitile/root/cm_armored/CA in GLOB.tank_list)
-		CA.remove_all_players()
-
-		log_admin("[key_name(usr)] forcibly removed all players from [CA].")
-		message_admins("[ADMIN_TPMONTY(usr)] forcibly removed all players from [CA].")
-
 
 /datum/admins/proc/job_slots()
 	set category = "Admin"

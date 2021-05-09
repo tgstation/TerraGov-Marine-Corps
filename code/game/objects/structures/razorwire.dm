@@ -204,10 +204,6 @@
 		return TRUE
 	if(mover.throwing && istype(mover,/obj/item))
 		return TRUE
-	if(istype(mover, /obj/vehicle/multitile))
-		visible_message("<span class='danger'>[mover] drives over and destroys [src]!</span>")
-		deconstruct(FALSE)
-		return TRUE
 
 /obj/structure/razorwire/update_icon_state()
 	var/health_percent = round(obj_integrity/max_integrity * 100)
