@@ -224,11 +224,29 @@
 	icon_state = "bottle7"
 	list_reagents = list(/datum/reagent/toxin/xeno_neurotoxin = 30)
 
+/obj/item/reagent_containers/glass/bottle/neurotoxin/light
+	name = "\improper Light Neurotoxin bottle"
+	desc = "A small bottle. Contains weakened synthesized neurotoxin- useful for testing treatments, or training troops."
+	icon_state = "bottle7"
+	list_reagents = list(/datum/reagent/toxin/xeno_neurotoxin/light = 30)
+
 /obj/item/reagent_containers/glass/bottle/xeno_growthtoxin
 	name = "\improper Growth toxin bottle"
 	desc = "A small bottle. Contains artificialy synthesized growth toxin - useful for researchers, or as a very risky medicine."
 	icon_state = "bottle7"
 	list_reagents = list(/datum/reagent/toxin/xeno_growthtoxin = 30)
+
+/obj/item/reagent_containers/glass/bottle/xeno_hemodile
+	name = "\improper Hemodile bottle"
+	desc = "A small bottle. Contains artificialy synthesized hemodile- useful for testing treatments, or training troops."
+	icon_state = "bottle7"
+	list_reagents = list(/datum/reagent/toxin/xeno_hemodile = 30)
+
+/obj/item/reagent_containers/glass/bottle/xeno_transvitox
+	name = "\improper Transvitox bottle"
+	desc = "A small bottle. Contains artificialy synthesized transvitox- useful for testing treatments, training troops, or as a very risky medicine."
+	icon_state = "bottle7"
+	list_reagents = list(/datum/reagent/toxin/xeno_transvitox = 30)
 
 /obj/item/reagent_containers/glass/bottle/polyhexanide
 	name = "\improper Polyhexanide bottle"
