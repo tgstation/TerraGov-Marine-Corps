@@ -38,6 +38,7 @@
 #define JOB_FLAG_PROVIDES_SQUAD_HUD (1<<10)
 #define JOB_FLAG_HIDE_CURRENT_POSITIONS (1<<11) //You can't see how many people have joined as on the latejoin menu.
 #define JOB_FLAG_CAN_SEE_ORDERS	(1<<12) //Able to see rally and CIC orders
+#define JOB_FLAG_ALWAYS_VISIBLE_ON_MINIMAP (1<<13) //Will appear on all minimaps, including squad minimaps
 
 #define CAPTAIN "Captain"
 #define EXECUTIVE_OFFICER "Executive Officer" //Currently disabled.
