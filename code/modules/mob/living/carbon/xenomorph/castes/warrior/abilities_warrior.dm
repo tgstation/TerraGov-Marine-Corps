@@ -102,9 +102,9 @@
 
 	X.throw_at(get_step_towards(A, X), 6, 2, X)
 	lunge_target = A
+	RegisterSignal(lunge_target, COMSIG_PARENT_QDELETING, .proc/clean_lunge_target)
 	RegisterSignal(X, COMSIG_MOVABLE_MOVED, .proc/check_if_lunge_possible)
 	check_if_lunge_possible(X, lunge_target)
-
 	succeed_activate()
 	add_cooldown()
 	return TRUE
@@ -117,14 +117,21 @@
 	UnregisterSignal(source, COMSIG_MOVABLE_MOVED)
 	lunge_grab(source, lunge_target)
 
+/// Null lunge target
+/datum/action/xeno_action/activable/lunge/proc/clean_lunge_target()
+	SIGNAL_HANDLER
+	UnregisterSignal(lunge_target, COMSIG_PARENT_QDELETING)
+	lunge_target = null
+
 /datum/action/xeno_action/activable/lunge/proc/lunge_grab(mob/living/carbon/xenomorph/warrior/X, atom/A)
 	X.remove_filter("warrior_lunge")
 	if(!X.Adjacent(A))
 		return
-
+	X.stop_throw()
 	X.swap_hand()
 	X.start_pulling(A, lunge = TRUE)
 	X.swap_hand()
+	clean_lunge_target()
 
 // ***************************************
 // *********** Fling
