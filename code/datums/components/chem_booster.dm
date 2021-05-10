@@ -489,11 +489,12 @@
 	///Records the last time the action was used to avoid accidentally cancelling the effect when spamming the button in-combat
 	var/last_activated_time
 
-/datum/action/chem_booster/power/can_use_action()
-	. = ..()
-
+/datum/action/chem_booster/power/action_activate()
 	if(world.time < last_activated_time + 2 SECONDS)
-		return FALSE
+		return
+	last_activated_time = world.time
+
+	return ..()
 
 /datum/action/chem_booster/scan
 	name = "Activate Analyzer"
