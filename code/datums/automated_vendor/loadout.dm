@@ -9,6 +9,8 @@
 	 * each item of the list is a datum/item_representation
 	 */
 	var/list/item_list
+	///The version of this loadout. This will can allow in the future to erase loadouts that are too old to work with the loadout saver system
+	var/version = 1
 
 ///Empty a slot of the loadout
 /datum/loadout/proc/empty_slot(slot)
@@ -137,7 +139,9 @@
 	switch(action)
 		if("equipLoadout")
 			equip_mob(ui.user, ui.user.loc)
+			ui.close()
 		if("deleteLoadout")
+			ui.user.client.prefs.loadout_manager.delete_loadout(src)
 			ui.close()
 
 

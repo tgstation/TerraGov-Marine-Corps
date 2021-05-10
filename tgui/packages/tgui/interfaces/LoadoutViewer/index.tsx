@@ -17,7 +17,7 @@ const LoadoutNavigator = (props: Loadout, context) => {
       <Stack fill horizontal>
         <Button
           onClick={() => { 
-            act('equipeLoadout', { loadout_name: name, loadout_job: job });
+            act('equipLoadout', { loadout_name: name, loadout_job: job });
           }}>
           Equip Loadout
         </Button>

@@ -24,6 +24,7 @@
 
 /// Will create a new item, and copy all the vars saved in the item representation to the newly created item
 /datum/item_representation/proc/instantiate_object()
+	RETURN_TYPE(item_type)
 	var/obj/item/item = new item_type
 	contents = list()
 	for(var/datum/item_representation/representation AS in contents)
@@ -51,17 +52,22 @@
 	if(!isgun(item_to_copy))
 		CRASH("/datum/item_representation/gun created on an item that is not a gun")
 	var/obj/item/weapon/gun/gun_to_copy = item_to_copy
-	muzzle = new /datum/item_representation(gun_to_copy.muzzle)
-	rail = new /datum/item_representation(gun_to_copy.rail)
-	under = new /datum/item_representation(gun_to_copy.under)
-	stock = new /datum/item_representation(gun_to_copy.stock)
+	if(gun_to_copy.muzzle)
+		muzzle = new /datum/item_representation(gun_to_copy.muzzle)
+	if(gun_to_copy.rail)
+		rail = new /datum/item_representation(gun_to_copy.rail)
+	if(gun_to_copy.under)
+		under = new /datum/item_representation(gun_to_copy.under)
+	if(gun_to_copy.stock)
+		stock = new /datum/item_representation(gun_to_copy.stock)
 
 /datum/item_representation/gun/instantiate_object()
+
 	var/obj/item/weapon/gun/gun = ..()
-	gun.muzzle = muzzle?.instantiate_object()
-	gun.rail = rail?.instantiate_object()
-	gun.under = under?.instantiate_object()
-	gun.stock = stock?.instantiate_object()
+	muzzle?.instantiate_object().attach_to_gun(gun)
+	rail?.instantiate_object().attach_to_gun(gun)
+	under?.instantiate_object().attach_to_gun(gun)
+	stock?.instantiate_object().attach_to_gun(gun)
 	return gun
 
 /**
@@ -76,7 +82,7 @@
 	/// Attachment slots for leg armor
 	var/datum/item_representation/slot_legs
 	/// What modules are installed
-	var/list/datum/item_representation/installed_modules
+	var/datum/item_representation/installed_module
 	/// What storage is installed
 	var/datum/item_representation/installed_storage
 
@@ -87,21 +93,25 @@
 	if(!isjaeger(item_to_copy))
 		CRASH("/datum/item_representation/modular_armor created on an item that is not a jaeger")
 	var/obj/item/clothing/suit/modular/jaeger_to_copy = item_to_copy
-	slot_chest = new /datum/item_representation/armor_module(jaeger_to_copy.slot_chest)
-	slot_arms = new /datum/item_representation/armor_module(jaeger_to_copy.slot_arms)
-	slot_legs = new /datum/item_representation/armor_module(jaeger_to_copy.slot_legs)
-	installed_storage = new /datum/item_representation(jaeger_to_copy.installed_storage)
-	if(!is_savable_in_loadout(jaeger_to_copy.installed_modules.type))
+	if(jaeger_to_copy.slot_chest)
+		slot_chest = new /datum/item_representation/armor_module(jaeger_to_copy.slot_chest)
+	if(jaeger_to_copy.slot_arms)
+		slot_arms = new /datum/item_representation/armor_module(jaeger_to_copy.slot_arms)
+	if(jaeger_to_copy.slot_legs)
+		slot_legs = new /datum/item_representation/armor_module(jaeger_to_copy.slot_legs)
+	if(jaeger_to_copy.installed_storage)
+		installed_storage = new /datum/item_representation(jaeger_to_copy.installed_storage)
+	if(!is_savable_in_loadout(jaeger_to_copy.installed_modules[1]?.type)) //Not supporting mutiple modules, but no object in game has that so
 		return
-	installed_modules = new /datum/item_representation(jaeger_to_copy.installed_modules)
+	installed_module = new /datum/item_representation(jaeger_to_copy.installed_modules[1])
 
 /datum/item_representation/modular_armor/instantiate_object()
 	var/obj/item/clothing/suit/modular/modular_armor = ..()
-	modular_armor.slot_chest = slot_chest?.instantiate_object()
-	modular_armor.slot_arms = slot_arms?.instantiate_object()
-	modular_armor.slot_legs = slot_legs?.instantiate_object()
-	modular_armor.installed_modules = installed_modules?.instantiate_object()
-	modular_armor.installed_storage = installed_storage?.instantiate_object()
+	slot_chest?.instantiate_object().do_attach(modular_armor)
+	slot_arms?.instantiate_object().do_attach(modular_armor)
+	slot_legs?.instantiate_object().do_attach(modular_armor)
+	installed_module?.instantiate_object().do_attach(modular_armor)
+	installed_storage?.instantiate_object().do_attach(modular_armor)
 	return modular_armor
 
 /**
@@ -109,7 +119,7 @@
  * This is only able to representate items of type /obj/item/armor_module/armor
  */
 /datum/item_representation/armor_module
-	///The chose color of that armor module
+	///The color of that armor module
 	var/greyscale_colors
 
 /datum/item_representation/armor_module/New(obj/item/item_to_copy)
@@ -119,3 +129,7 @@
 	if(!isjaegerarmorpiece(item_to_copy))
 		CRASH("/datum/item_representation/armor_module created on an item that is not a jaeger armor piece")
 	greyscale_colors = item_to_copy.greyscale_colors
+
+/datum/item_representation/armor_module/instantiate_object()
+	var/obj/item/armor_module/armor/armor = ..()
+	armor.set_greyscale_colors(greyscale_colors)

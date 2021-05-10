@@ -8,12 +8,10 @@
 	/// A list of all loadouts
 	var/list/loadouts_list = list()
 
-/datum/loadout_manager/proc/get_current_loadout()
-	if(!current_loadout)
-		if(!length(loadouts_list))
-			loadouts_list += create_empty_loadout()
-		current_loadout = loadouts_list[1]
-	return current_loadout
+
+///Remove a loadout from the list.
+/datum/loadout_manager/proc/delete_loadout(datum/loadout/loadout_to_delete)
+	loadouts_list -= loadout_to_delete
 
 /datum/loadout_manager/proc/prepare_loadouts_data()
 	var/loadouts_data = list()
