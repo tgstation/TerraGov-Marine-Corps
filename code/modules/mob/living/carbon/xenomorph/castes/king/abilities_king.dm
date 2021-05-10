@@ -66,7 +66,7 @@
 		return fail_activate()
 	succeed_activate()
 	add_cooldown()
-	A.visible_message("<span class='warning'> [A] collapses inward as it's gravity suddenly increases!</span>")
+	A.visible_message("<span class='warning'>[A] collapses inward as it's gravity suddenly increases!</span>")
 	playsound(A, 'sound/effects/bomb_fall.ogg', 75, FALSE)
 	for(var/turf/targetted AS in turfs)
 		for(var/atom/movable/item AS in targetted.contents)
