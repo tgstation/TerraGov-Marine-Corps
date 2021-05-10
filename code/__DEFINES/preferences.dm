@@ -124,7 +124,10 @@
 	"White",\
 	"Slimecore",\
 	"Operative",\
-	"Clockwork"\
+	"Clockwork",\
+	"Glass",\
+	"Minimalist",\
+	"Holo"\
 	)
 
 #define BE_SPECIAL_FLAGS list(\

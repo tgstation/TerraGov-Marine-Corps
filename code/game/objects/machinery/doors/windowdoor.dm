@@ -37,7 +37,7 @@
 	. = ..()
 
 
-/obj/machinery/door/window/update_icon_state()
+/obj/machinery/door/window/update_icon()
 	if(operating)
 		return
 	icon_state = density ? base_state : "[base_state]open"
