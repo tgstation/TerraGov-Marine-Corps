@@ -127,7 +127,7 @@
 
 #define SMALL_SILO_MAXIMUM_PLAYER_COUNT 30
 
-//The minimum round time before siloless timer can start (13:03)
+//Time (after round start) before siloless timer can start
 #define MINIMUM_TIME_SILO_LESS_COLLAPSE 1 HOURS
 
 #define INFESTATION_MARINE_DEPLOYMENT 0
