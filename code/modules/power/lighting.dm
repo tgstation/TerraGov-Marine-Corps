@@ -149,11 +149,11 @@
 
 /obj/machinery/light/Initialize(mapload, ...)
 	. = ..()
-	GLOB.lights += src
+	GLOB.nightfall_toggleable_lights += src
 
 /obj/machinery/light/Destroy()
 	. = ..()
-	GLOB.lights -= src
+	GLOB.nightfall_toggleable_lights -= src
 
 /obj/machinery/light/small
 	icon_state = "bulb1"

@@ -111,11 +111,11 @@
 
 /obj/item/clothing/suit/Initialize()
 	. = ..()
-	GLOB.lights += src
+	GLOB.nightfall_toggleable_lights += src
 
 /obj/item/clothing/suit/Destroy()
 	. = ..()
-	GLOB.lights -= src
+	GLOB.nightfall_toggleable_lights -= src
 
 /obj/item/clothing/suit/dropped(mob/user)
 	turn_light(user, FALSE)
