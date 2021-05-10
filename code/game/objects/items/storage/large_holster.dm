@@ -71,6 +71,9 @@
 	icon_state = "machete_holster_full"
 	new /obj/item/weapon/claymore/mercsword/machete(src)
 
+/obj/item/storage/large_holster/machete/full_harvester
+	name = "H5 Pattern M2132 harvester scabbard"
+
 /obj/item/storage/large_holster/machete/full_harvester/Initialize()
 	. = ..()
 	icon_state = "machete_holster_full"

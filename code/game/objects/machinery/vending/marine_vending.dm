@@ -847,6 +847,12 @@
 			/obj/item/helmet_module/welding = 20,
 			/obj/item/helmet_module/binoculars = 20,
 			/obj/item/helmet_module/antenna = 20,
+			/obj/item/helmet_module/attachable/mimir_environment_protection/mark1 = 10,
+			/obj/item/armor_module/attachable/mimir_environment_protection/mark1 = 10,
+			/obj/item/armor_module/attachable/tyr_extra_armor/mark1 = 10,
+			/obj/item/armor_module/attachable/ballistic_armor = 10,
+			/obj/item/armor_module/attachable/better_shoulder_lamp/mark1 = 10,
+			/obj/item/armor_module/attachable/chemsystem = 10,
 		),
 	)
 
@@ -892,6 +898,7 @@
 			/obj/item/storage/belt/gun/pistol/standard_pistol = 10,
 			/obj/item/storage/belt/gun/revolver/standard_revolver = 10,
 			/obj/item/storage/large_holster/machete/full = 10,
+			/obj/item/storage/large_holster/machete/full_harvester = 10,
 		),
 		"Pouches" = list(
 			/obj/item/storage/pouch/pistol = 10,
