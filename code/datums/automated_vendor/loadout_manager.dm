@@ -12,8 +12,6 @@
 	if(!current_loadout)
 		if(!length(loadouts_list))
 			loadouts_list += create_empty_loadout()
-			loadouts_list += create_empty_loadout("Much")
-			loadouts_list += create_empty_loadout("muhhdf", "engie")
 		current_loadout = loadouts_list[1]
 	return current_loadout
 
