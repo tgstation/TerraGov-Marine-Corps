@@ -293,6 +293,7 @@
 		var/datum/effect_system/smoke_spread/xeno/smoke = new /datum/effect_system/smoke_spread/xeno/acid(src)
 		smoke.set_up(1, get_turf(src))
 		smoke.start()
+	return ..()
 
 /obj/structure/resin/xeno_turret/Destroy()
 	set_hostile(null)
