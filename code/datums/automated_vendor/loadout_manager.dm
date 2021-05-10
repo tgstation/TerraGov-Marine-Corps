@@ -37,7 +37,6 @@
 /datum/loadout_manager/ui_data(mob/user)
 	var/data = list()
 	data["loadout_list"] = prepare_loadouts_data()
-	data["items"] = current_loadout?.prepare_items_data()
 	return data
 
 /datum/loadout_manager/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
@@ -60,13 +59,10 @@
 				if(next_loadout.name == name && next_loadout.job == job)
 					current_loadout = next_loadout
 					break
+			current_loadout.ui_interact(ui.user)
 			ui.update_static_data()
 				
 
 /datum/loadout_manager/ui_close(mob/user)
 	. = ..()
-	user.client.prefs.save_loadout_manager()
-
-
-
-
+	user.client?.prefs.save_loadout_manager()

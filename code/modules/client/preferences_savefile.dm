@@ -569,8 +569,9 @@
 	if(!S)
 		return FALSE
 	loadout_manager = sanitize_loadout_manager(loadout_manager)
+	var/json_loadout_manager = jatum_serialize(loadout_manager)
 	S.cd = "/loadouts"
-	WRITE_FILE(S["loadouts_manager"], jatum_serialize(loadout_manager))
+	WRITE_FILE(S["loadouts_manager"], json_loadout_manager)
 	return TRUE
 
 /datum/preferences/proc/load_loadout_manager()
@@ -583,7 +584,6 @@
 		return FALSE
 	S.cd = "/loadouts"
 	var/json_loadout_manager = ""
-	var/json_loadouts_list = ""
 	READ_FILE(S["loadouts_manager"], json_loadout_manager)
 	if(!json_loadout_manager)
 		return FALSE

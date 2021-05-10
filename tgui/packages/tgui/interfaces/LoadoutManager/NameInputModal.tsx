@@ -42,6 +42,7 @@ export const NameInputModal = (props: NameInputModalData, context) => {
             tooltipPosition="right"
             onClick={() => {
               onSubmit(input);
+              setInput("");
             }}
           />
           <Button

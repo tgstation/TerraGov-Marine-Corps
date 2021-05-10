@@ -1,15 +1,13 @@
 import { useBackend, useLocalState } from "../../backend";
-import { Stack, Button, Section, LabeledList, Divider, Tabs, Box } from "../../components";
+import { Stack, Button, Section, LabeledList, Tabs } from "../../components";
 import { Window } from "../../layouts";
-import { Loadout, LoadoutViewerData, LoadoutListData, LoadoutTabData, LoadoutManagerData } from './Types';
+import { LoadoutListData, LoadoutTabData, LoadoutManagerData, LoadoutItemData } from './Types';
 import { NameInputModal } from './NameInputModal';
-import { LoadoutViewer } from './LoadoutViewer';
 
-const LoadoutItem = (props : LoadoutViewerData, context) => { 
+const LoadoutItem = (props : LoadoutItemData, context) => { 
   const { act } = useBackend(context);
   const {
     loadout,
-    setLoadoutViewer,
   } = props;
 
   return (
@@ -19,7 +17,6 @@ const LoadoutItem = (props : LoadoutViewerData, context) => {
       <Button
         onClick={() => {
           act('selectLoadout', { loadout_name: loadout.name, loadout_job: loadout.job });
-          setLoadoutViewer(true);
         }}>
         Select Loadout
       </Button>
@@ -27,19 +24,18 @@ const LoadoutItem = (props : LoadoutViewerData, context) => {
   );
 };
 
-const LoadoutList = (props : LoadoutListData, context) => {
-  const { loadout_list, setLoadoutViewer } = props;
+const LoadoutList = (props: LoadoutListData) => {
+  const { loadout_list } = props;
   return (
     <Stack.Item>
-      <Section height={16} fill scrollable>
+      <Section height={20} fill scrollable>
         <LabeledList>
           {loadout_list
             .map(loadout_visible => {
               return (
                 <LoadoutItem 
                   key={loadout_visible.name}
-                  loadout={loadout_visible} 
-                  setLoadoutViewer={setLoadoutViewer} />
+                  loadout={loadout_visible} />
               );
             })}
         </LabeledList>
@@ -48,7 +44,7 @@ const LoadoutList = (props : LoadoutListData, context) => {
   );
 };
 
-const JobTabs = (props : LoadoutTabData, context) => {
+const JobTabs = (props: LoadoutTabData) => {
   const { job, setJob } = props;
   return (
     <Section>
@@ -75,7 +71,7 @@ const JobTabs = (props : LoadoutTabData, context) => {
 
 export const LoadoutManager = (props, context) => {
   const { act, data } = useBackend<LoadoutManagerData>(context);
-  const { loadout_list, current_loadout } = data;
+  const { loadout_list } = data;
 
   const [
     job,
@@ -85,10 +81,6 @@ export const LoadoutManager = (props, context) => {
     saveNewLoadout,
     setSaveNewLoadout,
   ] = useLocalState(context, 'newLoadout', false);
-  const [
-    loadoutViewerOpened,
-    setLoadoutViewerOpened,
-  ] = useLocalState(context, 'loadoutViewer', false);
 
   return ( 
     <Window 
@@ -99,9 +91,8 @@ export const LoadoutManager = (props, context) => {
         <Stack vertical>
           <JobTabs job={job} setJob={setJob} />
           <LoadoutList 
-            loadout_list={loadout_list} 
-            job={job} 
-            setLoadoutViewer={setLoadoutViewerOpened}
+            loadout_list={loadout_list.filter(loadout => loadout.job === job)} 
+            job={job}
           />
           <Button
             onClick={() => setSaveNewLoadout(true)}>
@@ -120,13 +111,6 @@ export const LoadoutManager = (props, context) => {
                 });
                 setSaveNewLoadout(false);
               }}
-            />
-          }
-          {
-            loadoutViewerOpened
-            && <LoadoutViewer 
-              loadout={current_loadout} 
-              setLoadoutViewer={setLoadoutViewerOpened}
             />
           }
         </Stack>

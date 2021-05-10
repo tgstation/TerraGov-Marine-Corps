@@ -2,8 +2,7 @@ import { range } from "common/collections";
 import { resolveAsset } from "../../assets";
 import { useBackend } from "../../backend";
 import { Box, Button, Icon, Section, Stack } from "../../components";
-import { createLogger } from '../../logging';
-import { LoadoutManagerData, GridSpotKey, SLOTS, getGridSpotKey } from './Types';
+import { LoadoutSlotData, GridSpotKey, SLOTS, getGridSpotKey } from './Types';
 
 const ROWS = 4;
 const COLUMNS = 3;
@@ -12,21 +11,19 @@ const BUTTON_DIMENSION_WIDTH = "70px";
 const BUTTON_DIMENSION_HEIGHT = "70px";
 
 
-export const SlotSelector = (props, context) => {
-  const { act, data } = useBackend<LoadoutManagerData>(context);
+export const SlotSelector = (props: LoadoutSlotData, context) => {
+  const { act } = useBackend(context);
 
   const {
     items,
-  } = data;
-  
-  const logger = createLogger('LoadoutSelector');
+  } = props;
 
   const gridSpots = new Map<GridSpotKey, string>();
-  
+
   for (const key of Object.keys(items)) {
-    logger.log('key', key);
     gridSpots.set(SLOTS[key].gridSpot, key);
   }
+  
   return (
     <Section title="Slot Selector">
       <Stack fill vertical>
@@ -36,8 +33,8 @@ export const SlotSelector = (props, context) => {
               {range(0, COLUMNS).map(column => {
                 const key = getGridSpotKey([row, column]);
                 const keyAtSpot = gridSpots.get(key);
-
-                const item = data.items[keyAtSpot];
+                
+                const item = items[keyAtSpot];
                 const slot = SLOTS[keyAtSpot];
 
                 let tooltip;

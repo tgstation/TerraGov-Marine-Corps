@@ -1,122 +1,35 @@
 export type Loadout =
   {
-    name: string,
-    job: string,
+    name: string;
+    job: string;
+  }
+
+export type LoadoutItemData = 
+  {
+    key: string;
+    loadout: Loadout;
   }
 
 export type LoadoutListData = 
   {
-    loadout_list: Loadout[],
-    job: string,
+    loadout_list: Loadout[];
+    job: string;
   }
 
 export type LoadoutManagerData = 
   {
-    loadout_list: Loadout[],
+    loadout_list: Loadout[];
   };
 
 export type LoadoutTabData = 
   {
-    job: string,
-    setJob: any,
+    job: string;
+    setJob: any;
   }
-
-export type LoadoutSlotItem =
-  {
-    icon: string;
-    name: string;
-  }
-
-export const getGridSpotKey = (spot: [number, number]): GridSpotKey => {
-  return `${spot[0]}/${spot[1]}`;
-};
-
-export const SLOTS: Record<
-  string,
-  {
-    displayName: string;
-    gridSpot: GridSpotKey;
-    image?: string;
-  }
-  > = {
-    slot_glasses: {
-      displayName: "eyewear",
-      gridSpot: getGridSpotKey([0, 0]),
-      image: "inventory-glasses.png",
-    },
-
-    slot_head: {
-      displayName: "headwear",
-      gridSpot: getGridSpotKey([0, 1]),
-      image: "inventory-head.png",
-    },
-
-    slot_wear_mask: {
-      displayName: "mask",
-      gridSpot: getGridSpotKey([0, 2]),
-      image: "inventory-mask.png",
-    },
-
-    slot_w_uniform: {
-      displayName: "uniform",
-      gridSpot: getGridSpotKey([1, 0]),
-      image: "inventory-uniform.png",
-    },
-
-    slot_suit: {
-      displayName: "armor",
-      gridSpot: getGridSpotKey([1, 1]),
-      image: "inventory-suit.png",
-    },
-
-    slot_gloves: {
-      displayName: "gloves",
-      gridSpot: getGridSpotKey([1, 2]),
-      image: "inventory-gloves.png",
-    },
-
-    slot_belt: {
-      displayName: "belt",
-      gridSpot: getGridSpotKey([2, 0]),
-      image: "inventory-belt.png",
-    },
-
-    slot_shoes: {
-      displayName: "shoes",
-      gridSpot: getGridSpotKey([2, 1]),
-      image: "inventory-shoes.png",
-    },
-
-    slot_s_store: {
-      displayName: "armor storage item",
-      gridSpot: getGridSpotKey([2, 2]),
-      image: "inventory-suit_storage.png",
-    },
-
-    slot_back: {
-      displayName: "back",
-      gridSpot: getGridSpotKey([3, 0]),
-      image: "inventory-back.png",
-    },
-
-    slot_l_store: {
-      displayName: "left pocket",
-      gridSpot: getGridSpotKey([3, 1]),
-      image: "inventory-pocket.png",
-    },
-
-    slot_r_store: {
-      displayName: "right pocket",
-      gridSpot: getGridSpotKey([3, 2]),
-      image: "inventory-pocket.png",
-    },
-  };
-
-export type GridSpotKey = string;
 
 export type NameInputModalData = {
-  label : string,
-  button_text : string,
-  onSubmit : Function,
-  onBack : Function,
+  label : string;
+  button_text : string;
+  onSubmit : Function;
+  onBack : Function;
 }

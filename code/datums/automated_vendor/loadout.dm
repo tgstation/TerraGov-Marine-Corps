@@ -116,19 +116,27 @@
  * This will read all items on the mob, and if the item is supported by the loadout maker, will save it in the corresponding slot
  * An item is supported if it's path
  */
-///datum/loadout/proc/save_mob_loadout(mob/user)
+////datum/loadout/proc/save_mob_loadout(mob/user)
+
 
 /datum/loadout/ui_interact(mob/user, datum/tgui/ui)
 	prepare_items_data(user)
 	ui = SStgui.try_update_ui(user, src, ui)
 
 	if(!ui)
-		ui = new(user, src, "LoadoutMaker", name)
+		ui = new(user, src, "LoadoutViewer", name)
 		ui.open()
+
+/datum/loadout/ui_state(mob/user)
+	return GLOB.always_state
 
 /datum/loadout/ui_static_data(mob/user)
 	var/data = list()
 	data["items"] = prepare_items_data()
+	var/list/loadout_data = list()
+	loadout_data["job"] = job
+	loadout_data["name"] = name
+	data["loadout"] = list(loadout_data)
 	return data
 
 /datum/loadout/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
@@ -136,6 +144,9 @@
 	switch(action)
 		if("equipLoadout")
 			equip_mob(ui.user, ui.user.loc)
+		if("deleteLoadout")
+			ui.close()
+
 
 /datum/loadout/ui_assets(mob/user)
 	return list(

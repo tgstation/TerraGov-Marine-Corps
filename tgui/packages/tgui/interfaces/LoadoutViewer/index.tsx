@@ -2,13 +2,14 @@ import { useBackend } from "../../backend";
 import { Window } from "../../layouts";
 import { Button, Section, Stack } from "../../components";
 import { SlotSelector } from './Slots';
-import { LoadoutViewerData } from './Types';
+import { Loadout } from '../LoadoutManager/Types';
+import { LoadoutViewerData } from "./Types";
 
-const LoadoutNavigator = (props: LoadoutViewerData, context) => {
+const LoadoutNavigator = (props: Loadout, context) => {
   const { act } = useBackend(context);
   const {
-    setLoadoutViewer,
-    loadout,
+    name,
+    job,
   }= props;
 
   return (
@@ -16,39 +17,42 @@ const LoadoutNavigator = (props: LoadoutViewerData, context) => {
       <Stack fill horizontal>
         <Button
           onClick={() => { 
-            act('equipeLoadout', { loadout_name: loadout.name, loadout_job: loadout.job });
+            act('equipeLoadout', { loadout_name: name, loadout_job: job });
           }}>
           Equip Loadout
         </Button>
         <Button
           onClick={() => {
-            act('deleteLoadout', { loadout_name: loadout.name, loadout_job: loadout.job });
+            act('deleteLoadout', { loadout_name: name, loadout_job: job });
           }}>
           Delete Loadout
-        </Button>
-        <Button
-          onClick={() => {
-            setLoadoutViewer(false); 
-          }}>
-          Close Loadout Viewer
         </Button>
       </Stack>
     </Section>
   );
 };
 
-export const LoadoutViewer = (context) => {
-  const { act, data } = useBackend<LoadoutSlotData>(context);
+export const LoadoutViewer = (props, context) => {
+  const { data } = useBackend<LoadoutViewerData>(context);
+  
+  const {
+    loadout,
+    items,
+  }= data;
+
   return (
     <Window 
-      title="Loadout Maker"
-      width={900} 
-      height={600}>
+      title="Loadout Viewer"
+      width={400} 
+      height={400}>
       <Window.Content>
         <Stack fill vertical>
-          <SlotSelector />
+          <SlotSelector 
+            items={items}
+          />
           <LoadoutNavigator
-            loadout={loadout} 
+            name={loadout.name}
+            job={loadout.job} 
           /> 
         </Stack>
       </Window.Content>
