@@ -23,6 +23,8 @@
 		return /datum/item_representation/modular_armor
 	if(ispath(item_type, /obj/item/armor_module/armor))
 		return /datum/item_representation/armor_module/colored
+	if(ispath(item_type, /obj/item/storage))
+		return /datum/item_representation/storage
 	return /datum/item_representation
 
 ///Instantiate the objected linked to the given item_representation
@@ -32,5 +34,8 @@
 		return casted.instantiate_object()
 	if(istype(item_representation, /datum/item_representation/gun))
 		var/datum/item_representation/gun/casted = item_representation
+		return casted.instantiate_object()
+	if(istype(item_representation, /datum/item_representation/storage))
+		var/datum/item_representation/storage/casted = item_representation
 		return casted.instantiate_object()
 	return item_representation.instantiate_object()

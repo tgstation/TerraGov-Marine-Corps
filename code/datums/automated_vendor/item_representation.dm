@@ -6,16 +6,31 @@
 /datum/item_representation
 	/// The type of the object represented, to allow us to create the object when needed
 	var/item_type
-	/// The contents in that item
-	var/contents = list()
 
 /datum/item_representation/New(obj/item/item_to_copy)
 	if(!item_to_copy)
 		return
 	item_type = item_to_copy.type
-	var/item_representation_type
-	if(!istype(item_to_copy, /obj/item/storage))
+
+/// Will create a new item, and copy all the vars saved in the item representation to the newly created item
+/datum/item_representation/proc/instantiate_object()
+	var/obj/item/item = new item_type
+	return item
+
+/**
+ * Allow to representate a storage
+ * This is only able to represent /obj/item/storage
+ */
+/datum/item_representation/storage
+	/// The contents in the storage
+	var/contents = list()
+
+/datum/item_representation/storage/New(obj/item/item_to_copy)
+	if(!item_to_copy)
 		return
+	if(!isstorage(item_to_copy))
+		CRASH("/datum/item_representation/storage created from an item that is not a storage")
+	var/item_representation_type
 	for(var/atom/thing_in_content AS in item_to_copy.contents)
 		if(!isitem(thing_in_content))
 			continue
@@ -24,17 +39,13 @@
 		item_representation_type = item_representation_type(thing_in_content.type)
 		contents += new item_representation_type(thing_in_content)
 
-/// Will create a new item, and copy all the vars saved in the item representation to the newly created item
-/datum/item_representation/proc/instantiate_object()
-	var/obj/item/item = new item_type
-	if(!ispath(item_type, /obj/item/storage))
-		return item
-	var/obj/item/storage/storage_item = item
+/datum/item_representation/storage/instantiate_object()
+	var/obj/item/storage/storage = ..()
 	for(var/datum/item_representation/representation AS in contents)
 		var/obj/item/item_to_insert = get_item_from_item_representation(representation)
-		if(storage_item.can_be_inserted(item_to_insert))
-			storage_item.handle_item_insertion(item_to_insert)
-	return storage_item
+		if(storage.can_be_inserted(item_to_insert))
+			storage.handle_item_insertion(item_to_insert)
+	return storage
 
 /**
  * Allow to representate a gun with its attachements
@@ -54,7 +65,7 @@
 	if(!item_to_copy)
 		return
 	if(!isgun(item_to_copy))
-		CRASH("/datum/item_representation/gun created on an item that is not a gun")
+		CRASH("/datum/item_representation/gun created from an item that is not a gun")
 	..()
 	var/obj/item/weapon/gun/gun_to_copy = item_to_copy
 	if(gun_to_copy.muzzle)
@@ -83,13 +94,32 @@
 	if(!item_to_copy)
 		return
 	if(!isgunattachment(item_to_copy))
-		CRASH("/datum/item_representation/gun_attachement created on an item that is not a gun attachment")
+		CRASH("/datum/item_representation/gun_attachement created from an item that is not a gun attachment")
 	..()
 
 ///Attach the instantiated attachment to the gun
 /datum/item_representation/proc/install_on_gun(obj/item/weapon/gun/gun_to_attach)
 	var/obj/item/attachable/attachment = instantiate_object()
 	attachment.attach_to_gun(gun_to_attach)
+
+/**
+ * Allow to representate a suit that has storage
+ * This is only able to representate items of type /obj/item/clothing/suit/storage
+ * In practice only PAS will use it, but it supports a lot of objects
+ */
+/datum/item_representation/suit_with_storage
+	///The storage of the suit
+	var/datum/item_representation/storage/pockets
+
+/datum/item_representation/suit_with_storage/New(obj/item/item_to_copy)
+	. = ..()
+	if(!item_to_copy)
+		return
+	if(!issuitwithstorage(item_to_copy))
+		CRASH("/datum/item_representation/suit_with_storage created from an item that is not a suit with storage")
+	..()
+	var/obj/item/clothing/suit/storage/suit_to_copy = item_to_copy
+	pockets = new datum/item_representation/storage(suit_to_copy.pockets)
 
 /**
  * Allow to representate a jaeger modular armor with its modules
@@ -106,12 +136,14 @@
 	var/datum/item_representation/armor_module/installed_module
 	/// What storage is installed
 	var/datum/item_representation/armor_module/installed_storage
+	///The implementation of the storage
+	var/datum/item_representation/storage/storage_implementation
 
 /datum/item_representation/modular_armor/New(obj/item/item_to_copy)
 	if(!item_to_copy)
 		return
 	if(!isjaeger(item_to_copy))
-		CRASH("/datum/item_representation/modular_armor created on an item that is not a jaeger")
+		CRASH("/datum/item_representation/modular_armor created from an item that is not a jaeger")
 	..()
 	var/obj/item/clothing/suit/modular/jaeger_to_copy = item_to_copy
 	if(jaeger_to_copy.slot_chest)
@@ -122,7 +154,7 @@
 		slot_legs = new /datum/item_representation/armor_module/colored(jaeger_to_copy.slot_legs)
 	if(jaeger_to_copy.installed_storage)
 		installed_storage = new /datum/item_representation/armor_module(jaeger_to_copy.installed_storage)
-	
+		storage_implementation = new /datum/item_representation/storage(jaeger_to_copy.storage)
 	if(!length(jaeger_to_copy.installed_modules) || !is_savable_in_loadout(jaeger_to_copy.installed_modules[1]?.type)) //Not supporting mutiple modules, but no object in game has that so
 		return
 	installed_module = new /datum/item_representation/armor_module(jaeger_to_copy.installed_modules[1])
@@ -133,7 +165,9 @@
 	slot_arms?.install_on_armor(modular_armor)
 	slot_legs?.install_on_armor(modular_armor)
 	installed_module?.install_on_armor(modular_armor)
-	installed_storage?.install_on_armor(modular_armor)
+	if(installed_storage)
+		installed_storage.install_on_armor(modular_armor)
+		modular_armor.storage = storage_implementation.instantiate_object()
 	modular_armor.update_overlays()
 	return modular_armor
 
@@ -147,7 +181,7 @@
 	if(!item_to_copy)
 		return
 	if(!isjaegermodule(item_to_copy))
-		CRASH("/datum/item_representation/armor_module created on an item that is not a jaeger module")
+		CRASH("/datum/item_representation/armor_module created from an item that is not a jaeger module")
 	..()
 
 ///Attach the instantiated item on an armor
@@ -156,7 +190,7 @@
 	module.do_attach(null, armor)
 
 /**
- * Allow to representate an armor piece of a jaeger
+ * Allow to representate an armor piece of a jaeger, and to color it
  * This is only able to representate items of type /obj/item/armor_module/armor
  */
 /datum/item_representation/armor_module/colored
@@ -167,7 +201,7 @@
 	if(!item_to_copy)
 		return
 	if(!isjaegerarmorpiece(item_to_copy))
-		CRASH("/datum/item_representation/armor_module created on an item that is not a jaeger armor piece")
+		CRASH("/datum/item_representation/armor_module created from an item that is not a jaeger armor piece")
 	..()
 	greyscale_colors = item_to_copy.greyscale_colors
 

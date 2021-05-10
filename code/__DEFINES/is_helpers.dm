@@ -161,9 +161,15 @@
 
 #define isgun(A) (istype(A, /obj/item/weapon/gun))
 
+#define isstorage(A) (istype(A, /obj/item/storage))
+
+#define issuitwithstorage(A) (istype(A, /obj/item/clothing/suit/storage))
+
 #define isjaeger(A) (istype(A, /obj/item/clothing/suit/modular))
 
 #define isjaegermodule(A) (istype(A, /obj/item/armor_module))
+
+#define isjaegerstoragemodule(A) (istype(A, /obj/item/armor_module/storage))
 
 #define isjaegerarmorpiece(A) (istype(A, /obj/item/armor_module/armor))
 
