@@ -22,7 +22,7 @@
 	if(ispath(item_type, /obj/item/clothing/suit/modular))
 		return /datum/item_representation/modular_armor
 	if(ispath(item_type, /obj/item/armor_module/armor))
-		return /datum/item_representation/armor_module
+		return /datum/item_representation/armor_module/colored
 	return /datum/item_representation
 
 ///Instantiate the objected linked to the given item_representation

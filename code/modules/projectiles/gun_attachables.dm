@@ -238,6 +238,8 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
  */
 /obj/item/attachable/proc/detach_from_master_gun(mob/user)
 	SHOULD_CALL_PARENT(TRUE)
+	if(!user)
+		return
 	if(flags_attach_features & ATTACH_ACTIVATION)
 		activate_attachment(null, TRUE)
 

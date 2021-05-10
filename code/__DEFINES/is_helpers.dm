@@ -163,9 +163,13 @@
 
 #define isjaeger(A) (istype(A, /obj/item/clothing/suit/modular))
 
+#define isjaegermodule(A) (istype(A, /obj/item/armor_module))
+
 #define isjaegerarmorpiece(A) (istype(A, /obj/item/armor_module/armor))
 
 #define isattachmentflashlight(A) (istype(A, /obj/item/attachable/flashlight))
+
+#define isgunattachment(A) (istype(A, /obj/item/attachable))
 
 #define iswrench(I) (istype(I, /obj/item/tool/wrench))
 
