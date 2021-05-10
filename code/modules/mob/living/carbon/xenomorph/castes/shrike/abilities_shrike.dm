@@ -28,15 +28,9 @@
 	caller.visible_message("<span class='xenowarning'>A strange buzzing hum starts to emanate from \the [caller]!</span>", \
 	"<span class='xenodanger'>We call forth the larvas to rise from their slumber!</span>")
 
-	var/datum/hive_status/normal/shrike_hive = caller.hive
-	for(var/i in 1 to stored_larva)
-		var/mob/M = get_alien_candidate()
-		if(!M)
-			break
-		shrike_hive.spawn_larva(M, src)
-
 	if(stored_larva)
-		RegisterSignal(shrike_hive, list(COMSIG_HIVE_XENO_MOTHER_PRE_CHECK, COMSIG_HIVE_XENO_MOTHER_CHECK), .proc/is_burrowed_larva_host)
+		RegisterSignal(caller.hive, list(COMSIG_HIVE_XENO_MOTHER_PRE_CHECK, COMSIG_HIVE_XENO_MOTHER_CHECK), .proc/is_burrowed_larva_host)
+		caller.hive.give_larva_to_next_in_queue()
 		notify_ghosts("\The <b>[caller]</b> is calling for the burrowed larvas to wake up!", enter_link = "join_larva=1", enter_text = "Join as Larva", source = caller, action = NOTIFY_JOIN_AS_LARVA)
 		addtimer(CALLBACK(src, .proc/calling_larvas_end, caller), CALLING_BURROWED_DURATION)
 
@@ -185,14 +179,16 @@
 			if(!ishuman(affected) && !istype(affected, /obj/item))
 				affected.Shake(4, 4, 20)
 				continue
+			if(ishuman(affected)) //if they're human, they also should get knocked off their feet from the blast.
+				var/mob/living/carbon/human/H = affected
+				if(H.stat == DEAD) //unless they are dead, then the blast mysteriously ignores them.
+					continue
+				H.apply_effects(1, 1) 	// Stun
+				shake_camera(H, 2, 1)
 			var/throwlocation = affected.loc //first we get the target's location
 			for(var/x in 1 to 6)
 				throwlocation = get_step(throwlocation, owner.dir) //then we find where they're being thrown to, checking tile by tile.
 			affected.throw_at(throwlocation, 6, 1, owner, TRUE)
-			if(ishuman(affected)) //if they're human, they also should get knocked off their feet from the blast.
-				var/mob/living/carbon/human = affected
-				human.apply_effects(1, 1) 	// Stun
-				shake_camera(affected, 2, 1)
 
 	owner.visible_message("<span class='xenowarning'>[owner] sends out a huge blast of psychic energy!</span>", \
 	"<span class='xenowarning'>We send out a huge blast of psychic energy!</span>")

@@ -50,6 +50,7 @@
 #define CARBON_RECOVERY_OXYLOSS -5 //the amount of oxyloss recovery per successful breath tick.
 
 #define CARBON_KO_OXYLOSS 50
+#define HUMAN_CRITDRAG_OXYLOSS 3 //the amount of oxyloss taken per tile a human is dragged by a xeno while unconscious
 
 #define HEAT_DAMAGE_LEVEL_1 1 //Amount of damage applied when your body temperature just passes the 360.15k safety point
 #define HEAT_DAMAGE_LEVEL_2 2 //Amount of damage applied when your body temperature passes the 400K point
@@ -438,10 +439,10 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define PLASMA_TRANSFER_AMOUNT 100
 
 #define XENO_LARVAL_AMOUNT_RECURRING		10
-#define XENO_LARVAL_CHANNEL_TIME			1.5 SECONDS
+#define XENO_LARVAL_CHANNEL_TIME			0.5 SECONDS
 
 #define XENO_NEURO_AMOUNT_RECURRING			10
-#define XENO_NEURO_CHANNEL_TIME				1.5 SECONDS
+#define XENO_NEURO_CHANNEL_TIME				0.5 SECONDS
 
 #define XENO_HEALTH_ALERT_TRIGGER_PERCENT	0.25 //If a xeno is damaged while its current hit points are less than this percent of its maximum, we send out an alert to the hive
 #define XENO_HEALTH_ALERT_TRIGGER_THRESHOLD	50 //If a xeno is damaged while its current hit points are less than this amount, we send out an alert to the hive
@@ -582,8 +583,9 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define WRAITH_HYPERPOSITION_MAX_WINDUP			5 SECONDS
 #define WRAITH_HYPERPOSITION_COOLDOWN_OVERRIDE	1 SECONDS //When we abort or fail to use hyperposition, it goes on cooldown to prevent spam
 
-#define WRAITH_PHASE_SHIFT_WINDUP			1 SECONDS
-#define WRAITH_PHASE_SHIFT_DURATION			5 SECONDS
+#define WRAITH_PHASE_SHIFT_WINDUP			2 SECONDS
+#define WRAITH_PHASE_SHIFT_DURATION			10 SECONDS
+#define WRAITH_PHASE_SHIFT_COOLDOWN			20 SECONDS
 #define WRAITH_PHASE_SHIFT_DURATION_WARNING	0.7
 #define WRAITH_PHASE_SHIFT_ALPHA			128 //50% transparency
 

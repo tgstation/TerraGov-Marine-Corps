@@ -46,11 +46,6 @@ OPERATIONS
 	contains = list(/obj/item/fulton_extraction_pack)
 	cost = 5
 
-/datum/supply_packs/operations/fulton_recovery_beacon
-	name = "fulton recovery beacon"
-	contains = list(/obj/structure/fulton_extraction_point)
-	cost = 5
-
 /datum/supply_packs/operations/cas_flares
 	name = "CAS flare pack"
 	contains = list(/obj/item/storage/box/m94/cas)
@@ -956,7 +951,7 @@ CLOTHING
 	contains = list(
 		/obj/item/jetpack_marine,
 	)
-	cost = 15
+	cost = 12
 
 /*******************************************************************************
 MEDICAL

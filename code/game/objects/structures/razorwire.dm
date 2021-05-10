@@ -17,11 +17,6 @@
 	max_integrity = RAZORWIRE_MAX_HEALTH
 	var/soak = 5
 
-/obj/structure/razorwire/foam
-	desc = "A bundle of barbed wire supported by metal rods, crudely built by iron-consuming nanites. Weld them to bring them to their full strength."
-	max_integrity = RAZORWIRE_MAX_HEALTH
-	obj_integrity = RAZORWIRE_MAX_HEALTH/2
-
 /obj/structure/razorwire/deconstruct(disassembled = TRUE)
 	if(disassembled)
 		if(obj_integrity > max_integrity * 0.5)
@@ -214,7 +209,7 @@
 		deconstruct(FALSE)
 		return TRUE
 
-/obj/structure/razorwire/update_icon()
+/obj/structure/razorwire/update_icon_state()
 	var/health_percent = round(obj_integrity/max_integrity * 100)
 	var/remaining = CEILING(health_percent, 25)
 	icon_state = "[base_icon_state]_[remaining]"

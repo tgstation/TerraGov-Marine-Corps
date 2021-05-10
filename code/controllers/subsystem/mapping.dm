@@ -56,9 +56,9 @@ SUBSYSTEM_DEF(mapping)
 				configs[i] = old_config
 
 	if(configs[GROUND_MAP])
-		for(var/i in config.votable_modes)
-			if(!(i in configs[GROUND_MAP].gamemodes))
-				config.votable_modes -= i // remove invalid modes
+		for(var/datum/game_mode/M AS in config.votable_modes)
+			if(!(M.config_tag in configs[GROUND_MAP].gamemodes))
+				config.votable_modes -= M // remove invalid modes
 
 	loadWorld()
 	repopulate_sorted_areas()
