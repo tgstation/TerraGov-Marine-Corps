@@ -534,7 +534,12 @@
 	set name = "dsay"
 	set hidden = TRUE
 
-	if(!msg || !check_rights(R_ADMIN|R_MENTOR))
+	if(!check_rights(R_ADMIN|R_MENTOR))
+		return
+
+	msg = copytext_char(sanitize(msg), 1, MAX_MESSAGE_LEN)
+
+	if(!msg)
 		return
 
 	if(is_mentor(src) && mob.stat != DEAD)
@@ -546,11 +551,6 @@
 		return
 
 	if(handle_spam_prevention(msg, MUTE_DEADCHAT))
-		return
-
-	msg = copytext_char(sanitize(msg), 1, MAX_MESSAGE_LEN)
-
-	if(!msg)
 		return
 
 	log_dsay("[key_name(src)]: [msg]")
