@@ -48,6 +48,7 @@
 			if(isnull(loadout_name))
 				return
 			current_loadout = create_empty_loadout(loadout_name, job)
+			current_loadout.save_mob_loadout(ui.user)
 			loadouts_list += current_loadout
 			ui.update_static_data()
 		if("selectLoadout")

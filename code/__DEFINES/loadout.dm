@@ -14,6 +14,14 @@ GLOBAL_LIST_INIT(visible_item_slot_list, list(
 	slot_r_store_str,
 ))
 
+///All the vendor types which the automated loadout vendor can take items from
+GLOBAL_LIST_INIT(loadout_linked_vendor, list(
+	/obj/machinery/vending/marine/shared,
+	/obj/machinery/vending/uniform_supply,
+	/obj/machinery/vending/armor_supply,
+	/obj/machinery/vending/marineFood,
+))
+
 #define MARINE_LOADOUT "marine"
 #define ENGIE_LOADOUT "engie"
 #define MEDIC_LOADOUT "medic"

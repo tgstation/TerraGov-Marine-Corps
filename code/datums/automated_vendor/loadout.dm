@@ -10,20 +10,6 @@
 	 */
 	var/list/item_list
 
-/**
- * Add an item to this loadout, will return TRUE if everything went ok
- * item_type the type of the item we want to add
- * item_slot where the item should be added
- */
-/datum/loadout/proc/add_item(item_type, slot)
-	if(!can_equip_to_slot(item_type, slot))
-		return FALSE
-	var/item_representation_type = item_representation_type(item_type)
-	var/datum/item_representation/item_representation = new item_representation_type
-	item_representation.copy_vars_from_item_type(item_type)
-	item_list[slot] = item_representation
-	return TRUE
-
 ///Empty a slot of the loadout
 /datum/loadout/proc/empty_slot(slot)
 	item_list[slot] = null
@@ -116,8 +102,15 @@
  * This will read all items on the mob, and if the item is supported by the loadout maker, will save it in the corresponding slot
  * An item is supported if it's path
  */
-////datum/loadout/proc/save_mob_loadout(mob/user)
-
+/datum/loadout/proc/save_mob_loadout(mob/living/carbon/human/user)
+	var/obj/item/item_in_slot
+	var/item_representation_type
+	for(var/slot_key in GLOB.visible_item_slot_list)
+		item_in_slot = user.get_item_by_slot(GLOB.slot_str_to_slot[slot_key])
+		if(!is_savable_in_loadout(item_in_slot))
+			continue
+		item_representation_type = item_representation_type(item_in_slot.type)
+		item_list[slot_key] = new item_representation_type(item_in_slot)
 
 /datum/loadout/ui_interact(mob/user, datum/tgui/ui)
 	prepare_items_data(user)
@@ -170,14 +163,3 @@
 
 		items_data[item_slot_key] = result
 	return items_data
-
-
-///Return a new empty loayout
-/proc/create_empty_loadout(name = "Default", job = MARINE_LOADOUT)
-	var/datum/loadout/default = new
-	default.name = name
-	default.job = job
-	default.item_list = list()
-	default.add_item(/obj/item/clothing/under/marine/standard ,slot_w_uniform_str)
-	default.add_item(/obj/item/clothing/shoes/marine ,slot_shoes_str)
-	return default

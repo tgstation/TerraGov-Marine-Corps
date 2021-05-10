@@ -517,6 +517,7 @@
 	desc = "Standard Issue Food and Drinks Vendor, containing standard military food and drinks."
 	icon_state = "sustenance"
 	wrenchable = FALSE
+	isshared = TRUE
 	products = list(
 		/obj/item/reagent_containers/food/snacks/protein_pack = 50,
 		/obj/item/reagent_containers/food/snacks/mre_pack/meal1 = 15,
@@ -793,7 +794,7 @@
 	icon_state = "marineuniform"
 	icon_vend = "marineuniform_vend"
 	icon_deny = "marineuniform"
-
+	isshared = TRUE
 	product_ads = "If it moves, it's hostile!;How many enemies have you killed today?;Shoot first, perform autopsy later!;Your ammo is right here.;Guns!;Die, scumbag!;Don't shoot me bro!;Shoot them, bro.;Why not have a donut?"
 	products = list(
 		"Armors" = list(
@@ -858,7 +859,7 @@
 	icon_state = "marineuniform"
 	icon_vend = "marineuniform_vend"
 	icon_deny = "marineuniform"
-
+	isshared = TRUE
 	product_ads = "If it moves, it's hostile!;How many enemies have you killed today?;Shoot first, perform autopsy later!;Your ammo is right here.;Guns!;Die, scumbag!;Don't shoot me bro!;Shoot them, bro.;Why not have a donut?"
 	products = list(
 		"Clothing" = list(
