@@ -534,7 +534,7 @@
 	set name = "dsay"
 	set hidden = TRUE
 
-	if(!check_rights(R_ADMIN|R_MENTOR))
+	if(!msg || !check_rights(R_ADMIN|R_MENTOR))
 		return
 
 	if(is_mentor(src) && mob.stat != DEAD)
