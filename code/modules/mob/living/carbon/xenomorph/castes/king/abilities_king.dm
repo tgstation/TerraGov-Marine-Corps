@@ -20,10 +20,10 @@
 
 /datum/action/xeno_action/activable/nightfall/use_ability()
 	playsound(owner, 'sound/magic/nightfall.ogg', 50, 1)
-
 	for(var/atom/light AS in GLOB.lights)
-		light.turn_light(null, FALSE, duration, TRUE, TRUE, get_turf(owner), range)
-
+		if((owner.loc.z != light.loc.z) || (get_dist(owner, light) >= range))
+			continue
+		light.turn_light(null, FALSE, duration, TRUE, TRUE)
 	succeed_activate()
 	add_cooldown()
 
@@ -117,15 +117,15 @@
 	log_game("[key_name(owner)] has begun summoning hive in [AREACOORD(owner)]")
 	xeno_message("King: \The [owner] has begun a psychic summon in <b>[get_area(owner)]</b>!", "xenoannounce", 3, X.hivenumber)
 	var/list/allxenos = X.hive.get_all_xenos()
-	for(var/mob/living/carbon/xenomorph/sister as() in allxenos)
+	for(var/mob/living/carbon/xenomorph/sister AS in allxenos)
 		sister.add_filter("summonoutline", 2, list("type" = "outline", "size" = 1, "color" = COLOR_VIOLET))
 
 	if(!do_after(X, 15 SECONDS, FALSE, X, BUSY_ICON_HOSTILE))
-		for(var/mob/living/carbon/xenomorph/sister as() in allxenos)
+		for(var/mob/living/carbon/xenomorph/sister AS in allxenos)
 			sister.remove_filter("summonoutline")
 		return fail_activate()
 
-	for(var/mob/living/carbon/xenomorph/sister as() in allxenos)
+	for(var/mob/living/carbon/xenomorph/sister AS in allxenos)
 		sister.remove_filter("summonoutline")
 		sister.forceMove(get_turf(X))
 	log_game("[key_name(owner)] has summoned hive ([length(allxenos)] Xenos) in [AREACOORD(owner)]")
