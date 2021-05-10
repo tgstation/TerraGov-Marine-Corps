@@ -719,7 +719,7 @@
 	qdel(T)
 	X.use_plasma(600)
 
-datum/action/xeno_action/summon_king
+/datum/action/xeno_action/summon_king
 	name = "Summon Xenomorph King"
 	action_icon_state = "grow_ovipositor"
 	mechanics_text = "Deploy a pod to summon a xeno king."
