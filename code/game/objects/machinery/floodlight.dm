@@ -9,11 +9,11 @@
 
 /obj/machinery/floodlight/Initialize()
 	. = ..()
-	GLOB.lights += src
+	GLOB.nightfall_toggleable_lights += src
 
 /obj/machinery/floodlight/Destroy()
 	. = ..()
-	GLOB.lights -= src
+	GLOB.nightfall_toggleable_lights -= src
 
 /obj/machinery/floodlight/attack_hand(mob/living/user)
 	return

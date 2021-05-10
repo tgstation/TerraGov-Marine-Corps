@@ -14,16 +14,20 @@
 	light_power = 3 //luminosity when on
 	var/raillight_compatible = TRUE //Can this be turned into a rail light ?
 	var/activation_sound = 'sound/items/flashlight.ogg'
+	///If this flashlight affected by nightfall
+	var/nightfall_immune = FALSE
 
 /obj/item/flashlight/Initialize()
 	. = ..()
-	GLOB.lights += src
+	GLOB.nightfall_toggleable_lights += src
 
 /obj/item/flashlight/Destroy()
 	. = ..()
-	GLOB.lights -= src
+	GLOB.nightfall_toggleable_lights -= src
 
-/obj/item/flashlight/turn_light(mob/user, toggle_on)
+/obj/item/flashlight/turn_light(mob/user, toggle_on, cooldown = 1 SECONDS, sparks = FALSE, forced = FALSE)
+	if(forced && nightfall_immune)
+		return NIGHTFALL_IMMUNE
 	. = ..()
 	if(. != CHECKS_PASSED)
 		return
@@ -32,7 +36,7 @@
 	set_light_on(toggle_on)
 	update_action_button_icons()
 	update_icon()
-	
+
 /obj/item/flashlight/update_icon()
 	. = ..()
 	if(light_on)
@@ -181,6 +185,7 @@
 	actions = list()	//just pull it manually, neckbeard.
 	raillight_compatible = FALSE
 	activation_sound = 'sound/items/flare.ogg'
+	nightfall_immune = TRUE
 	var/fuel = 0
 	var/on_damage = 7
 
@@ -189,9 +194,9 @@
 	fuel = rand(800, 1000) // Sorry for changing this so much but I keep under-estimating how long X number of ticks last in seconds.
 
 /obj/item/flashlight/flare/turn_light(mob/user = null, toggle_on , cooldown = 1 SECONDS, sparks = FALSE, forced = FALSE, atom/originated_turf = null, distance_max = 0)
-	if(forced) //Flares are immune to nightfall
-		return
 	. = ..()
+	if(. != CHECKS_PASSED)
+		return
 	if(toggle_on)
 		return
 	fuel = 0 //Flares are one way; if you turn them off, you're snuffing them out.

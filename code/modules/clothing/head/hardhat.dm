@@ -14,11 +14,11 @@
 
 /obj/item/clothing/head/hardhat/Initialize()
 	. = ..()
-	GLOB.lights += src
+	GLOB.nightfall_toggleable_lights += src
 
 /obj/item/clothing/head/hardhat/Destroy()
 	. = ..()
-	GLOB.lights -= src
+	GLOB.nightfall_toggleable_lights -= src
 
 /obj/item/clothing/head/hardhat/attack_self(mob/user)
 	if(!isturf(user.loc))
