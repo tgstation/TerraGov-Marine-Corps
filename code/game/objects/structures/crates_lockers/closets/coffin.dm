@@ -6,7 +6,7 @@
 	icon_opened = "coffin_open"
 	anchored = FALSE
 
-/obj/structure/closet/coffin/update_icon()
+/obj/structure/closet/coffin/update_icon_state()
 	if(!opened)
 		icon_state = icon_closed
 	else

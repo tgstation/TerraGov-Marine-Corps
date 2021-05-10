@@ -1,6 +1,0 @@
-author: "Wayland-Smithy"
-delete-after: True
-changes: 
-  - bugfix: "Shrike's unrelenting force no longer displaces dead humans."
-  - bugfix: "Warrior's fling no longer works on dead humans."
-  - bugfix: "Unconscious humans pulled through a Wraith teleport receive equivalent critdrag damage based on distance traveled."

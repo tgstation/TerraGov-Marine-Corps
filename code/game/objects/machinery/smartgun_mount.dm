@@ -184,12 +184,10 @@
 /obj/machinery/standard_hmg/Initialize()
 	. = ..()
 	ammo = GLOB.ammo_list[ammo] //dunno how this works but just sliding this in from sentry-code.
-	update_icon()
 	prepare_huds() //Set up HUDS
+	update_icon()
 	for(var/datum/atom_hud/squad/sentry_status_hud in GLOB.huds) //Add to the squad HUD
 		sentry_status_hud.add_to_hud(src)
-	hud_set_machine_health()
-	hud_set_hsg_ammo()
 
 /obj/machinery/standard_hmg/Destroy() //Make sure we pick up our trash.
 	operator?.unset_interaction()
@@ -211,6 +209,8 @@
 		icon_state = "[icon_empty]"
 	else
 		icon_state = "[icon_full]"
+	hud_set_machine_health()
+	hud_set_hsg_ammo()
 
 
 /obj/machinery/standard_hmg/attackby(obj/item/I, mob/user, params) //This will be how we take it apart.
@@ -247,7 +247,6 @@
 			D.current_rounds = rounds - (rounds_max - M.current_rounds)
 		rounds = min(rounds + M.current_rounds, rounds_max)
 		update_icon()
-		hud_set_hsg_ammo()
 		qdel(I)
 
 /obj/machinery/standard_hmg/welder_act(mob/living/user, obj/item/I)
@@ -289,7 +288,6 @@
 	user.visible_message("<span class='notice'>[user] repairs some damage on [src].</span>",
 	"<span class='notice'>You repair [src].</span>")
 	repair_damage(120)
-	hud_set_machine_health()
 	update_icon()
 	playsound(loc, 'sound/items/welder2.ogg', 25, TRUE)
 	return TRUE

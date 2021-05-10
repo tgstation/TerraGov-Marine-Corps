@@ -249,7 +249,7 @@
 	icon_state = "svd"
 	item_state = "svd"
 	max_shells = 10 //codex
-	caliber = CALIBER_762x54 //codex
+	caliber = CALIBER_762X54 //codex
 	fire_sound = 'sound/weapons/guns/fire/svd.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/sniper_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/svd_unload.ogg'
@@ -654,7 +654,6 @@
 	max_shells = 1 //codex
 	caliber = CALIBER_40MM //codex
 	load_method = SINGLE_CASING //codex
-	materials = list(/datum/material/metal = 7000)
 	w_class = WEIGHT_CLASS_BULKY
 	flags_equip_slot = ITEM_SLOT_BACK|ITEM_SLOT_BELT
 	throw_speed = 2

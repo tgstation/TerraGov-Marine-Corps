@@ -14,11 +14,10 @@
 		#include "map_files\Sulaco\Sulaco.dmm"
 		#include "map_files\Pillar_of_Spring\TGS_Pillar_of_Spring.dmm"
 		#include "map_files\icy_caves\icy_caves.dmm"
-		#include "map_files\desert\desert.dmm"
 		#include "map_files\MarineHQ\MarineHQ.dmm"
 		#include "map_files\Sulaco\Sulaco.dmm"
 		#include "map_files\Research_Outpost\Research_Outpost.dmm"
-		#include "map_files\Lava_Outpost\LavaOutpost.dmm"
+		#include "map_files\Barrenquilla_Mining\Barrenquilla_Mining_Facility.dmm"
 		#include "map_files\Magmoor_Digsite_IV\Magmoor_Digsite_IV.dmm"
 		#ifdef CIBUILDING
 			#include "templates.dm"

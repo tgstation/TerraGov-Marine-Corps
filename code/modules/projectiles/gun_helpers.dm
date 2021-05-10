@@ -255,7 +255,7 @@ should be alright.
 		unload(user,0,1)
 		to_chat(user, "<span class='notice'>You start a tactical reload.</span>")
 	var/tac_reload_time = max(0.5 SECONDS, 1.5 SECONDS - user.skills.getRating("firearms") * 5)
-	if(!do_after(user,tac_reload_time, TRUE, new_magazine) && loc == user)
+	if(!do_after(user,tac_reload_time, TRUE, new_magazine, ignore_turf_checks = TRUE) && loc == user)
 		return
 	if(istype(new_magazine.loc, /obj/item/storage))
 		var/obj/item/storage/S = new_magazine.loc
@@ -315,16 +315,16 @@ should be alright.
 	//Checks if they can attach the thing in the first place, like with fixed attachments.
 	var/can_attach = 1
 	switch(attachment.slot)
-		if("rail")
+		if(ATTACHMENT_SLOT_RAIL)
 			if(rail && !(rail.flags_attach_features & ATTACH_REMOVABLE))
 				can_attach = FALSE
-		if("muzzle")
+		if(ATTACHMENT_SLOT_MUZZLE)
 			if(muzzle && !(muzzle.flags_attach_features & ATTACH_REMOVABLE))
 				can_attach = FALSE
-		if("under")
+		if(ATTACHMENT_SLOT_UNDER)
 			if(under && !(under.flags_attach_features & ATTACH_REMOVABLE))
 				can_attach = FALSE
-		if("stock")
+		if(ATTACHMENT_SLOT_STOCK)
 			if(stock && !(stock.flags_attach_features & ATTACH_REMOVABLE))
 				can_attach = FALSE
 
@@ -344,60 +344,64 @@ should be alright.
 		user.visible_message("<span class='notice'>[user] begins fumbling about, trying to attach [attachment] to [src].</span>",
 		"<span class='notice'>You begin fumbling about, trying to attach [attachment] to [src].</span>", null, 4)
 		idisplay = BUSY_ICON_UNSKILLED
-	if(do_after(user, final_delay, TRUE, src, idisplay))
-		user.visible_message("<span class='notice'>[user] attaches [attachment] to [src].</span>",
-		"<span class='notice'>You attach [attachment] to [src].</span>", null, 4)
-		user.temporarilyRemoveItemFromInventory(attachment)
-		attachment.Attach(src, user)
-		playsound(user, 'sound/machines/click.ogg', 15, 1, 4)
+	if(!do_after(user, final_delay, TRUE, src, idisplay))
+		return
+	user.visible_message("<span class='notice'>[user] attaches [attachment] to [src].</span>",
+	"<span class='notice'>You attach [attachment] to [src].</span>", null, 4)
+	user.temporarilyRemoveItemFromInventory(attachment)
+	attachment.attach_to_gun(src, user)
+	playsound(user, 'sound/machines/click.ogg', 15, 1, 4)
 
-
-/obj/item/weapon/gun/proc/update_attachables() //Updates everything. You generally don't need to use this.
-	//overlays.Cut()
-	if(attachable_offset) //Even if the attachment doesn't exist, we're going to try and remove it.
-		update_overlays(muzzle, "muzzle")
-		update_overlays(stock, "stock")
-		update_overlays(under, "under")
-		update_overlays(rail, "rail")
+///Updates everything. You generally don't need to use this.
+/obj/item/weapon/gun/proc/update_attachables()
+	if(!attachable_offset) //Even if the attachment doesn't exist, we're going to try and remove it.
+		return
+	update_overlays(muzzle, ATTACHMENT_SLOT_MUZZLE)
+	update_overlays(stock, ATTACHMENT_SLOT_STOCK)
+	update_overlays(under, ATTACHMENT_SLOT_UNDER)
+	update_overlays(rail, ATTACHMENT_SLOT_RAIL)
 
 
 /obj/item/weapon/gun/proc/update_attachable(attachable) //Updates individually.
-	if(attachable_offset)
-		switch(attachable)
-			if("muzzle") update_overlays(muzzle, attachable)
-			if("stock") update_overlays(stock, attachable)
-			if("under") update_overlays(under, attachable)
-			if("rail") update_overlays(rail, attachable)
+	if(!attachable_offset)
+		return
+	switch(attachable)
+		if(ATTACHMENT_SLOT_MUZZLE)
+			update_overlays(muzzle, attachable)
+		if(ATTACHMENT_SLOT_STOCK)
+			update_overlays(stock, attachable)
+		if(ATTACHMENT_SLOT_UNDER)
+			update_overlays(under, attachable)
+		if(ATTACHMENT_SLOT_RAIL)
+			update_overlays(rail, attachable)
 
 
-/obj/item/weapon/gun/update_overlays(obj/item/attachable/A, slot)
+/obj/item/weapon/gun/update_overlays(obj/item/attachable/attachie, slot)
 	. = ..()
-	var/image/I = attachable_overlays[slot]
-	overlays -= I
-	qdel(I)
-	if(A) //Only updates if the attachment exists for that slot.
-		var/item_icon = A.icon_state
-		if(A.attach_icon)
-			item_icon = A.attach_icon
-		I = image(A.icon,src, item_icon)
-		I.pixel_x = attachable_offset["[slot]_x"] - A.pixel_shift_x
-		I.pixel_y = attachable_offset["[slot]_y"] - A.pixel_shift_y
-		attachable_overlays[slot] = I
-		overlays += I
-	else
+	var/image/overlay = attachable_overlays[slot]
+	overlays -= overlay
+	if(!attachie) //Only updates if the attachment exists for that slot.
 		attachable_overlays[slot] = null
+		return
+	var/item_icon = attachie.icon_state
+	if(attachie.attach_icon)
+		item_icon = attachie.attach_icon
+	overlay = image(attachie.icon, src, item_icon)
+	overlay.pixel_x = attachable_offset["[slot]_x"] - attachie.pixel_shift_x
+	overlay.pixel_y = attachable_offset["[slot]_y"] - attachie.pixel_shift_y
+	attachable_overlays[slot] = overlay
+	overlays += overlay
 
-
+///updates the magazine overlay if it needs to be updated
 /obj/item/weapon/gun/proc/update_mag_overlay(mob/user)
-	var/image/I = attachable_overlays["mag"]
-	overlays -= I
-	qdel(I)
+	var/image/overlay = attachable_overlays[ATTACHMENT_SLOT_MAGAZINE]
+	overlays -= overlay
 	if(current_mag && current_mag.bonus_overlay)
-		I = image(current_mag.icon,src,current_mag.bonus_overlay)
-		attachable_overlays["mag"] = I
-		overlays += I
+		overlay = image(current_mag.icon, src, current_mag.bonus_overlay)
+		attachable_overlays[ATTACHMENT_SLOT_MAGAZINE] = overlay
+		overlays += overlay
 	else
-		attachable_overlays["mag"] = null
+		attachable_overlays[ATTACHMENT_SLOT_MAGAZINE] = null
 
 
 /obj/item/weapon/gun/proc/update_force_list()
@@ -415,7 +419,7 @@ should be alright.
 		to_chat(user, "<span class='warning'>You don't have the dexterity to do this.</span>")
 		return
 
-	if( user.incapacitated() || !isturf(user.loc))
+	if(user.incapacitated() || !isturf(user.loc))
 		to_chat(user, "<span class='warning'>You can't do this right now.</span>")
 		return
 
@@ -533,7 +537,7 @@ should be alright.
 
 	usr.visible_message("<span class='notice'>[usr] strips [A] from [src].</span>",
 	"<span class='notice'>You strip [A] from [src].</span>", null, 4)
-	A.Detach(usr)
+	A.detach_from_master_gun(usr)
 
 	playsound(src, 'sound/machines/click.ogg', 15, 1, 4)
 	update_attachables()

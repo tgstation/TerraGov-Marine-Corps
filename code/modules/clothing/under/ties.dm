@@ -395,6 +395,7 @@
 		/obj/item/tool/surgery,
 		/obj/item/stack/nanopaste,
 		/obj/item/stack/medical/advanced/bruise_pack,
+		/obj/item/tweezers,
 	)
 
 /obj/item/storage/internal/tie/white_vest/surgery/Initialize()
@@ -432,6 +433,7 @@
 		/obj/item/bodybag,
 		/obj/item/roller,
 		/obj/item/clothing/glasses/hud/health,
+		/obj/item/tweezers,
 	)
 
 /obj/item/clothing/tie/storage/knifeharness
@@ -468,6 +470,7 @@
 	can_hold = list(
 		/obj/item/weapon/gun/pistol,
 		/obj/item/weapon/gun/revolver,
+		/obj/item/weapon/gun/smg/standard_machinepistol,
 	)
 
 /obj/item/clothing/tie/storage/holster/armpit

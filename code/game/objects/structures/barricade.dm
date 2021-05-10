@@ -277,6 +277,14 @@
 	setDir(turn(dir, 270))
 
 
+/obj/structure/barricade/attack_hand_alternate(mob/living/user)
+	if(anchored)
+		to_chat(user, "<span class='warning'>It is fastened to the floor, you can't rotate it!</span>")
+		return FALSE
+
+	setDir(turn(dir, 270))
+
+
 /*----------------------*/
 // SNOW
 /*----------------------*/

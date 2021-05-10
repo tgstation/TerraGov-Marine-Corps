@@ -52,7 +52,7 @@ one type of shotgun ammo, but I think it helps in referencing it. ~N
 	desc = "A box filled with rifle bullets."
 	icon_state = "7.62" //Thank you Alterist
 	default_ammo = /datum/ammo/bullet/sniper/svd
-	caliber = CALIBER_762x54 //Cyka Blyat
+	caliber = CALIBER_762X54 //Cyka Blyat
 	gun_type = /obj/item/weapon/gun/shotgun/pump/bolt
 	max_rounds = 20 // Real rifle boxes are usually 20 rounds. This works with the new system, four handfuls.
 	w_class = WEIGHT_CLASS_SMALL // CAN throw it in your pocket, friend.
@@ -105,7 +105,7 @@ also doesn't really matter. You can only reload them with handfuls.
 /obj/item/ammo_magazine/internal/shotgun/pump/bolt
 	name = "internal magazine"
 	default_ammo = /datum/ammo/bullet/sniper/svd
-	caliber = CALIBER_762x54
+	caliber = CALIBER_762X54
 	max_rounds = 5
 
 /obj/item/ammo_magazine/internal/shotgun/pump/lever
