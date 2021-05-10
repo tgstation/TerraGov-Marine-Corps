@@ -6,7 +6,7 @@
 	name = "Nightfall"
 	action_icon_state = "nightfall"
 	ability_name = "Nightfall"
-	mechanics_text = "Shut down all electrical lights for 5 seconds"
+	mechanics_text = "Shut down all electrical lights for five seconds."
 	cooldown_timer = 1 MINUTES
 	plasma_cost = 100
 	/// How far nightfall will have an effect
