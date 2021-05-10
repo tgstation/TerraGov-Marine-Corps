@@ -43,8 +43,8 @@ export const LoadoutViewer = (props, context) => {
   return (
     <Window 
       title="Loadout Viewer"
-      width={400} 
-      height={400}>
+      width={260} 
+      height={460}>
       <Window.Content>
         <Stack fill vertical>
           <SlotSelector 

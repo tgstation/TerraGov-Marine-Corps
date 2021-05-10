@@ -15,12 +15,13 @@
 		CRASH("/datum/item_representation/modular_helmet created from an item that is not an modular helmet")
 	..()
 	var/obj/item/clothing/head/modular/helmet_to_copy = item_to_copy
-	module = new /datum/item_representation/modular_helmet_module(helmet_to_copy.installed_module)
+	if(helmet_to_copy.installed_module)
+		module = new /datum/item_representation/modular_helmet_module(helmet_to_copy.installed_module)
 	greyscale_colors = helmet_to_copy.greyscale_colors
 
 /datum/item_representation/modular_helmet/instantiate_object()
 	var/obj/item/clothing/head/modular/helmet = ..()
-	module.install_on_helmet(helmet)
+	module?.install_on_helmet(helmet)
 	helmet.set_greyscale_colors(greyscale_colors)
 	return helmet
 

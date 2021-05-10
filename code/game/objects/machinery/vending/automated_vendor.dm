@@ -9,9 +9,6 @@
 	req_access = null
 	req_one_access = null
 
-	idle_power_usage = 60
-	active_power_usage = 3000
-
 /obj/machinery/automated_vendor/can_interact(mob/user)
 	. = ..()
 	if(!.)

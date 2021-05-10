@@ -19,7 +19,7 @@
 
 /datum/item_representation/suit_with_storage/instantiate_object()
 	var/obj/item/clothing/suit/storage/suit = ..()
-	suit.pockets = pockets.instantiate_object()
+	suit.pockets = pockets.instantiate_object(suit)
 	return suit
 
 /**

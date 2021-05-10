@@ -115,9 +115,7 @@
 		item_list[slot_key] = new item_representation_type(item_in_slot)
 
 /datum/loadout/ui_interact(mob/user, datum/tgui/ui)
-	prepare_items_data(user)
 	ui = SStgui.try_update_ui(user, src, ui)
-
 	if(!ui)
 		ui = new(user, src, "LoadoutViewer", name)
 		ui.open()
@@ -155,15 +153,20 @@
 	for (var/item_slot_key in GLOB.visible_item_slot_list)
 		var/list/result = list()
 
-		var/datum/item_representation/item = item_list[item_slot_key]
-		if (isnull(item))
+		var/datum/item_representation/item_representation = item_list[item_slot_key]
+		if (isnull(item_representation))
 			result["icon"] = icon2base64(icon("icons/misc/empty.dmi", "empty"))
 			items_data[item_slot_key] = result
 			continue
-
-		var/obj/item/item_type = item.item_type
-		result["icon"] = icon2base64(icon(initial(item_type.icon), initial(item_type.icon_state)))
-		result["name"] = initial(item_type.name)
+		//This is costly, but this allows to have a pretty an accurate visualisation
+		var/obj/item/item = get_item_from_item_representation(item_representation)
+		var/image/standing = image(item.icon, item.icon_state)
+		item.apply_custom(standing)
+		item.apply_accessories(standing)
+		var/icon/flat_icon = getFlatIcon(standing)
+		result["icon"] = icon2base64(flat_icon)
+		result["name"] = item.name
+		qdel(item)
 
 		items_data[item_slot_key] = result
 	return items_data
