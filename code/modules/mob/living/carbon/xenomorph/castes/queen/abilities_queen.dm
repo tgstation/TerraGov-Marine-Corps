@@ -725,7 +725,7 @@ datum/action/xeno_action/summon_king
 	mechanics_text = "Deploy a pod to summon a xeno king."
 	plasma_cost = 0 //hive points cost
 	keybind_signal = COMSIG_XENOABILITY_SUMMON_KING_POD
-	gamemode_flags = ABILITY_DISTRESS
+	gamemode_flags = ABILITY_DISTRESS|ABILITY_HUNT
 	/// Pyschic point cost
 	var/psych_cost = XENO_KING_PRICE
 
