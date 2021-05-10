@@ -1,108 +1,4 @@
 /**
- * Light weight representation of an obj/item
- * This allow us to manipulate and store a lot of item-like objects, without it costing a ton of memory or having to instantiate all items
- * This also allow to save loadouts with jatum, because it doesn't accept obj/item
- */
-/datum/item_representation
-	/// The type of the object represented, to allow us to create the object when needed
-	var/item_type
-
-/datum/item_representation/New(obj/item/item_to_copy)
-	if(!item_to_copy)
-		return
-	item_type = item_to_copy.type
-
-/// Will create a new item, and copy all the vars saved in the item representation to the newly created item
-/datum/item_representation/proc/instantiate_object()
-	var/obj/item/item = new item_type
-	return item
-
-/**
- * Allow to representate a storage
- * This is only able to represent /obj/item/storage
- */
-/datum/item_representation/storage
-	/// The contents in the storage
-	var/contents = list()
-
-/datum/item_representation/storage/New(obj/item/item_to_copy)
-	if(!item_to_copy)
-		return
-	if(!isstorage(item_to_copy))
-		CRASH("/datum/item_representation/storage created from an item that is not a storage")
-	var/item_representation_type
-	for(var/atom/thing_in_content AS in item_to_copy.contents)
-		if(!isitem(thing_in_content))
-			continue
-		if(!is_savable_in_loadout(thing_in_content.type))
-			continue
-		item_representation_type = item_representation_type(thing_in_content.type)
-		contents += new item_representation_type(thing_in_content)
-
-/datum/item_representation/storage/instantiate_object()
-	var/obj/item/storage/storage = ..()
-	for(var/datum/item_representation/representation AS in contents)
-		var/obj/item/item_to_insert = get_item_from_item_representation(representation)
-		if(storage.can_be_inserted(item_to_insert))
-			storage.handle_item_insertion(item_to_insert)
-	return storage
-
-/**
- * Allow to representate a gun with its attachements
- * This is only able to represent guns and child of gun
- */
-/datum/item_representation/gun
-	/// Muzzle attachement representation
-	var/datum/item_representation/gun_attachement/muzzle
-	/// Rail attachement representation
-	var/datum/item_representation/gun_attachement/rail
-	/// Under attachement representation
-	var/datum/item_representation/gun_attachement/under
-	/// Stock attachement representation
-	var/datum/item_representation/gun_attachement/stock
-
-/datum/item_representation/gun/New(obj/item/item_to_copy)
-	if(!item_to_copy)
-		return
-	if(!isgun(item_to_copy))
-		CRASH("/datum/item_representation/gun created from an item that is not a gun")
-	..()
-	var/obj/item/weapon/gun/gun_to_copy = item_to_copy
-	if(gun_to_copy.muzzle)
-		muzzle = new /datum/item_representation/gun_attachement(gun_to_copy.muzzle)
-	if(gun_to_copy.rail)
-		rail = new /datum/item_representation/gun_attachement(gun_to_copy.rail)
-	if(gun_to_copy.under)
-		under = new /datum/item_representation/gun_attachement(gun_to_copy.under)
-	if(gun_to_copy.stock)
-		stock = new /datum/item_representation/gun_attachement(gun_to_copy.stock)
-
-/datum/item_representation/gun/instantiate_object()
-	var/obj/item/weapon/gun/gun = ..()
-	muzzle?.install_on_gun(gun)
-	rail?.install_on_gun(gun)
-	under?.install_on_gun(gun)
-	stock?.install_on_gun(gun)
-	return gun
-
-/**
- * Allow to representate a gun attachement
- *  */
-/datum/item_representation/gun_attachement
-
-/datum/item_representation/gun_attachement/New(obj/item/item_to_copy)
-	if(!item_to_copy)
-		return
-	if(!isgunattachment(item_to_copy))
-		CRASH("/datum/item_representation/gun_attachement created from an item that is not a gun attachment")
-	..()
-
-///Attach the instantiated attachment to the gun
-/datum/item_representation/proc/install_on_gun(obj/item/weapon/gun/gun_to_attach)
-	var/obj/item/attachable/attachment = instantiate_object()
-	attachment.attach_to_gun(gun_to_attach)
-
-/**
  * Allow to representate a suit that has storage
  * This is only able to representate items of type /obj/item/clothing/suit/storage
  * In practice only PAS will use it, but it supports a lot of objects
@@ -119,7 +15,12 @@
 		CRASH("/datum/item_representation/suit_with_storage created from an item that is not a suit with storage")
 	..()
 	var/obj/item/clothing/suit/storage/suit_to_copy = item_to_copy
-	pockets = new datum/item_representation/storage(suit_to_copy.pockets)
+	pockets = new /datum/item_representation/storage(suit_to_copy.pockets)
+
+/datum/item_representation/suit_with_storage/instantiate_object()
+	var/obj/item/clothing/suit/storage/suit = ..()
+	suit.pockets = pockets.instantiate_object()
+	return suit
 
 /**
  * Allow to representate a jaeger modular armor with its modules
@@ -167,7 +68,7 @@
 	installed_module?.install_on_armor(modular_armor)
 	if(installed_storage)
 		installed_storage.install_on_armor(modular_armor)
-		modular_armor.storage = storage_implementation.instantiate_object()
+		modular_armor.storage = storage_implementation.instantiate_object(modular_armor)
 	modular_armor.update_overlays()
 	return modular_armor
 

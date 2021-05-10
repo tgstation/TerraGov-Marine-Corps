@@ -173,6 +173,10 @@
 
 #define isjaegerarmorpiece(A) (istype(A, /obj/item/armor_module/armor))
 
+#define ismodularhelmet(A) (istype(A, /obj/item/clothing/head/modular))
+
+#define ishelmetmodule(A) (istype (A, /obj/item/helmet_module))
+
 #define isattachmentflashlight(A) (istype(A, /obj/item/attachable/flashlight))
 
 #define isgunattachment(A) (istype(A, /obj/item/attachable))
