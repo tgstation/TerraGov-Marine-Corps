@@ -57,21 +57,30 @@
 		return FALSE
 
 /datum/action/xeno_action/activable/gravity_crush/use_ability(atom/A)
-	var/list/turfs = RANGE_TURFS(2, A)
+	var/list/turfs = RANGE_TURFS(1, A)
 	for(var/turf/targetted AS in turfs)
+		for(var/atom/movable/item AS in targetted.contents)
+			if(ismob(item))
+				continue
+			item.add_filter("crushblur", 1, list("type"="radial_blur", "size" = 0.3))
 		targetted.add_filter("crushblur", 1, list("type"="radial_blur", "size" = 0.3))
 	if(!do_after(owner, 2 SECONDS, FALSE, owner, BUSY_ICON_DANGER))
 		for(var/turf/targetted AS in turfs)
+			for(var/atom/movable/item AS in targetted.contents)
+				if(ismob(item))
+					continue
+				item.remove_filter("crushblur", 1, list("type"="radial_blur", "size" = 0.3))
 			targetted.remove_filter("crushblur")
 		return fail_activate()
 	succeed_activate()
 	add_cooldown()
-	A.visible_message("<span class='warning'> [A] collapses inward as it's gravity suddenly increases!</span>")
+	A.visible_message("<span class='warning'> [A] collapses inward as its gravity suddenly increases!</span>")
 	playsound(A, 'sound/effects/bomb_fall.ogg', 75, FALSE)
 	for(var/turf/targetted AS in turfs)
 		for(var/atom/movable/item AS in targetted.contents)
 			if(ismob(item))
 				continue
+			item.remove_filter("crushblur", 1, list("type"="radial_blur", "size" = 0.3))
 			item.ex_act(EXPLODE_HEAVY)	//crushing without damaging the nearby area
 		addtimer(CALLBACK(targetted, /atom.proc/remove_filter, "crushblur"), 1 SECONDS)
 
