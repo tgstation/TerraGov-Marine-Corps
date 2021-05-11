@@ -27,3 +27,5 @@ GLOBAL_LIST_INIT(loadout_linked_vendor, list(
 #define MEDIC_LOADOUT "medic"
 #define SMARTGUNNER_LOADOUT "smartgunner"
 #define LEADER_LOADOUT "leader"
+
+#define LOADOUT_COOLDOWN 30 MINUTES

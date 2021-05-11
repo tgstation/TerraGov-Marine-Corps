@@ -1,15 +1,15 @@
-/obj/machinery/automated_vendor
+/obj/machinery/loadout_vendor
 	name = "\improper automated vendor"
 	desc = ""
 	icon = 'icons/obj/machines/vending.dmi'
-	icon_state = "marinearmory"
+	icon_state = "specialist"
 	density = TRUE
 	anchored = TRUE
 	layer = BELOW_OBJ_LAYER
 	req_access = null
 	req_one_access = null
 
-/obj/machinery/automated_vendor/can_interact(mob/user)
+/obj/machinery/loadout_vendor/can_interact(mob/user)
 	. = ..()
 	if(!.)
 		return FALSE
@@ -28,6 +28,6 @@
 
 	return TRUE
 
-/obj/machinery/automated_vendor/interact(mob/user)
+/obj/machinery/loadout_vendor/interact(mob/user)
 	. = ..()
 	user.client.prefs.loadout_manager.ui_interact(user)

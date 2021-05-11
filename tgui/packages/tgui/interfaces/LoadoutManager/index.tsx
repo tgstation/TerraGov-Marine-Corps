@@ -28,7 +28,7 @@ const LoadoutList = (props: LoadoutListData) => {
   const { loadout_list } = props;
   return (
     <Stack.Item>
-      <Section height={24} fill scrollable>
+      <Section height={23} fill scrollable>
         <LabeledList>
           {loadout_list
             .map(loadout_visible => {

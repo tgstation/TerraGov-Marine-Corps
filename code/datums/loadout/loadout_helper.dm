@@ -29,6 +29,10 @@
 		return /datum/item_representation/suit_with_storage
 	if(ispath(item_type, /obj/item/clothing/head/modular))
 		return /datum/item_representation/modular_helmet
+	if(ispath(item_type, /obj/item/clothing/under))
+		return /datum/item_representation/uniform_representation
+	if(ispath(item_type, /obj/item/clothing/tie/storage))
+		return /datum/item_representation/tie
 	return /datum/item_representation
 
 ///Instantiate the objected linked to the given item_representation
@@ -50,5 +54,11 @@
 		return casted.instantiate_object()
 	if(istype(item_representation, /datum/item_representation/modular_helmet))
 		var/datum/item_representation/modular_helmet/casted = item_representation
+		return casted.instantiate_object()
+	if(istype(item_representation, /datum/item_representation/uniform_representation))
+		var/datum/item_representation/uniform_representation/casted = item_representation
+		return casted.instantiate_object()
+	if(istype(item_representation, /datum/item_representation/tie))
+		var/datum/item_representation/tie/casted = item_representation
 		return casted.instantiate_object()
 	return item_representation.instantiate_object()

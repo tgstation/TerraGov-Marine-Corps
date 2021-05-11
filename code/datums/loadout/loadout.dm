@@ -136,6 +136,10 @@
 	. = ..()
 	switch(action)
 		if("equipLoadout")
+			if(TIMER_COOLDOWN_CHECK(ui.user, COOLDOWN_LOADOUT_EQUIPPED))
+				to_chat(ui.user, "<span class='warning'>You already equipped a loadout recently!</span>")
+				return
+			TIMER_COOLDOWN_START(ui.user, COOLDOWN_LOADOUT_EQUIPPED, LOADOUT_COOLDOWN)
 			equip_mob(ui.user, ui.user.loc)
 			ui.close()
 		if("deleteLoadout")
