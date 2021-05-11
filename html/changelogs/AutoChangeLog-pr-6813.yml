@@ -1,4 +1,0 @@
-author: "Wayland-Smithy"
-delete-after: True
-changes: 
-  - bugfix: "Xeno turrets crushed by alamo landing no longer make acid smoke."
