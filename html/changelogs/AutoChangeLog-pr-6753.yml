@@ -1,0 +1,4 @@
+author: "BraveMole"
+delete-after: True
+changes: 
+  - rscadd: "Emotes keybinds, 10 custom me/say emotes keybinds"
