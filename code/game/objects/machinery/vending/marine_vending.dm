@@ -152,6 +152,7 @@
 			/obj/item/weapon/powerfist = 100,
 			/obj/item/weapon/throwing_knife = 500,
 			/obj/item/ammo_magazine/standard_smartmachinegun = 4,
+			/obj/item/weapon/gun/shotgun/pump/lever = 20,
 		),
 		"Grenades" = list(
 			/obj/item/explosive/grenade/frag = 600,
