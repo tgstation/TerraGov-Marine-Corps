@@ -13,6 +13,8 @@
 ///Remove a loadout from the list.
 /datum/loadout_manager/proc/delete_loadout(datum/loadout/loadout_to_delete)
 	loadouts_list -= loadout_to_delete
+	if(current_loadout == loadout_to_delete)
+		current_loadout = null
 	if(length(loadouts_data))
 		prepare_all_loadouts_data()
 
@@ -45,6 +47,8 @@
 
 /datum/loadout_manager/ui_data(mob/user)
 	var/data = list()
+	if(!loadouts_data)
+		prepare_all_loadouts_data()
 	data["loadout_list"] = loadouts_data
 	return data
 
@@ -76,5 +80,4 @@
 
 /datum/loadout_manager/ui_close(mob/user)
 	. = ..()
-	loadouts_data = null
 	user.client?.prefs.save_loadout_manager()

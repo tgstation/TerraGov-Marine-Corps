@@ -125,6 +125,7 @@
 		for(var/loadout in manager.loadouts_list)
 			if(!istype(loadout, /datum/loadout))
 				manager.loadouts_list -= loadout
+		manager.loadouts_data = null
 		return manager
 	manager = new
 	return manager
