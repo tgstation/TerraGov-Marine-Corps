@@ -95,6 +95,7 @@
 	var/list/attachable_overlays	= list(ATTACHMENT_SLOT_MUZZLE, ATTACHMENT_SLOT_RAIL, ATTACHMENT_SLOT_UNDER, ATTACHMENT_SLOT_STOCK, ATTACHMENT_SLOT_MAGAZINE) //List of overlays so we can switch them in an out, instead of using Cut() on overlays.
 	var/list/attachable_offset 		= null		//Is a list, see examples of from the other files. Initiated on New() because lists don't initial() properly.
 	var/list/attachable_allowed		= null		//Must be the exact path to the attachment present in the list. Empty list for a default.
+	///assoc list of "slot" = ref for attachments, supports any slot, two attachments of same slot cant exist.
 	var/list/obj/item/attachable/attachments
 	var/obj/item/attachable/attached_gun/active_attachable = null //This will link to one of the above four, or remain null.
 	var/list/starting_attachment_types = null //What attachments this gun starts with THAT CAN BE REMOVED. Important to avoid nuking the attachments on restocking! Added on New()
