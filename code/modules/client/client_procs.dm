@@ -275,6 +275,11 @@
 	generate_clickcatcher()
 	apply_clickcatcher()
 
+	var/datum/getrev/revdata = GLOB.revdata
+	var/tm_info = revdata.GetTestMergeInfo()
+	if(tm_info)
+		to_chat(src, tm_info)
+
 	if(prefs.lastchangelog != GLOB.changelog_hash) //bolds the changelog button on the interface so we know there are updates.
 		to_chat(src, "<span class='info'>You have unread updates in the changelog.</span>")
 		if(CONFIG_GET(flag/aggressive_changelog))
