@@ -145,7 +145,7 @@
 
 /obj/effect/landmark/xeno_resin_wall/Initialize()
 	GLOB.xeno_resin_wall_turfs += loc
-	. = ..()
+	..()
 	return INITIALIZE_HINT_QDEL
 
 /obj/effect/landmark/xeno_silo_spawn
