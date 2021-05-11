@@ -96,7 +96,8 @@
 	for(var/slot_key in GLOB.visible_item_slot_list)
 		if(!item_list[slot_key])
 			continue
-		item = get_item_from_item_representation(item_list[slot_key])
+		var/datum/item_representation/item_representation = item_list[slot_key]
+		item = item_representation.instantiate_object()
 		if(!user.equip_to_slot_if_possible(item, GLOB.slot_str_to_slot[slot_key], warning = FALSE))
 			item.forceMove(source)
 
@@ -163,7 +164,7 @@
 			items_data[item_slot_key] = result
 			continue
 		//This is costly, but this allows to have a pretty an accurate visualisation
-		var/obj/item/item = get_item_from_item_representation(item_representation)
+		var/obj/item/item = item_representation.instantiate_object()
 		var/image/standing = image(item.icon, item.icon_state)
 		item.apply_custom(standing)
 		item.apply_accessories(standing)

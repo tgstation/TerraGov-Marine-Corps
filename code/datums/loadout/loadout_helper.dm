@@ -34,31 +34,3 @@
 	if(ispath(item_type, /obj/item/clothing/tie/storage))
 		return /datum/item_representation/tie
 	return /datum/item_representation
-
-///Instantiate the objected linked to the given item_representation
-/proc/get_item_from_item_representation(datum/item_representation/item_representation) //Probably a better way of doing this
-	if(istype(item_representation, /datum/item_representation/modular_armor))
-		var/datum/item_representation/modular_armor/casted = item_representation
-		return casted.instantiate_object()
-	if(istype(item_representation, /datum/item_representation/gun))
-		var/datum/item_representation/gun/casted = item_representation
-		return casted.instantiate_object()
-	if(istype(item_representation, /datum/item_representation/storage))
-		var/datum/item_representation/storage/casted = item_representation
-		return casted.instantiate_object()
-	if(istype(item_representation, /datum/item_representation/suit_with_storage))
-		var/datum/item_representation/suit_with_storage/casted = item_representation
-		return casted.instantiate_object()
-	if(istype(item_representation, /datum/item_representation/armor_module/colored))
-		var/datum/item_representation/armor_module/colored/casted = item_representation
-		return casted.instantiate_object()
-	if(istype(item_representation, /datum/item_representation/modular_helmet))
-		var/datum/item_representation/modular_helmet/casted = item_representation
-		return casted.instantiate_object()
-	if(istype(item_representation, /datum/item_representation/uniform_representation))
-		var/datum/item_representation/uniform_representation/casted = item_representation
-		return casted.instantiate_object()
-	if(istype(item_representation, /datum/item_representation/tie))
-		var/datum/item_representation/tie/casted = item_representation
-		return casted.instantiate_object()
-	return item_representation.instantiate_object()

@@ -42,8 +42,8 @@
 
 /datum/item_representation/storage/instantiate_object(master = null)
 	var/obj/item/storage/storage = ..()
-	for(var/datum/item_representation/representation AS in contents)
-		var/obj/item/item_to_insert = get_item_from_item_representation(representation)
+	for(var/datum/item_representation/item_representation AS in contents)
+		var/obj/item/item_to_insert = item_representation.instantiate_object()
 		if(storage.can_be_inserted(item_to_insert))
 			storage.handle_item_insertion(item_to_insert)
 	return storage
