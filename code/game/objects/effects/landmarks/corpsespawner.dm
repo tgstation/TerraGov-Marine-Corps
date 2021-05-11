@@ -38,7 +38,7 @@
 
 /// Create the mob and delete the corpse spawner
 /obj/effect/landmark/corpsespawner/proc/create_mob(death_type)
-	var/mob/living/carbon/human/victim = new /mob/living/carbon/human(loc)
+	var/mob/living/carbon/human/victim = new(loc)
 	GLOB.round_statistics.total_humans_created-- //corpses don't count
 	SSblackbox.record_feedback("tally", "round_statistics", -1, "total_humans_created")
 	victim.real_name = name
