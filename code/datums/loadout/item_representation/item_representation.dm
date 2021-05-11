@@ -12,8 +12,17 @@
 		return
 	item_type = item_to_copy.type
 
-/// Will create a new item, and copy all the vars saved in the item representation to the newly created item
-/datum/item_representation/proc/instantiate_object(master = null)
+/**
+ * This will attempt to instantiate an object.
+ * First, it tries to find that object in a vendor with enough supplies.
+ * If it finds one vendor with that item in reserve, it sells it and instantiate that item.
+ * If it fails to find a vendor, it will add that item to a list on user to warns him that it failed
+ * Return the instantatiated item if it was successfully sold, and return null otherwise
+ */
+/datum/item_representation/proc/instantiate_object(mob/user, master = null)
+	if(user && !buy_item_in_vendor(item_type))
+		user.client.prefs.loadout_manager.seller.unavailable_items += item_type
+		return
 	var/obj/item/item = new item_type(master)
 	return item
 
@@ -40,10 +49,15 @@
 		item_representation_type = item_representation_type(thing_in_content.type)
 		contents += new item_representation_type(thing_in_content)
 
-/datum/item_representation/storage/instantiate_object(master = null)
-	var/obj/item/storage/storage = ..()
+/datum/item_representation/storage/instantiate_object(mob/user, master = null)
+	. = ..()
+	if(!.)
+		return
+	var/obj/item/storage/storage = .
 	for(var/datum/item_representation/item_representation AS in contents)
-		var/obj/item/item_to_insert = item_representation.instantiate_object()
+		var/obj/item/item_to_insert = item_representation.instantiate_object(user)
+		if(!item_to_insert)
+			continue
 		if(storage.can_be_inserted(item_to_insert))
 			storage.handle_item_insertion(item_to_insert)
 	return storage

@@ -15,6 +15,25 @@
 				return TRUE
 	return FALSE
 
+///Return true if the item was found in a linked vendor and successfully bought
+/proc/buy_item_in_vendor(item_to_buy_type)
+	for(var/type in GLOB.loadout_linked_vendor)
+		for(var/datum/vending_product/item_datum in GLOB.vending_records[type])
+			var/product_path = item_datum.product_path
+			if(product_path == item_to_buy_type && item_datum.amount != 0)
+				item_datum.amount--
+				return TRUE
+	return FALSE
+
+/// Will put back an item in a linked vendor
+/proc/sell_back_item_in_vendor(item_to_give_back_type)
+	for(var/type in GLOB.loadout_linked_vendor)
+		for(var/datum/vending_product/item_datum in GLOB.vending_records[type])
+			var/product_path = item_datum.product_path
+			if(product_path == item_to_give_back_type)
+				item_datum.amount++
+				return 
+
 ///Return wich type of item_representation should representate any item_type
 /proc/item_representation_type(item_type)
 	if(ispath(item_type, /obj/item/weapon/gun))

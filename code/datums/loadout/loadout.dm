@@ -9,7 +9,7 @@
 	 * each item of the list is a datum/item_representation
 	 */
 	var/list/item_list
-	///The version of this loadout. This will can allow in the future to erase loadouts that are too old to work with the loadout saver system
+	///The version of this loadout. This can allow in the future to erase loadouts that are too old to work with the loadout saver system
 	var/version = 1
 
 ///Empty a slot of the loadout
@@ -97,7 +97,9 @@
 		if(!item_list[slot_key])
 			continue
 		var/datum/item_representation/item_representation = item_list[slot_key]
-		item = item_representation.instantiate_object()
+		item = item_representation.instantiate_object(user)
+		if(!item)
+			continue
 		if(!user.equip_to_slot_if_possible(item, GLOB.slot_str_to_slot[slot_key], warning = FALSE))
 			item.forceMove(source)
 
@@ -140,7 +142,8 @@
 			if(TIMER_COOLDOWN_CHECK(ui.user, COOLDOWN_LOADOUT_EQUIPPED))
 				to_chat(ui.user, "<span class='warning'>You already equipped a loadout recently!</span>")
 				return
-			TIMER_COOLDOWN_START(ui.user, COOLDOWN_LOADOUT_EQUIPPED, LOADOUT_COOLDOWN)
+			//TIMER_COOLDOWN_START(ui.user, COOLDOWN_LOADOUT_EQUIPPED, LOADOUT_COOLDOWN)
+			ui.user.client.prefs.loadout_manager.seller = new
 			equip_mob(ui.user, ui.user.loc)
 			ui.close()
 		if("deleteLoadout")

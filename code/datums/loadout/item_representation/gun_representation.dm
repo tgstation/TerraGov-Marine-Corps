@@ -28,12 +28,15 @@
 	if(gun_to_copy.stock)
 		stock = new /datum/item_representation/gun_attachement(gun_to_copy.stock)
 
-/datum/item_representation/gun/instantiate_object()
-	var/obj/item/weapon/gun/gun = ..()
-	muzzle?.install_on_gun(gun)
-	rail?.install_on_gun(gun)
-	under?.install_on_gun(gun)
-	stock?.install_on_gun(gun)
+/datum/item_representation/gun/instantiate_object(mob/user)
+	. = ..()
+	if(!.)
+		return
+	var/obj/item/weapon/gun/gun = .
+	muzzle?.install_on_gun(user, gun)
+	rail?.install_on_gun(user, gun)
+	under?.install_on_gun(user, gun)
+	stock?.install_on_gun(user, gun)
 	return gun
 
 /**
@@ -49,6 +52,6 @@
 	..()
 
 ///Attach the instantiated attachment to the gun
-/datum/item_representation/proc/install_on_gun(obj/item/weapon/gun/gun_to_attach)
-	var/obj/item/attachable/attachment = instantiate_object()
-	attachment.attach_to_gun(gun_to_attach)
+/datum/item_representation/proc/install_on_gun(user, obj/item/weapon/gun/gun_to_attach)
+	var/obj/item/attachable/attachment = instantiate_object(user)
+	attachment?.attach_to_gun(gun_to_attach)

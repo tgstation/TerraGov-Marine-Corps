@@ -19,9 +19,12 @@
 		module = new /datum/item_representation/modular_helmet_module(helmet_to_copy.installed_module)
 	greyscale_colors = helmet_to_copy.greyscale_colors
 
-/datum/item_representation/modular_helmet/instantiate_object()
-	var/obj/item/clothing/head/modular/helmet = ..()
-	module?.install_on_helmet(helmet)
+/datum/item_representation/modular_helmet/instantiate_object(mob/user)
+	. = ..()
+	if(!.)
+		return
+	var/obj/item/clothing/head/modular/helmet = .
+	module?.install_on_helmet(user, helmet)
 	helmet.set_greyscale_colors(greyscale_colors)
 	return helmet
 
@@ -38,6 +41,6 @@
 		CRASH("/datum/item_representation/modular_helmet_module created from an item that is not an helmet module")
 	..()
 
-/datum/item_representation/modular_helmet_module/proc/install_on_helmet(obj/item/clothing/head/modular/helmet)
-	var/obj/item/helmet_module/module = instantiate_object()
-	module.do_attach(null, helmet)
+/datum/item_representation/modular_helmet_module/proc/install_on_helmet(mob/user, obj/item/clothing/head/modular/helmet)
+	var/obj/item/helmet_module/module = instantiate_object(user)
+	module?.do_attach(null, helmet)

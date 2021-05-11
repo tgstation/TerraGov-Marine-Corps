@@ -9,6 +9,8 @@
 	var/list/loadouts_list = list()
 	/// The data sent to tgui
 	var/loadouts_data = list()
+	/// The datum in charge of the user wanting to equip a saved loadout
+	var/datum/loadout_seller/seller
 
 ///Remove a loadout from the list.
 /datum/loadout_manager/proc/delete_loadout(datum/loadout/loadout_to_delete)

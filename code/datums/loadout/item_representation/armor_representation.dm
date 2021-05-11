@@ -17,9 +17,12 @@
 	var/obj/item/clothing/suit/storage/suit_to_copy = item_to_copy
 	pockets = new /datum/item_representation/storage(suit_to_copy.pockets)
 
-/datum/item_representation/suit_with_storage/instantiate_object()
-	var/obj/item/clothing/suit/storage/suit = ..()
-	suit.pockets = pockets.instantiate_object(suit)
+/datum/item_representation/suit_with_storage/instantiate_object(mob/user)
+	. = ..()
+	if(!.)
+		return
+	var/obj/item/clothing/suit/storage/suit = .
+	suit.pockets = pockets.instantiate_object(user, suit)
 	return suit
 
 /**
@@ -60,15 +63,18 @@
 		return
 	installed_module = new /datum/item_representation/armor_module(jaeger_to_copy.installed_modules[1])
 
-/datum/item_representation/modular_armor/instantiate_object()
-	var/obj/item/clothing/suit/modular/modular_armor = ..()
-	slot_chest?.install_on_armor(modular_armor)
-	slot_arms?.install_on_armor(modular_armor)
-	slot_legs?.install_on_armor(modular_armor)
-	installed_module?.install_on_armor(modular_armor)
+/datum/item_representation/modular_armor/instantiate_object(mob/user)
+	. = ..()
+	if(!.)
+		return
+	var/obj/item/clothing/suit/modular/modular_armor = .
+	slot_chest?.install_on_armor(user, modular_armor)
+	slot_arms?.install_on_armor(user, modular_armor)
+	slot_legs?.install_on_armor(user, modular_armor)
+	installed_module?.install_on_armor(user, modular_armor)
 	if(installed_storage)
-		installed_storage.install_on_armor(modular_armor)
-		modular_armor.storage = storage_implementation.instantiate_object(modular_armor)
+		installed_storage.install_on_armor(user, modular_armor)
+		modular_armor.storage = storage_implementation.instantiate_object(user, modular_armor)
 	modular_armor.update_overlays()
 	return modular_armor
 
@@ -86,8 +92,8 @@
 	..()
 
 ///Attach the instantiated item on an armor
-/datum/item_representation/armor_module/proc/install_on_armor(obj/item/clothing/suit/modular/armor)
-	var/obj/item/armor_module/module = instantiate_object()
+/datum/item_representation/armor_module/proc/install_on_armor(mob/user, obj/item/clothing/suit/modular/armor)
+	var/obj/item/armor_module/module = instantiate_object(user)
 	module.do_attach(null, armor)
 
 /**
@@ -106,7 +112,10 @@
 	..()
 	greyscale_colors = item_to_copy.greyscale_colors
 
-/datum/item_representation/armor_module/colored/instantiate_object()
-	var/obj/item/armor_module/armor/armor = ..()
+/datum/item_representation/armor_module/colored/instantiate_object(mob/user)
+	. = ..()
+	if(!.)
+		return
+	var/obj/item/armor_module/armor/armor = .
 	armor.set_greyscale_colors(greyscale_colors)
 	return armor
