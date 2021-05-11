@@ -112,6 +112,15 @@
 /turf/closed/wall/resin/can_be_dissolved()
 	return FALSE
 
+/turf/closed/wall/resin/membrane
+	name = "resin membrane"
+	desc = "Weird slime translucent enough to let light pass through."
+	icon_state = "membrane0"
+	walltype = "membrane"
+	max_integrity = 120
+	opacity = FALSE
+	alpha = 180
+
 /**
  * Regenerating walls that start with lower health, but grow to a much higher hp over time
  */
