@@ -22,7 +22,7 @@
  * Return the instantatiated item if it was successfully sold, and return null otherwise
  */
 /datum/item_representation/proc/instantiate_object(datum/loadout_seller/seller, master = null)
-	if(seller)
+	if(seller && !bypass_vendor_check)
 		if(!buy_item_in_vendor(item_type))
 			seller.unavailable_items ++
 			return
