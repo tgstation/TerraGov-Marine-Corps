@@ -486,6 +486,7 @@
 
 // mob keybinds
 #define COMSIG_KB_HOLD_RUN_MOVE_INTENT_UP "keybinding_hold_run_move_intent_up"
+#define COMSIG_KB_EMOTE "keybinding_emote"
 
 // xeno abilities for keybindings
 

@@ -1,4 +1,0 @@
-author: "Wayland-Smithy"
-delete-after: True
-changes: 
-  - admin: "DSAY no longer pesters mentors who cancel or submit an empty message with a notice about needing to be dead to do the thing they canceled doing."

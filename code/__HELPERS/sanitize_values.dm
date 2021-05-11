@@ -19,6 +19,17 @@
 	if(default)
 		return default
 
+/// Sanitize the custom emote list
+/proc/sanitize_is_full_emote_list(value)
+	if(length(value) == CUSTOM_EMOTE_SLOTS)
+		return value
+	if(!value)
+		value = list()
+	for(var/i in (length(value)+1) to CUSTOM_EMOTE_SLOTS)
+		var/datum/custom_emote/emote = new
+		emote.id = i
+		value += emote
+	return value
 
 /proc/sanitize_inlist(value, list/L, default)
 	if(value in L)

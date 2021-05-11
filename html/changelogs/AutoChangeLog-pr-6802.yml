@@ -1,5 +1,0 @@
-author: "BraveMole"
-delete-after: True
-changes: 
-  - bugfix: "You can set your synth name again"
-  - bugfix: "You can mute/activate xeno health alert in gamepref again"
