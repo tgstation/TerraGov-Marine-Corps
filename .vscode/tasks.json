@@ -25,15 +25,6 @@
 			"label": "Build All"
 		},
 		{
-			"type": "dreammaker",
-			"dme": "tgstation.dme",
-			"problemMatcher": [
-				"$dreammaker"
-			],
-			"group": "build",
-			"label": "dm: build - tgstation.dme"
-		},
-		{
 			"type": "shell",
 			"command": "tgui/bin/tgui",
 			"windows": {
