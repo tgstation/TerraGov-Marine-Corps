@@ -185,7 +185,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	action_icon_state = "phase_shift"
 	mechanics_text = "We force ourselves temporarily out of sync with reality, allowing us to become incorporeal and move through any physical obstacles for a short duration."
 	plasma_cost = 25
-	cooldown_timer = 0.5 SECONDS //properly set per WRAITH_PHASE_SHIFT_COOLDOWN once the ability is fully used
+	cooldown_timer = WRAITH_PHASE_SHIFT_COOLDOWN
 	keybind_signal = COMSIG_XENOABILITY_PHASE_SHIFT
 	var/turf/starting_turf = null
 	var/phase_shift_active = FALSE
@@ -239,7 +239,6 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	phase_shift_active = TRUE //Flag phase shift as being active
 	update_button_icon("phase_shift_off") //Set to resync icon while active
 	succeed_activate()
-	add_cooldown()
 
 ///Warns the user when Phase Shift is about to end.
 /datum/action/xeno_action/phase_shift/proc/phase_shift_warning()
@@ -318,7 +317,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 		ghost.adjust_sunder(plasma_deficit)
 
 	starting_turf = null
-	add_cooldown(WRAITH_PHASE_SHIFT_COOLDOWN) //Override the cooldown since we've actually used the ability
+	add_cooldown()
 
 /datum/action/xeno_action/phase_shift/on_cooldown_finish()
 	to_chat(owner, "<span class='xenodanger'>We are able to fade from reality again.</span>")
