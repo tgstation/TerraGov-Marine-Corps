@@ -22,6 +22,7 @@ type VendingStock = {
 
 type VendingRecord = {
   product_name: string,
+  product_color: string,
   prod_price: number,
   prod_desc: string,
   ref: string,
@@ -158,6 +159,7 @@ const Buying = (props, context) => {
 
 type VendingProductEntryProps = {
   stock: number,
+  product_color: string,
   product_name: string,
   prod_desc: string,
   prod_ref: string,
@@ -172,6 +174,7 @@ const ProductEntry = (props: VendingProductEntryProps, context) => {
 
   const {
     stock,
+    product_color,
     product_name,
     prod_desc,
     prod_ref,
@@ -210,7 +213,7 @@ const ProductEntry = (props: VendingProductEntryProps, context) => {
               'vend',
               { vend: prod_ref })}
             disabled={!stock}>
-            <Box bold={1}>
+            <Box color={product_color} bold={1}>
               Vend
             </Box>
           </Button>
@@ -259,6 +262,7 @@ const Products = (props, context) => {
                   <ProductEntry
                     stock={stock[display_record.product_name]}
                     key={display_record.product_name}
+                    product_color={display_record.product_color}
                     product_name={display_record.product_name}
                     prod_desc={display_record.prod_desc}
                     prod_ref={display_record.ref} />
@@ -295,6 +299,7 @@ const Hacked = (props, context) => {
               <ProductEntry
                 stock={stock[hidden_record.product_name]}
                 key={hidden_record.product_name}
+                product_color={hidden_record.product_color}
                 product_name={hidden_record.product_name}
                 prod_desc={hidden_record.prod_desc}
                 prod_ref={hidden_record.ref} />
@@ -340,11 +345,12 @@ const Premium = (props, context) => {
                   <ProductEntry
                     stock={stock[coin_record.product_name]}
                     key={coin_record.product_name}
+                    product_color={coin_record.product_color}
                     product_name={coin_record.product_name}
                     prod_desc={coin_record.prod_desc}
                     prod_ref={coin_record.ref} />
                 );
-              })}d
+              })}
           </LabeledList>
         )}
     </Section>
