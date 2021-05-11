@@ -308,14 +308,14 @@
 	if(!hud_used?.locate_leader)
 		return
 	var/obj/screen/LL_dir = hud_used.locate_leader
-	if (!tracked)
+	if(!tracked)
 		if(hive.living_xeno_ruler)
 			tracked = hive.living_xeno_ruler
 		else
 			LL_dir.icon_state = "trackoff"
 			return
 
-	if (isxeno(tracked))
+	if(isxeno(tracked))
 		var/mob/living/carbon/xenomorph/xeno_tracked = tracked
 		if(QDELETED(xeno_tracked))
 			tracked = null
@@ -336,7 +336,7 @@
 		LL_dir.icon_state = "trackondirect"
 		return
 
-	if (isresinsilo(tracked))
+	if(isresinsilo(tracked))
 		var/mob/living/carbon/xenomorph/silo_tracked = tracked
 		if(QDELETED(silo_tracked))
 			tracked = null
@@ -352,6 +352,28 @@
 			LL_dir.setDir(get_dir(src, silo_tracked))
 			return
 		LL_dir.icon_state = "trackondirect"
+		return
+
+	if(istype(tracked, /obj/machinery/nuclearbomb))
+		var/obj/machinery/nuclearbomb/nuke_tracked = tracked
+		if(QDELETED(nuke_tracked))
+			tracked = null
+			return
+		if(!nuke_tracked.timer_enabled)
+			LL_dir.icon_state = "trackoff"
+			return
+		if(nuke_tracked.z != z || get_dist(src,nuke_tracked) < 1)
+			LL_dir.icon_state = "trackondirect"
+			return
+		var/area/A = get_area(src.loc)
+		var/area/QA = get_area(nuke_tracked.loc)
+		if(A.fake_zlevel == QA.fake_zlevel)
+			LL_dir.icon_state = "trackon"
+			LL_dir.setDir(get_dir(src, nuke_tracked))
+			return
+
+		LL_dir.icon_state = "trackondirect"
+		return
 
 
 /mob/living/carbon/xenomorph/clear_leader_tracking()

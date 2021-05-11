@@ -539,6 +539,13 @@ to_chat will check for valid clients itself already so no need to double check f
 		var/mob/living/carbon/xenomorph/X = i
 		X.receive_hivemind_message(sender, message)
 
+///Used for setting the trackers of all xenos in the hive, like when a nuke activates
+/datum/hive_status/proc/set_all_trackers(atom/target)
+	for(var/i in get_all_xenos())
+		var/mob/living/carbon/xenomorph/X = i
+		X.tracked = target
+		to_chat(X, "<span class='notice'> Now tracking [target.name]</span>")
+
 // ***************************************
 // *********** Normal Xenos
 // ***************************************
