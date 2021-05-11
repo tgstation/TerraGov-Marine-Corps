@@ -165,6 +165,8 @@
 
 #define issuitwithstorage(A) (istype(A, /obj/item/clothing/suit/storage))
 
+#define isuniform(A) (istype(A, /obj/item/clothing/under))
+
 #define isjaeger(A) (istype(A, /obj/item/clothing/suit/modular))
 
 #define isjaegermodule(A) (istype(A, /obj/item/armor_module))
