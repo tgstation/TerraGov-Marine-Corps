@@ -193,8 +193,8 @@
 		/obj/item/ammo_magazine/box10x24mm = -1,
 		/obj/item/ammo_magazine/box10x26mm = -1,
 		/obj/item/ammo_magazine/box10x27mm = -1,
-		/obj/item/storage/box/visual/magazine = 30,
-		/obj/item/storage/box/visual/grenade = 10,
+		/obj/item/storage/box/visual/magazine = -1,
+		/obj/item/storage/box/visual/grenade = -1,
 		),
 	)
 
