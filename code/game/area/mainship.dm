@@ -137,6 +137,10 @@
 	name = "Umbilical Port"
 	icon_state = "portumbilical"
 
+/area/mainship/hallways/aft_umbilical
+	name = "Umbilical Aft"
+	icon_state = "aft"
+
 /area/mainship/hallways/aft_hallway
 	name = "Hallway Aft"
 	icon_state = "aft"
@@ -159,6 +163,14 @@
 
 /area/mainship/hull/upper_hull
 	name = "Hull Upper"
+	icon_state = "upperhull"
+
+/area/mainship/hull/port_hull
+	name = "Hull Port"
+	icon_state = "lowerhull"
+
+/area/mainship/hull/starboard_hull
+	name = "Hull Starboard"
 	icon_state = "upperhull"
 
 /area/mainship/living/cryo_cells
