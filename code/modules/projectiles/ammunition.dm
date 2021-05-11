@@ -17,6 +17,7 @@ They're all essentially identical when it comes to getting the job done.
 	w_class = WEIGHT_CLASS_TINY
 	throw_speed = 2
 	throw_range = 6
+	icon_state_mini = "mag"
 	var/default_ammo = /datum/ammo/bullet
 	var/overcharge_ammo = /datum/ammo/bullet //Generally used for energy weapons
 	var/caliber = null // This is used for matching handfuls to each other or whatever the mag is. Calibers in _DEFINES/caliber.dm.
@@ -190,8 +191,9 @@ bullets/shells. ~N
 	flags_atom = CONDUCT|DIRLOCK
 	flags_magazine = AMMUNITION_HANDFUL
 	attack_speed = 3 // should make reloading less painful
+	icon_state_mini = "bullets"
 
-/obj/item/ammo_magazine/handful/update_icon() //Handles the icon itself as well as some bonus things.
+/obj/item/ammo_magazine/handful/update_icon_state() //Handles the icon itself as well as some bonus things.
 	if(max_rounds >= current_rounds)
 		var/I = current_rounds*50 // For the metal.
 		materials = list(/datum/material/metal = I)
@@ -327,12 +329,14 @@ Turn() or Shift() as there is virtually no overhead. ~N
 	var/max_bullet_amount = 800
 	var/caliber = CALIBER_10X24_CASELESS
 
-/obj/item/big_ammo_box/update_icon()
-	if(bullet_amount) icon_state = base_icon_state
-	else icon_state = "[base_icon_state]_e"
+/obj/item/big_ammo_box/update_icon_state()
+	if(bullet_amount)
+		icon_state = base_icon_state
+		return
+	icon_state = "[base_icon_state]_e"
 
 /obj/item/big_ammo_box/examine(mob/user)
-	..()
+	. = ..()
 	if(bullet_amount)
 		to_chat(user, "It contains [bullet_amount] round\s.")
 	else

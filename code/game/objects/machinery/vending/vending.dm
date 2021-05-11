@@ -107,11 +107,11 @@
 
 	//These are where the vendor holds their item info with /datum/vending_product
 
-	///list of /datum/vedning_product's that are always available on the vendor
+	///list of /datum/vending_product's that are always available on the vendor
 	var/list/product_records = list()
-	///list of /datum/vedning_product's that are available when vendor is hacked.
+	///list of /datum/vending_product's that are available when vendor is hacked.
 	var/list/hidden_records = list()
-	///list of /datum/vedning_product's that are available on the vendor when a coin is used.
+	///list of /datum/vending_product's that are available on the vendor when a coin is used.
 	var/list/coin_records = list()
 
 	var/list/slogan_list = list()

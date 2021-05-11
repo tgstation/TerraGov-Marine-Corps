@@ -154,6 +154,14 @@
 	. = ..()
 	return INITIALIZE_HINT_QDEL
 
+/obj/effect/landmark/dropship_start_location
+	name = "dropship_start_location"
+
+/obj/effect/landmark/dropship_start_location/Initialize()
+	GLOB.minidropship_start_loc = loc
+	..()
+	return INITIALIZE_HINT_QDEL
+
 /obj/effect/landmark/weapon_spawn
 	name = "Base Weapon Spawn"
 	icon_state = "x"
@@ -168,7 +176,7 @@
 /obj/effect/landmark/weapon_spawn/proc/spawn_associated_ammo(obj/item/weapon/gun/gun_to_spawn)
 	//fuck you grenade launchers you snowflake pieces of shit
 	if(istype(gun_to_spawn, /obj/item/weapon/gun/launcher/m92) || istype(gun_to_spawn, /obj/item/weapon/gun/launcher/m81))
-		new /obj/item/storage/box/nade_box (get_turf(src))
+		new /obj/item/storage/box/visual/grenade/frag (get_turf(src))
 		return
 
 	if(istype(gun_to_spawn, /obj/item/weapon/gun/flare))

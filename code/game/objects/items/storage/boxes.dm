@@ -21,6 +21,18 @@
 *  EDITED BY APOPHIS 09OCT2015 to prevent in-game abuse of boxes.
 */
 
+#define BOX_OVERLAY_SHIFT_X 6
+#define BOX_OVERLAY_SHIFT_Y 4 //one less than the 6x5 sprite to make them overlap on each other a bit.
+
+#define BOX_MAGAZINE_OFFSET_X 5
+#define BOX_MAGAZINE_OFFSET_Y 11
+#define BOX_MAGAZINE_COLUMNS 4
+#define BOX_MAGAZINE_ROWS 2
+
+#define BOX_GRENADE_OFFSET_X 7
+#define BOX_GRENADE_OFFSET_Y 10
+#define BOX_GRENADE_COLUMNS 3
+#define BOX_GRENADE_ROWS 2
 
 
 /obj/item/storage/box
@@ -309,7 +321,7 @@
 	spawn_type = /obj/item/explosive/mine
 	spawn_number = 5
 
-/obj/item/storage/box/explosive_mines/update_icon()
+/obj/item/storage/box/explosive_mines/update_icon_state()
 	icon_state = initial(icon_state)
 	if(!length(contents))
 		icon_state += "_e"
@@ -345,79 +357,6 @@
 	desc = "A packet of seven M40 CFPD signal Flares. Used to mark locations for fire support. Can be launched from an underslung grenade launcher."
 	icon_state = "m50"
 	spawn_type = /obj/item/explosive/grenade/flare/cas
-
-
-/obj/item/storage/box/nade_box
-	name = "\improper M40 HEDP grenade box"
-	desc = "A secure box holding 25 M40 HEDP grenades. High explosive, don't store near the flamer fuel."
-	icon_state = "nade"
-	w_class = WEIGHT_CLASS_BULKY
-	storage_slots = 25
-	max_storage_space = 50
-	spawn_type = /obj/item/explosive/grenade/frag
-	spawn_number = 25
-
-/obj/item/storage/box/nade_box/update_icon()
-	icon_state = initial(icon_state)
-	if(!length(contents))
-		icon_state += "_e"
-
-/obj/item/storage/box/nade_box/training
-	name = "\improper M07 training grenade box"
-	desc = "A secure box holding 25 M07 training grenades. Harmless and reusable."
-	icon_state = "nade_train"
-	spawn_type = /obj/item/explosive/grenade/frag/training
-
-/obj/item/storage/box/nade_box/HIDP
-	name = "\improper HIDP incendiary grenade box"
-	desc = "A secure box holding 25 incendiary grenades. Warning: highly flammable!!."
-	icon_state = "nade_incendiary"
-	spawn_type = /obj/item/explosive/grenade/incendiary
-
-/obj/item/storage/box/nade_box/M15
-	name = "\improper M15 grenade box"
-	desc = "A secure box holding M15 fragmentation grenades."
-	icon_state = "nade_M15"
-	storage_slots = 15
-	max_storage_space = 30
-	spawn_type = /obj/item/explosive/grenade/frag/m15
-	spawn_number = 15
-
-/obj/item/storage/box/nade_box/tear_gas
-	name = "\improper M66 tear gas grenade box"
-	desc = "A secure box holding 25 M66 tear gas grenades. Used for riot control."
-	icon_state = "nade_teargas"
-	spawn_type = /obj/item/explosive/grenade/chem_grenade/teargas
-
-/obj/item/storage/box/nade_box/impact
-	name = "\improper M40 IMDP grenade box"
-	desc = "A secure box holding 25 M40 IMDP impact grenades. High explosive, don't store near the flamer fuel."
-	icon_state = "nade_impact"
-	spawn_type = /obj/item/explosive/grenade/impact
-
-/obj/item/storage/box/nade_box/phos
-	name = "\improper M40 HPDP grenade box"
-	desc = "A secure box holding 15 M40 HPDP white phosphorous grenades. War crimes for the entire platoon!"
-	icon_state = "nade_phos"
-	storage_slots = 15
-	max_storage_space = 30
-	spawn_number = 15
-	spawn_type = /obj/item/explosive/grenade/phosphorus
-
-/obj/item/storage/box/nade_box/razor_burn
-	name = "\improper RB grenade box"
-	desc = "A secure box holding 20 razor burn grenades. Used for quick flank coverage."
-	icon_state = "nade_razorburn"
-	storage_slots = 15
-	max_storage_space = 30
-	spawn_number = 15
-	spawn_type = /obj/item/explosive/grenade/chem_grenade/razorburn_smol
-
-/obj/item/storage/box/nade_box/plasma_drain_gas
-	name = "\improper M40-T gas grenade box"
-	desc = "A secure box holding 25 M40-T gas grenades. 100% safe to use around masked marines."
-	icon_state = "marinebox"
-	spawn_type = /obj/item/explosive/grenade/drainbomb
 
 //ITEMS-----------------------------------//
 /obj/item/storage/box/lightstick
@@ -476,45 +415,87 @@
 		isopened = 1
 		icon_state = "mealpackopened"
 
-//Fillable Ammo Box
-/obj/item/storage/box/ammo
-	name = "\improper Ammo Box"
-	desc = "A large ammo box that can be filled with almost any magazine type. Compact and deployable for moving ammo to the front lines."
-	icon_state = "ammobox"
+/**
+ * # fillable box
+ *
+ * Deployable box with fancy visuals of its contents
+ * Visual content defined in the icon_state_mini var in /obj/item
+ * All other visuals that do not have a icon_state_mini defined are in var/assoc_overlay
+ */
+/obj/item/storage/box/visual
+	name = "generic box"
+	desc = "This box is able to hold a wide variety of supplies."
+	icon = 'icons/obj/items/storage/storage_boxes.dmi'
+	icon_state = "mag_box"
+	item_state = "mag_box"
+	w_class = WEIGHT_CLASS_HUGE
+	slowdown = 0.4 // Big unhandly box
 	max_w_class = 4
-	storage_slots = 30
-	max_storage_space = 60	//SMG and pistol sized (tiny and small) mags can fit all 30 slots, normal (LMG and AR) fit 20
+	storage_slots = 32 // 8 images x 4 items
+	max_storage_space = 64
 	use_to_pickup = TRUE
 	can_hold = list(
-		/obj/item/ammo_magazine/pistol,
-		/obj/item/ammo_magazine/smg,
-		/obj/item/ammo_magazine/rifle,
-		/obj/item/ammo_magazine/magnum,
-		/obj/item/ammo_magazine/revolver,
-		/obj/item/ammo_magazine/acp,
-		/obj/item/ammo_magazine/standard_lmg,
-		/obj/item/ammo_magazine/standard_smartmachinegun,
-		/obj/item/ammo_magazine/m412l1_hpr,
-		/obj/item/ammo_magazine/shotgun,
-		/obj/item/ammo_magazine/sniper,
+		/obj/item, //This box should normally be unobtainable so here we go
 	)
-
+	///Assoc list of how much weight every item type takes. Used to determine how many overlays to make.
+	var/list/contents_weight = list()
+	///Initial pixel_x offset of the overlays.
+	var/overlay_pixel_x = BOX_MAGAZINE_OFFSET_X
+	///Initial pixel_y offset of the overlays.
+	var/overlay_pixel_y = BOX_MAGAZINE_OFFSET_Y
+	///Amount of columns in the overlay grid.
+	var/amt_horizontal = BOX_MAGAZINE_COLUMNS
+	///Amount of rows in the overlay grid.
+	var/amt_vertical = BOX_MAGAZINE_ROWS
+	///Amount of pixels to shift each overlay for each column.
+	var/shift_x = BOX_OVERLAY_SHIFT_X
+	///Amount of pixels to shift each overlay for each row.
+	var/shift_y = BOX_OVERLAY_SHIFT_Y
+	///Whether or not the box is deployed on the ground
 	var/deployed = FALSE
+	///Amount of different items in the box.
+	var/variety = 0
+	///Amount of weight a single overlay can cover.
+	var/overlay_w_class = 0
+	///Total max amount of overlay spaces
+	var/max_overlays = 0
+	///Overlay icon_state to display on the box when it is closed
+	var/closed_overlay
 
-/obj/item/storage/box/ammo/update_icon()
-	if(!deployed)
-		icon_state = "[initial(icon_state)]"
-	else if(!(length(contents)))
-		icon_state = "[initial(icon_state)]_empty"
-	else if(deployed)
-		icon_state = "[initial(icon_state)]_deployed"
+/obj/item/storage/box/visual/Initialize(mapload, ...)
+	. = ..()
+	max_overlays = amt_horizontal * amt_vertical
+	overlay_w_class = FLOOR(max_storage_space / max_overlays, 1)
+	can_hold -= cant_hold //Have cant_hold actually have a use
+	update_icon() //Getting the closed_overlay onto it
 
-/obj/item/storage/box/ammo/attack_self(mob/user)
+/obj/item/storage/box/visual/examine(mob/user, distance, infix, suffix)
+	. = ..()
+	if (!deployed && !(loc == user)) //Closed and not in your possession
+		return
+	if(variety > max_overlays) //Too much shit inside, a literal clusterfuck of supplies
+		to_chat(user, "It's too cluttered with all of these supplies inside.")
+		return
+	if(variety <= 0) //empy
+		to_chat(user, "It is empty!")
+		return
+	to_chat(user, "It contains:")
+	for(var/obj/item/I AS in contents_weight)
+		if(contents_weight[I] < overlay_w_class)
+			to_chat(user, "A bit of: [initial(I.name)].")
+		else if(contents_weight[I] < 3 * overlay_w_class)
+			to_chat(user, "Some of: [initial(I.name)].")
+		else
+			to_chat(user, "A lot of: [initial(I.name)].")
+
+/obj/item/storage/box/visual/attack_self(mob/user)
 	deployed = TRUE
 	update_icon()
 	user.dropItemToGround(src)
+	pixel_x = 0 //Big sprite so lets not shift it around.
+	pixel_y = 0
 
-/obj/item/storage/box/ammo/attack_hand(mob/living/user)
+/obj/item/storage/box/visual/attack_hand(mob/living/user)
 	if(loc == user)
 		return ..()
 
@@ -525,7 +506,7 @@
 	else if(deployed)
 		open(user)
 
-/obj/item/storage/box/ammo/MouseDrop(atom/over_object)
+/obj/item/storage/box/visual/MouseDrop(atom/over_object)
 	if(!deployed)
 		return
 
@@ -536,3 +517,206 @@
 	if(H == usr && !H.incapacitated() && Adjacent(H) && H.put_in_hands(src))
 		deployed = FALSE
 		update_icon()
+
+/obj/item/storage/box/visual/update_icon_state()
+	. = ..()
+
+	variety = 0
+
+	//Fill assoc list of every item type in the crate and have it's value be the total weight it takes up.
+	contents_weight = list()
+	for(var/obj/item/I AS in contents)
+		if(!contents_weight[I.type])
+			contents_weight[I.type] = 0
+			variety++
+		contents_weight[I.type] += I.w_class
+
+	if(!deployed)
+		icon_state = "[initial(icon_state)]"
+		return
+	if(variety > max_overlays) // Too many items inside so lets make it cluttered
+		icon_state = "[initial(icon_state)]_mixed"
+		return
+
+	icon_state = "[initial(icon_state)]_open"
+
+/obj/item/storage/box/visual/update_overlays()
+	. = ..()
+
+	if(!deployed)
+		icon_state = "[initial(icon_state)]"
+		if(closed_overlay)
+			. += image('icons/obj/items/storage/storage_boxes.dmi', icon_state = closed_overlay)
+		return
+	if(variety > max_overlays) // Too many items inside so lets make it cluttered
+		return
+
+	//Determine the amount of overlays to draw
+	var/total_overlays = 0
+	for(var/object in contents_weight)
+		total_overlays += 1 + FLOOR(contents_weight[object] / overlay_w_class, 1)
+
+	//In case 6 overlays are for a LMG and then someone adds 7 unique tiny items into the mix
+	var/overlay_overflow = max(0, total_overlays - max_overlays)
+
+	//The Xth overlay being drawed.
+	var/current_iteration = 1
+
+	for(var/obj_typepath in contents_weight) //Max [total_overlays] items in contents_weight since otherwise the icon_state would be "mixed"
+		var/overlays_to_draw = 1 + FLOOR(contents_weight[obj_typepath] / overlay_w_class, 1) //Always draw at least 1 icon per unique item and add additional icons if it takes a lot of weight inside.
+		if(overlay_overflow)//This makes sure no matter the configuration, every item will get at least 1 spot in the mix.
+			var/adjustment = min(overlay_overflow, overlays_to_draw - 1)
+			overlay_overflow -= adjustment
+			overlays_to_draw -= adjustment
+			total_overlays -= adjustment
+
+		for(var/i = 1 to overlays_to_draw) //Same item type, but now we actually draw them since we know how many to draw
+			var/imagepixel_x = overlay_pixel_x + FLOOR((current_iteration / amt_vertical) - 0.01, 1) * shift_x //Shift to the right only after all vertical spaces are occupied.
+			var/imagepixel_y = overlay_pixel_y + min(amt_vertical - WRAP(current_iteration - 1, 0, amt_vertical) - 1, total_overlays - current_iteration) * shift_y //Vertical shifting that draws the top overlays first if applicable
+			//Getting the mini icon_state to display
+			var/obj/item/relateditem = obj_typepath
+
+			. += image('icons/obj/items/items_mini.dmi', icon_state = initial(relateditem.icon_state_mini), pixel_x = imagepixel_x, pixel_y = imagepixel_y)
+			current_iteration++
+
+// --MAG BOXES--
+/obj/item/storage/box/visual/magazine
+	name = "ammunition box"
+	desc = "This box is able to hold a wide variety of supplies, mainly military-grade ammunition."
+	icon_state = "mag_box"
+	item_state = "mag_box"
+	max_w_class = 4
+	storage_slots = 32 // 8 images x 4 items
+	max_storage_space = 64	//SMG and pistol sized (tiny and small) mags can fit all 32 slots, normal (LMG and AR) fit 21
+	can_hold = list(
+		/obj/item/ammo_magazine/acp,
+		/obj/item/ammo_magazine/box10x24mm,
+		/obj/item/ammo_magazine/box10x26mm,
+		/obj/item/ammo_magazine/box10x27mm,
+		/obj/item/ammo_magazine/box9mm,
+		/obj/item/ammo_magazine/flamer_tank,
+		/obj/item/ammo_magazine/handful,
+		/obj/item/ammo_magazine/m412l1_hpr,
+		/obj/item/ammo_magazine/magnum,
+		/obj/item/ammo_magazine/minigun,
+		/obj/item/ammo_magazine/pistol,
+		/obj/item/ammo_magazine/railgun,
+		/obj/item/ammo_magazine/revolver,
+		/obj/item/ammo_magazine/rifle,
+		/obj/item/ammo_magazine/shotgun,
+		/obj/item/ammo_magazine/smg,
+		/obj/item/ammo_magazine/sniper,
+		/obj/item/ammo_magazine/standard_gpmg,
+		/obj/item/ammo_magazine/standard_hmg,
+		/obj/item/ammo_magazine/standard_lmg,
+		/obj/item/ammo_magazine/standard_smartmachinegun,
+		/obj/item/cell/lasgun,
+	)
+	cant_hold = list(
+		/obj/item/ammo_magazine/flamer_tank/backtank,
+		/obj/item/ammo_magazine/flamer_tank/backtank/X,
+	)
+
+// --GRENADE BOXES--
+/obj/item/storage/box/visual/grenade
+	name = "grenade box"
+	desc = "This box is able to hold a wide variety of grenades."
+	icon_state = "grenade_box"
+	item_state = "grenade_box"
+	max_w_class = 3
+	storage_slots = 25
+	max_storage_space = 50
+	can_hold = list(
+		/obj/item/explosive/grenade,
+	)
+	cant_hold = list()
+	overlay_pixel_x = BOX_GRENADE_OFFSET_X
+	overlay_pixel_y = BOX_GRENADE_OFFSET_Y
+	amt_horizontal = BOX_GRENADE_COLUMNS
+	amt_vertical = BOX_GRENADE_ROWS
+/obj/item/storage/box/visual/grenade/M15
+	name = "\improper M15 grenade box"
+	desc = "A secure box holding 25 M15 fragmentation grenades."
+	spawn_number = 25
+	spawn_type = /obj/item/explosive/grenade/frag/m15
+	closed_overlay = "grenade_box_overlay_m15"
+
+/obj/item/storage/box/visual/grenade/frag
+	name = "\improper M40 HEDP grenade box"
+	desc = "A secure box holding 25 M40 HEDP grenades. High explosive, don't store near the flamer fuel."
+	spawn_number = 25
+	spawn_type = /obj/item/explosive/grenade/frag
+	closed_overlay = "grenade_box_overlay_hedp"
+
+/obj/item/storage/box/visual/grenade/incendiary
+	name = "\improper M40 HIDP grenade box"
+	desc = "A secure box holding 25 M40 HIDP incendiary grenades. Warning: highly flammable!!."
+	spawn_number = 25
+	spawn_type = /obj/item/explosive/grenade/incendiary
+	closed_overlay = "grenade_box_overlay_hidp"
+
+/obj/item/storage/box/visual/grenade/phosphorus
+	name = "\improper M40 HPDP grenade box"
+	desc = "A secure box holding 15 M40 HPDP white phosphorous grenades. War crimes for the entire platoon!"
+	storage_slots = 15
+	max_storage_space = 30
+	spawn_number = 15
+	spawn_type = /obj/item/explosive/grenade/phosphorus
+	closed_overlay = "grenade_box_overlay_phosphorus"
+
+/obj/item/storage/box/visual/grenade/impact
+	name = "\improper M15 grenade box"
+	desc = "A secure box holding 25 M40 IMDP impact grenades. High explosive, don't store near the flamer fuel."
+	spawn_number = 25
+	spawn_type = /obj/item/explosive/grenade/impact
+	closed_overlay = "grenade_box_overlay_impact"
+
+/obj/item/storage/box/visual/grenade/cloak
+	name = "\improper M40-2 SCDP grenade box"
+	desc = "A secure box holding 25 M40-2 SCDP cloak grenades. Don't blindly shoot into the smoke."
+	spawn_number = 25
+	spawn_type = /obj/item/explosive/grenade/cloakbomb
+	closed_overlay = "grenade_box_overlay_cloak"
+
+/obj/item/storage/box/visual/grenade/drain
+	name = "\improper M40-T grenade box"
+	desc = "A secure box holding 25 M40-T gas grenades. 100% safe to use around masked marines."
+	spawn_number = 25
+	spawn_type = /obj/item/explosive/grenade/drainbomb
+	closed_overlay = "grenade_box_overlay_drain"
+
+/obj/item/storage/box/visual/grenade/razorburn
+	name = "razorburn grenade box"
+	desc = "A secure box holding 15 razor burn grenades. Used for quick flank coverage."
+	storage_slots = 15
+	max_storage_space = 30
+	spawn_number = 15
+	spawn_type = /obj/item/explosive/grenade/chem_grenade/razorburn_smol
+	closed_overlay = "grenade_box_overlay_razorburn"
+
+/obj/item/storage/box/visual/grenade/teargas
+	name = "\improper M66 teargas grenade box"
+	desc = "A secure box holding 25 M66 tear gas grenades. Used for riot control."
+	spawn_number = 25
+	spawn_type = /obj/item/explosive/grenade/chem_grenade/teargas
+	closed_overlay = "grenade_box_overlay_teargas"
+
+/obj/item/storage/box/visual/grenade/training
+	name = "\improper M07 training grenade box"
+	desc = "A secure box holding 25 M07 training grenades. Harmless and reusable."
+	spawn_number = 25
+	spawn_type = /obj/item/explosive/grenade/frag/training
+	closed_overlay = "grenade_box_overlay_training"
+
+#undef BOX_OVERLAY_SHIFT_X
+#undef BOX_OVERLAY_SHIFT_Y
+
+#undef BOX_MAGAZINE_OFFSET_X
+#undef BOX_MAGAZINE_OFFSET_Y
+#undef BOX_MAGAZINE_COLUMNS
+#undef BOX_MAGAZINE_ROWS
+
+#undef BOX_GRENADE_OFFSET_X
+#undef BOX_GRENADE_OFFSET_Y
+#undef BOX_GRENADE_COLUMNS
+#undef BOX_GRENADE_ROWS

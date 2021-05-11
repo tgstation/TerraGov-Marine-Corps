@@ -489,6 +489,9 @@
 	if(smokecloaked)
 		return
 
+	if(stat == DEAD)
+		return
+
 	alpha = 5 // bah, let's make it better, it's a disposable device anyway
 
 	var/datum/atom_hud/security/SA = GLOB.huds[DATA_HUD_SECURITY_ADVANCED]

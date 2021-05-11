@@ -250,6 +250,8 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 		else
 			type = /datum/action/minimap/marine
 	var/datum/action/minimap/mini = new type
+	if(wearer.job?.job_flags & JOB_FLAG_ALWAYS_VISIBLE_ON_MINIMAP)
+		mini.marker_flags = MINIMAP_FLAG_ALL_MARINES
 	mini.give_action(wearer)
 	INVOKE_NEXT_TICK(src, .proc/update_minimap_icon, mini) //Mobs are spawned inside nullspace sometimes so this is to avoid that hijinks
 
@@ -288,7 +290,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 		wearer.hud_used.SL_locator.alpha = 128
 		if(wearer.assigned_squad.squad_leader == wearer)
 			SSdirection.set_leader(wearer.assigned_squad.tracking_id, wearer)
-			SSdirection.start_tracking("marine-sl", wearer)
+			SSdirection.start_tracking(TRACKING_ID_MARINE_COMMANDER, wearer)
 		else
 			SSdirection.start_tracking(wearer.assigned_squad.tracking_id, wearer)
 
@@ -306,7 +308,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 
 	if(wearer.assigned_squad.squad_leader == wearer)
 		SSdirection.clear_leader(wearer.assigned_squad.tracking_id)
-		SSdirection.stop_tracking("marine-sl", wearer)
+		SSdirection.stop_tracking(TRACKING_ID_MARINE_COMMANDER, wearer)
 	else
 		SSdirection.stop_tracking(wearer.assigned_squad.tracking_id, wearer)
 

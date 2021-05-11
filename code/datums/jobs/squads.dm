@@ -84,7 +84,7 @@ GLOBAL_LIST_EMPTY(helmetmarkings_sl)
 	GLOB.helmetmarkings[type] = helmet
 	GLOB.helmetmarkings_sl[type] = helmetsl
 
-	tracking_id = SSdirection.init_squad(src)
+	tracking_id = SSdirection.init_squad(name, squad_leader)
 
 
 /datum/squad/proc/get_all_members()
@@ -95,108 +95,106 @@ GLOBAL_LIST_EMPTY(helmetmarkings_sl)
 	return length(marines_list)
 
 
-/datum/squad/proc/insert_into_squad(mob/living/carbon/human/H, give_radio = FALSE)
-	if(!(H.job in SSjob.active_occupations))
-		CRASH("attempted to insert marine [H] from squad [name] while having job [isnull(H.job) ? "null" : H.job.title]")
+/datum/squad/proc/insert_into_squad(mob/living/carbon/human/new_squaddie, give_radio = FALSE)
+	if(!(new_squaddie.job in SSjob.active_occupations))
+		CRASH("attempted to insert marine [new_squaddie] from squad [name] while having job [isnull(new_squaddie.job) ? "null" : new_squaddie.job.title]")
 
-	var/obj/item/card/id/C = H.get_idcard()
-	if(!istype(C))
+	var/obj/item/card/id/idcard = new_squaddie.get_idcard()
+	if(!istype(idcard))
 		return FALSE
 
-	if(H.assigned_squad)
-		CRASH("attempted to insert marine [H] into squad while already having one")
+	if(new_squaddie.assigned_squad)
+		CRASH("attempted to insert marine [new_squaddie] into squad while already having one")
 
-	if(!(H.job.type in current_positions))
-		CRASH("Attempted to insert [H.job.type] into squad [name]")
+	if(!(new_squaddie.job.type in current_positions))
+		CRASH("Attempted to insert [new_squaddie.job.type] into squad [name]")
 
-	current_positions[H.job.type]++
+	current_positions[new_squaddie.job.type]++
 
-	if(ismarineleaderjob(H.job) && !squad_leader)
-		squad_leader = H
-		SSdirection.set_leader(tracking_id, H)
-		SSdirection.start_tracking("marine-sl", H)
+	if(ismarineleaderjob(new_squaddie.job) && !squad_leader)
+		squad_leader = new_squaddie
+		SSdirection.set_leader(tracking_id, new_squaddie)
+		SSdirection.start_tracking(TRACKING_ID_MARINE_COMMANDER, new_squaddie)
 
-	var/obj/item/radio/headset/mainship/headset = H.wear_ear
+	var/obj/item/radio/headset/mainship/headset = new_squaddie.wear_ear
 	if(give_radio && !istype(headset))
-		if(H.wear_ear)
-			H.dropItemToGround(H.wear_ear)
+		if(new_squaddie.wear_ear)
+			new_squaddie.dropItemToGround(new_squaddie.wear_ear)
 		headset = new()
-		H.equip_to_slot_or_del(headset, SLOT_EARS)
+		new_squaddie.equip_to_slot_or_del(headset, SLOT_EARS)
 
 	if(istype(headset))
 		headset.set_frequency(radio_freq)
 		headset.recalculateChannels()
-		headset.remove_minimap()
 		headset.add_minimap()
-		if(headset.sl_direction && H != squad_leader)
-			SSdirection.start_tracking(tracking_id, H)
+		if(headset.sl_direction && new_squaddie != squad_leader)
+			SSdirection.start_tracking(tracking_id, new_squaddie)
 
-	for(var/i in GLOB.datacore.general)
-		var/datum/data/record/R = i
-		if(R.fields["name"] == H.real_name)
-			R.fields["squad"] = name
+	for(var/datum/data/record/sheet AS in GLOB.datacore.general)
+		if(sheet.fields["name"] == new_squaddie.real_name)
+			sheet.fields["squad"] = name
 			break
 
-	C.access += access
-	C.assignment = "[name] [H.job.title]"
-	C.assigned_fireteam = 0
-	C.update_label()
+	idcard.access += access
+	idcard.assignment = "[name] [new_squaddie.job.title]"
+	idcard.assigned_fireteam = 0
+	idcard.update_label()
 
-	marines_list += H
-	H.assigned_squad = src
-	H.hud_set_job()
-	H.update_action_buttons()
-	H.update_inv_head()
-	H.update_inv_wear_suit()
-	log_manifest("[key_name(H)] has been assigned as [name] [H.job.title].")
+	marines_list += new_squaddie
+	new_squaddie.assigned_squad = src
+	new_squaddie.hud_set_job()
+	new_squaddie.update_action_buttons()
+	new_squaddie.update_inv_head()
+	new_squaddie.update_inv_wear_suit()
+	log_manifest("[key_name(new_squaddie)] has been assigned as [name] [new_squaddie.job.title].")
 	return TRUE
 
 
-/datum/squad/proc/remove_from_squad(mob/living/carbon/human/H)
-	if(!(H.job in SSjob.active_occupations))
-		CRASH("attempted to remove marine [H] from squad [name] while having job [isnull(H.job) ? "null" : H.job.title]")
+/datum/squad/proc/remove_from_squad(mob/living/carbon/human/leaving_squaddie)
+	if(!(leaving_squaddie.job in SSjob.active_occupations))
+		CRASH("attempted to remove marine [leaving_squaddie] from squad [name] while having job [isnull(leaving_squaddie.job) ? "null" : leaving_squaddie.job.title]")
 
-	if(!H.assigned_squad)
+	if(!leaving_squaddie.assigned_squad)
 		return FALSE
 
-	if(H.assigned_squad != src)
-		CRASH("attempted to remove marine [H] from squad [name] while being a member of squad [H.assigned_squad.name]")
+	if(leaving_squaddie.assigned_squad != src)
+		CRASH("attempted to remove marine [leaving_squaddie] from squad [name] while being a member of squad [leaving_squaddie.assigned_squad.name]")
 
-	var/obj/item/card/id/C = H.get_idcard()
-	if(!istype(C))
+	var/obj/item/card/id/id_card = leaving_squaddie.get_idcard()
+	if(!istype(id_card))
 		return FALSE
 
-	if(H == squad_leader)
+	if(leaving_squaddie == squad_leader)
 		demote_leader()
 	else
-		SSdirection.stop_tracking(tracking_id, H)
+		SSdirection.stop_tracking(tracking_id, leaving_squaddie)
 
-	if(H.job.type in current_positions)
-		current_positions[H.job.type]--
+	if(leaving_squaddie.job.type in current_positions)
+		current_positions[leaving_squaddie.job.type]--
 	else
-		stack_trace("Removed [H.job.type] from squad [name] somehow")
+		stack_trace("Removed [leaving_squaddie.job.type] from squad [name] somehow")
 
-	var/obj/item/radio/headset/mainship/headset = H.wear_ear
+	var/obj/item/radio/headset/mainship/headset = leaving_squaddie.wear_ear
 	if(istype(headset))
+		headset.remove_minimap()
 		headset.set_frequency(initial(headset.frequency))
 
-	for(var/i in GLOB.datacore.general)
-		var/datum/data/record/R = i
-		if(R.fields["name"] == H.real_name)
-			R.fields["squad"] = null
+	for(var/datum/data/record/sheet AS in GLOB.datacore.general)
+		if(sheet.fields["name"] == leaving_squaddie.real_name)
+			sheet.fields["squad"] = null
 			break
 
-	C.access -= access
-	C.assignment = H.job.title
-	C.update_label()
+	id_card.access -= access
+	id_card.assignment = leaving_squaddie.job.title
+	id_card.update_label()
 
-	marines_list -= H
+	marines_list -= leaving_squaddie
 
-	H.assigned_squad = null
-	H.hud_set_job()
-	H.update_action_buttons()
-	H.update_inv_head()
-	H.update_inv_wear_suit()
+	leaving_squaddie.assigned_squad = null
+	leaving_squaddie.hud_set_job()
+	leaving_squaddie.update_action_buttons()
+	leaving_squaddie.update_inv_head()
+	leaving_squaddie.update_inv_wear_suit()
 	return TRUE
 
 
@@ -205,7 +203,7 @@ GLOBAL_LIST_EMPTY(helmetmarkings_sl)
 		CRASH("attempted to remove squad leader from squad [name] while not having one set")
 
 	SSdirection.clear_leader(tracking_id)
-	SSdirection.stop_tracking("marine-sl", squad_leader)
+	SSdirection.stop_tracking(TRACKING_ID_MARINE_COMMANDER, squad_leader)
 
 	//Handle aSL skill level and radio
 	if(!ismarineleaderjob(squad_leader.job))
@@ -236,7 +234,7 @@ GLOBAL_LIST_EMPTY(helmetmarkings_sl)
 
 	squad_leader = H
 	SSdirection.set_leader(tracking_id, H)
-	SSdirection.start_tracking("marine-sl", H)
+	SSdirection.start_tracking(TRACKING_ID_MARINE_COMMANDER, H)
 
 	//Handle aSL skill level and radio
 	if(!ismarineleaderjob(squad_leader.job))

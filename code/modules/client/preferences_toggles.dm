@@ -333,10 +333,30 @@ GLOBAL_LIST_INIT(ghost_others_options, list(GHOST_OTHERS_SIMPLE, GHOST_OTHERS_DE
 
 	to_chat(usr, "<span class='notice'>You will [(usr.client.prefs.toggles_sound & SOUND_INSTRUMENTS_OFF) ? "no longer" : "now"] hear instruments.</span>")
 
-///Toggles the right click menu on and off
+///Toggles whether or not you need to hold shift to access the right click menu
 /client/verb/toggle_right_click()
 	set name = "Toggle Right Click"
 	set category = "Preferences"
 
-	show_popup_menus = !show_popup_menus
-	to_chat(src, "<span class='interface'>Right click [show_popup_menus ? "en" : "dis"]abled.</span>")
+	if(shift_to_open_context_menu)
+		winset(src, "mapwindow.map", "right-click=false")
+		winset(src, "default.Shift", "is-disabled=true")
+		winset(src, "default.ShiftUp", "is-disabled=true")
+		shift_to_open_context_menu = FALSE
+		to_chat(usr, "<span class='notice'>You will no longer need to hold the Shift key to access the right click menu</span>")
+	else
+		winset(src, "mapwindow.map", "right-click=true")
+		winset(src, "ShiftUp", "is-disabled=false")
+		winset(src, "Shift", "is-disabled=false")
+		shift_to_open_context_menu = TRUE
+		to_chat(usr, "<span class='notice'>You will now need to hold the Shift key to access the right click menu</span>")
+
+///Same thing as the character creator preference, but as a byond verb, because not everyone can reach it in tgui preference menu
+/client/verb/toggle_tgui_fancy()
+	set name = "Toggle TGUI Window Compability Mode"
+	set category = "Preferences"
+
+	usr.client.prefs.tgui_fancy = !usr.client.prefs.tgui_fancy
+	usr.client.prefs.save_preferences()
+	SStgui.update_user_uis(usr)
+	to_chat(src, "<span class='interface'>TGUI compatibility mode is now [usr.client.prefs.tgui_fancy ? "dis" : "en"]abled.</span>")
