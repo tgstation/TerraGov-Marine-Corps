@@ -128,7 +128,9 @@
 	"Slimecore",\
 	"Operative",\
 	"Clockwork",\
-	"Glass"\
+	"Glass",\
+	"Minimalist",\
+	"Holo"\
 	)
 
 #define BE_SPECIAL_FLAGS list(\

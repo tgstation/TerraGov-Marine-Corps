@@ -80,6 +80,7 @@
 		"windowflashing" = windowflashing,
 		"auto_fit_viewport" = auto_fit_viewport,
 		"focus_chat" = focus_chat,
+		"mute_xeno_health_alert_messages" = mute_xeno_health_alert_messages,
 		"tgui_fancy" = tgui_fancy,
 		"tgui_lock" = tgui_lock,
 		"clientfps" = clientfps,
@@ -236,7 +237,7 @@
 		if("randomize_appearance")
 			randomize_appearance_for()
 
-		if("synth_name")
+		if("synthetic_name")
 			var/newValue = params["newValue"]
 			newValue = reject_bad_name(newValue, TRUE)
 			if(!newValue)
@@ -536,6 +537,9 @@
 				winset(user, null, "input.focus=true")
 			else
 				winset(user, null, "map.focus=true")
+
+		if("mute_xeno_health_alert_messages")
+			mute_xeno_health_alert_messages = !mute_xeno_health_alert_messages
 
 		if("tgui_fancy")
 			tgui_fancy = !tgui_fancy
