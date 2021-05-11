@@ -13,10 +13,8 @@
 ///Remove a loadout from the list.
 /datum/loadout_manager/proc/delete_loadout(datum/loadout/loadout_to_delete)
 	loadouts_list -= loadout_to_delete
-	for(var/list/next_loadout_data AS in loadouts_data)
-		if(next_loadout_data["job"] == loadout_to_delete.job && next_loadout_data["name"] == loadout_to_delete.name)
-			loadouts_data -= next_loadout_data
-			return
+	if(length(loadouts_data))
+		prepare_all_loadouts_data()
 
 ///Prepare all loadouts data before sending them to tgui
 /datum/loadout_manager/proc/prepare_all_loadouts_data()
