@@ -7,6 +7,7 @@
 	icon_state = "m43"
 	maxcharge = 1000
 	w_class = WEIGHT_CLASS_NORMAL
+	icon_state_mini = "mag_cell"
 	var/base_ammo_icon = "m43"
 	var/gun_type = /obj/item/weapon/gun/energy/lasgun
 	var/reload_delay = 0
