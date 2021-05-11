@@ -86,11 +86,11 @@
 		associated_hive = null
 		notify_ghosts("\ A resin silo has been destroyed at [AREACOORD_NO_Z(src)]!", source = get_turf(src), action = NOTIFY_JUMP)
 		playsound(loc,'sound/effects/alien_egg_burst.ogg', 75)
-	
+
 
 /obj/structure/resin/silo/Destroy()
 	GLOB.xeno_resin_silos -= src
-	
+
 	for(var/i in contents)
 		var/atom/movable/AM = i
 		AM.forceMove(get_step(center_turf, pick(CARDINAL_ALL_DIRS)))
@@ -288,10 +288,14 @@
 	SIGNAL_HANDLER
 	qdel(src)
 
+/obj/structure/resin/xeno_turret/obj_destruction(damage_amount, damage_type, damage_flag)
+	if(damage_amount) //Spawn the gas only if we actually get destroyed by damage
+		var/datum/effect_system/smoke_spread/xeno/smoke = new /datum/effect_system/smoke_spread/xeno/acid(src)
+		smoke.set_up(1, get_turf(src))
+		smoke.start()
+	return ..()
+
 /obj/structure/resin/xeno_turret/Destroy()
-	var/datum/effect_system/smoke_spread/xeno/smoke = new /datum/effect_system/smoke_spread/xeno/acid(src)
-	smoke.set_up(1, get_turf(src))
-	smoke.start()
 	set_hostile(null)
 	set_last_hostile(null)
 	STOP_PROCESSING(SSobj, src)

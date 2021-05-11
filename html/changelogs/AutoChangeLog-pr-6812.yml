@@ -1,0 +1,4 @@
+author: "Wayland-Smithy"
+delete-after: True
+changes: 
+  - bugfix: "Fixed the xeno hud not updating their victims psy status symbol after headbite."
