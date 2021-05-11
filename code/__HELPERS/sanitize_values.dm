@@ -126,6 +126,7 @@
 			if(!istype(loadout, /datum/loadout))
 				manager.loadouts_list -= loadout
 		manager.loadouts_data = null
+		manager.seller = null
 		return manager
 	manager = new
 	return manager

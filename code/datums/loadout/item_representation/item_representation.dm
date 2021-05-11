@@ -6,6 +6,8 @@
 /datum/item_representation
 	/// The type of the object represented, to allow us to create the object when needed
 	var/item_type
+	/// If it's allowed to bypass the vendor check
+	var/bypass_vendor_check = FALSE
 
 /datum/item_representation/New(obj/item/item_to_copy)
 	if(!item_to_copy)
@@ -16,13 +18,15 @@
  * This will attempt to instantiate an object.
  * First, it tries to find that object in a vendor with enough supplies.
  * If it finds one vendor with that item in reserve, it sells it and instantiate that item.
- * If it fails to find a vendor, it will add that item to a list on user to warns him that it failed
+ * If it fails to find a vendor, it will add that item to a list on seller to warns him that it failed
  * Return the instantatiated item if it was successfully sold, and return null otherwise
  */
-/datum/item_representation/proc/instantiate_object(mob/user, master = null)
-	if(user && !buy_item_in_vendor(item_type))
-		user.client.prefs.loadout_manager.seller.unavailable_items += item_type
-		return
+/datum/item_representation/proc/instantiate_object(datum/loadout_seller/seller, master = null)
+	if(seller)
+		if(!buy_item_in_vendor(item_type))
+			seller.unavailable_items ++
+			return
+		seller.bought_items += item_type
 	var/obj/item/item = new item_type(master)
 	return item
 
@@ -31,6 +35,7 @@
  * This is only able to represent /obj/item/storage
  */
 /datum/item_representation/storage
+	bypass_vendor_check = TRUE
 	/// The contents in the storage
 	var/contents = list()
 
@@ -49,13 +54,13 @@
 		item_representation_type = item_representation_type(thing_in_content.type)
 		contents += new item_representation_type(thing_in_content)
 
-/datum/item_representation/storage/instantiate_object(mob/user, master = null)
+/datum/item_representation/storage/instantiate_object(datum/loadout_seller/seller, master = null)
 	. = ..()
 	if(!.)
 		return
 	var/obj/item/storage/storage = .
 	for(var/datum/item_representation/item_representation AS in contents)
-		var/obj/item/item_to_insert = item_representation.instantiate_object(user)
+		var/obj/item/item_to_insert = item_representation.instantiate_object(seller)
 		if(!item_to_insert)
 			continue
 		if(storage.can_be_inserted(item_to_insert))

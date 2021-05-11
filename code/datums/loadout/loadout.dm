@@ -143,8 +143,7 @@
 				to_chat(ui.user, "<span class='warning'>You already equipped a loadout recently!</span>")
 				return
 			//TIMER_COOLDOWN_START(ui.user, COOLDOWN_LOADOUT_EQUIPPED, LOADOUT_COOLDOWN)
-			ui.user.client.prefs.loadout_manager.seller = new
-			equip_mob(ui.user, ui.user.loc)
+			ui.user.client.prefs.loadout_manager.seller.try_to_equip_loadout(src, ui.user)
 			ui.close()
 		if("deleteLoadout")
 			ui.user.client.prefs.loadout_manager.delete_loadout(src)

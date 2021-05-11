@@ -15,13 +15,13 @@
 	if(uniform_to_copy.hastie)
 		tie = new /datum/item_representation/tie(uniform_to_copy.hastie)
 
-/datum/item_representation/uniform_representation/instantiate_object(mob/user, master)
+/datum/item_representation/uniform_representation/instantiate_object(datum/loadout_seller/seller, master)
 	. = ..()
 	if(!.)
 		return
 	var/obj/item/clothing/under/uniform = .
 	if(tie)
-		tie?.install_on_uniform(user, uniform)
+		tie?.install_on_uniform(seller, uniform)
 	return uniform
 
 /**
@@ -41,16 +41,16 @@
 	var/obj/item/clothing/tie/storage/tie = item_to_copy
 	hold = new /datum/item_representation/storage(tie.hold)
 	
-/datum/item_representation/tie/instantiate_object(mob/user, master)
+/datum/item_representation/tie/instantiate_object(datum/loadout_seller/seller, master)
 	. = ..()
 	if(!.)
 		return
 	var/obj/item/clothing/tie/storage/tie = .
-	tie.hold = hold.instantiate_object(user, tie)
+	tie.hold = hold.instantiate_object(seller, tie)
 	return tie
 
 ///Attach the tie to a uniform
-/datum/item_representation/tie/proc/install_on_uniform(mob/user, obj/item/clothing/under/uniform)
+/datum/item_representation/tie/proc/install_on_uniform(datum/loadout_seller/seller, obj/item/clothing/under/uniform)
 	var/obj/item/clothing/tie/storage/tie = instantiate_object()
 	tie?.on_attached(uniform)
 	uniform.hastie = tie
