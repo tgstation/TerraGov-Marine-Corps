@@ -4,7 +4,6 @@
 
 #define MAKE_VENDING_RECORD_DATA(record) list(\
 		"product_name" = adminscrub(record.product_name),\
-		"product_color" = record.display_color,\
 		"prod_price" = record.price,\
 		"prod_desc" = initial(record.product_path.desc),\
 		"ref" = REF(record),\
@@ -20,14 +19,12 @@
 	var/amount = 0
 	///The price of this product if any.
 	var/price = 0
-	///What color it stays on the vend button, considering just nuking this.
-	var/display_color = "white"
 	///What category it belongs to, Normal, contraband or coin.
 	var/category = CAT_NORMAL
 	///Incase its a tabbed vendor what tab this belongs to.
 	var/tab
 
-/datum/vending_product/New(name, atom/typepath, product_amount, product_price, product_display_color, category = CAT_NORMAL, tab)
+/datum/vending_product/New(name, atom/typepath, product_amount, product_price, category = CAT_NORMAL, tab)
 
 	product_path = typepath
 	amount = product_amount
@@ -39,13 +36,6 @@
 		product_name = initial(typepath.name)
 	else
 		product_name = name
-
-	if(product_display_color)
-		display_color = product_display_color
-	else if(ispath(typepath, /obj/item/ammo_magazine))
-		display_color = "black"
-	else
-		display_color = "white"
 
 /obj/machinery/vending
 	name = "Vendomat"
