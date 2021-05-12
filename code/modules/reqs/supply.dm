@@ -349,7 +349,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 	for(var/datum/export_report/report AS in SSpoints.export_history)
 		if(report.faction != user.faction)
 			continue
-		.["export_history"] += list("id" = id, "name" = report.export_name, "points" = report.points)
+		.["export_history"] += list(list("id" = id, "name" = report.export_name, "points" = report.points))
 		id++
 	.["shopping_history"] = list()
 	for(var/datum/supply_order/SO AS in SSpoints.shopping_history)

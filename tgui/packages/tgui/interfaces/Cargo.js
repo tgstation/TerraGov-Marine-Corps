@@ -52,6 +52,9 @@ export const Cargo = (props, context) => {
             {selectedMenu==="Previous Purchases" && (
               <OrderList type={shopping_history} readOnly={1} />
             )}
+            {selectedMenu==="Export History" && (
+              <Exports />
+            )}
             {selectedMenu==="Awaiting Delivery" && (
               <OrderList type={awaiting_delivery} readOnly={1} />
             )}
@@ -85,22 +88,14 @@ const Exports = (props, context) => {
 
   return (
     <Section title="Exports">
-      { export_history.map(entry => (
-        <Section
-          key={entry.id}
-          level={2}
-          title={"#"+entry.id}
-          buttons={entry.points+" points"}>
-          <Table>
-            {entry.exports.map(exp => (
-              <Table.Row key={exp.id}>
-                <Table.Cell>{exp.name}</Table.Cell>
-                <Table.Cell>{exp.points} points</Table.Cell>
-              </Table.Row>
-            ))}
-          </Table>
-        </Section>
-      ))}
+      <Table>
+        {export_history.map(exp => (
+          <Table.Row key={exp.id}>
+            <Table.Cell>{exp.name}</Table.Cell>
+            <Table.Cell>{exp.points} points</Table.Cell>
+          </Table.Row>
+        ))}
+      </Table>
     </Section>
   );
 };
@@ -141,6 +136,7 @@ const Menu = (props, context) => {
     shopping_list_items,
     elevator,
     elevator_dir,
+    export_history,
     deniedrequests,
     approvedrequests,
     awaiting_delivery_orders,
