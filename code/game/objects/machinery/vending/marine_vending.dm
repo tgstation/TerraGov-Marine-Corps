@@ -154,7 +154,7 @@
 			/obj/item/ammo_magazine/standard_smartmachinegun = 4,
 		),
 		"Grenades" = list(
-			/obj/item/explosive/grenade/frag = -1,
+			/obj/item/explosive/grenade/frag = 600,
 			/obj/item/explosive/grenade/frag/m15 = 30,
 			/obj/item/explosive/grenade/incendiary = 50,
 			/obj/item/explosive/grenade/cloakbomb = 25,
@@ -315,7 +315,7 @@
 		/obj/item/ammo_magazine/shotgun/mbx900 = 2,
 		/obj/item/bodybag/tarp = 2,
 		/obj/item/explosive/plastique = 2,
-		/obj/item/clothing/suit/storage/marine/harness/boomvest = -1,
+		/obj/item/clothing/suit/storage/marine/harness/boomvest = 20,
 		/obj/item/radio/headset/mainship/marine/alpha = -1,
 		/obj/item/radio/headset/mainship/marine/bravo = -1,
 		/obj/item/radio/headset/mainship/marine/charlie = -1,
