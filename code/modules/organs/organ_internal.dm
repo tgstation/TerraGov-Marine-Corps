@@ -187,10 +187,10 @@
 	if(!owner.reagents.get_reagent_amount(/datum/reagent/medicine/peridaxon) >= 0.05)
 		if(is_bruised())
 			if(prob(2))
-				spawn owner.emote("me", 1, "coughs up blood!")
+				spawn owner.emote("emote_me", 1, "coughs up blood!")
 				owner.drip(10)
 			if(prob(4))
-				spawn owner.emote("me", 1, "gasps for air!")
+				spawn owner.emote("emote_me", 1, "gasps for air!")
 				owner.Losebreath(15)
 
 /datum/internal_organ/lungs/prosthetic

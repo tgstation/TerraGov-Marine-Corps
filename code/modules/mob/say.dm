@@ -17,7 +17,7 @@
 
 	message = trim(copytext_char(sanitize(message), 1, MAX_MESSAGE_LEN))
 
-	emote("me", EMOTE_VISIBLE, message, TRUE)
+	emote("emote_me", EMOTE_VISIBLE, message, TRUE)
 
 
 /mob/verb/whisper_verb(message as text)
