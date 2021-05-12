@@ -72,8 +72,6 @@
 	icon_state = "portatmos"
 	fake_zlevel = 1 // upperdeck
 
-/area/mainship/engineering/port_atmos/rebel
-
 /area/mainship/shipboard/navigation
 	name = "Astronavigational Deck"
 	icon_state = "astronavigation"
@@ -84,14 +82,10 @@
 	icon_state = "starboardmissile"
 	fake_zlevel = 1 // upperdeck
 
-/area/mainship/shipboard/starboard_missiles/rebel
-
 /area/mainship/shipboard/port_missiles
 	name = "Missile Tubes Port"
 	icon_state = "portmissile"
 	fake_zlevel = 1 // upperdeck
-
-/area/mainship/shipboard/port_missiles/rebel
 
 /area/mainship/shipboard/weapon_room
 	name = "Weapon Control Room"
@@ -133,8 +127,6 @@
 	icon_state = "firingrange"
 	fake_zlevel = 2 // lowerdeck
 
-/area/mainship/shipboard/firing_range/rebel 
-
 /area/mainship/shipboard/sensors
 	name = "Sensor Room"
 	icon_state = "sensor"
@@ -143,8 +135,6 @@
 	name = "Hangar"
 	icon_state = "hangar"
 	fake_zlevel = 2 // lowerdeck
-
-/area/mainship/hallways/hangar/rebel
 
 /area/mainship/living/tankerbunks
 	name = "Vehicle Crew Bunks"
@@ -176,28 +166,20 @@
 	icon_state = "portumbilical"
 	fake_zlevel = 2 // lowerdeck
 
-/area/mainship/hallways/port_umbilical/rebel
-
 /area/mainship/hallways/aft_hallway
 	name = "Hallway Aft"
 	icon_state = "aft"
 	fake_zlevel = 1 // upperdeck
-
-/area/mainship/hallways/aft_hallway/rebel
 
 /area/mainship/hallways/stern_hallway
 	name = "Hallway Stern"
 	icon_state = "stern"
 	fake_zlevel = 1 // upperdeck
 
-/area/mainship/hallways/stern_hallway/rebel 
-
 /area/mainship/hallways/port_hallway
 	name = "Hallway Port"
 	icon_state = "port"
 	fake_zlevel = 2 // lowerdeck
-
-/area/mainship/hallways/port_hallway/rebel
 
 /area/mainship/hallways/starboard_hallway
 	name = "Hallway Starboard"
@@ -209,8 +191,6 @@
 	icon_state = "lowerhull"
 	fake_zlevel = 2 // lowerdeck
 
-/area/mainship/hull/lower_hull/rebel
-
 /area/mainship/hull/upper_hull
 	name = "Hull Upper"
 	icon_state = "upperhull"
@@ -221,21 +201,15 @@
 	icon_state = "cryo"
 	fake_zlevel = 2 // lowerdeck
 
-/area/mainship/living/cryo_cells/rebel
-
 /area/mainship/living/briefing
 	name = "Briefing Area"
 	icon_state = "briefing"
 	fake_zlevel = 2 // lowerdeck
 
-/area/mainship/living/briefing/rebel
-
 /area/mainship/living/port_emb
 	name = "Extended Mission Bunks"
 	icon_state = "portemb"
 	fake_zlevel = 2 // lowerdeck
-
-/area/mainship/living/port_emb/rebel
 
 /area/mainship/living/starboard_emb
 	name = "Extended Mission Bunks"
@@ -261,8 +235,6 @@
 	name = "Lounge"
 	icon_state = "gruntrnr"
 	fake_zlevel = 2 // lowerdeck
-
-/area/mainship/living/grunt_rnr/rebel
 
 /area/mainship/living/officer_rnr
 	name = "Officer's Lounge"
@@ -304,28 +276,20 @@
 	icon_state = "livingspace"
 	fake_zlevel = 2 // lowerdeck
 
-/area/mainship/living/pilotbunks
-
 /area/mainship/living/bridgebunks
 	name = "Staff Officer Bunks"
 	icon_state = "livingspace"
 	fake_zlevel = 1 // upperdeck
-
-/area/mainship/living/bridgebunks/rebel
 
 /area/mainship/living/commandbunks
 	name = "Captain's Bunk"
 	icon_state = "livingspace"
 	fake_zlevel = 1 // upperdeck
 
-/area/mainship/living/commandbunks/rebel
-
 /area/mainship/living/numbertwobunks
 	name = "Executive Officer's Bunk"
 	icon_state = "livingspace"
 	fake_zlevel = 1 // upperdeck
-
-/area/mainship/living/numbertwobunks/rebel
 
 /area/mainship/living/chapel
 	name = "Chapel"
@@ -337,8 +301,6 @@
 	icon_state = "medical"
 	fake_zlevel = 2 // lowerdeck
 
-/area/mainship/medical/lower_medical/rebel
-
 /area/mainship/medical/upper_medical
 	name = "Medical Upper"
 	icon_state = "medical"
@@ -349,14 +311,10 @@
 	icon_state = "operating"
 	fake_zlevel = 2 // lowerdeck
 
-/area/mainship/medical/operating_room_one/rebel
-
 /area/mainship/medical/operating_room_two
 	name = "Medical Operating Room 2"
 	icon_state = "operating"
 	fake_zlevel = 2 // lowerdeck
-
-/area/mainship/medical/operating_room_two/rebel
 
 /area/mainship/medical/operating_room_three
 	name = "Medical Operating Room 3"
@@ -373,14 +331,10 @@
 	icon_state = "science"
 	fake_zlevel = 1 // upperdeck
 
-/area/mainship/medical/medical_science/rebel
-
 /area/mainship/medical/chemistry
 	name = "Medical Chemical laboratory"
 	icon_state = "chemistry"
 	fake_zlevel = 2 // lowerdeck
-
-/area/mainship/medical/chemistry/rebel
 
 /area/mainship/medical/cryo_tubes
 	name = "Medical Cryogenics Tubes"
@@ -421,8 +375,6 @@
 	name = "Requisitions"
 	icon_state = "req"
 	fake_zlevel = 2 // lowerdeck
-
-/area/mainship/squads/req/rebel
 
 /area/mainship/powered //for objects not intended to lose power
 	name = "Powered"

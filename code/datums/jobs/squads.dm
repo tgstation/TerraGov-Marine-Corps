@@ -60,7 +60,7 @@
 	name = "Delta"
 	id = DELTA_SQUAD
 	color = "#4148c8" // rgb(65,72,200)
-	access = list(ACCESS_MARINE_DELTA_REBEL)
+	access = list(ACCESS_MARINE_DELTA)
 	radio_freq = FREQ_DELTA
 
 /datum/squad/alpha/rebel

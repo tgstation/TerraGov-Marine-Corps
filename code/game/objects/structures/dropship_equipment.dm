@@ -81,9 +81,6 @@
 /obj/effect/attach_point/weapon/dropship2
 	ship_tag = "normandy"
 
-/obj/effect/attach_point/weapon/dropship3
-	ship_tag = "triumph"
-
 /obj/effect/attach_point/weapon/cas
 	ship_tag = "casplane"
 	icon = 'icons/Marine/casship.dmi'
@@ -115,9 +112,6 @@
 /obj/effect/attach_point/crew_weapon/dropship1
 	ship_tag = "alamo"
 
-/obj/effect/attach_point/crew_weapon/dropship3
-	ship_tag = "alamo"
-
 /obj/effect/attach_point/electronics
 	name = "electronic system attach point"
 	base_category = DROPSHIP_ELECTRONICS
@@ -128,9 +122,6 @@
 
 /obj/effect/attach_point/electronics/dropship2
 	ship_tag = "normandy"
-
-/obj/effect/attach_point/electronics/dropship3
-	ship_tag = "triumph"
 
 
 /obj/effect/attach_point/fuel
@@ -144,9 +135,6 @@
 
 /obj/effect/attach_point/fuel/dropship2
 	ship_tag = "normandy"
-
-/obj/effect/attach_point/fuel/dropship3
-	ship_tag = "triumph"
 
 
 /obj/effect/attach_point/computer
