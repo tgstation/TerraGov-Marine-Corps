@@ -37,8 +37,12 @@
 		/obj/item/ammo_magazine/rifle/standard_br = 25,
 		/obj/item/weapon/gun/rifle/chambered = 20,
 		/obj/item/ammo_magazine/rifle/chamberedrifle = 20,
-		/obj/item/weapon/gun/energy/lasgun/lasrifle = 10,
-		/obj/item/cell/lasgun/lasrifle = 20,
+		/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_rifle = 10,
+		/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_sniper = 10,
+		/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_carbine = 10,
+		/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_mlaser = 10,
+		/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_pistol = 10,
+		/obj/item/cell/lasgun/lasrifle/marine = 125,
 		/obj/item/weapon/gun/shotgun/pump/t35 = 10,
 		/obj/item/weapon/gun/shotgun/combat/standardmarine = 10,
 		/obj/item/ammo_magazine/shotgun = 10,
@@ -86,8 +90,14 @@
 			/obj/item/ammo_magazine/rifle/standard_carbine = 1000,
 			/obj/item/weapon/gun/rifle/tx11 = 250,
 			/obj/item/ammo_magazine/rifle/tx11 = 1000,
-			/obj/item/weapon/gun/energy/lasgun/lasrifle = 250,
-			/obj/item/cell/lasgun/lasrifle = 1000,
+		),
+		"Energy Weapons" = list(
+			/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_rifle = 250,
+			/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_sniper = 200,
+			/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_carbine = 250,
+			/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_mlaser = 200,
+			/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_pistol = 250,
+			/obj/item/cell/lasgun/lasrifle/marine = 1000,
 		),
 		"SMGs" = list(
 			/obj/item/weapon/gun/smg/standard_smg = 250,
@@ -155,9 +165,9 @@
 		),
 		"Grenades" = list(
 			/obj/item/explosive/grenade/frag = 600,
-			/obj/item/explosive/grenade/frag/m15 = 50,
+			/obj/item/explosive/grenade/frag/m15 = 30,
 			/obj/item/explosive/grenade/incendiary = 50,
-			/obj/item/explosive/grenade/cloakbomb = 50,
+			/obj/item/explosive/grenade/cloakbomb = 25,
 			/obj/item/explosive/grenade/drainbomb = 10,
 			/obj/item/explosive/grenade/mirage = 100,
 			/obj/item/storage/box/m94 = 200,
@@ -193,7 +203,8 @@
 		/obj/item/ammo_magazine/box10x24mm = 100,
 		/obj/item/ammo_magazine/box10x26mm = 100,
 		/obj/item/ammo_magazine/box10x27mm = 100,
-		/obj/item/storage/box/ammo = 30,
+		/obj/item/storage/box/visual/magazine = 30,
+		/obj/item/storage/box/visual/grenade = 10,
 		),
 	)
 
@@ -284,7 +295,8 @@
 		/obj/item/ammo_magazine/box10x24mm = 100,
 		/obj/item/ammo_magazine/box10x26mm = 100,
 		/obj/item/ammo_magazine/box10x27mm = 100,
-		/obj/item/storage/box/ammo = 30,
+		/obj/item/storage/box/visual/magazine = 30,
+		/obj/item/storage/box/visual/grenade = 10,
 		),
 	)
 
@@ -301,10 +313,11 @@
 	wrenchable = FALSE
 	req_one_access = list(ACCESS_MARINE_CARGO, ACCESS_MARINE_LOGISTICS)
 	products = list(
-		/obj/item/storage/box/nade_box = 2,
-		/obj/item/storage/box/nade_box/HIDP = 2,
-		/obj/item/storage/box/nade_box/M15 = 2,
-		/obj/item/storage/box/nade_box/plasma_drain_gas = 1,
+		/obj/item/storage/box/visual/grenade/frag = 2,
+		/obj/item/storage/box/visual/grenade/incendiary = 2,
+		/obj/item/storage/box/visual/grenade/M15 = 2,
+		/obj/item/storage/box/visual/grenade/drain = 1,
+		/obj/item/storage/box/visual/grenade/cloak = 1,
 		/obj/item/ammo_magazine/rifle/autosniper = 3,
 		/obj/item/ammo_magazine/rifle/tx8 = 3,
 		/obj/item/ammo_magazine/rocket/sadar = 3,
@@ -333,9 +346,10 @@
 /// HvH version of the vending machine, containing no ammo for spec weapons and restricted ones
 /obj/machinery/vending/marine/cargo_supply/hvh
 	products = list(
-		/obj/item/storage/box/ammo = 30,
-		/obj/item/storage/box/nade_box = 1,
-		/obj/item/storage/box/nade_box/HIDP = 1,
+		/obj/item/storage/box/visual/magazine = 30,
+		/obj/item/storage/box/visual/grenade = 10,
+		/obj/item/storage/box/visual/grenade/frag = 1,
+		/obj/item/storage/box/visual/grenade/incendiary = 1,
 		/obj/item/explosive/plastique = 2,
 		/obj/item/radio/headset/mainship/marine/alpha = 20,
 		/obj/item/radio/headset/mainship/marine/bravo = 20,
@@ -365,7 +379,10 @@
 		/obj/item/weapon/gun/rifle/standard_gpmg = 1,
 		/obj/item/weapon/gun/rifle/standard_dmr = 1,
 		/obj/item/weapon/gun/rifle/standard_br = 2,
-		/obj/item/weapon/gun/energy/lasgun/lasrifle = 10,
+		/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_rifle = 10,
+		/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_carbine = 10,
+		/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_mlaser = 10,
+		/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_pistol = 10,
 		/obj/item/weapon/gun/pistol/plasma_pistol = 10,
 		/obj/item/weapon/gun/shotgun/pump/t35 = 2,
 		/obj/item/weapon/gun/rifle/standard_autoshotgun = 1,
@@ -396,7 +413,7 @@
 		/obj/item/ammo_magazine/standard_gpmg = 3,
 		/obj/item/ammo_magazine/rifle/standard_dmr = 5,
 		/obj/item/ammo_magazine/rifle/standard_br = 10,
-		/obj/item/cell/lasgun/lasrifle = 50,
+		/obj/item/cell/lasgun/lasrifle/marine = 125,
 		/obj/item/ammo_magazine/pistol/plasma_pistol = 50,
 		/obj/item/ammo_magazine/shotgun/buckshot = 3,
 		/obj/item/ammo_magazine/shotgun/flechette = 3,
@@ -410,7 +427,7 @@
 	)
 
 /obj/machinery/vending/lasgun
-	name = "\improper Lasrifle Field Charger"
+	name = "\improper Terra Experimental cell field charger"
 	desc = "An automated power cell dispenser and charger. Used to recharge energy weapon power cells, including in the field. Has an internal battery that charges off the power grid when wrenched down."
 	icon_state = "lascharger"
 	icon_vend = "lascharger-vend"
@@ -423,10 +440,9 @@
 	machine_current_charge = 50000 //integrated battery for recharging energy weapons. Normally 10000.
 	machine_max_charge = 50000
 
-	product_ads = "Lasrifle running low? Recharge here!;Need a charge?;Power up!;Electrifying!;Empower yourself!"
+	product_ads = "Power cell running low? Recharge here!;Need a charge?;Power up!;Electrifying!;Empower yourself!"
 	products = list(
-		/obj/item/cell/lasgun/lasrifle = 10,
-		/obj/item/cell/lasgun/lasrifle/highcap = 2,
+		/obj/item/cell/lasgun/lasrifle/marine = 10,
 	)
 
 
@@ -847,6 +863,12 @@
 			/obj/item/helmet_module/welding = 20,
 			/obj/item/helmet_module/binoculars = 20,
 			/obj/item/helmet_module/antenna = 20,
+			/obj/item/helmet_module/attachable/mimir_environment_protection/mark1 = 10,
+			/obj/item/armor_module/attachable/mimir_environment_protection/mark1 = 10,
+			/obj/item/armor_module/attachable/tyr_extra_armor/mark1 = 10,
+			/obj/item/armor_module/attachable/ballistic_armor = 10,
+			/obj/item/armor_module/attachable/better_shoulder_lamp/mark1 = 10,
+			/obj/item/armor_module/attachable/chemsystem = 10,
 		),
 	)
 
@@ -892,6 +914,7 @@
 			/obj/item/storage/belt/gun/pistol/standard_pistol = 10,
 			/obj/item/storage/belt/gun/revolver/standard_revolver = 10,
 			/obj/item/storage/large_holster/machete/full = 10,
+			/obj/item/storage/large_holster/machete/full_harvester = 10,
 		),
 		"Pouches" = list(
 			/obj/item/storage/pouch/pistol = 10,
