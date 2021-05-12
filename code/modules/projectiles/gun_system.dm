@@ -179,8 +179,10 @@
 	if(attachments)
 		for(var/slot in attachments)
 			qdel(attachments[slot])
+
 	LAZYCLEARLIST(attachments)
 	UNSETEMPTY(attachments)
+
 	if(in_chamber)
 		QDEL_NULL(in_chamber)
 	if(current_mag)
