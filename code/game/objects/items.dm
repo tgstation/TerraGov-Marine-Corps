@@ -728,19 +728,23 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 	zoom = TRUE
 	onzoom(user)
 
+///returns a bitflag when another item tries to zoom same user.
 /obj/item/proc/zoom_check_return(datum/source)
+	SIGNAL_HANDLER
 	return COMSIG_ITEM_ALREADY_ZOOMED
 
-
+///Wrapper for signal turning scope off.
 /obj/item/proc/zoom_item_turnoff(datum/source, mob/living/carbon/user)
 	SIGNAL_HANDLER
 	zoom(user)
 
+///called when zoom is activated.
 /obj/item/proc/onzoom(mob/living/user)
 	RegisterSignal(user, list(COMSIG_MOVABLE_MOVED, COMSIG_CARBON_SWAPPED_HANDS), .proc/zoom)
 	RegisterSignal(user, COMSIG_ITEM_ZOOM, .proc/zoom_check_return)
 	RegisterSignal(src, list(COMSIG_ITEM_EQUIPPED, COMSIG_ITEM_DROPPED), .proc/zoom_item_turnoff)
 
+///called when zoom is deactivated.
 /obj/item/proc/onunzoom(mob/living/user)
 	UnregisterSignal(user, list(COMSIG_MOVABLE_MOVED, COMSIG_CARBON_SWAPPED_HANDS))
 	UnregisterSignal(user, COMSIG_ITEM_ZOOM)
