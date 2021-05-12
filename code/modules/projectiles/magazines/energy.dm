@@ -5,7 +5,7 @@
 	desc = "A specialized high density battery used to power lasguns."
 	icon = 'icons/obj/items/ammo.dmi'
 	icon_state = "m43"
-	maxcharge = 1000
+	maxcharge = 600 ///Changed due to the fact some maps and ERTs spawn with the child, the lasrifle. Charges on guns changed accordingly.
 	w_class = WEIGHT_CLASS_NORMAL
 	var/base_ammo_icon = "m43"
 	var/gun_type = /obj/item/weapon/gun/energy/lasgun
@@ -82,7 +82,7 @@
 	desc = "An advanced, ultrahigh capacity battery used to power the TX-73 lasrifle; has sixty percent more charge capacity than standard laspacks."
 	base_ammo_icon = "tx73_e"
 	icon_state = "tx73_e"
-	maxcharge = 1600
+	maxcharge = 1000
 
 /obj/item/cell/lasgun/lasrifle/Initialize()
 	. = ..()
@@ -94,7 +94,7 @@
 
 /obj/item/cell/lasgun/lasrifle/marine
 	name = "\improper Terra Experimental standard battery"
-	desc = "A specialized high density battery used to power most standard marine laser guns. It is simply known as the TE power cell."
+	desc = "A specialized high density battery used to power most standard marine laser guns. It is simply known as the TE power cell"
 	base_ammo_icon = "te"
 	icon_state = "te"
 	maxcharge = 600

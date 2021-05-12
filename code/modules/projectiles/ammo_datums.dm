@@ -1351,17 +1351,15 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 // TE Lasers //
 
 /datum/ammo/energy/lasgun/marine
-	icon_state = "bluelaserstandard"
 	damage = 20
 	penetration = 10
 	sundering = 1
 	max_range = 40
 	damage_falloff = 0
-	bullet_color = COLOR_DISABLER_BLUE
 
 /datum/ammo/energy/lasgun/marine/overcharge
 	name = "overcharged laser bolt"
-	icon_state = "blueheavylaser"
+	icon_state = "overchargedlaser"
 	hud_state = "laser_sniper"
 	damage = 40
 	penetration = 20
@@ -1369,7 +1367,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/energy/lasgun/marine/blast
 	name = "wide range laser blast"
-	icon_state = "bluelaserstandard"
+	icon_state = "heavylaser2"
 	hud_state = "laser_spread"
 	bonus_projectiles_type = /datum/ammo/energy/lasgun/marine/spread
 	bonus_projectiles_amount = 2
@@ -1384,7 +1382,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/energy/lasgun/marine/spread
 	name = "additional laser blast"
-	icon_state = "bluelaserstandard"
+	icon_state = "laser2"
 	shell_speed = 2
 	accuracy_var_low = 9
 	accuracy_var_high = 9
@@ -1399,9 +1397,12 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 15
 	penetration = 15
 
+/datum/ammo/energy/lasgun/marine/autolaser/efficiency
+	name = "efficient machine laser bolt"
+	damage = 8.5
+
 /datum/ammo/energy/lasgun/marine/sniper
 	name = "sniper laser bolt"
-	icon_state = "blueheavylaser"
 	hud_state = "laser_sniper"
 	damage = 60
 	penetration = 30
@@ -1409,9 +1410,9 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/energy/lasgun/marine/sniper_heat
 	name = "sniper heat bolt"
-	icon_state = "bluemicrowavelaser"
+	icon_state = "microwavelaser"
 	hud_state = "laser_heat"
-	damage = 40 //requires mod with -0.15 multiplier should math out to 10
+	damage = 40
 	penetration = 0 // It's a laser that burns the skin! The fire stacks go threw anyway.
 	flags_ammo_behavior = AMMO_ENERGY|AMMO_INCENDIARY|AMMO_SUNDERING
 	sundering = 1
@@ -1432,7 +1433,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/energy/lasgun/marine/pistol/heat
 	name = "microwave heat bolt"
-	icon_state = "bluemicrowavelaser"
+	icon_state = "microwavelaser"
 	hud_state = "laser_heat"
 	damage = 20 //requires mod with -0.15 multiplier should math out to 10
 	penetration = 10 // It's a laser that burns the skin! The fire stacks go threw anyway.

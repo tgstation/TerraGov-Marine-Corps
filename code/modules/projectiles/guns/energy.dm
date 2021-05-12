@@ -138,7 +138,7 @@
 	aim_slowdown = 0.75
 	wield_delay = 1 SECONDS
 	gun_skill_category = GUN_SKILL_RIFLES
-	muzzle_flash_color = COLOR_LASER_BLUE
+	muzzle_flash_color = COLOR_LASER_RED
 
 	fire_delay = 3
 	accuracy_mult = 1.5
@@ -454,7 +454,7 @@
 	ammo = /datum/ammo/energy/lasgun/M43
 	ammo_diff = null
 	cell_type = /obj/item/cell/lasgun/lasrifle
-	charge_cost = 20
+	charge_cost = 10
 	gun_firemode = GUN_FIREMODE_AUTOMATIC
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)//Lasrifle has special behavior for fire mode, be carefull
 	attachable_allowed = list(
@@ -579,12 +579,8 @@
 		/obj/item/attachable/bayonet,
 		/obj/item/attachable/bayonetknife,
 		/obj/item/attachable/reddot,
-		/obj/item/attachable/verticalgrip,
-		/obj/item/attachable/angledgrip,
 		/obj/item/attachable/lasersight,
-		/obj/item/attachable/gyro,
 		/obj/item/attachable/flashlight,
-		/obj/item/attachable/bipod,
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/attached_gun/grenade,
 		/obj/item/attachable/scope/marine,
@@ -595,14 +591,15 @@
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ENERGY|GUN_AMMO_COUNTER
 	attachable_offset = list("muzzle_x" = 40, "muzzle_y" = 17,"rail_x" = 22, "rail_y" = 21, "under_x" = 29, "under_y" = 10, "stock_x" = 22, "stock_y" = 12)
 
-	aim_slowdown = 0.5
-	wield_delay = 0.6 SECONDS
+	aim_slowdown = 0.4
+	wield_delay = 0.5 SECONDS
 	scatter = 0
 	scatter_unwielded = 10
-	fire_delay = 0.2 SECONDS
+	fire_delay = 0.15 SECONDS
 	accuracy_mult = 1.15
 	accuracy_mult_unwielded = 0.55
 	scatter_unwielded = 10
+	damage_falloff_mult = 0
 	mode_list = list(
 		"Standard" = /datum/lasrifle/base/energy_rifle_mode/standard,
 		"Overcharge" = /datum/lasrifle/base/energy_rifle_mode/overcharge,
@@ -611,7 +608,7 @@
 /datum/lasrifle/base/energy_rifle_mode/standard
 	charge_cost = 10
 	ammo = /datum/ammo/energy/lasgun/marine
-	fire_delay = 0.2 SECONDS
+	fire_delay = 0.15 SECONDS
 	fire_sound = 'sound/weapons/guns/fire/Laser Rifle Standard.ogg'
 	message_to_user = "You set the laser rifle's charge mode to standard fire."
 	fire_mode = GUN_FIREMODE_AUTOMATIC
@@ -620,7 +617,7 @@
 /datum/lasrifle/base/energy_rifle_mode/overcharge
 	charge_cost = 20
 	ammo = /datum/ammo/energy/lasgun/marine/overcharge
-	fire_delay = 0.4 SECONDS
+	fire_delay = 0.3 SECONDS
 	fire_sound = 'sound/weapons/guns/fire/Laser overcharge standard.ogg'
 	message_to_user = "You set the laser rifle's charge mode to overcharge."
 	fire_mode = GUN_FIREMODE_AUTOMATIC
@@ -656,6 +653,7 @@
 		/obj/item/attachable/lasersight,
 		/obj/item/attachable/flashlight,
 		/obj/item/attachable/scope/mini,
+		/obj/item/attachable/lace,
 	)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ENERGY|GUN_AMMO_COUNTER
@@ -669,6 +667,7 @@
 	accuracy_mult = 1.1
 	accuracy_mult_unwielded = 0.9
 	scatter_unwielded = 0
+	damage_falloff_mult = 0
 	mode_list = list(
 		"Standard" = /datum/lasrifle/base/energy_pistol_mode/standard,
 		"Heat" = /datum/lasrifle/base/energy_pistol_mode/heat,
@@ -729,54 +728,56 @@
 		/obj/item/attachable/bayonet,
 		/obj/item/attachable/bayonetknife,
 		/obj/item/attachable/reddot,
-		/obj/item/attachable/verticalgrip,
-		/obj/item/attachable/angledgrip,
 		/obj/item/attachable/lasersight,
-		/obj/item/attachable/gyro,
 		/obj/item/attachable/flashlight,
-		/obj/item/attachable/bipod,
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/attached_gun/grenade,
 		/obj/item/attachable/attached_gun/flamer,
 	)
 
-	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ENERGY|GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ENERGY|GUN_AMMO_COUNTER
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 18,"rail_x" = 17, "rail_y" = 21, "under_x" = 23, "under_y" = 10, "stock_x" = 22, "stock_y" = 12)
 
-	aim_slowdown = 0.3
-	wield_delay = 0.4 SECONDS
+	aim_slowdown = 0.2
+	wield_delay = 0.3 SECONDS
 	scatter = 0
 	scatter_unwielded = 15
-	fire_delay = 0.2 SECONDS
+	fire_delay = 0.15 SECONDS
 	burst_amount = 1
 	burst_delay = 0.1 SECONDS
 	accuracy_mult = 1.1
 	accuracy_mult_unwielded = 0.65
 	scatter_unwielded = 15
+	damage_falloff_mult = 0
 	mode_list = list(
-		"Standard" = /datum/lasrifle/base/energy_carbine_mode/standard,
+
+		"Auto burst standard" = /datum/lasrifle/base/energy_carbine_mode/auto_burst_standard,
+		"Automatic standard" = /datum/lasrifle/base/energy_carbine_mode/auto_burst_standard/automatic,
 		"Spread" = /datum/lasrifle/base/energy_carbine_mode/base/spread,
 	)
 
-/datum/lasrifle/base/energy_carbine_mode/standard
+/datum/lasrifle/base/energy_carbine_mode/auto_burst_standard ///I know this seems tacky, but if I make auto burst a standard firemode it somehow buffs spread's fire delay.
 	charge_cost = 15
 	ammo = /datum/ammo/energy/lasgun/marine
-	fire_delay = 0.2 SECONDS
+	fire_delay = 0.15 SECONDS
 	burst_amount = 4
 	fire_sound = 'sound/weapons/guns/fire/Laser Rifle Standard.ogg'
-	message_to_user = "You set the laser carbine's charge mode to standard fire."
-	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOBURST)
-	fire_mode = GUN_FIREMODE_BURSTFIRE
+	message_to_user = "You set the laser carbine's charge mode to standard auto burst fire."
+	fire_mode = GUN_FIREMODE_AUTOBURST
 	icon_state = "tec"
+
+/datum/lasrifle/base/energy_carbine_mode/auto_burst_standard/automatic
+	message_to_user = "You set the laser carbine's charge mode to standard automatic fire."
+	fire_mode = GUN_FIREMODE_AUTOMATIC
 
 /datum/lasrifle/base/energy_carbine_mode/base/spread
 	charge_cost = 60
 	ammo = /datum/ammo/energy/lasgun/marine/blast
-	fire_delay = 1.2 SECONDS
+	fire_delay = 1.5 SECONDS
 	burst_amount = 1
 	fire_sound = 'sound/weapons/guns/fire/Laser Carbine Scatter.ogg'
 	message_to_user = "You set the laser carbine's charge mode to spread."
-	fire_mode = GUN_FIREMODE_SEMIAUTO
+	fire_mode = GUN_FIREMODE_AUTOMATIC
 	icon_state = "tec"
 	radial_icon_state = "laser_spread"
 
@@ -798,25 +799,25 @@
 	ammo_diff = null
 	cell_type = /obj/item/cell/lasgun/lasrifle/marine
 	charge_cost = 50
+	damage_falloff_mult = 0
 	gun_firemode = GUN_FIREMODE_AUTOMATIC
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_AUTOMATIC)
 
 	attachable_allowed = list(
 		/obj/item/attachable/bayonet,
 		/obj/item/attachable/bayonetknife,
-		/obj/item/attachable/verticalgrip,
-		/obj/item/attachable/lasersight,
-		/obj/item/attachable/bipod,
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/scope/unremovable/laser_sniper_scope,
+		/obj/item/attachable/attached_gun/grenade,
+		/obj/item/attachable/attached_gun/flamer,
 	)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ENERGY|GUN_AMMO_COUNTER
 	attachable_offset = list("muzzle_x" = 41, "muzzle_y" = 18,"rail_x" = 19, "rail_y" = 19, "under_x" = 28, "under_y" = 8, "stock_x" = 22, "stock_y" = 12)
 	starting_attachment_types = list(/obj/item/attachable/scope/unremovable/laser_sniper_scope)
 
-	aim_slowdown = 0.9
-	wield_delay = 0.9 SECONDS
+	aim_slowdown = 0.7
+	wield_delay = 0.7 SECONDS
 	scatter = 0
 	scatter_unwielded = 10
 	fire_delay = 1 SECONDS
@@ -869,25 +870,41 @@
 	attachable_allowed = list(
 		/obj/item/attachable/bayonet,
 		/obj/item/attachable/bayonetknife,
-		/obj/item/attachable/reddot,
-		/obj/item/attachable/verticalgrip,
-		/obj/item/attachable/angledgrip,
-		/obj/item/attachable/lasersight,
 		/obj/item/attachable/flashlight,
-		/obj/item/attachable/bipod,
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/scope/marine,
 		/obj/item/attachable/scope/mini,
+		/obj/item/attachable/attached_gun/grenade,
+		/obj/item/attachable/attached_gun/flamer,
 	)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ENERGY|GUN_AMMO_COUNTER
 	attachable_offset = list("muzzle_x" = 41, "muzzle_y" = 15,"rail_x" = 22, "rail_y" = 24, "under_x" = 30, "under_y" = 8, "stock_x" = 22, "stock_y" = 12)
 
-	aim_slowdown = 1
-	wield_delay = 1.2 SECONDS
+	aim_slowdown = 0.8
+	wield_delay = 1 SECONDS
 	scatter = 0
 	scatter_unwielded = 10
-	fire_delay = 0.2 SECONDS
-	accuracy_mult = 0.9
+	fire_delay = 0.15 SECONDS
+	accuracy_mult = 0.95
 	accuracy_mult_unwielded = 0.6
 	scatter_unwielded = 10
+	damage_falloff_mult = 0
+	mode_list = list(
+		"Standard" = /datum/lasrifle/base/energy_mg_mode/standard,
+		"Efficiency mode" = /datum/lasrifle/base/energy_mg_mode/standard/efficiency,
+	)
+
+/datum/lasrifle/base/energy_mg_mode/standard
+	charge_cost = 3
+	ammo = /datum/ammo/energy/lasgun/marine/autolaser
+	fire_delay = 0.2 SECONDS
+	fire_sound = 'sound/weapons/guns/fire/Laser Sniper Standard.ogg'
+	message_to_user = "You set the machine laser's charge mode to standard fire."
+	fire_mode = GUN_FIREMODE_AUTOMATIC
+	icon_state = "tem"
+
+/datum/lasrifle/base/energy_mg_mode/standard/efficiency
+	ammo = /datum/ammo/energy/lasgun/marine/autolaser/efficiency
+	fire_delay = 0.15 SECONDS
+	message_to_user = "You set the machine laser's charge mode to efficiency mode."
