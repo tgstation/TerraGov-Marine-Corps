@@ -54,7 +54,7 @@
 	key = "emote_me"
 	key_third_person = "custom"
 	message = null
-	category = CATEGORY_INVISIBLE //This shouldn't have a keybind
+	flags_emote = NO_KEYBIND //This shouldn't have a keybind
 
 
 /datum/emote/custom/run_emote(mob/user, params, type_override, intentional = FALSE, prefix)
