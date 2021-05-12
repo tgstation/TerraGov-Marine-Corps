@@ -26586,13 +26586,6 @@
 	},
 /turf/open/floor/plating,
 /area/prison/maintenance/hangar_barracks)
-"bEO" = (
-/obj/structure/table/reinforced,
-/obj/machinery/computer/shuttle/shuttle_control/dropship1{
-	use_power = 0
-	},
-/turf/open/floor/prison/darkred/full,
-/area/prison/security/checkpoint/hangar)
 "bEP" = (
 /obj/structure/table/reinforced,
 /obj/machinery/computer/secure_data,
@@ -41658,6 +41651,13 @@
 	},
 /turf/open/floor/plating,
 /area/prison/maintenance/residential/ne)
+"gsU" = (
+/obj/structure/table/reinforced,
+/obj/machinery/computer/shuttle/shuttle_control/dropship{
+	use_power = 0
+	},
+/turf/open/floor/prison/darkred/full,
+/area/prison/security/checkpoint/hangar)
 "gux" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber{
 	dir = 4;
@@ -41685,10 +41685,6 @@
 	dir = 6
 	},
 /area/prison/hangar/main)
-"gBG" = (
-/obj/effect/landmark/dropship_start_location,
-/turf/open/floor/prison/bright_clean/two,
-/area/prison/yard)
 "gBP" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4
@@ -42451,17 +42447,6 @@
 /obj/structure/cable,
 /turf/open/floor/prison/darkred/full,
 /area/prison/cellblock/maxsec/north)
-"lue" = (
-/obj/structure/table/reinforced,
-/obj/machinery/computer/shuttle/shuttle_control/dropship1,
-/obj/effect/decal/warning_stripes/thin{
-	dir = 8
-	},
-/obj/effect/decal/warning_stripes/thin{
-	dir = 1
-	},
-/turf/open/floor/plating,
-/area/prison/hangar/civilian)
 "lvG" = (
 /obj/structure/bed,
 /obj/item/bedsheet/red,
@@ -42574,6 +42559,17 @@
 /obj/effect/alien/weeds/node,
 /turf/open/floor/prison/bright_clean,
 /area/prison/hallway/central)
+"mwh" = (
+/obj/structure/table/reinforced,
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
+	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
+	},
+/obj/machinery/computer/shuttle/shuttle_control/dropship/two,
+/turf/open/floor/plating,
+/area/prison/hangar/civilian)
 "myW" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/closed/wall/prison,
@@ -44362,6 +44358,10 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plating,
 /area/prison/maintenance/residential/sw)
+"yaF" = (
+/obj/effect/landmark/dropship_start_location,
+/turf/open/floor/prison/bright_clean/two,
+/area/prison/yard)
 "ybf" = (
 /obj/structure/sink{
 	dir = 8
@@ -45837,7 +45837,7 @@ aab
 aab
 iHW
 amu
-lue
+mwh
 niO
 pep
 aok
@@ -81830,7 +81830,7 @@ aWR
 hwj
 bjj
 bny
-gBG
+yaF
 bpG
 bgQ
 bri
@@ -103949,7 +103949,7 @@ bzk
 bAL
 puv
 bDf
-bEO
+gsU
 bDb
 ghl
 bGO

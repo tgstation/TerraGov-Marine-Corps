@@ -58,7 +58,7 @@
 	return TRUE
 
 
-/obj/machinery/door/poddoor/railing/update_icon_state()
+/obj/machinery/door/poddoor/railing/update_icon()
 	if(density)
 		icon_state = "railing1"
 	else

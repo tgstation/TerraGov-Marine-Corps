@@ -13,6 +13,8 @@
 	var/item_state = null //if you don't want to use icon_state for onmob inhand/belt/back/ear/suitstorage/glove sprite.
 						//e.g. most headsets have different icon_state but they all use the same sprite when shown on the mob's ears.
 						//also useful for items with many icon_state values when you don't want to make an inhand sprite for each value.
+	///The icon state used to represent this image in "icons/obj/items/items_mini.dmi" Used in /obj/item/storage/box/visual to display tiny items in the box
+	var/icon_state_mini = "item"
 	var/force = 0
 	var/damtype = BRUTE
 	///Byond tick delay between left click attacks
@@ -306,7 +308,7 @@
 
 	var/equipped_to_slot = flags_equip_slot & slotdefine2slotbit(slot)
 	if(equipped_to_slot) // flags_equip_slot is a bitfield
-		SEND_SIGNAL(src, COMSIG_ITEM_EQUIPPED_TO_SLOT, user)
+		SEND_SIGNAL(src, COMSIG_ITEM_EQUIPPED_TO_SLOT, user, slot)
 	else
 		SEND_SIGNAL(src, COMSIG_ITEM_EQUIPPED_NOT_IN_SLOT, user, slot)
 

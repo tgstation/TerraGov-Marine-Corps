@@ -227,7 +227,7 @@
 /area/icy_caves/caves/crashed_ship)
 "aS" = (
 /obj/structure/closet/crate/explosives,
-/obj/item/storage/box/nade_box,
+/obj/item/storage/box/visual/grenade/frag,
 /obj/item/explosive/plastique,
 /obj/item/explosive/plastique,
 /obj/item/explosive/plastique,
@@ -1676,6 +1676,11 @@
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves/west)
+"jE" = (
+/obj/structure/table/reinforced,
+/obj/machinery/computer/shuttle/shuttle_control/dropship,
+/turf/open/floor/plating/ground/snow,
+/area/lv624/lazarus/console)
 "jH" = (
 /obj/machinery/landinglight/ds1/delaythree{
 	dir = 4
@@ -2157,6 +2162,14 @@
 	},
 /turf/open/floor/tile/dark/brown2,
 /area/icy_caves/outpost/refinery)
+"mt" = (
+/obj/machinery/atmospherics/pipe/manifold/green/hidden{
+	dir = 1
+	},
+/obj/structure/cable,
+/obj/effect/landmark/dropship_start_location,
+/turf/open/floor/tile/dark,
+/area/icy_caves/outpost/outside)
 "mv" = (
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves)
@@ -3921,11 +3934,6 @@
 	dir = 9
 	},
 /area/icy_caves/caves)
-"xF" = (
-/obj/structure/table/reinforced,
-/obj/machinery/computer/shuttle/shuttle_control/dropship1,
-/turf/open/floor/plating/ground/snow,
-/area/lv624/lazarus/console)
 "xH" = (
 /turf/closed/wall/r_wall,
 /area/space)
@@ -4747,6 +4755,11 @@
 	dir = 1
 	},
 /area/icy_caves/outpost/medbay)
+"El" = (
+/obj/structure/table/reinforced,
+/obj/machinery/computer/shuttle/shuttle_control/dropship/two,
+/turf/open/floor/tile/dark,
+/area/icy_caves/outpost/LZ2)
 "En" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
 	dir = 2
@@ -6469,11 +6482,6 @@
 	dir = 4
 	},
 /area/icy_caves/caves)
-"RF" = (
-/obj/structure/table/reinforced,
-/obj/machinery/computer/shuttle/shuttle_control/dropship1,
-/turf/open/floor/tile/dark,
-/area/icy_caves/outpost/LZ2)
 "RG" = (
 /turf/closed/ice_rock/singleEnd{
 	dir = 1
@@ -6936,14 +6944,6 @@
 /obj/item/storage/fancy/vials,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/research)
-"Vj" = (
-/obj/machinery/atmospherics/pipe/manifold/green/hidden{
-	dir = 1
-	},
-/obj/structure/cable,
-/obj/effect/landmark/dropship_start_location,
-/turf/open/floor/tile/dark,
-/area/icy_caves/outpost/outside)
 "Vk" = (
 /obj/structure/cable,
 /turf/open/floor/plating/ground/snow,
@@ -7227,7 +7227,7 @@
 /obj/structure/closet/crate/explosives,
 /obj/item/storage/box/m94,
 /obj/item/storage/box/m94,
-/obj/item/storage/box/nade_box/tear_gas,
+/obj/item/storage/box/visual/grenade/teargas,
 /turf/open/floor/plating,
 /area/icy_caves/outpost/garage)
 "XF" = (
@@ -11065,7 +11065,7 @@ WD
 UE
 AB
 Nr
-xF
+jE
 Zm
 bq
 BY
@@ -17449,7 +17449,7 @@ pD
 XO
 XO
 HS
-Vj
+mt
 np
 np
 bf
@@ -28811,7 +28811,7 @@ iQ
 kN
 kN
 kN
-RF
+El
 kN
 kN
 kN

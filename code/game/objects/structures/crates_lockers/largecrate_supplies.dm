@@ -195,9 +195,9 @@
 	supplies = list(/obj/item/storage/box/explosive_mines = 5)
 
 /obj/structure/largecrate/supply/explosives/grenades
-	name = "\improper M40 HDEP grenade case (x50)"
+	name = "\improper M40 HEDP grenade case (x50)"
 	desc = "A case containing two twenty-five M40 HDEP grenade boxes."
-	supplies = list(/obj/item/storage/box/nade_box = 2)
+	supplies = list(/obj/item/storage/box/visual/grenade/frag = 2)
 
 /obj/structure/largecrate/supply/explosives/mortar_he
 	name = "80mm HE mortar shell case (x25)"
