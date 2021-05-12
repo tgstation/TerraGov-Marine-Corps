@@ -183,7 +183,7 @@
 	var/datum/hive_status/normal/HS = GLOB.hive_datums[XENO_HIVE_NORMAL]
 	var/area_name = get_area_name(nuke)
 	HS.xeno_message("An overwhelming wave of dread ripples throughout the hive... A nuke has been activated[area_name ? " in [area_name]":""]!")
-	HS.set_all_trackers(nuke)
+	HS.set_all_xeno_trackers(nuke)
 
 /datum/game_mode/infestation/crash/proc/play_cinematic(z_level)
 	GLOB.enter_allowed = FALSE
