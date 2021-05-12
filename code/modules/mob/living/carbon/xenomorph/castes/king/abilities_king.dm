@@ -31,6 +31,11 @@
 // ***************************************
 // *********** Gravity Crush
 // ***************************************
+#define ADD_FILTER (1<<0)
+#define REMOVE_FILTER (1<<1)
+#define GRAV_CRUSH (1<<2)
+
+#define WINDUP_GRAV 2 SECONDS
 
 /datum/action/xeno_action/activable/gravity_crush
 	name = "Gravity Crush"
@@ -58,31 +63,37 @@
 
 /datum/action/xeno_action/activable/gravity_crush/use_ability(atom/A)
 	var/list/turfs = RANGE_TURFS(1, A)
-	for(var/turf/targetted AS in turfs)
-		for(var/atom/movable/item AS in targetted.contents)
-			if(ismob(item))
-				continue
-			item.add_filter("crushblur", 1, list("type"="radial_blur", "size" = 0.3))
-		targetted.add_filter("crushblur", 1, list("type"="radial_blur", "size" = 0.3))
-	if(!do_after(owner, 2 SECONDS, FALSE, owner, BUSY_ICON_DANGER))
-		for(var/turf/targetted AS in turfs)
-			for(var/atom/movable/item AS in targetted.contents)
-				if(ismob(item))
-					continue
-				item.remove_filter("crushblur", 1, list("type"="radial_blur", "size" = 0.3))
-			targetted.remove_filter("crushblur")
+	playsound(A, 'sound/effects/bomb_fall.ogg', 75, FALSE)
+	act_on_turfs(ADD_FILTER, turfs)
+	if(!do_after(owner, WINDUP_GRAV, FALSE, owner, BUSY_ICON_DANGER))
+		act_on_turfs(REMOVE_FILTER, turfs)
 		return fail_activate()
+	act_on_turfs(REMOVE_FILTER|GRAV_CRUSH, turfs)
 	succeed_activate()
 	add_cooldown()
 	A.visible_message("<span class='warning'>[A] collapses inward as its gravity suddenly increases!</span>")
-	playsound(A, 'sound/effects/bomb_fall.ogg', 75, FALSE)
+
+///Will do the selected actions on all turfs and items in the turf in the list of turfs
+/datum/action/xeno_action/activable/gravity_crush/proc/act_on_turfs(action_flags, list/turfs)
 	for(var/turf/targetted AS in turfs)
+		if(action_flags & ADD_FILTER)
+			targetted.add_filter("crushblur", 1, radial_blur_filter(0.3))
+		if(action_flags & REMOVE_FILTER)
+			targetted.remove_filter("crushblur")
 		for(var/atom/movable/item AS in targetted.contents)
-			if(ismob(item))
-				continue
-			item.remove_filter("crushblur", 1, list("type"="radial_blur", "size" = 0.3))
-			item.ex_act(EXPLODE_HEAVY)	//crushing without damaging the nearby area
-		addtimer(CALLBACK(targetted, /atom.proc/remove_filter, "crushblur"), 1 SECONDS)
+			if(action_flags & ADD_FILTER)
+				item.add_filter("crushblur", 1, radial_blur_filter(0.3))
+				addtimer(CALLBACK(item, /atom.proc/remove_filter, "crushblur"), WINDUP_GRAV) //Fail safe if the item moves out of the zone.
+			if(action_flags & REMOVE_FILTER)
+				item.remove_filter("crushblur")
+			if(action_flags & GRAV_CRUSH)
+				if(isliving(item))
+					var/mob/living/mob_crushed = item
+					if(mob_crushed.stat == DEAD)//No abuse of that mechanic for some permadeath
+						continue
+					if(mob_crushed.faction == FACTION_XENO) //Don't harm the xeno. I thought it was better than a istype, could be wrong
+						continue
+				item.ex_act(EXPLODE_HEAVY)	//crushing without damaging the nearby area
 
 /datum/action/xeno_action/activable/gravity_crush/ai_should_start_consider()
 	return TRUE
@@ -93,6 +104,10 @@
 	if(!can_use_ability(target, override_flags = XACT_IGNORE_SELECTED_ABILITY))
 		return ..()
 	return TRUE
+
+#undef ADD_FILTER
+#undef REMOVE_FILTER
+#undef GRAV_CRUSH
 
 // ***************************************
 // *********** Psychic Summon
