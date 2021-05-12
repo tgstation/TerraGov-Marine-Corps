@@ -269,37 +269,37 @@ WEAPONS
 /datum/supply_packs/weapons/explosives_razor
 	name = "RB grenade box crate"
 	notes = "Containers 20 razor burns"
-	contains = list(/obj/item/storage/box/nade_box/razor_burn)
+	contains = list(/obj/item/storage/box/visual/grenade/razorburn)
 	cost = 50
 
 /datum/supply_packs/weapons/explosives_hedp
 	name = "M40 HEDP high explosive grenade box crate"
 	notes = "Contains 25 grenades"
-	contains = list(/obj/item/storage/box/nade_box)
+	contains = list(/obj/item/storage/box/visual/grenade/frag)
 	cost = 50
 
 /datum/supply_packs/weapons/explosives_hidp
 	name = "M40 HIDP incendiary explosive grenade box crate"
 	notes = "Contains 25 grenades"
-	contains = list(/obj/item/storage/box/nade_box/HIDP)
+	contains = list(/obj/item/storage/box/visual/grenade/incendiary)
 	cost = 50
 
 /datum/supply_packs/weapons/explosives_m15
 	name = "M15 fragmentation grenade box crate"
 	notes = "Contains 15 grenades"
-	contains = list(/obj/item/storage/box/nade_box/M15)
+	contains = list(/obj/item/storage/box/visual/grenade/M15)
 	cost = 50
 
 /datum/supply_packs/weapons/explosives_hsdp
 	name = "M40 HSDP white phosphorous grenade box crate"
 	notes = "Contains 15 grenades"
-	contains = list(/obj/item/storage/box/nade_box/phos)
+	contains = list(/obj/item/storage/box/visual/grenade/phosphorus)
 	cost = 70
 
 /datum/supply_packs/weapons/explosives_plasmadrain
 	name = "M40-T gas grenade box crate"
 	notes = "Contains 25 grenades"
-	contains = list(/obj/item/storage/box/nade_box/plasma_drain_gas)
+	contains = list(/obj/item/storage/box/visual/grenade/drain)
 	cost = 70
 
 /datum/supply_packs/weapons/plastique
