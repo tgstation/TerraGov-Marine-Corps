@@ -12,77 +12,55 @@
 	icon_state = "cic"
 	fake_zlevel = 1 // upperdeck
 
-/area/mainship/command/cic/rebel
-
 /area/mainship/command/airoom
 	name = "AI Core"
 	icon_state = "airoom"
 	fake_zlevel = 1 // upperdeck
-
-/area/mainship/command/airoom/rebel
 
 /area/mainship/command/telecomms
 	name = "Telecommunications"
 	icon_state = "tcomms"
 	fake_zlevel = 1 // upperdeck
 
-/area/mainship/command/telecomms/rebel
-
 /area/mainship/command/self_destruct
 	name = "Self-Destruct Core Room"
 	icon_state = "selfdestruct"
 	fake_zlevel = 1 // upperdeck
-
-/area/mainship/command/self_destruct/rebel
 
 /area/mainship/command/corporateliaison
 	name = "Corporate Liaison Office"
 	icon_state = "corporatespace"
 	fake_zlevel = 1 // upperdeck
 
-/area/mainship/command/corporateliaison/rebel
-
 /area/mainship/engineering/upper_engineering
 	name = "Upper Engineering"
 	icon_state = "upperengineering"
 	fake_zlevel = 1 // upperdeck
-
-/area/mainship/engineering/upper_engineering/rebel
 
 /area/mainship/engineering/ce_room
 	name = "Chief Ship Engineer Office"
 	icon_state = "ceroom"
 	fake_zlevel = 1 // upperdeck
 
-/area/mainship/engineering/ce_room/rebel
-
 /area/mainship/engineering/lower_engine_monitoring
 	name = "Engine Reactor Monitoring"
 	icon_state = "lowermonitoring"
 	fake_zlevel = 2 // lowerdeck
-
-/area/mainship/engineering/lower_engine_monitoring/rebel
 
 /area/mainship/engineering/lower_engineering
 	name = "Engineering Lower"
 	icon_state = "lowerengineering"
 	fake_zlevel = 2 // lowerdeck
 
-/area/mainship/engineering/lower_engineering/rebel
-
 /area/mainship/engineering/engineering_workshop
 	name = "Engineering Workshop"
 	icon_state = "workshop"
 	fake_zlevel = 2 // lowerdeck
 
-/area/mainship/engineering/engineering_workshop/rebel
-
 /area/mainship/engineering/engine_core
 	name = "Engine Reactor Core Room"
 	icon_state = "coreroom"
 	fake_zlevel = 2 // lowerdeck
-
-/area/mainship/engineering/engine_core/rebel
 
 /area/mainship/engineering/starboard_atmos
 	name = "Atmospherics Starboard"
@@ -193,8 +171,6 @@
 	icon_state = "starboardumbilical"
 	fake_zlevel = 2 // lowerdeck
 
-/area/mainship/hallways/starboard_umbilical/rebel
-
 /area/mainship/hallways/port_umbilical
 	name = "Umbilical Port"
 	icon_state = "portumbilical"
@@ -227,8 +203,6 @@
 	name = "Hallway Starboard"
 	icon_state = "starboard"
 	fake_zlevel = 2 // lowerdeck
-
-/area/mainship/hallways/starboard_hallway/rebel
 
 /area/mainship/hull/lower_hull
 	name = "Hull Lower"
@@ -273,8 +247,6 @@
 	icon_state = "portemb"
 	fake_zlevel = 1 // upperdeck
 
-/area/mainship/living/port_garden/rebel
-
 /area/mainship/living/starboard_garden
 	name = "Garden"
 	icon_state = "starboardemb"
@@ -312,8 +284,6 @@
 	icon_state = "food"
 	fake_zlevel = 2 // lowerdeck
 
-/area/mainship/living/cafeteria_starboard/rebel
-
 /area/mainship/living/cafeteria_officer
 	name = "Officer Cafeteria"
 	icon_state = "food"
@@ -334,7 +304,7 @@
 	icon_state = "livingspace"
 	fake_zlevel = 2 // lowerdeck
 
-/area/mainship/living/pilotbunks/rebel
+/area/mainship/living/pilotbunks
 
 /area/mainship/living/bridgebunks
 	name = "Staff Officer Bunks"
@@ -446,8 +416,6 @@
 	name = "Common Squads Preparation"
 	icon_state = "req"
 	fake_zlevel = 2 // lowerdeck
-
-/area/mainship/squads/general/rebel
 
 /area/mainship/squads/req
 	name = "Requisitions"
