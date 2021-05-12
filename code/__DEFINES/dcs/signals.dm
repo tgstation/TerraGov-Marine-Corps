@@ -595,6 +595,7 @@
 #define COMSIG_XENOABILITY_RESYNC "xenoability_resync"
 #define COMSIG_XENOABILITY_BLINK "xenoability_blink"
 #define COMSIG_XENOABILITY_BANISH "xenoability_banish"
+#define COMSIG_XENOABILITY_RECALL "xenoability_recall"
 
 #define COMSIG_XENOABILITY_SCATTER_SPIT "xenoability_scatter_spit"
 

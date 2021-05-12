@@ -516,4 +516,10 @@
 	description = "Banish a creature or object a short distance away within line of sight to null space. Can target oneself and allies. Can be manually cancelled with Recall."
 	keybind_signal = COMSIG_XENOABILITY_BANISH
 
+/datum/keybinding/xeno/recall
+	name = "recall"
+	full_name = "Wraith: Recall"
+	description = "Recall a target from netherspace, ending Banish's effect."
+	keybind_signal = COMSIG_XENOABILITY_RECALL
+
 //Wraith keybinds - END
