@@ -1,0 +1,4 @@
+author: "Walarks"
+delete-after: True
+changes: 
+  - bugfix: "fixed vali not deactivating if activated and immediately after that the exoskeleton is unequipped"

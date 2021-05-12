@@ -258,10 +258,16 @@
 		return
 	if(add_tick >= required_ticks)
 		if(miner_upgrade_type == MINER_AUTOMATED)
-			SSpoints.supply_points[faction] += mineral_value
-			do_sparks(5, TRUE, src)
-			playsound(loc,'sound/effects/phasein.ogg', 50, FALSE)
-			say("Ore shipment has been sold for [mineral_value] points.")
+			for(var/direction in GLOB.cardinals)
+				if(!isopenturf(get_step(loc, direction))) //Must be open on one side to operate
+					continue
+				SSpoints.supply_points[faction] += mineral_value
+				do_sparks(5, TRUE, src)
+				playsound(loc,'sound/effects/phasein.ogg', 50, FALSE)
+				say("Ore shipment has been sold for [mineral_value] points.")
+				add_tick = 0
+				return
+			playsound(loc,'sound/machines/buzz-two.ogg', 35, FALSE)
 			add_tick = 0
 			return
 		stored_mineral += 1
