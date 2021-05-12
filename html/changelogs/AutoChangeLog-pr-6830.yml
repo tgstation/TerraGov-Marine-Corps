@@ -1,0 +1,4 @@
+author: "Wayland-Smithy"
+delete-after: True
+changes: 
+  - qol: "You will now be notified of any active testmerges automatically when you login."
