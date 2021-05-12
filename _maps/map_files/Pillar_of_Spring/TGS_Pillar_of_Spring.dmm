@@ -79,8 +79,8 @@
 /turf/open/floor/mainship/cargo,
 /area/mainship/hallways/hangar)
 "ay" = (
-/turf/open/space/basic,
-/area/mainship/hull/lower_hull)
+/turf/closed/wall/mainship,
+/area/mainship/hallways/hangar/droppod)
 "az" = (
 /turf/closed/wall/mainship,
 /area/mainship/hallways/hangar)
@@ -1054,7 +1054,7 @@
 	dir = 1
 	},
 /turf/open/floor/mainship/mono,
-/area/mainship/hull/lower_hull)
+/area/mainship/hallways/hangar/droppod)
 "dw" = (
 /obj/machinery/light{
 	dir = 4
@@ -1153,7 +1153,7 @@
 	dir = 1
 	},
 /turf/open/floor/mainship/mono,
-/area/mainship/hull/lower_hull)
+/area/mainship/hallways/hangar/droppod)
 "dQ" = (
 /turf/open/floor/mainship/sterile/side{
 	dir = 9
@@ -1740,11 +1740,6 @@
 	},
 /turf/open/floor/mainship/cargo,
 /area/mainship/hallways/hangar)
-"gh" = (
-/obj/structure/droppod,
-/obj/structure/dropprop,
-/turf/open/floor/mainship/cargo,
-/area/mainship/hull/lower_hull)
 "gi" = (
 /obj/machinery/vending/cola,
 /turf/open/floor/mainship/mono,
@@ -1991,7 +1986,7 @@
 /turf/open/floor/mainship/cargo/arrow{
 	dir = 8
 	},
-/area/mainship/hull/lower_hull)
+/area/mainship/hallways/hangar/droppod)
 "hm" = (
 /obj/machinery/light{
 	dir = 8
@@ -2055,7 +2050,7 @@
 /obj/item/weapon/claymore/mercsword/machete,
 /obj/item/weapon/claymore/mercsword/machete,
 /turf/open/floor/mainship/sterile/plain,
-/area/mainship/hull/lower_hull)
+/area/mainship/hallways/hangar/droppod)
 "hv" = (
 /turf/open/floor/mainship/sterile/side{
 	dir = 1
@@ -2112,7 +2107,7 @@
 /obj/machinery/computer/droppod_control,
 /obj/structure/table/mainship,
 /turf/open/floor/mainship/sterile/plain,
-/area/mainship/hull/lower_hull)
+/area/mainship/hallways/hangar/droppod)
 "hH" = (
 /obj/machinery/door/firedoor/multi_tile{
 	dir = 8
@@ -2203,7 +2198,7 @@
 /turf/open/floor/mainship/cargo/arrow{
 	dir = 4
 	},
-/area/mainship/hull/lower_hull)
+/area/mainship/hallways/hangar/droppod)
 "hU" = (
 /obj/structure/table/mainship,
 /obj/item/storage/firstaid/fire{
@@ -10640,7 +10635,7 @@
 "Ih" = (
 /obj/machinery/door_control/mainship/droppod,
 /turf/closed/wall/mainship,
-/area/mainship/hull/lower_hull)
+/area/mainship/hallways/hangar/droppod)
 "Ij" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on,
 /turf/open/floor/mainship/mono,
@@ -40593,15 +40588,15 @@ fI
 fI
 Tm
 rc
-ay
-ad
-ad
-ad
-ad
-ad
-ad
-ad
-ad
+rc
+ha
+ha
+ha
+ha
+ha
+ha
+ha
+ha
 ad
 ad
 ad
@@ -40850,15 +40845,15 @@ fI
 fI
 Tm
 rc
-ay
+rc
 ha
 lX
 lX
 lX
 lX
 lX
-gh
-ad
+lX
+ha
 aW
 aO
 aO
@@ -41107,7 +41102,7 @@ fI
 fI
 Tm
 rc
-ay
+rc
 ha
 ae
 ae
@@ -41115,7 +41110,7 @@ ae
 ae
 wn
 hl
-ad
+ha
 aH
 Mb
 Mb
@@ -41364,7 +41359,7 @@ fI
 fI
 Tm
 rc
-ay
+rc
 ha
 lX
 lX
@@ -41372,7 +41367,7 @@ lX
 lX
 Gz
 ht
-ad
+ha
 aL
 Mb
 dL
@@ -41621,15 +41616,15 @@ aa
 aa
 Tm
 rc
-ay
+rc
 ha
 lX
 lX
 lX
 lX
 dv
-Mb
-Mb
+ay
+ay
 aO
 Sh
 ap
@@ -41878,7 +41873,7 @@ aa
 aa
 Tm
 rc
-ay
+rc
 ha
 aE
 ae
@@ -42135,7 +42130,7 @@ aa
 aa
 Tm
 rc
-ay
+rc
 ha
 lX
 lX
@@ -42392,7 +42387,7 @@ aa
 aa
 Tm
 rc
-ay
+rc
 ha
 lX
 lX
@@ -42649,7 +42644,7 @@ aa
 aa
 Tm
 rc
-ay
+rc
 ha
 aK
 RQ
@@ -42906,7 +42901,7 @@ aa
 aa
 Tm
 rc
-ay
+rc
 ha
 lX
 lX
@@ -43163,7 +43158,7 @@ aa
 aa
 Tm
 rc
-ay
+rc
 ha
 lX
 lX
@@ -43171,7 +43166,7 @@ lX
 lX
 Mf
 hG
-Mb
+ay
 aO
 Mb
 aN
@@ -43420,7 +43415,7 @@ rc
 rc
 rc
 rc
-ay
+rc
 ha
 RQ
 RQ
@@ -43428,7 +43423,7 @@ RQ
 RQ
 Qq
 hT
-Mb
+ay
 aO
 Mb
 aN
@@ -43677,15 +43672,15 @@ rc
 rc
 rc
 rc
-ay
+rc
 ha
 lX
 lX
 lX
 lX
 lX
-gh
-Mb
+lX
+ay
 aW
 Mb
 aN
@@ -43930,19 +43925,19 @@ aa
 aa
 Tm
 rc
-ad
-ad
-ad
-ad
-ay
-ad
-Mb
-Mb
-Mb
-Mb
-Mb
-Mb
-Mb
+bi
+bi
+bi
+bi
+bi
+bi
+az
+az
+az
+az
+az
+az
+az
 YP
 Mb
 Zx
@@ -44187,7 +44182,7 @@ aa
 aa
 Tm
 rc
-ad
+bi
 at
 ml
 Xs
@@ -44444,7 +44439,7 @@ aa
 aa
 Tm
 rc
-ad
+bi
 ap
 bb
 an
@@ -44701,7 +44696,7 @@ aa
 aa
 Tm
 rc
-ad
+bi
 ap
 ca
 bh
@@ -44958,7 +44953,7 @@ aa
 aa
 Tm
 rc
-ad
+bi
 ap
 ca
 bh
@@ -45215,7 +45210,7 @@ aa
 aa
 Tm
 rc
-ad
+bi
 ap
 ca
 bh
@@ -45472,7 +45467,7 @@ aa
 aa
 Tm
 rc
-ad
+bi
 ap
 ca
 bh
@@ -45729,7 +45724,7 @@ aa
 aa
 Tm
 rc
-ad
+bi
 ap
 ca
 bh
@@ -45986,7 +45981,7 @@ aa
 aa
 Tm
 rc
-ad
+bi
 ap
 ca
 bh
@@ -46243,7 +46238,7 @@ aa
 aa
 Tm
 rc
-ad
+bi
 ap
 ca
 bh
@@ -46500,7 +46495,7 @@ aa
 aa
 Tm
 rc
-ad
+bi
 ap
 ba
 ao
@@ -46757,7 +46752,7 @@ aa
 aa
 Tm
 rc
-ad
+bi
 ap
 NL
 Br
@@ -47014,11 +47009,11 @@ aa
 aa
 Tm
 rc
-ad
-ad
-ad
-ad
-ay
+bi
+bi
+bi
+bi
+bi
 bi
 az
 az
@@ -47275,7 +47270,7 @@ rc
 rc
 rc
 rc
-ay
+rc
 bi
 Ge
 Ge
@@ -47532,7 +47527,7 @@ rc
 rc
 rc
 rc
-ay
+rc
 bi
 af
 af
@@ -47789,7 +47784,7 @@ aa
 aa
 Tm
 rc
-ay
+rc
 bi
 ak
 aJ
@@ -48046,7 +48041,7 @@ aa
 aa
 Tm
 rc
-ay
+rc
 bi
 aM
 aM
@@ -48303,7 +48298,7 @@ aa
 aa
 Tm
 rc
-ay
+rc
 bi
 aR
 as
@@ -48560,7 +48555,7 @@ aa
 aa
 Tm
 rc
-ay
+rc
 bi
 al
 al
@@ -48817,7 +48812,7 @@ aa
 aa
 Tm
 rc
-ay
+rc
 bi
 al
 al
@@ -49074,7 +49069,7 @@ aa
 aa
 Tm
 rc
-ay
+rc
 bi
 bf
 aF
@@ -49331,7 +49326,7 @@ aa
 aa
 Tm
 rc
-ay
+rc
 bi
 ah
 ah
@@ -49588,7 +49583,7 @@ aa
 aa
 Tm
 rc
-ay
+rc
 bi
 cy
 ao
@@ -49845,7 +49840,7 @@ aa
 aa
 Tm
 rc
-ay
+rc
 bi
 cq
 cF
@@ -50102,7 +50097,7 @@ aa
 aa
 Tm
 rc
-ay
+rc
 bi
 af
 af
@@ -50359,7 +50354,7 @@ aa
 aa
 Tm
 rc
-ay
+rc
 bi
 bi
 bi
