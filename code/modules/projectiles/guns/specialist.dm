@@ -121,7 +121,7 @@
 
 /obj/item/weapon/gun/rifle/sniper/antimaterial/process()
 	var/obj/item/attachable/scope = LAZYACCESS(attachments, ATTACHMENT_SLOT_RAIL)
-	if(scope && !scope.zoom)
+	if(!scope.zoom)
 		laser_off()
 		return
 	var/mob/living/user = loc
