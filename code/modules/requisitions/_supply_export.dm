@@ -15,6 +15,8 @@
 		if(XENO_TIER_FOUR)
 			. = 100
 	SSpoints.supply_points[faction_selling] += .
+	return new /datum/export_report(., name, faction_selling)
+
 
 /mob/living/carbon/human/supply_export(faction_selling)
 	switch(job.job_category)
@@ -27,6 +29,7 @@
 		if(JOB_CAT_COMMAND)
 			. = 100
 	SSpoints.supply_points[faction_selling] += .
+	return new /datum/export_report(., name, faction_selling)
 
 /// Return TRUE if the relation between the two factions are bad enough that a bounty is on the human_to_sell head
 /proc/can_sell_human_body(mob/living/carbon/human/human_to_sell, seller_faction)

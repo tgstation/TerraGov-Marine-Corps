@@ -200,13 +200,26 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 		SSpoints.shopping_history += SO
 
 
+/datum/export_report
+	/// How many points from that export
+	var/points
+	/// Name of the item exported
+	var/export_name
+	/// What faction did the export
+	var/faction
+
+/datum/export_report/New(_points, _export_name, _faction)
+	points = _points
+	export_name = _export_name 
+	faction = _faction
+
 /obj/docking_port/mobile/supply/proc/sell()
 	for(var/place in shuttle_areas)
 		var/area/shuttle/shuttle_area = place
 		for(var/atom/movable/AM in shuttle_area)
 			if(AM.anchored)
 				continue
-			AM.supply_export(faction)
+			SSpoints.export_history += AM.supply_export(faction)
 			qdel(AM)
 
 /obj/item/supplytablet
@@ -288,8 +301,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 	. = list()
 	.["currentpoints"] = round(SSpoints.supply_points[user.faction])
 	.["requests"] = list()
-	for(var/i in SSpoints.requestlist)
-		var/datum/supply_order/SO = SSpoints.requestlist[i]
+	for(var/datum/supply_order/SO AS in SSpoints.requestlist)
 		if(SO.faction != user.faction)
 			continue
 		var/list/packs = list()
@@ -324,8 +336,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 		.["approvedrequests"] += list(list("id" = SO.id, "orderer" = SO.orderer, "orderer_rank" = SO.orderer_rank, "reason" = SO.reason, "cost" = cost, "packs" = packs, "authed_by" = SO.authorised_by))
 	.["awaiting_delivery"] = list()
 	.["awaiting_delivery_orders"] = 0
-	for(var/i in SSpoints.shoppinglist)
-		var/datum/supply_order/SO = SSpoints.shoppinglist[i]
+	for(var/datum/supply_order/SO AS in SSpoints.shoppinglist)
 		if(SO.faction != user.faction)
 			continue
 		.["awaiting_delivery_orders"]++
@@ -333,9 +344,15 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 		for(var/datum/supply_packs/SP AS in SO.pack)
 			packs += SP.type
 		.["awaiting_delivery"] += list(list("id" = SO.id, "orderer" = SO.orderer, "orderer_rank" = SO.orderer_rank, "reason" = SO.reason, "packs" = packs, "authed_by" = SO.authorised_by))
+	.["export_history"] = list()
+	var/id = 0
+	for(var/datum/export_report/report AS in SSpoints.export_history)
+		if(report.faction != user.faction)
+			continue
+		.["export_history"] += list("id" = id, "name" = report.export_name, "points" = report.points)
+		id++
 	.["shopping_history"] = list()
-	for(var/i in SSpoints.shopping_history)
-		var/datum/supply_order/SO = i
+	for(var/datum/supply_order/SO AS in SSpoints.shopping_history)
 		if(SO.faction != user.faction)
 			continue
 		var/list/packs = list()

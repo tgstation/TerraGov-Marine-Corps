@@ -27,9 +27,10 @@
 	if(!do_checks(spirited_away, user))
 		return
 	do_extract(spirited_away, user)
-	. = spirited_away.supply_export(user.faction)
+	var/datum/export_report/export_report = spirited_away.supply_export(user.faction)
+	SSpoints.export_history += export_report
 	user.visible_message("<span class='notice'>[user] finishes attaching [src] to [spirited_away] and activates it.</span>",\
-	"<span class='notice'>You attach the pack to [spirited_away] and activate it. This looks like it will yield [. ? . : "no"] point[. == 1 ? "" : "s"].</span>", null, 5)
+	"<span class='notice'>You attach the pack to [spirited_away] and activate it. This looks like it will yield [export_report.points ? export_report.points : "no"] point[export_report.points == 1 ? "" : "s"].</span>", null, 5)
 
 	qdel(spirited_away)
 
