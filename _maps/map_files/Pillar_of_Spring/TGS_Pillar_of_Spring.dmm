@@ -320,9 +320,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
-"bq" = (
-/turf/closed/wall/mainship/white,
-/area/mainship/hull/lower_hull)
 "br" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
@@ -5050,7 +5047,7 @@
 /area/mainship/hallways/hangar)
 "ru" = (
 /turf/open/floor/plating/plating_catwalk,
-/area/space)
+/area/mainship/hull/lower_hull)
 "rv" = (
 /obj/structure/closet/secure_closet/bar/captain,
 /turf/open/floor/wood,
@@ -5263,7 +5260,7 @@
 "se" = (
 /obj/machinery/light/small,
 /turf/open/floor/plating/plating_catwalk,
-/area/space)
+/area/mainship/hull/lower_hull)
 "sf" = (
 /obj/structure/bed/chair/wood/wings{
 	dir = 4
@@ -6177,7 +6174,7 @@
 	dir = 2
 	},
 /turf/open/floor/mainship/mono,
-/area/mainship/hull/lower_hull)
+/area/mainship/medical/lower_medical)
 "uV" = (
 /obj/machinery/light{
 	dir = 1
@@ -6645,7 +6642,7 @@
 	dir = 1
 	},
 /turf/open/floor/mainship/mono,
-/area/mainship/hull/lower_hull)
+/area/mainship/medical/lower_medical)
 "wr" = (
 /obj/machinery/alarm{
 	dir = 4
@@ -6700,7 +6697,7 @@
 	pixel_x = 24
 	},
 /turf/open/floor/mainship/mono,
-/area/mainship/hull/lower_hull)
+/area/mainship/medical/lower_medical)
 "wy" = (
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
@@ -8329,7 +8326,7 @@
 "By" = (
 /obj/machinery/cryopod/right,
 /turf/open/floor/mainship/sterile/dark,
-/area/mainship/hull/lower_hull)
+/area/mainship/medical/lower_medical)
 "Bz" = (
 /obj/structure/disposalpipe/segment/corner,
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
@@ -9990,9 +9987,6 @@
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/aft_hallway)
-"Gv" = (
-/turf/open/floor/wood,
-/area/space)
 "Gw" = (
 /obj/machinery/light/small{
 	dir = 4
@@ -10721,10 +10715,6 @@
 	dir = 8
 	},
 /area/mainship/squads/general)
-"Iu" = (
-/obj/machinery/photocopier,
-/turf/open/floor/wood,
-/area/space)
 "Iw" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -35753,13 +35743,13 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+fI
+fI
+fI
+fI
+fI
+fI
+fI
 aa
 aa
 aa
@@ -36010,13 +36000,13 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+fI
+fI
+fI
+fI
+fI
+fI
+fI
 aa
 aa
 aa
@@ -36267,13 +36257,13 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+fI
+fI
+fI
+fI
+fI
+fI
+fI
 aa
 aa
 aa
@@ -36524,13 +36514,13 @@ aa
 aa
 aa
 aa
-aa
-aa
 fI
-Iu
-aa
-aa
-aa
+fI
+fI
+fI
+fI
+fI
+fI
 aa
 aa
 aa
@@ -36781,13 +36771,13 @@ aa
 aa
 aa
 aa
-aa
-aa
-Gv
 fI
-aa
-aa
-aa
+fI
+fI
+fI
+fI
+fI
+fI
 aa
 aa
 aa
@@ -39862,8 +39852,8 @@ nH
 nN
 lE
 bZ
-bq
-bq
+bd
+bd
 sH
 bd
 bd
@@ -40119,7 +40109,7 @@ nH
 nN
 lE
 ru
-bq
+bd
 uU
 Ze
 Ze
@@ -40376,7 +40366,7 @@ IM
 tK
 lE
 se
-bq
+bd
 wq
 Ze
 Xv
@@ -40633,7 +40623,7 @@ IN
 vg
 lE
 ru
-bq
+bd
 wx
 Ze
 Ze
@@ -40890,8 +40880,8 @@ JK
 MF
 lE
 ru
-bq
-bq
+bd
+bd
 bd
 EM
 bd
@@ -41147,7 +41137,7 @@ fP
 CR
 lE
 bZ
-bq
+bd
 By
 BW
 aY
@@ -41404,7 +41394,7 @@ En
 IW
 qr
 bZ
-bq
+bd
 By
 aY
 hq
