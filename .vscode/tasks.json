@@ -25,6 +25,15 @@
 			"label": "Build All"
 		},
 		{
+			"type": "dreammaker",
+			"dme": "tgmc.dme",
+			"problemMatcher": [
+				"$dreammaker"
+			],
+			"group": "build",
+			"label": "dm: build - tgmc.dme"
+		},
+		{
 			"type": "shell",
 			"command": "tgui/bin/tgui",
 			"windows": {
