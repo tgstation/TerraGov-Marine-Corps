@@ -21,6 +21,7 @@
 	max_rounds = 70
 	w_class = WEIGHT_CLASS_SMALL
 	default_ammo = /datum/ammo/bullet/pistol
+	icon_state_mini = "ammo_packet"
 
 //-------------------------------------------------------
 //TX-7 Plasma Pistol
@@ -34,6 +35,7 @@
 	default_ammo = /datum/ammo/energy/plasma_pistol
 	gun_type = /obj/item/weapon/gun/pistol/plasma_pistol
 	flags_magazine = NONE
+	icon_state_mini = "mag_tx7"
 
 //-------------------------------------------------------
 //RT-3 PISTOL
@@ -47,26 +49,31 @@
 	w_class = WEIGHT_CLASS_SMALL
 	default_ammo = /datum/ammo/bullet/pistol
 	gun_type = /obj/item/weapon/gun/pistol/rt3
+	icon_state_mini = "mag_pistol"
 
 /obj/item/ammo_magazine/pistol/hp
 	name = "\improper M4A3 hollowpoint magazine (9mm)"
 	icon_state = "m4a3_hp"
 	default_ammo = /datum/ammo/bullet/pistol/hollow
+	icon_state_mini = "mag_pistol_blue"
 
 /obj/item/ammo_magazine/pistol/ap
 	name = "\improper M4A3 AP magazine (9mm)"
 	icon_state = "m4a3_ap"
 	default_ammo = /datum/ammo/bullet/pistol/ap
+	icon_state_mini = "mag_pistol_green"
 
 /obj/item/ammo_magazine/pistol/incendiary
 	name = "\improper M4A3 incendiary magazine (9mm)"
 	icon_state = "m4a3_incendiary"
 	default_ammo = /datum/ammo/bullet/pistol/incendiary
+	icon_state_mini = "mag_pistol_red"
 
 /obj/item/ammo_magazine/pistol/extended
 	name = "\improper M4A3 extended magazine (9mm)"
 	max_rounds = 24
 	icon_state = "m4a3_ext"
+	icon_state_mini = "mag_pistol_yellow"
 
 //-------------------------------------------------------
 //M1911
@@ -86,6 +93,7 @@
 	caliber = CALIBER_45ACP
 	current_rounds = 50
 	max_rounds = 50
+	icon_state_mini = "ammo_packet"
 
 
 //-------------------------------------------------------
