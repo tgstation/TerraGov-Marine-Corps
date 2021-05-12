@@ -120,7 +120,8 @@
 	. = ..()
 
 /obj/item/weapon/gun/rifle/sniper/antimaterial/process()
-	if(!rail.zoom)
+	var/obj/item/attachable/scope = LAZYACCESS(attachments, ATTACHMENT_SLOT_RAIL)
+	if(!scope.zoom)
 		laser_off()
 		return
 	var/mob/living/user = loc
@@ -138,7 +139,8 @@
 
 /obj/item/weapon/gun/rifle/sniper/antimaterial/zoom(mob/living/user, tileoffset = 11, viewsize = 12) //tileoffset is client view offset in the direction the user is facing. viewsize is how far out this thing zooms. 7 is normal view
 	. = ..()
-	if(!rail.zoom && (targetmarker_on || targetmarker_primed) )
+	var/obj/item/attachable/scope = LAZYACCESS(attachments, ATTACHMENT_SLOT_RAIL)
+	if(!scope.zoom && (targetmarker_on || targetmarker_primed) )
 		laser_off(user)
 
 /atom/proc/sniper_target(atom/A)
@@ -178,7 +180,8 @@
 
 
 /obj/item/weapon/gun/rifle/sniper/antimaterial/proc/laser_on(mob/user)
-	if(!rail.zoom) //Can only use and prime the laser targeter when zoomed.
+	var/obj/item/attachable/scope = LAZYACCESS(attachments, ATTACHMENT_SLOT_RAIL)
+	if(!scope.zoom) //Can only use and prime the laser targeter when zoomed.
 		to_chat(user, "<span class='warning'>You must be zoomed in to use your target marker!</span>")
 		return TRUE
 	targetmarker_primed = TRUE //We prime the target laser
