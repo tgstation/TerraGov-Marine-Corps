@@ -196,6 +196,37 @@ GLOBAL_LIST_INIT(cardboard_recipes, list ( \
 		new/datum/stack_recipe("red folder", /obj/item/folder/red), \
 		new/datum/stack_recipe("white folder", /obj/item/folder/white), \
 		new/datum/stack_recipe("yellow folder", /obj/item/folder/yellow), \
+		)), \
+	null, \
+	new/datum/stack_recipe_list("pistol ammo boxes",list( \
+		new/datum/stack_recipe("TP-14 ammo box", /obj/item/storage/box/visual/magazine/compact/standard_pistol), \
+		new/datum/stack_recipe("TP-23 ammo box", /obj/item/storage/box/visual/magazine/compact/standard_heavypistol), \
+		new/datum/stack_recipe("TP-44 ammo box", /obj/item/storage/box/visual/magazine/compact/standard_revolver), \
+		new/datum/stack_recipe("TP-17 ammo box", /obj/item/storage/box/visual/magazine/compact/standard_pocketpistol), \
+		new/datum/stack_recipe("88M4 ammo box", /obj/item/storage/box/visual/magazine/compact/vp70), \
+		new/datum/stack_recipe("TX-8 ammo box", /obj/item/storage/box/visual/magazine/compact/plasma_pistol), \
+		)), \
+	new/datum/stack_recipe_list("smg ammo boxes",list( \
+		new/datum/stack_recipe("T-90 ammo box", /obj/item/storage/box/visual/magazine/compact/standard_smg), \
+		new/datum/stack_recipe("T-19 ammo box", /obj/item/storage/box/visual/magazine/compact/standard_machinepistol), \
+		new/datum/stack_recipe("PPSh ammo box", /obj/item/storage/box/visual/magazine/compact/ppsh), \
+		)), \
+	new/datum/stack_recipe_list("rifle ammo boxes",list( \
+		new/datum/stack_recipe("T-12 ammo box", /obj/item/storage/box/visual/magazine/compact/standard_assaultrifle), \
+		new/datum/stack_recipe("T-18 ammo box", /obj/item/storage/box/visual/magazine/compact/standard_carbine), \
+		new/datum/stack_recipe("TX-11 ammo box", /obj/item/storage/box/visual/magazine/compact/tx11), \
+		new/datum/stack_recipe("TX73 ammo box", /obj/item/storage/box/visual/magazine/compact/lasrifle), \
+		new/datum/stack_recipe("TX-15 ammo box", /obj/item/storage/box/visual/magazine/compact/tx15), \
+		)), \
+	new/datum/stack_recipe_list("marksmen rifle ammo boxes",list( \
+		new/datum/stack_recipe("T-37 ammo box", /obj/item/storage/box/visual/magazine/compact/standard_dmr), \
+		new/datum/stack_recipe("T-64 ammo box", /obj/item/storage/box/visual/magazine/compact/standard_br), \
+		new/datum/stack_recipe("TL-127 ammo box", /obj/item/storage/box/visual/magazine/compact/chamberedrifle), \
+		new/datum/stack_recipe("Mosin ammo box", /obj/item/storage/box/visual/magazine/compact/mosin), \
+		)), \
+	new/datum/stack_recipe_list("machinegun ammo boxes",list( \
+		new/datum/stack_recipe("T-42 ammo box", /obj/item/storage/box/visual/magazine/compact/standard_lmg), \
+		new/datum/stack_recipe("T-60 ammo box", /obj/item/storage/box/visual/magazine/compact/standard_gpmg), \
 		)) \
 	))
 

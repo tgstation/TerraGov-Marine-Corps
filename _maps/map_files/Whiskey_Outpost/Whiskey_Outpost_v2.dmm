@@ -644,18 +644,6 @@
 /obj/machinery/floodlight/outpost,
 /turf/open/floor/plating/ground/dirt,
 /area/whiskey_outpost/outside/north)
-"cz" = (
-/obj/structure/barricade/sandbags{
-	pixel_x = 0;
-	pixel_y = -7
-	},
-/obj/structure/barricade/sandbags{
-	dir = 4
-	},
-/turf/open/floor/plating/asteroidwarning{
-	dir = 6
-	},
-/area/whiskey_outpost)
 "cA" = (
 /obj/structure/platform_decoration,
 /turf/open/ground/grass,
@@ -4042,11 +4030,11 @@
 /area/whiskey_outpost)
 "qj" = (
 /obj/structure/rack,
-/obj/item/ammobox,
-/obj/item/ammobox,
-/obj/item/ammobox,
-/obj/item/ammobox,
-/obj/item/ammobox,
+/obj/item/storage/box/visual/magazine/compact/standard_carbine/full,
+/obj/item/storage/box/visual/magazine/compact/standard_carbine/full,
+/obj/item/storage/box/visual/magazine/compact/standard_carbine/full,
+/obj/item/storage/box/visual/magazine/compact/standard_carbine/full,
+/obj/item/storage/box/visual/magazine/compact/standard_carbine/full,
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost)
 "qk" = (
@@ -4184,11 +4172,11 @@
 /area/whiskey_outpost)
 "qG" = (
 /obj/structure/rack,
-/obj/item/ammobox/standard_smg,
-/obj/item/ammobox/standard_smg,
-/obj/item/ammobox/standard_smg,
-/obj/item/ammobox/standard_smg,
-/obj/item/ammobox/standard_smg,
+/obj/item/storage/box/visual/magazine/compact/standard_smg/full,
+/obj/item/storage/box/visual/magazine/compact/standard_smg/full,
+/obj/item/storage/box/visual/magazine/compact/standard_smg/full,
+/obj/item/storage/box/visual/magazine/compact/standard_smg/full,
+/obj/item/storage/box/visual/magazine/compact/standard_smg/full,
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost)
 "qH" = (
@@ -5371,15 +5359,6 @@
 /obj/item/storage/box/explosive_mines,
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost/outside/east)
-"EQ" = (
-/obj/structure/barricade/sandbags{
-	pixel_x = 0;
-	pixel_y = -7
-	},
-/turf/open/floor/plating/warning{
-	dir = 2
-	},
-/area/whiskey_outpost)
 "ER" = (
 /obj/structure/cable,
 /turf/open/floor/tile/yellow{
