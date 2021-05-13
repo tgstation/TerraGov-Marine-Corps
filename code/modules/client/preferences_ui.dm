@@ -30,7 +30,7 @@
 		"age" = age,
 		"gender" = gender,
 		"ethnicity" = ethnicity,
-		"species" = species || "Human", //Sometimes species is null on creation of random char
+		"species" = species,
 		"body_type" = body_type,
 		"good_eyesight" = good_eyesight,
 		"h_style" = h_style,
