@@ -40,6 +40,7 @@
 #define R_SOUND			(1<<11)
 #define R_SPAWN			(1<<12)
 #define R_DBRANKS		(1<<13)
+#define R_RUNTIME		(1<<14)
 
 #define R_EVERYTHING 	(1<<14)-1 //the sum of all other rank permissions, used for +EVERYTHING
 
