@@ -496,7 +496,7 @@ GLOBAL_PROTECT(admin_verbs_spawn)
 			verbs += GLOB.admin_verbs_fun
 		if(rights & R_SERVER)
 			verbs += GLOB.admin_verbs_server
-		if(rights & R_DEBUG)
+		if(rights & R_DEBUG || rights & R_RUNTIME) //Runtime perm allows to see all debug verb, but only allows to use runtime view
 			verbs += GLOB.admin_verbs_debug
 		if(rights & R_PERMISSIONS)
 			verbs += GLOB.admin_verbs_permissions
