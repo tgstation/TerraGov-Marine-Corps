@@ -287,10 +287,9 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/west2)
 "acH" = (
-/obj/effect/landmark/weed_node,
-/obj/effect/landmark/xeno_resin_door,
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/caves/west2)
+/obj/effect/landmark/corpsespawner/colonist,
+/turf/open/floor/tile/dark,
+/area/lv624/lazarus/engineering)
 "acI" = (
 /turf/closed/mineral,
 /area/lv624/ground/sand6)
@@ -12851,6 +12850,10 @@
 /obj/machinery/computer/shuttle/shuttle_control/dropship/two,
 /turf/open/ground/grass,
 /area/lv624/lazarus/console)
+"cKI" = (
+/obj/effect/landmark/corpsespawner/colonist,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/jungle3)
 "cKV" = (
 /obj/machinery/light/small{
 	dir = 1
@@ -13291,6 +13294,7 @@
 /turf/open/floor,
 /area/lv624/ground/jungle4)
 "eBP" = (
+/obj/effect/landmark/corpsespawner/scientist,
 /turf/open/floor/plating/warning{
 	dir = 4
 	},
@@ -14195,6 +14199,14 @@
 /obj/structure/jungle/vines,
 /turf/closed/gm/dense,
 /area/lv624/ground/jungle6)
+"izp" = (
+/obj/effect/landmark/corpsespawner/colonist,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/river1)
+"iCK" = (
+/obj/effect/landmark/corpsespawner/colonist,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/jungle9)
 "iEQ" = (
 /obj/docking_port/stationary/crashmode,
 /turf/open/floor/marking/bot,
@@ -14350,6 +14362,10 @@
 	},
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/compound/sw)
+"jqG" = (
+/obj/effect/landmark/corpsespawner/doctor,
+/turf/open/floor/tile/blue/whitebluecorner,
+/area/lv624/lazarus/medbay)
 "jqR" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -15048,6 +15064,12 @@
 	dir = 1
 	},
 /area/lv624/ground/jungle4)
+"mAI" = (
+/obj/effect/landmark/corpsespawner/colonist,
+/turf/open/floor/tile/green/greentaupe{
+	dir = 1
+	},
+/area/lv624/lazarus/hydroponics)
 "mAP" = (
 /obj/structure/sign/botany{
 	dir = 4
@@ -15121,6 +15143,10 @@
 /obj/structure/jungle/planttop1,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle7)
+"mNl" = (
+/obj/effect/landmark/corpsespawner/colonist,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/jungle6)
 "mNK" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -16513,6 +16539,13 @@
 	},
 /turf/open/floor/plating/platebotc,
 /area/lv624/lazarus/quartstorage)
+"toh" = (
+/obj/machinery/light,
+/obj/effect/landmark/corpsespawner/scientist,
+/turf/open/floor/tile/purple/whitepurple{
+	dir = 5
+	},
+/area/lv624/lazarus/research)
 "tqg" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 4;
@@ -20935,7 +20968,7 @@ aBM
 avL
 avO
 avL
-avL
+izp
 unC
 aug
 auk
@@ -21555,7 +21588,7 @@ aej
 aej
 aej
 aej
-acH
+nSy
 aej
 aal
 aej
@@ -22586,7 +22619,7 @@ bnE
 bnE
 hAe
 bnE
-bnE
+cKI
 biP
 biP
 hAe
@@ -26477,7 +26510,7 @@ aBg
 tal
 axR
 axR
-axR
+mNl
 aXH
 aXH
 aXH
@@ -28294,7 +28327,7 @@ aFB
 aJD
 aEx
 aEx
-aEx
+iCK
 aEx
 aEx
 jbc
@@ -29148,7 +29181,7 @@ auf
 avc
 avL
 avL
-axR
+mNl
 axR
 axR
 axR
@@ -31305,7 +31338,7 @@ ayu
 awn
 awn
 awn
-awn
+jqG
 aBm
 awJ
 avV
@@ -31675,7 +31708,7 @@ aAb
 aFo
 inf
 aGB
-aHh
+toh
 aEN
 aeB
 aJq
@@ -32199,7 +32232,7 @@ axW
 ayx
 awn
 azE
-awn
+jqG
 awn
 aBq
 aBU
@@ -33595,7 +33628,7 @@ bnS
 boK
 bpM
 bqo
-bqo
+acH
 brB
 bjH
 bjH
@@ -34164,7 +34197,7 @@ awq
 awP
 awP
 awP
-awa
+mAI
 awa
 awa
 awR
@@ -35598,7 +35631,7 @@ awR
 awR
 awa
 awa
-awa
+mAI
 awP
 awP
 awP
