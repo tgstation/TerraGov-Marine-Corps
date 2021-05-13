@@ -368,6 +368,13 @@ GLOBAL_PROTECT(admin_verbs_asay)
 GLOBAL_LIST_INIT(admin_verbs_debug, world.AVdebug())
 GLOBAL_PROTECT(admin_verbs_debug)
 
+/world/proc/AVruntimes()
+    return list(
+    /datum/admins/proc/view_runtimes
+    )
+GLOBAL_LIST_INIT(admin_verbs_runtimes, world.AVruntimes())
+GLOBAL_PROTECT(admin_verbs_runtimes)
+
 /world/proc/AVvaredit()
 	return list(
 	/client/proc/debug_variables
@@ -496,8 +503,10 @@ GLOBAL_PROTECT(admin_verbs_spawn)
 			verbs += GLOB.admin_verbs_fun
 		if(rights & R_SERVER)
 			verbs += GLOB.admin_verbs_server
-		if(rights & R_DEBUG || rights & R_RUNTIME) //Runtime perm allows to see all debug verb, but only allows to use runtime view
+		if(rights & R_DEBUG)
 			verbs += GLOB.admin_verbs_debug
+		if(rights & R_RUNTIME) 
+			verbs += GLOB.admin_verbs_runtimes
 		if(rights & R_PERMISSIONS)
 			verbs += GLOB.admin_verbs_permissions
 		if(rights & R_DBRANKS)
