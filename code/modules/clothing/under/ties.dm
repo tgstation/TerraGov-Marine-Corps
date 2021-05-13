@@ -246,7 +246,7 @@
 	name = "load bearing equipment"
 	desc = "Used to hold things when you don't have enough hands."
 	icon_state = "webbing"
-	w_class = WEIGHT_CLASS_NORMAL
+	w_class = WEIGHT_CLASS_BULKY
 	var/obj/item/storage/internal/hold = /obj/item/storage/internal/tie
 
 /obj/item/storage/internal/tie
