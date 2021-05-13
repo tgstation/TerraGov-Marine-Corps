@@ -352,3 +352,14 @@
 	var/mob/living/carbon/human/affected_human = affected
 	affected_human.remove_overlay(OVERHEALTH_SHIELD_LAYER)
 	return ..()
+
+/datum/component/shield/overhealth/marine
+	cover = list("melee" = 80, "bullet" = 80, "laser" = 100, "energy" = 100, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 80)
+	slot_flags = SLOT_WEAR_SUIT //For now it only activates while worn on a single place, meaning only one active at a time. Need to handle overlays properly to allow for stacking.
+	max_shield_integrity = 100
+	shield_integrity = 100
+	recharge_rate = 10 SECONDS
+	integrity_regen = 10 //per recharge_rate
+	recharge_cooldown = 10 SECONDS //after being hit
+	next_recharge = 0 //world.time based
+	shield_overlay = "shield-blue"
