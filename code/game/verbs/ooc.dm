@@ -75,7 +75,7 @@
 				display_class = "mentorooc"
 			if("Maintainer")
 				display_class = "maintainerooc"
-			if("Debugger", "Contributor")
+			if("Debugger")
 				display_class = "contributorooc"
 			else
 				display_class = "otherooc"
