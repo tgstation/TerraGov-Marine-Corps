@@ -215,7 +215,7 @@ GLOBAL_LIST_INIT(cardboard_recipes, list ( \
 		new/datum/stack_recipe("T-12 mag box", /obj/item/storage/box/visual/magazine/compact/standard_assaultrifle), \
 		new/datum/stack_recipe("T-18 mag box", /obj/item/storage/box/visual/magazine/compact/standard_carbine), \
 		new/datum/stack_recipe("TX-11 mag box", /obj/item/storage/box/visual/magazine/compact/tx11), \
-		new/datum/stack_recipe("TX73 cell box", /obj/item/storage/box/visual/magazine/compact/lasrifle), \
+		new/datum/stack_recipe("TE cell box", /obj/item/storage/box/visual/magazine/compact/lasrifle/marine), \
 		new/datum/stack_recipe("TX-15 mag box", /obj/item/storage/box/visual/magazine/compact/tx15), \
 		)), \
 	new/datum/stack_recipe_list("marksmen rifle boxes",list( \
