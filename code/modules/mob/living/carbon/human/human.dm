@@ -1003,9 +1003,9 @@
 				light_off++
 	if(guns)
 		for(var/obj/item/weapon/gun/lit_gun in contents)
-			if(!isattachmentflashlight(lit_gun.rail))
+			var/obj/item/attachable/flashlight/lit_rail_flashlight = LAZYACCESS(lit_gun.attachments, ATTACHMENT_SLOT_RAIL)
+			if(!isattachmentflashlight(lit_rail_flashlight))
 				continue
-			var/obj/item/attachable/flashlight/lit_rail_flashlight = lit_gun.rail
 			lit_rail_flashlight.turn_light(src, FALSE, 0, FALSE, forced)
 			light_off++
 	if(flares)
