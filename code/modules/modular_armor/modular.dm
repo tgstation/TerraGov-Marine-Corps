@@ -35,7 +35,7 @@
 	time_to_equip = 2 SECONDS
 	time_to_unequip = 1 SECONDS
 
-	soft_armor = list("melee" = 5, "bullet" = 20, "laser" = 20, "energy" = 20, "bomb" = 15, "bio" = 15, "rad" = 15, "fire" = 15, "acid" = 15)
+	soft_armor = list("melee" = 5, "bullet" = 100, "laser" = 20, "energy" = 20, "bomb" = 15, "bio" = 15, "rad" = 15, "fire" = 15, "acid" = 15)
 	siemens_coefficient = 0.9
 	permeability_coefficient = 1
 	gas_transfer_coefficient = 1
@@ -335,7 +335,7 @@
 	flags_equip_slot = ITEM_SLOT_HEAD
 	w_class = WEIGHT_CLASS_NORMAL
 
-	soft_armor = list("melee" = 15, "bullet" = 15, "laser" = 15, "energy" = 15, "bomb" = 15, "bio" = 15, "rad" = 15, "fire" = 15, "acid" = 15)
+	soft_armor = list("melee" = 15, "bullet" = 100, "laser" = 15, "energy" = 15, "bomb" = 15, "bio" = 15, "rad" = 15, "fire" = 15, "acid" = 15)
 
 	actions_types = list(/datum/action/item_action/toggle)
 	item_state = list(
@@ -538,7 +538,7 @@
 	name = "Jaeger Pattern Infantry Helmet"
 	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has Infantry markings."
 	icon_state = "infantry_helmet"
-	soft_armor = list("melee" = 50, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = 50, "bio" = 50, "rad" = 50, "fire" = 50, "acid" = 50)
+	soft_armor = list("melee" = 50, "bullet" = 100, "laser" = 50, "energy" = 50, "bomb" = 50, "bio" = 50, "rad" = 50, "fire" = 50, "acid" = 50)
 	accuracy_mod = 0
 	greyscale_config = /datum/greyscale_config/modularhelmet_infantry
 	visor_greyscale_config = /datum/greyscale_config/modular_helmet_visor_emissive
