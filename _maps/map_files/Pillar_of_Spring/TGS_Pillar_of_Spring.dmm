@@ -580,7 +580,6 @@
 "bX" = (
 /obj/structure/table/mainship,
 /obj/machinery/recharger,
-/obj/machinery/light,
 /obj/item/defibrillator,
 /obj/item/defibrillator,
 /obj/item/defibrillator,
@@ -11616,6 +11615,14 @@
 "KO" = (
 /obj/machinery/vending/coffee,
 /turf/open/floor/mainship/sterile/side,
+/area/mainship/medical/lower_medical)
+"KQ" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/mainship/sterile/side{
+	dir = 4
+	},
 /area/mainship/medical/lower_medical)
 "KS" = (
 /obj/item/trash/cigbutt{
@@ -41399,7 +41406,7 @@ By
 aY
 hq
 BB
-EJ
+KQ
 EJ
 aY
 La
@@ -42931,7 +42938,7 @@ lO
 ga
 bd
 fO
-JP
+BE
 Fg
 oc
 nQ
@@ -43963,7 +43970,7 @@ nk
 nk
 nk
 Uq
-mC
+hp
 ic
 ic
 ic
