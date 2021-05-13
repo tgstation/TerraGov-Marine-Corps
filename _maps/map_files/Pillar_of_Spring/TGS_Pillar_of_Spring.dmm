@@ -3658,6 +3658,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 6
 	},
+/obj/structure/largecrate/supply/ammo/standard_ammo,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/squads/req)
 "mn" = (
