@@ -470,10 +470,14 @@
 
 /obj/item/storage/box/visual/Initialize(mapload, ...)
 	. = ..()
+	update_stats()
+
+/obj/item/storage/box/visual/proc/update_stats()
 	max_overlays = amt_horizontal * amt_vertical
 	overlay_w_class = FLOOR(max_storage_space / max_overlays, 1)
 	can_hold -= cant_hold //Have cant_hold actually have a use
 	update_icon() //Getting the closed_overlay onto it
+
 
 /obj/item/storage/box/visual/examine(mob/user, distance, infix, suffix)
 	. = ..()
@@ -645,7 +649,7 @@
 	amt_horizontal = BOX_MAGAZINE_COMPACT_COLUMNS
 	amt_vertical = BOX_MAGAZINE_COMPACT_ROWS
 
-/obj/item/storage/box/visual/magazine/compact/Initialize(mapload, ...)
+/obj/item/storage/box/visual/magazine/compact/update_stats()
 	for(var/item_path in can_hold)
 		var/obj/item/I = item_path
 		if(I)
@@ -654,6 +658,8 @@
 	. = ..()
 
 // --PREFILLED MAG BOXES--
+
+// -Pistol-
 
 /obj/item/storage/box/visual/magazine/compact/standard_pistol
 	name = "TP-14 magazine box"
@@ -727,6 +733,8 @@
 	spawn_number = 40
 	spawn_type = /obj/item/ammo_magazine/pistol/plasma_pistol
 
+// -SMG-
+
 /obj/item/storage/box/visual/magazine/compact/standard_smg
 	name = "T-90 magazine box"
 	desc = "A box specifically designed to hold a large amount of T-90 magazines."
@@ -762,6 +770,8 @@
 /obj/item/storage/box/visual/magazine/compact/ppsh/full
 	spawn_number = 40
 	spawn_type = /obj/item/ammo_magazine/smg/ppsh/extended
+
+// -Rifle-
 
 /obj/item/storage/box/visual/magazine/compact/standard_assaultrifle
 	name = "T-12 magazine box"
@@ -841,6 +851,8 @@
 	spawn_number = 30
 	spawn_type = /obj/item/ammo_magazine/rifle/tx15_slug
 
+// -Marksmen-
+
 /obj/item/storage/box/visual/magazine/compact/standard_dmr
 	name = "T-37 magazine box"
 	desc = "A box specifically designed to hold a large amount of T-37 magazines."
@@ -892,6 +904,8 @@
 /obj/item/storage/box/visual/magazine/compact/mosin/full
 	spawn_number = 30
 	spawn_type = /obj/item/ammo_magazine/rifle/bolt
+
+// -Machinegun-
 
 /obj/item/storage/box/visual/magazine/compact/standard_lmg
 	name = "T-42 drum magazine box"
