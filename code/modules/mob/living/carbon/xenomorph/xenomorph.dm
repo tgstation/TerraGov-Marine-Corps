@@ -323,10 +323,10 @@
 		if(xeno_tracked == src) // No need to track ourselves
 			LL_dir.icon_state = "trackoff"
 			return
-		if(xeno_tracked.z != z || get_dist(src,xeno_tracked) < 1)
+		if(xeno_tracked.z != z || get_dist(src, xeno_tracked) < 1)
 			LL_dir.icon_state = "trackondirect"
 			return
-		var/area/A = get_area(src.loc)
+		var/area/A = get_area(loc)
 		var/area/QA = get_area(xeno_tracked.loc)
 		if(A.fake_zlevel == QA.fake_zlevel)
 			LL_dir.icon_state = "trackon"
@@ -341,11 +341,11 @@
 		if(QDELETED(silo_tracked))
 			tracked = null
 			return
-		if(silo_tracked.z != z || get_dist(src,silo_tracked) < 1)
+		if(silo_tracked.z != z || get_dist(src, silo_tracked) < 1)
 			LL_dir.icon_state = "trackondirect"
 			return
 
-		var/area/A = get_area(src.loc)
+		var/area/A = get_area(loc)
 		var/area/QA = get_area(silo_tracked.loc)
 		if(A.fake_zlevel == QA.fake_zlevel)
 			LL_dir.icon_state = "trackon"
@@ -362,10 +362,10 @@
 		if(!nuke_tracked.timer_enabled)
 			LL_dir.icon_state = "trackoff"
 			return
-		if(nuke_tracked.z != z || get_dist(src,nuke_tracked) < 1)
+		if(nuke_tracked.z != z || get_dist(src, nuke_tracked) < 1)
 			LL_dir.icon_state = "trackondirect"
 			return
-		var/area/A = get_area(src.loc)
+		var/area/A = get_area(loc)
 		var/area/QA = get_area(nuke_tracked.loc)
 		if(A.fake_zlevel == QA.fake_zlevel)
 			LL_dir.icon_state = "trackon"
