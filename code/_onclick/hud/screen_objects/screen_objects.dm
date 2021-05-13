@@ -590,7 +590,7 @@
 	var/obj/item/weapon/gun/G = .
 	if(!G)
 		return
-	var/obj/item/attachable/flashlight/F = G.rail
+	var/obj/item/attachable/flashlight/F = LAZYACCESS(G.attachments, ATTACHMENT_SLOT_RAIL)
 	if(F?.activate_attachment(usr))
 		playsound(usr, F.activation_sound, 15, 1)
 
@@ -800,7 +800,7 @@
 
 /obj/screen/arrow/leader_tracker_arrow
 	name = "hive leader tracker arrow"
-	icon_state = "Blue_arrow"	
+	icon_state = "Blue_arrow"
 	duration = XENO_RALLYING_POINTER_DURATION
 
 /obj/screen/arrow/silo_damaged_arrow

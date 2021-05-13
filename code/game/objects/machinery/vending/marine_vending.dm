@@ -37,8 +37,12 @@
 		/obj/item/ammo_magazine/rifle/standard_br = 25,
 		/obj/item/weapon/gun/rifle/chambered = 20,
 		/obj/item/ammo_magazine/rifle/chamberedrifle = 20,
-		/obj/item/weapon/gun/energy/lasgun/lasrifle = 10,
-		/obj/item/cell/lasgun/lasrifle = 20,
+		/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_rifle = 10,
+		/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_sniper = 10,
+		/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_carbine = 10,
+		/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_mlaser = 10,
+		/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_pistol = 10,
+		/obj/item/cell/lasgun/lasrifle/marine = 125,
 		/obj/item/weapon/gun/shotgun/pump/t35 = 10,
 		/obj/item/weapon/gun/shotgun/combat/standardmarine = 10,
 		/obj/item/ammo_magazine/shotgun = 10,
@@ -86,8 +90,14 @@
 			/obj/item/ammo_magazine/rifle/standard_carbine = -1,
 			/obj/item/weapon/gun/rifle/tx11 = -1,
 			/obj/item/ammo_magazine/rifle/tx11 = -1,
-			/obj/item/weapon/gun/energy/lasgun/lasrifle = -1,
-			/obj/item/cell/lasgun/lasrifle = -1,
+		),
+		"Energy Weapons" = list(
+			/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_rifle = -1,
+			/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_sniper = -1,
+			/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_carbine = -1,
+			/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_mlaser = -1,
+			/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_pistol = -1,
+			/obj/item/cell/lasgun/lasrifle/marine = -1,
 		),
 		"SMGs" = list(
 			/obj/item/weapon/gun/smg/standard_smg = -1,
@@ -369,7 +379,10 @@
 		/obj/item/weapon/gun/rifle/standard_gpmg = 1,
 		/obj/item/weapon/gun/rifle/standard_dmr = 1,
 		/obj/item/weapon/gun/rifle/standard_br = 2,
-		/obj/item/weapon/gun/energy/lasgun/lasrifle = 10,
+		/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_rifle = 10,
+		/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_carbine = 10,
+		/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_mlaser = 10,
+		/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_pistol = 10,
 		/obj/item/weapon/gun/pistol/plasma_pistol = 10,
 		/obj/item/weapon/gun/shotgun/pump/t35 = 2,
 		/obj/item/weapon/gun/rifle/standard_autoshotgun = 1,
@@ -400,7 +413,7 @@
 		/obj/item/ammo_magazine/standard_gpmg = 3,
 		/obj/item/ammo_magazine/rifle/standard_dmr = 5,
 		/obj/item/ammo_magazine/rifle/standard_br = 10,
-		/obj/item/cell/lasgun/lasrifle = 50,
+		/obj/item/cell/lasgun/lasrifle/marine = 125,
 		/obj/item/ammo_magazine/pistol/plasma_pistol = 50,
 		/obj/item/ammo_magazine/shotgun/buckshot = 3,
 		/obj/item/ammo_magazine/shotgun/flechette = 3,
@@ -414,7 +427,7 @@
 	)
 
 /obj/machinery/vending/lasgun
-	name = "\improper Lasrifle Field Charger"
+	name = "\improper Terra Experimental cell field charger"
 	desc = "An automated power cell dispenser and charger. Used to recharge energy weapon power cells, including in the field. Has an internal battery that charges off the power grid when wrenched down."
 	icon_state = "lascharger"
 	icon_vend = "lascharger-vend"
@@ -427,10 +440,9 @@
 	machine_current_charge = 50000 //integrated battery for recharging energy weapons. Normally 10000.
 	machine_max_charge = 50000
 
-	product_ads = "Lasrifle running low? Recharge here!;Need a charge?;Power up!;Electrifying!;Empower yourself!"
+	product_ads = "Power cell running low? Recharge here!;Need a charge?;Power up!;Electrifying!;Empower yourself!"
 	products = list(
-		/obj/item/cell/lasgun/lasrifle = 10,
-		/obj/item/cell/lasgun/lasrifle/highcap = 2,
+		/obj/item/cell/lasgun/lasrifle/marine = 10,
 	)
 
 

@@ -499,7 +499,7 @@
 
 
 /obj/item/weapon/gun/flamer/marinestandard/unique_action(mob/user)
-	var/obj/item/attachable/hydro_cannon/hydro = under
+	var/obj/item/attachable/hydro_cannon/hydro = LAZYACCESS(attachments, ATTACHMENT_SLOT_UNDER)
 	if(!istype(hydro))
 		return
 	playsound(user, hydro.activation_sound, 15, 1)
@@ -567,7 +567,7 @@
 		windup_checked = WEAPON_WINDUP_NOT_CHECKED
 		return
 	windup_checked = WEAPON_WINDUP_CHECKED
-	Fire()	
+	Fire()
 
 /obj/item/weapon/gun/flamer/marinestandard/afterattack(atom/target, mob/user)
 	. = ..()
