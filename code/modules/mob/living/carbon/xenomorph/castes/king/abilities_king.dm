@@ -31,10 +31,6 @@
 // ***************************************
 // *********** Gravity Crush
 // ***************************************
-#define ADD_FILTER (1<<0)
-#define REMOVE_FILTER (1<<1)
-#define GRAV_CRUSH (1<<2)
-
 #define WINDUP_GRAV 2 SECONDS
 
 /datum/action/xeno_action/activable/gravity_crush
@@ -47,6 +43,8 @@
 	keybind_signal = COMSIG_XENOABILITY_GRAVITY_CRUSH
 	/// How far can we use gravity crush
 	var/king_crush_dist = 5
+	/// A list of all things that had a fliter applied
+	var/list/filters_applied = list()
 
 /datum/action/xeno_action/activable/gravity_crush/on_cooldown_finish()
 	to_chat(owner, "<span class='warning'>Our psychic aura restores itself. We are ready to gravity crush again.</span>")
@@ -64,36 +62,47 @@
 /datum/action/xeno_action/activable/gravity_crush/use_ability(atom/A)
 	var/list/turfs = RANGE_TURFS(1, A)
 	playsound(A, 'sound/effects/bomb_fall.ogg', 75, FALSE)
-	act_on_turfs(ADD_FILTER, turfs)
+	apply_filters(turfs)
 	if(!do_after(owner, WINDUP_GRAV, FALSE, owner, BUSY_ICON_DANGER))
-		act_on_turfs(REMOVE_FILTER, turfs)
+		remove_all_filters()
 		return fail_activate()
-	act_on_turfs(REMOVE_FILTER|GRAV_CRUSH, turfs)
+	do_grav_crush(turfs)
+	remove_all_filters()
 	succeed_activate()
 	add_cooldown()
 	A.visible_message("<span class='warning'>[A] collapses inward as its gravity suddenly increases!</span>")
 
-///Will do the selected actions on all turfs and items in the turf in the list of turfs
-/datum/action/xeno_action/activable/gravity_crush/proc/act_on_turfs(action_flags, list/turfs)
+///Remove all filters of items in filters_applied
+/datum/action/xeno_action/activable/gravity_crush/proc/remove_all_filters()
+	for(var/atom/thing AS in filters_applied)
+		if(QDELETED(thing))
+			continue
+		thing.remove_filter("crushblur")
+	filters_applied.Cut()
+
+///Apply a filter on all items in the list of turfs
+/datum/action/xeno_action/activable/gravity_crush/proc/apply_filters(list/turfs)
 	for(var/turf/targetted AS in turfs)
-		if(action_flags & ADD_FILTER)
-			targetted.add_filter("crushblur", 1, radial_blur_filter(0.3))
-		if(action_flags & REMOVE_FILTER)
-			targetted.remove_filter("crushblur")
+		targetted.add_filter("crushblur", 1, radial_blur_filter(0.3))
+		filters_applied += targetted
 		for(var/atom/movable/item AS in targetted.contents)
-			if(action_flags & ADD_FILTER)
-				item.add_filter("crushblur", 1, radial_blur_filter(0.3))
-				addtimer(CALLBACK(item, /atom.proc/remove_filter, "crushblur"), WINDUP_GRAV) //Fail safe if the item moves out of the zone.
-			if(action_flags & REMOVE_FILTER)
-				item.remove_filter("crushblur")
-			if(action_flags & GRAV_CRUSH)
-				if(isliving(item))
-					var/mob/living/mob_crushed = item
-					if(mob_crushed.stat == DEAD)//No abuse of that mechanic for some permadeath
+			item.add_filter("crushblur", 1, radial_blur_filter(0.3))
+			filters_applied += item
+
+///Will crush every item on the turfs (unless they are a friendly xeno or dead)
+/datum/action/xeno_action/activable/gravity_crush/proc/do_grav_crush(list/turfs)
+	var/mob/living/carbon/xenomorph/xeno_owner = owner
+	for(var/turf/targetted AS in turfs)
+		for(var/atom/movable/item AS in targetted.contents)
+			if(isliving(item))
+				var/mob/living/mob_crushed = item
+				if(mob_crushed.stat == DEAD)//No abuse of that mechanic for some permadeath
+					continue
+				if(isxeno(mob_crushed))
+					var/mob/living/carbon/xenomorph/xeno = mob_crushed
+					if(xeno.hive == xeno_owner.hive)
 						continue
-					if(mob_crushed.faction == FACTION_XENO) //Don't harm the xeno. I thought it was better than a istype, could be wrong
-						continue
-				item.ex_act(EXPLODE_HEAVY)	//crushing without damaging the nearby area
+			item.ex_act(EXPLODE_HEAVY)	//crushing without damaging the nearby area
 
 /datum/action/xeno_action/activable/gravity_crush/ai_should_start_consider()
 	return TRUE
@@ -104,10 +113,6 @@
 	if(!can_use_ability(target, override_flags = XACT_IGNORE_SELECTED_ABILITY))
 		return ..()
 	return TRUE
-
-#undef ADD_FILTER
-#undef REMOVE_FILTER
-#undef GRAV_CRUSH
 
 // ***************************************
 // *********** Psychic Summon
@@ -142,7 +147,7 @@
 	xeno_message("King: \The [owner] has begun a psychic summon in <b>[get_area(owner)]</b>!", "xenoannounce", 3, X.hivenumber)
 	var/list/allxenos = X.hive.get_all_xenos()
 	for(var/mob/living/carbon/xenomorph/sister AS in allxenos)
-		sister.add_filter("summonoutline", 2, list("type" = "outline", "size" = 1, "color" = COLOR_VIOLET))
+		sister.add_filter("summonoutline", 2, outline_filter(1, COLOR_VIOLET))
 
 	if(!do_after(X, 15 SECONDS, FALSE, X, BUSY_ICON_HOSTILE))
 		for(var/mob/living/carbon/xenomorph/sister AS in allxenos)
