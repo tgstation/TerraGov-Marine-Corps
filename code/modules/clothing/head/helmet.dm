@@ -196,7 +196,7 @@
 		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
 		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',)
 	icon_state = "helmet"
-	soft_armor = list("melee" = 50, "bullet" = 100, "laser" = 50, "energy" = 50, "bomb" = 50, "bio" = 50, "rad" = 50, "fire" = 50, "acid" = 50)
+	soft_armor = list("melee" = 50, "bullet" = 100, "laser" = 100, "energy" = 50, "bomb" = 50, "bio" = 50, "rad" = 50, "fire" = 50, "acid" = 50)
 	max_integrity = 5
 	var/list/helmet_overlays
 	flags_inventory = BLOCKSHARPOBJ
@@ -323,7 +323,7 @@
 /obj/item/clothing/head/helmet/marine/leader
 	name = "\improper M11 pattern leader helmet"
 	desc = "A slightly fancier helmet for marine leaders. This one has cushioning to project your fragile brain."
-	soft_armor = list("melee" = 75, "bullet" = 65, "laser" = 50, "energy" = 50, "bomb" = 50, "bio" = 50, "rad" = 50, "fire" = 50, "acid" = 50)
+	soft_armor = list("melee" = 75, "bullet" = 100, "laser" = 100, "energy" = 50, "bomb" = 50, "bio" = 50, "rad" = 50, "fire" = 50, "acid" = 50)
 	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_PRISON_VARIANT|ITEM_ICE_PROTECTION)
 
 
