@@ -221,8 +221,14 @@
 			/obj/item/ammo_magazine/rifle/standard_carbine = -1,
 			/obj/item/weapon/gun/rifle/tx11 = -1,
 			/obj/item/ammo_magazine/rifle/tx11 = -1,
-			/obj/item/weapon/gun/energy/lasgun/lasrifle = -1,
-			/obj/item/cell/lasgun/lasrifle = -1,
+		),
+		"Energy Weapons" = list(
+			/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_rifle = -1,
+			/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_sniper = -1,
+			/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_carbine = -1,
+			/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_mlaser = -1,
+			/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_pistol = -1,
+			/obj/item/cell/lasgun/lasrifle/marine = -1,
 		),
 		"SMGs" = list(
 			/obj/item/weapon/gun/smg/standard_smg = -1,
