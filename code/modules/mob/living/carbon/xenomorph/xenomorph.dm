@@ -63,7 +63,8 @@
 	ADD_TRAIT(src, TRAIT_BATONIMMUNE, TRAIT_XENO)
 	ADD_TRAIT(src, TRAIT_FLASHBANGIMMUNE, TRAIT_XENO)
 	hive.update_tier_limits()
-	SSminimaps.add_marker(src, z, hud_flags = MINIMAP_FLAG_XENO, iconstate = xeno_caste.minimap_icon)
+	if(z) //Larva are initiated in null space
+		SSminimaps.add_marker(src, z, hud_flags = MINIMAP_FLAG_XENO, iconstate = xeno_caste.minimap_icon)
 
 /mob/living/carbon/xenomorph/proc/set_datum()
 	if(!caste_base_type)
