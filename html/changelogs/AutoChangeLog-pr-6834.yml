@@ -1,0 +1,4 @@
+author: "Wayland-Smithy"
+delete-after: True
+changes: 
+  - qol: "Groundmap Vote is now the last of the post round automatic polls instead of the first."
