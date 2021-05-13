@@ -638,10 +638,9 @@
 	desc = "A magnifically designed box specifically designed to hold a large quantity of ammo."
 	icon_state = "mag_box_small"
 	storage_slots = 40 //Same storage as the old prefilled mag boxes found in the req vendor.
-	max_storage_space = 40 //Adjusted in Initialize to fit the needs.
-	draw_mode = TRUE //Only one mag type per box.
+	max_storage_space = 40 //Adjusted in update_stats() to fit the needs.
 	can_hold = list(
-		/obj/item/ammo_magazine, //Able to hold ammo due to this box being unobtainable. admemes beware of the rocket crate.
+		/obj/item/ammo_magazine, //Able to hold all ammo due to this box being unobtainable. admemes beware of the rocket crate.
 	)
 	cant_hold = list()
 	overlay_pixel_x = BOX_MAGAZINE_COMPACT_OFFSET_X
