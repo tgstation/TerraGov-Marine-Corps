@@ -44,7 +44,7 @@
 	victim.real_name = name
 	victim.death(silent = TRUE) //Kills the new mob
 	victim.timeofdeath = -CONFIG_GET(number/revive_grace_period)
-	INVOKE_ASYNC(src, .proc/equip_items_to_mob, victim)
+	equip_items_to_mob(victim)
 	switch(death_type)
 		if(COCOONED_DEATH) //Just cocooned
 			ADD_TRAIT(victim, TRAIT_PSY_DRAINED, TRAIT_PSY_DRAINED)
