@@ -14261,11 +14261,6 @@
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/quartstorage)
-"iit" = (
-/turf/open/floor/tile/dark,
-/area/lv624/ground/survival{
-	always_unpowered = 0
-	})
 "ikv" = (
 /obj/structure/fence,
 /turf/open/ground/grass,
@@ -20240,8 +20235,8 @@ udH
 uPq
 fMC
 ohl
-iit
-iit
+fMC
+fMC
 fMC
 fMC
 lQf
