@@ -67,6 +67,14 @@
 		if("closing")
 			flick("shutterc1", src)
 
+/obj/machinery/door/poddoor/shutters/timed_survival
+	icon = 'icons/obj/doors/mainship/blastdoors_shutters.dmi'
+	name = "Timed Emergency Shutters"
+	use_power = FALSE
+
+/obj/machinery/door/poddoor/shutters/timed_survival/Initialize()
+	RegisterSignal(SSdcs, list(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_SURVIVOR, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_CRASH, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_XENO_HIVEMIND), .proc/open)
+	return ..()
 
 /obj/machinery/door/poddoor/shutters/timed_late
 	icon = 'icons/obj/doors/mainship/blastdoors_shutters.dmi'

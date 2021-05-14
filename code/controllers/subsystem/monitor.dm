@@ -30,7 +30,7 @@ SUBSYSTEM_DEF(monitor)
 	var/datum/monitor_statistics/stats = new
 	///If the game is currently before shutters drop, after, or shipside
 	var/gamestate = SHUTTERS_CLOSED
-	
+
 /datum/monitor_statistics
 	var/ancient_queen = 0
 	var/elder_queen = 0
@@ -47,6 +47,7 @@ SUBSYSTEM_DEF(monitor)
 /datum/controller/subsystem/monitor/Initialize(start_timeofday)
 	. = ..()
 	RegisterSignal(SSdcs, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE, .proc/set_groundside_calculation)
+	RegisterSignal(SSdcs, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_SURVIVOR, .proc/set_groundside_calculation)
 	RegisterSignal(SSdcs, COMSIG_GLOB_DROPSHIP_HIJACKED, .proc/set_shipside_calculation)
 
 /datum/controller/subsystem/monitor/fire(resumed = 0)
@@ -63,8 +64,8 @@ SUBSYSTEM_DEF(monitor)
 /datum/controller/subsystem/monitor/proc/set_shipside_calculation()
 	SIGNAL_HANDLER
 	gamestate = SHIPSIDE
-	
-///Calculate the points supposedly representating of the situation	
+
+///Calculate the points supposedly representating of the situation
 /datum/controller/subsystem/monitor/proc/calculate_state_points()
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
 	switch(gamestate)
@@ -86,10 +87,10 @@ SUBSYSTEM_DEF(monitor)
 			. += SSpoints.supply_points * REQ_POINTS_WEIGHT
 			. += stats.OB_available * OB_AVAILABLE_WEIGHT
 			. += GLOB.xeno_resin_silos.len * SPAWNING_POOL_WEIGHT
-		if(SHUTTERS_CLOSED)	
+		if(SHUTTERS_CLOSED)
 			. += GLOB.alive_human_list.len * HUMAN_LIFE_WEIGHT_PREGAME
 			. += GLOB.alive_xeno_list.len * XENOS_LIFE_WEIGHT_PREGAME
-		if(SHIPSIDE)	
+		if(SHIPSIDE)
 			. += GLOB.alive_human_list.len * HUMAN_LIFE_WEIGHT_SHIPSIDE
 			. += GLOB.alive_xeno_list.len * XENOS_LIFE_WEIGHT_SHIPSIDE
 
@@ -129,7 +130,7 @@ SUBSYSTEM_DEF(monitor)
 		current_state = MARINES_LOSING
 	else
 		current_state = MARINES_DELAYING
-	
+
 	if(!gamestate == GROUNDSIDE)
 		return
 	//We check for possible stalemate

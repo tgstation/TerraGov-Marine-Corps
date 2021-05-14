@@ -303,6 +303,10 @@ Sensors indicate [numXenosShip || "no"] unknown lifeform signature[numXenosShip 
 		addtimer(CALLBACK(GLOBAL_PROC, .proc/send_global_signal, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE), SSticker.round_start_time + 30 MINUTES)
 			//Called late because there used to be shutters opened earlier. To re-add them just copy the logic.
 
+	if(flags_round_type & MODE_LZ_SHUTTERS)
+		addtimer(CALLBACK(GLOBAL_PROC, .proc/send_global_signal, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_SURVIVOR), SSticker.round_start_time + 10 MINUTES)
+			//This is for survival bunker shutters.
+
 	if(flags_round_type & MODE_XENO_SPAWN_PROTECT)
 		var/turf/T
 		while(GLOB.xeno_spawn_protection_locations.len)

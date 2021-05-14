@@ -210,6 +210,21 @@
 /obj/machinery/door/poddoor/mainship/indestructible
 	resistance_flags = RESIST_ALL
 
+/obj/machinery/door/poddoor/timed_survival
+	icon = 'icons/obj/doors/mainship/blastdoors_shutters.dmi'
+	name = "Timed Emergency Shutters"
+	use_power = FALSE
+
+/obj/machinery/door/poddoor/timed_survival/Initialize()
+	RegisterSignal(SSdcs, list(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_SURVIVOR, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_CRASH), .proc/open)
+	return ..()
+
+/obj/machinery/door/poddoor/timed_survival/containment
+	name = "Containment shutters"
+	desc = "Safety shutters triggered by some kind of lockdown event."
+	resistance_flags = RESIST_ALL
+	open_layer = UNDER_TURF_LAYER //No longer needs to be interacted with.
+	closed_layer = ABOVE_WINDOW_LAYER //Higher than usual, this is only around on the start of the round.
 
 /obj/machinery/door/poddoor/timed_late
 	icon = 'icons/obj/doors/mainship/blastdoors_shutters.dmi'

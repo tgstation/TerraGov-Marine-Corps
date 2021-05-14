@@ -168,6 +168,13 @@
 	icon_state = "red"
 	outside = FALSE
 
+/area/lv624/ground/survival
+	name ="Survival Bunker"
+	icon_state = "cave"
+	ceiling = CEILING_METAL
+	outside = FALSE
+	always_unpowered = 0
+
 /area/lv624/ground/caves //Does not actually exist
 	name ="Caves"
 	icon_state = "cave"
