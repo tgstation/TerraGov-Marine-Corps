@@ -635,7 +635,6 @@
 /turf/open/floor/mainship/stripesquare,
 /area/mainship/hallways/starboard_hallway)
 "aFO" = (
-/obj/effect/landmark/start/job/ai/rebel,
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/airoom/rebel)
 "aFY" = (
@@ -2315,11 +2314,6 @@
 	dir = 1
 	},
 /area/mainship/medical/operating_room_one)
-"ccR" = (
-/obj/structure/table/mainship,
-/obj/machinery/computer/secure_data,
-/turf/open/floor/mainship/mono,
-/area/mainship/command/cic)
 "cdf" = (
 /turf/open/floor/mainship/red{
 	dir = 8
@@ -3584,7 +3578,6 @@
 /area/mainship/hallways/hangar)
 "diy" = (
 /obj/structure/table/mainship,
-/obj/machinery/computer/secure_data,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/starboard_umbilical/rebel)
 "diB" = (
@@ -4092,7 +4085,8 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/medical_science/rebel)
 "dHj" = (
-/obj/machinery/computer/camera_advanced/overwatch/alpha,
+/obj/machinery/computer/camera_advanced/overwatch/rebel/alpha,
+/obj/structure/table/mainship,
 /turf/open/floor/mainship/red{
 	dir = 4
 	},
@@ -5125,9 +5119,6 @@
 	},
 /turf/open/floor/mainship/green,
 /area/mainship/living/grunt_rnr)
-"eEp" = (
-/turf/open/floor/mainship/sterile/dark,
-/area/mainship/medical/lower_medical)
 "eEu" = (
 /obj/machinery/portable_atmospherics/canister/air,
 /obj/machinery/camera/autoname/mainship{
@@ -5161,11 +5152,6 @@
 	dir = 5
 	},
 /area/mainship/engineering/ce_room/rebel)
-"eFk" = (
-/obj/structure/table/mainship,
-/obj/machinery/computer/marine_card,
-/turf/open/floor/mainship/mono,
-/area/mainship/command/cic/rebel)
 "eFY" = (
 /obj/structure/table/mainship,
 /obj/effect/spawner/random/toolbox,
@@ -5344,11 +5330,6 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/mainship/command/telecomms)
-"eNe" = (
-/obj/machinery/cic_maptable,
-/obj/structure/table/mainship,
-/turf/open/floor/mainship/mono,
-/area/mainship/command/cic)
 "eNp" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4
@@ -7284,8 +7265,6 @@
 /turf/open/floor/wood,
 /area/mainship/living/numbertwobunks/rebel)
 "gtV" = (
-/obj/structure/table/mainship,
-/obj/machinery/computer/station_alert,
 /obj/machinery/light,
 /turf/open/floor/mainship/mono,
 /area/mainship/command/cic)
@@ -7954,13 +7933,8 @@
 /area/mainship/command/cic)
 "hdV" = (
 /obj/structure/table/mainship,
-/obj/machinery/computer/security/marinemainship_network,
 /turf/open/floor/wood,
 /area/mainship/living/commandbunks/rebel)
-"hdX" = (
-/obj/machinery/computer/navigation,
-/turf/open/floor/mainship/mono,
-/area/mainship/command/cic/rebel)
 "hea" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -8595,7 +8569,6 @@
 /area/mainship/command/cic/rebel)
 "hKY" = (
 /obj/structure/table/mainship,
-/obj/machinery/computer/secure_data,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/starboard_umbilical)
 "hLc" = (
@@ -9430,7 +9403,8 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/lower_medical/rebel)
 "itP" = (
-/obj/machinery/computer/camera_advanced/overwatch/bravo,
+/obj/machinery/computer/camera_advanced/overwatch/rebel/bravo,
+/obj/structure/table/mainship,
 /turf/open/floor/mainship/orange{
 	dir = 8
 	},
@@ -9920,7 +9894,6 @@
 /area/mainship/living/cafeteria_starboard/rebel)
 "iSl" = (
 /obj/structure/table/mainship,
-/obj/machinery/computer/station_alert,
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/lower_engine_monitoring/rebel)
 "iSs" = (
@@ -10526,8 +10499,6 @@
 /turf/open/floor/freezer,
 /area/mainship/living/cafeteria_starboard/rebel)
 "jqc" = (
-/obj/structure/table/mainship,
-/obj/machinery/computer/station_alert,
 /obj/machinery/light,
 /turf/open/floor/mainship/mono,
 /area/mainship/command/cic/rebel)
@@ -12749,7 +12720,6 @@
 	},
 /area/mainship/living/cryo_cells)
 "lla" = (
-/obj/effect/landmark/start/job/ai,
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/airoom)
 "lls" = (
@@ -15662,17 +15632,6 @@
 /obj/structure/bookcase,
 /turf/open/floor/wood,
 /area/mainship/living/commandbunks)
-"nSU" = (
-/obj/structure/window/reinforced,
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/obj/machinery/vending/marine/shared/hvh,
-/turf/open/floor/mainship,
-/area/mainship/squads/general)
 "nTr" = (
 /obj/structure/flora/ausbushes/ppflowers,
 /turf/open/floor/grass,
@@ -15834,11 +15793,6 @@
 	dir = 4
 	},
 /area/mainship/medical/medical_science)
-"oau" = (
-/obj/structure/table/mainship,
-/obj/machinery/computer/secure_data,
-/turf/open/floor/mainship/mono,
-/area/mainship/command/cic/rebel)
 "oaB" = (
 /obj/machinery/camera/autoname/mainship/rebelship{
 	dir = 4
@@ -16128,8 +16082,8 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/lower_hull/rebel)
 "okt" = (
+/obj/machinery/computer/camera_advanced/overwatch/rebel/charlie,
 /obj/structure/table/mainship,
-/obj/machinery/computer/camera_advanced/overwatch/charlie,
 /turf/open/floor/mainship/emerald{
 	dir = 4
 	},
@@ -16950,10 +16904,6 @@
 	dir = 10
 	},
 /area/space)
-"oRI" = (
-/obj/machinery/computer/crew,
-/turf/open/floor/mainship/sterile/dark,
-/area/mainship/medical/lower_medical/rebel)
 "oRS" = (
 /obj/machinery/door/airlock/mainship/generic/bathroom,
 /obj/machinery/door/firedoor/mainship{
@@ -16983,7 +16933,6 @@
 /area/mainship/engineering/lower_engine_monitoring)
 "oTg" = (
 /obj/structure/table/mainship,
-/obj/machinery/computer/marine_card,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 5
 	},
@@ -17717,18 +17666,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/living/grunt_rnr)
-"pzw" = (
-/obj/machinery/vending/marine/shared/hvh,
-/obj/structure/window/reinforced,
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/obj/structure/window/reinforced,
-/turf/open/floor/mainship,
-/area/mainship/squads/general)
 "pzK" = (
 /obj/structure/disposalpipe/segment{
 	dir = 1
@@ -18111,7 +18048,6 @@
 /area/mainship/engineering/engineering_workshop/rebel)
 "pWb" = (
 /obj/structure/table/mainship,
-/obj/machinery/computer/marine_card,
 /obj/machinery/light{
 	dir = 1
 	},
@@ -19774,7 +19710,7 @@
 /obj/structure/window/reinforced/toughened{
 	dir = 8
 	},
-/obj/machinery/computer/camera_advanced/overwatch/main,
+/obj/machinery/computer/camera_advanced/overwatch/rebel/main,
 /turf/open/floor/plating/mainship,
 /area/mainship/command/cic/rebel)
 "rpY" = (
@@ -19938,11 +19874,6 @@
 /obj/item/storage/belt/utility/full,
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/engineering_workshop)
-"ruz" = (
-/obj/machinery/cic_maptable,
-/obj/structure/table/mainship,
-/turf/open/floor/mainship/mono,
-/area/mainship/command/cic/rebel)
 "ruA" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
@@ -20229,7 +20160,6 @@
 /area/mainship/command/cic/rebel)
 "rJy" = (
 /obj/structure/table/mainship,
-/obj/machinery/computer/marine_card,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 5
 	},
@@ -20542,10 +20472,6 @@
 	opacity = 0
 	},
 /area/space)
-"rWO" = (
-/obj/structure/table/mainship,
-/turf/open/floor/mainship/mono,
-/area/mainship/command/cic)
 "rXd" = (
 /obj/structure/window/reinforced,
 /obj/structure/window/reinforced{
@@ -20926,7 +20852,6 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/medical_science/rebel)
 "slL" = (
-/obj/machinery/computer/crew,
 /turf/open/floor/mainship/blue{
 	dir = 8
 	},
@@ -21352,11 +21277,6 @@
 	dir = 4
 	},
 /area/mainship/medical/chemistry)
-"sIl" = (
-/obj/structure/table/mainship,
-/obj/machinery/computer/security/marinemainship_network,
-/turf/open/floor/mainship/mono,
-/area/mainship/command/cic)
 "sIC" = (
 /obj/structure/closet/secure_closet/securecom,
 /obj/item/moneybag/vault,
@@ -21638,7 +21558,6 @@
 /area/mainship/living/cafeteria_starboard/rebel)
 "sWC" = (
 /obj/structure/table/mainship,
-/obj/machinery/computer/station_alert,
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/lower_engine_monitoring)
 "sWK" = (
@@ -22387,10 +22306,6 @@
 	icon_state = "carpetside"
 	},
 /area/mainship/living/numbertwobunks/rebel)
-"tAC" = (
-/obj/machinery/vending/marine/shared/hvh,
-/turf/open/floor/mainship,
-/area/mainship/squads/general)
 "tAJ" = (
 /obj/machinery/vending/snack,
 /turf/open/floor/mainship/mono,
@@ -24011,7 +23926,7 @@
 	},
 /area/mainship/command/self_destruct)
 "uUp" = (
-/obj/machinery/computer/supplycomp,
+/obj/machinery/computer/supplycomp/rebel,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req/rebel)
 "uVc" = (
@@ -24667,18 +24582,6 @@
 /obj/effect/landmark/start/job/squadengineer/rebel,
 /turf/open/floor/mainship,
 /area/mainship/living/cryo_cells/rebel)
-"vyH" = (
-/obj/structure/window/reinforced,
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/obj/structure/window/reinforced,
-/obj/machinery/vending/marine/shared/hvh,
-/turf/open/floor/mainship,
-/area/mainship/squads/general)
 "vzv" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1,
 /turf/open/floor/mainship,
@@ -24783,7 +24686,6 @@
 /turf/open/floor/mainship/sterile/plain,
 /area/mainship/hallways/hangar)
 "vGP" = (
-/obj/machinery/computer/med_data,
 /obj/machinery/light{
 	dir = 1
 	},
@@ -24902,8 +24804,8 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/port_hallway)
 "vLQ" = (
-/obj/machinery/vending/marine/shared/hvh,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/vending/marine/shared/hvh/team_one,
 /turf/open/floor/mainship,
 /area/mainship/squads/general)
 "vLV" = (
@@ -25396,7 +25298,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/living/bridgebunks)
 "wns" = (
-/obj/docking_port/stationary/supply/reqs,
+/obj/docking_port/stationary/supply/reqs/rebel,
 /turf/open/floor/mainship/empty,
 /area/mainship/squads/req/rebel)
 "wnB" = (
@@ -25461,7 +25363,6 @@
 /area/mainship/hallways/hangar/rebel)
 "wpk" = (
 /obj/structure/table/mainship,
-/obj/machinery/computer/security/marinemainship_network,
 /turf/open/floor/wood,
 /area/mainship/living/commandbunks)
 "wpt" = (
@@ -25951,10 +25852,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/stern_hallway/rebel)
-"wMe" = (
-/obj/machinery/computer/navigation,
-/turf/open/floor/mainship/mono,
-/area/mainship/command/cic)
 "wMk" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 9
@@ -26091,7 +25988,6 @@
 /area/mainship/engineering/engine_core/rebel)
 "wRA" = (
 /obj/structure/table/mainship,
-/obj/machinery/computer/security/marinemainship_network,
 /turf/open/floor/mainship/mono,
 /area/mainship/command/cic/rebel)
 "wRQ" = (
@@ -26201,7 +26097,7 @@
 /area/mainship/command/self_destruct)
 "wXX" = (
 /obj/structure/table/mainship,
-/obj/machinery/computer/camera_advanced/overwatch/delta,
+/obj/machinery/computer/camera_advanced/overwatch/rebel/delta,
 /turf/open/floor/mainship/blue{
 	dir = 8
 	},
@@ -26502,7 +26398,6 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "xgS" = (
-/obj/machinery/vending/marine/shared/hvh,
 /obj/structure/window/reinforced,
 /obj/structure/window/reinforced{
 	dir = 4
@@ -26510,6 +26405,7 @@
 /obj/structure/window/reinforced{
 	dir = 8
 	},
+/obj/machinery/vending/marine/shared/hvh/team_one,
 /turf/open/floor/mainship,
 /area/mainship/squads/general)
 "xhf" = (
@@ -26809,7 +26705,6 @@
 /area/mainship/living/commandbunks/rebel)
 "xsv" = (
 /obj/structure/table/mainship,
-/obj/machinery/computer/marine_card,
 /turf/open/floor/mainship/mono,
 /area/mainship/command/cic)
 "xsI" = (
@@ -26865,7 +26760,6 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/port_hallway)
 "xuY" = (
-/obj/machinery/computer/crew,
 /turf/open/floor/mainship/blue{
 	dir = 8
 	},
@@ -27327,7 +27221,6 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
 "xLe" = (
-/obj/machinery/computer/crew,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/lower_medical)
 "xLo" = (
@@ -27569,7 +27462,6 @@
 /area/mainship/squads/general/rebel)
 "xWw" = (
 /obj/structure/table/mainship,
-/obj/machinery/computer/marine_card,
 /obj/machinery/light{
 	dir = 1
 	},
@@ -36832,7 +36724,7 @@ ukV
 ukV
 ukV
 ukV
-oRI
+dUW
 dUW
 fSK
 lqk
@@ -38924,7 +38816,7 @@ tOW
 wGe
 wGe
 wGe
-eFk
+wRA
 wXx
 unm
 aqt
@@ -42779,7 +42671,7 @@ tOW
 wGe
 wGe
 wGe
-ruz
+wRA
 wXx
 kEe
 wGe
@@ -43036,8 +42928,8 @@ xHM
 xHM
 iwY
 wGe
-hdX
-qrO
+wXx
+wXx
 jqc
 wGe
 vmA
@@ -43295,7 +43187,7 @@ qsi
 wGe
 inp
 iTg
-oau
+wXx
 wGe
 toG
 aFO
@@ -77058,10 +76950,10 @@ gIy
 lwD
 kAG
 ceC
-eEp
-eEp
+xLe
+xLe
 auE
-eEp
+xLe
 xMG
 gOH
 gOH
@@ -77315,7 +77207,7 @@ mPt
 wLn
 kAG
 ehI
-eEp
+xLe
 tGT
 kAG
 kAG
@@ -77572,7 +77464,7 @@ kAG
 kAG
 kAG
 xLe
-eEp
+xLe
 azz
 mHJ
 tMc
@@ -77828,8 +77720,8 @@ tAf
 okT
 ntz
 sIL
-eEp
-eEp
+xLe
+xLe
 azz
 uuv
 gfv
@@ -78082,7 +77974,7 @@ haZ
 fPb
 rpY
 pRb
-eEp
+xLe
 lLA
 gjU
 nRd
@@ -78601,7 +78493,7 @@ jcP
 nKK
 bFL
 cKk
-eEp
+xLe
 xVi
 xUp
 hpe
@@ -78848,9 +78740,9 @@ ofM
 sRM
 kfB
 tBZ
-eEp
+xLe
 wQm
-eEp
+xLe
 hTC
 xfr
 rSs
@@ -78860,8 +78752,8 @@ bFL
 cKk
 qUc
 xRz
-eEp
-eEp
+xLe
+xLe
 hEI
 tQt
 vdT
@@ -79105,9 +78997,9 @@ fgY
 sRM
 rBM
 tBZ
-eEp
-eEp
-eEp
+xLe
+xLe
+xLe
 hTC
 hbZ
 nKK
@@ -79116,9 +79008,9 @@ imL
 tBQ
 cKk
 qtM
-eEp
-eEp
-eEp
+xLe
+xLe
+xLe
 gOH
 tOv
 tQt
@@ -79362,14 +79254,14 @@ fgY
 sRM
 kAG
 bXI
-eEp
+xLe
 tVY
-eEp
+xLe
 the
 hbZ
 tVY
-eEp
-eEp
+xLe
+xLe
 hVk
 kAG
 xdp
@@ -81202,7 +81094,7 @@ anm
 nNA
 anm
 wfV
-sIl
+xsv
 anm
 saF
 anm
@@ -82747,7 +82639,7 @@ lvv
 aZo
 iNj
 aZo
-rWO
+xsv
 rkf
 aZo
 aZo
@@ -83518,7 +83410,7 @@ fbp
 aZo
 aZo
 aZo
-eNe
+anm
 anm
 ycd
 aZo
@@ -83775,8 +83667,8 @@ xNv
 xNv
 kTe
 aZo
-wMe
-vrI
+anm
+anm
 gtV
 aZo
 poH
@@ -84034,7 +83926,7 @@ uxW
 aZo
 jMO
 rjq
-ccR
+anm
 aZo
 mIe
 lla
@@ -84783,17 +84675,17 @@ xNv
 xwx
 pZk
 mLM
-tAC
+vLQ
 qWs
 gRM
 hxn
-tAC
+vLQ
 mLM
-tAC
+vLQ
 hxn
 xWR
 hxn
-tAC
+vLQ
 mLM
 mdS
 anc
@@ -85571,8 +85463,8 @@ pvy
 coz
 mLM
 azv
-tAC
-tAC
+vLQ
+vLQ
 mPR
 vPh
 cnc
@@ -87096,7 +86988,7 @@ fvl
 xgS
 rSy
 fvl
-nSU
+xgS
 eTR
 rSy
 fvl
@@ -87104,7 +86996,7 @@ xgS
 mdS
 rSy
 fvl
-nSU
+xgS
 mdS
 buS
 xNS
@@ -87353,7 +87245,7 @@ bLJ
 xgS
 eza
 bLJ
-nSU
+xgS
 eTR
 eza
 bLJ
@@ -87361,11 +87253,11 @@ xgS
 mdS
 eza
 bLJ
-nSU
+xgS
 mdS
 hUd
 fvl
-pzw
+xgS
 vpQ
 wDO
 mLM
@@ -87607,14 +87499,14 @@ aLx
 ylR
 fxM
 fvl
-nSU
+xgS
 aNz
 fvl
 xgS
 eTR
 aNz
 fvl
-nSU
+xgS
 mdS
 aNz
 fvl
@@ -87622,7 +87514,7 @@ xgS
 mdS
 mdS
 jqK
-vyH
+xgS
 mwH
 buS
 mLM

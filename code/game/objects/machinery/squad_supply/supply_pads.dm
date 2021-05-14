@@ -20,7 +20,7 @@
 	force_link()
 
 /obj/structure/supply_drop/Destroy()
-	GLOB.supply_pad_list += src
+	GLOB.supply_pad_list -= src
 	return ..()
 
 /// Proc used to force a connection with the squad
