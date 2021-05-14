@@ -1411,7 +1411,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 60
 	penetration = 30
 	sundering = 4
-	max_range = 0
+	max_range = 40
 	damage_falloff = 0
 
 /datum/ammo/energy/lasgun/marine/sniper_heat
