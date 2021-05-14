@@ -133,7 +133,7 @@
 			card.update_label()
 
 	H.name = H.get_visible_name()
-	H.hud_set_job()
+	H.hud_set_job(H.faction)
 
 
 /datum/outfit/varedit/get_json_data()

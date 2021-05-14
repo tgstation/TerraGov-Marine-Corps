@@ -26,6 +26,11 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	var/dead_hidden = FALSE
 	///which z level is ignored when showing marines.
 	var/z_hidden = 0
+	/// The faction that this computer can overwatch
+	var/faction = FACTION_TERRAGOV
+	/// The list of all squads that can be watched
+	var/list/watchable_squads
+	
 	///Squad being currently overseen
 	var/datum/squad/current_squad = null
 	///Selected target for bombarding
@@ -38,6 +43,9 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	var/datum/action/innate/order/retreat_order/send_retreat_order
 	///datum used when sending a defend order
 	var/datum/action/innate/order/defend_order/send_defend_order
+
+/obj/machinery/computer/camera_advanced/overwatch/rebel
+	faction = FACTION_TERRAGOV_REBEL
 
 /obj/machinery/computer/camera_advanced/overwatch/Initialize()
 	. = ..()
@@ -77,6 +85,23 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 /obj/machinery/computer/camera_advanced/overwatch/delta
 	name = "Delta Overwatch Console"
 
+/obj/machinery/computer/camera_advanced/overwatch/rebel/main
+	icon_state = "overwatch_main"
+	name = "Main Overwatch Console"
+	desc = "State of the art machinery for general overwatch purposes."
+
+/obj/machinery/computer/camera_advanced/overwatch/rebel/alpha
+	name = "Alpha Overwatch Console"
+
+/obj/machinery/computer/camera_advanced/overwatch/rebel/bravo
+	name = "Bravo Overwatch Console"
+
+/obj/machinery/computer/camera_advanced/overwatch/rebel/charlie
+	name = "Charlie Overwatch Console"
+
+/obj/machinery/computer/camera_advanced/overwatch/rebel/delta
+	name = "Delta Overwatch Console"
+
 
 /obj/machinery/computer/camera_advanced/overwatch/attackby(obj/item/I, mob/user, params)
 	return
@@ -113,7 +138,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	. = ..()
 	if(.)
 		return
-
+	watchable_squads = SSjob.active_squads[faction]
 	var/dat
 	if(!operator)
 		dat += "<BR><B>Operator:</b> <A href='?src=\ref[src];operation=change_operator'>----------</A><BR>"
@@ -259,18 +284,18 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 					to_chat(usr, "<span class='warning'>[icon2html(src, usr)] You are already selecting a squad.</span>")
 				else
 					var/list/squad_choices = list()
-					for(var/i in SSjob.active_squads)
-						var/datum/squad/S = SSjob.active_squads[i]
-						if(!S.overwatch_officer)
-							squad_choices += S.name
+					for(var/datum/squad/squad AS in watchable_squads)
+						if(!squad.overwatch_officer)
+							squad_choices += squad.name
 
 					var/squad_name = tgui_input_list(usr, "Which squad would you like to claim for Overwatch?", null, squad_choices)
 					if(!squad_name || operator != usr)
 						return
-					if(current_squad)
-						to_chat(usr, "<span class='warning'>[icon2html(src, usr)] You are already selecting a squad.</span>")
-						return
-					var/datum/squad/selected = SSjob.active_squads[squad_name]
+					var/datum/squad/selected
+					for(var/datum/squad/squad AS in watchable_squads)
+						if(squad.name == squad_name)
+							selected = squad
+							break
 					if(selected)
 						selected.overwatch_officer = usr //Link everything together, squad, console, and officer
 						current_squad = selected
@@ -278,7 +303,6 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 						current_squad.message_squad("Your Overwatch officer is: [operator.name].")
 						visible_message("<span class='boldnotice'>Tactical data for squad '[current_squad]' loaded. All tactical functions initialized.</span>")
 						attack_hand(usr)
-
 
 					else
 						to_chat(usr, "[icon2html(src, usr)] <span class='warning'>Invalid input. Aborting.</span>")
@@ -382,8 +406,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 		dat += "----------------------<br>"
 		switch(state)
 			if(OW_MAIN)
-				for(var/s in SSjob.active_squads)
-					var/datum/squad/S = SSjob.active_squads[s]
+				for(var/datum/squad/S AS in watchable_squads)
 					dat += "<b>[S.name] Squad</b> <a href='?src=\ref[src];operation=message;current_squad=\ref[S]'>\[Message Squad\]</a><br>"
 					if(S.squad_leader)
 						dat += "<b>Leader:</b> <a href='?src=\ref[src];operation=use_cam;cam_target=\ref[S.squad_leader]'>[S.squad_leader.name]</a> "
@@ -438,9 +461,8 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 
 
 /obj/machinery/computer/camera_advanced/overwatch/proc/send_to_squads(txt)
-	for(var/s in SSjob.active_squads)
-		var/datum/squad/S = SSjob.active_squads[s]
-		S.message_squad(txt)
+	for(var/datum/squad/squad AS in watchable_squads)
+		squad.message_squad(txt)
 
 /obj/machinery/computer/camera_advanced/overwatch/proc/handle_bombard()
 	if(!usr)
@@ -576,12 +598,12 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 		to_chat(usr, "[icon2html(src, usr)] <span class='warning'>Transfer aborted. [transfer_marine] isn't wearing an ID.</span>")
 		return
 
-	var/choice = tgui_input_list(usr, "Choose the marine's new squad", null,  SSjob.active_squads)
+	var/choice = tgui_input_list(usr, "Choose the marine's new squad", null,  watchable_squads)
 	if(!choice)
 		return
 	if(S != current_squad)
 		return
-	var/datum/squad/new_squad = SSjob.active_squads[choice]
+	var/datum/squad/new_squad = watchable_squads[choice]
 
 	if(!istype(transfer_marine) || transfer_marine.stat == DEAD)
 		to_chat(usr, "[icon2html(src, usr)] <span class='warning'>[transfer_marine] is KIA.</span>")
@@ -741,10 +763,9 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 
 
 /obj/machinery/computer/camera_advanced/overwatch/proc/get_squad_by_id(id)
-	for(var/s in SSjob.active_squads)
-		var/datum/squad/S = SSjob.active_squads[s]
-		if(S.id == id)
-			return S
+	for(var/datum/squad/squad AS in watchable_squads)
+		if(squad.id == id)
+			return squad
 	return FALSE
 
 /obj/machinery/computer/camera_advanced/overwatch/proc/get_squad_info()
@@ -897,7 +918,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	if(!current_order)
 		var/mob/user = source
 		to_chat(user, "<span class='warning'>Your have no order selected.</span>")
-	current_order.send_order(target)
+	current_order.send_order(target, faction = faction)
 
 ///Setter for the current order
 /obj/machinery/computer/camera_advanced/overwatch/proc/set_order(datum/source, datum/action/innate/order/order)

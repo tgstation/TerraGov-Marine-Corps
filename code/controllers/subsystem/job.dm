@@ -14,7 +14,8 @@ SUBSYSTEM_DEF(job)
 	var/list/type_occupations = list()	//Dict of all jobs, keys are types.
 
 	var/list/squads = list()			//List of potential squads.
-	var/list/active_squads = list()		//Squads being used by the game mode.
+	//Assoc list of all joinable squads, categorised by faction
+	var/list/active_squads = list()		 
 
 	var/list/unassigned = list()		//Players who need jobs.
 	var/list/occupations_reroll //Jobs scaled up during job assignments.
@@ -68,7 +69,7 @@ SUBSYSTEM_DEF(job)
 		var/datum/squad/squad = new S()
 		if(!squad)
 			continue
-		squads[squad.name] = squad
+		squads[squad.id] = squad
 	return TRUE
 
 
@@ -99,7 +100,7 @@ SUBSYSTEM_DEF(job)
 		JobDebug("AR player not old enough, Player: [player], Job:[job.title]")
 		return FALSE
 	if(ismarinejob(job))
-		if(!handle_initial_squad(player, job, latejoin))
+		if(!handle_initial_squad(player, job, latejoin, job.faction))
 			JobDebug("Failed to assign marine role to a squad. Player: [player.key] Job: [job.title]")
 			return FALSE
 		JobDebug("Successfuly assigned marine role to a squad. Player: [player.key], Job: [job.title], Squad: [player.assigned_squad]")
