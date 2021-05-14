@@ -1354,8 +1354,8 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 20
 	penetration = 10
 	sundering = 1
-	max_range = 40
-	damage_falloff = 0
+	max_range = 30
+	damage_falloff = 0.2 ///Doesn't seem to even apply when fired out of the laser gun.
 
 /datum/ammo/energy/lasgun/marine/overcharge
 	name = "overcharged laser bolt"
@@ -1407,11 +1407,14 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 60
 	penetration = 30
 	sundering = 4
+	max_range = 0
+	damage_falloff = 0
 
 /datum/ammo/energy/lasgun/marine/sniper_heat
 	name = "sniper heat bolt"
 	icon_state = "microwavelaser"
 	hud_state = "laser_heat"
+	shell_speed = 2.5
 	damage = 40
 	penetration = 0 // It's a laser that burns the skin! The fire stacks go threw anyway.
 	flags_ammo_behavior = AMMO_ENERGY|AMMO_INCENDIARY|AMMO_SUNDERING
@@ -1435,8 +1438,9 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	name = "microwave heat bolt"
 	icon_state = "microwavelaser"
 	hud_state = "laser_heat"
-	damage = 20 //requires mod with -0.15 multiplier should math out to 10
-	penetration = 10 // It's a laser that burns the skin! The fire stacks go threw anyway.
+	damage = 20
+	shell_speed = 2.5
+	penetration = 10
 	flags_ammo_behavior = AMMO_ENERGY|AMMO_INCENDIARY|AMMO_SUNDERING
 	sundering = 0.5
 

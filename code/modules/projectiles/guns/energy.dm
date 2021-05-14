@@ -595,11 +595,11 @@
 	wield_delay = 0.5 SECONDS
 	scatter = 0
 	scatter_unwielded = 10
-	fire_delay = 0.15 SECONDS
+	fire_delay = 0.2 SECONDS
 	accuracy_mult = 1.15
 	accuracy_mult_unwielded = 0.55
 	scatter_unwielded = 10
-	damage_falloff_mult = 0
+	damage_falloff_mult = 0.2
 	mode_list = list(
 		"Standard" = /datum/lasrifle/base/energy_rifle_mode/standard,
 		"Overcharge" = /datum/lasrifle/base/energy_rifle_mode/overcharge,
@@ -608,7 +608,7 @@
 /datum/lasrifle/base/energy_rifle_mode/standard
 	charge_cost = 10
 	ammo = /datum/ammo/energy/lasgun/marine
-	fire_delay = 0.15 SECONDS
+	fire_delay = 0.2 SECONDS
 	fire_sound = 'sound/weapons/guns/fire/Laser Rifle Standard.ogg'
 	message_to_user = "You set the laser rifle's charge mode to standard fire."
 	fire_mode = GUN_FIREMODE_AUTOMATIC
@@ -617,7 +617,7 @@
 /datum/lasrifle/base/energy_rifle_mode/overcharge
 	charge_cost = 20
 	ammo = /datum/ammo/energy/lasgun/marine/overcharge
-	fire_delay = 0.3 SECONDS
+	fire_delay = 0.4 SECONDS
 	fire_sound = 'sound/weapons/guns/fire/Laser overcharge standard.ogg'
 	message_to_user = "You set the laser rifle's charge mode to overcharge."
 	fire_mode = GUN_FIREMODE_AUTOMATIC
@@ -667,7 +667,7 @@
 	accuracy_mult = 1.1
 	accuracy_mult_unwielded = 0.9
 	scatter_unwielded = 0
-	damage_falloff_mult = 0
+	damage_falloff_mult = 0.2
 	mode_list = list(
 		"Standard" = /datum/lasrifle/base/energy_pistol_mode/standard,
 		"Heat" = /datum/lasrifle/base/energy_pistol_mode/heat,
@@ -742,13 +742,13 @@
 	wield_delay = 0.3 SECONDS
 	scatter = 0
 	scatter_unwielded = 15
-	fire_delay = 0.15 SECONDS
+	fire_delay = 0.17 SECONDS
 	burst_amount = 1
-	burst_delay = 0.1 SECONDS
+	burst_delay = 0.2 SECONDS
 	accuracy_mult = 1.1
 	accuracy_mult_unwielded = 0.65
 	scatter_unwielded = 15
-	damage_falloff_mult = 0
+	damage_falloff_mult = 0.5
 	mode_list = list(
 
 		"Auto burst standard" = /datum/lasrifle/base/energy_carbine_mode/auto_burst_standard,
@@ -815,7 +815,10 @@
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ENERGY|GUN_AMMO_COUNTER
 	attachable_offset = list("muzzle_x" = 41, "muzzle_y" = 18,"rail_x" = 19, "rail_y" = 19, "under_x" = 28, "under_y" = 8, "stock_x" = 22, "stock_y" = 12)
 	starting_attachment_types = list(/obj/item/attachable/scope/unremovable/laser_sniper_scope)
+	aim_fire_delay = 0.5 SECONDS
+	aim_speed_modifier = 2
 
+	actions_types = list(/datum/action/item_action/aim_mode)
 	aim_slowdown = 0.7
 	wield_delay = 0.7 SECONDS
 	scatter = 0
@@ -831,8 +834,8 @@
 
 /datum/lasrifle/base/energy_sniper_mode/standard
 	charge_cost = 50
-	ammo = /datum/ammo/energy/lasgun/marine/sniper
 	fire_delay = 1 SECONDS
+	ammo = /datum/ammo/energy/lasgun/marine/sniper
 	fire_sound = 'sound/weapons/guns/fire/Laser Sniper Standard.ogg'
 	message_to_user = "You set the sniper rifle's charge mode to standard fire."
 	fire_mode = GUN_FIREMODE_AUTOMATIC
@@ -840,8 +843,8 @@
 
 /datum/lasrifle/base/energy_sniper_mode/heat
 	charge_cost = 150
+	fire_delay = 1 SECONDS
 	ammo = /datum/ammo/energy/lasgun/marine/sniper_heat
-	fire_delay = 1.5 SECONDS
 	fire_sound = 'sound/weapons/guns/fire/laser3.ogg'
 	message_to_user = "You set the sniper rifle's charge mode to wave heat."
 	fire_mode = GUN_FIREMODE_AUTOMATIC
@@ -889,7 +892,7 @@
 	accuracy_mult = 0.95
 	accuracy_mult_unwielded = 0.6
 	scatter_unwielded = 10
-	damage_falloff_mult = 0
+	damage_falloff_mult = 0.3
 	mode_list = list(
 		"Standard" = /datum/lasrifle/base/energy_mg_mode/standard,
 		"Efficiency mode" = /datum/lasrifle/base/energy_mg_mode/standard/efficiency,
@@ -907,4 +910,5 @@
 /datum/lasrifle/base/energy_mg_mode/standard/efficiency
 	ammo = /datum/ammo/energy/lasgun/marine/autolaser/efficiency
 	fire_delay = 0.15 SECONDS
+	charge_cost = 2
 	message_to_user = "You set the machine laser's charge mode to efficiency mode."
