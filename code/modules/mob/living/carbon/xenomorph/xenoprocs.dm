@@ -605,7 +605,7 @@
 		return FALSE
 	var/datum/reagent/body_tox
 	var/i = 1
-	do
+	while(i++ < count && do_after(src, channel_time, TRUE, C, BUSY_ICON_HOSTILE))
 		face_atom(C)
 		if(stagger)
 			return FALSE
@@ -623,7 +623,6 @@
 		to_chat(src, "<span class='xenowarning'>Our stinger injects our victim with [body_tox.name]!</span>")
 		if(body_tox.volume > body_tox.overdose_threshold)
 			to_chat(src, "<span class='danger'>We sense the host is saturated with [body_tox.name].</span>")
-	while(i++ < count && do_after(src, channel_time, TRUE, C, BUSY_ICON_HOSTILE))
 	return TRUE
 
 

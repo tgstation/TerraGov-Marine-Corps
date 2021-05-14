@@ -220,7 +220,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 20
 	penetration = 5
 	accurate_range = 5
-	sundering = 2
+	sundering = 1.65
 
 /datum/ammo/bullet/pistol/tiny
 	name = "light pistol bullet"
@@ -256,6 +256,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	hud_state = "pistol_hollow"
 	accuracy = -15
 	shrapnel_chance = 45
+	sundering = 2
 
 /datum/ammo/bullet/pistol/hollow/on_hit_mob(mob/M,obj/projectile/P)
 	staggerstun(M, P, stagger = 1, slowdown = 0.5, knockback = 1)
@@ -267,6 +268,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	accuracy = 10
 	penetration = 12.5
 	shrapnel_chance = 25
+	sundering = 2
 
 /datum/ammo/bullet/pistol/heavy
 	name = "heavy pistol bullet"
@@ -274,6 +276,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 30
 	penetration = 5
 	shrapnel_chance = 25
+	sundering = 2.15
 
 /datum/ammo/bullet/pistol/incendiary
 	name = "incendiary pistol bullet"
@@ -291,6 +294,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 32
 	penetration = 10
 	shrapnel_chance = 25
+	sundering = 2
 
 /datum/ammo/bullet/pistol/mankey
 	name = "live monkey"
@@ -1347,6 +1351,103 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	staggerstun(C, P, stagger = 1, slowdown = 1) //Staggers and slows down briefly
 
 	return ..()
+
+// TE Lasers //
+
+/datum/ammo/energy/lasgun/marine
+	damage = 20
+	penetration = 10
+	sundering = 1
+	max_range = 40
+	damage_falloff = 0
+
+/datum/ammo/energy/lasgun/marine/overcharge
+	name = "overcharged laser bolt"
+	icon_state = "overchargedlaser"
+	hud_state = "laser_sniper"
+	damage = 40
+	penetration = 20
+	sundering = 2
+
+/datum/ammo/energy/lasgun/marine/blast
+	name = "wide range laser blast"
+	icon_state = "heavylaser2"
+	hud_state = "laser_spread"
+	bonus_projectiles_type = /datum/ammo/energy/lasgun/marine/spread
+	bonus_projectiles_amount = 2
+	bonus_projectiles_scatter = 5
+	accuracy_var_low = 9
+	accuracy_var_high = 9
+	accurate_range = 5
+	max_range = 8
+	damage = 35
+	penetration = 20
+	sundering = 1
+
+/datum/ammo/energy/lasgun/marine/spread
+	name = "additional laser blast"
+	icon_state = "laser2"
+	shell_speed = 2
+	accuracy_var_low = 9
+	accuracy_var_high = 9
+	accurate_range = 5
+	max_range = 8
+	damage = 35
+	penetration = 20
+	sundering = 1
+
+/datum/ammo/energy/lasgun/marine/autolaser
+	name = "machine laser bolt"
+	damage = 15
+	penetration = 15
+
+/datum/ammo/energy/lasgun/marine/autolaser/efficiency
+	name = "efficient machine laser bolt"
+	damage = 8.5
+
+/datum/ammo/energy/lasgun/marine/sniper
+	name = "sniper laser bolt"
+	hud_state = "laser_sniper"
+	damage = 60
+	penetration = 30
+	sundering = 4
+
+/datum/ammo/energy/lasgun/marine/sniper_heat
+	name = "sniper heat bolt"
+	icon_state = "microwavelaser"
+	hud_state = "laser_heat"
+	damage = 40
+	penetration = 0 // It's a laser that burns the skin! The fire stacks go threw anyway.
+	flags_ammo_behavior = AMMO_ENERGY|AMMO_INCENDIARY|AMMO_SUNDERING
+	sundering = 1
+
+
+/datum/ammo/energy/lasgun/marine/pistol
+	name = "pistol laser bolt"
+	damage = 25
+	penetration = 5
+
+/datum/ammo/energy/lasgun/marine/pistol/disabler
+	name = "disabler bolt"
+	icon_state = "disablershot"
+	hud_state = "laser_disabler"
+	damage = 70
+	penetration = 0
+	damage_type = STAMINA
+
+/datum/ammo/energy/lasgun/marine/pistol/heat
+	name = "microwave heat bolt"
+	icon_state = "microwavelaser"
+	hud_state = "laser_heat"
+	damage = 20 //requires mod with -0.15 multiplier should math out to 10
+	penetration = 10 // It's a laser that burns the skin! The fire stacks go threw anyway.
+	flags_ammo_behavior = AMMO_ENERGY|AMMO_INCENDIARY|AMMO_SUNDERING
+	sundering = 0.5
+
+/datum/ammo/energy/lasgun/pistol/disabler/on_hit_mob(mob/M,obj/projectile/P)
+	staggerstun(M, P, stagger = 0.5, slowdown = 0.75)
+
+// Plasma //
 
 
 /datum/ammo/energy/plasma

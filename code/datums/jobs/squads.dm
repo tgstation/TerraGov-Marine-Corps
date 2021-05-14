@@ -152,7 +152,6 @@ GLOBAL_LIST_EMPTY(helmetmarkings_sl)
 	if(istype(headset))
 		headset.set_frequency(radio_freq)
 		headset.recalculateChannels()
-		headset.remove_minimap()
 		headset.add_minimap()
 		if(headset.sl_direction && new_squaddie != squad_leader)
 			SSdirection.start_tracking(tracking_id, new_squaddie)
@@ -203,6 +202,7 @@ GLOBAL_LIST_EMPTY(helmetmarkings_sl)
 
 	var/obj/item/radio/headset/mainship/headset = leaving_squaddie.wear_ear
 	if(istype(headset))
+		headset.remove_minimap()
 		headset.set_frequency(initial(headset.frequency))
 
 	for(var/datum/data/record/sheet AS in GLOB.datacore.general)

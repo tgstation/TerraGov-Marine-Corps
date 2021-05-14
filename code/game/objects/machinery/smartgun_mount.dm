@@ -19,6 +19,7 @@
 	max_rounds = 300
 	default_ammo = /datum/ammo/bullet/smartgun
 	gun_type = null
+	icon_state_mini = "mag_gpmg"
 
 
 // Now we need a box for this.

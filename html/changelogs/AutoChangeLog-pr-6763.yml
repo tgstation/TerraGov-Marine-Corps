@@ -1,0 +1,6 @@
+author: "BraveMole"
+delete-after: True
+changes: 
+  - code_imp: "Support for faction based requisition"
+  - rscadd: "You can sell enemy human fighters (SOM, sectoids, things like that). Leaders are worth more. You can use sell_pad, fultons, or the req shuttle zone"
+  - rscdel: "Remove the export history part of the req ui"

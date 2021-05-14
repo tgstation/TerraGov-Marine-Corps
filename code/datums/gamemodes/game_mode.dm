@@ -74,6 +74,8 @@
 	create_characters()
 	spawn_characters()
 	transfer_characters()
+	SSpoints.dropship_points[FACTION_TERRAGOV] = 0
+	SSpoints.supply_points[FACTION_TERRAGOV] = 0
 	return TRUE
 
 
