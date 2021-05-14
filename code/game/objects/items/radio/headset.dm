@@ -161,7 +161,8 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	var/mob/living/carbon/human/wearer = null
 	var/headset_hud_on = FALSE
 	var/sl_direction = FALSE
-
+	/// Which hud this headset gives access too
+	var/hud_type = DATA_HUD_SQUAD
 
 /obj/item/radio/headset/mainship/Initialize()
 	. = ..()
@@ -175,7 +176,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 /obj/item/radio/headset/mainship/equipped(mob/living/carbon/human/user, slot)
 	if(slot == SLOT_EARS)
 		wearer = user
-		squadhud = GLOB.huds[DATA_HUD_SQUAD]
+		squadhud = GLOB.huds[hud_type]
 		enable_squadhud()
 	if(camera)
 		camera.c_tag = user.name
@@ -247,8 +248,19 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 			type = /datum/action/minimap/charlie
 		if(FREQ_DELTA)
 			type = /datum/action/minimap/delta
-		else
+		if(FREQ_COMMON)
 			type = /datum/action/minimap/marine
+		if(FREQ_ALPHA_REBEL)
+			type = /datum/action/minimap/alpha/rebel
+		if(FREQ_BRAVO_REBEL)
+			type = /datum/action/minimap/bravo/rebel
+		if(FREQ_CHARLIE_REBEL)
+			type = /datum/action/minimap/charlie/rebel
+		if(FREQ_DELTA_REBEL)
+			type = /datum/action/minimap/delta/rebel
+		if(FREQ_COMMON_REBEL)
+			type = /datum/action/minimap/marine/rebel
+	
 	var/datum/action/minimap/mini = new type
 	mini.give_action(wearer)
 	INVOKE_NEXT_TICK(src, .proc/update_minimap_icon, mini) //Mobs are spawned inside nullspace sometimes so this is to avoid that hijinks
@@ -273,8 +285,19 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 			type = /datum/action/minimap/charlie
 		if(FREQ_DELTA)
 			type = /datum/action/minimap/delta
-		else
+		if(FREQ_COMMON)
 			type = /datum/action/minimap/marine
+		if(FREQ_ALPHA_REBEL)
+			type = /datum/action/minimap/alpha/rebel
+		if(FREQ_BRAVO_REBEL)
+			type = /datum/action/minimap/bravo/rebel
+		if(FREQ_CHARLIE_REBEL)
+			type = /datum/action/minimap/charlie/rebel
+		if(FREQ_DELTA_REBEL)
+			type = /datum/action/minimap/delta/rebel
+		if(FREQ_COMMON_REBEL)
+			type = /datum/action/minimap/marine/rebel
+
 	var/datum/action/minimap/mini = wearer.actions_by_path[type]
 	mini.remove_action(wearer)
 	SSminimaps.remove_marker(wearer)
@@ -384,6 +407,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 /obj/item/radio/headset/mainship/st/rebel
 	keyslot = /obj/item/encryptionkey/req/rebel
 	keyslot2 = /obj/item/encryptionkey/engi/rebel
+	hud_type = DATA_HUD_SQUAD_REBEL
 
 /obj/item/radio/headset/mainship/doc
 	name = "medical radio headset"
@@ -392,7 +416,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 
 /obj/item/radio/headset/mainship/doc/rebel
 	keyslot = /obj/item/encryptionkey/med/rebel
-
+	hud_type = DATA_HUD_SQUAD_REBEL
 /obj/item/radio/headset/mainship/ct
 	name = "supply radio headset"
 	icon_state = "cargo_headset"
@@ -400,6 +424,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 
 /obj/item/radio/headset/mainship/ct/rebel 
 	keyslot = /obj/item/encryptionkey/req/rebel
+	hud_type = DATA_HUD_SQUAD_REBEL
 
 /obj/item/radio/headset/mainship/mcom
 	name = "marine command radio headset"
@@ -410,13 +435,15 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 
 /obj/item/radio/headset/mainship/mcom/rebel 
 	keyslot = /obj/item/encryptionkey/mcom/rebel
+	hud_type = DATA_HUD_SQUAD_REBEL
 
 /obj/item/radio/headset/mainship/mcom/silicon
 	name = "silicon radio"
 	keyslot = /obj/item/encryptionkey/mcom/ai
 
 /obj/item/radio/headset/mainship/mcom/silicon/rebel
-		keyslot = /obj/item/encryptionkey/mcom/ai/rebel
+	keyslot = /obj/item/encryptionkey/mcom/ai/rebel
+	hud_type = DATA_HUD_SQUAD_REBEL
 
 /obj/item/radio/headset/mainship/marine
 	keyslot = /obj/item/encryptionkey/general
@@ -424,6 +451,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 
 /obj/item/radio/headset/mainship/marine/rebel
 	keyslot = /obj/item/encryptionkey/general/rebel
+	hud_type = DATA_HUD_SQUAD_REBEL
 
 
 /obj/item/radio/headset/mainship/marine/Initialize(mapload, datum/squad/squad, rank)

@@ -679,7 +679,7 @@ Sensors indicate [numXenosShip || "no"] unknown lifeform signature[numXenosShip 
 /datum/game_mode/proc/set_valid_squads()
 	var/max_squad_num = min(squads_max_number, SSmapping.configs[SHIP_MAP].squads_max_num)
 	if(max_squad_num >= length(SSjob.squads))
-		SSjob.active_squads = SSjob.squads
+		SSjob.active_squads[FACTION_TERRAGOV] = SSjob.squads
 		return TRUE
 	if(max_squad_num == 0)
 		return TRUE
@@ -705,7 +705,7 @@ Sensors indicate [numXenosShip || "no"] unknown lifeform signature[numXenosShip 
 	preferred_squads.len = max_squad_num
 	for(var/s in preferred_squads) //Back from weight to type.
 		preferred_squads[s] = SSjob.squads[s]
-	SSjob.active_squads = preferred_squads.Copy()
+	SSjob.active_squads[FACTION_TERRAGOV] = preferred_squads.Copy()
 
 	return TRUE
 

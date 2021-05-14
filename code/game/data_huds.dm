@@ -434,6 +434,9 @@
 /datum/atom_hud/squad
 	hud_icons = list(SQUAD_HUD, MACHINE_HEALTH_HUD, SENTRY_AMMO_HUD)
 
+/datum/atom_hud/squad/rebel
+	hud_icons = list(SQUAD_HUD_REBEL, MACHINE_HEALTH_HUD, SENTRY_AMMO_HUD)
+
 
 /mob/proc/hud_set_job()
 	return

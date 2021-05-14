@@ -14,7 +14,8 @@ SUBSYSTEM_DEF(job)
 	var/list/type_occupations = list()	//Dict of all jobs, keys are types.
 
 	var/list/squads = list()			//List of potential squads.
-	var/list/active_squads = list()		//Squads being used by the game mode.
+	//Assoc list of all joinable squads, categorised by faction
+	var/list/active_squads = list()		 
 
 	var/list/unassigned = list()		//Players who need jobs.
 	var/list/occupations_reroll //Jobs scaled up during job assignments.
