@@ -2323,6 +2323,13 @@
 /obj/effect/decal/cleanable/rune,
 /turf/open/lavaland/basalt,
 /area/barren/misc/clocknuke)
+"kQ" = (
+/obj/item/ammo_magazine/smg/m25/ap,
+/obj/item/ammo_magazine/smg/m25/ap,
+/obj/item/ammo_magazine/smg/m25/ap,
+/obj/item/ammo_magazine/smg/m25/ap,
+/turf/open/floor/tile/dark,
+/area/barren/misc/survival)
 "kR" = (
 /obj/machinery/miner/damaged,
 /turf/open/lavaland/basalt,
@@ -4685,7 +4692,10 @@
 /turf/open/floor/wood,
 /area/barren/civilian/workdorm)
 "wL" = (
-/obj/structure/largecrate/supply/weapons/shotgun,
+/obj/structure/rack,
+/obj/item/weapon/gun/shotgun/double,
+/obj/item/weapon/gun/shotgun/pump/cmb,
+/obj/item/weapon/gun/shotgun/pump/cmb,
 /turf/open/floor/tile/dark,
 /area/barren/misc/survival)
 "wM" = (
@@ -6373,10 +6383,13 @@
 	},
 /area/barren/medical)
 "Fw" = (
-/obj/structure/largecrate/supply/weapons/standard_smg,
 /obj/machinery/light{
 	dir = 1
 	},
+/obj/structure/rack,
+/obj/item/weapon/gun/smg/m25,
+/obj/item/weapon/gun/smg/m25,
+/obj/item/weapon/gun/smg/m25,
 /turf/open/floor/tile/dark,
 /area/barren/misc/survival)
 "Fx" = (
@@ -7437,7 +7450,13 @@
 /turf/open/floor/plating,
 /area/barren/civilian/cook)
 "KV" = (
-/obj/structure/largecrate/supply/ammo/shotgun,
+/obj/item/ammo_magazine/shotgun/flechette,
+/obj/item/ammo_magazine/shotgun/flechette,
+/obj/item/ammo_magazine/shotgun/buckshot,
+/obj/item/ammo_magazine/shotgun/buckshot,
+/obj/item/ammo_magazine/shotgun/incendiary,
+/obj/item/ammo_magazine/shotgun,
+/obj/item/ammo_magazine/shotgun,
 /turf/open/floor/tile/dark,
 /area/barren/misc/survival)
 "KY" = (
@@ -7751,7 +7770,28 @@
 	},
 /area/barren/medical)
 "MQ" = (
-/obj/structure/largecrate/supply/ammo/standard_smg,
+/obj/item/ammo_magazine/smg/m25,
+/obj/item/ammo_magazine/smg/m25,
+/obj/item/ammo_magazine/smg/m25,
+/obj/item/ammo_magazine/smg/m25,
+/obj/item/ammo_magazine/smg/m25,
+/obj/item/ammo_magazine/smg/m25,
+/obj/item/ammo_magazine/smg/m25,
+/obj/item/ammo_magazine/smg/m25,
+/obj/item/ammo_magazine/smg/m25,
+/obj/item/ammo_magazine/smg/m25,
+/obj/item/ammo_magazine/smg/m25,
+/obj/item/ammo_magazine/smg/m25,
+/obj/item/ammo_magazine/smg/m25,
+/obj/item/ammo_magazine/smg/m25,
+/obj/item/ammo_magazine/smg/m25,
+/obj/item/ammo_magazine/smg/m25,
+/obj/item/ammo_magazine/smg/m25,
+/obj/item/ammo_magazine/smg/m25,
+/obj/item/ammo_magazine/smg/m25,
+/obj/item/ammo_magazine/smg/m25,
+/obj/item/ammo_magazine/smg/m25/extended,
+/obj/item/ammo_magazine/smg/m25/extended,
 /turf/open/floor/tile/dark,
 /area/barren/misc/survival)
 "MS" = (
@@ -56269,7 +56309,7 @@ Ws
 DD
 Fw
 MQ
-MQ
+kQ
 aT
 fr
 Tu

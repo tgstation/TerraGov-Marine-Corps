@@ -6325,7 +6325,10 @@
 /turf/open/floor/plating/ground/dirtgrassborder,
 /area/lv624/ground/jungle5)
 "aKb" = (
-/obj/structure/largecrate/supply/weapons/shotgun,
+/obj/structure/rack,
+/obj/item/weapon/gun/shotgun/double,
+/obj/item/weapon/gun/shotgun/pump/cmb,
+/obj/item/weapon/gun/shotgun/pump/cmb,
 /turf/open/floor/tile/dark,
 /area/lv624/ground/survival)
 "aKc" = (
@@ -7338,10 +7341,13 @@
 /turf/open/floor/plating,
 /area/lv624/lazarus/quartstorage)
 "aPx" = (
-/obj/structure/largecrate/supply/weapons/standard_smg,
 /obj/machinery/light{
 	dir = 1
 	},
+/obj/structure/rack,
+/obj/item/weapon/gun/smg/m25,
+/obj/item/weapon/gun/smg/m25,
+/obj/item/weapon/gun/smg/m25,
 /turf/open/floor/tile/dark,
 /area/lv624/ground/survival)
 "aPy" = (
@@ -14261,6 +14267,13 @@
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/quartstorage)
+"iit" = (
+/obj/item/ammo_magazine/smg/m25/ap,
+/obj/item/ammo_magazine/smg/m25/ap,
+/obj/item/ammo_magazine/smg/m25/ap,
+/obj/item/ammo_magazine/smg/m25/ap,
+/turf/open/floor/tile/dark,
+/area/lv624/ground/survival)
 "ikv" = (
 /obj/structure/fence,
 /turf/open/ground/grass,
@@ -14823,7 +14836,13 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle3)
 "kYS" = (
-/obj/structure/largecrate/supply/ammo/shotgun,
+/obj/item/ammo_magazine/shotgun/flechette,
+/obj/item/ammo_magazine/shotgun/flechette,
+/obj/item/ammo_magazine/shotgun/buckshot,
+/obj/item/ammo_magazine/shotgun/buckshot,
+/obj/item/ammo_magazine/shotgun/incendiary,
+/obj/item/ammo_magazine/shotgun,
+/obj/item/ammo_magazine/shotgun,
 /turf/open/floor/tile/dark,
 /area/lv624/ground/survival)
 "kZI" = (
@@ -16940,7 +16959,28 @@
 /turf/closed/wall/indestructible/mineral,
 /area/lv624/ground/caves/west1)
 "udH" = (
-/obj/structure/largecrate/supply/ammo/standard_smg,
+/obj/item/ammo_magazine/smg/m25,
+/obj/item/ammo_magazine/smg/m25,
+/obj/item/ammo_magazine/smg/m25,
+/obj/item/ammo_magazine/smg/m25,
+/obj/item/ammo_magazine/smg/m25,
+/obj/item/ammo_magazine/smg/m25,
+/obj/item/ammo_magazine/smg/m25,
+/obj/item/ammo_magazine/smg/m25,
+/obj/item/ammo_magazine/smg/m25,
+/obj/item/ammo_magazine/smg/m25,
+/obj/item/ammo_magazine/smg/m25,
+/obj/item/ammo_magazine/smg/m25,
+/obj/item/ammo_magazine/smg/m25,
+/obj/item/ammo_magazine/smg/m25,
+/obj/item/ammo_magazine/smg/m25,
+/obj/item/ammo_magazine/smg/m25,
+/obj/item/ammo_magazine/smg/m25,
+/obj/item/ammo_magazine/smg/m25,
+/obj/item/ammo_magazine/smg/m25,
+/obj/item/ammo_magazine/smg/m25,
+/obj/item/ammo_magazine/smg/m25/extended,
+/obj/item/ammo_magazine/smg/m25/extended,
 /turf/open/floor/tile/dark,
 /area/lv624/ground/survival)
 "ufY" = (
@@ -20231,7 +20271,7 @@ pqr
 alN
 aPx
 udH
-udH
+iit
 uPq
 fMC
 ohl
