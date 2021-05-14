@@ -505,7 +505,7 @@
 	keybind_signal = COMSIG_XENOABILITY_RESYNC
 
 /datum/keybinding/xeno/blink
-	name = "blink"
+	name = "wraith_blink"
 	full_name = "Wraith: Blink"
 	description = "Teleport to a space a short distance away within line of sight. Can teleport mobs you're dragging with you at the cost of higher cooldown."
 	keybind_signal = COMSIG_XENOABILITY_BLINK
