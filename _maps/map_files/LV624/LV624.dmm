@@ -14268,12 +14268,11 @@
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/quartstorage)
 "iit" = (
-/obj/item/ammo_magazine/smg/m25/ap,
-/obj/item/ammo_magazine/smg/m25/ap,
-/obj/item/ammo_magazine/smg/m25/ap,
-/obj/item/ammo_magazine/smg/m25/ap,
-/turf/open/floor/tile/dark,
-/area/lv624/ground/survival)
+/obj/machinery/door/poddoor/timed_survival/containment{
+	dir = 2
+	},
+/turf/closed/mineral,
+/area/lv624/ground/caves/west2)
 "ikv" = (
 /obj/structure/fence,
 /turf/open/ground/grass,
@@ -15844,6 +15843,13 @@
 /obj/structure/window/framed/colony/reinforced,
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/canteen)
+"poB" = (
+/obj/item/ammo_magazine/smg/m25/ap,
+/obj/item/ammo_magazine/smg/m25/ap,
+/obj/item/ammo_magazine/smg/m25/ap,
+/obj/item/ammo_magazine/smg/m25/ap,
+/turf/open/floor/tile/dark,
+/area/lv624/ground/survival)
 "pqr" = (
 /obj/machinery/door/poddoor/timed_survival/containment,
 /turf/closed/mineral,
@@ -16483,7 +16489,9 @@
 /turf/closed/mineral,
 /area/lv624/ground/caves/central1)
 "sdt" = (
-/obj/machinery/door/poddoor/timed_survival/containment,
+/obj/machinery/door/poddoor/timed_survival/containment{
+	dir = 2
+	},
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/west2)
 "sdI" = (
@@ -19014,6 +19022,7 @@ aab
 "}
 (8,1,1) = {"
 aab
+iit
 pqr
 pqr
 pqr
@@ -19026,8 +19035,7 @@ pqr
 pqr
 pqr
 pqr
-pqr
-pqr
+iit
 aaa
 aaa
 aaa
@@ -19193,7 +19201,7 @@ aab
 "}
 (9,1,1) = {"
 aab
-pqr
+iit
 alN
 alN
 alN
@@ -19206,7 +19214,7 @@ alN
 alN
 alN
 alN
-pqr
+iit
 aaa
 aaa
 aaa
@@ -19372,7 +19380,7 @@ aab
 "}
 (10,1,1) = {"
 aab
-pqr
+iit
 alN
 amM
 fMC
@@ -19385,7 +19393,7 @@ cqy
 qvI
 bEN
 alN
-pqr
+iit
 aaa
 aaa
 aaa
@@ -19551,7 +19559,7 @@ aab
 "}
 (11,1,1) = {"
 aab
-pqr
+iit
 alN
 awQ
 fMC
@@ -19564,7 +19572,7 @@ fMC
 fMC
 wzR
 alN
-pqr
+iit
 aaa
 aaa
 aaa
@@ -19730,7 +19738,7 @@ aab
 "}
 (12,1,1) = {"
 aab
-pqr
+iit
 alN
 aIJ
 onc
@@ -19743,7 +19751,7 @@ fMC
 eaU
 fMC
 alN
-pqr
+iit
 aaa
 aaa
 aaa
@@ -19909,7 +19917,7 @@ aab
 "}
 (13,1,1) = {"
 aab
-pqr
+iit
 alN
 alN
 alN
@@ -20088,7 +20096,7 @@ aab
 "}
 (14,1,1) = {"
 aab
-pqr
+iit
 alN
 aKb
 kYS
@@ -20267,11 +20275,11 @@ aab
 "}
 (15,1,1) = {"
 aab
-pqr
+iit
 alN
 aPx
 udH
-iit
+poB
 uPq
 fMC
 ohl
@@ -20446,7 +20454,7 @@ aab
 "}
 (16,1,1) = {"
 aab
-pqr
+iit
 alN
 alN
 alN
@@ -20625,7 +20633,7 @@ aab
 "}
 (17,1,1) = {"
 aab
-pqr
+iit
 alN
 aSh
 xrq
@@ -20804,7 +20812,7 @@ aab
 "}
 (18,1,1) = {"
 aab
-pqr
+iit
 alN
 aSh
 ohl
@@ -20983,7 +20991,7 @@ aab
 "}
 (19,1,1) = {"
 aab
-pqr
+iit
 alN
 bqT
 qVP
@@ -21162,7 +21170,7 @@ aab
 "}
 (20,1,1) = {"
 aab
-pqr
+iit
 alN
 alN
 alN
@@ -21341,7 +21349,7 @@ aab
 "}
 (21,1,1) = {"
 aab
-pqr
+iit
 pqr
 pqr
 pqr

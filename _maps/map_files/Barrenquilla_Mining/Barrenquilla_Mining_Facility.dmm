@@ -2324,12 +2324,11 @@
 /turf/open/lavaland/basalt,
 /area/barren/misc/clocknuke)
 "kQ" = (
-/obj/item/ammo_magazine/smg/m25/ap,
-/obj/item/ammo_magazine/smg/m25/ap,
-/obj/item/ammo_magazine/smg/m25/ap,
-/obj/item/ammo_magazine/smg/m25/ap,
-/turf/open/floor/tile/dark,
-/area/barren/misc/survival)
+/obj/machinery/door/poddoor/timed_survival/containment{
+	dir = 2
+	},
+/turf/closed/brock,
+/area/barren/cave/southeast)
 "kR" = (
 /obj/machinery/miner/damaged,
 /turf/open/lavaland/basalt,
@@ -3798,6 +3797,13 @@
 /obj/structure/curtain,
 /turf/open/floor/freezer,
 /area/barren/civilian/workdorm)
+"sc" = (
+/obj/item/ammo_magazine/smg/m25/ap,
+/obj/item/ammo_magazine/smg/m25/ap,
+/obj/item/ammo_magazine/smg/m25/ap,
+/obj/item/ammo_magazine/smg/m25/ap,
+/turf/open/floor/tile/dark,
+/area/barren/misc/survival)
 "se" = (
 /obj/structure/table/woodentable,
 /obj/effect/decal/cleanable/dirt,
@@ -6093,7 +6099,7 @@
 /area/barren/misc/refinery)
 "Eg" = (
 /obj/machinery/door/poddoor/timed_survival/containment,
-/turf/closed/mineral,
+/turf/open/lavaland/basalt,
 /area/barren/cave/southeast)
 "Eh" = (
 /obj/structure/filingcabinet,
@@ -7427,10 +7433,6 @@
 /obj/machinery/door/airlock/mainship/generic,
 /turf/open/floor/tile/dark2,
 /area/bigredv2/outside/general_offices)
-"KL" = (
-/obj/machinery/door/poddoor/timed_survival/containment,
-/turf/open/lavaland/basalt,
-/area/barren/cave/southeast)
 "KN" = (
 /obj/structure/window/reinforced/toughened,
 /obj/structure/grille,
@@ -7460,8 +7462,10 @@
 /turf/open/floor/tile/dark,
 /area/barren/misc/survival)
 "KY" = (
-/obj/machinery/door/poddoor/timed_survival/containment,
-/turf/open/floor/plating/ground/dirt,
+/obj/machinery/door/poddoor/timed_survival/containment{
+	dir = 2
+	},
+/turf/open/lavaland/basalt,
 /area/barren/cave/southeast)
 "KZ" = (
 /obj/machinery/shower{
@@ -54506,6 +54510,7 @@ Cr
 EB
 EF
 EF
+kQ
 Ws
 Ws
 Ws
@@ -54518,8 +54523,7 @@ Ws
 Ws
 Ws
 Ws
-Ws
-Ws
+kQ
 ZS
 wj
 wj
@@ -54763,7 +54767,7 @@ Cr
 EB
 EF
 EF
-Ws
+kQ
 DD
 DD
 DD
@@ -54776,7 +54780,7 @@ DD
 DD
 DD
 DD
-Ws
+kQ
 ZS
 wj
 wj
@@ -55020,7 +55024,7 @@ Cr
 EB
 EF
 EF
-Ws
+kQ
 DD
 SK
 fr
@@ -55033,7 +55037,7 @@ Dx
 rV
 vx
 DD
-Ws
+kQ
 ZS
 wj
 wj
@@ -55277,7 +55281,7 @@ Cr
 EB
 EF
 EF
-Ws
+kQ
 DD
 RG
 fr
@@ -55290,7 +55294,7 @@ fr
 fr
 kB
 DD
-Ws
+kQ
 ZS
 wj
 wj
@@ -55534,7 +55538,7 @@ Cr
 EB
 EF
 EF
-Ws
+kQ
 DD
 sw
 Hi
@@ -55547,7 +55551,7 @@ fr
 do
 fr
 DD
-Ws
+kQ
 ZS
 wj
 wj
@@ -55791,7 +55795,7 @@ EB
 EB
 EF
 EF
-Ws
+kQ
 DD
 DD
 DD
@@ -55804,7 +55808,7 @@ fr
 fr
 fr
 Pz
-KL
+KY
 wj
 wj
 wj
@@ -56048,7 +56052,7 @@ EB
 EB
 EF
 EF
-Ws
+kQ
 DD
 wL
 KV
@@ -56061,7 +56065,7 @@ fr
 do
 fr
 fr
-KL
+KY
 wj
 wj
 wj
@@ -56305,11 +56309,11 @@ EB
 EB
 EF
 EF
-Ws
+kQ
 DD
 Fw
 MQ
-kQ
+sc
 aT
 fr
 Tu
@@ -56318,7 +56322,7 @@ fr
 fr
 fr
 Pz
-KL
+KY
 wj
 ZS
 ZS
@@ -56562,7 +56566,7 @@ EB
 EF
 EF
 EF
-Ws
+kQ
 DD
 DD
 DD
@@ -56575,7 +56579,7 @@ fr
 do
 fr
 fr
-KL
+KY
 wj
 ZS
 ZS
@@ -56819,7 +56823,7 @@ EB
 EF
 EF
 EF
-Ws
+kQ
 DD
 VE
 yt
@@ -56832,7 +56836,7 @@ fr
 fr
 fr
 DD
-KL
+KY
 wj
 ZS
 ZS
@@ -57076,7 +57080,7 @@ EF
 EF
 Pd
 EF
-Ws
+kQ
 DD
 VE
 Tu
@@ -57089,7 +57093,7 @@ fr
 do
 kB
 DD
-KL
+KY
 wj
 wj
 ZS
@@ -57333,7 +57337,7 @@ EF
 EF
 EF
 EF
-Ws
+kQ
 DD
 nc
 ax
@@ -57590,7 +57594,7 @@ EF
 EF
 EB
 EB
-Ws
+kQ
 DD
 DD
 DD
@@ -57847,7 +57851,7 @@ EB
 EB
 EB
 EB
-Ws
+kQ
 Ws
 Ws
 Ws
