@@ -77,7 +77,7 @@
 	outside = FALSE
 	icon_state = "lava_engine"
 	minimap_color = MINIMAP_AREA_ENGI
-	
+
 /area/barren/engie/one
 	name = "Generator One"
 	icon_state = "lava_eng1"
@@ -203,3 +203,10 @@
 	name = "Ash Shelter"
 	icon_state = "lava_ash_shelter"
 	outside = FALSE
+
+/area/barren/misc/survival
+	name ="Survival Bunker"
+	icon_state = "cave"
+	ceiling = CEILING_METAL
+	outside = FALSE
+	always_unpowered = 0

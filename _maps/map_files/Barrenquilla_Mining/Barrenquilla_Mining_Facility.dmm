@@ -96,7 +96,7 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
-/area/barren/cave/southeast)
+/area/barren/misc/survival)
 "ay" = (
 /obj/machinery/light{
 	dir = 4
@@ -195,7 +195,7 @@
 "aT" = (
 /obj/effect/spawner/random/powercell,
 /turf/open/floor/tile/dark,
-/area/barren/cave/southeast)
+/area/barren/misc/survival)
 "aU" = (
 /obj/structure/bed/chair/wood/normal{
 	dir = 4
@@ -680,7 +680,7 @@
 "do" = (
 /obj/effect/landmark/start/job/survivor,
 /turf/open/floor/tile/dark,
-/area/barren/cave/southeast)
+/area/barren/misc/survival)
 "dq" = (
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/tile/dark2,
@@ -940,7 +940,6 @@
 /obj/item/clothing/under/rank/miner,
 /obj/item/clothing/suit/storage/marine/veteran/mercenary/miner,
 /obj/item/clothing/suit/storage/marine/veteran/mercenary/miner,
-/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/grimy,
 /area/barren/civilian/workdorm)
 "eA" = (
@@ -1111,10 +1110,10 @@
 /obj/item/ammo_magazine/flamer_tank/large,
 /obj/item/weapon/gun/flamer/marinestandard,
 /turf/open/floor/tile/dark,
-/area/barren/cave/southeast)
+/area/barren/misc/survival)
 "fr" = (
 /turf/open/floor/tile/dark,
-/area/barren/cave/southeast)
+/area/barren/misc/survival)
 "fs" = (
 /obj/effect/decal/remains/marauder,
 /turf/open/lavaland/basalt,
@@ -1208,7 +1207,7 @@
 /obj/item/storage/belt/utility/full,
 /obj/item/storage/belt/utility/full,
 /turf/open/floor/tile/dark,
-/area/barren/cave/southeast)
+/area/barren/misc/survival)
 "fQ" = (
 /obj/structure/bed/chair/pew{
 	dir = 1
@@ -1540,7 +1539,7 @@
 /obj/item/storage/surgical_tray,
 /obj/structure/rack,
 /turf/open/floor/tile/dark,
-/area/barren/cave/southeast)
+/area/barren/misc/survival)
 "hj" = (
 /obj/structure/cable,
 /turf/closed/wall/r_wall,
@@ -2259,7 +2258,7 @@
 "kB" = (
 /obj/machinery/light,
 /turf/open/floor/tile/dark,
-/area/barren/cave/southeast)
+/area/barren/misc/survival)
 "kC" = (
 /obj/structure/rack,
 /obj/item/storage/toolbox/mechanical,
@@ -2324,11 +2323,6 @@
 /obj/effect/decal/cleanable/rune,
 /turf/open/lavaland/basalt,
 /area/barren/misc/clocknuke)
-"kQ" = (
-/obj/effect/landmark/start/job/survivor,
-/obj/structure/bed/alien,
-/turf/open/floor/wood,
-/area/barren/misc/shack)
 "kR" = (
 /obj/machinery/miner/damaged,
 /turf/open/lavaland/basalt,
@@ -2810,7 +2804,7 @@
 	dir = 1
 	},
 /turf/open/floor/tile/dark,
-/area/barren/cave/southeast)
+/area/barren/misc/survival)
 "nd" = (
 /obj/structure/bed/alien,
 /obj/item/bedsheet,
@@ -3293,7 +3287,7 @@
 	dir = 1
 	},
 /turf/open/floor/tile/dark,
-/area/barren/cave/southeast)
+/area/barren/misc/survival)
 "pr" = (
 /turf/open/lavaland/basalt/glowing,
 /area/barren/cave/northeast)
@@ -3734,7 +3728,7 @@
 "rP" = (
 /obj/structure/largecrate/supply/supplies/mre,
 /turf/open/floor/tile/dark,
-/area/barren/cave/southeast)
+/area/barren/misc/survival)
 "rQ" = (
 /obj/structure/barricade/guardrail{
 	dir = 4;
@@ -3776,7 +3770,7 @@
 /obj/item/storage/box/minisentry,
 /obj/structure/rack,
 /turf/open/floor/tile/dark,
-/area/barren/cave/southeast)
+/area/barren/misc/survival)
 "rW" = (
 /obj/structure/window/framed/colony/reinforced,
 /turf/open/floor/wood,
@@ -3797,10 +3791,6 @@
 /obj/structure/curtain,
 /turf/open/floor/freezer,
 /area/barren/civilian/workdorm)
-"sc" = (
-/obj/effect/landmark/start/job/survivor,
-/turf/open/floor/tile/dark2,
-/area/barren/misc/refinery)
 "se" = (
 /obj/structure/table/woodentable,
 /obj/effect/decal/cleanable/dirt,
@@ -3875,7 +3865,7 @@
 	req_access = 0
 	},
 /turf/open/floor/tile/dark,
-/area/barren/cave/southeast)
+/area/barren/misc/survival)
 "sy" = (
 /obj/structure/cable,
 /obj/structure/table,
@@ -3905,7 +3895,6 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/effect/landmark/start/job/survivor,
 /turf/open/lavaland/basalt,
 /area/barren/cave/central)
 "sL" = (
@@ -4467,7 +4456,7 @@
 /obj/structure/rack,
 /obj/item/stack/sheet/plasteel/large_stack,
 /turf/open/floor/tile/dark,
-/area/barren/cave/southeast)
+/area/barren/misc/survival)
 "vy" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
@@ -4698,7 +4687,7 @@
 "wL" = (
 /obj/structure/largecrate/supply/weapons/shotgun,
 /turf/open/floor/tile/dark,
-/area/barren/cave/southeast)
+/area/barren/misc/survival)
 "wM" = (
 /obj/structure/table/reinforced,
 /obj/effect/landmark/weapon_spawn/tier3_weapon_spawn,
@@ -4789,7 +4778,7 @@
 /obj/machinery/power/apc/hyper,
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
-/area/barren/cave/southeast)
+/area/barren/misc/survival)
 "xl" = (
 /turf/open/floor/plating/warning{
 	dir = 1
@@ -4843,7 +4832,7 @@
 /obj/item/stack/sandbags/large_stack,
 /obj/item/stack/sandbags/large_stack,
 /turf/open/floor/tile/dark,
-/area/barren/cave/southeast)
+/area/barren/misc/survival)
 "xv" = (
 /obj/machinery/computer/intel_computer,
 /turf/open/floor/plating/mainship,
@@ -4980,7 +4969,7 @@
 	dir = 4
 	},
 /turf/open/floor/tile/dark,
-/area/barren/cave/southeast)
+/area/barren/misc/survival)
 "yj" = (
 /obj/structure/cable,
 /obj/machinery/door/airlock/mainship/engineering/free_access{
@@ -5024,7 +5013,7 @@
 /obj/structure/closet/secure_closet/engineering_electrical,
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
-/area/barren/cave/southeast)
+/area/barren/misc/survival)
 "yv" = (
 /obj/machinery/optable,
 /obj/machinery/power/apc,
@@ -5437,7 +5426,7 @@
 "AN" = (
 /obj/structure/reagent_dispensers/watertank,
 /turf/open/floor/tile/dark,
-/area/barren/cave/southeast)
+/area/barren/misc/survival)
 "AO" = (
 /obj/structure/closet/secure_closet/engineering_personal,
 /obj/structure/sign/poster,
@@ -5963,7 +5952,7 @@
 /obj/item/stack/sheet/metal/large_stack,
 /obj/item/stack/sheet/metal/large_stack,
 /turf/open/floor/tile/dark,
-/area/barren/cave/southeast)
+/area/barren/misc/survival)
 "Dz" = (
 /obj/machinery/computer/intel_computer,
 /turf/open/floor/plating/mainship,
@@ -5982,7 +5971,7 @@
 /area/barren/misc/eastarmory)
 "DD" = (
 /turf/closed/wall/r_wall,
-/area/barren/cave/southeast)
+/area/barren/misc/survival)
 "DE" = (
 /obj/machinery/prop/mainship/computer,
 /obj/structure/table,
@@ -6069,7 +6058,7 @@
 "DZ" = (
 /obj/structure/closet/secure_closet/engineering_welding,
 /turf/open/floor/tile/dark,
-/area/barren/cave/southeast)
+/area/barren/misc/survival)
 "Ea" = (
 /obj/structure/table/reinforced,
 /obj/effect/decal/cleanable/cobweb{
@@ -6389,7 +6378,7 @@
 	dir = 1
 	},
 /turf/open/floor/tile/dark,
-/area/barren/cave/southeast)
+/area/barren/misc/survival)
 "Fx" = (
 /obj/structure/flora/pottedplant,
 /turf/open/floor/tile/bar{
@@ -6702,7 +6691,7 @@
 /obj/machinery/optable,
 /obj/item/tank/anesthetic,
 /turf/open/floor/tile/dark,
-/area/barren/cave/southeast)
+/area/barren/misc/survival)
 "Hj" = (
 /obj/structure/lattice,
 /obj/structure/cable,
@@ -6728,7 +6717,7 @@
 /obj/structure/rack,
 /obj/item/lightreplacer,
 /turf/open/floor/tile/dark,
-/area/barren/cave/southeast)
+/area/barren/misc/survival)
 "Ho" = (
 /obj/structure/table/mainship,
 /obj/structure/paper_bin,
@@ -7077,7 +7066,7 @@
 "Jd" = (
 /obj/structure/reagent_dispensers/fueltank,
 /turf/open/floor/tile/dark,
-/area/barren/cave/southeast)
+/area/barren/misc/survival)
 "Je" = (
 /obj/structure/table/reinforced/prison,
 /obj/item/flash,
@@ -7354,11 +7343,6 @@
 /obj/structure/window/framed/colony/reinforced,
 /turf/open/floor/prison/bright_clean/two,
 /area/barren/security)
-"Kq" = (
-/obj/structure/cable,
-/obj/effect/landmark/start/job/survivor,
-/turf/open/floor/plating,
-/area/barren/cave/south)
 "Kr" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable,
@@ -7455,7 +7439,7 @@
 "KV" = (
 /obj/structure/largecrate/supply/ammo/shotgun,
 /turf/open/floor/tile/dark,
-/area/barren/cave/southeast)
+/area/barren/misc/survival)
 "KY" = (
 /obj/machinery/door/poddoor/timed_survival/containment,
 /turf/open/floor/plating/ground/dirt,
@@ -7769,7 +7753,7 @@
 "MQ" = (
 /obj/structure/largecrate/supply/ammo/standard_smg,
 /turf/open/floor/tile/dark,
-/area/barren/cave/southeast)
+/area/barren/misc/survival)
 "MS" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable,
@@ -8295,7 +8279,7 @@
 "Pz" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic,
 /turf/open/floor/tile/dark,
-/area/barren/cave/southeast)
+/area/barren/misc/survival)
 "PB" = (
 /turf/open/floor/wood,
 /area/barren/civilian)
@@ -8337,7 +8321,7 @@
 /obj/machinery/door/airlock/multi_tile/mainship/generic,
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
-/area/barren/cave/southeast)
+/area/barren/misc/survival)
 "PT" = (
 /turf/open/floor/wood,
 /area/bigredv2/outside/general_offices)
@@ -8520,7 +8504,7 @@
 	req_one_access = null
 	},
 /turf/open/floor/tile/dark,
-/area/barren/cave/southeast)
+/area/barren/misc/survival)
 "QV" = (
 /obj/structure/largecrate/cow,
 /turf/open/floor/marking/delivery,
@@ -8654,7 +8638,7 @@
 "RG" = (
 /obj/machinery/body_scanconsole,
 /turf/open/floor/tile/dark,
-/area/barren/cave/southeast)
+/area/barren/misc/survival)
 "RH" = (
 /obj/machinery/floodlight/landing,
 /obj/effect/decal/warning_stripes/thin{
@@ -8794,7 +8778,7 @@
 "Sn" = (
 /obj/structure/largecrate/supply/supplies/flares,
 /turf/open/floor/tile/dark,
-/area/barren/cave/southeast)
+/area/barren/misc/survival)
 "Sp" = (
 /turf/open/floor/prison/bright_clean/two,
 /area/barren/security)
@@ -8840,7 +8824,7 @@
 "SK" = (
 /obj/machinery/bodyscanner,
 /turf/open/floor/tile/dark,
-/area/barren/cave/southeast)
+/area/barren/misc/survival)
 "SL" = (
 /obj/item/ore/phoron,
 /turf/open/lavaland/basalt,
@@ -8946,7 +8930,7 @@
 "Tu" = (
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
-/area/barren/cave/southeast)
+/area/barren/misc/survival)
 "Tx" = (
 /obj/structure/rack,
 /obj/item/weapon/gun/revolver/small,
@@ -8990,7 +8974,7 @@
 "TG" = (
 /obj/structure/largecrate/supply/supplies/water,
 /turf/open/floor/tile/dark,
-/area/barren/cave/southeast)
+/area/barren/misc/survival)
 "TH" = (
 /obj/machinery/light{
 	dir = 8
@@ -9354,7 +9338,7 @@
 /obj/machinery/power/geothermal,
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
-/area/barren/cave/southeast)
+/area/barren/misc/survival)
 "VG" = (
 /obj/effect/decal/cleanable/blood/gibs/xeno,
 /turf/open/lavaland/basalt,
@@ -9813,7 +9797,7 @@
 /obj/item/ammo_magazine/rifle/bolt,
 /obj/item/ammo_magazine/rifle/bolt,
 /turf/open/floor/tile/dark,
-/area/barren/cave/southeast)
+/area/barren/misc/survival)
 "Yq" = (
 /obj/effect/decal/cleanable/blood/writing{
 	dir = 4
@@ -9856,7 +9840,7 @@
 	dir = 1
 	},
 /turf/open/floor/tile/dark,
-/area/barren/cave/southeast)
+/area/barren/misc/survival)
 "YE" = (
 /obj/structure/bed/chair/pew{
 	dir = 10
@@ -32633,7 +32617,7 @@ Rc
 JJ
 Hq
 JJ
-sc
+JJ
 JJ
 JJ
 LB
@@ -46276,7 +46260,7 @@ QL
 Ah
 cp
 xb
-Kq
+xX
 xb
 bY
 xb
@@ -57339,7 +57323,7 @@ wj
 LQ
 XL
 Nb
-kQ
+kJ
 LQ
 wj
 ZS
