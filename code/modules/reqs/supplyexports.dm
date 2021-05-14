@@ -91,3 +91,7 @@
 /datum/supply_export/xemomorph/queen
 	cost = 100
 	export_obj = /mob/living/carbon/xenomorph/queen
+
+/datum/supply_export/xemomorph/jelly
+	cost = 7
+	export_obj = /obj/item/resin_jelly

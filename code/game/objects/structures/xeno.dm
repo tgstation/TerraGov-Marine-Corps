@@ -258,7 +258,7 @@
 	SIGNAL_HANDLER
 	if(isxeno(atom_entering))
 		Open()
-	
+
 
 /obj/structure/mineral_door/resin/proc/thicken()
 	var/oldloc = loc
@@ -1003,6 +1003,7 @@ TUNNEL
 	desc = "A foul, viscous resin jelly that doesnt seem to burn easily."
 	icon = 'icons/unused/Marine_Research.dmi'
 	icon_state = "biomass"
+	w_class = WEIGHT_CLASS_SMALL
 	soft_armor = list("fire" = 200)
 	var/immune_time = 15 SECONDS
 
