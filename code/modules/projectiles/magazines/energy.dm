@@ -95,7 +95,7 @@
 
 /obj/item/cell/lasgun/lasrifle/marine
 	name = "\improper Terra Experimental standard battery"
-	desc = "A specialized high density battery used to power most standard marine laser guns. It is simply known as the TE power cell"
+	desc = "A specialized high density battery used to power most standard marine laser guns. It is simply known as the TE power cell."
 	base_ammo_icon = "te"
 	icon_state = "te"
 	maxcharge = 600
