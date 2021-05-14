@@ -558,7 +558,7 @@
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_rifle
 	name = "\improper Terra Experimental laser rifle"
-	desc = "A TerraGov standard issue laser rifle otherwise known as TE-R abbreviated has an integrated charge selector for normal and high settings. Uses standard Terra Experimental (abbreviated as TE) power cells."
+	desc = "A Terra Experimental laser rifle, abbreviated as the TE-R. It has an integrated charge selector for normal and high settings. Uses standard Terra Experimental (abbreviated as TE) power cells."
 	reload_sound = 'sound/weapons/guns/interact/standard_laser_rifle_reload.ogg'
 	fire_sound = 'sound/weapons/guns/fire/Laser Rifle Standard.ogg'
 	force = 20
@@ -707,7 +707,7 @@
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_carbine
 	name = "\improper Terra Experimental laser carbine"
-	desc = "A TerraGov standard issue laser carbine otherwise known as TE-C for short. It has an integrated charge selector for burst and scatter settings. Uses standard Terra Experimental (abbreviated as TE) power cells."
+	desc = "A TerraGov standard issue laser carbine, otherwise known as TE-C for short. It has an integrated charge selector for burst and scatter settings. Uses standard Terra Experimental (abbreviated as TE) power cells."
 	reload_sound = 'sound/weapons/guns/interact/standard_laser_rifle_reload.ogg'
 	fire_sound = 'sound/weapons/guns/fire/Laser Rifle Standard.ogg'
 	force = 20
@@ -853,7 +853,7 @@
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_mlaser
 	name = "\improper Terra Experimental laser machine gun"
-	desc = "A Terra Experimental standard issue machine laser gun, often called as the TE-M by marines. It does not have a fire mode switch, unlike the other Terra Experimental laser prototypes. Uses standard Terra Experimental (abbreviated as TE) power cells."
+	desc = "A Terra Experimental standard issue machine laser gun, often called as the TE-M by marines. It has a fire switch for normal and efficiency modes. Uses standard Terra Experimental (abbreviated as TE) power cells."
 	reload_sound = 'sound/weapons/guns/interact/standard_machine_laser_reload.ogg'
 	fire_sound = 'sound/weapons/guns/fire/Laser Rifle Standard.ogg'
 	force = 20
