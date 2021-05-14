@@ -16,10 +16,13 @@
 #define FACTION_HOSTILE "Hostile"
 #define FACTION_PIRATE "Pirate"
 
-///Alignement are currently only used by req.
-#define ALIGNEMENT_NEUTRAL 0 //Mob with a neutral alignement cannot be sold by anyone
-#define ALIGNEMENT_HOSTILE -1 //Mob with an hostile alignement can be sold by everyone except members of their own faction
-#define ALIGNEMENT_FRIENDLY 1 //Mob with friendly alignement can only be sold by mob of the hostile or neutral alignement
+//Alignement are currently only used by req.
+///Mob with a neutral alignement cannot be sold by anyone
+#define ALIGNEMENT_NEUTRAL 0 
+///Mob with an hostile alignement can be sold by everyone except members of their own faction
+#define ALIGNEMENT_HOSTILE -1 
+///Mob with friendly alignement can only be sold by mob of the hostile or neutral alignement
+#define ALIGNEMENT_FRIENDLY 1 
 
 //Alignement for each faction
 GLOBAL_LIST_INIT(faction_to_alignement, list(
