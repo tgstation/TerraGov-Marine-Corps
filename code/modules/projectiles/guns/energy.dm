@@ -663,7 +663,7 @@
 	wield_delay = 0.6 SECONDS
 	scatter = 0
 	scatter_unwielded = 0
-	fire_delay = 0.2 SECONDS
+	fire_delay = 0.25 SECONDS
 	accuracy_mult = 1.1
 	accuracy_mult_unwielded = 0.9
 	scatter_unwielded = 0
@@ -759,7 +759,7 @@
 /datum/lasrifle/base/energy_carbine_mode/auto_burst_standard ///I know this seems tacky, but if I make auto burst a standard firemode it somehow buffs spread's fire delay.
 	charge_cost = 15
 	ammo = /datum/ammo/energy/lasgun/marine
-	fire_delay = 0.15 SECONDS
+	fire_delay = 0.17 SECONDS
 	burst_amount = 4
 	fire_sound = 'sound/weapons/guns/fire/Laser Rifle Standard.ogg'
 	message_to_user = "You set the laser carbine's charge mode to standard auto burst fire."
