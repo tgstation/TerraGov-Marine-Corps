@@ -122,8 +122,8 @@ GLOBAL_LIST_EMPTY(helmetmarkings_sl)
 
 
 /datum/squad/proc/insert_into_squad(mob/living/carbon/human/new_squaddie, give_radio = FALSE)
-	if(!(new_squaddie.job in SSjob.active_occupations))
-		CRASH("attempted to insert marine [new_squaddie] from squad [name] while having job [isnull(new_squaddie.job) ? "null" : new_squaddie.job.title]")
+	/*if(!(new_squaddie.job in SSjob.active_occupations))
+		CRASH("attempted to insert marine [new_squaddie] from squad [name] while having job [isnull(new_squaddie.job) ? "null" : new_squaddie.job.title]")*/
 
 	var/obj/item/card/id/idcard = new_squaddie.get_idcard()
 	if(!istype(idcard))
@@ -169,7 +169,7 @@ GLOBAL_LIST_EMPTY(helmetmarkings_sl)
 
 	marines_list += new_squaddie
 	new_squaddie.assigned_squad = src
-	new_squaddie.hud_set_job()
+	new_squaddie.hud_set_job(faction)
 	new_squaddie.update_action_buttons()
 	new_squaddie.update_inv_head()
 	new_squaddie.update_inv_wear_suit()
@@ -217,7 +217,7 @@ GLOBAL_LIST_EMPTY(helmetmarkings_sl)
 	marines_list -= leaving_squaddie
 
 	leaving_squaddie.assigned_squad = null
-	leaving_squaddie.hud_set_job()
+	leaving_squaddie.hud_set_job(faction)
 	leaving_squaddie.update_action_buttons()
 	leaving_squaddie.update_inv_head()
 	leaving_squaddie.update_inv_wear_suit()
@@ -249,7 +249,7 @@ GLOBAL_LIST_EMPTY(helmetmarkings_sl)
 	var/mob/living/carbon/human/H = squad_leader
 	squad_leader = null
 	H.update_action_buttons()
-	H.hud_set_job()
+	H.hud_set_job(faction)
 	H.update_inv_head()
 	H.update_inv_wear_suit()
 
@@ -276,7 +276,7 @@ GLOBAL_LIST_EMPTY(helmetmarkings_sl)
 		R.secure_radio_connections[RADIO_CHANNEL_COMMAND] = add_radio(R, GLOB.radiochannels[RADIO_CHANNEL_COMMAND])
 		R.use_command = TRUE
 
-	squad_leader.hud_set_job()
+	squad_leader.hud_set_job(faction)
 	squad_leader.update_action_buttons()
 	squad_leader.update_inv_head()
 	squad_leader.update_inv_wear_suit()
@@ -346,22 +346,19 @@ GLOBAL_LIST_EMPTY(helmetmarkings_sl)
 	///List of all the faction accessible squads
 	var/list/available_squads = SSjob.active_squads[faction]
 	var/datum/squad/preferred_squad = available_squads[player.client.prefs.preferred_squad]
-	switch(job.title)
-		if(SQUAD_MARINE)
-			if(preferred_squad?.assign_initial(player, job, latejoin))
-				return TRUE
-			var/datum/squad/backup_squad = available_squads[pick(available_squads)]
-			return backup_squad.assign_initial(player, job, latejoin)
-		else
-			//We first check if we can join our preferred squad
-			if(preferred_squad?.assign_initial(player, job, latejoin))
-				return TRUE
-			if(strict && !latejoin)
-				return FALSE
-			//If our preferred squad is not available, we try every other squad
-			for(var/datum/squad/squad AS in available_squads)
-				if(!squad.check_entry(job))
-					continue
-				if(squad.assign_initial(player, job, latejoin))
-					return TRUE
+	if(job.title == SQUAD_MARINE)
+		if(preferred_squad?.assign_initial(player, job, latejoin))
+			return TRUE
+		var/datum/squad/backup_squad = available_squads[pick(available_squads)]
+		return backup_squad.assign_initial(player, job, latejoin)	
+	if(preferred_squad?.assign_initial(player, job, latejoin))
+		return TRUE
+	if(strict && !latejoin)
+		return FALSE
+	//If our preferred squad is not available, we try every other squad
+	for(var/datum/squad/squad AS in available_squads)
+		if(!squad.check_entry(job))
+			continue
+		if(squad.assign_initial(player, job, latejoin))
+			return TRUE
 	return FALSE
