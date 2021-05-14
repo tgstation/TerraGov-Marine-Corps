@@ -1,0 +1,5 @@
+author: "lovegreenstuff"
+delete-after: True
+changes: 
+  - balance: "lowered TP14 sunder to 1.4, kept most commonly used ammo types at 2."
+  - balance: "changes TP14 to 1.65, buffs TP23 bullet sunder to 2.15."
