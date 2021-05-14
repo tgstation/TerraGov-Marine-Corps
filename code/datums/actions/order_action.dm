@@ -38,14 +38,14 @@
 		return FALSE
 
 ///Print order visual to all marines squad hud and give them an arrow to follow the waypoint
-/datum/action/innate/order/proc/send_order(atom/target, datum/squad/squad)
+/datum/action/innate/order/proc/send_order(atom/target, datum/squad/squad, faction = FACTION_TERRAGOV)
 	if(!can_use_action())
 		return
 	to_chat(owner ,"<span class='ordercic'>You ordered marines to [verb_name] [get_area(target.loc)]!</span>")
 	owner.playsound_local(owner, "sound/effects/CIC_order.ogg", 10, 1)
 	if(visual_type)
 		target = get_turf(target)
-		new visual_type(target)
+		new visual_type(target, faction)
 	TIMER_COOLDOWN_START(owner, COOLDOWN_CIC_ORDERS, ORDER_COOLDOWN)
 	SEND_SIGNAL(owner, COMSIG_ORDER_SENT)
 	addtimer(CALLBACK(owner, /mob/proc/update_all_icons_orders), ORDER_COOLDOWN)
@@ -54,7 +54,8 @@
 			marine.receive_order(target, arrow_type, verb_name)
 		return TRUE
 	for(var/mob/living/carbon/human/human AS in GLOB.alive_human_list)
-		human.receive_order(target, arrow_type, verb_name)
+		if(human.faction == faction)
+			human.receive_order(target, arrow_type, verb_name)
 	return TRUE
 
 ///Update all icons of orders action of the mob
@@ -121,6 +122,6 @@
 
 /datum/action/innate/order/rally_order/action_activate()
 	var/mob/living/carbon/human/human = owner
-	if(send_order(human, human.assigned_squad))
+	if(send_order(human, human.assigned_squad, human.faction))
 		var/message = pick(";TO ME MY MEN!", ";REGROUP TO ME!", ";FOLLOW MY LEAD!", ";RALLY ON ME!", ";FORWARD!")
 		owner.say(message)

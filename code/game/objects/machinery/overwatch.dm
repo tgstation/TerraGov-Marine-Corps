@@ -44,6 +44,9 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	///datum used when sending a defend order
 	var/datum/action/innate/order/defend_order/send_defend_order
 
+/obj/machinery/computer/camera_advanced/overwatch/rebel
+	faction = FACTION_TERRAGOV_REBEL
+
 /obj/machinery/computer/camera_advanced/overwatch/Initialize()
 	. = ..()
 	send_attack_order = new
@@ -80,6 +83,23 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	name = "Charlie Overwatch Console"
 
 /obj/machinery/computer/camera_advanced/overwatch/delta
+	name = "Delta Overwatch Console"
+
+/obj/machinery/computer/camera_advanced/overwatch/rebel/main
+	icon_state = "overwatch_main"
+	name = "Main Overwatch Console"
+	desc = "State of the art machinery for general overwatch purposes."
+
+/obj/machinery/computer/camera_advanced/overwatch/rebel/alpha
+	name = "Alpha Overwatch Console"
+
+/obj/machinery/computer/camera_advanced/overwatch/rebel/bravo
+	name = "Bravo Overwatch Console"
+
+/obj/machinery/computer/camera_advanced/overwatch/rebel/charlie
+	name = "Charlie Overwatch Console"
+
+/obj/machinery/computer/camera_advanced/overwatch/rebel/delta
 	name = "Delta Overwatch Console"
 
 
@@ -898,7 +918,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	if(!current_order)
 		var/mob/user = source
 		to_chat(user, "<span class='warning'>Your have no order selected.</span>")
-	current_order.send_order(target)
+	current_order.send_order(target, faction = faction)
 
 ///Setter for the current order
 /obj/machinery/computer/camera_advanced/overwatch/proc/set_order(datum/source, datum/action/innate/order/order)
