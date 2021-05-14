@@ -69,7 +69,7 @@ SUBSYSTEM_DEF(job)
 		var/datum/squad/squad = new S()
 		if(!squad)
 			continue
-		squads[squad.name] = squad
+		squads[squad.id] = squad
 	return TRUE
 
 
@@ -100,7 +100,7 @@ SUBSYSTEM_DEF(job)
 		JobDebug("AR player not old enough, Player: [player], Job:[job.title]")
 		return FALSE
 	if(ismarinejob(job))
-		if(!handle_initial_squad(player, job, latejoin))
+		if(!handle_initial_squad(player, job, latejoin, job.faction))
 			JobDebug("Failed to assign marine role to a squad. Player: [player.key] Job: [job.title]")
 			return FALSE
 		JobDebug("Successfuly assigned marine role to a squad. Player: [player.key], Job: [job.title], Squad: [player.assigned_squad]")

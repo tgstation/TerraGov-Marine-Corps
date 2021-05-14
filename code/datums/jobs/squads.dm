@@ -341,93 +341,27 @@ GLOBAL_LIST_EMPTY(helmetmarkings_sl)
 
 
 //A generic proc for handling the initial squad role assignment in SSjob
-/proc/handle_initial_squad(mob/new_player/player, datum/job/job, latejoin = FALSE)
+/proc/handle_initial_squad(mob/new_player/player, datum/job/job, latejoin = FALSE, faction = FACTION_TERRAGOV)
 	var/strict = player.client.prefs.be_special && (player.client.prefs.be_special & BE_SQUAD_STRICT)
-	var/datum/squad/P = SSjob.active_squads[player.client.prefs.preferred_squad]
-	var/datum/squad/R = SSjob.active_squads[pick(SSjob.active_squads)]
+	///List of all the faction accessible squads
+	var/list/available_squads = SSjob.active_squads[faction]
+	var/datum/squad/preferred_squad = available_squads[player.client.prefs.preferred_squad]
 	switch(job.title)
 		if(SQUAD_MARINE)
-			return P?.assign_initial(player, job, latejoin) || R.assign_initial(player, job, latejoin)
-		if(SQUAD_ENGINEER)
-			for(var/i in shuffle(SSjob.active_squads))
-				var/datum/squad/S = SSjob.active_squads[i]
-				if(!S.check_entry(job))
-					continue
-				if(P && P == S && S.assign_initial(player, job, latejoin))
-					return TRUE
+			if(preferred_squad?.assign_initial(player, job, latejoin))
+				return TRUE
+			var/datum/squad/backup_squad = available_squads[pick(available_squads)]
+			return backup_squad.assign_initial(player, job, latejoin)
+		else
+			//We first check if we can join our preferred squad
+			if(preferred_squad?.assign_initial(player, job, latejoin))
+				return TRUE
 			if(strict && !latejoin)
 				return FALSE
-			for(var/i in shuffle(SSjob.active_squads))
-				var/datum/squad/S = SSjob.active_squads[i]
-				if(!S.check_entry(job))
+			//If our preferred squad is not available, we try every other squad
+			for(var/datum/squad/squad AS in available_squads)
+				if(!squad.check_entry(job))
 					continue
-				else if(S.assign_initial(player, job, latejoin))
-					return TRUE
-		if(SQUAD_CORPSMAN)
-			for(var/i in shuffle(SSjob.active_squads))
-				var/datum/squad/S = SSjob.active_squads[i]
-				if(!S.check_entry(job))
-					continue
-				if(P && P == S && S.assign_initial(player, job, latejoin))
-					return TRUE
-			if(strict && !latejoin)
-				return FALSE
-			for(var/i in shuffle(SSjob.active_squads))
-				var/datum/squad/S = SSjob.active_squads[i]
-				if(!S.check_entry(job))
-					continue
-				else if(S.assign_initial(player, job, latejoin))
-					return TRUE
-		if(SQUAD_SMARTGUNNER)
-			for(var/i in shuffle(SSjob.active_squads))
-				var/datum/squad/S = SSjob.active_squads[i]
-				if(!S.check_entry(job))
-					continue
-				if(P && P == S && S.assign_initial(player, job, latejoin))
-					return TRUE
-			if(strict && !latejoin)
-				return FALSE
-			for(var/i in shuffle(SSjob.active_squads))
-				var/datum/squad/S = SSjob.active_squads[i]
-				if(!S.check_entry(job, latejoin))
-					continue
-				else if(S.assign_initial(player, job, latejoin))
-					return TRUE
-		if(SQUAD_SPECIALIST)
-			for(var/i in shuffle(SSjob.active_squads))
-				var/datum/squad/S = SSjob.active_squads[i]
-				if(!S.check_entry(job))
-					continue
-				if(P && P == S && S.assign_initial(player, job, latejoin))
-					return TRUE
-			if(strict && !latejoin)
-				return FALSE
-			for(var/i in shuffle(SSjob.active_squads))
-				var/datum/squad/S = SSjob.active_squads[i]
-				if(!S.check_entry(job))
-					continue
-				else if(S.assign_initial(player, job, latejoin))
-					return TRUE
-		if(SQUAD_LEADER)
-			for(var/i in shuffle(SSjob.active_squads))
-				var/datum/squad/S = SSjob.active_squads[i]
-				if(!S.check_entry(job))
-					continue
-				if(P && P == S && S.assign_initial(player, job, latejoin))
-					return TRUE
-			if(strict && !latejoin)
-				return FALSE
-			for(var/i in shuffle(SSjob.active_squads))
-				var/datum/squad/S = SSjob.active_squads[i]
-				if(!S.check_entry(job))
-					continue
-				else if(S.assign_initial(player, job, latejoin))
+				if(squad.assign_initial(player, job, latejoin))
 					return TRUE
 	return FALSE
-
-
-/proc/reset_squads()
-	for(var/i in SSjob.squads)
-		var/datum/squad/squad = SSjob.squads[i]
-		for(var/j in squad.current_positions)
-			squad.current_positions[j] = 0
