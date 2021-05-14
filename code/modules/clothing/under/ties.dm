@@ -334,6 +334,7 @@
 	hold = /obj/item/storage/internal/tie/webbing
 
 /obj/item/storage/internal/tie/webbing
+	max_w_class = WEIGHT_CLASS_SMALL
 	bypass_w_limit = list(
 		/obj/item/ammo_magazine/rifle,
 		/obj/item/ammo_magazine/smg,
@@ -355,6 +356,7 @@
 
 /obj/item/storage/internal/tie/vest
 	storage_slots = 5
+	max_w_class = WEIGHT_CLASS_SMALL
 	cant_hold = list(
 		/obj/item/stack/razorwire,
 		/obj/item/stack/sheet,
