@@ -26,9 +26,16 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 	dheight = 2
 	height = 5
 
+/obj/docking_port/stationary/supply/rebel
+	id = "supply_away_rebel"
+
 /obj/docking_port/stationary/supply/reqs
 	id = "supply_home"
 	roundstart_template = /datum/map_template/shuttle/supply
+
+/obj/docking_port/stationary/supply/reqs/rebel
+	id = "supply_home_rebel"
+	roundstart_template = /datum/map_template/shuttle/supply/rebel
 
 /obj/docking_port/mobile/supply
 	name = "supply shuttle"
@@ -47,7 +54,17 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 	var/list/obj/machinery/door/poddoor/railing/railings = list()
 	///The faction of this docking port (aka, on which ship it is located)
 	var/faction = FACTION_TERRAGOV
+	/// Id of the home docking port
+	var/home_id = "supply_home"
+	/// Id of the away docking port
+	var/away_id = "supply_away"
 
+/obj/docking_port/mobile/supply/rebel
+	name = "supply shuttle"
+	id = "supply_rebel"
+	//faction = FACTION_TERRAGOV_REBEL //Waiting for faction PR to go in
+	home_id = "supply_home_rebel"
+	away_id = "supply_away_rebel"
 
 /obj/docking_port/mobile/supply/Destroy(force)
 	for(var/i in railings)
@@ -59,18 +76,18 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 
 /obj/docking_port/mobile/supply/afterShuttleMove()
 	. = ..()
-	if(getDockedId() == "supply_home" || getDockedId() == "supply_away")
+	if(getDockedId() == home_id || getDockedId() == away_id)
 		for(var/i in gears)
 			var/obj/machinery/gear/G = i
 			G.stop_moving()
 
-	if(getDockedId() == "supply_home")
+	if(getDockedId() == home_id)
 		for(var/j in railings)
 			var/obj/machinery/door/poddoor/railing/R = j
 			R.open()
 
 /obj/docking_port/mobile/supply/on_ignition()
-	if(getDockedId() == "supply_home")
+	if(getDockedId() == home_id)
 		for(var/j in railings)
 			var/obj/machinery/door/poddoor/railing/R = j
 			R.close()
@@ -126,12 +143,12 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 	return ..()
 
 /obj/docking_port/mobile/supply/initiate_docking()
-	if(getDockedId() == "supply_away") // Buy when we leave home.
+	if(getDockedId() == away_id) // Buy when we leave home.
 		buy()
 	. = ..() // Fly/enter transit.
 	if(. != DOCKING_SUCCESS)
 		return
-	if(getDockedId() == "supply_away") // Sell when we get home
+	if(getDockedId() == away_id) // Sell when we get home
 		sell()
 
 /obj/docking_port/mobile/supply/proc/buy()
@@ -250,6 +267,18 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 	req_access = list(ACCESS_MARINE_CARGO)
 	circuit = null
 	var/datum/supply_ui/SU
+	///Id of the shuttle controlled
+	var/shuttle_id = "supply"
+	/// Id of the home docking port
+	var/home_id = "supply_home"
+	/// Id of the away docking port
+	var/away_id = "supply_away"
+
+/obj/machinery/computer/supplycomp/rebel
+	//req_access = list(ACCESS_MARINE_CARGO_REBEL) Waiting for faction PR
+	shuttle_id = "supply_rebel"
+	home_id = "supply_home_rebel"
+	away_id = "supply_away_rebel"
 
 /obj/machinery/computer/supplycomp/interact(mob/user)
 	. = ..()
@@ -259,12 +288,21 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 		return
 	if(!SU)
 		SU = new(src)
+		SU.shuttle_id = shuttle_id
+		SU.home_id = home_id 
+		SU.away_id = away_id
 	return SU.interact(user)
 
 /datum/supply_ui
 	interaction_flags = INTERACT_MACHINE_TGUI
 	var/atom/source_object
 	var/tgui_name = "Cargo"
+	///Id of the shuttle controlled
+	var/shuttle_id = ""
+	///Id of the away port
+	var/away_id = ""
+	///Id of the home port
+	var/home_id = ""
 
 /datum/supply_ui/New(atom/source_object)
 	. = ..()
@@ -441,11 +479,11 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 					playsound(SSshuttle.supply.return_center_turf(), 'sound/machines/buzz-two.ogg', 50, 0)
 				else
 					playsound(SSshuttle.supply.return_center_turf(), 'sound/machines/elevator_move.ogg', 50, 0)
-					SSshuttle.moveShuttle("supply", "supply_away", TRUE)
+					SSshuttle.moveShuttle(shuttle_id, away_id, TRUE)
 			else
-				var/obj/docking_port/D = SSshuttle.getDock("supply_home")
+				var/obj/docking_port/D = SSshuttle.getDock(home_id)
 				playsound(D.return_center_turf(), 'sound/machines/elevator_move.ogg', 50, 0)
-				SSshuttle.moveShuttle("supply", "supply_home", TRUE)
+				SSshuttle.moveShuttle(shuttle_id, home_id, TRUE)
 			. = TRUE
 		if("approve")
 			var/datum/supply_order/O = SSpoints.requestlist["[params["id"]]"]
@@ -559,10 +597,17 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 	icon_state = "request"
 	circuit = null
 	var/datum/supply_ui/requests/SU
+	req_access = list(ACCESS_IFF_MARINE)
+
+/obj/machinery/computer/ordercomp/rebel
+	//req_access = list(ACCESS_IFF_MARINE_REBEL) //Waiting on faction PR
 
 /obj/machinery/computer/ordercomp/interact(mob/user)
 	. = ..()
 	if(.)
+		return
+
+	if(!allowed(user))
 		return
 
 	if(!SU)

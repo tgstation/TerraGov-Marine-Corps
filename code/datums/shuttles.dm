@@ -148,6 +148,9 @@
 	shuttle_id = "supply"
 	name = "Supply"
 
+/datum/map_template/shuttle/supply/rebel
+	shuttle_id = "supply_rebel"
+
 /datum/map_template/shuttle/tgs_canterbury
 	shuttle_id = "tgs_canterbury"
 	name = "Canterbury"
