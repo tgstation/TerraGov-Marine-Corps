@@ -2,6 +2,7 @@
 	name = "Civil War"
 	config_tag = "Civil War"
 	flags_round_type = MODE_LZ_SHUTTERS|MODE_TWO_HUMAN_FACTIONS
+	flags_landmarks = MODE_LANDMARK_SPAWN_SPECIFIC_SHUTTLE_CONSOLE
 	joinable_factions = list(FACTION_TERRAGOV, FACTION_TERRAGOV_REBEL)
 
 	valid_job_types = list(

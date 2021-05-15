@@ -206,10 +206,12 @@ SUBSYSTEM_DEF(job)
 		if(PopcapReached())
 			RejectPlayer(player)
 		// Loop through all jobs
-		for(var/j in occupations_to_assign)
-			var/datum/job/job = j
+		for(var/datum/job/job AS in occupations_to_assign)
 			// If the player wants that job on this level, then try give it to him.
 			if(player.client.prefs.job_preferences[job.title] != level)
+				continue
+			//If joining this job would make the factions too unbalanced
+			if(!SSticker.mode.is_faction_balanced(job.faction))
 				continue
 			// If the job isn't filled
 			if((job.total_positions != -1 && job.current_positions >= job.total_positions))

@@ -57,6 +57,17 @@
 	if(flags_landmarks & MODE_LANDMARK_SPAWN_MAP_ITEM)
 		spawn_map_items()
 
+	if(flags_landmarks & MODE_LANDMARK_SPAWN_SPECIFIC_SHUTTLE_CONSOLE)
+		for(var/turf/T AS in GLOB.lz1_shuttle_console_turfs_list)
+			new /obj/machinery/computer/shuttle/shuttle_control/dropship/rebel(T)
+		for(var/turf/T AS in GLOB.lz2_shuttle_console_turfs_list)
+			new /obj/machinery/computer/shuttle/shuttle_control/dropship/loyalist(T)
+	else
+		for(var/turf/T AS in GLOB.lz1_shuttle_console_turfs_list)
+			new /obj/machinery/computer/shuttle/shuttle_control/dropship(T)
+		for(var/turf/T AS in GLOB.lz2_shuttle_console_turfs_list)
+			new /obj/machinery/computer/shuttle/shuttle_control/dropship(T)
+
 	setup_blockers()
 	GLOB.balance.Initialize()
 
@@ -666,6 +677,10 @@ Sensors indicate [numXenosShip || "no"] unknown lifeform signature[numXenosShip 
 		return FALSE
 	SSjob.active_joinable_occupations = SSjob.active_occupations.Copy()
 	SSjob.set_active_joinable_occupations_by_category()
+	return TRUE
+
+///If joining the job.faction will make the game too unbalanced, return FALSE
+/datum/game_mode/proc/is_faction_balanced(datum/job/job)
 	return TRUE
 
 /datum/game_mode/proc/set_valid_squads()
