@@ -114,21 +114,44 @@
 	GLOB.deathmatch += loc
 	return INITIALIZE_HINT_QDEL
 
-/obj/effect/landmark/monkey_spawn
-	icon_state = "monkey_spawn"
-
-/obj/effect/landmark/monkey_spawn/Initialize() // unused but i won't remove the landmarks for these yet
-	. = ..()
-	return INITIALIZE_HINT_QDEL
-
 /obj/effect/landmark/distress
 
 /obj/effect/landmark/distress_item
 
+/obj/effect/landmark/weed_node
+	name = "xeno weed node spawn landmark"
+	icon = 'icons/Xeno/weeds.dmi'
+	icon_state = "weednode"
+
+/obj/effect/landmark/weed_node/Initialize()
+	GLOB.xeno_weed_node_turfs += loc
+	. = ..()
+	return INITIALIZE_HINT_QDEL
+
+/obj/effect/landmark/xeno_resin_door
+	name = "xeno resin door spawn landmark"
+	icon = 'icons/Xeno/Effects.dmi'
+	icon_state = "resin"
+
+/obj/effect/landmark/xeno_resin_door/Initialize()
+	GLOB.xeno_resin_door_turfs += loc
+	. = ..()
+	return INITIALIZE_HINT_QDEL
+
+/obj/effect/landmark/xeno_resin_wall
+	name = "xeno resin wall spawn landmark"
+	icon = 'icons/Xeno/structures.dmi'
+	icon_state = "resin0"
+
+/obj/effect/landmark/xeno_resin_wall/Initialize()
+	GLOB.xeno_resin_wall_turfs += loc
+	..()
+	return INITIALIZE_HINT_QDEL
 
 /obj/effect/landmark/xeno_silo_spawn
 	name = "xeno silo spawn landmark"
-	icon_state = "tdome_observer"
+	icon = 'icons/Xeno/resin_silo.dmi'
+	icon_state = "weed_silo"
 
 /obj/effect/landmark/xeno_silo_spawn/Initialize()
 	GLOB.xeno_resin_silo_turfs += loc
@@ -137,7 +160,8 @@
 
 /obj/effect/landmark/xeno_turret_spawn
 	name = "xeno turret spawn landmark"
-	icon_state = "tdome_observer"
+	icon = 'icons/Xeno/acidturret.dmi'
+	icon_state = "acid_turret"
 
 /obj/effect/landmark/xeno_turret_spawn/Initialize()
 	GLOB.xeno_turret_turfs += loc
