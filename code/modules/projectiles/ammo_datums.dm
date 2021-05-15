@@ -1359,7 +1359,6 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	penetration = 10
 	sundering = 1
 	max_range = 30
-	damage_falloff = 0.2 ///Doesn't seem to even apply when fired out of the laser gun.
 
 /datum/ammo/energy/lasgun/marine/overcharge
 	name = "overcharged laser bolt"
@@ -1420,7 +1419,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	hud_state = "laser_heat"
 	shell_speed = 2.5
 	damage = 40
-	penetration = 0 // It's a laser that burns the skin! The fire stacks go threw anyway.
+	penetration = 0
 	flags_ammo_behavior = AMMO_ENERGY|AMMO_INCENDIARY|AMMO_SUNDERING
 	sundering = 1
 
