@@ -18,6 +18,8 @@
 	var/distress_cancelled = FALSE
 
 	var/deploy_time_lock = 15 MINUTES
+	///List of available factions when spawning
+	var/list/joinable_factions = list()
 
 //Distress call variables.
 	var/list/datum/emergency_call/all_calls = list() //initialized at round start and stores the datums.

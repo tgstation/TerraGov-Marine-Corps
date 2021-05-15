@@ -68,6 +68,11 @@
 	GLOB.latejoin += loc
 	return INITIALIZE_HINT_QDEL
 
+/obj/effect/landmark/start/latejoinrebel/Initialize()
+	. = ..()
+	GLOB.latejoinrebel += loc
+	return INITIALIZE_HINT_QDEL
+
 /obj/effect/landmark/start/latejoin_gateway/Initialize()
 	. = ..()
 	GLOB.latejoin_gateway += loc

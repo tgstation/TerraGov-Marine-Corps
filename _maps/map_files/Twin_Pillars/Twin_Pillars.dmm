@@ -4820,7 +4820,7 @@
 /area/mainship/engineering/ce_room/rebel)
 "enk" = (
 /obj/effect/landmark/start/job/squadleader/rebel,
-/obj/effect/landmark/start/latejoin,
+/obj/effect/landmark/start/latejoinrebel,
 /turf/open/floor/mainship,
 /area/mainship/living/cryo_cells/rebel)
 "ens" = (
@@ -4834,7 +4834,7 @@
 /area/mainship/engineering/engine_core)
 "enI" = (
 /obj/effect/landmark/start/job/squadsmartgunner/rebel,
-/obj/effect/landmark/start/latejoin,
+/obj/effect/landmark/start/latejoinrebel,
 /turf/open/floor/mainship,
 /area/mainship/living/cryo_cells/rebel)
 "enS" = (
@@ -5830,7 +5830,7 @@
 /area/mainship/hallways/hangar/rebel)
 "flC" = (
 /obj/effect/landmark/start/job/squadmarine/rebel,
-/obj/effect/landmark/start/latejoin,
+/obj/effect/landmark/start/latejoinrebel,
 /turf/open/floor/mainship,
 /area/mainship/living/cryo_cells/rebel)
 "flE" = (
@@ -11395,7 +11395,7 @@
 /area/mainship/living/port_emb)
 "kde" = (
 /obj/effect/landmark/start/job/squadengineer/rebel,
-/obj/effect/landmark/start/latejoin,
+/obj/effect/landmark/start/latejoinrebel,
 /turf/open/floor/mainship,
 /area/mainship/living/cryo_cells/rebel)
 "kdj" = (
@@ -27121,7 +27121,7 @@
 /area/mainship/hallways/starboard_hallway/rebel)
 "xIb" = (
 /obj/effect/landmark/start/job/squadcorpsman/rebel,
-/obj/effect/landmark/start/latejoin,
+/obj/effect/landmark/start/latejoinrebel,
 /turf/open/floor/mainship,
 /area/mainship/living/cryo_cells/rebel)
 "xIe" = (
