@@ -1,5 +1,0 @@
-author: "Hyper2Snyper and Ciel"
-delete-after: True
-changes: 
-  - rscadd: "Adds the Martini Henry Lever Action rifle and a \"belt\" for drawing single shells to load."
-  - code_imp: "Some work to un-shitcode the handful code."

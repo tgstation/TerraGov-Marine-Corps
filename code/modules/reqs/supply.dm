@@ -67,7 +67,6 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 	home_id = "supply_home_rebel"
 	away_id = "supply_away_rebel"
 
-
 /obj/docking_port/mobile/supply/Destroy(force)
 	for(var/i in railings)
 		var/obj/machinery/door/poddoor/railing/railing = i
@@ -376,7 +375,8 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 		.["approvedrequests"] += list(list("id" = SO.id, "orderer" = SO.orderer, "orderer_rank" = SO.orderer_rank, "reason" = SO.reason, "cost" = cost, "packs" = packs, "authed_by" = SO.authorised_by))
 	.["awaiting_delivery"] = list()
 	.["awaiting_delivery_orders"] = 0
-	for(var/datum/supply_order/SO AS in SSpoints.shoppinglist)
+	for(var/key in SSpoints.shoppinglist)
+		var/datum/supply_order/SO = SSpoints.shoppinglist[key]
 		if(SO.faction != user.faction)
 			continue
 		.["awaiting_delivery_orders"]++
