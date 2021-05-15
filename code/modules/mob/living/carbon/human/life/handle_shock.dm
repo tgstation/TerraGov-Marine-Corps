@@ -44,12 +44,12 @@
 			add_slowdown(1)
 		if(60 to 79)
 			if(!lying_angle && prob(20))
-				emote("emote_me", 1, " is having trouble standing.")
+				emote("me", 1, " is having trouble standing.")
 			blur_eyes(2)
 			stuttering = max(stuttering, 5)
 			if(prob(2))
 				if(!lying_angle)
-					emote("emote_me", 1, " is having trouble standing.")
+					emote("me", 1, " is having trouble standing.")
 			adjust_stagger(3, FALSE, 3)
 			add_slowdown(3)
 			if(prob(20))
@@ -78,6 +78,6 @@
 			if(!COOLDOWN_CHECK(src, last_shock_effect)) //Check to see if we're on cooldown
 				return
 			if(!lying_angle)
-				emote("emote_me", 1, "can no longer stand, collapsing!")
+				emote("me", 1, "can no longer stand, collapsing!")
 			Paralyze(1 SECONDS)
 			COOLDOWN_START(src, last_shock_effect, LIVING_SHOCK_EFFECT_COOLDOWN) //set the cooldown.

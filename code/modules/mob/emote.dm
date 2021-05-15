@@ -51,7 +51,7 @@
 
 
 /datum/emote/custom
-	key = "emote_me"
+	key = "me"
 	key_third_person = "custom"
 	message = null
 	flags_emote = NO_KEYBIND //This shouldn't have a keybind
