@@ -1,7 +1,0 @@
-author: "BraveMole"
-delete-after: True
-changes: 
-  - rscadd: "Corpses spawning on map will now have a death that makes sense with the gamemode (siloed in hunt, cocooned in distress)"
-  - rscdel: "No longer any eggs on the map"
-  - qol: "Maps are now clean of everything related to xeno in extended mode, to allow easier HvH events"
-  - code_imp: "Linters to prevent adding directly resin objects"
