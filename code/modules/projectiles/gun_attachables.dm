@@ -123,8 +123,8 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	var/charge_mod = 0
 	///what firemodes this attachment allows/adds.
 	var/gun_firemode_list_mod = null
-	///which attachment slots overlay position this changes and how much
-	var/gun_attachment_overlay_mod = list()
+	///lazylist of attachment slot offsets for a gun.
+	var/list/gun_attachment_offset_mod
 
 	///what gun this attachment is currently attached to, if any.
 	var/obj/item/weapon/gun/master_gun
@@ -205,9 +205,9 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 		master_gun.charge_cost				+= charge_mod
 	for(var/i in gun_firemode_list_mod)
 		master_gun.add_firemode(i, user)
-	if(gun_attachment_overlay_mod)
-		for(var/overlay_mod in gun_attachment_overlay_mod)
-			master_gun.attachable_offset[overlay_mod] += gun_attachment_overlay_mod[overlay_mod]
+	if(LAZYLEN(gun_attachment_offset_mod))
+		for(var/overlay_mod in gun_attachment_offset_mod)
+			master_gun.attachable_offset[overlay_mod] += gun_attachment_offset_mod[overlay_mod]
 		master_gun.update_attachables()
 
 	master_gun.update_force_list() //This updates the gun to use proper force verbs.
@@ -271,9 +271,9 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	for(var/i in gun_firemode_list_mod)
 		master_gun.remove_firemode(i, user)
 
-	if(gun_attachment_overlay_mod)
-		for(var/overlay_mod in gun_attachment_overlay_mod)
-			master_gun.attachable_offset[overlay_mod] -= gun_attachment_overlay_mod[overlay_mod]
+	if(LAZYLEN(gun_attachment_offset_mod))
+		for(var/overlay_mod in gun_attachment_offset_mod)
+			master_gun.attachable_offset[overlay_mod] -= gun_attachment_offset_mod[overlay_mod]
 		master_gun.update_attachables()
 
 
@@ -1768,6 +1768,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 		var/datum/action/A = X
 		A.update_button_icon()
 
+//Initially made for
 /obj/item/attachable/barrel_mod
 	name = "A barrel modifier"
 	desc = "A modification for your gun barrel"
@@ -1777,17 +1778,26 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	flags_attach_features = ATTACH_REMOVABLE
 	pixel_shift_x = 0
 	pixel_shift_y = 0
+	size_mod = 1
 
 /obj/item/attachable/barrel_mod/tp44_longbarrel
 	name = "TP-44 Long barrel"
 	desc = "A longer barrel for the TP-44, makes the gun more accuracy and longer sjad and have a higher impact"
 	icon_state = "tp44_barrel"
 	attach_icon = "tp44_barrel"
-	gun_attachment_overlay_mod = list("muzzle_x" = 7)
+	damage_mod = 0.25
+	scatter_mod = -2.5
+	recoil_unwielded_mod = 0.25
+	damage_falloff_mod = -0.5
+	gun_attachment_offset_mod = list("muzzle_x" = 7)
+
 
 /obj/item/attachable/barrel_mod/mateba_longbarrel
 	name = "Mateba Long barrel"
 	desc = "A longer barrel for the Mateba, makes the gun more accuracy and longer sjad and have a higher impact"
 	icon_state = "mateba_barrel"
 	attach_icon = "mateba_barrel"
-	gun_attachment_overlay_mod = list("muzzle_x" = 8)
+	damage_mod = 0.20
+	scatter_mod = -3.5
+	damage_falloff_mod = -0.5
+	gun_attachment_offset_mod = list("muzzle_x" = 8)
