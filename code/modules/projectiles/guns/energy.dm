@@ -617,7 +617,7 @@
 /datum/lasrifle/base/energy_rifle_mode/overcharge
 	charge_cost = 30
 	ammo = /datum/ammo/energy/lasgun/marine/overcharge
-	fire_delay = 0.4 SECONDS
+	fire_delay = 0.5 SECONDS
 	fire_sound = 'sound/weapons/guns/fire/Laser overcharge standard.ogg'
 	message_to_user = "You set the laser rifle's charge mode to overcharge."
 	fire_mode = GUN_FIREMODE_AUTOMATIC
