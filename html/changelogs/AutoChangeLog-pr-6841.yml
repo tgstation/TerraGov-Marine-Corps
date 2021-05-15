@@ -1,0 +1,5 @@
+author: "Alterist"
+delete-after: True
+changes: 
+  - rscadd: "PoS prep rooms have been rearranged to allow for better fung shui, also to let more than 3 medics gear up at the same time, but who cares about that?"
+  - rscadd: "PoS medical have been expanded and rearranged slightly, there's now a tiny break room and a bit more space to work with"
