@@ -222,14 +222,14 @@
 		var/obj/item/ammo_magazine/handful/handful_to_generate
 		for(var/i in 1 to 3)
 			handful_to_generate = new (get_turf(src))
-			handful_to_generate.generate_handful(initial(gun_mag.default_ammo), initial(gun_mag.caliber), 5,5, /obj/item/weapon/gun/shotgun)
+			handful_to_generate.generate_handful(initial(gun_mag.default_ammo), initial(gun_mag.caliber), 5, /obj/item/weapon/gun/shotgun)
 		return
 
 	if(istype(gun_to_spawn, /obj/item/weapon/gun/revolver))
 		var/obj/item/ammo_magazine/handful/handful_to_generate
 		for(var/i in 1 to 3)
 			handful_to_generate = new (get_turf(src))
-			handful_to_generate.generate_handful(initial(gun_mag.default_ammo), initial(gun_mag.caliber), 8,8, /obj/item/weapon/gun/shotgun)
+			handful_to_generate.generate_handful(initial(gun_mag.default_ammo), initial(gun_mag.caliber), 8, /obj/item/weapon/gun/revolver)
 		return
 
 	for(var/i in 1 to 3) //hardcoded 3 mags.
