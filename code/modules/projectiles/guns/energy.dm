@@ -566,7 +566,7 @@
 	item_state = "ter"
 	icon = 'icons/Marine/gun64.dmi'
 	w_class = WEIGHT_CLASS_BULKY
-	max_shots = 60 //codex stuff
+	max_shots = 50 //codex stuff
 	load_method = CELL //codex stuff
 	ammo = /datum/ammo/energy/lasgun/marine
 	ammo_diff = null
@@ -861,7 +861,7 @@
 	item_state = "tem"
 	icon = 'icons/Marine/gun64.dmi'
 	w_class = WEIGHT_CLASS_BULKY
-	max_shots = 200 //codex stuff
+	max_shots = 150 //codex stuff
 	load_method = CELL //codex stuff
 	ammo = /datum/ammo/energy/lasgun/marine/autolaser
 	ammo_diff = null
