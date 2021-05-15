@@ -23,6 +23,8 @@
 
 /obj/structure/cocoon/Initialize(mapload, _hivenumber, mob/living/_victim)
 	. = ..()
+	if(!_hivenumber)
+		return
 	hivenumber =  _hivenumber
 	victim = _victim
 	victim.forceMove(src)
@@ -102,4 +104,12 @@
 		icon_state = "xeno_cocoon_unnested"
 		return
 	icon_state = "xeno_cocoon_open"
+
+/obj/structure/cocoon/opened_cocoon
+	icon_state = "xeno_cocoon_open"
+	anchored = FALSE
 	
+/obj/structure/cocoon/opened_cocoon/Initialize()
+	. = ..()
+	new /obj/structure/bed/nest(loc)
+	new /obj/effect/alien/weeds/node(loc)

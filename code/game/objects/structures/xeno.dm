@@ -239,8 +239,8 @@
 	icon = 'icons/Xeno/Effects.dmi'
 	hardness = 1.5
 	layer = RESIN_STRUCTURE_LAYER
-	max_integrity = 80
-	var/close_delay = 60 SECONDS
+	max_integrity = 50
+	var/close_delay = 10 SECONDS
 
 	tiles_with = list(/turf/closed, /obj/structure/mineral_door/resin)
 
@@ -251,12 +251,14 @@
 	relativewall_neighbours()
 	if(!locate(/obj/effect/alien/weeds) in loc)
 		new /obj/effect/alien/weeds(loc)
+	for(var/direction in GLOB.alldirs)
+		RegisterSignal(get_step(loc, direction), COMSIG_ATOM_ENTERED, .proc/check_if_xeno)
 
-/obj/structure/mineral_door/resin/proc/thicken()
-	var/oldloc = loc
-	qdel(src)
-	new /obj/structure/mineral_door/resin/thick(oldloc)
-	return TRUE
+/obj/structure/mineral_door/resin/proc/check_if_xeno(datum/source, atom/atom_entering)
+	SIGNAL_HANDLER
+	if(isxeno(atom_entering))
+		Open()
+	
 
 /obj/structure/mineral_door/resin/attack_paw(mob/living/carbon/human/user)
 	if(user.a_intent == INTENT_HARM)
@@ -286,7 +288,7 @@
 	X.visible_message("<span class='warning'>\The [X] digs into \the [src] and begins ripping it down.</span>", \
 	"<span class='warning'>We dig into \the [src] and begin ripping it down.</span>", null, 5)
 	playsound(src, "alien_resin_break", 25)
-	if(do_after(X, 80, FALSE, src, BUSY_ICON_HOSTILE))
+	if(do_after(X, 4 SECONDS, FALSE, src, BUSY_ICON_HOSTILE))
 		X.visible_message("<span class='danger'>[X] rips down \the [src]!</span>", \
 		"<span class='danger'>We rip down \the [src]!</span>", null, 5)
 		qdel(src)
@@ -304,33 +306,29 @@
 /obj/structure/mineral_door/resin/Open()
 	if(state || !loc)
 		return //already open
-	isSwitchingStates = TRUE
 	playsound(loc, "alien_resin_move", 25)
 	flick("[mineralType]opening",src)
-	sleep(0.7 SECONDS)
 	density = FALSE
 	opacity = FALSE
 	state = 1
 	update_icon()
-	isSwitchingStates = 0
-
-	spawn(close_delay)
-		if(!isSwitchingStates && state == 1)
-			Close()
+	addtimer(CALLBACK(src, .proc/Close), close_delay)
 
 /obj/structure/mineral_door/resin/Close()
-	if(!state || !loc)
+	if(!state || !loc ||isSwitchingStates)
 		return //already closed
 	//Can't close if someone is blocking it
 	for(var/turf/turf in locs)
 		if(locate(/mob/living) in turf)
-			spawn (close_delay)
-				Close()
+			addtimer(CALLBACK(src, .proc/Close), close_delay)
 			return
 	isSwitchingStates = TRUE
 	playsound(loc, "alien_resin_move", 25)
 	flick("[mineralType]closing",src)
-	sleep(10)
+	addtimer(CALLBACK(src, .proc/do_close), 1 SECONDS)
+
+/// Change the icon and density of the door
+/obj/structure/mineral_door/resin/proc/do_close()
 	density = TRUE
 	opacity = TRUE
 	state = 0
@@ -375,15 +373,10 @@
 		visible_message("<span class = 'notice'>[src] collapses from the lack of support.</span>")
 		qdel(src)
 
-
-
 /obj/structure/mineral_door/resin/thick
 	name = "thick resin door"
 	max_integrity = 160
 	hardness = 2.0
-
-/obj/structure/mineral_door/resin/thick/thicken()
-	return FALSE
 
 /*
 * Egg

@@ -230,8 +230,8 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 				light("<span class='notice'>[user] deftly lights their [src] with the [L]'s low power setting.</span>")
 			else
 				to_chat(user, "<span class='warning'>You try to light your [src] with the [L] but your power cell has no charge!</span>")
-		else if(istype(G.under, /obj/item/attachable/attached_gun/flamer))
-			light("<span class='notice'>[user] lights their [src] with the underbarrel [G.under].</span>")
+		else if(istype(LAZYACCESS(G.attachments, ATTACHMENT_SLOT_UNDER), /obj/item/attachable/attached_gun/flamer))
+			light("<span class='notice'>[user] lights their [src] with the underbarrel [LAZYACCESS(G.attachments, ATTACHMENT_SLOT_UNDER)].</span>")
 
 
 	else if(istype(W, /obj/item/tool/surgery/cautery))

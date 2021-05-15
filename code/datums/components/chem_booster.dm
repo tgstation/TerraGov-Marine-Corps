@@ -237,8 +237,6 @@
 ///Handles turning on/off the processing part of the component, along with the negative effects related to this
 /datum/component/chem_booster/proc/on_off(datum/source)
 	if(boost_on)
-		if(world.time < processing_start + 2 SECONDS) // no accidental cancellation from spamming the action
-			return
 		STOP_PROCESSING(SSobj, src)
 
 		wearer.clear_fullscreen("degeneration")
@@ -488,6 +486,15 @@
 	name = "Power Vali Chemical Enhancement"
 	action_icon = 'icons/mob/actions.dmi'
 	action_icon_state = "cboost_off"
+	///Records the last time the action was used to avoid accidentally cancelling the effect when spamming the button in-combat
+	var/last_activated_time
+
+/datum/action/chem_booster/power/action_activate()
+	if(world.time < last_activated_time + 2 SECONDS)
+		return
+	last_activated_time = world.time
+
+	return ..()
 
 /datum/action/chem_booster/scan
 	name = "Activate Analyzer"
