@@ -1,0 +1,4 @@
+author: "Surrealaser"
+delete-after: True
+changes: 
+  - qol: "Banish now toggles off; Recall removed. To end Banish early while self-banished use Banish on self or use a Banish keybind."
