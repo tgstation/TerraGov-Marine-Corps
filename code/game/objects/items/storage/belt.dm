@@ -453,6 +453,57 @@
 
 	return ..()
 
+/obj/item/storage/belt/shotgun/martini
+	name = "martini henry ammo belt"
+	desc = "A belt good enough for holding all your .577/400 ball rounds."
+	icon = 'icons/obj/items/ammo.dmi'
+	icon_state = ".557_belt"
+	storage_slots = 12
+	max_storage_space = 24
+
+	draw_mode = 1
+
+	flags_atom = DIRLOCK
+
+/obj/item/storage/belt/shotgun/martini/Initialize(mapload, ...)
+	. = ..()
+	update_icon()
+
+/obj/item/storage/belt/shotgun/martini/update_icon()
+	if(!contents.len)
+		icon_state = initial(icon_state) + "_e"
+		return
+	icon_state = initial(icon_state)
+
+	var/holding = round((contents.len + 1) / 2)
+	setDir(holding + round(holding/3))
+
+/obj/item/storage/belt/shotgun/martini/attackby(obj/item/I, mob/user, params)
+	if(istype(I, /obj/item/ammo_magazine))
+		var/obj/item/ammo_magazine/new_mag = I
+		if(new_mag.caliber != CALIBER_557)
+			to_chat(user, "<span class='notice'>[src] can only be filled with .557/440 ball rifle rounds.</span>")
+			return
+	. = ..()
+	update_icon()
+
+/obj/item/storage/belt/shotgun/martini/attack_hand(mob/living/user)
+	if (loc != user)
+		. = ..()
+		for(var/mob/M in content_watchers)
+			close(M)
+
+	if(!draw_mode || !ishuman(user) && !contents.len)
+		open(user)
+
+	var/obj/item/I = contents[contents.len]
+	if(!istype(I, /obj/item/ammo_magazine/handful))
+		return
+
+	var/obj/item/ammo_magazine/handful/existing_handful = I
+	existing_handful.create_handful(user, 1)
+	update_icon()
+
 
 /obj/item/storage/belt/knifepouch
 	name="\improper M276 pattern knife rig"

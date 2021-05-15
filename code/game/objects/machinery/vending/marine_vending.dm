@@ -117,6 +117,8 @@
 			/obj/item/ammo_magazine/rifle/chamberedrifle = 1000,
 			/obj/item/weapon/gun/shotgun/pump/bolt = 250,
 			/obj/item/ammo_magazine/rifle/bolt = 1000,
+			/obj/item/weapon/gun/shotgun/double/martini = 250,
+			/obj/item/ammo_magazine/rifle/martini = 1000,
 		),
 		"Shotgun" = list(
 			/obj/item/weapon/gun/shotgun/pump/t35 = 250,
@@ -913,6 +915,7 @@
 		"Belts" = list(
 			/obj/item/storage/belt/marine = 10,
 			/obj/item/storage/belt/shotgun = 10,
+			/obj/item/storage/belt/shotgun/martini = 10,
 			/obj/item/storage/belt/grenade = 10,
 			/obj/item/storage/belt/knifepouch = 10,
 			/obj/item/belt_harness/marine = 10,
