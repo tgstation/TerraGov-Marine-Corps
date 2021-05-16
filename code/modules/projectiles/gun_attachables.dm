@@ -1781,8 +1781,8 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	size_mod = 1
 
 /obj/item/attachable/barrel_mod/tp44_longbarrel
-	name = "TP-44 Long barrel"
-	desc = "A longer barrel for the TP-44, makes the gun more accuracy and longer sjad and have a higher impact"
+	name = "TP-44 long barrel"
+	desc = "A longer barrel for the TP-44, makes the gun more accurate and deal more damage on impact."
 	icon_state = "tp44_barrel"
 	attach_icon = "tp44_barrel"
 	damage_mod = 0.25
@@ -1793,7 +1793,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 
 
 /obj/item/attachable/barrel_mod/mateba_longbarrel
-	name = "Mateba Long barrel"
+	name = "Mateba long barrel"
 	desc = "A longer barrel for the Mateba, makes the gun more accuracy and longer sjad and have a higher impact"
 	icon_state = "mateba_barrel"
 	attach_icon = "mateba_barrel"
