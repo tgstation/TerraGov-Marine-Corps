@@ -527,7 +527,7 @@ to_chat will check for valid clients itself already so no need to double check f
 				arrow_hud.color = arrow_color
 			new /obj/effect/temp_visual/xenomorph/xeno_tracker_target(target, target) //Ping the source of our alert
 
-		to_chat(X, "<span class='[span_class]'><font size=[size]> [message][report_distance == TRUE ? " Distance: [get_dist(X, target)]" : ""]</font></span>")
+		to_chat(X, "<span class='[span_class]'><font size=[size]> [message][report_distance ? " Distance: [get_dist(X, target)]" : ""]</font></span>")
 
 // This is to simplify the process of talking in hivemind, this will invoke the receive proc of all xenos in this hive
 /datum/hive_status/proc/hive_mind_message(mob/living/carbon/xenomorph/sender, message)
