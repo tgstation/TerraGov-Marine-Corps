@@ -885,13 +885,12 @@
 	attachable_offset = list("muzzle_x" = 41, "muzzle_y" = 15,"rail_x" = 22, "rail_y" = 24, "under_x" = 30, "under_y" = 8, "stock_x" = 22, "stock_y" = 12)
 
 	aim_slowdown = 1
-	wield_delay = 1 SECONDS
+	wield_delay = 1.5 SECONDS
 	scatter = 0
-	scatter_unwielded = 10
 	fire_delay = 0.2 SECONDS
 	accuracy_mult = 0.95
-	accuracy_mult_unwielded = 0.6
-	scatter_unwielded = 10
+	accuracy_mult_unwielded = 0.4
+	scatter_unwielded = 40
 	damage_falloff_mult = 0.3
 	mode_list = list(
 		"Standard" = /datum/lasrifle/base/energy_mg_mode/standard,
