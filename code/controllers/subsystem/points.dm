@@ -11,7 +11,7 @@ SUBSYSTEM_DEF(points)
 	flags = SS_KEEP_TIMING
 
 	wait = 10 SECONDS
-	var/dropship_points = list()
+	var/dropship_points = 0
 	///Assoc list of supply points
 	var/supply_points = list()
 	///Assoc list of xeno points: xeno_points_by_hive["hivenum"]
