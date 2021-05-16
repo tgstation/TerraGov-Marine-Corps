@@ -22,7 +22,7 @@
 		return
 	var/obj/item/clothing/suit/storage/suit = .
 	suit.pockets = pockets.instantiate_object(seller, suit)
-return suit
+	return suit
 
 /**
  * Allow to representate a jaeger modular armor with its modules

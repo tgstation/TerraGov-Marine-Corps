@@ -23,7 +23,8 @@
 
 	if(!isidcard(H.get_idcard())) //not wearing an ID
 		return FALSE
-
+	
+	var/obj/item/card/id/I = H.get_idcard()
 	if(I.registered_name != H.real_name)
 		return FALSE
 	return TRUE
