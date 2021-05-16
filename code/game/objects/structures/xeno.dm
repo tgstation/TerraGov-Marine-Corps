@@ -126,7 +126,7 @@
 	opacity = FALSE
 	anchored = TRUE
 	max_integrity = 5
-	layer = RESIN_STRUCTURE_LAYER
+	layer = UPPER_ITEM_LAYER
 	var/obj/item/clothing/mask/facehugger/hugger = null
 
 /obj/effect/alien/resin/trap/Initialize(mapload)
@@ -258,7 +258,7 @@
 	SIGNAL_HANDLER
 	if(isxeno(atom_entering))
 		Open()
-	
+
 
 /obj/structure/mineral_door/resin/attack_paw(mob/living/carbon/human/user)
 	if(user.a_intent == INTENT_HARM)
