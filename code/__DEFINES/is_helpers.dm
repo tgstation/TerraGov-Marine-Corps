@@ -169,13 +169,13 @@
 
 #define iswebbing(A) (istype(A, /obj/item/clothing/tie/storage))
 
-#define isjaeger(A) (istype(A, /obj/item/clothing/suit/modular))
+#define ismodulararmor(A) (istype(A, /obj/item/clothing/suit/modular))
 
-#define isjaegermodule(A) (istype(A, /obj/item/armor_module))
+#define ismodulararmormodule(A) (istype(A, /obj/item/armor_module))
 
-#define isjaegerstoragemodule(A) (istype(A, /obj/item/armor_module/storage))
+#define ismodulararmorstoragemodule(A) (istype(A, /obj/item/armor_module/storage))
 
-#define isjaegerarmorpiece(A) (istype(A, /obj/item/armor_module/armor))
+#define ismodulararmorarmorpiece(A) (istype(A, /obj/item/armor_module/armor))
 
 #define ismodularhelmet(A) (istype(A, /obj/item/clothing/head/modular))
 

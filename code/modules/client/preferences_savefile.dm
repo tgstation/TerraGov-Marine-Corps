@@ -564,6 +564,7 @@
 
 	return TRUE
 
+///Serialize and save into a savefile the loadout manager
 /datum/preferences/proc/save_loadout_manager()
 	if(!path)
 		return FALSE
@@ -578,6 +579,7 @@
 	WRITE_FILE(S["loadouts_manager"], json_loadout_manager)
 	return TRUE
 
+///Load from a savefile and unserialize the loadout manager
 /datum/preferences/proc/load_loadout_manager()
 	if(!path)
 		return FALSE

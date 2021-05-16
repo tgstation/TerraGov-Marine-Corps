@@ -134,6 +134,7 @@
 	. = ..() || list()
 	. += get_asset_datum(/datum/asset/simple/inventory)
 
+///Create all the necessary data (icons, name of items) from the loadout, and put them in an assoc list to be used by tgui
 /datum/loadout/proc/prepare_items_data(mob/user)
 	var/items_data = list()
 	for (var/item_slot_key in GLOB.visible_item_slot_list)

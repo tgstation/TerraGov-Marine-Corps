@@ -38,6 +38,11 @@
 		if(!user.equip_to_slot_if_possible(item, GLOB.slot_str_to_slot[slot_key], warning = FALSE))
 			item.forceMove(get_turf(user))
 
+/**
+ * Buy all items of the loadout from vendors. If some items could not be bought, we warned the user and ask him if he wants to continue.
+ * If the user still want to proceed, we equip the user with the loadout
+ * Else we sell everything back to vendors
+ */
 /datum/loadout_seller/proc/try_to_equip_loadout(datum/loadout/loadout, mob/user)
 	prepare_to_equip_loadout(loadout)
 	if(unavailable_items && tgui_alert(user, "[unavailable_items] items were not found in vendors and won't be delivered. Do you want to equip that loadout anyway?", "Items missing", list("Yes", "No")) == "Yes")

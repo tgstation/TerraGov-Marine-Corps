@@ -45,7 +45,7 @@ return suit
 /datum/item_representation/modular_armor/New(obj/item/item_to_copy)
 	if(!item_to_copy)
 		return
-	if(!isjaeger(item_to_copy))
+	if(!ismodulararmor(item_to_copy))
 		CRASH("/datum/item_representation/modular_armor created from an item that is not a jaeger")
 	..()
 	var/obj/item/clothing/suit/modular/jaeger_to_copy = item_to_copy
@@ -86,7 +86,7 @@ return suit
 /datum/item_representation/armor_module/New(obj/item/item_to_copy)
 	if(!item_to_copy)
 		return
-	if(!isjaegermodule(item_to_copy))
+	if(!ismodulararmormodule(item_to_copy))
 		CRASH("/datum/item_representation/armor_module created from an item that is not a jaeger module")
 	..()
 
@@ -106,7 +106,7 @@ return suit
 /datum/item_representation/armor_module/colored/New(obj/item/item_to_copy)
 	if(!item_to_copy)
 		return
-	if(!isjaegerarmorpiece(item_to_copy))
+	if(!ismodulararmorarmorpiece(item_to_copy))
 		CRASH("/datum/item_representation/armor_module created from an item that is not a jaeger armor piece")
 	..()
 	greyscale_colors = item_to_copy.greyscale_colors

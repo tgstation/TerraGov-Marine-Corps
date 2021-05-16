@@ -15,18 +15,19 @@
 		return FALSE
 
 	if(!ishuman(user))
-		var/mob/living/carbon/human/H = user
-		if(!allowed(H))
-			return FALSE
+		return FALSE
+	
+	var/mob/living/carbon/human/H = user
+	if(!allowed(H))
+		return FALSE
 
-		var/obj/item/card/id/I = H.get_idcard()
-		if(!istype(I)) //not wearing an ID
-			return FALSE
+	if(!isidcard(H.get_idcard())) //not wearing an ID
+		return FALSE
 
-		if(I.registered_name != H.real_name)
-			return FALSE
-
+	if(I.registered_name != H.real_name)
+		return FALSE
 	return TRUE
+
 
 /obj/machinery/loadout_vendor/interact(mob/user)
 	. = ..()
