@@ -11,6 +11,9 @@
 
 	var/href_token
 
+	///Reference to filteriffic tgui holder datum
+	var/datum/filter_editor/filteriffic
+
 	///Whether this admin is currently deadminned or not
 	var/deadmined = FALSE
 	///Whether this admin has ghost interaction enabled
@@ -365,6 +368,13 @@ GLOBAL_PROTECT(admin_verbs_asay)
 GLOBAL_LIST_INIT(admin_verbs_debug, world.AVdebug())
 GLOBAL_PROTECT(admin_verbs_debug)
 
+/world/proc/AVruntimes()
+	return list(
+	/datum/admins/proc/view_runtimes,
+	)
+GLOBAL_LIST_INIT(admin_verbs_runtimes, world.AVruntimes())
+GLOBAL_PROTECT(admin_verbs_runtimes)
+
 /world/proc/AVvaredit()
 	return list(
 	/client/proc/debug_variables
@@ -471,7 +481,8 @@ GLOBAL_PROTECT(admin_verbs_sound)
 /world/proc/AVspawn()
 	return list(
 	/datum/admins/proc/spawn_atom,
-	/client/proc/get_togglebuildmode
+	/client/proc/get_togglebuildmode,
+	/client/proc/mass_replace,
 	)
 GLOBAL_LIST_INIT(admin_verbs_spawn, world.AVspawn())
 GLOBAL_PROTECT(admin_verbs_spawn)
@@ -494,6 +505,8 @@ GLOBAL_PROTECT(admin_verbs_spawn)
 			verbs += GLOB.admin_verbs_server
 		if(rights & R_DEBUG)
 			verbs += GLOB.admin_verbs_debug
+		if(rights & R_RUNTIME) 
+			verbs += GLOB.admin_verbs_runtimes
 		if(rights & R_PERMISSIONS)
 			verbs += GLOB.admin_verbs_permissions
 		if(rights & R_DBRANKS)
@@ -539,18 +552,22 @@ GLOBAL_PROTECT(admin_verbs_spawn)
 
 
 /proc/message_admins(msg)
-	msg = "<span class='admin'><span class='prefix'>ADMIN LOG:</span> <span class='message linkify'>[msg]</span></span>"
+	msg = "<span class=\"admin\"><span class=\"prefix\">ADMIN LOG:</span> <span class=\"message linkify\">[msg]</span></span>"
 	for(var/client/C in GLOB.admins)
 		if(check_other_rights(C, R_ADMIN, FALSE))
-			to_chat(C, msg)
+			to_chat(C,
+				type = MESSAGE_TYPE_ADMINLOG,
+				html = msg)
+
 
 
 /proc/message_staff(msg)
-	msg = "<span class='admin'><span class='prefix'>STAFF LOG:</span> <span class='message linkify'>[msg]</span></span>"
+	msg = "<span class=\"admin\"><span class=\"prefix\">STAFF LOG:</span> <span class=\"message linkify\">[msg]</span></span>"
 	for(var/client/C in GLOB.admins)
 		if(check_other_rights(C, R_ADMIN, FALSE) || is_mentor(C))
-			to_chat(C, msg)
-
+			to_chat(C,
+				type = MESSAGE_TYPE_STAFFLOG,
+				html = msg)
 
 /proc/msg_admin_ff(msg)
 	msg = "<span class='admin'><span class='prefix'>ATTACK:</span> <span class='green linkify'>[msg]</span></span>"
@@ -558,7 +575,9 @@ GLOBAL_PROTECT(admin_verbs_spawn)
 		if(!check_other_rights(C, R_ADMIN, FALSE))
 			continue
 		if((C.prefs.toggles_chat & CHAT_FFATTACKLOGS) || ((SSticker.current_state == GAME_STATE_FINISHED) && (C.prefs.toggles_chat & CHAT_ENDROUNDLOGS)))
-			to_chat(C, msg)
+			to_chat(C,
+				type = MESSAGE_TYPE_ATTACKLOG,
+				html = msg)
 
 
 /client/proc/find_stealth_key(txt)

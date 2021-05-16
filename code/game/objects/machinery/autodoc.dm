@@ -90,7 +90,7 @@
 	go_out(AUTODOC_NOTICE_NO_POWER)
 
 
-/obj/machinery/autodoc/update_icon()
+/obj/machinery/autodoc/update_icon_state()
 	if(machine_stat & NOPOWER)
 		icon_state = "autodoc_off"
 	else if(surgery)
@@ -457,7 +457,6 @@
 							break
 						S.limb_ref.remove_limb_flags(LIMB_BROKEN | LIMB_SPLINTED | LIMB_STABILIZED)
 						S.limb_ref.add_limb_flags(LIMB_REPAIRED)
-						S.limb_ref.perma_injury = 0
 						close_incision(occupant, S.limb_ref)
 
 					if(ADSURGERY_MISSING)
@@ -862,7 +861,7 @@
 	if(!M)
 		return
 
-	else if(!ishuman(M)) // stop fucking monkeys and xenos being put in.
+	else if(!ishuman(M)) // stop fucking monkeys and xenos being put in. // MONKEEY IS FREE
 		to_chat(user, "<span class='notice'>[src] is compatible with humanoid anatomies only!</span>")
 		return
 
@@ -936,7 +935,7 @@
 	return ..()
 
 
-/obj/machinery/autodoc_console/update_icon()
+/obj/machinery/autodoc_console/update_icon_state()
 	if(machine_stat & NOPOWER)
 		icon_state = "sleeperconsole-p"
 	else

@@ -48,7 +48,7 @@
 	icon_state = SPACE_ICON_STATE
 
 
-/turf/open/space/attack_paw(mob/living/carbon/monkey/user)
+/turf/open/space/attack_paw(mob/living/carbon/human/user)
 	return src.attack_hand(user)
 
 /turf/open/space/attackby(obj/item/I, mob/user, params)
@@ -84,5 +84,15 @@
 /turf/open/space/Entered(atom/movable/AM, atom/oldloc)
 	. = ..()
 	if(isliving(AM))
+		to_chat(AM, "<span class='danger'>The cold vacuum instantly freezes you, maybe this was a bad idea?</span>")
 		var/mob/living/spaceman = AM
 		spaceman.adjustFireLoss(600) //Death. Space shouldn't be entered.
+
+
+/turf/open/space/sea //used on prison for flavor
+	icon = 'icons/misc/beach.dmi'
+	name = "sea"
+	icon_state = "seadeep"
+
+/turf/open/space/sea/update_icon_state()
+	return

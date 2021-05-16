@@ -29,4 +29,3 @@ cp -r strings/* $1/strings/
 
 #dlls on windows
 cp *.dll $1/ || true
-cp *.so $1/ || true

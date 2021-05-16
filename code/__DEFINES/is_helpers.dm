@@ -58,6 +58,14 @@
 #define issectoid(H) (is_species(H, /datum/species/sectoid))
 #define ishumanbasic(H) (is_species(H, /datum/species/human))
 
+//Monkey species and subtypes
+#define ismonkey(H) (is_species(H, /datum/species/monkey))
+#define isfarwa(H) (is_species(H, /datum/species/monkey/farwa))
+#define isstok(H) (is_species(H, /datum/species/monkey/stok))
+#define isnaera(H) (is_species(H, /datum/species/monkey/naera))
+#define isyiren(H) (is_species(H, /datum/species/monkey/yiren))
+
+
 //Job/role helpers
 #define ismarinefaction(H) (H.faction == "TerraGov")
 #define isterragovjob(J) (istype(J, /datum/job/terragov))
@@ -71,15 +79,9 @@
 #define iscorporateliaisonjob(J) (istype(J, /datum/job/terragov/civilian/liaison))
 #define issurvivorjob(J) (istype(J, /datum/job/survivor))
 #define ischaplainjob(J) (istype(J, /datum/job/survivor/chaplain))
-
-//more carbon mobs
-#define ismonkey(A) (istype(A, /mob/living/carbon/monkey))
+#define isxenosjob(J) (istype(J, /datum/job/xenomorph))
 
 //Monkey sub-species
-#define ismonkeytajaran(M) (istype(M, /mob/living/carbon/monkey/tajara))
-#define ismonkeyskrell(M) (istype(M, /mob/living/carbon/monkey/skrell))
-#define ismonkeyunathi(M) (istype(M, /mob/living/carbon/monkey/unathi))
-#define ismonkeyyiren(M) (istype(M, /mob/living/carbon/monkey/yiren))
 
 #define isxeno(A) (istype(A, /mob/living/carbon/xenomorph))
 
@@ -103,6 +105,9 @@
 #define isxenodefiler(A) (istype(A, /mob/living/carbon/xenomorph/Defiler))
 #define isxenobull(A) (istype(A, /mob/living/carbon/xenomorph/bull))
 #define isxenohivemind(A) (istype(A, /mob/living/carbon/xenomorph/hivemind))
+#define isxenowraith(A) (istype(A, /mob/living/carbon/xenomorph/wraith))
+
+#define isresinsilo(A) (istype(A, /obj/structure/resin/silo))
 
 //Silicon mobs
 #define issilicon(A) (istype(A, /mob/living/silicon))
@@ -206,10 +211,14 @@
 #define isainode(O) (istype(O, /obj/effect/ai_node))
 
 //Gamemode
-#define isdistress(O) (istype(O, /datum/game_mode/infestation/distress))
+#define isdistressgamemode(O) (istype(O, /datum/game_mode/infestation/distress))
+#define ishuntgamemode(O) (istype(O, /datum/game_mode/infestation/hunt))
 #define iscrashgamemode(O) (istype(O, /datum/game_mode/infestation/crash))
+#define isinfestationgamemode(O) (istype(O, /datum/game_mode/infestation))
 
 #define isxenoresearcharea(A) (istype(A, /area/mainship/medical/medical_science))
+
+#define isspacearea(A) (istype(A, /area/space)) //Spacceeeee
 
 // Admin
 #define isaghost(mob) ( mob.key && mob.key[1] == "@" )
@@ -217,7 +226,11 @@
 
 // Shuttles
 #define isshuttleturf(T) (length(T.baseturfs) && (/turf/baseturf_skipover/shuttle in T.baseturfs))
-#define isalamoarea(A) (istype(A, /area/shuttle/dropship/alamo))
+#define isdropshiparea(A) (istype(A, /area/shuttle/dropship))
 
 // Xeno hives
 #define isnormalhive(hive) (istype(hive, /datum/hive_status/normal))
+#define isxenohive(A) ((A == XENO_HIVE_NONE) || (A == XENO_HIVE_NORMAL) || (A == XENO_HIVE_CORRUPTED) || (A == XENO_HIVE_ALPHA) || (A == XENO_HIVE_BETA) || (A == XENO_HIVE_ZETA) || (A == XENO_HIVE_ADMEME))
+
+// Slot helpers
+#define ishandslot(A) ((A == SLOT_L_HAND) || (A == SLOT_R_HAND))

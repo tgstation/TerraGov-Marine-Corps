@@ -41,13 +41,14 @@
 	return
 
 /obj/item/toy/balloon/afterattack(atom/A as mob|obj, mob/user as mob, proximity)
-	if(!proximity) return
+	if(!proximity)
+		return
 	if (istype(A, /obj/structure/reagent_dispensers/watertank) && get_dist(src,A) <= 1)
 		A.reagents.trans_to(src, 10)
 		to_chat(user, "<span class='notice'>You fill the balloon with the contents of [A].</span>")
-		src.desc = "A translucent balloon with some form of liquid sloshing around in it."
-		src.update_icon()
-	return
+		desc = "A translucent balloon with some form of liquid sloshing around in it."
+		update_icon()
+
 
 /obj/item/toy/balloon/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -82,8 +83,8 @@
 		src.icon_state = "burst"
 		QDEL_IN(src, 5)
 
-/obj/item/toy/balloon/update_icon()
-	if(src.reagents.total_volume >= 1)
+/obj/item/toy/balloon/update_icon_state()
+	if(reagents.total_volume)
 		icon_state = "waterballoon"
 		item_state = "balloon"
 	else
@@ -478,10 +479,10 @@
 	w_class = WEIGHT_CLASS_BULKY
 
 
-/obj/item/toy/beach_ball/basketball/attack_alien(mob/living/carbon/xenomorph/user)
+/obj/item/toy/beach_ball/basketball/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
 	if(!CONFIG_GET(flag/fun_allowed))
 		return FALSE
-	attack_hand(user)
+	attack_hand(X)
 
 
 /obj/structure/hoop

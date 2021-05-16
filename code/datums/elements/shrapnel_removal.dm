@@ -37,7 +37,7 @@
 	user.visible_message("<span class='notice'>[user] starts searching for shrapnel in [target] with the [removaltool].</span>", "<span class='notice'>You start searching for shrapnel in [target] with the [removaltool].</span>")
 	if(!do_after(user, do_after_time, TRUE, target, BUSY_ICON_MEDICAL))
 		return
-	for(var/obj/item/I as() in targetlimb.implants)
+	for(var/obj/item/I AS in targetlimb.implants)
 		if(is_type_in_list(I, GLOB.known_implants))
 			continue
 		I.unembed_ourself(FALSE)

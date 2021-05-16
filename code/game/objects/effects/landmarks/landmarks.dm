@@ -114,25 +114,58 @@
 	GLOB.deathmatch += loc
 	return INITIALIZE_HINT_QDEL
 
-/obj/effect/landmark/monkey_spawn
-	icon_state = "monkey_spawn"
-
-/obj/effect/landmark/monkey_spawn/Initialize() // unused but i won't remove the landmarks for these yet
-	. = ..()
-	return INITIALIZE_HINT_QDEL
-
 /obj/effect/landmark/distress
 
 /obj/effect/landmark/distress_item
 
+/obj/effect/landmark/weed_node
+	name = "xeno weed node spawn landmark"
+	icon = 'icons/Xeno/weeds.dmi'
+	icon_state = "weednode"
+
+/obj/effect/landmark/weed_node/Initialize()
+	GLOB.xeno_weed_node_turfs += loc
+	. = ..()
+	return INITIALIZE_HINT_QDEL
+
+/obj/effect/landmark/xeno_resin_door
+	name = "xeno resin door spawn landmark"
+	icon = 'icons/Xeno/Effects.dmi'
+	icon_state = "resin"
+
+/obj/effect/landmark/xeno_resin_door/Initialize()
+	GLOB.xeno_resin_door_turfs += loc
+	. = ..()
+	return INITIALIZE_HINT_QDEL
+
+/obj/effect/landmark/xeno_resin_wall
+	name = "xeno resin wall spawn landmark"
+	icon = 'icons/Xeno/structures.dmi'
+	icon_state = "resin0"
+
+/obj/effect/landmark/xeno_resin_wall/Initialize()
+	GLOB.xeno_resin_wall_turfs += loc
+	..()
+	return INITIALIZE_HINT_QDEL
 
 /obj/effect/landmark/xeno_silo_spawn
 	name = "xeno silo spawn landmark"
-	icon_state = "tdome_observer"
+	icon = 'icons/Xeno/resin_silo.dmi'
+	icon_state = "weed_silo"
 
 /obj/effect/landmark/xeno_silo_spawn/Initialize()
 	GLOB.xeno_resin_silo_turfs += loc
 	. = ..()
+	return INITIALIZE_HINT_QDEL
+
+/obj/effect/landmark/xeno_turret_spawn
+	name = "xeno turret spawn landmark"
+	icon = 'icons/Xeno/acidturret.dmi'
+	icon_state = "acid_turret"
+
+/obj/effect/landmark/xeno_turret_spawn/Initialize()
+	GLOB.xeno_turret_turfs += loc
+	..()
 	return INITIALIZE_HINT_QDEL
 
 
@@ -143,6 +176,14 @@
 /obj/effect/landmark/nuke_spawn/Initialize()
 	GLOB.nuke_spawn_locs += loc
 	. = ..()
+	return INITIALIZE_HINT_QDEL
+
+/obj/effect/landmark/dropship_start_location
+	name = "dropship_start_location"
+
+/obj/effect/landmark/dropship_start_location/Initialize()
+	GLOB.minidropship_start_loc = loc
+	..()
 	return INITIALIZE_HINT_QDEL
 
 /obj/effect/landmark/weapon_spawn
@@ -159,7 +200,7 @@
 /obj/effect/landmark/weapon_spawn/proc/spawn_associated_ammo(obj/item/weapon/gun/gun_to_spawn)
 	//fuck you grenade launchers you snowflake pieces of shit
 	if(istype(gun_to_spawn, /obj/item/weapon/gun/launcher/m92) || istype(gun_to_spawn, /obj/item/weapon/gun/launcher/m81))
-		new /obj/item/storage/box/nade_box (get_turf(src))
+		new /obj/item/storage/box/visual/grenade/frag (get_turf(src))
 		return
 
 	if(istype(gun_to_spawn, /obj/item/weapon/gun/flare))
@@ -181,14 +222,14 @@
 		var/obj/item/ammo_magazine/handful/handful_to_generate
 		for(var/i in 1 to 3)
 			handful_to_generate = new (get_turf(src))
-			handful_to_generate.generate_handful(initial(gun_mag.default_ammo), initial(gun_mag.caliber), 5,5, /obj/item/weapon/gun/shotgun)
+			handful_to_generate.generate_handful(initial(gun_mag.default_ammo), initial(gun_mag.caliber), 5, /obj/item/weapon/gun/shotgun)
 		return
 
 	if(istype(gun_to_spawn, /obj/item/weapon/gun/revolver))
 		var/obj/item/ammo_magazine/handful/handful_to_generate
 		for(var/i in 1 to 3)
 			handful_to_generate = new (get_turf(src))
-			handful_to_generate.generate_handful(initial(gun_mag.default_ammo), initial(gun_mag.caliber), 8,8, /obj/item/weapon/gun/shotgun)
+			handful_to_generate.generate_handful(initial(gun_mag.default_ammo), initial(gun_mag.caliber), 8, /obj/item/weapon/gun/revolver)
 		return
 
 	for(var/i in 1 to 3) //hardcoded 3 mags.
@@ -207,20 +248,18 @@
 	icon_state = "weapon1"
 	weapon_list = list(
 		/obj/item/weapon/gun/energy/lasgun/M43/practice,
+		/obj/item/weapon/gun/energy/lasgun/tesla,
 		/obj/item/weapon/gun/flare,
 		/obj/item/weapon/gun/pistol/standard_pistol,
 		/obj/item/weapon/gun/pistol/standard_pocketpistol,
 		/obj/item/weapon/gun/pistol/rt3,
 		/obj/item/weapon/gun/pistol/m1911,
 		/obj/item/weapon/gun/pistol/standard_heavypistol,
-		/obj/item/weapon/gun/pistol/b92fs,
-		/obj/item/weapon/gun/pistol/b92fs/M9,
+		/obj/item/weapon/gun/pistol/g22,
 		/obj/item/weapon/gun/pistol/heavy,
 		/obj/item/weapon/gun/pistol/heavy/gold,
 		/obj/item/weapon/gun/pistol/c99,
-		/obj/item/weapon/gun/pistol/c99/russian,
-		/obj/item/weapon/gun/pistol/c99/upp,
-		/obj/item/weapon/gun/pistol/c99/upp/tranq,
+		/obj/item/weapon/gun/pistol/c99/tranq,
 		/obj/item/weapon/gun/pistol/holdout,
 		/obj/item/weapon/gun/pistol/highpower,
 		/obj/item/weapon/gun/pistol/vp70,
@@ -250,18 +289,17 @@
 	icon_state = "weapon2"
 	weapon_list = list(
 		/obj/item/weapon/gun/energy/lasgun/M43,
-		/obj/item/weapon/gun/energy/lasgun/M43/stripped,
 		/obj/item/weapon/gun/shotgun/pump/lever,
-		/obj/item/weapon/gun/pistol/b92fs/raffica,
+		/obj/item/weapon/gun/pistol/g22/tranq,
 		/obj/item/weapon/gun/pistol/m1911/custom,
 		/obj/item/weapon/gun/revolver/mateba,
 		/obj/item/weapon/gun/revolver/mateba/notmarine,
 		/obj/item/weapon/gun/revolver/mateba/captain,
+		/obj/item/weapon/gun/smg/standard_machinepistol,
 		/obj/item/weapon/gun/smg/standard_smg,
 		/obj/item/weapon/gun/smg/m25,
 		/obj/item/weapon/gun/smg/mp7,
 		/obj/item/weapon/gun/smg/skorpion,
-		/obj/item/weapon/gun/smg/skorpion/upp,
 		/obj/item/weapon/gun/smg/ppsh,
 		/obj/item/weapon/gun/smg/uzi,
 		/obj/item/weapon/claymore,
@@ -285,7 +323,6 @@
 		/obj/item/weapon/gun/rifle/m412,
 		/obj/item/weapon/gun/rifle/m41a,
 		/obj/item/weapon/gun/rifle/ak47,
-		/obj/item/weapon/gun/rifle/ak47/carbine,
 		/obj/item/weapon/gun/rifle/m16,
 		/obj/item/weapon/gun/rifle/famas,
 		/obj/item/weapon/gun/rifle/standard_lmg,
@@ -293,37 +330,41 @@
 		/obj/item/weapon/gun/rifle/m412l1_hpr,
 		/obj/item/weapon/gun/rifle/type71/flamer,
 		/obj/item/weapon/gun/rifle/type71,
-		/obj/item/weapon/gun/rifle/type71/carbine,
 		/obj/item/weapon/gun/rifle/standard_autoshotgun,
 		/obj/item/weapon/gun/energy/lasgun/lasrifle,
 		/obj/item/weapon/gun/shotgun/pump,
 		/obj/item/weapon/gun/shotgun/pump/t35,
+		/obj/item/weapon/gun/shotgun/combat,
 		/obj/item/weapon/gun/shotgun/combat/standardmarine,
 		/obj/item/weapon/gun/flamer,
 		/obj/item/weapon/gun/pistol/auto9,
+		/obj/item/weapon/gun/rifle/chambered,
+		/obj/item/weapon/gun/rifle/tx11,
 	)
 
 /obj/effect/landmark/weapon_spawn/tier4_weapon_spawn
 	name = "Tier 4 Weapon Spawn"
 	icon_state = "weapon4"
 	weapon_list = list(
-		/obj/item/weapon/gun/rifle/type71/carbine/commando,
+		/obj/item/weapon/gun/rifle/type71/commando,
 		/obj/item/weapon/gun/rifle/m412/elite,
 		/obj/item/weapon/gun/rifle/sniper/elite,
 		/obj/item/weapon/gun/smg/m25/elite,
 		/obj/item/weapon/gun/rifle/sniper/elite/xmas,
-		/obj/item/weapon/gun/rifle/sniper/M42A,
+		/obj/item/weapon/gun/rifle/sniper/antimaterial,
+		/obj/item/weapon/gun/rifle/railgun,
 		/obj/item/weapon/gun/rifle/sniper/svd,
 		/obj/item/weapon/gun/launcher/m81,
 		/obj/item/weapon/gun/rifle/standard_smartmachinegun,
 		/obj/item/weapon/gun/rifle/sectoid_rifle,
-		/obj/item/weapon/gun/rifle/m4ra,
+		/obj/item/weapon/gun/rifle/tx8,
 		/obj/item/weapon/gun/shotgun/pump/bolt,
 		/obj/item/weapon/gun/shotgun/pump/lever/mbx900,
 		/obj/item/weapon/gun/shotgun/pump/cmb,
 		/obj/item/weapon/gun/shotgun/double,
 		/obj/item/weapon/gun/shotgun/double/sawn,
 		/obj/item/weapon/gun/flamer/marinestandard,
+		/obj/item/weapon/gun/rifle/standard_autosniper,
 		/obj/item/weapon/energy/axe,
 	)
 

@@ -7,13 +7,14 @@
 	det_time = 40
 	item_state = "grenade"
 	underslug_launchable = TRUE
+	icon_state_mini = "grenade_red"
 
 /obj/item/explosive/grenade/frag/prime()
 	explosion(loc, light_impact_range = 4, small_animation = TRUE)
 	qdel(src)
 
 /obj/item/explosive/grenade/frag/flamer_fire_act()
-	prime()
+	activate()
 
 
 
@@ -24,15 +25,15 @@
 	item_state = "grenade"
 	hud_state = "grenade_dummy"
 	dangerous = FALSE
+	icon_state_mini = "grenade_white"
 
 /obj/item/explosive/grenade/frag/training/prime()
-	spawn(0)
-		playsound(loc, 'sound/items/detector.ogg', 80, 0, 7)
-		active = 0 //so we can reuse it
-		overlays.Cut()
-		icon_state = initial(icon_state)
-		det_time = initial(det_time) //these can be modified when fired by UGL
-		throw_range = initial(throw_range)
+	playsound(loc, 'sound/items/detector.ogg', 80, 0, 7)
+	active = FALSE //so we can reuse it
+	overlays.Cut()
+	icon_state = initial(icon_state)
+	det_time = initial(det_time) //these can be modified when fired by UGL
+	throw_range = initial(throw_range)
 
 
 /obj/item/explosive/grenade/frag/training/flamer_fire_act()
@@ -47,6 +48,7 @@
 	arm_sound = 'sound/weapons/armbombpin.ogg'
 	hud_state = "grenade_frag"
 	underslug_launchable = FALSE
+	icon_state_mini = "grenade_red_white"
 
 /obj/item/explosive/grenade/frag/PMC/prime()
 	explosion(loc, light_impact_range = 5, small_animation = TRUE)
@@ -61,6 +63,7 @@
 	arm_sound = 'sound/weapons/armbombpin.ogg'
 	hud_state = "grenade_frag"
 	underslug_launchable = FALSE
+	icon_state_mini = "grenade_yellow"
 
 /obj/item/explosive/grenade/frag/m15/prime()
 	explosion(loc, light_impact_range = 5, small_animation = TRUE)
@@ -83,7 +86,7 @@
 
 /obj/item/explosive/grenade/frag/stick/prime()
 	explosion(loc, light_impact_range = 4, small_animation = TRUE)
-	del(src)
+	qdel(src)
 
 
 /obj/item/explosive/grenade/frag/upp
@@ -99,7 +102,7 @@
 
 /obj/item/explosive/grenade/frag/upp/prime()
 	explosion(loc, light_impact_range = 4, small_animation = TRUE)
-	del(src)
+	qdel(src)
 
 
 /obj/item/explosive/grenade/frag/sectoid
@@ -123,6 +126,7 @@
 	item_state = "grenade_fire"
 	hud_state = "grenade_fire"
 	underslug_launchable = TRUE
+	icon_state_mini = "grenade_orange"
 
 /obj/item/explosive/grenade/incendiary/prime()
 	flame_radius(2, get_turf(src))
@@ -173,6 +177,7 @@
 	underslug_launchable = TRUE
 	dangerous = FALSE
 	var/datum/effect_system/smoke_spread/bad/smoke
+	icon_state_mini = "grenade_blue"
 
 /obj/item/explosive/grenade/smokebomb/Initialize()
 	. = ..()
@@ -195,6 +200,7 @@
 	dangerous = FALSE
 	underslug_launchable = TRUE
 	var/datum/effect_system/smoke_spread/tactical/smoke
+	icon_state_mini = "grenade_green"
 
 /obj/item/explosive/grenade/cloakbomb/Initialize()
 	. = ..()
@@ -215,6 +221,7 @@
 	hud_state = "grenade_smoke"
 	underslug_launchable = TRUE
 	var/datum/effect_system/smoke_spread/plasmaloss/smoke
+	icon_state_mini = "grenade_blue"
 
 /obj/item/explosive/grenade/drainbomb/Initialize()
 	. = ..()
@@ -236,6 +243,7 @@
 	hud_state = "grenade_hide"
 	underslug_launchable = TRUE
 	var/datum/effect_system/smoke_spread/phosphorus/smoke
+	icon_state_mini = "grenade_cyan"
 
 /obj/item/explosive/grenade/phosphorus/Initialize()
 	. = ..()
@@ -265,6 +273,7 @@
 	det_time = 40
 	dangerous = TRUE
 	underslug_launchable = TRUE
+	icon_state_mini = "grenade_blue_white"
 
 /obj/item/explosive/grenade/impact/prime()
 	explosion(loc, light_impact_range = 3)
@@ -294,7 +303,6 @@
 	light_system = MOVABLE_LIGHT
 	light_range = 6
 	light_color = LIGHT_COLOR_FLARE
-	light_on = FALSE
 	var/fuel = 0
 	var/lower_fuel_limit = 800
 	var/upper_fuel_limit = 1000
@@ -394,8 +402,7 @@
 			target_zone = "chest"
 		if(launched && CHECK_BITFIELD(resistance_flags, ON_FIRE))
 			var/armor_block = L.run_armor_check(target_zone, "fire")
-			L.apply_damage(rand(throwforce*0.75,throwforce*1.25), BURN, target_zone, armor_block) //Do more damage if launched from a proper launcher and active
-			UPDATEHEALTH(L)
+			L.apply_damage(rand(throwforce*0.75,throwforce*1.25), BURN, target_zone, armor_block, updating_health = TRUE) //Do more damage if launched from a proper launcher and active
 
 	// Flares instantly burn out nodes when thrown at them.
 	var/obj/effect/alien/weeds/node/N = locate() in loc

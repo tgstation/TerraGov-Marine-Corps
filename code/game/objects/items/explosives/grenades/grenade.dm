@@ -10,6 +10,7 @@
 	flags_atom = CONDUCT
 	flags_equip_slot = ITEM_SLOT_BELT
 	hitsound = 'sound/weapons/smash.ogg'
+	icon_state_mini = "grenade"
 	var/launched = FALSE //if launched from a UGL/grenade launcher
 	var/launchforce = 10 //bonus impact damage if launched from a UGL/grenade launcher
 	var/det_time = 50
@@ -54,7 +55,7 @@
 		C.throw_mode_on()
 
 
-/obj/item/explosive/grenade/proc/activate(mob/user as mob)
+/obj/item/explosive/grenade/proc/activate(mob/user)
 	if(active)
 		return
 
@@ -75,7 +76,6 @@
 	if(dangerous)
 		overlays+=new/obj/effect/overlay/danger
 		dangerous = 0
-	return
 
 
 /obj/item/explosive/grenade/proc/prime()
@@ -106,5 +106,5 @@
 	walk(src, null, null)
 	return
 
-/obj/item/explosive/grenade/attack_paw(mob/living/carbon/monkey/user)
+/obj/item/explosive/grenade/attack_paw(mob/living/carbon/human/user)
 	return attack_hand(user)

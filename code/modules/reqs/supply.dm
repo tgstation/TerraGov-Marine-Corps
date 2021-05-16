@@ -4,8 +4,6 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 		/obj/item/radio/beacon
 	)))
 
-GLOBAL_LIST_EMPTY_TYPED(exports_types, /datum/supply_export)
-
 /datum/supply_order
 	var/id
 	var/orderer
@@ -14,6 +12,8 @@ GLOBAL_LIST_EMPTY_TYPED(exports_types, /datum/supply_export)
 	var/reason
 	var/authorised_by
 	var/list/datum/supply_packs/pack
+	///What faction ordered this
+	var/faction = FACTION_TERRAGOV
 
 /obj/item/paper/manifest
 	name = "Supply Manifest"
@@ -45,6 +45,8 @@ GLOBAL_LIST_EMPTY_TYPED(exports_types, /datum/supply_export)
 	use_ripples = FALSE
 	var/list/gears = list()
 	var/list/obj/machinery/door/poddoor/railing/railings = list()
+	///The faction of this docking port (aka, on which ship it is located)
+	var/faction = FACTION_TERRAGOV
 
 
 /obj/docking_port/mobile/supply/Destroy(force)
@@ -109,6 +111,10 @@ GLOBAL_LIST_EMPTY_TYPED(exports_types, /datum/supply_export)
 				if(isxeno(a))
 					var/mob/living/L = a
 					if(L.stat == DEAD)
+						continue
+				if(ishuman(a))
+					var/mob/living/carbon/human/human_to_sell = a
+					if(human_to_sell.stat == DEAD && can_sell_human_body(human_to_sell, faction))
 						continue
 				if(is_type_in_typecache(a, GLOB.blacklisted_cargo_types))
 					return FALSE
@@ -193,41 +199,28 @@ GLOBAL_LIST_EMPTY_TYPED(exports_types, /datum/supply_export)
 		SSpoints.shoppinglist -= "[SO.id]"
 		SSpoints.shopping_history += SO
 
+
 /datum/export_report
-	var/id
+	/// How many points from that export
 	var/points
-	var/list/exports
+	/// Name of the item exported
+	var/export_name
+	/// What faction did the export
+	var/faction
+
+/datum/export_report/New(_points, _export_name, _faction)
+	points = _points
+	export_name = _export_name 
+	faction = _faction
 
 /obj/docking_port/mobile/supply/proc/sell()
-	var/list/exports = list()
-	var/points = 0
 	for(var/place in shuttle_areas)
 		var/area/shuttle/shuttle_area = place
 		for(var/atom/movable/AM in shuttle_area)
 			if(AM.anchored)
 				continue
-			var/atom/movable/atom_type = AM.type
-			if(isxeno(AM)) // deal with admin spawned upgrades
-				var/mob/living/carbon/xenomorph/X = AM
-				atom_type = X.xeno_caste.caste_type_path
-			if(GLOB.exports_types[atom_type])
-				var/datum/supply_export/E = GLOB.exports_types[atom_type]
-				if(!exports[atom_type])
-					exports[atom_type] = 0
-				exports[atom_type]++
-				points += E.cost
+			SSpoints.export_history += AM.supply_export(faction)
 			qdel(AM)
-	if(!points && !length(exports))
-		return
-	var/datum/export_report/ER = new
-	ER.id = ++SSpoints.ordernum
-	ER.points = points
-	ER.exports = list()
-	SSpoints.supply_points += points
-	for(var/i in exports)
-		var/atom/movable/A = i
-		ER.exports += list(list("name" = initial(A.name), "count" = exports[i], "points" = GLOB.exports_types[i].cost * exports[i]))
-	SSpoints.export_history += ER
 
 /obj/item/supplytablet
 	name = "ASRS tablet"
@@ -271,8 +264,6 @@ GLOBAL_LIST_EMPTY_TYPED(exports_types, /datum/supply_export)
 /datum/supply_ui
 	interaction_flags = INTERACT_MACHINE_TGUI
 	var/atom/source_object
-	var/ui_x = 900
-	var/ui_y = 700
 	var/tgui_name = "Cargo"
 
 /datum/supply_ui/New(atom/source_object)
@@ -290,12 +281,11 @@ GLOBAL_LIST_EMPTY_TYPED(exports_types, /datum/supply_export)
 		return FALSE
 	return TRUE
 
-/datum/supply_ui/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
-										datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+/datum/supply_ui/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
 
 	if(!ui)
-		ui = new(user, src, ui_key, tgui_name, source_object.name, ui_x, ui_y, master_ui, state)
+		ui = new(user, src, tgui_name, source_object.name)
 		ui.open()
 
 /datum/supply_ui/ui_static_data(mob/user)
@@ -305,12 +295,15 @@ GLOBAL_LIST_EMPTY_TYPED(exports_types, /datum/supply_export)
 	.["supplypackscontents"] = SSpoints.supply_packs_contents
 	.["elevator_size"] = SSshuttle.supply?.return_number_of_turfs()
 
-/datum/supply_ui/ui_data(mob/user)
+/datum/supply_ui/ui_data(mob/living/user)
+	if(!isliving(user))
+		return
 	. = list()
-	.["currentpoints"] = round(SSpoints.supply_points)
+	.["currentpoints"] = round(SSpoints.supply_points[user.faction])
 	.["requests"] = list()
-	for(var/i in SSpoints.requestlist)
-		var/datum/supply_order/SO = SSpoints.requestlist[i]
+	for(var/datum/supply_order/SO AS in SSpoints.requestlist)
+		if(SO.faction != user.faction)
+			continue
 		var/list/packs = list()
 		var/cost = 0
 		for(var/P in SO.pack)
@@ -321,6 +314,8 @@ GLOBAL_LIST_EMPTY_TYPED(exports_types, /datum/supply_export)
 	.["deniedrequests"] = list()
 	for(var/i in length(SSpoints.deniedrequests) to 1 step -1)
 		var/datum/supply_order/SO = SSpoints.deniedrequests[SSpoints.deniedrequests[i]]
+		if(SO.faction != user.faction)
+			continue
 		var/list/packs = list()
 		var/cost = 0
 		for(var/P in SO.pack)
@@ -331,30 +326,36 @@ GLOBAL_LIST_EMPTY_TYPED(exports_types, /datum/supply_export)
 	.["approvedrequests"] = list()
 	for(var/i in length(SSpoints.approvedrequests) to 1 step -1)
 		var/datum/supply_order/SO = SSpoints.approvedrequests[SSpoints.approvedrequests[i]]
+		if(SO.faction != user.faction)
+			continue
 		var/list/packs = list()
 		var/cost = 0
-		for(var/P in SO.pack)
-			var/datum/supply_packs/SP = P
+		for(var/datum/supply_packs/SP AS in SO.pack)
 			packs += SP.type
 			cost += SP.cost
 		.["approvedrequests"] += list(list("id" = SO.id, "orderer" = SO.orderer, "orderer_rank" = SO.orderer_rank, "reason" = SO.reason, "cost" = cost, "packs" = packs, "authed_by" = SO.authorised_by))
-	.["export_history"] = list()
-	for(var/i in SSpoints.export_history)
-		var/datum/export_report/ER = i
-		.["export_history"] += list(list("id" = ER.id, "points" = ER.points, "exports" = ER.exports))
 	.["awaiting_delivery"] = list()
 	.["awaiting_delivery_orders"] = 0
-	for(var/i in SSpoints.shoppinglist)
-		var/datum/supply_order/SO = SSpoints.shoppinglist[i]
+	for(var/key in SSpoints.shoppinglist)
+		var/datum/supply_order/SO = SSpoints.shoppinglist[key]
+		if(SO.faction != user.faction)
+			continue
 		.["awaiting_delivery_orders"]++
 		var/list/packs = list()
-		for(var/P in SO.pack)
-			var/datum/supply_packs/SP = P
+		for(var/datum/supply_packs/SP AS in SO.pack)
 			packs += SP.type
 		.["awaiting_delivery"] += list(list("id" = SO.id, "orderer" = SO.orderer, "orderer_rank" = SO.orderer_rank, "reason" = SO.reason, "packs" = packs, "authed_by" = SO.authorised_by))
+	.["export_history"] = list()
+	var/id = 0
+	for(var/datum/export_report/report AS in SSpoints.export_history)
+		if(report.faction != user.faction)
+			continue
+		.["export_history"] += list(list("id" = id, "name" = report.export_name, "points" = report.points))
+		id++
 	.["shopping_history"] = list()
-	for(var/i in SSpoints.shopping_history)
-		var/datum/supply_order/SO = i
+	for(var/datum/supply_order/SO AS in SSpoints.shopping_history)
+		if(SO.faction != user.faction)
+			continue
 		var/list/packs = list()
 		var/cost = 0
 		for(var/P in SO.pack)
@@ -399,7 +400,8 @@ GLOBAL_LIST_EMPTY_TYPED(exports_types, /datum/supply_export)
 	return SSpoints.shopping_cart
 
 /datum/supply_ui/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
-	if(..())
+	. = ..()
+	if(.)
 		return
 	switch(action)
 		if("cart")
@@ -421,11 +423,12 @@ GLOBAL_LIST_EMPTY_TYPED(exports_types, /datum/supply_export)
 					else
 						shopping_cart[P.type] = 1
 				if("addall")
+					var/mob/living/ui_user = ui.user
 					var/cart_cost = 0
 					for(var/i in shopping_cart)
 						var/datum/supply_packs/SP = SSpoints.supply_packs[i]
 						cart_cost += SP.cost * shopping_cart[SP.type]
-					var/excess_points = SSpoints.supply_points - cart_cost
+					var/excess_points = SSpoints.supply_points[ui_user.faction] - cart_cost
 					var/number_to_buy = round(excess_points / P.cost)
 					if(shopping_cart[P.type])
 						shopping_cart[P.type] += number_to_buy
@@ -435,7 +438,7 @@ GLOBAL_LIST_EMPTY_TYPED(exports_types, /datum/supply_export)
 		if("send")
 			if(SSshuttle.supply.mode == SHUTTLE_IDLE && is_mainship_level(SSshuttle.supply.z))
 				if (!SSshuttle.supply.check_blacklist())
-					to_chat(usr, "For safety reasons, the Automated Storage and Retrieval System cannot store live, non-xeno organisms, classified nuclear weaponry or homing beacons.")
+					to_chat(usr, "For safety reasons, the Automated Storage and Retrieval System cannot store live, friendlies, classified nuclear weaponry or homing beacons.")
 					playsound(SSshuttle.supply.return_center_turf(), 'sound/machines/buzz-two.ogg', 50, 0)
 				else
 					playsound(SSshuttle.supply.return_center_turf(), 'sound/machines/elevator_move.ogg', 50, 0)
@@ -487,12 +490,16 @@ GLOBAL_LIST_EMPTY_TYPED(exports_types, /datum/supply_export)
 	.["supplypacks"] = SSpoints.supply_packs_ui
 	.["supplypackscontents"] = SSpoints.supply_packs_contents
 
-/datum/supply_ui/requests/ui_data(mob/user)
+/datum/supply_ui/requests/ui_data(mob/living/user)
+	if(!isliving(user))
+		return
 	. = list()
-	.["currentpoints"] = round(SSpoints.supply_points)
+	.["currentpoints"] = round(SSpoints.supply_points[user.faction])
 	.["requests"] = list()
 	for(var/i in SSpoints.requestlist)
 		var/datum/supply_order/SO = SSpoints.requestlist[i]
+		if(SO.faction != user.faction)
+			continue
 		var/list/packs = list()
 		var/cost = 0
 		for(var/P in SO.pack)
@@ -503,6 +510,8 @@ GLOBAL_LIST_EMPTY_TYPED(exports_types, /datum/supply_export)
 	.["deniedrequests"] = list()
 	for(var/i in length(SSpoints.deniedrequests) to 1 step -1)
 		var/datum/supply_order/SO = SSpoints.deniedrequests[SSpoints.deniedrequests[i]]
+		if(SO.faction != user.faction)
+			continue
 		var/list/packs = list()
 		var/cost = 0
 		for(var/P in SO.pack)
@@ -513,6 +522,8 @@ GLOBAL_LIST_EMPTY_TYPED(exports_types, /datum/supply_export)
 	.["approvedrequests"] = list()
 	for(var/i in length(SSpoints.approvedrequests) to 1 step -1)
 		var/datum/supply_order/SO = SSpoints.approvedrequests[SSpoints.approvedrequests[i]]
+		if(SO.faction != user.faction)
+			continue
 		var/list/packs = list()
 		var/cost = 0
 		for(var/P in SO.pack)
@@ -532,7 +543,8 @@ GLOBAL_LIST_EMPTY_TYPED(exports_types, /datum/supply_export)
 		.["shopping_list"][SP.type] = list("count" = SSpoints.request_shopping_cart[user.ckey][SP.type])
 
 /datum/supply_ui/requests/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
-	if(..())
+	. = ..()
+	if(.)
 		return TRUE
 	switch(action)
 		if("submitrequest")

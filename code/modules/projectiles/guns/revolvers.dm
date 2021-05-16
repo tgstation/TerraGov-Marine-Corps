@@ -226,9 +226,7 @@
 	if(!istype(G))
 		return
 
-	src = G
-
-	if(usr.action_busy)
+	if(usr.do_actions)
 		return
 
 	if(zoom)
@@ -319,6 +317,17 @@
 /obj/item/weapon/gun/revolver/get_ammo_count()
 	return current_mag ? current_mag.current_rounds : 0
 
+// revolvers do not make any sense when they have a rattle sound, so this is ignored.
+/obj/item/weapon/gun/revolver/play_fire_sound(mob/user)
+	if(active_attachable && active_attachable.flags_attach_features & ATTACH_PROJECTILE)
+		if(active_attachable.fire_sound) //If we're firing from an attachment, use that noise instead.
+			playsound(user, active_attachable.fire_sound, 50)
+		return
+	if(flags_gun_features & GUN_SILENCED)
+		playsound(user, fire_sound, 25)
+		return
+	playsound(user, fire_sound, 60)
+
 //-------------------------------------------------------
 //TP-44 COMBAT REVOLVER
 
@@ -327,7 +336,7 @@
 	desc = "The TP-44 standard combat revolver, produced by Terran Armories. A sturdy and hard hitting firearm that loads .44 Magnum rounds. Holds 7 rounds in the cylinder. Due to the nature of the weapon, its rate of fire doesn’t quite match the output of other guns, but does hit much harder."
 	icon_state = "tp44"
 	item_state = "tp44"
-	caliber = ".44 Magnum" //codex
+	caliber =  CALIBER_44 //codex
 	max_shells = 7 //codex
 	current_mag = /obj/item/ammo_magazine/internal/revolver/standard_revolver
 	force = 8
@@ -340,9 +349,10 @@
 		/obj/item/attachable/extended_barrel,
 		/obj/item/attachable/compensator,
 		/obj/item/attachable/lasersight,
+		/obj/item/attachable/lace,
 	)
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 19,"rail_x" = 13, "rail_y" = 23, "under_x" = 22, "under_y" = 14, "stock_x" = 22, "stock_y" = 19)
-	fire_delay = 0.3
+	fire_delay = 0.15 SECONDS
 	accuracy_mult_unwielded = 0.85
 	accuracy_mult = 1
 	scatter_unwielded = 15
@@ -358,7 +368,7 @@
 	desc = "A uncommon revolver occasionally carried by civilian law enforcement that's very clearly based off a modernized Single Action Army. Uses .44 Magnum rounds."
 	icon_state = "m44"
 	item_state = "m44"
-	caliber = ".44 Magnum" //codex
+	caliber = CALIBER_44 //codex
 	max_shells = 6 //codex
 	current_mag = /obj/item/ammo_magazine/internal/revolver/m44
 	force = 8
@@ -374,6 +384,7 @@
 		/obj/item/attachable/scope,
 		/obj/item/attachable/lasersight,
 		/obj/item/attachable/scope/mini,
+		/obj/item/attachable/lace,
 	)
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 22,"rail_x" = 17, "rail_y" = 22, "under_x" = 22, "under_y" = 17, "stock_x" = 22, "stock_y" = 19)
 
@@ -385,7 +396,7 @@
 	desc = "The Nagant-Yamasaki 7.62 is an effective killing machine designed by a consortion of shady Not-Americans. It is frequently found in the hands of criminals or mercenaries."
 	icon_state = "ny762"
 	item_state = "ny762"
-	caliber = "7.62x38mm Rimmed" //codex
+	caliber = CALIBER_762X38 //codex
 	max_shells = 7 //codex
 	fire_sound = 'sound/weapons/guns/fire/ny.ogg'
 	current_mag = /obj/item/ammo_magazine/internal/revolver/upp
@@ -395,6 +406,7 @@
 		/obj/item/attachable/flashlight,
 		/obj/item/attachable/compensator,
 		/obj/item/attachable/extended_barrel,
+		/obj/item/attachable/lace,
 	)
 	attachable_offset = list("muzzle_x" = 28, "muzzle_y" = 21,"rail_x" = 14, "rail_y" = 23, "under_x" = 24, "under_y" = 19, "stock_x" = 24, "stock_y" = 19)
 
@@ -411,7 +423,7 @@
 	desc = "A lean .357 made by Smith & Wesson. A timeless classic, from antiquity to the future."
 	icon_state = "sw357"
 	item_state = "sw357"
-	caliber = ".357 Magnum" //codex
+	caliber = CALIBER_357 //codex
 	max_shells = 6 //codex
 	fire_sound = 'sound/weapons/guns/fire/revolver.ogg'
 	current_mag = /obj/item/ammo_magazine/internal/revolver/small
@@ -424,6 +436,7 @@
 		/obj/item/attachable/scope,
 		/obj/item/attachable/lasersight,
 		/obj/item/attachable/scope/mini,
+		/obj/item/attachable/lace,
 	)
 	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 19,"rail_x" = 12, "rail_y" = 21, "under_x" = 20, "under_y" = 15, "stock_x" = 20, "stock_y" = 15)
 
@@ -444,7 +457,7 @@
 	item_state = "mateba"
 	fire_animation = "mateba_fire"
 	muzzleflash_iconstate = "muzzle_flash"
-	caliber = ".454 Casull" //codex
+	caliber = CALIBER_454 //codex
 	max_shells = 6 //codex
 	fire_sound = 'sound/weapons/guns/fire/mateba.ogg'
 	current_mag = /obj/item/ammo_magazine/internal/revolver/mateba
@@ -456,10 +469,12 @@
 		/obj/item/attachable/scope/mini,
 		/obj/item/attachable/heavy_barrel,
 		/obj/item/attachable/compensator,
+		/obj/item/attachable/lace,
 	)
 	attachable_offset = list("muzzle_x" = 28, "muzzle_y" = 18,"rail_x" = 16, "rail_y" = 21, "under_x" = 22, "under_y" = 15, "stock_x" = 22, "stock_y" = 15)
 
 	fire_delay = 0.2 SECONDS
+	aim_fire_delay = 0.3 SECONDS
 	recoil = 0
 	accuracy_mult = 1.1
 	scatter = 10
@@ -485,7 +500,7 @@
 	desc = "An automatic revolver chambered in .357 magnum. Commonly issued to Nanotrasen security. It has a burst mode. Currently in trial with other revolvers across Terra and other colonies."
 	icon_state = "cmb"
 	item_state = "cmb"
-	caliber = ".357 Magnum" //codex
+	caliber = CALIBER_357 //codex
 	max_shells = 6 //codex
 	fire_sound = 'sound/weapons/guns/fire/revolver_light.ogg'
 	current_mag = /obj/item/ammo_magazine/internal/revolver/cmb
@@ -497,6 +512,7 @@
 		/obj/item/attachable/heavy_barrel,
 		/obj/item/attachable/quickfire,
 		/obj/item/attachable/compensator,
+		/obj/item/attachable/lace,
 	)
 	attachable_offset = list("muzzle_x" = 29, "muzzle_y" = 22,"rail_x" = 11, "rail_y" = 25, "under_x" = 20, "under_y" = 18, "stock_x" = 20, "stock_y" = 18)
 

@@ -2,6 +2,11 @@
 	if(GLOB.motd)
 		to_chat(src, "<div class='motd'>[GLOB.motd]</div>")
 
+	var/datum/getrev/revdata = GLOB.revdata
+	var/tm_info = revdata.GetTestMergeInfo()
+	if(tm_info)
+		to_chat(src, tm_info)
+
 	if(CONFIG_GET(flag/use_exp_tracking))
 		client?.set_exp_from_db()
 
@@ -14,7 +19,4 @@
 
 	sight |= SEE_TURFS
 
-	new_player_panel()
 	client?.play_title_music()
-
-

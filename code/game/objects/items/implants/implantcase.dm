@@ -17,7 +17,7 @@
 		update_icon()
 
 
-/obj/item/implantcase/update_icon()
+/obj/item/implantcase/update_icon_state()
 	if(imp)
 		icon_state = "implantcase-[imp.implant_color]"
 	else
@@ -67,3 +67,9 @@
 
 		update_icon()
 		M.update_icon()
+
+	else if(istype(I, /obj/item/implant))
+		user.temporarilyRemoveItemFromInventory(I)
+		I.forceMove(src)
+		imp = I
+		update_icon()

@@ -139,21 +139,21 @@
 
 #define POINT_LAYER 12
 
-#define EMISSIVE_BLOCKER_PLANE 12
-#define EMISSIVE_BLOCKER_LAYER 12
-#define EMISSIVE_BLOCKER_RENDER_TARGET "*EMISSIVE_BLOCKER_PLANE"
 
 #define CHAT_LAYER 12.0001 // Do not insert layers between these two values
 #define CHAT_LAYER_MAX 12.9999
 
 
-#define EMISSIVE_PLANE 13
-#define EMISSIVE_LAYER 13
-#define EMISSIVE_RENDER_TARGET "*EMISSIVE_PLANE"
+//---------- EMISSIVES -------------
+//Layering order of these is not particularly meaningful.
+//Important part is the seperation of the planes for control via plane_master
 
-#define EMISSIVE_UNBLOCKABLE_PLANE 14
-#define EMISSIVE_UNBLOCKABLE_LAYER 14
-#define EMISSIVE_UNBLOCKABLE_RENDER_TARGET "*EMISSIVE_UNBLOCKABLE_PLANE"
+/// This plane masks out lighting to create an "emissive" effect, ie for glowing lights in otherwise dark areas.
+#define EMISSIVE_PLANE 13
+/// The render target used by the emissive layer.
+#define EMISSIVE_RENDER_TARGET "*EMISSIVE_PLANE"
+/// The layer you should use if you _really_ don't want an emissive overlay to be blocked.
+#define EMISSIVE_LAYER_UNBLOCKABLE 9999
 
 #define LIGHTING_PLANE 15
 
@@ -174,11 +174,14 @@
 #define FULLSCREEN_IMPAIRED_LAYER 18.02 //visual impairment from wearing welding helmet, etc
 #define FULLSCREEN_DRUGGY_LAYER 18.03
 #define FULLSCREEN_BLURRY_LAYER 18.04
+#define FULLSCREEN_INFECTION_LAYER	18.041 //purple cloud
 #define FULLSCREEN_FLASH_LAYER 18.05 //flashed
 #define FULLSCREEN_DAMAGE_LAYER 18.1 //red circles when hurt
 #define FULLSCREEN_BLIND_LAYER 18.15 //unconscious
 #define FULLSCREEN_PAIN_LAYER	18.2 //pain flashes
 #define FULLSCREEN_CRIT_LAYER 18.25 //in critical
+#define FULLSCREEN_MACHINE_LAYER 18.3
+#define FULLSCREEN_INTRO_LAYER 18.4 //black screen when you spawn
 
 #define FULLSCREEN_PLANE 20
 

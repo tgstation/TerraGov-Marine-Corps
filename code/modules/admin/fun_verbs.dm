@@ -98,10 +98,12 @@
 		return
 
 	var/paper
-	switch(alert(usr, "Do you want to print out a paper at the communications consoles?", "AI Report", "Yes", "No", "Cancel"))
+	switch(tgui_alert(usr, "Do you want to print out a paper at the communications consoles?", "AI Report", list("Yes", "No", "Cancel")))
 		if("Yes")
 			paper = TRUE
-		if("Cancel")
+		if("No")
+			paper = FALSE
+		else
 			return
 
 	priority_announce(input, customname, sound = "sound/misc/interference.ogg")
@@ -127,15 +129,15 @@
 	if(!input || !customname)
 		return
 
-	if(alert(usr, "Do you want to print out a paper at the communications consoles?",, "Yes", "No") == "Yes")
+	if(tgui_alert(usr, "Do you want to print out a paper at the communications consoles?", null, list("Yes", "No")) == "Yes")
 		print_command_report(input, "[SSmapping.configs[SHIP_MAP].map_name] Update", announce = FALSE)
 
-	switch(alert("Should this be announced to the general population?", "Announce", "Yes", "No", "Cancel"))
+	switch(tgui_alert(usr, "Should this be announced to the general population?", "Announce", list("Yes", "No", "Cancel")))
 		if("Yes")
 			priority_announce(input, customname, sound = 'sound/AI/commandreport.ogg');
 		if("No")
 			priority_announce("New update available at all communication consoles.", type = ANNOUNCEMENT_COMMAND, sound = 'sound/AI/commandreport.ogg')
-		if("Cancel")
+		else
 			return
 
 	log_admin("[key_name(usr)] has created a command report: [input]")
@@ -301,7 +303,7 @@
 	uploaded_sound.priority = 250
 
 
-	var/style = alert("Play sound globally or locally?", "Play Imported Sound", "Global", "Local", "Cancel")
+	var/style = tgui_alert(usr, "Play sound globally or locally?", "Play Imported Sound", list("Global", "Local", "Cancel"))
 	switch(style)
 		if("Global")
 			for(var/i in GLOB.clients)
@@ -313,7 +315,7 @@
 			playsound(get_turf(usr), uploaded_sound, 50, 0)
 			for(var/mob/M in view())
 				heard_midi++
-		if("Cancel")
+		else
 			return
 
 	log_admin("[key_name(usr)] played sound '[S]' for [heard_midi] player(s). [length(GLOB.clients) - heard_midi] player(s) [style == "Global" ? "have disabled admin midis" : "were out of view"].")
@@ -369,10 +371,14 @@
 		title = data["title"]
 		music_extra_data["start"] = data["start_time"]
 		music_extra_data["end"] = data["end_time"]
-		switch(alert(usr, "Show the title of and link to this song to the players?\n[title]", "Play Internet Sound", "Yes", "No", "Cancel"))
+		music_extra_data["link"] = data["webpage_url"]
+		music_extra_data["title"] = data["title"]
+		switch(tgui_alert(usr, "Show the title of and link to this song to the players?\n[title]", "Play Internet Sound", list("Yes", "No", "Cancel")))
 			if("Yes")
 				show = TRUE
-			if("Cancel")
+			if("No")
+				show = FALSE
+			else
 				return
 
 	if(web_sound_url && !findtext(web_sound_url, GLOB.is_http_protocol))
@@ -381,7 +387,7 @@
 		return
 
 	var/list/targets
-	var/style = input("Do you want to play this globally or to the xenos/marines?") as null|anything in list("Globally", "Xenos", "Marines", "Locally")
+	var/style = tgui_alert(usr, "Do you want to play this globally or to the xenos/marines?", null, list("Globally", "Xenos", "Marines", "Locally"))
 	switch(style)
 		if("Globally")
 			targets = GLOB.mob_list
@@ -399,8 +405,8 @@
 		var/client/C = M?.client
 		if(!C?.prefs)
 			continue
-		if((C.prefs.toggles_sound & SOUND_MIDI) && C.chatOutput?.working && C.chatOutput.loaded)
-			C.chatOutput.sendMusic(web_sound_url, music_extra_data)
+		if(C.prefs.toggles_sound & SOUND_MIDI)
+			C.tgui_panel?.play_music(web_sound_url, music_extra_data)
 			if(show)
 				to_chat(C, "<span class='boldnotice'>An admin played: <a href='[data["webpage_url"]]'>[title]</a></span>")
 
@@ -432,9 +438,7 @@
 
 	for(var/i in GLOB.clients)
 		var/client/C = i
-		if(!C?.chatOutput.loaded || !C.chatOutput.working)
-			continue
-		C.chatOutput.stopMusic()
+		C?.tgui_panel?.stop_music()
 
 
 	log_admin("[key_name(usr)] stopped the currently playing music.")
@@ -486,12 +490,12 @@
 
 	list_of_calls += "Randomize"
 
-	var/choice = input("Which distress do you want to call?") as null|anything in list_of_calls
+	var/choice = tgui_input_list(usr, "Which distress do you want to call?", null, list_of_calls)
 	if(!choice)
 		return
 
 	if(choice == "Randomize")
-		SSticker.mode.picked_call	= SSticker.mode.get_random_call()
+		SSticker.mode.picked_call = SSticker.mode.get_random_call()
 	else
 		for(var/datum/emergency_call/C in SSticker.mode.all_calls)
 			if(C.name == choice)
@@ -514,7 +518,7 @@
 	SSticker.mode.picked_call.mob_min = min
 
 	var/is_announcing = TRUE
-	if(alert(usr, "Would you like to announce the distress beacon to the server population? This will reveal the distress beacon to all players.", "Announce distress beacon?", "Yes", "No") != "Yes")
+	if(tgui_alert(usr, "Would you like to announce the distress beacon to the server population? This will reveal the distress beacon to all players.", "Announce distress beacon?", list("Yes", "No")) != "Yes")
 		is_announcing = FALSE
 
 	SSticker.mode.picked_call.activate(is_announcing)
@@ -557,7 +561,7 @@
 	if(!check_rights(R_FUN))
 		return
 
-	var/choice = input("What size explosion would you like to produce?", "Drop Bomb") as null|anything in list("CANCEL", "CAS: Widow Maker", "CAS: Banshee", "CAS: Keeper", "CAS: Fatty", "CAS: Napalm", "Small Bomb", "Medium Bomb", "Big Bomb", "Maxcap", "Custom Bomb")
+	var/choice = tgui_input_list(usr, "What size explosion would you like to produce?", "Drop Bomb", list("CANCEL", "CAS: Widow Maker", "CAS: Banshee", "CAS: Keeper", "CAS: Fatty", "CAS: Napalm", "Small Bomb", "Medium Bomb", "Big Bomb", "Maxcap", "Custom Bomb"))
 	switch(choice)
 		if("CAS: Widow Maker")
 			playsound(usr.loc, 'sound/machines/hydraulics_2.ogg', 70, TRUE)
@@ -602,7 +606,7 @@
 			input_light_impact_range = clamp(input_light_impact_range, 0, world_max)
 			input_flash_range = clamp(input_flash_range, 0, world_max)
 			input_flame_range = clamp(input_flame_range, 0, world_max)
-			switch(tgalert(usr, "Deploy payload?", "DIR: [input_devastation_range] | HIR: [input_heavy_impact_range] | LIR: [input_light_impact_range] | FshR: [input_flash_range] | FlmR: [input_flame_range] | ThR: [input_throw_range]", "Launch!", "Cancel"))
+			switch(tgui_alert(usr, "Deploy payload?", "DIR: [input_devastation_range] | HIR: [input_heavy_impact_range] | LIR: [input_light_impact_range] | FshR: [input_flash_range] | FlmR: [input_flame_range] | ThR: [input_throw_range]", list("Launch!", "Cancel")))
 				if("Launch!")
 					explosion(usr.loc, input_devastation_range, input_heavy_impact_range, input_light_impact_range, input_flash_range, input_flame_range, input_throw_range)
 				else
@@ -658,11 +662,11 @@
 	if(!check_rights(R_FUN))
 		return
 
-	var/sec_level = input(usr, "It's currently code [GLOB.marine_main_ship.get_security_level()]. Choose the new security level.", "Set Security Level") as null|anything in (list("green", "blue", "red", "delta") - GLOB.marine_main_ship.get_security_level())
+	var/sec_level = tgui_input_list(usr, "It's currently code [GLOB.marine_main_ship.get_security_level()]. Choose the new security level.", "Set Security Level", list("green", "blue", "red", "delta") - GLOB.marine_main_ship.get_security_level())
 	if(!sec_level)
 		return
 
-	if(alert("Switch from code [GLOB.marine_main_ship.get_security_level()] to code [sec_level]?", "Set Security Level", "Yes", "No") != "Yes")
+	if(tgui_alert(usr, "Switch from code [GLOB.marine_main_ship.get_security_level()] to code [sec_level]?", "Set Security Level", list("Yes", "No")) != "Yes")
 		return
 
 	GLOB.marine_main_ship.set_security_level(sec_level)
@@ -901,21 +905,21 @@
 		return
 
 	if(L.client)
-		if(alert("This mob has a player inside, are you sure you want to proceed?", "Offer Mob", "Yes", "No") != "Yes")
+		if(tgui_alert(usr, "This mob has a player inside, are you sure you want to proceed?", "Offer Mob", list("Yes", "No")) != "Yes")
 			return
 		L.ghostize(FALSE)
 
 	else if(L in GLOB.offered_mob_list)
-		switch(alert("This mob has been offered, do you want to re-announce it?", "Offer Mob", "Yes", "Remove", "Cancel"))
-			if("Cancel")
-				return
+		switch(tgui_alert(usr, "This mob has been offered, do you want to re-announce it?", "Offer Mob", list("Yes", "Remove", "Cancel")))
 			if("Remove")
 				GLOB.offered_mob_list -= L
 				log_admin("[key_name(usr)] has removed offer of [key_name_admin(L)].")
 				message_admins("[ADMIN_TPMONTY(usr)] has removed offer of [ADMIN_TPMONTY(L)].")
 				return
+			if(!"Yes")
+				return
 
-	else if(alert("Are you sure you want to offer this mob?", "Offer Mob", "Yes", "No") != "Yes")
+	else if(tgui_alert(usr, "Are you sure you want to offer this mob?", "Offer Mob", list("Yes", "No")) != "Yes")
 		return
 
 	if(!istype(L))
@@ -1056,7 +1060,7 @@
 		var/obj/docking_port/mobile/M = i
 		available_shuttles["[M.name] ([M.id])"] = M.id
 
-	var/answer = input(usr, "Which shuttle do you want to move?", "Force Dropship") as null|anything in available_shuttles
+	var/answer = tgui_input_list(usr, "Which shuttle do you want to move?", "Force Dropship", available_shuttles)
 	var/shuttle_id = available_shuttles[answer]
 	if(!shuttle_id)
 		return
@@ -1071,7 +1075,7 @@
 		to_chat(usr, "<span class='warning'>Unable to find shuttle</span>")
 		return
 
-	if(D.mode != SHUTTLE_IDLE && alert("[D.name] is not idle, move anyway?", "Force Dropship", "Yes", "No") != "Yes")
+	if(D.mode != SHUTTLE_IDLE && tgui_alert(usr, "[D.name] is not idle, move anyway?", "Force Dropship", list("Yes", "No")) != "Yes")
 		return
 
 	var/list/valid_docks = list()
@@ -1087,7 +1091,7 @@
 		to_chat(usr, "<span class='warning'>No valid destinations found!</span>")
 		return
 
-	var/dock = input("Choose the destination.", "Force Dropship") as null|anything in valid_docks
+	var/dock = tgui_input_list(usr, "Choose the destination.", "Force Dropship", valid_docks)
 	if(!dock)
 		return
 
@@ -1097,7 +1101,7 @@
 		return
 
 	var/instant = FALSE
-	if(alert("Do you want to move the [D.name] instantly?", "Force Dropship", "Yes", "No") == "Yes")
+	if(tgui_alert(usr, "Do you want to move the [D.name] instantly?", "Force Dropship", list("Yes", "No")) == "Yes")
 		instant = TRUE
 
 	var/success = SSshuttle.moveShuttleToDock(D.id, target, !instant)
@@ -1122,7 +1126,7 @@
 	if(!check_rights(R_FUN))
 		return
 
-	var/datum/cinematic/choice = input(usr, "Choose a cinematic to play.", "Play Cinematic") as null|anything in subtypesof(/datum/cinematic)
+	var/datum/cinematic/choice = tgui_input_list(usr, "Choose a cinematic to play.", "Play Cinematic", subtypesof(/datum/cinematic))
 	if(!choice)
 		return
 
@@ -1173,7 +1177,7 @@
 	if(!holder)
 		return
 
-	var/weather_type = input("Choose a weather", "Weather")  as null|anything in subtypesof(/datum/weather)
+	var/weather_type = tgui_input_list(usr, "Choose a weather", "Weather", subtypesof(/datum/weather))
 	if(!weather_type)
 		return
 

@@ -7,9 +7,20 @@
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_NOHEADSET|JOB_FLAG_OVERRIDELATEJOINSPAWN|JOB_FLAG_HIDE_CURRENT_POSITIONS
 	jobworth = list(/datum/job/survivor/rambo = SURVIVOR_POINTS_REGULAR)
 	job_points_needed  = 10 //Redefined via config.
+	html_description = {"
+		<b>Difficulty</b>: Variable<br /><br />
+		<b>You answer to the</b> acting Hive leader<br /><br />
+		<b>Unlock Requirement</b>: Starting Role<br /><br />
+		<b>Gamemode Availability</b>: Crash, Distress<br /><br /><br />
+		<b>Duty</b>: Spread the hive, obey the will of your Hive Leader and the Queen Mother. Kill or capture those who get into your way. Protect the hive whenever possible. Amass your numbers.
+	"}
 
 /datum/job/xenomorph/return_spawn_type(datum/preferences/prefs)
 	return /mob/living/carbon/xenomorph/larva
+
+/datum/job/xenomorph/add_job_points(amount, origin = MARINE_SPAWN_ORIGIN)
+	. = ..()
+	SSblackbox.record_feedback("tally", "round_statistics", 0.125 * amount, origin)
 
 /datum/job/xenomorph/radio_help_message(mob/M)
 	. = ..()
@@ -20,14 +31,29 @@
 	parent.show_character_previews(image('icons/Xeno/1x1_Xenos.dmi', icon_state = "Bloody Larva", dir = SOUTH))
 	return TRUE
 
+/datum/job/xenomorph/add_job_positions(amount)
+	. = ..()
+	if(!.)
+		return
+	var/datum/hive_status/normal/HS = GLOB.hive_datums[XENO_HIVE_NORMAL]
+	HS.give_larva_to_next_in_queue()
+
 /datum/job/xenomorph/queen
 	title = ROLE_XENO_QUEEN
 	req_admin_notify = TRUE
 	supervisors = "Queen mother"
 	selection_color = "#8972AA"
 	display_order = JOB_DISPLAY_ORDER_XENO_QUEEN
+	exp_requirements = XP_REQ_EXPERIENCED
 	job_flags = JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_NOHEADSET|JOB_FLAG_OVERRIDELATEJOINSPAWN|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_HIDE_CURRENT_POSITIONS
 	jobworth = list(/datum/job/survivor/rambo = SURVIVOR_POINTS_REGULAR)
+	html_description = {"
+		<b>Difficulty</b>: Soul crushing<br /><br />
+		<b>You answer to the</b> Queen Mother<br /><br />
+		<b>Unlock Requirement</b>: Starting Role<br /><br />
+		<b>Gamemode Availability</b>: Crash, Distress<br /><br /><br />
+		<b>Duty</b>: Lead the hive and ensure success isn’t snatched away by your enemies. Manage the supply of psypoints
+	"}
 
 /datum/job/xenomorph/queen/return_spawn_type(datum/preferences/prefs)
 	return /mob/living/carbon/xenomorph/shrike

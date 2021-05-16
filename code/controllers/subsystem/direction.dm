@@ -1,17 +1,24 @@
+#define TRACKING_ID_MARINE_COMMANDER "marine-commander"
+
 SUBSYSTEM_DEF(direction)
 	name = "Direction"
 	priority = FIRE_PRIORITY_DIRECTION
 	runlevels = RUNLEVEL_GAME|RUNLEVEL_POSTGAME
 	wait = 1 SECONDS
 
-	// this is a map of defines to mob references, eg; list(FACTION_ID = <mob ref>, FACTION_ID2 = <mob ref>)
+	/// this is a map of defines to mob references, eg; list(FACTION_ID = <mob ref>, FACTION_ID2 = <mob ref>)
 	var/list/leader_mapping = list()
 
-	// this is a two d list of defines to lists of mobs tracking that leader
-	// eg; list(CHARLIE_SL = list(<list of references to squad marines), XENO_NORMAL_QUEEN = list(<list of xeno mob refs))
+	/// this is a two d list of defines to lists of mobs tracking that leader
+	/// eg; list(CHARLIE_SL = list(<list of references to squad marines), XENO_NORMAL_QUEEN = list(<list of xeno mob refs))
 	var/list/list/processing_mobs = list()
 
-	var/list/mobs_in_processing = list() // reference lookup
+	///Lookup for list(<mob ref> = squad_id)
+	var/list/mobs_in_processing = list()
+
+
+
+
 
 	// the purpose of separating these two things is it avoids having to do anything for mobs tracking a particular
 	//  leader when the leader changes, and its cached to avoid looking up via hive/squad datums.
@@ -19,16 +26,22 @@ SUBSYSTEM_DEF(direction)
 
 	var/list/list/currentrun
 
-	var/last_faction_id = 0 // use to create unique faction ids
+	///Used as a incrememnted var to create new faction IDs
+	var/last_faction_id = 0
 
+/datum/controller/subsystem/direction/Recover()
+	leader_mapping = SSdirection.leader_mapping
+	processing_mobs = SSdirection.processing_mobs
+	mobs_in_processing = SSdirection.mobs_in_processing
+	last_faction_id = SSdirection.last_faction_id
 
 /datum/controller/subsystem/direction/Initialize(start_timeofday)
 	. = ..()
 	// Static squads/factions can be defined here for tracking
-	init_squad(null, null, "marine-sl")
+	init_squad(TRACKING_ID_MARINE_COMMANDER)
 	for (var/hivenumber in GLOB.hive_datums)
 		var/datum/hive_status/HS = GLOB.hive_datums[hivenumber]
-		init_squad(null, HS.living_xeno_ruler, hivenumber)
+		init_squad(hivenumber, HS.living_xeno_ruler, )
 
 
 /datum/controller/subsystem/direction/stat_entry()
@@ -43,77 +56,91 @@ SUBSYSTEM_DEF(direction)
 		currentrun = deepCopyList(processing_mobs)
 
 	for(var/squad_id in currentrun)
-		var/mob/living/L
-		var/mob/living/SL = leader_mapping[squad_id]
-		if (QDELETED(SL))
-			clear_run(squad_id) // clear and reset all the squad members
+		var/mob/living/tracked_leader = leader_mapping[squad_id]
+		if (QDELETED(tracked_leader) && !isxenohive(squad_id))
+			untrack_all_in_squad(squad_id) // clear and reset all the squad members
 			continue
+		var/mob/living/tracker
 		while(currentrun[squad_id].len)
-			L = currentrun[squad_id][currentrun[squad_id].len]
+			tracker = currentrun[squad_id][currentrun[squad_id].len]
 			currentrun[squad_id].len--
-			if(QDELETED(L))
-				stop_tracking(squad_id, L)
+			if(QDELETED(tracker))
+				stop_tracking(squad_id, tracker)
 				continue
-			L.update_leader_tracking(SL)
+			tracker.update_tracking(tracked_leader)
 			if(MC_TICK_CHECK)
 				return
 
-
-/datum/controller/subsystem/direction/proc/clear_run(squad_id)
-	var/mob/living/L
+///Stops all members of this squad from tracking the leader
+/datum/controller/subsystem/direction/proc/untrack_all_in_squad(squad_id)
+	var/mob/living/tracker
 	while(currentrun[squad_id].len)
-		L = currentrun[squad_id][currentrun[squad_id].len]
+		tracker = currentrun[squad_id][currentrun[squad_id].len]
 		currentrun[squad_id].len--
-		if(QDELETED(L))
-			stop_tracking(squad_id, L)
+		if(QDELETED(tracker))
+			stop_tracking(squad_id, tracker)
 			continue
-		L.clear_leader_tracking()
+		tracker.clear_leader_tracking()
 		if(MC_TICK_CHECK)
 			return FALSE
 	return TRUE
 
-
-/datum/controller/subsystem/direction/proc/start_tracking(squad_id, mob/living/carbon/C)
-	if(!C)
-		stack_trace("SSdirection.start_tracking called with a null mob")
-		return FALSE
-	if(mobs_in_processing[C] == squad_id)
+/**
+ * Adds a new mob to a squad so it can track
+ * Arguments:
+ * * squad_id: string squad ID we want to be tracking
+ * * new_tracker: New mob we are adding that wants to track the leader of this squad
+ */
+/datum/controller/subsystem/direction/proc/start_tracking(squad_id, mob/living/carbon/new_tracker)
+	if(!new_tracker)
+		CRASH("SSdirection.start_tracking called with a null mob")
+	if(mobs_in_processing[new_tracker] == squad_id)
 		return TRUE // already tracking this squad leader
-	if(mobs_in_processing[C])
-		stop_tracking(mobs_in_processing[C], C) // remove from tracking the other squad
-	mobs_in_processing[C] = squad_id
-	processing_mobs[squad_id] += C
+	if(mobs_in_processing[new_tracker])
+		stop_tracking(mobs_in_processing[new_tracker], new_tracker) // remove from tracking the other squad
+	mobs_in_processing[new_tracker] = squad_id
+	processing_mobs[squad_id] += new_tracker
 
-
-/datum/controller/subsystem/direction/proc/stop_tracking(squad_id, mob/living/carbon/C, force = FALSE)
-	if(!mobs_in_processing[C])
+/**
+ * Removes a new mob drom a squad so it can stop tracking
+ * Arguments:
+ * * squad_id: string squad ID we want to be tracking
+ * * tracker: Mob we are removing from tracking
+ */
+/datum/controller/subsystem/direction/proc/stop_tracking(squad_id, mob/living/carbon/tracker, force = FALSE)
+	if(!mobs_in_processing[tracker])
 		return TRUE // already removed
-	var/tracking_id = mobs_in_processing[C]
-	mobs_in_processing -= C
+	var/tracking_id = mobs_in_processing[tracker]
+	mobs_in_processing -= tracker
 
 	if(tracking_id != squad_id)
 		if(!force)
 			stack_trace("mismatch in tracking mobs by reference")
-		processing_mobs[squad_id] -= C
+		processing_mobs[squad_id] -= tracker
 
-	processing_mobs[tracking_id] -= C
+	processing_mobs[tracking_id] -= tracker
 
-
-/datum/controller/subsystem/direction/proc/set_leader(squad_id, mob/living/carbon/C)
+///Sets a new leader for a squad
+/datum/controller/subsystem/direction/proc/set_leader(squad_id, mob/living/carbon/new_leader)
 	if(leader_mapping[squad_id])
 		clear_leader(squad_id)
-	leader_mapping[squad_id] = C
+	leader_mapping[squad_id] = new_leader
 
-
+///Clears the leader for this squad id
 /datum/controller/subsystem/direction/proc/clear_leader(squad_id)
 	leader_mapping[squad_id] = null
 
+/**
+ * Creates a new squad so tat we can start tracking it's leader
+ * Arguments:
+ * * new_squad_id: string ID for the new squad we are creating, if none is given creates a new id with last faction id
+ * * squad_leader_mob: optional; mob that we want to be SL of this squad
+ */
+/datum/controller/subsystem/direction/proc/init_squad(new_squad_id, mob/squad_leader_mob)
+	if(!new_squad_id)
+		new_squad_id = "faction_[last_faction_id++]"
+	processing_mobs[new_squad_id] = list()
+	leader_mapping[new_squad_id] = squad_leader_mob // Unassigned squad leader by default
 
-/datum/controller/subsystem/direction/proc/init_squad(datum/squad/S, mob/L, tracking_id)
-	if(!tracking_id)
-		tracking_id = "faction_[last_faction_id++]"
-	processing_mobs[tracking_id] = list()
-	leader_mapping[tracking_id] = L // Unassigned squad leader by default
-
-	return tracking_id
+	return new_squad_id
 

@@ -5,8 +5,6 @@
 	use_power = 0
 	flags_atom = ON_BORDER
 	opacity = FALSE
-
-	throwpass = TRUE //You can throw objects over this, despite its density.
 	open_layer = CATWALK_LAYER
 	closed_layer = WINDOW_LAYER
 
@@ -33,23 +31,13 @@
 
 
 /obj/machinery/door/poddoor/railing/CheckExit(atom/movable/O, turf/target)
-	if(!density)
-		return 1
-
-	if(O && O.throwing)
-		return 1
-
-	if(get_dir(loc, target) == dir)
-		return 0
-	else
-		return 1
+	. = ..()
+	if(O.throwing)
+		return TRUE
 
 /obj/machinery/door/poddoor/railing/CanAllowThrough(atom/movable/mover, turf/target)
 	. = ..()
 	if(!density)
-		return 1
-
-	if(mover && mover.throwing)
 		return 1
 
 	if(get_dir(loc, target) == dir)

@@ -18,7 +18,6 @@
 	var/power_gen_percent = 0 //80,000W at full capacity
 	var/buildstate = FUSION_ENGINE_NO_DAMAGE //What state of building it are we on, 0-3, 1 is "broken", the default
 	var/is_on = FALSE  //Is this damn thing on or what?
-	var/fail_rate = 5 //% chance of failure each fail_tick check
 	var/cur_tick = 0 //Tick updater
 
 	var/obj/item/fuelCell/fusion_cell
@@ -68,34 +67,30 @@
 	if (fusion_cell.fuel_amount <= 0)
 		visible_message("[icon2html(src, viewers(src))] <b>[src]</b> flashes that the fuel cell is empty as the engine seizes.")
 		fuel_rate = 0
-		buildstate = FUSION_ENGINE_MEDIUM_DAMAGE  //No fuel really fucks it.
 		is_on = FALSE
 		power_gen_percent = 0
-		fail_rate+=2 //Each time the engine is allowed to seize up it's fail rate for the future increases because reasons.
 		update_icon()
 		stop_processing()
 		return FALSE
 
-	if(!check_failure())
+	if(power_gen_percent < 100)
+		power_gen_percent++
 
-		if(power_gen_percent < 100)
-			power_gen_percent++
-
-			switch(power_gen_percent) //Flavor text!
-				if(10)
-					visible_message("[icon2html(src, viewers(src))] <span class='notice'><b>[src]</b> begins to whirr as it powers up.</span>")
-					fuel_rate = FUSION_ENGINE_FULL_STRENGTH_FULL_RATE * 0.1
-				if(50)
-					visible_message("[icon2html(src, viewers(src))] <span class='notice'><b>[src]</b> begins to hum loudly as it reaches half capacity.</span>")
-					fuel_rate = FUSION_ENGINE_FULL_STRENGTH_FULL_RATE * 0.5
-				if(100)
-					visible_message("[icon2html(src, viewers(src))] <span class='notice'><b>[src]</b> rumbles loudly as the combustion and thermal chambers reach full strength.</span>")
-					fuel_rate = FUSION_ENGINE_FULL_STRENGTH_FULL_RATE
+		switch(power_gen_percent) //Flavor text!
+			if(10)
+				visible_message("[icon2html(src, viewers(src))] <span class='notice'><b>[src]</b> begins to whirr as it powers up.</span>")
+				fuel_rate = FUSION_ENGINE_FULL_STRENGTH_FULL_RATE * 0.1
+			if(50)
+				visible_message("[icon2html(src, viewers(src))] <span class='notice'><b>[src]</b> begins to hum loudly as it reaches half capacity.</span>")
+				fuel_rate = FUSION_ENGINE_FULL_STRENGTH_FULL_RATE * 0.5
+			if(100)
+				visible_message("[icon2html(src, viewers(src))] <span class='notice'><b>[src]</b> rumbles loudly as the combustion and thermal chambers reach full strength.</span>")
+				fuel_rate = FUSION_ENGINE_FULL_STRENGTH_FULL_RATE
 
 
-		add_avail(FUSION_ENGINE_MAX_POWER_GEN * (power_gen_percent / 100) ) //Nope, all good, just add the power
-		fusion_cell.take(fuel_rate) //Consumes fuel
-		update_icon()
+	add_avail(FUSION_ENGINE_MAX_POWER_GEN * (power_gen_percent / 100) ) //Nope, all good, just add the power
+	fusion_cell.take(fuel_rate) //Consumes fuel
+	update_icon()
 
 /obj/machinery/power/fusion_engine/attack_hand(mob/living/user)
 	. = ..()
@@ -314,28 +309,6 @@
 			icon_state = "wire"
 		if(FUSION_ENGINE_LIGHT_DAMAGE)
 			icon_state = "wrench"
-
-
-/obj/machinery/power/fusion_engine/proc/check_failure()
-	if(cur_tick < FUSION_ENGINE_FAIL_CHECK_TICKS) //Nope, not time for it yet
-		cur_tick++
-		return FALSE
-	cur_tick = 0 //reset the timer
-	if(rand(1,100) < fail_rate) //Oh snap, we failed! Shut it down!
-		if(prob(25))
-			visible_message("[icon2html(src, viewers(src))] <span class='notice'><b>[src]</b> beeps wildly and a fuse blows! Use wirecutters, then a wrench to repair it.")
-			buildstate = FUSION_ENGINE_MEDIUM_DAMAGE
-		else
-			visible_message("[icon2html(src, viewers(src))] <span class='notice'><b>[src]</b> beeps wildly and sprays random pieces everywhere! Use a wrench to repair it.")
-			buildstate = FUSION_ENGINE_LIGHT_DAMAGE
-		is_on = FALSE
-		power_gen_percent = 0
-		update_icon()
-		stop_processing()
-
-		return TRUE
-	else
-		return FALSE
 
 #undef FUSION_ENGINE_MAX_POWER_GEN
 #undef FUSION_ENGINE_FAIL_CHECK_TICKS

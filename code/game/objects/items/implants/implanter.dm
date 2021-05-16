@@ -11,13 +11,16 @@
 /obj/item/implanter/Initialize(mapload, ...)
 	. = ..()
 	if(imp)
-		imp = new imp()
+		imp = new imp(src)
 		update_icon()
 
 /obj/item/implanter/update_icon_state()
 	. = ..()
 	icon_state = "implanter[imp?"1":"0"]"
 
+/obj/item/implanter/examine(mob/user, distance, infix, suffix)
+	. = ..()
+	to_chat(user, "it contains [imp ? "a [imp.name]" : "no implant"]!")
 
 /obj/item/implanter/attack(mob/target, mob/user)
 	. = ..()
@@ -41,5 +44,17 @@
 	to_chat(user, "<span class='notice'> You fail to implant [target].</span>")
 
 /obj/item/implanter/neurostim
-	name = "implanter"
+	name = "neurostim implanter"
 	imp = /obj/item/implant/neurostim
+
+/obj/item/implanter/chem
+	name = "chem implant implanter"
+	imp = /obj/item/implant/chem
+
+/obj/item/implanter/cloak
+	name = "cloak implant implanter"
+	imp = /obj/item/implant/cloak
+
+/obj/item/implanter/blade
+	name = "blade implant implanter"
+	imp = /obj/item/implant/deployitem/blade

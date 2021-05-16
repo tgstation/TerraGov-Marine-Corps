@@ -111,6 +111,9 @@
 		/obj/item/clothing/gloves/latex,
 		/obj/item/storage/syringe_case,
 		/obj/item/ammo_magazine/pistol,
+		/obj/item/ammo_magazine/smg/m25,
+		/obj/item/ammo_magazine/smg/standard_smg,
+		/obj/item/ammo_magazine/smg/standard_machinepistol,
 		/obj/item/ammo_magazine/revolver,
 		/obj/item/ammo_magazine/handful,
 		/obj/item/flashlight/flare,
@@ -149,6 +152,7 @@
 	max_storage_space = 42
 	max_w_class = 2
 	can_hold = list(
+		/obj/item/healthanalyzer,
 		/obj/item/reagent_containers/glass/bottle,
 		/obj/item/reagent_containers/pill,
 		/obj/item/reagent_containers/syringe,
@@ -192,6 +196,7 @@
 	max_storage_space = 42
 	max_w_class = 2
 	can_hold = list(
+		/obj/item/healthanalyzer,
 		/obj/item/reagent_containers/glass/bottle,
 		/obj/item/reagent_containers/pill,
 		/obj/item/reagent_containers/syringe,
@@ -348,7 +353,7 @@
 	new /obj/item/ammo_magazine/smg/standard_smg(src)
 	new /obj/item/ammo_magazine/smg/standard_smg(src)
 
-/obj/item/storage/belt/marine/m42a/Initialize()
+/obj/item/storage/belt/marine/antimaterial/Initialize()
 	. = ..()
 	new /obj/item/ammo_magazine/sniper/flak(src)
 	new /obj/item/ammo_magazine/sniper/flak(src)
@@ -356,13 +361,13 @@
 	new /obj/item/ammo_magazine/sniper/incendiary(src)
 	new /obj/item/ammo_magazine/sniper(src)
 
-/obj/item/storage/belt/marine/m4ra/Initialize()
+/obj/item/storage/belt/marine/tx8/Initialize()
 	. = ..()
-	new /obj/item/ammo_magazine/rifle/m4ra/impact(src)
-	new /obj/item/ammo_magazine/rifle/m4ra/impact(src)
-	new /obj/item/ammo_magazine/rifle/m4ra/incendiary(src)
-	new /obj/item/ammo_magazine/rifle/m4ra/incendiary(src)
-	new /obj/item/ammo_magazine/rifle/m4ra(src)
+	new /obj/item/ammo_magazine/rifle/tx8/impact(src)
+	new /obj/item/ammo_magazine/rifle/tx8/impact(src)
+	new /obj/item/ammo_magazine/rifle/tx8/incendiary(src)
+	new /obj/item/ammo_magazine/rifle/tx8/incendiary(src)
+	new /obj/item/ammo_magazine/rifle/tx8(src)
 
 /obj/item/storage/belt/marine/upp
 	name = "\improper Type 41 pattern load rig"
@@ -447,6 +452,57 @@
 			return TRUE
 
 	return ..()
+
+/obj/item/storage/belt/shotgun/martini
+	name = "martini henry ammo belt"
+	desc = "A belt good enough for holding all your .577/400 ball rounds."
+	icon = 'icons/obj/items/ammo.dmi'
+	icon_state = ".557_belt"
+	storage_slots = 12
+	max_storage_space = 24
+
+	draw_mode = 1
+
+	flags_atom = DIRLOCK
+
+/obj/item/storage/belt/shotgun/martini/Initialize(mapload, ...)
+	. = ..()
+	update_icon()
+
+/obj/item/storage/belt/shotgun/martini/update_icon()
+	if(!contents.len)
+		icon_state = initial(icon_state) + "_e"
+		return
+	icon_state = initial(icon_state)
+
+	var/holding = round((contents.len + 1) / 2)
+	setDir(holding + round(holding/3))
+
+/obj/item/storage/belt/shotgun/martini/attackby(obj/item/I, mob/user, params)
+	if(istype(I, /obj/item/ammo_magazine))
+		var/obj/item/ammo_magazine/new_mag = I
+		if(new_mag.caliber != CALIBER_557)
+			to_chat(user, "<span class='notice'>[src] can only be filled with .557/440 ball rifle rounds.</span>")
+			return
+	. = ..()
+	update_icon()
+
+/obj/item/storage/belt/shotgun/martini/attack_hand(mob/living/user)
+	if (loc != user)
+		. = ..()
+		for(var/mob/M in content_watchers)
+			close(M)
+
+	if(!draw_mode || !ishuman(user) && !contents.len)
+		open(user)
+
+	var/obj/item/I = contents[contents.len]
+	if(!istype(I, /obj/item/ammo_magazine/handful))
+		return
+
+	var/obj/item/ammo_magazine/handful/existing_handful = I
+	existing_handful.create_handful(user, 1)
+	update_icon()
 
 
 /obj/item/storage/belt/knifepouch
@@ -616,7 +672,32 @@
 			return FALSE
 	return TRUE
 
-/obj/item/storage/belt/gun/m4a3
+//This deliniates between belt/gun/pistol and belt/gun/revolver
+/obj/item/storage/belt/gun/pistol
+	name = "generic pistol belt"
+	desc = "A pistol belt that is not a revolver belt"
+	icon_state = "m4a3_holster"
+	item_state = "m4a3_holster"
+
+/obj/item/storage/belt/gun/pistol/attackby_alternate(obj/item/I, mob/user, params)
+	if(!istype(I, /obj/item/weapon/gun/pistol))
+		return ..()
+	var/obj/item/weapon/gun/pistol/gun = I
+	for(var/obj/item/ammo_magazine/mag in contents) 
+		if(!istype(gun, mag.gun_type))
+			continue
+		if(user.l_hand && user.r_hand || gun.current_mag)
+			gun.tactical_reload(mag, user)
+		else 
+			gun.reload(user, mag)
+		orient2hud()
+		return
+
+/obj/item/storage/belt/gun/pistol/examine(mob/user, distance, infix, suffix)
+	. = ..()
+	to_chat(user, "<span class='notice'>To perform a reload with the amunition inside, disable right click and right click on the belt with an empty pistol.</span>")
+
+/obj/item/storage/belt/gun/pistol/m4a3
 	name = "\improper M4A3 holster rig"
 	desc = "The M4A3 is a common holster belt. It consists of a modular belt with various clips. This version has a holster assembly that allows one to carry a handgun. It also contains side pouches that can store 9mm or .45 magazines."
 	can_hold = list(
@@ -624,7 +705,7 @@
 		/obj/item/ammo_magazine/pistol,
 	)
 
-/obj/item/storage/belt/gun/m4a3/full/Initialize()
+/obj/item/storage/belt/gun/pistol/m4a3/full/Initialize()
 	. = ..()
 	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/pistol/rt3(src)
 	new /obj/item/ammo_magazine/pistol/ap(src)
@@ -635,7 +716,7 @@
 	new /obj/item/ammo_magazine/pistol/extended(src)
 	new_gun.on_enter_storage(src)
 
-/obj/item/storage/belt/gun/m4a3/officer/Initialize()
+/obj/item/storage/belt/gun/pistol/m4a3/officer/Initialize()
 	. = ..()
 	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/pistol/rt3(src)
 	new /obj/item/ammo_magazine/pistol/hp(src)
@@ -646,41 +727,47 @@
 	new /obj/item/ammo_magazine/pistol/ap(src)
 	new_gun.on_enter_storage(src)
 
-/obj/item/storage/belt/gun/m4a3/fieldcommander/Initialize()
+/obj/item/storage/belt/gun/pistol/m4a3/fieldcommander/Initialize()
 	. = ..()
 	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/pistol/m1911/custom(src)
 	new /obj/item/ammo_magazine/pistol/m1911(src)
 	new /obj/item/ammo_magazine/pistol/m1911(src)
 	new /obj/item/ammo_magazine/pistol/m1911(src)
 	new /obj/item/ammo_magazine/pistol/m1911(src)
+	new /obj/item/ammo_magazine/pistol/m1911(src)
+	new /obj/item/ammo_magazine/pistol/m1911(src)
 	new_gun.on_enter_storage(src)
 
-/obj/item/storage/belt/gun/m4a3/vp70/Initialize()
+/obj/item/storage/belt/gun/pistol/m4a3/vp70/Initialize()
 	. = ..()
 	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/pistol/vp70(src)
 	new /obj/item/ammo_magazine/pistol/vp70(src)
 	new /obj/item/ammo_magazine/pistol/vp70(src)
 	new /obj/item/ammo_magazine/pistol/vp70(src)
 	new /obj/item/ammo_magazine/pistol/vp70(src)
+	new /obj/item/ammo_magazine/pistol/vp70(src)
+	new /obj/item/ammo_magazine/pistol/vp70(src)
 	new_gun.on_enter_storage(src)
 
-/obj/item/storage/belt/gun/m4a3/vp78/Initialize()
+/obj/item/storage/belt/gun/pistol/m4a3/vp78/Initialize()
 	. = ..()
 	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/pistol/vp78(src)
 	new /obj/item/ammo_magazine/pistol/vp78(src)
 	new /obj/item/ammo_magazine/pistol/vp78(src)
 	new /obj/item/ammo_magazine/pistol/vp78(src)
 	new /obj/item/ammo_magazine/pistol/vp78(src)
+	new /obj/item/ammo_magazine/pistol/vp78(src)
+	new /obj/item/ammo_magazine/pistol/vp78(src)
 	new_gun.on_enter_storage(src)
 
 
-/obj/item/storage/belt/gun/m4a3/som
+/obj/item/storage/belt/gun/pistol/m4a3/som
 	name = "\improper S19 holster rig"
 	desc = "A belt with origins to old colony security holster rigs."
 	icon_state = "som_belt_pistol"
 	item_state = "som_belt_pistol"
 
-/obj/item/storage/belt/gun/stand
+/obj/item/storage/belt/gun/pistol/stand
 	name = "\improper M276 pattern M4A3 holster rig"
 	desc = "The M276 is the standard load-bearing equipment of the TGMC. It consists of a modular belt with various clips. This version has a holster assembly that allows one to carry the M4A3 comfortably secure. It also contains side pouches that can store 9mm or .45 magazines."
 	can_hold = list(
@@ -787,7 +874,7 @@
 
 /obj/item/storage/belt/gun/korovin/standard/Initialize()
 	. = ..()
-	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/pistol/c99/upp(src)
+	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/pistol/c99(src)
 	new /obj/item/ammo_magazine/pistol/c99(src)
 	new /obj/item/ammo_magazine/pistol/c99(src)
 	new /obj/item/ammo_magazine/pistol/c99(src)
@@ -798,7 +885,7 @@
 
 /obj/item/storage/belt/gun/korovin/tranq/Initialize()
 	. = ..()
-	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/pistol/c99/upp/tranq(src)
+	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/pistol/c99/tranq(src)
 	new /obj/item/ammo_magazine/pistol/c99t(src)
 	new /obj/item/ammo_magazine/pistol/c99t(src)
 	new /obj/item/ammo_magazine/pistol/c99t(src)
@@ -827,4 +914,3 @@
 	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/shotgun/double/marine(src)
 	new /obj/item/ammo_magazine/shotgun(src)
 	new_gun.on_enter_storage(src)
-

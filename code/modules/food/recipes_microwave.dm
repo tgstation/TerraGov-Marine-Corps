@@ -443,7 +443,6 @@
 			var/obj/item/paper/paper = locate() in container
 			if (!paper.info)
 				return 0
-		return .
 
 /datum/recipe/meatsteak
 	reagents = list(/datum/reagent/consumable/sodiumchloride = 1, /datum/reagent/consumable/blackpepper = 1)

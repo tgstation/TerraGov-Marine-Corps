@@ -93,7 +93,7 @@
 	if(!istype(user))
 		return
 	var/list/camera_list = get_available_cameras()
-	var/t = input(user, "Which camera should you change to?") as null|anything in camera_list
+	var/t = tgui_input_list(user, "Which camera should you change to?", null, camera_list)
 	if(!t)
 		user.unset_interaction()
 		playsound(src, 'sound/machines/terminal_off.ogg', 25, 0)
@@ -167,11 +167,11 @@
 	circuit = null
 
 
-/obj/machinery/computer/security/telescreen/update_icon()
+/obj/machinery/computer/security/telescreen/update_icon_state()
 	icon_state = initial(icon_state)
 	if(machine_stat & (BROKEN|DISABLED))
 		icon_state += "b"
-	return
+
 
 /obj/machinery/computer/security/telescreen/entertainment
 	name = "entertainment monitor"

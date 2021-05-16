@@ -127,7 +127,7 @@
 		var/skill = user.skills.getRating("engineer")
 		var/delay = SKILL_TASK_EASY - (5 + skill * 1.25)
 
-		if(user.action_busy)
+		if(user.do_actions)
 			return
 		var/obj/effect/overlay/sparks/spark_overlay = new
 

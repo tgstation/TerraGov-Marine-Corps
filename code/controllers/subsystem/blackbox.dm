@@ -1,7 +1,6 @@
 SUBSYSTEM_DEF(blackbox)
 	name = "Blackbox"
 	wait = 10 MINUTES
-	flags = SS_NO_TICK_CHECK
 	runlevels = RUNLEVEL_GAME|RUNLEVEL_POSTGAME
 
 	var/list/feedback = list()
@@ -190,9 +189,9 @@ SUBSYSTEM_DEF(blackbox)
 	if(!SSdbcore.Connect())
 		return
 
-	var/datum/db_query/query_report_death = SSdbcore.NewQuery({"INSERT INTO [format_table_name("death")]
-		(pod, x_coord, y_coord, z_coord, mapname, server_ip, server_port, round_id, tod, job, special, name, byondkey, laname, lakey, bruteloss, fireloss, brainloss, oxyloss, toxloss, cloneloss, staminaloss, last_words, suicide)
-		VALUES (:pod, :x_coord, :y_coord, :z_coord, :map, INET_ATON(:world.internet_address), :port, :round_id, :time, :job, :sqlspecial, :name, :key, :laname, :lakey, :brute, :fire, :brain, :oxy, :tox, :clone, :stamina, :last_words, :suicide)
+	var/datum/db_query/query_report_death = SSdbcore.NewQuery({"
+		INSERT INTO [format_table_name("death")] (pod, x_coord, y_coord, z_coord, mapname, server_ip, server_port, round_id, tod, job, special, name, byondkey, laname, lakey, bruteloss, fireloss, brainloss, oxyloss, toxloss, cloneloss, staminaloss, last_words, suicide)
+		VALUES (:pod, :x_coord, :y_coord, :z_coord, :map, INET_ATON(:internet_address), :port, :round_id, :time, :job, :special, :name, :key, :laname, :lakey, :brute, :fire, :brain, :oxy, :tox, :clone, :stamina, :last_words, :suicide)
 		"}, list(
 			"name" = L.real_name,
 			"key" = L.ckey,
@@ -214,6 +213,10 @@ SUBSYSTEM_DEF(blackbox)
 			"last_words" = "no last words",
 			"suicide" = L.suiciding,
 			"map" = SSmapping.configs[GROUND_MAP].map_name,
+			"internet_address" = world.internet_address || "0",
+			"port" = "[world.port]",
+			"round_id" = GLOB.round_id,
+			"time" = SQLtime(),
 		)
 	)
 

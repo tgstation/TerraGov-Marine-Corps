@@ -38,7 +38,6 @@
 			new_item.add_to_stacks(usr)
 			visible_message("<span class='warning'>[src] is shaped into metal by [user] with the weldingtool.</span>", null, "<span class='warning'> You hear welding.</span>")
 			var/obj/item/stack/rods/R = src
-			src = null
 			var/replace = (user.get_inactive_held_item()==R)
 			R.use(4)
 			if (!R && replace)
@@ -78,4 +77,4 @@
 		to_chat(usr, "<span class='notice'>You assemble a grille</span>")
 		DISABLE_BITFIELD(obj_flags, IN_USE)
 		use(4)
-	return
+

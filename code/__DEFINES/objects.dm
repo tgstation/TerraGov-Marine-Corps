@@ -111,8 +111,9 @@ GLOBAL_LIST_INIT(restricted_camera_networks, list( //Those networks can only be 
 #define SENTRY_ALERT_FALLEN				3
 #define SENTRY_ALERT_DAMAGE				4
 #define SENTRY_ALERT_BATTERY			5
+#define SENTRY_ALERT_DESTROYED			6
 #define SENTRY_ALERT_DELAY				20 SECONDS
-#define SENTRY_DAMAGE_ALERT_DELAY		5 SECONDS
+#define SENTRY_DAMAGE_ALERT_DELAY		4 SECONDS
 #define SENTRY_LIGHT_POWER				7
 
 //Scout cloak defines
@@ -210,6 +211,10 @@ GLOBAL_LIST_INIT(restricted_camera_networks, list( //Those networks can only be 
 #define POD_DESC 3
 #define POD_NUMBER 4
 
+//For fob drone
+#define EJECT_PLASTEEL 0
+#define EJECT_METAL 1
+
 //Item sprite variants
 #define ITEM_JUNGLE_VARIANT	(1<<0)
 #define ITEM_ICE_VARIANT	(1<<1)
@@ -236,3 +241,13 @@ GLOBAL_LIST_INIT(restricted_camera_networks, list( //Those networks can only be 
 
 ///This number + standard alamo launch time is when droppods are allowed to launch
 #define DROPPOD_DEPLOY_DELAY 10 MINUTES
+
+//Lights define
+#define CHECKS_PASSED 	  1
+#define STILL_ON_COOLDOWN 2
+#define OUT_OF_REACH	  3
+
+//Xeno turrets define
+#define TURRET_SCAN_RANGE 25
+#define TURRET_SCAN_FREQUENCY 16 SECONDS
+#define TURRET_HEALTH_REGEN 8

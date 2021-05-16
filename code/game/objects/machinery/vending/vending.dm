@@ -2,13 +2,50 @@
 #define CAT_HIDDEN 1
 #define CAT_COIN   2
 
-/datum/data/vending_product
+#define MAKE_VENDING_RECORD_DATA(record) list(\
+		"product_name" = adminscrub(record.product_name),\
+		"product_color" = record.display_color,\
+		"prod_price" = record.price,\
+		"prod_desc" = initial(record.product_path.desc),\
+		"ref" = REF(record),\
+		"tab" = record.tab,\
+	)
+
+/datum/vending_product
+	///Name of the product
 	var/product_name = "generic"
+	///Path of the item this product makes
 	var/atom/product_path = null
+	///How much of this product there is
 	var/amount = 0
+	///The price of this product if any.
 	var/price = 0
+	///What color it stays on the vend button, considering just nuking this.
 	var/display_color = "white"
+	///What category it belongs to, Normal, contraband or coin.
 	var/category = CAT_NORMAL
+	///Incase its a tabbed vendor what tab this belongs to.
+	var/tab
+
+/datum/vending_product/New(name, atom/typepath, product_amount, product_price, product_display_color, category = CAT_NORMAL, tab)
+
+	product_path = typepath
+	amount = product_amount
+	price = product_price
+	src.category = category
+	src.tab = tab
+
+	if(!name)
+		product_name = initial(typepath.name)
+	else
+		product_name = name
+
+	if(product_display_color)
+		display_color = product_display_color
+	else if(ispath(typepath, /obj/item/ammo_magazine))
+		display_color = "black"
+	else
+		display_color = "white"
 
 /obj/machinery/vending
 	name = "Vendomat"
@@ -23,67 +60,124 @@
 	idle_power_usage = 10
 	active_power_usage = 100
 	interaction_flags = INTERACT_MACHINE_TGUI
+	wrenchable = TRUE
 
-	var/active = TRUE //No sales pitches if off!
-	var/vend_ready = TRUE //Are we ready to vend?? Is it time??
-	var/vend_delay = 10 //How long does it take to vend?
-	var/datum/data/vending_product/currently_vending = null // A /datum/data/vending_product instance of what we're paying for right now.
-	var/currently_vending_index
+	///Whether this vendor is active or not.
+	var/active = TRUE
+	///If the vendor is ready to vend.
+	var/vend_ready = TRUE
+	///How long it takes to vend an item, vend_ready is false during that.
+	var/vend_delay = 10
+	/// A /datum/vending_product instance of what we're paying for right now.
+	var/datum/vending_product/currently_vending = null
+	///If this vendor uses a global list for items.
+	var/isshared = FALSE
 
-	// To be filled out at compile time
-	var/list/products	= list() // For each, use the following pattern:
-	var/list/contraband	= list() // list(/type/path = amount,/type/path2 = amount2)
-	var/list/premium 	= list() // No specified amount = only one in stock
-	var/list/prices     = list() // Prices for each item, list(/type/path = price), items not in the list don't have a price.
+	/*These are lists that are made null after they're used, their use is solely to fill the inventory of the vendor on Init.
+	They use the following pattern in case if it doenst pertain to a tab:
+	list(
+		/type/path = amount,
+		/type/path2 = amount2,
+	)
+	if you want the item to pertain to a tab you use:
+	list(
+		"Tab1" = list(
+			/type/path = amount.
+			/type/path2 = amount2,
+		),
+		"Tab2" = list(
+			/type/path3 = amount3,
+			/type/path4 = amount4,
+		)
+	)
+	*/
+	/// Normal products that are always available on the vendor.
+	var/list/products = list()
+	/// Contraband products that are only available on vendor when hacked.
+	var/list/contraband = list()
+	/// Premium products that are only available when using a coin to pay for it.
+	var/list/premium = list()
+	/// Prices for each item, list(/type/path = price), items not in the list don't have a price.
+	var/list/prices = list()
 
-	var/product_slogans = "" //String of slogans separated by semicolons, optional
-	var/product_ads = "" //String of small ad messages in the vending screen - random chance
+	/// String of slogans separated by semicolons, optional
+	var/product_slogans = ""
+	///String of small ad messages in the vending screen - random chance
+	var/product_ads = ""
+
+	//These are where the vendor holds their item info with /datum/vending_product
+
+	///list of /datum/vending_product's that are always available on the vendor
 	var/list/product_records = list()
+	///list of /datum/vending_product's that are available when vendor is hacked.
 	var/list/hidden_records = list()
+	///list of /datum/vending_product's that are available on the vendor when a coin is used.
 	var/list/coin_records = list()
+
 	var/list/slogan_list = list()
-	var/list/small_ads = list() // small ad messages in the vending screen - random chance of popping up whenever you open it
-	var/vend_reply //Thank you for shopping!
+	/// small ad messages in the vending screen - random chance of popping up whenever you open it
+	var/list/small_ads = list()
+	///Message spoken by the vending machine when a item is vended
+	var/vend_reply
+	///When was last time we spoke when vending
 	var/last_reply = 0
-	var/last_slogan = 0 //When did we last pitch?
-	var/slogan_delay = 600 //How long until we can pitch again?
-	var/icon_vend //Icon_state when vending!
-	var/icon_deny //Icon_state when vending!
-	var/seconds_electrified = 0 //Shock customers like an airlock.
-	var/shoot_inventory = FALSE //Fire items at customers! We're broken!
-	var/shut_up = FALSE //Stop spouting those godawful pitches!
-	var/extended_inventory = FALSE //can we access the hidden inventory?
+	///Last time we spoke our slogan
+	var/last_slogan = 0
+	///The interval between slogans.
+	var/slogan_delay = 1 MINUTES
+	///Icon state when successfuly vending
+	var/icon_vend
+	///Icon state when failing to vend, be it by no access or money.
+	var/icon_deny
+	///how many seconds(duh) we have left electrified.
+	var/seconds_electrified = 0
+	///If we should fire items at customers! We're broken!
+	var/shoot_inventory = FALSE
+	///If true the machine won't be speaking slogans randomly. Stop spouting those godawful pitches!
+	var/shut_up = FALSE
+	///If the vending machine is hacked, makes the items on contraband list available.
+	var/extended_inventory = FALSE
+	///Whatever coin we have inside, should totally be replaced by something else.
 	var/obj/item/coin/coin
+	///What type of token we support.
 	var/tokensupport = TOKEN_GENERAL
 
-	var/check_accounts = 0		// 1 = requires PIN and checks accounts.  0 = You slide an ID, it vends, SPACE COMMUNISM!
+	/// 1 = requires PIN and checks accounts.  0 = You slide an ID, it vends, SPACE COMMUNISM!
+	var/check_accounts = 0
+	///Current cash card.
 	var/obj/item/spacecash/ewallet/ewallet
+	///How much tipped we are.
 	var/tipped_level = 0
-	var/hacking_safety = FALSE //1 = Will never shoot inventory or allow all access
-	wrenchable = TRUE
-	var/isshared = FALSE
+	///Stops the machine from being hacked to shoot inventory or allow all access
+	var/hacking_safety = FALSE
+
 	var/scan_id = TRUE
 
+	/// How much damage we can take before tipping over.
 	var/knockdown_threshold = 100
-
-	ui_x = 500
-	ui_y = 600
 
 
 /obj/machinery/vending/Initialize(mapload, ...)
 	. = ..()
 	wires = new /datum/wires/vending(src)
-	src.slogan_list = text2list(src.product_slogans, ";")
+	slogan_list = text2list(product_slogans, ";")
 
 	// So not all machines speak at the exact same time.
 	// The first time this machine says something will be at slogantime + this random value,
 	// so if slogantime is 10 minutes, it will say it at somewhere between 10 and 20 minutes after the machine is crated.
-	src.last_slogan = world.time + rand(0, slogan_delay)
+	last_slogan = world.time + rand(0, slogan_delay)
 
-	src.build_inventory(products)
-		//Add hidden inventory
-	src.build_inventory(contraband, 1)
-	src.build_inventory(premium, 0, 1)
+	if(isshared)
+		build_shared_inventory()
+	else
+		build_inventory(products)
+		build_inventory(contraband, CAT_HIDDEN)
+		build_inventory(premium, CAT_COIN)
+
+	// we won't use these anymore so we can just null them
+	premium = null
+	products = null
+	contraband = null
 	start_processing()
 	return INITIALIZE_HINT_LATELOAD
 
@@ -108,106 +202,87 @@
 			if(prob(25))
 				INVOKE_ASYNC(src, .proc/malfunction)
 
-/obj/machinery/vending/proc/select_gamemode_equipment(gamemode)
-	return
+/**
+ * Builds shared vendors inventory
+ * the first vendor that calls this uses build_inventory and makes their records in GLOB.vending_records[type] or premium or contraband, etc.
+ * the rest of vendors of same type just set all their records to the respective global lists
+ */
+/obj/machinery/vending/proc/build_shared_inventory()
+	if(!GLOB.vending_records[type])
+		build_inventory(products)
+		GLOB.vending_records[type] = product_records
+	else
+		product_records = GLOB.vending_records[type]
 
-GLOBAL_LIST_INIT(vending_white_items, typecacheof(list(
-	/obj/item/ammo_magazine/pistol/standard_pistol,
-	/obj/item/ammo_magazine/revolver/standard_revolver,
-	/obj/item/weapon/gun/smg/standard_smg,
-	/obj/item/weapon/gun/rifle/standard_carbine,
-	/obj/item/weapon/gun/rifle/standard_assaultrifle,
-	/obj/item/weapon/gun/rifle/standard_lmg,
-	/obj/item/weapon/gun/rifle/standard_dmr,
-	/obj/item/weapon/gun/energy/lasgun/lasrifle,
-	/obj/item/weapon/gun/shotgun/pump/t35,
-	/obj/item/weapon/gun/rifle/standard_autoshotgun,
-	/obj/item/ammobox,
-	/obj/item/shotgunbox,
-	/obj/item/smartgun_powerpack,
-	/obj/item/weapon/combat_knife,
-	/obj/item/radio/headset/mainship/marine,
-	/obj/item/clothing/gloves/marine,
-	/obj/item/clothing/shoes/marine,
-	/obj/item/clothing/under/marine,
-	/obj/item/storage/backpack/marine/satchel,
-	/obj/item/clothing/suit/storage/marine,
-	/obj/item/storage/belt/marine,
-	/obj/item/storage/pouch/flare,
-	/obj/item/storage/pouch/firstaid
-)))
+	if(!GLOB.vending_hidden_records[type])
+		build_inventory(contraband, CAT_HIDDEN)
+		GLOB.vending_hidden_records[type] = hidden_records
+	else
+		hidden_records = GLOB.vending_hidden_records[type]
 
-/obj/machinery/vending/proc/build_inventory(list/productlist,hidden=0,req_coin=0)
+	if(!GLOB.vending_coin_records[type])
+		build_inventory(premium, CAT_COIN)
+		GLOB.vending_coin_records[type] = coin_records
+	else
+		coin_records = GLOB.vending_coin_records[type]
 
-	for(var/typepath in productlist)
-		var/amount = productlist[typepath]
-		var/price = prices[typepath]
-		if(isnull(amount)) amount = 1
+///Builds a vending machine inventory from the given list into their records depending of category.
+/obj/machinery/vending/proc/build_inventory(list/productlist, category = CAT_NORMAL)
+	var/list/recordlist = product_records
+	if(category == CAT_HIDDEN)
+		recordlist = hidden_records
+	if(category == CAT_COIN)
+		recordlist = coin_records
 
-		var/obj/item/temp_path = typepath
-		var/datum/data/vending_product/R = new /datum/data/vending_product()
-
-		R.product_path = typepath
-		R.amount = amount
-		R.price = price
-
-		if(is_type_in_typecache(typepath, GLOB.vending_white_items))
-			R.display_color = "white"
-//		else if(ispath(typepath,/obj/item/clothing) || ispath(typepath,/obj/item/storage))
-//			R.display_color = "white"
-//		else if(ispath(typepath,/obj/item/reagent_containers) || ispath(typepath,/obj/item/stack/medical))
-//			R.display_color = "blue"
-		else
-			R.display_color = "black"
-
-		if(hidden)
-			R.category=CAT_HIDDEN
-			hidden_records += R
-		else if(req_coin)
-			R.category=CAT_COIN
-			coin_records += R
-		else
-			R.category=CAT_NORMAL
-			product_records += R
-
-		if(ispath(typepath, /obj/item/seeds))
-			var/obj/item/seeds/S = typepath
-			var/datum/seed/SD = GLOB.seed_types[initial(S.seed_type)]
-			R.product_name = "packet of [SD.seed_name] [SD.seed_noun]"
+	for(var/entry in productlist)
+		//if this is true then this is supposed to be tab dependant.
+		if(islist(productlist[entry]))
+			for(var/typepath in productlist[entry])
+				var/amount = productlist[entry][typepath]
+				if(isnull(amount))
+					amount = 1
+				var/datum/vending_product/record = new(typepath = typepath, product_amount = amount, product_price = prices[typepath], category = category, tab = entry)
+				recordlist += record
 			continue
+		//This item is not tab dependent
+		var/amount = productlist[entry]
+		if(isnull(amount))
+			amount = 1
+		var/datum/vending_product/record = new(typepath = entry, product_amount = amount, product_price = prices[entry], category = category)
+		recordlist += record
 
-		R.product_name = initial(temp_path.name)
-
-
-/obj/machinery/vending/attack_alien(mob/living/carbon/xenomorph/M)
-	if(tipped_level)
-		to_chat(M, "<span class='warning'>There's no reason to bother with that old piece of trash.</span>")
+/obj/machinery/vending/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
+	if(X.status_flags & INCORPOREAL)
 		return FALSE
 
-	if(M.a_intent == INTENT_HARM)
-		M.do_attack_animation(src, ATTACK_EFFECT_SMASH)
-		if(prob(M.xeno_caste.melee_damage))
+	if(tipped_level)
+		to_chat(X, "<span class='warning'>There's no reason to bother with that old piece of trash.</span>")
+		return FALSE
+
+	if(X.a_intent == INTENT_HARM)
+		X.do_attack_animation(src, ATTACK_EFFECT_SMASH)
+		if(prob(X.xeno_caste.melee_damage))
 			playsound(loc, 'sound/effects/metalhit.ogg', 25, 1)
-			M.visible_message("<span class='danger'>\The [M] smashes \the [src] beyond recognition!</span>", \
+			X.visible_message("<span class='danger'>\The [X] smashes \the [src] beyond recognition!</span>", \
 			"<span class='danger'>We enter a frenzy and smash \the [src] apart!</span>", null, 5)
 			malfunction()
 			return TRUE
 		else
-			M.visible_message("<span class='danger'>[M] slashes \the [src]!</span>", \
+			X.visible_message("<span class='danger'>[X] slashes \the [src]!</span>", \
 			"<span class='danger'>We slash \the [src]!</span>", null, 5)
 			playsound(loc, 'sound/effects/metalhit.ogg', 25, 1)
 		return TRUE
 
-	M.visible_message("<span class='warning'>\The [M] begins to lean against \the [src].</span>", \
+	X.visible_message("<span class='warning'>\The [X] begins to lean against \the [src].</span>", \
 	"<span class='warning'>You begin to lean against \the [src].</span>", null, 5)
 	tipped_level = 1
-	var/shove_time = 100
-	if(M.mob_size == MOB_SIZE_BIG)
-		shove_time = 50
-	if(istype(M,/mob/living/carbon/xenomorph/crusher))
-		shove_time = 15
-	if(do_after(M, shove_time, FALSE, src, BUSY_ICON_HOSTILE))
-		M.visible_message("<span class='danger'>\The [M] knocks \the [src] down!</span>", \
+	var/shove_time = 1 SECONDS
+	if(X.mob_size == MOB_SIZE_BIG)
+		shove_time = 5 SECONDS
+	if(istype(X,/mob/living/carbon/xenomorph/crusher))
+		shove_time = 1.5 SECONDS
+	if(do_after(X, shove_time, FALSE, src, BUSY_ICON_HOSTILE))
+		X.visible_message("<span class='danger'>\The [X] knocks \the [src] down!</span>", \
 		"<span class='danger'>You knock \the [src] down!</span>", null, 5)
 		tip_over()
 	else
@@ -219,7 +294,6 @@ GLOBAL_LIST_INIT(vending_white_items, typecacheof(list(
 	density = FALSE
 	A.Turn(90)
 	transform = A
-	malfunction()
 
 /obj/machinery/vending/proc/flip_back()
 	icon_state = initial(icon_state)
@@ -227,7 +301,6 @@ GLOBAL_LIST_INIT(vending_white_items, typecacheof(list(
 	density = TRUE
 	var/matrix/A = matrix()
 	transform = A
-	machine_stat &= ~BROKEN //Remove broken. MAGICAL REPAIRS
 
 /obj/machinery/vending/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -298,7 +371,8 @@ GLOBAL_LIST_INIT(vending_white_items, typecacheof(list(
 		stock(to_stock, user)
 
 /obj/machinery/vending/proc/scan_card(obj/item/card/I)
-	if(!currently_vending) return
+	if(!currently_vending)
+		return
 	if (istype(I, /obj/item/card/id))
 		var/obj/item/card/id/C = I
 		visible_message("<span class='info'>[usr] swipes a card through [src].</span>")
@@ -343,35 +417,8 @@ GLOBAL_LIST_INIT(vending_white_items, typecacheof(list(
 	acc.transaction_log.Add(T)
 
 	// Vend the item
-	src.vend(src.currently_vending, usr)
+	vend(currently_vending, usr)
 	currently_vending = null
-	currently_vending_index = null
-
-
-/obj/machinery/vending/proc/GetProductIndex(datum/data/vending_product/P)
-	var/list/plist
-	switch(P.category)
-		if(CAT_NORMAL)
-			plist=product_records
-		if(CAT_HIDDEN)
-			plist=hidden_records
-		if(CAT_COIN)
-			plist=coin_records
-		else
-			stack_trace("UNKNOWN CATEGORY [P.category] IN TYPE [P.product_path] INSIDE [type]!")
-	return plist.Find(P)
-
-/obj/machinery/vending/proc/GetProductByID(pid, category)
-	switch(category)
-		if(CAT_NORMAL)
-			return product_records[pid]
-		if(CAT_HIDDEN)
-			return hidden_records[pid]
-		if(CAT_COIN)
-			return coin_records[pid]
-		else
-			stack_trace("UNKNOWN PRODUCT: PID: [pid], CAT: [category] INSIDE [type]!")
-			return null
 
 /obj/machinery/vending/can_interact(mob/user)
 	. = ..()
@@ -389,12 +436,34 @@ GLOBAL_LIST_INIT(vending_white_items, typecacheof(list(
 
 	return TRUE
 
-/obj/machinery/vending/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
-										datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+/**
+ * Used only when vendor is tipped to put it back up
+ * Normal usage is in ui_interact
+ */
+/obj/machinery/vending/interact(mob/user)
+	. = ..()
+	if(.) // Handled by ui_interact
+		return
+	if(tipped_level != 2) // only fix when fully tipped
+		return
+
+	if(!iscarbon(user)) // AI can't heave remotely
+		return
+	user.visible_message("<span class='notice'> [user] begins to heave the vending machine back into place!</span>","<span class='notice'> You start heaving the vending machine back into place..</span>")
+	if(!do_after(user, 80, FALSE, src, BUSY_ICON_FRIENDLY))
+		return FALSE
+	user.visible_message("<span class='notice'> [user] rights the [src]!</span>","<span class='notice'> You right the [src]!</span>")
+	flip_back()
+	return TRUE
+
+/obj/machinery/vending/ui_interact(mob/user, datum/tgui/ui)
+	if(tipped_level != 0) // Don't show when tipped or being tipped
+		return
+
+	ui = SStgui.try_update_ui(user, src, ui)
 
 	if(!ui)
-		ui = new(user, src, ui_key, "Vending", name, ui_x, ui_y, master_ui, state)
+		ui = new(user, src, "Vending", name)
 		ui.open()
 
 /obj/machinery/vending/ui_static_data(mob/user)
@@ -403,39 +472,39 @@ GLOBAL_LIST_INIT(vending_white_items, typecacheof(list(
 	.["displayed_records"] = list()
 	.["hidden_records"] = list()
 	.["coin_records"] = list()
-	for(var/datum/data/vending_product/R in product_records)
-		var/prodname = adminscrub(R.product_name)
-		.["displayed_records"] += list(list("product_name" = prodname, "product_color" = R.display_color, "prod_index" = GetProductIndex(R), "prod_cat" = R.category, "prod_price" = R.price, "prod_desc" = initial(R.product_path.desc)))
-	for(var/datum/data/vending_product/R in hidden_records)
-		var/prodname = adminscrub(R.product_name)
-		.["hidden_records"] += list(list("product_name" = prodname, "product_color" = R.display_color, "prod_index" = GetProductIndex(R), "prod_cat" = R.category, "prod_price" = R.price, "prod_desc" = initial(R.product_path.desc)))
-	for(var/datum/data/vending_product/R in coin_records)
-		var/prodname = adminscrub(R.product_name)
-		.["coin_records"] += list(list("product_name" = prodname, "product_color" = R.display_color, "prod_index" = GetProductIndex(R), "prod_cat" = R.category, "prod_price" = R.price, "prod_desc" = initial(R.product_path.desc)))
+	.["tabs"] = list()
 
-	.["premium_length"] = premium.len
+	for(var/datum/vending_product/R AS in product_records)
+		if(R.tab && !(R.tab in .["tabs"]))
+			.["tabs"] += R.tab
+		.["displayed_records"] += list(MAKE_VENDING_RECORD_DATA(R))
+
+	for(var/datum/vending_product/R AS in hidden_records)
+		if(R.tab && !(R.tab in .["tabs"]))
+			.["tabs"] += R.tab
+		.["hidden_records"] += list(MAKE_VENDING_RECORD_DATA(R))
+
+	for(var/datum/vending_product/R AS in coin_records)
+		if(R.tab && !(R.tab in .["tabs"]))
+			.["tabs"] += R.tab
+		.["coin_records"] += list(MAKE_VENDING_RECORD_DATA(R))
 
 /obj/machinery/vending/ui_data(mob/user)
 	. = list()
-	.["displayed_stock"] = list()
-	.["hidden_stock"] = list()
-	.["coin_stock"] = list()
+	.["stock"] = list()
 
-	for(var/datum/data/vending_product/R in product_records)
-		.["displayed_stock"]["[GetProductIndex(R)]"] = R.amount
-	for(var/datum/data/vending_product/R in hidden_records)
-		.["hidden_stock"]["[GetProductIndex(R)]"] = R.amount
-	for(var/datum/data/vending_product/R in coin_records)
-		.["coin_stock"]["[GetProductIndex(R)]"] = R.amount
+	for(var/datum/vending_product/R AS in product_records + hidden_records + coin_records)
+		.["stock"][R.product_name] = R.amount
 
-	.["currently_vending_name"] = currently_vending ? sanitize(currently_vending.product_name) : null
-	.["currently_vending_index"] = currently_vending_index
+	if(currently_vending)
+		.["currently_vending"] = MAKE_VENDING_RECORD_DATA(currently_vending)
 	.["extended"] = extended_inventory
 	.["coin"] = coin ? coin.name : null
 	.["isshared"] = isshared
 
-/obj/machinery/vending/ui_act(action, params)
-	if(..())
+/obj/machinery/vending/ui_act(action, list/params)
+	. = ..()
+	if(.)
 		return
 	switch(action)
 		if("remove_coin")
@@ -455,10 +524,7 @@ GLOBAL_LIST_INIT(vending_white_items, typecacheof(list(
 				flick(icon_deny, src)
 				return
 
-			var/idx = text2num(params["vend"])
-			var/cat = text2num(params["cat"])
-
-			var/datum/data/vending_product/R = GetProductByID(idx,cat)
+			var/datum/vending_product/R = locate(params["vend"]) in product_records | hidden_records | coin_records
 			if(!istype(R) || !R.product_path || R.amount <= 0)
 				return
 
@@ -466,12 +532,10 @@ GLOBAL_LIST_INIT(vending_white_items, typecacheof(list(
 				vend(R, usr)
 			else
 				currently_vending = R
-				currently_vending_index = idx
 			. = TRUE
 
 		if("cancel_buying")
 			currently_vending = null
-			currently_vending_index = null
 			. = TRUE
 
 		if("swipe")
@@ -483,7 +547,7 @@ GLOBAL_LIST_INIT(vending_white_items, typecacheof(list(
 
 	updateUsrDialog()
 
-/obj/machinery/vending/proc/vend(datum/data/vending_product/R, mob/user)
+/obj/machinery/vending/proc/vend(datum/vending_product/R, mob/user)
 	if(!allowed(user) && (!wires.is_cut(WIRE_IDSCAN) || hacking_safety)) //For SECURE VENDING MACHINES YEAH
 		to_chat(user, "<span class='warning'>Access denied.</span>")
 		flick(src.icon_deny,src)
@@ -521,7 +585,7 @@ GLOBAL_LIST_INIT(vending_white_items, typecacheof(list(
 	vend_ready = 1
 	updateUsrDialog()
 
-/obj/machinery/vending/proc/release_item(datum/data/vending_product/R, delay_vending = 0, dump_product = 0)
+/obj/machinery/vending/proc/release_item(datum/vending_product/R, delay_vending = 0, dump_product = 0)
 	set waitfor = 0
 	if(delay_vending)
 		if(powered(power_channel))
@@ -561,8 +625,7 @@ GLOBAL_LIST_INIT(vending_white_items, typecacheof(list(
 
 /obj/machinery/vending/proc/stock(obj/item/item_to_stock, mob/user, recharge = FALSE)
 	//More accurate comparison between absolute paths.
-	for(var/iter in (product_records + hidden_records + coin_records))
-		var/datum/data/vending_product/R = iter //Let's try with a new datum.
+	for(var/datum/vending_product/R AS in product_records + hidden_records + coin_records)
 		if(item_to_stock.type != R.product_path || istype(item_to_stock, /obj/item/storage)) //Nice try, specialists/engis
 			continue
 		if(istype(item_to_stock, /obj/item/weapon/gun))
@@ -614,20 +677,20 @@ GLOBAL_LIST_INIT(vending_white_items, typecacheof(list(
 	if(machine_stat & (BROKEN|NOPOWER))
 		return
 
-	if(!src.active)
+	if(!active)
 		return
 
-	if(src.seconds_electrified > 0)
-		src.seconds_electrified--
+	if(seconds_electrified > 0)
+		seconds_electrified--
 
 	//Pitch to the people!  Really sell it!
-	if(((src.last_slogan + src.slogan_delay) <= world.time) && (src.slogan_list.len > 0) && (!src.shut_up) && prob(5))
-		var/slogan = pick(src.slogan_list)
-		src.speak(slogan)
-		src.last_slogan = world.time
+	if(((last_slogan + slogan_delay) <= world.time) && (slogan_list.len > 0) && (!shut_up) && prob(5))
+		var/slogan = pick(slogan_list)
+		speak(slogan)
+		last_slogan = world.time
 
-	if(src.shoot_inventory && prob(2) && !hacking_safety)
-		src.throw_item()
+	if(shoot_inventory && prob(2) && !hacking_safety)
+		throw_item()
 
 /obj/machinery/vending/proc/speak(message)
 	if(machine_stat & NOPOWER)
@@ -636,7 +699,7 @@ GLOBAL_LIST_INIT(vending_white_items, typecacheof(list(
 	if (!message)
 		return
 
-	say("<span class='game say'><span class='name'>[src]</span> beeps, \"[message]\"</span>")
+	say(message)
 
 /obj/machinery/vending/update_icon()
 	if(machine_stat & BROKEN)
@@ -648,7 +711,7 @@ GLOBAL_LIST_INIT(vending_white_items, typecacheof(list(
 
 //Oh no we're malfunctioning!  Dump out some product and break.
 /obj/machinery/vending/proc/malfunction()
-	for(var/datum/data/vending_product/R in src.product_records)
+	for(var/datum/vending_product/R AS in product_records)
 		if (R.amount <= 0) //Try to use a record that actually has something to dump.
 			continue
 		var/dump_path = R.product_path
@@ -670,7 +733,7 @@ GLOBAL_LIST_INIT(vending_white_items, typecacheof(list(
 	if(!target)
 		return FALSE
 
-	for(var/datum/data/vending_product/R in product_records)
+	for(var/datum/vending_product/R AS in product_records)
 		if (R.amount <= 0) //Try to use a record that actually has something to dump.
 			continue
 		var/dump_path = R.product_path

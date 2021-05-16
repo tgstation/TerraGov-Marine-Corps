@@ -54,6 +54,12 @@ GLOBAL_PROTECT(exp_specialmap)
 
 	var/list/jobworth = list() //Associative list of indexes increased when someone joins as this job.
 
+	/// Description shown in the player's job preferences
+	var/html_description = ""
+	
+	///string; typepath for the icon that this job will show on the minimap
+	var/minimap_icon
+
 /datum/job/New()
 	if(outfit)
 		if(!ispath(outfit, /datum/outfit))
@@ -187,15 +193,18 @@ GLOBAL_PROTECT(exp_specialmap)
 /datum/job/proc/get_special_name(client/preference_source)
 	return
 
-/datum/job/proc/occupy_job_positions(amount)
+/datum/job/proc/occupy_job_positions(amount, respawn = FALSE)
 	if(amount <= 0)
-		CRASH("free_job_positions() called with amount: [amount]")
+		CRASH("occupy_job_positions() called with amount: [amount]")
 	current_positions += amount
 	for(var/index in jobworth)
 		var/datum/job/scaled_job = SSjob.GetJobType(index)
 		if(!(scaled_job in SSjob.active_joinable_occupations))
 			continue
+		if(isxenosjob(scaled_job) && respawn && (SSticker.mode?.flags_round_type & MODE_PSY_POINTS))
+			continue
 		scaled_job.add_job_points(jobworth[index])
+	return TRUE
 
 /datum/job/proc/free_job_positions(amount)
 	if(amount <= 0)
@@ -263,7 +272,6 @@ GLOBAL_PROTECT(exp_specialmap)
 /mob/living/carbon/human/apply_assigned_role_to_spawn(datum/job/assigned_role, client/player, datum/squad/assigned_squad, admin_action = FALSE)
 	. = ..()
 	comm_title = job.comm_title
-
 	if(job.outfit)
 		var/id_type = job.outfit.id ? job.outfit.id : /obj/item/card/id
 		var/obj/item/card/id/id_card = new id_type
@@ -281,6 +289,7 @@ GLOBAL_PROTECT(exp_specialmap)
 	if(!src.assigned_squad && assigned_squad)
 		job.equip_spawning_squad(src, assigned_squad, player)
 
+	hud_set_job()
 
 /datum/job/proc/equip_spawning_squad(mob/living/carbon/human/new_character, datum/squad/assigned_squad, client/player)
 	return
@@ -310,3 +319,9 @@ GLOBAL_PROTECT(exp_specialmap)
 
 /datum/job/proc/handle_special_preview(client/parent)
 	return FALSE
+
+/datum/job/xenomorph/occupy_job_positions(amount, respawn)
+	if((total_positions - current_positions - amount) < 0)
+		CRASH("Occupy xenomorph position was call with amount = [amount] and respawn =[respawn ? "TRUE" : "FALSE"] \n \
+		This would have created a negative larva situation")
+	return ..()

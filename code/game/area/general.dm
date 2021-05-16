@@ -9,6 +9,14 @@
 	ambience = list('sound/ambience/ambispace.ogg')
 	temperature = TCMB
 	pressure = 0
+	flags_area = NO_DROPPOD
+
+/area/space/Entered(atom/movable/AM, atom/oldloc)
+	. = ..()
+	if(isliving(AM))
+		to_chat(AM, "<span class='danger'>The cold vacuum instantly freezes you, maybe this was a bad idea?</span>")
+		var/mob/living/spaceman = AM
+		spaceman.adjustFireLoss(600) //Bad idea, spessman.
 
 /area/engine/
 	ambience = list('sound/ambience/ambisin1.ogg','sound/ambience/ambisin2.ogg','sound/ambience/ambisin3.ogg','sound/ambience/ambisin4.ogg')
@@ -1286,6 +1294,8 @@
 	requires_power = 0
 	name = "Abandoned Test Room"
 	icon_state = "storage"
+	flags_area = NO_DROPPOD
+
 
 //DJSTATION
 

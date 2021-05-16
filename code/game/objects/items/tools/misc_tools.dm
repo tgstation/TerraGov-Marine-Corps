@@ -123,11 +123,11 @@
 /obj/item/tool/pen/sleepypen/attack(mob/M as mob, mob/user as mob)
 	if(!(istype(M,/mob)))
 		return
-	..()
+	. = ..()
 	if(reagents.total_volume)
 		reagents.reaction(M, INJECT)
 		if(M.reagents) reagents.trans_to(M, 50) //used to be 150
-	return
+
 
 
 /*
@@ -205,10 +205,10 @@
 	name = "internal affairs rubber stamp"
 	icon_state = "stamp-intaff"
 
-/obj/item/tool/stamp/centcomm
-	name = "centcomm rubber stamp"
+/obj/item/tool/stamp/centcom
+	name = "centcom rubber stamp"
 	icon_state = "stamp-cent"
 
 
-/obj/item/tool/stamp/attack_paw(mob/living/carbon/monkey/user)
+/obj/item/tool/stamp/attack_paw(mob/living/carbon/human/user)
 	return attack_hand(user)

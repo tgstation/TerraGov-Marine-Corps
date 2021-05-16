@@ -1,6 +1,7 @@
 #define UPLOAD_LIMIT			1000000	//Restricts client uploads to the server to 1MB
 #define UPLOAD_LIMIT_ADMIN		10000000	//Restricts admin uploads to the server to 10MB
 
+#define MAX_RECOMMENDED_CLIENT 1549
 #define MIN_RECOMMENDED_CLIENT 1526
 #define REQUIRED_CLIENT_MAJOR 513
 #define REQUIRED_CLIENT_MINOR 1493
@@ -68,9 +69,13 @@
 		if (topiclimiter[SECOND_COUNT] > stl)
 			to_chat(src, "<span class='danger'>Your previous action was ignored because you've done too many in a second</span>")
 			return
-	//Logs all hrefs, except chat pings
-	if(!(href_list["_src_"] == "chat" && href_list["proc"] == "ping" && LAZYLEN(href_list) == 2))
-		log_href("[src] (usr:[usr]\[[COORD(usr)]\]) : [hsrc ? "[hsrc] " : ""][href]")
+
+	if(tgui_Topic(href_list))
+		return
+
+	//Logs all hrefs.
+	log_href("[src] (usr:[usr]\[[COORD(usr)]\]) : [hsrc ? "[hsrc] " : ""][href]")
+
 	//byond bug ID:2256651
 	if (asset_cache_job && (asset_cache_job in completed_asset_jobs))
 		to_chat(src, "<span class='danger'>An error has been detected in how your client is receiving resources. Attempting to correct.... (If you keep seeing these messages you might want to close byond and reconnect)</span>")
@@ -93,16 +98,9 @@
 		if("usr")
 			hsrc = mob
 		if("prefs")
-			if(inprefs)
-				return
-			inprefs = TRUE
-			. = prefs.process_link(usr, href_list)
-			inprefs = FALSE
-			return
+			stack_trace("This code path is no longer valid, migrate this to new TGUI prefs")
 		if("vars")
 			return view_var_Topic(href, href_list, hsrc)
-		if("chat")
-			return chatOutput.Topic(href, href_list)
 		if("vote")
 			return SSvote.Topic(href, href_list)
 		if("codex")
@@ -127,7 +125,6 @@
 
 /client/New(TopicData)
 	var/tdata = TopicData //save this for later use
-	chatOutput = new /datum/chatOutput(src)
 	TopicData = null	//Prevent calls to client.Topic from connect
 
 	if(connection != "seeker" && connection != "web")	//Invalid connection type.
@@ -135,6 +132,9 @@
 
 	GLOB.clients += src
 	GLOB.directory[ckey] = src
+
+	// Instantiate tgui panel
+	tgui_panel = new(src)
 
 	GLOB.ahelp_tickets.ClientLogin(src)
 
@@ -208,7 +208,8 @@
 		set_macros()
 		update_movement_keys()
 
-	chatOutput.start() // Starts the chat
+	// Initialize tgui panel
+	tgui_panel.initialize()
 
 	if(byond_version < REQUIRED_CLIENT_MAJOR || (byond_build && byond_build < REQUIRED_CLIENT_MINOR))
 		//to_chat(src, "<span class='userdanger'>Your version of byond is severely out of date.</span>")
@@ -226,6 +227,10 @@
 	if(byond_build < MIN_RECOMMENDED_CLIENT)
 		to_chat(src, "<span class='userdanger'>Your version of byond has known client crash issues, it's recommended you update your version.</span>")
 		to_chat(src, "<span class='danger'>Please download a new version of byond. If [byond_build] is the latest, you can go to <a href=\"https://secure.byond.com/download/build\">BYOND's website</a> to download other versions.</span>")
+
+	if(byond_build > MAX_RECOMMENDED_CLIENT)
+		to_chat(src, "<span class='userdanger'>Your version of byond is likely to be very buggy.</span>")
+		to_chat(src, "<span class='danger'>Please download a old version of byond. If [byond_build] is the latest, you can go to <a href=\"https://secure.byond.com/download/build\">BYOND's website</a> to download other versions.</span>")
 
 	if(num2text(byond_build) in GLOB.blacklisted_builds)
 		log_access("Failed login: [key] - blacklisted byond version")
@@ -313,6 +318,8 @@
 			menuitem.Load_checked(src)
 
 
+	update_ambience_pref()
+
 	//This is down here because of the browse() calls in tooltip/New()
 	if(!tooltips && prefs.tooltips)
 		tooltips = new /datum/tooltip(src)
@@ -328,6 +335,12 @@
 //  DISCONNECT  //
 //////////////////
 /client/Del()
+	if(!gc_destroyed)
+		Destroy()
+	return ..()
+
+
+/client/Destroy()
 	SEND_SIGNAL(src, COMSIG_CLIENT_DISCONNECTED)
 	log_access("Logout: [key_name(src)]")
 	if(holder)
@@ -337,18 +350,31 @@
 			message_staff("Mentor logout: [key_name(src)].")
 		holder.owner = null
 		GLOB.admins -= src
-
+		if (!length(GLOB.admins) && SSticker.IsRoundInProgress()) //Only report this stuff if we are currently playing.
+			var/cheesy_message = pick(
+				"I have no admins online!",\
+				"I'm all alone :(",\
+				"I'm feeling lonely :(",\
+				"I'm so lonely :(",\
+				"Why does nobody love me? :(",\
+				"I want a man :(",\
+				"Where has everyone gone?",\
+				"I need a hug :(",\
+				"Someone come hold me :(",\
+				"I need someone on me :(",\
+				"What happened? Where has everyone gone?",\
+				"Forever alone :("\
+			)
+			send2adminchat("Server", "[cheesy_message] (No staff online)")
 	GLOB.ahelp_tickets.ClientLogout(src)
 	GLOB.directory -= ckey
 	GLOB.clients -= src
 	seen_messages = null
 	QDEL_LIST_ASSOC_VAL(char_render_holders)
+	QDEL_NULL(tooltips)
 	Master.UpdateTickRate()
-	return ..()
-
-
-/client/Destroy()
-	. = ..() //Even though we're going to be hard deleted there are still some things that want to know the destroy is happening
+	SSambience.ambience_listening_clients -= src
+	..() //Even though we're going to be hard deleted there are still some things like signals that want to know the destroy is happening
 	return QDEL_HINT_HARDDEL_NOW
 
 /client/Click(atom/object, atom/location, control, params)
@@ -454,7 +480,7 @@
 			screen |= O
 		O.appearance = MA
 		O.dir = D
-		O.screen_loc = "character_preview_map:0,[pos]"
+		O.screen_loc = "player_pref_map:[pos],1"
 
 
 /client/proc/clear_character_previews()
@@ -822,7 +848,7 @@ GLOBAL_VAR_INIT(automute_on, null)
 	if(mute)
 		if(GLOB.automute_on && !check_rights(R_ADMIN, FALSE))
 			to_chat(src, "<span class='danger'>You have exceeded the spam filter. An auto-mute was applied.</span>")
-			create_message("note", ckey(key), "SYSTEM", "Automuted due to spam. Last message: '[last_message]'", null, null, FALSE, FALSE, null, FALSE, "Minor")
+			create_message("note", ckey(key), "SYSTEM", "Automuted due to spam. Last message: '[last_message]'", null, null, FALSE, TRUE, null, FALSE, "Minor")
 			mute(src, mute_type, TRUE)
 		return TRUE
 
@@ -841,3 +867,17 @@ GLOBAL_VAR_INIT(automute_on, null)
 			change_view(var_value)
 			return TRUE
 	return ..()
+
+/client/proc/open_filter_editor(atom/in_atom)
+	if(holder)
+		holder.filteriffic = new /datum/filter_editor(in_atom)
+		holder.filteriffic.ui_interact(mob)
+
+///updates with the ambience preferrences of the user
+/client/proc/update_ambience_pref()
+	if(prefs.toggles_sound & SOUND_AMBIENCE)
+		if(SSambience.ambience_listening_clients[src] > world.time)
+			return // If already properly set we don't want to reset the timer.
+		SSambience.ambience_listening_clients[src] = world.time + 10 SECONDS //Just wait 10 seconds before the next one aight mate? cheers.
+	else
+		SSambience.ambience_listening_clients -= src

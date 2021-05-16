@@ -10,7 +10,7 @@ can cause issues with ammo types getting mixed up during the burst.
 /obj/item/weapon/gun/shotgun
 	w_class = WEIGHT_CLASS_BULKY
 	force = 14.0
-	caliber = "12 gauge shotgun shells" //codex
+	caliber = CALIBER_12G //codex
 	max_shells = 9 //codex
 	load_method = SINGLE_CASING //codex
 	fire_sound = 'sound/weapons/guns/fire/shotgun.ogg'
@@ -97,22 +97,27 @@ can cause issues with ammo types getting mixed up during the burst.
 		//this is the most resource efficient way to do it.
 /obj/item/weapon/gun/shotgun/proc/retrieve_shell(selection)
 	var/obj/item/ammo_magazine/handful/new_handful = new /obj/item/ammo_magazine/handful()
-	new_handful.generate_handful(selection, "12g", 5, 1, /obj/item/weapon/gun/shotgun)
+	new_handful.generate_handful(selection, CALIBER_12G, 1, /obj/item/weapon/gun/shotgun)
 	return new_handful
 
 /obj/item/weapon/gun/shotgun/pump/bolt/retrieve_shell(selection)
 	var/obj/item/ammo_magazine/handful/new_handful = new /obj/item/ammo_magazine/handful()
-	new_handful.generate_handful(selection, "7.62x54mmR", 5, 1, /obj/item/weapon/gun/shotgun)
+	new_handful.generate_handful(selection, CALIBER_762X54, 1, /obj/item/weapon/gun/shotgun)
+	return new_handful
+
+/obj/item/weapon/gun/shotgun/double/martini/retrieve_shell(selection)
+	var/obj/item/ammo_magazine/handful/new_handful = new /obj/item/ammo_magazine/handful()
+	new_handful.generate_handful(selection, CALIBER_557, 1, /obj/item/weapon/gun/shotgun)
 	return new_handful
 
 /obj/item/weapon/gun/shotgun/pump/lever/retrieve_shell(selection)
 	var/obj/item/ammo_magazine/handful/new_handful = new /obj/item/ammo_magazine/handful()
-	new_handful.generate_handful(selection, ".44", 8, 1, /obj/item/weapon/gun/shotgun)
+	new_handful.generate_handful(selection, CALIBER_44, 1, /obj/item/weapon/gun/shotgun)
 	return new_handful
 
 /obj/item/weapon/gun/shotgun/pump/lever/mbx900/retrieve_shell(selection)
 	var/obj/item/ammo_magazine/handful/new_handful = new /obj/item/ammo_magazine/handful()
-	new_handful.generate_handful(selection, ".410", 8, 1, /obj/item/weapon/gun/shotgun)
+	new_handful.generate_handful(selection, CALIBER_410, 1, /obj/item/weapon/gun/shotgun)
 	return new_handful
 
 
@@ -296,7 +301,6 @@ can cause issues with ammo types getting mixed up during the burst.
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 21,"rail_x" = 15, "rail_y" = 22, "under_x" = 21, "under_y" = 16, "stock_x" = 21, "stock_y" = 16)
 
 	fire_delay = 2
-	burst_amount = 2
 	burst_delay = 2
 	accuracy_mult = 1.15
 	accuracy_mult_unwielded = 0.85
@@ -472,7 +476,6 @@ can cause issues with ammo types getting mixed up during the burst.
 		/obj/item/attachable/stock/shotgun,
 	)
 
-	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT)
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 10, "rail_y" = 21, "under_x" = 20, "under_y" = 14, "stock_x" = 20, "stock_y" = 14)
 
 	fire_delay = 20
@@ -612,7 +615,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	fire_sound = 'sound/weapons/guns/fire/mosin.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/sniper_empty.ogg'
 	reload_sound = 'sound/weapons/guns/interact/mosin_reload.ogg'
-	caliber = "7.62x54mm Rimmed" //codex
+	caliber = CALIBER_762X54 //codex
 	load_method = SINGLE_CASING //codex
 	max_shells = 5 //codex
 	current_mag = /obj/item/ammo_magazine/internal/shotgun/pump/bolt
@@ -668,17 +671,63 @@ can cause issues with ammo types getting mixed up during the burst.
 	return ..()
 
 //***********************************************************
+// Martini Henry
+
+/obj/item/weapon/gun/shotgun/double/martini
+	name = "\improper Martini Henry lever action rifle"
+	desc = "A lever action with room for a single round of .557/440 ball. Perfect for any kind of hunt, be it elephant or xeno."
+	flags_equip_slot = ITEM_SLOT_BACK
+	icon = 'icons/Marine/gun64.dmi'
+	icon_state = "martini"
+	item_state = "martini"
+	caliber = CALIBER_557 //codex
+	muzzle_flash_lum = 7
+	max_shells = 1 //codex
+	ammo = /datum/ammo/bullet/sniper/martini
+	current_mag = /obj/item/ammo_magazine/internal/shotgun/martini
+	gun_skill_category = GUN_SKILL_RIFLES
+	type_of_casings = "cartridge"
+	fire_sound = 'sound/weapons/guns/fire/martini.ogg'
+	reload_sound = 'sound/weapons/guns/interact/martini_reload.ogg'
+	cocked_sound = 'sound/weapons/guns/interact/martini_cocked.ogg'
+	opened_sound = 'sound/weapons/guns/interact/martini_open.ogg'
+	attachable_allowed = list(
+		/obj/item/attachable/bayonet,
+		/obj/item/attachable/bayonetknife,
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/scope/mini,
+		/obj/item/attachable/scope/marine,
+	)
+
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_INTERNAL_MAG|GUN_AMMO_COUNTER
+	attachable_offset = list("muzzle_x" = 45, "muzzle_y" = 23,"rail_x" = 17, "rail_y" = 25, "under_x" = 19, "under_y" = 14, "stock_x" = 15, "stock_y" = 12)
+
+	fire_delay = 1 SECONDS
+	accuracy_mult = 1.45
+
+	scatter = -25
+	scatter_unwielded = 30
+
+	recoil = 2
+	recoil_unwielded = 4
+
+	aim_slowdown = 1
+	wield_delay = 1 SECONDS
+
+//***********************************************************
 // Yee Haw it's a cowboy lever action gun!
 
 /obj/item/weapon/gun/shotgun/pump/lever
 	name = "lever action rifle"
 	desc = "A .44 magnum lever action rifle with side loading port. It has a low fire rate, but it packs quite a punch in hunting."
 	icon_state = "mares_leg"
-	item_state = "mares_leg" //With thanks to D4n0w4r https://youtu.be/PV4uWGGb4xM
+	item_state = "mbx900"
 	fire_sound = 'sound/weapons/guns/fire/leveraction.ogg'//I like how this one sounds.
 	dry_fire_sound = 'sound/weapons/guns/fire/sniper_empty.ogg'
 	reload_sound = 'sound/weapons/guns/interact/mosin_reload.ogg'
-	caliber = ".44 Magnum" //codex
+	caliber = CALIBER_44 //codex
 	load_method = SINGLE_CASING //codex
 	max_shells = 10 //codex
 	current_mag = /obj/item/ammo_magazine/internal/shotgun/pump/lever
@@ -724,13 +773,13 @@ can cause issues with ammo types getting mixed up during the burst.
 
 /obj/item/weapon/gun/shotgun/pump/lever/mbx900
 	name = "\improper MBX-900 lever action shotgun"
-	desc = "A .410 bore lever action shotgun that fires as fast as you can operate the lever. An adopted shotgun in the wake of the SX-16 automatic shotgun replacing the MIC ZX-76 assault shotgun for use in standard-issue TGMC specialist inventory. Now it's fielded in lesser numbers and in requisitions due to its devastating and extremely reliable design."
+	desc = "A .410 bore lever action shotgun that fires nearly as fast as you can operate the lever. Renowed due to its devastating and extremely reliable design."
 	icon_state = "mbx900"
 	item_state = "mbx900"
 	fire_sound = 'sound/weapons/guns/fire/shotgun_light.ogg'//I like how this one sounds.
 	dry_fire_sound = 'sound/weapons/guns/fire/sniper_empty.ogg'
 	reload_sound = 'sound/weapons/guns/interact/mosin_reload.ogg'
-	caliber = ".410 bore"
+	caliber = CALIBER_410
 	load_method = SINGLE_CASING
 	max_shells = 10
 	current_mag = /obj/item/ammo_magazine/internal/shotgun/pump/lever/mbx900
@@ -761,9 +810,9 @@ can cause issues with ammo types getting mixed up during the burst.
 
 	flags_item_map_variant = NONE
 
-	fire_delay = 6
+	fire_delay = 0.6 SECONDS
 	accuracy_mult = 1.4
-	pump_delay = 2
+	pump_delay = 0.2 SECONDS
 
 //------------------------------------------------------
 //T-35 Pump shotgun

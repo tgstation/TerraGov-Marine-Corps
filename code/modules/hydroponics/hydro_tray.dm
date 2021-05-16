@@ -261,12 +261,12 @@
 
 	check_level_sanity()
 	update_icon()
-	return
 
 //Process reagents being input into the tray.
 /obj/machinery/portable_atmospherics/hydroponics/proc/process_reagents()
 
-	if(!reagents) return
+	if(!reagents)
+		return
 
 	if(reagents.total_volume <= 0)
 		return
@@ -342,11 +342,11 @@
 
 	check_level_sanity()
 	update_icon()
-	return
 
 //Clears out a dead plant.
 /obj/machinery/portable_atmospherics/hydroponics/proc/remove_dead(mob/user)
-	if(!user || !dead) return
+	if(!user || !dead)
+		return
 
 	if(closed_system)
 		to_chat(user, "You can't remove the dead plant while the lid is shut.")
@@ -362,7 +362,6 @@
 	to_chat(user, "You remove the dead plant from the [src].")
 	check_level_sanity()
 	update_icon()
-	return
 
 //Refreshes the icon and sets the luminosity
 /obj/machinery/portable_atmospherics/hydroponics/update_icon()
@@ -417,7 +416,7 @@
 			return
 
 	set_light(0)
-	return
+
 
 // If a weed growth is sufficient, this proc is called.
 /obj/machinery/portable_atmospherics/hydroponics/proc/weed_invasion()
@@ -425,7 +424,8 @@
 	//Remove the seed if something is already planted.
 	if(seed) seed = null
 	seed = GLOB.seed_types[pick(list("reishi","nettles","amanita","mushrooms","plumphelmet","towercap","harebells","weeds"))]
-	if(!seed) return //Weed does not exist, someone fucked up.
+	if(!seed)
+		return //Weed does not exist, someone fucked up.
 
 	dead = 0
 	age = 0
@@ -438,7 +438,6 @@
 	update_icon()
 	visible_message("<span class='notice'> [src] has been overtaken by [seed.display_name].</span>")
 
-	return
 
 /obj/machinery/portable_atmospherics/hydroponics/proc/mutate(severity)
 
@@ -458,7 +457,6 @@
 		seed = seed.diverge()
 	seed.mutate(severity,get_turf(src))
 
-	return
 
 /obj/machinery/portable_atmospherics/hydroponics/proc/check_level_sanity()
 	//Make sure various values are sane.
@@ -492,7 +490,6 @@
 	update_icon()
 	visible_message("<span class='warning'> The <span class='notice'> [previous_plant] <span class='warning'> has suddenly mutated into <span class='notice'> [seed.display_name]!</span>")
 
-	return
 
 /obj/machinery/portable_atmospherics/hydroponics/attackby(obj/item/I, mob/user, params)
 	. = ..()

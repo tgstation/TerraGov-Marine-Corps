@@ -47,6 +47,7 @@
 		stat("Operation Time:", stationTimestamp("hh:mm"))
 		stat("Current Map:", length(SSmapping.configs) ? SSmapping.configs[GROUND_MAP].map_name : "Loading...")
 		stat("Current Ship:", length(SSmapping.configs) ? SSmapping.configs[SHIP_MAP].map_name : "Loading...")
+		stat("Game Mode:", "[GLOB.master_mode]")
 
 	if(statpanel("Game"))
 		if(client)
@@ -447,7 +448,7 @@
 
 
 /mob/living/start_pulling(atom/movable/AM, suppress_message = FALSE)
-	if(QDELETED(AM) || QDELETED(usr) || src == AM || !isturf(loc) || !Adjacent(AM))	//if there's no person pulling OR the person is pulling themself OR the object being pulled is inside something: abort!
+	if(QDELETED(AM) || QDELETED(usr) || src == AM || !isturf(loc) || !Adjacent(AM) || status_flags & INCORPOREAL)	//if there's no person pulling OR the person is pulling themself OR the object being pulled is inside something: abort!
 		return FALSE
 
 	if(!AM.can_be_pulled(src))
@@ -591,11 +592,11 @@
 
 
 /proc/is_species(A, species_datum)
-	. = FALSE
 	if(ishuman(A))
 		var/mob/living/carbon/human/H = A
 		if(istype(H.species, species_datum))
-			. = TRUE
+			return TRUE
+	return FALSE
 
 /mob/proc/get_species()
 	return ""
@@ -862,7 +863,7 @@
 	if(grab_state == GRAB_PASSIVE)
 		remove_movespeed_modifier(MOVESPEED_ID_MOB_GRAB_STATE)
 	else if(. == GRAB_PASSIVE)
-		add_movespeed_modifier(MOVESPEED_ID_MOB_GRAB_STATE, TRUE, 100, NONE, TRUE, grab_state * 3)
+		add_movespeed_modifier(MOVESPEED_ID_MOB_GRAB_STATE, TRUE, 100, NONE, TRUE, BASE_GRAB_SLOWDOWN) //We cap this at 3 so we don't get utterly insane slowdowns for neck and other grabs.
 
 /mob/set_throwing(new_throwing)
 	. = ..()

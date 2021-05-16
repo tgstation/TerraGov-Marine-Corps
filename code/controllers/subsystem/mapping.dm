@@ -28,6 +28,11 @@ SUBSYSTEM_DEF(mapping)
 	var/datum/space_level/transit
 	var/num_of_res_levels = 1
 
+	///If true, non-admin players will not be able to initiate a vote to change groundmap
+	var/groundmap_voted = FALSE
+	///If true, non-admin players will not be able to initiate a vote to change shipmap
+	var/shipmap_voted = FALSE
+
 //dlete dis once #39770 is resolved
 /datum/controller/subsystem/mapping/proc/HACK_LoadMapConfig()
 	if(!configs)
@@ -51,9 +56,9 @@ SUBSYSTEM_DEF(mapping)
 				configs[i] = old_config
 
 	if(configs[GROUND_MAP])
-		for(var/i in config.votable_modes)
-			if(!(i in configs[GROUND_MAP].gamemodes))
-				config.votable_modes -= i // remove invalid modes
+		for(var/datum/game_mode/M AS in config.votable_modes)
+			if(!(M.config_tag in configs[GROUND_MAP].gamemodes))
+				config.votable_modes -= M // remove invalid modes
 
 	loadWorld()
 	repopulate_sorted_areas()

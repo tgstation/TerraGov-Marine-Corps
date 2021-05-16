@@ -1299,9 +1299,14 @@
 	icon_state = "monkeycube"
 	bitesize = 12
 	filling_color = "#ADAC7F"
-	var/monkey_type = /mob/living/carbon/monkey
+	var/monkey_type = /mob/living/carbon/human/species/monkey
 	list_reagents = list(/datum/reagent/consumable/nutriment = 10)
 	tastes = list("the jungle" = 1, "bananas" = 1)
+
+/obj/item/reagent_containers/food/snacks/monkeycube/examine(mob/user)
+	. = ..()
+	if(package)
+		to_chat(user, "It is wrapped in waterproof cellophane. Maybe using it in your hand would tear it off?")
 
 /obj/item/reagent_containers/food/snacks/monkeycube/afterattack(obj/O, mob/user, proximity)
 	if(!proximity)
@@ -1313,49 +1318,40 @@
 	return ..()
 
 /obj/item/reagent_containers/food/snacks/monkeycube/attack_self(mob/user)
-	if(package)
-		icon_state = "monkeycube"
-		desc = "Just add water!"
-		to_chat(user, "You unwrap the cube.")
-		package = FALSE
+	if(!package)
+		return
+	icon_state = "monkeycube"
+	user.visible_message("<span class='notice'>[user] unwraps [src]", "You unwrap [src].</span>")
+	package = FALSE
 
 /obj/item/reagent_containers/food/snacks/monkeycube/On_Consume(mob/M)
 	to_chat(M, "<span class = 'warning'>Something inside of you suddently expands!</span>")
 
-	if (ishuman(M))
-		//Do not try to understand.
-		var/obj/item/surprise = new(M)
-		var/mob/ook = monkey_type
-		surprise.icon = initial(ook.icon)
-		surprise.icon_state = initial(ook.icon_state)
-		surprise.name = "malformed [initial(ook.name)]"
-		surprise.desc = "Looks like \a very deformed [initial(ook.name)], a little small for its kind. It shows no signs of life."
-		surprise.transform *= 0.6
-		surprise.add_mob_blood(M)
-		var/mob/living/carbon/human/H = M
-		var/datum/limb/E = H.get_limb("chest")
-		E.fracture()
-		for (var/datum/internal_organ/I in E.internal_organs)
-			I.take_damage(rand(I.min_bruised_damage, I.min_broken_damage+1))
-
-		if (!E.hidden && prob(60)) //set it snuggly
-			E.hidden = surprise
-			E.cavity = 0
-		else 		//someone is having a bad day
-			E.createwound(CUT, 30)
-			surprise.embed_into(M, E)
-	else if (ismonkey(M))
-		M.visible_message("<span class='danger'>[M] suddenly tears in half!</span>")
-		var/mob/living/carbon/monkey/ook = new monkey_type(M.loc)
-		ook.name = "malformed [ook.name]"
-		ook.transform *= 0.6
-		ook.add_mob_blood(M)
-		M.gib()
-	return ..()
+	if(!ishuman(M))
+		return ..()
+	//Do not try to understand.
+	var/obj/item/surprise = new(M)
+	var/mob/ook = monkey_type
+	surprise.icon = initial(ook.icon)
+	surprise.icon_state = initial(ook.icon_state)
+	surprise.name = "malformed [initial(ook.name)]"
+	surprise.desc = "Looks like \a very deformed [initial(ook.name)], a little small for its kind. It shows no signs of life."
+	surprise.transform *= 0.6
+	surprise.add_mob_blood(M)
+	var/mob/living/carbon/human/H = M
+	var/datum/limb/E = H.get_limb("chest")
+	E.fracture()
+	for (var/datum/internal_organ/I in E.internal_organs)
+		I.take_damage(rand(I.min_bruised_damage, I.min_broken_damage+1))
+	if (!E.hidden && prob(60)) //set it snuggly
+		E.hidden = surprise
+		E.cavity = 0
+	else 		//someone is having a bad day
+		E.createwound(CUT, 30)
+		surprise.embed_into(M, E)
 
 /obj/item/reagent_containers/food/snacks/monkeycube/proc/Expand()
-	for(var/mob/M in viewers(src,7))
-		to_chat(M, "<span class='warning'>\The [src] expands!</span>")
+	visible_message("<span class='warning'>\The [src] expands!</span>")
 	var/turf/T = get_turf(src)
 	if(T)
 		new monkey_type(T)
@@ -1370,26 +1366,28 @@
 
 /obj/item/reagent_containers/food/snacks/monkeycube/farwacube
 	name = "farwa cube"
-	monkey_type = /mob/living/carbon/monkey/tajara
+	monkey_type = /mob/living/carbon/human/species/monkey/farwa
+
 /obj/item/reagent_containers/food/snacks/monkeycube/wrapped/farwacube
 	name = "farwa cube"
-	monkey_type =/mob/living/carbon/monkey/tajara
+	monkey_type = /mob/living/carbon/human/species/monkey/farwa
 
 
 /obj/item/reagent_containers/food/snacks/monkeycube/stokcube
 	name = "stok cube"
-	monkey_type = /mob/living/carbon/monkey/unathi
+	monkey_type = /mob/living/carbon/human/species/monkey/stok
+
 /obj/item/reagent_containers/food/snacks/monkeycube/wrapped/stokcube
 	name = "stok cube"
-	monkey_type =/mob/living/carbon/monkey/unathi
+	monkey_type = /mob/living/carbon/human/species/monkey/stok
 
 
 /obj/item/reagent_containers/food/snacks/monkeycube/neaeracube
 	name = "neaera cube"
-	monkey_type = /mob/living/carbon/monkey/skrell
+	monkey_type = /mob/living/carbon/human/species/monkey/naera
 /obj/item/reagent_containers/food/snacks/monkeycube/wrapped/neaeracube
 	name = "neaera cube"
-	monkey_type =/mob/living/carbon/monkey/skrell
+	monkey_type = /mob/living/carbon/human/species/monkey/naera
 
 
 /obj/item/reagent_containers/food/snacks/spellburger
@@ -2647,8 +2645,8 @@
 		icon_state = "hotdog"
 
 /obj/item/reagent_containers/food/snacks/upp
-	name = "\improper UPP ration"
-	desc = "A sealed, freeze-dried, compressed package containing a single item of food. Commonplace in the UPP military, especially those units stationed on far-flung colonies. This one is stamped for consumption by the UPP's 'Smoldering Sons' battalion and was packaged in 2179."
+	name = "\improper USL ration"
+	desc = "A sealed, freeze-dried, compressed package containing a single item of food. Commonplace in the USL pirate band and even those who live on Mars, especially those stationed on far-flung colonies. This one is was packaged in 2415."
 	icon_state = "upp_ration"
 	bitesize = 2
 	package = TRUE
@@ -2805,20 +2803,20 @@
 	icon_state = "lollipop_stick"
 	item_state = "lollipop_stick"
 	flags_equip_slot = ITEM_SLOT_MASK
-	w_class = WEIGHT_CLASS_TINY	
+	w_class = WEIGHT_CLASS_TINY
 	list_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/sugar = 4)
-	tastes = list("candy" = 1)	
+	tastes = list("candy" = 1)
 	var/mutable_appearance/head
 	var/headcolor = rgb(0, 0, 0)
 	var/succ_int = 100
 	var/next_succ = 0
 	var/mob/living/carbon/human/owner
- 
+
 /obj/item/reagent_containers/food/snacks/lollipop/Initialize()
 	. = ..()
 	head = mutable_appearance('icons/obj/items/lollipop.dmi', "lollipop_head")
 	change_head_color(rgb(rand(0, 255), rand(0, 255), rand(0, 255)))
- 
+
 //makes lollipops actually wearable as masks and still edible the old fashioned way.
 /obj/item/reagent_containers/food/snacks/lollipop/proc/handle_reagents()
 	var/fraction = min(FOOD_METABOLISM/reagents.total_volume, 1)
@@ -2833,7 +2831,7 @@
 	if(!reagents)
 		stack_trace("lollipop processing without a reagents datum")
 		return PROCESS_KILL
-	if(owner.stat == DEAD)	
+	if(owner.stat == DEAD)
 		return PROCESS_KILL
 	if(!reagents.total_volume)
 		qdel(src)
@@ -2841,7 +2839,7 @@
 	if(next_succ <= world.time)
 		handle_reagents()
 		next_succ = world.time + succ_int
- 
+
 /obj/item/reagent_containers/food/snacks/lollipop/equipped(mob/user, slot)
 	. = ..()
 	if(!iscarbon(user))
@@ -2852,11 +2850,11 @@
 		return
 	owner = user
 	START_PROCESSING(SSobj, src)
- 
+
 /obj/item/reagent_containers/food/snacks/lollipop/Destroy()
 	STOP_PROCESSING(SSobj, src)
 	return ..()
- 
+
 /obj/item/reagent_containers/food/snacks/lollipop/proc/change_head_color(C)
 	headcolor = C
 	cut_overlay(head)
@@ -2866,6 +2864,6 @@
 //med pop
 /obj/item/reagent_containers/food/snacks/lollipop/tramadol
 	name = "Tram-pop"
-	desc = "Your reward for behaving so well in the medbay."
+	desc = "Your reward for behaving so well in the medbay. Can be eaten or put in the mask slot."
 	list_reagents = list(/datum/reagent/consumable/sugar = 1, /datum/reagent/medicine/tramadol = 4)
-	tastes = list("cough syrup" = 1)
+	tastes = list("cough syrup" = 1, "artificial sweetness" = 1)

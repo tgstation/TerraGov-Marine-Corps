@@ -4,7 +4,7 @@
 //	You do not need to raise this if you are adding new values that have sane defaults.
 //	Only raise this value when changing the meaning/format/name/layout of an existing value
 //	where you would want the updater procs below to run
-#define SAVEFILE_VERSION_MAX 42
+#define SAVEFILE_VERSION_MAX 43
 
 /datum/preferences/proc/savefile_needs_update(savefile/S)
 	var/savefile_version
@@ -46,6 +46,12 @@
 				key_bindings[key] += list(kb_path)
 
 		to_chat(parent, "<span class='userdanger'>Forced keybindings for say (T), me (M), ooc (O), looc (L) have been applied.</span>")
+
+	// Reset the xeno crit health alerts to default
+	if(current_version < 43)
+		WRITE_FILE(S["mute_xeno_health_alert_messages"], TRUE)
+		mute_xeno_health_alert_messages = TRUE
+		to_chat(parent, "<span class='userdanger'>Preferences for Mute xeno health alert messages have been reverted to default settings; these are now muted. Go into Preferences and set Mute xeno health alert messages to No if you wish to get xeno critical health alerts.</span>")
 
 //handles converting savefiles to new formats
 //MAKE SURE YOU KEEP THIS UP TO DATE!
@@ -134,6 +140,7 @@
 	READ_FILE(S["clientfps"], clientfps)
 	READ_FILE(S["tooltips"], tooltips)
 	READ_FILE(S["key_bindings"], key_bindings)
+	READ_FILE(S["custom_emotes"], custom_emotes)
 	READ_FILE(S["chem_macros"], chem_macros)
 
 	READ_FILE(S["mute_self_combat_messages"], mute_self_combat_messages)
@@ -177,6 +184,7 @@
 	tooltips		= sanitize_integer(tooltips, FALSE, TRUE, initial(tooltips))
 
 	key_bindings 	= sanitize_islist(key_bindings, list())
+	custom_emotes   = sanitize_is_full_emote_list(custom_emotes)
 	chem_macros 	= sanitize_islist(chem_macros, list())
 
 	mute_self_combat_messages	= sanitize_integer(mute_self_combat_messages, FALSE, TRUE, initial(mute_self_combat_messages))
@@ -223,6 +231,7 @@
 	windowflashing	= sanitize_integer(windowflashing, FALSE, TRUE, initial(windowflashing))
 	auto_fit_viewport= sanitize_integer(auto_fit_viewport, FALSE, TRUE, initial(auto_fit_viewport))
 	key_bindings	= sanitize_islist(key_bindings, list())
+	custom_emotes   = sanitize_is_full_emote_list(custom_emotes)
 	chem_macros		= sanitize_islist(chem_macros, list())
 	ghost_vision	= sanitize_integer(ghost_vision, FALSE, TRUE, initial(ghost_vision))
 	ghost_orbit		= sanitize_inlist(ghost_orbit, GLOB.ghost_orbits, initial(ghost_orbit))
@@ -260,6 +269,7 @@
 	WRITE_FILE(S["auto_fit_viewport"], auto_fit_viewport)
 	WRITE_FILE(S["menuoptions"], menuoptions)
 	WRITE_FILE(S["key_bindings"], key_bindings)
+	WRITE_FILE(S["custom_emotes"], custom_emotes)
 	WRITE_FILE(S["chem_macros"], chem_macros)
 	WRITE_FILE(S["ghost_vision"], ghost_vision)
 	WRITE_FILE(S["ghost_orbit"], ghost_orbit)
@@ -329,6 +339,11 @@
 	READ_FILE(S["g_hair"], g_hair)
 	READ_FILE(S["b_hair"], b_hair)
 
+	READ_FILE(S["grad_style"], grad_style)
+	READ_FILE(S["r_grad"], r_grad)
+	READ_FILE(S["g_grad"], g_grad)
+	READ_FILE(S["b_grad"], b_grad)
+
 	READ_FILE(S["f_style"], f_style)
 	READ_FILE(S["r_facial"], r_facial)
 	READ_FILE(S["g_facial"], g_facial)
@@ -353,13 +368,13 @@
 
 	be_special		= sanitize_integer(be_special, NONE, MAX_BITFLAG, initial(be_special))
 
-	synthetic_name	= reject_bad_name(synthetic_name)
+	synthetic_name	= reject_bad_name(synthetic_name, TRUE)
 	synthetic_type	= sanitize_inlist(synthetic_type, SYNTH_TYPES, initial(synthetic_type))
 	xeno_name		= reject_bad_name(xeno_name)
 	ai_name			= reject_bad_name(ai_name, TRUE)
 
-	real_name		= reject_bad_name(real_name)
-	random_name		= sanitize_integer(random_name, FALSE, TRUE, initial(random_name))
+	real_name		= reject_bad_name(real_name, TRUE)
+	random_name		= sanitize_integer(random_name, TRUE, TRUE, initial(random_name))
 	gender			= sanitize_gender(gender)
 	age				= sanitize_integer(age, AGE_MIN, AGE_MAX, initial(age))
 	species			= sanitize_inlist(species, GLOB.all_species, initial(species))
@@ -381,6 +396,11 @@
 	r_hair			= sanitize_integer(r_hair, 0, 255, initial(r_hair))
 	g_hair			= sanitize_integer(g_hair, 0, 255, initial(g_hair))
 	b_hair			= sanitize_integer(b_hair, 0, 255, initial(b_hair))
+
+	grad_style		= sanitize_inlist(grad_style, GLOB.hair_gradients_list, initial(grad_style))
+	r_grad			= sanitize_integer(r_grad, 0, 255, initial(r_grad))
+	g_grad			= sanitize_integer(g_grad, 0, 255, initial(g_grad))
+	b_grad			= sanitize_integer(b_grad, 0, 255, initial(b_grad))
 
 	f_style			= sanitize_inlist(f_style, GLOB.facial_hair_styles_list, initial(f_style))
 	r_facial		= sanitize_integer(r_facial, 0, 255, initial(r_facial))
@@ -431,12 +451,12 @@
 
 	be_special		= sanitize_integer(be_special, NONE, MAX_BITFLAG, initial(be_special))
 
-	synthetic_name	= reject_bad_name(synthetic_name)
+	synthetic_name	= reject_bad_name(synthetic_name, TRUE)
 	synthetic_type	= sanitize_inlist(synthetic_type, SYNTH_TYPES, initial(synthetic_type))
 	xeno_name		= reject_bad_name(xeno_name)
 	ai_name			= reject_bad_name(ai_name, TRUE)
 
-	real_name		= reject_bad_name(real_name)
+	real_name		= reject_bad_name(real_name, TRUE)
 	random_name		= sanitize_integer(random_name, FALSE, TRUE, initial(random_name))
 	gender			= sanitize_gender(gender)
 	age				= sanitize_integer(age, AGE_MIN, AGE_MAX, initial(age))
@@ -459,6 +479,11 @@
 	r_hair			= sanitize_integer(r_hair, 0, 255, initial(r_hair))
 	g_hair			= sanitize_integer(g_hair, 0, 255, initial(g_hair))
 	b_hair			= sanitize_integer(b_hair, 0, 255, initial(b_hair))
+
+	grad_style		= sanitize_inlist(grad_style, GLOB.hair_gradients_list, initial(grad_style))
+	r_grad			= sanitize_integer(r_grad, 0, 255, initial(r_grad))
+	g_grad			= sanitize_integer(g_grad, 0, 255, initial(g_grad))
+	b_grad			= sanitize_integer(b_grad, 0, 255, initial(b_grad))
 
 	f_style			= sanitize_inlist(f_style, GLOB.facial_hair_styles_list, initial(f_style))
 	r_facial		= sanitize_integer(r_facial, 0, 255, initial(r_facial))
@@ -509,6 +534,11 @@
 	WRITE_FILE(S["r_hair"], r_hair)
 	WRITE_FILE(S["g_hair"], g_hair)
 	WRITE_FILE(S["b_hair"], b_hair)
+
+	WRITE_FILE(S["grad_style"], grad_style)
+	WRITE_FILE(S["r_grad"], r_grad)
+	WRITE_FILE(S["g_grad"], g_grad)
+	WRITE_FILE(S["b_grad"], b_grad)
 
 	WRITE_FILE(S["f_style"], f_style)
 	WRITE_FILE(S["r_facial"], r_facial)

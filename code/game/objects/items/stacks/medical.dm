@@ -14,6 +14,9 @@
 		to_chat(user, "<span class='warning'>\The [src] cannot be applied to [M]!</span>")
 		return TRUE
 
+	if(M.status_flags & INCORPOREAL || user.status_flags & INCORPOREAL) //Incorporeal beings cannot attack or be attacked
+		return TRUE
+
 	if(!ishuman(user))
 		to_chat(user, "<span class='warning'>You don't have the dexterity to do this!</span>")
 		return TRUE
@@ -155,7 +158,7 @@
 	dir = NORTH
 	flags_atom = DIRLOCK
 
-/obj/item/stack/medical/advanced/update_icon()
+/obj/item/stack/medical/advanced/update_icon_state()
 	if(max_amount < 1 || amount > max_amount)
 		return
 	var/percentage = round(amount / max_amount) * 100
@@ -275,6 +278,8 @@
 	icon_state = "splint"
 	amount = 5
 	max_amount = 5
+	///How much splint health per medical skill is applied
+	var/applied_splint_health = 15
 
 
 /obj/item/stack/medical/splint/attack(mob/living/carbon/M, mob/user)
@@ -282,7 +287,7 @@
 	if(. == TRUE)
 		return TRUE
 
-	if(user.action_busy)
+	if(user.do_actions)
 		return
 
 	if(ishuman(M))
@@ -311,5 +316,5 @@
 			user.visible_message("<span class='warning'>[user] starts to apply [src] to their [limb].</span>",
 			"<span class='notice'>You start to apply [src] to your [limb], hold still.</span>")
 
-		if(affecting.apply_splints(src, user, M)) // Referenced in external organ helpers.
+		if(affecting.apply_splints(src, user == M ? (applied_splint_health*max(user.skills.getRating("medical") - 1, 0)) : applied_splint_health*user.skills.getRating("medical"), user, M)) // Referenced in external organ helpers.
 			use(1)

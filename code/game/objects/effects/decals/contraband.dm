@@ -67,7 +67,7 @@ obj/structure/sign/poster/New(var/serial)
 	if(ruined)
 		return
 	var/temp_loc = user.loc
-	switch(alert("Do I want to rip the poster from the wall?","You think...","Yes","No"))
+	switch(tgui_alert(user, "Do I want to rip the poster from the wall?", "You think...", list("Yes","No")))
 		if("Yes")
 			if(user.loc != temp_loc)
 				return
@@ -122,7 +122,6 @@ obj/structure/sign/poster/New(var/serial)
 		to_chat(user, "<span class='notice'>You place the poster!</span>")
 	else
 		D.roll_and_drop(temp_loc)
-	return
 
 /datum/poster
 	// Name suffix. Poster - [name]

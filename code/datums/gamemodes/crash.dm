@@ -1,14 +1,9 @@
 /datum/game_mode/infestation/crash
 	name = "Crash"
 	config_tag = "Crash"
-	required_players = 2
 	flags_round_type = MODE_INFESTATION|MODE_XENO_SPAWN_PROTECT
 	flags_landmarks = MODE_LANDMARK_SPAWN_XENO_TUNNELS|MODE_LANDMARK_SPAWN_MAP_ITEM
-
-	round_end_states = list(MODE_CRASH_X_MAJOR, MODE_CRASH_M_MAJOR, MODE_CRASH_X_MINOR, MODE_CRASH_M_MINOR, MODE_CRASH_DRAW_DEATH)
-	deploy_time_lock = 45 MINUTES
-
-	squads_max_number = 1
+	flags_xeno_abilities = ABILITY_CRASH
 
 	valid_job_types = list(
 		/datum/job/terragov/squad/standard = -1,
@@ -35,7 +30,7 @@
 	var/starting_squad = "Alpha"
 
 	var/larva_check_interval = 0
-	var/bioscan_interval = INFINITY
+	bioscan_interval = 0
 
 
 /datum/game_mode/infestation/crash/scale_roles()
@@ -87,6 +82,9 @@
 	. = ..()
 	for(var/i in GLOB.xeno_resin_silo_turfs)
 		new /obj/structure/resin/silo(i)
+	
+	for(var/obj/effect/landmark/corpsespawner/corpse AS in GLOB.corpse_landmarks_list)
+		corpse.create_mob(HEADBITE_DEATH)
 
 	for(var/i in GLOB.nuke_spawn_locs)
 		new /obj/machinery/nuclearbomb(i)
@@ -122,17 +120,10 @@
 
 
 /datum/game_mode/infestation/crash/process()
-	if(round_finished)
-		return
+	. = ..()
 
-	// Burrowed Larva
 	if(world.time > larva_check_interval)
 		balance_scales()
-
-	// Bioscan alerts
-	if(world.time > bioscan_interval)
-		announce_bioscans(TRUE, 0, FALSE, TRUE, TRUE)
-		bioscan_interval = world.time + 10 MINUTES
 
 /datum/game_mode/infestation/crash/proc/crash_shuttle(obj/docking_port/stationary/target)
 	shuttle_landed = TRUE
@@ -155,136 +146,26 @@
 	if(num_humans && planet_nuked == CRASH_NUKE_NONE && marines_evac == CRASH_EVAC_NONE && !force_end)
 		return FALSE
 
-	var/num_xenos = living_player_list[2]
+	if(planet_nuked == CRASH_NUKE_NONE)
+		if(!num_humans)
+			message_admins("Round finished: [MODE_INFESTATION_X_MAJOR]") //xenos wiped out ALL the marines
+			round_finished = MODE_INFESTATION_X_MAJOR
+			return TRUE
+		if(marines_evac == CRASH_EVAC_COMPLETED || (!length(GLOB.active_nuke_list) && marines_evac != CRASH_EVAC_NONE))
+			message_admins("Round finished: [MODE_INFESTATION_X_MINOR]") //marines evaced without a nuke
+			round_finished = MODE_INFESTATION_X_MINOR
+			return TRUE
 
-	// Draw, for all other reasons
-	var/victory_options = ((planet_nuked == CRASH_NUKE_NONE && marines_evac == CRASH_EVAC_NONE) && (num_humans == 0 && num_xenos == 0)) << 0
-	// XENO Major (All marines killed)
-	victory_options |= (planet_nuked == CRASH_NUKE_NONE && num_humans == 0 && num_xenos > 0) << 1
-	// XENO Minor (Marines evac'd for over 5 mins without a nuke)
-	victory_options |= (planet_nuked == CRASH_NUKE_NONE && (marines_evac == CRASH_EVAC_COMPLETED || (!length(GLOB.active_nuke_list) && marines_evac != CRASH_EVAC_NONE)))	<< 2
-	// Marine minor (Planet nuked, no one evac'd)
-	victory_options |= (planet_nuked == CRASH_NUKE_COMPLETED && marines_evac == CRASH_EVAC_NONE) << 3
-	// Marine Major (Planet nuked, marines evac, or they wiped the xenos out)
-	victory_options |= ((planet_nuked == CRASH_NUKE_COMPLETED && marines_evac != CRASH_EVAC_NONE) || (planet_nuked == CRASH_NUKE_NONE && num_xenos == 0)) << 4
+	if(planet_nuked == CRASH_NUKE_COMPLETED)
+		if(marines_evac == CRASH_EVAC_NONE)
+			message_admins("Round finished: [MODE_INFESTATION_M_MINOR]") //marines nuked the planet but didn't evac
+			round_finished = MODE_INFESTATION_M_MINOR
+			return TRUE
+		message_admins("Round finished: [MODE_INFESTATION_M_MAJOR]") //marines nuked the planet and managed to evac
+		round_finished = MODE_INFESTATION_M_MAJOR
+		return TRUE
+	return FALSE
 
-	switch(victory_options)
-		if(CRASH_DRAW)
-			message_admins("Round finished: [MODE_CRASH_DRAW_DEATH]")
-			round_finished = MODE_CRASH_DRAW_DEATH
-		if(CRASH_XENO_MAJOR)
-			message_admins("Round finished: [MODE_CRASH_X_MAJOR]")
-			round_finished = MODE_CRASH_X_MAJOR
-		if(CRASH_XENO_MINOR)
-			message_admins("Round finished: [MODE_CRASH_X_MINOR]")
-			round_finished = MODE_CRASH_X_MINOR
-		if(CRASH_MARINE_MINOR)
-			message_admins("Round finished: [MODE_CRASH_M_MINOR]")
-			round_finished = MODE_CRASH_M_MINOR
-		if(CRASH_MARINE_MAJOR)
-			message_admins("Round finished: [MODE_CRASH_M_MAJOR]")
-			round_finished = MODE_CRASH_M_MAJOR
-		else
-			if(!force_end)
-				return FALSE
-
-	return TRUE
-
-
-/datum/game_mode/infestation/crash/declare_completion()
-	. = ..()
-	to_chat(world, "<span class='round_header'>|[round_finished]|</span>")
-	to_chat(world, "<span class='round_body'>Thus ends the story of the brave men and women of the TGS Canterbury and their struggle on [SSmapping.configs[GROUND_MAP].map_name].</span>")
-
-	// Music
-	var/sound/xeno_track
-	var/sound/human_track
-	switch(round_finished)
-		if(MODE_CRASH_X_MAJOR)
-			xeno_track = pick('sound/theme/winning_triumph1.ogg','sound/theme/winning_triumph2.ogg')
-			human_track = pick('sound/theme/sad_loss1.ogg','sound/theme/sad_loss2.ogg')
-		if(MODE_CRASH_M_MAJOR)
-			xeno_track = pick('sound/theme/sad_loss1.ogg','sound/theme/sad_loss2.ogg')
-			human_track = pick('sound/theme/winning_triumph1.ogg','sound/theme/winning_triumph2.ogg')
-		if(MODE_CRASH_X_MINOR)
-			xeno_track = pick('sound/theme/neutral_hopeful1.ogg','sound/theme/neutral_hopeful2.ogg')
-			human_track = pick('sound/theme/neutral_melancholy1.ogg','sound/theme/neutral_melancholy2.ogg')
-		if(MODE_CRASH_M_MINOR)
-			xeno_track = pick('sound/theme/neutral_melancholy1.ogg','sound/theme/neutral_melancholy2.ogg')
-			human_track = pick('sound/theme/neutral_hopeful1.ogg','sound/theme/neutral_hopeful2.ogg')
-		if(MODE_CRASH_DRAW_DEATH)
-			xeno_track = pick('sound/theme/nuclear_detonation1.ogg','sound/theme/nuclear_detonation2.ogg')
-			human_track = pick('sound/theme/nuclear_detonation1.ogg','sound/theme/nuclear_detonation2.ogg')
-
-	xeno_track = sound(xeno_track)
-	human_track = sound(human_track)
-	human_track.channel = CHANNEL_CINEMATIC
-	xeno_track.channel = CHANNEL_CINEMATIC
-
-	for(var/i in GLOB.xeno_mob_list)
-		var/mob/M = i
-		SEND_SOUND(M, xeno_track)
-
-	for(var/i in GLOB.human_mob_list)
-		var/mob/M = i
-		SEND_SOUND(M, human_track)
-
-	var/sound/ghost_sound = sound(pick('sound/misc/gone_to_plaid.ogg', 'sound/misc/good_is_dumb.ogg', 'sound/misc/hardon.ogg', 'sound/misc/surrounded_by_assholes.ogg', 'sound/misc/outstanding_marines.ogg', 'sound/misc/asses_kicked.ogg'), channel = CHANNEL_CINEMATIC)
-	for(var/i in GLOB.observer_list)
-		var/mob/M = i
-		if(ishuman(M.mind.current))
-			SEND_SOUND(M, human_track)
-			continue
-
-		if(isxeno(M.mind.current))
-			SEND_SOUND(M, xeno_track)
-			continue
-
-		SEND_SOUND(M, ghost_sound)
-
-
-	log_game("[round_finished]\nGame mode: [name]\nRound time: [duration2text()]\nEnd round player population: [length(GLOB.clients)]\nTotal xenos spawned: [GLOB.round_statistics.total_xenos_created]\nTotal humans spawned: [GLOB.round_statistics.total_humans_created]")
-
-	announce_medal_awards()
-	announce_round_stats()
-
-
-
-/datum/game_mode/infestation/crash/attempt_to_join_as_larva(mob/xeno_candidate)
-	var/datum/hive_status/normal/HS = GLOB.hive_datums[XENO_HIVE_NORMAL]
-	return HS.attempt_to_spawn_larva(xeno_candidate)
-
-
-/datum/game_mode/infestation/crash/spawn_larva(mob/xeno_candidate, mob/living/carbon/xenomorph/mother)
-	var/datum/hive_status/normal/HS = GLOB.hive_datums[XENO_HIVE_NORMAL]
-	return HS.spawn_larva(xeno_candidate, mother)
-
-
-/datum/game_mode/infestation/crash/mode_new_player_panel(mob/new_player/NP)
-
-	var/output = "<div align='center'>"
-	output += "<br><i>You are part of the <b>TerraGov Marine Corps</b>, a military branch of the TerraGov council.</i>"
-	output +="<hr>"
-	output += "<p><a href='byond://?src=[REF(NP)];lobby_choice=show_preferences'>Setup Character</A> | <a href='byond://?src=[REF(NP)];lobby_choice=lore'>Background</A><br><br><a href='byond://?src=[REF(NP)];lobby_choice=observe'>Observe</A></p>"
-	output +="<hr>"
-	output += "<center><p>Current character: <b>[NP.client ? NP.client.prefs.real_name : "Unknown User"]</b></p></center>"
-
-	if(SSticker.current_state <= GAME_STATE_PREGAME)
-		output += "<p>\[ [NP.ready? "<b>Ready</b>":"<a href='byond://?src=\ref[src];lobby_choice=ready'>Ready</a>"] | [NP.ready? "<a href='byond://?src=[REF(NP)];lobby_choice=ready'>Not Ready</a>":"<b>Not Ready</b>"] \]</p>"
-	else
-		output += "<a href='byond://?src=[REF(NP)];lobby_choice=manifest'>View the Crew Manifest</A><br>"
-		output += "<p><a href='byond://?src=[REF(NP)];lobby_choice=late_join'>Join the Game!</A></p>"
-
-	output += NP.playerpolls()
-
-	output += "</div>"
-
-	var/datum/browser/popup = new(NP, "playersetup", "<div align='center'>Welcome to TGMC[SSmapping?.configs ? " - [SSmapping.configs[SHIP_MAP].map_name]" : ""]</div>", 300, 375)
-	popup.set_window_options("can_close=0")
-	popup.set_content(output)
-	popup.open(FALSE)
-
-	return TRUE
 
 /datum/game_mode/infestation/crash/proc/on_nuclear_diffuse(obj/machinery/nuclearbomb/bomb, mob/living/carbon/xenomorph/X)
 	SIGNAL_HANDLER
@@ -300,11 +181,12 @@
 	planet_nuked = CRASH_NUKE_INPROGRESS
 	INVOKE_ASYNC(src, .proc/play_cinematic, z_level)
 
-/datum/game_mode/infestation/crash/proc/on_nuke_started(obj/machinery/nuclearbomb/nuke)
+/datum/game_mode/infestation/crash/proc/on_nuke_started(datum/source, obj/machinery/nuclearbomb/nuke)
 	SIGNAL_HANDLER
 	var/datum/hive_status/normal/HS = GLOB.hive_datums[XENO_HIVE_NORMAL]
 	var/area_name = get_area_name(nuke)
 	HS.xeno_message("An overwhelming wave of dread ripples throughout the hive... A nuke has been activated[area_name ? " in [area_name]":""]!")
+	HS.set_all_xeno_trackers(nuke)
 
 /datum/game_mode/infestation/crash/proc/play_cinematic(z_level)
 	GLOB.enter_allowed = FALSE

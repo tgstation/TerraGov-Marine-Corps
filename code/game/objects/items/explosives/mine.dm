@@ -10,7 +10,7 @@ Stepping directly on the mine will also blow it up
 	icon = 'icons/obj/items/grenade.dmi'
 	icon_state = "m20"
 	force = 5
-	w_class = WEIGHT_CLASS_TINY
+	w_class = WEIGHT_CLASS_SMALL
 	throwforce = 5
 	throw_range = 6
 	throw_speed = 3
@@ -106,6 +106,8 @@ Stepping directly on the mine will also blow it up
 	. = ..()
 	if(!isliving(A))
 		return
+	if(CHECK_MULTIPLE_BITFIELDS(A.flags_pass, HOVERING))
+		return
 	var/mob/living/L = A
 	if(L.lying_angle) ///so dragged corpses don't trigger mines.
 		return
@@ -130,13 +132,15 @@ Stepping directly on the mine will also blow it up
 	return TRUE
 
 /// Alien attacks trigger the explosive to instantly detonate
-/obj/item/explosive/mine/attack_alien(mob/living/carbon/xenomorph/M)
+/obj/item/explosive/mine/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
+	if(X.status_flags & INCORPOREAL)
+		return FALSE
 	if(triggered) //Mine is already set to go off
 		return
 
-	if(M.a_intent == INTENT_HELP)
+	if(X.a_intent == INTENT_HELP)
 		return
-	M.visible_message("<span class='danger'>[M] has slashed [src]!</span>", \
+	X.visible_message("<span class='danger'>[X] has slashed [src]!</span>", \
 	"<span class='danger'>We slash [src]!</span>")
 	playsound(loc, 'sound/weapons/slice.ogg', 25, 1)
 	INVOKE_ASYNC(src, .proc/trigger_explosion)
@@ -168,6 +172,9 @@ Stepping directly on the mine will also blow it up
 	. = ..()
 	if(!linked_mine)
 		qdel(src)
+		return
+	
+	if(CHECK_MULTIPLE_BITFIELDS(A.flags_pass, HOVERING))
 		return
 
 	if(linked_mine.triggered) //Mine is already set to go off

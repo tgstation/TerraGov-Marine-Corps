@@ -96,7 +96,6 @@
 	light_range = 2
 	light_power = 0.6
 	light_color = LIGHT_COLOR_PURPLE
-	light_on = FALSE
 	var/cutting_sound = 'sound/items/welder2.ogg'
 	var/powered = FALSE
 	var/dirt_amt_per_dig = 5
@@ -296,7 +295,7 @@
 
 
 /obj/item/tool/pickaxe/plasmacutter/afterattack(atom/target, mob/user, proximity)
-	if(!proximity || user.action_busy)
+	if(!proximity || user.do_actions)
 		return
 
 	if(isturf(target))//Melting snow with the plasma cutter.
@@ -328,8 +327,8 @@
 
 
 /obj/item/tool/pickaxe/plasmacutter/attack_obj(obj/O, mob/living/user)
-	if(!powered || user.action_busy || CHECK_BITFIELD(O.resistance_flags, INDESTRUCTIBLE))
-		. = ..()
+	if(!powered || user.do_actions || CHECK_BITFIELD(O.resistance_flags, INDESTRUCTIBLE))
+		..()
 		return TRUE
 
 	if(!start_cut(user, O.name, O))

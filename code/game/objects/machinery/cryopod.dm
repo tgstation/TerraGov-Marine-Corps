@@ -316,12 +316,6 @@
 		items = I.store_in_cryo(items)
 	return ..()
 
-/obj/item/clothing/tie/holster/store_in_cryo(list/items, nullspace_it = TRUE)
-	if(holstered)
-		items = holstered.store_in_cryo(items)
-		holstered = null
-		update_icon()
-
 /obj/machinery/cryopod/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
@@ -345,12 +339,12 @@
 		to_chat(user, "<span class='warning'>[src] immediately rejects [M]. [M.p_they(TRUE)] passed away!</span>")
 		return
 
-	if(!(ishuman(M) || ismonkey(M)))
+	if(!ishuman(M))
 		to_chat(user, "<span class='warning'>There is no way [src] will accept [M]!</span>")
 		return
 
 	if(M.client)
-		if(alert(M, "Would you like to enter cryosleep?", , "Yes", "No") == "Yes")
+		if(tgui_alert(M, "Would you like to enter cryosleep?", null, list("Yes", "No")) == "Yes")
 			if(QDELETED(M) || !(G?.grabbed_thing == M))
 				return
 		else
@@ -374,7 +368,7 @@
 	go_out()
 
 /obj/machinery/cryopod/proc/move_inside_wrapper(mob/living/M, mob/user)
-	if(user.stat != CONSCIOUS || !(ishuman(M) || ismonkey(M)))
+	if(user.stat != CONSCIOUS || !ishuman(M))
 		return
 
 	if(!QDELETED(occupant))
@@ -397,6 +391,10 @@
 
 /obj/machinery/cryopod/proc/climb_in(mob/living/carbon/user, mob/helper)
 	if(helper && user != helper)
+		if(user.stat == DEAD)
+			to_chat(helper, "<span class='notice'>[user] is dead!</span>")
+			return
+
 		if(!user.client && user.afk_status == MOB_RECENTLY_DISCONNECTED)
 			to_chat(helper, "<span class='notice'>You should wait another [round((timeleft(user.afk_timer_id) * 0.1) / 60, 2)] minutes before they are ready to enter cryosleep.</span>")
 			return

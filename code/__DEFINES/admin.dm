@@ -40,8 +40,9 @@
 #define R_SOUND			(1<<11)
 #define R_SPAWN			(1<<12)
 #define R_DBRANKS		(1<<13)
+#define R_RUNTIME		(1<<14)
 
-#define R_EVERYTHING 	(1<<14)-1 //the sum of all other rank permissions, used for +EVERYTHING
+#define R_EVERYTHING 	(1<<15)-1 //the sum of all other rank permissions, used for +EVERYTHING
 
 #define ADMIN_QUE(user) "(<a href='?_src_=holder;[HrefToken(TRUE)];moreinfo=[REF(user)]'>?</a>)"
 #define ADMIN_FLW(user) "(<a href='?_src_=holder;[HrefToken(TRUE)];observefollow=[REF(user)]'>FLW</a>)"
@@ -79,6 +80,8 @@
 #define SPAM_TRIGGER_AUTOMUTE	10	//Number of messages required per the time period before the spam-prevention will automute you
 #define SPAM_TRIGGER_WEIGHT_WARNING 2.5 //The weight required per the time period before the spam-prevention will warn you
 #define SPAM_TRIGGER_WEIGHT_AUTOMUTE 4 //The weight required per the time period before the spam-prevention will automute you
+
+#define MAX_LENGTH_REQ_REASON 250
 
 ///Max length of a keypress command before it's considered to be a forged packet/bogus command
 #define MAX_KEYPRESS_COMMANDLENGTH 16

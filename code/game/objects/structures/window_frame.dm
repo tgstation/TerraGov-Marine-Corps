@@ -7,6 +7,7 @@
 	layer = WINDOW_FRAME_LAYER
 	density = TRUE
 	throwpass = TRUE
+	resistance_flags = DROPSHIP_IMMUNE
 	climbable = 1 //Small enough to vault over, but you do need to vault over it
 	climb_delay = 15 //One second and a half, gotta vault fast
 	var/obj/item/stack/sheet/sheet_type = /obj/item/stack/sheet/glass/reinforced
@@ -28,12 +29,10 @@
 	. = ..()
 	if(climbable && CHECK_BITFIELD(mover.flags_pass, PASSTABLE))
 		return TRUE
+
 	var/obj/structure/S = locate(/obj/structure) in get_turf(mover)
 	if(S?.climbable)
 		return TRUE
-
-/obj/structure/window_frame/CheckExit(atom/movable/O as mob|obj, target as turf)
-	return TRUE
 
 /obj/structure/window_frame/Initialize(mapload, from_window_shatter)
 	. = ..()
@@ -97,7 +96,7 @@
 			to_chat(user, "<span class='warning'>[M] needs to be next to [src].</span>")
 			return
 
-		if(user.action_busy)
+		if(user.do_actions)
 			return
 
 		user.visible_message("<span class='notice'>[user] starts pulling [M] onto [src].</span>",

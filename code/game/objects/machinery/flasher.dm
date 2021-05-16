@@ -33,8 +33,8 @@
 	density = TRUE
 
 
-/obj/machinery/flasher/update_icon()
-	if ( !(machine_stat & NOPOWER) )
+/obj/machinery/flasher/update_icon_state()
+	if(!(machine_stat & NOPOWER))
 		icon_state = "[base_state]1"
 	else
 		icon_state = "[base_state]1-p"
@@ -118,7 +118,7 @@
 /obj/machinery/flasher_button/attack_ai(mob/user as mob)
 	return attack_hand(user)
 
-/obj/machinery/flasher_button/attack_paw(mob/living/carbon/monkey/user)
+/obj/machinery/flasher_button/attack_paw(mob/living/carbon/human/user)
 	return attack_hand(user)
 
 /obj/machinery/flasher_button/attackby(obj/item/I, mob/user, params)
@@ -152,4 +152,3 @@
 	icon_state = "launcherbtt"
 	active = 0
 
-	return

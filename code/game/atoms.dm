@@ -57,14 +57,18 @@
 	///Hexadecimal RGB string representing the colour of the light. White by default.
 	var/light_color = COLOR_WHITE
 	///Boolean variable for toggleable lights. Has no effect without the proper light_system, light_range and light_power values.
-	var/light_on = TRUE
+	var/light_on = FALSE
 	///Our light source. Don't fuck with this directly unless you have a good reason!
 	var/tmp/datum/light_source/light
 	///Any light sources that are "inside" of us, for example, if src here was a mob that's carrying a flashlight, that flashlight's light source would be part of this list.
 	var/tmp/list/light_sources
 
-	// popup chat messages
+	///The config type to use for greyscaled sprites. Both this and greyscale_colors must be assigned to work.
+	var/greyscale_config
+	///A string of hex format colors to be used by greyscale sprites, ex: "#0054aa#badcff"
+	var/greyscale_colors
 
+	// popup chat messages
 	/// Last name used to calculate a color for the chatmessage overlays
 	var/chat_color_name
 	/// Last color calculated for the the chatmessage overlays
@@ -73,6 +77,11 @@
 	var/chat_color_darkened
 	///HUD images that this mob can provide.
 	var/list/hud_possible
+	///Reference to atom being orbited
+	var/atom/orbit_target
+
+	///The color this atom will be if we choose to draw it on the minimap
+	var/minimap_color = MINIMAP_SOLID
 
 /*
 We actually care what this returns, since it can return different directives.
@@ -132,13 +141,11 @@ directive is properly returned.
 
 /atom/proc/Bumped(atom/movable/AM)
 	SEND_SIGNAL(src, COMSIG_ATOM_BUMPED, AM)
-	return
+
 
 ///Can the mover object pass this atom, while heading for the target turf
 /atom/proc/CanPass(atom/movable/mover, turf/target)
 	SHOULD_CALL_PARENT(TRUE)
-	if(mover.status_flags & INCORPOREAL)
-		return TRUE
 	. = CanAllowThrough(mover, target)
 	// This is cheaper than calling the proc every time since most things dont override CanPassThrough
 	if(!mover.generic_canpass)
@@ -149,12 +156,12 @@ directive is properly returned.
 	SHOULD_CALL_PARENT(TRUE)
 	return !density
 
+/// Returns true or false to allow the mover to move out of the atom
 /atom/proc/CheckExit(atom/movable/mover, turf/target)
-	if(!density || !(flags_atom & ON_BORDER) || !(get_dir(mover.loc, target) & dir))
-		return 1
-	else
-		return 0
-
+	SHOULD_CALL_PARENT(TRUE)
+	if(!density || !(flags_atom & ON_BORDER) || !(get_dir(mover.loc, target) & dir) || (mover.status_flags & INCORPOREAL))
+		return TRUE
+	return FALSE
 
 // Convenience proc for reagents handling.
 /atom/proc/is_open_container()
@@ -320,6 +327,33 @@ directive is properly returned.
 	. = list()
 	SEND_SIGNAL(src, COMSIG_ATOM_UPDATE_OVERLAYS, .)
 
+/// Checks if the colors given are different and if so causes a greyscale icon update
+/// The colors argument can be either a list or the full color string
+/atom/proc/set_greyscale_colors(list/colors, update=TRUE)
+	SHOULD_CALL_PARENT(TRUE)
+	if(istype(colors))
+		colors = colors.Join("")
+	if(greyscale_colors == colors)
+		return
+	greyscale_colors = colors
+	if(!greyscale_config)
+		return
+	if(update)
+		update_greyscale()
+
+/// Checks if the greyscale config given is different and if so causes a greyscale icon update
+/atom/proc/set_greyscale_config(new_config, update=TRUE)
+	if(greyscale_config == new_config)
+		return
+	greyscale_config = new_config
+	if(update)
+		update_greyscale()
+
+/// Checks if this atom uses the GAS system and if so updates the icon
+/atom/proc/update_greyscale()
+	if(greyscale_config && greyscale_colors)
+		icon = SSgreyscale.GetColoredIconByType(greyscale_config, greyscale_colors)
+
 // called by mobs when e.g. having the atom as their machine, pulledby, loc (AKA mob being inside the atom) or buckled var set.
 // see code/modules/mob/mob_movement.dm for more.
 /atom/proc/relaymove()
@@ -333,10 +367,10 @@ directive is properly returned.
 /atom/proc/fire_act()
 	return
 
+
 /atom/proc/hitby(atom/movable/AM)
 	if(density)
 		AM.set_throwing(FALSE)
-	return
 
 
 /atom/proc/GenerateTag()
@@ -482,6 +516,29 @@ Proc for attack log creation, because really why not
 		var/list/arguments = data.Copy()
 		arguments -= "priority"
 		filters += filter(arglist(arguments))
+	UNSETEMPTY(filter_data)
+
+/atom/proc/transition_filter(name, time, list/new_params, easing, loop)
+	var/filter = get_filter(name)
+	if(!filter)
+		return
+
+	var/list/old_filter_data = filter_data[name]
+
+	var/list/params = old_filter_data.Copy()
+	for(var/thing in new_params)
+		params[thing] = new_params[thing]
+
+	animate(filter, new_params, time = time, easing = easing, loop = loop)
+	for(var/param in params)
+		filter_data[name][param] = params[param]
+
+/atom/proc/change_filter_priority(name, new_priority)
+	if(!filter_data || !filter_data[name])
+		return
+
+	filter_data[name]["priority"] = new_priority
+	update_filters()
 
 /obj/item/update_filters()
 	. = ..()
@@ -495,10 +552,19 @@ Proc for attack log creation, because really why not
 		return filters[filter_data.Find(name)]
 
 ///removes a filter from the atom
-/atom/proc/remove_filter(name)
-	if(filter_data && filter_data[name])
-		filter_data -= name
-		update_filters()
+/atom/proc/remove_filter(name_or_names)
+	if(!filter_data)
+		return
+	var/list/names = islist(name_or_names) ? name_or_names : list(name_or_names)
+
+	for(var/name in names)
+		if(filter_data[name])
+			filter_data -= name
+	update_filters()
+
+/atom/proc/clear_filters()
+	filter_data = null
+	filters = null
 
 /*
 	Atom Colour Priority System
@@ -598,6 +664,8 @@ Proc for attack log creation, because really why not
 		stack_trace("Warning: [src]([type]) initialized multiple times!")
 	flags_atom |= INITIALIZED
 
+	update_greyscale()
+
 	if(light_system == STATIC_LIGHT && light_power && light_range)
 		update_light()
 	if(loc)
@@ -635,7 +703,8 @@ Proc for attack log creation, because really why not
 		.["Jump to"] = "?_src_=holder;[HrefToken()];observecoordjump=1;X=[curturf.x];Y=[curturf.y];Z=[curturf.z]"
 	.["Modify Transform"] = "?_src_=vars;[HrefToken()];modtransform=[REF(src)]"
 	.["Add reagent"] = "?_src_=vars;[HrefToken()];addreagent=[REF(src)]"
-
+	.["Modify Filters"] = "?_src_=vars;[HrefToken()];filteredit=[REF(src)]"
+	.["Modify Greyscale Colors"] = "?_src_=vars;[HrefToken()];modify_greyscale=[REF(src)]"
 
 /atom/Entered(atom/movable/AM, atom/oldloc)
 	SEND_SIGNAL(src, COMSIG_ATOM_ENTERED, AM, oldloc)
@@ -799,3 +868,50 @@ Proc for attack log creation, because really why not
 	hud_list = new
 	for(var/hud in hud_possible) //Providing huds.
 		hud_list[hud] = image('icons/mob/hud.dmi', src, "")
+
+/**
+ * If this object has lights, turn it on/off.
+ * user: the mob actioning this
+ * toggle_on: if TRUE, will try to turn ON the light. Opposite if FALSE
+ * cooldown: how long until you can toggle the light on/off again
+ * sparks: if a spark effect will be generated
+ * forced: if TRUE and toggle_on = FALSE, will cause the light to turn on in cooldown second
+ * originated_turf: if not null, will check if the obj_turf is closer than distance_max to originated_turf, and the proc will return if not
+ * distance_max: used to check if originated_turf is close to obj.loc
+*/
+/atom/proc/turn_light(mob/user = null, toggle_on , cooldown = 1 SECONDS, sparks = FALSE, forced = FALSE, originated_turf = null, distance_max = 0)
+	if(originated_turf && (get_dist(originated_turf, loc)<= distance_max))
+		return OUT_OF_REACH
+	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_LIGHT) || forced)
+		return STILL_ON_COOLDOWN
+	TIMER_COOLDOWN_START(src, COOLDOWN_LIGHT, cooldown)
+	if(forced & !toggle_on) //Is true when turn light is called by nightfall
+		addtimer(CALLBACK(src, .proc/reset_light), cooldown + 1)
+	if(sparks)
+		var/datum/effect_system/spark_spread/spark_system = new
+		spark_system.set_up(5, 0, src)
+		spark_system.attach(src)
+		spark_system.start(src)
+	return CHECKS_PASSED
+
+///Turn on the light, should be called by a timer
+/atom/proc/reset_light()
+	turn_light(null, TRUE)
+
+/**
+ * Recursive getter method to return a list of all ghosts orbitting this atom
+ *
+ * This will work fine without manually passing arguments.
+ */
+/atom/proc/get_all_orbiters(list/processed, source = TRUE)
+	var/list/output = list()
+	if (!processed)
+		processed = list()
+	if (src in processed)
+		return output
+	if (!source)
+		output += src
+	processed += src
+	for (var/atom/atom_orbiter AS in orbiters?.orbiters)
+		output += atom_orbiter.get_all_orbiters(processed, source = FALSE)
+	return output

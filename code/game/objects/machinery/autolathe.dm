@@ -107,7 +107,7 @@
 	popup.set_content(dat)
 	popup.open()
 
-/obj/machinery/autolathe/update_icon()
+/obj/machinery/autolathe/update_icon_state()
 	icon_state = (CHECK_BITFIELD(machine_stat, PANEL_OPEN) ? "autolathe_t": "autolathe")
 
 /obj/machinery/autolathe/attackby(obj/item/I, mob/user, params)
@@ -207,9 +207,9 @@
 		return
 
 	if(href_list["change_category"])
-
-		var/choice = input("Which category do you wish to display?") as null|anything in GLOB.autolathe_categories+"All"
-		if(!choice) return
+		var/choice = tgui_input_list(usr, "Which category do you wish to display?", null, GLOB.autolathe_categories+"All")
+		if(!choice)
+			return
 		show_category = choice
 
 	if(href_list["make"] && GLOB.autolathe_recipes)

@@ -99,14 +99,25 @@
 	config_entry_value = 8
 	min_val = 1
 
+/datum/config_entry/number/hunt_larvapoints_required
+	config_entry_value = 7
+	min_val = 1
+
 /datum/config_entry/keyed_list/lobby_music
 	key_mode = KEY_MODE_TEXT
 	value_mode = VALUE_MODE_TEXT
 
-/datum/config_entry/flag/distress_ert_allowed
+/datum/config_entry/flag/infestation_ert_allowed
 	config_entry_value = TRUE
 
 /datum/config_entry/flag/events_disallowed
 	config_entry_value = FALSE
 
+/datum/config_entry/flag/monitor_disallowed
+	config_entry_value = FALSE
+
 /datum/config_entry/flag/aggressive_changelog
+
+///If TRUE, the evo proc will consider spawn roony instead of runner on evo
+/datum/config_entry/flag/roony
+	config_entry_value = FALSE

@@ -23,8 +23,8 @@
 
 	var/health_deficiency = max((maxHealth - health), staminaloss)
 
-	if(health_deficiency >= 40)
-		add_movespeed_modifier(MOVESPEED_ID_DAMAGE_SLOWDOWN, TRUE, 0, NONE, TRUE, health_deficiency / 25)
+	if(health_deficiency >= 50)
+		add_movespeed_modifier(MOVESPEED_ID_DAMAGE_SLOWDOWN, TRUE, 0, NONE, TRUE, health_deficiency / 50)
 	else
 		remove_movespeed_modifier(MOVESPEED_ID_DAMAGE_SLOWDOWN)
 
@@ -341,9 +341,9 @@ In most cases it makes more sense to use apply_damage() instead! And make sure t
 
 	if(protection_aura)
 		if(brute)
-			brute = round(brute * ((15 - protection_aura) / 15))
+			brute = round(brute * ((10 - protection_aura) / 10))
 		if(burn)
-			burn = round(burn * ((15 - protection_aura) / 15))
+			burn = round(burn * ((10 - protection_aura) / 10))
 
 	SEND_SIGNAL(src, COMSIG_HUMAN_DAMAGE_TAKEN, brute + burn)
 
@@ -369,7 +369,10 @@ In most cases it makes more sense to use apply_damage() instead! And make sure t
 		return //we don't wanna kill gods...or do we ?
 
 	var/list/datum/limb/parts = get_damageable_limbs()
-	damage = damage / length(parts) //damage all limbs equally.
+	var/partcount = length(parts)
+	if(!partcount)
+		return
+	damage = damage / partcount //damage all limbs equally.
 	while(parts.len)
 		var/datum/limb/picked = pick_n_take(parts)
 		apply_damage(damage, damagetype, picked, run_armor_check(picked, armortype), sharp, edge, updating_health)

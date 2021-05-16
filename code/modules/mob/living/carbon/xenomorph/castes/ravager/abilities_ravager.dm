@@ -89,6 +89,7 @@
 	cooldown_timer = 6 SECONDS
 	keybind_flags = XACT_KEYBIND_USE_ABILITY | XACT_IGNORE_SELECTED_ABILITY
 	keybind_signal = COMSIG_XENOABILITY_RAVAGE
+	alternate_keybind_signal = COMSIG_XENOABILITY_RAVAGE_SELECT
 
 /datum/action/xeno_action/activable/ravage/on_cooldown_finish()
 	to_chat(owner, "<span class='xenodanger'>We gather enough strength to Ravage again.</span>")
@@ -114,7 +115,7 @@
 		if(target_facing != X.dir && target_facing != turn(X.dir,45) && target_facing != turn(X.dir,-45) ) //Have to be actually facing the target
 			continue
 		if(H.stat != DEAD && !isnestedhost(H)) //No bully
-			H.attack_alien(X, X.xeno_caste.melee_damage * 0.25, FALSE, TRUE, FALSE, TRUE, INTENT_HARM)
+			H.attack_alien_harm(X, X.xeno_caste.melee_damage * 0.25, FALSE, TRUE, FALSE, TRUE)
 			victims++
 			step_away(H, X, sweep_range, 2)
 			shake_camera(H, 2, 1)
