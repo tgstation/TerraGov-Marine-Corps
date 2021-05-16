@@ -1,0 +1,4 @@
+author: "BraveMole"
+delete-after: True
+changes: 
+  - balance: "Most surplus supplies have now unlimited stock, rather that gigantic one (like t12 ammo) or arbitrairy one (like 10 webbings?)"
