@@ -37,6 +37,9 @@
 	for(var/i in GLOB.xeno_turret_turfs)
 		new /obj/structure/resin/xeno_turret(i)
 
+	for(var/i in GLOB.survivor_generator_spawn)
+		new /obj/machinery/power/geothermal/survivor
+
 
 /datum/game_mode/infestation/distress/scale_roles(initial_players_assigned)
 	. = ..()

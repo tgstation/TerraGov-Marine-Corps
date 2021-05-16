@@ -13,6 +13,7 @@ GLOBAL_LIST_EMPTY(disposal_list)
 GLOBAL_LIST_EMPTY(ladder_list)
 GLOBAL_LIST_EMPTY(brig_closets)
 GLOBAL_LIST_EMPTY(supply_pad_list)
+GLOBAL_LIST_EMPTY(survivor_generator)
 
 GLOBAL_LIST_EMPTY(xeno_tunnels)						//list of all /obj/structure/tunnel
 GLOBAL_LIST_EMPTY(machines)					        //NOTE: this is a list of ALL machines now. The processing machines list is SSmachine.processing !

@@ -309,6 +309,10 @@
 	name = "\improper Reinforced Reactor Turbine"
 	is_corruptible = FALSE
 
+/obj/machinery/power/geothermal/survivor
+	name = "\improper Survival Reactor Turbine"
+	corrupt_point_factor = 0.6
+
 #undef GEOTHERMAL_NO_DAMAGE
 #undef GEOTHERMAL_LIGHT_DAMAGE
 #undef GEOTHERMAL_MEDIUM_DAMAGE

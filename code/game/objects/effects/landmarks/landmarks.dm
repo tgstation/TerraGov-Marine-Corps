@@ -144,6 +144,15 @@
 	..()
 	return INITIALIZE_HINT_QDEL
 
+/obj/effect/landmark/survivor_generator_spawn
+	name = "survivor generator spawn landmark"
+	icon_state = "tdome_observer"
+
+/obj/effect/landmark/survivor_generator_spawn/Initialize()
+	GLOB.survivor_generator += loc
+	. = ..()
+	return INITIALIZE_HINT_QDEL
+
 
 /obj/effect/landmark/nuke_spawn
 	name = "nuke spawn landmark"
