@@ -1794,7 +1794,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 
 /obj/item/attachable/barrel_mod/mateba_longbarrel
 	name = "Mateba long barrel"
-	desc = "A longer barrel for the Mateba, makes the gun more accuracy and longer sjad and have a higher impact"
+	desc = "A longer barrel for the Mateba, makes the gun more accurate and deal more damage on impact."
 	icon_state = "mateba_barrel"
 	attach_icon = "mateba_barrel"
 	damage_mod = 0.20
