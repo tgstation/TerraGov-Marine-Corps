@@ -73,6 +73,11 @@
 	if(tgui_Topic(href_list))
 		return
 
+	if(href_list["reload_tguipanel"])
+		nuke_chat()
+	if(href_list["reload_statbrowser"])
+		src << browse(file('html/statbrowser.html'), "window=statbrowser")
+
 	//Logs all hrefs.
 	log_href("[src] (usr:[usr]\[[COORD(usr)]\]) : [hsrc ? "[hsrc] " : ""][href]")
 
@@ -379,8 +384,6 @@
 	return QDEL_HINT_HARDDEL_NOW
 
 /client/Click(atom/object, atom/location, control, params)
-	if(!control)
-		return
 	if(click_intercepted)
 		if(click_intercepted >= world.time)
 			click_intercepted = 0 //Reset and return. Next click should work, but not this one.
