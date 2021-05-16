@@ -525,7 +525,7 @@
 				return
 
 			var/datum/vending_product/R = locate(params["vend"]) in product_records | hidden_records | coin_records
-			if(!istype(R) || !R.product_path || R.amount <= 0)
+			if(!istype(R) || !R.product_path || R.amount == 0)
 				return
 
 			if(R.price == null)
