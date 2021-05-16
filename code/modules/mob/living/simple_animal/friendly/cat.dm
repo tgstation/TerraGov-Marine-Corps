@@ -54,14 +54,6 @@
 	gender = FEMALE
 
 
-/mob/living/simple_animal/cat/Jones
-	name = "Jones"
-	real_name = "Jones"
-	desc = "Old and grumpy cat."
-	icon_state = "cat2"
-	icon_living = "cat2"
-	icon_dead = "cat2_dead"
-
 /mob/living/simple_animal/cat/Life()
 	if(!stat && !buckled && !client)
 		if(prob(1))
