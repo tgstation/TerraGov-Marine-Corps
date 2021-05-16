@@ -37,7 +37,7 @@
 	for(var/i in GLOB.xeno_turret_turfs)
 		new /obj/structure/resin/xeno_turret(i)
 
-	for(var/i in GLOB.survivor_generator_spawn)
+	for(var/i in GLOB.survivor_generator)
 		new /obj/machinery/power/geothermal/survivor
 
 

@@ -34,7 +34,7 @@
 		new /obj/structure/resin/silo(i)
 	addtimer(CALLBACK(src, .proc/announce_bioscans, FALSE, 1), 5 MINUTES)
 
-	for(var/i in GLOB.survivor_generator_spawn)
+	for(var/i in GLOB.survivor_generator)
 		new /obj/machinery/power/geothermal/survivor
 
 /datum/game_mode/infestation/hunt/scale_roles(initial_players_assigned)
