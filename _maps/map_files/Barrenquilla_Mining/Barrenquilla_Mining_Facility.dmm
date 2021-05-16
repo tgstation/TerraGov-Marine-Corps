@@ -90,13 +90,6 @@
 	dir = 5
 	},
 /area/barren/security)
-"ax" = (
-/obj/machinery/power/terminal{
-	dir = 1
-	},
-/obj/structure/cable,
-/turf/open/floor/tile/dark,
-/area/survival)
 "ay" = (
 /obj/machinery/light{
 	dir = 4
@@ -115,6 +108,10 @@
 	dir = 8
 	},
 /area/barren)
+"aA" = (
+/obj/effect/landmark/weed_node,
+/turf/open/lavaland/basalt,
+/area/barren/cave/central)
 "aB" = (
 /obj/structure/barricade/guardrail{
 	dir = 8
@@ -165,7 +162,7 @@
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/console)
 "aL" = (
-/obj/effect/landmark/xeno_tunnel,
+/obj/effect/landmark/xeno_resin_door,
 /turf/open/lavaland/basalt,
 /area/barren/cave/southwest)
 "aM" = (
@@ -192,10 +189,6 @@
 /obj/machinery/camera/autoname/lz_camera,
 /turf/open/floor/plating,
 /area/shuttle/drop1/lz1)
-"aT" = (
-/obj/effect/spawner/random/powercell,
-/turf/open/floor/tile/dark,
-/area/survival)
 "aU" = (
 /obj/structure/bed/chair/wood/normal{
 	dir = 4
@@ -245,7 +238,7 @@
 /turf/closed/wall/clock,
 /area/barren/misc/clocknuke)
 "bj" = (
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/lavaland/basalt,
 /area/barren/cave/north)
 "bl" = (
@@ -677,10 +670,6 @@
 /obj/structure/largecrate/supply/medicine/iv,
 /turf/open/floor,
 /area/barren/misc/genstorage)
-"do" = (
-/obj/effect/landmark/start/job/survivor,
-/turf/open/floor/tile/dark,
-/area/survival)
 "dq" = (
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/tile/dark2,
@@ -940,6 +929,7 @@
 /obj/item/clothing/under/rank/miner,
 /obj/item/clothing/suit/storage/marine/veteran/mercenary/miner,
 /obj/item/clothing/suit/storage/marine/veteran/mercenary/miner,
+/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/grimy,
 /area/barren/civilian/workdorm)
 "eA" = (
@@ -1106,14 +1096,6 @@
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/mainship/sterile/dark,
 /area/barren/misc/alienstorage)
-"fq" = (
-/obj/item/ammo_magazine/flamer_tank/large,
-/obj/item/weapon/gun/flamer/marinestandard,
-/turf/open/floor/tile/dark,
-/area/survival)
-"fr" = (
-/turf/open/floor/tile/dark,
-/area/survival)
 "fs" = (
 /obj/effect/decal/remains/marauder,
 /turf/open/lavaland/basalt,
@@ -1198,16 +1180,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
 /area/maintenance/dormitory)
-"fP" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/obj/structure/rack,
-/obj/item/storage/belt/utility/full,
-/obj/item/storage/belt/utility/full,
-/obj/item/storage/belt/utility/full,
-/turf/open/floor/tile/dark,
-/area/survival)
 "fQ" = (
 /obj/structure/bed/chair/pew{
 	dir = 1
@@ -1535,11 +1507,6 @@
 	icon_state = "carpet6-0"
 	},
 /area/barren/misc/ashshelter)
-"hh" = (
-/obj/item/storage/surgical_tray,
-/obj/structure/rack,
-/turf/open/floor/tile/dark,
-/area/survival)
 "hj" = (
 /obj/structure/cable,
 /turf/closed/wall/r_wall,
@@ -1829,6 +1796,7 @@
 /area/barren/cave/southeast)
 "iD" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/obj/effect/landmark/xeno_resin_door,
 /turf/open/lavaland/basalt,
 /area/barren/cave/north)
 "iE" = (
@@ -2255,10 +2223,6 @@
 /obj/item/trash/cigbutt,
 /turf/open/floor/marking,
 /area/barren/cave/central)
-"kB" = (
-/obj/machinery/light,
-/turf/open/floor/tile/dark,
-/area/survival)
 "kC" = (
 /obj/structure/rack,
 /obj/item/storage/toolbox/mechanical,
@@ -2324,11 +2288,10 @@
 /turf/open/lavaland/basalt,
 /area/barren/misc/clocknuke)
 "kQ" = (
-/obj/machinery/door/poddoor/timed_survival/containment{
-	dir = 2
-	},
-/turf/closed/brock,
-/area/barren/cave/southeast)
+/obj/effect/landmark/start/job/survivor,
+/obj/structure/bed/alien,
+/turf/open/floor/wood,
+/area/barren/misc/shack)
 "kR" = (
 /obj/machinery/miner/damaged,
 /turf/open/lavaland/basalt,
@@ -2378,6 +2341,11 @@
 /obj/structure/barricade/guardrail,
 /turf/open/floor,
 /area/barren/civilian)
+"lc" = (
+/obj/effect/decal/mecha_wreckage/ripley,
+/obj/effect/landmark/weed_node,
+/turf/open/lavaland/basalt,
+/area/barren/cave/southwest)
 "ld" = (
 /turf/open/floor/plating/dmg3,
 /area/barren/misc/crashed)
@@ -2790,6 +2758,11 @@
 	dir = 1
 	},
 /area/barren/security)
+"mX" = (
+/obj/structure/lattice,
+/obj/effect/landmark/xeno_resin_door,
+/turf/open/lavaland/basalt,
+/area/barren/cave/south)
 "mY" = (
 /obj/structure/closet/crate,
 /turf/open/floor/marking/delivery,
@@ -2805,12 +2778,6 @@
 /obj/structure/cable,
 /turf/open/lavaland/basalt,
 /area/barren/cave/southeast)
-"nc" = (
-/obj/machinery/power/smes/buildable/empty{
-	dir = 1
-	},
-/turf/open/floor/tile/dark,
-/area/survival)
 "nd" = (
 /obj/structure/bed/alien,
 /obj/item/bedsheet,
@@ -3009,7 +2976,7 @@
 /turf/open/floor/plating,
 /area/barren/engie/engine)
 "nQ" = (
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/closed/brock,
 /area/barren/cave/northwest)
 "nR" = (
@@ -3287,13 +3254,6 @@
 /obj/structure/cable,
 /turf/open/lavaland/basalt,
 /area/shuttle/drop1/lz1)
-"pq" = (
-/obj/structure/cable,
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/open/floor/tile/dark,
-/area/survival)
 "pr" = (
 /turf/open/lavaland/basalt/glowing,
 /area/barren/cave/northeast)
@@ -3396,7 +3356,7 @@
 /turf/open/lavaland/basalt,
 /area/barren/cave/north)
 "pX" = (
-/obj/effect/landmark/xeno_tunnel,
+/obj/effect/landmark/xeno_resin_door,
 /turf/open/lavaland/basalt,
 /area/barren/cave/north)
 "pY" = (
@@ -3423,7 +3383,7 @@
 /turf/open/floor/prison/kitchen,
 /area/barren/civilian/cook)
 "qf" = (
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/lavaland/basalt,
 /area/barren/cave/southeast)
 "qg" = (
@@ -3731,10 +3691,6 @@
 /obj/structure/cable,
 /turf/open/lavaland/basalt,
 /area/barren/cave/northwest)
-"rP" = (
-/obj/structure/largecrate/supply/supplies/mre,
-/turf/open/floor/tile/dark,
-/area/survival)
 "rQ" = (
 /obj/structure/barricade/guardrail{
 	dir = 4;
@@ -3771,12 +3727,6 @@
 	},
 /turf/open/floor/tile/dark,
 /area/shuttle/drop2/lz2)
-"rV" = (
-/obj/item/storage/box/minisentry,
-/obj/item/storage/box/minisentry,
-/obj/structure/rack,
-/turf/open/floor/tile/dark,
-/area/survival)
 "rW" = (
 /obj/structure/window/framed/colony/reinforced,
 /turf/open/floor/wood,
@@ -3798,12 +3748,9 @@
 /turf/open/floor/freezer,
 /area/barren/civilian/workdorm)
 "sc" = (
-/obj/item/ammo_magazine/smg/m25/ap,
-/obj/item/ammo_magazine/smg/m25/ap,
-/obj/item/ammo_magazine/smg/m25/ap,
-/obj/item/ammo_magazine/smg/m25/ap,
-/turf/open/floor/tile/dark,
-/area/survival)
+/obj/effect/landmark/start/job/survivor,
+/turf/open/floor/tile/dark2,
+/area/barren/misc/refinery)
 "se" = (
 /obj/structure/table/woodentable,
 /obj/effect/decal/cleanable/dirt,
@@ -3850,6 +3797,10 @@
 	dir = 1
 	},
 /area/barren/medical)
+"so" = (
+/obj/effect/landmark/xeno_resin_door,
+/turf/open/lavaland/basalt,
+/area/barren/cave/central)
 "sq" = (
 /obj/item/tool/warning_cone,
 /obj/effect/decal/cleanable/dirt,
@@ -3874,11 +3825,9 @@
 /turf/open/floor/prison,
 /area/barren/security)
 "sw" = (
-/obj/machinery/vending/medical{
-	req_access = 0
-	},
-/turf/open/floor/tile/dark,
-/area/survival)
+/obj/effect/spawner/random/toolbox,
+/turf/open/lavaland/basalt,
+/area/barren/cave/southeast)
 "sy" = (
 /obj/structure/cable,
 /obj/structure/table,
@@ -3908,6 +3857,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
+/obj/effect/landmark/start/job/survivor,
 /turf/open/lavaland/basalt,
 /area/barren/cave/central)
 "sL" = (
@@ -3938,6 +3888,11 @@
 /obj/item/trash/pistachios,
 /turf/open/floor/wood,
 /area/barren/civilian)
+"sR" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/landmark/xeno_resin_door,
+/turf/open/lavaland/basalt,
+/area/barren/cave/west)
 "sS" = (
 /turf/closed/wall,
 /area/barren/engie/one)
@@ -4110,7 +4065,7 @@
 /area/barren/cave/southeast)
 "tD" = (
 /obj/effect/landmark/start/job/xenomorph,
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/lavaland/basalt,
 /area/barren/cave/southeast)
 "tE" = (
@@ -4465,11 +4420,6 @@
 /obj/effect/landmark/xeno_silo_spawn,
 /turf/open/lavaland/basalt,
 /area/barren/cave/southwest)
-"vx" = (
-/obj/structure/rack,
-/obj/item/stack/sheet/plasteel/large_stack,
-/turf/open/floor/tile/dark,
-/area/survival)
 "vy" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
@@ -4697,13 +4647,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/wood,
 /area/barren/civilian/workdorm)
-"wL" = (
-/obj/structure/rack,
-/obj/item/weapon/gun/shotgun/double,
-/obj/item/weapon/gun/shotgun/pump/cmb,
-/obj/item/weapon/gun/shotgun/pump/cmb,
-/turf/open/floor/tile/dark,
-/area/survival)
 "wM" = (
 /obj/structure/table/reinforced,
 /obj/effect/landmark/weapon_spawn/tier3_weapon_spawn,
@@ -4790,11 +4733,6 @@
 	dir = 8
 	},
 /area/barren)
-"xk" = (
-/obj/machinery/power/apc/hyper,
-/obj/structure/cable,
-/turf/open/floor/tile/dark,
-/area/survival)
 "xl" = (
 /turf/open/floor/plating/warning{
 	dir = 1
@@ -4843,12 +4781,6 @@
 	name = "medical"
 	},
 /area/barren/medical)
-"xu" = (
-/obj/structure/rack,
-/obj/item/stack/sandbags/large_stack,
-/obj/item/stack/sandbags/large_stack,
-/turf/open/floor/tile/dark,
-/area/survival)
 "xv" = (
 /obj/machinery/computer/intel_computer,
 /turf/open/floor/plating/mainship,
@@ -4979,13 +4911,6 @@
 "yh" = (
 /turf/closed/wall/r_wall/unmeltable,
 /area/barren/misc/eastarmory)
-"yi" = (
-/obj/machinery/iv_drip,
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/floor/tile/dark,
-/area/survival)
 "yj" = (
 /obj/structure/cable,
 /obj/machinery/door/airlock/mainship/engineering/free_access{
@@ -5025,11 +4950,6 @@
 /obj/effect/decal/cleanable/blood/writing,
 /turf/open/floor/prison/bright_clean/two,
 /area/barren/security)
-"yt" = (
-/obj/structure/closet/secure_closet/engineering_electrical,
-/obj/structure/cable,
-/turf/open/floor/tile/dark,
-/area/survival)
 "yv" = (
 /obj/machinery/optable,
 /obj/machinery/power/apc,
@@ -5112,6 +5032,10 @@
 /obj/structure/barricade/guardrail,
 /turf/open/lavaland/basalt,
 /area/barren/cave/south)
+"yY" = (
+/obj/effect/landmark/weed_node,
+/turf/open/lavaland/basalt,
+/area/barren/cave/west)
 "yZ" = (
 /obj/effect/decal/woodsiding{
 	dir = 9
@@ -5439,10 +5363,6 @@
 	},
 /turf/open/floor/wood,
 /area/shuttle/drop1/lz1)
-"AN" = (
-/obj/structure/reagent_dispensers/watertank,
-/turf/open/floor/tile/dark,
-/area/survival)
 "AO" = (
 /obj/structure/closet/secure_closet/engineering_personal,
 /obj/structure/sign/poster,
@@ -5551,6 +5471,11 @@
 /obj/item/weapon/gun/smg/m25,
 /turf/open/floor/prison,
 /area/ai_monitored/storage/secure)
+"Bv" = (
+/obj/structure/barricade/guardrail,
+/obj/effect/landmark/xeno_resin_door,
+/turf/open/lavaland/basalt,
+/area/barren/cave/south)
 "Bw" = (
 /obj/structure/cable,
 /turf/open/floor/plating/dmg3,
@@ -5644,6 +5569,11 @@
 /obj/machinery/chem_dispenser/soda,
 /turf/closed/wall,
 /area/bigredv2/outside/general_offices)
+"BR" = (
+/obj/structure/cable,
+/obj/effect/landmark/xeno_resin_door,
+/turf/open/lavaland/basalt,
+/area/barren/cave/central)
 "BS" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/lavaland/basalt,
@@ -5962,13 +5892,9 @@
 /turf/open/floor/tile/red,
 /area/barren/security)
 "Dx" = (
-/obj/structure/rack,
-/obj/item/stack/sheet/metal/large_stack,
-/obj/item/stack/sheet/metal/large_stack,
-/obj/item/stack/sheet/metal/large_stack,
-/obj/item/stack/sheet/metal/large_stack,
-/turf/open/floor/tile/dark,
-/area/survival)
+/obj/effect/landmark/xeno_resin_door,
+/turf/open/lavaland/basalt,
+/area/barren/cave/south)
 "Dz" = (
 /obj/machinery/computer/intel_computer,
 /turf/open/floor/plating/mainship,
@@ -5985,9 +5911,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor,
 /area/barren/misc/eastarmory)
-"DD" = (
-/turf/closed/wall/r_wall,
-/area/survival)
 "DE" = (
 /obj/machinery/prop/mainship/computer,
 /obj/structure/table,
@@ -6071,10 +5994,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor,
 /area/bigredv2/outside/general_offices)
-"DZ" = (
-/obj/structure/closet/secure_closet/engineering_welding,
-/turf/open/floor/tile/dark,
-/area/survival)
 "Ea" = (
 /obj/structure/table/reinforced,
 /obj/effect/decal/cleanable/cobweb{
@@ -6084,6 +6003,12 @@
 	dir = 6
 	},
 /area/barren/medical)
+"Eb" = (
+/obj/structure/cable,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/landmark/xeno_resin_door,
+/turf/open/lavaland/basalt,
+/area/barren/cave/west)
 "Ed" = (
 /obj/structure/table/mainship,
 /obj/item/detpack,
@@ -6097,10 +6022,6 @@
 /obj/machinery/autolathe,
 /turf/open/floor/tile/dark2,
 /area/barren/misc/refinery)
-"Eg" = (
-/obj/machinery/door/poddoor/timed_survival/containment,
-/turf/open/lavaland/basalt,
-/area/barren/cave/southeast)
 "Eh" = (
 /obj/structure/filingcabinet,
 /turf/open/floor,
@@ -6337,6 +6258,11 @@
 /obj/structure/ore_box,
 /turf/open/lavaland/basalt,
 /area/barren/cave/southeast)
+"Fl" = (
+/obj/item/lightstick/red/anchored,
+/obj/effect/landmark/xeno_resin_door,
+/turf/open/lavaland/basalt,
+/area/barren/cave/central)
 "Fm" = (
 /obj/structure/window/framed/colony,
 /turf/open/floor/tile/bar{
@@ -6353,7 +6279,7 @@
 	},
 /area/barren/medical/chemistry)
 "Fp" = (
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/lavaland/basalt,
 /area/barren/cave/south)
 "Fq" = (
@@ -6388,16 +6314,6 @@
 	dir = 1
 	},
 /area/barren/medical)
-"Fw" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/structure/rack,
-/obj/item/weapon/gun/smg/m25,
-/obj/item/weapon/gun/smg/m25,
-/obj/item/weapon/gun/smg/m25,
-/turf/open/floor/tile/dark,
-/area/survival)
 "Fx" = (
 /obj/structure/flora/pottedplant,
 /turf/open/floor/tile/bar{
@@ -6706,11 +6622,6 @@
 "He" = (
 /turf/open/lavaland/catwalk,
 /area/barren/cave/central)
-"Hi" = (
-/obj/machinery/optable,
-/obj/item/tank/anesthetic,
-/turf/open/floor/tile/dark,
-/area/survival)
 "Hj" = (
 /obj/structure/lattice,
 /obj/structure/cable,
@@ -6732,11 +6643,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/marking,
 /area/barren/cave/central)
-"Hn" = (
-/obj/structure/rack,
-/obj/item/lightreplacer,
-/turf/open/floor/tile/dark,
-/area/survival)
 "Ho" = (
 /obj/structure/table/mainship,
 /obj/structure/paper_bin,
@@ -6907,6 +6813,11 @@
 /obj/machinery/chem_master,
 /turf/open/floor/prison/sterilewhite,
 /area/barren/medical/research)
+"Ij" = (
+/obj/structure/cable,
+/obj/effect/landmark/weed_node,
+/turf/open/lavaland/basalt,
+/area/barren/cave/central)
 "Ik" = (
 /turf/open/floor/tile/red/redtaupecorner,
 /area/barren/security)
@@ -7082,10 +6993,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
 /area/maintenance/dormitory)
-"Jd" = (
-/obj/structure/reagent_dispensers/fueltank,
-/turf/open/floor/tile/dark,
-/area/survival)
 "Je" = (
 /obj/structure/table/reinforced/prison,
 /obj/item/flash,
@@ -7162,7 +7069,7 @@
 /area/barren/cave/south)
 "Jx" = (
 /obj/effect/landmark/start/job/xenomorph,
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/lavaland/basalt,
 /area/barren/cave/south)
 "Jy" = (
@@ -7362,6 +7269,11 @@
 /obj/structure/window/framed/colony/reinforced,
 /turf/open/floor/prison/bright_clean/two,
 /area/barren/security)
+"Kq" = (
+/obj/structure/cable,
+/obj/effect/landmark/start/job/survivor,
+/turf/open/floor/plating,
+/area/barren/cave/south)
 "Kr" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable,
@@ -7451,22 +7363,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
 /area/barren/civilian/cook)
-"KV" = (
-/obj/item/ammo_magazine/shotgun/flechette,
-/obj/item/ammo_magazine/shotgun/flechette,
-/obj/item/ammo_magazine/shotgun/buckshot,
-/obj/item/ammo_magazine/shotgun/buckshot,
-/obj/item/ammo_magazine/shotgun/incendiary,
-/obj/item/ammo_magazine/shotgun,
-/obj/item/ammo_magazine/shotgun,
-/turf/open/floor/tile/dark,
-/area/survival)
-"KY" = (
-/obj/machinery/door/poddoor/timed_survival/containment{
-	dir = 2
-	},
-/turf/open/lavaland/basalt,
-/area/barren/cave/southeast)
 "KZ" = (
 /obj/machinery/shower{
 	dir = 8
@@ -7773,31 +7669,6 @@
 	dir = 6
 	},
 /area/barren/medical)
-"MQ" = (
-/obj/item/ammo_magazine/smg/m25,
-/obj/item/ammo_magazine/smg/m25,
-/obj/item/ammo_magazine/smg/m25,
-/obj/item/ammo_magazine/smg/m25,
-/obj/item/ammo_magazine/smg/m25,
-/obj/item/ammo_magazine/smg/m25,
-/obj/item/ammo_magazine/smg/m25,
-/obj/item/ammo_magazine/smg/m25,
-/obj/item/ammo_magazine/smg/m25,
-/obj/item/ammo_magazine/smg/m25,
-/obj/item/ammo_magazine/smg/m25,
-/obj/item/ammo_magazine/smg/m25,
-/obj/item/ammo_magazine/smg/m25,
-/obj/item/ammo_magazine/smg/m25,
-/obj/item/ammo_magazine/smg/m25,
-/obj/item/ammo_magazine/smg/m25,
-/obj/item/ammo_magazine/smg/m25,
-/obj/item/ammo_magazine/smg/m25,
-/obj/item/ammo_magazine/smg/m25,
-/obj/item/ammo_magazine/smg/m25,
-/obj/item/ammo_magazine/smg/m25/extended,
-/obj/item/ammo_magazine/smg/m25/extended,
-/turf/open/floor/tile/dark,
-/area/survival)
 "MS" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable,
@@ -8320,10 +8191,6 @@
 	},
 /turf/open/lavaland/basalt,
 /area/barren/cave/north)
-"Pz" = (
-/obj/machinery/door/airlock/multi_tile/mainship/generic,
-/turf/open/floor/tile/dark,
-/area/survival)
 "PB" = (
 /turf/open/floor/wood,
 /area/barren/civilian)
@@ -8361,11 +8228,6 @@
 "PR" = (
 /turf/open/lavaland/lava/side,
 /area/barren/cave/west)
-"PS" = (
-/obj/machinery/door/airlock/multi_tile/mainship/generic,
-/obj/structure/cable,
-/turf/open/floor/tile/dark,
-/area/survival)
 "PT" = (
 /turf/open/floor/wood,
 /area/bigredv2/outside/general_offices)
@@ -8514,7 +8376,7 @@
 /turf/closed/wall/mainship,
 /area/barren/misc/stationed)
 "QM" = (
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/lavaland/basalt,
 /area/barren/cave/southwest)
 "QN" = (
@@ -8542,13 +8404,6 @@
 /obj/machinery/camera/autoname/lz_camera,
 /turf/open/floor/tile/damaged/panel,
 /area/shuttle/drop2/lz2)
-"QU" = (
-/obj/machinery/vending/MarineMed/Blood{
-	req_access = 0;
-	req_one_access = null
-	},
-/turf/open/floor/tile/dark,
-/area/survival)
 "QV" = (
 /obj/structure/largecrate/cow,
 /turf/open/floor/marking/delivery,
@@ -8679,10 +8534,6 @@
 "RF" = (
 /turf/open/floor/plating,
 /area/shuttle/drop2/lz2)
-"RG" = (
-/obj/machinery/body_scanconsole,
-/turf/open/floor/tile/dark,
-/area/survival)
 "RH" = (
 /obj/machinery/floodlight/landing,
 /obj/effect/decal/warning_stripes/thin{
@@ -8819,10 +8670,6 @@
 /obj/structure/largecrate/random/case,
 /turf/open/floor,
 /area/barren/misc/genstorage)
-"Sn" = (
-/obj/structure/largecrate/supply/supplies/flares,
-/turf/open/floor/tile/dark,
-/area/survival)
 "Sp" = (
 /turf/open/floor/prison/bright_clean/two,
 /area/barren/security)
@@ -8865,10 +8712,6 @@
 	},
 /turf/open/floor/grimy,
 /area/barren/civilian/workdorm)
-"SK" = (
-/obj/machinery/bodyscanner,
-/turf/open/floor/tile/dark,
-/area/survival)
 "SL" = (
 /obj/item/ore/phoron,
 /turf/open/lavaland/basalt,
@@ -8928,6 +8771,11 @@
 	},
 /turf/open/floor/wood,
 /area/barren/civilian/cook)
+"Te" = (
+/obj/structure/cable,
+/obj/effect/landmark/xeno_resin_door,
+/turf/open/lavaland/basalt,
+/area/barren/cave/south)
 "Tf" = (
 /obj/machinery/vending/snack,
 /obj/effect/decal/cleanable/dirt,
@@ -8963,18 +8811,10 @@
 	dir = 8
 	},
 /area/barren)
-"Ts" = (
-/obj/item/lightstick/red/anchored,
-/turf/closed/brock,
-/area/barren/cave/southeast)
 "Tt" = (
 /obj/machinery/chem_dispenser/beer,
 /turf/closed/wall/mainship/outer/reinforced,
 /area/storage/testroom)
-"Tu" = (
-/obj/structure/cable,
-/turf/open/floor/tile/dark,
-/area/survival)
 "Tx" = (
 /obj/structure/rack,
 /obj/item/weapon/gun/revolver/small,
@@ -9015,10 +8855,6 @@
 	},
 /turf/open/floor/prison/bright_clean/two,
 /area/barren/security)
-"TG" = (
-/obj/structure/largecrate/supply/supplies/water,
-/turf/open/floor/tile/dark,
-/area/survival)
 "TH" = (
 /obj/machinery/light{
 	dir = 8
@@ -9158,6 +8994,14 @@
 "Uv" = (
 /turf/closed/wall/indestructible/mineral,
 /area/barren/cave/east)
+"Uw" = (
+/obj/structure/barricade/guardrail,
+/obj/structure/barricade/guardrail{
+	dir = 8
+	},
+/obj/effect/landmark/xeno_resin_door,
+/turf/open/lavaland/basalt,
+/area/barren/cave/south)
 "Ux" = (
 /obj/structure/closet/secure_closet/freezer/fridge,
 /obj/effect/decal/cleanable/cobweb{
@@ -9167,7 +9011,7 @@
 /turf/open/floor/prison/kitchen,
 /area/barren/civilian/cook)
 "Uy" = (
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/closed/wall/indestructible/mineral,
 /area/barren/cave/northwest)
 "Uz" = (
@@ -9378,11 +9222,6 @@
 	dir = 1
 	},
 /area/barren/medical/chemistry)
-"VE" = (
-/obj/machinery/power/geothermal,
-/obj/structure/cable,
-/turf/open/floor/tile/dark,
-/area/survival)
 "VG" = (
 /obj/effect/decal/cleanable/blood/gibs/xeno,
 /turf/open/lavaland/basalt,
@@ -9478,6 +9317,10 @@
 /obj/structure/grille,
 /turf/open/floor,
 /area/space)
+"Wf" = (
+/obj/effect/landmark/xeno_resin_door,
+/turf/open/lavaland/basalt,
+/area/barren/cave/west)
 "Wg" = (
 /obj/structure/bed/chair/pew{
 	dir = 9
@@ -9495,10 +9338,6 @@
 	dir = 4
 	},
 /area/barren/medical/chemistry)
-"Ws" = (
-/obj/machinery/door/poddoor/timed_survival/containment,
-/turf/closed/brock,
-/area/barren/cave/southeast)
 "Wt" = (
 /obj/machinery/conveyor{
 	id = "lower_garbage"
@@ -9521,6 +9360,10 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/wood,
 /area/barren/civilian/cook)
+"Wy" = (
+/obj/effect/landmark/xeno_resin_door,
+/turf/open/lavaland/catwalk,
+/area/barren/cave/south)
 "WA" = (
 /obj/structure/table/mainship,
 /turf/open/floor,
@@ -9696,6 +9539,10 @@
 	dir = 1
 	},
 /area/barren)
+"Xu" = (
+/obj/effect/landmark/weed_node,
+/turf/open/lavaland/basalt/glowing,
+/area/barren/cave/west)
 "Xv" = (
 /obj/structure/rack,
 /turf/open/floor/prison/plate,
@@ -9716,9 +9563,10 @@
 /turf/open/floor/plating/dmg2,
 /area/barren/misc/crashed)
 "XD" = (
-/obj/effect/landmark/xeno_tunnel,
+/obj/structure/cable,
+/obj/effect/landmark/weed_node,
 /turf/open/lavaland/basalt,
-/area/barren/cave/south)
+/area/barren/cave/north)
 "XF" = (
 /turf/closed/wall/indestructible/mineral,
 /area/barren/cave/west)
@@ -9832,16 +9680,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/wood,
 /area/barren/civilian/cook)
-"Yp" = (
-/obj/item/weapon/gun/shotgun/pump/bolt,
-/obj/item/ammo_magazine/rifle/bolt,
-/obj/item/ammo_magazine/rifle/bolt,
-/obj/item/ammo_magazine/rifle/bolt,
-/obj/item/ammo_magazine/rifle/bolt,
-/obj/item/ammo_magazine/rifle/bolt,
-/obj/item/ammo_magazine/rifle/bolt,
-/turf/open/floor/tile/dark,
-/area/survival)
 "Yq" = (
 /obj/effect/decal/cleanable/blood/writing{
 	dir = 4
@@ -9865,6 +9703,11 @@
 	dir = 6
 	},
 /area/barren/medical)
+"Yw" = (
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/obj/effect/landmark/xeno_resin_door,
+/turf/open/lavaland/basalt,
+/area/barren/cave/southwest)
 "Yy" = (
 /turf/open/lavaland/basalt,
 /area/barren/cave/south)
@@ -9879,12 +9722,6 @@
 /obj/structure/closet/crate/internals,
 /turf/open/floor,
 /area/barren/misc/genstorage)
-"YD" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/open/floor/tile/dark,
-/area/survival)
 "YE" = (
 /obj/structure/bed/chair/pew{
 	dir = 10
@@ -9933,6 +9770,14 @@
 /obj/item/lightstick/red/anchored,
 /obj/structure/cable,
 /turf/open/lavaland/basalt,
+/area/barren/cave/south)
+"YV" = (
+/obj/structure/barricade/guardrail{
+	dir = 4;
+	pixel_y = 7
+	},
+/obj/effect/landmark/xeno_resin_door,
+/turf/open/lavaland/catwalk,
 /area/barren/cave/south)
 "YX" = (
 /obj/structure/table/reinforced,
@@ -10051,6 +9896,10 @@
 "ZD" = (
 /turf/open/lavaland/catwalk,
 /area/shuttle/drop2/lz2)
+"ZE" = (
+/obj/effect/landmark/weed_node,
+/turf/open/lavaland/basalt/glowing,
+/area/barren/cave/south)
 "ZF" = (
 /obj/machinery/light{
 	dir = 4
@@ -17245,7 +17094,7 @@ Gn
 ZN
 ZN
 ZN
-Vz
+QM
 Vz
 Vz
 Dq
@@ -17507,7 +17356,7 @@ Vz
 Vz
 Dq
 Vz
-Vz
+QM
 Vz
 Vz
 Vz
@@ -17521,12 +17370,12 @@ HQ
 Vz
 Vz
 Vz
-Vz
+QM
 Vz
 Vz
 Dq
 Vz
-Vz
+QM
 cO
 Vz
 Vz
@@ -17761,14 +17610,14 @@ ZN
 ZN
 Vz
 Vz
-Vz
+QM
 Dq
 Vz
 Vz
 Vz
 Vz
 Vz
-Vz
+QM
 Vz
 Rx
 xj
@@ -18011,11 +17860,11 @@ ZW
 ZN
 ZN
 ZN
+yY
 ZN
 ZN
 ZN
-ZN
-ZN
+yY
 Vz
 Vz
 Vz
@@ -18288,11 +18137,11 @@ Vz
 Vz
 Vz
 Vz
+QM
 Vz
 Vz
 Vz
-Vz
-Vz
+QM
 Vz
 HQ
 HQ
@@ -18542,7 +18391,7 @@ HQ
 Vz
 Vz
 Vz
-Vz
+QM
 Vz
 Vz
 Vz
@@ -18798,7 +18647,7 @@ HQ
 HQ
 Vz
 Vz
-Vz
+QM
 Vz
 Vz
 Vz
@@ -19042,7 +18891,7 @@ ZN
 ZN
 ZN
 ZN
-Gn
+Xu
 ZN
 Vz
 HQ
@@ -19291,10 +19140,10 @@ ZN
 ZN
 ZN
 ZN
+yY
 ZN
 ZN
-ZN
-ZN
+yY
 ZN
 ZN
 ZN
@@ -19800,7 +19649,7 @@ ZN
 ZN
 ZN
 ZN
-ZN
+yY
 ZN
 ZN
 ZN
@@ -19850,11 +19699,11 @@ Vz
 HQ
 HQ
 HQ
-Vz
 aL
-Vz
-Vz
-Vz
+aL
+aL
+aL
+aL
 HQ
 KP
 aI
@@ -20049,7 +19898,7 @@ Xp
 ZW
 ZN
 ZN
-ZN
+yY
 ZN
 ZN
 ZN
@@ -20081,7 +19930,7 @@ Vz
 Vz
 Vz
 Vz
-UT
+lc
 Vz
 Vz
 Rx
@@ -20309,7 +20158,7 @@ ZN
 ZN
 ZN
 ZN
-ZN
+yY
 ZN
 ZN
 ZN
@@ -20334,7 +20183,7 @@ HQ
 HQ
 HQ
 Vz
-Vz
+QM
 Vz
 Vz
 Vz
@@ -20560,7 +20409,7 @@ Uu
 ZN
 ZN
 ZN
-ZN
+yY
 ZN
 ZN
 ZN
@@ -20816,6 +20665,7 @@ ZN
 ZN
 ZN
 ZN
+yY
 ZN
 ZN
 ZN
@@ -20826,8 +20676,7 @@ ZN
 ZN
 ZN
 ZN
-ZN
-ZN
+yY
 ZN
 ZN
 ZW
@@ -21328,7 +21177,7 @@ ZN
 ZN
 ZN
 ZN
-ZN
+yY
 ZN
 ZN
 ZN
@@ -21361,7 +21210,7 @@ hc
 Vz
 Vz
 Vz
-Vz
+QM
 HQ
 HQ
 HQ
@@ -21581,7 +21430,7 @@ xj
 Uu
 ZN
 ZN
-ZN
+yY
 ZN
 ZN
 ZN
@@ -21602,7 +21451,7 @@ ZN
 Gn
 ZN
 ZN
-ZN
+yY
 ZN
 ZN
 ZW
@@ -21615,7 +21464,7 @@ ZN
 tG
 AY
 Vz
-Vz
+QM
 Vz
 Vz
 HQ
@@ -21859,7 +21708,7 @@ ZN
 ZN
 ZN
 ZN
-ZN
+yY
 ZN
 ZN
 ZW
@@ -21868,7 +21717,7 @@ ZW
 ZN
 ZN
 ZN
-ZN
+yY
 ZN
 ZN
 Vz
@@ -22123,7 +21972,7 @@ ZN
 Lz
 ZN
 ZN
-ZN
+yY
 BU
 tG
 ZN
@@ -22348,10 +22197,10 @@ ZN
 ZN
 ZN
 ZN
+yY
 ZN
 ZN
-ZN
-ZN
+yY
 ZN
 ZN
 ZN
@@ -22383,7 +22232,7 @@ Gn
 tG
 AY
 ZN
-ZN
+yY
 ZN
 Vz
 Vz
@@ -22601,7 +22450,7 @@ ZN
 ZN
 ZN
 ZN
-ZN
+yY
 ZN
 Gn
 ZN
@@ -22632,7 +22481,7 @@ ZW
 ZW
 ZN
 ZN
-ZN
+yY
 ZN
 ZN
 ua
@@ -22938,12 +22787,12 @@ Vz
 AH
 AH
 AH
-ym
-ym
-ym
-ym
-ym
-ym
+Yw
+Yw
+Yw
+Yw
+Yw
+Yw
 AH
 AH
 HQ
@@ -23117,7 +22966,7 @@ ZN
 ZN
 ZN
 ZN
-ZN
+yY
 ZN
 ZN
 ZN
@@ -23183,7 +23032,7 @@ Vz
 Vz
 ym
 Vz
-Vz
+QM
 Vz
 Vz
 Vz
@@ -23880,7 +23729,7 @@ ZN
 ZN
 ZN
 ZN
-ZN
+yY
 ZN
 ZN
 ZN
@@ -23950,7 +23799,7 @@ iL
 Vz
 Vz
 Dq
-Vz
+QM
 Vz
 ym
 AH
@@ -24205,7 +24054,7 @@ HQ
 HQ
 Vz
 Vz
-Vz
+QM
 Dq
 Vz
 Vz
@@ -24648,7 +24497,7 @@ rK
 QR
 ZN
 ZN
-ZN
+yY
 ZN
 ZN
 Gn
@@ -24656,7 +24505,7 @@ ZN
 ZN
 ZN
 ZN
-ZN
+yY
 ZN
 ZN
 eH
@@ -25482,11 +25331,11 @@ HQ
 HQ
 HQ
 HQ
+QM
 Vz
 Vz
 Vz
-Vz
-Vz
+QM
 Vz
 Vz
 Vz
@@ -25745,7 +25594,7 @@ Vz
 ZV
 Vz
 Vz
-Vz
+QM
 Vz
 Vz
 Vz
@@ -25896,7 +25745,7 @@ aZ
 aZ
 aZ
 aZ
-aZ
+bj
 aZ
 al
 al
@@ -26006,7 +25855,7 @@ Vz
 Vz
 Vz
 Vz
-Vz
+QM
 Vz
 Vz
 Vz
@@ -26184,7 +26033,7 @@ aZ
 aZ
 aZ
 cw
-aZ
+bj
 aZ
 aZ
 mq
@@ -26269,13 +26118,13 @@ Vz
 Vz
 Vz
 Vz
+QM
+Vz
+QM
 Vz
 Vz
 Vz
-Vz
-Vz
-Vz
-Vz
+aL
 HQ
 HQ
 HQ
@@ -26426,7 +26275,7 @@ aZ
 aZ
 CY
 aZ
-aZ
+bj
 aZ
 al
 al
@@ -26524,15 +26373,15 @@ HQ
 Vz
 Vz
 Vz
+QM
 Vz
 Vz
 Vz
 Vz
 Vz
+QM
 Vz
-Vz
-Vz
-Vz
+aL
 Vz
 HQ
 HQ
@@ -26543,11 +26392,11 @@ HQ
 HQ
 HQ
 HQ
-Vz
-Vz
-Vz
-Vz
-Vz
+aL
+aL
+aL
+aL
+aL
 HQ
 HQ
 HQ
@@ -26763,9 +26612,9 @@ HQ
 HQ
 HQ
 HQ
-Vz
-Vz
-Vz
+aL
+aL
+aL
 HQ
 HQ
 HQ
@@ -26789,7 +26638,7 @@ dF
 Vz
 Vz
 Vz
-Vz
+aL
 Vz
 Vz
 HQ
@@ -26953,7 +26802,7 @@ al
 aZ
 aZ
 aZ
-aZ
+bj
 aZ
 aZ
 aZ
@@ -27023,7 +26872,7 @@ Vz
 Vz
 ZV
 Vz
-Vz
+aL
 Vz
 Vz
 Vz
@@ -27046,7 +26895,7 @@ Vz
 Vz
 Vz
 Vz
-Vz
+aL
 Vz
 Vz
 Vz
@@ -27280,7 +27129,7 @@ Vz
 Vz
 Vz
 Vz
-Vz
+aL
 Vz
 Vz
 Vz
@@ -27290,7 +27139,7 @@ Dq
 Vz
 Vz
 Vz
-Vz
+QM
 Vz
 Vz
 Vz
@@ -27303,7 +27152,7 @@ HQ
 HQ
 Vz
 Vz
-Vz
+aL
 Vz
 Vz
 Vz
@@ -27442,7 +27291,7 @@ xS
 aZ
 aZ
 cw
-aZ
+bj
 aZ
 aZ
 al
@@ -27468,7 +27317,7 @@ aZ
 aZ
 aZ
 aZ
-aZ
+bj
 aZ
 al
 al
@@ -27537,7 +27386,7 @@ Vz
 Vz
 Vz
 Vz
-Vz
+aL
 Vz
 Vz
 Vz
@@ -27713,7 +27562,7 @@ Ak
 CY
 CY
 aZ
-aZ
+bj
 aZ
 aZ
 aZ
@@ -27807,7 +27656,7 @@ Yy
 Yy
 Yy
 Yy
-Yy
+Fp
 Yy
 fb
 eE
@@ -28577,7 +28426,7 @@ YZ
 YZ
 YZ
 cs
-Yy
+Fp
 Yy
 fb
 eE
@@ -28743,8 +28592,8 @@ al
 al
 al
 al
+XD
 CY
-CY
 aZ
 aZ
 aZ
@@ -28757,7 +28606,7 @@ aZ
 aZ
 aZ
 aZ
-aZ
+bj
 ZN
 ZN
 ZN
@@ -28984,7 +28833,7 @@ aZ
 aZ
 aZ
 aZ
-aZ
+bj
 aZ
 aZ
 aZ
@@ -29016,7 +28865,7 @@ aZ
 aZ
 aZ
 ZN
-ZN
+yY
 ZN
 ZN
 ZW
@@ -29364,9 +29213,9 @@ lr
 uj
 ZK
 ZK
-Yy
-Yy
-Yy
+Dx
+Dx
+Dx
 ZK
 ZK
 ZK
@@ -29502,7 +29351,7 @@ aZ
 aZ
 aZ
 aZ
-aZ
+bj
 aZ
 aZ
 aZ
@@ -29518,7 +29367,7 @@ aZ
 aZ
 aZ
 aZ
-aZ
+bj
 aZ
 aZ
 aZ
@@ -29604,10 +29453,10 @@ YZ
 YZ
 YZ
 YZ
-Yy
-Yy
-Yy
-fb
+Dx
+Dx
+Dx
+Bv
 Dt
 US
 sJ
@@ -30039,7 +29888,7 @@ aZ
 aZ
 aZ
 aZ
-aZ
+bj
 aZ
 aZ
 al
@@ -30049,7 +29898,7 @@ ZN
 ZN
 ZN
 ZN
-ZN
+yY
 ZN
 HM
 Ma
@@ -30309,7 +30158,7 @@ ZN
 ZN
 FG
 ZN
-ZN
+yY
 ZN
 Ix
 HM
@@ -30381,8 +30230,8 @@ OR
 OR
 mZ
 mZ
-OR
-Yy
+Wy
+Fp
 Yy
 if
 po
@@ -30638,7 +30487,7 @@ OR
 OR
 OR
 OR
-OR
+Wy
 Nc
 Lb
 kI
@@ -30895,7 +30744,7 @@ DH
 DH
 DH
 DH
-DH
+YV
 DH
 wn
 if
@@ -31075,14 +30924,14 @@ ZW
 ZW
 ZN
 ZN
+yY
 ZN
 ZN
 ZN
 ZN
 ZN
 ZN
-ZN
-ZN
+yY
 Ix
 ZN
 ZW
@@ -31291,7 +31140,7 @@ al
 al
 al
 aZ
-aZ
+bj
 aZ
 aZ
 al
@@ -32098,7 +31947,7 @@ nE
 aZ
 aZ
 aZ
-aZ
+bj
 ZN
 ZN
 ZN
@@ -32321,7 +32170,7 @@ al
 al
 aZ
 aZ
-aZ
+bj
 aZ
 al
 al
@@ -32661,7 +32510,7 @@ Rc
 JJ
 Hq
 JJ
-JJ
+sc
 JJ
 JJ
 LB
@@ -33355,7 +33204,7 @@ aZ
 aZ
 aZ
 aZ
-aZ
+bj
 aZ
 aZ
 aZ
@@ -33453,7 +33302,7 @@ ZK
 ZK
 ZK
 Yy
-Yy
+Fp
 Yy
 ZK
 ZK
@@ -33619,7 +33468,7 @@ al
 al
 al
 aZ
-aZ
+bj
 aZ
 al
 yw
@@ -33660,7 +33509,7 @@ ZN
 ZN
 ZN
 ZN
-ZN
+Wf
 fw
 fw
 pl
@@ -33714,10 +33563,10 @@ Yy
 ZK
 ZK
 ZK
-Yy
-Yy
-Yy
-IC
+Dx
+Dx
+Dx
+Uw
 Dt
 TO
 TO
@@ -33904,20 +33753,20 @@ ZN
 ZN
 ZN
 ZN
+yY
 ZN
 ZN
 ZN
-ZN
-ZN
+yY
 Ix
 Gn
 ZN
 ZN
-ZN
+yY
 ZN
 ZN
 Gn
-ZN
+Wf
 nO
 Id
 pl
@@ -33973,7 +33822,7 @@ ZK
 ZK
 Yy
 Yy
-Yy
+Fp
 fb
 Dt
 TO
@@ -34114,7 +33963,7 @@ aI
 aI
 ah
 al
-pX
+aZ
 bj
 al
 Uz
@@ -34174,7 +34023,7 @@ ZN
 Ix
 Ix
 VX
-VX
+Eb
 yV
 Nn
 Nn
@@ -34223,7 +34072,7 @@ ZK
 ZK
 Yy
 Yy
-Yy
+Fp
 ZK
 ZK
 ZK
@@ -34410,7 +34259,7 @@ al
 al
 aZ
 aZ
-aZ
+bj
 aZ
 ZW
 ZW
@@ -34431,7 +34280,7 @@ Eo
 Eo
 ZN
 ZN
-dh
+sR
 nO
 pl
 gS
@@ -35002,7 +34851,7 @@ Yy
 Yy
 Yy
 Yy
-vk
+ZE
 Yy
 Yy
 fb
@@ -35257,7 +35106,7 @@ Yy
 Yy
 Yy
 Yy
-Yy
+Fp
 Yy
 Yy
 Yy
@@ -35407,7 +35256,7 @@ al
 al
 aZ
 aZ
-aZ
+bj
 aZ
 aZ
 aZ
@@ -35420,7 +35269,7 @@ in
 aZ
 aZ
 aZ
-aZ
+bj
 aZ
 UD
 qp
@@ -35437,7 +35286,7 @@ hH
 UD
 aZ
 aZ
-aZ
+bj
 aZ
 al
 YL
@@ -35966,7 +35815,7 @@ Qb
 Qb
 Qb
 Eu
-Qb
+aA
 Qb
 Qb
 Ko
@@ -36020,6 +35869,7 @@ ZK
 ZK
 Yy
 Yy
+Fp
 Yy
 Yy
 Yy
@@ -36027,8 +35877,7 @@ Yy
 Yy
 Yy
 Yy
-Yy
-Yy
+Fp
 Yy
 Yy
 Yy
@@ -36282,7 +36131,7 @@ jP
 Yy
 Yy
 Yy
-Yy
+Fp
 Yy
 Yy
 Yy
@@ -36481,7 +36330,7 @@ Qb
 Qb
 Eu
 Qb
-Qb
+aA
 Qb
 Qb
 Qb
@@ -36527,7 +36376,7 @@ fb
 GZ
 kr
 ZL
-Yy
+Dx
 Yy
 Yy
 Yy
@@ -36692,7 +36541,7 @@ al
 al
 al
 aZ
-aZ
+bj
 aZ
 aZ
 al
@@ -36701,7 +36550,7 @@ al
 al
 al
 aZ
-aZ
+bj
 aZ
 aZ
 aZ
@@ -36724,7 +36573,7 @@ yw
 al
 aZ
 aZ
-aZ
+bj
 YL
 YL
 Eu
@@ -36735,7 +36584,7 @@ Eu
 Eu
 Eu
 Eu
-Eu
+Ij
 Eu
 Qb
 Qb
@@ -36784,7 +36633,7 @@ Yy
 OR
 OR
 OR
-Yy
+Dx
 vk
 Yy
 Yy
@@ -36792,7 +36641,7 @@ Yy
 Yy
 Yy
 Yy
-Yy
+Fp
 Yy
 Yy
 Yy
@@ -36948,10 +36797,10 @@ al
 al
 al
 al
-aZ
-aZ
-aZ
-aZ
+pX
+pX
+pX
+pX
 al
 al
 al
@@ -36987,7 +36836,7 @@ YL
 Eu
 Qb
 Qb
-Qb
+aA
 Qb
 Qb
 Qb
@@ -37041,7 +36890,7 @@ Rq
 Wu
 Wu
 Wu
-Rq
+Te
 Rq
 Rq
 Rq
@@ -37298,7 +37147,7 @@ Yy
 OR
 OR
 OR
-Nc
+mX
 Nc
 Yy
 Yy
@@ -37498,7 +37347,7 @@ aZ
 aZ
 Qb
 Qb
-Eu
+Ij
 Gz
 YL
 YL
@@ -37724,7 +37573,7 @@ aZ
 aZ
 aZ
 aZ
-aZ
+bj
 aZ
 aZ
 aZ
@@ -38079,9 +37928,9 @@ ZK
 ZK
 ZK
 ZK
-Yy
-Yy
-Rq
+Dx
+Dx
+Te
 ZK
 ZK
 ZK
@@ -44465,9 +44314,9 @@ YL
 YL
 YL
 YL
-Eu
-Gz
-Qb
+BR
+Fl
+so
 YL
 Dt
 TO
@@ -46304,7 +46153,7 @@ QL
 Ah
 cp
 xb
-xX
+Kq
 xb
 bY
 xb
@@ -47858,7 +47707,7 @@ ZK
 WS
 WS
 ZK
-XD
+Yy
 Yy
 Yy
 Yy
@@ -53737,7 +53586,7 @@ EF
 EF
 EF
 EB
-EF
+EB
 EF
 wj
 wj
@@ -53994,10 +53843,10 @@ dH
 dH
 Cr
 EB
-EF
-EF
-wj
-wj
+EB
+EB
+ZS
+ZS
 wj
 wj
 wj
@@ -54251,16 +54100,16 @@ RC
 ml
 Cr
 EB
-EF
-EF
+EB
+EB
 ZS
 ZS
-ZS
-Ts
-ZS
-ZS
-ZS
-ZS
+wj
+aV
+wj
+wj
+wj
+wj
 ZS
 ZS
 ZS
@@ -54508,22 +54357,22 @@ Vw
 jU
 Cr
 EB
-EF
-EF
-kQ
-Ws
-Ws
-Ws
-Ws
-Ws
-Ws
-Ws
-Ws
-Ws
-Ws
-Ws
-Ws
-kQ
+EB
+EB
+ZS
+wj
+wj
+wj
+wj
+QC
+wj
+ZS
+ZS
+ZS
+ZS
+ZS
+ZS
+ZS
 ZS
 wj
 wj
@@ -54765,22 +54614,22 @@ oO
 nd
 Cr
 EB
+EB
 EF
-EF
-kQ
-DD
-DD
-DD
-DD
-DD
-DD
-DD
-DD
-DD
-DD
-DD
-DD
-kQ
+wj
+wj
+wj
+wj
+wj
+wj
+wj
+ZS
+ZS
+ZS
+ZS
+ZS
+ZS
+ZS
 ZS
 wj
 wj
@@ -55022,23 +54871,23 @@ nw
 Oe
 Cr
 EB
+EB
 EF
-EF
-kQ
-DD
-SK
-fr
-hh
-fr
-Pz
-fr
-xu
-Dx
-rV
-vx
-DD
-kQ
+wj
+wj
+wj
+wj
+wj
+wj
 ZS
+ZS
+ZS
+ZS
+ZS
+ZS
+ZS
+ZS
+wj
 wj
 wj
 wj
@@ -55279,23 +55128,23 @@ wJ
 XZ
 Cr
 EB
+EB
 EF
-EF
-kQ
-DD
-RG
-fr
-fr
-fr
-fr
-fr
-fr
-fr
-fr
-kB
-DD
-kQ
+wj
+wj
+wj
+wj
+wj
 ZS
+ZS
+ZS
+ZS
+ZS
+ZS
+ZS
+ZS
+wj
+wj
 wj
 wj
 wj
@@ -55536,23 +55385,23 @@ Cr
 Cr
 Cr
 EB
+EB
 EF
-EF
-kQ
-DD
+wj
+wj
 sw
-Hi
-yi
-QU
-DD
-YD
-do
-fr
-do
-fr
-DD
-kQ
 ZS
+ZS
+ZS
+ZS
+ZS
+ZS
+ZS
+wj
+wj
+wj
+wj
+wj
 wj
 wj
 wj
@@ -55793,22 +55642,22 @@ Cr
 EB
 EB
 EB
+EB
 EF
-EF
-kQ
-DD
-DD
-DD
-DD
-DD
-DD
-xk
-fr
-fr
-fr
-fr
-Pz
-KY
+wj
+ZS
+ZS
+ZS
+ZS
+ZS
+ZS
+ZS
+ZS
+wj
+wj
+wj
+wj
+wj
 wj
 wj
 wj
@@ -56050,22 +55899,22 @@ Cr
 EB
 EB
 EB
+EB
 EF
-EF
-kQ
-DD
-wL
-KV
-fq
-Yp
-Pz
-Tu
-do
-fr
-do
-fr
-fr
-KY
+wj
+ZS
+ZS
+ZS
+ZS
+ZS
+ZS
+ZS
+ZS
+wj
+wj
+wj
+wj
+wj
 wj
 wj
 wj
@@ -56309,21 +56158,21 @@ EB
 EB
 EF
 EF
-kQ
-DD
-Fw
-MQ
-sc
-aT
-fr
-Tu
-fr
-fr
-fr
-fr
-Pz
-KY
 wj
+wj
+wj
+wj
+ZS
+ZS
+ZS
+ZS
+wj
+wj
+wj
+wj
+wj
+wj
+ZS
 ZS
 ZS
 ZS
@@ -56566,21 +56415,21 @@ EB
 EF
 EF
 EF
-kQ
-DD
-DD
-DD
-DD
-DD
-DD
-Tu
-do
-fr
-do
-fr
-fr
-KY
 wj
+wj
+aV
+wj
+wj
+ZS
+ZS
+ZS
+wj
+wj
+wj
+wj
+wj
+ZS
+ZS
 ZS
 ZS
 ZS
@@ -56823,21 +56672,21 @@ EB
 EF
 EF
 EF
-kQ
-DD
-VE
-yt
-fP
-DZ
-DD
-pq
-fr
-fr
-fr
-fr
-DD
-KY
 wj
+wj
+wj
+wj
+wj
+kH
+WO
+jL
+wj
+wj
+wj
+wj
+wj
+ZS
+ZS
 ZS
 ZS
 ZS
@@ -57080,20 +56929,20 @@ EF
 EF
 Pd
 EF
-kQ
-DD
-VE
-Tu
-Tu
-Tu
-PS
-Tu
-do
-fr
-do
-kB
-DD
-KY
+wj
+ZS
+wj
+wj
+wj
+kH
+wj
+jL
+wj
+jN
+aV
+wj
+wj
+wj
 wj
 wj
 ZS
@@ -57337,22 +57186,22 @@ EF
 EF
 EF
 EF
-kQ
-DD
-nc
-ax
-Jd
-AN
-fr
-fr
-Sn
-TG
-rP
-Hn
-DD
-KY
+ZS
+ZS
 wj
 wj
+wj
+kH
+wj
+wj
+wj
+wj
+wj
+wj
+wj
+wj
+wj
+QC
 aV
 ZS
 ZS
@@ -57367,7 +57216,7 @@ wj
 LQ
 XL
 Nb
-kJ
+kQ
 LQ
 wj
 ZS
@@ -57594,20 +57443,20 @@ EF
 EF
 EB
 EB
-kQ
-DD
-DD
-DD
-DD
-DD
-DD
-DD
-DD
-DD
-DD
-DD
-DD
-KY
+ZS
+ZS
+wj
+wj
+wj
+kH
+WO
+jL
+wj
+wj
+wj
+wj
+wj
+wj
 wj
 wj
 wj
@@ -57851,20 +57700,20 @@ EB
 EB
 EB
 EB
-kQ
-Ws
-Ws
-Ws
-Ws
-Ws
-Ws
-Ws
-Ws
-Eg
-Eg
-Eg
-Eg
-KY
+ZS
+ZS
+ZS
+wj
+wj
+kH
+WO
+jL
+wj
+wj
+wj
+wj
+wj
+wj
 wj
 wj
 wj
@@ -58115,11 +57964,11 @@ ZS
 ZS
 ZS
 ZS
-ZS
-ZS
+jL
 wj
 wj
-wj
+QC
+jN
 wj
 wj
 wj
