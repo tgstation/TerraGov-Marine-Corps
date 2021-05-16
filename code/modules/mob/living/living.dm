@@ -170,7 +170,7 @@
 
 
 /mob/living/proc/get_limbzone_target()
-	return ran_zone(zone_selected)
+	return ran_zone(zone_selected, 100)
 
 
 

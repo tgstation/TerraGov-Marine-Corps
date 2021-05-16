@@ -461,7 +461,7 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 			H.current_rounds++
 		else
 			H = new
-			H.generate_handful(bullet_ammo_type, bullet_caliber, 8, 1, type)
+			H.generate_handful(bullet_ammo_type, bullet_caliber, 1, type)
 			user.put_in_hands(H)
 
 		H.update_icon()
