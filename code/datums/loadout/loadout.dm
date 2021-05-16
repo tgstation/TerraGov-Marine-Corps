@@ -23,25 +23,15 @@
 	var/w_class = initial(item.w_class)
 	switch(slot)
 		if(slot_wear_mask_str)
-			if(!(flags_equip_slot & ITEM_SLOT_MASK))
-				return FALSE
-			return TRUE
+			return (flags_equip_slot & ITEM_SLOT_MASK)
 		if(slot_back_str)
-			if(!(flags_equip_slot & ITEM_SLOT_BACK))
-				return FALSE
-			return TRUE
+			return (flags_equip_slot & ITEM_SLOT_BACK)
 		if(slot_wear_suit_str)
-			if(!(flags_equip_slot & ITEM_SLOT_OCLOTHING))
-				return FALSE
-			return TRUE
+			return (flags_equip_slot & ITEM_SLOT_OCLOTHING)
 		if(slot_gloves_str)
-			if(!(flags_equip_slot & ITEM_SLOT_GLOVES))
-				return FALSE
-			return TRUE
+			return (flags_equip_slot & ITEM_SLOT_GLOVES)
 		if(slot_shoes_str)
-			if(!(flags_equip_slot & ITEM_SLOT_FEET))
-				return FALSE
-			return TRUE
+			return (flags_equip_slot & ITEM_SLOT_FEET)
 		if(slot_belt_str)
 			if(!(flags_equip_slot & ITEM_SLOT_BELT))
 				return FALSE
@@ -49,17 +39,11 @@
 				return FALSE
 			return TRUE
 		if(slot_glasses_str)
-			if(!(flags_equip_slot & ITEM_SLOT_EYES))
-				return FALSE
-			return TRUE
+			return (flags_equip_slot & ITEM_SLOT_EYES)
 		if(slot_head_str)
-			if(!(flags_equip_slot & ITEM_SLOT_HEAD))
-				return FALSE
-			return TRUE
+			return (flags_equip_slot & ITEM_SLOT_HEAD)
 		if(slot_w_uniform_str)
-			if(!(flags_equip_slot & ITEM_SLOT_ICLOTHING))
-				return FALSE
-			return TRUE
+			return (flags_equip_slot & ITEM_SLOT_ICLOTHING)
 		if(slot_l_store_str)
 			if(!item_list[SLOT_W_UNIFORM])
 				return FALSE
@@ -139,10 +123,6 @@
 	. = ..()
 	switch(action)
 		if("equipLoadout")
-			if(TIMER_COOLDOWN_CHECK(ui.user, COOLDOWN_LOADOUT_EQUIPPED))
-				to_chat(ui.user, "<span class='warning'>You already equipped a loadout recently!</span>")
-				return
-			//TIMER_COOLDOWN_START(ui.user, COOLDOWN_LOADOUT_EQUIPPED, LOADOUT_COOLDOWN)
 			ui.user.client.prefs.loadout_manager.seller.try_to_equip_loadout(src, ui.user)
 			ui.close()
 		if("deleteLoadout")
@@ -151,9 +131,8 @@
 
 
 /datum/loadout/ui_assets(mob/user)
-	return list(
-		get_asset_datum(/datum/asset/simple/inventory),
-	)
+	. = ..() || list()
+	. += get_asset_datum(/datum/asset/simple/inventory)
 
 /datum/loadout/proc/prepare_items_data(mob/user)
 	var/items_data = list()

@@ -117,16 +117,17 @@
 
 /proc/sanitize_loadout_manager(value)
 	var/datum/loadout_manager/manager
-	if(istype(value, /datum/loadout_manager))
-		manager = value
-		if(!islist(manager.loadouts_list))
-			manager = new
-			return manager
-		for(var/loadout in manager.loadouts_list)
-			if(!istype(loadout, /datum/loadout))
-				manager.loadouts_list -= loadout
-		manager.loadouts_data = null
-		manager.seller = null
+	if(!istype(value, /datum/loadout_manager))
+		manager = new
 		return manager
-	manager = new
+	manager = value
+	if(!islist(manager.loadouts_list))
+		manager = new
+		return manager
+	for(var/loadout in manager.loadouts_list)
+		if(!istype(loadout, /datum/loadout))
+			manager.loadouts_list -= loadout
+	manager.loadouts_data = null
+	manager.seller = null
 	return manager
+

@@ -8,7 +8,6 @@
 	var/datum/item_representation/storage/pockets
 
 /datum/item_representation/suit_with_storage/New(obj/item/item_to_copy)
-	. = ..()
 	if(!item_to_copy)
 		return
 	if(!issuitwithstorage(item_to_copy))
@@ -23,7 +22,7 @@
 		return
 	var/obj/item/clothing/suit/storage/suit = .
 	suit.pockets = pockets.instantiate_object(seller, suit)
-	return suit
+return suit
 
 /**
  * Allow to representate a jaeger modular armor with its modules
@@ -75,7 +74,7 @@
 	if(installed_storage)
 		installed_storage.install_on_armor(seller, modular_armor)
 		modular_armor.storage = storage_implementation.instantiate_object(seller, modular_armor)
-	modular_armor.update_overlays()
+	modular_armor.update_icon()
 	return modular_armor
 
 /**

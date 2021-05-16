@@ -37,7 +37,6 @@
 	rail?.install_on_gun(seller, gun)
 	under?.install_on_gun(seller, gun)
 	stock?.install_on_gun(seller, gun)
-	return gun
 
 /**
  * Allow to representate a gun attachement

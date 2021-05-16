@@ -20,8 +20,7 @@
 	if(!.)
 		return
 	var/obj/item/clothing/under/uniform = .
-	if(tie)
-		tie?.install_on_uniform(seller, uniform)
+	tie?.install_on_uniform(seller, uniform)
 	return uniform
 
 /**
@@ -35,7 +34,7 @@
 /datum/item_representation/tie/New(obj/item/item_to_copy)
 	if(!item_to_copy)
 		return
-	if(!istiestorage(item_to_copy))
+	if(!iswebbing(item_to_copy))
 		CRASH("/datum/item_representation/tie created from an item that is not a tie storage")
 	..()
 	var/obj/item/clothing/tie/storage/tie = item_to_copy
