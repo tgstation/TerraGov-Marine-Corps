@@ -1355,6 +1355,10 @@
 "ahA" = (
 /turf/open/floor/plating,
 /area/lv624/ground/sand2)
+"ahB" = (
+/obj/machinery/door/poddoor/timed_survival/containment,
+/turf/closed/gm/dense,
+/area/lv624/ground/sand3)
 "ahG" = (
 /obj/structure/ore_box,
 /turf/open/floor,
@@ -1425,14 +1429,13 @@
 	},
 /area/lv624/ground/river3)
 "aij" = (
-/turf/open/ground/coast/corner2{
-	dir = 1
-	},
-/area/lv624/ground/river3)
+/turf/closed/wall/r_wall,
+/area/survival)
 "aik" = (
-/obj/structure/jungle/vines,
-/turf/open/ground/coast,
-/area/lv624/ground/river3)
+/obj/structure/rack,
+/obj/item/stack/sheet/plasteel/large_stack,
+/turf/open/floor/tile/dark,
+/area/survival)
 "ail" = (
 /obj/structure/jungle/vines,
 /turf/open/floor/plating/ground/dirt,
@@ -1447,28 +1450,19 @@
 /obj/structure/cable,
 /turf/open/floor/freezer,
 /area/lv624/lazarus/toilet)
-"aiv" = (
-/obj/structure/jungle/vines,
-/turf/open/ground/coast/corner{
-	dir = 1
-	},
-/area/lv624/ground/river3)
 "aiw" = (
-/turf/closed/mineral,
-/area/lv624/ground/river3)
-"aix" = (
-/obj/structure/jungle/vines,
-/turf/open/ground/river,
-/area/lv624/ground/river3)
+/obj/machinery/door/poddoor/timed_survival/containment,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/jungle8)
 "aiy" = (
 /obj/machinery/power/apc/drained,
 /obj/structure/cable,
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/main_hall)
 "aiz" = (
-/obj/structure/jungle/vines/heavy,
-/turf/closed/gm/dense,
-/area/lv624/ground/river3)
+/obj/effect/landmark/start/job/survivor,
+/turf/open/floor/tile/dark,
+/area/survival)
 "aiJ" = (
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/river2)
@@ -1518,8 +1512,11 @@
 /turf/open/floor/grimy,
 /area/lv624/lazarus/captain)
 "aiT" = (
-/turf/open/ground/coast/corner2,
-/area/lv624/ground/river3)
+/obj/machinery/door/poddoor/timed_survival/containment{
+	dir = 2
+	},
+/turf/closed/mineral,
+/area/lv624/ground/caves/east1)
 "aiU" = (
 /turf/closed/wall/mineral/sandstone,
 /area/lv624/ground/river3)
@@ -1569,9 +1566,11 @@
 /turf/open/floor,
 /area/lv624/ground/sand2)
 "ajn" = (
-/obj/structure/jungle/vines/heavy,
-/turf/open/ground/coast,
-/area/lv624/ground/river3)
+/obj/machinery/door/poddoor/timed_survival/containment{
+	dir = 2
+	},
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/jungle8)
 "ajt" = (
 /obj/effect/landmark/weed_node,
 /obj/structure/disposalpipe/segment{
@@ -1606,8 +1605,10 @@
 /area/lv624/ground/river2)
 "ajB" = (
 /obj/structure/flora/ausbushes/reedbush,
-/turf/open/ground/river,
-/area/lv624/ground/river3)
+/turf/open/floor/plating/ground/dirtgrassborder{
+	dir = 1
+	},
+/area/lv624/ground/jungle8)
 "ajC" = (
 /turf/open/floor/plating/asteroidfloor,
 /area/lv624/ground/caves/west1)
@@ -1659,19 +1660,17 @@
 /turf/open/floor/plating/catwalk,
 /area/lv624/ground/sand8)
 "ake" = (
-/obj/structure/jungle/vines,
-/obj/structure/jungle/vines/heavy,
-/turf/closed/gm/dense,
-/area/lv624/ground/river3)
+/obj/machinery/door/poddoor/timed_survival/containment,
+/turf/closed/mineral,
+/area/lv624/ground/caves/east1)
 "aki" = (
-/obj/structure/jungle/vines/heavy,
-/turf/open/ground/river,
-/area/lv624/ground/river3)
+/obj/machinery/bodyscanner,
+/turf/open/floor/tile/dark,
+/area/survival)
 "akj" = (
-/obj/structure/jungle/vines/heavy,
-/obj/structure/jungle/vines/heavy,
-/turf/open/ground/river,
-/area/lv624/ground/river3)
+/obj/machinery/body_scanconsole,
+/turf/open/floor/tile/dark,
+/area/survival)
 "akk" = (
 /obj/machinery/power/apc,
 /obj/structure/cable,
@@ -1707,20 +1706,23 @@
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/secure_storage)
 "akt" = (
-/obj/structure/jungle/vines,
-/obj/structure/jungle/vines/heavy,
-/turf/open/ground/river,
-/area/lv624/ground/river3)
+/obj/machinery/vending/medical{
+	req_access = 0
+	},
+/turf/open/floor/tile/dark,
+/area/survival)
 "akv" = (
 /obj/machinery/power/apc/drained,
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/lv624/lazarus/engineering)
 "akw" = (
-/obj/structure/jungle/vines/heavy,
-/obj/structure/jungle/plantbot1/alien,
-/turf/open/ground/river,
-/area/lv624/ground/river3)
+/obj/structure/rack,
+/obj/item/weapon/gun/shotgun/pump/cmb,
+/obj/item/weapon/gun/shotgun/pump/cmb,
+/obj/item/weapon/gun/shotgun/pump/cmb,
+/turf/open/floor/tile/dark,
+/area/survival)
 "aky" = (
 /obj/structure/inflatable,
 /turf/open/floor/plating/ground/dirt,
@@ -1794,22 +1796,26 @@
 	},
 /area/lv624/ground/river2)
 "akT" = (
-/obj/structure/jungle/vines,
-/obj/structure/jungle/plantbot1/alien,
-/turf/open/ground/river,
-/area/lv624/ground/river3)
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/structure/rack,
+/obj/item/weapon/gun/smg/m25,
+/obj/item/weapon/gun/smg/m25,
+/obj/item/weapon/gun/smg/m25,
+/turf/open/floor/tile/dark,
+/area/survival)
 "akU" = (
-/obj/structure/jungle/vines,
-/turf/open/ground/coast{
-	dir = 9
-	},
-/area/lv624/ground/river3)
+/obj/structure/cable,
+/obj/effect/landmark/survivor_generator_spawn,
+/turf/open/floor/tile/dark,
+/area/survival)
 "akV" = (
-/obj/structure/jungle/vines,
-/turf/open/ground/coast{
-	dir = 5
+/obj/machinery/power/smes/buildable/empty{
+	dir = 1
 	},
-/area/lv624/ground/river3)
+/turf/open/floor/tile/dark,
+/area/survival)
 "akY" = (
 /obj/item/analyzer,
 /turf/open/floor/tile/red/yellowfull,
@@ -1871,29 +1877,48 @@
 /turf/open/floor,
 /area/lv624/ground/sand8)
 "alq" = (
-/obj/structure/jungle/vines,
-/turf/open/ground/coast/corner{
-	dir = 8
-	},
-/area/lv624/ground/river3)
+/obj/machinery/optable,
+/obj/item/tank/anesthetic,
+/turf/open/floor/tile/dark,
+/area/survival)
 "alr" = (
-/obj/structure/jungle/vines/heavy,
-/turf/open/ground/coast{
-	dir = 1
-	},
-/area/lv624/ground/river3)
+/obj/item/ammo_magazine/shotgun/flechette,
+/obj/item/ammo_magazine/shotgun/flechette,
+/obj/item/ammo_magazine/shotgun/buckshot,
+/obj/item/ammo_magazine/shotgun/buckshot,
+/obj/item/ammo_magazine/shotgun/incendiary,
+/obj/item/ammo_magazine/shotgun,
+/obj/item/ammo_magazine/shotgun,
+/turf/open/floor/tile/dark,
+/area/survival)
 "als" = (
-/obj/structure/jungle/vines,
-/turf/open/ground/coast{
-	dir = 1
-	},
-/area/lv624/ground/river3)
+/obj/item/ammo_magazine/smg/m25,
+/obj/item/ammo_magazine/smg/m25,
+/obj/item/ammo_magazine/smg/m25,
+/obj/item/ammo_magazine/smg/m25,
+/obj/item/ammo_magazine/smg/m25,
+/obj/item/ammo_magazine/smg/m25,
+/obj/item/ammo_magazine/smg/m25,
+/obj/item/ammo_magazine/smg/m25,
+/obj/item/ammo_magazine/smg/m25,
+/obj/item/ammo_magazine/smg/m25,
+/obj/item/ammo_magazine/smg/m25,
+/obj/item/ammo_magazine/smg/m25,
+/obj/item/ammo_magazine/smg/m25,
+/obj/item/ammo_magazine/smg/m25,
+/obj/item/ammo_magazine/smg/m25,
+/obj/item/ammo_magazine/smg/m25,
+/obj/item/ammo_magazine/smg/m25,
+/obj/item/ammo_magazine/smg/m25,
+/obj/item/ammo_magazine/smg/m25,
+/obj/item/ammo_magazine/smg/m25,
+/turf/open/floor/tile/dark,
+/area/survival)
 "alt" = (
-/obj/structure/jungle/vines,
-/turf/open/ground/coast/corner2{
-	dir = 4
-	},
-/area/lv624/ground/river3)
+/obj/structure/closet/secure_closet/engineering_electrical,
+/obj/structure/cable,
+/turf/open/floor/tile/dark,
+/area/survival)
 "alu" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -3670,9 +3695,8 @@
 /turf/open/floor/plating,
 /area/lv624/lazarus/fitness)
 "auA" = (
-/obj/structure/jungle/vines,
-/turf/closed/gm/dense,
-/area/lv624/ground/river3)
+/turf/open/floor/tile/dark,
+/area/survival)
 "auB" = (
 /turf/open/floor/plating/ground/dirtgrassborder{
 	dir = 4
@@ -9124,7 +9148,7 @@
 "aZe" = (
 /obj/structure/catwalk,
 /turf/open/ground/coast{
-	dir = 9
+	dir = 8
 	},
 /area/lv624/ground/river3)
 "aZk" = (
@@ -12656,6 +12680,11 @@
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/open/floor/plating,
 /area/lv624/ground/caves/central3)
+"bOg" = (
+/obj/machinery/door/airlock/multi_tile/mainship/generic,
+/obj/structure/cable,
+/turf/open/floor/tile/dark,
+/area/survival)
 "bON" = (
 /obj/machinery/door/airlock/sandstone{
 	desc = "This strange temple is covered in runes. It looks extremely ancient.";
@@ -12865,6 +12894,10 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/main_hall)
+"cLx" = (
+/obj/structure/largecrate/supply/supplies/water,
+/turf/open/floor/tile/dark,
+/area/survival)
 "cMZ" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
@@ -12954,6 +12987,10 @@
 	},
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/main_hall)
+"dnN" = (
+/obj/machinery/door/airlock/multi_tile/mainship/generic,
+/turf/open/floor/tile/dark,
+/area/survival)
 "doj" = (
 /obj/structure/flora/ausbushes/fernybush,
 /turf/open/floor/plating/ground/dirt,
@@ -13221,6 +13258,10 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/compound/c)
+"efh" = (
+/obj/structure/reagent_dispensers/fueltank,
+/turf/open/floor/tile/dark,
+/area/survival)
 "ejZ" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /obj/effect/landmark/xeno_resin_door,
@@ -13516,6 +13557,11 @@
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/closed/mineral,
 /area/lv624/ground/sand1)
+"fxL" = (
+/obj/item/ammo_magazine/flamer_tank/large,
+/obj/item/weapon/gun/flamer/marinestandard,
+/turf/open/floor/tile/dark,
+/area/survival)
 "fya" = (
 /turf/closed/wall/r_wall,
 /area/lv624/ground/shelter)
@@ -13684,6 +13730,10 @@
 	},
 /turf/open/floor,
 /area/lv624/ground/compound/sw)
+"gfx" = (
+/obj/structure/largecrate/supply/supplies/flares,
+/turf/open/floor/tile/dark,
+/area/survival)
 "gfW" = (
 /obj/structure/fence,
 /obj/structure/jungle/vines/heavy,
@@ -14121,6 +14171,10 @@
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/quartstorage)
+"ihh" = (
+/obj/effect/spawner/random/powercell,
+/turf/open/floor/tile/dark,
+/area/survival)
 "ihA" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4
@@ -14416,12 +14470,23 @@
 /obj/docking_port/stationary/crashmode,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/sand4)
+"jAc" = (
+/obj/item/ammo_magazine/smg/m25/ap,
+/obj/item/ammo_magazine/smg/m25/ap,
+/obj/item/ammo_magazine/smg/m25/ap,
+/turf/open/floor/tile/dark,
+/area/survival)
 "jCY" = (
 /obj/structure/sign/redcross{
 	dir = 8
 	},
 /turf/open/floor,
 /area/lv624/ground/compound/n)
+"jDD" = (
+/obj/structure/rack,
+/obj/item/lightreplacer,
+/turf/open/floor/tile/dark,
+/area/survival)
 "jGr" = (
 /obj/machinery/door/window/southleft,
 /obj/effect/landmark/weed_node,
@@ -14624,6 +14689,12 @@
 	},
 /turf/open/floor/tile/blue/taupebluecorner,
 /area/lv624/lazarus/sleep_male)
+"kIG" = (
+/obj/item/storage/box/minisentry,
+/obj/item/storage/box/minisentry,
+/obj/structure/rack,
+/turf/open/floor/tile/dark,
+/area/survival)
 "kIM" = (
 /obj/structure/fence,
 /obj/structure/catwalk,
@@ -14651,6 +14722,10 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor,
 /area/lv624/ground/sand5)
+"kNs" = (
+/obj/machinery/light,
+/turf/open/floor/tile/dark,
+/area/survival)
 "kOH" = (
 /obj/effect/decal/warning_stripes/thin,
 /obj/effect/decal/warning_stripes/thin{
@@ -14736,6 +14811,14 @@
 /obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/east1)
+"lgC" = (
+/obj/structure/rack,
+/obj/item/stack/sheet/metal/large_stack,
+/obj/item/stack/sheet/metal/large_stack,
+/obj/item/stack/sheet/metal/large_stack,
+/obj/item/stack/sheet/metal/large_stack,
+/turf/open/floor/tile/dark,
+/area/survival)
 "liW" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /obj/effect/landmark/weed_node,
@@ -14747,6 +14830,12 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/open/floor/marking/bot,
 /area/lv624/lazarus/quartstorage)
+"llj" = (
+/obj/machinery/door/poddoor/timed_survival/containment{
+	dir = 2
+	},
+/turf/closed/gm/dense,
+/area/lv624/ground/jungle8)
 "lmx" = (
 /obj/item/clothing/head/hardhat/orange,
 /obj/effect/landmark/weed_node,
@@ -14886,6 +14975,13 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle6)
+"lYP" = (
+/obj/machinery/vending/MarineMed/Blood{
+	req_access = 0;
+	req_one_access = null
+	},
+/turf/open/floor/tile/dark,
+/area/survival)
 "lYR" = (
 /turf/closed/wall/r_wall,
 /area/lv624/lazarus/quartstorage/outdoors)
@@ -14912,6 +15008,9 @@
 /obj/structure/jungle/vines,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle9)
+"mbD" = (
+/turf/closed/mineral,
+/area/lv624/ground/jungle8)
 "mbX" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/effect/landmark/weed_node,
@@ -14979,6 +15078,12 @@
 	},
 /turf/open/floor,
 /area/shuttle/drop1/lz1)
+"mmI" = (
+/obj/structure/rack,
+/obj/item/stack/sandbags/large_stack,
+/obj/item/stack/sandbags/large_stack,
+/turf/open/floor/tile/dark,
+/area/survival)
 "mos" = (
 /turf/open/floor/plating/ground/dirtgrassborder/corner2,
 /area/lv624/ground/compound/sw)
@@ -15237,6 +15342,11 @@
 "nrr" = (
 /turf/open/floor,
 /area/lv624/ground/compound/sw)
+"nrv" = (
+/obj/machinery/power/apc/hyper,
+/obj/structure/cable,
+/turf/open/floor/tile/dark,
+/area/survival)
 "nrB" = (
 /obj/structure/jungle/vines/heavy,
 /obj/structure/jungle/vines/heavy,
@@ -15263,6 +15373,10 @@
 /obj/machinery/miner/damaged,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/river1)
+"nAs" = (
+/obj/structure/reagent_dispensers/watertank,
+/turf/open/floor/tile/dark,
+/area/survival)
 "nAE" = (
 /obj/structure/jungle/vines,
 /obj/structure/jungle/vines,
@@ -15373,6 +15487,10 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/open/floor/plating/ground/dirt,
 /area/shuttle/drop2/lz2)
+"nTD" = (
+/obj/structure/largecrate/supply/supplies/mre,
+/turf/open/floor/tile/dark,
+/area/survival)
 "nUe" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/dark,
@@ -15405,6 +15523,13 @@
 /obj/machinery/floodlight/colony,
 /turf/open/floor/plating/ground/dirtgrassborder,
 /area/lv624/ground/jungle9)
+"nZj" = (
+/obj/machinery/iv_drip,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/tile/dark,
+/area/survival)
 "obw" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
@@ -15465,6 +15590,13 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/secure_storage)
+"olE" = (
+/obj/machinery/power/terminal{
+	dir = 1
+	},
+/obj/structure/cable,
+/turf/open/floor/tile/dark,
+/area/survival)
 "ooP" = (
 /obj/structure/fence,
 /turf/open/floor/plating/ground/dirtgrassborder/corner2{
@@ -15566,6 +15698,12 @@
 /obj/structure/catwalk,
 /turf/open/ground/river,
 /area/lv624/ground/river2)
+"oMk" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/tile/dark,
+/area/survival)
 "oPz" = (
 /obj/structure/jungle/vines,
 /turf/open/floor/plating/ground/dirtgrassborder/corner{
@@ -16423,10 +16561,9 @@
 /turf/open/ground/river,
 /area/lv624/ground/river2)
 "sOH" = (
-/obj/structure/jungle/vines,
-/obj/structure/catwalk,
-/turf/open/ground/coast,
-/area/lv624/ground/river3)
+/obj/structure/cable,
+/turf/open/floor/tile/dark,
+/area/survival)
 "sPg" = (
 /turf/open/floor/marking/warning{
 	dir = 4
@@ -16464,6 +16601,16 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/secure_storage)
+"sUN" = (
+/obj/item/weapon/gun/shotgun/pump/bolt,
+/obj/item/ammo_magazine/rifle/bolt,
+/obj/item/ammo_magazine/rifle/bolt,
+/obj/item/ammo_magazine/rifle/bolt,
+/obj/item/ammo_magazine/rifle/bolt,
+/obj/item/ammo_magazine/rifle/bolt,
+/obj/item/ammo_magazine/rifle/bolt,
+/turf/open/floor/tile/dark,
+/area/survival)
 "sZJ" = (
 /obj/structure/cargo_container/nt{
 	dir = 1
@@ -16896,6 +17043,13 @@
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/gm/dense,
 /area/lv624/ground/jungle3)
+"vfp" = (
+/obj/structure/cable,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/tile/dark,
+/area/survival)
 "viR" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -17123,6 +17277,14 @@
 /obj/machinery/floodlight/colony,
 /turf/open/floor,
 /area/lv624/ground/jungle7)
+"weZ" = (
+/obj/machinery/door/poddoor/timed_survival/containment{
+	dir = 2
+	},
+/turf/open/floor/plating/ground/dirtgrassborder{
+	dir = 8
+	},
+/area/lv624/ground/jungle8)
 "wgy" = (
 /obj/machinery/floodlight/colony,
 /turf/open/floor/plating/ground/dirt,
@@ -17160,6 +17322,10 @@
 /obj/machinery/light,
 /turf/open/ground/grass,
 /area/shuttle/drop2/lz2)
+"wEp" = (
+/obj/machinery/door/poddoor/timed_survival/containment,
+/turf/closed/gm/dense,
+/area/lv624/ground/jungle8)
 "wEt" = (
 /obj/effect/decal/warning_stripes/thick{
 	dir = 1
@@ -17173,6 +17339,10 @@
 "wKy" = (
 /obj/machinery/floodlight/colony,
 /turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/jungle8)
+"wKE" = (
+/obj/machinery/door/poddoor/timed_survival/containment,
+/turf/closed/mineral,
 /area/lv624/ground/jungle8)
 "wLx" = (
 /obj/machinery/miner/damaged/platinum,
@@ -17264,6 +17434,11 @@
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/mineral,
 /area/lv624/ground/caves/east1)
+"xjU" = (
+/obj/item/storage/surgical_tray,
+/obj/structure/rack,
+/turf/open/floor/tile/dark,
+/area/survival)
 "xmL" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
@@ -17297,6 +17472,16 @@
 /obj/structure/fence,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle2)
+"xsF" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/structure/rack,
+/obj/item/storage/belt/utility/full,
+/obj/item/storage/belt/utility/full,
+/obj/item/storage/belt/utility/full,
+/turf/open/floor/tile/dark,
+/area/survival)
 "xtn" = (
 /obj/structure/jungle/vines,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
@@ -17372,6 +17557,10 @@
 /obj/effect/spawner/modularmap/lv624/domes,
 /turf/open/space/basic,
 /area/lv624/lazarus/robotics)
+"xKN" = (
+/obj/structure/closet/secure_closet/engineering_welding,
+/turf/open/floor/tile/dark,
+/area/survival)
 "xLJ" = (
 /obj/effect/landmark/xeno_silo_spawn,
 /turf/open/floor/plating/ground/dirt,
@@ -17445,6 +17634,15 @@
 /obj/structure/jungle/plantbot1,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle9)
+"yjX" = (
+/turf/open/floor/plating/ground/dirtgrassborder/corner{
+	dir = 4
+	},
+/area/lv624/ground/river3)
+"ylJ" = (
+/obj/machinery/door/poddoor/timed_survival/containment,
+/turf/closed/mineral,
+/area/lv624/ground/sand3)
 
 (1,1,1) = {"
 aab
@@ -45092,9 +45290,9 @@ fwQ
 fwQ
 fwQ
 fwQ
-apo
-apo
-apo
+aZe
+aZe
+aZe
 aZe
 hIJ
 apV
@@ -45258,23 +45456,23 @@ abi
 abo
 abi
 abi
-sOH
-pXO
-pXO
-apo
-apo
-apo
-apo
-apo
-plV
-apo
-apo
-apo
-apo
-apo
-ajB
-aqN
-aqg
+asD
+asD
+asD
+apP
+apP
+apP
+apP
+apP
+apP
+apP
+apP
+apP
+apP
+apP
+fKv
+apP
+apP
 asD
 aot
 aqk
@@ -45437,22 +45635,22 @@ abi
 abi
 abi
 ail
-aik
-aix
-apm
-aoO
-aoO
-aoO
-aoO
-ajB
-aoO
-aoO
-aoO
-apm
-aoO
-aoO
-aoO
-aqf
+asD
+asD
+apP
+apP
+uCI
+apP
+apP
+fKv
+uCI
+apP
+apP
+apP
+apP
+uCI
+apP
+apP
 aps
 aot
 anr
@@ -45616,22 +45814,22 @@ abi
 abi
 ahT
 aim
-aiv
-aqw
-aqw
-aij
-aoO
-ajB
-aoO
-aoO
-aoO
-aoO
-aoO
-aoO
-aoO
-aoO
-aqN
-aqg
+asD
+apP
+apP
+apP
+apP
+fKv
+apP
+apP
+apP
+apP
+apP
+apP
+apP
+apP
+apP
+apP
 apt
 anr
 anr
@@ -45785,31 +45983,31 @@ abg
 abg
 abg
 abg
-abi
 abg
-abi
-abi
-abi
+abg
+abg
+abg
+abg
 abg
 ahf
 ahf
 ahf
 aim
-atb
-atb
-abl
-aiT
-aoO
-aoO
-aoO
-aoO
-aoO
-aoO
-aoO
-aoO
-aoO
-aqN
-aqg
+apP
+apP
+apP
+apP
+apP
+apP
+aos
+aue
+aue
+aue
+apT
+uCI
+apP
+apP
+apP
 aos
 apu
 anr
@@ -45965,29 +46163,29 @@ afr
 abg
 abg
 abg
-abg
-abg
-abg
-aNf
-aNf
-ahf
-ahf
-ahf
-ahf
+aiT
+ake
+ake
+ake
+ake
+ylJ
+ylJ
+ylJ
+ahB
 aiw
-atb
-ahQ
-aoO
-aoO
-aoO
+aiw
+aiw
+aiw
+ajn
+apP
 ajB
-aoO
-aoO
-apm
-aoO
-aoO
-aqN
-aqg
+anr
+anr
+anr
+aqk
+apP
+apP
+apP
 aos
 aot
 apv
@@ -46144,28 +46342,28 @@ afr
 abg
 abg
 abg
-abg
-abg
-abg
-aNf
-aNf
-ahf
-ahf
-ahf
-ahf
-aiw
-atb
-ahQ
-aoO
-aoO
-aoO
-aoO
-aoO
-aoO
-aoO
-aoO
-aoO
-aqf
+aiT
+aij
+aij
+aij
+aij
+aij
+aij
+aij
+aij
+aij
+aij
+aij
+aij
+ajn
+apP
+apV
+anr
+anr
+anr
+aqk
+apP
+apP
 aqh
 aot
 aoY
@@ -46323,28 +46521,28 @@ cRa
 abg
 abg
 abg
-abg
-abg
-abg
-aNf
-aNf
-ahf
-ahf
-ahf
-ahf
-aiw
-atb
+aiT
+aij
+aki
+auA
+xjU
+auA
+dnN
+auA
+mmI
+lgC
+kIG
 aik
-aoO
-aoO
-aoO
-aoO
-aoO
-aoO
-aoO
-aoO
-aoO
-als
+aij
+ajn
+apP
+aud
+auB
+auB
+auB
+anO
+apP
+apP
 aqy
 aou
 aoZ
@@ -46502,29 +46700,29 @@ afr
 abg
 abg
 abg
-abg
-abg
-abg
-aNf
-aNf
-ahf
-ahf
-ahf
-ahf
-aiw
+aiT
+aij
+akj
 auA
-ahQ
-aoO
-aoO
-apm
-aoO
-aoO
-aoO
-aoO
-aoO
-aix
-alt
-atb
+auA
+auA
+auA
+auA
+auA
+auA
+auA
+kNs
+aij
+ajn
+uCI
+apP
+apP
+apP
+apP
+apP
+aos
+aue
+yjX
 aov
 aou
 anr
@@ -46681,27 +46879,27 @@ afr
 afB
 abg
 abg
-abg
-abg
-abg
-aNf
-aNf
-ahf
-ahf
-ahf
-ahf
-aiw
-atb
-aiv
+aiT
 aij
-aoO
-aoO
-aoO
-aoO
-aix
-aix
-aix
-aix
+akt
+alq
+nZj
+lYP
+aij
+oMk
+aiz
+auA
+aiz
+auA
+aij
+ajn
+apP
+apP
+apP
+apP
+apP
+apP
+apV
 anr
 anr
 aov
@@ -46860,27 +47058,27 @@ afr
 afr
 abg
 abg
-abg
-abg
-abg
-aNf
-aNf
-ahf
-ahf
-ahf
-ahf
-aiw
-atb
-atb
-ahQ
-aix
-aix
-aix
-aix
-aki
-aix
-akT
-atb
+aiT
+aij
+aij
+aij
+aij
+aij
+aij
+nrv
+auA
+auA
+auA
+auA
+dnN
+ajn
+apP
+apP
+apP
+apP
+uCI
+apP
+apV
 anr
 anr
 anr
@@ -47039,27 +47237,27 @@ afr
 afB
 abg
 abg
-abg
-abg
-abg
-aNf
-aNf
-ahf
-ahf
-ahf
-ahf
-aiw
-atb
-atb
-aik
-aix
-aix
-aix
-aix
-aki
-aix
-akU
-atb
+aiT
+aij
+akw
+alr
+fxL
+sUN
+dnN
+sOH
+aiz
+auA
+aiz
+auA
+auA
+ajn
+apP
+apP
+apP
+apP
+apP
+apP
+apV
 anr
 anr
 anr
@@ -47218,27 +47416,27 @@ afr
 afr
 abg
 abg
-abg
-abg
-abg
-aNf
-aNf
-ahf
-ahf
-ahf
-ahf
-aiw
-atb
-atb
-aiv
-aix
-aki
-aki
-aki
-aki
-aix
-akV
-alq
+aiT
+aij
+akT
+als
+jAc
+ihh
+auA
+sOH
+auA
+auA
+auA
+auA
+dnN
+ajn
+apP
+apP
+apP
+apP
+uCI
+apP
+apV
 anr
 anr
 anr
@@ -47397,27 +47595,27 @@ afr
 afB
 abg
 abg
-abg
-abg
-abg
-aNf
-aNf
-ahf
-ahf
-ahf
-ahf
-aiw
+aiT
+aij
+aij
+aij
+aij
+aij
+aij
+sOH
 aiz
-atb
-atb
+auA
+aiz
+auA
+auA
 ajn
-aki
-akj
-akw
-aix
-aki
-aki
-alr
+apP
+uCI
+apP
+apP
+apP
+apP
+apV
 anr
 anr
 anr
@@ -47576,27 +47774,27 @@ afr
 afr
 abg
 abg
-abg
-abg
-abg
-aNf
-aNf
-ahf
-ahf
-ahf
-ahf
-aiw
-atb
-atb
-atb
-aik
-akj
-aki
-aki
-akt
-aki
-aki
-alr
+aiT
+aij
+akU
+alt
+xsF
+xKN
+aij
+vfp
+auA
+auA
+auA
+auA
+aij
+ajn
+apP
+apP
+apP
+apP
+apP
+apP
+apV
 anr
 anr
 anr
@@ -47755,27 +47953,27 @@ afr
 afB
 abg
 abg
-abg
-abg
-abg
-aNf
-aNf
-ahf
-ahf
-ahf
-ahf
-aiw
-atb
-atb
-atb
-atb
-aki
-aki
-aki
-aki
-aix
-aki
-atb
+aiT
+aij
+akU
+sOH
+sOH
+sOH
+bOg
+sOH
+aiz
+auA
+aiz
+kNs
+aij
+weZ
+aue
+aue
+aue
+aue
+aue
+aue
+aot
 anr
 anr
 anr
@@ -47934,27 +48132,27 @@ abg
 abg
 abg
 abg
-abg
-abg
-abg
-aNf
-aNf
-ahf
-ahf
-ahf
-ahf
-aiw
-atb
-atb
-atb
-atb
-akt
-aix
-aix
-aki
-aki
-aki
-atb
+aiT
+aij
+akV
+olE
+efh
+nAs
+auA
+auA
+gfx
+cLx
+nTD
+jDD
+aij
+llj
+anr
+anr
+anr
+anr
+anr
+anr
+anr
 anr
 anr
 anr
@@ -48113,27 +48311,27 @@ abg
 abg
 abg
 abg
-abg
-abg
-abg
-aNf
-aNf
-ahf
-ahf
-ahf
-ahf
-aiw
-atb
-atb
-atb
-atb
-ake
-akt
-atb
-aki
-akt
-atb
-atb
+aiT
+aij
+aij
+aij
+aij
+aij
+aij
+aij
+aij
+aij
+aij
+aij
+aij
+llj
+anr
+anr
+anr
+anr
+anr
+anr
+anr
 anr
 anr
 anr
@@ -48292,27 +48490,27 @@ abg
 abg
 abg
 abg
-abg
-abg
-abg
-aNf
-aNf
-ahf
-ahf
-ahf
-ahf
-aiw
-atb
-atb
-atb
-atb
-aiz
-atb
-atb
-atb
-aiz
-atb
-atb
+aiT
+ake
+ake
+ake
+ake
+ylJ
+ylJ
+ylJ
+ylJ
+wKE
+wKE
+wEp
+wEp
+llj
+anr
+anr
+anr
+anr
+anr
+anr
+anr
 anr
 anr
 anr
@@ -48480,18 +48678,18 @@ ahf
 ahf
 ahf
 ahf
-aiw
-aiw
-atb
-atb
-atb
-atb
-atb
-atb
-atb
-atb
-atb
-atb
+mbD
+mbD
+anr
+anr
+anr
+anr
+anr
+anr
+anr
+anr
+anr
+anr
 anr
 anr
 anr
