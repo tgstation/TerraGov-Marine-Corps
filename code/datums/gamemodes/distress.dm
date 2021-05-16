@@ -40,7 +40,7 @@
 		corpse.create_mob(COCOONED_DEATH)
 
 	for(var/i in GLOB.survivor_generator)
-		new /obj/machinery/power/geothermal/survivor
+		new /obj/machinery/power/geothermal/survivor(i)
 
 
 /datum/game_mode/infestation/distress/scale_roles(initial_players_assigned)
