@@ -173,7 +173,7 @@
 			/obj/item/explosive/grenade/drainbomb = 10,
 			/obj/item/explosive/grenade/mirage = 100,
 			/obj/item/storage/box/m94 = 200,
-			/obj/item/storage/box/m94/cas = 300,
+			/obj/item/storage/box/m94/cas = 30,
 		),
 		"Attachments" = list(
 			/obj/item/attachable/bayonet = -1,
