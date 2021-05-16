@@ -36852,7 +36852,7 @@
 /turf/open/floor/mech_bay_recharge_floor,
 /area/mainship/squads/req)
 "rbm" = (
-/mob/living/simple_animal/cat/Jones,
+/mob/living/simple_animal/corgi/Ian,
 /turf/open/floor/wood,
 /area/mainship/living/commandbunks)
 "rcT" = (

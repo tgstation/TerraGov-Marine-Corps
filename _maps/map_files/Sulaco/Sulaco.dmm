@@ -18632,7 +18632,7 @@
 /turf/open/floor/prison,
 /area/sulaco/engineering/atmos)
 "rBq" = (
-/mob/living/simple_animal/cat/Jones,
+/mob/living/simple_animal/corgi/Ian,
 /turf/open/floor/wood,
 /area/sulaco/cap_office)
 "rBM" = (

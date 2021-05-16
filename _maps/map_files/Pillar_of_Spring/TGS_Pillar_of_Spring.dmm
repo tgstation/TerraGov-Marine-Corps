@@ -3230,7 +3230,7 @@
 /obj/structure/bed/fancy,
 /obj/item/bedsheet/captain,
 /obj/effect/landmark/start/job/captain,
-/mob/living/simple_animal/cat/Jones,
+/mob/living/simple_animal/corgi/Ian,
 /turf/open/floor/carpet{
 	dir = 1;
 	icon_state = "carpetside"
