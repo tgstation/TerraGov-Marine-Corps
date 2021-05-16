@@ -7,8 +7,9 @@ SUBSYSTEM_DEF(weeds_decay)
 	/// List of decaying nodes on the map
 	var/list/decaying = list()
 
-/datum/controller/subsystem/weeds_decay/stat_entry()
-	return ..("Decay Nodes: [length(decaying)]")
+/datum/controller/subsystem/weeds_decay/stat_entry(msg)
+	msg = "Decay Nodes: [length(decaying)]"
+	return ..()
 
 /datum/controller/subsystem/weeds_decay/fire(resumed = FALSE)
 

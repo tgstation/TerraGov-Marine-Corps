@@ -37,7 +37,7 @@
 		yankable_embedded = TRUE
 		break
 	if(!yankable_embedded)
-		verbs -= /mob/living/proc/yank_out_object
+		remove_verb(src, /mob/living/proc/yank_out_object)
 
 
 /mob/living/carbon/human/unembed_item(obj/item/embedding)
@@ -52,7 +52,7 @@
 		yankable_embedded = TRUE
 		break
 	if(!yankable_embedded)
-		verbs -= /mob/living/proc/yank_out_object
+		remove_verb(src, /mob/living/proc/yank_out_object)
 
 
 /datum/limb/proc/unembed(obj/item/embedding)
@@ -88,7 +88,7 @@
 		owner.visible_message("<span class='danger'>\The [embedding] sticks in the wound!</span>")
 	implants += embedding
 	if(embedding.embedding.embedded_flags & EMBEDDEED_CAN_BE_YANKED_OUT)
-		owner.verbs += /mob/living/proc/yank_out_object
+		add_verb(owner, /mob/living/proc/yank_out_object)
 	embedding.add_mob_blood(owner)
 	embedding.forceMove(owner)
 	embedding.RegisterSignal(src, COMSIG_LIMB_DESTROYED, /obj/item/.proc/embedded_on_limb_destruction)

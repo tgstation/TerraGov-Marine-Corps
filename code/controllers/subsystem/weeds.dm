@@ -9,8 +9,9 @@ SUBSYSTEM_DEF(weeds)
 	var/list/pending = list()
 	var/list/currentrun
 
-/datum/controller/subsystem/weeds/stat_entry()
-	return ..("Nodes: [length(pending)]")
+/datum/controller/subsystem/weeds/stat_entry(msg)
+	msg = "Nodes: [length(pending)]"
+	return ..()
 
 /datum/controller/subsystem/weeds/fire(resumed = FALSE)
 	if(!resumed)

@@ -3,7 +3,8 @@
 	preload_rsc = PRELOAD_RSC // This is 0 so we can set it to an URL once the player logs in and have them download the resources from a different server.
 	view = WORLD_VIEW
 	var/datum/tooltip/tooltips
-
+	/// hides the byond verb panel as we use our own custom version
+	show_verb_panel = FALSE
 	//Admin related
 	var/datum/admins/holder = null
 	var/ban_cache = null //Used to cache this client's bans to save on DB queries
@@ -90,5 +91,17 @@
 
 	/// Messages currently seen by this client
 	var/list/seen_messages
+
+	/// list of tabs containing verbs
+	var/list/verb_tabs = list()
+
+	/// our current tab
+	var/stat_tab
+
+	/// whether our browser is ready or not yet
+	var/statbrowser_ready = FALSE
+
+	/// list of all tabs
+	var/list/panel_tabs = list()
 
 	show_popup_menus = TRUE // right click menu no longer shows up

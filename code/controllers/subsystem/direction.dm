@@ -44,11 +44,12 @@ SUBSYSTEM_DEF(direction)
 		init_squad(hivenumber, HS.living_xeno_ruler, )
 
 
-/datum/controller/subsystem/direction/stat_entry()
+/datum/controller/subsystem/direction/stat_entry(msg)
 	var/mobcount = 0
 	for(var/L in processing_mobs)
 		mobcount += length(processing_mobs[L])
-	return ..("P:[mobcount]")
+	msg = "P:[mobcount]"
+	..(msg)
 
 
 /datum/controller/subsystem/direction/fire(resumed = FALSE)

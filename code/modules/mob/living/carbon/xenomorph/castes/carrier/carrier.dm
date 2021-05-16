@@ -40,9 +40,8 @@
 // ***************************************
 // *********** Life overrides
 // ***************************************
-/mob/living/carbon/xenomorph/carrier/Stat()
+/mob/living/carbon/xenomorph/carrier/get_status_tab_items()
 	. = ..()
 
-	if(statpanel("Game"))
-		stat("Stored Huggers:", "[huggers] / [xeno_caste.huggers_max]")
-		stat("Stored Eggs:", "[LAZYLEN(eggs_cur)] / [xeno_caste.eggs_max]")
+	. += "Stored Huggers: [huggers] / [xeno_caste.huggers_max]"
+	. += "Stored Eggs: [LAZYLEN(eggs_cur)] / [xeno_caste.eggs_max]"

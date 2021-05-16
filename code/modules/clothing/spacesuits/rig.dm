@@ -107,51 +107,6 @@
 				boots.flags_item &= ~NODROP
 				H.transferItemToLoc(boots, src)
 
-/*
-/obj/item/clothing/suit/space/rig/verb/get_mounted_device()
-
-	set name = "Deploy Mounted Device"
-	set category = "Object"
-	set src in usr
-
-	if(!can_mount)
-		verbs -= /obj/item/clothing/suit/space/rig/verb/get_mounted_device
-		verbs -= /obj/item/clothing/suit/space/rig/verb/stow_mounted_device
-		return
-
-	if(!isliving(usr))
-		return
-	if(usr.stat) return
-
-	if(active_device)
-		to_chat(usr, "You already have \the [active_device] deployed.")
-		return
-
-	if(!mounted_devices.len)
-		to_chat(usr, "You do not have any devices mounted on \the [src].")
-		return
-
-/obj/item/clothing/suit/space/rig/verb/stow_mounted_device()
-
-	set name = "Stow Mounted Device"
-	set category = "Object"
-	set src in usr
-
-	if(!can_mount)
-		verbs -= /obj/item/clothing/suit/space/rig/verb/get_mounted_device
-		verbs -= /obj/item/clothing/suit/space/rig/verb/stow_mounted_device
-		return
-
-	if(!isliving(usr))
-		return
-
-	if(usr.stat) return
-
-	if(!active_device)
-		to_chat(usr, "You have no device currently deployed.")
-		return
-*/
-
 /obj/item/clothing/suit/space/rig/verb/toggle_helmet()
 
 	set name = "Toggle Helmet"

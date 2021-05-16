@@ -36,11 +36,10 @@
 // ***************************************
 // *********** Life overrides
 // ***************************************
-/mob/living/carbon/xenomorph/larva/Stat()
+/mob/living/carbon/xenomorph/larva/get_status_tab_items()
 	. = ..()
 
-	if(statpanel("Game"))
-		stat("Progress:", "[amount_grown]/[max_grown]")
+	. += "Progress: [amount_grown]/[max_grown]"
 
 
 //Larva Progression.. Most of this stuff is obsolete.

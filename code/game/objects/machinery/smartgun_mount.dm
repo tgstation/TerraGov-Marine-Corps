@@ -553,7 +553,7 @@
 			user.client.pixel_x = -1 * view_tile_offset * 32
 			user.client.pixel_y = 0
 	operator = user
-	user.verbs += /mob/living/proc/toogle_mg_burst_fire
+	add_verb(user, /mob/living/proc/toogle_mg_burst_fire)
 	user.client.click_intercept = src
 
 /obj/machinery/standard_hmg/on_unset_interaction(mob/user)
@@ -564,7 +564,7 @@
 		user.client.click_intercept = null
 	if(operator == user)
 		operator = null
-	user.verbs -= /mob/living/proc/toogle_mg_burst_fire
+	remove_verb(src, /mob/living/proc/toogle_mg_burst_fire)
 
 /obj/machinery/standard_hmg/check_eye(mob/user)
 	if(user.lying_angle || !Adjacent(user) || user.incapacitated() || !user.client)

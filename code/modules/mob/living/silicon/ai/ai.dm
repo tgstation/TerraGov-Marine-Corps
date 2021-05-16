@@ -268,16 +268,14 @@
 			clear_fullscreen("remote_view", 0)
 
 
-/mob/living/silicon/ai/Stat()
+/mob/living/silicon/ai/get_status_tab_items()
 	. = ..()
 
-	if(statpanel("Game"))
+	if(stat != CONSCIOUS)
+		. += "System status: Nonfunctional"
+		return
 
-		if(stat != CONSCIOUS)
-			stat("System status:", "Nonfunctional")
-			return
-
-		stat("System integrity:", "[(health + 100) / 2]%")
+	. += "System integrity: [(health + 100) / 2]%"
 
 
 /mob/living/silicon/ai/fully_replace_character_name(oldname, newname)
