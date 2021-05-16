@@ -11,7 +11,6 @@ SUBSYSTEM_DEF(points)
 	flags = SS_KEEP_TIMING
 
 	wait = 10 SECONDS
-	///Assoc list of dropship points
 	var/dropship_points = list()
 	///Assoc list of supply points
 	var/supply_points = list()
@@ -72,8 +71,7 @@ SUBSYSTEM_DEF(points)
 	return ..()
 
 /datum/controller/subsystem/points/fire(resumed = FALSE)
-	for(var/key in dropship_points)
-		dropship_points[key] += DROPSHIP_POINT_RATE / (1 MINUTES / wait)
+	dropship_points += DROPSHIP_POINT_RATE / (1 MINUTES / wait)
 
 	for(var/key in supply_points)
 		supply_points[key] += SUPPLY_POINT_RATE / (1 MINUTES / wait)
