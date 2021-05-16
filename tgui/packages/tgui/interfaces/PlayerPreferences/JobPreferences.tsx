@@ -38,6 +38,7 @@ export const JobPreferences = (props, context) => {
     'Squad Leader',
   ];
   const flavourJobs = ['Corporate Liaison', 'Medical Researcher'];
+  const specialJobs = ['Survivor'];
 
   const JobList = ({ name, jobs }) => (
     <Section title={name}>
@@ -90,6 +91,9 @@ export const JobPreferences = (props, context) => {
       <Grid>
         <Grid.Column>
           <JobList name="Marine Jobs" jobs={marineJobs} />
+        </Grid.Column>
+        <Grid.Column>
+          <JobList name="Special Jobs" jobs={specialJobs} />
         </Grid.Column>
         <Grid.Column>
           <Section title="Other settings">
