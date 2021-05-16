@@ -37,6 +37,6 @@
 				var/datum/callback/CB = foo
 				CB.Invoke()
 			log_played_names(client.ckey, name, real_name)
-
+		client.init_verbs()
 	update_movespeed()
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_MOB_LOGIN, src)

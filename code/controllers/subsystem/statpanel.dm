@@ -43,7 +43,7 @@ SUBSYSTEM_DEF(statpanels)
 					generate_mc_data()
 				target << output("[mc_data_encoded];[coord_entry]", "statbrowser:update_mc")
 			if(target.stat_tab == "Tickets")
-				var/list/ahelp_tickets = GLOB.ahelp_tickets.stat_entry()
+				var/list/ahelp_tickets = GLOB.ahelp_tickets.stat_entry(target)
 				target << output("[url_encode(json_encode(ahelp_tickets))];", "statbrowser:update_tickets")
 
 			if(!length(GLOB.sdql2_queries) && ("SDQL2" in target.panel_tabs))
@@ -101,7 +101,7 @@ SUBSYSTEM_DEF(statpanels)
 		list("CPU:", world.cpu),
 		list("Instances:", "[num2text(world.contents.len, 10)]"),
 		list("World Time:", "[world.time]"),
-		list("Globals:", GLOB.stat_entry(), "\ref[GLOB]"),
+		list("Globals:", GLOB.stat_entry(), REF(GLOB)),
 		list("[config]:", config.stat_entry(), "\ref[config]"),
 		list("Byond:", "(FPS:[world.fps]) (TickCount:[world.time/world.tick_lag]) (TickDrift:[round(Master.tickdrift,1)]([round((Master.tickdrift/(world.time/world.tick_lag))*100,0.1)]%)) (Internal Tick Usage: [round(MAPTICK_LAST_INTERNAL_TICK_USAGE,0.1)]%)"),
 		list("Master Controller:", Master.stat_entry(), "\ref[Master]"),
@@ -110,7 +110,7 @@ SUBSYSTEM_DEF(statpanels)
 	)
 	for(var/ss in Master.subsystems)
 		var/datum/controller/subsystem/sub_system = ss
-		mc_data[++mc_data.len] = list("\[[sub_system.state_letter()]][sub_system.name]", sub_system.stat_entry(), "\ref[sub_system]")
+		mc_data[++mc_data.len] = list("\[[sub_system.state_letter()]][sub_system.name]", sub_system.stat_entry(), REF(sub_system))
 	mc_data[++mc_data.len] = list("Camera Net", "Cameras: [GLOB.cameranet.cameras.len] | Chunks: [GLOB.cameranet.chunks.len]", "\ref[GLOB.cameranet]")
 	mc_data_encoded = url_encode(json_encode(mc_data))
 

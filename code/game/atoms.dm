@@ -818,15 +818,6 @@ Proc for attack log creation, because really why not
 
 	return TRUE
 
-
-/atom/Topic(href, href_list)
-	. = ..()
-	if(.)
-		return
-
-	add_fingerprint(usr, "topic")
-
-
 /atom/vv_edit_var(var_name, var_value)
 	switch(var_name)
 		if("light_range")
@@ -920,8 +911,9 @@ Proc for attack log creation, because really why not
 ///Passes Stat Browser Panel clicks to the game and calls client click on an atom
 /atom/Topic(href, list/href_list)
 	. = ..()
-	if(!usr?.client)
+	if(.)
 		return
+	add_fingerprint(usr, "topic")
 	var/client/usr_client = usr.client
 	var/list/paramslist = list()
 	if(href_list["statpanel_item_shiftclick"])
