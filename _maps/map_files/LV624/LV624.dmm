@@ -2007,7 +2007,7 @@
 /area/lv624/ground/ruin)
 "alN" = (
 /turf/closed/wall/r_wall,
-/area/lv624/ground/survival)
+/area/survival)
 "alO" = (
 /obj/structure/cable,
 /turf/closed/wall/r_wall,
@@ -2261,7 +2261,7 @@
 "amM" = (
 /obj/machinery/bodyscanner,
 /turf/open/floor/tile/dark,
-/area/lv624/ground/survival)
+/area/survival)
 "amN" = (
 /obj/structure/window/reinforced/tinted{
 	dir = 1
@@ -4164,7 +4164,7 @@
 "awQ" = (
 /obj/machinery/body_scanconsole,
 /turf/open/floor/tile/dark,
-/area/lv624/ground/survival)
+/area/survival)
 "awR" = (
 /turf/open/floor/tile/green/greentaupe{
 	dir = 9
@@ -6205,7 +6205,7 @@
 	req_access = 0
 	},
 /turf/open/floor/tile/dark,
-/area/lv624/ground/survival)
+/area/survival)
 "aIK" = (
 /obj/structure/jungle/plantbot1,
 /turf/open/ground/grass,
@@ -6330,7 +6330,7 @@
 /obj/item/weapon/gun/shotgun/pump/cmb,
 /obj/item/weapon/gun/shotgun/pump/cmb,
 /turf/open/floor/tile/dark,
-/area/lv624/ground/survival)
+/area/survival)
 "aKc" = (
 /obj/effect/alien/weeds/node,
 /turf/open/floor/tile/white,
@@ -7349,7 +7349,7 @@
 /obj/item/weapon/gun/smg/m25,
 /obj/item/weapon/gun/smg/m25,
 /turf/open/floor/tile/dark,
-/area/lv624/ground/survival)
+/area/survival)
 "aPy" = (
 /obj/structure/largecrate/supply,
 /obj/item/clothing/head/beret,
@@ -7839,7 +7839,7 @@
 /obj/machinery/power/geothermal,
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
-/area/lv624/ground/survival)
+/area/survival)
 "aSi" = (
 /obj/structure/table,
 /obj/item/ammo_magazine/smg/uzi/extended,
@@ -12366,7 +12366,7 @@
 	dir = 1
 	},
 /turf/open/floor/tile/dark,
-/area/lv624/ground/survival)
+/area/survival)
 "bqV" = (
 /obj/structure/bed/stool,
 /turf/open/floor/tile/dark,
@@ -12673,7 +12673,7 @@
 /obj/structure/rack,
 /obj/item/stack/sheet/plasteel/large_stack,
 /turf/open/floor/tile/dark,
-/area/lv624/ground/survival)
+/area/survival)
 "bFh" = (
 /obj/structure/flora/tree/jungle/small,
 /turf/open/floor/plating/ground/dirtgrassborder,
@@ -12899,7 +12899,7 @@
 /obj/item/stack/sheet/metal/large_stack,
 /obj/item/stack/sheet/metal/large_stack,
 /turf/open/floor/tile/dark,
-/area/lv624/ground/survival)
+/area/survival)
 "crp" = (
 /obj/structure/jungle/vines,
 /obj/structure/jungle/vines/heavy,
@@ -13289,7 +13289,7 @@
 "eaU" = (
 /obj/effect/landmark/start/job/survivor,
 /turf/open/floor/tile/dark,
-/area/lv624/ground/survival)
+/area/survival)
 "ecb" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
 	dir = 2
@@ -13533,7 +13533,7 @@
 "flF" = (
 /obj/structure/largecrate/supply/supplies/water,
 /turf/open/floor/tile/dark,
-/area/lv624/ground/survival)
+/area/survival)
 "fpr" = (
 /obj/structure/jungle/plantbot1,
 /turf/open/floor/plating/ground/dirtgrassborder/corner{
@@ -13668,7 +13668,7 @@
 /area/lv624/ground/caves/east1)
 "fMC" = (
 /turf/open/floor/tile/dark,
-/area/lv624/ground/survival)
+/area/survival)
 "fMS" = (
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/plating/ground/dirt,
@@ -13770,7 +13770,7 @@
 /obj/machinery/power/apc/hyper,
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
-/area/lv624/ground/survival)
+/area/survival)
 "gef" = (
 /obj/effect/landmark/xeno_silo_spawn,
 /turf/open/floor/engine/cult,
@@ -13854,7 +13854,7 @@
 /obj/structure/rack,
 /obj/item/lightreplacer,
 /turf/open/floor/tile/dark,
-/area/lv624/ground/survival)
+/area/survival)
 "gro" = (
 /obj/machinery/floodlight/colony,
 /turf/open/floor/plating/ground/dirtgrassborder{
@@ -14087,7 +14087,7 @@
 /obj/item/stack/sandbags/large_stack,
 /obj/item/stack/sandbags/large_stack,
 /turf/open/floor/tile/dark,
-/area/lv624/ground/survival)
+/area/survival)
 "hiA" = (
 /obj/structure/prop/mainship/hangar_stencil/two,
 /obj/effect/decal/warning_stripes/thick,
@@ -14117,7 +14117,7 @@
 /obj/item/storage/surgical_tray,
 /obj/structure/rack,
 /turf/open/floor/tile/dark,
-/area/lv624/ground/survival)
+/area/survival)
 "hpN" = (
 /obj/machinery/floodlight/colony,
 /turf/open/floor/plating/ground/dirt,
@@ -14231,7 +14231,7 @@
 "hVP" = (
 /obj/structure/reagent_dispensers/fueltank,
 /turf/open/floor/tile/dark,
-/area/lv624/ground/survival)
+/area/survival)
 "hWC" = (
 /obj/structure/jungle/vines,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
@@ -14283,7 +14283,7 @@
 	dir = 4
 	},
 /turf/open/floor/tile/dark,
-/area/lv624/ground/survival)
+/area/survival)
 "inf" = (
 /obj/machinery/computer/intel_computer,
 /turf/open/floor/tile/purple/whitepurple{
@@ -14843,7 +14843,7 @@
 /obj/item/ammo_magazine/shotgun,
 /obj/item/ammo_magazine/shotgun,
 /turf/open/floor/tile/dark,
-/area/lv624/ground/survival)
+/area/survival)
 "kZI" = (
 /obj/machinery/floodlight/colony,
 /turf/open/ground/grass,
@@ -15008,7 +15008,7 @@
 "lQf" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic,
 /turf/open/floor/tile/dark,
-/area/lv624/ground/survival)
+/area/survival)
 "lRu" = (
 /obj/structure/fence,
 /obj/machinery/light{
@@ -15141,7 +15141,7 @@
 	dir = 1
 	},
 /turf/open/floor/tile/dark,
-/area/lv624/ground/survival)
+/area/survival)
 "mpC" = (
 /obj/structure/jungle/vines,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
@@ -15486,7 +15486,7 @@
 "nLV" = (
 /obj/structure/reagent_dispensers/watertank,
 /turf/open/floor/tile/dark,
-/area/lv624/ground/survival)
+/area/survival)
 "nLX" = (
 /obj/structure/jungle/vines,
 /obj/effect/alien/weeds/node,
@@ -15595,7 +15595,7 @@
 "ohl" = (
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
-/area/lv624/ground/survival)
+/area/survival)
 "oho" = (
 /obj/structure/flora/ausbushes/fernybush,
 /obj/structure/sign/botany{
@@ -15635,7 +15635,7 @@
 /obj/machinery/optable,
 /obj/item/tank/anesthetic,
 /turf/open/floor/tile/dark,
-/area/lv624/ground/survival)
+/area/survival)
 "ooP" = (
 /obj/structure/fence,
 /turf/open/floor/plating/ground/dirtgrassborder/corner2{
@@ -15849,7 +15849,7 @@
 /obj/item/ammo_magazine/smg/m25/ap,
 /obj/item/ammo_magazine/smg/m25/ap,
 /turf/open/floor/tile/dark,
-/area/lv624/ground/survival)
+/area/survival)
 "pqr" = (
 /obj/machinery/door/poddoor/timed_survival/containment,
 /turf/closed/mineral,
@@ -16089,7 +16089,7 @@
 /obj/item/storage/belt/utility/full,
 /obj/item/storage/belt/utility/full,
 /turf/open/floor/tile/dark,
-/area/lv624/ground/survival)
+/area/survival)
 "qmj" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/closed/wall/r_wall,
@@ -16115,7 +16115,7 @@
 /obj/item/storage/box/minisentry,
 /obj/structure/rack,
 /turf/open/floor/tile/dark,
-/area/lv624/ground/survival)
+/area/survival)
 "qwB" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -16269,7 +16269,7 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
-/area/lv624/ground/survival)
+/area/survival)
 "qXe" = (
 /obj/machinery/light{
 	dir = 8
@@ -16337,7 +16337,7 @@
 /obj/item/ammo_magazine/rifle/bolt,
 /obj/item/ammo_magazine/rifle/bolt,
 /turf/open/floor/tile/dark,
-/area/lv624/ground/survival)
+/area/survival)
 "roK" = (
 /obj/effect/alien/weeds/node,
 /turf/open/floor/plating,
@@ -16446,7 +16446,7 @@
 	req_one_access = null
 	},
 /turf/open/floor/tile/dark,
-/area/lv624/ground/survival)
+/area/survival)
 "rVs" = (
 /obj/structure/flora/ausbushes/sunnybush,
 /obj/structure/jungle/vines,
@@ -16674,7 +16674,7 @@
 "sOV" = (
 /obj/structure/closet/secure_closet/engineering_welding,
 /turf/open/floor/tile/dark,
-/area/lv624/ground/survival)
+/area/survival)
 "sPg" = (
 /turf/open/floor/marking/warning{
 	dir = 4
@@ -16767,11 +16767,11 @@
 	dir = 1
 	},
 /turf/open/floor/tile/dark,
-/area/lv624/ground/survival)
+/area/survival)
 "tgg" = (
 /obj/structure/largecrate/supply/supplies/mre,
 /turf/open/floor/tile/dark,
-/area/lv624/ground/survival)
+/area/survival)
 "tgS" = (
 /obj/machinery/computer/intel_computer,
 /turf/open/floor/grimy,
@@ -16990,7 +16990,7 @@
 /obj/item/ammo_magazine/smg/m25/extended,
 /obj/item/ammo_magazine/smg/m25/extended,
 /turf/open/floor/tile/dark,
-/area/lv624/ground/survival)
+/area/survival)
 "ufY" = (
 /turf/closed/wall/r_wall,
 /area/lv624/ground/sand4)
@@ -17152,7 +17152,7 @@
 "uPq" = (
 /obj/effect/spawner/random/powercell,
 /turf/open/floor/tile/dark,
-/area/lv624/ground/survival)
+/area/survival)
 "uPJ" = (
 /turf/open/floor/plating/ground/dirtgrassborder,
 /area/shuttle/drop2/lz2)
@@ -17169,7 +17169,7 @@
 /obj/machinery/door/airlock/multi_tile/mainship/generic,
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
-/area/lv624/ground/survival)
+/area/survival)
 "uUz" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /turf/open/floor/plating/ground/dirtgrassborder{
@@ -17450,7 +17450,7 @@
 "wzR" = (
 /obj/machinery/light,
 /turf/open/floor/tile/dark,
-/area/lv624/ground/survival)
+/area/survival)
 "wDI" = (
 /obj/effect/landmark/xeno_silo_spawn,
 /turf/open/floor/engine/cult,
@@ -17469,7 +17469,7 @@
 /obj/item/ammo_magazine/flamer_tank/large,
 /obj/item/weapon/gun/flamer/marinestandard,
 /turf/open/floor/tile/dark,
-/area/lv624/ground/survival)
+/area/survival)
 "wJz" = (
 /obj/structure/window/framed/colony/reinforced,
 /turf/open/floor/plating,
@@ -17605,7 +17605,7 @@
 /obj/structure/closet/secure_closet/engineering_electrical,
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
-/area/lv624/ground/survival)
+/area/survival)
 "xtn" = (
 /obj/structure/jungle/vines,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
@@ -17696,7 +17696,7 @@
 "xQd" = (
 /obj/structure/largecrate/supply/supplies/flares,
 /turf/open/floor/tile/dark,
-/area/lv624/ground/survival)
+/area/survival)
 "xQg" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4

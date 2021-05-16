@@ -1,4 +1,11 @@
 //LV624 AREAS--------------------------------------//
+/area/survival
+	name ="Survival Bunker"
+	icon_state = "cave"
+	ceiling = CEILING_METAL
+	outside = FALSE
+	always_unpowered = 0
+
 /area/lv624
 	icon_state = "lv-626"
 
@@ -167,13 +174,6 @@
 	name = "\improper Unknown structure"
 	icon_state = "red"
 	outside = FALSE
-
-/area/lv624/ground/survival
-	name ="Survival Bunker"
-	icon_state = "cave"
-	ceiling = CEILING_METAL
-	outside = FALSE
-	always_unpowered = 0
 
 /area/lv624/ground/caves //Does not actually exist
 	name ="Caves"
