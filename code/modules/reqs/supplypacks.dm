@@ -49,7 +49,7 @@ OPERATIONS
 /datum/supply_packs/operations/cas_flares
 	name = "CAS flare pack"
 	contains = list(/obj/item/storage/box/m94/cas)
-	cost = 10
+	cost = 5
 
 /datum/supply_packs/operations/binoculars_regular
 	name = "binoculars"
