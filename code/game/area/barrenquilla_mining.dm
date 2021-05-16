@@ -203,10 +203,3 @@
 	name = "Ash Shelter"
 	icon_state = "lava_ash_shelter"
 	outside = FALSE
-
-/area/barren/misc/survival
-	name ="Survival Bunker"
-	icon_state = "cave"
-	ceiling = CEILING_METAL
-	outside = FALSE
-	always_unpowered = 0
