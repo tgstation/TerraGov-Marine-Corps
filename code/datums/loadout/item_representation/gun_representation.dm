@@ -4,7 +4,7 @@
  */
 /datum/item_representation/gun
 	///Flat list of the representations of the attachements on the gun
-	var/datum/list/item_representation/gun_attachement/attachments = list()
+	var/list/datum/item_representation/gun_attachement/attachments = list()
 
 
 /datum/item_representation/gun/New(obj/item/item_to_copy)
