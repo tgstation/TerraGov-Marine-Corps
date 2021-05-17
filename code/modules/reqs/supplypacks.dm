@@ -439,54 +439,11 @@ AMMO
 	)
 	cost = 10
 
-/datum/supply_packs/ammo/boxslug
-	name = "Slug Ammo Box"
-	contains = list(/obj/item/shotgunbox)
-	cost = 20
-
-/datum/supply_packs/ammo/boxbuckshot
-	name = "Buckshot Ammo Box"
-	contains = list(/obj/item/shotgunbox/buckshot)
-	cost = 20
-
-/datum/supply_packs/ammo/boxflechette
-	name = "Flechette Ammo Box"
-	contains = list(/obj/item/shotgunbox/flechette)
-	cost = 20
-
-/datum/supply_packs/ammo/boxcarbine
-	name = "T-18 Carbine Ammo Box"
-	contains = list(/obj/item/ammobox)
-	cost = 20
-
-/datum/supply_packs/ammo/boxrifle
-	name = "T-12 Assault Rifle Ammo Box"
-	contains = list(/obj/item/ammobox/standard_rifle)
-	cost = 20
-
-/datum/supply_packs/ammo/boxsmg
-	name = "T-90 SMG Ammo Box"
-	contains = list(/obj/item/ammobox/standard_smg)
-	cost = 20
-
-/datum/supply_packs/ammo/boxmachpistol
-	name = "T-19 Machine Pistol Ammo Box"
-	contains = list(/obj/item/ammobox/standard_machinepistol)
-	cost = 20
-
-/datum/supply_packs/ammo/boxlmg
-	name = "T-42 LMG Ammo Box"
-	contains = list(/obj/item/ammobox/standard_lmg)
-	cost = 20
-
-/datum/supply_packs/ammo/boxdmr
-	name = "T-64 DMR Ammo Box"
-	contains = list(/obj/item/ammobox/standard_dmr)
-	cost = 20
-
-/datum/supply_packs/ammo/boxpistol
-	name = "TP-14 Pistol Ammo Box"
-	contains = list(/obj/item/ammobox/standard_pistol)
+/datum/supply_packs/ammo/standard_ammo
+	name = "Surplus Standard Ammo Crate"
+	notes = "Contains 22 ammo boxes of a wide variety which come prefilled. You lazy bum."
+	contains = list(/obj/structure/largecrate/supply/ammo/standard_ammo)
+	containertype = null
 	cost = 20
 
 /datum/supply_packs/ammo/mateba

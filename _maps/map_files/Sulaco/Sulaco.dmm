@@ -11796,6 +11796,11 @@
 /obj/machinery/vending/boozeomat,
 /turf/open/floor/prison,
 /area/sulaco/cargo/office)
+"eLh" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/largecrate/supply/ammo/standard_ammo,
+/turf/open/floor/prison,
+/area/sulaco/hallway/lower_main_hall)
 "eLx" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on,
 /obj/machinery/camera/autoname{
@@ -54796,7 +54801,7 @@ aWG
 aWG
 aZh
 kVT
-pQL
+eLh
 piC
 pQL
 bcU
