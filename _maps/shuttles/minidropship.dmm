@@ -35,40 +35,14 @@
 	},
 /turf/open/floor/mainship_hull,
 /area/shuttle/minidropship)
-"r" = (
-/obj/structure/barricade/plasteel,
-/obj/machinery/door/poddoor/shutters/transit{
-	dir = 2
-	},
-/obj/machinery/door/poddoor/mainship/open{
-	dir = 2;
-	id = "minidropship_podlock"
-	},
-/turf/open/floor/mainship/orange{
-	dir = 10
-	},
-/area/shuttle/minidropship)
 "s" = (
-/obj/structure/barricade/plasteel,
-/obj/machinery/door/poddoor/shutters/transit{
-	dir = 2
-	},
-/obj/machinery/door/poddoor/mainship/open{
-	dir = 2;
-	id = "minidropship_podlock"
-	},
-/turf/open/floor/mainship/orange,
-/area/shuttle/minidropship)
-"t" = (
-/obj/effect/attach_point/weapon/minidropship/pointing_east,
-/turf/closed/wall/mainship/outer/reinforced,
+/turf/open/floor/mainship/floor,
 /area/shuttle/minidropship)
 "u" = (
 /obj/machinery/computer/camera_advanced/shuttle_docker/minidropship,
 /turf/open/floor/mainship/orange,
 /area/shuttle/minidropship)
 "v" = (
-/obj/structure/barricade/plasteel,
 /obj/machinery/door/poddoor/shutters/transit{
 	dir = 2
 	},
@@ -76,12 +50,12 @@
 	dir = 2;
 	id = "minidropship_podlock"
 	},
+/obj/structure/barricade/plasteel,
 /turf/open/floor/mainship/orange{
-	dir = 6
+	dir = 10
 	},
 /area/shuttle/minidropship)
 "B" = (
-/obj/effect/attach_point/weapon/minidropship/pointing_west,
 /turf/closed/wall/mainship/outer/reinforced,
 /area/shuttle/minidropship)
 "E" = (
@@ -107,8 +81,28 @@
 /turf/open/floor/mainship_hull,
 /area/shuttle/minidropship)
 "L" = (
-/obj/structure/shuttle/engine/propulsion/burst/right,
-/turf/open/shuttle/dropship/three,
+/obj/machinery/door/poddoor/shutters/transit{
+	dir = 2
+	},
+/obj/machinery/door/poddoor/mainship/open{
+	dir = 2;
+	id = "minidropship_podlock"
+	},
+/obj/structure/barricade/plasteel,
+/turf/open/floor/mainship/orange,
+/area/shuttle/minidropship)
+"N" = (
+/obj/machinery/door/poddoor/shutters/transit{
+	dir = 2
+	},
+/obj/machinery/door/poddoor/mainship/open{
+	dir = 2;
+	id = "minidropship_podlock"
+	},
+/obj/structure/barricade/plasteel,
+/turf/open/floor/mainship/orange{
+	dir = 6
+	},
 /area/shuttle/minidropship)
 "O" = (
 /obj/structure/barricade/plasteel{
@@ -121,6 +115,10 @@
 /turf/open/floor/mainship/orange{
 	dir = 4
 	},
+/area/shuttle/minidropship)
+"R" = (
+/obj/structure/shuttle/engine/propulsion/burst/right,
+/turf/open/shuttle/dropship/three,
 /area/shuttle/minidropship)
 "S" = (
 /obj/structure/window/framed/mainship/spaceworthy{
@@ -179,8 +177,8 @@ S
 K
 i
 V
-r
-E
+V
+v
 E
 "}
 (4,1,1) = {"
@@ -191,7 +189,7 @@ u
 F
 Y
 s
-E
+L
 E
 "}
 (5,1,1) = {"
@@ -201,8 +199,8 @@ a
 K
 j
 h
-v
-E
+h
+N
 E
 "}
 (6,1,1) = {"
@@ -212,8 +210,8 @@ E
 b
 T
 T
-t
-L
+B
+R
 E
 "}
 (7,1,1) = {"
