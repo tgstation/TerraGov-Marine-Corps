@@ -48,11 +48,6 @@ SUBSYSTEM_DEF(points)
 
 /datum/controller/subsystem/points/Initialize(timeofday)
 	ordernum = rand(1, 9000)
-
-	for(var/typepath in subtypesof(/datum/supply_export))
-		var/datum/supply_export/E = new typepath()
-		GLOB.exports_types[E.export_obj] = E
-
 	return ..()
 
 /// Prepare the global supply pack list at the gamemode start
