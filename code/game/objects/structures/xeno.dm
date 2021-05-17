@@ -260,12 +260,6 @@
 		Open()
 	
 
-/obj/structure/mineral_door/resin/proc/thicken()
-	var/oldloc = loc
-	qdel(src)
-	new /obj/structure/mineral_door/resin/thick(oldloc)
-	return TRUE
-
 /obj/structure/mineral_door/resin/attack_paw(mob/living/carbon/human/user)
 	if(user.a_intent == INTENT_HARM)
 		user.visible_message("<span class='xenowarning'>\The [user] claws at \the [src].</span>", \
@@ -379,15 +373,10 @@
 		visible_message("<span class = 'notice'>[src] collapses from the lack of support.</span>")
 		qdel(src)
 
-
-
 /obj/structure/mineral_door/resin/thick
 	name = "thick resin door"
 	max_integrity = 160
 	hardness = 2.0
-
-/obj/structure/mineral_door/resin/thick/thicken()
-	return FALSE
 
 /*
 * Egg

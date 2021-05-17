@@ -26,19 +26,31 @@
 	if(!COOLDOWN_CHECK(src, selling_cooldown))
 		to_chat(user, "<span class='warning'>The [src] is still recharging! It will be ready in [round(COOLDOWN_TIMELEFT(src, selling_cooldown) / 10)] seconds.</span>")
 		return
-
+	var/can_sell = FALSE
 	for(var/i in get_turf(src))
 		var/atom/movable/onpad = i
-		if(!isxeno(onpad) && !istype(onpad, /obj/item/alien_embryo))
-			continue
+		can_sell = FALSE
 		if(isxeno(onpad))
 			var/mob/living/carbon/xenomorph/sellxeno = onpad
 			if(sellxeno.stat != DEAD)
-				to_chat(user, "<span class='warning'>The [src] buzzes: Live animals cannot be sold.</span>")
+				to_chat(user, "<span class='warning'>[src] buzzes: Live animals cannot be sold.</span>")
 				continue
-
-		. = onpad.supply_export()
-		visible_message("<span class='notice'>The [src] buzzes: The [onpad] has been sold for [. ? . : "no"] point[. == 1 ? "" : "s"].</span>")
+			can_sell = TRUE
+		if(ishuman(onpad))
+			var/mob/living/carbon/human/sellhuman = onpad
+			if(!can_sell_human_body(sellhuman, user.faction))
+				to_chat(user, "<span class='warning'>[src] buzzes: High command is not interested in that bounty.</span>")
+				continue
+			if(sellhuman.stat != DEAD)
+				to_chat(user, "<span class='warning'>[src] buzzes: This bounty is not dead and cannot be sold.</span>")
+				continue
+			can_sell = TRUE
+		if(!can_sell)
+			continue
+		var/datum/export_report/export_report = onpad.supply_export(user.faction)
+		if(export_report)
+			SSpoints.export_history += export_report
+		visible_message("<span class='notice'>[src] buzzes: The [onpad] has been sold for [export_report.points ? export_report.points : "no"] point[export_report.points == 1 ? "" : "s"].</span>")
 		qdel(onpad)
 
 	do_sparks(5, TRUE, src)

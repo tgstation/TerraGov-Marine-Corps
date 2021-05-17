@@ -131,3 +131,7 @@
 #define INFESTATION_MARINE_DEPLOYMENT 0
 #define INFESTATION_MARINE_CRASHING 1
 #define INFESTATION_DROPSHIP_CAPTURED_XENOS 2
+
+#define COCOONED_DEATH "cocoon_death"
+#define SILO_DEATH "silo_death"
+#define HEADBITE_DEATH "headbite_death"
