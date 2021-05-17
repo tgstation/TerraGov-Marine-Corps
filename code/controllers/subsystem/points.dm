@@ -48,10 +48,7 @@ SUBSYSTEM_DEF(points)
 
 /datum/controller/subsystem/points/Initialize(timeofday)
 	ordernum = rand(1, 9000)
-	return ..()
 
-/// Prepare the global supply pack list at the gamemode start
-/datum/controller/subsystem/points/proc/prepare_supply_packs_list(is_human_req_only = FALSE)
 	for(var/pack in subtypesof(/datum/supply_packs))
 		var/datum/supply_packs/P = pack
 		if(!initial(P.cost))
@@ -70,6 +67,8 @@ SUBSYSTEM_DEF(points)
 			else
 				containsname[path]["count"]++
 		supply_packs_contents[pack] = list("name" = P.name, "container_name" = initial(P.containertype.name), "cost" = P.cost, "contains" = containsname)
+	
+	return ..()
 
 /datum/controller/subsystem/points/fire(resumed = FALSE)
 	dropship_points += DROPSHIP_POINT_RATE / (1 MINUTES / wait)
