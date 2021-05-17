@@ -511,7 +511,6 @@
 		/obj/item/storage/pill_bottle/spaceacillin = 3,
 		/obj/item/storage/pill_bottle/alkysine = 3,
 		/obj/item/storage/pill_bottle/imidazoline = 3,
-		/obj/item/storage/pill_bottle/russian_red = 5,
 		/obj/item/storage/pill_bottle/peridaxon = 2,
 		/obj/item/storage/pill_bottle/quickclot = 2,
 		/obj/item/storage/pill_bottle/hypervene = 2,
