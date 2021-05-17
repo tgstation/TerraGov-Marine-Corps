@@ -32,7 +32,7 @@
 	bound_width = 96
 	bound_height = 96
 	max_integrity = 1000
-	resistance_flags = DROPSHIP_IMMUNE
+	resistance_flags = UNACIDABLE | DROPSHIP_IMMUNE
 	///How many larva points one silo produce in one minute
 	var/larva_spawn_rate = 0.5
 	var/turf/center_turf
@@ -86,11 +86,11 @@
 		associated_hive = null
 		notify_ghosts("\ A resin silo has been destroyed at [AREACOORD_NO_Z(src)]!", source = get_turf(src), action = NOTIFY_JUMP)
 		playsound(loc,'sound/effects/alien_egg_burst.ogg', 75)
-	
+
 
 /obj/structure/resin/silo/Destroy()
 	GLOB.xeno_resin_silos -= src
-	
+
 	for(var/i in contents)
 		var/atom/movable/AM = i
 		AM.forceMove(get_step(center_turf, pick(CARDINAL_ALL_DIRS)))
@@ -252,6 +252,7 @@
 	max_integrity = 1500
 	layer =  ABOVE_MOB_LAYER
 	density = TRUE
+	resistance_flags = UNACIDABLE | DROPSHIP_IMMUNE
 	///The hive it belongs to
 	var/datum/hive_status/associated_hive
 	///What kind of spit it uses
@@ -272,7 +273,7 @@
 /obj/structure/resin/xeno_turret/Initialize(mapload, hivenumber = XENO_HIVE_NORMAL)
 	. = ..()
 	ammo = GLOB.ammo_list[/datum/ammo/xeno/acid/heavy/turret]
-	ammo.max_range = range + 2 //To prevent funny gamers to abuse the turrets that easily 
+	ammo.max_range = range + 2 //To prevent funny gamers to abuse the turrets that easily
 	potential_hostiles = list()
 	associated_hive = GLOB.hive_datums[hivenumber]
 	START_PROCESSING(SSobj, src)
@@ -287,10 +288,14 @@
 	SIGNAL_HANDLER
 	qdel(src)
 
+/obj/structure/resin/xeno_turret/obj_destruction(damage_amount, damage_type, damage_flag)
+	if(damage_amount) //Spawn the gas only if we actually get destroyed by damage
+		var/datum/effect_system/smoke_spread/xeno/smoke = new /datum/effect_system/smoke_spread/xeno/acid(src)
+		smoke.set_up(1, get_turf(src))
+		smoke.start()
+	return ..()
+
 /obj/structure/resin/xeno_turret/Destroy()
-	var/datum/effect_system/smoke_spread/xeno/smoke = new /datum/effect_system/smoke_spread/xeno/acid(src)
-	smoke.set_up(1, get_turf(src))
-	smoke.start()
 	set_hostile(null)
 	set_last_hostile(null)
 	STOP_PROCESSING(SSobj, src)
@@ -317,9 +322,9 @@
 /obj/structure/resin/xeno_turret/update_overlays()
 	. = ..()
 	if(obj_integrity <= max_integrity / 2)
-		. += image('icons/Xeno/acidturret.dmi', src, "+turret_damage") 
+		. += image('icons/Xeno/acidturret.dmi', src, "+turret_damage")
 	if(CHECK_BITFIELD(resistance_flags, ON_FIRE))
-		. += image('icons/Xeno/acidturret.dmi', src, "+turret_on_fire") 
+		. += image('icons/Xeno/acidturret.dmi', src, "+turret_on_fire")
 
 /obj/structure/resin/xeno_turret/process()
 	//Turrets regen some HP, every 2 sec
@@ -391,7 +396,7 @@
 ///Look for the closest human in range and in light of sight. If no human is in range, will look for xenos of other hives
 /obj/structure/resin/xeno_turret/proc/get_target()
 	var/distance = range + 0.5 //we add 0.5 so if a potential target is at range, it is accepted by the system
-	var/buffer_distance 
+	var/buffer_distance
 	var/list/turf/path = list()
 	for (var/mob/living/nearby_hostile AS in potential_hostiles)
 		if(nearby_hostile.stat == DEAD)
@@ -435,7 +440,7 @@
 		if(nearby_xeno.stat == DEAD)
 			continue
 		potential_hostiles += nearby_xeno
-	
+
 
 ///Signal handler to make the turret shoot at its target
 /obj/structure/resin/xeno_turret/proc/shoot()

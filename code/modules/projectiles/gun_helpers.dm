@@ -255,7 +255,7 @@ should be alright.
 		unload(user,0,1)
 		to_chat(user, "<span class='notice'>You start a tactical reload.</span>")
 	var/tac_reload_time = max(0.5 SECONDS, 1.5 SECONDS - user.skills.getRating("firearms") * 5)
-	if(!do_after(user,tac_reload_time, TRUE, new_magazine) && loc == user)
+	if(!do_after(user,tac_reload_time, TRUE, new_magazine, ignore_turf_checks = TRUE) && loc == user)
 		return
 	if(istype(new_magazine.loc, /obj/item/storage))
 		var/obj/item/storage/S = new_magazine.loc
@@ -293,14 +293,12 @@ should be alright.
 /obj/item/weapon/gun/proc/has_attachment(A)
 	if(!A)
 		return
-	if(istype(muzzle,A))
-		return TRUE
-	if(istype(under,A))
-		return TRUE
-	if(istype(rail,A))
-		return TRUE
-	if(istype(stock,A))
-		return TRUE
+	if(!attachments)
+		return FALSE
+	for(var/slot in attachments)
+		if(istype(attachments[slot], A))
+			return TRUE
+
 
 
 /obj/item/weapon/gun/proc/attach_to_gun(mob/user, obj/item/attachable/attachment)
@@ -312,23 +310,9 @@ should be alright.
 		to_chat(user, "<span class='warning'>You need to disable overcharge on [src]!</span>")
 		return
 
-	//Checks if they can attach the thing in the first place, like with fixed attachments.
-	var/can_attach = 1
-	switch(attachment.slot)
-		if(ATTACHMENT_SLOT_RAIL)
-			if(rail && !(rail.flags_attach_features & ATTACH_REMOVABLE))
-				can_attach = FALSE
-		if(ATTACHMENT_SLOT_MUZZLE)
-			if(muzzle && !(muzzle.flags_attach_features & ATTACH_REMOVABLE))
-				can_attach = FALSE
-		if(ATTACHMENT_SLOT_UNDER)
-			if(under && !(under.flags_attach_features & ATTACH_REMOVABLE))
-				can_attach = FALSE
-		if(ATTACHMENT_SLOT_STOCK)
-			if(stock && !(stock.flags_attach_features & ATTACH_REMOVABLE))
-				can_attach = FALSE
-
-	if(!can_attach)
+	//Checks if there is any unremovable attachment on our slot, if true, return.
+	var/obj/item/attachable/currently_in_slot = LAZYACCESS(attachments, attachment.slot)
+	if(currently_in_slot && !(currently_in_slot.flags_attach_features & ATTACH_REMOVABLE))
 		to_chat(user, "<span class='warning'>The attachment on [src]'s [attachment.slot] cannot be removed!</span>")
 		return
 
@@ -356,25 +340,19 @@ should be alright.
 /obj/item/weapon/gun/proc/update_attachables()
 	if(!attachable_offset) //Even if the attachment doesn't exist, we're going to try and remove it.
 		return
-	update_overlays(muzzle, ATTACHMENT_SLOT_MUZZLE)
-	update_overlays(stock, ATTACHMENT_SLOT_STOCK)
-	update_overlays(under, ATTACHMENT_SLOT_UNDER)
-	update_overlays(rail, ATTACHMENT_SLOT_RAIL)
+
+	if(!attachments)
+		return
+	for(var/slot in attachments)
+		var/obj/item/attachable/attachie = LAZYACCESS(attachments, slot)
+		update_overlays(attachie, attachie.slot)
 
 
-/obj/item/weapon/gun/proc/update_attachable(attachable) //Updates individually.
+/obj/item/weapon/gun/proc/update_attachable(slot) //Updates individually.
 	if(!attachable_offset)
 		return
-	switch(attachable)
-		if(ATTACHMENT_SLOT_MUZZLE)
-			update_overlays(muzzle, attachable)
-		if(ATTACHMENT_SLOT_STOCK)
-			update_overlays(stock, attachable)
-		if(ATTACHMENT_SLOT_UNDER)
-			update_overlays(under, attachable)
-		if(ATTACHMENT_SLOT_RAIL)
-			update_overlays(rail, attachable)
 
+	update_overlays(LAZYACCESS(attachments, slot), slot)
 
 /obj/item/weapon/gun/update_overlays(obj/item/attachable/attachie, slot)
 	. = ..()
@@ -470,27 +448,24 @@ should be alright.
 		to_chat(usr, "[icon2html(src, usr)] You need to disable overcharge mode to remove attachments.")
 		return
 
-	if(!rail && !muzzle && !under && !stock)
+	if(!attachments)
 		to_chat(usr, "<span class='warning'>This weapon has no attachables. You can only field strip enhanced weapons!</span>")
 		return
 
 	var/list/possible_attachments = list()
 
-	if(rail && (rail.flags_attach_features & ATTACH_REMOVABLE))
-		possible_attachments += rail
-	if(muzzle && (muzzle.flags_attach_features & ATTACH_REMOVABLE))
-		possible_attachments += muzzle
-	if(under && (under.flags_attach_features & ATTACH_REMOVABLE))
-		possible_attachments += under
-	if(stock && (stock.flags_attach_features & ATTACH_REMOVABLE))
-		possible_attachments += stock
+	for(var/slotties in attachments)
+		var/obj/item/attachable/possible_attachment = attachments[slotties]
+		if(!possible_attachment.flags_attach_features & ATTACH_REMOVABLE)
+			continue
+		possible_attachments += possible_attachment
 
-	if(!possible_attachments.len)
+	if(!length(possible_attachments))
 		to_chat(usr, "<span class='warning'>[src] has no removable attachments.</span>")
 		return
 
 	var/obj/item/attachable/A
-	if(possible_attachments.len == 1)
+	if(length(possible_attachments) == 1)
 		A = possible_attachments[1]
 	else
 		A = tgui_input_list(usr, "Which attachment to remove?", null, possible_attachments)
@@ -507,7 +482,7 @@ should be alright.
 	if(zoom)
 		return
 
-	if(A != rail && A != muzzle && A != under && A != stock)
+	if(A != LAZYACCESS(attachments, A.slot))
 		return
 	if(!(A.flags_attach_features & ATTACH_REMOVABLE))
 		return
@@ -527,8 +502,9 @@ should be alright.
 	if(!do_after(usr,final_delay, TRUE, src, idisplay))
 		return
 
-	if(A != rail && A != muzzle && A != under && A != stock)
+	if(A != LAZYACCESS(attachments, A.slot))
 		return
+
 	if(!(A.flags_attach_features & ATTACH_REMOVABLE))
 		return
 
@@ -540,7 +516,6 @@ should be alright.
 	A.detach_from_master_gun(usr)
 
 	playsound(src, 'sound/machines/click.ogg', 15, 1, 4)
-	update_attachables()
 
 
 /obj/item/weapon/gun/ui_action_click(mob/user, datum/action/item_action/action)
@@ -808,28 +783,30 @@ should be alright.
 	set desc = "Load from a gun attachment, such as a mounted grenade launcher, shotgun, or flamethrower."
 
 	var/list/usable_attachments = list()
-// rail attachment use the button to toggle flashlight instead.
-//	if(rail && (rail.flags_attach_features & ATTACH_ACTIVATION) )
-//		usable_attachments += rail
-	if(under && (under.flags_attach_features & ATTACH_ACTIVATION) )
-		usable_attachments += under
-	if(stock  && (stock.flags_attach_features & ATTACH_ACTIVATION) )
-		usable_attachments += stock
-	if(muzzle && (muzzle.flags_attach_features & ATTACH_ACTIVATION) )
-		usable_attachments += muzzle
-
-	if(!usable_attachments.len) //No usable attachments.
+	// rail attachment use the button to toggle flashlight instead.
+	//	if(rail && (rail.flags_attach_features & ATTACH_ACTIVATION) )
+	//		usable_attachments += rail
+	if(!attachments)
 		to_chat(usr, "<span class='warning'>[src] does not have any usable attachment!</span>")
 		return
-	var/obj/item/attachable/A
-	if(usable_attachments.len == 1)
-		A = usable_attachments[1]
-	else
-		A = tgui_input_list(usr, "Which attachment to activate?", null, usable_attachments)
 
-	if(!A)
+	for(var/slot in attachments)
+		var/obj/item/attachable/attachment = attachments[slot]
+		if(attachment?.flags_attach_features & ATTACH_ACTIVATION)
+			usable_attachments += attachment
+
+	if(!length(usable_attachments)) //No usable attachments.
+		to_chat(usr, "<span class='warning'>[src] does not have any usable attachment!</span>")
 		return
-	A.ui_action_click(usr, null, src)
+	var/obj/item/attachable/usable_attachment
+	if(length(usable_attachments) == 1)
+		usable_attachment = usable_attachments[1]
+	else
+		usable_attachment = tgui_input_list(usr, "Which attachment to activate?", null, usable_attachments)
+
+	if(!usable_attachment)
+		return
+	usable_attachment.ui_action_click(usr, null, src)
 
 
 /mob/living/carbon/human/verb/toggle_rail_attachment()
@@ -847,10 +824,11 @@ should be alright.
 	set name = "Toggle Rail Attachment (Weapon)"
 	set desc = "Uses the rail attachement currently attached to the gun."
 
-	if(!src.rail)
+	var/obj/item/attachable/rail_attachment = LAZYACCESS(attachments, ATTACHMENT_SLOT_RAIL)
+	if(!rail_attachment)
 		to_chat(usr, "<span class='warning'>[src] does not have any usable rail attachment!</span>")
 		return
-	src.rail.activate_attachment(usr)
+	rail_attachment.activate_attachment(usr)
 
 /mob/living/carbon/human/verb/toggle_ammo_hud()
 	set category = "Weapons"

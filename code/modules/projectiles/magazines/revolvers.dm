@@ -11,6 +11,7 @@
 	w_class = WEIGHT_CLASS_SMALL
 	max_rounds = 6
 	gun_type = /obj/item/weapon/gun/revolver/m44
+	icon_state_mini = "mag_revolver"
 
 /obj/item/ammo_magazine/revolver/marksman
 	name = "\improper M-44 marksman speed loader (.44)"
@@ -77,6 +78,7 @@
 	caliber = CALIBER_44
 	current_rounds = 50
 	max_rounds = 50
+	icon_state_mini = "ammo_packet"
 
 //INTERNAL MAGAZINES
 

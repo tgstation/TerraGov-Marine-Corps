@@ -184,8 +184,8 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	name = "Phase Shift"
 	action_icon_state = "phase_shift"
 	mechanics_text = "We force ourselves temporarily out of sync with reality, allowing us to become incorporeal and move through any physical obstacles for a short duration."
-	plasma_cost = 75
-	cooldown_timer = 20 SECONDS
+	plasma_cost = 25
+	cooldown_timer = WRAITH_PHASE_SHIFT_COOLDOWN
 	keybind_signal = COMSIG_XENOABILITY_PHASE_SHIFT
 	var/turf/starting_turf = null
 	var/phase_shift_active = FALSE
@@ -193,6 +193,10 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 
 /datum/action/xeno_action/phase_shift/action_activate()
 	. = ..()
+
+	if(phase_shift_active) //Toggle off if phase shift is active
+		phase_shift_deactivate()
+		return
 
 	owner.visible_message("<span class='warning'>[owner.name] is becoming faint and translucent!</span>", \
 	"<span class='xenodanger'>We begin to move out of phase with reality....</span>") //Fluff
@@ -233,8 +237,8 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "wraith_phase_shifts") //Statistics
 
 	phase_shift_active = TRUE //Flag phase shift as being active
+	update_button_icon("phase_shift_off") //Set to resync icon while active
 	succeed_activate()
-	add_cooldown()
 
 ///Warns the user when Phase Shift is about to end.
 /datum/action/xeno_action/phase_shift/proc/phase_shift_warning()
@@ -253,6 +257,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 		return
 
 	phase_shift_active = FALSE //Flag phase shift as being off
+	update_button_icon("phase_shift") //Revert the icon to phase shift
 
 	var/mob/living/carbon/xenomorph/wraith/ghost = owner
 
@@ -275,29 +280,56 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	addtimer(CALLBACK(ghost, /atom.proc/remove_filter, "wraith_phase_shift_windup_2"), 0.5 SECONDS)
 
 	var/current_turf = get_turf(ghost)
+	var/block_check //Are we trying to rematerialize in a solid object? Check.
 
-	if(isclosedturf(current_turf) || isspaceturf(current_turf)) //So we rematerialized in a solid wall/space for some reason; Darwin award winner folks.
-		to_chat(ghost, "<span class='highdanger'>As we idiotically rematerialize in an obviously unsafe position, we revert to where we slipped out of reality at great cost.</span>")
-		ghost.adjustFireLoss((ghost.health * 0.5), TRUE) //Lose half of our health
-		ghost.Paralyze(5 SECONDS * XENO_PARALYZE_NORMALIZATION_MULTIPLIER) //That oughta teach them.
+	if(isclosedturf(current_turf) || isspaceturf(current_turf)) //So we rematerialized in a solid wall/space
+		block_check = TRUE
+
+	else
+		for(var/obj/blocker in current_turf) //Check for object based blockers
+			if(blocker.density && !(blocker.flags_atom & ON_BORDER)) //If we find a dense, non-border obj we can't climb it's time to stop
+				if(!isstructure(blocker))
+					block_check = TRUE
+					break
+				var/obj/structure/blocker_structure = blocker
+				if(!blocker_structure.climbable)
+					block_check = TRUE
+					break
+
+	if(block_check) //We tried to rematerialize in a solid object/wall of some kind; return to sender
+		to_chat(ghost, "<span class='highdanger'>As we rematerialize in a solid object, we revert to where we slipped out of reality.</span>")
 		ghost.forceMove(starting_turf)
 		teleport_debuff_aoe(ghost) //Debuff when we reappear
-		starting_turf = null
-		return
 
 	var/distance = get_dist(current_turf, starting_turf)
-	var/phase_shift_stun_time = clamp(distance * 0.1 SECONDS, 0.5 SECONDS, 3 SECONDS) //Recovery time
-	ghost.ParalyzeNoChain(phase_shift_stun_time * XENO_PARALYZE_NORMALIZATION_MULTIPLIER)
+	var/phase_shift_plasma_cost = clamp(distance * 4, 0, 100) //We lose 4 additional plasma per tile travelled, up to a maximum of 100
+	var/plasma_deficit = ghost.plasma_stored - phase_shift_plasma_cost
+
+	ghost.use_plasma(phase_shift_plasma_cost) //Pay the extra cost
+
 	ghost.visible_message("<span class='warning'>[ghost] form wavers and becomes opaque.</span>", \
-	"<span class='highdanger'>We phase back into reality, our mind reeling from the experience. We estimate we will take [phase_shift_stun_time * 0.1] seconds to recover!</span>")
+	"<span class='xenodanger'>We phase back into reality[phase_shift_plasma_cost > 0 ? ", expending [phase_shift_plasma_cost] additional plasma for [distance] tiles travelled." : "."]")
+
+	if(plasma_deficit < 0) //If we don't have enough plasma, we pay in blood and sunder instead.
+		plasma_deficit *= -1 //Normalize to a positive value
+		to_chat(owner, "<span class='highdanger'>We haven't enough plasma to safely move back into phase, suffering [plasma_deficit] damage and sunder as our body is torn apart!</span>")
+		ghost.apply_damages(plasma_deficit)
+		ghost.adjust_sunder(plasma_deficit)
 
 	starting_turf = null
+	add_cooldown()
 
 /datum/action/xeno_action/phase_shift/on_cooldown_finish()
 	to_chat(owner, "<span class='xenodanger'>We are able to fade from reality again.</span>")
 	owner.playsound_local(owner, 'sound/effects/xeno_newlarva.ogg', 25, 0, 1)
 	return ..()
 
+/datum/action/xeno_action/phase_shift/update_button_icon(input) //So we display the proper icon
+	if(!input) //If we're not overriding, proceed as normal
+		return ..()
+	button.overlays.Cut()
+	button.overlays += image('icons/mob/actions.dmi', button, input)
+	return ..()
 
 // ***************************************
 // *********** Resync
@@ -305,7 +337,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 /datum/action/xeno_action/resync
 	name = "Resync"
 	action_icon_state = "resync"
-	mechanics_text = "Resynchronize with realspace, ending Phase Shift's effect."
+	mechanics_text = "Resynchronize with realspace, ending Phase Shift's effect and returning you to where the Phase Shift began."
 	cooldown_timer = 1 SECONDS //Token for anti-spam
 	keybind_signal = COMSIG_XENOABILITY_RESYNC
 
@@ -321,7 +353,9 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	. = ..()
 
 	var/datum/action/xeno_action/phase_shift/disable_shift = owner.actions_by_path[/datum/action/xeno_action/phase_shift]
+	owner.forceMove(disable_shift.starting_turf) //Return to our initial position, then cancel the shift
 	disable_shift.phase_shift_deactivate()
+	teleport_debuff_aoe(owner) //Debuff when we reappear
 
 	succeed_activate()
 	add_cooldown()
@@ -466,8 +500,8 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 // ***************************************
 /datum/action/xeno_action/activable/banish
 	name = "Banish"
-	action_icon_state = "banish"
-	mechanics_text = "We banish a target object or creature within line of sight to nullspace for a short duration. Can target onself and allies. Non-friendlies are banished for half as long."
+	action_icon_state = "Banish"
+	mechanics_text = "We banish a target object or creature within line of sight to nullspace for a short duration. Can target oneself and allies. Non-friendly non-objects are banished for half as long."
 	use_state_flags = XACT_TARGET_SELF
 	plasma_cost = 100
 	cooldown_timer = 20 SECONDS
@@ -481,13 +515,23 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	var/banish_duration_timer_id
 	///Phantom zone reserved area
 	var/datum/turf_reservation/reserved_area
+	///Cooldown modifier
+	var/cooldown_mod = 1
 
 /datum/action/xeno_action/activable/banish/Destroy()
 	QDEL_NULL(reserved_area) //clean up
 	return ..()
 
 /datum/action/xeno_action/activable/banish/can_use_ability(atom/A, silent = FALSE, override_flags)
+	if(banishment_target) //Toggle off if we have a Banished target
+		return TRUE
+
 	. = ..()
+
+	if(owner.status_flags & INCORPOREAL) //We can't use this while phased out.
+		if(!silent)
+			to_chat(owner, "<span class='xenowarning'>We can't banish while incorporeal!</span>")
+		return FALSE
 
 	if(!ismovableatom(A) || iseffect(A) || CHECK_BITFIELD(A.resistance_flags, INDESTRUCTIBLE)) //Cannot banish non-movables/things that are supposed to be invul; also we ignore effects
 		if(!silent)
@@ -507,7 +551,12 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 			to_chat(owner, "<span class='xenowarning'>We can't banish without line of sight to our target!</span>")
 		return FALSE
 
+
 /datum/action/xeno_action/activable/banish/use_ability(atom/movable/A)
+	if(banishment_target) //Toggle off if we have a Banished target
+		banish_deactivate()
+		return
+
 	. = ..()
 	var/mob/living/carbon/xenomorph/wraith/ghost = owner
 	var/banished_turf = get_turf(A) //Set the banishment turf.
@@ -524,6 +573,8 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 		stasis_target.apply_status_effect(/datum/status_effect/incapacitating/unconscious) //Force the target to KO
 		stasis_target.notransform = TRUE //Stasis
 		stasis_target.overlay_fullscreen("banish", /obj/screen/fullscreen/blind) //Force the blind overlay
+		if(A == ghost)
+			owner.client.click_intercept = src
 
 	if(!reserved_area) //If we don't have a reserved area, set one
 		reserved_area = SSmapping.RequestBlockReservation(3,3, SSmapping.transit.z_value, /datum/turf_reservation/banish)
@@ -532,6 +583,14 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 
 	var/turf/target_turf = reserved_area.reserved_turfs[5]
 	new /area/arrival(target_turf) //So we don't get instagibbed from the space area
+
+	if(isxeno(banishment_target)) //If we're a xeno, disgorge all vored contents
+		var/mob/living/carbon/xenomorph/xeno_target = banishment_target
+		xeno_target.eject_victim()
+
+	for(var/mob/living/living_contents in banishment_target.contents) //Safety measure so living mobs inside the target don't get lost in Brazilspace forever
+		living_contents.forceMove(banished_turf)
+
 	banishment_target.forceMove(target_turf)
 
 	var/duration = ghost.xeno_caste.wraith_banish_base_duration //Set the duration
@@ -541,7 +600,6 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	animate(portal.get_filter("banish_portal_1"), x = 20*rand() - 10, y = 20*rand() - 10, time = 0.5 SECONDS, loop = -1, flags=ANIMATION_PARALLEL)
 	animate(portal.get_filter("banish_portal_2"), x = 20*rand() - 10, y = 20*rand() - 10, time = 0.5 SECONDS, loop = -1, flags=ANIMATION_PARALLEL)
 
-	var/cooldown_mod = 1
 	if(isliving(banishment_target) && !(banishment_target.issamexenohive(ghost))) //We halve the max duration for living non-allies
 		duration *= WRAITH_BANISH_NONFRIENDLY_LIVING_MULTIPLIER
 	else if (banishment_target.issamexenohive(ghost))
@@ -560,8 +618,11 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	addtimer(CALLBACK(src, .proc/banish_warning), duration * 0.7) //Warn when Banish is about to end
 	banish_duration_timer_id = addtimer(CALLBACK(src, .proc/banish_deactivate), duration, TIMER_STOPPABLE) //store the timer ID
 
+	keybind_flags = XACT_KEYBIND_USE_ABILITY|XACT_IGNORE_SELECTED_ABILITY //Toggle the controls, icon and name while Banish is active
+	name = "Recall"
+	update_button_icon(name)
+
 	succeed_activate()
-	add_cooldown(cooldown_timer * cooldown_mod)
 
 	GLOB.round_statistics.wraith_banishes++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "wraith_banishes") //Statistics
@@ -594,6 +655,8 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 		living_target.remove_status_effect(/datum/status_effect/incapacitating/unconscious) //Force the target to KO
 		living_target.notransform = initial(living_target.notransform)
 		living_target.clear_fullscreen("banish") //Remove the blind overlay
+		if(banishment_target == owner)
+			owner.client.click_intercept = null
 
 	banishment_target.visible_message("<span class='warning'>[banishment_target.name] abruptly reappears!</span>", \
 	"<span class='warning'>You suddenly reappear back in what you believe to be reality.</span>")
@@ -604,41 +667,25 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	QDEL_NULL(portal) //Eliminate the Brazil portal if we need to
 
 	banishment_target = null
+	name = initial(name)
+	update_button_icon(name)
+	add_cooldown(cooldown_timer * cooldown_mod) //Now trigger the proper cooldown since we've actually used it
+	cooldown_mod = initial(cooldown_mod) //Revert the cooldown modifier
+	keybind_flags = initial(keybind_flags)
 
-	return TRUE //For the recall sub-ability
+/datum/action/xeno_action/activable/banish/update_button_icon(input) //So we display the proper icon
+	if(!input) //If we're not overriding, proceed as normal
+		return ..()
+	button.overlays.Cut()
+	button.name = input
+	button.overlays += image('icons/mob/actions.dmi', button, input)
+	return ..()
 
 /datum/action/xeno_action/activable/banish/on_cooldown_finish()
 	to_chat(owner, "<span class='xenodanger'>We are able to banish again.</span>")
 	owner.playsound_local(owner, 'sound/effects/xeno_newlarva.ogg', 25, 0, 1)
 	return ..()
 
-// ***************************************
-// *********** Recall
-// ***************************************
-/datum/action/xeno_action/recall
-	name = "Recall"
-	action_icon_state = "recall"
-	mechanics_text = "We recall a target we've banished back from the depths of nullspace."
-	use_state_flags = XACT_USE_NOTTURF|XACT_USE_STAGGERED|XACT_USE_INCAP|XACT_USE_LYING //So we can recall ourselves from nether Brazil
-	cooldown_timer = 1 SECONDS //Token for anti-spam
-	keybind_signal = COMSIG_XENOABILITY_RECALL
-
-/datum/action/xeno_action/recall/can_use_action(silent = FALSE, override_flags)
-	. = ..()
-
-	var/datum/action/xeno_action/activable/banish/banish_check = owner.actions_by_path[/datum/action/xeno_action/activable/banish]
-	if(!banish_check) //Mainly for when we transition on upgrading
-		return FALSE
-
-	if(!banish_check.banishment_target)
-		if(!silent)
-			to_chat(owner,"<span class='xenodanger'>We have no targets banished!</span>")
-		return FALSE
-
-
-/datum/action/xeno_action/recall/action_activate()
-	. = ..()
-	var/datum/action/xeno_action/activable/banish/banish_check = owner.actions_by_path[/datum/action/xeno_action/activable/banish]
-	banish_check.banish_deactivate()
-	succeed_activate()
-	add_cooldown()
+/datum/action/xeno_action/activable/banish/InterceptClickOn(mob/user, params, atom/object)
+	banish_deactivate()
+	return TRUE

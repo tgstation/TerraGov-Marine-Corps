@@ -192,6 +192,7 @@
 	can_hold = list(
 		/obj/item/weapon/gun/pistol,
 		/obj/item/weapon/gun/revolver,
+		/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_pistol,
 	)
 	draw_mode = 1
 

@@ -47,10 +47,11 @@
 /obj/screen/text/lobby/owners_char
 	screen_loc = "CENTER-7,CENTER-7"
 	maptext = "<span class=menutext>Loading...</span>"
+	///Bool, whether we registered to listen for charachter updates already
+	var/registered = FALSE
 
 /obj/screen/text/lobby/owners_char/Initialize(mapload)
 	. = ..()
-	RegisterSignal(hud.mymob.client, COMSIG_CLIENT_PREFERENCES_UIACTED, .proc/set_text)
 	if(!mapload)
 		INVOKE_NEXT_TICK(src, .proc/set_text)//stupid fucking initialize bug fuck you
 		return
@@ -58,6 +59,9 @@
 
 /obj/screen/text/lobby/owners_char/set_text()
 	maptext = "<span class=menutext>Current character: [hud.mymob.client ? hud.mymob.client.prefs.real_name : "Unknown User"]</span>"
+	if(!registered)
+		RegisterSignal(hud.mymob.client, COMSIG_CLIENT_PREFERENCES_UIACTED, .proc/set_text)
+		registered = TRUE
 
 ///Clickable UI lobby objects which do stuff on Click() when pressed
 /obj/screen/text/lobby/clickable

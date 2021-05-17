@@ -11,9 +11,9 @@ SUBSYSTEM_DEF(points)
 	flags = SS_KEEP_TIMING
 
 	wait = 10 SECONDS
-
 	var/dropship_points = 0
-	var/supply_points = 0
+	///Assoc list of supply points
+	var/supply_points = list()
 	///Assoc list of xeno points: xeno_points_by_hive["hivenum"]
 	var/list/xeno_points_by_hive = list()
 
@@ -78,11 +78,11 @@ SUBSYSTEM_DEF(points)
 				containsname[path]["count"]++
 		supply_packs_contents[pack] = list("name" = P.name, "container_name" = initial(P.containertype.name), "cost" = P.cost, "contains" = containsname)
 
-
 /datum/controller/subsystem/points/fire(resumed = FALSE)
 	dropship_points += DROPSHIP_POINT_RATE / (1 MINUTES / wait)
 
-	supply_points += SUPPLY_POINT_RATE / (1 MINUTES / wait)
+	for(var/key in supply_points)
+		supply_points[key] += SUPPLY_POINT_RATE / (1 MINUTES / wait)
 
 ///Add amount of psy points to the selected hive only if the gamemode support psypoints
 /datum/controller/subsystem/points/proc/add_psy_points(hivenumber, amount)
@@ -91,12 +91,12 @@ SUBSYSTEM_DEF(points)
 	xeno_points_by_hive[hivenumber] += amount
 
 
-/datum/controller/subsystem/points/proc/approve_request(datum/supply_order/O, mob/user)
+/datum/controller/subsystem/points/proc/approve_request(datum/supply_order/O, mob/living/user)
 	var/cost = 0
 	for(var/i in O.pack)
 		var/datum/supply_packs/SP = i
 		cost += SP.cost
-	if(cost > supply_points)
+	if(cost > supply_points[user.faction])
 		return
 	if(length(shoppinglist) >= SSshuttle.supply?.return_number_of_turfs())
 		return
@@ -104,7 +104,7 @@ SUBSYSTEM_DEF(points)
 	deniedrequests -= "[O.id]"
 	approvedrequests["[O.id]"] = O
 	O.authorised_by = user.real_name
-	supply_points -= cost
+	supply_points[user.faction] -= cost
 	shoppinglist["[O.id]"] = O
 	if(GLOB.directory[O.orderer])
 		to_chat(GLOB.directory[O.orderer], "<span class='notice'>Your request [O.id] has been approved!</span>")
@@ -122,15 +122,17 @@ SUBSYSTEM_DEF(points)
 	NO.orderer_ckey = O.orderer_ckey
 	NO.orderer = O.orderer
 	NO.orderer_rank = O.orderer_rank
+	NO.faction = O.faction
 	return NO
 
-/datum/controller/subsystem/points/proc/process_cart(mob/user, list/cart)
+/datum/controller/subsystem/points/proc/process_cart(mob/living/user, list/cart)
 	. = list()
 	var/datum/supply_order/O = new
 	O.id = ++ordernum
 	O.orderer_ckey = user.ckey
 	O.orderer = user.real_name
 	O.pack = list()
+	O.faction = user.faction
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
 		O.orderer_rank = H.get_assignment()
@@ -160,21 +162,21 @@ SUBSYSTEM_DEF(points)
 	else
 		qdel(O)
 
-/datum/controller/subsystem/points/proc/buy_cart(mob/user)
+/datum/controller/subsystem/points/proc/buy_cart(mob/living/user)
 	var/cost = 0
 	for(var/i in shopping_cart)
 		var/datum/supply_packs/SP = supply_packs[i]
 		cost += SP.cost * shopping_cart[i]
-	if(cost > supply_points)
+	if(cost > supply_points[user.faction])
 		return
 	var/list/datum/supply_order/orders = process_cart(user, shopping_cart)
 	for(var/i in 1 to length(orders))
 		orders[i].authorised_by = user.real_name
 		shoppinglist["[orders[i].id]"] = orders[i]
-	supply_points -= cost
+	supply_points[user.faction] -= cost
 	shopping_cart.Cut()
 
-/datum/controller/subsystem/points/proc/submit_request(mob/user, reason)
+/datum/controller/subsystem/points/proc/submit_request(mob/living/user, reason)
 	var/list/ckey_shopping_cart = request_shopping_cart[user.ckey]
 	if(!length(ckey_shopping_cart))
 		return
