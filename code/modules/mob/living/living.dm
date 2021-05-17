@@ -170,7 +170,7 @@
 
 
 /mob/living/proc/get_limbzone_target()
-	return ran_zone(zone_selected)
+	return ran_zone(zone_selected, 100)
 
 
 
@@ -418,7 +418,7 @@
 /mob/living/throw_at(atom/target, range, speed, thrower, spin, flying = FALSE)
 	if(!target)
 		return 0
-	if(pulling)
+	if(pulling && !flying)
 		stop_pulling() //being thrown breaks pulls.
 	if(pulledby)
 		pulledby.stop_pulling()
@@ -487,6 +487,9 @@
 /mob/living/proc/smokecloak_on()
 
 	if(smokecloaked)
+		return
+
+	if(stat == DEAD)
 		return
 
 	alpha = 5 // bah, let's make it better, it's a disposable device anyway

@@ -46,11 +46,6 @@ OPERATIONS
 	contains = list(/obj/item/fulton_extraction_pack)
 	cost = 5
 
-/datum/supply_packs/operations/fulton_recovery_beacon
-	name = "fulton recovery beacon"
-	contains = list(/obj/structure/fulton_extraction_point)
-	cost = 5
-
 /datum/supply_packs/operations/cas_flares
 	name = "CAS flare pack"
 	contains = list(/obj/item/storage/box/m94/cas)
@@ -274,37 +269,37 @@ WEAPONS
 /datum/supply_packs/weapons/explosives_razor
 	name = "RB grenade box crate"
 	notes = "Containers 20 razor burns"
-	contains = list(/obj/item/storage/box/nade_box/razor_burn)
+	contains = list(/obj/item/storage/box/visual/grenade/razorburn)
 	cost = 50
 
 /datum/supply_packs/weapons/explosives_hedp
 	name = "M40 HEDP high explosive grenade box crate"
 	notes = "Contains 25 grenades"
-	contains = list(/obj/item/storage/box/nade_box)
+	contains = list(/obj/item/storage/box/visual/grenade/frag)
 	cost = 50
 
 /datum/supply_packs/weapons/explosives_hidp
 	name = "M40 HIDP incendiary explosive grenade box crate"
 	notes = "Contains 25 grenades"
-	contains = list(/obj/item/storage/box/nade_box/HIDP)
+	contains = list(/obj/item/storage/box/visual/grenade/incendiary)
 	cost = 50
 
 /datum/supply_packs/weapons/explosives_m15
 	name = "M15 fragmentation grenade box crate"
 	notes = "Contains 15 grenades"
-	contains = list(/obj/item/storage/box/nade_box/M15)
+	contains = list(/obj/item/storage/box/visual/grenade/M15)
 	cost = 50
 
 /datum/supply_packs/weapons/explosives_hsdp
 	name = "M40 HSDP white phosphorous grenade box crate"
 	notes = "Contains 15 grenades"
-	contains = list(/obj/item/storage/box/nade_box/phos)
+	contains = list(/obj/item/storage/box/visual/grenade/phosphorus)
 	cost = 70
 
 /datum/supply_packs/weapons/explosives_plasmadrain
 	name = "M40-T gas grenade box crate"
 	notes = "Contains 25 grenades"
-	contains = list(/obj/item/storage/box/nade_box/plasma_drain_gas)
+	contains = list(/obj/item/storage/box/visual/grenade/drain)
 	cost = 70
 
 /datum/supply_packs/weapons/plastique
@@ -444,54 +439,11 @@ AMMO
 	)
 	cost = 10
 
-/datum/supply_packs/ammo/boxslug
-	name = "Slug Ammo Box"
-	contains = list(/obj/item/shotgunbox)
-	cost = 20
-
-/datum/supply_packs/ammo/boxbuckshot
-	name = "Buckshot Ammo Box"
-	contains = list(/obj/item/shotgunbox/buckshot)
-	cost = 20
-
-/datum/supply_packs/ammo/boxflechette
-	name = "Flechette Ammo Box"
-	contains = list(/obj/item/shotgunbox/flechette)
-	cost = 20
-
-/datum/supply_packs/ammo/boxcarbine
-	name = "T-18 Carbine Ammo Box"
-	contains = list(/obj/item/ammobox)
-	cost = 20
-
-/datum/supply_packs/ammo/boxrifle
-	name = "T-12 Assault Rifle Ammo Box"
-	contains = list(/obj/item/ammobox/standard_rifle)
-	cost = 20
-
-/datum/supply_packs/ammo/boxsmg
-	name = "T-90 SMG Ammo Box"
-	contains = list(/obj/item/ammobox/standard_smg)
-	cost = 20
-
-/datum/supply_packs/ammo/boxmachpistol
-	name = "T-19 Machine Pistol Ammo Box"
-	contains = list(/obj/item/ammobox/standard_machinepistol)
-	cost = 20
-
-/datum/supply_packs/ammo/boxlmg
-	name = "T-42 LMG Ammo Box"
-	contains = list(/obj/item/ammobox/standard_lmg)
-	cost = 20
-
-/datum/supply_packs/ammo/boxdmr
-	name = "T-64 DMR Ammo Box"
-	contains = list(/obj/item/ammobox/standard_dmr)
-	cost = 20
-
-/datum/supply_packs/ammo/boxpistol
-	name = "TP-14 Pistol Ammo Box"
-	contains = list(/obj/item/ammobox/standard_pistol)
+/datum/supply_packs/ammo/standard_ammo
+	name = "Surplus Standard Ammo Crate"
+	notes = "Contains 22 ammo boxes of a wide variety which come prefilled. You lazy bum."
+	contains = list(/obj/structure/largecrate/supply/ammo/standard_ammo)
+	containertype = null
 	cost = 20
 
 /datum/supply_packs/ammo/mateba

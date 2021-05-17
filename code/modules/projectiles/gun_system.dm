@@ -92,13 +92,11 @@
 	var/ammo_diff		= null					//what ammo to use for overcharge
 
 	//Attachments.
-	var/list/attachable_overlays	= list("muzzle", "rail", "under", "stock", "mag") //List of overlays so we can switch them in an out, instead of using Cut() on overlays.
+	var/list/attachable_overlays	= list(ATTACHMENT_SLOT_MUZZLE, ATTACHMENT_SLOT_RAIL, ATTACHMENT_SLOT_UNDER, ATTACHMENT_SLOT_STOCK, ATTACHMENT_SLOT_MAGAZINE) //List of overlays so we can switch them in an out, instead of using Cut() on overlays.
 	var/list/attachable_offset 		= null		//Is a list, see examples of from the other files. Initiated on New() because lists don't initial() properly.
 	var/list/attachable_allowed		= null		//Must be the exact path to the attachment present in the list. Empty list for a default.
-	var/obj/item/attachable/muzzle 	= null		//Attachable slots. Only one item per slot.
-	var/obj/item/attachable/rail 	= null
-	var/obj/item/attachable/under 	= null
-	var/obj/item/attachable/stock 	= null
+	///assoc list of "slot" = ref for attachments, supports any slot, two attachments of same slot cant exist.
+	var/list/obj/item/attachable/attachments
 	var/obj/item/attachable/attached_gun/active_attachable = null //This will link to one of the above four, or remain null.
 	var/list/starting_attachment_types = null //What attachments this gun starts with THAT CAN BE REMOVED. Important to avoid nuking the attachments on restocking! Added on New()
 
@@ -167,23 +165,24 @@
 
 //Hotfix for attachment offsets being set AFTER the core New() proc. Causes a small graphical artifact when spawning, hopefully works even with lag
 /obj/item/weapon/gun/proc/handle_starting_attachment()
-	if(starting_attachment_types && starting_attachment_types.len)
-		for(var/path in starting_attachment_types)
-			var/obj/item/attachable/A = new path(src)
-			A.Attach(src)
+	if(!length(starting_attachment_types))
+		return
+	for(var/path in starting_attachment_types)
+		var/obj/item/attachable/A = new path(src)
+		A.attach_to_gun(src)
 
 
 /obj/item/weapon/gun/Destroy()
 	ammo = null
 	active_attachable = null
-	if(muzzle)
-		QDEL_NULL(muzzle)
-	if(rail)
-		QDEL_NULL(rail)
-	if(under)
-		QDEL_NULL(under)
-	if(stock)
-		QDEL_NULL(stock)
+
+	if(attachments)
+		for(var/slot in attachments)
+			qdel(attachments[slot])
+
+	LAZYCLEARLIST(attachments)
+	UNSETEMPTY(attachments)
+
 	if(in_chamber)
 		QDEL_NULL(in_chamber)
 	if(current_mag)
@@ -207,7 +206,7 @@
 	if(gun_user)
 		UnregisterSignal(gun_user, list(COMSIG_MOB_MOUSEDOWN, COMSIG_MOB_MOUSEUP, COMSIG_MOB_MOUSEDRAG))
 		gun_user.client.mouse_pointer_icon = initial(gun_user.client.mouse_pointer_icon)
-		gun_user = null	
+		gun_user = null
 	return ..()
 
 /obj/item/weapon/gun/removed_from_inventory(mob/user)
@@ -238,17 +237,14 @@
 	else
 		dat += "The safety's off!<br>"
 
-	if(rail)
-		dat += "It has [icon2html(rail, user)] [rail.name] mounted on the top.<br>"
-	if(muzzle)
-		dat += "It has [icon2html(muzzle, user)] [muzzle.name] mounted on the front.<br>"
-	if(stock)
-		dat += "It has [icon2html(stock, user)] [stock.name] for a stock.<br>"
-	if(under)
-		dat += "It has [icon2html(under, user)] [under.name]"
-		if(under.flags_attach_features & ATTACH_WEAPON)
-			dat += " ([under.current_rounds]/[under.max_rounds])"
-		dat += " mounted underneath.<br>"
+	if(attachments)
+		for(var/slot in attachments)
+			var/obj/item/attachable/attachment = LAZYACCESS(attachments, slot)
+			if(attachment)
+				dat += "It has [icon2html(attachment, user)] [attachment.name]"
+				if(attachment.flags_attach_features & ATTACH_WEAPON)
+					dat += " ([attachment.current_rounds]/[attachment.max_rounds])"
+				dat += "mounted on the [attachment.slot] slot."
 
 	if(dat)
 		to_chat(user, "[dat.Join(" ")]")
@@ -465,7 +461,7 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 			H.current_rounds++
 		else
 			H = new
-			H.generate_handful(bullet_ammo_type, bullet_caliber, 8, 1, type)
+			H.generate_handful(bullet_ammo_type, bullet_caliber, 1, type)
 			user.put_in_hands(H)
 
 		H.update_icon()
@@ -558,7 +554,7 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 		reset_fire()
 	SEND_SIGNAL(src, COMSIG_GUN_STOP_FIRE)
 
-///Clean all references 
+///Clean all references
 /obj/item/weapon/gun/proc/reset_fire()
 	shots_fired = 0//Let's clean everything
 	set_target(null)
@@ -677,7 +673,7 @@ and you're good to go.
 
 	apply_gun_modifiers(projectile_to_fire, target)
 	setup_bullet_accuracy(projectile_to_fire, gun_user, shots_fired, dual_wield) //User can be passed as null.
-		
+
 	var/firing_angle = get_angle_with_scatter((gun_user || get_turf(src)), target, get_scatter(projectile_to_fire.scatter, gun_user), projectile_to_fire.p_x, projectile_to_fire.p_y)
 
 	//Finally, make with the pew pew!
@@ -685,15 +681,14 @@ and you're good to go.
 		stack_trace("projectile malfunctioned while firing. User: [gun_user]")
 		return
 
-	
+
 	play_fire_sound(gun_user)
 	muzzle_flash(firing_angle, gun_user)
 	simulate_recoil(dual_wield, gun_user)
 
-
 	//This is where the projectile leaves the barrel and deals with projectile code only.
 	//vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
-	projectile_to_fire.fire_at(target, gun_user, src, projectile_to_fire.ammo.max_range, projectile_to_fire.ammo.shell_speed, firing_angle)
+	projectile_to_fire.fire_at(target, gun_user, src, projectile_to_fire.ammo.max_range, projectile_to_fire.ammo.shell_speed, firing_angle, suppress_light = CHECK_BITFIELD(flags_gun_features, GUN_SILENCED))
 	//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 	shots_fired++

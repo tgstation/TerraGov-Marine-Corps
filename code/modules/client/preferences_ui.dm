@@ -80,6 +80,7 @@
 		"windowflashing" = windowflashing,
 		"auto_fit_viewport" = auto_fit_viewport,
 		"focus_chat" = focus_chat,
+		"mute_xeno_health_alert_messages" = mute_xeno_health_alert_messages,
 		"tgui_fancy" = tgui_fancy,
 		"tgui_lock" = tgui_lock,
 		"clientfps" = clientfps,
@@ -98,6 +99,14 @@
 	for(var/key in key_bindings)
 		for(var/kb_name in key_bindings[key])
 			.["key_bindings"][kb_name] += list(key)
+	
+	.["custom_emotes"] = list()
+	for(var/id in 1 to CUSTOM_EMOTE_SLOTS)
+		var/datum/custom_emote/emote = custom_emotes[id]
+		.["custom_emotes"]["Custom emote :[id]"] = list(
+			sentence = emote.message,
+			emote_type = (emote.spoken_emote ? "say" : "me"),
+			)
 
 	// Get save slot name
 	.["save_slot_names"] = list()
@@ -228,7 +237,7 @@
 		if("randomize_appearance")
 			randomize_appearance_for()
 
-		if("synth_name")
+		if("synthetic_name")
 			var/newValue = params["newValue"]
 			newValue = reject_bad_name(newValue, TRUE)
 			if(!newValue)
@@ -529,6 +538,9 @@
 			else
 				winset(user, null, "map.focus=true")
 
+		if("mute_xeno_health_alert_messages")
+			mute_xeno_health_alert_messages = !mute_xeno_health_alert_messages
+
 		if("tgui_fancy")
 			tgui_fancy = !tgui_fancy
 
@@ -619,6 +631,28 @@
 
 				current_client.update_movement_keys()
 
+		if("setCustomSentence")
+			var/kb_name = params["name"]
+			if(!kb_name)
+				return
+			var/list/part = splittext(kb_name, ":")
+			var/id = text2num(part[2])
+			var/datum/custom_emote/emote = custom_emotes[id]
+			var/new_message = params["sentence"]
+			if(length(new_message) > 300)
+				return
+			emote.message = new_message
+			custom_emotes[id] = emote
+
+		if("setEmoteType")
+			var/kb_name = params["name"]
+			if(!kb_name)
+				return
+			var/list/part = splittext(kb_name, ":")
+			var/id = text2num(part[2])
+			var/datum/custom_emote/emote = custom_emotes[id]
+			emote.spoken_emote = !emote.spoken_emote
+
 		if("reset-keybindings")
 			key_bindings = GLOB.hotkey_keybinding_list_by_key
 			current_client.update_movement_keys()
@@ -651,4 +685,5 @@
 	save_character()
 	update_preview_icon()
 	ui_interact(user, ui)
+	SEND_SIGNAL(current_client, COMSIG_CLIENT_PREFERENCES_UIACTED)
 	return TRUE

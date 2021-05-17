@@ -86,7 +86,11 @@
 		O = H.internal_organs_by_name["brain"] //This removes (and later garbage collects) the organ. No brain means instant death.
 		H.internal_organs_by_name -= "brain"
 		H.internal_organs -= O
-		H.set_undefibbable()
+		ADD_TRAIT(H, TRAIT_PSY_DRAINED, TRAIT_PSY_DRAINED) //for xeno hud
+		if(HAS_TRAIT(H, TRAIT_UNDEFIBBABLE)) //If true then force a hud update because SSmobs will not
+			H.med_hud_set_status()
+		else
+			H.set_undefibbable()
 
 	X.do_attack_animation(victim, ATTACK_EFFECT_BITE)
 	playsound(victim, pick( 'sound/weapons/alien_tail_attack.ogg', 'sound/weapons/alien_bite1.ogg'), 50)
@@ -212,11 +216,14 @@
 		return
 	var/mob/living/carbon/xenomorph/X = owner
 
-	var/sticky_resin_modifier = 1
-	if(X.selected_resin == /obj/effect/alien/resin/sticky) //Sticky resin builds twice as fast
-		sticky_resin_modifier = 0.5
+	var/build_resin_modifier = 1
+	switch(X.selected_resin)
+		if(/obj/effect/alien/resin/sticky)
+			build_resin_modifier = 0.5
+		if(/obj/structure/mineral_door/resin)
+			build_resin_modifier = 3
 
-	return (base_wait + scaling_wait - max(0, (scaling_wait * X.health / X.maxHealth))) * sticky_resin_modifier
+	return (base_wait + scaling_wait - max(0, (scaling_wait * X.health / X.maxHealth))) * build_resin_modifier
 
 /datum/action/xeno_action/activable/secrete_resin/proc/build_resin(turf/T)
 	var/mob/living/carbon/xenomorph/X = owner
@@ -306,8 +313,11 @@
 	else
 		new_resin = new X.selected_resin(T)
 
-	if(X.selected_resin == /obj/effect/alien/resin/sticky) //Sticky resin is discounted because let's face it, it's nowhere near as good as a wall or door
-		plasma_cost = 25
+	switch(X.selected_resin)
+		if(/obj/effect/alien/resin/sticky)
+			plasma_cost = initial(plasma_cost) / 3
+		if(/obj/structure/mineral_door/resin)
+			plasma_cost = initial(plasma_cost) * 3
 
 	if(new_resin)
 		add_cooldown()
@@ -1025,7 +1035,7 @@
 		to_use.update_burst()
 		to_use.forceMove(hivesilo)
 		moved_human_number++
-	
+
 	succeed_activate()
 
 ////////////////////
@@ -1063,6 +1073,17 @@
 	. = ..()
 	if(!.)
 		return FALSE
+
+	var/turf/T = get_turf(A)
+	if(T?.density)
+		to_chat(owner, "<span class='xenowarning'>You need open ground to place that!</span>")
+		return FALSE
+
+	for(var/direction in GLOB.cardinals - REVERSE_DIR(Get_Angle(owner, A)))
+		T = get_step(A, direction)
+		if(!T || T.density)
+			to_chat(owner, "<span class='xenowarning'>You need open ground to place that!</span>")
+			return FALSE
 
 	if(!in_range(owner, A))
 		if(!silent)
@@ -1298,6 +1319,8 @@
 	victim.do_jitter_animation(2)
 
 	ADD_TRAIT(victim, TRAIT_PSY_DRAINED, TRAIT_PSY_DRAINED)
+	if(HAS_TRAIT(victim, TRAIT_UNDEFIBBABLE))
+		victim.med_hud_set_status()
 
 	SSpoints.add_psy_points(X.hivenumber, psy_points_reward)
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)

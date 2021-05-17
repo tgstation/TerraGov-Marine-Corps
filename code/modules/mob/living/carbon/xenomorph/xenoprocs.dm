@@ -282,7 +282,7 @@
 			var/siloless_countdown = SSticker.mode?.get_siloless_collapse_countdown()
 			if(siloless_countdown)
 				stat("<b>Orphan hivemind collapse timer:</b>", siloless_countdown)
-			
+
 		if(XENO_HIVE_CORRUPTED)
 			stat("Hive Orders:","Follow the instructions of our masters")
 
@@ -605,7 +605,7 @@
 		return FALSE
 	var/datum/reagent/body_tox
 	var/i = 1
-	do
+	while(i++ < count && do_after(src, channel_time, TRUE, C, BUSY_ICON_HOSTILE))
 		face_atom(C)
 		if(stagger)
 			return FALSE
@@ -623,7 +623,6 @@
 		to_chat(src, "<span class='xenowarning'>Our stinger injects our victim with [body_tox.name]!</span>")
 		if(body_tox.volume > body_tox.overdose_threshold)
 			to_chat(src, "<span class='danger'>We sense the host is saturated with [body_tox.name].</span>")
-	while(i++ < count && do_after(src, channel_time, TRUE, C, BUSY_ICON_HOSTILE))
 	return TRUE
 
 
@@ -679,6 +678,8 @@
 	LAZYREMOVE(stomach_contents, victim)
 	if(make_cocoon)
 		ADD_TRAIT(victim, TRAIT_PSY_DRAINED, TRAIT_PSY_DRAINED)
+		if(HAS_TRAIT(victim, TRAIT_UNDEFIBBABLE))
+			victim.med_hud_set_status()
 		new /obj/structure/cocoon(loc, hivenumber, victim)
 		return
 	victim.forceMove(eject_location)

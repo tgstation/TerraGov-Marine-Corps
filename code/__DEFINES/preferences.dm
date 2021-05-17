@@ -8,6 +8,9 @@
 #define BE_OVERFLOW 1
 #define RETURN_TO_LOBBY 2
 
+//Do not decrease this unless you know what you are doing. It can be safely increased
+#define CUSTOM_EMOTE_SLOTS 10 
+
 #define JOBS_PRIORITY_HIGH   3
 #define JOBS_PRIORITY_MEDIUM 2
 #define JOBS_PRIORITY_LOW    1
@@ -124,7 +127,10 @@
 	"White",\
 	"Slimecore",\
 	"Operative",\
-	"Clockwork"\
+	"Clockwork",\
+	"Glass",\
+	"Minimalist",\
+	"Holo"\
 	)
 
 #define BE_SPECIAL_FLAGS list(\
