@@ -20,12 +20,12 @@
 
 /datum/action/xeno_action/activable/nightfall/use_ability()
 	playsound(owner, 'sound/magic/nightfall.ogg', 50, 1)
-	for(var/atom/light AS in GLOB.nightfall_toggleable_lights)
-		if((owner.loc.z != light.loc.z) || (get_dist(owner, light) >= range))
-			continue
-		light.turn_light(null, FALSE, duration, TRUE, TRUE)
 	succeed_activate()
 	add_cooldown()
+	for(var/atom/light AS in GLOB.nightfall_toggleable_lights)
+		if(isnull(light.loc) || (owner.loc.z != light.loc.z) || (get_dist(owner, light) >= range))
+			continue
+		light.turn_light(null, FALSE, duration, TRUE, TRUE)
 
 
 // ***************************************
