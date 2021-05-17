@@ -237,7 +237,9 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 		for(var/atom/movable/AM in shuttle_area)
 			if(AM.anchored)
 				continue
-			SSpoints.export_history += AM.supply_export(faction)
+			var/datum/export_report = AM.supply_export(faction)
+			if(export_report)
+				SSpoints.export_history += export_report
 			qdel(AM)
 
 /obj/item/supplytablet
@@ -340,7 +342,8 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 	. = list()
 	.["currentpoints"] = round(SSpoints.supply_points[user.faction])
 	.["requests"] = list()
-	for(var/datum/supply_order/SO AS in SSpoints.requestlist)
+	for(var/key in SSpoints.requestlist)
+		var/datum/supply_order/SO = SSpoints.requestlist[key]
 		if(SO.faction != user.faction)
 			continue
 		var/list/packs = list()

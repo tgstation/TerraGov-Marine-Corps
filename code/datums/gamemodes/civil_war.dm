@@ -1,7 +1,7 @@
 /datum/game_mode/civil_war
 	name = "Civil War"
 	config_tag = "Civil War"
-	flags_round_type = MODE_LZ_SHUTTERS|MODE_TWO_HUMAN_FACTIONS
+	flags_round_type = MODE_LZ_SHUTTERS|MODE_TWO_HUMAN_FACTIONS|MODE_NO_XENO
 	flags_landmarks = MODE_LANDMARK_SPAWN_SPECIFIC_SHUTTLE_CONSOLE
 	joinable_factions = list(FACTION_TERRAGOV, FACTION_TERRAGOV_REBEL)
 

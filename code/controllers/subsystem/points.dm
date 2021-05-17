@@ -11,8 +11,7 @@ SUBSYSTEM_DEF(points)
 	flags = SS_KEEP_TIMING
 
 	wait = 10 SECONDS
-	///Assoc list of dropship points
-	var/dropship_points = list()
+	var/dropship_points = 0
 	///Assoc list of supply points
 	var/supply_points = list()
 	///Assoc list of xeno points: xeno_points_by_hive["hivenum"]
@@ -49,10 +48,15 @@ SUBSYSTEM_DEF(points)
 
 /datum/controller/subsystem/points/Initialize(timeofday)
 	ordernum = rand(1, 9000)
+	return ..()
 
+/// Prepare the global supply pack list at the gamemode start
+/datum/controller/subsystem/points/proc/prepare_supply_packs_list(is_human_req_only = FALSE)
 	for(var/pack in subtypesof(/datum/supply_packs))
 		var/datum/supply_packs/P = pack
 		if(!initial(P.cost))
+			continue
+		if(is_human_req_only && !initial(P.available_against_xeno_only))
 			continue
 		P = new pack()
 		if(!P.contains)
@@ -67,13 +71,10 @@ SUBSYSTEM_DEF(points)
 				containsname[path] = list("name" = initial(path.name), "count" = 1)
 			else
 				containsname[path]["count"]++
-		supply_packs_contents[pack] = list("name" = P.name, "container_name" = initial(P.containertype.name), "cost" = P.cost, "hidden" = P.hidden, "contains" = containsname)
-
-	return ..()
+		supply_packs_contents[pack] = list("name" = P.name, "container_name" = initial(P.containertype.name), "cost" = P.cost, "contains" = containsname)
 
 /datum/controller/subsystem/points/fire(resumed = FALSE)
-	for(var/key in dropship_points)
-		dropship_points[key] += DROPSHIP_POINT_RATE / (1 MINUTES / wait)
+	dropship_points += DROPSHIP_POINT_RATE / (1 MINUTES / wait)
 
 	for(var/key in supply_points)
 		supply_points[key] += SUPPLY_POINT_RATE / (1 MINUTES / wait)

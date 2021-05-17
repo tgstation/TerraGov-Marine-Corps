@@ -28,7 +28,8 @@
 		return
 	do_extract(spirited_away, user)
 	var/datum/export_report/export_report = spirited_away.supply_export(user.faction)
-	SSpoints.export_history += export_report
+	if(export_report)
+		SSpoints.export_history += export_report
 	user.visible_message("<span class='notice'>[user] finishes attaching [src] to [spirited_away] and activates it.</span>",\
 	"<span class='notice'>You attach the pack to [spirited_away] and activate it. This looks like it will yield [export_report.points ? export_report.points : "no"] point[export_report.points == 1 ? "" : "s"].</span>", null, 5)
 

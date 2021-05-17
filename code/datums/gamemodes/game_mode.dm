@@ -85,7 +85,8 @@
 	create_characters()
 	spawn_characters()
 	transfer_characters()
-	SSpoints.dropship_points[FACTION_TERRAGOV] = 0
+	SSpoints.prepare_supply_packs_list(CHECK_BITFIELD(flags_round_type, MODE_NO_XENO))
+	SSpoints.dropship_points = 0
 	SSpoints.supply_points[FACTION_TERRAGOV] = 0
 	return TRUE
 
