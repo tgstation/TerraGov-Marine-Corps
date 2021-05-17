@@ -35,6 +35,14 @@
 	},
 /turf/open/floor/mainship_hull,
 /area/shuttle/minidropship)
+"r" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/mainship/orange{
+	dir = 8
+	},
+/area/shuttle/minidropship)
 "s" = (
 /turf/open/floor/mainship/floor,
 /area/shuttle/minidropship)
@@ -71,8 +79,12 @@
 	},
 /area/shuttle/minidropship)
 "I" = (
-/obj/structure/shuttle/engine/propulsion/burst/left,
-/turf/open/shuttle/dropship/three,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/mainship/orange{
+	dir = 4
+	},
 /area/shuttle/minidropship)
 "K" = (
 /obj/structure/window/framed/mainship/spaceworthy{
@@ -81,15 +93,8 @@
 /turf/open/floor/mainship_hull,
 /area/shuttle/minidropship)
 "L" = (
-/obj/machinery/door/poddoor/shutters/transit{
-	dir = 2
-	},
-/obj/machinery/door/poddoor/mainship/open{
-	dir = 2;
-	id = "minidropship_podlock"
-	},
-/obj/structure/barricade/plasteel,
-/turf/open/floor/mainship/orange,
+/obj/structure/shuttle/engine/propulsion/burst/left,
+/turf/open/shuttle/dropship/three,
 /area/shuttle/minidropship)
 "N" = (
 /obj/machinery/door/poddoor/shutters/transit{
@@ -100,9 +105,7 @@
 	id = "minidropship_podlock"
 	},
 /obj/structure/barricade/plasteel,
-/turf/open/floor/mainship/orange{
-	dir = 6
-	},
+/turf/open/floor/mainship/orange,
 /area/shuttle/minidropship)
 "O" = (
 /obj/structure/barricade/plasteel{
@@ -117,8 +120,17 @@
 	},
 /area/shuttle/minidropship)
 "R" = (
-/obj/structure/shuttle/engine/propulsion/burst/right,
-/turf/open/shuttle/dropship/three,
+/obj/machinery/door/poddoor/shutters/transit{
+	dir = 2
+	},
+/obj/machinery/door/poddoor/mainship/open{
+	dir = 2;
+	id = "minidropship_podlock"
+	},
+/obj/structure/barricade/plasteel,
+/turf/open/floor/mainship/orange{
+	dir = 6
+	},
 /area/shuttle/minidropship)
 "S" = (
 /obj/structure/window/framed/mainship/spaceworthy{
@@ -137,6 +149,10 @@
 /turf/open/floor/mainship/orange{
 	dir = 8
 	},
+/area/shuttle/minidropship)
+"U" = (
+/obj/structure/shuttle/engine/propulsion/burst/right,
+/turf/open/shuttle/dropship/three,
 /area/shuttle/minidropship)
 "V" = (
 /turf/open/floor/mainship/orange{
@@ -167,7 +183,7 @@ b
 O
 O
 B
-I
+L
 E
 "}
 (3,1,1) = {"
@@ -177,7 +193,7 @@ S
 K
 i
 V
-V
+r
 v
 E
 "}
@@ -189,7 +205,7 @@ u
 F
 Y
 s
-L
+N
 E
 "}
 (5,1,1) = {"
@@ -199,8 +215,8 @@ a
 K
 j
 h
-h
-N
+I
+R
 E
 "}
 (6,1,1) = {"
@@ -211,7 +227,7 @@ b
 T
 T
 B
-R
+U
 E
 "}
 (7,1,1) = {"
