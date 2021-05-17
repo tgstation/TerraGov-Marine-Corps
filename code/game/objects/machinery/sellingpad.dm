@@ -48,7 +48,8 @@
 		if(!can_sell)
 			continue
 		var/datum/export_report/export_report = onpad.supply_export(user.faction)
-		SSpoints.export_history += export_report
+		if(export_report)
+			SSpoints.export_history += export_report
 		visible_message("<span class='notice'>[src] buzzes: The [onpad] has been sold for [export_report.points ? export_report.points : "no"] point[export_report.points == 1 ? "" : "s"].</span>")
 		qdel(onpad)
 
