@@ -47,7 +47,7 @@
 	///Time to become active after impacting on a direct thrown hit
 	var/impact_time = 1.5 SECONDS
 	///Time to become active again
-	var/activate_time = 4 SECONDS
+	var/activate_time = 2 SECONDS
 	///Time to recover after jumping
 	var/jump_cooldown = 2 SECONDS
 	///Is this hugger intended for combat?
@@ -55,7 +55,7 @@
 	///When TRUE hugger is about to jump
 	var/about_to_jump = FALSE
 	///Time to become active after moving into the facehugger's space.
-	var/proximity_time = 0.5 SECONDS
+	var/proximity_time = 0.75 SECONDS
 
 
 /obj/item/clothing/mask/facehugger/Initialize(mapload, input_hivenumber)
@@ -640,9 +640,10 @@
 	sterile = TRUE
 	color = COLOR_DARK_ORANGE
 	combat_hugger = TRUE
-	impact_time = 1.3 SECONDS
-	activate_time = 2 SECONDS
-	jump_cooldown = 2 SECONDS
+	impact_time = 1 SECONDS
+	activate_time = 1.5 SECONDS
+	jump_cooldown = 1.5 SECONDS
+	proximity_time = 0.5 SECONDS
 
 /obj/item/clothing/mask/facehugger/neuro/Attach(mob/M, mob/user)
 	if(!combat_hugger_check_target(M))
@@ -666,9 +667,10 @@
 	sterile = TRUE
 	color = COLOR_GREEN
 	combat_hugger = TRUE
-	impact_time = 1.3 SECONDS
-	activate_time = 2 SECONDS
-	jump_cooldown = 2 SECONDS
+	impact_time = 1 SECONDS
+	activate_time = 1.5 SECONDS
+	jump_cooldown = 1.5 SECONDS
+	proximity_time = 0.5 SECONDS
 
 /obj/item/clothing/mask/facehugger/acid/Attach(mob/M, mob/user)
 	if(!combat_hugger_check_target(M))
@@ -697,9 +699,10 @@
 	sterile = TRUE
 	color = COLOR_STRONG_VIOLET
 	combat_hugger = TRUE
-	impact_time = 1.3 SECONDS
-	activate_time = 2 SECONDS
-	jump_cooldown = 2 SECONDS
+	impact_time = 1 SECONDS
+	activate_time = 1.5 SECONDS
+	jump_cooldown = 1.5 SECONDS
+	proximity_time = 0.5 SECONDS
 
 /obj/item/clothing/mask/facehugger/resin/Attach(mob/M, mob/user)
 	if(!combat_hugger_check_target(M))
@@ -733,9 +736,10 @@
 	sterile = TRUE
 	color = COLOR_RED
 	combat_hugger = TRUE
-	impact_time = 1.3 SECONDS
-	activate_time = 2 SECONDS
-	jump_cooldown = 2 SECONDS
+	impact_time = 0.5 SECONDS
+	activate_time = 1.5 SECONDS
+	jump_cooldown = 1.5 SECONDS
+	proximity_time = 0.5 SECONDS
 
 /obj/item/clothing/mask/facehugger/slash/Attach(mob/M)
 	if(!combat_hugger_check_target(M))
