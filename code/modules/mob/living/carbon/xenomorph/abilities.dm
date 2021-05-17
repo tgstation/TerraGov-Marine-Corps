@@ -122,7 +122,7 @@
 	if(!T.check_alien_construction(owner, FALSE))
 		return fail_activate()
 
-	if(locate(/obj/effect/alien/resin/trap) in T)
+	if(locate(/obj/structure/xeno/trap) in T)
 		to_chat(owner, "<span class='warning'>There is a resin trap in the way!</span>")
 		return fail_activate()
 
