@@ -55,16 +55,6 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 	var/faction = FACTION_TERRAGOV
 	/// Id of the home docking port
 	var/home_id = "supply_home"
-	/// Id of the away docking port
-	var/away_id = "supply_away"
-
-
-/obj/docking_port/mobile/supply/rebel
-	name = "supply shuttle"
-	id = "supply_rebel"
-	faction = FACTION_TERRAGOV_REBEL
-	home_id = "supply_home_rebel"
-	away_id = "supply_away_rebel"
 
 /obj/docking_port/mobile/supply/Destroy(force)
 	for(var/i in railings)
@@ -76,11 +66,6 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 
 /obj/docking_port/mobile/supply/afterShuttleMove()
 	. = ..()
-	if(getDockedId() == home_id || getDockedId() == away_id)
-		for(var/i in gears)
-			var/obj/machinery/gear/G = i
-			G.stop_moving()
-
 	if(getDockedId() == home_id)
 		for(var/j in railings)
 			var/obj/machinery/door/poddoor/railing/R = j
@@ -101,8 +86,6 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 
 /obj/docking_port/mobile/supply/register()
 	. = ..()
-	SSshuttle.supply = src
-	// bit clunky but shuttles need to init after atoms
 	for(var/obj/machinery/gear/G in GLOB.machines)
 		if(G.id == "supply_elevator_gear")
 			gears += G
@@ -141,15 +124,6 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 	if(mode != SHUTTLE_IDLE)
 		return 2
 	return ..()
-
-/obj/docking_port/mobile/supply/initiate_docking()
-	if(getDockedId() == away_id) // Buy when we leave home.
-		buy()
-	. = ..() // Fly/enter transit.
-	if(. != DOCKING_SUCCESS)
-		return
-	if(getDockedId() == away_id) // Sell when we get home
-		sell()
 
 /obj/docking_port/mobile/supply/proc/buy()
 	if(!length(SSpoints.shoppinglist))
@@ -270,7 +244,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 	circuit = null
 	var/datum/supply_ui/SU
 	///Id of the shuttle controlled
-	var/shuttle_id = "supply"
+	var/shuttle_id = "supply2"
 	/// Id of the home docking port
 	var/home_id = "supply_home"
 	/// Id of the away docking port
@@ -278,7 +252,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 
 /obj/machinery/computer/supplycomp/rebel
 	req_access = list(ACCESS_MARINE_CARGO_REBEL)
-	shuttle_id = "supply_rebel"
+	shuttle_id = "supply"
 	home_id = "supply_home_rebel"
 	away_id = "supply_away_rebel"
 
@@ -291,8 +265,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 	if(!SU)
 		SU = new(src)
 		SU.shuttle_id = shuttle_id
-		SU.home_id = home_id 
-		SU.away_id = away_id
+		SU.home_id = home_id
 	return SU.interact(user)
 
 /datum/supply_ui
@@ -301,8 +274,10 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 	var/tgui_name = "Cargo"
 	///Id of the shuttle controlled
 	var/shuttle_id = ""
-	///Id of the away port
-	var/away_id = ""
+	///Reference to the supply shuttle
+	var/obj/docking_port/mobile/supply/supply_shuttle
+	///Faction of the supply console linked
+	var/faction = FACTION_TERRAGOV
 	///Id of the home port
 	var/home_id = ""
 
@@ -325,6 +300,9 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 	ui = SStgui.try_update_ui(user, src, ui)
 
 	if(!ui)
+		supply_shuttle = SSshuttle.getShuttle(shuttle_id)
+		supply_shuttle.home_id = home_id
+		supply_shuttle.faction = faction
 		ui = new(user, src, tgui_name, source_object.name)
 		ui.open()
 
@@ -333,7 +311,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 	.["categories"] = GLOB.all_supply_groups
 	.["supplypacks"] = SSpoints.supply_packs_ui
 	.["supplypackscontents"] = SSpoints.supply_packs_contents
-	.["elevator_size"] = SSshuttle.supply?.return_number_of_turfs()
+	.["elevator_size"] = supply_shuttle?.return_number_of_turfs()
 
 /datum/supply_ui/ui_data(mob/living/user)
 	if(!isliving(user))
@@ -412,23 +390,23 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 		.["shopping_list_items"] += SSpoints.shopping_cart[i]
 		.["shopping_list_cost"] += SP.cost * SSpoints.shopping_cart[SP.type]
 		.["shopping_list"][SP.type] = list("count" = SSpoints.shopping_cart[SP.type])
-	if(SSshuttle.supply)
-		if(SSshuttle.supply.mode == SHUTTLE_CALL)
-			if(is_mainship_level(SSshuttle.supply.destination.z))
+	if(supply_shuttle)
+		if(supply_shuttle?.mode == SHUTTLE_CALL)
+			if(is_mainship_level(supply_shuttle.destination.z))
 				.["elevator"] = "Raising"
 				.["elevator_dir"] = "up"
 			else
 				.["elevator"] = "Lowering"
 				.["elevator_dir"] = "down"
-		else if(SSshuttle.supply.mode == SHUTTLE_IDLE)
-			if(is_mainship_level(SSshuttle.supply.z))
+		else if(supply_shuttle?.mode == SHUTTLE_IDLE)
+			if(is_mainship_level(supply_shuttle.z))
 				.["elevator"] = "Raised"
 				.["elevator_dir"] = "down"
 			else
 				.["elevator"] = "Lowered"
 				.["elevator_dir"] = "up"
 		else
-			if(is_mainship_level(SSshuttle.supply.z))
+			if(is_mainship_level(supply_shuttle.z))
 				.["elevator"] = "Lowering"
 				.["elevator_dir"] = "down"
 			else
@@ -477,15 +455,17 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 						shopping_cart[P.type] = number_to_buy
 			. = TRUE
 		if("send")
-			if(SSshuttle.supply.mode == SHUTTLE_IDLE && is_mainship_level(SSshuttle.supply.z))
-				if (!SSshuttle.supply.check_blacklist())
+			if(supply_shuttle.mode == SHUTTLE_IDLE && is_mainship_level(supply_shuttle.z))
+				if (!supply_shuttle.check_blacklist())
 					to_chat(usr, "For safety reasons, the Automated Storage and Retrieval System cannot store live, friendlies, classified nuclear weaponry or homing beacons.")
-					playsound(SSshuttle.supply.return_center_turf(), 'sound/machines/buzz-two.ogg', 50, 0)
+					playsound(supply_shuttle.return_center_turf(), 'sound/machines/buzz-two.ogg', 50, 0)
 				else
-					playsound(SSshuttle.supply.return_center_turf(), 'sound/machines/elevator_move.ogg', 50, 0)
-					SSshuttle.moveShuttle(shuttle_id, away_id, TRUE)
+					playsound(supply_shuttle.return_center_turf(), 'sound/machines/elevator_move.ogg', 50, 0)
+					SSshuttle.moveShuttleToTransit(shuttle_id, TRUE)
+					addtimer(CALLBACK(supply_shuttle, /obj/docking_port/mobile/supply/proc/sell), 15 SECONDS)
 			else
 				var/obj/docking_port/D = SSshuttle.getDock(home_id)
+				supply_shuttle.buy()
 				playsound(D.return_center_turf(), 'sound/machines/elevator_move.ogg', 50, 0)
 				SSshuttle.moveShuttle(shuttle_id, home_id, TRUE)
 			. = TRUE
