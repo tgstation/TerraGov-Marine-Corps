@@ -13,7 +13,6 @@ type VendingData = {
   stock: VendingStock,
   currently_vending: VendingRecord | null,
   extended: number,
-  isshared: number,
   coin: string,
 };
 
@@ -31,14 +30,13 @@ type VendingRecord = {
 }
 
 export const Vending = (props, context) => {
-  const { act, data } = useBackend<VendingData>(context);
+  const { data } = useBackend<VendingData>(context);
 
   const {
     vendor_name,
     currently_vending,
     hidden_records,
     coin_records,
-    isshared,
     extended,
     tabs,
   } = data;
@@ -192,17 +190,18 @@ const ProductEntry = (props: VendingProductEntryProps, context) => {
       labelColor="white"
       buttons={
         <>
-          <Box inline>
-            <ProgressBar
-              value={stock}
-              maxValue={stock}
-              ranges={{
-                good: [10, Infinity],
-                average: [5, 10],
-                bad: [-Infinity, 5],
-              }}>{stock} left
-            </ProgressBar>
-          </Box>
+          {stock >= 0 && (
+            <Box inline>
+              <ProgressBar
+                value={stock}
+                maxValue={stock}
+                ranges={{
+                  good: [10, Infinity],
+                  average: [5, 10],
+                  bad: [0, 5],
+                }}>{stock} left
+              </ProgressBar>
+            </Box>)}
           <Box
             inline
             width="4px" />
@@ -231,7 +230,7 @@ const ProductEntry = (props: VendingProductEntryProps, context) => {
 
 
 const Products = (props, context) => {
-  const { act, data } = useBackend<VendingData>(context);
+  const { data } = useBackend<VendingData>(context);
 
   const {
     displayed_records,

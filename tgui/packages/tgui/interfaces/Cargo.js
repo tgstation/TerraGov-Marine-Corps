@@ -29,6 +29,7 @@ export const Cargo = (props, context) => {
   const {
     supplypacks,
     approvedrequests,
+    export_history,
     deniedrequests,
     shopping_history,
     awaiting_delivery,
@@ -78,8 +79,6 @@ export const Cargo = (props, context) => {
   );
 };
 
-
-
 const Exports = (props, context) => {
   const { act, data } = useBackend(context);
 
@@ -89,23 +88,14 @@ const Exports = (props, context) => {
 
   return (
     <Section title="Exports">
-      { export_history.map(entry => (
-        <Section
-          key={entry.id}
-          level={2}
-          title={"#"+entry.id}
-          buttons={entry.points+" points"}>
-          <Table>
-            {entry.exports.map(exp => (
-              <Table.Row key={exp.id}>
-                <Table.Cell>{exp.name}</Table.Cell>
-                <Table.Cell>x {exp.count}</Table.Cell>
-                <Table.Cell>{exp.points} points</Table.Cell>
-              </Table.Row>
-            ))}
-          </Table>
-        </Section>
-      ))}
+      <Table>
+        {export_history.map(exp => (
+          <Table.Row key={exp.id}>
+            <Table.Cell>{exp.name}</Table.Cell>
+            <Table.Cell>{exp.points} points</Table.Cell>
+          </Table.Row>
+        ))}
+      </Table>
     </Section>
   );
 };
@@ -146,10 +136,10 @@ const Menu = (props, context) => {
     shopping_list_items,
     elevator,
     elevator_dir,
+    export_history,
     deniedrequests,
     approvedrequests,
     awaiting_delivery_orders,
-    export_history,
     shopping_history,
   } = data;
 
