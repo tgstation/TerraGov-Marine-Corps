@@ -263,10 +263,8 @@
 	. = ..()
 	if(. != CHECKS_PASSED)
 		return
-	if(forced && !toggle_on)
-		status = LIGHT_DISABLED
-	else
-		status = LIGHT_OK
+
+	status = toggle_on ? LIGHT_OK : LIGHT_DISABLED 
 	update()
 
 // examine verb
