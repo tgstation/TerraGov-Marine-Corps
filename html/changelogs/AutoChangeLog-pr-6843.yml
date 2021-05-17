@@ -1,0 +1,9 @@
+author: "TheOneAndMightyRed"
+delete-after: True
+changes: 
+  - rscadd: "Compact ammo boxes. (Craftable using cardboard) (Prefilled in req)"
+  - rscdel: "Old prefilled ammo boxes"
+  - rscdel: "Useless req ammo orders"
+  - qol: "More prefilled ammo boxes in req vendor"
+  - qol: "Ammo boxes with only 1 type of ammo in them now directly puts the last mag in your hand if used."
+  - imageadd: "More ammo box sprites and overlays"
