@@ -282,7 +282,7 @@
 			var/siloless_countdown = SSticker.mode?.get_siloless_collapse_countdown()
 			if(siloless_countdown)
 				stat("<b>Orphan hivemind collapse timer:</b>", siloless_countdown)
-			
+
 		if(XENO_HIVE_CORRUPTED)
 			stat("Hive Orders:","Follow the instructions of our masters")
 
@@ -678,6 +678,8 @@
 	LAZYREMOVE(stomach_contents, victim)
 	if(make_cocoon)
 		ADD_TRAIT(victim, TRAIT_PSY_DRAINED, TRAIT_PSY_DRAINED)
+		if(HAS_TRAIT(victim, TRAIT_UNDEFIBBABLE))
+			victim.med_hud_set_status()
 		new /obj/structure/cocoon(loc, hivenumber, victim)
 		return
 	victim.forceMove(eject_location)

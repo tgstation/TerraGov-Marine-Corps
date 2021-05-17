@@ -85,11 +85,11 @@
 	if(CHECK_MULTIPLE_BITFIELDS(flags_pass, HOVERING))
 		return
 	
-	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_ACID))
-		return
-	
-	if(TIMER_COOLDOWN_CHECK(acid_spray, COOLDOWN_PARALYSE_ACID)) //To prevent being able to walk "over" acid sprays
+	if(acid_spray.xeno_owner && TIMER_COOLDOWN_CHECK(acid_spray, COOLDOWN_PARALYSE_ACID)) //To prevent being able to walk "over" acid sprays
 		acid_spray_act(acid_spray.xeno_owner)
+		return
+
+	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_ACID))
 		return
 
 	TIMER_COOLDOWN_START(src, COOLDOWN_ACID, 1 SECONDS)
