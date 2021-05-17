@@ -96,4 +96,3 @@
 
 //Shuttle control flags
 #define SHUTTLE_MARINE_PRIMARY_DROPSHIP (1<<0)
-#define SHUTTLE_REBEL_PRIMARY_DROPSHIP (1<<1)

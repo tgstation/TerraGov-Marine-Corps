@@ -2135,8 +2135,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 				for(var/path in job_paths)
 					var/datum/outfit/O = path
 					if(initial(O.can_be_admin_equipped))
-						var/outfit_name = initial(O.name)
-						job_outfits[outfit_name] = path
+						job_outfits[initial(O.name)] = path
 
 				var/list/picker = sortList(job_outfits)
 				picker.Insert(1, "{Custom}", "{Naked}")
