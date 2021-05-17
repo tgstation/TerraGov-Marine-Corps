@@ -61,7 +61,7 @@ SUBSYSTEM_DEF(points)
 		var/datum/supply_packs/P = pack
 		if(!initial(P.cost))
 			continue
-		if(is_human_req_only && !initial(P.human_only_req))
+		if(is_human_req_only && !initial(P.available_against_xeno_only))
 			continue
 		P = new pack()
 		if(!P.contains)
