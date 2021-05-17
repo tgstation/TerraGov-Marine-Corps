@@ -38,9 +38,8 @@
 	var/datum/hive_status/normal/HS = GLOB.hive_datums[XENO_HIVE_NORMAL]
 	HS.give_larva_to_next_in_queue()
 
-/datum/job/xenomorph/after_spawn(mob/living/L, mob/M, latejoin)
+/datum/job/xenomorph/after_spawn(var/mob/living/carbon/xenomorph/xeno, mob/M, latejoin)
 	. = ..()
-	var/mob/living/carbon/xenomorph/xeno = L
 	SSminimaps.add_marker(xeno, xeno.z, hud_flags = MINIMAP_FLAG_XENO, iconstate = xeno.xeno_caste.minimap_icon)
 
 /datum/job/xenomorph/queen
