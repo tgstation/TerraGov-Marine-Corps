@@ -45,7 +45,7 @@
  */
 /datum/loadout_seller/proc/try_to_equip_loadout(datum/loadout/loadout, mob/user)
 	prepare_to_equip_loadout(loadout)
-	if(unavailable_items && tgui_alert(user, "[unavailable_items] items were not found in vendors and won't be delivered. Do you want to equip that loadout anyway?", "Items missing", list("Yes", "No")) == "Yes")
+	if(unavailable_items && tgui_alert(user, "[unavailable_items] items were not found in vendors and won't be delivered. Do you want to equip that loadout anyway?", "Items missing", list("Yes", "No")) != "Yes")
 		sell_back_items()
 		return
 	do_equip_loadout(user)

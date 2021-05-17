@@ -19,9 +19,7 @@
 	. = ..()
 	if(!.)
 		return
-	var/obj/item/clothing/under/uniform = .
-	tie?.install_on_uniform(seller, uniform)
-	return uniform
+	tie?.install_on_uniform(seller, .)
 
 /**
  * Allow to representate a tie (typically a webbing)

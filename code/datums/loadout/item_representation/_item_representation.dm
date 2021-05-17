@@ -35,7 +35,6 @@
  * This is only able to represent /obj/item/storage
  */
 /datum/item_representation/storage
-	bypass_vendor_check = TRUE
 	/// The contents in the storage
 	var/contents = list()
 
@@ -45,6 +44,9 @@
 	if(!isstorage(item_to_copy))
 		CRASH("/datum/item_representation/storage created from an item that is not a storage")
 	..()
+	//Internal storage are not in vendors. They should always be available for the loadout vendors, because they are instantiated like any other object
+	if(istype(item_to_copy, /obj/item/storage/internal))
+		bypass_vendor_check = TRUE
 	var/item_representation_type
 	for(var/atom/thing_in_content AS in item_to_copy.contents)
 		if(!isitem(thing_in_content))
@@ -65,4 +67,3 @@
 			continue
 		if(storage.can_be_inserted(item_to_insert))
 			storage.handle_item_insertion(item_to_insert)
-	return storage

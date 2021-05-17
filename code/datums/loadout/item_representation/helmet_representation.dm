@@ -26,7 +26,6 @@
 	var/obj/item/clothing/head/modular/helmet = .
 	module?.install_on_helmet(seller, helmet)
 	helmet.set_greyscale_colors(greyscale_colors)
-	return helmet
 
 /**
  * Allow to representate an helmet module

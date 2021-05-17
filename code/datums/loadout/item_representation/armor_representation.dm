@@ -22,7 +22,6 @@
 		return
 	var/obj/item/clothing/suit/storage/suit = .
 	suit.pockets = pockets.instantiate_object(seller, suit)
-	return suit
 
 /**
  * Allow to representate a jaeger modular armor with its modules
@@ -75,7 +74,6 @@
 		installed_storage.install_on_armor(seller, modular_armor)
 		modular_armor.storage = storage_implementation.instantiate_object(seller, modular_armor)
 	modular_armor.update_icon()
-	return modular_armor
 
 /**
  * Allow to representate an module of a jaeger
@@ -117,4 +115,3 @@
 		return
 	var/obj/item/armor_module/armor/armor = .
 	armor.set_greyscale_colors(greyscale_colors)
-	return armor
