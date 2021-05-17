@@ -44,7 +44,6 @@
 		return
 	var/obj/item/clothing/tie/storage/tie = .
 	tie.hold = hold.instantiate_object(seller, tie)
-	return tie
 
 ///Attach the tie to a uniform
 /datum/item_representation/tie/proc/install_on_uniform(datum/loadout_seller/seller, obj/item/clothing/under/uniform)
