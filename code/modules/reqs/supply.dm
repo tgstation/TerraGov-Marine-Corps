@@ -251,7 +251,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 	var/away_id = "supply_away"
 
 /obj/machinery/computer/supplycomp/rebel
-	req_access = list(ACCESS_MARINE_CARGO_REBEL)
+	//req_access = list(ACCESS_MARINE_CARGO_REBEL)
 	shuttle_id = "supply"
 	home_id = "supply_home_rebel"
 	away_id = "supply_away_rebel"
@@ -584,7 +584,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 	req_access = list(ACCESS_IFF_MARINE)
 
 /obj/machinery/computer/ordercomp/rebel
-	req_access = list(ACCESS_IFF_MARINE_REBEL)
+	//req_access = list(ACCESS_IFF_MARINE_REBEL)
 
 /obj/machinery/computer/ordercomp/interact(mob/user)
 	. = ..()
