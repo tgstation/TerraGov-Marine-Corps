@@ -473,6 +473,7 @@
 	update_stats()
 
 /obj/item/storage/box/visual/proc/update_stats()
+	SHOULD_CALL_PARENT(TRUE)
 	max_overlays = amt_horizontal * amt_vertical
 	overlay_w_class = FLOOR(max_storage_space / max_overlays, 1)
 	can_hold -= cant_hold //Have cant_hold actually have a use
@@ -519,9 +520,8 @@
 		if(draw_mode && ishuman(user) && contents.len)
 			var/obj/item/I = contents[contents.len]
 			I.attack_hand(user)
-		else
-			open(user)
-		return
+			return
+		open(user)
 
 /obj/item/storage/box/visual/MouseDrop(atom/over_object)
 	if(!deployed)
@@ -654,7 +654,7 @@
 		if(I)
 			max_storage_space = max(initial(I.w_class) * storage_slots, max_storage_space)
 			max_w_class = max(initial(I.w_class), max_w_class)
-	. = ..()
+	return ..()
 
 // --PREFILLED MAG BOXES--
 
