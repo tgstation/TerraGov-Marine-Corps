@@ -8595,6 +8595,7 @@
 /area/sulaco/hangar)
 "aSO" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1,
+/obj/structure/dropship_equipment/electronics/targeting_system,
 /turf/open/floor/prison,
 /area/sulaco/hangar)
 "aSU" = (
@@ -20135,6 +20136,10 @@
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
 /turf/open/floor/prison,
 /area/sulaco/marine)
+"tYR" = (
+/obj/structure/dropship_equipment/sentry_holder,
+/turf/open/floor/prison,
+/area/sulaco/hangar)
 "tZr" = (
 /turf/open/floor/mainship_hull/gray/dir{
 	dir = 5
@@ -22328,7 +22333,7 @@
 /area/mainship/living/basketball)
 "yfI" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/structure/dropship_equipment/electronics/targeting_system,
+/obj/structure/dropship_equipment/sentry_holder,
 /turf/open/floor/prison,
 /area/sulaco/hangar)
 "yfM" = (
@@ -62492,7 +62497,7 @@ aPF
 aSN
 gKw
 yfI
-cdy
+tYR
 aUL
 sgS
 mRR

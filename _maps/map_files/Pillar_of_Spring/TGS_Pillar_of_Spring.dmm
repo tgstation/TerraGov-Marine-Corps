@@ -171,7 +171,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "aQ" = (
-/obj/structure/dropship_equipment/sentry_holder,
+/obj/structure/dropship_equipment/fuel/fuel_enhancer,
 /turf/open/floor/mainship/cargo,
 /area/mainship/hallways/hangar)
 "aR" = (
@@ -920,6 +920,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
+/obj/structure/dropship_equipment/sentry_holder,
 /turf/open/floor/mainship/cargo,
 /area/mainship/hallways/hangar)
 "db" = (
@@ -1028,7 +1029,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/stern_hallway)
 "dr" = (
-/obj/structure/dropship_equipment/fuel/cooling_system,
+/obj/structure/dropship_equipment/sentry_holder,
 /turf/open/floor/mainship/cargo,
 /area/mainship/hallways/hangar)
 "du" = (
@@ -2420,7 +2421,6 @@
 	},
 /area/mainship/command/cic)
 "iB" = (
-/obj/structure/dropship_equipment/fuel/fuel_enhancer,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 10
 	},
@@ -3127,13 +3127,8 @@
 /turf/open/floor/mainship/stripesquare,
 /area/mainship/command/cic)
 "kY" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 8
-	},
-/obj/structure/dropship_equipment/electronics/targeting_system,
-/turf/open/floor/mainship/orange{
-	dir = 8
-	},
+/obj/structure/dropship_equipment/fuel/cooling_system,
+/turf/open/floor/mainship/cargo,
 /area/mainship/hallways/hangar)
 "lb" = (
 /obj/vehicle/powerloader,
@@ -3339,7 +3334,7 @@
 	},
 /area/mainship/command/cic)
 "lC" = (
-/obj/structure/dropship_equipment/sentry_holder,
+/obj/structure/dropship_equipment/electronics/targeting_system,
 /turf/open/floor/mainship/orange{
 	dir = 4
 	},
@@ -14210,6 +14205,13 @@
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hull/lower_hull)
+"Ud" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/obj/structure/dropship_equipment/sentry_holder,
+/turf/open/floor/mainship/cargo,
+/area/mainship/hallways/hangar)
 "Uf" = (
 /obj/item/trash/cigbutt,
 /turf/open/floor/mainship/black/corner{
@@ -48042,7 +48044,7 @@ rc
 bi
 aM
 aM
-ar
+dr
 da
 dY
 az
@@ -48813,8 +48815,8 @@ rc
 bi
 al
 al
-aQ
-dr
+kY
+ar
 aA
 TE
 ci
@@ -49327,8 +49329,8 @@ rc
 bi
 ah
 ah
-ar
-GJ
+dr
+Ud
 gg
 az
 az
@@ -49607,7 +49609,7 @@ aA
 bn
 ja
 ke
-kY
+ke
 lM
 mj
 Np
