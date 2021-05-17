@@ -62,8 +62,6 @@
 	target_flags = XABB_MOB_TARGET
 	/// The target of our lunge, we keep it to check if we are adjacent everytime we move
 	var/atom/lunge_target
-	/// The timer id we use to clean our target
-	var/timer_id
 
 /datum/action/xeno_action/activable/lunge/on_cooldown_finish()
 	to_chat(owner, "<span class='xenodanger'>We ready ourselves to lunge again.</span>")
@@ -102,14 +100,13 @@
 
 	X.add_filter("warrior_lunge", 2, gauss_blur_filter(3))
 
-	X.throw_at(get_step_towards(A, X), 6, 2, X)
 	lunge_target = A
 	RegisterSignal(lunge_target, COMSIG_PARENT_QDELETING, .proc/clean_lunge_target)
 	RegisterSignal(X, COMSIG_MOVABLE_MOVED, .proc/check_if_lunge_possible)
-	check_if_lunge_possible(X)
-	timer_id = addtimer(CALLBACK(src, .proc/clean_lunge_target), 1 SECONDS, TIMER_STOPPABLE) //If we were blocked by a wall or a xeno while lunging, we clean everything
+	RegisterSignal(X, COMSIG_MOVABLE_POST_THROW, .proc/clean_lunge_target)
 	succeed_activate()
 	add_cooldown()
+	X.throw_at(get_step_towards(A, X), 6, 2, X)
 	return TRUE
 
 ///Check if we are close enough to lunge, and if yes, grab neck
@@ -122,13 +119,14 @@
 /// Null lunge target and reset throw vars
 /datum/action/xeno_action/activable/lunge/proc/clean_lunge_target()
 	SIGNAL_HANDLER
-	deltimer(timer_id)
 	UnregisterSignal(lunge_target, COMSIG_PARENT_QDELETING)
+	UnregisterSignal(owner, COMSIG_MOVABLE_POST_THROW)
 	lunge_target = null
 	UnregisterSignal(owner, COMSIG_MOVABLE_MOVED)
 	owner.remove_filter("warrior_lunge")
 	owner.stop_throw()
 
+///Do the grab on the target, and clean all previous vars
 /datum/action/xeno_action/activable/lunge/proc/lunge_grab(mob/living/carbon/xenomorph/warrior/X, atom/A)
 	clean_lunge_target()
 	X.swap_hand()
