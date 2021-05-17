@@ -1,77 +1,62 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"a" = (
-/obj/structure/shuttle/engine/propulsion/burst/right,
-/turf/open/shuttle/dropship/three,
-/area/shuttle/minidropship)
 "b" = (
-/obj/structure/window/framed/mainship/spaceworthy{
-	icon_state = "col_window10"
+/turf/open/floor/mainship/orange{
+	dir = 6
 	},
-/turf/open/floor/mainship_hull,
 /area/shuttle/minidropship)
 "e" = (
-/obj/structure/barricade/plasteel{
-	dir = 4
-	},
-/turf/open/floor/mainship/orange{
-	dir = 4
-	},
-/area/shuttle/minidropship)
-"h" = (
-/obj/structure/window/framed/mainship/spaceworthy{
-	icon_state = "col_window1"
-	},
-/turf/open/floor/mainship_hull,
+/obj/effect/attach_point/weapon/minidropship/pointing_east,
+/turf/closed/wall/mainship/outer/reinforced,
 /area/shuttle/minidropship)
 "i" = (
-/turf/open/floor/mainship/orange/corner{
-	dir = 1
+/turf/open/floor/mainship/orange{
+	dir = 9
 	},
 /area/shuttle/minidropship)
 "j" = (
-/turf/open/floor/mainship/orange/corner{
-	dir = 4
+/turf/open/floor/mainship/orange{
+	dir = 5
 	},
 /area/shuttle/minidropship)
 "n" = (
-/obj/structure/bed/chair/dropship/pilot{
-	dir = 1
+/obj/structure/window/framed/mainship/spaceworthy{
+	icon_state = "col_window12"
 	},
-/turf/open/floor/mainship/orange/full,
+/turf/open/floor/mainship_hull,
 /area/shuttle/minidropship)
 "p" = (
 /obj/structure/bed/chair/dropship/passenger{
 	dir = 4
 	},
-/turf/open/floor/mainship/orange{
-	dir = 9
+/obj/machinery/light{
+	dir = 8
 	},
-/area/shuttle/minidropship)
-"r" = (
 /turf/open/floor/mainship/orange,
 /area/shuttle/minidropship)
-"s" = (
-/obj/structure/window/framed/mainship/spaceworthy{
-	icon_state = "col_window6"
+"r" = (
+/turf/open/floor/mainship/orange{
+	dir = 10
 	},
-/turf/open/floor/mainship_hull,
+/area/shuttle/minidropship)
+"s" = (
+/obj/structure/shuttle/engine/propulsion/burst/right,
+/turf/open/shuttle/dropship/three,
 /area/shuttle/minidropship)
 "t" = (
-/obj/structure/bed/chair/dropship/passenger{
-	dir = 1
+/obj/machinery/door/poddoor/mainship/open{
+	id = "minidropship_podlock"
 	},
-/obj/machinery/light,
+/obj/machinery/door/poddoor/shutters/transit,
 /obj/structure/barricade/plasteel{
 	dir = 4
 	},
 /turf/open/floor/mainship/orange{
-	dir = 6
+	dir = 8
 	},
 /area/shuttle/minidropship)
 "u" = (
-/turf/open/floor/mainship/orange{
-	dir = 1
-	},
+/obj/machinery/computer/camera_advanced/shuttle_docker/minidropship,
+/turf/open/floor/mainship/orange,
 /area/shuttle/minidropship)
 "v" = (
 /obj/machinery/door/poddoor/mainship/open{
@@ -82,18 +67,8 @@
 	dir = 2
 	},
 /obj/structure/barricade/plasteel,
-/turf/open/shuttle/dropship/five,
-/area/shuttle/minidropship)
-"B" = (
-/obj/structure/bed/chair/dropship/passenger{
-	dir = 1
-	},
-/obj/machinery/light,
-/obj/structure/barricade/plasteel{
-	dir = 8
-	},
 /turf/open/floor/mainship/orange{
-	dir = 10
+	dir = 1
 	},
 /area/shuttle/minidropship)
 "E" = (
@@ -101,107 +76,82 @@
 /area/space)
 "F" = (
 /obj/docking_port/mobile/marine_dropship/minidropship,
-/turf/open/floor/mainship/floor,
-/area/shuttle/minidropship)
-"H" = (
-/obj/structure/barricade/plasteel{
-	dir = 8
-	},
-/turf/open/floor/mainship/orange{
-	dir = 8
-	},
+/turf/open/floor/mainship/orange/full,
 /area/shuttle/minidropship)
 "I" = (
 /obj/effect/attach_point/weapon/minidropship,
 /turf/closed/wall/mainship/outer/reinforced,
 /area/shuttle/minidropship)
 "K" = (
-/obj/machinery/door_control{
-	id = "minidropship_podlock";
-	name = "outer door-control";
-	pixel_y = 32
-	},
 /obj/structure/bed/chair/dropship/passenger{
 	dir = 8
 	},
-/turf/open/floor/mainship/orange{
-	dir = 5
+/obj/machinery/light{
+	dir = 4
 	},
-/area/shuttle/minidropship)
-"L" = (
-/obj/machinery/computer/camera_advanced/shuttle_docker/minidropship,
-/turf/open/floor/mainship/orange/full,
+/turf/open/floor/mainship/orange,
 /area/shuttle/minidropship)
 "N" = (
-/obj/structure/window/framed/mainship/spaceworthy{
-	icon_state = "col_window12"
-	},
-/turf/open/floor/mainship_hull,
+/obj/structure/shuttle/engine/propulsion/burst/left,
+/turf/open/shuttle/dropship/three,
 /area/shuttle/minidropship)
 "O" = (
-/obj/structure/bed/chair/dropship/passenger,
-/obj/machinery/light{
-	dir = 1
+/obj/machinery/door/poddoor/mainship/open{
+	id = "minidropship_podlock"
 	},
+/obj/machinery/door/poddoor/shutters/transit,
 /obj/structure/barricade/plasteel{
 	dir = 8
 	},
 /turf/open/floor/mainship/orange{
-	dir = 9
+	dir = 4
 	},
 /area/shuttle/minidropship)
 "R" = (
-/obj/structure/shuttle/engine/propulsion/burst/left,
-/turf/open/shuttle/dropship/three,
+/turf/template_noop,
 /area/shuttle/minidropship)
 "S" = (
 /turf/closed/wall/mainship/outer/reinforced,
 /area/shuttle/minidropship)
 "T" = (
-/obj/structure/bed/chair/dropship/passenger,
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/structure/barricade/plasteel{
-	dir = 4
-	},
-/turf/open/floor/mainship/orange{
-	dir = 5
-	},
-/area/shuttle/minidropship)
-"U" = (
 /obj/machinery/door/poddoor/mainship/open{
 	id = "minidropship_podlock"
 	},
 /obj/machinery/door/poddoor/shutters/transit,
-/turf/open/shuttle/dropship/three,
+/obj/structure/barricade/plasteel{
+	dir = 4
+	},
+/obj/machinery/door_control{
+	id = "minidropship_podlock";
+	name = "outer door-control";
+	pixel_y = 32
+	},
+/turf/open/floor/mainship/orange{
+	dir = 8
+	},
 /area/shuttle/minidropship)
-"V" = (
-/turf/open/floor/mainship/floor,
-/area/shuttle/minidropship)
-"W" = (
+"U" = (
 /obj/effect/attach_point/weapon/minidropship/pointing_west,
 /turf/closed/wall/mainship/outer/reinforced,
 /area/shuttle/minidropship)
+"V" = (
+/turf/open/floor/mainship/orange/full,
+/area/shuttle/minidropship)
 "Y" = (
 /obj/effect/attach_point/crew_weapon/minidropship,
-/turf/open/floor/mainship/floor,
-/area/shuttle/minidropship)
-"Z" = (
-/obj/effect/attach_point/weapon/minidropship/pointing_east,
-/turf/closed/wall/mainship/outer/reinforced,
+/turf/open/floor/mainship/orange/full,
 /area/shuttle/minidropship)
 
 (1,1,1) = {"
 E
 E
 E
-S
-U
-U
-U
-W
-R
+E
+E
+E
+E
+E
+E
 "}
 (2,1,1) = {"
 E
@@ -209,15 +159,15 @@ E
 I
 S
 O
-H
-B
-S
-a
+O
+U
+s
+R
 "}
 (3,1,1) = {"
-s
-h
-S
+E
+E
+n
 p
 i
 V
@@ -226,24 +176,24 @@ v
 E
 "}
 (4,1,1) = {"
-N
-L
+E
+E
 n
 u
 F
 Y
-r
+V
 v
 E
 "}
 (5,1,1) = {"
-b
-h
-S
+E
+E
+n
 K
 j
 V
-r
+b
 v
 E
 "}
@@ -253,19 +203,19 @@ E
 I
 S
 T
-e
 t
-S
+e
+N
 R
 "}
 (7,1,1) = {"
 E
 E
 E
-S
-U
-U
-U
-Z
-a
+E
+E
+E
+E
+E
+E
 "}
