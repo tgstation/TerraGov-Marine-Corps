@@ -78,9 +78,15 @@
 	if(slayer > 0)
 		if(iscarbon(AM))
 			var/mob/living/carbon/C = AM
-			C.next_move_slowdown += (isxeno(C) ? 0.25 : 0.5) * slayer
+			C.next_move_slowdown += 0.5 * slayer
 			if(prob(1))
 				to_chat(C, "<span class='warning'>Moving through [src] slows you down.</span>")
+			if(isxeno(C))
+				C.next_move_slowdown -= 0.25 * slayer
+				var/mob/living/carbon/xenomorph/X = C
+				if(X.is_charging == CHARGE_MAX) // chargers = snow plows
+					slayer = 0
+					update_icon(1, 0)
 	..()
 
 
