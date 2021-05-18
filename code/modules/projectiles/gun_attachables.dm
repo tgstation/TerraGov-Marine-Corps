@@ -414,7 +414,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	slot = ATTACHMENT_SLOT_MUZZLE
 	icon_state = "hbarrel"
 	attach_icon = "hbarrel_a"
-	attach_shell_speed_mod = 1
+	attach_shell_speed_mod = 2
 
 
 /obj/item/attachable/compensator
