@@ -350,6 +350,7 @@
 		/obj/item/attachable/compensator,
 		/obj/item/attachable/lasersight,
 		/obj/item/attachable/lace,
+		/obj/item/attachable/barrel_mod/tp44_longbarrel,
 	)
 	starting_attachment_types = list(
 		/obj/item/attachable/barrel_mod/tp44_longbarrel,
@@ -475,6 +476,7 @@
 		/obj/item/attachable/heavy_barrel,
 		/obj/item/attachable/compensator,
 		/obj/item/attachable/lace,
+		/obj/item/attachable/barrel_mod/mateba_longbarrel,
 	)
 	starting_attachment_types = list(
 		/obj/item/attachable/barrel_mod/mateba_longbarrel,

@@ -1779,6 +1779,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	pixel_shift_x = 0
 	pixel_shift_y = 0
 	size_mod = 1
+	detach_delay = 0 //Fast so its not a chore to remove them.
 
 /obj/item/attachable/barrel_mod/tp44_longbarrel
 	name = "TP-44 long barrel"
