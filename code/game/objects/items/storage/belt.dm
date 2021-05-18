@@ -550,7 +550,7 @@
 	max_storage_space = 15
 	max_w_class = 3
 	///Generic variable to determine if the holster already holds a gun.
-	var/holds_guns_now = 0
+	var/holds_guns_now = FALSE
 	///How many guns can it hold? I think this can be any thing from 1 to whatever. Should calculate properly.
 	var/holds_guns_max = 1
 	///The gun it holds, used for referencing later so we can update the icon.
