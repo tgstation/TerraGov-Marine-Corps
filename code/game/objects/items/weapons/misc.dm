@@ -85,6 +85,10 @@
 
 
 /obj/item/weapon/powerfist/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
+	if(issynth(user) && !CONFIG_GET(flag/allow_synthetic_gun_use))
+		to_chat(user, "<span class='warning'>Your programming prevents you from powerfisting.</span>")
+		return
+
 	if(!cell)
 		to_chat(user, "<span class='warning'>\The [src] can't operate without a source of power!</span>")
 		return
