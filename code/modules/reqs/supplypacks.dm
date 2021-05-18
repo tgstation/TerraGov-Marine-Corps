@@ -74,8 +74,7 @@ OPERATIONS
 /datum/supply_packs/operations/flares
 	name = "flare packs"
 	contains = list(/obj/item/storage/box/m94)
-	cost = 2
-
+	cost = 1
 /datum/supply_packs/operations/tarps
 	name = "V1 thermal-dampening tarp"
 	contains = list(/obj/item/bodybag/tarp)
