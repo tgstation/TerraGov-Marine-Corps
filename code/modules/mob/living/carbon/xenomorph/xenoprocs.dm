@@ -160,8 +160,6 @@
 		return
 
 	if(href_list["track_xeno_name"])
-		if(!check_state())
-			return
 		var/xeno_name = href_list["track_xeno_name"]
 		for(var/Y in hive.get_all_xenos())
 			var/mob/living/carbon/xenomorph/X = Y
@@ -176,8 +174,6 @@
 			break
 
 	if(href_list["track_silo_number"])
-		if(!check_state())
-			return
 		var/silo_number = href_list["track_silo_number"]
 		for(var/obj/structure/resin/silo/resin_silo AS in GLOB.xeno_resin_silos)
 			if(resin_silo.associated_hive == hive && num2text(resin_silo.number_silo) == silo_number)
