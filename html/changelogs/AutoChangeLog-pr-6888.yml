@@ -1,0 +1,5 @@
+author: "Wayland-Smithy"
+delete-after: True
+changes: 
+  - bugfix: "Fixed get active players alive_check."
+  - spellcheck: "Fixed OOC wording on small silo text when there are too many players."
