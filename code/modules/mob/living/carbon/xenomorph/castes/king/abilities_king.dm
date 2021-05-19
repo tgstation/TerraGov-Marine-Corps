@@ -10,9 +10,9 @@
 	cooldown_timer = 1 MINUTES
 	plasma_cost = 100
 	/// How far nightfall will have an effect
-	var/range = 7
+	var/range = 10
 	/// How long till the lights go on again
-	var/duration = 5 SECONDS
+	var/duration = 10 SECONDS
 
 /datum/action/xeno_action/activable/nightfall/on_cooldown_finish()
 	to_chat(owner, "<span class='notice'>We gather enough mental strength to shut down lights again.</span>")
