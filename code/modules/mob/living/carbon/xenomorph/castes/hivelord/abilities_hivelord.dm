@@ -107,7 +107,7 @@
 	if(!.)
 		return FALSE
 	var/turf/T = get_turf(owner)
-	if(locate(/obj/structure/tunnel) in T)
+	if(locate(/obj/structure/xeno/tunnel) in T)
 		if(!silent)
 			to_chat(owner, "<span class='warning'>There already is a tunnel here.</span>")
 		return
@@ -140,7 +140,7 @@
 	var/mob/living/carbon/xenomorph/hivelord/X = owner
 	X.visible_message("<span class='xenonotice'>\The [X] digs out a tunnel entrance.</span>", \
 	"<span class='xenonotice'>We dig out a tunnel, connecting it to our network.</span>", null, 5)
-	var/obj/structure/tunnel/newt = new(T)
+	var/obj/structure/xeno/tunnel/newt = new(T)
 
 	playsound(T, 'sound/weapons/pierce.ogg', 25, 1)
 
@@ -160,7 +160,7 @@
 	xeno_message("[X.name] has built a new tunnel named [newt.name] at [newt.tunnel_desc]!", "xenoannounce", 5, X.hivenumber)
 
 	if(LAZYLEN(X.tunnels) > HIVELORD_TUNNEL_SET_LIMIT) //if we exceed the limit, delete the oldest tunnel set.
-		var/obj/structure/tunnel/old_tunnel = X.tunnels[1]
+		var/obj/structure/xeno/tunnel/old_tunnel = X.tunnels[1]
 		old_tunnel.deconstruct(FALSE)
 		to_chat(X, "<span class='xenodanger'>Having exceeding our tunnel limit, our oldest tunnel has collapsed.</span>")
 
@@ -199,15 +199,15 @@
 			to_chat(owner, "<span class='warning'>We can only shape on weeds. We must find some resin before we start building!</span>")
 		return FALSE
 
+	if(locate(/obj/effect/alien/weeds/node) in T)
+		if(!silent)
+			to_chat(owner, "<span class='warning'>There is a resin node in the way!</span>")
+		return FALSE
+
 	if(!T.check_disallow_alien_fortification(owner, silent))
 		return FALSE
 
 	if(!T.check_alien_construction(owner, silent))
-		return FALSE
-
-	if(locate(/obj/effect/alien/weeds/node) in T)
-		if(!silent)
-			to_chat(owner, "<span class='warning'>There is a resin node in the way!</span>")
 		return FALSE
 
 /datum/action/xeno_action/place_jelly_pod/action_activate()
@@ -216,7 +216,7 @@
 	succeed_activate()
 
 	playsound(T, "alien_resin_build", 25)
-	var/obj/structure/resin_jelly_pod/pod = new(T)
+	var/obj/structure/xeno/resin_jelly_pod/pod = new(T)
 	to_chat(owner, "<span class='xenonotice'>We shape some resin into \a [pod].</span>")
 
 /datum/action/xeno_action/create_jelly
