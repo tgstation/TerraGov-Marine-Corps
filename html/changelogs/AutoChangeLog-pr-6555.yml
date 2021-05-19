@@ -1,7 +1,0 @@
-author: "BraveMole"
-delete-after: True
-changes: 
-  - balance: "You can jump over razorwire with jetpack"
-  - balance: "You can drag someone while jetpacking. Carefull, any obstacle will block the person/object you are holding"
-  - balance: "You can use flamer tanks to refuel the jetpack"
-  - balance: "Slightly more fuel in the jetpack (75), so it matches a large fuel tank"

@@ -118,9 +118,10 @@
 
 
 //Carrier trap
-/obj/effect/alien/resin/trap
+/obj/structure/xeno/trap
 	desc = "It looks like a hiding hole."
 	name = "resin hole"
+	icon = 'icons/Xeno/Effects.dmi'
 	icon_state = "trap0"
 	density = FALSE
 	opacity = FALSE
@@ -129,25 +130,25 @@
 	layer = RESIN_STRUCTURE_LAYER
 	var/obj/item/clothing/mask/facehugger/hugger = null
 
-/obj/effect/alien/resin/trap/Initialize(mapload)
+/obj/structure/xeno/trap/Initialize(mapload)
 	. = ..()
 	RegisterSignal(src, COMSIG_MOVABLE_SHUTTLE_CRUSH, .proc/shuttle_crush)
 	RegisterSignal(src, COMSIG_MOVABLE_CROSSED_BY, .proc/trigger_hugger_trap) //Set up the trap signal on our turf
 
 
-/obj/effect/alien/resin/trap/obj_destruction(damage_amount, damage_type, damage_flag)
+/obj/structure/xeno/trap/obj_destruction(damage_amount, damage_type, damage_flag)
 	if(damage_amount && hugger && loc)
 		drop_hugger()
 
 	return ..()
 
 ///Ensures that no huggies will be released when the trap is crushed by a shuttle; no more trapping shuttles with huggies
-/obj/effect/alien/resin/trap/proc/shuttle_crush()
+/obj/structure/xeno/trap/proc/shuttle_crush()
 	SIGNAL_HANDLER
 	qdel(src)
 
 
-/obj/effect/alien/resin/trap/examine(mob/user)
+/obj/structure/xeno/trap/examine(mob/user)
 	. = ..()
 	if(isxeno(user))
 		to_chat(user, "A hole for a little one to hide in ambush.")
@@ -157,7 +158,7 @@
 			to_chat(user, "It's empty.")
 
 
-/obj/effect/alien/resin/trap/flamer_fire_act()
+/obj/structure/xeno/trap/flamer_fire_act()
 	if(hugger)
 		hugger.forceMove(loc)
 		hugger.kill_hugger()
@@ -165,7 +166,7 @@
 		icon_state = "trap0"
 	..()
 
-/obj/effect/alien/resin/trap/fire_act()
+/obj/structure/xeno/trap/fire_act()
 	if(hugger)
 		hugger.forceMove(loc)
 		hugger.kill_hugger()
@@ -174,7 +175,7 @@
 	..()
 
 ///Triggers the hugger trap
-/obj/effect/alien/resin/trap/proc/trigger_hugger_trap(datum/source, atom/movable/AM, oldloc)
+/obj/structure/xeno/trap/proc/trigger_hugger_trap(datum/source, atom/movable/AM, oldloc)
 	SIGNAL_HANDLER
 	if(!iscarbon(AM) || !hugger)
 		return
@@ -188,14 +189,14 @@
 	xeno_message("A facehugger trap at [AREACOORD_NO_Z(src)] has been triggered!", "xenoannounce", 5, hugger.hivenumber,  FALSE, get_turf(src), 'sound/voice/alien_talk2.ogg', FALSE, null, /obj/screen/arrow/attack_order_arrow, COLOR_ORANGE, TRUE) //Follow the trend of hive wide alerts for important events
 	drop_hugger()
 
-/obj/effect/alien/resin/trap/proc/drop_hugger()
+/obj/structure/xeno/trap/proc/drop_hugger()
 	hugger.forceMove(loc)
 	hugger.go_active(TRUE, TRUE) //Removes stasis
 	icon_state = "trap0"
 	visible_message("<span class='warning'>[hugger] gets out of [src]!</span>")
 	hugger = null
 
-/obj/effect/alien/resin/trap/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
+/obj/structure/xeno/trap/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
 	if(X.status_flags & INCORPOREAL)
 		return FALSE
 
@@ -213,7 +214,7 @@
 	to_chat(X, "<span class='xenonotice'>We remove the facehugger from [src].</span>")
 
 
-/obj/effect/alien/resin/trap/attackby(obj/item/I, mob/user, params)
+/obj/structure/xeno/trap/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
 	if(istype(I, /obj/item/clothing/mask/facehugger) && isxeno(user))
@@ -258,7 +259,7 @@
 	SIGNAL_HANDLER
 	if(isxeno(atom_entering))
 		Open()
-	
+
 
 /obj/structure/mineral_door/resin/attack_paw(mob/living/carbon/human/user)
 	if(user.a_intent == INTENT_HARM)
@@ -611,7 +612,7 @@ TUNNEL
 */
 
 
-/obj/structure/tunnel
+/obj/structure/xeno/tunnel
 	name = "tunnel"
 	desc = "A tunnel entrance. Looks like it was dug by some kind of clawed beast."
 	icon = 'icons/Xeno/effects.dmi'
@@ -635,7 +636,7 @@ TUNNEL
 
 
 
-/obj/structure/tunnel/Initialize(mapload)
+/obj/structure/xeno/tunnel/Initialize(mapload)
 	. = ..()
 	GLOB.xeno_tunnels += src
 	prepare_huds()
@@ -643,7 +644,7 @@ TUNNEL
 		xeno_tac_hud.add_to_hud(src)
 	hud_set_xeno_tunnel()
 
-/obj/structure/tunnel/Destroy()
+/obj/structure/xeno/tunnel/Destroy()
 	var/drop_loc = get_turf(src)
 	for(var/atom/movable/thing AS in contents) //Empty the tunnel of contents
 		thing.forceMove(drop_loc)
@@ -662,18 +663,18 @@ TUNNEL
 
 	return ..()
 
-/obj/structure/tunnel/examine(mob/user)
+/obj/structure/xeno/tunnel/examine(mob/user)
 	. = ..()
 	if(!isxeno(user) && !isobserver(user))
 		return
 	if(tunnel_desc)
 		to_chat(user, "<span class='info'>The Hivelord scent reads: \'[tunnel_desc]\'</span>")
 
-/obj/structure/tunnel/deconstruct(disassembled = TRUE)
+/obj/structure/xeno/tunnel/deconstruct(disassembled = TRUE)
 	visible_message("<span class='danger'>[src] suddenly collapses!</span>")
 	return ..()
 
-/obj/structure/tunnel/ex_act(severity)
+/obj/structure/xeno/tunnel/ex_act(severity)
 	switch(severity)
 		if(EXPLODE_DEVASTATE)
 			take_damage(210)
@@ -682,12 +683,12 @@ TUNNEL
 		if(EXPLODE_LIGHT)
 			take_damage(70)
 
-/obj/structure/tunnel/attackby(obj/item/I, mob/user, params)
+/obj/structure/xeno/tunnel/attackby(obj/item/I, mob/user, params)
 	if(!isxeno(user))
 		return ..()
 	attack_alien(user)
 
-/obj/structure/tunnel/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
+/obj/structure/xeno/tunnel/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
 	if(!istype(X) || X.stat || X.lying_angle || X.status_flags & INCORPOREAL)
 		return
 
@@ -716,13 +717,13 @@ TUNNEL
 
 	pick_a_tunnel(X)
 
-/obj/structure/tunnel/attack_larva(mob/living/carbon/xenomorph/larva/L) //So larvas can actually use tunnels
+/obj/structure/xeno/tunnel/attack_larva(mob/living/carbon/xenomorph/larva/L) //So larvas can actually use tunnels
 	attack_alien(L)
 
 
 ///Here we pick a tunnel to go to, then travel to that tunnel and peep out, confirming whether or not we want to emerge or go to another tunnel.
-/obj/structure/tunnel/proc/pick_a_tunnel(mob/living/carbon/xenomorph/M)
-	var/obj/structure/tunnel/targettunnel = tgui_input_list(M, "Choose a tunnel to crawl to", "Tunnel", GLOB.xeno_tunnels)
+/obj/structure/xeno/tunnel/proc/pick_a_tunnel(mob/living/carbon/xenomorph/M)
+	var/obj/structure/xeno/tunnel/targettunnel = tgui_input_list(M, "Choose a tunnel to crawl to", "Tunnel", GLOB.xeno_tunnels)
 	if(QDELETED(src)) //Make sure we still exist in the event the player keeps the interface open
 		return
 	if(!M.Adjacent(src) && M.loc != src) //Make sure we're close enough to our tunnel; either adjacent to or in one
@@ -774,7 +775,7 @@ TUNNEL
 		to_chat(M, "<span class='warning'>Our crawling was interrupted!</span>")
 
 //Makes sure the tunnel is visible to other xenos even through obscuration.
-/obj/structure/tunnel/proc/hud_set_xeno_tunnel()
+/obj/structure/xeno/tunnel/proc/hud_set_xeno_tunnel()
 	var/image/holder = hud_list[XENO_TACTICAL_HUD]
 	if(!holder)
 		return
@@ -783,7 +784,7 @@ TUNNEL
 	hud_list[XENO_TACTICAL_HUD] = holder
 
 //Resin Water Well
-/obj/effect/alien/resin/acidwell
+/obj/structure/xeno/acidwell
 	name = "acid well"
 	desc = "An acid well. It stores acid to put out fires."
 	icon = 'icons/Xeno/acid_pool.dmi'
@@ -801,21 +802,21 @@ TUNNEL
 	var/ccharging = FALSE
 	var/mob/living/carbon/xenomorph/creator = null
 
-/obj/effect/alien/resin/acidwell/Initialize()
+/obj/structure/xeno/acidwell/Initialize()
 	. = ..()
 	update_icon()
 
-/obj/effect/alien/resin/acidwell/Destroy()
+/obj/structure/xeno/acidwell/Destroy()
 	creator = null
 	return ..()
 
 ///Ensures that no acid gas will be released when the well is crushed by a shuttle
-/obj/effect/alien/resin/acidwell/proc/shuttle_crush()
+/obj/structure/xeno/acidwell/proc/shuttle_crush()
 	SIGNAL_HANDLER
 	qdel(src)
 
 
-/obj/effect/alien/resin/acidwell/obj_destruction(damage_amount, damage_type, damage_flag)
+/obj/structure/xeno/acidwell/obj_destruction(damage_amount, damage_type, damage_flag)
 	if(!QDELETED(creator) && creator.stat == CONSCIOUS && creator.z == z)
 		var/area/A = get_area(src)
 		if(A)
@@ -827,22 +828,22 @@ TUNNEL
 		A.start()
 	return ..()
 
-/obj/effect/alien/resin/acidwell/examine(mob/user)
+/obj/structure/xeno/acidwell/examine(mob/user)
 	..()
 	if(!isxeno(user) && !isobserver(user))
 		return
 	to_chat(user, "<span class='xenoannounce'>This is an acid well made by [creator].</span>")
 
-/obj/effect/alien/resin/acidwell/deconstruct(disassembled = TRUE)
+/obj/structure/xeno/acidwell/deconstruct(disassembled = TRUE)
 	visible_message("<span class='danger'>[src] suddenly collapses!</span>")
 	return ..()
 
-/obj/effect/alien/resin/acidwell/update_icon()
+/obj/structure/xeno/acidwell/update_icon()
 	. = ..()
 	icon_state = "well[charges]"
 	set_light(charges , charges / 2, LIGHT_COLOR_GREEN)
 
-/obj/effect/alien/resin/acidwell/ex_act(severity)
+/obj/structure/xeno/acidwell/ex_act(severity)
 	switch(severity)
 		if(EXPLODE_DEVASTATE)
 			take_damage(210)
@@ -851,12 +852,12 @@ TUNNEL
 		if(EXPLODE_LIGHT)
 			take_damage(70)
 
-/obj/effect/alien/resin/acidwell/attackby(obj/item/I, mob/user, params)
+/obj/structure/xeno/acidwell/attackby(obj/item/I, mob/user, params)
 	if(!isxeno(user))
 		return ..()
 	attack_alien(user)
 
-/obj/effect/alien/resin/acidwell/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
+/obj/structure/xeno/acidwell/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
 	if(X.a_intent != INTENT_HARM)
 		if(charges >= 5)
 			to_chat(X, "<span class='xenoannounce'>[src] is already full!</span>")
@@ -882,14 +883,14 @@ TUNNEL
 			deconstruct(FALSE)
 		return
 
-/obj/effect/alien/resin/acidwell/Crossed(atom/A)
+/obj/structure/xeno/acidwell/Crossed(atom/A)
 	. = ..()
 	if(CHECK_MULTIPLE_BITFIELDS(A.flags_pass, HOVERING))
 		return
 	if(iscarbon(A))
 		HasProximity(A)
 
-/obj/effect/alien/resin/acidwell/HasProximity(atom/movable/AM)
+/obj/structure/xeno/acidwell/HasProximity(atom/movable/AM)
 	if(!iscarbon(AM))
 		return
 	var/mob/living/carbon/C = AM
@@ -912,7 +913,7 @@ TUNNEL
 		update_icon()
 		return
 
-/obj/structure/resin_jelly_pod
+/obj/structure/xeno/resin_jelly_pod
 	name = "Resin jelly pod"
 	desc = "A large resin pod. Inside is a thick, viscous fluid that looks like it doesnt burn easily."
 	icon = 'icons/Xeno/resinpod.dmi'
@@ -936,16 +937,16 @@ TUNNEL
 	///Countdown to the next time we generate a jelly
 	var/nextjelly = 0
 
-/obj/structure/resin_jelly_pod/Initialize()
+/obj/structure/xeno/resin_jelly_pod/Initialize()
 	. = ..()
 	add_overlay(image(icon, "resinpod_inside", layer + 0.01, dir))
 	START_PROCESSING(SSslowprocess, src)
 
-/obj/structure/resin_jelly_pod/Destroy()
+/obj/structure/xeno/resin_jelly_pod/Destroy()
 	STOP_PROCESSING(SSslowprocess, src)
 	return ..()
 
-/obj/effect/alien/resin/resin_jelly_pod/ex_act(severity)
+/obj/structure/xeno/resin_jelly_pod/ex_act(severity)
 	switch(severity)
 		if(EXPLODE_DEVASTATE)
 			take_damage(210)
@@ -954,12 +955,12 @@ TUNNEL
 		if(EXPLODE_LIGHT)
 			take_damage(70)
 
-/obj/structure/resin_jelly_pod/examine(mob/user, distance, infix, suffix)
+/obj/structure/xeno/resin_jelly_pod/examine(mob/user, distance, infix, suffix)
 	. = ..()
 	if(isxeno(user))
 		to_chat(user, "It has [chargesleft] jelly globules remaining[datum_flags & DF_ISPROCESSING ? ", and will create a new jelly in [(recharge_rate-nextjelly)*5] seconds": " and seems latent"].")
 
-/obj/structure/resin_jelly_pod/process()
+/obj/structure/xeno/resin_jelly_pod/process()
 	if(nextjelly <= recharge_rate)
 		nextjelly++
 		return
@@ -968,7 +969,7 @@ TUNNEL
 	if(chargesleft >= maxcharges)
 		return PROCESS_KILL
 
-/obj/structure/resin_jelly_pod/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
+/obj/structure/xeno/resin_jelly_pod/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
 	if(X.status_flags & INCORPOREAL)
 		return FALSE
 
