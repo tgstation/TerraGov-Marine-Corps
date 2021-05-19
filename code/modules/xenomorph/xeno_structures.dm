@@ -73,7 +73,7 @@
 	silo_area = get_area(src)
 	var/turf/tunnel_turf = get_step(center_turf, NORTH)
 	if(tunnel_turf.can_dig_xeno_tunnel())
-		var/obj/structure/tunnel/newt = new(tunnel_turf)
+		var/obj/structure/xeno/tunnel/newt = new(tunnel_turf)
 		newt.tunnel_desc = "[AREACOORD_NO_Z(newt)]"
 		newt.name += " [name]"
 
