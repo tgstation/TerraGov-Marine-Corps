@@ -1383,6 +1383,7 @@ Imports
 	contains = list(/obj/item/ammo_magazine/magnum)
 	cost = 5
 	available_against_xeno_only = TRUE
+
 /datum/supply_packs/imports/mbx900
 	name = "MBX 900"
 	contains = list(/obj/item/weapon/gun/shotgun/pump/lever/mbx900)
