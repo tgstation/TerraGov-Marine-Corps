@@ -556,7 +556,7 @@ to_chat will check for valid clients itself already so no need to double check f
 /datum/hive_status/normal/handle_ruler_timer()
 	if(!isinfestationgamemode(SSticker.mode)) //Check just need for unit test
 		return
-	if(!SSticker.mode?.flags_round_type & MODE_XENO_RULER)
+	if(!(SSticker.mode?.flags_round_type & MODE_XENO_RULER))
 		return
 	var/datum/game_mode/infestation/D = SSticker.mode
 
