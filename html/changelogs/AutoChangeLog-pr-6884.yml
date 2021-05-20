@@ -1,6 +1,0 @@
-author: "Surrealaser"
-delete-after: True
-changes: 
-  - code_imp: "Standardizes xeno structures/buildables categories for future changes."
-  - bugfix: "Fixes xeno structure stacking."
-  - qol: "Resin pods no longer block buildings; QOL."
