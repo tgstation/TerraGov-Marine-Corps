@@ -102,8 +102,9 @@ SUBSYSTEM_DEF(job)
 		JobDebug("Successfuly assigned marine role to a squad. Player: [player.key], Job: [job.title], Squad: [player.assigned_squad]")
 	if(!latejoin)
 		unassigned -= player
-	if((SSticker.mode.flags_round_type & MODE_PSY_POINTS_ROUNDSTART) && job.job_category != JOB_CAT_XENO && !GLOB.joined_player_list.Find(player.ckey))
-		SSpoints.add_psy_points(XENO_HIVE_NORMAL, SILO_PRICE / 15)
+	if(job.job_category != JOB_CAT_XENO && !GLOB.joined_player_list.Find(player.ckey))
+		if(SSticker.mode.flags_round_type & MODE_PSY_POINTS_ADVANCED)
+			SSpoints.add_psy_points(XENO_HIVE_NORMAL, SILO_PRICE / 15)
 		SSpoints.supply_points[job.faction] += SUPPLY_POINT_MARINE_SPAWN
 	job.occupy_job_positions(1, GLOB.joined_player_list.Find(player.ckey))
 	player.assigned_role = job
