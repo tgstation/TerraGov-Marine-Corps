@@ -18,12 +18,17 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 /obj/item/paper/manifest
 	name = "Supply Manifest"
 
-/obj/docking_port/stationary/supply/reqs
+/obj/docking_port/stationary/supply
 	id = "supply_home"
 	roundstart_template = /datum/map_template/shuttle/supply
+	width = 5
+	dwidth = 2
+	dheight = 2
+	height = 5
 
-/obj/docking_port/stationary/supply/reqs/rebel
+/obj/docking_port/stationary/supply/rebel
 	id = "supply_home_rebel"
+	roundstart_shuttle_specific_id = "supply_rebel"
 
 /obj/docking_port/mobile/supply
 	name = "supply shuttle"
@@ -233,17 +238,14 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 	circuit = null
 	var/datum/supply_ui/SU
 	///Id of the shuttle controlled
-	var/shuttle_id = "supply2"
+	var/shuttle_id = "supply"
 	/// Id of the home docking port
 	var/home_id = "supply_home"
-	/// Id of the away docking port
-	var/away_id = "supply_away"
 
 /obj/machinery/computer/supplycomp/rebel
-	//req_access = list(ACCESS_MARINE_CARGO_REBEL)
-	shuttle_id = "supply"
+	req_access = list(ACCESS_MARINE_CARGO_REBEL)
+	shuttle_id = "supply_rebel"
 	home_id = "supply_home_rebel"
-	away_id = "supply_away_rebel"
 
 /obj/machinery/computer/supplycomp/interact(mob/user)
 	. = ..()
@@ -379,31 +381,30 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 		.["shopping_list_items"] += SSpoints.shopping_cart[i]
 		.["shopping_list_cost"] += SP.cost * SSpoints.shopping_cart[SP.type]
 		.["shopping_list"][SP.type] = list("count" = SSpoints.shopping_cart[SP.type])
-	if(!supply_shuttle)
-		.["elevator"] = "MISSING!"
-		return
-	if(supply_shuttle.mode == SHUTTLE_CALL)
-		if(is_mainship_level(supply_shuttle.destination.z))
-			.["elevator"] = "Raising"
-			.["elevator_dir"] = "up"
+	if(supply_shuttle)
+		if(supply_shuttle?.mode == SHUTTLE_CALL)
+			if(is_mainship_level(supply_shuttle.destination.z))
+				.["elevator"] = "Raising"
+				.["elevator_dir"] = "up"
+			else
+				.["elevator"] = "Lowering"
+				.["elevator_dir"] = "down"
+		else if(supply_shuttle?.mode == SHUTTLE_IDLE)
+			if(is_mainship_level(supply_shuttle.z))
+				.["elevator"] = "Raised"
+				.["elevator_dir"] = "down"
+			else
+				.["elevator"] = "Lowered"
+				.["elevator_dir"] = "up"
 		else
-			.["elevator"] = "Lowering"
-			.["elevator_dir"] = "down"
-	else if(supply_shuttle.mode == SHUTTLE_IDLE)
-		if(is_mainship_level(supply_shuttle.z))
-			.["elevator"] = "Raised"
-			.["elevator_dir"] = "down"
-		else
-			.["elevator"] = "Lowered"
-			.["elevator_dir"] = "up"
+			if(is_mainship_level(supply_shuttle.z))
+				.["elevator"] = "Lowering"
+				.["elevator_dir"] = "down"
+			else
+				.["elevator"] = "Raising"
+				.["elevator_dir"] = "up"
 	else
-		if(is_mainship_level(supply_shuttle.z))
-			.["elevator"] = "Lowering"
-			.["elevator_dir"] = "down"
-		else
-			.["elevator"] = "Raising"
-			.["elevator_dir"] = "up"
-
+		.["elevator"] = "MISSING!"
 
 /datum/supply_ui/proc/get_shopping_cart(mob/user)
 	return SSpoints.shopping_cart
@@ -574,7 +575,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 	req_access = list(ACCESS_IFF_MARINE)
 
 /obj/machinery/computer/ordercomp/rebel
-	//req_access = list(ACCESS_IFF_MARINE_REBEL)
+	req_access = list(ACCESS_IFF_MARINE_REBEL)
 
 /obj/machinery/computer/ordercomp/interact(mob/user)
 	. = ..()
