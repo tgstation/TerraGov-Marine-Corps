@@ -90,7 +90,7 @@
 
 /obj/machinery/power/geothermal/process()
 	if(corrupted && corruption_on)
-		SSpoints.add_psy_points("[corrupted]", 	TGS_CLIENT_COUNT * BASE_PSYCH_POINT_OUTPUT)
+		SSpoints.add_psy_points("[corrupted]", TGS_CLIENT_COUNT * BASE_PSYCH_POINT_OUTPUT * corrupt_point_factor)
 		return
 	if(!is_on || buildstate || !anchored || !powernet) //Default logic checking
 		return PROCESS_KILL
