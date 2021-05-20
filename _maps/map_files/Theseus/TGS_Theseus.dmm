@@ -8990,6 +8990,9 @@
 	dir = 5
 	},
 /obj/machinery/camera/autoname/mainship,
+/obj/structure/bed/chair{
+	dir = 4
+	},
 /turf/open/floor/mainship/silver{
 	dir = 9
 	},
@@ -10843,6 +10846,9 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 6
 	},
+/obj/structure/bed/chair{
+	dir = 4
+	},
 /turf/open/floor/mainship/silver{
 	dir = 10
 	},
@@ -11221,6 +11227,10 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
+"jAQ" = (
+/obj/machinery/telecomms/receiver/preset_left,
+/turf/open/floor/mainship/tcomms,
+/area/mainship/command/telecomms)
 "jEn" = (
 /obj/structure/bed/chair/office/dark,
 /turf/open/floor/mainship/sterile/dark,
@@ -11877,12 +11887,26 @@
 /obj/machinery/power/port_gen/pacman,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
+"kXU" = (
+/obj/structure/bed/chair{
+	dir = 4
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/mainship/silver{
+	dir = 8
+	},
+/area/mainship/command/cic)
 "kZA" = (
 /obj/machinery/light{
 	dir = 1
 	},
 /obj/effect/decal/warning_stripes/thin{
 	dir = 9
+	},
+/obj/structure/bed/chair{
+	dir = 8
 	},
 /turf/open/floor/mainship/silver{
 	dir = 5
@@ -14726,6 +14750,14 @@
 	dir = 8
 	},
 /area/mainship/medical/surgery_hallway)
+"qza" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/mainship/silver{
+	dir = 4
+	},
+/area/mainship/command/cic)
 "qzj" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -15387,6 +15419,9 @@
 /obj/machinery/light,
 /obj/effect/decal/warning_stripes/thin{
 	dir = 10
+	},
+/obj/structure/bed/chair{
+	dir = 8
 	},
 /turf/open/floor/mainship/silver{
 	dir = 6
@@ -16535,7 +16570,7 @@
 	dir = 1
 	},
 /obj/item/bedsheet/hos,
-/turf/open/floor/mainship/floor,
+/turf/open/floor/mainship/red/full,
 /area/mainship/shipboard/brig_cells)
 "uyP" = (
 /obj/machinery/computer/med_data,
@@ -16553,7 +16588,7 @@
 /obj/machinery/door/airlock/mainship/security/glass/cells{
 	dir = 2
 	},
-/turf/open/floor/mainship/mono,
+/turf/open/floor/mainship/red/full,
 /area/mainship/shipboard/brig_cells)
 "uzZ" = (
 /turf/open/floor/mainship/blue{
@@ -17809,7 +17844,7 @@
 /obj/machinery/camera/autoname/mainship{
 	dir = 8
 	},
-/turf/open/floor/mainship/floor,
+/turf/open/floor/mainship/red/full,
 /area/mainship/shipboard/brig_cells)
 "xyn" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -35906,7 +35941,7 @@ lyB
 dGL
 xVf
 xVf
-xVf
+kXU
 xVf
 xVf
 pTq
@@ -36424,7 +36459,7 @@ lGB
 qXa
 far
 qXa
-qXa
+qza
 lGB
 wKi
 sdL
@@ -50800,7 +50835,7 @@ bcj
 baO
 beq
 baO
-jUk
+jAQ
 baO
 aku
 aoJ
