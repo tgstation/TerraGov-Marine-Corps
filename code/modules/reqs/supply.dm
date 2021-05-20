@@ -19,22 +19,16 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 	name = "Supply Manifest"
 
 /obj/docking_port/stationary/supply
-	id = "supply_away"
-
+	id = "supply_home"
+	roundstart_template = /datum/map_template/shuttle/supply
 	width = 5
 	dwidth = 2
 	dheight = 2
 	height = 5
 
 /obj/docking_port/stationary/supply/rebel
-	id = "supply_away_rebel"
-
-/obj/docking_port/stationary/supply/reqs
-	id = "supply_home"
-	roundstart_template = /datum/map_template/shuttle/supply
-
-/obj/docking_port/stationary/supply/reqs/rebel
 	id = "supply_home_rebel"
+	roundstart_shuttle_specific_id = "supply_rebel"
 
 /obj/docking_port/mobile/supply
 	name = "supply shuttle"
@@ -244,17 +238,14 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 	circuit = null
 	var/datum/supply_ui/SU
 	///Id of the shuttle controlled
-	var/shuttle_id = "supply2"
+	var/shuttle_id = "supply"
 	/// Id of the home docking port
 	var/home_id = "supply_home"
-	/// Id of the away docking port
-	var/away_id = "supply_away"
 
 /obj/machinery/computer/supplycomp/rebel
 	req_access = list(ACCESS_MARINE_CARGO_REBEL)
-	shuttle_id = "supply"
+	shuttle_id = "supply_rebel"
 	home_id = "supply_home_rebel"
-	away_id = "supply_away_rebel"
 
 /obj/machinery/computer/supplycomp/interact(mob/user)
 	. = ..()

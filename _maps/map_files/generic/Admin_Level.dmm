@@ -395,7 +395,6 @@
 	},
 /area/centcom/supply)
 "cA" = (
-/obj/docking_port/stationary/supply/rebel,
 /turf/open/floor/plating{
 	icon_state = "test_floor5"
 	},
@@ -450,7 +449,6 @@
 /turf/open/floor/mainship/stripesquare,
 /area/centcom/supply)
 "ir" = (
-/obj/docking_port/stationary/supply,
 /turf/open/floor/plating{
 	icon_state = "test_floor5"
 	},

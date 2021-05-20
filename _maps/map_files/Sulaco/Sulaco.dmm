@@ -1746,7 +1746,7 @@
 /turf/open/floor/prison/plate,
 /area/sulaco/cargo)
 "agN" = (
-/obj/docking_port/stationary/supply/reqs,
+/obj/docking_port/stationary/supply,
 /turf/open/floor/mainship/empty,
 /area/sulaco/cargo)
 "agR" = (
