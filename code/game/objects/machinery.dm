@@ -389,7 +389,7 @@
 			else
 				imp += "Unknown body present:<br>"
 
-		if(!AN && !open && !infected && !imp && !necrosis && !bled && !internal_bleeding && !lung_ruptured)
+		if(!AN && !open && !infected & !imp && !necrosis && !bled && !internal_bleeding && !lung_ruptured)
 			AN = "None:"
 		if(!(e.limb_status & LIMB_DESTROYED))
 			dat += "<td>[e.display_name]</td><td>[e.burn_dam]</td><td>[e.brute_dam]</td><td>[robot][bled][AN][splint][stabilized][open][infected][necrosis][imp][internal_bleeding][lung_ruptured]</td>"

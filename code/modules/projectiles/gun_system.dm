@@ -386,7 +386,7 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 	replace_ammo(user,magazine)
 	if(!in_chamber)
 		ready_in_chamber(user)
-		if(!(flags_gun_features & GUN_ENERGY))
+		if(!flags_gun_features & GUN_ENERGY)
 			cock_gun(user)
 	user.visible_message("<span class='notice'>[user] loads [magazine] into [src]!</span>",
 	"<span class='notice'>You load [magazine] into [src]!</span>", null, 3)
@@ -401,7 +401,7 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 	if(!reload_override && (flags_gun_features & (GUN_BURST_FIRING|GUN_UNUSUAL_DESIGN|GUN_INTERNAL_MAG)))
 		return FALSE
 
-	if(!current_mag || isnull(current_mag) || current_mag.loc != src || !(flags_gun_features & GUN_ENERGY))
+	if(!current_mag || isnull(current_mag) || current_mag.loc != src || !flags_gun_features & GUN_ENERGY)
 		return cock(user)
 
 	if(drop_override || !user) //If we want to drop it on the ground or there's no user.

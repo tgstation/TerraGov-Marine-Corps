@@ -37,7 +37,7 @@ GLOBAL_LIST_INIT(wraith_no_incorporeal_pass_shutters, typecacheof(list(
 
 /// Returns true or false to allow src to move through the blocker, mover has final say
 /mob/living/carbon/xenomorph/wraith/CanPassThrough(atom/blocker, turf/target, blocker_opinion)
-	if(!(status_flags & INCORPOREAL)) //If we're not incorporeal don't bother with special checks
+	if(!status_flags & INCORPOREAL) //If we're not incorporeal don't bother with special checks
 		return ..()
 	if(is_type_in_typecache(blocker, GLOB.wraith_no_incorporeal_pass_atoms)) //If we're incorporeal via Phase Shift and we encounter something on the no-go list, it's time to stop
 		return FALSE
