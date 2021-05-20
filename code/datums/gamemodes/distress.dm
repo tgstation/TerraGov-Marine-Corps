@@ -1,7 +1,7 @@
 /datum/game_mode/infestation/distress
 	name = "Distress Signal"
 	config_tag = "Distress Signal"
-	flags_round_type = MODE_INFESTATION|MODE_LZ_SHUTTERS|MODE_XENO_RULER|MODE_PSY_POINTS|MODE_DEAD_GRAB_FORBIDDEN|MODE_HIJACK_POSSIBLE
+	flags_round_type = MODE_INFESTATION|MODE_LZ_SHUTTERS|MODE_XENO_RULER|MODE_PSY_POINTS|MODE_PSY_POINTS_ROUNDSTART|MODE_DEAD_GRAB_FORBIDDEN|MODE_HIJACK_POSSIBLE
 	flags_landmarks = MODE_LANDMARK_SPAWN_XENO_TUNNELS|MODE_LANDMARK_SPAWN_MAP_ITEM|MODE_LANDMARK_SPAWN_XENO_TURRETS
 	flags_xeno_abilities = ABILITY_DISTRESS
 	valid_job_types = list(
@@ -35,6 +35,8 @@
 
 	for(var/i in GLOB.xeno_turret_turfs)
 		new /obj/structure/resin/xeno_turret(i)
+	for(var/obj/effect/landmark/corpsespawner/corpse AS in GLOB.corpse_landmarks_list)
+		corpse.create_mob(COCOONED_DEATH)
 
 
 /datum/game_mode/infestation/distress/scale_roles(initial_players_assigned)

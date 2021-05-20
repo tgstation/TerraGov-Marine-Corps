@@ -87,7 +87,10 @@
 		H.internal_organs_by_name -= "brain"
 		H.internal_organs -= O
 		ADD_TRAIT(H, TRAIT_PSY_DRAINED, TRAIT_PSY_DRAINED) //for xeno hud
-		H.set_undefibbable()
+		if(HAS_TRAIT(H, TRAIT_UNDEFIBBABLE)) //If true then force a hud update because SSmobs will not
+			H.med_hud_set_status()
+		else
+			H.set_undefibbable()
 
 	X.do_attack_animation(victim, ATTACK_EFFECT_BITE)
 	playsound(victim, pick( 'sound/weapons/alien_tail_attack.ogg', 'sound/weapons/alien_bite1.ogg'), 50)
@@ -119,7 +122,7 @@
 	if(!T.check_alien_construction(owner, FALSE))
 		return fail_activate()
 
-	if(locate(/obj/effect/alien/resin/trap) in T)
+	if(locate(/obj/structure/xeno/trap) in T)
 		to_chat(owner, "<span class='warning'>There is a resin trap in the way!</span>")
 		return fail_activate()
 
@@ -1057,8 +1060,8 @@
 /datum/action/xeno_action/activable/build_silo/action_activate()
 	var/mob/living/carbon/xenomorph/X = owner
 	if(X.selected_ability == src)
-		if(get_active_player_count() > SMALL_SILO_MAXIMUM_PLAYER_COUNT)
-			to_chat(X, "<span class ='notice'>There are too many players to place a small silo</span>")
+		if(get_active_player_count(TRUE) > SMALL_SILO_MAXIMUM_PLAYER_COUNT)
+			to_chat(X, "<span class ='notice'>There are too many living sisters and hosts to place a small silo!</span>")
 			build_small_silo = FALSE
 			return
 		build_small_silo = !build_small_silo
@@ -1316,6 +1319,8 @@
 	victim.do_jitter_animation(2)
 
 	ADD_TRAIT(victim, TRAIT_PSY_DRAINED, TRAIT_PSY_DRAINED)
+	if(HAS_TRAIT(victim, TRAIT_UNDEFIBBABLE))
+		victim.med_hud_set_status()
 
 	SSpoints.add_psy_points(X.hivenumber, psy_points_reward)
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)

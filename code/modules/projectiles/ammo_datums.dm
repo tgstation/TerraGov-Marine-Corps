@@ -6,6 +6,10 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	var/name 		= "generic bullet"
 	var/icon 		= 'icons/obj/items/projectiles.dmi'
 	var/icon_state 	= "bullet"
+	///used in icons/obj/items/ammo for use in generating handful sprites
+	var/handful_icon_state = "bullet" 
+	///how much of this ammo you can carry in a handful
+	var/handful_amount = 8
 	var/hud_state   = "unknown"  //Bullet type on the Ammo HUD
 	var/hud_state_empty = "unknown"
 	var/ping 		= "ping_b" //The icon that is displayed when the bullet bounces off something.
@@ -37,7 +41,6 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	var/flags_ammo_behavior = NONE
 	///Determines what color our bullet will be when it flies
 	var/bullet_color = COLOR_WHITE
-
 
 /datum/ammo/proc/do_at_max_range(obj/projectile/proj)
 	return
@@ -220,7 +223,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 20
 	penetration = 5
 	accurate_range = 5
-	sundering = 2
+	sundering = 1.65
 
 /datum/ammo/bullet/pistol/tiny
 	name = "light pistol bullet"
@@ -256,6 +259,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	hud_state = "pistol_hollow"
 	accuracy = -15
 	shrapnel_chance = 45
+	sundering = 2
 
 /datum/ammo/bullet/pistol/hollow/on_hit_mob(mob/M,obj/projectile/P)
 	staggerstun(M, P, stagger = 1, slowdown = 0.5, knockback = 1)
@@ -267,6 +271,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	accuracy = 10
 	penetration = 12.5
 	shrapnel_chance = 25
+	sundering = 2
 
 /datum/ammo/bullet/pistol/heavy
 	name = "heavy pistol bullet"
@@ -274,6 +279,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 30
 	penetration = 5
 	shrapnel_chance = 25
+	sundering = 2.15
 
 /datum/ammo/bullet/pistol/incendiary
 	name = "incendiary pistol bullet"
@@ -291,6 +297,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 32
 	penetration = 10
 	shrapnel_chance = 25
+	sundering = 2
 
 /datum/ammo/bullet/pistol/mankey
 	name = "live monkey"
@@ -549,10 +556,12 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/bullet/shotgun
 	hud_state_empty = "shotgun_empty"
 	shell_speed = 2
+	handful_amount = 5
 
 
 /datum/ammo/bullet/shotgun/slug
 	name = "shotgun slug"
+	handful_icon_state = "shotgun slug"
 	hud_state = "shotgun_slug"
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
 	shell_speed = 3
@@ -567,6 +576,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/bullet/shotgun/beanbag
 	name = "beanbag slug"
+	handful_icon_state = "beanbag slug"
 	icon_state = "beanbag"
 	hud_state = "shotgun_beanbag"
 	flags_ammo_behavior = AMMO_BALLISTIC
@@ -585,6 +595,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/bullet/shotgun/incendiary
 	name = "incendiary slug"
+	handful_icon_state = "incendiary slug"
 	hud_state = "shotgun_fire"
 	damage_type = BRUTE
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_INCENDIARY|AMMO_SUNDERING
@@ -608,6 +619,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/bullet/shotgun/flechette
 	name = "shotgun flechette shell"
+	handful_icon_state = "shotgun flechette shell"
 	icon_state = "flechette"
 	hud_state = "shotgun_flechette"
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
@@ -636,6 +648,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/bullet/shotgun/buckshot
 	name = "shotgun buckshot shell"
+	handful_icon_state = "shotgun buckshot shell"
 	icon_state = "buckshot"
 	hud_state = "shotgun_buckshot"
 	flags_ammo_behavior = AMMO_BALLISTIC
@@ -676,6 +689,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/bullet/shotgun/sx16_buckshot
 	name = "shotgun buckshot shell" //16 gauge is between 12 and 410 bore.
+	handful_icon_state = "shotgun buckshot shell"
 	icon_state = "buckshot"
 	hud_state = "shotgun_buckshot"
 	bonus_projectiles_type = /datum/ammo/bullet/shotgun/sx16_buckshot/spread
@@ -698,6 +712,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/bullet/shotgun/sx16_flechette
 	name = "shotgun flechette shell"
+	handful_icon_state = "shotgun flechette shell"
 	icon_state = "flechette"
 	hud_state = "shotgun_flechette"
 	bonus_projectiles_type = /datum/ammo/bullet/shotgun/sx16_flechette/spread
@@ -722,6 +737,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/bullet/shotgun/sx16_slug
 	name = "shotgun slug"
+	handful_icon_state = "shotgun slug"
 	hud_state = "shotgun_slug"
 	shell_speed = 3
 	max_range = 15
@@ -733,6 +749,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/bullet/shotgun/tx15_flechette
 	name = "shotgun flechette shell"
+	handful_icon_state = "shotgun flechette shell"
 	icon_state = "flechette"
 	hud_state = "shotgun_flechette"
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
@@ -755,6 +772,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/bullet/shotgun/tx15_slug
 	name = "shotgun slug"
+	handful_icon_state = "shotgun slug"
 	hud_state = "shotgun_slug"
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
 	shell_speed = 3
@@ -768,6 +786,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/bullet/shotgun/mbx900_buckshot
 	name = "light shotgun buckshot shell" // If .410 is the smallest shotgun shell, then...
+	handful_icon_state = "light shotgun buckshot shell"
 	icon_state = "buckshot"
 	hud_state = "shotgun_buckshot"
 	flags_ammo_behavior = AMMO_BALLISTIC
@@ -791,6 +810,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/bullet/shotgun/mbx900_sabot
 	name = "light shotgun sabot shell"
+	handful_icon_state = "light shotgun sabot shell"
 	icon_state = "shotgun_slug"
 	hud_state = "shotgun_slug"
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
@@ -802,6 +822,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/bullet/shotgun/mbx900_tracker
 	name = "light shotgun tracker round"
+	handful_icon_state = "light shotgun tracker round"
 	icon_state = "shotgun_slug"
 	hud_state = "shotgun_flechette"
 	shell_speed = 4
@@ -814,6 +835,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/bullet/shotgun/tracker
 	name = "shotgun tracker shell"
+	handful_icon_state = "shotgun tracker shell"
 	icon_state = "shotgun_slug"
 	hud_state = "shotgun_flechette"
 	shell_speed = 4
@@ -871,9 +893,24 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/bullet/sniper/svd
 	name = "crude sniper bullet"
+	handful_icon_state = "crude sniper bullet"
 	hud_state = "sniper_crude"
+	handful_amount = 5
 	damage = 75
 	penetration = 35
+
+/datum/ammo/bullet/sniper/martini
+	name = "crude heavy sniper bullet"
+	handful_icon_state = "crude heavy sniper bullet"
+	hud_state = "sniper_crude"
+	handful_amount = 5
+	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
+	damage = 120
+	penetration = 20
+	sundering = 10
+
+/datum/ammo/bullet/sniper/martini/on_hit_mob(mob/M, obj/projectile/P)
+	staggerstun(M, P, weaken = 1, stagger = 1, knockback = 2, slowdown = 0.5, max_range = 5)
 
 /datum/ammo/bullet/sniper/elite
 	name = "supersonic sniper bullet"
