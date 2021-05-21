@@ -215,7 +215,7 @@
 	pounce_delay = 13 SECONDS
 
 	// *** Abilities *** ///
-	actions = list(actions = list(
+	actions = list(
 		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/activable/psydrain,
 		/datum/action/xeno_action/activable/headbite,
