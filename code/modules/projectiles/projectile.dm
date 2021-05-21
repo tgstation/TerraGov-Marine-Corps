@@ -89,7 +89,7 @@
 	var/y_offset
 
 	var/proj_max_range = 30
-	///A damage multiplier applied when a mob from the same faction as the projectil is hit
+	///A damage multiplier applied when a mob from the same faction as the projectile firer is hit
 	var/friendly_fire_multiplier = 0.3
 
 
