@@ -220,7 +220,8 @@
 
 /datum/preferences/proc/random_character()
 	gender = pick(MALE, FEMALE)
-	var/datum/species/S = pick(GLOB.roundstart_species)
+	var/speciestype = pick(GLOB.roundstart_species)
+	var/datum/species/S = GLOB.roundstart_species[speciestype]
 	species = S.name
 	real_name = S.random_name(gender)
 	age = rand(AGE_MIN, AGE_MAX)

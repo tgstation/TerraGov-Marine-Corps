@@ -1,0 +1,4 @@
+author: "Pill-U"
+delete-after: True
+changes: 
+  - bugfix: "Sandbag barricade icons now update when repaired"

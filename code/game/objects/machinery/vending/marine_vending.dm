@@ -180,6 +180,7 @@
 			/obj/item/attachable/compensator = -1,
 			/obj/item/attachable/extended_barrel = -1,
 			/obj/item/attachable/suppressor = -1,
+			/obj/item/attachable/heavy_barrel = -1,
 			/obj/item/attachable/lace = -1,
 			/obj/item/attachable/flashlight = -1,
 			/obj/item/attachable/magnetic_harness = -1,
