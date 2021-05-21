@@ -527,11 +527,7 @@ to_chat will check for valid clients itself already so no need to double check f
 				arrow_hud.color = arrow_color
 			new /obj/effect/temp_visual/xenomorph/xeno_tracker_target(target, target) //Ping the source of our alert
 
-		if(report_distance)
-			var/distance = get_dist(X, target)
-			message += " Distance: [distance]"
-
-		to_chat(X, "<span class='[span_class]'><font size=[size]> [message]</font></span>")
+		to_chat(X, "<span class='[span_class]'><font size=[size]> [message][report_distance ? " Distance: [get_dist(X, target)]" : ""]</font></span>")
 
 // This is to simplify the process of talking in hivemind, this will invoke the receive proc of all xenos in this hive
 /datum/hive_status/proc/hive_mind_message(mob/living/carbon/xenomorph/sender, message)
@@ -560,7 +556,7 @@ to_chat will check for valid clients itself already so no need to double check f
 /datum/hive_status/normal/handle_ruler_timer()
 	if(!isinfestationgamemode(SSticker.mode)) //Check just need for unit test
 		return
-	if(!SSticker.mode?.flags_round_type & MODE_XENO_RULER)
+	if(!(SSticker.mode?.flags_round_type & MODE_XENO_RULER))
 		return
 	var/datum/game_mode/infestation/D = SSticker.mode
 
@@ -743,7 +739,7 @@ to_chat will check for valid clients itself already so no need to double check f
 			continue
 		qdel(silo)
 
-	if(SSticker.mode?.flags_round_type & MODE_PSY_POINTS)
+	if(SSticker.mode?.flags_round_type & MODE_PSY_POINTS_ROUNDSTART)
 		SSpoints.xeno_points_by_hive[hivenumber] = SILO_PRICE + XENO_TURRET_PRICE //Give a free silo when going shipside and a turret
 
 	var/list/living_player_list = SSticker.mode.count_humans_and_xenos(count_flags = COUNT_IGNORE_HUMAN_SSD)
@@ -1071,7 +1067,7 @@ to_chat will check for valid clients itself already so no need to double check f
 /mob/living/carbon/xenomorph/get_xeno_hivenumber()
 	return hivenumber
 
-/obj/structure/tunnel/get_xeno_hivenumber()
+/obj/structure/xeno/tunnel/get_xeno_hivenumber()
 	return hivenumber
 
 /obj/structure/resin/xeno_turret/get_xeno_hivenumber()
