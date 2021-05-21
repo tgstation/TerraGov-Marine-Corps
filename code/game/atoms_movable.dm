@@ -523,10 +523,14 @@
 	if(isobj(src) && throwing)
 		throw_impact(get_turf(src), speed)
 	if(loc)
-		set_throwing(FALSE)
-		thrower = null
-		throw_source = null
+		stop_throw()
 	SEND_SIGNAL(src, COMSIG_MOVABLE_POST_THROW)
+
+/// Annul all throw var to ensure a clean exit out of throw state
+/atom/movable/proc/stop_throw()
+	set_throwing(FALSE)
+	thrower = null
+	throw_source = null
 
 /atom/movable/proc/handle_buckled_mob_movement(NewLoc, direct)
 	for(var/m in buckled_mobs)
