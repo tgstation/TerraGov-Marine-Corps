@@ -223,6 +223,7 @@
 		/datum/action/xeno_action/activable/pounce,
 		/datum/action/xeno_action/toggle_savage,
 		/datum/action/xeno_action/evasion,
+		)
 
 /datum/xeno_caste/roony/young
 	upgrade_name = "Young"
