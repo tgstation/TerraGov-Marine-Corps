@@ -1,5 +1,0 @@
-author: "BraveMole"
-delete-after: True
-changes: 
-  - code_imp: "Setting to remove some supply packs in HVH"
-  - code_imp: "Removed useless var in supply packs"
