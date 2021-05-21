@@ -4192,7 +4192,6 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
 "bpw" = (
-/obj/structure/largecrate/supply/supplies/flares,
 /turf/open/floor/mainship/cargo,
 /area/mainship/squads/req)
 "bpx" = (
@@ -4200,7 +4199,6 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/structure/largecrate/supply/supplies/mre,
 /turf/open/floor/mainship/cargo,
 /area/mainship/squads/req)
 "bpz" = (
@@ -5404,6 +5402,7 @@
 /area/mainship/engineering/lower_engineering)
 "bDQ" = (
 /obj/structure/table/mainship,
+/obj/item/stack/sheet/metal/large_stack,
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/lower_engineering)
 "bDR" = (
@@ -5632,12 +5631,9 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/squads/alpha)
 "bHv" = (
-/obj/machinery/disposal,
-/obj/structure/disposalpipe/trunk{
-	dir = 4
-	},
-/turf/open/floor/plating/plating_catwalk,
-/area/mainship/squads/req)
+/obj/docking_port/stationary/marine_dropship/crash_target,
+/turf/open/floor/mainship/mono,
+/area/mainship/living/cafeteria_starboard)
 "bHE" = (
 /obj/machinery/disposal,
 /obj/structure/disposalpipe/trunk{
@@ -8094,7 +8090,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/engine_core)
 "cKe" = (
-/obj/docking_port/stationary/escape_pod,
+/obj/docking_port/stationary/escape_pod/right,
 /turf/open/floor/plating,
 /area/mainship/hull/starboard_hull)
 "cKR" = (
@@ -8766,6 +8762,10 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/living/cafeteria_port)
+"dVQ" = (
+/obj/docking_port/stationary/marine_dropship/crash_target,
+/turf/open/floor/mainship/sterile/dark,
+/area/mainship/medical/surgery_hallway)
 "dWR" = (
 /obj/structure/table/mainship,
 /obj/machinery/chem_dispenser/soda,
@@ -8964,7 +8964,7 @@
 /area/mainship/medical/lower_medical)
 "ezg" = (
 /obj/machinery/camera/autoname/mainship{
-	dir = 4
+	dir = 1
 	},
 /turf/open/floor/mainship/blue,
 /area/mainship/squads/delta)
@@ -9178,7 +9178,8 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/command/cic)
 "fax" = (
-/obj/structure/disposalpipe/segment{
+/obj/machinery/disposal,
+/obj/structure/disposalpipe/trunk{
 	dir = 4
 	},
 /turf/open/floor/plating/plating_catwalk,
@@ -10879,6 +10880,10 @@
 	dir = 9
 	},
 /area/mainship/medical/medical_science)
+"iOx" = (
+/obj/docking_port/stationary/marine_dropship/crash_target,
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/hangar)
 "iOC" = (
 /obj/machinery/light{
 	dir = 4
@@ -11926,7 +11931,7 @@
 	},
 /area/mainship/hallways/starboard_hallway)
 "lcy" = (
-/obj/docking_port/stationary/escape_pod,
+/obj/docking_port/stationary/escape_pod/right,
 /turf/open/floor/plating,
 /area/mainship/hull/port_hull)
 "lcR" = (
@@ -14547,7 +14552,7 @@
 "qbG" = (
 /obj/docking_port/stationary/marine_dropship/crash_target,
 /turf/open/floor/mainship/mono,
-/area/mainship/hallways/hangar)
+/area/mainship/hallways/stern_hallway)
 "qcF" = (
 /obj/machinery/light/small{
 	dir = 1
@@ -15025,6 +15030,10 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/port_hallway)
+"rcm" = (
+/obj/docking_port/stationary/marine_dropship/crash_target,
+/turf/open/floor/mainship/sterile/dark,
+/area/mainship/medical/medical_science)
 "rcQ" = (
 /obj/machinery/light{
 	dir = 1
@@ -15480,6 +15489,11 @@
 	dir = 8
 	},
 /area/mainship/hallways/hangar/droppod)
+"rYA" = (
+/obj/structure/table/mainship,
+/obj/item/stack/sheet/glass/large_stack,
+/turf/open/floor/mainship/mono,
+/area/mainship/engineering/lower_engineering)
 "rZo" = (
 /obj/machinery/vending/marine/cargo_guns,
 /turf/open/floor/mainship/green{
@@ -16442,16 +16456,8 @@
 /obj/item/stack/sheet/plasteel/medium_stack,
 /obj/item/stack/sheet/metal/large_stack,
 /obj/item/stack/sheet/metal/large_stack,
-/obj/item/stack/sheet/metal{
-	amount = 50;
-	pixel_x = 3;
-	pixel_y = 3
-	},
-/obj/item/stack/sheet/metal{
-	amount = 50;
-	pixel_x = 3;
-	pixel_y = 3
-	},
+/obj/item/stack/sheet/metal/large_stack,
+/obj/item/stack/sheet/metal/large_stack,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "ugn" = (
@@ -16481,11 +16487,6 @@
 	dir = 1
 	},
 /obj/effect/decal/warning_stripes/thin,
-/obj/machinery/door/poddoor/shutters{
-	dir = 2;
-	id = "qm_warehouse";
-	name = "Warehouse Shutters"
-	},
 /turf/open/floor/stairs/rampbottom{
 	dir = 1
 	},
@@ -16527,6 +16528,14 @@
 	dir = 4
 	},
 /area/mainship/medical/lower_medical)
+"utR" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/mainship/green{
+	dir = 5
+	},
+/area/mainship/squads/req)
 "uug" = (
 /obj/item/weapon/gun/pistol/vp70,
 /obj/item/ammo_magazine/pistol/vp70,
@@ -16723,15 +16732,11 @@
 /obj/item/stack/sheet/mineral/phoron{
 	amount = 25
 	},
-/obj/item/stack/sheet/glass{
-	amount = 50;
-	pixel_x = 3;
-	pixel_y = 3
-	},
 /obj/item/stack/sheet/mineral/phoron{
 	amount = 25
 	},
 /obj/item/storage/briefcase/inflatable,
+/obj/item/stack/sheet/glass/large_stack,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "uKt" = (
@@ -17286,10 +17291,11 @@
 	},
 /area/mainship/command/cic)
 "wcO" = (
-/obj/machinery/light{
-	dir = 8
+/obj/machinery/door/firedoor/mainship{
+	dir = 2
 	},
-/turf/open/floor/mainship/mono,
+/obj/structure/window/framed/mainship/requisitions,
+/turf/open/floor/plating,
 /area/mainship/squads/req)
 "weh" = (
 /obj/item/radio/intercom/general{
@@ -18196,6 +18202,10 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/command/cic)
+"yeW" = (
+/obj/docking_port/stationary/marine_dropship/crash_target,
+/turf/open/floor/mainship/sterile/dark,
+/area/mainship/medical/lower_medical)
 "yfa" = (
 /turf/open/floor/mainship/red{
 	dir = 5
@@ -38247,7 +38257,7 @@ bAa
 uEx
 rJN
 bew
-pUu
+qbG
 pUu
 pUu
 pUu
@@ -42879,11 +42889,11 @@ cBe
 ftB
 ugh
 bbQ
-bbQ
+iOx
 kVl
 ack
 ftB
-qbG
+bbQ
 rMK
 sMI
 uns
@@ -49816,7 +49826,7 @@ bke
 acw
 bNM
 fOB
-exI
+yeW
 lMe
 exI
 bHj
@@ -53162,7 +53172,7 @@ bAr
 mQC
 boQ
 boQ
-boQ
+dVQ
 mQC
 fLQ
 hql
@@ -54705,7 +54715,7 @@ blP
 blP
 blP
 yig
-aoz
+rcm
 bBQ
 gJi
 jcP
@@ -58040,7 +58050,7 @@ aey
 biu
 kHU
 buH
-buH
+sUb
 buH
 buH
 abX
@@ -59580,7 +59590,7 @@ aWH
 biu
 bjV
 biu
-bnF
+wcO
 bpq
 buH
 buH
@@ -59837,10 +59847,10 @@ aWH
 aLX
 bjV
 biu
-bnG
+wcO
 bpr
 buH
-buH
+sUb
 bnF
 qiL
 buH
@@ -59850,8 +59860,8 @@ buH
 bAN
 bAM
 buH
-bHv
-bnF
+buH
+nMf
 bJL
 brb
 bMB
@@ -60096,7 +60106,7 @@ bjV
 blj
 bnF
 bnF
-bnF
+wcO
 bnF
 bnF
 qpC
@@ -60353,7 +60363,7 @@ bjV
 biu
 bnG
 kCp
-wcO
+buH
 sPW
 gas
 bwf
@@ -60866,7 +60876,7 @@ biu
 bjV
 biu
 bnG
-jiv
+utR
 bGh
 lQh
 gas
@@ -62147,7 +62157,7 @@ acG
 ahU
 oaW
 aWH
-biu
+kaV
 bjV
 biu
 bnF
@@ -64456,7 +64466,7 @@ bbm
 bdz
 bRg
 bbv
-bbv
+bHv
 bbv
 bbj
 bij
@@ -68842,7 +68852,7 @@ bMT
 evm
 bDQ
 qFT
-bDQ
+rYA
 byp
 bjs
 bHE
