@@ -4,10 +4,6 @@
 	var/unwieldsound
 	flags_item = TWOHANDED
 
-/obj/item/weapon/twohanded/Initialize()
-	. = ..()
-	verbs -= /obj/item/verb/verb_pickup
-
 /obj/item/weapon/twohanded/update_icon()
 	return
 
