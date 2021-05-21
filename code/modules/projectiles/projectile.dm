@@ -636,7 +636,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 /obj/effect/alien/egg/projectile_hit(obj/projectile/proj, cardinal_move, uncrossing)
 	return src == proj.original_target
 
-/obj/effect/alien/resin/trap/projectile_hit(obj/projectile/proj, cardinal_move, uncrossing)
+/obj/structure/xeno/trap/projectile_hit(obj/projectile/proj, cardinal_move, uncrossing)
 	return src == proj.original_target
 
 /obj/item/clothing/mask/facehugger/projectile_hit(obj/projectile/proj, cardinal_move, uncrossing)
