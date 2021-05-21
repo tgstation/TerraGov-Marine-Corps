@@ -44,5 +44,9 @@
 	stamina_holder.toggle_move_intent(MOVE_INTENT_WALK)
 
 
+/datum/component/stamina_behavior/proc/on_move_run(datum/source, atom/oldloc, direction, Forced)
+	SIGNAL_HANDLER
+	if(Forced)
+		return
 	if(stamina_holder.staminaloss >= 0)
 		stamina_holder.toggle_move_intent(MOVE_INTENT_WALK)
