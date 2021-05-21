@@ -215,13 +215,14 @@
 	pounce_delay = 13 SECONDS
 
 	// *** Abilities *** ///
-	actions = list(
+	actions = list(actions = list(
 		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/activable/psydrain,
+		/datum/action/xeno_action/activable/headbite,
+		/datum/action/xeno_action/activable/devour,
 		/datum/action/xeno_action/activable/pounce,
 		/datum/action/xeno_action/toggle_savage,
 		/datum/action/xeno_action/evasion,
-	)
 
 /datum/xeno_caste/roony/young
 	upgrade_name = "Young"
