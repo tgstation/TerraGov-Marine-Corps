@@ -25,6 +25,7 @@
 	if(stamina_state == STAMINA_STATE_ACTIVE)
 		return
 	stamina_state = STAMINA_STATE_ACTIVE
+	RegisterSignal(parent, COMSIG_MOVABLE_MOVED, .proc/on_move_run)
 	RegisterSignal(parent, COMSIG_LIVING_SET_CANMOVE, .proc/on_canmove_change)
 
 
@@ -41,3 +42,7 @@
 	if(canmove || stamina_holder.m_intent == MOVE_INTENT_WALK)
 		return
 	stamina_holder.toggle_move_intent(MOVE_INTENT_WALK)
+
+
+	if(stamina_holder.staminaloss >= 0)
+		stamina_holder.toggle_move_intent(MOVE_INTENT_WALK)
