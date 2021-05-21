@@ -1138,3 +1138,4 @@
 		repair_damage(max_integrity * 0.2) //Each sandbag restores 20% of max health as 5 sandbags = 1 sandbag barricade.
 		user.visible_message("<span class='notice'>[user] replaces a damaged sandbag, repairing [src].</span>",
 		"<span class='notice'>You replace a damaged sandbag, repairing it [src].</span>")
+		update_icon()
