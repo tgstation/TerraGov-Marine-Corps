@@ -253,6 +253,7 @@
 ///Called whenever an item is unequipped to a new loc (IE, not when the item ends up in the hands)
 /obj/item/proc/removed_from_inventory(mob/user)
 	SEND_SIGNAL(src, COMSIG_ITEM_REMOVED_INVENTORY, user)
+	remove_item_verbs(user)
 
 // called just as an item is picked up (loc is not yet changed)
 /obj/item/proc/pickup(mob/user)
@@ -297,6 +298,17 @@
 /obj/item/proc/on_found(mob/finder as mob)
 	return
 
+/obj/item/proc/remove_item_verbs(mob/user)
+	var/list/verbs_to_remove = list()
+	for(var/v in verbs)
+		var/verbstring = "[v]"
+		if(length(user.item_verbs[verbstring]) == 1)
+			if(user.item_verbs[verbstring][1] == src)
+				verbs_to_remove += v
+		LAZYREMOVE(user.item_verbs[verbstring], src)
+	remove_verb(user, verbs_to_remove)
+
+
 // called after an item is placed in an equipment slot
 // user is mob that equipped it
 // slot uses the slot_X defines found in setup.dm
@@ -311,6 +323,13 @@
 		SEND_SIGNAL(src, COMSIG_ITEM_EQUIPPED_TO_SLOT, user, slot)
 	else
 		SEND_SIGNAL(src, COMSIG_ITEM_EQUIPPED_NOT_IN_SLOT, user, slot)
+
+	if(item_action_slot_check(user, slot))
+		add_verb(user, verbs)
+		for(var/v in verbs)
+			LAZYDISTINCTADD(user.item_verbs["[v]"], src)
+	else
+		remove_item_verbs(user)
 
 	for(var/X in actions)
 		var/datum/action/A = X

@@ -91,3 +91,5 @@
 
 	/// Can they interact with station electronics
 	var/has_unlimited_silicon_privilege = 0
+	/// A list of verbs added by the item currently held
+	var/list/item_verbs = list()
