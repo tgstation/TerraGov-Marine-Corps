@@ -88,7 +88,7 @@
 			if(X.is_charging >= CHARGE_ON) // chargers = snow plows
 				slayer = 0
 				update_icon(1, 0)
-	..()
+	return ..()
 
 
 //Update icon
@@ -206,6 +206,5 @@
 /turf/open/floor/plating/ground/snow/layer3
 	icon_state = "snow_3"
 	slayer = 3
-
 
 
