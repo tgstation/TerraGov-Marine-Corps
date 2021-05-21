@@ -555,7 +555,6 @@
 	var/holds_guns_max = 1
 	///The gun it holds, used for referencing later so we can update the icon.
 	var/obj/item/weapon/gun/current_gun
-	///The underlay we will use.
 	var/image/gun_underlay
 	var/sheatheSound = 'sound/weapons/guns/misc/pistol_sheathe.ogg'
 	var/drawSound = 'sound/weapons/guns/misc/pistol_draw.ogg'
