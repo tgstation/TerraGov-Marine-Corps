@@ -130,6 +130,8 @@
 	var/lower_akimbo_accuracy = 1
 
 
+	var/bypass_checks = FALSE
+
 	//Deployed Stats
 
 	///Time it takes to deploy the gun
@@ -587,15 +589,14 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 	
 	if(gun_on_cooldown(gun_user))
 		return
-	if(!deployed) //Skips past many checks if the gun is deployed.
-		if(gun_user.hand && !isgun(gun_user.l_hand) || !gun_user.hand && !isgun(gun_user.r_hand)) // If the object in our active hand is not a gun, abort
-			return
-		if(gun_user.hand && isgun(gun_user.r_hand) || !gun_user.hand && isgun(gun_user.l_hand)) // If we have a gun in our inactive hand too, both guns get innacuracy maluses
-			dual_wield = TRUE
-		if(gun_user.in_throw_mode)
-			return
-		if(gun_user.Adjacent(object)) //Dealt with by attack code
-			return
+	if(gun_user.hand && !isgun(gun_user.l_hand) || !gun_user.hand && !isgun(gun_user.r_hand)) // If the object in our active hand is not a gun, abort
+		return
+	if(gun_user.hand && isgun(gun_user.r_hand) || !gun_user.hand && isgun(gun_user.l_hand)) // If we have a gun in our inactive hand too, both guns get innacuracy maluses
+		dual_wield = TRUE
+	if(gun_user.in_throw_mode)
+		return
+	if(gun_user.Adjacent(object)) //Dealt with by attack code
+		return
 	if(QDELETED(object))
 		return
 	var/list/modifiers = params2list(params)
@@ -751,8 +752,12 @@ and you're good to go.
 //----------------------------------------------------------
 
 /obj/item/weapon/gun/proc/Fire()
-	if(QDELETED(gun_user) || !ismob(gun_user) || !able_to_fire(gun_user) || !target)
+	if(QDELETED(gun_user) || !ismob(gun_user) || !target)
 		return
+
+	if(!bypass_checks)
+		if(!able_to_fire(gun_user))
+			return
 
 	//The gun should return the bullet that it already loaded from the end cycle of the last Fire().
 	var/obj/projectile/projectile_to_fire = load_into_chamber(gun_user) //Load a bullet in or check for existing one.
@@ -773,10 +778,7 @@ and you're good to go.
 
 
 	play_fire_sound(gun_user)
-	if(deployed) //checks where to create the muzzle flash, if its deployed we dont want the flash coming out of the users eyeballs.
-		muzzle_flash(firing_angle, loc)
-	else
-		muzzle_flash(firing_angle, gun_user)
+	muzzle_flash(firing_angle, loc)
 	simulate_recoil(dual_wield, gun_user)
 
 	//This is where the projectile leaves the barrel and deals with projectile code only.
@@ -935,6 +937,7 @@ and you're good to go.
 /obj/item/weapon/gun/proc/able_to_fire(mob/user)
 	if(user.stat != CONSCIOUS || user.lying_angle)
 		return
+
 	if(!user.dextrous)
 		to_chat(user, "<span class='warning'>You don't have the dexterity to do this!</span>")
 		return FALSE
@@ -944,7 +947,7 @@ and you're good to go.
 	if(flags_gun_features & GUN_TRIGGER_SAFETY)
 		to_chat(user, "<span class='warning'>The safety is on!</span>")
 		return FALSE
-	if((flags_gun_features & GUN_WIELDED_FIRING_ONLY) && !(flags_item & WIELDED) && !deployed) //If we're not holding the weapon with both hands when we should. Unless it is deployed.
+	if((flags_gun_features & GUN_WIELDED_FIRING_ONLY) && !(flags_item & WIELDED)) //If we're not holding the weapon with both hands when we should. Unless it is deployed.
 		to_chat(user, "<span class='warning'>You need a more secure grip to fire this weapon!")
 		return FALSE
 	if(LAZYACCESS(user.do_actions, src))
@@ -952,56 +955,10 @@ and you're good to go.
 		return FALSE
 	if((flags_gun_features & GUN_POLICE) && !police_allowed_check(user))
 		return FALSE
-	if((flags_gun_features & GUN_WIELDED_STABLE_FIRING_ONLY) && !wielded_stable() && !deployed)//If we must wait to finish wielding before shooting. This doesnt matter if deployed.
+	if((flags_gun_features & GUN_WIELDED_STABLE_FIRING_ONLY) && !wielded_stable())//If we must wait to finish wielding before shooting. This doesnt matter if deployed.
 		to_chat(user, "<span class='warning'>You need a more secure grip to fire this weapon!")
 		return FALSE
-
-	if(deployed) //begins the check to see if the deployed gun can fire at the selected target.
-		if(!istype(loc, /obj/machinery/mounted))
-			stack_trace("[src] has been deployed yet it is not within a deployed machine.")
-			return FALSE
-		var/obj/machinery/mounted/parent = loc
-		
-		if(user.get_active_held_item()) //makes sure user has a free hand.
-			to_chat(usr, "<span class='warning'>You need a free hand to shoot the [parent].</span>")
-			return FALSE
-		var/mob/parent_user = parent.operator
-		if(user != parent_user)
-			CRASH("able_to_fire called by user ([user]) different from operator ([parent_user]).")
-
-		if(isnull(parent_user.loc) || isnull(parent.loc) || !parent.z || !target?.z == parent.z)
-			return FALSE
-		
-		var/angle = get_dir(parent, target)
-		var/direction = parent.dir
-	
-		if((direction & angle) && target.loc != loc && target.loc != parent_user.loc) //checks if target is in front of the gun, if so it allows firing.
-			parent_user.setDir(direction)
-			return TRUE
-		else if (!(direction & angle) && target.loc != loc && target.loc != parent_user.loc) //Checks if the target is 90 degrees from the gun, if so it rotates the gun to face the target.
-			if(parent.deploy_flags & DEPLOYED_NO_ROTATE)
-				to_chat(parent_user, "This one is anchored in place and cannot be rotated.")
-				return FALSE
-
-			var/list/leftright = LeftAndRightOfDir(direction)
-			var/left = leftright[1] - 1
-			var/right = leftright[2] + 1
-			if(left == (angle-1) || right == (angle+1))
-				var/turf/w = get_step(parent, REVERSE_DIR(angle))
-				if(parent_user.Move(w))
-					playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
-					parent_user.visible_message("<span class='notice'>[parent_user] rotates the [parent].</span>","<span class='notice'>You rotate the [parent].</span>")
-					parent.setDir(angle)
-					parent_user.set_interaction(parent)
-					return FALSE
-				else
-					to_chat(parent_user, "<span class='notice'>You cannot rotate [parent] that way.</span>")
-					return FALSE
-			else //this happens when the target is behind the deployed gun. You must face your enemies when shooting at them!
-				to_chat(parent_user, "<span class='warning'> [parent] cannot be rotated so violently.</span>")
-		return FALSE
 	return TRUE
-
 
 /obj/item/weapon/gun/proc/gun_on_cooldown(mob/user)
 	var/added_delay = fire_delay

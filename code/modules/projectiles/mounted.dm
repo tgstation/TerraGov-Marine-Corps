@@ -42,8 +42,7 @@
 ///Handles variable transfer from the gun, to the machine.
 /obj/machinery/mounted/proc/deploy(obj/item/weapon/gun/new_gun, direction)
 	if(istype(new_gun.current_mag, /obj/item/ammo_magazine/internal) || istype(new_gun, /obj/item/weapon/gun/launcher))
-		stack_trace("[new_gun] has been deployed, however it is incompatible because of either an internal magazine, or it is a launcher.")
-		return
+		CRASH("[new_gun] has been deployed, however it is incompatible because of either an internal magazine, or it is a launcher.")
 	gun = new_gun
 	gun.forceMove(src)
 
@@ -63,6 +62,7 @@
 	icon_empty = gun.deploy_icon_empty ? gun.deploy_icon_empty : icon_state
 
 	gun.deployed = TRUE
+	gun.bypass_checks = TRUE
 
 	setDir(direction)
 	update_icon_state()
@@ -79,6 +79,7 @@
 
 	user.unset_interaction()
 	gun.deployed = FALSE
+	gun.bypass_checks = TRUE
 	gun.deploy_integrity = obj_integrity
 
 	user.put_in_active_hand(gun)
@@ -93,11 +94,6 @@
 		gun = null
 	operator?.unset_interaction()
 	. = ..()
-
-///Left in from old TL-102 code
-/obj/machinery/mounted/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE) // Those Ayy lmaos.
-	SEND_SIGNAL(X, COMSIG_XENOMORPH_ATTACK_M56)
-	return ..()
 
 ///Update health hud when damage is taken
 /obj/machinery/mounted/take_damage(damage_amount, damage_type, damage_flag, effects, attack_dir, armour_penetration)
@@ -132,8 +128,6 @@
 
 	visible_message("[icon2html(src, viewers(src))] <span class='notice'>[human_user] mans the [src]!</span>",
 		"<span class='notice'>You man the gun!</span>")
-
-	operator = human_user
 
 	return ..()
 
@@ -224,19 +218,149 @@
 
 ///Sets the user as manning the internal gun
 /obj/machinery/mounted/on_set_interaction(mob/user)
-	. = ..()
 	operator = user
+
+	. = ..()
+
+	if(!gun)
+		CRASH("[src] has been deployed and attempted interaction with [user] without having a gun. This shouldn't happen.")
+	
+	
+
+	RegisterSignal(operator, COMSIG_MOB_MOUSEDOWN, .proc/start_fire)
+	gun.RegisterSignal(operator, COMSIG_MOB_MOUSEUP, /obj/item/weapon/gun/proc/stop_fire)
+	RegisterSignal(operator, COMSIG_MOB_MOUSEDRAG, .proc/change_target)
+
+	for(var/X in gun.actions)
+		var/datum/action/A = X
+		A.give_action(operator)
+	var/obj/screen/ammo/hud = operator.hud_used.ammo
+	gun.hud_enabled ? hud.add_hud(operator) : hud.remove_hud(operator)
+	hud.update_hud(operator)
+
+	gun.gun_user = operator
+
 	update_view(operator)
-	gun.manned(operator)
+
+
+/obj/machinery/mounted/proc/start_fire(datum/source, atom/object, turf/location, control, params)
+	SIGNAL_HANDLER
+
+	if(gun.gun_on_cooldown(operator))
+		return
+
+	if(QDELETED(object))
+		return
+
+	var/target = object
+
+	var/list/modifiers = params2list(params)
+	if(istype(target, /obj/screen))
+		if(!istype(target, /obj/screen/click_catcher))
+			return
+		//Happens when you click a black tile
+		target = params2turf(modifiers["screen-loc"], get_turf(operator), operator.client)
+
+	if(!can_fire(target))
+		return
+
+	gun.set_target(target)
+
+	if(modifiers["right"] || modifiers["middle"] || modifiers["shift"])
+		if(gun.active_attachable?.flags_attach_features & ATTACH_WEAPON)
+			gun.do_fire_attachment()
+		return
+	if(gun.gun_firemode == GUN_FIREMODE_SEMIAUTO)
+		if(!gun.Fire(TRUE) || gun.windup_checked == WEAPON_WINDUP_CHECKING)
+			return
+		gun.reset_fire()
+		return
+	gun.gun_user.client.mouse_pointer_icon = 'icons/effects/supplypod_target.dmi'
+	SEND_SIGNAL(gun, COMSIG_GUN_FIRE)
+
+obj/machinery/mounted/proc/change_target(datum/source, atom/src_object, atom/over_object, turf/src_location, turf/over_location, src_control, over_control, params)
+	SIGNAL_HANDLER
+	if(istype(over_object, /obj/screen))
+		if(!istype(over_object, /obj/screen/click_catcher))
+			return
+		var/list/modifiers = params2list(params)
+		over_object = params2turf(modifiers["screen-loc"], get_turf(operator), operator.client)
+
+	if(!can_fire(over_object))
+		return
+
+	gun.set_target(over_object)
+	operator.face_atom(over_object)
+
+/obj/machinery/mounted/proc/can_fire(atom/object)
+
+	if(operator.lying_angle || !Adjacent(operator) || operator.incapacitated() || get_step(src, REVERSE_DIR(dir)) != operator.loc)
+		operator.unset_interaction()
+		return FALSE
+	if(operator.get_active_held_item())
+		to_chat(operator, "<span class='warning'>You need a free hand to shoot the [src].</span>")
+		return FALSE
+
+	var/atom/target = object
+
+	if(!istype(target))
+		return FALSE
+
+	if(isnull(operator.loc) || isnull(loc) || !z || !target?.z == z)
+		return FALSE
+
+
+	var/angle = get_dir(src, target)
+	var/direction = dir
+	//we can only fire in a 90 degree cone
+	if((direction & angle) && target.loc != loc && target.loc != operator.loc)
+		operator.setDir(direction)
+		gun.set_target(target)
+		return TRUE
+	else if (!(direction & angle) && target.loc != loc && target.loc != operator.loc) // Let us rotate this stuff.
+		if(deploy_flags & DEPLOYED_NO_ROTATE)
+			to_chat(operator, "This one is anchored in place and cannot be rotated.")
+			return FALSE
+
+		var/list/leftright = LeftAndRightOfDir(direction)
+		var/left = leftright[1] - 1
+		var/right = leftright[2] + 1
+		if(left == (angle-1) || right == (angle+1))
+			var/turf/w = get_step(src, REVERSE_DIR(angle))
+			if(operator.Move(w))
+				operator.set_interaction(src)
+				playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
+				operator.visible_message("[operator] rotates the [src].","You rotate the [src].")
+				setDir(angle)
+			else
+				to_chat(operator, "You cannot rotate [src] that way.")
+				return FALSE
+		else
+			to_chat(operator, "<span class='warning'> [src] cannot be rotated so violently.</span>")
+	return FALSE
+
 
 ///Unsets the user from manning the internal gun
 /obj/machinery/mounted/on_unset_interaction(mob/user)
-	if(user.client)
-		user.client.change_view(WORLD_VIEW)
-		user.client.pixel_x = 0
-		user.client.pixel_y = 0
+	if(!operator)
+		return
+
+	UnregisterSignal(operator, list(COMSIG_MOB_MOUSEDOWN, COMSIG_MOB_MOUSEUP, COMSIG_MOB_MOUSEDRAG))
+
+	for(var/X in gun.actions)
+		var/datum/action/A = X
+		A.remove_action(operator)
+	var/obj/screen/ammo/hud = operator.hud_used.ammo
+	hud.remove_hud(operator)
+
+	if(operator.client)	
+		operator.client.change_view(WORLD_VIEW)
+		operator.client.pixel_x = 0
+		operator.client.pixel_y = 0
+		operator.client.mouse_pointer_icon = initial(operator.client.mouse_pointer_icon)
+
 	operator = null
-	gun?.un_man()
+	gun?.gun_user = null
 
 ///makes sure you can see and or use the gun
 /obj/machinery/mounted/check_eye(mob/user)
