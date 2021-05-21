@@ -147,14 +147,6 @@
 
 // the smaller bulb light fixture
 
-/obj/machinery/light/Initialize(mapload, ...)
-	. = ..()
-	GLOB.nightfall_toggleable_lights += src
-
-/obj/machinery/light/Destroy()
-	. = ..()
-	GLOB.nightfall_toggleable_lights -= src
-
 /obj/machinery/light/small
 	icon_state = "bulb1"
 	base_state = "bulb"
@@ -218,7 +210,7 @@
 
 /obj/machinery/light/update_icon()
 	switch(status)		// set icon_states
-		if(LIGHT_OK, LIGHT_DISABLED)
+		if(LIGHT_OK)
 			icon_state = "[base_state][light_on]"
 		if(LIGHT_EMPTY)
 			icon_state = "[base_state]-empty"
@@ -229,8 +221,8 @@
 	return
 
 // update the icon_state and luminosity of the light depending on its state
-/obj/machinery/light/proc/update(trigger = TRUE)
-	if(status == LIGHT_OK)
+/obj/machinery/light/proc/update(trigger = TRUE, toggle_on = TRUE)
+	if(status == LIGHT_OK && toggle_on)
 		var/BR = brightness
 		var/PO = bulb_power
 		var/CO = bulb_colour
@@ -257,15 +249,12 @@
 
 // attempt to set the light's on/off status
 // will not switch on if broken/burned/empty
-/obj/machinery/light/turn_light(mob/user, toggle_on, forced = FALSE)
-	if ((status != LIGHT_DISABLED) & (status != LIGHT_OK)) //Can't turn a broken light
+/obj/machinery/light/turn_light(mob/user, toggle_on)
+	if (status != LIGHT_OK) //Can't turn a broken light
 		return
 	. = ..()
-	if(. != CHECKS_PASSED)
-		return
-
-	status = toggle_on ? LIGHT_OK : LIGHT_DISABLED 
-	update()
+	light_on = toggle_on
+	update(TRUE, toggle_on)
 
 // examine verb
 /obj/machinery/light/examine(mob/user)
