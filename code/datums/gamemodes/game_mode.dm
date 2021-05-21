@@ -5,6 +5,8 @@
 	var/required_players = 0
 	var/maximum_players = INFINITY
 	var/squads_max_number = 4
+	///Determines whether rounds with the gamemode will be factored in when it comes to persistency
+	var/allow_persistence_save = TRUE
 
 	var/round_finished
 	var/list/round_end_states = list()
@@ -149,6 +151,9 @@
 /datum/game_mode/proc/declare_completion()
 	log_game("The round has ended.")
 	SSdbcore.SetRoundEnd()
+	//Collects persistence features
+	if(allow_persistence_save)
+		SSpersistence.CollectData()
 	end_of_round_deathmatch()
 	return TRUE
 

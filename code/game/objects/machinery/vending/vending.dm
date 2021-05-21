@@ -167,6 +167,8 @@
 	// so if slogantime is 10 minutes, it will say it at somewhere between 10 and 20 minutes after the machine is crated.
 	last_slogan = world.time + rand(0, slogan_delay)
 
+	products["Seasonal"] = SSpersistence.current_guns()
+
 	if(isshared)
 		build_shared_inventory()
 	else

@@ -209,6 +209,7 @@
 		/obj/item/storage/box/visual/magazine = 30,
 		/obj/item/storage/box/visual/grenade = 10,
 		),
+		"Seasonal" = list()
 	)
 
 
