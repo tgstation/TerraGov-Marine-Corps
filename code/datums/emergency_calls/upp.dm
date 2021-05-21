@@ -2,7 +2,6 @@
 	name = "USL Pirate Band"
 	base_probability = 0
 	shuttle_id = "distress_upp"
-	spawn_type = /mob/living/carbon/human/species/moth
 
 
 /datum/emergency_call/upp/print_backstory(mob/living/carbon/human/H)
@@ -62,7 +61,7 @@
 	name = "USL Pirate Band (Human vs. Human)"
 	base_probability = 0
 	shuttle_id = "distress_upp"
-	spawn_type = /mob/living/carbon/human/species/moth
+	spawn_type = /mob/living/carbon/human/species
 
 
 /datum/emergency_call/upphvh/print_backstory(mob/living/carbon/human/H)
@@ -118,6 +117,7 @@
 	H.apply_assigned_role_to_spawn(J)
 	to_chat(H, "<p style='font-size:1.5em'><span class='notice'>You are a member of the USL pirate band to respond to the TGMC distress signal sent nearby. Do not forget your training, stand tall with your other pirates!</span></p>")
 
-/datum/emergency_call/upphvh/human
+/*
+/datum/emergency_call/upphvh/moth
 	name = "USL Human Pirate Band (Human vs. Human)"
-	spawn_type = /mob/living/carbon/human
+	spawn_type = /mob/living/carbon/human/moth*/
