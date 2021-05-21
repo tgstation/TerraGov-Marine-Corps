@@ -1,10 +1,7 @@
 name: Automatic Approve Workflows
 on:
   schedule: 
-    - cron:  "*/10 * * * *"
-  pull_request:
-    branches:
-    - master
+    - cron: "*/10 * * * *"
 jobs:
   automatic-approve:
     name: Automatic Approve Workflows
