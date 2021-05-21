@@ -63,19 +63,19 @@
 	icon_state = "t12"
 	w_class = WEIGHT_CLASS_NORMAL
 	default_ammo = /datum/ammo/bullet/rifle
-	max_rounds = 50
+	max_rounds = 60
 	gun_type = /obj/item/weapon/gun/rifle/standard_assaultrifle
 	icon_state_mini = "mag_rifle_big"
 
 /obj/item/ammo_magazine/box10x24mm
 	name = "box of 10x24mm"
-	desc = "A box containing 150 rounds of 10x24mm caseless.."
+	desc = "A box containing 180 rounds of 10x24mm caseless.."
 	caliber = CALIBER_10X24_CASELESS
 	icon_state = "box_10x24mm"
 	w_class = WEIGHT_CLASS_NORMAL
 	default_ammo = /datum/ammo/bullet/rifle
-	current_rounds = 150
-	max_rounds = 150
+	current_rounds = 180
+	max_rounds = 180
 	icon_state_mini = "ammo_packet"
 
 //-------------------------------------------------------

@@ -114,7 +114,7 @@
 	unload_sound = 'sound/weapons/guns/interact/t18_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/t18_reload.ogg'
 	caliber = CALIBER_10X24_CASELESS //codex
-	max_shells = 50 //codex
+	max_shells = 60 //codex
 	force = 20
 	current_mag = /obj/item/ammo_magazine/rifle/standard_assaultrifle
 	attachable_allowed = list(
