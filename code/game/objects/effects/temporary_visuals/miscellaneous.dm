@@ -96,7 +96,7 @@
 /obj/effect/temp_visual/order
 	icon = 'icons/Marine/marine-items.dmi'
 	var/icon_state_on
-	hud_possible = list(SQUAD_HUD, SQUAD_HUD_REBEL)
+	hud_possible = list(SQUAD_HUD_LOYALIST, SQUAD_HUD_REBEL)
 	duration = ORDER_DURATION
 	layer = TURF_LAYER
 
@@ -127,7 +127,7 @@
 
 ///Set visuals for the hud
 /obj/effect/temp_visual/order/proc/set_visuals(faction)
-	var/hud_type = faction == FACTION_TERRAGOV ? SQUAD_HUD : SQUAD_HUD_REBEL
+	var/hud_type = faction == FACTION_TERRAGOV ? SQUAD_HUD_LOYALIST : SQUAD_HUD_REBEL
 	var/image/holder = hud_list[hud_type]
 	if(!holder)
 		return

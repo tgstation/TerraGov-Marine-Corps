@@ -8,7 +8,7 @@
 #define WANTED_HUD					"wanted_hud" // wanted, released, parroled, security status
 #define XENO_EMBRYO_HUD				"xeno_embryo_hud" // xeno larval stage.
 #define HEALTH_HUD_XENO				"xeno_health_hud" //health HUD for xenos
-#define SQUAD_HUD					"squad_hud" //squad hud showing who's leader, corpsman, etc for each squad.
+#define SQUAD_HUD_LOYALIST			"squad_hud_loyalist" //squad hud showing who's leader, corpsman, etc for each squad.
 #define SQUAD_HUD_REBEL				"squad_hud_rebel" //squad hud showing who's leader, corpsman, etc for each squad.
 #define PLASMA_HUD					"xeno_plasma_hud" //indicates the plasma level of xenos.
 #define PHEROMONE_HUD				"xeno_pheromone_hud" //indicates which pheromone is active on a xeno.

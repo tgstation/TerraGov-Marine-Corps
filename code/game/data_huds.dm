@@ -438,7 +438,7 @@
 
 
 /datum/atom_hud/squad
-	hud_icons = list(SQUAD_HUD, MACHINE_HEALTH_HUD, SENTRY_AMMO_HUD)
+	hud_icons = list(SQUAD_HUD_LOYALIST, MACHINE_HEALTH_HUD, SENTRY_AMMO_HUD)
 
 /datum/atom_hud/squad_rebel
 	hud_icons = list(SQUAD_HUD_REBEL, MACHINE_HEALTH_HUD, SENTRY_AMMO_HUD)
@@ -449,7 +449,7 @@
 
 
 /mob/living/carbon/human/hud_set_job(faction = FACTION_TERRAGOV)
-	var/hud_type = faction == FACTION_TERRAGOV ? SQUAD_HUD : SQUAD_HUD_REBEL
+	var/hud_type = faction == FACTION_TERRAGOV ? SQUAD_HUD_LOYALIST : SQUAD_HUD_REBEL
 	var/image/holder = hud_list[hud_type]
 	holder.icon_state = ""
 	holder.overlays.Cut()
