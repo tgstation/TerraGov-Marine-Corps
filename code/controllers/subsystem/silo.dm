@@ -7,8 +7,6 @@ SUBSYSTEM_DEF(silo)
 	var/larva_rate_boost = 1
 	///How many larva points are added every minutes in total
 	var/current_larva_spawn_rate = 0
-	///How many psych points one corrupted generator gives
-	var/corrupted_gen_output
 
 /datum/controller/subsystem/silo/Initialize(timeofday)
 	RegisterSignal(SSdcs, list(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_XENO_HIVEMIND, COMSIG_GLOB_OPEN_SHUTTERS_EARLY, COMSIG_GLOB_TADPOLE_LAUNCHED), .proc/start_spawning)
@@ -21,11 +19,10 @@ SUBSYSTEM_DEF(silo)
 		current_larva_spawn_rate += silo.larva_spawn_rate
 	current_larva_spawn_rate *= larva_rate_boost
 	xeno_job.add_job_points(current_larva_spawn_rate, SILO_ORIGIN)
-	corrupted_gen_output = TGS_CLIENT_COUNT * BASE_PSYCH_POINT_OUTPUT
 
 ///Activate the subsystem when shutters open and remove the free spawning when marines are joining
 /datum/controller/subsystem/silo/proc/start_spawning()
 	SIGNAL_HANDLER
 	UnregisterSignal(SSdcs, list(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_XENO_HIVEMIND, COMSIG_GLOB_OPEN_SHUTTERS_EARLY, COMSIG_GLOB_TADPOLE_LAUNCHED))
-	if(SSticker.mode?.flags_round_type & MODE_PSY_POINTS_ROUNDSTART)
+	if(SSticker.mode?.flags_round_type & MODE_SILO_RESPAWN)
 		can_fire = TRUE

@@ -93,7 +93,8 @@ SUBSYSTEM_DEF(points)
 		cost += SP.cost
 	if(cost > supply_points[user.faction])
 		return
-	if(length(shoppinglist) >= SSshuttle.supply?.return_number_of_turfs())
+	var/obj/docking_port/mobile/supply_shuttle = SSshuttle.getShuttle("supply")
+	if(length(shoppinglist) >= supply_shuttle.return_number_of_turfs())
 		return
 	requestlist -= "[O.id]"
 	deniedrequests -= "[O.id]"
