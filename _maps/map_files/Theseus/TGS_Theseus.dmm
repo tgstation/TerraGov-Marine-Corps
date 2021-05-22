@@ -1704,6 +1704,7 @@
 	},
 /area/mainship/medical/medical_science)
 "avz" = (
+/obj/docking_port/stationary/marine_dropship/crash_target,
 /turf/open/floor/mainship/research/containment/floor1,
 /area/mainship/medical/medical_science)
 "avA" = (
@@ -8105,6 +8106,10 @@
 /obj/docking_port/stationary/escape_pod/right,
 /turf/open/floor/plating,
 /area/mainship/hull/starboard_hull)
+"cKy" = (
+/obj/docking_port/stationary/marine_dropship/crash_target,
+/turf/open/floor/mainship/floor,
+/area/mainship/squads/alpha)
 "cKR" = (
 /obj/machinery/portable_atmospherics/hydroponics,
 /obj/item/seeds/goldappleseed,
@@ -10428,6 +10433,10 @@
 	dir = 6
 	},
 /area/mainship/shipboard/firing_range)
+"hFp" = (
+/obj/docking_port/stationary/marine_dropship/crash_target,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/living/starboard_emb)
 "hFz" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/structure/cable,
@@ -11766,6 +11775,15 @@
 	dir = 8
 	},
 /area/mainship/medical/operating_room_one)
+"kFZ" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
+	},
+/obj/docking_port/stationary/marine_dropship/crash_target,
+/turf/open/floor/mainship/orange{
+	dir = 8
+	},
+/area/mainship/living/cryo_cells)
 "kGl" = (
 /obj/machinery/door/firedoor/mainship{
 	dir = 2
@@ -38327,7 +38345,7 @@ pUu
 pUu
 pUu
 pUu
-pUu
+qbG
 uYp
 uYp
 uYp
@@ -42441,7 +42459,7 @@ bGR
 bGR
 mJs
 xRU
-bbQ
+iOx
 uns
 uns
 uns
@@ -43978,7 +43996,7 @@ bdW
 cwV
 cjU
 bbQ
-bbQ
+iOx
 bbQ
 bbQ
 bbQ
@@ -47583,7 +47601,7 @@ bbQ
 bzR
 bzR
 bbQ
-bbQ
+iOx
 bbQ
 bbQ
 bbQ
@@ -49897,7 +49915,7 @@ exI
 bAv
 loZ
 uta
-exI
+yeW
 exI
 bHj
 exI
@@ -56815,7 +56833,7 @@ aZK
 wKn
 aZG
 bcv
-baR
+hFp
 xae
 jWy
 qhO
@@ -59639,7 +59657,7 @@ aaj
 aWH
 aXi
 iJv
-iJv
+cKy
 bdC
 oka
 bHs
@@ -60686,7 +60704,7 @@ brk
 hCr
 gas
 bwf
-buH
+sUb
 buH
 buH
 vda
@@ -65056,7 +65074,7 @@ byk
 bzv
 bwr
 byk
-bzv
+kFZ
 bAP
 mIL
 bDI
@@ -66072,7 +66090,7 @@ bbv
 bbv
 bbv
 uBU
-bbv
+bHv
 bij
 biu
 bkn
