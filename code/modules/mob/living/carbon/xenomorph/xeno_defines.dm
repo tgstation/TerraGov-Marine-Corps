@@ -246,7 +246,7 @@
 	var/sunder = 0 // sunder affects armour values and does a % removal before dmg is applied. 50 sunder == 50% effective armour values
 	var/fire_resist_modifier = 0
 
-	var/obj/structure/tunnel/start_dig = null
+	var/obj/structure/xeno/tunnel/start_dig = null
 	var/datum/ammo/xeno/ammo = null //The ammo datum for our spit projectiles. We're born with this, it changes sometimes.
 	var/pslash_delay = 0
 
@@ -327,7 +327,7 @@
 
 	var/fire_luminosity = 0 //Luminosity of the current fire while burning
 
-	///The xenos/silo currently tracked by the xeno_tracker arrow
+	///The xenos/silo/nuke currently tracked by the xeno_tracker arrow
 	var/tracked
 
 	COOLDOWN_DECLARE(xeno_health_alert_cooldown)

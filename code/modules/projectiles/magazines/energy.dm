@@ -99,5 +99,6 @@
 	desc = "A specialized high density battery used to power most standard marine laser guns. It is simply known as the TE power cell."
 	base_ammo_icon = "te"
 	icon_state = "te"
+	icon_state_mini = "mag_cell_te"
 	maxcharge = 600
 	gun_type = /obj/item/weapon/gun/energy/lasgun

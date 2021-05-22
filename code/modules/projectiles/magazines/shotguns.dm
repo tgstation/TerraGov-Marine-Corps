@@ -64,6 +64,16 @@ one type of shotgun ammo, but I think it helps in referencing it. ~N
 	w_class = WEIGHT_CLASS_SMALL // CAN throw it in your pocket, friend.
 	icon_state_mini = "mosin"
 
+/obj/item/ammo_magazine/rifle/martini
+	name = "box of .557/440 rifle rounds"
+	desc = "A box filled with rifle bullets."
+	icon_state = ".557"
+	default_ammo = /datum/ammo/bullet/sniper/martini
+	caliber = CALIBER_557
+	gun_type = /obj/item/weapon/gun/shotgun/double/martini
+	max_rounds = 20
+	w_class = WEIGHT_CLASS_SMALL
+
 /obj/item/ammo_magazine/shotgun/mbx900
 	name = "box of .410 sabot shells"
 	desc = "A box filled with .410 sabot rounds."
@@ -117,6 +127,13 @@ also doesn't really matter. You can only reload them with handfuls.
 	default_ammo = /datum/ammo/bullet/sniper/svd
 	caliber = CALIBER_762X54
 	max_rounds = 5
+
+/obj/item/ammo_magazine/internal/shotgun/martini
+	name = "internal chamber"
+	default_ammo = /datum/ammo/bullet/sniper/martini
+	caliber = ".557/440"
+	max_rounds = 1
+	chamber_closed = 1
 
 /obj/item/ammo_magazine/internal/shotgun/pump/lever
 	name = "tubular magazine"

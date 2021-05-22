@@ -500,7 +500,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 // ***************************************
 /datum/action/xeno_action/activable/banish
 	name = "Banish"
-	action_icon_state = "banish"
+	action_icon_state = "Banish"
 	mechanics_text = "We banish a target object or creature within line of sight to nullspace for a short duration. Can target onself and allies. Non-friendlies are banished for half as long."
 	use_state_flags = XACT_TARGET_SELF
 	plasma_cost = 100
@@ -665,7 +665,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 // ***************************************
 /datum/action/xeno_action/recall
 	name = "Recall"
-	action_icon_state = "recall"
+	action_icon_state = "Recall"
 	mechanics_text = "We recall a target we've banished back from the depths of nullspace."
 	use_state_flags = XACT_USE_NOTTURF|XACT_USE_STAGGERED|XACT_USE_INCAP|XACT_USE_LYING //So we can recall ourselves from nether Brazil
 	cooldown_timer = 1 SECONDS //Token for anti-spam
