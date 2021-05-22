@@ -23,7 +23,7 @@ SUBSYSTEM_DEF(persistence)
 	///Items that have been selected for the current round for each season
 	var/list/season_items = list()
 	///Available gun seasons
-	var/list/seasons_buckets = list(
+	var/static/list/seasons_buckets = list(
 		SEASONAL_GUNS = list(
 		/datum/season_datum/weapons/guns/sadar_event,
 		/datum/season_datum/weapons/guns/wp_event
