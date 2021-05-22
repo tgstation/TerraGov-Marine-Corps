@@ -14933,9 +14933,6 @@
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/engineering/upper_engineering)
-"XD" = (
-/turf/closed/wall/mainship,
-/area/mainship/medical/medical_science)
 "XF" = (
 /obj/structure/closet/crate/alpha,
 /turf/open/floor/mainship/mono,
@@ -39901,7 +39898,7 @@ oO
 pd
 pA
 ir
-XD
+uM
 iS
 jB
 lL
@@ -40158,7 +40155,7 @@ oP
 pe
 pA
 ir
-XD
+uM
 iY
 jE
 lR
@@ -40415,7 +40412,7 @@ nS
 pf
 lr
 ir
-XD
+uM
 lk
 pS
 jA
@@ -40672,7 +40669,7 @@ iV
 iV
 jp
 nD
-XD
+uM
 uM
 kh
 jA
