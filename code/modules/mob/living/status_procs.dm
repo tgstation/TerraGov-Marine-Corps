@@ -656,7 +656,7 @@
 ///This is where we normalize the set_slowdown input to be at least 0
 /mob/living/proc/adjust_slowdown(amount)
 	if(amount > 0)
-		if(HAS_TRAIT(src, TRAIT_SLOWDOWNIMMUNE)) //We're immune to slowdown
+		if(HAS_TRAIT(src, TRAIT_SLOWDOWNIMMUNE))
 			return slowdown
 		set_slowdown(max(slowdown, amount)) //Slowdown overlaps rather than stacking.
 	else
@@ -664,7 +664,7 @@
 	return slowdown
 
 /mob/living/proc/add_slowdown(amount, capped = 0)
-	if(HAS_TRAIT(src, TRAIT_SLOWDOWNIMMUNE)) //We're immune to slowdown
+	if(HAS_TRAIT(src, TRAIT_SLOWDOWNIMMUNE))
 		return
 	adjust_slowdown(amount * STANDARD_SLOWDOWN_REGEN)
 
@@ -675,8 +675,8 @@
 	return slowdown
 
 /mob/living/carbon/xenomorph/add_slowdown(amount)
-	if(is_charging >= CHARGE_ON) //If we're charging we're immune to slowdown.
+	if(is_charging >= CHARGE_ON)
 		return
-	if(HAS_TRAIT(src, TRAIT_SLOWDOWNIMMUNE)) //We're immune to slowdown
+	if(HAS_TRAIT(src, TRAIT_SLOWDOWNIMMUNE))
 		return
 	adjust_slowdown(amount * XENO_SLOWDOWN_REGEN)
