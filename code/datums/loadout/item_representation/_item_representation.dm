@@ -36,7 +36,7 @@
  */
 /datum/item_representation/storage
 	/// The contents in the storage
-	var/contents = list()
+	var/list/contents = list()
 
 /datum/item_representation/storage/New(obj/item/item_to_copy)
 	if(!item_to_copy)
