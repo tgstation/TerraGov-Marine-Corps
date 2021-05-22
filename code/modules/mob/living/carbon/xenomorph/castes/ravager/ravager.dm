@@ -35,20 +35,12 @@
 // ***************************************
 /mob/living/carbon/xenomorph/ravager/get_crit_threshold()
 	. = ..()
-	if(!ignore_pain)
+	if(!endure)
 		return
-	if(ignore_pain_state == 0 && health < .)
-		emote("roar")
-		to_chat(src, "<span class='xenohighdanger' style='color: red;'>Our body becomes weak, we won't be able to withstand this much longer.</span>")
-		ignore_pain_state++
-	return -INFINITY
+	return RAVAGER_ENDURE_HP_LIMIT
 
 /mob/living/carbon/xenomorph/ravager/get_death_threshold()
 	. = ..()
-	if(!ignore_pain)
+	if(!endure)
 		return
-	if(ignore_pain_state == 1 && health < .)
-		emote("roar")
-		to_chat(src, "<span class='xenohighdanger' style='color: red;'>We've taken too much damage and surpassed our limits, we now look forward to the sweet embrace of death.</span>")
-		ignore_pain_state++
-	return . * 3
+	return RAVAGER_ENDURE_HP_LIMIT

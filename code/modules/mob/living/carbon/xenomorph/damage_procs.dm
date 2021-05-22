@@ -163,28 +163,29 @@
 
 
 /mob/living/carbon/xenomorph/adjustBruteLoss(amount, updating_health = FALSE)
+
 	var/list/amount_mod = list()
 	SEND_SIGNAL(src, COMSIG_XENOMORPH_BRUTE_DAMAGE, amount, amount_mod)
 	for(var/i in amount_mod)
 		amount -= i
 
-	bruteloss = clamp(bruteloss + amount, 0, maxHealth - xeno_caste.crit_health)
+	bruteloss = max(bruteloss + amount, 0)
 
 	if(updating_health)
 		updatehealth()
 
 
 /mob/living/carbon/xenomorph/adjustFireLoss(amount, updating_health = FALSE)
+
 	var/list/amount_mod = list()
 	SEND_SIGNAL(src, COMSIG_XENOMORPH_BURN_DAMAGE, amount, amount_mod)
 	for(var/i in amount_mod)
 		amount -= i
 
-	fireloss = clamp(fireloss + amount, 0, maxHealth - xeno_caste.crit_health)
+	fireloss = max(fireloss + amount, 0)
 
 	if(updating_health)
 		updatehealth()
-
 
 /mob/living/carbon/xenomorph/proc/check_blood_splash(damage = 0, damtype = BRUTE, chancemod = 0, radius = 1)
 	if(!damage)
