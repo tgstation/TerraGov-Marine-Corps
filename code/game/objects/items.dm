@@ -354,7 +354,7 @@
 	SEND_SIGNAL(src, COMSIG_ITEM_UNEQUIPPED, unequipper, slot)
 
 	var/equipped_from_slot = flags_equip_slot & slotdefine2slotbit(slot)
-	remove_item_verbs(user)
+	remove_item_verbs(unequipper)
 	for(var/X in actions)
 		var/datum/action/A = X
 		A.remove_action(unequipper)
