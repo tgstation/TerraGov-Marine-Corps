@@ -44,9 +44,6 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	///datum used when sending a defend order
 	var/datum/action/innate/order/defend_order/send_defend_order
 
-/obj/machinery/computer/camera_advanced/overwatch/rebel
-	faction = FACTION_TERRAGOV_REBEL
-
 /obj/machinery/computer/camera_advanced/overwatch/Initialize()
 	. = ..()
 	send_attack_order = new
@@ -85,6 +82,8 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 /obj/machinery/computer/camera_advanced/overwatch/delta
 	name = "Delta Overwatch Console"
 
+/obj/machinery/computer/camera_advanced/overwatch/rebel
+	faction = FACTION_TERRAGOV_REBEL
 /obj/machinery/computer/camera_advanced/overwatch/rebel/main
 	icon_state = "overwatch_main"
 	name = "Main Overwatch Console"
