@@ -50,8 +50,8 @@ OPERATIONS
 /datum/supply_packs/operations/cas_flares
 	name = "CAS flare pack"
 	contains = list(/obj/item/storage/box/m94/cas)
-	cost = 10
 	available_against_xeno_only = TRUE
+	cost = 5
 
 /datum/supply_packs/operations/binoculars_regular
 	name = "binoculars"
@@ -76,14 +76,9 @@ OPERATIONS
 	available_against_xeno_only = TRUE
 
 /datum/supply_packs/operations/flares
-	name = "2 flare packs"
-	notes = "Contains 14 flares"
-	contains = list(
-		/obj/item/storage/box/m94,
-		/obj/item/storage/box/m94,
-	)
-	cost = 2
-
+	name = "flare packs"
+	contains = list(/obj/item/storage/box/m94)
+	cost = 1
 /datum/supply_packs/operations/tarps
 	name = "V1 thermal-dampening tarp"
 	contains = list(/obj/item/bodybag/tarp)
@@ -92,12 +87,8 @@ OPERATIONS
 
 /datum/supply_packs/operations/deployablecams
 	name = "3 Deployable Cameras"
-	contains = list(
-		/obj/item/deployable_camera,
-		/obj/item/deployable_camera,
-		/obj/item/deployable_camera,
-	)
-	cost = 6
+	contains = list(/obj/item/deployable_camera)
+	cost = 2
 
 /datum/supply_packs/operations/exportpad
 	name = "ASRS Bluespace Export Point"
@@ -261,15 +252,8 @@ WEAPONS
 
 /datum/supply_packs/weapons/rpgoneuse
 	name = "T-72 RPGs"
-	contains = list(
-		/obj/item/weapon/gun/launcher/rocket/oneuse,
-		/obj/item/weapon/gun/launcher/rocket/oneuse,
-		/obj/item/weapon/gun/launcher/rocket/oneuse,
-		/obj/item/weapon/gun/launcher/rocket/oneuse,
-		/obj/item/weapon/gun/launcher/rocket/oneuse,
-	)
-	notes = "Contains 5."
-	cost = 50
+	contains = list(/obj/item/weapon/gun/launcher/rocket/oneuse)
+	cost = 10
 	available_against_xeno_only = TRUE
 
 /datum/supply_packs/weapons/mateba
@@ -462,58 +446,11 @@ AMMO
 	)
 	cost = 10
 
-/datum/supply_packs/ammo/boxslug
-	name = "Slug Ammo Box"
-	contains = list(/obj/item/shotgunbox)
-	cost = 20
-	available_against_xeno_only = TRUE
-
-/datum/supply_packs/ammo/boxbuckshot
-	name = "Buckshot Ammo Box"
-	contains = list(/obj/item/shotgunbox/buckshot)
-	cost = 20
-	available_against_xeno_only = TRUE
-
-/datum/supply_packs/ammo/boxflechette
-	name = "Flechette Ammo Box"
-	contains = list(/obj/item/shotgunbox/flechette)
-	cost = 20
-	available_against_xeno_only = TRUE
-
-/datum/supply_packs/ammo/boxcarbine
-	name = "T-18 Carbine Ammo Box"
-	contains = list(/obj/item/ammobox)
-	cost = 20
-
-/datum/supply_packs/ammo/boxrifle
-	name = "T-12 Assault Rifle Ammo Box"
-	contains = list(/obj/item/ammobox/standard_rifle)
-	cost = 20
-
-/datum/supply_packs/ammo/boxsmg
-	name = "T-90 SMG Ammo Box"
-	contains = list(/obj/item/ammobox/standard_smg)
-	cost = 20
-
-/datum/supply_packs/ammo/boxmachpistol
-	name = "T-19 Machine Pistol Ammo Box"
-	contains = list(/obj/item/ammobox/standard_machinepistol)
-	cost = 20
-
-/datum/supply_packs/ammo/boxlmg
-	name = "T-42 LMG Ammo Box"
-	contains = list(/obj/item/ammobox/standard_lmg)
-	cost = 20
-	available_against_xeno_only = TRUE
-
-/datum/supply_packs/ammo/boxdmr
-	name = "T-64 DMR Ammo Box"
-	contains = list(/obj/item/ammobox/standard_dmr)
-	cost = 20
-
-/datum/supply_packs/ammo/boxpistol
-	name = "TP-14 Pistol Ammo Box"
-	contains = list(/obj/item/ammobox/standard_pistol)
+/datum/supply_packs/ammo/standard_ammo
+	name = "Surplus Standard Ammo Crate"
+	notes = "Contains 22 ammo boxes of a wide variety which come prefilled. You lazy bum."
+	contains = list(/obj/structure/largecrate/supply/ammo/standard_ammo)
+	containertype = null
 	cost = 20
 
 /datum/supply_packs/ammo/mateba
@@ -997,9 +934,7 @@ CLOTHING
 
 /datum/supply_packs/clothing/jetpack
 	name = "Jetpack"
-	contains = list(
-		/obj/item/jetpack_marine,
-	)
+	contains = list(/obj/item/jetpack_marine)
 	cost = 12
 
 /*******************************************************************************
@@ -1195,12 +1130,9 @@ ENGINEERING
 	cost = 10
 
 /datum/supply_packs/engineering/quikdeploycade
-	name = "quikdeploy barricade (x2)"
-	contains = list(
-		/obj/item/quikdeploy/cade,
-		/obj/item/quikdeploy/cade,
-	)
-	cost = 6
+	name = "quikdeploy barricade"
+	contains = list(/obj/item/quikdeploy/cade)
+	cost = 3
 
 /datum/supply_packs/engineering/pacman
 	name = "P.A.C.M.A.N. Portable Generator"
@@ -1430,6 +1362,7 @@ Imports
 	contains = list(/obj/item/ammo_magazine/magnum)
 	cost = 5
 	available_against_xeno_only = TRUE
+
 /datum/supply_packs/imports/mbx900
 	name = "MBX 900"
 	contains = list(/obj/item/weapon/gun/shotgun/pump/lever/mbx900)

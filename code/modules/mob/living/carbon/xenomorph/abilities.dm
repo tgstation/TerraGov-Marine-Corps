@@ -122,7 +122,7 @@
 	if(!T.check_alien_construction(owner, FALSE))
 		return fail_activate()
 
-	if(locate(/obj/effect/alien/resin/trap) in T)
+	if(locate(/obj/structure/xeno/trap) in T)
 		to_chat(owner, "<span class='warning'>There is a resin trap in the way!</span>")
 		return fail_activate()
 
@@ -1060,8 +1060,8 @@
 /datum/action/xeno_action/activable/build_silo/action_activate()
 	var/mob/living/carbon/xenomorph/X = owner
 	if(X.selected_ability == src)
-		if(get_active_player_count() > SMALL_SILO_MAXIMUM_PLAYER_COUNT)
-			to_chat(X, "<span class ='notice'>There are too many players to place a small silo</span>")
+		if(get_active_player_count(TRUE) > SMALL_SILO_MAXIMUM_PLAYER_COUNT)
+			to_chat(X, "<span class ='notice'>There are too many living sisters and hosts to place a small silo!</span>")
 			build_small_silo = FALSE
 			return
 		build_small_silo = !build_small_silo

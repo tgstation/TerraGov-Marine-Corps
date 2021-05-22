@@ -14,7 +14,7 @@ GLOBAL_LIST_EMPTY(ladder_list)
 GLOBAL_LIST_EMPTY(brig_closets)
 GLOBAL_LIST_EMPTY(supply_pad_list)
 
-GLOBAL_LIST_EMPTY(xeno_tunnels)						//list of all /obj/structure/tunnel
+GLOBAL_LIST_EMPTY(xeno_tunnels)						//list of all /obj/structure/xeno/tunnel
 GLOBAL_LIST_EMPTY(machines)					        //NOTE: this is a list of ALL machines now. The processing machines list is SSmachine.processing !
 GLOBAL_LIST_EMPTY(faxmachines)
 GLOBAL_LIST_EMPTY(intel_computers)					//All the intel computers for the random events

@@ -274,11 +274,6 @@
 /obj/machinery/computer/security/telescreen,
 /turf/open/floor/tile/red/yellowfull,
 /area/tdome/tdomeadmin)
-"bu" = (
-/turf/open/floor/mainship/cargo/arrow{
-	dir = 1
-	},
-/area/centcom/supply)
 "bv" = (
 /obj/item/tool/wrench,
 /turf/open/floor/tile/red/yellowfull,
@@ -389,31 +384,6 @@
 "cr" = (
 /turf/open/floor/mainship/cargo,
 /area/centcom/supplypod/loading/ert)
-"cy" = (
-/turf/open/floor/mainship/cargo/arrow{
-	dir = 8
-	},
-/area/centcom/supply)
-"cA" = (
-/turf/open/floor/plating{
-	icon_state = "test_floor5"
-	},
-/area/centcom/supply)
-"cB" = (
-/turf/open/floor/mainship/cargo/arrow{
-	dir = 4
-	},
-/area/centcom/supply)
-"cC" = (
-/turf/open/floor/plating/plating_catwalk,
-/area/centcom/supply)
-"cD" = (
-/obj/machinery/computer/supplycomp,
-/turf/open/floor/plating/plating_catwalk,
-/area/centcom/supply)
-"cF" = (
-/turf/open/floor/mainship/cargo/arrow,
-/area/centcom/supply)
 "dv" = (
 /obj/item/stack/medical/ointment,
 /obj/item/stack/medical/ointment,
@@ -425,11 +395,6 @@
 	name = "reinforced hull"
 	},
 /area/centcom)
-"ej" = (
-/turf/open/floor/plating{
-	icon_state = "test_floor5"
-	},
-/area/centcom/supply)
 "hk" = (
 /obj/structure/table,
 /obj/item/reagent_containers/food/drinks/cans/beer,
@@ -445,14 +410,6 @@
 "hp" = (
 /turf/closed/wall/indestructible,
 /area/start)
-"in" = (
-/turf/open/floor/mainship/stripesquare,
-/area/centcom/supply)
-"ir" = (
-/turf/open/floor/plating{
-	icon_state = "test_floor5"
-	},
-/area/centcom/supply)
 "ji" = (
 /obj/effect/landmark/newplayer_start,
 /turf/open/floor,
@@ -2283,15 +2240,24 @@ dX
 dX
 dX
 aa
-dX
-dX
-dX
-dX
-dX
-dX
-dX
-dX
-dX
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 "}
 (35,1,1) = {"
@@ -2325,15 +2291,23 @@ ab
 aa
 aa
 aa
-dX
-cC
-in
-in
-cy
-in
-in
-cD
-dX
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 dX
 cC
@@ -2377,15 +2351,23 @@ aa
 aa
 aa
 aa
-dX
-in
-ej
-ej
-ej
-ej
-ej
-in
-dX
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 dX
 in
@@ -2429,15 +2411,23 @@ aa
 aa
 aa
 aa
-dX
-in
-ej
-ej
-ej
-ej
-ej
-in
-dX
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 dX
 in
@@ -2481,15 +2471,23 @@ aa
 aa
 aa
 aa
-dX
-bu
-ej
-ej
-cA
-ej
-ej
-cF
-dX
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 dX
 bu
@@ -2533,15 +2531,23 @@ aa
 aa
 aa
 aa
-dX
-in
-ej
-ej
-ej
-ej
-ej
-in
-dX
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 dX
 in
@@ -2585,15 +2591,23 @@ aa
 aa
 aa
 aa
-dX
-in
-ej
-ej
-ej
-ej
-ej
-in
-dX
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 dX
 in
@@ -2637,15 +2651,23 @@ aa
 aa
 aa
 aa
-dX
-cC
-in
-in
-cB
-in
-in
-cC
-dX
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 dX
 cC
@@ -2711,6 +2733,24 @@ dX
 aa
 "}
 (43,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa

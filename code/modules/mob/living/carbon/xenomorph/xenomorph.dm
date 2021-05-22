@@ -63,7 +63,8 @@
 	ADD_TRAIT(src, TRAIT_BATONIMMUNE, TRAIT_XENO)
 	ADD_TRAIT(src, TRAIT_FLASHBANGIMMUNE, TRAIT_XENO)
 	hive.update_tier_limits()
-	SSminimaps.add_marker(src, z, hud_flags = MINIMAP_FLAG_XENO, iconstate = xeno_caste.minimap_icon)
+	if(z) //Larva are initiated in null space
+		SSminimaps.add_marker(src, z, hud_flags = MINIMAP_FLAG_XENO, iconstate = xeno_caste.minimap_icon)
 
 /mob/living/carbon/xenomorph/proc/set_datum()
 	if(!caste_base_type)
@@ -240,14 +241,16 @@
 	return ..()
 
 /mob/living/carbon/xenomorph/pull_response(mob/puller)
+	if(stat != CONSCIOUS) // If the Xeno is unconscious, don't fight back against a grab/pull
+		return TRUE
+	if(!ishuman(puller))
+		return TRUE
 	var/mob/living/carbon/human/H = puller
-	if(stat == CONSCIOUS && H.species?.count_human) // If the Xeno is conscious, fight back against a grab/pull
-		H.Paralyze(rand(xeno_caste.tacklemin,xeno_caste.tacklemax) * 20)
-		playsound(H.loc, 'sound/weapons/pierce.ogg', 25, 1)
-		H.visible_message("<span class='warning'>[H] tried to pull [src] but instead gets a tail swipe to the head!</span>")
-		H.stop_pulling()
-		return FALSE
-	return TRUE
+	H.Paralyze(rand(xeno_caste.tacklemin,xeno_caste.tacklemax) * 20)
+	playsound(H.loc, 'sound/weapons/pierce.ogg', 25, 1)
+	H.visible_message("<span class='warning'>[H] tried to pull [src] but instead gets a tail swipe to the head!</span>")
+	H.stop_pulling()
+	return FALSE
 
 /mob/living/carbon/xenomorph/resist_grab()
 	if(pulledby.grab_state)
