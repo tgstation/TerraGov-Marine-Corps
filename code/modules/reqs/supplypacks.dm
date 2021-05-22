@@ -598,14 +598,9 @@ AMMO
 	containertype = null
 
 /datum/supply_packs/ammo/lasgun
-	name = "TX-73 lasrifle battery"
-	contains = list(/obj/item/cell/lasgun/lasrifle)
+	name = "Terra Experimental standard battery"
+	contains = list(/obj/item/cell/lasgun/lasrifle/marine)
 	cost = 2
-
-/datum/supply_packs/ammo/lasgun_highcap
-	name = "TX-73 lasrifle highcap battery"
-	contains = list(/obj/item/cell/lasgun/lasrifle/highcap)
-	cost = 4
 
 /datum/supply_packs/ammo/minigun
 	name = "Vindicator Minigun Ammo Drum"
