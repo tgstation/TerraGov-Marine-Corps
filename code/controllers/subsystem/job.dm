@@ -336,6 +336,9 @@ SUBSYSTEM_DEF(job)
 	if(assigned_role && length(GLOB.jobspawn_overrides[assigned_role])) //We're doing something special today.
 		SendToAtom(M, pick(GLOB.jobspawn_overrides[assigned_role]))
 		return
+	if(assigned_role.faction == FACTION_TERRAGOV_REBEL && length(GLOB.latejoinrebel))
+		SendToAtom(M, pick(GLOB.latejoinrebel))
+		return
 	if(length(GLOB.latejoin))
 		SendToAtom(M, pick(GLOB.latejoin))
 		return
