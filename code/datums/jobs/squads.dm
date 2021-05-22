@@ -63,6 +63,26 @@
 	access = list(ACCESS_MARINE_DELTA)
 	radio_freq = FREQ_DELTA
 
+/datum/squad/alpha/rebel
+	id = ALPHA_SQUAD_REBEL
+	access = list(ACCESS_MARINE_ALPHA_REBEL)
+	radio_freq = FREQ_ALPHA_REBEL
+
+/datum/squad/bravo/rebel
+	id = BRAVO_SQUAD_REBEL
+	access = list(ACCESS_MARINE_BRAVO_REBEL)
+	radio_freq = FREQ_BRAVO_REBEL
+
+/datum/squad/charlie/rebel
+	id = CHARLIE_SQUAD_REBEL
+	access = list(ACCESS_MARINE_CHARLIE_REBEL)
+	radio_freq = FREQ_CHARLIE_REBEL
+
+/datum/squad/delta/rebel
+	id = DELTA_SQUAD_REBEL
+	access = list(ACCESS_MARINE_DELTA_REBEL)
+	radio_freq = FREQ_DELTA_REBEL
+
 GLOBAL_LIST_EMPTY(glovemarkings)
 GLOBAL_LIST_EMPTY(armormarkings)
 GLOBAL_LIST_EMPTY(armormarkings_sl)

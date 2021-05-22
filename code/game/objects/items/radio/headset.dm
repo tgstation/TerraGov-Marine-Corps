@@ -383,16 +383,25 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	keyslot = /obj/item/encryptionkey/req
 	keyslot2 = /obj/item/encryptionkey/engi
 
+/obj/item/radio/headset/mainship/st/rebel
+	keyslot = /obj/item/encryptionkey/req/rebel
+	keyslot2 = /obj/item/encryptionkey/engi/rebel
+
 /obj/item/radio/headset/mainship/doc
 	name = "medical radio headset"
 	icon_state = "med_headset"
 	keyslot = /obj/item/encryptionkey/med
 
+/obj/item/radio/headset/mainship/doc/rebel
+	keyslot = /obj/item/encryptionkey/med/rebel
 
 /obj/item/radio/headset/mainship/ct
 	name = "supply radio headset"
 	icon_state = "cargo_headset"
 	keyslot = /obj/item/encryptionkey/req
+
+/obj/item/radio/headset/mainship/ct/rebel 
+	keyslot = /obj/item/encryptionkey/req/rebel
 
 /obj/item/radio/headset/mainship/mcom
 	name = "marine command radio headset"
@@ -401,15 +410,22 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	use_command = TRUE
 	command = TRUE
 
+/obj/item/radio/headset/mainship/mcom/rebel 
+	keyslot = /obj/item/encryptionkey/mcom/rebel
 
 /obj/item/radio/headset/mainship/mcom/silicon
 	name = "silicon radio"
 	keyslot = /obj/item/encryptionkey/mcom/ai
 
+/obj/item/radio/headset/mainship/mcom/silicon/rebel
+		keyslot = /obj/item/encryptionkey/mcom/ai/rebel
 
 /obj/item/radio/headset/mainship/marine
 	keyslot = /obj/item/encryptionkey/general
 	freerange = TRUE
+
+/obj/item/radio/headset/mainship/marine/rebel
+	keyslot = /obj/item/encryptionkey/general/rebel
 
 
 /obj/item/radio/headset/mainship/marine/Initialize(mapload, datum/squad/squad, rank)
@@ -549,6 +565,120 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	name = "marine fire support specialist headset"
 	icon_state = "sec_headset"
 	keyslot2 = /obj/item/encryptionkey/cas
+
+/obj/item/radio/headset/mainship/marine/rebel/alpha
+	name = "marine alpha radio headset"
+	icon_state = "headset_marine_alpha"
+	frequency = FREQ_ALPHA_REBEL //default frequency is alpha squad channel, not FREQ_COMMON
+
+/obj/item/radio/headset/mainship/marine/rebel/alpha/LateInitialize(mapload)
+	. = ..()
+	camera.network += list("alpha_rebel")
+
+
+/obj/item/radio/headset/mainship/marine/rebel/alpha/lead
+	name = "marine alpha leader radio headset"
+	keyslot2 = /obj/item/encryptionkey/squadlead/rebel
+	use_command = TRUE
+	command = TRUE
+
+
+/obj/item/radio/headset/mainship/marine/rebel/alpha/engi
+	name = "marine alpha engineer radio headset"
+	keyslot2 = /obj/item/encryptionkey/engi/rebel
+
+/obj/item/radio/headset/mainship/marine/rebel/alpha/med
+	name = "marine alpha corpsman radio headset"
+	keyslot2 = /obj/item/encryptionkey/med/rebel
+
+
+/obj/item/radio/headset/mainship/marine/rebel/bravo
+	name = "marine bravo radio headset"
+	icon_state = "headset_marine_bravo"
+	frequency = FREQ_BRAVO_REBEL
+
+/obj/item/radio/headset/mainship/marine/rebel/bravo/LateInitialize(mapload)
+	. = ..()
+	camera.network += list("bravo_rebel")
+
+/obj/item/radio/headset/mainship/marine/rebel/bravo/lead
+	name = "marine bravo leader radio headset"
+	keyslot2 = /obj/item/encryptionkey/squadlead/rebel
+	use_command = TRUE
+	command = TRUE
+
+
+/obj/item/radio/headset/mainship/marine/rebel/bravo/engi
+	name = "marine bravo engineer radio headset"
+	keyslot2 = /obj/item/encryptionkey/engi/rebel
+
+
+/obj/item/radio/headset/mainship/marine/rebel/bravo/med
+	name = "marine bravo corpsman radio headset"
+	keyslot2 = /obj/item/encryptionkey/med/rebel
+
+
+/obj/item/radio/headset/mainship/marine/rebel/charlie
+	name = "marine charlie radio headset"
+	icon_state = "headset_marine_charlie"
+	frequency = FREQ_CHARLIE_REBEL
+
+/obj/item/radio/headset/mainship/marine/rebel/charlie/LateInitialize(mapload)
+	. = ..()
+	camera.network += list("charlie_rebel")
+
+/obj/item/radio/headset/mainship/marine/rebel/charlie/lead
+	name = "marine charlie leader radio headset"
+	keyslot2 = /obj/item/encryptionkey/squadlead/rebel
+	use_command = TRUE
+	command = TRUE
+
+
+/obj/item/radio/headset/mainship/marine/rebel/charlie/engi
+	name = "marine charlie engineer radio headset"
+	keyslot2 = /obj/item/encryptionkey/engi/rebel
+
+
+/obj/item/radio/headset/mainship/marine/rebel/charlie/med
+	name = "marine charlie corpsman radio headset"
+	keyslot2 = /obj/item/encryptionkey/med/rebel
+
+
+
+/obj/item/radio/headset/mainship/marine/rebel/delta
+	name = "marine delta radio headset"
+	icon_state = "headset_marine_delta"
+	frequency = FREQ_DELTA_REBEL
+
+/obj/item/radio/headset/mainship/marine/delta/LateInitialize(mapload)
+	. = ..()
+	camera.network += list("delta_rebel")
+
+
+/obj/item/radio/headset/mainship/marine/rebel/delta/lead
+	name = "marine delta leader radio headset"
+	keyslot2 = /obj/item/encryptionkey/squadlead/rebel
+	use_command = TRUE
+	command = TRUE
+
+
+/obj/item/radio/headset/mainship/marine/rebel/delta/engi
+	name = "marine delta engineer radio headset"
+	keyslot2 = /obj/item/encryptionkey/engi/rebel
+
+
+/obj/item/radio/headset/mainship/marine/rebel/delta/med
+	name = "marine delta corpsman radio headset"
+	keyslot2 = /obj/item/encryptionkey/med/rebel
+
+/obj/item/radio/headset/mainship/marine/rebel/generic
+	name = "marine generic radio headset"
+	icon_state = "headset_marine_generic"
+
+/obj/item/radio/headset/mainship/marine/rebel/generic/cas
+	name = "marine fire support specialist headset"
+	icon_state = "sec_headset"
+	keyslot2 = /obj/item/encryptionkey/cas/rebel
 
 //Distress headsets.
 /obj/item/radio/headset/distress
