@@ -14,7 +14,7 @@ SUBSYSTEM_DEF(job)
 	var/list/type_occupations = list()	//Dict of all jobs, keys are types.
 
 	var/list/squads = list()			//List of potential squads.
-	//Assoc list of all joinable squads, categorised by faction
+	///Assoc list of all joinable squads, categorised by faction
 	var/list/active_squads = list()		 
 
 	var/list/unassigned = list()		//Players who need jobs.
@@ -50,10 +50,7 @@ SUBSYSTEM_DEF(job)
 		if(!job.map_check())
 			continue
 		occupations += job
-		var/job_name = job.title
-		if(job.faction == FACTION_TERRAGOV_REBEL)
-			job_name += " Rebel"
-		name_occupations[job_name] = job
+		name_occupations[job.title] = job
 		type_occupations[J] = job
 	sortTim(occupations, /proc/cmp_job_display_asc)
 

@@ -340,10 +340,10 @@ GLOBAL_LIST_EMPTY(helmetmarkings_sl)
 	return TRUE
 
 
-//A generic proc for handling the initial squad role assignment in SSjob
+///A generic proc for handling the initial squad role assignment in SSjob
 /proc/handle_initial_squad(mob/new_player/player, datum/job/job, latejoin = FALSE, faction = FACTION_TERRAGOV)
 	var/strict = player.client.prefs.be_special && (player.client.prefs.be_special & BE_SQUAD_STRICT)
-	///List of all the faction accessible squads
+	//List of all the faction accessible squads
 	var/list/available_squads = SSjob.active_squads[faction]
 	var/datum/squad/preferred_squad = available_squads[player.client.prefs.preferred_squad]
 	if(job.title == SQUAD_MARINE)
