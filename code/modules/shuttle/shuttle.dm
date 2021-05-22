@@ -213,6 +213,8 @@
 	var/last_dock_time
 
 	var/datum/map_template/shuttle/roundstart_template
+	///An optional specific id for the roundstart template, if you don't want the procedural made one
+	var/roundstart_shuttle_specific_id = ""
 	var/json_key
 	///The ID of the shuttle reserving this dock.
 	var/reservedId = null
@@ -412,15 +414,20 @@
 	highlight("#0f0")
 	#endif
 
-// Called after the shuttle is loaded from template
+/// Called after the shuttle is loaded from template
 /obj/docking_port/mobile/proc/linkup(datum/map_template/shuttle/template, obj/docking_port/stationary/dock)
 	var/list/static/shuttle_id = list()
-	var/idnum = ++shuttle_id[template]
-	if(idnum > 1)
-		if(id == initial(id))
-			id = "[id][idnum]"
-		if(name == initial(name))
-			name = "[name] [idnum]"
+	var/idnum
+	if(dock.roundstart_shuttle_specific_id)
+		id = dock.roundstart_shuttle_specific_id
+		idnum = 1
+	else
+		idnum = ++shuttle_id[template]
+		if(idnum > 1)
+			if(id == initial(id))
+				id = "[id][idnum]"
+			if(name == initial(name))
+				name = "[name] [idnum]"
 	for(var/place in shuttle_areas)
 		var/area/area = place
 		area.connect_to_shuttle(src, dock, idnum, FALSE)
