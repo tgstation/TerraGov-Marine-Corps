@@ -1,7 +1,3 @@
-#define FILE_RECENT_MAPS "data/RecentMaps.json"
-
-#define KEEP_ROUNDS_MAP 3
-
 //Season defines, universal for all seasons
 #define LAST_UPDATE "last_update" //last time the season changed
 #define CURRENT_SEASON "current_season" //current season of the section
