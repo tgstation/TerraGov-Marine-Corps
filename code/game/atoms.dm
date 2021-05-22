@@ -76,7 +76,7 @@
 	/// A luminescence-shifted value of the last color calculated for chatmessage overlays
 	var/chat_color_darkened
 	///HUD images that this mob can provide.
-	var/list/hud_possible = list(XENO_TACTICAL_HUD)
+	var/list/hud_possible
 	///Reference to atom being orbited
 	var/atom/orbit_target
 
