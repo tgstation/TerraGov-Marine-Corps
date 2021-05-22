@@ -346,13 +346,11 @@ GLOBAL_LIST_EMPTY(helmetmarkings_sl)
 	//List of all the faction accessible squads
 	var/list/available_squads = SSjob.active_squads[faction]
 	var/datum/squad/preferred_squad = available_squads[player.client.prefs.preferred_squad]
-	if(job.title == SQUAD_MARINE)
-		if(preferred_squad?.assign_initial(player, job, latejoin))
-			return TRUE
-		var/datum/squad/backup_squad = available_squads[pick(available_squads)]
-		return backup_squad.assign_initial(player, job, latejoin)	
 	if(preferred_squad?.assign_initial(player, job, latejoin))
 		return TRUE
+	if(job.title == SQUAD_MARINE)
+		var/datum/squad/backup_squad = available_squads[pick(available_squads)]
+		return backup_squad.assign_initial(player, job, latejoin)	
 	if(strict && !latejoin)
 		return FALSE
 	//If our preferred squad is not available, we try every other squad
