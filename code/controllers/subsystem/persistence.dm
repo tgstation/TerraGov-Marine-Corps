@@ -19,7 +19,7 @@ SUBSYSTEM_DEF(persistence)
 	///Items that have been selected for the current round for each season
 	var/list/season_items = list()
 	///Available gun seasons
-	var/static/list/seasons_buckets = list(
+	var/list/seasons_buckets = list(
 		SEASONAL_GUNS = list(
 		/datum/season_datum/weapons/guns/sadar_event,
 		/datum/season_datum/weapons/guns/wp_event
@@ -61,7 +61,7 @@ SUBSYSTEM_DEF(persistence)
 	seasons_file_info[season_class][CURRENT_SEASON]++
 	season_progress[season_class] = seasons_file_info[season_class][CURRENT_SEASON]
 
-	var/seasons_buckets_list_index = season_progress[season_class] % seasons_buckets[season_class].len + 1
+	var/seasons_buckets_list_index = season_progress[season_class] % length(seasons_buckets[season_class]) + 1
 
 	var/season_typepath = seasons_buckets[season_class][seasons_buckets_list_index]
 	var/datum/season_datum/season_instance = new season_typepath
