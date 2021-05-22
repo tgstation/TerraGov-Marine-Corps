@@ -56,7 +56,7 @@
 
 /obj/structure/supply_drop/charlie/rebel
 	icon_state = "charliedrop"
-	squad_id =CHARLIE_SQUAD_REBEL
+	squad_id = CHARLIE_SQUAD_REBEL
 
 /obj/structure/supply_drop/delta/rebel
 	icon_state = "deltadrop"
