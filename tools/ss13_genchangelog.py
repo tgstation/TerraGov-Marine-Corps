@@ -135,10 +135,6 @@ for fileName in glob.glob(os.path.join(args.ymlDir, "*.yml")):
 
 	if cl.get('delete-after', False):
 		if os.path.isfile(fileName):
-			if args.dryRun:
-				print('  Would delete {0} (delete-after set)...'.format(fileName))
-			else:
-				del_after += [fileName]
 			print('  Deleting {0} (delete-after set)...'.format(fileName))
 			os.remove(fileName)
 	with open(monthFile, 'w', encoding='utf-8') as f:
