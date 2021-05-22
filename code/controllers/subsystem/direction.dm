@@ -49,7 +49,7 @@ SUBSYSTEM_DEF(direction)
 	for(var/L in processing_mobs)
 		mobcount += length(processing_mobs[L])
 	msg = "P:[mobcount]"
-	..(msg)
+	return ..()
 
 
 /datum/controller/subsystem/direction/fire(resumed = FALSE)
@@ -144,4 +144,3 @@ SUBSYSTEM_DEF(direction)
 	leader_mapping[new_squad_id] = squad_leader_mob // Unassigned squad leader by default
 
 	return new_squad_id
-
