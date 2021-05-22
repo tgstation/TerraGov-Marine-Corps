@@ -167,8 +167,6 @@
 	// so if slogantime is 10 minutes, it will say it at somewhere between 10 and 20 minutes after the machine is crated.
 	last_slogan = world.time + rand(0, slogan_delay)
 
-	products["Seasonal"] = SSpersistence.current_guns()
-
 	if(isshared)
 		build_shared_inventory()
 	else
@@ -252,6 +250,9 @@
 			amount = 1
 		var/datum/vending_product/record = new(typepath = entry, product_amount = amount, product_price = prices[entry], category = category)
 		recordlist += record
+
+/obj/machinery/vending/proc/add_seasonal_items(list/productlist)
+
 
 /obj/machinery/vending/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
 	if(X.status_flags & INCORPOREAL)

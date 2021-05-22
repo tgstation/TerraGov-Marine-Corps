@@ -2,9 +2,11 @@
 
 #define KEEP_ROUNDS_MAP 3
 
+//Season defines, universal for all seasons
 #define LAST_UPDATE "last_update" //last time the season changed
 #define CURRENT_SEASON "current_season" //current season of the section
 
+//Season names
 #define SEASONAL_GUNS "seasonal_guns"
 
 SUBSYSTEM_DEF(persistence)
@@ -12,79 +14,60 @@ SUBSYSTEM_DEF(persistence)
 	init_order = INIT_ORDER_PERSISTENCE
 	flags = SS_NO_FIRE
 
-	var/list/saved_modes = list(1,2,3)
-	var/list/saved_maps = list()
-
 	///Stores how long each season should last
-	var/list/item_seasons_durations = list(
-		SEASONAL_GUNS = 1 DAYS,
+	var/list/seasons_durations = list(
+		SEASONAL_GUNS = 0.001 DAYS,
 	)
-	///Stores the current season for each season item group
-	var/list/item_season_progress = list()
-
-	///Available guns seasons
-	var/list/gun_buckets = list(
-		/datum/seasonal_items/weapons/guns/sadar_bucket,
-		/datum/seasonal_items/weapons/guns/wp_bucket,
+	///Stores the current season for each season group
+	var/list/season_progress = list()
+	///Items that have been selected for the current round for each season
+	var/list/season_items = list()
+	///Available gun seasons
+	var/list/seasons_buckets = list(
+		SEASONAL_GUNS = list(
+		/datum/season_datum/seasonal_items/weapons/guns/sadar_bucket,
+		/datum/season_datum/seasonal_items/weapons/guns/wp_bucket
+		),
 		)
 
+///Loads data at the start of the round
 /datum/controller/subsystem/persistence/Initialize()
-	LoadPoly()
-	LoadRecentModes()
 	LoadSeasonalItems()
 	return ..()
 
-/datum/controller/subsystem/persistence/proc/LoadPoly()
-	for(var/mob/living/simple_animal/parrot/Poly/P in GLOB.mob_list)
-		twitterize(P.speech_buffer, "polytalk")
-		break //Who's been duping the bird?!
-
-/datum/controller/subsystem/persistence/proc/LoadRecentModes()
-	var/json_file = file("data/recent_modes.json")
-	if(!fexists(json_file))
-		return
-	var/list/json = json_decode(file2text(json_file))
-	if(!json)
-		return
-	saved_modes = json["data"]
-
+///Stores data at the end of the round
 /datum/controller/subsystem/persistence/proc/CollectData()
-	CollectRoundtype()
-
-/datum/controller/subsystem/persistence/proc/CollectRoundtype()
-	saved_modes[3] = saved_modes[2]
-	saved_modes[2] = saved_modes[1]
-	saved_modes[1] = SSticker.mode.config_tag
-	var/json_file = file("data/recent_modes.json")
-	var/list/file_data = list()
-	file_data["data"] = saved_modes
-	fdel(json_file)
-	WRITE_FILE(json_file, json_encode(file_data))
+	return
 
 ///Loads seasons data, advances seasons and saves the data
 /datum/controller/subsystem/persistence/proc/LoadSeasonalItems()
 	var/json_file = file("data/seasonal_items.json")
 	if(!fexists(json_file))
 		initialize_seasonal_items_file()
-	var/list/json = json_decode(file2text(json_file))
+	var/list/seasons_file_info = json_decode(file2text(json_file))
 
-	for(var/season_section in item_seasons_durations)
-		if(!json[season_section][LAST_UPDATE])
-			json[season_section][LAST_UPDATE] = world.realtime
-			json[season_section][CURRENT_SEASON] = 1
-			continue
-
-		var/time_since_last_update = world.realtime - text2num(json[season_section][LAST_UPDATE])
-		if(time_since_last_update < item_seasons_durations[season_section])
-			continue
-
-		json[season_section][LAST_UPDATE] = world.realtime
-		json[season_section][CURRENT_SEASON]++
-
-		item_season_progress[season_section] = json[season_section][CURRENT_SEASON]
+	for(var/season_section in seasons_durations)
+		seasons_file_info = update_season_data(season_section, seasons_file_info)
 
 	fdel(json_file)
-	WRITE_FILE(json_file, json_encode(json))
+	WRITE_FILE(json_file, json_encode(seasons_file_info))
+
+/datum/controller/subsystem/persistence/proc/update_season_data(season_class, seasons_file_info)
+	var/time_since_last_update
+	var/last_season_update_time = text2num(seasons_file_info[season_class][LAST_UPDATE])
+	if(!last_season_update_time)
+		last_season_update_time = 0
+	time_since_last_update = world.realtime - last_season_update_time
+	if(time_since_last_update < seasons_durations[season_class])
+		return seasons_file_info
+
+	seasons_file_info[season_class][LAST_UPDATE] = world.realtime
+	seasons_file_info[season_class][CURRENT_SEASON]++
+	season_progress[season_class] = seasons_file_info[season_class][CURRENT_SEASON]
+
+	var/seasons_buckets_list_index = season_progress[season_class] % seasons_buckets[season_class].len + 1
+	season_items[season_class] = seasons_buckets[season_class][seasons_buckets_list_index]
+	return seasons_file_info
 
 ///Initializes the seasonal items file if it is missing
 /datum/controller/subsystem/persistence/proc/initialize_seasonal_items_file()
@@ -93,36 +76,29 @@ SUBSYSTEM_DEF(persistence)
 		LAST_UPDATE = world.realtime,
 		CURRENT_SEASON = 1,
 	)
-	var/list/json = list()
-	for(var/season_section in item_seasons_durations)
-		json[season_section] = json_default_list
+	var/list/seasons_file_info = list()
+	for(var/season_section in seasons_durations)
+		seasons_file_info[season_section] = json_default_list
 
-	WRITE_FILE(json_file, json_encode(json))
-
-///Returns the currently active gun bucket
-/datum/controller/subsystem/persistence/proc/current_guns()
-	var/bucket_index = item_season_progress[SEASONAL_GUNS] % gun_buckets.len + 1
-	var/typepath = gun_buckets[bucket_index]
-	var/datum/seasonal_items/current_bucket = new typepath
-	return current_bucket.item_list
+	WRITE_FILE(json_file, json_encode(seasons_file_info))
 
 ///Used to make item buckets for the seasonal items system
-/datum/seasonal_items
-	///Name of the corresponding bucket
-	var/name = "base bucket"
-	///Descrpition of the corresponding bucket
-	var/description = "The first bucket."
-	///Items that the corresponding item bucket contains
+/datum/season_datum
+	///Name of the  season
+	var/name = "base season"
+	///Descrpition of the season
+	var/description = "The first season."
+	///Items that the season contains
 	var/list/item_list = list()
 
-/datum/seasonal_items/weapons/guns/sadar_bucket
+/datum/season_datum/seasonal_items/weapons/guns/sadar_bucket
 	name = "SADAR bucket"
 	description = "Adds some SADARS to round-start marine gear to balance the winrates"
 	item_list = list(
 		/obj/item/weapon/gun/launcher/rocket/sadar = 10,
 		)
 
-/datum/seasonal_items/weapons/guns/wp_bucket
+/datum/season_datum/seasonal_items/weapons/guns/wp_bucket
 	name = "WP bucket"
 	description = "Adds some WP grenades to round-start marine gear to balance the winrates"
 	item_list = list(

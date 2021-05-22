@@ -99,8 +99,6 @@ Administrative related.
 
 /datum/config_entry/flag/log_manifest
 
-/datum/config_entry/flag/log_twitter // log certain expliotable parrots and other such fun things in a JSON file of twitter valid phrases.
-
 /datum/config_entry/flag/allow_admin_ooccolor // Allows admins to customize their OOC color.
 
 /datum/config_entry/flag/usewhitelist
