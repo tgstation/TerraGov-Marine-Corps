@@ -1056,10 +1056,10 @@ ColorTone(rgb, tone)
 
 //Costlier version of icon2html() that uses getFlatIcon() to account for overlays, underlays, etc. Use with extreme moderation, ESPECIALLY on mobs.
 /proc/costly_icon2html(thing, target, sourceonly = FALSE)
-	if (!thing)
+	if(!thing)
 		return
 
-	if (isicon(thing))
+	if(isicon(thing))
 		return icon2html(thing, target)
 
 	var/icon/I = getFlatIcon(thing)

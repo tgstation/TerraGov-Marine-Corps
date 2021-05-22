@@ -52,46 +52,48 @@ SUBSYSTEM_DEF(statpanels)
 				var/list/sdql2 = list()
 				sdql2[++sdql2.len] = list("", "Access Global SDQL2 List", REF(GLOB.sdql2_vv_statobj))
 				target << output(url_encode(json_encode(sdql2)), "statbrowser:update_sdql2")
-		if(target.mob)
-			var/mob/M = target.mob
-			if(M?.listed_turf)
-				var/mob/target_mob = M
-				if(!target_mob.TurfAdjacent(target_mob.listed_turf))
-					target << output("", "statbrowser:remove_listedturf")
-					target_mob.listed_turf = null
-				else if(target.stat_tab == M?.listed_turf.name || !(M?.listed_turf.name in target.panel_tabs))
-					var/list/overrides = list()
-					var/list/turfitems = list()
-					for(var/img in target.images)
-						var/image/target_image = img
-						if(!target_image.loc || target_image.loc.loc != target_mob.listed_turf || !target_image.override)
-							continue
-						overrides += target_image.loc
-					turfitems[++turfitems.len] = list("[target_mob.listed_turf]", REF(target_mob.listed_turf), icon2html(target_mob.listed_turf, target, sourceonly=TRUE))
-					for(var/tc in target_mob.listed_turf)
-						var/atom/movable/turf_content = tc
-						if(turf_content.mouse_opacity == MOUSE_OPACITY_TRANSPARENT)
-							continue
-						if(turf_content.invisibility > target_mob.see_invisible)
-							continue
-						if(turf_content in overrides)
-							continue
-						if(turf_content.IsObscured())
-							continue
-						if(length(turfitems) < 30) // only create images for the first 30 items on the turf, for performance reasons
-							if(!(REF(turf_content) in cached_images))
-								cached_images += REF(turf_content)
-								turf_content.RegisterSignal(turf_content, COMSIG_PARENT_QDELETING, /atom/.proc/remove_from_cache) // we reset cache if anything in it gets deleted
-								if(ismob(turf_content) || length(turf_content.overlays) > 2)
-									turfitems[++turfitems.len] = list("[turf_content.name]", REF(turf_content), costly_icon2html(turf_content, target, sourceonly=TRUE))
-								else
-									turfitems[++turfitems.len] = list("[turf_content.name]", REF(turf_content), icon2html(turf_content, target, sourceonly=TRUE))
-							else
-								turfitems[++turfitems.len] = list("[turf_content.name]", REF(turf_content))
+		if(!target.mob)
+			return
+		var/mob/M = target.mob
+		if(!M?.listed_turf)
+			return
+		var/mob/target_mob = M
+		if(!target_mob.TurfAdjacent(target_mob.listed_turf))
+			target << output("", "statbrowser:remove_listedturf")
+			target_mob.listed_turf = null
+		else if(target.stat_tab == M?.listed_turf.name || !(M?.listed_turf.name in target.panel_tabs))
+			var/list/overrides = list()
+			var/list/turfitems = list()
+			for(var/img in target.images)
+				var/image/target_image = img
+				if(!target_image.loc || target_image.loc.loc != target_mob.listed_turf || !target_image.override)
+					continue
+				overrides += target_image.loc
+			turfitems[++turfitems.len] = list("[target_mob.listed_turf]", REF(target_mob.listed_turf), icon2html(target_mob.listed_turf, target, sourceonly=TRUE))
+			for(var/tc in target_mob.listed_turf)
+				var/atom/movable/turf_content = tc
+				if(turf_content.mouse_opacity == MOUSE_OPACITY_TRANSPARENT)
+					continue
+				if(turf_content.invisibility > target_mob.see_invisible)
+					continue
+				if(turf_content in overrides)
+					continue
+				if(turf_content.IsObscured())
+					continue
+				if(length(turfitems) < 30) // only create images for the first 30 items on the turf, for performance reasons
+					if(!(REF(turf_content) in cached_images))
+						cached_images += REF(turf_content)
+						turf_content.RegisterSignal(turf_content, COMSIG_PARENT_QDELETING, /atom/.proc/remove_from_cache) // we reset cache if anything in it gets deleted
+						if(ismob(turf_content) || length(turf_content.overlays) > 2)
+							turfitems[++turfitems.len] = list("[turf_content.name]", REF(turf_content), costly_icon2html(turf_content, target, sourceonly=TRUE))
 						else
-							turfitems[++turfitems.len] = list("[turf_content.name]", REF(turf_content))
-					turfitems = url_encode(json_encode(turfitems))
-					target << output("[turfitems];", "statbrowser:update_listedturf")
+							turfitems[++turfitems.len] = list("[turf_content.name]", REF(turf_content), icon2html(turf_content, target, sourceonly=TRUE))
+					else
+						turfitems[++turfitems.len] = list("[turf_content.name]", REF(turf_content))
+				else
+					turfitems[++turfitems.len] = list("[turf_content.name]", REF(turf_content))
+			turfitems = url_encode(json_encode(turfitems))
+			target << output("[turfitems];", "statbrowser:update_listedturf")
 		if(MC_TICK_CHECK)
 			return
 

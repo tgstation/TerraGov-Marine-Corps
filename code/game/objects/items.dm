@@ -298,6 +298,7 @@
 /obj/item/proc/on_found(mob/finder as mob)
 	return
 
+///Remove the verbs that were gave by the item from the user
 /obj/item/proc/remove_item_verbs(mob/user)
 	var/list/verbs_to_remove = list()
 	for(var/v in verbs)
