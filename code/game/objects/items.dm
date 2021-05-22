@@ -247,13 +247,13 @@
 /obj/item/proc/dropped(mob/user)
 	SEND_SIGNAL(src, COMSIG_ITEM_DROPPED, user)
 
+
 	if(flags_item & DELONDROP)
 		qdel(src)
 
 ///Called whenever an item is unequipped to a new loc (IE, not when the item ends up in the hands)
 /obj/item/proc/removed_from_inventory(mob/user)
 	SEND_SIGNAL(src, COMSIG_ITEM_REMOVED_INVENTORY, user)
-	remove_item_verbs(user)
 
 // called just as an item is picked up (loc is not yet changed)
 /obj/item/proc/pickup(mob/user)
@@ -354,7 +354,7 @@
 	SEND_SIGNAL(src, COMSIG_ITEM_UNEQUIPPED, unequipper, slot)
 
 	var/equipped_from_slot = flags_equip_slot & slotdefine2slotbit(slot)
-
+	remove_item_verbs(user)
 	for(var/X in actions)
 		var/datum/action/A = X
 		A.remove_action(unequipper)
