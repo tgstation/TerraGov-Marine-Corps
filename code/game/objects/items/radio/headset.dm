@@ -240,6 +240,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	playsound(loc, 'sound/machines/click.ogg', 15, 0, 1)
 
 /obj/item/radio/headset/mainship/proc/add_minimap()
+	remove_minimap()
 	var/datum/action/minimap/mini = new minimap_type
 	if(wearer.job?.job_flags & JOB_FLAG_ALWAYS_VISIBLE_ON_MINIMAP) //We show to all marines if we have this flag, separated by faction
 		mini.marker_flags = hud_type == DATA_HUD_SQUAD ? MINIMAP_FLAG_ALL_MARINES : MINIMAP_FLAG_ALL_MARINES_REBEL
@@ -255,10 +256,12 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 		return
 	SSminimaps.add_marker(wearer, wearer.z, mini.marker_flags, wearer.job.minimap_icon)
 
+///Remove all action of type minimap from the wearer, and make him disappear from the minimap
 /obj/item/radio/headset/mainship/proc/remove_minimap()
-	var/datum/action/minimap/mini = wearer.actions_by_path[minimap_type]
-	mini.remove_action(wearer)
 	SSminimaps.remove_marker(wearer)
+	for(var/datum/action/action AS in wearer.actions)
+		if(istype(action, /datum/action/minimap))
+			action.remove_action(wearer)
 
 /obj/item/radio/headset/mainship/proc/enable_sl_direction()
 	if(!headset_hud_on)

@@ -14,7 +14,7 @@ SUBSYSTEM_DEF(job)
 	var/list/type_occupations = list()	//Dict of all jobs, keys are types.
 
 	var/list/squads = list()			//List of potential squads.
-	//Assoc list of all joinable squads, categorised by faction
+	///Assoc list of all joinable squads, categorised by faction
 	var/list/active_squads = list()		 
 
 	var/list/unassigned = list()		//Players who need jobs.
@@ -50,10 +50,7 @@ SUBSYSTEM_DEF(job)
 		if(!job.map_check())
 			continue
 		occupations += job
-		var/job_name = job.title
-		if(job.faction == FACTION_TERRAGOV_REBEL)
-			job_name += " Rebel"
-		name_occupations[job_name] = job
+		name_occupations[job.title] = job
 		type_occupations[J] = job
 	sortTim(occupations, /proc/cmp_job_display_asc)
 
@@ -207,12 +204,10 @@ SUBSYSTEM_DEF(job)
 		if(PopcapReached())
 			RejectPlayer(player)
 		// Loop through all jobs
-		for(var/datum/job/job AS in occupations_to_assign)
+		for(var/j in occupations_to_assign)
+			var/datum/job/job = j
 			// If the player wants that job on this level, then try give it to him.
 			if(player.client.prefs.job_preferences[job.title] != level)
-				continue
-			//If joining this job would make the factions too unbalanced
-			if(!SSticker.mode.is_faction_balanced(job.faction))
 				continue
 			// If the job isn't filled
 			if((job.total_positions != -1 && job.current_positions >= job.total_positions))
@@ -340,9 +335,6 @@ SUBSYSTEM_DEF(job)
 /datum/controller/subsystem/job/proc/SendToLateJoin(mob/M, datum/job/assigned_role)
 	if(assigned_role && length(GLOB.jobspawn_overrides[assigned_role])) //We're doing something special today.
 		SendToAtom(M, pick(GLOB.jobspawn_overrides[assigned_role]))
-		return
-	if(assigned_role.faction == FACTION_TERRAGOV_REBEL && length(GLOB.latejoinrebel)) //Not proud of this :/ 
-		SendToAtom(M, pick(GLOB.latejoinrebel))
 		return
 	if(length(GLOB.latejoin))
 		SendToAtom(M, pick(GLOB.latejoin))
