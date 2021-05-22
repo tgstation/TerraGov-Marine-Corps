@@ -42,18 +42,21 @@ SUBSYSTEM_DEF(persistence)
 		initialize_seasonal_items_file()
 	var/list/seasons_file_info = json_decode(file2text(json_file))
 
-	for(var/season_section in seasons_durations)
-		seasons_file_info = update_season_data(season_section, seasons_file_info)
+	for(var/season_class in seasons_durations)
+		seasons_file_info = update_season_data(season_class, seasons_file_info)
 
 	fdel(json_file)
 	WRITE_FILE(json_file, json_encode(seasons_file_info))
 
-/datum/controller/subsystem/persistence/proc/update_season_data(season_class, seasons_file_info)
-	var/time_since_last_update
+/datum/controller/subsystem/persistence/proc/update_season_data(season_class, list/seasons_file_info)
+	if(!LAZYACCESS(seasons_file_info, season_class)) //handles adding missing entries
+		var/list/template_season_entry = list(
+			"[season_class]" = list(LAST_UPDATE = 0, CURRENT_SEASON = 0) //values will be set afterwards
+		)
+		seasons_file_info += template_season_entry
+
 	var/last_season_update_time = text2num(seasons_file_info[season_class][LAST_UPDATE])
-	if(!last_season_update_time)
-		last_season_update_time = 0
-	time_since_last_update = world.realtime - last_season_update_time
+	var/time_since_last_update = world.realtime - last_season_update_time
 	if(time_since_last_update < seasons_durations[season_class])
 		return seasons_file_info
 
@@ -71,14 +74,7 @@ SUBSYSTEM_DEF(persistence)
 ///Initializes the seasonal items file if it is missing
 /datum/controller/subsystem/persistence/proc/initialize_seasonal_items_file()
 	var/json_file = file("data/seasonal_items.json")
-	var/list/json_default_list = list(
-		LAST_UPDATE = world.realtime,
-		CURRENT_SEASON = 1,
-	)
 	var/list/seasons_file_info = list()
-	for(var/season_section in seasons_durations)
-		seasons_file_info[season_section] = json_default_list
-
 	WRITE_FILE(json_file, json_encode(seasons_file_info))
 
 ///Used to make item buckets for the seasonal items system
