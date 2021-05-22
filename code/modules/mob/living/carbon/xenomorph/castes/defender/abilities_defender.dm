@@ -104,11 +104,15 @@
 	keybind_flags = XACT_KEYBIND_USE_ABILITY
 	keybind_signal = COMSIG_XENOABILITY_TAIL_SWEEP
 
-/datum/action/xeno_action/tail_sweep/action_activate()
+/datum/action/xeno_action/tail_sweep/can_use_action(silent, override_flags)
+	. = ..()
 	var/mob/living/carbon/xenomorph/X = owner
 	if(X.crest_defense && X.plasma_stored < (plasma_cost * 2))
 		to_chat(X, "<span class='xenowarning'>We don't have enough plasma, we need [(plasma_cost * 2) - X.plasma_stored] more plasma!</span>")
-		return fail_activate()
+		return FALSE
+
+/datum/action/xeno_action/tail_sweep/action_activate()
+	var/mob/living/carbon/xenomorph/X = owner
 
 	GLOB.round_statistics.defender_tail_sweeps++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "defender_tail_sweeps")
