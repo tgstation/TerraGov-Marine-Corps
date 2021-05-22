@@ -44,27 +44,27 @@ all_changelog_entries = {}
 
 # Do not change the order, add to the bottom of the array if necessary
 validPrefixes = [
-    'bugfix',
-    'wip',
-    'tweak',
-    'soundadd',
-    'sounddel',
-    'rscadd',
+	'bugfix',
+	'wip',
+	'tweak',
+	'soundadd',
+	'sounddel',
+	'rscadd',
 	'rscdel',
-    'imageadd',
-    'imagedel',
-    'spellcheck',
-    'experiment',
-    'balance',
-    'code_imp',
-    'refactor',
-    'config',
-    'admin',
-    'server'
+	'imageadd',
+	'imagedel',
+	'spellcheck',
+	'experiment',
+	'balance',
+	'code_imp',
+	'refactor',
+	'config',
+	'admin',
+	'server'
 ]
 
 def dictToTuples(inp):
-    return [(k, v) for k, v in inp.items()]
+	return [(k, v) for k, v in inp.items()]
 
 old_changelog_cache = os.path.join(args.ymlDir, '.all_changelog.yml')
 
