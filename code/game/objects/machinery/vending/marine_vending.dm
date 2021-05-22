@@ -209,9 +209,11 @@
 		/obj/item/storage/box/visual/magazine = 30,
 		/obj/item/storage/box/visual/grenade = 10,
 		),
-		"Seasonal" = list()
 	)
 
+	seasonal_items = list(
+		SEASONAL_GUNS = "Seasonal",
+	)
 
 /obj/machinery/vending/marine/shared/hvh
 

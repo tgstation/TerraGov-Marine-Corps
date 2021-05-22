@@ -25,8 +25,8 @@ SUBSYSTEM_DEF(persistence)
 	///Available gun seasons
 	var/list/seasons_buckets = list(
 		SEASONAL_GUNS = list(
-		/datum/season_datum/seasonal_items/weapons/guns/sadar_bucket,
-		/datum/season_datum/seasonal_items/weapons/guns/wp_bucket
+		/datum/season_datum/weapons/guns/sadar_event,
+		/datum/season_datum/weapons/guns/wp_event
 		),
 		)
 
@@ -66,7 +66,10 @@ SUBSYSTEM_DEF(persistence)
 	season_progress[season_class] = seasons_file_info[season_class][CURRENT_SEASON]
 
 	var/seasons_buckets_list_index = season_progress[season_class] % seasons_buckets[season_class].len + 1
-	season_items[season_class] = seasons_buckets[season_class][seasons_buckets_list_index]
+
+	var/season_typepath = seasons_buckets[season_class][seasons_buckets_list_index]
+	var/datum/season_datum/season_instance = new season_typepath
+	season_items[season_class] = season_instance.item_list
 	return seasons_file_info
 
 ///Initializes the seasonal items file if it is missing
@@ -91,14 +94,14 @@ SUBSYSTEM_DEF(persistence)
 	///Items that the season contains
 	var/list/item_list = list()
 
-/datum/season_datum/seasonal_items/weapons/guns/sadar_bucket
+/datum/season_datum/weapons/guns/sadar_event
 	name = "SADAR bucket"
 	description = "Adds some SADARS to round-start marine gear to balance the winrates"
 	item_list = list(
 		/obj/item/weapon/gun/launcher/rocket/sadar = 10,
 		)
 
-/datum/season_datum/seasonal_items/weapons/guns/wp_bucket
+/datum/season_datum/weapons/guns/wp_event
 	name = "WP bucket"
 	description = "Adds some WP grenades to round-start marine gear to balance the winrates"
 	item_list = list(
