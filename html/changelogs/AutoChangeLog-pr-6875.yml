@@ -1,7 +1,0 @@
-author: "Enukar"
-delete-after: True
-changes: 
-  - balance: "CAS flares now cost 5 supply poinsts instead of 10."
-  - balance: "T-72 RPG can be ordered individually."
-  - balance: "Quickdeploy cades can be ordered individually."
-  - balance: "Deployable cameras can be ordered individually."

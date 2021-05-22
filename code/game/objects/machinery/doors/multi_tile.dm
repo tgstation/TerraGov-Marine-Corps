@@ -135,6 +135,9 @@
 	glass = TRUE
 	req_access = list(ACCESS_MARINE_BRIDGE)
 
+/obj/machinery/door/airlock/multi_tile/mainship/comdoor/rebel
+	req_access = list(ACCESS_MARINE_BRIDGE_REBEL)
+
 /obj/machinery/door/airlock/multi_tile/mainship/comdoor/free_access
 	req_access = null
 
