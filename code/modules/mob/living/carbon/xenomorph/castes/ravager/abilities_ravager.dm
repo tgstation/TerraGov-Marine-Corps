@@ -151,7 +151,7 @@
 	keybind_signal = COMSIG_XENOABILITY_IGNORE_PAIN
 
 /datum/action/xeno_action/endure/on_cooldown_finish()
-	to_chat(owner, "<span class='xenodanger'>We feel able to imbue ourselves with plasma to ignore pain once again!</span>")
+	to_chat(owner, "<span class='xenodanger'>We feel able to imbue ourselves with plasma to Endure once again!</span>")
 	owner.playsound_local(owner, 'sound/effects/xeno_newlarva.ogg', 25, 0, 1)
 	return ..()
 
@@ -160,11 +160,11 @@
 
 	X.emote("roar")
 	X.visible_message("<span class='danger'>\The skin on the [X] begins to glow!</span>", \
-	"<span class='xenowarning'>We feel the plasma flowing through our veins!</span>")
+	"<span class='xenowarning'>We feel the plasma coursing through our veins!</span>")
 
 	X.endure = TRUE
 
-	X.add_filter("ravager_endure_outline", 4, list("type" = "outline", "size" = 1, "color" = COLOR_PURPLE)) //Set our cool aura; also confirmation we have the buff
+	X.add_filter("ravager_endure_outline", 4, outline_filter(1, COLOR_PURPLE)) //Set our cool aura; also confirmation we have the buff
 
 	addtimer(CALLBACK(src, .proc/endure_warning), RAVAGER_ENDURE_DURATION * RAVAGER_ENDURE_WARNING) //Warn the runner when the duration is about to expire.
 	addtimer(CALLBACK(src, .proc/endure_deactivate), RAVAGER_ENDURE_DURATION)
