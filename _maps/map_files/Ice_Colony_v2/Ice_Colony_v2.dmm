@@ -24502,7 +24502,7 @@
 /area/ice_colony/underground/storage/highsec)
 "bFp" = (
 /obj/structure/table/reinforced,
-/obj/item/toy/farwadoll,
+/obj/item/toy/plush/farwa,
 /turf/open/floor/tile/dark/blue2,
 /area/ice_colony/underground/storage/highsec)
 "bFq" = (

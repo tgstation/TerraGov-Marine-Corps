@@ -329,56 +329,6 @@
 	desc = "Mini-Mecha action figure! Collect them all! 11/11."
 	icon_state = "phazonprize"
 
-
-/obj/item/toy/therapy_red
-	name = "red therapy doll"
-	desc = "A toy for therapeutic and recreational purposes. This one is red."
-	icon = 'icons/obj/items/weapons.dmi'
-	icon_state = "therapyred"
-	item_state = "egg4" // It's the red egg in items_left/righthand
-	w_class = WEIGHT_CLASS_TINY
-
-/obj/item/toy/therapy_purple
-	name = "purple therapy doll"
-	desc = "A toy for therapeutic and recreational purposes. This one is purple."
-	icon = 'icons/obj/items/weapons.dmi'
-	icon_state = "therapypurple"
-	item_state = "egg1" // It's the magenta egg in items_left/righthand
-	w_class = WEIGHT_CLASS_TINY
-
-/obj/item/toy/therapy_blue
-	name = "blue therapy doll"
-	desc = "A toy for therapeutic and recreational purposes. This one is blue."
-	icon = 'icons/obj/items/weapons.dmi'
-	icon_state = "therapyblue"
-	item_state = "egg2" // It's the blue egg in items_left/righthand
-	w_class = WEIGHT_CLASS_TINY
-
-/obj/item/toy/therapy_yellow
-	name = "yellow therapy doll"
-	desc = "A toy for therapeutic and recreational purposes. This one is yellow."
-	icon = 'icons/obj/items/weapons.dmi'
-	icon_state = "therapyyellow"
-	item_state = "egg5" // It's the yellow egg in items_left/righthand
-	w_class = WEIGHT_CLASS_TINY
-
-/obj/item/toy/therapy_orange
-	name = "orange therapy doll"
-	desc = "A toy for therapeutic and recreational purposes. This one is orange."
-	icon = 'icons/obj/items/weapons.dmi'
-	icon_state = "therapyorange"
-	item_state = "egg4" // It's the red one again, lacking an orange item_state and making a new one is pointless
-	w_class = WEIGHT_CLASS_TINY
-
-/obj/item/toy/therapy_green
-	name = "green therapy doll"
-	desc = "A toy for therapeutic and recreational purposes. This one is green."
-	icon = 'icons/obj/items/weapons.dmi'
-	icon_state = "therapygreen"
-	item_state = "egg3" // It's the green egg in items_left/righthand
-	w_class = WEIGHT_CLASS_TINY
-
-
 /obj/item/toy/inflatable_duck
 	name = "inflatable duck"
 	desc = "No bother to sink or swim when you can just float!"
@@ -437,8 +387,6 @@
 
 
 
-
-
 /obj/item/toy/bikehorn
 	name = "bike horn"
 	desc = "A horn off of a bicycle."
@@ -456,19 +404,140 @@
 	. = ..()
 	AddComponent(/datum/component/squeak, 'sound/items/bikehorn.ogg', 50)
 
-
-/obj/item/toy/farwadoll
-	name = "Farwa plush doll"
-	desc = "A Farwa plush doll. It's soft and comforting!"
+/obj/item/toy/plush
+	name = "generic doll"
+	desc = "An odd looking doll, it has a tag that reads: 'if found please return to coder.'"
 	w_class = WEIGHT_CLASS_TINY
-	icon_state = "farwaplush"
+	icon_state = "debug"
+	attack_verb = list("thumps", "whomps", "bumps")
+	squeak_override = list('sound/items/rounydollsqueak.ogg' = 1)
 	var/last_hug_time
+	var/list/squeak_override
 
-/obj/item/toy/farwadoll/attack_self(mob/user)
+/obj/item/toy/plush/attack_self(mob/user)
 	if(world.time > last_hug_time)
 		user.visible_message("<span class='notice'>[user] hugs [src]! How cute! </span>", \
 							"<span class='notice'>You hug [src]. Dawwww... </span>")
 		last_hug_time = world.time + 50 //5 second cooldown
+
+/obj/item/toy/plush/Initialize()
+	. = ..()
+	AddComponent(/datum/component/squeak, squeak_override)
+
+/obj/item/toy/plush/farwa
+	name = "Farwa plush doll"
+	desc = "A Farwa plush doll. It's soft and comforting!"
+	w_class = WEIGHT_CLASS_TINY
+	icon_state = "farwaplush"
+
+/obj/item/toy/plush/therapy_red
+	name = "red therapy doll"
+	desc = "A toy for therapeutic and recreational purposes. This one is red."
+	icon_state = "therapyred"
+	item_state = "egg4" // It's the red egg in items_left/righthand
+	w_class = WEIGHT_CLASS_TINY
+
+/obj/item/toy/plush/therapy_purple
+	name = "purple therapy doll"
+	desc = "A toy for therapeutic and recreational purposes. This one is purple."
+	icon_state = "therapypurple"
+	item_state = "egg1" // It's the magenta egg in items_left/righthand
+	w_class = WEIGHT_CLASS_TINY
+
+/obj/item/toy/plush/therapy_blue
+	name = "blue therapy doll"
+	desc = "A toy for therapeutic and recreational purposes. This one is blue."
+	icon_state = "therapyblue"
+	item_state = "egg2" // It's the blue egg in items_left/righthand
+	w_class = WEIGHT_CLASS_TINY
+
+/obj/item/toy/plush/therapy_yellow
+	name = "yellow therapy doll"
+	desc = "A toy for therapeutic and recreational purposes. This one is yellow."
+	icon_state = "therapyyellow"
+	item_state = "egg5" // It's the yellow egg in items_left/righthand
+	w_class = WEIGHT_CLASS_TINY
+
+/obj/item/toy/plush/therapy_orange
+	name = "orange therapy doll"
+	desc = "A toy for therapeutic and recreational purposes. This one is orange."
+	icon_state = "therapyorange"
+	item_state = "egg4" // It's the red one again, lacking an orange item_state and making a new one is pointless
+	w_class = WEIGHT_CLASS_TINY
+
+/obj/item/toy/plush/therapy_green
+	name = "green therapy doll"
+	desc = "A toy for therapeutic and recreational purposes. This one is green."
+	icon_state = "therapygreen"
+	item_state = "egg3" // It's the green egg in items_left/righthand
+	w_class = WEIGHT_CLASS_TINY
+
+/obj/item/toy/plush/carpplushie
+	name = " carp plushie"
+	desc = "An adorable stuffed toy that resembles a carp."
+	icon_state = "carpplush"
+	item_state = "carp_plushie"
+	attack_verb = list("bites", "eats", "fin slaps")
+	squeak_override = list('sound/weapons/bite.ogg'=1)
+
+/obj/item/toy/plush/lizardplushie
+	name = "lizard plushie"
+	desc = "An adorable stuffed toy that resembles a lizard."
+	icon_state = "lizplush"
+	item_state = "lizplush"
+	attack_verb = list("claws", "hisses", "tail slaps")
+	squeak_override = list('sound/weapons/slash.ogg' = 1)
+
+/obj/item/toy/plush/snakeplushie
+	name = "snake plushie"
+	desc = "An adorable stuffed toy that resembles a snake. Not to be mistaken for the real thing."
+	icon_state = "snakeplush"
+	item_state = "plushie_snake"
+	attack_verb = list("bites", "hisses", "tail slaps")
+	squeak_override = list('sound/weapons/bite.ogg' = 1)
+
+/obj/item/toy/plush/slimeplushie
+	name = "slime plushie"
+	desc = "An adorable stuffed toy that resembles a slime. It is practically just a hacky sack."
+	icon_state = "slimeplush"
+	item_state = "slimeplush"
+	attack_verb = list("blorbles", "slimes", "absorbs")
+	squeak_override = list('sound/effects/blobattack.ogg' = 1)
+
+/obj/item/toy/plush/moth
+	name = "moth plushie"
+	desc = "A plushie depicting an adorable mothperson. It's a huggable bug!"
+	icon_state = "moffplush"
+	item_state = "moffplush"
+	attack_verb = list("flutters", "flaps")
+	squeak_override = list('sound/voice/moth_scream.ogg'=1)
+
+/obj/item/toy/plush/rouny
+	name = "runner plushie"
+	desc = "A plushie depicting a xenomorph runner, made to commemorate the centenary of the Battle of LV-426. Much cuddlier than the real thing."
+	icon_state = "rounyplush"
+	item_state = "rounyplush"
+	attack_verb = list("slashes", "bites", "charges")
+	squeak_override = list('sound/items/=dollsqueak.ogg' = 1)
+
+/obj/item/toy/plush/marisa
+	name = "witch plushie"
+	desc = "A plushie depicting an adorable witch. It likes to steal books."
+	icon_state = "marisa"
+	item_state = "marisa"
+
+/obj/item/toy/plush/astolfo
+	name = "knight plushie"
+	desc = "A plushie depicting an adorable knight. It seems to be a trap."
+	icon_state = "astolfo"
+	item_state = "astolfo"
+
+
+/obj/item/toy/plush/cirno
+	name = "witch plushie"
+	desc = "A plushie depicting an adorable fairy. It's cold to the touch."
+	icon_state = "cirno"
+	item_state = "cirno"
 
 
 /obj/item/toy/beach_ball/basketball
