@@ -473,7 +473,7 @@
 	w_class = WEIGHT_CLASS_TINY
 
 /obj/item/toy/plush/carp
-	name = " carp plushie"
+	name = "carp plushie"
 	desc = "An adorable stuffed toy that resembles a carp."
 	icon_state = "carpplush"
 	item_state = "carp_plushie"
