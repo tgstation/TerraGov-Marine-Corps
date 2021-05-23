@@ -410,7 +410,7 @@
 	w_class = WEIGHT_CLASS_TINY
 	icon_state = "debug"
 	attack_verb = list("thumps", "whomps", "bumps")
-	squeak_override = list('sound/items/rounydollsqueak.ogg' = 1)
+	var/squeak_sound = list('sound/items/dollsqueak.ogg' = 1)
 	var/last_hug_time
 	var/list/squeak_override
 
@@ -472,7 +472,7 @@
 	item_state = "egg3" // It's the green egg in items_left/righthand
 	w_class = WEIGHT_CLASS_TINY
 
-/obj/item/toy/plush/carpplushie
+/obj/item/toy/plush/carp
 	name = " carp plushie"
 	desc = "An adorable stuffed toy that resembles a carp."
 	icon_state = "carpplush"
@@ -480,7 +480,7 @@
 	attack_verb = list("bites", "eats", "fin slaps")
 	squeak_override = list('sound/weapons/bite.ogg'=1)
 
-/obj/item/toy/plush/lizardplushie
+/obj/item/toy/plush/lizard
 	name = "lizard plushie"
 	desc = "An adorable stuffed toy that resembles a lizard."
 	icon_state = "lizplush"
@@ -488,7 +488,7 @@
 	attack_verb = list("claws", "hisses", "tail slaps")
 	squeak_override = list('sound/weapons/slash.ogg' = 1)
 
-/obj/item/toy/plush/snakeplushie
+/obj/item/toy/plush/snake
 	name = "snake plushie"
 	desc = "An adorable stuffed toy that resembles a snake. Not to be mistaken for the real thing."
 	icon_state = "snakeplush"
@@ -496,7 +496,7 @@
 	attack_verb = list("bites", "hisses", "tail slaps")
 	squeak_override = list('sound/weapons/bite.ogg' = 1)
 
-/obj/item/toy/plush/slimeplushie
+/obj/item/toy/plush/slime
 	name = "slime plushie"
 	desc = "An adorable stuffed toy that resembles a slime. It is practically just a hacky sack."
 	icon_state = "slimeplush"
@@ -513,27 +513,25 @@
 	squeak_override = list('sound/voice/moth_scream.ogg'=1)
 
 /obj/item/toy/plush/rouny
-	name = "runner plushie"
-	desc = "A plushie depicting a xenomorph runner, made to commemorate the centenary of the Battle of LV-426. Much cuddlier than the real thing."
+	name = "rouny plushie"
+	desc = "A plushie depicting a rouny, made to commemorate the centenary of the Battle of LV-426. Much cuddlier than the real thing."
 	icon_state = "rounyplush"
 	item_state = "rounyplush"
 	attack_verb = list("slashes", "bites", "charges")
-	squeak_override = list('sound/items/=dollsqueak.ogg' = 1)
 
-/obj/item/toy/plush/marisa
+/obj/item/toy/plush/witch
 	name = "witch plushie"
 	desc = "A plushie depicting an adorable witch. It likes to steal books."
 	icon_state = "marisa"
 	item_state = "marisa"
 
-/obj/item/toy/plush/astolfo
+/obj/item/toy/plush/knight
 	name = "knight plushie"
 	desc = "A plushie depicting an adorable knight. It seems to be a trap."
 	icon_state = "astolfo"
 	item_state = "astolfo"
 
-
-/obj/item/toy/plush/cirno
+/obj/item/toy/plush/fairy
 	name = "witch plushie"
 	desc = "A plushie depicting an adorable fairy. It's cold to the touch."
 	icon_state = "cirno"
