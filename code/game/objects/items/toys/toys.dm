@@ -517,7 +517,7 @@
 	desc = "A plushie depicting a rouny, made to commemorate the centenary of the battle of LV-426. Much cuddlier and soft than the real thing."
 	icon_state = "rounyplush"
 	item_state = "rounyplush"
-	attack_verb = list("slashes", "bites", "charges")
+	attack_verb = list("slashes", "bites", "pounces")
 
 /obj/item/toy/plush/witch
 	name = "witch plushie"
