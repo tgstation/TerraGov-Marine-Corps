@@ -113,12 +113,7 @@
 	if(!can_climb(user))
 		return
 
-	var/intotrench = FALSE ///temporary var so that this proc doesnt have to run istype twice
-	if(istype(src, /obj/structure/trench))
-		user.visible_message("<span class='warning'>[user] starts to climb into \the [src]!</span>")
-		intotrench = TRUE
-	else
-		user.visible_message("<span class='warning'>[user] starts [flags_atom & ON_BORDER ? "leaping over":"climbing onto"] \the [src]!</span>")
+	user.visible_message("<span class='warning'>[user] starts [flags_atom & ON_BORDER ? "leaping over":"climbing onto"] \the [src]!</span>")
 
 	if(!do_after(user, climb_delay, FALSE, src, BUSY_ICON_GENERIC, extra_checks = CALLBACK(src, .proc/can_climb, user)))
 		return
@@ -130,10 +125,7 @@
 		user.forceMove(get_turf(src))
 
 		if(get_turf(user) == get_turf(src))
-			if(intotrench)
-				user.visible_message("<span class='warning'>[user] climbs into \the [src]!</span>") //if the player is going into a trench, this will correct the grammar from onto to into
-			else
-				user.visible_message("<span class='warning'>[user] climbs onto \the [src]!</span>")
+			user.visible_message("<span class='warning'>[user] climbs onto \the [src]!</span>")
 	else //If border structure, assume complex behavior
 		var/turf/target = get_step(get_turf(src), dir)
 		if(user.loc == target)

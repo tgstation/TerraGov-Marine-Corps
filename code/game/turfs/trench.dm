@@ -73,3 +73,43 @@ obj/structure/trench/attackby(obj/item/I, mob/user, params)
 			"<span class='notice'>You repair a damaged trench</span>")
 
 
+/obj/structure/trench/do_climb(mob/living/user)
+	if(!can_climb(user))
+		return
+
+	user.visible_message("<span class='warning'>[user] starts to climb into \the [src]!</span>")
+
+	if(!do_after(user, climb_delay, FALSE, src, BUSY_ICON_GENERIC, extra_checks = CALLBACK(src, .proc/can_climb, user)))
+		return
+
+	for(var/m in user.buckled_mobs)
+		user.unbuckle_mob(m)
+
+	if(!(flags_atom & ON_BORDER)) //If not a border structure or we are not on its tile, assume default behavior
+		user.forceMove(get_turf(src))
+
+		if(get_turf(user) == get_turf(src))
+			user.visible_message("<span class='warning'>[user] climbs into \the [src]!</span>")
+	else //If border structure, assume complex behavior
+		var/turf/target = get_step(get_turf(src), dir)
+		if(user.loc == target)
+			user.forceMove(get_turf(src))
+			user.visible_message("<span class='warning'>[user] leaps over \the [src]!</span>")
+		else
+			if(target.density) //Turf is dense, not gonna work
+				to_chat(user, "<span class='warning'>You cannot leap this way.</span>")
+				return
+			for(var/atom/movable/A in target)
+				if(A && A.density && !(A.flags_atom & ON_BORDER))
+					if(istype(A, /obj/structure))
+						var/obj/structure/S = A
+						if(!S.climbable) //Transfer onto climbable surface
+							to_chat(user, "<span class='warning'>You cannot leap this way.</span>")
+							return
+					else
+						to_chat(user, "<span class='warning'>You cannot leap this way.</span>")
+						return
+			user.forceMove(get_turf(target)) //One more move, we "leap" over the border structure
+
+			if(get_turf(user) == get_turf(target))
+				user.visible_message("<span class='warning'>[user] leaps over \the [src]!</span>")
