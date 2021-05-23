@@ -25,7 +25,6 @@ const STANDARD_BUILD = "Standard Build"
 const TGS_BUILD = "TGS Build"
 const ALL_MAPS_BUILD = "CI All Maps Build"
 const TEST_RUN_BUILD = "CI Integration Tests Build"
-const NO_DM_BUILD = "Except DM Build"
 
 let BUILD_MODE = STANDARD_BUILD;
 if (process.env.CBT_BUILD_MODE) {
@@ -39,9 +38,6 @@ if (process.env.CBT_BUILD_MODE) {
     case "TGS":
       BUILD_MODE = TGS_BUILD
       break;
-    case "NO_DM":
-        BUILD_MODE = NO_DM_BUILD
-        break;
     default:
       BUILD_MODE = process.env.CBT_BUILD_MODE
       break;
@@ -79,16 +75,6 @@ const taskYarn = new Task('yarn')
   // Phony target (automatically created at the end of the task)
   .provides('tgui/.yarn/install-target')
   .build(() => yarn(['install']));
-
-/** Builds svg fonts */
-const taskTgfont = new Task('tgfont')
-.depends('tgui/.yarn/install-target')
-.depends('tgui/packages/tgfont/**/*.+(js|cjs|svg)')
-.depends('tgui/packages/tgfont/package.json')
-.provides('tgui/packages/tgfont/dist/tgfont.css')
-.provides('tgui/packages/tgfont/dist/tgfont.eot')
-.provides('tgui/packages/tgfont/dist/tgfont.woff2')
-.build(() => yarn(['workspace', 'tgfont', 'build']));
 
 /** Builds tgui */
 const taskTgui = new Task('tgui')
@@ -196,25 +182,35 @@ const taskDm = (...injectedDefines) => new Task('dm')
   });
 
 // Frontend
-let tasksToRun = [
-  taskYarn,
-  taskTgfont,
-  taskTgui,
-];
+let tasksToRun = [];
 switch (BUILD_MODE) {
   case STANDARD_BUILD:
-    tasksToRun.push(taskDm('CBT'));
+    tasksToRun = [
+      taskYarn,
+      taskTgui,
+      taskDm('CBT'),
+    ]
     break;
   case TGS_BUILD:
-    tasksToRun.push(taskPrependDefines('TGS'));
+    tasksToRun = [
+      taskYarn,
+      taskTgui,
+      taskPrependDefines('TGS'),
+    ]
     break;
   case ALL_MAPS_BUILD:
-    tasksToRun.push(taskDm('CBT','CIBUILDING','CITESTING','ALL_MAPS'));
+    tasksToRun = [
+      taskYarn,
+      taskTgui,
+      taskDm('CBT','CIBUILDING','CITESTING','ALL_MAPS')
+    ];
     break;
   case TEST_RUN_BUILD:
-    tasksToRun.push(taskDm('CBT','CIBUILDING'));
-    break;
-  case NO_DM_BUILD:
+    tasksToRun = [
+      taskYarn,
+      taskTgui,
+      taskDm('CBT','CIBUILDING')
+    ];
     break;
   default:
     console.error(`Unknown build mode : ${BUILD_MODE}`)
