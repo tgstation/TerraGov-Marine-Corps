@@ -1,0 +1,152 @@
+2019-06-01:
+  Jalleo:
+  - code_imp: Code made slightly better in tiny areas. Report any issues about the
+      fusion generator or elsewhere
+  LaKiller8:
+  - refactor: Assembly and chem grenade code has been refactored to /tg/ standard.
+  psykzz:
+  - rscadd: Added ghost hud
+  - rscadd: Added new ghost alerts, They show specific events to ghosts that happen
+      throughout the round, allowing ghosts to see more action.
+  - rscadd: Tooltips now appear on certain things to help with readability, first
+      pass adds tooltips to on screen actions.
+2019-06-04:
+  Hughgent:
+  - tweak: Sleeper window is more compact.
+  - tweak: Sleeper window is condensed even more.
+  LaKiller8:
+  - balance: The amount of specialists is now scaled and depends on the amount of
+      ready players.
+  - tweak: Cameras are now buildable and deconstructable again, xenos can slash them,
+      humans can repair them.
+2019-06-07:
+  Ghommie:
+  - bugfix: fixes the zone_sel ui overlays possibly being of improper tonalities when
+      hovered over with the pointer.
+  Shadow-Quill:
+  - tweak: CMO now starts with a command headset
+  - rscdel: Removed now unused command headsets and encryption keys.
+  psykzz:
+  - rscadd: Create a new locator hud that points to the field commander for squad
+      leaders, and acting squad leaders.
+  - bugfix: Fixed Alt to toggle walking and holding Ctrl to face a direction
+  - bugfix: screenshot keybinding not working due to bad client
+2019-06-08:
+  Ghommie:
+  - bugfix: Fixes autodoc's incorporated radio ejecting itself upon occupant exit.
+  LaKiller8:
+  - tweak: Newer players may start having illussions of a friendly ghost guiding them.
+      This is an imaginary friend controlled by one of our fellow mentors.
+  MoXuT0:
+  - bugfix: Fixed offset in smartgun's inhand icons.
+  Rohesie:
+  - balance: M39 SMGs now come with a little strap so you can carry them on your back.
+2019-06-09:
+  MoXuT0:
+  - bugfix: Blood overlay for boots shouldn't obscure knife anymore.
+  - imageadd: Pyro boots now have slighly different icon from default marine boots.
+2019-06-10:
+  Ghommie:
+  - bugfix: Fixes more ammo datum smokes stuff, such as some borked rockets, apologises
+      for the inconvenience.
+  - bugfix: Fixes the halloss from dirty smartgun bullets.
+  MoXuT0:
+  - soundadd: Added new firing sounds for various weapons.
+  - soundadd: Added new firing sounds when empty for pulse rifles, flamer and shotgun.
+  - soundadd: Added sounds for litting/unlitting flamethrower.
+  - soundadd: Added more explosion sound effects.
+  - imageadd: Added unique sprite for B18 gloves.
+2019-06-12:
+  Rohesie:
+  - balance: Queen acid upgraded to strong to match the Boiler's.
+  - balance: Boiler health and speed buffed only a tiny bit.
+2019-06-13:
+  Ghommie:
+  - imageadd: Ported newer sprites for the average ss13 shuttle  shuttle propulsor
+      & co. This doesn't concern neither Alamo, Normandy or escape pods.
+  spookydonut:
+  - rscadd: Ports dropships to new shuttle system
+  - rscdel: Removed last of old shuttle stuff
+  - tweak: Queen now has a verb for calling down the shuttle, it will call it down
+      to the closest LZ to the queen no matter what the shuttle is doing, can't calldown
+      before 30 minutes or if more than 10% alive humans are on the ground.
+  - rscdel: Removed normandy for now
+  - rscadd: The Alamo can land at either LZ and fly between LZs
+  - rscdel: Removed CAS for now
+  - imageadd: half tile shuttle pieces now overlay properly on turfs, no more plating
+      welded to the dropship as it flies.
+2019-06-14:
+  MoXuT0:
+  - bugfix: Fixed onmob icons for belts and added missing ones.
+  - tweak: B18 grenade belt is now named Mk II.
+  - bugfix: Fixed mine box having less space then it should.
+  - bugfix: Fixed numbers on flare pack icon.
+  ma44:
+  - refactor: Made xeno pheromone emitting less worse in terms of performance
+2019-06-15:
+  LaKiller8:
+  - rscdel: The clown survivor has been removed.
+  Rohesie:
+  - tweak: Xenos and ghosts can see the larva progression on monkeys as well as humans
+      now.
+2019-06-16:
+  LaKiller8:
+  - rscadd: Overwatch console cameras now act like AI eye.
+  psykzz:
+  - balance: Queen screech is reduced by 30% when out of LOS.
+  - balance: Facehuggers will no longer attach to a host on fire.
+2019-06-17:
+  ma44:
+  - bugfix: Xenos with low plasma regen like runners will no longer be stuck at 0
+      plasma when running out of it
+2019-06-21:
+  MoXuT0:
+  - rscadd: Speech bubble is now animated.
+  - imageadd: Pyro's backpack is now same color as other marine gear.
+  - tweak: Chief medical officer now spawns with unique hat. It also can be found
+      in his closet.
+  Rohesie:
+  - balance: Fixed the warrior grab move-resist delay, which was broken. To free yourself
+      you need to move/resist twice and there's a cooldown of around 1 second between
+      each. Button/macro and movement resists no longer stack.
+  - tweak: Resisting works a bit differently than usual, but nothing big. If you are
+      bucklecuffed you'll try to remove the cuffs, and if you succeed you'll just
+      be able to unbuckle as normal. If you are hand and legcuffed, you'll resist
+      whatever was slapped first.
+  psykzz:
+  - rscadd: New observer actionss
+  - rscadd: Ghosts can now hold shift and use the mouse wheel to zoom in / out.
+  spookydonut:
+  - admin: Removed legacy ban system support
+2019-06-29:
+  Ghommie:
+  - imageadd: Added in directional sprites for intercoms.
+  Rohesie:
+  - tweak: The xenomorph hivemind members now use plural forms to refer to themselves.
+      They have a hard time grasping concepts such as individuality. All are one,
+      one is many.
+  - tweak: Improved feedback of the Summon Dropship xeno ruler ability. Nested and
+      infected tallhosts no longer count towards the limit of marines on the ground
+      to summon it.
+  - rscdel: Xenos can no longer play basketball unless fun_allowed is turned on. And,
+      by default, fun is not allowed.
+  Rohesie (implementation) and Sleepy (sprites):
+  - imageadd: "Every job has gained an icon in the squad HUD, which should be default\
+      \ for everyone on the ship. Gold is for the ship crew (navy and attach\xE9es),\
+      \ silver for the deployed troops (marines). Blue is for command, light blue\
+      \ for medical, yellow for engineering, brown for requisitions, red for security."
+2019-06-30:
+  LaKiller8:
+  - tweak: Hivemind size should now be more comparable to marine radio comms, also
+      removed the italics.
+  Rohesie:
+  - rscdel: 'Removed an unknown feature: cryobags actually had a lifetime of around
+      an hour of holding mobs inside them. Maybe more.'
+  - balance: Tarps now fade out gradually instead of in janky steps. They don't accept
+      dead bodies in them anymore (and will spit out whoever dies inside them). You
+      can now drag them even if closed, as long as they don't contain someone. They
+      will no longer show the name of the person inside.
+  psykzz:
+  - balance: rebalanced boiler bombard, overall reduced 2 seconds from total time
+      needed to fire, but also frontloaded most of the wait to toggling the ability,
+      and reduced the wait when firing.

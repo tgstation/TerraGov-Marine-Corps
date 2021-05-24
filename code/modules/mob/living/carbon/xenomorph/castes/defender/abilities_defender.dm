@@ -93,7 +93,7 @@
 // ***************************************
 // *********** Tail sweep
 // ***************************************
-/datum/action/xeno_action/activable/tail_sweep
+/datum/action/xeno_action/tail_sweep
 	name = "Tail Sweep"
 	action_icon_state = "tail_sweep"
 	mechanics_text = "Hit all adjacent units around you, knocking them away and down."
@@ -104,22 +104,14 @@
 	keybind_flags = XACT_KEYBIND_USE_ABILITY
 	keybind_signal = COMSIG_XENOABILITY_TAIL_SWEEP
 
-/datum/action/xeno_action/activable/tail_sweep/can_use_ability(atom/A, silent = FALSE, override_flags)
+/datum/action/xeno_action/tail_sweep/can_use_action(silent, override_flags)
 	. = ..()
-	if(!.)
-		return FALSE
 	var/mob/living/carbon/xenomorph/X = owner
 	if(X.crest_defense && X.plasma_stored < (plasma_cost * 2))
-		if(!silent)
-			to_chat(X, "<span class='xenowarning'>We don't have enough plasma, we need [(plasma_cost * 2) - X.plasma_stored] more plasma!</span>")
+		to_chat(X, "<span class='xenowarning'>We don't have enough plasma, we need [(plasma_cost * 2) - X.plasma_stored] more plasma!</span>")
 		return FALSE
 
-/datum/action/xeno_action/activable/tail_sweep/on_cooldown_finish()
-	var/mob/living/carbon/xenomorph/X = owner
-	to_chat(X, "<span class='notice'>We gather enough strength to tail sweep again.</span>")
-	return ..()
-
-/datum/action/xeno_action/activable/tail_sweep/use_ability()
+/datum/action/xeno_action/tail_sweep/action_activate()
 	var/mob/living/carbon/xenomorph/X = owner
 
 	GLOB.round_statistics.defender_tail_sweeps++
@@ -127,13 +119,17 @@
 	X.visible_message("<span class='xenowarning'>\The [X] sweeps its tail in a wide circle!</span>", \
 	"<span class='xenowarning'>We sweep our tail in a wide circle!</span>")
 
+	X.add_filter("defender_tail_sweep", 2, gauss_blur_filter(1)) //Add cool SFX
 	X.spin(4, 1)
+	playsound(X,pick('sound/effects/alien_tail_swipe1.ogg','sound/effects/alien_tail_swipe2.ogg','sound/effects/alien_tail_swipe3.ogg'), 25, 1) //Sound effects
 
 	var/sweep_range = 1
 	var/list/L = orange(sweep_range, X)		// Not actually the fruit
 
 	for (var/mob/living/carbon/human/H in L)
 		step_away(H, src, sweep_range, 2)
+		H.add_filter("defender_tail_sweep", 2, gauss_blur_filter(1)) //Add cool SFX; motion blur
+		addtimer(CALLBACK(H, /atom.proc/remove_filter, "defender_tail_sweep"), 0.5 SECONDS) //Remove cool SFX
 		if(H.stat != DEAD && !isnestedhost(H) ) //No bully
 			var/damage = X.xeno_caste.melee_damage
 			var/affecting = H.get_limb(ran_zone(null, 0))
@@ -150,20 +146,27 @@
 		to_chat(H, "<span class='xenowarning'>We are struck by \the [X]'s tail sweep!</span>")
 		playsound(H,'sound/weapons/alien_claw_block.ogg', 50, 1)
 
+	addtimer(CALLBACK(X, /atom.proc/remove_filter, "defender_tail_sweep"), 0.5 SECONDS) //Remove cool SFX
 	succeed_activate()
 	if(X.crest_defense)
 		X.use_plasma(plasma_cost)
 	add_cooldown()
 
-/datum/action/xeno_action/activable/tail_sweep/ai_should_start_consider()
+/datum/action/xeno_action/tail_sweep/on_cooldown_finish()
+	var/mob/living/carbon/xenomorph/X = owner
+	to_chat(X, "<span class='notice'>We gather enough strength to tail sweep again.</span>")
+	owner.playsound_local(owner, 'sound/effects/xeno_newlarva.ogg', 25, 0, 1)
+	return ..()
+
+/datum/action/xeno_action/tail_sweep/ai_should_start_consider()
 	return TRUE
 
-/datum/action/xeno_action/activable/tail_sweep/ai_should_use(target)
+/datum/action/xeno_action/tail_sweep/ai_should_use(target)
 	if(!iscarbon(target))
 		return ..()
 	if(get_dist(target, owner) > 1)
 		return ..()
-	if(!can_use_ability(target, override_flags = XACT_IGNORE_SELECTED_ABILITY))
+	if(!can_use_action(override_flags = XACT_IGNORE_SELECTED_ABILITY))
 		return ..()
 	return TRUE
 

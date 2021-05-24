@@ -322,23 +322,23 @@
 
 	var/mob/living/carbon/xenomorph/runner/R = owner
 	if(!evade_active) //If evasion is not active we don't dodge
-		return TRUE
+		return FALSE
 
-	if((R.last_move_time  < (world.time - RUNNER_EVASION_RUN_DELAY))) //Gotta keep moving to benefit from evasion!
-		return TRUE
+	if((R.last_move_time < (world.time - RUNNER_EVASION_RUN_DELAY))) //Gotta keep moving to benefit from evasion!
+		return FALSE
 
 	if(R.issamexenohive(proj.firer)) //We automatically dodge allied projectiles at no cost, and no benefit to our evasion stacks
 		return COMPONENT_PROJECTILE_DODGE
 
 	if(proj.ammo.flags_ammo_behavior & AMMO_FLAME) //We can't dodge literal fire
-		return TRUE
+		return FALSE
 
 	if(!(proj.ammo.flags_ammo_behavior & AMMO_SENTRY) && !R.fire_stacks) //We ignore projectiles from automated sources/sentries for the purpose of contributions towards our cooldown refresh; also fire prevents accumulation of evasion stacks
 		evasion_stacks += proj.damage //Add to evasion stacks for the purposes of determining whether or not our cooldown refreshes
 
 	var/evasion_stack_target = RUNNER_EVASION_COOLDOWN_REFRESH_THRESHOLD * (1 + evasion_streak) //Each streak increases the amount we have to dodge by the initial value
 	R.visible_message("<span class='warning'>[R] effortlessly dodges the [proj.name]!</span>", \
-	"<span class='xenodanger'>We effortlessly dodge the [proj.name]![(evasion_stack_target - evasion_stacks) > 0 ? " We must dodge [evasion_stack_target - evasion_stacks] more projectile damage before [src]'s cooldown refreshes." : ""]</span>")
+	"<span class='xenodanger'>We effortlessly dodge the [proj.name]![(evasion_stack_target - evasion_stacks) > 0 && evasion_stacks > 0 ? " We must dodge [evasion_stack_target - evasion_stacks] more projectile damage before [src]'s cooldown refreshes." : ""]</span>")
 
 
 	R.add_filter("runner_evasion", 2, gauss_blur_filter(5)) //Cool SFX
