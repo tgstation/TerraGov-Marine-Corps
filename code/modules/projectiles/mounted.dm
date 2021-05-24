@@ -106,6 +106,8 @@
 	visible_message("[icon2html(src, viewers(src))] <span class='notice'>[human_user] mans the [src]!</span>",
 		"<span class='notice'>You man the gun!</span>")
 
+	update_view(user)
+
 	return ..()
 
 
@@ -218,6 +220,7 @@
 
 
 /obj/machinery/deployable/mounted/proc/start_fire(datum/source, atom/object, turf/location, control, params)
+/obj/machinery/mounted/proc/start_fire(datum/source, atom/object, turf/location, control, params)
 	SIGNAL_HANDLER
 
 	if(gun.gun_on_cooldown(operator))
@@ -301,11 +304,13 @@ obj/machinery/mounted/proc/change_target(datum/source, atom/src_object, atom/ove
 		var/right = leftright[2] + 1
 		if(left == (angle-1) || right == (angle+1))
 			var/turf/w = get_step(src, REVERSE_DIR(angle))
+			var/mob/living/carbon/human/user = operator
 			if(operator.Move(w))
-				operator.set_interaction(src)
+				setDir(angle)
+				user.set_interaction(src)
 				playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
 				operator.visible_message("[operator] rotates the [src].","You rotate the [src].")
-				setDir(angle)
+				update_view(operator)
 			else
 				to_chat(operator, "You cannot rotate [src] that way.")
 				return FALSE
@@ -319,7 +324,8 @@ obj/machinery/mounted/proc/change_target(datum/source, atom/src_object, atom/ove
 	if(!operator)
 		return
 
-	UnregisterSignal(operator, list(COMSIG_MOB_MOUSEDOWN, COMSIG_MOB_MOUSEUP, COMSIG_MOB_MOUSEDRAG))
+	UnregisterSignal(operator, list(COMSIG_MOB_MOUSEDOWN, COMSIG_MOB_MOUSEDRAG))
+	gun.UnregisterSignal(operator, COMSIG_MOB_MOUSEUP)
 
 	for(var/X in gun.actions)
 		var/datum/action/A = X
