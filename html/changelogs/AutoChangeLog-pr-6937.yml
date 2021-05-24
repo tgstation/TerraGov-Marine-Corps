@@ -1,0 +1,4 @@
+author: "Surrealaser"
+delete-after: True
+changes: 
+  - bugfix: "Evasion now fails as it should if the runner is targeted by flamethrower projectiles, or hasn't moved in the past 0.5 seconds."
