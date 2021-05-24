@@ -532,7 +532,7 @@
 	item_state = "astolfo"
 
 /obj/item/toy/plush/fairy
-	name = "witch plushie"
+	name = "fairy plushie"
 	desc = "A plushie depicting an adorable fairy. It's cold to the touch."
 	icon_state = "cirno"
 	item_state = "cirno"
