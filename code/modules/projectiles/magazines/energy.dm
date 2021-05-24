@@ -18,6 +18,7 @@
 	base_ammo_icon = "m43_e"
 	icon_state = "m43_e"
 	maxcharge = 2000
+	gun_type = /obj/item/weapon/gun/energy/lasgun/tesla
 
 /obj/item/cell/lasgun/M43
 	name = "\improper M43 lasgun battery"

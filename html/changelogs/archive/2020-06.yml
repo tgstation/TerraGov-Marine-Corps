@@ -1,0 +1,151 @@
+2020-06-16:
+  psykzz:
+  - balance: facehuggers strip stamina instead of 20sec of unconciousness on hit
+2020-06-18:
+  MacBlaze1:
+  - bugfix: fixed an exploit which allowed people to remove attachments off the attachment
+      points of the alamo to remove acid from them and instantly put them back on.
+  - bugfix: fixed a wrong error message that would come up whenever you tried to interact
+      with dropship attachments and then stopped.
+  Mouseofthecake:
+  - spellcheck: fixed typos in panther caste_descs.
+  Pariah919:
+  - bugfix: Fixes the tp-44 and tp-19 clipping out of their holsters.
+  - rscadd: Added the T-60 GPMG, and its sprite and its specific bullet.
+  - balance: Adds the GPMG, basically a bigger LMG, though it deals slightly less
+      damage but has slightly more AP, has high scatter and wield delay. But the magazine
+      is very big and it fires faster.
+  XElectricX:
+  - bugfix: Removed spec skill requirements from a few guns that still had it.
+  XSlayer300:
+  - tweak: Changed most of the capitalizations of various items ("T-19 Machinepistol"
+      to "T-19 machinepistol)
+  - tweak: Properly renamed many instances of the T-19 SMG to T-19 machine pistol
+  - tweak: Changed some descriptions to be a bit better.
+  jjpark-kb:
+  - rscadd: Added "Lava Outpost" as a map
+  - rscadd: 'Added 5 turfs: Rock, basalt, glowing basalt, lava, and lava catwalks.'
+  - rscadd: Added a practice surgery button
+  - rscadd: Added 4 practice surgery rooms to MarineHQ
+  - bugfix: fixed inner hull on Sulaco to not have RESIST_ALL
+  - bugfix: fixed barricades being unable to be built on basalt and lava catwalks
+  - bugfix: fixed buttons that are on the floor
+  psykzz:
+  - code_imp: improved reagents and chems to be more like /tg/
+  - rscadd: Ghost follow now uses a TGUI screen
+  spookydonut:
+  - bugfix: pillar no longer has a route into space
+2020-06-19:
+  MacBlaze1:
+  - tweak: made IS module act like IS armor storage
+  psykzz:
+  - admin: auto ghost and kick excessive FF offenses when no admins present
+  - balance: sunder recovery is faster while resting
+2020-06-20:
+  InterroLouis:
+  - balance: Sentry health buffed, given armor
+  psykzz:
+  - rscadd: Added a digital clock
+2020-06-22:
+  MacBlaze1:
+  - rscadd: Gave combat engineers access to engineering proper
+  Pariah919:
+  - rscadd: Adds the T-70 grenade launcher, and grenades to marine vendors
+  - balance: Adds the T-70 grenade launchers and HEDPs to marine vendors.
+  XElectricX:
+  - balance: Machine pistol now pistol sized. Gun and mags fit in appropriate pistol
+      pouches. Halved ammo capacity. Way better accuracy.
+  - balance: Extra SG slot per 10 marines instead of 3.
+  psykzz:
+  - rscadd: Added new camera consoles based on ByondUI
+2020-06-23:
+  spookydonut:
+  - server: 513.1526 is now the minimum required byond version for everything TGMC
+      including players
+2020-06-24:
+  MacBlaze1:
+  - balance: gave barricades 128 coverage which at minimum equates to around a 20%
+      chance to spit beyond the barricade.
+  - balance: gave metal barricades 40 acid armor, it takes 10 acid spits to take them
+      down with barbed wire (all other barricades have 40 acid armor too, but I didnt
+      calculate them)
+  - balance: made acid sprays stop at barricades and not go through them.
+  - tweak: makes people actually take a sizable amount of damage for idling in fire
+  - balance: changes the burn damage of blue flame to be 50% better than the normal
+      flame
+  - bugfix: fixed the jaeger engineering storage module, it now works as intended
+  TiviPlus:
+  - bugfix: fixed Guardsmen armor item sprites
+  jjpark-kb:
+  - bugfix: fixed some missing diagonal shutters
+2020-06-25:
+  InterroLouis:
+  - bugfix: Defender Explosion Armor Fixed
+  MacBlaze1:
+  - bugfix: fixed engineers getting 2 kinds of gloves
+  - bugfix: fixed the ability to gain super speed via exploiting detaching 1 armor
+      piece from modular armor
+  TiviPlus:
+  - rscadd: Your point arrows will now be "thrown" to where you pointed at
+  - rscadd: Bunch of new emotes for humans
+  XElectricX:
+  - bugfix: Sink positions, shutter directions, req access, other misc stuff
+  - bugfix: Mini sentry started out with less health due to the folded state's max
+      integrity not being raised. It now matches the deployed health.
+  XSlayer300:
+  - rscadd: Added Corrupted, Beta, Alpha and Zeta (but not Admeme) Hive ERTs for admin-only
+      events.
+  - rscadd: Added Corrupted, Beta, Alpha and Zeta (but not Admeme) Hive versions of
+      all the xenomorphs (except queen) so far.
+  spookydonut:
+  - bugfix: being crushed by a shuttle gibs you now
+2020-06-27:
+  Pariah919:
+  - rscadd: Added pill packets. Unrefillable pill bottles. Added paracetamol and tricird
+      ones respectively.
+  - balance: Tricord autoinjector inside the first aid kit pouch replaced with Tricord
+      pill packets.
+2020-06-28:
+  InterroLouis:
+  - balance: Burrowed Larva Upgrade Bonus Reduced
+  TiviPlus:
+  - bugfix: actually fixed engis getting two pairs of gloves
+  - balance: Mortar range requirement decreased
+  - balance: Mortar explosion size increased
+  - balance: Mortar reload and targetting times
+  XElectricX:
+  - balance: Prevent pulse rifles from accepting quick fire adapters.
+  psykzz:
+  - balance: on crash t1 xenos are no longer ancient on spawn, they are now elder.
+  spookydonut:
+  - admin: Announce to affected players when mass-bussing happens who did it
+2020-06-30:
+  InterroLouis:
+  - balance: FOB Drone Builds Faster
+  MacBlaze1:
+  - rscadd: Adds the Mimir helmet module to go along with the mimir armor module
+  Sibg:
+  - tweak: Changes the mini-gun name & description.
+  - balance: minigun stats, making it what it should be, etc
+  TiviPlus:
+  - bugfix: Headset cams will now be assigned to squad cameranets correctly
+  - rscadd: Gave HuD tablets to SLs, POs, FCs, and the captain
+  - bugfix: fixed helmet modules not toggling
+  - spellcheck: fixed a few typos in the modular package description
+  - bugfix: Mortars will now fire correctly
+  XSlayer300:
+  - bugfix: Fixed certain things about pill packets.
+  - rscadd: Added new gameplay tips.
+  - rscdel: Replaced/Removed defunct tips.
+  - tweak: Tweaked some more tips to get better insight.
+  - tweak: Standardizes firing modes for some rifles. You will always go for Semi
+      > Burst > Auto > Autoburst.
+  - bugfix: Fixed some typos for modular armor.
+  jjpark-kb:
+  - rscadd: tarps will uncover if a xeno stands too close for too long
+  psykzz:
+  - admin: excessive FF will now kick and ghost players, when there are no admins
+      online
+  - rscadd: Humans can now do gesture based callouts
+  spookydonut:
+  - config: per-map player limits re-added for end of round map voting

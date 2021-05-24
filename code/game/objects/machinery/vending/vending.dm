@@ -669,7 +669,8 @@
 		if(!recharge)
 			user.visible_message("<span class='notice'>[user] stocks [src] with \a [R.product_name].</span>",
 			"<span class='notice'>You stock [src] with \a [R.product_name].</span>")
-		R.amount++
+		if(R.amount >= 0) //R negative means infinite item, no need to restock
+			R.amount++
 		updateUsrDialog()
 		return //We found our item, no reason to go on.
 
