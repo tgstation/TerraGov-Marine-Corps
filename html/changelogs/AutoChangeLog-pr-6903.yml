@@ -1,0 +1,5 @@
+author: "Surrealaser"
+delete-after: True
+changes: 
+  - qol: "Tail Sweep is now used instantly when clicked or its hot key is used."
+  - code_imp: "Tail Sweep cosmetics/sound improved."
