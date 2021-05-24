@@ -1768,37 +1768,35 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 		var/datum/action/A = X
 		A.update_button_icon()
 
-//Initially made for
-/obj/item/attachable/barrel_mod
-	name = "A barrel modifier"
-	desc = "A modification for your gun barrel"
-	icon_state = ""
-	attach_icon = ""
-	slot = ATTACHMENT_BARREL_MOD
-	flags_attach_features = ATTACH_REMOVABLE
-	pixel_shift_x = 0
-	pixel_shift_y = 0
-	size_mod = 1
-	detach_delay = 0 //Fast so its not a chore to remove them.
 
-/obj/item/attachable/barrel_mod/tp44_longbarrel
+/obj/item/attachable/tp44_longbarrel
 	name = "TP-44 long barrel"
 	desc = "A longer barrel for the TP-44, makes the gun more accurate and deal more damage on impact."
 	icon_state = "tp44_barrel"
 	attach_icon = "tp44_barrel"
+	slot = ATTACHMENT_BARREL_MOD
 	damage_mod = 0.25
 	scatter_mod = -2.5
 	recoil_unwielded_mod = 0.25
 	damage_falloff_mod = -0.5
+	pixel_shift_x = 0
+	pixel_shift_y = 0
+	size_mod = 1
+	detach_delay = 0
 	gun_attachment_offset_mod = list("muzzle_x" = 7)
 
 
-/obj/item/attachable/barrel_mod/mateba_longbarrel
+/obj/item/attachable/mateba_longbarrel
 	name = "Mateba long barrel"
 	desc = "A longer barrel for the Mateba, makes the gun more accurate and deal more damage on impact."
 	icon_state = "mateba_barrel"
 	attach_icon = "mateba_barrel"
+	slot = ATTACHMENT_BARREL_MOD
 	damage_mod = 0.20
 	scatter_mod = -3.5
 	damage_falloff_mod = -0.5
+	pixel_shift_x = 0
+	pixel_shift_y = 0
+	size_mod = 1
+	detach_delay = 0
 	gun_attachment_offset_mod = list("muzzle_x" = 8)
