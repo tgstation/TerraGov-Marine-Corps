@@ -7,7 +7,7 @@
 *		Crayons
 *		Snap pops
 *		Water flower
-*      Therapy dolls
+*      Dolls
 *      Inflatable duck
 *		Other things
 */
@@ -410,9 +410,7 @@
 	w_class = WEIGHT_CLASS_TINY
 	icon_state = "debug"
 	attack_verb = list("thumps", "whomps", "bumps")
-	var/squeak_sound = list('sound/items/dollsqueak.ogg' = 1)
 	var/last_hug_time
-	var/list/squeak_override
 
 /obj/item/toy/plush/attack_self(mob/user)
 	if(world.time > last_hug_time)
@@ -422,7 +420,7 @@
 
 /obj/item/toy/plush/Initialize()
 	. = ..()
-	AddComponent(/datum/component/squeak, squeak_override)
+	AddComponent(/datum/component/squeak, 'sound/items/dollsqueak.ogg', 50)
 
 /obj/item/toy/plush/farwa
 	name = "Farwa plush doll"
@@ -434,42 +432,36 @@
 	name = "red therapy doll"
 	desc = "A toy for therapeutic and recreational purposes. This one is red."
 	icon_state = "therapyred"
-	item_state = "egg4" // It's the red egg in items_left/righthand
 	w_class = WEIGHT_CLASS_TINY
 
 /obj/item/toy/plush/therapy_purple
 	name = "purple therapy doll"
 	desc = "A toy for therapeutic and recreational purposes. This one is purple."
 	icon_state = "therapypurple"
-	item_state = "egg1" // It's the magenta egg in items_left/righthand
 	w_class = WEIGHT_CLASS_TINY
 
 /obj/item/toy/plush/therapy_blue
 	name = "blue therapy doll"
 	desc = "A toy for therapeutic and recreational purposes. This one is blue."
 	icon_state = "therapyblue"
-	item_state = "egg2" // It's the blue egg in items_left/righthand
 	w_class = WEIGHT_CLASS_TINY
 
 /obj/item/toy/plush/therapy_yellow
 	name = "yellow therapy doll"
 	desc = "A toy for therapeutic and recreational purposes. This one is yellow."
 	icon_state = "therapyyellow"
-	item_state = "egg5" // It's the yellow egg in items_left/righthand
 	w_class = WEIGHT_CLASS_TINY
 
 /obj/item/toy/plush/therapy_orange
 	name = "orange therapy doll"
 	desc = "A toy for therapeutic and recreational purposes. This one is orange."
 	icon_state = "therapyorange"
-	item_state = "egg4" // It's the red one again, lacking an orange item_state and making a new one is pointless
 	w_class = WEIGHT_CLASS_TINY
 
 /obj/item/toy/plush/therapy_green
 	name = "green therapy doll"
 	desc = "A toy for therapeutic and recreational purposes. This one is green."
 	icon_state = "therapygreen"
-	item_state = "egg3" // It's the green egg in items_left/righthand
 	w_class = WEIGHT_CLASS_TINY
 
 /obj/item/toy/plush/carp
@@ -478,7 +470,6 @@
 	icon_state = "carpplush"
 	item_state = "carp_plushie"
 	attack_verb = list("bites", "eats", "fin slaps")
-	squeak_override = list('sound/weapons/bite.ogg'=1)
 
 /obj/item/toy/plush/lizard
 	name = "lizard plushie"
@@ -486,15 +477,13 @@
 	icon_state = "lizplush"
 	item_state = "lizplush"
 	attack_verb = list("claws", "hisses", "tail slaps")
-	squeak_override = list('sound/weapons/slash.ogg' = 1)
 
 /obj/item/toy/plush/snake
 	name = "snake plushie"
 	desc = "An adorable stuffed toy that resembles a snake. Not to be mistaken for the real thing."
 	icon_state = "snakeplush"
-	item_state = "plushie_snake"
+	item_state = "snakeplush"
 	attack_verb = list("bites", "hisses", "tail slaps")
-	squeak_override = list('sound/weapons/bite.ogg' = 1)
 
 /obj/item/toy/plush/slime
 	name = "slime plushie"
@@ -502,7 +491,6 @@
 	icon_state = "slimeplush"
 	item_state = "slimeplush"
 	attack_verb = list("blorbles", "slimes", "absorbs")
-	squeak_override = list('sound/effects/blobattack.ogg' = 1)
 
 /obj/item/toy/plush/moth
 	name = "moth plushie"
@@ -510,7 +498,6 @@
 	icon_state = "moffplush"
 	item_state = "moffplush"
 	attack_verb = list("flutters", "flaps")
-	squeak_override = list('sound/voice/moth_scream.ogg'=1)
 
 /obj/item/toy/plush/rouny
 	name = "rouny plushie"
