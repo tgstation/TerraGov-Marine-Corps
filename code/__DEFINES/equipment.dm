@@ -47,6 +47,7 @@
 //bitflags that were previously under flags_atom, these only apply to items.
 //clothing specific stuff uses flags_inventory.
 //flags_item
+
 #define NODROP					(1<<0)	// Cannot be dropped/unequipped at all, only deleted.
 #define NOBLUDGEON  			(1<<1)	// when an item has this it produces no "X has been hit by Y with Z" message with the default handler
 #define DELONDROP				(1<<2)	// Deletes on drop instead of falling on the floor.
@@ -59,6 +60,7 @@
 #define IMPEDE_JETPACK 		(1<<9)  //Reduce the range of jetpack
 #define DRAINS_XENO				(1<<10)  //Enables the item to collect resource for chem_booster component
 #define CAN_BUMP_ATTACK			(1<<11)	 //Item triggers bump attack
+#define IS_DEPLOYABLE 			(1<<12)
 //==========================================================================================
 
 //flags_inv_hide

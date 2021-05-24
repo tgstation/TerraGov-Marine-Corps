@@ -135,30 +135,16 @@
 	//Deployed Stats
 
 	///Time it takes to deploy the gun
-	var/deploy_time = 0 SECONDS
+	deploy_time = 0 SECONDS
 
 	///Var that determins the state of the gun, whether it is deployed within a machine, or not.
 	var/deployed = FALSE
 
 	///List of flags for deployed machine operation. Flags can be found in __Defines/conflict.dm 
-	var/deploy_flags
-
-	///The deployed weapons current integrity, this is used to keep track of the current weapons health.
-	var/deploy_integrity = 100
-	///The deployed machines max integrity, this is only used in machine repairing and does not change.
-	var/deploy_max_integrity = 100
+	deploy_flags = NONE
 
 	///The amount of tiles the users view shifts once deployed and operated.
-	var/deploy_view_offset = 3
-
-	///Name of the machine created once deployed, if null and deployed, it defaults to this objects name
-	var/deploy_name
-	///Description of the machine created once deployed, if null and deployed, it defaults to this objects description
-	var/deploy_desc
-	///Icon of the machine created once deployed, if null and deployed, it defaults to this objects icon
-	var/deploy_icon
-	///Icon state of the machine created once deployed, if null and deployed, it defaults to this objects icon_state
-	var/deploy_icon_state
+	deploy_view_offset = 3
 
 	///Icon state of the machine created once deployed and if it does not have ammo, if null and deployed, it defaults to this objects icon_state
 	var/deploy_icon_empty
@@ -439,7 +425,7 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 		return
 
 	if(current_mag)
-		to_chat(user, "<span class='warning'>It's still got something loaded.</span>")
+		to_chat(user, "<span class='warning'>It still got something loaded.</span>")
 		return
 
 
@@ -487,7 +473,7 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 	if(!reload_override && (flags_gun_features & (GUN_BURST_FIRING|GUN_UNUSUAL_DESIGN|GUN_INTERNAL_MAG)))
 		return FALSE
 
-	if(!current_mag || isnull(current_mag) || current_mag.loc != src || !(flags_gun_features & GUN_ENERGY))
+	if(!current_mag || isnull(current_mag) || current_mag.loc != src || !flags_gun_features & GUN_ENERGY)
 		return cock(user)
 
 	if(drop_override || !user) //If we want to drop it on the ground or there's no user.

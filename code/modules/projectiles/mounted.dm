@@ -1,5 +1,5 @@
 //Machine to hold a deployed gun. It aquired nearly all of its variables from the gun itself.
-/obj/machinery/mounted
+/obj/machinery/deployable/mounted
 
 	anchored = TRUE
 	resistance_flags = XENO_DAMAGEABLE
@@ -11,10 +11,7 @@
 	hud_possible = list(MACHINE_HEALTH_HUD, SENTRY_AMMO_HUD)
 
 	///Gun that does almost all the work when deployed. This type should not exist with a null 'gun'
-	var/obj/item/weapon/gun/gun
-
-	///Flags inhereted from the deployed gun to determin if it can be picked up, or rotated.
-	var/deploy_flags
+	internal_object = /obj/item/weapon/gun
 
 	///Icon that is default to this gun, used to replace usage of initial(icon_state) since that does not default back to what the icon_state this gun is deployed with
 	var/default_icon
@@ -23,14 +20,14 @@
 	//this is amount of tiles we shift our vision towards guns direction when operated, currently its max is 7
 	var/view_tile_offset = 3
 
-/obj/machinery/mounted/Initialize()
+/obj/machinery/deployable/mounted/Initialize()
 	. = ..()
 	prepare_huds()
 	for(var/datum/atom_hud/squad/sentry_status_hud in GLOB.huds) //Add to the squad HUD
 		sentry_status_hud.add_to_hud(src)
 
 ///generates the icon based on how much ammo it has.
-/obj/machinery/mounted/update_icon_state() 
+/obj/machinery/deployable/mounted/update_icon_state() 
 
 	if(!gun.current_mag)
 		icon_state = icon_empty
@@ -40,35 +37,23 @@
 	hud_set_gun_ammo()
 
 ///Handles variable transfer from the gun, to the machine.
-/obj/machinery/mounted/proc/deploy(obj/item/weapon/gun/new_gun, direction)
-	if(istype(new_gun.current_mag, /obj/item/ammo_magazine/internal) || istype(new_gun, /obj/item/weapon/gun/launcher))
-		CRASH("[new_gun] has been deployed, however it is incompatible because of either an internal magazine, or it is a launcher.")
-	gun = new_gun
-	gun.forceMove(src)
+/obj/machinery/deployable/mounted/deploy(obj/item/weapon/gun/deploying, direction)
+	if(istype(deploying.current_mag, /obj/item/ammo_magazine/internal) || istype(deploying, /obj/item/weapon/gun/launcher))
+		CRASH("[deploying] has been deployed, however it is incompatible because of either an internal magazine, or it is a launcher.")
 
-	deploy_flags = gun.deploy_flags
-	obj_integrity = gun.deploy_integrity
-	max_integrity = gun.deploy_max_integrity
-	view_tile_offset = gun.deploy_view_offset
+	. = ..()
 
-	name = gun.deploy_name ? gun.deploy_name : gun.name
+	view_tile_offset = deploying.deploy_view_offset
 
-	desc = gun.deploy_desc ? gun.deploy_desc : gun.desc
+	icon_empty = deploying.deploy_icon_empty ? deploying.deploy_icon_empty : icon_state
 
-	icon = gun.deploy_icon ? gun.deploy_icon : gun.icon
+	deploying.deployed = TRUE
+	deploying.bypass_checks = TRUE
 
-	default_icon = gun.deploy_icon_state ? gun.deploy_icon_state : gun.icon_state
-
-	icon_empty = gun.deploy_icon_empty ? gun.deploy_icon_empty : icon_state
-
-	gun.deployed = TRUE
-	gun.bypass_checks = TRUE
-
-	setDir(direction)
 	update_icon_state()
 
 ///Handles dissasembly
-/obj/machinery/mounted/proc/disassemble(mob/user)
+/obj/machinery/deployable/mounted/disassemble(mob/user)
 	if(deploy_flags & DEPLOYED_NO_PICKUP)
 		to_chat(user, "<span class='notice'>The [src] is anchored in place and cannot be disassembled.</span>")
 		return
@@ -87,21 +72,13 @@
 
 	qdel(src)
 
-///Makes sure we clean our trash
-/obj/machinery/mounted/Destroy()
-	if(gun)
-		qdel(gun)
-		gun = null
-	operator?.unset_interaction()
-	. = ..()
-
 ///Update health hud when damage is taken
-/obj/machinery/mounted/take_damage(damage_amount, damage_type, damage_flag, effects, attack_dir, armour_penetration)
+/obj/machinery/deployable/mounted/take_damage(damage_amount, damage_type, damage_flag, effects, attack_dir, armour_penetration)
 	. = ..()
 	hud_set_machine_health()
 
 ///This is called when a user tries to operate the gun
-/obj/machinery/mounted/interact(mob/user)
+/obj/machinery/deployable/mounted/interact(mob/user)
 	if(!ishuman(user))
 		return TRUE
 	var/mob/living/carbon/human/human_user = user
@@ -115,7 +92,7 @@
 		return TRUE
 	if(operator) //If there is already a operator then they're manning it.
 		if(!operator.interactee)
-			stack_trace("/obj/machinery/mounted/interact(mob/user) called by user [human_user] with an operator with a null interactee: [operator].")
+			stack_trace("/obj/machinery/deployable/mounted/interact(mob/user) called by user [human_user] with an operator with a null interactee: [operator].")
 			operator = null //this shouldn't happen, but just in case
 		to_chat(human_user, "<span class='warning'>Someone's already controlling it.</span>")
 		return TRUE
@@ -131,11 +108,8 @@
 
 	return ..()
 
-/obj/machinery/mounted/examine(mob/user) //Let us see how much ammo we got in this thing.
-	. = ..()
-	gun.examine(user)
 
-/obj/machinery/mounted/attackby(obj/item/I, mob/user, params) //This handles reloading the gun, if its in acid cant touch it.
+/obj/machinery/deployable/mounted/attackby(obj/item/I, mob/user, params) //This handles reloading the gun, if its in acid cant touch it.
 	. = ..()
 
 	if(!ishuman(user))
@@ -149,7 +123,7 @@
 	reload(user, I)
 
 ///Repairs gun
-/obj/machinery/mounted/welder_act(mob/living/user, obj/item/I)
+/obj/machinery/deployable/mounted/welder_act(mob/living/user, obj/item/I)
 	if(user.do_actions)
 		return FALSE
 
@@ -193,7 +167,7 @@
 	return TRUE
 
 ///Reloads gun
-/obj/machinery/mounted/proc/reload(mob/user, ammo_magazine)
+/obj/machinery/deployable/mounted/proc/reload(mob/user, ammo_magazine)
 	if(!istype(ammo_magazine, /obj/item/ammo_magazine))
 		return
 
@@ -217,7 +191,7 @@
 		update_icon_state()
 
 ///Sets the user as manning the internal gun
-/obj/machinery/mounted/on_set_interaction(mob/user)
+/obj/machinery/deployable/mounted/on_set_interaction(mob/user)
 	operator = user
 
 	. = ..()
@@ -243,7 +217,7 @@
 	update_view(operator)
 
 
-/obj/machinery/mounted/proc/start_fire(datum/source, atom/object, turf/location, control, params)
+/obj/machinery/deployable/mounted/proc/start_fire(datum/source, atom/object, turf/location, control, params)
 	SIGNAL_HANDLER
 
 	if(gun.gun_on_cooldown(operator))
@@ -292,7 +266,7 @@ obj/machinery/mounted/proc/change_target(datum/source, atom/src_object, atom/ove
 	gun.set_target(over_object)
 	operator.face_atom(over_object)
 
-/obj/machinery/mounted/proc/can_fire(atom/object)
+/obj/machinery/deployable/mounted/proc/can_fire(atom/object)
 
 	if(operator.lying_angle || !Adjacent(operator) || operator.incapacitated() || get_step(src, REVERSE_DIR(dir)) != operator.loc)
 		operator.unset_interaction()
@@ -341,7 +315,7 @@ obj/machinery/mounted/proc/change_target(datum/source, atom/src_object, atom/ove
 
 
 ///Unsets the user from manning the internal gun
-/obj/machinery/mounted/on_unset_interaction(mob/user)
+/obj/machinery/deployable/mounted/on_unset_interaction(mob/user)
 	if(!operator)
 		return
 
@@ -363,21 +337,12 @@ obj/machinery/mounted/proc/change_target(datum/source, atom/src_object, atom/ove
 	gun?.gun_user = null
 
 ///makes sure you can see and or use the gun
-/obj/machinery/mounted/check_eye(mob/user)
+/obj/machinery/deployable/mounted/check_eye(mob/user)
 	if(user.lying_angle || !Adjacent(user) || user.incapacitated() || !user.client)
 		user.unset_interaction()
 
-///Drag the gun onto you to fold it.
-/obj/machinery/mounted/MouseDrop(over_object, src_location, over_location) 
-	if(!ishuman(usr))
-		return
-
-	var/mob/living/carbon/human/user = usr //this is us
-	if(over_object == user && in_range(src, user))
-		disassemble(user)
-
 ///Updates view, sets max zoom distance to 7
-/obj/machinery/mounted/proc/update_view(mob/user)
+/obj/machinery/deployable/mounted/proc/update_view(mob/user)
 	if(view_tile_offset > 7)
 		stack_trace("[src] has its view_tile offset set higher than 7, please don't.")
 
@@ -398,9 +363,9 @@ obj/machinery/mounted/proc/change_target(datum/source, atom/src_object, atom/ove
 			user.client.pixel_y = 0
 
 //Mapbound version, it is initialized directly so it requires a gun to be set with it.
-/obj/machinery/mounted/hsg_nest
+/obj/machinery/deployable/mounted/hsg_nest
 	gun = /obj/item/weapon/gun/mounted/hsg_nest
 
-/obj/machinery/mounted/hsg_nest/Initialize()
+/obj/machinery/deployable/mounted/hsg_nest/Initialize()
 	. = ..()
 	deploy(new gun(), SOUTH)
