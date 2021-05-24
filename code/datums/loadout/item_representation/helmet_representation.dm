@@ -43,7 +43,7 @@
 			"icon" = icon2base64(icon_to_convert),
 			"translateX" = "35%",
 			"translateY" = "30%",
-			"scale" = 0.5,
+			"scale" = 0.7,
 			))
 	tgui_data["name"] = initial(item_type.name)
 	return tgui_data

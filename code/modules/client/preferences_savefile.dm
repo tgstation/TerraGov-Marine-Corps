@@ -593,7 +593,12 @@
 	READ_FILE(S["loadouts_manager"], json_loadout_manager)
 	if(!json_loadout_manager)
 		return FALSE
-	loadout_manager = jatum_deserialize(json_loadout_manager)
+	try{
+		loadout_manager = jatum_deserialize(json_loadout_manager)
+	}
+	catch{
+		return FALSE
+	}
 	loadout_manager = sanitize_loadout_manager(loadout_manager)
 	loadout_manager.loadouts_list += loadout_manager.current_loadout //Has to be done since jatum cannot handle duplication well. Unless you fix jatum, don't touch this
 	return TRUE
