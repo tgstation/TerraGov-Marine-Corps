@@ -1,0 +1,4 @@
+author: "BraveMole"
+delete-after: True
+changes: 
+  - balance: "Damage from friendly fire is reduced a tiny bit"
