@@ -105,6 +105,30 @@
 	var/active = FALSE
 
 
+	//DEPLOYABLE RELATED VARS
+
+	///Time it takes to deploy the gun
+	var/deploy_time = 0 SECONDS
+
+	///List of flags for deployed machine operation. Flags can be found in __Defines/conflict.dm 
+	var/deploy_flags
+
+	///The deployed weapons current integrity, this is used to keep track of the current weapons health.
+	var/deploy_integrity = 100
+	///The deployed machines max integrity, this is only used in machine repairing and does not change.
+	var/deploy_max_integrity = 100
+
+	///Name of the machine created once deployed, if null and deployed, it defaults to this objects name
+	var/deploy_name
+	///Description of the machine created once deployed, if null and deployed, it defaults to this objects description
+	var/deploy_desc
+	///Icon of the machine created once deployed, if null and deployed, it defaults to this objects icon
+	var/deploy_icon
+	///Icon state of the machine created once deployed, if null and deployed, it defaults to this objects icon_state
+	var/deploy_icon_state
+
+
+
 /obj/item/Initialize()
 	. = ..()
 
