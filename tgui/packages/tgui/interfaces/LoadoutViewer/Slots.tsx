@@ -91,21 +91,22 @@ export const SlotSelector = (props: LoadoutSlotData, context) => {
                           width: "60px",
                           height: "60px",
                         }}>
-                          {item.icons.map(iconinfo => 
+                          {item.icons.map(iconinfo => (
                             <Box
+                              key={iconinfo.icon}
                               as="img"
                               src={`data:image/jpeg;base64,${iconinfo.icon}`}
                               height="100%"
                               width="100%"
                               color="transparent"
                               style={{
-                              "position": "absolute",
-                              "vertical-align": "middle",
-                              transform:
-                                "translateX(" + iconinfo.translateX + ") translateY(" + iconinfo.translateY + ") scale(" + iconinfo.scale + ")",
+                                "position": "absolute",
+                                "vertical-align": "middle",
+                                transform:
+                                  "translateX(" + iconinfo.translateX + ") translateY(" + iconinfo.translateY + ") scale(" + iconinfo.scale + ")",
                               }}
                             />
-                          )}
+                          ))}
                         </Box>
                       </Button>
                     </Box>

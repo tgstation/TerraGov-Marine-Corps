@@ -6,7 +6,6 @@ export type Loadout =
 
 export type LoadoutItemData = 
   {
-    key: string;
     loadout: Loadout;
   }
 
