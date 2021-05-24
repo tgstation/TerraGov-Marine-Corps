@@ -51,6 +51,7 @@ SUBSYSTEM_DEF(persistence)
 	fdel(json_file)
 	WRITE_FILE(json_file, json_encode(seasons_file_info))
 
+///Handles checking whether a season should advance and advancing it, along with setting up the seasons' values or procs for the round
 /datum/controller/subsystem/persistence/proc/update_season_data(season_class, list/seasons_file_info)
 	//loads a new entry for a season if one is missing
 	if(!LAZYACCESS(seasons_file_info, season_class)) //handles adding missing entries
