@@ -674,6 +674,10 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 		to_chat(user, "<span class='warning'>You are too blind to see anything.</span>")
 		return
 
+	if(!user.dextrous)
+		to_chat(user, "<span class='warning'>You do not have the dexterity to use \the [zoom_device].</span>")
+		return
+
 	if(!zoom && user.tinttotal >= TINT_5)
 		to_chat(user, "<span class='warning'>Your vision is too obscured for you to look through \the [zoom_device].</span>")
 		return
