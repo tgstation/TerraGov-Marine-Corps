@@ -1,0 +1,26 @@
+2020-03-19:
+  MerryweatherLost:
+  - rscadd: Added the new dress hat
+  - rscdel: Removed the old dress hat
+2020-03-20:
+  MerryweatherLost:
+  - rscadd: Added new ID cards and order icons
+  - rscdel: Deleted/Replaced old ID cards and order icons
+  - rscadd: The new target
+  - rscdel: The old target
+2020-03-25:
+  Toxici11i:
+  - rscadd: adds the miniscope to vendors.
+  - tweak: the m43 lasgun can now use railscopes
+  grinkgo:
+  - rscadd: Several more holopads around the Pillar of Spring
+  - rscadd: Finally added a tool closet outside of requisitions. You're welcome, David.
+2020-03-26:
+  Pariah919:
+  - balance: defiler lost neuroclaws, minor buffs to compensate
+2020-03-29:
+  Kuro-ai:
+  - balance: heavy helmet now has no tint but decreases accuracy by 20%,gasmask has
+      no tint but doesn't filter xeno gasses
+  - bugfix: fixed an annoying white pixel on the shotgun mob sprite
+  - imageadd: added new fatigue and new armor/helmet sprites

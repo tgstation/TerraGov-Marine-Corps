@@ -1,0 +1,354 @@
+2021-03-01:
+  BraveMole:
+  - bugfix: xenos silo proximity alerts now work
+  - balance: range of proximity alerts is now 10 instead of just 2
+  - qol: better unbalanced join detector
+  Cowbin:
+  - balance: Make two handed weapons stronger and easier to fit in suit slots.
+  TiviPlus:
+  - admin: Adds more sanitization
+  - bugfix: Fix appearance bans on xenos
+  Walarks:
+  - bugfix: you can start shooting while wielding again
+  lbnesquik:
+  - rscadd: Add some extra cameras in the sulaco
+  - bugfix: Fixes some missing lights and cameras on sulaco.
+2021-03-02:
+  Ara-Code:
+  - rscadd: Action Icons For TL84
+  TiviPlus:
+  - bugfix: Probably fixes incorrect ghosts being called for revive.
+  lbnesquik:
+  - bugfix: Makes it so the AI can access the APC menu.
+2021-03-03:
+  2whatever2:
+  - balance: Tesla cells now cost 10 instead of 30
+  Ara-Code:
+  - rscadd: Tramapop box Sprite
+  BraveMole:
+  - balance: Silo output reduced
+  - bugfix: Xenos can see how much time before the hive collapse due to no silos
+  - code_imp: Bucketed autofire system, can be used to sanitize full auto firing and
+      in the xeno turrets
+  - balance: Siloless collapse are now 20 minutes instead of 10
+  - bugfix: Silo will now correctly mature
+  Pariah919:
+  - rscadd: Added new railgun thing
+  - rscdel: Removed old spec gl from req, it literally was worse than the normal gl.
+  SkeletalElite:
+  - balance: Miner overclock upgrade is less effective
+  - bugfix: You can no longer sell crates for req points.
+  Surrealaser:
+  - bugfix: Boiler neurogas now properly extinguishes areas of fire within it.
+  Walarks:
+  - qol: allows loading reagents into the Vali system that are automatically injected
+      on activation
+  fernandos13:
+  - qol: you can restock hypos by clicking on the pill bottle
+  hyper2snyper:
+  - rscadd: The TL-102 can be repaired with a blowtorch, adds that information to
+      its description.
+  - balance: Gives the TL-102 HSG the ability to have IFF bullets pass over it the
+      same way it does with Sentries.
+2021-03-04:
+  Surrealaser:
+  - rscadd: 'Spitters gain a new ability: Scatter Spit; discharges a buckshot spread
+      blast of 6x 15 burn damage acid projectiles that leave short duration acid puddles
+      behind.'
+  hyper2snyper:
+  - rscadd: Gives the TL-102 HSG a health and ammo indicator like the Sentries have.
+2021-03-06:
+  BlackFira:
+  - balance: Burst fire 2 -> 3
+  - balance: Magazine size 40 -> 42
+  - rscadd: Armored lab coat
+  BraveMole:
+  - balance: Jetpack now has a windup of 0.3 seconds
+  - balance: Xenos gain larva and psych points everytime a marine spawn , even for
+      very late joins. Doesn't work for respawn
+  - bugfix: No more unbalance join message when all xenos are dead
+  - balance: Respawn for marines are now 30 minutes instead of 45
+  - rscadd: Psy drain, an ability that all xenos have that allow them to get psych
+      points and 1/8th of a larva from dead marines. A psy drained marine is NOT perma
+      dead, this is not headbite
+  - balance: Silos get more expensive, to account for psy drain
+  Pariah919:
+  - balance: hypervene isn't purged by chems that purge any medicine like neuro/larval.
+  - rscdel: Removed squad smartgunner
+  - balance: smartgunner disabled, smartguns useable by anyone
+  SkeletalElite:
+  - qol: Miners don't need to be emptied as often
+  Surrealaser:
+  - rscadd: Added the Wraith Tier 2 caste.
+  - refactor: Minor supportive refactoring.
+  - bugfix: Removes Headbite and Regurgitate from Wraith.
+  - balance: Chestburst victims are now revivable, albeit with internal bleeding,
+      rib fractures and organ damage.
+  TiviPlus:
+  - refactor: Rewrote how looping sounds are handled for free performance
+  Walarks:
+  - bugfix: fixed vali actions runtimes
+  XSlayer300:
+  - qol: Ballistic weapons have a rattling sound when fired at 25% ammo left.
+  fernandos13:
+  - bugfix: Fire Support key. no longer gives the command channel
+2021-03-07:
+  BraveMole:
+  - balance: AI can use fob drone
+  - qol: Fob drone is prefilled with mats, and you can put as many mats in it as you
+      want
+  - qol: Mats are automaticly ejected when alamo leaves
+  - balance: No more siloless collapse timer before 13:00. If you didn't put a silo
+      before that time, the timer will still show up even if you never lost any silos
+  SkeletalElite:
+  - bugfix: Hypervene no longer remains in your system for an obscene amount of time
+  bobbahbrown:
+  - server: Ported tgsv4 scripts from /tg/ to allow for creating tgsv4 instances
+  - bugfix: Fixed a bug with extools causing issues when hosting on linux
+  - bugfix: Fixed broken UI on vending machines and marine cabinets.
+2021-03-08:
+  BraveMole:
+  - balance: Corrupted generators output scale with the players count. Also big nerf
+      compared to previous output
+  Bravemole & Ciel (sprites):
+  - rscadd: Xeno turrets. They start at 600 health points and will mature up to 1500.
+      They have a range of 7, rapid fire of acid prae. They are especially weak against
+      nades (4 to kill), sadar rockets (one shot), and fire (1 minute to completly
+      burn, that's 2 incend nades). Deal 20 raw burn damage per spit
+  - rscadd: Xeno turrets placed at strategic locations in all major maps (except prison)
+  - rscadd: Queen, Shrike and Hivelord can build them for 100 points
+  SkeletalElite:
+  - balance: CAS rockets are faster and most are less expensive, mini rockets don't
+      blind marines as much
+  - balance: Orbit level affects CAS less, both in terms of dropship point generation
+      and fly time.
+  SplinterGP:
+  - qol: ghost orbit menu now has an auto observe button, which allows you to see
+      what the orbitted mob sees(atleast HUD's)
+  - bugfix: fixes ghost orbit menu not following certain things like larvas.
+  - code_imp: orbit menu doens't autoupdate anymore to save perfomance, now has a
+      refresh button
+  - bugfix: Icons in tgui shouldn't disappear any more.
+  Surrealaser:
+  - code_imp: 'Xeno hive alert code improved; can now visibly ping non-turf targets.
+      tweak: Xeno health alert preferences made more intuitive.'
+  TiviPlus:
+  - refactor: Ambience will now play consistently rather only when walking a lot
+  - admin: Add banish logging
+2021-03-10:
+  BeloneX:
+  - qol: the message that plays when your splint breaks is now bigger
+  BraveMole:
+  - balance: The number of larva points per marine spawn is reduced
+  SkeletalElite:
+  - rscadd: Miners now sell ore on their own, no crate dragging or export pad required.
+  - balance: Phoron value from 20 to 15. Plat value from 40 to 30.
+  - bugfix: megaphone respects IC filter
+  SplinterGP:
+  - balance: sentry prices reduced.
+  - balance: point defense sentry ammo price reduced.
+  Surrealaser:
+  - code_imp: Potential hard deletes for destroyed xeno tunnels fixed.
+  TiviPlus:
+  - qol: Drop pods now fall from the sky
+  - bugfix: fixed voter fraud
+  - code_imp: Add support for right click human actions
+  fernandos13:
+  - rscadd: chempacket cigs to the vendor. with bica. kelo. tram. antineuro. and rr
+      cigs, SPRITES BY Ciel
+  - qol: overhauls PoS prep
+  lbnesquik:
+  - bugfix: Fixes a missing button for the armory shutters on PoS engineering.
+2021-03-11:
+  BraveMole:
+  - rscadd: Spawning a new silo will generate a tunnel north of it automaticly
+  - balance: Psy points are disabled in crash
+  - balance: Xeno turrets are destroyed on hijacking
+  - balance: Xeno turrets no longer have IFF spit.
+  - balance: Xeno turrets shoot on random body parts, easier to heal people that were
+      killed by it
+  Kuro-ai:
+  - balance: Agrip now adds 5 scatter to the gun when attached.
+  SkeletalElite:
+  - balance: focus orders let you enter aim mode instantly
+  Surrealaser:
+  - bugfix: Incorporeal entities can no longer be attacked in melee, point blanked,
+      grabbed, or shoved around by explosives.
+  - bugfix: Shared cooldown for Grapple Toss and Fling fixed so that using one doesn't
+      cause the other to have an indefinite cooldown.
+  XSlayer300:
+  - rscadd: Added exclusive gun rattle sounds to the GPMG, DMR, battle rifle and sniper
+      instead of sound-pitching them.
+  - rscdel: Revolvers do not use rattling sounds as they do not make any mechanical
+      sense, also for the case of some weapons.
+  lbnesquik:
+  - rscadd: Added a dropship points voucher to req under OPERATIONS.
+  - bugfix: fix missing wires in sulaco surgery
+  - bugfix: fixed some missing lights and cameras in the sulaco.
+  - bugfix: Fixed the complete absence of fire alarms on the sulaco
+2021-03-12:
+  BraveMole:
+  - balance: Xeno turrets are now 150 psy points
+  EgorDinamit:
+  - rscadd: Added new beard style.
+  - balance: General-purpose machine gun shoots a bit slower with aim mode on.
+  TGCMbetcher:
+  - bugfix: Modules provide accurate descriptions
+  - bugfix: fixed some inaccurate gun attachment descriptions
+  fernandos13:
+  - bugfix: fix chempacket icon when removing cigs from it
+  lbnesquik:
+  - bugfix: Fix missing fire alarms
+2021-03-13:
+  BraveMole:
+  - balance: Xenos keep their upgrade points when evolving, meaning that an ancient
+      drone will evolve into an elder hivelord, and not a young one. They also keep
+      points when regressing, which then can easily switch from one caste to another
+  - balance: Change how points from recycling a xeno are calculated, overall a T1
+      will give less and a ancient T3 will give way more
+  - balance: Engies build faster
+  SkeletalElite:
+  - code_imp: got rid of unused/obsolete compactor upgrade
+2021-03-16:
+  2whatever2:
+  - balance: Incendiary OB now drops a 17 tile WP smoke that lasts for half the duration
+      of the OB (flame_duration 40, warcrime 20)
+  BraveMole:
+  - balance: Silo price up from 900 to 1200
+  - qol: Feedback message when you build a silo so you know its price
+  - balance: silos no longer mature. base output is 0.5 instead of 0.4
+  - bugfix: Psy drain sound stops when you stop psydraining
+  Naaanii:
+  - balance: Gives marines the minor victory option.
+  - bugfix: fixed win conditions.
+  SplinterGP:
+  - bugfix: fixed a few things related to tgui asset sending.
+  Surrealaser:
+  - rscadd: Hotkey binding added for Scatterspit.
+  Walarks:
+  - balance: changed pools collapse timer from 20 minutes to 10 minutes
+  lbnesquik:
+  - bugfix: Sulaco medical had cameras pointing the wrong way.
+  - bugfix: fixed POS garbage conveyor & a superfluous wall
+2021-03-17:
+  BraveMole:
+  - balance: Sandbags are no longer bulky, can hold in construction pouch and be build
+      faster by engies
+  SkeletalElite:
+  - rscadd: New miner upgrade that automates the miner.
+  SplinterGP:
+  - balance: neurotoxin from neurospit doens't purge medicine anymore, all other neurotoxin
+      sources remains same.
+  - qol: added tgui preferences to char setup
+  Surrealaser:
+  - bugfix: Banish now physically teleports things to Brazil, thus addressing corner
+      case issues with things like CAS flares and explosives.
+  - balance: Banish cooldown reduced when used on friendly targets/self by 40% from
+      20 seconds to 12 seconds, allowing it to be more readily used defensively.
+  fernandos13:
+  - balance: medics now fireman carry faster than marines do
+  lbnesquik:
+  - bugfix: fix the AI being blind while using the FOB drone.
+  - bugfix: You can now see the amount of ammo the condor minigun has by just looking.
+2021-03-19:
+  BraveMole:
+  - qol: Queue system to respawn as a xeno
+  Pariah919:
+  - balance: healing infusion cd increased
+  TiviPlus:
+  - rscadd: Droids can now use guns
+  - bugfix: fix uniqueaction not working
+2021-03-20:
+  BraveMole:
+  - rscdel: Salvage biomass xeno ability removed.
+  lbnesquik:
+  - balance: Gives 1 Synth job slot every 40 pop.
+2021-03-21:
+  TiviPlus:
+  - bugfix: fixed a exploit with rightclicking on guns
+2021-03-22:
+  2whatever2:
+  - balance: Lowered the price of all OB related materials, ( Fuel blocks from 10
+      to 5, Incin & cluster to 20, HE lowered to 30, Plasma drain to 15)
+  BraveMole:
+  - balance: Psy drain will now take 5 seconds instead of 10 seconds
+  Surrealaser:
+  - code_imp: RNG hard stuns from traumatic shock have been replaced with slowdown
+      and stagger stacks.
+  - bugfix: Fixes bug with scatterspit projectiles going too far.
+  - balance: Scatterspit max range increased to 8 tiles.
+  Swagile:
+  - rscadd: Adds combat backpack to corpsman point vendor for 15 points.
+  Vondiech:
+  - bugfix: Transit shutters can no longer be triggered by any buttons on shipside
+      or groundside that has its ID set to null
+  lbnesquik:
+  - bugfix: Missing wire in POS hangar fixed
+  - bugfix: fix weird gaps in camera coverage on pillar of spring.
+2021-03-23:
+  BraveMole:
+  - bugfix: No more negative burrowed larva
+2021-03-24:
+  BraveMole:
+  - code_imp: Show the origin of larva points in statistic
+  - rscdel: Nests are no longer buildable
+  - admin: Queen time role is time locked (10 hours)
+  Swagile:
+  - qol: RO Ammo boxes moved to big ammo vendors.
+  lbnesquik:
+  - qol: Adds a shortcut for the AI to turn on & off fire alarms using shift & Ctrl
+      click.
+2021-03-26:
+  DerrickChamberlain:
+  - qol: Fixed AI interior shutters being tied to exterior button (First thing I ever
+      fixed never mentioned it)
+  - qol: More cameras around the ship
+  - qol: fixed bad camera directions
+  - qol: fixed power problem for CLs office
+  - qol: two more maint doors behind AI core
+  - qol: Gave engineering their own autolathe
+  - qol: Made CL's room safer from ungas (and me)
+  - qol: Gave East Req shutters near firing range (No idea why they had none to begin)
+  - qol: added and fixed engineering blast doors to engine room looks better and makes
+      more sense
+  - qol: re-routed some cables to have shorter lengths. (some of the cables lines
+      were just silly.)
+  - qol: AI core has less fragile glass surrounding it.
+  - qol: AI core far more defensible and hardended (not from wraiths) from unga's
+      and standard xenos.
+  - qol: Engineer vendors above medical got pushed up one tile, and CMO office got
+      one tile taller
+  - qol: Replaced Glass Frames with Safety glass, and SD safety glass with Kevlar
+      glass
+  - qol: Reconfigured CSE office (Just removed the extra front door)
+  - qol: Some maint fire shutters. (Only the ones near briefing)
+  - qol: An O2 canister in maint near the AI core
+  - qol: Some cables that were stacked onto on another.
+  - qol: redundant buttons in engineering that did nothing
+2021-03-27:
+  XSlayer300:
+  - spellcheck: Fixed some grammar errors regarding with droids
+2021-03-29:
+  Alterist:
+  - imageadd: added open SSA belt sprite
+  BraveMole:
+  - qol: You are warned when you failed to qualify to get a larva and were ejected
+      from the queue (because of you respawn timer, for exemple)
+  - qol: The queue take into account when there is no silos, and will propose larvas
+      only when silos and larva are present
+  Swagile:
+  - qol: Certain roles that used to have empty combat boots, such as FC and CSE, now
+      start with a boot knife in them on spawn.
+  - rscdel: Removes redundant radio to lessen clutter from FC essential kit.
+  - bugfix: Fixed FC vendor not having jaeger exo or facepaint; comes in essential
+      commander kit now.
+  TGCMbetcher:
+  - qol: arithrazine becomes scannable
+  - qol: Swaps arith for hyro in injectors
+2021-03-30:
+  Alterist:
+  - bugfix: no more invisible DS weapons
+2021-03-31:
+  TheOneAndMightyRed(redory), Alterist:
+  - bugfix: Powernets, Disposalnets and Atmosnets on most maps.
+  - bugfix: Some camera dirs.

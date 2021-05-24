@@ -1,0 +1,215 @@
+2019-05-01:
+  Alterist:
+  - soundadd: Due to popular demand, the Heavy Pulse Rifle now sounds like it used
+      to
+  MoXuT0:
+  - bugfix: Wounds overlays are now properly displayed on all castes.
+  Rohesie:
+  - balance: Xeno nest resist time lowered to 60 seconds down from 90.
+  Shadow-Quill:
+  - tweak: Medevac beacons can no longer be linked/re-linked to a bed while locked.
+2019-05-02:
+  MoXuT0:
+  - bugfix: Fixed double message on cloak deactivation.
+  Shadow-Quill:
+  - tweak: Made last scan menus look better.
+  by Surrealistik:
+  - tweak: Overdrive now has nitros the driver can activate for a big, 5 second speed
+      boost instead of a passive, continual speed increase. Has a cooldown of 20 seconds.
+  - tweak: M56 Cupola ammo capacity increased to 1000 and fire rate increased to 3.33
+      shots / second up from 2 / second.
+  - balance: Snowplow now takes half damage from wall collisions instead of no damage
+      when facing walls, and destroys walls 50% faster down from 100% faster. Snowplow
+      health increased by +100.
+  psykzz:
+  - balance: Xeno's now have half healing (up from none) when a queen is not present.
+2019-05-03:
+  Rohesie:
+  - balance: Xeno stings will stop injecting chems on overdosed infected hosts.
+  - balance: Larval growth serum provides decent healing and strong analgesic properties
+      to the host, both stacking with other chems. OD made a little softer. Still
+      able to push you over if you are at the edge.
+2019-05-05:
+  Ghommie:
+  - imageadd: Moved wallmounted inventory down by 1-2 pixels. Lightened up a few APC
+      light overlays to be more visible.
+  LaKiller8:
+  - code_imp: Telecomms code has been upgraded to /tg/ standard
+  - bugfix: ERT should now work properly.
+  MoXuT0:
+  - soundadd: Added sounds for cigarettes, lighters and matches.
+  - soundadd: Added sounds for flashlights and flares.
+  - soundadd: Added sounds for writing on paper and using stamps.
+  Rohesie:
+  - rscdel: Removes purrbation. No more felinid ears and tail on prayer-demand.
+  psykzz:
+  - code_imp: Xeno queen tracking is now handled by a subsystem.
+  spookydonut:
+  - tweak: Regurgitate will disabled if you have nothing to regurgitate
+  - tweak: Many xeno ability buttons will now red/grey out when you can't use them.
+  - tweak: Abilities on cooldown or that you lack plasma for are now selectable to
+      allow quick switching
+  - tweak: Abilities on cooldown now show a moving clock on top of the icon
+  - tweak: Abilities on cooldown or you lack plasma for now show the green outline
+      showing they're selected
+2019-05-06:
+  Ghommie:
+  - bugfix: Sanitizes a handful of premapped snowflake wooden barricades' integrity
+      from 25000 down to 400.
+  - spellcheck: Fixed a typo with 12 gauge caliber in the codex.
+  - bugfix: Fixes tank hardpoints repairing.
+  - bugfix: Fixes an issue with not being able to recover from temporary blindness
+      whilst wearing cumbersome facewear such as shoddy gas masks or welding googles.
+  Menshin:
+  - rscadd: OB shells now makes a sound when incoming
+  Rohesie:
+  - rscdel: There is no longer a 5% chance of the distress beacon returning just a
+      couple of supply crates instead of an ERT with actual people in it.
+2019-05-07:
+  Ghommie:
+  - tweak: Tweaked how some reagents work. removed a little RNG, made xeno larval
+      growth serum into a subtype of toxin (with no tox pwr).
+  - bugfix: Certain medicines (such as tricordrazine should now) properly work on
+      slighty-less-human mobs such as mothpeople.
+  - code_imp: standarizing reagents procs from working on /carbon level to /living
+      level a little more.
+  LaKiller8:
+  - bugfix: Drones should be able to transfer plasma again.
+  - bugfix: Sniper and scout rifle now have a proper zoom icon.
+  - bugfix: You can now unload and reload RPGs properly again
+  MoXuT0:
+  - tweak: G8 utility pouch can now be clipped to belt.
+  psykzz:
+  - rscadd: more tips, due to popular request
+  - balance: weeds continue to grow back until the main node is destroyed
+  - server: new weeds subsystem
+  spookydonut:
+  - rscadd: Ported tg shuttle subsystem, only handles escape pods for now
+  - tweak: escape pod doors cannot be locked except by pushing launch
+  - tweak: escape pods now delete themselves and ghost anyone inside on launch
+2019-05-08:
+  Ghommie and Spookydonut:
+  - bugfix: Fixes queen's larval growth not affecting monkeys.
+  - spellcheck: reworded a couple visible message lines of the above ability to be
+      more inconspicious to viewers.
+  LaKiller8:
+  - code_imp: Ports /tg/'s wire datum.
+  MoXuT0:
+  - bugfix: Fixed impact nade box scaling.
+2019-05-09:
+  MoXuT0:
+  - imageadd: Added unique magazine sprites for M42A, M4RA and M41A. Slightly tweaked
+      mags for regular and heavy pulse rifles.
+  spookydonut:
+  - rscadd: Converted the supply elevator to use the new shuttle subsystem
+2019-05-10:
+  LaKiller8:
+  - code_imp: /tg/ emote datums have been ported.
+2019-05-11:
+  Baby1991:
+  - bugfix: Fixes the icon typing indicator bugging when talking disconnecting.
+  Ghommie:
+  - refactor: Refactored do_mob() and do_after(), ergo the general use timed action
+      procs used all over the code.
+  - rscadd: Added progress bars to said procs.
+  - imageadd: Also some changes and additions to the pre-existing busy indicator icons.
+  - tweak: halved kevlar-weave infused bulletproof windows maximum integrity.
+  grinkgo:
+  - tweak: Synth players rejoice! You no longer have to rely on pesky humans to repair
+      your own body (however, they still do it faster than you can).
+  - soundadd: repairing synths with a welder now makes the welding noise.
+2019-05-13:
+  LaKiller8:
+  - bugfix: The RPG should now be able to use all rocket types again.
+2019-05-14:
+  Ghommie:
+  - rscadd: Ported the laughter reagent, made by combining 1u of banana juice and
+      1u of sugar, resulting in 5u instead of 2u. Can be now found in happy pills.
+  - balance: Balanced zoom pills not to be as garbage. removed the brain-crippling
+      10u of Impedrezene and added 2u of nutriment.
+  - bugfix: Fixes xenomorphs being able to see their surroundings even while unconscious.
+  - bugfix: Stops dropship sentries from wastefully processing while not deployed.
+  - bugfix: fixes ghosts being able to detonate mines.
+  MJP (Amelia/Newskin):
+  - balance: Give all survivors firearms 1
+2019-05-19:
+  Ghommie:
+  - rscadd: Adds a bottle of base toxin to the med-vendors contraband for your chemistry
+      needs.
+  - balance: Balanced plantbgone effects on resin structures to scale with volume.
+  - bugfix: Fixes ghosts trampling lightsticks.
+  - bugfix: Fixes busy icons displaying over screen overlays such as blindness/crit
+      etc., Also they should now respect the user invisibility/transparency.
+  - bugfix: Centers the cooldown clock icon on action buttons.
+  - bugfix: Fixes drone's plasma salvage ability.
+  LaKiller8:
+  - code_imp: SSinput has been ported from /tg/.
+  - tweak: Diagonal movement is now possible.
+  Rohesie:
+  - balance: Runner speed got a tiny nerf. Their savage skill no longer stacks with
+      the hit-and-run damage bonus either.
+  - bugfix: Fixes a bug preventing xenos with special attacks from dealing extra damage,
+      like ravager's rage and runner hit-and-run.
+  psykzz:
+  - rscadd: new verb to fit the viewport under OOC.
+2019-05-25:
+  LaKiller8:
+  - imageadd: Ghost customization options added.
+  MoXuT0:
+  - imageadd: Added new sprite for smartgun.
+2019-05-28:
+  Jalleo:
+  - rscdel: Some old unmaintained objects, such as the turbines in big red reactor
+      room, will no longer have any interactions. They are mainly thematic with their
+      placement. They also should be removed from the loop to avoid wasteful processing.
+  spookydonut:
+  - rscadd: Ctrl-Click as a Warrior will activate lunge on whatever you click, if
+      you're able to
+2019-05-29:
+  Jalleo:
+  - rscdel: Removed old mech code
+  - code_imp: Tools got a slight change only affects vents so far. Please report any
+      issues with welders and plasmacutters on the vents
+  MJP:
+  - rscadd: CMO RO and aSL now have access to the dropship and cockpit
+  Rohesie:
+  - balance: 'M4RA nerfed: it can no longer hold a BC, base accuracy diminished (impact
+      and incendiary ammo still provide accuracy bonuses), its regular ammo gets a
+      little bit less off-screen accuracy.'
+  - balance: The M92 grenade launcher gains access to a mini-scope.
+  psykzz:
+  - rscadd: Custom hotkeys are now available, set them in the setup character screen.
+  - tweak: Typical hotkeys are set to their defaults, but this can now be replaced.
+  - rscadd: 'Hotkey for dropping weeds as a Xeno added. Default Key: V'
+  - tweak: Warrior lunges now grab humans in their offhand.
+2019-05-30:
+  LaKiller8 & ArachnidNexus & MJP:
+  - imageadd: Added in new sprites and equipment for the Sons of Mars.
+  - tweak: CLF has been replaced by the Sons of Mars in active distress rotation.
+2019-05-31:
+  Ghommie:
+  - rscadd: Added a rest button to human/monkey UIs.
+  - code_imp: Reorganized and cleaned up hud screen files and icons.
+  - server: Renamed the orange and old UI style choices to Plasmafire and Retro respectively,
+      remember to set up your ui style again if you happened to be using one or another.
+  - server: Changed the default client's ui_alpha preference from 255 to 230, made
+      UIs types other than human also compatible with said preference.
+  - imageadd: updated human/monkey health ui icons from (old) bay to tg. adjusted
+      a couple icon states palettes, and dozen other minor changes.
+  - imagedel: Deleted a bunch of duplicate icon states all around the UI icon files.
+  - bugfix: fixed smoke grenades spawning smoke onto the user's location when detonating.
+  - tweak: 'Extended the smoke effects to simple mobs and xenomorphs a bit. twek:
+      Raised the smoke layer, now it covers mobs too.'
+  - balance: Reworked white phosphorous grenades to not be total trash. Buffed fireloss
+      on contact, added oxyloss, blurring and lung damage if inhaled, now capable
+      of dealing minor damage to alien resin structures and a mild loss of stored
+      plasma in xenomorphs. Also roughly less opaque so to not block FoV and with
+      higher smoke radius. Careful of FF potentials.
+  - balance: Also slighty improved cloaking nades lifespan, though they may need proper
+      improvements later.
+  LaKiller8:
+  - refactor: Silicon code has been refactored.
+  - code_imp: AI eye and multicam code has been ported from /tg/.
+  spookydonut:
+  - rscadd: All xeno abilities can be used with keybinds now, although for targeted
+      abilities the keybind will only select it.

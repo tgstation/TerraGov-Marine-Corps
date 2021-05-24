@@ -1,0 +1,88 @@
+2020-01-05:
+  David-Stormwell:
+  - balance: Nerfs the DMR's normal ammo to 55/15 and increases the fire rate of the
+      AR and the LMG to .2 and nerfs the the damage of the rifle bullet they use to
+      25/10.
+  Hughgent:
+  - tweak: Shotgun Ammo Hud updates upon pump_action
+  Manezinho:
+  - rscadd: Ammohud sprites for the lasgun overcharge modes.
+  TiviPlus:
+  - balance: Removed acid blood damage from standing near xenos that take damage.
+  - spellcheck: Fixed some gun descriptions
+  XElectricX:
+  - rscadd: Drones gain Acidic Salve. Small healing ability with a short cooldown.
+      Rate of plasma transfer doubled for drones.
+  psykzz:
+  - rscadd: balance tracking
+  terranaut1:
+  - rscadd: marines can now more easily die from lung cancer during crash
+2020-01-09:
+  Hathkar:
+  - rscadd: New Crash landing spots in Desert, Big Red, LV624, and Icy Caves.
+  - rscadd: Replaced firearm crates in Big Red's Eta Lab with regular crates.
+  - rscdel: Removed the firearm crates in Big Red's Eta Lab.
+  - tweak: Moved the nuke in Big Red to Lambda lab.
+  - tweak: Moved the disk generator in Eta Lab closer to the APC.
+  Hughgent, Kuro:
+  - rscadd: M43 Heat Lens is now available for the lasgun. Set your foes ablaze!
+  TiviPlus:
+  - balance: Crusher Armor has been nerfed
+  ma44:
+  - rscadd: Adds in QuikDeploy barricades, items that allow for quickly constructing
+      barricades via the power of unfolding, pray to your local god and hope you get
+      some.
+  terranaut1:
+  - rscadd: added remote fob construction
+  - rscadd: added sentry vouchers for this purpose to engi prep vendor
+2020-01-10:
+  Rohesie:
+  - rscadd: Most roles moved to the jobs system. You can select LOW-MED-HIGH preferences
+      on roles such as Squad Marine, Survivor or Xenomorph now.
+2020-01-11:
+  Pariah919:
+  - spellcheck: Fixed typos and minorly changed some lens descriptions on the lasgun.
+  Rohesie:
+  - rscdel: Removed custom CSS option.
+2020-01-16:
+  TiviPlus:
+  - tweak: Spatial agent glasses now have no tint
+  XSlayer300:
+  - tweak: Edited the New Player Panel for Current Character
+2020-01-18:
+  Kuro-ai:
+  - rscadd: Reworked pistol/revolver/auto shotgun/pump shotgun
+  - tweak: tweaked a few type paths
+  - balance: balance changes on the 4 guns
+  - soundadd: added a new sound for pistol shots and pump shotgun shots
+  - imageadd: added new sprites for the 4 guns
+  TiviPlus:
+  - rscadd: Added a Adminspawn-only Imperial Commissar job
+  - imageadd: Sprites for the new Commissar equipment
+  XSlayer300:
+  - bugfix: Fixed a typo regarding observing.
+  psykzz:
+  - rscadd: the xeno hivemind. The mind is a mob spawned by the queen. It starts off
+      weak with low plasma and only able to spawn weeds. Over time it can heal, place
+      structures and give pheros.
+2020-01-20:
+  TiviPlus:
+  - rscadd: Emojis can now be used in OOC and Dchat
+2020-01-21:
+  ninjanomnom:
+  - bugfix: Automatic fire should be working again
+2020-01-25:
+  Hughgent:
+  - rscadd: Radial menu for medical bandages.
+  - rscadd: Preference for players to turn Radial menu on and off. Doctors may prefer
+      off.
+  - tweak: The boiler now runs on an ammo system for it's bombard ability.
+  - tweak: The boiler now glows according to the number of stored globs.
+  XSlayer300:
+  - rscadd: Added the TGB - "Rising Star", an ultra lowpop map designed for RP, original
+      map from Kwin and co. for ball. Only meant for Extended.
+  - bugfix: Fixed rooms from the original map, added new rooms to compliment it.
+  - rscadd: Added a practice laser rifle for the said map, only deals stamina damage.
+  - admin: Since "Rising Star" is meant for the off-duty gamemode, and it cannot be
+      finished because I'm a noob to coding, it's best to switch the gamemode to Extended
+      until some admin finishes the round manually.

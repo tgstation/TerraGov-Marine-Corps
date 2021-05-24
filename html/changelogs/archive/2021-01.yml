@@ -1,0 +1,302 @@
+2021-01-01:
+  BraveMole:
+  - tweak: Cas flare available in armaments vendor
+  - bugfix: Ammo hud is now up to date when tactical reloading
+  Surrealaser:
+  - rscadd: Fire now melts snow in proportion to its intensity (burn stacks).
+  - bugfix: ERT shuttles can no longer depart instantly; the shuttle now has a 3 minute
+      recharge time, and a 10 second depart time.
+  - bugfix: AIs can no longer interact with the ERT ship airlocks and consoles.
+  Wayland-Smithy:
+  - bugfix: Xeno Silo Fog on Crash now allows perma-dead humans to pass, as well as
+      Xenos with one inside its tummy.
+  - bugfix: Tunnels now allow xenos to travel with a devoured perma-dead human.
+2021-01-02:
+  BeloneX:
+  - bugfix: You can no longer cut trough the POS' hull into space.
+2021-01-03:
+  Chaznoodles:
+  - tweak: There are now instructional pictures on mining modules, to allow the regular
+      Joe to install them.
+  - balance: Pilot helmets now made of EVA foam, much like the rest of our headwear.
+  SplinterGP:
+  - rscadd: Added keybind for rail attachment(Default key is F)
+  Walarks:
+  - balance: gyroscopic stabilizer reduces aim mode movement speed reduction by 50%,
+      but also decreases bullet damage by 10% per marine passed
+  - tweak: aim mode button renamed to "Take Aim", added a better button icon + other
+      wording for improved clarity
+  - refactor: makes item_action/New take custom names
+2021-01-05:
+  BeloneX:
+  - tweak: tweaked the area outside of LZ1 ice to be more open.
+  BraveMole:
+  - bugfix: Boiler can't change of globule type if it will prevent them from firing
+      or making a new globule
+  - bugfix: Ai doesn't fumble anymore with OB console
+  - tweak: Allow weeding near shutters even before they are opened
+  Chaznoodles:
+  - rscadd: Through the use of innovative new techniques, we've managed to add sleeves
+      to the Ship Technician jumpsuits. No more oil stains on your smooth skin!
+  Hughgent:
+  - bugfix: Larva can now give up on spawning
+  Surrealaser:
+  - rscadd: Hive Leaders (Queens, Shrikes and designated leader xenos) gain the Rally
+      Hive ability, which sends a message to the hive to rally at a target point.
+  - rscadd: The Hive is alerted when a Resin Silo takes damage or a member of the
+      hive takes damage while at less than 33% of its maximum hit points or 100 HP,
+      whichever's higher, giving that member's name, current and max health, current
+      area and coordinates. These alerts can be toggled on or off via preferences
+      per the Aliens tab.
+  - tweak: Resin Silos regenerate 50 HP per slowtick (10 / sec) upon taking damage
+      until they're at maximum HP again.
+  Walarks:
+  - balance: removes aim mode requirement to stand still (you still need to wait for
+      the bar to fill up)
+  fernandos13:
+  - tweak: adds ammoboxes "that are already in code" to the marine vendors
+2021-01-06:
+  Holistic:
+  - tweak: Moonshine have new recipe
+  - bugfix: Moonshine now havent got same recipe with vodka
+  - tweak: Removed one virus recipe.
+  - bugfix: Now virus food have only one recipe.
+  - tweak: Hyposprays fits into medical storage of jaeger.
+  Surrealaser:
+  - bugfix: Sectoid ERT gear now spawns and equips properly.
+  TiviPlus:
+  - rscadd: Reworked GAU to be a proper minigun, cool effects included
+  - rscadd: Reworked lazer to fire a beam of fire
+  - rscadd: New Smoke mini rockets
+  - rscadd: Napalm rockets now release WP
+  - bugfix: fixed bad OOP causing all missiles to create a random fire tile
+  - imageadd: New CAS impact icon by Kuro
+  - code_imp: Replaced the deprecated reverse_direction proc
+  - code_imp: shuffled defenitions to the correct files
+  - refactor: Refactored GAUs, documented some variables and added support for CAS
+      directional attacks
+  - code_imp: claymores will no longer directly call bump
+  - rscadd: Adds a prep roomba
+  Vondiech:
+  - rscadd: Multiple new locations added to lava outpost.
+  - tweak: Multiple things have been moved around and/or adjusted on lava outpost.
+2021-01-07:
+  BraveMole:
+  - tweak: tweaked railgunning timing a bit, it now takes time to triangulate the
+      laser and for railgun shells to reach ground (depends on the orbit, between
+      3-5 seconds to reach ground after being called instead of 1.5-2 currently)
+  - tweak: tweaked tac binos, you can know shift click to get coordinates instead
+      of using range finder mode, each mode now has its own laser dot
+  - tweak: Cas can no longer begin fire mission on OB or railgun laser
+  - imageadd: added blue laser dot
+  - bugfix: firing the OB from tac binos didn't have any randomness like using overwatch
+      did, now fixed
+  SplinterGP:
+  - bugfix: fixes acid spray not passing damage value correctly
+  Surrealaser:
+  - rscadd: Xenos can now scout out the surroundings of a tunnel they travel to.
+  - bugfix: Observers can now properly move to Rally Hive and Resin Silo death alerts
+  TiviPlus:
+  - admin: Disabled game mode voting over a certain cap, admins may bypass
+  - config: Config for said cap
+  Walarks:
+  - tweak: added the weeds_speed_mod var for configuring xeno movement speed on weeds
+      on a per-caste basis.
+  XSlayer300:
+  - rscadd: TerraGov allowed barbers to shave marines with more haircuts, more haircuts
+      are now available from the preferences menu.
+  fernandos13:
+  - bugfix: OD too close to critical OD on RR
+2021-01-08:
+  Holistic:
+  - tweak: Hyposprays capacity changed from 60u to 120u, one hypospray cost changed
+      from 2 to 3.
+2021-01-09:
+  BraveMole:
+  - bugfix: Xenos unlocking of doors is no longer instant
+  - rscadd: New hijack state (unlocked) triggered when alamo is locked down entirely
+      and hive leader use the call down dropship verb.
+  - rscadd: 'Touching the dropship console as hive leader is now the same as calling
+      it down, preventing delaying abuse by AI tweak : changed the priority announcements
+      a bit so it corresponds more to what''s really happening, shortened the length
+      of hijack.ogg'
+  Chaznoodles:
+  - bugfix: Fixes powerfist grammatical error.
+  - bugfix: Xenos no longer get asked for ciggies.
+  HolisticDelight:
+  - tweak: Mine box requisiton price changed, mine box price in field engineer changed.
+  - balance: More mines in mines box, changed size of mines.
+  SplinterGP:
+  - bugfix: fixes some gloves not showing.
+  - bugfix: fixes handcuffs giving error image.
+  - imageadd: changes PAS-11 armor sprite
+  Surrealaser:
+  - bugfix: Hugger traps crushed by the shuttle no longer discharge huggers (again).
+  - rscadd: Healing Infusion ability replaces Acidic Salve for the Hivelord. This
+      is a short-range heal over time that trades spike healing, immunity to fire
+      interruption and independence from weeds for power. Recovery pheromones improve
+      its HP and Sunder recovery by 10% per rank.
+  - refactor: Sunder recovery refactored.
+  - tweak: Baseline Sunder recovery halved.
+  - tweak: Sunder recovery now doubled by weeds and resting, and increased by 10%
+      per rank of recovery pheromones.
+  - tweak: Sunder recovery now blocked by being on fire.
+  Walarks:
+  - tweak: changed REM to a reagent var, changed related calculations in code, added
+      REM to some calculations
+  XSlayer300:
+  - tweak: The in-game year is now 2416.
+  - tweak: In addition to this, the ingame year is now dynamic.
+2021-01-11:
+  BraveMole:
+  - balance: SG drums price reduced to 5 points, 2 more available in each marine vendor
+      and 1 more in their essential kit
+  EvilMelonTheSecond:
+  - tweak: C4 now does small explosion and plays detpack ringing when detonation time
+      is up
+  Pariah919:
+  - balance: GPMG aim speed delay increased to 6, aim fire speed decrease is 0.1 now.
+  XSlayer300:
+  - bugfix: belenko hairs are now fixed
+  - rscadd: Added HvH variants for hostile ERT armor and marine vendors, admin-spawnable
+      only.
+  - tweak: Renamed most M3 armor to PAS.
+  - tweak: Removed the suppressor in NEXUS closets, you can still get them via attachment
+      vendor.
+  - balance: Buffs some armor to PAS-level.
+2021-01-12:
+  BeloneX:
+  - rscadd: Added an eye patch to load-out gear.
+  Chaznoodles:
+  - tweak: Due to demand, the Underdecks has ran dry of Thermobaric Launchers.
+  - bugfix: Fixes HvH attachment vendor path.
+  HolisticDelight:
+  - tweak: Price of combat satchel in req decreased.
+  Pariah919:
+  - balance: machine pistol fire speed reduced to 0.2 from 0.15, aka 100 rpm less
+  - rscadd: Added new big hypospray
+  - balance: added big hypospray, reverted 120 normal hyposprays and medic vendor
+      changes
+  SkeletalElite:
+  - rscadd: You can buy more plasma drain grenades at requisitions now
+  Surrealaser:
+  - tweak: Computers can now be disabled by multiple xeno attacks or a Warrior punch.
+      Disabled computers do not obstruct pathing and can be repaired by a welder.
+  - rscadd: Hotkeys added for Rally Hive and Healing Infusion.
+  - bugfix: Possible fix for Healing Infusion SFX inconsistency.
+  - code_imp: Code improvement for Healing Infusion.
+  - bugfix: Fixes silo related runtimes when observers try to look at Hive Status.
+  TiviPlus:
+  - code_imp: cleaned up mortar code
+  - admin: Mortar firing is now logged in game log
+  Vondiech:
+  - rscadd: Adds guard railings to alot of the bridges around lava outpost to make
+      gameplay less frustrating, still can be thrown off into the lava though if you
+      are not careful.
+  - rscdel: Removed alot of outpost lights that weren't either there before at the
+      old lava outpost or were infront of entrances as a piece of feedback i got was
+      that Lava Outpost was too bright, even with the relatively lava-less areas.
+  - tweak: Made bridges wider as this was another piece of feedback i got.
+  - tweak: Moved the central silo point towards near the shack as a piece of feedback
+      i got with survivors trying to reach security without getting blasted by every
+      xeno.
+  - bugfix: Got rid of some walls that were inside of windows due to my own fault.
+2021-01-15:
+  BeloneX:
+  - rscadd: Added the Tadpole and drop pods to the thesus.
+  BraveMole:
+  - bugfix: Hivemind can now use shift click for abilities
+  - bugfix: Condor will correctly stop its engine when the fuel reaches zero
+  Chaznoodles:
+  - tweak: Moved Supply Tablet from the RO's pocket to his locker.
+  MLGTASTICa:
+  - rscadd: Adds frontline floodlights
+  Pariah919:
+  - balance: pistols in general get aim mode
+  - balance: revolvers get aim mode
+  Surrealaser:
+  - bugfix: Fixes a bug so that Rally Hive is properly removed from demoted xenos.
+  Tennessee116:
+  - tweak: Terran Shipyards has released a recall on ERT vessels without their thrusters.
+  TiviPlus:
+  - refactor: Refactors/rewrites most of implant code
+  XSlayer300:
+  - rscdel: Removed some names in the last name list.
+  grinkgo:
+  - bugfix: combover and combover 2 are now properly separate
+2021-01-17:
+  Surrealaser:
+  - bugfix: Fixes the fog wall being passable with living humans and bullets/grenades/etc.
+  TiviPlus:
+  - rscadd: 'Adds medic tweezers for removing shrapenel spriteadd: Sprite by Daytona'
+  - code_imp: known_implants is now a managed global
+2021-01-21:
+  BraveMole:
+  - admin: Stricter time lock for shipside and command jobs
+  Pariah919:
+  - rscadd: Added new ammo packets, and adds them to marine ammo cargo vendor
+  Windryn:
+  - rscadd: adds ranks for Medical Officer hopefully
+  fernandos13:
+  - tweak: medevac cooldown from 5 to 2,5
+2021-01-22:
+  Surrealaser:
+  - bugfix: Fixes a bug related to keeping the xeno tunnel selection interface open.
+  - code_imp: Proofs xeno tunnels against future bugs/unintended behaviours.
+  TiviPlus:
+  - rscdel: Removes the ability to orbital retreat
+2021-01-23:
+  BeloneX:
+  - refactor: refactored xenoupgrade.dm to massively improve readability
+2021-01-25:
+  BraveMole:
+  - bugfix: Hijack state correctly resets
+  - tweak: Shrike or queen can hijack alamo even without being the hive ruler
+  Pariah919:
+  - balance: p90 buffs, 0.15 fire rate from 0.165 and aim mode, mags fit in black
+      webbing. T19 has 10 scatter unwielded 0 wielded now.
+  - bugfix: fixed a sprite bug
+  SkeletalElite:
+  - bugfix: B18's Autodoc will stabilize head fractures just like the Valkyrie.
+  Surrealaser:
+  - rscadd: Sentries now have HUD indicators displaying current health and ammo. Those
+      with the Squad HUD can see this.
+  - rscadd: Sentries now display health and ammo info to non-xenos examining it.
+  - rscadd: Sentries now don't get hit by friendly IFF munitions.
+  - code_imp: Sentry damage alerts more accurate and responsive.
+  - bugfix: Sentry damage alerts now work properly.
+  - bugfix: Fixes lingering bugs with the Healing Infusion aura visuals.
+  Xsdew:
+  - tweak: 'The M3 Harness was resprited. It includes three color: Brown, Grey, and
+      White.'
+2021-01-27:
+  Pariah919:
+  - balance: healing infusion heals a flat 25 hp instead of 10+5% and heals less sunder
+  SpaceLove:
+  - rscadd: Synthetic ranks added
+  Sulaboy:
+  - bugfix: M412L1 and M412 Elite now show correct stock
+  - bugfix: M412L1 can now attach rail-scope, and mini-scope
+  Surrealaser:
+  - bugfix: Fixes damage delays for most relevant damage events.
+  TiviPlus:
+  - refactor: Adds the managed spawner controller
+  grinkgo:
+  - bugfix: Sulaco's medbay has a brand new layout.
+2021-01-29:
+  BraveMole:
+  - bugfix: fixes synth rank when below 10 hours
+  - imageadd: roonies sprite
+  - rscadd: new xenos, the roony, wich is exatcly like a runner but much cuter
+  - admin: config settings to change every runner into a roony
+  Pariah919:
+  - rscadd: Added one use rpg to the code
+  grinkgo:
+  - bugfix: sulaco medbay lobby entrance isn't id-locked anymore
+2021-01-30:
+  Pariah919:
+  - balance: usl gets a normal type 71 for all roles, any type 71 carbines have been
+      removed
+2021-01-31:
+  BraveMole:
+  - bugfix: roony now has a stun sprite

@@ -1,0 +1,32 @@
+2019-09-02:
+  Rohesie:
+  - balance: Crusher charge/crushing heavily refactored. There should be some differences
+      in behavior, such as being able to break more things, dealing more consistent
+      damage to objects (thus no longer deleting some and being stopped by others).  Interaction
+      with crushing mobs also changed, should do a bit less damage and have an easier
+      time plowing through them.
+  - balance: Xeno bump delay removed. If xenos want to escape bodyblocking from smaller
+      creatures (such as humans), all they need is to do is be on help intent.
+  grinkgo:
+  - rscadd: Real green beret added to custom loadout.
+  - bugfix: Fixed the name of the TGMC beret in custom loadout. It's definitely not
+      green.
+2019-09-03:
+  Kuro:
+  - imageadd: Every PFC armor along with the basic helmet now has a new sprite!
+  - imageadd: Redone all the squad color markings
+2019-09-04:
+  Hughgent:
+  - rscadd: YeeHaw fancy action shooting time. git yer lever action here!
+  Maciekkub:
+  - tweak: Ammunition naming
+2019-09-08:
+  Maciekkub:
+  - tweak: PMC no longer has MP skills or tank access.
+2019-09-12:
+  Drawsstuff and factoryman942:
+  - balance: Ravager no longer loses rage over time, only by using abilities.
+  - balance: Rage no longer gives ravagers extra damage resistance or fire resistance.
+  - balance: Ravager no longer gains rage by normal slashing.
+  GhostAvenger:
+  - balance: Changed queen screech to do nothing to xenomorphs
