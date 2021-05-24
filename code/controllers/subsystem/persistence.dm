@@ -52,26 +52,30 @@ SUBSYSTEM_DEF(persistence)
 	WRITE_FILE(json_file, json_encode(seasons_file_info))
 
 /datum/controller/subsystem/persistence/proc/update_season_data(season_class, list/seasons_file_info)
+	//loads a new entry for a season if one is missing
 	if(!LAZYACCESS(seasons_file_info, season_class)) //handles adding missing entries
 		var/list/template_season_entry = list(
 			"[season_class]" = list(LAST_UPDATE = 0, CURRENT_SEASON = 0) //values will be set afterwards
 		)
 		seasons_file_info += template_season_entry
 
+	//checks whether the season should be advanced
 	var/last_season_update_time = text2num(seasons_file_info[season_class][LAST_UPDATE])
 	var/time_since_last_update = world.realtime - last_season_update_time
-	if(time_since_last_update < seasons_durations[season_class])
-		return seasons_file_info
+	if(time_since_last_update >= seasons_durations[season_class])
+		seasons_file_info[season_class][LAST_UPDATE] = world.realtime
+		seasons_file_info[season_class][CURRENT_SEASON]++
 
-	seasons_file_info[season_class][LAST_UPDATE] = world.realtime
-	seasons_file_info[season_class][CURRENT_SEASON]++
+	//Initializes the season datum that is chosen based on the current season
 	season_progress[season_class] = seasons_file_info[season_class][CURRENT_SEASON]
-
 	var/seasons_buckets_list_index = season_progress[season_class] % length(seasons_buckets[season_class]) + 1
-
 	var/season_typepath = seasons_buckets[season_class][seasons_buckets_list_index]
 	var/datum/season_datum/season_instance = new season_typepath
+
+	//Does stuff with the initialized season datum
 	season_items[season_class] = season_instance.item_list
+
+	//returns the updated season file data to write over the stored season file information
 	return seasons_file_info
 
 ///Initializes the seasonal items file if it is missing
