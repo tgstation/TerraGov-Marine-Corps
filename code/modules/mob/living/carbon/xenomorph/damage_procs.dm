@@ -163,6 +163,8 @@
 
 
 /mob/living/carbon/xenomorph/adjustBruteLoss(amount, updating_health = FALSE)
+	if(stat == DEAD)
+		return
 
 	var/list/amount_mod = list()
 	SEND_SIGNAL(src, COMSIG_XENOMORPH_BRUTE_DAMAGE, amount, amount_mod)
@@ -176,6 +178,8 @@
 
 
 /mob/living/carbon/xenomorph/adjustFireLoss(amount, updating_health = FALSE)
+	if(stat == DEAD)
+		return
 
 	var/list/amount_mod = list()
 	SEND_SIGNAL(src, COMSIG_XENOMORPH_BURN_DAMAGE, amount, amount_mod)
