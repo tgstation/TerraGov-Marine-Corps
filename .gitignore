@@ -24,6 +24,9 @@ tools/MapDaemon/logs/*.txt
 
 tools/BalanceTool/raw.json
 
+#Temp files from cbt stuff
+tgmc.mdme
+
 # Ignore compiled linux libs in the root folder, e.g. librust_g.so
 /*.so
 

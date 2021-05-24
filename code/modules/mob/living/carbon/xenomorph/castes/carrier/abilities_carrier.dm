@@ -165,12 +165,6 @@ GLOBAL_LIST_INIT(hugger_type_list, typecacheof(list(
 	if(!T.check_alien_construction(owner, silent) || !T.check_disallow_alien_fortification(owner, silent))
 		return FALSE
 
-	if(locate(/obj/effect/alien/weeds/node) in T)
-		if(!silent)
-			to_chat(owner, "<span class='warning'>There is a resin node in the way!</span>")
-		return FALSE
-
-
 /datum/action/xeno_action/place_trap/action_activate()
 	var/turf/T = get_turf(owner)
 
@@ -179,7 +173,7 @@ GLOBAL_LIST_INIT(hugger_type_list, typecacheof(list(
 	playsound(T, "alien_resin_build", 25)
 	GLOB.round_statistics.carrier_traps++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "carrier_traps")
-	new /obj/effect/alien/resin/trap(T)
+	new /obj/structure/xeno/trap(T)
 	to_chat(owner, "<span class='xenonotice'>We place a hugger trap on the weeds, it still needs a facehugger.</span>")
 
 // ***************************************

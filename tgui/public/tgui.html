@@ -98,6 +98,12 @@ if (window.__windowId__ === '[' + 'tgui:windowId' + ']') {
         }
       }
     }
+
+    // If we're a Chromium client, just use the fancy method
+    if (window.cef_to_byond) {
+      cef_to_byond('byond://' + url);
+      return;
+    }
     // Perform a standard call via location.href
     if (url.length < 2048) {
       location.href = 'byond://' + url;
