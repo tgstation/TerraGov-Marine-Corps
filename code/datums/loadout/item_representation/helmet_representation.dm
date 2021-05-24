@@ -27,6 +27,27 @@
 	module?.install_on_helmet(seller, helmet)
 	helmet.set_greyscale_colors(greyscale_colors)
 
+/datum/item_representation/modular_helmet/get_tgui_data()
+	var/list/tgui_data = list()
+	var/icon/icon_to_convert = icon(SSgreyscale.GetColoredIconByType(initial(item_type.greyscale_config), greyscale_colors), dir = SOUTH)
+	tgui_data["icons"] = list()
+	tgui_data["icons"] += list(list(
+		"icon" = icon2base64(icon_to_convert),
+		"translateX" = NO_OFFSET,
+		"translateY" = "40%",
+		"scale" = 1.4,
+		))
+	if(module)
+		icon_to_convert = icon(initial(module.item_type.icon), initial(module.item_type.icon_state), SOUTH)
+		tgui_data["icons"] += list(list(
+			"icon" = icon2base64(icon_to_convert),
+			"translateX" = "35%",
+			"translateY" = "30%",
+			"scale" = 0.5,
+			))
+	tgui_data["name"] = initial(item_type.name)
+	return tgui_data
+
 /**
  * Allow to representate an helmet module
  * This is only able to representate items of type /obj/item/helmet_module

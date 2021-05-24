@@ -27,3 +27,9 @@ GLOBAL_LIST_INIT(loadout_linked_vendor, list(
 #define MEDIC_LOADOUT "medic"
 #define SMARTGUNNER_LOADOUT "smartgunner"
 #define LEADER_LOADOUT "leader"
+
+//Defines use for the visualisation of loadouts
+#define NO_OFFSET "0%"
+#define NO_SCALING 1
+#define MODULAR_ARMOR_OFFSET_Y "-10%"
+#define MODULAR_ARMOR_SCALING 1.2

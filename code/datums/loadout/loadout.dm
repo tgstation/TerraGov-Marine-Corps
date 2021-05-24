@@ -111,7 +111,7 @@
 	return GLOB.always_state
 
 /datum/loadout/ui_static_data(mob/user)
-	var/data = list()
+	var/list/data = list()
 	data["items"] = prepare_items_data()
 	var/list/loadout_data = list()
 	loadout_data["job"] = job
@@ -123,6 +123,8 @@
 	. = ..()
 	switch(action)
 		if("equipLoadout")
+			if(!ui.user.client.prefs.loadout_manager.seller)
+				ui.user.client.prefs.loadout_manager.seller = new /datum/loadout_seller
 			ui.user.client.prefs.loadout_manager.seller.try_to_equip_loadout(src, ui.user)
 			ui.close()
 		if("deleteLoadout")
@@ -136,24 +138,20 @@
 
 ///Create all the necessary data (icons, name of items) from the loadout, and put them in an assoc list to be used by tgui
 /datum/loadout/proc/prepare_items_data(mob/user)
-	var/items_data = list()
+	var/list/items_data = list()
 	for (var/item_slot_key in GLOB.visible_item_slot_list)
 		var/list/result = list()
 
 		var/datum/item_representation/item_representation = item_list[item_slot_key]
 		if (isnull(item_representation))
-			result["icon"] = icon2base64(icon("icons/misc/empty.dmi", "empty"))
+			result["icons"] = list(list(
+				"icon" = icon2base64(icon("icons/misc/empty.dmi", "empty")),
+				"translateX" = NO_OFFSET,
+				"translateY" = NO_OFFSET,
+				"scale" = NO_SCALING,
+				))
 			items_data[item_slot_key] = result
 			continue
-		//This is costly, but this allows to have a pretty an accurate visualisation
-		var/obj/item/item = item_representation.instantiate_object()
-		var/image/standing = image(item.icon, item.icon_state)
-		item.apply_custom(standing)
-		item.apply_accessories(standing)
-		var/icon/flat_icon = getFlatIcon(standing)
-		result["icon"] = icon2base64(flat_icon)
-		result["name"] = item.name
-		qdel(item)
 
-		items_data[item_slot_key] = result
+		items_data[item_slot_key] = item_representation.get_tgui_data()
 	return items_data

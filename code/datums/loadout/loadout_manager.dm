@@ -12,9 +12,6 @@
 	/// The datum in charge of the user wanting to equip a saved loadout
 	var/datum/loadout_seller/seller
 
-/datum/loadout_manager/New()
-	seller = new
-
 ///Remove a loadout from the list.
 /datum/loadout_manager/proc/delete_loadout(datum/loadout/loadout_to_delete)
 	loadouts_list -= loadout_to_delete

@@ -1,7 +1,8 @@
 import { range } from "common/collections";
 import { resolveAsset } from "../../assets";
 import { useBackend } from "../../backend";
-import { Box, Button, Icon, Section, Stack } from "../../components";
+import { Box, Button, Section, Stack } from "../../components";
+import { IconStack } from "../../components/Icon";
 import { LoadoutSlotData, GridSpotKey, SLOTS, getGridSpotKey } from './Types';
 
 const ROWS = 4;
@@ -90,17 +91,21 @@ export const SlotSelector = (props: LoadoutSlotData, context) => {
                           width: "60px",
                           height: "60px",
                         }}>
-                          <Box
-                            as="img"
-                            src={`data:image/jpeg;base64,${item.icon}`}
-                            height="100%"
-                            width="100%"
-                            style={{
-                              "-ms-interpolation-mode": "nearest-neighbor",
+                          {item.icons.map(iconinfo => 
+                            <Box
+                              as="img"
+                              src={`data:image/jpeg;base64,${iconinfo.icon}`}
+                              height="100%"
+                              width="100%"
+                              color="transparent"
+                              style={{
+                              "position": "absolute",
                               "vertical-align": "middle",
-                              position: "relative",
-                            }}
-                          />
+                              transform:
+                                "translateX(" + iconinfo.translateX + ") translateY(" + iconinfo.translateY + ") scale(" + iconinfo.scale + ")",
+                              }}
+                            />
+                          )}
                         </Box>
                       </Button>
                     </Box>

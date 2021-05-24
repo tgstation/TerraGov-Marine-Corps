@@ -28,12 +28,8 @@
  * This is only able to representate items of type /obj/item/clothing/suit/modular
  */
 /datum/item_representation/modular_armor
-	/// Attachment slots for chest armor
-	var/datum/item_representation/armor_module/colored/slot_chest
-	/// Attachment slots for arm armor
-	var/datum/item_representation/armor_module/colored/slot_arms
-	/// Attachment slots for leg armor
-	var/datum/item_representation/armor_module/colored/slot_legs
+	/// Assoc list of all armor modules on that modulare armor
+	var/list/datum/item_representation/armor_module/colored/armor_modules
 	/// What modules are installed
 	var/datum/item_representation/armor_module/installed_module
 	/// What storage is installed
@@ -48,12 +44,13 @@
 		CRASH("/datum/item_representation/modular_armor created from an item that is not a jaeger")
 	..()
 	var/obj/item/clothing/suit/modular/jaeger_to_copy = item_to_copy
+	armor_modules = list()
 	if(jaeger_to_copy.slot_chest)
-		slot_chest = new /datum/item_representation/armor_module/colored(jaeger_to_copy.slot_chest)
+		armor_modules["chest"] = new /datum/item_representation/armor_module/colored(jaeger_to_copy.slot_chest)
 	if(jaeger_to_copy.slot_arms)
-		slot_arms = new /datum/item_representation/armor_module/colored(jaeger_to_copy.slot_arms)
+		armor_modules["arms"] = new /datum/item_representation/armor_module/colored(jaeger_to_copy.slot_arms)
 	if(jaeger_to_copy.slot_legs)
-		slot_legs = new /datum/item_representation/armor_module/colored(jaeger_to_copy.slot_legs)
+		armor_modules["legs"] = new /datum/item_representation/armor_module/colored(jaeger_to_copy.slot_legs)
 	if(jaeger_to_copy.installed_storage)
 		installed_storage = new /datum/item_representation/armor_module(jaeger_to_copy.installed_storage)
 		storage_implementation = new /datum/item_representation/storage(jaeger_to_copy.storage)
@@ -66,14 +63,54 @@
 	if(!.)
 		return
 	var/obj/item/clothing/suit/modular/modular_armor = .
-	slot_chest?.install_on_armor(seller, modular_armor)
-	slot_arms?.install_on_armor(seller, modular_armor)
-	slot_legs?.install_on_armor(seller, modular_armor)
+	for(var/key in armor_modules)
+		var/datum/item_representation/armor_module/colored/armor_module = armor_modules[key]
+		armor_module.install_on_armor(seller, modular_armor)
 	installed_module?.install_on_armor(seller, modular_armor)
 	if(installed_storage)
 		installed_storage.install_on_armor(seller, modular_armor)
 		modular_armor.storage = storage_implementation.instantiate_object(seller, modular_armor)
 	modular_armor.update_icon()
+
+
+/datum/item_representation/modular_armor/get_tgui_data()
+	var/list/tgui_data = list()
+	tgui_data["name"] = initial(item_type.name)
+	tgui_data["icons"] = list()
+	var/icon/icon_to_convert = icon(initial(item_type.icon), initial(item_type.icon_state), SOUTH)
+	tgui_data["icons"] += list(list(
+				"icon" = icon2base64(icon_to_convert),
+				"translateX" = NO_OFFSET,
+				"translateY" = MODULAR_ARMOR_OFFSET_Y,
+				"scale" = MODULAR_ARMOR_SCALING,
+				))
+	for(var/key in armor_modules)
+		var/datum/item_representation/armor_module/colored/armor_module = armor_modules[key]
+		icon_to_convert = icon(SSgreyscale.GetColoredIconByType(initial(armor_module.item_type.greyscale_config), armor_module.greyscale_colors), dir = SOUTH)
+		tgui_data["icons"] += list(list(
+					"icon" = icon2base64(icon_to_convert),
+					"translateX" = NO_OFFSET,
+					"translateY" = MODULAR_ARMOR_OFFSET_Y,
+					"scale" = MODULAR_ARMOR_SCALING,
+					))
+	if(installed_storage)
+		icon_to_convert = icon(initial(installed_storage.item_type.icon), initial(installed_storage.item_type.icon_state), SOUTH)
+		tgui_data["icons"] += list(list(
+					"icon" = icon2base64(icon_to_convert),
+					"translateX" = NO_OFFSET,
+					"translateY" = MODULAR_ARMOR_OFFSET_Y,
+					"scale" = MODULAR_ARMOR_SCALING,
+					))
+	if(installed_module)
+		icon_to_convert = icon(initial(installed_module.item_type.icon), initial(installed_module.item_type.icon_state), SOUTH)
+		tgui_data["icons"] += list(list(
+					"icon" = icon2base64(icon_to_convert),
+					"translateX" = "40%",
+					"translateY" = "35%",
+					"scale" = 0.5,
+					))
+	return tgui_data
+
 
 /**
  * Allow to representate an module of a jaeger

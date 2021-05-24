@@ -21,6 +21,28 @@
 		return
 	tie?.install_on_uniform(seller, .)
 
+/datum/item_representation/uniform_representation/get_tgui_data()
+	var/list/tgui_data = list()
+	var/icon/icon_to_convert = icon(initial(item_type.icon), initial(item_type.icon_state), SOUTH)
+	tgui_data["icons"] = list()
+	tgui_data["icons"] += list(list(
+		"icon" = icon2base64(icon_to_convert),
+		"translateX" = NO_OFFSET,
+		"translateY" = NO_OFFSET,
+		"scale" = 1,
+		))
+	if(tie)
+		icon_to_convert = icon(initial(tie.item_type.icon), initial(tie.item_type.icon_state), SOUTH)
+		tgui_data["icons"] += list(list(
+			"icon" = icon2base64(icon_to_convert),
+			"translateX" = NO_OFFSET,
+			"translateY" = NO_OFFSET,
+			"scale" = 1,
+			))
+	tgui_data["name"] = initial(item_type.name)
+	return tgui_data
+	
+
 /**
  * Allow to representate a tie (typically a webbing)
  * This is only able to represent /obj/item/clothing/tie/storage

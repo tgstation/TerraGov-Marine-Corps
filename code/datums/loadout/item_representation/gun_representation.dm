@@ -22,7 +22,7 @@
 	. = ..()
 	if(!.)
 		return
-	for(var/datum/item_representation/gun_attachement AS in attachments)
+	for(var/datum/item_representation/gun_attachement/gun_attachement AS in attachments)
 		gun_attachement.install_on_gun(seller, .)
 
 /**
@@ -38,8 +38,9 @@
 	..()
 
 ///Attach the instantiated attachment to the gun
-/datum/item_representation/proc/install_on_gun(seller, obj/item/weapon/gun/gun_to_attach)
-	var/obj/item/attachable/attachment = instantiate_object(seller)
-	if(!(attachment.flags_attach_features & ATTACH_REMOVABLE))//Unremovable attachment are not in vendors
+/datum/item_representation/gun_attachement/proc/install_on_gun(seller, obj/item/weapon/gun/gun_to_attach)
+	var/obj/item/attachable/attachment_type = item_type
+	if(!(initial(attachment_type.flags_attach_features) & ATTACH_REMOVABLE))//Unremovable attachment are not in vendors
 		bypass_vendor_check = TRUE
+	var/obj/item/attachable/attachment = instantiate_object(seller)
 	attachment?.attach_to_gun(gun_to_attach)

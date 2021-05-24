@@ -9,9 +9,18 @@ export type LoadoutViewerData =
 
 export type LoadoutSlotItem =
   {
-    icon: string;
+    icons: LoadoutIconInfo[];
     name: string;
   }
+
+export type LoadoutIconInfo =
+  {
+    icon: string;
+    translateX: string;
+    translateY: string;
+    scale: number;
+  }
+
 
 export type LoadoutSlotData = {
     items: Record<keyof typeof SLOTS, LoadoutSlotItem>;

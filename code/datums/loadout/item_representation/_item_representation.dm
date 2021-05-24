@@ -5,7 +5,7 @@
  */
 /datum/item_representation
 	/// The type of the object represented, to allow us to create the object when needed
-	var/item_type
+	var/obj/item/item_type
 	/// If it's allowed to bypass the vendor check
 	var/bypass_vendor_check = FALSE
 
@@ -29,6 +29,21 @@
 		seller.bought_items += item_type
 	var/obj/item/item = new item_type(master)
 	return item
+
+/**
+ * This is in charge of generating a visualisation of the item, that will then be gave to TGUI
+ */
+/datum/item_representation/proc/get_tgui_data()
+	var/list/tgui_data = list()
+	var/icon/icon_to_convert = icon(initial(item_type.icon), initial(item_type.icon_state), SOUTH)
+	tgui_data["icons"] = list(list(
+				"icon" = icon2base64(icon_to_convert),
+				"translateX" = NO_OFFSET,
+				"translateY" = NO_OFFSET,
+				"scale" = 1,
+				))
+	tgui_data["name"] = initial(item_type.name)
+	return tgui_data
 
 /**
  * Allow to representate a storage
