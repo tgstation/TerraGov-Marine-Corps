@@ -1,0 +1,5 @@
+author: "Alterist"
+delete-after: True
+changes: 
+  - bugfix: "The spontaneously existing micro-cosmos that was hiding under the CMO's office door on the Pillar of Spring have been contained and sent to Nanotrasen."
+  - rscadd: "As a replacement/bribe, NT installed another chemistry room, rejoice!"

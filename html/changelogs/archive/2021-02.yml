@@ -1,0 +1,552 @@
+2021-02-01:
+  Pariah919:
+  - rscdel: Removed a few old sprites. M16a4, m41a, etc
+  - balance: m41a gl is unremoveable, has mag harness now
+  - tweak: m41a relored, is now named HK-11
+2021-02-02:
+  BraveMole:
+  - bugfix: Can't refuel condor mid flight anymore
+  Walarks:
+  - bugfix: m42a is able to mark with a laser again
+  grinkgo:
+  - bugfix: fortified some overlooked areas around Sulaco with outer hull.
+2021-02-03:
+  BraveMole:
+  - bugfix: Only marines on the ship count for winning conditions, when the fight
+      is shipside
+  - admin: Added a monitor that will estimate the state of the game (xenos losing,
+      marine losing, etc...). For later uses
+  - bugfix: Game no longer end when hijacking
+  MLGTASTICa:
+  - rscadd: A.D.V.P.A.C.M.A.N AOE Generator on all ship maps.
+  - rscadd: A.D.V.P.A.C.M.A.N as a purchaseable requisitions item.
+  Mouseofthecake:
+  - tweak: Drops PMC SG probability to 30
+  Naaanii:
+  - balance: removed stealth stun and increased armor pen from 20% to 40% on sneak
+      attack.
+  Pariah919:
+  - bugfix: fixed cas flare
+  - rscadd: Added new ballistic armor module
+  - balance: hk-11 has standard assault rifle fire rate and 0.15 burst delay
+  SkeletalElite:
+  - bugfix: SL rank now correctly changes with playtime if you join at round start
+  SplinterGP:
+  - tweak: changes the colors of the darkmode chat.
+  - bugfix: fixes code of honey where it should use period instead of comma.
+  - bugfix: fixes runtime at prison station init.
+  - bugfix: fixes warning on Pillar of spring due to two pipes of same type on same
+      tile.
+  - bugfix: fixes hallucination shocking not working when you don't have gloves.
+  - bugfix: fixes rogue return at explosions code.
+  - bugfix: fixes a spot of LV where it had two fences at same tile.
+  - bugfix: fixes issue where medhud would randomly set status as dead when marine
+      was revivable.
+  TGCMbetcher:
+  - bugfix: fixed typos and names
+  Vondiech:
+  - tweak: Both humans and Xenos now die instantly in pressureless areas (a.k.a space)
+      and the sea/outside on prison station now instantly kills you aswell.
+  grinkgo:
+  - bugfix: Shipside prosthetic printers should all universally be stocked now.
+2021-02-04:
+  BeloneX:
+  - tweak: The fusion generators no longer randomly break down.
+  BraveMole:
+  - rscadd: Xenos can chose to track another xenomorph or a silo in hive status
+  - rscadd: Distance to silo in hive status
+  GLACoding:
+  - bugfix: Fixed a bug with minirockets being deleted before explosion
+  Pariah919:
+  - rscdel: Right click menu is now toggleable in preferences
+  - tweak: moved safety from alt click to right click
+  - balance: pocket pistol no longer slows you down when aiming
+  - rscadd: Added new g22 to replace m9, new pk9 sprite
+  - rscdel: Removed m93r and pk9 variants
+  - rscdel: Removed barrel charger
+  - bugfix: v10 no longer checks for non map variants flags
+  - rscadd: Added new  jaeger light set, and new jaeger open helmet
+  - bugfix: fixes hk11 attachment offsets.
+  PsyKzz & Kuro (Sprites) & Bravemole (Merging conflict and bug fixes):
+  - rscadd: Added supply drop console
+  SkeletalElite:
+  - rscdel: Tactical Binoculars terrible sight check removed
+  SplinterGP:
+  - bugfix: fixes T18 attachments having wrong offsets.
+  Surrealaser:
+  - code_imp: Upgrading no longer qdels and replaces ability lists wholesale.
+  TiviPlus:
+  - code_imp: Removes various bad sleeps
+  - balance: Flamed grenades will respect detonation timers
+  - rscadd: Xenos can now rightclick to use abilities
+  - code_imp: Rclick signal framework
+  - rscadd: Adds a right click hud toggle
+  - tweak: Clients will default to rclick menu on
+  - bugfix: Fixes missing rclick icon
+  XSlayer300:
+  - rscadd: Roundstart species, allowing vatborns to be used in startup prefs.
+  - rscadd: Added new dedicated sprites for the laser bolts.
+  - tweak: Changed the colors for the laser bolts.
+  - tweak: Changed the tesla energy gun into a proper weapon.
+  - tweak: Changed the colors of the muzzleflash for the energy weapons.
+  fernandos13:
+  - rscadd: big hypo to the req orders
+  - rscadd: advanced medical pack crate to the req orders
+  - rscadd: tweezers to the req orders
+  - tweak: 'MP headset to fire support specialist headset remove: master of arms headset'
+  - bugfix: Cas and Mortar dedicated channel is now in place
+  joookschad:
+  - soundadd: added a new sound on the beginning of a vote, ripped from TF2
+2021-02-05:
+  Pariah919:
+  - balance: tl 127 aim mode nerf
+  Surrealaser:
+  - bugfix: Fixes a bug that allows players to load incorrect ammo into CAS weapons.
+  TiviPlus:
+  - bugfix: Fix map lint fail
+  - bugfix: fixed a rogue comma
+2021-02-06:
+  Pariah919:
+  - balance: mbx moved to imports, made cheaper, 12 gauge tracker shells added
+  - balance: boiler spits acid
+  - bugfix: jaeger helmet disappearing
+  TiviPlus:
+  - refactor: Clients should now delete properly
+  - admin: admins will be alerted when the server is left on with no staff
+  - bugfix: fixed a broken database query
+  - code_imp: The MC will now instantly restart upon stack overflows
+  - admin: Enables automute logging and admin messages
+  - code_imp: Updated various coder tools
+  - refactor: Refactors attack_alien to be able to support alternate attacks
+  - code_imp: Adds unit test for bespoke ids
+  - code_imp: Adds unit test for weeding
+  - code_imp: Updates unit tests code
+  - code_imp: Coders are now recommended to install an extension that eases unit testing
+  grinkgo:
+  - tweak: You can now have the option to dispense 40 and 120 units from a chem dispenser.
+      Whoop dee doo.
+  - rscadd: Adds tramadol-flavored lollipops to medbay. Ask your doctor for one!
+2021-02-07:
+  BraveMole:
+  - rscadd: Added back fuel tank, can be attached to flamethrowers to act as a huge
+      fuel tank. Multiple versions for different fuel type
+  - rscadd: 2 standard back fuel tanks added in ammunition vendor
+  - rscadd: Req can buy standard back fuel for 20 points and blue flame version for
+      150 points (Ammo tab)
+  - rscadd: Ammo hud for hydrocannon
+  - tweak: The flamers will now automaticly lit up when they have access to fuel
+  - tweak: You can toggle the hydro cannon of the tl84 using unique action (space
+      bar as defaut)
+  - rscdel: Remove the pyro backpack (replaced by the back fuel tank)
+  - imageadd: Added images of flamers linked to back fuel tank
+  - imageadd: Added water ammo hud
+  - bugfix: ammo HUD is now up to date after firing a flamethrower
+  SplinterGP:
+  - code_imp: Updates from TGUI3 to TGUI 4.3.
+  - code_imp: adds tgui_alert and tgui_input_list, the drone control uses tgui_alert.
+  Surrealaser:
+  - bugfix: Fire and acid now both properly update snow stack visuals.
+  - refactor: Refactored elements of acidspray_act and related procs.
+  TiviPlus:
+  - rscadd: Gun attachments can now be fired with rclick
+  - bugfix: Likely fix for strange ghost behaviour
+  - code_imp: Misc. xeno code cleanup
+2021-02-08:
+  BraveMole:
+  - tweak: Xenos rallying and silo arrow stays longer, and another colored arrow for
+      silo destroyed
+  - tweak: Rallying the hive arrow will now target the caster, and not a tile
+  - refactor: refactored surreal code on hive alerts
+  - rscadd: You can give orders (defend, attack, retreat) from the overwatch console,
+      wich acts as "waypoints" for every marine on ground.
+  - bugfix: 'Add back hud icons for non-squad job (Captain, CMO, FC, synth, etc..)
+      sound: Marines have a sound when receiving an order'
+  - rscadd: Spawning pools. They are randomly generated in caves, and each one will
+      generate 0.5 larva points every minute. You need 8 points for a new larva. The
+      number of spawning pool generated at start depends of the number of players,
+      and they only spawn larva after shutters are opened
+  - rscadd: Psychic points. Queen and shrike can corrupt generators (10 in each map),
+      marines can remove that corruption using a welder
+  - rscadd: Spawning pools can be constructed using psych points (900 points, wich
+      corresponds to 30 minutes with 10 generators). You are given points to build
+      pools at starts, depending on the number of players on the server Special pool
+      can be built when hijack, the spawn rate of this upgraded pool is linear with
+      the number of marines alive. Psych points are resets to 900 when hijacking,
+      so you only get one and the other are destroyed when launching alamo
+  - balance: 'Marines have a new objective: if they kill all the pools, xenos have
+      ten minutes to build another one or they lose.'
+  - rscdel: Headbiting is gone
+  - rscdel: Voring is gone
+  - rscdel: Silos are gone, you can't silo bodies to gain larva
+  - tweak: Passive larva generation when marines are joining the game only works when
+      shutters are closed, after that spawning pools are starting
+  - tweak: Xenos can't grab dead humans anymore, only living ones
+  - imageadd: Spawning pool sprite, stole from cimex sprite
+  Pariah919:
+  - balance: mines are small items again,average mine box holds 5 mines again
+  - rscadd: Added new antimaterial rifle to marines, 120 points. Functions like the
+      old m42a scout sniper
+  - balance: autosniper repriced to 40
+  - rscadd: Added new nagant revolver and automag sprite
+  - rscdel: Removed some old gun sprites
+  Surrealaser:
+  - tweak: Evasion can now be forcibly cancelled by stagger, stun and other immobilizing
+      debuffs.
+  - tweak: Burning now zeroes out Evasion stacks, and prevents their accumulation.
+  - tweak: Flamer direct hits now deplete Evasion stacks.
+  - balance: Evasion duration reduced to 2 seconds. Cooldown reduced from 30 seconds
+      to 10 seconds. Plasma cost reduced from 20 to 10.
+  - balance: Evasion no longer has a cap on projectile damage it can dodge now; instead
+      the user accumulates Evasion Stacks equal to projectile damage dodged while
+      Evasion is active. If 120+ stacks are accumulated during the same Evasion duration,
+      its current cooldown resets.
+  - balance: Each time you clear Evasion's cooldown by dodging damage, the amount
+      of damage you must dodge to clear its cooldown increases by 100% of the base
+      amount. This increase is cumulative and resets when its cooldown clears normally.
+  - refactor: Slow and stagger statuses partially refactored and standardized.
+  - bugfix: Fixed Healing Infusion timer mismatches cancelling the buff early.
+  TGCMbetcher:
+  - bugfix: Fixed an incorrect description and adds to another
+  TiviPlus:
+  - refactor: Minor dreaming refactor
+  grinkgo:
+  - balance: Corpsmen can now buy a wider variety of pills and injectors, including
+      bicamera and keloderm.
+  - rscadd: Fully stocked medkit pouch added to Corpsmen closet.
+  - tweak: Medkit pouches now have advanced kits.
+  - rscdel: Corpsmen equipment vendor no longer vends the surgical vest.
+  - tweak: Surgical vests now spawn with a surgery tray's worth of tools.
+  - tweak: MarineMeds are now accessible to all marine personnel.
+  - tweak: Changed around some items in the MarineMed and in the corpsman vendor.
+  - tweak: Advanced combat autoinjectors now have 5u of tramadol instead of 5u of
+      oxycodone.
+  - tweak: Oxycodone, Meralyne, and Dermaline OD changed from 19.8u to 15u.
+  - bugfix: New generation Healthmate HUDs now automatically adjust their lenses to
+      match your eyesight preferences!
+2021-02-09:
+  Naaanii:
+  - rscadd: adds the option for the xenos to capture the Alamo after it has been brought
+      groundside, closing the round. This requires there to be less than 5 humans
+      groundside
+  - rscadd: when the Alamo gets called, a bioscan signal is sent
+  SplinterGP:
+  - code_imp: Changes alot of byond input popups with TGUI Input UI's.
+  TiviPlus:
+  - bugfix: Newer Byond versions are now supported
+  - code_imp: cleans up some inventory code
+  - code_imp: Generic code cleanup pass and documentation
+  - code_imp: Admins and coders can now edit filters on the fly
+  - refactor: Refactors filters
+  - server: Add maximum reccomended version of byond
+2021-02-10:
+  Pariah919:
+  - balance: sandbag intregrety halved
+  SplinterGP:
+  - bugfix: Oversized tgui windows will now resize to fit usable screen area (relevant
+      for small laptop screens).
+  - tweak: All tgui windows are now resizable, unconditionally.
+  - bugfix: fixed some tgui input popups not showing
+  TiviPlus:
+  - rscadd: As of yet unobtainable chem implant
+  - code_imp: Fixed some implant bugs and cleaned up implant code
+  - code_imp: Removes Psychic choke code
+  - code_imp: Unarmedattack no longer converts params twice
+  fernandos13:
+  - rscadd: adds pistol lace attachment, which when active stops your gun from being
+      dropped.
+  - balance: TP14 capacity increased.
+  - balance: TP23, TP14, m1911 capacity increased, quicker fire rate and less recoil
+  - balance: g22 accuracy increased, aimmode slowdown increased.
+  - balance: TP17 damage increased
+  - balance: Highpower automag recoil reduced, and less scatter when wielded
+  - balance: 88mod 4 has quicker fire rate, less recoil, more scatter when not wielded
+  - balance: most pistols have less scatter
+2021-02-12:
+  Pariah919:
+  - balance: medic pil bicamera/keloderm bottle price doubled
+  SplinterGP:
+  - imageadd: added TGMC Background logo to replace nanotrasen background logo on
+      tgui
+  TiviPlus:
+  - bugfix: fixed tgui background resizing
+  jupyterkat BeloneX:
+  - bugfix: fixed weird announcement text renderings
+2021-02-13:
+  BeloneX:
+  - server: added more blacklisted versions
+  Pariah919:
+  - code_imp: removes pocket pistols multiplier obfuscation
+  - rscadd: Added new tx-11 in req vendor
+  TGCMbetcher:
+  - spellcheck: changed -580 Point to 571-C Base
+  TiviPlus:
+  - rscadd: Unobtainable cloak implant
+  - bugfix: implants activate properly
+  - code_imp: two stealths may no longer be active to avoid alpha bugs
+  - rscadd: Unobtainable armblade implant
+  - code_imp: support for item-focused implants and bodypart-only implants
+  - bugfix: Weed unit test is now consistent
+  - bugfix: fixed the blackbox death query again
+  - bugfix: Fixed divide by 0 runtime
+  Walarks:
+  - rscadd: adds aim mode keybinding, 6 by default
+  - balance: removes random boiler bombard offset
+2021-02-14:
+  BraveMole:
+  - rscadd: Popup when joining as a marine and xenos are losing
+  - rscadd: 'Silo pinpointer added, 20 points in req or given at start to SLs and
+      FC refractor: Pinpointer has no more modes, so it can be used without right
+      click'
+  - rscdel: Remove remnant of cap gameplay on maps (eggs, bursted mobs..)
+  - rscadd: 'More silo spawn location tweak: Silo spawn location are fortified with
+      thick walls and doors'
+  - rscadd: New cave system in Icy colony
+  - rscadd: Additional generator room in big red
+  Pariah919:
+  - bugfix: anti material rifle has iff again
+  Sulaboy:
+  - rscadd: Added marine ballistic healthmate goggles and prescription variant as
+      medic point buy item.
+  - imageadd: Added corresponding worn/inventory images for above added items
+  - tweak: From 4 vendor points to 2 vendor points 01/22/2021
+  - tweak: Removed goggles from vendor
+  - tweak: Added ability to combine hud and goggles/RPG glasses/eyepatch
+  TiviPlus:
+  - bugfix: needhelp emote is now activated with needhelp instead of heedhelp (N instead
+      of H)
+  - refactor: refactored doors and various other code to remove sleeping signals
+  - code_imp: 514 compatability
+  - refactor: Beams are now more performant
+  - bugfix: Fixed spammed runner pounce runtime
+  - code_imp: Removes illegal src edits and adds a lint for them
+  - refactor: Refactors doactions to store source and amount of doafters
+2021-02-15:
+  Pariah919:
+  - bugfix: general purpose module holds ammo
+  SkeletalElite:
+  - balance: The entire explosion area of an HE OB is devastating now
+  Surrealaser:
+  - bugfix: Extra slowdown for aggressive+ grabs capped at 3. Hopefully fixes excessive
+      slowdown issues with Lunge.
+  - balance: Reagent slash now acts as a buff, causing the next 3 slashes made over
+      4 seconds to inject 4U of the user's selected toxin, and 4U of larval growth
+      toxin.
+  - balance: Larval growth toxin no longer has pain killing benefits.
+  - code_imp: 'Infrastructure added and utilized so Reagent Slash doesn''t break if
+      active while upgrading; can also be tapped by other abilities to make them robust
+      vs upgrading. tweak: Statistics tracking added for Reagent Slashes.'
+  TiviPlus:
+  - bugfix: Minor cloak formatting changes
+  - rscadd: Replace the lobby HTML window with a new lobby menu
+  - code_imp: Removed some junk code
+2021-02-16:
+  Bravemole & Ciel (sprites):
+  - rscadd: 'The marine jetpack, a new item allowing marines to have short flying
+      burst. 15 points in req tweak: Runner can pounce over fire/lava without being
+      ignited'
+  - bugfix: Hivemind eye can no longer be ignited when crossing lava
+  - imageadd: Jetpack and overlay sprites
+2021-02-17:
+  BraveMole:
+  - bugfix: Remove instant death tiles in Ice colony
+  Pariah919:
+  - bugfix: shipside armor now has pas vest stats
+  TiviPlus:
+  - rscadd: Adds as of yet unobtainable Remote control vehicle
+  - bugfix: Fixes blade sound only playing for owner
+  - rscadd: Unobtainable Scout and Assault droid
+  Vondiech:
+  - bugfix: One of the dropship-crash locations on the sulaco have been fixed as to
+      not open up an instant death zone
+  spookydonut:
+  - bugfix: Announcements now check ic filter
+2021-02-18:
+  BraveMole:
+  - rscadd: 'Spawning pools. They can be placed by queen/shrike/hivelord, and each
+      one will generate 0.65 larva points every minute. You need 8 points for a new
+      larva, and the larva generation only start when shutters drop. They mature:
+      their larva output will double in 1h30, and then cap at 1.3 larva point a minute'
+  - rscadd: Psychic points. Queen and shrike can corrupt generators (10 in each map),
+      marines can remove that corruption using a welder
+  - rscadd: Spawning pools can be constructed using psych points (900 points, wich
+      corresponds to 30 minutes with 10 generators). You are given points to build
+      pools at starts, depending on the number of players on the server. You can't
+      build them next to each other Special pool can be built when hijack, the spawn
+      rate of this upgraded pool is linear with the number of marines alive. Psych
+      points are reset to 900 when hijacking, so you only get one and the other are
+      destroyed when launching alamo
+  - balance: 'Marines have a new objective: if they kill all the pools, xenos have
+      ten minutes to build another one or they lose.'
+  - rscdel: Headbiting is gone
+  - rscdel: Voring is gone
+  - rscdel: 'Silos are gone, you can''t silo bodies to gain larva tweak: Passive larva
+      generation when marines are joining the game only works when shutters are closed,
+      after that spawning pools are starting tweak: Xenos can''t grab dead humans
+      anymore, only living ones tweak: Crit delay is back, 2 seconds'
+  - imageadd: Spawning pool sprite, stole from cimex sprite
+  Pariah919:
+  - balance: revolver has a 0.15 fire delay from 0.0000003, mateba has a higher aim
+      mode delay
+  SkeletalElite:
+  - balance: the free dropship medevac has been replaced with an operating table
+  - balance: Orbit level affects how long it takes for CAS munitions to reach the
+      ground
+  - balance: CAS gets much less free ammo. CAS Munition random inaccuracy removed
+      from all current munitions that had it. Minirockets fly time reduced to 6 seconds.
+      GAU Ammo price increased slightly. Fatty fly time reduced to 6 seconds. High
+      velocity 30mm ammo is now the same as 30mm but with less fly time.
+  - balance: The blinking dot that indicates incoming CAS remains until the projectile
+      hits
+  Sulaboy:
+  - imageadd: Add M50 Flare Box icon "M50" "M50_E"
+  - bugfix: fixed guardsmen armor sets to show proper sprites
+  Surrealaser:
+  - balance: Base Stamina damage dealt by neurospit reduced to 30/35/40. Neurospit
+      now transfers neurotoxin to the target which is reduced by bio armor.
+  - balance: Neurospit now spawns a small area of weak neuro gas; strength of neurogas
+      scales with the user's upgrade level. Praetorian neurospit gas area is larger.
+  - balance: Boiler neurogas extinguishes fire and burning mobs.
+  - balance: Neuro no longer overdoses, and it now deals oxy and toxin damage instead
+      of stamina damage while its victim's stamina is fully depleted.
+  - balance: Neuroglobs now deal 50 stamina damage on hit with 40 pen, standardizing
+      their damage/pen with acid globs.
+  - balance: Neuroglobs now transfer 30U Neurotoxin on hit subject to chest bio armor.
+  - balance: Neuroglobs now stun only for 0.5 seconds down from 2.1 seconds.
+  - refactor: 'Gas strength calculations refactored to utilize multipliers. Adjusted
+      gas strengths as needed. tweak: Puking now only slows and staggers for about
+      5 seconds instead of stunning for 10. tweak: Having Stamina depleted now only
+      briefly stuns and slows and staggers once every 10 seconds instead of stunning
+      for 8 seconds each time Stamina damage is taken while Stamina is depleted. tweak:
+      Neuro no longer applies drugginess until its effect has progressed, making this
+      more obvious.'
+  TiviPlus:
+  - admin: Adds playtime tracking to notes
+  - server: DB schema update
+  - bugfix: fixed a broken lobby screen and removed deprecated ones
+  - imageadd: New lobby screen by Aisha
+  - imageadd: New lobby screen by Dragonfruits
+  Vondiech:
+  - balance: The areas around LZ1 and LZ2 on Prison Station have been changed to make
+      siege more viable and less painful for both sides involved.
+  Walarks:
+  - rscadd: Added Vali chemical enhancement module and harvester blade
+  - rscadd: Added generalized cone generation code
+  - rscadd: 'Added virilyth reagent. It reacts with dylovene/bicaridine/kelotane/tramadol
+      and duplicates them in a 1:1 ratio. Can be acquired by extracting green blood
+      from the Vali module tweak: added signal for when a reagent is added for the
+      first time in a holder'
+  - rscdel: removed survivor from pickable jobs
+  XSlayer300:
+  - rscadd: TerraGov made one-step further to lessen the restrictions on TerraGov's
+      military hairstyle (and it had gone too far), hair color gradients are now available
+      in the preferences menu!
+2021-02-19:
+  BraveMole:
+  - balance: Cryobags prevents the DNR timer to tick
+  SkeletalElite:
+  - bugfix: Got rid of the mini rocket pods that were on the public engi vendors of
+      sulaco
+2021-02-20:
+  BraveMole:
+  - refactor: Lighting code of items is now consistent
+  - refactor: Colony floodlights are now floodlight, and the code is better
+  - bugfix: Melee and PB shots don't miss
+  Surrealaser:
+  - code_imp: Improves the code of Healing Infusion such that it no longer overrides
+      variables between targets, and is applied as a formal status effect.
+  TiviPlus:
+  - bugfix: fixed unmanned overlay
+  - bugfix: fixed remotes being able to shoot while controlling
+  Walarks:
+  - rscdel: Removed 20% chance to miss melee attack when running
+  - bugfix: Fixes loading reagents in the harvester, makes breaking bicaridine effect
+      not trigger an attack
+  XSlayer300:
+  - bugfix: Side Ponytail 2, Short hair 3 & 4 are fixed.
+  - bugfix: Fixes many gun sprites and removes unused ones (why mjp)
+  - bugfix: Added a few more weapons to the EORD spawn list.
+  - bugfix: Shipside self-destruct animation has been fixed.
+  - bugfix: Fixed vendor speeches.
+  - rscadd: The old EORG map now has a chance to spawn as an EORG arena!
+  mokulus:
+  - bugfix: synthetics' paygrade now displays properly
+  - code_imp: remove /datum/species/show_paygrade
+  - rscadd: weapon toggle verbs that prioritize current gun
+  - bugfix: taking over SSD xenos works again
+  - bugfix: monkeys can suicide again
+  - bugfix: prompt when someone tries to cryo you works again
+  - bugfix: AI can change display status again
+  - code_imp: fix dreamchecker warning
+2021-02-21:
+  BraveMole:
+  - bugfix: You can defib people now
+  - refactor: DNR code
+  Pariah919:
+  - balance: baldur mk1 slowdown reduced and light range slightly higher, mk2 has
+      no slowdown
+  SplinterGP:
+  - rscadd: Added TGChat in place of Goonchat.
+  - rscdel: Goonchat removed.
+  - code_imp: updated icon2base64 proc to not use a global file that doens't exist
+      anymore.
+  Surrealaser:
+  - balance: Healing Infusion ticks increased from 5 to 10. Healing per tick is now
+      6 + 0.03% of max HP Sunder restored per tick is now 1.8. Healing Infusion cooldown
+      decreased from 30 seconds back to 5 seconds. Healing Infusion no longer restores
+      Sunder unless its target is on weeds.
+  TiviPlus:
+  - code_imp: Adds code for rightclicking with empty hand
+2021-02-23:
+  BraveMole:
+  - bugfix: No more instant death on ice colony
+  - bugfix: CIC orders no longer runtime
+  - bugfix: Making a new silo will now correctly reset the siloless timer
+  SplinterGP:
+  - bugfix: synths can now have numbers in name.
+  - bugfix: people now can have numbers in name to account for vatborns.
+  - bugfix: fixes runtimes caused by medevac stretchers
+  Surrealaser:
+  - bugfix: Larva can now use tunnels.
+  - bugfix: Fixes minor copy pasta bug with the Healing Infusion effect end message.
+  - bugfix: Ancient Xenos now provide the proper upgrade point yield when targeted
+      with Salvage Biomass, counting as a maxed out Elder Xeno.
+  TiviPlus:
+  - refactor: Monkeys are now at last a human species rather than a seperate type
+  - bugfix: various monkey inconsistencies
+  XSlayer300:
+  - bugfix: fixes guardsman armor, now they appear in any map.
+  mokulus:
+  - bugfix: synthetic cannot throw dangerous grenades in acid holes now
+  - bugfix: boiler neurotoxin properly extinguishes xenos
+  - bugfix: disabled computers are now unusable (repair with blowtorch)
+  - bugfix: tipped over vendors can be put back up
+  - bugfix: AI can't use disabled machines now
+  - qol: defibrillator recharging hints
+  - bugfix: overwatch jump to camera works again
+2021-02-25:
+  Gohunt:
+  - imageadd: Lobby UI button tweaks
+  lbnesquik:
+  - bugfix: fixed the description
+  - rscadd: Added many holopads.
+  mokulus:
+  - bugfix: you can no longer give marines ripley hands to move crates fast
+  - bugfix: weapon verbs are now only in Weapons verb tab
+2021-02-26:
+  SkeletalElite:
+  - bugfix: Alamo crash can no longer create a hole a space to on the sulaco
+  Vondiech:
+  - bugfix: A rouny made of space dust has fixed so that an instant death tile on
+      magmoor is no more.
+  Walarks:
+  - qol: harvester fill up amount is based on beaker setting as opposed to the maximum
+      possible amount
+2021-02-28:
+  SkeletalElite:
+  - bugfix: Filled in a missing wall on the sulaco, made a light fixture not float.
+  - qol: There is a little more space to stand in front of the public engi vendors
+      on sulaco without taking up space in the hallway.
+  Walarks:
+  - qol: added instructions FAQ paper to vali set
+  lbnesquik:
+  - rscadd: Added new lights to the hangar mostly.

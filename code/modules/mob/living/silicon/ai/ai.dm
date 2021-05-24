@@ -301,7 +301,7 @@
 		return FALSE
 
 	var/atom/A = D
-	if(level_locked && A.z != z)
+	if(!isturf(A) && level_locked && A.z != z)
 		return FALSE
 
 	return GLOB.cameranet.checkTurfVis(get_turf(A))

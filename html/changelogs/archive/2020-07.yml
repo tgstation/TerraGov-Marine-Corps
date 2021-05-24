@@ -1,0 +1,347 @@
+2020-07-01:
+  Hughgent:
+  - rscadd: Soups on! You can grind extracted alien embryo and turn them into jelly
+      to make soup with.
+  InterroLouis:
+  - tweak: Knife rig fits in suit slot of armors now.
+  MacBlaze1:
+  - tweak: the M56D is now deployable like the minisentry, just take it out and press
+      z, it will be placed in front of your direction
+  - tweak: M56D no longer requires tools to manage or deploy, or undeploy, just drag
+      it to your person to undeploy it.
+  - tweak: M56D can now rotate, bringing you and your person with it, and can immediately
+      fire
+  - tweak: You can now examine and also point while using the M56D
+  - tweak: You can now shoot critical condition mobs (xenos) with the M56D
+  - tweak: Only people directly behind the gun can dissassemble it, this is to prevent
+      griefing
+  - balance: reduced the damage to 40, penetration to 40, and sundering to 5
+  - balance: You can now buy the crate from the Combat Engineer Nexus for a massive
+      35 points, have fun with no metal or plasteel.
+  - tweak: 'You can now repair both the handheld piece, and the deployed mounted SG
+      with a welder sound: adds new M56D sound sprites: adds new M56D sprites'
+  Pariah919:
+  - balance: hunter has 40 more hp total
+  - balance: defiler can no longer cancel his cast to make a small cloud. It now results
+      in nothing.
+  - rscadd: Added new mateba sprite.
+  - rscdel: Removed old mateba sprites that are unused.
+  - tweak: tweaked the admiral mateba into a non-marine mateba. It was only used by
+      DS.
+  - balance: Mateba has a few new attachment options, no longer has recoil when 2-handed.
+      Now deals 50/20 instead of 47.5/15. Reduced stagger/slowdown.
+  psykzz:
+  - rscadd: Dragging your sprite onto the weed sprite will redirect to window / frame
+      underneath
+2020-07-02:
+  MacBlaze1:
+  - rscadd: added a surgical vest to the medical clothes vendor and made it only hold
+      the necessary surgical stuff
+  - balance: reduced fumbling time for medics from 8 to 4 seconds
+  - balance: reduces IB bleeding by 50% from Wound damage / 40 to wound damage / 60
+  - balance: xenos now take sunder damage from heavy and devastating explosions, you
+      REALLY DON'T want to get caught in a devastating explosion
+2020-07-04:
+  MacBlaze1:
+  - bugfix: damage multipliers will now apply to additional projectiles
+  - balance: gave the HMG 100 more health, and 50 bullet and 100 bio armor
+  - bugfix: fixed a bug in which picking up the HMG with an item in your active hand
+      would cause it to disappear
+  - balance: HMG deploy and HMG pickup time increased by 2 seconds to 5 seconds
+  TiviPlus:
+  - rscadd: Chainsword
+  - code_imp: Moved mimir head module into the correct file
+  - rscadd: Added facepaint to surplus vendors
+2020-07-05:
+  InterroLouis:
+  - bugfix: Fixed resting sunder recovery
+  - rscadd: Riot Shields Now Repairable
+  Pariah919:
+  - rscadd: Added the TL-84 and M-22 marine welderkit backpack.
+  - rscdel: Removed any trace of the M240-T I could find and replaced it with the
+      TL-84. Removed green/blue flame cans from req.
+  - balance: Added the TL-84 to marine vendors, a PFC available flamethrower. It has
+      a fire extinguisher on it. And added the M-22 marine welderbackpack thing to
+      there aswell, no storage. But it refills welders and flamers. The TL-84 can
+      use Blue/Green flame cans so the M240-T is now obsolete so it has been removed,
+      the blue/green flame canisters however have been removed. And are admin only.
+      .
+  Rohesie:
+  - rscadd: Marines can CPR defibable bodies every 7 seconds, buying them some time.
+  TheLordME:
+  - balance: Decreases resin door opening delay from 10 to 7 frames.
+  TiviPlus:
+  - bugfix: Moving things bobbing/teleporting, especially at higher FPSes, will no
+      longer do so
+  - code_imp: GC will timeout correctly
+2020-07-07:
+  Pariah919:
+  - balance: HMG can no longer be bought in engi vend.
+  - balance: you can only get flamers in the req vendors, removed from pfc blenders,
+      reduced them from 5 to 2
+  Sibg:
+  - rscadd: Railgun in Pillar Of Spring
+  TiviPlus:
+  - rscadd: 'Brand new card game: KOTAHI! Definitely not UNO, and can be found in
+      ship canteens'
+  - balance: Removed flamer RNG, making lighting mobs on fire more reliable
+  psykzz:
+  - balance: surt now reduces your suit light by 2 tiles
+  - balance: unlocks more xenos slots based on the marine to xeno difference
+  - rscadd: Facehuggers can be removed if your fast enough
+2020-07-08:
+  Rohesie:
+  - rscadd: Preferences added to mute potentially spammy combat logs in the chat feed
+      (useful to reduce combat lag), and to see runechat emotes.
+2020-07-09:
+  MacBlaze1:
+  - bugfix: fixed marines being unable to build on grass and wet grass (most useful
+      on Whiskey Outpost, but also elsewhere)
+  XSlayer300:
+  - rscadd: 'Added Vatborn (Vatgrown) naming conventions and as a species only for
+      admins. Demonstration here: https://prnt.sc/t7ul0p'
+  rhomm-dev:
+  - rscadd: shards have a chance to be destroyed when stepped on
+2020-07-10:
+  Hughgent:
+  - bugfix: examining alien embryo's won't cause a runtime anymore.
+  InterroLouis:
+  - rscdel: Warrior delimb gone
+  Spritework by JJG, Code by TiviPlus:
+  - imageadd: Added A LOT more xeno wounded sprites
+  - refactor: refactored xeno damage overlay to be more performant with the new sprites
+  TiviPlus:
+  - tweak: 'Removed RNG from: IVs signalling transfusion status, Suit preventing defib,
+      scythe clearing out plants, Hivemind announcing its under attack, Autodoc beginning
+      and stopping procedures'
+  XSlayer300:
+  - rscdel: Removed the option for buying tank parts in req.
+  psykzz:
+  - code_imp: added support for unique actions on any object (triggered by pressing
+      space)
+  rhomm-dev:
+  - rscadd: added fire extinguishing effect to xeno acid sprays
+2020-07-11:
+  Pariah919:
+  - balance: Most shotguns can no longer be fired with one hand.
+  TiviPlus:
+  - refactor: Refactored huggers to be more reliable
+  - bugfix: Huggers can no longer instantly hug
+  - tweak: Huggers can no longer hug after being dropped
+  - rscadd: You can now do tricks with one or two revolvers in your hand
+  - code_imp: Cleaned up wounds.dm
+  Vondiech:
+  - rscadd: Added in a bonus new painting for the titlescreen "title_paintingK"
+2020-07-12:
+  Hughgent:
+  - bugfix: Robot limbs are now robotic again.
+  TiviPlus:
+  - bugfix: Prison disposals can no longer be ejected
+  - bugfix: Removed vents in Ice colony LZ1
+  - bugfix: Huggers are storable again
+  psykzz:
+  - server: added hard restarts after x rounds
+  rhomm-dev:
+  - bugfix: invisible facepaint on vendors changed to green facepaint
+2020-07-14:
+  Pariah919:
+  - balance: dmr does 2 sundering and 65 damage from 70. BR does 32.5 from 35
+  TiviPlus:
+  - rscadd: Plasma draining OB
+  - balance: WP's plasma drain effect is much stronger
+  - code_imp: Optimized lighting
+  - code_imp: Optimized lighting corners
+  - bugfix: fixed a hugger exploit
+  - bugfix: hugger timers will delete themselves
+2020-07-15:
+  Alterist:
+  - rscadd: New EORD arena! Shoot your enemies and PB your friends. Can you find the
+      hidden rare weapons?
+  Hughgent:
+  - bugfix: Unused revolver stock attachment removed from attachment vendor
+  Pariah919:
+  - rscadd: The PAS-11 vest, new modular armor sprites. Jaeger undersuit.
+  - rscdel: Removed old marine armor from the vendors, deleted the old modular armor
+      sprites at the behest of kuro.
+  - balance: ALL armor is now homogenized, jaeger armor is now 15, has .1 slowdown.
+      The armor totals on EVERYTHING total up to 45+5. Removed old marine armor. Added
+      the PAS-11 vest, which is basically equivalent to a jaeger armor with baldur
+      and magazine pouches.
+  - balance: Every caste has their slash damage redone to fit the new homogenized
+      armor. Slash damage now has two tiers, one at young and one at elder.
+  Sibg:
+  - rscadd: The Firing Range & Extra Pacman
+  - rscdel: Old Military Police Stuffs
+  XSlayer300:
+  - rscadd: Added Pre-Equipped Squad roles for admins.
+  - admin: Pre-Equipped Squad roles are indicated by "(Equipped)" after their name.
+  - rscadd: Added new variants for belts, pouches and weapons for use of Pre-Equipped
+      Squad roles.
+  - bugfix: Squashed a few unseen bugs of code.
+2020-07-16:
+  Hathkar:
+  - rscadd: New phoron drill spots
+  - rscadd: New platinum drill spots
+  - rscdel: Removed some old drill spots
+  - balance: Passive Point Income
+  - balance: Mining drills produce crates at a rate of 1 per minutes, and hold a max
+      of 2 boxes at once.
+  Kuro, MJP and Tiviplus:
+  - rscadd: PFC sniper to replace the mosin
+  TiviPlus:
+  - rscadd: CAS flares available in SL vendors and req
+  psykzz:
+  - rscadd: blood splatter effect when getting shot.
+  - rscadd: Subtype of plastic flaps that cannot be damaged by marines.
+  - rscadd: Theseus requisitions becomes self serve.
+  rhomm-dev:
+  - bugfix: fixed vendor bug that allowed duping guns and ammo
+2020-07-17:
+  Hughgent:
+  - bugfix: PFC Sniper bullet now respects minimum accurate range
+2020-07-18:
+  2whatever2:
+  - rscadd: Added OB shells to the req console all of them cost 40 points for any
+      type.
+  - rscadd: Added Solid fuel tanks aswell each one costing 15 points
+  InterroLouis:
+  - rscadd: Marine shields exist
+2020-07-19:
+  Kuro:
+  - imageadd: added Haunt, ignore pain and regenerate skin action icons
+  Pariah919:
+  - balance: Sniper and BR/DMR do five less damage. BR now properly fires at 0.4 rather
+      than .35.  Sniper fires at a rate of 1.5.
+  TiviPlus:
+  - balance: The RO has a taser
+  psykzz:
+  - balance: Valkyrie module has a larger delay between heals (2.5 minutes to 4minutes)
+  - rscadd: Hive collaspse is 5mins max down from 15mins
+  spookydonut:
+  - tweak: OOC, LOOC, me, say keys are now set as keybind defaults instead of being
+      hardcoded, double check your keybinds.
+2020-07-20:
+  Hughgent:
+  - code_imp: randomized drop pixel shifts are now based on their original pixel shifts.
+  InterroLouis:
+  - bugfix: Fixed synths' lack of underwear.
+  - bugfix: Burnt out flares no longer ignite on impact.
+  Pariah919:
+  - balance: coffee no longer has its effect, now there is atomic coffee
+  spookydonut:
+  - admin: replaced take over mob verb with drag ghost to mob to change ckeys
+  - admin: improved spawn verb
+2020-07-22:
+  InterroLouis:
+  - bugfix: Fixed Burrowed Bonus
+  - bugfix: Xeno Spit Cost now functions properly.
+  MacBlaze1:
+  - bugfix: fixed a bug in which crafty bastard engineers would spam click the build
+      barricade buttons to make xenos madder than they usually are via cade stacking
+  - bugfix: fixed minisentries being able to regain full ammo and charge when picked
+      up and redeployed
+  Pariah919:
+  - rscadd: Added the ts-34 sprite
+  - balance: added the ts-34, a double barrel with no burst fire, and a few more attachment
+      options
+2020-07-23:
+  David-Stormwell:
+  - balance: Most shipside staff have MP level skill.
+  InterroLouis:
+  - bugfix: Revolver Inhand Fixed
+  JJtheGerman:
+  - balance: increased wield delay by 0.3 seconds, reduced ammo capacity to 7
+  Nixon:
+  - rscadd: Added a civil defib and marine defib
+  Pariah919:
+  - balance: taser now do stamina damage
+  - balance: 88mod has been nerfed, no longer has a damage mult, fires slower (0.25
+      instead of .2), has 12.5 pen
+  XSlayer300:
+  - rscadd: Added an essential Jaeger kit in GHMME vendors, no longer that you need
+      to dump out your uniform for the undersuit to clutter your workspace! Comes
+      with the Jaeger undersuit, exoskeleton, Baldhur lamp and facepaint and other
+      standard equipment when vendored.
+  - tweak: Renamed most instances of ColMarTech to TerraGovTech for vendors.
+  - tweak: Renamed the Armat Systems Attachment vendor to Terran Armories Attachment
+      vendor. Removed the outdated latter line in its description.
+  - tweak: Reordered the heavy pistol, pocket pistol and machine pistol inside the
+      weapon vendor.
+  - tweak: Tweaked some "Recommended" and "Not Recommended" buys.
+  - bugfix: Belt options inside the GHMME vendor is broke (as in, went down to the
+      lowest order), so reordered to be below webbing options now.
+  psykzz:
+  - rscadd: Added new entrances into self destruct on sulaco
+  - rscadd: 'Added new Rav ability: Ignore Pain - Allows ravs to ignore crit for 10
+      seconds, but can still die from too much damage.'
+  - rscadd: 'Added new Defender ability: Regenerate skin - Allows defenders to recover
+      a little bit of health and remove all their sunder damage.'
+  - rscadd: 'New hunter ability: Haunt - allows the hunter to give the target halluncinations'
+2020-07-24:
+  Pariah919:
+  - tweak: head health is now 100 again.
+  Vondiech:
+  - balance: The TGMC has decided to cut cost via cutting some corners with the TL-84
+      flamethrower, making it only spread fire through 6 tiles instead of the previous
+      7.
+  - balance: Alongside the TGMC cutting the costs and abiding by new regulations imposed
+      on the flamethrower, they have cut the ammo on the tanks that the flamethrowers
+      use, alongside slowing down the amount of time needed to reload a flamethrower
+      with a tank due to safety concerns. With the Normal tank now requiring 2 seconds
+      to reload with and having it's 60 units of fuel being cut down to 50, and the
+      Large tank now requiring 3 seconds to reload with and having it's 100 units
+      of fuel being cut down to 75.
+  psykzz:
+  - balance: hunter freeze on hit is now the same as a runner
+2020-07-25:
+  Kuro-ai:
+  - balance: Buffed xeno fire armor
+2020-07-26:
+  2whatever2:
+  - tweak: Raises HE explosion size to 6/10/15
+2020-07-27:
+  Hughgent:
+  - bugfix: the CL now has proper pronouns on the radio.
+  - bugfix: Cryocells now heal again
+  InterroLouis:
+  - tweak: Human Crit Oxyloss per tick tweaked from 0.2 to 1
+2020-07-31:
+  Dickff:
+  - rscdel: removes quickfire adaptors from marine venders and req
+  Hathkar:
+  - rscadd: More survivor spawn points in Prison Station
+  - rscadd: More mining drills in Prison Station
+  - rscadd: Rock walls and coastline in Prison Area to make "underground" areas visually
+      identifiable
+  - balance: Made LZ2 actually worth using as a FOB
+  - rscdel: Removed timed shutters outside LZs in Prison Station
+  - tweak: Resin node locations
+  - tweak: Moved the LZ1 resin silo to the north Research Area
+  - code_imp: Added ceilings to each area in Prison Station
+  - rscadd: A new atmospherics dome for LV624
+  - rscadd: Completely redone LZ2 LV624
+  - rscadd: New survivor spawn points LV624
+  - rscadd: New bridge north of LZ 2 LV624
+  - rscdel: Removed the far north caves LV624
+  - tweak: Cable and pipe placement LV624
+  - tweak: Jungle south of LZ1 LV624
+  - balance: LZ1 and LZ2 walls LV624
+  InterroLouis:
+  - bugfix: Microwave Dirty Sprite now just works.
+  JJtheGerman:
+  - tweak: made attaching stuff to modular armor faster.
+  Pariah919:
+  - balance: readded armor variance to jaeger armor. Added FF changes. More bullet
+      armor overall in armor.
+  - balance: HMG now can only hold 300 rounds in its boxes, or 300 clicks and 100
+      bursts. Rather than 700
+  - balance: hivelord has drone heal now
+  - balance: Marine respawn time doubled.
+  TiviPlus:
+  - code_imp: timer priority
+  - bugfix: Removed a stray pipe
+  - code_imp: Sign macro optimized
+  - bugfix: Minor cleanup
+  rhomm-dev:
+  - bugfix: fixed magazine ammo transfer bug
+  - bugfix: makes curing IB with bica OD work as intended

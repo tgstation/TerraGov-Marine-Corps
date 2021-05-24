@@ -418,7 +418,7 @@
 /obj/docking_port/mobile/proc/linkup(datum/map_template/shuttle/template, obj/docking_port/stationary/dock)
 	var/list/static/shuttle_id = list()
 	var/idnum
-	if(dock.roundstart_shuttle_specific_id)
+	if(dock?.roundstart_shuttle_specific_id)
 		id = dock.roundstart_shuttle_specific_id
 		idnum = 1
 	else

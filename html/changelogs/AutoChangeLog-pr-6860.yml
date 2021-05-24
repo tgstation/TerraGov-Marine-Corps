@@ -1,5 +1,0 @@
-author: "David-Stormwell"
-delete-after: True
-changes: 
-  - balance: "rebalanced lasers to have falloff damage and increase/decrease in fire rate accordingly, as well as sniper now having aimmode."
-  - bugfix: "fixes some white on the sniper's barrel as well as few other small fixes to code that I missed in my first laser PR."
