@@ -399,7 +399,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 			to_chat(src, "<span class='boldnotice'>[hud_choice] [ghost_sechud ? "Enabled": "Disabled"]</span>")
 		if("Squad HUD")
 			ghost_squadhud = !ghost_squadhud
-			H = GLOB.huds[DATA_HUD_SQUAD]
+			H = GLOB.huds[DATA_HUD_SQUAD_TERRAGOV]
 			ghost_squadhud ? H.add_hud_to(src) : H.remove_hud_from(src)
 			H = GLOB.huds[DATA_HUD_SQUAD_REBEL]
 			ghost_squadhud ? H.add_hud_to(src) : H.remove_hud_from(src)

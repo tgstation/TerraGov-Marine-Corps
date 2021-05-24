@@ -162,7 +162,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	var/headset_hud_on = FALSE
 	var/sl_direction = FALSE
 	/// Which hud this headset gives access too
-	var/hud_type = DATA_HUD_SQUAD
+	var/hud_type = DATA_HUD_SQUAD_TERRAGOV
 	///The type of minimap this headset gives access to
 	var/minimap_type = /datum/action/minimap/marine
 
@@ -243,7 +243,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	remove_minimap()
 	var/datum/action/minimap/mini = new minimap_type
 	if(wearer.job?.job_flags & JOB_FLAG_ALWAYS_VISIBLE_ON_MINIMAP) //We show to all marines if we have this flag, separated by faction
-		mini.marker_flags = hud_type == DATA_HUD_SQUAD ? MINIMAP_FLAG_ALL_MARINES : MINIMAP_FLAG_ALL_MARINES_REBEL
+		mini.marker_flags = hud_type == DATA_HUD_SQUAD_TERRAGOV ? MINIMAP_FLAG_ALL_MARINES : MINIMAP_FLAG_ALL_MARINES_REBEL
 	mini.give_action(wearer)
 	INVOKE_NEXT_TICK(src, .proc/update_minimap_icon, mini) //Mobs are spawned inside nullspace sometimes so this is to avoid that hijinks
 

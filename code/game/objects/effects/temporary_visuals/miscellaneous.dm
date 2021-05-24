@@ -103,7 +103,7 @@
 /obj/effect/temp_visual/order/Initialize(mapload, faction)
 	. = ..()
 	prepare_huds()
-	var/hud_type = faction == FACTION_TERRAGOV ? DATA_HUD_SQUAD : DATA_HUD_SQUAD_REBEL
+	var/hud_type = faction == FACTION_TERRAGOV ? DATA_HUD_SQUAD_TERRAGOV : DATA_HUD_SQUAD_REBEL
 	var/datum/atom_hud/squad/squad_hud = GLOB.huds[hud_type]
 	squad_hud.add_to_hud(src)
 	set_visuals(faction)
