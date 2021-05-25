@@ -14,7 +14,7 @@ GLOBAL_LIST_INIT(all_supply_groups, list("Operations", "Weapons", "Attachments",
 	var/access
 	var/group
 	///Randomly picks X of items out of the contains list instead of using all.
-	var/randomised_num_contained = 0 
+	var/randomised_num_contained = 0
 	///If this supply pack should be buyable in HvH gamemode
 	var/available_against_xeno_only = FALSE
 

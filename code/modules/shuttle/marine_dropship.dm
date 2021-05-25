@@ -1154,9 +1154,9 @@
 		return FALSE
 
 	var/obj/docking_port/mobile/M = SSshuttle.getShuttle(shuttleId)
-	/*if(!(M.shuttle_flags & GAMEMODE_IMMUNE) && world.time < SSticker.round_start_time + SSticker.mode.deploy_time_lock)
+	if(!(M.shuttle_flags & GAMEMODE_IMMUNE) && world.time < SSticker.round_start_time + SSticker.mode.deploy_time_lock)
 		to_chat(usr, "<span class='warning'>The engines are still refueling.</span>")
-		return TRUE*/
+		return TRUE
 
 	if(!M.can_move_topic(usr))
 		return TRUE
@@ -1317,9 +1317,9 @@
 	message_admins("[ADMIN_TPMONTY(usr)] is launching the canterbury[!length(GLOB.active_nuke_list)? " early" : ""].")
 
 	var/obj/docking_port/mobile/M = SSshuttle.getShuttle(shuttleId)
-	/*if(!(M.shuttle_flags & GAMEMODE_IMMUNE) && world.time < SSticker.round_start_time + SSticker.mode.deploy_time_lock)
+	if(!(M.shuttle_flags & GAMEMODE_IMMUNE) && world.time < SSticker.round_start_time + SSticker.mode.deploy_time_lock)
 		to_chat(usr, "<span class='warning'>The engines are still refueling.</span>")
-		return TRUE*/
+		return TRUE
 	if(!M.can_move_topic(usr))
 		return TRUE
 
