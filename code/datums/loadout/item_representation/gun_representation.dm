@@ -27,7 +27,8 @@
 
 /**
  * Allow to representate a gun attachement
- *  */
+ *  
+ */
 /datum/item_representation/gun_attachement
 
 /datum/item_representation/gun_attachement/New(obj/item/item_to_copy)
