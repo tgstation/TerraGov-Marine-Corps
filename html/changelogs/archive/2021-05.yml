@@ -339,3 +339,23 @@
   - refactor: tgui tooltips have been moved to a new system that keeps them within
       bounds of the screen.
   - refactor: Converted the changelog popup to TGUI
+2021-05-25:
+  Alterist:
+  - bugfix: The spontaneously existing micro-cosmos that was hiding under the CMO's
+      office door on the Pillar of Spring have been contained and sent to Nanotrasen.
+  - rscadd: As a replacement/bribe, NT installed another chemistry room, rejoice!
+  BraveMole:
+  - bugfix: Fix AI not being able to give orders ground side
+  - balance: Damage from friendly fire is reduced a tiny bit
+  - code_imp: Jatum added
+  - bugfix: Fix the anti-camp xeno area on barrenquilla
+  Pariah919:
+  - balance: medical, general and engineering jaeger storage no longer slow you down
+      at all, from 0.1.
+  RenGusta:
+  - balance: buffs T19 ROF and scatter
+  Surrealaser:
+  - qol: Tail Sweep is now used instantly when clicked or its hot key is used.
+  - code_imp: Tail Sweep cosmetics/sound improved.
+  - bugfix: Evasion now fails as it should if the runner is targeted by flamethrower
+      projectiles, or hasn't moved in the past 0.5 seconds.
