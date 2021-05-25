@@ -21,11 +21,11 @@ SUBSYSTEM_DEF(persistence)
 	///Available gun seasons
 	var/list/seasons_buckets = list(
 		SEASONAL_GUNS = list(
-		/datum/season_datum/weapons/guns/pistol1,
-		/datum/season_datum/weapons/guns/rifle1,
-		/datum/season_datum/weapons/guns/pistol2,
-		/datum/season_datum/weapons/guns/rifle2,
-		/datum/season_datum/weapons/guns/pistol3,
+		/datum/season_datum/weapons/guns/pistol_var_one,
+		/datum/season_datum/weapons/guns/rifle_var_one,
+		/datum/season_datum/weapons/guns/pistol_var_two,
+		/datum/season_datum/weapons/guns/rifle_var_two,
+		/datum/season_datum/weapons/guns/pistol_var_three,
 		)
 	)
 
@@ -94,21 +94,7 @@ SUBSYSTEM_DEF(persistence)
 	///Items that the season contains
 	var/list/item_list = list()
 
-/datum/season_datum/weapons/guns/sadar_event
-	name = "SADAR bucket"
-	description = "Adds some SADARS to round-start marine gear to balance the winrates"
-	item_list = list(
-		/obj/item/weapon/gun/launcher/rocket/sadar = 10,
-		)
-
-/datum/season_datum/weapons/guns/wp_event
-	name = "WP bucket"
-	description = "Adds some WP grenades to round-start marine gear to balance the winrates"
-	item_list = list(
-		/obj/item/explosive/grenade/phosphorus = 10,
-		)
-
-/datum/season_datum/weapons/guns/rifle1
+/datum/season_datum/weapons/guns/rifle_var_one
 	name = "rifles bucket 1"
 	description = "Rifle guns, previously at import"
 	item_list = list(
@@ -118,7 +104,7 @@ SUBSYSTEM_DEF(persistence)
 		/obj/item/ammo_magazine/rifle/m16 = -1,
 		)
 
-/datum/season_datum/weapons/guns/rifle2
+/datum/season_datum/weapons/guns/rifle_var_two
 	name = "rifles bucket 2"
 	description = "Rifle guns, previously at import"
 	item_list = list(
@@ -128,7 +114,7 @@ SUBSYSTEM_DEF(persistence)
 		/obj/item/ammo_magazine/smg/uzi = -1,
 		)
 
-/datum/season_datum/weapons/guns/pistol1
+/datum/season_datum/weapons/guns/pistol_var_one
 	name = "pistols bucket 1"
 	description = "Pistol guns, previously at import"
 	item_list = list(
@@ -138,7 +124,7 @@ SUBSYSTEM_DEF(persistence)
 		/obj/item/ammo_magazine/revolver = -1,
 		)
 
-/datum/season_datum/weapons/guns/pistol2
+/datum/season_datum/weapons/guns/pistol_var_two
 	name = "pistols bucket 2"
 	description = "Pistol guns, previously at import"
 	item_list = list(
@@ -148,7 +134,7 @@ SUBSYSTEM_DEF(persistence)
 		/obj/item/ammo_magazine/pistol/heavy = -1,
 		)
 
-/datum/season_datum/weapons/guns/pistol3
+/datum/season_datum/weapons/guns/pistol_var_three
 	name = "pistols bucket 3"
 	description = "Pistol guns, previously at import"
 	item_list = list(

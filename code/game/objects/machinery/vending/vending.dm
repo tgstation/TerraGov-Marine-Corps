@@ -257,6 +257,7 @@
 		var/datum/vending_product/record = new(typepath = entry, product_amount = amount, product_price = prices[entry], category = category)
 		recordlist += record
 
+///Makes additional tabs/adds to the tabs based on the seasonal_items vendor specification
 /obj/machinery/vending/proc/build_seasonal_tabs()
 	for(var/season in seasonal_items)
 		products[seasonal_items[season]] += SSpersistence.season_items[season]
