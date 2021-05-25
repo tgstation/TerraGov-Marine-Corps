@@ -1,6 +1,6 @@
 import { useBackend } from "../../backend";
 import { Window } from "../../layouts";
-import { Button, Section, Stack } from "../../components";
+import { Button, Section, Stack, Box, Flex } from "../../components";
 import { SlotSelector } from './Slots';
 import { Loadout } from '../LoadoutManager/Types';
 import { LoadoutViewerData } from "./Types";
@@ -13,21 +13,28 @@ const LoadoutNavigator = (props: Loadout, context) => {
   }= props;
 
   return (
-    <Section title="Loadout Navigator">
-      <Stack fill horizontal>
-        <Button
-          onClick={() => { 
-            act('equipLoadout', { loadout_name: name, loadout_job: job });
-          }}>
-          Equip Loadout
-        </Button>
-        <Button
-          onClick={() => {
-            act('deleteLoadout', { loadout_name: name, loadout_job: job });
-          }}>
-          Delete Loadout
-        </Button>
-      </Stack>
+    <Section title="Loadout Navigator" textAlign="center">
+      <Flex>
+        <Flex.Item grow={1}><Box></Box></Flex.Item>
+        <Flex.Item>
+          <Button
+            onClick={() => { 
+              act('equipLoadout', { loadout_name: name, loadout_job: job });
+            }}>
+            Equip Loadout
+          </Button>
+        </Flex.Item>
+        <Flex.Item grow={1}><Box></Box></Flex.Item>
+        <Flex.Item>
+          <Button
+            onClick={() => {
+              act('deleteLoadout', { loadout_name: name, loadout_job: job });
+            }}>
+            Delete Loadout
+          </Button>
+        </Flex.Item>
+        <Flex.Item grow={1}><Box></Box></Flex.Item>
+      </Flex>
     </Section>
   );
 };

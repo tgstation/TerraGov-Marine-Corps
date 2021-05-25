@@ -1,5 +1,5 @@
 import { useBackend, useLocalState } from "../../backend";
-import { Stack, Button, Section, LabeledList, Tabs } from "../../components";
+import { Stack, Button, Section, LabeledList, Tabs, Box, Flex } from "../../components";
 import { Window } from "../../layouts";
 import { LoadoutListData, LoadoutTabData, LoadoutManagerData, LoadoutItemData } from './Types';
 import { NameInputModal } from './NameInputModal';
@@ -13,13 +13,15 @@ const LoadoutItem = (props : LoadoutItemData, context) => {
   return (
     <LabeledList.Item
       labelColor="white"
+      buttons = {
+        <Button
+          onClick={() => {
+            act('selectLoadout', { loadout_name: loadout.name, loadout_job: loadout.job });
+          }}>
+          Select Loadout
+        </Button>
+      }
       label={loadout.name}>
-      <Button
-        onClick={() => {
-          act('selectLoadout', { loadout_name: loadout.name, loadout_job: loadout.job });
-        }}>
-        Select Loadout
-      </Button>
     </LabeledList.Item>
   );
 };
@@ -48,23 +50,29 @@ const JobTabs = (props: LoadoutTabData) => {
   const { job, setJob } = props;
   return (
     <Section>
-      <Tabs>
-        <Tabs.Tab selected={job === "marine"} onClick={() => setJob("marine")}>
-          Marine
-        </Tabs.Tab>
-        <Tabs.Tab selected={job === "engineer"} onClick={() => setJob("engineer")}>
-          Engineer
-        </Tabs.Tab>
-        <Tabs.Tab selected={job === "medic"} onClick={() => setJob("medic")}>
-          Medic
-        </Tabs.Tab>
-        <Tabs.Tab selected={job === "smartgunner"} onClick={() => setJob("smartgunner")}>
-          SmartGunner
-        </Tabs.Tab>
-        <Tabs.Tab selected={job === "leader"} onClick={() => setJob("leader")}>
-          Squad Leader
-        </Tabs.Tab>
-      </Tabs>
+      <Flex>
+        <Flex.Item grow={1}><Box></Box></Flex.Item>
+        <Flex.Item>
+          <Tabs>
+            <Tabs.Tab selected={job === "marine"} onClick={() => setJob("marine")}>
+              Marine
+            </Tabs.Tab>
+            <Tabs.Tab selected={job === "engineer"} onClick={() => setJob("engineer")}>
+              Engineer
+            </Tabs.Tab>
+            <Tabs.Tab selected={job === "medic"} onClick={() => setJob("medic")}>
+              Medic
+            </Tabs.Tab>
+            <Tabs.Tab selected={job === "smartgunner"} onClick={() => setJob("smartgunner")}>
+              SmartGunner
+            </Tabs.Tab>
+            <Tabs.Tab selected={job === "leader"} onClick={() => setJob("leader")}>
+              Squad Leader
+            </Tabs.Tab>
+          </Tabs>
+        </Flex.Item>
+        <Flex.Item grow={1}><Box></Box></Flex.Item>
+      </Flex>
     </Section>
   );
 };
