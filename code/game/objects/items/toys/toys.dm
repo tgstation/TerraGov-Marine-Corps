@@ -506,24 +506,6 @@
 	item_state = "rounyplush"
 	attack_verb = list("slashes", "bites", "pounces")
 
-/obj/item/toy/plush/witch
-	name = "witch plushie"
-	desc = "A plushie depicting an adorable witch. It likes to steal books."
-	icon_state = "marisa"
-	item_state = "marisa"
-
-/obj/item/toy/plush/knight
-	name = "knight plushie"
-	desc = "A plushie depicting an adorable knight. It seems to be a trap."
-	icon_state = "astolfo"
-	item_state = "astolfo"
-
-/obj/item/toy/plush/fairy
-	name = "fairy plushie"
-	desc = "A plushie depicting an adorable fairy. It's cold to the touch."
-	icon_state = "cirno"
-	item_state = "cirno"
-
 
 /obj/item/toy/beach_ball/basketball
 	name = "basketball"
