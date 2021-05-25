@@ -161,7 +161,10 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	var/mob/living/carbon/human/wearer = null
 	var/headset_hud_on = FALSE
 	var/sl_direction = FALSE
-
+	/// Which hud this headset gives access too
+	var/hud_type = DATA_HUD_SQUAD_TERRAGOV
+	///The type of minimap this headset gives access to
+	var/minimap_type = /datum/action/minimap/marine
 
 /obj/item/radio/headset/mainship/Initialize()
 	. = ..()
@@ -175,7 +178,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 /obj/item/radio/headset/mainship/equipped(mob/living/carbon/human/user, slot)
 	if(slot == SLOT_EARS)
 		wearer = user
-		squadhud = GLOB.huds[DATA_HUD_SQUAD]
+		squadhud = GLOB.huds[hud_type]
 		enable_squadhud()
 	if(camera)
 		camera.c_tag = user.name
@@ -237,21 +240,10 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	playsound(loc, 'sound/machines/click.ogg', 15, 0, 1)
 
 /obj/item/radio/headset/mainship/proc/add_minimap()
-	var/type
-	switch(frequency)
-		if(FREQ_ALPHA)
-			type = /datum/action/minimap/alpha
-		if(FREQ_BRAVO)
-			type = /datum/action/minimap/bravo
-		if(FREQ_CHARLIE)
-			type = /datum/action/minimap/charlie
-		if(FREQ_DELTA)
-			type = /datum/action/minimap/delta
-		else
-			type = /datum/action/minimap/marine
-	var/datum/action/minimap/mini = new type
-	if(wearer.job?.job_flags & JOB_FLAG_ALWAYS_VISIBLE_ON_MINIMAP)
-		mini.marker_flags = MINIMAP_FLAG_ALL_MARINES
+	remove_minimap()
+	var/datum/action/minimap/mini = new minimap_type
+	if(wearer.job?.job_flags & JOB_FLAG_ALWAYS_VISIBLE_ON_MINIMAP) //We show to all marines if we have this flag, separated by faction
+		mini.marker_flags = hud_type == DATA_HUD_SQUAD_TERRAGOV ? MINIMAP_FLAG_ALL_MARINES : MINIMAP_FLAG_ALL_MARINES_REBEL
 	mini.give_action(wearer)
 	INVOKE_NEXT_TICK(src, .proc/update_minimap_icon, mini) //Mobs are spawned inside nullspace sometimes so this is to avoid that hijinks
 
@@ -264,22 +256,12 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 		return
 	SSminimaps.add_marker(wearer, wearer.z, mini.marker_flags, wearer.job.minimap_icon)
 
+///Remove all action of type minimap from the wearer, and make him disappear from the minimap
 /obj/item/radio/headset/mainship/proc/remove_minimap()
-	var/type
-	switch(frequency)
-		if(FREQ_ALPHA)
-			type = /datum/action/minimap/alpha
-		if(FREQ_BRAVO)
-			type = /datum/action/minimap/bravo
-		if(FREQ_CHARLIE)
-			type = /datum/action/minimap/charlie
-		if(FREQ_DELTA)
-			type = /datum/action/minimap/delta
-		else
-			type = /datum/action/minimap/marine
-	var/datum/action/minimap/mini = wearer.actions_by_path[type]
-	mini.remove_action(wearer)
 	SSminimaps.remove_marker(wearer)
+	for(var/datum/action/action AS in wearer.actions)
+		if(istype(action, /datum/action/minimap))
+			action.remove_action(wearer)
 
 /obj/item/radio/headset/mainship/proc/enable_sl_direction()
 	if(!headset_hud_on)
@@ -386,6 +368,8 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 /obj/item/radio/headset/mainship/st/rebel
 	keyslot = /obj/item/encryptionkey/req/rebel
 	keyslot2 = /obj/item/encryptionkey/engi/rebel
+	hud_type = DATA_HUD_SQUAD_REBEL
+	minimap_type = /datum/action/minimap/marine/rebel
 
 /obj/item/radio/headset/mainship/doc
 	name = "medical radio headset"
@@ -394,6 +378,8 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 
 /obj/item/radio/headset/mainship/doc/rebel
 	keyslot = /obj/item/encryptionkey/med/rebel
+	hud_type = DATA_HUD_SQUAD_REBEL
+	minimap_type = /datum/action/minimap/marine/rebel
 
 /obj/item/radio/headset/mainship/ct
 	name = "supply radio headset"
@@ -402,6 +388,8 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 
 /obj/item/radio/headset/mainship/ct/rebel 
 	keyslot = /obj/item/encryptionkey/req/rebel
+	hud_type = DATA_HUD_SQUAD_REBEL
+	minimap_type = /datum/action/minimap/marine/rebel
 
 /obj/item/radio/headset/mainship/mcom
 	name = "marine command radio headset"
@@ -412,13 +400,17 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 
 /obj/item/radio/headset/mainship/mcom/rebel 
 	keyslot = /obj/item/encryptionkey/mcom/rebel
+	hud_type = DATA_HUD_SQUAD_REBEL
+	minimap_type = /datum/action/minimap/marine/rebel
 
 /obj/item/radio/headset/mainship/mcom/silicon
 	name = "silicon radio"
 	keyslot = /obj/item/encryptionkey/mcom/ai
 
 /obj/item/radio/headset/mainship/mcom/silicon/rebel
-		keyslot = /obj/item/encryptionkey/mcom/ai/rebel
+	keyslot = /obj/item/encryptionkey/mcom/ai/rebel
+	hud_type = DATA_HUD_SQUAD_REBEL
+	minimap_type = /datum/action/minimap/marine/rebel
 
 /obj/item/radio/headset/mainship/marine
 	keyslot = /obj/item/encryptionkey/general
@@ -426,6 +418,8 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 
 /obj/item/radio/headset/mainship/marine/rebel
 	keyslot = /obj/item/encryptionkey/general/rebel
+	hud_type = DATA_HUD_SQUAD_REBEL
+	minimap_type = /datum/action/minimap/marine/rebel
 
 
 /obj/item/radio/headset/mainship/marine/Initialize(mapload, datum/squad/squad, rank)
@@ -453,6 +447,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	name = "marine alpha radio headset"
 	icon_state = "headset_marine_alpha"
 	frequency = FREQ_ALPHA //default frequency is alpha squad channel, not FREQ_COMMON
+	minimap_type = /datum/action/minimap/alpha
 
 /obj/item/radio/headset/mainship/marine/alpha/LateInitialize(mapload)
 	. = ..()
@@ -480,6 +475,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	name = "marine bravo radio headset"
 	icon_state = "headset_marine_bravo"
 	frequency = FREQ_BRAVO
+	minimap_type = /datum/action/minimap/bravo
 
 /obj/item/radio/headset/mainship/marine/bravo/LateInitialize(mapload)
 	. = ..()
@@ -507,6 +503,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	name = "marine charlie radio headset"
 	icon_state = "headset_marine_charlie"
 	frequency = FREQ_CHARLIE
+	minimap_type = /datum/action/minimap/charlie
 
 /obj/item/radio/headset/mainship/marine/charlie/LateInitialize(mapload)
 	. = ..()
@@ -535,6 +532,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	name = "marine delta radio headset"
 	icon_state = "headset_marine_delta"
 	frequency = FREQ_DELTA
+	minimap_type = /datum/action/minimap/delta
 
 /obj/item/radio/headset/mainship/marine/delta/LateInitialize(mapload)
 	. = ..()
@@ -560,6 +558,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 /obj/item/radio/headset/mainship/marine/generic
 	name = "marine generic radio headset"
 	icon_state = "headset_marine_generic"
+	minimap_type = /datum/action/minimap/marine
 
 /obj/item/radio/headset/mainship/marine/generic/cas
 	name = "marine fire support specialist headset"
@@ -570,6 +569,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	name = "marine alpha radio headset"
 	icon_state = "headset_marine_alpha"
 	frequency = FREQ_ALPHA_REBEL //default frequency is alpha squad channel, not FREQ_COMMON
+	minimap_type = /datum/action/minimap/alpha/rebel
 
 /obj/item/radio/headset/mainship/marine/rebel/alpha/LateInitialize(mapload)
 	. = ..()
@@ -596,6 +596,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	name = "marine bravo radio headset"
 	icon_state = "headset_marine_bravo"
 	frequency = FREQ_BRAVO_REBEL
+	minimap_type = /datum/action/minimap/bravo/rebel
 
 /obj/item/radio/headset/mainship/marine/rebel/bravo/LateInitialize(mapload)
 	. = ..()
@@ -622,6 +623,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	name = "marine charlie radio headset"
 	icon_state = "headset_marine_charlie"
 	frequency = FREQ_CHARLIE_REBEL
+	minimap_type = /datum/action/minimap/charlie/rebel
 
 /obj/item/radio/headset/mainship/marine/rebel/charlie/LateInitialize(mapload)
 	. = ..()
@@ -649,6 +651,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	name = "marine delta radio headset"
 	icon_state = "headset_marine_delta"
 	frequency = FREQ_DELTA_REBEL
+	minimap_type = /datum/action/minimap/delta/rebel
 
 /obj/item/radio/headset/mainship/marine/delta/LateInitialize(mapload)
 	. = ..()
