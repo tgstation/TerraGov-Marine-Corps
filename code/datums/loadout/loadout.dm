@@ -93,13 +93,13 @@
  */
 /datum/loadout/proc/save_mob_loadout(mob/living/carbon/human/user)
 	var/obj/item/item_in_slot
-	var/item_representation_type
+	var/item2representation_type
 	for(var/slot_key in GLOB.visible_item_slot_list)
 		item_in_slot = user.get_item_by_slot(GLOB.slot_str_to_slot[slot_key])
 		if(!item_in_slot || !is_savable_in_loadout(item_in_slot.type))
 			continue
-		item_representation_type = item_representation_type(item_in_slot.type)
-		item_list[slot_key] = new item_representation_type(item_in_slot)
+		item2representation_type = item2representation_type(item_in_slot.type)
+		item_list[slot_key] = new item2representation_type(item_in_slot)
 
 /datum/loadout/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
@@ -140,18 +140,16 @@
 /datum/loadout/proc/prepare_items_data(mob/user)
 	var/list/items_data = list()
 	for (var/item_slot_key in GLOB.visible_item_slot_list)
-		var/list/result = list()
-
 		var/datum/item_representation/item_representation = item_list[item_slot_key]
-		if (isnull(item_representation))
-			result["icons"] = list(list(
-				"icon" = icon2base64(icon("icons/misc/empty.dmi", "empty")),
-				"translateX" = NO_OFFSET,
-				"translateY" = NO_OFFSET,
-				"scale" = NO_SCALING,
-				))
-			items_data[item_slot_key] = result
+		if (item_representation)
+			items_data[item_slot_key] = item_representation.get_tgui_data()
 			continue
-
-		items_data[item_slot_key] = item_representation.get_tgui_data()
+		var/list/result = list()
+		result["icons"] = list(list(
+			"icon" = icon2base64(icon("icons/misc/empty.dmi", "empty")),
+			"translateX" = NO_OFFSET,
+			"translateY" = NO_OFFSET,
+			"scale" = NO_SCALING,
+			))
+		items_data[item_slot_key] = result
 	return items_data
