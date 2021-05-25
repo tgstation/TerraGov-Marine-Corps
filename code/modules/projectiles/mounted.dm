@@ -53,13 +53,8 @@
 
 ///Handles dissasembly
 /obj/machinery/deployable/mounted/disassemble(mob/user)
-	if(deploy_flags & DEPLOYED_NO_PICKUP)
-		to_chat(user, "<span class='notice'>The [src] is anchored in place and cannot be disassembled.</span>")
-		return
-	gun.GetComponent(/datum/component/deployable/).un_deploy(user, src)
+	. = ..()
 	gun = null
-
-	qdel(src)
 
 ///Update health hud when damage is taken
 /obj/machinery/deployable/mounted/take_damage(damage_amount, damage_type, damage_flag, effects, attack_dir, armour_penetration)

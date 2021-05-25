@@ -15,13 +15,13 @@
 	obj_integrity = deploying.deploy_integrity
 	max_integrity = deploying.deploy_max_integrity
 
-	name = deploying.deploy_name ? deploying.deploy_name : deploying.name
+	name = deploying.name
 
-	desc = deploying.deploy_desc ? deploying.deploy_desc : deploying.desc
+	desc = deploying.desc
 
 	icon = deploying.deploy_icon ? deploying.deploy_icon : deploying.icon
 
-	default_icon = deploying.deploy_icon_state ? deploying.deploy_icon_state : deploying.icon_state
+	default_icon = icon
 
 	setDir(direction)
 
@@ -29,11 +29,10 @@
 	if(deploy_flags & DEPLOYED_NO_PICKUP)
 		to_chat(user, "<span class='notice'>The [src] is anchored in place and cannot be disassembled.</span>")
 		return
-	
-	internal_item.GetComponent(/datum/component/deployable/).un_deploy()
-	internal_item = null
+	SEND_SIGNAL(internal_item, COMSIG_ITEM_UNDEPLOY)
 
-	qdel(src)
+	internal_item = null
+	
 
 /obj/machinery/deployable/Destroy()
 	if(internal_item)

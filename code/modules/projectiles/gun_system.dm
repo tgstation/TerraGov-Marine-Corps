@@ -177,6 +177,9 @@
 	setup_firemodes()
 	AddComponent(/datum/component/automatedfire/autofire, fire_delay, burst_delay, burst_amount, gun_firemode, CALLBACK(src, .proc/set_bursting), CALLBACK(src, .proc/reset_fire), CALLBACK(src, .proc/Fire)) //This should go after handle_starting_attachment() and setup_firemodes() to get the proper values set.
 
+	if(flags_gun_features & IS_DEPLOYABLE)
+		AddComponent(/datum/component/deployable_item, /obj/machinery/deployable/mounted)
+
 	muzzle_flash = new(src, muzzleflash_iconstate)
 
 
@@ -331,20 +334,8 @@
 	return TRUE
 
 /obj/item/weapon/gun/unique_action(mob/user)
-	if(flags_gun_features & GUN_IS_DEPLOYABLE) //If the gun can be deployed, it deploys when unique_action is called.
-		var/step = get_step(user, user.dir)
-		if(!ishuman(user)) 
-			return
-		if(check_blocked_turf(step))
-			to_chat(user, "<span class='warning'>There is insufficient room to deploy [src]!</span>")
-			return
-		if(!do_after(user, deploy_time, TRUE, src, BUSY_ICON_BUILD))
-			return
-		to_chat(user, "<span class='notice'>You deploy [src].</span>")
-		un_man()
-		user.temporarilyRemoveItemFromInventory(src)
-		var/obj/machinery/deployable/mounted/deploying = new(step)
-		deploying.deploy(src, user.dir)
+	if(flags_item & IS_DEPLOYABLE) //If the gun can be deployed, it deploys when unique_action is called.
+		SEND_SIGNAL(src, COMSIG_ITEM_DEPLOY, src, user)
 	return ..()
 
 ///This is called once the gun is attempting to be used once deployed, this is so that the gun can fire without needing to be within the users hands.

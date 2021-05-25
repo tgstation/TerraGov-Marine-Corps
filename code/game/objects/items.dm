@@ -118,10 +118,6 @@
 	///The deployed machines max integrity, this is only used in machine repairing and does not change.
 	var/deploy_max_integrity = 100
 
-	///Name of the machine created once deployed, if null and deployed, it defaults to this objects name
-	var/deploy_name
-	///Description of the machine created once deployed, if null and deployed, it defaults to this objects description
-	var/deploy_desc
 	///Icon of the machine created once deployed, if null and deployed, it defaults to this objects icon
 	var/deploy_icon
 	///Icon state of the machine created once deployed, if null and deployed, it defaults to this objects icon_state
@@ -144,9 +140,6 @@
 
 	if(flags_item_map_variant)
 		update_item_sprites()
-	
-	if(flags_item & IS_DEPLOYABLE)
-		AddComponent(new /datum/component/deployable/)
 
 
 /obj/item/Destroy()
