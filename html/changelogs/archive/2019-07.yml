@@ -1,0 +1,164 @@
+2019-07-06:
+  LaKiller8:
+  - balance: The queen can now override the planetside shuttle lockdown if all doors
+      are locked after 60 seconds of standing still.
+  MoXuT0:
+  - rscadd: Eye blur effect now uses byond's filters.
+  - bugfix: All hud types are now properly displayed on mob.
+  - tweak: M4A3 (.45) is now named M1911.
+  - balance: Increased magazine size for M4A3 up to 12 (24 for extended).
+  - balance: Increased magazine size for M1911 up to 10.
+  - imageadd: 88Mod4 aka VP70 magazine now uses it's own sprite.
+  Rohesie:
+  - balance: Xeno explosive resistance tweaked a little bit to be more streamlined
+      on the progression of the explosion intensity. Shouldn't be very noticeable.
+  - balance: Removes the roundstart tanker jobs until the old tank is decommissioned
+      and sold for scrap and we implement the new vehicles.
+  - balance: A bioscan now happens at the start of the game, providing rough information
+      for both sides on what they will be facing and giving them a chance to prepare.
+      No locations are shown, but the scanner is a bit more precise, giving only a
+      +/- 1 variation.
+2019-07-07:
+  MoXuT0:
+  - soundadd: Added two new sounds for interacting with pill bottle.
+  - spellcheck: Fixed typos regarding M41A1. Stocks are now properly named in marine
+      vendors.
+  - balance: Lasgun now has bigger slowdown while wielded.
+  - soundadd: Added new sound for opening/closing pod doors.
+  Rohesie:
+  - rscdel: Now that the jobs display are handled by the squad HUD, the security one
+      for jobs is removed. SecHUDs still allow to set people as wanted statuses and
+      whatnot.
+2019-07-08:
+  MoXuT0:
+  - balance: Belts. Increased shotgun belt capacity up to 14. Increased regular grenade
+      belt capacity up to 9. Increased pistol and revolver belt capacity up to 7.
+  - balance: Pouches. Increased flare pouch and M40 flare box capacity up to 7. Increased
+      electronics pouch capacity up to 6.
+  - balance: Misc. M37 aka shotgun holster can now hold scout's shotgun. Increased
+      integrated storage armor by 1 (It's now same as satchel). Increased incendiary
+      grenade box nade count up to 25. Increased shotgun box weight class, it can't
+      fit in satchels or backpacks now. Reduced backpack storage by 6, it can now
+      contain 8 normal sized items instead of 10.
+  - balance: Cargo armaments vendor. Added M37 holster, satchel, utility, knife and
+      grenade belts, large general and magazine pouches. Added flamethrower, 88 Mod
+      4 and KSG shotgun to contraband. Increased ammount of existing items. Removed
+      impact nades.
+  - balance: Cargo munition vendor. Added hollowpoint revolver bullets. Increased
+      amount of some existing items. Added ammo for flamer and 88 Mod 4 to contraband.
+      Moved machete holster to armaments vendor.
+  - balance: Marine vendors . Removed explosive and G8 pouches from regular PFC vendor.
+      Removed machete holster, toolbelt and G8 pouch from uniform vendor, tools pouch
+      now starts empty.
+  - imageadd: Field utility, explosive and shotgun shells pouches now have unique
+      sprites. Recolored syringe pouch.
+2019-07-12:
+  Eskjjlj:
+  - rscadd: Plastique (C4) can be disarmed using a multitool.
+  - bugfix: Plastique (C4) blows up at the correct location now if you move it while
+      armed.
+  Hughgent:
+  - rscadd: FC has a box of .45 ACP ammo for their pistol now.
+  LaKiller8:
+  - rscadd: The AI is now playable, also fixed the last interaction issues with certain
+      machines.
+2019-07-13:
+  Rohesie:
+  - balance: UGLs and miniflamers are now shot via ctrl+click when the attachment
+      is active.
+2019-07-14:
+  Spyroshark:
+  - tweak: Xenomorph corpses now sell for more in requisitions.
+  - bugfix: You can sell Defiler, Shrike, and Larva corpses now.
+2019-07-18:
+  MoXuT0:
+  - rscadd: PO's now start with aviator sunglasses instead of regular ones. Added
+      a pair of avivator sunglasses to PO's locker.
+  psykzz:
+  - balance: Weed nodes are backing to creating squares of weeds, which should be
+      much more similar to the original weeds before the last refactor
+2019-07-19:
+  MoXuT0:
+  - soundadd: Added new unloading, reloading and cocking sounds for various firearms.
+  psykzz:
+  - balance: Flares now instantly burn out weed nodes under them, but will consume
+      all of the fuel in the flare.
+2019-07-20:
+  LaKiller8:
+  - tweak: Each side now gets the relevant round-end sound according to whether they
+      won or lost, with roundstart observers getting some special fun ones.
+  MoXuT0:
+  - imageadd: Defib icon on medhud is now animated.
+  - tweak: Added ammo counter to most spec weapons and grenade launchers.
+  Rohesie:
+  - rscadd: Firemode actions added, if the gun allows for a different one.
+2019-07-21:
+  psykzz:
+  - rscadd: Admins can choose what ERT to send, instead of it always being random.
+2019-07-22:
+  MoXuT0:
+  - balance: Increased M4RA accuracy multiplier slightly.
+  - balance: Nerfed high velocity incendiary bullet damage and accuracy bonus.
+  psykzz:
+  - balance: Weeds will now decay over time if their node is destroyed, at a rate
+      of about 3 times slower than the growth speed.
+2019-07-23:
+  Rohesie:
+  - rscadd: Alt+clicking storage containers will remove the last placed item in them.
+      This works for pill bottles to make the medic life easier, ammo belts, and several
+      other things.
+  - balance: Shrikes can no longer ventcrawl.
+  - balance: Bipods can be deployed anywhere (after a second-long delay), granting
+      bonuses while deployed. It will auto-retract once the user moves, or drops or
+      equips the weapon.
+  - balance: Scatter reworked to be a bit more organic. Instead of a random adjacent
+      tile it will take into account the pixel clicked on the tile and the shooting
+      direction. The bullet can deviate several tiles (on edge cases, such as untrained
+      dual-wielding on burst, even up to 4 or more).
+  - balance: Suppressors, extended barrels, stocks, grips and recoil compensators
+      provide a little better effect against scatter. Quickfire and barrel chargers
+      a bit worse.
+2019-07-26:
+  MoXuT0:
+  - rscdel: Removed hunter games.
+  - imagedel: Deleted W-Y refference from colonist jumpsuit.
+  - imageadd: Replaced TerraGov poster icon with actual logo.
+  grinkgo:
+  - rscadd: Added the M57 Synthetic Equipment Vendor, which provides a synth with
+      essential equipment and various uniforms to choose from!
+  - rscdel: Removed the engineering locker in the synth's closet
+  - refactor: Marine vendors can now check for either job or squad assignment.
+2019-07-27:
+  Maciekkub:
+  - rscadd: New rank CMN - Crewman, for Cargo technicians as it's unfit for sergeants'
+      only job to be moving crates
+  - tweak: change in the ranks of IO to Lieutenant Commander, CSE to Lieutenant Junior
+      Grade together with the CMP, Cargo technician to Crewman, SL to Sergeant Spec
+      to Corporal Sgner to Lance Corporal
+  MoXuT0:
+  - code_imp: Removed USCM and Almayer refferences.
+  Rohesie:
+  - rscadd: Tweaked all ground maps. They will all have LV-like fog protecting areas,
+      but it can be crossed by xenos at will. The marines gain shutters on both landing
+      zones only they can open (and not close), from inside.
+  - rscadd: Added a dropship consoles to every LZ.
+  - balance: Xenos gained the ability to regress back into lower tier stages, even
+      back into larvas.
+2019-07-28:
+  Shadow-Quill:
+  - tweak: Humans now shake when a larvae inside them grows older.
+  ma44:
+  - bugfix: Ravager's now actually gain rage on harm slashing
+  - bugfix: Defiler's neuroinjectors now inject neuro on disarm and harm attacks
+2019-07-31:
+  MoXuT0:
+  - tweak: Prison station adjustments. Added catwalks to canteen. Added podlocks to
+      civilian hangar. Deleted signs containing space refference. Replaced water sprite
+      with sea. Fixed some areas having zero or more than one APC's.
+  Rohesie:
+  - balance: Warding nerfed. Instead of being able to reduce damage up to 12.5%, it
+      can only go up to 5%.
+  ma44:
+  - rscadd: Xenomorphs can now potentially be able to suffer no healing penalties
+      when not resting on weeds and when there's no queen that lives, accessible to
+      admin memery only

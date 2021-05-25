@@ -1254,7 +1254,7 @@
 	gamemode_flags = ABILITY_DISTRESS
 	plasma_cost = 100
 	///How much psy points it give
-	var/psy_points_reward = 60
+	var/psy_points_reward = 40
 	///How much larva points it gives (8 points for one larva in distress)
 	var/larva_point_reward = 1
 

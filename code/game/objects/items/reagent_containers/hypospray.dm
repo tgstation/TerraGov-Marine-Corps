@@ -330,12 +330,11 @@
 		/datum/reagent/medicine/dermaline = 60,
 	)
 
-/obj/item/reagent_containers/hypospray/advanced/ironsugar
-	name = "Ironsugar hypospray"
-	desc = "A hypospray loaded with ironsugar."
+/obj/item/reagent_containers/hypospray/advanced/nanoblood
+	name = "Nanoblood hypospray"
+	desc = "A hypospray loaded with nanoblood."
 	list_reagents = list(
-		/datum/reagent/iron = 30,
-		/datum/reagent/consumable/sugar = 30,
+		/datum/reagent/medicine/nanoblood = 60,
 	)
 
 /obj/item/reagent_containers/hypospray/advanced/tricordrazine

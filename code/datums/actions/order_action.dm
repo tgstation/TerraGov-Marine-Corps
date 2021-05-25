@@ -79,7 +79,7 @@
 		return
 	if(target == src)
 		return
-	var/datum/atom_hud/squad/squad_hud = GLOB.huds[DATA_HUD_SQUAD]
+	var/datum/atom_hud/squad/squad_hud = GLOB.huds[DATA_HUD_SQUAD_TERRAGOV]
 	if(!squad_hud.hudusers[src])
 		return
 	var/obj/screen/arrow/arrow_hud = new arrow_type

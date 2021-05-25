@@ -477,6 +477,19 @@
 	description = "Fires a scattershot of 6 acid globules which create acid puddles on impact or at the end of their range."
 	keybind_signal = COMSIG_XENOABILITY_SCATTER_SPIT
 
+/datum/keybinding/xeno/vent
+	name = "vent"
+	full_name = "Vent crawl"
+	description = "Enter an air vent and crawl through the pipe system."
+	keybind_signal = COMSIG_XENOABILITY_VENTCRAWL
+
+/datum/keybinding/xeno/vent/down(client/user)
+	. = ..()
+	if(!isxeno(user.mob))
+		return
+	var/mob/living/carbon/xenomorph/xeno = user.mob
+	xeno.vent_crawl()
+
 
 //Wraith keybinds - BEGIN
 

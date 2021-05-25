@@ -44,3 +44,11 @@
 /datum/game_mode/civil_war/announce()
 	to_chat(world, "<b>The current game mode is - Civil War!</b>")
 	to_chat(world, "<b>No objectives yet, just kill the opposite side. WIP, report bugs to Bravemole!</b>")
+
+/datum/game_mode/civil_war/set_valid_squads()
+	SSjob.active_squads[FACTION_TERRAGOV] = list()
+	SSjob.active_squads[FACTION_TERRAGOV_REBEL] = list()
+	for(var/key in SSjob.squads)
+		var/datum/squad/squad = SSjob.squads[key]
+		SSjob.active_squads[squad.faction] += squad
+	return TRUE

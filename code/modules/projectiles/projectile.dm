@@ -89,6 +89,8 @@
 	var/y_offset
 
 	var/proj_max_range = 30
+	///A damage multiplier applied when a mob from the same faction as the projectile firer is hit
+	var/friendly_fire_multiplier = 0.5
 
 
 /obj/projectile/Destroy()
@@ -745,6 +747,9 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 		var/mob/living/carbon/human/shooter_human = proj.firer
 		if(shooter_human.faction == faction || m_intent == MOVE_INTENT_WALK)
 			. -= 15
+		//Friendly fire does less damage
+		if(shooter_human.faction == faction)
+			proj.damage *= proj.friendly_fire_multiplier
 	return ..()
 
 
