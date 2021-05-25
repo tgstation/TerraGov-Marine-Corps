@@ -142,9 +142,9 @@
 	list_reagents = list(/datum/reagent/medicine/kelotane = 15)
 	pill_id = 5
 
-/obj/item/reagent_containers/pill/keloderm
-	pill_desc = "A keloderm pill. Heals burn damage at a higher rate than kelotane."
-	list_reagents = list(/datum/reagent/medicine/kelotane = 7.5, /datum/reagent/medicine/dermaline = 7.5)
+/obj/item/reagent_containers/pill/dermaline
+	pill_desc = "A dermaline pill. Heals burn damage at a higher rate than kelotane."
+	list_reagents = list(/datum/reagent/medicine/dermaline = 7.5)
 	pill_id = 5
 
 /obj/item/reagent_containers/pill/paracetamol
@@ -212,9 +212,9 @@
 	list_reagents = list(/datum/reagent/medicine/bicaridine = 15)
 	pill_id = 19
 
-/obj/item/reagent_containers/pill/bicamera
-	pill_desc = "A bicamera pill. Heals brute damage at a higher rate than bicaridine."
-	list_reagents = list(/datum/reagent/medicine/meralyne = 7.5, /datum/reagent/medicine/bicaridine = 7.5)
+/obj/item/reagent_containers/pill/meralyne
+	pill_desc = "A meralyne pill. Heals brute damage at a higher rate than bicaridine."
+	list_reagents = list(/datum/reagent/medicine/meralyne = 7.5)
 	pill_id = 19
 
 /obj/item/reagent_containers/pill/quickclot
@@ -234,7 +234,7 @@
 
 /obj/item/reagent_containers/pill/hypervene
 	pill_desc = "A hypervene pill. A purge medication used to treat overdoses and rapidly remove toxins. Causes pain and vomiting."
-	list_reagents = list(/datum/reagent/hypervene = 12)
+	list_reagents = list(/datum/reagent/hypervene = 3)
 	pill_id = 14
 
 /obj/item/reagent_containers/pill/ultrazine
