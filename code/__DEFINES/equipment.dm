@@ -209,7 +209,7 @@
 #define slot_r_store_str    "slot_r_store"
 #define slot_tie_str		"slot_tie"
 
-//Correspondance between slot strings and slot numbers
+///Correspondance between slot strings and slot numbers
 GLOBAL_LIST_INIT(slot_str_to_slot, list(
 	"slot_back" = SLOT_BACK,
 	"slot_l_hand" = SLOT_L_HAND,
