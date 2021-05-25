@@ -32,4 +32,5 @@
 
 /obj/machinery/loadout_vendor/interact(mob/user)
 	. = ..()
+	user.client.prefs.loadout_manager.loadout_vendor = src
 	user.client.prefs.loadout_manager.ui_interact(user)

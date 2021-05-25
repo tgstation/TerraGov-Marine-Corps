@@ -11,6 +11,8 @@
 	var/loadouts_data = list()
 	/// The datum in charge of the user wanting to equip a saved loadout
 	var/datum/loadout_seller/seller
+	/// The host of the loadout_manager, aka from which loadout vendor are you managing loadouts
+	var/loadout_vendor 
 	/// The version of the loadout manager
 	var/version = 1
 
@@ -47,7 +49,20 @@
 		ui.open()
 
 /datum/loadout_manager/ui_state(mob/user)
-	return GLOB.always_state
+	return GLOB.human_adjacent_state
+
+/datum/loadout_manager/ui_host()
+	return loadout_vendor
+
+/// Wrapper proc to set the host of our ui datum, aka the loadout vendor that's showing us the loadouts
+/datum/loadout_manager/proc/set_host(_loadout_vendor)
+	loadout_vendor = _loadout_vendor
+	RegisterSignal(loadout_vendor, COMSIG_PARENT_QDELETING, .proc/close_ui)
+
+/// Wrapper proc to handle loadout vendor being qdeleted while we have loadout manager opened
+/datum/loadout_manager/proc/close_ui()
+	SIGNAL_HANDLER
+	ui_close()
 
 /datum/loadout_manager/ui_data(mob/user)
 	var/data = list()
@@ -58,18 +73,19 @@
 
 /datum/loadout_manager/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
 	. = ..()
+	if(.)
+		return
 	switch(action)
 		if("saveLoadout")
 			var/job = params["loadout_job"]
 			var/loadout_name = params["loadout_name"]
 			if(isnull(loadout_name))
 				return
-			current_loadout = create_empty_loadout(loadout_name, job)
-			current_loadout.save_mob_loadout(ui.user)
-			loadouts_list += current_loadout
-			add_loadout_data(current_loadout)
-			current_loadout.ui_interact(ui.user)
-			ui.update_static_data()
+			var/datum/loadout/loadout = create_empty_loadout(loadout_name, job)
+			loadout.save_mob_loadout(ui.user)
+			loadouts_list += loadout
+			add_loadout_data(loadout)
+			open_loadout(loadout, ui.user)
 		if("selectLoadout")
 			var/job = params["loadout_job"]
 			var/name = params["loadout_name"]
@@ -77,11 +93,21 @@
 				return
 			for(var/datum/loadout/next_loadout AS in loadouts_list)
 				if(next_loadout.name == name && next_loadout.job == job)
-					current_loadout = next_loadout
-					break
-			current_loadout.ui_interact(ui.user)
-			ui.update_static_data()
+					open_loadout(next_loadout, ui.user)
+					return
+
+/// Set the loadout gave in argument as the current loadout and open it
+/datum/loadout_manager/proc/open_loadout(datum/loadout/loadout, mob/user)
+	if(current_loadout)
+		current_loadout.ui_close()
+		current_loadout.loadout_vendor = null
+	current_loadout = loadout
+	current_loadout.loadout_vendor = loadout_vendor
+	current_loadout.ui_interact(user)
 
 /datum/loadout_manager/ui_close(mob/user)
 	. = ..()
+	current_loadout?.loadout_vendor = null
+	current_loadout?.ui_close()
+	loadout_vendor = null
 	user.client?.prefs.save_loadout_manager()

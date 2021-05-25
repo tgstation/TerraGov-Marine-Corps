@@ -15,7 +15,7 @@ const LoadoutNavigator = (props: Loadout, context) => {
   return (
     <Section title="Loadout Navigator" textAlign="center">
       <Flex>
-        <Flex.Item grow={1}><Box></Box></Flex.Item>
+        <Flex.Item grow={1}><div> </div></Flex.Item>
         <Flex.Item>
           <Button
             onClick={() => { 
@@ -24,7 +24,7 @@ const LoadoutNavigator = (props: Loadout, context) => {
             Equip Loadout
           </Button>
         </Flex.Item>
-        <Flex.Item grow={1}><Box></Box></Flex.Item>
+        <Flex.Item grow={1}><div> </div></Flex.Item>
         <Flex.Item>
           <Button
             onClick={() => {
@@ -33,7 +33,7 @@ const LoadoutNavigator = (props: Loadout, context) => {
             Delete Loadout
           </Button>
         </Flex.Item>
-        <Flex.Item grow={1}><Box></Box></Flex.Item>
+        <Flex.Item grow={1}><div> </div></Flex.Item>
       </Flex>
     </Section>
   );

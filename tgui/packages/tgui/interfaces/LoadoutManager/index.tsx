@@ -13,7 +13,7 @@ const LoadoutItem = (props : LoadoutItemData, context) => {
   return (
     <LabeledList.Item
       labelColor="white"
-      buttons = {
+      buttons={
         <Button
           onClick={() => {
             act('selectLoadout', { loadout_name: loadout.name, loadout_job: loadout.job });
@@ -22,6 +22,7 @@ const LoadoutItem = (props : LoadoutItemData, context) => {
         </Button>
       }
       label={loadout.name}>
+      <div> </div>
     </LabeledList.Item>
   );
 };
@@ -51,7 +52,7 @@ const JobTabs = (props: LoadoutTabData) => {
   return (
     <Section>
       <Flex>
-        <Flex.Item grow={1}><Box></Box></Flex.Item>
+        <Flex.Item grow={1}><div> </div></Flex.Item>
         <Flex.Item>
           <Tabs>
             <Tabs.Tab selected={job === "marine"} onClick={() => setJob("marine")}>
@@ -71,7 +72,7 @@ const JobTabs = (props: LoadoutTabData) => {
             </Tabs.Tab>
           </Tabs>
         </Flex.Item>
-        <Flex.Item grow={1}><Box></Box></Flex.Item>
+        <Flex.Item grow={1}><div> </div></Flex.Item>
       </Flex>
     </Section>
   );
@@ -104,7 +105,7 @@ export const LoadoutManager = (props, context) => {
           />
           <Button
             onClick={() => setSaveNewLoadout(true)}>
-            Save your equiped loadout
+            Save your equipped loadout
           </Button>
           {
             saveNewLoadout

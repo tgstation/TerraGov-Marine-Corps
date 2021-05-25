@@ -117,7 +117,7 @@
 
 /**
  * Check if the value is of type loadout_manager, and with correct loadouts in its loadout list.
- * Also null out loadouts_data and seller to make saving possible in a jatum
+ * Also null out loadouts_data, seller and loadout vendor to make saving possible in a jatum
  */
 /proc/sanitize_loadout_manager(value)
 	var/datum/loadout_manager/manager
@@ -133,5 +133,6 @@
 			manager.loadouts_list -= loadout
 	manager.loadouts_data = null
 	manager.seller = null
+	manager.loadout_vendor = null
 	return manager
 

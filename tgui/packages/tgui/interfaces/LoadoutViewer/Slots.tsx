@@ -28,7 +28,7 @@ export const SlotSelector = (props: LoadoutSlotData, context) => {
   return (
     <Section title="Slot Selector" textAlign="center">
       <Flex>
-        <Flex.Item grow={1}><Box></Box></Flex.Item>
+        <Flex.Item grow={1}><div> </div></Flex.Item>
         <Flex.Item align="center">
           <Stack fill vertical>
             {range(0, ROWS).map(row => (
@@ -98,7 +98,8 @@ export const SlotSelector = (props: LoadoutSlotData, context) => {
                                 <Box
                                   key={iconinfo.icon}
                                   as="img"
-                                  src={`data:image/jpeg;base64,${iconinfo.icon}`}
+                                  src={`data:image/jpeg;base64,
+                                      ${iconinfo.icon}`}
                                   height="100%"
                                   width="100%"
                                   color="transparent"
@@ -106,7 +107,9 @@ export const SlotSelector = (props: LoadoutSlotData, context) => {
                                     "position": "absolute",
                                     "vertical-align": "middle",
                                     transform:
-                                      "translateX(" + iconinfo.translateX + ") translateY(" + iconinfo.translateY + ") scale(" + iconinfo.scale + ")",
+                                      "translateX(" + iconinfo.translateX
+                                      + ") translateY(" + iconinfo.translateY
+                                      + ") scale(" + iconinfo.scale + ")",
                                   }}
                                 />
                               ))}
@@ -121,7 +124,7 @@ export const SlotSelector = (props: LoadoutSlotData, context) => {
             ))}
           </Stack>
         </Flex.Item>
-        <Flex.Item grow={1}><Box></Box></Flex.Item>
+        <Flex.Item grow={1}><div> </div></Flex.Item>
       </Flex>
     </Section>
   );

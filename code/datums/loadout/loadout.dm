@@ -9,6 +9,8 @@
 	 * each item of the list is a datum/item_representation
 	 */
 	var/list/item_list
+	/// The host of the loadout_manager, aka from which loadout vendor are you managing loadouts
+	var/loadout_vendor 
 	///The version of this loadout. This can allow in the future to erase loadouts that are too old to work with the loadout saver system
 	var/version = 1
 
@@ -108,7 +110,10 @@
 		ui.open()
 
 /datum/loadout/ui_state(mob/user)
-	return GLOB.always_state
+	return GLOB.human_adjacent_state
+
+/datum/loadout/ui_host()
+	return loadout_vendor
 
 /datum/loadout/ui_static_data(mob/user)
 	var/list/data = list()
@@ -121,6 +126,8 @@
 
 /datum/loadout/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
 	. = ..()
+	if(.)
+		return
 	switch(action)
 		if("equipLoadout")
 			if(!ui.user.client.prefs.loadout_manager.seller)
