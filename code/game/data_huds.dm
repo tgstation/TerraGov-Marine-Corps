@@ -532,7 +532,7 @@
 	holder.icon_state = "plasma[amount]"
 
 ///Makes mounted guns ammo visible
-/obj/machinery/mounted/proc/hud_set_gun_ammo()
+/obj/machinery/deployable/mounted/proc/hud_set_gun_ammo()
 	var/image/holder = hud_list[SENTRY_AMMO_HUD]
 
 	if(!holder)

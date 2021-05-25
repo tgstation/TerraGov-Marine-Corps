@@ -137,14 +137,11 @@
 	///Time it takes to deploy the gun
 	deploy_time = 0 SECONDS
 
-	///Var that determins the state of the gun, whether it is deployed within a machine, or not.
-	var/deployed = FALSE
-
 	///List of flags for deployed machine operation. Flags can be found in __Defines/conflict.dm 
 	deploy_flags = NONE
 
 	///The amount of tiles the users view shifts once deployed and operated.
-	deploy_view_offset = 3
+	var/deploy_view_offset = 3
 
 	///Icon state of the machine created once deployed and if it does not have ammo, if null and deployed, it defaults to this objects icon_state
 	var/deploy_icon_empty
@@ -243,7 +240,7 @@
 		icon_state = base_gun_icon
 	update_item_state(user)
 	update_mag_overlay(user)
-	if(deployed)
+	if(is_deployed())
 		loc.update_icon_state()
 
 
@@ -346,7 +343,7 @@
 		to_chat(user, "<span class='notice'>You deploy [src].</span>")
 		un_man()
 		user.temporarilyRemoveItemFromInventory(src)
-		var/obj/machinery/mounted/deploying = new(step)
+		var/obj/machinery/deployable/mounted/deploying = new(step)
 		deploying.deploy(src, user.dir)
 	return ..()
 
@@ -661,7 +658,7 @@ and you're good to go.
 */
 /obj/item/weapon/gun/proc/load_into_chamber(mob/user)
 
-	if(flags_gun_features & GUN_NO_WIELDING && !deployed)
+	if(flags_gun_features & GUN_NO_WIELDING && !is_deployed())
 		to_chat(user, "<span class='notice'>You cannot fire [src] while it is not deployed.</span>")
 
 	//The workhorse of the bullet procs.
@@ -785,7 +782,7 @@ and you're good to go.
 	var/obj/screen/ammo/A = gun_user.hud_used.ammo //The ammo HUD
 	A.update_hud(gun_user)
 
-	if(deployed) //Updates the firing machines icon
+	if(is_deployed()) //Updates the firing machines icon
 		loc.update_icon()
 
 	return TRUE
@@ -1074,7 +1071,7 @@ and you're good to go.
 
 	switch(gun_firemode)
 		if(GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOBURST, GUN_FIREMODE_AUTOMATIC) //Much higher chance on a burst or similar.
-			if(flags_item & WIELDED && wielded_stable() || deployed) //if deployed, its pretty stable.
+			if(flags_item & WIELDED && wielded_stable() || is_deployed()) //if deployed, its pretty stable.
 				. += burst_amount * burst_scatter_mult
 			else
 				. += burst_amount * burst_scatter_mult * 5
@@ -1091,7 +1088,7 @@ and you're good to go.
 
 
 /obj/item/weapon/gun/proc/simulate_recoil(recoil_bonus = 0, mob/user)
-	if(deployed)
+	if(is_deployed())
 		return TRUE
 	var/total_recoil = recoil_bonus
 	if(flags_item & WIELDED && wielded_stable())

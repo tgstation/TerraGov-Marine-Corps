@@ -11,10 +11,8 @@
 	hud_possible = list(MACHINE_HEALTH_HUD, SENTRY_AMMO_HUD)
 
 	///Gun that does almost all the work when deployed. This type should not exist with a null 'gun'
-	internal_object = /obj/item/weapon/gun
+	var/obj/item/weapon/gun/gun
 
-	///Icon that is default to this gun, used to replace usage of initial(icon_state) since that does not default back to what the icon_state this gun is deployed with
-	var/default_icon
 	///Icon state for when the gun has no ammo.
 	var/icon_empty
 	//this is amount of tiles we shift our vision towards guns direction when operated, currently its max is 7
@@ -43,12 +41,13 @@
 
 	. = ..()
 
-	view_tile_offset = deploying.deploy_view_offset
+	gun = internal_item
 
-	icon_empty = deploying.deploy_icon_empty ? deploying.deploy_icon_empty : icon_state
+	view_tile_offset = gun.deploy_view_offset
 
-	deploying.deployed = TRUE
-	deploying.bypass_checks = TRUE
+	icon_empty = gun.deploy_icon_empty ? gun.deploy_icon_empty : icon_state
+
+	gun.bypass_checks = TRUE
 
 	update_icon_state()
 
@@ -57,17 +56,7 @@
 	if(deploy_flags & DEPLOYED_NO_PICKUP)
 		to_chat(user, "<span class='notice'>The [src] is anchored in place and cannot be disassembled.</span>")
 		return
-	to_chat(user, "<span class='notice'>You begin disassembling [src].</span>")
-	if(!do_after(user, gun.deploy_time, TRUE, src, BUSY_ICON_BUILD))
-		return
-	user.visible_message("<span class='notice'> [user] disassembles [src]! </span>","<span class='notice'> You disassemble [src]!</span>")
-
-	user.unset_interaction()
-	gun.deployed = FALSE
-	gun.bypass_checks = TRUE
-	gun.deploy_integrity = obj_integrity
-
-	user.put_in_active_hand(gun)
+	gun.GetComponent(/datum/component/deployable/).un_deploy(user, src)
 	gun = null
 
 	qdel(src)
@@ -218,9 +207,7 @@
 
 	update_view(operator)
 
-
 /obj/machinery/deployable/mounted/proc/start_fire(datum/source, atom/object, turf/location, control, params)
-/obj/machinery/mounted/proc/start_fire(datum/source, atom/object, turf/location, control, params)
 	SIGNAL_HANDLER
 
 	if(gun.gun_on_cooldown(operator))
@@ -255,7 +242,7 @@
 	gun.gun_user.client.mouse_pointer_icon = 'icons/effects/supplypod_target.dmi'
 	SEND_SIGNAL(gun, COMSIG_GUN_FIRE)
 
-obj/machinery/mounted/proc/change_target(datum/source, atom/src_object, atom/over_object, turf/src_location, turf/over_location, src_control, over_control, params)
+obj/machinery/deployable/mounted/proc/change_target(datum/source, atom/src_object, atom/over_object, turf/src_location, turf/over_location, src_control, over_control, params)
 	SIGNAL_HANDLER
 	if(istype(over_object, /obj/screen))
 		if(!istype(over_object, /obj/screen/click_catcher))

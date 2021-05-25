@@ -29,16 +29,8 @@
 	if(deploy_flags & DEPLOYED_NO_PICKUP)
 		to_chat(user, "<span class='notice'>The [src] is anchored in place and cannot be disassembled.</span>")
 		return
-	to_chat(user, "<span class='notice'>You begin disassembling [src].</span>")
-	if(!do_after(user, internal_item.deploy_time, TRUE, src, BUSY_ICON_BUILD))
-		return
-	user.visible_message("<span class='notice'> [user] disassembles [src]! </span>","<span class='notice'> You disassemble [src]!</span>")
-
-	user.unset_interaction()
-
-	internal_item.deploy_integrity = obj_integrity
-
-	user.put_in_active_hand(internal_item)
+	
+	internal_item.GetComponent(/datum/component/deployable/).un_deploy()
 	internal_item = null
 
 	qdel(src)

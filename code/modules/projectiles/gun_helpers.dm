@@ -650,7 +650,7 @@ should be alright.
 			var/datum/action/new_action = new /datum/action/item_action/firemode(src)
 			if(user)
 				var/mob/living/living_user = user
-				if((src == living_user.l_hand || src == living_user.r_hand) && !deployed)
+				if((src == living_user.l_hand || src == living_user.r_hand) && !is_deployed())
 					new_action.give_action(living_user)
 		else //The action should already be there by now.
 			return
@@ -665,7 +665,7 @@ should be alright.
 			var/datum/action/old_action = locate(/datum/action/item_action/firemode) in actions
 			if(user)
 				var/mob/living/living_user = user
-				if((src == living_user.l_hand || src == living_user.r_hand) && !deployed)
+				if((src == living_user.l_hand || src == living_user.r_hand) && !is_deployed())
 					old_action.remove_action(living_user)
 			qdel(old_action)
 
@@ -854,7 +854,7 @@ should be alright.
 
 
 /obj/item/weapon/gun/item_action_slot_check(mob/user, slot)
-	if(slot != SLOT_L_HAND && slot != SLOT_R_HAND && !deployed)
+	if(slot != SLOT_L_HAND && slot != SLOT_R_HAND && !is_deployed())
 		return FALSE
 	return TRUE
 
