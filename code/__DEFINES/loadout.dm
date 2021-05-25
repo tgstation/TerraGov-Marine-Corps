@@ -23,7 +23,7 @@ GLOBAL_LIST_INIT(loadout_linked_vendor, list(
 ))
 
 #define MARINE_LOADOUT "marine"
-#define ENGIE_LOADOUT "engie"
+#define ENGINEER_LOADOUT "engie"
 #define MEDIC_LOADOUT "medic"
 #define SMARTGUNNER_LOADOUT "smartgunner"
 #define LEADER_LOADOUT "leader"

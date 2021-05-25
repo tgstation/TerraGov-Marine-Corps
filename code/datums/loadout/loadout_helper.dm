@@ -9,7 +9,7 @@
 ///Return true if the item was found in a linked vendor
 /proc/is_savable_in_loadout(saved_item_type)
 	for(var/type in GLOB.loadout_linked_vendor)
-		for(var/datum/vending_product/item_datum in GLOB.vending_records[type])
+		for(var/datum/vending_product/item_datum AS in GLOB.vending_records[type])
 			var/product_path = item_datum.product_path
 			if(product_path == saved_item_type)
 				return TRUE
