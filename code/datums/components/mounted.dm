@@ -1,47 +1,72 @@
 
 
 
-/datum/component/deployable
-	var/deployed = FALSE
-	var/deploy_type = /obj/machinery/deployable
-	var/obj/item/attached_item
+/datum/component/deployable_item
+	var/deployed
+	var/obj/item/parent_item
+	var/obj/machinery/deployable/deployed_machine
 
-/datum/component/deployable/Initialize(obj/item/_parent)
+/datum/component/deployable_item/Initialize(machine_type, deploy_time, )
 	. = ..()
-	if(!_parent.flags_item & IS_DEPLOYABLE)
+	if(!isitem(parent))
 		return COMPONENT_INCOMPATIBLE
-	attached_item = _parent
+	parent_item = parent
+	if(!parent_item.flags_item & IS_DEPLOYABLE)
+		return COMPONENT_INCOMPATIBLE
+	deployed_machine = new deployed_machine(parent_item)
+	RegisterSignal(parent_item, COMSIG_ITEM_DEPLOY, .proc/deploy)
+	RegisterSignal(parent_item, COMSIG_IS_DEPLOYED, .proc/is_deployed)
 
-/datum/component/deployable/deploy(mob/user)
-	var/step = get_step(user, user.dir)
+/datum/component/deployable_item/proc/deploy(datum/source, mob/user)
+	SIGNAL_HANDLER
+	to_chat(user, "<span class='notice'>you start deploying the [source]</span>")
+	INVOKE_ASYNC(src, .proc/finish_deploy, source, user)
+
+/datum/component/deployable_item/proc/finish_deploy(datum/source, mob/user)
+	var/turf/here = get_step(user, user.dir)
 	if(!ishuman(user)) 
 		return
-	if(attached_item.check_blocked_turf(step))
-		to_chat(user, "<span class='warning'>There is insufficient room to deploy [attached_item]!</span>")
+	if(parent_item.check_blocked_turf(here))
+		to_chat(user, "<span class='warning'>There is insufficient room to deploy [parent_item]!</span>")
 		return
-	if(!do_after(user, attached_item.deploy_time, TRUE, attached_item, BUSY_ICON_BUILD))
+	if(!do_after(user, parent_item.deploy_time, TRUE, parent_item, BUSY_ICON_BUILD))
 		return
-	to_chat(user, "<span class='notice'>You deploy [attached_item].</span>")
 	
-	user.temporarilyRemoveItemFromInventory(attached_item)
-	var/obj/machinery/deployable/deploying = new deploy_type(step)
-	deploying.deploy(attached_item, user.dir)
+	deployed_machine.forceMove(here)
+	deployed_machine.deploy(parent_item, user.dir)
+	user.temporarilyRemoveItemFromInventory(parent_item)
+	parent_item.forceMove(deployed_machine)
+
 	deployed = TRUE
 
-/datum/component/deployable/un_deploy(mob/user, /obj/machinery/deployable/deployed)
-	to_chat(user, "<span class='notice'>You begin disassembling [attached_item].</span>")
-	if(!do_after(user, attached_item.deploy_time, TRUE, attached_item, BUSY_ICON_BUILD))
+	RegisterSignal(parent_item, COMSIG_ATOM_UPDATE_ICON, .proc/update_machine_icon_state)
+	RegisterSignal(deployed_machine, COMSIG_ITEM_UNDEPLOY, .proc/undeploy, user)
+
+
+/datum/component/deployable_item/proc/undeploy(mob/user)
+	SIGNAL_HANDLER
+	to_chat(user, "<span class='notice'>You begin disassembling [parent_item].</span>")
+	INVOKE_ASYNC(src, .proc/finish_undeploy, user)
+
+/datum/component/deployable_item/proc/finish_undeploy(mob/user)
+	if(!do_after(user, parent_item.deploy_time, TRUE, parent_item, BUSY_ICON_BUILD))
 		return
-	user.visible_message("<span class='notice'> [user] disassembles [attached_item]! </span>","<span class='notice'> You disassemble [attached_item]!</span>")
+	user.visible_message("<span class='notice'> [user] disassembles [parent_item]! </span>","<span class='notice'> You disassemble [parent_item]!</span>")
 
 	user.unset_interaction()
-	attached_item.deploy_integrity = deployed.obj_integrity
+	parent_item.deploy_integrity = deployed_machine.obj_integrity
 
-	user.put_in_active_hand(attached_item)
+	user.put_in_active_hand(parent)
 	deployed = FALSE
 
+	UnregisterSignal(deployed_machine, COMSIG_ITEM_UNDEPLOY)
+	UnregisterSignal(parent, COMSIG_ATOM_UPDATE_ICON)
+
+/datum/component/deployable_item/proc/is_deployed()
+	return deployed
+
+/datum/component/deployable_item/proc/update_machine_icon_state()
+	deployed_machine.update_icon_state()
+
 /obj/item/proc/is_deployed()
-	var/datum/component/deployable/component = GetComponent(/datum/component/deployable/)
-	if(!component)
-		return FALSE
-	return component.deployed
+	return SEND_SIGNAL(src, COMSIG_IS_DEPLOYED)

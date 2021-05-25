@@ -47,7 +47,8 @@
 	burst_delay = 1
 	extra_delay = 1
 
-	flags_gun_features = GUN_AUTO_EJECTOR|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER|GUN_IS_DEPLOYABLE|GUN_NO_WIELDING|GUN_WIELDED_FIRING_ONLY
+	flags_item = IS_DEPLOYABLE
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER|GUN_NO_WIELDING|GUN_WIELDED_FIRING_ONLY
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC)
 
 	deploy_time = 5 SECONDS
@@ -55,8 +56,6 @@
 	deploy_integrity = 300
 	deploy_max_integrity = 300
 
-	deploy_name = "\improper TL-102 mounted heavy smartgun"
-	deploy_desc = "A deployed and mounted heavy smartgun, ready to rock. It fires specialized tungsten rounds for increased armor penetration. Can be repaired with a blowtorch."
 	deploy_icon = 'icons/Marine/marine-hmg.dmi'
 	deploy_icon_state = "turret"
 
@@ -85,9 +84,6 @@
 
 	deploy_view_offset = 6
 
-	deploy_name = "\improper TL-102 heavy smartgun nest"
-	deploy_desc = "A TL-102 heavy smartgun mounted upon a small reinforced post with sandbags to provide a small machinegun nest for all your defense purpose needs.</span>"
-
 	deploy_icon_state = "entrenched"
 	deploy_icon_empty = "entrenched_e"
 
@@ -112,5 +108,3 @@
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER|GUN_IS_DEPLOYABLE
 
-	deploy_name = "\improper Death incarnate"
-	deploy_desc = "It looks like a regular TL-102, however glowing archaeic writing glows faintly on its sides and top. It beckons for blood."
