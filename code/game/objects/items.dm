@@ -144,6 +144,9 @@
 
 	if(flags_item_map_variant)
 		update_item_sprites()
+	
+	if(flags_item & IS_DEPLOYABLE)
+		AddComponent(new /datum/component/deployable/)
 
 
 /obj/item/Destroy()
