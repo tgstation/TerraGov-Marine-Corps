@@ -228,18 +228,19 @@
 
 /datum/reagent/toxin/sleeptoxin/on_mob_life(mob/living/L, metabolism)
 	switch(current_cycle)
-		if(1 to 12)
+		if(1 to 6)
 			if(prob(5))
 				L.emote("yawn")
-		if(13 to 15)
 			L.blur_eyes(10)
-		if(16 to 40)
+		if(7 to 10)
 			if(prob(10))
-				L.Sleeping(20 SECONDS)
+				L.Sleeping(10 SECONDS)
 			L.drowsyness  = max(L.drowsyness, 20)
-		if(41 to INFINITY)
-			L.Sleeping(40 SECONDS) //previously knockdown, no good for a soporific.
+		if(11 to 80)
+			L.Sleeping(10 SECONDS) //previously knockdown, no good for a soporific.
 			L.drowsyness  = max(L.drowsyness, 30)
+		if(81 to INFINITY)
+			L.adjustDrowsyness(2)
 	L.reagent_pain_modifier += PAIN_REDUCTION_HEAVY
 	return ..()
 
@@ -261,13 +262,10 @@
 
 /datum/reagent/toxin/chloralhydrate/on_mob_life(mob/living/L, metabolism)
 	switch(current_cycle)
-		if(1 to 20)
-			L.AdjustConfused(40)
-			L.adjustDrowsyness(2)
-		if(21 to 60)
+		if(1 to 60)
 			L.Sleeping(10 SECONDS)
 		if(61 to INFINITY)
-			L.Sleeping(10 SECONDS)
+			L.adjustDrowsyness(2)
 			L.adjustToxLoss((current_cycle/4 - 25)*effect_str)
 	return ..()
 

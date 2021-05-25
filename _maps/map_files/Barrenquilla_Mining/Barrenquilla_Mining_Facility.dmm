@@ -6392,7 +6392,7 @@
 /area/barren/cave/west)
 "FH" = (
 /obj/structure/closet/secure_closet/chemical,
-/obj/item/storage/pill_bottle/keloderm,
+/obj/item/storage/pill_bottle/kelotane,
 /turf/open/floor/freezer,
 /area/barren/medical/chemistry)
 "FI" = (
