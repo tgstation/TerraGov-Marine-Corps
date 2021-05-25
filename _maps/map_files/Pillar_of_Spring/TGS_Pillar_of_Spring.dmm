@@ -2537,9 +2537,7 @@
 /obj/item/bedsheet/blue,
 /obj/effect/landmark/start/job/corporateliaison,
 /obj/structure/bed/fancy,
-/obj/item/toy/farwadoll{
-	pixel_x = 5
-	},
+/obj/item/toy/plush/farwa,
 /turf/open/floor/carpet{
 	dir = 1;
 	icon_state = "carpetside"

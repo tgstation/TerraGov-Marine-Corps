@@ -1411,7 +1411,7 @@
 /obj/machinery/keycard_auth{
 	pixel_y = 25
 	},
-/obj/item/toy/farwadoll,
+/obj/item/toy/plush/farwa,
 /turf/open/floor/carpet{
 	dir = 6;
 	icon_state = "carpetside"

@@ -1644,7 +1644,7 @@
 /turf/open/floor/marking/delivery,
 /area/barren/misc/genstorage)
 "hN" = (
-/obj/item/toy/farwadoll,
+/obj/item/toy/plush/farwa,
 /turf/open/floor,
 /area/shuttle/drop1/lz1)
 "hO" = (
