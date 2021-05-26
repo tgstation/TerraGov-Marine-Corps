@@ -35,6 +35,7 @@
 	stamina_state = STAMINA_STATE_IDLE
 	UnregisterSignal(parent, list(COMSIG_MOVABLE_MOVED, COMSIG_LIVING_SET_CANMOVE))
 
+
 /datum/component/stamina_behavior/proc/on_move_run(datum/source, atom/oldloc, direction, Forced)
 	SIGNAL_HANDLER
 	if(Forced)
