@@ -10,11 +10,11 @@
 	if(!istype(target, /obj/vehicle/unmanned))
 		return ..()
 	if(vehicle)
+		SEND_SIGNAL(src, COMSIG_REMOTECONTROL_UNLINK)
+		clear_vehicle()
 		if(vehicle == target)
 			to_chat(user, "<span class='notice'>You unlink [target] from [src].</span>")
-			SEND_SIGNAL(src, COMSIG_REMOTECONTROL_UNLINK)
-			clear_vehicle()
-		return ..()
+			return
 	vehicle = target
 	vehicle.on_link(src)
 	AddComponent(/datum/component/remote_control, target, vehicle.turret_type)

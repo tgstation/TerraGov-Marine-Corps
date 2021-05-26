@@ -166,26 +166,52 @@ OPERATIONS
 	containertype = null
 	available_against_xeno_only = TRUE
 
-/datum/supply_packs/operations/droid_scout
+/******************************************************************************
+UNMANNED VEHICLES
+*******************************************************************************/
+
+/datum/supply_packs/unmanned
+	group = "Unmanned Vehicles"
+	containertype = null
+
+/datum/supply_packs/unmanned/droid_scout
 	name = "Scout droid"
 	contains = list(/obj/vehicle/unmanned/droid/scout)
 	cost = 30
-	containertype = null
 
-/datum/supply_packs/operations/droid_combat
+/datum/supply_packs/unmanned/droid_combat
 	name = "Combat droid with weapon equipped"
 	contains = list(/obj/vehicle/unmanned/droid)
 	cost = 30
-	containertype = null
 
-/datum/supply_packs/operations/droid_weapon
+/datum/supply_packs/unmanned/droid_weapon
 	name = "Droid weapon"
 	contains = list(/obj/item/uav_turret/droid)
 	cost = 10
 	containertype = /obj/structure/closet/crate/weapon
 
-/datum/supply_packs/operations/droid_remote
-	name = "Droid remote"
+/datum/supply_packs/unmanned/light_uv
+	name = "Light unmanned vehicle"
+	contains = list(/obj/vehicle/unmanned)
+	cost = 30
+
+/datum/supply_packs/unmanned/medium_uv
+	name = "Medium unmanned vehicle"
+	contains = list(/obj/vehicle/unmanned/medium)
+	cost = 50
+
+/datum/supply_packs/unmanned/heavy_uv
+	name = "Heavy unmanned vehicle"
+	contains = list(/obj/vehicle/unmanned/heavy)
+	cost = 70
+
+/datum/supply_packs/unmanned/droid_combat
+	name = "Combat droid with weapon equipped"
+	contains = list(/obj/vehicle/unmanned/droid)
+	cost = 30
+
+/datum/supply_packs/unmanned/vehicle_remote
+	name = "Vehicle remote"
 	contains = list(/obj/item/unmanned_vehicle_remote)
 	cost = 10
 	containertype = /obj/structure/closet/crate/weapon

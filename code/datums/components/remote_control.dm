@@ -20,7 +20,9 @@
 	RegisterSignal(controlled, COMSIG_UNMANNED_TURRET_UPDATED, .proc/update_right_clickproc)
 	RegisterSignal(controlled, COMSIG_UNMANNED_ABILITY_UPDATED, .proc/update_left_clickproc)
 	RegisterSignal(parent, COMSIG_REMOTECONTROL_TOGGLE, .proc/toggle_remote_control)
-	RegisterSignal(controlled, list(COMSIG_PARENT_QDELETING, COMSIG_REMOTECONTROL_UNLINK), .proc/on_control_terminate)
+	RegisterSignal(controlled, COMSIG_PARENT_QDELETING, .proc/on_control_terminate)
+	RegisterSignal(parent, list(COMSIG_REMOTECONTROL_UNLINK, COMSIG_PARENT_QDELETING), .proc/on_control_terminate)
+
 
 /datum/component/remote_control/Destroy(force=FALSE, silent=FALSE)
 	if(is_controlling)
@@ -37,7 +39,7 @@
 
 
 ///Updates the clickproc to a passed type of turret
-/datum/component/remote_control/proc/update_right_clickproc(datum/source, type)
+/datum/component/remote_control/proc/update_left_clickproc(datum/source, type)
 	SIGNAL_HANDLER
 	switch(type)
 		if(TURRET_TYPE_HEAVY, TURRET_TYPE_LIGHT, TURRET_TYPE_DROIDLASER)
@@ -49,7 +51,7 @@
 
 
 ///Updates the clickproc to a passed type of ability
-/datum/component/remote_control/proc/update_left_clickproc(datum/source, type)
+/datum/component/remote_control/proc/update_right_clickproc(datum/source, type)
 	SIGNAL_HANDLER
 	if(type == CLOAK_ABILITY)
 		right_click_proc = CALLBACK(controlled, /obj/vehicle/unmanned/droid/scout/proc/cloak_drone)
@@ -60,11 +62,13 @@
 /datum/component/remote_control/proc/uv_handle_click(mob/user, atom/target, params)
 	var/obj/vehicle/unmanned/T = controlled
 	T.fire_shot(target, user)
+	return TRUE
 
 ///Called when a explosive vehicle clicks and tries to explde itself
 /datum/component/remote_control/proc/uv_handle_click_explosive(mob/user, atom/target, params)
 	explosion(get_turf(controlled), 1, 2, 3, 4)
 	remote_control_off()
+	return TRUE
 
 ///Self explanatory, toggles remote control
 /datum/component/remote_control/proc/toggle_remote_control(datum/source, mob/user)

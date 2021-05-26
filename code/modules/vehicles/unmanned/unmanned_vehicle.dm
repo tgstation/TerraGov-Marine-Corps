@@ -6,10 +6,11 @@
 	icon_state = "light_uv"
 	anchored = FALSE
 	buckle_flags = null
-	light_range = 4
+	light_range = 6
+	light_power = 3
 	light_system = MOVABLE_LIGHT
 	move_delay = 1.8	//set this to limit the speed of the vehicle
-	max_integrity = 200
+	max_integrity = 300
 	resistance_flags = XENO_DAMAGEABLE
 	///Type of "turret" attached
 	var/turret_type
@@ -29,12 +30,33 @@
 	var/obj/projectile/in_chamber = null
 	///Sound file or string type for playing the shooting sound
 	var/gunnoise = "gun_smartgun"
+	/// The camera attached to the vehicle
+	var/obj/machinery/camera/camera
+	/// Serial number of the vehicle
+	var/static/serial = 1
+	/// If the vehicle should spawn with a weapon allready installed
+	var/obj/item/uav_turret/spawn_equipped_type = null
 	COOLDOWN_DECLARE(fire_cooldown)
 
 /obj/vehicle/unmanned/Initialize()
 	. = ..()
 	current_rounds = max_rounds
 	ammo = GLOB.ammo_list[ammo]
+	name = name + " " + num2text(serial)
+	serial++
+	GLOB.vehicles += src
+	camera = new
+	camera.network += list("marine")
+	if(spawn_equipped_type)
+		turret_type = initial(spawn_equipped_type.turret_type)
+		ammo = GLOB.ammo_list[initial(spawn_equipped_type.ammo_type)]
+		update_icon()
+
+
+/obj/vehicle/unmanned/Destroy()
+	. = ..()
+	QDEL_NULL(camera)
+	GLOB.vehicles -= src
 
 /obj/vehicle/unmanned/update_overlays()
 	. = ..()
@@ -87,15 +109,20 @@
  * Called when the drone is unlinked from a remote control
  * Only argument is the remote it was linked to
  */
-/obj/vehicle/unmanned/proc/on_link(obj/item/unmanned_vehicle_remote/remote)
-	return
+/obj/vehicle/unmanned/proc/on_link()
+	RegisterSignal(src, COMSIG_REMOTECONTROL_CHANGED, .proc/on_remote_toggle)
 
 /**
  * Called when the drone is linked to a remote control
  * Only argument is the remote it is linked to
  */
-/obj/vehicle/unmanned/proc/on_unlink(obj/item/unmanned_vehicle_remote/remote)
-	return
+/obj/vehicle/unmanned/proc/on_unlink()
+	UnregisterSignal(src, COMSIG_REMOTECONTROL_CHANGED)
+
+///Called when remote control is taken
+/obj/vehicle/unmanned/proc/on_remote_toggle(datum/source, is_on, mob/user)
+	SIGNAL_HANDLER
+	set_light_on(is_on)
 
 ///Checks if we can or already have a bullet loaded that we can shoot
 /obj/vehicle/unmanned/proc/load_into_chamber()
@@ -129,6 +156,7 @@
 	icon_state = "medium_uv"
 	move_delay = 2.4
 	max_rounds = 200
+	max_integrity = 600
 	ammo = /datum/ammo/bullet/machinegun
 
 /obj/vehicle/unmanned/heavy
@@ -136,5 +164,6 @@
 	icon_state = "heavy_uv"
 	move_delay = 3.5
 	max_rounds = 200
+	max_integrity = 900
 	anchored = TRUE
 	ammo = /datum/ammo/bullet/machinegun

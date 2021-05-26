@@ -7,32 +7,7 @@
 	anchored = TRUE // no wheels
 	turret_pattern = PATTERN_DROID
 	gunnoise = 'sound/weapons/guns/fire/laser.ogg'
-	light_system = MOVABLE_LIGHT
-	light_range = 5
-	light_power = 3
-	/// The camera attached to the droid
-	var/obj/machinery/camera/camera
-	/// Serial number of the droid
-	var/static/serial = 1
-	/// If the droid should spawn with a weapon allready installed
-	var/obj/item/uav_turret/spawn_equipped_type = /obj/item/uav_turret/droid
-
-/obj/vehicle/unmanned/droid/Initialize()
-	. = ..()
-	name = name + " " + num2text(serial)
-	serial++
-	GLOB.droids += src
-	camera = new
-	camera.network += list("marine")
-	if(spawn_equipped_type)
-		turret_type = initial(spawn_equipped_type.turret_type)
-		ammo = GLOB.ammo_list[initial(spawn_equipped_type.ammo_type)]
-		update_icon()
-
-/obj/vehicle/unmanned/droid/Destroy()
-	. = ..()
-	QDEL_NULL(camera)
-	GLOB.droids -= src
+	spawn_equipped_type = /obj/item/uav_turret/droid
 
 /obj/vehicle/unmanned/droid/process() //play beepy noise every 5 seconds for effect while active
 	if(prob(40))
@@ -49,16 +24,13 @@
 /obj/vehicle/unmanned/droid/on_unlink(obj/item/unmanned_vehicle_remote/remote)
 	UnregisterSignal(src, COMSIG_REMOTECONTROL_CHANGED)
 
-///Called when remote control is taken, plays a neat sound effect aong other things
-/obj/vehicle/unmanned/droid/proc/on_remote_toggle(datum/source, is_on, mob/user)
-	SIGNAL_HANDLER
+/obj/vehicle/unmanned/droid/on_remote_toggle(datum/source, is_on, mob/user)
+	. = ..()
 	if(is_on)
-		set_light_on(TRUE)
 		playsound(src, 'sound/machines/drone/weapons_engaged.ogg', 70)
 		START_PROCESSING(SSslowprocess, src)
 		user.overlay_fullscreen("machine", /obj/screen/fullscreen/machine)
 	else
-		set_light_on(FALSE)
 		playsound(src, 'sound/machines/drone/droneoff.ogg', 70)
 		STOP_PROCESSING(SSslowprocess, src)
 		user.clear_fullscreen("machine", 5)
@@ -68,7 +40,7 @@
 /obj/vehicle/unmanned/droid/scout
 	name = "XN-43-S combat droid"
 	desc = "A prototype scout droid, rigged with top-of-the line cloaking technology to hide itself from view."
-	icon_state = "droidscout"
+	icon_state = "vehiclescout"
 	move_delay = 2
 	max_integrity = 250
 	spawn_equipped_type = null
