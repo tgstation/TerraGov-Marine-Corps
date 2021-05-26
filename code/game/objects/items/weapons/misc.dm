@@ -65,7 +65,7 @@
 		setting = 1
 	else
 		setting += 1
-	to_chat(user, "<span class='notice'>You set the [src]'s power level to [setting].</span>")
+	balloon_alert(user, "Power level [setting].")
 
 /obj/item/weapon/powerfist/AltClick(mob/user)
 	if(!can_interact(user))
@@ -106,7 +106,7 @@
 	playsound(loc, 'sound/weapons/energy_blast.ogg', 50, TRUE)
 	playsound(loc, 'sound/weapons/genhit2.ogg', 50, TRUE)
 	var/atom/throw_target = get_edge_target_turf(M, get_dir(src, get_step_away(M, src)))
-	var/throw_distance = setting * LERP(5 , 2, M.mob_size / MOB_SIZE_BIG) 
+	var/throw_distance = setting * LERP(5 , 2, M.mob_size / MOB_SIZE_BIG)
 	M.throw_at(throw_target, throw_distance, 0.5 + (setting / 2))
 	cell.charge -= powerused
 	return ..()
