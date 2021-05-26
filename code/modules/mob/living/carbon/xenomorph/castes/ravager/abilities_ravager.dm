@@ -187,7 +187,7 @@
 
 ///Turns off the Endure buff
 /datum/action/xeno_action/endure/proc/endure_deactivate()
-	var/mob/living/carbon/xenomorph/ravager/R = owner
+	var/mob/living/carbon/xenomorph/R = owner
 
 	UnregisterSignal(R, COMSIG_XENOMORPH_TAKING_DAMAGE)
 
