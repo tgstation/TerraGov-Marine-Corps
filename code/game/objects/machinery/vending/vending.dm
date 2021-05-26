@@ -93,6 +93,10 @@
 	*/
 	/// Normal products that are always available on the vendor.
 	var/list/products = list()
+	/** List of seasons whose products are added to the vendor's.
+	 *	Format for each entry is SEASON_NAME = "tab name"
+	 */
+	var/list/seasonal_items = list()
 	/// Contraband products that are only available on vendor when hacked.
 	var/list/contraband = list()
 	/// Premium products that are only available when using a coin to pay for it.
@@ -166,6 +170,8 @@
 	// The first time this machine says something will be at slogantime + this random value,
 	// so if slogantime is 10 minutes, it will say it at somewhere between 10 and 20 minutes after the machine is crated.
 	last_slogan = world.time + rand(0, slogan_delay)
+
+	build_seasonal_tabs()
 
 	if(isshared)
 		build_shared_inventory()
@@ -250,6 +256,11 @@
 			amount = 1
 		var/datum/vending_product/record = new(typepath = entry, product_amount = amount, product_price = prices[entry], category = category)
 		recordlist += record
+
+///Makes additional tabs/adds to the tabs based on the seasonal_items vendor specification
+/obj/machinery/vending/proc/build_seasonal_tabs()
+	for(var/season in seasonal_items)
+		products[seasonal_items[season]] += SSpersistence.season_items[season]
 
 /obj/machinery/vending/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
 	if(X.status_flags & INCORPOREAL)
