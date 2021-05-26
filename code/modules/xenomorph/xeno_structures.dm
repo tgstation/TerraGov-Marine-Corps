@@ -235,12 +235,6 @@
 	animate(src)
 	pixel_x = old_px
 
-/obj/structure/resin/silo/small_silo
-	name = "small resin silo"
-	icon_state = "purple_silo"
-	max_integrity = 500
-	larva_spawn_rate = 0.25
-
 /obj/structure/resin/xeno_turret
 	icon = 'icons/Xeno/acidturret.dmi'
 	icon_state = "acid_turret"
