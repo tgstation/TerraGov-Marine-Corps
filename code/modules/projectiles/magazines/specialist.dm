@@ -157,12 +157,6 @@
 	default_ammo = /datum/ammo/rocket/wp
 	desc = "A highly destructive warhead that bursts into deadly flames on impact. Use this in hand to deconstruct it."
 
-/obj/item/ammo_magazine/rocket/sadar/iff
-	name = "\improper 84mm smart rocket"
-	icon_state = "wp_rocket"
-	default_ammo = /datum/ammo/rocket/wp
-	desc = "A smart rocket able to avoid friendly targets, at the price of lower damage done to hostiles"
-
 /obj/item/ammo_magazine/internal/launcher/rocket/sadar
 	name = "\improper 84mm internal tube"
 	desc = "The internal tube of a T-152 rocket launcher."
