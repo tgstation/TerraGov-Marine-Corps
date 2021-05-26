@@ -63,8 +63,6 @@
 	var/movement_acc_penalty_mult = 5				//Multiplier. Increased and decreased through attachments. Multiplies the accuracy/scatter penalty of the projectile when firing onehanded while moving.
 	var/fire_delay = 6							//For regular shots, how long to wait before firing again.
 	var/shell_speed_mod	= 0						//Modifies the speed of projectiles fired.
-	/// Determines which humans the gun's shot will pass through based on the victim's ID access list.
-	var/list/gun_iff_signal = null
 	///Modifies projectile damage by a % when a marine gets passed, but not hit
 	var/iff_marine_damage_falloff = 0
 	///Determines how fire delay is changed when aim mode is active
@@ -671,7 +669,7 @@ and you're good to go.
 		click_empty(gun_user)
 		return
 
-	apply_gun_modifiers(projectile_to_fire, target)
+	apply_gun_modifiers(projectile_to_fire, target, gun_user)
 	setup_bullet_accuracy(projectile_to_fire, gun_user, shots_fired, dual_wield) //User can be passed as null.
 
 	var/firing_angle = get_angle_with_scatter((gun_user || get_turf(src)), target, get_scatter(projectile_to_fire.scatter, gun_user), projectile_to_fire.p_x, projectile_to_fire.p_y)
@@ -736,7 +734,7 @@ and you're good to go.
 			return // no ..(), already invoked above
 
 		user.visible_message("<span class='danger'>[user] fires [src] point blank at [M]!</span>")
-		apply_gun_modifiers(projectile_to_fire, M)
+		apply_gun_modifiers(projectile_to_fire, M, user)
 		setup_bullet_accuracy(projectile_to_fire, user) //We add any damage effects that we need.
 		projectile_to_fire.setDir(get_dir(user, M))
 		projectile_to_fire.distance_travelled = get_dist(user, M)
@@ -912,12 +910,13 @@ and you're good to go.
 	playsound(user, fire_sound, 60, firing_sndfreq ? TRUE : FALSE, frequency = firing_sndfreq)
 
 
-/obj/item/weapon/gun/proc/apply_gun_modifiers(obj/projectile/projectile_to_fire, atom/target)
+/obj/item/weapon/gun/proc/apply_gun_modifiers(obj/projectile/projectile_to_fire, atom/target, mob/living/user)
 	projectile_to_fire.shot_from = src
 	projectile_to_fire.damage *= damage_mult
 	projectile_to_fire.damage_falloff *= damage_falloff_mult
 	projectile_to_fire.projectile_speed += shell_speed_mod
-	projectile_to_fire.projectile_iff = gun_iff_signal
+	if(flags_gun_features & GUN_IFF || flags_gun_features & GUN_IS_AIMING|| projectile_to_fire.ammo.flags_ammo_behavior & AMMO_IFF)
+		projectile_to_fire.faction = user.faction
 	projectile_to_fire.damage_marine_falloff = iff_marine_damage_falloff
 
 

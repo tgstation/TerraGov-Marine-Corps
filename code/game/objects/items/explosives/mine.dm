@@ -16,8 +16,8 @@ Stepping directly on the mine will also blow it up
 	throw_speed = 3
 	flags_atom = CONDUCT
 
-	/// IFF signal - used to determine friendly units
-	var/list/iff_signal = list(ACCESS_IFF_MARINE)
+	/// Used to determine friendly units
+	var/faction
 	/// If the mine has been triggered
 	var/triggered = FALSE
 	/// State of the mine. Will the mine explode or not
@@ -70,6 +70,7 @@ Stepping directly on the mine will also blow it up
 		return
 	user.visible_message("<span class='notice'>[user] finishes deploying [src].</span>", \
 	"<span class='notice'>You finish deploying [src].</span>")
+	faction = user.faction
 	anchored = TRUE
 	armed = TRUE
 	playsound(src.loc, 'sound/weapons/mine_armed.ogg', 25, 1)
@@ -120,7 +121,7 @@ Stepping directly on the mine will also blow it up
 		return FALSE
 	if(ishuman(L))
 		var/mob/living/carbon/human/H = L
-		if(H.get_target_lock(iff_signal))
+		if(H.faction == faction)
 			return FALSE
 
 	L.visible_message("<span class='danger'>[icon2html(src, viewers(L))] \The [src] clicks as [L] moves in front of it.</span>", \
@@ -182,10 +183,3 @@ Stepping directly on the mine will also blow it up
 
 	if(linked_mine && isliving(A))
 		linked_mine.trip_mine(A)
-
-/// PMC specific mine, with IFF for PMC units
-/obj/item/explosive/mine/pmc
-	name = "\improper M20P Claymore anti-personnel mine"
-	desc = "The M20P Claymore is a directional proximity triggered anti-personnel mine designed by Armat Systems for use by the TerraGov Marine Corps. It has been modified for use by the NT PMC forces."
-	icon_state = "m20p"
-	iff_signal = list(ACCESS_IFF_PMC)

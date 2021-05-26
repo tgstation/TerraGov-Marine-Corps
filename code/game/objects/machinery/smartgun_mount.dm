@@ -174,7 +174,6 @@
 	var/atom/target = null // required for shooting at things.
 	var/datum/ammo/bullet/machinegun/ammo = /datum/ammo/bullet/machinegun
 	var/obj/projectile/in_chamber = null
-	var/list/iff_signal = list(ACCESS_IFF_MARINE)
 	var/locked = 0 //1 means its locked inplace (this will be for sandbag MGs)
 	var/is_bursting = 0.
 	var/icon_full = "turret" // Put this system in for other MGs or just other mounted weapons in general, future proofing.
@@ -371,7 +370,7 @@
 
 	target = null
 
-/obj/machinery/standard_hmg/proc/fire_shot(mob/user) //Bang Bang
+/obj/machinery/standard_hmg/proc/fire_shot(mob/living/user) //Bang Bang
 	if(!ammo)
 		return //No ammo.
 	if(last_fired)
@@ -411,7 +410,7 @@
 		A = target
 	proj_to_fire.setDir(dir)
 	proj_to_fire.def_zone = pick("chest","chest","chest","head")
-	proj_to_fire.projectile_iff = iff_signal
+	proj_to_fire.faction = user.faction
 	playsound(loc, 'sound/weapons/guns/fire/hmg2.ogg', 65, TRUE)
 	if(!QDELETED(target))
 		var/angle = round(Get_Angle(src,target))

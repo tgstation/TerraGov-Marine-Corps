@@ -67,8 +67,8 @@
 
 	var/scatter = 0 //Chance of scattering, also maximum amount scattered. High variance.
 
-	/// Used to transfer iff_signal from source to projectile.
-	var/list/projectile_iff = null
+	/// The faction of the projectile, if it's the same as the thing hit it will bypass it
+	var/faction
 
 	var/distance_travelled = 0
 
@@ -582,7 +582,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 		return TRUE
 	if(!throwpass)
 		return TRUE
-	if(proj.ammo.flags_ammo_behavior & AMMO_SNIPER || proj.projectile_iff || proj.ammo.flags_ammo_behavior & AMMO_ROCKET) //sniper, rockets and IFF rounds bypass cover
+	if(proj.ammo.flags_ammo_behavior & AMMO_SNIPER || proj.faction || proj.ammo.flags_ammo_behavior & AMMO_ROCKET) //sniper, rockets and IFF rounds bypass cover
 		return FALSE
 	if(proj.distance_travelled <= proj.ammo.barricade_clear_distance)
 		return FALSE
@@ -619,18 +619,10 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 	return TRUE
 
 /obj/machinery/marine_turret/projectile_hit(obj/projectile/proj, cardinal_move, uncrossing)
-	for(var/access_tag in proj.projectile_iff)
-		if(access_tag in iff_signal) //Checks IFF
-			proj.damage += proj.damage*proj.damage_marine_falloff
-			return FALSE
-	return src == proj.original_target
+	return proj.faction == faction ? FALSE : src == proj.original_target
 
 /obj/machinery/standard_hmg/projectile_hit(obj/projectile/proj, cardinal_move, uncrossing)
-	for(var/access_tag in proj.projectile_iff)
-		if(access_tag in iff_signal) //Checks IFF
-			proj.damage += proj.damage*proj.damage_marine_falloff
-			return FALSE
-	return src == proj.original_target
+	return proj.faction == operator?.faction ? FALSE : src == proj.original_target
 
 /obj/machinery/door/poddoor/railing/projectile_hit(obj/projectile/proj, cardinal_move, uncrossing)
 	return src == proj.original_target
@@ -738,7 +730,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 
 
 /mob/living/carbon/human/projectile_hit(obj/projectile/proj, cardinal_move, uncrossing)
-	if(get_target_lock(proj.projectile_iff))
+	if(get_target_lock(proj.faction))
 		proj.damage += proj.damage*proj.damage_marine_falloff
 		return FALSE
 	if(mobility_aura)

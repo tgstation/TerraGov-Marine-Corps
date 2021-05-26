@@ -228,7 +228,8 @@
 	req_one_access = list(ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_ENGPREP, ACCESS_MARINE_LEADER)
 	hud_possible = list(MACHINE_HEALTH_HUD, SENTRY_AMMO_HUD)
 	var/turret_flags = TURRET_HAS_CAMERA|TURRET_SAFETY|TURRET_ALERTS
-	var/list/iff_signal = list(ACCESS_IFF_MARINE)
+	/// The faction used to determine friendlies from hostiles
+	var/faction
 	var/rounds = 500
 	var/rounds_max = 500
 	var/burst_size = 5
@@ -497,6 +498,7 @@
 				target = null
 				ENABLE_BITFIELD(turret_flags, TURRET_ON)
 				set_light(SENTRY_LIGHT_POWER)
+				faction = user.faction
 				if(!camera && CHECK_BITFIELD(turret_flags, TURRET_HAS_CAMERA))
 					camera = new /obj/machinery/camera(src)
 					camera.network = list("military")
@@ -954,7 +956,7 @@
 	proj_to_fire.original_target = target
 	proj_to_fire.setDir(dir)
 	proj_to_fire.def_zone = pick("chest", "chest", "chest", "head")
-	proj_to_fire.projectile_iff = iff_signal
+	proj_to_fire.faction = faction
 
 	//Shoot at the thing
 	playsound(loc, 'sound/weapons/guns/fire/smg_heavy.ogg', 75, TRUE)
@@ -1016,7 +1018,7 @@
 		slow down. It'll serve for now.
 		*/
 		var/mob/living/carbon/human/H = M
-		if(istype(H) && H.get_target_lock(iff_signal))
+		if(istype(H) && H.faction == faction)
 			continue
 
 
@@ -1071,7 +1073,7 @@
 /obj/machinery/marine_turret/premade/dumb
 	name = "\improper Modified UA 571-C sentry gun"
 	desc = "A deployable, semi-automated turret with AI targeting capabilities. Armed with an M30 Autocannon and a 500-round drum magazine. This one's IFF system has been disabled, and it will open fire on any targets within range."
-	iff_signal = null
+	faction = FACTION_NEUTRAL
 	ammo = /datum/ammo/bullet/turret/dumb
 	magazine_type = /obj/item/ammo_magazine/sentry/premade/dumb
 	rounds_max = 500
