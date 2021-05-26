@@ -14,6 +14,8 @@
 	var/obj/machinery/camera/camera
 	/// Serial number of the droid
 	var/static/serial = 1
+	/// If the droid should spawn with a weapon allready installed
+	var/obj/item/uav_turret/spawn_equipped_type = /obj/item/uav_turret/droid
 
 /obj/vehicle/unmanned/droid/Initialize()
 	. = ..()
@@ -21,7 +23,10 @@
 	serial++
 	GLOB.droids += src
 	camera = new
-	camera.network += list("marine") 
+	camera.network += list("marine")
+	if(spawn_equipped_type)
+		turret_type = spawn_equipped_type
+		ammo = GLOB.ammo_list[initial(spawn_equipped_type.ammo_type)]
 
 /obj/vehicle/unmanned/droid/Destroy()
 	. = ..()
@@ -65,6 +70,7 @@
 	icon_state = "droidscout"
 	move_delay = 2
 	max_integrity = 250
+	spawn_equipped = FALSE
 	var/cloaktimer
 
 /obj/vehicle/unmanned/droid/scout/examine(mob/user, distance, infix, suffix)

@@ -173,7 +173,7 @@ OPERATIONS
 	containertype = null
 
 /datum/supply_packs/operations/droid_combat
-	name = "Combat droid"
+	name = "Combat droid with weapon equipped"
 	contains = list(/obj/vehicle/unmanned/droid)
 	cost = 30
 	containertype = null
