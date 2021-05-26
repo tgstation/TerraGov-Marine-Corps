@@ -1,0 +1,4 @@
+author: "Walarks"
+delete-after: True
+changes: 
+  - code_imp: "added SSpersistence and support for real-time-based progression of stuff"
