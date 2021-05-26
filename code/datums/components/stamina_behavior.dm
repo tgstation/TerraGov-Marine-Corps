@@ -35,16 +35,6 @@
 	stamina_state = STAMINA_STATE_IDLE
 	UnregisterSignal(parent, list(COMSIG_MOVABLE_MOVED, COMSIG_LIVING_SET_CANMOVE))
 
-
-/datum/component/stamina_behavior/proc/on_canmove_change(datum/source, canmove)
-	SIGNAL_HANDLER
-	var/mob/living/stamina_holder = parent
-	if(canmove || stamina_holder.m_intent == MOVE_INTENT_WALK)
-		return
-	stamina_holder.toggle_move_intent(MOVE_INTENT_WALK)
-
-
-
 /datum/component/stamina_behavior/proc/on_move_run(datum/source, atom/oldloc, direction, Forced)
 	SIGNAL_HANDLER
 	if(Forced)
@@ -54,3 +44,11 @@
 		return
 	if(stamina_holder.staminaloss >= 0)
 		stamina_holder.toggle_move_intent(MOVE_INTENT_WALK)
+
+
+/datum/component/stamina_behavior/proc/on_canmove_change(datum/source, canmove)
+	SIGNAL_HANDLER
+	var/mob/living/stamina_holder = parent
+	if(canmove || stamina_holder.m_intent == MOVE_INTENT_WALK)
+		return
+	stamina_holder.toggle_move_intent(MOVE_INTENT_WALK)
