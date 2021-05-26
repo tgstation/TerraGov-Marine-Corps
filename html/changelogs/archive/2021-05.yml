@@ -359,3 +359,25 @@
   - code_imp: Tail Sweep cosmetics/sound improved.
   - bugfix: Evasion now fails as it should if the runner is targeted by flamethrower
       projectiles, or hasn't moved in the past 0.5 seconds.
+2021-05-26:
+  Alterist:
+  - bugfix: Fixes Theseus Issues
+  - rscadd: To celebrate the 10th anniversary of the Battle of LV-426, TerraGov have
+      teamed up with everyone's favourite toy manufacturer, Cuddles Corporation, to
+      produce a limited edition (not really) Runner plushie. Get yours today!
+  - rscadd: also adds Fumos, sprited by Infared on the CEV Eris Discord
+  BraveMole:
+  - code_imp: Minimap support for factions
+  - code_imp: Squad hud support for factions
+  - code_imp: Overwatch support for factions
+  - bugfix: Fix minimap being duplicated when changing job/squad
+  - balance: Psy drain from 60 psy points to 40
+  - balance: Cocoon now only works for 5 minutes, so it produces 80 points rather
+      than 160 but is less risky to make
+  - balance: Psy points generated from generators are reduced by 25%
+  jroinc:
+  - rscadd: Nanoblood
+  - rscadd: Medic Blood vendor access
+  - rscdel: Removed QC+ and peri+ from the wrenchable vendor. Medics, quiver in fear!
+  - balance: rebalanced many chems, and changed a few autoinjectors, details in main
+      PR body
