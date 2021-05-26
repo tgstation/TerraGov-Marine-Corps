@@ -10,8 +10,8 @@
 #define MINER_RESISTANT	"reinforced components"
 #define MINER_OVERCLOCKED "high-efficiency drill"
 
-#define PHORON_CRATE_SELL_AMOUNT 15
-#define PLATINUM_CRATE_SELL_AMOUNT 30
+#define PHORON_CRATE_SELL_AMOUNT 0.5
+#define PLATINUM_CRATE_SELL_AMOUNT 1
 
 ///Resource generator that produces a certain material that can be repaired by marines and attacked by xenos, Intended as an objective for marines to play towards to get more req gear
 /obj/machinery/miner
@@ -93,7 +93,7 @@
 			required_ticks = 60
 		if(MINER_AUTOMATED)
 			if(stored_mineral)
-				SSpoints.supply_points[faction] += mineral_value * stored_mineral
+				SSpoints.supply_points[faction] += mineral_value * stored_mineral * get_active_player_count()
 				do_sparks(5, TRUE, src)
 				playsound(loc,'sound/effects/phasein.ogg', 50, FALSE)
 				say("Ore shipment has been sold for [mineral_value * stored_mineral] points.")
@@ -245,7 +245,7 @@
 		to_chat(user, "<span class='warning'>[src] is not ready to produce a shipment yet!</span>")
 		return
 
-	SSpoints.supply_points[faction] += mineral_value * stored_mineral
+	SSpoints.supply_points[faction] += mineral_value * stored_mineral * get_active_player_count()
 	do_sparks(5, TRUE, src)
 	playsound(loc,'sound/effects/phasein.ogg', 50, FALSE)
 	say("Ore shipment has been sold for [mineral_value * stored_mineral] points.")
@@ -261,7 +261,7 @@
 			for(var/direction in GLOB.cardinals)
 				if(!isopenturf(get_step(loc, direction))) //Must be open on one side to operate
 					continue
-				SSpoints.supply_points[faction] += mineral_value
+				SSpoints.supply_points[faction] += mineral_value * get_active_player_count()
 				do_sparks(5, TRUE, src)
 				playsound(loc,'sound/effects/phasein.ogg', 50, FALSE)
 				say("Ore shipment has been sold for [mineral_value] points.")
