@@ -25,8 +25,9 @@
 	camera = new
 	camera.network += list("marine")
 	if(spawn_equipped_type)
-		turret_type = spawn_equipped_type
+		turret_type = initial(spawn_equipped_type.turret_type)
 		ammo = GLOB.ammo_list[initial(spawn_equipped_type.ammo_type)]
+		update_icon()
 
 /obj/vehicle/unmanned/droid/Destroy()
 	. = ..()
@@ -70,7 +71,7 @@
 	icon_state = "droidscout"
 	move_delay = 2
 	max_integrity = 250
-	spawn_equipped = FALSE
+	spawn_equipped_type = null
 	var/cloaktimer
 
 /obj/vehicle/unmanned/droid/scout/examine(mob/user, distance, infix, suffix)

@@ -182,7 +182,13 @@ OPERATIONS
 	name = "Droid weapon"
 	contains = list(/obj/item/uav_turret/droid)
 	cost = 10
-	containertype = null
+	containertype = /obj/structure/closet/crate/weapon
+
+/datum/supply_packs/operations/droid_remote
+	name = "Droid remote"
+	contains = list(/obj/item/unmanned_vehicle_remote)
+	cost = 10
+	containertype = /obj/structure/closet/crate/weapon
 
 /*******************************************************************************
 WEAPONS

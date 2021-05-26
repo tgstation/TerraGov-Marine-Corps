@@ -317,7 +317,7 @@
 	droid.on_unlink(src)
 	droid = null
 
-/mob/living/silicon/ai/proc/link_with_droid(var/obj/vehicle/unmanned/droid/_droid)
+/mob/living/silicon/ai/proc/link_with_droid(obj/vehicle/unmanned/droid/_droid)
 	droid = _droid
 	RegisterSignal(droid, COMSIG_PARENT_QDELETING, .proc/clear_droid)
 	droid.on_link(src)
@@ -326,6 +326,7 @@
 
 /datum/action/control_droid
 	name = "Select droid to control"
+	action_icon_state = "enter_droid"
 
 /datum/action/control_droid/action_activate()
 	. = ..()
