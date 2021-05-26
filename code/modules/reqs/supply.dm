@@ -218,6 +218,15 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 	flags_equip_slot = ITEM_SLOT_POCKET
 	w_class = WEIGHT_CLASS_NORMAL
 	var/datum/supply_ui/SU
+	///Id of the shuttle controlled
+	var/shuttle_id = "supply"
+	/// Id of the home docking port
+	var/home_id = "supply_home"
+
+/obj/item/supplytablet/rebel
+	req_access = list(ACCESS_MARINE_CARGO_REBEL)
+	shuttle_id = "supply_rebel"
+	home_id = "supply_home_rebel"
 
 /obj/item/supplytablet/interact(mob/user)
 	. = ..()
@@ -227,6 +236,8 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 		return
 	if(!SU)
 		SU = new(src)
+		SU.shuttle_id = shuttle_id
+		SU.home_id = home_id
 	return SU.interact(user)
 
 /obj/machinery/computer/supplycomp
