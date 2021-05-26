@@ -57,31 +57,19 @@
 		return
 
 	var/list/modifiers = params2list(params)
-	if(modifiers["shift"] && modifiers["middle"])
-		ShiftMiddleClickOn(A)
-		return
 	if(modifiers["shift"] && modifiers["ctrl"])
 		CtrlShiftClickOn(A)
 		return
-	if(modifiers["ctrl"] && modifiers["middle"])
-		CtrlMiddleClickOn(A)
+	if(modifiers["middle"])
 		return
-	if(modifiers["middle"] && MiddleClickOn(A))
-		return
-	if(modifiers["shift"] && modifiers["right"])
-		ShiftRightClickOn(A)
-		return
-	if(modifiers["shift"] && ShiftClickOn(A))
-		return
-	if(modifiers["alt"] && modifiers["right"])
-		AltRightClickOn(A)
-		return
-	if(modifiers["alt"] && AltClickOn(A))
+	if(modifiers["shift"])
+		ShiftClickOn(A)
 		return
 	if(modifiers["ctrl"])
 		CtrlClickOn(A)
 		return
-	if(modifiers["right"] && RightClickOn(A))
+	if(modifiers["alt"]) // alt and alt-gr (rightalt)
+		AltClickOn(A)
 		return
 
 	if(world.time <= next_move)
