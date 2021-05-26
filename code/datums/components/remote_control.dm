@@ -5,8 +5,10 @@
 	var/atom/movable/controlled
 	///whether the component is currently active or not
 	var/is_controlling = FALSE
-	///Callback to be run when user clicks somewhere while remote controlling
-	var/datum/callback/click_proc
+	///Callback to be run when user left clicks somewhere while remote controlling
+	var/datum/callback/left_click_proc
+	///Callback to be run when user right clicks somewhere while remote controlling
+	var/datum/callback/right_click_proc
 
 
 /datum/component/remote_control/Initialize(atom/movable/controlled, type)
@@ -14,8 +16,9 @@
 	if(!ismovableatom(controlled))
 		return COMPONENT_INCOMPATIBLE
 	src.controlled = controlled
-	update_clickproc(null, type)
-	RegisterSignal(controlled, COMSIG_UNMANNED_TURRET_UPDATED, .proc/update_clickproc)
+	update_left_clickproc(null, type)
+	RegisterSignal(controlled, COMSIG_UNMANNED_TURRET_UPDATED, .proc/update_right_clickproc)
+	RegisterSignal(controlled, COMSIG_UNMANNED_ABILITY_UPDATED, .proc/update_left_clickproc)
 	RegisterSignal(parent, COMSIG_REMOTECONTROL_TOGGLE, .proc/toggle_remote_control)
 	RegisterSignal(controlled, list(COMSIG_PARENT_QDELETING, COMSIG_REMOTECONTROL_UNLINK), .proc/on_control_terminate)
 
@@ -23,7 +26,8 @@
 	if(is_controlling)
 		remote_control_off()
 	controlled = null
-	click_proc = null
+	left_click_proc = null
+	right_click_proc = null
 	return ..()
 
 ///Called when Controlling should not be resumed and deleted the component
@@ -33,33 +37,34 @@
 
 
 ///Updates the clickproc to a passed type of turret
-/datum/component/remote_control/proc/update_clickproc(datum/source, type)
+/datum/component/remote_control/proc/update_right_clickproc(datum/source, type)
 	SIGNAL_HANDLER
 	switch(type)
 		if(TURRET_TYPE_HEAVY, TURRET_TYPE_LIGHT, TURRET_TYPE_DROIDLASER)
-			click_proc = CALLBACK(src, .proc/uv_handle_click)
+			left_click_proc = CALLBACK(src, .proc/uv_handle_click)
 		if(TURRET_TYPE_EXPLOSIVE)
-			click_proc = CALLBACK(src, .proc/uv_handle_click_explosive)
+			left_click_proc = CALLBACK(src, .proc/uv_handle_click_explosive)
 		else
-			click_proc = null
+			left_click_proc = null
+
+
+///Updates the clickproc to a passed type of ability
+/datum/component/remote_control/proc/update_left_clickproc(datum/source, type)
+	SIGNAL_HANDLER
+	if(type == CLOAK_ABILITY)
+		right_click_proc = CALLBACK(controlled, /obj/vehicle/unmanned/droid/scout/proc/cloak_drone)
+		return
+	right_click_proc = null
 
 ///called when a shooty turret attempts to shoot by click
 /datum/component/remote_control/proc/uv_handle_click(mob/user, atom/target, params)
-	var/list/modifiers = params2list(params)
-	if(modifiers["shift"] || modifiers["right"] || modifiers["alt"] || modifiers["ctrl"])
-		return FALSE
 	var/obj/vehicle/unmanned/T = controlled
 	T.fire_shot(target, user)
-	return TRUE
 
 ///Called when a explosive vehicle clicks and tries to explde itself
 /datum/component/remote_control/proc/uv_handle_click_explosive(mob/user, atom/target, params)
-	var/list/modifiers = params2list(params)
-	if(modifiers["shift"] || modifiers["right"] || modifiers["alt"] || modifiers["ctrl"])
-		return FALSE
 	explosion(get_turf(controlled), 1, 2, 3, 4)
 	remote_control_off()
-	return TRUE
 
 ///Self explanatory, toggles remote control
 /datum/component/remote_control/proc/toggle_remote_control(datum/source, mob/user)
@@ -87,9 +92,14 @@
 ///Invokes the callback for when the controller clicks
 /datum/component/remote_control/proc/invoke(datum/source, atom/target, params)
 	SIGNAL_HANDLER
-	if(target != parent)
-		return click_proc?.Invoke(source, target, params) ? COMSIG_MOB_CLICK_CANCELED : NONE
-	return NONE
+	if(target == parent)
+		return NONE
+	var/list/modifiers = params2list(params)
+	if(modifiers["shift"] || modifiers["alt"] || modifiers["ctrl"])
+		return NONE
+	if(modifiers["left"])
+		return left_click_proc?.Invoke(source, target, params) ? COMSIG_MOB_CLICK_CANCELED : NONE
+	return right_click_proc?.Invoke(source, target, params) ? COMSIG_MOB_CLICK_CANCELED : NONE
 
 ///turns remote control off
 /datum/component/remote_control/proc/remote_control_off()

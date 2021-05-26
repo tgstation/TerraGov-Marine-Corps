@@ -208,6 +208,7 @@
 #define COMSIG_PORTGEN_PROCESS "portgen_process"				/// from /obj/machinery/power/port_gen/process: ()
 
 #define COMSIG_UNMANNED_TURRET_UPDATED "unmanned_turret_update" /// from /obj/vehicle/unmanned/attackby: (newtype)
+#define COMSIG_UNMANNED_ABILITY_UPDATED "unmanned_ability_update"
 
 // /obj/item signals
 #define COMSIG_ITEM_ATTACK "item_attack"						//from base of obj/item/attack(): (/mob/living/target, /mob/living/user)
