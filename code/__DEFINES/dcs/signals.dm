@@ -612,6 +612,8 @@
 #define COMSIG_KB_HOLSTER "keybinding_holster"
 #define COMSIG_KB_UNIQUEACTION "keybinding_uniqueaction"
 #define COMSIG_KB_RAILATTACHMENT "keybinding_railattachment"
+#define COMSIG_KB_UNDERRAILATTACHMENT "keybinding_underrailattachment"
+#define COMSIG_KB_UNLOADGUN "keybinding_unloadgun"
 #define COMSIG_KB_AIMMODE "keybinding_aimmode"
 
 // Ability adding/removing signals
