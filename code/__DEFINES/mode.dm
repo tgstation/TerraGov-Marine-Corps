@@ -125,7 +125,10 @@
 #define SILO_PRICE 1200
 #define XENO_TURRET_PRICE 150
 
-#define SMALL_SILO_MAXIMUM_PLAYER_COUNT 30
+/// How each alive marine contributes to burrower larva output per minute
+#define SILO_BASE_OUTPUT_PER_MARINE 1
+/// This is used to ponderate the number of silo, so to reduces the diminishing returns of having more and more silos
+#define SILO_OUTPUT_PONDERATION 2.25
 
 //The minimum round time before siloless timer can start (13:00)
 #define MINIMUM_TIME_SILO_LESS_COLLAPSE 36000
