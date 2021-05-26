@@ -21,11 +21,11 @@ SUBSYSTEM_DEF(persistence)
 	///Available gun seasons
 	var/list/seasons_buckets = list(
 		SEASONAL_GUNS = list(
-		/datum/season_datum/weapons/guns/pistol_var_one,
-		/datum/season_datum/weapons/guns/rifle_var_one,
-		/datum/season_datum/weapons/guns/pistol_var_two,
-		/datum/season_datum/weapons/guns/rifle_var_two,
-		/datum/season_datum/weapons/guns/pistol_var_three,
+		/datum/season_datum/weapons/guns/pistol_seasonal_one,
+		/datum/season_datum/weapons/guns/rifle_seasonal_one,
+		/datum/season_datum/weapons/guns/pistol_seasonal_two,
+		/datum/season_datum/weapons/guns/rifle_seasonal_two,
+		/datum/season_datum/weapons/guns/pistol_seasonal_three,
 		)
 	)
 
@@ -94,7 +94,7 @@ SUBSYSTEM_DEF(persistence)
 	///Items that the season contains
 	var/list/item_list = list()
 
-/datum/season_datum/weapons/guns/rifle_var_one
+/datum/season_datum/weapons/guns/rifle_seasonal_one
 	name = "rifles bucket 1"
 	description = "Rifle guns, previously at import"
 	item_list = list(
@@ -104,7 +104,7 @@ SUBSYSTEM_DEF(persistence)
 		/obj/item/ammo_magazine/rifle/m16 = -1,
 		)
 
-/datum/season_datum/weapons/guns/rifle_var_two
+/datum/season_datum/weapons/guns/rifle_seasonal_two
 	name = "rifles bucket 2"
 	description = "Rifle guns, previously at import"
 	item_list = list(
@@ -114,7 +114,7 @@ SUBSYSTEM_DEF(persistence)
 		/obj/item/ammo_magazine/smg/uzi = -1,
 		)
 
-/datum/season_datum/weapons/guns/pistol_var_one
+/datum/season_datum/weapons/guns/pistol_seasonal_one
 	name = "pistols bucket 1"
 	description = "Pistol guns, previously at import"
 	item_list = list(
@@ -124,7 +124,7 @@ SUBSYSTEM_DEF(persistence)
 		/obj/item/ammo_magazine/revolver = -1,
 		)
 
-/datum/season_datum/weapons/guns/pistol_var_two
+/datum/season_datum/weapons/guns/pistol_seasonal_two
 	name = "pistols bucket 2"
 	description = "Pistol guns, previously at import"
 	item_list = list(
@@ -134,7 +134,7 @@ SUBSYSTEM_DEF(persistence)
 		/obj/item/ammo_magazine/pistol/heavy = -1,
 		)
 
-/datum/season_datum/weapons/guns/pistol_var_three
+/datum/season_datum/weapons/guns/pistol_seasonal_three
 	name = "pistols bucket 3"
 	description = "Pistol guns, previously at import"
 	item_list = list(
