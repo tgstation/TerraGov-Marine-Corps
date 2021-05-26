@@ -166,6 +166,24 @@ OPERATIONS
 	containertype = null
 	available_against_xeno_only = TRUE
 
+/datum/supply_packs/operations/droid_scout
+	name = "Scout droid"
+	contains = list(/obj/vehicle/unmanned/droid/scout)
+	cost = 30
+	containertype = null
+
+/datum/supply_packs/operations/droid_combat
+	name = "Combat droid"
+	contains = list(/obj/vehicle/unmanned/droid)
+	cost = 30
+	containertype = null
+
+/datum/supply_packs/operations/droid_weapon
+	name = "Droid weapon"
+	contains = list(/obj/item/uav_turret/droid)
+	cost = 10
+	containertype = null
+
 /*******************************************************************************
 WEAPONS
 *******************************************************************************/

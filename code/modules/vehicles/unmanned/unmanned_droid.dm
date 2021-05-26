@@ -7,7 +7,26 @@
 	anchored = TRUE // no wheels
 	turret_pattern = PATTERN_DROID
 	gunnoise = 'sound/weapons/guns/fire/laser.ogg'
+	light_system = MOVABLE_LIGHT
+	light_range = 5
+	light_power = 3
+	/// The camera attached to the droid
+	var/obj/machinery/camera/camera
+	/// Serial number of the droid
+	var/static/serial = 1
 
+/obj/vehicle/unmanned/droid/Initialize()
+	. = ..()
+	name = name + " " + num2text(serial)
+	serial++
+	GLOB.droids += src
+	camera = new
+	camera.network += list("marine") 
+
+/obj/vehicle/unmanned/droid/Destroy()
+	. = ..()
+	QDEL_NULL(camera)
+	GLOB.droids -= src
 
 /obj/vehicle/unmanned/droid/process() //play beepy noise every 5 seconds for effect while active
 	if(prob(40))
@@ -28,10 +47,12 @@
 /obj/vehicle/unmanned/droid/proc/on_remote_toggle(datum/source, is_on, mob/user)
 	SIGNAL_HANDLER
 	if(is_on)
+		set_light_on(TRUE)
 		playsound(src, 'sound/machines/drone/weapons_engaged.ogg', 70)
 		START_PROCESSING(SSslowprocess, src)
 		user.overlay_fullscreen("machine", /obj/screen/fullscreen/machine)
 	else
+		set_light_on(FALSE)
 		playsound(src, 'sound/machines/drone/droneoff.ogg', 70)
 		STOP_PROCESSING(SSslowprocess, src)
 		user.clear_fullscreen("machine", 5)

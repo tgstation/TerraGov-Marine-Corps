@@ -45,6 +45,8 @@
 	var/datum/trackable/track
 	///Selected order to give to marine
 	var/datum/action/innate/order/current_order
+	/// The current controlled droid
+	var/obj/vehicle/unmanned/droid/droid
 
 
 /mob/living/silicon/ai/Initialize(mapload, ...)
@@ -86,6 +88,8 @@
 	send_defend_order.give_action(src)
 	send_retreat_order.target = src
 	send_retreat_order.give_action(src)
+	var/datum/action/control_droid/control = new
+	control.give_action(src)
 
 /mob/living/silicon/ai/Destroy()
 	GLOB.ai_list -= src
@@ -305,3 +309,34 @@
 		return FALSE
 
 	return GLOB.cameranet.checkTurfVis(get_turf(A))
+
+/// Signal handler to clear droid and stop remote control
+/mob/living/silicon/ai/proc/clear_droid()
+	SIGNAL_HANDLER
+	UnregisterSignal(droid, COMSIG_PARENT_QDELETING)
+	droid.on_unlink(src)
+	droid = null
+
+/mob/living/silicon/ai/proc/link_with_droid(var/obj/vehicle/unmanned/droid/_droid)
+	droid = _droid
+	RegisterSignal(droid, COMSIG_PARENT_QDELETING, .proc/clear_droid)
+	droid.on_link(src)
+	AddComponent(/datum/component/remote_control, droid, droid.turret_type)
+	SEND_SIGNAL(src, COMSIG_REMOTECONTROL_TOGGLE, src)
+
+/datum/action/control_droid
+	name = "Select droid to control"
+
+/datum/action/control_droid/action_activate()
+	. = ..()
+	var/mob/living/silicon/ai/ai = owner
+	if(ai.droid)
+		SEND_SIGNAL(ai, COMSIG_REMOTECONTROL_TOGGLE, ai)
+		ai.clear_droid()
+		return
+	if(!length(GLOB.droids))
+		to_chat(ai, "<span class='warning'>No droids detected</span>")
+		return
+	var/obj/vehicle/unmanned/droid/droid = tgui_input_list(ai, "What droid do you want to control?","Droid choice", GLOB.droids)
+	if(droid)
+		ai.link_with_droid(droid)

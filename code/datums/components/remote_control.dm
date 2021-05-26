@@ -45,13 +45,21 @@
 
 ///called when a shooty turret attempts to shoot by click
 /datum/component/remote_control/proc/uv_handle_click(mob/user, atom/target, params)
+	var/list/modifiers = params2list(params)
+	if(modifiers["shift"] || modifiers["right"] || modifiers["alt"] || modifiers["ctrl"])
+		return FALSE
 	var/obj/vehicle/unmanned/T = controlled
 	T.fire_shot(target, user)
+	return TRUE
 
 ///Called when a explosive vehicle clicks and tries to explde itself
 /datum/component/remote_control/proc/uv_handle_click_explosive(mob/user, atom/target, params)
+	var/list/modifiers = params2list(params)
+	if(modifiers["shift"] || modifiers["right"] || modifiers["alt"] || modifiers["ctrl"])
+		return FALSE
 	explosion(get_turf(controlled), 1, 2, 3, 4)
 	remote_control_off()
+	return TRUE
 
 ///Self explanatory, toggles remote control
 /datum/component/remote_control/proc/toggle_remote_control(datum/source, mob/user)
@@ -80,8 +88,7 @@
 /datum/component/remote_control/proc/invoke(datum/source, atom/target, params)
 	SIGNAL_HANDLER
 	if(target != parent)
-		click_proc?.Invoke(source, target, params)
-		return COMSIG_MOB_CLICK_CANCELED
+		return click_proc?.Invoke(source, target, params) ? COMSIG_MOB_CLICK_CANCELED : NONE
 	return NONE
 
 ///turns remote control off

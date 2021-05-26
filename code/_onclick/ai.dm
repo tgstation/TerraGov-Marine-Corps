@@ -24,6 +24,9 @@
 		return
 	next_click = world.time + 1
 
+	if(SEND_SIGNAL(src, COMSIG_MOB_CLICKON, A, params) & COMSIG_MOB_CLICK_CANCELED)
+		return
+
 	if(!can_interact_with(A))
 		return
 
@@ -54,19 +57,31 @@
 		return
 
 	var/list/modifiers = params2list(params)
+	if(modifiers["shift"] && modifiers["middle"])
+		ShiftMiddleClickOn(A)
+		return
 	if(modifiers["shift"] && modifiers["ctrl"])
 		CtrlShiftClickOn(A)
 		return
-	if(modifiers["middle"])
+	if(modifiers["ctrl"] && modifiers["middle"])
+		CtrlMiddleClickOn(A)
 		return
-	if(modifiers["shift"])
-		ShiftClickOn(A)
+	if(modifiers["middle"] && MiddleClickOn(A))
+		return
+	if(modifiers["shift"] && modifiers["right"])
+		ShiftRightClickOn(A)
+		return
+	if(modifiers["shift"] && ShiftClickOn(A))
+		return
+	if(modifiers["alt"] && modifiers["right"])
+		AltRightClickOn(A)
+		return
+	if(modifiers["alt"] && AltClickOn(A))
 		return
 	if(modifiers["ctrl"])
 		CtrlClickOn(A)
 		return
-	if(modifiers["alt"]) // alt and alt-gr (rightalt)
-		AltClickOn(A)
+	if(modifiers["right"] && RightClickOn(A))
 		return
 
 	if(world.time <= next_move)
