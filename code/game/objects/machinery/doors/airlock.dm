@@ -2,10 +2,12 @@
 	name = "\improper Airlock"
 	icon = 'icons/obj/doors/Doorint.dmi'
 	icon_state = "door_closed"
+	soft_armor = list("melee" = 20, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 100, "rad" = 0, "fire" = 100, "acid" = 0)
 	power_channel = ENVIRON
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 5
 	active_power_usage = 360
+	flags_atom = HTML_USE_INITAL_ICON_1
 
 	var/aiControlDisabled = 0 //If 1, AI control is disabled until the AI hacks back in and disables the lock. If 2, the AI has bypassed the lock. If -1, the control is enabled but the AI had bypassed it earlier, so if it is disabled again the AI would have no trouble getting back in.
 	var/hackProof = 0 // if 1, this door can't be hacked by the AI

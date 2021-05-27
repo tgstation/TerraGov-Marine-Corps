@@ -20,7 +20,7 @@
 	var/sortkey = "name"
 
 
-/obj/machinery/computer/crew/update_icon()
+/obj/machinery/computer/crew/update_icon_state()
 	if(machine_stat & (BROKEN|DISABLED))
 		icon_state = "crewb"
 	else if(machine_stat & NOPOWER)

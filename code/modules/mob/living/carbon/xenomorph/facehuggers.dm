@@ -277,7 +277,7 @@
 			E.deploy_egg_triggers()
 			go_idle(TRUE)
 			return FALSE
-		var/obj/effect/alien/resin/trap/T = locate() in loc
+		var/obj/structure/xeno/trap/T = locate() in loc
 		if(T && !T.hugger)
 			visible_message("<span class='xenowarning'>[src] crawls into [T]!</span>")
 			forceMove(T)
@@ -366,20 +366,26 @@
 	return TRUE
 
 /mob/living/carbon/xenomorph/can_be_facehugged(obj/item/clothing/mask/facehugger/F, check_death = TRUE, check_mask = TRUE, provoked = FALSE)
+	if(!F.combat_hugger) //Only combat huggers will attack aliens
+		return FALSE
+
+	if(check_death && stat == DEAD) //Don't attack dead aliens
+		return FALSE
+
 	if(F.issamexenohive(src)) //Check for our hive
 		return FALSE
 
 	return ..()
 
 /mob/living/carbon/human/can_be_facehugged(obj/item/clothing/mask/facehugger/F, check_death = TRUE, check_mask = TRUE, provoked = FALSE)
-	if((status_flags & (XENO_HOST|GODMODE)) || F.stat == DEAD)
-		return FALSE
-
 	if(check_death && stat == DEAD)
 		return FALSE
 
 	if(F.combat_hugger) //Combat huggers will attack anything else
 		return TRUE
+
+	if((status_flags & (XENO_HOST|GODMODE)) || F.stat == DEAD)
+		return FALSE
 
 	if(!provoked)
 		if(species?.species_flags & IS_SYNTHETIC)

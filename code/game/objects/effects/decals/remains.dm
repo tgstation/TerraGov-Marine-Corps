@@ -24,3 +24,12 @@
 	icon_state = "remainsrobot"
 	anchored = TRUE
 	layer = BELOW_OBJ_LAYER
+
+/obj/effect/decal/remains/marauder
+	name = "remains"
+	desc = "They look like the remains of some kind of brass construct. Even now, their eye seems to emit a faint red glow."
+	gender = PLURAL
+	icon = 'icons/mob/robots.dmi'
+	icon_state = "remainsmarauder"
+	anchored = TRUE
+	layer = BELOW_OBJ_LAYER

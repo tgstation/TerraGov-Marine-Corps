@@ -2,9 +2,11 @@
 	var/name = ""
 	var/config_tag = null
 	var/votable = TRUE
-	var/probability = 0
 	var/required_players = 0
+	var/maximum_players = INFINITY
 	var/squads_max_number = 4
+	///Determines whether rounds with the gamemode will be factored in when it comes to persistency
+	var/allow_persistence_save = TRUE
 
 	var/round_finished
 	var/list/round_end_states = list()
@@ -13,6 +15,7 @@
 	var/round_time_fog
 	var/flags_round_type = NONE
 	var/flags_landmarks = NONE
+	var/flags_xeno_abilities = NONE
 
 	var/distress_cancelled = FALSE
 
@@ -50,8 +53,6 @@
 
 
 /datum/game_mode/proc/pre_setup()
-	if(flags_landmarks & MODE_LANDMARK_SPAWN_XENO_TUNNELS)
-		setup_xeno_tunnels()
 
 	if(flags_landmarks & MODE_LANDMARK_SPAWN_MAP_ITEM)
 		spawn_map_items()
@@ -71,9 +72,11 @@
 /datum/game_mode/proc/setup()
 	SSjob.DivideOccupations()
 	create_characters()
-	reset_squads()
 	spawn_characters()
 	transfer_characters()
+	SSpoints.prepare_supply_packs_list(CHECK_BITFIELD(flags_round_type, MODE_HUMAN_ONLY))
+	SSpoints.dropship_points = 0
+	SSpoints.supply_points[FACTION_TERRAGOV] = 0
 	return TRUE
 
 
@@ -148,6 +151,9 @@
 /datum/game_mode/proc/declare_completion()
 	log_game("The round has ended.")
 	SSdbcore.SetRoundEnd()
+	//Collects persistence features
+	if(allow_persistence_save)
+		SSpersistence.CollectData()
 	end_of_round_deathmatch()
 	return TRUE
 
@@ -277,15 +283,6 @@ Sensors indicate [numXenosShip || "no"] unknown lifeform signature[numXenosShip 
 
 #undef BIOSCAN_DELTA
 #undef BIOSCAN_LOCATION
-
-/datum/game_mode/proc/setup_xeno_tunnels()
-	var/i = 0
-	while(length(GLOB.xeno_tunnel_landmarks) && i++ < MAX_TUNNELS_PER_MAP)
-		var/obj/effect/landmark/xeno_tunnel/tunnelmarker = pick(GLOB.xeno_tunnel_landmarks)
-		GLOB.xeno_tunnel_landmarks -= tunnelmarker
-		var/turf/T = tunnelmarker.loc
-		new /obj/structure/tunnel(T)
-
 
 /datum/game_mode/proc/setup_blockers()
 	set waitfor = FALSE
@@ -525,7 +522,7 @@ Sensors indicate [numXenosShip || "no"] unknown lifeform signature[numXenosShip 
 	return FALSE
 
 /datum/game_mode/infestation/distress/is_xeno_in_forbidden_zone(mob/living/carbon/xenomorph/xeno)
-	if(round_stage == DISTRESS_DROPSHIP_CRASHING)
+	if(round_stage == INFESTATION_MARINE_CRASHING)
 		return FALSE
 	if(isxenoresearcharea(get_area(xeno)))
 		return TRUE
@@ -628,6 +625,7 @@ Sensors indicate [numXenosShip || "no"] unknown lifeform signature[numXenosShip 
 	if(XENODEATHTIME_CHECK(xeno_candidate))
 		if(check_other_rights(xeno_candidate.client, R_ADMIN, FALSE))
 			if(tgui_alert(xeno_candidate, "You wouldn't normally qualify for this respawn. Are you sure you want to bypass it with your admin powers?", "Bypass Respawn", list("Yes", "No")) != "Yes")
+				log_admin("[key_name(xeno_candidate)] used his admin power to bypass respawn before his timer was over")
 				XENODEATHTIME_MESSAGE(xeno_candidate)
 				return FALSE
 		else
@@ -676,19 +674,18 @@ Sensors indicate [numXenosShip || "no"] unknown lifeform signature[numXenosShip 
 
 /datum/game_mode/proc/set_valid_squads()
 	var/max_squad_num = min(squads_max_number, SSmapping.configs[SHIP_MAP].squads_max_num)
-	if(max_squad_num >= length(SSjob.squads))
-		SSjob.active_squads = SSjob.squads
-		return TRUE
+	SSjob.active_squads[FACTION_TERRAGOV] = list()
 	if(max_squad_num == 0)
 		return TRUE
-	var/list/preferred_squads = shuffle(SSjob.squads)
-	for(var/s in SSjob.squads)
-		preferred_squads[s] = 1
+	var/list/preferred_squads = list()
+	for(var/key in shuffle(SSjob.squads))
+		var/datum/squad/squad = SSjob.squads[key]
+		if(squad.faction == FACTION_TERRAGOV)
+			preferred_squads += squad
 	if(!length(preferred_squads))
 		to_chat(world, "<span class='boldnotice'>Error, no squads found.</span>")
 		return FALSE
-	for(var/i in GLOB.new_player_list)
-		var/mob/new_player/player = i
+	for(var/mob/new_player/player AS in GLOB.new_player_list)
 		if(!player.ready || !player.client?.prefs?.preferred_squad)
 			continue
 		var/squad_choice = player.client.prefs.preferred_squad
@@ -703,7 +700,7 @@ Sensors indicate [numXenosShip || "no"] unknown lifeform signature[numXenosShip 
 	preferred_squads.len = max_squad_num
 	for(var/s in preferred_squads) //Back from weight to type.
 		preferred_squads[s] = SSjob.squads[s]
-	SSjob.active_squads = preferred_squads.Copy()
+	SSjob.active_squads[FACTION_TERRAGOV] = preferred_squads.Copy()
 
 	return TRUE
 
@@ -711,10 +708,10 @@ Sensors indicate [numXenosShip || "no"] unknown lifeform signature[numXenosShip 
 /datum/game_mode/proc/scale_roles()
 	if(SSjob.ssjob_flags & SSJOB_OVERRIDE_JOBS_START)
 		return FALSE
-	if(length(SSjob.active_squads))
+	if(length(SSjob.active_squads[FACTION_TERRAGOV]))
 		scale_squad_jobs()
 	return TRUE
 
 /datum/game_mode/proc/scale_squad_jobs()
 	var/datum/job/scaled_job = SSjob.GetJobType(/datum/job/terragov/squad/leader)
-	scaled_job.total_positions = length(SSjob.active_squads)
+	scaled_job.total_positions = length(SSjob.active_squads[FACTION_TERRAGOV])

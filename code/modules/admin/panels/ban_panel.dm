@@ -56,7 +56,7 @@
 //doesn't return any details, use only for if statements
 /proc/is_banned_from(player_ckey, list/roles)
 	if(!player_ckey)
-		return
+		return FALSE
 	var/client/C = GLOB.directory[player_ckey]
 	if(C)
 		if(!C.ban_cache)
@@ -94,11 +94,12 @@
 		"}, values)
 		if(!query_check_ban.warn_execute())
 			qdel(query_check_ban)
-			return
+			return FALSE
 		if(query_check_ban.NextRow())
 			qdel(query_check_ban)
 			return TRUE
 		qdel(query_check_ban)
+	return FALSE
 
 
 //checks DB ban table if a ckey, ip and/or cid is banned from a specific role

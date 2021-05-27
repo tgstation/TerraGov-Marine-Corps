@@ -1,6 +1,6 @@
 /datum/emergency_call/upp
 	name = "USL Pirate Band"
-	probability = 0
+	base_probability = 0
 	shuttle_id = "distress_upp"
 	spawn_type = /mob/living/carbon/human/species/moth
 
@@ -60,7 +60,7 @@
 
 /datum/emergency_call/upphvh
 	name = "USL Pirate Band (Human vs. Human)"
-	probability = 0
+	base_probability = 0
 	shuttle_id = "distress_upp"
 	spawn_type = /mob/living/carbon/human/species/moth
 

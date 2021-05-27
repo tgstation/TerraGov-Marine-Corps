@@ -83,12 +83,15 @@ SUBSYSTEM_DEF(monitor)
 			. += stats.sadar_in_use.len * SADAR_PRICE * REQ_POINTS_WEIGHT
 			. += stats.b17_in_use.len * B17_PRICE * REQ_POINTS_WEIGHT
 			. += stats.b18_in_use.len * B18_PRICE * REQ_POINTS_WEIGHT
-			. += SSpoints.supply_points * REQ_POINTS_WEIGHT
+			. += SSpoints.supply_points[FACTION_TERRAGOV] * REQ_POINTS_WEIGHT
 			. += stats.OB_available * OB_AVAILABLE_WEIGHT
 			. += GLOB.xeno_resin_silos.len * SPAWNING_POOL_WEIGHT
-		if(SHIPSIDE, SHUTTERS_CLOSED)	
+		if(SHUTTERS_CLOSED)	
 			. += GLOB.alive_human_list.len * HUMAN_LIFE_WEIGHT_PREGAME
 			. += GLOB.alive_xeno_list.len * XENOS_LIFE_WEIGHT_PREGAME
+		if(SHIPSIDE)	
+			. += GLOB.alive_human_list.len * HUMAN_LIFE_WEIGHT_SHIPSIDE
+			. += GLOB.alive_xeno_list.len * XENOS_LIFE_WEIGHT_SHIPSIDE
 
 ///Keep the monitor informed about the position of humans
 /datum/controller/subsystem/monitor/proc/process_human_positions()

@@ -231,15 +231,15 @@
 	new /obj/item/reagent_containers/glass/bottle/meraderm(src)
 	new /obj/item/reagent_containers/glass/bottle/meraderm(src)
 
-/obj/item/storage/syringe_case/ironsugar
-	name = "syringe case (ironsugar)"
-	desc = "It's a medical case for storing syringes and bottles. This one contains Ironsugar."
+/obj/item/storage/syringe_case/nanoblood
+	name = "syringe case (nanoblood)"
+	desc = "It's a medical case for storing syringes and bottles. This one contains nanoblood."
 
-/obj/item/storage/syringe_case/ironsugar/PopulateContents()
+/obj/item/storage/syringe_case/nanoblood/PopulateContents()
 	. = ..()
 	new /obj/item/reagent_containers/syringe(src)
-	new /obj/item/reagent_containers/glass/bottle/ironsugar(src)
-	new /obj/item/reagent_containers/glass/bottle/ironsugar(src)
+	new /obj/item/reagent_containers/glass/bottle/nanoblood(src)
+	new /obj/item/reagent_containers/glass/bottle/nanoblood(src)
 
 /obj/item/storage/syringe_case/tricordrazine
 	name = "syringe case (tricordrazine)"
@@ -321,11 +321,11 @@
 	icon_state = "pill_canister2"
 	pill_type_to_fill = /obj/item/reagent_containers/pill/kelotane
 
-/obj/item/storage/pill_bottle/keloderm
-	name = "keloderm pill bottle"
+/obj/item/storage/pill_bottle/dermaline
+	name = "dermaline pill bottle"
 	desc = "Contains pills that heal burns, but cause slight pain. Take two to heal faster, but have slightly more pain."
 	icon_state = "pill_canister2"
-	pill_type_to_fill = /obj/item/reagent_containers/pill/keloderm
+	pill_type_to_fill = /obj/item/reagent_containers/pill/dermaline
 
 /obj/item/storage/pill_bottle/dylovene
 	name = "dylovene pill bottle"
@@ -363,11 +363,11 @@
 	icon_state = "pill_canister11"
 	pill_type_to_fill = /obj/item/reagent_containers/pill/bicaridine
 
-/obj/item/storage/pill_bottle/bicamera
-	name = "bicamera pill bottle"
+/obj/item/storage/pill_bottle/meralyne
+	name = "meralyne pill bottle"
 	desc = "Contains pills that heal cuts and bruises, but cause slight pain. Take two to heal faster, but have slightly more pain."
 	icon_state = "pill_canister11"
-	pill_type_to_fill = /obj/item/reagent_containers/pill/bicamera
+	pill_type_to_fill = /obj/item/reagent_containers/pill/meralyne
 
 /obj/item/storage/pill_bottle/dexalin
 	name = "dexalin pill bottle"

@@ -28,6 +28,8 @@
 #define PREVENT_CONTENTS_EXPLOSION	(1<<13)
 /// was this spawned by an admin? used for stat tracking stuff.
 #define ADMIN_SPAWNED			(1<<14)
+/// Should we use the initial icon for display? Mostly used by overlay only objects
+#define HTML_USE_INITAL_ICON_1 (1<<21)
 
 //turf-only flags
 #define NOJAUNT_1					(1<<0)
@@ -56,6 +58,7 @@
 #define SYNTH_RESTRICTED		(1<<8)	//Prevents synths from wearing items with this flag
 #define IMPEDE_JETPACK 		(1<<9)  //Reduce the range of jetpack
 #define DRAINS_XENO				(1<<10)  //Enables the item to collect resource for chem_booster component
+#define CAN_BUMP_ATTACK			(1<<11)	 //Item triggers bump attack
 //==========================================================================================
 
 //flags_inv_hide

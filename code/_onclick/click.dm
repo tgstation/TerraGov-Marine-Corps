@@ -316,8 +316,6 @@ if(selected_ability.target_flags & flagname){\
 
 /mob/living/carbon/xenomorph/proc/ability_target(atom/A)
 	TARGET_FLAGS_MACRO(XABB_MOB_TARGET, /mob/living)
-	TARGET_FLAGS_MACRO(XABB_OBJ_TARGET, /obj)
-	TARGET_FLAGS_MACRO(XABB_WALL_TARGET, /turf/closed/wall)
 	if(selected_ability.target_flags & XABB_TURF_TARGET)
 		return get_turf(A)
 	return A

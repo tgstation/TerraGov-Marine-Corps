@@ -6,6 +6,8 @@
 	if(l_range > 0 && l_range < MINIMUM_USEFUL_LIGHT_RANGE)
 		l_range = MINIMUM_USEFUL_LIGHT_RANGE	//Brings the range up to 1.4, which is just barely brighter than the soft lighting that surrounds players.
 	if (l_power != null)
+
+	if(l_power != null)
 		light_power = l_power
 
 	if (l_range != null)

@@ -152,12 +152,22 @@
 	layer = PODDOOR_OPEN_LAYER
 	icon_state = "shutter0"
 
+/obj/machinery/door/poddoor/shutters/barren
+	resistance_flags = UNACIDABLE
 
 /obj/machinery/door/poddoor/shutters/mainship/pressure
 	name = "pressure shutters"
 	density = FALSE
 	opacity = FALSE
 	resistance_flags = RESIST_ALL
+	icon_state = "shutter0"
+	open_layer = PODDOOR_CLOSED_LAYER
+	closed_layer = PODDOOR_CLOSED_LAYER
+
+/obj/machinery/door/poddoor/shutters/tadpole_cockpit
+	name = "pressure shutters"
+	density = FALSE
+	opacity = FALSE
 	icon_state = "shutter0"
 	open_layer = PODDOOR_CLOSED_LAYER
 	closed_layer = PODDOOR_CLOSED_LAYER
@@ -178,6 +188,9 @@
 /obj/machinery/door/poddoor/shutters/mainship/req/ro
 	name = "\improper RO Line"
 	id = "ROlobby"
+
+/obj/machinery/door/poddoor/shutters/mainship/req/ro/rebel
+	id = "ROlobby_rebel"
 
 /obj/machinery/door/poddoor/shutters/mainship/req/ro1
 	name = "\improper RO Line 1"
@@ -212,6 +225,9 @@
 	name = "\improper Armory Shutters"
 	id = "cic_armory"
 	icon_state = "shutter1"
+
+/obj/machinery/door/poddoor/shutters/mainship/cic/armory/rebel
+	id = "cic_armory_rebel"
 
 /obj/machinery/door/poddoor/shutters/mainship/engineering/armory
 	name = "\improper Engineering Armory Shutters"

@@ -10,6 +10,8 @@
 #define MINER_RESISTANT	"reinforced components"
 #define MINER_OVERCLOCKED "high-efficiency drill"
 
+#define PHORON_CRATE_SELL_AMOUNT 15
+#define PLATINUM_CRATE_SELL_AMOUNT 30
 
 ///Resource generator that produces a certain material that can be repaired by marines and attacked by xenos, Intended as an objective for marines to play towards to get more req gear
 /obj/machinery/miner
@@ -19,7 +21,7 @@
 	density = TRUE
 	icon_state = "mining_drill_active"
 	anchored = TRUE
-	resistance_flags = INDESTRUCTIBLE
+	resistance_flags = INDESTRUCTIBLE | DROPSHIP_IMMUNE
 	///How many sheets of material we have stored
 	var/stored_mineral = 0
 	///Current status of the miner
@@ -29,13 +31,15 @@
 	///How many times we neeed to tick for a resource to be created, in this case this is 2* the specified amount
 	var/required_ticks = 70  //make one crate every 140 seconds
 	///The mineral type that's produced
-	var/mineral_value = 15
+	var/mineral_value = PHORON_CRATE_SELL_AMOUNT
 	///Health for the miner we use because changing obj_integrity is apparently bad
 	var/miner_integrity = 100
 	///Max health of the miner
 	var/max_miner_integrity = 100
 	///What type of upgrade it has installed , used to change the icon of the miner.
 	var/miner_upgrade_type
+	///What faction secured that miner
+	var/faction = FACTION_TERRAGOV
 
 /obj/machinery/miner/damaged	//mapping and all that shebang
 	miner_status = MINER_DESTROYED
@@ -44,10 +48,11 @@
 /obj/machinery/miner/damaged/platinum
 	name = "\improper Nanotrasen platinum Mining Well"
 	desc = "A Nanotrasen platinum drill with an internal export module. Produces even more valuable materials than it's phoron counterpart"
-	mineral_value = 30
+	mineral_value = PLATINUM_CRATE_SELL_AMOUNT
 
 /obj/machinery/miner/Initialize()
 	. = ..()
+	SSminimaps.add_marker(src, z, hud_flags = MINIMAP_FLAG_ALL, iconstate = "miner_[mineral_value >= PLATINUM_CRATE_SELL_AMOUNT ? "platinum" : "phoron"]")
 	start_processing()
 
 /obj/machinery/miner/update_icon()
@@ -64,6 +69,7 @@
 		if(MINER_DESTROYED)
 			icon_state = "mining_drill_error_[miner_upgrade_type]"
 			set_light(MINER_LIGHT_DESTROYED)
+
 /// Called whenever someone attacks the miner with a object which is considered a upgrade.The object needs to have a uptype var.
 /obj/machinery/miner/proc/attempt_upgrade(obj/item/minerupgrade/upgrade, mob/user, params)
 	if(miner_upgrade_type)
@@ -87,7 +93,7 @@
 			required_ticks = 60
 		if(MINER_AUTOMATED)
 			if(stored_mineral)
-				SSpoints.supply_points += mineral_value * stored_mineral
+				SSpoints.supply_points[faction] += mineral_value * stored_mineral
 				do_sparks(5, TRUE, src)
 				playsound(loc,'sound/effects/phasein.ogg', 50, FALSE)
 				say("Ore shipment has been sold for [mineral_value * stored_mineral] points.")
@@ -101,7 +107,6 @@
 
 /obj/machinery/miner/attackby(obj/item/I,mob/user,params)
 	. = ..()
-
 	if(istype(I, /obj/item/minerupgrade))
 		var/obj/item/minerupgrade/upgrade = I
 		if(!(miner_status == MINER_RUNNING))
@@ -207,6 +212,7 @@
 	user.visible_message("<span class='notice'>[user] repairs [src]'s tubing and plating.</span>",
 	"<span class='notice'>You repair [src]'s tubing and plating.</span>")
 	start_processing()
+	faction = user.faction
 	return TRUE
 
 /obj/machinery/miner/examine(mob/user)
@@ -239,7 +245,7 @@
 		to_chat(user, "<span class='warning'>[src] is not ready to produce a shipment yet!</span>")
 		return
 
-	SSpoints.supply_points += mineral_value * stored_mineral
+	SSpoints.supply_points[faction] += mineral_value * stored_mineral
 	do_sparks(5, TRUE, src)
 	playsound(loc,'sound/effects/phasein.ogg', 50, FALSE)
 	say("Ore shipment has been sold for [mineral_value * stored_mineral] points.")
@@ -252,10 +258,16 @@
 		return
 	if(add_tick >= required_ticks)
 		if(miner_upgrade_type == MINER_AUTOMATED)
-			SSpoints.supply_points += mineral_value
-			do_sparks(5, TRUE, src)
-			playsound(loc,'sound/effects/phasein.ogg', 50, FALSE)
-			say("Ore shipment has been sold for [mineral_value] points.")
+			for(var/direction in GLOB.cardinals)
+				if(!isopenturf(get_step(loc, direction))) //Must be open on one side to operate
+					continue
+				SSpoints.supply_points[faction] += mineral_value
+				do_sparks(5, TRUE, src)
+				playsound(loc,'sound/effects/phasein.ogg', 50, FALSE)
+				say("Ore shipment has been sold for [mineral_value] points.")
+				add_tick = 0
+				return
+			playsound(loc,'sound/machines/buzz-two.ogg', 35, FALSE)
 			add_tick = 0
 			return
 		stored_mineral += 1

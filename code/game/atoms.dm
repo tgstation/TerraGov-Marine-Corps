@@ -63,6 +63,11 @@
 	///Any light sources that are "inside" of us, for example, if src here was a mob that's carrying a flashlight, that flashlight's light source would be part of this list.
 	var/tmp/list/hybrid_light_sources
 
+	///The config type to use for greyscaled sprites. Both this and greyscale_colors must be assigned to work.
+	var/greyscale_config
+	///A string of hex format colors to be used by greyscale sprites, ex: "#0054aa#badcff"
+	var/greyscale_colors
+
 	//Values should avoid being close to -16, 16, -48, 48 etc.
 	//Best keep them within 10 units of a multiple of 32, as when the light is closer to a wall, the probability
 	//that a shadow extends to opposite corners of the light mask square is increased, resulting in more shadow
@@ -73,7 +78,6 @@
 	var/light_mask_type = null
 
 	// popup chat messages
-
 	/// Last name used to calculate a color for the chatmessage overlays
 	var/chat_color_name
 	/// Last color calculated for the the chatmessage overlays
@@ -84,6 +88,9 @@
 	var/list/hud_possible
 	///Reference to atom being orbited
 	var/atom/orbit_target
+
+	///The color this atom will be if we choose to draw it on the minimap
+	var/minimap_color = MINIMAP_SOLID
 
 /*
 We actually care what this returns, since it can return different directives.
@@ -328,6 +335,33 @@ directive is properly returned.
 	SHOULD_CALL_PARENT(TRUE)
 	. = list()
 	SEND_SIGNAL(src, COMSIG_ATOM_UPDATE_OVERLAYS, .)
+
+/// Checks if the colors given are different and if so causes a greyscale icon update
+/// The colors argument can be either a list or the full color string
+/atom/proc/set_greyscale_colors(list/colors, update=TRUE)
+	SHOULD_CALL_PARENT(TRUE)
+	if(istype(colors))
+		colors = colors.Join("")
+	if(greyscale_colors == colors)
+		return
+	greyscale_colors = colors
+	if(!greyscale_config)
+		return
+	if(update)
+		update_greyscale()
+
+/// Checks if the greyscale config given is different and if so causes a greyscale icon update
+/atom/proc/set_greyscale_config(new_config, update=TRUE)
+	if(greyscale_config == new_config)
+		return
+	greyscale_config = new_config
+	if(update)
+		update_greyscale()
+
+/// Checks if this atom uses the GAS system and if so updates the icon
+/atom/proc/update_greyscale()
+	if(greyscale_config && greyscale_colors)
+		icon = SSgreyscale.GetColoredIconByType(greyscale_config, greyscale_colors)
 
 // called by mobs when e.g. having the atom as their machine, pulledby, loc (AKA mob being inside the atom) or buckled var set.
 // see code/modules/mob/mob_movement.dm for more.
@@ -639,6 +673,8 @@ Proc for attack log creation, because really why not
 		stack_trace("Warning: [src]([type]) initialized multiple times!")
 	flags_atom |= INITIALIZED
 
+	update_greyscale()
+
 	if(light_system != MOVABLE_LIGHT && light_power && light_range)
 		update_light()
 	if(loc)
@@ -677,7 +713,7 @@ Proc for attack log creation, because really why not
 	.["Modify Transform"] = "?_src_=vars;[HrefToken()];modtransform=[REF(src)]"
 	.["Add reagent"] = "?_src_=vars;[HrefToken()];addreagent=[REF(src)]"
 	.["Modify Filters"] = "?_src_=vars;[HrefToken()];filteredit=[REF(src)]"
-
+	.["Modify Greyscale Colors"] = "?_src_=vars;[HrefToken()];modify_greyscale=[REF(src)]"
 
 /atom/Entered(atom/movable/AM, atom/oldloc)
 	SEND_SIGNAL(src, COMSIG_ATOM_ENTERED, AM, oldloc)

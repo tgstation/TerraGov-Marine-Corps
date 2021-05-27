@@ -19,6 +19,7 @@
 	if(is_zoomed)
 		zoom_out()
 
+	SSminimaps.remove_marker(src)
 	set_light_on(FALSE)
 
 	if(hud_used)

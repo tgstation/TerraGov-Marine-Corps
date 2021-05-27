@@ -93,7 +93,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 
 	var/mob/living/carbon/xenomorph/praetorian/xeno_owner = owner
 	
-	var/obj/effect/xenomorph/spray/spray = new(T, xeno_owner.xeno_caste.acid_spray_duration, xeno_owner.xeno_caste.acid_spray_damage, src)
+	var/obj/effect/xenomorph/spray/spray = new(T, xeno_owner.xeno_caste.acid_spray_duration, xeno_owner.xeno_caste.acid_spray_damage, xeno_owner)
 	var/turf/next_normal_turf = get_step(T, facing)
 	for (var/atom/movable/A AS in T)
 		A.acid_spray_act(owner)

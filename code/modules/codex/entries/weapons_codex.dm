@@ -19,13 +19,13 @@
 	if(general_entry && general_entry.mechanics_text)
 		attach_strings += general_entry.mechanics_text
 
-	if(slot == "muzzle")
+	if(slot == ATTACHMENT_SLOT_MUZZLE)
 		attach_strings += "This attaches to the muzzle slot on most weapons.<br>"
-	if(slot == "rail")
+	if(slot == ATTACHMENT_SLOT_RAIL)
 		attach_strings += "This attaches to the rail slot on most weapons.<br>"
-	if(slot == "stock")
+	if(slot == ATTACHMENT_SLOT_STOCK)
 		attach_strings += "This attaches to the stock slot on most weapons.<br>"
-	if(slot == "under")
+	if(slot == ATTACHMENT_SLOT_UNDER)
 		attach_strings += "This attaches to the underbarrel slot on most weapons.<br>"
 
 	if(flags_attach_features & ATTACH_REMOVABLE)

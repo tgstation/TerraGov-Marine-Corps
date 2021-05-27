@@ -33,6 +33,7 @@
 /// Warm but extremely diluted red. rgb(250, 130, 130)
 #define COLOR_SOFT_RED					"#FA8282"
 #define COLOR_LASER_RED					"#FF8D8D"
+#define COLOR_LASER_BLUE				"#0000FF"
 
 #define COLOR_YELLOW					"#FFFF00"
 #define COLOR_VIVID_YELLOW				"#FBFF23"

@@ -10,6 +10,8 @@
 	var/keybind_signal
 	var/cooldown_id
 	var/target_flags = NONE
+	/// flags to restrict a xeno ability to certain gamemode
+	var/gamemode_flags = ABILITY_ALL_GAMEMODE
 
 /datum/action/xeno_action/New(Target)
 	. = ..()
@@ -172,10 +174,16 @@
 
 
 /datum/action/xeno_action/activable
+	///Alternative keybind signal, that will always select the ability, even ignoring keybind flag
+	var/alternate_keybind_signal
 
 /datum/action/xeno_action/activable/New()
 	. = ..()
 
+/datum/action/xeno_action/activable/give_action(mob/living/L)
+	. = ..()
+	if(alternate_keybind_signal)
+		RegisterSignal(L, alternate_keybind_signal, .proc/select_action)
 
 /datum/action/xeno_action/activable/Destroy()
 	var/mob/living/carbon/xenomorph/X = owner
@@ -183,6 +191,18 @@
 		deselect()
 	return ..()
 
+///Wrapper proc to activate the action and not having sleep issues
+/datum/action/xeno_action/activable/proc/select_action()
+	SIGNAL_HANDLER
+	INVOKE_ASYNC(src, .proc/action_activate)
+
+/datum/action/xeno_action/activable/action_activate()
+	var/mob/living/carbon/xenomorph/X = owner
+	if(X.selected_ability == src)
+		return
+	if(X.selected_ability)
+		X.selected_ability.deselect()
+	select()
 
 /datum/action/xeno_action/activable/keybind_activation()
 	. = COMSIG_KB_ACTIVATED

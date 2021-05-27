@@ -60,6 +60,8 @@
 	cooldown_timer = 20 SECONDS
 	keybind_signal = COMSIG_XENOABILITY_LUNGE
 	target_flags = XABB_MOB_TARGET
+	/// The target of our lunge, we keep it to check if we are adjacent everytime we move
+	var/atom/lunge_target
 
 /datum/action/xeno_action/activable/lunge/on_cooldown_finish()
 	to_chat(owner, "<span class='xenodanger'>We ready ourselves to lunge again.</span>")
@@ -97,24 +99,36 @@
 	"<span class='xenowarning'>We lunge at [A]!</span>")
 
 	X.add_filter("warrior_lunge", 2, gauss_blur_filter(3))
-	var/distance = get_dist(X, A)
 
-	X.throw_at(get_step_towards(A, X), 6, 2, X)
-
-	if(distance > 1) //No zero timers
-		addtimer(CALLBACK(src, .proc/lunge_grab, X, A), min(0.05 SECONDS * max(0.01, distance - 1), 1 SECONDS)) //Minor delay so we're guaranteed to grab
-	else
-		lunge_grab(X,A)
-
+	lunge_target = A
+	RegisterSignal(lunge_target, COMSIG_PARENT_QDELETING, .proc/clean_lunge_target)
+	RegisterSignal(X, COMSIG_MOVABLE_MOVED, .proc/check_if_lunge_possible)
+	RegisterSignal(X, COMSIG_MOVABLE_POST_THROW, .proc/clean_lunge_target)
 	succeed_activate()
 	add_cooldown()
+	X.throw_at(get_step_towards(A, X), 6, 2, X)
 	return TRUE
 
-/datum/action/xeno_action/activable/lunge/proc/lunge_grab(mob/living/carbon/xenomorph/warrior/X, atom/A)
-	X.remove_filter("warrior_lunge")
-	if (!X.Adjacent(A))
+///Check if we are close enough to lunge, and if yes, grab neck
+/datum/action/xeno_action/activable/lunge/proc/check_if_lunge_possible(datum/source)
+	SIGNAL_HANDLER
+	if(!lunge_target.Adjacent(source))
 		return
+	lunge_grab(source, lunge_target)
 
+/// Null lunge target and reset throw vars
+/datum/action/xeno_action/activable/lunge/proc/clean_lunge_target()
+	SIGNAL_HANDLER
+	UnregisterSignal(lunge_target, COMSIG_PARENT_QDELETING)
+	UnregisterSignal(owner, COMSIG_MOVABLE_POST_THROW)
+	lunge_target = null
+	UnregisterSignal(owner, COMSIG_MOVABLE_MOVED)
+	owner.remove_filter("warrior_lunge")
+	owner.stop_throw()
+
+///Do the grab on the target, and clean all previous vars
+/datum/action/xeno_action/activable/lunge/proc/lunge_grab(mob/living/carbon/xenomorph/warrior/X, atom/A)
+	clean_lunge_target()
 	X.swap_hand()
 	X.start_pulling(A, lunge = TRUE)
 	X.swap_hand()
@@ -148,6 +162,9 @@
 		return FALSE
 
 	if(!isliving(A))
+		return FALSE
+	var/mob/living/L = A
+	if(L.stat == DEAD)
 		return FALSE
 
 /datum/action/xeno_action/activable/fling/use_ability(atom/A)

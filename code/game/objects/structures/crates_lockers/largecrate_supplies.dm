@@ -182,6 +182,35 @@
 	desc = "An ammunition case containing six M56D ammunition drums."
 	supplies = list(/obj/item/ammo_magazine/standard_hmg = 6)
 
+/obj/structure/largecrate/supply/ammo/standard_ammo
+	name = "large surplus ammuniton crate"
+	desc = "An ammunition case containing one box of each TGMC brand ammo type."
+	icon_state = "chest"
+	supplies = list(
+			/obj/item/shotgunbox = 1,
+			/obj/item/shotgunbox/buckshot = 1,
+			/obj/item/shotgunbox/flechette = 1,
+			/obj/item/storage/box/visual/magazine/compact/standard_pistol/full = 1,
+			/obj/item/storage/box/visual/magazine/compact/standard_heavypistol/full = 1,
+			/obj/item/storage/box/visual/magazine/compact/standard_revolver/full = 1,
+			/obj/item/storage/box/visual/magazine/compact/standard_pocketpistol/full = 1,
+			/obj/item/storage/box/visual/magazine/compact/vp70/full = 1,
+			/obj/item/storage/box/visual/magazine/compact/plasma_pistol/full = 1,
+			/obj/item/storage/box/visual/magazine/compact/standard_smg/full = 1,
+			/obj/item/storage/box/visual/magazine/compact/standard_machinepistol/full = 1,
+			/obj/item/storage/box/visual/magazine/compact/standard_assaultrifle/full = 1,
+			/obj/item/storage/box/visual/magazine/compact/standard_carbine/full = 1,
+			/obj/item/storage/box/visual/magazine/compact/tx11/full = 1,
+			/obj/item/storage/box/visual/magazine/compact/lasrifle/marine/full = 1,
+			/obj/item/storage/box/visual/magazine/compact/tx15/flechette/full = 1,
+			/obj/item/storage/box/visual/magazine/compact/tx15/slug/full = 1,
+			/obj/item/storage/box/visual/magazine/compact/standard_dmr/full = 1,
+			/obj/item/storage/box/visual/magazine/compact/standard_br/full = 1,
+			/obj/item/storage/box/visual/magazine/compact/chamberedrifle/full = 1,
+			/obj/item/storage/box/visual/magazine/compact/standard_lmg/full = 1,
+			/obj/item/storage/box/visual/magazine/compact/standard_gpmg/full = 1,
+	)
+
 
 
 /obj/structure/largecrate/supply/explosives
@@ -195,9 +224,9 @@
 	supplies = list(/obj/item/storage/box/explosive_mines = 5)
 
 /obj/structure/largecrate/supply/explosives/grenades
-	name = "\improper M40 HDEP grenade case (x50)"
+	name = "\improper M40 HEDP grenade case (x50)"
 	desc = "A case containing two twenty-five M40 HDEP grenade boxes."
-	supplies = list(/obj/item/storage/box/nade_box = 2)
+	supplies = list(/obj/item/storage/box/visual/grenade/frag = 2)
 
 /obj/structure/largecrate/supply/explosives/mortar_he
 	name = "80mm HE mortar shell case (x25)"

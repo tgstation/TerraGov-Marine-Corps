@@ -22,7 +22,7 @@
 	attachable_allowed = list( //give it some flexibility.
 						/obj/item/attachable/flashlight,
 						/obj/item/attachable/magnetic_harness)
-	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
+	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY|GUN_WIELDED_STABLE_FIRING_ONLY
 	gun_skill_category = GUN_SKILL_HEAVY_WEAPONS
 	attachable_offset = list("rail_x" = 12, "rail_y" = 23)
 	fire_delay = 4
@@ -259,7 +259,7 @@
 
 		var/blocked = FALSE
 		for(var/obj/O in T)
-			if(O.density && !O.throwpass && !(O.flags_atom & ON_BORDER))
+			if(O.density && !O.throwpass && !(O.flags_atom & ON_BORDER) && !istype(O, /obj/structure/mineral_door/resin))
 				blocked = TRUE
 				break
 
@@ -426,7 +426,7 @@
 	current_mag = /obj/item/ammo_magazine/flamer_tank/large
 	icon_state = "tl84"
 	item_state = "tl84"
-	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
+	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER|GUN_WIELDED_STABLE_FIRING_ONLY
 	attachable_offset = list("rail_x" = 10, "rail_y" = 23, "stock_x" = 16, "stock_y" = 13)
 	starting_attachment_types = list(
 		/obj/item/attachable/stock/t84stock,
@@ -499,7 +499,7 @@
 
 
 /obj/item/weapon/gun/flamer/marinestandard/unique_action(mob/user)
-	var/obj/item/attachable/hydro_cannon/hydro = under
+	var/obj/item/attachable/hydro_cannon/hydro = LAZYACCESS(attachments, ATTACHMENT_SLOT_UNDER)
 	if(!istype(hydro))
 		return
 	playsound(user, hydro.activation_sound, 15, 1)

@@ -1303,6 +1303,11 @@
 	list_reagents = list(/datum/reagent/consumable/nutriment = 10)
 	tastes = list("the jungle" = 1, "bananas" = 1)
 
+/obj/item/reagent_containers/food/snacks/monkeycube/examine(mob/user)
+	. = ..()
+	if(package)
+		to_chat(user, "It is wrapped in waterproof cellophane. Maybe using it in your hand would tear it off?")
+
 /obj/item/reagent_containers/food/snacks/monkeycube/afterattack(obj/O, mob/user, proximity)
 	if(!proximity)
 		return
@@ -1313,49 +1318,40 @@
 	return ..()
 
 /obj/item/reagent_containers/food/snacks/monkeycube/attack_self(mob/user)
-	if(package)
-		icon_state = "monkeycube"
-		desc = "Just add water!"
-		to_chat(user, "You unwrap the cube.")
-		package = FALSE
+	if(!package)
+		return
+	icon_state = "monkeycube"
+	user.visible_message("<span class='notice'>[user] unwraps [src]", "You unwrap [src].</span>")
+	package = FALSE
 
 /obj/item/reagent_containers/food/snacks/monkeycube/On_Consume(mob/M)
 	to_chat(M, "<span class = 'warning'>Something inside of you suddently expands!</span>")
 
-	if (ishuman(M))
-		//Do not try to understand.
-		var/obj/item/surprise = new(M)
-		var/mob/ook = monkey_type
-		surprise.icon = initial(ook.icon)
-		surprise.icon_state = initial(ook.icon_state)
-		surprise.name = "malformed [initial(ook.name)]"
-		surprise.desc = "Looks like \a very deformed [initial(ook.name)], a little small for its kind. It shows no signs of life."
-		surprise.transform *= 0.6
-		surprise.add_mob_blood(M)
-		var/mob/living/carbon/human/H = M
-		var/datum/limb/E = H.get_limb("chest")
-		E.fracture()
-		for (var/datum/internal_organ/I in E.internal_organs)
-			I.take_damage(rand(I.min_bruised_damage, I.min_broken_damage+1))
-
-		if (!E.hidden && prob(60)) //set it snuggly
-			E.hidden = surprise
-			E.cavity = 0
-		else 		//someone is having a bad day
-			E.createwound(CUT, 30)
-			surprise.embed_into(M, E)
-	else if (ismonkey(M))
-		M.visible_message("<span class='danger'>[M] suddenly tears in half!</span>")
-		var/mob/living/carbon/human/species/monkey/ook = new monkey_type(M.loc)
-		ook.name = "malformed [ook.name]"
-		ook.transform *= 0.6
-		ook.add_mob_blood(M)
-		M.gib()
-	return ..()
+	if(!ishuman(M))
+		return ..()
+	//Do not try to understand.
+	var/obj/item/surprise = new(M)
+	var/mob/ook = monkey_type
+	surprise.icon = initial(ook.icon)
+	surprise.icon_state = initial(ook.icon_state)
+	surprise.name = "malformed [initial(ook.name)]"
+	surprise.desc = "Looks like \a very deformed [initial(ook.name)], a little small for its kind. It shows no signs of life."
+	surprise.transform *= 0.6
+	surprise.add_mob_blood(M)
+	var/mob/living/carbon/human/H = M
+	var/datum/limb/E = H.get_limb("chest")
+	E.fracture()
+	for (var/datum/internal_organ/I in E.internal_organs)
+		I.take_damage(rand(I.min_bruised_damage, I.min_broken_damage+1))
+	if (!E.hidden && prob(60)) //set it snuggly
+		E.hidden = surprise
+		E.cavity = 0
+	else 		//someone is having a bad day
+		E.createwound(CUT, 30)
+		surprise.embed_into(M, E)
 
 /obj/item/reagent_containers/food/snacks/monkeycube/proc/Expand()
-	for(var/mob/M in viewers(src,7))
-		to_chat(M, "<span class='warning'>\The [src] expands!</span>")
+	visible_message("<span class='warning'>\The [src] expands!</span>")
 	var/turf/T = get_turf(src)
 	if(T)
 		new monkey_type(T)
@@ -1380,6 +1376,7 @@
 /obj/item/reagent_containers/food/snacks/monkeycube/stokcube
 	name = "stok cube"
 	monkey_type = /mob/living/carbon/human/species/monkey/stok
+
 /obj/item/reagent_containers/food/snacks/monkeycube/wrapped/stokcube
 	name = "stok cube"
 	monkey_type = /mob/living/carbon/human/species/monkey/stok

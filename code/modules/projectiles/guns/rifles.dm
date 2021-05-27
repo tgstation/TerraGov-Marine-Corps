@@ -18,6 +18,8 @@
 	scatter_unwielded = 40
 	recoil_unwielded = 4
 	damage_falloff_mult = 0.5
+	upper_akimbo_accuracy = 5
+	lower_akimbo_accuracy = 3
 
 
 /obj/item/weapon/gun/rifle/unique_action(mob/user)
@@ -48,7 +50,7 @@
 	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/t18_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/t18_reload.ogg'
-	caliber = "10x24mm caseless" //codex
+	caliber = CALIBER_10X24_CASELESS //codex
 	max_shells = 36 //codex
 	force = 20
 	current_mag = /obj/item/ammo_magazine/rifle/standard_carbine
@@ -111,7 +113,7 @@
 	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/t18_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/t18_reload.ogg'
-	caliber = "10x24mm caseless" //codex
+	caliber = CALIBER_10X24_CASELESS //codex
 	max_shells = 50 //codex
 	force = 20
 	current_mag = /obj/item/ammo_magazine/rifle/standard_assaultrifle
@@ -178,9 +180,9 @@
 	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/m41a_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/m41a_reload.ogg'
-	caliber = "10x27mm caseless" //codex
+	caliber = CALIBER_10x27_CASELESS //codex
 	aim_slowdown = 0.75
-	wield_delay = 1 SECONDS
+	wield_delay = 0.8 SECONDS
 	force = 20
 	max_shells = 10 //codex
 	current_mag = /obj/item/ammo_magazine/rifle/standard_dmr
@@ -213,7 +215,7 @@
 	attachable_offset = list("muzzle_x" = 48, "muzzle_y" = 21,"rail_x" = 21, "rail_y" = 24, "under_x" = 31, "under_y" = 15, "stock_x" = 14, "stock_y" = 10)
 	actions_types = list(/datum/action/item_action/aim_mode)
 	aim_fire_delay = 0.2 SECONDS
-	aim_speed_modifier = 3
+	aim_speed_modifier = 2
 
 	fire_delay = 0.8 SECONDS
 	accuracy_mult = 1.25
@@ -239,7 +241,7 @@
 	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/m41a_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/m41a_reload.ogg'
-	caliber = "10x27mm caseless" //codex
+	caliber = CALIBER_10x27_CASELESS //codex
 	aim_slowdown = 0.55
 	wield_delay = 0.7 SECONDS
 	force = 20
@@ -296,7 +298,7 @@
 	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/m41a_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/m41a_reload.ogg'
-	caliber = "10x24mm caseless" //codex
+	caliber = CALIBER_10X24_CASELESS //codex
 	max_shells = 40 //codex
 	current_mag = /obj/item/ammo_magazine/rifle
 	attachable_allowed = list(
@@ -428,7 +430,7 @@
 	desc = "A crude, cheaply produced assault rifle capable of automatic fire. A replicant of the 1947 Kalashnikov rifle made with wood coloured plating, chambering the orginal 7.62x39mm round. Despite lacking attachment points, remains a popular product on the black market with its cheap cost and armor punching rounds."
 	icon_state = "ak47"
 	item_state = "ak47"
-	caliber = "7.62x39mm" //codex
+	caliber = CALIBER_762X39 //codex
 	muzzleflash_iconstate = "muzzle_flash_medium"
 	max_shells = 40 //codex
 	fire_sound = 'sound/weapons/guns/fire/ak47.ogg'
@@ -464,7 +466,7 @@
 	icon_state = "m16a4"
 	item_state = "m16a4"
 	muzzleflash_iconstate = "muzzle_flash_medium"
-	caliber = "5.56x45mm" //codex
+	caliber = CALIBER_556X45 //codex
 	max_shells = 30 //codex
 	fire_sound = 'sound/weapons/guns/fire/m16.ogg'
 	unload_sound = 'sound/weapons/guns/interact/m16_unload.ogg'
@@ -531,7 +533,7 @@
 	icon_state = "famas"
 	item_state = "famas"
 	muzzleflash_iconstate = "muzzle_flash_medium"
-	caliber = "5.56x45mm" //codex
+	caliber = CALIBER_556X45 //codex
 	max_shells = 24 //codex
 	fire_sound = 'sound/weapons/guns/fire/famas.ogg'
 	unload_sound = 'sound/weapons/guns/interact/m16_unload.ogg'
@@ -582,7 +584,7 @@
 	desc = "The T-42 is the TGMC's current standard non-IFF-capable LMG. It's known for its ability to lay down heavy fire support very well. It is generally used when someone wants to hold a position or provide fire support. It uses 10x24mm ammunition."
 	icon_state = "t42"
 	item_state = "t42"
-	caliber = "10x24mm caseless" //codex
+	caliber = CALIBER_10X24_CASELESS //codex
 	max_shells = 120 //codex
 	force = 30
 	aim_slowdown = 0.8
@@ -640,7 +642,7 @@
 	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "t60"
 	item_state = "t60"
-	caliber = "10x26mm caseless" //codex
+	caliber = CALIBER_10x26_CASELESS //codex
 	max_shells = 250 //codex
 	force = 35
 	aim_slowdown = 1.2
@@ -697,7 +699,7 @@
 	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "m412l1"
 	item_state = "m412l1"
-	caliber = "10x24mm caseless" //codex
+	caliber = CALIBER_10X24_CASELESS //codex
 	max_shells = 200 //codex
 	aim_slowdown = 0.8
 	wield_delay = 2 SECONDS
@@ -749,7 +751,7 @@
 	icon_state = "type71"
 	item_state = "type71"
 	muzzleflash_iconstate = "muzzle_flash_medium"
-	caliber = "7.62x39mm" //codex
+	caliber = CALIBER_762X39 //codex
 	max_shells = 42 //codex
 	fire_sound = 'sound/weapons/guns/fire/type71.ogg'
 	unload_sound = 'sound/weapons/guns/interact/type71_unload.ogg'
@@ -826,7 +828,7 @@
 	item_state = "tx15"
 	fire_sound = 'sound/weapons/guns/fire/shotgun.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/shotgun_empty.ogg'
-	caliber = "16 gauge" //codex
+	caliber = CALIBER_16G //codex
 	max_shells = 12 //codex
 	force = 20
 	current_mag = /obj/item/ammo_magazine/rifle/tx15_slug
@@ -862,10 +864,10 @@
 
 /obj/item/weapon/gun/rifle/standard_smartmachinegun
 	name = "\improper T-29 smart machine gun"
-	desc = "The T-29 is the TGMC's current standard IFF-capable medium machine gun. It's known for its ability to lay down heavy fire support very well. It is generally used when someone wants to hold a position or provide fire support. It cannot turn off IFF. It uses 10x26mm ammunition."
+	desc = "The T-29 is the TGMC's current standard IFF-capable medium machine gun. It's known for its ability to lay down heavy fire support very well. It is generally used when someone wants to hold a position or provide fire support. Requires special training and it cannot turn off IFF. It uses 10x26mm ammunition."
 	icon_state = "t29"
 	item_state = "t29"
-	caliber = "10x26mm caseless" //codex
+	caliber = CALIBER_10x26_CASELESS //codex
 	max_shells = 300 //codex
 	force = 30
 	aim_slowdown = 0.95
@@ -889,6 +891,7 @@
 	gun_iff_signal = list(ACCESS_IFF_MARINE)
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_AUTOMATIC)
 	starting_attachment_types = list(/obj/item/attachable/stock/t29stock, /obj/item/attachable/t29barrel)
+	gun_skill_category = GUN_SKILL_SMARTGUN //Uses SG skill for the penalties.
 	attachable_offset = list("muzzle_x" = 42, "muzzle_y" = 17,"rail_x" = 15, "rail_y" = 21, "under_x" = 24, "under_y" = 14, "stock_x" = 12, "stock_y" = 13)
 	fire_delay = 0.25 SECONDS
 	burst_amount = 0
@@ -958,7 +961,7 @@
 	dry_fire_sound = 'sound/weapons/guns/fire/sniper_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/m41a_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/m41a_reload.ogg'
-	caliber = "8.6x70mm" //codex
+	caliber = CALIBER_86X70 //codex
 	max_shells = 7 //codex
 	current_mag = /obj/item/ammo_magazine/rifle/chamberedrifle
 	type_of_casings = "cartridge"
@@ -1035,7 +1038,7 @@
 	dry_fire_sound = 'sound/weapons/guns/fire/sniper_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/m41a_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/m41a_reload.ogg'
-	caliber = "8.6x70mm" //codex
+	caliber = CALIBER_86X70 //codex
 	max_shells = 7 //codex
 	current_mag = /obj/item/ammo_magazine/rifle/autosniper
 	type_of_casings = "cartridge"
@@ -1077,7 +1080,7 @@
 	desc = "The TX-11 is the former standard issue rifle of the TGMC. Most of them have been mothballed into storage long ago, but some still pop up in marine or mercenary hands. It is known for its large magazine size and great burst fire, but rather awkward to use, especially during combat. It uses 4.92×34mm caseless HV ammunition."
 	icon_state = "tx11"
 	item_state = "tx11"
-	caliber = "4.92x34mm caseless" //codex
+	caliber = CALIBER_492X34_CASELESS //codex
 	max_shells = 70 //codex
 	wield_delay = 0.65 SECONDS
 	fire_sound = "sound/weapons/guns/fire/m412.ogg"

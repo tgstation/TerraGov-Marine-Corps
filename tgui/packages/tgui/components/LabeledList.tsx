@@ -33,7 +33,7 @@ type LabeledListItemProps = {
   buttons?: InfernoNode,
   /** @deprecated */
   content?: any,
-  children?: InfernoNode;
+  children?: any;
 };
 
 const LabeledListItem = (props: LabeledListItemProps) => {

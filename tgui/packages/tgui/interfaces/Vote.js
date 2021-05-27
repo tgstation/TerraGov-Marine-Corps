@@ -22,11 +22,65 @@ export const Vote = (props, context) => {
               <VotersList />
             </Section>
           )}
+          <Section title="Start Voting">
+            <StartVoteOptions />
+          </Section>
           <ChoicesPanel />
           <TimePanel />
         </Stack>
       </Window.Content>
     </Window>
+  );
+};
+
+const StartVoteOptions = (props, context) => {
+  const { act, data } = useBackend(context);
+  const {
+    allow_vote_mode,
+    allow_vote_restart,
+    allow_vote_groundmap,
+    allow_vote_shipmap,
+    vote_happening,
+  } = data;
+  return (
+    <Stack.Item>
+      <Collapsible title="Start a vote">
+        <Stack justify="space-between">
+          <Stack.Item>
+            <Stack vertical>
+              <Stack.Item>
+                <Button
+                  disabled={vote_happening || !allow_vote_groundmap}
+                  onClick={() => act("groundmap")}>
+                  Ground Map
+                </Button>
+              </Stack.Item>
+              <Stack.Item>
+                <Button
+                  disabled={vote_happening || !allow_vote_shipmap}
+                  onClick={() => act("shipmap")}>
+                  Ship Map
+                </Button>
+              </Stack.Item>
+              <Stack.Item>
+                <Button
+                  disabled={vote_happening || !allow_vote_restart}
+                  onClick={() => act("restart")}>
+                  Restart
+                </Button>
+              </Stack.Item>
+              <Stack.Item>
+                <Button
+                  disabled={vote_happening || !allow_vote_mode}
+                  onClick={() => act("gamemode")}>
+                  Gamemode
+                </Button>
+              </Stack.Item>
+            </Stack>
+          </Stack.Item>
+        </Stack>
+      </Collapsible>
+    </Stack.Item>
   );
 };
 
@@ -43,7 +97,7 @@ const VoteOptions = (props, context) => {
 
   return (
     <Stack.Item>
-      <Collapsible title="Start a Vote">
+      <Collapsible title="Allow Votes">
         <Stack justify="space-between">
           <Stack.Item>
             <Stack vertical>
@@ -54,14 +108,9 @@ const VoteOptions = (props, context) => {
                     color="red"
                     checked={!!allow_vote_groundmap}
                     onClick={() => act("toggle_groundmap")}>
-                    {allow_vote_groundmap ? "Enabled" : "Disabled"}
+                    Groundmap vote {allow_vote_groundmap ? "Enabled" : "Disabled"}
                   </Button.Checkbox>
                 )}
-                <Button
-                  disabled={!upper_admin || !allow_vote_groundmap}
-                  onClick={() => act("groundmap")}>
-                  Ground Map
-                </Button>
               </Stack.Item>
               <Stack.Item>
                 {!!upper_admin && (
@@ -70,14 +119,9 @@ const VoteOptions = (props, context) => {
                     color="red"
                     checked={!!allow_vote_shipmap}
                     onClick={() => act("toggle_shipmap")}>
-                    {allow_vote_shipmap ? "Enabled" : "Disabled"}
+                    Shipmap vote {allow_vote_shipmap ? "Enabled" : "Disabled"}
                   </Button.Checkbox>
                 )}
-                <Button
-                  disabled={!upper_admin || !allow_vote_shipmap}
-                  onClick={() => act("shipmap")}>
-                  Ship Map
-                </Button>
               </Stack.Item>
               <Stack.Item>
                 {!!upper_admin && (
@@ -86,14 +130,9 @@ const VoteOptions = (props, context) => {
                     color="red"
                     checked={!!allow_vote_restart}
                     onClick={() => act("toggle_restart")}>
-                    {allow_vote_restart ? "Enabled" : "Disabled"}
+                    Restart vote {allow_vote_restart ? "Enabled" : "Disabled"}
                   </Button.Checkbox>
                 )}
-                <Button
-                  disabled={!upper_admin || !allow_vote_restart}
-                  onClick={() => act("restart")}>
-                  Restart
-                </Button>
               </Stack.Item>
               <Stack.Item>
                 {!!upper_admin && (
@@ -102,14 +141,9 @@ const VoteOptions = (props, context) => {
                     color="red"
                     checked={!!allow_vote_mode}
                     onClick={() => act("toggle_gamemode")}>
-                    {allow_vote_mode ? "Enabled" : "Disabled"}
+                    Gamemode vote {allow_vote_mode ? "Enabled" : "Disabled"}
                   </Button.Checkbox>
                 )}
-                <Button
-                  disabled={!upper_admin || !allow_vote_mode}
-                  onClick={() => act("gamemode")}>
-                  Gamemode
-                </Button>
               </Stack.Item>
             </Stack>
           </Stack.Item>

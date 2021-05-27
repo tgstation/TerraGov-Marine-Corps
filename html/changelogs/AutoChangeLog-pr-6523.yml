@@ -1,6 +1,0 @@
-author: "Swagile"
-delete-after: True
-changes: 
-  - rscadd: "Miners now give off their own light; both in the repairing process and in the final running phase."
-  - balance: "This buffs properly defended miners."
-  - balance: "However, stealth mining is now nerfed, since fully operational miners give off huge light, which is easy to spot on most maps."

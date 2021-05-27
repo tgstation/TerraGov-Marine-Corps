@@ -4,6 +4,9 @@
 	var/unwieldsound
 	flags_item = TWOHANDED
 
+/obj/item/weapon/twohanded/Initialize()
+	. = ..()
+	verbs -= /obj/item/verb/verb_pickup
 
 /obj/item/weapon/twohanded/update_icon()
 	return
@@ -238,12 +241,13 @@
 	desc = "A haphazardly-constructed yet still deadly weapon of ancient design."
 	icon_state = "spearglass"
 	item_state = "spearglass"
-	force = 25
+	force = 40
 	w_class = WEIGHT_CLASS_BULKY
 	flags_equip_slot = ITEM_SLOT_BACK
-	force_wielded = 40
+	force_wielded = 75
 	throwforce = 75
 	throw_speed = 3
+	reach = 2
 	edge = 1
 	sharp = IS_SHARP_ITEM_SIMPLE
 	hitsound = 'sound/weapons/bladeslice.ogg'

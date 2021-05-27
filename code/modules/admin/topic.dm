@@ -568,9 +568,6 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 
 		var/list/valid_calls = list("Random")
 		for(var/datum/emergency_call/E in SSticker.mode.all_calls) //Loop through all potential candidates
-			if(E.probability < 1) //Those that are meant to be admin-only
-				continue
-
 			valid_calls.Add(E)
 
 		var/chosen_call = input(usr, "Select a distress to send", "Emergency Response") as null|anything in valid_calls
@@ -938,8 +935,8 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 			return
 
 		var/dat = "<b>What mode do you wish to play?</b><br>"
-		for(var/mode in config.modes)
-			dat += "<a href='?src=[REF(usr.client.holder)];[HrefToken()];changemode=[mode]'>[config.mode_names[mode]]</a><br>"
+		for(var/datum/game_mode/mode AS in config.modes)
+			dat += "<a href='?src=[REF(usr.client.holder)];[HrefToken()];changemode=[mode]'>[mode.name]</a><br>"
 		dat += "<br>"
 		dat += "Now: [GLOB.master_mode]<br>"
 		dat += "Next Round: [trim(file2text("data/mode.txt"))]"
@@ -2062,7 +2059,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 					if(H.assigned_squad)
 						squad_to_insert_into = H.assigned_squad
 					else
-						squad_to_insert_into = pick(SSjob.active_squads)
+						squad_to_insert_into = pick(SSjob.active_squads[J.faction])
 				H.apply_assigned_role_to_spawn(J, H.client, squad_to_insert_into, admin_action = TRUE)
 				if(href_list["doequip"])
 					H.set_equipment(J.title)
@@ -2138,7 +2135,8 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 				for(var/path in job_paths)
 					var/datum/outfit/O = path
 					if(initial(O.can_be_admin_equipped))
-						job_outfits[initial(O.name)] = path
+						var/outfit_name = initial(O.name)
+						job_outfits[outfit_name] = path
 
 				var/list/picker = sortList(job_outfits)
 				picker.Insert(1, "{Custom}", "{Naked}")

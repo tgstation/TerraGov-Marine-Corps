@@ -38,14 +38,14 @@
 	tray.linked_ob = src
 
 
-/obj/structure/orbital_cannon/update_icon()
+/obj/structure/orbital_cannon/update_icon_state()
 	if(chambered_tray)
 		icon_state = "OBC_chambered"
+		return
+	if(loaded_tray)
+		icon_state = "OBC_loaded"
 	else
-		if(loaded_tray)
-			icon_state = "OBC_loaded"
-		else
-			icon_state = "OBC_unloaded"
+		icon_state = "OBC_unloaded"
 
 
 /obj/structure/orbital_cannon/proc/load_tray(mob/user)
@@ -246,13 +246,12 @@
 	. = ..()
 
 
-/obj/structure/orbital_tray/update_icon()
-	overlays.Cut()
-	icon_state = "cannon_tray"
+/obj/structure/orbital_tray/update_overlays()
+	. = ..()
 	if(warhead)
-		overlays += image("cannon_tray_[warhead.warhead_kind]")
+		. += image("cannon_tray_[warhead.warhead_kind]")
 	if(fuel_amt)
-		overlays += image("cannon_tray_[fuel_amt]")
+		. += image("cannon_tray_[fuel_amt]")
 
 
 /obj/structure/orbital_tray/attackby(obj/item/I, mob/user, params)
@@ -461,7 +460,7 @@
 	if(!allowed(user))
 		return
 
-	if(user.skills.getRating("engineer") < SKILL_ENGINEER_ENGI)
+	if(!isobserver(user) && user.skills.getRating("engineer") < SKILL_ENGINEER_ENGI)
 		user.visible_message("<span class='notice'>[user] fumbles around figuring out how to use the console.</span>",
 		"<span class='notice'>You fumble around figuring out how to use the console.</span>")
 		var/fumbling_time = 5 SECONDS * ( SKILL_ENGINEER_ENGI - user.skills.getRating("engineer") )

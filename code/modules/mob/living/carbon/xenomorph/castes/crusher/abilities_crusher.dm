@@ -69,6 +69,7 @@
 	plasma_cost = 100
 	cooldown_timer = 18 SECONDS
 	keybind_signal = COMSIG_XENOABILITY_CRESTTOSS
+	target_flags = XABB_MOB_TARGET
 
 /datum/action/xeno_action/activable/cresttoss/on_cooldown_finish()
 	var/mob/living/carbon/xenomorph/X = owner

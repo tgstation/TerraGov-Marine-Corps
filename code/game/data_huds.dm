@@ -183,18 +183,24 @@
 	var/image/infection_hud = hud_list[XENO_EMBRYO_HUD] //State of the xeno embryo.
 	var/image/simple_status_hud = hud_list[STATUS_HUD_SIMPLE] //Status for the naked eye.
 	var/image/xeno_reagent = hud_list[XENO_REAGENT_HUD] // Displays active xeno reagents
+	var/static/image/neurotox_image = image('icons/mob/hud.dmi', src, "neurotoxin")
+	var/static/image/hemodile_image = image('icons/mob/hud.dmi', src, "hemodile")
+	var/static/image/transvitox_image = image('icons/mob/hud.dmi', src, "transvitox")
 
-	if(!reagents.get_reagent_amount(/datum/reagent/toxin/xeno_hemodile) && !reagents.get_reagent_amount(/datum/reagent/toxin/xeno_transvitox))
-		xeno_reagent.icon_state = ""
+	xeno_reagent.overlays.Cut()
+	xeno_reagent.icon_state = ""
+	if(stat != DEAD)
 
-	else if(reagents.get_reagent_amount(/datum/reagent/toxin/xeno_hemodile) && !reagents.get_reagent_amount(/datum/reagent/toxin/xeno_transvitox))
-		xeno_reagent.icon_state = "hemodile_icon"
+		if(reagents.get_reagent_amount(/datum/reagent/toxin/xeno_neurotoxin))
+			xeno_reagent.overlays += neurotox_image
 
-	else if(reagents.get_reagent_amount(/datum/reagent/toxin/xeno_transvitox) && !reagents.get_reagent_amount(/datum/reagent/toxin/xeno_hemodile))
-		xeno_reagent.icon_state = "transvitox_icon"
+		if(reagents.get_reagent_amount(/datum/reagent/toxin/xeno_hemodile))
+			xeno_reagent.overlays += hemodile_image
 
-	else if(reagents.get_reagent_amount(/datum/reagent/toxin/xeno_hemodile) && reagents.get_reagent_amount(/datum/reagent/toxin/xeno_transvitox))
-		xeno_reagent.icon_state = "hemodile_transvitox_icon"
+		if(reagents.get_reagent_amount(/datum/reagent/toxin/xeno_transvitox))
+			xeno_reagent.overlays += transvitox_image
+
+	hud_list[XENO_REAGENT_HUD] = xeno_reagent
 
 	if(species.species_flags & IS_SYNTHETIC)
 		simple_status_hud.icon_state = ""
@@ -432,15 +438,19 @@
 
 
 /datum/atom_hud/squad
-	hud_icons = list(SQUAD_HUD, MACHINE_HEALTH_HUD, SENTRY_AMMO_HUD)
+	hud_icons = list(SQUAD_HUD_TERRAGOV, MACHINE_HEALTH_HUD, SENTRY_AMMO_HUD)
+
+/datum/atom_hud/squad_rebel
+	hud_icons = list(SQUAD_HUD_REBEL, MACHINE_HEALTH_HUD, SENTRY_AMMO_HUD)
 
 
-/mob/proc/hud_set_job()
+/mob/proc/hud_set_job(faction = FACTION_TERRAGOV)
 	return
 
 
-/mob/living/carbon/human/hud_set_job()
-	var/image/holder = hud_list[SQUAD_HUD]
+/mob/living/carbon/human/hud_set_job(faction = FACTION_TERRAGOV)
+	var/hud_type = faction == FACTION_TERRAGOV ? SQUAD_HUD_TERRAGOV : SQUAD_HUD_REBEL
+	var/image/holder = hud_list[hud_type]
 	holder.icon_state = ""
 	holder.overlays.Cut()
 
@@ -463,7 +473,7 @@
 	else if(job.job_flags & JOB_FLAG_PROVIDES_SQUAD_HUD)
 		holder.overlays += image('icons/mob/hud.dmi', src, "hudmarine [job.title]")
 
-	hud_list[SQUAD_HUD] = holder
+	hud_list[hud_type] = holder
 
 
 /datum/atom_hud/order

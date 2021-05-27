@@ -18,7 +18,7 @@
 
 	dat += "<b>List of Hive Tunnels:</b><BR>"
 
-	for(var/obj/structure/tunnel/T AS in GLOB.xeno_tunnels)
+	for(var/obj/structure/xeno/tunnel/T AS in GLOB.xeno_tunnels)
 		if(user.issamexenohive(T))
 			var/distance = get_dist(user, T)
 			dat += "<b>[T.name]</b> located at: <b><font color=green>([T.tunnel_desc][distance > 0 ? " <b>Distance: [distance])</b>" : ""]</b></font><BR>"
@@ -160,8 +160,6 @@
 		return
 
 	if(href_list["track_xeno_name"])
-		if(!check_state())
-			return
 		var/xeno_name = href_list["track_xeno_name"]
 		for(var/Y in hive.get_all_xenos())
 			var/mob/living/carbon/xenomorph/X = Y
@@ -176,8 +174,6 @@
 			break
 
 	if(href_list["track_silo_number"])
-		if(!check_state())
-			return
 		var/silo_number = href_list["track_silo_number"]
 		for(var/obj/structure/resin/silo/resin_silo AS in GLOB.xeno_resin_silos)
 			if(resin_silo.associated_hive == hive && num2text(resin_silo.number_silo) == silo_number)
@@ -282,7 +278,7 @@
 			var/siloless_countdown = SSticker.mode?.get_siloless_collapse_countdown()
 			if(siloless_countdown)
 				stat("<b>Orphan hivemind collapse timer:</b>", siloless_countdown)
-			
+
 		if(XENO_HIVE_CORRUPTED)
 			stat("Hive Orders:","Follow the instructions of our masters")
 
@@ -292,6 +288,13 @@
 		to_chat(src, "<span class='warning'>We cannot do this in our current state.</span>")
 		return 0
 	return 1
+
+///A simple handler for checking your state. Will ignore if the xeno is lying down
+/mob/living/carbon/xenomorph/proc/check_concious_state()
+	if(incapacitated() || buckled)
+		to_chat(src, "<span class='warning'>We cannot do this in our current state.</span>")
+		return FALSE
+	return TRUE
 
 //Checks your plasma levels and gives a handy message.
 /mob/living/carbon/xenomorph/proc/check_plasma(value, silent = FALSE)
@@ -598,7 +601,7 @@
 		return FALSE
 	var/datum/reagent/body_tox
 	var/i = 1
-	do
+	while(i++ < count && do_after(src, channel_time, TRUE, C, BUSY_ICON_HOSTILE))
 		face_atom(C)
 		if(stagger)
 			return FALSE
@@ -616,7 +619,6 @@
 		to_chat(src, "<span class='xenowarning'>Our stinger injects our victim with [body_tox.name]!</span>")
 		if(body_tox.volume > body_tox.overdose_threshold)
 			to_chat(src, "<span class='danger'>We sense the host is saturated with [body_tox.name].</span>")
-	while(i++ < count && do_after(src, channel_time, TRUE, C, BUSY_ICON_HOSTILE))
 	return TRUE
 
 
@@ -672,6 +674,8 @@
 	LAZYREMOVE(stomach_contents, victim)
 	if(make_cocoon)
 		ADD_TRAIT(victim, TRAIT_PSY_DRAINED, TRAIT_PSY_DRAINED)
+		if(HAS_TRAIT(victim, TRAIT_UNDEFIBBABLE))
+			victim.med_hud_set_status()
 		new /obj/structure/cocoon(loc, hivenumber, victim)
 		return
 	victim.forceMove(eject_location)

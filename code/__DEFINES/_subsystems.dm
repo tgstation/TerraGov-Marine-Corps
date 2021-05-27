@@ -22,6 +22,9 @@
 //In most cases you want a subsystem instead
 #define TIMER_LOOP				(1<<5)
 
+///Delete the timer on parent datum Destroy() and when deltimer'd
+#define TIMER_DELETE_ME (1<<6)
+
 #define TIMER_ID_NULL -1
 
 //For servers that can't do with any additional lag, set this to none in flightpacks.dm in subsystem/processing.
@@ -55,12 +58,14 @@
 #define INIT_ORDER_INPUT			21
 #define INIT_ORDER_SOUNDS			19
 #define INIT_ORDER_INSTRUMENTS		17
+#define INIT_ORDER_GREYSCALE		16
 #define INIT_ORDER_CODEX 			15
 #define INIT_ORDER_EVENTS			14
 #define INIT_ORDER_MONITOR  		13
 #define INIT_ORDER_JOBS				12
 #define INIT_ORDER_TICKER			10
 #define INIT_ORDER_MAPPING			9
+#define INIT_ORDER_PERSISTENCE		7 //before assets because some assets take data from SSPersistence, such as vendor items
 #define INIT_ORDER_ATOMS			6
 #define INIT_ORDER_MACHINES			5
 #define INIT_ORDER_AI_NODES			3
@@ -71,6 +76,7 @@
 #define INIT_ORDER_SPAWNING_POOL    -5
 #define INIT_ORDER_OVERLAY			-6
 #define INIT_ORDER_STICKY_BAN		-10
+#define INIT_ORDER_MINIMAPS 		-15
 #define INIT_ORDER_LIGHTING			-20
 #define INIT_ORDER_SHUTTLE			-21
 #define INIT_ORDER_PATH				-50
@@ -86,6 +92,7 @@
 #define FIRE_PRIORITY_AMBIENCE		10
 #define FIRE_PRIORITY_WEED			11
 #define FIRE_PRIORITY_GARBAGE		15
+#define FIRE_PRIORITY_MINIMAPS		17
 #define FIRE_PRIORITY_DIRECTION		19
 #define FIRE_PRIORITY_SPAWNING		20
 #define FIRE_PRIORITY_AIR			20

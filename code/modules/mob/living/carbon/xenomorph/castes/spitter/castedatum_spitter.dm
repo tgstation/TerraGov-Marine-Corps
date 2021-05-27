@@ -53,6 +53,8 @@
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/activable/psydrain,
+		/datum/action/xeno_action/activable/headbite,
+		/datum/action/xeno_action/activable/devour,
 		/datum/action/xeno_action/activable/corrosive_acid,
 		/datum/action/xeno_action/activable/xeno_spit,
 		/datum/action/xeno_action/activable/scatter_spit,

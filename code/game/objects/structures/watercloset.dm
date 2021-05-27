@@ -1,3 +1,6 @@
+#define WATER_TEMP_NORMAL "normal"
+#define WATER_TEMP_FREEZING "freezing"
+#define WATER_TEMP_BOILING "boiling"
 //todo: toothbrushes, and some sort of "toilet-filthinator" for the hos
 
 /obj/structure/toilet
@@ -153,13 +156,15 @@
 	icon_state = "shower"
 	density = FALSE
 	anchored = TRUE
-	use_power = 0
-	var/on = 0
+	use_power = NO_POWER_USE
+	var/on = FALSE
 	var/obj/effect/mist/mymist = null
-	var/ismist = 0				//needs a var so we can make it linger~
-	var/watertemp = "normal"	//freezing, normal, or boiling
-	var/mobpresent = 0		//true if there is a mob on the shower's loc, this is to ease process()
-	var/is_washing = 0
+	var/ismist = FALSE //needs a var so we can make it linger~
+	/// freezing, normal, or boiling
+	var/watertemp = WATER_TEMP_NORMAL
+	/// Count of mobs present under the shower, this is to ease process()
+	var/mobpresent = 0
+	var/is_washing = FALSE
 
 /obj/machinery/shower/Initialize()
 	. = ..()
@@ -172,7 +177,7 @@
 	icon_state = "mist"
 	layer = FLY_LAYER
 	anchored = TRUE
-	mouse_opacity = 0
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
 /obj/machinery/shower/attack_hand(mob/living/user)
 	. = ..()
@@ -199,15 +204,15 @@
 	else if(iswrench(I))
 		to_chat(user, "<span class='notice'>You begin to adjust the temperature valve with \the [I].</span>")
 
-		if(!do_after(user, 50, TRUE, src, BUSY_ICON_BUILD))
+		if(!do_after(user, 5 SECONDS, TRUE, src, BUSY_ICON_BUILD))
 			return
 
 		switch(watertemp)
-			if("normal")
+			if(WATER_TEMP_NORMAL)
 				watertemp = "freezing"
-			if("freezing")
+			if(WATER_TEMP_FREEZING)
 				watertemp = "boiling"
-			if("boiling")
+			if(WATER_TEMP_BOILING)
 				watertemp = "normal"
 		user.visible_message("<span class='notice'>[user] adjusts the shower with \the [I].</span>", "<span class='notice'>You adjust the shower with \the [I].</span>")
 
@@ -219,24 +224,24 @@
 
 	if(on)
 		overlays += image('icons/obj/watercloset.dmi', src, "water", MOB_LAYER + 1, dir)
-		if(watertemp == "freezing")
+		if(watertemp == WATER_TEMP_FREEZING)
 			return
 		if(!ismist)
 			spawn(50)
 				if(src && on)
-					ismist = 1
+					ismist = TRUE
 					mymist = new /obj/effect/mist(loc)
 		else
-			ismist = 1
+			ismist = TRUE
 			mymist = new /obj/effect/mist(loc)
 	else if(ismist)
-		ismist = 1
+		ismist = TRUE
 		mymist = new /obj/effect/mist(loc)
 		spawn(250)
 			if(src && !on)
 				qdel(mymist)
 				mymist = null
-				ismist = 0
+				ismist = FALSE
 
 /obj/machinery/shower/Crossed(atom/movable/O)
 	. = ..()
@@ -252,8 +257,8 @@
 
 //Yes, showers are super powerful as far as washing goes.
 /obj/machinery/shower/proc/wash(atom/movable/O as obj|mob)
-	if(!on) return
-
+	if(!on)
+		return
 
 	if(isliving(O))
 		var/mob/living/L = O
@@ -336,33 +341,34 @@
 				qdel(E)
 
 /obj/machinery/shower/process()
-	if(!on) return
+	if(!on)
+		return
 	wash_floor()
-	if(!mobpresent)	return
+	if(!mobpresent)
+		return
 	for(var/mob/living/carbon/C in loc)
 		check_heat(C)
 
 /obj/machinery/shower/proc/wash_floor()
 	if(!ismist && is_washing)
 		return
-	is_washing = 1
+	is_washing = TRUE
+	addtimer(VARSET_CALLBACK(src, is_washing, FALSE), 10 SECONDS)
 	var/turf/T = get_turf(src)
-//	reagents.add_reagent(/datum/reagent/water, 2)
 	T.clean(src)
-	spawn(100)
-		is_washing = 0
 
-/obj/machinery/shower/proc/check_heat(mob/M as mob)
-	if(!on || watertemp == "normal") return
+/obj/machinery/shower/proc/check_heat(mob/M)
+	if(!on || watertemp == WATER_TEMP_NORMAL)
+		return
 	if(iscarbon(M))
 		var/mob/living/carbon/C = M
 
-		if(watertemp == "freezing")
-			C.adjust_bodytemperature(C.bodytemperature - 80, 80)
+		if(watertemp == WATER_TEMP_FREEZING)
+			C.adjust_bodytemperature(-80, 80)
 			to_chat(C, "<span class='warning'>The water is freezing!</span>")
 			return
-		if(watertemp == "boiling")
-			C.adjust_bodytemperature(C.bodytemperature + 35, 0, 500)
+		if(watertemp == WATER_TEMP_BOILING)
+			C.adjust_bodytemperature(35, 0, 500)
 			to_chat(C, "<span class='danger'>The water is searing!</span>")
 			return
 
@@ -499,3 +505,8 @@
 	icon_state = "puddle-splash"
 	. = ..()
 	icon_state = "puddle"
+
+
+#undef WATER_TEMP_NORMAL
+#undef WATER_TEMP_FREEZING
+#undef WATER_TEMP_BOILING

@@ -277,6 +277,14 @@
 	setDir(turn(dir, 270))
 
 
+/obj/structure/barricade/attack_hand_alternate(mob/living/user)
+	if(anchored)
+		to_chat(user, "<span class='warning'>It is fastened to the floor, you can't rotate it!</span>")
+		return FALSE
+
+	setDir(turn(dir, 270))
+
+
 /*----------------------*/
 // SNOW
 /*----------------------*/
@@ -1130,3 +1138,4 @@
 		repair_damage(max_integrity * 0.2) //Each sandbag restores 20% of max health as 5 sandbags = 1 sandbag barricade.
 		user.visible_message("<span class='notice'>[user] replaces a damaged sandbag, repairing [src].</span>",
 		"<span class='notice'>You replace a damaged sandbag, repairing it [src].</span>")
+		update_icon()

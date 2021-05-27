@@ -3,41 +3,51 @@
 //say based modes like binary are in living/say.dm
 
 #define RADIO_CHANNEL_COMMON "Common"
+#define RADIO_CHANNEL_COMMON_REBEL "Common Rebel"
 #define RADIO_KEY_COMMON ";"
 
 #define RADIO_CHANNEL_REQUISITIONS "Requisitions"
+#define RADIO_CHANNEL_REQUISITIONS_REBEL "Requisitions Rebel"
 #define RADIO_KEY_REQUISITIONS "u"
 #define RADIO_TOKEN_REQUISITIONS ":u"
 
 #define RADIO_CHANNEL_ENGINEERING "Engineering"
+#define RADIO_CHANNEL_ENGINEERING_REBEL "Engineering Rebel"
 #define RADIO_KEY_ENGINEERING "e"
 #define RADIO_TOKEN_ENGINEERING ":e"
 
 #define RADIO_CHANNEL_MEDICAL "Medical"
+#define RADIO_CHANNEL_MEDICAL_REBEL "Medical Rebel"
 #define RADIO_KEY_MEDICAL "m"
 #define RADIO_TOKEN_MEDICAL ":m"
 
 #define RADIO_CHANNEL_COMMAND "Command"
+#define RADIO_CHANNEL_COMMAND_REBEL "Command Rebel"
 #define RADIO_KEY_COMMAND "v"
 #define RADIO_TOKEN_COMMAND ":v"
 
 #define RADIO_CHANNEL_CAS "Fire support"
+#define RADIO_CHANNEL_CAS_REBEL "Fire support Rebel"
 #define RADIO_KEY_CAS "s"
 #define RADIO_TOKEN_CAS ":s" //s for support
 
 #define RADIO_CHANNEL_ALPHA "Alpha"
+#define RADIO_CHANNEL_ALPHA_REBEL "Alpha Rebel"
 #define RADIO_KEY_ALPHA "q"
 #define RADIO_TOKEN_ALPHA ":q"
 
 #define RADIO_CHANNEL_BRAVO "Bravo"
+#define RADIO_CHANNEL_BRAVO_REBEL "Bravo Rebel"
 #define RADIO_KEY_BRAVO "b"
 #define RADIO_TOKEN_BRAVO ":b"
 
 #define RADIO_CHANNEL_CHARLIE "Charlie"
+#define RADIO_CHANNEL_CHARLIE_REBEL "Charlie Rebel"
 #define RADIO_KEY_CHARLIE "c"
 #define RADIO_TOKEN_CHARLIE ":c"
 
 #define RADIO_CHANNEL_DELTA "Delta"
+#define RADIO_CHANNEL_DELTA_REBEL "Delta Rebel"
 #define RADIO_KEY_DELTA "d"
 #define RADIO_TOKEN_DELTA ":d"
 
@@ -78,8 +88,21 @@
 #define FREQ_BRAVO		1363
 #define FREQ_CHARLIE	1365
 #define FREQ_DELTA		1367
+#define FREQ_AI			1369
 
-#define FREQ_AI			1383
+#define FREQ_COMMAND_REBEL 		1371
+#define FREQ_MEDICAL_REBEL		1373
+#define FREQ_ENGINEERING_REBEL	1375
+#define FREQ_CAS_REBEL			1377
+#define FREQ_REQUISITIONS_REBEL	1379
+
+#define FREQ_ALPHA_REBEL		1381
+#define FREQ_BRAVO_REBEL		1383
+#define FREQ_CHARLIE_REBEL		1385
+#define FREQ_DELTA_REBEL		1387
+
+#define FREQ_AI_REBEL			1389
+
 #define FREQ_STATUS_DISPLAYS 1435
 
 #define MIN_FREQ 1441 // ------------------------------------------------------
@@ -92,6 +115,7 @@
 #define FREQ_ELECTROPACK 1449
 #define FREQ_SIGNALER	1457  // the default for new signalers
 #define FREQ_COMMON		1461
+#define FREQ_COMMON_REBEL	1463
 
 #define FREQ_CIV_GENERAL	1469
 
