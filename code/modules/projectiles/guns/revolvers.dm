@@ -350,15 +350,18 @@
 		/obj/item/attachable/compensator,
 		/obj/item/attachable/lasersight,
 		/obj/item/attachable/lace,
+		/obj/item/attachable/standard_revolver_longbarrel,
 	)
-	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 19,"rail_x" = 13, "rail_y" = 23, "under_x" = 22, "under_y" = 14, "stock_x" = 22, "stock_y" = 19)
+	attachable_offset = list("muzzle_x" = 26, "muzzle_y" = 19,"rail_x" = 13, "rail_y" = 21, "under_x" = 22, "under_y" = 14, "stock_x" = 22, "stock_y" = 19)
 	fire_delay = 0.15 SECONDS
+	damage_mult = 0.75
+	damage_falloff_mult = 1.5
 	accuracy_mult_unwielded = 0.85
 	accuracy_mult = 1
 	scatter_unwielded = 15
-	scatter = 0
+	scatter = 2.5
 	recoil = 0
-	recoil_unwielded = 1
+	recoil_unwielded = 0.75
 
 //-------------------------------------------------------
 //M-44, based off the SAA.
@@ -470,9 +473,15 @@
 		/obj/item/attachable/heavy_barrel,
 		/obj/item/attachable/compensator,
 		/obj/item/attachable/lace,
+		/obj/item/attachable/mateba_longbarrel,
 	)
-	attachable_offset = list("muzzle_x" = 28, "muzzle_y" = 18,"rail_x" = 16, "rail_y" = 21, "under_x" = 22, "under_y" = 15, "stock_x" = 22, "stock_y" = 15)
+	starting_attachment_types = list(
+		/obj/item/attachable/mateba_longbarrel,
+	)
+	attachable_offset = list("muzzle_x" = 20, "muzzle_y" = 18,"rail_x" = 16, "rail_y" = 21, "under_x" = 22, "under_y" = 15, "stock_x" = 22, "stock_y" = 15)
 
+	damage_mult = 0.80
+	damage_falloff_mult = 1.5
 	fire_delay = 0.2 SECONDS
 	aim_fire_delay = 0.3 SECONDS
 	recoil = 0
