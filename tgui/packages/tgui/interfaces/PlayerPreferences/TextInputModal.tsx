@@ -11,7 +11,7 @@ type TextInputModalData = {
 }
 
 export const TextInputModal = (props: TextInputModalData, context) => {
-  
+
   const {
     label,
     button_text,

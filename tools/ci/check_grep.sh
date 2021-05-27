@@ -128,6 +128,22 @@ if grep -ni 'centcomm' code/**/*.dm; then
     echo "Misspelling(s) of CENTCOM detected in code, please remove the extra M(s)."
     st=1
 fi;
+if grep -ni '/obj/effect/alien/weeds/node' _maps/**/*.dmm; then
+    echo "Do not directly add weeds on maps, use landmarks."
+    st=1
+fi;
+if grep -ni '/turf/closed/wall/resin' _maps/**/*.dmm; then
+    echo "Do not directly add resin walls on maps, use landmarks."
+    st=1
+fi;
+if grep -ni '/obj/structure/mineral_door/resin' _maps/**/*.dmm; then
+    echo "Do not directly add resin doors on maps, use landmarks."
+    st=1
+fi;
+if grep -ni '/obj/structure/resin/xeno_turret' _maps/**/*.dmm; then
+    echo "Do not directly add xeno turrets on maps, use landmarks."
+    st=1
+fi;
 if grep -ni 'centcomm' _maps/**/*.dmm; then
     echo "Misspelling(s) of CENTCOM detected in maps, please remove the extra M(s)."
     st=1

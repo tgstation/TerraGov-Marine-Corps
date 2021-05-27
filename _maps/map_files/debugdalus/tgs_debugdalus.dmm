@@ -1467,7 +1467,7 @@
 /turf/open/floor/mainship,
 /area/mainship/squads/req)
 "agD" = (
-/obj/docking_port/stationary/supply/reqs,
+/obj/docking_port/stationary/supply,
 /turf/open/floor/mainship/empty,
 /area/mainship/squads/req)
 "agE" = (

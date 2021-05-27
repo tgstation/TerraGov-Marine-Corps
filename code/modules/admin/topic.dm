@@ -2059,7 +2059,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 					if(H.assigned_squad)
 						squad_to_insert_into = H.assigned_squad
 					else
-						squad_to_insert_into = pick(SSjob.active_squads)
+						squad_to_insert_into = pick(SSjob.active_squads[J.faction])
 				H.apply_assigned_role_to_spawn(J, H.client, squad_to_insert_into, admin_action = TRUE)
 				if(href_list["doequip"])
 					H.set_equipment(J.title)
@@ -2135,7 +2135,8 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 				for(var/path in job_paths)
 					var/datum/outfit/O = path
 					if(initial(O.can_be_admin_equipped))
-						job_outfits[initial(O.name)] = path
+						var/outfit_name = initial(O.name)
+						job_outfits[outfit_name] = path
 
 				var/list/picker = sortList(job_outfits)
 				picker.Insert(1, "{Custom}", "{Naked}")

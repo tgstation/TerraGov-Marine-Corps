@@ -318,16 +318,11 @@
 	if(!T.check_disallow_alien_fortification(owner, silent))
 		return FALSE
 
-	if(locate(/obj/effect/alien/weeds/node) in T)
-		if(!silent)
-			to_chat(owner, "<span class='warning'>There is a resin node in the way!</span>")
-		return FALSE
-
 /datum/action/xeno_action/place_acidwell/action_activate()
 	var/turf/T = get_turf(owner)
 	succeed_activate()
 
 	playsound(T, "alien_resin_build", 25)
-	var/obj/effect/alien/resin/acidwell/AC = new /obj/effect/alien/resin/acidwell(T, owner)
+	var/obj/structure/xeno/acidwell/AC = new /obj/structure/xeno/acidwell(T, owner)
 	AC.creator = owner
 	to_chat(owner, "<span class='xenonotice'>We place an acid well. It can still be charged more.</span>")

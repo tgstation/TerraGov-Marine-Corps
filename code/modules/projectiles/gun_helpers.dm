@@ -456,7 +456,7 @@ should be alright.
 
 	for(var/slotties in attachments)
 		var/obj/item/attachable/possible_attachment = attachments[slotties]
-		if(!possible_attachment.flags_attach_features & ATTACH_REMOVABLE)
+		if(!(possible_attachment.flags_attach_features & ATTACH_REMOVABLE))
 			continue
 		possible_attachments += possible_attachment
 

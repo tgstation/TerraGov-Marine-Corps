@@ -14,7 +14,10 @@ SUBSYSTEM_DEF(job)
 	var/list/type_occupations = list()	//Dict of all jobs, keys are types.
 
 	var/list/squads = list()			//List of potential squads.
-	var/list/active_squads = list()		//Squads being used by the game mode.
+	///Assoc list of all joinable squads, categorised by faction
+	var/list/active_squads = list()
+	///assoc list of squad_name_string->squad_reference for easy lookup
+	var/list/squads_by_name = list()
 
 	var/list/unassigned = list()		//Players who need jobs.
 	var/list/occupations_reroll //Jobs scaled up during job assignments.
@@ -65,7 +68,8 @@ SUBSYSTEM_DEF(job)
 		var/datum/squad/squad = new S()
 		if(!squad)
 			continue
-		squads[squad.name] = squad
+		squads[squad.id] = squad
+		squads_by_name[squad.name] = squad
 	return TRUE
 
 
@@ -96,15 +100,16 @@ SUBSYSTEM_DEF(job)
 		JobDebug("AR player not old enough, Player: [player], Job:[job.title]")
 		return FALSE
 	if(ismarinejob(job))
-		if(!handle_initial_squad(player, job, latejoin))
+		if(!handle_initial_squad(player, job, latejoin, job.faction))
 			JobDebug("Failed to assign marine role to a squad. Player: [player.key] Job: [job.title]")
 			return FALSE
 		JobDebug("Successfuly assigned marine role to a squad. Player: [player.key], Job: [job.title], Squad: [player.assigned_squad]")
 	if(!latejoin)
 		unassigned -= player
 	if(job.job_category != JOB_CAT_XENO && !GLOB.joined_player_list.Find(player.ckey))
-		SSpoints.add_psy_points(XENO_HIVE_NORMAL, SILO_PRICE / 15)
-		SSpoints.supply_points += SUPPLY_POINT_MARINE_SPAWN
+		if(SSticker.mode.flags_round_type & MODE_PSY_POINTS_ADVANCED)
+			SSpoints.add_psy_points(XENO_HIVE_NORMAL, SILO_PRICE / 15)
+		SSpoints.supply_points[job.faction] += SUPPLY_POINT_MARINE_SPAWN
 	job.occupy_job_positions(1, GLOB.joined_player_list.Find(player.ckey))
 	player.assigned_role = job
 	JobDebug("Player: [player] is now Job: [job.title], JCP:[job.current_positions], JPL:[job.total_positions]")

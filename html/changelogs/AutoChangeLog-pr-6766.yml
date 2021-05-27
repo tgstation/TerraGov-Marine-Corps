@@ -1,4 +1,0 @@
-author: "TiviPlus"
-delete-after: True
-changes: 
-  - qol: "Right click can now be used on storage items to immediately draw the topmost item"

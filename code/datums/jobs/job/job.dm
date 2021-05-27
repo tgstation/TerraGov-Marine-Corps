@@ -201,7 +201,7 @@ GLOBAL_PROTECT(exp_specialmap)
 		var/datum/job/scaled_job = SSjob.GetJobType(index)
 		if(!(scaled_job in SSjob.active_joinable_occupations))
 			continue
-		if(isxenosjob(scaled_job) && respawn && (SSticker.mode?.flags_round_type & MODE_PSY_POINTS))
+		if(isxenosjob(scaled_job) && respawn && (SSticker.mode?.flags_round_type & MODE_SILO_RESPAWN))
 			continue
 		scaled_job.add_job_points(jobworth[index])
 	return TRUE
@@ -289,7 +289,7 @@ GLOBAL_PROTECT(exp_specialmap)
 	if(!src.assigned_squad && assigned_squad)
 		job.equip_spawning_squad(src, assigned_squad, player)
 
-	hud_set_job()
+	hud_set_job(faction)
 
 /datum/job/proc/equip_spawning_squad(mob/living/carbon/human/new_character, datum/squad/assigned_squad, client/player)
 	return

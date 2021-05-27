@@ -1,11 +1,3 @@
-#define EMOTE_VISIBLE 1
-#define EMOTE_AUDIBLE 2
-
-#define EMOTE_VARY 				(1<<0) //vary the pitch
-#define EMOTE_FORCED_AUDIO 		(1<<1) //can only code call this event instead of the player.
-#define EMOTE_MUZZLE_IGNORE 	(1<<2) //Will only work if the emote is EMOTE_AUDIBLE
-#define EMOTE_RESTRAINT_CHECK 	(1<<3) //Checks if the mob is restrained before performing the emote
-
 /datum/emote
 	var/key = "" //What calls the emote
 	var/key_third_person = "" //This will also call the emote

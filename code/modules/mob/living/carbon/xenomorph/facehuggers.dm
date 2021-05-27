@@ -277,7 +277,7 @@
 			E.deploy_egg_triggers()
 			go_idle(TRUE)
 			return FALSE
-		var/obj/effect/alien/resin/trap/T = locate() in loc
+		var/obj/structure/xeno/trap/T = locate() in loc
 		if(T && !T.hugger)
 			visible_message("<span class='xenowarning'>[src] crawls into [T]!</span>")
 			forceMove(T)

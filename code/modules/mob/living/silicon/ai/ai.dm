@@ -71,7 +71,7 @@
 		apply_assigned_role_to_spawn(ai_job)
 
 	GLOB.ai_list += src
-	var/datum/atom_hud/H = GLOB.huds[DATA_HUD_SQUAD]
+	var/datum/atom_hud/H = GLOB.huds[DATA_HUD_SQUAD_TERRAGOV]
 	H.add_hud_to(src)
 
 	RegisterSignal(src, COMSIG_MOB_CLICK_ALT, .proc/send_order)
@@ -301,7 +301,7 @@
 		return FALSE
 
 	var/atom/A = D
-	if(level_locked && A.z != z)
+	if(!isturf(A) && level_locked && A.z != z)
 		return FALSE
 
 	return GLOB.cameranet.checkTurfVis(get_turf(A))

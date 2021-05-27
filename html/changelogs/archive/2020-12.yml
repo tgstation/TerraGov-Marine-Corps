@@ -1,0 +1,264 @@
+2020-12-01:
+  Surrealaser:
+  - bugfix: Hive Status T2 and T3 limit calculations fixed.
+  jroinc:
+  - spellcheck: fixed one typo
+2020-12-03:
+  Fauxvail:
+  - balance: added 4 more bullets per magazine for the T-18, for a total of 36 bullets
+      from 32.
+  Hughgent:
+  - rscadd: Larva can see the silo they want to spawn at before they actually spawn.
+  MalricB, Slayer, Hughgent:
+  - soundadd: added OB_warning_announce.ogg
+  - soundadd: added OB_firing.ogg
+  - soundadd: added OB_warning_announce_novoiceover.ogg
+  - code_imp: removed alert.ogg from overwatch.dm, replaced with OB_warning_announce.ogg
+  - balance: sped up OB by one whole second
+  Pariah919:
+  - balance: reduced cas ammo cost overall and dropship surgery table
+  Surrealaser:
+  - tweak: Snow clear time for Xenos reduced from 2.5 seconds to 0.5 seconds, and
+      all snow stacks are cleared.
+  - tweak: Xenos now auto-remove sticky resin when clicking it on Harm intent.
+  - tweak: Sticky Resin build cost down from 75 to 25, and build time has been halved.
+  - bugfix: Fixes lying angles for buckled/unbuckled living mobs.
+  - balance: Shield slowdown parameter now works as it should
+  Walarks:
+  - tweak: makes marines retreating a xeno minor victory
+  XSlayer300:
+  - tweak: Tweaked the TGMC gun cabinet inside the Canterbury, removing most of the
+      outdated options with the current ones.
+2020-12-05:
+  Chaznoodles:
+  - rscadd: Adds bandannas in a variety of squad-based colours. Scratch n' Sniff!
+  - rscadd: Adds squad-based radio headsets to the Requisitions Operations Vendor.
+  Hughgent:
+  - tweak: Spaceship retreat can now be prevented by admins
+  - tweak: Spaceship navigation console now automatically logs out after 1 minute
+  - tweak: Spaceship orbit cannot be changed before the 30 minute mark.
+  - rscadd: Xenos now get notified via announcement when marines start the retreat
+      timer.
+  MLGTASTICa:
+  - rscadd: Mining well upgrades!
+  SplinterGP:
+  - bugfix: fixes a runtime caused by non damage projectiles not sending the proj()
+      to airburst() by shield.
+  - tweak: makes silos at dropship not break on hijacking dropship
+  - bugfix: fixes a bug when xenos launching to shipside with hijacked dropship would
+      not give xenos burrowed to the xeno/marine ratio if xenos had less than half
+      marine numbers.
+  StiffRobot:
+  - bugfix: Fixed the flak vest being unable to hold standard issue holster rigs
+  Surrealaser:
+  - rscadd: Added the Evasion ability to the Runner.
+  - balance: Lasrifle Overcharge damage increased from 42 to 55, Penetration increased
+      from 20 to 50, and Sunder increased from 10 to 15.
+  - balance: Tadpole side entrances/exits expanded.
+  - balance: All of the Tadpole interior is now no-build; entrance and hardpoint tiles
+      are still buildable.
+  Walarks:
+  - balance: removes 4s lock on transvitox's effect being able to be triggered
+  - rscadd: added Aim Mode to some rifles
+  - refactor: refactored IFF code
+  Wayland-Smithy:
+  - bugfix: Fixed Crest Toss bypassing CanPass checks like for Xeno Silo fog.
+  - bugfix: Fixed Crest Toss failing from "there's no room" when there is.
+  - code_imp: The Weather datum has gained a "repeatable" field for optionally preventing
+      back to back random selection.
+  - tweak: Hivemind Collapse will now only occur faster if there is a living Drone
+      or Larva when initiated.
+  jroinc:
+  - balance: Shrapnel and bonebreaks do damage on walk intent.
+2020-12-06:
+  Daytona:
+  - rscadd: Added new dropped sprites
+  Surrealaser:
+  - bugfix: Fixes the shield damage absorption calculation.
+  - tweak: '''Paralyze'' status effect (i.e. proning) only halves the shield''s cover
+      value instead of negating it completely.'
+  Wayland-Smithy:
+  - rscdel: Removed the arbitrary limit on resin silos.
+  - balance: Silo construction cooldown reduced from 120 to 60 seconds.
+  jroinc:
+  - balance: Rebalanced toxheal chems
+  - spellcheck: Fixed a bad copy/paste on a pill description
+2020-12-07:
+  SplinterGP:
+  - bugfix: fixes a bug where scopes would give negative accuracy to guns.
+  - code_imp: optimizes zoom code to reduce lag.
+  TiviPlus:
+  - code_imp: Optimized get_hear()
+  - code_imp: Optimized get_hearers_in_view()
+  - code_imp: Microoptimized Keyloop()
+  - code_imp: Optimizes getviewsize()
+2020-12-08:
+  Pariah919:
+  - balance: nerfed lasgun overcharge to 5 sunder and 40 damage
+  SplinterGP:
+  - bugfix: fixes generating negative burrowed when hijacking.
+  Surrealaser:
+  - bugfix: Fixed minisentry duplication bug.
+  - bugfix: Fixed lighting bugs for sentries.
+  - refactor: Minor sentry refactors and removal/revision of old code.
+  - bugfix: Hotkey added for Evasion.
+  - bugfix: Minor bug with Evasion corrected.
+2020-12-09:
+  Hughgent:
+  - bugfix: Autoburst firemode now properly applying burst accuracy penalty.
+  TiviPlus:
+  - code_imp: Removes dead/unused huds
+  Wayland-Smithy:
+  - rscadd: Added the Salvage Biomass ability to Hivelord.
+  - bugfix: Fixed Crest Toss buckled mob interactions, and a visual feedback bug.
+  jroinc:
+  - bugfix: Russian Red doesn't yoink your arms anymore.
+2020-12-12:
+  SplinterGP:
+  - code_imp: makes acid use SSslowprocess instead of SSprocessing, saving performance.
+2020-12-14:
+  CthulhuOnIce, BeloneX:
+  - rscadd: Added automatic-punctuation.
+  SplinterGP:
+  - bugfix: fixes bug and runtime error on scopes not unzooming on some occasions(quickstoring,
+      dropping, etc).
+  - bugfix: fixes fire not lighting xenos on fire.
+  - bugfix: fixes acid globs stored on boiler not glowing.
+  - code_imp: makes xenos use newlights.
+2020-12-15:
+  MLGTASTICa:
+  - rscadd: Turned Ice Caves on Ice Colony into their own areas and they are now considered
+      deep caves.
+  - bugfix: fixed tadpole being able to land in caves on big red
+  - bugfix: fixed Tadpole being able to land in magmoor underground buildings.
+  Surrealaser:
+  - bugfix: Acid Wells no longer discharge gas when destroyed by shuttle crushing.
+  - bugfix: Hugger Traps no longer discharge huggers when destroyed by shuttle crushing.
+  - tweak: Transfer Plasma no longer transfers for plasma than its target needs.
+  - tweak: Transfer Plasma has cool SFX now.
+  TiviPlus:
+  - code_imp: cleaned up bed and chairs code
+  - code_imp: Cleaned up Move() and Signal defines slightly
+  - code_imp: removed depracated vars on items
+  - code_imp: documented items
+  - code_imp: more misc cleanup
+  - refactor: refactored item actions into a lazylist
+2020-12-17:
+  SplinterGP:
+  - bugfix: fixes bug where muting deadchat locally won't properly hide deadchat messages.
+  Surrealaser:
+  - bugfix: Fixes displayed T3 Hive Status.
+  - refactor: Adds T2 and T3 limit vars for Hive datums.
+  - rscadd: Warrior gains the Grapple Toss ability. Cooldown is shared with Lunge
+      (and vice versa).
+  - rscadd: Lunge, Grapple Toss, Punch and Fling can all target xenos now (enemy and
+      allied).
+  - tweak: Punch deals double damage and debuffs to targets the Warrior is grappling.
+  - tweak: Punch can now target structures/machinery, dealing 4x base melee damage
+      to them.
+  - refactor: Refactored a bunch of Warrior code.
+  - bugfix: Warrior's Lunge now bypasses grab delays as it should.
+  TiviPlus:
+  - bugfix: Fix server votes probably
+  - rscadd: Powerfist
+  - imageadd: sprite by Daytona
+  - bugfix: fixed a likely cause for sticky plasteel overlays
+  - code_imp: Cleaned up various overlay code
+  - refactor: Turret icon updates will be much faster
+  Wayland-Smithy:
+  - bugfix: Fixed Queen overwatch from hive status and chat not working on numbers
+      or names with spaces.
+  - bugfix: Fixed Xeno HUD for the observed not updating when starting overwatch.
+2020-12-18:
+  SplinterGP:
+  - bugfix: fixes xeno grabbing starting even when not adjacent when grabbing via
+      ctrl click.
+2020-12-19:
+  Surrealaser:
+  - bugfix: Fixes a bug where removing melee/acid upgrades from a barricade removed
+      more soft armor than the upgrade provided.
+  TiviPlus:
+  - code_imp: Optimized getallcontents and splits it into 2 procs
+2020-12-21:
+  Surrealaser:
+  - bugfix: Fixes minor bug with barbed barricades not dealing damage to alien attackers.
+2020-12-22:
+  Pariah919:
+  - rscdel: Removed skirts
+  Surrealaser:
+  - bugfix: Minisentry power cells no longer disappear when crowbarred out after packing
+      up and redeploying.
+  - code_imp: Sentry deactivation code refactored.
+  TiviPlus:
+  - code_imp: The garbage subsystem will lag less under large loads
+  Walarks:
+  - bugfix: PMC sniper has IFF again
+  Wayland-Smithy:
+  - bugfix: Fixed several null and out of bounds issues.
+2020-12-24:
+  Chaznoodles:
+  - bugfix: Watertanks, fulton extraction pads and M16 ammo are now properly available
+      from Surplus Req. Please don't put your spare rounds in the water.
+  Daytona:
+  - tweak: tweaked powerfist sprite
+  Hughgent:
+  - tweak: Stamina damage projectiles no longer count as FF.
+  SplinterGP:
+  - refactor: refactors icon getting for worn items on update_inv().
+  - code_imp: adds vars for specific icon files and icon states on specific slots.
+  - code_imp: adds LAZYACCESSASSOCS macro to code.
+  Surrealaser:
+  - refactor: Refactors CanPass per TG.
+  - tweak: The Warrior Grapple Toss ability can now be keybound.
+  - tweak: Keybind descriptions added for Warrior abilities.
+  - code_imp: Minor refactor of Grapple Toss code.
+  - bugfix: Fixes a bug with deployed camo tarps not having their serial number properly
+      set.
+  - bugfix: Fixes cells not being properly removed/installed from/to powerloaders.
+  TiviPlus:
+  - balance: Areas with FOB shutters can no longer be weeded with closed shutters
+  Walarks:
+  - bugfix: 'fixes #5542 by adding a busy check at able_to_fire proc'
+2020-12-26:
+  Hughgent:
+  - bugfix: ERT shuttles now have a proper 10 second windup before departing.
+  - bugfix: Fixed runtimes with the dropship operating table
+  - bugfix: FC Vendor now displays all their items.
+  - bugfix: Synthetic head reattachment surgery will now use the head up.
+  - bugfix: The Sulaco CL can now access their corner bookcase.
+2020-12-28:
+  BraveMole:
+  - tweak: moved the Toggle_Middle/Shift Clicking from IC to GamePref
+  Glarbog:
+  - rscadd: New version of the Canterbury
+  Hughgent:
+  - refactor: flamer fire now uses the better damage proc.
+  - bugfix: Russian Red functions as it was intended
+  TiviPlus:
+  - rscadd: Adds Instruments, can be found on the ship and in clothing vendors
+  - rscadd: Instrument disable sound pref is available
+  - rscadd: New !tgs lagcheck command to check server time dilation
+  - code_imp: Moved some code to the correct file
+2020-12-29:
+  StiffRobot:
+  - bugfix: Sulaco now has cryo consoles, allowing you to retrieve whatever the ~~stupid
+      vacuum cleaner~~ Roomba *"cleaned up"*
+  Walarks:
+  - tweak: saved chem recipes are persistent
+  - tweak: adds 1u as an option when dispensing chems
+2020-12-31:
+  Hughgent:
+  - bugfix: Objects now shrug off odd damage types.
+  - bugfix: Xenos no longer have the manual dexterity to work with operating tables
+      anesthetic masks.
+  SplinterGP:
+  - tweak: ghost orbit menu doens't auto-close when you choose to orbit something.
+  Surrealaser:
+  - bugfix: Fixes bug with windoor collision.
+  fernandos13:
+  - rscadd: new hypospray pouch
+  - rscadd: hypospray pouch to corpsman prep
+  - rscadd: new pre filled hyposprays
+  ma44, Tiviplus:
+  - refactor: AI now support nide weighting and will be less likely to visit recently
+      visited nodes

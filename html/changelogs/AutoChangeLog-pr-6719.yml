@@ -1,8 +1,0 @@
-author: "David Stormwell, Tiviplus, MJP, Kuro, RenGusta"
-delete-after: True
-changes: 
-  - rscadd: "Added a entire set of TE Laser guns!"
-  - rscdel: "Removed the Yee old Lasgun from current marine vendors."
-  - balance: "Laser guns do seem to affect balance a tad!"
-  - soundadd: "Added a bunch of new sounds and sights for the guns!"
-  - imageadd: "Added a bunch of new sounds and sights for the guns!"

@@ -42,6 +42,8 @@
 	. = ..()
 	if(!isliving(O))
 		return
+	if(CHECK_BITFIELD(O.flags_pass, PASSSMALLSTRUCT))
+		return
 	var/mob/living/M = O
 	if(CHECK_BITFIELD(M.restrained_flags, RESTRAINED_RAZORWIRE))
 		return
@@ -54,6 +56,15 @@
 	M.apply_damage(RAZORWIRE_BASE_DAMAGE, BRUTE, def_zone, armor_block, TRUE, updating_health = TRUE)
 	razorwire_tangle(M)
 
+/obj/structure/razorwire/CheckExit(atom/movable/mover, turf/target)
+	. = ..()
+	if(CHECK_BITFIELD(mover.flags_pass, PASSSMALLSTRUCT))
+		return TRUE
+
+/obj/structure/razorwire/CanAllowThrough(atom/movable/mover, turf/target)
+	. = ..()
+	if(CHECK_BITFIELD(mover.flags_pass, PASSSMALLSTRUCT))
+		return TRUE
 
 /obj/structure/razorwire/proc/razorwire_tangle(mob/living/entangled, duration = RAZORWIRE_ENTANGLE_DELAY)
 	if(QDELETED(src)) //Sanity check so that you can't get entangled if the razorwire is destroyed; this happens apparently.

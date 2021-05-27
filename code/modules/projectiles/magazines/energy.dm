@@ -18,6 +18,7 @@
 	base_ammo_icon = "m43_e"
 	icon_state = "m43_e"
 	maxcharge = 2000
+	gun_type = /obj/item/weapon/gun/energy/lasgun/tesla
 
 /obj/item/cell/lasgun/M43
 	name = "\improper M43 lasgun battery"
@@ -95,8 +96,9 @@
 
 /obj/item/cell/lasgun/lasrifle/marine
 	name = "\improper Terra Experimental standard battery"
-	desc = "A specialized high density battery used to power most standard marine laser guns. It is simply known as the TE power cell"
+	desc = "A specialized high density battery used to power most standard marine laser guns. It is simply known as the TE power cell."
 	base_ammo_icon = "te"
 	icon_state = "te"
+	icon_state_mini = "mag_cell_te"
 	maxcharge = 600
 	gun_type = /obj/item/weapon/gun/energy/lasgun

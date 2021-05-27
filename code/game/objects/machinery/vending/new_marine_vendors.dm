@@ -440,6 +440,10 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 		/obj/item/clothing/mask/rebreather = list(CAT_MAS, "Rebreather", 0, "black"),
 	)
 
+/obj/machinery/marine_selector/clothes/engi/rebel
+	req_access = list(ACCESS_MARINE_ENGPREP_REBEL)
+	vendor_role = /datum/job/terragov/squad/engineer/rebel
+
 /obj/machinery/marine_selector/clothes/engi/alpha
 	squad_tag = "Alpha"
 	req_access = list(ACCESS_MARINE_ENGPREP, ACCESS_MARINE_ALPHA)
@@ -502,6 +506,10 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 		/obj/item/clothing/mask/rebreather/scarf = list(CAT_MAS, "Heat absorbent coif", 0, "black"),
 		/obj/item/clothing/mask/rebreather = list(CAT_MAS, "Rebreather", 0, "black"),
 	)
+
+/obj/machinery/marine_selector/clothes/medic/rebel
+	req_access = list(ACCESS_MARINE_MEDPREP_REBEL)
+	vendor_role = /datum/job/terragov/squad/corpsman/rebel
 
 /obj/machinery/marine_selector/clothes/medic/alpha
 	squad_tag = "Alpha"
@@ -572,6 +580,10 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 		/obj/item/clothing/mask/rebreather/scarf = list(CAT_MAS, "Heat absorbent coif", 0, "black"),
 		/obj/item/clothing/mask/rebreather = list(CAT_MAS, "Rebreather", 0, "black"),
 	)
+
+/obj/machinery/marine_selector/clothes/smartgun/rebel 
+	req_access = list(ACCESS_MARINE_SMARTPREP_REBEL)
+	vendor_role = /datum/job/terragov/squad/smartgunner/rebel
 
 
 /obj/machinery/marine_selector/clothes/smartgun/alpha
@@ -728,6 +740,10 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 		/obj/item/clothing/mask/rebreather = list(CAT_MAS, "Rebreather", 0, "black"),
 	)
 
+/obj/machinery/marine_selector/clothes/leader/rebel
+	req_access = list(ACCESS_MARINE_LEADER_REBEL)
+	vendor_role = /datum/job/terragov/squad/leader/rebel
+
 
 /obj/machinery/marine_selector/clothes/leader/alpha
 	squad_tag = "Alpha"
@@ -808,6 +824,9 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 		/obj/item/clothing/mask/rebreather = list(CAT_MAS, "Rebreather", 0, "black"),
 	)
 
+/obj/machinery/marine_selector/clothes/commander/rebel 
+	req_access = list(ACCESS_MARINE_COMMANDER_REBEL)
+	vendor_role = /datum/job/terragov/command/fieldcommander/rebel
 
 /obj/machinery/marine_selector/clothes/synth
 	name = "M57 Synthetic Equipment Vendor"
@@ -933,7 +952,8 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 		/obj/item/clothing/mask/gas/tactical/coif = list(CAT_MAS, "Tactical coifed gas mask", 0,"black"),
 	)
 
-
+/obj/machinery/marine_selector/clothes/synth/rebel 
+	vendor_role = /datum/job/terragov/silicon/synthetic/rebel
 
 ////////////////////// Gear ////////////////////////////////////////////////////////
 
@@ -964,29 +984,23 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 		/obj/effect/essentials_set/medic = list(CAT_ESS, "Essential Medic Set", 0, "white"),
 
 		/obj/item/storage/backpack/lightpack = list(CAT_MEDSUP, "Combat Backpack", 15, "orange"),
-		/obj/item/storage/pill_bottle/bicamera = list(CAT_MEDSUP, "BicaMera pills", 30, "orange"),
-		/obj/item/storage/pill_bottle/keloderm = list(CAT_MEDSUP, "KeloDerm pills", 30, "orange"),
+		/obj/item/storage/pill_bottle/meralyne = list(CAT_MEDSUP, "Meralyne pills", 16, "orange"),
+		/obj/item/storage/pill_bottle/dermaline = list(CAT_MEDSUP, "Dermaline pills", 16, "orange"),
 		/obj/item/storage/pill_bottle/paracetamol = list(CAT_MEDSUP, "Paracetamol pills", 8, "orange"),
-		/obj/item/storage/pill_bottle/bicaridine = list(CAT_MEDSUP, "Bicaridine pills", 8, "black"),
-		/obj/item/storage/pill_bottle/kelotane = list(CAT_MEDSUP, "Kelotane pills", 8, "black"),
-		/obj/item/storage/pill_bottle/tramadol = list(CAT_MEDSUP, "Tramadol pills", 8, "black"),
-		/obj/item/storage/pill_bottle/tricordrazine = list(CAT_MEDSUP, "Tricordrazine", 8, "black"),
+		/obj/item/storage/pill_bottle/tricordrazine = list(CAT_MEDSUP, "Tricordrazine pills", 8, "black"),
 		/obj/item/storage/syringe_case/meralyne = list(CAT_MEDSUP, "syringe Case (120u Meralyne)", 16, "orange"),
 		/obj/item/reagent_containers/hypospray/advanced/meralyne = list(CAT_MEDSUP, "hypospray (60u Meralyne)", 8, "orange"), //half the units of the mera case half the price
 		/obj/item/storage/syringe_case/dermaline = list(CAT_MEDSUP, "syringe Case (120u Dermaline)", 16, "orange"),
 		/obj/item/reagent_containers/hypospray/advanced/dermaline = list(CAT_MEDSUP, "hypospray (60u dermaline)", 8, "orange"), //half the units of the derm case half the price
 		/obj/item/storage/syringe_case/meraderm = list(CAT_MEDSUP, "syringe Case (120u Meraderm)", 16, "orange"),
 		/obj/item/reagent_containers/hypospray/advanced/meraderm = list(CAT_MEDSUP, "hypospray (60u Meraderm)", 8, "orange"), //half the units of the meraderm case half the price
-		/obj/item/storage/syringe_case/ironsugar = list(CAT_MEDSUP, "syringe Case (120u Ironsugar)", 5, "black"),
-		/obj/item/reagent_containers/hypospray/advanced/ironsugar = list(CAT_MEDSUP, "hypospray (60u Ironsugar)", 3, "black"), //bit more than half of the ironsugar case
+		/obj/item/storage/syringe_case/nanoblood = list(CAT_MEDSUP, "syringe Case (120u Nanoblood)", 5, "black"),
+		/obj/item/reagent_containers/hypospray/advanced/nanoblood = list(CAT_MEDSUP, "hypospray (60u Nanoblood)", 3, "black"), //bit more than half of the nanoblood case
 		/obj/item/storage/syringe_case/tricordrazine = list(CAT_MEDSUP, "syringe Case (120u Tricordrazine)", 5, "black"),
 		/obj/item/reagent_containers/hypospray/advanced/tricordrazine = list(CAT_MEDSUP, "hypospray (60u Tricordrazine)", 3, "black"),
 		/obj/item/reagent_containers/hypospray/autoinjector/combat_advanced = list(CAT_MEDSUP, "Injector (Advanced)", 5, "black"),
-		/obj/item/reagent_containers/hypospray/autoinjector/oxycodone = list(CAT_MEDSUP, "Injector (Oxycodone)", 1, "black"),
-		/obj/item/reagent_containers/hypospray/autoinjector/hypervene = list(CAT_MEDSUP, "Injector (Hypervene)", 1, "black"),
 		/obj/item/reagent_containers/hypospray/autoinjector/quickclotplus = list(CAT_MEDSUP, "Injector (QuickclotPlus)", 1, "orange"),
 		/obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus = list(CAT_MEDSUP, "Injector (Peridaxon Plus)", 1, "orange"),
-		/obj/item/reagent_containers/hypospray/autoinjector/dexalinplus = list(CAT_MEDSUP, "Injector (Dexalin Plus)", 1, "black"),
 		/obj/item/reagent_containers/hypospray/autoinjector/synaptizine = list(CAT_MEDSUP, "Injector (Synaptizine)", 4, "orange"),
 		/obj/item/reagent_containers/hypospray/autoinjector/neuraline = list(CAT_MEDSUP, "Injector (Neuraline)", 14, "orange"),
 		/obj/item/reagent_containers/hypospray/advanced = list(CAT_MEDSUP, "Advanced hypospray", 2, "black"),
@@ -1006,6 +1020,9 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 		/obj/item/attachable/heavy_barrel = list(CAT_ATT, "barrel charger", 0, "black"),
 	)
 
+/obj/machinery/marine_selector/gear/medic/rebel 
+	vendor_role = /datum/job/terragov/squad/corpsman/rebel
+	req_access = list(ACCESS_MARINE_MEDPREP_REBEL)	
 
 
 /obj/machinery/marine_selector/gear/engi
@@ -1050,6 +1067,9 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 		/obj/item/attachable/stock/t19stock = list(CAT_ATT, "T-19 machine pistol stock", 0, "black"),
 	)
 
+/obj/machinery/marine_selector/gear/engi/rebel 
+	vendor_role = /datum/job/terragov/squad/engineer/rebel
+	req_access = list(ACCESS_MARINE_ENGPREP_REBEL)
 
 
 /obj/machinery/marine_selector/gear/smartgun
@@ -1075,6 +1095,9 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 		/obj/item/attachable/stock/t19stock = list(CAT_ATT, "T-19 machine pistol stock", 0, "black"),
 	)
 
+/obj/machinery/marine_selector/gear/smartgun/rebel 
+	vendor_role = /datum/job/terragov/squad/smartgunner/rebel
+	req_access = list(ACCESS_MARINE_SMARTPREP_REBEL)
 
 //todo: move this to some sort of kit controller/datum
 //the global list of specialist sets that haven't been claimed yet.
@@ -1171,6 +1194,10 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 		/obj/item/attachable/stock/t35stock = list(CAT_ATT, "T-35 stock", 0, "black"),
 		/obj/item/attachable/stock/t19stock = list(CAT_ATT, "T-19 machine pistol stock", 0, "black"),
 	)
+
+/obj/machinery/marine_selector/gear/leader/rebel
+	vendor_role = /datum/job/terragov/squad/leader/rebel
+	req_access = list(ACCESS_MARINE_LEADER_REBEL)
 
 
 /obj/effect/essentials_set
