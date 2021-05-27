@@ -1,0 +1,5 @@
+author: "Wayland-Smithy"
+delete-after: True
+changes: 
+  - balance: "Body blocking xeno chargers while they are in CHARGE_BUILDINGUP phase no longer resets their momentum if they shuffle through you."
+  - bugfix: "Fixed some xeno charger movement signal handlers not checking for null directions."
