@@ -125,7 +125,7 @@
 		return
 	if(species.species_flags & NO_BLOOD)
 		return
-	..()
+	return ..()
 
 
 
