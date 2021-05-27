@@ -381,3 +381,12 @@
   - rscdel: Removed QC+ and peri+ from the wrenchable vendor. Medics, quiver in fear!
   - balance: rebalanced many chems, and changed a few autoinjectors, details in main
       PR body
+2021-05-27:
+  TiviPlus:
+  - bugfix: fixed squad over role not working consistently
+  - bugfix: fixed marines being unable to join
+  - bugfix: fixed some squads being unevenly stacked when it came to marine distribution
+  Walarks:
+  - code_imp: added SSpersistence and support for real-time-based progression of stuff
+  jroinc:
+  - balance: Airlocks have melee armor

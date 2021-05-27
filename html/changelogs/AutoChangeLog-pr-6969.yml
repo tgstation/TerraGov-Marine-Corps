@@ -1,6 +1,0 @@
-author: "TiviPlus"
-delete-after: True
-changes: 
-  - bugfix: "fixed squad over role not working consistently"
-  - bugfix: "fixed marines being unable to join"
-  - bugfix: "fixed some squads being unevenly stacked when it came to marine distribution"
