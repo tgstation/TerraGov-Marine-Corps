@@ -30,10 +30,11 @@
 	for(var/type in GLOB.loadout_linked_vendor)
 		for(var/datum/vending_product/item_datum AS in GLOB.vending_records[type])
 			var/product_path = item_datum.product_path
-			if(product_path == item_to_give_back_type)
-				if(item_datum.amount >= 0)
-					item_datum.amount++
-				return 
+			if(product_path != item_to_give_back_type)
+				continue
+			if(item_datum.amount >= 0)
+				item_datum.amount++
+			return 
 
 ///Return wich type of item_representation should representate any item_type
 /proc/item2representation_type(item_type)
