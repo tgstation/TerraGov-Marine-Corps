@@ -152,8 +152,6 @@
 	READ_FILE(S["max_chat_length"], max_chat_length)
 	READ_FILE(S["see_chat_non_mob"], see_chat_non_mob)
 	READ_FILE(S["see_rc_emotes"], see_rc_emotes)
-	
-
 
 	//try to fix any outdated data if necessary
 	if(needs_update >= 0)
