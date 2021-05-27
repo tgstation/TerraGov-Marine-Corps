@@ -12,7 +12,7 @@
 	move_delay = 1.8	//set this to limit the speed of the vehicle
 	max_integrity = 300
 	resistance_flags = XENO_DAMAGEABLE
-	flags_atom = BUMPABLE
+	flags_atom = BUMP_ATTACKABLE
 	///Type of "turret" attached
 	var/turret_type
 	///Turret types we're allowed to attach
