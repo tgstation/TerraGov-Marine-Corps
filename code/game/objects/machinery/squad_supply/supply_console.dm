@@ -20,7 +20,7 @@
 	var/x_offset = 0
 	///Y offset of the drop, relative to the supply beacon loc
 	var/y_offset = 0
-	///Faction if this drop console
+	///Faction of this drop console
 	var/faction = FACTION_TERRAGOV
 
 /obj/machinery/computer/supplydrop_console/rebel
