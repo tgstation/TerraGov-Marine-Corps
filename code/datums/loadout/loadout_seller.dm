@@ -37,7 +37,7 @@
 		item = item_list[slot_key]
 		if(!user.equip_to_slot_if_possible(item, GLOB.slot_str_to_slot[slot_key], warning = FALSE))
 			sell_back_item_in_vendor(item.type)
-			QDEL_NULL(item)
+			qdel(item)
 	give_free_headset(user)
 
 /**
