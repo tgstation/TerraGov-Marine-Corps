@@ -157,7 +157,7 @@
 	icon_state = "medium_uv"
 	move_delay = 2.4
 	max_rounds = 200
-	max_integrity = 600
+	max_integrity = 500
 	ammo = /datum/ammo/bullet/machinegun
 
 /obj/vehicle/unmanned/heavy
@@ -165,6 +165,6 @@
 	icon_state = "heavy_uv"
 	move_delay = 3.5
 	max_rounds = 200
-	max_integrity = 900
+	max_integrity = 700
 	anchored = TRUE
 	ammo = /datum/ammo/bullet/machinegun
