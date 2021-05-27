@@ -19,10 +19,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
-	dir = 4;
-	on = 1
-	},
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 6
@@ -5145,6 +5141,11 @@
 	dir = 8
 	},
 /area/mainship/engineering/lower_engineering)
+"buS" = (
+/obj/structure/closet,
+/obj/item/toy/plush/snake,
+/turf/open/floor/mainship/mono,
+/area/mainship/living/starboard_emb)
 "buZ" = (
 /obj/machinery/door/airlock/mainship/maint{
 	name = "\improper Core Hatch"
@@ -5591,7 +5592,7 @@
 	dir = 4
 	},
 /obj/structure/mirror{
-	dir = 8
+	dir = 4
 	},
 /turf/open/floor/mainship/floor,
 /area/mainship/living/commandbunks)
@@ -6598,6 +6599,11 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/aft_hallway)
+"bLp" = (
+/obj/structure/closet,
+/obj/item/toy/plush/snake,
+/turf/open/floor/mainship/mono,
+/area/mainship/living/port_emb)
 "bLs" = (
 /obj/machinery/light{
 	dir = 1
@@ -7595,6 +7601,7 @@
 /obj/machinery/status_display{
 	pixel_y = 30
 	},
+/obj/item/toy/plush/slime,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/port_emb)
 "bUq" = (
@@ -7621,7 +7628,7 @@
 	dir = 1
 	},
 /obj/machinery/camera/autoname/mainship,
-/turf/open/floor/mainship/mono,
+/turf/open/floor/mainship/floor,
 /area/mainship/hallways/hangar)
 "bUH" = (
 /obj/structure/window/framed/mainship,
@@ -8297,7 +8304,7 @@
 /area/mainship/living/port_emb)
 "ccf" = (
 /obj/structure/closet,
-/obj/item/contraband/poster,
+/obj/item/toy/beach_ball,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/port_emb)
 "cco" = (
@@ -8867,6 +8874,11 @@
 	dir = 1
 	},
 /area/mainship/medical/medical_science)
+"cTo" = (
+/obj/structure/closet,
+/obj/item/toy/plush/moth,
+/turf/open/floor/mainship/mono,
+/area/mainship/living/port_emb)
 "cUI" = (
 /obj/machinery/vending/cigarette,
 /turf/open/floor/mainship/mono,
@@ -9351,7 +9363,7 @@
 /area/mainship/command/cic)
 "dNL" = (
 /obj/structure/closet,
-/obj/item/toy/beach_ball,
+/obj/item/toy/plush/carp,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/port_emb)
 "dOe" = (
@@ -10446,7 +10458,7 @@
 /area/mainship/hallways/repair_bay)
 "gra" = (
 /obj/structure/closet,
-/obj/item/contraband/poster,
+/obj/item/toy/plush/lizard,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/starboard_emb)
 "gtg" = (
@@ -11190,6 +11202,11 @@
 /obj/structure/closet/toolcloset,
 /turf/open/floor/mainship/cargo,
 /area/mainship/hallways/starboard_hallway)
+"ibM" = (
+/obj/structure/closet,
+/obj/item/toy/plush/rouny,
+/turf/open/floor/mainship/mono,
+/area/mainship/living/port_emb)
 "icL" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 8
@@ -11594,6 +11611,11 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
+"jeN" = (
+/obj/structure/closet,
+/obj/item/toy/sword,
+/turf/open/floor/mainship/mono,
+/area/mainship/living/starboard_emb)
 "jff" = (
 /obj/effect/decal/warning_stripes/thin,
 /obj/effect/decal/warning_stripes/thin{
@@ -13064,6 +13086,10 @@
 /obj/effect/landmark/start/job/chiefshipengineer,
 /turf/open/floor/mainship/floor,
 /area/mainship/living/officer_study)
+"mfu" = (
+/obj/docking_port/stationary/marine_dropship/crash_target,
+/turf/open/floor/mainship/floor,
+/area/mainship/hallways/hangar)
 "mgo" = (
 /obj/structure/table/mainship,
 /obj/item/tool/extinguisher,
@@ -14307,7 +14333,7 @@
 /area/mainship/hallways/starboard_hallway)
 "oVq" = (
 /obj/structure/closet,
-/obj/item/toy/bikehorn/rubberducky,
+/obj/item/toy/plush/lizard,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/port_emb)
 "oVr" = (
@@ -15198,6 +15224,11 @@
 	},
 /turf/open/floor/mainship/sterile,
 /area/mainship/medical/medical_science)
+"qHl" = (
+/obj/structure/closet,
+/obj/item/toy/plush/moth,
+/turf/open/floor/mainship/mono,
+/area/mainship/living/starboard_emb)
 "qJa" = (
 /obj/machinery/bioprinter/stocked,
 /turf/open/floor/mainship/sterile/corner,
@@ -15659,6 +15690,11 @@
 /obj/machinery/vending/cola,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/cafeteria_port)
+"rQH" = (
+/obj/structure/closet,
+/obj/item/toy/plush/slime,
+/turf/open/floor/mainship/mono,
+/area/mainship/living/starboard_emb)
 "rSg" = (
 /obj/structure/bed/chair/comfy/brown{
 	dir = 8
@@ -16049,7 +16085,7 @@
 /area/mainship/hallways/port_umbilical)
 "sLN" = (
 /obj/structure/closet,
-/obj/item/storage/fancy/crayons,
+/obj/item/toy/plush/rouny,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/starboard_emb)
 "sMI" = (
@@ -30477,7 +30513,7 @@ bGR
 bGR
 mJs
 xRU
-iIi
+mfu
 uns
 uns
 uns
@@ -30735,7 +30771,7 @@ iIi
 kVl
 ack
 ftB
-bbQ
+uns
 rMK
 sMI
 uns
@@ -30864,7 +30900,7 @@ bbQ
 kXm
 uJT
 ftB
-bbQ
+uns
 rMK
 sMI
 wfe
@@ -30993,7 +31029,7 @@ bbQ
 ljk
 vpH
 ftB
-bbQ
+uns
 rMK
 sMI
 uns
@@ -37301,7 +37337,7 @@ jFh
 jFh
 jFh
 xRs
-gra
+jeN
 aXM
 aoU
 bjV
@@ -37339,7 +37375,7 @@ kPc
 kPc
 wsC
 ccR
-ccf
+bLp
 bSO
 vWS
 aVk
@@ -37430,7 +37466,7 @@ vhK
 bfB
 bgH
 bdq
-gra
+buS
 aXM
 ayo
 bke
@@ -37559,7 +37595,7 @@ jFh
 jFh
 jFh
 cuY
-gra
+rQH
 aXM
 aLX
 bjV
@@ -37597,7 +37633,7 @@ kPc
 kPc
 kPc
 jfZ
-ccf
+cTo
 bSO
 aVl
 caM
@@ -37817,7 +37853,7 @@ pqT
 pqT
 pqT
 mxO
-gra
+qHl
 aXM
 biu
 bjV
@@ -37855,7 +37891,7 @@ kPc
 bZR
 kPc
 dzm
-ccf
+ibM
 bSO
 aVn
 caM
