@@ -181,27 +181,26 @@
 
 ///Warns the player when Endure is about to end
 /datum/action/xeno_action/endure/proc/endure_warning()
-
 	to_chat(owner,"<span class='highdanger'>We feel the plasma draining from our veins... [ability_name] will last for only [RAVAGER_ENDURE_DURATION * (1-RAVAGER_ENDURE_WARNING) * 0.1] more seconds!</span>")
 	owner.playsound_local(owner, 'sound/voice/hiss4.ogg', 50, 0, 1)
 
 ///Turns off the Endure buff
 /datum/action/xeno_action/endure/proc/endure_deactivate()
-	var/mob/living/carbon/xenomorph/R = owner
+	var/mob/living/carbon/xenomorph/X = owner
 
-	UnregisterSignal(R, COMSIG_XENOMORPH_TAKING_DAMAGE)
+	UnregisterSignal(X, COMSIG_XENOMORPH_TAKING_DAMAGE)
 
-	R.do_jitter_animation(1000)
-	R.endure = FALSE
-	R.remove_filter("ravager_endure_outline")
-	if(R.health < R.get_death_threshold() && R.health > RAVAGER_ENDURE_HP_LIMIT) //If we have less health than our death threshold, but more than our Endure death threshold, set our HP to just a hair above insta dying
-		var/total_damage = R.getFireLoss() + R.getBruteLoss()
-		var/burn_percentile_damage = R.getFireLoss() / total_damage
-		var/brute_percentile_damage = R.getBruteLoss() / total_damage
-		R.setBruteLoss((R.xeno_caste.max_health - R.get_death_threshold()-1) * brute_percentile_damage)
-		R.setFireLoss((R.xeno_caste.max_health - R.get_death_threshold()-1) * burn_percentile_damage)
+	X.do_jitter_animation(1000)
+	X.endure = FALSE
+	X.remove_filter("ravager_endure_outline")
+	if(X.health < X.get_death_threshold() && X.health > RAVAGER_ENDURE_HP_LIMIT) //If we have less health than our death threshold, but more than our Endure death threshold, set our HP to just a hair above insta dying
+		var/total_damage = X.getFireLoss() + X.getBruteLoss()
+		var/burn_percentile_damage = X.getFireLoss() / total_damage
+		var/brute_percentile_damage = X.getBruteLoss() / total_damage
+		X.setBruteLoss((X.xeno_caste.max_health - X.get_death_threshold()-1) * brute_percentile_damage)
+		X.setFireLoss((X.xeno_caste.max_health - X.get_death_threshold()-1) * burn_percentile_damage)
 
-	REMOVE_TRAIT(R, TRAIT_STAGGERIMMUNE, ENDURE_TRAIT)
+	REMOVE_TRAIT(X, TRAIT_STAGGERIMMUNE, ENDURE_TRAIT)
 
 	to_chat(owner,"<span class='highdanger'>The last of the plasma drains from our body... We can no longer endure beyond our normal limits!</span>")
 	owner.playsound_local(owner, 'sound/voice/hiss4.ogg', 50, 0, 1)
