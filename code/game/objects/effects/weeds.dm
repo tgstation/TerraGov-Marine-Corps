@@ -179,4 +179,46 @@
 	node_range = NODERANGE*2
 	max_integrity = 120
 
+/obj/effect/alien/acid_node
+	name = "green sac"
+	desc = "A weird, glowing node."
+	icon = 'icons/Xeno/1x1_xeno_structures.dmi'
+	icon_state = "node"
+	anchored = TRUE
+	density = FALSE
+	layer = XENO_WEEDS_LAYER
+	plane = FLOOR_PLANE
+	///range value the node provides
+	var/effective_range_modifier = 2
+	///strength value the node provides
+	var/strength_modifier = 2
+
+/obj/effect/alien/acid_node/Initialize(mapload, obj/effect/alien/weeds/node/node)
+	. = ..()
+	set_light(1, 4, LIGHT_COLOR_ELECTRIC_GREEN)
+	GLOB.acid_nodes += src
+
+	for(var/obj/structure/resin/acid_spire/spire AS in GLOB.acid_spires)
+		var/node_distance = get_dist(src, spire)
+		if(node_distance > spire.effective_range)
+			continue
+		spire.add_acid_node(src)
+
+/obj/effect/alien/acid_node/Destroy()
+	SEND_SIGNAL(src, COMSIG_LIVING_ACID_NODE_DESTROYED)
+	GLOB.acid_nodes -= src
+	return ..()
+
+/obj/effect/alien/acid_node/examine(mob/user)
+	. = ..()
+	if(isxeno(user))
+		to_chat(user, "<span class='notice'>The network currently contains <b>[SSacid_spires.stored_acid()] units of acid.</b></span>")
+
+///provides the range increase value that the acid node gives to a connected spire
+/obj/effect/alien/acid_node/proc/effective_range_increase()
+	return effective_range_modifier
+
+///provides the strength increase value that the acid node gives to a spire
+/obj/effect/alien/acid_node/proc/strength_increase()
+	return strength_modifier
 #undef NODERANGE

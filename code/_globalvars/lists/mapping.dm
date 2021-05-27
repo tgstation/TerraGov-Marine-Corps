@@ -10,6 +10,11 @@ GLOBAL_LIST_EMPTY(latejoin_cryo)
 GLOBAL_LIST_EMPTY(landmarks_list)				//list of all landmarks created
 GLOBAL_LIST_EMPTY(start_landmarks_list)			//list of all spawn points created
 GLOBAL_LIST_EMPTY(corpse_landmarks_list)		//list of all corpse spawner
+GLOBAL_LIST_EMPTY(acid_spire_landmarks_list)		//list of all acid_spire spawners
+///A global list of xeno acid spires that has been spawned on the map
+GLOBAL_LIST_EMPTY(acid_spires)
+///A global list of xeno acid nodes that has been spawned on the map
+GLOBAL_LIST_EMPTY(acid_nodes)
 
 GLOBAL_LIST_EMPTY(spawns_by_job)			//2d array of /datum/job => list(turfs)
 

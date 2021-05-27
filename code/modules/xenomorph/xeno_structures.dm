@@ -454,3 +454,102 @@
 	newshot.permutated += src
 	newshot.def_zone = pick(GLOB.base_miss_chance)
 	newshot.fire_at(hostile, src, null, ammo.max_range, ammo.shell_speed)
+
+/**
+ * TODO
+ * Acid spires buff buildings within range
+ *  - acid spires' buff is a cumulative amount of all acid spires' strength
+ *  - buffed buildings glow brightly green, more than usual
+ *  - marines can destroy acid spires, which decreases their strength, but the network remain intact
+ *  - marines can put miners next to destroyed acid spires for req points
+ */
+
+#define NODE_RANGE_GROUPING_COEF 4
+
+/obj/structure/resin/acid_spire
+	name = "acid spire"
+	icon = 'icons/Xeno/2x2_xeno_structures.dmi'
+	icon_state = "tower"
+	desc = "A weird glowing spire..."
+	bound_width = 64
+	bound_height = 64
+	max_integrity = 10
+	density = TRUE
+	resistance_flags = UNACIDABLE | DROPSHIP_IMMUNE
+	light_system = STATIC_LIGHT
+	///Acid nodes connected to the spire
+	var/list/connected_acid_nodes = list()
+	///Amount of acid that the spire produces
+	var/acid_production_strength = 4
+	///Range at which the spire links with other nodes
+	var/effective_range = 7
+	/**
+	 * This makes a map of distances from acid nodes
+	 * and a combined acid node strength value of the acid nodes strength
+	 * that is received from nodes at a certin distance.
+	 *
+	 * By using this, I can have effective strength falloff based on distance from the spire and its effective range
+	 * and update this efficiently whenever the effective range is changed without checking every node, just the distance
+	 * and combined value.
+	 */
+	var/list/connected_acid_nodes_strength = list()
+
+/obj/structure/resin/acid_spire/Initialize()
+	. = ..()
+	GLOB.acid_spires += src
+	SSminimaps.add_marker(src, z, hud_flags = MINIMAP_FLAG_XENO, iconstate = "silo")
+	set_light(6, 2, LIGHT_COLOR_ELECTRIC_GREEN)
+
+/obj/structure/resin/acid_spire/examine(mob/user)
+	. = ..()
+	if(isxeno(user))
+		to_chat(user, "<span class='notice'>The network currently contains <b>[SSacid_spires.stored_acid()] units of acid.</b></span>")
+
+///connects an acid node to the spire
+/obj/structure/resin/acid_spire/proc/add_acid_node(obj/effect/alien/acid_node/new_node)
+	connected_acid_nodes += new_node
+
+	var/node_index = round(get_dist(src, new_node) / NODE_RANGE_GROUPING_COEF)
+	//close distances are grouped in the list
+	if(!LAZYACCESS(connected_acid_nodes_strength, node_index))
+		var/list/range_entry = list(
+			"[node_index]" = 0
+		)
+		LAZYADD(connected_acid_nodes_strength, range_entry)
+	connected_acid_nodes_strength["[node_index]"] += new_node.strength_increase()
+	RegisterSignal(new_node, COMSIG_LIVING_ACID_NODE_DESTROYED, .proc/remove_acid_node)
+
+	update_effective_range(new_node.effective_range_increase())
+
+///removes an acid node from the list of nodes and updates the effective range of the spire
+/obj/structure/resin/acid_spire/proc/remove_acid_node(datum/source)
+	var/obj/effect/alien/acid_node/removed_node = source
+	connected_acid_nodes -= removed_node
+
+	var/node_index = round(get_dist(src, removed_node) / NODE_RANGE_GROUPING_COEF)
+	connected_acid_nodes_strength["[node_index]"] -= removed_node.strength_increase()
+
+	update_effective_range(-removed_node.effective_range_increase())
+
+///updates the effective range of the spire with the given amount, then it updates the received strength
+/obj/structure/resin/acid_spire/proc/update_effective_range(update_amount)
+	effective_range = max(effective_range + update_amount, 0)
+	update_linked_nodes_strength()
+
+/obj/structure/resin/acid_spire/proc/production_strength()
+	return acid_production_strength
+
+///Updates connected nodes' provided strength
+/obj/structure/resin/acid_spire/proc/update_linked_nodes_strength()
+	//resets and calculates the production strength again
+	acid_production_strength = initial(acid_production_strength)
+
+	for(var/range in connected_acid_nodes_strength)
+		var/range_to_number = text2num(range)
+		var/strength_at_index = connected_acid_nodes_strength[range]
+		//strength falloff based on distance from the spire, up tp 50%
+		var/effect_strength_falloff = strength_at_index/2 * min(range_to_number*NODE_RANGE_GROUPING_COEF/effective_range, 1)
+		var/calculated_strength = strength_at_index - effect_strength_falloff
+		acid_production_strength += calculated_strength
+
+#undef NODE_RANGE_GROUPING_COEF

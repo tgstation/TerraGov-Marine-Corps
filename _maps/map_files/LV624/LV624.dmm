@@ -13712,6 +13712,10 @@
 /obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/east2)
+"glv" = (
+/obj/effect/landmark/acid_spire_spawner,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/jungle6)
 "gmG" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1,
 /turf/open/floor/plating/ground/dirt,
@@ -14044,6 +14048,10 @@
 /obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/sand1)
+"hFu" = (
+/obj/effect/landmark/acid_spire_spawner,
+/turf/open/floor/plating/platebotc,
+/area/lv624/lazarus/quartstorage/outdoors)
 "hIe" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 1
@@ -14254,6 +14262,12 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/main_hall)
+"iOS" = (
+/obj/effect/landmark/acid_spire_spawner,
+/turf/open/floor/tile/green/greentaupe{
+	dir = 1
+	},
+/area/lv624/lazarus/hydroponics)
 "iQy" = (
 /obj/structure/cable,
 /obj/effect/landmark/weed_node,
@@ -14448,6 +14462,10 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle3)
+"jLL" = (
+/obj/effect/landmark/acid_spire_spawner,
+/turf/open/floor,
+/area/lv624/ground/sand2)
 "jMR" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 2
@@ -16049,6 +16067,10 @@
 	dir = 5
 	},
 /area/shuttle/drop1/lz1)
+"qST" = (
+/obj/effect/landmark/acid_spire_spawner,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/sand4)
 "qTx" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /obj/effect/landmark/weed_node,
@@ -17297,6 +17319,10 @@
 /obj/structure/fence,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle2)
+"xqT" = (
+/obj/effect/landmark/acid_spire_spawner,
+/turf/open/floor,
+/area/lv624/ground/sand8)
 "xtn" = (
 /obj/structure/jungle/vines,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
@@ -26836,7 +26862,7 @@ aht
 aht
 aht
 aht
-aht
+qST
 anu
 aht
 aht
@@ -30449,7 +30475,7 @@ avd
 avx
 ayo
 axR
-axR
+glv
 axR
 axR
 aFo
@@ -34732,7 +34758,7 @@ avE
 awa
 awa
 awa
-awa
+iOS
 axG
 ayc
 asI
@@ -37016,7 +37042,7 @@ aee
 kNl
 adR
 adR
-agy
+jLL
 agy
 agy
 agy
@@ -37393,7 +37419,7 @@ alm
 alm
 qco
 alm
-alm
+xqT
 amU
 ang
 aod
@@ -41906,7 +41932,7 @@ aAk
 dWQ
 aAk
 aCG
-aCG
+hFu
 aIJ
 aCG
 aCG

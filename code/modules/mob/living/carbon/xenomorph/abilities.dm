@@ -1495,3 +1495,61 @@
 	victim.dead_ticks = 0
 	ADD_TRAIT(victim, TRAIT_STASIS, TRAIT_STASIS)
 	X.eject_victim(TRUE, starting_turf)
+
+/////////////////////////////////
+// Place Acid node
+/////////////////////////////////
+/datum/action/xeno_action/activable/plant_acid_node
+	name = "Plant acid node"
+	action_icon_state = "plant_weeds"
+	mechanics_text = "Place an acid node to empower acid spires. Effectiveness diminishes with distance from spires, but empowering spires with nodes decreases the falloff."
+	use_state_flags = XACT_USE_STAGGERED|XACT_USE_FORTIFIED|XACT_USE_CRESTED //can't use while staggered, defender fortified or crest down
+	cooldown_timer = 2 SECONDS
+	plasma_cost = 0
+	///Acid cost of placing a node
+	var/acid_cost = 20
+	///minimum range at which the node needs to be to be placed next to a spire
+	var/minimum_placement_range = 4
+
+/datum/action/xeno_action/activable/plant_acid_node/can_use_ability(atom/A, silent, override_flags)
+	. = ..()
+	if(!.)
+		return FALSE
+
+	if(SSacid_spires.stored_acid() < acid_cost)
+		to_chat(owner, "<span class='warning'>We need [acid_cost] units of acid stored to construct an acid node.</span>")
+		return FALSE
+
+	var/turf/T = get_turf(owner)
+
+	if(!T.check_alien_construction(owner, FALSE))
+		return FALSE
+
+	if(locate(/obj/structure/xeno/trap) in T)
+		to_chat(owner, "<span class='warning'>There is a resin trap in the way!</span>")
+		return FALSE
+
+	if(locate(/obj/effect/alien/acid_node) in T)
+		to_chat(owner, "<span class='warning'>There's a node here already!</span>")
+		return FALSE
+
+	//checks if a spire is too close or there are no spires that can reach the node
+	var/within_spire_reach = FALSE
+	for(var/obj/structure/resin/acid_spire/checked_spire AS in GLOB.acid_spires)
+		if(get_dist(owner, checked_spire) < minimum_placement_range)
+			if(!silent)
+				to_chat(owner, "<span class='warning'>We need place the node at least [minimum_placement_range] meters away from a spire.</span>")
+			return FALSE
+		if(get_dist(owner, checked_spire) <= checked_spire.effective_range)
+			within_spire_reach = TRUE
+			break
+	if(!within_spire_reach)
+		if(!silent)
+			to_chat(owner, "<span class='warning'>We need place the node within a spire's operational area. This can be increased by adding more nodes to a spire's network.</span>")
+			return FALSE
+
+/datum/action/xeno_action/activable/plant_acid_node/use_ability(atom/A)
+	new /obj/effect/alien/acid_node(owner.loc)
+	SSacid_spires.use_acid(acid_cost)
+	add_cooldown()
+	return succeed_activate()
