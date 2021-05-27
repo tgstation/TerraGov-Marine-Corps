@@ -80,9 +80,8 @@
 /obj/screen/plane_master/lighting/Initialize()
 	. = ..()
 	add_filter("emissives", 1, alpha_mask_filter(render_source = EMISSIVE_RENDER_TARGET, flags = MASK_INVERSE))
-	add_filter("unblockable_emissives", 2, alpha_mask_filter(render_source = EMISSIVE_UNBLOCKABLE_RENDER_TARGET, flags = MASK_INVERSE))
-	add_filter("object_lighting", 3, alpha_mask_filter(render_source = O_LIGHTING_VISUAL_RENDER_TARGET, flags = MASK_INVERSE))
-	add_filter("pixel_smoother", 4, gauss_blur_filter(2))
+	add_filter("object_lighting", 2, alpha_mask_filter(render_source = O_LIGHTING_VISUAL_RENDER_TARGET, flags = MASK_INVERSE))
+	add_filter("pixel_smoother", 3, gauss_blur_filter(2))
 
 /**
  * Handles emissive overlays and emissive blockers.
