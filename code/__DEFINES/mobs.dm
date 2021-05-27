@@ -600,6 +600,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 
 #define WRAITH_TELEPORT_DEBUFF_STACKS			1 //Stagger and slow stacks applied to adjacent living hostiles before/after a teleport
 
+#define DEFILER_TRANSVITOX_CAP					180 //Max toxin damage transvitox will allow
 
 //misc
 

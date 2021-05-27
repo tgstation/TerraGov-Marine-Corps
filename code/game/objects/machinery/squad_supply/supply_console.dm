@@ -20,6 +20,11 @@
 	var/x_offset = 0
 	///Y offset of the drop, relative to the supply beacon loc
 	var/y_offset = 0
+	///Faction of this drop console
+	var/faction = FACTION_TERRAGOV
+
+/obj/machinery/computer/supplydrop_console/rebel
+	faction = FACTION_TERRAGOV_REBEL
 
 /obj/machinery/computer/supplydrop_console/Initialize()
 	. = ..()
@@ -42,7 +47,7 @@
 /obj/machinery/computer/supplydrop_console/ui_static_data(mob/user)
 	. = ..()
 	.["squads"] = list()
-	for(var/squad in SSjob.active_squads)
+	for(var/squad in SSjob.active_squads[faction])
 		.["squads"] += list(squad)
 
 /obj/machinery/computer/supplydrop_console/ui_data(mob/user)

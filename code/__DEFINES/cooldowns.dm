@@ -38,6 +38,7 @@
 #define COOLDOWN_BIOSCAN "cooldown_bioscan"
 #define COOLDOWN_LOADOUT_EQUIPPED "cooldown_loadout_equipped"
 #define COOLDOWN_LOADOUT_VISUALIZATION "cooldown_loadout_visualization"
+#define COOLDOWN_TADPOLE_LAUNCHING "cooldown_tadpole_launching"
 
 //// COOLDOWN SYSTEMS
 /*
