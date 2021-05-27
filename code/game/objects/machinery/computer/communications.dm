@@ -110,8 +110,8 @@
 					SSblackbox.record_feedback(FEEDBACK_TALLY, "ic_blocked_words", 1, lowertext(config.ic_filter_regex.match))
 					return FALSE
 
-				if(NON_ASCII_CHECK(msg))
-					to_chat(usr, "<span class='warning'>That announcement contained charachters prohibited in IC chat! Consider reviewing the server rules.\n<span replaceRegex='show_filtered_ic_chat'>\"[input]\"</span></span>")
+				if(NON_ASCII_CHECK(input))
+					to_chat(usr, "<span class='warning'>That announcement contained charachters prohibited in IC chat! Consider reviewing the server rules.</span>")
 					return FALSE
 
 				priority_announce(input, type = ANNOUNCEMENT_COMMAND)
