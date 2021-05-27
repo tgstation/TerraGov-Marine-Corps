@@ -40,7 +40,7 @@
 /obj/vehicle/unmanned/droid/scout
 	name = "XN-43-S combat droid"
 	desc = "A prototype scout droid, rigged with top-of-the line cloaking technology to hide itself from view."
-	icon_state = "vehiclescout"
+	icon_state = "droidscout"
 	move_delay = 2
 	max_integrity = 250
 	spawn_equipped_type = null
