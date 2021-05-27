@@ -150,7 +150,7 @@
 /obj/structure/table/reinforced,
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable,
-/obj/machinery/computer/shuttle/shuttle_control/dropship,
+/obj/machinery/computer/shuttle/shuttle_control/dropship/two,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/console)
 "aL" = (
@@ -3779,10 +3779,6 @@
 /obj/structure/shuttle/engine/propulsion/burst/right,
 /turf/open/floor/podhatch/floor,
 /area/barren/misc/crashed)
-"sm" = (
-/obj/effect/decal/cleanable/blood/writing,
-/turf/open/lavaland/basalt/glowing,
-/area/barren/cave/west)
 "sn" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/blood/drip,
@@ -5597,8 +5593,9 @@
 /obj/effect/decal/woodsiding{
 	dir = 1
 	},
-/obj/structure/table,
 /obj/effect/decal/cleanable/cobweb,
+/obj/machinery/computer/shuttle/shuttle_control/dropship,
+/obj/structure/table/reinforced,
 /turf/open/floor/wood,
 /area/shuttle/drop1/lz1)
 "Ca" = (
@@ -31975,7 +31972,7 @@ ZW
 ZW
 Ix
 BU
-sm
+tG
 ZN
 ZN
 Lz
