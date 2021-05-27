@@ -42,9 +42,9 @@
 	. = ..()
 	current_rounds = max_rounds
 	ammo = GLOB.ammo_list[ammo]
-	name = name + " " + num2text(serial)
+	name += " " + num2text(serial)
 	serial++
-	GLOB.vehicles += src
+	GLOB.unmanned_vehicles += src
 	camera = new
 	camera.network += list("marine")
 	if(spawn_equipped_type)
@@ -56,7 +56,7 @@
 /obj/vehicle/unmanned/Destroy()
 	. = ..()
 	QDEL_NULL(camera)
-	GLOB.vehicles -= src
+	GLOB.unmanned_vehicles -= src
 
 /obj/vehicle/unmanned/update_overlays()
 	. = ..()

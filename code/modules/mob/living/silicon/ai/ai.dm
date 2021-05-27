@@ -45,8 +45,6 @@
 	var/datum/trackable/track
 	///Selected order to give to marine
 	var/datum/action/innate/order/current_order
-	/// The current controlled vehicle
-	var/obj/vehicle/unmanned/vehicle
 
 
 /mob/living/silicon/ai/Initialize(mapload, ...)
@@ -310,34 +308,36 @@
 
 	return GLOB.cameranet.checkTurfVis(get_turf(A))
 
-/// Signal handler to clear vehicle and stop remote control
-/mob/living/silicon/ai/proc/clear_vehicle()
-	SIGNAL_HANDLER
-	UnregisterSignal(vehicle, COMSIG_PARENT_QDELETING)
-	vehicle.on_unlink(src)
-	vehicle = null
-
-/mob/living/silicon/ai/proc/link_with_vehicle(obj/vehicle/unmanned/_vehicle)
-	vehicle = _vehicle
-	RegisterSignal(vehicle, COMSIG_PARENT_QDELETING, .proc/clear_vehicle)
-	vehicle.on_link(src)
-	AddComponent(/datum/component/remote_control, vehicle, vehicle.turret_type)
-	SEND_SIGNAL(src, COMSIG_REMOTECONTROL_TOGGLE, src)
-
 /datum/action/control_vehicle
 	name = "Select vehicle to control"
 	action_icon_state = "enter_vehicle"
+	/// The current controlled vehicle
+	var/obj/vehicle/unmanned/vehicle
 
 /datum/action/control_vehicle/action_activate()
 	. = ..()
 	var/mob/living/silicon/ai/ai = owner
-	if(ai.vehicle)
-		SEND_SIGNAL(ai, COMSIG_REMOTECONTROL_TOGGLE, ai)
-		ai.clear_vehicle()
-		return
-	if(!length(GLOB.vehicles))
-		to_chat(ai, "<span class='warning'>No vehicles detected</span>")
-		return
-	var/obj/vehicle/unmanned/vehicle = tgui_input_list(ai, "What vehicle do you want to control?","vehicle choice", GLOB.vehicles)
 	if(vehicle)
-		ai.link_with_vehicle(vehicle)
+		SEND_SIGNAL(ai, COMSIG_REMOTECONTROL_TOGGLE, ai)
+		clear_vehicle()
+		return
+	if(!length(GLOB.unmanned_vehicles))
+		to_chat(ai, "<span class='warning'>No unmanned vehicles detected</span>")
+		return
+	var/obj/vehicle/unmanned/new_vehicle = tgui_input_list(ai, "What vehicle do you want to control?","vehicle choice", GLOB.unmanned_vehicles)
+	if(new_vehicle)
+		link_with_vehicle(new_vehicle)
+
+/// Signal handler to clear vehicle and stop remote control
+/datum/action/control_vehicle/proc/clear_vehicle()
+	SIGNAL_HANDLER
+	UnregisterSignal(vehicle, COMSIG_PARENT_QDELETING)
+	vehicle.on_unlink()
+	vehicle = null
+
+/datum/action/control_vehicle/proc/link_with_vehicle(obj/vehicle/unmanned/_vehicle)
+	vehicle = _vehicle
+	RegisterSignal(vehicle, COMSIG_PARENT_QDELETING, .proc/clear_vehicle)
+	vehicle.on_link()
+	owner.AddComponent(/datum/component/remote_control, vehicle, vehicle.turret_type)
+	SEND_SIGNAL(owner, COMSIG_REMOTECONTROL_TOGGLE, owner)

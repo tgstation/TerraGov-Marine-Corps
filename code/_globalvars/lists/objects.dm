@@ -45,7 +45,7 @@ GLOBAL_LIST_EMPTY(xeno_resin_door_turfs)
 
 GLOBAL_LIST_EMPTY(shuttle_controls_list)
 
-GLOBAL_LIST_EMPTY(vehicles)
+GLOBAL_LIST_EMPTY(unmanned_vehicles)
 
 GLOBAL_LIST_INIT(supply_drops, typecacheof(list(
 	/obj/structure/closet/crate,

@@ -16,7 +16,7 @@
 			to_chat(user, "<span class='notice'>You unlink [target] from [src].</span>")
 			return
 	vehicle = target
-	vehicle.on_link(src)
+	vehicle.on_link()
 	AddComponent(/datum/component/remote_control, target, vehicle.turret_type)
 	to_chat(user, "<span class='notice'>You link [target] to [src].</span>")
 	RegisterSignal(target, COMSIG_PARENT_QDELETING, .proc/clear_vehicle)
@@ -31,5 +31,5 @@
 /obj/item/unmanned_vehicle_remote/proc/clear_vehicle()
 	SIGNAL_HANDLER
 	UnregisterSignal(vehicle, COMSIG_PARENT_QDELETING)
-	vehicle.on_unlink(src)
+	vehicle.on_unlink()
 	vehicle = null

@@ -18,10 +18,10 @@
 		return
 	playsound(src, soundfile, 50)
 
-/obj/vehicle/unmanned/droid/on_link(obj/item/unmanned_vehicle_remote/remote)
+/obj/vehicle/unmanned/droid/on_link()
 	RegisterSignal(src, COMSIG_REMOTECONTROL_CHANGED, .proc/on_remote_toggle)
 
-/obj/vehicle/unmanned/droid/on_unlink(obj/item/unmanned_vehicle_remote/remote)
+/obj/vehicle/unmanned/droid/on_unlink()
 	UnregisterSignal(src, COMSIG_REMOTECONTROL_CHANGED)
 
 /obj/vehicle/unmanned/droid/on_remote_toggle(datum/source, is_on, mob/user)
