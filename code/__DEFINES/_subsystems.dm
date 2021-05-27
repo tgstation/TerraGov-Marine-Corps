@@ -22,6 +22,9 @@
 //In most cases you want a subsystem instead
 #define TIMER_LOOP				(1<<5)
 
+///Delete the timer on parent datum Destroy() and when deltimer'd
+#define TIMER_DELETE_ME (1<<6)
+
 #define TIMER_ID_NULL -1
 
 //For servers that can't do with any additional lag, set this to none in flightpacks.dm in subsystem/processing.
@@ -62,6 +65,7 @@
 #define INIT_ORDER_JOBS				12
 #define INIT_ORDER_TICKER			10
 #define INIT_ORDER_MAPPING			9
+#define INIT_ORDER_PERSISTENCE		7 //before assets because some assets take data from SSPersistence, such as vendor items
 #define INIT_ORDER_ATOMS			6
 #define INIT_ORDER_MACHINES			5
 #define INIT_ORDER_AI_NODES			3

@@ -198,6 +198,7 @@
 			/obj/item/attachable/attached_gun/flamer = -1,
 			/obj/item/attachable/attached_gun/shotgun = -1,
 			/obj/item/attachable/attached_gun/grenade = -1,
+			/obj/item/attachable/standard_revolver_longbarrel = -1
 		),
 		"Boxes" = list(
 		/obj/item/ammo_magazine/box9mm = 100,
@@ -211,6 +212,9 @@
 		),
 	)
 
+	seasonal_items = list(
+		SEASONAL_GUNS = "Seasonal",
+	)
 
 /obj/machinery/vending/marine/shared/hvh
 
@@ -632,7 +636,7 @@
 		/obj/item/reagent_containers/hypospray/autoinjector/synaptizine_expired = 3,
 	)
 
-/obj/machinery/vending/MarineMed/rebel 
+/obj/machinery/vending/MarineMed/rebel
 	req_one_access = ALL_MARINE_REBEL_ACCESS
 
 /obj/machinery/vending/MarineMed/Blood
@@ -653,7 +657,7 @@
 	)
 	contraband = list()
 
-/obj/machinery/vending/MarineMed/Blood/rebel 
+/obj/machinery/vending/MarineMed/Blood/rebel
 	req_access = list(ACCESS_MARINE_MEDBAY_REBEL, ACCESS_MARINE_CHEMISTRY_REBEL)
 
 /obj/machinery/vending/MarineMed/Blood/build_inventory(list/productlist, category)
@@ -700,7 +704,7 @@
 	)
 	contraband = list(/obj/item/reagent_containers/blood/OMinus = 1)
 
-/obj/machinery/vending/marine_medic/rebel 
+/obj/machinery/vending/marine_medic/rebel
 	req_access = list(ACCESS_MARINE_MEDPREP_REBEL)
 
 /obj/machinery/vending/marine_special

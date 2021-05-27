@@ -15,7 +15,9 @@ SUBSYSTEM_DEF(job)
 
 	var/list/squads = list()			//List of potential squads.
 	///Assoc list of all joinable squads, categorised by faction
-	var/list/active_squads = list()		 
+	var/list/active_squads = list()
+	///assoc list of squad_name_string->squad_reference for easy lookup
+	var/list/squads_by_name = list()
 
 	var/list/unassigned = list()		//Players who need jobs.
 	var/list/occupations_reroll //Jobs scaled up during job assignments.
@@ -67,6 +69,7 @@ SUBSYSTEM_DEF(job)
 		if(!squad)
 			continue
 		squads[squad.id] = squad
+		squads_by_name[squad.name] = squad
 	return TRUE
 
 
