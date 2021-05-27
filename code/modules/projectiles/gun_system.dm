@@ -386,6 +386,8 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 	replace_ammo(user,magazine)
 	if(!in_chamber)
 		ready_in_chamber(user)
+		if(!(flags_gun_features & GUN_ENERGY))
+			cock_gun(user)
 	user.visible_message("<span class='notice'>[user] loads [magazine] into [src]!</span>",
 	"<span class='notice'>You load [magazine] into [src]!</span>", null, 3)
 	if(reload_sound)
