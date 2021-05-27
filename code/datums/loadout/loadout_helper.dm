@@ -55,3 +55,14 @@
 	if(ispath(item_type, /obj/item/clothing/tie/storage))
 		return /datum/item_representation/tie
 	return /datum/item_representation
+
+/// Will give a headset corresponding to the user job to the user
+/proc/give_free_headset(mob/living/carbon/human/user)
+	if(user.wear_ear)
+		return
+	if(user.job.outfit.ears)
+		user.equip_to_slot_or_del(new user.job.outfit.ears(user), SLOT_EARS, override_nodrop = TRUE)
+		return
+	if(!user.assigned_squad)
+		return
+	user.equip_to_slot_or_del(new /obj/item/radio/headset/mainship/marine(null, user.assigned_squad, user.job), SLOT_EARS, override_nodrop = TRUE)
