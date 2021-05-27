@@ -12,7 +12,7 @@
 	},
 /obj/effect/decal/cleanable/cobweb2,
 /turf/open/floor,
-/area/shuttle/drop1/lz1)
+/area/barren/cave/lz1)
 "af" = (
 /turf/closed/brock,
 /area/barren/misc/clocknuke)
@@ -36,7 +36,7 @@
 	dir = 1
 	},
 /turf/closed/brock,
-/area/shuttle/drop2/lz2)
+/area/barren/cave/lz2)
 "al" = (
 /turf/closed/brock,
 /area/barren/cave/north)
@@ -45,7 +45,7 @@
 	dir = 8
 	},
 /turf/closed/brock,
-/area/shuttle/drop2/lz2)
+/area/barren/cave/lz2)
 "an" = (
 /obj/effect/decal/remains/human,
 /turf/open/floor/cult/clock,
@@ -55,7 +55,7 @@
 	dir = 8
 	},
 /turf/open/lavaland/lava/lpiece,
-/area/shuttle/drop2/lz2)
+/area/barren/cave/lz2)
 "ap" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
 	dir = 8
@@ -63,13 +63,13 @@
 /turf/open/lavaland/lava/side{
 	dir = 4
 	},
-/area/shuttle/drop2/lz2)
+/area/barren/cave/lz2)
 "aq" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
 	dir = 8
 	},
 /turf/closed/wall/r_wall,
-/area/shuttle/drop2/lz2)
+/area/barren/cave/lz2)
 "as" = (
 /turf/open/lavaland/lava/side{
 	dir = 4
@@ -99,7 +99,7 @@
 	dir = 1
 	},
 /turf/open/floor/wood,
-/area/shuttle/drop1/lz1)
+/area/barren/cave/lz1)
 "az" = (
 /obj/structure/barricade/guardrail{
 	dir = 1
@@ -145,14 +145,14 @@
 "aJ" = (
 /obj/structure/cargo_container/red,
 /turf/open/floor/tile/dark,
-/area/shuttle/drop2/lz2)
+/area/barren/cave/lz2)
 "aK" = (
 /obj/structure/table/reinforced,
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable,
 /obj/machinery/computer/shuttle/shuttle_control/dropship/two,
 /turf/open/floor/tile/dark,
-/area/lv624/lazarus/console)
+/area/barren/cave/lz2)
 "aL" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/brock,
@@ -169,13 +169,13 @@
 "aP" = (
 /obj/structure/largecrate/random/case/double,
 /turf/open/floor/marking/delivery,
-/area/shuttle/drop1/lz1)
+/area/barren/cave/lz1)
 "aQ" = (
 /obj/structure/bed/chair/wood/wings{
 	dir = 4
 	},
 /turf/open/floor/wood,
-/area/shuttle/drop1/lz1)
+/area/barren/cave/lz1)
 "aS" = (
 /obj/machinery/camera/autoname/lz_camera,
 /turf/open/floor/plating,
@@ -224,7 +224,7 @@
 "bd" = (
 /obj/structure/sign/poster,
 /turf/closed/wall/r_wall,
-/area/shuttle/drop1/lz1)
+/area/barren/cave/lz1)
 "be" = (
 /obj/structure/sign/poster,
 /turf/closed/wall,
@@ -232,7 +232,7 @@
 "bf" = (
 /obj/structure/largecrate/random/barrel,
 /turf/open/floor/tile/dark,
-/area/shuttle/drop2/lz2)
+/area/barren/cave/lz2)
 "bh" = (
 /turf/closed/wall/clock,
 /area/barren/misc/clocknuke)
@@ -286,7 +286,7 @@
 /obj/machinery/landinglight/ds2/delaytwo,
 /obj/effect/decal/warning_stripes/thin,
 /turf/open/floor/tile/dark,
-/area/shuttle/drop2/lz2)
+/area/barren/cave/lz2)
 "bx" = (
 /obj/structure/closet/secure_closet/security,
 /turf/open/floor/prison/bright_clean/two,
@@ -320,7 +320,7 @@
 	dir = 8
 	},
 /turf/open/floor/tile/dark,
-/area/shuttle/drop2/lz2)
+/area/barren/cave/lz2)
 "bE" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/effect/landmark/corpsespawner/engineer,
@@ -376,7 +376,7 @@
 "bR" = (
 /obj/machinery/vending/cola,
 /turf/open/floor,
-/area/shuttle/drop1/lz1)
+/area/barren/cave/lz1)
 "bU" = (
 /obj/structure/disposalpipe/trunk{
 	dir = 1
@@ -439,7 +439,7 @@
 "ci" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/closed/brock,
-/area/shuttle/drop1/lz1)
+/area/barren/cave/lz1)
 "cj" = (
 /obj/structure/table,
 /obj/item/radio,
@@ -685,7 +685,7 @@
 	dir = 6
 	},
 /turf/open/floor/tile/dark,
-/area/shuttle/drop2/lz2)
+/area/barren/cave/lz2)
 "dw" = (
 /obj/structure/noticeboard,
 /turf/closed/wall,
@@ -826,6 +826,9 @@
 /obj/item/ammo_magazine/pistol/g22,
 /turf/open/floor/tile/red/full,
 /area/barren/security)
+"eb" = (
+/turf/open/floor/plating,
+/area/barren/cave/lz1)
 "ef" = (
 /turf/open/lavaland/lava/corner{
 	dir = 8
@@ -862,7 +865,7 @@
 	dir = 1
 	},
 /turf/open/floor/wood/broken,
-/area/shuttle/drop1/lz1)
+/area/barren/cave/lz1)
 "ep" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 1
@@ -966,7 +969,7 @@
 	dir = 1
 	},
 /turf/open/floor/tile/dark,
-/area/shuttle/drop2/lz2)
+/area/barren/cave/lz2)
 "eH" = (
 /obj/structure/ore_box,
 /turf/open/lavaland/basalt,
@@ -992,7 +995,7 @@
 "eN" = (
 /obj/item/toy/gun,
 /turf/open/floor,
-/area/shuttle/drop1/lz1)
+/area/barren/cave/lz1)
 "eO" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/ash,
@@ -1062,7 +1065,7 @@
 /area/barren/cave/south)
 "fe" = (
 /turf/closed/wall/indestructible/mineral,
-/area/shuttle/drop2/lz2)
+/area/barren/cave/lz2)
 "ff" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/door/airlock/mainship/generic/bathroom/toilet,
@@ -1140,7 +1143,7 @@
 "fD" = (
 /obj/item/frame/apc,
 /turf/closed/wall/r_wall,
-/area/shuttle/drop2/lz2)
+/area/barren/cave/lz2)
 "fE" = (
 /obj/structure/closet/secure_closet/engineering_welding,
 /turf/open/floor/tile/dark2,
@@ -1168,7 +1171,7 @@
 "fN" = (
 /obj/structure/largecrate/supply/supplies,
 /turf/open/floor/marking/delivery,
-/area/shuttle/drop1/lz1)
+/area/barren/cave/lz1)
 "fO" = (
 /obj/structure/cable,
 /obj/effect/decal/cleanable/dirt,
@@ -1235,7 +1238,7 @@
 "gc" = (
 /obj/item/contraband/poster,
 /turf/open/floor/tile/dark,
-/area/shuttle/drop2/lz2)
+/area/barren/cave/lz2)
 "gd" = (
 /obj/structure/bed/chair/wood/normal{
 	dir = 4
@@ -1256,7 +1259,7 @@
 "gf" = (
 /obj/machinery/light,
 /turf/open/floor,
-/area/shuttle/drop1/lz1)
+/area/barren/cave/lz1)
 "gg" = (
 /obj/effect/landmark/xeno_silo_spawn,
 /turf/open/lavaland/basalt,
@@ -1278,7 +1281,7 @@
 	dir = 1
 	},
 /turf/open/floor,
-/area/shuttle/drop1/lz1)
+/area/barren/cave/lz1)
 "gk" = (
 /obj/structure/table,
 /obj/item/toy/gun,
@@ -1326,7 +1329,7 @@
 	dir = 1
 	},
 /turf/open/lavaland/basalt,
-/area/shuttle/drop2/lz2)
+/area/barren/cave/lz2)
 "gu" = (
 /obj/structure/barricade/guardrail{
 	dir = 1
@@ -1390,7 +1393,7 @@
 "gG" = (
 /obj/structure/largecrate/random/barrel/green,
 /turf/open/floor/tile/dark,
-/area/shuttle/drop2/lz2)
+/area/barren/cave/lz2)
 "gI" = (
 /obj/structure/flora/pottedplant,
 /obj/effect/decal/cleanable/dirt,
@@ -1414,7 +1417,7 @@
 "gO" = (
 /obj/structure/window/framed/colony/reinforced,
 /turf/open/floor/plating,
-/area/shuttle/drop2/lz2)
+/area/barren/cave/lz2)
 "gP" = (
 /obj/machinery/door/airlock/multi_tile/secure,
 /turf/open/floor/engine/cult,
@@ -1445,7 +1448,7 @@
 /obj/structure/cable,
 /obj/structure/cable,
 /turf/open/floor/plating,
-/area/shuttle/drop1/lz1)
+/area/barren/cave/lz1)
 "gX" = (
 /obj/structure/barricade/guardrail,
 /obj/structure/barricade/guardrail{
@@ -1527,7 +1530,7 @@
 "hn" = (
 /obj/effect/decal/cleanable/cobweb2,
 /turf/open/floor/tile/dark,
-/area/shuttle/drop2/lz2)
+/area/barren/cave/lz2)
 "hp" = (
 /obj/structure/window/framed/colony,
 /turf/open/floor/tile/blue/whitebluefull,
@@ -1579,7 +1582,7 @@
 	dir = 4
 	},
 /turf/open/floor/tile/dark,
-/area/shuttle/drop2/lz2)
+/area/barren/cave/lz2)
 "hz" = (
 /obj/effect/decal/cleanable/blood/gibs/xeno,
 /turf/open/lavaland/basalt,
@@ -1628,7 +1631,7 @@
 "hK" = (
 /obj/structure/bed/chair/wood/wings,
 /turf/open/floor/wood,
-/area/shuttle/drop1/lz1)
+/area/barren/cave/lz1)
 "hM" = (
 /obj/effect/decal/cleanable/cobweb2,
 /obj/structure/rack,
@@ -1731,13 +1734,13 @@
 	dir = 1
 	},
 /turf/open/floor/wood/broken,
-/area/shuttle/drop1/lz1)
+/area/barren/cave/lz1)
 "iq" = (
 /obj/machinery/light,
 /obj/structure/closet/emcloset,
 /obj/structure/cable,
 /turf/open/floor,
-/area/shuttle/drop1/lz1)
+/area/barren/cave/lz1)
 "is" = (
 /obj/structure/closet/crate/construction,
 /turf/open/floor/marking,
@@ -1770,7 +1773,7 @@
 "iz" = (
 /obj/structure/largecrate/random,
 /turf/open/floor/tile/dark,
-/area/shuttle/drop2/lz2)
+/area/barren/cave/lz2)
 "iA" = (
 /obj/machinery/shower,
 /obj/structure/curtain/open/shower,
@@ -1794,7 +1797,7 @@
 	amount = 25
 	},
 /turf/open/floor/tile/dark,
-/area/shuttle/drop2/lz2)
+/area/barren/cave/lz2)
 "iE" = (
 /obj/structure/largecrate/mule,
 /turf/open/floor/marking,
@@ -1821,7 +1824,7 @@
 "iI" = (
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
-/area/shuttle/drop2/lz2)
+/area/barren/cave/lz2)
 "iK" = (
 /obj/structure/cable,
 /turf/open/floor/plating,
@@ -1847,7 +1850,7 @@
 /obj/effect/decal/cleanable/cobweb,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/dark,
-/area/shuttle/drop2/lz2)
+/area/barren/cave/lz2)
 "iQ" = (
 /obj/structure/table/mainship,
 /obj/item/clothing/head/collectable/paper,
@@ -1951,7 +1954,7 @@
 "jt" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/dark,
-/area/shuttle/drop2/lz2)
+/area/barren/cave/lz2)
 "ju" = (
 /obj/structure/bed/chair/office/light{
 	dir = 8
@@ -1981,7 +1984,7 @@
 /obj/structure/table/reinforced,
 /obj/item/ashtray/bronze,
 /turf/open/floor/tile/dark,
-/area/shuttle/drop2/lz2)
+/area/barren/cave/lz2)
 "jC" = (
 /obj/machinery/door/airlock/colony/research,
 /turf/open/floor/prison/sterilewhite,
@@ -1992,7 +1995,7 @@
 	dir = 4
 	},
 /turf/open/floor/tile/dark,
-/area/shuttle/drop2/lz2)
+/area/barren/cave/lz2)
 "jF" = (
 /obj/effect/decal/cleanable/blood/splatter,
 /turf/open/floor/plating/dmg3,
@@ -2034,7 +2037,7 @@
 "jO" = (
 /obj/machinery/vending/coffee,
 /turf/open/floor,
-/area/shuttle/drop1/lz1)
+/area/barren/cave/lz1)
 "jP" = (
 /obj/item/tool/pickaxe,
 /turf/open/lavaland/basalt,
@@ -2098,7 +2101,7 @@
 /obj/structure/window/reinforced,
 /obj/machinery/button/door/open_only/landing_zone,
 /turf/open/floor/plating/plating_catwalk,
-/area/shuttle/drop1/lz1)
+/area/barren/cave/lz1)
 "kd" = (
 /obj/effect/decal/cleanable/blood/drip,
 /turf/open/floor,
@@ -2138,7 +2141,7 @@
 "kk" = (
 /obj/structure/cargo_container/green,
 /turf/open/floor,
-/area/shuttle/drop1/lz1)
+/area/barren/cave/lz1)
 "kl" = (
 /obj/structure/barricade/guardrail{
 	dir = 8
@@ -2327,7 +2330,7 @@
 /obj/effect/decal/mecha_wreckage/ripley,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/dark,
-/area/shuttle/drop2/lz2)
+/area/barren/cave/lz2)
 "kY" = (
 /obj/structure/xenoautopsy/tank/hugger,
 /obj/effect/decal/cleanable/cobweb{
@@ -2365,7 +2368,7 @@
 /turf/open/floor/wood{
 	icon_state = "wood-broken4"
 	},
-/area/shuttle/drop1/lz1)
+/area/barren/cave/lz1)
 "li" = (
 /obj/structure/sign/heat,
 /turf/closed/wall,
@@ -2394,7 +2397,7 @@
 "lq" = (
 /obj/effect/decal/cleanable/cobweb,
 /turf/open/floor/tile/dark,
-/area/shuttle/drop2/lz2)
+/area/barren/cave/lz2)
 "lr" = (
 /obj/structure/table/reinforced,
 /obj/item/paper/xenoresearch2,
@@ -2423,7 +2426,7 @@
 /obj/machinery/landinglight/ds2/delaythree,
 /obj/effect/decal/warning_stripes/thin,
 /turf/open/floor/tile/dark,
-/area/shuttle/drop2/lz2)
+/area/barren/cave/lz2)
 "ly" = (
 /obj/machinery/shower{
 	dir = 4
@@ -2487,7 +2490,7 @@
 	dir = 4
 	},
 /turf/open/floor,
-/area/shuttle/drop1/lz1)
+/area/barren/cave/lz1)
 "lM" = (
 /turf/open/floor/plating,
 /area/barren/engie/three)
@@ -2511,7 +2514,7 @@
 "lS" = (
 /obj/structure/largecrate/random/barrel,
 /turf/open/floor/marking/delivery,
-/area/shuttle/drop1/lz1)
+/area/barren/cave/lz1)
 "lT" = (
 /obj/structure/bed/alien,
 /obj/item/bedsheet,
@@ -2541,7 +2544,7 @@
 	dir = 4
 	},
 /turf/open/floor/tile/dark,
-/area/shuttle/drop2/lz2)
+/area/barren/cave/lz2)
 "lY" = (
 /obj/machinery/light{
 	dir = 4
@@ -2573,7 +2576,7 @@
 	dir = 4
 	},
 /turf/open/floor/tile/dark,
-/area/shuttle/drop2/lz2)
+/area/barren/cave/lz2)
 "mf" = (
 /obj/effect/decal/cleanable/cobweb{
 	dir = 1
@@ -2701,7 +2704,7 @@
 "mH" = (
 /obj/structure/cable,
 /turf/open/floor/plating,
-/area/shuttle/drop2/lz2)
+/area/barren/cave/lz2)
 "mI" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark2,
@@ -2719,17 +2722,17 @@
 	dir = 2
 	},
 /turf/open/floor/plating,
-/area/shuttle/drop1/lz1)
+/area/barren/cave/lz1)
 "mM" = (
 /obj/structure/cargo_container/red,
 /turf/open/floor,
-/area/shuttle/drop1/lz1)
+/area/barren/cave/lz1)
 "mN" = (
 /turf/closed/wall/indestructible,
 /area/barren/misc/clocknuke)
 "mP" = (
 /turf/open/floor/tile/dark,
-/area/shuttle/drop2/lz2)
+/area/barren/cave/lz2)
 "mQ" = (
 /obj/structure/cable,
 /obj/effect/decal/cleanable/dirt,
@@ -2760,7 +2763,7 @@
 "mY" = (
 /obj/structure/closet/crate,
 /turf/open/floor/marking/delivery,
-/area/shuttle/drop1/lz1)
+/area/barren/cave/lz1)
 "mZ" = (
 /obj/structure/barricade/guardrail{
 	dir = 8
@@ -3039,7 +3042,7 @@
 	dir = 8
 	},
 /turf/open/floor/tile/dark,
-/area/shuttle/drop2/lz2)
+/area/barren/cave/lz2)
 "om" = (
 /obj/structure/bed,
 /obj/item/bedsheet,
@@ -3050,7 +3053,7 @@
 /obj/effect/decal/cleanable/ash,
 /obj/structure/largecrate/random,
 /turf/open/floor/tile/dark,
-/area/shuttle/drop2/lz2)
+/area/barren/cave/lz2)
 "oo" = (
 /obj/effect/decal/remains/human,
 /obj/item/clothing/head/hardhat/orange,
@@ -3078,7 +3081,7 @@
 "ot" = (
 /obj/structure/closet/walllocker/medical_wall,
 /turf/closed/wall/r_wall,
-/area/shuttle/drop1/lz1)
+/area/barren/cave/lz1)
 "ov" = (
 /obj/structure/sign/poster,
 /turf/closed/wall,
@@ -3093,7 +3096,7 @@
 	name = "Hephaestus Opus-banco"
 	},
 /turf/open/lavaland/lava,
-/area/shuttle/drop2/lz2)
+/area/barren/cave/lz2)
 "oC" = (
 /obj/effect/decal/cleanable/blood,
 /turf/open/lavaland/basalt,
@@ -3141,7 +3144,7 @@
 	dir = 8
 	},
 /turf/open/floor/wood,
-/area/shuttle/drop1/lz1)
+/area/barren/cave/lz1)
 "oQ" = (
 /obj/structure/table/reinforced,
 /obj/item/storage/box/beakers,
@@ -3179,7 +3182,7 @@
 "oX" = (
 /obj/structure/largecrate/random/barrel/white,
 /turf/open/floor,
-/area/shuttle/drop1/lz1)
+/area/barren/cave/lz1)
 "pa" = (
 /obj/structure/closet/wardrobe/chemistry_white,
 /turf/open/floor/prison/sterilewhite,
@@ -3197,7 +3200,7 @@
 /obj/structure/cable,
 /obj/structure/cable,
 /turf/open/floor/wood,
-/area/shuttle/drop1/lz1)
+/area/barren/cave/lz1)
 "pg" = (
 /obj/machinery/landinglight/ds2/delaytwo{
 	dir = 8
@@ -3206,7 +3209,7 @@
 	dir = 8
 	},
 /turf/open/floor/tile/dark,
-/area/shuttle/drop2/lz2)
+/area/barren/cave/lz2)
 "ph" = (
 /obj/machinery/miner/damaged/platinum,
 /turf/open/lavaland/basalt,
@@ -3229,7 +3232,7 @@
 	dir = 8
 	},
 /turf/open/floor/wood,
-/area/shuttle/drop1/lz1)
+/area/barren/cave/lz1)
 "po" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/freezer,
@@ -3241,6 +3244,9 @@
 /obj/structure/cable,
 /turf/open/lavaland/basalt,
 /area/barren/cave/northeast)
+"pq" = (
+/turf/open/floor/plating,
+/area/barren/cave/lz2)
 "pr" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/wood{
@@ -3314,7 +3320,7 @@
 	dir = 8
 	},
 /turf/open/lavaland/basalt,
-/area/shuttle/drop2/lz2)
+/area/barren/cave/lz2)
 "pQ" = (
 /obj/structure/table,
 /obj/structure/paper_bin,
@@ -3354,7 +3360,7 @@
 "pY" = (
 /obj/effect/decal/cleanable/blood/oil,
 /turf/open/floor/tile/dark,
-/area/shuttle/drop2/lz2)
+/area/barren/cave/lz2)
 "qa" = (
 /obj/machinery/chem_dispenser,
 /turf/open/floor/prison/sterilewhite,
@@ -3453,7 +3459,7 @@
 "qB" = (
 /obj/machinery/light,
 /turf/open/lavaland/catwalk,
-/area/shuttle/drop2/lz2)
+/area/barren/cave/lz2)
 "qD" = (
 /turf/open/floor/tile/blue/whiteblue{
 	dir = 4
@@ -3515,7 +3521,7 @@
 	dir = 4
 	},
 /turf/open/floor/tile/dark,
-/area/shuttle/drop2/lz2)
+/area/barren/cave/lz2)
 "qW" = (
 /turf/open/floor/freezer,
 /area/barren/medical/chemistry)
@@ -3529,7 +3535,7 @@
 "qY" = (
 /obj/machinery/floodlight/landing,
 /turf/open/floor/plating,
-/area/shuttle/drop1/lz1)
+/area/barren/cave/lz1)
 "qZ" = (
 /turf/open/floor/vault,
 /area/prison/laundry)
@@ -3544,7 +3550,7 @@
 	dir = 1
 	},
 /turf/closed/brock,
-/area/shuttle/drop1/lz1)
+/area/barren/cave/lz1)
 "rd" = (
 /obj/structure/barricade/wooden{
 	dir = 8
@@ -3561,7 +3567,7 @@
 	dir = 1
 	},
 /turf/open/floor/tile/dark,
-/area/shuttle/drop2/lz2)
+/area/barren/cave/lz2)
 "rg" = (
 /turf/open/floor/plating/dmg1,
 /area/barren/misc/crashed)
@@ -3691,7 +3697,7 @@
 	pixel_y = 7
 	},
 /turf/open/lavaland/catwalk,
-/area/shuttle/drop2/lz2)
+/area/barren/cave/lz2)
 "rR" = (
 /obj/machinery/landinglight/ds2/delaytwo{
 	dir = 4
@@ -3700,7 +3706,7 @@
 	dir = 4
 	},
 /turf/open/floor/tile/dark,
-/area/shuttle/drop2/lz2)
+/area/barren/cave/lz2)
 "rS" = (
 /obj/structure/table/woodentable,
 /obj/item/toy/deck,
@@ -3720,7 +3726,7 @@
 	dir = 4
 	},
 /turf/open/floor/tile/dark,
-/area/shuttle/drop2/lz2)
+/area/barren/cave/lz2)
 "rW" = (
 /obj/structure/window/framed/colony/reinforced,
 /turf/open/floor/wood,
@@ -3769,7 +3775,7 @@
 	},
 /obj/machinery/power/port_gen/pacman/super,
 /turf/open/floor/tile/dark,
-/area/shuttle/drop2/lz2)
+/area/barren/cave/lz2)
 "sj" = (
 /obj/structure/filingcabinet/security,
 /obj/effect/decal/cleanable/dirt,
@@ -3791,7 +3797,7 @@
 /obj/item/tool/warning_cone,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/dark,
-/area/shuttle/drop2/lz2)
+/area/barren/cave/lz2)
 "sr" = (
 /obj/structure/closet/crate/freezer/rations,
 /turf/open/floor,
@@ -3856,7 +3862,7 @@
 	dir = 1
 	},
 /turf/open/floor/tile/dark,
-/area/shuttle/drop2/lz2)
+/area/barren/cave/lz2)
 "sN" = (
 /obj/structure/closet/secure_closet/engineering_welding,
 /obj/machinery/light{
@@ -3970,7 +3976,7 @@
 "tm" = (
 /obj/structure/largecrate/random/case/small,
 /turf/open/floor/marking/delivery,
-/area/shuttle/drop1/lz1)
+/area/barren/cave/lz1)
 "tn" = (
 /obj/machinery/computer/crew,
 /turf/open/floor/wood,
@@ -4108,7 +4114,7 @@
 	dir = 4
 	},
 /turf/open/floor,
-/area/shuttle/drop1/lz1)
+/area/barren/cave/lz1)
 "tU" = (
 /obj/effect/decal/siding{
 	dir = 4
@@ -4122,7 +4128,7 @@
 "tX" = (
 /obj/structure/largecrate/random/barrel,
 /turf/open/floor,
-/area/shuttle/drop1/lz1)
+/area/barren/cave/lz1)
 "tY" = (
 /obj/structure/closet/secure_closet/engineering_electrical,
 /obj/machinery/light,
@@ -4203,7 +4209,7 @@
 	dir = 8
 	},
 /turf/open/floor,
-/area/shuttle/drop1/lz1)
+/area/barren/cave/lz1)
 "us" = (
 /obj/structure/cable,
 /obj/machinery/power/apc{
@@ -4246,7 +4252,7 @@
 /obj/structure/cable,
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
-/area/shuttle/drop2/lz2)
+/area/barren/cave/lz2)
 "uE" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/blood,
@@ -4338,7 +4344,7 @@
 /area/barren/civilian/cook)
 "vg" = (
 /turf/closed/wall/indestructible/mineral,
-/area/shuttle/drop1/lz1)
+/area/barren/cave/lz1)
 "vh" = (
 /obj/structure/curtain/medical,
 /obj/structure/bed,
@@ -4471,15 +4477,15 @@
 /obj/machinery/landinglight/ds2/delayone,
 /obj/effect/decal/warning_stripes/thin,
 /turf/open/floor/tile/dark,
-/area/shuttle/drop2/lz2)
+/area/barren/cave/lz2)
 "vT" = (
 /obj/structure/cable,
 /turf/open/floor/wood,
-/area/shuttle/drop1/lz1)
+/area/barren/cave/lz1)
 "vU" = (
 /obj/structure/cargo_container/horizontal,
 /turf/open/floor/tile/dark,
-/area/shuttle/drop2/lz2)
+/area/barren/cave/lz2)
 "vV" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/prison/kitchen,
@@ -4551,7 +4557,7 @@
 	dir = 4
 	},
 /turf/open/floor/tile/dark,
-/area/shuttle/drop2/lz2)
+/area/barren/cave/lz2)
 "wp" = (
 /obj/structure/bed/chair/wood/normal{
 	dir = 4
@@ -4600,12 +4606,12 @@
 	dir = 4
 	},
 /turf/open/floor/wood,
-/area/shuttle/drop1/lz1)
+/area/barren/cave/lz1)
 "wC" = (
 /obj/structure/girder/reinforced,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/dark,
-/area/shuttle/drop2/lz2)
+/area/barren/cave/lz2)
 "wF" = (
 /obj/item/shard,
 /obj/effect/decal/cleanable/dirt,
@@ -4615,7 +4621,7 @@
 "wG" = (
 /obj/vehicle/train/cargo/trolley,
 /turf/open/floor,
-/area/shuttle/drop1/lz1)
+/area/barren/cave/lz1)
 "wI" = (
 /obj/structure/table,
 /obj/structure/paper_bin,
@@ -4708,7 +4714,7 @@
 	dir = 1
 	},
 /turf/open/floor/tile/dark,
-/area/shuttle/drop2/lz2)
+/area/barren/cave/lz2)
 "xj" = (
 /obj/structure/barricade/guardrail{
 	dir = 4;
@@ -4722,7 +4728,7 @@
 /turf/open/floor/plating/warning{
 	dir = 1
 	},
-/area/shuttle/drop1/lz1)
+/area/barren/cave/lz1)
 "xn" = (
 /obj/structure/window/reinforced/toughened{
 	dir = 8
@@ -4738,7 +4744,7 @@
 /obj/item/storage/toolbox/mechanical,
 /obj/effect/decal/cleanable/generic,
 /turf/open/floor/tile/dark,
-/area/shuttle/drop2/lz2)
+/area/barren/cave/lz2)
 "xq" = (
 /obj/machinery/shower{
 	dir = 4
@@ -4825,7 +4831,7 @@
 /obj/effect/decal/cleanable/blood/oil,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/dark,
-/area/shuttle/drop2/lz2)
+/area/barren/cave/lz2)
 "xS" = (
 /obj/structure/barricade/guardrail,
 /obj/structure/barricade/guardrail{
@@ -4876,7 +4882,7 @@
 	dir = 1
 	},
 /turf/open/floor/tile/dark,
-/area/shuttle/drop2/lz2)
+/area/barren/cave/lz2)
 "yd" = (
 /turf/open/floor/tile/vault,
 /area/barren/civilian)
@@ -4980,7 +4986,7 @@
 "yL" = (
 /obj/structure/largecrate/random,
 /turf/open/floor/marking/delivery,
-/area/shuttle/drop1/lz1)
+/area/barren/cave/lz1)
 "yM" = (
 /obj/structure/sign/poster,
 /turf/open/floor/tile/dark2,
@@ -5073,11 +5079,11 @@
 "zm" = (
 /obj/machinery/floodlight,
 /turf/open/floor/tile/dark,
-/area/shuttle/drop2/lz2)
+/area/barren/cave/lz2)
 "zn" = (
 /obj/item/tool/warning_cone,
 /turf/open/floor/tile/dark,
-/area/shuttle/drop2/lz2)
+/area/barren/cave/lz2)
 "zo" = (
 /obj/structure/bed/chair/wood/normal{
 	dir = 1
@@ -5095,7 +5101,7 @@
 /obj/structure/closet/emcloset,
 /obj/structure/cable,
 /turf/open/floor,
-/area/shuttle/drop1/lz1)
+/area/barren/cave/lz1)
 "zs" = (
 /obj/item/lightstick/red/anchored,
 /obj/structure/cable,
@@ -5185,7 +5191,7 @@
 	dir = 8
 	},
 /turf/open/floor/wood,
-/area/shuttle/drop1/lz1)
+/area/barren/cave/lz1)
 "zY" = (
 /obj/structure/ore_box,
 /turf/open/lavaland/basalt,
@@ -5209,10 +5215,10 @@
 	dir = 5
 	},
 /turf/closed/wall/indestructible/mineral,
-/area/shuttle/drop2/lz2)
+/area/barren/cave/lz2)
 "Ag" = (
 /turf/open/floor/marking/delivery,
-/area/shuttle/drop1/lz1)
+/area/barren/cave/lz1)
 "Ah" = (
 /turf/open/lavaland/lava/corner,
 /area/barren)
@@ -5294,7 +5300,7 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/plating/asteroidfloor,
-/area/shuttle/drop1/lz1)
+/area/barren/cave/lz1)
 "Az" = (
 /obj/effect/landmark/corpsespawner/miner,
 /turf/open/lavaland/basalt,
@@ -5323,7 +5329,7 @@
 "AG" = (
 /obj/structure/largecrate,
 /turf/open/floor/tile/dark,
-/area/shuttle/drop2/lz2)
+/area/barren/cave/lz2)
 "AH" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/brock,
@@ -5336,13 +5342,13 @@
 /area/barren/security)
 "AK" = (
 /turf/closed/wall/r_wall,
-/area/shuttle/drop1/lz1)
+/area/barren/cave/lz1)
 "AL" = (
 /obj/effect/decal/woodsiding{
 	dir = 4
 	},
 /turf/open/floor/wood,
-/area/shuttle/drop1/lz1)
+/area/barren/cave/lz1)
 "AO" = (
 /obj/structure/closet/secure_closet/engineering_personal,
 /obj/structure/sign/poster,
@@ -5426,7 +5432,7 @@
 "Bn" = (
 /obj/structure/table/reinforced,
 /turf/open/floor/tile/dark,
-/area/shuttle/drop2/lz2)
+/area/barren/cave/lz2)
 "Bo" = (
 /obj/effect/decal/cleanable/blood,
 /obj/effect/landmark/corpsespawner/miner,
@@ -5496,7 +5502,7 @@
 	dir = 8
 	},
 /turf/open/floor/tile/dark,
-/area/shuttle/drop2/lz2)
+/area/barren/cave/lz2)
 "BG" = (
 /turf/open/floor/mainship/sterile/dark,
 /area/barren/misc/alienstorage)
@@ -5597,7 +5603,7 @@
 /obj/machinery/computer/shuttle/shuttle_control/dropship,
 /obj/structure/table/reinforced,
 /turf/open/floor/wood,
-/area/shuttle/drop1/lz1)
+/area/barren/cave/lz1)
 "Ca" = (
 /obj/structure/sink/bathroom,
 /turf/open/floor/prison/sterilewhite,
@@ -5671,7 +5677,7 @@
 "Cq" = (
 /obj/machinery/floodlight/outpost,
 /turf/open/floor,
-/area/shuttle/drop1/lz1)
+/area/barren/cave/lz1)
 "Cr" = (
 /turf/closed/wall,
 /area/barren/civilian/workdorm)
@@ -5685,7 +5691,7 @@
 	dir = 1
 	},
 /turf/open/floor/wood,
-/area/shuttle/drop1/lz1)
+/area/barren/cave/lz1)
 "Cx" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/cobweb{
@@ -6111,7 +6117,7 @@
 	dir = 1
 	},
 /turf/open/floor/tile/dark,
-/area/shuttle/drop2/lz2)
+/area/barren/cave/lz2)
 "EP" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/power/apc,
@@ -6159,7 +6165,7 @@
 	dir = 8
 	},
 /turf/open/floor,
-/area/shuttle/drop1/lz1)
+/area/barren/cave/lz1)
 "Fe" = (
 /obj/structure/largecrate/guns/merc,
 /turf/open/floor/tile/dark2,
@@ -6225,7 +6231,7 @@
 	dir = 8
 	},
 /turf/open/floor/tile/dark,
-/area/shuttle/drop2/lz2)
+/area/barren/cave/lz2)
 "Fu" = (
 /obj/machinery/light,
 /obj/effect/decal/cleanable/blood,
@@ -6265,7 +6271,7 @@
 	dir = 8
 	},
 /turf/open/lavaland/lava,
-/area/shuttle/drop2/lz2)
+/area/barren/cave/lz2)
 "FF" = (
 /turf/open/floor/tile/blue/whiteblue{
 	dir = 8
@@ -6310,7 +6316,7 @@
 /area/barren/misc/genstorage)
 "FO" = (
 /turf/open/floor/plating/asteroidfloor,
-/area/shuttle/drop1/lz1)
+/area/barren/cave/lz1)
 "FP" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/blood,
@@ -6356,7 +6362,7 @@
 /turf/open/floor/wood{
 	icon_state = "wood-broken4"
 	},
-/area/shuttle/drop1/lz1)
+/area/barren/cave/lz1)
 "Gd" = (
 /obj/structure/cable,
 /turf/open/floor,
@@ -6384,7 +6390,7 @@
 "Gk" = (
 /obj/structure/girder,
 /turf/open/floor/tile/dark,
-/area/shuttle/drop2/lz2)
+/area/barren/cave/lz2)
 "Gl" = (
 /obj/machinery/light{
 	dir = 8
@@ -6427,7 +6433,7 @@
 /area/bigredv2/outside/general_offices)
 "Gv" = (
 /turf/closed/wall/r_wall,
-/area/shuttle/drop2/lz2)
+/area/barren/cave/lz2)
 "Gw" = (
 /obj/structure/table/reinforced/prison,
 /obj/item/clothing/mask/cigarette,
@@ -6454,7 +6460,7 @@
 	dir = 4
 	},
 /turf/open/floor/tile/dark,
-/area/shuttle/drop2/lz2)
+/area/barren/cave/lz2)
 "GH" = (
 /obj/structure/cable,
 /turf/open/floor/tile/red/redtaupe{
@@ -6581,7 +6587,7 @@
 	dir = 4
 	},
 /turf/open/floor,
-/area/shuttle/drop1/lz1)
+/area/barren/cave/lz1)
 "Ht" = (
 /obj/structure/cable,
 /turf/open/floor/plating/mainship,
@@ -6644,7 +6650,7 @@
 	dir = 8
 	},
 /turf/open/floor/wood,
-/area/shuttle/drop1/lz1)
+/area/barren/cave/lz1)
 "HM" = (
 /turf/closed/wall,
 /area/bigredv2/outside/general_offices)
@@ -6744,7 +6750,7 @@
 /obj/machinery/landinglight/ds2,
 /obj/effect/decal/warning_stripes/thin,
 /turf/open/floor/tile/dark,
-/area/shuttle/drop2/lz2)
+/area/barren/cave/lz2)
 "Ir" = (
 /obj/effect/decal/remains/human,
 /obj/effect/decal/cleanable/blood,
@@ -6759,7 +6765,7 @@
 "It" = (
 /obj/machinery/floodlight/landing,
 /turf/open/floor,
-/area/shuttle/drop1/lz1)
+/area/barren/cave/lz1)
 "Iu" = (
 /obj/structure/table/reinforced/prison,
 /obj/effect/decal/cleanable/dirt,
@@ -6781,7 +6787,7 @@
 	dir = 4
 	},
 /turf/open/floor/plating/asteroidfloor,
-/area/shuttle/drop1/lz1)
+/area/barren/cave/lz1)
 "Iz" = (
 /obj/effect/landmark/nuke_spawn,
 /turf/open/floor/prison/plate,
@@ -6855,7 +6861,7 @@
 /turf/open/floor/wood{
 	icon_state = "wood-broken6"
 	},
-/area/shuttle/drop1/lz1)
+/area/barren/cave/lz1)
 "IU" = (
 /obj/effect/decal/cleanable/cobweb,
 /turf/open/floor/tile/dark2,
@@ -6955,12 +6961,12 @@
 /obj/item/robot_parts/chest,
 /obj/machinery/light,
 /turf/open/floor/tile/dark,
-/area/shuttle/drop2/lz2)
+/area/barren/cave/lz2)
 "Jv" = (
 /obj/machinery/light,
 /obj/structure/cargo_container/red,
 /turf/open/floor,
-/area/shuttle/drop1/lz1)
+/area/barren/cave/lz1)
 "Jw" = (
 /obj/item/ore/iron,
 /turf/open/lavaland/basalt,
@@ -7007,7 +7013,7 @@
 	dir = 1
 	},
 /turf/open/floor/tile/dark,
-/area/shuttle/drop2/lz2)
+/area/barren/cave/lz2)
 "JD" = (
 /obj/structure/rack,
 /obj/item/ammo_magazine/revolver/small,
@@ -7030,7 +7036,7 @@
 "JF" = (
 /obj/structure/sign/poster,
 /turf/open/floor,
-/area/shuttle/drop1/lz1)
+/area/barren/cave/lz1)
 "JI" = (
 /obj/structure/bookcase/manuals/research_and_development,
 /turf/open/floor/prison/sterilewhite,
@@ -7074,7 +7080,7 @@
 	dir = 2
 	},
 /turf/open/floor/plating,
-/area/shuttle/drop2/lz2)
+/area/barren/cave/lz2)
 "JV" = (
 /turf/open/floor/prison/kitchen,
 /area/barren/civilian/cook)
@@ -7086,7 +7092,7 @@
 /turf/open/floor/plating/warning{
 	dir = 4
 	},
-/area/shuttle/drop1/lz1)
+/area/barren/cave/lz1)
 "Ka" = (
 /obj/structure/bed/chair/pew{
 	dir = 4
@@ -7116,7 +7122,7 @@
 	dir = 8
 	},
 /turf/open/floor/tile/dark,
-/area/shuttle/drop2/lz2)
+/area/barren/cave/lz2)
 "Kg" = (
 /obj/effect/decal/remains/human,
 /obj/item/clothing/head/hardhat/orange,
@@ -7134,7 +7140,7 @@
 	dir = 1
 	},
 /turf/open/floor,
-/area/shuttle/drop1/lz1)
+/area/barren/cave/lz1)
 "Kl" = (
 /obj/structure/closet/secure_closet/freezer/money,
 /obj/effect/decal/cleanable/dirt,
@@ -7207,7 +7213,7 @@
 /area/barren/medical)
 "KE" = (
 /turf/open/lavaland/lava,
-/area/shuttle/drop2/lz2)
+/area/barren/cave/lz2)
 "KF" = (
 /obj/structure/closet/secure_closet/atmos_personal,
 /obj/machinery/light{
@@ -7303,11 +7309,11 @@
 "Ln" = (
 /obj/structure/bed/chair/wood,
 /turf/open/floor,
-/area/shuttle/drop1/lz1)
+/area/barren/cave/lz1)
 "Lo" = (
 /obj/structure/cargo_container/green,
 /turf/open/floor/tile/dark,
-/area/shuttle/drop2/lz2)
+/area/barren/cave/lz2)
 "Lt" = (
 /obj/structure/grille/broken,
 /obj/item/tool/taperoll/engineering,
@@ -7316,7 +7322,7 @@
 	dir = 1
 	},
 /turf/open/floor/tile/dark,
-/area/shuttle/drop2/lz2)
+/area/barren/cave/lz2)
 "Lu" = (
 /obj/structure/table/reinforced,
 /obj/item/reagent_containers/glass/beaker/noreact,
@@ -7340,7 +7346,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/light,
 /turf/open/floor/tile/dark,
-/area/shuttle/drop2/lz2)
+/area/barren/cave/lz2)
 "LB" = (
 /obj/machinery/conveyor{
 	dir = 4
@@ -7444,7 +7450,7 @@
 	dir = 4
 	},
 /turf/open/floor,
-/area/shuttle/drop1/lz1)
+/area/barren/cave/lz1)
 "Me" = (
 /obj/structure/bed,
 /obj/item/bedsheet,
@@ -7522,7 +7528,7 @@
 	dir = 4
 	},
 /turf/open/floor/tile/dark,
-/area/shuttle/drop2/lz2)
+/area/barren/cave/lz2)
 "MH" = (
 /obj/structure/sign/poster,
 /turf/closed/wall,
@@ -7530,7 +7536,7 @@
 "MI" = (
 /obj/structure/table,
 /turf/open/floor/wood,
-/area/shuttle/drop1/lz1)
+/area/barren/cave/lz1)
 "MJ" = (
 /turf/open/floor/plating/dmg1,
 /area/barren/cave/central)
@@ -7643,7 +7649,7 @@
 	dir = 8
 	},
 /turf/open/floor/tile/dark,
-/area/shuttle/drop2/lz2)
+/area/barren/cave/lz2)
 "Np" = (
 /obj/structure/fence,
 /turf/open/lavaland/basalt,
@@ -7691,7 +7697,7 @@
 "NA" = (
 /obj/effect/decal/cleanable/liquid_fuel,
 /turf/open/floor/tile/dark,
-/area/shuttle/drop2/lz2)
+/area/barren/cave/lz2)
 "ND" = (
 /obj/structure/table/reinforced,
 /obj/item/tool/kitchen/tray,
@@ -7754,10 +7760,10 @@
 /obj/structure/cable,
 /obj/structure/cable,
 /turf/open/floor,
-/area/shuttle/drop1/lz1)
+/area/barren/cave/lz1)
 "NY" = (
 /turf/open/floor/wood,
-/area/shuttle/drop1/lz1)
+/area/barren/cave/lz1)
 "NZ" = (
 /obj/structure/closet/crate/hydroponics/prespawned,
 /turf/open/floor/tile/hydro,
@@ -7776,7 +7782,7 @@
 	dir = 9
 	},
 /turf/open/floor/tile/dark,
-/area/shuttle/drop2/lz2)
+/area/barren/cave/lz2)
 "Od" = (
 /obj/machinery/door/airlock/mainship/secure/free_access{
 	name = "Cell"
@@ -7808,7 +7814,7 @@
 	dir = 1
 	},
 /turf/open/floor,
-/area/shuttle/drop1/lz1)
+/area/barren/cave/lz1)
 "Om" = (
 /obj/effect/decal/cleanable/blood/writing{
 	dir = 6
@@ -7860,7 +7866,7 @@
 /obj/structure/cable,
 /obj/structure/window/framed/colony/reinforced,
 /turf/open/floor/plating,
-/area/shuttle/drop1/lz1)
+/area/barren/cave/lz1)
 "OD" = (
 /turf/open/lavaland/basalt,
 /area/barren/cave/northeast)
@@ -7887,14 +7893,14 @@
 	dir = 1
 	},
 /turf/open/floor/plating,
-/area/shuttle/drop1/lz1)
+/area/barren/cave/lz1)
 "OR" = (
 /turf/open/lavaland/catwalk,
 /area/barren/cave/south)
 "OT" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic,
 /turf/open/floor/plating,
-/area/shuttle/drop2/lz2)
+/area/barren/cave/lz2)
 "OU" = (
 /turf/open/floor/wood,
 /area/barren/security)
@@ -7912,7 +7918,7 @@
 	dir = 8
 	},
 /turf/open/floor/wood,
-/area/shuttle/drop1/lz1)
+/area/barren/cave/lz1)
 "OY" = (
 /obj/effect/decal/siding{
 	dir = 8
@@ -7955,7 +7961,7 @@
 	dir = 1
 	},
 /turf/open/floor,
-/area/shuttle/drop1/lz1)
+/area/barren/cave/lz1)
 "Pj" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 8
@@ -8006,7 +8012,7 @@
 "Pt" = (
 /obj/structure/largecrate/random/case,
 /turf/open/floor/marking/delivery,
-/area/shuttle/drop1/lz1)
+/area/barren/cave/lz1)
 "Pu" = (
 /obj/structure/bed/chair/office/light{
 	dir = 8
@@ -8023,7 +8029,7 @@
 /area/barren)
 "Pw" = (
 /turf/open/floor,
-/area/shuttle/drop1/lz1)
+/area/barren/cave/lz1)
 "Px" = (
 /obj/structure/barricade/guardrail{
 	dir = 8
@@ -8036,7 +8042,7 @@
 "PC" = (
 /obj/structure/cable,
 /turf/open/floor,
-/area/shuttle/drop1/lz1)
+/area/barren/cave/lz1)
 "PH" = (
 /obj/structure/cable,
 /turf/open/floor/freezer,
@@ -8073,13 +8079,13 @@
 "PV" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/closed/wall/r_wall,
-/area/shuttle/drop1/lz1)
+/area/barren/cave/lz1)
 "PX" = (
 /obj/structure/bed/chair/wood/normal{
 	dir = 1
 	},
 /turf/open/floor/tile/dark,
-/area/shuttle/drop2/lz2)
+/area/barren/cave/lz2)
 "PY" = (
 /obj/structure/closet/crate/plastic,
 /obj/item/stack/sheet/wood{
@@ -8092,7 +8098,7 @@
 	dir = 4
 	},
 /turf/open/floor/tile/dark,
-/area/shuttle/drop2/lz2)
+/area/barren/cave/lz2)
 "Qb" = (
 /turf/open/lavaland/basalt,
 /area/barren/cave/central)
@@ -8117,7 +8123,7 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/wood,
-/area/shuttle/drop1/lz1)
+/area/barren/cave/lz1)
 "Qm" = (
 /obj/structure/cable,
 /obj/machinery/light/small{
@@ -8207,7 +8213,7 @@
 "QK" = (
 /obj/structure/cable,
 /turf/open/floor/plating/asteroidfloor,
-/area/shuttle/drop1/lz1)
+/area/barren/cave/lz1)
 "QL" = (
 /obj/machinery/door_control{
 	id = "lava_misc_stationed"
@@ -8238,7 +8244,7 @@
 	dir = 4
 	},
 /turf/open/floor,
-/area/shuttle/drop1/lz1)
+/area/barren/cave/lz1)
 "QT" = (
 /obj/machinery/camera/autoname/lz_camera,
 /turf/open/floor/tile/damaged/panel,
@@ -8246,7 +8252,7 @@
 "QV" = (
 /obj/structure/largecrate/cow,
 /turf/open/floor/marking/delivery,
-/area/shuttle/drop1/lz1)
+/area/barren/cave/lz1)
 "QW" = (
 /obj/structure/closet/secure_closet/freezer/meat,
 /turf/open/floor/freezer,
@@ -8255,7 +8261,7 @@
 /obj/effect/decal/remains/human,
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor,
-/area/shuttle/drop1/lz1)
+/area/barren/cave/lz1)
 "Ra" = (
 /obj/structure/cable,
 /turf/open/floor/plating/dmg1,
@@ -8283,7 +8289,7 @@
 "Rf" = (
 /obj/structure/girder/reinforced,
 /turf/closed/wall/indestructible/mineral,
-/area/shuttle/drop1/lz1)
+/area/barren/cave/lz1)
 "Rg" = (
 /obj/effect/spawner/random/toolbox,
 /obj/structure/closet/secure_closet/engineering_welding,
@@ -8310,7 +8316,7 @@
 	dir = 4
 	},
 /turf/open/floor/tile/dark,
-/area/shuttle/drop2/lz2)
+/area/barren/cave/lz2)
 "Rl" = (
 /obj/item/tool/pickaxe,
 /obj/item/ore/phoron,
@@ -8379,7 +8385,7 @@
 	dir = 10
 	},
 /turf/open/floor/tile/dark,
-/area/shuttle/drop2/lz2)
+/area/barren/cave/lz2)
 "RI" = (
 /obj/structure/ore_box,
 /turf/open/lavaland/basalt,
@@ -8434,7 +8440,7 @@
 	dir = 1
 	},
 /turf/open/floor/tile/dark,
-/area/shuttle/drop2/lz2)
+/area/barren/cave/lz2)
 "RW" = (
 /obj/structure/table/mainship,
 /obj/item/clothing/suit/storage/labcoat/armored_coat,
@@ -8464,7 +8470,7 @@
 	dir = 2
 	},
 /turf/open/floor,
-/area/shuttle/drop1/lz1)
+/area/barren/cave/lz1)
 "Se" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/blood,
@@ -8501,7 +8507,7 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/plating,
-/area/shuttle/drop1/lz1)
+/area/barren/cave/lz1)
 "Sm" = (
 /obj/machinery/light{
 	dir = 1
@@ -8517,7 +8523,7 @@
 	dir = 8
 	},
 /turf/open/floor/plating,
-/area/shuttle/drop1/lz1)
+/area/barren/cave/lz1)
 "Sw" = (
 /obj/machinery/miner/damaged/platinum,
 /turf/open/lavaland/basalt,
@@ -8572,7 +8578,7 @@
 "SO" = (
 /obj/structure/largecrate/random/case/small,
 /turf/open/floor/tile/dark,
-/area/shuttle/drop2/lz2)
+/area/barren/cave/lz2)
 "SP" = (
 /obj/structure/bed/chair/pew{
 	dir = 6
@@ -8729,7 +8735,7 @@
 "TQ" = (
 /obj/structure/lattice,
 /turf/open/lavaland/lava,
-/area/shuttle/drop2/lz2)
+/area/barren/cave/lz2)
 "TR" = (
 /obj/structure/cable,
 /obj/effect/decal/cleanable/dirt,
@@ -8752,7 +8758,7 @@
 /obj/item/toy/plush,
 /obj/structure/table/reinforced,
 /turf/open/floor,
-/area/shuttle/drop1/lz1)
+/area/barren/cave/lz1)
 "TY" = (
 /obj/structure/cable,
 /obj/structure/window/framed/colony,
@@ -8849,7 +8855,7 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/wood,
-/area/shuttle/drop1/lz1)
+/area/barren/cave/lz1)
 "UD" = (
 /turf/open/floor/tile/dark2,
 /area/barren/civilian)
@@ -8926,7 +8932,7 @@
 /turf/open/floor/wood{
 	icon_state = "wood-broken4"
 	},
-/area/shuttle/drop1/lz1)
+/area/barren/cave/lz1)
 "UY" = (
 /obj/structure/rack,
 /turf/open/floor/marking/delivery,
@@ -8953,7 +8959,7 @@
 	dir = 8
 	},
 /turf/open/floor/wood,
-/area/shuttle/drop1/lz1)
+/area/barren/cave/lz1)
 "Vj" = (
 /turf/open/floor,
 /area/barren/misc/genstorage)
@@ -9061,7 +9067,7 @@
 /area/barren/misc/crashed)
 "VL" = (
 /turf/open/floor/plating/warning,
-/area/shuttle/drop1/lz1)
+/area/barren/cave/lz1)
 "VM" = (
 /turf/open/floor/tile/bar{
 	name = "medical"
@@ -9218,7 +9224,7 @@
 "WI" = (
 /obj/structure/window/framed/colony/reinforced,
 /turf/open/floor/plating,
-/area/shuttle/drop1/lz1)
+/area/barren/cave/lz1)
 "WJ" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/bar{
@@ -9228,7 +9234,7 @@
 "WK" = (
 /obj/structure/bed/chair/wood/normal,
 /turf/open/floor/tile/dark,
-/area/shuttle/drop2/lz2)
+/area/barren/cave/lz2)
 "WL" = (
 /obj/structure/barricade/guardrail,
 /obj/structure/barricade/guardrail{
@@ -9559,7 +9565,7 @@
 /turf/open/floor/plating/warning{
 	dir = 8
 	},
-/area/shuttle/drop1/lz1)
+/area/barren/cave/lz1)
 "Zd" = (
 /obj/structure/window/framed/mainship,
 /turf/open/floor/plating/mainship,
@@ -9597,7 +9603,7 @@
 	dir = 9
 	},
 /turf/open/floor/wood,
-/area/shuttle/drop1/lz1)
+/area/barren/cave/lz1)
 "Zk" = (
 /obj/structure/closet,
 /obj/effect/spawner/random/toolbox,
@@ -9642,7 +9648,7 @@
 "ZB" = (
 /obj/structure/cargo_container/horizontal,
 /turf/open/floor,
-/area/shuttle/drop1/lz1)
+/area/barren/cave/lz1)
 "ZC" = (
 /obj/structure/bed,
 /obj/item/bedsheet,
@@ -9654,7 +9660,7 @@
 /area/barren/civilian)
 "ZD" = (
 /turf/open/lavaland/catwalk,
-/area/shuttle/drop2/lz2)
+/area/barren/cave/lz2)
 "ZF" = (
 /obj/machinery/light{
 	dir = 4
@@ -9732,7 +9738,7 @@
 	dir = 1
 	},
 /turf/open/floor/tile/dark,
-/area/shuttle/drop2/lz2)
+/area/barren/cave/lz2)
 "ZZ" = (
 /obj/structure/cable,
 /turf/open/lavaland/catwalk,
@@ -14980,7 +14986,7 @@ QR
 QR
 QR
 qj
-RF
+pq
 mP
 mP
 mP
@@ -16047,7 +16053,7 @@ mP
 mP
 mP
 mP
-RF
+pq
 kS
 ZN
 ZN
@@ -16818,7 +16824,7 @@ mP
 mP
 mP
 mP
-RF
+pq
 kS
 ZN
 ZN
@@ -19366,10 +19372,10 @@ Gv
 Gv
 Gv
 gO
-RF
+pq
 JU
 gO
-RF
+pq
 JU
 gO
 Gv
@@ -48124,10 +48130,10 @@ AK
 AK
 AK
 AK
-HR
+eb
 OQ
 WI
-HR
+eb
 OQ
 AK
 AK
@@ -49932,7 +49938,7 @@ Pw
 fN
 Pw
 Pw
-HR
+eb
 ag
 OD
 OD
@@ -50703,7 +50709,7 @@ Pw
 Pw
 Pw
 Pw
-HR
+eb
 ag
 OD
 OD
@@ -52737,7 +52743,7 @@ aI
 aI
 vg
 It
-HR
+eb
 JZ
 JZ
 JZ
@@ -55821,7 +55827,7 @@ aI
 aI
 Rf
 Pw
-HR
+eb
 Zc
 Zc
 Zc
@@ -55843,7 +55849,7 @@ Zc
 Zc
 Zc
 Zc
-HR
+eb
 Pw
 AK
 ot
