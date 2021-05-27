@@ -12475,7 +12475,7 @@
 /area/bigredv2/outside/general_store)
 "aWy" = (
 /obj/structure/bed,
-/obj/item/toy/farwadoll,
+/obj/item/toy/plush/farwa,
 /turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/general_store)
 "aWz" = (

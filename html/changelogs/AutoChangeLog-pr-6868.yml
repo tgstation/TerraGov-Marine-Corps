@@ -1,4 +1,4 @@
 author: "BraveMole"
 delete-after: True
 changes: 
-  - code_imp: "Jatum added"
+  - config: "Extended now is in modes.txt"

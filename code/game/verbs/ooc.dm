@@ -53,7 +53,7 @@
 
 	var/display_colour
 	var/display_class = "colorooc"
-	if(holder?.rank && !holder.fakekey)
+	if(holder?.rank && !holder.fakekey && check_rights(R_COLOR, FALSE))
 		switch(holder.rank.name)
 			if("Host")
 				display_class = "hostooc"
@@ -80,9 +80,9 @@
 			else
 				display_class = "otherooc"
 
-		if(check_rights(R_COLOR))
-			if(CONFIG_GET(flag/allow_admin_ooccolor))
-				display_colour = prefs.ooccolor
+
+		if(CONFIG_GET(flag/allow_admin_ooccolor))
+			display_colour = prefs.ooccolor
 
 	for(var/client/C in GLOB.clients)
 		if(!(C.prefs.toggles_chat & CHAT_OOC))

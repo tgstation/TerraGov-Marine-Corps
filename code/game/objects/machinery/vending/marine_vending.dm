@@ -198,6 +198,7 @@
 			/obj/item/attachable/attached_gun/flamer = -1,
 			/obj/item/attachable/attached_gun/shotgun = -1,
 			/obj/item/attachable/attached_gun/grenade = -1,
+			/obj/item/attachable/standard_revolver_longbarrel = -1
 		),
 		"Boxes" = list(
 		/obj/item/ammo_magazine/box9mm = 100,
@@ -211,6 +212,9 @@
 		),
 	)
 
+	seasonal_items = list(
+		SEASONAL_GUNS = "Seasonal",
+	)
 
 /obj/machinery/vending/marine/shared/hvh
 
@@ -600,13 +604,14 @@
 		/obj/item/reagent_containers/hypospray/autoinjector/inaprovaline = 6,
 		/obj/item/reagent_containers/hypospray/autoinjector/dylovene = 6,
 		/obj/item/reagent_containers/hypospray/autoinjector/hypervene = 4,
+		/obj/item/reagent_containers/hypospray/autoinjector/isotonic = 4,
 		/obj/item/reagent_containers/hypospray/autoinjector/quickclot = 4,
-		/obj/item/reagent_containers/hypospray/autoinjector/dexalinplus = 0,
+		/obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus = 0,
 		/obj/item/reagent_containers/hypospray/autoinjector/quickclotplus = 0,
 		/obj/item/reagent_containers/hypospray/autoinjector/synaptizine = 0,
-		/obj/item/storage/pill_bottle/bicaridine = 5,
-		/obj/item/storage/pill_bottle/kelotane = 5,
-		/obj/item/storage/pill_bottle/tramadol = 5,
+		/obj/item/storage/pill_bottle/bicaridine = 3,
+		/obj/item/storage/pill_bottle/kelotane = 3,
+		/obj/item/storage/pill_bottle/tramadol = 3,
 		/obj/item/storage/pill_bottle/tricordrazine = 3,
 		/obj/item/storage/pill_bottle/inaprovaline = 3,
 		/obj/item/storage/pill_bottle/dexalin = 3,
@@ -614,7 +619,6 @@
 		/obj/item/storage/pill_bottle/spaceacillin = 3,
 		/obj/item/storage/pill_bottle/alkysine = 3,
 		/obj/item/storage/pill_bottle/imidazoline = 3,
-		/obj/item/storage/pill_bottle/russian_red = 5,
 		/obj/item/storage/pill_bottle/peridaxon = 2,
 		/obj/item/storage/pill_bottle/quickclot = 2,
 		/obj/item/storage/pill_bottle/hypervene = 2,
@@ -632,7 +636,7 @@
 		/obj/item/reagent_containers/hypospray/autoinjector/synaptizine_expired = 3,
 	)
 
-/obj/machinery/vending/MarineMed/rebel 
+/obj/machinery/vending/MarineMed/rebel
 	req_one_access = ALL_MARINE_REBEL_ACCESS
 
 /obj/machinery/vending/MarineMed/Blood
@@ -641,7 +645,7 @@
 	icon_state = "bloodvendor"
 	icon_deny = "bloodvendor-deny"
 	product_ads = "The best blood on the market!"
-	req_access = list(ACCESS_MARINE_MEDBAY, ACCESS_MARINE_CHEMISTRY)
+	req_one_access = list(ACCESS_MARINE_MEDBAY, ACCESS_MARINE_CHEMISTRY, ACCESS_MARINE_MEDPREP)
 	products = list(
 		/obj/item/reagent_containers/blood/APlus = 5,
 		/obj/item/reagent_containers/blood/AMinus = 5,
@@ -653,7 +657,7 @@
 	)
 	contraband = list()
 
-/obj/machinery/vending/MarineMed/Blood/rebel 
+/obj/machinery/vending/MarineMed/Blood/rebel
 	req_access = list(ACCESS_MARINE_MEDBAY_REBEL, ACCESS_MARINE_CHEMISTRY_REBEL)
 
 /obj/machinery/vending/MarineMed/Blood/build_inventory(list/productlist, category)
@@ -685,12 +689,12 @@
 		/obj/item/storage/backpack/marine/corpsman = 4,
 		/obj/item/storage/backpack/marine/satchel/corpsman = 4,
 		/obj/item/encryptionkey/med = 4,
-		/obj/item/storage/belt/medical = 4,
+		/obj/item/storage/belt/medical = 6,
 		/obj/item/bodybag/cryobag = 4,
 		/obj/item/healthanalyzer = 4,
 		/obj/item/clothing/glasses/hud/health = 4,
 		/obj/item/storage/firstaid/regular = 4,
-		/obj/item/storage/firstaid/adv = 4,
+		/obj/item/storage/firstaid/adv = 8,
 		/obj/item/storage/pouch/medical = 4,
 		/obj/item/storage/pouch/medkit = 4,
 		/obj/item/storage/pouch/magazine/large = 4,
@@ -700,7 +704,7 @@
 	)
 	contraband = list(/obj/item/reagent_containers/blood/OMinus = 1)
 
-/obj/machinery/vending/marine_medic/rebel 
+/obj/machinery/vending/marine_medic/rebel
 	req_access = list(ACCESS_MARINE_MEDPREP_REBEL)
 
 /obj/machinery/vending/marine_special

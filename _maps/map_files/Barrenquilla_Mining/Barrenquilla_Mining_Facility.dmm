@@ -1644,7 +1644,7 @@
 /turf/open/floor/marking/delivery,
 /area/barren/misc/genstorage)
 "hN" = (
-/obj/item/toy/farwadoll,
+/obj/item/toy/plush/farwa,
 /turf/open/floor,
 /area/shuttle/drop1/lz1)
 "hO" = (
@@ -6392,7 +6392,7 @@
 /area/barren/cave/west)
 "FH" = (
 /obj/structure/closet/secure_closet/chemical,
-/obj/item/storage/pill_bottle/keloderm,
+/obj/item/storage/pill_bottle/kelotane,
 /turf/open/floor/freezer,
 /area/barren/medical/chemistry)
 "FI" = (

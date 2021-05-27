@@ -31,6 +31,8 @@
 
 	var/list/squad_orbital_beacons = list()
 	var/list/squad_laser_targets = list()
+	///Faction of that squad
+	var/faction = FACTION_TERRAGOV
 
 
 /datum/squad/alpha
@@ -67,21 +69,25 @@
 	id = ALPHA_SQUAD_REBEL
 	access = list(ACCESS_MARINE_ALPHA_REBEL)
 	radio_freq = FREQ_ALPHA_REBEL
+	faction = FACTION_TERRAGOV_REBEL
 
 /datum/squad/bravo/rebel
 	id = BRAVO_SQUAD_REBEL
 	access = list(ACCESS_MARINE_BRAVO_REBEL)
 	radio_freq = FREQ_BRAVO_REBEL
+	faction = FACTION_TERRAGOV_REBEL
 
 /datum/squad/charlie/rebel
 	id = CHARLIE_SQUAD_REBEL
 	access = list(ACCESS_MARINE_CHARLIE_REBEL)
 	radio_freq = FREQ_CHARLIE_REBEL
+	faction = FACTION_TERRAGOV_REBEL
 
 /datum/squad/delta/rebel
 	id = DELTA_SQUAD_REBEL
 	access = list(ACCESS_MARINE_DELTA_REBEL)
 	radio_freq = FREQ_DELTA_REBEL
+	faction = FACTION_TERRAGOV_REBEL
 
 GLOBAL_LIST_EMPTY(glovemarkings)
 GLOBAL_LIST_EMPTY(armormarkings)
@@ -162,7 +168,7 @@ GLOBAL_LIST_EMPTY(helmetmarkings_sl)
 
 	marines_list += new_squaddie
 	new_squaddie.assigned_squad = src
-	new_squaddie.hud_set_job()
+	new_squaddie.hud_set_job(faction)
 	new_squaddie.update_action_buttons()
 	new_squaddie.update_inv_head()
 	new_squaddie.update_inv_wear_suit()
@@ -211,7 +217,7 @@ GLOBAL_LIST_EMPTY(helmetmarkings_sl)
 	marines_list -= leaving_squaddie
 
 	leaving_squaddie.assigned_squad = null
-	leaving_squaddie.hud_set_job()
+	leaving_squaddie.hud_set_job(faction)
 	leaving_squaddie.update_action_buttons()
 	leaving_squaddie.update_inv_head()
 	leaving_squaddie.update_inv_wear_suit()
@@ -243,7 +249,7 @@ GLOBAL_LIST_EMPTY(helmetmarkings_sl)
 	var/mob/living/carbon/human/H = squad_leader
 	squad_leader = null
 	H.update_action_buttons()
-	H.hud_set_job()
+	H.hud_set_job(faction)
 	H.update_inv_head()
 	H.update_inv_wear_suit()
 
@@ -270,7 +276,7 @@ GLOBAL_LIST_EMPTY(helmetmarkings_sl)
 		R.secure_radio_connections[RADIO_CHANNEL_COMMAND] = add_radio(R, GLOB.radiochannels[RADIO_CHANNEL_COMMAND])
 		R.use_command = TRUE
 
-	squad_leader.hud_set_job()
+	squad_leader.hud_set_job(faction)
 	squad_leader.update_action_buttons()
 	squad_leader.update_inv_head()
 	squad_leader.update_inv_wear_suit()
@@ -334,94 +340,21 @@ GLOBAL_LIST_EMPTY(helmetmarkings_sl)
 	return TRUE
 
 
-//A generic proc for handling the initial squad role assignment in SSjob
-/proc/handle_initial_squad(mob/new_player/player, datum/job/job, latejoin = FALSE)
+///A generic proc for handling the initial squad role assignment in SSjob
+/proc/handle_initial_squad(mob/new_player/player, datum/job/job, latejoin = FALSE, faction = FACTION_TERRAGOV)
 	var/strict = player.client.prefs.be_special && (player.client.prefs.be_special & BE_SQUAD_STRICT)
-	var/datum/squad/P = SSjob.active_squads[player.client.prefs.preferred_squad]
-	var/datum/squad/R = SSjob.active_squads[pick(SSjob.active_squads)]
-	switch(job.title)
-		if(SQUAD_MARINE)
-			return P?.assign_initial(player, job, latejoin) || R.assign_initial(player, job, latejoin)
-		if(SQUAD_ENGINEER)
-			for(var/i in shuffle(SSjob.active_squads))
-				var/datum/squad/S = SSjob.active_squads[i]
-				if(!S.check_entry(job))
-					continue
-				if(P && P == S && S.assign_initial(player, job, latejoin))
-					return TRUE
-			if(strict && !latejoin)
-				return FALSE
-			for(var/i in shuffle(SSjob.active_squads))
-				var/datum/squad/S = SSjob.active_squads[i]
-				if(!S.check_entry(job))
-					continue
-				else if(S.assign_initial(player, job, latejoin))
-					return TRUE
-		if(SQUAD_CORPSMAN)
-			for(var/i in shuffle(SSjob.active_squads))
-				var/datum/squad/S = SSjob.active_squads[i]
-				if(!S.check_entry(job))
-					continue
-				if(P && P == S && S.assign_initial(player, job, latejoin))
-					return TRUE
-			if(strict && !latejoin)
-				return FALSE
-			for(var/i in shuffle(SSjob.active_squads))
-				var/datum/squad/S = SSjob.active_squads[i]
-				if(!S.check_entry(job))
-					continue
-				else if(S.assign_initial(player, job, latejoin))
-					return TRUE
-		if(SQUAD_SMARTGUNNER)
-			for(var/i in shuffle(SSjob.active_squads))
-				var/datum/squad/S = SSjob.active_squads[i]
-				if(!S.check_entry(job))
-					continue
-				if(P && P == S && S.assign_initial(player, job, latejoin))
-					return TRUE
-			if(strict && !latejoin)
-				return FALSE
-			for(var/i in shuffle(SSjob.active_squads))
-				var/datum/squad/S = SSjob.active_squads[i]
-				if(!S.check_entry(job, latejoin))
-					continue
-				else if(S.assign_initial(player, job, latejoin))
-					return TRUE
-		if(SQUAD_SPECIALIST)
-			for(var/i in shuffle(SSjob.active_squads))
-				var/datum/squad/S = SSjob.active_squads[i]
-				if(!S.check_entry(job))
-					continue
-				if(P && P == S && S.assign_initial(player, job, latejoin))
-					return TRUE
-			if(strict && !latejoin)
-				return FALSE
-			for(var/i in shuffle(SSjob.active_squads))
-				var/datum/squad/S = SSjob.active_squads[i]
-				if(!S.check_entry(job))
-					continue
-				else if(S.assign_initial(player, job, latejoin))
-					return TRUE
-		if(SQUAD_LEADER)
-			for(var/i in shuffle(SSjob.active_squads))
-				var/datum/squad/S = SSjob.active_squads[i]
-				if(!S.check_entry(job))
-					continue
-				if(P && P == S && S.assign_initial(player, job, latejoin))
-					return TRUE
-			if(strict && !latejoin)
-				return FALSE
-			for(var/i in shuffle(SSjob.active_squads))
-				var/datum/squad/S = SSjob.active_squads[i]
-				if(!S.check_entry(job))
-					continue
-				else if(S.assign_initial(player, job, latejoin))
-					return TRUE
+	//List of all the faction accessible squads
+	var/list/available_squads = SSjob.active_squads[faction]
+	var/datum/squad/preferred_squad = SSjob.squads_by_name[player.client.prefs.preferred_squad]
+	if(preferred_squad?.assign_initial(player, job, latejoin))
+		return TRUE
+	if(strict)
+		to_chat(player, "<span class='warning'>That squad is full!</span>")
+		return FALSE
+	//If our preferred squad is not available, we try every other squad
+	for(var/datum/squad/squad AS in shuffle(available_squads))
+		if(!squad.check_entry(job))
+			continue
+		if(squad.assign_initial(player, job, latejoin))
+			return TRUE
 	return FALSE
-
-
-/proc/reset_squads()
-	for(var/i in SSjob.squads)
-		var/datum/squad/squad = SSjob.squads[i]
-		for(var/j in squad.current_positions)
-			squad.current_positions[j] = 0
