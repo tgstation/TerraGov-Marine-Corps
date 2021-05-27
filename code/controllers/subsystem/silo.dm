@@ -21,7 +21,8 @@ SUBSYSTEM_DEF(silo)
 	//We normalize the larval output for one silo, so the value for silo = 1 is independant of SILO_OUTPUT_PONDERATION
 	current_larva_spawn_rate *= (SILO_OUTPUT_PONDERATION) / (1 + SILO_OUTPUT_PONDERATION)
 	//We are processing wether we hijacked or not (hijacking gives a bonus)
-	current_larva_spawn_rate *= larva_rate_boost 
+	current_larva_spawn_rate *= larva_rate_boost
+	current_larva_spawn_rate = length(GLOB.xeno_resin_silos) ? current_larva_spawn_rate : 0
 	xeno_job.add_job_points(current_larva_spawn_rate, SILO_ORIGIN)
 
 ///Activate the subsystem when shutters open and remove the free spawning when marines are joining
