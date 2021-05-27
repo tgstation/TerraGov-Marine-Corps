@@ -17,11 +17,6 @@
 	max_integrity = RAZORWIRE_MAX_HEALTH
 	var/soak = 5
 
-/obj/structure/razorwire/foam
-	desc = "A bundle of barbed wire supported by metal rods, crudely built by iron-consuming nanites. Weld them to bring them to their full strength."
-	max_integrity = RAZORWIRE_MAX_HEALTH
-	obj_integrity = RAZORWIRE_MAX_HEALTH/2
-
 /obj/structure/razorwire/deconstruct(disassembled = TRUE)
 	if(disassembled)
 		if(obj_integrity > max_integrity * 0.5)
@@ -47,6 +42,8 @@
 	. = ..()
 	if(!isliving(O))
 		return
+	if(CHECK_BITFIELD(O.flags_pass, PASSSMALLSTRUCT))
+		return
 	var/mob/living/M = O
 	if(CHECK_BITFIELD(M.restrained_flags, RESTRAINED_RAZORWIRE))
 		return
@@ -59,6 +56,15 @@
 	M.apply_damage(RAZORWIRE_BASE_DAMAGE, BRUTE, def_zone, armor_block, TRUE, updating_health = TRUE)
 	razorwire_tangle(M)
 
+/obj/structure/razorwire/CheckExit(atom/movable/mover, turf/target)
+	. = ..()
+	if(CHECK_BITFIELD(mover.flags_pass, PASSSMALLSTRUCT))
+		return TRUE
+
+/obj/structure/razorwire/CanAllowThrough(atom/movable/mover, turf/target)
+	. = ..()
+	if(CHECK_BITFIELD(mover.flags_pass, PASSSMALLSTRUCT))
+		return TRUE
 
 /obj/structure/razorwire/proc/razorwire_tangle(mob/living/entangled, duration = RAZORWIRE_ENTANGLE_DELAY)
 	if(QDELETED(src)) //Sanity check so that you can't get entangled if the razorwire is destroyed; this happens apparently.
@@ -214,7 +220,7 @@
 		deconstruct(FALSE)
 		return TRUE
 
-/obj/structure/razorwire/update_icon()
+/obj/structure/razorwire/update_icon_state()
 	var/health_percent = round(obj_integrity/max_integrity * 100)
 	var/remaining = CEILING(health_percent, 25)
 	icon_state = "[base_icon_state]_[remaining]"

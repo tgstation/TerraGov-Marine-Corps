@@ -178,14 +178,15 @@
 	. = ..()
 	update_icon()
 
-/obj/item/reagent_containers/hypospray/update_icon()
-	if(ismob(loc))
-		if(inject_mode)
-			icon_state = "hypo_i"
-		else
-			icon_state = "hypo_d"
-	else
+/obj/item/reagent_containers/hypospray/update_icon_state()
+	if(!ismob(loc))
 		icon_state = "hypo"
+		return
+	if(inject_mode)
+		icon_state = "hypo_i"
+		return
+	icon_state = "hypo_d"
+
 
 /obj/item/reagent_containers/hypospray/advanced
 	icon_state = "hypo"
@@ -285,6 +286,8 @@
 
 
 /obj/item/reagent_containers/hypospray/advanced/oxycodone
+	name = "oxycodone hypospray"
+	desc = "A hypospray loaded with oxycodone."
 	list_reagents = list(/datum/reagent/medicine/oxycodone = 60)
 
 /obj/item/reagent_containers/hypospray/advanced/combat
@@ -302,7 +305,7 @@
 	list_reagents = list(
 		/datum/reagent/medicine/meralyne = 20,
 		/datum/reagent/medicine/dermaline = 20,
-		/datum/reagent/medicine/oxycodone = 20,
+		/datum/reagent/medicine/tramadol = 20,
 	)
 
 /obj/item/reagent_containers/hypospray/advanced/meraderm
@@ -327,12 +330,11 @@
 		/datum/reagent/medicine/dermaline = 60,
 	)
 
-/obj/item/reagent_containers/hypospray/advanced/ironsugar
-	name = "Ironsugar hypospray"
-	desc = "A hypospray loaded with ironsugar."
+/obj/item/reagent_containers/hypospray/advanced/nanoblood
+	name = "Nanoblood hypospray"
+	desc = "A hypospray loaded with nanoblood."
 	list_reagents = list(
-		/datum/reagent/iron = 30,
-		/datum/reagent/consumable/sugar = 30,
+		/datum/reagent/medicine/nanoblood = 60,
 	)
 
 /obj/item/reagent_containers/hypospray/advanced/tricordrazine

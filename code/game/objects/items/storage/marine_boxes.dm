@@ -532,9 +532,9 @@
 	new /obj/item/storage/belt/grenade/b17(src)
 	new /obj/item/clothing/suit/storage/marine/B17(src)
 	new /obj/item/clothing/head/helmet/marine/grenadier(src)
-	new /obj/item/storage/box/nade_box(src)
-	new /obj/item/storage/box/nade_box(src)
-	new /obj/item/storage/box/nade_box/HIDP(src)
+	new /obj/item/storage/box/visual/grenade/frag(src)
+	new /obj/item/storage/box/visual/grenade/frag(src)
+	new /obj/item/storage/box/visual/grenade/incendiary(src)
 
 /obj/item/storage/box/spec/heavy_gunner
 	name = "\improper Heavy Minigunner case"
@@ -1059,9 +1059,9 @@
 	new /obj/item/clothing/head/helmet/marine/grenadier(src)
 	new /obj/item/reagent_containers/food/snacks/enrg_bar(src)
 	new /obj/item/reagent_containers/food/snacks/enrg_bar(src)
-	new /obj/item/storage/box/nade_box(src)
-	new /obj/item/storage/box/nade_box(src)
-	new /obj/item/storage/box/nade_box/HIDP(src)
+	new /obj/item/storage/box/visual/grenade/frag(src)
+	new /obj/item/storage/box/visual/grenade/frag(src)
+	new /obj/item/storage/box/visual/grenade/incendiary(src)
 	new /obj/item/storage/backpack/marine/standard(src)
 	new /obj/item/storage/backpack/marine/standard(src)
 	new /obj/item/storage/backpack/marine/standard(src)

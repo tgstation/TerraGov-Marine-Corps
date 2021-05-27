@@ -8,7 +8,7 @@
 	icon = 'icons/Marine/sentry.dmi'
 	icon_state = "ammo_can"
 	flags_magazine = NONE //can't be refilled or emptied by hand
-	caliber = "10x28mm"
+	caliber = CALIBER_10X28
 	max_rounds = 500
 	default_ammo = /datum/ammo/bullet/turret
 	gun_type = null
@@ -1122,7 +1122,7 @@
 	icon = 'icons/Marine/sentry.dmi'
 	icon_state = "ammo_can"
 	flags_magazine = NONE //can't be refilled or emptied by hand
-	caliber = "10x28mm"
+	caliber = CALIBER_10X28
 	max_rounds = 500
 	default_ammo = /datum/ammo/bullet/turret/dumb
 	gun_type = null
@@ -1162,7 +1162,7 @@
 	icon = 'icons/Marine/sentry.dmi'
 	icon_state = "ammo_can"
 	flags_magazine = NONE //can't be refilled or emptied by hand
-	caliber = "12x40mm"
+	caliber = CALIBER_12X40
 	default_ammo = /datum/ammo/bullet/turret/gauss
 	gun_type = null
 	max_rounds = 50000
@@ -1317,7 +1317,7 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	icon_state = "ua580"
 	flags_magazine = NONE //can't be refilled or emptied by hand
-	caliber = "10x20mm"
+	caliber = CALIBER_10X20
 	max_rounds = 500
 	default_ammo = /datum/ammo/bullet/turret/mini
 	gun_type = null

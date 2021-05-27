@@ -55,12 +55,14 @@
 #define INIT_ORDER_INPUT			21
 #define INIT_ORDER_SOUNDS			19
 #define INIT_ORDER_INSTRUMENTS		17
+#define INIT_ORDER_GREYSCALE		16
 #define INIT_ORDER_CODEX 			15
 #define INIT_ORDER_EVENTS			14
 #define INIT_ORDER_MONITOR  		13
 #define INIT_ORDER_JOBS				12
 #define INIT_ORDER_TICKER			10
 #define INIT_ORDER_MAPPING			9
+#define INIT_ORDER_PERSISTENCE		7 //before assets because some assets take data from SSPersistence, such as vendor items
 #define INIT_ORDER_ATOMS			6
 #define INIT_ORDER_MACHINES			5
 #define INIT_ORDER_AI_NODES			3

@@ -627,7 +627,7 @@
 /obj/machinery/landinglight
 	name = "landing light"
 	icon = 'icons/obj/landinglights.dmi'
-	icon_state = "landingstripetop"
+	icon_state = "landingstripe"
 	desc = "A landing light, if it's flashing stay clear!"
 	var/id = "" // ID for landing zone
 	anchored = TRUE

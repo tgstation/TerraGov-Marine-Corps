@@ -148,15 +148,15 @@
 /area/shuttle/drop2/lz2)
 "aK" = (
 /obj/structure/table/reinforced,
-/obj/machinery/computer/shuttle/shuttle_control/dropship1,
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable,
+/obj/machinery/computer/shuttle/shuttle_control/dropship,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/console)
 "aL" = (
-/obj/effect/landmark/xeno_tunnel,
-/turf/open/lavaland/basalt,
-/area/barren/cave/southwest)
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/turf/closed/brock,
+/area/barren/cave/north)
 "aM" = (
 /turf/open/lavaland/lava/side,
 /area/barren/cave/east)
@@ -1635,9 +1635,9 @@
 /turf/open/floor/marking/delivery,
 /area/barren/misc/genstorage)
 "hN" = (
-/obj/item/toy/farwadoll,
-/turf/open/floor,
-/area/shuttle/drop1/lz1)
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/turf/open/lavaland/basalt,
+/area/barren/cave/north)
 "hO" = (
 /obj/machinery/light{
 	dir = 1
@@ -1789,9 +1789,12 @@
 /turf/open/lavaland/basalt,
 /area/barren/cave/southeast)
 "iD" = (
-/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/open/lavaland/basalt,
-/area/barren/cave/north)
+/obj/structure/table/reinforced,
+/obj/item/stack/sheet/mineral/uranium{
+	amount = 25
+	},
+/turf/open/floor/tile/dark,
+/area/shuttle/drop2/lz2)
 "iE" = (
 /obj/structure/largecrate/mule,
 /turf/open/floor/marking,
@@ -3343,9 +3346,11 @@
 /turf/open/lavaland/basalt,
 /area/barren/cave/north)
 "pX" = (
-/obj/effect/landmark/xeno_tunnel,
-/turf/open/lavaland/basalt,
-/area/barren/cave/north)
+/obj/structure/sign/double/barsign/carp{
+	dir = 1
+	},
+/turf/open/floor,
+/area/storage/testroom)
 "pY" = (
 /obj/effect/decal/cleanable/blood/oil,
 /turf/open/floor/tile/dark,
@@ -3758,11 +3763,11 @@
 /turf/open/floor/tile/red/redtaupe,
 /area/barren/security)
 "si" = (
-/obj/machinery/power/port_gen/pacman/super,
 /obj/structure/cable,
 /obj/effect/decal/cleanable/cobweb{
 	dir = 4
 	},
+/obj/machinery/power/port_gen/pacman/super,
 /turf/open/floor/tile/dark,
 /area/shuttle/drop2/lz2)
 "sj" = (
@@ -5129,10 +5134,6 @@
 	},
 /turf/open/floor/grimy,
 /area/barren/civilian)
-"zD" = (
-/obj/structure/sign/double/barsign/carp,
-/turf/open/floor,
-/area/storage/testroom)
 "zE" = (
 /obj/structure/filingcabinet,
 /obj/effect/decal/cleanable/dirt,
@@ -6275,7 +6276,6 @@
 /area/barren/medical)
 "FH" = (
 /obj/structure/closet/secure_closet/chemical,
-/obj/item/storage/pill_bottle/keloderm,
 /turf/open/floor/freezer,
 /area/barren/medical/chemistry)
 "FI" = (
@@ -8752,7 +8752,7 @@
 /turf/open/lavaland/basalt,
 /area/barren/cave/west)
 "TW" = (
-/obj/machinery/computer/shuttle/shuttle_control/dropship1,
+/obj/item/toy/plush,
 /obj/structure/table/reinforced,
 /turf/open/floor,
 /area/shuttle/drop1/lz1)
@@ -8846,10 +8846,6 @@
 /obj/effect/alien/weeds/node,
 /turf/closed/wall/indestructible/mineral,
 /area/barren/cave/northwest)
-"Uz" = (
-/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/closed/brock,
-/area/barren/cave/north)
 "UC" = (
 /obj/effect/decal/woodsiding{
 	dir = 1
@@ -9367,10 +9363,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating/dmg2,
 /area/barren/misc/crashed)
-"XD" = (
-/obj/effect/landmark/xeno_tunnel,
-/turf/open/lavaland/basalt,
-/area/barren/cave/south)
 "XF" = (
 /turf/closed/wall/indestructible/mineral,
 /area/barren/cave/west)
@@ -17569,7 +17561,7 @@ ak
 Gv
 si
 Rk
-mP
+iD
 mP
 mP
 mP
@@ -19463,7 +19455,7 @@ HQ
 HQ
 HQ
 Vz
-aL
+Vz
 Vz
 Vz
 Vz
@@ -31669,18 +31661,18 @@ aI
 aI
 aI
 ah
-al
-al
-al
-al
-al
-aZ
-aZ
-aZ
-al
-al
-al
-al
+aL
+aL
+aL
+aL
+aL
+hN
+hN
+hN
+aL
+aL
+aL
+aL
 al
 al
 al
@@ -31937,7 +31929,7 @@ aZ
 aZ
 al
 al
-al
+aL
 al
 al
 al
@@ -32183,18 +32175,18 @@ aI
 aI
 aI
 ah
-Uz
-Uz
-Uz
-Uz
-Uz
+al
+al
+al
+al
+al
 aZ
 aZ
 aZ
 aZ
 aZ
 al
-al
+aL
 al
 aZ
 aZ
@@ -32444,14 +32436,14 @@ al
 aZ
 aZ
 bj
-Uz
+al
 aZ
 aZ
 aZ
 aZ
 aZ
 aZ
-aZ
+hN
 aZ
 aZ
 aZ
@@ -32701,7 +32693,6 @@ al
 aZ
 aZ
 aZ
-iD
 aZ
 aZ
 aZ
@@ -32709,6 +32700,7 @@ aZ
 aZ
 aZ
 aZ
+hN
 aZ
 aZ
 aZ
@@ -32958,14 +32950,14 @@ al
 aZ
 gg
 aZ
-iD
+aZ
 aZ
 bL
 Et
 aZ
 aZ
 aZ
-aZ
+hN
 aZ
 aZ
 aZ
@@ -33215,14 +33207,14 @@ al
 aZ
 aZ
 aZ
-iD
+aZ
 aZ
 bL
 Lc
 aZ
 aZ
 BX
-aZ
+hN
 aZ
 al
 al
@@ -33472,14 +33464,14 @@ al
 aZ
 aZ
 aZ
-iD
+aZ
 aZ
 aZ
 bL
 aZ
 aZ
 aZ
-aZ
+hN
 al
 yw
 yw
@@ -33726,17 +33718,17 @@ aI
 aI
 ah
 al
-pX
+aZ
 bj
 al
-Uz
-aZ
-aZ
-aZ
-aZ
-aZ
-aZ
 al
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aL
 al
 yw
 pU
@@ -33982,18 +33974,18 @@ aI
 aI
 aI
 ah
-Uz
-Uz
-Uz
-Uz
-Uz
-aZ
-aZ
-aZ
-aZ
-aZ
-aZ
 al
+al
+al
+al
+al
+aZ
+aZ
+aZ
+aZ
+aZ
+aZ
+aL
 al
 yw
 RJ
@@ -34250,7 +34242,7 @@ aZ
 aZ
 aZ
 al
-al
+aL
 al
 yw
 iA
@@ -34496,18 +34488,18 @@ aI
 aI
 aI
 ah
-al
-al
-al
-al
-al
-al
-aZ
-aZ
-aZ
-aZ
-al
-al
+aL
+aL
+aL
+aL
+aL
+aL
+hN
+hN
+hN
+hN
+aL
+aL
 al
 yw
 yw
@@ -47470,7 +47462,7 @@ ZK
 WS
 WS
 ZK
-XD
+Yy
 Yy
 Yy
 Yy
@@ -48399,7 +48391,7 @@ Pw
 uq
 kk
 QY
-hN
+Pw
 eN
 AK
 rb
@@ -57930,7 +57922,7 @@ yh
 yh
 yh
 yh
-yh
+yH
 yH
 EB
 EB
@@ -59468,9 +59460,9 @@ aI
 aI
 RN
 Zm
-zD
-RN
 Zm
+RN
+pX
 HC
 Zm
 MC

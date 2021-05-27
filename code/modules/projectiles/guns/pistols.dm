@@ -59,7 +59,7 @@
 	desc = "The TP-14, produced by Terran Armories. A reliable sidearm that loads 9x19mm Parabellum Auto munitions. Capable of mounting a limited amount of attachments, and firing at a respectable rate of fire, often as fast as you can pull the trigger. Takes 14-round 9mm magazines."
 	icon_state = "tp14"
 	item_state = "tp14"
-	caliber = "9x19mm Parabellum" //codex
+	caliber = CALIBER_9X19 //codex
 	max_shells = 21 //codex
 	fire_sound = 'sound/weapons/guns/fire/tp14.ogg'
 	reload_sound = 'sound/weapons/guns/interact/tp14_reload.ogg'
@@ -84,7 +84,7 @@
 	desc = "An experimental weapon designed to set the terrain and targets on fire. It hums with power as magnetic fields coil round each other."
 	icon_state = "tx7"
 	item_state = "tx7"
-	caliber = "Ionized Plasma Bolt"
+	caliber = CALIBER_PLASMA
 	max_shots = 10
 	reload_sound = 'sound/weapons/guns/interact/tp14_reload.ogg'
 	fire_sound = 'sound/weapons/guns/fire/laser3.ogg'
@@ -129,7 +129,7 @@
 	desc = "An RT-3 target pistol, a common sight throughout the bubble. Fires 9mm in magazines."
 	icon_state = "rt3"
 	item_state = "rt3"
-	caliber = "9x19mm Parabellum" //codex
+	caliber = CALIBER_9X19 //codex
 	max_shells = 14 //codex
 	fire_sound = 'sound/weapons/guns/fire/pistol_service.ogg'
 	current_mag = /obj/item/ammo_magazine/pistol
@@ -148,7 +148,7 @@
 	desc = "A standard TP-23 chambered in .45 ACP. Has a smaller magazine capacity, but packs a better punch. Has an irremovable laser sight. Uses .45 magazines."
 	icon_state = "tp23"
 	item_state = "tp23"
-	caliber = ".45 ACP" //codex
+	caliber = CALIBER_45ACP //codex
 	max_shells = 14 //codex
 	fire_sound = 'sound/weapons/guns/fire/tp23.ogg'
 	unload_sound = 'sound/weapons/guns/interact/colt_unload.ogg'
@@ -182,7 +182,7 @@
 	desc = "A M1911 chambered in .45 ACP. An archaic weapon, yet its popular and extremely reliable mechanism provided a template for many semi-automatic pistols to come."
 	icon_state = "m1911"
 	item_state = "m1911"
-	caliber = ".45 ACP" //codex
+	caliber = CALIBER_45ACP //codex
 	max_shells = 10 //codex
 	fire_sound = 'sound/weapons/guns/fire/colt.ogg'
 	unload_sound = 'sound/weapons/guns/interact/colt_unload.ogg'
@@ -223,7 +223,7 @@
 	desc = "A popular police firearm in the modern day. Chambered in 9x19mm."
 	icon_state = "g22"
 	item_state = "g22"
-	caliber = "9x19mm Parabellum" //codex
+	caliber = CALIBER_9X19 //codex
 	max_shells = 15 //codex
 	fire_sound = 'sound/weapons/guns/fire/beretta.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/beretta_empty.ogg'
@@ -243,7 +243,7 @@
 	desc = "A 20th century military firearm customized for special forces use, fires tranq darts to take down enemies nonlethally. It does not seem to accept any other attachments."
 	icon_state = "g22"
 	item_state = "g22"
-	caliber = "9x19mm tranquilizer" //codex
+	caliber = CALIBER_9X19_TRANQUILIZER //codex
 	max_shells = 12 //codex
 	current_mag =/obj/item/ammo_magazine/pistol/g22tranq
 	attachable_offset = list("muzzle_x" = 29, "muzzle_y" = 20,"rail_x" = 10, "rail_y" = 21, "under_x" = 21, "under_y" = 15, "stock_x" = 21, "stock_y" = 17)
@@ -266,7 +266,7 @@
 	desc = "A magnum chambered in .50AE that comes with a serious kick. This one is engraved, <i>\"Peace through superior firepower\"</i>."
 	icon_state = "deagle"
 	item_state = "deagle"
-	caliber = ".50 Action Express" //codex
+	caliber = CALIBER_50AE //codex
 	muzzleflash_iconstate = "muzzle_flash_medium"
 	max_shells = 7 //codex
 	fire_sound = 'sound/weapons/guns/fire/deagle.ogg'
@@ -311,7 +311,7 @@
 	desc = "An updated variant of an old handgun design, Features an integrated silencer, and chambered in the razor small .22 rounds. This one is loaded with the more common .22 hollowpoint rounds and appears to be a mercenary version."
 	icon_state = "pk9"
 	item_state = "pk9"
-	caliber = ".22 LR" //codex
+	caliber = CALIBER_22LR //codex
 	max_shells = 12 //codex
 	fire_sound = 'sound/weapons/guns/fire/pistol_holdout.ogg' // Never heard in-game sadly.
 	unload_sound = 'sound/weapons/guns/interact/c99_unload.ogg'
@@ -352,7 +352,7 @@
 	desc = "A tiny pistol meant for hiding in hard-to-reach areas. Best not ask where it came from."
 	icon_state = "holdout"
 	item_state = "holdout"
-	caliber = ".22 LR" //codex
+	caliber = CALIBER_22LR //codex
 	max_shells = 5 //codex
 	fire_sound = 'sound/weapons/guns/fire/pistol_holdout.ogg'
 	current_mag = /obj/item/ammo_magazine/pistol/holdout
@@ -381,7 +381,7 @@
 	desc = "A tiny pistol used by the TGMC as an emergency handgun meant to be stored about anywhere. Fits in boots. Uses .380 ACP stored in an eight round magazine."
 	icon_state = "tp17"
 	item_state = "tp17"
-	caliber = ".380 ACP" //codex
+	caliber = CALIBER_380ACP //codex
 	max_shells = 8 //codex
 	fire_sound = 'sound/weapons/guns/fire/pistol_holdout.ogg'
 	current_mag = /obj/item/ammo_magazine/pistol/standard_pocketpistol
@@ -415,7 +415,7 @@
 	desc = "A Colonial Marshals issued, powerful semi-automatic pistol chambered in armor piercing 9mm caliber rounds. Used for centuries by law enforcement and criminals alike, recently recreated with this new model."
 	icon_state = "highpower"
 	item_state = "highpower"
-	caliber = "9x19mm Parabellum" //codex
+	caliber = CALIBER_9X19 //codex
 	max_shells = 13 //codex
 	fire_sound = 'sound/weapons/guns/fire/hp.ogg'
 	unload_sound = 'sound/weapons/guns/interact/hp_unload.ogg'
@@ -442,7 +442,7 @@
 	desc = "An uncommon automatic handgun used for self defense, based on the original VP70 more than a century ago. Fires 9mm armor piercing rounds and is capable of 3-round burst or automatic fire."
 	icon_state = "88m4"
 	item_state = "88m4"
-	caliber = "9x19mm Parabellum" //codex
+	caliber = CALIBER_9X19 //codex
 	max_shells = 18 //codex
 	fire_sound = 'sound/weapons/guns/fire/vp70.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/vp70_empty.ogg'
@@ -485,7 +485,7 @@
 	desc = "A massive, formidable automatic handgun chambered in 9mm squash-head rounds. Commonly seen in the hands of wealthy Nanotrasen members."
 	icon_state = "vp78"
 	item_state = "vp78"
-	caliber = "9x19mm Parabellum" //codex
+	caliber = CALIBER_9X19 //codex
 	max_shells = 18 //codex
 	fire_sound = 'sound/weapons/guns/fire/pistol_large.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/vp70_empty.ogg'
@@ -514,7 +514,7 @@ It is a modified Beretta 93R, and can fire three round burst or single fire. Whe
 	desc = "An advanced, select-fire machine pistol capable of three round burst. Last seen cleaning up the mean streets of Detroit."
 	icon_state = "auto9"
 	item_state = "auto9"
-	caliber = "9x19mm Parabellum" //codex
+	caliber = CALIBER_9X19 //codex
 	max_shells = 50 //codex
 	fire_sound = 'sound/weapons/guns/fire/beretta.ogg'
 	current_mag = /obj/item/ammo_magazine/pistol/auto9
@@ -536,7 +536,7 @@ It is a modified Beretta 93R, and can fire three round burst or single fire. Whe
 	icon_state = "c70"
 	item_state = "c70"
 	muzzleflash_iconstate = "muzzle_flash_medium"
-	caliber = ".70 Mankey" //codex
+	caliber = CALIBER_70MANKEY //codex
 	max_shells = 300 //codex
 	current_mag = /obj/item/ammo_magazine/pistol/chimp
 	fire_sound = 'sound/weapons/guns/fire/chimp70.ogg'

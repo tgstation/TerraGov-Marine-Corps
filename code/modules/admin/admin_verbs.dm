@@ -537,6 +537,11 @@
 	if(!check_rights(R_ADMIN|R_MENTOR))
 		return
 
+	msg = copytext_char(sanitize(msg), 1, MAX_MESSAGE_LEN)
+
+	if(!msg)
+		return
+
 	if(is_mentor(src) && mob.stat != DEAD)
 		to_chat(src, "<span class='warning'>You must be an observer to use dsay.</span>")
 		return
@@ -546,11 +551,6 @@
 		return
 
 	if(handle_spam_prevention(msg, MUTE_DEADCHAT))
-		return
-
-	msg = copytext_char(sanitize(msg), 1, MAX_MESSAGE_LEN)
-
-	if(!msg)
 		return
 
 	log_dsay("[key_name(src)]: [msg]")

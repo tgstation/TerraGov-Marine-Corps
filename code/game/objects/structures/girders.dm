@@ -325,7 +325,7 @@
 	return ..()
 
 
-/obj/structure/girder/update_icon()
+/obj/structure/girder/update_icon_state()
 	switch(girder_state)
 		if(GIRDER_BROKEN, GIRDER_BROKEN_PATCHED)
 			icon_state = "[icon_prefix]_damaged"

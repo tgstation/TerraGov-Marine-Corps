@@ -1,0 +1,461 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"bi" = (
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 4
+	},
+/turf/open/shuttle/dropship{
+	icon_state = "rasputin4"
+	},
+/area/shuttle/dropship/normandy)
+"cK" = (
+/turf/closed/shuttle/dropship2/transparent{
+	icon_state = "105"
+	},
+/area/shuttle/dropship/normandy)
+"cW" = (
+/obj/structure/bed/chair/dropship/passenger,
+/turf/open/shuttle/dropship/seven,
+/area/shuttle/dropship/normandy)
+"eY" = (
+/turf/open/shuttle/dropship/three,
+/area/shuttle/dropship/normandy)
+"fz" = (
+/obj/structure/dropship_piece/two/engine/leftbottom,
+/turf/template_noop,
+/area/shuttle/dropship/normandy)
+"fJ" = (
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 4
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/shuttle/dropship/three,
+/area/shuttle/dropship/normandy)
+"gx" = (
+/turf/closed/shuttle/dropship2{
+	icon_state = "24"
+	},
+/area/shuttle/dropship/normandy)
+"gA" = (
+/obj/effect/attach_point/crew_weapon/dropship2,
+/turf/open/shuttle/dropship/floor,
+/area/shuttle/dropship/normandy)
+"hz" = (
+/obj/structure/dropship_piece/two/cockpit/right,
+/turf/template_noop,
+/area/shuttle/dropship/normandy)
+"iq" = (
+/obj/structure/bed/chair/dropship/passenger,
+/obj/docking_port/mobile/marine_dropship/two,
+/turf/open/shuttle/dropship/floor,
+/area/shuttle/dropship/normandy)
+"jx" = (
+/obj/machinery/computer/shuttle/marine_dropship/two,
+/turf/open/shuttle/dropship/floor,
+/area/shuttle/dropship/normandy)
+"jY" = (
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 8
+	},
+/turf/open/shuttle/dropship/three,
+/area/shuttle/dropship/normandy)
+"lI" = (
+/obj/machinery/door/poddoor/shutters/transit{
+	dir = 1
+	},
+/turf/open/shuttle/dropship/floor{
+	icon_state = "rasputin14"
+	},
+/area/shuttle/dropship/normandy)
+"mf" = (
+/obj/machinery/telecomms/relay/preset/telecomms/onboard,
+/turf/closed/shuttle/dropship2{
+	icon_state = "114"
+	},
+/area/shuttle/dropship/normandy)
+"nu" = (
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 4
+	},
+/turf/open/shuttle/dropship/three,
+/area/shuttle/dropship/normandy)
+"oe" = (
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 8
+	},
+/obj/machinery/camera/autoname/mainship/dropship_two{
+	dir = 8
+	},
+/turf/open/shuttle/dropship/three,
+/area/shuttle/dropship/normandy)
+"oB" = (
+/obj/structure/bed/chair/dropship/passenger,
+/obj/item/radio/intercom/dropship/normandy,
+/turf/open/shuttle/dropship{
+	icon_state = "rasputin6"
+	},
+/area/shuttle/dropship/normandy)
+"pB" = (
+/turf/closed/shuttle/dropship2/transparent{
+	icon_state = "108"
+	},
+/area/shuttle/dropship/normandy)
+"qP" = (
+/turf/closed/shuttle/dropship2/transparent{
+	icon_state = "27"
+	},
+/area/shuttle/dropship/normandy)
+"qW" = (
+/turf/closed/shuttle/dropship2/transparent{
+	icon_state = "33"
+	},
+/area/shuttle/dropship/normandy)
+"rG" = (
+/turf/closed/shuttle/dropship2{
+	icon_state = "114"
+	},
+/area/shuttle/dropship/normandy)
+"rN" = (
+/turf/closed/shuttle/dropship2/transparent{
+	icon_state = "23"
+	},
+/area/shuttle/dropship/normandy)
+"sh" = (
+/turf/closed/shuttle/dropship2/transparent{
+	icon_state = "26"
+	},
+/area/shuttle/dropship/normandy)
+"th" = (
+/turf/open/shuttle/dropship/five,
+/area/shuttle/dropship/normandy)
+"ud" = (
+/turf/closed/shuttle/dropship2/transparent{
+	icon_state = "110"
+	},
+/area/shuttle/dropship/normandy)
+"ur" = (
+/obj/structure/bed/chair/dropship/pilot{
+	dir = 1
+	},
+/obj/machinery/camera/autoname/mainship/dropship_two{
+	dir = 8
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/shuttle/dropship/floor,
+/area/shuttle/dropship/normandy)
+"xX" = (
+/turf/closed/shuttle/dropship2/transparent{
+	icon_state = "109"
+	},
+/area/shuttle/dropship/normandy)
+"yx" = (
+/obj/structure/dropship_piece/two/corner/rearleft,
+/turf/template_noop,
+/area/shuttle/dropship/normandy)
+"yT" = (
+/obj/machinery/door/poddoor/shutters/transit,
+/obj/machinery/door/airlock/dropship_hatch/right/two,
+/turf/open/shuttle/dropship/floor,
+/area/shuttle/dropship/normandy)
+"zF" = (
+/obj/structure/dropship_piece/two/front/left,
+/turf/template_noop,
+/area/shuttle/dropship/normandy)
+"AM" = (
+/turf/closed/shuttle/dropship2/transparent{
+	icon_state = "22"
+	},
+/area/shuttle/dropship/normandy)
+"Bd" = (
+/turf/closed/shuttle/dropship2/transparent{
+	icon_state = "32"
+	},
+/area/shuttle/dropship/normandy)
+"BK" = (
+/obj/machinery/door/poddoor/shutters/transit{
+	dir = 1
+	},
+/obj/machinery/door/airlock/multi_tile/mainship/dropshiprear/ds2,
+/turf/open/shuttle/dropship/floor{
+	icon_state = "rasputin14"
+	},
+/area/shuttle/dropship/normandy)
+"Cq" = (
+/obj/machinery/door/poddoor/shutters/transit{
+	dir = 8
+	},
+/obj/machinery/door/airlock/dropship_hatch/left/two,
+/turf/open/shuttle/dropship/floor,
+/area/shuttle/dropship/normandy)
+"CN" = (
+/turf/closed/shuttle/dropship2/transparent{
+	icon_state = "111"
+	},
+/area/shuttle/dropship/normandy)
+"Dz" = (
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 8
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/shuttle/dropship/three,
+/area/shuttle/dropship/normandy)
+"DH" = (
+/turf/closed/shuttle/dropship2{
+	icon_state = "52"
+	},
+/area/shuttle/dropship/normandy)
+"Fn" = (
+/turf/closed/shuttle/dropship2/transparent{
+	icon_state = "107"
+	},
+/area/shuttle/dropship/normandy)
+"FH" = (
+/turf/closed/shuttle/dropship2/transparent{
+	icon_state = "112"
+	},
+/area/shuttle/dropship/normandy)
+"Gg" = (
+/turf/closed/shuttle/dropship2/transparent{
+	icon_state = "113"
+	},
+/area/shuttle/dropship/normandy)
+"Ii" = (
+/turf/closed/shuttle/dropship2/transparent{
+	icon_state = "28"
+	},
+/area/shuttle/dropship/normandy)
+"Iv" = (
+/turf/closed/shuttle/dropship2{
+	icon_state = "25"
+	},
+/area/shuttle/dropship/normandy)
+"Js" = (
+/turf/closed/shuttle/dropship2/transparent{
+	icon_state = "106"
+	},
+/area/shuttle/dropship/normandy)
+"JK" = (
+/turf/closed/shuttle/dropship2/transparent{
+	icon_state = "29"
+	},
+/area/shuttle/dropship/normandy)
+"LS" = (
+/turf/open/shuttle/dropship/floor,
+/area/shuttle/dropship/normandy)
+"Mg" = (
+/obj/structure/dropship_piece/two/engine/rightbottom,
+/turf/template_noop,
+/area/shuttle/dropship/normandy)
+"OZ" = (
+/turf/closed/shuttle/dropship2{
+	icon_state = "54"
+	},
+/area/shuttle/dropship/normandy)
+"Ph" = (
+/obj/structure/dropship_piece/two/front/right,
+/turf/template_noop,
+/area/shuttle/dropship/normandy)
+"Qh" = (
+/obj/structure/dropship_piece/two/front,
+/turf/template_noop,
+/area/shuttle/dropship/normandy)
+"QN" = (
+/obj/structure/dropship_piece/two/corner/rearright,
+/turf/template_noop,
+/area/shuttle/dropship/normandy)
+"Rq" = (
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 8
+	},
+/turf/open/shuttle/dropship/eight,
+/area/shuttle/dropship/normandy)
+"Su" = (
+/turf/closed/shuttle/dropship2{
+	icon_state = "30"
+	},
+/area/shuttle/dropship/normandy)
+"SV" = (
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 4
+	},
+/obj/machinery/vending/nanomed{
+	dir = 4
+	},
+/turf/open/shuttle/dropship/three,
+/area/shuttle/dropship/normandy)
+"Tb" = (
+/obj/structure/dropship_piece/two/cockpit/left,
+/turf/template_noop,
+/area/shuttle/dropship/normandy)
+"Wg" = (
+/turf/closed/shuttle/dropship2{
+	icon_state = "103"
+	},
+/area/shuttle/dropship/normandy)
+"Wk" = (
+/turf/closed/shuttle/dropship2{
+	icon_state = "104"
+	},
+/area/shuttle/dropship/normandy)
+"XK" = (
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 8
+	},
+/obj/machinery/vending/nanomed{
+	dir = 8
+	},
+/turf/open/shuttle/dropship/three,
+/area/shuttle/dropship/normandy)
+"Ye" = (
+/turf/closed/shuttle/dropship2{
+	icon_state = "31"
+	},
+/area/shuttle/dropship/normandy)
+"Zp" = (
+/turf/template_noop,
+/area/template_noop)
+"ZF" = (
+/obj/machinery/door/airlock/hatch/cockpit/two,
+/turf/open/shuttle/dropship/floor,
+/area/shuttle/dropship/normandy)
+
+(1,1,1) = {"
+Zp
+Zp
+Zp
+Zp
+Zp
+Zp
+Zp
+Zp
+ud
+Ii
+AM
+fz
+Zp
+"}
+(2,1,1) = {"
+Zp
+Zp
+Zp
+Zp
+Zp
+Zp
+Zp
+Zp
+CN
+JK
+rN
+Mg
+Zp
+"}
+(3,1,1) = {"
+Zp
+Zp
+Zp
+Zp
+Wg
+DH
+Cq
+DH
+DH
+Su
+gx
+DH
+yx
+"}
+(4,1,1) = {"
+zF
+Tb
+Fn
+cK
+rG
+oB
+eY
+nu
+fJ
+SV
+nu
+bi
+BK
+"}
+(5,1,1) = {"
+Qh
+xX
+jx
+ur
+ZF
+th
+iq
+gA
+LS
+LS
+LS
+th
+lI
+"}
+(6,1,1) = {"
+Ph
+hz
+pB
+Js
+mf
+cW
+eY
+oe
+Dz
+XK
+jY
+Rq
+lI
+"}
+(7,1,1) = {"
+Zp
+Zp
+Zp
+Zp
+Wk
+OZ
+yT
+OZ
+OZ
+Ye
+Iv
+OZ
+QN
+"}
+(8,1,1) = {"
+Zp
+Zp
+Zp
+Zp
+Zp
+Zp
+Zp
+Zp
+FH
+Bd
+sh
+fz
+Zp
+"}
+(9,1,1) = {"
+Zp
+Zp
+Zp
+Zp
+Zp
+Zp
+Zp
+Zp
+Gg
+qW
+qP
+Mg
+Zp
+"}

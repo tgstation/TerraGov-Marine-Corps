@@ -273,7 +273,7 @@
 /turf/open/floor/mainship/cargo,
 /area/shuttle/canterbury)
 "aO" = (
-/obj/machinery/vending/attachments,
+/obj/machinery/vending/marine/shared,
 /turf/open/floor/mainship/cargo,
 /area/shuttle/canterbury)
 "aP" = (
@@ -316,13 +316,6 @@
 /obj/item/facepaint/black,
 /turf/open/floor/mainship/orange/full,
 /area/shuttle/canterbury)
-"aU" = (
-/obj/structure/window/reinforced/toughened{
-	dir = 4
-	},
-/obj/machinery/vending/marine/cargo_guns,
-/turf/open/floor/mainship/cargo,
-/area/shuttle/canterbury)
 "aV" = (
 /obj/effect/landmark/start/job/crash/squadleader,
 /turf/open/floor/mainship/mono,
@@ -357,7 +350,7 @@
 /obj/structure/window/reinforced/toughened{
 	dir = 4
 	},
-/obj/machinery/vending/marine/cargo_ammo,
+/obj/machinery/vending/marine/shared,
 /turf/open/floor/mainship/cargo,
 /area/shuttle/canterbury)
 "be" = (
@@ -425,7 +418,7 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/obj/machinery/vending/marine,
+/obj/machinery/vending/marine/shared,
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "bt" = (
@@ -1095,7 +1088,7 @@ cP
 aJ
 cS
 aO
-aU
+bd
 bd
 aJ
 bJ

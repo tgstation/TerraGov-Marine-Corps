@@ -346,3 +346,4 @@
 /area/lv624/lazarus/console
 	name = "\improper Shuttle Console"
 	icon_state = "tcomsatcham"
+	flags_area = NO_DROPPOD

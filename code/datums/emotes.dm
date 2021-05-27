@@ -1,11 +1,3 @@
-#define EMOTE_VISIBLE 1
-#define EMOTE_AUDIBLE 2
-
-#define EMOTE_VARY 				(1<<0) //vary the pitch
-#define EMOTE_FORCED_AUDIO 		(1<<1) //can only code call this event instead of the player.
-#define EMOTE_MUZZLE_IGNORE 	(1<<2) //Will only work if the emote is EMOTE_AUDIBLE
-#define EMOTE_RESTRAINT_CHECK 	(1<<3) //Checks if the mob is restrained before performing the emote
-
 /datum/emote
 	var/key = "" //What calls the emote
 	var/key_third_person = "" //This will also call the emote
@@ -23,6 +15,8 @@
 	var/stat_allowed = CONSCIOUS
 	var/sound //Sound to play when emote is called
 	var/flags_emote = NONE
+	/// Cooldown between two uses of that emote. Every emote has its own coodldown
+	var/cooldown = 2 SECONDS
 
 	var/static/list/emote_list = list()
 
@@ -85,6 +79,14 @@
 	else
 		user.visible_message(msg, visible_message_flags = EMOTE_MESSAGE, emote_prefix = prefix)
 
+/// For handling emote cooldown, return true to allow the emote to happen
+/datum/emote/proc/check_cooldown(mob/user, intentional)
+	if(!intentional)
+		return TRUE
+	if(TIMER_COOLDOWN_CHECK(user, "emote[key]"))
+		return FALSE
+	TIMER_COOLDOWN_START(user, "emote[key]", cooldown)
+	return TRUE
 
 /datum/emote/proc/get_sound(mob/living/user)
 	return sound //by default just return this var.

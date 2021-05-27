@@ -1,8 +1,7 @@
 /datum/game_mode/extended
 	name = "Extended"
 	config_tag = "Extended"
-	required_players = 0
-	votable = FALSE
+	flags_xeno_abilities = ABILITY_DISTRESS
 
 	valid_job_types = list(
 		/datum/job/terragov/command/captain = 1,

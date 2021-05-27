@@ -34,7 +34,7 @@
 	target_turf = null
 	return ..()
 
-/obj/effect/detector_blip/update_icon()
+/obj/effect/detector_blip/update_icon_state()
 	icon_state = "detector_blip[edge_blip ? "_dir" : ""][identifier]"
 
 /obj/item/motiondetector

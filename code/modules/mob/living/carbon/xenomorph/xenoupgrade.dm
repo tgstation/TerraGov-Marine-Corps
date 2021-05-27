@@ -19,8 +19,10 @@
 	for(var/check_new_actions in xeno_caste.actions) //Give the xenos actions we don't currently have
 		var/datum/action/xeno_action/new_action_path = check_new_actions
 		if(!locate(new_action_path) in xeno_abilities)
-			var/datum/action/xeno_action/A = new new_action_path()
-			A.give_action(src)
+			var/datum/action/xeno_action/action = new new_action_path()
+			if(SSticker.mode.flags_xeno_abilities & action.gamemode_flags)
+				action.give_action(src)
+
 
 	SEND_SIGNAL(src, COMSIG_XENOMORPH_ABILITY_ON_UPGRADE)
 	if(selected_ability_type)
