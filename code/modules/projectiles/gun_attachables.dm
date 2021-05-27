@@ -1769,7 +1769,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 		A.update_button_icon()
 
 
-/obj/item/attachable/tp44_longbarrel
+/obj/item/attachable/standard_revolver_longbarrel
 	name = "TP-44 long barrel"
 	desc = "A longer barrel for the TP-44, makes the gun more accurate and deal more damage on impact."
 	icon_state = "tp44_barrel"
