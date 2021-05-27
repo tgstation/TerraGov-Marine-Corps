@@ -31420,7 +31420,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 4
 	},
-/area/ice_colony/exterior/surface/landing_pad)
+/area/lv624/lazarus/console)
 "eyy" = (
 /obj/effect/landmark/start/job/survivor,
 /turf/open/floor/tile/dark/yellow2,

@@ -9631,9 +9631,6 @@
 /obj/item/bedsheet/blue,
 /obj/effect/landmark/start/job/corporateliaison,
 /obj/structure/bed/fancy,
-/obj/item/toy/farwadoll{
-	pixel_x = 5
-	},
 /turf/open/floor/carpet{
 	dir = 1;
 	icon_state = "carpetside"
@@ -11134,9 +11131,6 @@
 "jYo" = (
 /obj/item/bedsheet/blue,
 /obj/structure/bed/fancy,
-/obj/item/toy/farwadoll{
-	pixel_x = 5
-	},
 /turf/open/floor/carpet{
 	dir = 1;
 	icon_state = "carpetside"
@@ -24161,8 +24155,8 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/port_umbilical)
 "veI" = (
-/obj/machinery/computer/supplydrop_console,
 /obj/structure/table/mainship,
+/obj/machinery/computer/supplydrop_console/rebel,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req/rebel)
 "veR" = (
