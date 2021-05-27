@@ -37,6 +37,7 @@
 #define COOLDOWN_PROJECTOR_LIGHT "projector_light"
 #define COOLDOWN_BIOSCAN "cooldown_bioscan"
 #define COOLDOWN_LOADOUT_EQUIPPED "cooldown_loadout_equipped"
+#define COOLDOWN_LOADOUT_VISUALIZATION "cooldown_loadout_visualization"
 
 //// COOLDOWN SYSTEMS
 /*

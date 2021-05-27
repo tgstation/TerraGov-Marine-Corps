@@ -75,6 +75,9 @@
 	. = ..()
 	if(.)
 		return
+	if(TIMER_COOLDOWN_CHECK(ui.user, COOLDOWN_LOADOUT_VISUALIZATION))
+		return
+	TIMER_COOLDOWN_START(ui.user, COOLDOWN_LOADOUT_VISUALIZATION, 1 SECONDS)//Anti spam cooldown
 	switch(action)
 		if("saveLoadout")
 			var/job = params["loadout_job"]
