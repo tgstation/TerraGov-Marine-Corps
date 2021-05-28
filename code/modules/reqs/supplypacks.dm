@@ -182,12 +182,12 @@ UNMANNED VEHICLES
 /datum/supply_packs/unmanned/droid_combat
 	name = "Combat droid with weapon equipped"
 	contains = list(/obj/vehicle/unmanned/droid)
-	cost = 30
+	cost = 40
 
 /datum/supply_packs/unmanned/droid_weapon
 	name = "Droid weapon"
 	contains = list(/obj/item/uav_turret/droid)
-	cost = 10
+	cost = 20
 	containertype = /obj/structure/closet/crate/weapon
 
 /datum/supply_packs/unmanned/light_uv
@@ -208,20 +208,32 @@ UNMANNED VEHICLES
 /datum/supply_packs/unmanned/uv_light_weapon
 	name = "Light UV weapon"
 	contains = list(/obj/item/uav_turret)
-	cost = 10
+	cost = 20
 	containertype = /obj/structure/closet/crate/weapon
 
 /datum/supply_packs/unmanned/uv_heavy_weapon
 	name = "Heavy UV weapon"
 	contains = list(/obj/item/uav_turret/heavy)
-	cost = 10
+	cost = 20
 	containertype = /obj/structure/closet/crate/weapon
+
+/datum/supply_packs/unmanned/uv_light_ammo
+	name = "Light UV ammo"
+	contains = list(/obj/item/uav_turret)
+	cost = 10
+	containertype = /obj/structure/closet/crate/ammo
+
+/datum/supply_packs/unmanned/uv_heavy_ammo
+	name = "Heavy UV ammo"
+	contains = list(/obj/item/ammo_magazine/box12x40mm)
+	cost = 10
+	containertype = /obj/structure/closet/crate/ammo
 
 /datum/supply_packs/unmanned/vehicle_remote
 	name = "Vehicle remote"
-	contains = list(/obj/item/unmanned_vehicle_remote)
+	contains = list(/obj/item/ammo_magazine/box11x35mm)
 	cost = 10
-	containertype = /obj/structure/closet/crate/weapon
+	containertype = /obj/structure/closet/crate
 
 /*******************************************************************************
 WEAPONS
