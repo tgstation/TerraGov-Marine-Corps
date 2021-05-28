@@ -81,7 +81,7 @@
 	switch(action)
 		if("saveLoadout")
 			if(length(loadouts_list) >= MAXIMUM_LOADOUT)
-				to_chat(user, "<span class='warning'>You've reached the maximum number of loadouts saved, please delete some before saving new ones</span>")
+				to_chat(ui.user, "<span class='warning'>You've reached the maximum number of loadouts saved, please delete some before saving new ones</span>")
 				return
 			var/job = params["loadout_job"]
 			var/loadout_name = params["loadout_name"]
