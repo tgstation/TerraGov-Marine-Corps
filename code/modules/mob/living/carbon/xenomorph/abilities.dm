@@ -1234,7 +1234,7 @@
 	gamemode_flags = ABILITY_DISTRESS
 	plasma_cost = 100
 	///How much psy points it give
-	var/psy_points_reward = 40
+	var/psy_points_reward = 60
 	///How much larva points it gives (8 points for one larva in distress)
 	var/larva_point_reward = 1
 
@@ -1304,7 +1304,7 @@
 
 	SSpoints.add_psy_points(X.hivenumber, psy_points_reward)
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
-	xeno_job.add_job_points(larva_point_reward, PSY_DRAIN_ORIGIN)
+	xeno_job.add_job_points(larva_point_reward, COCOON_ORIGIN)
 
 	log_combat(victim, owner, "was drained.")
 	log_game("[key_name(victim)] was drained at [AREACOORD(victim.loc)].")
