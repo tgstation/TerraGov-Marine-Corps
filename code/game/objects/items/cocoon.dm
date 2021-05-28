@@ -16,7 +16,7 @@
 	///How much time the cocoon takes to deplete the life force of the marine
 	var/cocoon_life_time = 5 MINUTES
 	///How many psych points it is generating every 5 seconds
-	var/psych_points_output = 2.4
+	var/psych_points_output = 2
 	///Standard busy check
 	var/busy = FALSE
 	///How much larva points it gives at the end of its life time (8 points for one larva in distress)
