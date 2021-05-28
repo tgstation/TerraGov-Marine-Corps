@@ -3,7 +3,7 @@
 //NOTE: Don't add living things to crates, that's bad, it will break the shuttle.
 //NOTE: Do NOT set the price of any crates below 7 points. Doing so allows infinite points.
 
-GLOBAL_LIST_INIT(all_supply_groups, list("Operations", "Unmanned Vehicles", "Weapons", "Attachments", "Ammo", "Armor", "Clothing", "Medical", "Engineering", "Supplies", "Imports"))
+GLOBAL_LIST_INIT(all_supply_groups, list("Operations", "Weapons", "Attachments", "Ammo", "Armor", "Clothing", "Medical", "Engineering", "Supplies", "Imports"))
 
 /datum/supply_packs
 	var/name
@@ -165,75 +165,6 @@ OPERATIONS
 	cost = 40
 	containertype = null
 	available_against_xeno_only = TRUE
-
-/******************************************************************************
-UNMANNED VEHICLES
-*******************************************************************************/
-
-/datum/supply_packs/unmanned
-	group = "Unmanned Vehicles"
-	containertype = null
-
-/datum/supply_packs/unmanned/droid_scout
-	name = "Scout droid"
-	contains = list(/obj/vehicle/unmanned/droid/scout)
-	cost = 30
-
-/datum/supply_packs/unmanned/droid_combat
-	name = "Combat droid with weapon equipped"
-	contains = list(/obj/vehicle/unmanned/droid)
-	cost = 40
-
-/datum/supply_packs/unmanned/droid_weapon
-	name = "Droid weapon"
-	contains = list(/obj/item/uav_turret/droid)
-	cost = 20
-	containertype = /obj/structure/closet/crate/weapon
-
-/datum/supply_packs/unmanned/light_uv
-	name = "Light unmanned vehicle"
-	contains = list(/obj/vehicle/unmanned)
-	cost = 30
-
-/datum/supply_packs/unmanned/medium_uv
-	name = "Medium unmanned vehicle"
-	contains = list(/obj/vehicle/unmanned/medium)
-	cost = 50
-
-/datum/supply_packs/unmanned/heavy_uv
-	name = "Heavy unmanned vehicle"
-	contains = list(/obj/vehicle/unmanned/heavy)
-	cost = 70
-
-/datum/supply_packs/unmanned/uv_light_weapon
-	name = "Light UV weapon"
-	contains = list(/obj/item/uav_turret)
-	cost = 20
-	containertype = /obj/structure/closet/crate/weapon
-
-/datum/supply_packs/unmanned/uv_heavy_weapon
-	name = "Heavy UV weapon"
-	contains = list(/obj/item/uav_turret/heavy)
-	cost = 20
-	containertype = /obj/structure/closet/crate/weapon
-
-/datum/supply_packs/unmanned/uv_light_ammo
-	name = "Light UV ammo"
-	contains = list(/obj/item/uav_turret)
-	cost = 10
-	containertype = /obj/structure/closet/crate/ammo
-
-/datum/supply_packs/unmanned/uv_heavy_ammo
-	name = "Heavy UV ammo"
-	contains = list(/obj/item/ammo_magazine/box12x40mm)
-	cost = 10
-	containertype = /obj/structure/closet/crate/ammo
-
-/datum/supply_packs/unmanned/vehicle_remote
-	name = "Vehicle remote"
-	contains = list(/obj/item/ammo_magazine/box11x35mm)
-	cost = 10
-	containertype = /obj/structure/closet/crate
 
 /*******************************************************************************
 WEAPONS
@@ -1272,6 +1203,67 @@ ENGINEERING
 	name = "Wireless power generator"
 	contains = list(/obj/machinery/power/port_gen/pacman/mobile_power)
 	cost = 20
+
+/datum/supply_packs/engineering/droid_scout
+	name = "Scout droid"
+	contains = list(/obj/vehicle/unmanned/droid/scout)
+	cost = 30
+
+/datum/supply_packs/engineering/droid_combat
+	name = "Combat droid with weapon equipped"
+	contains = list(/obj/vehicle/unmanned/droid)
+	cost = 40
+
+/datum/supply_packs/engineering/droid_weapon
+	name = "Droid weapon"
+	contains = list(/obj/item/uav_turret/droid)
+	cost = 20
+	containertype = /obj/structure/closet/crate/weapon
+
+/datum/supply_packs/engineering/light_uv
+	name = "Light unmanned vehicle"
+	contains = list(/obj/vehicle/unmanned)
+	cost = 30
+
+/datum/supply_packs/engineering/medium_uv
+	name = "Medium unmanned vehicle"
+	contains = list(/obj/vehicle/unmanned/medium)
+	cost = 50
+
+/datum/supply_packs/engineering/heavy_uv
+	name = "Heavy unmanned vehicle"
+	contains = list(/obj/vehicle/unmanned/heavy)
+	cost = 70
+
+/datum/supply_packs/engineering/uv_light_weapon
+	name = "Light UV weapon"
+	contains = list(/obj/item/uav_turret)
+	cost = 20
+	containertype = /obj/structure/closet/crate/weapon
+
+/datum/supply_packs/engineering/uv_heavy_weapon
+	name = "Heavy UV weapon"
+	contains = list(/obj/item/uav_turret/heavy)
+	cost = 20
+	containertype = /obj/structure/closet/crate/weapon
+
+/datum/supply_packs/engineering/uv_light_ammo
+	name = "Light UV ammo"
+	contains = list(/obj/item/uav_turret)
+	cost = 10
+	containertype = /obj/structure/closet/crate/ammo
+
+/datum/supply_packs/engineering/uv_heavy_ammo
+	name = "Heavy UV ammo"
+	contains = list(/obj/item/ammo_magazine/box12x40mm)
+	cost = 10
+	containertype = /obj/structure/closet/crate/ammo
+
+/datum/supply_packs/engineering/vehicle_remote
+	name = "Vehicle remote"
+	contains = list(/obj/item/ammo_magazine/box11x35mm)
+	cost = 10
+	containertype = /obj/structure/closet/crate
 
 /*******************************************************************************
 SUPPLIES
