@@ -226,7 +226,7 @@
 	layer = ABOVE_MOB_LAYER //So you can't hide it under corpses
 	use_power = 0
 	req_one_access = list(ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_ENGPREP, ACCESS_MARINE_LEADER)
-	hud_possible = list(MACHINE_HEALTH_HUD, SENTRY_AMMO_HUD)
+	hud_possible = list(MACHINE_HEALTH_HUD, MACHINE_AMMO_HUD)
 	var/turret_flags = TURRET_HAS_CAMERA|TURRET_SAFETY|TURRET_ALERTS
 	var/list/iff_signal = list(ACCESS_IFF_MARINE)
 	var/rounds = 500

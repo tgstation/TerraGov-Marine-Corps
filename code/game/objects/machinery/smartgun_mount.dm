@@ -163,7 +163,7 @@
 	use_power = 0
 	max_integrity = 300
 	soft_armor = list("melee" = 0, "bullet" = 50, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 100, "rad" = 0, "fire" = 0, "acid" = 0)
-	hud_possible = list(MACHINE_HEALTH_HUD, SENTRY_AMMO_HUD)
+	hud_possible = list(MACHINE_HEALTH_HUD, MACHINE_AMMO_HUD)
 	var/rounds = 0 //Have it be empty upon spawn.
 	var/rounds_max = 300
 	var/fire_delay = 2 //Gotta have rounds down quick. // Ren's changes

@@ -11,6 +11,7 @@
 	light_system = MOVABLE_LIGHT
 	move_delay = 1.8	//set this to limit the speed of the vehicle
 	max_integrity = 300
+	hud_possible = list(MACHINE_HEALTH_HUD, MACHINE_AMMO_HUD)
 	resistance_flags = XENO_DAMAGEABLE
 	flags_atom = BUMP_ATTACKABLE
 	///Type of "turret" attached
@@ -41,17 +42,22 @@
 
 /obj/vehicle/unmanned/Initialize()
 	. = ..()
-	current_rounds = max_rounds
 	ammo = GLOB.ammo_list[ammo]
 	name += " " + num2text(serial)
 	serial++
 	GLOB.unmanned_vehicles += src
 	camera = new
 	camera.network += list("marine")
+	prepare_huds()
+	for(var/datum/atom_hud/squad/sentry_status_hud in GLOB.huds) //Add to the squad HUD
+		sentry_status_hud.add_to_hud(src)
+	hud_set_machine_health()
+	hud_set_uav_ammo()
 	if(spawn_equipped_type)
 		turret_type = spawn_equipped_type
 		ammo = GLOB.ammo_list[initial(spawn_equipped_type.ammo_type)]
 		fire_delay = initial(spawn_equipped_type.fire_delay)
+		current_rounds = max_rounds
 		update_icon()
 
 
@@ -59,6 +65,14 @@
 	. = ..()
 	QDEL_NULL(camera)
 	GLOB.unmanned_vehicles -= src
+
+/obj/vehicle/unmanned/take_damage(damage_amount, damage_type, damage_flag, effects, attack_dir, armour_penetration)
+	. = ..()
+	hud_set_machine_health()
+
+/obj/vehicle/unmanned/repair_damage(repair_amount)
+	. = ..()
+	hud_set_machine_health()
 
 /obj/vehicle/unmanned/update_overlays()
 	. = ..()
@@ -89,10 +103,12 @@
 		"<span class='notice'>You start to attach [I] to [src].</span>")
 		if(!do_after(user, 3 SECONDS, TRUE, src))
 			return
+		var/obj/item/equipment = new turret_type
 		user.visible_message("<span class='notice'>[user] removes [equipment] from [src].</span>",
 		"<span class='notice'>You attach [equipment] from [src].</span>")
 		user.put_in_hands(equipment)
 		turret_type = null
+		current_rounds = 0
 		return
 	if(!istype(I, /obj/item/uav_turret) && !istype(I, /obj/item/explosive/plastique))
 		return
@@ -113,6 +129,7 @@
 		var/obj/item/uav_turret/turret = I
 		ammo = GLOB.ammo_list[turret.ammo_type]
 		fire_delay = turret.fire_delay
+		current_rounds = max_rounds
 	user.visible_message("<span class='notice'>[user] attaches [I] to [src].</span>",
 	"<span class='notice'>You attach [I] to [src].</span>")
 	update_icon()

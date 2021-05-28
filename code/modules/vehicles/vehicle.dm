@@ -86,14 +86,14 @@
 		insert_cell(I, user)
 
 	else if(iswelder(I))
+		var/obj/item/tool/weldingtool/WT = I
 		if(user.skills.getRating("engineer") < SKILL_ENGINEER_ENGI)
 			user.visible_message("<span class='notice'>[user] fumbles around figuring out [src]'s internals.</span>",
 			"<span class='notice'>You fumble around figuring out [src]'s internals.</span>")
 			var/fumbling_time = 10 SECONDS - 2 SECONDS * user.skills.getRating("engineer")
-			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED, extra_checks = CALLBACK(weldingtool, /obj/item/tool/weldingtool/proc/isOn)))
+			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED, extra_checks = CALLBACK(WT, /obj/item/tool/weldingtool/proc/isOn)))
 				return FALSE
 	
-		var/obj/item/tool/weldingtool/WT = I
 		if(!WT.remove_fuel(1, user))
 			return
 
