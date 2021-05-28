@@ -806,6 +806,7 @@
 #include "code\game\objects\machinery\pipe\construction.dm"
 #include "code\game\objects\machinery\pipe\pipe_dispenser.dm"
 #include "code\game\objects\machinery\practice\medical.dm"
+#include "code\game\objects\machinery\squad_supply\orbital_bombardement_beacon.dm"
 #include "code\game\objects\machinery\squad_supply\supply_beacon.dm"
 #include "code\game\objects\machinery\squad_supply\supply_console.dm"
 #include "code\game\objects\machinery\squad_supply\supply_pads.dm"
