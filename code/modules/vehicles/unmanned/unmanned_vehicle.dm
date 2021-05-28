@@ -27,7 +27,7 @@
 	///max ammo the robot can hold
 	var/max_rounds = 300
 	///Buller type we fire, declared as type but set to a reference in Initialize
-	var/datum/ammo/bullet/ammo = /datum/ammo/bullet/smg
+	var/datum/ammo/bullet/ammo
 	///The currently loaded and ready to fire projectile
 	var/obj/projectile/in_chamber = null
 	///Sound file or string type for playing the shooting sound
@@ -52,13 +52,13 @@
 	for(var/datum/atom_hud/squad/sentry_status_hud in GLOB.huds) //Add to the squad HUD
 		sentry_status_hud.add_to_hud(src)
 	hud_set_machine_health()
-	hud_set_uav_ammo()
 	if(spawn_equipped_type)
 		turret_type = spawn_equipped_type
 		ammo = GLOB.ammo_list[initial(spawn_equipped_type.ammo_type)]
 		fire_delay = initial(spawn_equipped_type.fire_delay)
 		current_rounds = max_rounds
 		update_icon()
+	hud_set_uav_ammo()
 
 
 /obj/vehicle/unmanned/Destroy()
@@ -96,22 +96,47 @@
 /obj/vehicle/unmanned/attackby(obj/item/I, mob/user, params)
 	. = ..()
 	if(istype(I, /obj/item/tool/wrench))
-		if(!turret_type)
-			to_chat(user,"<span class='warning'>There is nothing to remove from [src]!</span>")
-			return
-		user.visible_message("<span class='notice'>[user] starts to remove [initial(turret_type.name)] from [src].</span>",
-		"<span class='notice'>You start to attach [I] to [src].</span>")
-		if(!do_after(user, 3 SECONDS, TRUE, src))
-			return
-		var/obj/item/equipment = new turret_type
-		user.visible_message("<span class='notice'>[user] removes [equipment] from [src].</span>",
-		"<span class='notice'>You attach [equipment] from [src].</span>")
-		user.put_in_hands(equipment)
-		turret_type = null
-		current_rounds = 0
+		return remove_turret(user)
+	if(istype(I, /obj/item/uav_turret) || istype(I, /obj/item/explosive/plastique))
+		return equip_turret(I, user)
+	if(istype(I, /obj/item/ammo_magazine))
+		return reload_turret(I, user)
+
+///Try to desequip the turret
+/obj/vehicle/unmanned/proc/remove_turret(mob/user)
+	if(!turret_type)
+		to_chat(user,"<span class='warning'>There is nothing to remove from [src]!</span>")
 		return
-	if(!istype(I, /obj/item/uav_turret) && !istype(I, /obj/item/explosive/plastique))
+	user.visible_message("<span class='notice'>[user] starts to remove [initial(turret_type.name)] from [src].</span>",
+	"<span class='notice'>You start to remove [initial(turret_type.name)] from [src].</span>")
+	if(!do_after(user, 3 SECONDS, TRUE, src))
 		return
+	var/obj/item/equipment = new turret_type
+	user.visible_message("<span class='notice'>[user] removes [equipment] from [src].</span>",
+	"<span class='notice'>You remove [equipment] from [src].</span>")
+	user.put_in_hands(equipment)
+	turret_type = null
+	current_rounds = 0
+	hud_set_uav_ammo()
+	return
+
+///Try to reload the turret of our vehicule
+/obj/vehicle/unmanned/proc/reload_turret(obj/item/ammo_magazine/ammo, mob/user)
+	if(!ispath(turret_type, ammo.gun_type))
+		to_chat(user, "<span class='warning'>This is not the right ammo!</span>")
+		return
+	user.visible_message("<span class='notice'>[user] starts to reload [src] with [ammo].</span>",
+	"<span class='notice'>You start to reload [src] with [ammo].</span>")
+	if(!do_after(user, 3 SECONDS, TRUE, src))
+		return
+	user.visible_message("<span class='notice'>[user] reloads [src] with [ammo].</span>",
+	"<span class='notice'>You reload [src] with [ammo].</span>")
+	current_rounds = min(current_rounds + ammo.current_rounds, max_rounds)
+	playsound(loc, 'sound/weapons/guns/interact/smartgun_unload.ogg', 25, 1)
+	qdel(ammo)
+	
+/// Try to equip a turret on the vehicle
+/obj/vehicle/unmanned/proc/equip_turret(obj/item/I, mob/user)
 	if(turret_type)
 		to_chat(user, "<span class='notice'>There's already something attached!</span>")
 		return
@@ -130,6 +155,7 @@
 		ammo = GLOB.ammo_list[turret.ammo_type]
 		fire_delay = turret.fire_delay
 		current_rounds = max_rounds
+		hud_set_uav_ammo()
 	user.visible_message("<span class='notice'>[user] attaches [I] to [src].</span>",
 	"<span class='notice'>You attach [I] to [src].</span>")
 	update_icon()
@@ -138,14 +164,12 @@
 
 /**
  * Called when the drone is unlinked from a remote control
- * Only argument is the remote it was linked to
  */
 /obj/vehicle/unmanned/proc/on_link()
 	RegisterSignal(src, COMSIG_REMOTECONTROL_CHANGED, .proc/on_remote_toggle)
 
 /**
  * Called when the drone is linked to a remote control
- * Only argument is the remote it is linked to
  */
 /obj/vehicle/unmanned/proc/on_unlink()
 	UnregisterSignal(src, COMSIG_REMOTECONTROL_CHANGED)
@@ -180,6 +204,7 @@
 		in_chamber = null
 		COOLDOWN_START(src, fire_cooldown, fire_delay)
 		current_rounds--
+		hud_set_uav_ammo()
 	return TRUE
 
 /obj/vehicle/unmanned/medium
@@ -188,7 +213,6 @@
 	move_delay = 2.4
 	max_rounds = 200
 	max_integrity = 500
-	ammo = /datum/ammo/bullet/machinegun
 
 /obj/vehicle/unmanned/heavy
 	name = "heavy unmanned vehicle"
@@ -197,4 +221,3 @@
 	max_rounds = 200
 	max_integrity = 700
 	anchored = TRUE
-	ammo = /datum/ammo/bullet/machinegun
