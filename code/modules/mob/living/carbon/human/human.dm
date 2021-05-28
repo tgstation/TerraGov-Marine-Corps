@@ -39,7 +39,6 @@
 	RegisterSignal(src, COMSIG_ATOM_ACIDSPRAY_ACT, .proc/acid_spray_entered)
 	RegisterSignal(src, list(COMSIG_KB_QUICKEQUIP, COMSIG_CLICK_QUICKEQUIP), .proc/do_quick_equip)
 	RegisterSignal(src, COMSIG_KB_UNIQUEACTION, .proc/do_unique_action)
-	RegisterSignal(src, COMSIG_KB_RAILATTACHMENT, .proc/do_activate_rail_attachment)
 	RegisterSignal(src, COMSIG_GRAB_SELF_ATTACK, .proc/fireman_carry_grabbed) // Fireman carry
 	AddComponent(/datum/component/footstep, FOOTSTEP_MOB_HUMAN)
 	AddComponent(/datum/component/bump_attack, FALSE, FALSE)
