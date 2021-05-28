@@ -185,6 +185,8 @@
 
 #define isgunattachment(A) (istype(A, /obj/item/attachable))
 
+#define ishandful(A) (istype(A, /obj/item/ammo_magazine/handful))
+
 #define iswrench(I) (istype(I, /obj/item/tool/wrench))
 
 #define iswelder(I) (istype(I, /obj/item/tool/weldingtool))

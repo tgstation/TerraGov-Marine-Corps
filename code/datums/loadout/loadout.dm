@@ -98,7 +98,7 @@
 	var/item2representation_type
 	for(var/slot_key in GLOB.visible_item_slot_list)
 		item_in_slot = user.get_item_by_slot(GLOB.slot_str_to_slot[slot_key])
-		if(!item_in_slot || !is_savable_in_loadout(item_in_slot.type))
+		if(!item_in_slot || !is_savable_in_loadout(item_in_slot))
 			continue
 		item2representation_type = item2representation_type(item_in_slot.type)
 		item_list[slot_key] = new item2representation_type(item_in_slot)

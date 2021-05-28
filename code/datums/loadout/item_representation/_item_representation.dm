@@ -66,7 +66,7 @@
 	for(var/atom/thing_in_content AS in item_to_copy.contents)
 		if(!isitem(thing_in_content))
 			continue
-		if(!is_savable_in_loadout(thing_in_content.type))
+		if(!is_savable_in_loadout(thing_in_content))
 			continue
 		item_representation_type = item2representation_type(thing_in_content.type)
 		contents += new item_representation_type(thing_in_content)
