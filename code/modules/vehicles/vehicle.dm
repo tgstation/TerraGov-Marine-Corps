@@ -86,6 +86,13 @@
 		insert_cell(I, user)
 
 	else if(iswelder(I))
+		if(user.skills.getRating("engineer") < SKILL_ENGINEER_ENGI)
+			user.visible_message("<span class='notice'>[user] fumbles around figuring out [src]'s internals.</span>",
+			"<span class='notice'>You fumble around figuring out [src]'s internals.</span>")
+			var/fumbling_time = 10 SECONDS - 2 SECONDS * user.skills.getRating("engineer")
+			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED, extra_checks = CALLBACK(weldingtool, /obj/item/tool/weldingtool/proc/isOn)))
+				return FALSE
+	
 		var/obj/item/tool/weldingtool/WT = I
 		if(!WT.remove_fuel(1, user))
 			return
@@ -93,12 +100,14 @@
 		if(obj_integrity >= max_integrity)
 			to_chat(user, "<span class='notice'>[src] does not need repairs.</span>")
 			return
+		playsound(loc, 'sound/items/weldingtool_weld.ogg', 25)
 
 		user.visible_message("<span class='notice'>[user] starts to repair [src].</span>","<span class='notice'>You start to repair [src]</span>")
 		if(!do_after(user, 20, TRUE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(WT, /obj/item/tool/weldingtool/proc/isOn)))
 			return
+		playsound(loc, 'sound/items/welder2.ogg', 25, TRUE)
 
-		repair_damage(10)
+		repair_damage(50)
 		user.visible_message("<span class='notice'>[user] repairs [src].</span>","<span class='notice'>You repair [src].</span>")
 
 

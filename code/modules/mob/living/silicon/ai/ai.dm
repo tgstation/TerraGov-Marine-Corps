@@ -310,7 +310,7 @@
 
 /datum/action/control_vehicle
 	name = "Select vehicle to control"
-	action_icon_state = "enter_vehicle"
+	action_icon_state = "enter_droid"
 	/// The current controlled vehicle
 	var/obj/vehicle/unmanned/vehicle
 

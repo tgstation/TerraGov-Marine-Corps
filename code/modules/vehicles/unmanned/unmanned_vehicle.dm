@@ -14,7 +14,7 @@
 	resistance_flags = XENO_DAMAGEABLE
 	flags_atom = BUMP_ATTACKABLE
 	///Type of "turret" attached
-	var/turret_type
+	var/obj/item/turret_type
 	///Turret types we're allowed to attach
 	var/turret_pattern = PATTERN_TRACKED
 	///Boolean: do we want this turret to draw overlays for itself?
@@ -49,8 +49,9 @@
 	camera = new
 	camera.network += list("marine")
 	if(spawn_equipped_type)
-		turret_type = initial(spawn_equipped_type.turret_type)
+		turret_type = spawn_equipped_type
 		ammo = GLOB.ammo_list[initial(spawn_equipped_type.ammo_type)]
+		fire_delay = initial(spawn_equipped_type.fire_delay)
 		update_icon()
 
 
@@ -64,13 +65,13 @@
 	if(!overlay_turret)
 		return
 	switch(turret_type)
-		if(TURRET_TYPE_HEAVY)
+		if(/obj/item/uav_turret/heavy)
 			. += image('icons/obj/unmanned_vehicles.dmi', src, "heavy_cannon")
-		if(TURRET_TYPE_LIGHT)
+		if(/obj/item/uav_turret)
 			. += image('icons/obj/unmanned_vehicles.dmi', src, "light_cannon")
-		if(TURRET_TYPE_EXPLOSIVE)
+		if(/obj/item/explosive/plastique)
 			. += image('icons/obj/unmanned_vehicles.dmi', src, "bomb")
-		if(TURRET_TYPE_DROIDLASER)
+		if(/obj/item/uav_turret/droid)
 			. += image('icons/obj/unmanned_vehicles.dmi', src, "droidlaser")
 
 /obj/vehicle/unmanned/examine(mob/user, distance, infix, suffix)
@@ -80,6 +81,19 @@
 
 /obj/vehicle/unmanned/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(istype(I, /obj/item/tool/wrench))
+		if(!turret_type)
+			to_chat(user,"<span class='warning'>There is nothing to remove from [src]!</span>")
+			return
+		user.visible_message("<span class='notice'>[user] starts to remove [initial(turret_type.name)] from [src].</span>",
+		"<span class='notice'>You start to attach [I] to [src].</span>")
+		if(!do_after(user, 3 SECONDS, TRUE, src))
+			return
+		user.visible_message("<span class='notice'>[user] removes [equipment] from [src].</span>",
+		"<span class='notice'>You attach [equipment] from [src].</span>")
+		user.put_in_hands(equipment)
+		turret_type = null
+		return
 	if(!istype(I, /obj/item/uav_turret) && !istype(I, /obj/item/explosive/plastique))
 		return
 	if(turret_type)
@@ -94,12 +108,11 @@
 	"<span class='notice'>You start to attach [I] to [src].</span>")
 	if(!do_after(user, 3 SECONDS, TRUE, src, BUSY_ICON_GENERIC))
 		return
+	turret_type = I.type
 	if(istype(I, /obj/item/uav_turret))
 		var/obj/item/uav_turret/turret = I
-		turret_type = turret.turret_type
 		ammo = GLOB.ammo_list[turret.ammo_type]
-	else if(istype(I, /obj/item/explosive/plastique))
-		turret_type = TURRET_TYPE_EXPLOSIVE
+		fire_delay = turret.fire_delay
 	user.visible_message("<span class='notice'>[user] attaches [I] to [src].</span>",
 	"<span class='notice'>You attach [I] to [src].</span>")
 	update_icon()

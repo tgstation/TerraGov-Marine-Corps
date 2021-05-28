@@ -17,8 +17,8 @@
 		return COMPONENT_INCOMPATIBLE
 	src.controlled = controlled
 	update_left_clickproc(null, type)
-	RegisterSignal(controlled, COMSIG_UNMANNED_TURRET_UPDATED, .proc/update_right_clickproc)
-	RegisterSignal(controlled, COMSIG_UNMANNED_ABILITY_UPDATED, .proc/update_left_clickproc)
+	RegisterSignal(controlled, COMSIG_UNMANNED_TURRET_UPDATED, .proc/update_left_clickproc)
+	RegisterSignal(controlled, COMSIG_UNMANNED_ABILITY_UPDATED, .proc/update_right_clickproc)
 	RegisterSignal(parent, COMSIG_REMOTECONTROL_TOGGLE, .proc/toggle_remote_control)
 	RegisterSignal(controlled, COMSIG_PARENT_QDELETING, .proc/on_control_terminate)
 	RegisterSignal(parent, list(COMSIG_REMOTECONTROL_UNLINK, COMSIG_PARENT_QDELETING), .proc/on_control_terminate)
@@ -42,9 +42,9 @@
 /datum/component/remote_control/proc/update_left_clickproc(datum/source, type)
 	SIGNAL_HANDLER
 	switch(type)
-		if(TURRET_TYPE_HEAVY, TURRET_TYPE_LIGHT, TURRET_TYPE_DROIDLASER)
+		if(/obj/item/uav_turret, /obj/item/uav_turret/heavy, /obj/item/uav_turret/droid)
 			left_click_proc = CALLBACK(src, .proc/uv_handle_click)
-		if(TURRET_TYPE_EXPLOSIVE)
+		if(/obj/item/explosive/plastique)
 			left_click_proc = CALLBACK(src, .proc/uv_handle_click_explosive)
 		else
 			left_click_proc = null

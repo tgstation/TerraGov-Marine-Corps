@@ -3,7 +3,7 @@
 //NOTE: Don't add living things to crates, that's bad, it will break the shuttle.
 //NOTE: Do NOT set the price of any crates below 7 points. Doing so allows infinite points.
 
-GLOBAL_LIST_INIT(all_supply_groups, list("Operations", "Weapons", "Attachments", "Ammo", "Armor", "Clothing", "Medical", "Engineering", "Supplies", "Imports"))
+GLOBAL_LIST_INIT(all_supply_groups, list("Operations", "Unmanned Vehicles", "Weapons", "Attachments", "Ammo", "Armor", "Clothing", "Medical", "Engineering", "Supplies", "Imports"))
 
 /datum/supply_packs
 	var/name
@@ -205,10 +205,17 @@ UNMANNED VEHICLES
 	contains = list(/obj/vehicle/unmanned/heavy)
 	cost = 70
 
-/datum/supply_packs/unmanned/droid_combat
-	name = "Combat droid with weapon equipped"
-	contains = list(/obj/vehicle/unmanned/droid)
-	cost = 30
+/datum/supply_packs/unmanned/uv_light_weapon
+	name = "Light UV weapon"
+	contains = list(/obj/item/uav_turret)
+	cost = 10
+	containertype = /obj/structure/closet/crate/weapon
+
+/datum/supply_packs/unmanned/uv_heavy_weapon
+	name = "Heavy UV weapon"
+	contains = list(/obj/item/uav_turret/heavy)
+	cost = 10
+	containertype = /obj/structure/closet/crate/weapon
 
 /datum/supply_packs/unmanned/vehicle_remote
 	name = "Vehicle remote"
