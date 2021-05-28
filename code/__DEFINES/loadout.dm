@@ -33,3 +33,6 @@ GLOBAL_LIST_INIT(loadout_linked_vendor, list(
 #define NO_SCALING 1
 #define MODULAR_ARMOR_OFFSET_Y "-10%"
 #define MODULAR_ARMOR_SCALING 1.2
+
+///The maximum number of loadouts one player can have
+#define MAXIMUM_LOADOUT 50

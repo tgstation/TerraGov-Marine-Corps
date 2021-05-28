@@ -80,6 +80,9 @@
 	TIMER_COOLDOWN_START(ui.user, COOLDOWN_LOADOUT_VISUALIZATION, 1 SECONDS)//Anti spam cooldown
 	switch(action)
 		if("saveLoadout")
+			if(length(loadouts_list) >= MAXIMUM_LOADOUT)
+				to_chat(user, "<span class='warning'>You've reached the maximum number of loadouts saved, please delete some before saving new ones</span>")
+				return
 			var/job = params["loadout_job"]
 			var/loadout_name = params["loadout_name"]
 			if(isnull(loadout_name))
