@@ -167,7 +167,7 @@
  * Called when the drone is unlinked from a remote control
  */
 /obj/vehicle/unmanned/proc/on_link()
-	SHOULD_CALL_PARENT
+	SHOULD_CALL_PARENT(TRUE)
 	RegisterSignal(src, COMSIG_REMOTECONTROL_CHANGED, .proc/on_remote_toggle)
 	controlled = TRUE
 
@@ -175,7 +175,7 @@
  * Called when the drone is linked to a remote control
  */
 /obj/vehicle/unmanned/proc/on_unlink()
-	SHOULD_CALL_PARENT
+	SHOULD_CALL_PARENT(TRUE)
 	UnregisterSignal(src, COMSIG_REMOTECONTROL_CHANGED)
 	controlled = FALSE
 
