@@ -18,7 +18,7 @@
 
 ///Return true if the item was found in a linked vendor and successfully bought
 /proc/buy_item_in_vendor(item_to_buy_type)
-	if(ispath(item_to_buy_type, /obj/item/ammo_magazine/handful))
+	if(is_type_in_typecache(item_to_buy_type, GLOB.bypass_vendor_item))
 		return TRUE
 	for(var/type in GLOB.loadout_linked_vendor)
 		for(var/datum/vending_product/item_datum AS in GLOB.vending_records[type])

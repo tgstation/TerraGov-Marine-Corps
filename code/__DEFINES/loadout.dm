@@ -22,6 +22,11 @@ GLOBAL_LIST_INIT(loadout_linked_vendor, list(
 	/obj/machinery/vending/marineFood,
 ))
 
+///All the items that once they are in loadouts, should not have stock checked when sold by the loadout vendor
+GLOBAL_LIST_INIT(bypass_vendor_item, typecacheof(list(
+	/obj/item/ammo_magazine/handful,
+	)))
+
 #define MARINE_LOADOUT "marine"
 #define ENGINEER_LOADOUT "engie"
 #define MEDIC_LOADOUT "medic"
