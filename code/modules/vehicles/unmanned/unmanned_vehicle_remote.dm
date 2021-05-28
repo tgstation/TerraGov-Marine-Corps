@@ -16,6 +16,10 @@
 			to_chat(user, "<span class='notice'>You unlink [target] from [src].</span>")
 			return
 	vehicle = target
+	if(vehicle.controlled)
+		to_chat(user, "<span class='warning'>Something is already controlling this vehicle</span>")
+		vehicle = null
+		return
 	vehicle.on_link()
 	AddComponent(/datum/component/remote_control, target, vehicle.turret_type)
 	to_chat(user, "<span class='notice'>You link [target] to [src].</span>")

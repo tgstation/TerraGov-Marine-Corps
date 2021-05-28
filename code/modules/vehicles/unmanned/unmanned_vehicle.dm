@@ -38,6 +38,8 @@
 	var/static/serial = 1
 	/// If the vehicle should spawn with a weapon allready installed
 	var/obj/item/uav_turret/spawn_equipped_type = null
+	/// If something is already controlling the vehicle
+	var/controlled = FALSE
 	COOLDOWN_DECLARE(fire_cooldown)
 
 /obj/vehicle/unmanned/Initialize()
@@ -167,12 +169,14 @@
  */
 /obj/vehicle/unmanned/proc/on_link()
 	RegisterSignal(src, COMSIG_REMOTECONTROL_CHANGED, .proc/on_remote_toggle)
+	controlled = TRUE
 
 /**
  * Called when the drone is linked to a remote control
  */
 /obj/vehicle/unmanned/proc/on_unlink()
 	UnregisterSignal(src, COMSIG_REMOTECONTROL_CHANGED)
+	controlled = FALSE
 
 ///Called when remote control is taken
 /obj/vehicle/unmanned/proc/on_remote_toggle(datum/source, is_on, mob/user)

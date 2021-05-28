@@ -325,8 +325,12 @@
 		to_chat(ai, "<span class='warning'>No unmanned vehicles detected</span>")
 		return
 	var/obj/vehicle/unmanned/new_vehicle = tgui_input_list(ai, "What vehicle do you want to control?","vehicle choice", GLOB.unmanned_vehicles)
-	if(new_vehicle)
-		link_with_vehicle(new_vehicle)
+	if(!new_vehicle)
+		return
+	if(new_vehicle.controlled)
+		to_chat(ai, "<span class='warning'>Something is already controlling this vehicle</span>")
+		return
+	link_with_vehicle(new_vehicle)
 
 /// Signal handler to clear vehicle and stop remote control
 /datum/action/control_vehicle/proc/clear_vehicle()
