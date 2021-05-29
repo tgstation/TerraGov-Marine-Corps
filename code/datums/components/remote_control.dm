@@ -21,6 +21,7 @@
 	RegisterSignal(controlled, COMSIG_UNMANNED_ABILITY_UPDATED, .proc/update_right_clickproc)
 	RegisterSignal(parent, COMSIG_REMOTECONTROL_TOGGLE, .proc/toggle_remote_control)
 	RegisterSignal(controlled, COMSIG_PARENT_QDELETING, .proc/on_control_terminate)
+	RegisterSignal(controlled, COMSIG_MOVABLE_HEAR, .proc/on_hear)
 	RegisterSignal(parent, list(COMSIG_REMOTECONTROL_UNLINK, COMSIG_PARENT_QDELETING), .proc/on_control_terminate)
 
 
@@ -36,6 +37,20 @@
 /datum/component/remote_control/proc/on_control_terminate(datum/source)
 	SIGNAL_HANDLER
 	qdel(src)
+
+///Called when the controlled atom hear a sound
+/datum/component/remote_control/proc/on_hear(datum/source, message, atom/movable/speaker, message_language, raw_message, radio_freq, list/spans, message_mode)
+	SIGNAL_HANDLER
+	user?.Hear(message, speaker, message_language, raw_message, radio_freq, spans, message_mode)
+
+/// Called when the remote controller wants to speak through the controlled atom
+/datum/component/remote_control/proc/on_relayed_speech(datum/source, message, language)
+	SIGNAL_HANDLER
+	message = trim(message)
+	if(!message)
+		return
+	controlled.say(message, language = language)
+	return COMSIG_RELAYED_SPEECH_DEALT
 
 
 ///Updates the clickproc to a passed type of turret
@@ -91,6 +106,7 @@
 	SEND_SIGNAL(controlled, COMSIG_REMOTECONTROL_CHANGED, TRUE, user)
 	RegisterSignal(newuser, COMSIG_MOB_CLICKON, .proc/invoke)
 	RegisterSignal(newuser, COMSIG_MOB_LOGOUT, .proc/remote_control_off)
+	RegisterSignal(newuser, COMSIG_RELAYED_SPEECH, .proc/on_relayed_speech)
 	RegisterSignal(parent, COMSIG_ITEM_DROPPED, .proc/remote_control_off)
 
 ///Invokes the callback for when the controller clicks
@@ -112,7 +128,6 @@
 	is_controlling = FALSE
 	user.remote_control = null
 	user.reset_perspective(user)
-	UnregisterSignal(user, COMSIG_MOB_CLICKON)
-	UnregisterSignal(user, COMSIG_MOB_LOGOUT)
+	UnregisterSignal(user, list(COMSIG_MOB_CLICKON, COMSIG_MOB_LOGOUT, COMSIG_RELAYED_SPEECH))
 	UnregisterSignal(parent, COMSIG_ITEM_DROPPED)
 	user = null

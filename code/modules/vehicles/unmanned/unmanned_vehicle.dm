@@ -14,7 +14,7 @@
 	hud_possible = list(MACHINE_HEALTH_HUD, MACHINE_AMMO_HUD)
 	resistance_flags = XENO_DAMAGEABLE
 	flags_atom = BUMP_ATTACKABLE
-	soft_armor = list("melee" = 0, "bullet" = 50, "laser" = 50, "energy" = 100, "bomb" = 50, "bio" = 100, "rad" = 100, "fire" = 25, "acid" = 25)
+	soft_armor = list("melee" = 25, "bullet" = 50, "laser" = 50, "energy" = 100, "bomb" = 50, "bio" = 100, "rad" = 100, "fire" = 25, "acid" = 25)
 	///Type of "turret" attached
 	var/obj/item/turret_type
 	///Turret types we're allowed to attach
@@ -167,7 +167,7 @@
 /**
  * Called when the drone is unlinked from a remote control
  */
-/obj/vehicle/unmanned/proc/on_link()
+/obj/vehicle/unmanned/proc/on_link(atom/remote_controller)
 	SHOULD_CALL_PARENT(TRUE)
 	RegisterSignal(src, COMSIG_REMOTECONTROL_CHANGED, .proc/on_remote_toggle)
 	controlled = TRUE
@@ -175,7 +175,7 @@
 /**
  * Called when the drone is linked to a remote control
  */
-/obj/vehicle/unmanned/proc/on_unlink()
+/obj/vehicle/unmanned/proc/on_unlink(atom/remote_controller)
 	SHOULD_CALL_PARENT(TRUE)
 	UnregisterSignal(src, COMSIG_REMOTECONTROL_CHANGED)
 	controlled = FALSE

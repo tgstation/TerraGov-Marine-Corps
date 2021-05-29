@@ -10,7 +10,7 @@
 	spawn_equipped_type = /obj/item/uav_turret/droid
 
 /obj/vehicle/unmanned/droid/process() //play beepy noise every 5 seconds for effect while active
-	if(prob(20))
+	if(prob(90))
 		return
 	var/soundfile = "sound/runtime/drone/drone[rand(1,12)].ogg"
 	soundfile = file(soundfile)
