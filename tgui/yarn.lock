@@ -2463,6 +2463,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"argparse@npm:^2.0.1":
+  version: 2.0.1
+  resolution: "argparse@npm:2.0.1"
+  checksum: 160b7a25d2a7097fd5fdf25eb8a99e037340078f70e6c7cfdef305837ed14d54570b2b13261bcae26c8cd44ad6e9a7136a0110d815ac65a7891c69c7bf2f4afd
+  languageName: node
+  linkType: hard
+
 "arr-diff@npm:^4.0.0":
   version: 4.0.0
   resolution: "arr-diff@npm:4.0.0"
@@ -8350,15 +8357,6 @@ typescript@^4.2.4:
     tsc: bin/tsc
     tsserver: bin/tsserver
   checksum: 3be44317593182e8ce494c114e7ad9b0bb2553a22f3085cc6da4f0a36912c20850daa9be4c898af2ab6fc8b12f430c1c9e46ac715721867cd38643f2350d3ef9
-  languageName: node
-  linkType: hard
-
-"uglify-js@npm:^3.1.4":
-  version: 3.13.7
-  resolution: "uglify-js@npm:3.13.7"
-  bin:
-    uglifyjs: bin/uglifyjs
-  checksum: fe48f37dc39092eb42c4f0dcd2be7b45899b577e91716f5ba7922b369d741fb2ce3698e7c2a216377bcd0772df9e759d938f07cc742039d5106684848201f2ff
   languageName: node
   linkType: hard
 
