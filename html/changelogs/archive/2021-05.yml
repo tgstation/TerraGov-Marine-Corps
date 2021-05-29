@@ -409,3 +409,13 @@
       no longer resets their momentum if they shuffle through you.
   - bugfix: Fixed some xeno charger movement signal handlers not checking for null
       directions.
+2021-05-29:
+  Alterist:
+  - bugfix: fixed Theseus webmap
+  - rscadd: Revamped some parts of Barrenquilla.
+  BraveMole:
+  - bugfix: Should fix synth blood loss
+  - bugfix: gun can reload now
+  TiviPlus:
+  - code_imp: client button hold optimizations
+  - bugfix: Sanatize command announces better
