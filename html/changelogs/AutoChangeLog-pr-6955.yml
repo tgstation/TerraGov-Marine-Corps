@@ -1,0 +1,5 @@
+author: "BraveMole"
+delete-after: True
+changes: 
+  - balance: "Blue fire price reduced to 60 from 100"
+  - balance: "Blue fire firedelay reduced to 2 seconds (rather than 3.5)"
