@@ -9,11 +9,12 @@
 	light_range = 6
 	light_power = 3
 	light_system = MOVABLE_LIGHT
-	move_delay = 1.8	//set this to limit the speed of the vehicle
+	move_delay = 2	//set this to limit the speed of the vehicle
 	max_integrity = 300
 	hud_possible = list(MACHINE_HEALTH_HUD, MACHINE_AMMO_HUD)
 	resistance_flags = XENO_DAMAGEABLE
 	flags_atom = BUMP_ATTACKABLE
+	soft_armor = list("melee" = 0, "bullet" = 50, "laser" = 50, "energy" = 100, "bomb" = 50, "bio" = 100, "rad" = 100, "fire" = 25, "acid" = 25)
 	///Type of "turret" attached
 	var/obj/item/turret_type
 	///Turret types we're allowed to attach
@@ -215,7 +216,7 @@
 /obj/vehicle/unmanned/medium
 	name = "medium unmanned vehicle"
 	icon_state = "medium_uv"
-	move_delay = 2.4
+	move_delay = 2.6
 	max_rounds = 200
 	max_integrity = 500
 

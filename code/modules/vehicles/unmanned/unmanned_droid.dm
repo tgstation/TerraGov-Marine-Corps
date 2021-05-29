@@ -2,7 +2,7 @@
 	name = "XN-43-H combat droid"
 	desc = "A prototype combat droid, first deployed as a prototype to fight the xeno menace in the frontier sytems."
 	icon_state = "droidcombat"
-	move_delay = 2.4
+	move_delay = 2.8
 	max_integrity = 300
 	anchored = TRUE // no wheels
 	turret_pattern = PATTERN_DROID
@@ -10,7 +10,7 @@
 	spawn_equipped_type = /obj/item/uav_turret/droid
 
 /obj/vehicle/unmanned/droid/process() //play beepy noise every 5 seconds for effect while active
-	if(prob(40))
+	if(prob(20))
 		return
 	var/soundfile = "sound/runtime/drone/drone[rand(1,12)].ogg"
 	soundfile = file(soundfile)
@@ -36,7 +36,7 @@
 	desc = "A prototype scout droid, rigged with top-of-the line cloaking technology to hide itself from view."
 	icon_state = "droidscout"
 	move_delay = 2
-	max_integrity = 250
+	max_integrity = 200
 	spawn_equipped_type = null
 	var/cloaktimer
 
