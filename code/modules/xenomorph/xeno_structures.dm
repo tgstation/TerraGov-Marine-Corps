@@ -260,11 +260,11 @@
 	///Range of the turret
 	var/range = 7
 	///Target of the turret
-	var/mob/living/hostile
+	var/atom/hostile
 	///Last target of the turret
-	var/mob/living/last_hostile
+	var/atom/last_hostile
 	///Potential list of targets found by scan
-	var/list/mob/living/potential_hostiles
+	var/list/atom/potential_hostiles
 	///Fire rate of the target in ticks
 	var/firerate = 5
 	///The last time the sentry did a scan
@@ -398,9 +398,11 @@
 	var/distance = range + 0.5 //we add 0.5 so if a potential target is at range, it is accepted by the system
 	var/buffer_distance
 	var/list/turf/path = list()
-	for (var/mob/living/nearby_hostile AS in potential_hostiles)
-		if(nearby_hostile.stat == DEAD)
-			continue
+	for (var/atom/nearby_hostile AS in potential_hostiles)
+		if(isliving(nearby_hostile))
+			var/mob/living/living_hostile = nearby_hostile
+			if(living_hostile.stat == DEAD)
+				continue
 		buffer_distance = get_dist(nearby_hostile, src)
 		if (distance <= buffer_distance) //If we already found a target that's closer
 			continue
@@ -440,6 +442,9 @@
 		if(nearby_xeno.stat == DEAD)
 			continue
 		potential_hostiles += nearby_xeno
+	for(var/obj/vehicle/unmanned/vehicle AS in GLOB.unmanned_vehicles)
+		if(get_dist(vehicle, src) <= range)
+			potential_hostiles += vehicle
 
 
 ///Signal handler to make the turret shoot at its target
