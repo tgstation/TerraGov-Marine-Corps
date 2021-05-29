@@ -76,6 +76,7 @@
 ///called when a shooty turret attempts to shoot by click
 /datum/component/remote_control/proc/uv_handle_click(mob/user, atom/target, params)
 	var/obj/vehicle/unmanned/T = controlled
+	log_attack("[key_name(user)] fired a shot while remote controlling [controlled] at [AREACOORD(controlled)]")
 	T.fire_shot(target, user)
 	return TRUE
 
