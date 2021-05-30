@@ -22,8 +22,6 @@
 
 #define MARINE_CAN_BUY_ALL			((1 << 18) - 1)
 
-#define MARINE_TOTAL_BUY_POINTS		45
-
 #define CAT_ESS "ESSENTIALS"
 #define CAT_STD "STANDARD EQUIPMENT"
 #define CAT_SHO "SHOES"
@@ -971,18 +969,8 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 		/obj/item/attachable/lasersight = list(CAT_ATT, "Laser Sight", 0, "black")
 	)
 
-
-
-/obj/machinery/marine_selector/gear/medic
-	name = "NEXUS Automated Medical Equipment Rack"
-	desc = "An automated medic equipment rack hooked up to a colossal storage unit."
-	icon_state = "medic"
-	vendor_role = /datum/job/terragov/squad/corpsman
-	req_access = list(ACCESS_MARINE_MEDPREP)
-
-	listed_products = list(
+GLOBAL_LIST_INIT(medic_gear_listed_products, list(
 		/obj/effect/essentials_set/medic = list(CAT_ESS, "Essential Medic Set", 0, "white"),
-
 		/obj/item/storage/backpack/lightpack = list(CAT_MEDSUP, "Combat Backpack", 15, "orange"),
 		/obj/item/storage/pill_bottle/meralyne = list(CAT_MEDSUP, "Meralyne pills", 16, "orange"),
 		/obj/item/storage/pill_bottle/dermaline = list(CAT_MEDSUP, "Dermaline pills", 16, "orange"),
@@ -1018,23 +1006,26 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 		/obj/item/attachable/stock/t19stock  = list(CAT_ATT, "T-19 machine pistol stock", 0, "black"),
 		/obj/item/attachable/gyro = list(CAT_ATT, "gyroscopic stabilizer", 0, "black"),
 		/obj/item/attachable/heavy_barrel = list(CAT_ATT, "barrel charger", 0, "black"),
-	)
+	))
+
+/obj/machinery/marine_selector/gear/medic
+	name = "NEXUS Automated Medical Equipment Rack"
+	desc = "An automated medic equipment rack hooked up to a colossal storage unit."
+	icon_state = "medic"
+	vendor_role = /datum/job/terragov/squad/corpsman
+	req_access = list(ACCESS_MARINE_MEDPREP)
+
+/obj/machinery/marine_selector/gear/medic/Initialize()
+	listed_products = GLOB.medic_gear_listed_products
+	. = ..()
 
 /obj/machinery/marine_selector/gear/medic/rebel 
 	vendor_role = /datum/job/terragov/squad/corpsman/rebel
 	req_access = list(ACCESS_MARINE_MEDPREP_REBEL)	
 
 
-/obj/machinery/marine_selector/gear/engi
-	name = "NEXUS Automated Engineer Equipment Rack"
-	desc = "An automated engineer equipment rack hooked up to a colossal storage unit."
-	icon_state = "engineer"
-	vendor_role = /datum/job/terragov/squad/engineer
-	req_access = list(ACCESS_MARINE_ENGPREP)
-
-	listed_products = list(
+GLOBAL_LIST_INIT(engineer_gear_listed_products, list(
 		/obj/effect/essentials_set/engi = list(CAT_ESS, "Essential Engineer Set", 0, "white"),
-
 		/obj/item/stack/sheet/metal/small_stack = list(CAT_ENGSUP, "Metal x10", 2, "orange"),
 		/obj/item/stack/sheet/plasteel/small_stack = list(CAT_ENGSUP, "Plasteel x10", 4, "orange"),
 		/obj/item/stack/sandbags_empty/half = list(CAT_ENGSUP, "Sandbags x25", 5, "orange"),
@@ -1065,7 +1056,18 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 		/obj/item/attachable/angledgrip = list(CAT_ATT, "Angled grip", 0, "orange"),
 		/obj/item/attachable/stock/t35stock = list(CAT_ATT, "T-35 stock", 0, "black"),
 		/obj/item/attachable/stock/t19stock = list(CAT_ATT, "T-19 machine pistol stock", 0, "black"),
-	)
+	))
+
+/obj/machinery/marine_selector/gear/engi
+	name = "NEXUS Automated Engineer Equipment Rack"
+	desc = "An automated engineer equipment rack hooked up to a colossal storage unit."
+	icon_state = "engineer"
+	vendor_role = /datum/job/terragov/squad/engineer
+	req_access = list(ACCESS_MARINE_ENGPREP)
+
+/obj/machinery/marine_selector/gear/engi/Initialize()
+	listed_products = GLOB.engineer_gear_listed_products
+	. = ..()
 
 /obj/machinery/marine_selector/gear/engi/rebel 
 	vendor_role = /datum/job/terragov/squad/engineer/rebel
@@ -1143,18 +1145,8 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 		if(!T.density)
 			new /obj/effect/decal/cleanable/cobweb(T)
 
-
-
-/obj/machinery/marine_selector/gear/leader
-	name = "NEXUS Automated Squad Leader Equipment Rack"
-	desc = "An automated squad leader equipment rack hooked up to a colossal storage unit."
-	icon_state = "squadleader"
-	vendor_role = /datum/job/terragov/squad/leader
-	req_access = list(ACCESS_MARINE_LEADER)
-
-	listed_products = list(
+GLOBAL_LIST_INIT(leader_gear_listed_products, list(
 		/obj/effect/essentials_set/leader = list(CAT_ESS, "Essential SL Set", 0, "white"),
-
 		/obj/item/squad_beacon = list(CAT_LEDSUP, "Supply beacon", 10, "black"),
 		/obj/item/squad_beacon/bomb = list(CAT_LEDSUP, "Orbital beacon", 15, "black"),
 		/obj/item/tool/shovel/etool = list(CAT_LEDSUP, "Entrenching tool", 1, "black"),
@@ -1181,7 +1173,6 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 		/obj/structure/closet/bodybag/tarp = list(CAT_LEDSUP, "V1 thermal-dampening tarp", 5, "black"),
 		/obj/item/storage/box/m94/cas = list(CAT_LEDSUP, "CAS flare box", 10, "orange"),
 		/obj/item/deployable_camera = list(CAT_LEDSUP, "Deployable Overwatch Camera", 2, "orange"),
-
 		/obj/item/attachable/suppressor = list(CAT_ATT, "Suppressor", 0, "black"),
 		/obj/item/attachable/extended_barrel = list(CAT_ATT, "Extended barrel", 0, "orange"),
 		/obj/item/attachable/compensator = list(CAT_ATT, "Recoil compensator", 0, "black"),
@@ -1193,7 +1184,18 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 		/obj/item/attachable/angledgrip = list(CAT_ATT, "Angled grip", 0, "orange"),
 		/obj/item/attachable/stock/t35stock = list(CAT_ATT, "T-35 stock", 0, "black"),
 		/obj/item/attachable/stock/t19stock = list(CAT_ATT, "T-19 machine pistol stock", 0, "black"),
-	)
+	))
+
+/obj/machinery/marine_selector/gear/leader
+	name = "NEXUS Automated Squad Leader Equipment Rack"
+	desc = "An automated squad leader equipment rack hooked up to a colossal storage unit."
+	icon_state = "squadleader"
+	vendor_role = /datum/job/terragov/squad/leader
+	req_access = list(ACCESS_MARINE_LEADER)
+
+/obj/machinery/marine_selector/gear/leader/Initialize()
+	listed_products = GLOB.leader_gear_listed_products
+	. = ..()
 
 /obj/machinery/marine_selector/gear/leader/rebel
 	vendor_role = /datum/job/terragov/squad/leader/rebel

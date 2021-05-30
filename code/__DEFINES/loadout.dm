@@ -113,6 +113,13 @@ GLOBAL_LIST_INIT(loadout_job_supported, list(
 	SQUAD_SMARTGUNNER,
 	SQUAD_LEADER,
 ))
+
+///Assoc list linking the job title with their specific points vendor
+GLOBAL_LIST_INIT(job_specific_points_vendor, list(
+	SQUAD_ENGINEER = GLOB.engineer_gear_listed_products,
+	SQUAD_CORPSMAN = GLOB.medic_gear_listed_products,
+	SQUAD_LEADER = GLOB.leader_gear_listed_products,
+))
 	
 
 //Defines use for the visualisation of loadouts

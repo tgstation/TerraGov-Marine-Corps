@@ -7,14 +7,14 @@
 	///The storage of the suit
 	var/datum/item_representation/storage/pockets
 
-/datum/item_representation/suit_with_storage/New(obj/item/item_to_copy)
+/datum/item_representation/suit_with_storage/New(obj/item/item_to_copy, datum/loadout/loadout)
 	if(!item_to_copy)
 		return
 	if(!issuitwithstorage(item_to_copy))
 		CRASH("/datum/item_representation/suit_with_storage created from an item that is not a suit with storage")
 	..()
 	var/obj/item/clothing/suit/storage/suit_to_copy = item_to_copy
-	pockets = new /datum/item_representation/storage(suit_to_copy.pockets)
+	pockets = new /datum/item_representation/storage(suit_to_copy.pockets, loadout)
 
 /datum/item_representation/suit_with_storage/instantiate_object(datum/loadout_seller/seller, master, datum/loadout/loadout)
 	. = ..()
@@ -37,7 +37,7 @@
 	///The implementation of the storage
 	var/datum/item_representation/storage/storage_implementation
 
-/datum/item_representation/modular_armor/New(obj/item/item_to_copy)
+/datum/item_representation/modular_armor/New(obj/item/item_to_copy, datum/loadout/loadout)
 	if(!item_to_copy)
 		return
 	if(!ismodulararmor(item_to_copy))
@@ -118,7 +118,7 @@
  */
 /datum/item_representation/armor_module
 
-/datum/item_representation/armor_module/New(obj/item/item_to_copy)
+/datum/item_representation/armor_module/New(obj/item/item_to_copy, datum/loadout/loadout)
 	if(!item_to_copy)
 		return
 	if(!ismodulararmormodule(item_to_copy))
@@ -138,7 +138,7 @@
 	///The color of that armor module
 	var/greyscale_colors
 
-/datum/item_representation/armor_module/colored/New(obj/item/item_to_copy)
+/datum/item_representation/armor_module/colored/New(obj/item/item_to_copy, datum/loadout/loadout)
 	if(!item_to_copy)
 		return
 	if(!ismodulararmorarmorpiece(item_to_copy))

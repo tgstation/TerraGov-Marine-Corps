@@ -22,6 +22,19 @@
 	if(job_specific_list[saved_item.type] > loadout.unique_equippments_list[saved_item.type])
 		loadout.unique_equippments_list[saved_item.type] += 1
 		return TRUE
+	//At last, we will try to use job points in a gear vendor
+	var/list/listed_products = GLOB.job_specific_points_vendor[loadout.job]
+	if(!listed_products)
+		return FALSE
+	for(var/item_type in listed_products)
+		if(saved_item.type != item_type)
+			continue
+		var/list/item_info = listed_products[item_type]
+		if(loadout.job_points_available < item_info[3])
+			return FALSE
+		loadout.job_points_available -= item_info[3]
+		loadout.unique_equippments_list[saved_item.type] += 1
+		return TRUE
 	return FALSE
 
 ///Return true if the item was found in a linked vendor and successfully bought

@@ -13,7 +13,9 @@
 	var/loadout_vendor 
 	///A list of unique equippment on this loadout (equippment that costs points or is in a job specific vendor)
 	var/unique_equippments_list = list()
-	///The version of this loadout.
+	///The amount of marine points available on the loadout
+	var/job_points_available = MARINE_TOTAL_BUY_POINTS
+	///The version of this loadout
 	var/version = CURRENT_LOADOUT_VERSION
 
 ///Empty a slot of the loadout
@@ -103,7 +105,7 @@
 		if(!item_in_slot || !is_savable_in_loadout(item_in_slot, src))
 			continue
 		item2representation_type = item2representation_type(item_in_slot.type)
-		item_list[slot_key] = new item2representation_type(item_in_slot)
+		item_list[slot_key] = new item2representation_type(item_in_slot, src)
 
 /datum/loadout/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)

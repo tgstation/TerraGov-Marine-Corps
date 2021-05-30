@@ -5,7 +5,7 @@
 /datum/item_representation/uniform_representation
 	var/datum/item_representation/tie/tie 
 
-/datum/item_representation/uniform_representation/New(obj/item/item_to_copy)
+/datum/item_representation/uniform_representation/New(obj/item/item_to_copy, datum/loadout/loadout)
 	if(!item_to_copy)
 		return
 	if(!isuniform(item_to_copy))
@@ -51,7 +51,7 @@
 	///The storage of the tie
 	var/datum/item_representation/storage/hold
 
-/datum/item_representation/tie/New(obj/item/item_to_copy)
+/datum/item_representation/tie/New(obj/item/item_to_copy, datum/loadout/loadout)
 	if(!item_to_copy)
 		return
 	if(!iswebbing(item_to_copy))
