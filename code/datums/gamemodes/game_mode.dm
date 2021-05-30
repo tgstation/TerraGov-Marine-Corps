@@ -456,6 +456,8 @@ Sensors indicate [numXenosShip || "no"] unknown lifeform signature[numXenosShip 
 		dat += "[GLOB.round_statistics.spitter_scatter_spits] number of times Spitters horked up scatter spits."
 	if(GLOB.round_statistics.ravager_endures)
 		dat += "[GLOB.round_statistics.ravager_endures] number of times Ravagers used Endure."
+	if(GLOB.round_statistics.hunter_marks)
+		dat += "[GLOB.round_statistics.hunter_marks] number of times Hunters marked a target for death."
 
 	var/output = jointext(dat, "<br>")
 	for(var/mob/player in GLOB.player_list)
