@@ -1535,21 +1535,61 @@
 
 	//checks if a spire is too close or there are no spires that can reach the node
 	var/within_spire_reach = FALSE
-	for(var/obj/structure/resin/acid_spire/checked_spire AS in GLOB.acid_spires)
-		if(get_dist(owner, checked_spire) < minimum_placement_range)
+	for(var/obj/structure/xeno/resin/acid_spire/checked_spire AS in GLOB.acid_spires)
+		var/spire_distance = get_dist(owner, checked_spire)
+		message_admins("get_dist valus > [spire_distance]")
+		if(spire_distance < minimum_placement_range)
 			if(!silent)
 				to_chat(owner, "<span class='warning'>We need place the node at least [minimum_placement_range] meters away from a spire.</span>")
 			return FALSE
-		if(get_dist(owner, checked_spire) <= checked_spire.effective_range)
+		if(spire_distance <= checked_spire.effective_range)
 			within_spire_reach = TRUE
 			break
 	if(!within_spire_reach)
 		if(!silent)
 			to_chat(owner, "<span class='warning'>We need place the node within a spire's operational area. This can be increased by adding more nodes to a spire's network.</span>")
-			return FALSE
+		return FALSE
 
 /datum/action/xeno_action/activable/plant_acid_node/use_ability(atom/A)
 	new /obj/effect/alien/acid_node(owner.loc)
 	SSacid_spires.use_acid(acid_cost)
 	add_cooldown()
+	return succeed_activate()
+
+/////////////////////////////////
+// Place Acid node
+/////////////////////////////////
+/datum/action/xeno_action/activable/connect_to_acid
+	name = "Connect to acid spires"
+	action_icon_state = "place_trap"
+	mechanics_text = "Connect a structure to the acid network."
+	cooldown_timer = 2 SECONDS
+	plasma_cost = 0
+
+/datum/action/xeno_action/activable/connect_to_acid/can_use_ability(atom/A, silent, override_flags)
+	. = ..()
+	if(!.)
+		return FALSE
+
+	if(!isxenostructure(A))
+		if(!silent)
+			to_chat(owner, "<span class='warning'>We can only connect hive structures to the acid network.</span>")
+		return FALSE
+
+	var/obj/structure/xeno/checked_structure = A
+	if(!(checked_structure.xeno_structure_flags & ACID_SPIRE_CONNECTABLE))
+		if(!silent)
+			to_chat(owner, "<span class='warning'>[checked_structure] is not connectable to the acid network.</span>")
+		return FALSE
+
+/datum/action/xeno_action/activable/connect_to_acid/use_ability(atom/A)
+	var/obj/structure/xeno/connected_structure = A
+	if(connected_structure.xeno_structure_flags & ACID_SPIRE_CONNECTED)
+		connected_structure.disconnect_from_acid_spire()
+		to_chat(owner, "<span class='warning'>We disconnect [connected_structure] from the network.</span>")
+	else if(!connected_structure.connect_to_acid_spire())
+		to_chat(owner, "<span class='warning'>Connecting of [connected_structure] was unsucessful.</span>")
+	else
+		to_chat(owner, "<span class='warning'We connect [connected_structure] to the acid network.</span>")
+
 	return succeed_activate()

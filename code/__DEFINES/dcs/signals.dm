@@ -342,6 +342,7 @@
 #define COMSIG_LIVING_ADD_VENTCRAWL "living_add_ventcrawl"
 #define COMSIG_LIVING_WEEDS_ADJACENT_REMOVED "living_weeds_adjacent_removed"	///from obj/effect/alien/weeds/Destroy()
 #define COMSIG_LIVING_ACID_NODE_DESTROYED "living_acid_node_destroyed" ///from obj/effect/alien/acid_node/Destroy()
+#define COMSIG_LIVING_ACID_SPIRE_RANGE_CHANGED "living_acid_spire_range_changed" //from obj/structure/xeno/resin/acid_spire/update_effective_range()
 
 //mob/living/carbon signals
 #define COMSIG_CARBON_SWAPPED_HANDS "carbon_swapped_hands"

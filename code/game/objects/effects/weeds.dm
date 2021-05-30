@@ -198,7 +198,7 @@
 	set_light(1, 4, LIGHT_COLOR_ELECTRIC_GREEN)
 	GLOB.acid_nodes += src
 
-	for(var/obj/structure/resin/acid_spire/spire AS in GLOB.acid_spires)
+	for(var/obj/structure/xeno/resin/acid_spire/spire AS in GLOB.acid_spires)
 		var/node_distance = get_dist(src, spire)
 		if(node_distance > spire.effective_range)
 			continue

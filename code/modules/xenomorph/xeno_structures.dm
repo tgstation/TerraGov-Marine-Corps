@@ -1,6 +1,75 @@
 /obj/structure/xeno
 	///Bitflags specific to xeno structures
-	var/xeno_structure_flags
+	var/xeno_structure_flags = NONE
+	///Acid spire the structure is connected to
+	var/obj/structure/xeno/resin/acid_spire/connected_spire = null
+
+///Connects the structure to an acid spire
+/obj/structure/xeno/proc/connect_to_acid_spire(run_link_action = TRUE)
+	var/found_spire = acid_spire_in_range()
+	if(!found_spire)
+		return FALSE
+
+	connected_spire = found_spire
+	xeno_structure_flags |= ACID_SPIRE_CONNECTED
+	RegisterSignal(connected_spire, COMSIG_LIVING_ACID_SPIRE_RANGE_CHANGED, .proc/check_spire_connection)
+	acid_spire_link(run_link_action)
+
+	return TRUE
+
+///Disconnects the structure from the currently connected acid spire
+/obj/structure/xeno/proc/disconnect_from_acid_spire(run_unlink_action = TRUE)
+	if(!(xeno_structure_flags & ACID_SPIRE_CONNECTED))
+		return
+
+	message_admins("disconnect action")
+	acid_spire_unlink(run_unlink_action)
+	xeno_structure_flags &= ~ACID_SPIRE_CONNECTED
+	UnregisterSignal(connected_spire, COMSIG_LIVING_ACID_SPIRE_RANGE_CHANGED)
+	connected_spire = null
+
+/**
+ * Checks if the structure can remain connected to the acid spire when its range changes
+ * and if not, checks if it can connect to a new one
+ */
+/obj/structure/xeno/proc/check_spire_connection(datum/source)
+	var/obj/structure/xeno/resin/acid_spire/checked_spire = source
+	if(get_dist(src, checked_spire) < checked_spire.effective_range)
+		return
+
+	//not running link and unlink actions here
+	disconnect_from_acid_spire(FALSE)
+	if(!connect_to_acid_spire(FALSE)) //run unlink action only if the structure doesn't switch to a different spire
+		acid_spire_unlink()
+
+///Checks if an acid spire is in range of the structure and returns it
+/obj/structure/xeno/proc/acid_spire_in_range()
+	for(var/obj/structure/xeno/resin/acid_spire/checked_spire AS in GLOB.acid_spires)
+		var/spire_distance = get_dist(src, checked_spire)
+		if(spire_distance > checked_spire.effective_range)
+			continue
+		return checked_spire
+
+///Does stuff when a structure connects to an acid spire
+/obj/structure/xeno/proc/acid_spire_link(should_run = TRUE)
+	if(!should_run)
+		return FALSE
+	return TRUE
+
+///Does stuff when a structure disconnects an acid spire
+/obj/structure/xeno/proc/acid_spire_unlink(should_run = TRUE)
+	if(!should_run)
+		return FALSE
+	return TRUE
+
+/**
+ * Proc that is ran every time SSacid_spires ticks.
+ * If it returns FALSE, the subsystem will disconnect the structure from the acid spires network.
+ * This is useful, for example, when making structures that drain acid each tick
+ * and automatically stop their effects when not enough acid is available.
+ */
+/obj/structure/xeno/proc/on_acid_spires_tick()
+	return TRUE
 
 /obj/structure/xeno/resin
 	hit_sound = "alien_resin_break"
@@ -257,6 +326,8 @@
 	layer =  ABOVE_MOB_LAYER
 	density = TRUE
 	resistance_flags = UNACIDABLE | DROPSHIP_IMMUNE
+	xeno_structure_flags = ACID_SPIRE_CONNECTABLE
+	var/turret_acid_use = 20
 	///The hive it belongs to
 	var/datum/hive_status/associated_hive
 	///What kind of spit it uses
@@ -352,6 +423,18 @@
 	if(hostile != last_hostile)
 		set_last_hostile(hostile)
 		SEND_SIGNAL(src, COMSIG_AUTOMATIC_SHOOTER_START_SHOOTING_AT)
+
+/obj/structure/xeno/resin/xeno_turret/on_acid_spires_tick()
+	. = ..()
+
+	if(obj_integrity == max_integrity)
+		return TRUE
+
+	if(!SSacid_spires.use_acid(turret_acid_use))
+		return FALSE
+
+	obj_integrity += min(max_integrity * TURRET_ACID_SPIRE_HEALTH_REGEN, max_integrity - obj_integrity)
+	update_icon()
 
 /obj/structure/xeno/resin/xeno_turret/attackby(obj/item/I, mob/living/user, params)
 	if(I.flags_item & NOBLUDGEON || !isliving(user))
@@ -465,12 +548,15 @@
  *  - acid spires' buff is a cumulative amount of all acid spires' strength
  *  - buffed buildings glow brightly green, more than usual
  *  - marines can destroy acid spires, which decreases their strength, but the network remain intact
- *  - marines can put miners next to destroyed acid spires for req points
+ *  - marines can put a miner next to destroyed acid spires for req points
+ * 		- the miner will be dropped down by a call from an SL
+ *  - acid spires increase fill speed of acid wells within their effective range
+ *  - xenos have acid reserves that are drained when they rest, in exchange of increased regeneration
  */
 
 #define NODE_RANGE_GROUPING_COEF 4
 
-/obj/structure/resin/acid_spire
+/obj/structure/xeno/resin/acid_spire
 	name = "acid spire"
 	icon = 'icons/Xeno/2x2_xeno_structures.dmi'
 	icon_state = "tower"
@@ -498,19 +584,19 @@
 	 */
 	var/list/connected_acid_nodes_strength = list()
 
-/obj/structure/resin/acid_spire/Initialize()
+/obj/structure/xeno/resin/acid_spire/Initialize()
 	. = ..()
 	GLOB.acid_spires += src
 	SSminimaps.add_marker(src, z, hud_flags = MINIMAP_FLAG_XENO, iconstate = "silo")
 	set_light(6, 2, LIGHT_COLOR_ELECTRIC_GREEN)
 
-/obj/structure/resin/acid_spire/examine(mob/user)
+/obj/structure/xeno/resin/acid_spire/examine(mob/user)
 	. = ..()
 	if(isxeno(user))
 		to_chat(user, "<span class='notice'>The network currently contains <b>[SSacid_spires.stored_acid()] units of acid.</b></span>")
 
 ///connects an acid node to the spire
-/obj/structure/resin/acid_spire/proc/add_acid_node(obj/effect/alien/acid_node/new_node)
+/obj/structure/xeno/resin/acid_spire/proc/add_acid_node(obj/effect/alien/acid_node/new_node)
 	connected_acid_nodes += new_node
 
 	var/node_index = round(get_dist(src, new_node) / NODE_RANGE_GROUPING_COEF)
@@ -526,7 +612,7 @@
 	update_effective_range(new_node.effective_range_increase())
 
 ///removes an acid node from the list of nodes and updates the effective range of the spire
-/obj/structure/resin/acid_spire/proc/remove_acid_node(datum/source)
+/obj/structure/xeno/resin/acid_spire/proc/remove_acid_node(datum/source)
 	var/obj/effect/alien/acid_node/removed_node = source
 	connected_acid_nodes -= removed_node
 
@@ -536,15 +622,16 @@
 	update_effective_range(-removed_node.effective_range_increase())
 
 ///updates the effective range of the spire with the given amount, then it updates the received strength
-/obj/structure/resin/acid_spire/proc/update_effective_range(update_amount)
+/obj/structure/xeno/resin/acid_spire/proc/update_effective_range(update_amount)
 	effective_range = max(effective_range + update_amount, 0)
 	update_linked_nodes_strength()
+	SEND_SIGNAL(src, COMSIG_LIVING_ACID_SPIRE_RANGE_CHANGED)
 
-/obj/structure/resin/acid_spire/proc/production_strength()
+/obj/structure/xeno/resin/acid_spire/proc/production_strength()
 	return acid_production_strength
 
 ///Updates connected nodes' provided strength
-/obj/structure/resin/acid_spire/proc/update_linked_nodes_strength()
+/obj/structure/xeno/resin/acid_spire/proc/update_linked_nodes_strength()
 	//resets and calculates the production strength again
 	acid_production_strength = initial(acid_production_strength)
 

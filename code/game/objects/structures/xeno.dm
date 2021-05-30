@@ -808,8 +808,11 @@ TUNNEL
 	hit_sound = "alien_resin_move"
 	destroy_sound = "alien_resin_move"
 
+	xeno_structure_flags = ACID_SPIRE_CONNECTABLE
+
 	var/charges = 1
 	var/ccharging = FALSE
+	var/charge_delay = 10 SECONDS
 	var/mob/living/carbon/xenomorph/creator = null
 
 /obj/structure/xeno/acidwell/Initialize()
@@ -819,6 +822,20 @@ TUNNEL
 /obj/structure/xeno/acidwell/Destroy()
 	creator = null
 	return ..()
+
+/obj/structure/xeno/acidwell/acid_spire_link()
+	. = ..()
+	if(!.)
+		return
+
+	charge_delay = 2 SECONDS
+
+/obj/structure/xeno/acidwell/acid_spire_unlink()
+	. = ..()
+	if(!.)
+		return
+
+	charge_delay = initial(charge_delay)
 
 ///Ensures that no acid gas will be released when the well is crushed by a shuttle
 /obj/structure/xeno/acidwell/proc/shuttle_crush()
