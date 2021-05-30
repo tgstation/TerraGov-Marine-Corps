@@ -1025,7 +1025,7 @@
 	if(!do_after(owner, build_time, TRUE, A, BUSY_ICON_BUILD))
 		return fail_activate()
 
-	var/obj/structure/resin/silo/hivesilo = new(get_step(A, SOUTHWEST))
+	var/obj/structure/xeno/resin/silo/hivesilo = new(get_step(A, SOUTHWEST))
 
 	var/moved_human_number = 0
 	for(var/mob/living/to_use AS in valid_mobs)
@@ -1096,7 +1096,7 @@
 		to_chat(owner, "<span class='xenowarning'>The hive doesn't have the necessary psychic points for you to do that!</span>")
 		return FALSE
 
-	for(var/obj/structure/resin/silo/silo AS in GLOB.xeno_resin_silos)
+	for(var/obj/structure/xeno/resin/silo/silo AS in GLOB.xeno_resin_silos)
 		if(get_dist(silo, A) < 15)
 			to_chat(owner, "<span class='xenowarning'>Another silo is too close!</span>")
 			return FALSE
@@ -1116,10 +1116,10 @@
 	log_game("[owner] has built a silo in [AREACOORD(A)], spending [final_psych_cost] psy points in the process")
 	succeed_activate()
 	if(build_small_silo)
-		new /obj/structure/resin/silo/small_silo (get_step(A, SOUTHWEST))
+		new /obj/structure/xeno/resin/silo/small_silo (get_step(A, SOUTHWEST))
 		xeno_message("[X.name] has built a small silo at [get_area(A)]!", "xenoannounce", 5, X.hivenumber)
 		return
-	new /obj/structure/resin/silo (get_step(A, SOUTHWEST))
+	new /obj/structure/xeno/resin/silo (get_step(A, SOUTHWEST))
 	xeno_message("[X.name] has built a silo at [get_area(A)]!", "xenoannounce", 5, X.hivenumber)
 
 
@@ -1171,7 +1171,7 @@
 		to_chat(X, "<span class='warning'>We can only shape on weeds. We must find some resin before we start building!</span>")
 		return FALSE
 
-	if(!T.check_alien_construction(X, planned_building = /obj/structure/resin/xeno_turret) || !T.check_disallow_alien_fortification(X))
+	if(!T.check_alien_construction(X, planned_building = /obj/structure/xeno/resin/xeno_turret) || !T.check_disallow_alien_fortification(X))
 		return FALSE
 
 	if(SSpoints.xeno_points_by_hive[X.hivenumber] < psych_cost)
@@ -1189,7 +1189,7 @@
 		return fail_activate()
 
 	to_chat(owner, "<span class='xenowarning'>We build a new acid turret, spending 100 psychic points in the process</span>")
-	new /obj/structure/resin/xeno_turret(get_turf(A), X.hivenumber)
+	new /obj/structure/xeno/resin/xeno_turret(get_turf(A), X.hivenumber)
 
 	SSpoints.xeno_points_by_hive[X.hivenumber] -= psych_cost
 	log_game("[owner] built a turret in [AREACOORD(A)], spending [psych_cost] psy points in the process")

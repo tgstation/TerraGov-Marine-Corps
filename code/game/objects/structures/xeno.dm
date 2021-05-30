@@ -116,6 +116,9 @@
 
 	ignore_weed_destruction = FALSE
 
+// Default for xeno structures
+	hud_possible = list(XENO_TACTICAL_HUD)
+
 
 //Carrier trap
 /obj/structure/xeno/trap
@@ -134,6 +137,15 @@
 	. = ..()
 	RegisterSignal(src, COMSIG_MOVABLE_SHUTTLE_CRUSH, .proc/shuttle_crush)
 	RegisterSignal(src, COMSIG_MOVABLE_CROSSED_BY, .proc/trigger_hugger_trap) //Set up the trap signal on our turf
+
+/obj/structure/xeno/trap/ex_act(severity)
+	switch(severity)
+		if(EXPLODE_DEVASTATE)
+			take_damage(400)
+		if(EXPLODE_HEAVY)
+			take_damage(200)
+		if(EXPLODE_LIGHT)
+			take_damage(100)
 
 
 /obj/structure/xeno/trap/obj_destruction(damage_amount, damage_type, damage_flag)
@@ -625,8 +637,6 @@ TUNNEL
 	layer = RESIN_STRUCTURE_LAYER
 
 	max_integrity = 140
-
-	hud_possible = list(XENO_TACTICAL_HUD)
 
 	var/tunnel_desc = "" //description added by the hivelord.
 	var/mob/living/carbon/xenomorph/hivelord/creator = null

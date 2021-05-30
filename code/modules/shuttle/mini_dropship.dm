@@ -44,6 +44,8 @@
 	var/mob/living/ui_user
 	/// If this computer was damaged by a xeno
 	var/damaged = FALSE
+	/// How long before you can launch tadpole after a landing
+	var/launching_delay = 10 SECONDS
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/Initialize(mapload)
 	..()
@@ -94,6 +96,8 @@
 		next_fly_state = destination_fly_state
 		return
 	give_actions()
+	if(fly_state == SHUTTLE_ON_GROUND)
+		TIMER_COOLDOWN_START(src, COOLDOWN_TADPOLE_LAUNCHING, launching_delay)
 	if(fly_state != SHUTTLE_IN_ATMOSPHERE)
 		return
 	shuttle_port.assigned_transit.reserved_area.set_turf_type(/turf/open/space/transit/atmos)
@@ -106,6 +110,9 @@
 	shuttle_port = SSshuttle.getShuttle(shuttleId)
 	if(!(shuttle_port.shuttle_flags & GAMEMODE_IMMUNE) && world.time < SSticker.round_start_time + SSticker.mode.deploy_time_lock)
 		to_chat(ui_user, "<span class='warning'>The mothership is too far away from the theatre of operation, we cannot take off.</span>")
+		return
+	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_TADPOLE_LAUNCHING))
+		to_chat(ui_user, "<span class='warning'>The dropship's engines are not ready yet</span>")
 		return
 	shuttle_port.shuttle_computer = src
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_TADPOLE_LAUNCHED)

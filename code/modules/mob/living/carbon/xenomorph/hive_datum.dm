@@ -626,7 +626,7 @@ to_chat will check for valid clients itself already so no need to double check f
 
 
 /datum/hive_status/proc/attempt_to_spawn_larva_in_silo(mob/xeno_candidate, possible_silos, larva_already_reserved = FALSE)
-	var/obj/structure/resin/silo/chosen_silo
+	var/obj/structure/xeno/resin/silo/chosen_silo
 	if(length(possible_silos) > 1)
 		chosen_silo = tgui_input_list(xeno_candidate, "Available Egg Silos", "Spawn location", possible_silos)
 		if(!chosen_silo)
@@ -734,7 +734,7 @@ to_chat will check for valid clients itself already so no need to double check f
 		if(xeno_job.total_positions < (-difference + xeno_job.current_positions))
 			xeno_job.set_job_positions(-difference + xeno_job.current_positions)
 
-	for(var/obj/structure/resin/silo/silo AS in GLOB.xeno_resin_silos)
+	for(var/obj/structure/xeno/resin/silo/silo AS in GLOB.xeno_resin_silos)
 		if(!is_ground_level(silo.z))
 			continue
 		qdel(silo)
@@ -1070,7 +1070,7 @@ to_chat will check for valid clients itself already so no need to double check f
 /obj/structure/xeno/tunnel/get_xeno_hivenumber()
 	return hivenumber
 
-/obj/structure/resin/xeno_turret/get_xeno_hivenumber()
+/obj/structure/xeno/resin/xeno_turret/get_xeno_hivenumber()
 	return associated_hive.hivenumber
 
 /datum/hive_status/ui_state(mob/user)

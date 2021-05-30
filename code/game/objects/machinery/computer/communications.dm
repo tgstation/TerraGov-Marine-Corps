@@ -110,6 +110,10 @@
 					SSblackbox.record_feedback(FEEDBACK_TALLY, "ic_blocked_words", 1, lowertext(config.ic_filter_regex.match))
 					return FALSE
 
+				if(NON_ASCII_CHECK(input))
+					to_chat(usr, "<span class='warning'>That announcement contained charachters prohibited in IC chat! Consider reviewing the server rules.</span>")
+					return FALSE
+
 				priority_announce(input, type = ANNOUNCEMENT_COMMAND)
 				message_admins("[ADMIN_TPMONTY(usr)] has just sent a command announcement")
 				log_game("[key_name(usr)] has just sent a command announcement.")

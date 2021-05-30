@@ -1,0 +1,4 @@
+author: "Walarks"
+delete-after: True
+changes: 
+  - code_imp: "changed xeno structures typepaths, adds xeno_structure_flags var"
