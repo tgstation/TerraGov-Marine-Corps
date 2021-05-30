@@ -131,6 +131,10 @@
 	for(var/loadout in manager.loadouts_list)
 		if(!istype(loadout, /datum/loadout))
 			manager.loadouts_list -= loadout
+			continue
+		var/datum/loadout/loadout_to_check = loadout
+		if(loadout_to_check.version != CURRENT_LOADOUT_VERSION)
+			manager.loadouts_list -= loadout
 	manager.loadouts_data = null
 	manager.seller = null
 	manager.loadout_vendor = null

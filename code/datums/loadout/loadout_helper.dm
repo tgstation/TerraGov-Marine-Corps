@@ -1,5 +1,5 @@
 ///Return a new empty loayout
-/proc/create_empty_loadout(name = "Default", job = MARINE_LOADOUT)
+/proc/create_empty_loadout(name = "Default", job = SQUAD_MARINE)
 	var/datum/loadout/empty = new
 	empty.name = name
 	empty.job = job
@@ -7,18 +7,29 @@
 	return empty
 
 ///Return true if the item was found in a linked vendor
-/proc/is_savable_in_loadout(obj/item/saved_item)
+/proc/is_savable_in_loadout(obj/item/saved_item, datum/loadout/loadout)
+	if(is_type_in_typecache(item_to_buy_type, GLOB.))
+		return TRUE
 	if(ishandful(saved_item))
 		return is_handful_savable(saved_item)
+	//We check if the item is in a public vendor for free
 	for(var/type in GLOB.loadout_linked_vendor)
 		for(var/datum/vending_product/item_datum AS in GLOB.vending_records[type])
 			if(item_datum.product_path == saved_item.type)
 				return TRUE
+	//If we can't find it for free, we then look if it's in a job specific vendor
+	var/list/job_specific_list = GLOB.loadout_role_limited_objects[loadout.job]
+	if(job_specific_list[saved_item.type] > loadout.unique_equippments_list[saved_item.type])
+		loadout.unique_equippments_list[saved_item.type] += 1
+		return TRUE
 	return FALSE
 
 ///Return true if the item was found in a linked vendor and successfully bought
-/proc/buy_item_in_vendor(item_to_buy_type)
+/proc/buy_item_in_vendor(item_to_buy_type, datum/loadout/loadout)
 	if(is_type_in_typecache(item_to_buy_type, GLOB.bypass_vendor_item))
+		return TRUE
+	///Unique items were already checked, and are not in public vendors
+	if(loadout.unique_equippments_list[item_to_buy_type])
 		return TRUE
 	for(var/type in GLOB.loadout_linked_vendor)
 		for(var/datum/vending_product/item_datum AS in GLOB.vending_records[type])

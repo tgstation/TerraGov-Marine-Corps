@@ -2,7 +2,7 @@
 	///Name of the loadout
 	var/name = ""
 	///The job associated with the loadout
-	var/job = MARINE_LOADOUT
+	var/job = SQUAD_MARINE
 	/**
 	 * Assoc list of all items composing this loadout
 	 * the key of each item is a slot key
@@ -11,8 +11,10 @@
 	var/list/item_list
 	/// The host of the loadout_manager, aka from which loadout vendor are you managing loadouts
 	var/loadout_vendor 
-	///The version of this loadout. This can allow in the future to erase loadouts that are too old to work with the loadout saver system
-	var/version = 1
+	///A list of unique equippment on this loadout (equippment that costs points or is in a job specific vendor)
+	var/unique_equippments_list = list()
+	///The version of this loadout.
+	var/version = CURRENT_LOADOUT_VERSION
 
 ///Empty a slot of the loadout
 /datum/loadout/proc/empty_slot(slot)
@@ -98,7 +100,7 @@
 	var/item2representation_type
 	for(var/slot_key in GLOB.visible_item_slot_list)
 		item_in_slot = user.get_item_by_slot(GLOB.slot_str_to_slot[slot_key])
-		if(!item_in_slot || !is_savable_in_loadout(item_in_slot))
+		if(!item_in_slot || !is_savable_in_loadout(item_in_slot, src))
 			continue
 		item2representation_type = item2representation_type(item_in_slot.type)
 		item_list[slot_key] = new item2representation_type(item_in_slot)

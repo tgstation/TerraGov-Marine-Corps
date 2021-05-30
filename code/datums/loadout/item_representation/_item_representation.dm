@@ -21,9 +21,9 @@
  * If it fails to find a vendor, it will add that item to a list on seller to warns him that it failed
  * Return the instantatiated item if it was successfully sold, and return null otherwise
  */
-/datum/item_representation/proc/instantiate_object(datum/loadout_seller/seller, master = null)
+/datum/item_representation/proc/instantiate_object(datum/loadout_seller/seller, master = null, datum/loadout/loadout = null)
 	if(seller && !bypass_vendor_check)
-		if(!buy_item_in_vendor(item_type))
+		if(!buy_item_in_vendor(item_type, loadout))
 			seller.unavailable_items ++
 			return
 		seller.bought_items += item_type
@@ -71,13 +71,13 @@
 		item_representation_type = item2representation_type(thing_in_content.type)
 		contents += new item_representation_type(thing_in_content)
 
-/datum/item_representation/storage/instantiate_object(datum/loadout_seller/seller, master = null)
+/datum/item_representation/storage/instantiate_object(datum/loadout_seller/seller, master = null, datum/loadout/loadout = null)
 	. = ..()
 	if(!.)
 		return
 	var/obj/item/storage/storage = .
 	for(var/datum/item_representation/item_representation AS in contents)
-		var/obj/item/item_to_insert = item_representation.instantiate_object(seller)
+		var/obj/item/item_to_insert = item_representation.instantiate_object(seller, master, loadout)
 		if(!item_to_insert)
 			continue
 		if(storage.can_be_inserted(item_to_insert))

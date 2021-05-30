@@ -21,7 +21,7 @@
 	item_list = list()
 	for(var/slot_key in GLOB.visible_item_slot_list)
 		var/datum/item_representation/item_representation = loadout.item_list[slot_key]
-		item_list[slot_key] = item_representation?.instantiate_object(src)
+		item_list[slot_key] = item_representation?.instantiate_object(src, null, loadout)
 
 ///The user chose to abort equiping that loadout, so we put back all items in vendor
 /datum/loadout_seller/proc/sell_back_items()
