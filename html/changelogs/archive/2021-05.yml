@@ -419,3 +419,11 @@
   TiviPlus:
   - code_imp: client button hold optimizations
   - bugfix: Sanatize command announces better
+2021-05-30:
+  BraveMole:
+  - balance: Blue fire price reduced to 60 from 100
+  - balance: Blue fire firedelay reduced to 2 seconds (rather than 3.5)
+  - bugfix: fix overwatch
+  Surrealaser:
+  - bugfix: Hugger traps can now explode normally.
+  - bugfix: Xeno pings are now visible by xenos only.
