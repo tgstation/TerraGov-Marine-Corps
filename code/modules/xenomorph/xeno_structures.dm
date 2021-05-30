@@ -1,10 +1,14 @@
-/obj/structure/resin
+/obj/structure/xeno
+	///Bitflags specific to xeno structures
+	var/xeno_structure_flags
+
+/obj/structure/xeno/resin
 	hit_sound = "alien_resin_break"
 	layer = RESIN_STRUCTURE_LAYER
 	resistance_flags = UNACIDABLE
 
 
-/obj/structure/resin/ex_act(severity)
+/obj/structure/xeno/resin/ex_act(severity)
 	switch(severity)
 		if(EXPLODE_DEVASTATE)
 			take_damage(210)
@@ -13,18 +17,18 @@
 		if(EXPLODE_LIGHT)
 			take_damage(70)
 
-/obj/structure/resin/attack_hand(mob/living/user)
+/obj/structure/xeno/resin/attack_hand(mob/living/user)
 	to_chat(user, "<span class='warning'>You scrape ineffectively at \the [src].</span>")
 	return TRUE
 
-/obj/structure/resin/flamer_fire_act()
+/obj/structure/xeno/resin/flamer_fire_act()
 	take_damage(10, BURN, "fire")
 
-/obj/structure/resin/fire_act()
+/obj/structure/xeno/resin/fire_act()
 	take_damage(10, BURN, "fire")
 
 
-/obj/structure/resin/silo
+/obj/structure/xeno/resin/silo
 	name = "resin silo"
 	icon = 'icons/Xeno/resin_silo.dmi'
 	icon_state = "weed_silo"
@@ -42,7 +46,7 @@
 	COOLDOWN_DECLARE(silo_damage_alert_cooldown)
 	COOLDOWN_DECLARE(silo_proxy_alert_cooldown)
 
-/obj/structure/resin/silo/Initialize()
+/obj/structure/xeno/resin/silo/Initialize()
 	. = ..()
 	var/static/number = 1
 	name = "[name] [number]"
@@ -60,7 +64,7 @@
 	return INITIALIZE_HINT_LATELOAD
 
 
-/obj/structure/resin/silo/LateInitialize()
+/obj/structure/xeno/resin/silo/LateInitialize()
 	. = ..()
 	if(!locate(/obj/effect/alien/weeds) in center_turf)
 		new /obj/effect/alien/weeds/node(center_turf)
@@ -77,7 +81,7 @@
 		newt.tunnel_desc = "[AREACOORD_NO_Z(newt)]"
 		newt.name += " [name]"
 
-/obj/structure/resin/silo/obj_destruction(damage_amount, damage_type, damage_flag)
+/obj/structure/xeno/resin/silo/obj_destruction(damage_amount, damage_type, damage_flag)
 	. = ..()
 	if(associated_hive)
 		UnregisterSignal(associated_hive, list(COMSIG_HIVE_XENO_MOTHER_PRE_CHECK, COMSIG_HIVE_XENO_MOTHER_CHECK))
@@ -88,7 +92,7 @@
 		playsound(loc,'sound/effects/alien_egg_burst.ogg', 75)
 
 
-/obj/structure/resin/silo/Destroy()
+/obj/structure/xeno/resin/silo/Destroy()
 	GLOB.xeno_resin_silos -= src
 
 	for(var/i in contents)
@@ -101,7 +105,7 @@
 	return ..()
 
 
-/obj/structure/resin/silo/examine(mob/user)
+/obj/structure/xeno/resin/silo/examine(mob/user)
 	. = ..()
 	var/current_integrity = (obj_integrity / max_integrity) * 100
 	switch(current_integrity)
@@ -117,7 +121,7 @@
 			to_chat(user, "<span class='info'>It appears in good shape, pulsating healthily.</span>")
 
 
-/obj/structure/resin/silo/take_damage(damage_amount, damage_type, damage_flag, sound_effect, attack_dir, armour_penetration)
+/obj/structure/xeno/resin/silo/take_damage(damage_amount, damage_type, damage_flag, sound_effect, attack_dir, armour_penetration)
 	. = ..()
 
 	//We took damage, so it's time to start regenerating if we're not already processing
@@ -126,7 +130,7 @@
 
 	resin_silo_damage_alert()
 
-/obj/structure/resin/silo/proc/resin_silo_damage_alert()
+/obj/structure/xeno/resin/silo/proc/resin_silo_damage_alert()
 	if(!COOLDOWN_CHECK(src, silo_damage_alert_cooldown))
 		return
 
@@ -134,7 +138,7 @@
 	COOLDOWN_START(src, silo_damage_alert_cooldown, XENO_SILO_HEALTH_ALERT_COOLDOWN) //set the cooldown.
 
 ///Alerts the Hive when hostiles get too close to their resin silo
-/obj/structure/resin/silo/proc/resin_silo_proxy_alert(datum/source, atom/hostile)
+/obj/structure/xeno/resin/silo/proc/resin_silo_proxy_alert(datum/source, atom/hostile)
 	SIGNAL_HANDLER
 
 	if(!COOLDOWN_CHECK(src, silo_proxy_alert_cooldown)) //Proxy alert triggered too recently; abort
@@ -155,12 +159,12 @@
 	associated_hive.xeno_message("Our [name] has detected a nearby hostile [hostile] at [get_area(hostile)] (X: [hostile.x], Y: [hostile.y]).", "xenoannounce", 5, FALSE, hostile, 'sound/voice/alien_help1.ogg', FALSE, null, /obj/screen/arrow/leader_tracker_arrow)
 	COOLDOWN_START(src, silo_proxy_alert_cooldown, XENO_SILO_DETECTION_COOLDOWN) //set the cooldown.
 
-/obj/structure/resin/silo/process()
+/obj/structure/xeno/resin/silo/process()
 	//Regenerate if we're at less than max integrity
 	if(obj_integrity < max_integrity)
 		obj_integrity = min(obj_integrity + 25, max_integrity) //Regen 5 HP per sec
 
-/obj/structure/resin/silo/proc/is_burrowed_larva_host(datum/source, list/mothers, list/silos)
+/obj/structure/xeno/resin/silo/proc/is_burrowed_larva_host(datum/source, list/mothers, list/silos)
 	SIGNAL_HANDLER
 	if(associated_hive)
 		silos += src
@@ -169,7 +173,7 @@
 //*******************
 //Corpse recyclinging
 //*******************
-/obj/structure/resin/silo/attackby(obj/item/I, mob/user, params)
+/obj/structure/xeno/resin/silo/attackby(obj/item/I, mob/user, params)
 	. = ..()
 	if(!isxeno(user)) //only xenos can deposit corpses
 		return
@@ -218,7 +222,7 @@
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "xeno_silo_corpses")
 
 /// Make the silo shake
-/obj/structure/resin/silo/proc/shake(duration)
+/obj/structure/xeno/resin/silo/proc/shake(duration)
 	/// How important should be the shaking movement
 	var/offset = prob(50) ? -2 : 2
 	/// Track the last position of the silo for the animation
@@ -231,17 +235,17 @@
 	addtimer(CALLBACK(src, .proc/stop_shake, old_pixel_x), duration)
 
 /// Stop the shaking animation
-/obj/structure/resin/silo/proc/stop_shake(old_px)
+/obj/structure/xeno/resin/silo/proc/stop_shake(old_px)
 	animate(src)
 	pixel_x = old_px
 
-/obj/structure/resin/silo/small_silo
+/obj/structure/xeno/resin/silo/small_silo
 	name = "small resin silo"
 	icon_state = "purple_silo"
 	max_integrity = 500
 	larva_spawn_rate = 0.25
 
-/obj/structure/resin/xeno_turret
+/obj/structure/xeno/resin/xeno_turret
 	icon = 'icons/Xeno/acidturret.dmi'
 	icon_state = "acid_turret"
 	name = "resin acid turret"
@@ -270,7 +274,7 @@
 	///The last time the sentry did a scan
 	var/last_scan_time
 
-/obj/structure/resin/xeno_turret/Initialize(mapload, hivenumber = XENO_HIVE_NORMAL)
+/obj/structure/xeno/resin/xeno_turret/Initialize(mapload, hivenumber = XENO_HIVE_NORMAL)
 	. = ..()
 	ammo = GLOB.ammo_list[/datum/ammo/xeno/acid/heavy/turret]
 	ammo.max_range = range + 2 //To prevent funny gamers to abuse the turrets that easily
@@ -284,25 +288,25 @@
 	update_icon()
 
 ///Signal handler to delete the turret when the alamo is hijacked
-/obj/structure/resin/xeno_turret/proc/destroy_on_hijack()
+/obj/structure/xeno/resin/xeno_turret/proc/destroy_on_hijack()
 	SIGNAL_HANDLER
 	qdel(src)
 
-/obj/structure/resin/xeno_turret/obj_destruction(damage_amount, damage_type, damage_flag)
+/obj/structure/xeno/resin/xeno_turret/obj_destruction(damage_amount, damage_type, damage_flag)
 	if(damage_amount) //Spawn the gas only if we actually get destroyed by damage
 		var/datum/effect_system/smoke_spread/xeno/smoke = new /datum/effect_system/smoke_spread/xeno/acid(src)
 		smoke.set_up(1, get_turf(src))
 		smoke.start()
 	return ..()
 
-/obj/structure/resin/xeno_turret/Destroy()
+/obj/structure/xeno/resin/xeno_turret/Destroy()
 	set_hostile(null)
 	set_last_hostile(null)
 	STOP_PROCESSING(SSobj, src)
 	playsound(loc,'sound/effects/xeno_turret_death.ogg', 70)
 	return ..()
 
-/obj/structure/resin/xeno_turret/ex_act(severity)
+/obj/structure/xeno/resin/xeno_turret/ex_act(severity)
 	switch(severity)
 		if(EXPLODE_DEVASTATE)
 			take_damage(1500)
@@ -311,22 +315,22 @@
 		if(EXPLODE_LIGHT)
 			take_damage(300)
 
-/obj/structure/resin/xeno_turret/flamer_fire_act()
+/obj/structure/xeno/resin/xeno_turret/flamer_fire_act()
 	take_damage(60, BURN, "fire")
 	ENABLE_BITFIELD(resistance_flags, ON_FIRE)
 
-/obj/structure/resin/xeno_turret/fire_act()
+/obj/structure/xeno/resin/xeno_turret/fire_act()
 	take_damage(60, BURN, "fire")
 	ENABLE_BITFIELD(resistance_flags, ON_FIRE)
 
-/obj/structure/resin/xeno_turret/update_overlays()
+/obj/structure/xeno/resin/xeno_turret/update_overlays()
 	. = ..()
 	if(obj_integrity <= max_integrity / 2)
 		. += image('icons/Xeno/acidturret.dmi', src, "+turret_damage")
 	if(CHECK_BITFIELD(resistance_flags, ON_FIRE))
 		. += image('icons/Xeno/acidturret.dmi', src, "+turret_on_fire")
 
-/obj/structure/resin/xeno_turret/process()
+/obj/structure/xeno/resin/xeno_turret/process()
 	//Turrets regen some HP, every 2 sec
 	if(obj_integrity < max_integrity)
 		obj_integrity = min(obj_integrity + TURRET_HEALTH_REGEN, max_integrity)
@@ -349,7 +353,7 @@
 		set_last_hostile(hostile)
 		SEND_SIGNAL(src, COMSIG_AUTOMATIC_SHOOTER_START_SHOOTING_AT)
 
-/obj/structure/resin/xeno_turret/attackby(obj/item/I, mob/living/user, params)
+/obj/structure/xeno/resin/xeno_turret/attackby(obj/item/I, mob/living/user, params)
 	if(I.flags_item & NOBLUDGEON || !isliving(user))
 		return attack_hand(user)
 
@@ -372,29 +376,29 @@
 	playsound(src, "alien_resin_break", 25)
 
 ///Signal handler for hard del of hostile
-/obj/structure/resin/xeno_turret/proc/unset_hostile()
+/obj/structure/xeno/resin/xeno_turret/proc/unset_hostile()
 	SIGNAL_HANDLER
 	hostile = null
 
 ///Signal handler for hard del of last_hostile
-/obj/structure/resin/xeno_turret/proc/unset_last_hostile()
+/obj/structure/xeno/resin/xeno_turret/proc/unset_last_hostile()
 	SIGNAL_HANDLER
 	last_hostile = null
 
 ///Setter for hostile with hard del in mind
-/obj/structure/resin/xeno_turret/proc/set_hostile(_hostile)
+/obj/structure/xeno/resin/xeno_turret/proc/set_hostile(_hostile)
 	if(hostile != _hostile)
 		hostile = _hostile
 		RegisterSignal(hostile, COMSIG_PARENT_QDELETING, .proc/unset_hostile)
 
 ///Setter for last_hostile with hard del in mind
-/obj/structure/resin/xeno_turret/proc/set_last_hostile(_last_hostile)
+/obj/structure/xeno/resin/xeno_turret/proc/set_last_hostile(_last_hostile)
 	if(last_hostile)
 		UnregisterSignal(last_hostile, COMSIG_PARENT_QDELETING)
 	last_hostile = _last_hostile
 
 ///Look for the closest human in range and in light of sight. If no human is in range, will look for xenos of other hives
-/obj/structure/resin/xeno_turret/proc/get_target()
+/obj/structure/xeno/resin/xeno_turret/proc/get_target()
 	var/distance = range + 0.5 //we add 0.5 so if a potential target is at range, it is accepted by the system
 	var/buffer_distance
 	var/list/turf/path = list()
@@ -428,7 +432,7 @@
 			. = nearby_hostile
 
 ///Return TRUE if a possible target is near
-/obj/structure/resin/xeno_turret/proc/scan()
+/obj/structure/xeno/resin/xeno_turret/proc/scan()
 	potential_hostiles.Cut()
 	for (var/mob/living/carbon/human/nearby_human AS in cheap_get_humans_near(src, TURRET_SCAN_RANGE))
 		if(nearby_human.stat == DEAD)
@@ -443,7 +447,7 @@
 
 
 ///Signal handler to make the turret shoot at its target
-/obj/structure/resin/xeno_turret/proc/shoot()
+/obj/structure/xeno/resin/xeno_turret/proc/shoot()
 	SIGNAL_HANDLER
 	if(!hostile)
 		SEND_SIGNAL(src, COMSIG_AUTOMATIC_SHOOTER_STOP_SHOOTING_AT)
