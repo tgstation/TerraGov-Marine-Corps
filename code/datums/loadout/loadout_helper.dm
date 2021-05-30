@@ -8,7 +8,7 @@
 
 ///Return true if the item was found in a linked vendor
 /proc/is_savable_in_loadout(obj/item/saved_item, datum/loadout/loadout)
-	if(is_type_in_typecache(item_to_buy_type, GLOB.))
+	if(is_type_in_typecache(saved_item, GLOB.bypass_loadout_check_item))
 		return TRUE
 	if(ishandful(saved_item))
 		return is_handful_savable(saved_item)
@@ -26,7 +26,7 @@
 
 ///Return true if the item was found in a linked vendor and successfully bought
 /proc/buy_item_in_vendor(item_to_buy_type, datum/loadout/loadout)
-	if(is_type_in_typecache(item_to_buy_type, GLOB.bypass_vendor_item))
+	if(is_type_in_typecache(item_to_buy_type, GLOB.bypass_vendor_item) || is_type_in_typecache(item_to_buy_type, GLOB.bypass_loadout_check_item))
 		return TRUE
 	///Unique items were already checked, and are not in public vendors
 	if(loadout.unique_equippments_list[item_to_buy_type])
