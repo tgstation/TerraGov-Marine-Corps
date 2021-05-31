@@ -563,10 +563,11 @@
 	desc = "A weird glowing spire..."
 	bound_width = 64
 	bound_height = 64
-	max_integrity = 10
+	max_integrity = 1000
 	density = TRUE
 	resistance_flags = UNACIDABLE | DROPSHIP_IMMUNE
 	light_system = STATIC_LIGHT
+	integrity_failure = 100
 	///Acid nodes connected to the spire
 	var/list/connected_acid_nodes = list()
 	///Amount of acid that the spire produces
@@ -594,6 +595,39 @@
 	. = ..()
 	if(isxeno(user))
 		to_chat(user, "<span class='notice'>The network currently contains <b>[SSacid_spires.stored_acid()] units of acid.</b></span>")
+
+/obj/structure/xeno/resin/acid_spire/ex_act(severity)
+	switch(severity)
+		if(EXPLODE_DEVASTATE)
+			take_damage(max_integrity)
+		if(EXPLODE_HEAVY)
+			take_damage(max_integrity * 0.6)
+		if(EXPLODE_LIGHT)
+			take_damage(max_integrity * 0.25)
+
+/obj/structure/xeno/resin/acid_spire/obj_break(damage_flag)
+	. = ..()
+	if(obj_integrity > integrity_failure)
+		return
+
+	obj_integrity = integrity_failure
+	icon_state = "destroyed_tower"
+	update_icon()
+	set_light(2, 2, LIGHT_COLOR_ELECTRIC_GREEN)
+	resistance_flags |= INDESTRUCTIBLE
+	resistance_flags |= ACID_SPIRE_BROKEN
+
+///Restores the acid spire to a functional state
+/obj/structure/xeno/resin/acid_spire/proc/restore()
+	if(!(xeno_structure_flags & ACID_SPIRE_BROKEN))
+		return
+
+	obj_integrity = max_integrity
+	icon_state = "tower"
+	update_icon()
+	set_light(6, 2, LIGHT_COLOR_ELECTRIC_GREEN)
+	resistance_flags &= ~INDESTRUCTIBLE
+	resistance_flags &= ~ACID_SPIRE_BROKEN
 
 ///connects an acid node to the spire
 /obj/structure/xeno/resin/acid_spire/proc/add_acid_node(obj/effect/alien/acid_node/new_node)
@@ -628,7 +662,7 @@
 	SEND_SIGNAL(src, COMSIG_LIVING_ACID_SPIRE_RANGE_CHANGED)
 
 /obj/structure/xeno/resin/acid_spire/proc/production_strength()
-	return acid_production_strength
+	return xeno_structure_flags & ACID_SPIRE_BROKEN ? acid_production_strength*0.5 : acid_production_strength
 
 ///Updates connected nodes' provided strength
 /obj/structure/xeno/resin/acid_spire/proc/update_linked_nodes_strength()

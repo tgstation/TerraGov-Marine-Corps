@@ -813,6 +813,7 @@ TUNNEL
 	var/charges = 1
 	var/ccharging = FALSE
 	var/charge_delay = 10 SECONDS
+	var/acid_cost = 10
 	var/mob/living/carbon/xenomorph/creator = null
 
 /obj/structure/xeno/acidwell/Initialize()
@@ -826,9 +827,9 @@ TUNNEL
 /obj/structure/xeno/acidwell/acid_spire_link()
 	. = ..()
 	if(!.)
-		return
+		return FALSE
 
-	charge_delay = 2 SECONDS
+	charge_delay = 1 SECONDS
 
 /obj/structure/xeno/acidwell/acid_spire_unlink()
 	. = ..()
@@ -892,9 +893,13 @@ TUNNEL
 		if(ccharging)
 			to_chat(X, "<span class='xenoannounce'>[src] is already being filled!</span>")
 			return
+		if(!SSacid_spires.use_acid(acid_cost))
+			disconnect_from_acid_spire()
 		ccharging = TRUE
-		if(!do_after(X, 10 SECONDS, FALSE, src, BUSY_ICON_BUILD))
+		if(!do_after(X, charge_delay, FALSE, src, BUSY_ICON_BUILD))
 			ccharging = FALSE
+			if(xeno_structure_flags & CONNECTED)
+				SSacid_spires.use_acid(-acid_cost)
 			return
 		if(X.plasma_stored < 200)
 			ccharging = FALSE

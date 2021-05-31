@@ -1557,12 +1557,12 @@
 	return succeed_activate()
 
 /////////////////////////////////
-// Place Acid node
+// Connect to acid network
 /////////////////////////////////
 /datum/action/xeno_action/activable/connect_to_acid
-	name = "Connect to acid spires"
+	name = "Connect to acid spires / Restore acid spire"
 	action_icon_state = "place_trap"
-	mechanics_text = "Connect a structure to the acid network."
+	mechanics_text = "Connect a structure to the acid network. Restore an acid spire if it is destroyed."
 	cooldown_timer = 2 SECONDS
 	plasma_cost = 0
 
@@ -1587,9 +1587,9 @@
 	if(connected_structure.xeno_structure_flags & ACID_SPIRE_CONNECTED)
 		connected_structure.disconnect_from_acid_spire()
 		to_chat(owner, "<span class='warning'>We disconnect [connected_structure] from the network.</span>")
+		return succeed_activate()
 	else if(!connected_structure.connect_to_acid_spire())
 		to_chat(owner, "<span class='warning'>Connecting of [connected_structure] was unsucessful.</span>")
-	else
-		to_chat(owner, "<span class='warning'We connect [connected_structure] to the acid network.</span>")
-
+		return succeed_activate()
+	to_chat(owner, "<span class='notice'>We connect [connected_structure] to the acid network.</span>")
 	return succeed_activate()

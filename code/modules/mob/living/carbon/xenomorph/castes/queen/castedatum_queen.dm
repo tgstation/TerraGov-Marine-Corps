@@ -76,6 +76,7 @@
 		/datum/action/xeno_action/queen_order,
 		/datum/action/xeno_action/deevolve,
 		/datum/action/xeno_action/activable/rally_hive,
+		/datum/action/xeno_action/activable/connect_to_acid,
 	)
 
 
