@@ -64,7 +64,6 @@
 		else
 			full_key = "[AltMod][CtrlMod][ShiftMod][_key]"
 	var/keycount = 0
-	message_admins(full_key)
 	for(var/kb_name in prefs.key_bindings[full_key])
 		keycount++
 		var/datum/keybinding/kb = GLOB.keybindings_by_name[kb_name]
