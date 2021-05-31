@@ -40,9 +40,8 @@
 			step_away(M, X, 1) //Knock away
 			shake_camera(M, 2, 2)
 			to_chat(M, "<span class='highdanger'>You reel from the shockwave of [X]'s stomp!</span>")
+			M.take_overall_damage_armored(damage, BRUTE, "melee", FALSE, FALSE, TRUE) // give half damage brute instead of stamina
 			M.Paralyze(0.5 SECONDS)
-
-		M.apply_damage(damage, STAMINA, updating_health = TRUE) //Armour ignoring Stamina
 
 /datum/action/xeno_action/activable/stomp/ai_should_start_consider()
 	return TRUE
@@ -143,10 +142,9 @@
 
 	//Handle the damage
 	if(!X.issamexenohive(L)) //Friendly xenos don't take damage.
-		var/damage = toss_distance * 5
+		var/damage = toss_distance * 6
 
-		L.take_overall_damage_armored(damage, BRUTE, "melee")
-		L.apply_damage(damage, STAMINA, updating_health = TRUE) //...But decent armour ignoring Stamina
+		L.take_overall_damage_armored(damage, BRUTE, "melee", updating_health = TRUE)
 		shake_camera(L, 2, 2)
 		playsound(L,pick('sound/weapons/alien_claw_block.ogg','sound/weapons/alien_bite2.ogg'), 50, 1)
 
