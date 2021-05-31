@@ -33,7 +33,7 @@
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
 		if(istype(H.wear_suit, /obj/item/clothing/suit/storage/marine/harness/boomvest))
-			to_chat(user, "<span class='warning'>You think better about trying to block your own vest explosion and leave the shiled alone.</span>")
+			to_chat(user, "<span class='warning'>You think better about trying to block your own vest explosion and leave the shield alone.</span>")
 			return
 	return ..()
 
