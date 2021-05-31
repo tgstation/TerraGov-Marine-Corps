@@ -215,7 +215,7 @@
 /obj/item/weapon/gun/removed_from_inventory(mob/user)
 	if(!gun_user)
 		return
-	UnregisterSignal(gun_user, list(COMSIG_MOB_MOUSEDOWN, COMSIG_MOB_MOUSEUP, COMSIG_MOB_MOUSEDRAG))
+	UnregisterSignal(gun_user, list(COMSIG_MOB_MOUSEDOWN, COMSIG_MOB_MOUSEUP, COMSIG_MOB_MOUSEDRAG, COMSIG_KB_RAILATTACHMENT, COMSIG_KB_UNDERRAILATTACHMENT, COMSIG_KB_UNLOADGUN))
 	gun_user.client?.mouse_pointer_icon = initial(gun_user.client.mouse_pointer_icon)
 	gun_user = null
 
