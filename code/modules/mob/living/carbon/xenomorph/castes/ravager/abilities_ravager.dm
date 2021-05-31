@@ -197,12 +197,12 @@
 	X.do_jitter_animation(1000)
 	X.endure = FALSE
 	X.remove_filter("ravager_endure_outline")
-	if(X.health < X.get_death_threshold() && X.health > RAVAGER_ENDURE_HP_LIMIT) //If we have less health than our death threshold, but more than our Endure death threshold, set our HP to just a hair above insta dying
+	if(X.health < X.get_crit_threshold()) //If we have less health than our death threshold, but more than our Endure death threshold, set our HP to just a hair above insta dying
 		var/total_damage = X.getFireLoss() + X.getBruteLoss()
 		var/burn_percentile_damage = X.getFireLoss() / total_damage
 		var/brute_percentile_damage = X.getBruteLoss() / total_damage
-		X.setBruteLoss((X.xeno_caste.max_health - X.get_death_threshold()-1) * brute_percentile_damage)
-		X.setFireLoss((X.xeno_caste.max_health - X.get_death_threshold()-1) * burn_percentile_damage)
+		X.setBruteLoss((X.xeno_caste.max_health - X.get_crit_threshold()-1) * brute_percentile_damage)
+		X.setFireLoss((X.xeno_caste.max_health - X.get_crit_threshold()-1) * burn_percentile_damage)
 
 	X.soft_armor = X.soft_armor.setRating(bomb = XENO_BOMB_RESIST_1) //Remove resistances/immunities
 	REMOVE_TRAIT(X, TRAIT_STAGGERIMMUNE, ENDURE_TRAIT)
