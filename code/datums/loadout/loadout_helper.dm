@@ -50,7 +50,7 @@
 			base_price = SANDBAG_PRICE_IN_GEAR_VENDOR
 		if(base_amount && (round(stack_saved.amount / base_amount) * base_price <= loadout.job_points_available))
 			loadout.job_points_available -= round(stack_saved.amount / base_amount) * base_price
-			loadout.priced_items_list[saved_item.type] += 1
+			loadout.priced_items_list[saved_item.type]++
 			return TRUE
 	//If it was not in a job specific clothes vendor, we try to use marine points to buy it
 	var/list/listed_products = GLOB.job_specific_points_vendor[loadout.job]
