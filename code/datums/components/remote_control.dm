@@ -57,9 +57,9 @@
 /datum/component/remote_control/proc/update_left_clickproc(datum/source, type)
 	SIGNAL_HANDLER
 	switch(type)
-		if(/obj/item/uav_turret, /obj/item/uav_turret/heavy, /obj/item/uav_turret/droid)
+		if(TURRET_TYPE_DROIDLASER, TURRET_TYPE_HEAVY, TURRET_TYPE_LIGHT)
 			left_click_proc = CALLBACK(src, .proc/uv_handle_click)
-		if(/obj/item/explosive/plastique)
+		if(TURRET_TYPE_EXPLOSIVE)
 			left_click_proc = CALLBACK(src, .proc/uv_handle_click_explosive)
 		else
 			left_click_proc = null

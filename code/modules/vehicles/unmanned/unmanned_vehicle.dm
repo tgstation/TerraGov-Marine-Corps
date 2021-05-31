@@ -15,8 +15,10 @@
 	resistance_flags = XENO_DAMAGEABLE
 	flags_atom = BUMP_ATTACKABLE
 	soft_armor = list("melee" = 25, "bullet" = 50, "laser" = 50, "energy" = 100, "bomb" = 50, "bio" = 100, "rad" = 100, "fire" = 25, "acid" = 25)
-	///Type of "turret" attached
-	var/obj/item/turret_type
+	/// Path of "turret" attached
+	var/obj/item/turret_path
+	/// Type of the turret attached
+	var/turret_type
 	///Turret types we're allowed to attach
 	var/turret_pattern = PATTERN_TRACKED
 	///Boolean: do we want this turret to draw overlays for itself?
@@ -56,7 +58,8 @@
 		sentry_status_hud.add_to_hud(src)
 	hud_set_machine_health()
 	if(spawn_equipped_type)
-		turret_type = spawn_equipped_type
+		turret_path = spawn_equipped_type
+		turret_type = initial(spawn_equipped_type.turret_type)
 		ammo = GLOB.ammo_list[initial(spawn_equipped_type.ammo_type)]
 		fire_delay = initial(spawn_equipped_type.fire_delay)
 		current_rounds = max_rounds
@@ -82,13 +85,13 @@
 	if(!overlay_turret)
 		return
 	switch(turret_type)
-		if(/obj/item/uav_turret/heavy)
+		if(TURRET_TYPE_HEAVY)
 			. += image('icons/obj/unmanned_vehicles.dmi', src, "heavy_cannon")
-		if(/obj/item/uav_turret)
+		if(TURRET_TYPE_LIGHT)
 			. += image('icons/obj/unmanned_vehicles.dmi', src, "light_cannon")
-		if(/obj/item/explosive/plastique)
+		if(TURRET_TYPE_EXPLOSIVE)
 			. += image('icons/obj/unmanned_vehicles.dmi', src, "bomb")
-		if(/obj/item/uav_turret/droid)
+		if(TURRET_TYPE_DROIDLASER)
 			. += image('icons/obj/unmanned_vehicles.dmi', src, "droidlaser")
 
 /obj/vehicle/unmanned/examine(mob/user, distance, infix, suffix)
@@ -106,25 +109,27 @@
 ///Try to desequip the turret
 /obj/vehicle/unmanned/wrench_act(mob/living/user, obj/item/I)
 	. = ..()
-	if(!turret_type)
+	if(!turret_path)
 		to_chat(user,"<span class='warning'>There is nothing to remove from [src]!</span>")
 		return
-	user.visible_message("<span class='notice'>[user] starts to remove [initial(turret_type.name)] from [src].</span>",
-	"<span class='notice'>You start to remove [initial(turret_type.name)] from [src].</span>")
+	user.visible_message("<span class='notice'>[user] starts to remove [initial(turret_path.name)] from [src].</span>",
+	"<span class='notice'>You start to remove [initial(turret_path.name)] from [src].</span>")
 	if(!do_after(user, 3 SECONDS, TRUE, src))
 		return
-	var/obj/item/equipment = new turret_type
+	var/obj/item/equipment = new turret_path
 	user.visible_message("<span class='notice'>[user] removes [equipment] from [src].</span>",
 	"<span class='notice'>You remove [equipment] from [src].</span>")
 	user.put_in_hands(equipment)
+	turret_path = null
 	turret_type = null
 	current_rounds = 0
+	update_icon()
 	hud_set_uav_ammo()
 	return
 
 ///Try to reload the turret of our vehicule
 /obj/vehicle/unmanned/proc/reload_turret(obj/item/ammo_magazine/ammo, mob/user)
-	if(!ispath(turret_type, ammo.gun_type))
+	if(!ispath(turret_path, ammo.gun_type))
 		to_chat(user, "<span class='warning'>This is not the right ammo!</span>")
 		return
 	user.visible_message("<span class='notice'>[user] starts to reload [src] with [ammo].</span>",
@@ -139,7 +144,7 @@
 	
 /// Try to equip a turret on the vehicle
 /obj/vehicle/unmanned/proc/equip_turret(obj/item/I, mob/user)
-	if(turret_type)
+	if(turret_path)
 		to_chat(user, "<span class='notice'>There's already something attached!</span>")
 		return
 	if(istype(I, /obj/item/uav_turret))
@@ -151,13 +156,16 @@
 	"<span class='notice'>You start to attach [I] to [src].</span>")
 	if(!do_after(user, 3 SECONDS, TRUE, src, BUSY_ICON_GENERIC))
 		return
-	turret_type = I.type
+	turret_path = I.type
 	if(istype(I, /obj/item/uav_turret))
 		var/obj/item/uav_turret/turret = I
 		ammo = GLOB.ammo_list[turret.ammo_type]
+		turret_type = turret.turret_type
 		fire_delay = turret.fire_delay
 		current_rounds = max_rounds
 		hud_set_uav_ammo()
+	else
+		turret_type = TURRET_TYPE_EXPLOSIVE
 	user.visible_message("<span class='notice'>[user] attaches [I] to [src].</span>",
 	"<span class='notice'>You attach [I] to [src].</span>")
 	update_icon()
