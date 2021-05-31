@@ -427,3 +427,6 @@
   Surrealaser:
   - bugfix: Hugger traps can now explode normally.
   - bugfix: Xeno pings are now visible by xenos only.
+2021-05-31:
+  Walarks:
+  - code_imp: changed xeno structures typepaths, adds xeno_structure_flags var
