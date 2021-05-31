@@ -41,7 +41,7 @@ type GearCustomizationData = {
   clothing: PreferencesClothingTypeList,
   underwear: number,
   undershirt: number,
-  backpack: string[],
+  backpack: number,
   gender: string,
 }
 

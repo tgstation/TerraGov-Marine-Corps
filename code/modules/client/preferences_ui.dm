@@ -585,8 +585,8 @@
 				return
 			var/mods = sortList(params["key_mods"])
 			var/full_key = params["key"]
-			if(length(mods))
-				full_key = "[mods]+[full_key]"
+			for(var/mod in mods)
+				full_key = mod + "+" + full_key
 
 			if(GLOB._kbMap[full_key])
 				full_key = GLOB._kbMap[full_key]
