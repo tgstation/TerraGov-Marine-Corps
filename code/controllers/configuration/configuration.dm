@@ -10,10 +10,11 @@
 
 	var/list/list/maplist
 	var/list/defaultmaps
-
-	var/list/modes // allowed modes
+	/// List of all modes that can be choose by admins
+	var/list/modes
 	var/list/gamemode_cache
-	var/list/votable_modes // votable modes
+	/// List of all modes that can be voted by the players
+	var/list/votable_modes 
 	var/list/mode_names
 
 	var/motd
@@ -234,17 +235,14 @@
 	gamemode_cache = typecacheof(/datum/game_mode, TRUE)
 	modes = list()
 	mode_names = list()
-	votable_modes = list()
 	for(var/T in gamemode_cache)
 		var/datum/game_mode/M = new T()
 		if(!M.config_tag)
 			continue
 		if((M.config_tag in modes)) //Ensure each mode is added only once
 			continue
-		modes += M.config_tag
+		modes += M
 		mode_names[M.config_tag] = M.name
-		if(M.votable)
-			votable_modes += M
 	log_config("Loading config file [CONFIG_MODES_FILE]...")
 	var/filename = "[directory]/[CONFIG_MODES_FILE]"
 	var/list/Lines = file2list(filename)
@@ -277,7 +275,7 @@
 
 		switch(command)
 			if("mode")
-				for(var/datum/game_mode/mode AS in votable_modes)
+				for(var/datum/game_mode/mode AS in modes)
 					if(mode.config_tag == data)
 						currentmode = mode
 						break
@@ -289,10 +287,17 @@
 				currentmode.squads_max_number = text2num(data)
 			if("deploytimelock")
 				currentmode.deploy_time_lock = text2num(data) MINUTES
+			if("votable")
+				currentmode.votable = text2num(data)
 			if("endmode")
 				currentmode = null
 			else
 				log_config("Unknown command in map vote config: '[command]'")
+	
+	votable_modes = list()
+	for(var/datum/game_mode/mode AS in modes)
+		if(mode.votable)
+			votable_modes += mode
 
 
 

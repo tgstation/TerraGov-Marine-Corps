@@ -36,6 +36,7 @@
 #define COOLDOWN_RELAY_MOVE "remote_relay_moves"
 #define COOLDOWN_PROJECTOR_LIGHT "projector_light"
 #define COOLDOWN_BIOSCAN "cooldown_bioscan"
+#define COOLDOWN_TADPOLE_LAUNCHING "cooldown_tadpole_launching"
 
 //// COOLDOWN SYSTEMS
 /*

@@ -669,10 +669,6 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 		return
 	var/zoom_device = zoomdevicename ? "\improper [zoomdevicename] of [src]" : "\improper [src]"
 
-	for(var/obj/item/I in user.contents)
-		if(I.zoom && I != src)
-			to_chat(user, "<span class='warning'>You are already looking through \the [zoom_device].</span>")
-			return //Return in the interest of not unzooming the other item. Check first in the interest of not fucking with the other clauses
 
 	if(is_blind(user))
 		to_chat(user, "<span class='warning'>You are too blind to see anything.</span>")
@@ -690,6 +686,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 		user.visible_message("<span class='notice'>[user] looks up from [zoom_device].</span>",
 		"<span class='notice'>You look up from [zoom_device].</span>")
 		zoom = FALSE
+		UnregisterSignal(user, COMSIG_ITEM_ZOOM)
 		onunzoom(user)
 		TIMER_COOLDOWN_START(user, COOLDOWN_ZOOM, 2 SECONDS)
 
@@ -706,6 +703,10 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 	if(TIMER_COOLDOWN_CHECK(user, COOLDOWN_ZOOM)) //If we are spamming the zoom, cut it out
 		return
 	TIMER_COOLDOWN_START(user, COOLDOWN_ZOOM, 2 SECONDS)
+
+	if(SEND_SIGNAL(user, COMSIG_ITEM_ZOOM) &  COMSIG_ITEM_ALREADY_ZOOMED)
+		to_chat(user, "<span class='warning'>You are already looking through another zoom device..</span>")
+		return
 
 	if(user.client)
 		user.client.change_view(VIEW_NUM_TO_STRING(viewsize))
@@ -730,21 +731,25 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 	user.visible_message("<span class='notice'>[user] peers through \the [zoom_device].</span>",
 	"<span class='notice'>You peer through \the [zoom_device].</span>")
 	zoom = TRUE
+	RegisterSignal(user, COMSIG_ITEM_ZOOM, .proc/zoom_check_return)
 	onzoom(user)
-	if(user.interactee)
-		user.unset_interaction()
-	else if(!istype(src, /obj/item/attachable/scope))
-		user.set_interaction(src)
 
+///returns a bitflag when another item tries to zoom same user.
+/obj/item/proc/zoom_check_return(datum/source)
+	SIGNAL_HANDLER
+	return COMSIG_ITEM_ALREADY_ZOOMED
 
+///Wrapper for signal turning scope off.
 /obj/item/proc/zoom_item_turnoff(datum/source, mob/living/carbon/user)
 	SIGNAL_HANDLER
 	zoom(user)
 
+///called when zoom is activated.
 /obj/item/proc/onzoom(mob/living/user)
 	RegisterSignal(user, list(COMSIG_MOVABLE_MOVED, COMSIG_CARBON_SWAPPED_HANDS), .proc/zoom)
 	RegisterSignal(src, list(COMSIG_ITEM_EQUIPPED, COMSIG_ITEM_DROPPED), .proc/zoom_item_turnoff)
 
+///called when zoom is deactivated.
 /obj/item/proc/onunzoom(mob/living/user)
 	UnregisterSignal(user, list(COMSIG_MOVABLE_MOVED, COMSIG_CARBON_SWAPPED_HANDS))
 	UnregisterSignal(src, list(COMSIG_ITEM_EQUIPPED, COMSIG_ITEM_DROPPED))
