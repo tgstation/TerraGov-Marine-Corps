@@ -219,15 +219,6 @@ GLOBAL_LIST_INIT(loadout_linked_vendor, list(
 	/obj/machinery/vending/marineFood,
 ))
 
-///Assoc list linking the job title with their specific clothes vendor
-GLOBAL_LIST_INIT(job_specific_clothes_vendor, list(
-	SQUAD_MARINE = GLOB.marine_clothes_listed_products,
-	SQUAD_ENGINEER = GLOB.engineer_clothes_listed_products,
-	SQUAD_CORPSMAN = GLOB.medic_clothes_listed_products,
-	SQUAD_SMARTGUNNER = GLOB.smartgunner_clothes_listed_products,
-	SQUAD_LEADER = GLOB.leader_clothes_listed_products,
-))
-
 GLOBAL_LIST_INIT(marine_clothes_listed_products, list(
 		/obj/effect/essentials_set/basic = list(CAT_STD, "Standard Kit", 0, "white"),
 		/obj/effect/essentials_set/basicmodular = list(CAT_STD, "Essential Jaeger Kit", 0, "white"),
@@ -485,6 +476,15 @@ GLOBAL_LIST_INIT(leader_clothes_listed_products, list(
 		/obj/item/clothing/mask/rebreather/scarf = list(CAT_MAS, "Heat absorbent coif", 0, "black"),
 		/obj/item/clothing/mask/rebreather = list(CAT_MAS, "Rebreather", 0, "black"),
 	))
+
+///Assoc list linking the job title with their specific clothes vendor
+GLOBAL_LIST_INIT(job_specific_clothes_vendor, list(
+	SQUAD_MARINE = GLOB.marine_clothes_listed_products,
+	SQUAD_ENGINEER = GLOB.engineer_clothes_listed_products,
+	SQUAD_CORPSMAN = GLOB.medic_clothes_listed_products,
+	SQUAD_SMARTGUNNER = GLOB.smartgunner_clothes_listed_products,
+	SQUAD_LEADER = GLOB.leader_clothes_listed_products,
+))
 
 ///Items that once they are in loadouts, should not have stock checked when sold by the loadout vendor
 GLOBAL_LIST_INIT(bypass_vendor_item, typecacheof(list(
