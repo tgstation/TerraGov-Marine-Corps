@@ -144,10 +144,10 @@
 /datum/action/xeno_action/endure
 	name = "Endure"
 	action_icon_state = "ignore_pain"
-	mechanics_text = "For the next few moments you will not go into crit, but you still die if you take damage exceeding twice your maximum health."
+	mechanics_text = "For the next few moments you will not go into crit and become resistant to explosives and immune to stagger and slowdown, but you still die if you take damage exceeding your crit health."
 	ability_name = "Endure"
 	plasma_cost = 200
-	cooldown_timer = 60 SECONDS
+	cooldown_timer = 30 SECONDS
 	keybind_signal = COMSIG_XENOABILITY_IGNORE_PAIN
 
 /datum/action/xeno_action/endure/on_cooldown_finish()
@@ -166,10 +166,14 @@
 
 	X.add_filter("ravager_endure_outline", 4, outline_filter(1, COLOR_PURPLE)) //Set our cool aura; also confirmation we have the buff
 
-	addtimer(CALLBACK(src, .proc/endure_warning), RAVAGER_ENDURE_DURATION * RAVAGER_ENDURE_WARNING) //Warn the runner when the duration is about to expire.
+	addtimer(CALLBACK(src, .proc/endure_warning), RAVAGER_ENDURE_DURATION * RAVAGER_ENDURE_DURATION_WARNING) //Warn the runner when the duration is about to expire.
 	addtimer(CALLBACK(src, .proc/endure_deactivate), RAVAGER_ENDURE_DURATION)
 
+	X.stagger = 0 //Remove stagger
+	X.set_slowdown(0) //Remove slowdown
+	X.soft_armor = X.soft_armor.setRating(bomb = XENO_BOMB_RESIST_3) //Improved explosion resistance
 	ADD_TRAIT(X, TRAIT_STAGGERIMMUNE, ENDURE_TRAIT) //Can now endure impacts/damages that would make lesser xenos flinch
+	ADD_TRAIT(X, TRAIT_SLOWDOWNIMMUNE, ENDURE_TRAIT) //Can now endure slowdown
 
 	RegisterSignal(X, COMSIG_XENOMORPH_TAKING_DAMAGE, .proc/damage_taken) //Warns us if our health is critically low
 
@@ -181,7 +185,7 @@
 
 ///Warns the player when Endure is about to end
 /datum/action/xeno_action/endure/proc/endure_warning()
-	to_chat(owner,"<span class='highdanger'>We feel the plasma draining from our veins... [ability_name] will last for only [RAVAGER_ENDURE_DURATION * (1-RAVAGER_ENDURE_WARNING) * 0.1] more seconds!</span>")
+	to_chat(owner,"<span class='highdanger'>We feel the plasma draining from our veins... [ability_name] will last for only [RAVAGER_ENDURE_DURATION * (1-RAVAGER_ENDURE_DURATION_WARNING) * 0.1] more seconds!</span>")
 	owner.playsound_local(owner, 'sound/voice/hiss4.ogg', 50, 0, 1)
 
 ///Turns off the Endure buff
@@ -200,7 +204,9 @@
 		X.setBruteLoss((X.xeno_caste.max_health - X.get_death_threshold()-1) * brute_percentile_damage)
 		X.setFireLoss((X.xeno_caste.max_health - X.get_death_threshold()-1) * burn_percentile_damage)
 
+	X.soft_armor = X.soft_armor.setRating(bomb = XENO_BOMB_RESIST_1) //Remove resistances/immunities
 	REMOVE_TRAIT(X, TRAIT_STAGGERIMMUNE, ENDURE_TRAIT)
+	REMOVE_TRAIT(X, TRAIT_SLOWDOWNIMMUNE, ENDURE_TRAIT)
 
 	to_chat(owner,"<span class='highdanger'>The last of the plasma drains from our body... We can no longer endure beyond our normal limits!</span>")
 	owner.playsound_local(owner, 'sound/voice/hiss4.ogg', 50, 0, 1)

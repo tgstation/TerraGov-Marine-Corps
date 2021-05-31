@@ -45,8 +45,8 @@
 					add_slowdown(1)
 					return
 				if(XENO_BOMB_RESIST_3 to XENO_BOMB_RESIST_4)
-					b_loss = rand(50, 60)
-					f_loss = rand(50, 60)
+					b_loss = rand(50, 50)
+					f_loss = rand(50, 50)
 					add_slowdown(2)
 					adjust_sunder(35)
 				if(XENO_BOMB_RESIST_2 to XENO_BOMB_RESIST_3)
