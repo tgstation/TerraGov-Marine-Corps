@@ -9,6 +9,15 @@
 	///List of warcries that are not allowed.
 	var/bad_warcries_regex = "allahu ackbar|allah|ackbar"
 
+/obj/item/clothing/suit/storage/marine/harness/boomvest/mob_can_equip(mob/M, slot, warning = TRUE, override_nodrop = FALSE)
+	if(ishuman(M))
+		var/mob/living/carbon/human/H = M
+		if(istype(H.get_inactive_held_item(), /obj/item/weapon/shield/riot) || istype(H.back, /obj/item/weapon/shield/riot))
+			if(warning)
+				to_chat(H, "<span class='warning'>Your bulky shield prevents you from putting that on.</span>")
+			return FALSE
+	return ..()
+
 ///Overwrites the parent function for activating a light. Instead it now detonates the bomb.
 /obj/item/clothing/suit/storage/marine/harness/boomvest/attack_self(mob/user)
 	var/mob/living/carbon/human/activator = user
