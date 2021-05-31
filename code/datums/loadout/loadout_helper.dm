@@ -30,7 +30,7 @@
 	//If we can't find it for free, we then look if it's in a job specific vendor and if we can buy that category
 	job_specific_list = GLOB.job_specific_clothes_vendor[loadout.job]
 	var/list/item_info = job_specific_list[saved_item.type]
-	if(item_info && can_buy_category(item_info[1], loadout.buying_bitfield))
+	if(item_info && buy_category(item_info[1], loadout))
 		loadout.clothes_item_list[saved_item.type] += 1
 		return TRUE
 
@@ -158,18 +158,25 @@
 	var/selling_bitfield= NONE
 	for(var/i in GLOB.marine_selector_cats[category])
 		selling_bitfield |= i
-	if(!(buying_bitfield & selling_bitfield))
+	return buying_bitfield & selling_bitfield
+
+/// Return true if you can buy this category, and also change the loadout buying bitfield
+/proc/buy_category(category, datum/loadout/loadout)
+	var/selling_bitfield= NONE
+	for(var/i in GLOB.marine_selector_cats[category])
+		selling_bitfield |= i
+	if(!(loadout.buying_bitfield & selling_bitfield))
 		return FALSE
 	if(selling_bitfield == (MARINE_CAN_BUY_R_POUCH|MARINE_CAN_BUY_L_POUCH))
-		if(buying_bitfield & MARINE_CAN_BUY_R_POUCH)
-			buying_bitfield &= ~MARINE_CAN_BUY_R_POUCH
+		if(loadout.buying_bitfield & MARINE_CAN_BUY_R_POUCH)
+			loadout.buying_bitfield &= ~MARINE_CAN_BUY_R_POUCH
 		else
-			buying_bitfield &= ~MARINE_CAN_BUY_L_POUCH
+			loadout.buying_bitfield &= ~MARINE_CAN_BUY_L_POUCH
 	else if(selling_bitfield == (MARINE_CAN_BUY_ATTACHMENT|MARINE_CAN_BUY_ATTACHMENT2))
-		if(buying_bitfield & MARINE_CAN_BUY_ATTACHMENT)
-			buying_bitfield &= ~MARINE_CAN_BUY_ATTACHMENT
+		if(loadout.buying_bitfield & MARINE_CAN_BUY_ATTACHMENT)
+			loadout.buying_bitfield &= ~MARINE_CAN_BUY_ATTACHMENT
 		else
-			buying_bitfield &= ~MARINE_CAN_BUY_ATTACHMENT2
+			loadout.buying_bitfield&= ~MARINE_CAN_BUY_ATTACHMENT2
 	else
-		buying_bitfield &= ~selling_bitfield
+		loadout.buying_bitfield &= ~selling_bitfield
 	return TRUE
