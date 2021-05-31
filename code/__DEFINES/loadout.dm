@@ -1,26 +1,26 @@
-#define MARINE_CAN_BUY_UNIFORM 		(1 << 0)
-#define MARINE_CAN_BUY_SHOES	 	(1 << 1)
-#define MARINE_CAN_BUY_HELMET 		(1 << 2)
-#define MARINE_CAN_BUY_ARMOR	 	(1 << 3)
-#define MARINE_CAN_BUY_GLOVES 		(1 << 4)
-#define MARINE_CAN_BUY_EAR	 		(1 << 5)
-#define MARINE_CAN_BUY_BACKPACK 	(1 << 6)
-#define MARINE_CAN_BUY_R_POUCH 		(1 << 7)
-#define MARINE_CAN_BUY_L_POUCH 		(1 << 8)
-#define MARINE_CAN_BUY_BELT 		(1 << 9)
-#define MARINE_CAN_BUY_GLASSES		(1 << 10)
-#define MARINE_CAN_BUY_MASK			(1 << 11)
-#define MARINE_CAN_BUY_ESSENTIALS	(1 << 12)
-#define MARINE_CAN_BUY_ATTACHMENT	(1 << 13)
-#define MARINE_CAN_BUY_ATTACHMENT2	(1 << 14)
+#define MARINE_CAN_BUY_UNIFORM      (1 << 0)
+#define MARINE_CAN_BUY_SHOES        (1 << 1)
+#define MARINE_CAN_BUY_HELMET       (1 << 2)
+#define MARINE_CAN_BUY_ARMOR        (1 << 3)
+#define MARINE_CAN_BUY_GLOVES       (1 << 4)
+#define MARINE_CAN_BUY_EAR          (1 << 5)
+#define MARINE_CAN_BUY_BACKPACK     (1 << 6)
+#define MARINE_CAN_BUY_R_POUCH      (1 << 7)
+#define MARINE_CAN_BUY_L_POUCH      (1 << 8)
+#define MARINE_CAN_BUY_BELT         (1 << 9)
+#define MARINE_CAN_BUY_GLASSES      (1 << 10)
+#define MARINE_CAN_BUY_MASK         (1 << 11)
+#define MARINE_CAN_BUY_ESSENTIALS   (1 << 12)
+#define MARINE_CAN_BUY_ATTACHMENT   (1 << 13)
+#define MARINE_CAN_BUY_ATTACHMENT2  (1 << 14)
 
-#define MARINE_CAN_BUY_WEBBING		(1 << 15)
-#define MARINE_CAN_BUY_MODULE		(1 << 16)
-#define MARINE_CAN_BUY_ARMORMOD		(1 << 17)
+#define MARINE_CAN_BUY_WEBBING      (1 << 15)
+#define MARINE_CAN_BUY_MODULE       (1 << 16)
+#define MARINE_CAN_BUY_ARMORMOD     (1 << 17)
 
 
 
-#define MARINE_CAN_BUY_ALL			((1 << 18) - 1)
+#define MARINE_CAN_BUY_ALL          ((1 << 18) - 1)
 
 #define CAT_ESS "ESSENTIALS"
 #define CAT_STD "STANDARD EQUIPMENT"
@@ -42,9 +42,6 @@
 #define CAT_ENGSUP "ENGINEERING SUPPLIES"
 #define CAT_LEDSUP "LEADER SUPPLIES"
 #define CAT_SPEAMM "SPECIAL AMMUNITION"
-
-/obj/item/card/id/var/marine_points = MARINE_TOTAL_BUY_POINTS
-/obj/item/card/id/var/marine_buy_flags = MARINE_CAN_BUY_ALL
 
 GLOBAL_LIST_INIT(marine_selector_cats, list(
 		CAT_MOD = list(MARINE_CAN_BUY_MODULE),

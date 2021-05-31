@@ -171,11 +171,13 @@
 			loadout.buying_bitfield &= ~MARINE_CAN_BUY_R_POUCH
 		else
 			loadout.buying_bitfield &= ~MARINE_CAN_BUY_L_POUCH
-	else if(selling_bitfield == (MARINE_CAN_BUY_ATTACHMENT|MARINE_CAN_BUY_ATTACHMENT2))
+		return TRUE
+	if(selling_bitfield == (MARINE_CAN_BUY_ATTACHMENT|MARINE_CAN_BUY_ATTACHMENT2))
 		if(loadout.buying_bitfield & MARINE_CAN_BUY_ATTACHMENT)
 			loadout.buying_bitfield &= ~MARINE_CAN_BUY_ATTACHMENT
 		else
 			loadout.buying_bitfield&= ~MARINE_CAN_BUY_ATTACHMENT2
-	else
-		loadout.buying_bitfield &= ~selling_bitfield
+		return TRUE
+	loadout.buying_bitfield &= ~selling_bitfield
 	return TRUE
+	
