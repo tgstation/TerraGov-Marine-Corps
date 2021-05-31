@@ -9,10 +9,14 @@
 	 * each item of the list is a datum/item_representation
 	 */
 	var/list/item_list
-	/// The host of the loadout_manager, aka from which loadout vendor are you managing loadouts
+	///The host of the loadout_manager, aka from which loadout vendor are you managing loadouts
 	var/loadout_vendor 
-	///A list of unique equippment on this loadout (equippment that costs points or is in a job specific vendor)
-	var/unique_equippments_list = list()
+	///A list of unique items on this loadout (items that are in specific role vendors, but are not costing points)
+	var/unique_items_list = list()
+	///A representation of the buying bitfield used to buy from different categories of clothes vendors
+	var/buying_bitfield = MARINE_CAN_BUY_ALL
+	///A list of items that were bought using points from role vendors
+	var/priced_items_list = list()
 	///The amount of marine points available on the loadout
 	var/job_points_available = MARINE_TOTAL_BUY_POINTS
 	///The version of this loadout

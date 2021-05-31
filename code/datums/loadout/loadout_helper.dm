@@ -8,33 +8,39 @@
 
 ///Return true if the item was found in a linked vendor
 /proc/is_savable_in_loadout(obj/item/saved_item, datum/loadout/loadout)
+	//Some items are allowed to bypass everything
 	if(is_type_in_typecache(saved_item, GLOB.bypass_loadout_check_item))
 		return TRUE
+	
 	if(ishandful(saved_item))
 		return is_handful_savable(saved_item)
+	
 	//We check if the item is in a public vendor for free
 	for(var/type in GLOB.loadout_linked_vendor)
 		for(var/datum/vending_product/item_datum AS in GLOB.vending_records[type])
 			if(item_datum.product_path == saved_item.type)
 				return TRUE
-	//If we can't find it for free, we then look if it's in a job specific vendor
-	var/list/job_specific_list = GLOB.loadout_role_limited_objects[loadout.job]
-	if(job_specific_list[saved_item.type] > loadout.unique_equippments_list[saved_item.type])
-		loadout.unique_equippments_list[saved_item.type] += 1
+
+	//If we can't find it for free, we then look if it's in a job specific vendor and if we can buy that category
+	var/list/job_specific_list = GLOB.job_specific_clothes_vendor[loadout.job]
+	var/list/item_info = job_specific_list[saved_item.type]
+	if(item_info && can_buy_category(item_info[1], loadout.buying_bitfield))
 		return TRUE
-	//At last, we will try to use job points in a gear vendor
+
+	//If it was not in a job specific clothes vendor, we try to use marine points to buy it
 	var/list/listed_products = GLOB.job_specific_points_vendor[loadout.job]
 	if(!listed_products)
 		return FALSE
 	for(var/item_type in listed_products)
 		if(saved_item.type != item_type)
 			continue
-		var/list/item_info = listed_products[item_type]
+		item_info = listed_products[item_type]
 		if(loadout.job_points_available < item_info[3])
 			return FALSE
 		loadout.job_points_available -= item_info[3]
-		loadout.unique_equippments_list[saved_item.type] += 1
+		loadout.priced_items_list[saved_item.type] += 1
 		return TRUE
+	
 	//Finally, we check for specific construction stack items
 	if((loadout.job != SQUAD_LEADER && loadout.job != SQUAD_ENGINEER) || !isitemstack(saved_item))
 		return FALSE
@@ -56,12 +62,23 @@
 	return FALSE
 
 ///Return true if the item was found in a linked vendor and successfully bought
-/proc/buy_item_in_vendor(item_to_buy_type, datum/loadout/loadout)
+/proc/buy_item_in_vendor(item_to_buy_type, datum/loadout/loadout, mob/user)
+	//Some items are allowed to bypass the buy checks
 	if(is_type_in_typecache(item_to_buy_type, GLOB.bypass_vendor_item) || is_type_in_typecache(item_to_buy_type, GLOB.bypass_loadout_check_item))
 		return TRUE
-	///Unique items were already checked, and are not in public vendors
-	if(loadout.unique_equippments_list[item_to_buy_type])
+	
+	//Items that were bought using marine points are already taken care of
+	if(loadout.priced_items_list[item_to_buy_type])
 		return TRUE
+	
+	//Items that were bought from clothes vendor are changing the marine buy flags of the user
+	if(loadout.unique_items_list[item_to_buy_type])
+		var/list/job_specific_list = GLOB.job_specific_clothes_vendor[loadout.job]
+		var/list/item_info = job_specific_list[item_to_buy_type]
+		var/obj/item/card/id/id = user.get_idcard()
+		if(item_info && can_buy_category(item_info[1], id.marine_buy_flags))
+			return TRUE
+
 	for(var/type in GLOB.loadout_linked_vendor)
 		for(var/datum/vending_product/item_datum AS in GLOB.vending_records[type])
 			if(item_datum.product_path == item_to_buy_type && item_datum.amount != 0)
@@ -124,3 +141,24 @@
 	if(!user.assigned_squad)
 		return
 	user.equip_to_slot_or_del(new /obj/item/radio/headset/mainship/marine(null, user.assigned_squad, user.job), SLOT_EARS, override_nodrop = TRUE)
+
+/// Will check if the selected category can be bought according to the buying_bitfield
+/proc/can_buy_category(list/category, buying_bitfield)
+	var/selling_bitfield= NONE
+	for(var/i in category)
+		selling_bitfield |= i
+	if(!buying_bitfield & selling_bitfield)
+		return FALSE
+	if(selling_bitfield == (MARINE_CAN_BUY_R_POUCH|MARINE_CAN_BUY_L_POUCH))
+		if(buying_bitfield & MARINE_CAN_BUY_R_POUCH)
+			buying_bitfield &= ~MARINE_CAN_BUY_R_POUCH
+		else
+			buying_bitfield &= ~MARINE_CAN_BUY_L_POUCH
+	else if(selling_bitfield == (MARINE_CAN_BUY_ATTACHMENT|MARINE_CAN_BUY_ATTACHMENT2))
+		if(buying_bitfield & MARINE_CAN_BUY_ATTACHMENT)
+			buying_bitfield &= ~MARINE_CAN_BUY_ATTACHMENT
+		else
+			buying_bitfield &= ~MARINE_CAN_BUY_ATTACHMENT2
+	else
+		buying_bitfield &= ~selling_bitfield
+	return TRUE

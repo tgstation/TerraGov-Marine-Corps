@@ -15,13 +15,13 @@
 	var/list/item_list = list()
 
 ///Will save all the bought items in item_list, and keep the record of unavailable_items
-/datum/loadout_seller/proc/prepare_to_equip_loadout(datum/loadout/loadout)
+/datum/loadout_seller/proc/prepare_to_equip_loadout(datum/loadout/loadout, mob/user)
 	unavailable_items = 0
 	bought_items = list()
 	item_list = list()
 	for(var/slot_key in GLOB.visible_item_slot_list)
 		var/datum/item_representation/item_representation = loadout.item_list[slot_key]
-		item_list[slot_key] = item_representation?.instantiate_object(src, null, loadout)
+		item_list[slot_key] = item_representation?.instantiate_object(src, null, loadout, user)
 
 ///The user chose to abort equiping that loadout, so we put back all items in vendor
 /datum/loadout_seller/proc/sell_back_items()
@@ -46,7 +46,11 @@
  * Else we sell everything back to vendors
  */
 /datum/loadout_seller/proc/try_to_equip_loadout(datum/loadout/loadout, mob/user)
-	prepare_to_equip_loadout(loadout)
+	var/obj/item/card/id/id = user.get_idcard()
+	if(MARINE_TOTAL_BUY_POINTS - loadout.job_points_available > id.marine_points)
+		to_chat(user, "<span class='warning'>You don't have enough points to equip that loadout</span>")
+		return
+	prepare_to_equip_loadout(loadout, user)
 	if(unavailable_items && tgui_alert(user, "[unavailable_items] items were not found in vendors and won't be delivered. Do you want to equip that loadout anyway?", "Items missing", list("Yes", "No")) != "Yes")
 		sell_back_items()
 		return
