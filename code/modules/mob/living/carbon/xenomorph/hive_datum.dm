@@ -744,7 +744,6 @@ to_chat will check for valid clients itself already so no need to double check f
 
 	var/list/living_player_list = SSticker.mode.count_humans_and_xenos(count_flags = COUNT_IGNORE_HUMAN_SSD)
 	var/num_humans = living_player_list[1]
-	SSsilo.larva_rate_boost = num_humans / 12.5 //That mean that one silo give 1 larva every minute for 40 marines
 
 
 // ***************************************
