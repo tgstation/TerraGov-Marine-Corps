@@ -54,13 +54,15 @@
 	if(unavailable_items && tgui_alert(user, "[unavailable_items] items were not found in vendors and won't be delivered. Do you want to equip that loadout anyway?", "Items missing", list("Yes", "No")) != "Yes")
 		sell_back_items()
 		return FALSE
+	id.marine_points -= (MARINE_TOTAL_BUY_POINTS - loadout.job_points_available)
+	id.marine_buy_flags &= loadout.buying_bitfield
 	do_equip_loadout(user)
 	sell_rest_of_essential_kit(loadout, user)
 
 /// If one item from essential kit was bought, we sell the rest and put in on the ground
 /datum/loadout_seller/proc/sell_rest_of_essential_kit(datum/loadout/loadout, mob/user)
 	var/obj/item/card/id/id = user.get_idcard()
-	if(!(id.marine_buy_flags & MARINE_CAN_BUY_ESSENTIALS))
+	if(!(id.marine_buy_flags & MARINE_CAN_BUY_ESSENTIALS) || !length(loadout.unique_items_list))
 		return
 	id.marine_buy_flags &= ~MARINE_CAN_BUY_ESSENTIALS
 	var/list/job_specific_list = GLOB.loadout_role_essential_set[loadout.job]

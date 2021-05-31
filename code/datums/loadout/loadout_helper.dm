@@ -31,6 +31,7 @@
 	job_specific_list = GLOB.job_specific_clothes_vendor[loadout.job]
 	var/list/item_info = job_specific_list[saved_item.type]
 	if(item_info && can_buy_category(item_info[1], loadout.buying_bitfield))
+		loadout.clothes_item_list[saved_item.type] += 1
 		return TRUE
 
 	//If it was not in a job specific clothes vendor, we try to use marine points to buy it
@@ -153,11 +154,11 @@
 	user.equip_to_slot_or_del(new /obj/item/radio/headset/mainship/marine(null, user.assigned_squad, user.job), SLOT_EARS, override_nodrop = TRUE)
 
 /// Will check if the selected category can be bought according to the buying_bitfield
-/proc/can_buy_category(list/category, buying_bitfield)
+/proc/can_buy_category(category, buying_bitfield)
 	var/selling_bitfield= NONE
-	for(var/i in category)
+	for(var/i in GLOB.marine_selector_cats[category])
 		selling_bitfield |= i
-	if(!buying_bitfield & selling_bitfield)
+	if(!(buying_bitfield & selling_bitfield))
 		return FALSE
 	if(selling_bitfield == (MARINE_CAN_BUY_R_POUCH|MARINE_CAN_BUY_L_POUCH))
 		if(buying_bitfield & MARINE_CAN_BUY_R_POUCH)

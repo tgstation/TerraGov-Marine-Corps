@@ -13,7 +13,7 @@
 	..()
 	var/obj/item/clothing/under/uniform_to_copy = item_to_copy
 	if(uniform_to_copy.hastie)
-		tie = new /datum/item_representation/tie(uniform_to_copy.hastie)
+		tie = new /datum/item_representation/tie(uniform_to_copy.hastie, loadout)
 
 /datum/item_representation/uniform_representation/instantiate_object(datum/loadout_seller/seller, master = null, datum/loadout/loadout = null, mob/user)
 	. = ..()
@@ -58,7 +58,7 @@
 		CRASH("/datum/item_representation/tie created from an item that is not a tie storage")
 	..()
 	var/obj/item/clothing/tie/storage/tie = item_to_copy
-	hold = new /datum/item_representation/storage(tie.hold)
+	hold = new /datum/item_representation/storage(tie.hold, loadout)
 	
 /datum/item_representation/tie/instantiate_object(datum/loadout_seller/seller, master = null, datum/loadout/loadout = null, mob/user)
 	. = ..()

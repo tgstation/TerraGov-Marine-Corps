@@ -46,17 +46,17 @@
 	var/obj/item/clothing/suit/modular/jaeger_to_copy = item_to_copy
 	armor_modules = list()
 	if(jaeger_to_copy.slot_chest)
-		armor_modules["chest"] = new /datum/item_representation/armor_module/colored(jaeger_to_copy.slot_chest)
+		armor_modules["chest"] = new /datum/item_representation/armor_module/colored(jaeger_to_copy.slot_chest, loadout)
 	if(jaeger_to_copy.slot_arms)
-		armor_modules["arms"] = new /datum/item_representation/armor_module/colored(jaeger_to_copy.slot_arms)
+		armor_modules["arms"] = new /datum/item_representation/armor_module/colored(jaeger_to_copy.slot_arms, loadout)
 	if(jaeger_to_copy.slot_legs)
-		armor_modules["legs"] = new /datum/item_representation/armor_module/colored(jaeger_to_copy.slot_legs)
+		armor_modules["legs"] = new /datum/item_representation/armor_module/colored(jaeger_to_copy.slot_legs, loadout)
 	if(jaeger_to_copy.installed_storage)
-		installed_storage = new /datum/item_representation/armor_module(jaeger_to_copy.installed_storage)
-		storage_implementation = new /datum/item_representation/storage(jaeger_to_copy.storage)
-	if(!length(jaeger_to_copy.installed_modules) || !is_savable_in_loadout(jaeger_to_copy.installed_modules[1])) //Not supporting mutiple modules, but no object in game has that so
+		installed_storage = new /datum/item_representation/armor_module(jaeger_to_copy.installed_storage, loadout)
+		storage_implementation = new /datum/item_representation/storage(jaeger_to_copy.storage, loadout)
+	if(!length(jaeger_to_copy.installed_modules) || !is_savable_in_loadout(jaeger_to_copy.installed_modules[1], loadout)) //Not supporting mutiple modules, but no object in game has that so
 		return
-	installed_module = new /datum/item_representation/armor_module(jaeger_to_copy.installed_modules[1])
+	installed_module = new /datum/item_representation/armor_module(jaeger_to_copy.installed_modules[1], loadout)
 
 /datum/item_representation/modular_armor/instantiate_object(datum/loadout_seller/seller, master = null, datum/loadout/loadout = null, mob/user)
 	. = ..()
