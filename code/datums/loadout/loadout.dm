@@ -13,6 +13,8 @@
 	var/loadout_vendor 
 	///A list of unique items on this loadout (items that are in specific role vendors, but are not costing points)
 	var/unique_items_list = list()
+	///A list of items coming from job specific clothes vendor
+	var/clothes_item_list = list()
 	///A representation of the buying bitfield used to buy from different categories of clothes vendors
 	var/buying_bitfield = MARINE_CAN_BUY_ALL
 	///A list of items that were bought using points from role vendors

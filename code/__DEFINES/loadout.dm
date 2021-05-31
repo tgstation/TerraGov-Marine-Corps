@@ -486,6 +486,47 @@ GLOBAL_LIST_INIT(job_specific_clothes_vendor, list(
 	SQUAD_LEADER = GLOB.leader_clothes_listed_products,
 ))
 
+GLOBAL_LIST_INIT(loadout_role_essential_set, list(
+	SQUAD_ENGINEER = list (
+		/obj/item/explosive/plastique = 1,
+		/obj/item/explosive/grenade/chem_grenade/razorburn_smol = 1,
+		/obj/item/stack/sandbags_empty/full = 1,
+		/obj/item/stack/sheet/metal/large_stack = 1,
+		/obj/item/stack/sheet/plasteel/medium_stack = 1,
+		/obj/item/cell/high = 1,
+		/obj/item/tool/shovel/etool = 1,
+		/obj/item/lightreplacer = 1,
+		/obj/item/circuitboard/general = 1,
+	),
+	SQUAD_CORPSMAN = list(
+		/obj/item/bodybag/cryobag = 1,
+		/obj/item/defibrillator = 1,
+		/obj/item/healthanalyzer = 1,
+		/obj/item/roller/medevac = 1,
+		/obj/item/medevac_beacon = 1,
+		/obj/item/roller = 1,
+		/obj/item/tweezers = 1,
+		/obj/item/reagent_containers/hypospray/advanced/oxycodone = 1,
+		/obj/item/storage/firstaid/adv = 1,
+	),
+	SQUAD_SMARTGUNNER = list(
+		/obj/item/clothing/glasses/night/m56_goggles = 1,
+		/obj/item/weapon/gun/rifle/standard_smartmachinegun = 1,
+		/obj/item/ammo_magazine/standard_smartmachinegun = 3,
+	),
+	SQUAD_LEADER = list(
+		/obj/item/explosive/plastique = 1,
+		/obj/item/squad_beacon = 1,
+		/obj/item/squad_beacon = 1,
+		/obj/item/squad_beacon/bomb = 1,
+		/obj/item/whistle = 1,
+		/obj/item/radio = 1,
+		/obj/item/motiondetector = 1,
+		/obj/item/binoculars/tactical = 1,
+		/obj/item/pinpointer/pool = 1,
+	)
+))
+
 ///Items that once they are in loadouts, should not have stock checked when sold by the loadout vendor
 GLOBAL_LIST_INIT(bypass_vendor_item, typecacheof(list(
 	/obj/item/ammo_magazine/handful,

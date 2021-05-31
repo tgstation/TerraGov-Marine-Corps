@@ -23,7 +23,7 @@
  */
 /datum/item_representation/proc/instantiate_object(datum/loadout_seller/seller, master = null, datum/loadout/loadout = null, mob/user)
 	if(seller && !bypass_vendor_check)
-		if(!buy_item_in_vendor(item_type, loadout))
+		if(!buy_item_in_vendor(item_type, loadout, user))
 			seller.unavailable_items ++
 			return
 		seller.bought_items += item_type

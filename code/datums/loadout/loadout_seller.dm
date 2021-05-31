@@ -55,3 +55,19 @@
 		sell_back_items()
 		return
 	do_equip_loadout(user)
+	sell_rest_of_essential_kit(loadout, user)
+
+/// If one item from essential kit was bought, we sell the rest and put in on the ground
+/datum/loadout_seller/proc/sell_rest_of_essential_kit(datum/loadout/loadout, mob/user)
+	var/obj/item/card/id/id = user.get_idcard()
+	if(!(id.marine_buy_flags & MARINE_CAN_BUY_ESSENTIALS))
+		return
+	id.marine_buy_flags &= ~MARINE_CAN_BUY_ESSENTIALS
+	var/list/job_specific_list = GLOB.loadout_role_essential_set[loadout.job]
+	for(var/key in job_specific_list)
+		var/item_already_sold = loadout.unique_items_list[key]
+		while(item_already_sold < job_specific_list[key])
+			var/obj/item/item = key
+			new item(user.loc)
+			item_already_sold++
+

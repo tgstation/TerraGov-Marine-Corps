@@ -21,8 +21,14 @@
 			if(item_datum.product_path == saved_item.type)
 				return TRUE
 
+	//If we can't find it for free, we then look if it's in the essential set of each job
+	var/list/job_specific_list = GLOB.loadout_role_essential_set[loadout.job]
+	if(job_specific_list[saved_item.type] > loadout.unique_items_list[saved_item.type])
+		loadout.unique_items_list[saved_item.type] += 1
+		return TRUE
+
 	//If we can't find it for free, we then look if it's in a job specific vendor and if we can buy that category
-	var/list/job_specific_list = GLOB.job_specific_clothes_vendor[loadout.job]
+	job_specific_list = GLOB.job_specific_clothes_vendor[loadout.job]
 	var/list/item_info = job_specific_list[saved_item.type]
 	if(item_info && can_buy_category(item_info[1], loadout.buying_bitfield))
 		return TRUE
@@ -71,11 +77,15 @@
 	if(loadout.priced_items_list[item_to_buy_type])
 		return TRUE
 	
-	//Items that were bought from clothes vendor are changing the marine buy flags of the user
+	//We check if the item is in the essential sets
+	var/obj/item/card/id/id = user.get_idcard()
 	if(loadout.unique_items_list[item_to_buy_type])
+		return id.marine_buy_flags & MARINE_CAN_BUY_ESSENTIALS
+	
+	//Items that were bought from clothes vendor are changing the marine buy flags of the user
+	if(loadout.clothes_item_list[item_to_buy_type])
 		var/list/job_specific_list = GLOB.job_specific_clothes_vendor[loadout.job]
 		var/list/item_info = job_specific_list[item_to_buy_type]
-		var/obj/item/card/id/id = user.get_idcard()
 		if(item_info && can_buy_category(item_info[1], id.marine_buy_flags))
 			return TRUE
 
