@@ -583,10 +583,12 @@
 			
 			if(!params["key"])
 				return
-			var/mods = sortList(params["key_mods"])
+			var/mods = params["key_mods"]
 			var/full_key = params["key"]
-			for(var/mod in mods)
-				full_key = mod + "+" + full_key
+			var/AltMod = ("ALT" in mods) ? "Alt" : ""
+			var/CtrlMod = ("CONTROL" in mods) ? "Ctrl" : ""
+			var/ShiftMod = ("SHIFT" in mods) ? "Shift" : ""
+			full_key = AltMod + CtrlMod + ShiftMod + full_key
 
 			if(GLOB._kbMap[full_key])
 				full_key = GLOB._kbMap[full_key]
