@@ -404,7 +404,7 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 	if(!reload_override && (flags_gun_features & (GUN_BURST_FIRING|GUN_UNUSUAL_DESIGN|GUN_INTERNAL_MAG)))
 		return FALSE
 
-	if(!current_mag || isnull(current_mag) || current_mag.loc != src || !(flags_gun_features & GUN_ENERGY))
+	if((!current_mag || isnull(current_mag) || current_mag.loc != src) && !(flags_gun_features & GUN_ENERGY))
 		return cock(user)
 
 	if(drop_override || !user) //If we want to drop it on the ground or there's no user.
