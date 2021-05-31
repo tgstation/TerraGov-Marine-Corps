@@ -89,22 +89,22 @@ const NavigationSelector = (props, context) => {
   const { act } = useBackend(context);
   return (
     <Tabs vertical>
-      <Tabs.Tab selected={tabIndex === 1} onClick={() => act("tab_change", {tabIndex: 1})}>
+      <Tabs.Tab selected={tabIndex === 1} onClick={() => act("tab_change", { tabIndex: 1 })}>
         Character Customization
       </Tabs.Tab>
-      <Tabs.Tab selected={tabIndex === 2} onClick={() => act("tab_change", {tabIndex: 2})}>
+      <Tabs.Tab selected={tabIndex === 2} onClick={() => act("tab_change", { tabIndex: 2 })}>
         Background Information
       </Tabs.Tab>
-      <Tabs.Tab selected={tabIndex === 3} onClick={() => act("tab_change", {tabIndex: 3})}>
+      <Tabs.Tab selected={tabIndex === 3} onClick={() => act("tab_change", { tabIndex: 3 })}>
         Gear Customization
       </Tabs.Tab>
-      <Tabs.Tab selected={tabIndex === 4} onClick={() => act("tab_change", {tabIndex: 4})}>
+      <Tabs.Tab selected={tabIndex === 4} onClick={() => act("tab_change", { tabIndex: 4 })}>
         Job Preferences
       </Tabs.Tab>
-      <Tabs.Tab selected={tabIndex === 5} onClick={() => act("tab_change", {tabIndex: 5})}>
+      <Tabs.Tab selected={tabIndex === 5} onClick={() => act("tab_change", { tabIndex: 5 })}>
         Game Settings
       </Tabs.Tab>
-      <Tabs.Tab selected={tabIndex === 6} onClick={() => act("tab_change", {tabIndex: 6})}>
+      <Tabs.Tab selected={tabIndex === 6} onClick={() => act("tab_change", { tabIndex: 6 })}>
         Keybindings
       </Tabs.Tab>
     </Tabs>

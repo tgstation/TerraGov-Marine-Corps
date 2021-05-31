@@ -1,6 +1,6 @@
 import { useBackend, useLocalState } from '../../backend';
 import { Button, Input, Section, LabeledList, Box, Grid } from '../../components';
-import { ButtonKeybind } from '../ButtonKeybind'
+import { ButtonKeybind } from '../ButtonKeybind';
 import { TextInputModal } from './TextInputModal';
 
 const KEY_MODS = {
@@ -173,6 +173,7 @@ const KeybindingPreference = (props, context) => {
       {current && (current.map(key => (
         <ButtonKeybind
           color="transparent"
+          key={key}
           content={key}
           onFinish={keysDown => {
             const mods = keysDown.filter(k => KEY_MODS[k]);
@@ -247,6 +248,7 @@ const CustomSentence = (props, context) => {
       {current && (current.map(key => (
         <ButtonKeybind
           color="transparent"
+          key={key}
           content={key}
           onFinish={keysDown => {
             const mods = keysDown.filter(k => KEY_MODS[k]);

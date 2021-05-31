@@ -6,8 +6,8 @@ export class ButtonKeybind extends Component {
   constructor() {
     super();
     this.state = {
-    focused: false,
-    keysDown: {},
+      focused: false,
+      keysDown: {},
     };
   }
   
@@ -25,7 +25,7 @@ export class ButtonKeybind extends Component {
   
     onFinish(listOfKeys);
     document.activeElement.blur();
-    clearInterval(this.timer)
+    clearInterval(this.timer);
   }
   
   handleKeyPress(e) {
@@ -46,7 +46,7 @@ export class ButtonKeybind extends Component {
   
     keysDown[pressedKey] = e.type === "keydown";
     this.setState({
-    keysDown: keysDown,
+      keysDown: keysDown,
     });
   }
 
@@ -57,8 +57,8 @@ export class ButtonKeybind extends Component {
   
   doFocus() {
     this.setState({
-    focused: true,
-    keysDown: {},
+      focused: true,
+      keysDown: {},
     });
     globalEvents.on('keydown', this.preventPassthrough);
     this.finishTimerStart();
@@ -66,8 +66,8 @@ export class ButtonKeybind extends Component {
   
   doBlur() {
     this.setState({
-    focused: false,
-    keysDown: {},
+      focused: false,
+      keysDown: {},
     });
     globalEvents.off('keydown', this.preventPassthrough);
   }
@@ -75,31 +75,31 @@ export class ButtonKeybind extends Component {
   render() {
     const { focused, keysDown } = this.state;
     const {
-    content,
-    ...rest
+      content,
+      ...rest
     } = this.props;
   
     return (
-    <Button
-      {...rest}
-      content={focused
-      ? Object.keys(keysDown)
-        .filter(isTrue => keysDown[isTrue])
-        .join("+") || content
-      : content}
-      selected={focused}
-      inline
-      onClick={e => {
-      if (focused && Object.keys(keysDown).length) {
-        this.doFinish();
-        e.preventDefault();
-      }
-      }}
-      onFocus={() => this.doFocus()}
-      onBlur={() => this.doBlur()}
-      onKeyDown={e => this.handleKeyPress(e)}
-      onKeyUp={e => this.handleKeyPress(e)}
-    />
+      <Button
+        {...rest}
+        content={focused
+          ? Object.keys(keysDown)
+            .filter(isTrue => keysDown[isTrue])
+            .join("+") || content
+          : content}
+        selected={focused}
+        inline
+        onClick={e => {
+          if (focused && Object.keys(keysDown).length) {
+            this.doFinish();
+            e.preventDefault();
+          }
+        }}
+        onFocus={() => this.doFocus()}
+        onBlur={() => this.doBlur()}
+        onKeyDown={e => this.handleKeyPress(e)}
+        onKeyUp={e => this.handleKeyPress(e)}
+      />
     );
   }
 }
