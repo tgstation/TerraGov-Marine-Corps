@@ -718,3 +718,38 @@
 	SSblackbox.record_feedback("tally", "round_statistics", -1, "total_xenos_created")
 	qdel(T)
 	X.use_plasma(600)
+
+/datum/action/xeno_action/summon_king
+	name = "Summon Xenomorph King"
+	action_icon_state = "grow_ovipositor"
+	mechanics_text = "Deploy a pod to summon a xeno king."
+	plasma_cost = 0 //hive points cost
+	keybind_signal = COMSIG_XENOABILITY_SUMMON_KING_POD
+	gamemode_flags = ABILITY_DISTRESS
+	/// Pyschic point cost
+	var/psych_cost = XENO_KING_PRICE
+
+/datum/action/xeno_action/summon_king/can_use_action(silent, override_flags)
+	. = ..()
+	if(!.)
+		return
+	var/mob/living/carbon/xenomorph/X = owner
+	if(SSticker.round_start_time + INVOKE_KING_TIME_LOCK > world.time)
+		if(!silent)
+			to_chat(owner, "<span class='warning'>It is too soon to summon a king!</span>")
+		return FALSE
+	if(SSpoints.xeno_points_by_hive[X.hivenumber] <= psych_cost)
+		if(!silent)
+			to_chat(owner, "<span class='warning'>Our hive does not have enough psychic energy to summon a King, we need [psych_cost] points!</span>")
+		return FALSE
+
+/datum/action/xeno_action/summon_king/action_activate()
+	var/mob/living/carbon/xenomorph/X = owner
+	to_chat(X, "<span class='xenonotice'>We begin constructing a psychic echo chamber for the Queen Mother...</span>")
+	if(!do_after(X, 15 SECONDS, FALSE, X, BUSY_ICON_HOSTILE))
+		return fail_activate()
+	SSpoints.xeno_points_by_hive[X.hivenumber] -= psych_cost
+	var/obj/structure/resin/king_pod = new /obj/structure/resin/king_pod(X.loc, X.hivenumber)
+	log_game("[key_name(X)] has created a pod in [AREACOORD(X)]")
+	xeno_message("<B>[X] has created a king pod at [get_area(X)]. Defend it until the Queen Mother summons a king!</B>", size = 3, hivenumber = X.hivenumber, target = king_pod, arrow_type = /obj/screen/arrow/leader_tracker_arrow)
+	priority_announce("WARNING: Psychic anomaly detected at [get_area(X)]. Assault of the area reccomended.", "TGMC Intel Division")
