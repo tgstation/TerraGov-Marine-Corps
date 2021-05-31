@@ -68,7 +68,7 @@
 			if(istype(M,/mob/living/carbon/human))
 				var/mob/living/carbon/human/H = M
 				if(H.species.species_flags & IS_SYNTHETIC)
-					to_chat(H, "<span class='warning'>You have a monitor for a head, where do you think you're going to put that?</span>")
+					to_chat(H, "<span class='warning'>You have no mouth on your head, where do you think you're going to put that?</span>")
 					return
 			if (fullness <= 50)
 				to_chat(M, "<span class='warning'>You hungrily chew out a piece of [src] and gobble it!</span>")
@@ -85,7 +85,7 @@
 			if(istype(M,/mob/living/carbon/human))
 				var/mob/living/carbon/human/H = M
 				if(H.species.species_flags & IS_SYNTHETIC)
-					to_chat(H, "<span class='warning'>They have a monitor for a head, where do you think you're going to put that?</span>")
+					to_chat(H, "<span class='warning'>They have no mouth on their head, where do you think you're going to put that?</span>")
 					return
 
 

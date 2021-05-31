@@ -27,7 +27,7 @@
 		if(istype(M,/mob/living/carbon/human))
 			var/mob/living/carbon/human/H = M
 			if(H.species.species_flags & IS_SYNTHETIC)
-				to_chat(H, "<span class='warning'>You have a monitor for a head, where do you think you're going to put that?</span>")
+				to_chat(H, "<span class='warning'>You have no mouth on your head, where do you think you're going to put that?</span>")
 				return
 
 		to_chat(M,"<span class='notice'>You swallow a gulp from \the [src].</span>")
@@ -41,7 +41,7 @@
 
 		var/mob/living/carbon/human/H = M
 		if(H.species.species_flags & IS_SYNTHETIC)
-			to_chat(H, "<span class='warning'>They have a monitor for a head, where do you think you're going to put that?</span>")
+			to_chat(H, "<span class='warning'>They have no mouth on their head, where do you think you're going to put that?</span>")
 			return
 
 		visible_message("<span class='warning'>[user] attempts to feed [M] [src].</span>")

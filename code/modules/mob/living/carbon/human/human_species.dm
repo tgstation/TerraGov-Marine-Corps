@@ -83,3 +83,6 @@
 
 /mob/living/carbon/human/species/skeleton
 	race = "Skeleton"
+
+/mob/living/carbon/human/species/amd_robot
+	race = "Autonomous Military Droid"

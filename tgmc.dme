@@ -1316,6 +1316,7 @@
 #include "code\modules\mob\living\carbon\human\life\handle_shock.dm"
 #include "code\modules\mob\living\carbon\human\life\handle_status_effects.dm"
 #include "code\modules\mob\living\carbon\human\life\life_helpers.dm"
+#include "code\modules\mob\living\carbon\human\species\ISORobots.dm"
 #include "code\modules\mob\living\carbon\xenomorph\abilities.dm"
 #include "code\modules\mob\living\carbon\xenomorph\attack_alien.dm"
 #include "code\modules\mob\living\carbon\xenomorph\charge_crush.dm"
