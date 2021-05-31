@@ -34,6 +34,24 @@
 		loadout.clothes_item_list[saved_item.type] += 1
 		return TRUE
 
+	//We check for specific construction stack items
+	if((loadout.job == SQUAD_LEADER || loadout.job == SQUAD_ENGINEER) && isitemstack(saved_item))
+		var/obj/item/stack/stack_saved = saved_item
+		var/base_amount = 0
+		var/base_price = 0
+		if(istype(stack_saved, /obj/item/stack/sheet/metal) && loadout.job == SQUAD_ENGINEER)
+			base_amount = 10
+			base_price = METAL_PRICE_IN_GEAR_VENDOR
+		else if(istype(stack_saved, /obj/item/stack/sheet/plasteel) && loadout.job == SQUAD_ENGINEER)
+			base_amount = 10
+			base_price = PLASTEEL_PRICE_IN_GEAR_VENDOR
+		else if(istype(stack_saved, /obj/item/stack/sandbags_empty))
+			base_amount = 25
+			base_price = SANDBAG_PRICE_IN_GEAR_VENDOR
+		if(base_amount && (round(stack_saved.amount / base_amount) * base_price <= loadout.job_points_available))
+			loadout.job_points_available -= round(stack_saved.amount / base_amount) * base_price
+			loadout.priced_items_list[saved_item.type] += 1
+			return TRUE
 	//If it was not in a job specific clothes vendor, we try to use marine points to buy it
 	var/list/listed_products = GLOB.job_specific_points_vendor[loadout.job]
 	if(!listed_products)
@@ -46,25 +64,6 @@
 			return FALSE
 		loadout.job_points_available -= item_info[3]
 		loadout.priced_items_list[saved_item.type] += 1
-		return TRUE
-	
-	//Finally, we check for specific construction stack items
-	if((loadout.job != SQUAD_LEADER && loadout.job != SQUAD_ENGINEER) || !isitemstack(saved_item))
-		return FALSE
-	var/obj/item/stack/stack_saved = saved_item
-	var/base_amount = 0
-	var/base_price = 0
-	if(istype(stack_saved, /obj/item/stack/sheet/metal) && loadout.job == SQUAD_ENGINEER)
-		base_amount = 10
-		base_price = METAL_PRICE_IN_GEAR_VENDOR
-	else if(istype(stack_saved, /obj/item/stack/sheet/plasteel) && loadout.job == SQUAD_ENGINEER)
-		base_amount = 10
-		base_price = PLASTEEL_PRICE_IN_GEAR_VENDOR
-	else if(istype(stack_saved, /obj/item/stack/sheet/plasteel))
-		base_amount = 25
-		base_price = SANDBAG_PRICE_IN_GEAR_VENDOR
-	if(base_amount && (round(stack_saved.amount / base_amount) * base_price <= loadout.job_points_available))
-		loadout.job_points_available -= round(stack_saved.amount / base_amount) * base_price
 		return TRUE
 	return FALSE
 
