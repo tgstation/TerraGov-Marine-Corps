@@ -22,7 +22,7 @@
 	if(current_loadout == loadout_to_delete)
 		current_loadout = null
 	if(length(loadouts_data))
-		prepare_all_loadouts_data()
+		prepare_all_loadouts_data(loadout_to_delete.job)
 
 ///Prepare all loadouts data before sending them to tgui
 /datum/loadout_manager/proc/prepare_all_loadouts_data(job)

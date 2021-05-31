@@ -49,11 +49,11 @@
 	var/obj/item/card/id/id = user.get_idcard()
 	if(MARINE_TOTAL_BUY_POINTS - loadout.job_points_available > id.marine_points)
 		to_chat(user, "<span class='warning'>You don't have enough points to equip that loadout</span>")
-		return
+		return FALSE
 	prepare_to_equip_loadout(loadout, user)
 	if(unavailable_items && tgui_alert(user, "[unavailable_items] items were not found in vendors and won't be delivered. Do you want to equip that loadout anyway?", "Items missing", list("Yes", "No")) != "Yes")
 		sell_back_items()
-		return
+		return FALSE
 	do_equip_loadout(user)
 	sell_rest_of_essential_kit(loadout, user)
 

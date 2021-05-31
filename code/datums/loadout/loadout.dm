@@ -143,10 +143,10 @@
 			if(TIMER_COOLDOWN_CHECK(ui.user, COOLDOWN_LOADOUT_EQUIPPED))
 				to_chat(ui.user, "<span class='warning'>The vendor is still reloading</span>")
 				return
-			TIMER_COOLDOWN_START(ui.user, COOLDOWN_LOADOUT_EQUIPPED, 30 SECONDS)
 			if(!ui.user.client.prefs.loadout_manager.seller)
 				ui.user.client.prefs.loadout_manager.seller = new /datum/loadout_seller
-			ui.user.client.prefs.loadout_manager.seller.try_to_equip_loadout(src, ui.user)
+			if(ui.user.client.prefs.loadout_manager.seller.try_to_equip_loadout(src, ui.user))
+				TIMER_COOLDOWN_START(ui.user, COOLDOWN_LOADOUT_EQUIPPED, 30 SECONDS)
 			ui.close()
 		if("deleteLoadout")
 			ui.user.client.prefs.loadout_manager.delete_loadout(src)
