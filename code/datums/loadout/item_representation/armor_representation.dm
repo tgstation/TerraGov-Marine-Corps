@@ -146,7 +146,7 @@
 	..()
 	greyscale_colors = item_to_copy.greyscale_colors
 
-/datum/item_representation/armor_module/colored/instantiate_object(datum/loadout_seller/seller, master = null, datum/loadout/loadout = null, mob/user)
+/datum/item_representation/armor_module/colored/instantiate_object(datum/loadout_seller/seller, master = null, datum/loadout/loadout, mob/user)
 	. = ..()
 	if(!.)
 		return
