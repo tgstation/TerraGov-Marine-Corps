@@ -567,7 +567,7 @@
 	desc = "A weird glowing spire..."
 	bound_width = 64
 	bound_height = 64
-	max_integrity = 1000
+	max_integrity = 1100
 	density = TRUE
 	resistance_flags = UNACIDABLE | DROPSHIP_IMMUNE
 	light_system = STATIC_LIGHT
