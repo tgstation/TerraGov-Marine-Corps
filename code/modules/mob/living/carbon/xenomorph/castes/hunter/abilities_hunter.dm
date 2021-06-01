@@ -305,7 +305,7 @@
 	if(!.)
 		return
 
-	var/mob/living/carbon/xenomorph/hunter/X = owner
+	var/mob/living/carbon/xenomorph/X = owner
 
 	if(!isliving(A))
 		if(!silent)
@@ -407,13 +407,12 @@
 
 
 /datum/action/xeno_action/psychic_trace/action_activate()
-
-	var/mob/living/carbon/xenomorph/hunter/X = owner
+	var/mob/living/carbon/xenomorph/X = owner
 
 	to_chat(X, "<span class='xenodanger'>We sense our quarry <b>[psychic_trace_target]</b> is currently located in <b>[AREACOORD_NO_Z(psychic_trace_target)]</b> and is <b>[get_dist(X, psychic_trace_target)]</b> tiles away. It is <b>[calculate_mark_health(psychic_trace_target)]</b> and <b>[psychic_trace_target.status_flags & XENO_HOST ? "impregnated" : "barren"]</b>.</span>")
 	X.playsound_local(X, 'sound/effects/ghost2.ogg', 10, 0, 1)
 
-	var/obj/screen/arrow/arrow_hud = new /obj/screen/arrow/hunter_mark_arrow //Prepare the tracker object and set its parameters
+	var/obj/screen/arrow/hunter_mark_arrow/arrow_hud = new
 	//Prepare the tracker object and set its parameters
 	arrow_hud.add_hud(X, psychic_trace_target) //set the tracker parameters
 	arrow_hud.color = COLOR_ORANGE
