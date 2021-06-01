@@ -23,7 +23,7 @@
 
 	//If we can't find it for free, we then look if it's in the essential set of each job
 	var/list/job_specific_list = GLOB.loadout_role_essential_set[loadout.job]
-	if(job_specific_list[saved_item.type] > loadout.unique_items_list[saved_item.type])
+	if(islist(job_specific_list) && job_specific_list[saved_item.type] > loadout.unique_items_list[saved_item.type])
 		loadout.unique_items_list[saved_item.type] += 1
 		return TRUE
 
