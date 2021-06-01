@@ -36,8 +36,7 @@
 			continue
 		item = item_list[slot_key]
 		if(!user.equip_to_slot_if_possible(item, GLOB.slot_str_to_slot[slot_key], warning = FALSE))
-			sell_back_item_in_vendor(item.type)
-			qdel(item)
+			item.forceMove(user.loc)
 	give_free_headset(user)
 
 /**
