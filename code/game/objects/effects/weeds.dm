@@ -55,6 +55,9 @@
 	if(isxeno(AM))
 		var/mob/living/carbon/xenomorph/X = AM
 		X.next_move_slowdown += X.xeno_caste.weeds_speed_mod
+	if(ishuman(AM))
+		var/mob/living/carbon/human/H = AM
+		H.next_move_slowdown += 0.3
 
 /obj/effect/alien/weeds/proc/update_neighbours(turf/U)
 	if(!U)
