@@ -28,8 +28,7 @@ SUBSYSTEM_DEF(acid_spires)
 	calculate_production_rate()
 	stored_acid_amount += production_rate
 	for(var/obj/structure/xeno/checked_structure AS in connected_structures)
-		if(!checked_structure.on_acid_spires_tick())
-			checked_structure.disconnect_from_acid_spire()
+		checked_structure.on_acid_spires_tick()
 
 ///Calculates the rate at which the system produces acid
 /datum/controller/subsystem/acid_spires/proc/calculate_production_rate()
