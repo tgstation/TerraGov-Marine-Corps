@@ -15,7 +15,7 @@
 	if(uniform_to_copy.hastie)
 		tie = new /datum/item_representation/tie(uniform_to_copy.hastie, loadout)
 
-/datum/item_representation/uniform_representation/instantiate_object(datum/loadout_seller/seller, master = null, datum/loadout/loadout = null, mob/user)
+/datum/item_representation/uniform_representation/instantiate_object(datum/loadout_seller/seller, master = null, datum/loadout/loadout, mob/user)
 	. = ..()
 	if(!.)
 		return
