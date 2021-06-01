@@ -19,7 +19,7 @@
 		module = new /datum/item_representation/modular_helmet_module(helmet_to_copy.installed_module)
 	greyscale_colors = helmet_to_copy.greyscale_colors
 
-/datum/item_representation/modular_helmet/instantiate_object(datum/loadout_seller/seller, master = null, datum/loadout/loadout = null, mob/user)
+/datum/item_representation/modular_helmet/instantiate_object(datum/loadout_seller/seller, master = null, datum/loadout/loadout, mob/user)
 	. = ..()
 	if(!.)
 		return

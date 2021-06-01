@@ -18,7 +18,7 @@
 		attachments += new /datum/item_representation/gun_attachement(gun_to_copy.attachments[key])
 
 
-/datum/item_representation/gun/instantiate_object(datum/loadout_seller/seller, master = null, datum/loadout/loadout = null, mob/user)
+/datum/item_representation/gun/instantiate_object(datum/loadout_seller/seller, master = null, datum/loadout/loadout, mob/user)
 	. = ..()
 	if(!.)
 		return
@@ -73,7 +73,7 @@
 	max_rounds = handful_to_copy.max_rounds
 	gun_type = handful_to_copy.gun_type
 
-/datum/item_representation/handful_representation/instantiate_object(datum/loadout_seller/seller, master = null, datum/loadout/loadout = null, mob/user)
+/datum/item_representation/handful_representation/instantiate_object(datum/loadout_seller/seller, master = null, datum/loadout/loadout, mob/user)
 	. = ..()
 	if(!.)
 		return
