@@ -121,3 +121,13 @@
 ///If TRUE, the evo proc will consider spawn roony instead of runner on evo
 /datum/config_entry/flag/roony
 	config_entry_value = FALSE
+
+/datum/config_entry/number/marine_respawn
+	config_entry_value = 30 MINUTES
+	max_val = 30 MINUTES
+	min_val = 0
+
+/datum/config_entry/number/xeno_respawn
+	config_entry_value = 30 MINUTES
+	max_val = 30 MINUTES
+	min_val = 0
