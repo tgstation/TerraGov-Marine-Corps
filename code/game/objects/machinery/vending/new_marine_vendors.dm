@@ -256,8 +256,8 @@
 	gives_webbing = FALSE
 
 /obj/machinery/marine_selector/clothes/engi/Initialize()
-	listed_products = GLOB.engineer_clothes_listed_products
 	. = ..()
+	listed_products = GLOB.engineer_clothes_listed_products
 
 /obj/machinery/marine_selector/clothes/engi/rebel
 	req_access = list(ACCESS_MARINE_ENGPREP_REBEL)
@@ -673,8 +673,8 @@
 	req_access = list(ACCESS_MARINE_MEDPREP)
 
 /obj/machinery/marine_selector/gear/medic/Initialize()
-	listed_products = GLOB.medic_gear_listed_products
 	. = ..()
+	listed_products = GLOB.medic_gear_listed_products
 
 /obj/machinery/marine_selector/gear/medic/rebel 
 	vendor_role = /datum/job/terragov/squad/corpsman/rebel
@@ -688,8 +688,8 @@
 	req_access = list(ACCESS_MARINE_ENGPREP)
 
 /obj/machinery/marine_selector/gear/engi/Initialize()
-	listed_products = GLOB.engineer_gear_listed_products
 	. = ..()
+	listed_products = GLOB.engineer_gear_listed_products
 
 /obj/machinery/marine_selector/gear/engi/rebel 
 	vendor_role = /datum/job/terragov/squad/engineer/rebel
@@ -773,8 +773,8 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 	req_access = list(ACCESS_MARINE_LEADER)
 
 /obj/machinery/marine_selector/gear/leader/Initialize()
-	listed_products = GLOB.leader_gear_listed_products
 	. = ..()
+	listed_products = GLOB.leader_gear_listed_products
 
 /obj/machinery/marine_selector/gear/leader/rebel
 	vendor_role = /datum/job/terragov/squad/leader/rebel
