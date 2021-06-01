@@ -137,6 +137,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 	var/auto_fit_viewport = TRUE
 
+	///The loadout manager
+	var/datum/loadout_manager/loadout_manager
 	/// New TGUI Preference preview
 	var/map_name = "player_pref_map"
 	var/obj/screen/map_view/screen_main
@@ -164,6 +166,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 	if(!IsGuestKey(C.key))
 		load_path(C.ckey)
+		if(!load_loadout_manager())
+			loadout_manager = new 
 		if(load_preferences() && load_character())
 			return
 
@@ -176,6 +180,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		emote.id = i
 		custom_emotes += emote 
 	C.update_movement_keys(src)
+	loadout_manager = new
 
 
 /datum/preferences/can_interact(mob/user)

@@ -59,7 +59,7 @@
 ///Relays health and location data about resin silos belonging to the same hive as the input user
 /proc/resin_silo_status_output(mob/living/carbon/xenomorph/user, datum/hive_status/hive)
 	. = "<BR><b>List of Resin Silos:</b><BR><table cellspacing=4>" //Resin silo data
-	for(var/obj/structure/resin/silo/resin_silo AS in GLOB.xeno_resin_silos)
+	for(var/obj/structure/xeno/resin/silo/resin_silo AS in GLOB.xeno_resin_silos)
 		if(resin_silo.associated_hive == hive)
 
 			var/hp_color = "green"
@@ -175,7 +175,7 @@
 
 	if(href_list["track_silo_number"])
 		var/silo_number = href_list["track_silo_number"]
-		for(var/obj/structure/resin/silo/resin_silo AS in GLOB.xeno_resin_silos)
+		for(var/obj/structure/xeno/resin/silo/resin_silo AS in GLOB.xeno_resin_silos)
 			if(resin_silo.associated_hive == hive && num2text(resin_silo.number_silo) == silo_number)
 				tracked = resin_silo
 				to_chat(usr,"<span class='notice'> You will now track [resin_silo.name]</span>")

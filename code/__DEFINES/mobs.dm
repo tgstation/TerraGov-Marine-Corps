@@ -434,6 +434,8 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define XENO_DEADHUMAN_DRAG_SLOWDOWN 2
 #define XENO_EXPLOSION_RESIST_3_MODIFIER	0.25 //multiplies top level explosive damage by this amount.
 
+#define KING_SUMMON_TIMER_DURATION 10 MINUTES
+
 #define SPIT_UPGRADE_BONUS(Xenomorph) (( max(0,Xenomorph.upgrade_as_number()) * 0.15 )) //increase damage by 15% per upgrade level; compensates for the loss of insane attack speed.
 
 #define PLASMA_TRANSFER_AMOUNT 100
@@ -600,6 +602,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 
 #define WRAITH_TELEPORT_DEBUFF_STACKS			1 //Stagger and slow stacks applied to adjacent living hostiles before/after a teleport
 
+#define DEFILER_TRANSVITOX_CAP					180 //Max toxin damage transvitox will allow
 
 //misc
 

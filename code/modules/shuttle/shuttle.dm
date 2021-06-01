@@ -111,7 +111,7 @@
 /// Return number of turfs
 /obj/docking_port/proc/return_number_of_turfs()
 	var/list/L = return_coords()
-	return (L[3]-L[1]) * (L[4]-L[2])
+	return abs((L[3]-L[1]) * (L[4]-L[2]))
 
 ///returns turfs within our projected rectangle in no particular order
 /obj/docking_port/proc/return_turfs()

@@ -131,4 +131,3 @@ GLOBAL_VAR_INIT(global_unique_id, 1)
 #define LIGHT_EMPTY 1
 #define LIGHT_BROKEN 2
 #define LIGHT_BURNED 3
-#define LIGHT_DISABLED 4

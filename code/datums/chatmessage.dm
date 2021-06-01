@@ -18,8 +18,6 @@
 #define CHAT_LAYER_Z_STEP			0.0001
 /// The number of z-layer 'slices' usable by the chat message layering
 #define CHAT_LAYER_MAX_Z			(CHAT_LAYER_MAX - CHAT_LAYER) / CHAT_LAYER_Z_STEP
-/// Macro from Lummox used to get height from a MeasureText proc
-#define WXH_TO_HEIGHT(x)			text2num(copytext(x, findtextEx(x, "x") + 1))
 
 /**
  * # Chat Message Overlay

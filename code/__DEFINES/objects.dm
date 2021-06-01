@@ -245,7 +245,7 @@ GLOBAL_LIST_INIT(restricted_camera_networks, list( //Those networks can only be 
 //Lights define
 #define CHECKS_PASSED 	  1
 #define STILL_ON_COOLDOWN 2
-#define OUT_OF_REACH	  3
+#define NIGHTFALL_IMMUNE  3
 
 //Xeno turrets define
 #define TURRET_SCAN_RANGE 25

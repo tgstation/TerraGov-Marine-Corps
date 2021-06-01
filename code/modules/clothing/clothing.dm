@@ -109,6 +109,14 @@
 	light_range = 4
 	light_system = MOVABLE_LIGHT
 
+/obj/item/clothing/suit/Initialize()
+	. = ..()
+	GLOB.nightfall_toggleable_lights += src
+
+/obj/item/clothing/suit/Destroy()
+	. = ..()
+	GLOB.nightfall_toggleable_lights -= src
+
 /obj/item/clothing/suit/dropped(mob/user)
 	turn_light(user, FALSE)
 	return ..()
