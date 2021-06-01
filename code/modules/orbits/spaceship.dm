@@ -9,8 +9,8 @@
 #define REQUIRED_POWER_AMOUNT 250000
 #define AUTO_LOGOUT_TIME 1 MINUTES
 
-#define AUTHORIZED 		1
-#define AUTHORIZED_PLUS	2
+#define AUTHORIZED 1
+#define AUTHORIZED_PLUS 2
 
 //so we can use the current orbit in other files
 GLOBAL_VAR_INIT(current_orbit,STANDARD_ORBIT)

@@ -1,28 +1,28 @@
-#define MARINE_CAN_BUY_UNIFORM 		(1 << 0)
-#define MARINE_CAN_BUY_SHOES	 	(1 << 1)
-#define MARINE_CAN_BUY_HELMET 		(1 << 2)
-#define MARINE_CAN_BUY_ARMOR	 	(1 << 3)
-#define MARINE_CAN_BUY_GLOVES 		(1 << 4)
-#define MARINE_CAN_BUY_EAR	 		(1 << 5)
-#define MARINE_CAN_BUY_BACKPACK 	(1 << 6)
-#define MARINE_CAN_BUY_R_POUCH 		(1 << 7)
-#define MARINE_CAN_BUY_L_POUCH 		(1 << 8)
-#define MARINE_CAN_BUY_BELT 		(1 << 9)
-#define MARINE_CAN_BUY_GLASSES		(1 << 10)
-#define MARINE_CAN_BUY_MASK			(1 << 11)
-#define MARINE_CAN_BUY_ESSENTIALS	(1 << 12)
-#define MARINE_CAN_BUY_ATTACHMENT	(1 << 13)
-#define MARINE_CAN_BUY_ATTACHMENT2	(1 << 14)
+#define MARINE_CAN_BUY_UNIFORM (1 << 0)
+#define MARINE_CAN_BUY_SHOES (1 << 1)
+#define MARINE_CAN_BUY_HELMET (1 << 2)
+#define MARINE_CAN_BUY_ARMOR (1 << 3)
+#define MARINE_CAN_BUY_GLOVES (1 << 4)
+#define MARINE_CAN_BUY_EAR (1 << 5)
+#define MARINE_CAN_BUY_BACKPACK (1 << 6)
+#define MARINE_CAN_BUY_R_POUCH (1 << 7)
+#define MARINE_CAN_BUY_L_POUCH (1 << 8)
+#define MARINE_CAN_BUY_BELT (1 << 9)
+#define MARINE_CAN_BUY_GLASSES (1 << 10)
+#define MARINE_CAN_BUY_MASK (1 << 11)
+#define MARINE_CAN_BUY_ESSENTIALS (1 << 12)
+#define MARINE_CAN_BUY_ATTACHMENT (1 << 13)
+#define MARINE_CAN_BUY_ATTACHMENT2 (1 << 14)
 
-#define MARINE_CAN_BUY_WEBBING		(1 << 15)
-#define MARINE_CAN_BUY_MODULE		(1 << 16)
-#define MARINE_CAN_BUY_ARMORMOD		(1 << 17)
+#define MARINE_CAN_BUY_WEBBING (1 << 15)
+#define MARINE_CAN_BUY_MODULE (1 << 16)
+#define MARINE_CAN_BUY_ARMORMOD (1 << 17)
 
 
 
-#define MARINE_CAN_BUY_ALL			((1 << 18) - 1)
+#define MARINE_CAN_BUY_ALL ((1 << 18) - 1)
 
-#define MARINE_TOTAL_BUY_POINTS		45
+#define MARINE_TOTAL_BUY_POINTS 45
 
 #define CAT_ESS "ESSENTIALS"
 #define CAT_STD "STANDARD EQUIPMENT"
@@ -581,7 +581,7 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 		/obj/item/clothing/mask/rebreather = list(CAT_MAS, "Rebreather", 0, "black"),
 	)
 
-/obj/machinery/marine_selector/clothes/smartgun/rebel 
+/obj/machinery/marine_selector/clothes/smartgun/rebel
 	req_access = list(ACCESS_MARINE_SMARTPREP_REBEL)
 	vendor_role = /datum/job/terragov/squad/smartgunner/rebel
 
@@ -824,7 +824,7 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 		/obj/item/clothing/mask/rebreather = list(CAT_MAS, "Rebreather", 0, "black"),
 	)
 
-/obj/machinery/marine_selector/clothes/commander/rebel 
+/obj/machinery/marine_selector/clothes/commander/rebel
 	req_access = list(ACCESS_MARINE_COMMANDER_REBEL)
 	vendor_role = /datum/job/terragov/command/fieldcommander/rebel
 
@@ -952,7 +952,7 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 		/obj/item/clothing/mask/gas/tactical/coif = list(CAT_MAS, "Tactical coifed gas mask", 0,"black"),
 	)
 
-/obj/machinery/marine_selector/clothes/synth/rebel 
+/obj/machinery/marine_selector/clothes/synth/rebel
 	vendor_role = /datum/job/terragov/silicon/synthetic/rebel
 
 ////////////////////// Gear ////////////////////////////////////////////////////////
@@ -1020,9 +1020,9 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 		/obj/item/attachable/heavy_barrel = list(CAT_ATT, "barrel charger", 0, "black"),
 	)
 
-/obj/machinery/marine_selector/gear/medic/rebel 
+/obj/machinery/marine_selector/gear/medic/rebel
 	vendor_role = /datum/job/terragov/squad/corpsman/rebel
-	req_access = list(ACCESS_MARINE_MEDPREP_REBEL)	
+	req_access = list(ACCESS_MARINE_MEDPREP_REBEL)
 
 
 /obj/machinery/marine_selector/gear/engi
@@ -1067,7 +1067,7 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 		/obj/item/attachable/stock/t19stock = list(CAT_ATT, "T-19 machine pistol stock", 0, "black"),
 	)
 
-/obj/machinery/marine_selector/gear/engi/rebel 
+/obj/machinery/marine_selector/gear/engi/rebel
 	vendor_role = /datum/job/terragov/squad/engineer/rebel
 	req_access = list(ACCESS_MARINE_ENGPREP_REBEL)
 
@@ -1095,7 +1095,7 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 		/obj/item/attachable/stock/t19stock = list(CAT_ATT, "T-19 machine pistol stock", 0, "black"),
 	)
 
-/obj/machinery/marine_selector/gear/smartgun/rebel 
+/obj/machinery/marine_selector/gear/smartgun/rebel
 	vendor_role = /datum/job/terragov/squad/smartgunner/rebel
 	req_access = list(ACCESS_MARINE_SMARTPREP_REBEL)
 

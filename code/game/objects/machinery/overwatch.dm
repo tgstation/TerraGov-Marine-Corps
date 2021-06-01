@@ -30,7 +30,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	var/faction = FACTION_TERRAGOV
 	/// The list of all squads that can be watched
 	var/list/watchable_squads
-	
+
 	///Squad being currently overseen
 	var/datum/squad/current_squad = null
 	///Selected target for bombarding
@@ -587,7 +587,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	var/datum/squad/new_squad = tgui_input_list(usr, "Choose the marine's new squad", null,  watchable_squads)
 	if(!new_squad)
 		return
-	
+
 	if(S != current_squad)
 		return
 

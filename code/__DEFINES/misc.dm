@@ -14,24 +14,24 @@
 #define OVERRIDE_CONFIG_DIRECTORY_PARAMETER "config-directory"
 
 // Consider these images/atoms as part of the UI/HUD
-#define APPEARANCE_UI_IGNORE_ALPHA			(RESET_COLOR|RESET_TRANSFORM|NO_CLIENT_COLOR|RESET_ALPHA|PIXEL_SCALE)
-#define APPEARANCE_UI						(RESET_COLOR|RESET_TRANSFORM|NO_CLIENT_COLOR|PIXEL_SCALE)
-#define APPEARANCE_UI_TRANSFORM				(RESET_COLOR|NO_CLIENT_COLOR|RESET_ALPHA|PIXEL_SCALE)
+#define APPEARANCE_UI_IGNORE_ALPHA (RESET_COLOR|RESET_TRANSFORM|NO_CLIENT_COLOR|RESET_ALPHA|PIXEL_SCALE)
+#define APPEARANCE_UI (RESET_COLOR|RESET_TRANSFORM|NO_CLIENT_COLOR|PIXEL_SCALE)
+#define APPEARANCE_UI_TRANSFORM (RESET_COLOR|NO_CLIENT_COLOR|RESET_ALPHA|PIXEL_SCALE)
 
 //Just space
-#define SPACE_ICON_STATE	"[((x + y) ^ ~(x * y) + z) % 25]"
+#define SPACE_ICON_STATE "[((x + y) ^ ~(x * y) + z) % 25]"
 
 //dirt type for each turf types.
-#define NO_DIRT				0
-#define DIRT_TYPE_GROUND	1
-#define DIRT_TYPE_MARS		2
-#define DIRT_TYPE_SNOW		3
+#define NO_DIRT 0
+#define DIRT_TYPE_GROUND 1
+#define DIRT_TYPE_MARS 2
+#define DIRT_TYPE_SNOW 3
 
 //wet floors
 
-#define FLOOR_WET_WATER	1
-#define FLOOR_WET_LUBE	2
-#define FLOOR_WET_ICE	3
+#define FLOOR_WET_WATER 1
+#define FLOOR_WET_LUBE 2
+#define FLOOR_WET_ICE 3
 
 //subtypesof(), typesof() without the parent path
 #define subtypesof(typepath) ( typesof(typepath) - typepath )
@@ -79,18 +79,18 @@ GLOBAL_VAR_INIT(global_unique_id, 1)
 
 
 //Ghost orbit types:
-#define GHOST_ORBIT_CIRCLE		"circle"
-#define GHOST_ORBIT_TRIANGLE	"triangle"
-#define GHOST_ORBIT_HEXAGON		"hexagon"
-#define GHOST_ORBIT_SQUARE		"square"
-#define GHOST_ORBIT_PENTAGON	"pentagon"
+#define GHOST_ORBIT_CIRCLE "circle"
+#define GHOST_ORBIT_TRIANGLE "triangle"
+#define GHOST_ORBIT_HEXAGON "hexagon"
+#define GHOST_ORBIT_SQUARE "square"
+#define GHOST_ORBIT_PENTAGON "pentagon"
 
 
-#define GHOST_OTHERS_SIMPLE			"white ghost"
-#define GHOST_OTHERS_DEFAULT_SPRITE		"default sprites"
-#define GHOST_OTHERS_THEIR_SETTING	"their setting"
+#define GHOST_OTHERS_SIMPLE "white ghost"
+#define GHOST_OTHERS_DEFAULT_SPRITE "default sprites"
+#define GHOST_OTHERS_THEIR_SETTING "their setting"
 
-#define GHOST_OTHERS_DEFAULT_OPTION			GHOST_OTHERS_THEIR_SETTING
+#define GHOST_OTHERS_DEFAULT_OPTION GHOST_OTHERS_THEIR_SETTING
 
 #define GHOST_DEFAULT_FORM 		"ghost"
 
