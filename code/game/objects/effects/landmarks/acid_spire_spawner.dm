@@ -1,5 +1,5 @@
 /**
- * Landmark for spawning acid nodes
+ * Landmark for spawning acid apires
  */
 /obj/effect/landmark/acid_spire_spawner
 	name = "acid spire landmark"

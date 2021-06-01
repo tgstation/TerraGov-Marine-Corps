@@ -3,6 +3,7 @@
 	var/xeno_structure_flags = NONE
 	///Acid spire the structure is connected to
 	var/obj/structure/xeno/resin/acid_spire/connected_spire = null
+	var/static/image/acid_spire_link_overlay = image('icons/Xeno/effects.dmi', null, "acid_spire_connected")
 
 ///Connects the structure to an acid spire
 /obj/structure/xeno/proc/connect_to_acid_spire(run_link_action = TRUE)
@@ -14,6 +15,7 @@
 	xeno_structure_flags |= ACID_SPIRE_CONNECTED
 	RegisterSignal(connected_spire, COMSIG_LIVING_ACID_SPIRE_RANGE_CHANGED, .proc/check_spire_connection)
 	acid_spire_link(run_link_action)
+	overlays += acid_spire_link_overlay
 
 	return TRUE
 
@@ -22,11 +24,11 @@
 	if(!(xeno_structure_flags & ACID_SPIRE_CONNECTED))
 		return
 
-	message_admins("disconnect action")
 	acid_spire_unlink(run_unlink_action)
 	xeno_structure_flags &= ~ACID_SPIRE_CONNECTED
 	UnregisterSignal(connected_spire, COMSIG_LIVING_ACID_SPIRE_RANGE_CHANGED)
 	connected_spire = null
+	overlays -= acid_spire_link_overlay
 
 /**
  * Checks if the structure can remain connected to the acid spire when its range changes
@@ -555,6 +557,8 @@
  */
 
 #define NODE_RANGE_GROUPING_COEF 4
+#define BASE_SUPPLY_REWARD 40
+#define ACID_PRODUCTION_MARINE_REWARD_SCALE 1.2
 
 /obj/structure/xeno/resin/acid_spire
 	name = "acid spire"
@@ -568,6 +572,7 @@
 	resistance_flags = UNACIDABLE | DROPSHIP_IMMUNE
 	light_system = STATIC_LIGHT
 	integrity_failure = 100
+	xeno_structure_flags = ACID_REPAIRABLE
 	///Acid nodes connected to the spire
 	var/list/connected_acid_nodes = list()
 	///Amount of acid that the spire produces
@@ -599,7 +604,7 @@
 /obj/structure/xeno/resin/acid_spire/ex_act(severity)
 	switch(severity)
 		if(EXPLODE_DEVASTATE)
-			take_damage(max_integrity)
+			take_damage(max_integrity * 0.9)
 		if(EXPLODE_HEAVY)
 			take_damage(max_integrity * 0.6)
 		if(EXPLODE_LIGHT)
@@ -611,15 +616,22 @@
 		return
 
 	obj_integrity = integrity_failure
+
+	if(xeno_structure_flags & ACID_BROKEN)
+		return
+
 	icon_state = "destroyed_tower"
 	update_icon()
 	set_light(2, 2, LIGHT_COLOR_ELECTRIC_GREEN)
 	resistance_flags |= INDESTRUCTIBLE
-	resistance_flags |= ACID_SPIRE_BROKEN
+	xeno_structure_flags |= ACID_BROKEN
+	var/supply_reward = BASE_SUPPLY_REWARD + acid_production_strength * ACID_PRODUCTION_MARINE_REWARD_SCALE
+	SSpoints.supply_points[FACTION_TERRAGOV] += supply_reward
+	priority_announce("Key research site secured. Bonus delivered as [supply_reward] supply points.", title = "TGMC Research Division")
 
 ///Restores the acid spire to a functional state
-/obj/structure/xeno/resin/acid_spire/proc/restore()
-	if(!(xeno_structure_flags & ACID_SPIRE_BROKEN))
+/obj/structure/xeno/resin/acid_spire/proc/restore_spire()
+	if(!(xeno_structure_flags & ACID_BROKEN))
 		return
 
 	obj_integrity = max_integrity
@@ -627,7 +639,7 @@
 	update_icon()
 	set_light(6, 2, LIGHT_COLOR_ELECTRIC_GREEN)
 	resistance_flags &= ~INDESTRUCTIBLE
-	resistance_flags &= ~ACID_SPIRE_BROKEN
+	xeno_structure_flags &= ~ACID_BROKEN
 
 ///connects an acid node to the spire
 /obj/structure/xeno/resin/acid_spire/proc/add_acid_node(obj/effect/alien/acid_node/new_node)
@@ -662,7 +674,7 @@
 	SEND_SIGNAL(src, COMSIG_LIVING_ACID_SPIRE_RANGE_CHANGED)
 
 /obj/structure/xeno/resin/acid_spire/proc/production_strength()
-	return xeno_structure_flags & ACID_SPIRE_BROKEN ? acid_production_strength*0.5 : acid_production_strength
+	return xeno_structure_flags & ACID_BROKEN ? acid_production_strength*0.5 : acid_production_strength
 
 ///Updates connected nodes' provided strength
 /obj/structure/xeno/resin/acid_spire/proc/update_linked_nodes_strength()

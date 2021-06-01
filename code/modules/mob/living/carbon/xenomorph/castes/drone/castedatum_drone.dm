@@ -57,8 +57,6 @@
 		/datum/action/xeno_action/activable/devour,
 		/datum/action/xeno_action/activable/cocoon,
 		/datum/action/xeno_action/plant_weeds,
-		/datum/action/xeno_action/activable/plant_acid_node,
-		/datum/action/xeno_action/activable/connect_to_acid,
 		/datum/action/xeno_action/activable/secrete_resin,
 		/datum/action/xeno_action/activable/psychic_cure/acidic_salve,
 		/datum/action/xeno_action/activable/transfer_plasma/drone,

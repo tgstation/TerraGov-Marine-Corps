@@ -128,4 +128,6 @@
 		/datum/action/xeno_action/toggle_pheromones,
 		/datum/action/xeno_action/activable/secrete_resin/slow,
 		/datum/action/xeno_action/activable/rally_hive/hivemind,
+		/datum/action/xeno_action/activable/manage_structure,
+		/datum/action/xeno_action/activable/plant_acid_node,
 	)

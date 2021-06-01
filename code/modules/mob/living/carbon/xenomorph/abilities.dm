@@ -1507,7 +1507,7 @@
 	cooldown_timer = 2 SECONDS
 	plasma_cost = 0
 	///Acid cost of placing a node
-	var/acid_cost = 20
+	var/acid_cost = 40
 	///minimum range at which the node needs to be to be placed next to a spire
 	var/minimum_placement_range = 4
 
@@ -1517,7 +1517,7 @@
 		return FALSE
 
 	if(SSacid_spires.stored_acid() < acid_cost)
-		to_chat(owner, "<span class='warning'>We need [acid_cost] units of acid stored to construct an acid node.</span>")
+		to_chat(owner, "<span class='xenowarning'>We need [acid_cost] units of acid stored to construct an acid node.</span>")
 		return FALSE
 
 	var/turf/T = get_turf(owner)
@@ -1526,11 +1526,11 @@
 		return FALSE
 
 	if(locate(/obj/structure/xeno/trap) in T)
-		to_chat(owner, "<span class='warning'>There is a resin trap in the way!</span>")
+		to_chat(owner, "<span class='xenowarning'>There is a resin trap in the way!</span>")
 		return FALSE
 
 	if(locate(/obj/effect/alien/acid_node) in T)
-		to_chat(owner, "<span class='warning'>There's a node here already!</span>")
+		to_chat(owner, "<span class='xenowarning'>There's a node here already!</span>")
 		return FALSE
 
 	//checks if a spire is too close or there are no spires that can reach the node
@@ -1540,14 +1540,14 @@
 		message_admins("get_dist valus > [spire_distance]")
 		if(spire_distance < minimum_placement_range)
 			if(!silent)
-				to_chat(owner, "<span class='warning'>We need place the node at least [minimum_placement_range] meters away from a spire.</span>")
+				to_chat(owner, "<span class='xenowarning'>We need place the node at least [minimum_placement_range] meters away from a spire.</span>")
 			return FALSE
 		if(spire_distance <= checked_spire.effective_range)
 			within_spire_reach = TRUE
 			break
 	if(!within_spire_reach)
 		if(!silent)
-			to_chat(owner, "<span class='warning'>We need place the node within a spire's operational area. This can be increased by adding more nodes to a spire's network.</span>")
+			to_chat(owner, "<span class='xenowarning'>We need place the node within a spire's operational area. This can be increased by adding more nodes to a spire's network.</span>")
 		return FALSE
 
 /datum/action/xeno_action/activable/plant_acid_node/use_ability(atom/A)
@@ -1556,40 +1556,106 @@
 	add_cooldown()
 	return succeed_activate()
 
+
+#define CONNECT_TO_ACID "Connect/Disconnect acid network"
+#define RESTORE_STRUCTURE "Restore"
+#define REPAIR_STRUCTURE "Repair"
+#define ACID_REPAIR_PLASMA_COST 75
+#define ACID_REPAIR_AMOUNT 100
 /////////////////////////////////
-// Connect to acid network
+// Manage acid structure
 /////////////////////////////////
-/datum/action/xeno_action/activable/connect_to_acid
-	name = "Connect to acid spires / Restore acid spire"
+/datum/action/xeno_action/activable/manage_structure
+	name = "Configure structure"
 	action_icon_state = "place_trap"
-	mechanics_text = "Connect a structure to the acid network. Restore an acid spire if it is destroyed."
+	mechanics_text = "Manage the settings of a structure, if such are available."
 	cooldown_timer = 2 SECONDS
 	plasma_cost = 0
 
-/datum/action/xeno_action/activable/connect_to_acid/can_use_ability(atom/A, silent, override_flags)
+/datum/action/xeno_action/activable/manage_structure/can_use_ability(atom/A, silent, override_flags)
 	. = ..()
 	if(!.)
 		return FALSE
 
 	if(!isxenostructure(A))
 		if(!silent)
-			to_chat(owner, "<span class='warning'>We can only connect hive structures to the acid network.</span>")
+			to_chat(owner, "<span class='xenowarning'>We can only connect hive structures to the acid network.</span>")
 		return FALSE
 
+	return TRUE
+
+/datum/action/xeno_action/activable/manage_structure/use_ability(atom/A)
 	var/obj/structure/xeno/checked_structure = A
-	if(!(checked_structure.xeno_structure_flags & ACID_SPIRE_CONNECTABLE))
-		if(!silent)
-			to_chat(owner, "<span class='warning'>[checked_structure] is not connectable to the acid network.</span>")
-		return FALSE
 
-/datum/action/xeno_action/activable/connect_to_acid/use_ability(atom/A)
-	var/obj/structure/xeno/connected_structure = A
-	if(connected_structure.xeno_structure_flags & ACID_SPIRE_CONNECTED)
-		connected_structure.disconnect_from_acid_spire()
-		to_chat(owner, "<span class='warning'>We disconnect [connected_structure] from the network.</span>")
-		return succeed_activate()
-	else if(!connected_structure.connect_to_acid_spire())
-		to_chat(owner, "<span class='warning'>Connecting of [connected_structure] was unsucessful.</span>")
-		return succeed_activate()
-	to_chat(owner, "<span class='notice'>We connect [connected_structure] to the acid network.</span>")
+	var/list/radial_options = list()
+
+	if(checked_structure.xeno_structure_flags & ACID_SPIRE_CONNECTABLE)
+		radial_options += list(CONNECT_TO_ACID = image(icon = 'icons/mob/radial.dmi', icon_state = "cboost_extract"))
+
+	if(checked_structure.xeno_structure_flags & ACID_BROKEN)
+		radial_options += list(RESTORE_STRUCTURE = image(icon = 'icons/mob/radial.dmi', icon_state = "cboost_extract"))
+	else if(checked_structure.xeno_structure_flags & ACID_REPAIRABLE)
+		radial_options += list(REPAIR_STRUCTURE = image(icon = 'icons/mob/radial.dmi', icon_state = "cboost_extract"))
+
+	if(length(radial_options) == 0)
+		to_chat(owner, "<span class='xenonotice'>[checked_structure] seems to have available modifications.</span>")
+		return fail_activate()
+
+	var/choice = show_radial_menu(owner, checked_structure, radial_options, null, 48, null, TRUE, TRUE)
+	switch(choice)
+		if(CONNECT_TO_ACID)
+			connect_to_acid_spire(checked_structure)
+
+		if(RESTORE_STRUCTURE)
+			restore_acid_structure(checked_structure)
+
+		if(REPAIR_STRUCTURE)
+			repair_acid_structure(checked_structure)
+
 	return succeed_activate()
+
+/datum/action/xeno_action/activable/manage_structure/proc/connect_to_acid_spire(obj/structure/xeno/checked_structure)
+	if(checked_structure.xeno_structure_flags & ACID_SPIRE_CONNECTED)
+		checked_structure.disconnect_from_acid_spire()
+		to_chat(owner, "<span class='xenowarning'>We disconnect [checked_structure] from the network.</span>")
+		return
+
+	if(!checked_structure.connect_to_acid_spire())
+		to_chat(owner, "<span class='xenowarning'>Connecting of [checked_structure] was unsucessful.</span>")
+		return
+
+	to_chat(owner, "<span class='xenonotice'>We connect [checked_structure] to the acid network.</span>")
+
+/datum/action/xeno_action/activable/manage_structure/proc/restore_acid_structure(obj/structure/xeno/resin/acid_spire/checked_structure)
+	if(!do_after(owner, 20 SECONDS, FALSE, checked_structure, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
+		return
+
+	checked_structure.restore_spire()
+
+	var/mob/living/carbon/xenomorph/engineer = owner
+	xeno_message("An acid spire has been restored at [AREACOORD_NO_Z(checked_structure.loc)]!", "xenoannounce", 6, engineer.hivenumber,
+		FALSE, checked_structure, 'sound/voice/alien_distantroar_3.ogg', TRUE, null, /obj/screen/arrow/leader_tracker_arrow)
+
+	notify_ghosts("\ [checked_structure] at [AREACOORD_NO_Z(checked_structure.loc)] has been restored!", source = checked_structure, action = NOTIFY_JUMP)
+
+/datum/action/xeno_action/activable/manage_structure/proc/repair_acid_structure(obj/structure/xeno/checked_structure)
+	var/mob/living/carbon/xenomorph/engineer = owner
+	if(checked_structure.obj_integrity == checked_structure.max_integrity)
+		to_chat(owner, "<span class='xenonotice'>[checked_structure] is fully repaired.</span>")
+		return
+
+	if(engineer.plasma_stored < ACID_REPAIR_PLASMA_COST)
+		to_chat(owner, "<span class='xenowarning'>We need [ACID_REPAIR_PLASMA_COST] plasma to repair [checked_structure].</span>")
+		return
+
+	if(!do_after(owner, 5 SECONDS, FALSE, checked_structure, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
+		return
+
+	engineer.use_plasma(ACID_REPAIR_PLASMA_COST)
+	checked_structure.repair_damage(ACID_REPAIR_AMOUNT)
+	repair_acid_structure(checked_structure)
+
+#undef CONNECT_TO_ACID
+#undef RESTORE_STRUCTURE
+#undef ACID_REPAIR_PLASMA_COST
+#undef ACID_REPAIR_AMOUNT

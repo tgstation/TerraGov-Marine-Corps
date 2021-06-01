@@ -9,7 +9,7 @@ SUBSYSTEM_DEF(acid_spires)
 	///Amount of acid spires spawned at round-start
 	var/acid_spire_spawn_amount = 2
 	///Amount of acid that the system currently has
-	var/stored_acid_amount = 0
+	var/stored_acid_amount = 100
 	///Production strength of the acid spires network
 	var/production_rate = 0
 	///List of structures that tick when the system ticks
