@@ -355,14 +355,14 @@
 		return fail_activate()
 
 	if(hunter_mark_target) //If we have an existing target, remove the registration.
-		UnregisterSignal(hunter_mark_target, COMSIG_PARENT_PREQDELETED)
+		UnregisterSignal(hunter_mark_target, COMSIG_PARENT_QDELETING)
 
 	hunter_mark_target = victim //Set our target
 
 	var/datum/action/xeno_action/psychic_trace/psychic_trace_set_target = X.actions_by_path[/datum/action/xeno_action/psychic_trace] //Set Psychic Trace's target
 	psychic_trace_set_target.psychic_trace_target = hunter_mark_target
 
-	RegisterSignal(hunter_mark_target, COMSIG_PARENT_PREQDELETED, .proc/unset_target) //For var clean up
+	RegisterSignal(hunter_mark_target, COMSIG_PARENT_QDELETING, .proc/unset_target) //For var clean up
 
 	to_chat(X, "<span class='xenodanger'>We psychically mark [victim] as our quarry.</span>")
 	X.playsound_local(X, 'sound/effects/ghost.ogg', 25, 0, 1)
@@ -375,7 +375,8 @@
 
 ///Nulls the target of our hunter's mark
 /datum/action/xeno_action/activable/hunter_mark/proc/unset_target()
-	UnregisterSignal(hunter_mark_target, COMSIG_PARENT_PREQDELETED)
+	SIGNAL_HANDLER
+	UnregisterSignal(hunter_mark_target, COMSIG_PARENT_QDELETING)
 	var/datum/action/xeno_action/psychic_trace/psychic_trace_set_target = owner.actions_by_path[/datum/action/xeno_action/psychic_trace]
 	psychic_trace_set_target.psychic_trace_target = null //Nullify psychic trace's target and clear the var
 	hunter_mark_target = null //Nullify hunter's mark target and clear the var
@@ -415,7 +416,6 @@
 	var/obj/screen/arrow/hunter_mark_arrow/arrow_hud = new
 	//Prepare the tracker object and set its parameters
 	arrow_hud.add_hud(X, psychic_trace_target) //set the tracker parameters
-	arrow_hud.color = COLOR_ORANGE
 	arrow_hud.process() //Update immediately
 
 	add_cooldown()

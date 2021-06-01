@@ -832,3 +832,4 @@
 	name = "hunter mark arrow"
 	icon_state = "Red_arrow"
 	duration = HUNTER_PSYCHIC_TRACE_COOLDOWN
+	color = COLOR_ORANGE
