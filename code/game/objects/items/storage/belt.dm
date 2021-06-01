@@ -495,7 +495,7 @@
 	if(!draw_mode || !ishuman(user) && !contents.len)
 		open(user)
 
-	if(!contents.len)
+	if(!length(contents))
 		return
 
 	var/obj/item/I = contents[contents.len]
