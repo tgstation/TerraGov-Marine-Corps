@@ -48,7 +48,7 @@
 //clothing specific stuff uses flags_inventory.
 //flags_item
 #define NODROP (1<<0)	// Cannot be dropped/unequipped at all, only deleted.
-#define NOBLUDGEON 			(1<<1)	// when an item has this it produces no "X has been hit by Y with Z" message with the default handler
+#define NOBLUDGEON (1<<1)	// when an item has this it produces no "X has been hit by Y with Z" message with the default handler
 #define DELONDROP (1<<2)	// Deletes on drop instead of falling on the floor.
 #define TWOHANDED (1<<3)	// The item is twohanded.
 #define WIELDED (1<<4)	// The item is wielded with both hands.
@@ -56,7 +56,7 @@
 #define BEING_REMOVED (1<<6)	//Cuffs
 #define DOES_NOT_NEED_HANDS (1<<7)	//Dont need hands to use it
 #define SYNTH_RESTRICTED (1<<8)	//Prevents synths from wearing items with this flag
-#define IMPEDE_JETPACK 		(1<<9)  //Reduce the range of jetpack
+#define IMPEDE_JETPACK (1<<9)  //Reduce the range of jetpack
 #define DRAINS_XENO (1<<10)  //Enables the item to collect resource for chem_booster component
 #define CAN_BUMP_ATTACK (1<<11)	 //Item triggers bump attack
 //==========================================================================================
@@ -74,7 +74,7 @@
 #define HIDELOWHAIR (1<<7)		// temporarily removes the user's facial hair overlay.
 #define HIDETOPHAIR (1<<8)		// temporarily removes the user's hair overlay. Leaves facial hair.
 #define HIDEALLHAIR (1<<9)		// temporarily removes the user's hair, facial and otherwise.
-#define HIDETAIL 		(1<<10)
+#define HIDETAIL (1<<10)
 #define HIDEFACE (1<<11)	//Dictates whether we appear as unknown.
 
 
@@ -96,7 +96,7 @@
 
 //SUITS AND HELMETS====================================================================================
 //To successfully stop taking all pressure damage you must have both a suit and head item with this flag.
-#define BLOCKSHARPOBJ 	(1<<6)  //From /tg: prevents syringes, parapens and hypos if the external suit or helmet (if targeting head) has this flag. Example: space suits, biosuit, bombsuits, thick suits that cover your body.
+#define BLOCKSHARPOBJ (1<<6)  //From /tg: prevents syringes, parapens and hypos if the external suit or helmet (if targeting head) has this flag. Example: space suits, biosuit, bombsuits, thick suits that cover your body.
 #define NOPRESSUREDMAGE (1<<7) //This flag is used on the flags variable for SUIT and HEAD items which stop pressure damage.
 
 #define NOQUICKEQUIP (1<<8) // Prevents the item from being handled via quick-equip hotkeys. Can still manipulate the inventory and be inserted into the slot from the hand, however.
@@ -137,20 +137,20 @@
 
 //ITEM INVENTORY SLOT BITMASKS
 //flags_equip_slot
-#define ITEM_SLOT_OCLOTHING 	(1<<0)
-#define ITEM_SLOT_ICLOTHING 	(1<<1)
-#define ITEM_SLOT_GLOVES 		(1<<2)
-#define ITEM_SLOT_EYES 			(1<<3)
-#define ITEM_SLOT_EARS 			(1<<4)
-#define ITEM_SLOT_MASK 			(1<<5)
-#define ITEM_SLOT_HEAD 			(1<<6)
-#define ITEM_SLOT_FEET 			(1<<7)
-#define ITEM_SLOT_ID 			(1<<8)
+#define ITEM_SLOT_OCLOTHING (1<<0)
+#define ITEM_SLOT_ICLOTHING (1<<1)
+#define ITEM_SLOT_GLOVES (1<<2)
+#define ITEM_SLOT_EYES (1<<3)
+#define ITEM_SLOT_EARS (1<<4)
+#define ITEM_SLOT_MASK (1<<5)
+#define ITEM_SLOT_HEAD (1<<6)
+#define ITEM_SLOT_FEET (1<<7)
+#define ITEM_SLOT_ID (1<<8)
 #define ITEM_SLOT_BELT (1<<9)
-#define ITEM_SLOT_BACK 			(1<<10)
-#define ITEM_SLOT_POCKET 		(1<<11)	//this is to allow items with a w_class of 3 or 4 to fit in pockets.
+#define ITEM_SLOT_BACK (1<<10)
+#define ITEM_SLOT_POCKET (1<<11)	//this is to allow items with a w_class of 3 or 4 to fit in pockets.
 #define ITEM_SLOT_DENYPOCKET (1<<12)	//this is to deny items with a w_class of 2 or 1 to fit in pockets.
-#define ITEM_SLOT_LEGS 			(1<<13)
+#define ITEM_SLOT_LEGS (1<<13)
 //=================================================
 
 //slots
@@ -199,11 +199,11 @@
 #define slot_ear_str "slot_ear"
 #define slot_belt_str "slot_belt"
 #define slot_shoes_str "slot_shoes"
-#define slot_wear_mask_str 	"slot_wear_mask"
+#define slot_wear_mask_str "slot_wear_mask"
 #define slot_handcuffed_str "slot_handcuffed"
-#define slot_wear_id_str 	"slot_wear_id"
-#define slot_gloves_str 	"slot_gloves"
-#define slot_glasses_str 	"slot_glasses"
+#define slot_wear_id_str "slot_wear_id"
+#define slot_gloves_str "slot_gloves"
+#define slot_glasses_str "slot_glasses"
 #define slot_s_store_str "slot_s_store"
 #define slot_l_store_str "slot_l_store"
 #define slot_r_store_str "slot_r_store"
@@ -303,24 +303,24 @@ GLOBAL_LIST_INIT(slot_str_to_slot, list(
 //=================================================
 
 //=================================================
-#define SPACE_HELMET_MIN_COLD_PROTECTION_TEMPERATURE 	2.0 //what min_cold_protection_temperature is set to for space-helmet quality headwear. MUST NOT BE 0.
-#define SPACE_SUIT_MIN_COLD_PROTECTION_TEMPERATURE 		2.0 //what min_cold_protection_temperature is set to for space-suit quality jumpsuits or suits. MUST NOT BE 0.
-#define SPACE_SUIT_MAX_HEAT_PROTECTION_TEMPERATURE 		5000	//These need better heat protect, but not as good heat protect as firesuits.
-#define FIRESUIT_MAX_HEAT_PROTECTION_TEMPERATURE 		30000 //what max_heat_protection_temperature is set to for firesuit quality headwear. MUST NOT BE 0.
-#define FIRE_HELMET_MAX_HEAT_PROTECTION_TEMPERATURE 	30000 //for fire helmet quality items (red and white hardhats)
-#define HELMET_MIN_COLD_PROTECTION_TEMPERATURE 			200	//For normal helmets
-#define HELMET_MAX_HEAT_PROTECTION_TEMPERATURE 			600	//For normal helmets
-#define ARMOR_MIN_COLD_PROTECTION_TEMPERATURE 			200	//For armor
-#define ARMOR_MAX_HEAT_PROTECTION_TEMPERATURE 			600	//For armor
-#define HEAVYHELMET_MAX_HEAT_PROTECTION_TEMPERATURE 	15000	//For heavy helmets
-#define HEAVYARMOR_MAX_HEAT_PROTECTION_TEMPERATURE 		15000	//For heavy armor
+#define SPACE_HELMET_MIN_COLD_PROTECTION_TEMPERATURE 2.0 //what min_cold_protection_temperature is set to for space-helmet quality headwear. MUST NOT BE 0.
+#define SPACE_SUIT_MIN_COLD_PROTECTION_TEMPERATURE 2.0 //what min_cold_protection_temperature is set to for space-suit quality jumpsuits or suits. MUST NOT BE 0.
+#define SPACE_SUIT_MAX_HEAT_PROTECTION_TEMPERATURE 5000	//These need better heat protect, but not as good heat protect as firesuits.
+#define FIRESUIT_MAX_HEAT_PROTECTION_TEMPERATURE 30000 //what max_heat_protection_temperature is set to for firesuit quality headwear. MUST NOT BE 0.
+#define FIRE_HELMET_MAX_HEAT_PROTECTION_TEMPERATURE 30000 //for fire helmet quality items (red and white hardhats)
+#define HELMET_MIN_COLD_PROTECTION_TEMPERATURE 200	//For normal helmets
+#define HELMET_MAX_HEAT_PROTECTION_TEMPERATURE 600	//For normal helmets
+#define ARMOR_MIN_COLD_PROTECTION_TEMPERATURE 200	//For armor
+#define ARMOR_MAX_HEAT_PROTECTION_TEMPERATURE 600	//For armor
+#define HEAVYHELMET_MAX_HEAT_PROTECTION_TEMPERATURE 15000	//For heavy helmets
+#define HEAVYARMOR_MAX_HEAT_PROTECTION_TEMPERATURE 15000	//For heavy armor
 
-#define GLOVES_MIN_COLD_PROTECTION_TEMPERATURE 			200	//For some gloves (black and)
-#define GLOVES_MAX_HEAT_PROTECTION_TEMPERATURE 			650	//For some gloves
-#define SHOE_MIN_COLD_PROTECTION_TEMPERATURE 			200	//For gloves
-#define SHOE_MAX_HEAT_PROTECTION_TEMPERATURE 			650	//For gloves
+#define GLOVES_MIN_COLD_PROTECTION_TEMPERATURE 200	//For some gloves (black and)
+#define GLOVES_MAX_HEAT_PROTECTION_TEMPERATURE 650	//For some gloves
+#define SHOE_MIN_COLD_PROTECTION_TEMPERATURE 200	//For gloves
+#define SHOE_MAX_HEAT_PROTECTION_TEMPERATURE 650	//For gloves
 
-#define ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE 		200 //For the ice planet map protection from the elements.
+#define ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE 200 //For the ice planet map protection from the elements.
 //=================================================
 
 //ITEM INVENTORY WEIGHT, FOR w_class

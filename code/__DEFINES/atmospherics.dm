@@ -30,7 +30,7 @@
 
 #define R_IDEAL_GAS_EQUATION 8.31 //kPa*L/(K*mol)
 #define ONE_ATMOSPHERE 101.325	//kPa
-#define IDEAL_GAS_ENTROPY_CONSTANT 	1164	//(mol^3 * s^3) / (kg^3 * L). Equal to (4*pi/(avrogadro's number * planck's constant)^2)^(3/2) / (avrogadro's number * 1000 Liters per m^3).
+#define IDEAL_GAS_ENTROPY_CONSTANT 1164	//(mol^3 * s^3) / (kg^3 * L). Equal to (4*pi/(avrogadro's number * planck's constant)^2)^(3/2) / (avrogadro's number * 1000 Liters per m^3).
 
 
 #define CELL_VOLUME 2500	//liters in a cell
@@ -69,7 +69,7 @@
 
 //used for device_type vars
 #define UNARY 1
-#define BINARY 		2
+#define BINARY 2
 #define TRINARY 3
 #define QUATERNARY 4
 

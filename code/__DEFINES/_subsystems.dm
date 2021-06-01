@@ -59,9 +59,9 @@
 #define INIT_ORDER_SOUNDS 19
 #define INIT_ORDER_INSTRUMENTS 17
 #define INIT_ORDER_GREYSCALE 16
-#define INIT_ORDER_CODEX 			15
+#define INIT_ORDER_CODEX 15
 #define INIT_ORDER_EVENTS 14
-#define INIT_ORDER_MONITOR 		13
+#define INIT_ORDER_MONITOR 13
 #define INIT_ORDER_JOBS 12
 #define INIT_ORDER_TICKER 10
 #define INIT_ORDER_MAPPING 9
@@ -76,7 +76,7 @@
 #define INIT_ORDER_SPAWNING_POOL -5
 #define INIT_ORDER_OVERLAY -6
 #define INIT_ORDER_STICKY_BAN -10
-#define INIT_ORDER_MINIMAPS 		-15
+#define INIT_ORDER_MINIMAPS -15
 #define INIT_ORDER_LIGHTING -20
 #define INIT_ORDER_SHUTTLE -21
 #define INIT_ORDER_PATH -50
@@ -127,7 +127,7 @@
 
 
 
-#define COMPILE_OVERLAYS(A)\
+#define COMPILE_OVERLAYS(A) \
 	do {\
 		var/list/ad = A.add_overlays;\
 		var/list/rm = A.remove_overlays;\

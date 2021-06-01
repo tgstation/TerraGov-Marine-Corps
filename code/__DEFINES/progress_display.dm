@@ -35,6 +35,6 @@
 #define BUSY_ICON_HOSTILE /image/progdisplay/hostile
 #define BUSY_ICON_CLOCK /image/progdisplay/clock
 #define BUSY_ICON_CLOCK_ALT /image/progdisplay/clock/alt
-#define BUSY_ICON_DANGER 		/image/progdisplay/danger
+#define BUSY_ICON_DANGER /image/progdisplay/danger
 #define BUSY_ICON_BAR /image/progdisplay/bar
 #define BUSY_ICON_UNSKILLED /image/progdisplay/unskilled

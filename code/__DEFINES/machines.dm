@@ -3,7 +3,7 @@
 #define LIGHT 2
 #define ENVIRON 3
 #define TOTAL 4	//for total power used only
-#define STATIC_EQUIP 	5
+#define STATIC_EQUIP 5
 #define STATIC_LIGHTS 6
 #define STATIC_ENVIRON 7
 
@@ -53,11 +53,11 @@
 
 #define UP_OR_DOWN 16
 #define ISDIAGONALDIR(d) (d&(d-1))
-#define NSCOMPONENT(d)   (d&(NORTH|SOUTH))
-#define EWCOMPONENT(d)   (d&(EAST|WEST))
-#define NSDIRFLIP(d)     (d^(NORTH|SOUTH))
-#define EWDIRFLIP(d)     (d^(EAST|WEST))
-#define DIRFLIP(d)       turn(d, 180)
+#define NSCOMPONENT(d) (d&(NORTH|SOUTH))
+#define EWCOMPONENT(d) (d&(EAST|WEST))
+#define NSDIRFLIP(d) (d^(NORTH|SOUTH))
+#define EWDIRFLIP(d) (d^(EAST|WEST))
+#define DIRFLIP(d) turn(d, 180)
 
 //update_state
 #define UPSTATE_OPENED1 (1<<0)

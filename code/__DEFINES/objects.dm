@@ -59,8 +59,8 @@ GLOBAL_LIST_INIT(restricted_camera_networks, list( //Those networks can only be 
 
 
 // Diagonal movement for movable atoms
-#define FIRST_DIAG_STEP 	1
-#define SECOND_DIAG_STEP 	2
+#define FIRST_DIAG_STEP 1
+#define SECOND_DIAG_STEP 2
 
 // Shuttle defines
 
@@ -72,7 +72,7 @@ GLOBAL_LIST_INIT(restricted_camera_networks, list( //Those networks can only be 
 
 //sharp item defines
 #define IS_NOT_SHARP_ITEM 0
-#define IS_SHARP_ITEM_SIMPLE 		1 //not easily usable to cut or slice. e.g. shard, wirecutters, spear
+#define IS_SHARP_ITEM_SIMPLE 1 //not easily usable to cut or slice. e.g. shard, wirecutters, spear
 #define IS_SHARP_ITEM_ACCURATE 2 //knife, scalpel
 #define IS_SHARP_ITEM_BIG 3 //fireaxe, hatchet, energy sword
 
@@ -243,7 +243,7 @@ GLOBAL_LIST_INIT(restricted_camera_networks, list( //Those networks can only be 
 #define DROPPOD_DEPLOY_DELAY 10 MINUTES
 
 //Lights define
-#define CHECKS_PASSED 	  1
+#define CHECKS_PASSED 1
 #define STILL_ON_COOLDOWN 2
 #define NIGHTFALL_IMMUNE 3
 

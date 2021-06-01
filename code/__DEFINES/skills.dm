@@ -5,39 +5,39 @@
 //firearms skill (general knowledge of guns) (hidden skill)
 //increase or decrase accuracy, recoil, and firing delay of rifles and smgs.
 #define SKILL_FIREARMS_UNTRAINED 0	//civilian
-#define SKILL_FIREARMS_DEFAULT 	1	//marines (allow tactical reloads)
+#define SKILL_FIREARMS_DEFAULT 1	//marines (allow tactical reloads)
 #define SKILL_FIREARMS_TRAINED 2	//special training
 
 //pistols skill
 //increase or decrase accuracy, recoil, and firing delay of pistols and revolvers.
-#define SKILL_PISTOLS_DEFAULT 	0	//marines
+#define SKILL_PISTOLS_DEFAULT 0	//marines
 #define SKILL_PISTOLS_TRAINED 1	//special training
 
 //smgs skill
 //increase or decrase accuracy, recoil, and firing delay of submachineguns.
-#define SKILL_SMGS_DEFAULT 	0	//marines
+#define SKILL_SMGS_DEFAULT 0	//marines
 #define SKILL_SMGS_TRAINED 1	//special training
 
 //rifles skill
 //increase or decrase accuracy, recoil, and firing delay of rifles.
-#define SKILL_RIFLES_DEFAULT 	0	//marines
+#define SKILL_RIFLES_DEFAULT 0	//marines
 #define SKILL_RIFLES_TRAINED 1	//special training
 
 //shotguns skill
 //increase or decrase accuracy, recoil, and firing delay of shotguns.
-#define SKILL_SHOTGUNS_DEFAULT 	0	//marines
+#define SKILL_SHOTGUNS_DEFAULT 0	//marines
 #define SKILL_SHOTGUNS_TRAINED 1	//special training
 
 //heavy weapons skill
 //increase or decrase accuracy, recoil, and firing delay of heavy weapons (non spec weapons, e.g. flamethrower).
-#define SKILL_HEAVY_WEAPONS_DEFAULT 	0	//marines
+#define SKILL_HEAVY_WEAPONS_DEFAULT 0	//marines
 #define SKILL_HEAVY_WEAPONS_TRAINED 1	//special training
 
 
 
 //smartgun skill
 //increase or decrase accuracy, recoil, and firing delay for smartgun, and whether we can use smartguns at all.
-#define SKILL_SMART_DEFAULT 		-4 //big negative so the effects are far worse than pistol/rifle untrained
+#define SKILL_SMART_DEFAULT -4 //big negative so the effects are far worse than pistol/rifle untrained
 #define SKILL_SMART_USE -3 //can use smartgun
 #define SKILL_SMART_TRAINED 0 //default for smartgunner
 #define SKILL_SMART_EXPERT 1
@@ -55,7 +55,7 @@
 
 //construction skill
 #define SKILL_CONSTRUCTION_DEFAULT 0
-#define SKILL_CONSTRUCTION_METAL 	1	//metal barricade construction (CT)
+#define SKILL_CONSTRUCTION_METAL 1	//metal barricade construction (CT)
 #define SKILL_CONSTRUCTION_PLASTEEL 2	//plasteel barricade,(RO, SL)
 #define SKILL_CONSTRUCTION_ADVANCED 3	//windows and girder construction (combat engi, CO)
 #define SKILL_CONSTRUCTION_MASTER 4	//building machine&computer frames (MT, CE)
@@ -65,10 +65,10 @@
 
 // engineer skill
 #define SKILL_ENGINEER_DEFAULT 0
-#define SKILL_ENGINEER_METAL 	1	//metal barricade repair && c4 use
+#define SKILL_ENGINEER_METAL 1	//metal barricade repair && c4 use
 #define SKILL_ENGINEER_PLASTEEL 2	//plasteel barricade repair
-#define SKILL_ENGINEER_ENGI 	3	//hacking&&planet engine fixing&&apc building (combat engi)
-#define SKILL_ENGINEER_MASTER 	4	//Telecomms fixing, faster engine fixing (ST)
+#define SKILL_ENGINEER_ENGI 3	//hacking&&planet engine fixing&&apc building (combat engi)
+#define SKILL_ENGINEER_MASTER 4	//Telecomms fixing, faster engine fixing (ST)
 //higher levels give faster engine repair.
 
 
@@ -92,9 +92,9 @@
 //higher levels means faster surgery.
 
 //police skill, hidden
-#define SKILL_POLICE_DEFAULT 	0
-#define SKILL_POLICE_FLASH 		1 //flash use (CE, CMO, any officer starting with a flash)
-#define SKILL_POLICE_MP 		2 //all police gear use, can strip someone's clothes simultaneously (MP)
+#define SKILL_POLICE_DEFAULT 0
+#define SKILL_POLICE_FLASH 1 //flash use (CE, CMO, any officer starting with a flash)
+#define SKILL_POLICE_MP 2 //all police gear use, can strip someone's clothes simultaneously (MP)
 
 
 //cqc skill

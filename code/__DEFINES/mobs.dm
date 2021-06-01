@@ -90,7 +90,7 @@
 #define TOX "tox"
 #define OXY "oxy"
 #define CLONE "clone"
-#define CUT 		"cut"
+#define CUT "cut"
 #define BRUISE "bruise"
 #define STAMINA "stamina"
 //=================================================
@@ -102,14 +102,14 @@
 #define STUTTER "stutter"
 #define EYE_BLUR "eye_blur"
 #define DROWSY "drowsy"
-#define SLUR 		"slur"
+#define SLUR "slur"
 //=================================================
 
 //damagetype
-#define BRUTELOSS 	(1<<0)
-#define FIRELOSS 	(1<<1)
-#define TOXLOSS 	(1<<2)
-#define OXYLOSS 	(1<<3)
+#define BRUTELOSS (1<<0)
+#define FIRELOSS (1<<1)
+#define TOXLOSS (1<<2)
+#define OXYLOSS (1<<3)
 #define STAMINALOSS (1<<4)
 //=================================================
 
@@ -125,7 +125,7 @@
 #define TK_USER (1<<8)
 #define CANUNCONSCIOUS (1<<9)
 #define CANCONFUSE (1<<10)
-#define INCORPOREAL 	(1<<11) // Whether not this unit should be detectable by automated means (like turrets). Used by hivemind
+#define INCORPOREAL (1<<11) // Whether not this unit should be detectable by automated means (like turrets). Used by hivemind
 
 // =============================
 // hive types
@@ -174,15 +174,15 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define HUMAN_BLOODTYPES list("O-","O+","A-","A+","B-","B+","AB-","AB+")
 
 //limb_status
-#define LIMB_BLEEDING 	(1<<0)
-#define LIMB_BROKEN 	(1<<1)
-#define LIMB_DESTROYED 	(1<<2) //limb is missing
-#define LIMB_ROBOT 		(1<<3)
-#define LIMB_SPLINTED 	(1<<4)
+#define LIMB_BLEEDING (1<<0)
+#define LIMB_BROKEN (1<<1)
+#define LIMB_DESTROYED (1<<2) //limb is missing
+#define LIMB_ROBOT (1<<3)
+#define LIMB_SPLINTED (1<<4)
 #define LIMB_NECROTIZED (1<<5) //necrotizing limb, nerves are dead.
-#define LIMB_MUTATED 	(1<<6) //limb is deformed by mutations
-#define LIMB_AMPUTATED 	(1<<7) //limb was amputated cleanly or destroyed limb was cleaned up, thus causing no pain
-#define LIMB_REPAIRED 	(1<<8) //we just repaired the bone, stops the gelling after setting
+#define LIMB_MUTATED (1<<6) //limb is deformed by mutations
+#define LIMB_AMPUTATED (1<<7) //limb was amputated cleanly or destroyed limb was cleaned up, thus causing no pain
+#define LIMB_REPAIRED (1<<8) //we just repaired the bone, stops the gelling after setting
 #define LIMB_STABILIZED (1<<9) //certain suits will support a broken limb while worn such as the b18
 
 /////////////////MOVE DEFINES//////////////////////
@@ -296,22 +296,22 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 
 
 //species_flags
-#define NO_BLOOD 				(1<<0)
-#define NO_BREATHE 				(1<<1)
-#define NO_SCAN 				(1<<2)
-#define NO_PAIN 				(1<<3)
-#define NO_SLIP 				(1<<4)
-#define NO_OVERDOSE 			(1<<5)
-#define NO_POISON 				(1<<6)
-#define NO_CHEM_METABOLIZATION 	(1<<7)
-#define HAS_SKIN_TONE 			(1<<8)
-#define HAS_SKIN_COLOR 			(1<<9)
-#define HAS_LIPS 				(1<<10)
-#define HAS_UNDERWEAR 			(1<<11)
-#define HAS_NO_HAIR 			(1<<12)
-#define IS_PLANT 				(1<<13)
-#define IS_SYNTHETIC 			(1<<14)
-#define NO_STAMINA 				(1<<15)
+#define NO_BLOOD (1<<0)
+#define NO_BREATHE (1<<1)
+#define NO_SCAN (1<<2)
+#define NO_PAIN (1<<3)
+#define NO_SLIP (1<<4)
+#define NO_OVERDOSE (1<<5)
+#define NO_POISON (1<<6)
+#define NO_CHEM_METABOLIZATION (1<<7)
+#define HAS_SKIN_TONE (1<<8)
+#define HAS_SKIN_COLOR (1<<9)
+#define HAS_LIPS (1<<10)
+#define HAS_UNDERWEAR (1<<11)
+#define HAS_NO_HAIR (1<<12)
+#define IS_PLANT (1<<13)
+#define IS_SYNTHETIC (1<<14)
+#define NO_STAMINA (1<<15)
 #define DETACHABLE_HEAD (1<<16)
 #define USES_ALIEN_WEAPONS (1<<17)
 #define NO_DAMAGE_OVERLAY (1<<18)
@@ -382,7 +382,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define ID_LAYER 22
 #define SHOES_LAYER 21
 #define GLOVES_LAYER 20
-#define BELT_LAYER 			19
+#define BELT_LAYER 19
 #define GLASSES_LAYER 18
 #define SUIT_LAYER 17 //Possible make this an overlay of somethign required to wear a belt?
 #define SUIT_STORE_LAYER 16
@@ -463,7 +463,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define CAN_HOLD_TWO_HANDS 1
 #define CAN_HOLD_ONE_HAND 2
 
-#define CASTE_CAN_HOLD_FACEHUGGERS 	(1<<0)
+#define CASTE_CAN_HOLD_FACEHUGGERS (1<<0)
 #define CASTE_CAN_VENT_CRAWL (1<<1)
 #define CASTE_CAN_BE_QUEEN_HEALED (1<<2)
 #define CASTE_CAN_BE_GIVEN_PLASMA (1<<3)
@@ -474,9 +474,9 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define CASTE_DECAY_PROOF (1<<8)
 #define CASTE_CAN_BE_LEADER (1<<9)
 #define CASTE_HIDE_IN_STATUS (1<<10)
-#define CASTE_QUICK_HEAL_STANDING 	(1<<11) // Xenomorphs heal standing same if they were resting.
+#define CASTE_QUICK_HEAL_STANDING (1<<11) // Xenomorphs heal standing same if they were resting.
 #define CASTE_CAN_HEAL_WITHOUT_QUEEN (1<<12) // Xenomorphs can heal even without a queen on the same z level
-#define CASTE_INNATE_PLASMA_REGEN 	(1<<13) // Xenos get full plasma regardless if they are on weeds or not
+#define CASTE_INNATE_PLASMA_REGEN (1<<13) // Xenos get full plasma regardless if they are on weeds or not
 #define CASTE_ACID_BLOOD (1<<13) //The acid blood effect which damages humans near xenos that take damage
 #define CASTE_CAN_HOLD_JELLY (1<<14)//whether we can hold fireproof jelly in our hands
 #define CASTE_IS_STRONG (1<<15)//can tear open acided walls without being big
@@ -503,7 +503,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define HUNTER_STEALTH_RUN_ALPHA 128 //50% transparency
 #define HUNTER_STEALTH_STEALTH_DELAY 30 //3 seconds before 95% stealth
 #define HUNTER_STEALTH_INITIAL_DELAY 20 //2 seconds before we can increase stealth
-#define HUNTER_POUNCE_SNEAKATTACK_DELAY 		30 //3 seconds before we can sneak attack
+#define HUNTER_POUNCE_SNEAKATTACK_DELAY 30 //3 seconds before we can sneak attack
 #define HANDLE_STEALTH_CHECK 1
 #define HANDLE_SNEAK_ATTACK_CHECK 3
 #define HUNTER_SNEAK_SLASH_ARMOR_PEN 0.8 //1 - this value = the actual penetration
@@ -567,7 +567,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 
 #define SHRIKE_FLAG_PAIN_HUD_ON (1<<0)
 #define SHRIKE_CURE_HEAL_MULTIPLIER 10
-#define SHRIKE_HEAL_RANGE 			3
+#define SHRIKE_HEAL_RANGE 3
 
 //Drone defines
 

@@ -11,7 +11,7 @@
 #define LOG_OOC (1<<9)
 #define LOG_ADMIN (1<<10)
 #define LOG_GAME (1<<11)
-#define LOG_ADMIN_PRIVATE 	(1<<12)
+#define LOG_ADMIN_PRIVATE (1<<12)
 #define LOG_ASAY (1<<13)
 #define LOG_HIVEMIND (1<<14)
 #define LOG_LOOC (1<<15)
