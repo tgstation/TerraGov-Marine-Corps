@@ -501,6 +501,8 @@
 
 	var/obj/item/ammo_magazine/handful/existing_handful = I
 	existing_handful.create_handful(user, 1)
+	if(existing_handful.current_rounds <= 0)
+		qdel(existing_handful)
 	update_icon()
 
 
