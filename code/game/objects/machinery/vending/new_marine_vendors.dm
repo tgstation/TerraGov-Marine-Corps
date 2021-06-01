@@ -458,6 +458,8 @@
 	lock_flags = JOB_LOCK
 	gives_webbing = FALSE
 
+/obj/machinery/marine_selector/clothes/commander/Initialize()
+	. = ..()
 	listed_products = list(
 		/obj/effect/essentials_set/commander = list(CAT_STD, "Standard Commander kit ", 0, "white"),
 		/obj/effect/essentials_set/modular/skirmisher = list(CAT_AMR, "Light Skirmisher Jaeger kit", 0, "black"),
@@ -527,6 +529,8 @@
 	vendor_role = /datum/job/terragov/silicon/synthetic
 	lock_flags = JOB_LOCK
 
+/obj/machinery/marine_selector/clothes/synth/Initialize()
+	. = ..()
 	listed_products = list(
 		/obj/effect/essentials_set/synth = list(CAT_ESS, "Essential synthetic set", 0, "white"),
 		/obj/item/clothing/under/marine = list(CAT_STD, "TGMC marine uniform", 0, "black"),
