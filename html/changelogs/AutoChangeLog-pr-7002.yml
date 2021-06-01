@@ -1,0 +1,4 @@
+author: "ZephyrTFA"
+delete-after: True
+changes: 
+  - server: "Two new config values for overriding the respawn timers of both marines and xenomorphs."

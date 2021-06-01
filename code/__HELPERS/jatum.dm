@@ -215,6 +215,9 @@
 					|| var_name == "jatum\\new_arglist")
 					continue
 				var/value = structure[var_name]
-				D.vars[var_name] = _jatum_deserialize_value(value, active_references)
+				try
+					D.vars[var_name] = _jatum_deserialize_value(value, active_references)
+				catch
+					continue
 
 	active_references["[ref_id]"] = .
