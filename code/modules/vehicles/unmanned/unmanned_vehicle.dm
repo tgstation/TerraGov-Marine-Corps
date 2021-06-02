@@ -65,7 +65,6 @@
 
 /obj/vehicle/unmanned/Destroy()
 	. = ..()
-	QDEL_NULL(camera)
 	GLOB.unmanned_vehicles -= src
 
 /obj/vehicle/unmanned/take_damage(damage_amount, damage_type, damage_flag, effects, attack_dir, armour_penetration)
