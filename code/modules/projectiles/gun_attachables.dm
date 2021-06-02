@@ -292,9 +292,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 		qdel(action_to_update)
 		break
 
-	var/turf/master_gun_turf = get_turf(master_gun)
-	if(master_gun_turf)
-		forceMove(master_gun_turf)
+	forceMove(get_turf(master_gun))
 
 	master_gun = null
 

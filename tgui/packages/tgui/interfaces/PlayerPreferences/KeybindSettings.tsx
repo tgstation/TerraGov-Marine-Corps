@@ -1,21 +1,27 @@
 import { useBackend, useLocalState } from '../../backend';
-import { Button, Input, Section, LabeledList, Box, Grid } from '../../components';
-import { ButtonKeybind } from '../ButtonKeybind';
+import { Button, Input, Section, Tabs, LabeledList, Box, Grid, Modal } from '../../components';
 import { TextInputModal } from './TextInputModal';
 
-const KEY_MODS = {
-  "SHIFT": true,
-  "ALT": true,
-  "CONTROL": true,
-};
+type KeybindSettingCapture = {
+  name: string,
+  key: string,
+}
+
+type KeybindSentenceCapture = {
+  name: string,
+}
 
 export const KeybindSettings = (props, context) => {
-  const { act, data } = useBackend<KeybindSettingData>(context);
+  const { act, data, config } = useBackend<PlayerPreferencesData>(context);
   const {
     all_keybindings,
     is_admin,
   } = data;
 
+  const [
+    capture,
+    setCapture,
+  ] = useLocalState<KeybindSettingCapture>(context, `setCapture`, null);
   const [
     captureSentence,
     setCaptureSentence,
@@ -47,6 +53,13 @@ export const KeybindSettings = (props, context) => {
     <Section
       title="Keybindings"
       buttons={resetButton}>
+      {capture && (
+        <CaptureKeybinding
+          kbName={capture.name}
+          currentKey={capture.key}
+          onClose={() => setCapture(null)}
+        />
+      )}
       {captureSentence && (
         <TextInputModal 
           label="Chose a custom sentence"
@@ -70,6 +83,7 @@ export const KeybindSettings = (props, context) => {
               <KeybindingPreference
                 key={kb.name}
                 keybind={kb}
+                setCapture={setCapture}
               />
             ))}
 
@@ -77,6 +91,7 @@ export const KeybindSettings = (props, context) => {
               <KeybindingPreference
                 key={kb.name}
                 keybind={kb}
+                setCapture={setCapture}
               />
             ))}
 
@@ -84,6 +99,7 @@ export const KeybindSettings = (props, context) => {
               <KeybindingPreference
                 key={kb.name}
                 keybind={kb}
+                setCapture={setCapture}
               />
             ))}
 
@@ -91,6 +107,7 @@ export const KeybindSettings = (props, context) => {
               <KeybindingPreference
                 key={kb.name}
                 keybind={kb}
+                setCapture={setCapture}
               />
             ))}
 
@@ -98,6 +115,7 @@ export const KeybindSettings = (props, context) => {
               <KeybindingPreference
                 key={kb.name}
                 keybind={kb}
+                setCapture={setCapture}
               />
             ))}
 
@@ -105,6 +123,7 @@ export const KeybindSettings = (props, context) => {
               <KeybindingPreference
                 key={kb.name}
                 keybind={kb}
+                setCapture={setCapture}
               />
             ))}
           </Section>
@@ -113,6 +132,7 @@ export const KeybindSettings = (props, context) => {
               <KeybindingPreference
                 key={kb.name}
                 keybind={kb}
+                setCapture={setCapture}
               />
             ))}
           </Section>
@@ -121,6 +141,7 @@ export const KeybindSettings = (props, context) => {
               <CustomSentence
                 key={kb.name}
                 keybind={kb}
+                setCapture={setCapture}
                 setCaptureSentence={setCaptureSentence}
               />
             ))}
@@ -131,6 +152,7 @@ export const KeybindSettings = (props, context) => {
                 <KeybindingPreference
                   key={kb.name}
                   keybind={kb}
+                  setCapture={setCapture}
                 />
               ))}
             </Section>
@@ -145,6 +167,7 @@ export const KeybindSettings = (props, context) => {
               <KeybindingPreference
                 key={kb.name}
                 keybind={kb}
+                setCapture={setCapture}
               />
             ))}
             <LabeledList.Item>
@@ -154,6 +177,7 @@ export const KeybindSettings = (props, context) => {
               <KeybindingPreference
                 key={kb.name}
                 keybind={kb}
+                setCapture={setCapture}
               />
             ))}
           </Section>
@@ -164,66 +188,31 @@ export const KeybindSettings = (props, context) => {
 };
 
 const KeybindingPreference = (props, context) => {
-  const { act, data } = useBackend<KeybindPreferenceData>(context);
+  const { act, data, config } = useBackend<PlayerPreferencesData>(context);
   const { key_bindings } = data;
-  const { keybind } = props;
+  const { keybind, setCapture } = props;
   const current = key_bindings[keybind.name];
   return (
     <LabeledList.Item label={keybind.display_name}>
       {current && (current.map(key => (
-        <ButtonKeybind
-          color="transparent"
+        <Button
           key={key}
-          content={key}
-          onFinish={keysDown => {
-            const mods = keysDown.filter(k => KEY_MODS[k]);
-            const keys = keysDown.filter(k => !KEY_MODS[k]);
-            if (keys.length === 0) {
-              if (mods.length >= 0) {
-                keys.push(mods.pop());
-              }
-            }
-            act("set_keybind", {
-              keybind_name: keybind.name,
-              old_key: key,
-              key_mods: mods,
-              key: keys.length === 0? false : keys[0],
-            });
-          }}
-        />
+          inline
+          onClick={() => setCapture({ name: keybind.name, key })}>
+          {key}
+        </Button>
       )))}
-      <ButtonKeybind
-        icon="plus"
-        color="transparent"
-        onFinish={keysDown => {
-          const mods = keysDown.filter(k => KEY_MODS[k]);
-          const keys = keysDown.filter(k => !KEY_MODS[k]);
-          if (keys.length === 0) {
-            if (mods.length >= 0) {
-              keys.push(mods.pop());
-            } else return;
-          }
-          act("set_keybind", {
-            keybind_name: keybind.name,
-            key_mods: mods,
-            key: keys[0],
-          });
-        }}
-      />
-      <Button
-        content="Clear"
-        onClick={() => act("clear_keybind", {
-          keybinding: keybind.name,
-        })}
-      />
+      <Button inline onClick={() => setCapture({ name: keybind.name })}>
+        [+]
+      </Button>
     </LabeledList.Item>
   );
 };
 
 const CustomSentence = (props, context) => {
-  const { act, data } = useBackend<KeybindPreferenceData>(context);
+  const { act, data, config } = useBackend<PlayerPreferencesData>(context);
   const { key_bindings, custom_emotes } = data;
-  const { keybind, setCaptureSentence } = props;
+  const { keybind, setCaptureSentence, setCapture } = props;
   const current = key_bindings[keybind.name];
   const currentSentence = custom_emotes[keybind.name];
   return (
@@ -246,51 +235,59 @@ const CustomSentence = (props, context) => {
         Chose custom sentence
       </Button>
       {current && (current.map(key => (
-        <ButtonKeybind
-          color="transparent"
+        <Button
           key={key}
-          content={key}
-          onFinish={keysDown => {
-            const mods = keysDown.filter(k => KEY_MODS[k]);
-            const keys = keysDown.filter(k => !KEY_MODS[k]);
-            if (keys.length === 0) {
-              if (mods.length >= 0) {
-                keys.push(mods.pop());
-              }
-            }
-            act("set_keybind", {
-              keybind_name: keybind.name,
-              old_key: key,
-              key_mods: mods,
-              key: keys.length === 0? false : keys[0],
-            });
-          }}
-        />
+          inline
+          onClick={() => setCapture({ name: keybind.name, key })}>
+          {key}
+        </Button>
       )))}
-      <ButtonKeybind
-        icon="plus"
-        color="transparent"
-        onFinish={keysDown => {
-          const mods = keysDown.filter(k => KEY_MODS[k]);
-          const keys = keysDown.filter(k => !KEY_MODS[k]);
-          if (keys.length === 0) {
-            if (mods.length >= 0) {
-              keys.push(mods.pop());
-            } else return;
-          }
-          act("set_keybind", {
-            keybind_name: keybind.name,
-            key_mods: mods,
-            key: keys[0],
-          });
-        }}
-      />
-      <Button
-        content="Clear"
-        onClick={() => act("clear_keybind", {
-          keybinding: keybind.name,
-        })}
-      />
+      <Button inline onClick={() => setCapture({ name: keybind.name })}>
+        [+]
+      </Button>
     </LabeledList.Item>
+  );
+};
+
+const CaptureKeybinding = (props, context) => {
+  const { act, data, config } = useBackend(context);
+  const { onClose, currentKey, kbName } = props;
+
+  const captureKeyPress = e => {
+    const alt = e.altKey ? 1 : 0;
+    const ctrl = e.ctrlKey ? 1 : 0;
+    const shift = e.shiftKey ? 1 : 0;
+    const numpad = 95 < e.keyCode && e.keyCode < 112 ? 1 : 0;
+    const escPressed = e.keyCode === 27 ? 1 : 0;
+    act('keybindings_set', {
+      keybinding: kbName,
+      old_key: currentKey,
+      clear_key: escPressed,
+      key: e.key,
+      alt: alt,
+      ctrl: ctrl,
+      shift: shift,
+      numpad: numpad,
+      key_code: e.keyCode,
+    });
+    onClose();
+  };
+
+  return (
+    <Modal
+      id="grab-focus"
+      width="300px"
+      height="200px"
+      onKeyUp={e => captureKeyPress(e)}>
+      <Box>Press any key or press ESC to clear</Box>
+      <Box align="right">
+        <Button align="right" onClick={() => onClose()}>
+          X
+        </Button>
+      </Box>
+      <script type="application/javascript">
+        {"document.getElementById('grab-focus').focus();"}
+      </script>
+    </Modal>
   );
 };
