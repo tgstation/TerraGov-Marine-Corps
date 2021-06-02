@@ -4,3 +4,10 @@
   - rscadd: Loadout Saver
   - bugfix: Fix runtime for gun keybinds
   - rscadd: King is back
+2021-06-02:
+  Pariah919:
+  - rscadd: Added new razorburn nade sprites by enukar.
+  ZephyrTFA:
+  - bugfix: Martini Belts can no longer give you invalid 'fixme' items
+  - server: Two new config values for overriding the respawn timers of both marines
+      and xenomorphs.
