@@ -147,7 +147,7 @@
 	for(var/obj/C in supplies)
 		C.anchored = TRUE //to avoid accidental pushes
 	playsound(supply_pad.loc, 'sound/effects/bamf.ogg', 50, TRUE) 
-	visible_message("[icon2html(supply_beacon, viewers(supply_beacon))] <span class='boldnotice'>The [supply_beacon.name] begins to beep!</span>")
+	visible_message("[icon2html(supply_beacon, viewers(supply_beacon))] <span class='boldnotice'>The [supply_pad.name] begins to beep!</span>")
 	addtimer(CALLBACK(src, .proc/fire_supplydrop, supplies, x_offset, y_offset), 10 SECONDS)
 
 ///Make the supplies teleport
@@ -176,4 +176,4 @@
 		var/turf/TC = locate(supply_beacon.drop_location.x + x_offset, supply_beacon.drop_location.y + y_offset, supply_beacon.drop_location.z)
 		C.forceMove(TC)
 		TC.ceiling_debris_check(2)
-	supply_pad.visible_message("[icon2html(supply_pad, viewers(src))] <span class='boldnotice'>Supply drop launched! Another launch will be available in two minutes.</span>")
+	supply_pad.visible_message("[icon2html(supply_pad, viewers(src))] <span class='boldnotice'>Supply drop launched! Another launch will be available in one minute.</span>")

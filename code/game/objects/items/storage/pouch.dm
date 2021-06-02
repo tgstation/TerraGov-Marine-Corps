@@ -589,7 +589,7 @@
 		/obj/item/flashlight,
 		/obj/item/whistle,
 		/obj/item/binoculars,
-		/obj/item/supply_beacon,
+		/obj/item/beacon/supply_beacon,
 	)
 
 /obj/item/storage/pouch/field_pouch/full/Initialize()
