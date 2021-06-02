@@ -525,7 +525,7 @@ to_chat will check for valid clients itself already so no need to double check f
 			arrow_hud.add_hud(X, target)
 			if(arrow_color) //Set the arrow to our custom colour if applicable
 				arrow_hud.color = arrow_color
-			new /obj/effect/temp_visual/xenomorph/xeno_tracker_target(target, target) //Ping the source of our alert
+			target.xeno_ping() //Ping the source of our alert
 
 		to_chat(X, "<span class='[span_class]'><font size=[size]> [message][report_distance ? " Distance: [get_dist(X, target)]" : ""]</font></span>")
 
@@ -540,6 +540,23 @@ to_chat will check for valid clients itself already so no need to double check f
 	for(var/mob/living/carbon/xenomorph/X AS in get_all_xenos())
 		X.tracked = target
 		to_chat(X, "<span class='notice'> Now tracking [target.name]</span>")
+
+/atom/proc/xeno_ping(duration = XENO_HEALTH_ALERT_POINTER_DURATION)
+	prepare_huds()
+	for(var/datum/atom_hud/xeno_tactical/xeno_tac_hud in GLOB.huds) //Add to the xeno tachud
+		xeno_tac_hud.add_to_hud(src)
+	var/image/holder = hud_list[XENO_TACTICAL_HUD]
+	if(!holder)
+		return
+	holder.icon = 'icons/Marine/marine-items.dmi'
+	holder.icon_state = "detector_blip"
+	addtimer(CALLBACK(src, .proc/xeno_ping_cleanup, holder), duration)
+
+/atom/proc/xeno_ping_cleanup(var/image/holder)
+	if(!holder)
+		return
+	holder.overlays.Cut()
+	holder.icon_state = ""
 
 // ***************************************
 // *********** Normal Xenos
