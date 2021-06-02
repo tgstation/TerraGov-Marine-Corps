@@ -1,4 +1,3 @@
-
 /obj/item/supply_beacon
 	name = "supply beacon"
 	desc = "A rugged, glorified laser pointer capable of sending a beam into space. Activate and throw this to call for a supply drop."
@@ -30,6 +29,11 @@
 		return
 	if(!ishuman(user))
 		return
+	
+	var/area/A = get_area(user)
+	if(A && istype(A) && A.ceiling >= CEILING_METAL)
+		to_chat(user, "<span class='warning'>You have to be outside or under a glass ceiling to activate this.</span>")
+		return
 
 	var/delay = max(1 SECONDS, activation_time - 2 SECONDS * user.skills.getRating("leadership"))
 
@@ -38,7 +42,7 @@
 	if(!do_after(user, delay, TRUE, src, BUSY_ICON_GENERIC))
 		return
 	user.transferItemToLoc(src, user.loc)
-	beacon_datum = new /datum/supply_beacon(user.name, loc, user.faction)
+	beacon_datum = new /datum/supply_beacon("[user.name] + [A]", loc, user.faction)
 	RegisterSignal(beacon_datum, COMSIG_PARENT_QDELETING, .proc/clean_beacon_datum)
 	activated = TRUE
 	anchored = TRUE

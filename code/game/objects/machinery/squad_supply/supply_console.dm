@@ -6,7 +6,7 @@
 	icon_state = "supplydrop"
 	interaction_flags = INTERACT_MACHINE_TGUI
 	///Time between two supply drops
-	var/launch_cooldown = 1 MINUTES
+	var/launch_cooldown = 30 SECONDS
 	///The beacon we will send the supplies
 	var/datum/supply_beacon/supply_beacon = null
 	///The linked supply pad of this console
@@ -48,12 +48,6 @@
 		ui.open()
 
 
-/obj/machinery/computer/supplydrop_console/ui_static_data(mob/user)
-	. = ..()
-	.["squads"] = list()
-	for(var/squad in SSjob.active_squads[faction])
-		.["squads"] += list(squad)
-
 /obj/machinery/computer/supplydrop_console/ui_data(mob/user)
 	. = ..()
 	.["launch_cooldown"] = launch_cooldown
@@ -75,9 +69,10 @@
 
 	switch(action)
 		if("select_beacon")
-			var/datum/supply_beacon/supply_beacon = tgui_input_list(ui.user, "Select the beacon to send supplies", "Beacon choise", GLOB.supply_beacon)
-			if(!istype(supply_beacon))
+			var/datum/supply_beacon/supply_beacon_choice = GLOB.supply_beacon[tgui_input_list(ui.user, "Select the beacon to send supplies", "Beacon choice", GLOB.supply_beacon)]
+			if(!istype(supply_beacon_choice))
 				return
+			supply_beacon = supply_beacon_choice
 			refresh_pad()
 		if("set_x")
 			var/new_x = text2num(params["set_x"])
@@ -111,11 +106,10 @@
 				to_chat(usr, "[icon2html(src, usr)] <span class='warning'>The [supply_beacon.name]'s signal is too weak. It is probably deep underground.</span>")
 				return
 
-			var/turf/T = get_turf(supply_beacon)
-			if(!istype(T))
+			if(!istype(supply_beacon.drop_location))
 				to_chat(usr, "[icon2html(src, usr)] <span class='warning'>The [supply_beacon.name] was not detected on the ground.</span>")
 				return
-			if(isspaceturf(T) || T.density)
+			if(isspaceturf(supply_beacon.drop_location) || supply_beacon.drop_location.density)
 				to_chat(usr, "[icon2html(src, usr)] <span class='warning'>The [supply_beacon.name]'s landing zone appears to be obstructed or out of bounds.</span>")
 				return
 
@@ -141,8 +135,7 @@
 		stack_trace("Trying to send a supply drop with an invalid amount of items [length(supplies)]")
 		return
 
-	var/turf/T = get_turf(supply_beacon)
-	if(!istype(T) || isspaceturf(T) || T.density)
+	if(!istype(supply_beacon.drop_location) || isspaceturf(supply_beacon.drop_location) || supply_beacon.drop_location.density)
 		stack_trace("Trying to send a supply drop to a beacon on an invalid turf")
 		return
 
@@ -175,13 +168,12 @@
 		visible_message("[icon2html(supply_pad, usr)] <span class='warning'>Launch aborted! No deployable object detected on the drop pad.</span>")
 		return
 
-	var/turf/T = get_turf(supply_beacon)
-	T.visible_message("<span class='boldnotice'>A supply drop falls from the sky!</span>")
-	playsound(T,'sound/effects/bamf.ogg', 50, TRUE)  //Ehhhhhhhhh.
+	supply_beacon.drop_location.visible_message("<span class='boldnotice'>A supply drop falls from the sky!</span>")
+	playsound(supply_beacon.drop_location,'sound/effects/bamf.ogg', 50, TRUE)  //Ehhhhhhhhh.
 	playsound(supply_pad.loc,'sound/effects/bamf.ogg', 50, TRUE)  //Ehh
 	for(var/obj/C in supplies)
 		C.anchored = FALSE
-		var/turf/TC = locate(T.x + x_offset, T.y + y_offset, T.z)
+		var/turf/TC = locate(supply_beacon.drop_location.x + x_offset, supply_beacon.drop_location.y + y_offset, supply_beacon.drop_location.z)
 		C.forceMove(TC)
 		TC.ceiling_debris_check(2)
 	supply_pad.visible_message("[icon2html(supply_pad, viewers(src))] <span class='boldnotice'>Supply drop launched! Another launch will be available in two minutes.</span>")
