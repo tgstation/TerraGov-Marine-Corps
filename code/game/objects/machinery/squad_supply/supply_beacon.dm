@@ -11,8 +11,10 @@
 
 /obj/item/supply_beacon/Destroy()
 	GLOB.active_orbital_beacons -= src
-	UnregisterSignal(beacon_datum, COMSIG_PARENT_QDELETING)
-	beacon_datum.unregister()
+	if(beacon_datum)
+		UnregisterSignal(beacon_datum, COMSIG_PARENT_QDELETING)
+		beacon_datum.unregister()
+		beacon_datum = null
 	if(beacon_cam)
 		qdel(beacon_cam)
 		beacon_cam = null
