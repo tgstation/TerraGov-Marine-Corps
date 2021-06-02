@@ -89,7 +89,7 @@
 		associated_hive = null
 		notify_ghosts("\ A resin silo has been destroyed at [AREACOORD_NO_Z(src)]!", source = get_turf(src), action = NOTIFY_JUMP)
 		playsound(loc,'sound/effects/alien_egg_burst.ogg', 75)
-	. = ..()
+	return ..()
 
 
 /obj/structure/xeno/resin/silo/Destroy()
