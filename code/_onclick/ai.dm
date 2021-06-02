@@ -10,7 +10,7 @@
 	Note that AI have no need for the adjacency proc, and so this proc is a lot cleaner.
 */
 /mob/living/silicon/ai/DblClickOn(atom/A, params)
-	if(control_disabled || incapacitated())
+	if(control_disabled || incapacitated() || controlling)
 		return
 
 	if(ismob(A))

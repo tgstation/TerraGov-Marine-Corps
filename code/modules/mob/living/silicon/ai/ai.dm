@@ -45,6 +45,8 @@
 	var/datum/trackable/track
 	///Selected order to give to marine
 	var/datum/action/innate/order/current_order
+	/// If it is currently controlling an object
+	var/controlling = FALSE
 
 
 /mob/living/silicon/ai/Initialize(mapload, ...)
@@ -339,6 +341,7 @@
 		to_chat(ai, "<span class='warning'>Something is already controlling this vehicle</span>")
 		return
 	link_with_vehicle(new_vehicle)
+	ai.controlling = TRUE
 
 /// Signal handler to clear vehicle and stop remote control
 /datum/action/control_vehicle/proc/clear_vehicle()
@@ -346,6 +349,8 @@
 	UnregisterSignal(vehicle, COMSIG_PARENT_QDELETING)
 	vehicle.on_unlink()
 	vehicle = null
+	var/mob/living/silicon/ai/ai = owner
+	ai.controlling = FALSE
 
 /datum/action/control_vehicle/proc/link_with_vehicle(obj/vehicle/unmanned/_vehicle)
 	vehicle = _vehicle
