@@ -552,7 +552,7 @@ to_chat will check for valid clients itself already so no need to double check f
 	holder.icon_state = "detector_blip"
 	addtimer(CALLBACK(src, .proc/xeno_ping_cleanup, holder), duration)
 
-/atom/proc/xeno_ping_cleanup(var/image/holder)
+/atom/proc/xeno_ping_cleanup(image/holder)
 	if(!holder)
 		return
 	holder.overlays.Cut()
