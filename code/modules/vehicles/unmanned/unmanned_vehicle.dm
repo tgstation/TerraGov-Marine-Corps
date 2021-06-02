@@ -28,7 +28,7 @@
 	///Ammo remaining for the robot
 	var/current_rounds = 0
 	///max ammo the robot can hold
-	var/max_rounds = 300
+	var/max_rounds = 0
 	///Buller type we fire, declared as type but set to a reference in Initialize
 	var/datum/ammo/bullet/ammo
 	///The currently loaded and ready to fire projectile
@@ -58,7 +58,8 @@
 		turret_type = initial(spawn_equipped_type.turret_type)
 		ammo = GLOB.ammo_list[initial(spawn_equipped_type.ammo_type)]
 		fire_delay = initial(spawn_equipped_type.fire_delay)
-		current_rounds = max_rounds
+		current_rounds = initial(spawn_equipped_type.max_rounds)
+		max_rounds = initial(spawn_equipped_type.max_rounds)
 		update_icon()
 	hud_set_uav_ammo()
 
@@ -92,7 +93,7 @@
 /obj/vehicle/unmanned/examine(mob/user, distance, infix, suffix)
 	. = ..()
 	if(ishuman(user))
-		to_chat(user, "It has [current_rounds] out of [max_rounds] ammo left.")
+		to_chat(user, "It has [current_rounds] ammo left.")
 
 /obj/vehicle/unmanned/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -115,9 +116,13 @@
 	user.visible_message("<span class='notice'>[user] removes [equipment] from [src].</span>",
 	"<span class='notice'>You remove [equipment] from [src].</span>")
 	user.put_in_hands(equipment)
+	if(istype(equipment, /obj/item/uav_turret))
+		var/obj/item/uav_turret/turret = equipment
+		turret.current_rounds = current_rounds
 	turret_path = null
 	turret_type = null
 	current_rounds = 0
+	max_rounds = 0
 	update_icon()
 	hud_set_uav_ammo()
 	return
@@ -157,7 +162,8 @@
 		ammo = GLOB.ammo_list[turret.ammo_type]
 		turret_type = turret.turret_type
 		fire_delay = turret.fire_delay
-		current_rounds = max_rounds
+		current_rounds = turret.current_rounds
+		max_rounds = turret.max_rounds
 		hud_set_uav_ammo()
 	else
 		turret_type = TURRET_TYPE_EXPLOSIVE
