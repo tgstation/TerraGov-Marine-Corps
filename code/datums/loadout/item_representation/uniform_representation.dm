@@ -5,7 +5,7 @@
 /datum/item_representation/uniform_representation
 	var/datum/item_representation/tie/tie 
 
-/datum/item_representation/uniform_representation/New(obj/item/item_to_copy)
+/datum/item_representation/uniform_representation/New(obj/item/item_to_copy, datum/loadout/loadout)
 	if(!item_to_copy)
 		return
 	if(!isuniform(item_to_copy))
@@ -13,13 +13,13 @@
 	..()
 	var/obj/item/clothing/under/uniform_to_copy = item_to_copy
 	if(uniform_to_copy.hastie)
-		tie = new /datum/item_representation/tie(uniform_to_copy.hastie)
+		tie = new /datum/item_representation/tie(uniform_to_copy.hastie, loadout)
 
-/datum/item_representation/uniform_representation/instantiate_object(datum/loadout_seller/seller, master)
+/datum/item_representation/uniform_representation/instantiate_object(datum/loadout_seller/seller, master = null, datum/loadout/loadout, mob/user)
 	. = ..()
 	if(!.)
 		return
-	tie?.install_on_uniform(seller, .)
+	tie?.install_on_uniform(seller, ., loadout, user)
 
 /datum/item_representation/uniform_representation/get_tgui_data()
 	var/list/tgui_data = list()
@@ -51,24 +51,24 @@
 	///The storage of the tie
 	var/datum/item_representation/storage/hold
 
-/datum/item_representation/tie/New(obj/item/item_to_copy)
+/datum/item_representation/tie/New(obj/item/item_to_copy, datum/loadout/loadout)
 	if(!item_to_copy)
 		return
 	if(!iswebbing(item_to_copy))
 		CRASH("/datum/item_representation/tie created from an item that is not a tie storage")
 	..()
 	var/obj/item/clothing/tie/storage/tie = item_to_copy
-	hold = new /datum/item_representation/storage(tie.hold)
+	hold = new /datum/item_representation/storage(tie.hold, loadout)
 	
-/datum/item_representation/tie/instantiate_object(datum/loadout_seller/seller, master)
+/datum/item_representation/tie/instantiate_object(datum/loadout_seller/seller, master = null, datum/loadout/loadout, mob/user)
 	. = ..()
 	if(!.)
 		return
 	var/obj/item/clothing/tie/storage/tie = .
-	tie.hold = hold.instantiate_object(seller, tie)
+	tie.hold = hold.instantiate_object(seller, tie, loadout, user)
 
 ///Attach the tie to a uniform
-/datum/item_representation/tie/proc/install_on_uniform(datum/loadout_seller/seller, obj/item/clothing/under/uniform)
-	var/obj/item/clothing/tie/storage/tie = instantiate_object()
+/datum/item_representation/tie/proc/install_on_uniform(datum/loadout_seller/seller, obj/item/clothing/under/uniform, datum/loadout/loadout, mob/user)
+	var/obj/item/clothing/tie/storage/tie = instantiate_object(seller, null, loadout, user)
 	tie?.on_attached(uniform)
 	uniform.hastie = tie

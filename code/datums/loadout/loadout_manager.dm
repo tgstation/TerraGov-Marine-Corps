@@ -22,15 +22,16 @@
 	if(current_loadout == loadout_to_delete)
 		current_loadout = null
 	if(length(loadouts_data))
-		prepare_all_loadouts_data()
+		prepare_all_loadouts_data(loadout_to_delete.job)
 
 ///Prepare all loadouts data before sending them to tgui
-/datum/loadout_manager/proc/prepare_all_loadouts_data()
+/datum/loadout_manager/proc/prepare_all_loadouts_data(job)
 	loadouts_data = list()
 	var/next_loadout_data = list()
 	for(var/datum/loadout/next_loadout AS in loadouts_list)
+		if(next_loadout.job != job)
+			continue
 		next_loadout_data = list()
-		next_loadout_data["job"] = next_loadout.job
 		next_loadout_data["name"] = next_loadout.name
 		loadouts_data += list(next_loadout_data)
 
@@ -42,9 +43,14 @@
 	loadouts_data += list(next_loadout_data)
 
 /datum/loadout_manager/ui_interact(mob/user, datum/tgui/ui)
+	var/mob/living/living_user = user
+	var/job = living_user.job.title
+	if(!(job in GLOB.loadout_job_supported))
+		to_chat(ui.user, "<span class='warning'>Only squad members can use this vendor!</span>")
+		return
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		prepare_all_loadouts_data()
+		prepare_all_loadouts_data(job)
 		ui = new(user, src, "LoadoutManager")
 		ui.open()
 
@@ -78,12 +84,13 @@
 	if(TIMER_COOLDOWN_CHECK(ui.user, COOLDOWN_LOADOUT_VISUALIZATION))
 		return
 	TIMER_COOLDOWN_START(ui.user, COOLDOWN_LOADOUT_VISUALIZATION, 1 SECONDS)//Anti spam cooldown
+	var/mob/living/user = ui.user
+	var/job = user.job.title
 	switch(action)
 		if("saveLoadout")
-			if(length(loadouts_list) >= MAXIMUM_LOADOUT)
-				to_chat(ui.user, "<span class='warning'>You've reached the maximum number of loadouts saved, please delete some before saving new ones</span>")
+			if(length(loadouts_list[job]) >= MAXIMUM_LOADOUT)
+				to_chat(ui.user, "<span class='warning'>You've reached the maximum number of loadouts saved for this job, please delete some before saving new ones</span>")
 				return
-			var/job = params["loadout_job"]
 			var/loadout_name = params["loadout_name"]
 			if(isnull(loadout_name))
 				return
@@ -93,7 +100,6 @@
 			add_loadout_data(loadout)
 			open_loadout(loadout, ui.user)
 		if("selectLoadout")
-			var/job = params["loadout_job"]
 			var/name = params["loadout_name"]
 			if(isnull(name))
 				return

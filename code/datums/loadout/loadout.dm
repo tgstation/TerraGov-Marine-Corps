@@ -2,17 +2,27 @@
 	///Name of the loadout
 	var/name = ""
 	///The job associated with the loadout
-	var/job = MARINE_LOADOUT
+	var/job = SQUAD_MARINE
 	/**
 	 * Assoc list of all items composing this loadout
 	 * the key of each item is a slot key
 	 * each item of the list is a datum/item_representation
 	 */
 	var/list/item_list
-	/// The host of the loadout_manager, aka from which loadout vendor are you managing loadouts
+	///The host of the loadout_manager, aka from which loadout vendor are you managing loadouts
 	var/loadout_vendor 
-	///The version of this loadout. This can allow in the future to erase loadouts that are too old to work with the loadout saver system
-	var/version = 1
+	///A list of unique items on this loadout (items that are in specific role vendors, but are not costing points)
+	var/unique_items_list = list()
+	///A list of items coming from job specific clothes vendor
+	var/clothes_item_list = list()
+	///A representation of the buying bitfield used to buy from different categories of clothes vendors
+	var/buying_bitfield = MARINE_CAN_BUY_ALL
+	///A list of items that were bought using points from role vendors
+	var/priced_items_list = list()
+	///The amount of marine points available on the loadout
+	var/job_points_available = MARINE_TOTAL_BUY_POINTS
+	///The version of this loadout
+	var/version = CURRENT_LOADOUT_VERSION
 
 ///Empty a slot of the loadout
 /datum/loadout/proc/empty_slot(slot)
@@ -98,10 +108,10 @@
 	var/item2representation_type
 	for(var/slot_key in GLOB.visible_item_slot_list)
 		item_in_slot = user.get_item_by_slot(GLOB.slot_str_to_slot[slot_key])
-		if(!item_in_slot || !is_savable_in_loadout(item_in_slot))
+		if(!item_in_slot || !is_savable_in_loadout(item_in_slot, src))
 			continue
 		item2representation_type = item2representation_type(item_in_slot.type)
-		item_list[slot_key] = new item2representation_type(item_in_slot)
+		item_list[slot_key] = new item2representation_type(item_in_slot, src)
 
 /datum/loadout/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
@@ -133,10 +143,10 @@
 			if(TIMER_COOLDOWN_CHECK(ui.user, COOLDOWN_LOADOUT_EQUIPPED))
 				to_chat(ui.user, "<span class='warning'>The vendor is still reloading</span>")
 				return
-			TIMER_COOLDOWN_START(ui.user, COOLDOWN_LOADOUT_EQUIPPED, 30 SECONDS)
 			if(!ui.user.client.prefs.loadout_manager.seller)
 				ui.user.client.prefs.loadout_manager.seller = new /datum/loadout_seller
-			ui.user.client.prefs.loadout_manager.seller.try_to_equip_loadout(src, ui.user)
+			if(ui.user.client.prefs.loadout_manager.seller.try_to_equip_loadout(src, ui.user))
+				TIMER_COOLDOWN_START(ui.user, COOLDOWN_LOADOUT_EQUIPPED, 30 SECONDS)
 			ui.close()
 		if("deleteLoadout")
 			ui.user.client.prefs.loadout_manager.delete_loadout(src)

@@ -2,7 +2,7 @@ import { useBackend } from '../../backend';
 import { Button, Section, LabeledList, Box, Grid } from '../../components';
 
 export const GearCustomization = (props, context) => {
-  const { act, data, config } = useBackend<PlayerPreferencesData>(context);
+  const { act, data } = useBackend<GearCustomizationData>(context);
 
   const {
     gearsets,

@@ -9,7 +9,7 @@
 	/// If it's allowed to bypass the vendor check
 	var/bypass_vendor_check = FALSE
 
-/datum/item_representation/New(obj/item/item_to_copy)
+/datum/item_representation/New(obj/item/item_to_copy, datum/loadout/loadout)
 	if(!item_to_copy)
 		return
 	item_type = item_to_copy.type
@@ -21,9 +21,9 @@
  * If it fails to find a vendor, it will add that item to a list on seller to warns him that it failed
  * Return the instantatiated item if it was successfully sold, and return null otherwise
  */
-/datum/item_representation/proc/instantiate_object(datum/loadout_seller/seller, master = null)
+/datum/item_representation/proc/instantiate_object(datum/loadout_seller/seller, master = null, datum/loadout/loadout, mob/user)
 	if(seller && !bypass_vendor_check)
-		if(!buy_item_in_vendor(item_type))
+		if(!buy_item_in_vendor(item_type, loadout, user))
 			seller.unavailable_items ++
 			return
 		seller.bought_items += item_type
@@ -53,7 +53,7 @@
 	/// The contents in the storage
 	var/list/contents = list()
 
-/datum/item_representation/storage/New(obj/item/item_to_copy)
+/datum/item_representation/storage/New(obj/item/item_to_copy, datum/loadout/loadout)
 	if(!item_to_copy)
 		return
 	if(!isstorage(item_to_copy))
@@ -66,19 +66,44 @@
 	for(var/atom/thing_in_content AS in item_to_copy.contents)
 		if(!isitem(thing_in_content))
 			continue
-		if(!is_savable_in_loadout(thing_in_content))
+		if(!is_savable_in_loadout(thing_in_content, loadout))
 			continue
 		item_representation_type = item2representation_type(thing_in_content.type)
-		contents += new item_representation_type(thing_in_content)
+		contents += new item_representation_type(thing_in_content, loadout)
 
-/datum/item_representation/storage/instantiate_object(datum/loadout_seller/seller, master = null)
+/datum/item_representation/storage/instantiate_object(datum/loadout_seller/seller, master = null, datum/loadout/loadout, mob/user)
 	. = ..()
 	if(!.)
 		return
 	var/obj/item/storage/storage = .
 	for(var/datum/item_representation/item_representation AS in contents)
-		var/obj/item/item_to_insert = item_representation.instantiate_object(seller)
+		var/obj/item/item_to_insert = item_representation.instantiate_object(seller, master, loadout, user)
 		if(!item_to_insert)
 			continue
 		if(storage.can_be_inserted(item_to_insert))
 			storage.handle_item_insertion(item_to_insert)
+
+/**
+ * Allow to representate stacks of item of type /obj/item/stack
+ */
+/datum/item_representation/stack
+	///Amount of items in the stack
+	var/amount = 0
+
+/datum/item_representation/stack/New(obj/item/item_to_copy, datum/loadout/loadout)
+	if(!item_to_copy)
+		return
+	if(!isitemstack(item_to_copy))
+		CRASH("/datum/item_representation/stack created from an item that is not a stack of items")
+	..()
+	var/obj/item/stack/stack_to_copy = item_to_copy
+	amount = stack_to_copy.amount
+
+/datum/item_representation/stack/instantiate_object(datum/loadout_seller/seller, master = null, datum/loadout/loadout, mob/user)
+	. = ..()
+	if(!.)
+		return
+	var/obj/item/stack/stack = .
+	stack.amount = amount
+	stack.update_weight()
+	stack.update_icon()

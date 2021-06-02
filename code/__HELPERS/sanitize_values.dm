@@ -128,11 +128,13 @@
 	if(!islist(manager.loadouts_list))
 		manager = new
 		return manager
-	for(var/loadout in manager.loadouts_list)
+	for(var/datum/loadout/loadout AS in manager.loadouts_list)
 		if(!istype(loadout, /datum/loadout))
+			manager.loadouts_list -= loadout
+			continue
+		if(loadout.version != CURRENT_LOADOUT_VERSION)
 			manager.loadouts_list -= loadout
 	manager.loadouts_data = null
 	manager.seller = null
 	manager.loadout_vendor = null
 	return manager
-
