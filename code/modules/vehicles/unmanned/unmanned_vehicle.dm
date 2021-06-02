@@ -35,8 +35,6 @@
 	var/obj/projectile/in_chamber = null
 	///Sound file or string type for playing the shooting sound
 	var/gunnoise = "gun_smartgun"
-	/// The camera attached to the vehicle
-	var/obj/machinery/camera/camera
 	/// Serial number of the vehicle
 	var/static/serial = 1
 	/// If the vehicle should spawn with a weapon allready installed
@@ -51,8 +49,6 @@
 	name += " " + num2text(serial)
 	serial++
 	GLOB.unmanned_vehicles += src
-	camera = new
-	camera.network = list("marine")
 	prepare_huds()
 	for(var/datum/atom_hud/squad/sentry_status_hud in GLOB.huds) //Add to the squad HUD
 		sentry_status_hud.add_to_hud(src)
