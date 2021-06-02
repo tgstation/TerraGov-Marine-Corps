@@ -13,7 +13,7 @@
 	max_integrity = 300
 	hud_possible = list(MACHINE_HEALTH_HUD, MACHINE_AMMO_HUD)
 	resistance_flags = XENO_DAMAGEABLE
-	flags_atom = BUMP_ATTACKABLE
+	flags_atom = BUMP_ATTACKABLE|AI_CONTROLLABLE
 	soft_armor = list("melee" = 25, "bullet" = 50, "laser" = 50, "energy" = 100, "bomb" = 50, "bio" = 100, "rad" = 100, "fire" = 25, "acid" = 25)
 	/// Path of "turret" attached
 	var/obj/item/turret_path
@@ -52,7 +52,7 @@
 	serial++
 	GLOB.unmanned_vehicles += src
 	camera = new
-	camera.network += list("marine")
+	camera.network = list("marine")
 	prepare_huds()
 	for(var/datum/atom_hud/squad/sentry_status_hud in GLOB.huds) //Add to the squad HUD
 		sentry_status_hud.add_to_hud(src)

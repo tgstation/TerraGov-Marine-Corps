@@ -240,6 +240,14 @@
 
 
 /mob/living/silicon/ai/reset_perspective(atom/A)
+	if(A?.flags_atom & AI_CONTROLLABLE)
+		sight = NONE
+		eyeobj?.use_static = USE_STATIC_NONE
+		GLOB.cameranet.visibility(eyeobj, client, all_eyes, USE_STATIC_NONE)
+	else
+		sight = initial(sight)
+		eyeobj?.use_static = initial(eyeobj?.use_static)
+		GLOB.cameranet.visibility(eyeobj, client, all_eyes, initial(eyeobj?.use_static))
 	if(camera_light_on)
 		light_cameras()
 	if(istype(A, /obj/machinery/camera))

@@ -128,7 +128,7 @@
 	SEND_SIGNAL(controlled, COMSIG_REMOTECONTROL_CHANGED, FALSE, user)
 	is_controlling = FALSE
 	user.remote_control = null
-	user.reset_perspective(user)
+	user.reset_perspective()
 	UnregisterSignal(user, list(COMSIG_MOB_CLICKON, COMSIG_MOB_LOGOUT, COMSIG_RELAYED_SPEECH))
 	UnregisterSignal(parent, COMSIG_ITEM_DROPPED)
 	user = null
