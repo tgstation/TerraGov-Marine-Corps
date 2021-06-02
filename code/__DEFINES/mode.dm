@@ -124,11 +124,14 @@
 
 #define SILO_PRICE 1200
 #define XENO_TURRET_PRICE 150
+#define XENO_KING_PRICE 2500
+
+#define INVOKE_KING_TIME_LOCK 1 HOURS
 
 #define SMALL_SILO_MAXIMUM_PLAYER_COUNT 30
 
-//The minimum round time before siloless timer can start (13:00)
-#define MINIMUM_TIME_SILO_LESS_COLLAPSE 36000
+//Time (after round start) before siloless timer can start
+#define MINIMUM_TIME_SILO_LESS_COLLAPSE 1 HOURS
 
 #define INFESTATION_MARINE_DEPLOYMENT 0
 #define INFESTATION_MARINE_CRASHING 1

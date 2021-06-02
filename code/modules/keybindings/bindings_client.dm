@@ -104,7 +104,3 @@
 	for(var/key in keys_held)
 		keyUp(key)
 
-// Called every game tick
-/client/keyLoop()
-	holder?.keyLoop(src)
-	mob.focus?.keyLoop(src)

@@ -236,6 +236,7 @@
 /obj/item/explosive/grenade/chem_grenade/razorburn_smol
 	name = "Razorburn Grenade"
 	desc = "Contains construction nanites ready to turn a small area into razorwire after a few seconds. DO NOT ENTER AREA WHILE ACTIVE."
+	icon_state = "grenade_razorburn"
 	stage = CG_READY
 
 
@@ -254,6 +255,7 @@
 /obj/item/explosive/grenade/chem_grenade/razorburn_large
 	name = "Razorburn Canister"
 	desc = "Contains construction nanites ready to turn a large area into razorwire after a few seconds. DO NOT ENTER AREA WHILE ACTIVE."
+	icon_state = "grenade_large_razorburn"
 	stage = CG_READY
 
 

@@ -233,16 +233,16 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 			state = OW_MAIN
 		if("monitor")
 			state = OW_MONITOR
-		if("monitor1")
+		if("monitoralpha_squad")
 			state = OW_MONITOR
 			current_squad = get_squad_by_id(ALPHA_SQUAD)
-		if("monitor2")
+		if("monitorbravo_squad")
 			state = OW_MONITOR
 			current_squad = get_squad_by_id(BRAVO_SQUAD)
-		if("monitor3")
+		if("monitorcharlie_squad")
 			state = OW_MONITOR
 			current_squad = get_squad_by_id(CHARLIE_SQUAD)
-		if("monitor4")
+		if("monitordelta_squad")
 			state = OW_MONITOR
 			current_squad = get_squad_by_id(DELTA_SQUAD)
 		if("change_operator")
@@ -278,33 +278,20 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 			selected_target = null
 			state = OW_MAIN
 		if("pick_squad")
-			if(operator == usr)
-				if(current_squad)
-					to_chat(usr, "<span class='warning'>[icon2html(src, usr)] You are already selecting a squad.</span>")
-				else
-					var/list/squad_choices = list()
-					for(var/datum/squad/squad AS in watchable_squads)
-						if(!squad.overwatch_officer)
-							squad_choices += squad.name
-
-					var/squad_name = tgui_input_list(usr, "Which squad would you like to claim for Overwatch?", null, squad_choices)
-					if(!squad_name || operator != usr)
-						return
-					var/datum/squad/selected
-					for(var/datum/squad/squad AS in watchable_squads)
-						if(squad.name == squad_name)
-							selected = squad
-							break
-					if(selected)
-						selected.overwatch_officer = usr //Link everything together, squad, console, and officer
-						current_squad = selected
-						current_squad.message_squad("Attention - Your squad has been selected for Overwatch. Check your Status pane for objectives.")
-						current_squad.message_squad("Your Overwatch officer is: [operator.name].")
-						visible_message("<span class='boldnotice'>Tactical data for squad '[current_squad]' loaded. All tactical functions initialized.</span>")
-						attack_hand(usr)
-
-					else
-						to_chat(usr, "[icon2html(src, usr)] <span class='warning'>Invalid input. Aborting.</span>")
+			if(operator != usr)
+				return
+			if(current_squad)
+				to_chat(usr, "<span class='warning'>[icon2html(src, usr)] You are already selecting a squad.</span>")
+				return
+			var/datum/squad/selected = tgui_input_list(usr, "Which squad would you like to claim for Overwatch?", null, watchable_squads)
+			if(!selected || operator != usr)
+				return
+			selected.overwatch_officer = usr //Link everything together, squad, console, and officer
+			current_squad = selected
+			current_squad.message_squad("Attention - Your squad has been selected for Overwatch. Check your Status pane for objectives.")
+			current_squad.message_squad("Your Overwatch officer is: [operator.name].")
+			visible_message("<span class='boldnotice'>Tactical data for squad '[current_squad]' loaded. All tactical functions initialized.</span>")
+			attack_hand(usr)
 		if("message")
 			if(current_squad && operator == usr)
 				var/input = stripped_input(usr, "Please write a message to announce to the squad:", "Squad Message")
@@ -597,12 +584,12 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 		to_chat(usr, "[icon2html(src, usr)] <span class='warning'>Transfer aborted. [transfer_marine] isn't wearing an ID.</span>")
 		return
 
-	var/choice = tgui_input_list(usr, "Choose the marine's new squad", null,  watchable_squads)
-	if(!choice)
+	var/datum/squad/new_squad = tgui_input_list(usr, "Choose the marine's new squad", null,  watchable_squads)
+	if(!new_squad)
 		return
+	
 	if(S != current_squad)
 		return
-	var/datum/squad/new_squad = watchable_squads[choice]
 
 	if(!istype(transfer_marine) || transfer_marine.stat == DEAD)
 		to_chat(usr, "[icon2html(src, usr)] <span class='warning'>[transfer_marine] is KIA.</span>")

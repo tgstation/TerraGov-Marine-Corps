@@ -1,0 +1,6 @@
+2021-06-01:
+  BraveMole:
+  - bugfix: Fix request console
+  - rscadd: Loadout Saver
+  - bugfix: Fix runtime for gun keybinds
+  - rscadd: King is back
