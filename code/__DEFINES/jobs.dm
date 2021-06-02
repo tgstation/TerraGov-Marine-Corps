@@ -138,6 +138,3 @@ MEDICAL_OFFICER, MEDICAL_RESEARCHER, SQUAD_LEADER, SQUAD_SPECIALIST, SQUAD_SMART
 #define SILO_ORIGIN "xenos from silo generation"
 
 #define SQUAD_MAX_POSITIONS(total_positions) CEILING(total_positions / length(SSjob.active_squads), 1)
-
-/// How many points a marine can spend in job specific vendors
-#define MARINE_TOTAL_BUY_POINTS		45

@@ -7,7 +7,7 @@
 	var/list/datum/item_representation/gun_attachement/attachments = list()
 
 
-/datum/item_representation/gun/New(obj/item/item_to_copy, datum/loadout/loadout)
+/datum/item_representation/gun/New(obj/item/item_to_copy)
 	if(!item_to_copy)
 		return
 	if(!isgun(item_to_copy))
@@ -18,19 +18,19 @@
 		attachments += new /datum/item_representation/gun_attachement(gun_to_copy.attachments[key])
 
 
-/datum/item_representation/gun/instantiate_object(datum/loadout_seller/seller, master = null, datum/loadout/loadout, mob/user)
+/datum/item_representation/gun/instantiate_object(datum/loadout_seller/seller)
 	. = ..()
 	if(!.)
 		return
 	for(var/datum/item_representation/gun_attachement/gun_attachement AS in attachments)
-		gun_attachement.install_on_gun(seller, ., loadout, user)
+		gun_attachement.install_on_gun(seller, .)
 
 /**
  * Allow to representate a gun attachement
  */
 /datum/item_representation/gun_attachement
 
-/datum/item_representation/gun_attachement/New(obj/item/item_to_copy, datum/loadout/loadout)
+/datum/item_representation/gun_attachement/New(obj/item/item_to_copy)
 	if(!item_to_copy)
 		return
 	if(!isgunattachment(item_to_copy))
@@ -38,11 +38,11 @@
 	..()
 
 ///Attach the instantiated attachment to the gun
-/datum/item_representation/gun_attachement/proc/install_on_gun(seller, obj/item/weapon/gun/gun_to_attach, datum/loadout/loadout, mob/user)
+/datum/item_representation/gun_attachement/proc/install_on_gun(seller, obj/item/weapon/gun/gun_to_attach)
 	var/obj/item/attachable/attachment_type = item_type
 	if(!(initial(attachment_type.flags_attach_features) & ATTACH_REMOVABLE))//Unremovable attachment are not in vendors
 		bypass_vendor_check = TRUE
-	var/obj/item/attachable/attachment = instantiate_object(seller, null, loadout, user)
+	var/obj/item/attachable/attachment = instantiate_object(seller)
 	attachment?.attach_to_gun(gun_to_attach)
 
 /**
@@ -60,7 +60,7 @@
 	/// The type of gun this handful can feed
 	var/gun_type
 
-/datum/item_representation/handful_representation/New(obj/item/item_to_copy, datum/loadout/loadout)
+/datum/item_representation/handful_representation/New(obj/item/item_to_copy)
 	if(!item_to_copy)
 		return
 	if(!ishandful(item_to_copy))
@@ -73,7 +73,7 @@
 	max_rounds = handful_to_copy.max_rounds
 	gun_type = handful_to_copy.gun_type
 
-/datum/item_representation/handful_representation/instantiate_object(datum/loadout_seller/seller, master = null, datum/loadout/loadout, mob/user)
+/datum/item_representation/handful_representation/instantiate_object(datum/loadout_seller/seller, master)
 	. = ..()
 	if(!.)
 		return

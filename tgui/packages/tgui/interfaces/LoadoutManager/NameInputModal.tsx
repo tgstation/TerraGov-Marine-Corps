@@ -29,7 +29,7 @@ export const NameInputModal = (props: NameInputModalData, context) => {
             backgroundColor="black"
             textColor="white"
             onInput={(_, value) => {
-              setInput(value.substring(0, 50));
+              setInput(value.substring(0, 25));
             }}
             value={input}
           />

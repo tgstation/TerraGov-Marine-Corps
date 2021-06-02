@@ -3,7 +3,7 @@ import { Button, Section, LabeledList, Grid, ColorBox } from '../../components';
 import { ToggleFieldPreference, TextFieldPreference, SelectFieldPreference } from './FieldPreferences';
 
 export const GameSettings = (props, context) => {
-  const { act, data } = useBackend<GameSettingData>(context);
+  const { act, data, config } = useBackend<PlayerPreferencesData>(context);
   const { ui_style_color } = data;
   return (
     <Section title="Game Settings">

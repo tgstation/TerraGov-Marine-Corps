@@ -4,7 +4,7 @@ import { TextFieldPreference, ToggleFieldPreference, SelectFieldPreference } fro
 import { ProfilePicture } from './ProfilePicture';
 
 export const CharacterCustomization = (props, context) => {
-  const { act, data, config } = useBackend<CharacterCustomizationData>(context);
+  const { act, data, config } = useBackend<PlayerPreferencesData>(context);
   const {
     random_name,
     r_hair,
