@@ -91,8 +91,7 @@
 /obj/item/binoculars/tactical/onunzoom(mob/living/user)
 	. = ..()
 
-	if(laser)
-		QDEL_NULL(laser)
+	QDEL_NULL(laser)
 
 	if(!user?.client)
 		return
