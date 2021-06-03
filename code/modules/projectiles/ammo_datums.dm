@@ -336,7 +336,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	var/stagger_knock = 0 // snub the snubnose stagger
 	if(shot_from.attachments?.Find(ATTACHMENT_BARREL_MOD))
 		stagger_knock = 1
-	staggerstun(M, P, stagger = stagger_knock, slowdown = 0.5, knockback = stagger_knock, shake = 0.5)
+	staggerstun(M, P, stagger = stagger_knock, slowdown = 0.5, knockback = stagger_knock)
 
 /datum/ammo/bullet/revolver/small
 	name = "small revolver bullet"
@@ -370,11 +370,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	sundering = 3
 
 /datum/ammo/bullet/revolver/highimpact/on_hit_mob(mob/M,obj/projectile/P)
-	var/obj/item/weapon/gun/shot_from = P.shot_from
-	var/stagger_knock = 0
-	if(shot_from.attachments?.Find(ATTACHMENT_BARREL_MOD))
-		stagger_knock = 1
-	staggerstun(M, P, weaken = 1, stagger = stagger_knock, slowdown = 1, knockback = stagger_knock)
+	staggerstun(M, P, weaken = 1, stagger = 1, slowdown = 1, knockback = 1, shake = 0.5)
 
 
 /datum/ammo/bullet/revolver/ricochet
