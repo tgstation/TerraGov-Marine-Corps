@@ -1,5 +1,0 @@
-author: "DeltaFire15"
-delete-after: True
-changes: 
-  - bugfix: "Admins can now actually mark things via the varedit dropdown."
-  - code_imp: "Moved marking into its own file as a proc for easier access in the future."
