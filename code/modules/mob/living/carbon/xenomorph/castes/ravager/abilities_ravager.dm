@@ -87,7 +87,7 @@
 	ability_name = "ravage"
 	plasma_cost = 200
 	cooldown_timer = 6 SECONDS
-	keybind_flags = XACT_KEYBIND_USE_ABILITY | XACT_IGNORE_SELECTED_ABILITY
+	keybind_flags = XACT_KEYBIND_USE_ABILITY | XACT_IGNORE_SELECTED_ABILITY|XACT_USE_STAGGERED //Can use this while staggered
 	keybind_signal = COMSIG_XENOABILITY_RAVAGE
 	alternate_keybind_signal = COMSIG_XENOABILITY_RAVAGE_SELECT
 
