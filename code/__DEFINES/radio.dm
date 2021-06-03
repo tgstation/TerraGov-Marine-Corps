@@ -67,41 +67,41 @@
 #define MIN_FREE_FREQ 1201 // -------------------------------------------------
 // Frequencies are always odd numbers and range from 1201 to 1599.
 
-#define MIN_ERT_FREQ	1331
-#define FREQ_PMC		1331
-#define FREQ_COLONIST	1335
-#define FREQ_USL		1337
-#define FREQ_DEATHSQUAD	1339
-#define FREQ_IMPERIAL	1341
-#define FREQ_SOM		1343
-#define FREQ_SECTOID	1347
-#define FREQ_ECHO		1349
-#define MAX_ERT_FREQ	1349
+#define MIN_ERT_FREQ 1331
+#define FREQ_PMC 1331
+#define FREQ_COLONIST 1335
+#define FREQ_USL 1337
+#define FREQ_DEATHSQUAD 1339
+#define FREQ_IMPERIAL 1341
+#define FREQ_SOM 1343
+#define FREQ_SECTOID 1347
+#define FREQ_ECHO 1349
+#define MAX_ERT_FREQ 1349
 
-#define FREQ_COMMAND 		1353
-#define FREQ_MEDICAL		1355
-#define FREQ_ENGINEERING	1357
-#define FREQ_CAS			1359
-#define FREQ_REQUISITIONS	1354
+#define FREQ_COMMAND 1353
+#define FREQ_MEDICAL 1355
+#define FREQ_ENGINEERING 1357
+#define FREQ_CAS 1359
+#define FREQ_REQUISITIONS 1354
 
-#define FREQ_ALPHA		1361
-#define FREQ_BRAVO		1363
-#define FREQ_CHARLIE	1365
-#define FREQ_DELTA		1367
-#define FREQ_AI			1369
+#define FREQ_ALPHA 1361
+#define FREQ_BRAVO 1363
+#define FREQ_CHARLIE 1365
+#define FREQ_DELTA 1367
+#define FREQ_AI 1369
 
-#define FREQ_COMMAND_REBEL 		1371
-#define FREQ_MEDICAL_REBEL		1373
-#define FREQ_ENGINEERING_REBEL	1375
-#define FREQ_CAS_REBEL			1377
-#define FREQ_REQUISITIONS_REBEL	1379
+#define FREQ_COMMAND_REBEL 1371
+#define FREQ_MEDICAL_REBEL 1373
+#define FREQ_ENGINEERING_REBEL 1375
+#define FREQ_CAS_REBEL 1377
+#define FREQ_REQUISITIONS_REBEL 1379
 
-#define FREQ_ALPHA_REBEL		1381
-#define FREQ_BRAVO_REBEL		1383
-#define FREQ_CHARLIE_REBEL		1385
-#define FREQ_DELTA_REBEL		1387
+#define FREQ_ALPHA_REBEL 1381
+#define FREQ_BRAVO_REBEL 1383
+#define FREQ_CHARLIE_REBEL 1385
+#define FREQ_DELTA_REBEL 1387
 
-#define FREQ_AI_REBEL			1389
+#define FREQ_AI_REBEL 1389
 
 #define FREQ_STATUS_DISPLAYS 1435
 
@@ -109,15 +109,15 @@
 // Only the 1441 to 1489 range is freely available for general conversation.
 // This represents 1/8th of the available spectrum.
 
-#define FREQ_DROPSHIP_1	1441
-#define FREQ_DROPSHIP_2	1443
+#define FREQ_DROPSHIP_1 1441
+#define FREQ_DROPSHIP_2 1443
 
 #define FREQ_ELECTROPACK 1449
-#define FREQ_SIGNALER	1457  // the default for new signalers
-#define FREQ_COMMON		1461
-#define FREQ_COMMON_REBEL	1463
+#define FREQ_SIGNALER 1457  // the default for new signalers
+#define FREQ_COMMON 1461
+#define FREQ_COMMON_REBEL 1463
 
-#define FREQ_CIV_GENERAL	1469
+#define FREQ_CIV_GENERAL 1469
 
 
 #define MAX_FREQ 1489 // ------------------------------------------------------
