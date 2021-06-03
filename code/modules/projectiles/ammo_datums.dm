@@ -91,6 +91,11 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 		if(xeno_victim.fortify) //If we're fortified we don't give a shit about staggerstun.
 			impact_message += "<span class='xenodanger'>Your fortified stance braces you against the impact.</span>"
 			return
+
+		if(xeno_victim.endure) //Endure allows us to ignore staggerstun.
+			impact_message += "<span class='xenodanger'>You endure the impact from [proj], shrugging off its effects.</span>"
+			return
+
 		if(xeno_victim.crest_defense) //Crest defense halves all effects, and protects us from the stun.
 			impact_message += "<span class='xenodanger'>Your crest protects you against some of the impact.</span>"
 			slowdown *= 0.5
