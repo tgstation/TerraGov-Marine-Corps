@@ -1,4 +1,4 @@
-#define DISPLAY_ON_SHIP    0
+#define DISPLAY_ON_SHIP 0
 #define DISPLAY_PLANETSIDE 1
 #define DISPLAY_IN_TRANSIT 2
 

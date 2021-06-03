@@ -1,7 +1,0 @@
-author: "jroinc"
-delete-after: True
-changes: 
-  - rscadd: "Nanoblood"
-  - rscadd: "Medic Blood vendor access"
-  - rscdel: "Removed QC+ and peri+ from the wrenchable vendor. Medics, quiver in fear!"
-  - balance: "rebalanced many chems, and changed a few autoinjectors, details in main PR body"

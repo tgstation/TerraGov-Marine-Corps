@@ -163,6 +163,7 @@
 			/obj/item/weapon/shield/riot/marine = 6,
 			/obj/item/weapon/powerfist = -1,
 			/obj/item/weapon/throwing_knife = -1,
+			/obj/item/weapon/combat_knife = -1,
 			/obj/item/ammo_magazine/standard_smartmachinegun = 4,
 		),
 		"Grenades" = list(
@@ -198,6 +199,7 @@
 			/obj/item/attachable/attached_gun/flamer = -1,
 			/obj/item/attachable/attached_gun/shotgun = -1,
 			/obj/item/attachable/attached_gun/grenade = -1,
+			/obj/item/attachable/standard_revolver_longbarrel = -1
 		),
 		"Boxes" = list(
 		/obj/item/ammo_magazine/box9mm = 100,
@@ -211,6 +213,9 @@
 		),
 	)
 
+	seasonal_items = list(
+		SEASONAL_GUNS = "Seasonal",
+	)
 
 /obj/machinery/vending/marine/shared/hvh
 
@@ -632,7 +637,7 @@
 		/obj/item/reagent_containers/hypospray/autoinjector/synaptizine_expired = 3,
 	)
 
-/obj/machinery/vending/MarineMed/rebel 
+/obj/machinery/vending/MarineMed/rebel
 	req_one_access = ALL_MARINE_REBEL_ACCESS
 
 /obj/machinery/vending/MarineMed/Blood
@@ -653,7 +658,7 @@
 	)
 	contraband = list()
 
-/obj/machinery/vending/MarineMed/Blood/rebel 
+/obj/machinery/vending/MarineMed/Blood/rebel
 	req_access = list(ACCESS_MARINE_MEDBAY_REBEL, ACCESS_MARINE_CHEMISTRY_REBEL)
 
 /obj/machinery/vending/MarineMed/Blood/build_inventory(list/productlist, category)
@@ -700,7 +705,7 @@
 	)
 	contraband = list(/obj/item/reagent_containers/blood/OMinus = 1)
 
-/obj/machinery/vending/marine_medic/rebel 
+/obj/machinery/vending/marine_medic/rebel
 	req_access = list(ACCESS_MARINE_MEDPREP_REBEL)
 
 /obj/machinery/vending/marine_special
@@ -919,7 +924,7 @@
 			/obj/item/clothing/under/marine/standard =-1,
 			/obj/item/clothing/under/marine/jaeger =-1,
 			/obj/item/clothing/gloves/marine =-1,
-			/obj/item/clothing/shoes/marine = -1,
+			/obj/item/clothing/shoes/marine/full = -1,
 			/obj/item/clothing/head/slouch = -1,
 			/obj/item/clothing/glasses/mgoggles = -1,
 			/obj/item/clothing/glasses/mgoggles/prescription = -1,
@@ -954,7 +959,7 @@
 			/obj/item/storage/pouch/magazine/large = -1,
 			/obj/item/storage/pouch/magazine/pistol/large = -1,
 			/obj/item/storage/pouch/shotgun = -1,
-			/obj/item/storage/pouch/flare = -1,
+			/obj/item/storage/pouch/flare/full = -1,
 			/obj/item/storage/pouch/grenade = -1,
 			/obj/item/storage/pouch/explosive = -1,
 			/obj/item/storage/pouch/firstaid = -1,
@@ -962,8 +967,8 @@
 			/obj/item/storage/pouch/medkit = -1,
 			/obj/item/storage/pouch/autoinjector = -1,
 			/obj/item/storage/pouch/construction = -1,
-			/obj/item/storage/pouch/electronics = -1,
-			/obj/item/storage/pouch/tools = -1,
+			/obj/item/storage/pouch/electronics/full = -1,
+			/obj/item/storage/pouch/tools/full = -1,
 			/obj/item/storage/pouch/field_pouch = -1,
 			/obj/item/storage/pouch/general/large = -1,
 			/obj/item/storage/pouch/document = -1,

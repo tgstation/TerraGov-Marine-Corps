@@ -1,7 +1,0 @@
-author: "BraveMole"
-delete-after: True
-changes: 
-  - code_imp: "Minimap support for factions"
-  - code_imp: "Squad hud support for factions"
-  - code_imp: "Overwatch support for factions"
-  - bugfix: "Fix minimap being duplicated when changing job/squad"

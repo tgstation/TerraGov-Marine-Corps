@@ -359,3 +359,74 @@
   - code_imp: Tail Sweep cosmetics/sound improved.
   - bugfix: Evasion now fails as it should if the runner is targeted by flamethrower
       projectiles, or hasn't moved in the past 0.5 seconds.
+2021-05-26:
+  Alterist:
+  - bugfix: Fixes Theseus Issues
+  - rscadd: To celebrate the 10th anniversary of the Battle of LV-426, TerraGov have
+      teamed up with everyone's favourite toy manufacturer, Cuddles Corporation, to
+      produce a limited edition (not really) Runner plushie. Get yours today!
+  - rscadd: also adds Fumos, sprited by Infared on the CEV Eris Discord
+  BraveMole:
+  - code_imp: Minimap support for factions
+  - code_imp: Squad hud support for factions
+  - code_imp: Overwatch support for factions
+  - bugfix: Fix minimap being duplicated when changing job/squad
+  - balance: Psy drain from 60 psy points to 40
+  - balance: Cocoon now only works for 5 minutes, so it produces 80 points rather
+      than 160 but is less risky to make
+  - balance: Psy points generated from generators are reduced by 25%
+  jroinc:
+  - rscadd: Nanoblood
+  - rscadd: Medic Blood vendor access
+  - rscdel: Removed QC+ and peri+ from the wrenchable vendor. Medics, quiver in fear!
+  - balance: rebalanced many chems, and changed a few autoinjectors, details in main
+      PR body
+2021-05-27:
+  TiviPlus:
+  - bugfix: fixed squad over role not working consistently
+  - bugfix: fixed marines being unable to join
+  - bugfix: fixed some squads being unevenly stacked when it came to marine distribution
+  Walarks:
+  - code_imp: added SSpersistence and support for real-time-based progression of stuff
+  jroinc:
+  - balance: Airlocks have melee armor
+2021-05-28:
+  BraveMole:
+  - config: Extended now is in modes.txt
+  - rscadd: Keybinds for unloading gun and underrail attachments
+  - bugfix: Fix supply drop console
+  SplinterGP:
+  - balance: revolver barrel is now an attachment that comes with the revolver that
+      makes it larget(not fit in bags) removing this attachment makes the revolver
+      weaker in favor of making it fit in bags.
+  - code_imp: optimized item zoom code a bit.
+  TiviPlus:
+  - qol: the powerfist now uses "balloon text" when changing power levels
+  - refactor: refactored udders
+  Wayland-Smithy:
+  - admin: Fixed admin COLOR perm.
+  - balance: Body blocking xeno chargers while they are in CHARGE_BUILDINGUP phase
+      no longer resets their momentum if they shuffle through you.
+  - bugfix: Fixed some xeno charger movement signal handlers not checking for null
+      directions.
+2021-05-29:
+  Alterist:
+  - bugfix: fixed Theseus webmap
+  - rscadd: Revamped some parts of Barrenquilla.
+  BraveMole:
+  - bugfix: Should fix synth blood loss
+  - bugfix: gun can reload now
+  TiviPlus:
+  - code_imp: client button hold optimizations
+  - bugfix: Sanatize command announces better
+2021-05-30:
+  BraveMole:
+  - balance: Blue fire price reduced to 60 from 100
+  - balance: Blue fire firedelay reduced to 2 seconds (rather than 3.5)
+  - bugfix: fix overwatch
+  Surrealaser:
+  - bugfix: Hugger traps can now explode normally.
+  - bugfix: Xeno pings are now visible by xenos only.
+2021-05-31:
+  Walarks:
+  - code_imp: changed xeno structures typepaths, adds xeno_structure_flags var

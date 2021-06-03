@@ -2,6 +2,7 @@
 	name = "\improper Airlock"
 	icon = 'icons/obj/doors/Doorint.dmi'
 	icon_state = "door_closed"
+	soft_armor = list("melee" = 20, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 100, "rad" = 0, "fire" = 100, "acid" = 0)
 	power_channel = ENVIRON
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 5
@@ -262,6 +263,15 @@
 	if(!issilicon(user) && isElectrified())
 		shock(user, 100)
 
+/obj/machinery/door/airlock/projectile_hit(obj/projectile/proj, cardinal_move, uncrossing)
+	. = ..()
+	if(is_mainship_level(z)) //log shipside greytiders
+		log_attack("[key_name(proj.firer)] shot [src] with [proj] at [AREACOORD(src)]")
+
+/obj/machinery/door/airlock/attacked_by(obj/item/I, mob/living/user, def_zone)
+	. = ..()
+	if(. && is_mainship_level(z))
+		log_attack("[src] has been hit with [I] at [AREACOORD(src)] by [key_name(user)]")
 
 /obj/machinery/door/airlock/attackby(obj/item/I, mob/user, params)
 	. = ..()

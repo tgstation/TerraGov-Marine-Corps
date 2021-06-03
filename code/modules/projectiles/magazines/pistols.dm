@@ -224,16 +224,15 @@
 
 
 //-------------------------------------------------------
-/*
-Auto 9 The gun RoboCop uses. A better version of the VP78, with more rounds per magazine. Probably the best pistol around, but takes no attachments.
-It is a modified Beretta 93R, and can fire three round burst or single fire. Whether or not anyone else aside RoboCop can use it is not established.
-*/
+
+//A better version of the VP78, with more rounds per magazine. Probably the best pistol around, but takes no attachments.
+
 
 /obj/item/ammo_magazine/pistol/auto9
 	name = "\improper Auto-9 magazine (9mm)"
 	default_ammo = /datum/ammo/bullet/pistol/squash
 	caliber = CALIBER_9X19
-	icon_state = "beretta"
+	icon_state = "tp17"
 	max_rounds = 50
 	gun_type = /obj/item/weapon/gun/pistol/auto9
 

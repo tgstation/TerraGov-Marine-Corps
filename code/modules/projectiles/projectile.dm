@@ -1,8 +1,8 @@
 //Some debug variables. Toggle them to 1 in order to see the related debug messages. Helpful when testing out formulas.
-#define DEBUG_HIT_CHANCE	0
-#define DEBUG_HUMAN_DEFENSE	0
-#define DEBUG_XENO_DEFENSE	0
-#define DEBUG_CREST_DEFENSE	0
+#define DEBUG_HIT_CHANCE 0
+#define DEBUG_HUMAN_DEFENSE 0
+#define DEBUG_XENO_DEFENSE 0
+#define DEBUG_CREST_DEFENSE 0
 
 #if DEBUG_HIT_CHANCE
 #define BULLET_DEBUG(msg) to_chat(world, "<span class='debuginfo'>[msg]</span>")

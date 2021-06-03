@@ -1,10 +1,10 @@
-#define FUSION_ENGINE_MAX_POWER_GEN	80000 //Full capacity
-#define FUSION_ENGINE_FAIL_CHECK_TICKS	1000 //Check for failure every this many ticks
+#define FUSION_ENGINE_MAX_POWER_GEN 80000 //Full capacity
+#define FUSION_ENGINE_FAIL_CHECK_TICKS 1000 //Check for failure every this many ticks
 #define FUSION_ENGINE_FULL_STRENGTH_FULL_RATE 0.1
-#define FUSION_ENGINE_NO_DAMAGE     0
-#define FUSION_ENGINE_LIGHT_DAMAGE  1
+#define FUSION_ENGINE_NO_DAMAGE 0
+#define FUSION_ENGINE_LIGHT_DAMAGE 1
 #define FUSION_ENGINE_MEDIUM_DAMAGE 2
-#define FUSION_ENGINE_HEAVY_DAMAGE  3
+#define FUSION_ENGINE_HEAVY_DAMAGE 3
 
 /obj/machinery/power/fusion_engine
 	name = "\improper S-52 fusion reactor"

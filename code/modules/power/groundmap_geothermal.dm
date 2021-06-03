@@ -1,7 +1,7 @@
-#define GEOTHERMAL_NO_DAMAGE     0
-#define GEOTHERMAL_LIGHT_DAMAGE  1
+#define GEOTHERMAL_NO_DAMAGE 0
+#define GEOTHERMAL_LIGHT_DAMAGE 1
 #define GEOTHERMAL_MEDIUM_DAMAGE 2
-#define GEOTHERMAL_HEAVY_DAMAGE  3
+#define GEOTHERMAL_HEAVY_DAMAGE 3
 
 /obj/machinery/power/geothermal
 	name = "\improper G-11 geothermal generator"

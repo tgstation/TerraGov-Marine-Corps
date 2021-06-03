@@ -1,6 +1,0 @@
-author: "BraveMole"
-delete-after: True
-changes: 
-  - balance: "Psy drain from 60 psy points to 40"
-  - balance: "Cocoon now only works for 5 minutes, so it produces 80 points rather than 160 but is less risky to make"
-  - balance: "Psy points generated from generators are reduced by 25%"

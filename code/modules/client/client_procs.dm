@@ -1,17 +1,17 @@
-#define UPLOAD_LIMIT			1000000	//Restricts client uploads to the server to 1MB
-#define UPLOAD_LIMIT_ADMIN		10000000	//Restricts admin uploads to the server to 10MB
+#define UPLOAD_LIMIT 1000000	//Restricts client uploads to the server to 1MB
+#define UPLOAD_LIMIT_ADMIN 10000000	//Restricts admin uploads to the server to 10MB
 
 #define MAX_RECOMMENDED_CLIENT 1549
 #define MIN_RECOMMENDED_CLIENT 1526
 #define REQUIRED_CLIENT_MAJOR 513
 #define REQUIRED_CLIENT_MINOR 1493
 
-#define LIMITER_SIZE	5
-#define CURRENT_SECOND	1
-#define SECOND_COUNT	2
-#define CURRENT_MINUTE	3
-#define MINUTE_COUNT	4
-#define ADMINSWARNED_AT	5
+#define LIMITER_SIZE 5
+#define CURRENT_SECOND 1
+#define SECOND_COUNT 2
+#define CURRENT_MINUTE 3
+#define MINUTE_COUNT 4
+#define ADMINSWARNED_AT 5
 	/*
 	When somebody clicks a link in game, this Topic is called first.
 	It does the stuff in this proc and  then is redirected to the Topic() proc for the src=[0xWhatever]
