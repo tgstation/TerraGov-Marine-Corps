@@ -87,7 +87,7 @@
 #define THROW_TRAIT "throw"
 #define FORTIFY_TRAIT "fortify" //Defender fortify ability.
 #define TRAIT_STASIS "stasis"//Subject to the stasis effect
-#define ENDURE_TRAIT "trait" //Ravager Endure ability.
+#define ENDURE_TRAIT "endure" //Ravager Endure ability.
 
 //mob traits
 #define TRAIT_KNOCKEDOUT "knockedout" //Forces the user to stay unconscious.
