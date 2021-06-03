@@ -1,4 +1,4 @@
 author: "BraveMole"
 delete-after: True
 changes: 
-  - rscadd: "Loadout Saver"
+  - balance: "Miners now take time to disable"

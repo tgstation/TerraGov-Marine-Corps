@@ -1,3 +1,76 @@
+#define MARINE_CAN_BUY_UNIFORM (1 << 0)
+#define MARINE_CAN_BUY_SHOES (1 << 1)
+#define MARINE_CAN_BUY_HELMET (1 << 2)
+#define MARINE_CAN_BUY_ARMOR (1 << 3)
+#define MARINE_CAN_BUY_GLOVES (1 << 4)
+#define MARINE_CAN_BUY_EAR (1 << 5)
+#define MARINE_CAN_BUY_BACKPACK (1 << 6)
+#define MARINE_CAN_BUY_R_POUCH (1 << 7)
+#define MARINE_CAN_BUY_L_POUCH (1 << 8)
+#define MARINE_CAN_BUY_BELT (1 << 9)
+#define MARINE_CAN_BUY_GLASSES (1 << 10)
+#define MARINE_CAN_BUY_MASK (1 << 11)
+#define MARINE_CAN_BUY_ESSENTIALS (1 << 12)
+#define MARINE_CAN_BUY_ATTACHMENT (1 << 13)
+#define MARINE_CAN_BUY_ATTACHMENT2 (1 << 14)
+
+#define MARINE_CAN_BUY_WEBBING (1 << 15)
+#define MARINE_CAN_BUY_MODULE (1 << 16)
+#define MARINE_CAN_BUY_ARMORMOD (1 << 17)
+
+
+
+#define MARINE_CAN_BUY_ALL ((1 << 18) - 1)
+
+#define MARINE_TOTAL_BUY_POINTS 45
+
+#define CAT_ESS "ESSENTIALS"
+#define CAT_STD "STANDARD EQUIPMENT"
+#define CAT_SHO "SHOES"
+#define CAT_HEL "HATS"
+#define CAT_AMR "ARMOR"
+#define CAT_GLO "GLOVES"
+#define CAT_EAR "EAR"
+#define CAT_BAK "BACKPACK"
+#define CAT_POU "POUCHES"
+#define CAT_WEB "WEBBING"
+#define CAT_BEL "BELT"
+#define CAT_MAS "MASKS"
+#define CAT_ATT "GUN ATTACHMENTS"
+#define CAT_MOD "JAEGER STORAGE MODULES"
+#define CAT_ARMMOD "JAEGER ARMOR MODULES"
+
+#define CAT_MEDSUP "MEDICAL SUPPLIES"
+#define CAT_ENGSUP "ENGINEERING SUPPLIES"
+#define CAT_LEDSUP "LEADER SUPPLIES"
+#define CAT_SPEAMM "SPECIAL AMMUNITION"
+
+/obj/item/card/id/var/marine_points = MARINE_TOTAL_BUY_POINTS
+/obj/item/card/id/var/marine_buy_flags = MARINE_CAN_BUY_ALL
+
+GLOBAL_LIST_INIT(marine_selector_cats, list(
+		CAT_MOD = list(MARINE_CAN_BUY_MODULE),
+		CAT_ARMMOD = list(MARINE_CAN_BUY_ARMORMOD),
+		CAT_STD = list(MARINE_CAN_BUY_UNIFORM),
+		CAT_SHO = list(MARINE_CAN_BUY_SHOES),
+		CAT_HEL = list(MARINE_CAN_BUY_HELMET),
+		CAT_AMR = list(MARINE_CAN_BUY_ARMOR),
+		CAT_GLO = list(MARINE_CAN_BUY_GLOVES),
+		CAT_EAR = list(MARINE_CAN_BUY_EAR),
+		CAT_BAK = list(MARINE_CAN_BUY_BACKPACK),
+		CAT_WEB = list(MARINE_CAN_BUY_WEBBING),
+		CAT_POU = list(MARINE_CAN_BUY_R_POUCH,MARINE_CAN_BUY_L_POUCH),
+		CAT_BEL = list(MARINE_CAN_BUY_BELT),
+		CAT_GLA = list(MARINE_CAN_BUY_GLASSES),
+		CAT_MAS = list(MARINE_CAN_BUY_MASK),
+		CAT_ATT = list(MARINE_CAN_BUY_ATTACHMENT,MARINE_CAN_BUY_ATTACHMENT2),
+		CAT_ESS = list(MARINE_CAN_BUY_ESSENTIALS),
+		CAT_MEDSUP = null,
+		CAT_ENGSUP = null,
+		CAT_LEDSUP = null,
+		CAT_SPEAMM = null,
+	))
+
 /obj/machinery/marine_selector
 	name = "\improper Theoretical Marine selector"
 	desc = ""
@@ -322,7 +395,7 @@
 	. = ..()
 	listed_products = GLOB.smartgunner_clothes_listed_products
 
-/obj/machinery/marine_selector/clothes/smartgun/rebel 
+/obj/machinery/marine_selector/clothes/smartgun/rebel
 	req_access = list(ACCESS_MARINE_SMARTPREP_REBEL)
 	vendor_role = /datum/job/terragov/squad/smartgunner/rebel
 
@@ -516,7 +589,7 @@
 		/obj/item/clothing/mask/rebreather = list(CAT_MAS, "Rebreather", 0, "black"),
 	)
 
-/obj/machinery/marine_selector/clothes/commander/rebel 
+/obj/machinery/marine_selector/clothes/commander/rebel
 	req_access = list(ACCESS_MARINE_COMMANDER_REBEL)
 	vendor_role = /datum/job/terragov/command/fieldcommander/rebel
 
@@ -646,7 +719,7 @@
 		/obj/item/clothing/mask/gas/tactical/coif = list(CAT_MAS, "Tactical coifed gas mask", 0,"black"),
 	)
 
-/obj/machinery/marine_selector/clothes/synth/rebel 
+/obj/machinery/marine_selector/clothes/synth/rebel
 	vendor_role = /datum/job/terragov/silicon/synthetic/rebel
 
 ////////////////////// Gear ////////////////////////////////////////////////////////
@@ -676,9 +749,9 @@
 	. = ..()
 	listed_products = GLOB.medic_gear_listed_products
 
-/obj/machinery/marine_selector/gear/medic/rebel 
+/obj/machinery/marine_selector/gear/medic/rebel
 	vendor_role = /datum/job/terragov/squad/corpsman/rebel
-	req_access = list(ACCESS_MARINE_MEDPREP_REBEL)	
+	req_access = list(ACCESS_MARINE_MEDPREP_REBEL)
 
 /obj/machinery/marine_selector/gear/engi
 	name = "NEXUS Automated Engineer Equipment Rack"
@@ -691,7 +764,7 @@
 	. = ..()
 	listed_products = GLOB.engineer_gear_listed_products
 
-/obj/machinery/marine_selector/gear/engi/rebel 
+/obj/machinery/marine_selector/gear/engi/rebel
 	vendor_role = /datum/job/terragov/squad/engineer/rebel
 	req_access = list(ACCESS_MARINE_ENGPREP_REBEL)
 
@@ -717,7 +790,7 @@
 		/obj/item/attachable/stock/t19stock = list(CAT_ATT, "T-19 machine pistol stock", 0, "black"),
 	)
 
-/obj/machinery/marine_selector/gear/smartgun/rebel 
+/obj/machinery/marine_selector/gear/smartgun/rebel
 	vendor_role = /datum/job/terragov/squad/smartgunner/rebel
 	req_access = list(ACCESS_MARINE_SMARTPREP_REBEL)
 

@@ -159,7 +159,7 @@
 	for(var/obj/C in supplies)
 		C.anchored = TRUE //to avoid accidental pushes
 	message_squad("Supply Drop Incoming!")
-	playsound(drop_pad.loc, 'sound/effects/bamf.ogg', 50, TRUE) 
+	playsound(drop_pad.loc, 'sound/effects/bamf.ogg', 50, TRUE)
 	sbeacon.visible_message("[icon2html(sbeacon, viewers(sbeacon))] <span class='boldnotice'>The [sbeacon.name] begins to beep!</span>")
 	addtimer(CALLBACK(src, .proc/fire_supplydrop, supplies, x_offset, y_offset), 10 SECONDS)
 

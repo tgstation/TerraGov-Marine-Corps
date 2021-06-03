@@ -1,4 +1,4 @@
-#define DEBUG_STAGGER_SLOWDOWN	0
+#define DEBUG_STAGGER_SLOWDOWN 0
 
 GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/facehugger, /obj/effect/alien/egg, /obj/structure/mineral_door, /obj/effect/alien/resin, /obj/structure/bed/nest))) //For sticky/acid spit
 
@@ -7,7 +7,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	var/icon 		= 'icons/obj/items/projectiles.dmi'
 	var/icon_state 	= "bullet"
 	///used in icons/obj/items/ammo for use in generating handful sprites
-	var/handful_icon_state = "bullet" 
+	var/handful_icon_state = "bullet"
 	///how much of this ammo you can carry in a handful
 	var/handful_amount = 8
 	var/hud_state   = "unknown"  //Bullet type on the Ammo HUD
@@ -1511,11 +1511,11 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	bullet_color = COLOR_VIBRANT_LIME
 
 	///Fire burn time
-	var/heat = 12 
+	var/heat = 12
 	///Fire damage
 	var/burn_damage = 9
 	///Fire color
-	var/fire_color = "green" 
+	var/fire_color = "green"
 
 /datum/ammo/energy/plasma_pistol/on_hit_turf(turf/T, obj/projectile/proj)
 	T.ignite(heat, burn_damage, fire_color)
