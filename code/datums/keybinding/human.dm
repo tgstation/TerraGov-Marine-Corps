@@ -33,6 +33,18 @@
 	description = ""
 	keybind_signal = COMSIG_KB_RAILATTACHMENT
 
+/datum/keybinding/human/underrail_attachment
+	name = "underrail_attachment"
+	full_name = "Activate Underrail attachment"
+	description = ""
+	keybind_signal = COMSIG_KB_UNDERRAILATTACHMENT
+
+/datum/keybinding/human/unload_gun
+	name = "unload_gun"
+	full_name = "Unload gun"
+	description = ""
+	keybind_signal = COMSIG_KB_UNLOADGUN
+
 /datum/keybinding/human/toggle_aim_mode
 	hotkey_keys = list("6")
 	name = "toggle_aim_mode"

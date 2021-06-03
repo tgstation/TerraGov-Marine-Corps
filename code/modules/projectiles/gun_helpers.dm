@@ -830,6 +830,17 @@ should be alright.
 		return
 	rail_attachment.activate_attachment(usr)
 
+/obj/item/weapon/gun/verb/toggle_underrail_attachment()
+	set category = null
+	set name = "Toggle Underrail Attachment (Weapon)"
+	set desc = "Uses the underrail attachement currently attached to the gun."
+
+	var/obj/item/attachable/underrail_attachment = LAZYACCESS(attachments, ATTACHMENT_SLOT_UNDER)
+	if(!underrail_attachment)
+		to_chat(usr, "<span class='warning'>[src] does not have any usable rail attachment!</span>")
+		return
+	underrail_attachment.activate_attachment(usr)
+
 /mob/living/carbon/human/verb/toggle_ammo_hud()
 	set category = "Weapons"
 	set name = "Toggle Ammo HUD"
@@ -935,6 +946,32 @@ should be alright.
 	gun_iff_signal = C.access
 	modify_fire_delay(aim_fire_delay)
 	to_chat(user, "<span class='notice'>You line up your aim, allowing you to shoot past allies.</b></span>")
+
+/// Signal handler to activate the rail attachement of that gun if it's in our active hand
+/obj/item/weapon/gun/proc/activate_rail_attachment()
+	SIGNAL_HANDLER
+	if(gun_user?.get_active_held_item() != src)
+		return
+	var/obj/item/attachable/underrail_attachment = LAZYACCESS(attachments, ATTACHMENT_SLOT_RAIL)
+	underrail_attachment?.activate_attachment(gun_user)
+	return COMSIG_KB_ACTIVATED
+
+/// Signal handler to activate the underrail attachement of that gun if it's in our active hand
+/obj/item/weapon/gun/proc/activate_underrail_attachment()
+	SIGNAL_HANDLER
+	if(gun_user?.get_active_held_item() != src)
+		return
+	var/obj/item/attachable/rail_attachment = LAZYACCESS(attachments, ATTACHMENT_SLOT_UNDER)
+	rail_attachment?.activate_attachment(gun_user)
+	return COMSIG_KB_ACTIVATED
+
+/// Signal handler to unload that gun if it's in our active hand
+/obj/item/weapon/gun/proc/unload_gun()
+	SIGNAL_HANDLER
+	if(gun_user?.get_active_held_item() != src)
+		return
+	unload(gun_user)
+	return COMSIG_KB_ACTIVATED
 
 //----------------------------------------------------------
 				//				   	   \\

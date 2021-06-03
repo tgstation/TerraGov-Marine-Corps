@@ -38,9 +38,9 @@
 #define EAVESDROP_EXTRA_RANGE 1 //how much past the specified message_range does the message get starred, whispering only
 
 //bitflag #defines for return value of the radio() proc.
-#define ITALICS 		(1<<0)
-#define REDUCE_RANGE 	(1<<1)
-#define NOPASS 			(1<<2)
+#define ITALICS (1<<0)
+#define REDUCE_RANGE (1<<1)
+#define NOPASS (1<<2)
 
 
 #define FOLLOW_LINK(observer, target) "<a href=?src=[REF(observer)];track=[REF(target)]>(F)</a>"

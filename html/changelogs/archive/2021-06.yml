@@ -1,0 +1,25 @@
+2021-06-01:
+  BraveMole:
+  - bugfix: Fix request console
+  - rscadd: Loadout Saver
+  - bugfix: Fix runtime for gun keybinds
+  - rscadd: King is back
+2021-06-02:
+  Pariah919:
+  - rscadd: Added new razorburn nade sprites by enukar.
+  ZephyrTFA:
+  - bugfix: Martini Belts can no longer give you invalid 'fixme' items
+  - server: Two new config values for overriding the respawn timers of both marines
+      and xenomorphs.
+2021-06-03:
+  BraveMole:
+  - rscadd: New way of registering keybinds, you have to push the buttons for 2 seconds
+      for it to register
+  - code_imp: better perfs on game prefs ui
+  DeltaFire15:
+  - bugfix: Admins can now actually mark things via the varedit dropdown.
+  - code_imp: Moved marking into its own file as a proc for easier access in the future.
+  SplinterGP:
+  - bugfix: binoculars now can laser target properly.
+  TiviPlus:
+  - admin: Adds logging to shipside doors
