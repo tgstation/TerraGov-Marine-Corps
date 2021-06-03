@@ -1,6 +1,6 @@
 #define CAT_NORMAL 0
 #define CAT_HIDDEN 1
-#define CAT_COIN   2
+#define CAT_COIN 2
 
 #define MAKE_VENDING_RECORD_DATA(record) list(\
 		"product_name" = adminscrub(record.product_name),\
