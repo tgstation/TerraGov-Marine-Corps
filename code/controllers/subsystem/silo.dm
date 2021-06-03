@@ -15,7 +15,7 @@ SUBSYSTEM_DEF(silo)
 /datum/controller/subsystem/silo/fire(resumed = 0)
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
 	current_larva_spawn_rate = 0
-	for(var/obj/structure/resin/silo/silo AS in GLOB.xeno_resin_silos)
+	for(var/obj/structure/xeno/resin/silo/silo AS in GLOB.xeno_resin_silos)
 		current_larva_spawn_rate += silo.larva_spawn_rate
 	current_larva_spawn_rate *= larva_rate_boost
 	xeno_job.add_job_points(current_larva_spawn_rate, SILO_ORIGIN)

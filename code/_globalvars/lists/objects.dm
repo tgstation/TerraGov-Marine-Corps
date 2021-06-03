@@ -23,6 +23,7 @@ GLOBAL_LIST_EMPTY(nuke_list)						//list of all /obj/machinery/nuclearbomb
 GLOBAL_LIST_EMPTY(active_nuke_list)
 GLOBAL_LIST_EMPTY(nuke_spawn_locs)
 GLOBAL_LIST_EMPTY(nuke_disk_list)					//list of all /obj/item/disk/nuclear
+GLOBAL_LIST_EMPTY(nightfall_toggleable_lights)		//list of all atoms which light can be shut down
 
 GLOBAL_LIST_EMPTY(chemical_required_reagents)			///list of all /datum/reagent indexed by path, with the value being their catalysts and reactions
 GLOBAL_LIST_EMPTY(chemical_reactions_list)				///list of all /datum/chemical_reaction datums index by reactants, Used during chemical reactions

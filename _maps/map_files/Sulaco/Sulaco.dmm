@@ -12997,7 +12997,10 @@
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
 	dir = 8
 	},
-/obj/machinery/vending/nanomed,
+/obj/machinery/loadout_vendor,
+/obj/machinery/light{
+	dir = 1
+	},
 /turf/open/floor/prison/red{
 	dir = 1
 	},
@@ -15023,8 +15026,8 @@
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
 	dir = 4
 	},
-/obj/machinery/camera/autoname,
 /obj/effect/decal/cleanable/dirt,
+/obj/machinery/loadout_vendor,
 /turf/open/floor/prison/red{
 	dir = 1
 	},
@@ -15381,12 +15384,6 @@
 /obj/machinery/holopad,
 /turf/open/floor/wood,
 /area/sulaco/liaison/quarters)
-"lMh" = (
-/obj/structure/table/mainship,
-/turf/open/floor/prison/green{
-	dir = 1
-	},
-/area/sulaco/marine)
 "lMO" = (
 /obj/effect/decal/cleanable/cobweb{
 	dir = 8
@@ -16432,6 +16429,7 @@
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
 	dir = 4
 	},
+/obj/machinery/loadout_vendor,
 /turf/open/floor/prison/red{
 	dir = 1
 	},
@@ -17028,16 +17026,13 @@
 /turf/open/floor/prison,
 /area/sulaco/marine)
 "oHm" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/structure/table/mainship,
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
 	dir = 4
 	},
+/obj/machinery/loadout_vendor,
 /turf/open/floor/prison/red{
 	dir = 5
 	},
@@ -17288,6 +17283,12 @@
 	},
 /turf/open/floor/prison,
 /area/sulaco/maintenance/lower_maint)
+"pbD" = (
+/obj/machinery/camera/autoname,
+/turf/open/floor/prison/green{
+	dir = 4
+	},
+/area/sulaco/marine)
 "pdX" = (
 /obj/machinery/marine_selector/gear/smartgun,
 /obj/item/radio/intercom/general,
@@ -20684,13 +20685,10 @@
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
 	dir = 8
 	},
-/obj/structure/table/mainship,
-/obj/item/tool/screwdriver,
-/obj/item/tool/screwdriver,
-/obj/item/tool/crowbar,
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
 	dir = 4
 	},
+/obj/machinery/loadout_vendor,
 /turf/open/floor/prison/green{
 	dir = 1
 	},
@@ -22091,6 +22089,11 @@
 "xHk" = (
 /turf/open/floor/prison,
 /area/sulaco/hallway/lower_foreship)
+"xHY" = (
+/obj/machinery/marine_selector/clothes,
+/obj/machinery/light,
+/turf/open/floor/prison,
+/area/sulaco/marine)
 "xJd" = (
 /turf/open/floor/prison,
 /area/sulaco/marine)
@@ -22199,13 +22202,7 @@
 /turf/open/floor/prison,
 /area/sulaco/marine)
 "xPc" = (
-/obj/structure/table/mainship,
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/machinery/camera/autoname,
-/obj/item/radio/intercom/general,
-/obj/effect/decal/cleanable/dirt,
+/obj/machinery/loadout_vendor,
 /turf/open/floor/prison/green{
 	dir = 1
 	},
@@ -40903,7 +40900,7 @@ adZ
 adZ
 tfx
 anw
-lMh
+xPc
 qzc
 xJd
 fJF
@@ -41174,7 +41171,7 @@ oHm
 aeW
 cSb
 dty
-mAk
+xHY
 euR
 mDu
 mDu
@@ -41417,7 +41414,7 @@ afG
 afG
 afG
 anw
-lMh
+xPc
 aLM
 qzc
 gGU
@@ -41683,7 +41680,7 @@ qaA
 aLF
 sPQ
 qaA
-aLF
+pbD
 dmj
 mmI
 oJO
