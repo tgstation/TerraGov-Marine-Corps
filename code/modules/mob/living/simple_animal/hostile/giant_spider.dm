@@ -1,8 +1,8 @@
-#define SPIDER_IDLE 		(1<<0)
-#define SPINNING_WEB		(1<<1)
-#define LAYING_EGGS 		(1<<2)
-#define MOVING_TO_TARGET 	(1<<3)
-#define SPINNING_COCOON 	(1<<4)
+#define SPIDER_IDLE (1<<0)
+#define SPINNING_WEB (1<<1)
+#define LAYING_EGGS (1<<2)
+#define MOVING_TO_TARGET (1<<3)
+#define SPINNING_COCOON (1<<4)
 
 
 /mob/living/simple_animal/hostile/poison

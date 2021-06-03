@@ -1,13 +1,13 @@
-#define MINER_RUNNING	0
-#define MINER_SMALL_DAMAGE	1
-#define MINER_MEDIUM_DAMAGE	2
-#define MINER_DESTROYED	3
+#define MINER_RUNNING 0
+#define MINER_SMALL_DAMAGE 1
+#define MINER_MEDIUM_DAMAGE 2
+#define MINER_DESTROYED 3
 #define MINER_LIGHT_RUNNING 8
 #define MINER_LIGHT_SDAMAGE 4
 #define MINER_LIGHT_MDAMAGE 2
 #define MINER_LIGHT_DESTROYED 0
 #define MINER_AUTOMATED "mining computer"
-#define MINER_RESISTANT	"reinforced components"
+#define MINER_RESISTANT "reinforced components"
 #define MINER_OVERCLOCKED "high-efficiency drill"
 
 #define PHORON_CRATE_SELL_AMOUNT 15

@@ -1,16 +1,16 @@
 //A thing for 'navigating' the current ship map up or down the gravity well.
 
-#define ESCAPE_VELOCITY 	5
-#define SAFE_DISTANCE 		4
-#define STANDARD_ORBIT 		3
-#define CLOSE_ORBIT 		2
-#define SKIM_ATMOSPHERE 	1
+#define ESCAPE_VELOCITY 5
+#define SAFE_DISTANCE 4
+#define STANDARD_ORBIT 3
+#define CLOSE_ORBIT 2
+#define SKIM_ATMOSPHERE 1
 
 #define REQUIRED_POWER_AMOUNT 250000
 #define AUTO_LOGOUT_TIME 1 MINUTES
 
-#define AUTHORIZED 		1
-#define AUTHORIZED_PLUS	2
+#define AUTHORIZED 1
+#define AUTHORIZED_PLUS 2
 
 //so we can use the current orbit in other files
 GLOBAL_VAR_INIT(current_orbit,STANDARD_ORBIT)
