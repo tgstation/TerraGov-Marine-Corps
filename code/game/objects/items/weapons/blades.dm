@@ -82,6 +82,10 @@
 
 	var/trans
 	var/obj/item/reagent_containers/container = I
+	if(!container || !container.reagents)
+		to_chat(user, "<span class='rose'>[I] isn't compatible with [src].</span>")
+		return TRUE
+
 	if(!container.reagents.total_volume)
 		trans = beaker.reagents.trans_to(container, 30)
 		to_chat(user, "<span class='rose'>[trans ? "You take [trans]u out of the internal storage. It now contains [beaker.reagents.total_volume]u" : "[src]'s storage is empty."].</span>")
