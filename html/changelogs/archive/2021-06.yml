@@ -23,3 +23,8 @@
   - bugfix: binoculars now can laser target properly.
   TiviPlus:
   - admin: Adds logging to shipside doors
+2021-06-04:
+  BraveMole:
+  - balance: Miners now take time to disable
+  ZephyrTFA:
+  - refactor: Massive Define Refactoring
