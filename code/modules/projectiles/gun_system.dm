@@ -919,7 +919,7 @@ and you're good to go.
 	projectile_to_fire.damage_falloff *= damage_falloff_mult
 	projectile_to_fire.projectile_speed += shell_speed_mod
 	if(flags_gun_features & GUN_IFF || flags_gun_features & GUN_IS_AIMING|| projectile_to_fire.ammo.flags_ammo_behavior & AMMO_IFF)
-		projectile_to_fire.faction = user.faction
+		projectile_to_fire.factions = list(user.faction)
 	projectile_to_fire.damage_marine_falloff = iff_marine_damage_falloff
 
 

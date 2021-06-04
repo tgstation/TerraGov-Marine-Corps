@@ -956,7 +956,7 @@
 	proj_to_fire.original_target = target
 	proj_to_fire.setDir(dir)
 	proj_to_fire.def_zone = pick("chest", "chest", "chest", "head")
-	proj_to_fire.faction = faction
+	proj_to_fire.factions = list(faction)
 
 	//Shoot at the thing
 	playsound(loc, 'sound/weapons/guns/fire/smg_heavy.ogg', 75, TRUE)

@@ -410,7 +410,7 @@
 		A = target
 	proj_to_fire.setDir(dir)
 	proj_to_fire.def_zone = pick("chest","chest","chest","head")
-	proj_to_fire.faction = user.faction
+	proj_to_fire.factions = list(user.faction)
 	playsound(loc, 'sound/weapons/guns/fire/hmg2.ogg', 65, TRUE)
 	if(!QDELETED(target))
 		var/angle = round(Get_Angle(src,target))
