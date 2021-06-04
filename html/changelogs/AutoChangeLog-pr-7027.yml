@@ -1,0 +1,4 @@
+author: "Wayland-Smithy"
+delete-after: True
+changes: 
+  - qol: "Latejoin Xeno Prefs default to OFF now. Far less unwitting ghosts should be getting shoved into SSD xenos."
