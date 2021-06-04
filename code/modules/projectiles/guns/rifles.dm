@@ -585,10 +585,10 @@
 	icon_state = "t42"
 	item_state = "t42"
 	caliber = CALIBER_10X24_CASELESS //codex
-	max_shells = 120 //codex
+	max_shells = 100 //codex
 	force = 30
-	aim_slowdown = 0.8
-	wield_delay = 1 SECONDS
+	aim_slowdown = 1
+	wield_delay = 1.4 SECONDS
 	fire_sound =  'sound/weapons/guns/fire/t40.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/T42_unload.ogg'
@@ -623,8 +623,8 @@
 	gun_skill_category = GUN_SKILL_HEAVY_WEAPONS
 	attachable_offset = list("muzzle_x" = 31, "muzzle_y" = 17,"rail_x" = 4, "rail_y" = 20, "under_x" = 16, "under_y" = 13, "stock_x" = 0, "stock_y" = 13)
 	actions_types = list(/datum/action/item_action/aim_mode)
-	aim_fire_delay = 0.18 SECONDS
-	aim_speed_modifier = 5
+	aim_fire_delay = 0.2 SECONDS
+	aim_speed_modifier = 6
 
 	fire_delay = 0.2 SECONDS
 	burst_amount = 1

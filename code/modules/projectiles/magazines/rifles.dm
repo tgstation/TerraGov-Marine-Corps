@@ -206,7 +206,7 @@
 	caliber = CALIBER_10X24_CASELESS
 	default_ammo = /datum/ammo/bullet/rifle
 	w_class = WEIGHT_CLASS_NORMAL
-	max_rounds = 120
+	max_rounds = 100
 	gun_type = /obj/item/weapon/gun/rifle/standard_lmg
 	icon_state_mini = "mag_t42"
 
