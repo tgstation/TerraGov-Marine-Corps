@@ -29,6 +29,7 @@
 	destroy_sound = 'sound/effects/glassbr3.ogg'
 	var/cooldown = 0 //shield bash cooldown. based on world.time
 
+
 /obj/item/weapon/shield/riot/examine(mob/user, distance, infix, suffix)
 	. = ..()
 	var/health_status = (obj_integrity * 100) / max_integrity
