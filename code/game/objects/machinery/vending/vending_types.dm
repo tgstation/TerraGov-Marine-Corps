@@ -202,7 +202,7 @@
 			/obj/item/reagent_containers/hypospray/autoinjector/hypervene = 5,
 			/obj/item/reagent_containers/hypospray/advanced/tricordrazine = 2,
 		),
-		"Reagent bottle" = list(
+		"Reagent Bottle" = list(
 			/obj/item/reagent_containers/glass/bottle/dylovene = 4,
 			/obj/item/reagent_containers/glass/bottle/bicaridine = 4,
 			/obj/item/reagent_containers/glass/bottle/inaprovaline = 4,
@@ -215,11 +215,11 @@
 			/obj/item/reagent_containers/glass/bottle/oxycodone = 4,
 			/obj/item/reagent_containers/glass/bottle/polyhexanide = 2,
 		),
-		"Pill bottle" = list(
+		"Pill Bottle" = list(
 			/obj/item/storage/pill_bottle/peridaxon = 2,
 			/obj/item/storage/pill_bottle/russian_red = 2,
 		),
-		"Heal pack" = list(
+		"Heal Pack" = list(
 			/obj/item/stack/medical/advanced/bruise_pack = 5,
 			/obj/item/stack/medical/advanced/ointment = 5,
 			/obj/item/stack/medical/ointment = 10,
