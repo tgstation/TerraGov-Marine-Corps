@@ -61,6 +61,7 @@
 		CRASH("/datum/item_representation/modular_helmet_module created from an item that is not an helmet module")
 	..()
 
+///Attach the instantiated item on an helmet
 /datum/item_representation/modular_helmet_module/proc/install_on_helmet(datum/loadout_seller/seller, obj/item/clothing/head/modular/helmet, datum/loadout/loadout, mob/user)
 	var/obj/item/helmet_module/module = instantiate_object(seller, null, loadout, user)
 	module?.do_attach(null, helmet)
