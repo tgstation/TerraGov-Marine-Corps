@@ -29,14 +29,6 @@
 	destroy_sound = 'sound/effects/glassbr3.ogg'
 	var/cooldown = 0 //shield bash cooldown. based on world.time
 
-/obj/item/weapon/shield/riot/attack_hand(mob/living/user)
-	if(ishuman(user))
-		var/mob/living/carbon/human/H = user
-		if(istype(H.wear_suit, /obj/item/clothing/suit/storage/marine/harness/boomvest))
-			to_chat(user, "<span class='warning'>You think better about trying to block your own vest explosion and leave the shield alone.</span>")
-			return
-	return ..()
-
 /obj/item/weapon/shield/riot/examine(mob/user, distance, infix, suffix)
 	. = ..()
 	var/health_status = (obj_integrity * 100) / max_integrity

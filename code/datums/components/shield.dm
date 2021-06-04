@@ -143,6 +143,7 @@
 		human_user.add_movespeed_modifier(parent_item.type, TRUE, 0, ((parent_item.flags_item & IMPEDE_JETPACK) ? SLOWDOWN_IMPEDE_JETPACK : NONE), TRUE, parent_item.slowdown)
 /datum/component/shield/proc/shield_dropped(datum/source, mob/user)
 	SIGNAL_HANDLER
+	SEND_SIGNAL(user, COMSIG_MOB_SHIELD_DROPPED)
 	shield_detatch_from_user()
 
 	var/obj/item/parent_item = parent //Apply in-hand slowdowns.

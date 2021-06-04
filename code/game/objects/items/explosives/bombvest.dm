@@ -8,15 +8,23 @@
 	var/bomb_message
 	///List of warcries that are not allowed.
 	var/bad_warcries_regex = "allahu ackbar|allah|ackbar"
+	///How long must be waited after a shiled drop for detonation
+	var/shield_wait_time = 5 SECONDS
+	///Time a shiled was last dropped
+	var/shield_dropped_last = 0
 
-/obj/item/clothing/suit/storage/marine/harness/boomvest/mob_can_equip(mob/M, slot, warning = TRUE, override_nodrop = FALSE)
-	if(ishuman(M))
-		var/mob/living/carbon/human/H = M
-		if(istype(H.get_inactive_held_item(), /obj/item/weapon/shield/riot) || istype(H.back, /obj/item/weapon/shield/riot))
-			if(warning)
-				to_chat(H, "<span class='warning'>Your bulky shield prevents you from putting that on.</span>")
-			return FALSE
-	return ..()
+/obj/item/clothing/suit/storage/marine/harness/boomvest/equipped(mob/user, slot)
+	. = ..()
+	RegisterSignal(user, COMSIG_MOB_SHIELD_DROPPED, .proc/shield_dropped)
+
+/obj/item/clothing/suit/storage/marine/harness/boomvest/unequipped(mob/unequipper, slot)
+	. = ..()
+	UnregisterSignal(unequipper, COMSIG_MOB_SHIELD_DROPPED)
+
+///Updates the last shield drop time when one is dropped
+/obj/item/clothing/suit/storage/marine/harness/boomvest/proc/shield_dropped()
+	SIGNAL_HANDLER
+	shield_dropped_last = world.time
 
 ///Overwrites the parent function for activating a light. Instead it now detonates the bomb.
 /obj/item/clothing/suit/storage/marine/harness/boomvest/attack_self(mob/user)
@@ -26,6 +34,12 @@
 		return TRUE
 	if(activator.wear_suit != src)
 		to_chat(activator, "Due to the rigging of this device, it can only be detonated while worn.") //If you are going to use this, you have to accept death. No armor allowed.
+		return FALSE
+	if(istype(activator.l_hand, /obj/item/weapon/shield/riot) || istype(activator.r_hand, /obj/item/weapon/shield/riot) || istype(activator.back, /obj/item/weapon/shield/riot))
+		to_chat(activator, "<span class='warning'>Your bulky shield prevents you from reaching the detonator!</span>")
+		return FALSE
+	if(shield_dropped_last + shield_wait_time > world.time)
+		to_chat(activator, "<span class='warning'>You dropped a shield too recently to detonate, wait a few seconds!</span>")
 		return FALSE
 	if(!do_after(user, 3, TRUE, src, BUSY_ICON_DANGER, ignore_turf_checks = TRUE))
 		return FALSE
