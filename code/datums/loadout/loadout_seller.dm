@@ -46,14 +46,15 @@
  */
 /datum/loadout_seller/proc/try_to_equip_loadout(datum/loadout/loadout, mob/user)
 	var/obj/item/card/id/id = user.get_idcard()
+	var/init_points = id.marine_points
 	if(MARINE_TOTAL_BUY_POINTS - loadout.job_points_available > id.marine_points)
 		to_chat(user, "<span class='warning'>You don't have enough points to equip that loadout</span>")
 		return FALSE
 	prepare_to_equip_loadout(loadout, user)
 	if(unavailable_items && tgui_alert(user, "[unavailable_items] items were not found in vendors and won't be delivered. Do you want to equip that loadout anyway?", "Items missing", list("Yes", "No")) != "Yes")
 		sell_back_items()
+		id.marine_points = init_points
 		return FALSE
-	id.marine_points -= (MARINE_TOTAL_BUY_POINTS - loadout.job_points_available)
 	id.marine_buy_flags &= loadout.buying_bitfield
 	do_equip_loadout(user)
 	sell_rest_of_essential_kit(loadout, user)

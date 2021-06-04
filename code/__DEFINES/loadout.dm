@@ -503,6 +503,7 @@ GLOBAL_LIST_INIT(loadout_role_essential_set, list(
 		/obj/item/tweezers = 1,
 		/obj/item/reagent_containers/hypospray/advanced/oxycodone = 1,
 		/obj/item/storage/firstaid/adv = 1,
+		/obj/item/clothing/glasses/hud/health = 1,
 	),
 	SQUAD_SMARTGUNNER = list(
 		/obj/item/clothing/glasses/night/m56_goggles = 1,
@@ -519,6 +520,7 @@ GLOBAL_LIST_INIT(loadout_role_essential_set, list(
 		/obj/item/motiondetector = 1,
 		/obj/item/binoculars/tactical = 1,
 		/obj/item/pinpointer/pool = 1,
+		/obj/item/clothing/glasses/hud/health = 1,
 	)
 ))
 
@@ -552,4 +554,4 @@ GLOBAL_LIST_INIT(loadout_job_supported, list(
 #define MAXIMUM_LOADOUT 15
 
 /// The currently accepted loadout version, all other loadouts will be erased from savefiles
-#define CURRENT_LOADOUT_VERSION 2
+#define CURRENT_LOADOUT_VERSION 3

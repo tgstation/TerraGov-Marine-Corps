@@ -49,8 +49,9 @@
 			base_amount = 25
 			base_price = SANDBAG_PRICE_IN_GEAR_VENDOR
 		if(base_amount && (round(stack_saved.amount / base_amount) * base_price <= loadout.job_points_available))
-			loadout.job_points_available -= round(stack_saved.amount / base_amount) * base_price
-			loadout.priced_items_list[saved_item.type]++
+			var/points_cost = round(stack_saved.amount / base_amount) * base_price
+			loadout.job_points_available -= points_cost
+			loadout.priced_items_list[saved_item.type] = points_cost
 			return TRUE
 	//If it was not in a job specific clothes vendor, we try to use marine points to buy it
 	var/list/listed_products = GLOB.job_specific_points_vendor[loadout.job]
@@ -63,7 +64,7 @@
 		if(loadout.job_points_available < item_info[3])
 			return FALSE
 		loadout.job_points_available -= item_info[3]
-		loadout.priced_items_list[saved_item.type] += 1
+		loadout.priced_items_list[saved_item.type] = item_info[3]
 		return TRUE
 	return FALSE
 
@@ -73,12 +74,13 @@
 	if(is_type_in_typecache(item_to_buy_type, GLOB.bypass_vendor_item) || is_type_in_typecache(item_to_buy_type, GLOB.bypass_loadout_check_item))
 		return TRUE
 	
+	var/obj/item/card/id/id = user.get_idcard()
 	//Items that were bought using marine points are already taken care of
 	if(loadout.priced_items_list[item_to_buy_type])
+		id.marine_points -= loadout.priced_items_list[item_to_buy_type]
 		return TRUE
 	
 	//We check if the item is in the essential sets
-	var/obj/item/card/id/id = user.get_idcard()
 	if(loadout.unique_items_list[item_to_buy_type])
 		return id.marine_buy_flags & MARINE_CAN_BUY_ESSENTIALS
 	

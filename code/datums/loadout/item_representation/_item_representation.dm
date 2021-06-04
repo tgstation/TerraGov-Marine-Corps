@@ -82,6 +82,9 @@
 			continue
 		if(storage.can_be_inserted(item_to_insert))
 			storage.handle_item_insertion(item_to_insert)
+			continue
+		item_to_insert.forceMove(user.loc)
+
 
 /**
  * Allow to representate stacks of item of type /obj/item/stack
