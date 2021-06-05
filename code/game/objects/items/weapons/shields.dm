@@ -32,7 +32,10 @@
 
 /obj/item/weapon/shield/riot/examine(mob/user, distance, infix, suffix)
 	. = ..()
-	var/health_status = (obj_integrity * 100) / max_integrity
+	var/health_status = (obj_integrity * 100) / max_integrity-integrity_failure
+	if(integrity_failure && obj_integrity <= integrity_failure)
+		to_chat(user, "<span class='notice'> It's broken, it won't protect anymore.")
+		return
 	switch(health_status)
 		if(0 to 20)
 			to_chat(user, "<span class='notice'>It's falling appart, will not be able to withstand much further damage.</span>")
@@ -132,11 +135,36 @@
 	icon = 'icons/obj/items/weapons.dmi'
 	icon_state = "marine_shield"
 	flags_equip_slot = ITEM_SLOT_BACK
-	max_integrity = 300
+	max_integrity = 400
+	integrity_failure = 100
 	soft_armor = list("melee" = 50, "bullet" = 50, "laser" = 0, "energy" = 100, "bomb" = 30, "bio" = 100, "rad" = 100, "fire" = 0, "acid" = 35)
 	hard_armor = list("melee" = 5, "bullet" = 5, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
 	force = 20
 	slowdown = 0.2
+
+
+/obj/item/weapon/shield/riot/marine/update_icon_state()
+	var/new_icon_state = initial(icon_state)
+	var/should_update = FALSE
+	if(obj_integrity <= integrity_failure)
+		new_icon_state = "[initial(icon_state)]_broken"
+
+	if(icon_state != new_icon_state)
+		should_update = TRUE
+
+	if(!should_update)
+		return
+	icon_state = new_icon_state
+	if(!isliving(loc))
+		return
+	var/mob/living/holder = loc
+	if(holder.l_hand == src)
+		holder.update_inv_l_hand()
+		return
+	if(holder.r_hand == src)
+		holder.update_inv_r_hand()
+		return
+	holder.update_inv_back()
 
 /obj/item/weapon/shield/riot/marine/AltClick(mob/user)
 	if(!can_interact(user))
