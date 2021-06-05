@@ -20,11 +20,6 @@
 	},
 /area/shuttle/minidropship)
 "j" = (
-/obj/machinery/door_control{
-	id = "minidropship_podlock";
-	name = "outer door-control";
-	pixel_y = 32
-	},
 /turf/open/floor/mainship/orange{
 	dir = 5
 	},
@@ -54,13 +49,18 @@
 /obj/machinery/door/poddoor/shutters/transit{
 	dir = 2
 	},
-/obj/machinery/door/poddoor/mainship/open{
-	dir = 2;
-	id = "minidropship_podlock"
-	},
 /obj/structure/barricade/plasteel,
 /turf/open/floor/mainship/orange{
 	dir = 10
+	},
+/area/shuttle/minidropship)
+"w" = (
+/obj/machinery/door/poddoor/shutters/transit,
+/obj/structure/barricade/plasteel{
+	dir = 8
+	},
+/turf/open/floor/mainship/orange{
+	dir = 4
 	},
 /area/shuttle/minidropship)
 "B" = (
@@ -100,19 +100,12 @@
 /obj/machinery/door/poddoor/shutters/transit{
 	dir = 2
 	},
-/obj/machinery/door/poddoor/mainship/open{
-	dir = 2;
-	id = "minidropship_podlock"
-	},
 /obj/structure/barricade/plasteel,
 /turf/open/floor/mainship/orange,
 /area/shuttle/minidropship)
 "O" = (
 /obj/structure/barricade/plasteel{
 	dir = 8
-	},
-/obj/machinery/door/poddoor/mainship/open{
-	id = "minidropship_podlock"
 	},
 /obj/machinery/door/poddoor/shutters/transit,
 /turf/open/floor/mainship/orange{
@@ -122,10 +115,6 @@
 "R" = (
 /obj/machinery/door/poddoor/shutters/transit{
 	dir = 2
-	},
-/obj/machinery/door/poddoor/mainship/open{
-	dir = 2;
-	id = "minidropship_podlock"
 	},
 /obj/structure/barricade/plasteel,
 /turf/open/floor/mainship/orange{
@@ -141,9 +130,6 @@
 "T" = (
 /obj/structure/barricade/plasteel{
 	dir = 4
-	},
-/obj/machinery/door/poddoor/mainship/open{
-	id = "minidropship_podlock"
 	},
 /obj/machinery/door/poddoor/shutters/transit,
 /turf/open/floor/mainship/orange{
@@ -181,7 +167,7 @@ E
 E
 b
 O
-O
+w
 B
 L
 E
