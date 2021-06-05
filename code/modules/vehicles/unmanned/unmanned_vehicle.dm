@@ -41,6 +41,8 @@
 	var/obj/item/uav_turret/spawn_equipped_type = null
 	/// If something is already controlling the vehicle
 	var/controlled = FALSE
+	/// If the UV has traditional vehicle parts and room underneath a small xeno could pass
+	var/undercarriage = TRUE
 	COOLDOWN_DECLARE(fire_cooldown)
 
 /obj/vehicle/unmanned/Initialize()
@@ -101,6 +103,11 @@
 		return equip_turret(I, user)
 	if(istype(I, /obj/item/ammo_magazine))
 		return reload_turret(I, user)
+
+/obj/vehicle/unmanned/CanAllowThrough(atom/movable/mover, turf/target)
+	. = ..()
+	if(undercarriage && istype(mover) && CHECK_BITFIELD(mover.flags_pass, PASSTABLE))
+		return TRUE
 
 ///Try to desequip the turret
 /obj/vehicle/unmanned/wrench_act(mob/living/user, obj/item/I)
@@ -229,19 +236,9 @@
 	max_rounds = 200
 	max_integrity = 500
 
-/obj/vehicle/unmanned/medium/CanAllowThrough(atom/movable/mover, turf/target)
-	. = ..()
-	if(istype(mover) && CHECK_BITFIELD(mover.flags_pass, PASSTABLE))
-		return TRUE
-
 /obj/vehicle/unmanned/heavy
 	name = "heavy unmanned vehicle"
 	icon_state = "heavy_uv"
 	move_delay = 3.5
 	max_rounds = 200
 	max_integrity = 700
-
-/obj/vehicle/unmanned/heavy/CanAllowThrough(atom/movable/mover, turf/target)
-	. = ..()
-	if(istype(mover) && CHECK_BITFIELD(mover.flags_pass, PASSTABLE))
-		return TRUE
