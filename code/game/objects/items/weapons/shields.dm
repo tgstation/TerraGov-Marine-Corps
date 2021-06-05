@@ -32,7 +32,7 @@
 
 /obj/item/weapon/shield/riot/examine(mob/user, distance, infix, suffix)
 	. = ..()
-	var/health_status = (obj_integrity * 100) / max_integrity-integrity_failure
+	var/health_status = (obj_integrity * 100) / (max_integrity-integrity_failure)
 	if(integrity_failure && obj_integrity <= integrity_failure)
 		to_chat(user, "<span class='notice'> It's broken, it won't protect anymore.")
 		return
@@ -53,7 +53,7 @@
 
 	if(istype(I, /obj/item/stack/sheet/metal))
 		var/obj/item/stack/sheet/metal/metal_sheets = I
-		if(obj_integrity > max_integrity * 0.2)
+		if(obj_integrity > (max_integrity - integrity_failure) * 0.2)
 			return
 
 		if(metal_sheets.get_amount() < 1)
@@ -85,7 +85,7 @@
 		to_chat(user, "<span class='warning'>You can't get near that, it's melting!<span>")
 		return TRUE
 
-	if(obj_integrity <= max_integrity * 0.2)
+	if(obj_integrity <= (max_integrity - integrity_failure) * 0.2)
 		to_chat(user, "<span class='warning'>[src] has sustained too much structural damage and needs more metal plates to be repaired.</span>")
 		return TRUE
 
@@ -107,7 +107,7 @@
 	if(!do_after(user, 3 SECONDS, TRUE, src, BUSY_ICON_FRIENDLY))
 		return TRUE
 
-	if(obj_integrity <= max_integrity * 0.2 || obj_integrity == max_integrity)
+	if(obj_integrity <= (max_integrity - integrity_failure) * 0.2 || obj_integrity == max_integrity)
 		return TRUE
 
 	if(!WT.remove_fuel(2, user))
