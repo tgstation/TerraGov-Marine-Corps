@@ -41,6 +41,8 @@
 	var/obj/item/uav_turret/spawn_equipped_type = null
 	/// If something is already controlling the vehicle
 	var/controlled = FALSE
+	/// If the UV has traditional vehicle parts and room underneath a small xeno could pass
+	var/undercarriage = TRUE
 	COOLDOWN_DECLARE(fire_cooldown)
 
 /obj/vehicle/unmanned/Initialize()
@@ -102,6 +104,11 @@
 	if(istype(I, /obj/item/ammo_magazine))
 		return reload_turret(I, user)
 
+/obj/vehicle/unmanned/CanAllowThrough(atom/movable/mover, turf/target)
+	. = ..()
+	if(undercarriage && istype(mover) && CHECK_BITFIELD(mover.flags_pass, PASSTABLE))
+		return TRUE
+
 ///Try to desequip the turret
 /obj/vehicle/unmanned/wrench_act(mob/living/user, obj/item/I)
 	. = ..()
@@ -141,7 +148,7 @@
 	current_rounds = min(current_rounds + ammo.current_rounds, max_rounds)
 	playsound(loc, 'sound/weapons/guns/interact/smartgun_unload.ogg', 25, 1)
 	qdel(ammo)
-	
+
 /// Try to equip a turret on the vehicle
 /obj/vehicle/unmanned/proc/equip_turret(obj/item/I, mob/user)
 	if(turret_path)
@@ -235,4 +242,3 @@
 	move_delay = 3.5
 	max_rounds = 200
 	max_integrity = 700
-	anchored = TRUE
