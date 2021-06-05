@@ -63,8 +63,8 @@
 	action_icon_state = "cresttoss"
 	mechanics_text = "Fling an adjacent target over and behind you. Also works over barricades."
 	ability_name = "crest toss"
-	plasma_cost = 60
-	cooldown_timer = 10 SECONDS
+	plasma_cost = 75
+	cooldown_timer = 12 SECONDS
 	keybind_signal = COMSIG_XENOABILITY_CRESTTOSS
 	target_flags = XABB_MOB_TARGET
 
