@@ -189,6 +189,10 @@
 	///The iconstate for the xeno on the minimap
 	var/minimap_icon = "xeno"
 
+
+/datum/xeno_caste/proc/buff_xeno_damage()
+	melee_damage = initial(melee_damage) * GLOB.xeno_stat_multiplicator_buff
+
 /mob/living/carbon/xenomorph
 	name = "Drone"
 	desc = "What the hell is THAT?"

@@ -115,7 +115,7 @@
 		else
 			regen_power = min(regen_power + xeno_caste.regen_ramp_amount*20,1)
 		amount *= regen_power
-	amount *= multiplier
+	amount *= multiplier * GLOB.xeno_stat_multiplicator_buff
 
 	SEND_SIGNAL(src, COMSIG_XENOMORPH_HEALTH_REGEN, src)
 

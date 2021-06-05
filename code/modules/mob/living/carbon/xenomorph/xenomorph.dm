@@ -79,12 +79,16 @@
 	xeno_caste = X
 
 	plasma_stored = xeno_caste.plasma_max
-	maxHealth = xeno_caste.max_health
+	maxHealth = xeno_caste.max_health * GLOB.xeno_stat_multiplicator_buff
 	health = maxHealth
 	setXenoCasteSpeed(xeno_caste.speed)
 	soft_armor = getArmor(arglist(xeno_caste.soft_armor))
 	hard_armor = getArmor(arglist(xeno_caste.hard_armor))
 	warding_aura = 0 //Resets aura for reapplying armor
+
+/mob/living/carbon/xenomorph/proc/set_new_buffed_stat()
+	maxHealth = xeno_caste.max_health * GLOB.xeno_stat_multiplicator_buff
+	health = min(health, maxHealth)
 
 /mob/living/carbon/xenomorph/set_armor_datum()
 	return //Handled in set_datum()

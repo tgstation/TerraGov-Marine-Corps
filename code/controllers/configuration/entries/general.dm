@@ -394,3 +394,8 @@ This maintains a list of ip addresses that are able to bypass topic filtering.
 /datum/config_entry/number/ff_damage_reset
 	min_val = 0
 	config_entry_value = 30 SECONDS
+
+/datum/config_entry/number/balance_system_authorised
+	min_val = FALSE
+	max_val = TRUE
+	config_entry_value = TRUE
