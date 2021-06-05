@@ -76,15 +76,12 @@
 	if(user.do_actions)
 		return TRUE
 
-	if(istype(I, /obj/item/reagent_containers/pill))
+	if(!isreagentcontainer(I) || istype(I, /obj/item/reagent_containers/pill))
 		to_chat(user, "<span class='rose'>[I] isn't compatible with [src].</span>")
 		return TRUE
 
 	var/trans
 	var/obj/item/reagent_containers/container = I
-	if(!container || !container.reagents)
-		to_chat(user, "<span class='rose'>[I] isn't compatible with [src].</span>")
-		return TRUE
 
 	if(!container.reagents.total_volume)
 		trans = beaker.reagents.trans_to(container, 30)

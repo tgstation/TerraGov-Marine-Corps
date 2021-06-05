@@ -217,6 +217,8 @@
 
 #define isidcard(A) (istype(A, /obj/item/card/id))
 
+#define isreagentcontainer(A) (istype(A, /obj/item/reagent_containers)) //Checks for if something is a reagent container.
+
 //Assemblies
 #define isassembly(O) (istype(O, /obj/item/assembly))
 
