@@ -9,6 +9,7 @@
 
 /datum/game_mode/infestation/post_setup()
 	. = ..()
+	TIMER_COOLDOWN_START(src, COOLDOWN_BIOSCAN, bioscan_interval)
 	for(var/i in GLOB.xeno_weed_node_turfs)
 		new /obj/effect/alien/weeds/node(i)
 	for(var/turf/T AS in GLOB.xeno_resin_wall_turfs)
@@ -28,8 +29,8 @@
 		return PROCESS_KILL
 
 	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_BIOSCAN) && bioscan_interval != 0)
-		announce_bioscans()
-		TIMER_COOLDOWN_START(src, COOLDOWN_BIOSCAN, bioscan_interval)
+		return
+	announce_bioscans()
 
 /datum/game_mode/infestation/check_finished()
 	if(round_finished)

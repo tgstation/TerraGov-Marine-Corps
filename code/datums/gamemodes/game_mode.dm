@@ -215,6 +215,7 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 #define BIOSCAN_LOCATION(show_locations, location) (show_locations && location ? ", including one in [hostLocationP]":"")
 
 /datum/game_mode/proc/announce_bioscans(show_locations = TRUE, delta = 2, announce_humans = TRUE, announce_xenos = TRUE, send_fax = TRUE)
+	TIMER_COOLDOWN_START(src, COOLDOWN_BIOSCAN, bioscan_interval)
 	var/list/list/counts = list()
 	var/list/list/area/locations = list()
 
