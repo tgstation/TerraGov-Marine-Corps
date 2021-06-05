@@ -28,3 +28,7 @@
   - balance: Miners now take time to disable
   ZephyrTFA:
   - refactor: Massive Define Refactoring
+2021-06-05:
+  Wayland-Smithy:
+  - qol: Latejoin Xeno Prefs default to OFF now. Far less unwitting ghosts should
+      be getting shoved into SSD xenos.
