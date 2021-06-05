@@ -141,7 +141,7 @@
 	current_rounds = min(current_rounds + ammo.current_rounds, max_rounds)
 	playsound(loc, 'sound/weapons/guns/interact/smartgun_unload.ogg', 25, 1)
 	qdel(ammo)
-	
+
 /// Try to equip a turret on the vehicle
 /obj/vehicle/unmanned/proc/equip_turret(obj/item/I, mob/user)
 	if(turret_path)
@@ -229,10 +229,19 @@
 	max_rounds = 200
 	max_integrity = 500
 
+/obj/vehicle/unmanned/medium/CanAllowThrough(atom/movable/mover, turf/target)
+	. = ..()
+	if(istype(mover) && CHECK_BITFIELD(mover.flags_pass, PASSTABLE))
+		return TRUE
+
 /obj/vehicle/unmanned/heavy
 	name = "heavy unmanned vehicle"
 	icon_state = "heavy_uv"
 	move_delay = 3.5
 	max_rounds = 200
 	max_integrity = 700
-	anchored = TRUE
+
+/obj/vehicle/unmanned/heavy/CanAllowThrough(atom/movable/mover, turf/target)
+	. = ..()
+	if(istype(mover) && CHECK_BITFIELD(mover.flags_pass, PASSTABLE))
+		return TRUE

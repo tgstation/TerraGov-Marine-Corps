@@ -217,6 +217,8 @@
 
 #define isidcard(A) (istype(A, /obj/item/card/id))
 
+#define isdroid(A) (istype(A, /obj/vehicle/unmanned/droid))
+
 //Assemblies
 #define isassembly(O) (istype(O, /obj/item/assembly))
 
