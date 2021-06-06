@@ -8,7 +8,7 @@
 	ability_name = "Nightfall"
 	mechanics_text = "Shut down all electrical lights nearby for 10 seconds."
 	cooldown_timer = 45 SECONDS
-	plasma_cost = 200
+	plasma_cost = 100
 	/// How far nightfall will have an effect
 	var/range = 12
 	/// How long till the lights go on again
@@ -66,7 +66,7 @@
 	apply_filters(turfs)
 	if(!do_after(owner, WINDUP_GRAV, FALSE, owner, BUSY_ICON_DANGER))
 		remove_all_filters()
-		//Consume the plasma when cancelling
+		//Consume plasma when cancelling
 		succeed_activate()
 		return fail_activate()
 	do_grav_crush(turfs)
