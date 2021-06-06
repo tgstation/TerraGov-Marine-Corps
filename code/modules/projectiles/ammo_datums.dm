@@ -332,13 +332,10 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	sundering = 3
 
 /datum/ammo/bullet/revolver/on_hit_mob(mob/M,obj/projectile/P)
-	var/obj/item/weapon/gun/shot_from = P.shot_from
-	var/stagger_knock = 0 // snub the snubnose stagger
-	if(!shot_from.attachable_allowed?.Find(/obj/item/attachable/standard_revolver_longbarrel))
-		stagger_knock = 1 // revolvers without the attachment always can :/
-	if(shot_from.attachments?.Find(ATTACHMENT_BARREL_MOD))
-		stagger_knock = 1
-	staggerstun(M, P, stagger = stagger_knock, slowdown = 0.5, knockback = stagger_knock)
+	if(SEND_SIGNAL(P.shot_from, COMSIG_GUN_HAS_STAGGER_BARREL))
+		staggerstun(M, P, stagger = 1, slowdown = 0.5, knockback = 1)
+	else
+		staggerstun(M, P, slowdown = 0.5)
 
 /datum/ammo/bullet/revolver/small
 	name = "small revolver bullet"
