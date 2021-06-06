@@ -30,7 +30,7 @@
 	desc = "An energy cell for the TX-7 plasma pistol."
 	caliber = CALIBER_PLASMA
 	icon_state = "tx7"
-	max_rounds = 10
+	max_rounds = 3
 	w_class = WEIGHT_CLASS_SMALL
 	default_ammo = /datum/ammo/energy/plasma_pistol
 	gun_type = /obj/item/weapon/gun/pistol/plasma_pistol
