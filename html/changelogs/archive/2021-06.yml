@@ -32,3 +32,7 @@
   Wayland-Smithy:
   - qol: Latejoin Xeno Prefs default to OFF now. Far less unwitting ghosts should
       be getting shoved into SSD xenos.
+2021-06-06:
+  Wayland-Smithy:
+  - bugfix: Say verb get_key() no longer runtimes.
+  - admin: Game logs now save the location of mob ghostings.
