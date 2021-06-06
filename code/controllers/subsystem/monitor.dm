@@ -50,7 +50,7 @@ SUBSYSTEM_DEF(monitor)
 	. = ..()
 	RegisterSignal(SSdcs, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE, .proc/set_groundside_calculation)
 	RegisterSignal(SSdcs, COMSIG_GLOB_DROPSHIP_HIJACKED, .proc/set_shipside_calculation)
-	is_automatic_balance_on = CONFIG_GET(number/is_automatic_balance_on)
+	is_automatic_balance_on = CONFIG_GET(flag/is_automatic_balance_on)
 
 /datum/controller/subsystem/monitor/fire(resumed = 0)
 	current_points = calculate_state_points() / max(GLOB.alive_human_list.len + GLOB.alive_xeno_list.len, 10)//having less than 10 players gives bad results
@@ -59,6 +59,7 @@ SUBSYSTEM_DEF(monitor)
 		FOB_hugging_check()
 	set_state(current_points)
 	var/proposed_balance_buff = 1
+	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
 	if(!is_automatic_balance_on || current_state >= STATE_BALANCED || (xeno_job.total_positions-xeno_job.current_positions) <=  length(GLOB.alive_xeno_list) * TOO_MUCH_BURROWED_PROPORTION)
 		proposed_balance_buff = balance_xeno_team()
 	if(abs(proposed_balance_buff - GLOB.xeno_stat_multiplicator_buff) >= 0.05 || (proposed_balance_buff == 1 && GLOB.xeno_stat_multiplicator_buff != 1))
