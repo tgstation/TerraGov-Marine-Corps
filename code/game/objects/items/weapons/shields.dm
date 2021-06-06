@@ -147,7 +147,7 @@
 	var/new_icon_state = initial(icon_state)
 	var/should_update = FALSE
 	if(obj_integrity <= integrity_failure)
-		new_icon_state = "[initial(icon_state)]_broken"
+		new_icon_state += "_broken"
 
 	if(icon_state != new_icon_state)
 		should_update = TRUE
