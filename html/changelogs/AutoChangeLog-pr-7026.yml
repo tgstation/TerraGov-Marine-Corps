@@ -1,0 +1,4 @@
+author: "DeltaFire15"
+delete-after: True
+changes: 
+  - bugfix: "Harvester Blades no longer runtime if clicked with things that aren't reagent containers."
