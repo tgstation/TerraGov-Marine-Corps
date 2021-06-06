@@ -395,7 +395,5 @@ This maintains a list of ip addresses that are able to bypass topic filtering.
 	min_val = 0
 	config_entry_value = 30 SECONDS
 
-/datum/config_entry/number/balance_system_authorised
-	min_val = FALSE
-	max_val = TRUE
+/datum/config_entry/flag/is_automatic_balance_on
 	config_entry_value = TRUE

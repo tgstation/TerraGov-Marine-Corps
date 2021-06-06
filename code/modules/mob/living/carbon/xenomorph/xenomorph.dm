@@ -86,7 +86,8 @@
 	hard_armor = getArmor(arglist(xeno_caste.hard_armor))
 	warding_aura = 0 //Resets aura for reapplying armor
 
-/mob/living/carbon/xenomorph/proc/set_new_buffed_stat()
+///Will multiply the base max health of this xeno by GLOB.xeno_stat_multiplicator_buff
+/mob/living/carbon/xenomorph/proc/apply_health_stat_buff()
 	maxHealth = xeno_caste.max_health * GLOB.xeno_stat_multiplicator_buff
 	health = min(health, maxHealth)
 

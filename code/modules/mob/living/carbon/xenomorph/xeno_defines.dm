@@ -189,8 +189,8 @@
 	///The iconstate for the xeno on the minimap
 	var/minimap_icon = "xeno"
 
-
-/datum/xeno_caste/proc/buff_xeno_damage()
+/// Will multiply the base melee damage of this xeno case by GLOB.xeno_stat_multiplicator_buff
+/datum/xeno_caste/proc/apply_xeno_buff_to_caste_damage()
 	melee_damage = initial(melee_damage) * GLOB.xeno_stat_multiplicator_buff
 
 /mob/living/carbon/xenomorph
