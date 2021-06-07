@@ -40,7 +40,7 @@
 			step_away(M, X, 1) //Knock away
 			shake_camera(M, 2, 2)
 			to_chat(M, "<span class='highdanger'>You reel from the shockwave of [X]'s stomp!</span>")
-			M.take_overall_damage_armored(damage, BRUTE, "melee", FALSE, FALSE, TRUE) // give half damage brute instead of stamina
+			M.take_overall_damage_armored(damage, BRUTE, "melee", FALSE, FALSE, TRUE) 
 			M.Paralyze(0.5 SECONDS)
 
 /datum/action/xeno_action/activable/stomp/ai_should_start_consider()
