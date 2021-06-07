@@ -12,7 +12,7 @@
 	keybind_signal = COMSIG_XENOABILITY_STOMP
 
 /datum/action/xeno_action/activable/stomp/use_ability(atom/A)
-	var/mob/living/carbon/xenomorph/crusher/X = owner
+	var/mob/living/carbon/xenomorph/X = owner
 	succeed_activate()
 	add_cooldown()
 
