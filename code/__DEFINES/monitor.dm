@@ -1,6 +1,3 @@
-//When do we start calculating the states
-#define START_STATE_CALCULATION 25 MINUTES
-
 //The different states possible
 #define STATE_BALANCED 0
 #define XENOS_LOSING -1
@@ -23,7 +20,7 @@
 
 //The differente gamestate
 #define SHUTTERS_CLOSED "shutters closed"
-#define GROUNDSIDE "GROUNDSIDE"
+#define GROUNDSIDE "groundside"
 #define SHIPSIDE "shipside"
 
 //The weight of each statistics in the state calculator when GROUNDSIDE
