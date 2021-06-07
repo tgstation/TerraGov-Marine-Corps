@@ -25,7 +25,7 @@
 	X.create_stomp() //Adds the visual effect. Wom wom wom
 
 	for(var/mob/living/M in range(1,X.loc))
-		if(isxeno(M) || M.stat == DEAD || isnestedhost(M))
+		if(X.issamexenohive(M) || M.stat == DEAD || isnestedhost(M))
 			continue
 		var/distance = get_dist(M, X)
 		var/damage = X.xeno_caste.stomp_damage/max(1, distance + 1)
