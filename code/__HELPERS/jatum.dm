@@ -141,8 +141,12 @@
 /proc/jatum_deserialize(json)
 	if(!istext(json))
 		CRASH("Non-text passed!")
-
-	var/list/structure = json_decode(json)
+	var/list/structure
+	try 
+		structure = json_decode(json)
+	catch
+		log_debug("Jatum failed to deserialize, the json in question was : [json]")
+		return
 	if(!structure)
 		CRASH("Invalid JSON!")
 
