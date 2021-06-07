@@ -36,7 +36,7 @@
 /obj/item/weapon/gun/revolver/Initialize()
 	. = ..()
 	replace_cylinder(current_mag.current_rounds)
-	RegisterSignal(src, COMSIG_GUN_HAS_STAGGER_BARREL, .proc/has_stagger_barrel)
+	RegisterSignal(src, COMSIG_REVOLVER_AMMO_HIT_MOB, .proc/has_stagger_barrel)
 
 /obj/item/weapon/gun/revolver/proc/has_stagger_barrel()
 	SIGNAL_HANDLER

@@ -332,7 +332,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	sundering = 3
 
 /datum/ammo/bullet/revolver/on_hit_mob(mob/M,obj/projectile/P)
-	if(SEND_SIGNAL(P.shot_from, COMSIG_GUN_HAS_STAGGER_BARREL))
+	if(SEND_SIGNAL(P.shot_from, COMSIG_REVOLVER_AMMO_HIT_MOB))
 		staggerstun(M, P, stagger = 1, slowdown = 0.5, knockback = 1)
 	else
 		staggerstun(M, P, slowdown = 0.5)
