@@ -417,15 +417,6 @@
 	if(!istype(I))
 		return FALSE
 
-	var/removal_good = TRUE
-	if(isgun(I) && fumble_guns)
-		if(user)
-			var/obj/item/weapon/gun/gun = I
-			to_chat(user, "<span class='notice'>You begin drawing [gun].</span>")
-			if(!do_after(user, 0.5 SECONDS, TRUE, src))
-				removal_good = FALSE
-				to_chat(user, "<span class='warning'>You fumble with [gun] and it drops to the ground!</span>")
-
 	for(var/i in can_see_content())
 		var/mob/M = i
 		if(!M.client)
@@ -455,7 +446,15 @@
 		I.mouse_opacity = initial(I.mouse_opacity)
 
 	update_icon()
-	return removal_good
+
+	if(isgun(I) && fumble_guns && user)
+		var/obj/item/weapon/gun/gun = I
+		to_chat(user, "<span class='notice'>You begin drawing [gun].</span>")
+		if(!do_after(user, 0.5 SECONDS, TRUE, src))
+			to_chat(user, "<span class='warning'>You fumble with [gun] and it drops to the ground!</span>")
+			return FALSE
+
+	return TRUE
 
 //This proc is called when you want to place an item into the storage item.
 /obj/item/storage/attackby(obj/item/I, mob/user, params)
