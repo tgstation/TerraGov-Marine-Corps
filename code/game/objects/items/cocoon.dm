@@ -20,7 +20,7 @@
 	///Standard busy check
 	var/busy = FALSE
 	///How much larva points it gives at the end of its life time (8 points for one larva in distress)
-	var/larva_point_reward = 1
+	var/larva_point_reward = 1.5
 
 
 /obj/structure/cocoon/Initialize(mapload, _hivenumber, mob/living/_victim)
