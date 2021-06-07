@@ -161,10 +161,11 @@ SUBSYSTEM_DEF(monitor)
 	if(GLOB.xeno_stat_multiplicator_buff != 1)
 		return buff_needed_estimation
 	var/admin_response = admin_approval("<span color='prefix'>AUTO BALANCE SYSTEM:</span> An excessive amount of burrowed was detected, while the balance system consider that marines are winning. <span class='boldnotice'>Considering the amount of burrowed larvas, a stat buff of [buff_needed_estimation * 100]% will be applied to health, health recovery, and melee damages.</span>",
-		options = list("approve" = "approve", "shutdown balance system" = "shutdown balance system"),
+		options = list("approve" = "approve", "deny" = "deny", "shutdown balance system" = "shutdown balance system"),
 		admin_sound = sound('sound/effects/sos-morse-code.ogg', channel = CHANNEL_ADMIN))
-	if(admin_response == "shutdown balance system")
-		is_automatic_balance_on = FALSE
+	if(admin_response != "approve")
+		if(admin_response == "shutdown balance system")
+			is_automatic_balance_on = FALSE
 		return 1
 	return buff_needed_estimation
 	
