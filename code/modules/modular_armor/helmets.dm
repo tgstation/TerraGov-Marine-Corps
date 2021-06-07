@@ -123,6 +123,9 @@
 		beacon_datum = null
 		user.show_message("<span class='warning'>The [src] beeps and states, \"Your last position is no longer accessible by the supply console</span>", EMOTE_AUDIBLE, "<span class='notice'>The [src] vibrates but you can not hear it!</span>")
 		return
+	if(!is_ground_level(user.z))
+		to_chat(user, "<span class='warning'>You have to be on the planet to use this or it won't transmit.</span>")
+		return FALSE
 	var/area/A = get_area(user)
 	if(A && istype(A) && A.ceiling >= CEILING_METAL)
 		to_chat(user, "<span class='warning'>You have to be outside or under a glass ceiling to activate this.</span>")
