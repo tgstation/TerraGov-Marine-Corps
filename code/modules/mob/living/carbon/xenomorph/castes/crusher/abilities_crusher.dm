@@ -24,7 +24,7 @@
 	"<span class='xenodanger'>We smash into the ground!</span>")
 	X.create_stomp() //Adds the visual effect. Wom wom wom
 
-	for(var/mob/living/M in range(1,X.loc))
+	for(var/mob/living/M in range(1, get_turf(X)))
 		if(X.issamexenohive(M) || M.stat == DEAD || isnestedhost(M))
 			continue
 		var/distance = get_dist(M, X)
