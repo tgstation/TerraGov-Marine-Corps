@@ -416,6 +416,10 @@
 	if(!istype(I))
 		return FALSE
 
+	var/removal_good = TRUE
+	if(isgun(I) && !istype(src, /obj/item/storage/belt)) // If its a belt we dont care; they're supposed to be 'easy access'
+		removal_good = remove_gun_from_storage(I)
+
 	for(var/i in can_see_content())
 		var/mob/M = i
 		if(!M.client)
@@ -445,7 +449,17 @@
 		I.mouse_opacity = initial(I.mouse_opacity)
 
 	update_icon()
-	return TRUE
+	return removal_good
+
+/obj/item/storage/proc/remove_gun_from_storage(obj/item/weapon/gun/gun)
+	var/mob/user = usr
+	if(!istype(user))
+		return TRUE
+	to_chat(user, "<span class='notice'>You begin drawing [gun].</span>")
+	if(do_after(user, 0.5 SECONDS, TRUE, src))
+		return TRUE
+	to_chat(user, "<span class='warning'>You fumble with the [gun] and it drops to the ground!</span>")
+	return FALSE
 
 //This proc is called when you want to place an item into the storage item.
 /obj/item/storage/attackby(obj/item/I, mob/user, params)
