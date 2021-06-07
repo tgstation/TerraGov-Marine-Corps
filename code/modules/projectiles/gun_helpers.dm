@@ -259,7 +259,7 @@ should be alright.
 		return
 	if(istype(new_magazine.loc, /obj/item/storage))
 		var/obj/item/storage/S = new_magazine.loc
-		S.remove_from_storage(new_magazine, get_turf(user))
+		S.remove_from_storage(new_magazine, get_turf(user), user)
 	user.put_in_any_hand_if_possible(new_magazine)
 	reload(user, new_magazine)
 

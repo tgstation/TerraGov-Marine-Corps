@@ -11,6 +11,7 @@
 	attack_verb = list("whipped", "lashed", "disciplined")
 	w_class = WEIGHT_CLASS_BULKY
 	allow_drawing_method = TRUE
+	fumble_guns = FALSE
 
 
 

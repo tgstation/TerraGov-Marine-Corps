@@ -37,6 +37,7 @@
 	var/use_sound = "rustle"	//sound played when used. null for no sound.
 	var/opened = 0 //Has it been opened before?
 	var/list/content_watchers = list() //list of mobs currently seeing the storage's contents
+	var/fumble_guns = TRUE //Whether or not we can fumble guns when we draw them
 
 /obj/item/storage/MouseDrop(obj/over_object as obj)
 	if(!ishuman(usr))
@@ -412,13 +413,18 @@
 	return 1
 
 //Call this proc to handle the removal of an item from the storage item. The item will be moved to the atom sent as new_target
-/obj/item/storage/proc/remove_from_storage(obj/item/I, atom/new_location)
+/obj/item/storage/proc/remove_from_storage(obj/item/I, atom/new_location, mob/user)
 	if(!istype(I))
 		return FALSE
 
 	var/removal_good = TRUE
-	if(isgun(I) && !istype(src, /obj/item/storage/belt)) // If its a belt we dont care; they're supposed to be 'easy access'
-		removal_good = remove_gun_from_storage(I)
+	if(isgun(I) && fumble_guns)
+		if(user)
+			var/obj/item/weapon/gun/gun = I
+			to_chat(user, "<span class='notice'>You begin drawing [gun].</span>")
+			if(!do_after(user, 0.5 SECONDS, TRUE, src))
+				removal_good = FALSE
+				to_chat(user, "<span class='warning'>You fumble with [gun] and it drops to the ground!</span>")
 
 	for(var/i in can_see_content())
 		var/mob/M = i
@@ -450,16 +456,6 @@
 
 	update_icon()
 	return removal_good
-
-/obj/item/storage/proc/remove_gun_from_storage(obj/item/weapon/gun/gun)
-	var/mob/user = usr
-	if(!istype(user))
-		return TRUE
-	to_chat(user, "<span class='notice'>You begin drawing [gun].</span>")
-	if(do_after(user, 0.5 SECONDS, TRUE, src))
-		return TRUE
-	to_chat(user, "<span class='warning'>You fumble with the [gun] and it drops to the ground!</span>")
-	return FALSE
 
 //This proc is called when you want to place an item into the storage item.
 /obj/item/storage/attackby(obj/item/I, mob/user, params)
@@ -520,7 +516,7 @@
 	var/turf/T = get_turf(src)
 	hide_from(usr)
 	for(var/obj/item/I in contents)
-		remove_from_storage(I, T)
+		remove_from_storage(I, T, usr)
 
 
 /obj/item/storage/Initialize(mapload, ...)
