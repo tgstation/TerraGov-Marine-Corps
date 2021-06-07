@@ -36,3 +36,10 @@
   Wayland-Smithy:
   - bugfix: Say verb get_key() no longer runtimes.
   - admin: Game logs now save the location of mob ghostings.
+2021-06-07:
+  BraveMole:
+  - rscadd: Marine meds are now a tabbed share vendor
+  - rscadd: Fire mode keybind
+  DeltaFire15:
+  - bugfix: Harvester Blades no longer runtime if clicked with things that aren't
+      reagent containers.
