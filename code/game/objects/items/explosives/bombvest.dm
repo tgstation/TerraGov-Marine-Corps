@@ -8,10 +8,6 @@
 	var/bomb_message
 	///List of warcries that are not allowed.
 	var/bad_warcries_regex = "allahu ackbar|allah|ackbar"
-	///How long must be waited after a shiled drop for detonation
-	var/shield_wait_time = 5 SECONDS
-	///Time a shiled was last dropped
-	var/shield_dropped_last = 0
 
 /obj/item/clothing/suit/storage/marine/harness/boomvest/equipped(mob/user, slot)
 	. = ..()
@@ -24,7 +20,7 @@
 ///Updates the last shield drop time when one is dropped
 /obj/item/clothing/suit/storage/marine/harness/boomvest/proc/shield_dropped()
 	SIGNAL_HANDLER
-	shield_dropped_last = world.time
+	TIMER_COOLDOWN_START(src, COOLDOWN_BOMBVEST_SHIELD_DROP, 5 SECONDS)
 
 ///Overwrites the parent function for activating a light. Instead it now detonates the bomb.
 /obj/item/clothing/suit/storage/marine/harness/boomvest/attack_self(mob/user)
@@ -38,7 +34,7 @@
 	if(istype(activator.l_hand, /obj/item/weapon/shield/riot) || istype(activator.r_hand, /obj/item/weapon/shield/riot) || istype(activator.back, /obj/item/weapon/shield/riot))
 		to_chat(activator, "<span class='warning'>Your bulky shield prevents you from reaching the detonator!</span>")
 		return FALSE
-	if(shield_dropped_last + shield_wait_time > world.time)
+	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_BOMBVEST_SHIELD_DROP))
 		to_chat(activator, "<span class='warning'>You dropped a shield too recently to detonate, wait a few seconds!</span>")
 		return FALSE
 	if(!do_after(user, 3, TRUE, src, BUSY_ICON_DANGER, ignore_turf_checks = TRUE))
