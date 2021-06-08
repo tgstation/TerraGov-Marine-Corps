@@ -1,8 +1,0 @@
-author: "Wayland-Smithy"
-delete-after: True
-changes: 
-  - bugfix: "Fixed Crusher Stomp damage delay."
-  - qol: "Crusher Crest Toss now works on big allies with a penalty like Warrior Fling."
-  - balance: "Crusher Stomp briefly knocks down anyone adjacent to crusher for a half second. Victims directly under foot stun increased by one second."
-  - balance: "Crusher Crest Toss increases distance with age from 3 to 6 (still less than half max powerfist), and has less cooldown."
-  - balance: "Crest Toss and Stomp no longer deal stamina damage, only brute."
