@@ -168,15 +168,20 @@
 	s2.set_up(3, 1, src)
 	s2.start()
 	damaged = TRUE
+	open_prompt = FALSE
 	remove_eye_control(ui_user)
+
 	if(fly_state == SHUTTLE_IN_ATMOSPHERE && last_valid_ground_port)
 		visible_message("Autopilot detects loss of helm control. INITIATING EMERGENCY LANDING!")
 		shuttle_port.callTime = SHUTTLE_LANDING_CALLTIME
 		next_fly_state = SHUTTLE_ON_GROUND
-		open_prompt = FALSE
-		remove_eye_control(ui_user)
 		shuttle_port.set_mode(SHUTTLE_CALL)
 		SSshuttle.moveShuttleToDock(shuttleId, last_valid_ground_port, TRUE)
+		return
+
+	if(next_fly_state == SHUTTLE_IN_ATMOSPHERE)
+		shuttle_port.set_idle() // don't go up with a broken console, cencel spooling
+		visible_message("Autopilot detects loss of helm control. Halting take off!")
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/ui_state(mob/user)
 	return GLOB.dropship_state
