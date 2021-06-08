@@ -31,13 +31,13 @@ const LoadoutList = (props: LoadoutListData) => {
   const { 
     loadout_list,
     job,
-    } = props;
+  } = props;
   return (
     <Stack.Item>
       <Section height={23} fill scrollable>
         <LabeledList>
           {loadout_list
-            .filter(loadout => loadout.job == job).map(loadout_visible => {
+            .filter(loadout => loadout.job === job).map(loadout_visible => {
               return (
                 <LoadoutItem 
                   key={loadout_visible.name}
