@@ -508,6 +508,12 @@
 	for(var/obj/item/I in contents)
 		remove_from_storage(I, T)
 
+/// Delete everything that's inside the storage
+/obj/item/storage/proc/delete_contents()
+	for(var/obj/item/I AS in contents)
+		I.on_exit_storage(src)
+		qdel(I)
+
 
 /obj/item/storage/Initialize(mapload, ...)
 	. = ..()

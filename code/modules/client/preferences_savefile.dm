@@ -573,8 +573,17 @@
 		return FALSE
 	loadout_manager = sanitize_loadout_manager(loadout_manager)
 	var/json_loadout_manager = jatum_serialize(loadout_manager)
+	log_debug("JSON before writing file : [json_loadout_manager]")
 	S.cd = "/loadouts"
 	WRITE_FILE(S["loadouts_manager"], json_loadout_manager)
+	json_loadout_manager = ""
+	READ_FILE(S["loadouts_manager"], json_loadout_manager)
+	log_debug("JSON when reading file : [json_loadout_manager]")
+	if(!json_loadout_manager)
+		return FALSE
+	jatum_deserialize(json_loadout_manager)
+	var/datum/loadout_manager/test = jatum_deserialize(json_loadout_manager)
+	test = sanitize_loadout_manager(test)
 	return TRUE
 
 ///Load from a savefile and unserialize the loadout manager
