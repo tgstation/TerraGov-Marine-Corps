@@ -22,11 +22,8 @@
  * Return the instantatiated item if it was successfully sold, and return null otherwise
  */
 /datum/item_representation/proc/instantiate_object(datum/loadout_seller/seller, master = null, datum/loadout/loadout, mob/user)
-	if(seller && !bypass_vendor_check)
-		if(!buy_item_in_vendor(item_type, loadout, user))
-			seller.unavailable_items ++
-			return
-		seller.bought_items += item_type
+	if(seller && !bypass_vendor_check && !buy_item_in_vendor(item_type, seller, loadout, user))
+		return
 	var/obj/item/item = new item_type(master)
 	return item
 
@@ -66,8 +63,6 @@
 	for(var/atom/thing_in_content AS in item_to_copy.contents)
 		if(!isitem(thing_in_content))
 			continue
-		if(!is_savable_in_loadout(thing_in_content, loadout))
-			continue
 		item_representation_type = item2representation_type(thing_in_content.type)
 		contents += new item_representation_type(thing_in_content, loadout)
 
@@ -103,10 +98,9 @@
 	amount = stack_to_copy.amount
 
 /datum/item_representation/stack/instantiate_object(datum/loadout_seller/seller, master = null, datum/loadout/loadout, mob/user)
-	. = ..()
-	if(!.)
+	if(seller && !bypass_vendor_check && !buy_stack(item_type, seller, loadout, user, amount))
 		return
-	var/obj/item/stack/stack = .
+	var/obj/item/stack/stack = new item_type(master)
 	stack.amount = amount
 	stack.update_weight()
 	stack.update_icon()

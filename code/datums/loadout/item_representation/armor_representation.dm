@@ -54,7 +54,7 @@
 	if(jaeger_to_copy.installed_storage)
 		installed_storage = new /datum/item_representation/armor_module(jaeger_to_copy.installed_storage, loadout)
 		storage_implementation = new /datum/item_representation/storage(jaeger_to_copy.storage, loadout)
-	if(!length(jaeger_to_copy.installed_modules) || !is_savable_in_loadout(jaeger_to_copy.installed_modules[1], loadout)) //Not supporting mutiple modules, but no object in game has that so
+	if(!length(jaeger_to_copy.installed_modules)) //Not supporting mutiple modules, but no object in game has that so
 		return
 	installed_module = new /datum/item_representation/armor_module(jaeger_to_copy.installed_modules[1], loadout)
 

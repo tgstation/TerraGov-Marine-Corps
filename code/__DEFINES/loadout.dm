@@ -524,11 +524,6 @@ GLOBAL_LIST_INIT(loadout_role_essential_set, list(
 	)
 ))
 
-///Items that once they are in loadouts, should not have stock checked when sold by the loadout vendor
-GLOBAL_LIST_INIT(bypass_vendor_item, typecacheof(list(
-	/obj/item/ammo_magazine/handful,
-	)))
-
 ///Items that should be saved in loadouts no matter what
 GLOBAL_LIST_INIT(bypass_loadout_check_item, typecacheof(list(
 	/obj/item/clothing/under/marine,
