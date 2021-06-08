@@ -492,6 +492,7 @@ GLOBAL_LIST_INIT(loadout_role_essential_set, list(
 		/obj/item/tool/shovel/etool = 1,
 		/obj/item/lightreplacer = 1,
 		/obj/item/circuitboard/general = 1,
+		/obj/item/clothing/gloves/marine/insulated,
 	),
 	SQUAD_CORPSMAN = list(
 		/obj/item/bodybag/cryobag = 1,
