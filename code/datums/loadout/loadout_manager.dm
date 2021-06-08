@@ -3,54 +3,32 @@
  * It also contains a tgui to navigate beetween loadouts
  */
 /datum/loadout_manager
-	/// The loadout currently selected/modified
-	var/datum/loadout/current_loadout
-	/// A list of all loadouts
-	var/list/loadouts_list = list()
 	/// The data sent to tgui
 	var/loadouts_data = list()
-	/// The datum in charge of the user wanting to equip a saved loadout
-	var/datum/loadout_seller/seller
 	/// The host of the loadout_manager, aka from which loadout vendor are you managing loadouts
 	var/loadout_vendor 
 	/// The version of the loadout manager
 	var/version = 1
 
 ///Remove a loadout from the list.
-/datum/loadout_manager/proc/delete_loadout(datum/loadout/loadout_to_delete)
-	loadouts_list -= loadout_to_delete
-	if(current_loadout == loadout_to_delete)
-		current_loadout = null
-	if(length(loadouts_data))
-		prepare_all_loadouts_data(loadout_to_delete.job)
-
-///Prepare all loadouts data before sending them to tgui
-/datum/loadout_manager/proc/prepare_all_loadouts_data(job)
-	loadouts_data = list()
-	var/next_loadout_data = list()
-	for(var/datum/loadout/next_loadout AS in loadouts_list)
-		if(next_loadout.job != job)
-			continue
-		next_loadout_data = list()
-		next_loadout_data["name"] = next_loadout.name
-		loadouts_data += list(next_loadout_data)
+/datum/loadout_manager/proc/delete_loadout(loadout_name, loadout_job)
+	for(var/key in loadouts_data)
+		var/list/data_list = loadouts_data[key]
+		if(data_list["name"] == loadout_name && data_list["job"] == loadout_job)
+			loadouts_data -= key
+			return
 
 ///Add one loadout to the loadout data
-/datum/loadout_manager/proc/add_loadout_data(datum/loadout/next_loadout)
-	var/next_loadout_data = list()
-	next_loadout_data["job"] = next_loadout.job
-	next_loadout_data["name"] = next_loadout.name
-	loadouts_data += list(next_loadout_data)
+/datum/loadout_manager/proc/add_loadout(datum/loadout/next_loadout)
+	loadouts_data += next_loadout.job
+	loadouts_data += next_loadout.name
 
-/datum/loadout_manager/ui_interact(mob/user, datum/tgui/ui)
-	var/mob/living/living_user = user
-	var/job = living_user.job.title
-	if(!(job in GLOB.loadout_job_supported))
+/datum/loadout_manager/ui_interact(mob/living/user, datum/tgui/ui)
+	if(!(user.job.title in GLOB.loadout_job_supported))
 		to_chat(ui.user, "<span class='warning'>Only squad members can use this vendor!</span>")
 		return
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		prepare_all_loadouts_data(job)
 		ui = new(user, src, "LoadoutManager")
 		ui.open()
 
@@ -70,11 +48,17 @@
 	SIGNAL_HANDLER
 	ui_close()
 
-/datum/loadout_manager/ui_data(mob/user)
+/datum/loadout_manager/ui_static_data(mob/living/user)
+	. = ..()
 	var/data = list()
-	if(!loadouts_data)
-		prepare_all_loadouts_data()
-	data["loadout_list"] = loadouts_data
+	data["job"] = user.job.title
+	var/list/loadouts_data_tgui = list()
+	for(var/i = 1 ; i <= length(loadouts_data), i += 2)
+		var/next_loadout_data = list()
+		next_loadout_data["job"] = loadouts_data[i]
+		next_loadout_data["name"] = loadouts_data[i+1]
+		loadouts_data_tgui += list(next_loadout_data)
+	data["loadout_list"] = loadouts_data_tgui
 	return data
 
 /datum/loadout_manager/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
@@ -83,43 +67,33 @@
 		return
 	if(TIMER_COOLDOWN_CHECK(ui.user, COOLDOWN_LOADOUT_VISUALIZATION))
 		return
-	TIMER_COOLDOWN_START(ui.user, COOLDOWN_LOADOUT_VISUALIZATION, 1 SECONDS)//Anti spam cooldown
+	TIMER_COOLDOWN_START(ui.user, COOLDOWN_LOADOUT_VISUALIZATION, 1 SECONDS) //Anti spam cooldown
 	var/mob/living/user = ui.user
-	var/job = user.job.title
 	switch(action)
 		if("saveLoadout")
-			if(length(loadouts_list[job]) >= MAXIMUM_LOADOUT)
-				to_chat(ui.user, "<span class='warning'>You've reached the maximum number of loadouts saved for this job, please delete some before saving new ones</span>")
-				return
 			var/loadout_name = params["loadout_name"]
 			if(isnull(loadout_name))
 				return
-			var/datum/loadout/loadout = create_empty_loadout(loadout_name, job)
+			var/datum/loadout/loadout = create_empty_loadout(loadout_name, user.job.title)
 			loadout.save_mob_loadout(ui.user)
-			loadouts_list += loadout
-			add_loadout_data(loadout)
-			open_loadout(loadout, ui.user)
+			ui.user.client.prefs.save_loadout(loadout)
+			add_loadout(loadout)
+			update_static_data(ui.user, ui)
+			loadout.loadout_vendor = loadout_vendor
+			loadout.ui_interact(ui.user)
 		if("selectLoadout")
 			var/name = params["loadout_name"]
 			if(isnull(name))
 				return
-			for(var/datum/loadout/next_loadout AS in loadouts_list)
-				if(next_loadout.name == name && next_loadout.job == job)
-					open_loadout(next_loadout, ui.user)
-					return
-
-/// Set the loadout gave in argument as the current loadout and open it
-/datum/loadout_manager/proc/open_loadout(datum/loadout/loadout, mob/user)
-	if(current_loadout)
-		current_loadout.ui_close()
-		current_loadout.loadout_vendor = null
-	current_loadout = loadout
-	current_loadout.loadout_vendor = loadout_vendor
-	current_loadout.ui_interact(user)
+			var/datum/loadout/loadout = ui.user.client.prefs.load_loadout(name, user.job.title)
+			if(!loadout)
+				to_chat(ui.user, "<span class='warning'>Error when loading this loadout</span>")
+				delete_loadout(name, user.job.title)
+				CRASH("Fail to load loadouts")
+			loadout.loadout_vendor = loadout_vendor
+			loadout.ui_interact(ui.user)
+			
 
 /datum/loadout_manager/ui_close(mob/user)
 	. = ..()
-	current_loadout?.loadout_vendor = null
-	current_loadout?.ui_close()
-	loadout_vendor = null
-	user.client?.prefs.save_loadout_manager()
+	user.client.prefs.save_loadout_manager()

@@ -4,23 +4,13 @@
 	///The job associated with the loadout
 	var/job = SQUAD_MARINE
 	/**
-	 * Assoc list of all items composing this loadout
+	 * Assoc list of all visible items composing this loadout
 	 * the key of each item is a slot key
 	 * each item of the list is a datum/item_representation
 	 */
 	var/list/item_list
 	///The host of the loadout_manager, aka from which loadout vendor are you managing loadouts
-	var/loadout_vendor 
-	///A list of unique items on this loadout (items that are in specific role vendors, but are not costing points)
-	var/unique_items_list = list()
-	///A list of items coming from job specific clothes vendor
-	var/clothes_item_list = list()
-	///A representation of the buying bitfield used to buy from different categories of clothes vendors
-	var/buying_bitfield = MARINE_CAN_BUY_ALL
-	///A list of items that were bought using points from role vendors
-	var/priced_items_list = list()
-	///The amount of marine points available on the loadout
-	var/job_points_available = MARINE_TOTAL_BUY_POINTS
+	var/loadout_vendor
 	///The version of this loadout
 	var/version = CURRENT_LOADOUT_VERSION
 
@@ -143,9 +133,8 @@
 			if(TIMER_COOLDOWN_CHECK(ui.user, COOLDOWN_LOADOUT_EQUIPPED))
 				to_chat(ui.user, "<span class='warning'>The vendor is still reloading</span>")
 				return
-			if(!ui.user.client.prefs.loadout_manager.seller)
-				ui.user.client.prefs.loadout_manager.seller = new /datum/loadout_seller
-			if(ui.user.client.prefs.loadout_manager.seller.try_to_equip_loadout(src, ui.user))
+			var/datum/loadout_seller/seller = new
+			if(seller.try_to_equip_loadout(src, ui.user))
 				TIMER_COOLDOWN_START(ui.user, COOLDOWN_LOADOUT_EQUIPPED, 30 SECONDS)
 			ui.close()
 		if("deleteLoadout")

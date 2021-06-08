@@ -562,6 +562,38 @@
 
 	return TRUE
 
+///Save a loadout into the savefile
+/datum/preferences/proc/save_loadout(datum/loadout/loadout)
+	if(!path)
+		return FALSE
+	if(!fexists(path))
+		return FALSE
+	var/savefile/S = new /savefile(path)
+	if(!S)
+		return FALSE
+	S.cd = "/loadouts"
+	loadout.loadout_vendor = null
+	var/loadout_json = jatum_serialize(loadout)
+	WRITE_FILE(S["[loadout.name + loadout.job]"], loadout_json)
+	return TRUE
+
+///Load a loadout from the savefile and returns it
+/datum/preferences/proc/load_loadout(loadout_name, loadout_job)
+	if(!path)
+		return FALSE
+	if(!fexists(path))
+		return FALSE
+	var/savefile/S = new /savefile(path)
+	if(!S)
+		return FALSE
+	S.cd = "/loadouts"
+	var/loadout_json = ""
+	READ_FILE(S["[loadout_name + loadout_job]"], loadout_json)
+	if(!loadout_json)
+		return FALSE
+	var/datum/loadout/loadout = jatum_deserialize(loadout_json)
+	return loadout
+
 ///Serialize and save into a savefile the loadout manager
 /datum/preferences/proc/save_loadout_manager()
 	if(!path)
@@ -571,19 +603,10 @@
 	var/savefile/S = new /savefile(path)
 	if(!S)
 		return FALSE
-	loadout_manager = sanitize_loadout_manager(loadout_manager)
+	loadout_manager.loadout_vendor = null
 	var/json_loadout_manager = jatum_serialize(loadout_manager)
-	log_debug("JSON before writing file : [json_loadout_manager]")
 	S.cd = "/loadouts"
 	WRITE_FILE(S["loadouts_manager"], json_loadout_manager)
-	json_loadout_manager = ""
-	READ_FILE(S["loadouts_manager"], json_loadout_manager)
-	log_debug("JSON when reading file : [json_loadout_manager]")
-	if(!json_loadout_manager)
-		return FALSE
-	jatum_deserialize(json_loadout_manager)
-	var/datum/loadout_manager/test = jatum_deserialize(json_loadout_manager)
-	test = sanitize_loadout_manager(test)
 	return TRUE
 
 ///Load from a savefile and unserialize the loadout manager
@@ -601,10 +624,7 @@
 	if(!json_loadout_manager)
 		return FALSE
 	loadout_manager = jatum_deserialize(json_loadout_manager)
-	loadout_manager = sanitize_loadout_manager(loadout_manager)
-	if(loadout_manager.current_loadout)
-		loadout_manager.loadouts_list += loadout_manager.current_loadout //Has to be done since jatum cannot handle duplication well. Unless you fix jatum, don't touch this
-	return TRUE
+	return !isnull(loadout_manager)
 
 
 /datum/preferences/proc/save()

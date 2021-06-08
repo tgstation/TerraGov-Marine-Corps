@@ -28,13 +28,16 @@ const LoadoutItem = (props : LoadoutItemData, context) => {
 };
 
 const LoadoutList = (props: LoadoutListData) => {
-  const { loadout_list } = props;
+  const { 
+    loadout_list,
+    job,
+    } = props;
   return (
     <Stack.Item>
       <Section height={23} fill scrollable>
         <LabeledList>
           {loadout_list
-            .map(loadout_visible => {
+            .filter(loadout => loadout.job == job).map(loadout_visible => {
               return (
                 <LoadoutItem 
                   key={loadout_visible.name}
@@ -49,7 +52,7 @@ const LoadoutList = (props: LoadoutListData) => {
 
 export const LoadoutManager = (props, context) => {
   const { act, data } = useBackend<LoadoutManagerData>(context);
-  const { loadout_list } = data;
+  const { loadout_list, job } = data;
 
   const [
     saveNewLoadout,
@@ -65,6 +68,7 @@ export const LoadoutManager = (props, context) => {
         <Stack vertical>
           <LoadoutList 
             loadout_list={loadout_list} 
+            job={job}
           />
           <Button
             onClick={() => setSaveNewLoadout(true)}>
