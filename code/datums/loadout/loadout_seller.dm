@@ -48,7 +48,7 @@
 /datum/loadout_seller/proc/try_to_equip_loadout(datum/loadout/loadout, mob/user)
 	prepare_to_equip_loadout(loadout, user)
 	var/obj/item/card/id/id = user.get_idcard()
-	id.marine_buy_flags &= ~buying_bitfield
+	id.marine_buy_flags &= buying_bitfield
 	id.marine_points = available_points
 	do_equip_loadout(user)
 	if(length(unique_items_list))

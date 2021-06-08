@@ -12,10 +12,10 @@
 
 ///Remove a loadout from the list.
 /datum/loadout_manager/proc/delete_loadout(loadout_name, loadout_job)
-	for(var/key in loadouts_data)
-		var/list/data_list = loadouts_data[key]
-		if(data_list["name"] == loadout_name && data_list["job"] == loadout_job)
-			loadouts_data -= key
+	for(var/i = 1 ; i <= length(loadouts_data), i += 2)
+		if(loadout_job == loadouts_data[i] && loadout_name == loadouts_data[i+1])
+			loadouts_data -= loadouts_data[i+1]
+			loadouts_data -= loadouts_data[i]
 			return
 
 ///Add one loadout to the loadout data
@@ -96,4 +96,4 @@
 
 /datum/loadout_manager/ui_close(mob/user)
 	. = ..()
-	user.client.prefs.save_loadout_manager()
+	user.client?.prefs.save_loadout_manager()

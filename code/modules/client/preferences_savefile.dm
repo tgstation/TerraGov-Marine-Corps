@@ -574,6 +574,7 @@
 	S.cd = "/loadouts"
 	loadout.loadout_vendor = null
 	var/loadout_json = jatum_serialize(loadout)
+	log_debug("Loadout saved : [loadout_json]")
 	WRITE_FILE(S["[loadout.name + loadout.job]"], loadout_json)
 	return TRUE
 
