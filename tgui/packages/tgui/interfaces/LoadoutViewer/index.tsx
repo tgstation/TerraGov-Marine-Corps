@@ -58,6 +58,7 @@ export const LoadoutViewer = (props, context) => {
           />
           <LoadoutNavigator
             name={loadout.name}
+            job={loadout.job}
           /> 
         </Stack>
       </Window.Content>
