@@ -44,7 +44,7 @@
 
 		var/mob/living/carbon/human/H = M
 		if(H.species.species_flags & IS_SYNTHETIC)
-			to_chat(user, "<span class='warning'>They have a monitor for a head, where do you think you're going to put that?</span>")
+			to_chat(user, "<span class='warning'>They don't have a mouth on their head, where do you think you're going to put that?</span>")
 			return
 
 		user.visible_message("<span class='warning'>[user] attempts to force [M] to swallow [src].</span>")

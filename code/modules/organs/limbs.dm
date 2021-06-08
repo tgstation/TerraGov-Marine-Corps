@@ -13,6 +13,10 @@
 	var/brute_dam = 0
 	///burn damage this limb has taken as a part
 	var/burn_dam = 0
+	///Brute damage multiplier, if none takes from mob species,
+	var/brute_mod
+	///Modifier for burn damage, if none takes from mob species.
+	var/burn_mod
 	///Max damage the limb can take before being destroyed
 	var/max_damage = 0
 	var/max_size = 0
@@ -166,13 +170,15 @@
 	if(limb_status & LIMB_DESTROYED)
 		return 0
 
-	if(limb_status & LIMB_ROBOT)
-		if(issynth(owner))
-			brute *= owner.species.brute_mod
-			burn *= owner.species.burn_mod
-		else
-			brute *= 0.50 // half damage for ROBOLIMBS
-			burn *= 0.50 // half damage for ROBOLIMBS
+	if(!brute_mod)
+		brute *= owner.species.brute_mod
+	else
+		brute *= brute_mod
+	if(!burn_mod)
+		burn *= owner.species.burn_mod
+	else
+		burn *= burn_mod
+
 
 	//High brute damage or sharp objects may damage internal organs
 	if(internal_organs && ((sharp && brute >= 10) || brute >= 20) && prob(5))
@@ -390,19 +396,19 @@
 
 /datum/limb/proc/need_process()
 	if(limb_status & LIMB_DESTROYED)	//Missing limb is missing
-		return 0
-	if(limb_status && !(limb_status & LIMB_ROBOT)) // Any status other than destroyed or robotic requires processing
-		return 1
+		return FALSE
+	if(limb_status & LIMB_ROBOT)) // Any status other than destroyed or robotic requires processing
+		return FALSE
 	if(brute_dam || burn_dam)
-		return 1
+		return TRUE
 	if(last_dam != brute_dam + burn_dam) // Process when we are fully healed up.
 		last_dam = brute_dam + burn_dam
-		return 1
+		return TRUE
 	else
 		last_dam = brute_dam + burn_dam
 	if(germ_level)
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
 /datum/limb/process()
 
@@ -1151,9 +1157,9 @@ Note that amputating the affected organ does in fact remove the infection from t
 	body_part = ARM_LEFT
 	cover_index = 7
 
-	process()
-		..()
-		process_grasp(owner.l_hand, "left hand")
+/datum/limb/l_arm/process()
+	. = ..()
+	process_grasp(owner.l_hand, "left hand")
 
 /datum/limb/l_leg
 	name = "l_leg"
@@ -1174,9 +1180,9 @@ Note that amputating the affected organ does in fact remove the infection from t
 	body_part = ARM_RIGHT
 	cover_index = 7
 
-	process()
-		..()
-		process_grasp(owner.r_hand, "right hand")
+/datum/limb/r_arm/process()
+	. = ..()
+	process_grasp(owner.r_hand, "right hand")
 
 /datum/limb/r_leg
 	name = "r_leg"
@@ -1217,9 +1223,9 @@ Note that amputating the affected organ does in fact remove the infection from t
 	body_part = HAND_RIGHT
 	cover_index = 2
 
-	process()
-		..()
-		process_grasp(owner.r_hand, "right hand")
+/datum/limb/hand/r_hand/process()
+	. = ..()
+	process_grasp(owner.r_hand, "right hand")
 
 /datum/limb/hand/l_hand
 	name = "l_hand"
@@ -1230,9 +1236,9 @@ Note that amputating the affected organ does in fact remove the infection from t
 	body_part = HAND_LEFT
 	cover_index = 2
 
-	process()
-		..()
-		process_grasp(owner.l_hand, "left hand")
+/datum/limb/hand/l_hand/process()
+	. = ..()
+	process_grasp(owner.l_hand, "left hand")
 
 /datum/limb/head
 	name = "head"
@@ -1246,18 +1252,6 @@ Note that amputating the affected organ does in fact remove the infection from t
 	encased = "skull"
 	var/disfigured = 0 //whether the head is disfigured.
 	var/face_surgery_stage = 0
-
-/*
-/datum/limb/head/get_icon(icon/race_icon, icon/deform_icon)
-	if (!owner)
-		return ..()
-	var/g = "m"
-	if(owner.gender == FEMALE)	g = "f"
-	if (limb_status & LIMB_MUTATED)
-		. = new /icon(deform_icon, "[icon_name]_[g]")
-	else
-		. = new /icon(race_icon, "[icon_name]_[g]")
-*/
 
 /datum/limb/head/take_damage_limb(brute, burn, sharp, edge, blocked = 0, updating_health = FALSE, list/forbidden_limbs = list())
 	. = ..()
