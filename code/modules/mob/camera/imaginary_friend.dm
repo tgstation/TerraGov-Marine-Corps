@@ -118,7 +118,7 @@
 	var/dead_rendered = "<span class='game say'><span class='name'>[name] (Imaginary friend of [owner])</span> <span class='message'>[say_quote(message)]</span></span>"
 
 	to_chat(owner, "[rendered]")
-	if(owner.client?.prefs.chat_on_map)
+	if(owner.client?.prefs.chat_on_map && !hidden)
 		owner.create_chat_message(src, owner.get_default_language(), message)
 	to_chat(src, "[rendered]")
 	if(client?.prefs.chat_on_map)
