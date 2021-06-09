@@ -56,3 +56,6 @@
   - balance: Crusher Crest Toss increases distance with age from 3 to 6 (still less
       than half max powerfist), and has less cooldown.
   - balance: Crest Toss and Stomp no longer deal stamina damage, only brute.
+2021-06-09:
+  BraveMole:
+  - bugfix: Corpses spawned in silo in hunt cannot be siloed again

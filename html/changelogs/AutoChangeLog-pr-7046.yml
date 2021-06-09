@@ -1,4 +1,0 @@
-author: "BraveMole"
-delete-after: True
-changes: 
-  - bugfix: "Corpses spawned in silo in hunt cannot be siloed again"
