@@ -2,9 +2,10 @@
 	name = "imaginary friend"
 	real_name = "imaginary friend"
 	desc = "A wonderful yet fake friend."
-	mouse_opacity = MOUSE_OPACITY_OPAQUE
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	lighting_alpha = LIGHTING_PLANE_ALPHA_INVISIBLE
-	see_invisible = SEE_INVISIBLE_LIVING
+	see_invisible = SEE_INVISIBLE_OBSERVER
+	stat = DEAD // Keep hearing ghosts and other IFs
 	invisibility = INVISIBILITY_MAXIMUM
 	sight = SEE_MOBS|SEE_TURFS|SEE_OBJS
 	see_in_dark = 8
@@ -21,7 +22,8 @@
 
 	var/list/outfit_choices = list(/datum/job/spatial_agent,
 									/datum/job/spatial_agent/galaxy_red,
-									/datum/job/spatial_agent/galaxy_blue
+									/datum/job/spatial_agent/galaxy_blue,
+									/datum/job/spatial_agent/xeno_suit,
 									)
 
 /mob/camera/imaginary_friend/Login()
@@ -116,7 +118,11 @@
 	var/dead_rendered = "<span class='game say'><span class='name'>[name] (Imaginary friend of [owner])</span> <span class='message'>[say_quote(message)]</span></span>"
 
 	to_chat(owner, "[rendered]")
+	if(owner.client?.prefs.chat_on_map)
+		owner.create_chat_message(src, owner.get_default_language(), message)
 	to_chat(src, "[rendered]")
+	if(client?.prefs.chat_on_map)
+		create_chat_message(src, get_default_language(), message)
 
 	//speech bubble
 	var/mutable_appearance/MA = mutable_appearance('icons/mob/talk.dmi', src, "default[say_test(message)]", FLY_LAYER)
@@ -125,7 +131,7 @@
 
 	for(var/i in GLOB.dead_mob_list)
 		var/mob/M = i
-		if(isnewplayer(M))
+		if(isnewplayer(M) || src == i)
 			continue
 		var/link = FOLLOW_LINK(M, owner)
 		to_chat(M, "[link] [dead_rendered]")
