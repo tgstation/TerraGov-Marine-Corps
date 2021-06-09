@@ -1204,11 +1204,6 @@ ENGINEERING
 	contains = list(/obj/machinery/power/port_gen/pacman/mobile_power)
 	cost = 20
 
-/datum/supply_packs/engineering/droid_scout
-	name = "Scout droid"
-	contains = list(/obj/vehicle/unmanned/droid/scout)
-	cost = 30
-
 /datum/supply_packs/engineering/droid_combat
 	name = "Combat droid with weapon equipped"
 	contains = list(/obj/vehicle/unmanned/droid)
