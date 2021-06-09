@@ -144,17 +144,12 @@
 
 
 /obj/item/weapon/shield/riot/marine/update_icon_state()
-	var/new_icon_state = initial(icon_state)
-	var/should_update = FALSE
 	if(obj_integrity <= integrity_failure)
-		new_icon_state += "_broken"
+		icon_state += initial(icon_state) + "_broken"
+	else
+		icon_state = initial(icon_state)
 
-	if(icon_state != new_icon_state)
-		should_update = TRUE
 
-	if(!should_update)
-		return
-	icon_state = new_icon_state
 	if(!isliving(loc))
 		return
 	var/mob/living/holder = loc
