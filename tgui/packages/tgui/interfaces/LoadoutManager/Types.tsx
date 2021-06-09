@@ -12,13 +12,17 @@ export type LoadoutItemData =
 export type LoadoutListData = 
   {
     loadout_list: Loadout[];
-    job: string;
   }
+
+export type LoadoutTabData = 
+{
+  job: string;
+  setJob: any;
+}
 
 export type LoadoutManagerData = 
   {
     loadout_list: Loadout[];
-    job: string;
   };
 
 export type NameInputModalData = {

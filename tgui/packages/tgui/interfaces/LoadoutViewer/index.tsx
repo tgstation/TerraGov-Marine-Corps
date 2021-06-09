@@ -9,6 +9,7 @@ const LoadoutNavigator = (props: Loadout, context) => {
   const { act } = useBackend(context);
   const {
     name,
+    job,
   }= props;
 
   return (
@@ -18,7 +19,7 @@ const LoadoutNavigator = (props: Loadout, context) => {
         <Flex.Item>
           <Button
             onClick={() => { 
-              act('equipLoadout', { loadout_name: name });
+              act('equipLoadout');
             }}>
             Equip Loadout
           </Button>
@@ -27,7 +28,7 @@ const LoadoutNavigator = (props: Loadout, context) => {
         <Flex.Item>
           <Button
             onClick={() => {
-              act('deleteLoadout', { loadout_name: name });
+              act('deleteLoadout');
             }}>
             Delete Loadout
           </Button>

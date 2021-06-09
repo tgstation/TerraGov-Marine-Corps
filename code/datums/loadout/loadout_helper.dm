@@ -149,4 +149,24 @@
 		return TRUE
 	seller.buying_bitfield &= ~selling_bitfield
 	return TRUE
+
+/proc/load_player_loadout(player_ckey, loadout_job, loadout_name)
+	player_ckey = ckey(player_ckey)
+	if(!player_ckey)
+		return
+	var/path = "data/player_saves/[player_ckey[1]]/[player_ckey]/preferences.sav"
+	if(!path)
+		return
+	if(!fexists(path))
+		return
+	var/savefile/S = new /savefile(path)
+	if(!S)
+		return
+	S.cd = "/loadouts"
+	var/loadout_json = ""
+	READ_FILE(S["[loadout_name + loadout_job]"], loadout_json)
+	if(!loadout_json)
+		return
+	var/datum/loadout/loadout = jatum_deserialize(loadout_json)
+	return loadout
 	
