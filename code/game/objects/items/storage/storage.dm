@@ -450,7 +450,7 @@
 	if(isgun(I) && fumble_guns && user)
 		to_chat(user, "<span class='notice'>You begin drawing [I].</span>")
 		if(!do_after(user, 0.5 SECONDS, TRUE, src))
-			to_chat(user, "<span class='warning'>You fumble with [gun] and it drops to the ground!</span>")
+			to_chat(user, "<span class='warning'>You fumble with [I] and it drops to the ground!</span>")
 			return FALSE
 
 	return TRUE
