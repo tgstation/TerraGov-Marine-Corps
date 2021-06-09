@@ -413,7 +413,7 @@
 		reagent_glass.forceMove(loc)
 
 	if(prob(50))
-		new /obj/item/robot_parts/l_arm(loc)
+		new /obj/item/limb/l_arm/robotic(loc)
 
 	var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
 	s.set_up(3, 1, src)
@@ -436,7 +436,7 @@
 */
 
 /obj/item/storage/firstaid/attackby(obj/item/I, mob/user, params)
-	if(!istype(I, /obj/item/robot_parts/l_arm) && !istype(I, /obj/item/robot_parts/r_arm))
+	if(!istype(I, /obj/item/limb/l_arm/robotic) && !istype(I, /obj/item/limb/r_arm/robotic))
 		return ..()
 
 	//Making a medibot!

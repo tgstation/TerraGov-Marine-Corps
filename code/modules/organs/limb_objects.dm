@@ -189,3 +189,22 @@
 	name = "synthetic head"
 	brain_item_type = /obj/item/organ/brain/prosthetic
 	braindeath_on_decap = 0
+
+/obj/item/limb/l_arm/robotic
+	limb_type = /datum/limb/l_arm/robotic
+/obj/item/limb/r_arm/robotic
+	limb_type = /datum/limb/r_arm/robotic
+
+/obj/item/limb/r_hand/robotic
+	limb_type = /datum/limb/hand/r_hand/robotic
+
+/obj/item/limb/l_hand/robotic
+	limb_type = /datum/limb/hand/l_hand/robotic
+/obj/item/limb/l_leg/robotic
+	limb_type = /datum/limb/l_leg/robotic
+/obj/item/limb/r_leg/robotic
+	limb_type = /datum/limb/r_leg/robotic
+/obj/item/limb/r_foot/robotic
+	limb_type = /datum/limb/foot/r_foot
+/obj/item/limb/l_foot
+	limb_type = /datum/limb/foot/l_foot

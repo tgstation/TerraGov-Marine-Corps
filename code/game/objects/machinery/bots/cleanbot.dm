@@ -291,7 +291,7 @@ text("<A href='?src=\ref[src];operation=oddbutton'>[oddbutton ? "Yes" : "No"]</A
 	new /obj/item/reagent_containers/glass/bucket(loc)
 	new /obj/item/assembly/prox_sensor(loc)
 	if(prob(50))
-		new /obj/item/robot_parts/l_arm(loc)
+		new /obj/item/limb/l_arm/robotic(loc)
 
 	var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
 	s.set_up(3, 1, src)

@@ -21,7 +21,7 @@
 			H.blood_volume = BLOOD_VOLUME_NORMAL
 
 		if(S.surgery_open_stage == 0)
-			if (S.?limb_status & LIMB_ROBOT)
+			if (S?.limb_status & LIMB_ROBOT)
 				if(user.do_actions || !do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_MEDICAL))
 					return
 				if(S.get_damage())

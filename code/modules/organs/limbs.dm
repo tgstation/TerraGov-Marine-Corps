@@ -4,7 +4,11 @@
 /datum/limb
 	///Actual name of the limb
 	var/name = "limb"
+	///Icon file to pull icons from.
+	var/icon
+	///icon state name of the limb.
 	var/icon_name = null
+	///What body part place this icon is.
 	var/body_part = null
 	///Whether the icon created for this limb is LEFT, RIGHT or 0. Currently utilised for legs and feet
 	var/icon_position = 0
@@ -19,7 +23,6 @@
 	var/burn_mod
 	///Max damage the limb can take before being destroyed
 	var/max_damage = 0
-	var/max_size = 0
 	var/last_dam = -1
 	var/supported = FALSE
 	///How many instances of damage the limb can take before its splints fall off
@@ -75,7 +78,7 @@
 	var/cover_index = 0
 
 
-/datum/limb/New(datum/limb/P, mob/mob_owner)
+/datum/limb/New(datum/limb/P, mob/living/carbon/human/mob_owner)
 	if(P)
 		parent = P
 		if(!parent.children)
@@ -83,6 +86,8 @@
 		parent.children.Add(src)
 	if(mob_owner)
 		owner = mob_owner
+		if(!icon)
+			icon = mob_owner.species.icobase
 	soft_armor = getArmor()
 	hard_armor = getArmor()
 	return ..()
@@ -397,7 +402,7 @@
 /datum/limb/proc/need_process()
 	if(limb_status & LIMB_DESTROYED)	//Missing limb is missing
 		return FALSE
-	if(limb_status & LIMB_ROBOT)) // Any status other than destroyed or robotic requires processing
+	if(limb_status & LIMB_ROBOT) // Any status other than destroyed or robotic requires processing
 		return FALSE
 	if(brute_dam || burn_dam)
 		return TRUE
@@ -795,7 +800,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	//we reset the surgery related variables
 	reset_limb_surgeries()
 
-	var/obj/organ	//Dropped limb object
+	var/obj/item/limb/organ	//Dropped limb object
 	switch(body_part)
 		if(HEAD)
 			if(owner.species.species_flags & IS_SYNTHETIC) //special head for synth to allow brainmob to talk without an MMI
@@ -808,42 +813,27 @@ Note that amputating the affected organ does in fact remove the infection from t
 			owner.dropItemToGround(owner.wear_mask, force = TRUE)
 			owner.update_hair()
 		if(ARM_RIGHT)
-			if(limb_status & LIMB_ROBOT)
-				organ = new /obj/item/robot_parts/r_arm(owner.loc)
-			else
-				organ = new /obj/item/limb/r_arm(owner.loc, owner)
+			organ = new /obj/item/limb/r_arm(owner.loc, owner)
+			organ.limb_type = src.type
 		if(ARM_LEFT)
-			if(limb_status & LIMB_ROBOT)
-				organ = new /obj/item/robot_parts/l_arm(owner.loc)
-			else
-				organ = new /obj/item/limb/l_arm(owner.loc, owner)
+			organ = new /obj/item/limb/l_arm(owner.loc, owner)
 		if(LEG_RIGHT)
-			if(limb_status & LIMB_ROBOT)
-				organ = new /obj/item/robot_parts/r_leg(owner.loc)
-			else
-				organ = new /obj/item/limb/r_leg(owner.loc, owner)
+			organ = new /obj/item/limb/r_leg(owner.loc, owner)
 		if(LEG_LEFT)
-			if(limb_status & LIMB_ROBOT)
-				organ = new /obj/item/robot_parts/l_leg(owner.loc)
-			else
-				organ = new /obj/item/limb/l_leg(owner.loc, owner)
+			organ = new /obj/item/limb/l_leg(owner.loc, owner)
 		if(HAND_RIGHT)
-			if(!(limb_status & LIMB_ROBOT))
-				organ= new /obj/item/limb/r_hand(owner.loc, owner)
+			organ = new /obj/item/limb/r_hand(owner.loc, owner)
 			owner.dropItemToGround(owner.gloves, force = TRUE)
 			owner.dropItemToGround(owner.r_hand, force = TRUE)
 		if(HAND_LEFT)
-			if(!(limb_status & LIMB_ROBOT))
-				organ= new /obj/item/limb/l_hand(owner.loc, owner)
+			organ = new /obj/item/limb/l_hand(owner.loc, owner)
 			owner.dropItemToGround(owner.gloves, force = TRUE)
 			owner.dropItemToGround(owner.l_hand, force = TRUE)
 		if(FOOT_RIGHT)
-			if(!(limb_status & LIMB_ROBOT))
-				organ= new /obj/item/limb/r_foot/(owner.loc, owner)
+			organ = new /obj/item/limb/r_foot/(owner.loc, owner)
 			owner.dropItemToGround(owner.shoes, force = TRUE)
 		if(FOOT_LEFT)
-			if(!(limb_status & LIMB_ROBOT))
-				organ = new /obj/item/limb/l_foot(owner.loc, owner)
+			organ = new /obj/item/limb/l_foot(owner.loc, owner)
 			owner.dropItemToGround(owner.shoes, force = TRUE)
 
 	if(delete_limb)
@@ -1002,8 +992,8 @@ Note that amputating the affected organ does in fact remove the infection from t
 
 /datum/limb/proc/get_icon(icon/race_icon, icon/deform_icon,gender="")
 
-	if (limb_status & LIMB_ROBOT && !(owner.species && owner.species.species_flags & IS_SYNTHETIC))
-		return new /icon('icons/mob/human_races/robotic.dmi', "[icon_name][gender ? "_[gender]" : ""]")
+	if(icon)
+		return new /icon("[icon]", "[icon_name][gender ? "_[gender]" : ""]")
 
 	if (limb_status & LIMB_MUTATED)
 		return new /icon(deform_icon, "[icon_name][gender ? "_[gender]" : ""]")
@@ -1287,3 +1277,41 @@ Note that amputating the affected organ does in fact remove the infection from t
 		return
 	if(!(owner.species.species_flags & DETACHABLE_HEAD))
 		owner.set_undefibbable()
+
+/datum/limb/head/robotic
+	brute_mod = 0.5
+	limb_status = LIMB_ROBOT
+
+/datum/limb/l_arm/robotic
+	brute_mod = 0.5
+	limb_status = LIMB_ROBOT
+
+/datum/limb/r_arm/robotic
+	brute_mod = 0.5
+	limb_status = LIMB_ROBOT
+
+/datum/limb/hand/r_hand/robotic
+	brute_mod = 0.5
+	limb_status = LIMB_ROBOT
+
+/datum/limb/hand/l_hand/robotic
+	brute_mod = 0.5
+	limb_status = LIMB_ROBOT
+
+/datum/limb/r_leg/robotic
+	brute_mod = 0.5
+	limb_status = LIMB_ROBOT
+
+/datum/limb/l_leg/robotic
+	brute_mod = 0.5
+	limb_status = LIMB_ROBOT
+
+/datum/limb/foot/r_foot/robotic
+	brute_mod = 0.5
+	limb_status = LIMB_ROBOT
+
+/datum/limb/foot/l_foot/robotic
+	brute_mod = 0.5
+	limb_status = LIMB_ROBOT
+
+

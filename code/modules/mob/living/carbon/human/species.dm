@@ -662,7 +662,6 @@
 	taste_sensitivity = TASTE_DULL
 	unarmed_type = /datum/unarmed_attack/claws/strong
 	secondary_unarmed_type = /datum/unarmed_attack/bite/strong
-	rarity_value = 2
 
 	speech_sounds = list('sound/voice/shriek1.ogg')
 	speech_chance = 20
@@ -702,7 +701,6 @@
 	name_plural = "Vox"
 	icobase = 'icons/mob/human_races/r_armalis.dmi'
 	deform = 'icons/mob/human_races/r_armalis.dmi'
-	rarity_value = 10
 
 	warning_low_pressure = 50
 	hazard_low_pressure = 0
@@ -741,7 +739,6 @@
 	deform = 'icons/mob/human_races/r_machine.dmi'
 	default_language_holder = /datum/language_holder/machine
 	unarmed_type = /datum/unarmed_attack/punch
-	rarity_value = 2
 
 	eyes = "blank_eyes"
 	brute_mod = 0.25
@@ -797,7 +794,6 @@
 
 	default_language_holder = /datum/language_holder/synthetic
 	unarmed_type = /datum/unarmed_attack/punch
-	rarity_value = 2
 
 	total_health = 125 //more health than regular humans
 
@@ -852,7 +848,6 @@
 	deform = 'icons/mob/human_races/r_synthetic.dmi'
 	default_language_holder = /datum/language_holder/synthetic
 	unarmed_type = /datum/unarmed_attack/punch
-	rarity_value = 1.5
 	total_health = 125
 	brute_mod = 0.70
 	burn_mod = 0.70

@@ -319,7 +319,7 @@
 	new /obj/item/storage/toolbox/mechanical(loc)
 	new /obj/item/assembly/prox_sensor(loc)
 	if(prob(50))
-		new /obj/item/robot_parts/l_arm(loc)
+		new /obj/item/limb/l_arm/robotic(loc)
 	var/obj/item/stack/tile/plasteel/T = new(loc)
 	T.amount = amount
 	T.update_icon()

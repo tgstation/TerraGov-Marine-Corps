@@ -17,7 +17,7 @@
 /obj/item/frame/bucket_sensor/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(istype(I, /obj/item/robot_parts/l_arm) || istype(I, /obj/item/robot_parts/r_arm))
+	if(istype(I, /obj/item/limb/l_arm/robotic) || istype(I, /obj/item/limb/r_arm/robotic))
 		user.drop_held_item()
 		qdel(I)
 		var/obj/machinery/bot/cleanbot/A = new(get_turf(src))
@@ -90,7 +90,7 @@
 /obj/item/frame/toolbox_tiles_sensor/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(istype(I, /obj/item/robot_parts/l_arm) || istype(I, /obj/item/robot_parts/r_arm))
+	if(istype(I, /obj/item/limb/l_arm/robotic) || istype(I, /obj/item/limb/r_arm/robotic))
 		qdel(I)
 		var/obj/machinery/bot/floorbot/A = new(get_turf(user))
 		A.name = created_name
