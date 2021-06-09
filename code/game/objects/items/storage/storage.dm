@@ -448,7 +448,6 @@
 	update_icon()
 
 	if(isgun(I) && fumble_guns && user)
-		var/obj/item/weapon/gun/gun = I
 		to_chat(user, "<span class='notice'>You begin drawing [gun].</span>")
 		if(!do_after(user, 0.5 SECONDS, TRUE, src))
 			to_chat(user, "<span class='warning'>You fumble with [gun] and it drops to the ground!</span>")
