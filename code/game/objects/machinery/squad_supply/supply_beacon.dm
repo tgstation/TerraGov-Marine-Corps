@@ -40,11 +40,7 @@
 	if(!do_after(H, delay, TRUE, src, BUSY_ICON_GENERIC))
 		return FALSE
 	GLOB.active_orbital_beacons += src
-	var/cam_name = ""
-	cam_name += H.get_paygrade()
-	cam_name += H.name
-	cam_name += " [src]"
-	var/obj/machinery/camera/beacon_cam/BC = new(src, cam_name)
+	var/obj/machinery/camera/beacon_cam/BC = new(src, "[H.get_paygrade()] [H.name] [src]")
 	H.transferItemToLoc(src, H.loc)
 	beacon_cam = BC
 	message_admins("[ADMIN_TPMONTY(usr)] set up an orbital strike beacon.")
