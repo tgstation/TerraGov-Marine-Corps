@@ -37,7 +37,8 @@
 	var/use_sound = "rustle"	//sound played when used. null for no sound.
 	var/opened = 0 //Has it been opened before?
 	var/list/content_watchers = list() //list of mobs currently seeing the storage's contents
-	var/access_delay = FALSE //How long does it take to put items into or out of this?
+	///How long does it take to put items into or out of this, in ticks?
+	var/access_delay = 0
 
 /obj/item/storage/MouseDrop(obj/over_object as obj)
 	if(!ishuman(usr))
@@ -400,8 +401,10 @@
 		return FALSE
 	return TRUE
 
-//This proc checks to see if we should actually delay access in this scenario.
-//This proc should return TRUE or FALSE
+/**
+ * This proc checks to see if we should actually delay access in this scenario
+ * This proc should return TRUE or FALSE
+ */
 /obj/item/storage/proc/should_access_delay(obj/item/accessed, mob/user, taking_out)
 	return FALSE
 
@@ -413,7 +416,7 @@
 	if(!istype(item)) return FALSE
 	if(!handle_access_delay(item, user, taking_out=FALSE))
 		item.forceMove(item.drop_location())
-		return
+		return FALSE
 	if(user && item.loc == user)
 		if(!user.transferItemToLoc(item, src))
 			return FALSE
