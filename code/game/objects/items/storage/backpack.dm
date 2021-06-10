@@ -144,7 +144,7 @@
 	icon_state = "satchel"
 	storage_slots = null
 	max_storage_space = 15
-	access_delay = FALSE
+	access_delay = 0
 
 /obj/item/storage/backpack/satchel/withwallet/Initialize(mapload, ...)
 	. = ..()
@@ -349,7 +349,7 @@
 	icon_state = "marinesat"
 	storage_slots = null
 	max_storage_space = 15
-	access_delay = FALSE
+	access_delay = 0
 
 /obj/item/storage/backpack/marine/satchel/green
 	name = "\improper TGMC satchel"
@@ -370,7 +370,7 @@
 	name = "\improper M3 sniper's smock"
 	desc = "A specially designed smock with pockets for all your sniper needs."
 	icon_state = "smock"
-	access_delay = FALSE
+	access_delay = 0
 
 //CLOAKS
 
@@ -668,7 +668,7 @@
 	var/max_fuel = 260
 	storage_slots = null
 	max_storage_space = 15
-	access_delay = FALSE
+	access_delay = 0
 
 /obj/item/storage/backpack/marine/engineerpack/Initialize(mapload, ...)
 	. = ..()
@@ -742,7 +742,7 @@
 	name = "\improper lightweight combat pack"
 	desc = "A small lightweight pack for expeditions and short-range operations."
 	icon_state = "ERT_satchel"
-	access_delay = FALSE
+	access_delay = 0
 
 /obj/item/storage/backpack/commando
 	name = "commando bag"
