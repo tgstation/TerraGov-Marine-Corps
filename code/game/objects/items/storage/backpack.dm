@@ -13,6 +13,12 @@
 	max_storage_space = 24
 	access_delay = 2.5 SECONDS
 
+/obj/item/storage/backpack/should_access_delay(obj/item/item, mob/user)
+	if(ishuman(user))
+		var/mob/living/carbon/human/human_user = user
+		return human_user.back == src
+	return ..()
+
 /obj/item/storage/backpack/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
@@ -138,7 +144,7 @@
 	icon_state = "satchel"
 	storage_slots = null
 	max_storage_space = 15
-	access_delay = 0.25 SECONDS
+	access_delay = FALSE
 
 /obj/item/storage/backpack/satchel/withwallet/Initialize(mapload, ...)
 	. = ..()
@@ -343,7 +349,7 @@
 	icon_state = "marinesat"
 	storage_slots = null
 	max_storage_space = 15
-	access_delay = 0.25 SECONDS
+	access_delay = FALSE
 
 /obj/item/storage/backpack/marine/satchel/green
 	name = "\improper TGMC satchel"
@@ -364,7 +370,7 @@
 	name = "\improper M3 sniper's smock"
 	desc = "A specially designed smock with pockets for all your sniper needs."
 	icon_state = "smock"
-	access_delay = 0.25 SECONDS
+	access_delay = FALSE
 
 //CLOAKS
 
@@ -662,7 +668,7 @@
 	var/max_fuel = 260
 	storage_slots = null
 	max_storage_space = 15
-	access_delay = 0.25 SECONDS
+	access_delay = FALSE
 
 /obj/item/storage/backpack/marine/engineerpack/Initialize(mapload, ...)
 	. = ..()
@@ -736,7 +742,7 @@
 	name = "\improper lightweight combat pack"
 	desc = "A small lightweight pack for expeditions and short-range operations."
 	icon_state = "ERT_satchel"
-	access_delay = 0.25 SECONDS
+	access_delay = FALSE
 
 /obj/item/storage/backpack/commando
 	name = "commando bag"

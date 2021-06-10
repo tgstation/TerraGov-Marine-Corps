@@ -388,7 +388,7 @@
 //If there is no delay, or the delay is negative, it simply returns TRUE.
 //Should return true if the access delay is completed successfully.
 /obj/item/storage/proc/handle_access_delay(obj/item/accessed, mob/user, taking_out = TRUE, alert_user = TRUE)
-	if(!access_delay)
+	if(!access_delay || !should_access_delay(accessed, user, taking_out))
 		return TRUE
 
 	if(!alert_user)
@@ -399,6 +399,11 @@
 		to_chat(user, "<span class='warning'>You fumble [accessed]!</span>")
 		return FALSE
 	return TRUE
+
+//This proc checks to see if we should actually delay access in this scenario.
+//This proc should return TRUE or FALSE
+/obj/item/storage/proc/should_access_delay(obj/item/accessed, mob/user, taking_out)
+	return FALSE
 
 //This proc handles items being inserted. It does not perform any checks of whether an item can or can't be inserted. That's done by can_be_inserted()
 //The stop_warning parameter will stop the insertion message from being displayed. It is intended for cases where you are inserting multiple items at once,
