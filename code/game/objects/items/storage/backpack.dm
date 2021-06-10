@@ -13,11 +13,13 @@
 	max_storage_space = 24
 	access_delay = 2.5 SECONDS
 
-/obj/item/storage/backpack/should_access_delay(obj/item/item, mob/user)
+/obj/item/storage/backpack/should_access_delay(obj/item/item, mob/user, taking_out)
+	if(!taking_out) // Always allow items to be tossed in instantly
+		return FALSE
 	if(ishuman(user))
 		var/mob/living/carbon/human/human_user = user
 		return human_user.back == src
-	return ..()
+	return FALSE
 
 /obj/item/storage/backpack/attackby(obj/item/I, mob/user, params)
 	. = ..()
