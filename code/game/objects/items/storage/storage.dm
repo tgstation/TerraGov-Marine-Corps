@@ -385,9 +385,11 @@
 
 	return TRUE
 
-//This proc handles the delay associated with a storage object.
-//If there is no delay, or the delay is negative, it simply returns TRUE.
-//Should return true if the access delay is completed successfully.
+/**
+ * This proc handles the delay associated with a storage object.
+ * If there is no delay, or the delay is negative, it simply returns TRUE.
+ * Should return true if the access delay is completed successfully.
+ */
 /obj/item/storage/proc/handle_access_delay(obj/item/accessed, mob/user, taking_out = TRUE, alert_user = TRUE)
 	if(!access_delay || !should_access_delay(accessed, user, taking_out))
 		return TRUE
