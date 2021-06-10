@@ -1,0 +1,4 @@
+author: "ZephyrTFA"
+delete-after: True
+changes: 
+  - bugfix: "Cloning Vats use less power if not running"
