@@ -208,7 +208,7 @@
 		/obj/item/storage/box/visual/magazine/compact/standard_br/full = 1,
 		/obj/item/storage/box/visual/magazine/compact/chamberedrifle/full = 1,
 		/obj/item/storage/box/visual/magazine/compact/standard_lmg/full = 1,
-		/obj/item/storage/box/visual/magazine/compact/standard_gpmg/full = 1
+		/obj/item/storage/box/visual/magazine/compact/standard_gpmg/full = 1,
 	)
 
 
