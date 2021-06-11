@@ -42,7 +42,7 @@
 		if(!loadout_name)
 			return
 		loadout = create_empty_loadout(loadout_name)
-		loadout.save_mob_loadout(dollie)
+		loadout.save_mob_loadout(dollie, TRUE)
 		SSpersistence.save_loadout(loadout)
 		to_chat(c, "<span class='notice'>New loadout copied from [dollie].</span>")
 		return

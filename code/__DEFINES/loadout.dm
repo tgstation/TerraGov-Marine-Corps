@@ -190,7 +190,7 @@ GLOBAL_LIST_INIT(job_specific_points_vendor, list(
 ))
 
 
-//List of all visible and accessible slot on the loadout maker
+///List of all visible and accessible slot on the loadout maker
 GLOBAL_LIST_INIT(visible_item_slot_list, list(
 	slot_head_str,
 	slot_back_str,
@@ -204,6 +204,14 @@ GLOBAL_LIST_INIT(visible_item_slot_list, list(
 	slot_belt_str,
 	slot_l_store_str,
 	slot_r_store_str,
+))
+
+///List of all additional item slot used by the admin loadout build mode
+GLOBAL_LIST_INIT(additional_admin_item_slot_list, list(
+	slot_l_hand_str,
+	slot_r_hand_str,
+	slot_wear_id_str,
+	slot_ear_str,
 ))
 
 ///All the vendor types which the automated loadout vendor can take items from
