@@ -56,6 +56,6 @@
 		if(isnull(loadout))
 			to_chat(c, "<span class='warning'>Pick an loadout first.</span>")
 			return
-		loadout.equip_mob(dollie, dollie.loc, TRUE)
+		loadout.equip_mob(dollie)
 
 

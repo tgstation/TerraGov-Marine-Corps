@@ -80,22 +80,17 @@
 	return FALSE //Unsupported slot
 
 /**
- * This will equipe the mob with all items of the loadout.
- * If a slot is already full, or an item doesn't fit the slot, the item will fall on the ground
+ * This will equip the mob with all items of the loadout.
  * user : the mob to dress
- * source : The turf where all rejected items will fall
  */
-/datum/loadout/proc/equip_mob(mob/user, turf/source, bypass_vendor_checks = FALSE)
+/datum/loadout/proc/equip_mob(mob/user)
 	var/obj/item/item
 	for(var/slot_key in item_list)
 		var/datum/item_representation/item_representation = item_list[slot_key]
-		if(bypass_vendor_checks)
-			item_representation.bypass_vendor_check = TRUE
-		item = item_representation.instantiate_object(user)
+		item = item_representation.instantiate_object()
 		if(!item)
 			continue
-		if(!user.equip_to_slot_if_possible(item, GLOB.slot_str_to_slot[slot_key], warning = FALSE))
-			item.forceMove(source)
+		user.equip_to_slot_if_possible(item, GLOB.slot_str_to_slot[slot_key], warning = FALSE)
 
 /**
  * This will read all items on the mob, and if the item is supported by the loadout maker, will save it in the corresponding slot
