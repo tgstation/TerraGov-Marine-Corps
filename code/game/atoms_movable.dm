@@ -50,6 +50,8 @@
 	var/list/affected_dynamic_lights
 	///Highest-intensity light affecting us, which determines our visibility.
 	var/affecting_dynamic_lumi = 0
+	///The loc of the atom before the first step of diagonal movement
+	var/olderloc = null
 
 //===========================================================================
 /atom/movable/Initialize(mapload, ...)
@@ -196,6 +198,7 @@
 			. = ..()
 		else //Diagonal move, split it into cardinal moves
 			moving_diagonally = FIRST_DIAG_STEP
+			olderloc = loc
 			var/first_step_dir
 			// The `&& moving_diagonally` checks are so that a forceMove taking
 			// place due to a Crossed, Bumped, etc. call will interrupt

@@ -337,9 +337,6 @@
 						to_chat(src, "<span class='warning'>[L] is restraining [P], you cannot push past.</span>")
 					return
 
-		if(moving_diagonally)//no mob swap during diagonal moves.
-			return
-
 		if(!L.buckled && !L.anchored)
 			var/mob_swap = FALSE
 			//the puller can always swap with its victim if on grab intent
@@ -355,7 +352,7 @@
 				if(loc && !loc.Adjacent(L.loc))
 					return
 				now_pushing = TRUE
-				var/oldloc = loc
+				var/oldloc = moving_diagonally ? olderloc : loc
 				var/oldLloc = L.loc
 
 				var/L_passmob = (L.flags_pass & PASSMOB) // we give PASSMOB to both mobs to avoid bumping other mobs during swap.
