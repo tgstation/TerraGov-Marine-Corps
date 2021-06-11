@@ -77,12 +77,14 @@
  * user : the mob to dress
  * source : The turf where all rejected items will fall
  */
-/datum/loadout/proc/equip_mob(mob/user, turf/source)
+/datum/loadout/proc/equip_mob(mob/user, turf/source, bypass_vendor_checks = FALSE)
 	var/obj/item/item
 	for(var/slot_key in GLOB.visible_item_slot_list)
 		if(!item_list[slot_key])
 			continue
 		var/datum/item_representation/item_representation = item_list[slot_key]
+		if(bypass_vendor_checks)
+			item_representation.bypass_vendor_check = TRUE
 		item = item_representation.instantiate_object(user)
 		if(!item)
 			continue
