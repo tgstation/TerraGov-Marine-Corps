@@ -62,3 +62,8 @@
 2021-06-10:
   Pariah919:
   - rscadd: Added new camo uniforms in marine clothing vendors
+2021-06-11:
+  Pariah919:
+  - rscadd: Added new berets with dark green, blood red and dark blue
+  ZephyrTFA:
+  - bugfix: Cloning Vats use less power if not running
