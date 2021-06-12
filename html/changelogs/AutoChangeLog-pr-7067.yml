@@ -1,0 +1,4 @@
+author: "MLGTASTICa"
+delete-after: True
+changes: 
+  - bugfix: "Ravager charge now applies its damage bonus properly."
