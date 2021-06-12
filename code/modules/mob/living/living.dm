@@ -337,7 +337,7 @@
 						to_chat(src, "<span class='warning'>[L] is restraining [P], you cannot push past.</span>")
 					return
 
-		if(moving_diagonally == FIRST_DIAG_STEP)//no mob swap during diagonal moves.
+		if(moving_diagonally == FIRST_DIAG_STEP)//no mob swap during first diagonal move.
 			return
 
 		if(!L.buckled && !L.anchored)
