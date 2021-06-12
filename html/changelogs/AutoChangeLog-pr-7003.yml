@@ -1,0 +1,4 @@
+author: "Wayland-Smithy"
+delete-after: True
+changes: 
+  - balance: "Shield now stops the bomb vest from exploding when equipped and up to 5 seconds after drop."
