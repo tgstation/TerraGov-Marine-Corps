@@ -266,12 +266,10 @@
 		new /obj/effect/alien/weeds(loc)
 
 /obj/structure/mineral_door/resin/CanAllowThrough(atom/movable/mover, turf/target)
-	if(!density)
-		return TRUE
-	if(isxeno(mover))
+	. = ..()
+	if(!. && isxeno(mover))
 		Open()
 		return TRUE
-	return FALSE
 	
 
 /obj/structure/mineral_door/resin/attack_paw(mob/living/carbon/human/user)
