@@ -337,7 +337,10 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	sundering = 3
 
 /datum/ammo/bullet/revolver/on_hit_mob(mob/M,obj/projectile/P)
-	staggerstun(M, P, stagger = 1, slowdown = 0.5, knockback = 1, shake = 0.5)
+	if(SEND_SIGNAL(P.shot_from, COMSIG_REVOLVER_AMMO_HIT_MOB))
+		staggerstun(M, P, stagger = 1, slowdown = 0.5, knockback = 1)
+	else
+		staggerstun(M, P, slowdown = 0.5)
 
 /datum/ammo/bullet/revolver/small
 	name = "small revolver bullet"
@@ -362,9 +365,6 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	penetration = 5
 	accuracy = -15
 
-/datum/ammo/bullet/revolver/heavy/on_hit_mob(mob/M,obj/projectile/P)
-	staggerstun(M, P, stagger = 1, slowdown = 0.5, knockback = 1)
-
 /datum/ammo/bullet/revolver/highimpact
 	name = "high-impact revolver bullet"
 	hud_state = "revolver_impact"
@@ -374,7 +374,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	sundering = 3
 
 /datum/ammo/bullet/revolver/highimpact/on_hit_mob(mob/M,obj/projectile/P)
-	staggerstun(M, P, weaken = 1, stagger = 1, slowdown = 1, knockback = 1)
+	staggerstun(M, P, weaken = 1, stagger = 1, slowdown = 1, knockback = 1, shake = 0.5)
 
 
 /datum/ammo/bullet/revolver/ricochet
