@@ -9,7 +9,7 @@
 	/// If it's allowed to bypass the vendor check
 	var/bypass_vendor_check = FALSE
 
-/datum/item_representation/New(obj/item/item_to_copy, datum/loadout/loadout)
+/datum/item_representation/New(obj/item/item_to_copy)
 	if(!item_to_copy)
 		return
 	item_type = item_to_copy.type
@@ -19,6 +19,10 @@
  * First, it tries to find that object in a vendor with enough supplies.
  * If it finds one vendor with that item in reserve, it sells it and instantiate that item.
  * If it fails to find a vendor, it will add that item to a list on seller to warns him that it failed
+ * Seller: The datum in charge of checking for points and buying_flags
+ * Master: the storage inside which the item will be inserted, can be null
+ * Loadout: 
+ * User: The human trying to equip this item
  * Return the instantatiated item if it was successfully sold, and return null otherwise
  */
 /datum/item_representation/proc/instantiate_object(datum/loadout_seller/seller, master = null, datum/loadout/loadout, mob/user)
@@ -50,7 +54,7 @@
 	/// The contents in the storage
 	var/list/contents = list()
 
-/datum/item_representation/storage/New(obj/item/item_to_copy, datum/loadout/loadout)
+/datum/item_representation/storage/New(obj/item/item_to_copy)
 	if(!item_to_copy)
 		return
 	if(!isstorage(item_to_copy))
@@ -64,7 +68,7 @@
 		if(!isitem(thing_in_content))
 			continue
 		item_representation_type = item2representation_type(thing_in_content.type)
-		contents += new item_representation_type(thing_in_content, loadout)
+		contents += new item_representation_type(thing_in_content)
 
 /datum/item_representation/storage/instantiate_object(datum/loadout_seller/seller, master = null, datum/loadout/loadout, mob/user)
 	. = ..()
@@ -95,7 +99,7 @@
 	///Amount of items in the stack
 	var/amount = 0
 
-/datum/item_representation/stack/New(obj/item/item_to_copy, datum/loadout/loadout)
+/datum/item_representation/stack/New(obj/item/item_to_copy)
 	if(!item_to_copy)
 		return
 	if(!isitemstack(item_to_copy))

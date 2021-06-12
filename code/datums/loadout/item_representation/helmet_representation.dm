@@ -8,7 +8,7 @@
 	///The module installed
 	var/datum/item_representation/modular_helmet_module/module
 
-/datum/item_representation/modular_helmet/New(obj/item/item_to_copy, datum/loadout/loadout)
+/datum/item_representation/modular_helmet/New(obj/item/item_to_copy)
 	if(!item_to_copy)
 		return
 	if(!ismodularhelmet(item_to_copy))
@@ -54,7 +54,7 @@
  */
 /datum/item_representation/modular_helmet_module
 
-/datum/item_representation/modular_helmet_module/New(obj/item/item_to_copy, datum/loadout/loadout)
+/datum/item_representation/modular_helmet_module/New(obj/item/item_to_copy)
 	if(!item_to_copy)
 		return
 	if(!ishelmetmodule(item_to_copy))

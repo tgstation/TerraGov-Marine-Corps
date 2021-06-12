@@ -5,7 +5,7 @@
 /datum/item_representation/uniform_representation
 	var/datum/item_representation/tie/tie 
 
-/datum/item_representation/uniform_representation/New(obj/item/item_to_copy, datum/loadout/loadout)
+/datum/item_representation/uniform_representation/New(obj/item/item_to_copy)
 	if(!item_to_copy)
 		return
 	if(!isuniform(item_to_copy))
@@ -13,7 +13,7 @@
 	..()
 	var/obj/item/clothing/under/uniform_to_copy = item_to_copy
 	if(uniform_to_copy.hastie)
-		tie = new /datum/item_representation/tie(uniform_to_copy.hastie, loadout)
+		tie = new /datum/item_representation/tie(uniform_to_copy.hastie)
 
 /datum/item_representation/uniform_representation/instantiate_object(datum/loadout_seller/seller, master = null, datum/loadout/loadout, mob/user)
 	. = ..()
@@ -51,14 +51,14 @@
 	///The storage of the tie
 	var/datum/item_representation/storage/hold
 
-/datum/item_representation/tie/New(obj/item/item_to_copy, datum/loadout/loadout)
+/datum/item_representation/tie/New(obj/item/item_to_copy)
 	if(!item_to_copy)
 		return
 	if(!iswebbing(item_to_copy))
 		CRASH("/datum/item_representation/tie created from an item that is not a tie storage")
 	..()
 	var/obj/item/clothing/tie/storage/tie = item_to_copy
-	hold = new /datum/item_representation/storage(tie.hold, loadout)
+	hold = new /datum/item_representation/storage(tie.hold)
 	
 /datum/item_representation/tie/instantiate_object(datum/loadout_seller/seller, master = null, datum/loadout/loadout, mob/user)
 	. = ..()

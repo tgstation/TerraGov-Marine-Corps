@@ -7,14 +7,14 @@
 	///The storage of the suit
 	var/datum/item_representation/storage/pockets
 
-/datum/item_representation/suit_with_storage/New(obj/item/item_to_copy, datum/loadout/loadout)
+/datum/item_representation/suit_with_storage/New(obj/item/item_to_copy)
 	if(!item_to_copy)
 		return
 	if(!issuitwithstorage(item_to_copy))
 		CRASH("/datum/item_representation/suit_with_storage created from an item that is not a suit with storage")
 	..()
 	var/obj/item/clothing/suit/storage/suit_to_copy = item_to_copy
-	pockets = new /datum/item_representation/storage(suit_to_copy.pockets, loadout)
+	pockets = new /datum/item_representation/storage(suit_to_copy.pockets)
 
 /datum/item_representation/suit_with_storage/instantiate_object(datum/loadout_seller/seller, master = null, datum/loadout/loadout, mob/user)
 	. = ..()
@@ -37,7 +37,7 @@
 	///The implementation of the storage
 	var/datum/item_representation/storage/storage_implementation
 
-/datum/item_representation/modular_armor/New(obj/item/item_to_copy, datum/loadout/loadout)
+/datum/item_representation/modular_armor/New(obj/item/item_to_copy)
 	if(!item_to_copy)
 		return
 	if(!ismodulararmor(item_to_copy))
@@ -46,17 +46,17 @@
 	var/obj/item/clothing/suit/modular/jaeger_to_copy = item_to_copy
 	armor_modules = list()
 	if(jaeger_to_copy.slot_chest)
-		armor_modules["chest"] = new /datum/item_representation/armor_module/colored(jaeger_to_copy.slot_chest, loadout)
+		armor_modules["chest"] = new /datum/item_representation/armor_module/colored(jaeger_to_copy.slot_chest)
 	if(jaeger_to_copy.slot_arms)
-		armor_modules["arms"] = new /datum/item_representation/armor_module/colored(jaeger_to_copy.slot_arms, loadout)
+		armor_modules["arms"] = new /datum/item_representation/armor_module/colored(jaeger_to_copy.slot_arms)
 	if(jaeger_to_copy.slot_legs)
-		armor_modules["legs"] = new /datum/item_representation/armor_module/colored(jaeger_to_copy.slot_legs, loadout)
+		armor_modules["legs"] = new /datum/item_representation/armor_module/colored(jaeger_to_copy.slot_legs)
 	if(jaeger_to_copy.installed_storage)
-		installed_storage = new /datum/item_representation/armor_module(jaeger_to_copy.installed_storage, loadout)
-		storage_implementation = new /datum/item_representation/storage(jaeger_to_copy.storage, loadout)
+		installed_storage = new /datum/item_representation/armor_module(jaeger_to_copy.installed_storage)
+		storage_implementation = new /datum/item_representation/storage(jaeger_to_copy.storage)
 	if(!length(jaeger_to_copy.installed_modules)) //Not supporting mutiple modules, but no object in game has that so
 		return
-	installed_module = new /datum/item_representation/armor_module(jaeger_to_copy.installed_modules[1], loadout)
+	installed_module = new /datum/item_representation/armor_module(jaeger_to_copy.installed_modules[1])
 
 /datum/item_representation/modular_armor/instantiate_object(datum/loadout_seller/seller, master = null, datum/loadout/loadout, mob/user)
 	. = ..()
@@ -118,7 +118,7 @@
  */
 /datum/item_representation/armor_module
 
-/datum/item_representation/armor_module/New(obj/item/item_to_copy, datum/loadout/loadout)
+/datum/item_representation/armor_module/New(obj/item/item_to_copy)
 	if(!item_to_copy)
 		return
 	if(!ismodulararmormodule(item_to_copy))
@@ -138,7 +138,7 @@
 	///The color of that armor module
 	var/greyscale_colors
 
-/datum/item_representation/armor_module/colored/New(obj/item/item_to_copy, datum/loadout/loadout)
+/datum/item_representation/armor_module/colored/New(obj/item/item_to_copy)
 	if(!item_to_copy)
 		return
 	if(!ismodulararmorarmorpiece(item_to_copy))
