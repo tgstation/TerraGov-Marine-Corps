@@ -1,0 +1,4 @@
+author: "ZephyrTFA"
+delete-after: True
+changes: 
+  - server: "Fixes the CI Linters"
