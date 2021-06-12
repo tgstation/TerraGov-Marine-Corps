@@ -1,0 +1,5 @@
+author: "Wayland-Smithy"
+delete-after: True
+changes: 
+  - balance: "Plasma pistol no longer accepts scope attachments."
+  - balance: "Plasma pistol now has 7 range, not 40."
