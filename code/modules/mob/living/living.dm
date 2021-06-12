@@ -337,6 +337,9 @@
 						to_chat(src, "<span class='warning'>[L] is restraining [P], you cannot push past.</span>")
 					return
 
+		if(moving_diagonally == FIRST_DIAG_STEP)//no mob swap during diagonal moves.
+			return
+
 		if(!L.buckled && !L.anchored)
 			var/mob_swap = FALSE
 			//the puller can always swap with its victim if on grab intent
