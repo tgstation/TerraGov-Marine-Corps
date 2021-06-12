@@ -23,3 +23,47 @@
   - bugfix: binoculars now can laser target properly.
   TiviPlus:
   - admin: Adds logging to shipside doors
+2021-06-04:
+  BraveMole:
+  - balance: Miners now take time to disable
+  ZephyrTFA:
+  - refactor: Massive Define Refactoring
+2021-06-05:
+  Wayland-Smithy:
+  - qol: Latejoin Xeno Prefs default to OFF now. Far less unwitting ghosts should
+      be getting shoved into SSD xenos.
+2021-06-06:
+  Wayland-Smithy:
+  - bugfix: Say verb get_key() no longer runtimes.
+  - admin: Game logs now save the location of mob ghostings.
+2021-06-07:
+  BraveMole:
+  - rscadd: Marine meds are now a tabbed share vendor
+  - rscadd: Fire mode keybind
+  DeltaFire15:
+  - bugfix: Harvester Blades no longer runtime if clicked with things that aren't
+      reagent containers.
+2021-06-08:
+  BraveMole:
+  - bugfix: Fix bioscans
+  Walarks:
+  - balance: remove famas from seasonals
+  Wayland-Smithy:
+  - bugfix: Fixed Crusher Stomp damage delay.
+  - qol: Crusher Crest Toss now works on big allies with a penalty like Warrior Fling.
+  - balance: Crusher Stomp briefly knocks down anyone adjacent to crusher for a half
+      second. Victims directly under foot stun increased by one second.
+  - balance: Crusher Crest Toss increases distance with age from 3 to 6 (still less
+      than half max powerfist), and has less cooldown.
+  - balance: Crest Toss and Stomp no longer deal stamina damage, only brute.
+2021-06-09:
+  BraveMole:
+  - bugfix: Corpses spawned in silo in hunt cannot be siloed again
+2021-06-10:
+  Pariah919:
+  - rscadd: Added new camo uniforms in marine clothing vendors
+2021-06-11:
+  Pariah919:
+  - rscadd: Added new berets with dark green, blood red and dark blue
+  ZephyrTFA:
+  - bugfix: Cloning Vats use less power if not running

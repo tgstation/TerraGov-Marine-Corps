@@ -39,7 +39,7 @@
 
 	// *** Crusher Abilities *** //
 	stomp_damage = 45
-	crest_toss_distance = 4
+	crest_toss_distance = 3
 
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
@@ -83,6 +83,7 @@
 
 	// *** Abilities *** //
 	stomp_damage = 50
+	crest_toss_distance = 4
 
 /datum/xeno_caste/crusher/elder
 	upgrade_name = "Elder"
@@ -114,6 +115,7 @@
 
 	// *** Abilities *** //
 	stomp_damage = 55
+	crest_toss_distance = 5
 
 /datum/xeno_caste/crusher/ancient
 	upgrade_name = "Ancient"
@@ -144,3 +146,4 @@
 	soft_armor = list("melee" = 90, "bullet" = 75, "laser" = 75, "energy" = 75, "bomb" = XENO_BOMB_RESIST_3, "bio" = 100, "rad" = 100, "fire" = 75, "acid" = 100)
 	// *** Abilities *** //
 	stomp_damage = 60
+	crest_toss_distance = 6

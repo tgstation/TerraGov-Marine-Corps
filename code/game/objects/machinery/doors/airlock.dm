@@ -267,11 +267,13 @@
 	. = ..()
 	if(is_mainship_level(z)) //log shipside greytiders
 		log_attack("[key_name(proj.firer)] shot [src] with [proj] at [AREACOORD(src)]")
+		msg_admin_ff("[ADMIN_TPMONTY(proj.firer)] shot [src] with [proj] in [ADMIN_VERBOSEJMP(src)].")
 
 /obj/machinery/door/airlock/attacked_by(obj/item/I, mob/living/user, def_zone)
 	. = ..()
 	if(. && is_mainship_level(z))
 		log_attack("[src] has been hit with [I] at [AREACOORD(src)] by [key_name(user)]")
+		msg_admin_ff("[ADMIN_TPMONTY(user)] hit [src] with [I] in [ADMIN_VERBOSEJMP(src)].")
 
 /obj/machinery/door/airlock/attackby(obj/item/I, mob/user, params)
 	. = ..()

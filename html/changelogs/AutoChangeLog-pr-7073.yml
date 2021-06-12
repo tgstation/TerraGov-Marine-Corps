@@ -1,0 +1,4 @@
+author: "SplinterGP"
+delete-after: True
+changes: 
+  - code_imp: "Input system won't request in-place movements constantly anymore."

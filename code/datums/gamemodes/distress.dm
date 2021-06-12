@@ -30,7 +30,6 @@
 
 /datum/game_mode/infestation/distress/post_setup()
 	. = ..()
-	addtimer(CALLBACK(src, .proc/announce_bioscans, FALSE, 1), rand(30 SECONDS, 1 MINUTES)) //First scan shows no location but more precise numbers.
 	addtimer(CALLBACK(GLOB.hive_datums[XENO_HIVE_NORMAL], /datum/hive_status/proc/handle_silo_death_timer), MINIMUM_TIME_SILO_LESS_COLLAPSE)
 
 	for(var/i in GLOB.xeno_turret_turfs)

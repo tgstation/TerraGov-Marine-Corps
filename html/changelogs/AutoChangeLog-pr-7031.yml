@@ -1,4 +1,4 @@
 author: "ZephyrTFA"
 delete-after: True
 changes: 
-  - refactor: "Massive Define Refactoring"
+  - server: "Fixes the CI Linters"

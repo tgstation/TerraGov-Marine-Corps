@@ -1,0 +1,4 @@
+author: "Wayland-Smithy"
+delete-after: True
+changes: 
+  - admin: "Shipside airlock attacks now log to admin chat also."

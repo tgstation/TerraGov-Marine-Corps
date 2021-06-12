@@ -183,6 +183,9 @@
 	var/obj/item/parent_item = parent
 	var/status_cover_modifier = 1
 
+	if(parent_item.obj_integrity <= parent_item.integrity_failure)
+		return incoming_damage
+
 	if(affected.IsSleeping() || affected.IsUnconscious() || affected.IsAdminSleeping()) //We don't do jack if we're literally KOed/sleeping/paralyzed.
 		return incoming_damage
 
