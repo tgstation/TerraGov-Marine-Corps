@@ -887,7 +887,7 @@ Proc for attack log creation, because really why not
 	TIMER_COOLDOWN_START(src, COOLDOWN_LIGHT, cooldown)
 	if(toggle_on == light_on)
 		return NO_LIGHT_STATE_CHANGE
-	if(forced & !toggle_on) //Is true when turn light is called by nightfall and the light is already on
+	if(forced && !toggle_on) //Is true when turn light is called by nightfall and the light is already on
 		addtimer(CALLBACK(src, .proc/reset_light), cooldown + 1)
 	if(sparks && light_on)
 		var/datum/effect_system/spark_spread/spark_system = new
