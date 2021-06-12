@@ -546,8 +546,8 @@ GLOBAL_LIST_INIT(loadout_job_supported, list(
 #define MODULAR_ARMOR_OFFSET_Y "-10%"
 #define MODULAR_ARMOR_SCALING 1.2
 
-///The maximum number of loadouts one player can have per job
-#define MAXIMUM_LOADOUT 15
+///The maximum number of loadouts one player can have
+#define MAXIMUM_LOADOUT 50
 
 /// The currently accepted loadout version, all other loadouts will be erased from savefiles
 #define CURRENT_LOADOUT_VERSION 3

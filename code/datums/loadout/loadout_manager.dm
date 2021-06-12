@@ -24,9 +24,6 @@
 	loadouts_data += next_loadout.name
 
 /datum/loadout_manager/ui_interact(mob/living/user, datum/tgui/ui)
-	if(!(user.job.title in GLOB.loadout_job_supported))
-		to_chat(ui.user, "<span class='warning'>Only squad members can use this vendor!</span>")
-		return
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "LoadoutManager")

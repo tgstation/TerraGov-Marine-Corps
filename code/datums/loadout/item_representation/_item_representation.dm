@@ -20,7 +20,7 @@
  * If it finds one vendor with that item in reserve, it sells it and instantiate that item.
  * If it fails to find a vendor, it will add that item to a list on seller to warns him that it failed
  * Seller: The datum in charge of checking for points and buying_flags
- * Master: the storage inside which the item will be inserted, can be null
+ * Master: used for modules, when the item need to be installed on master. Can be null
  * User: The human trying to equip this item
  * Return the instantatiated item if it was successfully sold, and return null otherwise
  */
@@ -82,7 +82,7 @@
 		if(!item_representation.bypass_vendor_check && starting_items[item_representation.item_type] > 0)
 			starting_items[item_representation.type] = starting_items[item_representation.item_type] - 1
 			item_representation.bypass_vendor_check = TRUE
-		var/obj/item/item_to_insert = item_representation.instantiate_object(seller, master, user)
+		var/obj/item/item_to_insert = item_representation.instantiate_object(seller, null, user)
 		if(!item_to_insert)
 			continue
 		if(storage.can_be_inserted(item_to_insert))
