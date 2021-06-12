@@ -18,12 +18,12 @@
 		attachments += new /datum/item_representation/gun_attachement(gun_to_copy.attachments[key])
 
 
-/datum/item_representation/gun/instantiate_object(datum/loadout_seller/seller, master = null, datum/loadout/loadout, mob/user)
+/datum/item_representation/gun/instantiate_object(datum/loadout_seller/seller, master = null, mob/living/user)
 	. = ..()
 	if(!.)
 		return
 	for(var/datum/item_representation/gun_attachement/gun_attachement AS in attachments)
-		gun_attachement.install_on_gun(seller, ., loadout, user)
+		gun_attachement.install_on_gun(seller, ., user)
 
 /**
  * Allow to representate a gun attachement
@@ -38,11 +38,11 @@
 	..()
 
 ///Attach the instantiated attachment to the gun
-/datum/item_representation/gun_attachement/proc/install_on_gun(seller, obj/item/weapon/gun/gun_to_attach, datum/loadout/loadout, mob/user)
+/datum/item_representation/gun_attachement/proc/install_on_gun(seller, obj/item/weapon/gun/gun_to_attach, mob/living/user)
 	var/obj/item/attachable/attachment_type = item_type
 	if(!(initial(attachment_type.flags_attach_features) & ATTACH_REMOVABLE))//Unremovable attachment are not in vendors
 		bypass_vendor_check = TRUE
-	var/obj/item/attachable/attachment = instantiate_object(seller, null, loadout, user)
+	var/obj/item/attachable/attachment = instantiate_object(seller, null, user)
 	attachment?.attach_to_gun(gun_to_attach)
 
 /**
@@ -73,7 +73,7 @@
 	max_rounds = handful_to_copy.max_rounds
 	gun_type = handful_to_copy.gun_type
 
-/datum/item_representation/handful_representation/instantiate_object(datum/loadout_seller/seller, master = null, datum/loadout/loadout, mob/user)
+/datum/item_representation/handful_representation/instantiate_object(datum/loadout_seller/seller, master = null, mob/living/user)
 	. = ..()
 	if(!.)
 		return

@@ -21,12 +21,11 @@
  * If it fails to find a vendor, it will add that item to a list on seller to warns him that it failed
  * Seller: The datum in charge of checking for points and buying_flags
  * Master: the storage inside which the item will be inserted, can be null
- * Loadout: 
  * User: The human trying to equip this item
  * Return the instantatiated item if it was successfully sold, and return null otherwise
  */
-/datum/item_representation/proc/instantiate_object(datum/loadout_seller/seller, master = null, datum/loadout/loadout, mob/user)
-	if(seller && !bypass_vendor_check && !buy_item_in_vendor(item_type, seller, loadout, user))
+/datum/item_representation/proc/instantiate_object(datum/loadout_seller/seller, master = null, mob/living/user)
+	if(seller && !bypass_vendor_check && !buy_item_in_vendor(item_type, seller, user))
 		return
 	var/obj/item/item = new item_type(master)
 	return item
@@ -70,7 +69,7 @@
 		item_representation_type = item2representation_type(thing_in_content.type)
 		contents += new item_representation_type(thing_in_content)
 
-/datum/item_representation/storage/instantiate_object(datum/loadout_seller/seller, master = null, datum/loadout/loadout, mob/user)
+/datum/item_representation/storage/instantiate_object(datum/loadout_seller/seller, master = null, mob/living/user)
 	. = ..()
 	if(!.)
 		return
@@ -83,7 +82,7 @@
 		if(!item_representation.bypass_vendor_check && starting_items[item_representation.item_type] > 0)
 			starting_items[item_representation.type] = starting_items[item_representation.item_type] - 1
 			item_representation.bypass_vendor_check = TRUE
-		var/obj/item/item_to_insert = item_representation.instantiate_object(seller, master, loadout, user)
+		var/obj/item/item_to_insert = item_representation.instantiate_object(seller, master, user)
 		if(!item_to_insert)
 			continue
 		if(storage.can_be_inserted(item_to_insert))
@@ -108,8 +107,8 @@
 	var/obj/item/stack/stack_to_copy = item_to_copy
 	amount = stack_to_copy.amount
 
-/datum/item_representation/stack/instantiate_object(datum/loadout_seller/seller, master = null, datum/loadout/loadout, mob/user)
-	if(seller && !bypass_vendor_check && !buy_item_in_vendor(item_type, seller, loadout, user) && !buy_stack(item_type, seller, loadout, user, amount))
+/datum/item_representation/stack/instantiate_object(datum/loadout_seller/seller, master = null, mob/living/user)
+	if(seller && !bypass_vendor_check && !buy_item_in_vendor(item_type, seller, user) && !buy_stack(item_type, seller, user, amount))
 		return
 	var/obj/item/stack/stack = new item_type(master)
 	stack.amount = amount

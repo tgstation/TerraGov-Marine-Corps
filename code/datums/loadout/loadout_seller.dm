@@ -27,7 +27,7 @@
 	buying_bitfield = id.marine_buy_flags
 	for(var/slot_key in GLOB.visible_item_slot_list)
 		var/datum/item_representation/item_representation = loadout.item_list[slot_key]
-		item_list[slot_key] = item_representation?.instantiate_object(src, null, loadout, user)
+		item_list[slot_key] = item_representation?.instantiate_object(src, null, user)
 
 ///Will equip the mob with the items that were bought previously
 /datum/loadout_seller/proc/do_equip_loadout(mob/living/user)

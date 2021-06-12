@@ -83,7 +83,7 @@
 		if(!item_list[slot_key])
 			continue
 		var/datum/item_representation/item_representation = item_list[slot_key]
-		item = item_representation.instantiate_object(user)
+		item = item_representation.instantiate_object()
 		if(!item)
 			continue
 		if(!user.equip_to_slot_if_possible(item, GLOB.slot_str_to_slot[slot_key], warning = FALSE))
