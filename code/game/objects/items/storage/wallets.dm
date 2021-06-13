@@ -31,7 +31,7 @@
 
 
 /obj/item/storage/wallet/remove_from_storage(obj/item/W, atom/new_location, mob/user)
-	. = ..(W, new_location, user)
+	. = ..()
 	if(.)
 		if(W == front_id)
 			front_id = null
