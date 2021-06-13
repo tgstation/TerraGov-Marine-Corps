@@ -1,7 +1,5 @@
 #define DEBUG_STAGGER_SLOWDOWN 0
 
-GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/facehugger, /obj/effect/alien/egg, /obj/structure/mineral_door, /obj/effect/alien/resin, /obj/structure/bed/nest))) //For sticky/acid spit
-
 /datum/ammo
 	var/name 		= "generic bullet"
 	var/icon 		= 'icons/obj/items/projectiles.dmi'
@@ -1714,51 +1712,17 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 20 //minor; this is mostly just to provide confirmation of a hit
 	max_range = 40
 	bullet_color = COLOR_PURPLE
-	stagger_stacks = 2
-	slowdown_stacks = 3
+	stagger_stacks = 3
+	slowdown_stacks = 4
 
 
 /datum/ammo/xeno/sticky/on_hit_mob(mob/M,obj/projectile/P)
-	drop_resin(get_turf(M))
 	if(istype(M,/mob/living/carbon))
 		var/mob/living/carbon/C = M
 		if(C.issamexenohive(P.firer))
 			return
 		C.adjust_stagger(stagger_stacks) //stagger briefly; useful for support
 		C.add_slowdown(slowdown_stacks) //slow em down
-
-
-/datum/ammo/xeno/sticky/on_hit_obj(obj/O,obj/projectile/P)
-	var/turf/T = get_turf(O)
-	if(!T)
-		T = get_turf(P)
-
-	if(O.density && !(O.flags_atom & ON_BORDER))
-		T = get_turf(get_step(T, turn(P.dir, 180))) //If the object is dense and not a border object like barricades, we instead drop in the location just prior to the target
-
-	drop_resin(T)
-
-/datum/ammo/xeno/sticky/on_hit_turf(turf/T,obj/projectile/P)
-	if(!T)
-		T = get_turf(P)
-
-	if(isclosedturf(T))
-		T = get_turf(get_step(T, turn(P.dir, 180))) //If the turf is closed, we instead drop in the location just prior to the turf
-
-	drop_resin(T)
-
-/datum/ammo/xeno/sticky/do_at_max_range(obj/projectile/P)
-	drop_resin(get_turf(P))
-
-/datum/ammo/xeno/sticky/proc/drop_resin(turf/T)
-	if(T.density)
-		return
-
-	for(var/obj/O in T.contents)
-		if(is_type_in_typecache(O, GLOB.no_sticky_resin))
-			return
-
-	new /obj/effect/alien/resin/sticky/thin(T)
 
 /datum/ammo/xeno/acid
 	name = "acid spit"

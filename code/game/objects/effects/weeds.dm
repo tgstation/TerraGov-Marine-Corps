@@ -12,6 +12,8 @@
 	layer = XENO_WEEDS_LAYER
 	plane = FLOOR_PLANE
 	max_integrity = 25
+	///How much weeds are slowing down marines
+	var/slowdown_amount = 1
 
 	var/obj/effect/alien/weeds/node/parent_node
 
@@ -55,6 +57,10 @@
 	if(isxeno(AM))
 		var/mob/living/carbon/xenomorph/X = AM
 		X.next_move_slowdown += X.xeno_caste.weeds_speed_mod
+		return
+	if(ishuman(AM))
+		var/mob/living/carbon/human/human= AM
+		human.next_move_slowdown += slowdown_amount
 
 /obj/effect/alien/weeds/proc/update_neighbours(turf/U)
 	if(!U)

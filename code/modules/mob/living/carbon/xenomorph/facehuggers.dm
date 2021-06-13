@@ -711,16 +711,12 @@
 	visible_message("<span class='danger'>[src] explodes into a mess of viscous resin!</span>")
 	playsound(loc, get_sfx("alien_resin_build"), 50, 1)
 
-	for(var/turf/sticky_tile AS in RANGE_TURFS(1, loc))
-		if(!locate(/obj/effect/xenomorph/spray) in sticky_tile.contents)
-			new /obj/effect/alien/resin/sticky/thin(sticky_tile)
-
 	var/armor_block
 	for(var/mob/living/target in range(1, loc))
 		if(isxeno(target)) //Xenos aren't affected by sticky resin
 			continue
 
-		target.adjust_stagger(3)
+		target.adjust_stagger(5)
 		target.add_slowdown(15)
 		armor_block = target.run_armor_check(BODY_ZONE_CHEST, "bio")
 		target.apply_damage(100, STAMINA, BODY_ZONE_CHEST, armor_block) //Small amount of stamina damage; meant to stop sprinting.

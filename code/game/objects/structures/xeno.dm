@@ -64,62 +64,6 @@
 	to_chat(usr, "<span class='warning'>You scrape ineffectively at \the [src].</span>")
 	return TRUE
 
-
-/obj/effect/alien/resin/sticky
-	name = "sticky resin"
-	desc = "A layer of disgusting sticky slime."
-	icon_state = "sticky"
-	density = FALSE
-	opacity = FALSE
-	max_integrity = 36
-	layer = RESIN_STRUCTURE_LAYER
-	hit_sound = "alien_resin_move"
-	var/slow_amt = 8
-
-	ignore_weed_destruction = TRUE
-
-/obj/effect/alien/resin/sticky/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
-	if(X.status_flags & INCORPOREAL)
-		return FALSE
-
-	if(X.a_intent == INTENT_HARM) //Clear it out on hit; no need to double tap.
-		X.do_attack_animation(src, ATTACK_EFFECT_CLAW) //SFX
-		playsound(src, "alien_resin_break", 25) //SFX
-		deconstruct(TRUE)
-		return
-
-	return ..()
-
-
-/obj/effect/alien/resin/sticky/Crossed(atom/movable/AM)
-	. = ..()
-	if(!ishuman(AM))
-		return
-
-	if(CHECK_MULTIPLE_BITFIELDS(AM.flags_pass, HOVERING))
-		return
-
-	var/mob/living/carbon/human/H = AM
-
-	if(H.lying_angle)
-		return
-
-	H.next_move_slowdown += slow_amt
-
-
-// Praetorian Sticky Resin spit uses this.
-/obj/effect/alien/resin/sticky/thin
-	name = "thin sticky resin"
-	desc = "A thin layer of disgusting sticky slime."
-	max_integrity = 6
-	slow_amt = 4
-
-	ignore_weed_destruction = FALSE
-
-// Default for xeno structures
-	hud_possible = list(XENO_TACTICAL_HUD)
-
-
 //Carrier trap
 /obj/structure/xeno/trap
 	desc = "It looks like a hiding hole."
