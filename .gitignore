@@ -18,7 +18,6 @@ tools/MapDaemon/logs/*.txt
 #Visual studio stuff
 *.vscode/*
 !/.vscode/extensions.json
-!/.vscode/settings.json
 !/.vscode/launch.json
 !/.vscode/tasks.json
 
