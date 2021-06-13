@@ -352,16 +352,11 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 
 /datum/skills/FO
 	name = FIELD_COMMANDER
-	engineer = SKILL_ENGINEER_ENGI //to fix CIC apc.
 	construction = SKILL_CONSTRUCTION_PLASTEEL
 	leadership = SKILL_LEAD_MASTER
-	medical = SKILL_MEDICAL_PRACTICED
-	surgery = SKILL_SURGERY_AMATEUR
 	police = SKILL_POLICE_MP
 	powerloader = SKILL_POWERLOADER_TRAINED
-	pistols = SKILL_PISTOLS_TRAINED
 	cqc = SKILL_CQC_TRAINED
-	melee_weapons = SKILL_MELEE_TRAINED
 	spec_weapons = SKILL_SPEC_TRAINED
 
 /datum/skills/SO
