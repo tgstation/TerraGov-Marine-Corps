@@ -145,7 +145,7 @@
 
 /obj/item/weapon/shield/riot/marine/update_icon_state()
 	if(obj_integrity <= integrity_failure)
-		icon_state += initial(icon_state) + "_broken"
+		icon_state = initial(icon_state) + "_broken"
 	else
 		icon_state = initial(icon_state)
 
