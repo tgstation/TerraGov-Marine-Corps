@@ -1,9 +1,0 @@
-author: "Wayland-Smithy"
-delete-after: True
-changes: 
-  - rscadd: "Added Runechat text to Imaginary Friends for them and their owners to see."
-  - rscadd: "Added a Xeno Suit cosmetic for Imaginary Friends."
-  - rscadd: "Added Darkness, Change Appearance, and HUD toggle verbs to Imaginary Friends."
-  - qol: "Imaginary Friends now continue to hear ghosts and other IFs while active."
-  - bugfix: "Fixed the Show/Hide ability button requiring two toggles to work the first time for Imaginary Friends."
-  - bugfix: "Fixed Imaginary Friends possibly being naked spatial agents and blocking clicks."

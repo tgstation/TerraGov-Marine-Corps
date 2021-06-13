@@ -67,3 +67,37 @@
   - rscadd: Added new berets with dark green, blood red and dark blue
   ZephyrTFA:
   - bugfix: Cloning Vats use less power if not running
+2021-06-13:
+  BraveMole:
+  - qol: You can see how many burrowed there are from lobby
+  MLGTASTICa:
+  - bugfix: Ravager charge now applies its damage bonus properly.
+  - bugfix: Fixed resin jelly allowing for xenos to be set on fire.
+  Pariah919:
+  - balance: shields no longer have hard melee armor and slow you down a bit more
+  SplinterGP:
+  - code_imp: Input system won't request in-place movements constantly anymore.
+  - balance: shields now break instead of being deletted.
+  Wayland-Smithy:
+  - bugfix: Fixed the orbital level change arrival message never being announced.
+  - balance: Shield now stops the bomb vest from exploding when equipped and up to
+      5 seconds after drop.
+  - bugfix: Fixed Tadpole getting stuck in the air with a slashed console.
+  - bugfix: AI can now recover from a camera blackout if it was looking at an escape
+      shuttle, or anything else causes deletion.
+  - rscadd: Added Runechat text to Imaginary Friends for them and their owners to
+      see.
+  - rscadd: Added a Xeno Suit cosmetic for Imaginary Friends.
+  - rscadd: Added Darkness, Change Appearance, and HUD toggle verbs to Imaginary Friends.
+  - qol: Imaginary Friends now continue to hear ghosts and other IFs while active.
+  - bugfix: Fixed the Show/Hide ability button requiring two toggles to work the first
+      time for Imaginary Friends.
+  - bugfix: Fixed Imaginary Friends possibly being naked spatial agents and blocking
+      clicks.
+  - admin: Shipside airlock attacks now log to admin chat also.
+  - balance: Plasma pistol no longer accepts scope attachments.
+  - balance: Plasma pistol now has 7 range, not 40.
+  - balance: Snub-nosed TP-44 Revolvers no longer apply stagger or knockback to targets.
+      Moves shake to Mateba which it did not have before.
+  ZephyrTFA:
+  - server: Fixes the CI Linters

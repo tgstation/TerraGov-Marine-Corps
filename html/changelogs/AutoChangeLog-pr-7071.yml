@@ -1,4 +1,0 @@
-author: "Wayland-Smithy"
-delete-after: True
-changes: 
-  - bugfix: "AI can now recover from a camera blackout if it was looking at an escape shuttle, or anything else causes deletion."
