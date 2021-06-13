@@ -804,7 +804,7 @@ TUNNEL
 	destroy_sound = "alien_resin_move"
 
 	var/charges = 1
-	var/ccharging = FALSE
+	var/charging = FALSE
 	var/mob/living/carbon/xenomorph/creator = null
 
 /obj/structure/xeno/acidwell/Initialize()
@@ -859,31 +859,21 @@ TUNNEL
 			take_damage(70)
 
 /obj/structure/xeno/acidwell/flamer_fire_act() //Removes a charge of acid, but fire is extinguished
-	if(!charges)
-		return
-
-	charges--
-	update_icon()
-	var/datum/effect_system/smoke_spread/xeno/acid/A //Set vars
-	var/turf/T = get_turf(src)
-	A = new(T) //spawn acid smoke when charges are actually used
-	A.set_up(0, src) //acid smoke in the immediate vicinity
-	A.start()
-
-	for(var/obj/flamer_fire/F in T) //Extinguish all flames in turf
-		qdel(F)
+	acid_well_fire_interaction()
 
 /obj/structure/xeno/acidwell/fire_act() //Removes a charge of acid, but fire is extinguished
+	acid_well_fire_interaction()
+
+/obj/structure/xeno/acidwell/proc/acid_well_fire_interaction()
 	if(!charges)
 		return
 
 	charges--
 	update_icon()
-	var/datum/effect_system/smoke_spread/xeno/acid/A //Set vars
 	var/turf/T = get_turf(src)
-	A = new(T) //spawn acid smoke when charges are actually used
-	A.set_up(0, src) //acid smoke in the immediate vicinity
-	A.start()
+	var/datum/effect_system/smoke_spread/xeno/acid/acid_smoke = new(T) //spawn acid smoke when charges are actually used
+	acid_smoke.set_up(0, src) //acid smoke in the immediate vicinity
+	acid_smoke.start()
 
 	for(var/obj/flamer_fire/F in T) //Extinguish all flames in turf
 		qdel(F)
@@ -905,7 +895,7 @@ TUNNEL
 	if(charges >= 5)
 		to_chat(X, "<span class='xenodanger'>[src] is already full!</span>")
 		return
-	if(ccharging)
+	if(charging)
 		to_chat(X, "<span class='xenodanger'>[src] is already being filled!</span>")
 		return
 
@@ -913,21 +903,21 @@ TUNNEL
 		to_chat(X, "<span class='xenodanger'>We don't have enough plasma to fill [src]! We need <b>[XENO_ACID_WELL_FILL_COST - X.plasma_stored]</b> more plasma!</span>")
 		return
 
-	ccharging = TRUE
+	charging = TRUE
 	to_chat(X, "<span class='xenodanger'>We begin refilling [src]...</span>")
 	if(!do_after(X, XENO_ACID_WELL_FILL_TIME, FALSE, src, BUSY_ICON_BUILD))
-		ccharging = FALSE
+		charging = FALSE
 		to_chat(X, "<span class='xenodanger'>We abort refilling [src]!</span>")
 		return
 
 	if(X.plasma_stored < XENO_ACID_WELL_FILL_COST)
-		ccharging = FALSE
+		charging = FALSE
 		to_chat(X, "<span class='xenodanger'>We don't have enough plasma to fill [src]! We need <b>[XENO_ACID_WELL_FILL_COST - X.plasma_stored]</b> more plasma!</span>")
 		return
 
 	X.plasma_stored -= XENO_ACID_WELL_FILL_COST
 	charges++
-	ccharging = FALSE
+	charging = FALSE
 	update_icon()
 	to_chat(X,"<span class='xenonotice'>We add acid to [src]. It is currently has <b>[charges] / [XENO_ACID_WELL_MAX_CHARGES] charges</b>.</span>")
 
@@ -947,14 +937,14 @@ TUNNEL
 	if(!charges)
 		return
 
-	var/datum/effect_system/smoke_spread/xeno/acid/A
+	var/datum/effect_system/smoke_spread/xeno/acid/acid_smoke
 
 	if(isxeno(stepper))
 		if(!(stepper.on_fire))
 			return
-		A = new(get_turf(stepper)) //spawn acid smoke when charges are actually used
-		A.set_up(0, src) //acid smoke in the immediate vicinity
-		A.start()
+		acid_smoke = new(get_turf(stepper)) //spawn acid smoke when charges are actually used
+		acid_smoke.set_up(0, src) //acid smoke in the immediate vicinity
+		acid_smoke.start()
 		stepper.ExtinguishMob()
 		charges--
 		update_icon()
@@ -967,9 +957,9 @@ TUNNEL
 	"<span class='danger'>We are immersed in [src]'s acid!</span>", null, 5)
 	playsound(stepper, "sound/bullets/acid_impact1.ogg", 10 * charges)
 	new /obj/effect/temp_visual/acid_bath(get_turf(stepper))
-	A = new(get_turf(stepper)) //spawn acid smoke when charges are actually used
-	A.set_up(0, src) //acid smoke in the immediate vicinity
-	A.start()
+	acid_smoke = new(get_turf(stepper)) //spawn acid smoke when charges are actually used
+	acid_smoke.set_up(0, src) //acid smoke in the immediate vicinity
+	acid_smoke.start()
 	charges = 0
 	update_icon()
 
