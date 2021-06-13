@@ -55,6 +55,9 @@
 			victim.internal_organs_by_name -= "brain"
 			victim.internal_organs -= brain
 			victim.headbitten = TRUE
+			victim.chestburst = 2
+			victim.update_burst()
+			victim.update_headbite()
 			if(length(GLOB.xeno_resin_silos))
 				victim.loc = pick(GLOB.xeno_resin_silos)
 		if(HEADBITE_DEATH) //Headbite but left there
@@ -63,6 +66,7 @@
 			victim.internal_organs_by_name -= "brain"
 			victim.internal_organs -= brain
 			victim.headbitten = TRUE
+			victim.update_headbite()
 	qdel(src)
 			
 

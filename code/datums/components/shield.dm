@@ -170,6 +170,7 @@
 /datum/component/shield/proc/shield_detatch_from_user()
 	if(!affected)
 		return
+	SEND_SIGNAL(affected, COMSIG_MOB_SHIELD_DETATCH)
 	deactivate_with_user()
 	affected = null
 
@@ -182,6 +183,9 @@
 /datum/component/shield/proc/item_intercept_attack(attack_type, incoming_damage, damage_type, silent)
 	var/obj/item/parent_item = parent
 	var/status_cover_modifier = 1
+
+	if(parent_item.obj_integrity <= parent_item.integrity_failure)
+		return incoming_damage
 
 	if(affected.IsSleeping() || affected.IsUnconscious() || affected.IsAdminSleeping()) //We don't do jack if we're literally KOed/sleeping/paralyzed.
 		return incoming_damage
