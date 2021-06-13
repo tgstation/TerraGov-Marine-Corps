@@ -50,7 +50,8 @@
 	max_storage_space = 28
 
 /obj/item/storage/backpack/holding/proc/failcheck(mob/user as mob)
-	if (prob(src.reliability)) return TRUE //No failure
+	if (prob(src.reliability)) 
+		return TRUE //No failure
 	if (prob(src.reliability))
 		to_chat(user, "<span class='warning'>The Bluespace portal resists your attempt to add another item.</span>")
 	else
