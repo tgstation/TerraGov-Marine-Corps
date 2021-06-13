@@ -214,8 +214,9 @@
 		if(pulling.anchored)
 			stop_pulling()
 		else
+			var/pull_dir = get_dir(src, pulling)
 			//puller and pullee more than one tile away
-			if(get_dist(src, pulling) > 1)
+			if(get_dist(src, pulling) > 1  || ((pull_dir - 1) & pull_dir))
 				pulling.moving_from_pull = src
 				pulling.Move(T, get_dir(pulling, T)) //the pullee tries to reach our previous position
 				pulling.moving_from_pull = null
