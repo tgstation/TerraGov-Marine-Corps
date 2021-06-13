@@ -895,9 +895,9 @@ TUNNEL
 
 /obj/structure/xeno/acidwell/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
 	if(X.a_intent == INTENT_HARM && (CHECK_BITFIELD(X.xeno_caste.caste_flags, CASTE_IS_BUILDER) || X == creator) ) //If we're a builder caste or the creator and we're on harm intent, deconstruct it.
-		to_chat(X, "<span class='xenodanger'>We begin filling in [src]...</span>")
+		to_chat(X, "<span class='xenodanger'>We begin removing \the [src]...</span>")
 		if(!do_after(X, XENO_ACID_WELL_FILL_TIME, FALSE, src, BUSY_ICON_HOSTILE))
-			to_chat(X, "<span class='xenodanger'>We stop filling in [src]...</span>")
+			to_chat(X, "<span class='xenodanger'>We stop removing \the [src]...</span>")
 		playsound(src, "alien_resin_break", 25)
 		deconstruct(TRUE, X)
 		return
