@@ -48,8 +48,6 @@
 	var/list/affected_dynamic_lights
 	///Highest-intensity light affecting us, which determines our visibility.
 	var/affecting_dynamic_lumi = 0
-	///The loc of the atom before the first step of diagonal movement
-	var/olderloc = null
 
 //===========================================================================
 /atom/movable/Initialize(mapload, ...)
@@ -194,16 +192,17 @@
 		if(!(direct & (direct - 1))) //Cardinal move
 			. = ..()
 		else //Diagonal move
+			var/canpass = FALSE
 			if(direct & NORTH)
-				. = loc.CanPass(src, get_step(loc, NORTH))
-			if(!. && (direct & EAST))
-				. = loc.CanPass(src, get_step(loc, EAST))
-			if(!. && (direct & WEST))
-				. = loc.CanPass(src, get_step(loc, WEST))
-			if(!. && (direct & SOUTH))
-				. = loc.CanPass(src, get_step(loc, SOUTH))
-			if(.)
-				..()
+				canpass = loc.CanPass(src, get_step(loc, NORTH))
+			if(!canpass && (direct & EAST))
+				canpass = loc.CanPass(src, get_step(loc, EAST))
+			if(!canpass && (direct & WEST))
+				canpass = loc.CanPass(src, get_step(loc, WEST))
+			if(!canpass && (direct & SOUTH))
+				canpass = loc.CanPass(src, get_step(loc, SOUTH))
+			if(canpass)
+				. = ..()
 
 	if(!loc || (loc == oldloc && oldloc != newloc))
 		return
