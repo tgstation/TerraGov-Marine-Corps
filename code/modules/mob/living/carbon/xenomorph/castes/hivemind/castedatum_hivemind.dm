@@ -32,6 +32,7 @@
 
 	// *** Flags *** //
 	caste_flags = CASTE_INNATE_PLASMA_REGEN|CASTE_FIRE_IMMUNE
+	caste_flags = CASTE_INNATE_PLASMA_REGEN | CASTE_FIRE_IMMUNE | CASTE_IS_BUILDER
 
 	can_hold_eggs = CANNOT_HOLD_EGGS
 
