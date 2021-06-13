@@ -198,7 +198,7 @@
 	. = ..()
 
 	if(pulledby)
-		if(moving_diagonally != FIRST_DIAG_STEP && get_dist(src, pulledby) > 1 && (pulledby != moving_from_pull))//separated from our puller and not in the middle of a diagonal move.
+		if(get_dist(src, pulledby) > 1 && (pulledby != moving_from_pull))//separated from our puller and not in the middle of a diagonal move.
 			pulledby.stop_pulling()
 		else if(isliving(pulledby))
 			var/mob/living/living_puller = pulledby
@@ -337,9 +337,6 @@
 						to_chat(src, "<span class='warning'>[L] is restraining [P], you cannot push past.</span>")
 					return
 
-		if(moving_diagonally == FIRST_DIAG_STEP)//no mob swap during first diagonal move.
-			return
-
 		if(!L.buckled && !L.anchored)
 			var/mob_swap = FALSE
 			//the puller can always swap with its victim if on grab intent
@@ -355,7 +352,7 @@
 				if(loc && !loc.Adjacent(L.loc))
 					return
 				now_pushing = TRUE
-				var/oldloc = moving_diagonally ? olderloc : loc
+				var/oldloc = loc
 				var/oldLloc = L.loc
 
 				var/L_passmob = (L.flags_pass & PASSMOB) // we give PASSMOB to both mobs to avoid bumping other mobs during swap.
@@ -396,8 +393,6 @@
 	if(AM.anchored)
 		return TRUE
 	if(now_pushing)
-		return TRUE
-	if(moving_diagonally)// no pushing during diagonal moves.
 		return TRUE
 	if(!client && (mob_size < MOB_SIZE_SMALL))
 		return

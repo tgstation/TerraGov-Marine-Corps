@@ -2,7 +2,6 @@
 	layer = OBJ_LAYER
 	glide_size = 8
 	appearance_flags = TILE_BOUND|PIXEL_SCALE
-	var/last_move = null
 	var/last_move_time = 0
 	var/anchored = FALSE
 	///How much the atom resists being thrown or moved.
@@ -15,7 +14,6 @@
 	var/throw_range = 7
 	var/mob/pulledby = null
 	var/atom/movable/pulling
-	var/moving_diagonally = 0 //to know whether we're in the middle of a diagonal move,
 	var/atom/movable/moving_from_pull		//attempt to resume grab after moving instead of before.
 	var/glide_modifier_flags = NONE
 
@@ -196,60 +194,19 @@
 	if(loc != newloc)
 		if(!(direct & (direct - 1))) //Cardinal move
 			. = ..()
-		else //Diagonal move, split it into cardinal moves
-			moving_diagonally = FIRST_DIAG_STEP
-			olderloc = loc
-			var/first_step_dir
-			// The `&& moving_diagonally` checks are so that a forceMove taking
-			// place due to a Crossed, Bumped, etc. call will interrupt
-			// the second half of the diagonal movement, or the second attempt
-			// at a first half if step() fails because we hit something.
+		else //Diagonal move
 			if(direct & NORTH)
-				if(direct & EAST)
-					if(step(src, NORTH) && moving_diagonally)
-						first_step_dir = NORTH
-						moving_diagonally = SECOND_DIAG_STEP
-						. = step(src, EAST)
-					else if(moving_diagonally && step(src, EAST))
-						first_step_dir = EAST
-						moving_diagonally = SECOND_DIAG_STEP
-						. = step(src, NORTH)
-				else if(direct & WEST)
-					if(step(src, NORTH) && moving_diagonally)
-						first_step_dir = NORTH
-						moving_diagonally = SECOND_DIAG_STEP
-						. = step(src, WEST)
-					else if(moving_diagonally && step(src, WEST))
-						first_step_dir = WEST
-						moving_diagonally = SECOND_DIAG_STEP
-						. = step(src, NORTH)
-			else if(direct & SOUTH)
-				if(direct & EAST)
-					if(step(src, SOUTH) && moving_diagonally)
-						first_step_dir = SOUTH
-						moving_diagonally = SECOND_DIAG_STEP
-						. = step(src, EAST)
-					else if(moving_diagonally && step(src, EAST))
-						first_step_dir = EAST
-						moving_diagonally = SECOND_DIAG_STEP
-						. = step(src, SOUTH)
-				else if(direct & WEST)
-					if(step(src, SOUTH) && moving_diagonally)
-						first_step_dir = SOUTH
-						moving_diagonally = SECOND_DIAG_STEP
-						. = step(src, WEST)
-					else if(moving_diagonally && step(src, WEST))
-						first_step_dir = WEST
-						moving_diagonally = SECOND_DIAG_STEP
-						. = step(src, SOUTH)
-			if(moving_diagonally == SECOND_DIAG_STEP)
-				if(!. && !(flags_atom & DIRLOCK))
-					setDir(first_step_dir)
-			moving_diagonally = 0
-			return
+				. = loc.CanPass(src, get_step(loc, NORTH))
+			if(!. && (direct & EAST))
+				. = loc.CanPass(src, get_step(loc, EAST))
+			if(!. && (direct & WEST))
+				. = loc.CanPass(src, get_step(loc, WEST))
+			if(!. && (direct & SOUTH))
+				. = loc.CanPass(src, get_step(loc, SOUTH))
+			if(.)
+				..()
 
 	if(!loc || (loc == oldloc && oldloc != newloc))
-		last_move = 0
 		return
 
 	if(.)
@@ -259,9 +216,8 @@
 		if(pulling.anchored)
 			stop_pulling()
 		else
-			var/pull_dir = get_dir(src, pulling)
-			//puller and pullee more than one tile away or in diagonal position
-			if(get_dist(src, pulling) > 1 || (moving_diagonally != SECOND_DIAG_STEP && ((pull_dir - 1) & pull_dir)))
+			//puller and pullee more than one tile away
+			if(get_dist(src, pulling) > 1)
 				pulling.moving_from_pull = src
 				pulling.Move(T, get_dir(pulling, T)) //the pullee tries to reach our previous position
 				pulling.moving_from_pull = null
@@ -270,8 +226,8 @@
 	if(!isnull(old_glide_size))
 		set_glide_size(old_glide_size)
 
-	last_move = direct
 	last_move_time = world.time
+
 	if(!(flags_atom & DIRLOCK))
 		setDir(direct)
 	if(. && LAZYLEN(buckled_mobs) && !handle_buckled_mob_movement(loc, direct)) //movement failed due to buckled mob(s)
@@ -541,7 +497,6 @@
 		if(buckled_mob.Move(NewLoc, direct))
 			continue
 		forceMove(buckled_mob.loc)
-		last_move = buckled_mob.last_move
 		return FALSE
 	return TRUE
 
@@ -846,7 +801,7 @@
 		if(pulling.anchored)
 			stop_pulling()
 			return
-	if(pulledby && moving_diagonally != FIRST_DIAG_STEP && get_dist(src, pulledby) > 1)		//separated from our puller and not in the middle of a diagonal move.
+	if(pulledby && get_dist(src, pulledby) > 1)		//separated from our puller and not in the middle of a diagonal move.
 		pulledby.stop_pulling()
 
 
