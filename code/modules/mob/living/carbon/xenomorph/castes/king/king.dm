@@ -47,7 +47,7 @@
 	///Which hive own this pod
 	var/ownerhive = ""
 	///What xeno was designed to be the new king
-	var/mob/living/carbon/xenomorph/futur_king
+	var/mob/living/carbon/xenomorph/future_king
 
 /obj/structure/resin/king_pod/Initialize(mapload, hivenumber)
 	. = ..()
@@ -56,11 +56,11 @@
 
 /obj/structure/resin/king_pod/Destroy()
 	. = ..()
-	futur_king?.tracked = null
-	futur_king = null
+	future_king?.tracked = null
+	future_king = null
 
 /obj/structure/resin/king_pod/attack_alien(mob/living/carbon/xenomorph/X, damage_amount, damage_type, damage_flag, effects, armor_penetration, isrightclick)
-	if(X != futur_king)
+	if(X != future_king)
 		to_chat(X, "<span class='notice'>You are not the futur king, you cannot use the pod</span>")
 		return
 	if(!do_after(X, 5 SECONDS, TRUE, src))
@@ -80,10 +80,10 @@
 		var/accept_to_be_king = tgui_alert(xenomorph_alive, "The fate has landed and you, and you can become the King. Do you accept?", "Rise of the King", list("Accept", "Leave it for another xeno"), 20 SECONDS)
 		if(accept_to_be_king != "Accept")
 			continue
-		futur_king = xenomorph_alive
-		RegisterSignal(futur_king, COMSIG_HIVE_XENO_DEATH, .proc/chose_another_king)
-		to_chat(futur_king, "<span class='notice'>You have 5 minutes to go to the [src] to ascend to the king position! Your tracker will guide you to it.</span>")
-		futur_king.tracked = src
+		future_king = xenomorph_alive
+		RegisterSignal(future_king, COMSIG_HIVE_XENO_DEATH, .proc/chose_another_king)
+		to_chat(future_king, "<span class='notice'>You have 5 minutes to go to the [src] to ascend to the king position! Your tracker will guide you to it.</span>")
+		future_king.tracked = src
 		addtimer(CALLBACK(src, .proc/chose_another_king), 5 MINUTES)
 		return
 	//If no xeno accepted, give it to ghost
@@ -92,9 +92,9 @@
 ///Signal handler for when the futur king died and another one must be chose
 /obj/structure/resin/king_pod/proc/chose_another_king()
 	SIGNAL_HANDLER
-	if(futur_king?.stat != DEAD)
-		to_chat(futur_king, "<span class='warning'>You lost your chance to become the king...</span>")
-	futur_king = null
+	if(future_king?.stat != DEAD)
+		to_chat(future_king, "<span class='warning'>You lost your chance to become the king...</span>")
+	future_king = null
 	INVOKE_ASYNC(src, .proc/chose_king)
 
 ///creates a new king and tries to get a mob for it
@@ -112,9 +112,9 @@
 		if(XENO_HIVE_ADMEME)
 			new_caste_type = /mob/living/carbon/xenomorph/king/admeme
 	var/mob/living/carbon/xenomorph/king/kong = new new_caste_type(src)
-	if(futur_king)
-		futur_king.mind.transfer_to(kong)
-		qdel(futur_king)
+	if(future_king)
+		future_king.mind.transfer_to(kong)
+		future_king.offer_mob()
 		on_king_occupied(kong)
 		return
 	RegisterSignal(kong, COMSIG_MOB_LOGIN , .proc/on_king_occupied)
