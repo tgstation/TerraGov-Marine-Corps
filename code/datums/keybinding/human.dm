@@ -51,3 +51,9 @@
 	full_name = "Toggle aim mode"
 	description = ""
 	keybind_signal = COMSIG_KB_AIMMODE
+
+/datum/keybinding/human/switch_fire_mode
+	name = "switch_fire_mode"
+	full_name = "Switch fire mode"
+	description = ""
+	keybind_signal = COMSIG_KB_FIREMODE

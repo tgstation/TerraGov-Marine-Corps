@@ -65,6 +65,18 @@
 	icon_state = "beretred2"
 	flags_item_map_variant = NONE
 
+/obj/item/clothing/head/tgmcberet/bloodred
+	icon_state = "bloodred_beret"
+	flags_item_map_variant = NONE
+
+/obj/item/clothing/head/tgmcberet/blueberet
+	icon_state = "blue_beret"
+	flags_item_map_variant = NONE
+
+/obj/item/clothing/head/tgmcberet/darkgreen
+	icon_state = "darkgreen_beret"
+	flags_item_map_variant = NONE
+
 /obj/item/clothing/head/tgmcberet/green
 	icon_state = "beretgreen"
 	flags_item_map_variant = NONE
