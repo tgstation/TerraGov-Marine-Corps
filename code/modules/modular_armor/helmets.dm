@@ -129,6 +129,6 @@
 	item_state = "tyr_head"
 	soft_armor = list("melee" = 15, "bullet" = 10, "laser" = 10, "energy" = 10, "bomb" = 10, "bio" = 10, "rad" = 10, "fire" = 10, "acid" = 10)
 
-/obj/item/helmet_module/attachable/mimir_environment_protection/do_attach(mob/living/user, obj/item/clothing/suit/modular/parent)
+/obj/item/helmet_module/attachable/tyr_head/do_attach(mob/living/user, obj/item/clothing/suit/modular/parent)
 	. = ..()
 	parent.soft_armor = parent.soft_armor.attachArmor(soft_armor)
