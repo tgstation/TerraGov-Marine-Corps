@@ -61,7 +61,7 @@
 
 /obj/structure/resin/king_pod/attack_alien(mob/living/carbon/xenomorph/X, damage_amount, damage_type, damage_flag, effects, armor_penetration, isrightclick)
 	if(X != future_king)
-		to_chat(X, "<span class='notice'>You are not the futur king, you cannot use the pod</span>")
+		to_chat(X, "<span class='notice'>You are not the future king, you cannot use the pod!</span>")
 		return
 	if(!do_after(X, 5 SECONDS, TRUE, src))
 		return
