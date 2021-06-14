@@ -167,5 +167,5 @@
 
 /// Remove that beacon from the list of glob supply beacon 
 /datum/supply_beacon/Destroy()
-	. = ..()
 	GLOB.supply_beacon[name] = null
+	return ..()
