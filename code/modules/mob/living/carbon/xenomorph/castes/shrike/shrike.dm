@@ -29,25 +29,3 @@
 	if(prob(20+abs(3*upgrade_as_number())))
 		use_plasma(min(rand(1,2), plasma_stored))
 
-
-// ***************************************
-// *********** Pain Hud
-// ***************************************
-/mob/living/carbon/xenomorph/prepare_huds()
-	. = ..()
-	var/datum/atom_hud/pain_hud = GLOB.huds[DATA_HUD_MEDICAL_PAIN]
-	pain_hud.add_hud_to(src)
-
-
-/mob/living/carbon/xenomorph/shrike/verb/toggle_shrike_painhud()
-	set name = "Toggle Shrike Pain HUD"
-	set desc = "Toggles the pain hud appearing above humans."
-	set category = "Alien"
-
-	TOGGLE_BITFIELD(shrike_flags, SHRIKE_FLAG_PAIN_HUD_ON)
-	xeno_mobhud = !xeno_mobhud
-	var/datum/atom_hud/new_hud = GLOB.huds[DATA_HUD_MEDICAL_PAIN]
-	if(CHECK_BITFIELD(shrike_flags, SHRIKE_FLAG_PAIN_HUD_ON))
-		new_hud.add_hud_to(usr)
-	else
-		new_hud.remove_hud_from(usr)
