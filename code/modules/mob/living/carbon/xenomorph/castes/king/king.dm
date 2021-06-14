@@ -112,12 +112,11 @@
 		if(XENO_HIVE_ADMEME)
 			new_caste_type = /mob/living/carbon/xenomorph/king/admeme
 	var/mob/living/carbon/xenomorph/king/kong = new new_caste_type(src)
+	RegisterSignal(kong, COMSIG_MOB_LOGIN , .proc/on_king_occupied)
 	if(future_king)
 		future_king.mind.transfer_to(kong)
 		future_king.offer_mob()
-		on_king_occupied(kong)
 		return
-	RegisterSignal(kong, COMSIG_MOB_LOGIN , .proc/on_king_occupied)
 	kong.offer_mob()
 
 ///When the king mob is offered and then accepted this proc ejects the king and does announcements
