@@ -611,7 +611,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	addtimer(CALLBACK(src, .proc/banish_warning), duration * 0.7) //Warn when Banish is about to end
 	banish_duration_timer_id = addtimer(CALLBACK(src, .proc/banish_deactivate), duration, TIMER_STOPPABLE) //store the timer ID
 
-	succeed_activate(plasma_mod)
+	succeed_activate(plasma_cost * plasma_mod)
 	add_cooldown(cooldown_timer * cooldown_mod)
 
 	GLOB.round_statistics.wraith_banishes++
