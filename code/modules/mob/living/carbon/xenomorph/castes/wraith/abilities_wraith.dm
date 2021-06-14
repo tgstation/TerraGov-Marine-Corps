@@ -239,6 +239,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	phase_shift_active = TRUE //Flag phase shift as being active
 	update_button_icon("phase_shift_off") //Set to resync icon while active
 	succeed_activate()
+	plasma_cost = 0 //Toggling is free
 
 ///Warns the user when Phase Shift is about to end.
 /datum/action/xeno_action/phase_shift/proc/phase_shift_warning()
@@ -317,6 +318,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 		ghost.adjust_sunder(plasma_deficit)
 
 	starting_turf = null
+	plasma_cost = initial(plasma_cost) //Revert the plasma cost to its initial amount
 	add_cooldown()
 
 /datum/action/xeno_action/phase_shift/on_cooldown_finish()
