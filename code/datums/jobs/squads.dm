@@ -26,9 +26,6 @@
 	var/primary_objective = null //Text strings
 	var/secondary_objective = null
 
-	var/obj/item/squad_beacon/sbeacon = null
-	var/obj/structure/supply_drop/drop_pad = null
-
 	var/list/squad_orbital_beacons = list()
 	var/list/squad_laser_targets = list()
 	///Faction of that squad

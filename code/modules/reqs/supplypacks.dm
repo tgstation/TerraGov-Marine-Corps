@@ -33,12 +33,12 @@ OPERATIONS
 
 /datum/supply_packs/operations/beacons_supply
 	name = "supply beacon"
-	contains = list(/obj/item/squad_beacon)
+	contains = list(/obj/item/beacon/supply_beacon)
 	cost = 10
 
 /datum/supply_packs/operations/beacons_orbital
 	name = "orbital beacon"
-	contains = list(/obj/item/squad_beacon/bomb)
+	contains = list(/obj/item/beacon/orbital_bombardment_beacon)
 	cost = 30
 	available_against_xeno_only = TRUE
 
