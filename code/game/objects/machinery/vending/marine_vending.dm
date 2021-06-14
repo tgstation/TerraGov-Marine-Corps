@@ -911,6 +911,8 @@
 			/obj/item/helmet_module/attachable/mimir_environment_protection/mark1 = -1,
 			/obj/item/armor_module/attachable/mimir_environment_protection/mark1 = -1,
 			/obj/item/armor_module/attachable/tyr_extra_armor/mark1 = -1,
+			/obj/item/helmet_module/attachable/tyr_head = -1,
+			/obj/item/helmet_module/antenna/cat = -1,
 			/obj/item/armor_module/attachable/ballistic_armor = -1,
 			/obj/item/armor_module/attachable/better_shoulder_lamp/mark1 = -1,
 			/obj/item/armor_module/attachable/chemsystem = -1,

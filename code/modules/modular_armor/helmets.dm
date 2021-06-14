@@ -115,3 +115,20 @@
 /obj/item/helmet_module/antenna/toggle_module(mob/living/user, obj/item/clothing/head/modular/parent)
 	var/turf/location = get_turf(src)
 	user.show_message("<span class='warning'>The [src] beeps and states, \"Current location coordinates: LONGITUDE [location.x]. LATITUDE [location.y]. Area ID: [get_area(src)]\"</span>", EMOTE_AUDIBLE, "<span class='notice'>The [src] vibrates but you can not hear it!</span>")
+
+/obj/item/helmet_module/antenna/cat
+	name = "Cantenna helmet module"
+	desc = "Designed for mounting on a Jaeger Helmet. When attached, this module is able to provide quick readuts of the users coordinates. Made by the original company of the antenna module, desperate for cash. Maybe they aimed for a more cuter spin? Who knows."
+	icon_state = "antenna_cat_obj"
+	item_state = "antenna_cat"
+
+/obj/item/helmet_module/attachable/tyr_head
+	name = "Tyr Helmet System"
+	desc = "Designed for mounting on a Jaeger Helmet. When attached, this system provides substantial resistance to most damaging hazards, like bullets and melee."
+	icon_state = "tyr_head_obj"
+	item_state = "tyr_head"
+	soft_armor = list("melee" = 15, "bullet" = 10, "laser" = 10, "energy" = 10, "bomb" = 10, "bio" = 10, "rad" = 10, "fire" = 10, "acid" = 10)
+
+/obj/item/helmet_module/attachable/mimir_environment_protection/do_attach(mob/living/user, obj/item/clothing/suit/modular/parent)
+	. = ..()
+	parent.soft_armor = parent.soft_armor.attachArmor(soft_armor)
