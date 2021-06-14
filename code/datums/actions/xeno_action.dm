@@ -116,10 +116,10 @@
 /datum/action/xeno_action/fail_activate()
 	update_button_icon()
 
-/datum/action/xeno_action/proc/succeed_activate()
+/datum/action/xeno_action/proc/succeed_activate(plasma_mod = 1)
 	var/mob/living/carbon/xenomorph/X = owner
 	if(plasma_cost && !QDELETED(owner))
-		X.use_plasma(plasma_cost)
+		X.use_plasma(plasma_cost * plasma_mod)
 
 //checks if the linked ability is on some cooldown.
 //The action can still be activated by clicking the button

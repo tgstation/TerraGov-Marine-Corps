@@ -485,9 +485,9 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 					continue
 
 			shake_camera(living_target, 2, 1)
-			living_target.adjust_stagger(WRAITH_TELEPORT_DEBUFF_STACKS)
-			living_target.add_slowdown(WRAITH_TELEPORT_DEBUFF_STACKS)
-			living_target.adjust_blurriness(WRAITH_TELEPORT_DEBUFF_STACKS) //minor visual distortion
+			living_target.adjust_stagger(WRAITH_TELEPORT_DEBUFF_STAGGER_STACKS)
+			living_target.add_slowdown(WRAITH_TELEPORT_DEBUFF_SLOWDOWN_STACKS)
+			living_target.adjust_blurriness(WRAITH_TELEPORT_DEBUFF_SLOWDOWN_STACKS) //minor visual distortion
 			to_chat(living_target, "<span class='warning'>You feel nauseous as reality warps around you!</span>")
 
 /datum/action/xeno_action/activable/blink/on_cooldown_finish()
@@ -590,13 +590,14 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	animate(portal.get_filter("banish_portal_2"), x = 20*rand() - 10, y = 20*rand() - 10, time = 0.5 SECONDS, loop = -1, flags=ANIMATION_PARALLEL)
 
 	var/cooldown_mod = 1
+	var/plasma_mod = 1
 	if(isliving(banishment_target) && !(banishment_target.issamexenohive(ghost))) //We halve the max duration for living non-allies
 		duration *= WRAITH_BANISH_NONFRIENDLY_LIVING_MULTIPLIER
-	else if (banishment_target.issamexenohive(ghost))
-		cooldown_mod = 0.6 //40% cooldown reduction if used on friendly targets.
-
 	else if(is_type_in_typecache(banishment_target, GLOB.wraith_banish_very_short_duration_list)) //Barricades should only be gone long enough to admit an infiltrator xeno or two; one way.
 		duration *= WRAITH_BANISH_VERY_SHORT_MULTIPLIER
+	else
+		cooldown_mod = 0.6 //40% cooldown reduction if used on non-hostile, non-blacklisted targets.
+		plasma_mod = 0.4 //60% plasma cost reduction if used on non-hostile, non-blacklisted targets.
 
 	banishment_target.visible_message("<span class='warning'>Space abruptly twists and warps around [banishment_target] as it suddenly vanishes!</span>", \
 	"<span class='highdanger'>The world around you reels, reality seeming to twist and tear until you find yourself trapped in a forsaken void beyond space and time.</span>")
@@ -608,7 +609,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	addtimer(CALLBACK(src, .proc/banish_warning), duration * 0.7) //Warn when Banish is about to end
 	banish_duration_timer_id = addtimer(CALLBACK(src, .proc/banish_deactivate), duration, TIMER_STOPPABLE) //store the timer ID
 
-	succeed_activate()
+	succeed_activate(plasma_mod)
 	add_cooldown(cooldown_timer * cooldown_mod)
 
 	GLOB.round_statistics.wraith_banishes++
