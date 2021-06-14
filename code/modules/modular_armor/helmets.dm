@@ -119,8 +119,7 @@
 	playsound(user, 'sound/machines/twobeep.ogg', 60, 1)
 	if(beacon_datum)
 		UnregisterSignal(beacon_datum, COMSIG_PARENT_QDELETING)
-		beacon_datum.unregister()
-		beacon_datum = null
+		QDEL_NULL(beacon_datum)
 		user.show_message("<span class='warning'>The [src] beeps and states, \"Your last position is no longer accessible by the supply console</span>", EMOTE_AUDIBLE, "<span class='notice'>The [src] vibrates but you can not hear it!</span>")
 		return
 	if(!is_ground_level(user.z))

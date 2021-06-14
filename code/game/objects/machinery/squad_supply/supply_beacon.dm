@@ -126,8 +126,7 @@
 /obj/item/beacon/supply_beacon/Destroy()
 	if(beacon_datum)
 		UnregisterSignal(beacon_datum, COMSIG_PARENT_QDELETING)
-		beacon_datum.unregister()
-		beacon_datum = null
+		QDEL_NULL(beacon_datum)
 	return ..()
 
 /// Signal handler to nullify beacon datum
@@ -148,9 +147,7 @@
 	if(!.)
 		return
 	UnregisterSignal(beacon_datum, COMSIG_PARENT_QDELETING)
-	beacon_datum.unregister()
-	beacon_datum = null
-
+	QDEL_NULL(beacon_datum)
 /datum/supply_beacon
 	/// Name printed on the supply console
 	var/name = ""
@@ -168,6 +165,6 @@
 		addtimer(CALLBACK(src, .proc/unregister), life_time)
 
 /// Remove that beacon from the list of glob supply beacon 
-/datum/supply_beacon/proc/unregister()
+/datum/supply_beacon/Destroy()
+	. = ..()
 	GLOB.supply_beacon[name] = null
-	qdel(src)
