@@ -148,6 +148,7 @@
 		return
 	UnregisterSignal(beacon_datum, COMSIG_PARENT_QDELETING)
 	QDEL_NULL(beacon_datum)
+
 /datum/supply_beacon
 	/// Name printed on the supply console
 	var/name = ""
