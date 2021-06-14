@@ -163,7 +163,7 @@
 	faction = _faction
 	GLOB.supply_beacon[name] = src
 	if(life_time)
-		addtimer(CALLBACK(src, .proc/unregister), life_time)
+		addtimer(CALLBACK(src, .proc/qdel), life_time)
 
 /// Remove that beacon from the list of glob supply beacon 
 /datum/supply_beacon/Destroy()
