@@ -47,6 +47,7 @@
 		/datum/action/xeno_action/plant_weeds,
 		/datum/action/xeno_action/activable/corrosive_acid/strong,
 		/datum/action/xeno_action/activable/nightfall,
+		/datum/action/xeno_action/activable/gravity_crush,
 		/datum/action/xeno_action/toggle_pheromones,
 		/datum/action/xeno_action/activable/rally_hive,
 	)
