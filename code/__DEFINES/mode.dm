@@ -148,3 +148,7 @@
 #define COCOONED_DEATH "cocoon_death"
 #define SILO_DEATH "silo_death"
 #define HEADBITE_DEATH "headbite_death"
+
+#define DISTRESS_LARVA_POINTS_NEEDED 8
+#define HUNT_LARVA_POINTS_NEEDED 8
+#define CRASH_LARVA_POINTS_NEEDED 7
