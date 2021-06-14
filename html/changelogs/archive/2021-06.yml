@@ -101,3 +101,6 @@
       Moves shake to Mateba which it did not have before.
   ZephyrTFA:
   - server: Fixes the CI Linters
+2021-06-14:
+  SplinterGP:
+  - bugfix: shields won't go invisible anymore.
