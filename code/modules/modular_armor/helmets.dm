@@ -132,3 +132,7 @@
 /obj/item/helmet_module/attachable/tyr_head/do_attach(mob/living/user, obj/item/clothing/suit/modular/parent)
 	. = ..()
 	parent.soft_armor = parent.soft_armor.attachArmor(soft_armor)
+
+/obj/item/helmet_module/attachable/tyr_head/do_detach(mob/living/user, obj/item/clothing/suit/modular/parent)
+	parent.soft_armor = parent.soft_armor.detachArmor(soft_armor)
+	return ..()
