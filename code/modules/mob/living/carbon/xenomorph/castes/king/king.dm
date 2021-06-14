@@ -77,13 +77,14 @@
 			continue
 		if(isxenoqueen(xenomorph_alive) || isxenoshrike(xenomorph_alive))
 			continue
-		var/accept_to_be_king = tgui_alert(xenomorph_alive, "The fate has landed and you, and you can become the King. Do you accept?", "Rise of the King", list("Accept your new charge", "Leave it for another xeno"), 30 SECONDS)
-		if(accept_to_be_king != "Accept your new charge")
+		var/accept_to_be_king = tgui_alert(xenomorph_alive, "The fate has landed and you, and you can become the King. Do you accept?", "Rise of the King", list("Accept", "Leave it for another xeno"), 20 SECONDS)
+		if(accept_to_be_king != "Accept")
 			continue
 		futur_king = xenomorph_alive
 		RegisterSignal(futur_king, COMSIG_HIVE_XENO_DEATH, .proc/chose_another_king)
-		to_chat(futur_king, "<span class='notice'>Go to the [src] to ascend to the king position! Your tracker will guide you to it.</span>")
+		to_chat(futur_king, "<span class='notice'>You have 5 minutes to go to the [src] to ascend to the king position! Your tracker will guide you to it.</span>")
 		futur_king.tracked = src
+		addtimer(CALLBACK(src, .proc/chose_another_king), 5 MINUTES)
 		return
 	//If no xeno accepted, give it to ghost
 	try_summon_king()
@@ -91,6 +92,8 @@
 ///Signal handler for when the futur king died and another one must be chose
 /obj/structure/resin/king_pod/proc/chose_another_king()
 	SIGNAL_HANDLER
+	if(futur_king?.stat != DEAD)
+		to_chat(futur_king, "<span class='warning'>You lost your chance to become the king...</span>")
 	futur_king = null
 	INVOKE_ASYNC(src, .proc/chose_king)
 
