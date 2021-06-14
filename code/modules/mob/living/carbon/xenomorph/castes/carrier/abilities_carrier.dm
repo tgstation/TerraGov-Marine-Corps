@@ -1,11 +1,26 @@
+#define LARVAL_HUGGER "larval hugger"
+#define CLAWED_HUGGER "clawed hugger"
+#define NEURO_HUGGER "neuro hugger"
+#define ACID_HUGGER "acid hugger"
+#define RESIN_HUGGER "resin hugger"
+
 //List of huggie types
-GLOBAL_LIST_INIT(hugger_type_list, typecacheof(list(
-		/obj/item/clothing/mask/facehugger/larval,
-		/obj/item/clothing/mask/facehugger/slash,
-		/obj/item/clothing/mask/facehugger/neuro,
-		/obj/item/clothing/mask/facehugger/acid,
-		/obj/item/clothing/mask/facehugger/resin,
-		)))
+GLOBAL_LIST_INIT(hugger_type_list, list(
+		LARVAL_HUGGER = /obj/item/clothing/mask/facehugger/larval,
+		CLAWED_HUGGER = /obj/item/clothing/mask/facehugger/slash,
+		NEURO_HUGGER = /obj/item/clothing/mask/facehugger/neuro,
+		ACID_HUGGER  = /obj/item/clothing/mask/facehugger/acid,
+		RESIN_HUGGER = /obj/item/clothing/mask/facehugger/resin,
+		))
+
+//List of huggie images
+GLOBAL_LIST_INIT(hugger_images_list,  list(
+		LARVAL_HUGGER = image('icons/mob/actions.dmi', icon_state = LARVAL_HUGGER),
+		CLAWED_HUGGER = image('icons/mob/actions.dmi', icon_state = CLAWED_HUGGER),
+		NEURO_HUGGER = image('icons/mob/actions.dmi', icon_state = NEURO_HUGGER ),
+		ACID_HUGGER  = image('icons/mob/actions.dmi', icon_state = ACID_HUGGER),
+		RESIN_HUGGER = image('icons/mob/actions.dmi', icon_state = RESIN_HUGGER),
+		))
 
 // ***************************************
 // *********** Hugger throw
@@ -220,7 +235,7 @@ GLOBAL_LIST_INIT(hugger_type_list, typecacheof(list(
 	name = "Choose Hugger Type"
 	action_icon_state = "facehugger"
 	mechanics_text = "Selects which hugger type you will build with the Spawn Hugger ability."
-	//keybind_signal = COMSIG_XENOABILITY_CHOOSE_RESIN
+	keybind_signal = COMSIG_XENOABILITY_SWITCH_HUGGER
 
 /datum/action/xeno_action/choose_hugger_type/give_action(mob/living/L)
 	. = ..()
@@ -236,14 +251,11 @@ GLOBAL_LIST_INIT(hugger_type_list, typecacheof(list(
 	return ..()
 
 /datum/action/xeno_action/choose_hugger_type/action_activate()
+	var/hugger_choice = show_radial_menu(owner, owner, GLOB.hugger_images_list, radius = 48)
+	if(!hugger_choice)
+		return
 	var/mob/living/carbon/xenomorph/X = owner
-	var/i = GLOB.hugger_type_list.Find(X.selected_hugger_type)
-	if(length(GLOB.hugger_type_list) == i)
-		X.selected_hugger_type = GLOB.hugger_type_list[1]
-	else
-		X.selected_hugger_type = GLOB.hugger_type_list[i+1]
-
-	var/atom/A = X.selected_hugger_type
-	to_chat(X, "<span class='notice'>We will now spawn <b>[initial(A.name)]\s</b> when using the Spawn Hugger ability.</span>")
+	X.selected_hugger_type = GLOB.hugger_type_list[hugger_choice]
+	to_chat(X, "<span class='notice'>We will now spawn <b>[hugger_choice]\s</b> when using the spawn hugger ability.</span>")
 	update_button_icon()
 	return succeed_activate()

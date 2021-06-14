@@ -177,6 +177,12 @@
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_SPAWN_HUGGER
 
+/datum/keybinding/xeno/switch_hugger
+	name = "spawn_hugger"
+	full_name = "Carrier: Switch Hugger"
+	description = ""
+	keybind_signal = COMSIG_XENOABILITY_SWITCH_HUGGER
+
 /datum/keybinding/xeno/stomp
 	name = "stomp"
 	full_name = "Crusher: Stomp"
