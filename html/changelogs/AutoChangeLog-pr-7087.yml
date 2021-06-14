@@ -1,0 +1,4 @@
+author: "Wayland-Smithy"
+delete-after: True
+changes: 
+  - balance: "TL-127, Mosin, and SVD sniper rifles no longer have aim-mode."
