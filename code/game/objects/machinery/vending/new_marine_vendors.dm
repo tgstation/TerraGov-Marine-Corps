@@ -923,9 +923,9 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 /obj/effect/essentials_set/leader
 	spawned_gear_list = list(
 		/obj/item/explosive/plastique,
-		/obj/item/squad_beacon,
-		/obj/item/squad_beacon,
-		/obj/item/squad_beacon/bomb,
+		/obj/item/beacon/supply_beacon,
+		/obj/item/beacon/supply_beacon,
+		/obj/item/beacon/orbital_bombardment_beacon,
 		/obj/item/whistle,
 		/obj/item/radio,
 		/obj/item/motiondetector,
@@ -935,8 +935,8 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 
 /obj/effect/essentials_set/commander
 	spawned_gear_list = list(
-		/obj/item/squad_beacon,
-		/obj/item/squad_beacon/bomb,
+		/obj/item/beacon/supply_beacon,
+		/obj/item/beacon/orbital_bombardment_beacon,
 		/obj/item/healthanalyzer,
 		/obj/item/roller/medevac,
 		/obj/item/medevac_beacon,

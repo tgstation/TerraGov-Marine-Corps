@@ -981,8 +981,6 @@
 		/obj/item/attachable/scope/unremovable/tl127,
 		/obj/item/attachable/stock/tl127stock,
 	)
-	actions_types = list(/datum/action/item_action/aim_mode)
-	aim_fire_delay = 0.3 SECONDS
 
 	burst_amount = 0
 	fire_delay = 1.35 SECONDS

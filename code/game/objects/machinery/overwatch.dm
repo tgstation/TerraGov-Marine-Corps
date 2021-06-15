@@ -194,9 +194,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 						dat += "<span class='warning'>None</span><br>"
 					dat += "<B>[current_squad.name] Beacon Targets:</b><br>"
 					if(length(GLOB.active_orbital_beacons))
-						for(var/obj/item/squad_beacon/bomb/OB in current_squad.squad_orbital_beacons)
-							if(!istype(OB))
-								continue
+						for(var/obj/item/beacon/orbital_bombardment_beacon/OB AS in current_squad.squad_orbital_beacons)
 							dat += "<a href='?src=[REF(src)];operation=use_cam;cam_target=[REF(OB)];selected_target=[REF(OB)]'>[OB]</a><br>"
 					else
 						dat += "<span class='warning'>None transmitting</span><br>"
@@ -421,9 +419,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 					dat += "<span class='warning'>None</span><br>"
 				dat += "<B>Beacon Targets:</b><br>"
 				if(length(GLOB.active_orbital_beacons))
-					for(var/obj/item/squad_beacon/bomb/OB in GLOB.active_orbital_beacons)
-						if(!istype(OB))
-							continue
+					for(var/obj/item/beacon/orbital_bombardment_beacon/OB AS in GLOB.active_orbital_beacons)
 						dat += "<a href='?src=\ref[src];operation=use_cam;cam_target=[REF(OB)];selected_target=[REF(OB)]'>[OB]</a><br>"
 				else
 					dat += "<span class='warning'>None transmitting</span><br>"
