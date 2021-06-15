@@ -31,7 +31,7 @@
 	evolves_to = list()
 
 	// *** Flags *** //
-	caste_flags = CASTE_INNATE_PLASMA_REGEN|CASTE_FIRE_IMMUNE|CASTE_HIDE_IN_STATUS
+	caste_flags = CASTE_INNATE_PLASMA_REGEN|CASTE_FIRE_IMMUNE
 
 	can_hold_eggs = CANNOT_HOLD_EGGS
 
