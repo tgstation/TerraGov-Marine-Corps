@@ -435,7 +435,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 				command = TRUE
 			if(/datum/job/terragov/squad/engineer)
 				dat += " engineer"
-				keyslot2 = squad.faction == FACTION_TERRAGOV ? /obj/item/encryptionkey/engie : /obj/item/encryptionkey/engie/rebel
+				keyslot2 = squad.faction == FACTION_TERRAGOV ? /obj/item/encryptionkey/engi : /obj/item/encryptionkey/engi/rebel
 			if(/datum/job/terragov/squad/corpsman)
 				dat += " corpsman"
 				keyslot2 = squad.faction == FACTION_TERRAGOV ? /obj/item/encryptionkey/med : /obj/item/encryptionkey/med/rebel
