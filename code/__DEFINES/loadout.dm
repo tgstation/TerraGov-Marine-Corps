@@ -514,9 +514,8 @@ GLOBAL_LIST_INIT(loadout_role_essential_set, list(
 	),
 	SQUAD_LEADER = list(
 		/obj/item/explosive/plastique = 1,
-		/obj/item/squad_beacon = 1,
-		/obj/item/squad_beacon = 1,
-		/obj/item/squad_beacon/bomb = 1,
+		/obj/item/beacon/supply_beacon = 2,
+		/obj/item/beacon/orbital_bombardment_beacon = 1,
 		/obj/item/whistle = 1,
 		/obj/item/radio = 1,
 		/obj/item/motiondetector = 1,
