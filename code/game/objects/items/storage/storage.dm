@@ -418,7 +418,8 @@
  * user can be null, it refers to the potential mob doing the insertion.
  */
 /obj/item/storage/proc/handle_item_insertion(obj/item/item, prevent_warning = 0, mob/user)
-	if(!istype(item)) return FALSE
+	if(!istype(item)) 
+		return FALSE
 	if(!handle_access_delay(item, user, taking_out=FALSE))
 		item.forceMove(item.drop_location())
 		return FALSE
