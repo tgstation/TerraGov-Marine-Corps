@@ -351,7 +351,7 @@
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 5
 	active_power_usage = 0
-	resistance_flags = UNACIDABLE|XENO_DAMAGEABLE
+	resistance_flags = RESIST_ALL
 	var/turned_on = FALSE //has to be toggled in engineering
 
 /obj/machinery/colony_floodlight_switch/update_icon()
