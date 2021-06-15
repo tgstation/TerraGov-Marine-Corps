@@ -281,7 +281,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/bullet/pistol/heavy
 	name = "heavy pistol bullet"
 	hud_state = "pistol_heavy"
-	damage = 30
+	damage = 40
 	penetration = 5
 	shrapnel_chance = 25
 	sundering = 2.15
@@ -332,7 +332,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	hud_state = "revolver"
 	hud_state_empty = "revolver_empty"
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
-	damage = 40
+	damage = 30
 	penetration = 10
 	sundering = 3
 
