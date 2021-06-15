@@ -104,3 +104,10 @@
 2021-06-14:
   SplinterGP:
   - bugfix: shields won't go invisible anymore.
+2021-06-15:
+  BraveMole:
+  - rscadd: Antenna helmet module can be used to create temporary supply beacon
+  - bugfix: supply drop console works again
+  Wayland-Smithy:
+  - balance: TL-127, Mosin, and SVD sniper rifles no longer have aim-mode.
+  - bugfix: Fixed the tgui changelog dates being inaccurate to the source files.

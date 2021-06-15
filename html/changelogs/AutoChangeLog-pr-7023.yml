@@ -1,5 +1,0 @@
-author: "BraveMole"
-delete-after: True
-changes: 
-  - rscadd: "Antenna helmet module can be used to create temporary supply beacon"
-  - bugfix: "supply drop console works again"
