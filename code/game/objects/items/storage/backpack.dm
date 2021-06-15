@@ -18,7 +18,8 @@
 		return FALSE
 	if(ishuman(user))
 		var/mob/living/carbon/human/human_user = user
-		return human_user.back == src
+		if(human_user.back == src)
+			return TRUE
 	return FALSE
 
 /obj/item/storage/backpack/attackby(obj/item/I, mob/user, params)
