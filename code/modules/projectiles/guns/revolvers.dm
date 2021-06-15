@@ -343,7 +343,6 @@
 	attachable_allowed = list(
 		/obj/item/attachable/bayonet,
 		/obj/item/attachable/reddot,
-		/obj/item/attachable/flashlight,
 		/obj/item/attachable/heavy_barrel,
 		/obj/item/attachable/gyro,
 		/obj/item/attachable/extended_barrel,
@@ -375,7 +374,6 @@
 	attachable_allowed = list(
 		/obj/item/attachable/bayonet,
 		/obj/item/attachable/reddot,
-		/obj/item/attachable/flashlight,
 		/obj/item/attachable/heavy_barrel,
 		/obj/item/attachable/quickfire,
 		/obj/item/attachable/extended_barrel,
@@ -403,7 +401,6 @@
 	force = 8
 	attachable_allowed = list(
 		/obj/item/attachable/suppressor,
-		/obj/item/attachable/flashlight,
 		/obj/item/attachable/compensator,
 		/obj/item/attachable/extended_barrel,
 		/obj/item/attachable/lace,
@@ -430,7 +427,6 @@
 	force = 6
 	attachable_allowed = list(
 		/obj/item/attachable/reddot,
-		/obj/item/attachable/flashlight,
 		/obj/item/attachable/extended_barrel,
 		/obj/item/attachable/compensator,
 		/obj/item/attachable/scope,
@@ -464,7 +460,6 @@
 	force = 15
 	attachable_allowed = list(
 		/obj/item/attachable/reddot,
-		/obj/item/attachable/flashlight,
 		/obj/item/attachable/lasersight,
 		/obj/item/attachable/scope/mini,
 		/obj/item/attachable/heavy_barrel,
@@ -507,7 +502,6 @@
 	force = 12
 	attachable_allowed = list(
 		/obj/item/attachable/reddot,
-		/obj/item/attachable/flashlight,
 		/obj/item/attachable/extended_barrel,
 		/obj/item/attachable/heavy_barrel,
 		/obj/item/attachable/quickfire,
