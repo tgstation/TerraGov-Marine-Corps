@@ -1019,10 +1019,6 @@
 /obj/structure/window/framed/mainship,
 /turf/open/floor/plating,
 /area/mainship/shipboard/port_missiles)
-"dx" = (
-/obj/structure/closet/crate/weapon,
-/turf/open/floor/mainship/mono,
-/area/mainship/squads/req)
 "dy" = (
 /obj/structure/cable,
 /turf/open/floor/mainship/sterile/side{
@@ -1857,10 +1853,6 @@
 /obj/structure/cable,
 /turf/open/floor/wood,
 /area/mainship/living/pilotbunks)
-"gq" = (
-/obj/structure/supply_drop/charlie,
-/turf/open/floor/mainship/mono,
-/area/mainship/squads/req)
 "gr" = (
 /obj/machinery/vending/coffee,
 /turf/open/floor/mainship/mono,
@@ -3104,10 +3096,6 @@
 	dir = 1
 	},
 /area/mainship/hallways/hangar)
-"kK" = (
-/obj/structure/closet/crate/ammo,
-/turf/open/floor/mainship/mono,
-/area/mainship/squads/req)
 "kL" = (
 /obj/structure/window/reinforced{
 	dir = 1
@@ -4176,14 +4164,6 @@
 	dir = 1
 	},
 /turf/open/floor/mainship/cargo,
-/area/mainship/squads/req)
-"oi" = (
-/obj/structure/supply_drop/delta,
-/turf/open/floor/mainship/mono,
-/area/mainship/squads/req)
-"oj" = (
-/obj/structure/closet/crate/delta,
-/turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
 "ok" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -6507,10 +6487,6 @@
 /obj/machinery/door/firedoor/mainship,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/pilotbunks)
-"wb" = (
-/obj/structure/closet/crate/charlie,
-/turf/open/floor/mainship/mono,
-/area/mainship/squads/req)
 "wc" = (
 /obj/structure/bed/chair/wood,
 /obj/item/trash/cigbutt/cigarbutt,
@@ -6560,7 +6536,7 @@
 /obj/machinery/camera/autoname/mainship{
 	dir = 8
 	},
-/obj/structure/supply_drop/alpha,
+/obj/structure/supply_drop,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
 "wl" = (
@@ -13297,10 +13273,6 @@
 	dir = 8
 	},
 /area/mainship/shipboard/firing_range)
-"RK" = (
-/obj/structure/closet/crate/medical,
-/turf/open/floor/mainship/mono,
-/area/mainship/squads/req)
 "RM" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 9
@@ -13470,10 +13442,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/numbertwobunks)
-"Sq" = (
-/obj/structure/closet/crate/bravo,
-/turf/open/floor/mainship/mono,
-/area/mainship/squads/req)
 "St" = (
 /obj/machinery/status_display,
 /turf/closed/wall/mainship,
@@ -14389,10 +14357,6 @@
 "VD" = (
 /turf/closed/wall/mainship,
 /area/mainship/hallways/stern_hallway)
-"VE" = (
-/obj/structure/closet/crate/construction,
-/turf/open/floor/mainship/mono,
-/area/mainship/squads/req)
 "VF" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
@@ -14515,7 +14479,6 @@
 /turf/open/floor/wood,
 /area/mainship/medical/surgery_hallway)
 "Wc" = (
-/obj/structure/supply_drop/bravo,
 /obj/machinery/light{
 	dir = 4
 	},
@@ -14921,10 +14884,6 @@
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/engineering/upper_engineering)
-"XF" = (
-/obj/structure/closet/crate/alpha,
-/turf/open/floor/mainship/mono,
-/area/mainship/squads/req)
 "XG" = (
 /obj/machinery/camera/autoname/mainship{
 	dir = 8
@@ -47588,10 +47547,10 @@ kM
 kM
 kM
 Cv
-VE
-RK
-kK
-dx
+kM
+kM
+kM
+kM
 ol
 oq
 eh
@@ -48102,10 +48061,10 @@ kM
 kM
 kM
 kM
-XF
-Sq
-wb
-oj
+kM
+kM
+kM
+kM
 Rl
 os
 ow
@@ -48361,8 +48320,8 @@ on
 SR
 wk
 Wc
-gq
-oi
+kM
+kM
 ip
 Xn
 yZ
