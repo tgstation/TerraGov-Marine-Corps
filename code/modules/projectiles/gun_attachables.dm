@@ -1783,6 +1783,17 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	detach_delay = 0
 	gun_attachment_offset_mod = list("muzzle_x" = 7)
 
+/obj/item/attachable/standard_revolver_longbarrel/attach_to_gun(obj/item/weapon/gun/gun_to_attach, mob/user)
+	. = ..()
+	RegisterSignal(gun_to_attach, COMSIG_REVOLVER_AMMO_HIT_MOB, .proc/ammo_hit_mob)
+
+/obj/item/attachable/standard_revolver_longbarrel/detach_from_master_gun(mob/user)
+	UnregisterSignal(master_gun, COMSIG_REVOLVER_AMMO_HIT_MOB)
+	return ..()
+
+/obj/item/attachable/standard_revolver_longbarrel/proc/ammo_hit_mob()
+	SIGNAL_HANDLER
+	return COMSIG_REVOLVER_AMMO_SNUBNOSE_BARREL
 
 /obj/item/attachable/mateba_longbarrel
 	name = "Mateba long barrel"
