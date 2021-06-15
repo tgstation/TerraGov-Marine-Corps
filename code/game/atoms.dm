@@ -156,6 +156,19 @@ directive is properly returned.
 	SHOULD_CALL_PARENT(TRUE)
 	return !density
 
+/**
+ * Return FALSE if nothing will prevent mover from entering the atom,
+ * wether it be the atom itself or atom in it's contents.
+ * Return TRUE if the atom could cross this atom while heading to the target atom
+ */
+/atom/proc/CouldEnter(atom/movable/mover, atom/next_loc)
+	if(!CanPass(mover, src) || !next_loc?.CanPass(mover, src))
+		return FALSE
+	for(var/atom/movable/thing AS in contents)
+		if(!thing.CanPass(mover, src))
+			return FALSE
+	return TRUE
+
 /// Returns true or false to allow the mover to move out of the atom
 /atom/proc/CheckExit(atom/movable/mover, turf/target)
 	SHOULD_CALL_PARENT(TRUE)

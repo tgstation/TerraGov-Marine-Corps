@@ -176,7 +176,6 @@
 		return FALSE
 	return TRUE
 
-
 /turf/Exit(atom/movable/mover, atom/newloc)
 	. = ..()
 	if(!. || QDELETED(mover))
