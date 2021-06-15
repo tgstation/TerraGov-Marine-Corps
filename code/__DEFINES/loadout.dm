@@ -212,6 +212,7 @@ GLOBAL_LIST_INIT(loadout_linked_vendor, list(
 	/obj/machinery/vending/uniform_supply,
 	/obj/machinery/vending/armor_supply,
 	/obj/machinery/vending/marineFood,
+	/obj/machinery/vending/MarineMed,
 ))
 
 GLOBAL_LIST_INIT(marine_clothes_listed_products, list(

@@ -33,7 +33,6 @@
 		new /obj/structure/xeno/resin/silo(i)
 	for(var/obj/effect/landmark/corpsespawner/corpse AS in GLOB.corpse_landmarks_list)
 		corpse.create_mob(SILO_DEATH)
-	addtimer(CALLBACK(src, .proc/announce_bioscans, FALSE, 1), 5 MINUTES)
 
 /datum/game_mode/infestation/hunt/scale_roles(initial_players_assigned)
 	. = ..()
