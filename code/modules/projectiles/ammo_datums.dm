@@ -347,6 +347,9 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	hud_state = "revolver_small"
 	damage = 30
 
+/datum/ammo/bullet/revolver/small/on_hit_mob(mob/M,obj/projectile/P)
+	staggerstun(M, P, slowdown = 0.5)
+
 /datum/ammo/bullet/revolver/marksman
 	name = "slimline revolver bullet"
 	hud_state = "revolver_slim"
@@ -391,6 +394,9 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/bullet/revolver/ricochet/four
 	bonus_projectiles_type = /datum/ammo/bullet/revolver/ricochet/three
+
+/datum/ammo/bullet/revolver/ricochet/on_hit_mob(mob/M,obj/projectile/P)
+	staggerstun(M, P, slowdown = 0.5)
 
 /datum/ammo/bullet/revolver/ricochet/on_hit_turf(turf/T, obj/projectile/proj)
 	. = ..()
