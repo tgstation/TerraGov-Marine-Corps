@@ -37,7 +37,7 @@
 	var/use_sound = "rustle"	//sound played when used. null for no sound.
 	var/opened = 0 //Has it been opened before?
 	var/list/content_watchers = list() //list of mobs currently seeing the storage's contents
-	///How long does it take to put items into or out of this, in ticks?
+	///How long does it take to put items into or out of this, in ticks
 	var/access_delay = 0
 
 /obj/item/storage/MouseDrop(obj/over_object as obj)
