@@ -88,7 +88,7 @@
 		if(storage.can_be_inserted(item_to_insert))
 			storage.handle_item_insertion(item_to_insert)
 			continue
-		item_to_insert.forceMove(user.loc)
+		item_to_insert.forceMove(get_turf(user))
 
 
 /**
