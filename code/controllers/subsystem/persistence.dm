@@ -108,8 +108,6 @@ SUBSYSTEM_DEF(persistence)
 	name = "rifles bucket 2"
 	description = "Rifle guns, previously at import"
 	item_list = list(
-		/obj/item/weapon/gun/rifle/famas = -1,
-		/obj/item/ammo_magazine/rifle/famas = -1,
 		/obj/item/weapon/gun/smg/uzi = -1,
 		/obj/item/ammo_magazine/smg/uzi = -1,
 		)

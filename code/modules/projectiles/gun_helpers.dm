@@ -524,7 +524,7 @@ should be alright.
 	var/datum/action/item_action/firemode/firemode_action = action
 	if(!istype(firemode_action))
 		return ..()
-	do_toggle_firemode(user)
+	do_toggle_firemode()
 	user.update_action_buttons()
 
 
@@ -557,7 +557,7 @@ should be alright.
 	if(!(new_firemode in gun_firemode_list))
 		to_chat(usr, "<span class='warning'>[src] lacks a [new_firemode]!</span>")
 		return
-	do_toggle_firemode(usr, new_firemode)
+	do_toggle_firemode(new_firemode = new_firemode)
 
 
 /mob/living/carbon/human/verb/toggle_burstfire()
@@ -589,7 +589,7 @@ should be alright.
 	if(!(new_firemode in gun_firemode_list))
 		to_chat(usr, "<span class='warning'>[src] lacks a [new_firemode]!</span>")
 		return
-	do_toggle_firemode(usr, new_firemode)
+	do_toggle_firemode(new_firemode = new_firemode)
 
 
 /mob/living/carbon/human/verb/toggle_firemode()
@@ -608,15 +608,19 @@ should be alright.
 	set name = "Toggle Fire Mode (Weapon)"
 	set desc = "Toggle between fire modes, if the gun has more than has one."
 
-	do_toggle_firemode(usr)
+	do_toggle_firemode()
 
 
-/obj/item/weapon/gun/proc/do_toggle_firemode(mob/user, new_firemode)
+/obj/item/weapon/gun/proc/do_toggle_firemode(datum/source, new_firemode)
+	SIGNAL_HANDLER
 	if(flags_gun_features & GUN_BURST_FIRING)//can't toggle mid burst
 		return
 
 	if(!length(gun_firemode_list))
 		CRASH("[src] called do_toggle_firemode() with an empty gun_firemode_list")
+
+	if(length(gun_firemode) == 1)
+		return
 
 	if(new_firemode)
 		if(!(new_firemode in gun_firemode_list))
@@ -629,10 +633,10 @@ should be alright.
 		else
 			gun_firemode = gun_firemode_list[1]
 
-	if(user)
-		playsound(usr, 'sound/weapons/guns/interact/selector.ogg', 15, 1)
-		to_chat(user, "<span class='notice'>[icon2html(src, user)] You switch to <b>[gun_firemode]</b>.</span>")
-		user.update_action_buttons()
+	if(gun_user)
+		playsound(src, 'sound/weapons/guns/interact/selector.ogg', 15, 1)
+		to_chat(gun_user, "<span class='notice'>[icon2html(src, gun_user)] You switch to <b>[gun_firemode]</b>.</span>")
+		gun_user.update_action_buttons()
 
 	SEND_SIGNAL(src, COMSIG_GUN_FIRE_MODE_TOGGLE, gun_firemode)
 
