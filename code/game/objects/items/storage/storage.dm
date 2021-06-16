@@ -431,7 +431,7 @@
 	item.on_enter_storage(src)
 	if(user)
 		if (user.client && user.s_active != src)
-			user.client.screen -= item
+			user?.client.screen -= item
 		if(!prevent_warning)
 			var/visidist = item.w_class >= 3 ? 3 : 1
 			user.visible_message("<span class='notice'>[user] puts [item] into [src].</span>",\
