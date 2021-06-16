@@ -584,8 +584,8 @@
 	desc = "A TL-102 heavy smartgun mounted upon a small reinforced post with sandbags to provide a small machinegun nest for all your defense purpose needs.\n<span class='notice'>Use (ctrl-click) to shoot in bursts.</span>"
 	burst_fire = FALSE
 	fire_delay = 2
-	rounds = 1500
-	rounds_max = 1500
+	rounds = 800
+	rounds_max = 800
 	locked = TRUE
 	icon = 'icons/Marine/marine-hmg.dmi'
 	icon_full = "entrenched"
