@@ -153,7 +153,6 @@
 	READ_FILE(S["see_chat_non_mob"], see_chat_non_mob)
 	READ_FILE(S["see_rc_emotes"], see_rc_emotes)
 
-
 	//try to fix any outdated data if necessary
 	if(needs_update >= 0)
 		update_preferences(needs_update, S)		//needs_update = savefile_version if we need an update (positive integer)
@@ -561,6 +560,41 @@
 	WRITE_FILE(S["exploit_record"], exploit_record)
 	WRITE_FILE(S["flavor_text"], flavor_text)
 
+	return TRUE
+
+///Serialize and save into a savefile the loadout manager
+/datum/preferences/proc/save_loadout_manager()
+	if(!path)
+		return FALSE
+	if(!fexists(path))
+		return FALSE
+	var/savefile/S = new /savefile(path)
+	if(!S)
+		return FALSE
+	loadout_manager = sanitize_loadout_manager(loadout_manager)
+	var/json_loadout_manager = jatum_serialize(loadout_manager)
+	S.cd = "/loadouts"
+	WRITE_FILE(S["loadouts_manager"], json_loadout_manager)
+	return TRUE
+
+///Load from a savefile and unserialize the loadout manager
+/datum/preferences/proc/load_loadout_manager()
+	if(!path)
+		return FALSE
+	if(!fexists(path))
+		return FALSE
+	var/savefile/S = new /savefile(path)
+	if(!S)
+		return FALSE
+	S.cd = "/loadouts"
+	var/json_loadout_manager = ""
+	READ_FILE(S["loadouts_manager"], json_loadout_manager)
+	if(!json_loadout_manager)
+		return FALSE
+	loadout_manager = jatum_deserialize(json_loadout_manager)
+	loadout_manager = sanitize_loadout_manager(loadout_manager)
+	if(loadout_manager.current_loadout)
+		loadout_manager.loadouts_list += loadout_manager.current_loadout //Has to be done since jatum cannot handle duplication well. Unless you fix jatum, don't touch this
 	return TRUE
 
 

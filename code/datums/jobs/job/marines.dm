@@ -7,7 +7,7 @@
 
 /datum/job/terragov/squad/after_spawn(mob/living/carbon/C, mob/M, latejoin = FALSE)
 	. = ..()
-	C.hud_set_job()
+	C.hud_set_job(faction)
 	C.set_nutrition(rand(60, 250))
 	if(!ishuman(C))
 		return
@@ -500,9 +500,9 @@ You are also in charge of communicating with command and letting them know about
 
 /datum/outfit/job/marine/leader/equipped/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
-	H.equip_to_slot_or_del(new /obj/item/squad_beacon, SLOT_IN_SUIT)
-	H.equip_to_slot_or_del(new /obj/item/squad_beacon, SLOT_IN_SUIT)
-	H.equip_to_slot_or_del(new /obj/item/squad_beacon/bomb, SLOT_IN_SUIT)
+	H.equip_to_slot_or_del(new /obj/item/beacon/supply_beacon, SLOT_IN_SUIT)
+	H.equip_to_slot_or_del(new /obj/item/beacon/supply_beacon, SLOT_IN_SUIT)
+	H.equip_to_slot_or_del(new /obj/item/beacon/orbital_bombardment_beacon, SLOT_IN_SUIT)
 
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/enrg_bar, SLOT_IN_HEAD)
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/enrg_bar, SLOT_IN_HEAD)

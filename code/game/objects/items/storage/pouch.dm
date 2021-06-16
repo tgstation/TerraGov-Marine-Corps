@@ -154,7 +154,7 @@
 	new /obj/item/reagent_containers/hypospray/autoinjector/combat (src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/combat (src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/oxycodone (src)
-	new /obj/item/reagent_containers/hypospray/autoinjector/synaptizine_expired (src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/russian_red (src)
 
 
 /obj/item/storage/pouch/firstaid/som
@@ -589,7 +589,7 @@
 		/obj/item/flashlight,
 		/obj/item/whistle,
 		/obj/item/binoculars,
-		/obj/item/squad_beacon,
+		/obj/item/beacon/supply_beacon,
 	)
 
 /obj/item/storage/pouch/field_pouch/full/Initialize()

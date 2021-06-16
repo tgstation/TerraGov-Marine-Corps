@@ -412,6 +412,8 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 				newmob = M.change_mob_type(/mob/living/carbon/xenomorph/shrike, location, null, delmob)
 			if("queen")
 				newmob = M.change_mob_type(/mob/living/carbon/xenomorph/queen, location, null, delmob)
+			if("king")
+				newmob = M.change_mob_type(/mob/living/carbon/xenomorph/king, location, null, delmob)
 			if("wraith")
 				newmob = M.change_mob_type(/mob/living/carbon/xenomorph/wraith, location, null, delmob)
 			if("human")
@@ -935,8 +937,8 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 			return
 
 		var/dat = "<b>What mode do you wish to play?</b><br>"
-		for(var/mode in config.modes)
-			dat += "<a href='?src=[REF(usr.client.holder)];[HrefToken()];changemode=[mode]'>[config.mode_names[mode]]</a><br>"
+		for(var/datum/game_mode/mode AS in config.modes)
+			dat += "<a href='?src=[REF(usr.client.holder)];[HrefToken()];changemode=[mode]'>[mode.name]</a><br>"
 		dat += "<br>"
 		dat += "Now: [GLOB.master_mode]<br>"
 		dat += "Next Round: [trim(file2text("data/mode.txt"))]"
@@ -2059,7 +2061,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 					if(H.assigned_squad)
 						squad_to_insert_into = H.assigned_squad
 					else
-						squad_to_insert_into = pick(SSjob.active_squads)
+						squad_to_insert_into = pick(SSjob.active_squads[J.faction])
 				H.apply_assigned_role_to_spawn(J, H.client, squad_to_insert_into, admin_action = TRUE)
 				if(href_list["doequip"])
 					H.set_equipment(J.title)
@@ -2135,7 +2137,8 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 				for(var/path in job_paths)
 					var/datum/outfit/O = path
 					if(initial(O.can_be_admin_equipped))
-						job_outfits[initial(O.name)] = path
+						var/outfit_name = initial(O.name)
+						job_outfits[outfit_name] = path
 
 				var/list/picker = sortList(job_outfits)
 				picker.Insert(1, "{Custom}", "{Naked}")

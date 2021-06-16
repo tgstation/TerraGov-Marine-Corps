@@ -201,13 +201,13 @@
 /turf/open/floor/mainship,
 /area/mainship/squads/general)
 "aaJ" = (
-/obj/machinery/marine_selector/clothes/specialist,
 /obj/structure/window/reinforced{
 	dir = 1
 	},
 /obj/structure/window/reinforced{
 	dir = 8
 	},
+/obj/machinery/loadout_vendor,
 /turf/open/floor/mainship,
 /area/mainship/squads/general)
 "aaL" = (
@@ -235,11 +235,11 @@
 /turf/open/floor/mainship,
 /area/mainship/command/self_destruct)
 "aaR" = (
-/obj/machinery/marine_selector/gear/spec,
 /obj/structure/window/reinforced{
 	dir = 8
 	},
 /obj/structure/window/reinforced,
+/obj/machinery/loadout_vendor,
 /turf/open/floor/mainship,
 /area/mainship/squads/general)
 "aaS" = (
@@ -1075,11 +1075,7 @@
 /turf/open/floor/mainship,
 /area/mainship/squads/req)
 "aeK" = (
-/obj/structure/closet/crate/alpha,
-/turf/open/floor/mainship,
-/area/mainship/squads/req)
-"aeL" = (
-/obj/structure/closet/crate/bravo,
+/obj/structure/supply_drop,
 /turf/open/floor/mainship,
 /area/mainship/squads/req)
 "aeM" = (
@@ -1137,14 +1133,6 @@
 /area/mainship/command/cic)
 "aeX" = (
 /obj/machinery/autolathe,
-/turf/open/floor/mainship,
-/area/mainship/squads/req)
-"aeY" = (
-/obj/structure/supply_drop/alpha,
-/turf/open/floor/plating,
-/area/mainship/squads/req)
-"afa" = (
-/obj/structure/supply_drop/bravo,
 /turf/open/floor/mainship,
 /area/mainship/squads/req)
 "afd" = (
@@ -1314,14 +1302,6 @@
 /obj/machinery/vending/marine/cargo_supply,
 /turf/open/floor/mainship,
 /area/mainship/squads/req)
-"afK" = (
-/obj/structure/supply_drop/charlie,
-/turf/open/floor/plating,
-/area/mainship/squads/req)
-"afL" = (
-/obj/structure/supply_drop/delta,
-/turf/open/floor/plating,
-/area/mainship/squads/req)
 "afM" = (
 /obj/machinery/light{
 	dir = 4
@@ -1340,14 +1320,6 @@
 /area/mainship/command/telecomms)
 "afU" = (
 /obj/effect/landmark/start/job/shiptech,
-/turf/open/floor/mainship,
-/area/mainship/squads/req)
-"afV" = (
-/obj/structure/closet/crate/charlie,
-/turf/open/floor/mainship,
-/area/mainship/squads/req)
-"afW" = (
-/obj/structure/closet/crate/delta,
 /turf/open/floor/mainship,
 /area/mainship/squads/req)
 "afX" = (
@@ -5835,7 +5807,7 @@ acT
 afO
 ach
 adS
-aek
+aeK
 aek
 aek
 adU
@@ -6016,11 +5988,11 @@ afO
 adP
 adS
 aet
-aeK
-aeY
+aek
+aek
 adS
-afK
-afV
+aek
+aek
 agg
 ajF
 ajF
@@ -6076,11 +6048,11 @@ afO
 adQ
 adS
 aet
-aeL
-afa
+aek
+aek
 adS
-afL
-afW
+aek
+aek
 agh
 agq
 agq

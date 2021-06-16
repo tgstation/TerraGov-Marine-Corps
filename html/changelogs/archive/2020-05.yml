@@ -1,0 +1,43 @@
+2020-05-19:
+  Kuro-ai:
+  - soundadd: added a new DMR firing sound
+  Pariah919:
+  - balance: Queen has different scaling now. It's smoothed out more. Has more HP
+      and slash at every evo level but ancient. Where it lost 5 and now has 50. It
+      now has 2 leaders at young. Spits far faster. 1.3 at young,1.2 at mature and
+      1 at ancient
+  psykzz:
+  - rscadd: Added more webmaps
+  - rscdel: SL maps are removed
+  - code_imp: webmap urls are now defined by the json files
+  - balance: buffed cast time on defiler's emit neurogas
+2020-05-21:
+  Hughgent:
+  - rscadd: Tiered weapon spawns are now available for mapping.
+  - balance: Xeno Disarm based stuns are now based on current health rather than max
+      health, should be much easier to stun a marine.
+  - rscadd: Fog that is actually fog like, and not wall like.
+  - bugfix: runtime with tier spawning associated with energy weapons.
+2020-05-22:
+  Pariah919:
+  - rscadd: T-90 SMG added. A new T-19 sprite.
+  - rscdel: T-19 Holster shouldn't be aquireable from anywhere from req. It's pointless.
+  - tweak: Stuff that used to drop T-19s now drops T-90s. Please tell me if anything
+      saying it should be a T-19 drops a T-90.
+  - balance: Adds the T-90 smg and rebalances the T-14 to be more of a machinepistol
+      style weapon. Check 4079 for changes on github. Main changes are the addition
+      of the new smg and the T-19 is made to be more useable one-handed. Though you
+      might need the stock to make it your primary.
+  psykzz:
+  - balance: tier 1 crash xenos start at ancient
+2020-05-23:
+  Hughgent:
+  - bugfix: flaregun tier spawn now spawns a box of flares.
+  spookydonut:
+  - rscadd: You now get warned about using client versions with known crash bugs
+2020-05-24:
+  BobSlim:
+  - rscadd: You can refill mags with other mags, now.
+  Guprei:
+  - balance: Shrike gets .4 more speed
+  - balance: Drone gets .3 speed

@@ -32256,7 +32256,7 @@
 "bXo" = (
 /obj/structure/bed,
 /obj/item/bedsheet,
-/obj/item/toy/farwadoll,
+/obj/item/toy/plush/farwa,
 /turf/open/floor/wood,
 /area/prison/residential/south)
 "bXp" = (

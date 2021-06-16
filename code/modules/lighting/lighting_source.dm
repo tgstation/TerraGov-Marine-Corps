@@ -64,11 +64,11 @@
 // Yes this doesn't align correctly on anything other than 4 width tabs.
 // If you want it to go switch everybody to elastic tab stops.
 // Actually that'd be great if you could!
-#define EFFECT_UPDATE(level)                \
+#define EFFECT_UPDATE(level) \
 	if(needs_update == LIGHTING_NO_UPDATE) \
 		SSlighting.sources_queue += src; \
-	if(needs_update < level)               \
-		needs_update            = level;    \
+	if(needs_update < level) \
+		needs_update = level; \
 
 
 // This proc will cause the light source to update the top atom, and add itself to the update queue.
@@ -102,7 +102,7 @@
 // The braces and semicolons are there to be able to do this on a single line.
 #define LUM_FALLOFF(C, T) (1 - CLAMP01(sqrt((C.x - T.x) ** 2 + (C.y - T.y) ** 2 + LIGHTING_HEIGHT) / max(1, light_range)))
 
-#define APPLY_CORNER(C)                      \
+#define APPLY_CORNER(C) \
 	. = LUM_FALLOFF(C, pixel_turf);          \
 	. *= light_power;                        \
 	var/OLD = effect_str[C];                 \
@@ -115,7 +115,7 @@
 		(. * lum_b) - (OLD * applied_lum_b)  \
 	);
 
-#define REMOVE_CORNER(C)                     \
+#define REMOVE_CORNER(C) \
 	. = -effect_str[C];                      \
 	C.update_lumcount                        \
 	(                                        \

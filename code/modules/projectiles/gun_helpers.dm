@@ -524,7 +524,7 @@ should be alright.
 	var/datum/action/item_action/firemode/firemode_action = action
 	if(!istype(firemode_action))
 		return ..()
-	do_toggle_firemode(user)
+	do_toggle_firemode()
 	user.update_action_buttons()
 
 
@@ -557,7 +557,7 @@ should be alright.
 	if(!(new_firemode in gun_firemode_list))
 		to_chat(usr, "<span class='warning'>[src] lacks a [new_firemode]!</span>")
 		return
-	do_toggle_firemode(usr, new_firemode)
+	do_toggle_firemode(new_firemode = new_firemode)
 
 
 /mob/living/carbon/human/verb/toggle_burstfire()
@@ -589,7 +589,7 @@ should be alright.
 	if(!(new_firemode in gun_firemode_list))
 		to_chat(usr, "<span class='warning'>[src] lacks a [new_firemode]!</span>")
 		return
-	do_toggle_firemode(usr, new_firemode)
+	do_toggle_firemode(new_firemode = new_firemode)
 
 
 /mob/living/carbon/human/verb/toggle_firemode()
@@ -608,15 +608,19 @@ should be alright.
 	set name = "Toggle Fire Mode (Weapon)"
 	set desc = "Toggle between fire modes, if the gun has more than has one."
 
-	do_toggle_firemode(usr)
+	do_toggle_firemode()
 
 
-/obj/item/weapon/gun/proc/do_toggle_firemode(mob/user, new_firemode)
+/obj/item/weapon/gun/proc/do_toggle_firemode(datum/source, new_firemode)
+	SIGNAL_HANDLER
 	if(flags_gun_features & GUN_BURST_FIRING)//can't toggle mid burst
 		return
 
 	if(!length(gun_firemode_list))
 		CRASH("[src] called do_toggle_firemode() with an empty gun_firemode_list")
+
+	if(length(gun_firemode) == 1)
+		return
 
 	if(new_firemode)
 		if(!(new_firemode in gun_firemode_list))
@@ -629,10 +633,10 @@ should be alright.
 		else
 			gun_firemode = gun_firemode_list[1]
 
-	if(user)
-		playsound(usr, 'sound/weapons/guns/interact/selector.ogg', 15, 1)
-		to_chat(user, "<span class='notice'>[icon2html(src, user)] You switch to <b>[gun_firemode]</b>.</span>")
-		user.update_action_buttons()
+	if(gun_user)
+		playsound(src, 'sound/weapons/guns/interact/selector.ogg', 15, 1)
+		to_chat(gun_user, "<span class='notice'>[icon2html(src, gun_user)] You switch to <b>[gun_firemode]</b>.</span>")
+		gun_user.update_action_buttons()
 
 	SEND_SIGNAL(src, COMSIG_GUN_FIRE_MODE_TOGGLE, gun_firemode)
 
@@ -830,6 +834,17 @@ should be alright.
 		return
 	rail_attachment.activate_attachment(usr)
 
+/obj/item/weapon/gun/verb/toggle_underrail_attachment()
+	set category = null
+	set name = "Toggle Underrail Attachment (Weapon)"
+	set desc = "Uses the underrail attachement currently attached to the gun."
+
+	var/obj/item/attachable/underrail_attachment = LAZYACCESS(attachments, ATTACHMENT_SLOT_UNDER)
+	if(!underrail_attachment)
+		to_chat(usr, "<span class='warning'>[src] does not have any usable rail attachment!</span>")
+		return
+	underrail_attachment.activate_attachment(usr)
+
 /mob/living/carbon/human/verb/toggle_ammo_hud()
 	set category = "Weapons"
 	set name = "Toggle Ammo HUD"
@@ -935,6 +950,32 @@ should be alright.
 	gun_iff_signal = C.access
 	modify_fire_delay(aim_fire_delay)
 	to_chat(user, "<span class='notice'>You line up your aim, allowing you to shoot past allies.</b></span>")
+
+/// Signal handler to activate the rail attachement of that gun if it's in our active hand
+/obj/item/weapon/gun/proc/activate_rail_attachment()
+	SIGNAL_HANDLER
+	if(gun_user?.get_active_held_item() != src)
+		return
+	var/obj/item/attachable/underrail_attachment = LAZYACCESS(attachments, ATTACHMENT_SLOT_RAIL)
+	underrail_attachment?.activate_attachment(gun_user)
+	return COMSIG_KB_ACTIVATED
+
+/// Signal handler to activate the underrail attachement of that gun if it's in our active hand
+/obj/item/weapon/gun/proc/activate_underrail_attachment()
+	SIGNAL_HANDLER
+	if(gun_user?.get_active_held_item() != src)
+		return
+	var/obj/item/attachable/rail_attachment = LAZYACCESS(attachments, ATTACHMENT_SLOT_UNDER)
+	rail_attachment?.activate_attachment(gun_user)
+	return COMSIG_KB_ACTIVATED
+
+/// Signal handler to unload that gun if it's in our active hand
+/obj/item/weapon/gun/proc/unload_gun()
+	SIGNAL_HANDLER
+	if(gun_user?.get_active_held_item() != src)
+		return
+	unload(gun_user)
+	return COMSIG_KB_ACTIVATED
 
 //----------------------------------------------------------
 				//				   	   \\

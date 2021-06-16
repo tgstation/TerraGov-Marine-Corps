@@ -163,6 +163,7 @@
 			/obj/item/weapon/shield/riot/marine = 6,
 			/obj/item/weapon/powerfist = -1,
 			/obj/item/weapon/throwing_knife = -1,
+			/obj/item/weapon/combat_knife = -1,
 			/obj/item/ammo_magazine/standard_smartmachinegun = 4,
 		),
 		"Grenades" = list(
@@ -198,6 +199,7 @@
 			/obj/item/attachable/attached_gun/flamer = -1,
 			/obj/item/attachable/attached_gun/shotgun = -1,
 			/obj/item/attachable/attached_gun/grenade = -1,
+			/obj/item/attachable/standard_revolver_longbarrel = -1
 		),
 		"Boxes" = list(
 		/obj/item/ammo_magazine/box9mm = 100,
@@ -211,6 +213,9 @@
 		),
 	)
 
+	seasonal_items = list(
+		SEASONAL_GUNS = "Seasonal",
+	)
 
 /obj/machinery/vending/marine/shared/hvh
 
@@ -590,49 +595,57 @@
 	product_ads = "Go save some lives!;The best stuff for your medbay.;Only the finest tools.;All natural chemicals!;This stuff saves lives.;Don't you want some?;Ping!"
 	req_one_access = ALL_MARINE_ACCESS
 	wrenchable = FALSE
+	isshared = TRUE
 	products = list(
-		/obj/item/reagent_containers/hypospray/autoinjector/bicaridine = 6,
-		/obj/item/reagent_containers/hypospray/autoinjector/kelotane = 6,
-		/obj/item/reagent_containers/hypospray/autoinjector/tramadol = 6,
-		/obj/item/reagent_containers/hypospray/autoinjector/oxycodone = 3,
-		/obj/item/reagent_containers/hypospray/autoinjector/tricordrazine = 8,
-		/obj/item/reagent_containers/hypospray/autoinjector/combat = 2,
-		/obj/item/reagent_containers/hypospray/autoinjector/inaprovaline = 6,
-		/obj/item/reagent_containers/hypospray/autoinjector/dylovene = 6,
-		/obj/item/reagent_containers/hypospray/autoinjector/hypervene = 4,
-		/obj/item/reagent_containers/hypospray/autoinjector/quickclot = 4,
-		/obj/item/reagent_containers/hypospray/autoinjector/dexalinplus = 0,
-		/obj/item/reagent_containers/hypospray/autoinjector/quickclotplus = 0,
-		/obj/item/reagent_containers/hypospray/autoinjector/synaptizine = 0,
-		/obj/item/storage/pill_bottle/bicaridine = 5,
-		/obj/item/storage/pill_bottle/kelotane = 5,
-		/obj/item/storage/pill_bottle/tramadol = 5,
-		/obj/item/storage/pill_bottle/tricordrazine = 3,
-		/obj/item/storage/pill_bottle/inaprovaline = 3,
-		/obj/item/storage/pill_bottle/dexalin = 3,
-		/obj/item/storage/pill_bottle/dylovene = 3,
-		/obj/item/storage/pill_bottle/spaceacillin = 3,
-		/obj/item/storage/pill_bottle/alkysine = 3,
-		/obj/item/storage/pill_bottle/imidazoline = 3,
-		/obj/item/storage/pill_bottle/russian_red = 5,
-		/obj/item/storage/pill_bottle/peridaxon = 2,
-		/obj/item/storage/pill_bottle/quickclot = 2,
-		/obj/item/storage/pill_bottle/hypervene = 2,
-		/obj/item/stack/medical/advanced/bruise_pack = 8,
-		/obj/item/stack/medical/bruise_pack = 8,
-		/obj/item/stack/medical/advanced/ointment = 8,
-		/obj/item/stack/medical/ointment = 8,
-		/obj/item/stack/medical/splint = 4,
-		/obj/item/healthanalyzer = 3,
-		/obj/item/bodybag/cryobag = 2,
+		"Pill Bottle" = list(
+			/obj/item/storage/pill_bottle/bicaridine = 12,
+			/obj/item/storage/pill_bottle/kelotane = 12,
+			/obj/item/storage/pill_bottle/tramadol = 12,
+			/obj/item/storage/pill_bottle/tricordrazine = 12,
+			/obj/item/storage/pill_bottle/inaprovaline = 12,
+			/obj/item/storage/pill_bottle/dexalin = 12,
+			/obj/item/storage/pill_bottle/dylovene = 12,
+			/obj/item/storage/pill_bottle/spaceacillin = 12,
+			/obj/item/storage/pill_bottle/alkysine = 12,
+			/obj/item/storage/pill_bottle/imidazoline = 12,
+			/obj/item/storage/pill_bottle/peridaxon = 8,
+			/obj/item/storage/pill_bottle/quickclot = 8,
+			/obj/item/storage/pill_bottle/hypervene = 8,
+		),
+		"Auto Injector" = list(
+			/obj/item/reagent_containers/hypospray/autoinjector/bicaridine = 24,
+			/obj/item/reagent_containers/hypospray/autoinjector/kelotane = 24,
+			/obj/item/reagent_containers/hypospray/autoinjector/tramadol = 24,
+			/obj/item/reagent_containers/hypospray/autoinjector/oxycodone = 12,
+			/obj/item/reagent_containers/hypospray/autoinjector/tricordrazine = 32,
+			/obj/item/reagent_containers/hypospray/autoinjector/combat = 8,
+			/obj/item/reagent_containers/hypospray/autoinjector/inaprovaline = 24,
+			/obj/item/reagent_containers/hypospray/autoinjector/dylovene = 24,
+			/obj/item/reagent_containers/hypospray/autoinjector/hypervene = 16,
+			/obj/item/reagent_containers/hypospray/autoinjector/isotonic = 16,
+			/obj/item/reagent_containers/hypospray/autoinjector/quickclot = 16,
+			/obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus = 0,
+			/obj/item/reagent_containers/hypospray/autoinjector/quickclotplus = 0,
+			/obj/item/reagent_containers/hypospray/autoinjector/synaptizine = 0,
+		),
+		"Heal Pack" = list(
+			/obj/item/stack/medical/advanced/bruise_pack = 32,
+			/obj/item/stack/medical/bruise_pack = 32,
+			/obj/item/stack/medical/advanced/ointment = 32,
+			/obj/item/stack/medical/ointment = 32,
+			/obj/item/stack/medical/splint = 16,
+		),
+		"Misc" = list(
+			/obj/item/healthanalyzer = 12,
+			/obj/item/bodybag/cryobag = 8,
+		),
 	)
-
 	contraband = list(
 		/obj/item/reagent_containers/hypospray/autoinjector/sleeptoxin = 3,
 		/obj/item/reagent_containers/hypospray/autoinjector/synaptizine_expired = 3,
 	)
 
-/obj/machinery/vending/MarineMed/rebel 
+/obj/machinery/vending/MarineMed/rebel
 	req_one_access = ALL_MARINE_REBEL_ACCESS
 
 /obj/machinery/vending/MarineMed/Blood
@@ -641,7 +654,7 @@
 	icon_state = "bloodvendor"
 	icon_deny = "bloodvendor-deny"
 	product_ads = "The best blood on the market!"
-	req_access = list(ACCESS_MARINE_MEDBAY, ACCESS_MARINE_CHEMISTRY)
+	req_one_access = list(ACCESS_MARINE_MEDBAY, ACCESS_MARINE_CHEMISTRY, ACCESS_MARINE_MEDPREP)
 	products = list(
 		/obj/item/reagent_containers/blood/APlus = 5,
 		/obj/item/reagent_containers/blood/AMinus = 5,
@@ -653,7 +666,7 @@
 	)
 	contraband = list()
 
-/obj/machinery/vending/MarineMed/Blood/rebel 
+/obj/machinery/vending/MarineMed/Blood/rebel
 	req_access = list(ACCESS_MARINE_MEDBAY_REBEL, ACCESS_MARINE_CHEMISTRY_REBEL)
 
 /obj/machinery/vending/MarineMed/Blood/build_inventory(list/productlist, category)
@@ -685,12 +698,12 @@
 		/obj/item/storage/backpack/marine/corpsman = 4,
 		/obj/item/storage/backpack/marine/satchel/corpsman = 4,
 		/obj/item/encryptionkey/med = 4,
-		/obj/item/storage/belt/medical = 4,
+		/obj/item/storage/belt/medical = 6,
 		/obj/item/bodybag/cryobag = 4,
 		/obj/item/healthanalyzer = 4,
 		/obj/item/clothing/glasses/hud/health = 4,
 		/obj/item/storage/firstaid/regular = 4,
-		/obj/item/storage/firstaid/adv = 4,
+		/obj/item/storage/firstaid/adv = 8,
 		/obj/item/storage/pouch/medical = 4,
 		/obj/item/storage/pouch/medkit = 4,
 		/obj/item/storage/pouch/magazine/large = 4,
@@ -700,7 +713,7 @@
 	)
 	contraband = list(/obj/item/reagent_containers/blood/OMinus = 1)
 
-/obj/machinery/vending/marine_medic/rebel 
+/obj/machinery/vending/marine_medic/rebel
 	req_access = list(ACCESS_MARINE_MEDPREP_REBEL)
 
 /obj/machinery/vending/marine_special
@@ -815,8 +828,8 @@
 		/obj/item/clothing/suit/storage/marine/leader = 1,
 		/obj/item/clothing/head/helmet/marine/leader = 1,
 		/obj/item/clothing/tie/storage/webbing = 1,
-		/obj/item/squad_beacon = 1,
-		/obj/item/squad_beacon/bomb = 1,
+		/obj/item/beacon/supply_beacon = 1,
+		/obj/item/beacon/orbital_bombardment_beacon = 1,
 		/obj/item/explosive/plastique = 1,
 		/obj/item/explosive/grenade/smokebomb = 3,
 		/obj/item/binoculars/tactical = 1,
@@ -917,9 +930,12 @@
 	products = list(
 		"Clothing" = list(
 			/obj/item/clothing/under/marine/standard =-1,
+			/obj/item/clothing/under/marine/camo =-1,
+			/obj/item/clothing/under/marine/camo/desert =-1,
+			/obj/item/clothing/under/marine/camo/snow =-1,
 			/obj/item/clothing/under/marine/jaeger =-1,
 			/obj/item/clothing/gloves/marine =-1,
-			/obj/item/clothing/shoes/marine = -1,
+			/obj/item/clothing/shoes/marine/full = -1,
 			/obj/item/clothing/head/slouch = -1,
 			/obj/item/clothing/glasses/mgoggles = -1,
 			/obj/item/clothing/glasses/mgoggles/prescription = -1,
@@ -954,7 +970,7 @@
 			/obj/item/storage/pouch/magazine/large = -1,
 			/obj/item/storage/pouch/magazine/pistol/large = -1,
 			/obj/item/storage/pouch/shotgun = -1,
-			/obj/item/storage/pouch/flare = -1,
+			/obj/item/storage/pouch/flare/full = -1,
 			/obj/item/storage/pouch/grenade = -1,
 			/obj/item/storage/pouch/explosive = -1,
 			/obj/item/storage/pouch/firstaid = -1,
@@ -962,8 +978,8 @@
 			/obj/item/storage/pouch/medkit = -1,
 			/obj/item/storage/pouch/autoinjector = -1,
 			/obj/item/storage/pouch/construction = -1,
-			/obj/item/storage/pouch/electronics = -1,
-			/obj/item/storage/pouch/tools = -1,
+			/obj/item/storage/pouch/electronics/full = -1,
+			/obj/item/storage/pouch/tools/full = -1,
 			/obj/item/storage/pouch/field_pouch = -1,
 			/obj/item/storage/pouch/general/large = -1,
 			/obj/item/storage/pouch/document = -1,

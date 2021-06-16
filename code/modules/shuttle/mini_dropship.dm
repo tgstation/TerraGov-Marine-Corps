@@ -44,6 +44,8 @@
 	var/mob/living/ui_user
 	/// If this computer was damaged by a xeno
 	var/damaged = FALSE
+	/// How long before you can launch tadpole after a landing
+	var/launching_delay = 10 SECONDS
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/Initialize(mapload)
 	..()
@@ -94,6 +96,8 @@
 		next_fly_state = destination_fly_state
 		return
 	give_actions()
+	if(fly_state == SHUTTLE_ON_GROUND)
+		TIMER_COOLDOWN_START(src, COOLDOWN_TADPOLE_LAUNCHING, launching_delay)
 	if(fly_state != SHUTTLE_IN_ATMOSPHERE)
 		return
 	shuttle_port.assigned_transit.reserved_area.set_turf_type(/turf/open/space/transit/atmos)
@@ -106,6 +110,9 @@
 	shuttle_port = SSshuttle.getShuttle(shuttleId)
 	if(!(shuttle_port.shuttle_flags & GAMEMODE_IMMUNE) && world.time < SSticker.round_start_time + SSticker.mode.deploy_time_lock)
 		to_chat(ui_user, "<span class='warning'>The mothership is too far away from the theatre of operation, we cannot take off.</span>")
+		return
+	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_TADPOLE_LAUNCHING))
+		to_chat(ui_user, "<span class='warning'>The dropship's engines are not ready yet</span>")
 		return
 	shuttle_port.shuttle_computer = src
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_TADPOLE_LAUNCHED)
@@ -145,12 +152,12 @@
 	if(damaged)
 		return
 	X.visible_message("[X] begins to slash delicately at the computer",
-	"You start slashing delicately at the computer.")
+	"We start slashing delicately at the computer. This will take a while.")
 	if(!do_after(X, 10 SECONDS, TRUE, src, BUSY_ICON_DANGER, BUSY_ICON_HOSTILE))
 		return
 	visible_message("The inner wiring is visible, it can be slashed!")
 	X.visible_message("[X] continue to slash at the computer",
-	"You continue slashing at the computer.")
+	"We continue slashing at the computer. If we stop now we will have to start all over again.")
 	var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
 	s.set_up(3, 1, src)
 	s.start()
@@ -161,7 +168,20 @@
 	s2.set_up(3, 1, src)
 	s2.start()
 	damaged = TRUE
+	open_prompt = FALSE
 	remove_eye_control(ui_user)
+
+	if(fly_state == SHUTTLE_IN_ATMOSPHERE && last_valid_ground_port)
+		visible_message("Autopilot detects loss of helm control. INITIATING EMERGENCY LANDING!")
+		shuttle_port.callTime = SHUTTLE_LANDING_CALLTIME
+		next_fly_state = SHUTTLE_ON_GROUND
+		shuttle_port.set_mode(SHUTTLE_CALL)
+		SSshuttle.moveShuttleToDock(shuttleId, last_valid_ground_port, TRUE)
+		return
+
+	if(next_fly_state == SHUTTLE_IN_ATMOSPHERE)
+		shuttle_port.set_idle() // don't go up with a broken console, cencel spooling
+		visible_message("Autopilot detects loss of helm control. Halting take off!")
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/ui_state(mob/user)
 	return GLOB.dropship_state
@@ -239,4 +259,5 @@
 	origin.open_prompt = FALSE
 	origin.remove_eye_control(origin.ui_user)
 	origin.shuttle_port.set_mode(SHUTTLE_CALL)
+	origin.last_valid_ground_port = origin.my_port
 	SSshuttle.moveShuttleToDock(origin.shuttleId, origin.my_port, TRUE)

@@ -456,7 +456,6 @@
 /obj/item/storage/belt/shotgun/martini
 	name = "martini henry ammo belt"
 	desc = "A belt good enough for holding all your .577/400 ball rounds."
-	icon = 'icons/obj/items/ammo.dmi'
 	icon_state = ".557_belt"
 	storage_slots = 12
 	max_storage_space = 24
@@ -496,11 +495,19 @@
 	if(!draw_mode || !ishuman(user) && !contents.len)
 		open(user)
 
+	if(!length(contents))
+		return
+
 	var/obj/item/I = contents[contents.len]
 	if(!istype(I, /obj/item/ammo_magazine/handful))
 		return
 
 	var/obj/item/ammo_magazine/handful/existing_handful = I
+
+	if(existing_handful.current_rounds == 1)
+		user.put_in_hands(existing_handful)
+		return
+
 	existing_handful.create_handful(user, 1)
 	update_icon()
 
@@ -600,10 +607,13 @@
 	storage_slots = 7
 	max_storage_space = 15
 	max_w_class = 3
-	var/holds_guns_now = 0 //Generic variable to determine if the holster already holds a gun.
-	var/holds_guns_max = 1 //How many guns can it hold? I think this can be any thing from 1 to whatever. Should calculate properly.
-	var/obj/item/weapon/gun/current_gun //The gun it holds, used for referencing later so we can update the icon.
-	var/image/gun_underlay //The underlay we will use.
+	///Generic variable to determine if the holster already holds a gun.
+	var/holds_guns_now = FALSE
+	///How many guns can it hold? I think this can be any thing from 1 to whatever. Should calculate properly.
+	var/holds_guns_max = 1
+	///The gun it holds, used for referencing later so we can update the icon.
+	var/obj/item/weapon/gun/current_gun
+	var/image/gun_underlay
 	var/sheatheSound = 'sound/weapons/guns/misc/pistol_sheathe.ogg'
 	var/drawSound = 'sound/weapons/guns/misc/pistol_draw.ogg'
 	can_hold = list(
@@ -683,12 +693,12 @@
 	if(!istype(I, /obj/item/weapon/gun/pistol))
 		return ..()
 	var/obj/item/weapon/gun/pistol/gun = I
-	for(var/obj/item/ammo_magazine/mag in contents) 
+	for(var/obj/item/ammo_magazine/mag in contents)
 		if(!istype(gun, mag.gun_type))
 			continue
 		if(user.l_hand && user.r_hand || gun.current_mag)
 			gun.tactical_reload(mag, user)
-		else 
+		else
 			gun.reload(user, mag)
 		orient2hud()
 		return
@@ -786,6 +796,9 @@
 	desc = "The T457 is the standard load-bearing equipment of the TGMC. It consists of a modular belt with various clips."
 	icon_state = "tp44_holster"
 	item_state = "tp44_holster"
+	bypass_w_limit = list(
+		/obj/item/weapon/gun/revolver,
+	)
 	can_hold = list(
 		/obj/item/weapon/gun/revolver,
 		/obj/item/ammo_magazine/revolver,
@@ -817,6 +830,9 @@
 	desc = "The M276 is the standard load-bearing equipment of the TGMC. It consists of a modular belt with various clips. This version is for the powerful Mateba magnum revolver, along with three pouches for speedloaders."
 	icon_state = "mateba_holster"
 	item_state = "mateba_holster"
+	bypass_w_limit = list(
+		/obj/item/weapon/gun/revolver/mateba,
+	)
 	can_hold = list(
 		/obj/item/weapon/gun/revolver/mateba,
 		/obj/item/ammo_magazine/revolver/mateba,
