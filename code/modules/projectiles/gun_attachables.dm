@@ -672,11 +672,12 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 
 /obj/item/attachable/magnetic_harness
 	name = "magnetic harness"
-	desc = "A magnetically attached harness kit that attaches to the rail mount of a weapon. When dropped, the weapon will sling to a TGMC armor."
+	desc = "A magnetically attached harness kit that attaches to the rail mount of a weapon. When dropped, the weapon will sling to a TGMC armor. Will slow you down quite a bit, if you aim with it."
 	icon_state = "magnetic"
 	attach_icon = "magnetic_a"
 	slot = ATTACHMENT_SLOT_RAIL
 	pixel_shift_x = 13
+	aim_speed_mod = 0.3
 
 
 /obj/item/attachable/scope
