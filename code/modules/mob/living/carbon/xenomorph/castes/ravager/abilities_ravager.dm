@@ -265,9 +265,9 @@
 
 	var/mob/living/carbon/xenomorph/ravager/rager = owner
 
-	if(rager.health > rager.maxHealth * 0.5) //Need to be at 50% of max hp or lower to rage
+	if(rager.health > rager.maxHealth * RAVAGER_RAGE_MIN_HEALTH_THRESHOLD) //Need to be at 50% of max hp or lower to rage
 		if(!silent)
-			to_chat(rager, "<span class='xenodanger'>Our health isn't low enough to rage! We must take [rager.health - (rager.maxHealth * 0.5)] more damage!</span>")
+			to_chat(rager, "<span class='xenodanger'>Our health isn't low enough to rage! We must take [rager.health - (rager.maxHealth * RAVAGER_RAGE_MIN_HEALTH_THRESHOLD)] more damage!</span>")
 		return FALSE
 
 
@@ -292,7 +292,7 @@
 	playsound(X.loc, 'sound/voice/alien_roar2.ogg', clamp(100 * rage_power, 25, 80), 0)
 
 	var/bonus_duration
-	if(rage_power > 0.5) //If we're super pissed it's time to get crazy
+	if(rage_power > RAVAGER_RAGE_SUPER_RAGE_THRESHOLD) //If we're super pissed it's time to get crazy
 		var/datum/action/xeno_action/charge = X.actions_by_path[/datum/action/xeno_action/activable/charge]
 		var/datum/action/xeno_action/ravage = X.actions_by_path[/datum/action/xeno_action/activable/ravage]
 		if(charge)
@@ -303,14 +303,14 @@
 	for(var/turf/affected_tiles AS in RANGE_TURFS(rage_power_radius, X.loc))
 		affected_tiles.Shake(4, 4, 1 SECONDS) //SFX
 
-	for(var/mob/living/L in cheap_get_living_near(X, rage_power_radius)) //Roar that applies cool SFX
+	for(var/mob/living/L AS in cheap_get_living_near(X, rage_power_radius)) //Roar that applies cool SFX
 		if(L.stat == DEAD || !L.hud_used) //We don't care about the dead
 			continue
 
 		shake_camera(L, 1 SECONDS, 1)
 		L.Shake(4, 4, 1 SECONDS) //SFX
 
-		if(rage_power > 0.5) //If we're super pissed it's time to get crazy
+		if(rage_power > RAVAGER_RAGE_SUPER_RAGE_THRESHOLD) //If we're super pissed it's time to get crazy
 
 			var/obj/screen/plane_master/floor/OT = L.hud_used.plane_masters["[FLOOR_PLANE]"]
 			var/obj/screen/plane_master/game_world/GW = L.hud_used.plane_masters["[GAME_PLANE]"]
