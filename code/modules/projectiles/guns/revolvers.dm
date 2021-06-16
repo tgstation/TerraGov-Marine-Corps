@@ -446,8 +446,6 @@
 	recoil = 0
 	recoil_unwielded = 0
 
-/obj/item/weapon/gun/revolver/small/unique_action(mob/user)
-	return revolver_trick(user)
 
 //-------------------------------------------------------
 //Mateba is pretty well known. The cylinder folds up instead of to the side. This has a non-marine version and a marine version.
