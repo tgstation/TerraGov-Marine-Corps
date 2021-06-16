@@ -126,7 +126,7 @@
 
 /// Will check if the selected category can be bought according to the buying_bitfield
 /proc/can_buy_category(category, buying_bitfield)
-	var/selling_bitfield= NONE
+	var/selling_bitfield = NONE
 	for(var/i in GLOB.marine_selector_cats[category])
 		selling_bitfield |= i
 	return buying_bitfield & selling_bitfield
