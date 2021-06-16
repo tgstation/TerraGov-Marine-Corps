@@ -111,3 +111,6 @@
   Wayland-Smithy:
   - balance: TL-127, Mosin, and SVD sniper rifles no longer have aim-mode.
   - bugfix: Fixed the tgui changelog dates being inaccurate to the source files.
+2021-06-16:
+  Terra1:
+  - balance: Colony floodlight switches can no longer be destroyed by xenomorphs.
