@@ -3,7 +3,7 @@
 #define CAT_COIN 2
 
 #define MAKE_VENDING_RECORD_DATA(record) list(\
-		"product_name" = adminscrub(record.product_name),\
+		"product_name" = record.product_name,\
 		"product_color" = record.display_color,\
 		"prod_price" = record.price,\
 		"prod_desc" = initial(record.product_path.desc),\
