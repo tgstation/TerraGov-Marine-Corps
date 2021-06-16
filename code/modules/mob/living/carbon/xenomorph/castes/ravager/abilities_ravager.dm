@@ -265,20 +265,19 @@
 
 	var/mob/living/carbon/xenomorph/ravager/rager = owner
 
-	var/rage_health_threshold = rager.maxHealth * 0.5 //Need to be at 50% of max hp or lower to rage
-	if(rager.health > rage_health_threshold)
+	if(rager.health > rager.maxHealth * 0.5) //Need to be at 50% of max hp or lower to rage
 		if(!silent)
-			to_chat(rager, "<span class='xenodanger'>Our health isn't low enough to rage! We must take [rager.health - rage_health_threshold] more damage!</span>")
+			to_chat(rager, "<span class='xenodanger'>Our health isn't low enough to rage! We must take [rager.health - (rager.maxHealth * 0.5)] more damage!</span>")
 		return FALSE
 
 
 /datum/action/xeno_action/rage/action_activate()
 	var/mob/living/carbon/xenomorph/ravager/X = owner
 
-	rage_power = (1-(X.health/X.maxHealth)) * 0.5 //Calculate the power of our rage; scales with difference between current and max HP
+	rage_power = (1-(X.health/X.maxHealth)) * RAVAGER_RAGE_POWER_MULTIPLIER //Calculate the power of our rage; scales with difference between current and max HP
 
 	if(X.health < 0) //Gain additional rage with negative HP; gain + 0.0075 rage power per point of negative HP
-		rage_power += X.health * -0.0075
+		rage_power += X.health * RAVAGER_RAGE_NEGATIVE_HP_POWER_MULTIPLIER
 
 	rage_power = min(1, rage_power) //Cap rage power so that we don't get way too insane.
 
@@ -301,38 +300,29 @@
 		if(ravage)
 			ravage.clear_cooldown() //Reset ravage cooldown
 
-		for(var/mob/living/witness in hearers(rage_power_radius, X)) //Roar that applies cool SFX and some soft CC
-
-			if(!witness.hud_used)
-				continue
-
-			var/obj/screen/plane_master/floor/OT = witness.hud_used.plane_masters["[FLOOR_PLANE]"]
-			var/obj/screen/plane_master/game_world/GW = witness.hud_used.plane_masters["[GAME_PLANE]"]
-
-			addtimer(CALLBACK(OT, /atom.proc/remove_filter, "rage_outcry"), 1 SECONDS)
-			GW.add_filter("rage_outcry", 2, list("type" = "radial_blur", "size" = 0.07))
-			animate(GW.get_filter("rage_outcry"), size = 0.12, time = 5, loop = -1)
-			OT.add_filter("rage_outcry", 2, list("type" = "radial_blur", "size" = 0.07))
-			animate(OT.get_filter("rage_outcry"), size = 0.12, time = 5, loop = -1)
-			addtimer(CALLBACK(GW, /atom.proc/remove_filter, "rage_outcry"), 1 SECONDS)
-
-	for(var/turf/affected_tiles as() in RANGE_TURFS(rage_power_radius, X.loc))
+	for(var/turf/affected_tiles AS in RANGE_TURFS(rage_power_radius, X.loc))
 		affected_tiles.Shake(4, 4, 1 SECONDS) //SFX
 
-	for(var/mob/living/L in hearers(rage_power_radius, X)) //Roar that applies cool SFX and some soft CC
+	for(var/mob/living/L in cheap_get_living_near(X, rage_power_radius)) //Roar that applies cool SFX
+		if(L.stat == DEAD || !L.hud_used) //We don't care about the dead
+			continue
+
 		shake_camera(L, 1 SECONDS, 1)
 		L.Shake(4, 4, 1 SECONDS) //SFX
 
-		if(L.stat == DEAD) //We don't care about the dead
-			continue
+		if(rage_power > 0.5) //If we're super pissed it's time to get crazy
 
-		if(isxeno(L))
-			var/mob/living/carbon/xenomorph/friendly_check = L
-			if(friendly_check.issamexenohive(X)) //No friendly fire
-				continue
+			var/obj/screen/plane_master/floor/OT = L.hud_used.plane_masters["[FLOOR_PLANE]"]
+			var/obj/screen/plane_master/game_world/GW = L.hud_used.plane_masters["[GAME_PLANE]"]
+
+			addtimer(CALLBACK(OT, /atom.proc/remove_filter, "rage_outcry"), 1 SECONDS)
+			GW.add_filter("rage_outcry", 2, radial_blur_filter(0.07))
+			animate(GW.get_filter("rage_outcry"), size = 0.12, time = 5, loop = -1)
+			OT.add_filter("rage_outcry", 2, radial_blur_filter(0.07))
+			animate(OT.get_filter("rage_outcry"), size = 0.12, time = 5, loop = -1)
+			addtimer(CALLBACK(GW, /atom.proc/remove_filter, "rage_outcry"), 1 SECONDS)
 
 	X.add_filter("ravager_rage_outline", 5, outline_filter(1.5, COLOR_RED)) //Set our cool aura; also confirmation we have the buff
-
 
 	rage_plasma = min(X.xeno_caste.plasma_max - X.plasma_stored, X.xeno_caste.plasma_max * rage_power) //Calculate the plasma to restore (and take away later)
 	X.plasma_stored += rage_plasma //Regain a % of our maximum plasma scaling with rage

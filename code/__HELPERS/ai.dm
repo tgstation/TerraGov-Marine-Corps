@@ -28,3 +28,9 @@
 		if(get_dist(source, nearby_xeno) > distance)
 			continue
 		. += nearby_xeno
+
+///Returns a list of humans and xenos via get_dist and same z level method, very cheap compared to range()
+/proc/cheap_get_living_near(atom/movable/source, distance)
+	. = list()
+	. += cheap_get_humans_near(source,distance)
+	. += cheap_get_xenos_near(source,distance)

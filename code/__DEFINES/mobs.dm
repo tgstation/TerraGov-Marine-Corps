@@ -529,8 +529,10 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define RAVAGER_ENDURE_DURATION_WARNING		0.7
 #define RAVAGER_ENDURE_HP_LIMIT				-200
 
-#define RAVAGER_RAGE_DURATION				10 SECONDS
-#define RAVAGER_RAGE_WARNING				0.7
+#define RAVAGER_RAGE_DURATION							10 SECONDS
+#define RAVAGER_RAGE_WARNING							0.7
+#define RAVAGER_RAGE_POWER_MULTIPLIER					0.5 //How much we multiply our % of missing HP by to determine Rage Power
+#define RAVAGER_RAGE_NEGATIVE_HP_POWER_MULTIPLIER		-0.0075 //How much we multiply our negative HP by to determine Rage Power
 
 //crusher defines
 #define CRUSHER_STOMP_LOWER_DMG 40
