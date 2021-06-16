@@ -262,7 +262,7 @@
 	for(var/season in seasonal_items)
 		products[seasonal_items[season]] += SSpersistence.season_items[season]
 
-/obj/machinery/vending/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
+/obj/machinery/vending/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage * X.xeno_melee_damage_modifier, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
 	if(X.status_flags & INCORPOREAL)
 		return FALSE
 
@@ -272,7 +272,7 @@
 
 	if(X.a_intent == INTENT_HARM)
 		X.do_attack_animation(src, ATTACK_EFFECT_SMASH)
-		if(prob(X.xeno_caste.melee_damage))
+		if(prob(X.xeno_caste.melee_damage * X.xeno_melee_damage_modifier))
 			playsound(loc, 'sound/effects/metalhit.ogg', 25, 1)
 			X.visible_message("<span class='danger'>\The [X] smashes \the [src] beyond recognition!</span>", \
 			"<span class='danger'>We enter a frenzy and smash \the [src] apart!</span>", null, 5)
