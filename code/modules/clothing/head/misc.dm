@@ -127,12 +127,6 @@
 	icon_state = "justicepink"
 	item_state = "justicepink"
 
-/obj/item/clothing/head/rabbitears
-	name = "rabbit ears"
-	desc = "Wearing these makes you looks useless, and only good for your sex appeal."
-	icon_state = "bunny"
-	flags_armor_protection = NONE
-
 /obj/item/clothing/head/flatcap
 	name = "flat cap"
 	desc = "A working man's cap."
