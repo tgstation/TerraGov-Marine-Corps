@@ -248,8 +248,10 @@
 	keybind_signal = COMSIG_XENOABILITY_RAGE
 	///Determines the power of Rage's many effects. Power scales inversely with the Ravager's HP; min 0.25 at 50% of Max HP, max 1 while in negative HP. 0.5 and above triggers especial effects.
 	var/rage_power
-	///Determines the Sunder to impose when rage ends
+	///Determines the Sunder to impose when Rage ends
 	var/rage_sunder
+	///Determines the Plasma to remove when Rage ends
+	var/rage_plasma
 
 /datum/action/xeno_action/rage/on_cooldown_finish()
 	to_chat(owner, "<span class='xenodanger'>We are able to enter our rage once again.</span>")
@@ -331,7 +333,9 @@
 
 	X.add_filter("ravager_rage_outline", 5, outline_filter(1.5, COLOR_RED)) //Set our cool aura; also confirmation we have the buff
 
-	X.plasma_stored += X.xeno_caste.plasma_max * rage_power //Regain a % of our maximum plasma scaling with rage
+
+	rage_plasma = min(X.xeno_caste.plasma_max - X.plasma_stored, X.xeno_caste.plasma_max * rage_power) //Calculate the plasma to restore (and take away later)
+	X.plasma_stored += rage_plasma //Regain a % of our maximum plasma scaling with rage
 
 	rage_sunder = min(X.sunder, rage_power * 100) //Set our temporary Sunder recovery
 	X.adjust_sunder(-1 * rage_sunder) //Restores up to 100 Sunder temporarily.
@@ -368,11 +372,12 @@
 
 	R.remove_filter("ravager_rage_outline")
 	R.visible_message("<span class='warning'>[R] seems to calm down.</span>", \
-	"<span class='highdanger'>Our rage subsides and its power leaves our body.</span>")
+	"<span class='highdanger'>Our rage subsides and its power leaves our body, leaving us exhausted.</span>")
 
 	R.xeno_melee_damage_modifier = initial(R.xeno_melee_damage_modifier) //Reset rage melee damage bonus
 	R.remove_movespeed_modifier(MOVESPEED_ID_RAVAGER_RAGE) //Reset speed
 	R.adjust_sunder(rage_sunder) //Remove the temporary Sunder restoration
+	R.use_plasma(rage_plasma) //Remove the temporary Plasma
 
 	REMOVE_TRAIT(R, TRAIT_STUNIMMUNE, RAGE_TRAIT)
 	REMOVE_TRAIT(R, TRAIT_SLOWDOWNIMMUNE, RAGE_TRAIT)
@@ -380,4 +385,5 @@
 
 	rage_sunder = 0
 	rage_power = 0
+	rage_plasma = 0
 	R.playsound_local(R, 'sound/voice/hiss5.ogg', 50) //Audio cue
