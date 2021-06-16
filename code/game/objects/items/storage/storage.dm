@@ -423,7 +423,7 @@
 	if(!handle_access_delay(item, user, taking_out=FALSE))
 		item.forceMove(item.drop_location())
 		return FALSE
-	if(user && item.loc == user)
+	if(item.loc == user)
 		if(!user.transferItemToLoc(item, src))
 			return FALSE
 	else
