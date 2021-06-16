@@ -237,27 +237,29 @@
 // ***************************************
 // *********** Rage
 // ***************************************
-/datum/action/xeno_action/activable/rage
+/datum/action/xeno_action/rage
 	name = "Rage"
 	action_icon_state = "rage"
 	mechanics_text = "Use while at 50% health or lower to gain extra slash damage, resistances and speed in proportion to your missing hit points. This bonus is increased and you regain plasma while your HP is negative."
 	ability_name = "Rage"
 	plasma_cost = 0 //We're limited by cooldowns, not plasma
-	cooldown_timer = 120 SECONDS
+	cooldown_timer = 60 SECONDS
 	keybind_flags = XACT_KEYBIND_USE_ABILITY | XACT_IGNORE_SELECTED_ABILITY
 	keybind_signal = COMSIG_XENOABILITY_RAGE
 	///Determines the power of Rage's many effects. Power scales inversely with the Ravager's HP; min 0.25 at 50% of Max HP, max 1 while in negative HP. 0.5 and above triggers especial effects.
 	var/rage_power
+	///Determines the Sunder to impose when rage ends
+	var/rage_sunder
 
-/datum/action/xeno_action/activable/rage/on_cooldown_finish()
+/datum/action/xeno_action/rage/on_cooldown_finish()
 	to_chat(owner, "<span class='xenodanger'>We are able to enter our rage once again.</span>")
 	owner.playsound_local(owner, 'sound/effects/xeno_newlarva.ogg', 25, 0, 1)
 	return ..()
 
-/datum/action/xeno_action/activable/rage/can_use_ability(atom/A, silent = FALSE, override_flags)
+/datum/action/xeno_action/rage/can_use_action(atom/A, silent = FALSE, override_flags)
 	. = ..()
 	if(!.)
-		return
+		return FALSE
 
 	var/mob/living/carbon/xenomorph/ravager/rager = owner
 
@@ -268,7 +270,7 @@
 		return FALSE
 
 
-/datum/action/xeno_action/activable/rage/use_ability(atom/A)
+/datum/action/xeno_action/rage/action_activate()
 	var/mob/living/carbon/xenomorph/ravager/X = owner
 
 	rage_power = (1-(X.health/X.maxHealth)) * 0.5 //Calculate the power of our rage; scales with difference between current and max HP
@@ -327,22 +329,12 @@
 			if(friendly_check.issamexenohive(X)) //No friendly fire
 				continue
 
-		L.adjust_stagger(rage_power_radius * 0.5) //Apply soft CC debuffs
-		L.add_slowdown(rage_power_radius)
-		to_chat(L, "<span class='xenohighdanger'>The [X]'s terrible roar penetrates your senses, leaving you staggered.</span>")
-
-	X.add_filter("ravager_rage_outline", 5, list("type" = "outline", "size" = 1.5, "color" = COLOR_RED)) //Set our cool aura; also confirmation we have the buff
+	X.add_filter("ravager_rage_outline", 5, outline_filter(1.5, COLOR_RED)) //Set our cool aura; also confirmation we have the buff
 
 	X.plasma_stored += X.xeno_caste.plasma_max * rage_power //Regain a % of our maximum plasma scaling with rage
 
-	X.soft_armor = X.soft_armor.modifyAllRatings(CEILING(rage_power * 40,1)) //Set rage armor bonus
-	switch(rage_power) //Set rage explosive resist bonus
-		if(0.25 to 0.50)
-			X.soft_armor = X.soft_armor.setRating(bomb = XENO_BOMB_RESIST_2)
-		if(0.5 to INFINITY)
-			X.soft_armor = X.soft_armor.setRating(bomb = XENO_BOMB_RESIST_3)
-
-	X.adjust_sunder(-50 * rage_power) //Restore up to 50 sunder; this armor bonus means literally nothing if we're literally shredded to shit.
+	rage_sunder = min(X.sunder, rage_power * 100) //Set our temporary Sunder recovery
+	X.adjust_sunder(-1 * rage_sunder) //Restores up to 100 Sunder temporarily.
 
 	X.xeno_melee_damage_modifier += rage_power  //Set rage melee damage bonus
 
@@ -363,12 +355,12 @@
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "ravager_rages")
 
 ///Warns the user when his rage is about to end.
-/datum/action/xeno_action/activable/rage/proc/rage_warning(bonus_duration = 0)
+/datum/action/xeno_action/rage/proc/rage_warning(bonus_duration = 0)
 	to_chat(owner,"<span class='highdanger'>Our rage begins to subside... [ability_name] will only last for only [(RAVAGER_RAGE_DURATION + bonus_duration) * (1-RAVAGER_RAGE_WARNING) * 0.1] more seconds!</span>")
 	owner.playsound_local(owner, 'sound/voice/hiss4.ogg', 50, 0, 1)
 
 ///Called when we want to end the Rage effect
-/datum/action/xeno_action/activable/rage/proc/rage_deactivate()
+/datum/action/xeno_action/rage/proc/rage_deactivate()
 
 	var/mob/living/carbon/xenomorph/ravager/R = owner
 
@@ -378,13 +370,14 @@
 	R.visible_message("<span class='warning'>[R] seems to calm down.</span>", \
 	"<span class='highdanger'>Our rage subsides and its power leaves our body.</span>")
 
-	R.soft_armor = R.soft_armor.modifyAllRatings(-CEILING(rage_power * 40,1)) //Reset rage armor bonus
-	R.soft_armor = R.soft_armor.setRating(bomb = XENO_BOMB_RESIST_1) //Reset blast resistance
-	R.xeno_melee_damage_modifier -= rage_power //Reset rage melee damage bonus
+	R.xeno_melee_damage_modifier = initial(R.xeno_melee_damage_modifier) //Reset rage melee damage bonus
 	R.remove_movespeed_modifier(MOVESPEED_ID_RAVAGER_RAGE) //Reset speed
+	R.adjust_sunder(rage_sunder) //Remove the temporary Sunder restoration
 
 	REMOVE_TRAIT(R, TRAIT_STUNIMMUNE, RAGE_TRAIT)
 	REMOVE_TRAIT(R, TRAIT_SLOWDOWNIMMUNE, RAGE_TRAIT)
 	REMOVE_TRAIT(R, TRAIT_STAGGERIMMUNE, RAGE_TRAIT)
 
+	rage_sunder = 0
+	rage_power = 0
 	R.playsound_local(R, 'sound/voice/hiss5.ogg', 50) //Audio cue
