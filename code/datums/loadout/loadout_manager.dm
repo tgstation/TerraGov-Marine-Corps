@@ -18,7 +18,7 @@
 
 ///Remove the data of a loadout from the loadouts list
 /datum/loadout_manager/proc/delete_loadout(datum/loadout/loadout)
-	for(var/i = 1 to length(loadouts_data) step 2)
+	for(var/i = 1; i <= length(loadouts_data); i += 2)
 		if(loadout.job == loadouts_data[i] && loadout.name == loadouts_data[i+1])
 			loadouts_data -= loadouts_data[i+1]
 			loadouts_data -= loadouts_data[i]
@@ -56,7 +56,7 @@
 	. = ..()
 	var/data = list()
 	var/list/loadouts_data_tgui = list()
-	for(var/i = 1 to length(loadouts_data) step 2)
+	for(var/i = 1; i <= length(loadouts_data); i += 2)
 		var/next_loadout_data = list()
 		next_loadout_data["job"] = loadouts_data[i]
 		next_loadout_data["name"] = loadouts_data[i+1]
