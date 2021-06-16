@@ -450,8 +450,7 @@
 	if(!istype(item))
 		return FALSE
 
-	for(var/i in can_see_content())
-		var/mob/M = i
+	for(var/mob/M AS in can_see_content())
 		if(!M.client)
 			continue
 		M.client.screen -= item
