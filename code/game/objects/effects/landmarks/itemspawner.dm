@@ -39,6 +39,7 @@
 	/obj/item/clothing/mask/cigarette/cigar/havana,\
 	/obj/item/clothing/shoes/jackboots)
 
+
 /obj/effect/landmark/itemspawner/butler
 	items_to_spawn = list(\
 	/obj/item/clothing/suit/wcoat,\
