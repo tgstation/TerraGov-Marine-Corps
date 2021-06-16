@@ -74,7 +74,7 @@
 /obj/item/ammo_magazine/magnum
 	name = "packet of .44 magnum"
 	icon_state = "box_44mag" //Maybe change this
-	default_ammo = /datum/ammo/bullet/revolver
+	default_ammo = /datum/ammo/bullet/revolver/tp44
 	caliber = CALIBER_44
 	current_rounds = 50
 	max_rounds = 50
