@@ -133,7 +133,7 @@
 
 /// Return true if you can buy this category, and also change the loadout seller buying bitfield
 /proc/buy_category(category, datum/loadout_seller/seller)
-	var/selling_bitfield= NONE
+	var/selling_bitfield = NONE
 	for(var/i in GLOB.marine_selector_cats[category])
 		selling_bitfield |= i
 	if(!(seller.buying_bitfield & selling_bitfield))
