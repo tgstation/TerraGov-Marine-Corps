@@ -9,6 +9,12 @@
 	icon_state = "barman"
 	rollable_sleeves = FALSE
 
+/obj/item/clothing/under/rank/maid
+	desc = "An apron and skirt that are allegedly worn by maids in some parts of Earth."
+	name = "maid costume"
+	icon_state = "maid"
+	rollable_sleeves = FALSE
+
 /obj/item/clothing/under/rank/captain //Alright, technically not a 'civilian' but its better then giving a .dm file for a single define.
 	desc = "It's a blue jumpsuit with some gold markings denoting the rank of \"Captain\"."
 	name = "captain's jumpsuit"

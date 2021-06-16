@@ -42,9 +42,8 @@
 
 /obj/effect/landmark/itemspawner/maid
 	items_to_spawn = list(\
-	/obj/item/clothing/under/color/black,\
-	/obj/item/clothing/head/rabbitears,\
-	/obj/item/clothing/glasses/sunglasses/blindfold)
+	/obj/item/clothing/under/rank/maid,\
+	/obj/item/clothing/head/rabbitears)
 
 
 /obj/effect/landmark/itemspawner/butler
