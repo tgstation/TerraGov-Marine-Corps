@@ -46,7 +46,7 @@
 
 /obj/item/ammo_magazine/revolver/small
 	name = "\improper S&W speed loader (.357)"
-	default_ammo = /datum/ammo/bullet/revolver/small
+	default_ammo = /datum/ammo/bullet/revolver/ricochet/four
 	caliber = CALIBER_357
 	icon_state = "sw357"
 	max_rounds = 6
@@ -79,6 +79,7 @@
 	current_rounds = 50
 	max_rounds = 50
 	icon_state_mini = "ammo_packet"
+	gun_type = /obj/item/weapon/gun/revolver/standard_revolver
 
 //INTERNAL MAGAZINES
 

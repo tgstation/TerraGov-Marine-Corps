@@ -135,7 +135,7 @@
 					replace_cylinder(current_mag.current_rounds)
 					playsound(user, reload_sound, 25, 1) // Reloading via speedloader.
 			else
-				to_chat(user, "<span class='warning'>That [magazine] doesn't fit!</span>")
+				to_chat(user, "<span class='warning'>\The [magazine] doesn't fit!</span>")
 		else
 			to_chat(user, "<span class='warning'>You can't load a speedloader when there's something in the cylinder!</span>")
 
