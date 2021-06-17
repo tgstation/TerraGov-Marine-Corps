@@ -26,7 +26,7 @@
 	var/static/list/spawns_prob = list()
 
 	///The maxiumum number of lists that can roll upon creation. Lower probability will override higher, if they both roll
-	var/static/list/spawns_prob_max = INFINITY
+	var/static/spawns_prob_max = INFINITY
 	///List of objects which this item can store (if set, it can't store anything else)
 	var/list/can_hold = list()
 	///List of objects which this item can't store (in effect only if can_hold isn't set)
