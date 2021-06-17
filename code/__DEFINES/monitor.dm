@@ -52,5 +52,5 @@
 ///How much xeno stats (health, damage and recov) are buffed
 GLOBAL_VAR_INIT(xeno_stat_multiplicator_buff, 1)
 
-///30% is the maximum buff that xeno can receive
+///50% is the maximum buff that xeno can receive
 #define  MAXIMUM_XENO_BUFF_POSSIBLE 1.5
