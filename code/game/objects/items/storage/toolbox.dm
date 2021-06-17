@@ -52,7 +52,7 @@
 	new /obj/item/stack/cable_coil(src, 30)
 	new /obj/item/stack/cable_coil(src, 30)
 
-/obj/item/storage/toolbox/electrical/syndicate
+/obj/item/storage/toolbox/syndicate
 	name = "suspicious looking toolbox"
 	icon_state = "syndicate"
 	item_state = "toolbox_syndi"
@@ -65,3 +65,7 @@
 		/obj/item/tool/wirecutters,
 		/obj/item/multitool,
 	)
+
+/obj/item/storage/toolbox/syndicate/PopulateContents()
+	. = ..()
+	new /obj/item/stack/cable_coil(src, 30)
