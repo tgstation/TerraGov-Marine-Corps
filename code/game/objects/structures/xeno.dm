@@ -867,6 +867,7 @@ TUNNEL
 ///Handles fire based interactions with the acid well. Depletes 1 charge if there are any to extinguish all fires in the turf while producing acid smoke.
 /obj/structure/xeno/acidwell/proc/acid_well_fire_interaction()
 	if(!charges)
+		take_damage(50, BURN, "fire")
 		return
 
 	charges--
