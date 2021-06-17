@@ -10,10 +10,13 @@
 			. = 30
 		if(XENO_TIER_TWO)
 			. = 40
-		if(XENO_TIER_THREE || isxenoshrike(src))
+		if(XENO_TIER_THREE)
 			. = 50
 		if(XENO_TIER_FOUR)
-			. = 100
+			if(isxenoshrike(src))
+				. = 50 // support shrike is only worth a T3
+			else
+				. = 100
 	SSpoints.supply_points[faction_selling] += .
 	return new /datum/export_report(., name, faction_selling)
 
