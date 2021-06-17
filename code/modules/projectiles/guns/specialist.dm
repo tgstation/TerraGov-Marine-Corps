@@ -665,7 +665,7 @@
 	cocked_sound = 'sound/weapons/guns/interact/m92_cocked.ogg'
 	aim_slowdown = 1
 	gun_skill_category = GUN_SKILL_FIREARMS
-	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_AMMO_COUNTER
+	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY
 	attachable_allowed = list()
 	var/grenade
 	var/grenade_type_allowed = /obj/item/explosive/grenade
