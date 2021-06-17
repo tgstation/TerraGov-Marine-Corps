@@ -243,6 +243,10 @@
 	desc = "A case containing twenty five 80mm flare mortar shells."
 	supplies = list(/obj/item/mortal_shell/flare = 25)
 
+/obj/structure/largecrate/supply/explosives/boomvest
+	name = "Tactical Explosive Vest (x20)"
+	desc = "A case containing twenty tactical explosive vests. Sayonara muchachos."
+	supplies = list(/obj/item/clothing/suit/storage/marine/harness/boomvest = 20)
 
 /obj/structure/largecrate/supply/supplies
 	name = "supplies crate"
