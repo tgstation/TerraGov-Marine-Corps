@@ -37,6 +37,8 @@
 	var/use_sound = "rustle"	//sound played when used. null for no sound.
 	var/opened = 0 //Has it been opened before?
 	var/list/content_watchers = list() //list of mobs currently seeing the storage's contents
+	///How long does it take to put items into or out of this, in ticks
+	var/access_delay = 0
 
 /obj/item/storage/MouseDrop(obj/over_object as obj)
 	if(!ishuman(usr))
@@ -383,56 +385,87 @@
 
 	return TRUE
 
-//This proc handles items being inserted. It does not perform any checks of whether an item can or can't be inserted. That's done by can_be_inserted()
-//The stop_warning parameter will stop the insertion message from being displayed. It is intended for cases where you are inserting multiple items at once,
-//such as when picking up all the items on a tile with one click.
-//user can be null, it refers to the potential mob doing the insertion.
-/obj/item/storage/proc/handle_item_insertion(obj/item/W, prevent_warning = 0, mob/user)
-	if(!istype(W)) return 0
-	if(user && W.loc == user)
-		if(!user.transferItemToLoc(W, src))
-			return 0
+/**
+ * This proc handles the delay associated with a storage object.
+ * If there is no delay, or the delay is negative, it simply returns TRUE.
+ * Should return true if the access delay is completed successfully.
+ */
+/obj/item/storage/proc/handle_access_delay(obj/item/accessed, mob/user, taking_out = TRUE, alert_user = TRUE)
+	if(!access_delay || !should_access_delay(accessed, user, taking_out))
+		return TRUE
+
+	if(!alert_user)
+		return do_after(user, access_delay, TRUE, src, ignore_turf_checks=TRUE)
+
+	to_chat(user, "<span class='notice'>You begin to [taking_out ? "take" : "put"] [accessed] [taking_out ? "out of" : "into"] [src]")
+	if(!do_after(user, access_delay, TRUE, src, ignore_turf_checks=TRUE))
+		to_chat(user, "<span class='warning'>You fumble [accessed]!</span>")
+		return FALSE
+	return TRUE
+
+/**
+ * This proc checks to see if we should actually delay access in this scenario
+ * This proc should return TRUE or FALSE
+ */
+/obj/item/storage/proc/should_access_delay(obj/item/accessed, mob/user, taking_out)
+	return FALSE
+
+/**
+ * This proc handles items being inserted. It does not perform any checks of whether an item can or can't be inserted.     
+ * That's done by can_be_inserted()
+ * The stop_warning parameter will stop the insertion message from being displayed. It is intended for cases where you are inserting multiple items at once,
+ * such as when picking up all the items on a tile with one click.
+ * user can be null, it refers to the potential mob doing the insertion.
+ */
+/obj/item/storage/proc/handle_item_insertion(obj/item/item, prevent_warning = 0, mob/user)
+	if(!istype(item)) 
+		return FALSE
+	if(!handle_access_delay(item, user, taking_out=FALSE))
+		item.forceMove(item.drop_location())
+		return FALSE
+	if(item.loc == user)
+		if(!user.transferItemToLoc(item, src))
+			return FALSE
 	else
-		W.forceMove(src)
-	W.on_enter_storage(src)
+		item.forceMove(src)
+	item.on_enter_storage(src)
 	if(user)
-		if (user.client && user.s_active != src)
-			user.client.screen -= W
+		if (user.s_active != src)
+			user.client?.screen -= item
 		if(!prevent_warning)
-			var/visidist = W.w_class >= 3 ? 3 : 1
-			user.visible_message("<span class='notice'>[usr] puts [W] into [src].</span>",\
-								"<span class='notice'>You put \the [W] into [src].</span>",\
+			var/visidist = item.w_class >= 3 ? 3 : 1
+			user.visible_message("<span class='notice'>[user] puts [item] into [src].</span>",\
+								"<span class='notice'>You put \the [item] into [src].</span>",\
 								null, visidist)
 	orient2hud()
 	for(var/mob/M in can_see_content())
 		show_to(M)
 	if (storage_slots)
-		W.mouse_opacity = 2 //not having to click the item's tiny sprite to take it out of the storage.
+		item.mouse_opacity = 2 //not having to click the item's tiny sprite to take it out of the storage.
 	update_icon()
 	return 1
 
 //Call this proc to handle the removal of an item from the storage item. The item will be moved to the atom sent as new_target
-/obj/item/storage/proc/remove_from_storage(obj/item/I, atom/new_location)
-	if(!istype(I))
+/obj/item/storage/proc/remove_from_storage(obj/item/item, atom/new_location, mob/user)
+	if(!istype(item))
 		return FALSE
 
-	for(var/i in can_see_content())
-		var/mob/M = i
+	for(var/mob/M AS in can_see_content())
 		if(!M.client)
 			continue
-		M.client.screen -= I
+		M.client.screen -= item
 
 	if(new_location)
 		if(ismob(new_location))
-			I.layer = ABOVE_HUD_LAYER
-			I.plane = ABOVE_HUD_PLANE
-			I.pickup(new_location)
+			item.layer = ABOVE_HUD_LAYER
+			item.plane = ABOVE_HUD_PLANE
+			item.pickup(new_location)
 		else
-			I.layer = initial(I.layer)
-			I.plane = initial(I.plane)
-		I.forceMove(new_location)
+			item.layer = initial(item.layer)
+			item.plane = initial(item.plane)
+		item.forceMove(new_location)
 	else
-		I.moveToNullspace()
+		item.moveToNullspace()
 
 	orient2hud()
 
@@ -440,12 +473,13 @@
 		var/mob/M = i
 		show_to(M)
 
-	if(!QDELETED(I))
-		I.on_exit_storage(src)
-		I.mouse_opacity = initial(I.mouse_opacity)
+	if(!QDELETED(item))
+		item.on_exit_storage(src)
+		item.mouse_opacity = initial(item.mouse_opacity)
 
 	update_icon()
-	return TRUE
+
+	return handle_access_delay(item, user)
 
 //This proc is called when you want to place an item into the storage item.
 /obj/item/storage/attackby(obj/item/I, mob/user, params)
@@ -506,7 +540,7 @@
 	var/turf/T = get_turf(src)
 	hide_from(usr)
 	for(var/obj/item/I in contents)
-		remove_from_storage(I, T)
+		remove_from_storage(I, T, usr)
 
 
 /obj/item/storage/Initialize(mapload, ...)

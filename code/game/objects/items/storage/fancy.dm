@@ -31,7 +31,7 @@
 /obj/item/storage/fancy/update_icon_state()
 	icon_state = "[icon_type]box[length(contents)]"
 
-/obj/item/storage/fancy/remove_from_storage(obj/item/W, atom/new_location)
+/obj/item/storage/fancy/remove_from_storage(obj/item/W, atom/new_location, mob/user)
 	. = ..()
 	if(.)
 		update_icon()
@@ -149,7 +149,7 @@
 	icon_state = "[initial(icon_state)][contents.len]"
 
 
-/obj/item/storage/fancy/cigarettes/remove_from_storage(obj/item/W, atom/new_location)
+/obj/item/storage/fancy/cigarettes/remove_from_storage(obj/item/W, atom/new_location, mob/user)
 	var/obj/item/clothing/mask/cigarette/C = W
 	if(istype(C))
 		return ..()
@@ -161,7 +161,7 @@
 	if(M == user && user.zone_selected == "mouth" && contents.len > 0 && !user.wear_mask)
 		var/obj/item/clothing/mask/cigarette/C = locate() in src
 		if(C)
-			remove_from_storage(C, get_turf(user))
+			remove_from_storage(C, get_turf(user), user)
 			user.equip_to_slot_if_possible(C, SLOT_WEAR_MASK)
 			to_chat(user, "<span class='notice'>You take a cigarette out of the pack.</span>")
 			update_icon()
@@ -254,7 +254,7 @@
 	if(M == user && user.zone_selected == "mouth" && contents.len > 0 && !user.wear_mask)
 		var/obj/item/clothing/mask/cigarette/cigar/C = locate() in src
 		if(C)
-			remove_from_storage(C, get_turf(user))
+			remove_from_storage(C, get_turf(user), user)
 			user.equip_to_slot_if_possible(C, SLOT_WEAR_MASK)
 			to_chat(user, "<span class='notice'>You take a cigar out of the case.</span>")
 			update_icon()
