@@ -445,10 +445,6 @@
 
 	flags_atom = DIRLOCK
 
-/obj/item/storage/belt/shotgun/martini/Initialize(mapload, ...)
-	. = ..()
-	update_icon()
-
 /obj/item/storage/belt/shotgun/martini/update_icon()
 	if(!contents.len)
 		icon_state = initial(icon_state) + "_e"

@@ -105,10 +105,6 @@
 		/obj/item/toy/crayon/purple,
 	)
 
-/obj/item/storage/fancy/crayons/Initialize()
-	. = ..()
-	update_icon()
-
 /obj/item/storage/fancy/crayons/update_overlays()
 	. = ..()
 	. += image('icons/obj/items/crayons.dmi',"crayonbox")
@@ -292,10 +288,6 @@
 	max_storage_space = 14 //The sum of the w_classes of all the items in this storage item.
 	storage_slots = 6
 	req_access = list(ACCESS_MARINE_MEDBAY)
-
-/obj/item/storage/lockbox/vials/Initialize(mapload, ...)
-	. = ..()
-	update_icon()
 
 /obj/item/storage/lockbox/vials/update_icon(itemremoved = 0)
 	icon_state = "vialbox[length(contents)-itemremoved]"
