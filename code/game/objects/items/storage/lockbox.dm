@@ -8,8 +8,10 @@
 	max_storage_space = 14
 	storage_slots = 4
 	req_access = list(ACCESS_MARINE_CAPTAIN)
-	var/locked = 1
-	var/broken = 0
+	///Are we locked?
+	var/locked = TRUE
+	///Are we broken?
+	var/broken = FALSE
 
 /obj/item/storage/lockbox/attackby(obj/item/item, mob/living/user, params)
 	if(istype(item, /obj/item/card/id))

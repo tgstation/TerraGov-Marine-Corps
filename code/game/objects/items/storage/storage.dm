@@ -27,15 +27,23 @@
 
 	///The maxiumum number of lists that can roll upon creation. Lower probability will override higher, if they both roll
 	var/list/spawns_prob_max = INFINITY
-
-	var/list/can_hold = list() //List of objects which this item can store (if set, it can't store anything else)
-	var/list/cant_hold = list() //List of objects which this item can't store (in effect only if can_hold isn't set)
-	var/list/bypass_w_limit = list() //a list of objects which this item can store despite not passing the w_class limit
-	var/list/click_border_start = list() //In slotless storage, stores areas where clicking will refer to the associated item
+	///List of objects which this item can store (if set, it can't store anything else)
+	var/list/can_hold = list()
+	///List of objects which this item can't store (in effect only if can_hold isn't set)
+	var/list/cant_hold = list()
+	///a list of objects which this item can store despite not passing the w_class limit
+	var/list/bypass_w_limit = list()
+	///In slotless storage, stores areas where clicking will refer to the associated item
+	var/list/click_border_start = list()
+	///See click_border_start, where the area ends
 	var/list/click_border_end = list()
-	var/max_w_class = 2 //Max size of objects that this object can store (in effect only if can_hold isn't set)
-	var/max_storage_space = 14 //The sum of the storage costs of all the items in this storage item.
-	var/storage_slots = 7 //The number of storage slots in this container.
+	///Max size of objects that this object can store (in effect only if can_hold isn't set)
+	var/max_w_class = 2
+	///The sum of the storage costs of all the items in this storage item.
+	var/max_storage_space = 14
+	//The number of storage slots in this container.
+	var/storage_slots = 7
+
 	var/obj/screen/storage/boxes = null
 	var/obj/screen/storage/storage_start = null //storage UI
 	var/obj/screen/storage/storage_continue = null
@@ -44,18 +52,31 @@
 	var/obj/screen/storage/stored_continue = null
 	var/obj/screen/storage/stored_end = null
 	var/obj/screen/close/closer = null
-	var/show_storage_fullness = TRUE //whether our storage box on hud changes color when full.
-	var/use_to_pickup	//Set this to make it possible to use this item in an inverse way, so you can have the item in your hand and click items on the floor to pick them up.
-	var/display_contents_with_number	//Set this to make the storage item group contents of the same type and display them as a number.
-	var/allow_quick_empty	//Set this variable to allow the object to have the 'empty' verb, which dumps all the contents on the floor.
-	var/allow_quick_gather	//Set this variable to allow the object to have the 'toggle mode' verb, which quickly collects all items from a tile.
-	var/allow_drawing_method //whether this object can change its drawing method (pouches)
+
+	///whether our storage box on hud changes color when full.
+	var/show_storage_fullness = TRUE
+	///Set this to make it possible to use this item in an inverse way, so you can have the item in your hand and click items on the floor to pick them up.
+	var/use_to_pickup
+	///Set this to make the storage item group contents of the same type and display them as a number.
+	var/display_contents_with_number
+	///Set this variable to allow the object to quick empty
+	var/allow_quick_empty
+	///Set this variable to allow the object to have the 'toggle mode' verb, which quickly collects all items from a tile.
+	var/allow_quick_gather
+	///whether this object can change its drawing method (pouches)
+	var/allow_drawing_method
+	///current draw mode
 	var/draw_mode = 0
-	var/collection_mode = 1;  //0 = pick one at a time, 1 = pick all on tile
-	var/foldable = null	// BubbleWrap - if set, can be folded (when empty) into a sheet of cardboard
-	var/use_sound = "rustle"	//sound played when used. null for no sound.
-	var/opened = 0 //Has it been opened before?
-	var/list/content_watchers = list() //list of mobs currently seeing the storage's contents
+	///0 = pick one at a time, 1 = pick all on tile
+	var/collection_mode = 1
+	/// BubbleWrap - if set, can be folded (when empty) into a sheet of cardboard
+	var/foldable = null
+	///sound played when used. null for no sound.
+	var/use_sound = "rustle"
+	///Have we already been opened
+	var/opened = 0
+	///List of all the mobs who are currently watching our storage
+	var/list/content_watchers = list()
 
 /obj/item/storage/MouseDrop(obj/over_object as obj)
 	if(!ishuman(usr))
@@ -88,6 +109,7 @@
 				usr.dropItemToGround(src)
 				usr.put_in_l_hand(src)
 
+///Recursively gets all contents and sub-contents of this storage item
 /obj/item/storage/proc/return_inv()
 
 	var/list/L = list(  )
@@ -102,7 +124,8 @@
 			L += G.gift:return_inv()
 	return L
 
-/obj/item/storage/proc/show_to(mob/user as mob)
+///Adds and opens the view of this storage for the given mob
+/obj/item/storage/proc/show_to(mob/user)
 	if(user.s_active != src)
 		for(var/obj/item/I in src)
 			if(I.on_found(user))
@@ -128,7 +151,8 @@
 	user.s_active = src
 	content_watchers |= user
 
-/obj/item/storage/proc/hide_from(mob/user as mob)
+///Removes the view of this storage from the mob
+/obj/item/storage/proc/hide_from(mob/user)
 
 	if(!user.client)
 		return
@@ -142,6 +166,7 @@
 		user.s_active = null
 	content_watchers -= user
 
+///Returns a list of every mob who has this storage open
 /obj/item/storage/proc/can_see_content()
 	var/list/lookers = list()
 	for(var/i in content_watchers)
@@ -152,6 +177,7 @@
 			content_watchers -= M
 	return lookers
 
+///Opens the view of this storage for the given mob
 /obj/item/storage/proc/open(mob/user)
 	if(!opened)
 		orient2hud()
@@ -163,11 +189,12 @@
 		user.s_active.close(user)
 	show_to(user)
 
+///Closes the view of this storage for the given mob
 /obj/item/storage/proc/close(mob/user)
 	hide_from(user)
 
-//This proc draws out the inventory and places the items on it. tx and ty are the upper left tile and mx, my are the bottm right.
-//The numbers are calculated from the bottom-left The bottom-left slot being 1,1.
+///This proc draws out the inventory and places the items on it. tx and ty are the upper left tile and mx, my are the bottm right.
+///The numbers are calculated from the bottom-left The bottom-left slot being 1,1.
 /obj/item/storage/proc/orient_objs(tx, ty, mx, my)
 	var/cx = tx
 	var/cy = ty
@@ -184,7 +211,7 @@
 	if(show_storage_fullness)
 		boxes.update_fullness(src)
 
-//This proc draws out the inventory and places the items on it. It uses the standard position.
+///This proc draws out the inventory and places the items on it. It uses the standard position.
 /obj/item/storage/proc/slot_orient_objs(rows, cols, list/obj/item/display_contents)
 	var/cx = 4
 	var/cy = 2+rows
@@ -312,7 +339,7 @@
 		sample_object = null
 		. = ..()
 
-//This proc determins the size of the inventory to be displayed. Please touch it only if you know what you're doing.
+///This proc determins the size of the inventory to be displayed. Please touch it only if you know what you're doing.
 /obj/item/storage/proc/orient2hud()
 
 	var/adjusted_contents = contents.len
@@ -342,8 +369,8 @@
 			row_num = round((adjusted_contents-1) / 7) // 7 is the maximum allowed width.
 		slot_orient_objs(row_num, col_count, numbered_contents)
 
-//This proc return 1 if the item can be picked up and 0 if it can't.
-//Set the warning to stop it from printing messages
+///This proc return 1 if the item can be picked up and 0 if it can't.
+///Set the warning to stop it from printing messages
 /obj/item/storage/proc/can_be_inserted(obj/item/W as obj, warning = TRUE)
 	if(!istype(W) || (W.flags_item & NODROP))
 		return //Not an item
@@ -395,10 +422,10 @@
 
 	return TRUE
 
-//This proc handles items being inserted. It does not perform any checks of whether an item can or can't be inserted. That's done by can_be_inserted()
-//The stop_warning parameter will stop the insertion message from being displayed. It is intended for cases where you are inserting multiple items at once,
-//such as when picking up all the items on a tile with one click.
-//user can be null, it refers to the potential mob doing the insertion.
+///This proc handles items being inserted. It does not perform any checks of whether an item can or can't be inserted. That's done by can_be_inserted()
+///The stop_warning parameter will stop the insertion message from being displayed. It is intended for cases where you are inserting multiple items at once,
+///such as when picking up all the items on a tile with one click.
+///user can be null, it refers to the potential mob doing the insertion.
 /obj/item/storage/proc/handle_item_insertion(obj/item/W, prevent_warning = 0, mob/user)
 	if(!istype(W)) return 0
 	if(user && W.loc == user)
@@ -423,7 +450,7 @@
 	update_icon()
 	return 1
 
-//Call this proc to handle the removal of an item from the storage item. The item will be moved to the atom sent as new_target
+///Call this proc to handle the removal of an item from the storage item. The item will be moved to the atom sent as new_target
 /obj/item/storage/proc/remove_from_storage(obj/item/I, atom/new_location)
 	if(!istype(I))
 		return FALSE
@@ -459,7 +486,7 @@
 	update_icon()
 	return TRUE
 
-//This proc is called when you want to place an item into the storage item.
+///This proc is called when you want to place an item into the storage item.
 /obj/item/storage/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
@@ -503,6 +530,7 @@
 	else
 		to_chat(usr, "Clicking [src] with an empty hand now opens the pouch storage menu.")
 
+///Quickly removes everything from this storage onto our current turf
 /obj/item/storage/proc/quick_empty()
 
 	if((!ishuman(usr) && loc != usr) || usr.restrained())
@@ -638,8 +666,8 @@
 	qdel(src)
 //BubbleWrap END
 
-//Returns the storage depth of an atom. This is the number of storage items the atom is contained in before reaching toplevel (the area).
-//Returns -1 if the atom was not found on container.
+///Returns the storage depth of an atom. This is the number of storage items the atom is contained in before reaching toplevel (the area).
+///Returns -1 if the atom was not found on container.
 /atom/proc/storage_depth(atom/container)
 	var/depth = 0
 	var/atom/cur_atom = src
@@ -656,8 +684,8 @@
 
 	return depth
 
-//Like storage depth, but returns the depth to the nearest turf
-//Returns -1 if no top level turf (a loc was null somewhere, or a non-turf atom's loc was an area somehow).
+///Like storage depth, but returns the depth to the nearest turf
+///Returns -1 if no top level turf (a loc was null somewhere, or a non-turf atom's loc was an area somehow).
 /atom/proc/storage_depth_turf()
 	var/depth = 0
 	var/atom/cur_atom = src
@@ -718,6 +746,7 @@
 	var/obj/item/drawn_item = contents[length(contents)]
 	drawn_item.attack_hand(user)
 
+///Called during Initialize this will iterate over spawns_with and spawns_prob to create our initial contents
 /obj/item/storage/proc/PopulateContents()
 	if(LAZYLEN(spawns_with))
 		var/iterations = 0

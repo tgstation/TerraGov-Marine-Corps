@@ -591,8 +591,11 @@
 	var/holds_guns_max = 1
 	///The gun it holds, used for referencing later so we can update the icon.
 	var/obj/item/weapon/gun/current_gun
+	///Cache of the gun image to be drawn
 	var/image/gun_underlay
+	///Sound to play when the gun is returned to the belt
 	var/sheatheSound = 'sound/weapons/guns/misc/pistol_sheathe.ogg'
+	///Sound to play when the gun is drawn from the belt
 	var/drawSound = 'sound/weapons/guns/misc/pistol_draw.ogg'
 	can_hold = list(
 		/obj/item/weapon/gun/pistol,
@@ -614,6 +617,7 @@
 	else
 		return ..()
 
+///Update our icon when our contents change from gun insertion/removal
 /obj/item/storage/belt/gun/proc/update_gun_icon() //We do not want to use regular update_icon as it's called for every item inserted. Not worth the icon math.
 	var/mob/user = loc
 	if(holds_guns_now) //So it has a gun, let's make an icon.

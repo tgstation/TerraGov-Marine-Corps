@@ -377,6 +377,7 @@
 	storage_slots = 4
 	max_w_class = 0
 	foldable = 0
+	///Are we open
 	var/isopened = 0
 
 /obj/item/storage/box/MRE/Initialize()
@@ -389,6 +390,7 @@
 		new /obj/item/trash/mre(T)
 	return ..()
 
+///Picks a random flavor and spawns the foods inside of ourself
 /obj/item/storage/box/MRE/proc/pickflavor()
 	var/entree = pick("boneless pork ribs", "grilled chicken", "pizza square", "spaghetti", "chicken tenders")
 	var/side = pick("meatballs", "cheese spread", "beef turnover", "mashed potatoes")

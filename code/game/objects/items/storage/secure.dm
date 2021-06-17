@@ -1,14 +1,24 @@
 /obj/item/storage/secure
 	name = "secstorage"
+	///Icon state to use when we are locked
 	var/icon_locking = "secureb"
+	///Icon state to use when we are broken
 	var/icon_sparking = "securespark"
+	///Icon state to use when we are open
 	var/icon_opened = "secure0"
+	///Are we locked?
 	var/locked = 1
+	///Current code entry
 	var/code = ""
+	///Actual code we're looking for
 	var/l_code = null
+	///Is the code set and remember
 	var/l_set = 0
+	///Have we been shorted
 	var/l_setshort = 0
+	///Is someone trying to hack us currently
 	var/l_hacking = 0
+	///Are we open and unlocked?
 	var/open = 0
 	w_class = WEIGHT_CLASS_NORMAL
 	max_w_class = 2

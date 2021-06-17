@@ -126,6 +126,7 @@
 	if(get_dist(user, src) <= 1)
 		to_chat(user, "A small gauge in the corner reads: Ammo: [rounds_remaining] / [rounds_max]. [pcell ? "Charge: [pcell.charge] / [pcell.maxcharge].":""]")
 
+///Uses charge from the internal powercell to instantly reload; doesn't verify we actually have the charge though
 /obj/item/smartgun_powerpack/proc/reload(mob/user, obj/item/weapon/gun/smartgun/mygun, automatic = FALSE)
 	pcell.charge -= 50
 	if(!mygun.current_mag)
@@ -307,6 +308,7 @@
 ////////////////// new specialist systems ///////////////////////////:
 
 /obj/item/storage/box/spec
+	///Our chosen speciality
 	var/spec_set
 
 /obj/item/storage/box/spec/demolitionist

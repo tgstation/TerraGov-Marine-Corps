@@ -77,6 +77,7 @@
 	max_w_class = 4
 	max_storage_space = 28
 
+///Checks whether or not we fail for this interaction and handles failing if we do
 /obj/item/storage/backpack/holding/proc/failcheck(mob/user)
 	if(prob(reliability)) return TRUE //No failure
 	if(prob(reliability))
@@ -278,7 +279,9 @@
 	name = "\improper TGMC corpsman backpack"
 	desc = "The standard-issue backpack worn by TGMC corpsmen. You can recharge defibrillators by plugging them in."
 	icon_state = "marinepackm"
-	var/obj/item/cell/high/cell //Starts with a high capacity energy cell.
+	///Our powercell
+	var/obj/item/cell/high/cell
+	///Default icon_state
 	var/icon_skin
 
 /obj/item/storage/backpack/marine/corpsman/Initialize(mapload, ...)
@@ -287,6 +290,7 @@
 	icon_skin = icon_state
 	update_icon()
 
+///Attempts to use the charge wanted
 /obj/item/storage/backpack/marine/corpsman/proc/use_charge(mob/user, amount = 0, mention_charge = TRUE)
 	var/warning = ""
 	if(amount > cell.charge)
@@ -473,6 +477,7 @@
 
 	camouflage(usr)
 
+///Camoflauge the user and begin processing
 /obj/item/storage/backpack/marine/satchel/scout_cloak/proc/camouflage(mob/user)
 	if (user.incapacitated(TRUE))
 		return
@@ -535,18 +540,22 @@
 
 	return TRUE
 
+///This is called when something tries to tell us to activate but we're already active
 /obj/item/storage/backpack/marine/satchel/scout_cloak/proc/on_other_activate()
 	SIGNAL_HANDLER
 	return STEALTH_ALREADY_ACTIVE
 
+///This is called when we start cloaking
 /obj/item/storage/backpack/marine/satchel/scout_cloak/proc/on_cloak()
 	if(wearer)
 		anim(wearer.loc,wearer,'icons/mob/mob.dmi',,"cloak",,wearer.dir)
 
+///This is called when we stop cloaking
 /obj/item/storage/backpack/marine/satchel/scout_cloak/proc/on_decloak()
 	if(wearer)
 		anim(wearer.loc,wearer,'icons/mob/mob.dmi',,"uncloak",,wearer.dir)
 
+///Camoflauge has either run out, been disabled, or been disrupted
 /obj/item/storage/backpack/marine/satchel/scout_cloak/proc/camo_off(mob/user)
 	UnregisterSignal(wearer, COMSIG_MOB_ENABLE_STEALTH)
 	if (!user)
@@ -589,11 +598,13 @@
 	STOP_PROCESSING(SSprocessing, src)
 	wearer.cloaking = FALSE
 
+///Handles the camoflauge cooldown, using a timer callback by default
 /obj/item/storage/backpack/marine/satchel/scout_cloak/proc/process_camo_cooldown(mob/living/user, cooldown)
 	if(!camo_cooldown_timer)
 		return
 	addtimer(CALLBACK(src, .proc/cooldown_finished), cooldown)
 
+///Called when the cooldown has expired
 /obj/item/storage/backpack/marine/satchel/scout_cloak/proc/cooldown_finished()
 	camo_cooldown_timer = 0
 	camo_energy = initial(camo_energy)
@@ -627,6 +638,7 @@
 	. = ..()
 	camouflage()
 
+///Called during processing to determine if we should remain camoflauged
 /obj/item/storage/backpack/marine/satchel/scout_cloak/proc/camo_adjust_energy(mob/user, drain = SCOUT_CLOAK_WALK_DRAIN)
 	camo_energy = clamp(camo_energy - drain,0,initial(camo_energy))
 
@@ -634,6 +646,7 @@
 		to_chat(user, "<span class='danger'>Your thermal cloak lacks sufficient energy to remain active.</span>")
 		camo_off(user)
 
+///Called when we take damage WHILE cloaked
 /obj/item/storage/backpack/marine/satchel/scout_cloak/proc/damage_taken(datum/source, damage)
 	SIGNAL_HANDLER
 	var/mob/living/carbon/human/wearer = source
@@ -641,11 +654,13 @@
 		to_chat(wearer, "<span class='danger'>Your cloak shimmers from the damage!</span>")
 		apply_shimmer()
 
+///Called when we take any action while cloaked
 /obj/item/storage/backpack/marine/satchel/scout_cloak/proc/action_taken() //This is used by multiple signals passing different parameters.
 	SIGNAL_HANDLER
 	to_chat(wearer, "<span class='danger'>Your cloak shimmers from your actions!</span>")
 	apply_shimmer()
 
+///Called when we should remain cloaked but become more visible
 /obj/item/storage/backpack/marine/satchel/scout_cloak/proc/apply_shimmer()
 	camo_last_shimmer = world.time //Reduces transparency to 50%
 	wearer.alpha = max(wearer.alpha,shimmer_alpha)

@@ -20,7 +20,8 @@
 	)
 	///Icon state to use when the kit is full
 	var/icon_full
-	var/possible_icons_full
+	///A list of all possible icon states when we're full
+	var/list/possible_icons_full
 
 /obj/item/storage/firstaid/update_icon()
 	if(!contents.len)
@@ -403,6 +404,7 @@
 	var/scan_name = FALSE
 	var/req_role
 
+///Checks to see if the user has access to our contents
 /obj/item/storage/pill_bottle/restricted/proc/scan(mob/living/living)
 
 	if(living.status_flags & GODMODE) //Let it be
