@@ -197,7 +197,14 @@
 			var/command_bold = ""
 			if(job_datum.job_flags & JOB_FLAG_BOLD_NAME_ON_SELECTION)
 				command_bold = " command"
-			dept_dat += "<a class='job[command_bold]' href='byond://?src=[REF(src)];lobby_choice=SelectedJob;job_selected=[REF(job_datum)]'>[job_datum.title] ([job_datum.job_flags & JOB_FLAG_HIDE_CURRENT_POSITIONS ? "?" : job_datum.current_positions])</a>"
+			var/position_amount
+			if(job_datum.job_flags & JOB_FLAG_HIDE_CURRENT_POSITIONS)
+				position_amount = "?"
+			else if(job_datum.job_flags & JOB_FLAG_SHOW_OPEN_POSITIONS)
+				position_amount = "[job_datum.total_positions - job_datum.current_positions] open positions"
+			else
+				position_amount = job_datum.current_positions
+			dept_dat += "<a class='job[command_bold]' href='byond://?src=[REF(src)];lobby_choice=SelectedJob;job_selected=[REF(job_datum)]'>[job_datum.title] ([position_amount])</a>"
 		if(!length(dept_dat))
 			dept_dat += "<span class='nopositions'>No positions open.</span>"
 		dat += jointext(dept_dat, "")

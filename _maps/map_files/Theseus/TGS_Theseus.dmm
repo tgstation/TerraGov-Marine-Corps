@@ -361,13 +361,6 @@
 /obj/item/megaphone,
 /turf/open/floor/mainship/floor,
 /area/mainship/squads/req)
-"abu" = (
-/obj/structure/table/mainship,
-/obj/item/squad_beacon,
-/turf/open/floor/mainship/green{
-	dir = 8
-	},
-/area/mainship/squads/req)
 "abv" = (
 /obj/machinery/camera/autoname/mainship{
 	dir = 1
@@ -389,7 +382,6 @@
 /area/mainship/squads/alpha)
 "abx" = (
 /obj/structure/table/mainship,
-/obj/item/squad_beacon/bomb,
 /turf/open/floor/mainship/green{
 	dir = 8
 	},
@@ -3663,11 +3655,8 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/starboard_hallway)
 "bkf" = (
+/obj/machinery/computer/supplydrop_console,
 /obj/structure/table/mainship,
-/obj/item/tool/pickaxe/plasmacutter,
-/obj/item/cell/high,
-/obj/item/cell/high,
-/obj/item/clothing/glasses/welding,
 /turf/open/floor/mainship/green{
 	dir = 1
 	},
@@ -3776,12 +3765,10 @@
 	},
 /area/mainship/command/cic)
 "bkr" = (
-/obj/structure/closet/crate/charlie,
-/turf/open/floor/plating/plating_catwalk,
-/area/mainship/squads/req)
-"bks" = (
-/obj/structure/supply_drop/charlie,
-/turf/open/floor/plating,
+/obj/structure/table/mainship,
+/obj/machinery/cell_charger,
+/obj/item/radio/intercom/general,
+/turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
 "bkt" = (
 /obj/structure/cable,
@@ -5374,10 +5361,6 @@
 	dir = 8
 	},
 /area/mainship/squads/req)
-"byd" = (
-/obj/structure/rack,
-/turf/open/floor/mainship/mono,
-/area/mainship/squads/req)
 "byf" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 6
@@ -5641,22 +5624,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
-"bAL" = (
-/obj/structure/closet/crate/alpha,
-/turf/open/floor/plating/plating_catwalk,
-/area/mainship/squads/req)
-"bAM" = (
-/obj/structure/supply_drop/alpha,
-/turf/open/floor/plating,
-/area/mainship/squads/req)
-"bAN" = (
-/obj/structure/supply_drop/bravo,
-/turf/open/floor/plating,
-/area/mainship/squads/req)
-"bAO" = (
-/obj/structure/closet/crate/bravo,
-/turf/open/floor/plating/plating_catwalk,
-/area/mainship/squads/req)
 "bAP" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 9
@@ -5907,10 +5874,6 @@
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/medical/surgery_hallway)
-"bDG" = (
-/obj/structure/supply_drop/delta,
-/turf/open/floor/plating,
-/area/mainship/squads/req)
 "bDI" = (
 /obj/effect/landmark/start/job/squadleader,
 /obj/effect/decal/warning_stripes/thin{
@@ -15004,9 +14967,7 @@
 	},
 /area/mainship/medical/lower_medical)
 "qpC" = (
-/obj/structure/table/mainship,
-/obj/machinery/cell_charger,
-/obj/item/radio/intercom/general,
+/obj/structure/supply_drop,
 /turf/open/floor/mainship/green{
 	dir = 1
 	},
@@ -15270,8 +15231,11 @@
 /turf/open/floor/plating,
 /area/mainship/hallways/hangar)
 "qNK" = (
-/obj/machinery/computer/supplydrop_console,
 /obj/structure/table/mainship,
+/obj/item/tool/pickaxe/plasmacutter,
+/obj/item/cell/high,
+/obj/item/cell/high,
+/obj/item/clothing/glasses/welding,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/squads/req)
 "qOJ" = (
@@ -16712,10 +16676,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
-"ujd" = (
-/obj/structure/closet/crate/delta,
-/turf/open/floor/plating/plating_catwalk,
-/area/mainship/squads/req)
 "ukI" = (
 /obj/machinery/light,
 /turf/open/floor/mainship/sterile/side,
@@ -18443,10 +18403,6 @@
 	dir = 1
 	},
 /area/mainship/medical/medical_science)
-"yjf" = (
-/obj/structure/window/framed/mainship,
-/turf/open/floor/mainship/mono,
-/area/mainship/squads/req)
 "yji" = (
 /obj/structure/reagent_dispensers/watertank,
 /turf/open/floor/mainship/orange{
@@ -59273,7 +59229,7 @@ bnF
 bwe
 bxX
 geJ
-abu
+abx
 abx
 abz
 vfW
@@ -59786,11 +59742,11 @@ buH
 prr
 buH
 buH
-ujd
-bkr
 buH
-bAO
-bAL
+buH
+buH
+buH
+buH
 sUb
 qNK
 bnF
@@ -60043,13 +59999,13 @@ sUb
 wcO
 bkf
 buH
-bDG
-bks
-buH
-bAN
-bAM
 buH
 buH
+buH
+buH
+buH
+buH
+bkr
 nMf
 bJL
 brb
@@ -60300,11 +60256,11 @@ bnF
 bnF
 qpC
 buH
-yjf
-yjf
 buH
-yjf
-yjf
+buH
+buH
+buH
+buH
 buH
 fax
 bnF
@@ -61070,13 +61026,13 @@ bGh
 lQh
 gas
 bwf
-byd
-byd
-byd
+buH
+buH
+buH
 brn
-byd
-byd
-byd
+buH
+buH
+buH
 bAG
 tnj
 jiv
