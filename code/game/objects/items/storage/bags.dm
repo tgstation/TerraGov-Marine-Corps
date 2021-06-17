@@ -133,24 +133,30 @@
 
 // Modified handle_item_insertion.  Would prefer not to, but...
 /obj/item/storage/bag/sheetsnatcher/handle_item_insertion(obj/item/item, prevent_warning = 0, mob/user)
+	if(!item || !istype(item, /obj/item/stack/sheet))
+		return FALSE
 	var/obj/item/stack/sheet/sheet = item
-	if(!sheet) return FALSE
-
 	var/amount
 	var/inserted = FALSE
 	var/current = 0
-	for(var/obj/item/stack/sheet/sheet_sub in contents)
+
+	for(var/content in contents)
+		if(!istype(content, /obj/item/stack/sheet))
+			continue
+		var/obj/item/stack/sheet/sheet_sub = content
 		current += sheet_sub.amount
 	if(capacity < current + sheet.amount)//If the stack will fill it up
 		amount = capacity - current
-	else
-		amount = sheet.amount
+	else amount = sheet.amount
 
-	for(var/obj/item/stack/sheet/sheet_sub in contents)
-		if(sheet.type == sheet_sub.type) // we are violating the amount limitation because these are not sane objects
+	for(var/content in contents)
+		if(!istype(content, /obj/item/stack/sheet))
+			continue
+		var/obj/item/stack/sheet/sheet_sub = content
+		if(istype(sheet_sub, sheet.type)) // we are violating the amount limitation because these are not sane objects
 			sheet_sub.amount += amount	// they should only be removed through procs in this file, which split them up.
 			sheet.amount -= amount
-			inserted = 1
+			inserted = TRUE
 			break
 
 	if(!inserted || !sheet.amount)
@@ -162,8 +168,8 @@
 			sheet.forceMove(src)
 
 	orient2hud()
-	for(var/mob/mob in can_see_content())
-		show_to(mob)
+	for(var/mob/watcher AS in can_see_content())
+		show_to(watcher)
 
 	update_icon()
 	return TRUE
@@ -178,9 +184,12 @@
 	if(display_contents_with_number)
 		numbered_contents = list()
 		adjusted_contents = 0
-		for(var/obj/item/stack/sheet/sheet in contents)
+		for(var/obj/item/stack/sheet/content in contents)
+			if(!istype(content, /obj/item/stack/sheet))
+				continue
+			var/obj/item/stack/sheet/sheet = content
 			adjusted_contents++
-			var/datum/numbered_display/display = new/datum/numbered_display(sheet)
+			var/datum/numbered_display/display = new(sheet)
 			display.number = sheet.amount
 			numbered_contents.Add(display)
 
@@ -193,7 +202,10 @@
 // Modified quick_empty verb drops appropriate sized stacks
 /obj/item/storage/bag/sheetsnatcher/quick_empty(mob/user)
 	var/location = get_turf(src)
-	for(var/obj/item/stack/sheet/sheet in contents)
+	for(var/obj/item/stack/sheet/content in contents)
+		if(!istype(content, /obj/item/stack/sheet))
+			continue
+		var/obj/item/stack/sheet/sheet = content
 		while(sheet.amount)
 			var/obj/item/stack/sheet/sheet_new = new sheet.type(location)
 			var/stacksize = min(sheet.amount,sheet_new.max_amount)
@@ -208,9 +220,9 @@
 
 // Instead of removing
 /obj/item/storage/bag/sheetsnatcher/remove_from_storage(obj/item/item, atom/new_location)
+	if(!item || !istype(item, /obj/item/stack/sheet))
+		return FALSE
 	var/obj/item/stack/sheet/sheet = item
-	if(!sheet) return 0
-
 	//I would prefer to drop a new stack, but the item/attack_hand(mob/living/user)
 	// that calls this can't recieve a different object than you clicked on.
 	//Therefore, make a new stack internally that has the remainder.
