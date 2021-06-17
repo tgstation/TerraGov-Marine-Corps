@@ -182,7 +182,7 @@
 	if(display_contents_with_number)
 		numbered_contents = list()
 		adjusted_contents = 0
-		for(var/obj/item/stack/sheet/content in contents)
+		for(var/content in contents)
 			if(!istype(content, /obj/item/stack/sheet))
 				continue
 			var/obj/item/stack/sheet/sheet = content
