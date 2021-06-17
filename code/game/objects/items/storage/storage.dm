@@ -749,17 +749,18 @@
 		var/list/spawnlists = list()
 		var/list/spawnprobs = list()
 		var/index = 1
-		for(var/list/spawnlist in spawns_prob)
+		for(var/list/spawnlist AS in spawns_prob)
 			var/listprob = spawnlist[1]
-			if(prob(listprob))
-				//remove the probability entry from the list
-				spawnlist -= listprob
-				// increment holder list size and store list at new index
-				spawnlists.len += 1
-				spawnlists[index] = spawnlist
-				// add probability to cache list for later index analysis
-				spawnprobs += listprob
-				index += 1
+			if(!prob(listprob))
+				continue
+			//remove the probability entry from the list
+			spawnlist -= listprob
+			// increment holder list size and store list at new index
+			spawnlists.len += 1
+			spawnlists[index] = spawnlist
+			// add probability to cache list for later index analysis
+			spawnprobs += listprob
+			index += 1
 
 		var/spawnleft = min(spawns_prob_max, spawnlists.len)
 		while(spawnleft > 0) // This is ugly but needed, byond is fucky
