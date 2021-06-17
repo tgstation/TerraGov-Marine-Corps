@@ -58,7 +58,7 @@
 
 	update_icon()
 
-/obj/item/storage/wallet/update_icon()
+/obj/item/storage/wallet/update_icon_state()
 	if(front_id)
 		icon_state = "[initial(icon_state)]id_[front_id.icon_state]"
 		return
