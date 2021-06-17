@@ -1,7 +1,7 @@
 //The different states possible
-#define STATE_BALANCED 0
 #define XENOS_LOSING -1
 #define XENOS_DELAYING -2
+#define STATE_BALANCED 0
 #define MARINES_LOSING 1
 #define MARINES_DELAYING 2
 
