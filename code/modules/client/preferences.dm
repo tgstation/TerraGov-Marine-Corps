@@ -166,8 +166,9 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 	if(!IsGuestKey(C.key))
 		load_path(C.ckey)
-		if(!load_loadout_manager())
+		if(!load_loadout_manager() || loadout_manager.version != CURRENT_LOADOUT_VERSION)
 			loadout_manager = new 
+			reset_loadouts_file()
 		if(load_preferences() && load_character())
 			return
 

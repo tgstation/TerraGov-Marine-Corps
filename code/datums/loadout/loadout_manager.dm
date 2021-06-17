@@ -14,7 +14,7 @@
 	/// The host of the loadout_manager, aka from which loadout vendor are you managing loadouts
 	var/loadout_vendor 
 	/// The version of the loadout manager
-	var/version = 1
+	var/version = CURRENT_LOADOUT_VERSION
 
 ///Remove the data of a loadout from the loadouts list
 /datum/loadout_manager/proc/delete_loadout(datum/loadout/loadout)
@@ -98,6 +98,9 @@
 			var/datum/loadout/loadout = load_player_loadout(items[1], items[2], items[3])
 			if(!istype(loadout))
 				to_chat(ui.user, "<span class='warning'>Loadout not found!</span>")
+				return
+			if(loadout.version != CURRENT_LOADOUT_VERSION)
+				to_chat(ui.user, "<span class='warning'>The loadouts was found but is from a past version, and cannot be imported.</span>")
 				return
 			ui.user.client.prefs.save_loadout(loadout)
 			add_loadout(loadout)

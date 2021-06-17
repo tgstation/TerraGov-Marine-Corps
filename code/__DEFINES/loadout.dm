@@ -550,4 +550,4 @@ GLOBAL_LIST_INIT(loadout_job_supported, list(
 #define MAXIMUM_LOADOUT 50
 
 /// The currently accepted loadout version, all other loadouts will be erased from savefiles
-#define CURRENT_LOADOUT_VERSION 3
+#define CURRENT_LOADOUT_VERSION 4

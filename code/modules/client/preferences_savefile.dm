@@ -627,6 +627,17 @@
 	loadout_manager = jatum_deserialize(json_loadout_manager)
 	return !isnull(loadout_manager)
 
+///Erase all loadouts that could be saved on the savefile
+/datum/preferences/proc/reset_loadouts_file()
+	if(!path)
+		return FALSE
+	if(!fexists(path))
+		return FALSE
+	var/savefile/S = new /savefile(path)
+	if(!S)
+		return FALSE
+	S.cd = "/loadouts"
+	WRITE_FILE(S, "")
 
 /datum/preferences/proc/save()
 	return (save_preferences() && save_character())
