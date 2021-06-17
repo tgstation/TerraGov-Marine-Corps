@@ -50,7 +50,7 @@
 	max_w_class = 4
 	max_storage_space = 28
 
-/obj/item/storage/backpack/holding/proc/failcheck(mob/user as mob)
+/obj/item/storage/backpack/holding/proc/failcheck(mob/user)
 	if (prob(src.reliability)) 
 		return TRUE //No failure
 	if (prob(src.reliability))
