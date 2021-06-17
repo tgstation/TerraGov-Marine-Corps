@@ -10,9 +10,9 @@
 	w_class = WEIGHT_CLASS_NORMAL
 
 	///A list of all things that spawn inside of this on creation
-	var/list/spawns_with = list()
+	var/static/list/spawns_with = list()
 	///The number of times to spawn the list
-	var/spawns_mult = 1
+	var/static/spawns_mult = 1
 
 	/**
 	 * A list of all things that CAN spawn inside of this storage object on creation.
@@ -23,10 +23,10 @@
 	 * 	 list(PROBABILITY, /obj/item/XXX, /obj/item/XXX),
 	 * 	)
 	 */
-	var/list/spawns_prob = list()
+	var/static/list/spawns_prob = list()
 
 	///The maxiumum number of lists that can roll upon creation. Lower probability will override higher, if they both roll
-	var/list/spawns_prob_max = INFINITY
+	var/static/list/spawns_prob_max = INFINITY
 	///List of objects which this item can store (if set, it can't store anything else)
 	var/list/can_hold = list()
 	///List of objects which this item can't store (in effect only if can_hold isn't set)
@@ -74,7 +74,7 @@
 	///sound played when used. null for no sound.
 	var/use_sound = "rustle"
 	///Have we already been opened
-	var/opened = 0
+	var/opened = FALSE
 	///List of all the mobs who are currently watching our storage
 	var/list/content_watchers = list()
 
