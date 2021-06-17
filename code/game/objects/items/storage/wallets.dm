@@ -27,55 +27,39 @@
 	)
 	flags_equip_slot = ITEM_SLOT_ID
 
+	///The front-most ID in this wallet; used in update_icon
 	var/obj/item/card/id/front_id = null
 
+/obj/item/storage/wallet/random
+	spawns_prob = list(
+		list(100, /obj/item/spacecash/c10,/obj/item/spacecash/c100,/obj/item/spacecash/c20,/obj/item/spacecash/c200,/obj/item/spacecash/c50, /obj/item/spacecash/c500),
+		list(75, /obj/item/coin/silver, /obj/item/coin/silver, /obj/item/coin/gold, /obj/item/coin/iron, /obj/item/coin/iron, /obj/item/coin/iron),
+		list(50, /obj/item/spacecash/c10,/obj/item/spacecash/c100,/obj/item/spacecash/c20,/obj/item/spacecash/c200,/obj/item/spacecash/c50, /obj/item/spacecash/c500),
+	)
 
-/obj/item/storage/wallet/remove_from_storage(obj/item/W as obj, atom/new_location)
-	. = ..(W, new_location)
-	if(.)
-		if(W == front_id)
-			front_id = null
-			name = initial(name)
-			update_icon()
+/obj/item/storage/wallet/remove_from_storage(obj/item/removed, atom/new_location)
+	. = ..()
+	if(. && removed == front_id)
+		update_frontid(null)
 
-/obj/item/storage/wallet/handle_item_insertion(obj/item/W as obj, prevent_warning = 0)
-	. = ..(W, prevent_warning)
-	if(.)
-		if(!front_id && istype(W, /obj/item/card/id))
-			front_id = W
-			name = "[name] ([front_id])"
-			update_icon()
+/obj/item/storage/wallet/handle_item_insertion(obj/item/inserted)
+	. = ..()
+	if(. && isidcard(inserted))
+		update_frontid(inserted)
+
+///Updates the name of the wallet based on the provided idcard. Will always call update_icon
+/obj/item/storage/wallet/proc/update_frontid(obj/item/card/id/idcard)
+	if(!idcard)
+		front_id = null
+		name = initial(name)
+	else
+		front_id = idcard
+		name = "[name] ([front_id])"
+
+	update_icon()
 
 /obj/item/storage/wallet/update_icon()
-
 	if(front_id)
-		switch(front_id.icon_state)
-			if("id")
-				icon_state = "walletid"
-				return
-			if("silver")
-				icon_state = "walletid_silver"
-				return
-			if("gold")
-				icon_state = "walletid_gold"
-				return
-			if("centcom")
-				icon_state = "walletid_centcom"
-				return
+		icon_state = "[initial(icon_state)]id_[front_id.icon_state]"
+		return
 	icon_state = "wallet"
-
-
-/obj/item/storage/wallet/random/Initialize()
-	. = ..()
-	var/item1_type = pick( /obj/item/spacecash/c10,/obj/item/spacecash/c100,/obj/item/spacecash/c20,/obj/item/spacecash/c200,/obj/item/spacecash/c50, /obj/item/spacecash/c500)
-	var/item2_type
-	if(prob(50))
-		item2_type = pick( /obj/item/spacecash/c10,/obj/item/spacecash/c100,/obj/item/spacecash/c20,/obj/item/spacecash/c200,/obj/item/spacecash/c50, /obj/item/spacecash/c500)
-	var/item3_type = pick( /obj/item/coin/silver, /obj/item/coin/silver, /obj/item/coin/gold, /obj/item/coin/iron, /obj/item/coin/iron, /obj/item/coin/iron )
-
-	if(item1_type)
-		new item1_type(src)
-	if(item2_type)
-		new item2_type(src)
-	if(item3_type)
-		new item3_type(src)

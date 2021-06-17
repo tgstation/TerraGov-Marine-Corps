@@ -8,19 +8,10 @@
 	storage_slots = 1
 	draw_mode = 0
 	allow_drawing_method = TRUE
-	var/fill_type
-	var/fill_number = 0
-
-/obj/item/storage/pouch/Initialize()
-	. = ..()
-	if(fill_number && fill_type)
-		for(var/i in 1 to fill_number)
-			new fill_type(src)
 
 /obj/item/storage/pouch/examine(mob/user)
 	..()
 	to_chat(user, "Can be worn by attaching it to a pocket.")
-
 
 /obj/item/storage/pouch/equipped(mob/user, slot)
 	if(slot == SLOT_L_STORE || slot == SLOT_R_STORE)
@@ -30,9 +21,6 @@
 /obj/item/storage/pouch/dropped(mob/user)
 	mouse_opacity = initial(mouse_opacity)
 	..()
-
-
-
 
 /obj/item/storage/pouch/general
 	name = "light general pouch"
@@ -53,19 +41,18 @@
 	icon_state = "large_drop"
 	draw_mode = 0
 
-/obj/item/storage/pouch/general/large/command/Initialize()
-	. = ..()
-	new /obj/item/binoculars/tactical(src)
-	new /obj/item/megaphone(src)
-	new /obj/item/pinpointer/pool(src)
-
+/obj/item/storage/pouch/general/large/command
+	spawns_with = list(
+		/obj/item/binoculars/tactical,
+		/obj/item/megaphone,
+		/obj/item/pinpointer/pool,
+	)
 
 /obj/item/storage/pouch/general/som
 	name = "mining general pouch"
 	desc = "A general purpose pouch used to carry small items used during mining."
 	icon_state = "general_som"
 	draw_mode = 1
-
 
 /obj/item/storage/pouch/bayonet
 	name = "bayonet sheath"
@@ -80,12 +67,10 @@
 	draw_mode = 1
 
 /obj/item/storage/pouch/bayonet/full
-	fill_type = /obj/item/weapon/combat_knife
-	fill_number = 1
+	spawns_with = list(/obj/item/weapon/combat_knife)
 
 /obj/item/storage/pouch/bayonet/upp
-	fill_type = /obj/item/weapon/combat_knife/upp
-	fill_number = 1
+	spawns_with = list(/obj/item/weapon/combat_knife/upp)
 
 /obj/item/storage/pouch/survival
 	name = "survival pouch"
@@ -102,17 +87,18 @@
 		/obj/item/tool/weldingtool,
 	)
 
-/obj/item/storage/pouch/survival/full/Initialize()
+/obj/item/storage/pouch/survival/full
+	spawns_with = list(
+		/obj/item/flashlight,
+		/obj/item/reagent_containers/pill/tramadol,
+		/obj/item/tool/weldingtool,
+	)
+
+/obj/item/storage/pouch/survival/full/PopulateContents()
 	. = ..()
-	new /obj/item/flashlight(src)
-	new /obj/item/reagent_containers/pill/tramadol(src)
 	new /obj/item/stack/medical/bruise_pack(src, 3)
 	new /obj/item/stack/sheet/metal(src, 40)
 	new /obj/item/stack/sheet/plasteel(src, 15)
-	new /obj/item/tool/weldingtool(src)
-
-
-
 
 /obj/item/storage/pouch/firstaid
 	name = "first-aid pouch"
@@ -129,15 +115,13 @@
 
 /obj/item/storage/pouch/firstaid/full
 	desc = "Standard marine first-aid pouch. Contains a painkiller autoinjector, a soothing pill packet, splints, some ointment, and some bandages."
-
-/obj/item/storage/pouch/firstaid/full/Initialize()
-	. = ..()
-	new /obj/item/stack/medical/ointment (src)
-	new /obj/item/reagent_containers/hypospray/autoinjector/tramadol (src)
-	new /obj/item/storage/pill_bottle/packet/tricordrazine (src)
-	new /obj/item/stack/medical/bruise_pack (src)
-	new /obj/item/stack/medical/splint (src)
-
+	spawns_with = list(
+		/obj/item/stack/medical/ointment,
+		/obj/item/reagent_containers/hypospray/autoinjector/tramadol,
+		/obj/item/storage/pill_bottle/packet/tricordrazine,
+		/obj/item/stack/medical/bruise_pack,
+		/obj/item/stack/medical/splint,
+	)
 
 /obj/item/storage/pouch/firstaid/injectors
 	name = "combat injector pouch"
@@ -147,15 +131,13 @@
 
 /obj/item/storage/pouch/firstaid/injectors/full
 	desc = "Standard marine first-aid combat injector pouch. Specialized to store only autoinjectors. Contains 3 combat autoinjectors, an oxycodone injector, and a stimulant injector."
-
-/obj/item/storage/pouch/firstaid/injectors/full/Initialize()
-	. = ..()
-	new /obj/item/reagent_containers/hypospray/autoinjector/combat (src)
-	new /obj/item/reagent_containers/hypospray/autoinjector/combat (src)
-	new /obj/item/reagent_containers/hypospray/autoinjector/combat (src)
-	new /obj/item/reagent_containers/hypospray/autoinjector/oxycodone (src)
-	new /obj/item/reagent_containers/hypospray/autoinjector/russian_red (src)
-
+	spawns_with = list(
+		/obj/item/reagent_containers/hypospray/autoinjector/combat,
+		/obj/item/reagent_containers/hypospray/autoinjector/combat,
+		/obj/item/reagent_containers/hypospray/autoinjector/combat,
+		/obj/item/reagent_containers/hypospray/autoinjector/oxycodone,
+		/obj/item/reagent_containers/hypospray/autoinjector/russian_red,
+	)
 
 /obj/item/storage/pouch/firstaid/som
 	name = "mining first aid pouch"
@@ -170,19 +152,15 @@
 		/obj/item/stack/medical/splint,
 	)
 
-
 /obj/item/storage/pouch/firstaid/som/full
 	desc = "A basic first aid pouch used by miners due to dangerous working conditions on the mining colonies. Contains the necessary items already."
-
-
-/obj/item/storage/pouch/firstaid/som/full/Initialize()
-	. = ..()
-	new /obj/item/stack/medical/ointment(src)
-	new /obj/item/reagent_containers/hypospray/autoinjector/tramadol(src)
-	new /obj/item/reagent_containers/hypospray/autoinjector/tricordrazine(src)
-	new /obj/item/stack/medical/bruise_pack(src)
-	new /obj/item/stack/medical/splint(src)
-
+	spawns_with = list(
+		/obj/item/stack/medical/ointment,
+		/obj/item/reagent_containers/hypospray/autoinjector/tramadol,
+		/obj/item/reagent_containers/hypospray/autoinjector/tricordrazine,
+		/obj/item/stack/medical/bruise_pack,
+		/obj/item/stack/medical/splint,
+	)
 
 /obj/item/storage/pouch/pistol
 	name = "sidearm pouch"
@@ -196,13 +174,11 @@
 	)
 	draw_mode = 1
 
-/obj/item/storage/pouch/pistol/vp70/Initialize()
-	. = ..()
-	new /obj/item/weapon/gun/pistol/vp70(src)
+/obj/item/storage/pouch/pistol/vp70
+	spawns_with = list(/obj/item/weapon/gun/pistol/vp70)
 
-/obj/item/storage/pouch/pistol/rt3/Initialize()
-	. = ..()
-	new /obj/item/weapon/gun/pistol/rt3(src)
+/obj/item/storage/pouch/pistol/rt3
+	spawns_with = list(/obj/item/weapon/gun/pistol/rt3)
 
 //// MAGAZINE POUCHES /////
 
@@ -224,8 +200,7 @@
 	)
 
 /obj/item/storage/pouch/magazine/smgfull
-	fill_type = /obj/item/ammo_magazine/smg/standard_machinepistol
-	fill_number = 2
+	spawns_with = list(/obj/item/ammo_magazine/smg/standard_machinepistol, /obj/item/ammo_magazine/smg/standard_machinepistol)
 
 /obj/item/storage/pouch/magazine/large
 	name = "magazine pouch"
@@ -234,12 +209,10 @@
 	storage_slots = 3
 
 /obj/item/storage/pouch/magazine/large/tx8full
-	fill_type = /obj/item/ammo_magazine/rifle/tx8
-	fill_number = 3
+	spawns_with = list(/obj/item/ammo_magazine/rifle/tx8, /obj/item/ammo_magazine/rifle/tx8, /obj/item/ammo_magazine/rifle/tx8)
 
 /obj/item/storage/pouch/magazine/large/t19full
-	fill_type = /obj/item/ammo_magazine/smg/standard_smg
-	fill_number = 3
+	spawns_with = list(/obj/item/ammo_magazine/smg/standard_smg, /obj/item/ammo_magazine/smg/standard_smg, /obj/item/ammo_magazine/smg/standard_smg)
 
 /obj/item/storage/pouch/magazine/pistol
 	name = "pistol magazine pouch"
@@ -261,59 +234,43 @@
 	icon_state = "large_pistol_mag"
 
 /obj/item/storage/pouch/magazine/pistol/large/full
-	fill_type = /obj/item/ammo_magazine/pistol
-	fill_number = 6
+	spawns_with = list(/obj/item/ammo_magazine/pistol, /obj/item/ammo_magazine/pistol, /obj/item/ammo_magazine/pistol, /obj/item/ammo_magazine/pistol, /obj/item/ammo_magazine/pistol, /obj/item/ammo_magazine/pistol)
 
 /obj/item/storage/pouch/magazine/pistol/pmc_mateba
-	fill_type = /obj/item/ammo_magazine/revolver/mateba
-	fill_number = 3
+	spawns_with = list(/obj/item/ammo_magazine/revolver/mateba, /obj/item/ammo_magazine/revolver/mateba, /obj/item/ammo_magazine/revolver/mateba)
 
 /obj/item/storage/pouch/magazine/pistol/large/mateba
-	fill_type = /obj/item/ammo_magazine/revolver/mateba
-	fill_number = 6
+	spawns_with = list(/obj/item/ammo_magazine/revolver/mateba, /obj/item/ammo_magazine/revolver/mateba, /obj/item/ammo_magazine/revolver/mateba, /obj/item/ammo_magazine/revolver/mateba, /obj/item/ammo_magazine/revolver/mateba, /obj/item/ammo_magazine/revolver/mateba)
 
 /obj/item/storage/pouch/magazine/pistol/vp70
-	fill_type = /obj/item/ammo_magazine/pistol/vp70
-	fill_number = 3
+	spawns_with = list(/obj/item/ammo_magazine/pistol/vp70, /obj/item/ammo_magazine/pistol/vp70, /obj/item/ammo_magazine/pistol/vp70)
 
 /obj/item/storage/pouch/magazine/pistol/pmc_vp78
-	fill_type = /obj/item/ammo_magazine/pistol/vp78
-	fill_number = 3
+	spawns_with = list(/obj/item/ammo_magazine/pistol/vp78, /obj/item/ammo_magazine/pistol/vp78, /obj/item/ammo_magazine/pistol/vp78)
 
 /obj/item/storage/pouch/magazine/upp
-	fill_type = /obj/item/ammo_magazine/rifle/type71
-	fill_number = 2
+	spawns_with = list(/obj/item/ammo_magazine/rifle/type71, /obj/item/ammo_magazine/rifle/type71)
 
 /obj/item/storage/pouch/magazine/large/upp
-	fill_type = /obj/item/ammo_magazine/rifle/type71
-	fill_number = 3
+	spawns_with = list(/obj/item/ammo_magazine/rifle/type71, /obj/item/ammo_magazine/rifle/type71, /obj/item/ammo_magazine/rifle/type71)
 
 /obj/item/storage/pouch/magazine/upp_smg
-	fill_type = /obj/item/ammo_magazine/smg/skorpion
-	fill_number = 2
+	spawns_with = list(/obj/item/ammo_magazine/smg/skorpion, /obj/item/ammo_magazine/smg/skorpion)
 
 /obj/item/storage/pouch/magazine/large/pmc_m25
-	fill_type = /obj/item/ammo_magazine/smg/m25/ap
-	fill_number = 3
+	spawns_with = list(/obj/item/ammo_magazine/smg/m25/ap, /obj/item/ammo_magazine/smg/m25/ap, /obj/item/ammo_magazine/smg/m25/ap)
 
 /obj/item/storage/pouch/magazine/large/pmc_famas
-	fill_type = /obj/item/ammo_magazine/rifle/famas
-	fill_number = 3
+	spawns_with = list(/obj/item/ammo_magazine/rifle/famas, /obj/item/ammo_magazine/rifle/famas, /obj/item/ammo_magazine/rifle/famas)
 
 /obj/item/storage/pouch/magazine/large/pmc_lmg
-	fill_type = /obj/item/ammo_magazine/standard_lmg
-	fill_number = 3
+	spawns_with = list(/obj/item/ammo_magazine/standard_lmg, /obj/item/ammo_magazine/standard_lmg, /obj/item/ammo_magazine/standard_lmg)
 
 /obj/item/storage/pouch/magazine/large/pmc_sniper
-	fill_type = /obj/item/ammo_magazine/sniper/elite
-	fill_number = 3
+	spawns_with = list(/obj/item/ammo_magazine/sniper/elite, /obj/item/ammo_magazine/sniper/elite, /obj/item/ammo_magazine/sniper/elite)
 
 /obj/item/storage/pouch/magazine/large/pmc_rifle
-	fill_type = /obj/item/ammo_magazine/rifle/ap
-	fill_number = 3
-
-
-
+	spawns_with = list(/obj/item/ammo_magazine/rifle/ap, /obj/item/ammo_magazine/rifle/ap, /obj/item/ammo_magazine/rifle/ap)
 
 /obj/item/storage/pouch/explosive
 	name = "explosive pouch"
@@ -332,26 +289,26 @@
 	)
 
 /obj/item/storage/pouch/explosive/full
-	fill_type = /obj/item/explosive/grenade/frag
-	fill_number = 4
+	spawns_with = list(/obj/item/explosive/grenade/frag, /obj/item/explosive/grenade/frag, /obj/item/explosive/grenade/frag, /obj/item/explosive/grenade/frag)
 
-/obj/item/storage/pouch/explosive/detpack/Initialize()
-	. = ..()
-	new /obj/item/detpack(src)
-	new /obj/item/detpack(src)
-	new /obj/item/detpack(src)
-	new /obj/item/assembly/signaler(src)
+/obj/item/storage/pouch/explosive/detpack
+	spawns_with = list(
+		/obj/item/detpack,
+		/obj/item/detpack,
+		/obj/item/detpack,
+		/obj/item/assembly/signaler,
+	)
 
-/obj/item/storage/pouch/explosive/razorburn/Initialize()
-	. = ..()
-	new /obj/item/explosive/grenade/chem_grenade/razorburn_smol(src)
-	new /obj/item/explosive/grenade/chem_grenade/razorburn_smol(src)
-	new /obj/item/explosive/grenade/chem_grenade/razorburn_smol(src)
-	new /obj/item/explosive/grenade/chem_grenade/razorburn_large(src)
+/obj/item/storage/pouch/explosive/razorburn
+	spawns_with = list(
+		/obj/item/explosive/grenade/chem_grenade/razorburn_smol,
+		/obj/item/explosive/grenade/chem_grenade/razorburn_smol,
+		/obj/item/explosive/grenade/chem_grenade/razorburn_smol,
+		/obj/item/explosive/grenade/chem_grenade/razorburn_large,
+	)
 
 /obj/item/storage/pouch/explosive/upp
-	fill_type = /obj/item/explosive/grenade/frag/upp
-	fill_number = 4
+	spawns_with = list(/obj/item/explosive/grenade/frag/upp, /obj/item/explosive/grenade/frag/upp, /obj/item/explosive/grenade/frag/upp, /obj/item/explosive/grenade/frag/upp)
 
 /obj/item/storage/pouch/grenade
 	name = "Grenade pouch"
@@ -363,8 +320,7 @@
 	)
 
 /obj/item/storage/pouch/grenade/slightlyfull
-	fill_type = /obj/item/explosive/grenade/frag
-	fill_number = 4
+	spawns_with = list(/obj/item/explosive/grenade/frag, /obj/item/explosive/grenade/frag, /obj/item/explosive/grenade/frag, /obj/item/explosive/grenade/frag)
 
 /obj/item/storage/pouch/medical
 	name = "medical pouch"
@@ -385,17 +341,19 @@
 		/obj/item/reagent_containers/hypospray,
 	)
 
-/obj/item/storage/pouch/medical/full/Initialize()
-	. = ..()
-	new /obj/item/stack/medical/advanced/bruise_pack(src)
-	new /obj/item/stack/medical/advanced/ointment(src)
-	new /obj/item/stack/medical/splint(src)
+/obj/item/storage/pouch/medical/full
+	spawns_with = list(
+		/obj/item/stack/medical/advanced/bruise_pack,
+		/obj/item/stack/medical/advanced/ointment,
+		/obj/item/stack/medical/splint,
+	)
 
-/obj/item/storage/pouch/medical/equippedcorpsman/Initialize()
-	. = ..()
-	new /obj/item/storage/pill_bottle/bicaridine(src)
-	new /obj/item/storage/pill_bottle/kelotane(src)
-	new /obj/item/healthanalyzer(src)
+/obj/item/storage/pouch/medical/equippedcorpsman
+	spawns_with = list(
+		/obj/item/storage/pill_bottle/bicaridine,
+		/obj/item/storage/pill_bottle/kelotane,
+		/obj/item/healthanalyzer,
+	)
 
 /obj/item/storage/pouch/autoinjector
 	name = "auto-injector pouch"
@@ -407,16 +365,17 @@
 		/obj/item/reagent_containers/hypospray/autoinjector,
 	)
 
-/obj/item/storage/pouch/autoinjector/full/Initialize() //synth autoinjector pouch gets a bunch of specialized chems, considering it's trivial for them to get general healing meds.
-	. = ..()
-	new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced(src)
-	new /obj/item/reagent_containers/hypospray/autoinjector/isotonic(src)
-	new /obj/item/reagent_containers/hypospray/autoinjector/dexalinplus(src)
-	new /obj/item/reagent_containers/hypospray/autoinjector/synaptizine(src)
-	new /obj/item/reagent_containers/hypospray/autoinjector/quickclotplus(src)
-	new /obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus(src)
-	new /obj/item/reagent_containers/hypospray/autoinjector/polyhexanide(src)
-	new /obj/item/reagent_containers/hypospray/autoinjector/sleeptoxin(src)
+/obj/item/storage/pouch/autoinjector/full //synth autoinjector pouch gets a bunch of specialized chems, considering it's trivial for them to get general healing meds.
+	spawns_with = list(
+		/obj/item/reagent_containers/hypospray/autoinjector/combat_advanced,
+		/obj/item/reagent_containers/hypospray/autoinjector/isotonic,
+		/obj/item/reagent_containers/hypospray/autoinjector/dexalinplus,
+		/obj/item/reagent_containers/hypospray/autoinjector/synaptizine,
+		/obj/item/reagent_containers/hypospray/autoinjector/quickclotplus,
+		/obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus,
+		/obj/item/reagent_containers/hypospray/autoinjector/polyhexanide,
+		/obj/item/reagent_containers/hypospray/autoinjector/sleeptoxin,
+	)
 
 /obj/item/storage/pouch/autoinjector/advanced
 	name = "auto-injector pouch"
@@ -428,16 +387,17 @@
 		/obj/item/reagent_containers/hypospray/autoinjector,
 	)
 
-/obj/item/storage/pouch/autoinjector/advanced/full/Initialize() //corpsman autoinjector pouch gets upgraded, but more general chems.
-	. = ..()
-	new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced(src)
-	new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced(src)
-	new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced(src)
-	new /obj/item/reagent_containers/hypospray/autoinjector/isotonic(src)
-	new /obj/item/reagent_containers/hypospray/autoinjector/dexalinplus(src)
-	new /obj/item/reagent_containers/hypospray/autoinjector/synaptizine(src)
-	new /obj/item/reagent_containers/hypospray/autoinjector/quickclotplus(src)
-	new /obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus(src)
+/obj/item/storage/pouch/autoinjector/advanced/full
+	spawns_with = list(
+		/obj/item/reagent_containers/hypospray/autoinjector/combat_advanced,
+		/obj/item/reagent_containers/hypospray/autoinjector/combat_advanced,
+		/obj/item/reagent_containers/hypospray/autoinjector/combat_advanced,
+		/obj/item/reagent_containers/hypospray/autoinjector/isotonic,
+		/obj/item/reagent_containers/hypospray/autoinjector/dexalinplus,
+		/obj/item/reagent_containers/hypospray/autoinjector/synaptizine,
+		/obj/item/reagent_containers/hypospray/autoinjector/quickclotplus,
+		/obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus,
+	)
 
 /obj/item/storage/pouch/syringe
 	name = "syringe pouch"
@@ -454,7 +414,6 @@
 	storage_slots = 3
 	can_hold = list(/obj/item/reagent_containers/hypospray)
 
-
 /obj/item/storage/pouch/hypospray/corps
 	name = "Corps hypospray pouch"
 	desc = "It can contain hyposprays and autoinjectors, this one has a Terragov corpsman logo on its back."
@@ -462,12 +421,13 @@
 	storage_slots = 4
 	can_hold = list(/obj/item/reagent_containers/hypospray)
 
-/obj/item/storage/pouch/hypospray/corps/full/Initialize()
-	. = ..()
-	new /obj/item/reagent_containers/hypospray/advanced/combat_advanced(src)
-	new /obj/item/reagent_containers/hypospray/autoinjector/synaptizine(src)
-	new /obj/item/reagent_containers/hypospray/autoinjector/quickclotplus(src)
-	new /obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus(src)
+/obj/item/storage/pouch/hypospray/corps/full
+	spawns_with = list(
+		/obj/item/reagent_containers/hypospray/advanced/combat_advanced,
+		/obj/item/reagent_containers/hypospray/autoinjector/synaptizine,
+		/obj/item/reagent_containers/hypospray/autoinjector/quickclotplus,
+		/obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus,
+	)
 
 /obj/item/storage/pouch/medkit
 	name = "medkit pouch"
@@ -489,25 +449,27 @@
 		/obj/item/reagent_containers/hypospray,
 	)
 
-/obj/item/storage/pouch/medkit/full/Initialize()
-	. = ..()
-	new /obj/item/healthanalyzer(src)
-	new /obj/item/stack/medical/advanced/bruise_pack(src)
-	new /obj/item/stack/medical/advanced/bruise_pack(src)
-	new /obj/item/stack/medical/advanced/ointment(src)
-	new /obj/item/stack/medical/advanced/ointment(src)
-	new /obj/item/stack/medical/splint(src)
-	new /obj/item/stack/medical/splint(src)
+/obj/item/storage/pouch/medkit/full
+	spawns_with = list(
+		/obj/item/healthanalyzer,
+		/obj/item/stack/medical/advanced/bruise_pack,
+		/obj/item/stack/medical/advanced/bruise_pack,
+		/obj/item/stack/medical/advanced/ointment,
+		/obj/item/stack/medical/advanced/ointment,
+		/obj/item/stack/medical/splint,
+		/obj/item/stack/medical/splint,
+	)
 
-/obj/item/storage/pouch/medkit/equippedcorpsman/Initialize()
-	. = ..()
-	new /obj/item/healthanalyzer(src)
-	new /obj/item/stack/medical/advanced/bruise_pack(src)
-	new /obj/item/stack/medical/advanced/ointment(src)
-	new /obj/item/storage/pill_bottle/bicaridine(src)
-	new /obj/item/storage/pill_bottle/kelotane(src)
-	new /obj/item/storage/pill_bottle/tramadol(src)
-	new /obj/item/stack/medical/splint(src)
+/obj/item/storage/pouch/medkit/equippedcorpsman
+	spawns_with = list(
+		/obj/item/healthanalyzer,
+		/obj/item/stack/medical/advanced/bruise_pack,
+		/obj/item/stack/medical/advanced/ointment,
+		/obj/item/storage/pill_bottle/bicaridine,
+		/obj/item/storage/pill_bottle/kelotane,
+		/obj/item/storage/pill_bottle/tramadol,
+		/obj/item/stack/medical/splint,
+	)
 
 /obj/item/storage/pouch/document
 	name = "document pouch"
@@ -518,7 +480,6 @@
 		/obj/item/paper,
 		/obj/item/clipboard,
 	)
-
 
 /obj/item/storage/pouch/flare
 	name = "flare pouch"
@@ -531,7 +492,6 @@
 		/obj/item/flashlight/flare,
 		/obj/item/explosive/grenade/flare,
 	)
-
 
 /obj/item/storage/pouch/flare/attackby(obj/item/I, mob/user, params)
 	if(istype(I, /obj/item/storage/box/m94))
@@ -562,8 +522,15 @@
 		return ..()
 
 /obj/item/storage/pouch/flare/full
-	fill_type = /obj/item/explosive/grenade/flare
-	fill_number = 7
+	spawns_with = list(
+		/obj/item/explosive/grenade/flare,
+		/obj/item/explosive/grenade/flare,
+		/obj/item/explosive/grenade/flare,
+		/obj/item/explosive/grenade/flare,
+		/obj/item/explosive/grenade/flare,
+		/obj/item/explosive/grenade/flare,
+		/obj/item/explosive/grenade/flare,
+	)
 
 /obj/item/storage/pouch/radio
 	name = "radio pouch"
@@ -572,7 +539,6 @@
 	draw_mode = 1
 	desc = "It can contain two handheld radios."
 	can_hold = list(/obj/item/radio)
-
 
 /obj/item/storage/pouch/field_pouch
 	name = "field utility pouch"
@@ -592,13 +558,13 @@
 		/obj/item/beacon/supply_beacon,
 	)
 
-/obj/item/storage/pouch/field_pouch/full/Initialize()
-	. = ..()
-	new /obj/item/motiondetector (src)
-	new /obj/item/whistle (src)
-	new /obj/item/radio (src)
-	new /obj/item/binoculars/tactical (src)
-
+/obj/item/storage/pouch/field_pouch/full
+	spawns_with = list(
+		/obj/item/motiondetector,
+		/obj/item/whistle,
+		/obj/item/radio,
+		/obj/item/binoculars/tactical,
+	)
 
 /obj/item/storage/pouch/electronics
 	name = "electronics pouch"
@@ -610,12 +576,12 @@
 		/obj/item/cell,
 	)
 
-/obj/item/storage/pouch/electronics/full/Initialize()
-	. = ..()
-	new /obj/item/circuitboard/airlock (src)
-	new /obj/item/circuitboard/apc (src)
-	new /obj/item/cell/high (src)
-
+/obj/item/storage/pouch/electronics/full
+	spawns_with = list(
+		/obj/item/circuitboard/airlock,
+		/obj/item/circuitboard/apc,
+		/obj/item/cell/high,
+	)
 
 /obj/item/storage/pouch/construction
 	name = "construction pouch"
@@ -633,17 +599,19 @@
 		/obj/item/stack/sandbags,
 	)
 
-/obj/item/storage/pouch/construction/full/Initialize()
-	. = ..()
-	new /obj/item/stack/sandbags_empty/half (src)
-	new /obj/item/stack/barbed_wire/small_stack (src)
-	new /obj/item/tool/shovel/etool (src)
+/obj/item/storage/pouch/construction/full
+	spawns_with = list(
+		/obj/item/stack/sandbags_empty/half,
+		/obj/item/stack/barbed_wire/small_stack,
+		/obj/item/tool/shovel/etool,
+	)
 
-/obj/item/storage/pouch/construction/equippedengineer/Initialize()
-	. = ..()
-	new /obj/item/stack/sandbags_empty/half (src)
-	new /obj/item/stack/sheet/metal/large_stack (src)
-	new /obj/item/stack/sheet/plasteel/medium_stack (src)
+/obj/item/storage/pouch/construction/equippedengineer
+	spawns_with = list(
+		/obj/item/stack/sandbags_empty/half,
+		/obj/item/stack/sheet/metal/large_stack,
+		/obj/item/stack/sheet/plasteel/medium_stack,
+	)
 
 /obj/item/storage/pouch/tools
 	name = "tools pouch"
@@ -663,13 +631,14 @@
 		/obj/item/tool/extinguisher/mini,
 	)
 
-/obj/item/storage/pouch/tools/full/Initialize()
-	. = ..()
-	new /obj/item/tool/screwdriver (src)
-	new /obj/item/tool/wirecutters (src)
-	new /obj/item/multitool (src)
-	new /obj/item/tool/wrench (src)
-	new /obj/item/tool/crowbar (src)
+/obj/item/storage/pouch/tools/full
+	spawns_with = list(
+		/obj/item/tool/screwdriver,
+		/obj/item/tool/wirecutters,
+		/obj/item/multitool,
+		/obj/item/tool/wrench,
+		/obj/item/tool/crowbar,
+	)
 
 /obj/item/storage/pouch/shotgun //New shotgun shell pouch that is actually worth a shit and will be replacing light general in vendors
 	name = "shotgun shell pouch"
@@ -678,7 +647,6 @@
 	storage_slots = 4
 	draw_mode = 0
 	can_hold = list(/obj/item/ammo_magazine/handful)
-
 
 /obj/item/storage/pouch/shotgun/attackby(obj/item/I, mob/user, params)
 	if(istype(I, /obj/item/ammo_magazine))
@@ -692,7 +660,6 @@
 			if(length(contents) >= storage_slots)
 				to_chat(user, "<span class='warning'>[src] is full.</span>")
 				return
-
 
 			to_chat(user, "<span class='notice'>You start refilling [src] with [M].</span>")
 			if(!do_after(user, 1.5 SECONDS, TRUE, src, BUSY_ICON_GENERIC))

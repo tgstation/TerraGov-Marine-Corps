@@ -100,8 +100,8 @@
 /obj/item/storage/box/evidence
 	name = "evidence bag box"
 	desc = "A box claiming to contain evidence bags."
-	spawn_type = /obj/item/evidencebag
-	spawn_number = 6
+	spawns_with = list(/obj/item/evidencebag)
+	spawns_mult = 6
 
 /obj/item/f_card
 	name = "finger print card"

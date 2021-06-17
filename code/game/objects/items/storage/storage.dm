@@ -4,11 +4,30 @@
 // Do not remove this functionality without good reason, cough reagent_containers cough.
 // -Sayu
 
-
 /obj/item/storage
 	name = "storage"
 	icon = 'icons/obj/items/storage/storage.dmi'
 	w_class = WEIGHT_CLASS_NORMAL
+
+	///A list of all things that spawn inside of this on creation
+	var/list/spawns_with = list()
+	///The number of times to spawn the list
+	var/spawns_mult = 1
+
+	/**
+	 * A list of all things that CAN spawn inside of this storage object on creation.
+	 *
+	 * Format:
+	 *  list(
+	 * 	 list(PROBABILITY, /obj/item/XXX, /obj/item/XXX),
+	 * 	 list(PROBABILITY, /obj/item/XXX, /obj/item/XXX),
+	 * 	)
+	 */
+	var/list/spawns_prob = list()
+
+	///The maxiumum number of lists that can roll upon creation. Lower probability will override higher, if they both roll
+	var/list/spawns_prob_max = INFINITY
+
 	var/list/can_hold = list() //List of objects which this item can store (if set, it can't store anything else)
 	var/list/cant_hold = list() //List of objects which this item can't store (in effect only if can_hold isn't set)
 	var/list/bypass_w_limit = list() //a list of objects which this item can store despite not passing the w_class limit
@@ -109,7 +128,6 @@
 	user.s_active = src
 	content_watchers |= user
 
-
 /obj/item/storage/proc/hide_from(mob/user as mob)
 
 	if(!user.client)
@@ -123,7 +141,6 @@
 	if(user.s_active == src)
 		user.s_active = null
 	content_watchers -= user
-
 
 /obj/item/storage/proc/can_see_content()
 	var/list/lookers = list()
@@ -146,10 +163,8 @@
 		user.s_active.close(user)
 	show_to(user)
 
-
 /obj/item/storage/proc/close(mob/user)
 	hide_from(user)
-
 
 //This proc draws out the inventory and places the items on it. tx and ty are the upper left tile and mx, my are the bottm right.
 //The numbers are calculated from the bottom-left The bottom-left slot being 1,1.
@@ -251,8 +266,6 @@
 
 	closer.screen_loc = "4:[storage_width+19],2:16"
 
-
-
 /obj/screen/storage/Click(location, control, params)
 	if(usr.incapacitated(TRUE))
 		return
@@ -284,7 +297,6 @@
 		I = S.contents[i]
 		I.attack_hand(usr)
 		return
-
 
 /datum/numbered_display
 	var/obj/item/sample_object
@@ -456,7 +468,6 @@
 
 	return handle_item_insertion(I, FALSE, user)
 
-
 /obj/item/storage/attack_hand(mob/living/user)
 	if (loc == user)
 		if(draw_mode && ishuman(user) && contents.len)
@@ -469,10 +480,8 @@
 		for(var/mob/M in content_watchers)
 			close(M)
 
-
 /obj/item/storage/attack_ghost(mob/user)
 	open(user)
-
 
 /obj/item/storage/verb/toggle_gathering_mode()
 	set name = "Switch Gathering Method"
@@ -485,8 +494,6 @@
 		if(0)
 			to_chat(usr, "[src] now picks up one item at a time.")
 
-
-
 /obj/item/storage/verb/toggle_draw_mode()
 	set name = "Switch Storage Drawing Method"
 	set category = "Object"
@@ -495,8 +502,6 @@
 		to_chat(usr, "Clicking [src] with an empty hand now puts the last stored item in your hand.")
 	else
 		to_chat(usr, "Clicking [src] with an empty hand now opens the pouch storage menu.")
-
-
 
 /obj/item/storage/proc/quick_empty()
 
@@ -507,7 +512,6 @@
 	hide_from(usr)
 	for(var/obj/item/I in contents)
 		remove_from_storage(I, T)
-
 
 /obj/item/storage/Initialize(mapload, ...)
 	. = ..()
@@ -670,11 +674,9 @@
 
 	return depth
 
-
 /obj/item/storage/handle_atom_del(atom/movable/AM)
 	if(istype(AM, /obj/item))
 		remove_from_storage(AM)
-
 
 /obj/item/storage/max_stack_merging(obj/item/stack/S)
 	if(is_type_in_typecache(S, bypass_w_limit))
@@ -687,7 +689,6 @@
 		stack_trace("[src] tried to max_stack_merging([S]) with [max_w_class] max_w_class and [weight_diff] weight_diff, resulting in [max_amt] max_amt.")
 	return max_amt
 
-
 /obj/item/storage/recalculate_storage_space()
 	var/list/lookers = can_see_content()
 	if(!length(lookers))
@@ -697,12 +698,10 @@
 		var/mob/M = X //There is no need to typecast here, really, but for clarity.
 		show_to(M)
 
-
 /obj/item/storage/contents_explosion(severity)
 	for(var/i in contents)
 		var/atom/A = i
 		A.ex_act(severity)
-
 
 /obj/item/storage/AltClick(mob/user)
 	attempt_draw_object(user)
@@ -720,3 +719,37 @@
 	drawn_item.attack_hand(user)
 
 /obj/item/storage/proc/PopulateContents()
+	if(LAZYLEN(spawns_with))
+		var/iterations = 0
+		while(iterations < spawns_mult)
+			iterations += 1
+			for(var/item in spawns_with)
+				new item(src)
+
+	if(LAZYLEN(spawns_prob) && spawns_prob_max)
+		var/list/spawnlists = list()
+		var/list/spawnprobs = list()
+		var/index = 1
+		for(var/list/spawnlist in spawns_prob)
+			var/listprob = spawnlist[1]
+			if(prob(listprob))
+				spawnlist -= listprob
+				spawnlists.len += 1
+				spawnlists[index] = spawnlist
+				spawnprobs += listprob
+				index += 1
+
+		var/spawnleft = min(spawns_prob_max, spawnlists.len)
+		while(spawnleft > 0) // This is ugly but needed, byond is fucky
+			spawnleft -= 1
+			var/lowestprob = INFINITY
+			for(var/listprob in spawnprobs)
+				lowestprob = min(lowestprob, listprob)
+			var/index_lowest = spawnprobs.Find(lowestprob)
+			var/listspawn = spawnlists[index_lowest]
+			spawnlists -= listspawn
+			spawnprobs -= lowestprob
+			var/tospawn = pick(listspawn)
+			new tospawn(src)
+
+	update_icon()

@@ -45,5 +45,5 @@
 /obj/item/storage/box/disks
 	name = "Diskette Box"
 	icon_state = "disk_kit"
-	spawn_type = /obj/item/disk/data
-	spawn_number = 7
+	spawns_with = list(/obj/item/disk/data)
+	spawns_mult = 7

@@ -11,21 +11,20 @@
 		/obj/item/stack/medical/advanced/bruise_pack,
 		/obj/item/stack/nanopaste,
 	)
-
-/obj/item/storage/surgical_tray/Initialize(mapload, ...)
-	. = ..()
-	new /obj/item/tool/surgery/scalpel/manager(src)
-	new /obj/item/tool/surgery/scalpel(src)
-	new /obj/item/tool/surgery/hemostat(src)
-	new /obj/item/tool/surgery/retractor(src)
-	new /obj/item/stack/medical/advanced/bruise_pack(src)
-	new /obj/item/tool/surgery/cautery(src)
-	new /obj/item/tool/surgery/circular_saw(src)
-	new /obj/item/tool/surgery/surgicaldrill(src)
-	new /obj/item/tool/surgery/bonegel(src)
-	new /obj/item/tool/surgery/bonesetter(src)
-	new /obj/item/tool/surgery/FixOVein(src)
-	new /obj/item/stack/nanopaste(src)
+	spawns_with = list(
+		/obj/item/tool/surgery/scalpel/manager,
+		/obj/item/tool/surgery/scalpel,
+		/obj/item/tool/surgery/hemostat,
+		/obj/item/tool/surgery/retractor,
+		/obj/item/stack/medical/advanced/bruise_pack,
+		/obj/item/tool/surgery/cautery,
+		/obj/item/tool/surgery/circular_saw,
+		/obj/item/tool/surgery/surgicaldrill,
+		/obj/item/tool/surgery/bonegel,
+		/obj/item/tool/surgery/bonesetter,
+		/obj/item/tool/surgery/FixOVein,
+		/obj/item/stack/nanopaste,
+	)
 
 /obj/item/storage/surgical_tray/update_icon_state()
 	if(!contents.len)

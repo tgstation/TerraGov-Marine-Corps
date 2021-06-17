@@ -14,16 +14,14 @@
 	max_w_class = 2
 	max_storage_space = 14
 
-	examine(mob/user)
-		..()
-		to_chat(user, "The service panel is [open ? "open" : "closed"].")
+/obj/item/storage/secure/examine(mob/user)
+	..()
+	to_chat(user, "The service panel is [open ? "open" : "closed"].")
 
-
-	MouseDrop(over_object, src_location, over_location)
-		if (locked)
-			return
-		..()
-
+/obj/item/storage/secure/MouseDrop(over_object, src_location, over_location)
+	if (locked)
+		return
+	..()
 
 /obj/item/storage/secure/interact(mob/user)
 	. = ..()
@@ -46,12 +44,10 @@
 
 	dat += text("<HR>\n>[]<BR>\n<A href='?src=\ref[];type=1'>1</A>-<A href='?src=\ref[];type=2'>2</A>-<A href='?src=\ref[];type=3'>3</A><BR>\n<A href='?src=\ref[];type=4'>4</A>-<A href='?src=\ref[];type=5'>5</A>-<A href='?src=\ref[];type=6'>6</A><BR>\n<A href='?src=\ref[];type=7'>7</A>-<A href='?src=\ref[];type=8'>8</A>-<A href='?src=\ref[];type=9'>9</A><BR>\n<A href='?src=\ref[];type=R'>R</A>-<A href='?src=\ref[];type=0'>0</A>-<A href='?src=\ref[];type=E'>E</A><BR>\n</TT>", message, src, src, src, src, src, src, src, src, src, src, src, src)
 
-
 	var/datum/browser/popup = new(user, "caselock", "<div align='center'>[src]</div>")
 	popup.set_content(dat)
 	popup.open()
 	return TRUE
-
 
 /obj/item/storage/secure/Topic(href, href_list)
 	. = ..()
@@ -82,7 +78,6 @@
 
 	updateUsrDialog()
 
-
 /obj/item/storage/secure/attackby(obj/item/I, mob/user, params)
 	if(!locked)
 		return ..()
@@ -112,7 +107,6 @@
 		l_setshort = FALSE
 		l_hacking = FALSE
 
-
 // -----------------------------
 //        Secure Briefcase
 // -----------------------------
@@ -126,13 +120,10 @@
 	throw_speed = 1
 	throw_range = 4
 	w_class = WEIGHT_CLASS_BULKY
-
-
-/obj/item/storage/secure/briefcase/Initialize()
-	. = ..()
-	new /obj/item/paper(src)
-	new /obj/item/tool/pen(src)
-
+	spawns_with = list(
+		/obj/item/paper,
+		/obj/item/tool/pen,
+	)
 
 /obj/item/storage/secure/briefcase/attack_hand(mob/user)
 	if(loc == user && locked)
@@ -147,7 +138,6 @@
 	for(var/mob/M in range(1))
 		if(M.s_active == src)
 			close(M)
-
 
 // -----------------------------
 //        Secure Safe
@@ -167,11 +157,10 @@
 	anchored = TRUE
 	density = FALSE
 	cant_hold = list(/obj/item/storage/secure/briefcase)
-
-/obj/item/storage/secure/safe/Initialize(mapload, ...)
-	. = ..()
-	new /obj/item/paper(src)
-	new /obj/item/tool/pen(src)
+	spawns_with = list(
+		/obj/item/paper,
+		/obj/item/tool/pen,
+	)
 
 /obj/item/storage/secure/safe/attack_hand(mob/living/user)
 	. = ..()

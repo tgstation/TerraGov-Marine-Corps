@@ -26,8 +26,8 @@
 /obj/item/storage/box/botanydisk
 	name = "flora disk box"
 	desc = "A box of flora data disks, apparently."
-	spawn_type = /obj/item/disk/botany
-	spawn_number = 7
+	spawns_with = list(/obj/item/disk/botany)
+	spawns_mult = 7
 
 /obj/machinery/botany
 	icon = 'icons/obj/machines/hydroponics.dmi'

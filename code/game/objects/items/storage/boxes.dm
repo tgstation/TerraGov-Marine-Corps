@@ -39,7 +39,6 @@
 #define BOX_GRENADE_COLUMNS 3
 #define BOX_GRENADE_ROWS 2
 
-
 /obj/item/storage/box
 	name = "box"
 	desc = "It's just an ordinary box."
@@ -49,110 +48,101 @@
 	storage_slots = null
 	max_w_class = 2 //Changed because of in-game abuse
 	w_class = WEIGHT_CLASS_BULKY //Changed becuase of in-game abuse
-	var/spawn_type
-	var/spawn_number
-
-/obj/item/storage/box/Initialize(mapload, ...)
-	if(spawn_type)
-		if(!(spawn_type in can_hold))
-			can_hold += spawn_type // must be set before parent init for typecacheof
-	. = ..()
-	if(spawn_type)
-		for(var/i in 1 to spawn_number)
-			new spawn_type(src)
 
 /obj/item/storage/box/survival
 	w_class = WEIGHT_CLASS_NORMAL
 
-/obj/item/storage/box/survival/Initialize(mapload, ...)
-	. = ..()
-	new /obj/item/clothing/mask/breath( src )
-	new /obj/item/tank/emergency_oxygen( src )
+/obj/item/storage/box/survival
+	spawns_with = list(
+		/obj/item/clothing/mask/breath,
+		/obj/item/tank/emergency_oxygen,
+	)
 
-/obj/item/storage/box/engineer/Initialize(mapload, ...)
-	. = ..()
-	new /obj/item/clothing/mask/breath( src )
-	new /obj/item/tank/emergency_oxygen/engi( src )
+/obj/item/storage/box/engineer
+	spawns_with = list(
+		/obj/item/clothing/mask/breath,
+		/obj/item/tank/emergency_oxygen/engi,
+	)
 
 /obj/item/storage/box/gloves
 	name = "box of latex gloves"
 	desc = "Contains white gloves."
 	icon_state = "latex"
-	spawn_type = /obj/item/clothing/gloves/latex
-	spawn_number = 7
+	spawns_with = list(/obj/item/clothing/gloves/latex)
+	spawns_mult = 7
 	w_class = WEIGHT_CLASS_SMALL
 
 /obj/item/storage/box/masks
 	name = "box of sterile masks"
 	desc = "This box contains masks of sterility."
 	icon_state = "sterile"
-	spawn_type = /obj/item/clothing/mask/surgical
-	spawn_number = 7
+	spawns_with = list(/obj/item/clothing/mask/surgical)
+	spawns_mult = 7
 	w_class = WEIGHT_CLASS_SMALL
 
 /obj/item/storage/box/syringes
 	name = "box of syringes"
 	desc = "A box full of syringes."
 	desc = "A biohazard alert warning is printed on the box"
-	spawn_type = /obj/item/reagent_containers/syringe
-	spawn_number = 7
+	spawns_with = list(/obj/item/reagent_containers/syringe)
+	spawns_mult = 2
 	icon_state = "syringe"
 	w_class = WEIGHT_CLASS_SMALL
 
 /obj/item/storage/box/beakers
 	name = "box of beakers"
 	icon_state = "beaker"
-	spawn_type = /obj/item/reagent_containers/glass/beaker
-	spawn_number = 7
+	spawns_with = list(/obj/item/reagent_containers/glass/beaker)
+	spawns_mult = 7
 	w_class = WEIGHT_CLASS_NORMAL
 
 /obj/item/storage/box/flashbangs
 	name = "box of flashbangs (WARNING)"
 	desc = "<B>WARNING: These devices are extremely dangerous and can cause blindness or deafness in repeated use.</B>"
 	icon_state = "flashbang"
-	spawn_type = /obj/item/explosive/grenade/flashbang
-	spawn_number = 7
+	spawns_with = list(/obj/item/explosive/grenade/flashbang)
+	spawns_mult = 7
 	w_class = WEIGHT_CLASS_NORMAL
 
 /obj/item/storage/box/emps
 	name = "box of emp grenades"
 	desc = "A box with 5 emp grenades."
 	icon_state = "flashbang"
-	spawn_type = /obj/item/explosive/grenade/empgrenade
-	spawn_number = 5
+	spawns_with = list(/obj/item/explosive/grenade/empgrenade)
+	spawns_mult = 5
 
 /obj/item/storage/box/rxglasses
 	name = "box of prescription glasses"
 	desc = "This box contains nerd glasses."
 	icon_state = "glasses"
-	spawn_type = /obj/item/clothing/glasses/regular
-	spawn_number = 7
+	spawns_with = list(/obj/item/clothing/glasses/regular)
+	spawns_mult = 7
 	w_class = WEIGHT_CLASS_NORMAL
 
 /obj/item/storage/box/drinkingglasses
 	name = "box of drinking glasses"
 	desc = "It has a picture of drinking glasses on it."
-	spawn_type = /obj/item/reagent_containers/food/drinks/drinkingglass
-	spawn_number = 6
+	spawns_with = list(/obj/item/reagent_containers/food/drinks/drinkingglass)
+	spawns_mult = 6
 
 /obj/item/storage/box/condimentbottles
 	name = "box of condiment bottles"
 	desc = "It has a large ketchup smear on it."
-	spawn_type = /obj/item/reagent_containers/food/condiment
-	spawn_number = 6
+	spawns_with = list(/obj/item/reagent_containers/food/condiment)
+	spawns_mult = 6
 
 /obj/item/storage/box/cups
 	name = "box of paper cups"
 	desc = "It has pictures of paper cups on the front."
-	spawn_type = /obj/item/reagent_containers/food/drinks/sillycup
-	spawn_number = 7
+	spawns_with = list(/obj/item/reagent_containers/food/drinks/sillycup)
+	spawns_mult = 7
 
 /obj/item/storage/box/donkpockets
 	name = "box of donk-pockets"
-	desc = "<B>Instructions:</B> <I>Heat in microwave. Product will cool if not eaten within seven minutes.</I>"
+	desc = "<B>Instructions:</B> <item>Heat in microwave. Product will cool if not eaten within seven minutes.</item>"
 	icon_state = "donk_kit"
-	spawn_type = /obj/item/reagent_containers/food/snacks/donkpocket
-	spawn_number = 6
+	spawns_with = list(/obj/item/reagent_containers/food/snacks/donkpocket)
+	spawns_mult = 6
 	w_class = WEIGHT_CLASS_NORMAL
 
 /obj/item/storage/box/monkeycubes
@@ -160,64 +150,64 @@
 	desc = "Drymate brand monkey cubes. Just add water!"
 	icon = 'icons/obj/items/food.dmi'
 	icon_state = "monkeycubebox"
-	spawn_type = /obj/item/reagent_containers/food/snacks/monkeycube/wrapped
-	spawn_number = 5
+	spawns_with = list(/obj/item/reagent_containers/food/snacks/monkeycube/wrapped)
+	spawns_mult = 5
 
 /obj/item/storage/box/monkeycubes/farwacubes
 	name = "farwa cube box"
 	desc = "Drymate brand farwa cubes, shipped from Ahdomai. Just add water!"
-	spawn_type = /obj/item/reagent_containers/food/snacks/monkeycube/wrapped/farwacube
+	spawns_with = list(/obj/item/reagent_containers/food/snacks/monkeycube/wrapped/farwacube)
 
 /obj/item/storage/box/monkeycubes/stokcubes
 	name = "stok cube box"
 	desc = "Drymate brand stok cubes, shipped from Moghes. Just add water!"
-	spawn_type = /obj/item/reagent_containers/food/snacks/monkeycube/wrapped/stokcube
+	spawns_with = list(/obj/item/reagent_containers/food/snacks/monkeycube/wrapped/stokcube)
 
 /obj/item/storage/box/monkeycubes/neaeracubes
 	name = "neaera cube box"
 	desc = "Drymate brand neaera cubes, shipped from Jargon 4. Just add water!"
-	spawn_type = /obj/item/reagent_containers/food/snacks/monkeycube/wrapped/neaeracube
+	spawns_with = list(/obj/item/reagent_containers/food/snacks/monkeycube/wrapped/neaeracube)
 
 /obj/item/storage/box/ids
 	name = "box of spare IDs"
 	desc = "Has so many empty IDs."
 	icon_state = "id"
-	spawn_type = /obj/item/card/id
-	spawn_number = 7
+	spawns_with = list(/obj/item/card/id)
+	spawns_mult = 7
 
 /obj/item/storage/box/ids/dogtag
 	name = "box of spare Dogtags"
 	desc = "Has so many empty Dogtags."
 	icon_state = "id"
-	spawn_type = /obj/item/card/id/dogtag
-	spawn_number = 7
+	spawns_with = list(/obj/item/card/id/dogtag)
+	spawns_mult = 7
 
 /obj/item/storage/box/handcuffs
 	name = "box of handcuffs"
 	desc = "A box full of handcuffs."
 	icon_state = "handcuff"
-	spawn_type = /obj/item/restraints/handcuffs
-	spawn_number = 7
+	spawns_with = list(/obj/item/restraints/handcuffs)
+	spawns_mult = 7
 
 /obj/item/storage/box/zipcuffs
 	name = "box of zip cuffs"
 	desc = "A box full of zip cuffs."
 	icon_state = "handcuff"
-	spawn_type = /obj/item/restraints/handcuffs/zip
-	spawn_number = 14
+	spawns_with = list(/obj/item/restraints/handcuffs/zip)
+	spawns_mult = 14
 
 /obj/item/storage/box/mousetraps
 	name = "box of Pest-B-Gon mousetraps"
-	desc = "<B><FONT color='red'>WARNING:</FONT></B> <I>Keep out of reach of children</I>."
+	desc = "<B><FONT color='red'>WARNING:</FONT></B> <item>Keep out of reach of children</item>."
 	icon_state = "mousetraps"
-	spawn_type = /obj/item/assembly/mousetrap
-	spawn_number = 6
+	spawns_with = list(/obj/item/assembly/mousetrap)
+	spawns_mult = 6
 
 /obj/item/storage/box/pillbottles
 	name = "box of pill bottles"
 	desc = "It has pictures of pill bottles on its front."
-	spawn_type = /obj/item/storage/pill_bottle
-	spawn_number = 7
+	spawns_with = list(/obj/item/storage/pill_bottle)
+	spawns_mult = 7
 
 /obj/item/storage/box/snappops
 	name = "snap pop box"
@@ -225,8 +215,8 @@
 	icon = 'icons/obj/items/toy.dmi'
 	icon_state = "spbox"
 	max_storage_space = 8
-	spawn_type = /obj/item/toy/snappop
-	spawn_number = 8
+	spawns_with = list(/obj/item/toy/snappop)
+	spawns_mult = 8
 
 /obj/item/storage/box/matches
 	name = "matchbox"
@@ -236,19 +226,19 @@
 	item_state = "zippo"
 	w_class = WEIGHT_CLASS_TINY
 	flags_equip_slot = ITEM_SLOT_BELT
-	spawn_type = /obj/item/tool/match
-	spawn_number = 14
+	spawns_with = list(/obj/item/tool/match)
+	spawns_mult = 14
 
-/obj/item/storage/box/matches/attackby(obj/item/I, mob/user, params)
-	if(istype(I, /obj/item/tool/match))
-		var/obj/item/tool/match/M = I
+/obj/item/storage/box/matches/attackby(obj/item/item, mob/user, params)
+	if(istype(item, /obj/item/tool/match))
+		var/obj/item/tool/match/match = item
 
-		if(M.heat || M.burnt)
+		if(match.heat || match.burnt)
 			return ..()
 
 		if(prob(50))
 			playsound(loc, 'sound/items/matchstick_lit.ogg', 15, 1)
-			M.light_match()
+			match.light_match()
 		else
 			playsound(loc, 'sound/items/matchstick_hit.ogg', 15, 1)
 		return TRUE
@@ -259,15 +249,15 @@
 	name = "box of injectors"
 	desc = "Contains autoinjectors."
 	icon_state = "syringe"
-	spawn_type = /obj/item/reagent_containers/hypospray/autoinjector/tricordrazine
-	spawn_number = 7
+	spawns_with = list(/obj/item/reagent_containers/hypospray/autoinjector/tricordrazine)
+	spawns_mult = 7
 
 /obj/item/storage/box/quickclot
 	name = "box of quick-clot injectors"
 	desc = "Contains quick-clot autoinjectors."
 	icon_state = "syringe"
-	spawn_type = /obj/item/reagent_containers/hypospray/autoinjector/quickclot
-	spawn_number = 7
+	spawns_with = list(/obj/item/reagent_containers/hypospray/autoinjector/quickclot)
+	spawns_mult = 7
 
 /obj/item/storage/box/lights
 	name = "box of replacement bulbs"
@@ -278,8 +268,8 @@
 	foldable = /obj/item/stack/sheet/cardboard //BubbleWrap
 	max_storage_space = 42	//holds 21 items of w_class 2
 	use_to_pickup = 1 // for picking up broken bulbs, not that most people will try
-	spawn_type = /obj/item/light_bulb/bulb
-	spawn_number = 21
+	spawns_with = list(/obj/item/light_bulb/bulb)
+	spawns_mult = 21
 
 /obj/item/storage/box/lights/bulbs // mapping placeholder
 
@@ -287,8 +277,8 @@
 	name = "box of replacement tubes"
 	icon_state = "lighttube"
 	w_class = WEIGHT_CLASS_NORMAL
-	spawn_type = /obj/item/light_bulb/tube/large
-	spawn_number = 21
+	spawns_with = list(/obj/item/light_bulb/tube/large)
+	spawns_mult = 21
 
 /obj/item/storage/box/lights/mixed
 	name = "box of replacement lights"
@@ -297,26 +287,26 @@
 		/obj/item/light_bulb/tube/large,
 		/obj/item/light_bulb/bulb,
 	)
-
-/obj/item/storage/box/lights/mixed/Initialize(mapload, ...)
-	. = ..()
-	for(var/i in 1 to 14)
-		new /obj/item/light_bulb/tube/large(src)
-	for(var/i in 1 to 7)
-		new /obj/item/light_bulb/bulb(src)
+	spawns_with = list(
+		/obj/item/light_bulb/tube/large, /obj/item/light_bulb/tube/large, /obj/item/light_bulb/tube/large,
+		/obj/item/light_bulb/tube/large, /obj/item/light_bulb/tube/large, /obj/item/light_bulb/tube/large,
+		/obj/item/light_bulb/tube/large, /obj/item/light_bulb/tube/large, /obj/item/light_bulb/tube/large,
+		/obj/item/light_bulb/tube/large, /obj/item/light_bulb/tube/large, /obj/item/light_bulb/tube/large,
+		/obj/item/light_bulb/tube/large, /obj/item/light_bulb/tube/large,
+		/obj/item/light_bulb/bulb, /obj/item/light_bulb/bulb, /obj/item/light_bulb/bulb,
+		/obj/item/light_bulb/bulb, /obj/item/light_bulb/bulb, /obj/item/light_bulb/bulb,
+		/obj/item/light_bulb/bulb,
+	)
 
 /obj/item/storage/box/trampop
 	name = "box of Tram-pops"
 	desc = "Maybe if you behave the doctor will reward you with one."
 	icon_state = "trampop"
-	spawn_type = /obj/item/reagent_containers/food/snacks/lollipop/tramadol
-	spawn_number = 14
+	spawns_with = list(/obj/item/reagent_containers/food/snacks/lollipop/tramadol)
+	spawns_mult = 14
 	w_class = WEIGHT_CLASS_SMALL
 
-
-
 ////////// MARINES BOXES //////////////////////////
-
 
 /obj/item/storage/box/explosive_mines
 	name = "\improper M20 mine box"
@@ -324,8 +314,8 @@
 	icon_state = "minebox"
 	w_class = WEIGHT_CLASS_NORMAL
 	max_storage_space = 10
-	spawn_type = /obj/item/explosive/mine
-	spawn_number = 5
+	spawns_with = list(/obj/item/explosive/mine)
+	spawns_mult = 5
 
 /obj/item/storage/box/explosive_mines/update_icon_state()
 	icon_state = initial(icon_state)
@@ -337,12 +327,12 @@
 	desc = "A large secure box holding anti-personel proximity mines."
 	icon_state = "minebox"
 	max_storage_space = 20
-	spawn_type = /obj/item/explosive/mine
-	spawn_number = 10
+	spawns_with = list(/obj/item/explosive/mine)
+	spawns_mult = 10
 
 /obj/item/storage/box/explosive_mines/pmc
 	name = "\improper M20P mine box"
-	spawn_type = /obj/item/explosive/mine/pmc
+	spawns_with = list(/obj/item/explosive/mine/pmc)
 
 /obj/item/storage/box/m94
 	name = "\improper M40 FLDP flare pack"
@@ -350,8 +340,8 @@
 	icon_state = "m40"
 	w_class = WEIGHT_CLASS_NORMAL
 	max_storage_space = 14
-	spawn_type = /obj/item/explosive/grenade/flare
-	spawn_number = 7
+	spawns_with = list(/obj/item/explosive/grenade/flare)
+	spawns_mult = 7
 
 /obj/item/storage/box/m94/update_icon()
 	icon_state = initial(icon_state)
@@ -362,22 +352,21 @@
 	name = "\improper M50 CFDP signal pack"
 	desc = "A packet of seven M40 CFPD signal Flares. Used to mark locations for fire support. Can be launched from an underslung grenade launcher."
 	icon_state = "m50"
-	spawn_type = /obj/item/explosive/grenade/flare/cas
+	spawns_with = list(/obj/item/explosive/grenade/flare/cas)
 
 //ITEMS-----------------------------------//
 /obj/item/storage/box/lightstick
 	name = "box of lightsticks"
 	desc = "Contains blue lightsticks."
 	icon_state = "lightstick"
-	spawn_type = /obj/item/lightstick
-	spawn_number = 7
+	spawns_with = list(/obj/item/lightstick)
+	spawns_mult = 7
 
 /obj/item/storage/box/lightstick/red
 	desc = "Contains red lightsticks."
 	icon_state = "lightstick2"
-	spawn_type = /obj/item/lightstick/red
-	spawn_number = 7
-
+	spawns_with = list(/obj/item/lightstick/red)
+	spawns_mult = 7
 
 /obj/item/storage/box/MRE
 	name = "\improper TGMC MRE"
@@ -480,7 +469,6 @@
 	can_hold -= cant_hold //Have cant_hold actually have a use
 	update_icon() //Getting the closed_overlay onto it
 
-
 /obj/item/storage/box/visual/examine(mob/user, distance, infix, suffix)
 	. = ..()
 	if (!deployed && !(loc == user)) //Closed and not in your possession
@@ -492,13 +480,13 @@
 		to_chat(user, "It is empty!")
 		return
 	to_chat(user, "It contains:")
-	for(var/obj/item/I AS in contents_weight)
-		if(contents_weight[I] < overlay_w_class)
-			to_chat(user, "A bit of: [initial(I.name)].")
-		else if(contents_weight[I] < 3 * overlay_w_class)
-			to_chat(user, "Some of: [initial(I.name)].")
+	for(var/obj/item/item AS in contents_weight)
+		if(contents_weight[item] < overlay_w_class)
+			to_chat(user, "A bit of: [initial(item.name)].")
+		else if(contents_weight[item] < 3 * overlay_w_class)
+			to_chat(user, "Some of: [initial(item.name)].")
 		else
-			to_chat(user, "A lot of: [initial(I.name)].")
+			to_chat(user, "A lot of: [initial(item.name)].")
 
 /obj/item/storage/box/visual/attack_self(mob/user)
 	deployed = TRUE
@@ -517,10 +505,10 @@
 		return
 
 	else if(deployed)
-		draw_mode = variety == 1? TRUE: FALSE //If only one type of item in box, then quickdraw it.
+		draw_mode = variety == TRUE ? TRUE : FALSE //If only one type of item in box, then quickdraw it.
 		if(draw_mode && ishuman(user) && contents.len)
-			var/obj/item/I = contents[contents.len]
-			I.attack_hand(user)
+			var/obj/item/item = contents[contents.len]
+			item.attack_hand(user)
 			return
 		open(user)
 
@@ -531,8 +519,8 @@
 	if(!ishuman(over_object))
 		return
 
-	var/mob/living/carbon/human/H = over_object
-	if(H == usr && !H.incapacitated() && Adjacent(H) && H.put_in_hands(src))
+	var/mob/living/carbon/human/human = over_object
+	if(human == usr && !human.incapacitated() && Adjacent(human) && human.put_in_hands(src))
 		deployed = FALSE
 		update_icon()
 
@@ -543,11 +531,11 @@
 
 	//Fill assoc list of every item type in the crate and have it's value be the total weight it takes up.
 	contents_weight = list()
-	for(var/obj/item/I AS in contents)
-		if(!contents_weight[I.type])
-			contents_weight[I.type] = 0
+	for(var/obj/item/item AS in contents)
+		if(!contents_weight[item.type])
+			contents_weight[item.type] = 0
 			variety++
-		contents_weight[I.type] += I.w_class
+		contents_weight[item.type] += item.w_class
 
 	if(!deployed)
 		icon_state = "[initial(icon_state)]"
@@ -651,10 +639,10 @@
 
 /obj/item/storage/box/visual/magazine/compact/update_stats()
 	for(var/item_path in can_hold)
-		var/obj/item/I = item_path
-		if(I)
-			max_storage_space = max(initial(I.w_class) * storage_slots, max_storage_space)
-			max_w_class = max(initial(I.w_class), max_w_class)
+		var/obj/item/item = item_path
+		if(item)
+			max_storage_space = max(initial(item.w_class) * storage_slots, max_storage_space)
+			max_w_class = max(initial(item.w_class), max_w_class)
 	return ..()
 
 // --PREFILLED MAG BOXES--
@@ -670,8 +658,8 @@
 	)
 
 /obj/item/storage/box/visual/magazine/compact/standard_pistol/full
-	spawn_number = 40
-	spawn_type = /obj/item/ammo_magazine/pistol/standard_pistol
+	spawns_mult = 40
+	spawns_with = list(/obj/item/ammo_magazine/pistol/standard_pistol)
 
 /obj/item/storage/box/visual/magazine/compact/standard_heavypistol
 	name = "TP-23 magazine box"
@@ -682,8 +670,8 @@
 	)
 
 /obj/item/storage/box/visual/magazine/compact/standard_heavypistol/full
-	spawn_number = 40
-	spawn_type = /obj/item/ammo_magazine/pistol/standard_heavypistol
+	spawns_mult = 40
+	spawns_with = list(/obj/item/ammo_magazine/pistol/standard_heavypistol)
 
 /obj/item/storage/box/visual/magazine/compact/standard_revolver
 	name = "TP-44 speedloader box"
@@ -694,8 +682,8 @@
 	)
 
 /obj/item/storage/box/visual/magazine/compact/standard_revolver/full
-	spawn_number = 40
-	spawn_type = /obj/item/ammo_magazine/revolver/standard_revolver
+	spawns_mult = 40
+	spawns_with = list(/obj/item/ammo_magazine/revolver/standard_revolver)
 
 /obj/item/storage/box/visual/magazine/compact/standard_pocketpistol
 	name = "TP-17 magazine box"
@@ -706,8 +694,8 @@
 	)
 
 /obj/item/storage/box/visual/magazine/compact/standard_pocketpistol/full
-	spawn_number = 40
-	spawn_type = /obj/item/ammo_magazine/pistol/standard_pocketpistol
+	spawns_mult = 40
+	spawns_with = list(/obj/item/ammo_magazine/pistol/standard_pocketpistol)
 
 /obj/item/storage/box/visual/magazine/compact/vp70
 	name = "88M4 magazine box"
@@ -718,8 +706,8 @@
 	)
 
 /obj/item/storage/box/visual/magazine/compact/vp70/full
-	spawn_number = 40
-	spawn_type = /obj/item/ammo_magazine/pistol/vp70
+	spawns_mult = 40
+	spawns_with = list(/obj/item/ammo_magazine/pistol/vp70)
 
 /obj/item/storage/box/visual/magazine/compact/plasma_pistol
 	name = "TX-8 plasma cell box"
@@ -730,8 +718,8 @@
 	)
 
 /obj/item/storage/box/visual/magazine/compact/plasma_pistol/full
-	spawn_number = 40
-	spawn_type = /obj/item/ammo_magazine/pistol/plasma_pistol
+	spawns_mult = 40
+	spawns_with = list(/obj/item/ammo_magazine/pistol/plasma_pistol)
 
 // -SMG-
 
@@ -744,8 +732,8 @@
 	)
 
 /obj/item/storage/box/visual/magazine/compact/standard_smg/full
-	spawn_number = 40
-	spawn_type = /obj/item/ammo_magazine/smg/standard_smg
+	spawns_mult = 40
+	spawns_with = list(/obj/item/ammo_magazine/smg/standard_smg)
 
 /obj/item/storage/box/visual/magazine/compact/standard_machinepistol
 	name = "T-19 magazine box"
@@ -756,8 +744,8 @@
 	)
 
 /obj/item/storage/box/visual/magazine/compact/standard_machinepistol/full
-	spawn_number = 40
-	spawn_type = /obj/item/ammo_magazine/smg/standard_machinepistol
+	spawns_mult = 40
+	spawns_with = list(/obj/item/ammo_magazine/smg/standard_machinepistol)
 
 /obj/item/storage/box/visual/magazine/compact/ppsh
 	name = "PPSh drum magazine box"
@@ -768,8 +756,8 @@
 	)
 
 /obj/item/storage/box/visual/magazine/compact/ppsh/full
-	spawn_number = 40
-	spawn_type = /obj/item/ammo_magazine/smg/ppsh/extended
+	spawns_mult = 40
+	spawns_with = list(/obj/item/ammo_magazine/smg/ppsh/extended)
 
 // -Rifle-
 
@@ -783,8 +771,8 @@
 	)
 
 /obj/item/storage/box/visual/magazine/compact/standard_assaultrifle/full
-	spawn_number = 30
-	spawn_type = /obj/item/ammo_magazine/rifle/standard_assaultrifle
+	spawns_mult = 30
+	spawns_with = list(/obj/item/ammo_magazine/rifle/standard_assaultrifle)
 
 /obj/item/storage/box/visual/magazine/compact/standard_carbine
 	name = "T-18 magazine box"
@@ -796,8 +784,8 @@
 	)
 
 /obj/item/storage/box/visual/magazine/compact/standard_carbine/full
-	spawn_number = 30
-	spawn_type = /obj/item/ammo_magazine/rifle/standard_carbine
+	spawns_mult = 30
+	spawns_with = list(/obj/item/ammo_magazine/rifle/standard_carbine)
 
 /obj/item/storage/box/visual/magazine/compact/tx11
 	name = "TX-11 magazine box"
@@ -809,8 +797,8 @@
 	)
 
 /obj/item/storage/box/visual/magazine/compact/tx11/full
-	spawn_number = 30
-	spawn_type = /obj/item/ammo_magazine/rifle/tx11
+	spawns_mult = 30
+	spawns_with = list(/obj/item/ammo_magazine/rifle/tx11)
 
 /obj/item/storage/box/visual/magazine/compact/lasrifle
 	name = "TX-73 cell box"
@@ -822,8 +810,8 @@
 	)
 
 /obj/item/storage/box/visual/magazine/compact/lasrifle/full
-	spawn_number = 30
-	spawn_type = /obj/item/cell/lasgun/lasrifle
+	spawns_mult = 30
+	spawns_with = list(/obj/item/cell/lasgun/lasrifle)
 
 /obj/item/storage/box/visual/magazine/compact/lasrifle/marine
 	name = "Terra Experimental cell box"
@@ -835,8 +823,8 @@
 	)
 
 /obj/item/storage/box/visual/magazine/compact/lasrifle/marine/full
-	spawn_number = 30
-	spawn_type = /obj/item/cell/lasgun/lasrifle/marine
+	spawns_mult = 30
+	spawns_with = list(/obj/item/cell/lasgun/lasrifle/marine)
 
 /obj/item/storage/box/visual/magazine/compact/tx15
 	name = "TX-15 magazine box"
@@ -853,16 +841,16 @@
 	closed_overlay = "mag_box_small_overlay_tx15_flechette"
 
 /obj/item/storage/box/visual/magazine/compact/tx15/flechette/full
-	spawn_number = 30
-	spawn_type = /obj/item/ammo_magazine/rifle/tx15_flechette
+	spawns_mult = 30
+	spawns_with = list(/obj/item/ammo_magazine/rifle/tx15_flechette)
 
 /obj/item/storage/box/visual/magazine/compact/tx15/slug
 	name = "TX-15 slug magazine box"
 	closed_overlay = "mag_box_small_overlay_tx15_slug"
 
 /obj/item/storage/box/visual/magazine/compact/tx15/slug/full
-	spawn_number = 30
-	spawn_type = /obj/item/ammo_magazine/rifle/tx15_slug
+	spawns_mult = 30
+	spawns_with = list(/obj/item/ammo_magazine/rifle/tx15_slug)
 
 // -Marksmen-
 
@@ -876,8 +864,8 @@
 	)
 
 /obj/item/storage/box/visual/magazine/compact/standard_dmr/full
-	spawn_number = 30
-	spawn_type = /obj/item/ammo_magazine/rifle/standard_dmr
+	spawns_mult = 30
+	spawns_with = list(/obj/item/ammo_magazine/rifle/standard_dmr)
 
 /obj/item/storage/box/visual/magazine/compact/standard_br
 	name = "T-64 magazine box"
@@ -889,8 +877,8 @@
 	)
 
 /obj/item/storage/box/visual/magazine/compact/standard_br/full
-	spawn_number = 30
-	spawn_type = /obj/item/ammo_magazine/rifle/standard_br
+	spawns_mult = 30
+	spawns_with = list(/obj/item/ammo_magazine/rifle/standard_br)
 
 /obj/item/storage/box/visual/magazine/compact/chamberedrifle
 	name = "TL-127 magazine box"
@@ -902,8 +890,8 @@
 	)
 
 /obj/item/storage/box/visual/magazine/compact/chamberedrifle/full
-	spawn_number = 30
-	spawn_type = /obj/item/ammo_magazine/rifle/chamberedrifle
+	spawns_mult = 30
+	spawns_with = list(/obj/item/ammo_magazine/rifle/chamberedrifle)
 
 /obj/item/storage/box/visual/magazine/compact/mosin
 	name = "mosin packet box"
@@ -915,8 +903,8 @@
 	)
 
 /obj/item/storage/box/visual/magazine/compact/mosin/full
-	spawn_number = 30
-	spawn_type = /obj/item/ammo_magazine/rifle/bolt
+	spawns_mult = 30
+	spawns_with = list(/obj/item/ammo_magazine/rifle/bolt)
 
 // -Machinegun-
 
@@ -930,8 +918,8 @@
 	)
 
 /obj/item/storage/box/visual/magazine/compact/standard_lmg/full
-	spawn_number = 30
-	spawn_type = /obj/item/ammo_magazine/standard_lmg
+	spawns_mult = 30
+	spawns_with = list(/obj/item/ammo_magazine/standard_lmg)
 
 /obj/item/storage/box/visual/magazine/compact/standard_gpmg
 	name = "T-60 magazine box"
@@ -943,8 +931,8 @@
 	)
 
 /obj/item/storage/box/visual/magazine/compact/standard_gpmg/full
-	spawn_number = 30
-	spawn_type = /obj/item/ammo_magazine/standard_gpmg
+	spawns_mult = 30
+	spawns_with = list(/obj/item/ammo_magazine/standard_gpmg)
 
 // --GRENADE BOXES--
 /obj/item/storage/box/visual/grenade
@@ -966,22 +954,22 @@
 /obj/item/storage/box/visual/grenade/M15
 	name = "\improper M15 grenade box"
 	desc = "A secure box holding 25 M15 fragmentation grenades."
-	spawn_number = 25
-	spawn_type = /obj/item/explosive/grenade/frag/m15
+	spawns_mult = 25
+	spawns_with = list(/obj/item/explosive/grenade/frag/m15)
 	closed_overlay = "grenade_box_overlay_m15"
 
 /obj/item/storage/box/visual/grenade/frag
 	name = "\improper M40 HEDP grenade box"
 	desc = "A secure box holding 25 M40 HEDP grenades. High explosive, don't store near the flamer fuel."
-	spawn_number = 25
-	spawn_type = /obj/item/explosive/grenade/frag
+	spawns_mult = 25
+	spawns_with = list(/obj/item/explosive/grenade/frag)
 	closed_overlay = "grenade_box_overlay_hedp"
 
 /obj/item/storage/box/visual/grenade/incendiary
 	name = "\improper M40 HIDP grenade box"
 	desc = "A secure box holding 25 M40 HIDP incendiary grenades. Warning: highly flammable!!."
-	spawn_number = 25
-	spawn_type = /obj/item/explosive/grenade/incendiary
+	spawns_mult = 25
+	spawns_with = list(/obj/item/explosive/grenade/incendiary)
 	closed_overlay = "grenade_box_overlay_hidp"
 
 /obj/item/storage/box/visual/grenade/phosphorus
@@ -989,29 +977,29 @@
 	desc = "A secure box holding 15 M40 HPDP white phosphorous grenades. War crimes for the entire platoon!"
 	storage_slots = 15
 	max_storage_space = 30
-	spawn_number = 15
-	spawn_type = /obj/item/explosive/grenade/phosphorus
+	spawns_mult = 15
+	spawns_with = list(/obj/item/explosive/grenade/phosphorus)
 	closed_overlay = "grenade_box_overlay_phosphorus"
 
 /obj/item/storage/box/visual/grenade/impact
 	name = "\improper M15 grenade box"
 	desc = "A secure box holding 25 M40 IMDP impact grenades. High explosive, don't store near the flamer fuel."
-	spawn_number = 25
-	spawn_type = /obj/item/explosive/grenade/impact
+	spawns_mult = 25
+	spawns_with = list(/obj/item/explosive/grenade/impact)
 	closed_overlay = "grenade_box_overlay_impact"
 
 /obj/item/storage/box/visual/grenade/cloak
 	name = "\improper M40-2 SCDP grenade box"
 	desc = "A secure box holding 25 M40-2 SCDP cloak grenades. Don't blindly shoot into the smoke."
-	spawn_number = 25
-	spawn_type = /obj/item/explosive/grenade/cloakbomb
+	spawns_mult = 25
+	spawns_with = list(/obj/item/explosive/grenade/cloakbomb)
 	closed_overlay = "grenade_box_overlay_cloak"
 
 /obj/item/storage/box/visual/grenade/drain
 	name = "\improper M40-T grenade box"
 	desc = "A secure box holding 25 M40-T gas grenades. 100% safe to use around masked marines."
-	spawn_number = 25
-	spawn_type = /obj/item/explosive/grenade/drainbomb
+	spawns_mult = 25
+	spawns_with = list(/obj/item/explosive/grenade/drainbomb)
 	closed_overlay = "grenade_box_overlay_drain"
 
 /obj/item/storage/box/visual/grenade/razorburn
@@ -1019,22 +1007,22 @@
 	desc = "A secure box holding 15 razor burn grenades. Used for quick flank coverage."
 	storage_slots = 15
 	max_storage_space = 30
-	spawn_number = 15
-	spawn_type = /obj/item/explosive/grenade/chem_grenade/razorburn_smol
+	spawns_mult = 15
+	spawns_with = list(/obj/item/explosive/grenade/chem_grenade/razorburn_smol)
 	closed_overlay = "grenade_box_overlay_razorburn"
 
 /obj/item/storage/box/visual/grenade/teargas
 	name = "\improper M66 teargas grenade box"
 	desc = "A secure box holding 25 M66 tear gas grenades. Used for riot control."
-	spawn_number = 25
-	spawn_type = /obj/item/explosive/grenade/chem_grenade/teargas
+	spawns_mult = 25
+	spawns_with = list(/obj/item/explosive/grenade/chem_grenade/teargas)
 	closed_overlay = "grenade_box_overlay_teargas"
 
 /obj/item/storage/box/visual/grenade/training
 	name = "\improper M07 training grenade box"
 	desc = "A secure box holding 25 M07 training grenades. Harmless and reusable."
-	spawn_number = 25
-	spawn_type = /obj/item/explosive/grenade/frag/training
+	spawns_mult = 25
+	spawns_with = list(/obj/item/explosive/grenade/frag/training)
 	closed_overlay = "grenade_box_overlay_training"
 
 #undef BOX_OVERLAY_SHIFT_X

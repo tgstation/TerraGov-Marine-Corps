@@ -5,7 +5,8 @@
 	throw_speed = 1
 	throw_range = 5
 	w_class = WEIGHT_CLASS_NORMAL
-	var/mob/affecting = null
+
+	///The name of the bible's deity
 	var/deity_name = "Christ"
 
 /obj/item/storage/bible/koran
@@ -18,26 +19,27 @@
 	desc = "To be applied to the head repeatedly."
 	icon_state ="bible"
 
-/obj/item/storage/bible/booze/Initialize(mapload, ...)
-	. = ..()
-	new /obj/item/reagent_containers/food/drinks/cans/beer(src)
-	new /obj/item/reagent_containers/food/drinks/cans/beer(src)
-	new /obj/item/spacecash(src)
-	new /obj/item/spacecash(src)
-	new /obj/item/spacecash(src)
+/obj/item/storage/bible/booze
+	spawns_with = list(
+		/obj/item/reagent_containers/food/drinks/cans/beer,
+		/obj/item/reagent_containers/food/drinks/cans/beer,
+		/obj/item/spacecash,
+		/obj/item/spacecash,
+		/obj/item/spacecash,
+	)
 
-/obj/item/storage/bible/afterattack(atom/A, mob/user, proximity)
+/obj/item/storage/bible/afterattack(atom/clicked_on, mob/user, proximity)
 	if(!proximity || !isliving(user))
 		return
 	var/mob/living/living_user = user
 	if(ischaplainjob(living_user.job))
-		if(A.reagents && A.reagents.has_reagent(/datum/reagent/water)) //blesses all the water in the holder
-			to_chat(user, "<span class='notice'>You bless [A].</span>")
-			var/water2holy = A.reagents.get_reagent_amount(/datum/reagent/water)
-			A.reagents.del_reagent(/datum/reagent/water)
-			A.reagents.add_reagent(/datum/reagent/water/holywater,water2holy)
+		if(clicked_on.reagents && clicked_on.reagents.has_reagent(/datum/reagent/water)) //blesses all the water in the holder
+			to_chat(user, "<span class='notice'>You bless [clicked_on].</span>")
+			var/water2holy = clicked_on.reagents.get_reagent_amount(/datum/reagent/water)
+			clicked_on.reagents.del_reagent(/datum/reagent/water)
+			clicked_on.reagents.add_reagent(/datum/reagent/water/holywater,water2holy)
 
-/obj/item/storage/bible/attackby(obj/item/I, mob/user, params)
+/obj/item/storage/bible/attackby()
 	. = ..()
 
 	if(use_sound)

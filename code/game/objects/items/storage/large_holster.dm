@@ -1,5 +1,4 @@
 
-
 /obj/item/storage/large_holster
 	name = "\improper Rifle Holster"
 	desc = "holster"
@@ -10,17 +9,20 @@
 	storage_slots = 1
 	max_storage_space = 4
 	draw_mode = 1
+
+	///The base icon state for the holster. Why this doesnt just use initial(icon_state) is beyond me
 	var/base_icon = "m37_holster"
+
+	///The sound that gets played on removing the gun from the holster
 	var/drawSound = 'sound/weapons/guns/misc/rifle_draw.ogg'
 
-
 /obj/item/storage/large_holster/update_icon()
-	var/mob/user = loc
 	icon_state = "[base_icon][contents.len?"_full":""]"
 	item_state = icon_state
-	if(istype(user)) user.update_inv_back()
-	if(istype(user)) user.update_inv_s_store()
-
+	if(ismob(loc))
+		var/mob/user = loc
+		user.update_inv_back()
+		user.update_inv_s_store()
 
 /obj/item/storage/large_holster/equipped(mob/user, slot)
 	if(slot == SLOT_BACK || slot == SLOT_BELT || slot == SLOT_S_STORE)
@@ -31,14 +33,14 @@
 	mouse_opacity = initial(mouse_opacity)
 	..()
 
-/obj/item/storage/large_holster/handle_item_insertion(obj/item/W, prevent_warning = 0)
+/obj/item/storage/large_holster/handle_item_insertion()
 	. = ..()
 	if(. && drawSound)
 		playsound(src,drawSound, 15, 1)
-	return 1
+	return TRUE
 
 //Call this proc to handle the removal of an item from the storage item. The item will be moved to the atom sent as new_target
-/obj/item/storage/large_holster/remove_from_storage(obj/item/W, atom/new_location)
+/obj/item/storage/large_holster/remove_from_storage()
 	. = ..()
 	if(. && drawSound)
 		playsound(src,drawSound, 15, 1)
@@ -51,11 +53,11 @@
 		/obj/item/weapon/gun/shotgun/combat,
 		/obj/item/weapon/gun/shotgun/pump,
 	)
+	spawns_with = list(/obj/item/weapon/gun/shotgun/pump)
 
 /obj/item/storage/large_holster/m37/full/Initialize()
 	. = ..()
 	icon_state = "m37_holster_full"
-	new /obj/item/weapon/gun/shotgun/pump(src)
 	base_icon = icon_state
 
 /obj/item/storage/large_holster/machete
@@ -65,19 +67,19 @@
 	icon_state = "machete_holster"
 	flags_equip_slot = ITEM_SLOT_BELT|ITEM_SLOT_BACK
 	can_hold = list(/obj/item/weapon/claymore/mercsword/machete, /obj/item/weapon/claymore/harvester)
+	spawns_with = list(/obj/item/weapon/claymore/mercsword/machete)
 
 /obj/item/storage/large_holster/machete/full/Initialize()
 	. = ..()
 	icon_state = "machete_holster_full"
-	new /obj/item/weapon/claymore/mercsword/machete(src)
 
 /obj/item/storage/large_holster/machete/full_harvester
 	name = "H5 Pattern M2132 harvester scabbard"
+	spawns_with = list(/obj/item/weapon/claymore/harvester)
 
 /obj/item/storage/large_holster/machete/full_harvester/Initialize()
 	. = ..()
 	icon_state = "machete_holster_full"
-	new /obj/item/weapon/claymore/harvester(src)
 
 /obj/item/storage/large_holster/katana
 	name = "\improper katana scabbard"
@@ -88,11 +90,11 @@
 	attack_verb = list("bludgeoned", "struck", "cracked")
 	flags_equip_slot = ITEM_SLOT_BELT|ITEM_SLOT_BACK
 	can_hold = list(/obj/item/weapon/katana)
+	spawns_with = list(/obj/item/weapon/katana)
 
 /obj/item/storage/large_holster/katana/full/Initialize()
 	. = ..()
 	icon_state = "katana_holster_full"
-	new /obj/item/weapon/katana(src)
 
 /obj/item/storage/large_holster/officer
 	name = "\improper officer sword scabbard"
@@ -101,24 +103,22 @@
 	icon_state = "officer_sheath"
 	flags_equip_slot = ITEM_SLOT_BELT
 	can_hold = list(/obj/item/weapon/claymore/mercsword/officersword)
+	spawns_with = list(/obj/item/weapon/claymore/mercsword/officersword)
 
 /obj/item/storage/large_holster/officer/full/Initialize()
 	. = ..()
 	icon_state = "officer_sheath_full"
-	new /obj/item/weapon/claymore/mercsword/officersword(src)
 
 /obj/item/storage/large_holster/t35
 	name = "\improper L44 T-35 scabbard"
 	desc = "A large leather holster allowing the storage of an T-35 Shotgun. It contains harnesses that allow it to be secured to the back for easy storage."
 	icon_state = "t35_holster"
-	can_hold = list(
-		/obj/item/weapon/gun/shotgun/pump/t35,
-	)
+	can_hold = list(/obj/item/weapon/gun/shotgun/pump/t35)
+	spawns_with = list(/obj/item/weapon/gun/shotgun/pump/t35)
 
 /obj/item/storage/large_holster/t35/full/Initialize()
 	. = ..()
 	icon_state = "t35_holster_full"
-	new /obj/item/weapon/gun/shotgun/pump/t35(src)
 	base_icon = icon_state
 
 /obj/item/storage/large_holster/m25
@@ -129,11 +129,12 @@
 	base_icon = "m25_holster"
 	flags_equip_slot = ITEM_SLOT_BELT
 	can_hold = list(/obj/item/weapon/gun/smg/m25)
+	spawns_with = list(/obj/item/weapon/gun/smg/m25)
 
 /obj/item/storage/large_holster/m25/update_icon_state()
 	if(contents.len)
-		var/obj/I = contents[1]
-		icon_state = "[base_icon]_full_[I.icon_state]"
+		var/obj/item = contents[1]
+		icon_state = "[base_icon]_full_[item.icon_state]"
 		item_state = "[base_icon]_full"
 	else
 		icon_state = base_icon
@@ -141,11 +142,6 @@
 	if(ismob(loc))
 		var/mob/user = loc
 		user.update_inv_belt()
-
-/obj/item/storage/large_holster/m25/full/Initialize()
-	. = ..()
-	new /obj/item/weapon/gun/smg/m25(src)
-	update_icon()
 
 /obj/item/storage/large_holster/t19
 	name = "\improper M276 pattern T-19 holster rig"
@@ -155,19 +151,16 @@
 	base_icon = "t19_holster"
 	flags_equip_slot = ITEM_SLOT_BELT
 	can_hold = list(/obj/item/weapon/gun/smg/standard_smg)
+	spawns_with = list(/obj/item/weapon/gun/smg/standard_smg)
 
 /obj/item/storage/large_holster/t19/update_icon()
-	var/mob/user = loc
 	if(contents.len)
-		var/obj/I = contents[1]
-		icon_state = "[base_icon]_full_[I.icon_state]"
+		var/obj/item = contents[1]
+		icon_state = "[base_icon]_full_[item.icon_state]"
 		item_state = "[base_icon]_full"
 	else
 		icon_state = base_icon
 		item_state = base_icon
-	if(istype(user)) user.update_inv_belt()
-
-/obj/item/storage/large_holster/t19/full/Initialize()
-	. = ..()
-	new /obj/item/weapon/gun/smg/standard_smg(src)
-	update_icon()
+	if(ismob(loc))
+		var/mob/user = loc
+		user.update_inv_belt()

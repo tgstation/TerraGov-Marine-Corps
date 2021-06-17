@@ -2,6 +2,8 @@
 //Types that use this should consider overriding emp_act() and hear_talk(), unless they shield their contents somehow.
 /obj/item/storage/internal
 	allow_drawing_method = FALSE /// Unable to set draw_mode ourselves
+
+	///The item this internal storage is owned by
 	var/obj/item/master_item
 
 /obj/item/storage/internal/Initialize()
@@ -12,8 +14,8 @@
 	verbs -= /obj/item/verb/verb_pickup	//make sure this is never picked up.
 
 /obj/item/storage/internal/Destroy()
-	for(var/i in contents)
-		var/obj/item/content_item = i
+	for(var/item in contents)
+		var/obj/item/content_item = item
 		qdel(content_item)
 	master_item = null
 	return ..()
@@ -22,7 +24,7 @@
 	return TRUE
 
 /obj/item/storage/internal/mob_can_equip()
-	return 0	//make sure this is never picked up
+	return FALSE	//make sure this is never picked up
 
 //Helper procs to cleanly implement internal storages - storage items that provide inventory slots for other items.
 //These procs are completely optional, it is up to the master item to decide when it's storage get's opened by calling open()
@@ -108,24 +110,21 @@
 			open(user)
 		return FALSE
 
-	for(var/mob/M in range(1, master_item.loc))
-		if(M.s_active == src)
-			close(M)
+	for(var/mob/mob in range(1, master_item.loc))
+		if(mob.s_active == src)
+			close(mob)
 	return TRUE
 
 /obj/item/storage/internal/Adjacent(atom/neighbor)
 	return master_item.Adjacent(neighbor)
 
-
-/obj/item/storage/internal/handle_item_insertion(obj/item/W, prevent_warning = FALSE)
+/obj/item/storage/internal/handle_item_insertion()
 	. = ..()
 	master_item.on_pocket_insertion()
 
-
-/obj/item/storage/internal/remove_from_storage(obj/item/W, atom/new_location)
+/obj/item/storage/internal/remove_from_storage()
 	. = ..()
 	master_item.on_pocket_removal()
-
 
 ///things to do when an item is inserted in the obj's internal pocket
 /obj/item/proc/on_pocket_insertion()

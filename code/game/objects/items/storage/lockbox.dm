@@ -1,7 +1,7 @@
 /obj/item/storage/lockbox
 	name = "lockbox"
 	desc = "A locked box."
-	icon_state = "lockbox+l"
+	icon_state = "lockbox"
 	item_state = "syringe_kit"
 	w_class = WEIGHT_CLASS_BULKY
 	max_w_class = 3
@@ -10,13 +10,9 @@
 	req_access = list(ACCESS_MARINE_CAPTAIN)
 	var/locked = 1
 	var/broken = 0
-	var/icon_locked = "lockbox+l"
-	var/icon_closed = "lockbox"
-	var/icon_broken = "lockbox+b"
 
-
-/obj/item/storage/lockbox/attackby(obj/item/I, mob/living/user, params)
-	if(istype(I, /obj/item/card/id))
+/obj/item/storage/lockbox/attackby(obj/item/item, mob/living/user, params)
+	if(istype(item, /obj/item/card/id))
 		if(broken)
 			to_chat(user, "<span class='warning'>It appears to be broken.</span>")
 			return
@@ -27,10 +23,10 @@
 
 		locked = !locked
 		if(locked)
-			icon_state = icon_locked
+			icon_state = initial(icon_state) + "+l"
 			to_chat(user, "<span class='warning'>You lock the [src]!</span>")
 		else
-			icon_state = icon_closed
+			icon_state = initial(icon_state)
 			to_chat(user, "<span class='warning'>You unlock the [src]!</span>")
 
 	if(locked)
@@ -39,7 +35,6 @@
 
 	return ..()
 
-
 /obj/item/storage/lockbox/show_to(mob/user)
 	if(locked)
 		to_chat(user, "<span class='warning'>Its locked!</span>")
@@ -47,13 +42,8 @@
 
 	return ..()
 
-
 /obj/item/storage/lockbox/clusterbang
 	name = "lockbox of clusterbangs"
 	desc = "You have a bad feeling about opening this."
 	req_access = list(ACCESS_MARINE_BRIG)
-
-
-/obj/item/storage/lockbox/clusterbang/Initialize()
-	. = ..()
-	new /obj/item/explosive/grenade/flashbang/clusterbang(src)
+	spawns_with = list(/obj/item/explosive/grenade/flashbang/clusterbang)

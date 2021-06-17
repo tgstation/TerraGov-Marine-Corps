@@ -16,11 +16,17 @@
 	icon = 'icons/obj/items/food.dmi'
 	icon_state = "donutbox6"
 	name = "donut box"
+
+	///Base icon type; why this doesnt just use initial(icon_state) is beyond me
 	var/icon_type = "donut"
+
+	///What item does this storage contain upon initilization
 	var/spawn_type
+
+	///How many spawn inside it
 	var/spawn_number
 
-/obj/item/storage/fancy/Initialize(mapload, ...)
+/obj/item/storage/fancy/Initialize()
 	if(spawn_type)
 		can_hold = list(spawn_type) // must be set before parent init for typecacheof
 	. = ..()
@@ -36,7 +42,6 @@
 	if(.)
 		update_icon()
 
-
 /obj/item/storage/fancy/examine(mob/user)
 	. = ..()
 	switch(length(contents))
@@ -46,7 +51,6 @@
 			to_chat(user, "There is one [icon_type] left in the box.")
 		if(2 to INFINITY)
 			to_chat(user, "There are [length(contents)] [icon_type]s in the box.")
-
 
 /*
 * Egg Box
@@ -92,15 +96,17 @@
 	storage_slots = 6
 	icon_type = "crayon"
 	can_hold = list(/obj/item/toy/crayon)
+	spawns_with = list(
+		/obj/item/toy/crayon/red,
+		/obj/item/toy/crayon/orange,
+		/obj/item/toy/crayon/yellow,
+		/obj/item/toy/crayon/green,
+		/obj/item/toy/crayon/blue,
+		/obj/item/toy/crayon/purple,
+	)
 
 /obj/item/storage/fancy/crayons/Initialize()
 	. = ..()
-	new /obj/item/toy/crayon/red(src)
-	new /obj/item/toy/crayon/orange(src)
-	new /obj/item/toy/crayon/yellow(src)
-	new /obj/item/toy/crayon/green(src)
-	new /obj/item/toy/crayon/blue(src)
-	new /obj/item/toy/crayon/purple(src)
 	update_icon()
 
 /obj/item/storage/fancy/crayons/update_overlays()
@@ -109,12 +115,12 @@
 	for(var/obj/item/toy/crayon/crayon in contents)
 		. += image('icons/obj/items/crayons.dmi',crayon.colourName)
 
-/obj/item/storage/fancy/crayons/attackby(obj/item/I, mob/user, params)
+/obj/item/storage/fancy/crayons/attackby(obj/item/item, mob/user, params)
 	. = ..()
 
-	if(istype(I, /obj/item/toy/crayon))
-		var/obj/item/toy/crayon/C = I
-		switch(C.colourName)
+	if(istype(item, /obj/item/toy/crayon))
+		var/obj/item/toy/crayon/crayon = item
+		switch(crayon.colourName)
 			if("mime")
 				to_chat(user, "This crayon is too sad to be contained in this box.")
 			if("rainbow")
@@ -139,30 +145,30 @@
 		/obj/item/tool/lighter,
 	)
 	icon_type = "cigarette"
-
-/obj/item/storage/fancy/cigarettes/Initialize(mapload, ...)
-	. = ..()
-	for(var/i in 1 to storage_slots)
-		new /obj/item/clothing/mask/cigarette(src)
+	spawns_with = list(/obj/item/clothing/mask/cigarette)
+	spawns_mult = 18
 
 /obj/item/storage/fancy/cigarettes/update_icon_state()
 	icon_state = "[initial(icon_state)][contents.len]"
 
-
-/obj/item/storage/fancy/cigarettes/remove_from_storage(obj/item/W, atom/new_location)
-	var/obj/item/clothing/mask/cigarette/C = W
-	if(istype(C))
+/obj/item/storage/fancy/cigarettes/remove_from_storage(obj/item/item, atom/new_location)
+	var/obj/item/clothing/mask/cigarette/cigarette = item
+	if(cigarette)
 		return ..()
 
-/obj/item/storage/fancy/cigarettes/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
-	if(!istype(M, /mob))
+/obj/item/storage/fancy/cigarettes/attack(mob/living/carbon/attacked, mob/living/carbon/user)
+	if(!ismob(attacked))
 		return
 
-	if(M == user && user.zone_selected == "mouth" && contents.len > 0 && !user.wear_mask)
-		var/obj/item/clothing/mask/cigarette/C = locate() in src
-		if(C)
-			remove_from_storage(C, get_turf(user))
-			user.equip_to_slot_if_possible(C, SLOT_WEAR_MASK)
+	if(attacked == user && user.zone_selected == "mouth" && contents.len > 0 && !user.wear_mask)
+		var/obj/item/clothing/mask/cigarette/cigarette
+		for(var/obj in contents)
+			if(istype(obj, /obj/item/clothing/mask/cigarette))
+				cigarette = obj
+				break
+		if(cigarette)
+			remove_from_storage(cigarette, get_turf(user))
+			user.equip_to_slot_if_possible(cigarette, SLOT_WEAR_MASK)
 			to_chat(user, "<span class='notice'>You take a cigarette out of the pack.</span>")
 			update_icon()
 	else
@@ -185,21 +191,16 @@
 		/obj/item/storage/box/matches,
 	)
 	icon_type = "chempacket"
-
-/obj/item/storage/fancy/chemrettes/Initialize(mapload, ...)
-	. = ..()
-
-	for(var/i in 1 to 3)
-		new /obj/item/clothing/mask/cigarette/bica(src)
-	for(var/i in 1 to 3)
-		new /obj/item/clothing/mask/cigarette/kelo(src)
-	for(var/i in 1 to 5)
-		new /obj/item/clothing/mask/cigarette/tram(src)
-	for(var/i in 1 to 5)
-		new /obj/item/clothing/mask/cigarette/antitox(src)
-
-	new /obj/item/clothing/mask/cigarette/emergency(src)
-	new /obj/item/tool/lighter(src)
+	spawns_with = list(
+		/obj/item/clothing/mask/cigarette/bica, /obj/item/clothing/mask/cigarette/bica, /obj/item/clothing/mask/cigarette/bica,
+		/obj/item/clothing/mask/cigarette/kelo, /obj/item/clothing/mask/cigarette/kelo, /obj/item/clothing/mask/cigarette/kelo,
+		/obj/item/clothing/mask/cigarette/tram, /obj/item/clothing/mask/cigarette/tram, /obj/item/clothing/mask/cigarette/tram,
+		/obj/item/clothing/mask/cigarette/antitox, /obj/item/clothing/mask/cigarette/antitox, /obj/item/clothing/mask/cigarette/antitox,
+		/obj/item/clothing/mask/cigarette/tram, /obj/item/clothing/mask/cigarette/tram,
+		/obj/item/clothing/mask/cigarette/antitox, /obj/item/clothing/mask/cigarette/antitox,
+		/obj/item/clothing/mask/cigarette/emergency,
+		/obj/item/tool/lighter,
+	)
 
 /obj/item/storage/fancy/chemrettes/update_icon_state()
 	icon_state = "[initial(icon_state)][contents.len]"
@@ -246,16 +247,19 @@
 /obj/item/storage/fancy/cigar/update_icon_state()
 	icon_state = "[initial(icon_state)][contents.len]"
 
-
-/obj/item/storage/fancy/cigar/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
-	if(!istype(M, /mob))
+/obj/item/storage/fancy/cigar/attack(mob/living/carbon/attacked, mob/living/carbon/user)
+	if(!ismob(attacked))
 		return
 
-	if(M == user && user.zone_selected == "mouth" && contents.len > 0 && !user.wear_mask)
-		var/obj/item/clothing/mask/cigarette/cigar/C = locate() in src
-		if(C)
-			remove_from_storage(C, get_turf(user))
-			user.equip_to_slot_if_possible(C, SLOT_WEAR_MASK)
+	if(attacked == user && user.zone_selected == "mouth" && contents.len > 0 && !user.wear_mask)
+		var/obj/item/clothing/mask/cigarette/cigar/cigar
+		for(var/obj in contents)
+			if(istype(obj, /obj/item/clothing/mask/cigarette/cigar))
+				cigar = obj
+				break
+		if(cigar)
+			remove_from_storage(cigar, get_turf(user))
+			user.equip_to_slot_if_possible(cigar, SLOT_WEAR_MASK)
 			to_chat(user, "<span class='notice'>You take a cigar out of the case.</span>")
 			update_icon()
 	else
@@ -305,6 +309,6 @@
 	else
 		. += image(icon, src, "ledb")
 
-/obj/item/storage/lockbox/vials/attackby(obj/item/I, mob/user, params)
+/obj/item/storage/lockbox/vials/attackby()
 	. = ..()
 	update_icon()
