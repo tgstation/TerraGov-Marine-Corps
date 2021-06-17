@@ -374,6 +374,7 @@
 	max_shells = 6 //codex
 	current_mag = /obj/item/ammo_magazine/internal/revolver/m44
 	force = 8
+	w_class = WEIGHT_CLASS_BULKY //perhaps give snub-nose treatment later?
 	attachable_allowed = list(
 		/obj/item/attachable/bayonet,
 		/obj/item/attachable/reddot,

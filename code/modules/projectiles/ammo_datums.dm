@@ -332,7 +332,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	hud_state = "revolver"
 	hud_state_empty = "revolver_empty"
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
-	damage = 40
+	damage = 45
 	penetration = 10
 	sundering = 3
 
@@ -341,6 +341,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 datum/ammo/bullet/revolver/tp44
 	name = "standard revolver bullet"
+	damage = 40
 
 /datum/ammo/bullet/revolver/tp44/on_hit_mob(mob/M,obj/projectile/P)
 	if(SEND_SIGNAL(P.shot_from, COMSIG_REVOLVER_AMMO_HIT_MOB) & COMSIG_REVOLVER_AMMO_SNUBNOSE_BARREL)
@@ -352,6 +353,9 @@ datum/ammo/bullet/revolver/tp44
 	name = "small revolver bullet"
 	hud_state = "revolver_small"
 	damage = 30
+
+/datum/ammo/bullet/revolver/small/on_hit_mob(mob/M,obj/projectile/P)
+	staggerstun(M, P, slowdown = 0.5)
 
 /datum/ammo/bullet/revolver/marksman
 	name = "slimline revolver bullet"
@@ -397,6 +401,9 @@ datum/ammo/bullet/revolver/tp44
 
 /datum/ammo/bullet/revolver/ricochet/four
 	bonus_projectiles_type = /datum/ammo/bullet/revolver/ricochet/three
+
+/datum/ammo/bullet/revolver/ricochet/on_hit_mob(mob/M,obj/projectile/P)
+	staggerstun(M, P, slowdown = 0.5)
 
 /datum/ammo/bullet/revolver/ricochet/on_hit_turf(turf/T, obj/projectile/proj)
 	. = ..()
