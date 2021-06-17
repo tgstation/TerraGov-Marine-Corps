@@ -204,7 +204,10 @@
 	var/cx = tx
 	var/cy = ty
 	boxes.screen_loc = "[tx]:,[ty] to [mx],[my]"
-	for(var/obj/object in src.contents)
+	for(var/content in contents)
+		if(!isobj(content))
+			continue
+		var/obj/object = content
 		object.screen_loc = "[cx],[cy]"
 		object.layer = ABOVE_HUD_LAYER
 		object.plane = ABOVE_HUD_PLANE
@@ -220,6 +223,10 @@
 /obj/item/storage/proc/slot_orient_objs(rows, cols, list/obj/item/display_contents)
 	var/cx = 4
 	var/cy = 2+rows
+
+	if(!boxes)
+		return
+
 	boxes.screen_loc = "4:16,2:16 to [4+cols]:16,[2+rows]:16"
 
 	if(display_contents_with_number)
@@ -234,7 +241,10 @@
 				cx = 4
 				cy--
 	else
-		for(var/obj/object in contents)
+		for(var/content in contents)
+			if(!isobj(content))
+				continue
+			var/obj/object = content
 			object.mouse_opacity = 2 //So storage items that start with contents get the opacity trick.
 			object.screen_loc = "[cx]:16,[cy]:16"
 			object.maptext = ""
@@ -270,9 +280,12 @@
 	var/startpoint = 0
 	var/endpoint = 1
 
-	for(var/obj/item/object in contents)
+	for(var/content in contents)
+		if(!isitem(content))
+			continue
+		var/obj/item/item = content
 		startpoint = endpoint + 1
-		endpoint += storage_width * object.w_class / max_storage_space
+		endpoint += storage_width * item.w_class / max_storage_space
 
 		click_border_start.Add(startpoint)
 		click_border_end.Add(endpoint)
@@ -291,10 +304,10 @@
 		storage_start.overlays += src.stored_continue
 		storage_start.overlays += src.stored_end
 
-		object.screen_loc = "4:[round((startpoint+endpoint)/2)+2],2:16"
-		object.maptext = ""
-		object.layer = ABOVE_HUD_LAYER
-		object.plane = ABOVE_HUD_PLANE
+		item.screen_loc = "4:[round((startpoint+endpoint)/2)+2],2:16"
+		item.maptext = ""
+		item.layer = ABOVE_HUD_LAYER
+		item.plane = ABOVE_HUD_PLANE
 
 	closer.screen_loc = "4:[storage_width+19],2:16"
 
@@ -356,7 +369,10 @@
 	if(display_contents_with_number)
 		numbered_contents = list()
 		adjusted_contents = 0
-		for(var/obj/item/item in contents)
+		for(var/content in contents)
+			if(!isitem(content))
+				continue
+			var/obj/item/item = content
 			var/found = FALSE
 			for(var/datum/numbered_display/ND in numbered_contents)
 				if(ND.sample_object.type == item.type)
@@ -367,7 +383,7 @@
 				adjusted_contents++
 				numbered_contents.Add(new/datum/numbered_display(item))
 
-	if(storage_slots == null) // This is different from it being zero!!
+	if(isnull(storage_slots))
 		src.space_orient_objs(numbered_contents)
 	else
 		var/row_num = 0
@@ -434,10 +450,11 @@
 ///such as when picking up all the items on a tile with one click.
 ///user can be null, it refers to the potential mob doing the insertion.
 /obj/item/storage/proc/handle_item_insertion(obj/item/item, prevent_warning = 0, mob/user)
-	if(!istype(item)) return 0
+	if(!item)
+		return FALSE
 	if(user && item.loc == user)
 		if(!user.transferItemToLoc(item, src))
-			return 0
+			return FALSE
 	else
 		item.forceMove(src)
 	item.on_enter_storage(src)
@@ -751,6 +768,7 @@
 		var/list/spawnprobs = list()
 		var/index = 1
 		for(var/list/spawnlist AS in spawns_prob)
+			CHECK_TICK
 			var/listprob = spawnlist[1]
 			if(!prob(listprob))
 				continue
@@ -775,5 +793,8 @@
 			spawnprobs -= lowestprob
 			var/tospawn = pick(listspawn)
 			new tospawn(src)
+
+	//Done populating; clear spawn lists for memory optimization
+	spawns_with = spawns_prob = null
 
 	update_icon()

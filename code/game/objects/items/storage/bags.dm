@@ -200,7 +200,7 @@
 // Modified quick_empty verb drops appropriate sized stacks
 /obj/item/storage/bag/sheetsnatcher/quick_empty(mob/user)
 	var/location = get_turf(src)
-	for(var/obj/item/stack/sheet/content in contents)
+	for(var/content in contents)
 		if(!istype(content, /obj/item/stack/sheet))
 			continue
 		var/obj/item/stack/sheet/sheet = content
@@ -218,7 +218,7 @@
 
 // Instead of removing
 /obj/item/storage/bag/sheetsnatcher/remove_from_storage(obj/item/item, atom/new_location)
-	if(!item || !istype(item, /obj/item/stack/sheet))
+	if(!istype(item, /obj/item/stack/sheet))
 		return FALSE
 	var/obj/item/stack/sheet/sheet = item
 	//I would prefer to drop a new stack, but the item/attack_hand(mob/living/user)
