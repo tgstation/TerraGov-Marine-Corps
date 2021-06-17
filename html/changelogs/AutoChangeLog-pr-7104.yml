@@ -1,0 +1,7 @@
+author: "Wayland-Smithy"
+delete-after: True
+changes: 
+  - refactor: "Refactored some revolver ammo code for less signal headaches later."
+  - bugfix: "Fixed handfuls of loose .44 ammo breaking speed loaders."
+  - bugfix: "Fixed the .357 seasonal item ref and speed loader ammo type."
+  - spellcheck: "Removed an extra \"That\" from revolver ammo rejection notices."
