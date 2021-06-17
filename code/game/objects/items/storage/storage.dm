@@ -123,7 +123,7 @@
 			continue
 		if(istype(content, /obj/item/gift))
 			var/obj/item/gift/subgift = content
-			L += subgift
+			. += subgift
 			if(isstorage(subgift.gift))
 				var/obj/item/storage/substorage = subgift.gift
 				. += substorage.return_inv(recurse)
@@ -262,7 +262,7 @@
 	if(!opened) //initialize background box
 		var/matrix/matrix = matrix()
 		matrix.Scale((storage_width-storage_cap_width*2+3)/32,1)
-		storage_continue.transform = M
+		storage_continue.transform = matrix
 		storage_start.screen_loc = "4:16,2:16"
 		storage_continue.screen_loc = "4:[round(storage_cap_width+(storage_width-storage_cap_width*2)/2+2)],2:16"
 		storage_end.screen_loc = "4:[19+storage_width-storage_cap_width],2:16"
@@ -272,7 +272,7 @@
 
 	for(var/obj/item/object in contents)
 		startpoint = endpoint + 1
-		endpoint += storage_width * O.w_class / max_storage_space
+		endpoint += storage_width * object.w_class / max_storage_space
 
 		click_border_start.Add(startpoint)
 		click_border_end.Add(endpoint)
