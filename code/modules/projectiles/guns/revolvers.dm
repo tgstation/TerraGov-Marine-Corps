@@ -36,12 +36,6 @@
 /obj/item/weapon/gun/revolver/Initialize()
 	. = ..()
 	replace_cylinder(current_mag.current_rounds)
-	RegisterSignal(src, COMSIG_REVOLVER_AMMO_HIT_MOB, .proc/has_stagger_barrel)
-
-/obj/item/weapon/gun/revolver/proc/has_stagger_barrel()
-	SIGNAL_HANDLER
-	if(!attachable_allowed?.Find(/obj/item/attachable/standard_revolver_longbarrel) || attachments?.Find(ATTACHMENT_BARREL_MOD))
-		return TRUE // has barrel or is a revolver without the option
 
 /obj/item/weapon/gun/revolver/examine_ammo_count(mob/user)
 	if(!current_mag)
@@ -141,7 +135,7 @@
 					replace_cylinder(current_mag.current_rounds)
 					playsound(user, reload_sound, 25, 1) // Reloading via speedloader.
 			else
-				to_chat(user, "<span class='warning'>That [magazine] doesn't fit!</span>")
+				to_chat(user, "<span class='warning'>\The [magazine] doesn't fit!</span>")
 		else
 			to_chat(user, "<span class='warning'>You can't load a speedloader when there's something in the cylinder!</span>")
 
@@ -452,8 +446,6 @@
 	recoil = 0
 	recoil_unwielded = 0
 
-/obj/item/weapon/gun/revolver/small/unique_action(mob/user)
-	return revolver_trick(user)
 
 //-------------------------------------------------------
 //Mateba is pretty well known. The cylinder folds up instead of to the side. This has a non-marine version and a marine version.
