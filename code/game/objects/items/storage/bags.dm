@@ -110,12 +110,10 @@
 	icon_state = "sheetsnatcher"
 	name = "Sheet Snatcher"
 	desc = "A patented Nanotrasen storage system designed for any kind of mineral sheet."
-
+	w_class = WEIGHT_CLASS_NORMAL
+	allow_quick_empty = TRUE // this function is superceded
 	///The number of sheets we can carry.
 	var/capacity = 300
-	w_class = WEIGHT_CLASS_NORMAL
-
-	allow_quick_empty = TRUE // this function is superceded
 
 /obj/item/storage/bag/sheetsnatcher/can_be_inserted(obj/item/item, stop_messages = FALSE)
 	if(!istype(item,/obj/item/stack/sheet) || istype(item,/obj/item/stack/sheet/mineral/sandstone) || istype(item,/obj/item/stack/sheet/wood))
