@@ -1,5 +1,0 @@
-author: "BraveMole"
-delete-after: True
-changes: 
-  - bugfix: "Nightfall now applies on all electrical lights like it should"
-  - bugfix: "You can give plasma as a queen to king"

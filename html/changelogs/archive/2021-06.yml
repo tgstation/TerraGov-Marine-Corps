@@ -114,3 +114,16 @@
 2021-06-16:
   Terra1:
   - balance: Colony floodlight switches can no longer be destroyed by xenomorphs.
+2021-06-17:
+  BraveMole:
+  - bugfix: Nightfall now applies on all electrical lights like it should
+  - bugfix: You can give plasma as a queen to king
+  Pariah919:
+  - balance: makes eviscerating charge cost 100 less plasma
+  - admin: delete maid
+  SpaceLove:
+  - rscdel: Removed Maid outfit spawn command.
+  - admin: Removes Admin ability to spawn maid loadout.
+  Wayland-Smithy:
+  - bugfix: Fixed a problem with vendors refusing to vend items containing symbols
+      in their name.
