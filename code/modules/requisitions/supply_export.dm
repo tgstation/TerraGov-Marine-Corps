@@ -10,7 +10,7 @@
 			. = 30
 		if(XENO_TIER_TWO)
 			. = 40
-		if(XENO_TIER_THREE)
+		if(XENO_TIER_THREE || isxenoshrike(src))
 			. = 50
 		if(XENO_TIER_FOUR)
 			. = 100
