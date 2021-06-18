@@ -9,10 +9,24 @@
 	icon = 'icons/obj/items/storage/storage.dmi'
 	w_class = WEIGHT_CLASS_NORMAL
 
-	///A list of all things that spawn inside of this on creation
+	/**
+	 * A list of all things that WILL spawn inside of this storage object on creation.
+	 * Can either be an assosciative list of items to add, or a simple list of singular items.
+	 *
+	 * Format:
+	 * 	list(
+	 *   /obj/item/XXX = 1,
+	 *   /obj/item/XXX = 2,
+	 * 	)
+	 * OR
+	 * 	list(
+	 * 	 /obj/item/XXX,
+	 *   /obj/item/XXX,
+	 * 	)
+	 *
+	 * It is generally better to use the first format if you reduce four or more lines of code doing so.
+	 */
 	var/list/spawns_with = list()
-	///The number of times to spawn the list
-	var/spawns_mult = 1
 
 	/**
 	 * A list of all things that CAN spawn inside of this storage object on creation.
@@ -798,11 +812,13 @@
 ///Called during Initialize this will iterate over spawns_with and spawns_prob to create our initial contents
 /obj/item/storage/proc/PopulateContents()
 	if(LAZYLEN(spawns_with))
-		var/iterations = 0
-		while(iterations < spawns_mult)
-			iterations += 1
-			for(var/item in spawns_with)
-				new item(src)
+		for(var/tospawn in spawns_with)
+			if(!ispath(tospawn))
+				CRASH("Illegal spawns_with entry: '[tospawn]'. Must be a path")
+			if(spawns_with[tospawn]) // Are we assosciative?
+				for(var/iteration = 1; iteration < spawns_with[tospawn]; iteration += 1)
+					new tospawn(src)
+			else new tospawn(src)
 
 	if(LAZYLEN(spawns_prob) && spawns_prob_max)
 		var/list/spawnlists = list()
@@ -835,6 +851,7 @@
 			new tospawn(src)
 
 	//Done populating; clear spawn lists for memory optimization
-	spawns_with = spawns_prob = null
+	spawns_with = null
+	spawns_prob = null
 
 	update_icon()

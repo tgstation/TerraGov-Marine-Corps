@@ -80,12 +80,10 @@
 	item_state = "firstaid-o2"
 	spawns_with = list(
 		/obj/item/healthanalyzer,
-		/obj/item/storage/pill_bottle/dexalin,
-		/obj/item/storage/pill_bottle/inaprovaline,
-		/obj/item/reagent_containers/hypospray/autoinjector/dexalinplus,
-		/obj/item/reagent_containers/hypospray/autoinjector/dexalinplus,
-		/obj/item/reagent_containers/hypospray/autoinjector/dexalinplus,
-		/obj/item/storage/syringe_case/oxy,
+		/obj/item/storage/pill_bottle/dexalin = 1,
+		/obj/item/storage/pill_bottle/inaprovaline = 1,
+		/obj/item/reagent_containers/hypospray/autoinjector/dexalinplus = 3,
+		/obj/item/storage/syringe_case/oxy = 1,
 	)
 
 /obj/item/storage/firstaid/adv
@@ -109,13 +107,11 @@
 	icon_state = "purplefirstaid"
 	item_state = "firstaid-rad"
 	spawns_with = list(
-		/obj/item/healthanalyzer,
-		/obj/item/storage/pill_bottle/russian_red,
-		/obj/item/storage/pill_bottle/dylovene,
-		/obj/item/reagent_containers/hypospray/autoinjector/tricordrazine,
-		/obj/item/reagent_containers/hypospray/autoinjector/tricordrazine,
-		/obj/item/reagent_containers/hypospray/autoinjector/bicaridine,
-		/obj/item/reagent_containers/hypospray/autoinjector/bicaridine,
+		/obj/item/healthanalyzer = 1,
+		/obj/item/storage/pill_bottle/russian_red = 1,
+		/obj/item/storage/pill_bottle/dylovene = 1,
+		/obj/item/reagent_containers/hypospray/autoinjector/tricordrazine = 2,
+		/obj/item/reagent_containers/hypospray/autoinjector/bicaridine = 2,
 	)
 
 /**
@@ -221,22 +217,15 @@
 /obj/item/storage/syringe_case/tricordrazine
 	name = "syringe case (tricordrazine)"
 	desc = "It's a medical case for storing syringes and bottles. This one contains Tricordrazine."
-
-/obj/item/storage/syringe_case/tricordrazine/PopulateContents()
-	. = ..()
-	new /obj/item/reagent_containers/syringe(src)
-	new /obj/item/reagent_containers/glass/bottle/tricordrazine(src)
-	new /obj/item/reagent_containers/glass/bottle/tricordrazine(src)
+	spawns_with = list(
+		/obj/item/reagent_containers/syringe = 1,
+		/obj/item/reagent_containers/glass/bottle/tricordrazine = 2,
+	)
 
 /obj/item/storage/syringe_case/combat
 	name = "syringe case (combat)"
 	desc = "It's a medical case for storing syringes and bottles. This one contains combat autoinjectors."
-
-/obj/item/storage/syringe_case/combat/PopulateContents()
-	. = ..()
-	new /obj/item/reagent_containers/hypospray/autoinjector/combat(src)
-	new /obj/item/reagent_containers/hypospray/autoinjector/combat(src)
-	new /obj/item/reagent_containers/hypospray/autoinjector/combat(src)
+	spawns_with = list(/obj/item/reagent_containers/hypospray/autoinjector/combat = 3)
 
 /*
 * Pill Bottles
@@ -259,7 +248,6 @@
 	storage_slots = null
 	use_sound = 'sound/items/pillbottle.ogg'
 	max_storage_space = 16
-	spawns_mult = 16 // This should be the same as max_storage_space
 
 /obj/item/storage/pill_bottle/attack_self(mob/living/user)
 	if(user.get_inactive_held_item())
@@ -287,115 +275,115 @@
 	name = "kelotane pill bottle"
 	desc = "Contains pills that heal burns, but cause slight pain. Take two to heal faster, but have slightly more pain."
 	icon_state = "pill_canister2"
-	spawns_with = list(/obj/item/reagent_containers/pill/kelotane)
+	spawns_with = list(/obj/item/reagent_containers/pill/kelotane = 16)
 
 /obj/item/storage/pill_bottle/dermaline
 	name = "dermaline pill bottle"
 	desc = "Contains pills that heal burns, but cause slight pain. Take two to heal faster, but have slightly more pain."
 	icon_state = "pill_canister2"
-	spawns_with = list(/obj/item/reagent_containers/pill/dermaline)
+	spawns_with = list(/obj/item/reagent_containers/pill/dermaline = 16)
 
 /obj/item/storage/pill_bottle/dylovene
 	name = "dylovene pill bottle"
 	desc = "Contains pills that heal toxic damage and purge toxins and neurotoxins of all kinds."
 	icon_state = "pill_canister6"
-	spawns_with = list(/obj/item/reagent_containers/pill/dylovene)
+	spawns_with = list(/obj/item/reagent_containers/pill/dylovene = 16)
 
 /obj/item/storage/pill_bottle/inaprovaline
 	name = "inaprovaline pill bottle"
 	desc = "Contains pills that prevent wounds from getting worse on their own."
 	icon_state = "pill_canister3"
-	spawns_with = list(/obj/item/reagent_containers/pill/inaprovaline)
+	spawns_with = list(/obj/item/reagent_containers/pill/inaprovaline = 16)
 
 /obj/item/storage/pill_bottle/tramadol
 	name = "tramadol pill bottle"
 	desc = "Contains pills that numb pain. Take two for a stronger effect at the cost of a toxic effect."
 	icon_state = "pill_canister5"
-	spawns_with = list(/obj/item/reagent_containers/pill/tramadol)
+	spawns_with = list(/obj/item/reagent_containers/pill/tramadol = 16)
 
 /obj/item/storage/pill_bottle/paracetamol
 	name = "paracetamol pill bottle"
 	desc = "Contains pills that mildly numb pain. Take two for a slightly stronger effect."
 	icon_state = "pill_canister5"
-	spawns_with = list(/obj/item/reagent_containers/pill/paracetamol)
+	spawns_with = list(/obj/item/reagent_containers/pill/paracetamol = 16)
 
 /obj/item/storage/pill_bottle/spaceacillin
 	name = "spaceacillin pill bottle"
 	desc = "Contains pills that handle low-level viral and bacterial infections. Effect increases with dosage."
 	icon_state = "pill_canister4"
-	spawns_with = list(/obj/item/reagent_containers/pill/spaceacillin)
+	spawns_with = list(/obj/item/reagent_containers/pill/spaceacillin = 16)
 
 /obj/item/storage/pill_bottle/bicaridine
 	name = "bicaridine pill bottle"
 	desc = "Contains pills that heal cuts and bruises, but cause slight pain. Take two to heal faster, but have slightly more pain."
 	icon_state = "pill_canister11"
-	spawns_with = list(/obj/item/reagent_containers/pill/bicaridine)
+	spawns_with = list(/obj/item/reagent_containers/pill/bicaridine = 16)
 
 /obj/item/storage/pill_bottle/meralyne
 	name = "meralyne pill bottle"
 	desc = "Contains pills that heal cuts and bruises, but cause slight pain. Take two to heal faster, but have slightly more pain."
 	icon_state = "pill_canister11"
-	spawns_with = list(/obj/item/reagent_containers/pill/meralyne)
+	spawns_with = list(/obj/item/reagent_containers/pill/meralyne = 16)
 
 /obj/item/storage/pill_bottle/dexalin
 	name = "dexalin pill bottle"
 	desc = "Contains pills that heal oxygen damage. They can suppress bloodloss symptoms as well."
 	icon_state = "pill_canister12"
-	spawns_with = list(/obj/item/reagent_containers/pill/dexalin)
+	spawns_with = list(/obj/item/reagent_containers/pill/dexalin = 16)
 
 /obj/item/storage/pill_bottle/alkysine
 	name = "alkysine pill bottle"
 	desc = "Contains pills that heal brain damage."
 	icon_state = "pill_canister7"
-	spawns_with = list(/obj/item/reagent_containers/pill/alkysine)
+	spawns_with = list(/obj/item/reagent_containers/pill/alkysine = 16)
 
 /obj/item/storage/pill_bottle/imidazoline
 	name = "imidazoline pill bottle"
 	desc = "Contains pills that heal eye damage."
 	icon_state = "pill_canister9"
-	spawns_with = list(/obj/item/reagent_containers/pill/imidazoline)
+	spawns_with = list(/obj/item/reagent_containers/pill/imidazoline = 16)
 
 /obj/item/storage/pill_bottle/peridaxon
 	name = "peridaxon pill bottle"
 	desc = "Contains pills that suppress organ damage while waiting for a full treatment."
 	icon_state = "pill_canister10"
-	spawns_with = list(/obj/item/reagent_containers/pill/peridaxon)
+	spawns_with = list(/obj/item/reagent_containers/pill/peridaxon = 16)
 
 /obj/item/storage/pill_bottle/russian_red
 	name = "\improper Russian Red pill bottle"
 	desc = "Contains pills that heal all damage rapidly at the cost of small amounts of unhealable damage."
 	icon_state = "pill_canister1"
-	spawns_with = list(/obj/item/reagent_containers/pill/russian_red)
+	spawns_with = list(/obj/item/reagent_containers/pill/russian_red = 16)
 
 /obj/item/storage/pill_bottle/quickclot
 	name = "quick-clot pill bottle"
 	desc = "Contains pills that suppress internal bleeding while waiting for full treatment."
 	icon_state = "pill_canister8"
-	spawns_with = list(/obj/item/reagent_containers/pill/quickclot)
+	spawns_with = list(/obj/item/reagent_containers/pill/quickclot = 16)
 
 /obj/item/storage/pill_bottle/hypervene
 	name = "hypervene pill bottle"
 	desc = "A purge medication used to treat overdoses and rapidly remove toxins. Causes pain and vomiting."
 	icon_state = "pill_canister7"
-	spawns_with = list(/obj/item/reagent_containers/pill/hypervene)
+	spawns_with = list(/obj/item/reagent_containers/pill/hypervene = 16)
 
 /obj/item/storage/pill_bottle/tricordrazine
 	name = "tricordrazine pill bottle"
 	desc = "Contains pills commonly used by untrained Squad Marines to avoid seeing their Squad Medic."
 	icon_state = "pill_canister9"
-	spawns_with = list(/obj/item/reagent_containers/pill/tricordrazine)
+	spawns_with = list(/obj/item/reagent_containers/pill/tricordrazine = 16)
 
 /obj/item/storage/pill_bottle/happy
 	name = "happy pill bottle"
 	desc = "Contains highly illegal drugs. When you want to see the rainbow."
 	max_storage_space = 7
-	spawns_with = list(/obj/item/reagent_containers/pill/happy)
+	spawns_with = list(/obj/item/reagent_containers/pill/happy = 7)
 
 /obj/item/storage/pill_bottle/zoom
 	name = "zoom pill bottle"
 	desc = "Containts highly illegal drugs. Trade heart for speed."
 	max_storage_space = 7
-	spawns_with = list(/obj/item/reagent_containers/pill/zoom)
+	spawns_with = list(/obj/item/reagent_containers/pill/zoom = 7)
 
 //Pill bottles with identification locks.
 

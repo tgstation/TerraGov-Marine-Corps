@@ -16,8 +16,7 @@
 	name = "\improper Yum! donuts"
 	desc = "A box of mouth watering \"<i>Yum!</i>\" brand donuts."
 	storage_slots = 6
-	spawns_mult = 6
-	spawns_with = list(/obj/item/reagent_containers/food/snacks/donut/normal)
+	spawns_with = list(/obj/item/reagent_containers/food/snacks/donut/normal = 6)
 	can_hold = list(/obj/item/reagent_containers/food/snacks/donut)
 	foldable = /obj/item/stack/sheet/cardboard
 
@@ -45,4 +44,4 @@
 
 /obj/item/storage/donut_box/empty
 	icon_state = "donutbox_o"
-	spawns_mult = 0
+	spawns_with = list()

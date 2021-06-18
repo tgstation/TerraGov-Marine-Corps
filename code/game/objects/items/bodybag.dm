@@ -259,8 +259,7 @@
 	desc = "This box contains body bags."
 	icon_state = "bodybags"
 	w_class = WEIGHT_CLASS_NORMAL
-	spawns_with = list(/obj/item/bodybag)
-	spawns_mult = 7
+	spawns_with = list(/obj/item/bodybag = 7)
 
 
 /obj/item/bodybag/cryobag

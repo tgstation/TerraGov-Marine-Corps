@@ -108,8 +108,7 @@
 	name = "box of emp grenades"
 	desc = "A box with 5 emp grenades."
 	icon_state = "flashbang"
-	spawns_with = list(/obj/item/explosive/grenade/empgrenade)
-	spawns_mult = 5
+	spawns_with = list(/obj/item/explosive/grenade/empgrenade = 5)
 
 /obj/item/storage/box/rxglasses
 	name = "box of prescription glasses"
@@ -122,27 +121,23 @@
 /obj/item/storage/box/drinkingglasses
 	name = "box of drinking glasses"
 	desc = "It has a picture of drinking glasses on it."
-	spawns_with = list(/obj/item/reagent_containers/food/drinks/drinkingglass)
-	spawns_mult = 6
+	spawns_with = list(/obj/item/reagent_containers/food/drinks/drinkingglass = 6)
 
 /obj/item/storage/box/condimentbottles
 	name = "box of condiment bottles"
 	desc = "It has a large ketchup smear on it."
-	spawns_with = list(/obj/item/reagent_containers/food/condiment)
-	spawns_mult = 6
+	spawns_with = list(/obj/item/reagent_containers/food/condiment = 6)
 
 /obj/item/storage/box/cups
 	name = "box of paper cups"
 	desc = "It has pictures of paper cups on the front."
-	spawns_with = list(/obj/item/reagent_containers/food/drinks/sillycup)
-	spawns_mult = 7
+	spawns_with = list(/obj/item/reagent_containers/food/drinks/sillycup = 7)
 
 /obj/item/storage/box/donkpockets
 	name = "box of donk-pockets"
 	desc = "<B>Instructions:</B> <item>Heat in microwave. Product will cool if not eaten within seven minutes.</item>"
 	icon_state = "donk_kit"
-	spawns_with = list(/obj/item/reagent_containers/food/snacks/donkpocket)
-	spawns_mult = 6
+	spawns_with = list(/obj/item/reagent_containers/food/snacks/donkpocket = 6)
 	w_class = WEIGHT_CLASS_NORMAL
 
 /obj/item/storage/box/monkeycubes
@@ -150,8 +145,7 @@
 	desc = "Drymate brand monkey cubes. Just add water!"
 	icon = 'icons/obj/items/food.dmi'
 	icon_state = "monkeycubebox"
-	spawns_with = list(/obj/item/reagent_containers/food/snacks/monkeycube/wrapped)
-	spawns_mult = 5
+	spawns_with = list(/obj/item/reagent_containers/food/snacks/monkeycube/wrapped = 5)
 
 /obj/item/storage/box/monkeycubes/farwacubes
 	name = "farwa cube box"
@@ -172,42 +166,36 @@
 	name = "box of spare IDs"
 	desc = "Has so many empty IDs."
 	icon_state = "id"
-	spawns_with = list(/obj/item/card/id)
-	spawns_mult = 7
+	spawns_with = list(/obj/item/card/id = 7)
 
 /obj/item/storage/box/ids/dogtag
 	name = "box of spare Dogtags"
 	desc = "Has so many empty Dogtags."
 	icon_state = "id"
-	spawns_with = list(/obj/item/card/id/dogtag)
-	spawns_mult = 7
+	spawns_with = list(/obj/item/card/id/dogtag = 7)
 
 /obj/item/storage/box/handcuffs
 	name = "box of handcuffs"
 	desc = "A box full of handcuffs."
 	icon_state = "handcuff"
-	spawns_with = list(/obj/item/restraints/handcuffs)
-	spawns_mult = 7
+	spawns_with = list(/obj/item/restraints/handcuffs = 7)
 
 /obj/item/storage/box/zipcuffs
 	name = "box of zip cuffs"
 	desc = "A box full of zip cuffs."
 	icon_state = "handcuff"
-	spawns_with = list(/obj/item/restraints/handcuffs/zip)
-	spawns_mult = 14
+	spawns_with = list(/obj/item/restraints/handcuffs/zip = 14)
 
 /obj/item/storage/box/mousetraps
 	name = "box of Pest-B-Gon mousetraps"
 	desc = "<B><FONT color='red'>WARNING:</FONT></B> <item>Keep out of reach of children</item>."
 	icon_state = "mousetraps"
-	spawns_with = list(/obj/item/assembly/mousetrap)
-	spawns_mult = 6
+	spawns_with = list(/obj/item/assembly/mousetrap = 6)
 
 /obj/item/storage/box/pillbottles
 	name = "box of pill bottles"
 	desc = "It has pictures of pill bottles on its front."
-	spawns_with = list(/obj/item/storage/pill_bottle)
-	spawns_mult = 7
+	spawns_with = list(/obj/item/storage/pill_bottle = 7)
 
 /obj/item/storage/box/snappops
 	name = "snap pop box"
@@ -215,8 +203,7 @@
 	icon = 'icons/obj/items/toy.dmi'
 	icon_state = "spbox"
 	max_storage_space = 8
-	spawns_with = list(/obj/item/toy/snappop)
-	spawns_mult = 8
+	spawns_with = list(/obj/item/toy/snappop = 8)
 
 /obj/item/storage/box/matches
 	name = "matchbox"
@@ -226,8 +213,7 @@
 	item_state = "zippo"
 	w_class = WEIGHT_CLASS_TINY
 	flags_equip_slot = ITEM_SLOT_BELT
-	spawns_with = list(/obj/item/tool/match)
-	spawns_mult = 14
+	spawns_with = list(/obj/item/tool/match = 14)
 
 /obj/item/storage/box/matches/attackby(obj/item/item, mob/user, params)
 	if(istype(item, /obj/item/tool/match))
@@ -249,15 +235,13 @@
 	name = "box of injectors"
 	desc = "Contains autoinjectors."
 	icon_state = "syringe"
-	spawns_with = list(/obj/item/reagent_containers/hypospray/autoinjector/tricordrazine)
-	spawns_mult = 7
+	spawns_with = list(/obj/item/reagent_containers/hypospray/autoinjector/tricordrazine = 7)
 
 /obj/item/storage/box/quickclot
 	name = "box of quick-clot injectors"
 	desc = "Contains quick-clot autoinjectors."
 	icon_state = "syringe"
-	spawns_with = list(/obj/item/reagent_containers/hypospray/autoinjector/quickclot)
-	spawns_mult = 7
+	spawns_with = list(/obj/item/reagent_containers/hypospray/autoinjector/quickclot = 7)
 
 /obj/item/storage/box/lights
 	name = "box of replacement bulbs"
@@ -268,8 +252,7 @@
 	foldable = /obj/item/stack/sheet/cardboard //BubbleWrap
 	max_storage_space = 42	//holds 21 items of w_class 2
 	use_to_pickup = 1 // for picking up broken bulbs, not that most people will try
-	spawns_with = list(/obj/item/light_bulb/bulb)
-	spawns_mult = 21
+	spawns_with = list(/obj/item/light_bulb/bulb = 21)
 
 /obj/item/storage/box/lights/bulbs // mapping placeholder
 
@@ -277,8 +260,7 @@
 	name = "box of replacement tubes"
 	icon_state = "lighttube"
 	w_class = WEIGHT_CLASS_NORMAL
-	spawns_with = list(/obj/item/light_bulb/tube/large)
-	spawns_mult = 21
+	spawns_with = list(/obj/item/light_bulb/tube/large = 21)
 
 /obj/item/storage/box/lights/mixed
 	name = "box of replacement lights"
@@ -288,22 +270,15 @@
 		/obj/item/light_bulb/bulb,
 	)
 	spawns_with = list(
-		/obj/item/light_bulb/tube/large, /obj/item/light_bulb/tube/large, /obj/item/light_bulb/tube/large,
-		/obj/item/light_bulb/tube/large, /obj/item/light_bulb/tube/large, /obj/item/light_bulb/tube/large,
-		/obj/item/light_bulb/tube/large, /obj/item/light_bulb/tube/large, /obj/item/light_bulb/tube/large,
-		/obj/item/light_bulb/tube/large, /obj/item/light_bulb/tube/large, /obj/item/light_bulb/tube/large,
-		/obj/item/light_bulb/tube/large, /obj/item/light_bulb/tube/large,
-		/obj/item/light_bulb/bulb, /obj/item/light_bulb/bulb, /obj/item/light_bulb/bulb,
-		/obj/item/light_bulb/bulb, /obj/item/light_bulb/bulb, /obj/item/light_bulb/bulb,
-		/obj/item/light_bulb/bulb,
+		/obj/item/light_bulb/tube/large = 14,
+		/obj/item/light_bulb/bulb = 7,
 	)
 
 /obj/item/storage/box/trampop
 	name = "box of Tram-pops"
 	desc = "Maybe if you behave the doctor will reward you with one."
 	icon_state = "trampop"
-	spawns_with = list(/obj/item/reagent_containers/food/snacks/lollipop/tramadol)
-	spawns_mult = 14
+	spawns_with = list(/obj/item/reagent_containers/food/snacks/lollipop/tramadol = 14)
 	w_class = WEIGHT_CLASS_SMALL
 
 ////////// MARINES BOXES //////////////////////////
@@ -314,8 +289,7 @@
 	icon_state = "minebox"
 	w_class = WEIGHT_CLASS_NORMAL
 	max_storage_space = 10
-	spawns_with = list(/obj/item/explosive/mine)
-	spawns_mult = 5
+	spawns_with = list(/obj/item/explosive/mine = 5)
 
 /obj/item/storage/box/explosive_mines/update_icon_state()
 	icon_state = initial(icon_state)
@@ -327,8 +301,7 @@
 	desc = "A large secure box holding anti-personel proximity mines."
 	icon_state = "minebox"
 	max_storage_space = 20
-	spawns_with = list(/obj/item/explosive/mine)
-	spawns_mult = 10
+	spawns_with = list(/obj/item/explosive/mine = 10)
 
 /obj/item/storage/box/explosive_mines/pmc
 	name = "\improper M20P mine box"
@@ -340,8 +313,7 @@
 	icon_state = "m40"
 	w_class = WEIGHT_CLASS_NORMAL
 	max_storage_space = 14
-	spawns_with = list(/obj/item/explosive/grenade/flare)
-	spawns_mult = 7
+	spawns_with = list(/obj/item/explosive/grenade/flare = 7)
 
 /obj/item/storage/box/m94/update_icon()
 	icon_state = initial(icon_state)
@@ -359,14 +331,12 @@
 	name = "box of lightsticks"
 	desc = "Contains blue lightsticks."
 	icon_state = "lightstick"
-	spawns_with = list(/obj/item/lightstick)
-	spawns_mult = 7
+	spawns_with = list(/obj/item/lightstick = 7)
 
 /obj/item/storage/box/lightstick/red
 	desc = "Contains red lightsticks."
 	icon_state = "lightstick2"
-	spawns_with = list(/obj/item/lightstick/red)
-	spawns_mult = 7
+	spawns_with = list(/obj/item/lightstick/red = 7)
 
 /obj/item/storage/box/MRE
 	name = "\improper TGMC MRE"
@@ -956,22 +926,19 @@
 /obj/item/storage/box/visual/grenade/M15
 	name = "\improper M15 grenade box"
 	desc = "A secure box holding 25 M15 fragmentation grenades."
-	spawns_mult = 25
-	spawns_with = list(/obj/item/explosive/grenade/frag/m15)
+	spawns_with = list(/obj/item/explosive/grenade/frag/m15 = 25)
 	closed_overlay = "grenade_box_overlay_m15"
 
 /obj/item/storage/box/visual/grenade/frag
 	name = "\improper M40 HEDP grenade box"
 	desc = "A secure box holding 25 M40 HEDP grenades. High explosive, don't store near the flamer fuel."
-	spawns_mult = 25
-	spawns_with = list(/obj/item/explosive/grenade/frag)
+	spawns_with = list(/obj/item/explosive/grenade/frag = 25)
 	closed_overlay = "grenade_box_overlay_hedp"
 
 /obj/item/storage/box/visual/grenade/incendiary
 	name = "\improper M40 HIDP grenade box"
 	desc = "A secure box holding 25 M40 HIDP incendiary grenades. Warning: highly flammable!!."
-	spawns_mult = 25
-	spawns_with = list(/obj/item/explosive/grenade/incendiary)
+	spawns_with = list(/obj/item/explosive/grenade/incendiary = 25)
 	closed_overlay = "grenade_box_overlay_hidp"
 
 /obj/item/storage/box/visual/grenade/phosphorus
@@ -979,29 +946,25 @@
 	desc = "A secure box holding 15 M40 HPDP white phosphorous grenades. War crimes for the entire platoon!"
 	storage_slots = 15
 	max_storage_space = 30
-	spawns_mult = 15
-	spawns_with = list(/obj/item/explosive/grenade/phosphorus)
+	spawns_with = list(/obj/item/explosive/grenade/phosphorus = 15)
 	closed_overlay = "grenade_box_overlay_phosphorus"
 
 /obj/item/storage/box/visual/grenade/impact
 	name = "\improper M15 grenade box"
 	desc = "A secure box holding 25 M40 IMDP impact grenades. High explosive, don't store near the flamer fuel."
-	spawns_mult = 25
-	spawns_with = list(/obj/item/explosive/grenade/impact)
+	spawns_with = list(/obj/item/explosive/grenade/impact = 25)
 	closed_overlay = "grenade_box_overlay_impact"
 
 /obj/item/storage/box/visual/grenade/cloak
 	name = "\improper M40-2 SCDP grenade box"
 	desc = "A secure box holding 25 M40-2 SCDP cloak grenades. Don't blindly shoot into the smoke."
-	spawns_mult = 25
-	spawns_with = list(/obj/item/explosive/grenade/cloakbomb)
+	spawns_with = list(/obj/item/explosive/grenade/cloakbomb = 25)
 	closed_overlay = "grenade_box_overlay_cloak"
 
 /obj/item/storage/box/visual/grenade/drain
 	name = "\improper M40-T grenade box"
 	desc = "A secure box holding 25 M40-T gas grenades. 100% safe to use around masked marines."
-	spawns_mult = 25
-	spawns_with = list(/obj/item/explosive/grenade/drainbomb)
+	spawns_with = list(/obj/item/explosive/grenade/drainbomb = 25)
 	closed_overlay = "grenade_box_overlay_drain"
 
 /obj/item/storage/box/visual/grenade/razorburn
@@ -1009,22 +972,19 @@
 	desc = "A secure box holding 15 razor burn grenades. Used for quick flank coverage."
 	storage_slots = 15
 	max_storage_space = 30
-	spawns_mult = 15
-	spawns_with = list(/obj/item/explosive/grenade/chem_grenade/razorburn_smol)
+	spawns_with = list(/obj/item/explosive/grenade/chem_grenade/razorburn_smol = 15)
 	closed_overlay = "grenade_box_overlay_razorburn"
 
 /obj/item/storage/box/visual/grenade/teargas
 	name = "\improper M66 teargas grenade box"
 	desc = "A secure box holding 25 M66 tear gas grenades. Used for riot control."
-	spawns_mult = 25
-	spawns_with = list(/obj/item/explosive/grenade/chem_grenade/teargas)
+	spawns_with = list(/obj/item/explosive/grenade/chem_grenade/teargas = 25)
 	closed_overlay = "grenade_box_overlay_teargas"
 
 /obj/item/storage/box/visual/grenade/training
 	name = "\improper M07 training grenade box"
 	desc = "A secure box holding 25 M07 training grenades. Harmless and reusable."
-	spawns_mult = 25
-	spawns_with = list(/obj/item/explosive/grenade/frag/training)
+	spawns_with = list(/obj/item/explosive/grenade/frag/training = 25)
 	closed_overlay = "grenade_box_overlay_training"
 
 #undef BOX_OVERLAY_SHIFT_X
