@@ -81,9 +81,11 @@
 		user.dropItemToGround(master_item)
 		user.put_in_l_hand(master_item)
 
-//Items that use internal storage have the option of calling this to emulate default storage attack_hand behaviour.
-//Returns 1 if the master item's parent's attack_hand() should be called, 0 otherwise.
-//It's strange, but no other way of doing it without the ability to call another proc's parent, really.
+/**
+ * Items that use internal storage have the option of calling this to emulate default storage attack_hand behaviour.
+ * Returns 1 if the master item's parent's attack_hand() should be called, 0 otherwise.
+ * It's strange, but no other way of doing it without the ability to call another proc's parent, really.
+ */
 /obj/item/storage/internal/proc/handle_attack_hand(mob/user)
 
 	if(user.lying_angle)

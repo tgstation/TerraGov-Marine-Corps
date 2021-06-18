@@ -281,7 +281,7 @@
 	)
 
 /obj/item/storage/pouch/explosive/full
-	spawns_with = list(/obj/item/explosive/grenade/frag, /obj/item/explosive/grenade/frag, /obj/item/explosive/grenade/frag, /obj/item/explosive/grenade/frag)
+	spawns_with = list(/obj/item/explosive/grenade/frag = 4)
 
 /obj/item/storage/pouch/explosive/detpack
 	spawns_with = list(
@@ -293,14 +293,12 @@
 
 /obj/item/storage/pouch/explosive/razorburn
 	spawns_with = list(
-		/obj/item/explosive/grenade/chem_grenade/razorburn_smol,
-		/obj/item/explosive/grenade/chem_grenade/razorburn_smol,
-		/obj/item/explosive/grenade/chem_grenade/razorburn_smol,
-		/obj/item/explosive/grenade/chem_grenade/razorburn_large,
+		/obj/item/explosive/grenade/chem_grenade/razorburn_smol = 3,
+		/obj/item/explosive/grenade/chem_grenade/razorburn_large = 1,
 	)
 
 /obj/item/storage/pouch/explosive/upp
-	spawns_with = list(/obj/item/explosive/grenade/frag/upp, /obj/item/explosive/grenade/frag/upp, /obj/item/explosive/grenade/frag/upp, /obj/item/explosive/grenade/frag/upp)
+	spawns_with = list(/obj/item/explosive/grenade/frag/upp = 4)
 
 /obj/item/storage/pouch/grenade
 	name = "Grenade pouch"
@@ -312,7 +310,7 @@
 	)
 
 /obj/item/storage/pouch/grenade/slightlyfull
-	spawns_with = list(/obj/item/explosive/grenade/frag, /obj/item/explosive/grenade/frag, /obj/item/explosive/grenade/frag, /obj/item/explosive/grenade/frag)
+	spawns_with = list(/obj/item/explosive/grenade/frag = 4)
 
 /obj/item/storage/pouch/medical
 	name = "medical pouch"
@@ -443,13 +441,10 @@
 
 /obj/item/storage/pouch/medkit/full
 	spawns_with = list(
-		/obj/item/healthanalyzer,
-		/obj/item/stack/medical/advanced/bruise_pack,
-		/obj/item/stack/medical/advanced/bruise_pack,
-		/obj/item/stack/medical/advanced/ointment,
-		/obj/item/stack/medical/advanced/ointment,
-		/obj/item/stack/medical/splint,
-		/obj/item/stack/medical/splint,
+		/obj/item/healthanalyzer = 1,
+		/obj/item/stack/medical/advanced/bruise_pack = 2,
+		/obj/item/stack/medical/advanced/ointment = 2,
+		/obj/item/stack/medical/splint = 2,
 	)
 
 /obj/item/storage/pouch/medkit/equippedcorpsman
@@ -513,15 +508,7 @@
 		return ..()
 
 /obj/item/storage/pouch/flare/full
-	spawns_with = list(
-		/obj/item/explosive/grenade/flare,
-		/obj/item/explosive/grenade/flare,
-		/obj/item/explosive/grenade/flare,
-		/obj/item/explosive/grenade/flare,
-		/obj/item/explosive/grenade/flare,
-		/obj/item/explosive/grenade/flare,
-		/obj/item/explosive/grenade/flare,
-	)
+	spawns_with = list(/obj/item/explosive/grenade/flare = 7)
 
 /obj/item/storage/pouch/radio
 	name = "radio pouch"
