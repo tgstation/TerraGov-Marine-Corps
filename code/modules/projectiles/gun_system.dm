@@ -512,8 +512,6 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 		dual_wield = TRUE
 	if(gun_user.in_throw_mode)
 		return
-	if(gun_user.Adjacent(object)) //Dealt with by attack code
-		return
 	if(QDELETED(object))
 		return
 	var/list/modifiers = params2list(params)
@@ -537,6 +535,8 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 
 ///Set the target and take care of hard delete
 /obj/item/weapon/gun/proc/set_target(atom/object)
+	if(gun_user.Adjacent(object))
+		return
 	if(object == target)
 		return
 	if(target)
@@ -665,7 +665,7 @@ and you're good to go.
 //----------------------------------------------------------
 
 /obj/item/weapon/gun/proc/Fire()
-	if(QDELETED(gun_user) || !ismob(gun_user) || !able_to_fire(gun_user) || !target)
+	if(QDELETED(gun_user) || !ismob(gun_user) || !able_to_fire(gun_user) || !target || gun_user.Adjacent(target))
 		return
 
 	//The gun should return the bullet that it already loaded from the end cycle of the last Fire().
