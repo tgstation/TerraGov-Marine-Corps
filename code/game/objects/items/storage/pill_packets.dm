@@ -8,29 +8,28 @@
 	storage_slots = 4
 	max_w_class = 0
 	max_storage_space = 4
-	spawns_mult = 4
 
 /obj/item/storage/pill_bottle/packet/tricordrazine
 	name = "Tricordazine pill packet"
 	desc = "This packet containts tricordazine pills. Heals all types of damage slightly. Once you take them out they don't go back in. No more than 2 pills in a short period."
-	spawns_with = list(/obj/item/reagent_containers/pill/tricordrazine)
+	spawns_with = list(/obj/item/reagent_containers/pill/tricordrazine = 4)
 
 /obj/item/storage/pill_bottle/packet/paracetamol
 	name = "Paracematol pill packet"
 	desc = "This packet containts paracetamol pills, also known as tylenol. A long lasting but minor painkiller. Once you take them out they don't go back in. No more than 4 pills in a long period."
-	spawns_with = list(/obj/item/reagent_containers/pill/paracetamol)
+	spawns_with = list(/obj/item/reagent_containers/pill/paracetamol = 4)
 
 /obj/item/storage/pill_bottle/packet/leporazine
 	name = "Leporazine pill packet"
 	desc = "This packet containts leporazine pills. Rapidly stablizes the patients internal temperature. Once you take them out they don't go back in.."
-	spawns_with = list(/obj/item/reagent_containers/pill/leporazine)
+	spawns_with = list(/obj/item/reagent_containers/pill/leporazine = 4)
 
 /obj/item/storage/pill_bottle/packet/russian_red
 	name = "Russian Red pill packet"
 	desc = "This packet containts Russian Red pills. Used for field treatment of critical cases without a medic. Once you take them out they don't go back in.."
-	spawns_with = list(/obj/item/reagent_containers/pill/russian_red)
+	spawns_with = list(/obj/item/reagent_containers/pill/russian_red = 4)
 
 /obj/item/storage/pill_bottle/packet/ryetalyn
 	name = "Ryetalyn pill packet"
 	desc = "This packet containts Ryetalyn pills. Used to provide a shield against bloodstream toxins. Once you take them out they don't go back in. No more than 2 pills at once."
-	spawns_with = list(/obj/item/reagent_containers/pill/ryetalyn)
+	spawns_with = list(/obj/item/reagent_containers/pill/ryetalyn = 4)

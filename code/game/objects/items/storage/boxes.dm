@@ -68,40 +68,35 @@
 	name = "box of latex gloves"
 	desc = "Contains white gloves."
 	icon_state = "latex"
-	spawns_with = list(/obj/item/clothing/gloves/latex)
-	spawns_mult = 7
+	spawns_with = list(/obj/item/clothing/gloves/latex = 7)
 	w_class = WEIGHT_CLASS_SMALL
 
 /obj/item/storage/box/masks
 	name = "box of sterile masks"
 	desc = "This box contains masks of sterility."
 	icon_state = "sterile"
-	spawns_with = list(/obj/item/clothing/mask/surgical)
-	spawns_mult = 7
+	spawns_with = list(/obj/item/clothing/mask/surgical = 7)
 	w_class = WEIGHT_CLASS_SMALL
 
 /obj/item/storage/box/syringes
 	name = "box of syringes"
 	desc = "A box full of syringes."
 	desc = "A biohazard alert warning is printed on the box"
-	spawns_with = list(/obj/item/reagent_containers/syringe)
-	spawns_mult = 2
+	spawns_with = list(/obj/item/reagent_containers/syringe = 2)
 	icon_state = "syringe"
 	w_class = WEIGHT_CLASS_SMALL
 
 /obj/item/storage/box/beakers
 	name = "box of beakers"
 	icon_state = "beaker"
-	spawns_with = list(/obj/item/reagent_containers/glass/beaker)
-	spawns_mult = 7
+	spawns_with = list(/obj/item/reagent_containers/glass/beaker = 7)
 	w_class = WEIGHT_CLASS_NORMAL
 
 /obj/item/storage/box/flashbangs
 	name = "box of flashbangs (WARNING)"
 	desc = "<B>WARNING: These devices are extremely dangerous and can cause blindness or deafness in repeated use.</B>"
 	icon_state = "flashbang"
-	spawns_with = list(/obj/item/explosive/grenade/flashbang)
-	spawns_mult = 7
+	spawns_with = list(/obj/item/explosive/grenade/flashbang = 7)
 	w_class = WEIGHT_CLASS_NORMAL
 
 /obj/item/storage/box/emps
@@ -114,8 +109,7 @@
 	name = "box of prescription glasses"
 	desc = "This box contains nerd glasses."
 	icon_state = "glasses"
-	spawns_with = list(/obj/item/clothing/glasses/regular)
-	spawns_mult = 7
+	spawns_with = list(/obj/item/clothing/glasses/regular = 7)
 	w_class = WEIGHT_CLASS_NORMAL
 
 /obj/item/storage/box/drinkingglasses
@@ -630,8 +624,7 @@
 	)
 
 /obj/item/storage/box/visual/magazine/compact/standard_pistol/full
-	spawns_mult = 40
-	spawns_with = list(/obj/item/ammo_magazine/pistol/standard_pistol)
+	spawns_with = list(/obj/item/ammo_magazine/pistol/standard_pistol = 40)
 
 /obj/item/storage/box/visual/magazine/compact/standard_heavypistol
 	name = "TP-23 magazine box"
@@ -642,8 +635,7 @@
 	)
 
 /obj/item/storage/box/visual/magazine/compact/standard_heavypistol/full
-	spawns_mult = 40
-	spawns_with = list(/obj/item/ammo_magazine/pistol/standard_heavypistol)
+	spawns_with = list(/obj/item/ammo_magazine/pistol/standard_heavypistol = 40)
 
 /obj/item/storage/box/visual/magazine/compact/standard_revolver
 	name = "TP-44 speedloader box"
@@ -654,8 +646,7 @@
 	)
 
 /obj/item/storage/box/visual/magazine/compact/standard_revolver/full
-	spawns_mult = 40
-	spawns_with = list(/obj/item/ammo_magazine/revolver/standard_revolver)
+	spawns_with = list(/obj/item/ammo_magazine/revolver/standard_revolver = 40)
 
 /obj/item/storage/box/visual/magazine/compact/standard_pocketpistol
 	name = "TP-17 magazine box"
@@ -666,8 +657,7 @@
 	)
 
 /obj/item/storage/box/visual/magazine/compact/standard_pocketpistol/full
-	spawns_mult = 40
-	spawns_with = list(/obj/item/ammo_magazine/pistol/standard_pocketpistol)
+	spawns_with = list(/obj/item/ammo_magazine/pistol/standard_pocketpistol = 40)
 
 /obj/item/storage/box/visual/magazine/compact/vp70
 	name = "88M4 magazine box"
@@ -678,8 +668,7 @@
 	)
 
 /obj/item/storage/box/visual/magazine/compact/vp70/full
-	spawns_mult = 40
-	spawns_with = list(/obj/item/ammo_magazine/pistol/vp70)
+	spawns_with = list(/obj/item/ammo_magazine/pistol/vp70 = 40)
 
 /obj/item/storage/box/visual/magazine/compact/plasma_pistol
 	name = "TX-8 plasma cell box"
@@ -690,8 +679,7 @@
 	)
 
 /obj/item/storage/box/visual/magazine/compact/plasma_pistol/full
-	spawns_mult = 40
-	spawns_with = list(/obj/item/ammo_magazine/pistol/plasma_pistol)
+	spawns_with = list(/obj/item/ammo_magazine/pistol/plasma_pistol = 40)
 
 // -SMG-
 
@@ -704,8 +692,7 @@
 	)
 
 /obj/item/storage/box/visual/magazine/compact/standard_smg/full
-	spawns_mult = 40
-	spawns_with = list(/obj/item/ammo_magazine/smg/standard_smg)
+	spawns_with = list(/obj/item/ammo_magazine/smg/standard_smg = 40)
 
 /obj/item/storage/box/visual/magazine/compact/standard_machinepistol
 	name = "T-19 magazine box"
@@ -716,8 +703,7 @@
 	)
 
 /obj/item/storage/box/visual/magazine/compact/standard_machinepistol/full
-	spawns_mult = 40
-	spawns_with = list(/obj/item/ammo_magazine/smg/standard_machinepistol)
+	spawns_with = list(/obj/item/ammo_magazine/smg/standard_machinepistol = 40)
 
 /obj/item/storage/box/visual/magazine/compact/ppsh
 	name = "PPSh drum magazine box"
@@ -728,8 +714,7 @@
 	)
 
 /obj/item/storage/box/visual/magazine/compact/ppsh/full
-	spawns_mult = 40
-	spawns_with = list(/obj/item/ammo_magazine/smg/ppsh/extended)
+	spawns_with = list(/obj/item/ammo_magazine/smg/ppsh/extended = 40)
 
 // -Rifle-
 
@@ -743,8 +728,7 @@
 	)
 
 /obj/item/storage/box/visual/magazine/compact/standard_assaultrifle/full
-	spawns_mult = 30
-	spawns_with = list(/obj/item/ammo_magazine/rifle/standard_assaultrifle)
+	spawns_with = list(/obj/item/ammo_magazine/rifle/standard_assaultrifle = 30)
 
 /obj/item/storage/box/visual/magazine/compact/standard_carbine
 	name = "T-18 magazine box"
@@ -756,8 +740,7 @@
 	)
 
 /obj/item/storage/box/visual/magazine/compact/standard_carbine/full
-	spawns_mult = 30
-	spawns_with = list(/obj/item/ammo_magazine/rifle/standard_carbine)
+	spawns_with = list(/obj/item/ammo_magazine/rifle/standard_carbine = 30)
 
 /obj/item/storage/box/visual/magazine/compact/tx11
 	name = "TX-11 magazine box"
@@ -769,8 +752,7 @@
 	)
 
 /obj/item/storage/box/visual/magazine/compact/tx11/full
-	spawns_mult = 30
-	spawns_with = list(/obj/item/ammo_magazine/rifle/tx11)
+	spawns_with = list(/obj/item/ammo_magazine/rifle/tx11 = 30)
 
 /obj/item/storage/box/visual/magazine/compact/lasrifle
 	name = "TX-73 cell box"
@@ -782,8 +764,7 @@
 	)
 
 /obj/item/storage/box/visual/magazine/compact/lasrifle/full
-	spawns_mult = 30
-	spawns_with = list(/obj/item/cell/lasgun/lasrifle)
+	spawns_with = list(/obj/item/cell/lasgun/lasrifle = 30)
 
 /obj/item/storage/box/visual/magazine/compact/lasrifle/marine
 	name = "Terra Experimental cell box"
@@ -795,8 +776,7 @@
 	)
 
 /obj/item/storage/box/visual/magazine/compact/lasrifle/marine/full
-	spawns_mult = 30
-	spawns_with = list(/obj/item/cell/lasgun/lasrifle/marine)
+	spawns_with = list(/obj/item/cell/lasgun/lasrifle/marine = 30)
 
 /obj/item/storage/box/visual/magazine/compact/tx15
 	name = "TX-15 magazine box"
@@ -813,16 +793,14 @@
 	closed_overlay = "mag_box_small_overlay_tx15_flechette"
 
 /obj/item/storage/box/visual/magazine/compact/tx15/flechette/full
-	spawns_mult = 30
-	spawns_with = list(/obj/item/ammo_magazine/rifle/tx15_flechette)
+	spawns_with = list(/obj/item/ammo_magazine/rifle/tx15_flechette = 30)
 
 /obj/item/storage/box/visual/magazine/compact/tx15/slug
 	name = "TX-15 slug magazine box"
 	closed_overlay = "mag_box_small_overlay_tx15_slug"
 
 /obj/item/storage/box/visual/magazine/compact/tx15/slug/full
-	spawns_mult = 30
-	spawns_with = list(/obj/item/ammo_magazine/rifle/tx15_slug)
+	spawns_with = list(/obj/item/ammo_magazine/rifle/tx15_slug = 30)
 
 // -Marksmen-
 
@@ -836,8 +814,7 @@
 	)
 
 /obj/item/storage/box/visual/magazine/compact/standard_dmr/full
-	spawns_mult = 30
-	spawns_with = list(/obj/item/ammo_magazine/rifle/standard_dmr)
+	spawns_with = list(/obj/item/ammo_magazine/rifle/standard_dmr = 30)
 
 /obj/item/storage/box/visual/magazine/compact/standard_br
 	name = "T-64 magazine box"
@@ -849,8 +826,7 @@
 	)
 
 /obj/item/storage/box/visual/magazine/compact/standard_br/full
-	spawns_mult = 30
-	spawns_with = list(/obj/item/ammo_magazine/rifle/standard_br)
+	spawns_with = list(/obj/item/ammo_magazine/rifle/standard_br = 30)
 
 /obj/item/storage/box/visual/magazine/compact/chamberedrifle
 	name = "TL-127 magazine box"
@@ -862,8 +838,7 @@
 	)
 
 /obj/item/storage/box/visual/magazine/compact/chamberedrifle/full
-	spawns_mult = 30
-	spawns_with = list(/obj/item/ammo_magazine/rifle/chamberedrifle)
+	spawns_with = list(/obj/item/ammo_magazine/rifle/chamberedrifle = 30)
 
 /obj/item/storage/box/visual/magazine/compact/mosin
 	name = "mosin packet box"
@@ -875,8 +850,7 @@
 	)
 
 /obj/item/storage/box/visual/magazine/compact/mosin/full
-	spawns_mult = 30
-	spawns_with = list(/obj/item/ammo_magazine/rifle/bolt)
+	spawns_with = list(/obj/item/ammo_magazine/rifle/bolt = 30)
 
 // -Machinegun-
 
@@ -890,8 +864,7 @@
 	)
 
 /obj/item/storage/box/visual/magazine/compact/standard_lmg/full
-	spawns_mult = 30
-	spawns_with = list(/obj/item/ammo_magazine/standard_lmg)
+	spawns_with = list(/obj/item/ammo_magazine/standard_lmg = 30)
 
 /obj/item/storage/box/visual/magazine/compact/standard_gpmg
 	name = "T-60 magazine box"
@@ -903,8 +876,7 @@
 	)
 
 /obj/item/storage/box/visual/magazine/compact/standard_gpmg/full
-	spawns_mult = 30
-	spawns_with = list(/obj/item/ammo_magazine/standard_gpmg)
+	spawns_with = list(/obj/item/ammo_magazine/standard_gpmg = 30)
 
 // --GRENADE BOXES--
 /obj/item/storage/box/visual/grenade

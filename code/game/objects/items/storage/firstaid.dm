@@ -433,8 +433,7 @@
 /obj/item/storage/pill_bottle/restricted/ultrazine
 	icon_state = "pill_canister11"
 	max_storage_space = 5
-	spawns_mult = 5
-	spawns_with = list(/obj/item/reagent_containers/pill/ultrazine)
+	spawns_with = list(/obj/item/reagent_containers/pill/ultrazine = 5)
 
 	req_access = list(ACCESS_NT_CORPORATE)
 	req_id_role = CORPORATE_LIAISON

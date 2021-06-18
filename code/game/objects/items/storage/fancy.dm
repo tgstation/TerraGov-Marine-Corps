@@ -141,8 +141,7 @@
 		/obj/item/tool/lighter,
 	)
 	icon_type = "cigarette"
-	spawns_with = list(/obj/item/clothing/mask/cigarette)
-	spawns_mult = 18
+	spawns_with = list(/obj/item/clothing/mask/cigarette = 18)
 
 /obj/item/storage/fancy/cigarettes/update_icon_state()
 	icon_state = "[initial(icon_state)][contents.len]"
@@ -188,14 +187,12 @@
 	)
 	icon_type = "chempacket"
 	spawns_with = list(
-		/obj/item/clothing/mask/cigarette/bica, /obj/item/clothing/mask/cigarette/bica, /obj/item/clothing/mask/cigarette/bica,
-		/obj/item/clothing/mask/cigarette/kelo, /obj/item/clothing/mask/cigarette/kelo, /obj/item/clothing/mask/cigarette/kelo,
-		/obj/item/clothing/mask/cigarette/tram, /obj/item/clothing/mask/cigarette/tram, /obj/item/clothing/mask/cigarette/tram,
-		/obj/item/clothing/mask/cigarette/antitox, /obj/item/clothing/mask/cigarette/antitox, /obj/item/clothing/mask/cigarette/antitox,
-		/obj/item/clothing/mask/cigarette/tram, /obj/item/clothing/mask/cigarette/tram,
-		/obj/item/clothing/mask/cigarette/antitox, /obj/item/clothing/mask/cigarette/antitox,
-		/obj/item/clothing/mask/cigarette/emergency,
-		/obj/item/tool/lighter,
+		/obj/item/clothing/mask/cigarette/bica = 3,
+		/obj/item/clothing/mask/cigarette/kelo = 3,
+		/obj/item/clothing/mask/cigarette/tram = 5,
+		/obj/item/clothing/mask/cigarette/antitox = 5,
+		/obj/item/clothing/mask/cigarette/emergency = 1,
+		/obj/item/tool/lighter = 1,
 	)
 
 /obj/item/storage/fancy/chemrettes/update_icon_state()
