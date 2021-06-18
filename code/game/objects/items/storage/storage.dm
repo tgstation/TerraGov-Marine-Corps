@@ -456,7 +456,7 @@
  * Should return true if the access delay is completed successfully.
  */
 /obj/item/storage/proc/handle_access_delay(obj/item/accessed, mob/user, taking_out = TRUE, alert_user = TRUE)
-	if(!access_delay || !should_access_delay(accessed, user, taking_out))
+	if(!access_delay || !user || !should_access_delay(accessed, user, taking_out))
 		return TRUE
 
 	if(!alert_user)
@@ -511,7 +511,7 @@
 	return TRUE
 
 ///Call this proc to handle the removal of an item from the storage item. The item will be moved to the atom sent as new_target
-/obj/item/storage/proc/remove_from_storage(obj/item/item, atom/new_location)
+/obj/item/storage/proc/remove_from_storage(obj/item/item, atom/new_location, mob/user)
 	if(!istype(item))
 		return FALSE
 
