@@ -1,0 +1,4 @@
+author: "Wayland-Smithy"
+delete-after: True
+changes: 
+  - bugfix: "Fixed King caste_flags, so it can now be healed by and become a leader for the Queen."
