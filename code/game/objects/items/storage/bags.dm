@@ -139,9 +139,10 @@
 			continue
 		var/obj/item/stack/sheet/sheet_sub = content
 		current += sheet_sub.amount
-	if(capacity < current + sheet.amount)//If the stack will fill it up
-		amount = capacity - current
-	else amount = sheet.amount
+
+	amount = capacity - current
+	if(amount > sheet.amount) // Do we have less than what we want
+		amount = sheet.amount
 
 	for(var/content in contents)
 		if(!istype(content, /obj/item/stack/sheet))
