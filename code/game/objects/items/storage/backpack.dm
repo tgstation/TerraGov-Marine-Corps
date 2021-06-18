@@ -427,8 +427,9 @@
 	///What Alpha does the shimmer get set to while active
 	var/shimmer_alpha = SCOUT_CLOAK_RUN_ALPHA
 
-	///I have no idea what this variable is for; but it does something
+	///Stores a cached value for when the stealth is allowed to recharge AND expire. Memory optimization good.
 	var/stealth_delay = null
+
 	actions_types = list(/datum/action/item_action/toggle)
 
 /obj/item/storage/backpack/marine/satchel/scout_cloak/scout
@@ -450,7 +451,7 @@
 
 	camouflage(usr)
 
-///Camoflauge the user and begin processing
+///camouflage the user and begin processing
 /obj/item/storage/backpack/marine/satchel/scout_cloak/proc/camouflage(mob/user)
 	if (user.incapacitated(TRUE))
 		return
@@ -528,7 +529,7 @@
 	if(wearer)
 		anim(wearer.loc,wearer,'icons/mob/mob.dmi',,"uncloak",,wearer.dir)
 
-///Camoflauge has either run out, been disabled, or been disrupted
+///camouflage has either run out, been disabled, or been disrupted
 /obj/item/storage/backpack/marine/satchel/scout_cloak/proc/camo_off(mob/user)
 	UnregisterSignal(wearer, COMSIG_MOB_ENABLE_STEALTH)
 	if (!user)
@@ -571,7 +572,7 @@
 	STOP_PROCESSING(SSprocessing, src)
 	wearer.cloaking = FALSE
 
-///Handles the camoflauge cooldown, using a timer callback by default
+///Handles the camouflage cooldown, using a timer callback by default
 /obj/item/storage/backpack/marine/satchel/scout_cloak/proc/process_camo_cooldown(mob/living/user, cooldown)
 	if(!camo_cooldown_timer)
 		return
@@ -611,7 +612,7 @@
 	. = ..()
 	camouflage()
 
-///Called during processing to determine if we should remain camoflauged
+///Called during processing to determine if we should remain camouflaged
 /obj/item/storage/backpack/marine/satchel/scout_cloak/proc/camo_adjust_energy(mob/user, drain = SCOUT_CLOAK_WALK_DRAIN)
 	camo_energy = clamp(camo_energy - drain,0,initial(camo_energy))
 
