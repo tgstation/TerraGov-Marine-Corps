@@ -199,9 +199,10 @@
 ///Closes the view of this storage for the given mob
 /obj/item/storage/proc/close(mob/user)
 	hide_from(user)
-
-///This proc draws out the inventory and places the items on it. tx and ty are the upper left tile and mx, my are the bottm right.
-///The numbers are calculated from the bottom-left The bottom-left slot being 1,1.
+/**
+ * This proc draws out the inventory and places the items on it. tx and ty are the upper left tile and mx, my are the bottm right.
+ * The numbers are calculated from the bottom-left The bottom-left slot being 1,1.
+**/
 /obj/item/storage/proc/orient_objs(tx, ty, mx, my)
 	var/cx = tx
 	var/cy = ty
@@ -394,8 +395,10 @@
 			row_num = round((adjusted_contents-1) / 7) // 7 is the maximum allowed width.
 		slot_orient_objs(row_num, col_count, numbered_contents)
 
-///This proc return 1 if the item can be picked up and 0 if it can't.
-///Set the warning to stop it from printing messages
+/**
+ * This proc returns TRUE if the item can be picked up and FALSE if it can't.
+ * Set the warning to stop it from printing messages
+**/
 /obj/item/storage/proc/can_be_inserted(obj/item/item, warning = TRUE)
 	if(!istype(item) || (item.flags_item & NODROP))
 		return //Not an item
@@ -715,8 +718,10 @@
 	new foldable(get_turf(src))
 	qdel(src)
 
-///Returns the storage depth of an atom. This is the number of storage items the atom is contained in before reaching toplevel (the area).
-///Returns -1 if the atom was not found on container.
+/**
+ * Returns the storage depth of an atom. This is the number of storage items the atom is contained in before reaching toplevel (the area).
+ * Returns -1 if the atom was not found on container.
+**/
 /atom/proc/storage_depth(atom/container)
 	var/depth = 0
 	var/atom/cur_atom = src
@@ -732,8 +737,10 @@
 		return -1	//inside something with a null loc.
 	return depth
 
-///Like storage depth, but returns the depth to the nearest turf
-///Returns -1 if no top level turf (a loc was null somewhere, or a non-turf atom's loc was an area somehow).
+/**
+ * Like storage depth, but returns the depth to the nearest turf
+ * Returns -1 if no top level turf (a loc was null somewhere, or a non-turf atom's loc was an area somehow).
+**/
 /atom/proc/storage_depth_turf()
 	var/depth = 0
 	var/atom/cur_atom = src
