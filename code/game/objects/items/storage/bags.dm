@@ -131,7 +131,7 @@
 
 // Modified handle_item_insertion.  Would prefer not to, but...
 /obj/item/storage/bag/sheetsnatcher/handle_item_insertion(obj/item/item, prevent_warning = 0, mob/user)
-	if(!item || !istype(item, /obj/item/stack/sheet))
+	if(!istype(item, /obj/item/stack/sheet))
 		return FALSE
 	var/obj/item/stack/sheet/sheet = item
 	var/amount
