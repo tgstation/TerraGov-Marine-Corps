@@ -68,10 +68,10 @@
 	try_summon_king()
 
 /**
- * Chose at random a xeno beyond live xeno of the ownerhive, and ask them if they want to become the king
+ * Choose at random a xeno beyond live xeno of the ownerhive, and ask them if they want to become the king
  * If no xeno accepted to become king, give it to ghosts
  */
-/obj/structure/resin/king_pod/proc/chose_king()
+/obj/structure/resin/king_pod/proc/choose_king()
 	for(var/mob/living/carbon/xenomorph/xenomorph_alive AS in shuffle(GLOB.alive_xeno_list))
 		if(xenomorph_alive.hivenumber != ownerhive)
 			continue
