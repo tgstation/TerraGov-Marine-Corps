@@ -1,7 +1,0 @@
-author: "BraveMole"
-delete-after: True
-changes: 
-  - balance: "Rework silo generation"
-  - rscdel: "remove small silos"
-  - balance: "psy drain gives 60 points and 1/8th of a larva, cocoon give 120 points and at the end of its lifetime (5minutes), 1/6th of a larva. Generators are making more psy points, but it's linked with the number of alive alive marines ground side"
-  - balance: "Turrets are now 100 points, silo are now 800, king is now 1800. This is to account for xeno having way less psy points in general (marine spawning no longer give 80 points)"

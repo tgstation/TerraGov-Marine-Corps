@@ -1,4 +1,0 @@
-author: "Wayland-Smithy"
-delete-after: True
-changes: 
-  - bugfix: "Fixed send to lobby breaking the ghost orbit panel."

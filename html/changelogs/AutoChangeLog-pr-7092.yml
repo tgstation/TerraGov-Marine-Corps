@@ -1,4 +1,0 @@
-author: "BraveMole"
-delete-after: True
-changes: 
-  - balance: "Update pain hud (what xeno see on humans) to be more reliable. Pain and stamina have way less impact on it."

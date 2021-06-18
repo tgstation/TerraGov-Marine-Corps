@@ -1,5 +1,0 @@
-author: "ZephyrTFA"
-delete-after: True
-changes: 
-  - code_imp: "Helper procs for handling delays of manipulating storage objects and their contents"
-  - qol: "Backpacks can be accessed while you are wearing them but it takes time"
