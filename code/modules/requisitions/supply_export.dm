@@ -13,12 +13,12 @@
 		if(XENO_TIER_THREE)
 			. = 50
 		if(XENO_TIER_FOUR)
-			if(isxenoshrike(src))
-				. = 50 // support shrike is only worth a T3
-			else
-				. = 100
+			. = 100
 	SSpoints.supply_points[faction_selling] += .
 	return new /datum/export_report(., name, faction_selling)
+
+/mob/living/carbon/xenomorph/shrike/supply_export(faction_selling)
+	return new /datum/export_report(50, name, faction_selling)
 
 
 /mob/living/carbon/human/supply_export(faction_selling)
