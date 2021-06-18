@@ -116,9 +116,6 @@
 
 	ignore_weed_destruction = FALSE
 
-// Default for xeno structures
-	hud_possible = list(XENO_TACTICAL_HUD)
-
 
 //Carrier trap
 /obj/structure/xeno/trap
@@ -637,6 +634,8 @@ TUNNEL
 	layer = RESIN_STRUCTURE_LAYER
 
 	max_integrity = 140
+
+	hud_possible = list(XENO_TACTICAL_HUD)
 
 	var/tunnel_desc = "" //description added by the hivelord.
 	var/mob/living/carbon/xenomorph/hivelord/creator = null

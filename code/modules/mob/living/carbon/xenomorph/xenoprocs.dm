@@ -94,6 +94,7 @@
 
 	var/xenoinfo = ""
 
+	var/tier4counts = ""
 	var/tier3counts = ""
 	var/tier2counts = ""
 	var/tier1counts = ""
@@ -101,6 +102,8 @@
 	xenoinfo += xeno_status_output(hive.xenos_by_typepath[/mob/living/carbon/xenomorph/queen], TRUE, user)
 
 	xenoinfo += xeno_status_output(hive.xeno_leader_list, FALSE, user)
+
+	xenoinfo += xeno_status_output(hive.xenos_by_typepath[/mob/living/carbon/xenomorph/hivemind], TRUE, user)
 
 	for(var/typepath in hive.xenos_by_typepath)
 		var/mob/living/carbon/xenomorph/T = typepath
@@ -111,6 +114,8 @@
 		switch(initial(T.tier))
 			if(XENO_TIER_ZERO)
 				continue
+			if(XENO_TIER_FOUR)
+				tier4counts += " | [initial(T.name)]s: [length(hive.xenos_by_typepath[typepath])]"
 			if(XENO_TIER_THREE)
 				tier3counts += " | [initial(T.name)]s: [length(hive.xenos_by_typepath[typepath])]"
 			if(XENO_TIER_TWO)
@@ -118,27 +123,21 @@
 			if(XENO_TIER_ONE)
 				tier1counts += " | [initial(T.name)]s: [length(hive.xenos_by_typepath[typepath])]"
 
+		if(XC.caste_name == "Queen") //QM forgive me
+			continue
 		xenoinfo += xeno_status_output(hive.xenos_by_typepath[typepath], TRUE, user)
 
 	xenoinfo += xeno_status_output(hive.xenos_by_typepath[/mob/living/carbon/xenomorph/larva], TRUE, user)
 
 	var/hivemind_text = length(hive.xenos_by_typepath[/mob/living/carbon/xenomorph/hivemind]) > 0 ? "Active" : "Inactive"
-	var/mob/living/carbon/xenomorph/queen/hive_queen = hive.living_xeno_queen
-
-	var/queen_text = "None" //Define the Queen
-	if(hive_queen)
-		queen_text = "[hive_queen]"
-
-		if(!hive_queen.client)
-			queen_text += " <i>(SSD)</i>"
 
 	dat += "<b>Total Living Sisters: [hive.get_total_xeno_number()]</b><BR>"
+	dat += "<b>Tier 4: [length(hive.xenos_by_tier[XENO_TIER_FOUR])] Sisters</b>[tier4counts]<BR>"
 	dat += "<b>Tier 3: ([length(hive.xenos_by_tier[XENO_TIER_THREE])]/[hive.tier3_xeno_limit]) Sisters</b>[tier3counts]<BR>"
 	dat += "<b>Tier 2: ([length(hive.xenos_by_tier[XENO_TIER_TWO])]/[hive.tier2_xeno_limit]) Sisters</b>[tier2counts]<BR>"
 	dat += "<b>Tier 1: [length(hive.xenos_by_tier[XENO_TIER_ONE])] Sisters</b>[tier1counts]<BR>"
 	dat += "<b>Larvas: [length(hive.xenos_by_typepath[/mob/living/carbon/xenomorph/larva])] Sisters<BR>"
 	dat += "<b>Psychic points : [SSpoints.xeno_points_by_hive[hive.hivenumber]]<BR>"
-	dat += "<b>Queen: [queen_text]<BR>"
 	dat += "<b>Hivemind: [hivemind_text]<BR>"
 	if(hive.hivenumber == XENO_HIVE_NORMAL)
 		var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
