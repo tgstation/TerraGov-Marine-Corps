@@ -84,13 +84,13 @@
 		RegisterSignal(future_king, COMSIG_HIVE_XENO_DEATH, .proc/chose_another_king)
 		to_chat(future_king, "<span class='notice'>You have 5 minutes to go to the [src] to ascend to the king position! Your tracker will guide you to it.</span>")
 		future_king.tracked = src
-		addtimer(CALLBACK(src, .proc/chose_another_king), 5 MINUTES)
+		addtimer(CALLBACK(src, .proc/choose_another_king), 5 MINUTES)
 		return
 	//If no xeno accepted, give it to ghost
 	try_summon_king()
 
 ///Signal handler for when the futur king died and another one must be chose
-/obj/structure/resin/king_pod/proc/chose_another_king()
+/obj/structure/resin/king_pod/proc/choose_another_king()
 	SIGNAL_HANDLER
 	if(future_king?.stat != DEAD)
 		to_chat(future_king, "<span class='warning'>You lost your chance to become the king...</span>")
