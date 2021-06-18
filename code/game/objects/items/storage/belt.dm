@@ -155,27 +155,20 @@
 
 /obj/item/storage/belt/combatLifesaver
 	spawns_with = list(
-		/obj/item/stack/medical/advanced/bruise_pack,
-		/obj/item/stack/medical/advanced/bruise_pack,
-		/obj/item/stack/medical/advanced/ointment,
-		/obj/item/stack/medical/advanced/ointment,
-		/obj/item/stack/medical/splint,
-		/obj/item/stack/medical/splint,
-		/obj/item/storage/pill_bottle/bicaridine,
-		/obj/item/storage/pill_bottle/kelotane,
-		/obj/item/storage/pill_bottle/dylovene,
-		/obj/item/storage/pill_bottle/tramadol,
-		/obj/item/storage/pill_bottle/inaprovaline,
-		/obj/item/storage/pill_bottle/peridaxon,
-		/obj/item/reagent_containers/hypospray/autoinjector/combat,
-		/obj/item/reagent_containers/hypospray/autoinjector/combat,
-		/obj/item/reagent_containers/hypospray/autoinjector/combat,
-		/obj/item/storage/syringe_case/combat,
-		/obj/item/storage/syringe_case/combat,
-		/obj/item/storage/syringe_case/combat,
-		/obj/item/reagent_containers/hypospray/autoinjector/quickclot,
-		/obj/item/reagent_containers/hypospray/autoinjector/dexalinplus,
-		/obj/item/reagent_containers/hypospray/autoinjector/hypervene,
+		/obj/item/stack/medical/advanced/bruise_pack = 2,
+		/obj/item/stack/medical/advanced/ointment = 2,
+		/obj/item/stack/medical/splint = 2,
+		/obj/item/storage/pill_bottle/bicaridine = 1,
+		/obj/item/storage/pill_bottle/kelotane = 1,
+		/obj/item/storage/pill_bottle/dylovene = 1,
+		/obj/item/storage/pill_bottle/tramadol = 1,
+		/obj/item/storage/pill_bottle/inaprovaline = 1,
+		/obj/item/storage/pill_bottle/peridaxon = 1,
+		/obj/item/reagent_containers/hypospray/autoinjector/combat = 3,
+		/obj/item/storage/syringe_case/combat = 3,
+		/obj/item/reagent_containers/hypospray/autoinjector/quickclot = 1,
+		/obj/item/reagent_containers/hypospray/autoinjector/dexalinplus = 1,
+		/obj/item/reagent_containers/hypospray/autoinjector/hypervene = 1,
 	)
 
 /obj/item/storage/belt/medicLifesaver
@@ -200,27 +193,19 @@
 
 /obj/item/storage/belt/medicLifesaver
 	spawns_with = list(
-		/obj/item/stack/medical/advanced/bruise_pack,
-		/obj/item/stack/medical/advanced/bruise_pack,
-		/obj/item/stack/medical/advanced/bruise_pack,
-		/obj/item/stack/medical/advanced/ointment,
-		/obj/item/stack/medical/advanced/ointment,
-		/obj/item/stack/medical/advanced/ointment,
-		/obj/item/stack/medical/splint,
-		/obj/item/stack/medical/splint,
-		/obj/item/stack/medical/splint,
-		/obj/item/storage/pill_bottle/bicaridine,
-		/obj/item/storage/pill_bottle/kelotane,
-		/obj/item/storage/pill_bottle/dylovene,
-		/obj/item/storage/pill_bottle/tramadol,
-		/obj/item/storage/pill_bottle/inaprovaline,
-		/obj/item/storage/pill_bottle/peridaxon,
-		/obj/item/storage/pill_bottle/quickclot,
-		/obj/item/reagent_containers/hypospray/autoinjector/combat,
-		/obj/item/reagent_containers/hypospray/autoinjector/combat,
-		/obj/item/reagent_containers/hypospray/autoinjector/combat,
-		/obj/item/reagent_containers/hypospray/autoinjector/dexalinplus,
-		/obj/item/reagent_containers/hypospray/autoinjector/hypervene,
+		/obj/item/stack/medical/advanced/bruise_pack = 3,
+		/obj/item/stack/medical/advanced/ointment = 3,
+		/obj/item/stack/medical/splint = 3,
+		/obj/item/storage/pill_bottle/bicaridine = 1,
+		/obj/item/storage/pill_bottle/kelotane = 1,
+		/obj/item/storage/pill_bottle/dylovene = 1,
+		/obj/item/storage/pill_bottle/tramadol = 1,
+		/obj/item/storage/pill_bottle/inaprovaline = 1,
+		/obj/item/storage/pill_bottle/peridaxon = 1,
+		/obj/item/storage/pill_bottle/quickclot = 1,
+		/obj/item/reagent_containers/hypospray/autoinjector/combat = 3,
+		/obj/item/reagent_containers/hypospray/autoinjector/dexalinplus = 1,
+		/obj/item/reagent_containers/hypospray/autoinjector/hypervene = 1,
 	)
 
 /obj/item/storage/belt/combatLifesaver/upp
@@ -315,31 +300,17 @@
 	)
 
 /obj/item/storage/belt/marine/t18
-	spawns_with = list(		/obj/item/ammo_magazine/rifle/standard_carbine,
-		/obj/item/ammo_magazine/rifle/standard_carbine,
-		/obj/item/ammo_magazine/rifle/standard_carbine,
-		/obj/item/ammo_magazine/rifle/standard_carbine,
-		/obj/item/ammo_magazine/rifle/standard_carbine,
-	)
+	spawns_with = list(/obj/item/ammo_magazine/rifle/standard_carbine = 5)
 
 /obj/item/storage/belt/marine/t12
-	spawns_with = list(		/obj/item/ammo_magazine/rifle/standard_assaultrifle,
-		/obj/item/ammo_magazine/rifle/standard_assaultrifle,
-		/obj/item/ammo_magazine/rifle/standard_assaultrifle,
-		/obj/item/ammo_magazine/rifle/standard_assaultrifle,
-		/obj/item/ammo_magazine/rifle/standard_assaultrifle,
-	)
+	spawns_with = list(/obj/item/ammo_magazine/rifle/standard_assaultrifle = 5)
 
 /obj/item/storage/belt/marine/t90
-	spawns_with = list(		/obj/item/ammo_magazine/smg/standard_smg,
-		/obj/item/ammo_magazine/smg/standard_smg,
-		/obj/item/ammo_magazine/smg/standard_smg,
-		/obj/item/ammo_magazine/smg/standard_smg,
-		/obj/item/ammo_magazine/smg/standard_smg,
-	)
+	spawns_with = list(/obj/item/ammo_magazine/smg/standard_smg = 5)
 
 /obj/item/storage/belt/marine/antimaterial
-	spawns_with = list(		/obj/item/ammo_magazine/sniper/flak,
+	spawns_with = list(
+		/obj/item/ammo_magazine/sniper/flak,
 		/obj/item/ammo_magazine/sniper/flak,
 		/obj/item/ammo_magazine/sniper/incendiary,
 		/obj/item/ammo_magazine/sniper/incendiary,
@@ -347,7 +318,8 @@
 	)
 
 /obj/item/storage/belt/marine/tx8
-	spawns_with = list(		/obj/item/ammo_magazine/rifle/tx8/impact,
+	spawns_with = list(
+		/obj/item/ammo_magazine/rifle/tx8/impact,
 		/obj/item/ammo_magazine/rifle/tx8/impact,
 		/obj/item/ammo_magazine/rifle/tx8/incendiary,
 		/obj/item/ammo_magazine/rifle/tx8/incendiary,
@@ -362,11 +334,8 @@
 
 //version full of type 71 mags
 /obj/item/storage/belt/marine/upp/full
-	spawns_with = list(		/obj/item/ammo_magazine/rifle/type71,
-		/obj/item/ammo_magazine/rifle/type71,
-		/obj/item/ammo_magazine/rifle/type71,
-		/obj/item/ammo_magazine/rifle/type71,
-		/obj/item/ammo_magazine/rifle/type71,
+	spawns_with = list(
+		/obj/item/ammo_magazine/rifle/type71 = 5,
 	)
 
 /obj/item/storage/belt/marine/som
@@ -501,14 +470,7 @@
 	can_hold = list(/obj/item/weapon/throwing_knife)
 
 /obj/item/storage/belt/knifepouch
-	spawns_with = list(
-		/obj/item/weapon/throwing_knife,
-		/obj/item/weapon/throwing_knife,
-		/obj/item/weapon/throwing_knife,
-		/obj/item/weapon/throwing_knife,
-		/obj/item/weapon/throwing_knife,
-		/obj/item/weapon/throwing_knife,
-	)
+	spawns_with = list(/obj/item/weapon/throwing_knife = 6)
 
 /obj/item/storage/belt/grenade
 	name="\improper M276 pattern M40 HEDP rig"
@@ -523,14 +485,8 @@
 
 /obj/item/storage/belt/grenade/standard
 	spawns_with = list(
-		/obj/item/explosive/grenade/incendiary,
-		/obj/item/explosive/grenade/incendiary,
-		/obj/item/explosive/grenade/incendiary,
-		/obj/item/explosive/grenade/incendiary,
-		/obj/item/explosive/grenade/frag,
-		/obj/item/explosive/grenade/frag,
-		/obj/item/explosive/grenade/frag,
-		/obj/item/explosive/grenade/frag,
+		/obj/item/explosive/grenade/incendiary = 4,
+		/obj/item/explosive/grenade/frag = 4,
 	)
 
 /obj/item/storage/belt/grenade/b17
@@ -542,22 +498,9 @@
 	can_hold = list(/obj/item/explosive/grenade)
 
 /obj/item/storage/belt/grenade/b17
-	spawns_with = list(		/obj/item/explosive/grenade/incendiary,
-		/obj/item/explosive/grenade/incendiary,
-		/obj/item/explosive/grenade/incendiary,
-		/obj/item/explosive/grenade/incendiary,
-		/obj/item/explosive/grenade/incendiary,
-		/obj/item/explosive/grenade/incendiary,
-		/obj/item/explosive/grenade/incendiary,
-		/obj/item/explosive/grenade/incendiary,
-		/obj/item/explosive/grenade/frag,
-		/obj/item/explosive/grenade/frag,
-		/obj/item/explosive/grenade/frag,
-		/obj/item/explosive/grenade/frag,
-		/obj/item/explosive/grenade/frag,
-		/obj/item/explosive/grenade/frag,
-		/obj/item/explosive/grenade/frag,
-		/obj/item/explosive/grenade/frag,
+	spawns_with = list(
+		/obj/item/explosive/grenade/incendiary = 8,
+		/obj/item/explosive/grenade/frag = 8,
 	)
 
 /obj/item/storage/belt/sparepouch
@@ -703,46 +646,27 @@
 
 /obj/item/storage/belt/gun/pistol/m4a3/officer
 	spawns_with = list(
-		/obj/item/weapon/gun/pistol/rt3,
-		/obj/item/ammo_magazine/pistol/hp,
-		/obj/item/ammo_magazine/pistol/hp,
-		/obj/item/ammo_magazine/pistol/ap,
-		/obj/item/ammo_magazine/pistol/ap,
-		/obj/item/ammo_magazine/pistol/ap,
-		/obj/item/ammo_magazine/pistol/ap,
+		/obj/item/weapon/gun/pistol/rt3 = 1,
+		/obj/item/ammo_magazine/pistol/hp = 2,
+		/obj/item/ammo_magazine/pistol/ap = 4,
 	)
 
 /obj/item/storage/belt/gun/pistol/m4a3/fieldcommander
 	spawns_with = list(
-		/obj/item/weapon/gun/pistol/m1911/custom,
-		/obj/item/ammo_magazine/pistol/m1911,
-		/obj/item/ammo_magazine/pistol/m1911,
-		/obj/item/ammo_magazine/pistol/m1911,
-		/obj/item/ammo_magazine/pistol/m1911,
-		/obj/item/ammo_magazine/pistol/m1911,
-		/obj/item/ammo_magazine/pistol/m1911,
+		/obj/item/weapon/gun/pistol/m1911/custom = 1,
+		/obj/item/ammo_magazine/pistol/m1911 = 6,
 	)
 
 /obj/item/storage/belt/gun/pistol/m4a3/vp70
 	spawns_with = list(
-		/obj/item/weapon/gun/pistol/vp70,
-		/obj/item/ammo_magazine/pistol/vp70,
-		/obj/item/ammo_magazine/pistol/vp70,
-		/obj/item/ammo_magazine/pistol/vp70,
-		/obj/item/ammo_magazine/pistol/vp70,
-		/obj/item/ammo_magazine/pistol/vp70,
-		/obj/item/ammo_magazine/pistol/vp70,
+		/obj/item/weapon/gun/pistol/vp70 = 1,
+		/obj/item/ammo_magazine/pistol/vp70 = 6,
 	)
 
 /obj/item/storage/belt/gun/pistol/m4a3/vp78
 	spawns_with = list(
-		/obj/item/weapon/gun/pistol/vp78,
-		/obj/item/ammo_magazine/pistol/vp78,
-		/obj/item/ammo_magazine/pistol/vp78,
-		/obj/item/ammo_magazine/pistol/vp78,
-		/obj/item/ammo_magazine/pistol/vp78,
-		/obj/item/ammo_magazine/pistol/vp78,
-		/obj/item/ammo_magazine/pistol/vp78,
+		/obj/item/weapon/gun/pistol/vp78 = 1,
+		/obj/item/ammo_magazine/pistol/vp78 = 6,
 	)
 
 /obj/item/storage/belt/gun/pistol/m4a3/som
@@ -814,13 +738,8 @@
 
 /obj/item/storage/belt/gun/mateba/full
 	spawns_with = list(
-		/obj/item/weapon/gun/revolver/mateba,
-		/obj/item/ammo_magazine/revolver/mateba,
-		/obj/item/ammo_magazine/revolver/mateba,
-		/obj/item/ammo_magazine/revolver/mateba,
-		/obj/item/ammo_magazine/revolver/mateba,
-		/obj/item/ammo_magazine/revolver/mateba,
-		/obj/item/ammo_magazine/revolver/mateba,
+		/obj/item/weapon/gun/revolver/mateba = 1,
+		/obj/item/ammo_magazine/revolver/mateba = 6,
 	)
 
 /obj/item/storage/belt/gun/mateba/captain
@@ -829,26 +748,16 @@
 
 /obj/item/storage/belt/gun/mateba/captain/full
 	spawns_with = list(
-		/obj/item/weapon/gun/revolver/mateba/captain,
-		/obj/item/ammo_magazine/revolver/mateba,
-		/obj/item/ammo_magazine/revolver/mateba,
-		/obj/item/ammo_magazine/revolver/mateba,
-		/obj/item/ammo_magazine/revolver/mateba,
-		/obj/item/ammo_magazine/revolver/mateba,
-		/obj/item/ammo_magazine/revolver/mateba,
+		/obj/item/weapon/gun/revolver/mateba/captain = 1,
+		/obj/item/ammo_magazine/revolver/mateba = 6,
 	)
 
 /obj/item/storage/belt/gun/mateba/notmarine
 	icon_state = "a_mateba_holster"
 	item_state = "a_mateba_holster"
 	spawns_with = list(
-		/obj/item/weapon/gun/revolver/mateba,
-		/obj/item/ammo_magazine/revolver/mateba,
-		/obj/item/ammo_magazine/revolver/mateba,
-		/obj/item/ammo_magazine/revolver/mateba,
-		/obj/item/ammo_magazine/revolver/mateba,
-		/obj/item/ammo_magazine/revolver/mateba,
-		/obj/item/ammo_magazine/revolver/mateba,
+		/obj/item/weapon/gun/revolver/mateba = 1,
+		/obj/item/ammo_magazine/revolver/mateba = 6,
 	)
 
 /obj/item/storage/belt/gun/korovin
@@ -864,24 +773,15 @@
 
 /obj/item/storage/belt/gun/korovin/standard
 	spawns_with = list(
-		/obj/item/weapon/gun/pistol/c99,
-		/obj/item/ammo_magazine/pistol/c99,
-		/obj/item/ammo_magazine/pistol/c99,
-		/obj/item/ammo_magazine/pistol/c99,
-		/obj/item/ammo_magazine/pistol/c99,
-		/obj/item/ammo_magazine/pistol/c99,
-		/obj/item/ammo_magazine/pistol/c99,
+		/obj/item/weapon/gun/pistol/c99 = 1,
+		/obj/item/ammo_magazine/pistol/c99 = 6,
 	)
 
 /obj/item/storage/belt/gun/korovin/tranq
 	spawns_with = list(
-		/obj/item/weapon/gun/pistol/c99/tranq,
-		/obj/item/ammo_magazine/pistol/c99t,
-		/obj/item/ammo_magazine/pistol/c99t,
-		/obj/item/ammo_magazine/pistol/c99t,
-		/obj/item/ammo_magazine/pistol/c99,
-		/obj/item/ammo_magazine/pistol/c99,
-		/obj/item/ammo_magazine/pistol/c99,
+		/obj/item/weapon/gun/pistol/c99/tranq = 1,
+		/obj/item/ammo_magazine/pistol/c99t = 3,
+		/obj/item/ammo_magazine/pistol/c99 = 3,
 	)
 
 /obj/item/storage/belt/gun/ts34
