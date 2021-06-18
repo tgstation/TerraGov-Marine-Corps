@@ -194,7 +194,7 @@
 		row_num = round((adjusted_contents-1) / 7) // 7 is the maximum allowed width.
 	slot_orient_objs(row_num, col_count, numbered_contents)
 
-// Modified quick_empty verb drops appropriate sized stacks
+/// Modified quick_empty verb drops appropriate sized stacks
 /obj/item/storage/bag/sheetsnatcher/quick_empty(mob/user)
 	var/location = get_turf(src)
 	for(var/content in contents)
