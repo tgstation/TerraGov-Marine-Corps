@@ -177,6 +177,12 @@
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_SPAWN_HUGGER
 
+/datum/keybinding/xeno/choose_hugger
+	name = "choose_hugger"
+	full_name = "Carrier: Choose Hugger"
+	description = "Cycles the hugger type you will deploy with the Throw Hugger ability."
+	keybind_signal = COMSIG_XENOABILITY_CHOOSE_HUGGER_TYPE
+
 /datum/keybinding/xeno/stomp
 	name = "stomp"
 	full_name = "Crusher: Stomp"

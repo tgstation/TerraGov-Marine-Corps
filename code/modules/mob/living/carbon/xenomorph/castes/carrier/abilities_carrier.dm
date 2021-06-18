@@ -220,7 +220,7 @@ GLOBAL_LIST_INIT(hugger_type_list, typecacheof(list(
 	name = "Choose Hugger Type"
 	action_icon_state = "facehugger"
 	mechanics_text = "Selects which hugger type you will build with the Spawn Hugger ability."
-	//keybind_signal = COMSIG_XENOABILITY_CHOOSE_RESIN
+	keybind_signal = COMSIG_XENOABILITY_CHOOSE_HUGGER_TYPE
 
 /datum/action/xeno_action/choose_hugger_type/give_action(mob/living/L)
 	. = ..()
