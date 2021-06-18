@@ -180,8 +180,14 @@
 /datum/keybinding/xeno/switch_hugger
 	name = "spawn_hugger"
 	full_name = "Carrier: Switch Hugger"
-	description = ""
+	description = "Cycles the hugger type you will deploy with the Throw Hugger ability."
 	keybind_signal = COMSIG_XENOABILITY_SWITCH_HUGGER
+
+/datum/keybinding/xeno/choose_hugger
+	name = "choose_hugger"
+	full_name = "Carrier: Choose Hugger"
+	description = "Prompt a wheel to choose which hugger you will deploy with the Throw Hugger ability." 
+	keybind_signal = COMSIG_XENOABILITY_CHOOSE_HUGGER
 
 /datum/keybinding/xeno/stomp
 	name = "stomp"
