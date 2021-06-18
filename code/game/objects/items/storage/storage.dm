@@ -8,6 +8,7 @@
 	name = "storage"
 	icon = 'icons/obj/items/storage/storage.dmi'
 	w_class = WEIGHT_CLASS_NORMAL
+	var/flags_storage = STORAGE_FLAG_FULLNESS_VISIBLE
 
 	/**
 	 * A list of all things that WILL spawn inside of this storage object on creation.
@@ -69,28 +70,10 @@
 	var/obj/screen/close/closer = null
 	// UI OBJECTS
 
-	///whether our storage box on hud changes color when full.
-	var/show_storage_fullness = TRUE
-	///Set this to make it possible to use this item in an inverse way, so you can have the item in your hand and click items on the floor to pick them up.
-	var/use_to_pickup
-	///Set this to make the storage item group contents of the same type and display them as a number.
-	var/display_contents_with_number
-	///Set this variable to allow the object to quick empty
-	var/allow_quick_empty
-	///Set this variable to allow the object to have the 'toggle mode' verb, which quickly collects all items from a tile.
-	var/allow_quick_gather
-	///whether this object can change its drawing method (pouches)
-	var/allow_drawing_method
-	///current draw mode
-	var/draw_mode = FALSE
-	///FALSE = pick one at a time, TRUE = pick all on tile
-	var/collection_mode = TRUE
 	/// BubbleWrap - if set, can be folded (when empty) into a sheet of cardboard
 	var/foldable = null
 	///sound played when used. null for no sound.
 	var/use_sound = "rustle"
-	///Have we already been opened
-	var/opened = FALSE
 	///List of all the mobs who are currently watching our storage
 	var/list/content_watchers = list()
 	///How long does it take to put items into or out of this, in ticks
@@ -200,9 +183,9 @@
 
 ///Opens the view of this storage for the given mob
 /obj/item/storage/proc/open(mob/user)
-	if(!opened)
+	if(!(flags_storage & STORAGE_FLAG_OPENED))
 		orient2hud()
-		opened = 1
+		flags_storage |= STORAGE_FLAG_OPENED
 	if (use_sound)
 		playsound(src.loc, src.use_sound, 25, 1, 3)
 
@@ -216,7 +199,7 @@
 /**
  * This proc draws out the inventory and places the items on it. tx and ty are the upper left tile and mx, my are the bottm right.
  * The numbers are calculated from the bottom-left The bottom-left slot being 1,1.
-**/
+ */
 /obj/item/storage/proc/orient_objs(tx, ty, mx, my)
 	var/cx = tx
 	var/cy = ty
@@ -233,7 +216,7 @@
 			cx = tx
 			cy--
 	closer.screen_loc = "[mx+1],[my]"
-	if(show_storage_fullness)
+	if(flags_storage & STORAGE_FLAG_FULLNESS_VISIBLE)
 		boxes.update_fullness(src)
 
 ///This proc draws out the inventory and places the items on it. It uses the standard position.
@@ -246,7 +229,7 @@
 
 	boxes.screen_loc = "4:16,2:16 to [4+cols]:16,[2+rows]:16"
 
-	if(display_contents_with_number)
+	if(flags_storage & STORAGE_FLAG_DISPLAY_NUMBERED)
 		for(var/datum/numbered_display/display AS in display_contents)
 			display.sample_object.mouse_opacity = 2
 			display.sample_object.screen_loc = "[cx]:16,[cy]:16"
@@ -272,7 +255,7 @@
 				cx = 4
 				cy--
 	closer.screen_loc = "[4+cols+1]:16,2:16"
-	if(show_storage_fullness)
+	if(flags_storage & STORAGE_FLAG_FULLNESS_VISIBLE)
 		boxes.update_fullness(src)
 
 /obj/item/storage/proc/space_orient_objs(list/obj/item/display_contents)
@@ -286,7 +269,7 @@
 	click_border_end.Cut()
 	storage_start.overlays.Cut()
 
-	if(!opened) //initialize background box
+	if(!(flags_storage & STORAGE_FLAG_OPENED)) //initialize background box
 		var/matrix/matrix = matrix()
 		matrix.Scale((storage_width-storage_cap_width*2+3)/32,1)
 		storage_continue.transform = matrix
@@ -383,7 +366,7 @@
 
 	//Numbered contents display
 	var/list/datum/numbered_display/numbered_contents
-	if(display_contents_with_number)
+	if(flags_storage & STORAGE_FLAG_DISPLAY_NUMBERED)
 		numbered_contents = list()
 		adjusted_contents = 0
 		for(var/content in contents)
@@ -570,7 +553,7 @@
 
 /obj/item/storage/attack_hand(mob/living/user)
 	if (loc == user)
-		if(draw_mode && ishuman(user) && contents.len)
+		if(flags_storage & STORAGE_FLAG_DRAWMODE_TOGGLED && ishuman(user) && contents.len)
 			var/obj/item/item = contents[contents.len]
 			item.attack_hand(user)
 		else
@@ -587,21 +570,20 @@
 	set name = "Switch Gathering Method"
 	set category = "Object"
 
-	collection_mode = !collection_mode
-	switch (collection_mode)
-		if(1)
-			to_chat(usr, "[src] now picks up all items in a tile at once.")
-		if(0)
-			to_chat(usr, "[src] now picks up one item at a time.")
+	flags_storage ^= STORAGE_FLAG_COLLECTION_TOGGLED
+	if(flags_storage & STORAGE_FLAG_COLLECTION_TOGGLED)
+		to_chat(usr, "[src] now picks up all items in a tile at once.")
+	else to_chat(usr, "[src] now picks up one item at a time.")
 
 /obj/item/storage/verb/toggle_draw_mode()
 	set name = "Switch Storage Drawing Method"
 	set category = "Object"
-	draw_mode = !draw_mode
-	if(draw_mode)
+
+
+	flags_storage ^= STORAGE_FLAG_DRAWMODE_TOGGLED
+	if(flags_storage & STORAGE_FLAG_DRAWMODE_TOGGLED)
 		to_chat(usr, "Clicking [src] with an empty hand now puts the last stored item in your hand.")
-	else
-		to_chat(usr, "Clicking [src] with an empty hand now opens the pouch storage menu.")
+	else to_chat(usr, "Clicking [src] with an empty hand now opens the pouch storage menu.")
 
 ///Quickly removes everything from this storage onto our current turf
 /obj/item/storage/proc/quick_empty()
@@ -624,10 +606,10 @@
 	if(length(bypass_w_limit))
 		bypass_w_limit = typecacheof(bypass_w_limit)
 
-	if(!allow_quick_gather)
+	if(!(flags_storage & STORAGE_FLAG_QUICK_GATHER))
 		verbs -= /obj/item/storage/verb/toggle_gathering_mode
 
-	if(!allow_drawing_method)
+	if(!(flags_storage & STORAGE_FLAG_DRAWMODE_ALLOWED))
 		verbs -= /obj/item/storage/verb/toggle_draw_mode
 
 	boxes = new
@@ -715,7 +697,7 @@
 
 /obj/item/storage/attack_self(mob/user)
 	//Clicking on itself will empty it, if it has the verb to do that.
-	if(allow_quick_empty)
+	if(flags_storage & STORAGE_FLAG_QUICK_EMPTY)
 		quick_empty()
 		return
 

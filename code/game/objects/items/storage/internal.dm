@@ -1,8 +1,6 @@
 //A storage item intended to be used by other items to provide storage functionality.
 //Types that use this should consider overriding emp_act() and hear_talk(), unless they shield their contents somehow.
 /obj/item/storage/internal
-	allow_drawing_method = FALSE /// Unable to set draw_mode ourselves
-
 	///The item this internal storage is owned by
 	var/obj/item/master_item
 
@@ -103,7 +101,7 @@
 			return FALSE
 
 	if(master_item.loc == user)
-		if(draw_mode && ishuman(user) && contents.len)
+		if(flags_storage & STORAGE_FLAG_DRAWMODE_TOGGLED && ishuman(user) && contents.len)
 			var/obj/item/I = contents[contents.len]
 			I.attack_hand(user)
 		else

@@ -16,10 +16,7 @@
 
 //  Generic non-item
 /obj/item/storage/bag
-	allow_quick_gather = 1
-	allow_quick_empty = 1
-	display_contents_with_number = 0 // UNStABLE AS FuCK, turn on when it stops crashing clients
-	use_to_pickup = 1
+	flags_storage = STORAGE_FLAG_PICKUP|STORAGE_FLAG_QUICK_EMPTY|STORAGE_FLAG_QUICK_GATHER
 	flags_equip_slot = ITEM_SLOT_BELT
 
 // -----------------------------
@@ -111,7 +108,6 @@
 	name = "Sheet Snatcher"
 	desc = "A patented Nanotrasen storage system designed for any kind of mineral sheet."
 	w_class = WEIGHT_CLASS_NORMAL
-	allow_quick_empty = TRUE // this function is superceded
 	///The number of sheets we can carry.
 	var/capacity = 300
 
@@ -179,7 +175,7 @@
 
 	//Numbered contents display
 	var/list/datum/numbered_display/numbered_contents
-	if(display_contents_with_number)
+	if(flags_storage & STORAGE_FLAG_DISPLAY_NUMBERED)
 		numbered_contents = list()
 		adjusted_contents = 0
 		for(var/content in contents)

@@ -26,7 +26,7 @@
 	if(slots.len)
 		storage_strings += "It can be worn on your [english_list(slots)]."
 
-	if(use_to_pickup)
+	if(flags_storage & STORAGE_FLAG_PICKUP)
 		storage_strings += "It can be used to pickup objects."
 
 	if(storage_slots)
@@ -73,4 +73,4 @@
 	mechanics_text = "It's a belt for holding your tools"
 	lore_text = "Although it looks and feels like leather, the last cow was killed to make a steak dinner for the queen of France."
 	antag_text = "I don't see how this could be used for antagonistic purposes."
-	
+

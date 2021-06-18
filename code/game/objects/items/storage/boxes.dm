@@ -245,7 +245,7 @@
 	item_state = "syringe_kit"
 	foldable = /obj/item/stack/sheet/cardboard //BubbleWrap
 	max_storage_space = 42	//holds 21 items of w_class 2
-	use_to_pickup = 1 // for picking up broken bulbs, not that most people will try
+	flags_storage = STORAGE_FLAG_PICKUP
 	spawns_with = list(/obj/item/light_bulb/bulb = 21)
 
 /obj/item/storage/box/lights/bulbs // mapping placeholder
@@ -394,7 +394,7 @@
 	max_w_class = 4
 	storage_slots = 32 // 8 images x 4 items
 	max_storage_space = 64
-	use_to_pickup = TRUE
+	flags_storage = STORAGE_FLAG_PICKUP|STORAGE_FLAG_FULLNESS_VISIBLE
 	can_hold = list(
 		/obj/item, //This box should normally be unobtainable so here we go
 	)
@@ -471,8 +471,7 @@
 		return
 
 	else if(deployed)
-		draw_mode = variety == TRUE ? TRUE : FALSE //If only one type of item in box, then quickdraw it.
-		if(draw_mode && ishuman(user) && contents.len)
+		if(flags_storage & STORAGE_FLAG_DRAWMODE_TOGGLED && ishuman(user) && contents.len)
 			var/obj/item/item = contents[contents.len]
 			item.attack_hand(user)
 			return

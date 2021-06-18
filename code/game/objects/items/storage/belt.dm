@@ -9,7 +9,7 @@
 	flags_equip_slot = ITEM_SLOT_BELT
 	attack_verb = list("whipped", "lashed", "disciplined")
 	w_class = WEIGHT_CLASS_BULKY
-	allow_drawing_method = TRUE
+	flags_storage = STORAGE_FLAG_DRAWMODE_ALLOWED
 
 /obj/item/storage/belt/equipped(mob/user, slot)
 	if(slot == SLOT_BELT)
@@ -441,7 +441,7 @@
 	storage_slots = 12
 	max_storage_space = 24
 
-	draw_mode = 1
+	flags_storage = STORAGE_FLAG_DRAWMODE_TOGGLED|STORAGE_FLAG_DRAWMODE_ALLOWED
 
 	flags_atom = DIRLOCK
 
@@ -469,7 +469,7 @@
 		for(var/mob/mob in content_watchers)
 			close(mob)
 
-	if(!draw_mode || !ishuman(user) && !contents.len)
+	if(!(flags_storage & STORAGE_FLAG_DRAWMODE_TOGGLED) || !ishuman(user) && !contents.len)
 		open(user)
 
 	if(!length(contents))

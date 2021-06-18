@@ -286,8 +286,8 @@
 			H = S.hastie
 
 	if(H.hold)
-		H.hold.draw_mode = !H.hold.draw_mode
-		if(H.hold.draw_mode)
+		H.hold.flags_storage ^= STORAGE_FLAG_DRAWMODE_TOGGLED
+		if(H.hold.flags_storage & STORAGE_FLAG_DRAWMODE_TOGGLED)
 			to_chat(usr, "Clicking [H] with an empty hand now puts the last stored item in your hand.")
 		else
 			to_chat(usr, "Clicking [H] with an empty hand now opens the pouch storage menu.")
@@ -295,7 +295,7 @@
 
 /obj/item/clothing/tie/storage/attack_hand(mob/living/user)
 	if(has_suit)
-		if(has_suit.loc == user && hold.draw_mode && hold.contents.len)
+		if(has_suit.loc == user && hold.flags_storage & STORAGE_FLAG_DRAWMODE_TOGGLED && hold.contents.len)
 			var/obj/item/I = hold.contents[hold.contents.len]
 			I.attack_hand(user)
 			return

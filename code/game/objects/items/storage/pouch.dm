@@ -6,8 +6,7 @@
 	max_w_class = 2
 	flags_equip_slot = ITEM_SLOT_POCKET
 	storage_slots = 1
-	draw_mode = 0
-	allow_drawing_method = TRUE
+	flags_storage = STORAGE_FLAG_DRAWMODE_ALLOWED
 
 /obj/item/storage/pouch/examine(mob/user)
 	..()
@@ -26,20 +25,17 @@
 	name = "light general pouch"
 	desc = "A general purpose pouch used to carry small items."
 	icon_state = "small_drop"
-	draw_mode = 1
 
 /obj/item/storage/pouch/general/medium
 	name = "medium general pouch"
 	storage_slots = 2
 	icon_state = "medium_drop"
-	draw_mode = 0
 
 /obj/item/storage/pouch/general/large
 	name = "general pouch"
 	storage_slots = null
 	max_storage_space = 6
 	icon_state = "large_drop"
-	draw_mode = 0
 
 /obj/item/storage/pouch/general/large/command
 	spawns_with = list(
@@ -52,7 +48,6 @@
 	name = "mining general pouch"
 	desc = "A general purpose pouch used to carry small items used during mining."
 	icon_state = "general_som"
-	draw_mode = 1
 
 /obj/item/storage/pouch/bayonet
 	name = "bayonet sheath"
@@ -64,7 +59,6 @@
 	)
 	icon_state = "bayonet"
 	storage_slots = 3
-	draw_mode = 1
 
 /obj/item/storage/pouch/bayonet/full
 	spawns_with = list(/obj/item/weapon/combat_knife)
@@ -172,7 +166,6 @@
 		/obj/item/weapon/gun/revolver,
 		/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_pistol,
 	)
-	draw_mode = 1
 
 /obj/item/storage/pouch/pistol/vp70
 	spawns_with = list(/obj/item/weapon/gun/pistol/vp70)
@@ -188,7 +181,6 @@
 	icon_state = "medium_ammo_mag"
 	max_w_class = 3
 	storage_slots = 2
-	draw_mode = 0
 	can_hold = list(
 		/obj/item/ammo_magazine/rifle,
 		/obj/item/ammo_magazine/smg,
@@ -486,7 +478,6 @@
 	desc = "A pouch designed to hold flares. Refillable with a M94 flare pack."
 	max_w_class = 2
 	storage_slots = 7
-	draw_mode = 1
 	icon_state = "flare"
 	can_hold = list(
 		/obj/item/flashlight/flare,
@@ -536,7 +527,6 @@
 	name = "radio pouch"
 	storage_slots = 2
 	icon_state = "radio"
-	draw_mode = 1
 	desc = "It can contain two handheld radios."
 	can_hold = list(/obj/item/radio)
 
@@ -545,7 +535,6 @@
 	storage_slots = 5
 	max_w_class = 3
 	icon_state = "utility"
-	draw_mode = 1
 	desc = "It can contain a motion detector, signaller, beacons, maps, flares, radios and other handy battlefield communication and detection devices."
 	can_hold = list(
 		/obj/item/motiondetector,
@@ -645,7 +634,6 @@
 	desc = "A pouch specialized for holding shotgun ammo."
 	icon_state = "shotshells"
 	storage_slots = 4
-	draw_mode = 0
 	can_hold = list(/obj/item/ammo_magazine/handful)
 
 /obj/item/storage/pouch/shotgun/attackby(obj/item/I, mob/user, params)

@@ -8,7 +8,7 @@
 	max_w_class = 4
 	storage_slots = 1
 	max_storage_space = 4
-	draw_mode = 1
+	flags_storage = STORAGE_FLAG_DRAWMODE_ALLOWED|STORAGE_FLAG_DRAWMODE_TOGGLED
 
 	///The base icon state for the holster. Why this doesnt just use initial(icon_state) is beyond me
 	var/base_icon = "m37_holster"

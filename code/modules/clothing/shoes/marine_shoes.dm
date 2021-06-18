@@ -17,7 +17,7 @@
 /obj/item/storage/internal/shoes/boot_knife
 	max_storage_space = 3
 	storage_slots = 1
-	draw_mode = TRUE
+	flags_storage = STORAGE_FLAG_DRAWMODE_ALLOWED|STORAGE_FLAG_DRAWMODE_TOGGLED
 	can_hold = list(
 		/obj/item/weapon/combat_knife,
 		/obj/item/weapon/gun/pistol/standard_pocketpistol,

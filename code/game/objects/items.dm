@@ -212,10 +212,10 @@
 
 	var/obj/item/storage/S = I
 
-	if(!S.use_to_pickup || !isturf(loc))
+	if(!S.flags_storage & STORAGE_FLAG_PICKUP || !isturf(loc))
 		return
 
-	if(S.collection_mode) //Mode is set to collect all items on a tile and we clicked on a valid one.
+	if(S.flags_storage & STORAGE_FLAG_COLLECTION_TOGGLED) //Mode is set to collect all items on a tile and we clicked on a valid one.
 		var/list/rejections = list()
 		var/success = FALSE
 		var/failure = FALSE
