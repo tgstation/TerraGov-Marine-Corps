@@ -473,14 +473,14 @@
 	return FALSE
 
 /**
- * This proc handles items being inserted. It does not perform any checks of whether an item can or can't be inserted.     
+ * This proc handles items being inserted. It does not perform any checks of whether an item can or can't be inserted.
  * That's done by can_be_inserted()
  * The stop_warning parameter will stop the insertion message from being displayed. It is intended for cases where you are inserting multiple items at once,
  * such as when picking up all the items on a tile with one click.
  * user can be null, it refers to the potential mob doing the insertion.
  */
 /obj/item/storage/proc/handle_item_insertion(obj/item/item, prevent_warning = 0, mob/user)
-	if(!istype(item)) 
+	if(!istype(item))
 		return FALSE
 	if(!handle_access_delay(item, user, taking_out=FALSE))
 		item.forceMove(item.drop_location())
@@ -802,7 +802,6 @@
 		var/list/spawnprobs = list()
 		var/index = 1
 		for(var/list/spawnlist AS in spawns_prob)
-			CHECK_TICK
 			var/listprob = spawnlist[1]
 			if(!prob(listprob))
 				continue
