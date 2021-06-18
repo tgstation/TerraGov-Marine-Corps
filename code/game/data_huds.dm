@@ -281,6 +281,10 @@
 				status_hud.icon_state = "hudhealthy"
 				return TRUE
 
+#define HEALTH_RATIO_PAIN_HUD 1
+#define PAIN_RATIO_PAIN_HUD 0.25
+#define STAMINA_RATIO_PAIN_HUD 0.5
+
 
 /mob/proc/med_pain_set_perceived_health()
 	return
@@ -297,9 +301,9 @@
 
 	var/perceived_health = health
 	if(!(species.species_flags & NO_PAIN))
-		perceived_health -= traumatic_shock
+		perceived_health -= PAIN_RATIO_PAIN_HUD * traumatic_shock
 	if(!(species.species_flags & NO_STAMINA) && staminaloss > 0)
-		perceived_health -= staminaloss
+		perceived_health -= STAMINA_RATIO_PAIN_HUD * staminaloss
 
 	switch(perceived_health)
 		if(100 to INFINITY)

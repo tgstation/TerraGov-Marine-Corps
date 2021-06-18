@@ -127,3 +127,36 @@
   Wayland-Smithy:
   - bugfix: Fixed a problem with vendors refusing to vend items containing symbols
       in their name.
+2021-06-18:
+  BraveMole:
+  - balance: Update pain hud (what xeno see on humans) to be more reliable. Pain and
+      stamina have way less impact on it.
+  - qol: Give engineers req channel
+  - balance: Rework silo generation
+  - rscdel: remove small silos
+  - balance: psy drain gives 60 points and 1/8th of a larva, cocoon give 120 points
+      and at the end of its lifetime (5minutes), 1/6th of a larva. Generators are
+      making more psy points, but it's linked with the number of alive alive marines
+      ground side
+  - balance: Turrets are now 100 points, silo are now 800, king is now 1800. This
+      is to account for xeno having way less psy points in general (marine spawning
+      no longer give 80 points)
+  Pariah919:
+  - rscadd: Added new earpiece sprte by kuro
+  - rscdel: Removed old earpiece sprite
+  Wayland-Smithy:
+  - bugfix: Fixed King caste_flags, so it can now be healed by and become a leader
+      for the Queen.
+  - balance: S&W .357 Revolver ricochet rounds no longer stagger or knockback.
+  - balance: M-44 SAA Revolver is now bulky like an extended barrel TP-44.
+  - balance: M-44 SAA Revolver now does 5 more damage.
+  - refactor: Refactored some revolver ammo code for less signal headaches later.
+  - bugfix: Fixed handfuls of loose .44 ammo breaking speed loaders.
+  - bugfix: Fixed the .357 seasonal item ref and speed loader ammo type.
+  - spellcheck: Removed an extra "That" from revolver ammo rejection notices.
+  - bugfix: Fixed send to lobby breaking the ghost orbit panel.
+  - code_imp: Update the max recommended byond  client version.
+  ZephyrTFA:
+  - code_imp: Helper procs for handling delays of manipulating storage objects and
+      their contents
+  - qol: Backpacks can be accessed while you are wearing them but it takes time

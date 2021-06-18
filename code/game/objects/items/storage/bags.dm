@@ -217,7 +217,7 @@
 	update_icon()
 
 // Instead of removing
-/obj/item/storage/bag/sheetsnatcher/remove_from_storage(obj/item/item, atom/new_location)
+/obj/item/storage/bag/sheetsnatcher/remove_from_storage(obj/item/item, atom/new_location, mob/user)
 	if(!istype(item, /obj/item/stack/sheet))
 		return FALSE
 	var/obj/item/stack/sheet/sheet = item

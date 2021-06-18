@@ -40,7 +40,7 @@
 	return TRUE
 
 //Call this proc to handle the removal of an item from the storage item. The item will be moved to the atom sent as new_target
-/obj/item/storage/large_holster/remove_from_storage()
+/obj/item/storage/large_holster/remove_from_storage(obj/item/W, atom/new_location, mob/user)
 	. = ..()
 	if(. && drawSound)
 		playsound(src,drawSound, 15, 1)

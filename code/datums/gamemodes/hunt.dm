@@ -39,7 +39,7 @@
 	if(!.)
 		return
 	var/datum/job/scaled_job = SSjob.GetJobType(/datum/job/xenomorph) //Xenos
-	scaled_job.job_points_needed  = CONFIG_GET(number/hunt_larvapoints_required)
+	scaled_job.job_points_needed  = HUNT_LARVA_POINTS_NEEDED
 
 /datum/game_mode/infestation/hunt/orphan_hivemind_collapse()
 	if(round_finished)

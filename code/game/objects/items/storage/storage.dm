@@ -79,6 +79,8 @@
 	var/opened = FALSE
 	///List of all the mobs who are currently watching our storage
 	var/list/content_watchers = list()
+	///How long does it take to put items into or out of this, in ticks
+	var/access_delay = 0
 
 /obj/item/storage/MouseDrop(obj/over_object)
 	if(!ishuman(usr))
@@ -445,14 +447,45 @@
 
 	return TRUE
 
-///This proc handles items being inserted. It does not perform any checks of whether an item can or can't be inserted. That's done by can_be_inserted()
-///The stop_warning parameter will stop the insertion message from being displayed. It is intended for cases where you are inserting multiple items at once,
-///such as when picking up all the items on a tile with one click.
-///user can be null, it refers to the potential mob doing the insertion.
-/obj/item/storage/proc/handle_item_insertion(obj/item/item, prevent_warning = 0, mob/user)
-	if(!item)
+/**
+ * This proc handles the delay associated with a storage object.
+ * If there is no delay, or the delay is negative, it simply returns TRUE.
+ * Should return true if the access delay is completed successfully.
+ */
+/obj/item/storage/proc/handle_access_delay(obj/item/accessed, mob/user, taking_out = TRUE, alert_user = TRUE)
+	if(!access_delay || !should_access_delay(accessed, user, taking_out))
+		return TRUE
+
+	if(!alert_user)
+		return do_after(user, access_delay, TRUE, src, ignore_turf_checks=TRUE)
+
+	to_chat(user, "<span class='notice'>You begin to [taking_out ? "take" : "put"] [accessed] [taking_out ? "out of" : "into"] [src]")
+	if(!do_after(user, access_delay, TRUE, src, ignore_turf_checks=TRUE))
+		to_chat(user, "<span class='warning'>You fumble [accessed]!</span>")
 		return FALSE
-	if(user && item.loc == user)
+	return TRUE
+
+/**
+ * This proc checks to see if we should actually delay access in this scenario
+ * This proc should return TRUE or FALSE
+ */
+/obj/item/storage/proc/should_access_delay(obj/item/accessed, mob/user, taking_out)
+	return FALSE
+
+/**
+ * This proc handles items being inserted. It does not perform any checks of whether an item can or can't be inserted.     
+ * That's done by can_be_inserted()
+ * The stop_warning parameter will stop the insertion message from being displayed. It is intended for cases where you are inserting multiple items at once,
+ * such as when picking up all the items on a tile with one click.
+ * user can be null, it refers to the potential mob doing the insertion.
+ */
+/obj/item/storage/proc/handle_item_insertion(obj/item/item, prevent_warning = 0, mob/user)
+	if(!istype(item)) 
+		return FALSE
+	if(!handle_access_delay(item, user, taking_out=FALSE))
+		item.forceMove(item.drop_location())
+		return FALSE
+	if(item.loc == user)
 		if(!user.transferItemToLoc(item, src))
 			return FALSE
 	else
@@ -506,7 +539,8 @@
 		item.mouse_opacity = initial(item.mouse_opacity)
 
 	update_icon()
-	return TRUE
+
+	return handle_access_delay(item, user)
 
 ///This proc is called when you want to place an item into the storage item.
 /obj/item/storage/attackby(obj/item/item, mob/user, params)
@@ -560,8 +594,8 @@
 
 	var/turf/droploc = get_turf(src)
 	hide_from(usr)
-	for(var/item in contents)
-		remove_from_storage(item, droploc)
+	for(var/obj/item/item in contents)
+		remove_from_storage(item, droploc, usr)
 
 /obj/item/storage/Initialize(mapload, ...)
 	. = ..()

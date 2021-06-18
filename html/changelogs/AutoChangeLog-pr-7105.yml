@@ -1,6 +1,0 @@
-author: "Wayland-Smithy"
-delete-after: True
-changes: 
-  - balance: "S&W .357 Revolver ricochet rounds no longer stagger or knockback."
-  - balance: "M-44 SAA Revolver is now bulky like an extended barrel TP-44."
-  - balance: "M-44 SAA Revolver now does 5 more damage."
