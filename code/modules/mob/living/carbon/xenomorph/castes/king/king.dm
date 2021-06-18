@@ -52,7 +52,7 @@
 /obj/structure/resin/king_pod/Initialize(mapload, hivenumber)
 	. = ..()
 	ownerhive = hivenumber
-	addtimer(CALLBACK(src, .proc/chose_king), KING_SUMMON_TIMER_DURATION)
+	addtimer(CALLBACK(src, .proc/choose_king), KING_SUMMON_TIMER_DURATION)
 
 /obj/structure/resin/king_pod/Destroy()
 	. = ..()
@@ -81,7 +81,7 @@
 		if(accept_to_be_king != "Accept")
 			continue
 		future_king = xenomorph_alive
-		RegisterSignal(future_king, COMSIG_HIVE_XENO_DEATH, .proc/chose_another_king)
+		RegisterSignal(future_king, COMSIG_HIVE_XENO_DEATH, .proc/choose_another_king)
 		to_chat(future_king, "<span class='notice'>You have 5 minutes to go to the [src] to ascend to the king position! Your tracker will guide you to it.</span>")
 		future_king.tracked = src
 		addtimer(CALLBACK(src, .proc/choose_another_king), 5 MINUTES)
@@ -95,7 +95,7 @@
 	if(future_king?.stat != DEAD)
 		to_chat(future_king, "<span class='warning'>You lost your chance to become the king...</span>")
 	future_king = null
-	INVOKE_ASYNC(src, .proc/chose_king)
+	INVOKE_ASYNC(src, .proc/choose_king)
 
 ///creates a new king and tries to get a mob for it
 /obj/structure/resin/king_pod/proc/try_summon_king()
