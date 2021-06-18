@@ -52,14 +52,13 @@
 
 ///Checks whether or not we fail for this interaction and handles failing if we do
 /obj/item/storage/backpack/holding/proc/failcheck(mob/user)
-	if(prob(reliability)) 
+	if(prob(reliability))
 		return TRUE //No failure
 	if(prob(reliability))
 		to_chat(user, "<span class='warning'>The Bluespace portal resists your attempt to add another item.</span>")
 	else
 		to_chat(user, "<span class='warning'>The Bluespace generator malfunctions!</span>")
-		for (var/obj/content in src.contents) //it broke, delete what was in it
-			qdel(content)
+		QDEL_LIST(contents)
 		crit_fail = TRUE
 		icon_state = "brokenpack"
 
