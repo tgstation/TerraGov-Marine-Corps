@@ -26,6 +26,7 @@
 	 * 	)
 	 *
 	 * It is generally better to use the first format if you reduce four or more lines of code doing so.
+	 * Remember that if an item would only be spawned once it takes a single list entry for the latter format but two for the former!
 	 */
 	var/list/spawns_with
 
