@@ -477,17 +477,15 @@
 			return
 		open(user)
 
+///Someone click dragged us to them; they want to pick us up
 /obj/item/storage/box/visual/MouseDrop(atom/over_object)
-	if(!deployed)
-		return
-
-	if(!ishuman(over_object))
-		return
-
-	var/mob/living/carbon/human/human = over_object
-	if(human == usr && !human.incapacitated() && Adjacent(human) && human.put_in_hands(src))
-		deployed = FALSE
-		update_icon()
+	if(!deployed || !ishuman(over_object) || over_object != usr)
+		return // You can't click drag this if its to someone else or we aren't deployed
+	var/mob/living/carbon/human/user = over_object
+	if(user.incapacitated() || !Adjacent(user) || !user.put_in_any_hands(src))
+		return // You are either: unconcious, not adjacent, or can't hold us
+	deployed = FALSE
+	update_icon()
 
 /obj/item/storage/box/visual/update_icon_state()
 	. = ..()
