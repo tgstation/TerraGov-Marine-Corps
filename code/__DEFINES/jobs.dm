@@ -143,3 +143,5 @@ MEDICAL_OFFICER, MEDICAL_RESEARCHER, SQUAD_LEADER, SQUAD_SPECIALIST, SQUAD_SMART
 
 /// How many points a marine can spend in job specific vendors
 #define MARINE_TOTAL_BUY_POINTS		45
+/// How many points an engineer can spend 
+#define ENGINEER_TOTAL_BUY_POINTS 75

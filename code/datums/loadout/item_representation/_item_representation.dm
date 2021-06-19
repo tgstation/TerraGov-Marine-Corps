@@ -108,7 +108,7 @@
 	amount = stack_to_copy.amount
 
 /datum/item_representation/stack/instantiate_object(datum/loadout_seller/seller, master = null, mob/living/user)
-	if(seller && !bypass_vendor_check && !buy_item_in_vendor(item_type, seller, user) && !buy_stack(item_type, seller, user, amount))
+	if(seller && !bypass_vendor_check && !buy_stack(item_type, seller, user, amount) && !buy_item_in_vendor(item_type, seller, user))
 		return
 	var/obj/item/stack/stack = new item_type(master)
 	stack.amount = amount

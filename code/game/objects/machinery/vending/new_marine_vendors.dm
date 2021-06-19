@@ -72,7 +72,9 @@
 
 	.["vendor_name"] = name
 	.["show_points"] = use_points
-	.["total_marine_points"] = MARINE_TOTAL_BUY_POINTS
+	var/obj/item/card/id/ID = user.get_idcard()
+	.["total_marine_points"] = ID ? initial(ID.marine_points) : 0
+
 
 	for(var/i in listed_products)
 		var/list/myprod = listed_products[i]
@@ -909,9 +911,6 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 		/obj/item/explosive/grenade/chem_grenade/razorburn_smol,
 		/obj/item/clothing/glasses/welding,
 		/obj/item/clothing/gloves/marine/insulated,
-		/obj/item/stack/sandbags_empty = 50,
-		/obj/item/stack/sheet/metal/large_stack,
-		/obj/item/stack/sheet/plasteel/medium_stack,
 		/obj/item/cell/high,
 		/obj/item/tool/shovel/etool,
 		/obj/item/lightreplacer,
