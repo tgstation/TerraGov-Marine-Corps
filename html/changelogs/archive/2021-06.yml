@@ -160,3 +160,12 @@
   - code_imp: Helper procs for handling delays of manipulating storage objects and
       their contents
   - qol: Backpacks can be accessed while you are wearing them but it takes time
+2021-06-19:
+  Wayland-Smithy:
+  - expansion: Added Tier 4 Xenos list to Hive Status.
+  - balance: Shrike is now Tier 4, but can still regress back to T1.
+  - balance: T4 Xenos count as T0 for evolution slot calculation purposes.
+  - balance: Shrikes can no longer grant slots by regressing.
+  - bugfix: Xenos lose leadership when evolving into a caste that can not be granted
+      it normally. *cough* hivemind *cough*
+  - admin: Updated PP to include Wraith transformation and reflect Shrikes new tier.
