@@ -742,10 +742,6 @@ to_chat will check for valid clients itself already so no need to double check f
 	if(SSticker.mode?.flags_round_type & MODE_PSY_POINTS_ADVANCED)
 		SSpoints.xeno_points_by_hive[hivenumber] = SILO_PRICE + XENO_TURRET_PRICE //Give a free silo when going shipside and a turret
 
-	var/list/living_player_list = SSticker.mode.count_humans_and_xenos(count_flags = COUNT_IGNORE_HUMAN_SSD)
-	var/num_humans = living_player_list[1]
-
-
 // ***************************************
 // *********** Corrupted Xenos
 // ***************************************
