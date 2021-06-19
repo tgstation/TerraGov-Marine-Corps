@@ -713,13 +713,10 @@
 
 /obj/item/storage/belt/gun/m44/full
 	spawns_with = list(
-		/obj/item/weapon/gun/revolver/m44,
-		/obj/item/ammo_magazine/revolver/heavy,
-		/obj/item/ammo_magazine/revolver/marksman,
-		/obj/item/ammo_magazine/revolver,
-		/obj/item/ammo_magazine/revolver,
-		/obj/item/ammo_magazine/revolver,
-		/obj/item/ammo_magazine/revolver,
+		/obj/item/weapon/gun/revolver/m44 = 1,
+		/obj/item/ammo_magazine/revolver/heavy = 1,
+		/obj/item/ammo_magazine/revolver/marksman = 1,
+		/obj/item/ammo_magazine/revolver = 4,
 	)
 
 /obj/item/storage/belt/gun/mateba
