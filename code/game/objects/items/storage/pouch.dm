@@ -500,7 +500,7 @@
 				break
 
 			M.remove_from_storage(IM)
-			handle_item_insertion(IM, TRUE, user)
+			handle_item_insertion(IM, user, TRUE)
 
 		playsound(user.loc, "rustle", 15, 1, 6)
 		return TRUE
@@ -641,7 +641,7 @@
 				return
 
 			for(var/x in 1 to (storage_slots - length(contents)))
-				var/cont = handle_item_insertion(M.create_handful(), 1, user)
+				var/cont = handle_item_insertion(M.create_handful(), user, TRUE)
 				if(!cont)
 					break
 

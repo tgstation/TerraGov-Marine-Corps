@@ -589,9 +589,9 @@
 
 		attack_hand(user)
 		for(var/obj/item/reagent_containers/food/snacks/grown/G in user.loc)
-			if(!S.can_be_inserted(G))
+			if(!S.can_be_inserted(G, user))
 				return
-			S.handle_item_insertion(G, TRUE, user)
+			S.handle_item_insertion(G, user, TRUE)
 
 	else if(istype(I, /obj/item/tool/plantspray))
 		var/obj/item/tool/plantspray/spray = I

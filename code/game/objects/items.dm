@@ -212,7 +212,7 @@
 
 	var/obj/item/storage/S = I
 
-	if(!S.flags_storage & STORAGE_FLAG_PICKUP || !isturf(loc))
+	if(!(S.flags_storage & STORAGE_FLAG_PICKUP) || !isturf(loc))
 		return
 
 	if(S.flags_storage & STORAGE_FLAG_COLLECTION_TOGGLED) //Mode is set to collect all items on a tile and we clicked on a valid one.
@@ -223,12 +223,12 @@
 		for(var/obj/item/IM in loc)
 			if(IM.type in rejections) // To limit bag spamming: any given type only complains once
 				continue
-			if(!S.can_be_inserted(IM))	// Note can_be_inserted still makes noise when the answer is no
+			if(!S.can_be_inserted(IM, user))	// Note can_be_inserted still makes noise when the answer is no
 				rejections += IM.type	// therefore full bags are still a little spammy
 				failure = TRUE
 				continue
 			success = TRUE
-			S.handle_item_insertion(IM, TRUE, user)	//The 1 stops the "You put the [src] into [S]" insertion message from being displayed.
+			S.handle_item_insertion(IM, user, TRUE)	//The 1 stops the "You put the [src] into [S]" insertion message from being displayed.
 		if(success && !failure)
 			to_chat(user, "<span class='notice'>You put everything in [S].</span>")
 		else if(success)
@@ -236,8 +236,8 @@
 		else
 			to_chat(user, "<span class='notice'>You fail to pick anything up with [S].</span>")
 
-	else if(S.can_be_inserted(src))
-		S.handle_item_insertion(src, FALSE, user)
+	else if(S.can_be_inserted(src, user))
+		S.handle_item_insertion(src, user, FALSE)
 
 /obj/item/proc/talk_into(mob/M, input, channel, spans, datum/language/language)
 	return ITALICS | REDUCE_RANGE
@@ -533,66 +533,66 @@
 			if (!H.back || !istype(H.back, /obj/item/storage/backpack))
 				return FALSE
 			var/obj/item/storage/backpack/B = H.back
-			if(w_class > B.max_w_class || !B.can_be_inserted(src, warning))
+			if(w_class > B.max_w_class || !B.can_be_inserted(src, M, warning))
 				return FALSE
 			return TRUE
 		if(SLOT_IN_B_HOLSTER)
 			if(!H.back || !istype(H.back, /obj/item/storage/large_holster))
 				return FALSE
 			var/obj/item/storage/S = H.back
-			if(!S.can_be_inserted(src, warning))
+			if(!S.can_be_inserted(src, M, warning))
 				return FALSE
 			return TRUE
 		if(SLOT_IN_BELT)
 			if(!H.belt || !istype(H.belt, /obj/item/storage/belt))
 				return FALSE
 			var/obj/item/storage/belt/S = H.belt
-			if(!S.can_be_inserted(src, warning))
+			if(!S.can_be_inserted(src, M, warning))
 				return FALSE
 			return TRUE
 		if(SLOT_IN_HOLSTER)
 			if((H.belt && istype(H.belt,/obj/item/storage/large_holster)) || (H.belt && istype(H.belt,/obj/item/storage/belt/gun)))
 				var/obj/item/storage/S = H.belt
-				if(S.can_be_inserted(src, warning))
+				if(S.can_be_inserted(src, M, warning))
 					return TRUE
 			return FALSE
 		if(SLOT_IN_S_HOLSTER)
 			if((H.s_store && istype(H.s_store, /obj/item/storage/large_holster)) ||(H.s_store && istype(H.s_store,/obj/item/storage/belt/gun)))
 				var/obj/item/storage/S = H.s_store
-				if(S.can_be_inserted(src, warning))
+				if(S.can_be_inserted(src, M, warning))
 					return TRUE
 			return FALSE
 		if(SLOT_IN_STORAGE)
 			if(!H.s_active)
 				return FALSE
 			var/obj/item/storage/S = H.s_active
-			if(S.can_be_inserted(src, warning))
+			if(S.can_be_inserted(src, M, warning))
 				return TRUE
 		if(SLOT_IN_L_POUCH)
 			if(!H.l_store || !istype(H.l_store, /obj/item/storage/pouch))
 				return FALSE
 			var/obj/item/storage/S = H.l_store
-			if(S.can_be_inserted(src, warning))
+			if(S.can_be_inserted(src, M, warning))
 				return TRUE
 		if(SLOT_IN_R_POUCH)
 			if(!H.r_store || !istype(H.r_store, /obj/item/storage/pouch))
 				return FALSE
 			var/obj/item/storage/S = H.r_store
-			if(S.can_be_inserted(src, warning))
+			if(S.can_be_inserted(src, M, warning))
 				return TRUE
 		if(SLOT_IN_SUIT)
 			var/obj/item/clothing/suit/storage/S = H.wear_suit
 			if(!istype(S) || !S.pockets)
 				return FALSE
 			var/obj/item/storage/internal/T = S.pockets
-			if(T.can_be_inserted(src, warning))
+			if(T.can_be_inserted(src, M, warning))
 				return TRUE
 		if(SLOT_IN_HEAD)
 			var/obj/item/clothing/head/helmet/marine/S = H.head
 			if(!istype(S) || !S.pockets)
 				return FALSE
 			var/obj/item/storage/internal/T = S.pockets
-			if(T.can_be_inserted(src, warning))
+			if(T.can_be_inserted(src, M, warning))
 				return TRUE
 		if(SLOT_IN_ACCESSORY)
 			var/obj/item/clothing/under/U = H.w_uniform
@@ -602,7 +602,7 @@
 			if(!istype(T))
 				return FALSE
 			var/obj/item/storage/internal/S = T.hold
-			if(S.can_be_inserted(src, warning))
+			if(S.can_be_inserted(src, M, warning))
 				return TRUE
 	return FALSE //Unsupported slot
 

@@ -149,8 +149,8 @@
 	icon_state = "satchel"
 	storage_slots = null
 	max_storage_space = 15
-	spawns_with = list(/obj/item/storage/wallet/random)
 	access_delay = 0
+	spawns_with = list(/obj/item/storage/wallet/random)
 
 /obj/item/storage/backpack/satchel/norm
 	name = "satchel"
@@ -289,7 +289,7 @@
 
 /obj/item/storage/backpack/marine/corpsman/update_icon_state()
 	icon_state = icon_skin
-	if(cell && cell.charge >= 0)
+	if(cell?.charge >= 0)
 		switch(PERCENT(cell.charge/cell.maxcharge))
 			if(75 to INFINITY)
 				icon_state += "_100"
@@ -302,7 +302,8 @@
 	else
 		icon_state += "_0"
 
-/obj/item/storage/backpack/marine/corpsman/MouseDrop_T(obj/item/item, mob/living/user) //Dragging the defib/power cell onto the backpack will trigger its special functionality.
+///Dragging the defib or power cell onto the backpack has special functionality we handle here
+/obj/item/storage/backpack/marine/corpsman/MouseDrop_T(obj/item/item, mob/living/user)
 	if(istype(item, /obj/item/defibrillator))
 		if(cell)
 			var/obj/item/defibrillator/defib = item
@@ -400,6 +401,7 @@
 	icon_state = "commander_cloak_red" //with thanks to Baystation12
 	item_state = "commander_cloak_red" //with thanks to Baystation12
 
+#define COOLDOWN_CAMO "camouflage"
 // Scout Cloak
 /obj/item/storage/backpack/marine/satchel/scout_cloak
 	name = "\improper M68 Thermal Cloak"
@@ -409,8 +411,8 @@
 	///Is the camo currently active
 	var/camo_active = FALSE
 
-	///At what world.time are we allowed to be used again
-	var/camo_cooldown_timer = 0
+	///Are we currently in a cooldown state
+	var/cooldown_active = FALSE
 
 	///At what world.time did we last stealth
 	var/camo_last_stealth = 0
@@ -472,8 +474,8 @@
 		to_chat(M, "<span class='warning'>You are already cloaked!</span>")
 		return FALSE
 
-	if (camo_cooldown_timer)
-		to_chat(M, "<span class='warning'>Your thermal cloak is still recalibrating! It will be ready in [(camo_cooldown_timer - world.time) * 0.1] seconds.")
+	if(!TIMER_COOLDOWN_CHECK(src, COOLDOWN_CAMO))
+		to_chat(M, "<span class='warning'>Your thermal cloak is still recharging!.</span>")
 		return
 
 	camo_active = TRUE
@@ -558,9 +560,7 @@
 
 	var/cooldown = round( (initial(camo_energy) - camo_energy) / SCOUT_CLOAK_INACTIVE_RECOVERY * 10) //Should be 20 seconds after a full depletion with inactive recovery at 5
 	if(cooldown)
-		camo_cooldown_timer = world.time + cooldown //recalibration and recharge time scales inversely with charge remaining
-		to_chat(user, "<span class='warning'>Your thermal cloak is recalibrating! It will be ready in [(camo_cooldown_timer - world.time) * 0.1] seconds.")
-		process_camo_cooldown(user, cooldown)
+		begin_cooldown(user, cooldown)
 
 	UnregisterSignal(user, list(
 		COMSIG_HUMAN_DAMAGE_TAKEN,
@@ -573,18 +573,18 @@
 	wearer.cloaking = FALSE
 
 ///Handles the camouflage cooldown, using a timer callback by default
-/obj/item/storage/backpack/marine/satchel/scout_cloak/proc/process_camo_cooldown(mob/living/user, cooldown)
-	if(!camo_cooldown_timer)
-		return
-	addtimer(CALLBACK(src, .proc/cooldown_finished), cooldown)
+/obj/item/storage/backpack/marine/satchel/scout_cloak/proc/begin_cooldown(mob/living/user, cooldown)
+	TIMER_COOLDOWN_START(src, COOLDOWN_CAMO, cooldown)
+	cooldown_active = TRUE
+	to_chat(user, "<span class='warning'>[src] has begun recharging and will be ready in [cooldown * 0.1] seconds.</span>")
 
-///Called when the cooldown has expired
-/obj/item/storage/backpack/marine/satchel/scout_cloak/proc/cooldown_finished()
-	camo_cooldown_timer = 0
+///This is called when the cooldown timer expires
+/obj/item/storage/backpack/marine/satchel/scout_cloak/proc/end_cooldown()
+	cooldown_active = FALSE
 	camo_energy = initial(camo_energy)
-	playsound(loc,'sound/effects/EMPulse.ogg', 25, 0, 1)
+	playsound(loc, 'sound/effects/EMPulse.ogg', 25, 0, 1)
 	if(wearer)
-		to_chat(wearer, "<span class='danger'>Your thermal cloak has recalibrated and is ready to cloak again.</span>")
+		to_chat(wearer, "<span class='notice'>[src] has finished recharging and is ready to be used.</span>")
 
 /obj/item/storage/backpack/marine/satchel/scout_cloak/examine(mob/user)
 	. = ..()
@@ -593,8 +593,8 @@
 	var/list/details = list()
 	details +=("It has [camo_energy]/[initial(camo_energy)] charge. </br>")
 
-	if(camo_cooldown_timer)
-		details +=("It will be ready in [(camo_cooldown_timer - world.time) * 0.1] seconds. </br>")
+	if(!TIMER_COOLDOWN_CHECK(src, COOLDOWN_CAMO))
+		details += "It is currently recharging.<br />"
 
 	if(camo_active)
 		details +=("It's currently active.</br>")
@@ -640,6 +640,9 @@
 	wearer.alpha = max(wearer.alpha,shimmer_alpha)
 
 /obj/item/storage/backpack/marine/satchel/scout_cloak/process()
+	if(cooldown_active && TIMER_COOLDOWN_CHECK(src, COOLDOWN_CAMO))
+		end_cooldown()
+
 	if(!wearer)
 		camo_off()
 		return
@@ -689,10 +692,11 @@
 	name = "\improper TGMC technician welderpack"
 	desc = "A specialized backpack worn by TGMC technicians. It carries a fueltank for quick welder refueling and use,"
 	icon_state = "engineerpack"
-	var/max_fuel = 260
 	storage_slots = null
 	max_storage_space = 15
 	access_delay = 0
+	///The maximum fuel we allow ourselves to carry
+	var/max_fuel = 260
 
 /obj/item/storage/backpack/marine/engineerpack/Initialize()
 	. = ..()

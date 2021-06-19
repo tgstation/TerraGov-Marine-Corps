@@ -295,7 +295,7 @@
 
 /obj/item/clothing/tie/storage/attack_hand(mob/living/user)
 	if(has_suit)
-		if(has_suit.loc == user && hold.flags_storage & STORAGE_FLAG_DRAWMODE_TOGGLED && hold.contents.len)
+		if(has_suit.loc == user && (hold.flags_storage & STORAGE_FLAG_DRAWMODE_TOGGLED) && hold.contents.len)
 			var/obj/item/I = hold.contents[hold.contents.len]
 			I.attack_hand(user)
 			return

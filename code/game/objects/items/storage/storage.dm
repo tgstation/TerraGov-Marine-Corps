@@ -27,7 +27,7 @@
 	 *
 	 * It is generally better to use the first format if you reduce four or more lines of code doing so.
 	 */
-	var/list/spawns_with = list()
+	var/list/spawns_with
 
 	/**
 	 * A list of all things that CAN spawn inside of this storage object on creation.
@@ -38,7 +38,7 @@
 	 * 	 list(PROBABILITY, /obj/item/XXX, /obj/item/XXX),
 	 * 	)
 	 */
-	var/list/spawns_prob = list()
+	var/list/spawns_prob
 
 	///The maxiumum number of lists that can roll upon creation. Lower probability will override higher, if they both roll
 	var/spawns_prob_max = INFINITY
@@ -395,8 +395,8 @@
 /**
  * This proc returns TRUE if the item can be picked up and FALSE if it can't.
  * Set the warning to stop it from printing messages
-**/
-/obj/item/storage/proc/can_be_inserted(obj/item/item, warning = TRUE)
+ */
+/obj/item/storage/proc/can_be_inserted(obj/item/item, mob/user, warning = TRUE)
 	if(!istype(item) || (item.flags_item & NODROP))
 		return //Not an item
 
@@ -404,23 +404,23 @@
 		return FALSE //Means the item is already in the storage item
 	if(storage_slots != null && contents.len >= storage_slots)
 		if(warning)
-			to_chat(usr, "<span class='notice'>[src] is full, make some space.</span>")
+			to_chat(user, "<span class='notice'>[src] is full, make some space.</span>")
 		return FALSE //Storage item is full
 
 	if(length(can_hold))
 		if(!is_type_in_typecache(item, can_hold))
 			if(warning)
-				to_chat(usr, "<span class='notice'>[src] cannot hold [item].</span>")
+				to_chat(user, "<span class='notice'>[src] cannot hold [item].</span>")
 			return FALSE
 
 	if(is_type_in_typecache(item, cant_hold)) //Check for specific items which this container can't hold.
 		if(warning)
-			to_chat(usr, "<span class='notice'>[src] cannot hold [item].</span>")
+			to_chat(user, "<span class='notice'>[src] cannot hold [item].</span>")
 		return FALSE
 
 	if(!is_type_in_typecache(item, bypass_w_limit) && item.w_class > max_w_class)
 		if(warning)
-			to_chat(usr, "<span class='notice'>[item] is too long for this [src].</span>")
+			to_chat(user, "<span class='notice'>[item] is too long for this [src].</span>")
 		return FALSE
 
 	var/sum_storage_cost = item.w_class
@@ -429,13 +429,13 @@
 
 	if(sum_storage_cost > max_storage_space)
 		if(warning)
-			to_chat(usr, "<span class='notice'>[src] is full, make some space.</span>")
+			to_chat(user, "<span class='notice'>[src] is full, make some space.</span>")
 		return FALSE
 
 	if(item.w_class >= w_class && istype(item, /obj/item/storage) && !is_type_in_typecache(item.type, bypass_w_limit))
 		if(!istype(src, /obj/item/storage/backpack/holding))	//bohs should be able to hold backpacks again. The override for putting a boh in a boh is in backpack.dm.
 			if(warning)
-				to_chat(usr, "<span class='notice'>[src] cannot hold [item] as it's a storage item of the same size.</span>")
+				to_chat(user, "<span class='notice'>[src] cannot hold [item] as it's a storage item of the same size.</span>")
 			return FALSE //To prevent the stacking of same sized storage items.
 
 	if(istype(item, /obj/item/tool/hand_labeler))
@@ -479,7 +479,7 @@
  * such as when picking up all the items on a tile with one click.
  * user can be null, it refers to the potential mob doing the insertion.
  */
-/obj/item/storage/proc/handle_item_insertion(obj/item/item, prevent_warning = 0, mob/user)
+/obj/item/storage/proc/handle_item_insertion(obj/item/item, mob/user, prevent_warning = FALSE)
 	if(!istype(item))
 		return FALSE
 	if(!handle_access_delay(item, user, taking_out=FALSE))
@@ -499,9 +499,7 @@
 			user.visible_message("<span class='notice'>[usr] puts [item] into [src].</span>",\
 								"<span class='notice'>You put \the [item] into [src].</span>",\
 								null, visidist)
-	orient2hud()
-	for(var/mob/watcher AS in can_see_content())
-		show_to(watcher)
+	update_watchers(TRUE)
 	if (storage_slots)
 		item.mouse_opacity = 2 //not having to click the item's tiny sprite to take it out of the storage.
 	update_icon()
@@ -529,10 +527,7 @@
 	else
 		item.moveToNullspace()
 
-	orient2hud()
-
-	for(var/mob/watcher AS in can_see_content())
-		show_to(watcher)
+	update_watchers(TRUE)
 
 	if(!QDELETED(item))
 		item.on_exit_storage(src)
@@ -546,22 +541,31 @@
 /obj/item/storage/attackby(obj/item/item, mob/user, params)
 	. = ..()
 
-	if(!can_be_inserted(item))
+	if(!can_be_inserted(item, user))
 		return
 
-	return handle_item_insertion(item, FALSE, user)
+	return handle_item_insertion(item, user, FALSE)
+
+/obj/item/storage/proc/update_watchers(recalculate = FALSE)
+	if(recalculate)
+		orient2hud()
+	for(var/mob/watcher AS in content_watchers)
+		show_to(watcher)
+
+/obj/item/storage/proc/close_watchers()
+	for(var/mob/watcher AS in content_watchers)
+		close(watcher)
 
 /obj/item/storage/attack_hand(mob/living/user)
 	if (loc == user)
-		if(flags_storage & STORAGE_FLAG_DRAWMODE_TOGGLED && ishuman(user) && contents.len)
+		if((flags_storage & STORAGE_FLAG_DRAWMODE_TOGGLED) && ishuman(user) && contents.len)
 			var/obj/item/item = contents[contents.len]
 			item.attack_hand(user)
 		else
 			open(user)
 	else
 		. = ..()
-		for(var/mob/watcher AS in content_watchers)
-			close(watcher)
+		close_watchers()
 
 /obj/item/storage/attack_ghost(mob/user)
 	open(user)
@@ -717,7 +721,7 @@
 /**
  * Returns the storage depth of an atom. This is the number of storage items the atom is contained in before reaching toplevel (the area).
  * Returns -1 if the atom was not found on container.
-**/
+ */
 /atom/proc/storage_depth(atom/container)
 	var/depth = 0
 	var/atom/cur_atom = src
@@ -736,7 +740,7 @@
 /**
  * Like storage depth, but returns the depth to the nearest turf
  * Returns -1 if no top level turf (a loc was null somewhere, or a non-turf atom's loc was an area somehow).
-**/
+ */
 /atom/proc/storage_depth_turf()
 	var/depth = 0
 	var/atom/cur_atom = src
@@ -766,11 +770,6 @@
 	if(max_amt <= 0 || max_amt > stack.max_amount)
 		stack_trace("[src] tried to max_stack_merging([stack]) with [max_w_class] max_w_class and [weight_diff] weight_diff, resulting in [max_amt] max_amt.")
 	return max_amt
-
-/obj/item/storage/recalculate_storage_space()
-	orient2hud()
-	for(var/mob/watcher AS in can_see_content())
-		show_to(watcher)
 
 /obj/item/storage/contents_explosion(severity)
 	for(var/atom/content AS in contents)

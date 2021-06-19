@@ -109,68 +109,62 @@
 	desc = "A patented Nanotrasen storage system designed for any kind of mineral sheet."
 	w_class = WEIGHT_CLASS_NORMAL
 	///The number of sheets we can carry.
-	var/capacity = 300
+	var/max_capacity = 300
 
-/obj/item/storage/bag/sheetsnatcher/can_be_inserted(obj/item/item, stop_messages = FALSE)
-	if(!istype(item,/obj/item/stack/sheet) || istype(item,/obj/item/stack/sheet/mineral/sandstone) || istype(item,/obj/item/stack/sheet/wood))
-		if(!stop_messages)
-			to_chat(usr, "The snatcher does not accept [item].")
-		return FALSE //I don't care, but the existing code rejects them for not being "sheets" *shrug* -Sayu
-	var/current = 0
-	for(var/obj/item/stack/sheet/sheet in contents)
-		current += sheet.amount
-	if(capacity == current)//If it's full, you're done
-		if(!stop_messages)
-			to_chat(usr, "<span class='warning'>The snatcher is full.</span>")
+/obj/item/storage/bag/sheetsnatcher/proc/get_used_capacity()
+	var/capacity = 0
+	for(var/obj/item/stack/sheet/sheet AS in contents)
+		capacity += sheet.amount
+	return capacity
+
+/obj/item/storage/bag/sheetsnatcher/can_be_inserted(obj/item/item, mob/user, warning = TRUE)
+	if(!istype(item, /obj/item/stack/sheet) || (item.type in list(/obj/item/stack/sheet/wood, /obj/item/stack/sheet/mineral/sandstone)))
+		if(warning)
+			to_chat(user, "<span class='warning'>[src] does not accept [item].</span>")
+		return FALSE
+	if(get_used_capacity() >= max_capacity)
+		if(warning)
+			to_chat(user, "<span class='warning'>[src] is full.</span>")
 		return FALSE
 	return TRUE
 
-// Modified handle_item_insertion.  Would prefer not to, but...
-/obj/item/storage/bag/sheetsnatcher/handle_item_insertion(obj/item/item, prevent_warning = 0, mob/user)
-	if(!istype(item, /obj/item/stack/sheet))
-		return FALSE
-	var/obj/item/stack/sheet/sheet = item
-	var/amount
-	var/inserted = FALSE
-	var/current = 0
-
-	for(var/content in contents)
-		if(!istype(content, /obj/item/stack/sheet))
+/obj/item/storage/bag/sheetsnatcher/handle_item_insertion(obj/item/stack/sheet/sheet, mob/user, prevent_warning)
+	var/maximum_allowed = max_capacity - get_used_capacity()
+	if(!maximum_allowed)
+		CRASH("handle_item_insertion called on [src] despite being at or above maximum capacity")
+	for(var/obj/item/stack/sheet/subsheet AS in contents)
+		if(subsheet.type != sheet.type || subsheet.amount >= subsheet.max_amount)
 			continue
-		var/obj/item/stack/sheet/sheet_sub = content
-		current += sheet_sub.amount
-
-	amount = capacity - current
-	if(amount > sheet.amount) // Do we have less than what we want
-		amount = sheet.amount
-
-	for(var/content in contents)
-		if(!istype(content, /obj/item/stack/sheet))
-			continue
-		var/obj/item/stack/sheet/sheet_sub = content
-		if(istype(sheet_sub, sheet.type)) // we are violating the amount limitation because these are not sane objects
-			sheet_sub.amount += amount	// they should only be removed through procs in this file, which split them up.
-			sheet.amount -= amount
-			inserted = TRUE
-			break
-
-	if(!inserted || !sheet.amount)
-		if(user && item.loc == user)
-			user.temporarilyRemoveItemFromInventory(sheet)
+		var/canadd = min(sheet.amount, maximum_allowed)
+		subsheet.amount += canadd
+		sheet.amount -= canadd
 		if(!sheet.amount)
 			qdel(sheet)
-		else
-			sheet.forceMove(src)
+		break // Regardless of what we've done, we've added all we can
+	update_watchers(TRUE)
 
-	orient2hud()
-	for(var/mob/watcher AS in can_see_content())
-		show_to(watcher)
+/obj/item/storage/bag/sheetsnatcher/remove_from_storage(obj/item/stack/sheet/sheet, atom/new_location, mob/user)
+	if(!istype(sheet))
+		return FALSE // This should probably be a crash instead
 
-	update_icon()
-	return TRUE
+	if(sheet.amount > sheet.max_amount) // We're trying to remove a stack of more than the max stack
+		var/excess = sheet.amount - sheet.max_amount
+		new sheet.type(src, excess)
+		sheet.amount = sheet.max_amount
 
-// Sets up numbered display to show the stack size of each stored mineral
-// NOTE: numbered display is turned off currently because it's broken
+	return ..()
+
+/obj/item/storage/bag/sheetsnatcher/quick_empty()
+	var/turf/droploc = get_turf(src)
+
+	for(var/obj/item/stack/sheet/sheet AS in contents)
+		while(sheet.amount > sheet.max_amount)
+			new sheet.type(droploc, sheet.max_amount)
+			sheet.amount -= sheet.max_amount
+		sheet.forceMove(droploc)
+
+	update_watchers()
+
 /obj/item/storage/bag/sheetsnatcher/orient2hud()
 	var/adjusted_contents = contents.len
 
@@ -194,42 +188,6 @@
 		row_num = round((adjusted_contents-1) / 7) // 7 is the maximum allowed width.
 	slot_orient_objs(row_num, col_count, numbered_contents)
 
-/// Modified quick_empty verb drops appropriate sized stacks
-/obj/item/storage/bag/sheetsnatcher/quick_empty(mob/user)
-	var/location = get_turf(src)
-	for(var/content in contents)
-		if(!istype(content, /obj/item/stack/sheet))
-			continue
-		var/obj/item/stack/sheet/sheet = content
-		while(sheet.amount)
-			var/obj/item/stack/sheet/sheet_new = new sheet.type(location)
-			var/stacksize = min(sheet.amount,sheet_new.max_amount)
-			sheet_new.amount = stacksize
-			sheet.amount -= stacksize
-		if(!sheet.amount)
-			qdel(sheet) // todo: there's probably something missing here
-	orient2hud()
-	if(user?.s_active)
-		user.s_active.show_to(user)
-	update_icon()
-
-// Instead of removing
-/obj/item/storage/bag/sheetsnatcher/remove_from_storage(obj/item/item, atom/new_location, mob/user)
-	if(!istype(item, /obj/item/stack/sheet))
-		return FALSE
-	var/obj/item/stack/sheet/sheet = item
-	//I would prefer to drop a new stack, but the item/attack_hand(mob/living/user)
-	// that calls this can't recieve a different object than you clicked on.
-	//Therefore, make a new stack internally that has the remainder.
-	// -Sayu
-
-	if(sheet.amount > sheet.max_amount)
-		var/obj/item/stack/sheet/temp = new sheet.type(src)
-		temp.amount = sheet.amount - sheet.max_amount
-		sheet.amount = sheet.max_amount
-
-	return ..()
-
 // -----------------------------
 //    Sheet Snatcher (Cyborg)
 // -----------------------------
@@ -237,7 +195,7 @@
 /obj/item/storage/bag/sheetsnatcher/borg
 	name = "Sheet Snatcher 9000"
 	desc = ""
-	capacity = 500//Borgs get more because >specialization
+	max_capacity = 500//Borgs get more because >specialization
 
 // -----------------------------
 //           Cash Bag

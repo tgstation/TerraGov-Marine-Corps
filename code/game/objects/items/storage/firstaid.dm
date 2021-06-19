@@ -116,7 +116,7 @@
 
 /**
  * Syringe Case
-**/
+ */
 
 /obj/item/storage/syringe_case
 	name = "syringe case"

@@ -18,8 +18,8 @@
 				next_move = world.time + 3
 				return
 	else
-		if(s_active && s_active.can_be_inserted(I))
-			s_active.handle_item_insertion(I, FALSE, src)
+		if(s_active && s_active.can_be_inserted(I, src))
+			s_active.handle_item_insertion(I, src, FALSE)
 			return
 		if(client?.prefs?.preferred_slot)
 			if(equip_to_slot_if_possible(I, client.prefs.preferred_slot, FALSE, FALSE, FALSE))
@@ -369,44 +369,44 @@
 			B.attackby(W, src)
 		if(SLOT_IN_BACKPACK)
 			var/obj/item/storage/S = back
-			S.handle_item_insertion(W, TRUE, src)
+			S.handle_item_insertion(W, src, TRUE)
 		if(SLOT_IN_SUIT)
 			var/obj/item/clothing/suit/storage/S = wear_suit
 			var/obj/item/storage/internal/T = S.pockets
-			T.handle_item_insertion(W, FALSE)
+			T.handle_item_insertion(W, src, FALSE)
 			T.close(src)
 		if(SLOT_IN_BELT)
 			var/obj/item/storage/belt/S = belt
-			S.handle_item_insertion(W, FALSE, src)
+			S.handle_item_insertion(W, src, FALSE)
 		if(SLOT_IN_HEAD)
 			var/obj/item/clothing/head/helmet/marine/S = head
 			var/obj/item/storage/internal/T = S.pockets
-			T.handle_item_insertion(W, FALSE)
+			T.handle_item_insertion(W, src, FALSE)
 			T.close(src)
 		if(SLOT_IN_ACCESSORY)
 			var/obj/item/clothing/under/U = w_uniform
 			var/obj/item/clothing/tie/storage/T = U.hastie
 			var/obj/item/storage/internal/S = T.hold
-			S.handle_item_insertion(W, FALSE)
+			S.handle_item_insertion(W, src, FALSE)
 			S.close(src)
 		if(SLOT_IN_HOLSTER)
 			var/obj/item/storage/S = belt
-			S.handle_item_insertion(W, FALSE, src)
+			S.handle_item_insertion(W, src, FALSE)
 		if(SLOT_IN_B_HOLSTER)
 			var/obj/item/storage/S = back
-			S.handle_item_insertion(W, FALSE, src)
+			S.handle_item_insertion(W, src, FALSE)
 		if(SLOT_IN_S_HOLSTER)
 			var/obj/item/storage/S = s_store
-			S.handle_item_insertion(W, FALSE, src)
+			S.handle_item_insertion(W, src, FALSE)
 		if(SLOT_IN_STORAGE)
 			var/obj/item/storage/S = s_active
-			S.handle_item_insertion(W, FALSE, src)
+			S.handle_item_insertion(W, src, FALSE)
 		if(SLOT_IN_L_POUCH)
 			var/obj/item/storage/S = l_store
-			S.handle_item_insertion(W, FALSE, src)
+			S.handle_item_insertion(W, src, FALSE)
 		if(SLOT_IN_R_POUCH)
 			var/obj/item/storage/S = r_store
-			S.handle_item_insertion(W, FALSE, src)
+			S.handle_item_insertion(W, src, FALSE)
 		else
 			CRASH("[src] tried to equip [W] to [slot] in equip_to_slot().")
 
@@ -530,7 +530,7 @@
  * Return [TRUE]|[FALSE] if item_searched is equipped or in the hands of the human
  * item_searched the item you want to check
  */
-/mob/living/carbon/human/proc/is_item_in_slots(item_searched) 
+/mob/living/carbon/human/proc/is_item_in_slots(item_searched)
 	for (var/slot in SLOT_ALL)
 		if (get_item_by_slot(slot) == item_searched)
 			return TRUE
@@ -544,7 +544,7 @@
 	for (var/slot in SLOT_ALL)
 		if (istype(get_item_by_slot(slot),type_searched))
 			return get_item_by_slot(slot)
-	
+
 
 /**
  * Return [TRUE]|[FALSE] if item_searched is in the hands of the human

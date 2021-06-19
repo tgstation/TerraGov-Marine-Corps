@@ -393,7 +393,7 @@
 				return
 
 			for(var/x in 1 to (storage_slots - length(contents)))
-				var/cont = handle_item_insertion(magazine.create_handful(), 1, user)
+				var/cont = handle_item_insertion(magazine.create_handful(), user, TRUE)
 				if(!cont)
 					break
 
@@ -583,20 +583,20 @@
 	if(istype(user)) user.update_inv_s_store()
 
 //There are only two types here that can be inserted, and they are mutually exclusive. We only track the gun.
-/obj/item/storage/belt/gun/can_be_inserted(obj/item/item, warning) //We don't need to stop messages, but it can be left in.
+/obj/item/storage/belt/gun/can_be_inserted(obj/item/item, mob/user, warning) //We don't need to stop messages, but it can be left in.
 	. = ..()
 	if(!.) //If the parent did their thing, this should be fine. It pretty much handles all the checks.
 		return
 	if(istype(item,/obj/item/weapon/gun)) //Is it a gun?
 		if(holds_guns_now == holds_guns_max) //Are we at our gun capacity?
 			if(warning)
-				to_chat(usr, "<span class='warning'>[src] already holds a gun.</span>")
+				to_chat(user, "<span class='warning'>[src] already holds a gun.</span>")
 			return FALSE
 	else //Must be ammo.
 	//We have slots open for the gun, so in total we should have storage_slots - guns_max in slots, plus whatever is already in the belt.
 		if(((storage_slots - holds_guns_max) + holds_guns_now) <= length(contents)) // We're over capacity, and the space is reserved for a gun.
 			if(warning)
-				to_chat(usr, "<span class='warning'>[src] can't hold any more magazines.</span>")
+				to_chat(user, "<span class='warning'>[src] can't hold any more magazines.</span>")
 			return FALSE
 	return TRUE
 
