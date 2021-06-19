@@ -333,6 +333,7 @@
 			/obj/item/ammo_magazine/shotgun/mbx900 = 2,
 			/obj/item/bodybag/tarp = 2,
 			/obj/item/explosive/plastique = 2,
+			/obj/item/minerupgrade/automatic = 3,
 			/obj/item/clothing/suit/storage/marine/harness/boomvest = 20,
 			/obj/item/radio/headset/mainship/marine/alpha = -1,
 			/obj/item/radio/headset/mainship/marine/bravo = -1,
