@@ -68,7 +68,7 @@
 	var/scatter = 0 //Chance of scattering, also maximum amount scattered. High variance.
 
 	/// The factions this projectile will ignore, used for iff
-	var/factions = list()
+	var/list/factions = list()
 
 	var/distance_travelled = 0
 
@@ -619,7 +619,11 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 	return TRUE
 
 /obj/machinery/marine_turret/projectile_hit(obj/projectile/proj, cardinal_move, uncrossing)
-	return faction in proj.factions ? FALSE : src == proj.original_target
+	for(var/faction in factions)
+		if(proj.factions?.Find(faction))
+			return FALSE
+	return src == proj.original_target
+
 
 /obj/machinery/standard_hmg/projectile_hit(obj/projectile/proj, cardinal_move, uncrossing)
 	return operator?.faction in proj.factions ? FALSE : src == proj.original_target

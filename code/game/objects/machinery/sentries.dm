@@ -228,8 +228,8 @@
 	req_one_access = list(ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_ENGPREP, ACCESS_MARINE_LEADER)
 	hud_possible = list(MACHINE_HEALTH_HUD, SENTRY_AMMO_HUD)
 	var/turret_flags = TURRET_HAS_CAMERA|TURRET_SAFETY|TURRET_ALERTS
-	/// The faction used to determine friendlies from hostiles
-	var/faction
+	/// The factions used to determine friendlies from hostiles
+	var/list/factions = list()
 	var/rounds = 500
 	var/rounds_max = 500
 	var/burst_size = 5
@@ -498,7 +498,7 @@
 				target = null
 				ENABLE_BITFIELD(turret_flags, TURRET_ON)
 				set_light(SENTRY_LIGHT_POWER)
-				faction = user.faction
+				factions = list(user.faction)
 				if(!camera && CHECK_BITFIELD(turret_flags, TURRET_HAS_CAMERA))
 					camera = new /obj/machinery/camera(src)
 					camera.network = list("military")
@@ -956,7 +956,7 @@
 	proj_to_fire.original_target = target
 	proj_to_fire.setDir(dir)
 	proj_to_fire.def_zone = pick("chest", "chest", "chest", "head")
-	proj_to_fire.factions = list(faction)
+	proj_to_fire.factions = factions
 
 	//Shoot at the thing
 	playsound(loc, 'sound/weapons/guns/fire/smg_heavy.ogg', 75, TRUE)
@@ -1012,16 +1012,10 @@
 			continue
 		if(CHECK_BITFIELD(turret_flags, TURRET_SAFETY) && !isxeno(M)) //When safeties are on, Xenos only.
 			continue
-		/*
-		I really, really need to replace this with some that isn't insane. You shouldn't have to fish for access like this.
-		This should be enough shortcircuiting, but it is possible for the code to go all over the possibilities and generally
-		slow down. It'll serve for now.
-		*/
+
 		var/mob/living/carbon/human/H = M
-		if(istype(H) && H.faction == faction)
+		if(istype(H) && factions.Find(H.faction))
 			continue
-
-
 
 		var/angle = get_dir(src, M)
 		if(angle & dir || CHECK_BITFIELD(turret_flags, TURRET_RADIAL))
@@ -1073,7 +1067,7 @@
 /obj/machinery/marine_turret/premade/dumb
 	name = "\improper Modified UA 571-C sentry gun"
 	desc = "A deployable, semi-automated turret with AI targeting capabilities. Armed with an M30 Autocannon and a 500-round drum magazine. This one's IFF system has been disabled, and it will open fire on any targets within range."
-	faction = FACTION_NEUTRAL
+	factions = list(FACTION_NEUTRAL)
 	ammo = /datum/ammo/bullet/turret/dumb
 	magazine_type = /obj/item/ammo_magazine/sentry/premade/dumb
 	rounds_max = 500
