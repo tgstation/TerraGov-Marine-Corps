@@ -482,7 +482,7 @@
 	if(!deployed || !ishuman(over_object) || over_object != usr)
 		return // You can't click drag this if its to someone else or we aren't deployed
 	var/mob/living/carbon/human/user = over_object
-	if(user.incapacitated() || !Adjacent(user) || !user.put_in_any_hands(src))
+	if(user.incapacitated() || !Adjacent(user) || !user.put_in_hands(src))
 		return // You are either: unconcious, not adjacent, or can't hold us
 	deployed = FALSE
 	update_icon()
