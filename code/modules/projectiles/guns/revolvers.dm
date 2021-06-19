@@ -37,7 +37,6 @@
 	. = ..()
 	replace_cylinder(current_mag.current_rounds)
 
-
 /obj/item/weapon/gun/revolver/examine_ammo_count(mob/user)
 	if(!current_mag)
 		return
@@ -136,7 +135,7 @@
 					replace_cylinder(current_mag.current_rounds)
 					playsound(user, reload_sound, 25, 1) // Reloading via speedloader.
 			else
-				to_chat(user, "<span class='warning'>That [magazine] doesn't fit!</span>")
+				to_chat(user, "<span class='warning'>\The [magazine] doesn't fit!</span>")
 		else
 			to_chat(user, "<span class='warning'>You can't load a speedloader when there's something in the cylinder!</span>")
 
@@ -375,6 +374,7 @@
 	max_shells = 6 //codex
 	current_mag = /obj/item/ammo_magazine/internal/revolver/m44
 	force = 8
+	w_class = WEIGHT_CLASS_BULKY //perhaps give snub-nose treatment later?
 	attachable_allowed = list(
 		/obj/item/attachable/bayonet,
 		/obj/item/attachable/reddot,
@@ -447,8 +447,6 @@
 	recoil = 0
 	recoil_unwielded = 0
 
-/obj/item/weapon/gun/revolver/small/unique_action(mob/user)
-	return revolver_trick(user)
 
 //-------------------------------------------------------
 //Mateba is pretty well known. The cylinder folds up instead of to the side. This has a non-marine version and a marine version.

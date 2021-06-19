@@ -11,33 +11,16 @@
 	max_w_class = 3
 	storage_slots = null
 	max_storage_space = 24
-	var/worn_accessible = FALSE //whether you can access its content while worn on the back
+	access_delay = 1.5 SECONDS
 
-/obj/item/storage/backpack/attack_hand(mob/living/user)
-	if(!worn_accessible && ishuman(user))
-		var/mob/living/carbon/human/H = user
-		if(H.back == src)
-/*			if(user.dropItemToGround(src))
-				pickup(user)
-				if(!user.put_in_active_hand(src))
-					dropped(user)
-*/
-			to_chat(H, "<span class='notice'>You can't look in [src] while it's on your back.</span>")
+/obj/item/storage/backpack/should_access_delay(obj/item/item, mob/user, taking_out)
+	if(!taking_out) // Always allow items to be tossed in instantly
+		return FALSE
+	if(ishuman(user))
+		var/mob/living/carbon/human/human_user = user
+		if(human_user.back == src)
 			return TRUE
-	return ..()
-
-
-/obj/item/storage/backpack/AltClick(mob/user)
-	if(!ishuman(user) || !length(contents) || isturf(loc))
-		return ..() //Return to fail and go back to base.
-	if(worn_accessible)
-		return ..() //Return to succeed and draw the item.
-	var/mob/living/carbon/human/human_user = user
-	if(human_user.back == src)
-		to_chat(human_user, "<span class='notice'>You can't look in [src] while it's on your back.</span>")
-		return
-	return ..()
-
+	return FALSE
 
 /obj/item/storage/backpack/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -45,27 +28,15 @@
 	if (use_sound)
 		playsound(loc, use_sound, 15, 1, 6)
 
-
 /obj/item/storage/backpack/equipped(mob/user, slot)
 	if(slot == SLOT_BACK)
 		mouse_opacity = 2 //so it's easier to click when properly equipped.
 		if(use_sound)
 			playsound(loc, use_sound, 15, 1, 6)
-		if(!worn_accessible && user.s_active == src) //currently looking into the backpack
-			close(user)
 	..()
 
 /obj/item/storage/backpack/dropped(mob/user)
 	mouse_opacity = initial(mouse_opacity)
-	..()
-
-
-/obj/item/storage/backpack/open(mob/user)
-	if(!worn_accessible && ishuman(user))
-		var/mob/living/carbon/human/H = user
-		if(H.back == src)
-			to_chat(H, "<span class='notice'>You can't access [src] while it's on your back.</span>")
-			return
 	..()
 
 /*
@@ -79,16 +50,17 @@
 	max_w_class = 4
 	max_storage_space = 28
 
-	proc/failcheck(mob/user as mob)
-		if (prob(src.reliability)) return 1 //No failure
-		if (prob(src.reliability))
-			to_chat(user, "<span class='warning'>The Bluespace portal resists your attempt to add another item.</span>")
-		else
-			to_chat(user, "<span class='warning'>The Bluespace generator malfunctions!</span>")
-			for (var/obj/O in src.contents) //it broke, delete what was in it
-				qdel(O)
-			crit_fail = 1
-			icon_state = "brokenpack"
+/obj/item/storage/backpack/holding/proc/failcheck(mob/user)
+	if (prob(reliability)) 
+		return TRUE //No failure
+	if (prob(reliability))
+		to_chat(user, "<span class='warning'>The Bluespace portal resists your attempt to add another item.</span>")
+	else
+		to_chat(user, "<span class='warning'>The Bluespace generator malfunctions!</span>")
+		for (var/obj/O in src.contents) //it broke, delete what was in it
+			qdel(O)
+		crit_fail = 1
+		icon_state = "brokenpack"
 
 /obj/item/storage/backpack/holding/attackby(obj/item/I, mob/user, params)
 	if(crit_fail)
@@ -174,9 +146,9 @@
 	name = "leather satchel"
 	desc = "It's a very fancy satchel made with fine leather."
 	icon_state = "satchel"
-	worn_accessible = TRUE
 	storage_slots = null
 	max_storage_space = 15
+	access_delay = 0
 
 /obj/item/storage/backpack/satchel/withwallet/Initialize(mapload, ...)
 	. = ..()
@@ -379,9 +351,9 @@
 	name = "\improper TGMC satchel"
 	desc = "A heavy-duty satchel carried by some TGMC soldiers and support personnel."
 	icon_state = "marinesat"
-	worn_accessible = TRUE
 	storage_slots = null
 	max_storage_space = 15
+	access_delay = 0
 
 /obj/item/storage/backpack/marine/satchel/green
 	name = "\improper TGMC satchel"
@@ -402,7 +374,7 @@
 	name = "\improper M3 sniper's smock"
 	desc = "A specially designed smock with pockets for all your sniper needs."
 	icon_state = "smock"
-	worn_accessible = TRUE
+	access_delay = 0
 
 //CLOAKS
 
@@ -700,7 +672,7 @@
 	var/max_fuel = 260
 	storage_slots = null
 	max_storage_space = 15
-	worn_accessible = TRUE
+	access_delay = 0
 
 /obj/item/storage/backpack/marine/engineerpack/Initialize(mapload, ...)
 	. = ..()
@@ -774,7 +746,7 @@
 	name = "\improper lightweight combat pack"
 	desc = "A small lightweight pack for expeditions and short-range operations."
 	icon_state = "ERT_satchel"
-	worn_accessible = TRUE
+	access_delay = 0
 
 /obj/item/storage/backpack/commando
 	name = "commando bag"

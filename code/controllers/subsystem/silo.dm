@@ -3,8 +3,6 @@ SUBSYSTEM_DEF(silo)
 	wait = 1 MINUTES
 	can_fire = FALSE
 	init_order = INIT_ORDER_SPAWNING_POOL
-	///A boost in larva spawn rate, changed when hijacking
-	var/larva_rate_boost = 1
 	///How many larva points are added every minutes in total
 	var/current_larva_spawn_rate = 0
 
@@ -14,10 +12,14 @@ SUBSYSTEM_DEF(silo)
 
 /datum/controller/subsystem/silo/fire(resumed = 0)
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
-	current_larva_spawn_rate = 0
-	for(var/obj/structure/xeno/resin/silo/silo AS in GLOB.xeno_resin_silos)
-		current_larva_spawn_rate += silo.larva_spawn_rate
-	current_larva_spawn_rate *= larva_rate_boost
+	//The larval spawn is based on the amount of silo, ponderated with a define. Larval follow a f(x) = (x + a)/(1 + a) * something law, which is smoother that f(x) = x * something
+	current_larva_spawn_rate = length(GLOB.xeno_resin_silos) ? SILO_OUTPUT_PONDERATION + length(GLOB.xeno_resin_silos) : 0
+	//We then are normalising with the number of alive marines, so the balance is roughly the same whether or not we are in high pop
+	current_larva_spawn_rate *= SILO_BASE_OUTPUT_PER_MARINE * length(GLOB.humans_by_zlevel[SSmonitor.gamestate == SHIPSIDE ? "3" : "2"])
+	//We normalize the larval output for one silo, so the value for silo = 1 is independant of SILO_OUTPUT_PONDERATION
+	current_larva_spawn_rate /=  (1 + SILO_OUTPUT_PONDERATION)
+	//We are processing wether we hijacked or not (hijacking gives a bonus)
+	current_larva_spawn_rate *= SSmonitor.gamestate == SHIPSIDE ? 3 : 1
 	xeno_job.add_job_points(current_larva_spawn_rate, SILO_ORIGIN)
 
 ///Activate the subsystem when shutters open and remove the free spawning when marines are joining

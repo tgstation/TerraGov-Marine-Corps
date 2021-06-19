@@ -211,7 +211,7 @@
 	appearance_flags = TILE_BOUND|PIXEL_SCALE|KEEP_TOGETHER
 	see_infrared = TRUE
 	hud_type = /datum/hud/alien
-	hud_possible = list(HEALTH_HUD_XENO, PLASMA_HUD, PHEROMONE_HUD, QUEEN_OVERWATCH_HUD, ARMOR_SUNDER_HUD, XENO_TACTICAL_HUD)
+	hud_possible = list(HEALTH_HUD_XENO, PLASMA_HUD, PHEROMONE_HUD, QUEEN_OVERWATCH_HUD, ARMOR_SUNDER_HUD)
 	buckle_flags = NONE
 	faction = FACTION_XENO
 	initial_language_holder = /datum/language_holder/xeno
@@ -315,8 +315,8 @@
 	var/savage_used = FALSE
 
 	// *** Ravager vars *** //
-	var/ignore_pain = FALSE // when true the rav will not go into crit or take crit damage.
-	var/ignore_pain_state = 0 // how far "dead" the rav has got while ignoring pain.
+	/// when true the rav will not go into crit or take crit damage.
+	var/endure = FALSE
 
 	// *** Carrier vars *** //
 	var/selected_hugger_type = /obj/item/clothing/mask/facehugger

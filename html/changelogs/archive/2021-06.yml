@@ -23,3 +23,140 @@
   - bugfix: binoculars now can laser target properly.
   TiviPlus:
   - admin: Adds logging to shipside doors
+2021-06-04:
+  BraveMole:
+  - balance: Miners now take time to disable
+  ZephyrTFA:
+  - refactor: Massive Define Refactoring
+2021-06-05:
+  Wayland-Smithy:
+  - qol: Latejoin Xeno Prefs default to OFF now. Far less unwitting ghosts should
+      be getting shoved into SSD xenos.
+2021-06-06:
+  Wayland-Smithy:
+  - bugfix: Say verb get_key() no longer runtimes.
+  - admin: Game logs now save the location of mob ghostings.
+2021-06-07:
+  BraveMole:
+  - rscadd: Marine meds are now a tabbed share vendor
+  - rscadd: Fire mode keybind
+  DeltaFire15:
+  - bugfix: Harvester Blades no longer runtime if clicked with things that aren't
+      reagent containers.
+2021-06-08:
+  BraveMole:
+  - bugfix: Fix bioscans
+  Walarks:
+  - balance: remove famas from seasonals
+  Wayland-Smithy:
+  - bugfix: Fixed Crusher Stomp damage delay.
+  - qol: Crusher Crest Toss now works on big allies with a penalty like Warrior Fling.
+  - balance: Crusher Stomp briefly knocks down anyone adjacent to crusher for a half
+      second. Victims directly under foot stun increased by one second.
+  - balance: Crusher Crest Toss increases distance with age from 3 to 6 (still less
+      than half max powerfist), and has less cooldown.
+  - balance: Crest Toss and Stomp no longer deal stamina damage, only brute.
+2021-06-09:
+  BraveMole:
+  - bugfix: Corpses spawned in silo in hunt cannot be siloed again
+2021-06-10:
+  Pariah919:
+  - rscadd: Added new camo uniforms in marine clothing vendors
+2021-06-11:
+  Pariah919:
+  - rscadd: Added new berets with dark green, blood red and dark blue
+  ZephyrTFA:
+  - bugfix: Cloning Vats use less power if not running
+2021-06-13:
+  BraveMole:
+  - qol: You can see how many burrowed there are from lobby
+  MLGTASTICa:
+  - bugfix: Ravager charge now applies its damage bonus properly.
+  - bugfix: Fixed resin jelly allowing for xenos to be set on fire.
+  Pariah919:
+  - balance: shields no longer have hard melee armor and slow you down a bit more
+  SplinterGP:
+  - code_imp: Input system won't request in-place movements constantly anymore.
+  - balance: shields now break instead of being deletted.
+  Wayland-Smithy:
+  - bugfix: Fixed the orbital level change arrival message never being announced.
+  - balance: Shield now stops the bomb vest from exploding when equipped and up to
+      5 seconds after drop.
+  - bugfix: Fixed Tadpole getting stuck in the air with a slashed console.
+  - bugfix: AI can now recover from a camera blackout if it was looking at an escape
+      shuttle, or anything else causes deletion.
+  - rscadd: Added Runechat text to Imaginary Friends for them and their owners to
+      see.
+  - rscadd: Added a Xeno Suit cosmetic for Imaginary Friends.
+  - rscadd: Added Darkness, Change Appearance, and HUD toggle verbs to Imaginary Friends.
+  - qol: Imaginary Friends now continue to hear ghosts and other IFs while active.
+  - bugfix: Fixed the Show/Hide ability button requiring two toggles to work the first
+      time for Imaginary Friends.
+  - bugfix: Fixed Imaginary Friends possibly being naked spatial agents and blocking
+      clicks.
+  - admin: Shipside airlock attacks now log to admin chat also.
+  - balance: Plasma pistol no longer accepts scope attachments.
+  - balance: Plasma pistol now has 7 range, not 40.
+  - balance: Snub-nosed TP-44 Revolvers no longer apply stagger or knockback to targets.
+      Moves shake to Mateba which it did not have before.
+  ZephyrTFA:
+  - server: Fixes the CI Linters
+2021-06-14:
+  SplinterGP:
+  - bugfix: shields won't go invisible anymore.
+2021-06-15:
+  BraveMole:
+  - rscadd: Antenna helmet module can be used to create temporary supply beacon
+  - bugfix: supply drop console works again
+  Wayland-Smithy:
+  - balance: TL-127, Mosin, and SVD sniper rifles no longer have aim-mode.
+  - bugfix: Fixed the tgui changelog dates being inaccurate to the source files.
+2021-06-16:
+  Terra1:
+  - balance: Colony floodlight switches can no longer be destroyed by xenomorphs.
+2021-06-17:
+  BraveMole:
+  - bugfix: Nightfall now applies on all electrical lights like it should
+  - bugfix: You can give plasma as a queen to king
+  Pariah919:
+  - balance: makes eviscerating charge cost 100 less plasma
+  - admin: delete maid
+  SpaceLove:
+  - rscdel: Removed Maid outfit spawn command.
+  - admin: Removes Admin ability to spawn maid loadout.
+  Wayland-Smithy:
+  - bugfix: Fixed a problem with vendors refusing to vend items containing symbols
+      in their name.
+2021-06-18:
+  BraveMole:
+  - balance: Update pain hud (what xeno see on humans) to be more reliable. Pain and
+      stamina have way less impact on it.
+  - qol: Give engineers req channel
+  - balance: Rework silo generation
+  - rscdel: remove small silos
+  - balance: psy drain gives 60 points and 1/8th of a larva, cocoon give 120 points
+      and at the end of its lifetime (5minutes), 1/6th of a larva. Generators are
+      making more psy points, but it's linked with the number of alive alive marines
+      ground side
+  - balance: Turrets are now 100 points, silo are now 800, king is now 1800. This
+      is to account for xeno having way less psy points in general (marine spawning
+      no longer give 80 points)
+  Pariah919:
+  - rscadd: Added new earpiece sprte by kuro
+  - rscdel: Removed old earpiece sprite
+  Wayland-Smithy:
+  - bugfix: Fixed King caste_flags, so it can now be healed by and become a leader
+      for the Queen.
+  - balance: S&W .357 Revolver ricochet rounds no longer stagger or knockback.
+  - balance: M-44 SAA Revolver is now bulky like an extended barrel TP-44.
+  - balance: M-44 SAA Revolver now does 5 more damage.
+  - refactor: Refactored some revolver ammo code for less signal headaches later.
+  - bugfix: Fixed handfuls of loose .44 ammo breaking speed loaders.
+  - bugfix: Fixed the .357 seasonal item ref and speed loader ammo type.
+  - spellcheck: Removed an extra "That" from revolver ammo rejection notices.
+  - bugfix: Fixed send to lobby breaking the ghost orbit panel.
+  - code_imp: Update the max recommended byond  client version.
+  ZephyrTFA:
+  - code_imp: Helper procs for handling delays of manipulating storage objects and
+      their contents
+  - qol: Backpacks can be accessed while you are wearing them but it takes time

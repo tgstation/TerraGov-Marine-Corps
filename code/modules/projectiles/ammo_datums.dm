@@ -91,6 +91,11 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 		if(xeno_victim.fortify) //If we're fortified we don't give a shit about staggerstun.
 			impact_message += "<span class='xenodanger'>Your fortified stance braces you against the impact.</span>"
 			return
+
+		if(xeno_victim.endure) //Endure allows us to ignore staggerstun.
+			impact_message += "<span class='xenodanger'>You endure the impact from [proj], shrugging off its effects.</span>"
+			return
+
 		if(xeno_victim.crest_defense) //Crest defense halves all effects, and protects us from the stun.
 			impact_message += "<span class='xenodanger'>Your crest protects you against some of the impact.</span>"
 			slowdown *= 0.5
@@ -327,17 +332,30 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	hud_state = "revolver"
 	hud_state_empty = "revolver_empty"
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
-	damage = 40
+	damage = 45
 	penetration = 10
 	sundering = 3
 
 /datum/ammo/bullet/revolver/on_hit_mob(mob/M,obj/projectile/P)
-	staggerstun(M, P, stagger = 1, slowdown = 0.5, knockback = 1, shake = 0.5)
+	staggerstun(M, P, stagger = 1, slowdown = 0.5, knockback = 1)
+
+datum/ammo/bullet/revolver/tp44
+	name = "standard revolver bullet"
+	damage = 40
+
+/datum/ammo/bullet/revolver/tp44/on_hit_mob(mob/M,obj/projectile/P)
+	if(SEND_SIGNAL(P.shot_from, COMSIG_REVOLVER_AMMO_HIT_MOB) & COMSIG_REVOLVER_AMMO_SNUBNOSE_BARREL)
+		staggerstun(M, P, stagger = 1, slowdown = 0.5, knockback = 1)
+	else
+		staggerstun(M, P, slowdown = 0.5)
 
 /datum/ammo/bullet/revolver/small
 	name = "small revolver bullet"
 	hud_state = "revolver_small"
 	damage = 30
+
+/datum/ammo/bullet/revolver/small/on_hit_mob(mob/M,obj/projectile/P)
+	staggerstun(M, P, slowdown = 0.5)
 
 /datum/ammo/bullet/revolver/marksman
 	name = "slimline revolver bullet"
@@ -357,9 +375,6 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	penetration = 5
 	accuracy = -15
 
-/datum/ammo/bullet/revolver/heavy/on_hit_mob(mob/M,obj/projectile/P)
-	staggerstun(M, P, stagger = 1, slowdown = 0.5, knockback = 1)
-
 /datum/ammo/bullet/revolver/highimpact
 	name = "high-impact revolver bullet"
 	hud_state = "revolver_impact"
@@ -369,7 +384,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	sundering = 3
 
 /datum/ammo/bullet/revolver/highimpact/on_hit_mob(mob/M,obj/projectile/P)
-	staggerstun(M, P, weaken = 1, stagger = 1, slowdown = 1, knockback = 1)
+	staggerstun(M, P, weaken = 1, stagger = 1, slowdown = 1, knockback = 1, shake = 0.5)
 
 
 /datum/ammo/bullet/revolver/ricochet
@@ -386,6 +401,9 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/bullet/revolver/ricochet/four
 	bonus_projectiles_type = /datum/ammo/bullet/revolver/ricochet/three
+
+/datum/ammo/bullet/revolver/ricochet/on_hit_mob(mob/M,obj/projectile/P)
+	staggerstun(M, P, slowdown = 0.5)
 
 /datum/ammo/bullet/revolver/ricochet/on_hit_turf(turf/T, obj/projectile/proj)
 	. = ..()
@@ -1504,7 +1522,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	icon_state = "overchargedlaser"
 	hud_state = "laser_sniper"
 	damage = 40
-	max_range = 40
+	max_range = 7
 	penetration = 5
 	shell_speed = 1.5
 	flags_ammo_behavior = AMMO_ENERGY|AMMO_INCENDIARY|AMMO_EXPLOSIVE

@@ -39,6 +39,7 @@
 #define JOB_FLAG_HIDE_CURRENT_POSITIONS (1<<11) //You can't see how many people have joined as on the latejoin menu.
 #define JOB_FLAG_CAN_SEE_ORDERS (1<<12) //Able to see rally and CIC orders
 #define JOB_FLAG_ALWAYS_VISIBLE_ON_MINIMAP (1<<13) //Will appear on all minimaps, including squad minimaps
+#define JOB_FLAG_SHOW_OPEN_POSITIONS (1<<14) //You can only see how many positions are opened, and not how many positions are fullfilled
 
 #define CAPTAIN "Captain"
 #define EXECUTIVE_OFFICER "Executive Officer" //Currently disabled.
@@ -119,8 +120,8 @@ MEDICAL_OFFICER, MEDICAL_RESEARCHER, SQUAD_LEADER, SQUAD_SPECIALIST, SQUAD_SMART
 
 // how much a job is going to contribute towards burrowed larva. see config for points required to larva. old balance was 1 larva per 3 humans.
 #define LARVA_POINTS_SHIPSIDE 1
-#define LARVA_POINTS_SHIPSIDE_STRONG 1.5
-#define LARVA_POINTS_REGULAR 2.5
+#define LARVA_POINTS_SHIPSIDE_STRONG 2
+#define LARVA_POINTS_REGULAR 3
 #define LARVA_POINTS_STRONG 6
 
 #define SURVIVOR_POINTS_REGULAR 1
@@ -135,6 +136,7 @@ MEDICAL_OFFICER, MEDICAL_RESEARCHER, SQUAD_LEADER, SQUAD_SPECIALIST, SQUAD_SMART
 
 #define MARINE_SPAWN_ORIGIN "xenos from marine spawn"
 #define PSY_DRAIN_ORIGIN "xenos from psy drained bodies"
+#define COCOON_ORIGIN "xenos from cocoon that reached its endlife"
 #define SILO_ORIGIN "xenos from silo generation"
 
 #define SQUAD_MAX_POSITIONS(total_positions) CEILING(total_positions / length(SSjob.active_squads), 1)
