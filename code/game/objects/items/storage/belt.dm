@@ -435,8 +435,7 @@
 /obj/item/storage/belt/shotgun/martini/attack_hand(mob/living/user)
 	if (loc != user)
 		. = ..()
-		for(var/mob/mob in content_watchers)
-			close(mob)
+		close_watchers()
 
 	if(!(flags_storage & STORAGE_FLAG_DRAWMODE_TOGGLED) || !ishuman(user) && !contents.len)
 		open(user)
