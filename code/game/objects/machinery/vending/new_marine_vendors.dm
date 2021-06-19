@@ -867,21 +867,17 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 
 /obj/effect/essentials_set/basic_engineer
 	spawned_gear_list = list(
-		/obj/item/clothing/glasses/welding,
 		/obj/item/clothing/under/marine/engineer,
 		/obj/item/clothing/shoes/marine/full,
 		/obj/item/storage/box/MRE,
-		/obj/item/clothing/gloves/marine/insulated,
 	)
 
 /obj/effect/essentials_set/basic_engineermodular
 	spawned_gear_list = list(
 		/obj/item/clothing/under/marine/jaeger,
 		/obj/item/clothing/suit/modular,
-		/obj/item/clothing/glasses/welding,
 		/obj/item/clothing/shoes/marine/full,
 		/obj/item/storage/box/MRE,
-		/obj/item/clothing/gloves/marine/insulated,
 		/obj/item/facepaint/green,
 	)
 
@@ -911,6 +907,8 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 	spawned_gear_list = list(
 		/obj/item/explosive/plastique,
 		/obj/item/explosive/grenade/chem_grenade/razorburn_smol,
+		/obj/item/clothing/glasses/welding,
+		/obj/item/clothing/gloves/marine/insulated,
 		/obj/item/stack/sandbags_empty = 50,
 		/obj/item/stack/sheet/metal/large_stack,
 		/obj/item/stack/sheet/plasteel/medium_stack,
