@@ -179,4 +179,4 @@ SUBSYSTEM_DEF(monitor)
 	for(var/xeno_caste_typepath in GLOB.xeno_caste_datums)
 		for(var/upgrade in GLOB.xeno_caste_datums[xeno_caste_typepath])
 			var/datum/xeno_caste/caste = GLOB.xeno_caste_datums[xeno_caste_typepath][upgrade]
-			caste.apply_xeno_buff_to_caste_damage()
+			caste.melee_damage = initial(caste.melee_damage) * GLOB.xeno_stat_multiplicator_buff
