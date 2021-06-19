@@ -131,7 +131,7 @@
 /obj/item/storage/proc/show_to(mob/user)
 	if(user.s_active != src)
 		for(var/obj/item/content in contents)
-			if(item.on_found(user))
+			if(content.on_found(user))
 				return
 	if(user.s_active)
 		user.s_active.hide_from(user)
@@ -565,7 +565,7 @@
 	flags_storage ^= STORAGE_FLAG_COLLECTION_TOGGLED
 	if(flags_storage & STORAGE_FLAG_COLLECTION_TOGGLED)
 		to_chat(usr, "[src] now picks up all items in a tile at once.")
-	else 
+	else
 		to_chat(usr, "[src] now picks up one item at a time.")
 
 /obj/item/storage/verb/toggle_draw_mode()
@@ -577,7 +577,7 @@
 	if(flags_storage & STORAGE_FLAG_DRAWMODE_TOGGLED)
 		to_chat(usr, "Clicking [src] with an empty hand now puts the last stored item in your hand.")
 		return
-	
+
 	to_chat(usr, "Clicking [src] with an empty hand now opens the pouch storage menu.")
 
 ///Quickly removes everything from this storage onto our current turf
