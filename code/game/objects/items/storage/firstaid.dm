@@ -394,29 +394,29 @@
 ///Checks to see if the user has access to our contents
 /obj/item/storage/pill_bottle/restricted/proc/scan(mob/living/scanned)
 
-	if(living.status_flags & GODMODE) //Let it be
+	if(scanned.status_flags & GODMODE) //Let it be
 		return TRUE
 
-	if(!allowed(living))
-		to_chat(living, "<span class='notice'>It seems to have some kind of ID lock...</span>")
+	if(!allowed(scanned))
+		to_chat(scanned, "<span class='notice'>It seems to have some kind of ID lock...</span>")
 		return FALSE
 
 	if(req_id_role || scan_name)
-		var/obj/item/card/id/idcard = living.get_idcard()
+		var/obj/item/card/id/idcard = scanned.get_idcard()
 		if(!idcard)
-			to_chat(living, "<span class='notice'>It seems to have some kind of ID lock...</span>")
+			to_chat(scanned, "<span class='notice'>It seems to have some kind of ID lock...</span>")
 			return FALSE
 
-		if(scan_name && (idcard.registered_name != living.real_name))
-			to_chat(living, "<span class='warning'>it seems to have some kind of ID lock...</span>")
+		if(scan_name && (idcard.registered_name != scanned.real_name))
+			to_chat(scanned, "<span class='warning'>it seems to have some kind of ID lock...</span>")
 			return FALSE
 
 		if(req_id_role && (idcard.rank != req_id_role))
-			to_chat(living, "<span class='notice'>It must have some kind of ID lock...</span>")
+			to_chat(scanned, "<span class='notice'>It must have some kind of ID lock...</span>")
 			return FALSE
 
-	if(req_role && (!living.job || living.job.title != req_role))
-		to_chat(living, "<span class='notice'>It must have some kind of special lock...</span>")
+	if(req_role && (!scanned.job || scanned.job.title != req_role))
+		to_chat(scanned, "<span class='notice'>It must have some kind of special lock...</span>")
 		return FALSE
 
 	return TRUE
