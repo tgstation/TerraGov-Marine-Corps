@@ -12,7 +12,7 @@
 /turf/open/ground/fire_act(exposed_temperature, exposed_volume)
 	return
 
-/turf/open/ground/attackby() //This should fix everything else. No cables, etc
+/turf/open/ground/attackby(obj/item/attackedby, mob/user, params) //This should fix everything else. No cables, etc
 	return
 
 /turf/open/ground/grass/beach

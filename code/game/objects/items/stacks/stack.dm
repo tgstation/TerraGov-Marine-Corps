@@ -334,7 +334,7 @@
 	user.put_in_hands(S)
 
 
-/obj/item/stack/attackby(obj/item/attackedby, mob/user)
+/obj/item/stack/attackby(obj/item/attackedby, mob/user, params)
 	if(istype(attackedby, merge_type))
 		var/obj/item/stack/S = attackedby
 		if(merge(S))

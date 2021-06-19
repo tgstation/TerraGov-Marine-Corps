@@ -72,7 +72,7 @@
 	. = ..()
 	toggle_item_bump_attack(user, FALSE)
 
-/obj/item/weapon/claymore/harvester/attackby(obj/item/attackedby, mob/user)
+/obj/item/weapon/claymore/harvester/attackby(obj/item/attackedby, mob/user, params)
 	if(user.do_actions)
 		return TRUE
 
@@ -267,7 +267,7 @@
 	attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 
 
-/obj/item/weapon/combat_knife/attackby(obj/item/attackedby, mob/user)
+/obj/item/weapon/combat_knife/attackby(obj/item/attackedby, mob/user, params)
 	if(!istype(attackedby,/obj/item/stack/cable_coil))
 		return ..()
 	var/obj/item/stack/cable_coil/CC = attackedby

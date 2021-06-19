@@ -54,11 +54,11 @@ Currently only has the tank hardpoints
 				status = "intact"
 	to_chat(user, "[span_class]It's [status].</span>")
 
-/obj/item/hardpoint/attackby(obj/item/W, mob/user)
-	if(istype(W, /obj/item/ammo_magazine/tank))
-		try_add_clip(W, user)
+/obj/item/hardpoint/attackby(obj/item/attackedby, mob/user, params)
+	if(istype(attackedby, /obj/item/ammo_magazine/tank))
+		try_add_clip(attackedby, user)
 		return
-	if(!iswelder(W) && !iswrench(W))
+	if(!iswelder(attackedby) && !iswrench(attackedby))
 		return ..()
 	if(obj_integrity >= max_integrity)
 		to_chat(user, "<span class='notice'>[src] is already in perfect conditions.</span>")
@@ -76,8 +76,8 @@ Currently only has the tank hardpoints
 			repair_delays = 2
 		if(HDPT_ARMOR)
 			repair_delays = 10
-	var/obj/item/tool/weldingtool/WT = iswelder(W) ? W : null
-	if(!istype(W, repair_tool))
+	var/obj/item/tool/weldingtool/WT = iswelder(attackedby) ? attackedby : null
+	if(!istype(attackedby, repair_tool))
 		to_chat(user, "<span class='warning'>That's the wrong tool. Use a [WT ? "wrench" : "welder"].</span>")
 		return
 	if(WT && !WT.isOn())

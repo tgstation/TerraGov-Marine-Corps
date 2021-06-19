@@ -202,12 +202,12 @@
 	return ..()
 
 
-/mob/living/simple_animal/chicken/attackby(obj/item/O, mob/user, params)
-	if(istype(O, food_type)) //feedin' dem chickens
+/mob/living/simple_animal/chicken/attackby(obj/item/attackedby, mob/user, params)
+	if(istype(attackedby, food_type)) //feedin' dem chickens
 		if(!stat && eggsleft < 8)
-			var/feedmsg = "[user] feeds [O] to [name]! [pick(feedMessages)]"
+			var/feedmsg = "[user] feeds [attackedby] to [name]! [pick(feedMessages)]"
 			user.visible_message(feedmsg)
-			qdel(O)
+			qdel(attackedby)
 			eggsleft += rand(1, 4)
 		else
 			to_chat(user, "<span class='warning'>[name] doesn't seem hungry!</span>")

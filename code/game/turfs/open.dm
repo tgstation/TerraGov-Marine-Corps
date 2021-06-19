@@ -350,10 +350,10 @@
 					L.IgniteMob()
 				. = 1
 
-/turf/open/lavaland/lava/attackby(obj/item/C, mob/user, params)
+/turf/open/lavaland/lava/attackby(obj/item/attackedby, mob/user, params)
 	..()
-	if(istype(C, /obj/item/stack/rods))
-		var/obj/item/stack/rods/R = C
+	if(istype(attackedby, /obj/item/stack/rods))
+		var/obj/item/stack/rods/R = attackedby
 		var/turf/open/lavaland/catwalk/H = locate(/turf/open/lavaland/catwalk, src)
 		if(H)
 			to_chat(user, "<span class='warning'>There is already a catwalk here!</span>")

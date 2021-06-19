@@ -128,7 +128,7 @@
 	return TRUE
 
 
-/mob/living/attackby(obj/item/attackedby, mob/living/user, params)
+/mob/living/attackby(obj/item/attackedby, mob/user, params)
 	. = ..()
 	if(.)
 		return TRUE

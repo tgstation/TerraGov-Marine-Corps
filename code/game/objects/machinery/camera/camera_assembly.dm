@@ -89,7 +89,7 @@
 			pixel_x = 16
 
 
-/obj/structure/camera_assembly/attackby(obj/item/attackedby, mob/living/user, params)
+/obj/structure/camera_assembly/attackby(obj/item/attackedby, mob/user, params)
 	. = ..()
 
 	switch(state)

@@ -18,7 +18,7 @@
 /obj/machinery/floodlight/attack_hand(mob/living/user)
 	return
 
-/obj/machinery/floodlight/attackby()
+/obj/machinery/floodlight/attackby(obj/item/attackedby, mob/user, params)
 	return
 
 /obj/machinery/floodlight/turn_light(mob/user, toggle_on)

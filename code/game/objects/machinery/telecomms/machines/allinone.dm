@@ -29,6 +29,6 @@
 	signal.broadcast()
 
 
-/obj/machinery/telecomms/allinone/attackby(obj/item/P, mob/user, params)
-	if(ismultitool(P))
+/obj/machinery/telecomms/allinone/attackby(obj/item/attackedby, mob/user, params)
+	if(ismultitool(attackedby))
 		return attack_hand(user)

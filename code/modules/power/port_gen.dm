@@ -181,9 +181,9 @@
 /obj/machinery/power/port_gen/pacman/proc/overheat()
 	explosion(loc, 3, 6, small_animation = TRUE)
 
-/obj/machinery/power/port_gen/pacman/attackby(obj/item/O, mob/user, params)
-	if(istype(O, sheet_path))
-		var/obj/item/stack/addstack = O
+/obj/machinery/power/port_gen/pacman/attackby(obj/item/attackedby, mob/user, params)
+	if(istype(attackedby, sheet_path))
+		var/obj/item/stack/addstack = attackedby
 		var/amount = min((max_sheets - sheets), addstack.amount)
 		if(amount < 1)
 			to_chat(user, "<span class='notice'>The [src.name] is full!</span>")
@@ -193,7 +193,7 @@
 		addstack.use(amount)
 		return
 	else if(!active)
-		if(O.tool_behaviour == TOOL_WRENCH)
+		if(attackedby.tool_behaviour == TOOL_WRENCH)
 			if(!anchored)
 				anchored = TRUE
 				connect_to_network()
@@ -205,9 +205,9 @@
 
 			playsound(src, 'sound/items/deconstruct.ogg', 50, TRUE)
 			return
-		else if(O.tool_behaviour == TOOL_SCREWDRIVER)
+		else if(attackedby.tool_behaviour == TOOL_SCREWDRIVER)
 			TOGGLE_BITFIELD(machine_stat, PANEL_OPEN)
-			O.play_tool_sound(src)
+			attackedby.play_tool_sound(src)
 			if(machine_stat & PANEL_OPEN)
 				to_chat(user, "<span class='notice'>You open the access panel.</span>")
 			else

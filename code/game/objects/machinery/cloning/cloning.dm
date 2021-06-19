@@ -163,25 +163,25 @@ These act as a respawn mechanic growning a body and offering it up to ghosts.
 	return TRUE
 
 
-/obj/machinery/cloning/vats/attackby(obj/item/hit_by, mob/living/user, params)
+/obj/machinery/cloning/vats/attackby(obj/item/attackedby, mob/user, params)
 	. = ..()
 	if(.)
 		return
 
-	if(istype(hit_by, /obj/item/reagent_containers/glass/beaker))
+	if(istype(attackedby, /obj/item/reagent_containers/glass/beaker))
 		if(beaker)
 			to_chat(user, "<span class='warning'>A beaker is already loaded into the machine.</span>")
 			return
 
 		// Check if the beaker contains anything other than biomass juice
-		for(var/instance in hit_by.reagents.reagent_list)
+		for(var/instance in attackedby.reagents.reagent_list)
 			var/datum/reagent/regent = instance
 			if(!istype(regent, /datum/reagent/medicine/biomass) && !istype(regent, /datum/reagent/medicine/biomass/xeno))
 				to_chat(user, "<span class='warning'>\The [src] rejects the beaker due to incompatible contents.</span>")
 				return
 
-		beaker = hit_by
-		if(!user.transferItemToLoc(hit_by, src))
+		beaker = attackedby
+		if(!user.transferItemToLoc(attackedby, src))
 			return
 
 		update_icon()

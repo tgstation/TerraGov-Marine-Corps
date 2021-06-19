@@ -141,18 +141,18 @@
 	popup.open(TRUE)
 
 
-/obj/machinery/tank_part_fabricator/attackby(obj/item/W, mob/user)
-	if((istype(W, /obj/item/hardpoint) || istype(W, /obj/item/ammo_magazine/tank)) && user.a_intent != INTENT_HARM)
+/obj/machinery/tank_part_fabricator/attackby(obj/item/attackedby, mob/user, params)
+	if((istype(attackedby, /obj/item/hardpoint) || istype(attackedby, /obj/item/ammo_magazine/tank)) && user.a_intent != INTENT_HARM)
 		if(machine_stat & (NOPOWER|BROKEN))
 			return
 		if(busy)
 			to_chat(usr, "<span class='warning'>[src] is busy. Please wait for completion of previous operation.</span>")
-		else if(user.transferItemToLoc(W, src))
-			user.visible_message("<span class='notice'>[user] loads [W] into [src]'s maintenance slot.</span>", "<span class='notice'>You load [W] into [src]'s maintenance slot.</span>", null, 4)
-			loaded_mod = W
+		else if(user.transferItemToLoc(attackedby, src))
+			user.visible_message("<span class='notice'>[user] loads [attackedby] into [src]'s maintenance slot.</span>", "<span class='notice'>You load [attackedby] into [src]'s maintenance slot.</span>", null, 4)
+			loaded_mod = attackedby
 		else
-			to_chat(user, "<span class='warning'>[W] appears to be stuck to your hands.</span>")
-	else if(iscrowbar(W) && machine_stat & (NOPOWER|BROKEN) && !QDELETED(loaded_mod))
+			to_chat(user, "<span class='warning'>[attackedby] appears to be stuck to your hands.</span>")
+	else if(iscrowbar(attackedby) && machine_stat & (NOPOWER|BROKEN) && !QDELETED(loaded_mod))
 		user.visible_message("<span class='warning'>[user] starts to pry [src]'s maintenance slot open.</span>", "<span class='notice'>You start to pry [loaded_mod] out of [src]'s maintenance slot...</span>")
 		if(!do_after(user, 40, TRUE, src, BUSY_ICON_GENERIC) || QDELETED(loaded_mod))
 			return

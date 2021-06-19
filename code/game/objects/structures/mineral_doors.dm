@@ -94,26 +94,26 @@
 	else
 		icon_state = mineralType
 
-/obj/structure/mineral_door/attackby(obj/item/W, mob/living/user)
+/obj/structure/mineral_door/attackby(obj/item/attackedby, mob/user, params)
 	var/is_resin = istype(src, /obj/structure/mineral_door/resin)
-	if(!(W.flags_item & NOBLUDGEON) && W.force)
-		user.changeNext_move(W.attack_speed)
+	if(!(attackedby.flags_item & NOBLUDGEON) && attackedby.force)
+		user.changeNext_move(attackedby.attack_speed)
 		var/multiplier = 1
 		var/obj/item/tool/pickaxe/plasmacutter/P
-		if(istype(W, /obj/item/tool/pickaxe/plasmacutter) && !user.do_actions)
-			P = W
+		if(istype(attackedby, /obj/item/tool/pickaxe/plasmacutter) && !user.do_actions)
+			P = attackedby
 			if(P.start_cut(user, src.name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD))
 				if(is_resin)
 					multiplier += PLASMACUTTER_RESIN_MULTIPLIER //Plasma cutters are particularly good at destroying resin structures.
 				else
 					multiplier += PLASMACUTTER_RESIN_MULTIPLIER * 0.5 //Plasma cutters are particularly good at destroying resin structures.
 				P.cut_apart(user, src.name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD) //Minimal energy cost.
-		if(W.damtype == "fire" && is_resin) //Burn damage deals extra vs resin structures (mostly welders).
+		if(attackedby.damtype == "fire" && is_resin) //Burn damage deals extra vs resin structures (mostly welders).
 			multiplier += 1
-		user.do_attack_animation(src, used_item = W)
-		hardness -= W.force * multiplier * 0.01
+		user.do_attack_animation(src, used_item = attackedby)
+		hardness -= attackedby.force * multiplier * 0.01
 		if(!P)
-			to_chat(user, "You hit the [name] with your [W.name]!")
+			to_chat(user, "You hit the [name] with your [attackedby.name]!")
 		CheckHardness()
 		return
 	attack_hand(user)
@@ -187,9 +187,9 @@
 /obj/structure/mineral_door/transparent/phoron
 	mineralType = "phoron"
 
-/obj/structure/mineral_door/transparent/phoron/attackby(obj/item/W as obj, mob/user as mob)
-	if(istype(W,/obj/item/tool/weldingtool))
-		var/obj/item/tool/weldingtool/WT = W
+/obj/structure/mineral_door/transparent/phoron/attackby(obj/item/attackedby, mob/user, params)
+	if(istype(attackedby,/obj/item/tool/weldingtool))
+		var/obj/item/tool/weldingtool/WT = attackedby
 		if(WT.remove_fuel(0, user))
 			TemperatureAct(100)
 	..()

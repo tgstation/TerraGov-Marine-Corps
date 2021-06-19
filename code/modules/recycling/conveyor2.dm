@@ -187,7 +187,7 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 	to_chat(user, "<span class='notice'>You reverse [src]'s direction.</span>")
 	return TRUE
 
-/obj/machinery/conveyor/attackby(obj/item/attackedby, mob/living/user, def_zone)
+/obj/machinery/conveyor/attackby(obj/item/attackedby, mob/user, params)
 	. = ..()
 	if(!.)
 		user.transferItemToLoc(attackedby, drop_location())

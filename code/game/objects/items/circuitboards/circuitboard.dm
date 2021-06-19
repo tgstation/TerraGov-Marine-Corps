@@ -9,7 +9,7 @@
 	var/build_path = null
 	var/is_general_board = FALSE
 
-/obj/item/circuitboard/attackby(obj/item/attackedby , mob/user, params)
+/obj/item/circuitboard/attackby(obj/item/attackedby, mob/user, params)
 	. = ..()
 	if(ismultitool(attackedby) && is_general_board == TRUE)
 		var/obj/item/circuitboard/new_board

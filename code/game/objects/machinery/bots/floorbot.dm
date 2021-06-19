@@ -70,11 +70,11 @@
 	popup.open()
 
 
-/obj/machinery/bot/floorbot/attackby(obj/item/W , mob/user as mob)
+/obj/machinery/bot/floorbot/attackby(obj/item/attackedby, mob/user, params)
 	. = ..()
 
-	if(istype(W, /obj/item/stack/tile/plasteel))
-		var/obj/item/stack/tile/plasteel/T = W
+	if(istype(attackedby, /obj/item/stack/tile/plasteel))
+		var/obj/item/stack/tile/plasteel/T = attackedby
 		if(amount >= 50)
 			return
 		var/loaded = min(50 - amount, T.get_amount())
@@ -83,7 +83,7 @@
 		to_chat(user, "<span class='notice'>You load [loaded] tiles into the floorbot. He now contains [amount] tiles.</span>")
 		updateicon()
 
-	else if(istype(W, /obj/item/card/id))
+	else if(istype(attackedby, /obj/item/card/id))
 		if(allowed(user) && !open)
 			locked = !locked
 			to_chat(user, "<span class='notice'>You [locked ? "lock" : "unlock"] \the [src] behaviour controls.</span>")

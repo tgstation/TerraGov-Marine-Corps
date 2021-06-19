@@ -53,22 +53,21 @@
 
 	startgibbing(user)
 
-/obj/machinery/gibber/attackby(obj/item/grab/I, mob/user, param)
+/obj/machinery/gibber/attackby(obj/item/grab/attackedby, mob/user, params)
 	. = ..()
-
 	if(occupant)
 		to_chat(user, "<span class='warning'>The gibber is full, empty it first!</span>")
 		return
 
-	else if(!(istype(I, /obj/item/grab)) )
+	if(!istype(attackedby))
 		to_chat(user, "<span class='warning'>This item is not suitable for the gibber!</span>")
 		return
 
-	else if(!iscarbon(I.grabbed_thing) && !istype(I.grabbed_thing, /mob/living/simple_animal))
+	if(!iscarbon(attackedby.grabbed_thing) && !istype(attackedby.grabbed_thing, /mob/living/simple_animal))
 		to_chat(user, "<span class='warning'>This item is not suitable for the gibber!</span>")
 		return
 
-	var/mob/living/M = I.grabbed_thing
+	var/mob/living/M = attackedby.grabbed_thing
 	if(user.grab_state < GRAB_AGGRESSIVE)
 		to_chat(user, "<span class='warning'>You need a better grip to do that!</span>")
 		return

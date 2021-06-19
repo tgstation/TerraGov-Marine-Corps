@@ -60,7 +60,7 @@
 	return PROCESS_KILL
 
 
-/obj/machinery/computer/nuke_disk_generator/attackby(obj/item/attackedby, mob/living/user, params)
+/obj/machinery/computer/nuke_disk_generator/attackby(obj/item/attackedby, mob/user, params)
 	return attack_hand(user)
 
 

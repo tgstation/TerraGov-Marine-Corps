@@ -121,9 +121,9 @@
 	eyeobj = new /mob/camera/aiEye/remote/fobdrone(get_turf(spawn_spot))
 	eyeobj.origin = src
 
-/obj/machinery/computer/camera_advanced/remote_fob/attackby(obj/item/attackingitem, mob/user, params)
-	if(istype(attackingitem, /obj/item/stack))
-		var/obj/item/stack/attacking_stack = attackingitem
+/obj/machinery/computer/camera_advanced/remote_fob/attackby(obj/item/attackedby, mob/user, params)
+	if(istype(attackedby, /obj/item/stack))
+		var/obj/item/stack/attacking_stack = attackedby
 		if(istype(attacking_stack, /obj/item/stack/voucher/sentry))
 			var/useamount = attacking_stack.amount
 			sentry_remaining += useamount

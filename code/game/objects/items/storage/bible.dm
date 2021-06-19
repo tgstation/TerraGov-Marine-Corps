@@ -39,7 +39,7 @@
 			clicked_on.reagents.del_reagent(/datum/reagent/water)
 			clicked_on.reagents.add_reagent(/datum/reagent/water/holywater,water2holy)
 
-/obj/item/storage/bible/attackby()
+/obj/item/storage/bible/attackby(obj/item/attackedby, mob/user, params)
 	. = ..()
 
 	if(use_sound)

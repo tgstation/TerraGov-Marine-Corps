@@ -179,23 +179,25 @@
 /obj/machinery/cryopod/evacuation/ex_act(severity)
 	return
 
-/obj/machinery/cryopod/evacuation/attackby(obj/item/grab/G, mob/user)
-	if(istype(G))
-		if(being_forced)
-			to_chat(user, "<span class='warning'>There's something forcing it open!</span>")
-			return FALSE
+/obj/machinery/cryopod/evacuation/attackby(obj/item/grab/G, mob/user, params)
+	if(!istype(G))
+		return
 
-		if(occupant)
-			to_chat(user, "<span class='warning'>There is someone in there already!</span>")
-			return FALSE
+	if(being_forced)
+		to_chat(user, "<span class='warning'>There's something forcing it open!</span>")
+		return FALSE
 
-		var/mob/living/carbon/human/M = G.grabbed_thing
-		if(!istype(M)) return FALSE
+	if(occupant)
+		to_chat(user, "<span class='warning'>There is someone in there already!</span>")
+		return FALSE
 
-		visible_message("<span class='warning'>[user] starts putting [M.name] into the cryo pod.</span>", 3)
+	var/mob/living/carbon/human/M = G.grabbed_thing
+	if(!istype(M)) return FALSE
 
-		if(do_after(user, 20, TRUE, M, BUSY_ICON_GENERIC) && !QDELETED(src))
-			move_mob_inside(M)
+	visible_message("<span class='warning'>[user] starts putting [M.name] into the cryo pod.</span>", 3)
+
+	if(do_after(user, 20, TRUE, M, BUSY_ICON_GENERIC) && !QDELETED(src))
+		move_mob_inside(M)
 
 /obj/machinery/cryopod/evacuation/eject()
 	set name = "Eject Pod"
@@ -310,7 +312,7 @@
 /obj/machinery/door/airlock/evacuation/Bumped()
 	return FALSE
 
-/obj/machinery/door/airlock/evacuation/attackby()
+/obj/machinery/door/airlock/evacuation/attackby(obj/item/attackedby, mob/user, params)
 	return FALSE
 
 /obj/machinery/door/airlock/evacuation/attack_hand(mob/living/user)

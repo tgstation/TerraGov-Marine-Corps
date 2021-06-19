@@ -48,12 +48,12 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		STOP_PROCESSING(SSobj, src)
 	return ..()
 
-/obj/item/tool/candle/attackby(obj/item/W as obj, mob/user as mob)
-	if(iswelder(W))
-		var/obj/item/tool/weldingtool/WT = W
+/obj/item/tool/candle/attackby(obj/item/attackedby, mob/user, params)
+	if(iswelder(attackedby))
+		var/obj/item/tool/weldingtool/WT = attackedby
 		if(WT.isOn()) //Badasses dont get blinded by lighting their candle with a blowtorch
-			light("<span class ='notice'>[user] casually lights [src] with [W].</span>")
-	else if(W.heat > 400)
+			light("<span class ='notice'>[user] casually lights [src] with [attackedby].</span>")
+	else if(attackedby.heat > 400)
 		light()
 	else
 		return ..()
@@ -174,56 +174,56 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	. = ..()
 	create_reagents(chem_volume, INJECTABLE|NO_REACT, list_reagents) // making the cigarrete a chemical holder with a maximum volume of 30
 
-/obj/item/clothing/mask/cigarette/attackby(obj/item/W, mob/user, params)
+/obj/item/clothing/mask/cigarette/attackby(obj/item/attackedby, mob/user, params)
 	if(lit || smoketime <= 0)
 		return
 
-	if(iswelder(W))
-		var/obj/item/tool/weldingtool/WT = W
+	if(iswelder(attackedby))
+		var/obj/item/tool/weldingtool/WT = attackedby
 		if(WT.isOn())//Badasses dont get blinded while lighting their cig with a blowtorch
-			light("<span class='notice'>[user] casually lights the [name] with [W].</span>")
+			light("<span class='notice'>[user] casually lights the [name] with [attackedby].</span>")
 
-	else if(istype(W, /obj/item/tool/lighter/zippo))
-		var/obj/item/tool/lighter/zippo/Z = W
+	else if(istype(attackedby, /obj/item/tool/lighter/zippo))
+		var/obj/item/tool/lighter/zippo/Z = attackedby
 		if(Z.heat)
-			light("<span class='rose'>With a flick of their wrist, [user] lights their [name] with [W].</span>")
+			light("<span class='rose'>With a flick of their wrist, [user] lights their [name] with [attackedby].</span>")
 
-	else if(istype(W, /obj/item/flashlight/flare))
-		var/obj/item/flashlight/flare/FL = W
+	else if(istype(attackedby, /obj/item/flashlight/flare))
+		var/obj/item/flashlight/flare/FL = attackedby
 		if(FL.heat)
-			light("<span class='notice'>[user] lights their [name] with [W].</span>")
+			light("<span class='notice'>[user] lights their [name] with [attackedby].</span>")
 
-	else if(istype(W, /obj/item/explosive/grenade/flare))
-		var/obj/item/explosive/grenade/flare/FL2 = W
+	else if(istype(attackedby, /obj/item/explosive/grenade/flare))
+		var/obj/item/explosive/grenade/flare/FL2 = attackedby
 		if(FL2.heat)
-			light("<span class='notice'>[user] lights their [name] with [W].</span>")
+			light("<span class='notice'>[user] lights their [name] with [attackedby].</span>")
 
-	else if(istype(W, /obj/item/tool/lighter))
-		var/obj/item/tool/lighter/L = W
+	else if(istype(attackedby, /obj/item/tool/lighter))
+		var/obj/item/tool/lighter/L = attackedby
 		if(L.heat)
-			light("<span class='notice'>[user] manages to light their [name] with [W].</span>")
+			light("<span class='notice'>[user] manages to light their [name] with [attackedby].</span>")
 
-	else if(istype(W, /obj/item/tool/match))
-		var/obj/item/tool/match/M = W
+	else if(istype(attackedby, /obj/item/tool/match))
+		var/obj/item/tool/match/M = attackedby
 		if(M.heat)
-			light("<span class='notice'>[user] lights their [name] with their [W].</span>")
+			light("<span class='notice'>[user] lights their [name] with their [attackedby].</span>")
 
-	else if(istype(W, /obj/item/weapon/energy/sword))
-		var/obj/item/weapon/energy/sword/S = W
+	else if(istype(attackedby, /obj/item/weapon/energy/sword))
+		var/obj/item/weapon/energy/sword/S = attackedby
 		if(S.active)
-			light("<span class='warning'>[user] swings their [W], barely missing their nose. They light their [name] in the process.</span>")
+			light("<span class='warning'>[user] swings their [attackedby], barely missing their nose. They light their [name] in the process.</span>")
 
-	else if(istype(W, /obj/item/assembly/igniter))
-		light("<span class='notice'>[user] fiddles with [W], and manages to light their [name].</span>")
+	else if(istype(attackedby, /obj/item/assembly/igniter))
+		light("<span class='notice'>[user] fiddles with [attackedby], and manages to light their [name].</span>")
 
-	else if(istype(W, /obj/item/attachable/attached_gun/flamer))
-		light("<span class='notice'>[user] lights their [src] with the [W].</span>")
+	else if(istype(attackedby, /obj/item/attachable/attached_gun/flamer))
+		light("<span class='notice'>[user] lights their [src] with the [attackedby].</span>")
 
-	else if(istype(W, /obj/item/weapon/gun/flamer))
-		light("<span class='notice'>[user] lights their [src] with the pilot light of the [W].</span>")
+	else if(istype(attackedby, /obj/item/weapon/gun/flamer))
+		light("<span class='notice'>[user] lights their [src] with the pilot light of the [attackedby].</span>")
 
-	else if(istype(W, /obj/item/weapon/gun))
-		var/obj/item/weapon/gun/G = W
+	else if(istype(attackedby, /obj/item/weapon/gun))
+		var/obj/item/weapon/gun/G = attackedby
 		if(istype(G, /obj/item/weapon/gun/energy/lasgun))
 			var/obj/item/weapon/gun/energy/lasgun/L = G
 			if(L.cell.charge)
@@ -234,17 +234,17 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 			light("<span class='notice'>[user] lights their [src] with the underbarrel [LAZYACCESS(G.attachments, ATTACHMENT_SLOT_UNDER)].</span>")
 
 
-	else if(istype(W, /obj/item/tool/surgery/cautery))
-		light("<span class='notice'>[user] lights their [src] with the [W].</span>")
+	else if(istype(attackedby, /obj/item/tool/surgery/cautery))
+		light("<span class='notice'>[user] lights their [src] with the [attackedby].</span>")
 
-	else if(istype(W, /obj/item/clothing/mask/cigarette))
-		var/obj/item/clothing/mask/cigarette/C = W
+	else if(istype(attackedby, /obj/item/clothing/mask/cigarette))
+		var/obj/item/clothing/mask/cigarette/C = attackedby
 		if(C.lit)
 			light("<span class='notice'>[user] lights their [src] with the [C] after a few attempts.</span>")
 
-	else if(istype(W, /obj/item/tool/candle))
-		if(W.heat > 200)
-			light("<span class='notice'>[user] lights their [src] with the [W] after a few attempts.</span>")
+	else if(istype(attackedby, /obj/item/tool/candle))
+		if(attackedby.heat > 200)
+			light("<span class='notice'>[user] lights their [src] with the [attackedby] after a few attempts.</span>")
 
 	else
 		return ..()

@@ -105,7 +105,7 @@
 	playsound(loc,'sound/items/screwdriver.ogg', 25, TRUE)
 	update_icon()
 
-/obj/machinery/miner/attackby(obj/item/attackedby,mob/user,params)
+/obj/machinery/miner/attackby(obj/item/attackedby, mob/user, params)
 	. = ..()
 	if(istype(attackedby, /obj/item/minerupgrade))
 		var/obj/item/minerupgrade/upgrade = attackedby

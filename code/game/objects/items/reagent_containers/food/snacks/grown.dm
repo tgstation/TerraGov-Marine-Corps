@@ -274,7 +274,7 @@
 	filling_color = "#FAB728"
 	plantname = "pumpkin"
 
-/obj/item/reagent_containers/food/snacks/grown/pumpkin/attackby(obj/item/attackedby, mob/user, param)
+/obj/item/reagent_containers/food/snacks/grown/pumpkin/attackby(obj/item/attackedby, mob/user, params)
 	. = ..()
 
 	if(attackedby.sharp == IS_SHARP_ITEM_ACCURATE || attackedby.sharp == IS_SHARP_ITEM_BIG)

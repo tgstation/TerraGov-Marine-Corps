@@ -579,27 +579,27 @@ GLOBAL_LIST_INIT(armorvic_dmg_distributions, list(
 		dmg_distribs[slot] = ratio/acc //Redistribute according to previous ratios for full damage taking, but ignoring empty slots
 
 //Special cases abound, handled below or in subclasses
-/obj/vehicle/multitile/root/cm_armored/attackby(obj/item/O, mob/user)
+/obj/vehicle/multitile/root/cm_armored/attackby(obj/item/attackedby, mob/user, params)
 
-	if(istype(O, /obj/item/hardpoint)) //Are we trying to install stuff?
-		var/obj/item/hardpoint/HP = O
+	if(istype(attackedby, /obj/item/hardpoint)) //Are we trying to install stuff?
+		var/obj/item/hardpoint/HP = attackedby
 		install_hardpoint(HP, user)
 
-	else if(istype(O, /obj/item/ammo_magazine)) //Are we trying to reload?
-		var/obj/item/ammo_magazine/AM = O
+	else if(istype(attackedby, /obj/item/ammo_magazine)) //Are we trying to reload?
+		var/obj/item/ammo_magazine/AM = attackedby
 		handle_ammomag_attackby(AM, user)
 
-	else if(iswelder(O) || iswrench(O)) //Are we trying to repair stuff?
-		handle_hardpoint_repair(O, user)
+	else if(iswelder(attackedby) || iswrench(attackedby)) //Are we trying to repair stuff?
+		handle_hardpoint_repair(attackedby, user)
 		update_damage_distribs()
 
-	else if(iscrowbar(O)) //Are we trying to remove stuff?
-		uninstall_hardpoint(O, user)
+	else if(iscrowbar(attackedby)) //Are we trying to remove stuff?
+		uninstall_hardpoint(attackedby, user)
 
 	else
 		. = ..()
-		if(!(O.flags_item & NOBLUDGEON))
-			take_damage_type(O.force * 0.05, "blunt", user) //Melee weapons from people do very little damage
+		if(!(attackedby.flags_item & NOBLUDGEON))
+			take_damage_type(attackedby.force * 0.05, "blunt", user) //Melee weapons from people do very little damage
 
 
 /obj/vehicle/multitile/root/cm_armored/proc/handle_hardpoint_repair(obj/item/O, mob/user)

@@ -298,6 +298,6 @@
 	else
 		. += image(icon, src, "ledb")
 
-/obj/item/storage/lockbox/vials/attackby()
+/obj/item/storage/lockbox/vials/attackby(obj/item/attackedby, mob/user, params)
 	. = ..()
 	update_icon()

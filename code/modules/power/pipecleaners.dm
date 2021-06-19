@@ -149,8 +149,8 @@ By design, d1 is the smallest direction and d2 is the highest
 	log_game("[src] was pulled up by [key_name(usr)] in [AREACOORD(src)]")
 	deconstruct()
 
-/obj/structure/pipe_cleaner/attackby(obj/item/W, mob/user, params)
-	handlecable(W, user, params)
+/obj/structure/pipe_cleaner/attackby(obj/item/attackedby, mob/user, params)
+	handlecable(attackedby, user, params)
 
 
 /obj/structure/pipe_cleaner/proc/update_stored(length = 1, colorC = "red")

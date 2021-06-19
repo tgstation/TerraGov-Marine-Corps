@@ -403,18 +403,18 @@
 /turf/proc/can_lay_cable()
 	return can_have_cabling() & !intact_tile
 
-/turf/attackby(obj/item/C, mob/user, params)
+/turf/attackby(obj/item/attackedby, mob/user, params)
 	if(..())
 		return TRUE
-	if(can_lay_cable() && istype(C, /obj/item/stack/cable_coil))
-		var/obj/item/stack/cable_coil/coil = C
+	if(can_lay_cable() && istype(attackedby, /obj/item/stack/cable_coil))
+		var/obj/item/stack/cable_coil/coil = attackedby
 		coil.place_turf(src, user)
 		return TRUE
-	else if(can_have_cabling() && istype(C, /obj/item/stack/pipe_cleaner_coil))
-		var/obj/item/stack/pipe_cleaner_coil/coil = C
+	else if(can_have_cabling() && istype(attackedby, /obj/item/stack/pipe_cleaner_coil))
+		var/obj/item/stack/pipe_cleaner_coil/coil = attackedby
 		for(var/obj/structure/pipe_cleaner/LC in src)
 			if(!LC.d1 || !LC.d2)
-				LC.attackby(C, user)
+				LC.attackby(attackedby, user)
 				return
 		coil.place_turf(src, user)
 		return TRUE

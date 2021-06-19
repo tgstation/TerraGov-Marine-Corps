@@ -137,7 +137,7 @@
 	resistance_flags = UNACIDABLE
 	var/list/fallen_list
 
-/obj/structure/prop/mainship/ship_memorial/attackby(obj/item/attackedby, mob/user)
+/obj/structure/prop/mainship/ship_memorial/attackby(obj/item/attackedby, mob/user, params)
 	if(istype(attackedby, /obj/item/dogtag))
 		var/obj/item/dogtag/D = attackedby
 		if(D.fallen_names)

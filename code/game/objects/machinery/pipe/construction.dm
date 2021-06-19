@@ -190,7 +190,7 @@ Buildable meters
 	w_class = WEIGHT_CLASS_BULKY
 	var/piping_layer = PIPING_LAYER_DEFAULT
 
-/obj/item/pipe_meter/attackby(obj/item/W, mob/living/user)
+/obj/item/pipe_meter/attackby(obj/item/attackedby, mob/user, params)
 	if(!istype(user))
 		return FALSE
 	if(user.incapacitated())

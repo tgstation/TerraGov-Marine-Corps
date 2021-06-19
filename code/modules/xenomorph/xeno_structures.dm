@@ -347,7 +347,7 @@
 		set_last_hostile(hostile)
 		SEND_SIGNAL(src, COMSIG_AUTOMATIC_SHOOTER_START_SHOOTING_AT)
 
-/obj/structure/xeno/resin/xeno_turret/attackby(obj/item/attackedby, mob/living/user, params)
+/obj/structure/xeno/resin/xeno_turret/attackby(obj/item/attackedby, mob/user, params)
 	if(attackedby.flags_item & NOBLUDGEON || !isliving(user))
 		return attack_hand(user)
 

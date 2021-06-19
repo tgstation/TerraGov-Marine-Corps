@@ -106,7 +106,7 @@
 	return TRUE
 
 
-/turf/closed/wall/resin/attackby(obj/item/attackedby, mob/living/user, params)
+/turf/closed/wall/resin/attackby(obj/item/attackedby, mob/user, params)
 	if(attackedby.flags_item & NOBLUDGEON || !isliving(user))
 		return attack_hand(user)
 

@@ -31,7 +31,7 @@
 	state = 2
 
 
-/obj/machinery/constructable_frame/machine_frame/attackby(obj/item/attackedby, mob/living/user, params)
+/obj/machinery/constructable_frame/machine_frame/attackby(obj/item/attackedby, mob/user, params)
 	if(attackedby.crit_fail)
 		to_chat(user, "<span class='warning'>This part is faulty, you cannot add this to the machine!</span>")
 		return

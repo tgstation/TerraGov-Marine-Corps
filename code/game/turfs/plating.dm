@@ -60,7 +60,7 @@
 		qdel(I)
 
 
-/turf/open/floor/plating/plating_catwalk/attackby(obj/item/attackedby, mob/user)
+/turf/open/floor/plating/plating_catwalk/attackby(obj/item/attackedby, mob/user, params)
 	. = ..()
 	if(iscrowbar(attackedby))
 		if(covered)

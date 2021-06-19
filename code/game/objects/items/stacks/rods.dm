@@ -14,10 +14,10 @@
 	attack_verb = list("hit", "bludgeoned", "whacked")
 
 
-/obj/item/stack/rods/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/stack/rods/attackby(obj/item/attackedby, mob/user, params)
 	..()
-	if(istype(W, /obj/item/stack/barbed_wire)) //making razorwire obstacles
-		var/obj/item/stack/barbed_wire/B = W
+	if(istype(attackedby, /obj/item/stack/barbed_wire)) //making razorwire obstacles
+		var/obj/item/stack/barbed_wire/B = attackedby
 		if(amount < 4)
 			to_chat(user, "<span class='warning'>You need [4 - amount] more [src] to make a razor wire obstacle!</span>")
 			return
@@ -26,8 +26,8 @@
 		var/obj/structure/razorwire/M = new/obj/item/stack/razorwire(user.loc, 1)
 		to_chat(user, "<span class='notice'>You combine the rods and barbed wire into [M]!</span>")
 
-	if (iswelder(W))
-		var/obj/item/tool/weldingtool/WT = W
+	if (iswelder(attackedby))
+		var/obj/item/tool/weldingtool/WT = attackedby
 
 		if(amount < 4)
 			to_chat(user, "<span class='warning'>You need at least four rods to do this.</span>")

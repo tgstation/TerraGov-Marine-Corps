@@ -121,7 +121,7 @@
 	playsound(loc, 'sound/items/welder2.ogg', 25, TRUE)
 	return TRUE
 
-/obj/item/weapon/shield/riot/attackby(obj/item/attackedby, mob/user)
+/obj/item/weapon/shield/riot/attackby(obj/item/attackedby, mob/user, params)
 	if(istype(attackedby, /obj/item/weapon/baton) && world.time >= cooldown)
 		user.visible_message("<span class='warning'>[user] bashes [src] with [attackedby]!</span>")
 		playsound(user.loc, 'sound/effects/shieldbash.ogg', 25, 1)

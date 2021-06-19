@@ -78,7 +78,7 @@
 	. = ..()
 	visible_message("<span class='notice'>[user] lovingly pats the [src].</span>", "<span class='notice'>You lovingly pat the [src].</span>")
 
-/obj/machinery/roomba/attackby(obj/item/attackedby, mob/living/user, def_zone)
+/obj/machinery/roomba/attackby(obj/item/attackedby, mob/user, params)
 	if(!allow_claymore)
 		return
 	if(!istype(attackedby, /obj/item/explosive/mine) || claymore)
