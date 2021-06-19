@@ -400,8 +400,8 @@
 	icon_state = "shuttle"
 
 /obj/effect/landmark/dropship_console_spawn_lz1/Initialize()
+	. =	..()
 	GLOB.lz1_shuttle_console_turfs_list += loc
-	..()
 	return INITIALIZE_HINT_QDEL
 
 /obj/effect/landmark/dropship_console_spawn_lz2
@@ -410,7 +410,7 @@
 	icon_state = "shuttle"
 
 /obj/effect/landmark/dropship_console_spawn_lz2/Initialize()
+	. =	..()
 	GLOB.lz2_shuttle_console_turfs_list += loc
-	..()
 	return INITIALIZE_HINT_QDEL
 
