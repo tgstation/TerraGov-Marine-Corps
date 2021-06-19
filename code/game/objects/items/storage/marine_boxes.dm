@@ -24,6 +24,8 @@
 	flags_atom = CONDUCT
 	flags_equip_slot = ITEM_SLOT_BACK
 	w_class = WEIGHT_CLASS_HUGE
+	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_PRISON_VARIANT)
+	actions_types = list(/datum/action/item_action/toggle)
 
 	///Our power cell
 	var/obj/item/cell/pcell = null
@@ -33,11 +35,10 @@
 
 	///How many rounds are we allowed to store
 	var/rounds_max = 500
-	actions_types = list(/datum/action/item_action/toggle)
 
 	///Are we currently reloading
 	var/reloading = FALSE
-	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_PRISON_VARIANT)
+	
 
 /obj/item/smartgun_powerpack/Initialize()
 	. = ..()
