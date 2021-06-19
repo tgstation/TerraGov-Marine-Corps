@@ -153,7 +153,7 @@
 		user.client.screen += storage_end
 
 	user.s_active = src
-	content_watchers |= user
+	LAZYADD(content_watchers, user)
 
 ///Removes the view of this storage from the mob
 /obj/item/storage/proc/hide_from(mob/user)
@@ -167,7 +167,7 @@
 	user.client.screen -= src.contents
 	if(user.s_active == src)
 		user.s_active = null
-	content_watchers -= user
+	LAZYREMOVE(content_watchers, user)
 
 ///Returns a list of every mob who has this storage open
 /obj/item/storage/proc/can_see_content()
@@ -176,7 +176,7 @@
 		if(watcher.s_active == src && watcher.client)
 			lookers |= watcher
 		else
-			content_watchers -= watcher
+			LAZYREMOVE(content_watchers, watcher)
 	return lookers
 
 ///Opens the view of this storage for the given mob
@@ -538,11 +538,11 @@
 /obj/item/storage/proc/update_watchers(recalculate = FALSE)
 	if(recalculate)
 		orient2hud()
-	for(var/mob/watcher AS in content_watchers)
+	for(var/mob/watcher AS in SANITIZE_LIST(content_watchers))
 		show_to(watcher)
 
 /obj/item/storage/proc/close_watchers()
-	for(var/mob/watcher AS in content_watchers)
+	for(var/mob/watcher AS in SANITIZE_LIST(content_watchers))
 		close(watcher)
 
 /obj/item/storage/attack_hand(mob/living/user)
@@ -657,7 +657,7 @@
 /obj/item/storage/Destroy()
 	for(var/item in contents)
 		qdel(item)
-	for(var/mob/mob AS in content_watchers)
+	for(var/mob/mob AS in SANITIZE_LIST(content_watchers))
 		hide_from(mob)
 	if(boxes)
 		qdel(boxes)
@@ -702,7 +702,7 @@
 		return
 
 	// Close any open UI windows first
-	for(var/mob/M AS in content_watchers)
+	for(var/mob/M AS in SANITIZE_LIST(content_watchers))
 		close(M)
 
 	// Now make the cardboard
