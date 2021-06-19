@@ -4,10 +4,12 @@
 	var/mob/living/carbon/human/is_giving = usr
 	is_giving.do_give(src)
 
+///Signal handler for give keybind
 /mob/living/carbon/proc/give_signal_handler()
 	SIGNAL_HANDLER
 	INVOKE_ASYNC(src, .proc/do_give)
 
+///Look for a nearby human to give the held item, and ask him if he wants it
 /mob/living/carbon/proc/do_give(mob/living/carbon/human/to_give_to)
 	if(stat != CONSCIOUS)
 		return
