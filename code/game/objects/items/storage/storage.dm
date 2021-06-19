@@ -697,7 +697,7 @@
 	if(!isliving(loc))
 		for(var/obj/object in contents)
 			object.emp_act(severity)
-	..()
+	return ..()
 
 /obj/item/storage/attack_self(mob/user)
 	//Clicking on itself will empty it, if it has the verb to do that.
