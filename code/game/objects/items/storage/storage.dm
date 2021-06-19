@@ -130,10 +130,7 @@
 ///Adds and opens the view of this storage for the given mob
 /obj/item/storage/proc/show_to(mob/user)
 	if(user.s_active != src)
-		for(var/content in contents)
-			if(!isitem(content))
-				continue
-			var/obj/item/item = content
+		for(var/obj/item/content in contents)
 			if(item.on_found(user))
 				return
 	if(user.s_active)
@@ -204,13 +201,10 @@
 	var/cx = tx
 	var/cy = ty
 	boxes.screen_loc = "[tx]:,[ty] to [mx],[my]"
-	for(var/content in contents)
-		if(!isobj(content))
-			continue
-		var/obj/object = content
-		object.screen_loc = "[cx],[cy]"
-		object.layer = ABOVE_HUD_LAYER
-		object.plane = ABOVE_HUD_PLANE
+	for(var/obj/content in contents)
+		content.screen_loc = "[cx],[cy]"
+		content.layer = ABOVE_HUD_LAYER
+		content.plane = ABOVE_HUD_PLANE
 		cx++
 		if (cx > mx)
 			cx = tx
@@ -241,15 +235,12 @@
 				cx = 4
 				cy--
 	else
-		for(var/content in contents)
-			if(!isobj(content))
-				continue
-			var/obj/object = content
-			object.mouse_opacity = 2 //So storage items that start with contents get the opacity trick.
-			object.screen_loc = "[cx]:16,[cy]:16"
-			object.maptext = ""
-			object.layer = ABOVE_HUD_LAYER
-			object.plane = ABOVE_HUD_PLANE
+		for(var/obj/content in contents)
+			content.mouse_opacity = 2 //So storage items that start with contents get the opacity trick.
+			content.screen_loc = "[cx]:16,[cy]:16"
+			content.maptext = ""
+			content.layer = ABOVE_HUD_LAYER
+			content.plane = ABOVE_HUD_PLANE
 			cx++
 			if (cx > (4+cols))
 				cx = 4
@@ -280,12 +271,9 @@
 	var/startpoint = 0
 	var/endpoint = 1
 
-	for(var/content in contents)
-		if(!isitem(content))
-			continue
-		var/obj/item/item = content
+	for(var/obj/item/content in contents)
 		startpoint = endpoint + 1
-		endpoint += storage_width * item.w_class / max_storage_space
+		endpoint += storage_width * content.w_class / max_storage_space
 
 		click_border_start.Add(startpoint)
 		click_border_end.Add(endpoint)
@@ -304,10 +292,10 @@
 		storage_start.overlays += src.stored_continue
 		storage_start.overlays += src.stored_end
 
-		item.screen_loc = "4:[round((startpoint+endpoint)/2)+2],2:16"
-		item.maptext = ""
-		item.layer = ABOVE_HUD_LAYER
-		item.plane = ABOVE_HUD_PLANE
+		content.screen_loc = "4:[round((startpoint+endpoint)/2)+2],2:16"
+		content.maptext = ""
+		content.layer = ABOVE_HUD_LAYER
+		content.plane = ABOVE_HUD_PLANE
 
 	closer.screen_loc = "4:[storage_width+19],2:16"
 
@@ -357,7 +345,7 @@
 
 /datum/numbered_display/Destroy()
 	sample_object = null
-	. = ..()
+	return ..()
 
 ///This proc determins the size of the inventory to be displayed. Please touch it only if you know what you're doing.
 /obj/item/storage/proc/orient2hud()
@@ -577,7 +565,8 @@
 	flags_storage ^= STORAGE_FLAG_COLLECTION_TOGGLED
 	if(flags_storage & STORAGE_FLAG_COLLECTION_TOGGLED)
 		to_chat(usr, "[src] now picks up all items in a tile at once.")
-	else to_chat(usr, "[src] now picks up one item at a time.")
+	else 
+		to_chat(usr, "[src] now picks up one item at a time.")
 
 /obj/item/storage/verb/toggle_draw_mode()
 	set name = "Switch Storage Drawing Method"
@@ -587,7 +576,9 @@
 	flags_storage ^= STORAGE_FLAG_DRAWMODE_TOGGLED
 	if(flags_storage & STORAGE_FLAG_DRAWMODE_TOGGLED)
 		to_chat(usr, "Clicking [src] with an empty hand now puts the last stored item in your hand.")
-	else to_chat(usr, "Clicking [src] with an empty hand now opens the pouch storage menu.")
+		return
+	
+	to_chat(usr, "Clicking [src] with an empty hand now opens the pouch storage menu.")
 
 ///Quickly removes everything from this storage onto our current turf
 /obj/item/storage/proc/quick_empty()
