@@ -348,8 +348,8 @@
 	if(unmovable)
 		to_chat(user, "<b>!!WARNING!! CONTENTS OF CRATE UNABLE TO BE MOVED ONCE UNPACKAGED!</b>")
 
-/obj/structure/largecrate/machine/attackby(obj/item/I, mob/user, params)
-	if(iscrowbar(I) && dir_needed)
+/obj/structure/largecrate/machine/attackby(obj/item/attackedby, mob/user, params)
+	if(iscrowbar(attackedby) && dir_needed)
 		var/turf/next_turf = get_step(src, dir_needed)
 		if(next_turf.density)
 			to_chat(user, "<span class='warning'>You can't open the crate here, there's not enough room!</span>")
@@ -366,12 +366,12 @@
 	name = "autodoctor machine crate (x1)"
 	desc = "A crate containing one autodoc."
 
-/obj/structure/largecrate/machine/autodoc/attackby(obj/item/I, mob/user, params)
+/obj/structure/largecrate/machine/autodoc/attackby(obj/item/attackedby, mob/user, params)
 	. = ..()
 	if(!.)
 		return
 
-	if(iscrowbar(I))
+	if(iscrowbar(attackedby))
 		var/turf/T = get_turf(loc)
 		if(!isopenturf(T))
 			return
@@ -386,12 +386,12 @@
 	name = "bodyscanner machine crate (x1)"
 	desc = "A crate containing one medical bodyscanner."
 
-/obj/structure/largecrate/supply/machine/bodyscanner/attackby(obj/item/I, mob/user, params)
+/obj/structure/largecrate/supply/machine/bodyscanner/attackby(obj/item/attackedby, mob/user, params)
 	. = ..()
 	if(!.)
 		return
 
-	if(iscrowbar(I))
+	if(iscrowbar(attackedby))
 		var/turf/T = get_turf(loc)
 		if(!isopenturf(T))
 			return
@@ -405,12 +405,12 @@
 	name = "sleeper machine crate (x1)"
 	desc = "A crate containing one medical sleeper."
 
-/obj/structure/largecrate/machine/sleeper/attackby(obj/item/I, mob/user, params)
+/obj/structure/largecrate/machine/sleeper/attackby(obj/item/attackedby, mob/user, params)
 	. = ..()
 	if(!.)
 		return
 
-	if(iscrowbar(I))
+	if(iscrowbar(attackedby))
 		var/turf/T = get_turf(loc)
 		if(!isopenturf(T))
 			return

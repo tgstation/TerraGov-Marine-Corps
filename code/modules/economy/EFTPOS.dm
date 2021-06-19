@@ -114,19 +114,19 @@
 	popup.open()
 
 
-/obj/item/eftpos/attackby(obj/item/I, mob/user, params)
+/obj/item/eftpos/attackby(obj/item/attackedby, mob/user, params)
 	. = ..()
 
-	if(istype(I, /obj/item/card))
-		var/obj/item/card/C = I
+	if(istype(attackedby, /obj/item/card))
+		var/obj/item/card/C = attackedby
 		if(!linked_account)
 			to_chat(user, "[icon2html(src, user)]<span class='warning'>Unable to connect to linked account.</span>")
 			return
 
 		scan_card(C)
 
-	else if(istype(I, /obj/item/spacecash/ewallet))
-		var/obj/item/spacecash/ewallet/E = I
+	else if(istype(attackedby, /obj/item/spacecash/ewallet))
+		var/obj/item/spacecash/ewallet/E = attackedby
 		if(!linked_account)
 			to_chat(user, "[icon2html(src, user)]<span class='warning'>EFTPOS is not connected to an account.</span>")
 			return

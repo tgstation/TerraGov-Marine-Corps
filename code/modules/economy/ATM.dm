@@ -63,11 +63,11 @@ log transactions
 			playsound(loc, 'sound/items/polaroid2.ogg', 15, 1)
 		break
 
-/obj/machinery/atm/attackby(obj/item/I, mob/user, params)
+/obj/machinery/atm/attackby(obj/item/attackedby, mob/user, params)
 	. = ..()
 
-	if(istype(I, /obj/item/card))
-		var/obj/item/card/id/idcard = I
+	if(istype(attackedby, /obj/item/card))
+		var/obj/item/card/id/idcard = attackedby
 		if(held_card)
 			return
 
@@ -77,8 +77,8 @@ log transactions
 		if(authenticated_account && held_card.associated_account_number != authenticated_account.account_number)
 			authenticated_account = null
 
-	else if(istype(I, /obj/item/spacecash) && authenticated_account)
-		var/obj/item/spacecash/S = I
+	else if(istype(attackedby, /obj/item/spacecash) && authenticated_account)
+		var/obj/item/spacecash/S = attackedby
 		//consume the money
 		authenticated_account.money += S.worth
 		if(prob(50))
@@ -96,9 +96,9 @@ log transactions
 		T.time = worldtime2text()
 		authenticated_account.transaction_log += T
 
-		to_chat(user, "<span class='info'>You insert [I] into [src].</span>")
+		to_chat(user, "<span class='info'>You insert [attackedby] into [src].</span>")
 		attack_hand(user)
-		qdel(I)
+		qdel(attackedby)
 
 
 /obj/machinery/atm/attack_hand(mob/living/user)

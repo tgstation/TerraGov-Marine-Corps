@@ -265,14 +265,14 @@
 	return TRUE
 
 
-/obj/structure/table/attackby(obj/item/I, mob/user, params)
+/obj/structure/table/attackby(obj/item/attackedby, mob/user, params)
 	. = ..()
 
-	if(istype(I, /obj/item/grab) && get_dist(src, user) <= 1)
+	if(istype(attackedby, /obj/item/grab) && get_dist(src, user) <= 1)
 		if(isxeno(user))
 			return
 
-		var/obj/item/grab/G = I
+		var/obj/item/grab/G = attackedby
 		if(!isliving(G.grabbed_thing))
 			return
 
@@ -298,14 +298,14 @@
 		return
 
 	if(user.a_intent != INTENT_HARM)
-		if(user.transferItemToLoc(I, loc))
+		if(user.transferItemToLoc(attackedby, loc))
 			var/list/click_params = params2list(params)
 			//Center the icon where the user clicked.
 			if(!click_params || !click_params["icon-x"] || !click_params["icon-y"])
 				return
 			//Clamp it so that the icon never moves more than 16 pixels in either direction (thus leaving the table turf)
-			I.pixel_x = clamp(text2num(click_params["icon-x"]) - 16, -(world.icon_size/2), world.icon_size/2)
-			I.pixel_y = clamp(text2num(click_params["icon-y"]) - 16, -(world.icon_size/2), world.icon_size/2)
+			attackedby.pixel_x = clamp(text2num(click_params["icon-x"]) - 16, -(world.icon_size/2), world.icon_size/2)
+			attackedby.pixel_y = clamp(text2num(click_params["icon-y"]) - 16, -(world.icon_size/2), world.icon_size/2)
 			return TRUE
 
 
@@ -593,16 +593,16 @@
 	SEND_SIGNAL(X, COMSIG_XENOMORPH_ATTACK_RACK)
 	return ..()
 
-/obj/structure/rack/attackby(obj/item/I, mob/user, params)
+/obj/structure/rack/attackby(obj/item/attackedby, mob/user, params)
 	. = ..()
 
-	if(iswrench(I))
+	if(iswrench(attackedby))
 		deconstruct(TRUE)
 		playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
 		return
 
 	if(user.a_intent != INTENT_HARM)
-		return user.transferItemToLoc(I, loc)
+		return user.transferItemToLoc(attackedby, loc)
 
 
 /obj/structure/rack/Crossed(atom/movable/O)

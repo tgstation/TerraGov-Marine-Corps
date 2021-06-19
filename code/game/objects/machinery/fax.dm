@@ -142,25 +142,25 @@
 	updateUsrDialog()
 
 
-/obj/machinery/faxmachine/attackby(obj/item/I, mob/user, params)
+/obj/machinery/faxmachine/attackby(obj/item/attackedby, mob/user, params)
 	. = ..()
-	if(istype(I, /obj/item/paper))
+	if(istype(attackedby, /obj/item/paper))
 		if(!message)
-			user.transferItemToLoc(I, src)
-			message = I
+			user.transferItemToLoc(attackedby, src)
+			message = attackedby
 			to_chat(user, "<span class='notice'>You insert the paper into \the [src].</span>")
 			flick("faxsend", src)
 			updateUsrDialog()
 		else
 			to_chat(user, "<span class='notice'>There is already something in \the [src].</span>")
 
-	else if(istype(I, /obj/item/card/id))
-		var/obj/item/card/id/idcard = I
+	else if(istype(attackedby, /obj/item/card/id))
+		var/obj/item/card/id/idcard = attackedby
 		if(!idscan)
 			user.transferItemToLoc(idcard, src)
 			idscan = idcard
 
-	else if(iswrench(I))
+	else if(iswrench(attackedby))
 		playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
 		anchored = !anchored
 		to_chat(user, "<span class='notice'>You [anchored ? "wrench" : "unwrench"] \the [src].</span>")

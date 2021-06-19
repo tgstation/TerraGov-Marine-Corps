@@ -453,8 +453,8 @@ GLOBAL_LIST_INIT(armorvic_dmg_distributions, list(
 /obj/vehicle/multitile/hitbox/cm_armored/ex_act(severity)
 	return root.ex_act(severity)
 
-/obj/vehicle/multitile/hitbox/cm_armored/attackby(obj/item/I, mob/user, params)
-	return root.attackby(I, user, params)
+/obj/vehicle/multitile/hitbox/cm_armored/attackby(obj/item/attackedby, mob/user, params)
+	return root.attackby(attackedby, user, params)
 
 /obj/vehicle/multitile/hitbox/cm_armored/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
 	return root.attack_alien(X, damage_amount)

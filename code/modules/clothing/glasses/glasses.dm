@@ -69,13 +69,13 @@
 	item_state = "eyepatch"
 	flags_armor_protection = NONE
 
-/obj/item/clothing/glasses/eyepatch/attackby(obj/item/I, mob/user, params)
+/obj/item/clothing/glasses/eyepatch/attackby(obj/item/attackedby, mob/user, params)
 	. = ..()
 
-	if(istype(I, /obj/item/clothing/glasses/hud/health))
+	if(istype(attackedby, /obj/item/clothing/glasses/hud/health))
 		var/obj/item/clothing/glasses/hud/medpatch/P = new
 		to_chat(user, "<span class='notice'>You fasten the medical hud projector to the inside of the eyepatch.</span>")
-		qdel(I)
+		qdel(attackedby)
 		qdel(src)
 		user.put_in_hands(P)
 
@@ -104,13 +104,13 @@
 	item_state = "glasses"
 	prescription = TRUE
 
-/obj/item/clothing/glasses/regular/attackby(obj/item/I, mob/user, params)
+/obj/item/clothing/glasses/regular/attackby(obj/item/attackedby, mob/user, params)
 	. = ..()
 
-	if(istype(I, /obj/item/clothing/glasses/hud/health))
+	if(istype(attackedby, /obj/item/clothing/glasses/hud/health))
 		var/obj/item/clothing/glasses/hud/medglasses/P = new
 		to_chat(user, "<span class='notice'>You fasten the medical hud projector to the inside of the glasses.</span>")
-		qdel(I)
+		qdel(attackedby)
 		qdel(src)
 		user.put_in_hands(P)
 
@@ -151,20 +151,20 @@
 	desc = "Standard issue TGMC goggles. Mostly used to decorate one's helmet. Contains prescription lenses in case you weren't sure if they were lame or not."
 	prescription = TRUE
 
-/obj/item/clothing/glasses/mgoggles/attackby(obj/item/I, mob/user, params)
+/obj/item/clothing/glasses/mgoggles/attackby(obj/item/attackedby, mob/user, params)
 	. = ..()
 
-	if(istype(I, /obj/item/clothing/glasses/hud/health))
+	if(istype(attackedby, /obj/item/clothing/glasses/hud/health))
 		if(prescription)
 			var/obj/item/clothing/glasses/hud/medgoggles/prescription/P = new
 			to_chat(user, "<span class='notice'>You fasten the medical hud projector to the inside of the goggles.</span>")
-			qdel(I)
+			qdel(attackedby)
 			qdel(src)
 			user.put_in_hands(P)
 		else
 			var/obj/item/clothing/glasses/hud/medgoggles/S = new
 			to_chat(user, "<span class='notice'>You fasten the medical hud projector to the inside of the goggles.</span>")
-			qdel(I)
+			qdel(attackedby)
 			qdel(src)
 			user.put_in_hands(S)
 

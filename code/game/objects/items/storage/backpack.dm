@@ -22,7 +22,7 @@
 			return TRUE
 	return FALSE
 
-/obj/item/storage/backpack/attackby(obj/item/I, mob/user, params)
+/obj/item/storage/backpack/attackby(obj/item/attackedby, mob/user, params)
 	. = ..()
 
 	if(use_sound)
@@ -62,14 +62,14 @@
 		crit_fail = TRUE
 		icon_state = "brokenpack"
 
-/obj/item/storage/backpack/holding/attackby(obj/item/item, mob/user, params)
+/obj/item/storage/backpack/holding/attackby(obj/item/attackedby, mob/user, params)
 	if(crit_fail)
 		to_chat(user, "<span class='warning'>The Bluespace generator isn't working.</span>")
 		return
 
-	if(istype(item, /obj/item/storage/backpack/holding) && !item.crit_fail)
+	if(istype(attackedby, /obj/item/storage/backpack/holding) && !attackedby.crit_fail)
 		to_chat(user, "<span class='warning'>The Bluespace interfaces of the two devices conflict and malfunction.</span>")
-		qdel(item)
+		qdel(attackedby)
 		return
 
 	return ..()
@@ -705,21 +705,21 @@
 	R.my_atom = src
 	R.add_reagent(/datum/reagent/fuel, max_fuel)
 
-/obj/item/storage/backpack/marine/engineerpack/attackby(obj/item/item, mob/user, params)
-	if(iswelder(item))
-		var/obj/item/tool/weldingtool/welder = item
+/obj/item/storage/backpack/marine/engineerpack/attackby(obj/item/attackedby, mob/user, params)
+	if(iswelder(attackedby))
+		var/obj/item/tool/weldingtool/welder = attackedby
 		if(welder.welding)
 			to_chat(user, "<span class='warning'>That was close! However you realized you had the welder on and prevented disaster.</span>")
 			return
 		if(welder.get_fuel() == welder.max_fuel || !reagents.total_volume)
 			return ..()
 
-		reagents.trans_to(item, welder.max_fuel)
+		reagents.trans_to(attackedby, welder.max_fuel)
 		to_chat(user, "<span class='notice'>Welder refilled!</span>")
 		playsound(loc, 'sound/effects/refill.ogg', 25, 1, 3)
 
-	else if(istype(item, /obj/item/ammo_magazine/flamer_tank))
-		var/obj/item/ammo_magazine/flamer_tank/tank = item
+	else if(istype(attackedby, /obj/item/ammo_magazine/flamer_tank))
+		var/obj/item/ammo_magazine/flamer_tank/tank = attackedby
 		if(tank.current_rounds == tank.max_rounds || !reagents.total_volume)
 			return ..()
 
@@ -732,8 +732,8 @@
 		to_chat(user, "<span class='notice'>You refill [tank] with [lowertext(tank.caliber)].</span>")
 		tank.update_icon()
 
-	else if(istype(item, /obj/item/attachable/attached_gun/flamer))
-		var/obj/item/attachable/attached_gun/flamer/flamer = item
+	else if(istype(attackedby, /obj/item/attachable/attached_gun/flamer))
+		var/obj/item/attachable/attached_gun/flamer/flamer = attackedby
 		if(flamer.current_rounds == flamer.max_rounds || !reagents.total_volume)
 			return ..()
 
@@ -747,15 +747,15 @@
 	else
 		return ..()
 
-/obj/item/storage/backpack/marine/engineerpack/afterattack(obj/object, mob/user, proximity)
+/obj/item/storage/backpack/marine/engineerpack/afterattack(obj/target, mob/user, proximity)
 	if(!proximity) // this replaces and improves the get_dist(src,O) <= 1 checks used previously
 		return
-	if (istype(object, /obj/structure/reagent_dispensers/fueltank) && reagents.total_volume < max_fuel)
-		object.reagents.trans_to(src, max_fuel)
+	if (istype(target, /obj/structure/reagent_dispensers/fueltank) && reagents.total_volume < max_fuel)
+		target.reagents.trans_to(src, max_fuel)
 		to_chat(user, "<span class='notice'>You crack the cap off the top of the pack and fill it back up again from the tank.</span>")
 		playsound(loc, 'sound/effects/refill.ogg', 25, 1, 3)
 		return
-	else if (istype(object, /obj/structure/reagent_dispensers/fueltank) && reagents.total_volume == max_fuel)
+	else if (istype(target, /obj/structure/reagent_dispensers/fueltank) && reagents.total_volume == max_fuel)
 		to_chat(user, "<span class='notice'>The pack is already full!</span>")
 		return
 	..()

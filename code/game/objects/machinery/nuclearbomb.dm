@@ -91,21 +91,21 @@
 	return TRUE
 
 
-/obj/machinery/nuclearbomb/attackby(obj/item/I, mob/user, params)
+/obj/machinery/nuclearbomb/attackby(obj/item/attackedby, mob/user, params)
 	. = ..()
 	if(!extended)
 		return
-	if(!istype(I, /obj/item/disk/nuclear))
+	if(!istype(attackedby, /obj/item/disk/nuclear))
 		return
-	if(!user.transferItemToLoc(I, src))
+	if(!user.transferItemToLoc(attackedby, src))
 		return
-	switch(I.type)
+	switch(attackedby.type)
 		if(/obj/item/disk/nuclear/red)
-			r_auth = I
+			r_auth = attackedby
 		if(/obj/item/disk/nuclear/green)
-			g_auth = I
+			g_auth = attackedby
 		if(/obj/item/disk/nuclear/blue)
-			b_auth = I
+			b_auth = attackedby
 	if(r_auth && g_auth && b_auth)
 		has_auth = TRUE
 

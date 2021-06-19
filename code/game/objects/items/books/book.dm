@@ -40,10 +40,10 @@
 	popup.open()
 
 
-/obj/item/book/attackby(obj/item/I, mob/user, params)
+/obj/item/book/attackby(obj/item/attackedby, mob/user, params)
 	. = ..()
 
-	if(istype(I, /obj/item/tool/pen))
+	if(istype(attackedby, /obj/item/tool/pen))
 		if(unique)
 			to_chat(user, "These pages don't seem to take the ink well. Looks like you can't modify it.")
 			return
@@ -80,16 +80,16 @@
 			to_chat(user, "<span class='notice'>There's already something in [title]!</span>")
 			return
 
-		if(I.w_class >= 3)
-			to_chat(user, "<span class='notice'>[I] won't fit in [title].</span>")
+		if(attackedby.w_class >= 3)
+			to_chat(user, "<span class='notice'>[attackedby] won't fit in [title].</span>")
 			return
 
 		user.drop_held_item()
-		I.forceMove(src)
-		store = I
-		to_chat(user, "<span class='notice'>You put [I] in [title].</span>")
+		attackedby.forceMove(src)
+		store = attackedby
+		to_chat(user, "<span class='notice'>You put [attackedby] in [title].</span>")
 
-	else if(istype(I, /obj/item/tool/kitchen/knife) || iswirecutter(I))
+	else if(istype(attackedby, /obj/item/tool/kitchen/knife) || iswirecutter(attackedby))
 		if(carved)
 			return
 

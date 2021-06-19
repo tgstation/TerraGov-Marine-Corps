@@ -18,7 +18,7 @@
 	name = "Core Power Monitoring"
 
 /obj/machinery/power/monitor/grid
-	name = "Main Power Grid Monitoring"		
+	name = "Main Power Grid Monitoring"
 
 /obj/machinery/power/monitor/Initialize()
 	. = ..()
@@ -86,10 +86,10 @@
 
 
 //copied from computer.dm
-/obj/machinery/power/monitor/attackby(obj/item/I, mob/user, params)
+/obj/machinery/power/monitor/attackby(obj/item/attackedby, mob/user, params)
 	. = ..()
 
-	if(isscrewdriver(I) && circuit)
+	if(isscrewdriver(attackedby) && circuit)
 		playsound(loc, 'sound/items/screwdriver.ogg', 25, 1)
 		if(!do_after(user, 20, TRUE, src, BUSY_ICON_BUILD))
 			return

@@ -138,10 +138,10 @@ obj/structure/door_assembly
 
 
 
-/obj/structure/door_assembly/attackby(obj/item/I, mob/user, params)
+/obj/structure/door_assembly/attackby(obj/item/attackedby, mob/user, params)
 	. = ..()
 
-	if(istype(I, /obj/item/tool/pen))
+	if(istype(attackedby, /obj/item/tool/pen))
 		var/t = copytext(stripped_input(user, "Enter the name for the door.", name, created_name), 1, MAX_NAME_LEN)
 		if(!t)
 			return
@@ -149,8 +149,8 @@ obj/structure/door_assembly
 			return
 		created_name = t
 
-	else if(iswelder(I) && (istext(glass) || glass == 1 || !anchored))
-		var/obj/item/tool/weldingtool/WT = I
+	else if(iswelder(attackedby) && (istext(glass) || glass == 1 || !anchored))
+		var/obj/item/tool/weldingtool/WT = attackedby
 		if(!WT.remove_fuel(0, user))
 			to_chat(user, "<span class='notice'>You need more welding fuel.</span>")
 			return
@@ -191,7 +191,7 @@ obj/structure/door_assembly
 			new /obj/item/stack/sheet/metal(loc, 4)
 			qdel(src)
 
-	else if(iswrench(I) && state == 0)
+	else if(iswrench(attackedby) && state == 0)
 		playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
 		if(anchored)
 			user.visible_message("[user] unsecures the airlock assembly from the floor.", "You start to unsecure the airlock assembly from the floor.")
@@ -204,8 +204,8 @@ obj/structure/door_assembly
 		to_chat(user, "<span class='notice'>You [anchored ? "un" : ""]secured the airlock assembly!</span>")
 		anchored = !anchored
 
-	else if(iscablecoil(I) && state == 0 && anchored)
-		var/obj/item/stack/cable_coil/C = I
+	else if(iscablecoil(attackedby) && state == 0 && anchored)
+		var/obj/item/stack/cable_coil/C = attackedby
 		if(C.get_amount() < 1)
 			to_chat(user, "<span class='warning'>You need one length of coil to wire the airlock assembly.</span>")
 			return
@@ -221,7 +221,7 @@ obj/structure/door_assembly
 		state = 1
 		to_chat(user, "<span class='notice'>You wire the airlock.</span>")
 
-	else if(iswirecutter(I) && state == 1 )
+	else if(iswirecutter(attackedby) && state == 1 )
 		playsound(loc, 'sound/items/wirecutter.ogg', 25, 1)
 		user.visible_message("[user] cuts the wires from the airlock assembly.", "You start to cut the wires from airlock assembly.")
 
@@ -232,7 +232,7 @@ obj/structure/door_assembly
 		new /obj/item/stack/cable_coil(loc, 1)
 		state = 0
 
-	else if(istype(I, /obj/item/circuitboard/airlock) && state == 1 && I.icon_state != "door_electronics_smoked")
+	else if(istype(attackedby, /obj/item/circuitboard/airlock) && state == 1 && attackedby.icon_state != "door_electronics_smoked")
 		playsound(loc, 'sound/items/screwdriver.ogg', 25, 1)
 		user.visible_message("[user] installs the electronics into the airlock assembly.", "You start to install electronics into the airlock assembly.")
 
@@ -240,13 +240,13 @@ obj/structure/door_assembly
 			return
 
 		user.drop_held_item()
-		I.forceMove(src)
+		attackedby.forceMove(src)
 		to_chat(user, "<span class='notice'>You installed the airlock electronics!</span>")
 		state = 2
 		name = "Near finished Airlock Assembly"
-		electronics = I
+		electronics = attackedby
 
-	else if(iscrowbar(I) && state == 2)
+	else if(iscrowbar(attackedby) && state == 2)
 		playsound(loc, 'sound/items/crowbar.ogg', 25, 1)
 		user.visible_message("[user] removes the electronics from the airlock assembly.", "You start to remove the electronics from the airlock assembly.")
 
@@ -265,8 +265,8 @@ obj/structure/door_assembly
 			electronics = null
 			AE.forceMove(loc)
 
-	else if(istype(I, /obj/item/stack/sheet) && !glass)
-		var/obj/item/stack/sheet/S = I
+	else if(istype(attackedby, /obj/item/stack/sheet) && !glass)
+		var/obj/item/stack/sheet/S = attackedby
 		if(S.get_amount() < 1)
 			return
 
@@ -298,7 +298,7 @@ obj/structure/door_assembly
 			to_chat(user, "<span class='notice'>You installed [M] plating into the airlock assembly.</span>")
 			glass = "[M]"
 
-	else if(isscrewdriver(I) && state == 2 )
+	else if(isscrewdriver(attackedby) && state == 2 )
 		playsound(loc, 'sound/items/screwdriver.ogg', 25, 1)
 		to_chat(user, "<span class='notice'>Now finishing the airlock.</span>")
 

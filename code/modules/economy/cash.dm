@@ -16,19 +16,19 @@
 	access = ACCESS_MARINE_CAPTAIN
 	var/worth = 0
 
-/obj/item/spacecash/attackby(obj/item/I, mob/user, params)
+/obj/item/spacecash/attackby(obj/item/attackedby, mob/user, params)
 	. = ..()
 
-	if(istype(I, /obj/item/spacecash) && !istype(I, /obj/item/spacecash/ewallet))
+	if(istype(attackedby, /obj/item/spacecash) && !istype(attackedby, /obj/item/spacecash/ewallet))
 		var/obj/item/spacecash/bundle/bundle
-		if(!istype(I, /obj/item/spacecash/bundle))
-			var/obj/item/spacecash/cash = I
+		if(!istype(attackedby, /obj/item/spacecash/bundle))
+			var/obj/item/spacecash/cash = attackedby
 			user.temporarilyRemoveItemFromInventory(cash)
 			bundle = new(loc)
 			bundle.worth += cash.worth
 			qdel(cash)
 		else
-			bundle = I
+			bundle = attackedby
 		bundle.worth += worth
 		bundle.update_icon()
 		if(ishuman(user))

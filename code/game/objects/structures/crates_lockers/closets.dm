@@ -202,22 +202,22 @@
 	else if(!opened)
 		return attack_paw(X)
 
-/obj/structure/closet/attackby(obj/item/I, mob/user, params)
+/obj/structure/closet/attackby(obj/item/attackedby, mob/user, params)
 	if(user in src)
 		return FALSE
-	if(I.flags_item & ITEM_ABSTRACT)
+	if(attackedby.flags_item & ITEM_ABSTRACT)
 		return FALSE
 	. = ..()
 	if(opened)
-		if(istype(I, /obj/item/grab))
-			var/obj/item/grab/G = I
+		if(istype(attackedby, /obj/item/grab))
+			var/obj/item/grab/G = attackedby
 			if(!G.grabbed_thing)
 				CRASH("/obj/item/grab without a grabbed_thing in tool_interact()")
 			MouseDrop_T(G.grabbed_thing, user)      //act like they were dragged onto the closet
 			return
 		if(.)
 			return TRUE
-		return user.transferItemToLoc(I, drop_location())
+		return user.transferItemToLoc(attackedby, drop_location())
 
 	var/obj/item/card/id/ID = user.get_idcard()
 	if(istype(ID))

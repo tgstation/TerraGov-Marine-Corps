@@ -58,13 +58,13 @@
 	update_nearby_icons()
 	return ..()
 
-/obj/structure/window_frame/attackby(obj/item/I, mob/user, params)
+/obj/structure/window_frame/attackby(obj/item/attackedby, mob/user, params)
 	. = ..()
 
-	if(istype(I, sheet_type))
-		var/obj/item/stack/sheet/sheet = I
+	if(istype(attackedby, sheet_type))
+		var/obj/item/stack/sheet/sheet = attackedby
 		if(sheet.get_amount() < 2)
-			to_chat(user, "<span class='warning'>You need more [I] to install a new window.</span>")
+			to_chat(user, "<span class='warning'>You need more [attackedby] to install a new window.</span>")
 			return
 		user.visible_message("<span class='notice'>[user] starts installing a new glass window on the frame.</span>", \
 		"<span class='notice'>You start installing a new window on the frame.</span>")
@@ -79,8 +79,8 @@
 		new window_type(loc) //This only works on Theseus windows!
 		qdel(src)
 
-	else if(istype(I, /obj/item/grab))
-		var/obj/item/grab/G = I
+	else if(istype(attackedby, /obj/item/grab))
+		var/obj/item/grab/G = attackedby
 		if(isxeno(user))
 			return
 

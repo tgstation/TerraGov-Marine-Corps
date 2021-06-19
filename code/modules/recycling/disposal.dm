@@ -50,7 +50,7 @@
 
 
 //Attack by item places it in to disposal
-/obj/machinery/disposal/attackby(obj/item/I, mob/user, params)
+/obj/machinery/disposal/attackby(obj/item/attackedby, mob/user, params)
 	. = ..()
 
 	if(machine_stat & BROKEN)
@@ -60,7 +60,7 @@
 		return
 
 	else if(mode <= 0)
-		if(isscrewdriver(I))
+		if(isscrewdriver(attackedby))
 			if(length(contents))
 				to_chat(user, "<span class='warning'>Eject the contents first!</span>")
 				return
@@ -74,11 +74,11 @@
 				playsound(loc, 'sound/items/screwdriver.ogg', 25, 1)
 				to_chat(user, "<span class='notice'>You attach the screws around the power connection.</span>")
 				return
-		else if(iswelder(I) && mode == -1)
+		else if(iswelder(attackedby) && mode == -1)
 			if(length(contents))
 				to_chat(user, "<span class='warning'>Eject the contents first!</span>")
 				return
-			var/obj/item/tool/weldingtool/W = I
+			var/obj/item/tool/weldingtool/W = attackedby
 			if(!W.remove_fuel(0, user))
 				to_chat(user, "<span class='warning'>You need more welding fuel to complete this task.</span>")
 				return
@@ -96,15 +96,15 @@
 			C.update()
 			qdel(src)
 
-	if(istype(I, /obj/item/storage/bag/trash))
-		var/obj/item/storage/bag/trash/T = I
+	if(istype(attackedby, /obj/item/storage/bag/trash))
+		var/obj/item/storage/bag/trash/T = attackedby
 		to_chat(user, "<span class='notice'>You empty the bag into [src].</span>")
 		for(var/obj/item/O in T.contents)
 			T.remove_from_storage(O, src, user)
 		T.update_icon()
 		update()
 
-	var/obj/item/grab/G = I
+	var/obj/item/grab/G = attackedby
 	if(istype(G)) //Handle grabbed mob
 		if(!ismob(G.grabbed_thing) || user.grab_state < GRAB_AGGRESSIVE)
 			return
@@ -123,9 +123,9 @@
 		message_admins("[ADMIN_TPMONTY(usr)] placed [ADMIN_TPMONTY(GM)] in a disposals unit.")
 		flush()
 
-	else if(user.transferItemToLoc(I, src))
-		user.visible_message("<span class='notice'>[user] places [I] into [src].</span>",
-		"<span class='notice'>You place [I] into [src].</span>")
+	else if(user.transferItemToLoc(attackedby, src))
+		user.visible_message("<span class='notice'>[user] places [attackedby] into [src].</span>",
+		"<span class='notice'>You place [attackedby] into [src].</span>")
 
 	update()
 
@@ -687,15 +687,15 @@
 			take_damage(rand(0, 15))
 
 //Attack by item. Weldingtool: unfasten and convert to obj/disposalconstruct
-/obj/structure/disposalpipe/attackby(obj/item/I, mob/user, params)
+/obj/structure/disposalpipe/attackby(obj/item/attackedby, mob/user, params)
 	. = ..()
 
 	var/turf/T = loc
 	if(T.intact_tile)
 		return //Prevent interaction with T-scanner revealed pipes
 
-	if(iswelder(I))
-		var/obj/item/tool/weldingtool/W = I
+	if(iswelder(attackedby))
+		var/obj/item/tool/weldingtool/W = attackedby
 
 		if(!W.remove_fuel(0, user))
 			to_chat(user, "<span class='warning'>You need more welding fuel to cut [src].</span>")
@@ -704,11 +704,11 @@
 		playsound(loc, 'sound/items/welder2.ogg', 25, 1)
 		//Check if anything changed over 2 seconds
 		var/turf/uloc = user.loc
-		var/atom/wloc = I.loc
+		var/atom/wloc = attackedby.loc
 		user.visible_message("<span class='notice'>[user] starts slicing [src].</span>",
 		"<span class='notice'>You start slicing [src].</span>")
 		sleep(30)
-		if(!W.isOn() || user.loc != uloc || wloc != I.loc)
+		if(!W.isOn() || user.loc != uloc || wloc != attackedby.loc)
 			to_chat(user, "<span class='warning'>You must stay still while welding [src].</span>")
 			return
 
@@ -996,11 +996,11 @@
 	else
 		name = initial(name)
 
-/obj/structure/disposalpipe/tagger/attackby(obj/item/I, mob/user, params)
+/obj/structure/disposalpipe/tagger/attackby(obj/item/attackedby, mob/user, params)
 	. = ..()
 
-	if(istype(I, /obj/item/destTagger))
-		var/obj/item/destTagger/O = I
+	if(istype(attackedby, /obj/item/destTagger))
+		var/obj/item/destTagger/O = attackedby
 
 		if(!O.currTag) //Tag set
 			return
@@ -1067,11 +1067,11 @@
 
 	dpdir = sortdir|posdir|negdir
 
-/obj/structure/disposalpipe/sortjunction/attackby(obj/item/I, mob/user, params)
+/obj/structure/disposalpipe/sortjunction/attackby(obj/item/attackedby, mob/user, params)
 	. = ..()
 
-	if(istype(I, /obj/item/destTagger))
-		var/obj/item/destTagger/O = I
+	if(istype(attackedby, /obj/item/destTagger))
+		var/obj/item/destTagger/O = attackedby
 
 		if(!O.currTag)
 			return
@@ -1163,7 +1163,7 @@
 	update()
 
 //Override attackby so we disallow trunkremoval when somethings ontop
-/obj/structure/disposalpipe/trunk/attackby(obj/item/I, mob/user, params)
+/obj/structure/disposalpipe/trunk/attackby(obj/item/attackedby, mob/user, params)
 	//Disposal constructors
 	var/obj/structure/disposalconstruct/C = locate() in loc
 	if(C?.anchored)
@@ -1175,8 +1175,8 @@
 
 	. = ..()
 
-	if(iswelder(I))
-		var/obj/item/tool/weldingtool/W = I
+	if(iswelder(attackedby))
+		var/obj/item/tool/weldingtool/W = attackedby
 		if(!W.remove_fuel(0, user))
 			to_chat(user, "<span class='warning'>You need more welding fuel to cut the pipe.</span>")
 			return
@@ -1184,11 +1184,11 @@
 		playsound(loc, 'sound/items/welder2.ogg', 25, 1)
 		//Check if anything changed over 2 seconds
 		var/turf/uloc = user.loc
-		var/atom/wloc = I.loc
+		var/atom/wloc = attackedby.loc
 		user.visible_message("<span class='notice'>[user] starts slicing [src].</span>",
 		"<span class='notice'>You start slicing [src].</span>")
 		sleep(30)
-		if(!W.isOn() || user.loc != uloc && wloc != I.loc)
+		if(!W.isOn() || user.loc != uloc && wloc != attackedby.loc)
 			to_chat(user, "<span class='warning'>You must stay still while welding the pipe.</span>")
 			return
 
@@ -1276,10 +1276,10 @@
 				AM.throw_at(target, 3, 1)
 		qdel(H)
 
-/obj/structure/disposaloutlet/attackby(obj/item/I, mob/user, params)
+/obj/structure/disposaloutlet/attackby(obj/item/attackedby, mob/user, params)
 	. = ..()
 
-	if(isscrewdriver(I))
+	if(isscrewdriver(attackedby))
 		mode = !mode
 		if(mode)
 			playsound(loc, 'sound/items/screwdriver.ogg', 25, 1)
@@ -1288,8 +1288,8 @@
 			playsound(loc, 'sound/items/screwdriver.ogg', 25, 1)
 			to_chat(user, "<span class='notice'>You attach the screws around the power connection.</span>")
 
-	else if(iswelder(I) && mode)
-		var/obj/item/tool/weldingtool/W = I
+	else if(iswelder(attackedby) && mode)
+		var/obj/item/tool/weldingtool/W = attackedby
 		if(!W.remove_fuel(0, user))
 			to_chat(user, "<span class='warning'>You need more welding fuel to complete this task.</span>")
 			return
@@ -1314,7 +1314,7 @@
 	desc = "An outlet for the pneumatic disposal system."
 	resistance_flags = UNACIDABLE
 
-/obj/structure/disposaloutlet/retrieval/attackby(obj/item/I, mob/user, params)
+/obj/structure/disposaloutlet/retrieval/attackby(obj/item/attackedby, mob/user, params)
 	return
 
 //Called when movable is expelled from a disposal pipe or outlet, by default does nothing, override for special behaviour

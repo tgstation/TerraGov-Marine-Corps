@@ -140,7 +140,7 @@
 		return ..()
 
 
-/obj/item/clothing/suit/modular/attackby(obj/item/I, mob/user, params)
+/obj/item/clothing/suit/modular/attackby(obj/item/attackedby, mob/user, params)
 	. = ..()
 	if(.)
 		return
@@ -148,8 +148,8 @@
 	if(QDELETED(user) || user.stat != CONSCIOUS)
 		return TRUE
 
-	if(istype(I, /obj/item/armor_module))
-		var/obj/item/armor_module/module = I
+	if(istype(attackedby, /obj/item/armor_module))
+		var/obj/item/armor_module/module = attackedby
 		if(!module.can_attach(user, src))
 			return FALSE
 		if(!can_attach(user, module))
@@ -160,7 +160,7 @@
 
 	if(!storage)
 		return
-	return storage.attackby(I, user, params)
+	return storage.attackby(attackedby, user, params)
 
 
 /obj/item/clothing/suit/modular/emp_act(severity)
@@ -401,15 +401,15 @@
 	if(visor_greyscale_config)
 		to_chat(user, "Right click the helmet to toggle the visor internal lighting.")
 
-/obj/item/clothing/head/modular/attackby(obj/item/I, mob/user, params)
+/obj/item/clothing/head/modular/attackby(obj/item/attackedby, mob/user, params)
 	. = ..()
 	if(.)
 		return
 
-	if(!istype(I, /obj/item/facepaint))
+	if(!istype(attackedby, /obj/item/facepaint))
 		return FALSE
 
-	var/obj/item/facepaint/paint = I
+	var/obj/item/facepaint/paint = attackedby
 	if(paint.uses < 1)
 		to_chat(user, "<span class='warning'>\the [paint] is out of color!</span>")
 		return TRUE

@@ -29,10 +29,10 @@
 	singular_name = "green flag"
 	icon_state = "greenflag"
 
-/obj/item/stack/flag/attackby(obj/item/I, mob/user, params)
+/obj/item/stack/flag/attackby(obj/item/attackedby, mob/user, params)
 	. = ..()
 
-	if(upright && istype(I, type))
+	if(upright && istype(attackedby, type))
 		return attack_hand(user)
 
 /obj/item/stack/flag/attack_hand(mob/living/user)

@@ -81,10 +81,10 @@
 /obj/item/explosive/grenade/proc/prime()
 
 
-/obj/item/explosive/grenade/attackby(obj/item/I, mob/user, params)
+/obj/item/explosive/grenade/attackby(obj/item/attackedby, mob/user, params)
 	. = ..()
 
-	if(isscrewdriver(I))
+	if(isscrewdriver(attackedby))
 		switch(det_time)
 			if(1)
 				det_time = 10

@@ -16,10 +16,10 @@
 	icon_state = "apc_frame"
 	flags_atom = CONDUCT
 
-/obj/item/frame/apc/attackby(obj/item/I, mob/user, params)
+/obj/item/frame/apc/attackby(obj/item/attackedby, mob/user, params)
 	. = ..()
 
-	if(iswrench(I))
+	if(iswrench(attackedby))
 		new /obj/item/stack/sheet/metal(loc, 2)
 		qdel(src)
 

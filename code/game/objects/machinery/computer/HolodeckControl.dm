@@ -18,12 +18,12 @@
 	return TRUE
 
 
-/obj/structure/table/holotable/attackby(obj/item/I, mob/user, params)
-	if(iswrench(I))
+/obj/structure/table/holotable/attackby(obj/item/attackedby, mob/user, params)
+	if(iswrench(attackedby))
 		to_chat(user, "It's a holotable!  There are no bolts!")
 
-	else if(istype(I, /obj/item/grab) && get_dist(src, user) <= 1)
-		var/obj/item/grab/G = I
+	else if(istype(attackedby, /obj/item/grab) && get_dist(src, user) <= 1)
+		var/obj/item/grab/G = attackedby
 		if(!isliving(G.grabbed_thing))
 			return
 
@@ -89,11 +89,11 @@
 	var/side = ""
 	var/id = ""
 
-/obj/structure/holohoop/attackby(obj/item/I, mob/user, params)
+/obj/structure/holohoop/attackby(obj/item/attackedby, mob/user, params)
 	. = ..()
 
-	if(istype(I, /obj/item/grab) && get_dist(src, user) <= 1)
-		var/obj/item/grab/G = I
+	if(istype(attackedby, /obj/item/grab) && get_dist(src, user) <= 1)
+		var/obj/item/grab/G = attackedby
 		if(!isliving(G.grabbed_thing))
 			return
 
@@ -110,11 +110,11 @@
 		visible_message("<span class='danger'>[user] dunks [L] into the [src]!</span>")
 
 	else if(get_dist(src, user) < 2)
-		user.transferItemToLoc(I, loc)
+		user.transferItemToLoc(attackedby, loc)
 		for(var/obj/machinery/scoreboard/X in GLOB.machines)
 			if(X.id == id)
 				X.score(side)
-		visible_message("<span class='notice'>[user] dunks [I] into the [src]!</span>")
+		visible_message("<span class='notice'>[user] dunks [attackedby] into the [src]!</span>")
 
 /obj/structure/holohoop/CanAllowThrough(atom/movable/mover, turf/target)
 	. = ..()

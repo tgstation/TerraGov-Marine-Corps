@@ -14,15 +14,15 @@
 			I.loc = src
 	update_icon()
 
-/obj/structure/bookcase/attackby(obj/item/I, mob/user, params)
+/obj/structure/bookcase/attackby(obj/item/attackedby, mob/user, params)
 	. = ..()
 
-	if(istype(I, /obj/item/book))
+	if(istype(attackedby, /obj/item/book))
 		user.drop_held_item()
-		I.forceMove(src)
+		attackedby.forceMove(src)
 		update_icon()
 
-	else if(istype(I, /obj/item/tool/pen))
+	else if(istype(attackedby, /obj/item/tool/pen))
 		var/newname = stripped_input(user, "What would you like to title this bookshelf?")
 		if(!newname)
 			return

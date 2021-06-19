@@ -13,8 +13,8 @@
 	///Are we broken?
 	var/broken = FALSE
 
-/obj/item/storage/lockbox/attackby(obj/item/item, mob/living/user, params)
-	if(istype(item, /obj/item/card/id))
+/obj/item/storage/lockbox/attackby(obj/item/attackedby, mob/living/user, params)
+	if(istype(attackedby, /obj/item/card/id))
 		if(broken)
 			to_chat(user, "<span class='warning'>It appears to be broken.</span>")
 			return

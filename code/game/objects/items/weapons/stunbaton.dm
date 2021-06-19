@@ -70,8 +70,8 @@
 		return TRUE
 	var/mob/living/carbon/human/H = user
 	if(istype(H))
-		var/obj/item/card/id/I = H.wear_id
-		if(!istype(I) || !check_access(I))
+		var/obj/item/card/id/attackedby = H.wear_id
+		if(!istype(attackedby) || !check_access(attackedby))
 			H.visible_message("<span class='notice'> [src] beeeps as [H] picks it up</span>", "<span class='danger'>WARNING: Unauthorized user detected. Denying access...</span>")
 			H.Paralyze(40 SECONDS)
 			H.visible_message("<span class='warning'>[src] beeps and sends a shock through [H]'s body!</span>")
@@ -82,10 +82,10 @@
 /obj/item/weapon/baton/pull_response(mob/puller)
 	return check_user_auth(puller)
 
-/obj/item/weapon/baton/attackby(obj/item/I, mob/user, params)
+/obj/item/weapon/baton/attackby(obj/item/attackedby, mob/user, params)
 	. = ..()
 
-	if(istype(I, /obj/item/cell))
+	if(istype(attackedby, /obj/item/cell))
 		if(bcell)
 			to_chat(user, "<span class='notice'>[src] already has a cell.</span>")
 			return
@@ -93,11 +93,11 @@
 		if(!user.drop_held_item())
 			return
 
-		I.forceMove(src)
-		bcell = I
+		attackedby.forceMove(src)
+		bcell = attackedby
 		to_chat(user, "<span class='notice'>You install a cell in [src].</span>")
 
-	else if(isscrewdriver(I))
+	else if(isscrewdriver(attackedby))
 		if(!bcell)
 			return
 

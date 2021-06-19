@@ -261,11 +261,11 @@
 	var/fallen_names[0]
 	var/fallen_assignements[0]
 
-/obj/item/dogtag/attackby(obj/item/I, mob/user, params)
+/obj/item/dogtag/attackby(obj/item/attackedby, mob/user, params)
 	. = ..()
 
-	if(istype(I, /obj/item/dogtag))
-		var/obj/item/dogtag/D = I
+	if(istype(attackedby, /obj/item/dogtag))
+		var/obj/item/dogtag/D = attackedby
 		to_chat(user, "<span class='notice'>You join the two tags together.</span>")
 		name = "information dog tags"
 		if(D.fallen_names)

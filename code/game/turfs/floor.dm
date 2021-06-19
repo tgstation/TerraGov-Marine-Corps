@@ -393,26 +393,26 @@ GLOBAL_LIST_INIT(wood_icons, list("wood", "wood-broken"))
 	update_icon()
 	levelupdate()
 
-/turf/open/floor/attackby(obj/item/I, mob/user, params)
+/turf/open/floor/attackby(obj/item/attackedby, mob/user, params)
 	. = ..()
 
 	if(hull_floor) //no interaction for hulls
 		return
 
-	else if(istype(I, /obj/item/light_bulb/bulb)) //Only for light tiles
+	else if(istype(attackedby, /obj/item/light_bulb/bulb)) //Only for light tiles
 		if(is_light_floor())
 			var/obj/item/stack/tile/light/T = floor_tile
 			if(!T.state)
 				to_chat(user, "<span class='notice'>The lightbulb seems fine, no need to replace it.</span>")
 				return
 
-			user.drop_held_item(I)
-			qdel(I)
-			T.state = I //Fixing it by bashing it with a light bulb, fun eh?
+			user.drop_held_item(attackedby)
+			qdel(attackedby)
+			T.state = attackedby //Fixing it by bashing it with a light bulb, fun eh?
 			update_icon()
 			to_chat(user, "<span class='notice'>You replace the light bulb.</span>")
 
-	else if(iscrowbar(I) && !is_plating() && floor_tile)
+	else if(iscrowbar(attackedby) && !is_plating() && floor_tile)
 		if(broken || burnt)
 			to_chat(user, "<span class='warning'>You remove the broken plating.</span>")
 		else if(is_wood_floor())
@@ -424,7 +424,7 @@ GLOBAL_LIST_INIT(wood_icons, list("wood", "wood-broken"))
 		make_plating()
 		playsound(src, 'sound/items/crowbar.ogg', 25, 1)
 
-	else if(isscrewdriver(I) && is_wood_floor())
+	else if(isscrewdriver(attackedby) && is_wood_floor())
 		if(broken || burnt)
 			return
 
@@ -436,8 +436,8 @@ GLOBAL_LIST_INIT(wood_icons, list("wood", "wood-broken"))
 		playsound(src, 'sound/items/screwdriver.ogg', 25, 1)
 
 
-	else if(istype(I, /obj/item/stack/rods))
-		var/obj/item/stack/rods/R = I
+	else if(istype(attackedby, /obj/item/stack/rods))
+		var/obj/item/stack/rods/R = attackedby
 		if(!is_plating())
 			to_chat(user, "<span class='warning'>You must remove the plating first.</span>")
 			return
@@ -456,7 +456,7 @@ GLOBAL_LIST_INIT(wood_icons, list("wood", "wood-broken"))
 		ChangeTurf(/turf/open/floor/engine)
 		playsound(src, 'sound/items/deconstruct.ogg', 25, 1)
 
-	if(istype(I, /obj/item/stack/tile))
+	if(istype(attackedby, /obj/item/stack/tile))
 		if(!is_plating())
 			return
 
@@ -464,7 +464,7 @@ GLOBAL_LIST_INIT(wood_icons, list("wood", "wood-broken"))
 			to_chat(user, "<span class='notice'>This section is too damaged to support a tile. Use a welder to fix the damage.</span>")
 			return
 
-		var/obj/item/stack/tile/T = I
+		var/obj/item/stack/tile/T = attackedby
 		if(T.get_amount() < 1)
 			return
 
@@ -490,7 +490,7 @@ GLOBAL_LIST_INIT(wood_icons, list("wood", "wood-broken"))
 		levelupdate()
 		playsound(src, 'sound/weapons/genhit.ogg', 25, 1)
 
-	else if(istype(I, /obj/item/tool/shovel))
+	else if(istype(attackedby, /obj/item/tool/shovel))
 		if(!is_grass_floor())
 			to_chat(user, "<span class='warning'>You cannot shovel this.</span>")
 			return
@@ -500,8 +500,8 @@ GLOBAL_LIST_INIT(wood_icons, list("wood", "wood-broken"))
 		to_chat(user, "<span class='notice'>You shovel the grass.</span>")
 		make_plating()
 
-	else if(iswelder(I))
-		var/obj/item/tool/weldingtool/welder = I
+	else if(iswelder(attackedby))
+		var/obj/item/tool/weldingtool/welder = attackedby
 		if(!welder.isOn() || !is_plating())
 			return
 

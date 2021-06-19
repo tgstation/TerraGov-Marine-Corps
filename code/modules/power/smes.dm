@@ -185,10 +185,10 @@
 	return FALSE
 
 
-/obj/machinery/power/smes/attackby(obj/item/I, mob/user, params)
+/obj/machinery/power/smes/attackby(obj/item/attackedby, mob/user, params)
 	. = ..()
 
-	if(isscrewdriver(I))
+	if(isscrewdriver(attackedby))
 		TOGGLE_BITFIELD(machine_stat, PANEL_OPEN)
 
 		if(CHECK_BITFIELD(machine_stat, PANEL_OPEN))
@@ -200,8 +200,8 @@
 
 		update_icon()
 
-	else if(iscablecoil(I))
-		var/obj/item/stack/cable_coil/C = I
+	else if(iscablecoil(attackedby))
+		var/obj/item/stack/cable_coil/C = attackedby
 
 		var/dir = get_dir(user, src)
 		if(ISDIAGONALDIR(dir))//we don't want diagonal click
@@ -245,7 +245,7 @@
 		connect_to_network()
 
 
-	else if(iswirecutter(I) && terminal && CHECK_BITFIELD(machine_stat, PANEL_OPEN))
+	else if(iswirecutter(attackedby) && terminal && CHECK_BITFIELD(machine_stat, PANEL_OPEN))
 		terminal.deconstruct(user)
 
 

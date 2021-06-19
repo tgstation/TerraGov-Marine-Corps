@@ -32,15 +32,15 @@
 		to_chat(usr, "There is nothing to remove from the console.")
 
 
-/obj/machinery/computer/med_data/attackby(obj/item/I, mob/user, params)
+/obj/machinery/computer/med_data/attackby(obj/item/attackedby, mob/user, params)
 	. = ..()
 
-	if(istype(I, /obj/item/card/id) && !scan)
+	if(istype(attackedby, /obj/item/card/id) && !scan)
 		if(!user.drop_held_item())
 			return
-		I.forceMove(src)
-		scan = I
-		to_chat(user, "You insert [I].")
+		attackedby.forceMove(src)
+		scan = attackedby
+		to_chat(user, "You insert [attackedby].")
 
 
 /obj/machinery/computer/med_data/interact(mob/user)

@@ -181,10 +181,10 @@
 	else //should never be happening, but just in case
 		toggle(TRUE)
 
-/obj/item/tool/weldingtool/attackby(obj/item/I, mob/user, params)
+/obj/item/tool/weldingtool/attackby(obj/item/attackedby, mob/user, params)
 	. = ..()
 
-	if(istype(I, /obj/item/tool/screwdriver))
+	if(istype(attackedby, /obj/item/tool/screwdriver))
 		flamethrower_screwdriver(src, user)
 
 /obj/item/tool/weldingtool/attack(mob/M, mob/user)
@@ -390,14 +390,14 @@
 	R.my_atom = src
 	R.add_reagent(/datum/reagent/fuel, max_fuel)
 
-/obj/item/tool/weldpack/attackby(obj/item/I, mob/user, params)
+/obj/item/tool/weldpack/attackby(obj/item/attackedby, mob/user, params)
 	. = ..()
 	if(reagents.total_volume == 0)
 		to_chat(user, "<span class='warning'>Out of fuel!</span>")
 		return
 
-	else if(iswelder(I))
-		var/obj/item/tool/weldingtool/T = I
+	else if(iswelder(attackedby))
+		var/obj/item/tool/weldingtool/T = attackedby
 		if(T.welding)
 			to_chat(user, "<span class='warning'>That was stupid of you.</span>")
 			log_explosion("[key_name(user)] triggered a weldpack explosion at [AREACOORD(user.loc)].")
@@ -406,12 +406,12 @@
 		if(T.get_fuel() == T.max_fuel || !reagents.total_volume)
 			return ..()
 
-		reagents.trans_to(I, T.max_fuel)
+		reagents.trans_to(attackedby, T.max_fuel)
 		to_chat(user, "<span class='notice'>Welder refilled!</span>")
 		playsound(loc, 'sound/effects/refill.ogg', 25, TRUE, 3)
 
-	else if(istype(I, /obj/item/ammo_magazine/flamer_tank))
-		var/obj/item/ammo_magazine/flamer_tank/FT = I
+	else if(istype(attackedby, /obj/item/ammo_magazine/flamer_tank))
+		var/obj/item/ammo_magazine/flamer_tank/FT = attackedby
 		if(!reagents.total_volume)
 			return ..()
 
@@ -424,8 +424,8 @@
 		to_chat(user, "<span class='notice'>You refill [FT] with [lowertext(FT.caliber)].</span>")
 		FT.update_icon()
 
-	else if(istype(I, /obj/item/attachable/attached_gun/flamer))
-		var/obj/item/attachable/attached_gun/flamer/FT = I
+	else if(istype(attackedby, /obj/item/attachable/attached_gun/flamer))
+		var/obj/item/attachable/attached_gun/flamer/FT = attackedby
 		if(!reagents.total_volume)
 			return ..()
 

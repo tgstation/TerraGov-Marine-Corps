@@ -46,32 +46,32 @@
 	popup.open()
 
 
-/obj/structure/dispenser/attackby(obj/item/I, mob/user, params)
+/obj/structure/dispenser/attackby(obj/item/attackedby, mob/user, params)
 	. = ..()
 
-	if(istype(I, /obj/item/tank/oxygen) || istype(I, /obj/item/tank/air) || istype(I, /obj/item/tank/anesthetic))
+	if(istype(attackedby, /obj/item/tank/oxygen) || istype(attackedby, /obj/item/tank/air) || istype(attackedby, /obj/item/tank/anesthetic))
 		if(oxygentanks >= 10)
 			to_chat(user, "<span class='notice'>[src] is full.</span>")
 			return
 
 		user.drop_held_item()
-		I.forceMove(src)
-		oxytanks += I
+		attackedby.forceMove(src)
+		oxytanks += attackedby
 		oxygentanks++
-		to_chat(user, "<span class='notice'>You put [I] in [src].</span>")
+		to_chat(user, "<span class='notice'>You put [attackedby] in [src].</span>")
 		if(oxygentanks < 5)
 			update_icon()
 
-	else if(istype(I, /obj/item/tank/phoron))
+	else if(istype(attackedby, /obj/item/tank/phoron))
 		if(phorontanks >= 10)
 			to_chat(user, "<span class='notice'>[src] is full.</span>")
 			return
 
 		user.drop_held_item()
-		I.forceMove(src)
-		platanks += I
+		attackedby.forceMove(src)
+		platanks += attackedby
 		phorontanks++
-		to_chat(user, "<span class='notice'>You put [I] in [src].</span>")
+		to_chat(user, "<span class='notice'>You put [attackedby] in [src].</span>")
 		if(oxygentanks < 6)
 			update_icon()
 

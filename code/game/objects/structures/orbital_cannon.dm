@@ -254,12 +254,12 @@
 		. += image("cannon_tray_[fuel_amt]")
 
 
-/obj/structure/orbital_tray/attackby(obj/item/I, mob/user, params)
+/obj/structure/orbital_tray/attackby(obj/item/attackedby, mob/user, params)
 	. = ..()
 
 
-	if(istype(I, /obj/item/powerloader_clamp))
-		var/obj/item/powerloader_clamp/PC = I
+	if(istype(attackedby, /obj/item/powerloader_clamp))
+		var/obj/item/powerloader_clamp/PC = attackedby
 
 		if(!PC.linked_powerloader)
 			return TRUE
@@ -327,11 +327,11 @@
 	coverage = 100
 	var/is_solid_fuel = 0
 
-/obj/structure/ob_ammo/attackby(obj/item/I, mob/user, params)
+/obj/structure/ob_ammo/attackby(obj/item/attackedby, mob/user, params)
 	. = ..()
 
-	if(istype(I, /obj/item/powerloader_clamp))
-		var/obj/item/powerloader_clamp/PC = I
+	if(istype(attackedby, /obj/item/powerloader_clamp))
+		var/obj/item/powerloader_clamp/PC = attackedby
 		if(!PC.linked_powerloader)
 			return TRUE
 

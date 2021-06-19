@@ -72,10 +72,10 @@
 		icon_state = "[icon_state]off"
 
 
-/obj/item/detpack/attackby(obj/item/I, mob/user, params)
+/obj/item/detpack/attackby(obj/item/attackedby, mob/user, params)
 	. = ..()
 
-	if(ismultitool(I) && armed)
+	if(ismultitool(attackedby) && armed)
 		if(user.skills.getRating("engineer") < SKILL_ENGINEER_METAL)
 			user.visible_message("<span class='notice'>[user] fumbles around figuring out how to use the [src].</span>",
 			"<span class='notice'>You fumble around figuring out how to use [src].</span>")
@@ -87,8 +87,8 @@
 				to_chat(user, "<font color='danger'>After several seconds of your clumsy meddling the [src] buzzes angrily as if offended. You have a <b>very</b> bad feeling about this.</font>")
 				timer = 0 //Oops. Now you fucked up. Immediate detonation.
 
-		user.visible_message("<span class='notice'>[user] begins disarming [src] with [I].</span>",
-		"<span class='notice'>You begin disarming [src] with [I].</span>")
+		user.visible_message("<span class='notice'>[user] begins disarming [src] with [attackedby].</span>",
+		"<span class='notice'>You begin disarming [src] with [attackedby].</span>")
 
 		if(!do_after(user, 30, TRUE, src, BUSY_ICON_FRIENDLY))
 			return

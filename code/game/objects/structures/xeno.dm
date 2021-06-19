@@ -15,14 +15,14 @@
 	var/ignore_weed_destruction = FALSE //Set this to true if this object isn't destroyed when the weeds under it is.
 
 
-/obj/effect/alien/attackby(obj/item/I, mob/user, params)
+/obj/effect/alien/attackby(obj/item/attackedby, mob/user, params)
 	. = ..()
 
 	if(user.a_intent == INTENT_HARM) //Already handled at the parent level.
 		return
 
 	if(obj_flags & CAN_BE_HIT)
-		return I.attack_obj(src, user)
+		return attackedby.attack_obj(src, user)
 
 
 /obj/effect/alien/Crossed(atom/movable/O)
@@ -223,11 +223,11 @@
 	to_chat(X, "<span class='xenonotice'>We remove the facehugger from [src].</span>")
 
 
-/obj/structure/xeno/trap/attackby(obj/item/I, mob/user, params)
+/obj/structure/xeno/trap/attackby(obj/item/attackedby, mob/user, params)
 	. = ..()
 
-	if(istype(I, /obj/item/clothing/mask/facehugger) && isxeno(user))
-		var/obj/item/clothing/mask/facehugger/FH = I
+	if(istype(attackedby, /obj/item/clothing/mask/facehugger) && isxeno(user))
+		var/obj/item/clothing/mask/facehugger/FH = attackedby
 		if(hugger)
 			to_chat(user, "<span class='warning'>There is already a facehugger in [src].</span>")
 			return
@@ -520,14 +520,14 @@
 	if(on_fire)
 		overlays += "alienegg_fire"
 
-/obj/effect/alien/egg/attackby(obj/item/I, mob/user, params)
+/obj/effect/alien/egg/attackby(obj/item/attackedby, mob/user, params)
 	. = ..()
 
 	if(hugger_type == null)
 		return // This egg doesn't take huggers
 
-	if(istype(I, /obj/item/clothing/mask/facehugger))
-		var/obj/item/clothing/mask/facehugger/F = I
+	if(istype(attackedby, /obj/item/clothing/mask/facehugger))
+		var/obj/item/clothing/mask/facehugger/F = attackedby
 		if(F.stat == DEAD)
 			to_chat(user, "<span class='xenowarning'>This child is dead.</span>")
 			return
@@ -692,7 +692,7 @@ TUNNEL
 		if(EXPLODE_LIGHT)
 			take_damage(70)
 
-/obj/structure/xeno/tunnel/attackby(obj/item/I, mob/user, params)
+/obj/structure/xeno/tunnel/attackby(obj/item/attackedby, mob/user, params)
 	if(!isxeno(user))
 		return ..()
 	attack_alien(user)
@@ -861,7 +861,7 @@ TUNNEL
 		if(EXPLODE_LIGHT)
 			take_damage(70)
 
-/obj/structure/xeno/acidwell/attackby(obj/item/I, mob/user, params)
+/obj/structure/xeno/acidwell/attackby(obj/item/attackedby, mob/user, params)
 	if(!isxeno(user))
 		return ..()
 	attack_alien(user)

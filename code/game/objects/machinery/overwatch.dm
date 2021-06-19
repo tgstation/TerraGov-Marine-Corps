@@ -102,7 +102,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	name = "Delta Overwatch Console"
 
 
-/obj/machinery/computer/camera_advanced/overwatch/attackby(obj/item/I, mob/user, params)
+/obj/machinery/computer/camera_advanced/overwatch/attackby(obj/item/attackedby, mob/user, params)
 	return
 
 

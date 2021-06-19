@@ -8,9 +8,9 @@
 	var/temp = "" // output message
 
 
-/obj/machinery/telecomms/attackby(obj/item/I, mob/user, params)
+/obj/machinery/telecomms/attackby(obj/item/attackedby, mob/user, params)
 	// Using a multitool lets you access the receiver's interface
-	if(ismultitool(I))
+	if(ismultitool(attackedby))
 		interact(user)
 	else
 		return ..()

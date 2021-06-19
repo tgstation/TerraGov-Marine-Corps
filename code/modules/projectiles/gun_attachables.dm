@@ -130,14 +130,14 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	var/obj/item/weapon/gun/master_gun
 
 
-/obj/item/attachable/attackby(obj/item/I, mob/user, params)
+/obj/item/attachable/attackby(obj/item/attackedby, mob/user, params)
 	. = ..()
 
 	if(flags_attach_features & ATTACH_RELOADABLE)
 		if(user.get_inactive_held_item() != src)
 			to_chat(user, "<span class='warning'>You have to hold [src] to do that!</span>")
 		else
-			reload_attachment(I, user)
+			reload_attachment(attackedby, user)
 		return TRUE
 
 
@@ -643,10 +643,10 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 		A.update_button_icon()
 
 
-/obj/item/attachable/flashlight/attackby(obj/item/I, mob/user, params)
+/obj/item/attachable/flashlight/attackby(obj/item/attackedby, mob/user, params)
 	. = ..()
 
-	if(istype(I,/obj/item/tool/screwdriver))
+	if(istype(attackedby,/obj/item/tool/screwdriver))
 		to_chat(user, "<span class='notice'>You modify the rail flashlight back into a normal flashlight.</span>")
 		if(loc == user)
 			user.temporarilyRemoveItemFromInventory(src)

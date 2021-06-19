@@ -59,22 +59,22 @@
 	return ..()
 
 
-/obj/structure/flora/tree/attackby(obj/item/I, mob/user, params)
+/obj/structure/flora/tree/attackby(obj/item/attackedby, mob/user, params)
 	. = ..()
 
-	if(!I.sharp && I.force <= 0)
+	if(!attackedby.sharp && attackedby.force <= 0)
 		return
 
-	if(I.hitsound)
-		playsound(get_turf(src), I.hitsound, 50, 0, 0)
+	if(attackedby.hitsound)
+		playsound(get_turf(src), attackedby.hitsound, 50, 0, 0)
 
-	user.visible_message("<span class='notice'>[user] begins to cut down [src] with [I].</span>","<span class='notice'>You begin to cut down [src] with [I].</span>", "You hear the sound of sawing.")
-	var/cut_force = min(1, I.force)
+	user.visible_message("<span class='notice'>[user] begins to cut down [src] with [attackedby].</span>","<span class='notice'>You begin to cut down [src] with [attackedby].</span>", "You hear the sound of sawing.")
+	var/cut_force = min(1, attackedby.force)
 	var/cutting_time = clamp(10, 20, 100 / cut_force) SECONDS
 	if(!do_after(user, cutting_time , TRUE, src, BUSY_ICON_BUILD))
 		return
 
-	user.visible_message("<span class='notice'>[user] fells [src] with the [I].</span>","<span class='notice'>You fell [src] with the [I].</span>", "You hear the sound of a tree falling.")
+	user.visible_message("<span class='notice'>[user] fells [src] with the [attackedby].</span>","<span class='notice'>You fell [src] with the [attackedby].</span>", "You hear the sound of a tree falling.")
 	playsound(get_turf(src), 'sound/effects/meteorimpact.ogg', 10 , 0, 0)
 	for(var/i in 1 to log_amount)
 		new /obj/item/grown/log(get_turf(src))
@@ -437,16 +437,16 @@
 	desc = "A mass of twisted vines."
 	icon = 'icons/effects/spacevines.dmi'
 
-/obj/structure/jungle/vines/attackby(obj/item/I, mob/user, params)
+/obj/structure/jungle/vines/attackby(obj/item/attackedby, mob/user, params)
 	. = ..()
 
-	if(I.sharp != IS_SHARP_ITEM_BIG || !isliving(user))
+	if(attackedby.sharp != IS_SHARP_ITEM_BIG || !isliving(user))
 		return
 
 	var/mob/living/L = user
 
-	to_chat(L, "<span class='warning'>You cut \the [src] away with \the [I].</span>")
-	L.do_attack_animation(src, used_item = I)
+	to_chat(L, "<span class='warning'>You cut \the [src] away with \the [attackedby].</span>")
+	L.do_attack_animation(src, used_item = attackedby)
 	playsound(src, 'sound/effects/vegetation_hit.ogg', 25, 1)
 	qdel(src)
 

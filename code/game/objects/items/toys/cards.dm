@@ -27,15 +27,15 @@
 			cards += P
 
 
-/obj/item/toy/deck/attackby(obj/item/I, mob/user, params)
+/obj/item/toy/deck/attackby(obj/item/attackedby, mob/user, params)
 	. = ..()
 
-	if(istype(I, /obj/item/toy/handcard))
-		var/obj/item/toy/handcard/H = I
+	if(istype(attackedby, /obj/item/toy/handcard))
+		var/obj/item/toy/handcard/H = attackedby
 		for(var/datum/playingcard/P in H.cards)
 			cards += P
 		update_icon()
-		qdel(I)
+		qdel(attackedby)
 		to_chat(user, "You place your cards on the bottom of the deck.")
 
 /obj/item/toy/deck/update_icon_state()
@@ -168,15 +168,15 @@
 		if("kotahi")
 			icon = 'icons/obj/items/kotahi_cards.dmi'
 
-/obj/item/toy/handcard/attackby(obj/item/I, mob/user, params)
+/obj/item/toy/handcard/attackby(obj/item/attackedby, mob/user, params)
 	. = ..()
 
-	if(istype(I, /obj/item/toy/handcard))
-		var/obj/item/toy/handcard/H = I
+	if(istype(attackedby, /obj/item/toy/handcard))
+		var/obj/item/toy/handcard/H = attackedby
 		for(var/datum/playingcard/P in H.cards)
 			cards += P
 		concealed = H.concealed
-		qdel(I)
+		qdel(attackedby)
 		if(loc != user)
 			user.put_in_hands(src)
 		update_icon()

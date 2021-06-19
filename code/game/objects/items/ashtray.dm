@@ -12,18 +12,18 @@
 	pixel_y = rand(-5, 5)
 	pixel_x = rand(-6, 6)
 
-/obj/item/ashtray/attackby(obj/item/I, mob/user, params)
+/obj/item/ashtray/attackby(obj/item/attackedby, mob/user, params)
 	. = ..()
 
-	if(istype(I, /obj/item/trash/cigbutt) || istype(I, /obj/item/clothing/mask/cigarette) || istype(I, /obj/item/tool/match))
+	if(istype(attackedby, /obj/item/trash/cigbutt) || istype(attackedby, /obj/item/clothing/mask/cigarette) || istype(attackedby, /obj/item/tool/match))
 		if(length(contents) >= max_butts)
 			to_chat(user, "This ashtray is full.")
 			return
 
-		user.transferItemToLoc(I, src)
+		user.transferItemToLoc(attackedby, src)
 
-		if(istype(I, /obj/item/clothing/mask/cigarette))
-			var/obj/item/clothing/mask/cigarette/cig = I
+		if(istype(attackedby, /obj/item/clothing/mask/cigarette))
+			var/obj/item/clothing/mask/cigarette/cig = attackedby
 			if(!cig.heat)
 				to_chat(user, "You can't place [cig] in [src] without even smoking it. Why would you do that?")
 				return
@@ -33,7 +33,7 @@
 			new cig.type_butt(src)
 			qdel(cig)
 
-		visible_message("[user] places [I] in [src].")
+		visible_message("[user] places [attackedby] in [src].")
 
 
 /obj/item/ashtray/deconstruct(disassembled = TRUE)

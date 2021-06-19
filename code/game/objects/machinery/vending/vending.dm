@@ -313,13 +313,13 @@
 	var/matrix/A = matrix()
 	transform = A
 
-/obj/machinery/vending/attackby(obj/item/I, mob/user, params)
+/obj/machinery/vending/attackby(obj/item/attackedby, mob/user, params)
 	. = ..()
 
 	if(tipped_level)
 		to_chat(user, "Tip it back upright first!")
 
-	else if(isscrewdriver(I))
+	else if(isscrewdriver(attackedby))
 		TOGGLE_BITFIELD(machine_stat, PANEL_OPEN)
 		to_chat(user, "You [CHECK_BITFIELD(machine_stat, PANEL_OPEN) ? "open" : "close"] the maintenance panel.")
 		overlays.Cut()
@@ -327,14 +327,14 @@
 			overlays += image(icon, "[initial(icon_state)]-panel")
 		updateUsrDialog()
 
-	else if(ismultitool(I) || iswirecutter(I))
+	else if(ismultitool(attackedby) || iswirecutter(attackedby))
 		if(!CHECK_BITFIELD(machine_stat, PANEL_OPEN))
 			return
 
 		attack_hand(user)
 
-	else if(istype(I, /obj/item/coin))
-		var/obj/item/coin/C = I
+	else if(istype(attackedby, /obj/item/coin))
+		var/obj/item/coin/C = attackedby
 
 		if(coin)
 			to_chat(user, "<span class='warning'>[src] already has [coin] inserted</span>")
@@ -352,18 +352,18 @@
 		else
 			to_chat(user, "<span class='warning'>\The [src] rejects \the [C].</span>")
 
-	else if(istype(I, /obj/item/card))
-		var/obj/item/card/C = I
+	else if(istype(attackedby, /obj/item/card))
+		var/obj/item/card/C = attackedby
 		scan_card(C)
 
-	else if(istype(I, /obj/item/spacecash/ewallet))
-		if(!user.transferItemToLoc(I, src))
+	else if(istype(attackedby, /obj/item/spacecash/ewallet))
+		if(!user.transferItemToLoc(attackedby, src))
 			return
 
-		ewallet = I
-		to_chat(user, "<span class='notice'>You insert the [I] into the [src]</span>")
+		ewallet = attackedby
+		to_chat(user, "<span class='notice'>You insert the [attackedby] into the [src]</span>")
 
-	else if(iswrench(I))
+	else if(iswrench(attackedby))
 		if(!wrenchable)
 			return
 
@@ -377,8 +377,8 @@
 		else
 			user.visible_message("[user] unfastens the bolts securing \the [src] to the floor.", "You unfasten the bolts securing \the [src] to the floor.")
 
-	else if(istype(I, /obj/item))
-		var/obj/item/to_stock = I
+	else if(istype(attackedby, /obj/item))
+		var/obj/item/to_stock = attackedby
 		stock(to_stock, user)
 
 /obj/machinery/vending/proc/scan_card(obj/item/card/I)

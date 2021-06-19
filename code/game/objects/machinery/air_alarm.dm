@@ -691,21 +691,21 @@ table tr:first-child th:first-child { border: none;}
 	updateUsrDialog()
 
 
-/obj/machinery/alarm/attackby(obj/item/I, mob/user, params)
+/obj/machinery/alarm/attackby(obj/item/attackedby, mob/user, params)
 	. = ..()
 
 	switch(buildstage)
 		if(2)
-			if(isscrewdriver(I))  // Opening that Air Alarm up.
+			if(isscrewdriver(attackedby))  // Opening that Air Alarm up.
 				TOGGLE_BITFIELD(machine_stat, PANEL_OPEN)
 				to_chat(user, "The wires have been [CHECK_BITFIELD(machine_stat, PANEL_OPEN) ? "exposed" : "unexposed"]")
 				update_icon()
 				return
 
-			else if(CHECK_BITFIELD(machine_stat, PANEL_OPEN) && (ismultitool(I) || iswirecutter(I)))
+			else if(CHECK_BITFIELD(machine_stat, PANEL_OPEN) && (ismultitool(attackedby) || iswirecutter(attackedby)))
 				return attack_hand(user)
 
-			else if(istype(I, /obj/item/card/id))// trying to unlock the interface with an ID card
+			else if(istype(attackedby, /obj/item/card/id))// trying to unlock the interface with an ID card
 				if(machine_stat & (NOPOWER|BROKEN))
 					to_chat(user, "It does nothing")
 					return
@@ -719,8 +719,8 @@ table tr:first-child th:first-child { border: none;}
 				updateUsrDialog()
 
 		if(1)
-			if(iscablecoil(I))
-				var/obj/item/stack/cable_coil/C = I
+			if(iscablecoil(attackedby))
+				var/obj/item/stack/cable_coil/C = attackedby
 				if(!C.use(5))
 					to_chat(user, "<span class='warning'>You need 5 pieces of cable to do wire \the [src].</span>")
 					return
@@ -730,7 +730,7 @@ table tr:first-child th:first-child { border: none;}
 				update_icon()
 				first_run()
 
-			else if(iscrowbar(I))
+			else if(iscrowbar(attackedby))
 				user.visible_message("<span class='notice'>[user] starts prying out [src]'s circuits.</span>",
 				"<span class='notice'>You start prying out [src]'s circuits.</span>")
 
@@ -752,13 +752,13 @@ table tr:first-child th:first-child { border: none;}
 				update_icon()
 
 		if(0)
-			if(istype(I, /obj/item/circuitboard/airalarm))
+			if(istype(attackedby, /obj/item/circuitboard/airalarm))
 				to_chat(user, "You insert the circuit!")
-				qdel(I)
+				qdel(attackedby)
 				buildstage = 1
 				update_icon()
 
-			else if(iswrench(I))
+			else if(iswrench(attackedby))
 				to_chat(user, "You remove the fire alarm assembly from the wall!")
 				var/obj/item/frame/air_alarm/frame = new /obj/item/frame/air_alarm()
 				frame.forceMove(user.loc)

@@ -43,15 +43,15 @@
 	item_state = initial(icon_state)
 
 
-/obj/item/armor_module/armor/attackby(obj/item/I, mob/user, params)
+/obj/item/armor_module/armor/attackby(obj/item/attackedby, mob/user, params)
 	. = ..()
 	if(.)
 		return
 
-	if(!istype(I, /obj/item/facepaint))
+	if(!istype(attackedby, /obj/item/facepaint))
 		return FALSE
 
-	var/obj/item/facepaint/paint = I
+	var/obj/item/facepaint/paint = attackedby
 	if(paint.uses < 1)
 		to_chat(user, "<span class='warning'>\the [paint] is out of color!</span>")
 		return TRUE

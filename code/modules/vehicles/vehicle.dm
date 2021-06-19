@@ -68,10 +68,10 @@
 		playsound(src, pick(move_sounds), 25, TRUE)
 
 
-/obj/vehicle/attackby(obj/item/I, mob/user, params)
+/obj/vehicle/attackby(obj/item/attackedby, mob/user, params)
 	. = ..()
 
-	if(isscrewdriver(I))
+	if(isscrewdriver(attackedby))
 		if(locked)
 			return
 
@@ -79,14 +79,14 @@
 		update_icon()
 		to_chat(user, "<span class='notice'>Maintenance panel is now [open ? "opened" : "closed"].</span>")
 
-	else if(iscrowbar(I) && cell && open)
+	else if(iscrowbar(attackedby) && cell && open)
 		remove_cell(user)
 
-	else if(istype(I, /obj/item/cell) && !cell && open)
-		insert_cell(I, user)
+	else if(istype(attackedby, /obj/item/cell) && !cell && open)
+		insert_cell(attackedby, user)
 
-	else if(iswelder(I))
-		var/obj/item/tool/weldingtool/WT = I
+	else if(iswelder(attackedby))
+		var/obj/item/tool/weldingtool/WT = attackedby
 		if(!WT.remove_fuel(1, user))
 			return
 

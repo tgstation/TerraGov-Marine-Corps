@@ -27,13 +27,13 @@
 /obj/item/stack/barbed_wire/full
 	amount = 20
 
-/obj/item/stack/barbed_wire/attackby(obj/item/I, mob/user, params)
+/obj/item/stack/barbed_wire/attackby(obj/item/attackedby, mob/user, params)
 	. = ..()
 
-	if(!istype(I, /obj/item/stack/rods))
+	if(!istype(attackedby, /obj/item/stack/rods))
 		return
 
-	var/obj/item/stack/rods/R = I
+	var/obj/item/stack/rods/R = attackedby
 	if(R.amount < 4)
 		to_chat(user, "<span class='warning'>You need [4 - R.amount] more [R] to make a razor wire obstacle!</span>")
 		return

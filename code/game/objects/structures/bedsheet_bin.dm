@@ -104,25 +104,25 @@ LINEN BINS
 		else				icon_state = "linenbin-full"
 
 
-/obj/structure/bedsheetbin/attackby(obj/item/I, mob/user, params)
+/obj/structure/bedsheetbin/attackby(obj/item/attackedby, mob/user, params)
 	. = ..()
 
-	if(istype(I, /obj/item/bedsheet))
+	if(istype(attackedby, /obj/item/bedsheet))
 		if(!user.drop_held_item())
 			return
 
-		I.forceMove(src)
-		sheets += I
+		attackedby.forceMove(src)
+		sheets += attackedby
 		amount++
-		to_chat(user, "<span class='notice'>You put [I] in [src].</span>")
+		to_chat(user, "<span class='notice'>You put [attackedby] in [src].</span>")
 
-	else if(amount && !hidden && I.w_class < 4)	//make sure there's sheets to hide it among, make sure nothing else is hidden in there.
+	else if(amount && !hidden && attackedby.w_class < 4)	//make sure there's sheets to hide it among, make sure nothing else is hidden in there.
 		if(!user.drop_held_item())
 			return
 
-		I.forceMove(src)
-		hidden = I
-		to_chat(user, "<span class='notice'>You hide [I] among the sheets.</span>")
+		attackedby.forceMove(src)
+		hidden = attackedby
+		to_chat(user, "<span class='notice'>You hide [attackedby] among the sheets.</span>")
 
 
 

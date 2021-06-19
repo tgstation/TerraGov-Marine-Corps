@@ -187,10 +187,10 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 	to_chat(user, "<span class='notice'>You reverse [src]'s direction.</span>")
 	return TRUE
 
-/obj/machinery/conveyor/attackby(obj/item/I, mob/living/user, def_zone)
+/obj/machinery/conveyor/attackby(obj/item/attackedby, mob/living/user, def_zone)
 	. = ..()
 	if(!.)
-		user.transferItemToLoc(I, drop_location())
+		user.transferItemToLoc(attackedby, drop_location())
 
 // attack with hand, move pulled object onto conveyor
 /obj/machinery/conveyor/attack_hand(mob/user)
@@ -402,11 +402,11 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 	new/obj/machinery/conveyor(A, cdir, id)
 	use(1)
 
-/obj/item/stack/conveyor/attackby(obj/item/I, mob/user, params)
+/obj/item/stack/conveyor/attackby(obj/item/attackedby, mob/user, params)
 	..()
-	if(istype(I, /obj/item/conveyor_switch_construct))
+	if(istype(attackedby, /obj/item/conveyor_switch_construct))
 		to_chat(user, "<span class='notice'>You link the switch to the conveyor belt assembly.</span>")
-		var/obj/item/conveyor_switch_construct/C = I
+		var/obj/item/conveyor_switch_construct/C = attackedby
 		id = C.id
 
 /obj/item/stack/conveyor/update_weight()

@@ -80,10 +80,10 @@ Stepping directly on the mine will also blow it up
 	tripwire.linked_mine = src
 
 /// Supports diarming a mine
-/obj/item/explosive/mine/attackby(obj/item/I, mob/user, params)
+/obj/item/explosive/mine/attackby(obj/item/attackedby, mob/user, params)
 	. = ..()
 
-	if(!ismultitool(I) || !anchored)
+	if(!ismultitool(attackedby) || !anchored)
 		return
 
 	user.visible_message("<span class='notice'>[user] starts disarming [src].</span>", \
@@ -173,7 +173,7 @@ Stepping directly on the mine will also blow it up
 	if(!linked_mine)
 		qdel(src)
 		return
-	
+
 	if(CHECK_MULTIPLE_BITFIELDS(A.flags_pass, HOVERING))
 		return
 

@@ -249,9 +249,9 @@
 	if(pockets.handle_mousedrop(usr, over_object))
 		..()
 
-/obj/item/clothing/head/helmet/marine/attackby(obj/item/I, mob/user, params)
+/obj/item/clothing/head/helmet/marine/attackby(obj/item/attackedby, mob/user, params)
 	. = ..()
-	return pockets.attackby(I, user, params)
+	return pockets.attackby(attackedby, user, params)
 
 /obj/item/clothing/head/helmet/marine/on_pocket_insertion()
 	update_icon()

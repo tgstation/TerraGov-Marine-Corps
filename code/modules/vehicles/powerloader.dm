@@ -37,23 +37,23 @@
 			to_chat(usr, "There is no cell in the [src].")
 
 
-/obj/vehicle/powerloader/attackby(obj/item/I, mob/user, params)
+/obj/vehicle/powerloader/attackby(obj/item/attackedby, mob/user, params)
 	. = ..()
 
-	if(istype(I, /obj/item/powerloader_clamp))
-		var/obj/item/powerloader_clamp/PC = I
+	if(istype(attackedby, /obj/item/powerloader_clamp))
+		var/obj/item/powerloader_clamp/PC = attackedby
 		if(PC.linked_powerloader != src)
 			return
 
 		return user_unbuckle_mob(user, user) //clicking the powerloader with its own clamp unbuckles the pilot.
 
-	else if(isscrewdriver(I))
+	else if(isscrewdriver(attackedby))
 		to_chat(user, "<span class='notice'>You screw the panel [panel_open ? "closed" : "open"].</span>")
 		playsound(loc, 'sound/items/screwdriver.ogg', 25, 1)
 		panel_open = !panel_open
 
-	else if(istype(I, /obj/item/cell) && panel_open)
-		var/obj/item/cell/C = I
+	else if(istype(attackedby, /obj/item/cell) && panel_open)
+		var/obj/item/cell/C = attackedby
 
 		if(cell)
 			to_chat(user, "There already is a power cell in the [src].")

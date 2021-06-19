@@ -1,9 +1,9 @@
-/obj/item/reagent_containers/food/snacks/breadslice/attackby(obj/item/I, mob/user, params)
+/obj/item/reagent_containers/food/snacks/breadslice/attackby(obj/item/attackedby, mob/user, params)
 	. = ..()
 
-	if(istype(I, /obj/item/shard) || istype(I, /obj/item/reagent_containers/food/snacks))
+	if(istype(attackedby, /obj/item/shard) || istype(attackedby, /obj/item/reagent_containers/food/snacks))
 		var/obj/item/reagent_containers/food/snacks/csandwich/S = new(loc)
-		S.attackby(I, user, params)
+		S.attackby(attackedby, user, params)
 		qdel(src)
 
 /obj/item/reagent_containers/food/snacks/csandwich
@@ -15,7 +15,7 @@
 
 	var/list/ingredients = list()
 
-/obj/item/reagent_containers/food/snacks/csandwich/attackby(obj/item/I, mob/user, params)
+/obj/item/reagent_containers/food/snacks/csandwich/attackby(obj/item/attackedby, mob/user, params)
 	. = ..()
 
 	var/sandwich_limit = 4
@@ -25,17 +25,17 @@
 	if(length(contents) > sandwich_limit)
 		to_chat(user, "<span class='warning'>If you put anything else on \the [src] it's going to collapse.</span>")
 
-	else if(istype(I, /obj/item/shard))
-		to_chat(user, "<span class='notice'>You hide [I] in \the [src].</span>")
-		user.transferItemToLoc(I, src)
+	else if(istype(attackedby, /obj/item/shard))
+		to_chat(user, "<span class='notice'>You hide [attackedby] in \the [src].</span>")
+		user.transferItemToLoc(attackedby, src)
 		update()
 
-	else if(istype(I, /obj/item/reagent_containers/food/snacks))
-		to_chat(user, "<span class='notice'>You layer [I] over \the [src].</span>")
-		var/obj/item/reagent_containers/F = I
+	else if(istype(attackedby, /obj/item/reagent_containers/food/snacks))
+		to_chat(user, "<span class='notice'>You layer [attackedby] over \the [src].</span>")
+		var/obj/item/reagent_containers/F = attackedby
 		F.reagents.trans_to(src, F.reagents.total_volume)
-		user.transferItemToLoc(I, src)
-		ingredients += I
+		user.transferItemToLoc(attackedby, src)
+		ingredients += attackedby
 		update()
 
 /obj/item/reagent_containers/food/snacks/csandwich/proc/update()

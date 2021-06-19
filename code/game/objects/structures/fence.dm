@@ -24,10 +24,10 @@
 			take_damage(rand(25, 55))
 
 
-/obj/structure/fence/attackby(obj/item/I, mob/user, params)
+/obj/structure/fence/attackby(obj/item/attackedby, mob/user, params)
 	. = ..()
 
-	if(istype(I, /obj/item/stack/rods) && obj_integrity < max_integrity)
+	if(istype(attackedby, /obj/item/stack/rods) && obj_integrity < max_integrity)
 		if(user.skills.getRating("construction") < SKILL_CONSTRUCTION_PLASTEEL)
 			user.visible_message("<span class='notice'>[user] fumbles around figuring out how to fix [src]'s wiring.</span>",
 			"<span class='notice'>You fumble around figuring out how to fix [src]'s wiring.</span>")
@@ -35,7 +35,7 @@
 			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 				return
 
-		var/obj/item/stack/rods/R = I
+		var/obj/item/stack/rods/R = attackedby
 		var/amount_needed = 2
 		if(obj_integrity)
 			amount_needed = 1
@@ -67,8 +67,8 @@
 	else if(cut) //Cut/brokn grilles can't be messed with further than this
 		return
 
-	else if(istype(I, /obj/item/grab) && get_dist(src, user) < 2)
-		var/obj/item/grab/G = I
+	else if(istype(attackedby, /obj/item/grab) && get_dist(src, user) < 2)
+		var/obj/item/grab/G = attackedby
 		if(!isliving(G.grabbed_thing))
 			return
 
@@ -95,16 +95,16 @@
 				UPDATEHEALTH(M)
 				take_damage(50)
 
-	else if(iswirecutter(I))
-		user.visible_message("<span class='notice'>[user] starts cutting through [src] with [I].</span>",
-		"<span class='notice'>You start cutting through [src] with [I]")
+	else if(iswirecutter(attackedby))
+		user.visible_message("<span class='notice'>[user] starts cutting through [src] with [attackedby].</span>",
+		"<span class='notice'>You start cutting through [src] with [attackedby]")
 		playsound(loc, 'sound/items/wirecutter.ogg', 25, 1)
 		if(!do_after(user, 20, TRUE, src, BUSY_ICON_BUILD))
 			return
 
 		playsound(loc, 'sound/items/wirecutter.ogg', 25, 1)
-		user.visible_message("<span class='notice'>[user] cuts through [src] with [I].</span>",
-		"<span class='notice'>You cut through [src] with [I]")
+		user.visible_message("<span class='notice'>[user] cuts through [src] with [attackedby].</span>",
+		"<span class='notice'>You cut through [src] with [attackedby]")
 		deconstruct(TRUE)
 
 

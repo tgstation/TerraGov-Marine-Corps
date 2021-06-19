@@ -72,32 +72,32 @@
 			loaded_disk = null
 	stop_processing()
 
-/obj/machinery/botany/attackby(obj/item/I, mob/user, params)
+/obj/machinery/botany/attackby(obj/item/attackedby, mob/user, params)
 	. = ..()
 
-	if(istype(I, /obj/item/seeds))
+	if(istype(attackedby, /obj/item/seeds))
 		if(seed)
 			to_chat(user, "There is already a seed loaded.")
 			return
-		var/obj/item/seeds/S = I
+		var/obj/item/seeds/S = attackedby
 		if(S.seed?.immutable > 0)
 			to_chat(user, "That seed is not compatible with our genetics technology.")
 			return
 
 		user.drop_held_item()
-		I.forceMove(src)
-		seed = I
-		to_chat(user, "You load [I] into [src].")
+		attackedby.forceMove(src)
+		seed = attackedby
+		to_chat(user, "You load [attackedby] into [src].")
 
-	else if(isscrewdriver(I))
+	else if(isscrewdriver(attackedby))
 		open = !open
 		to_chat(user, "<span class='notice'>You [open ? "open" : "close"] the maintenance panel.</span>")
 
-	else if(iscrowbar(I) && open)
+	else if(iscrowbar(attackedby) && open)
 		deconstruct()
 
-	else if(istype(I, /obj/item/disk/botany))
-		var/obj/item/disk/botany/B = I
+	else if(istype(attackedby, /obj/item/disk/botany))
+		var/obj/item/disk/botany/B = attackedby
 
 		if(loaded_disk)
 			to_chat(user, "There is already a data disk loaded.")
@@ -111,9 +111,9 @@
 			return
 
 		user.drop_held_item()
-		I.forceMove(src)
-		loaded_disk = I
-		to_chat(user, "You load [I] into [src].")
+		attackedby.forceMove(src)
+		loaded_disk = attackedby
+		to_chat(user, "You load [attackedby] into [src].")
 
 // Allows for a trait to be extracted from a seed packet, destroying that seed.
 /obj/machinery/botany/extractor

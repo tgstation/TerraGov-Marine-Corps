@@ -60,18 +60,18 @@
 		qdel(I)
 
 
-/turf/open/floor/plating/plating_catwalk/attackby(obj/item/I, mob/user)
+/turf/open/floor/plating/plating_catwalk/attackby(obj/item/attackedby, mob/user)
 	. = ..()
-	if(iscrowbar(I))
+	if(iscrowbar(attackedby))
 		if(covered)
 			var/obj/item/stack/catwalk/R = new(user.loc)
 			R.add_to_stacks(user)
 			covered = FALSE
 			update_turf_overlay()
 			return
-	if(istype(I, /obj/item/stack/catwalk))
+	if(istype(attackedby, /obj/item/stack/catwalk))
 		if(!covered)
-			var/obj/item/stack/catwalk/E = I
+			var/obj/item/stack/catwalk/E = attackedby
 			E.use(1)
 			covered = TRUE
 			update_turf_overlay()

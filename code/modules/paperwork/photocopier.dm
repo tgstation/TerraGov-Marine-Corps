@@ -132,40 +132,40 @@
 	to_chat(user, "<span class='notice'>You take [O] out of [src].</span>")
 
 
-/obj/machinery/photocopier/attackby(obj/item/I, mob/user, params)
+/obj/machinery/photocopier/attackby(obj/item/attackedby, mob/user, params)
 	. = ..()
 
-	if(istype(I, /obj/item/paper))
+	if(istype(attackedby, /obj/item/paper))
 		if(!copier_empty())
 			to_chat(user, "<span class='warning'>There is already something in [src]!</span>")
 			return
 
-		if(!user.temporarilyRemoveItemFromInventory(I))
+		if(!user.temporarilyRemoveItemFromInventory(attackedby))
 			return
 
-		copy = I
-		do_insertion(I, user)
+		copy = attackedby
+		do_insertion(attackedby, user)
 
-	else if(istype(I, /obj/item/photo))
+	else if(istype(attackedby, /obj/item/photo))
 		if(!copier_empty())
 			to_chat(user, "<span class='warning'>There is already something in [src]!</span>")
 			return
 
-		if(!user.temporarilyRemoveItemFromInventory(I))
+		if(!user.temporarilyRemoveItemFromInventory(attackedby))
 			return
 
-		photocopy = I
-		do_insertion(I, user)
+		photocopy = attackedby
+		do_insertion(attackedby, user)
 
-	else if(istype(I, /obj/item/toner))
+	else if(istype(attackedby, /obj/item/toner))
 		if(toner > 0)
 			to_chat(user, "<span class='warning'>This cartridge is not yet ready for replacement! Use up the rest of the toner.</span>")
 
-		if(!user.temporarilyRemoveItemFromInventory(I))
+		if(!user.temporarilyRemoveItemFromInventory(attackedby))
 			return
-		qdel(I)
+		qdel(attackedby)
 		toner = 40
-		to_chat(user, "<span class='notice'>You insert [I] into [src].</span>")
+		to_chat(user, "<span class='notice'>You insert [attackedby] into [src].</span>")
 		updateUsrDialog()
 
 

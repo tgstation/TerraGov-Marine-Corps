@@ -45,10 +45,10 @@
 *   Item Adding
 ********************/
 
-/obj/machinery/microwave/attackby(obj/item/I, mob/user, params)
+/obj/machinery/microwave/attackby(obj/item/attackedby, mob/user, params)
 	. = ..()
 
-	if(broken == 2 && isscrewdriver(I))
+	if(broken == 2 && isscrewdriver(attackedby))
 		user.visible_message( "<span class='notice'>[user] starts to fix part of the microwave.</span>", \
 			"<span class='notice'>You start to fix part of the microwave.</span>")
 
@@ -59,7 +59,7 @@
 			"<span class='notice'>You have fixed part of the microwave.</span>")
 		broken = 1
 
-	else if(broken == 1 && iswrench(I))
+	else if(broken == 1 && iswrench(attackedby))
 		user.visible_message("<span class='notice'>[user] starts to fix part of the microwave.</span>", \
 			"<span class='notice'>You start to fix part of the microwave.</span>")
 
@@ -78,7 +78,7 @@
 		return TRUE
 
 	else if(dirty == 100)
-		if(!istype(I, /obj/item/reagent_containers/spray/cleaner))
+		if(!istype(attackedby, /obj/item/reagent_containers/spray/cleaner))
 			to_chat(user, "<span class='warning'>It's dirty!</span>")
 			return TRUE
 
@@ -95,43 +95,43 @@
 		icon_state = "mw"
 		ENABLE_BITFIELD(reagents.reagent_flags, OPENCONTAINER)
 
-	else if(is_type_in_list(I, acceptable_items))
+	else if(is_type_in_list(attackedby, acceptable_items))
 		if(length(contents) >= max_n_of_items)
 			to_chat(user, "<span class='warning'>This [src] is full of ingredients, you cannot put more.</span>")
 			return TRUE
 
-		if(istype(I, /obj/item/stack) && I:get_amount() > 1) // This is bad, but I can't think of how to change it
-			var/obj/item/stack/S = I
+		if(istype(attackedby, /obj/item/stack) && attackedby:get_amount() > 1) // This is bad, but attackedby can't think of how to change it
+			var/obj/item/stack/S = attackedby
 			new S.type(src)
 			S.use(1)
-			user.visible_message("<span class='notice'>[user] has added one of [I] to \the [src].</span>", \
-				"<span class='notice'>You add one of [I] to \the [src].</span>")
+			user.visible_message("<span class='notice'>[user] has added one of [attackedby] to \the [src].</span>", \
+				"<span class='notice'>You add one of [attackedby] to \the [src].</span>")
 
 		else if(user.drop_held_item())
-			I.forceMove(src)
-			user.visible_message("<span class='notice'>[user] has added \the [I] to \the [src].</span>", \
-				"<span class='notice'>You add \the [I] to \the [src].</span>")
+			attackedby.forceMove(src)
+			user.visible_message("<span class='notice'>[user] has added \the [attackedby] to \the [src].</span>", \
+				"<span class='notice'>You add \the [attackedby] to \the [src].</span>")
 
-	else if(istype(I,/obj/item/reagent_containers/glass) || \
-			istype(I,/obj/item/reagent_containers/food/drinks) || \
-			istype(I,/obj/item/reagent_containers/food/condiment))
+	else if(istype(attackedby,/obj/item/reagent_containers/glass) || \
+			istype(attackedby,/obj/item/reagent_containers/food/drinks) || \
+			istype(attackedby,/obj/item/reagent_containers/food/condiment))
 
-		if(!I.reagents)
+		if(!attackedby.reagents)
 			return TRUE
 
-		for(var/i in I.reagents.reagent_list)
+		for(var/i in attackedby.reagents.reagent_list)
 			var/datum/reagent/R = i
 			if(!(R.type in acceptable_reagents))
-				to_chat(user, "<span class='warning'>Your [I] contains components unsuitable for cookery.</span>")
+				to_chat(user, "<span class='warning'>Your [attackedby] contains components unsuitable for cookery.</span>")
 				return TRUE
 
 		return FALSE
 
-	else if(istype(I, /obj/item/grab))
+	else if(istype(attackedby, /obj/item/grab))
 		return TRUE
 
 	else
-		to_chat(user, "<span class='warning'>You have no idea what you can cook with this [I].</span>")
+		to_chat(user, "<span class='warning'>You have no idea what you can cook with this [attackedby].</span>")
 
 	return TRUE
 

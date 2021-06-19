@@ -48,9 +48,9 @@ obj/structure/sign/poster/New(var/serial)
 	icon_state = design.icon_state // poster[serial_number]
 	..()
 
-/obj/structure/sign/poster/attackby(obj/item/I, mob/user, params)
+/obj/structure/sign/poster/attackby(obj/item/attackedby, mob/user, params)
 	. = ..()
-	if(iswirecutter(I))
+	if(iswirecutter(attackedby))
 		playsound(loc, 'sound/items/wirecutter.ogg', 25, 1)
 		if(ruined)
 			to_chat(user, "<span class='notice'>You remove the remnants of the poster.</span>")

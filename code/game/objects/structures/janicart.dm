@@ -30,74 +30,74 @@
 		to_chat(user, "It has no bucket.")
 
 
-/obj/structure/janitorialcart/attackby(obj/item/I, mob/user, params)
+/obj/structure/janitorialcart/attackby(obj/item/attackedby, mob/user, params)
 	. = ..()
 
-	if(istype(I, /obj/item/storage/bag/trash) && !mybag)
+	if(istype(attackedby, /obj/item/storage/bag/trash) && !mybag)
 		user.drop_held_item()
-		mybag = I
-		I.forceMove(src)
+		mybag = attackedby
+		attackedby.forceMove(src)
 		update_icon()
 		updateUsrDialog()
-		to_chat(user, "<span class='notice'>You put [I] into [src].</span>")
+		to_chat(user, "<span class='notice'>You put [attackedby] into [src].</span>")
 
-	else if(istype(I, /obj/item/tool/mop))
-		if(I.reagents.total_volume < I.reagents.maximum_volume && mybucket)	//if it's not completely soaked we assume they want to wet it, otherwise store it
+	else if(istype(attackedby, /obj/item/tool/mop))
+		if(attackedby.reagents.total_volume < attackedby.reagents.maximum_volume && mybucket)	//if it's not completely soaked we assume they want to wet it, otherwise store it
 			if(mybucket.reagents.total_volume < 1)
 				to_chat(user, "[mybucket] is out of water!</span>")
 				return
 
-			mybucket.reagents.trans_to(I, 5)	//
-			to_chat(user, "<span class='notice'>You wet [I] in [mybucket].</span>")
+			mybucket.reagents.trans_to(attackedby, 5)	//
+			to_chat(user, "<span class='notice'>You wet [attackedby] in [mybucket].</span>")
 			playsound(loc, 'sound/effects/slosh.ogg', 25, 1)
 
 		else if(!mymop)
 			user.drop_held_item()
-			mymop = I
-			I.forceMove(src)
+			mymop = attackedby
+			attackedby.forceMove(src)
 			update_icon()
 			updateUsrDialog()
-			to_chat(user, "<span class='notice'>You put [I] into [src].</span>")
+			to_chat(user, "<span class='notice'>You put [attackedby] into [src].</span>")
 
-	else if(istype(I, /obj/item/reagent_containers/spray) && !myspray)
+	else if(istype(attackedby, /obj/item/reagent_containers/spray) && !myspray)
 		user.drop_held_item()
-		myspray = I
-		I.forceMove(src)
+		myspray = attackedby
+		attackedby.forceMove(src)
 		update_icon()
 		updateUsrDialog()
-		to_chat(user, "<span class='notice'>You put [I] into [src].</span>")
+		to_chat(user, "<span class='notice'>You put [attackedby] into [src].</span>")
 
-	else if(istype(I, /obj/item/lightreplacer) && !myreplacer)
+	else if(istype(attackedby, /obj/item/lightreplacer) && !myreplacer)
 		user.drop_held_item()
-		myreplacer = I
-		I.forceMove(src)
+		myreplacer = attackedby
+		attackedby.forceMove(src)
 		update_icon()
 		updateUsrDialog()
-		to_chat(user, "<span class='notice'>You put [I] into [src].</span>")
+		to_chat(user, "<span class='notice'>You put [attackedby] into [src].</span>")
 
-	else if(istype(I, /obj/item/tool/wet_sign))
+	else if(istype(attackedby, /obj/item/tool/wet_sign))
 		if(signs >= 4)
 			to_chat(user, "<span class='notice'>[src] can't hold any more signs.</span>")
 			return
 
 		user.drop_held_item()
-		I.forceMove(src)
+		attackedby.forceMove(src)
 		signs++
 		update_icon()
 		updateUsrDialog()
-		to_chat(user, "<span class='notice'>You put [I] into [src].</span>")
+		to_chat(user, "<span class='notice'>You put [attackedby] into [src].</span>")
 
-	else if(istype(I, /obj/item/reagent_containers/glass/bucket/janibucket))
+	else if(istype(attackedby, /obj/item/reagent_containers/glass/bucket/janibucket))
 		user.drop_held_item()
-		mybucket = I
-		I.forceMove(src)
+		mybucket = attackedby
+		attackedby.forceMove(src)
 		update_icon()
 		updateUsrDialog()
-		to_chat(user, "<span class='notice'>You put [I] into [src].</span>")
+		to_chat(user, "<span class='notice'>You put [attackedby] into [src].</span>")
 		return TRUE
 
 	else if(mybag)
-		mybag.attackby(I, user, params)
+		mybag.attackby(attackedby, user, params)
 
 
 

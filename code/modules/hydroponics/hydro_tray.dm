@@ -491,13 +491,13 @@
 	visible_message("<span class='warning'> The <span class='notice'> [previous_plant] <span class='warning'> has suddenly mutated into <span class='notice'> [seed.display_name]!</span>")
 
 
-/obj/machinery/portable_atmospherics/hydroponics/attackby(obj/item/I, mob/user, params)
+/obj/machinery/portable_atmospherics/hydroponics/attackby(obj/item/attackedby, mob/user, params)
 	. = ..()
 
-	if(I.is_open_container())
+	if(attackedby.is_open_container())
 		return
 
-	else if(iswirecutter(I) || istype(I, /obj/item/tool/surgery/scalpel))
+	else if(iswirecutter(attackedby) || istype(attackedby, /obj/item/tool/surgery/scalpel))
 		if(!seed)
 			to_chat(user, "There is nothing to take a sample from in \the [src].")
 			return
@@ -522,8 +522,8 @@
 		force_update = TRUE
 		process()
 
-	else if(istype(I, /obj/item/reagent_containers/syringe))
-		var/obj/item/reagent_containers/syringe/S = I
+	else if(istype(attackedby, /obj/item/reagent_containers/syringe))
+		var/obj/item/reagent_containers/syringe/S = attackedby
 		if(S.mode == 1)
 			if(seed)
 				return FALSE
@@ -536,8 +536,8 @@
 				to_chat(user, "There's nothing to draw something from.")
 			return TRUE
 
-	else if(istype(I, /obj/item/seeds))
-		var/obj/item/seeds/S = I
+	else if(istype(attackedby, /obj/item/seeds))
+		var/obj/item/seeds/S = attackedby
 
 		if(seed)
 			to_chat(user, "<span class='warning'>\The [src] already has seeds in it!</span>")
@@ -547,7 +547,7 @@
 
 		if(!S.seed)
 			to_chat(user, "The packet seems to be empty. You throw it away.")
-			qdel(I)
+			qdel(attackedby)
 			return
 
 		to_chat(user, "You plant the [S.seed.seed_name] [S.seed.seed_noun].")
@@ -570,12 +570,12 @@
 			health = seed.endurance
 			lastcycle = world.time
 
-		qdel(I)
+		qdel(attackedby)
 
 		check_level_sanity()
 		update_icon()
 
-	else if(istype(I, /obj/item/tool/minihoe))  // The minihoe
+	else if(istype(attackedby, /obj/item/tool/minihoe))  // The minihoe
 		if(weedlevel <= 0)
 			to_chat(user, "<span class='warning'>This plot is completely devoid of weeds. It doesn't need uprooting.</span>")
 			return
@@ -584,8 +584,8 @@
 		weedlevel = 0
 		update_icon()
 
-	else if(istype(I, /obj/item/storage/bag/plants))
-		var/obj/item/storage/bag/plants/S = I
+	else if(istype(attackedby, /obj/item/storage/bag/plants))
+		var/obj/item/storage/bag/plants/S = attackedby
 
 		attack_hand(user)
 		for(var/obj/item/reagent_containers/food/snacks/grown/G in user.loc)
@@ -593,20 +593,20 @@
 				return
 			S.handle_item_insertion(G, user, TRUE)
 
-	else if(istype(I, /obj/item/tool/plantspray))
-		var/obj/item/tool/plantspray/spray = I
+	else if(istype(attackedby, /obj/item/tool/plantspray))
+		var/obj/item/tool/plantspray/spray = attackedby
 		user.drop_held_item()
 		toxins += spray.toxicity
 		pestlevel -= spray.pest_kill_str
 		weedlevel -= spray.weed_kill_str
-		to_chat(user, "You spray [src] with [I].")
+		to_chat(user, "You spray [src] with [attackedby].")
 		playsound(loc, 'sound/effects/spray3.ogg', 25, 1, 3)
-		qdel(I)
+		qdel(attackedby)
 
 		check_level_sanity()
 		update_icon()
 
-	else if(iswrench(I))
+	else if(iswrench(attackedby))
 		playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
 		anchored = !anchored
 		to_chat(user, "You [anchored ? "wrench" : "unwrench"] \the [src].")
@@ -657,10 +657,10 @@
 	use_power = 0
 	draw_warnings = 0
 
-/obj/machinery/portable_atmospherics/hydroponics/soil/attackby(obj/item/I, mob/user, params)
+/obj/machinery/portable_atmospherics/hydroponics/soil/attackby(obj/item/attackedby, mob/user, params)
 	. = ..()
 
-	if(istype(I, /obj/item/tool/shovel))
+	if(istype(attackedby, /obj/item/tool/shovel))
 		to_chat(user, "You clear up [src]!")
 		qdel(src)
 

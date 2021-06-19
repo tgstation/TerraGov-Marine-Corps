@@ -32,10 +32,10 @@
 			to_chat(user, "The casing is closed.")
 
 
-/obj/machinery/light_construct/attackby(obj/item/I, mob/user, params)
+/obj/machinery/light_construct/attackby(obj/item/attackedby, mob/user, params)
 	. = ..()
 
-	if(iswrench(I))
+	if(iswrench(attackedby))
 		if(stage == 1)
 			playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
 			to_chat(user, "You begin deconstructing [src].")
@@ -53,7 +53,7 @@
 			to_chat(user, "You have to unscrew the case first.")
 			return
 
-	else if(iswirecutter(I))
+	else if(iswirecutter(attackedby))
 		if(stage != 2)
 			return
 		stage = 1
@@ -67,8 +67,8 @@
 			"You remove the wiring from [src].", "You hear a noise.")
 		playsound(loc, 'sound/items/wirecutter.ogg', 25, 1)
 
-	else if(iscablecoil(I))
-		var/obj/item/stack/cable_coil/coil = I
+	else if(iscablecoil(attackedby))
+		var/obj/item/stack/cable_coil/coil = attackedby
 
 		if(stage != 1)
 			return
@@ -85,7 +85,7 @@
 		user.visible_message("[user] adds wires to [src].", \
 			"You add wires to [src].")
 
-	else if(isscrewdriver(I))
+	else if(isscrewdriver(attackedby))
 		if(stage != 2)
 			return
 
@@ -279,23 +279,23 @@
 
 // attack with item - insert light (if right type), otherwise try to break the light
 
-/obj/machinery/light/attackby(obj/item/I, mob/user, params)
+/obj/machinery/light/attackby(obj/item/attackedby, mob/user, params)
 	. = ..()
 
-	if(istype(I, /obj/item/lightreplacer))
-		var/obj/item/lightreplacer/LR = I
+	if(istype(attackedby, /obj/item/lightreplacer))
+		var/obj/item/lightreplacer/LR = attackedby
 		if(!isliving(user))
 			return
 
 		var/mob/living/L = user
 		LR.ReplaceLight(src, L)
 
-	else if(istype(I, /obj/item/light_bulb))
+	else if(istype(attackedby, /obj/item/light_bulb))
 		if(status != LIGHT_EMPTY)
 			to_chat(user, "There is a [fitting] already inserted.")
 			return
 
-		var/obj/item/light_bulb/L = I
+		var/obj/item/light_bulb/L = attackedby
 		if(!istype(L, light_type))
 			to_chat(user, "This type of light requires a [fitting].")
 			return
@@ -316,17 +316,17 @@
 			explode()
 
 	else if(status != LIGHT_BROKEN && status != LIGHT_EMPTY)
-		if(!prob(1 + I.force * 5))
+		if(!prob(1 + attackedby.force * 5))
 			to_chat(user, "You hit the light!")
 			return
 
 		visible_message("[user] smashed the light!", "You hit the light, and it smashes!")
-		if(light_on && (I.flags_atom & CONDUCT) && prob(12))
+		if(light_on && (attackedby.flags_atom & CONDUCT) && prob(12))
 			electrocute_mob(user, get_area(src), src, 0.3)
 		broken()
 
 	else if(status == LIGHT_EMPTY)
-		if(isscrewdriver(I)) //If it's a screwdriver open it.
+		if(isscrewdriver(attackedby)) //If it's a screwdriver open it.
 			playsound(loc, 'sound/items/screwdriver.ogg', 25, 1)
 			user.visible_message("[user] opens [src]'s casing.", \
 				"You open [src]'s casing.", "You hear a noise.")
@@ -343,8 +343,8 @@
 			newlight.stage = 2
 			qdel(src)
 
-		else if(has_power() && (I.flags_atom & CONDUCT))
-			to_chat(user, "You stick \the [I] into the light socket!")
+		else if(has_power() && (attackedby.flags_atom & CONDUCT))
+			to_chat(user, "You stick \the [attackedby] into the light socket!")
 			var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
 			s.set_up(3, 1, src)
 			s.start()
@@ -593,11 +593,11 @@
 
 // attack bulb/tube with object
 // if a syringe, can inject phoron to make it explode
-/obj/item/light_bulb/attackby(obj/item/I, mob/user, params)
+/obj/item/light_bulb/attackby(obj/item/attackedby, mob/user, params)
 	. = ..()
 
-	if(istype(I, /obj/item/reagent_containers/syringe))
-		var/obj/item/reagent_containers/syringe/S = I
+	if(istype(attackedby, /obj/item/reagent_containers/syringe))
+		var/obj/item/reagent_containers/syringe/S = attackedby
 
 		to_chat(user, "You inject the solution into the [src].")
 

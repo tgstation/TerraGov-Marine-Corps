@@ -78,23 +78,23 @@
 	go_out()
 
 
-/obj/machinery/bodyscanner/attackby(obj/item/I, mob/user, params)
+/obj/machinery/bodyscanner/attackby(obj/item/attackedby, mob/user, params)
 	. = ..()
 
-	if(istype(I, /obj/item/healthanalyzer) && occupant) //Allows us to use the analyzer on the occupant without taking him out; this is here mainly for consistency's sake.
-		var/obj/item/healthanalyzer/J = I
+	if(istype(attackedby, /obj/item/healthanalyzer) && occupant) //Allows us to use the analyzer on the occupant without taking him out; this is here mainly for consistency's sake.
+		var/obj/item/healthanalyzer/J = attackedby
 		J.attack(occupant, user)
 		return
 
 	var/mob/M
-	if(!istype(I, /obj/item/grab))
+	if(!istype(attackedby, /obj/item/grab))
 		return
 
 	else if(occupant)
 		to_chat(user, "<span class='warning'>The scanner is already occupied!</span>")
 		return
 
-	var/obj/item/grab/G = I
+	var/obj/item/grab/G = attackedby
 	if(istype(G.grabbed_thing,/obj/structure/closet/bodybag/cryobag))
 		var/obj/structure/closet/bodybag/cryobag/C = G.grabbed_thing
 		if(!C.bodybag_occupant)

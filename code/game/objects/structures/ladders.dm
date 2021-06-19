@@ -210,11 +210,11 @@
 
 
 //Throwing Shiet
-/obj/structure/ladder/attackby(obj/item/I, mob/user, params)
+/obj/structure/ladder/attackby(obj/item/attackedby, mob/user, params)
 	. = ..()
 
-	if(istype(I, /obj/item/explosive/grenade))
-		var/obj/item/explosive/grenade/G = I
+	if(istype(attackedby, /obj/item/explosive/grenade))
+		var/obj/item/explosive/grenade/G = attackedby
 		var/ladder_dir_name
 		var/obj/structure/ladder/ladder_dest
 
@@ -255,8 +255,8 @@
 		if(!G.active)
 			G.activate(user)
 
-	else if(istype(I, /obj/item/flashlight))
-		var/obj/item/flashlight/F = I
+	else if(istype(attackedby, /obj/item/flashlight))
+		var/obj/item/flashlight/F = attackedby
 		var/ladder_dir_name
 		var/obj/structure/ladder/ladder_dest
 		if(up && down)

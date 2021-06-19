@@ -137,9 +137,9 @@
 	resistance_flags = UNACIDABLE
 	var/list/fallen_list
 
-/obj/structure/prop/mainship/ship_memorial/attackby(obj/item/I, mob/user)
-	if(istype(I, /obj/item/dogtag))
-		var/obj/item/dogtag/D = I
+/obj/structure/prop/mainship/ship_memorial/attackby(obj/item/attackedby, mob/user)
+	if(istype(attackedby, /obj/item/dogtag))
+		var/obj/item/dogtag/D = attackedby
 		if(D.fallen_names)
 			to_chat(user, "<span class='notice'>You add [D] to [src].</span>")
 			if(!fallen_list)

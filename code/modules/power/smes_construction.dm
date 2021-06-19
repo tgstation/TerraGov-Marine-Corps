@@ -175,7 +175,7 @@
 	else
 		..()
 
-/obj/machinery/power/smes/buildable/attackby(obj/item/I, mob/user, params)
+/obj/machinery/power/smes/buildable/attackby(obj/item/attackedby, mob/user, params)
 	// No more disassembling of overloaded SMESs. You broke it, now enjoy the consequences.
 	if(failing)
 		to_chat(user, "<span class='warning'>The [src]'s screen is flashing with alerts. It seems to be overloaded! Touching it now is probably not a good idea.</span>")
@@ -189,7 +189,7 @@
 		return
 
 	// Charged above 1% and safeties are enabled.
-	if((charge > (capacity / 100)) && safeties_enabled && !ismultitool(I))
+	if((charge > (capacity / 100)) && safeties_enabled && !ismultitool(attackedby))
 		to_chat(user, "<span class='warning'>Safety circuit of [src] is preventing modifications while it's charged!</span>")
 		return
 
@@ -205,7 +205,7 @@
 		failure_probability = 0
 
 	// Crowbar - Disassemble the SMES.
-	if(iscrowbar(I))
+	if(iscrowbar(attackedby))
 		if(terminal)
 			to_chat(user, "<span class='warning'>You have to disassemble the terminal first!</span>")
 			return
@@ -231,7 +231,7 @@
 		qdel(src)
 
 	// Superconducting Magnetic Coil - Upgrade the SMES
-	else if(istype(I, /obj/item/stock_parts/smes_coil))
+	else if(istype(attackedby, /obj/item/stock_parts/smes_coil))
 		if(cur_coils >= max_coils)
 			to_chat(user, "<span class='warning'>You can't insert more coils to this SMES unit!</span>")
 			return
@@ -241,15 +241,15 @@
 			return
 
 		to_chat(user, "You install the coil into the SMES unit!")
-		if(!user.transferItemToLoc(I, src))
+		if(!user.transferItemToLoc(attackedby, src))
 			return
 
 		cur_coils ++
-		component_parts += I
+		component_parts += attackedby
 		recalc_coils()
 
 	// Multitool - Toggle the safeties.
-	else if(ismultitool(I))
+	else if(ismultitool(attackedby))
 		safeties_enabled = !safeties_enabled
 		to_chat(user, "<span class='warning'>You [safeties_enabled ? "connected" : "disconnected"] the safety circuit.</span>")
 		visible_message("[icon2html(src, viewers(src))] <b>[src]</b> beeps: \"Caution. Safety circuit has been: [safeties_enabled ? "re-enabled" : "disabled. Please excercise caution."]\"")

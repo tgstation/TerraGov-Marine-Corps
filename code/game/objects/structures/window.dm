@@ -109,13 +109,13 @@
 		"<span class='notice'>You hear a knocking sound.</span>")
 		windowknock_cooldown = world.time + 100
 
-/obj/structure/window/attackby(obj/item/I, mob/user, params)
+/obj/structure/window/attackby(obj/item/attackedby, mob/user, params)
 	. = ..()
 
-	if(istype(I, /obj/item/grab) && get_dist(src, user) < 2)
+	if(istype(attackedby, /obj/item/grab) && get_dist(src, user) < 2)
 		if(isxeno(user))
 			return
-		var/obj/item/grab/G = I
+		var/obj/item/grab/G = attackedby
 		if(!isliving(G.grabbed_thing))
 			return
 
@@ -145,10 +145,10 @@
 				UPDATEHEALTH(M)
 				take_damage(50)
 
-	else if(I.flags_item & NOBLUDGEON)
+	else if(attackedby.flags_item & NOBLUDGEON)
 		return
 
-	else if(isscrewdriver(I) && deconstructable)
+	else if(isscrewdriver(attackedby) && deconstructable)
 		dismantle = TRUE
 		if(reinf && state >= 1)
 			state = 3 - state
@@ -167,7 +167,7 @@
 		else if(!reinf || (static_frame && state == 0))
 			deconstruct(TRUE)
 
-	else if(iscrowbar(I) && reinf && state <= 1 && deconstructable)
+	else if(iscrowbar(attackedby) && reinf && state <= 1 && deconstructable)
 		dismantle = TRUE
 		state = 1 - state
 		playsound(loc, 'sound/items/crowbar.ogg', 25, 1)

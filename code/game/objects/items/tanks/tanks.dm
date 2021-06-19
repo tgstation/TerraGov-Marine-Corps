@@ -47,11 +47,11 @@
 		to_chat(user, "<span class='notice'>\The [icon2html(src, user)][src] feels [descriptive], the gauge reads [return_pressure()] kPa.</span>")
 
 
-/obj/item/tank/attackby(obj/item/I, mob/user, params)
+/obj/item/tank/attackby(obj/item/attackedby, mob/user, params)
 	. = ..()
 
-	if((istype(I, /obj/item/analyzer)) && get_dist(user, src) <= 1)
-		visible_message("<span class='warning'>[user] has used [I] on [icon2html(src, user)] [src]</span>")
+	if((istype(attackedby, /obj/item/analyzer)) && get_dist(user, src) <= 1)
+		visible_message("<span class='warning'>[user] has used [attackedby] on [icon2html(src, user)] [src]</span>")
 
 		manipulated_by = user.real_name			//This person is aware of the contents of the tank.
 

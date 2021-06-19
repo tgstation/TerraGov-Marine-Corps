@@ -262,24 +262,24 @@
 	updateUsrDialog()
 
 
-/obj/machinery/sleeper/attackby(obj/item/I, mob/user, params)
+/obj/machinery/sleeper/attackby(obj/item/attackedby, mob/user, params)
 	. = ..()
 
-	if(istype(I, /obj/item/reagent_containers/glass))
+	if(istype(attackedby, /obj/item/reagent_containers/glass))
 		if(beaker)
 			to_chat(user, "<span class='warning'>The sleeper has a beaker already.</span>")
 			return
 
-		if(!user.transferItemToLoc(I, src))
+		if(!user.transferItemToLoc(attackedby, src))
 			return
 
-		beaker = I
-		user.visible_message("[user] adds \a [I] to \the [src]!", "You add \a [I] to \the [src]!")
+		beaker = attackedby
+		user.visible_message("[user] adds \a [attackedby] to \the [src]!", "You add \a [attackedby] to \the [src]!")
 		updateUsrDialog()
 		return
 
-	if(istype(I, /obj/item/healthanalyzer) && occupant) //Allows us to use the analyzer on the occupant without taking him out.
-		var/obj/item/healthanalyzer/J = I
+	if(istype(attackedby, /obj/item/healthanalyzer) && occupant) //Allows us to use the analyzer on the occupant without taking him out.
+		var/obj/item/healthanalyzer/J = attackedby
 		J.attack(occupant, user)
 		return
 
@@ -291,10 +291,10 @@
 		return
 
 
-	if(!istype(I, /obj/item/grab))
+	if(!istype(attackedby, /obj/item/grab))
 		return
 
-	var/obj/item/grab/G = I
+	var/obj/item/grab/G = attackedby
 	if(!ismob(G.grabbed_thing))
 		return
 

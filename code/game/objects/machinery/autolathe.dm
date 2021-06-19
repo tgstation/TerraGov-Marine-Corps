@@ -110,7 +110,7 @@
 /obj/machinery/autolathe/update_icon_state()
 	icon_state = (CHECK_BITFIELD(machine_stat, PANEL_OPEN) ? "autolathe_t": "autolathe")
 
-/obj/machinery/autolathe/attackby(obj/item/I, mob/user, params)
+/obj/machinery/autolathe/attackby(obj/item/attackedby, mob/user, params)
 	. = ..()
 
 	if(!is_operational())
@@ -120,7 +120,7 @@
 		to_chat(user, "<span class='warning'>\The [src] is busy. Please wait for completion of previous operation.</span>")
 		return
 
-	if(isscrewdriver(I))
+	if(isscrewdriver(attackedby))
 		TOGGLE_BITFIELD(machine_stat, PANEL_OPEN)
 		to_chat(user, "You [CHECK_BITFIELD(machine_stat, PANEL_OPEN) ? "open" : "close"] the maintenance hatch of [src].")
 		update_icon()
@@ -129,17 +129,17 @@
 
 	if(CHECK_BITFIELD(machine_stat, PANEL_OPEN))
 		//Don't eat multitools or wirecutters used on an open lathe.
-		if(ismultitool(I) || iswirecutter(I))
+		if(ismultitool(attackedby) || iswirecutter(attackedby))
 			attack_hand(user)
 			return
 
 		//Dismantle the frame.
-		if(iscrowbar(I))
+		if(iscrowbar(attackedby))
 			deconstruct()
 			return
 
 	//Resources are being loaded.
-	var/obj/item/eating = I
+	var/obj/item/eating = attackedby
 	if(!eating.materials)
 		to_chat(user, "<span class='warning'>\The [eating] does not contain significant amounts of useful materials and cannot be accepted.</span>")
 		return
@@ -190,8 +190,8 @@
 	if(istype(eating,/obj/item/stack))
 		var/obj/item/stack/stack = eating
 		stack.use(max(1,round(total_used/mass_per_sheet))) // Always use at least 1 to prevent infinite materials.
-	else if(user.temporarilyRemoveItemFromInventory(I))
-		qdel(I)
+	else if(user.temporarilyRemoveItemFromInventory(attackedby))
+		qdel(attackedby)
 
 	updateUsrDialog()
 	return TRUE //so the item's afterattack isn't called

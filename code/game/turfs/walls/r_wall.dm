@@ -35,7 +35,7 @@
 	walltype = "rwall"
 	resistance_flags = RESIST_ALL
 
-/turf/closed/wall/r_wall/unmeltable/attackby(obj/item/I, mob/user, params) //This should fix everything else. No cables, etc
+/turf/closed/wall/r_wall/unmeltable/attackby(obj/item/attackedby, mob/user, params) //This should fix everything else. No cables, etc
 	return
 
 
@@ -89,5 +89,5 @@
 /turf/closed/wall/r_wall/prison_unmeltable/fire_act(exposed_temperature, exposed_volume)
 	return
 
-/turf/closed/wall/r_wall/prison_unmeltable/attackby(obj/item/I, mob/user, params) //This should fix everything else. No cables, etc
+/turf/closed/wall/r_wall/prison_unmeltable/attackby(obj/item/attackedby, mob/user, params) //This should fix everything else. No cables, etc
 	return

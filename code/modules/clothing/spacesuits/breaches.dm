@@ -173,10 +173,10 @@ GLOBAL_LIST_INIT(breach_burn_descriptors, list(
 
 //Handles repairs (and also upgrades).
 
-/obj/item/clothing/suit/space/attackby(obj/item/I, mob/user, params)
+/obj/item/clothing/suit/space/attackby(obj/item/attackedby, mob/user, params)
 	. = ..()
 
-	if(istype(I, /obj/item/stack/sheet/mineral/plastic) || istype(I, /obj/item/stack/sheet/metal))
+	if(istype(attackedby, /obj/item/stack/sheet/mineral/plastic) || istype(attackedby, /obj/item/stack/sheet/metal))
 		if(isliving(loc))
 			to_chat(user, "<span class='warning'>How do you intend to patch a hardsuit while someone is wearing it?</span>")
 			return
@@ -185,7 +185,7 @@ GLOBAL_LIST_INIT(breach_burn_descriptors, list(
 			to_chat(user, "There is no surface damage on \the [src] to repair.")
 			return
 
-		var/obj/item/stack/sheet/P = I
+		var/obj/item/stack/sheet/P = attackedby
 		if(P.get_amount() < 3)
 			P.use(P.get_amount())
 			repair_breaches(BURN, (istype(P, /obj/item/stack/sheet/mineral/plastic) ? P.get_amount() : (P.get_amount()* 2)), user)
@@ -193,8 +193,8 @@ GLOBAL_LIST_INIT(breach_burn_descriptors, list(
 			P.use(3)
 			repair_breaches(BURN, (istype(P, /obj/item/stack/sheet/mineral/plastic) ? 3 : 5), user)
 
-	else if(iswelder(I))
-		var/obj/item/tool/weldingtool/WT = I
+	else if(iswelder(attackedby))
+		var/obj/item/tool/weldingtool/WT = attackedby
 
 		if(isliving(loc))
 			to_chat(user, "<span class='warning'>How do you intend to patch a hardsuit while someone is wearing it?</span>")

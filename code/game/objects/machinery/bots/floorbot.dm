@@ -330,11 +330,11 @@
 	return ..()
 
 
-/obj/item/storage/toolbox/mechanical/attackby(obj/item/I, mob/user, params)
-	if(!istype(I, /obj/item/stack/tile/plasteel))
+/obj/item/storage/toolbox/mechanical/attackby(obj/item/attackedby, mob/user, params)
+	if(!istype(attackedby, /obj/item/stack/tile/plasteel))
 		return ..()
 
-	var/obj/item/stack/tile/plasteel/PS = I
+	var/obj/item/stack/tile/plasteel/PS = attackedby
 
 	if(length(contents) >= 1)
 		to_chat(user, "<span class='notice'>They wont fit in as there is already stuff inside.</span>")

@@ -103,9 +103,9 @@
 		if ((M.m_intent != MOVE_INTENT_WALK) && (anchored))
 			flash()
 
-/obj/machinery/flasher/portable/attackby(obj/item/I, mob/user, params)
+/obj/machinery/flasher/portable/attackby(obj/item/attackedby, mob/user, params)
 	. = ..()
-	if(iswrench(I))
+	if(iswrench(attackedby))
 		anchored = !anchored
 
 		if(!anchored)
@@ -121,7 +121,7 @@
 /obj/machinery/flasher_button/attack_paw(mob/living/carbon/human/user)
 	return attack_hand(user)
 
-/obj/machinery/flasher_button/attackby(obj/item/I, mob/user, params)
+/obj/machinery/flasher_button/attackby(obj/item/attackedby, mob/user, params)
 	. = ..()
 	return attack_hand(user)
 

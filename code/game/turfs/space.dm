@@ -51,14 +51,14 @@
 /turf/open/space/attack_paw(mob/living/carbon/human/user)
 	return src.attack_hand(user)
 
-/turf/open/space/attackby(obj/item/I, mob/user, params)
+/turf/open/space/attackby(obj/item/attackedby, mob/user, params)
 	. = ..()
 
-	if(istype(I, /obj/item/stack/rods))
+	if(istype(attackedby, /obj/item/stack/rods))
 		var/obj/structure/lattice/L = locate(/obj/structure/lattice) in src
 		if(L)
 			return
-		var/obj/item/stack/rods/R = I
+		var/obj/item/stack/rods/R = attackedby
 		if(!R.use(1))
 			return
 
@@ -66,13 +66,13 @@
 		playsound(src, 'sound/weapons/genhit.ogg', 25, 1)
 		ReplaceWithLattice()
 
-	else if(istype(I, /obj/item/stack/tile/plasteel))
+	else if(istype(attackedby, /obj/item/stack/tile/plasteel))
 		var/obj/structure/lattice/L = locate(/obj/structure/lattice) in src
 		if(!L)
 			to_chat(user, "<span class='warning'>The plating is going to need some support.</span>")
 			return
 
-		var/obj/item/stack/tile/plasteel/S = I
+		var/obj/item/stack/tile/plasteel/S = attackedby
 		if(S.get_amount() < 1)
 			return
 		qdel(L)

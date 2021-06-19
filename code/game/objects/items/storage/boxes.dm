@@ -209,9 +209,9 @@
 	flags_equip_slot = ITEM_SLOT_BELT
 	spawns_with = list(/obj/item/tool/match = 14)
 
-/obj/item/storage/box/matches/attackby(obj/item/item, mob/user, params)
-	if(istype(item, /obj/item/tool/match))
-		var/obj/item/tool/match/match = item
+/obj/item/storage/box/matches/attackby(obj/item/attackedby, mob/user, params)
+	if(istype(attackedby, /obj/item/tool/match))
+		var/obj/item/tool/match/match = attackedby
 
 		if(match.heat || match.burnt)
 			return ..()

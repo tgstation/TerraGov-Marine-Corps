@@ -165,18 +165,18 @@
 	build_path = /obj/machinery/computer/area_atmos
 
 
-/obj/item/circuitboard/computer/security/attackby(obj/item/I, mob/user, params)
+/obj/item/circuitboard/computer/security/attackby(obj/item/attackedby, mob/user, params)
 	. = ..()
 
-	if(istype(I, /obj/item/card/id))
-		if(!check_access(I))
+	if(istype(attackedby, /obj/item/card/id))
+		if(!check_access(attackedby))
 			to_chat(user, "<span class='warning'>Access denied.</span>")
 			return
 
 		locked = !locked
 		to_chat(user, "<span class='notice'>You [locked ? "" : "un"]lock the circuit controls.</span>")
 
-	else if(ismultitool(I))
+	else if(ismultitool(attackedby))
 		if(locked)
 			to_chat(user, "<span class='warning'>Circuit controls are locked.</span>")
 			return
@@ -195,10 +195,10 @@
 
 		network = tempnetwork
 
-/obj/item/circuitboard/computer/rdconsole/attackby(obj/item/I, mob/user, params)
+/obj/item/circuitboard/computer/rdconsole/attackby(obj/item/attackedby, mob/user, params)
 	. = ..()
 
-	if(isscrewdriver(I))
+	if(isscrewdriver(attackedby))
 		user.visible_message("<span class='notice'> \the [user] adjusts the jumper on the [src]'s access protocol pins.</span>", "<span class='notice'> You adjust the jumper on the access protocol pins.</span>")
 
 		if(build_path == /obj/machinery/computer/rdconsole/core)

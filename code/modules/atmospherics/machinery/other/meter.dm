@@ -54,10 +54,10 @@
 	to_chat(user, status())
 
 
-/obj/machinery/meter/attackby(obj/item/I, mob/user, params)
+/obj/machinery/meter/attackby(obj/item/attackedby, mob/user, params)
 	. = ..()
-	if(iswrench(I))
-		return wrench_act(user, I)
+	if(iswrench(attackedby))
+		return wrench_act(user, attackedby)
 
 /obj/machinery/meter/wrench_act(mob/user, obj/item/I)
 	to_chat(user, "<span class='notice'>You begin to unfasten \the [src]...</span>")

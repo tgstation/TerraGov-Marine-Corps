@@ -40,10 +40,10 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	return ..()
 
 
-/obj/item/radio/headset/attackby(obj/item/I, mob/user, params)
+/obj/item/radio/headset/attackby(obj/item/attackedby, mob/user, params)
 	. = ..()
 
-	if(isscrewdriver(I))
+	if(isscrewdriver(attackedby))
 		if(keyslot || keyslot2)
 			for(var/ch_name in channels)
 				SSradio.remove_object(src, GLOB.radiochannels[ch_name])
@@ -64,23 +64,23 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 		else
 			to_chat(user, "<span class='warning'>This headset doesn't have any unique encryption keys!  How useless...</span>")
 
-	else if(istype(I, /obj/item/encryptionkey))
+	else if(istype(attackedby, /obj/item/encryptionkey))
 		if(keyslot && keyslot2)
 			to_chat(user, "<span class='warning'>The headset can't hold another key!</span>")
 			return
 
 		if(!keyslot)
-			if(!user.transferItemToLoc(I, src))
+			if(!user.transferItemToLoc(attackedby, src))
 				return
-			keyslot = I
+			keyslot = attackedby
 
 		else
-			if(!user.transferItemToLoc(I, src))
+			if(!user.transferItemToLoc(attackedby, src))
 				return
-			keyslot2 = I
+			keyslot2 = attackedby
 
-			I.forceMove(src)
-			keyslot2 = I
+			attackedby.forceMove(src)
+			keyslot2 = attackedby
 
 		recalculateChannels()
 
@@ -386,7 +386,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	icon_state = "cargo_headset"
 	keyslot = /obj/item/encryptionkey/req
 
-/obj/item/radio/headset/mainship/ct/rebel 
+/obj/item/radio/headset/mainship/ct/rebel
 	keyslot = /obj/item/encryptionkey/req/rebel
 	hud_type = DATA_HUD_SQUAD_REBEL
 	minimap_type = /datum/action/minimap/marine/rebel
@@ -398,7 +398,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	use_command = TRUE
 	command = TRUE
 
-/obj/item/radio/headset/mainship/mcom/rebel 
+/obj/item/radio/headset/mainship/mcom/rebel
 	keyslot = /obj/item/encryptionkey/mcom/rebel
 	hud_type = DATA_HUD_SQUAD_REBEL
 	minimap_type = /datum/action/minimap/marine/rebel

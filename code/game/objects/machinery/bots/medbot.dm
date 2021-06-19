@@ -167,10 +167,10 @@
 	updateUsrDialog()
 
 
-/obj/machinery/bot/medbot/attackby(obj/item/I, mob/user, params)
+/obj/machinery/bot/medbot/attackby(obj/item/attackedby, mob/user, params)
 	. = ..()
 
-	if(istype(I, /obj/item/card/id))
+	if(istype(attackedby, /obj/item/card/id))
 		if(allowed(user) && !open)
 			locked = !locked
 			to_chat(user, "<span class='notice'>Controls are now [src.locked ? "locked." : "unlocked."]</span>")
@@ -180,19 +180,19 @@
 		else
 			to_chat(user, "<span class='warning'>Access denied.</span>")
 
-	else if(istype(I, /obj/item/reagent_containers/glass))
+	else if(istype(attackedby, /obj/item/reagent_containers/glass))
 		if(locked)
 			to_chat(user, "<span class='notice'>You cannot insert a beaker because the panel is locked.</span>")
 			return
 		if(!isnull(reagent_glass))
 			to_chat(user, "<span class='notice'>There is already a beaker loaded.</span>")
 			return
-		if(user.transferItemToLoc(I, src))
-			reagent_glass = I
-			to_chat(user, "<span class='notice'>You insert [I].</span>")
+		if(user.transferItemToLoc(attackedby, src))
+			reagent_glass = attackedby
+			to_chat(user, "<span class='notice'>You insert [attackedby].</span>")
 			updateUsrDialog()
 
-	if(obj_integrity < max_integrity && !isscrewdriver(I) && I.force)
+	if(obj_integrity < max_integrity && !isscrewdriver(attackedby) && attackedby.force)
 		step_to(src, (get_step_away(src, user)))
 
 
@@ -435,8 +435,8 @@
 *	Medbot Assembly -- Can be made out of all three medkits.
 */
 
-/obj/item/storage/firstaid/attackby(obj/item/I, mob/user, params)
-	if(!istype(I, /obj/item/robot_parts/l_arm) && !istype(I, /obj/item/robot_parts/r_arm))
+/obj/item/storage/firstaid/attackby(obj/item/attackedby, mob/user, params)
+	if(!istype(attackedby, /obj/item/robot_parts/l_arm) && !istype(attackedby, /obj/item/robot_parts/r_arm))
 		return ..()
 
 	//Making a medibot!
@@ -453,7 +453,7 @@
 	else if(istype(src, /obj/item/storage/firstaid/o2))
 		A.skin = "o2"
 
-	qdel(I)
+	qdel(attackedby)
 	user.put_in_hands(A)
 	to_chat(user, "<span class='notice'>You add the robot arm to the first aid kit.</span>")
 	user.temporarilyRemoveItemFromInventory(src)

@@ -173,15 +173,15 @@
 //*******************
 //Corpse recyclinging
 //*******************
-/obj/structure/xeno/resin/silo/attackby(obj/item/I, mob/user, params)
+/obj/structure/xeno/resin/silo/attackby(obj/item/attackedby, mob/user, params)
 	. = ..()
 	if(!isxeno(user)) //only xenos can deposit corpses
 		return
 
-	if(!istype(I, /obj/item/grab))
+	if(!istype(attackedby, /obj/item/grab))
 		return
 
-	var/obj/item/grab/G = I
+	var/obj/item/grab/G = attackedby
 	if(!iscarbon(G.grabbed_thing))
 		return
 	var/mob/living/carbon/victim = G.grabbed_thing
@@ -347,20 +347,20 @@
 		set_last_hostile(hostile)
 		SEND_SIGNAL(src, COMSIG_AUTOMATIC_SHOOTER_START_SHOOTING_AT)
 
-/obj/structure/xeno/resin/xeno_turret/attackby(obj/item/I, mob/living/user, params)
-	if(I.flags_item & NOBLUDGEON || !isliving(user))
+/obj/structure/xeno/resin/xeno_turret/attackby(obj/item/attackedby, mob/living/user, params)
+	if(attackedby.flags_item & NOBLUDGEON || !isliving(user))
 		return attack_hand(user)
 
-	user.changeNext_move(I.attack_speed)
-	user.do_attack_animation(src, used_item = I)
+	user.changeNext_move(attackedby.attack_speed)
+	user.do_attack_animation(src, used_item = attackedby)
 
-	var/damage = I.force
+	var/damage = attackedby.force
 	var/multiplier = 1
-	if(I.damtype == "fire") //Burn damage deals extra vs resin structures (mostly welders).
+	if(attackedby.damtype == "fire") //Burn damage deals extra vs resin structures (mostly welders).
 		multiplier += 1
 
-	if(istype(I, /obj/item/tool/pickaxe/plasmacutter) && !user.do_actions)
-		var/obj/item/tool/pickaxe/plasmacutter/P = I
+	if(istype(attackedby, /obj/item/tool/pickaxe/plasmacutter) && !user.do_actions)
+		var/obj/item/tool/pickaxe/plasmacutter/P = attackedby
 		if(P.start_cut(user, name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD))
 			multiplier += PLASMACUTTER_RESIN_MULTIPLIER
 			P.cut_apart(user, name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD)

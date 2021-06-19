@@ -53,10 +53,10 @@
 		playsound(get_turf(src), activation_sound, 15, 1)
 	return TRUE
 
-/obj/item/flashlight/attackby(obj/item/I, mob/user, params)
+/obj/item/flashlight/attackby(obj/item/attackedby, mob/user, params)
 	. = ..()
 
-	if(istype(I, /obj/item/tool/screwdriver))
+	if(istype(attackedby, /obj/item/tool/screwdriver))
 		if(!raillight_compatible) //No fancy messages, just no
 			return
 

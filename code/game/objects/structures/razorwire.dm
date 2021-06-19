@@ -125,11 +125,11 @@
 	return ..()
 
 
-/obj/structure/razorwire/attackby(obj/item/I, mob/user, params)
+/obj/structure/razorwire/attackby(obj/item/attackedby, mob/user, params)
 	. = ..()
 
-	if(istype(I, /obj/item/stack/sheet/metal))
-		var/obj/item/stack/sheet/metal/metal_sheets = I
+	if(istype(attackedby, /obj/item/stack/sheet/metal))
+		var/obj/item/stack/sheet/metal/metal_sheets = attackedby
 
 		visible_message("<span class='notice'>[user] begins to repair  \the [src].</span>")
 
@@ -144,12 +144,12 @@
 		update_icon()
 		return
 
-	if(!istype(I, /obj/item/grab))
+	if(!istype(attackedby, /obj/item/grab))
 		return
-	if(isxeno(user))//I am very tempted to remove this >:)
+	if(isxeno(user))//attackedby am very tempted to remove this >:)
 		return
 
-	var/obj/item/grab/G = I
+	var/obj/item/grab/G = attackedby
 	if(!isliving(G.grabbed_thing))
 		return
 

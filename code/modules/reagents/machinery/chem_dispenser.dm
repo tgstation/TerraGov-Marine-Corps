@@ -285,23 +285,23 @@
 	update_icon()
 	return TRUE
 
-/obj/machinery/chem_dispenser/attackby(obj/item/I, mob/user, params)
+/obj/machinery/chem_dispenser/attackby(obj/item/attackedby, mob/user, params)
 	. = ..()
 
 	if(beaker)
 		to_chat(user, "Something is already loaded into the machine.")
 		return
 
-	else if(istype(I, /obj/item/reagent_containers) && I.is_open_container())
-		if(!user.transferItemToLoc(I, src))
+	else if(istype(attackedby, /obj/item/reagent_containers) && attackedby.is_open_container())
+		if(!user.transferItemToLoc(attackedby, src))
 			return
 
-		beaker =  I
-		to_chat(user, "You set [I] on the machine.")
+		beaker =  attackedby
+		to_chat(user, "You set [attackedby] on the machine.")
 		updateUsrDialog()
 
-	else if(istype(I, /obj/item/reagent_containers/glass))
-		to_chat(user, "Take the lid off [I] first.")
+	else if(istype(attackedby, /obj/item/reagent_containers/glass))
+		to_chat(user, "Take the lid off [attackedby] first.")
 
 
 /obj/machinery/chem_dispenser/soda

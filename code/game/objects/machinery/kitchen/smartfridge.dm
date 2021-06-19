@@ -49,10 +49,10 @@
 *   Item Adding
 ********************/
 
-/obj/machinery/smartfridge/attackby(obj/item/I, mob/user, params)
+/obj/machinery/smartfridge/attackby(obj/item/attackedby, mob/user, params)
 	. = ..()
 
-	if(isscrewdriver(I))
+	if(isscrewdriver(attackedby))
 		TOGGLE_BITFIELD(machine_stat, PANEL_OPEN)
 		to_chat(user, "You [CHECK_BITFIELD(machine_stat, PANEL_OPEN) ? "open" : "close"] the maintenance panel.")
 		overlays.Cut()
@@ -60,7 +60,7 @@
 			overlays += image(icon, icon_panel)
 		updateUsrDialog()
 
-	else if(ismultitool(I) || iswirecutter(I))
+	else if(ismultitool(attackedby) || iswirecutter(attackedby))
 		if(!CHECK_BITFIELD(machine_stat, PANEL_OPEN))
 			return
 
@@ -70,26 +70,26 @@
 		to_chat(user, "<span class='notice'>\The [src] is unpowered and useless.</span>")
 		return
 
-	if(accept_check(I))
+	if(accept_check(attackedby))
 		if(length(contents) >= max_n_of_items)
 			to_chat(user, "<span class='notice'>\The [src] is full.</span>")
 			return TRUE
 		else if(!user.drop_held_item())
 			return TRUE
 
-		I.forceMove(src)
+		attackedby.forceMove(src)
 
-		if(item_quants[I.name])
-			item_quants[I.name]++
+		if(item_quants[attackedby.name])
+			item_quants[attackedby.name]++
 		else
-			item_quants[I.name] = 1
+			item_quants[attackedby.name] = 1
 
-		user.visible_message("<span class='notice'>[user] has added \the [I] to \the [src].", \
-							"<span class='notice'>You add \the [I] to \the [src].")
+		user.visible_message("<span class='notice'>[user] has added \the [attackedby] to \the [src].", \
+							"<span class='notice'>You add \the [attackedby] to \the [src].")
 		updateUsrDialog()
 
-	else if(istype(I, /obj/item/storage/bag/plants))
-		var/obj/item/storage/bag/plants/P = I
+	else if(istype(attackedby, /obj/item/storage/bag/plants))
+		var/obj/item/storage/bag/plants/P = attackedby
 		var/plants_loaded = 0
 		for(var/obj/G in P.contents)
 			if(!accept_check(G))
@@ -116,7 +116,7 @@
 		updateUsrDialog()
 
 	else
-		to_chat(user, "<span class='notice'>\The [src] smartly refuses [I].</span>")
+		to_chat(user, "<span class='notice'>\The [src] smartly refuses [attackedby].</span>")
 		return TRUE
 
 

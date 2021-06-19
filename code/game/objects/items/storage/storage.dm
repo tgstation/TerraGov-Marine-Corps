@@ -538,13 +538,13 @@
 	return handle_access_delay(item, user)
 
 ///This proc is called when you want to place an item into the storage item.
-/obj/item/storage/attackby(obj/item/item, mob/user, params)
+/obj/item/storage/attackby(obj/item/attackedby, mob/user, params)
 	. = ..()
 
-	if(!can_be_inserted(item, user))
+	if(!can_be_inserted(attackedby, user))
 		return
 
-	return handle_item_insertion(item, user, FALSE)
+	return handle_item_insertion(attackedby, user, FALSE)
 
 /obj/item/storage/proc/update_watchers(recalculate = FALSE)
 	if(recalculate)

@@ -29,12 +29,12 @@
 	QDEL_NULL(installed_equipment)
 	return ..()
 
-/obj/effect/attach_point/attackby(obj/item/I, mob/user, params)
+/obj/effect/attach_point/attackby(obj/item/attackedby, mob/user, params)
 	. = ..()
 
-	if(!istype(I, /obj/item/powerloader_clamp))
+	if(!istype(attackedby, /obj/item/powerloader_clamp))
 		return
-	var/obj/item/powerloader_clamp/clamp = I
+	var/obj/item/powerloader_clamp/clamp = attackedby
 	if(!istype(clamp.loaded, /obj/structure/dropship_equipment))
 		return TRUE
 
@@ -194,12 +194,12 @@
 	ammo_type_used = null
 	return ..()
 
-/obj/structure/dropship_equipment/attackby(obj/item/I, mob/user, params)
+/obj/structure/dropship_equipment/attackby(obj/item/attackedby, mob/user, params)
 	. = ..()
 
-	if(!istype(I, /obj/item/powerloader_clamp))
+	if(!istype(attackedby, /obj/item/powerloader_clamp))
 		return
-	var/obj/item/powerloader_clamp/clamp = I
+	var/obj/item/powerloader_clamp/clamp = attackedby
 	if(clamp.loaded)
 		if((!(dropship_equipment_flags & IS_NOT_REMOVABLE) && !ship_base) || !(dropship_equipment_flags & USES_AMMO) || ammo_equipped || !istype(clamp.loaded, /obj/structure/ship_ammo))
 			return FALSE

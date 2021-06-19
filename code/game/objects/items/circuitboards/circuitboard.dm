@@ -9,9 +9,9 @@
 	var/build_path = null
 	var/is_general_board = FALSE
 
-/obj/item/circuitboard/attackby(obj/item/I , mob/user, params)
+/obj/item/circuitboard/attackby(obj/item/attackedby , mob/user, params)
 	. = ..()
-	if(ismultitool(I) && is_general_board == TRUE)
+	if(ismultitool(attackedby) && is_general_board == TRUE)
 		var/obj/item/circuitboard/new_board
 		var/modepick = tgui_input_list(user, "Select a mode for this circuit.", null,list("APC", "Airlock", "Fire Alarm", "Air Alarm"))
 		switch(modepick)

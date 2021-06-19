@@ -88,13 +88,13 @@
 	return round(4 * charge/(capacity ? capacity : 5e6))
 
 
-/obj/machinery/power/smes/batteryrack/attackby(obj/item/I, mob/user, params) //these can only be moved by being reconstructed, solves having to remake the powernet.
+/obj/machinery/power/smes/batteryrack/attackby(obj/item/attackedby, mob/user, params) //these can only be moved by being reconstructed, solves having to remake the powernet.
 	. = ..() //SMES attackby for now handles screwdriver, cable coils and wirecutters, no need to repeat that here
 
 	if(!CHECK_BITFIELD(machine_stat, PANEL_OPEN))
 		return
 
-	if(iscrowbar(I))
+	if(iscrowbar(attackedby))
 		if(charge >= (capacity / 100))
 			to_chat(user, "<span class='warning'>Better let [src] discharge before dismantling it.</span>")
 			return
@@ -113,7 +113,7 @@
 			O.forceMove(loc)
 		qdel(src)
 
-	else if((istype(I, /obj/item/stock_parts/capacitor) && (capacitors_amount < 5)) || (istype(I, /obj/item/cell) && (cells_amount < 5)))
+	else if((istype(attackedby, /obj/item/stock_parts/capacitor) && (capacitors_amount < 5)) || (istype(attackedby, /obj/item/cell) && (cells_amount < 5)))
 		if(charge >= (capacity / 100))
 			to_chat(user, "<span class='warning'>Better let [src] discharge before putting your hand inside it.</span>")
 			return
@@ -122,12 +122,12 @@
 			to_chat(user, "<span class='warning'>Turn off the [src] before dismantling it.</span>")
 			return
 
-		if(!user.transferItemToLoc(I, src))
+		if(!user.transferItemToLoc(attackedby, src))
 			return
 
-		component_parts += I
+		component_parts += attackedby
 		RefreshParts()
-		to_chat(user, "<span class='notice'>You upgrade the [src] with [I].</span>")
+		to_chat(user, "<span class='notice'>You upgrade the [src] with [attackedby].</span>")
 
 
 //The shitty one that will blow up.

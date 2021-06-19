@@ -45,29 +45,29 @@
 				qdel(src)
 
 
-/obj/machinery/chem_master/attackby(obj/item/I, mob/user, params)
+/obj/machinery/chem_master/attackby(obj/item/attackedby, mob/user, params)
 	. = ..()
 
-	if(istype(I,/obj/item/reagent_containers) && I.is_open_container())
+	if(istype(attackedby,/obj/item/reagent_containers) && attackedby.is_open_container())
 		if(beaker)
 			to_chat(user, "<span class='warning'>A beaker is already loaded into the machine.</span>")
 			return
-		user.transferItemToLoc(I, src)
-		beaker = I
+		user.transferItemToLoc(attackedby, src)
+		beaker = attackedby
 		to_chat(user, "<span class='notice'>You add the beaker to the machine!</span>")
 		updateUsrDialog()
 		icon_state = "mixer1"
 
-	else if(istype(I,/obj/item/reagent_containers/glass))
+	else if(istype(attackedby,/obj/item/reagent_containers/glass))
 		to_chat(user, "<span class='warning'>Take off the lid first.</span>")
 
-	else if(istype(I, /obj/item/storage/pill_bottle))
+	else if(istype(attackedby, /obj/item/storage/pill_bottle))
 		if(loaded_pill_bottle)
 			to_chat(user, "<span class='warning'>A pill bottle is already loaded into the machine.</span>")
 			return
 
-		loaded_pill_bottle = I
-		user.transferItemToLoc(I, src)
+		loaded_pill_bottle = attackedby
+		user.transferItemToLoc(attackedby, src)
 		to_chat(user, "<span class='notice'>You add the pill bottle into the dispenser slot!</span>")
 		updateUsrDialog()
 

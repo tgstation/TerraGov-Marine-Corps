@@ -61,20 +61,20 @@
 	else
 		to_chat(user, "There is not enough materials in the printer.")
 
-/obj/machinery/bioprinter/attackby(obj/item/I, mob/user, params)
+/obj/machinery/bioprinter/attackby(obj/item/attackedby, mob/user, params)
 	. = ..()
-	if(istype(I, /obj/item/reagent_containers/food/snacks/meat))
-		to_chat(user, "<span class='notice'>\The [src] processes \the [I].</span>")
+	if(istype(attackedby, /obj/item/reagent_containers/food/snacks/meat))
+		to_chat(user, "<span class='notice'>\The [src] processes \the [attackedby].</span>")
 		stored_matter += 50
 		user.drop_held_item()
-		qdel(I)
+		qdel(attackedby)
 
-	else if(istype(I, /obj/item/stack/sheet/metal))
-		var/obj/item/stack/sheet/metal/M = I
-		to_chat(user, "<span class='notice'>\The [src] processes \the [I].</span>")
+	else if(istype(attackedby, /obj/item/stack/sheet/metal))
+		var/obj/item/stack/sheet/metal/M = attackedby
+		to_chat(user, "<span class='notice'>\The [src] processes \the [attackedby].</span>")
 		stored_metal += M.amount * 100
 		user.drop_held_item()
-		qdel(I)
+		qdel(attackedby)
 
 /obj/machinery/bioprinter/examine(mob/user)
 	..()

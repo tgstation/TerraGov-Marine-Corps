@@ -35,10 +35,10 @@
 		invisibility = i ? INVISIBILITY_MAXIMUM : 0
 	update_icon()
 
-/obj/machinery/atmospherics/pipe/attackby(obj/item/I, mob/user, params)
+/obj/machinery/atmospherics/pipe/attackby(obj/item/attackedby, mob/user, params)
 	. = ..()
-	if(istype(I, /obj/item/pipe_meter))
-		var/obj/item/pipe_meter/meter = I
+	if(istype(attackedby, /obj/item/pipe_meter))
+		var/obj/item/pipe_meter/meter = attackedby
 		user.dropItemToGround(meter)
 		meter.setAttachLayer(piping_layer)
 

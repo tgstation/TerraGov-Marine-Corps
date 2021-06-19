@@ -228,7 +228,7 @@
 /turf/closed/wall/sulaco/unmeltable/fire_act(exposed_temperature, exposed_volume)
 	return
 
-/turf/closed/wall/sulaco/unmeltable/attackby(obj/item/I, mob/user, params) //This should fix everything else. No cables, etc
+/turf/closed/wall/sulaco/unmeltable/attackby(obj/item/attackedby, mob/user, params) //This should fix everything else. No cables, etc
 	return
 
 /turf/closed/wall/sulaco/unmeltable/can_be_dissolved()
@@ -249,7 +249,7 @@
 /turf/closed/wall/indestructible/fire_act(exposed_temperature, exposed_volume)
 	return
 
-/turf/closed/wall/indestructible/attackby(obj/item/I, mob/user, params)
+/turf/closed/wall/indestructible/attackby(obj/item/attackedby, mob/user, params)
 	return
 
 /turf/closed/wall/indestructible/can_be_dissolved()

@@ -70,15 +70,15 @@
 
 
 
-/obj/machinery/reagentgrinder/attackby(obj/item/I, mob/user, params)
+/obj/machinery/reagentgrinder/attackby(obj/item/attackedby, mob/user, params)
 	. = ..()
 
-	if(istype(I, /obj/item/reagent_containers) && I.is_open_container())
+	if(istype(attackedby, /obj/item/reagent_containers) && attackedby.is_open_container())
 		if(beaker)
 			return TRUE
 
-		beaker =  I
-		user.transferItemToLoc(I, src)
+		beaker =  attackedby
+		user.transferItemToLoc(attackedby, src)
 		update_icon()
 		updateUsrDialog()
 		return FALSE
@@ -87,27 +87,27 @@
 		to_chat(user, "The machine cannot hold anymore items.")
 		return TRUE
 
-	else if(istype(I, /obj/item/storage/bag/plants))
-		for(var/obj/item/reagent_containers/food/snacks/grown/G in I.contents)
-			I.contents -= G
+	else if(istype(attackedby, /obj/item/storage/bag/plants))
+		for(var/obj/item/reagent_containers/food/snacks/grown/G in attackedby.contents)
+			attackedby.contents -= G
 			G.forceMove(src)
 			holdingitems += G
 			if(length(holdingitems) >= limit)
 				to_chat(user, "You fill the All-In-One grinder to the brim.")
 				break
 
-		if(!length(I.contents))
+		if(!length(attackedby.contents))
 			to_chat(user, "You empty the plant bag into the All-In-One grinder.")
 
 		updateUsrDialog()
 		return FALSE
 
-	else if(!is_type_in_list(I, blend_items) && !is_type_in_list(I, juice_items))
+	else if(!is_type_in_list(attackedby, blend_items) && !is_type_in_list(attackedby, juice_items))
 		to_chat(user, "Cannot refine into a reagent.")
 		return TRUE
 
-	user.transferItemToLoc(I, src)
-	holdingitems += I
+	user.transferItemToLoc(attackedby, src)
+	holdingitems += attackedby
 	updateUsrDialog()
 	return FALSE
 

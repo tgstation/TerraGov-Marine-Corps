@@ -207,17 +207,17 @@
 	return
 
 
-/obj/item/camera/attackby(obj/item/I, mob/user, params)
+/obj/item/camera/attackby(obj/item/attackedby, mob/user, params)
 	. = ..()
 
-	if(istype(I, /obj/item/camera_film))
+	if(istype(attackedby, /obj/item/camera_film))
 		if(pictures_left)
 			to_chat(user, "<span class='notice'>[src] still has some film in it!</span>")
 			return
-		if(!user.temporarilyRemoveItemFromInventory(I))
+		if(!user.temporarilyRemoveItemFromInventory(attackedby))
 			return
-		to_chat(user, "<span class='notice'>You insert [I] into [src].</span>")
-		qdel(I)
+		to_chat(user, "<span class='notice'>You insert [attackedby] into [src].</span>")
+		qdel(attackedby)
 		pictures_left = pictures_max
 
 

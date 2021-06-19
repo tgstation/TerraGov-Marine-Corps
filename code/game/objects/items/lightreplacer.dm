@@ -44,11 +44,11 @@
 	..()
 	to_chat(user, "It has [uses] lights remaining.")
 
-/obj/item/lightreplacer/attackby(obj/item/I, mob/user, params)
+/obj/item/lightreplacer/attackby(obj/item/attackedby, mob/user, params)
 	. = ..()
 
-	if(istype(I, /obj/item/stack/sheet/glass))
-		var/obj/item/stack/sheet/glass/G = I
+	if(istype(attackedby, /obj/item/stack/sheet/glass))
+		var/obj/item/stack/sheet/glass/G = attackedby
 		if(uses >= max_uses)
 			to_chat(user, "<span class='warning'>[src] is full.")
 			return
@@ -60,8 +60,8 @@
 		AddUses(5)
 		to_chat(user, "<span class='notice'>You insert a piece of glass into \the [src]. You have [uses] lights remaining.</span>")
 
-	else if(istype(I, /obj/item/light_bulb))
-		var/obj/item/light_bulb/L = I
+	else if(istype(attackedby, /obj/item/light_bulb))
+		var/obj/item/light_bulb/L = attackedby
 		if(L.status)
 			to_chat(user, "You need a working light.")
 			return

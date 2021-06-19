@@ -10,7 +10,7 @@
 	var/percent_charge_complete = 0
 	var/list/allowed_devices = list(/obj/item/weapon/baton, /obj/item/cell, /obj/item/weapon/gun/energy/taser, /obj/item/defibrillator)
 
-/obj/machinery/recharger/attackby(obj/item/I, mob/user, params)
+/obj/machinery/recharger/attackby(obj/item/attackedby, mob/user, params)
 	. = ..()
 
 	if(issilicon(user))
@@ -18,11 +18,11 @@
 
 	var/allowed = FALSE
 	for(var/allowed_type in allowed_devices)
-		if(istype(I, allowed_type))
+		if(istype(attackedby, allowed_type))
 			allowed = TRUE
 			break
 
-	if(iswrench(I))
+	if(iswrench(attackedby))
 		if(charging)
 			to_chat(user, "<span class='warning'>Remove [charging] first!</span>")
 			return
@@ -42,16 +42,16 @@
 		to_chat(user, "<span class='warning'>The [name] blinks red as you try to insert the item!</span>")
 		return
 
-	if(istype(I, /obj/item/defibrillator))
-		var/obj/item/defibrillator/D = I
+	if(istype(attackedby, /obj/item/defibrillator))
+		var/obj/item/defibrillator/D = attackedby
 		if(D.ready)
 			to_chat(user, "<span class='warning'>It won't fit, put the paddles back into [D] first!</span>")
 			return
 
-	if(!user.transferItemToLoc(I, src))
+	if(!user.transferItemToLoc(attackedby, src))
 		return
 
-	charging = I
+	charging = attackedby
 	start_processing()
 	update_icon()
 

@@ -15,15 +15,15 @@
 		update_icon()
 
 
-/obj/structure/coatrack/attackby(obj/item/I, mob/user, params)
+/obj/structure/coatrack/attackby(obj/item/attackedby, mob/user, params)
 	. = ..()
 
-	if(!(I.type in allowed) || coat)
-		to_chat(user, "<span class='notice'>You cannot hang [I] on [src]</span>")
+	if(!(attackedby.type in allowed) || coat)
+		to_chat(user, "<span class='notice'>You cannot hang [attackedby] on [src]</span>")
 		return
 
-	user.visible_message("[user] hangs [I] on \the [src].", "You hang [I] on the \the [src]")
-	coat = I
+	user.visible_message("[user] hangs [attackedby] on \the [src].", "You hang [attackedby] on the \the [src]")
+	coat = attackedby
 	user.drop_held_item(src)
 	coat.forceMove(src)
 	update_icon()

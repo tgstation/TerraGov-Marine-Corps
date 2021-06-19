@@ -185,7 +185,7 @@
 		helmet.flags_item |= NODROP
 		to_chat(H, "<span class='notice'>You deploy your hardsuit helmet, sealing you off from the world.</span>")
 
-/obj/item/clothing/suit/space/rig/attackby(obj/item/I, mob/user, params)
+/obj/item/clothing/suit/space/rig/attackby(obj/item/attackedby, mob/user, params)
 	. = ..()
 
 	if(user.a_intent != INTENT_HELP)
@@ -202,7 +202,7 @@
 			to_chat(user, "\The [src] does not have a helmet mount.")
 			return
 
-		if(isscrewdriver(I))
+		if(isscrewdriver(attackedby))
 			if(!helmet)
 				to_chat(user, "\The [src] does not have a helmet installed.")
 				return
@@ -211,15 +211,15 @@
 			helmet.forceMove(get_turf(src))
 			helmet = null
 
-		else if(istype(I, /obj/item/clothing/head/helmet/space))
+		else if(istype(attackedby, /obj/item/clothing/head/helmet/space))
 			if(helmet)
 				to_chat(user, "\The [src] already has a helmet installed.")
 				return
 
-			to_chat(user, "You attach \the [I] to \the [src]'s helmet mount.")
+			to_chat(user, "You attach \the [attackedby] to \the [src]'s helmet mount.")
 			user.drop_held_item()
-			I.forceMove(src)
-			helmet = I
+			attackedby.forceMove(src)
+			helmet = attackedby
 
 	else if(target_zone == "l_leg" || target_zone == "r_leg" || target_zone == "l_foot" || target_zone == "r_foot")
 		//Installing a component into or modifying the contents of the feet.
@@ -227,7 +227,7 @@
 			to_chat(user, "\The [src] does not have boot mounts.")
 			return
 
-		if(isscrewdriver(I))
+		if(isscrewdriver(attackedby))
 			if(!boots)
 				to_chat(user, "\The [src] does not have any boots installed.")
 				return
@@ -236,15 +236,15 @@
 			boots.forceMove(get_turf(src))
 			boots = null
 
-		else if(istype(I, /obj/item/clothing/shoes/magboots))
+		else if(istype(attackedby, /obj/item/clothing/shoes/magboots))
 			if(boots)
 				to_chat(user, "\The [src] already has magboots installed.")
 				return
 
-			to_chat(user, "You attach \the [I] to \the [src]'s boot mounts.")
+			to_chat(user, "You attach \the [attackedby] to \the [src]'s boot mounts.")
 			user.drop_held_item()
-			I.forceMove(src)
-			boots = I
+			attackedby.forceMove(src)
+			boots = attackedby
 
 
 //Engineering rig

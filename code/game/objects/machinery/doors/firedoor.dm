@@ -198,14 +198,14 @@
 				nextstate = FIREDOOR_CLOSED
 				close()
 
-/obj/machinery/door/firedoor/attackby(obj/item/I, mob/user, params)
+/obj/machinery/door/firedoor/attackby(obj/item/attackedby, mob/user, params)
 	. = ..()
 
 	if(operating)
 		return
 
-	else if(iswelder(I))
-		var/obj/item/tool/weldingtool/W = I
+	else if(iswelder(attackedby))
+		var/obj/item/tool/weldingtool/W = attackedby
 		if(!W.remove_fuel(0, user))
 			return
 
@@ -216,13 +216,13 @@
 		update_icon()
 
 	else if(blocked)
-		user.visible_message("<span class='danger'>\The [user] pries at \the [src] with \a [I], but \the [src] is welded in place!</span>",\
+		user.visible_message("<span class='danger'>\The [user] pries at \the [src] with \a [attackedby], but \the [src] is welded in place!</span>",\
 		"You try to pry \the [src] [density ? "open" : "closed"], but it is welded in place!",\
 		"You hear someone struggle and metal straining.")
 
-	else if(I.pry_capable)
-		user.visible_message("<span class='danger'>\The [user] starts to force \the [src] [density ? "open" : "closed"] with \a [I]!</span>",\
-				"<span class='notice'>You start forcing \the [src] [density ? "open" : "closed"] with \the [I]!</span>",\
+	else if(attackedby.pry_capable)
+		user.visible_message("<span class='danger'>\The [user] starts to force \the [src] [density ? "open" : "closed"] with \a [attackedby]!</span>",\
+				"<span class='notice'>You start forcing \the [src] [density ? "open" : "closed"] with \the [attackedby]!</span>",\
 				"You hear metal strain.")
 		var/old_density = density
 
@@ -232,8 +232,8 @@
 		if(blocked || density != old_density)
 			return
 
-		user.visible_message("<span class='danger'>\The [user] forces \the [blocked ? "welded " : "" ][name] [density ? "open" : "closed"] with \a [I]!</span>",\
-			"<span class='notice'>You force \the [blocked ? "welded " : ""][name] [density ? "open" : "closed"] with \the [I]!</span>",\
+		user.visible_message("<span class='danger'>\The [user] forces \the [blocked ? "welded " : "" ][name] [density ? "open" : "closed"] with \a [attackedby]!</span>",\
+			"<span class='notice'>You force \the [blocked ? "welded " : ""][name] [density ? "open" : "closed"] with \the [attackedby]!</span>",\
 			"You hear metal strain and groan, and a door [density ? "opening" : "closing"].")
 
 		if(density)

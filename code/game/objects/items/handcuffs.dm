@@ -98,11 +98,11 @@
 /obj/item/restraints/handcuffs/cable/white
 	color = "#FFFFFF"
 
-/obj/item/restraints/handcuffs/cable/attackby(obj/item/I, mob/user, params)
+/obj/item/restraints/handcuffs/cable/attackby(obj/item/attackedby, mob/user, params)
 	. = ..()
 
-	if(istype(I, /obj/item/stack/rods))
-		var/obj/item/stack/rods/R = I
+	if(istype(attackedby, /obj/item/stack/rods))
+		var/obj/item/stack/rods/R = attackedby
 		if(!R.use(1))
 			return
 

@@ -34,13 +34,13 @@
 	if(charging)
 		to_chat(user, "Current charge: [charging.charge]")
 
-/obj/machinery/cell_charger/attackby(obj/item/I, mob/user, params)
+/obj/machinery/cell_charger/attackby(obj/item/attackedby, mob/user, params)
 	. = ..()
 
 	if(machine_stat & BROKEN)
 		return
 
-	if(istype(I, /obj/item/cell) && anchored)
+	if(istype(attackedby, /obj/item/cell) && anchored)
 		if(charging)
 			to_chat(user, "<span class='warning'>There is already a cell in the charger.</span>")
 			return
@@ -53,15 +53,15 @@
 			to_chat(user, "<span class='warning'>The [name] blinks red as you try to insert the cell!</span>")
 			return
 
-		if(user.transferItemToLoc(I, src))
-			charging = I
+		if(user.transferItemToLoc(attackedby, src))
+			charging = attackedby
 			user.visible_message("[user] inserts a cell into the charger.", "You insert a cell into the charger.")
 			chargelevel = -1
 			start_processing()
 
 		updateicon()
 
-	else if(iswrench(I))
+	else if(iswrench(attackedby))
 		if(charging)
 			to_chat(user, "<span class='warning'>Remove the cell first!</span>")
 			return

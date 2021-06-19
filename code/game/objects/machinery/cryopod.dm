@@ -316,16 +316,16 @@
 		items = I.store_in_cryo(items)
 	return ..()
 
-/obj/machinery/cryopod/attackby(obj/item/I, mob/user, params)
+/obj/machinery/cryopod/attackby(obj/item/attackedby, mob/user, params)
 	. = ..()
 
-	if(!istype(I, /obj/item/grab))
+	if(!istype(attackedby, /obj/item/grab))
 		return
 
 	else if(isxeno(user))
 		return
 
-	var/obj/item/grab/G = I
+	var/obj/item/grab/G = attackedby
 	if(!isliving(G.grabbed_thing))
 		return
 

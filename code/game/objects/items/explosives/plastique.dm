@@ -87,8 +87,8 @@
 		return
 	return ..()
 
-/obj/item/explosive/plastique/attackby(obj/item/I, mob/user, params)
-	if(ismultitool(I) && armed)
+/obj/item/explosive/plastique/attackby(obj/item/attackedby, mob/user, params)
+	if(ismultitool(attackedby) && armed)
 		if(user.skills.getRating("engineer") < SKILL_ENGINEER_METAL)
 			user.visible_message("<span class='notice'>[user] fumbles around figuring out how to disarm [src].</span>",
 			"<span class='notice'>You fumble around figuring out how to disarm [src].</span>")

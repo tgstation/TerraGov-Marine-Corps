@@ -49,11 +49,11 @@
 		update_icon(1, 0)
 
 	//PLACING/REMOVING/BUILDING
-/turf/open/floor/plating/ground/snow/attackby(obj/item/I, mob/user, params)
+/turf/open/floor/plating/ground/snow/attackby(obj/item/attackedby, mob/user, params)
 	. = ..()
 	//Light Stick
-	if(istype(I, /obj/item/lightstick))
-		var/obj/item/lightstick/L = I
+	if(istype(attackedby, /obj/item/lightstick))
+		var/obj/item/lightstick/L = attackedby
 		if(locate(/obj/item/lightstick) in get_turf(src))
 			to_chat(user, "There's already a [L]  at this position!")
 			return

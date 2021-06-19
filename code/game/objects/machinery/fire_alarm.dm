@@ -75,10 +75,10 @@ FIRE ALARM
 		alarm()
 	return ..()
 
-/obj/machinery/firealarm/attackby(obj/item/I, mob/user, params)
+/obj/machinery/firealarm/attackby(obj/item/attackedby, mob/user, params)
 	. = ..()
 
-	if(isscrewdriver(I) && buildstage == 2)
+	if(isscrewdriver(attackedby) && buildstage == 2)
 		wiresexposed = !wiresexposed
 		update_icon()
 		return
@@ -88,20 +88,20 @@ FIRE ALARM
 
 	switch(buildstage)
 		if(2)
-			if(ismultitool(I))
+			if(ismultitool(attackedby))
 				detecting = !detecting
 				if(detecting)
 					user.visible_message("<span class='warning'> [user] has reconnected [src]'s detecting unit!</span>", "You have reconnected [src]'s detecting unit.")
 				else
 					user.visible_message("<span class='warning'> [user] has disconnected [src]'s detecting unit!</span>", "You have disconnected [src]'s detecting unit.")
-			else if(iswirecutter(I))
+			else if(iswirecutter(attackedby))
 				user.visible_message("<span class='warning'> [user] has cut the wires inside \the [src]!</span>", "You have cut the wires inside \the [src].")
 				playsound(loc, 'sound/items/wirecutter.ogg', 25, 1)
 				buildstage = 1
 				update_icon()
 		if(1)
-			if(iscablecoil(I))
-				var/obj/item/stack/cable_coil/C = I
+			if(iscablecoil(attackedby))
+				var/obj/item/stack/cable_coil/C = attackedby
 				if(C.use(5))
 					to_chat(user, "<span class='notice'>You wire \the [src].</span>")
 					buildstage = 2
@@ -109,7 +109,7 @@ FIRE ALARM
 				else
 					to_chat(user, "<span class='warning'>You need 5 pieces of cable to do wire \the [src].</span>")
 					return
-			else if(iscrowbar(I))
+			else if(iscrowbar(attackedby))
 				to_chat(user, "You pry out the circuit!")
 				playsound(loc, 'sound/items/crowbar.ogg', 25, 1)
 				spawn(20)
@@ -124,14 +124,14 @@ FIRE ALARM
 					buildstage = 0
 					update_icon()
 		if(0)
-			if(istype(I, /obj/item/circuitboard/firealarm))
+			if(istype(attackedby, /obj/item/circuitboard/firealarm))
 				to_chat(user, "You insert the circuit!")
-				electronics = I
-				qdel(I)
+				electronics = attackedby
+				qdel(attackedby)
 				buildstage = 1
 				update_icon()
 
-			else if(iswrench(I))
+			else if(iswrench(attackedby))
 				to_chat(user, "You remove the fire alarm assembly from the wall!")
 				var/obj/item/frame/fire_alarm/frame = new /obj/item/frame/fire_alarm
 				frame.forceMove(user.loc)

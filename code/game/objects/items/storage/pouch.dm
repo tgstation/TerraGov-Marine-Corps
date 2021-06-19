@@ -479,9 +479,9 @@
 		/obj/item/explosive/grenade/flare,
 	)
 
-/obj/item/storage/pouch/flare/attackby(obj/item/I, mob/user, params)
-	if(istype(I, /obj/item/storage/box/m94))
-		var/obj/item/storage/box/m94/M = I
+/obj/item/storage/pouch/flare/attackby(obj/item/attackedby, mob/user, params)
+	if(istype(attackedby, /obj/item/storage/box/m94))
+		var/obj/item/storage/box/m94/M = attackedby
 		if(!length(M.contents))
 			to_chat(user, "<span class='warning'>[M] is empty.</span>")
 			return
@@ -623,9 +623,9 @@
 	storage_slots = 4
 	can_hold = list(/obj/item/ammo_magazine/handful)
 
-/obj/item/storage/pouch/shotgun/attackby(obj/item/I, mob/user, params)
-	if(istype(I, /obj/item/ammo_magazine))
-		var/obj/item/ammo_magazine/M = I
+/obj/item/storage/pouch/shotgun/attackby(obj/item/attackedby, mob/user, params)
+	if(istype(attackedby, /obj/item/ammo_magazine))
+		var/obj/item/ammo_magazine/M = attackedby
 
 		if(M.flags_magazine & AMMUNITION_REFILLABLE)
 			if(!M.current_rounds)

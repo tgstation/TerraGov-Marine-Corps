@@ -41,11 +41,11 @@
 	icon_state += shardsize
 
 
-/obj/item/shard/attackby(obj/item/I, mob/user, params)
+/obj/item/shard/attackby(obj/item/attackedby, mob/user, params)
 	. = ..()
 
-	if(iswelder(I))
-		var/obj/item/tool/weldingtool/WT = I
+	if(iswelder(attackedby))
+		var/obj/item/tool/weldingtool/WT = attackedby
 		if(!source_sheet_type) //can be melted into something
 			return
 
@@ -74,7 +74,7 @@
 		return ..()
 
 	var/mob/living/M = AM
-	if(M.status_flags & INCORPOREAL)  //Flying over shards doesn't break them 
+	if(M.status_flags & INCORPOREAL)  //Flying over shards doesn't break them
 		return ..()
 	if (CHECK_MULTIPLE_BITFIELDS(M.flags_pass, HOVERING))
 		return ..()

@@ -63,11 +63,11 @@
 	var/obj/item/weapon/gun/flamer/attached_flamer
 
 
-/obj/item/ammo_magazine/flamer_tank/backtank/attackby(obj/item/I, mob/user, params)
+/obj/item/ammo_magazine/flamer_tank/backtank/attackby(obj/item/attackedby, mob/user, params)
 	. = ..()
-	if(!istype(I, /obj/item/weapon/gun/flamer))
+	if(!istype(attackedby, /obj/item/weapon/gun/flamer))
 		return
-	var/obj/item/weapon/gun/flamer/FLT = I
+	var/obj/item/weapon/gun/flamer/FLT = attackedby
 
 	if(!istype(user, /mob/living/carbon/human))
 		return

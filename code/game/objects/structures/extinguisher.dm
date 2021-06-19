@@ -28,17 +28,17 @@
 		has_extinguisher = new starter_extinguisher(src)
 	update_icon()
 
-/obj/structure/extinguisher_cabinet/attackby(obj/item/I, mob/user, params)
+/obj/structure/extinguisher_cabinet/attackby(obj/item/attackedby, mob/user, params)
 	. = ..()
 
-	if(istype(I, /obj/item/tool/extinguisher))
+	if(istype(attackedby, /obj/item/tool/extinguisher))
 		if(has_extinguisher || !opened)
 			return
 
 		user.drop_held_item()
-		contents += I
-		has_extinguisher = I
-		to_chat(user, "<span class='notice'>You place [I] in [src].</span>")
+		contents += attackedby
+		has_extinguisher = attackedby
+		to_chat(user, "<span class='notice'>You place [attackedby] in [src].</span>")
 
 	opened = !opened
 

@@ -20,11 +20,11 @@
 	if(!locate(/obj/effect/alien/weeds) in loc)
 		new /obj/effect/alien/weeds(loc)
 
-/obj/structure/bed/nest/attackby(obj/item/I, mob/user, params)
+/obj/structure/bed/nest/attackby(obj/item/attackedby, mob/user, params)
 	. = ..()
 
-	if(istype(I, /obj/item/grab))
-		var/obj/item/grab/G = I
+	if(istype(attackedby, /obj/item/grab))
+		var/obj/item/grab/G = attackedby
 		if(!ismob(G.grabbed_thing))
 			return
 		var/mob/M = G.grabbed_thing

@@ -163,8 +163,8 @@
 	static_weapon = null
 	return ..()
 
-/obj/structure/caspart/minigun/attackby(obj/item/I, mob/user, params)
-	return static_weapon.attackby(I, user, params)
+/obj/structure/caspart/minigun/attackby(obj/item/attackedby, mob/user, params)
+	return static_weapon.attackby(attackedby, user, params)
 
 /obj/structure/caspart/internalengine
 	var/image/engine_overlay

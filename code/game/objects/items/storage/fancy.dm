@@ -111,11 +111,11 @@
 	for(var/obj/item/toy/crayon/crayon in contents)
 		. += image('icons/obj/items/crayons.dmi',crayon.colourName)
 
-/obj/item/storage/fancy/crayons/attackby(obj/item/item, mob/user, params)
+/obj/item/storage/fancy/crayons/attackby(obj/item/attackedby, mob/user, params)
 	. = ..()
 
-	if(istype(item, /obj/item/toy/crayon))
-		var/obj/item/toy/crayon/crayon = item
+	if(istype(attackedby, /obj/item/toy/crayon))
+		var/obj/item/toy/crayon/crayon = attackedby
 		switch(crayon.colourName)
 			if("mime")
 				to_chat(user, "This crayon is too sad to be contained in this box.")

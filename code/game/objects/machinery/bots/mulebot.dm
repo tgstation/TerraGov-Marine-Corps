@@ -75,18 +75,18 @@
 // screwdriver: open/close hatch
 // cell: insert it
 // other: chance to knock rider off bot
-/obj/machinery/bot/mulebot/attackby(obj/item/I, mob/user, params)
+/obj/machinery/bot/mulebot/attackby(obj/item/attackedby, mob/user, params)
 	. = ..()
 
-	if(istype(I, /obj/item/cell) && open && !cell)
-		var/obj/item/cell/C = I
+	if(istype(attackedby, /obj/item/cell) && open && !cell)
+		var/obj/item/cell/C = attackedby
 		if(!user.transferItemToLoc(C, src))
 			return
 
 		cell = C
 		updateUsrDialog()
 
-	else if(iswrench(I))
+	else if(iswrench(attackedby))
 		if(obj_integrity >= max_integrity)
 			to_chat(user, "<span class='notice'>[src] does not need a repair!</span>")
 			return
@@ -95,12 +95,12 @@
 		user.visible_message("<span class='warning'> [user] repairs [src]!</span>", "<span class='notice'> You repair [src]!</span>")
 
 	else if(load && ismob(load))  // chance to knock off rider
-		if(!prob(1 + I.force * 2))
-			to_chat(user, "You hit [src] with \the [I] but to no effect.")
+		if(!prob(1 + attackedby.force * 2))
+			to_chat(user, "You hit [src] with \the [attackedby] but to no effect.")
 			return
 
 		unload(0)
-		user.visible_message("<span class='warning'> [user] knocks [load] off [src] with \the [I]!</span>", "<span class='warning'> You knock [load] off [src] with \the [I]!</span>")
+		user.visible_message("<span class='warning'> [user] knocks [load] off [src] with \the [attackedby]!</span>", "<span class='warning'> You knock [load] off [src] with \the [attackedby]!</span>")
 
 
 /obj/machinery/bot/mulebot/ex_act(severity)
