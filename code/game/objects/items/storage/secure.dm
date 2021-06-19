@@ -25,7 +25,7 @@
 	max_storage_space = 14
 
 /obj/item/storage/secure/examine(mob/user)
-	..()
+	. = ..()
 	to_chat(user, "The service panel is [open ? "open" : "closed"].")
 
 /obj/item/storage/secure/MouseDrop(over_object, src_location, over_location)

@@ -392,7 +392,7 @@
 	var/req_role
 
 ///Checks to see if the user has access to our contents
-/obj/item/storage/pill_bottle/restricted/proc/scan(mob/living/living)
+/obj/item/storage/pill_bottle/restricted/proc/scan(mob/living/scanned)
 
 	if(living.status_flags & GODMODE) //Let it be
 		return TRUE
