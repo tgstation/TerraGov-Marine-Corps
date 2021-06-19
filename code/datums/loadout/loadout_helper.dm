@@ -122,7 +122,7 @@
 		return
 	if(!user.assigned_squad)
 		return
-	user.equip_to_slot_or_del(new /obj/item/radio/headset/mainship/marine(null, user.assigned_squad, user.job), SLOT_EARS, override_nodrop = TRUE)
+	user.equip_to_slot_or_del(new /obj/item/radio/headset/mainship/marine(null, user.assigned_squad, user.job.type), SLOT_EARS, override_nodrop = TRUE)
 
 /// Will check if the selected category can be bought according to the buying_bitfield
 /proc/can_buy_category(category, buying_bitfield)
