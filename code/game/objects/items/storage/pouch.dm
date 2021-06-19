@@ -201,10 +201,10 @@
 	storage_slots = 3
 
 /obj/item/storage/pouch/magazine/large/tx8full
-	spawns_with = list(/obj/item/ammo_magazine/rifle/tx8, /obj/item/ammo_magazine/rifle/tx8, /obj/item/ammo_magazine/rifle/tx8)
+	spawns_with = list(/obj/item/ammo_magazine/rifle/tx8 = 3)
 
 /obj/item/storage/pouch/magazine/large/t19full
-	spawns_with = list(/obj/item/ammo_magazine/smg/standard_smg, /obj/item/ammo_magazine/smg/standard_smg, /obj/item/ammo_magazine/smg/standard_smg)
+	spawns_with = list(/obj/item/ammo_magazine/smg/standard_smg = 3)
 
 /obj/item/storage/pouch/magazine/pistol
 	name = "pistol magazine pouch"
@@ -226,43 +226,43 @@
 	icon_state = "large_pistol_mag"
 
 /obj/item/storage/pouch/magazine/pistol/large/full
-	spawns_with = list(/obj/item/ammo_magazine/pistol, /obj/item/ammo_magazine/pistol, /obj/item/ammo_magazine/pistol, /obj/item/ammo_magazine/pistol, /obj/item/ammo_magazine/pistol, /obj/item/ammo_magazine/pistol)
+	spawns_with = list(/obj/item/ammo_magazine/pistol = 6)
 
 /obj/item/storage/pouch/magazine/pistol/pmc_mateba
-	spawns_with = list(/obj/item/ammo_magazine/revolver/mateba, /obj/item/ammo_magazine/revolver/mateba, /obj/item/ammo_magazine/revolver/mateba)
+	spawns_with = list(/obj/item/ammo_magazine/revolver/mateba = 3)
 
 /obj/item/storage/pouch/magazine/pistol/large/mateba
-	spawns_with = list(/obj/item/ammo_magazine/revolver/mateba, /obj/item/ammo_magazine/revolver/mateba, /obj/item/ammo_magazine/revolver/mateba, /obj/item/ammo_magazine/revolver/mateba, /obj/item/ammo_magazine/revolver/mateba, /obj/item/ammo_magazine/revolver/mateba)
+	spawns_with = list(/obj/item/ammo_magazine/revolver/mateba = 6)
 
 /obj/item/storage/pouch/magazine/pistol/vp70
-	spawns_with = list(/obj/item/ammo_magazine/pistol/vp70, /obj/item/ammo_magazine/pistol/vp70, /obj/item/ammo_magazine/pistol/vp70)
+	spawns_with = list(/obj/item/ammo_magazine/pistol/vp70 = 3)
 
 /obj/item/storage/pouch/magazine/pistol/pmc_vp78
-	spawns_with = list(/obj/item/ammo_magazine/pistol/vp78, /obj/item/ammo_magazine/pistol/vp78, /obj/item/ammo_magazine/pistol/vp78)
+	spawns_with = list(/obj/item/ammo_magazine/pistol/vp78 = 3)
 
 /obj/item/storage/pouch/magazine/upp
-	spawns_with = list(/obj/item/ammo_magazine/rifle/type71, /obj/item/ammo_magazine/rifle/type71)
+	spawns_with = list(/obj/item/ammo_magazine/rifle/type71 = 2) // This doesn't actually save any memory but it looks better imo - ZTFA
 
 /obj/item/storage/pouch/magazine/large/upp
-	spawns_with = list(/obj/item/ammo_magazine/rifle/type71, /obj/item/ammo_magazine/rifle/type71, /obj/item/ammo_magazine/rifle/type71)
+	spawns_with = list(/obj/item/ammo_magazine/rifle/type71 = 3)
 
 /obj/item/storage/pouch/magazine/upp_smg
-	spawns_with = list(/obj/item/ammo_magazine/smg/skorpion, /obj/item/ammo_magazine/smg/skorpion)
+	spawns_with = list(/obj/item/ammo_magazine/smg/skorpion = 2)
 
 /obj/item/storage/pouch/magazine/large/pmc_m25
-	spawns_with = list(/obj/item/ammo_magazine/smg/m25/ap, /obj/item/ammo_magazine/smg/m25/ap, /obj/item/ammo_magazine/smg/m25/ap)
+	spawns_with = list(/obj/item/ammo_magazine/smg/m25/ap = 3)
 
 /obj/item/storage/pouch/magazine/large/pmc_famas
-	spawns_with = list(/obj/item/ammo_magazine/rifle/famas, /obj/item/ammo_magazine/rifle/famas, /obj/item/ammo_magazine/rifle/famas)
+	spawns_with = list(/obj/item/ammo_magazine/rifle/famas = 3)
 
 /obj/item/storage/pouch/magazine/large/pmc_lmg
-	spawns_with = list(/obj/item/ammo_magazine/standard_lmg, /obj/item/ammo_magazine/standard_lmg, /obj/item/ammo_magazine/standard_lmg)
+	spawns_with = list(/obj/item/ammo_magazine/standard_lmg = 3)
 
 /obj/item/storage/pouch/magazine/large/pmc_sniper
-	spawns_with = list(/obj/item/ammo_magazine/sniper/elite, /obj/item/ammo_magazine/sniper/elite, /obj/item/ammo_magazine/sniper/elite)
+	spawns_with = list(/obj/item/ammo_magazine/sniper/elite = 3)
 
 /obj/item/storage/pouch/magazine/large/pmc_rifle
-	spawns_with = list(/obj/item/ammo_magazine/rifle/ap, /obj/item/ammo_magazine/rifle/ap, /obj/item/ammo_magazine/rifle/ap)
+	spawns_with = list(/obj/item/ammo_magazine/rifle/ap = 3)
 
 /obj/item/storage/pouch/explosive
 	name = "explosive pouch"
