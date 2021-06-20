@@ -925,6 +925,9 @@
 	not_weldable = TRUE
 	aiControlDisabled = TRUE
 
+/obj/machinery/door/airlock/hatch/cockpit/rebel
+	req_access = list(ACCESS_MARINE_DROPSHIP_REBEL)
+
 /obj/machinery/door/airlock/hatch/cockpit/two
 	icon = 'icons/obj/doors/mainship/dropship2_pilot.dmi'
 
