@@ -251,6 +251,7 @@
 #define COMSIG_ITEM_DEPLOY "item_deploy"
 #define COMSIG_ITEM_UNDEPLOY "item_undeploy"
 #define COMSIG_IS_DEPLOYED "is_deployed"
+#define COMSIG_DEPLOYABLE_SET_DEPLOYED "set_deployed"
 
 
 

@@ -132,13 +132,6 @@
 
 	var/bypass_checks = FALSE
 
-	//Deployed Stats
-
-	///Time it takes to deploy the gun
-	deploy_time = 0 SECONDS
-
-	///List of flags for deployed machine operation. Flags can be found in __Defines/conflict.dm 
-	deploy_flags = NONE
 
 	///The amount of tiles the users view shifts once deployed and operated.
 	var/deploy_view_offset = 3
@@ -175,8 +168,8 @@
 	setup_firemodes()
 	AddComponent(/datum/component/automatedfire/autofire, fire_delay, burst_delay, burst_amount, gun_firemode, CALLBACK(src, .proc/set_bursting), CALLBACK(src, .proc/reset_fire), CALLBACK(src, .proc/Fire)) //This should go after handle_starting_attachment() and setup_firemodes() to get the proper values set.
 
-	if(flags_gun_features & IS_DEPLOYABLE)
-		AddComponent(/datum/component/deployable_item, /obj/machinery/deployable/mounted)
+	if(flags_item & IS_DEPLOYABLE)
+		AddComponent(/datum/component/deployable_item/mounted_gun, deploy_time, deployed_type)
 
 	muzzle_flash = new(src, muzzleflash_iconstate)
 
@@ -215,10 +208,6 @@
 
 /obj/item/weapon/gun/equipped(mob/user, slot)
 	unwield(user)
-	if(gun_user)
-		UnregisterSignal(gun_user, list(COMSIG_MOB_MOUSEDOWN, COMSIG_MOB_MOUSEUP, COMSIG_MOB_MOUSEDRAG))
-		gun_user.client.mouse_pointer_icon = initial(gun_user.client.mouse_pointer_icon)
-		gun_user = null	
 	if(ishandslot(slot))
 		set_gun_user(user)
 		return ..()
@@ -260,8 +249,6 @@
 		icon_state = base_gun_icon
 	update_item_state(user)
 	update_mag_overlay(user)
-	if(is_deployed())
-		loc.update_icon_state()
 
 
 /obj/item/weapon/gun/update_item_state(mob/user)
@@ -352,37 +339,9 @@
 
 /obj/item/weapon/gun/unique_action(mob/user)
 	if(flags_item & IS_DEPLOYABLE) //If the gun can be deployed, it deploys when unique_action is called.
-		SEND_SIGNAL(src, COMSIG_ITEM_DEPLOY, src, user)
+		SEND_SIGNAL(src, COMSIG_ITEM_DEPLOY, user)
+		return
 	return ..()
-
-///This is called once the gun is attempting to be used once deployed, this is so that the gun can fire without needing to be within the users hands.
-/obj/item/weapon/gun/proc/manned(mob/user)
-	if(gun_user)
-		return
-	gun_user = user
-	RegisterSignal(gun_user, COMSIG_MOB_MOUSEDOWN, .proc/start_fire)
-	RegisterSignal(gun_user, COMSIG_MOB_MOUSEUP, .proc/stop_fire)
-	RegisterSignal(gun_user, COMSIG_MOB_MOUSEDRAG, .proc/change_target)
-	for(var/X in actions)
-		var/datum/action/A = X
-		A.give_action(gun_user)
-	var/obj/screen/ammo/hud = gun_user.hud_used.ammo
-	hud_enabled ? hud.add_hud(gun_user) : hud.remove_hud(gun_user)
-	hud.update_hud(gun_user)
-
-///Does the opposite of manned()
-/obj/item/weapon/gun/proc/un_man()
-	if(!gun_user)
-		return
-	UnregisterSignal(gun_user, list(COMSIG_MOB_MOUSEDOWN, COMSIG_MOB_MOUSEUP, COMSIG_MOB_MOUSEDRAG))
-	gun_user.client.mouse_pointer_icon = initial(gun_user.client.mouse_pointer_icon)
-	for(var/X in actions)
-		var/datum/action/A = X
-		A.remove_action(gun_user)
-	var/obj/screen/ammo/hud = gun_user.hud_used.ammo
-	hud.remove_hud(gun_user)
-	gun_user = null
-
 
 //----------------------------------------------------------
 			//							        \\
@@ -746,7 +705,7 @@ and you're good to go.
 	if(QDELETED(gun_user) || !ismob(gun_user) || !target)
 		return
 
-	if(!bypass_checks)
+	if(!is_deployed())
 		if(!able_to_fire(gun_user))
 			return
 
@@ -790,8 +749,6 @@ and you're good to go.
 	var/obj/screen/ammo/A = gun_user.hud_used.ammo //The ammo HUD
 	A.update_hud(gun_user)
 
-	if(is_deployed()) //Updates the firing machines icon
-		loc.update_icon()
 
 	return TRUE
 

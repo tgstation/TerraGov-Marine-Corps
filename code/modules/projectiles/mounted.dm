@@ -18,59 +18,41 @@
 	//this is amount of tiles we shift our vision towards guns direction when operated, currently its max is 7
 	var/view_tile_offset = 3
 
-/obj/machinery/deployable/mounted/Initialize()
-	. = ..()
-	prepare_huds()
-	for(var/datum/atom_hud/squad/sentry_status_hud in GLOB.huds) //Add to the squad HUD
-		sentry_status_hud.add_to_hud(src)
-
 ///generates the icon based on how much ammo it has.
-/obj/machinery/deployable/mounted/update_icon_state() 
+/obj/machinery/deployable/mounted/update_icon_state(mob/user)
 
 	if(!gun.current_mag)
 		icon_state = icon_empty
 	else
-		icon_state = default_icon
+		icon_state = default_icon_state
 	hud_set_machine_health()
 	hud_set_gun_ammo()
 
 ///Handles variable transfer from the gun, to the machine.
-/obj/machinery/deployable/mounted/deploy(obj/item/weapon/gun/deploying, direction)
-	if(istype(deploying.current_mag, /obj/item/ammo_magazine/internal) || istype(deploying, /obj/item/weapon/gun/launcher))
-		CRASH("[deploying] has been deployed, however it is incompatible because of either an internal magazine, or it is a launcher.")
+/obj/machinery/deployable/mounted/set_stats(obj/item/deploying)
+	if(!istype(deploying, /obj/item/weapon/gun))
+		CRASH("[deploying] was attempted to be deployed within the type /obj/machinery/deployable/mounted without being a gun]")
+	
+	var/obj/item/weapon/gun/new_gun = deploying
+	internal_item = new_gun
+	if(istype(new_gun.current_mag, /obj/item/ammo_magazine/internal) || istype(new_gun, /obj/item/weapon/gun/launcher))
+		CRASH("[new_gun] has been deployed, however it is incompatible because of either an internal magazine, or it is a launcher.")
 
 	. = ..()
 
-	gun = internal_item
-
+	gun = new_gun
 	view_tile_offset = gun.deploy_view_offset
 
 	icon_empty = gun.deploy_icon_empty ? gun.deploy_icon_empty : icon_state
 
-	gun.bypass_checks = TRUE
-
 	update_icon_state()
 
-///Handles dissasembly
-/obj/machinery/deployable/mounted/disassemble(mob/user)
-	. = ..()
-	gun = null
-
-///Update health hud when damage is taken
-/obj/machinery/deployable/mounted/take_damage(damage_amount, damage_type, damage_flag, effects, attack_dir, armour_penetration)
-	. = ..()
-	hud_set_machine_health()
 
 ///This is called when a user tries to operate the gun
 /obj/machinery/deployable/mounted/interact(mob/user)
 	if(!ishuman(user))
 		return TRUE
 	var/mob/living/carbon/human/human_user = user
-	if(human_user.interactee == src) //If your already using the gun, and click on it again to exit
-		human_user.unset_interaction()
-		visible_message("[icon2html(src, viewers(src))] <span class='notice'>[human_user] decided to let someone else have a go. </span>",
-			"<span class='notice'>You decided to let someone else have a go on the [src] </span>")
-		return TRUE
 	if(get_step(src, REVERSE_DIR(dir)) != human_user.loc) //cant man the gun from the barrels side
 		to_chat(human_user, "<span class='warning'>You should be behind [src] to man it!</span>")
 		return TRUE
@@ -108,49 +90,6 @@
 
 	reload(user, I)
 
-///Repairs gun
-/obj/machinery/deployable/mounted/welder_act(mob/living/user, obj/item/I)
-	if(user.do_actions)
-		return FALSE
-
-	var/obj/item/tool/weldingtool/WT = I
-
-	if(!WT.isOn())
-		return FALSE
-
-	for(var/obj/effect/xenomorph/acid/A in loc)
-		if(A.acid_t == src)
-			to_chat(user, "You can't get near that, it's melting!")
-			return TRUE
-
-	if(obj_integrity == max_integrity)
-		to_chat(user, "<span class='warning'>[src] doesn't need repairs.</span>")
-		return TRUE
-
-	if(user.skills.getRating("engineer") < SKILL_ENGINEER_METAL)
-		user.visible_message("<span class='notice'>[user] fumbles around figuring out how to repair [src].</span>",
-		"<span class='notice'>You fumble around figuring out how to repair [src].</span>")
-		var/fumbling_time = 5 SECONDS * ( SKILL_ENGINEER_METAL - user.skills.getRating("engineer") )
-		if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_BUILD))
-			return TRUE
-
-	user.visible_message("<span class='notice'>[user] begins repairing damage to [src].</span>",
-	"<span class='notice'>You begin repairing the damage to [src].</span>")
-	playsound(loc, 'sound/items/welder2.ogg', 25, TRUE)
-
-	if(!do_after(user, 5 SECONDS, TRUE, src, BUSY_ICON_FRIENDLY))
-		return TRUE
-
-	if(!WT.remove_fuel(2, user))
-		to_chat(user, "<span class='warning'>Not enough fuel to finish the task.</span>")
-		return TRUE
-
-	user.visible_message("<span class='notice'>[user] repairs some damage on [src].</span>",
-	"<span class='notice'>You repair [src].</span>")
-	playsound(loc, 'sound/items/welder2.ogg', 25, TRUE)
-	repair_damage(120)
-	update_icon_state()
-	return TRUE
 
 ///Reloads gun
 /obj/machinery/deployable/mounted/proc/reload(mob/user, ammo_magazine)
@@ -170,7 +109,7 @@
 			update_icon_state()
 
 		var/tac_reload_time = max(0.5 SECONDS, 1.5 SECONDS - user.skills.getRating("firearms") * 5)
-		if(!do_after(user, tac_reload_time, TRUE, ammo_magazine))
+		if(!do_after(user, tac_reload_time, TRUE, src))
 			return
 	
 		gun.reload(user, ammo_magazine)
@@ -205,10 +144,17 @@
 /obj/machinery/deployable/mounted/proc/start_fire(datum/source, atom/object, turf/location, control, params)
 	SIGNAL_HANDLER
 
+	update_icon_state()
+
 	if(gun.gun_on_cooldown(operator))
 		return
 
 	if(QDELETED(object))
+		return
+
+	if(object == src)
+		var/mob/living/carbon/human/user = source
+		user.unset_interaction()
 		return
 
 	var/target = object
@@ -236,6 +182,7 @@
 		return
 	gun.gun_user.client.mouse_pointer_icon = 'icons/effects/supplypod_target.dmi'
 	SEND_SIGNAL(gun, COMSIG_GUN_FIRE)
+
 
 obj/machinery/deployable/mounted/proc/change_target(datum/source, atom/src_object, atom/over_object, turf/src_location, turf/over_location, src_control, over_control, params)
 	SIGNAL_HANDLER

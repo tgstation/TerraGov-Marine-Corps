@@ -34,7 +34,7 @@
 	///Last stored turf targetted by rangefinders
 	var/turf/targetturf
 	///Linked mortar for remote targeting.
-	var/obj/structure/mortar/linked_mortar
+	var/obj/machinery/deployable/mortar/linked_mortar
 
 /obj/item/binoculars/tactical/Initialize()
 	. = ..()

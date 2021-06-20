@@ -49,11 +49,12 @@
 
 	flags_item = IS_DEPLOYABLE
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER|GUN_NO_WIELDING|GUN_WIELDED_FIRING_ONLY
-	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC)
+	gun_firemode_list = list(GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC)
+
+	deployed_type = /obj/machinery/deployable/mounted 
 
 	deploy_time = 5 SECONDS
 
-	deploy_integrity = 300
 	deploy_max_integrity = 300
 
 	deploy_icon = 'icons/Marine/marine-hmg.dmi'
@@ -106,5 +107,5 @@
 	aim_slowdown = 3
 	wield_delay = 5 SECONDS
 
-	flags_gun_features = GUN_AUTO_EJECTOR|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER|GUN_IS_DEPLOYABLE
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER
 
