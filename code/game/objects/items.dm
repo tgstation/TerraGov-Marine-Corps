@@ -107,6 +107,7 @@
 
 	//DEPLOYABLE RELATED VARS
 
+	///The machine type that this should be deployed into if it can be deployed
 	var/deployed_type = /obj/machinery/deployable
 
 	///Time it takes to deploy the gun

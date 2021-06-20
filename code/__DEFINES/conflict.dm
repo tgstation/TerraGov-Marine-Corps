@@ -57,7 +57,6 @@
 
 //Gun defines for gun related thing. More in the projectile folder.
 //flags_gun_features
-
 #define GUN_CAN_POINTBLANK (1<<0)
 #define GUN_TRIGGER_SAFETY (1<<1)
 #define GUN_UNUSUAL_DESIGN (1<<2)

@@ -1,10 +1,11 @@
 /obj/machinery/deployable
+	///Icon state to be used in places where initial(icon_state) would be required
 	var/default_icon_state
-
+	///Item that is deployed to create src
 	var/obj/item/internal_item
-
+	///Flags for machine functions
 	var/deploy_flags = NONE
-
+	///If true, the machine can only be dissassemble with the use of a wrench
 	var/wrench_dissasemble = FALSE
 
 	hud_possible = list(MACHINE_HEALTH_HUD)
@@ -19,6 +20,7 @@
 	. = ..()
 	hud_set_machine_health()
 
+///Creates the machine stats out of the param obj/item/deploying
 /obj/machinery/deployable/proc/set_stats(obj/item/deploying)
 
 	internal_item = deploying
@@ -34,7 +36,7 @@
 
 	default_icon_state = icon_state
 
-
+///Bypasses the depoyable_item component in order to deploy the device without need for user
 /obj/machinery/deployable/proc/deploy(obj/item/deploying, direction)
 	deploying.forceMove(src)
 	set_stats(deploying)
@@ -85,6 +87,7 @@
 	update_icon_state()
 	return TRUE
 
+///Dissassembles the device
 /obj/machinery/deployable/proc/disassemble(mob/user)
 	if(deploy_flags & DEPLOYED_NO_PICKUP)
 		to_chat(user, "<span class='notice'>The [src] is anchored in place and cannot be disassembled.</span>")

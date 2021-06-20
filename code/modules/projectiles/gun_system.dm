@@ -129,10 +129,6 @@
 	///determines lower accuracy modifier in akimbo
 	var/lower_akimbo_accuracy = 1
 
-
-	var/bypass_checks = FALSE
-
-
 	///The amount of tiles the users view shifts once deployed and operated.
 	var/deploy_view_offset = 3
 
@@ -389,7 +385,7 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 		return
 
 	if(current_mag)
-		to_chat(user, "<span class='warning'>It still got something loaded.</span>")
+		to_chat(user, "<span class='warning'>It's still got something loaded.</span>")
 		return
 
 
@@ -895,7 +891,7 @@ and you're good to go.
 	if(flags_gun_features & GUN_TRIGGER_SAFETY)
 		to_chat(user, "<span class='warning'>The safety is on!</span>")
 		return FALSE
-	if((flags_gun_features & GUN_WIELDED_FIRING_ONLY) && !(flags_item & WIELDED)) //If we're not holding the weapon with both hands when we should. Unless it is deployed.
+	if((flags_gun_features & GUN_WIELDED_FIRING_ONLY) && !(flags_item & WIELDED)) //If we're not holding the weapon with both hands when we should.
 		to_chat(user, "<span class='warning'>You need a more secure grip to fire this weapon!")
 		return FALSE
 	if(LAZYACCESS(user.do_actions, src))
@@ -903,7 +899,7 @@ and you're good to go.
 		return FALSE
 	if((flags_gun_features & GUN_POLICE) && !police_allowed_check(user))
 		return FALSE
-	if((flags_gun_features & GUN_WIELDED_STABLE_FIRING_ONLY) && !wielded_stable())//If we must wait to finish wielding before shooting. This doesnt matter if deployed.
+	if((flags_gun_features & GUN_WIELDED_STABLE_FIRING_ONLY) && !wielded_stable())//If we must wait to finish wielding before shooting.
 		to_chat(user, "<span class='warning'>You need a more secure grip to fire this weapon!")
 		return FALSE
 	return TRUE

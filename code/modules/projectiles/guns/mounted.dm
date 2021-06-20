@@ -5,7 +5,7 @@
 	desc = "Insert this into a engineer vendor in order to access a support artillery weapon."
 	flags_token = TOKEN_ENGI
 
-//box for storage of ammo and gun
+///box for storage of ammo and gun
 /obj/item/storage/box/standard_hmg 
 	name = "\improper TL-102 crate"
 	desc = "A large metal case with Japanese writing on the top. However it also comes with English text to the side. This is a TL-102 heavy smartgun, it clearly has various labeled warnings."
@@ -23,7 +23,7 @@
 	new /obj/item/weapon/gun/mounted(src) //gun itself
 	new /obj/item/ammo_magazine/mounted(src) //ammo for the gun
 
-//TL-102, now with full auto. It is not a superclass of deployed guns, however there are a few varients.
+///TL-102, now with full auto. It is not a superclass of deployed guns, however there are a few varients.
 /obj/item/weapon/gun/mounted
 	name = "\improper TL-102 mounted heavy smartgun"
 	desc = "The TL-102 heavy machinegun, it's too heavy to be wielded or operated without the tripod. IFF capable. No extra work required, just deploy it. Can be repaired with a blowtorch once deployed."
@@ -88,7 +88,7 @@
 	deploy_icon_state = "entrenched"
 	deploy_icon_empty = "entrenched_e"
 
-//This is my meme version, the first version of the TL-102 to have auto-fire, revel in its presence.
+///This is my meme version, the first version of the TL-102 to have auto-fire, revel in its presence.
 /obj/item/weapon/gun/mounted/death
 	name = "\improper Death incarnate"
 	desc = "It looks like a regular TL-102, however glowing archaeic writing glows faintly on its sides and top. It beckons for blood."

@@ -10,7 +10,7 @@
 	soft_armor = list("melee" = 0, "bullet" = 50, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 100, "rad" = 0, "fire" = 0, "acid" = 0)
 	hud_possible = list(MACHINE_HEALTH_HUD, SENTRY_AMMO_HUD)
 
-	///Gun that does almost all the work when deployed. This type should not exist with a null 'gun'
+	///Gun that does almost all the work when deployed. This type should not exist with a null 'gun'. Typecasted version of internal_item
 	var/obj/item/weapon/gun/gun
 
 	///Icon state for when the gun has no ammo.
@@ -141,6 +141,7 @@
 
 	update_view(operator)
 
+///Begins the Firing Process
 /obj/machinery/deployable/mounted/proc/start_fire(datum/source, atom/object, turf/location, control, params)
 	SIGNAL_HANDLER
 
@@ -152,7 +153,7 @@
 	if(QDELETED(object))
 		return
 
-	if(object == src)
+	if(object == src) //Clicking the gun gets off of it.
 		var/mob/living/carbon/human/user = source
 		user.unset_interaction()
 		return
@@ -183,7 +184,7 @@
 	gun.gun_user.client.mouse_pointer_icon = 'icons/effects/supplypod_target.dmi'
 	SEND_SIGNAL(gun, COMSIG_GUN_FIRE)
 
-
+///Happens when you drag the mouse.
 obj/machinery/deployable/mounted/proc/change_target(datum/source, atom/src_object, atom/over_object, turf/src_location, turf/over_location, src_control, over_control, params)
 	SIGNAL_HANDLER
 	if(istype(over_object, /obj/screen))
@@ -198,6 +199,7 @@ obj/machinery/deployable/mounted/proc/change_target(datum/source, atom/src_objec
 	gun.set_target(over_object)
 	operator.face_atom(over_object)
 
+///Checks if you can fire
 /obj/machinery/deployable/mounted/proc/can_fire(atom/object)
 
 	if(operator.lying_angle || !Adjacent(operator) || operator.incapacitated() || get_step(src, REVERSE_DIR(dir)) != operator.loc)
@@ -297,7 +299,7 @@ obj/machinery/deployable/mounted/proc/change_target(datum/source, atom/src_objec
 			user.client.pixel_x = -1 * view_offset
 			user.client.pixel_y = 0
 
-//Mapbound version, it is initialized directly so it requires a gun to be set with it.
+///Mapbound version, it is initialized directly so it requires a gun to be set with it.
 /obj/machinery/deployable/mounted/hsg_nest
 	gun = /obj/item/weapon/gun/mounted/hsg_nest
 

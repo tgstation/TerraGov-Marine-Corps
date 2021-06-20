@@ -2,9 +2,13 @@
 
 
 /datum/component/deployable_item
+	///Whether or not the parent is deployed
 	var/deployed = FALSE
+	///Time it takes for the parent to be deployed/undeployed
 	var/deploy_time
+	///Typecast'd variable of parent
 	var/obj/item/parent_item
+	///Machine that parent is deployed into and out of
 	var/obj/machinery/deployable/deployed_machine
 
 /datum/component/deployable_item/Initialize(_deploy_time, deploy_type)
@@ -28,11 +32,13 @@
 	RegisterSignal(parent_item, COMSIG_IS_DEPLOYED, .proc/is_deployed)
 	RegisterSignal(parent_item, COMSIG_DEPLOYABLE_SET_DEPLOYED, .proc/set_deploy)
 
+///Wrapper for proc/finish_deploy
 /datum/component/deployable_item/proc/deploy(datum/source, mob/user)
 	SIGNAL_HANDLER
 	to_chat(user, "<span class='notice'>you start deploying the [source]</span>")
 	INVOKE_ASYNC(src, .proc/finish_deploy, source, user)
 
+///Handles the conversion of item into machine
 /datum/component/deployable_item/proc/finish_deploy(datum/source, mob/user)
 	var/turf/here = get_step(user, user.dir)
 	if(!ishuman(user)) 
@@ -53,12 +59,13 @@
 
 	RegisterSignal(deployed_machine, COMSIG_ITEM_UNDEPLOY, .proc/undeploy)
 
-
+///Wrapper for proc/finish_undeploy
 /datum/component/deployable_item/proc/undeploy(datum/source, mob/user)
 	SIGNAL_HANDLER
 	to_chat(user, "<span class='notice'>You begin disassembling [parent_item].</span>")
 	INVOKE_ASYNC(src, .proc/finish_undeploy, source, user)
 
+///Transfers the machine into the item
 /datum/component/deployable_item/proc/finish_undeploy(datum/source, mob/user)
 	if(!do_after(user, deploy_time, TRUE, deployed_machine, BUSY_ICON_BUILD))
 		return
@@ -73,23 +80,23 @@
 
 	deployed_machine.forceMove(parent_item)
 
+///This is used incase the machine needs to be set as deployed without a user
 /datum/component/deployable_item/proc/set_deploy(datum/source, _deployed)
 	SIGNAL_HANDLER
 	deployed = _deployed
 
+///Returns Deployed
 /datum/component/deployable_item/proc/is_deployed()
 	SIGNAL_HANDLER
 	return deployed
 
+///Checks if the item is deployed
 /obj/item/proc/is_deployed()
 	return SEND_SIGNAL(src, COMSIG_IS_DEPLOYED)
 
-
-
-
-
 /datum/component/deployable_item/mounted_gun
 
+///Unregisters for safety
 /datum/component/deployable_item/mounted_gun/finish_deploy(datum/source, mob/user)
 	. = ..()
 	parent_item.UnregisterSignal(user, list(COMSIG_MOB_MOUSEDOWN, COMSIG_MOB_MOUSEUP, COMSIG_MOB_MOUSEDRAG, COMSIG_KB_RAILATTACHMENT, COMSIG_KB_UNDERRAILATTACHMENT, COMSIG_KB_UNLOADGUN, COMSIG_KB_FIREMODE))

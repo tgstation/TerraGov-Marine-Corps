@@ -60,7 +60,7 @@
 #define DRAINS_XENO (1<<10)  //Enables the item to collect resource for chem_booster component
 #define CAN_BUMP_ATTACK (1<<11)	 //Item triggers bump attack
 #define NO_VACUUM (1<<12) //Roomba won't eat this
-#define IS_DEPLOYABLE (1<<12)
+#define IS_DEPLOYABLE (1<<12) //Item can be deployed into a machine
 
 //==========================================================================================
 

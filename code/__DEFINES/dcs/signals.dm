@@ -248,7 +248,7 @@
 #define COMSIG_CLOTHING_MECHANICS_INFO "clothing_mechanics_info"	//from base of /obj/item/clothing/get_mechanics_info()
 	#define COMPONENT_CLOTHING_MECHANICS_TINTED (1<<0)
 
-#define COMSIG_ITEM_DEPLOY "item_deploy"
+#define COMSIG_ITEM_DEPLOY "item_deploy"  //used in /obj/machinery/deployable and /datum/component/deployable_item
 #define COMSIG_ITEM_UNDEPLOY "item_undeploy"
 #define COMSIG_IS_DEPLOYED "is_deployed"
 #define COMSIG_DEPLOYABLE_SET_DEPLOYED "set_deployed"
