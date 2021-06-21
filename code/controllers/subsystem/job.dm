@@ -200,18 +200,22 @@ SUBSYSTEM_DEF(job)
 
 
 /datum/controller/subsystem/job/proc/assign_players_to_occupations(level, list/occupations_to_assign)
-	for(var/p in unassigned)
-		var/mob/new_player/player = p
+	for(var/mob/new_player/player AS in unassigned)
 		if(PopcapReached())
 			RejectPlayer(player)
+		var/faction_rejected
+		//Choose a faction in advance if needed
+		if(SSticker.mode?.flags_round_type & MODE_TWO_HUMAN_FACTIONS)
+			faction_rejected = prob(50) ? FACTION_TERRAGOV : FACTION_TERRAGOV_REBEL
 		// Loop through all jobs
-		for(var/j in occupations_to_assign)
-			var/datum/job/job = j
+		for(var/datum/job/job AS in occupations_to_assign)
 			// If the player wants that job on this level, then try give it to him.
 			if(player.client.prefs.job_preferences[job.title] != level)
 				continue
 			// If the job isn't filled
 			if((job.total_positions != -1 && job.current_positions >= job.total_positions))
+				continue
+			if(job.faction == faction_rejected)
 				continue
 			JobDebug("DO pass, Trying to assign Player: [player], Level:[level], Job:[job.title]")
 			if(AssignRole(player, job))
