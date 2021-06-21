@@ -169,3 +169,8 @@
   - bugfix: Xenos lose leadership when evolving into a caste that can not be granted
       it normally. *cough* hivemind *cough*
   - admin: Updated PP to include Wraith transformation and reflect Shrikes new tier.
+2021-06-21:
+  BraveMole:
+  - balance: Resin doors open when you try to cross them as a xeno, and no longer
+      when you are near them. Still instantanious
+  - rscadd: New HvH gamemode, civil war. Very much WIP
