@@ -343,7 +343,7 @@ GLOBAL_LIST_EMPTY(helmetmarkings_sl)
 	//List of all the faction accessible squads
 	var/list/available_squads = SSjob.active_squads[faction]
 	var/datum/squad/preferred_squad = SSjob.squads_by_name[player.client.prefs.preferred_squad]
-	if(preferred_squad?.assign_initial(player, job, latejoin))
+	if(available_squads.Find(preferred_squad) && preferred_squad?.assign_initial(player, job, latejoin))
 		return TRUE
 	if(strict)
 		to_chat(player, "<span class='warning'>That squad is full!</span>")
