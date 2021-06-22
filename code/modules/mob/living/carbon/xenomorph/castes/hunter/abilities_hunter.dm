@@ -47,7 +47,7 @@
 
 /datum/action/xeno_action/stealth/remove_action(mob/living/L)
 	UnregisterSignal(L, list(
-		COMSIG_XENOMORPH_POUNCE,
+		COMSIG_XENOMORPH_POUNCE_END,
 		COMSIG_XENO_LIVING_THROW_HIT,
 		COMSIG_XENOMORPH_ATTACK_LIVING,
 		COMSIG_XENOMORPH_DISARM_HUMAN,
