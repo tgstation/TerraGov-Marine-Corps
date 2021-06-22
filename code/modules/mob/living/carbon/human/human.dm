@@ -6,6 +6,9 @@
 	if(!species)
 		set_species()
 
+	if(SSticker.mode?.flags_round_type & MODE_HUMAN_SEE_IN_DARK)
+		ADD_TRAIT(src, TRAIT_SEE_IN_DARK, TRAIT_SEE_IN_DARK)
+
 	var/datum/reagents/R = new /datum/reagents(1000)
 	reagents = R
 	R.my_atom = src
