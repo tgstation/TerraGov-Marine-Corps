@@ -2,10 +2,11 @@
 	if(lying_angle)
 		return FALSE
 
-	if(xeno_caste)
-		changeNext_move(xeno_caste.attack_delay)
-	else
-		changeNext_move(CLICK_CD_MELEE)
+	if(!isturf(A)) //We don't care about turfs; they don't trigger our melee click cooldown
+		if(xeno_caste)
+			changeNext_move(xeno_caste.attack_delay)
+		else
+			changeNext_move(CLICK_CD_MELEE)
 
 	var/atom/S = A.handle_barriers(src)
 	S.attack_alien(src, isrightclick = islist(modifiers) ? modifiers["right"] : FALSE)
