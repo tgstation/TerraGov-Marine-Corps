@@ -92,6 +92,12 @@
 
 
 /datum/game_mode/proc/post_setup()
+	SHOULD_CALL_PARENT(TRUE)
+	if(flags_landmarks & MODE_LANDMARK_SPAWN_WEAPON)
+		for(var/obj/effect/landmark/weapon_spawn/weapon_spawn AS in GLOB.weapon_spawn_list)
+			weapon_spawn.choose_weapon()
+		return
+	QDEL_LIST(GLOB.weapon_spawn_list)
 	addtimer(CALLBACK(src, .proc/display_roundstart_logout_report), ROUNDSTART_LOGOUT_REPORT_TIME)
 	if(!SSdbcore.Connect())
 		return
@@ -106,6 +112,7 @@
 		var/datum/db_query/query_round_game_mode = SSdbcore.NewQuery("UPDATE [format_table_name("round")] SET [sql] WHERE id = :roundid", list("roundid" = GLOB.round_id))
 		query_round_game_mode.Execute()
 		qdel(query_round_game_mode)
+
 
 /datum/game_mode/proc/new_player_topic(mob/new_player/NP, href, list/href_list)
 	return FALSE

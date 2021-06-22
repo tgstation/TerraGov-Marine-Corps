@@ -2,7 +2,7 @@
 	name = "Bug Hunt"
 	config_tag = "Hunt"
 	flags_round_type = MODE_INFESTATION|MODE_LZ_SHUTTERS|MODE_XENO_RULER|MODE_HIJACK_POSSIBLE
-	flags_landmarks = MODE_LANDMARK_SPAWN_XENO_TUNNELS|MODE_LANDMARK_SPAWN_MAP_ITEM
+	flags_landmarks = MODE_LANDMARK_SPAWN_XENO_TUNNELS|MODE_LANDMARK_SPAWN_MAP_ITEM|MODE_LANDMARK_SPAWN_WEAPON
 	flags_xeno_abilities = ABILITY_HUNT
 	valid_job_types = list(
 		/datum/job/terragov/command/captain = 1,

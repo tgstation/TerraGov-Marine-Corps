@@ -198,9 +198,13 @@
 	var/weapon_to_spawn = null
 
 /obj/effect/landmark/weapon_spawn/Initialize()
-	choose_weapon()
 	. = ..()
-	return INITIALIZE_HINT_QDEL
+	GLOB.weapon_spawn_list += src
+
+/obj/effect/landmark/weapon_spawn/Destroy()
+	GLOB.weapon_spawn_list -= src
+	return ..()
+	
 
 /obj/effect/landmark/weapon_spawn/proc/spawn_associated_ammo(obj/item/weapon/gun/gun_to_spawn)
 	//fuck you grenade launchers you snowflake pieces of shit
@@ -240,6 +244,7 @@
 	for(var/i in 1 to 3) //hardcoded 3 mags.
 		new gun_mag (get_turf(src))
 
+///Spawn a weapon and its ammo and delete the spawner
 /obj/effect/landmark/weapon_spawn/proc/choose_weapon()
 	weapon_to_spawn = pick(weapon_list)
 
@@ -247,6 +252,7 @@
 
 	if(isgun(weapon_to_spawn))
 		spawn_associated_ammo(weapon_to_spawn)
+	qdel(src)
 
 /obj/effect/landmark/weapon_spawn/tier1_weapon_spawn
 	name = "Tier 1 Weapon Spawn"
