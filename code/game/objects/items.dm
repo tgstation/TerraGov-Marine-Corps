@@ -107,24 +107,6 @@
 
 	//DEPLOYABLE RELATED VARS
 
-	///The machine type that this should be deployed into if it can be deployed
-	var/deployed_type = /obj/machinery/deployable
-
-	///Time it takes to deploy the gun
-	var/deploy_time = 0 SECONDS
-
-	///List of flags for deployed machine operation. Flags can be found in __Defines/conflict.dm 
-	var/deploy_flags
-
-	///The deployed machines max integrity, this is only used in machine repairing and does not change.
-	var/deploy_max_integrity = 100
-
-	///Icon of the machine created once deployed, if null and deployed, it defaults to this objects icon
-	var/deploy_icon
-	///Icon state of the machine created once deployed, if null and deployed, it defaults to this objects icon_state
-	var/deploy_icon_state
-
-
 
 /obj/item/Initialize()
 	. = ..()

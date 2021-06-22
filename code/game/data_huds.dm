@@ -545,7 +545,7 @@
 
 	if(!holder)
 		return
-
+	var/obj/item/weapon/gun/gun = internal_item
 	if(!gun.current_mag)
 		holder.icon_state = "plasma0"
 		return

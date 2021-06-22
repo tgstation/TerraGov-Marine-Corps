@@ -31,7 +31,7 @@
 	w_class = WEIGHT_CLASS_HUGE
 	flags_equip_slot = ITEM_SLOT_BACK
 	icon = 'icons/Marine/marine-hmg.dmi'
-	icon_state = "turret_icon"
+	icon_state = "turret"
 
 	fire_sound = 'sound/weapons/guns/fire/hmg2.ogg'
 	reload_sound = 'sound/weapons/guns/interact/minigun_cocked.ogg'
@@ -51,16 +51,9 @@
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER|GUN_NO_WIELDING|GUN_WIELDED_FIRING_ONLY
 	gun_firemode_list = list(GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC)
 
-	deployed_type = /obj/machinery/deployable/mounted 
-
 	deploy_time = 5 SECONDS
 
-	deploy_max_integrity = 300
-
-	deploy_icon = 'icons/Marine/marine-hmg.dmi'
-	deploy_icon_state = "turret"
-
-	deploy_icon_empty = "turret_e"
+	max_integrity = 300
 
 ///This and get_ammo_count is to make sure the ammo counter functions.
 /obj/item/weapon/gun/mounted/get_ammo_type()
@@ -78,15 +71,13 @@
 	name = "\improper TL-102 heavy smartgun nest"
 	desc = "A TL-102 heavy smartgun mounted upon a small reinforced post with sandbags to provide a small machinegun nest for all your defense purpose needs.</span>"
 	icon = 'icons/Marine/marine-hmg.dmi'
+	icon_state = "entrenched"
 
 	current_mag = /obj/item/ammo_magazine/mounted/hsg_nest
 
 	deploy_flags = DEPLOYED_NO_PICKUP
 
 	deploy_view_offset = 6
-
-	deploy_icon_state = "entrenched"
-	deploy_icon_empty = "entrenched_e"
 
 ///This is my meme version, the first version of the TL-102 to have auto-fire, revel in its presence.
 /obj/item/weapon/gun/mounted/death

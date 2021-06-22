@@ -1,12 +1,10 @@
 /obj/machinery/deployable
-	///Icon state to be used in places where initial(icon_state) would be required
-	var/default_icon_state
 	///Item that is deployed to create src
 	var/obj/item/internal_item
 	///Flags for machine functions
 	var/deploy_flags = NONE
-	///If true, the machine can only be dissassemble with the use of a wrench
-	var/wrench_dissasemble = FALSE
+
+	var/default_icon_state
 
 	hud_possible = list(MACHINE_HEALTH_HUD)
 
@@ -16,30 +14,29 @@
 	for(var/datum/atom_hud/squad/sentry_status_hud in GLOB.huds) //Add to the squad HUD
 		sentry_status_hud.add_to_hud(src)
 
+/obj/machinery/deployable/Initialize(mapload, _internal_item, _deploy_flags)
+	. = ..()
+	internal_item = _internal_item
+	deploy_flags = _deploy_flags
+
+	max_integrity = internal_item.max_integrity
+	obj_integrity = max_integrity
+
+	name = internal_item.name
+	desc = internal_item.desc
+
+	icon = internal_item.icon
+	default_icon_state = internal_item.icon_state + "_deployed"
+
+	update_icon_state()
+
 /obj/machinery/deployable/update_icon_state()
 	. = ..()
 	hud_set_machine_health()
 
-///Creates the machine stats out of the param obj/item/deploying
-/obj/machinery/deployable/proc/set_stats(obj/item/deploying)
-
-	internal_item = deploying
-
-	deploy_flags = internal_item.deploy_flags
-	max_integrity = internal_item.deploy_max_integrity
-	obj_integrity = max_integrity
-
-	name = internal_item.name
-
-	icon = internal_item.deploy_icon ? internal_item.deploy_icon : internal_item.icon
-	icon_state = internal_item.deploy_icon_state ? internal_item.deploy_icon_state : internal_item.icon_state
-
-	default_icon_state = icon_state
-
 ///Bypasses the depoyable_item component in order to deploy the device without need for user
 /obj/machinery/deployable/proc/deploy(obj/item/deploying, direction)
 	deploying.forceMove(src)
-	set_stats(deploying)
 	setDir(direction)
 	SEND_SIGNAL(deploying, COMSIG_DEPLOYABLE_SET_DEPLOYED, TRUE)
 
@@ -88,16 +85,15 @@
 	return TRUE
 
 ///Dissassembles the device
-/obj/machinery/deployable/proc/disassemble(mob/user)
+/obj/machinery/deployable/proc/disassemble(mob/user, using_wrench)
 	if(deploy_flags & DEPLOYED_NO_PICKUP)
 		to_chat(user, "<span class='notice'>The [src] is anchored in place and cannot be disassembled.</span>")
 		return
-	SEND_SIGNAL(src, COMSIG_ITEM_UNDEPLOY, user)
+	SEND_SIGNAL(src, COMSIG_ITEM_UNDEPLOY, user, using_wrench)
 
 /obj/machinery/deployable/Destroy()
 	if(internal_item)
-		internal_item = null
-		qdel(internal_item)
+		QDEL_NULL(internal_item)
 	operator?.unset_interaction()
 	. = ..()
 
@@ -108,14 +104,10 @@
 /obj/machinery/deployable/MouseDrop(over_object, src_location, over_location) 
 	if(!ishuman(usr))
 		return
-	if(wrench_dissasemble)
-		return
 	var/mob/living/carbon/human/user = usr //this is us
 	if(over_object == user && in_range(src, user))
-		disassemble(user)
+		disassemble(user, FALSE)
 
 /obj/machinery/deployable/wrench_act(mob/living/user, obj/item/I)
 	. = ..()
-	if(wrench_dissasemble)
-		disassemble(user)
-
+	disassemble(user, TRUE)

@@ -3,7 +3,6 @@
 
 /obj/machinery/deployable/mortar
 
-	icon_state = "mortar_m402"
 	anchored = TRUE
 	density = TRUE
 	layer = ABOVE_MOB_LAYER //So you can't hide it under corpses
@@ -22,7 +21,6 @@
 	var/busy = 0
 	var/firing = 0 //Used for deconstruction and aiming sanity
 
-	wrench_dissasemble = TRUE
 	use_power = NO_POWER_USE
 
 /obj/machinery/deployable/mortar/attack_hand(mob/living/user)
@@ -245,14 +243,9 @@
 	name = "\improper M402 mortar"
 	desc = "A manual, crew-operated mortar system intended to rain down 80mm goodness on anything it's aimed at. Needs to be set down first to fire."
 	icon = 'icons/Marine/mortar.dmi'
-	icon_state = "mortar_m402_carry"
+	icon_state = "mortar"
 
-	deploy_icon_state = "mortar_m402"
-	deploy_time = 40
-
-	deploy_max_integrity = 200
-
-	deployed_type = /obj/machinery/deployable/mortar
+	max_integrity = 200
 	flags_item = IS_DEPLOYABLE
 
 	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
@@ -260,7 +253,7 @@
 
 /obj/item/mortar_kit/Initialize()
 	. = ..()
-	AddComponent(/datum/component/deployable_item, deploy_time, deployed_type)
+	AddComponent(/datum/component/deployable_item, /obj/machinery/deployable/mortar, 5 SECONDS, TRUE)
 
 /obj/item/unique_action(mob/user)
 	. = ..()

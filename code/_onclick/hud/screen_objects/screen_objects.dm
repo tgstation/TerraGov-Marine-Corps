@@ -686,7 +686,7 @@
 	//Checks if the user is interacting with a machine, and whether that machine is a deployed gun.
 	if(user.interactee && istype(user.interactee, /obj/machinery/deployable/mounted))
 		var/obj/machinery/deployable/mounted/mounted_gun = user.interactee
-		G = mounted_gun.gun
+		G = mounted_gun.internal_item
 
 	else if(!istype(G)) //If it is not a deployed gun, makes sure the user is actually holding a gun.
 		return
@@ -710,7 +710,7 @@
 	//Same function as above
 	if(user.interactee && istype(user.interactee, /obj/machinery/deployable/mounted))
 		var/obj/machinery/deployable/mounted/mounted_gun = user.interactee
-		G = mounted_gun.gun
+		G = mounted_gun.internal_item
 
 	else if(!istype(G))
 		remove_hud(user)

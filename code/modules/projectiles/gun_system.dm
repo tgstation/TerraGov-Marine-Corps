@@ -132,9 +132,9 @@
 	///The amount of tiles the users view shifts once deployed and operated.
 	var/deploy_view_offset = 3
 
-	///Icon state of the machine created once deployed and if it does not have ammo, if null and deployed, it defaults to this objects icon_state
-	var/deploy_icon_empty
+	var/deploy_time
 
+	var/deploy_flags = NONE
 //----------------------------------------------------------
 				//				    \\
 				// NECESSARY PROCS  \\
@@ -165,7 +165,7 @@
 	AddComponent(/datum/component/automatedfire/autofire, fire_delay, burst_delay, burst_amount, gun_firemode, CALLBACK(src, .proc/set_bursting), CALLBACK(src, .proc/reset_fire), CALLBACK(src, .proc/Fire)) //This should go after handle_starting_attachment() and setup_firemodes() to get the proper values set.
 
 	if(flags_item & IS_DEPLOYABLE)
-		AddComponent(/datum/component/deployable_item/mounted_gun, deploy_time, deployed_type)
+		AddComponent(/datum/component/deployable_item/mounted_gun, /obj/machinery/deployable/mounted, deploy_time, FALSE, deploy_flags)
 
 	muzzle_flash = new(src, muzzleflash_iconstate)
 
@@ -698,12 +698,8 @@ and you're good to go.
 //----------------------------------------------------------
 
 /obj/item/weapon/gun/proc/Fire()
-	if(QDELETED(gun_user) || !ismob(gun_user) || !target)
+	if(QDELETED(gun_user) || !ismob(gun_user) || !target || (!is_deployed() && !able_to_fire(gun_user)))
 		return
-
-	if(!is_deployed())
-		if(!able_to_fire(gun_user))
-			return
 
 	//The gun should return the bullet that it already loaded from the end cycle of the last Fire().
 	var/obj/projectile/projectile_to_fire = load_into_chamber(gun_user) //Load a bullet in or check for existing one.

@@ -10,41 +10,32 @@
 	soft_armor = list("melee" = 0, "bullet" = 50, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 100, "rad" = 0, "fire" = 0, "acid" = 0)
 	hud_possible = list(MACHINE_HEALTH_HUD, SENTRY_AMMO_HUD)
 
-	///Gun that does almost all the work when deployed. This type should not exist with a null 'gun'. Typecasted version of internal_item
-	var/obj/item/weapon/gun/gun
 
-	///Icon state for when the gun has no ammo.
-	var/icon_empty
 	//this is amount of tiles we shift our vision towards guns direction when operated, currently its max is 7
 	var/view_tile_offset = 3
 
 ///generates the icon based on how much ammo it has.
 /obj/machinery/deployable/mounted/update_icon_state(mob/user)
-
+	var/obj/item/weapon/gun/gun = internal_item
 	if(!gun.current_mag)
-		icon_state = icon_empty
+		icon_state = default_icon_state + "_e"
 	else
 		icon_state = default_icon_state
 	hud_set_machine_health()
 	hud_set_gun_ammo()
 
-///Handles variable transfer from the gun, to the machine.
-/obj/machinery/deployable/mounted/set_stats(obj/item/deploying)
-	if(!istype(deploying, /obj/item/weapon/gun))
-		CRASH("[deploying] was attempted to be deployed within the type /obj/machinery/deployable/mounted without being a gun]")
+/obj/machinery/deployable/mounted/Initialize(mapload, _internal_item, _deploy_flags)
+	. = ..()
+	if(!istype(internal_item, /obj/item/weapon/gun))
+		CRASH("[internal_item] was attempted to be deployed within the type /obj/machinery/deployable/mounted without being a gun]")
 	
-	var/obj/item/weapon/gun/new_gun = deploying
-	internal_item = new_gun
+	var/obj/item/weapon/gun/new_gun = internal_item 
+
 	if(istype(new_gun.current_mag, /obj/item/ammo_magazine/internal) || istype(new_gun, /obj/item/weapon/gun/launcher))
 		CRASH("[new_gun] has been deployed, however it is incompatible because of either an internal magazine, or it is a launcher.")
-
-	. = ..()
-
-	gun = new_gun
-	view_tile_offset = gun.deploy_view_offset
-
-	icon_empty = gun.deploy_icon_empty ? gun.deploy_icon_empty : icon_state
-
+	
+	view_tile_offset = new_gun.deploy_view_offset
+	
 	update_icon_state()
 
 
@@ -97,29 +88,31 @@
 		return
 
 	var/obj/item/ammo_magazine/ammo = ammo_magazine
-	
-	if(istype(gun, ammo.gun_type))
+	var/obj/item/weapon/gun/gun = internal_item
+	if(!istype(gun, ammo.gun_type))
+		return
+	if(ammo.current_rounds <= 0)
+		to_chat(user, "<span class='warning'>[ammo] is empty!</span>")
+		return
 
-		if(ammo.current_rounds <= 0)
-			to_chat(user, "<span class='warning'>[ammo] is empty!</span>")
-			return
-
-		if(gun.current_mag)
-			gun.unload(user,0,1)
-			update_icon_state()
-
-		var/tac_reload_time = max(0.5 SECONDS, 1.5 SECONDS - user.skills.getRating("firearms") * 5)
-		if(!do_after(user, tac_reload_time, TRUE, src))
-			return
-	
-		gun.reload(user, ammo_magazine)
+	if(gun.current_mag)
+		gun.unload(user,0,1)
 		update_icon_state()
+
+	var/tac_reload_time = max(0.5 SECONDS, 1.5 SECONDS - user.skills.getRating("firearms") * 5)
+	if(!do_after(user, tac_reload_time, TRUE, src))
+		return
+	
+	gun.reload(user, ammo_magazine)
+	update_icon_state()
 
 ///Sets the user as manning the internal gun
 /obj/machinery/deployable/mounted/on_set_interaction(mob/user)
 	operator = user
 
 	. = ..()
+
+	var/obj/item/weapon/gun/gun = internal_item
 
 	if(!gun)
 		CRASH("[src] has been deployed and attempted interaction with [user] without having a gun. This shouldn't happen.")
@@ -146,6 +139,8 @@
 	SIGNAL_HANDLER
 
 	update_icon_state()
+
+	var/obj/item/weapon/gun/gun = internal_item
 
 	if(gun.gun_on_cooldown(operator))
 		return
@@ -196,6 +191,8 @@ obj/machinery/deployable/mounted/proc/change_target(datum/source, atom/src_objec
 	if(!can_fire(over_object))
 		return
 
+	var/obj/item/weapon/gun/gun = internal_item
+
 	gun.set_target(over_object)
 	operator.face_atom(over_object)
 
@@ -223,30 +220,30 @@ obj/machinery/deployable/mounted/proc/change_target(datum/source, atom/src_objec
 	//we can only fire in a 90 degree cone
 	if((direction & angle) && target.loc != loc && target.loc != operator.loc)
 		operator.setDir(direction)
+		var/obj/item/weapon/gun/gun = internal_item
 		gun.set_target(target)
 		return TRUE
-	else if (!(direction & angle) && target.loc != loc && target.loc != operator.loc) // Let us rotate this stuff.
-		if(deploy_flags & DEPLOYED_NO_ROTATE)
-			to_chat(operator, "This one is anchored in place and cannot be rotated.")
+	if(deploy_flags & DEPLOYED_NO_ROTATE)
+		to_chat(operator, "This one is anchored in place and cannot be rotated.")
+		return FALSE
+
+	var/list/leftright = LeftAndRightOfDir(direction)
+	var/left = leftright[1] - 1
+	var/right = leftright[2] + 1
+	if(!(left == (angle-1)) && !(right == (angle+1)))
+		to_chat(operator, "<span class='warning'> [src] cannot be rotated so violently.</span>")
+	else
+		var/turf/w = get_step(src, REVERSE_DIR(angle))
+		var/mob/living/carbon/human/user = operator
+		if(!operator.Move(w))
+			to_chat(operator, "You cannot rotate [src] that way.")
 			return FALSE
 
-		var/list/leftright = LeftAndRightOfDir(direction)
-		var/left = leftright[1] - 1
-		var/right = leftright[2] + 1
-		if(left == (angle-1) || right == (angle+1))
-			var/turf/w = get_step(src, REVERSE_DIR(angle))
-			var/mob/living/carbon/human/user = operator
-			if(operator.Move(w))
-				setDir(angle)
-				user.set_interaction(src)
-				playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
-				operator.visible_message("[operator] rotates the [src].","You rotate the [src].")
-				update_view(operator)
-			else
-				to_chat(operator, "You cannot rotate [src] that way.")
-				return FALSE
-		else
-			to_chat(operator, "<span class='warning'> [src] cannot be rotated so violently.</span>")
+		setDir(angle)
+		user.set_interaction(src)
+		playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
+		operator.visible_message("[operator] rotates the [src].","You rotate the [src].")
+		update_view(operator)
 	return FALSE
 
 
@@ -256,6 +253,7 @@ obj/machinery/deployable/mounted/proc/change_target(datum/source, atom/src_objec
 		return
 
 	UnregisterSignal(operator, list(COMSIG_MOB_MOUSEDOWN, COMSIG_MOB_MOUSEDRAG))
+	var/obj/item/weapon/gun/gun = internal_item
 	gun.UnregisterSignal(operator, COMSIG_MOB_MOUSEUP)
 
 	for(var/X in gun.actions)
@@ -301,8 +299,8 @@ obj/machinery/deployable/mounted/proc/change_target(datum/source, atom/src_objec
 
 ///Mapbound version, it is initialized directly so it requires a gun to be set with it.
 /obj/machinery/deployable/mounted/hsg_nest
-	gun = /obj/item/weapon/gun/mounted/hsg_nest
+	internal_item = /obj/item/weapon/gun/mounted/hsg_nest
 
-/obj/machinery/deployable/mounted/hsg_nest/Initialize()
+/obj/machinery/deployable/mounted/hsg_nest/Initialize(mapload, _internal_item, _deploy_flags)
 	. = ..()
-	deploy(new gun(), SOUTH)
+	deploy(new internal_item(), SOUTH)

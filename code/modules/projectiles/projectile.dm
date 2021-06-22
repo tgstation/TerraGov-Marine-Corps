@@ -626,6 +626,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 	return src == proj.original_target
 
 /obj/machinery/deployable/mounted/projectile_hit(obj/projectile/proj, cardinal_move, uncrossing)
+	var/obj/item/weapon/gun/gun = internal_item
 	for(var/access_tag in proj.projectile_iff)
 		if(access_tag in gun.gun_iff_signal) //Checks IFF
 			proj.damage += proj.damage*proj.damage_marine_falloff
