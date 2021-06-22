@@ -443,7 +443,7 @@
 	if(!length(contents))
 		return
 
-	var/obj/item/item= contents[contents.len]
+	var/obj/item/item = contents[contents.len]
 	if(!istype(item, /obj/item/ammo_magazine/handful))
 		return
 
