@@ -4430,10 +4430,6 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/stripesquare,
 /area/mainship/hallways/port_hallway)
-"egH" = (
-/obj/machinery/vending/security,
-/turf/open/floor/mainship/red/full,
-/area/mainship/command/cic)
 "egQ" = (
 /obj/structure/closet/firecloset,
 /obj/item/clothing/mask/gas,
@@ -4722,10 +4718,6 @@
 /obj/effect/decal/siding,
 /turf/open/floor/mainship/terragov/west,
 /area/space)
-"eta" = (
-/obj/structure/closet/secure_closet/guncabinet/mp_armory,
-/turf/open/floor/mainship/red/full,
-/area/mainship/command/cic/rebel)
 "etz" = (
 /obj/structure/closet/emcloset,
 /turf/open/floor/mainship/cargo,
@@ -5464,19 +5456,6 @@
 /obj/machinery/prop/mainship/computer,
 /turf/open/floor/mainship/mono,
 /area/mainship/shipboard/port_missiles)
-"fab" = (
-/obj/structure/closet/secure_closet/military_police,
-/obj/item/reagent_containers/spray/pepper,
-/obj/item/tool/taperoll/police,
-/obj/item/taperecorder,
-/obj/item/roller,
-/obj/machinery/camera/autoname/mainship/rebelship{
-	dir = 1
-	},
-/obj/item/weapon/gun/energy/taser,
-/obj/item/weapon/gun/energy/taser,
-/turf/open/floor/mainship/red/full,
-/area/mainship/command/cic/rebel)
 "fag" = (
 /turf/closed/wall/mainship/research/containment/wall/north,
 /area/mainship/medical/medical_science)
@@ -8731,10 +8710,6 @@
 	dir = 1
 	},
 /area/mainship/medical/chemistry)
-"hQD" = (
-/obj/structure/closet/secure_closet/guncabinet/m41aMK1,
-/turf/open/floor/mainship/red/full,
-/area/mainship/command/cic)
 "hQO" = (
 /obj/machinery/light,
 /obj/structure/cable,
@@ -9624,10 +9599,6 @@
 /obj/machinery/telecomms/server/presets/cas,
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/telecomms)
-"iJG" = (
-/obj/structure/closet/secure_closet/guncabinet/mp_armory,
-/turf/open/floor/mainship/red/full,
-/area/mainship/command/cic)
 "iJO" = (
 /obj/structure/disposalpipe/segment{
 	dir = 8
@@ -11932,6 +11903,10 @@
 	dir = 4
 	},
 /area/mainship/command/self_destruct/rebel)
+"kNc" = (
+/obj/machinery/vending/marine/cargo_supply/hvh/rebel,
+/turf/open/floor/mainship/mono,
+/area/mainship/squads/req/rebel)
 "kNf" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/mainship,
@@ -15154,6 +15129,10 @@
 	},
 /turf/open/floor/mainship/cargo,
 /area/mainship/engineering/port_atmos/rebel)
+"nEt" = (
+/obj/machinery/vending/marine/cargo_supply/hvh,
+/turf/open/floor/mainship/mono,
+/area/mainship/squads/req)
 "nEE" = (
 /obj/structure/table/mainship,
 /obj/item/reagent_containers/food/snacks/breadslice,
@@ -23525,10 +23504,6 @@
 /obj/machinery/cryopod/right,
 /turf/open/floor/mainship/cargo,
 /area/mainship/living/cryo_cells/rebel)
-"uCL" = (
-/obj/machinery/vending/security,
-/turf/open/floor/mainship/red/full,
-/area/mainship/command/cic/rebel)
 "uCX" = (
 /obj/structure/table/mainship,
 /obj/machinery/cell_charger,
@@ -23644,16 +23619,6 @@
 /turf/open/floor/mainship/floor,
 /area/mainship/command/self_destruct/rebel)
 "uLQ" = (
-/obj/structure/closet/secure_closet/military_police,
-/obj/item/reagent_containers/spray/pepper,
-/obj/item/tool/taperoll/police,
-/obj/item/taperecorder,
-/obj/item/roller,
-/obj/machinery/camera/autoname/mainship{
-	dir = 1
-	},
-/obj/item/weapon/gun/energy/taser,
-/obj/item/weapon/gun/energy/taser,
 /turf/open/floor/mainship/red/full,
 /area/mainship/command/cic)
 "uMm" = (
@@ -26970,7 +26935,6 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/lower_medical/rebel)
 "xFT" = (
-/obj/structure/closet/secure_closet/guncabinet/m41aMK1,
 /turf/open/floor/mainship/red/full,
 /area/mainship/command/cic/rebel)
 "xGi" = (
@@ -40782,7 +40746,7 @@ wGe
 hIt
 sIC
 lFF
-fab
+xFT
 wGe
 xRh
 iIM
@@ -41039,7 +41003,7 @@ pbx
 wyZ
 wyZ
 lmg
-eta
+xFT
 wGe
 ohp
 iIM
@@ -41296,7 +41260,7 @@ kqY
 vhZ
 vhZ
 qzU
-uCL
+xFT
 wGe
 xRh
 iIM
@@ -42022,7 +41986,7 @@ sPV
 uUp
 xxw
 xxw
-xxw
+kNc
 eee
 eee
 eee
@@ -81778,7 +81742,7 @@ cQs
 bKd
 bKd
 gOP
-iJG
+uLQ
 tCD
 pVo
 iVC
@@ -82035,7 +81999,7 @@ rTH
 gqp
 gqp
 raY
-egH
+uLQ
 tCD
 gMl
 iVC
@@ -82292,7 +82256,7 @@ tCD
 ekF
 ekF
 tWL
-hQD
+uLQ
 tCD
 oRp
 iVC
@@ -82761,7 +82725,7 @@ rnV
 oKR
 cAG
 cAG
-cAG
+nEt
 ipi
 ipi
 ipi
