@@ -1,0 +1,4 @@
+author: "BraveMole"
+delete-after: True
+changes: 
+  - qol: "Switching hugger now has 2 keybinds, one gives a radial menu to choose the hugger and the other switches in old fashioned way."
