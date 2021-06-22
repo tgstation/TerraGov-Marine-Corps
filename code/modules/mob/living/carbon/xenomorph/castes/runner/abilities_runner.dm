@@ -87,6 +87,8 @@
 /datum/action/xeno_action/activable/pounce/proc/pounce_complete()
 	SIGNAL_HANDLER
 	UnregisterSignal(owner, list(COMSIG_XENO_OBJ_THROW_HIT, COMSIG_MOVABLE_POST_THROW, COMSIG_XENO_LIVING_THROW_HIT))
+	var/mob/living/carbon/xenomorph/X = owner
+	SEND_SIGNAL(X, COMSIG_XENOMORPH_POUNCE_END)
 
 /datum/action/xeno_action/activable/pounce/proc/obj_hit(datum/source, obj/target, speed)
 	SIGNAL_HANDLER

@@ -16,7 +16,7 @@
 
 /datum/action/xeno_action/stealth/give_action(mob/living/L)
 	. = ..()
-	RegisterSignal(L, COMSIG_XENOMORPH_POUNCE, .proc/sneak_attack_pounce)
+	RegisterSignal(L, COMSIG_XENOMORPH_POUNCE_END, .proc/sneak_attack_pounce)
 	RegisterSignal(L, COMSIG_XENO_LIVING_THROW_HIT, .proc/mob_hit)
 	RegisterSignal(L, COMSIG_XENOMORPH_ATTACK_LIVING, .proc/sneak_attack_slash)
 	RegisterSignal(L, COMSIG_XENOMORPH_DISARM_HUMAN, .proc/sneak_attack_disarm)
@@ -90,7 +90,6 @@
 /datum/action/xeno_action/stealth/action_activate()
 	if(stealth)
 		cancel_stealth()
-		add_cooldown()
 		return TRUE
 
 	succeed_activate()
@@ -99,13 +98,13 @@
 	stealth = TRUE
 	RegisterSignal(owner, COMSIG_MOVABLE_MOVED, .proc/handle_stealth)
 	handle_stealth()
-	add_cooldown()
 	addtimer(CALLBACK(src, .proc/sneak_attack_cooldown), HUNTER_POUNCE_SNEAKATTACK_DELAY) //Short delay before we can sneak attack.
 
 /datum/action/xeno_action/stealth/proc/cancel_stealth() //This happens if we take damage, attack, pounce, toggle stealth off, and do other such exciting stealth breaking activities.
 	SIGNAL_HANDLER
 	if(!stealth)//sanity check/safeguard
 		return
+	add_cooldown()
 	to_chat(owner, "<span class='xenodanger'>We emerge from the shadows.</span>")
 	UnregisterSignal(owner, COMSIG_MOVABLE_MOVED) //This should be handled on the ability datum or a component.
 	stealth = FALSE
@@ -148,20 +147,13 @@
 /// Callback listening for a xeno using the pounce ability
 /datum/action/xeno_action/stealth/proc/sneak_attack_pounce()
 	SIGNAL_HANDLER
-	// TODO: find out if this is needed
-	if(owner.m_intent == MOVE_INTENT_WALK) //Hunter that is currently using its stealth ability, need to unstealth him
+	if(owner.m_intent == MOVE_INTENT_WALK)
 		owner.toggle_move_intent(MOVE_INTENT_RUN)
 		if(owner.hud_used?.move_intent)
 			owner.hud_used.move_intent.icon_state = "running"
 		owner.update_icons()
 
 	cancel_stealth()
-
-	if(!can_sneak_attack)
-		return
-	to_chat(owner, "<span class='xenodanger'>Our pounce has left us off-balance; we'll need to wait [HUNTER_POUNCE_SNEAKATTACK_DELAY*0.1] seconds before we can Sneak Attack again.</span>")
-	can_sneak_attack = FALSE
-	addtimer(CALLBACK(src, .proc/sneak_attack_cooldown), HUNTER_POUNCE_SNEAKATTACK_DELAY)
 
 /// Callback for when a mob gets hit as part of a pounce
 /datum/action/xeno_action/stealth/proc/mob_hit(datum/source, mob/living/M)
