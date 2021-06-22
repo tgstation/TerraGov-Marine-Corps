@@ -334,6 +334,9 @@ SUBSYSTEM_DEF(job)
 
 
 /datum/controller/subsystem/job/proc/SendToLateJoin(mob/M, datum/job/assigned_role)
+	if(isxenosjob(assigned_role) && length(GLOB.xeno_resin_silos))
+		SendToAtom(M, pick(GLOB.xeno_resin_silos))
+		return
 	if(assigned_role && length(GLOB.jobspawn_overrides[assigned_role])) //We're doing something special today.
 		SendToAtom(M, pick(GLOB.jobspawn_overrides[assigned_role]))
 		return
