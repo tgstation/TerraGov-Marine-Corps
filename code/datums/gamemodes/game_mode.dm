@@ -20,6 +20,8 @@
 	var/distress_cancelled = FALSE
 
 	var/deploy_time_lock = 15 MINUTES
+	///List of available factions when spawning
+	var/list/joinable_factions = list()
 
 //Distress call variables.
 	var/list/datum/emergency_call/all_calls = list() //initialized at round start and stores the datums.
@@ -56,6 +58,15 @@
 
 	if(flags_landmarks & MODE_LANDMARK_SPAWN_MAP_ITEM)
 		spawn_map_items()
+
+	if(flags_landmarks & MODE_LANDMARK_SPAWN_SPECIFIC_SHUTTLE_CONSOLE)
+		for(var/turf/T AS in GLOB.lz1_shuttle_console_turfs_list)
+			new /obj/machinery/computer/shuttle/shuttle_control/dropship/rebel(T)
+		for(var/turf/T AS in GLOB.lz2_shuttle_console_turfs_list)
+			new /obj/machinery/computer/shuttle/shuttle_control/dropship/loyalist(T)
+	else
+		for(var/turf/T AS in GLOB.lz1_shuttle_console_turfs_list + GLOB.lz2_shuttle_console_turfs_list)
+			new /obj/machinery/computer/shuttle/shuttle_control/dropship(T)
 
 	setup_blockers()
 	GLOB.balance.Initialize()
@@ -385,6 +396,8 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 		dat += "[GLOB.round_statistics.spitter_scatter_spits] number of times Spitters horked up scatter spits."
 	if(GLOB.round_statistics.ravager_endures)
 		dat += "[GLOB.round_statistics.ravager_endures] number of times Ravagers used Endure."
+	if(GLOB.round_statistics.hunter_marks)
+		dat += "[GLOB.round_statistics.hunter_marks] number of times Hunters marked a target for death."
 
 	var/output = jointext(dat, "<br>")
 	for(var/mob/player in GLOB.player_list)
@@ -601,6 +614,10 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 		return FALSE
 	SSjob.active_joinable_occupations = SSjob.active_occupations.Copy()
 	SSjob.set_active_joinable_occupations_by_category()
+	return TRUE
+
+///If joining the job.faction will make the game too unbalanced, return FALSE
+/datum/game_mode/proc/is_faction_balanced(datum/job/job)
 	return TRUE
 
 /datum/game_mode/proc/set_valid_squads()

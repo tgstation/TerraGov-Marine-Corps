@@ -333,6 +333,7 @@
 			/obj/item/ammo_magazine/shotgun/mbx900 = 2,
 			/obj/item/bodybag/tarp = 2,
 			/obj/item/explosive/plastique = 2,
+			/obj/item/minerupgrade/automatic = 3,
 			/obj/item/clothing/suit/storage/marine/harness/boomvest = 20,
 			/obj/item/radio/headset/mainship/marine/alpha = -1,
 			/obj/item/radio/headset/mainship/marine/bravo = -1,
@@ -532,7 +533,7 @@
 
 			if(istype(item_to_stock.loc, /obj/item/storage)) //inside a storage item
 				var/obj/item/storage/S = item_to_stock.loc
-				S.remove_from_storage(item_to_stock, user.loc)
+				S.remove_from_storage(item_to_stock, user.loc, user)
 
 			qdel(item_to_stock)
 			if(!recharge)
@@ -828,8 +829,8 @@
 		/obj/item/clothing/suit/storage/marine/leader = 1,
 		/obj/item/clothing/head/helmet/marine/leader = 1,
 		/obj/item/clothing/tie/storage/webbing = 1,
-		/obj/item/squad_beacon = 1,
-		/obj/item/squad_beacon/bomb = 1,
+		/obj/item/beacon/supply_beacon = 1,
+		/obj/item/beacon/orbital_bombardment_beacon = 1,
 		/obj/item/explosive/plastique = 1,
 		/obj/item/explosive/grenade/smokebomb = 3,
 		/obj/item/binoculars/tactical = 1,

@@ -67,3 +67,110 @@
   - rscadd: Added new berets with dark green, blood red and dark blue
   ZephyrTFA:
   - bugfix: Cloning Vats use less power if not running
+2021-06-13:
+  BraveMole:
+  - qol: You can see how many burrowed there are from lobby
+  MLGTASTICa:
+  - bugfix: Ravager charge now applies its damage bonus properly.
+  - bugfix: Fixed resin jelly allowing for xenos to be set on fire.
+  Pariah919:
+  - balance: shields no longer have hard melee armor and slow you down a bit more
+  SplinterGP:
+  - code_imp: Input system won't request in-place movements constantly anymore.
+  - balance: shields now break instead of being deletted.
+  Wayland-Smithy:
+  - bugfix: Fixed the orbital level change arrival message never being announced.
+  - balance: Shield now stops the bomb vest from exploding when equipped and up to
+      5 seconds after drop.
+  - bugfix: Fixed Tadpole getting stuck in the air with a slashed console.
+  - bugfix: AI can now recover from a camera blackout if it was looking at an escape
+      shuttle, or anything else causes deletion.
+  - rscadd: Added Runechat text to Imaginary Friends for them and their owners to
+      see.
+  - rscadd: Added a Xeno Suit cosmetic for Imaginary Friends.
+  - rscadd: Added Darkness, Change Appearance, and HUD toggle verbs to Imaginary Friends.
+  - qol: Imaginary Friends now continue to hear ghosts and other IFs while active.
+  - bugfix: Fixed the Show/Hide ability button requiring two toggles to work the first
+      time for Imaginary Friends.
+  - bugfix: Fixed Imaginary Friends possibly being naked spatial agents and blocking
+      clicks.
+  - admin: Shipside airlock attacks now log to admin chat also.
+  - balance: Plasma pistol no longer accepts scope attachments.
+  - balance: Plasma pistol now has 7 range, not 40.
+  - balance: Snub-nosed TP-44 Revolvers no longer apply stagger or knockback to targets.
+      Moves shake to Mateba which it did not have before.
+  ZephyrTFA:
+  - server: Fixes the CI Linters
+2021-06-14:
+  SplinterGP:
+  - bugfix: shields won't go invisible anymore.
+2021-06-15:
+  BraveMole:
+  - rscadd: Antenna helmet module can be used to create temporary supply beacon
+  - bugfix: supply drop console works again
+  Wayland-Smithy:
+  - balance: TL-127, Mosin, and SVD sniper rifles no longer have aim-mode.
+  - bugfix: Fixed the tgui changelog dates being inaccurate to the source files.
+2021-06-16:
+  Terra1:
+  - balance: Colony floodlight switches can no longer be destroyed by xenomorphs.
+2021-06-17:
+  BraveMole:
+  - bugfix: Nightfall now applies on all electrical lights like it should
+  - bugfix: You can give plasma as a queen to king
+  Pariah919:
+  - balance: makes eviscerating charge cost 100 less plasma
+  - admin: delete maid
+  SpaceLove:
+  - rscdel: Removed Maid outfit spawn command.
+  - admin: Removes Admin ability to spawn maid loadout.
+  Wayland-Smithy:
+  - bugfix: Fixed a problem with vendors refusing to vend items containing symbols
+      in their name.
+2021-06-18:
+  BraveMole:
+  - balance: Update pain hud (what xeno see on humans) to be more reliable. Pain and
+      stamina have way less impact on it.
+  - qol: Give engineers req channel
+  - balance: Rework silo generation
+  - rscdel: remove small silos
+  - balance: psy drain gives 60 points and 1/8th of a larva, cocoon give 120 points
+      and at the end of its lifetime (5minutes), 1/6th of a larva. Generators are
+      making more psy points, but it's linked with the number of alive alive marines
+      ground side
+  - balance: Turrets are now 100 points, silo are now 800, king is now 1800. This
+      is to account for xeno having way less psy points in general (marine spawning
+      no longer give 80 points)
+  Pariah919:
+  - rscadd: Added new earpiece sprte by kuro
+  - rscdel: Removed old earpiece sprite
+  Wayland-Smithy:
+  - bugfix: Fixed King caste_flags, so it can now be healed by and become a leader
+      for the Queen.
+  - balance: S&W .357 Revolver ricochet rounds no longer stagger or knockback.
+  - balance: M-44 SAA Revolver is now bulky like an extended barrel TP-44.
+  - balance: M-44 SAA Revolver now does 5 more damage.
+  - refactor: Refactored some revolver ammo code for less signal headaches later.
+  - bugfix: Fixed handfuls of loose .44 ammo breaking speed loaders.
+  - bugfix: Fixed the .357 seasonal item ref and speed loader ammo type.
+  - spellcheck: Removed an extra "That" from revolver ammo rejection notices.
+  - bugfix: Fixed send to lobby breaking the ghost orbit panel.
+  - code_imp: Update the max recommended byond  client version.
+  ZephyrTFA:
+  - code_imp: Helper procs for handling delays of manipulating storage objects and
+      their contents
+  - qol: Backpacks can be accessed while you are wearing them but it takes time
+2021-06-19:
+  Wayland-Smithy:
+  - expansion: Added Tier 4 Xenos list to Hive Status.
+  - balance: Shrike is now Tier 4, but can still regress back to T1.
+  - balance: T4 Xenos count as T0 for evolution slot calculation purposes.
+  - balance: Shrikes can no longer grant slots by regressing.
+  - bugfix: Xenos lose leadership when evolving into a caste that can not be granted
+      it normally. *cough* hivemind *cough*
+  - admin: Updated PP to include Wraith transformation and reflect Shrikes new tier.
+2021-06-21:
+  BraveMole:
+  - balance: Resin doors open when you try to cross them as a xeno, and no longer
+      when you are near them. Still instantanious
+  - rscadd: New HvH gamemode, civil war. Very much WIP

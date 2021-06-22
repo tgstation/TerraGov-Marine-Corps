@@ -266,6 +266,7 @@
 #define COMSIG_GUN_BURST_SHOTS_TO_FIRE_MODIFIED "gun_burstamount_modified"
 #define COMSIG_GUN_BURST_SHOT_DELAY_MODIFIED "gun_burstdelay_modified"
 #define COMSIG_REVOLVER_AMMO_HIT_MOB "gun_revolver_ammo_hit"
+	#define COMSIG_REVOLVER_AMMO_SNUBNOSE_BARREL (1<<0)
 
 // /obj/item/clothing signals
 #define COMSIG_SHOES_STEP_ACTION "shoes_step_action"			//from base of obj/item/clothing/shoes/proc/step_action(): ()
@@ -299,6 +300,7 @@
 #define COMSIG_MOB_UPDATE_SIGHT "mob_update_sight"				//from base of /mob/update_sight(): ()
 #define COMSIG_MOB_HUD_CREATED "mob_hud_created"				//from base of mob/create_mob_hud(): ()
 
+#define COMSIG_MOB_SHIELD_DETATCH "mob_shield_detatched"
 #define COMSIG_MOB_ITEM_ATTACK "mob_item_attack"				//from base of /obj/item/attack(): (mob/target, /obj/item/attacking_item)
 #define COMSIG_MOB_ITEM_ATTACK_ALTERNATE "mob_item_attack_alt"	//from base of /obj/item/attack_alternate(): (mob/target, /obj/item/attacking_item)
 	#define COMPONENT_ITEM_NO_ATTACK (1<<0)						//return this if you dont want attacka and altattacks to run
@@ -375,6 +377,9 @@
 	#define COMSIG_WARRIOR_CANT_NECKGRAB (1<<0)
 #define COMSIG_WARRIOR_USED_FLING "warrior_used_fling"
 #define COMSIG_WARRIOR_USED_GRAPPLE_TOSS "warrior_used_grapple_toss"
+
+#define COMSIG_XENOABILITY_HUNTER_MARK "xenoability_hunter_mark"
+#define COMSIG_XENOABILITY_PSYCHIC_TRACE "xenoability_psychic_trace"
 
 #define COMSIG_XENOMORPH_PLASMA_REGEN "xenomorph_plasma_regen"
 #define COMSIG_XENOMORPH_HEALTH_REGEN "xenomorph_health_regen"

@@ -1,8 +1,6 @@
 // points per minute
 #define DROPSHIP_POINT_RATE 18 * ((GLOB.current_orbit+3)/6)
 #define SUPPLY_POINT_RATE 2 * (GLOB.current_orbit/3)
-//How many psych point one gen gives per person on the server
-#define BASE_PSYCH_POINT_OUTPUT 0.0015
 
 SUBSYSTEM_DEF(points)
 	name = "Points"

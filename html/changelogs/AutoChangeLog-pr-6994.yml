@@ -1,0 +1,5 @@
+author: "Surrealaser"
+delete-after: True
+changes: 
+  - rscadd: "Added the Hunter's Mark Hunter ability."
+  - rscadd: "Added the Psychic Trace Hunter ability."

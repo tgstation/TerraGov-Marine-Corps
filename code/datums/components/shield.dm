@@ -170,6 +170,7 @@
 /datum/component/shield/proc/shield_detatch_from_user()
 	if(!affected)
 		return
+	SEND_SIGNAL(affected, COMSIG_MOB_SHIELD_DETATCH)
 	deactivate_with_user()
 	affected = null
 

@@ -286,3 +286,163 @@
 	to_chat(X, "<span class='notice'>We reach out into mind of the creature, infecting their thoughts...</span>")
 	victim.hallucination += 100
 	add_cooldown()
+
+// ***************************************
+// *********** Hunter's Mark
+// ***************************************
+/datum/action/xeno_action/activable/hunter_mark
+	name = "Hunter's Mark"
+	action_icon_state = "hunter_mark"
+	mechanics_text = "Psychically mark a creature you have line of sight to, allowing you to sense its direction, distance and location with Psychic Trace."
+	plasma_cost = 75
+	keybind_signal = COMSIG_XENOABILITY_HUNTER_MARK
+	cooldown_timer = 60 SECONDS
+	///Target of the Hunter's Hunter's Mark ability; referenced by the Psychic Trace ability.
+	var/mob/living/hunter_mark_target
+
+/datum/action/xeno_action/activable/hunter_mark/can_use_ability(atom/A, silent = FALSE, override_flags)
+	. = ..()
+	if(!.)
+		return
+
+	var/mob/living/carbon/xenomorph/X = owner
+
+	if(!isliving(A))
+		if(!silent)
+			to_chat(X, "<span class='xenowarning'>We cannot psychically mark this target!</span>")
+		return FALSE
+
+	var/mob/living/mark_target = A
+
+	if(mark_target == hunter_mark_target)
+		if(!silent)
+			to_chat(X, "<span class='xenowarning'>This is already our target!</span>")
+		return FALSE
+
+	if(mark_target == X)
+		if(!silent)
+			to_chat(X, "<span class='xenowarning'>Why would we target ourselves?</span>")
+		return FALSE
+
+	if(!X.line_of_sight(mark_target)) //Need line of sight.
+		if(!silent)
+			to_chat(X, "<span class='xenowarning'>We require line of sight to mark them!</span>")
+		return FALSE
+
+	return TRUE
+
+
+/datum/action/xeno_action/activable/hunter_mark/on_cooldown_finish()
+	to_chat(owner, "<span class='xenowarning'><b>We are able to impose our psychic mark again.</b></span>")
+	owner.playsound_local(owner, 'sound/effects/xeno_newlarva.ogg', 25, 0, 1)
+	return ..()
+
+
+/datum/action/xeno_action/activable/hunter_mark/use_ability(atom/A)
+
+	var/mob/living/carbon/xenomorph/X = owner
+	var/mob/living/victim = A
+
+	X.face_atom(victim) //Face towards the target so we don't look silly
+
+	to_chat(X, "<span class='xenodanger'>We prepare to psychically mark [victim] as our quarry.</span>")
+
+	if(!do_after(X, HUNTER_MARK_WINDUP, TRUE, target, BUSY_ICON_HOSTILE)) //Slight wind up
+		return fail_activate()
+
+	if(!X.line_of_sight(victim)) //Need line of sight.
+		to_chat(X, "<span class='xenowarning'>We lost line of sight to the target!</span>")
+		return fail_activate()
+
+	if(hunter_mark_target) //If we have an existing target, remove the registration.
+		UnregisterSignal(hunter_mark_target, COMSIG_PARENT_QDELETING)
+
+	hunter_mark_target = victim //Set our target
+
+	var/datum/action/xeno_action/psychic_trace/psychic_trace_set_target = X.actions_by_path[/datum/action/xeno_action/psychic_trace] //Set Psychic Trace's target
+	psychic_trace_set_target.psychic_trace_target = hunter_mark_target
+
+	RegisterSignal(hunter_mark_target, COMSIG_PARENT_QDELETING, .proc/unset_target) //For var clean up
+
+	to_chat(X, "<span class='xenodanger'>We psychically mark [victim] as our quarry.</span>")
+	X.playsound_local(X, 'sound/effects/ghost.ogg', 25, 0, 1)
+
+	succeed_activate()
+
+	GLOB.round_statistics.hunter_marks++
+	SSblackbox.record_feedback("tally", "round_statistics", 1, "hunter_marks") //Statistics
+	add_cooldown()
+
+///Nulls the target of our hunter's mark
+/datum/action/xeno_action/activable/hunter_mark/proc/unset_target()
+	SIGNAL_HANDLER
+	UnregisterSignal(hunter_mark_target, COMSIG_PARENT_QDELETING)
+	var/datum/action/xeno_action/psychic_trace/psychic_trace_set_target = owner.actions_by_path[/datum/action/xeno_action/psychic_trace]
+	psychic_trace_set_target.psychic_trace_target = null //Nullify psychic trace's target and clear the var
+	hunter_mark_target = null //Nullify hunter's mark target and clear the var
+
+// ***************************************
+// *********** Psychic Trace
+// ***************************************
+/datum/action/xeno_action/psychic_trace
+	name = "Psychic Trace"
+	action_icon_state = "toggle_queen_zoom"
+	mechanics_text = "Psychically ping the creature you marked, letting you know its direction, distance and location, and general condition."
+	plasma_cost = 1 //Token amount
+	keybind_signal = COMSIG_XENOABILITY_PSYCHIC_TRACE
+	cooldown_timer = HUNTER_PSYCHIC_TRACE_COOLDOWN
+	var/mob/living/psychic_trace_target
+
+/datum/action/xeno_action/psychic_trace/can_use_action(silent = FALSE, override_flags)
+	. = ..()
+
+	if(!psychic_trace_target)
+		if(!silent)
+			to_chat(owner, "<span class='xenowarning'>We have no target we can trace!</span>")
+		return FALSE
+
+	if(psychic_trace_target.z != owner.z)
+		if(!silent)
+			to_chat(owner, "<span class='xenowarning'>Our target is too far away, and is beyond our senses!</span>")
+		return FALSE
+
+
+/datum/action/xeno_action/psychic_trace/action_activate()
+	var/mob/living/carbon/xenomorph/X = owner
+
+	to_chat(X, "<span class='xenodanger'>We sense our quarry <b>[psychic_trace_target]</b> is currently located in <b>[AREACOORD_NO_Z(psychic_trace_target)]</b> and is <b>[get_dist(X, psychic_trace_target)]</b> tiles away. It is <b>[calculate_mark_health(psychic_trace_target)]</b> and <b>[psychic_trace_target.status_flags & XENO_HOST ? "impregnated" : "barren"]</b>.</span>")
+	X.playsound_local(X, 'sound/effects/ghost2.ogg', 10, 0, 1)
+
+	var/obj/screen/arrow/hunter_mark_arrow/arrow_hud = new
+	//Prepare the tracker object and set its parameters
+	arrow_hud.add_hud(X, psychic_trace_target) //set the tracker parameters
+	arrow_hud.process() //Update immediately
+
+	add_cooldown()
+
+	return succeed_activate()
+
+///Where we calculate the approximate health of our trace target
+/datum/action/xeno_action/psychic_trace/proc/calculate_mark_health(mob/living/target)
+
+	if(target.stat == DEAD)
+		return "deceased"
+
+	var/percentage = round(target.health * 100 / target.maxHealth)
+	switch(percentage)
+		if(100 to INFINITY)
+			return "in perfect health"
+		if(76 to 99)
+			return "slightly injured"
+		if(51 to 75)
+			return "moderately injured"
+		if(26 to 50)
+			return "badly injured"
+		if(1 to 25)
+			return "severely injured"
+		if(-51 to 0)
+			return "critically injured"
+		if(-99 to -50)
+			return "on the verge of death"
+		else
+			return "deceased"

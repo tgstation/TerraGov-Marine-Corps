@@ -176,6 +176,8 @@
 /obj/machinery/light/Initialize(mapload, ...)
 	. = ..()
 
+	GLOB.nightfall_toggleable_lights += src
+
 	switch(fitting)
 		if("tube")
 			brightness = 8
@@ -202,6 +204,10 @@
 /obj/machinery/light/LateInitialize()
 	var/area/A = get_area(src)
 	turn_light(null, (A.lightswitch && A.power_light))
+
+/obj/machinery/light/Destroy()
+	. = ..()
+	GLOB.nightfall_toggleable_lights -= src
 
 /obj/machinery/light/proc/is_broken()
 	if(status == LIGHT_BROKEN)
