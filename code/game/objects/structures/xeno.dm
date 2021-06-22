@@ -267,7 +267,7 @@
 	if(!. && isxeno(mover))
 		Open()
 		return TRUE
-	
+
 
 /obj/structure/mineral_door/resin/attack_paw(mob/living/carbon/human/user)
 	if(user.a_intent == INTENT_HARM)
@@ -1053,12 +1053,10 @@ TUNNEL
 	user.emote("roar")
 	user.add_filter("resin_jelly_outline", 2, outline_filter(1, COLOR_RED))
 	user.fire_resist_modifier -= 20
-	forceMove(user)//keep it here till the timer finishes
-	user.temporarilyRemoveItemFromInventory(src)
-	addtimer(CALLBACK(src, .proc/deactivate_jelly, user), immune_time)
-
-/obj/item/resin_jelly/proc/deactivate_jelly(mob/living/carbon/xenomorph/user)
-	user.remove_filter("resin_jelly_outline")
-	user.fire_resist_modifier += 20
-	to_chat(user, "<span class='xenonotice'>We feel more vulnerable again.</span>")
+	addtimer(CALLBACK(user, /mob/living/carbon/xenomorph/proc/deactivate_jelly), immune_time)
 	qdel(src)
+
+/mob/living/carbon/xenomorph/proc/deactivate_jelly()
+	remove_filter("resin_jelly_outline")
+	fire_resist_modifier += 20
+	to_chat(src, "<span class='xenonotice'>We feel more vulnerable again.</span>")
