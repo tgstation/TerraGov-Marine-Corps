@@ -87,7 +87,7 @@
 	ability_name = "ravage"
 	plasma_cost = 200
 	cooldown_timer = 6 SECONDS
-	keybind_flags = XACT_KEYBIND_USE_ABILITY | XACT_IGNORE_SELECTED_ABILITY|XACT_USE_STAGGERED //Can use this while staggered
+	keybind_flags = XACT_KEYBIND_USE_ABILITY | XACT_IGNORE_SELECTED_ABILITY
 	keybind_signal = COMSIG_XENOABILITY_RAVAGE
 	alternate_keybind_signal = COMSIG_XENOABILITY_RAVAGE_SELECT
 
@@ -149,6 +149,7 @@
 	plasma_cost = 200
 	cooldown_timer = 30 SECONDS
 	keybind_signal = COMSIG_XENOABILITY_IGNORE_PAIN
+	use_state_flags = XACT_USE_STAGGERED //Can use this while staggered
 
 /datum/action/xeno_action/endure/on_cooldown_finish()
 	to_chat(owner, "<span class='xenodanger'>We feel able to imbue ourselves with plasma to Endure once again!</span>")
