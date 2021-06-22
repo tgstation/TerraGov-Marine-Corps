@@ -377,6 +377,9 @@
 #define COMSIG_WARRIOR_USED_FLING "warrior_used_fling"
 #define COMSIG_WARRIOR_USED_GRAPPLE_TOSS "warrior_used_grapple_toss"
 
+#define COMSIG_XENOABILITY_HUNTER_MARK "xenoability_hunter_mark"
+#define COMSIG_XENOABILITY_PSYCHIC_TRACE "xenoability_psychic_trace"
+
 #define COMSIG_XENOMORPH_PLASMA_REGEN "xenomorph_plasma_regen"
 #define COMSIG_XENOMORPH_HEALTH_REGEN "xenomorph_health_regen"
 #define COMSIG_XENOMORPH_SUNDER_REGEN "xenomorph_sunder_regen"
