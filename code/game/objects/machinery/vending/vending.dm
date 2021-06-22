@@ -539,7 +539,9 @@
 			if(!istype(R) || !R.product_path || R.amount == 0)
 				return
 
-			if(R.price == null)
+			if(isAI(usr))
+				vend(R, usr)
+			else if(R.price == null)
 				vend(R, usr)
 			else
 				currently_vending = R
