@@ -18,6 +18,7 @@
 
 /obj/item/implantcase/Destroy()
 	QDEL_NULL(imp)
+	return ..()
 
 /obj/item/implantcase/update_icon_state()
 	if(imp)

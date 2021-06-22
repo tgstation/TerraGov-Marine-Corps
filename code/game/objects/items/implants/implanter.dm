@@ -16,6 +16,7 @@
 
 /obj/item/implanter/Destroy()
 	QDEL_NULL(imp)
+	return ..()
 
 /obj/item/implanter/update_icon_state()
 	. = ..()

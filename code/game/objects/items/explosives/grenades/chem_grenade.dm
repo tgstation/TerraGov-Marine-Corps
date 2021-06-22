@@ -31,6 +31,7 @@
 /obj/item/explosive/grenade/chem_grenade/Destroy()
 	QDEL_LIST(beakers)
 	QDEL_NULL(nadeassembly)
+	return ..()
 
 /obj/item/explosive/grenade/chem_grenade/attack_self(mob/user)
 	if(stage == CG_READY && !active)
