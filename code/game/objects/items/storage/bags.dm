@@ -173,10 +173,7 @@
 	if(flags_storage & STORAGE_FLAG_DISPLAY_NUMBERED)
 		numbered_contents = list()
 		adjusted_contents = 0
-		for(var/content in contents)
-			if(!istype(content, /obj/item/stack/sheet))
-				continue
-			var/obj/item/stack/sheet/sheet = content
+		for(var/obj/item/stack/sheet/sheet AS in contents)
 			adjusted_contents++
 			var/datum/numbered_display/display = new(sheet)
 			display.number = sheet.amount
