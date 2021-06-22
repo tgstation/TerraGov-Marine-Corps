@@ -183,6 +183,11 @@
 	var/list/dat = list("<div class='notice'>Round Duration: [DisplayTimeText(world.time - SSticker.round_start_time)]</div>")
 	if(!GLOB.enter_allowed)
 		dat += "<div class='notice red'>You may no longer join the round.</div><br>"
+	var/faction
+	if(SSticker.mode.flags_round_type & MODE_TWO_HUMAN_FACTIONS)
+		faction = tgui_input_list(src, "What faction do you want to join", "Faction choice", SSticker.mode.joinable_factions)
+		if(!faction)
+			return
 	dat += "<div class='latejoin-container' style='width: 100%'>"
 	for(var/cat in SSjob.active_joinable_occupations_by_category)
 		var/list/category = SSjob.active_joinable_occupations_by_category[cat]
@@ -192,7 +197,7 @@
 		var/list/dept_dat = list()
 		for(var/job in category)
 			job_datum = job
-			if(!IsJobAvailable(job_datum, TRUE))
+			if(!IsJobAvailable(job_datum, TRUE, faction))
 				continue
 			var/command_bold = ""
 			if(job_datum.job_flags & JOB_FLAG_BOLD_NAME_ON_SELECTION)
@@ -324,7 +329,7 @@
 		qdel(src)
 
 
-/mob/new_player/proc/IsJobAvailable(datum/job/job, latejoin = FALSE)
+/mob/new_player/proc/IsJobAvailable(datum/job/job, latejoin = FALSE, faction)
 	if(!job)
 		return FALSE
 	if((job.current_positions >= job.total_positions) && job.total_positions != -1)
@@ -338,6 +343,8 @@
 	if(job.required_playtime_remaining(client))
 		return FALSE
 	if(latejoin && !job.special_check_latejoin(client))
+		return FALSE
+	if(faction && job.faction != faction)
 		return FALSE
 	return TRUE
 
