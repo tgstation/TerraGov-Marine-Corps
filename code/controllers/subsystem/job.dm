@@ -107,8 +107,6 @@ SUBSYSTEM_DEF(job)
 	if(!latejoin)
 		unassigned -= player
 	if(job.job_category != JOB_CAT_XENO && !GLOB.joined_player_list.Find(player.ckey))
-		if(SSticker.mode.flags_round_type & MODE_PSY_POINTS_ADVANCED)
-			SSpoints.add_psy_points(XENO_HIVE_NORMAL, SILO_PRICE / 15)
 		SSpoints.supply_points[job.faction] += SUPPLY_POINT_MARINE_SPAWN
 	job.occupy_job_positions(1, GLOB.joined_player_list.Find(player.ckey))
 	player.assigned_role = job
@@ -338,6 +336,9 @@ SUBSYSTEM_DEF(job)
 /datum/controller/subsystem/job/proc/SendToLateJoin(mob/M, datum/job/assigned_role)
 	if(assigned_role && length(GLOB.jobspawn_overrides[assigned_role])) //We're doing something special today.
 		SendToAtom(M, pick(GLOB.jobspawn_overrides[assigned_role]))
+		return
+	if(assigned_role.faction == FACTION_TERRAGOV_REBEL && length(GLOB.latejoinrebel))
+		SendToAtom(M, pick(GLOB.latejoinrebel))
 		return
 	if(length(GLOB.latejoin))
 		SendToAtom(M, pick(GLOB.latejoin))

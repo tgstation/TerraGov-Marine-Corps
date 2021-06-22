@@ -116,9 +116,6 @@
 
 	ignore_weed_destruction = FALSE
 
-// Default for xeno structures
-	hud_possible = list(XENO_TACTICAL_HUD)
-
 
 //Carrier trap
 /obj/structure/xeno/trap
@@ -264,14 +261,13 @@
 	relativewall_neighbours()
 	if(!locate(/obj/effect/alien/weeds) in loc)
 		new /obj/effect/alien/weeds(loc)
-	for(var/direction in GLOB.alldirs)
-		RegisterSignal(get_step(loc, direction), COMSIG_ATOM_ENTERED, .proc/check_if_xeno)
 
-/obj/structure/mineral_door/resin/proc/check_if_xeno(datum/source, atom/atom_entering)
-	SIGNAL_HANDLER
-	if(isxeno(atom_entering))
+/obj/structure/mineral_door/resin/CanAllowThrough(atom/movable/mover, turf/target)
+	. = ..()
+	if(!. && isxeno(mover))
 		Open()
-
+		return TRUE
+	
 
 /obj/structure/mineral_door/resin/attack_paw(mob/living/carbon/human/user)
 	if(user.a_intent == INTENT_HARM)
@@ -637,6 +633,8 @@ TUNNEL
 	layer = RESIN_STRUCTURE_LAYER
 
 	max_integrity = 140
+
+	hud_possible = list(XENO_TACTICAL_HUD)
 
 	var/tunnel_desc = "" //description added by the hivelord.
 	var/mob/living/carbon/xenomorph/hivelord/creator = null

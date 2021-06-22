@@ -265,6 +265,7 @@
 #define COMSIG_GUN_BURST_SHOTS_TO_FIRE_MODIFIED "gun_burstamount_modified"
 #define COMSIG_GUN_BURST_SHOT_DELAY_MODIFIED "gun_burstdelay_modified"
 #define COMSIG_REVOLVER_AMMO_HIT_MOB "gun_revolver_ammo_hit"
+	#define COMSIG_REVOLVER_AMMO_SNUBNOSE_BARREL (1<<0)
 
 // /obj/item/clothing signals
 #define COMSIG_SHOES_STEP_ACTION "shoes_step_action"			//from base of obj/item/clothing/shoes/proc/step_action(): ()
@@ -375,6 +376,9 @@
 	#define COMSIG_WARRIOR_CANT_NECKGRAB (1<<0)
 #define COMSIG_WARRIOR_USED_FLING "warrior_used_fling"
 #define COMSIG_WARRIOR_USED_GRAPPLE_TOSS "warrior_used_grapple_toss"
+
+#define COMSIG_XENOABILITY_HUNTER_MARK "xenoability_hunter_mark"
+#define COMSIG_XENOABILITY_PSYCHIC_TRACE "xenoability_psychic_trace"
 
 #define COMSIG_XENOMORPH_PLASMA_REGEN "xenomorph_plasma_regen"
 #define COMSIG_XENOMORPH_HEALTH_REGEN "xenomorph_health_regen"
