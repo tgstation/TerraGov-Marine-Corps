@@ -1056,6 +1056,7 @@ TUNNEL
 	addtimer(CALLBACK(user, /mob/living/carbon/xenomorph/proc/deactivate_jelly), immune_time)
 	qdel(src)
 
+///Remove the jelly effect from the xenomorph
 /mob/living/carbon/xenomorph/proc/deactivate_jelly()
 	remove_filter("resin_jelly_outline")
 	fire_resist_modifier += 20
