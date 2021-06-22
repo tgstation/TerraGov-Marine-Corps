@@ -681,7 +681,9 @@ Proc variables, static variables, and global variables are resolved at compile t
 
 Note: While there has historically been a strong impulse to use associated lists for caching of computed values, this is the easy way out and leaves a lot of hidden overhead. Please keep this in mind when designing core/root systems that are intended for use by other code/coders. It's normally better for consumers of such systems to handle their own caching using vars and number indexed lists, than for you to do it using associated lists.
 
+### Don't create code that hangs references
 
+This is part of the larger issue of hard deletes, read this file for more info: [Guide to Harddels](HARDDEL_GUIDE.md))
 
 ### Other Notes
 * Code should be modular where possible; if you are working on a new addition, then strongly consider putting it in its own file unless it makes sense to put it with similar ones (i.e. a new tool would go in the "tools.dm" file)
