@@ -92,6 +92,7 @@
 	icon_activated = "motion1"
 	///The squad this OB beacon belongs to
 	var/datum/squad/squad = null
+	var/alt_name = null
 
 /obj/item/beacon/orbital_bombardment_beacon/activate(mob/living/carbon/human/H)
 	. = ..()
@@ -101,6 +102,10 @@
 		squad = H.assigned_squad
 		name += " ([squad.name])"
 		squad.squad_orbital_beacons += src
+	else	//So we can just get a goshdarn name.
+		alt_name = H.name
+		name += " ([alt_name])"
+		//alt_name.squad_orbital_beacons += src
 
 /obj/item/beacon/orbital_bombardment_beacon/deactivate(mob/living/carbon/human/H)
 	. = ..()
