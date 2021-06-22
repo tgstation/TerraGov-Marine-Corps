@@ -405,7 +405,7 @@
 	return INITIALIZE_HINT_QDEL
 
 /obj/effect/landmark/dropship_console_spawn_lz2
-	name = "Dropship console spawn lz1"
+	name = "Dropship console spawn lz2"
 	icon = 'icons/obj/machines/computer.dmi'
 	icon_state = "shuttle"
 
