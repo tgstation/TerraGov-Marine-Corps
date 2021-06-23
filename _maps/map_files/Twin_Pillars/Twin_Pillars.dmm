@@ -5271,7 +5271,6 @@
 /turf/open/floor/mainship/stripesquare,
 /area/mainship/hallways/starboard_hallway)
 "eSN" = (
-/obj/structure/reagent_dispensers/wallmounted/milk,
 /turf/open/floor/carpet{
 	dir = 9;
 	icon_state = "carpetside"
@@ -24050,7 +24049,6 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/engineering_workshop)
 "vaQ" = (
-/obj/structure/reagent_dispensers/wallmounted/milk,
 /turf/open/floor/carpet{
 	dir = 9;
 	icon_state = "carpetside"
