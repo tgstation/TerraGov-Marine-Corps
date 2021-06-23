@@ -68,7 +68,7 @@
 		remove_all_filters()
 		//Consume plasma when cancelling
 		succeed_activate()
-		return fail_activate()
+		return
 	do_grav_crush(turfs)
 	remove_all_filters()
 	succeed_activate()
