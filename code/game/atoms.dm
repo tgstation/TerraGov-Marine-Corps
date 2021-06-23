@@ -722,7 +722,7 @@ Proc for attack log creation, because really why not
 
 // Stacks and storage redefined procs.
 
-/atom/proc/max_stack_merging(obj/item/stack/stack)
+/atom/proc/max_stack_merging(obj/item/stack/S)
 	return FALSE //But if they do, limit is not an issue.
 
 /atom/proc/recalculate_storage_space()
