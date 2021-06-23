@@ -12,10 +12,10 @@ Code shamelessly copied from apc_frame
 	icon_state = "alarm_bitem"
 	flags_atom = CONDUCT
 
-/obj/item/frame/air_alarm/attackby(obj/item/attackedby, mob/user, params)
+/obj/item/frame/air_alarm/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(iswrench(attackedby))
+	if(iswrench(I))
 		new /obj/item/stack/sheet/metal(loc, 2)
 		qdel(src)
 
@@ -55,10 +55,10 @@ Code shamelessly copied from apc_frame
 	icon_state = "fire_bitem"
 	flags_atom = CONDUCT
 
-/obj/item/frame/fire_alarm/attackby(obj/item/attackedby, mob/user, params)
+/obj/item/frame/fire_alarm/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(iswrench(attackedby))
+	if(iswrench(I))
 		new /obj/item/stack/sheet/metal(loc, 2)
 		qdel(src)
 

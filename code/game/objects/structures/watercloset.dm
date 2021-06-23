@@ -49,10 +49,10 @@
 /obj/structure/toilet/update_icon()
 	icon_state = "toilet[open][cistern]"
 
-/obj/structure/toilet/attackby(obj/item/attackedby, mob/user, params)
+/obj/structure/toilet/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(iscrowbar(attackedby))
+	if(iscrowbar(I))
 		to_chat(user, "<span class='notice'>You start to [cistern ? "replace the lid on the cistern" : "lift the lid off the cistern"].</span>")
 		playsound(loc, 'sound/effects/stonedoor_openclose.ogg', 25, 1)
 
@@ -63,10 +63,10 @@
 		cistern = !cistern
 		update_icon()
 
-	else if(istype(attackedby, /obj/item/grab))
+	else if(istype(I, /obj/item/grab))
 		if(isxeno(user))
 			return
-		var/obj/item/grab/G = attackedby
+		var/obj/item/grab/G = I
 
 		if(!iscarbon(G.grabbed_thing))
 			return
@@ -98,18 +98,18 @@
 			C.apply_damage(8, BRUTE, updating_health = TRUE)
 
 	else if(cistern && !issilicon(user)) //STOP PUTTING YOUR MODULES IN THE TOILET.
-		if(attackedby.w_class > 3)
-			to_chat(user, "<span class='notice'>\The [attackedby] does not fit.</span>")
+		if(I.w_class > 3)
+			to_chat(user, "<span class='notice'>\The [I] does not fit.</span>")
 			return
 
-		if(w_items + attackedby.w_class > 5)
+		if(w_items + I.w_class > 5)
 			to_chat(user, "<span class='notice'>The cistern is full.</span>")
 			return
 
 		user.drop_held_item()
-		attackedby.forceMove(src)
-		w_items += attackedby.w_class
-		to_chat(user, "You carefully place \the [attackedby] into the cistern.")
+		I.forceMove(src)
+		w_items += I.w_class
+		to_chat(user, "You carefully place \the [I] into the cistern.")
 
 /obj/structure/toilet/alternate
 	icon_state = "toilet200"
@@ -125,13 +125,13 @@
 	density = FALSE
 	anchored = TRUE
 
-/obj/structure/urinal/attackby(obj/item/attackedby, mob/user, params)
+/obj/structure/urinal/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(istype(attackedby, /obj/item/grab))
+	if(istype(I, /obj/item/grab))
 		if(isxeno(user))
 			return
-		var/obj/item/grab/G = attackedby
+		var/obj/item/grab/G = I
 		if(!isliving(G.grabbed_thing))
 			return
 
@@ -195,14 +195,14 @@
 	else
 		stop_processing()
 
-/obj/machinery/shower/attackby(obj/item/attackedby, mob/user, params)
+/obj/machinery/shower/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(attackedby.type == /obj/item/analyzer)
+	if(I.type == /obj/item/analyzer)
 		to_chat(user, "<span class='notice'>The water temperature seems to be [watertemp].</span>")
 
-	else if(iswrench(attackedby))
-		to_chat(user, "<span class='notice'>You begin to adjust the temperature valve with \the [attackedby].</span>")
+	else if(iswrench(I))
+		to_chat(user, "<span class='notice'>You begin to adjust the temperature valve with \the [I].</span>")
 
 		if(!do_after(user, 5 SECONDS, TRUE, src, BUSY_ICON_BUILD))
 			return
@@ -214,7 +214,7 @@
 				watertemp = "boiling"
 			if(WATER_TEMP_BOILING)
 				watertemp = "normal"
-		user.visible_message("<span class='notice'>[user] adjusts the shower with \the [attackedby].</span>", "<span class='notice'>You adjust the shower with \the [attackedby].</span>")
+		user.visible_message("<span class='notice'>[user] adjusts the shower with \the [I].</span>", "<span class='notice'>You adjust the shower with \the [I].</span>")
 
 /obj/machinery/shower/update_icon()	//this is terribly unreadable, but basically it makes the shower mist up
 	overlays.Cut()					//once it's been on for a while, in addition to handling the water overlay.
@@ -430,21 +430,21 @@
 	visible_message("<span class='notice'>[user] washes their hands using \the [src].</span>")
 
 
-/obj/structure/sink/attackby(obj/item/attackedby, mob/user, params)
+/obj/structure/sink/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
 	if(busy)
 		to_chat(user, "<span class='warning'>Someone's already washing here.</span>")
 		return
 
-	var/obj/item/reagent_containers/RG = attackedby
+	var/obj/item/reagent_containers/RG = I
 	if(istype(RG) && RG.is_open_container() && RG.reagents.total_volume < RG.reagents.maximum_volume)
 		RG.reagents.add_reagent(/datum/reagent/water, min(RG.volume - RG.reagents.total_volume, RG.amount_per_transfer_from_this))
 		user.visible_message("<span class='notice'> [user] fills \the [RG] using \the [src].</span>","<span class='notice'> You fill \the [RG] using \the [src].</span>")
 		return
 
-	else if(istype(attackedby, /obj/item/weapon/baton))
-		var/obj/item/weapon/baton/B = attackedby
+	else if(istype(I, /obj/item/weapon/baton))
+		var/obj/item/weapon/baton/B = I
 		if(!B.bcell)
 			return
 
@@ -460,27 +460,27 @@
 		L.Stun(20 SECONDS)
 		L.stuttering = 10
 		L.Paralyze(20 SECONDS)
-		L.visible_message("<span class='danger'>[L] was stunned by [L.p_their()] wet [attackedby]!</span>")
+		L.visible_message("<span class='danger'>[L] was stunned by [L.p_their()] wet [I]!</span>")
 
-	if(attackedby.flags_item & ITEM_ABSTRACT)
+	if(I.flags_item & ITEM_ABSTRACT)
 		return
 
 	var/turf/location = user.loc
 	if(!isturf(location))
 		return
 
-	to_chat(usr, "<span class='notice'>You start washing \the [attackedby].</span>")
+	to_chat(usr, "<span class='notice'>You start washing \the [I].</span>")
 
 	if(!do_after(user, 30, TRUE, src, BUSY_ICON_BUILD))
 		return
 
-	if(user.loc != location || user.get_active_held_item() != attackedby)
+	if(user.loc != location || user.get_active_held_item() != I)
 		return
 
-	attackedby.clean_blood()
+	I.clean_blood()
 	user.visible_message( \
-		"<span class='notice'> [user] washes \a [attackedby] using \the [src].</span>", \
-		"<span class='notice'> You wash \a [attackedby] using \the [src].</span>")
+		"<span class='notice'> [user] washes \a [I] using \the [src].</span>", \
+		"<span class='notice'> You wash \a [I] using \the [src].</span>")
 
 
 /obj/structure/sink/kitchen
@@ -501,7 +501,7 @@
 	. = ..()
 	icon_state = "puddle"
 
-/obj/structure/sink/puddle/attackby(obj/item/attackedby, mob/user, params)
+/obj/structure/sink/puddle/attackby(obj/item/I, mob/user, params)
 	icon_state = "puddle-splash"
 	. = ..()
 	icon_state = "puddle"

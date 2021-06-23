@@ -104,10 +104,10 @@
 			addtimer(CALLBACK(reagents, /datum/reagents.proc/clear_reagents), 5)
 			return
 
-/obj/item/reagent_containers/glass/attackby(obj/item/attackedby, mob/user, params)
+/obj/item/reagent_containers/glass/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(istype(attackedby, /obj/item/tool/pen) || istype(attackedby, /obj/item/flashlight/pen))
+	if(istype(I, /obj/item/tool/pen) || istype(I, /obj/item/flashlight/pen))
 		var/tmp_label = stripped_input(user, "Enter a label for [name]", "Label", label_text)
 		if(length(tmp_label) > MAX_NAME_LEN)
 			to_chat(user, "<span class='warning'>The label can be at most [MAX_NAME_LEN] characters long.</span>")
@@ -249,23 +249,23 @@
 	possible_transfer_amounts = list(10,20,30,60,120)
 	volume = 120
 
-/obj/item/reagent_containers/glass/bucket/attackby(obj/item/attackedby, mob/user, params)
+/obj/item/reagent_containers/glass/bucket/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(isprox(attackedby))
-		to_chat(user, "You add [attackedby] to [src].")
-		qdel(attackedby)
+	if(isprox(I))
+		to_chat(user, "You add [I] to [src].")
+		qdel(I)
 		user.put_in_hands(new /obj/item/frame/bucket_sensor)
 		user.dropItemToGround(src)
 		qdel(src)
 
-	else if(istype(attackedby, /obj/item/tool/mop))
+	else if(istype(I, /obj/item/tool/mop))
 		if(reagents.total_volume < 1)
 			to_chat(user, "[src] is out of water!</span>")
 			return
 
-		reagents.trans_to(attackedby, 5)
-		to_chat(user, "<span class='notice'>You wet [attackedby] in [src].</span>")
+		reagents.trans_to(I, 5)
+		to_chat(user, "<span class='notice'>You wet [I] in [src].</span>")
 		playsound(loc, 'sound/effects/slosh.ogg', 25, 1)
 
 /obj/item/reagent_containers/glass/bucket/update_icon()

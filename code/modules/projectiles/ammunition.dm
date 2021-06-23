@@ -66,15 +66,15 @@ They're all essentially identical when it comes to getting the job done.
 	return ..() //Do normal stuff.
 
 //We should only attack it with handfuls. Empty hand to take out, handful to put back in. Same as normal handful.
-/obj/item/ammo_magazine/attackby(obj/item/attackedby, mob/user, params)
+/obj/item/ammo_magazine/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(istype(attackedby, /obj/item/ammo_magazine))
+	if(istype(I, /obj/item/ammo_magazine))
 
 		if(!(flags_magazine & AMMUNITION_REFILLABLE)) //and a refillable magazine
 			return
 
-		var/obj/item/ammo_magazine/H = attackedby
+		var/obj/item/ammo_magazine/H = I
 		if(src != user.get_inactive_held_item()) //It has to be held.
 			to_chat(user, "<span class='notice'>Try holding [src] before you attempt to restock it.</span>")
 			return
@@ -202,9 +202,9 @@ There aren't many ways to interact here.
 If the default ammo isn't the same, then you can't do much with it.
 If it is the same and the other stack isn't full, transfer an amount (default 1) to the other stack.
 */
-/obj/item/ammo_magazine/handful/attackby(obj/item/attackedby, mob/user, params)
-	if(istype(attackedby, /obj/item/ammo_magazine/handful)) // We have a handful. They don't need to hold it.
-		var/obj/item/ammo_magazine/handful/H = attackedby
+/obj/item/ammo_magazine/handful/attackby(obj/item/I, mob/user, params)
+	if(istype(I, /obj/item/ammo_magazine/handful)) // We have a handful. They don't need to hold it.
+		var/obj/item/ammo_magazine/handful/H = I
 		if(default_ammo != H.default_ammo) //Has to match.
 			to_chat(user, "<span class='notice'>Those aren't the same rounds. Better not mix them up.</span>")
 			return
@@ -336,11 +336,11 @@ Turn() or Shift() as there is virtually no overhead. ~N
 	else
 		to_chat(user, "It's empty.")
 
-/obj/item/big_ammo_box/attackby(obj/item/attackedby, mob/user, params)
+/obj/item/big_ammo_box/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(istype(attackedby, /obj/item/ammo_magazine))
-		var/obj/item/ammo_magazine/AM = attackedby
+	if(istype(I, /obj/item/ammo_magazine))
+		var/obj/item/ammo_magazine/AM = I
 		if(!isturf(loc))
 			to_chat(user, "<span class='warning'>[src] must be on the ground to be used.</span>")
 			return
@@ -462,13 +462,13 @@ Turn() or Shift() as there is virtually no overhead. ~N
 	update_icon()
 
 
-/obj/item/shotgunbox/attackby(obj/item/attackedby, mob/user, params)
+/obj/item/shotgunbox/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(!istype(attackedby, /obj/item/ammo_magazine/handful))
+	if(!istype(I, /obj/item/ammo_magazine/handful))
 		return
 
-	var/obj/item/ammo_magazine/handful/H = attackedby
+	var/obj/item/ammo_magazine/handful/H = I
 
 	if(!deployed)
 		to_chat(user, "<span class='warning'>[src] must be deployed on the ground to be refilled.</span>")

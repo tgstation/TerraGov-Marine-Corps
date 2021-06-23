@@ -119,7 +119,7 @@
 	SEND_SIGNAL(X, COMSIG_XENOMORPH_ATTACK_BARRICADE)
 	return ..()
 
-/obj/structure/barricade/attackby(obj/item/attackedby, mob/user, params)
+/obj/structure/barricade/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
 	for(var/obj/effect/xenomorph/acid/A in loc)
@@ -127,19 +127,19 @@
 			to_chat(user, "You can't get near that, it's melting!")
 			return
 
-	if(istype(attackedby, /obj/item/stack/barbed_wire))
-		var/obj/item/stack/barbed_wire/B = attackedby
+	if(istype(I, /obj/item/stack/barbed_wire))
+		var/obj/item/stack/barbed_wire/B = I
 		if(!can_wire)
 			return
 
-		user.visible_message("<span class='notice'>[user] starts setting up [attackedby] on [src].</span>",
-		"<span class='notice'>You start setting up [attackedby] on [src].</span>")
+		user.visible_message("<span class='notice'>[user] starts setting up [I] on [src].</span>",
+		"<span class='notice'>You start setting up [I] on [src].</span>")
 		if(!do_after(user, 20, TRUE, src, BUSY_ICON_BUILD) || !can_wire)
 			return
 
 		playsound(loc, 'sound/effects/barbed_wire_movement.ogg', 25, 1)
-		user.visible_message("<span class='notice'>[user] sets up [attackedby] on [src].</span>",
-		"<span class='notice'>You set up [attackedby] on [src].</span>")
+		user.visible_message("<span class='notice'>[user] sets up [I] on [src].</span>",
+		"<span class='notice'>You set up [I] on [src].</span>")
 
 		B.use(1)
 		wire()
@@ -303,7 +303,7 @@
 
 
 //Item Attack
-/obj/structure/barricade/snow/attackby(obj/item/attackedby, mob/user, params)
+/obj/structure/barricade/snow/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
 	for(var/obj/effect/xenomorph/acid/A in loc)
@@ -312,8 +312,8 @@
 			return
 
 	//Removing the barricades
-	if(istype(attackedby, /obj/item/tool/shovel) && user.a_intent != INTENT_HARM)
-		var/obj/item/tool/shovel/ET = attackedby
+	if(istype(I, /obj/item/tool/shovel) && user.a_intent != INTENT_HARM)
+		var/obj/item/tool/shovel/ET = I
 
 		if(ET.folded)
 			return
@@ -381,7 +381,7 @@
 	barricade_type = "wooden"
 	can_wire = FALSE
 
-/obj/structure/barricade/wooden/attackby(obj/item/attackedby, mob/user, params)
+/obj/structure/barricade/wooden/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
 	for(var/obj/effect/xenomorph/acid/A in loc)
@@ -389,8 +389,8 @@
 			to_chat(user, "You can't get near that, it's melting!")
 			return
 
-	if(istype(attackedby, /obj/item/stack/sheet/wood))
-		var/obj/item/stack/sheet/wood/D = attackedby
+	if(istype(I, /obj/item/stack/sheet/wood))
+		var/obj/item/stack/sheet/wood/D = I
 		if(obj_integrity >= max_integrity)
 			return
 
@@ -465,13 +465,13 @@
 		if(CADE_TYPE_ACID)
 			. += image('icons/Marine/barricades.dmi', icon_state = "+burn_upgrade_[damage_state]")
 
-/obj/structure/barricade/metal/attackby(obj/item/attackedby, mob/user, params)
+/obj/structure/barricade/metal/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(istype(attackedby, /obj/item/stack/sheet/metal))
-		var/obj/item/stack/sheet/metal/metal_sheets = attackedby
+	if(istype(I, /obj/item/stack/sheet/metal))
+		var/obj/item/stack/sheet/metal/metal_sheets = I
 		if(obj_integrity > max_integrity * 0.3)
-			return attempt_barricade_upgrade(attackedby, user, params)
+			return attempt_barricade_upgrade(I, user, params)
 
 		if(metal_sheets.get_amount() < 2)
 			to_chat(user, "<span class='warning'>You need two metal sheets to repair the base of [src].</span>")
@@ -834,11 +834,11 @@
 		if(BARRICADE_PLASTEEL_LOOSE)
 			to_chat(user, "<span class='info'>The protection panel has been removed and the anchor bolts loosened. It's ready to be taken apart.</span>")
 
-/obj/structure/barricade/plasteel/attackby(obj/item/attackedby, mob/user, params)
+/obj/structure/barricade/plasteel/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(istype(attackedby, /obj/item/stack/sheet/plasteel))
-		var/obj/item/stack/sheet/plasteel/plasteel_sheets = attackedby
+	if(istype(I, /obj/item/stack/sheet/plasteel))
+		var/obj/item/stack/sheet/plasteel/plasteel_sheets = I
 		if(obj_integrity > max_integrity * 0.3)
 			return
 
@@ -863,8 +863,8 @@
 
 	COOLDOWN_START(src, tool_cooldown, 1 SECONDS)
 
-	if(iswelder(attackedby))
-		var/obj/item/tool/weldingtool/WT = attackedby
+	if(iswelder(I))
+		var/obj/item/tool/weldingtool/WT = I
 
 		if(user.skills.getRating("engineer") < SKILL_ENGINEER_PLASTEEL)
 			user.visible_message("<span class='notice'>[user] fumbles around figuring out how to repair [src].</span>",
@@ -906,7 +906,7 @@
 
 	switch(build_state)
 		if(BARRICADE_PLASTEEL_FIRM) //Fully constructed step. Use screwdriver to remove the protection panels to reveal the bolts
-			if(isscrewdriver(attackedby))
+			if(isscrewdriver(I))
 				if(user.skills.getRating("engineer") < SKILL_ENGINEER_PLASTEEL)
 					user.visible_message("<span class='notice'>[user] fumbles around figuring out how to disassemble [src].</span>",
 					"<span class='notice'>You fumble around figuring out how to disassemble [src].</span>")
@@ -927,7 +927,7 @@
 				"<span class='notice'>You remove [src]'s protection panels, exposing the anchor bolts.</span>")
 				playsound(loc, 'sound/items/screwdriver.ogg', 25, 1)
 				build_state = BARRICADE_PLASTEEL_ANCHORED
-			else if(iscrowbar(attackedby))
+			else if(iscrowbar(I))
 				user.visible_message("<span class='notice'> [user] [linked ? "un" : "" ]links [src].", "<span class='notice'>You [linked ? "un" : "" ]link [src].</span>")
 				linked = !linked
 				for(var/direction in GLOB.cardinals)
@@ -935,7 +935,7 @@
 						cade.update_icon()
 				update_icon()
 		if(BARRICADE_PLASTEEL_ANCHORED) //Protection panel removed step. Screwdriver to put the panel back, wrench to unsecure the anchor bolts
-			if(isscrewdriver(attackedby))
+			if(isscrewdriver(I))
 				if(user.skills.getRating("engineer") < SKILL_ENGINEER_PLASTEEL)
 					user.visible_message("<span class='notice'>[user] fumbles around figuring out how to assemble [src].</span>",
 					"<span class='notice'>You fumble around figuring out how to assemble [src].</span>")
@@ -947,7 +947,7 @@
 				playsound(loc, 'sound/items/screwdriver.ogg', 25, 1)
 				build_state = BARRICADE_PLASTEEL_FIRM
 
-			else if(iswrench(attackedby))
+			else if(iswrench(I))
 				if(user.skills.getRating("engineer") < SKILL_ENGINEER_PLASTEEL)
 					user.visible_message("<span class='notice'>[user] fumbles around figuring out how to disassemble [src].</span>",
 					"<span class='notice'>You fumble around figuring out how to disassemble [src].</span>")
@@ -962,7 +962,7 @@
 				build_state = BARRICADE_PLASTEEL_LOOSE
 				update_icon() //unanchored changes layer
 		if(BARRICADE_PLASTEEL_LOOSE) //Anchor bolts loosened step. Apply crowbar to unseat the panel and take apart the whole thing. Apply wrench to rescure anchor bolts
-			if(iswrench(attackedby))
+			if(iswrench(I))
 
 				var/turf/mystery_turf = get_turf(src)
 				if(!isopenturf(mystery_turf))
@@ -988,7 +988,7 @@
 				build_state = BARRICADE_PLASTEEL_ANCHORED
 				update_icon() //unanchored changes layer
 
-			else if(iscrowbar(attackedby))
+			else if(iscrowbar(I))
 				if(user.skills.getRating("engineer") < SKILL_ENGINEER_PLASTEEL)
 					user.visible_message("<span class='notice'>[user] fumbles around figuring out how to disassemble [src].</span>",
 					"<span class='notice'>You fumble around figuring out how to disassemble [src].</span>")
@@ -1094,7 +1094,7 @@
 		pixel_y = 0
 
 
-/obj/structure/barricade/sandbags/attackby(obj/item/attackedby, mob/user, params)
+/obj/structure/barricade/sandbags/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
 	for(var/obj/effect/xenomorph/acid/A in loc)
@@ -1102,8 +1102,8 @@
 			to_chat(user, "You can't get near that, it's melting!")
 			return
 
-	if(istype(attackedby, /obj/item/tool/shovel) && user.a_intent != INTENT_HARM)
-		var/obj/item/tool/shovel/ET = attackedby
+	if(istype(I, /obj/item/tool/shovel) && user.a_intent != INTENT_HARM)
+		var/obj/item/tool/shovel/ET = I
 		if(!ET.folded)
 			user.visible_message("<span class='notice'>[user] starts disassembling [src].</span>",
 			"<span class='notice'>You start disassembling [src].</span>")
@@ -1119,11 +1119,11 @@
 				deconstruct(deconstructed)
 		return TRUE
 
-	if(istype(attackedby, /obj/item/stack/sandbags) )
+	if(istype(I, /obj/item/stack/sandbags) )
 		if(obj_integrity == max_integrity)
 			to_chat(user, "<span class='warning'>[src] isn't in need of repairs!</span>")
 			return
-		var/obj/item/stack/sandbags/D = attackedby
+		var/obj/item/stack/sandbags/D = I
 		if(D.get_amount() < 1)
 			to_chat(user, "<span class='warning'>You need a sandbag to repair [src].</span>")
 			return

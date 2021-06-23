@@ -43,18 +43,18 @@
 #undef GIRDER_DECONSTRUCTING
 
 
-/obj/structure/girder/attackby(obj/item/attackedby, mob/user, params)
+/obj/structure/girder/attackby(obj/item/I, mob/user, params)
 	. = ..()
-	if(istype(attackedby, GIRDER_REINF_METAL) || istype(attackedby, GIRDER_REINF_PLASTEEL))
+	if(istype(I, GIRDER_REINF_METAL) || istype(I, GIRDER_REINF_PLASTEEL))
 		if(user.do_actions)
 			return TRUE //no afterattack
 		if(!anchored)
 			return FALSE
 		switch(girder_state)
 			if(GIRDER_BROKEN)
-				if(istype(attackedby, GIRDER_REINF_PLASTEEL))
+				if(istype(I, GIRDER_REINF_PLASTEEL))
 					return FALSE //Ugly, but eh.
-				var/obj/item/stack/sheet/stack = attackedby
+				var/obj/item/stack/sheet/stack = I
 				if(stack.amount < 2)
 					return
 				to_chat(user, "<span class='notice'>Now adding plating...</span>")
@@ -67,8 +67,8 @@
 				change_state(GIRDER_BROKEN_PATCHED)
 				return TRUE
 			if(GIRDER_NORMAL)
-				var/obj/item/stack/sheet/stack = attackedby
-				var/reinforced = istype(attackedby, GIRDER_REINF_PLASTEEL)
+				var/obj/item/stack/sheet/stack = I
+				var/reinforced = istype(I, GIRDER_REINF_PLASTEEL)
 				if(stack.amount < (reinforced ? 15 : 2))
 					return TRUE
 				to_chat(user, "<span class='notice'>Now adding plating...</span>")
@@ -82,9 +82,9 @@
 				reinforcement = (reinforced ? GIRDER_REINF_PLASTEEL : GIRDER_REINF_METAL)
 				return TRUE
 			if(GIRDER_BUILDING1_WELDED)
-				if(!istype(attackedby, reinforcement))
+				if(!istype(I, reinforcement))
 					return FALSE
-				var/obj/item/stack/sheet/stack = attackedby
+				var/obj/item/stack/sheet/stack = I
 				var/reinforced = (reinforcement == GIRDER_REINF_PLASTEEL)
 				if(stack.amount < (reinforced ? 15 : 2))
 					return TRUE

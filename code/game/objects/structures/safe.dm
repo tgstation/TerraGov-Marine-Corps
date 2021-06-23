@@ -174,23 +174,23 @@ FLOOR SAFES
 				updateUsrDialog()
 
 
-/obj/structure/safe/attackby(obj/item/attackedby, mob/user, params)
+/obj/structure/safe/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
 	if(!open)
 		return
 
-	else if(istype(attackedby, /obj/item/clothing/tie/stethoscope))
-		to_chat(user, "Hold [attackedby] in one of your hands while you manipulate the dial.")
+	else if(istype(I, /obj/item/clothing/tie/stethoscope))
+		to_chat(user, "Hold [I] in one of your hands while you manipulate the dial.")
 
-	else if(attackedby.w_class + space <= maxspace)
-		space += attackedby.w_class
-		if(user.transferItemToLoc(attackedby, src))
-			to_chat(user, "<span class='notice'>You put [attackedby] in [src].</span>")
+	else if(I.w_class + space <= maxspace)
+		space += I.w_class
+		if(user.transferItemToLoc(I, src))
+			to_chat(user, "<span class='notice'>You put [I] in [src].</span>")
 		updateUsrDialog()
 
 	else
-		to_chat(user, "<span class='notice'>[attackedby] won't fit in [src].</span>")
+		to_chat(user, "<span class='notice'>[I] won't fit in [src].</span>")
 
 
 //FLOOR SAFES

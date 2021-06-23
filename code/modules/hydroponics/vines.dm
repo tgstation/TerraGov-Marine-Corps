@@ -29,21 +29,21 @@
 		master.growth_queue -= src
 	. = ..()
 
-/obj/effect/plantsegment/attackby(obj/item/attackedby, mob/user, params)
+/obj/effect/plantsegment/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(iswelder(attackedby))
-		var/obj/item/tool/weldingtool/WT = attackedby
+	if(iswelder(I))
+		var/obj/item/tool/weldingtool/WT = I
 		if(!WT.remove_fuel(0, user))
 			return
 
 		qdel(src)
 
-	else if(attackedby.heat >= 3500)
+	else if(I.heat >= 3500)
 		qdel(src)
 
-	else if(attackedby.sharp)
-		switch(attackedby.sharp)
+	else if(I.sharp)
+		switch(I.sharp)
 			if(IS_SHARP_ITEM_BIG)
 				qdel(src)
 			if(IS_SHARP_ITEM_ACCURATE)

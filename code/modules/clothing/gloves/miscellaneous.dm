@@ -77,8 +77,8 @@
 	icon_state = "boxing"
 	item_state = "boxing"
 
-/obj/item/clothing/gloves/boxing/attackby(obj/item/attackedby, mob/user, params)
-	if(iswirecutter(attackedby) || istype(attackedby, /obj/item/tool/surgery/scalpel))
+/obj/item/clothing/gloves/boxing/attackby(obj/item/I, mob/user, params)
+	if(iswirecutter(I) || istype(I, /obj/item/tool/surgery/scalpel))
 		to_chat(user, "<span class='notice'>That won't work.</span>")
 		return
 	return ..()

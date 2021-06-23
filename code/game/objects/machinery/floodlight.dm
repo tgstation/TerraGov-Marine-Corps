@@ -181,28 +181,28 @@
 	set_light(brightness, 5, COLOR_SILVER)
 	update_icon()
 
-/obj/machinery/floodlightcombat/attackby(obj/item/attackedby, mob/user, params)
+/obj/machinery/floodlightcombat/attackby(obj/item/I, mob/user, params)
 	if(!ishuman(user))
 		return FALSE
-	if(istype(attackedby, /obj/item/light_bulb/tube))
+	if(istype(I, /obj/item/light_bulb/tube))
 		if(light_on)
 			to_chat(user, "<span class='notice'>The [src]'s safety systems won't let you open the light hatch! You should turn it off first.")
 			return FALSE
 		if(contents.len > 3)
 			to_chat(user, "<span class='notice'>All the light sockets are occupied!")
 			return FALSE
-		to_chat(user, "You insert the [attackedby] into the [src]")
-		visible_message("[user] inserts the [attackedby] into the [src]")
+		to_chat(user, "You insert the [I] into the [src]")
+		visible_message("[user] inserts the [I] into the [src]")
 		user.drop_held_item()
-		attackedby.forceMove(src)
-	if(istype(attackedby, /obj/item/lightreplacer))
+		I.forceMove(src)
+	if(istype(I, /obj/item/lightreplacer))
 		if(light_on)
-			to_chat(user, "<span class='notice'>The [attackedby] cannot dispense lights into functioning machinery!")
+			to_chat(user, "<span class='notice'>The [I] cannot dispense lights into functioning machinery!")
 			return FALSE
 		if(contents.len > 3)
 			to_chat(user, "<span class='notice'>All the light sockets are occupied!")
 			return FALSE
-		var/obj/item/lightreplacer/A = attackedby
+		var/obj/item/lightreplacer/A = I
 		if(A.CanUse())
 			A.Use(user)
 		else

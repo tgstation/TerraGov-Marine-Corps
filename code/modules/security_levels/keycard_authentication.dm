@@ -21,14 +21,14 @@
 	power_channel = ENVIRON
 
 
-/obj/machinery/keycard_auth/attackby(obj/item/attackedby, mob/user, params)
+/obj/machinery/keycard_auth/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
 	if(machine_stat & (NOPOWER|BROKEN))
 		to_chat(user, "This device is not powered.")
 
-	else if(istype(attackedby, /obj/item/card/id))
-		var/obj/item/card/id/ID = attackedby
+	else if(istype(I, /obj/item/card/id))
+		var/obj/item/card/id/ID = I
 		if(!(ACCESS_MARINE_BRIDGE in ID.access))
 			return
 

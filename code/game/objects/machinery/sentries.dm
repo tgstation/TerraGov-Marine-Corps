@@ -125,10 +125,10 @@
 	user.put_in_hands(T)
 	qdel(src)
 
-/obj/machinery/turret_tripod_deployed/attackby(obj/item/attackedby, mob/user, params)
+/obj/machinery/turret_tripod_deployed/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(iswrench(attackedby))
+	if(iswrench(I))
 		if(anchored)
 			user.visible_message("<span class='notice'>[user] begins unsecuring \the [src] from the ground.</span>",
 			"<span class='notice'>You begin unsecuring \the [src] from the ground.</span>")
@@ -152,8 +152,8 @@
 			anchored = TRUE
 			playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
 
-	else if(istype(attackedby, /obj/item/turret_top))
-		var/obj/item/turret_top/T = attackedby
+	else if(istype(I, /obj/item/turret_top))
+		var/obj/item/turret_top/T = I
 		if(!anchored)
 			to_chat(user, "<span class='warning'>You must wrench \the [src] to the ground first!</span>")
 			return
@@ -174,7 +174,7 @@
 		playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
 		qdel(T)
 
-	else if(isscrewdriver(attackedby))
+	else if(isscrewdriver(I))
 		if(!anchored)
 			to_chat(user, "<span class='warning'>You must wrench \the [src] to the ground first!</span>")
 			return
@@ -197,7 +197,7 @@
 		S.update_icon()
 		qdel(src)
 
-	else if(iscrowbar(attackedby))
+	else if(iscrowbar(I))
 		if(!has_top)
 			to_chat(user, "<span class='warning'>You cannot remove the top if \the [src] doesn't have any yet!</span>")
 			return
@@ -539,14 +539,14 @@
 	if(user.incapacitated() || get_dist(user, src) > 1 || is_blind(user) || user.lying_angle || !user.client)
 		user.unset_interaction()
 
-/obj/machinery/marine_turret/attackby(obj/item/attackedby, mob/user, params)
+/obj/machinery/marine_turret/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
 	if(!ishuman(user))
 		return
 
 	//Panel access
-	else if(istype(attackedby, /obj/item/card/id))
+	else if(istype(I, /obj/item/card/id))
 		if(!allowed(user))
 			to_chat(user, "<span class='warning'>Access denied.</span>")
 			return
@@ -563,7 +563,7 @@
 				attack_hand(user)
 
 	//Securing/Unsecuring
-	else if(iswrench(attackedby))
+	else if(iswrench(I))
 		if(CHECK_BITFIELD(turret_flags, TURRET_IMMOBILE))
 			to_chat(user, "<span class='warning'>[src] is completely welded in place. You can't move it without damaging it.</span>")
 			return
@@ -597,7 +597,7 @@
 			playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
 
 	// Rotation
-	else if(isscrewdriver(attackedby))
+	else if(isscrewdriver(I))
 		if(CHECK_BITFIELD(turret_flags, TURRET_IMMOBILE))
 			to_chat(user, "<span class='warning'>[src] is completely welded in place. You can't move it without damaging it.</span>")
 			return
@@ -618,8 +618,8 @@
 		else if(dir == WEST)
 			setDir(NORTH)
 
-	else if(iswelder(attackedby))
-		var/obj/item/tool/weldingtool/WT = attackedby
+	else if(iswelder(I))
+		var/obj/item/tool/weldingtool/WT = I
 		if(obj_integrity < 0 || machine_stat)
 			to_chat(user, "<span class='warning'>[src]'s internal circuitry is ruined, there's no way you can salvage this on the go.</span>")
 			return
@@ -642,7 +642,7 @@
 		hud_set_machine_health() //Update our HUD health
 		playsound(loc, 'sound/items/welder2.ogg', 25, 1)
 
-	else if(iscrowbar(attackedby))
+	else if(iscrowbar(I))
 
 		//Remove battery if possible
 		if(!anchored && !CHECK_BITFIELD(turret_flags, TURRET_IMMOBILE))
@@ -670,35 +670,35 @@
 		cell = null
 		update_icon()
 
-	else if(istype(attackedby, /obj/item/cell))
+	else if(istype(I, /obj/item/cell))
 		if(cell)
 			to_chat(user, "<span class='warning'>There is already \a [cell.name] installed in [src]! Remove it with a crowbar first!</span>")
 			return
 
-		user.visible_message("<span class='notice'>[user] begins installing \a [attackedby] into [src].</span>",
-		"<span class='notice'>You begin installing \a [attackedby] into [src].</span>")
+		user.visible_message("<span class='notice'>[user] begins installing \a [I] into [src].</span>",
+		"<span class='notice'>You begin installing \a [I] into [src].</span>")
 		if(!do_after(user, work_time, TRUE, src, BUSY_ICON_BUILD))
 			return
 
-		user.transferItemToLoc(attackedby, src)
-		user.visible_message("<span class='notice'>[user] installs \a [attackedby] into [src].</span>",
-		"<span class='notice'>You install \a [attackedby] into [src].</span>")
-		cell = attackedby
+		user.transferItemToLoc(I, src)
+		user.visible_message("<span class='notice'>[user] installs \a [I] into [src].</span>",
+		"<span class='notice'>You install \a [I] into [src].</span>")
+		cell = I
 		update_icon()
 
-	else if(istype(attackedby, magazine_type))
-		var/obj/item/ammo_magazine/M = attackedby
+	else if(istype(I, magazine_type))
+		var/obj/item/ammo_magazine/M = I
 		if(user.skills.getRating("heavy_weapons") < SKILL_HEAVY_WEAPONS_TRAINED)
-			user.visible_message("<span class='notice'>[user] begins fumbling about, swapping a new [attackedby] into [src].</span>",
-			"<span class='notice'>You begin fumbling about, swapping a new [attackedby] into [src].</span>")
+			user.visible_message("<span class='notice'>[user] begins fumbling about, swapping a new [I] into [src].</span>",
+			"<span class='notice'>You begin fumbling about, swapping a new [I] into [src].</span>")
 			if(user.do_actions)
 				return
 			if(!do_after(user, work_time, TRUE, src, BUSY_ICON_UNSKILLED))
 				return
 
 		playsound(loc, 'sound/weapons/guns/interact/smartgun_unload.ogg', 25, 1)
-		user.visible_message("<span class='notice'>[user] swaps a new [attackedby] into [src].</span>",
-		"<span class='notice'>You swap a new [attackedby] into [src].</span>")
+		user.visible_message("<span class='notice'>[user] swaps a new [I] into [src].</span>",
+		"<span class='notice'>You swap a new [I] into [src].</span>")
 		user.drop_held_item()
 		update_icon()
 
@@ -707,7 +707,7 @@
 			S.current_rounds = rounds
 		rounds = min(M.current_rounds, rounds_max)
 		hud_set_sentry_ammo()
-		qdel(attackedby)
+		qdel(I)
 
 
 /obj/machinery/marine_turret/update_icon_state()

@@ -244,21 +244,21 @@
 		set_light_on(TRUE)
 
 
-/obj/item/tool/pickaxe/plasmacutter/attackby(obj/item/attackedby, mob/user, params)
+/obj/item/tool/pickaxe/plasmacutter/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(istype(attackedby, /obj/item/cell))
+	if(istype(I, /obj/item/cell))
 		if(!user.drop_held_item())
 			return
 
-		attackedby.forceMove(src)
+		I.forceMove(src)
 		var/replace_install = "You replace the cell in [src]"
 		if(!cell)
 			replace_install = "You install a cell in [src]"
 		else
 			cell.update_icon()
 			user.put_in_hands(cell)
-		cell = attackedby
+		cell = I
 		to_chat(user, "<span class='notice'>[replace_install] <b>Charge Remaining: [cell.charge]/[cell.maxcharge]</b></span>")
 		playsound(user, 'sound/weapons/guns/interact/rifle_reload.ogg', 25, 1, 5)
 		update_plasmacutter()

@@ -57,7 +57,7 @@
 		return P
 	return 0
 
-/obj/machinery/processor/attackby(obj/item/attackedby, mob/user, params)
+/obj/machinery/processor/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
 	if(processing)
@@ -68,10 +68,10 @@
 		to_chat(user, "<span class='warning'>Something is already in the processing chamber.</span>")
 		return TRUE
 
-	var/obj/O = attackedby
+	var/obj/O = I
 
-	if(istype(attackedby, /obj/item/grab))
-		var/obj/item/grab/G = attackedby
+	if(istype(I, /obj/item/grab))
+		var/obj/item/grab/G = I
 		O = G.grabbed_thing
 
 	var/datum/food_processor_process/P = select_recipe(O)

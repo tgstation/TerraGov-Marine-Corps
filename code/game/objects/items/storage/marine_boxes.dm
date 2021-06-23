@@ -106,16 +106,16 @@
 	to_chat(user, "You take out the [pcell] out of the [src].")
 	pcell = null
 
-/obj/item/smartgun_powerpack/attackby(obj/item/attackedby, mob/user, params)
+/obj/item/smartgun_powerpack/attackby(obj/item/item, mob/user, params)
 	. = ..()
-	if(istype(attackedby, /obj/item/cell))
-		var/obj/item/cell/cell = attackedby
+	if(istype(item, /obj/item/cell))
+		var/obj/item/cell/cell = item
 
 		if(!QDELETED(pcell))
 			to_chat(user, "There already is a cell in the [src].")
 			return
 
-		if(!user.transferItemToLoc(attackedby, src))
+		if(!user.transferItemToLoc(item, src))
 			return
 
 		pcell = cell

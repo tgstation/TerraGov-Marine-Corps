@@ -234,10 +234,10 @@ obj/machinery/access_button/update_icon_state()
 	else
 		icon_state = "access_button_off"
 
-/obj/machinery/access_button/attackby(obj/item/attackedby, mob/user, params)
+/obj/machinery/access_button/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(istype(attackedby, /obj/item/card/id))
+	if(istype(I, /obj/item/card/id))
 		attack_hand(user)
 
 obj/machinery/access_button/attack_hand(mob/living/user)

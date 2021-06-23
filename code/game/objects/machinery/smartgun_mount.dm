@@ -75,19 +75,19 @@
 		icon_state = "turret_icon"
 
 
-/obj/item/standard_hmg/attackby(obj/item/attackedby, mob/user, params)
+/obj/item/standard_hmg/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
 	if(!ishuman(user))
 		return
 
-	else if(istype(attackedby, /obj/item/ammo_magazine/standard_hmg)) //lets equip it with ammo
+	else if(istype(I, /obj/item/ammo_magazine/standard_hmg)) //lets equip it with ammo
 		if(rounds)
 			to_chat(user, "The TL-102 already has a ammo drum mounted on it!")
 			return
 
 		rounds = 300
-		qdel(attackedby)
+		qdel(I)
 		update_icon()
 /obj/item/standard_hmg/attack_self(mob/user) //click the gun to unfold it.
 	if(!ishuman(usr)) return
@@ -214,7 +214,7 @@
 	hud_set_hsg_ammo()
 
 
-/obj/machinery/standard_hmg/attackby(obj/item/attackedby, mob/user, params) //This will be how we take it apart.
+/obj/machinery/standard_hmg/attackby(obj/item/I, mob/user, params) //This will be how we take it apart.
 	. = ..()
 
 	if(!ishuman(user))
@@ -225,8 +225,8 @@
 			to_chat(user, "You can't get near that, it's melting!")
 			return
 
-	if(istype(attackedby, /obj/item/ammo_magazine/standard_hmg)) // RELOADING DOCTOR FREEMAN.
-		var/obj/item/ammo_magazine/standard_hmg/M =attackedby
+	if(istype(I, /obj/item/ammo_magazine/standard_hmg)) // RELOADING DOCTOR FREEMAN.
+		var/obj/item/ammo_magazine/standard_hmg/M = I
 		if(user.skills.getRating("engineer") < SKILL_ENGINEER_ENGI)
 			if(rounds)
 				to_chat(user, "<span class='warning'>You only know how to swap the ammo drum when it's empty.</span>")
@@ -241,14 +241,14 @@
 			return
 		user.visible_message("<span class='notice'> [user] loads [src]! </span>","<span class='notice'> You load [src]!</span>")
 		playsound(loc, 'sound/weapons/guns/interact/minigun_cocked.ogg', 25, 1)
-		user.temporarilyRemoveItemFromInventory(attackedby)
+		user.temporarilyRemoveItemFromInventory(I)
 		var/obj/item/ammo_magazine/standard_hmg/D = new()
 		if(rounds)
 			user.put_in_active_hand(D)
 			D.current_rounds = rounds - (rounds_max - M.current_rounds)
 		rounds = min(rounds + M.current_rounds, rounds_max)
 		update_icon()
-		qdel(attackedby)
+		qdel(I)
 
 /obj/machinery/standard_hmg/welder_act(mob/living/user, obj/item/I)
 	if(user.do_actions)

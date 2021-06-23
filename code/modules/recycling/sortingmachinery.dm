@@ -62,11 +62,11 @@ GLOBAL_LIST_EMPTY(tagger_locations)
 		return
 
 
-/obj/structure/bigDelivery/attackby(obj/item/attackedby, mob/user, params)
+/obj/structure/bigDelivery/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(istype(attackedby, /obj/item/destTagger))
-		var/obj/item/destTagger/O = attackedby
+	if(istype(I, /obj/item/destTagger))
+		var/obj/item/destTagger/O = I
 		if(!O.currTag)
 			to_chat(user, "<span class='warning'>You need to set a destination first!</span>")
 			return
@@ -83,14 +83,14 @@ GLOBAL_LIST_EMPTY(tagger_locations)
 			sortTag = O.currTag
 		playsound(loc, 'sound/machines/twobeep.ogg', 25, 1)
 
-	else if(istype(attackedby, /obj/item/tool/pen))
+	else if(istype(I, /obj/item/tool/pen))
 		switch(tgui_alert(user, "What would you like to alter?", "Label", list("Title", "Description", "Cancel")))
 			if("Title")
 				var/str = stripped_input(user, "Label text?", "Set label", max_length = MAX_NAME_LEN)
 				if(!str)
 					to_chat(user, "<span class='warning'>Invalid text.</span>")
 					return
-				user.visible_message("\The [user] titles \the [src] with \a [attackedby], marking down: \"[str]\"",\
+				user.visible_message("\The [user] titles \the [src] with \a [I], marking down: \"[str]\"",\
 				"<span class='notice'>You title \the [src]: \"[str]\"</span>",\
 				"You hear someone scribbling a note.")
 				name = "[name] ([str])"
@@ -109,7 +109,7 @@ GLOBAL_LIST_EMPTY(tagger_locations)
 					update_icon()
 				else
 					examtext = str
-				user.visible_message("\The [user] labels \the [src] with \a [attackedby], scribbling down: \"[examtext]\"",\
+				user.visible_message("\The [user] labels \the [src] with \a [I], scribbling down: \"[examtext]\"",\
 				"<span class='notice'>You label \the [src]: \"[examtext]\"</span>",\
 				"You hear someone scribbling a note.")
 
@@ -169,11 +169,11 @@ GLOBAL_LIST_EMPTY(tagger_locations)
 			if(examtext)
 				to_chat(user, "<span class='notice'>It has a note attached which reads, \"[examtext]\"</span>")
 
-/obj/item/smallDelivery/attackby(obj/item/attackedby, mob/user, params)
+/obj/item/smallDelivery/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(istype(attackedby, /obj/item/destTagger))
-		var/obj/item/destTagger/O = attackedby
+	if(istype(I, /obj/item/destTagger))
+		var/obj/item/destTagger/O = I
 		if(!O.currTag)
 			to_chat(user, "<span class='warning'>You need to set a destination first!</span>")
 			return
@@ -190,14 +190,14 @@ GLOBAL_LIST_EMPTY(tagger_locations)
 			sortTag = O.currTag
 		playsound(loc, 'sound/machines/twobeep.ogg', 25, 1)
 
-	else if(istype(attackedby, /obj/item/tool/pen))
+	else if(istype(I, /obj/item/tool/pen))
 		switch(tgui_alert(user, "What would you like to alter?", "Label", list("Title", "Description", "Cancel")))
 			if("Title")
 				var/str = stripped_input(user, "Label text?", "Set label", max_length = MAX_NAME_LEN)
 				if(!str)
 					to_chat(user, "<span class='warning'>Invalid text.</span>")
 					return
-				user.visible_message("\The [user] titles \the [src] with \a [attackedby], marking down: \"[str]\"",\
+				user.visible_message("\The [user] titles \the [src] with \a [I], marking down: \"[str]\"",\
 				"<span class='notice'>You title \the [src]: \"[str]\"</span>",\
 				"You hear someone scribbling a note.")
 				name = "[name] ([str])"
@@ -216,7 +216,7 @@ GLOBAL_LIST_EMPTY(tagger_locations)
 					update_icon()
 				else
 					examtext = str
-				user.visible_message("\The [user] labels \the [src] with \a [attackedby], scribbling down: \"[examtext]\"",\
+				user.visible_message("\The [user] labels \the [src] with \a [I], scribbling down: \"[examtext]\"",\
 				"<span class='notice'>You label \the [src]: \"[examtext]\"</span>",\
 				"You hear someone scribbling a note.")
 
@@ -412,10 +412,10 @@ GLOBAL_LIST_EMPTY(tagger_locations)
 	update()
 	return
 
-/obj/machinery/disposal/deliveryChute/attackby(obj/item/attackedby, mob/user, params)
+/obj/machinery/disposal/deliveryChute/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(isscrewdriver(attackedby))
+	if(isscrewdriver(I))
 		c_mode = !c_mode
 		if(c_mode)
 			playsound(loc, 'sound/items/screwdriver.ogg', 25, 1)
@@ -424,8 +424,8 @@ GLOBAL_LIST_EMPTY(tagger_locations)
 			playsound(loc, 'sound/items/screwdriver.ogg', 25, 1)
 			to_chat(user, "You attach the screws around the power connection.")
 
-	else if(istype(attackedby, /obj/item/tool/weldingtool) && c_mode)
-		var/obj/item/tool/weldingtool/W = attackedby
+	else if(istype(I, /obj/item/tool/weldingtool) && c_mode)
+		var/obj/item/tool/weldingtool/W = I
 
 		if(!W.remove_fuel(0, user))
 			to_chat(user, "You need more welding fuel to complete this task.")

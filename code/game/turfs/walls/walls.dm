@@ -305,46 +305,46 @@
 				return
 
 
-/turf/closed/wall/attackby(obj/item/attackedby, mob/user, params)
+/turf/closed/wall/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
 	if(!ishuman(user))
 		to_chat(user, "<span class='warning'>You don't have the dexterity to do this!</span>")
 		return
 
-	else if(istype(attackedby, /obj/item/frame/apc))
-		var/obj/item/frame/apc/AH = attackedby
+	else if(istype(I, /obj/item/frame/apc))
+		var/obj/item/frame/apc/AH = I
 		AH.try_build(src)
 
-	else if(istype(attackedby, /obj/item/frame/air_alarm))
-		var/obj/item/frame/air_alarm/AH = attackedby
+	else if(istype(I, /obj/item/frame/air_alarm))
+		var/obj/item/frame/air_alarm/AH = I
 		AH.try_build(src)
 
-	else if(istype(attackedby, /obj/item/frame/fire_alarm))
-		var/obj/item/frame/fire_alarm/AH = attackedby
+	else if(istype(I, /obj/item/frame/fire_alarm))
+		var/obj/item/frame/fire_alarm/AH = I
 		AH.try_build(src)
 
-	else if(istype(attackedby, /obj/item/frame/light_fixture))
-		var/obj/item/frame/light_fixture/AH = attackedby
+	else if(istype(I, /obj/item/frame/light_fixture))
+		var/obj/item/frame/light_fixture/AH = I
 		AH.try_build(src)
 
-	else if(istype(attackedby, /obj/item/frame/light_fixture/small))
-		var/obj/item/frame/light_fixture/small/AH = attackedby
+	else if(istype(I, /obj/item/frame/light_fixture/small))
+		var/obj/item/frame/light_fixture/small/AH = I
 		AH.try_build(src)
 
-	else if(istype(attackedby, /obj/item/frame/camera))
-		var/obj/item/frame/camera/AH = attackedby
+	else if(istype(I, /obj/item/frame/camera))
+		var/obj/item/frame/camera/AH = I
 		AH.try_build(src, user)
 
 	//Poster stuff
-	else if(istype(attackedby, /obj/item/contraband/poster))
-		place_poster(attackedby, user)
+	else if(istype(I, /obj/item/contraband/poster))
+		place_poster(I, user)
 
 	else if(resistance_flags & INDESTRUCTIBLE)
-		to_chat(user, "<span class='warning'>[src] is much too tough for you to do anything to it with [attackedby]</span>.")
+		to_chat(user, "<span class='warning'>[src] is much too tough for you to do anything to it with [I]</span>.")
 
-	else if(istype(attackedby, /obj/item/tool/pickaxe/plasmacutter) && !user.do_actions)
-		var/obj/item/tool/pickaxe/plasmacutter/P = attackedby
+	else if(istype(I, /obj/item/tool/pickaxe/plasmacutter) && !user.do_actions)
+		var/obj/item/tool/pickaxe/plasmacutter/P = I
 		if(!P.start_cut(user, name, src))
 			return
 
@@ -354,8 +354,8 @@
 		P.cut_apart(user, name, src)
 		dismantle_wall()
 
-	else if(wall_integrity < max_integrity && iswelder(attackedby))
-		var/obj/item/tool/weldingtool/WT = attackedby
+	else if(wall_integrity < max_integrity && iswelder(I))
+		var/obj/item/tool/weldingtool/WT = I
 		if(!WT.remove_fuel(0, user))
 			to_chat(user, "<span class='warning'>You need more welding fuel to complete this task.</span>")
 			return
@@ -374,8 +374,8 @@
 		//DECONSTRUCTION
 		switch(d_state)
 			if(0)
-				if(iswelder(attackedby))
-					var/obj/item/tool/weldingtool/WT = attackedby
+				if(iswelder(I))
+					var/obj/item/tool/weldingtool/WT = I
 					playsound(src, 'sound/items/welder.ogg', 25, 1)
 					user.visible_message("<span class='notice'>[user] begins slicing through the outer plating.</span>",
 					"<span class='notice'>You begin slicing through the outer plating.</span>")
@@ -390,7 +390,7 @@
 					user.visible_message("<span class='notice'>[user] slices through the outer plating.</span>",
 					"<span class='notice'>You slice through the outer plating.</span>")
 			if(1)
-				if(isscrewdriver(attackedby))
+				if(isscrewdriver(I))
 					user.visible_message("<span class='notice'>[user] begins removing the support lines.</span>",
 					"<span class='notice'>You begin removing the support lines.</span>")
 					playsound(src, 'sound/items/screwdriver.ogg', 25, 1)
@@ -405,8 +405,8 @@
 					user.visible_message("<span class='notice'>[user] removes the support lines.</span>",
 					"<span class='notice'>You remove the support lines.</span>")
 			if(2)
-				if(iswelder(attackedby))
-					var/obj/item/tool/weldingtool/WT = attackedby
+				if(iswelder(I))
+					var/obj/item/tool/weldingtool/WT = I
 					user.visible_message("<span class='notice'>[user] begins slicing through the metal cover.</span>",
 					"<span class='notice'>You begin slicing through the metal cover.</span>")
 					playsound(src, 'sound/items/welder.ogg', 25, 1)
@@ -421,7 +421,7 @@
 					user.visible_message("<span class='notice'>[user] presses firmly on the cover, dislodging it.</span>",
 					"<span class='notice'>You press firmly on the cover, dislodging it.</span>")
 			if(3)
-				if(iscrowbar(attackedby))
+				if(iscrowbar(I))
 					user.visible_message("<span class='notice'>[user] struggles to pry off the cover.</span>",
 					"<span class='notice'>You struggle to pry off the cover.</span>")
 					playsound(src, 'sound/items/crowbar.ogg', 25, 1)
@@ -436,7 +436,7 @@
 					user.visible_message("<span class='notice'>[user] pries off the cover.</span>",
 					"<span class='notice'>You pry off the cover.</span>")
 			if(4)
-				if(iswrench(attackedby))
+				if(iswrench(I))
 					user.visible_message("<span class='notice'>[user] starts loosening the anchoring bolts securing the support rods.</span>",
 					"<span class='notice'>You start loosening the anchoring bolts securing the support rods.</span>")
 					playsound(src, 'sound/items/ratchet.ogg', 25, 1)
@@ -451,7 +451,7 @@
 					user.visible_message("<span class='notice'>[user] removes the bolts anchoring the support rods.</span>",
 					"<span class='notice'>You remove the bolts anchoring the support rods.</span>")
 			if(5)
-				if(iswirecutter(attackedby))
+				if(iswirecutter(I))
 					user.visible_message("<span class='notice'>[user] begins uncrimping the hydraulic lines.</span>",
 					"<span class='notice'>You begin uncrimping the hydraulic lines.</span>")
 					playsound(src, 'sound/items/wirecutter.ogg', 25, 1)
@@ -466,7 +466,7 @@
 					user.visible_message("<span class='notice'>[user] finishes uncrimping the hydraulic lines.</span>",
 					"<span class='notice'>You finish uncrimping the hydraulic lines.</span>")
 			if(6)
-				if(iscrowbar(attackedby))
+				if(iscrowbar(I))
 					user.visible_message("<span class='notice'>[user] struggles to pry off the inner sheath.</span>",
 					"<span class='notice'>You struggle to pry off the inner sheath.</span>")
 					playsound(src, 'sound/items/crowbar.ogg', 25, 1)
@@ -481,8 +481,8 @@
 					user.visible_message("<span class='notice'>[user] pries off the inner sheath.</span>",
 					"<span class='notice'>You pry off the inner sheath.</span>")
 			if(7)
-				if(iswelder(attackedby))
-					var/obj/item/tool/weldingtool/WT = attackedby
+				if(iswelder(I))
+					var/obj/item/tool/weldingtool/WT = I
 					user.visible_message("<span class='notice'>[user] begins slicing through the final layer.</span>",
 					"<span class='notice'>You begin slicing through the final layer.</span>")
 					playsound(src, 'sound/items/welder.ogg', 25, 1)

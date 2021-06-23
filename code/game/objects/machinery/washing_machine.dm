@@ -71,59 +71,59 @@
 	icon_state = "wm_[state][panel]"
 
 
-/obj/machinery/washing_machine/attackby(obj/item/attackedby, mob/user, params)
+/obj/machinery/washing_machine/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(istype(attackedby, /obj/item/toy/crayon) || istype(attackedby, /obj/item/tool/stamp))
+	if(istype(I, /obj/item/toy/crayon) || istype(I, /obj/item/tool/stamp))
 		if(!(state in list(1, 3, 6)))
 			return
 
 		if(crayon)
 			return
 
-		if(!user.transferItemToLoc(attackedby, src))
+		if(!user.transferItemToLoc(I, src))
 			return
 
-		crayon = attackedby
+		crayon = I
 
-	else if(istype(attackedby, /obj/item/stack/sheet/hairlesshide) || \
-		istype(attackedby, /obj/item/clothing/under) || \
-		istype(attackedby, /obj/item/clothing/mask) || \
-		istype(attackedby, /obj/item/clothing/head) || \
-		istype(attackedby, /obj/item/clothing/gloves) || \
-		istype(attackedby, /obj/item/clothing/shoes) || \
-		istype(attackedby, /obj/item/clothing/suit) || \
-		istype(attackedby, /obj/item/bedsheet))
+	else if(istype(I, /obj/item/stack/sheet/hairlesshide) || \
+		istype(I, /obj/item/clothing/under) || \
+		istype(I, /obj/item/clothing/mask) || \
+		istype(I, /obj/item/clothing/head) || \
+		istype(I, /obj/item/clothing/gloves) || \
+		istype(I, /obj/item/clothing/shoes) || \
+		istype(I, /obj/item/clothing/suit) || \
+		istype(I, /obj/item/bedsheet))
 
 		//YES, it's hardcoded... saves a var/can_be_washed for every single clothing item. | lol. someone with more willpower use a typecache
-		if(istype(attackedby, /obj/item/clothing/suit/space))
+		if(istype(I, /obj/item/clothing/suit/space))
 			to_chat(user, "This item does not fit.")
 			return
-		if(istype(attackedby, /obj/item/clothing/suit/syndicatefake))
+		if(istype(I, /obj/item/clothing/suit/syndicatefake))
 			to_chat(user, "This item does not fit.")
 			return
-		if(istype(attackedby, /obj/item/clothing/suit/cyborg_suit))
+		if(istype(I, /obj/item/clothing/suit/cyborg_suit))
 			to_chat(user, "This item does not fit.")
 			return
-		if(istype(attackedby, /obj/item/clothing/suit/bomb_suit))
+		if(istype(I, /obj/item/clothing/suit/bomb_suit))
 			to_chat(user, "This item does not fit.")
 			return
-		if(istype(attackedby, /obj/item/clothing/suit/armor))
+		if(istype(I, /obj/item/clothing/suit/armor))
 			to_chat(user, "This item does not fit.")
 			return
-		if(istype(attackedby, /obj/item/clothing/suit/armor))
+		if(istype(I, /obj/item/clothing/suit/armor))
 			to_chat(user, "This item does not fit.")
 			return
-		if(istype(attackedby, /obj/item/clothing/mask/gas))
+		if(istype(I, /obj/item/clothing/mask/gas))
 			to_chat(user, "This item does not fit.")
 			return
-		if(istype(attackedby, /obj/item/clothing/mask/cigarette))
+		if(istype(I, /obj/item/clothing/mask/cigarette))
 			to_chat(user, "This item does not fit.")
 			return
-		if(istype(attackedby, /obj/item/clothing/head/syndicatefake))
+		if(istype(I, /obj/item/clothing/head/syndicatefake))
 			to_chat(user, "This item does not fit.")
 			return
-		if(istype(attackedby, /obj/item/clothing/head/helmet))
+		if(istype(I, /obj/item/clothing/head/helmet))
 			to_chat(user, "This item does not fit.")
 			return
 
@@ -135,7 +135,7 @@
 			to_chat(user, "<span class='notice'>You can't put the item in right now.</span>")
 			return
 
-		if(!user.transferItemToLoc(attackedby, src))
+		if(!user.transferItemToLoc(I, src))
 			return
 
 		state = 3

@@ -48,15 +48,15 @@
 	return ..()
 
 
-/obj/vehicle/train/cargo/engine/attackby(obj/item/attackedby, mob/user, params)
+/obj/vehicle/train/cargo/engine/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(istype(attackedby, /obj/item/key/cargo_train))
+	if(istype(I, /obj/item/key/cargo_train))
 		if(key)
 			return
 
-		user.transferItemToLoc(attackedby, src)
-		key = attackedby
+		user.transferItemToLoc(I, src)
+		key = I
 		verbs += /obj/vehicle/train/cargo/engine/verb/remove_key
 
 

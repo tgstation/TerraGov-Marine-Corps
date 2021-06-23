@@ -208,7 +208,7 @@ should be alright.
 
 //Clicking stuff onto the gun.
 //Attachables & Reloading
-/obj/item/weapon/gun/attackby(obj/item/attackedby, mob/user, params)
+/obj/item/weapon/gun/attackby(obj/item/I, mob/user, params)
 	. = ..()
 	if(.)
 		return
@@ -216,16 +216,16 @@ should be alright.
 	if(flags_gun_features & GUN_BURST_FIRING)
 		return
 
-	if(istype(attackedby,/obj/item/attachable) && check_inactive_hand(user))
-		attach_to_gun(user, attackedby)
+	if(istype(I,/obj/item/attachable) && check_inactive_hand(user))
+		attach_to_gun(user, I)
 		return
 
 	//the active attachment is reloadable
-	if(active_attachable?.flags_attach_features & ATTACH_RELOADABLE && check_inactive_hand(user) && active_attachable.reload_attachment(attackedby, user, TRUE))
+	if(active_attachable?.flags_attach_features & ATTACH_RELOADABLE && check_inactive_hand(user) && active_attachable.reload_attachment(I, user, TRUE))
 		return
 
-	if((istype(attackedby, /obj/item/ammo_magazine) || istype(attackedby, /obj/item/cell/lasgun)) && check_inactive_hand(user))
-		reload(user, attackedby)
+	if((istype(I, /obj/item/ammo_magazine) || istype(I, /obj/item/cell/lasgun)) && check_inactive_hand(user))
+		reload(user, I)
 		return
 
 

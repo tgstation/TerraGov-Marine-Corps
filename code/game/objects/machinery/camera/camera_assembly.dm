@@ -12,10 +12,10 @@
 	materials = list(/datum/material/metal = 400, /datum/material/glass = 250)
 
 
-/obj/item/frame/camera/attackby(obj/item/attackedby, mob/user, params)
+/obj/item/frame/camera/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(iswrench(attackedby))
+	if(iswrench(I))
 		new /obj/item/stack/sheet/metal(loc, 2)
 		qdel(src)
 
@@ -89,15 +89,15 @@
 			pixel_x = 16
 
 
-/obj/structure/camera_assembly/attackby(obj/item/attackedby, mob/user, params)
+/obj/structure/camera_assembly/attackby(obj/item/I, mob/living/user, params)
 	. = ..()
 
 	switch(state)
 		if(STATE_WRENCHED)
-			if(attackedby.tool_behaviour != TOOL_WELDER)
+			if(I.tool_behaviour != TOOL_WELDER)
 				return
 
-			if(!weld(attackedby, user))
+			if(!weld(I, user))
 				return
 
 			to_chat(user, "<span class='notice'>You weld [src] securely into place.</span>")
@@ -105,8 +105,8 @@
 			state = STATE_WELDED
 
 		if(STATE_WELDED)
-			if(istype(attackedby, /obj/item/stack/cable_coil))
-				var/obj/item/stack/cable_coil/C = attackedby
+			if(istype(I, /obj/item/stack/cable_coil))
+				var/obj/item/stack/cable_coil/C = I
 				if(!C.use(2))
 					to_chat(user, "<span class='warning'>You need two lengths of cable to wire a camera!</span>")
 					return
@@ -114,9 +114,9 @@
 				to_chat(user, "<span class='notice'>You add wires to [src].</span>")
 				state = STATE_WIRED
 
-			else if(attackedby.tool_behaviour == TOOL_WELDER)
+			else if(I.tool_behaviour == TOOL_WELDER)
 
-				if(!weld(attackedby, user))
+				if(!weld(I, user))
 					return
 
 				to_chat(user, "<span class='notice'>You unweld [src] from its place.</span>")

@@ -31,15 +31,15 @@
 	state = 2
 
 
-/obj/machinery/constructable_frame/machine_frame/attackby(obj/item/attackedby, mob/user, params)
-	if(attackedby.crit_fail)
+/obj/machinery/constructable_frame/machine_frame/attackby(obj/item/I, mob/living/user, params)
+	if(I.crit_fail)
 		to_chat(user, "<span class='warning'>This part is faulty, you cannot add this to the machine!</span>")
 		return
 
 	switch(state)
 		if(1)
-			if(iscablecoil(attackedby))
-				var/obj/item/stack/cable_coil/C = attackedby
+			if(iscablecoil(I))
+				var/obj/item/stack/cable_coil/C = I
 				if(C.get_amount() < 5)
 					to_chat(user, "<span class='warning'>You need five lengths of cable to add them to the frame.</span>")
 					return
@@ -58,18 +58,18 @@
 				state = 2
 				icon_state = "box_1"
 
-			if(iswrench(attackedby))
+			if(iswrench(I))
 				playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
 				to_chat(user, "<span class='notice'>You dismantle the frame</span>")
 				new /obj/item/stack/sheet/metal(loc, 5)
 				qdel(src)
 
 		if(2)
-			if(istype(attackedby, /obj/item/circuitboard/machine))
+			if(istype(I, /obj/item/circuitboard/machine))
 				playsound(loc, 'sound/items/deconstruct.ogg', 25, 1)
 				to_chat(user, "<span class='notice'>You add the circuit board to the frame.</span>")
-				var/obj/item/circuitboard/machine/circuit = attackedby
-				if(!user.transferItemToLoc(attackedby, src))
+				var/obj/item/circuitboard/machine/circuit = I
+				if(!user.transferItemToLoc(I, src))
 					return
 
 				icon_state = "box_2"
@@ -84,7 +84,7 @@
 					update_desc()
 				to_chat(user, desc)
 
-			if(iswirecutter(attackedby))
+			if(iswirecutter(I))
 				playsound(loc, 'sound/items/wirecutter.ogg', 25, 1)
 				to_chat(user, "<span class='notice'>You remove the cables.</span>")
 				state = 1
@@ -93,7 +93,7 @@
 				A.amount = 5
 
 		if(3)
-			if(iscrowbar(attackedby))
+			if(iscrowbar(I))
 				playsound(loc, 'sound/items/crowbar.ogg', 25, 1)
 				state = 2
 				circuit.forceMove(loc)
@@ -110,7 +110,7 @@
 				components = null
 				icon_state = "box_1"
 
-			if(isscrewdriver(attackedby))
+			if(isscrewdriver(I))
 				var/component_check = 1
 				for(var/R in req_components)
 					if(req_components[R] > 0)
@@ -130,10 +130,10 @@
 					qdel(src)
 
 			for(var/i in req_components)
-				if(istype(attackedby, text2path(i)) && (req_components[i] > 0))
+				if(istype(I, text2path(i)) && (req_components[i] > 0))
 					playsound(loc, 'sound/items/deconstruct.ogg', 25, 1)
-					if(iscablecoil(attackedby))
-						var/obj/item/stack/cable_coil/CP = attackedby
+					if(iscablecoil(I))
+						var/obj/item/stack/cable_coil/CP = I
 						if(CP.get_amount() > 1)
 							var/camt = min(CP.amount, req_components[i]) // amount of cable to take, idealy amount required, but limited by amount provided
 							var/obj/item/stack/cable_coil/CC = new /obj/item/stack/cable_coil(src)
@@ -144,8 +144,8 @@
 							req_components[i] -= camt
 							update_desc()
 							break
-					if(user.transferItemToLoc(attackedby, src))
-						components += attackedby
+					if(user.transferItemToLoc(I, src))
+						components += I
 						req_components[i]--
 						update_desc()
 					break

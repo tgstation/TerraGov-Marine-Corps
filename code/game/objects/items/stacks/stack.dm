@@ -334,9 +334,9 @@
 	user.put_in_hands(S)
 
 
-/obj/item/stack/attackby(obj/item/attackedby, mob/user, params)
-	if(istype(attackedby, merge_type))
-		var/obj/item/stack/S = attackedby
+/obj/item/stack/attackby(obj/item/I, mob/user)
+	if(istype(I, merge_type))
+		var/obj/item/stack/S = I
 		if(merge(S))
 			to_chat(user, "<span class='notice'>Your [S.name] stack now contains [S.get_amount()] [S.singular_name]\s.</span>")
 		return

@@ -111,17 +111,17 @@
 	cell.charge -= powerused
 	return ..()
 
-/obj/item/weapon/powerfist/attackby(obj/item/attackedby, mob/user, params)
-	if(!istype(attackedby, /obj/item/cell))
+/obj/item/weapon/powerfist/attackby(obj/item/I, mob/user, params)
+	if(!istype(I, /obj/item/cell))
 		return ..()
-	if(!istype(attackedby, /obj/item/cell/lasgun))
+	if(!istype(I, /obj/item/cell/lasgun))
 		to_chat(user, "<span class='warning'>The powerfist only accepts lasgun cells!</span>")
 		return
 	if(cell)
 		unload(user)
-	user.transferItemToLoc(attackedby,src)
-	cell = attackedby
-	to_chat(user, "<span class='notice'>You insert the [attackedby] into the [src].</span>")
+	user.transferItemToLoc(I,src)
+	cell = I
+	to_chat(user, "<span class='notice'>You insert the [I] into the [src].</span>")
 
 /obj/item/weapon/powerfist/screwdriver_act(mob/living/user, obj/item/I)
 	if(..())

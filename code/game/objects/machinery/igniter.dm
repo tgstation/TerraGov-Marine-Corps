@@ -61,13 +61,13 @@
 		icon_state = "[base_state]-p"
 //		src.sd_SetLuminosity(0)
 
-/obj/machinery/sparker/attackby(obj/item/attackedby, mob/user, params)
+/obj/machinery/sparker/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(istype(attackedby, /obj/item/detective_scanner))
+	if(istype(I, /obj/item/detective_scanner))
 		return
 
-	else if(isscrewdriver(attackedby))
+	else if(isscrewdriver(I))
 		disable = !disable
 		if(disable)
 			user.visible_message("<span class='warning'> [user] has disabled the [src]!</span>", "<span class='warning'> You disable the connection to the [src].</span>")
@@ -107,7 +107,7 @@
 	return attack_hand(user)
 
 
-/obj/machinery/ignition_switch/attackby(obj/item/attackedby, mob/user, params)
+/obj/machinery/ignition_switch/attackby(obj/item/I, mob/user, params)
 	. = ..()
 	return attack_hand(user)
 

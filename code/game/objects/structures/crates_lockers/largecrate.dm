@@ -22,12 +22,12 @@
 	to_chat(user, "<span class='notice'>You need a crowbar to pry this open!</span>")
 
 
-/obj/structure/largecrate/attackby(obj/item/attackedby, mob/user, params)
+/obj/structure/largecrate/attackby(obj/item/I, mob/user, params)
 	. = ..()
 	if(.)
 		return TRUE
 
-	if(istype(attackedby, /obj/item/powerloader_clamp))
+	if(istype(I, /obj/item/powerloader_clamp))
 		return
 
 	return attack_hand(user)

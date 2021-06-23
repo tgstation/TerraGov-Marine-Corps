@@ -72,16 +72,16 @@
 	. = ..()
 	toggle_item_bump_attack(user, FALSE)
 
-/obj/item/weapon/claymore/harvester/attackby(obj/item/attackedby, mob/user, params)
+/obj/item/weapon/claymore/harvester/attackby(obj/item/I, mob/user)
 	if(user.do_actions)
 		return TRUE
 
-	if(!isreagentcontainer(attackedby) || istype(attackedby, /obj/item/reagent_containers/pill))
-		to_chat(user, "<span class='rose'>[attackedby] isn't compatible with [src].</span>")
+	if(!isreagentcontainer(I) || istype(I, /obj/item/reagent_containers/pill))
+		to_chat(user, "<span class='rose'>[I] isn't compatible with [src].</span>")
 		return TRUE
 
 	var/trans
-	var/obj/item/reagent_containers/container = attackedby
+	var/obj/item/reagent_containers/container = I
 
 	if(!container.reagents.total_volume)
 		trans = beaker.reagents.trans_to(container, 30)
@@ -267,10 +267,10 @@
 	attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 
 
-/obj/item/weapon/combat_knife/attackby(obj/item/attackedby, mob/user, params)
-	if(!istype(attackedby,/obj/item/stack/cable_coil))
+/obj/item/weapon/combat_knife/attackby(obj/item/I, mob/user)
+	if(!istype(I,/obj/item/stack/cable_coil))
 		return ..()
-	var/obj/item/stack/cable_coil/CC = attackedby
+	var/obj/item/stack/cable_coil/CC = I
 	if(!CC.use(5))
 		to_chat(user, "<span class='notice'>You don't have enough cable for that.</span>")
 		return

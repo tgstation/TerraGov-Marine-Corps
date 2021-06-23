@@ -79,14 +79,14 @@
 	update_icon()
 	return 1
 
-/obj/structure/closet/crate/attackby(obj/item/attackedby, mob/user, params)
-	if(istype(attackedby, /obj/item/powerloader_clamp))
+/obj/structure/closet/crate/attackby(obj/item/I, mob/user, params)
+	if(istype(I, /obj/item/powerloader_clamp))
 		return FALSE
 
 	. = ..()
 
-	if(iscablecoil(attackedby))
-		var/obj/item/stack/cable_coil/C = attackedby
+	if(iscablecoil(I))
+		var/obj/item/stack/cable_coil/C = I
 		if(rigged)
 			to_chat(user, "<span class='notice'>[src] is already rigged!</span>")
 			return
@@ -96,15 +96,15 @@
 		to_chat(user, "<span class='notice'>You rig [src].</span>")
 		rigged = TRUE
 
-	else if(istype(attackedby, /obj/item/electropack))
+	else if(istype(I, /obj/item/electropack))
 		if(!rigged)
 			return
 
-		to_chat(user, "<span class='notice'>You attach [attackedby] to [src].</span>")
+		to_chat(user, "<span class='notice'>You attach [I] to [src].</span>")
 		user.drop_held_item()
-		attackedby.forceMove(src)
+		I.forceMove(src)
 
-	else if(iswirecutter(attackedby))
+	else if(iswirecutter(I))
 		if(!rigged)
 			return
 

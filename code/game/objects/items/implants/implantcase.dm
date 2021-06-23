@@ -24,12 +24,12 @@
 		icon_state = "implantcase-0"
 
 
-/obj/item/implantcase/attackby(obj/item/attackedby, mob/user, params)
+/obj/item/implantcase/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(istype(attackedby, /obj/item/tool/pen))
+	if(istype(I, /obj/item/tool/pen))
 		var/label = stripped_input(user, "What would you like the label to be?", text("[]", name), null)
-		if(user.get_active_held_item() != attackedby)
+		if(user.get_active_held_item() != I)
 			return
 		if((!in_range(src, usr) && loc != user))
 			return
@@ -38,7 +38,7 @@
 		else
 			name = initial(name)
 
-	else if(istype(attackedby, /obj/item/reagent_containers/syringe))
+	else if(istype(I, /obj/item/reagent_containers/syringe))
 		if(!imp?.allow_reagents)
 			return
 
@@ -46,11 +46,11 @@
 			to_chat(user, "<span class='warning'>[src] is full.</span>")
 			return
 
-		attackedby.reagents.trans_to(imp, 5)
-		to_chat(user, "<span class='notice'>You inject 5 units of the solution. The syringe now contains [attackedby.reagents.total_volume] units.</span>")
+		I.reagents.trans_to(imp, 5)
+		to_chat(user, "<span class='notice'>You inject 5 units of the solution. The syringe now contains [I.reagents.total_volume] units.</span>")
 
-	else if(istype(attackedby, /obj/item/implanter))
-		var/obj/item/implanter/M = attackedby
+	else if(istype(I, /obj/item/implanter))
+		var/obj/item/implanter/M = I
 		if(M.imp)
 			if((imp || M.imp.implanted))
 				return
@@ -68,8 +68,8 @@
 		update_icon()
 		M.update_icon()
 
-	else if(istype(attackedby, /obj/item/implant))
-		user.temporarilyRemoveItemFromInventory(attackedby)
-		attackedby.forceMove(src)
-		imp = attackedby
+	else if(istype(I, /obj/item/implant))
+		user.temporarilyRemoveItemFromInventory(I)
+		I.forceMove(src)
+		imp = I
 		update_icon()

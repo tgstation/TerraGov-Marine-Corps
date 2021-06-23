@@ -80,11 +80,11 @@
 	filling_color = "#E6E8DA"
 	plantname = "potato"
 
-/obj/item/reagent_containers/food/snacks/grown/potato/attackby(obj/item/attackedby, mob/user, params)
+/obj/item/reagent_containers/food/snacks/grown/potato/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(iscablecoil(attackedby))
-		var/obj/item/stack/cable_coil/C = attackedby
+	if(iscablecoil(I))
+		var/obj/item/stack/cable_coil/C = I
 		if(!C.use(5))
 			return
 
@@ -274,10 +274,10 @@
 	filling_color = "#FAB728"
 	plantname = "pumpkin"
 
-/obj/item/reagent_containers/food/snacks/grown/pumpkin/attackby(obj/item/attackedby, mob/user, params)
+/obj/item/reagent_containers/food/snacks/grown/pumpkin/attackby(obj/item/I, mob/user, param)
 	. = ..()
 
-	if(attackedby.sharp == IS_SHARP_ITEM_ACCURATE || attackedby.sharp == IS_SHARP_ITEM_BIG)
+	if(I.sharp == IS_SHARP_ITEM_ACCURATE || I.sharp == IS_SHARP_ITEM_BIG)
 		to_chat(user, "<span class='notice'>You carve a face into [src]!</span>")
 		new /obj/item/clothing/head/pumpkinhead(user.loc)
 		qdel(src)

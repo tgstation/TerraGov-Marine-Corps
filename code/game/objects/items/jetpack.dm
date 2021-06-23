@@ -177,11 +177,11 @@
 	playsound(loc, 'sound/effects/refill.ogg', 30, 1, 3)
 	to_chat(user, "<span class='notice'>You refill [src] with [target].</span>")
 
-/obj/item/jetpack_marine/attackby(obj/item/attackedby, mob/user, params)
+/obj/item/jetpack_marine/attackby(obj/item/I, mob/user, params)
 	. = ..()
-	if(!istype(attackedby, /obj/item/ammo_magazine/flamer_tank))
+	if(!istype(I, /obj/item/ammo_magazine/flamer_tank))
 		return
-	var/obj/item/ammo_magazine/flamer_tank/FT = attackedby
+	var/obj/item/ammo_magazine/flamer_tank/FT = I
 	if(FT.current_rounds == 0)
 		to_chat(user, "<span class='warning'>Out of fuel!</span>")
 		return
@@ -192,5 +192,5 @@
 	fuel_indicator = FUEL_INDICATOR_FULL
 	change_fuel_indicator()
 	playsound(loc, 'sound/effects/refill.ogg', 25, 1, 3)
-	to_chat(user, "<span class='notice'>You refill [src] with [attackedby].</span>")
+	to_chat(user, "<span class='notice'>You refill [src] with [I].</span>")
 	update_icon()

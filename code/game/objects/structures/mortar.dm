@@ -133,11 +133,11 @@
 			return FALSE
 	return TRUE
 
-/obj/structure/mortar/attackby(obj/item/attackedby, mob/user, params)
+/obj/structure/mortar/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(istype(attackedby, /obj/item/mortal_shell))
-		var/obj/item/mortal_shell/mortar_shell = attackedby
+	if(istype(I, /obj/item/mortal_shell))
+		var/obj/item/mortal_shell/mortar_shell = I
 
 		if(issynth(user) && !CONFIG_GET(flag/allow_synthetic_gun_use))
 			to_chat(user, "<span class='warning'>Your programming restricts operating heavy weaponry.</span>")
@@ -198,9 +198,9 @@
 		addtimer(CALLBACK(GLOBAL_PROC, .proc/playsound, T, 'sound/weapons/guns/misc/mortar_travel.ogg', 50, 1), travel_time)
 		addtimer(CALLBACK(src, .proc/detonate_shell, T, mortar_shell), travel_time + 45)//This should always be 45 ticks!
 
-	if(!istype(attackedby, /obj/item/binoculars/tactical))
+	if(!istype(I, /obj/item/binoculars/tactical))
 		return
-	var/obj/item/binoculars/tactical/binocs = attackedby
+	var/obj/item/binoculars/tactical/binocs = I
 	playsound(src, 'sound/effects/binoctarget.ogg', 35)
 	if(binocs.set_mortar(src))
 		to_chat(user, "<span class='notice'>You link the mortar to the [binocs] allowing for remote targeting.</span>")

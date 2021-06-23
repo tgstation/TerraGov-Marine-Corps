@@ -50,11 +50,11 @@
 	icon_state = "coin_clown"
 	flags_token = TOKEN_ALL
 
-/obj/item/coin/attackby(obj/item/attackedby, mob/user, params)
+/obj/item/coin/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(istype(attackedby, /obj/item/stack/cable_coil))
-		var/obj/item/stack/cable_coil/CC = attackedby
+	if(istype(I, /obj/item/stack/cable_coil))
+		var/obj/item/stack/cable_coil/CC = I
 		if(string_attached)
 			to_chat(user, "<span class='notice'>There already is a string attached to this coin.</span>")
 			return
@@ -67,7 +67,7 @@
 		string_attached = TRUE
 		to_chat(user, "<span class='notice'>You attach a string to the coin.</span>")
 
-	else if(iswirecutter(attackedby))
+	else if(iswirecutter(I))
 		if(!string_attached)
 			return
 

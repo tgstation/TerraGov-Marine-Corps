@@ -155,11 +155,11 @@
 /turf/closed/glass/thin/intersection
 	icon_state = "Intersection"
 
-/turf/closed/attackby(obj/item/attackedby, mob/user, params)
+/turf/closed/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(istype(attackedby, /obj/item/tool/pickaxe/plasmacutter) && !user.do_actions)
-		var/obj/item/tool/pickaxe/plasmacutter/P = attackedby
+	if(istype(I, /obj/item/tool/pickaxe/plasmacutter) && !user.do_actions)
+		var/obj/item/tool/pickaxe/plasmacutter/P = I
 		if(!ismineralturf(src) && !istype(src, /turf/closed/gm/dense) && !istype(src, /turf/closed/glass) && !istype(src, /turf/closed/desertdamrockwall) && !istype(src, /turf/closed/brock))
 			to_chat(user, "<span class='warning'>[P] can't cut through this!</span>")
 			return
@@ -208,11 +208,11 @@
 /turf/closed/ice/thin/intersection
 	icon_state = "Intersection"
 
-/turf/closed/attackby(obj/item/attackedby, mob/user, params)
+/turf/closed/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(istype(attackedby, /obj/item/tool/pickaxe/plasmacutter) && !user.do_actions)
-		var/obj/item/tool/pickaxe/plasmacutter/P = attackedby
+	if(istype(I, /obj/item/tool/pickaxe/plasmacutter) && !user.do_actions)
+		var/obj/item/tool/pickaxe/plasmacutter/P = I
 		if(!ismineralturf(src) && !istype(src, /turf/closed/gm/dense) && !istype(src, /turf/closed/ice) && !istype(src, /turf/closed/desertdamrockwall) && !istype(src, /turf/closed/brock))
 			to_chat(user, "<span class='warning'>[P] can't cut through this!</span>")
 			return

@@ -122,9 +122,9 @@
 				to_chat(M, "<span class='warning'>You are not supposed to go past [src]...</span>")
 			crumple()
 
-/obj/item/tape/attackby(obj/item/attackedby, mob/user, params)
+/obj/item/tape/attackby(obj/item/I, mob/user, params)
 	. = ..()
-	breaktape(attackedby, user)
+	breaktape(I, user)
 
 /obj/item/tape/attack_hand(mob/living/user)
 	. = ..()

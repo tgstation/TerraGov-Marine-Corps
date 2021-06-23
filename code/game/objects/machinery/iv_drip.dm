@@ -59,28 +59,28 @@
 			START_PROCESSING(SSobj, src)
 
 
-/obj/machinery/iv_drip/attackby(obj/item/attackedby, mob/user, params)
+/obj/machinery/iv_drip/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(istype(attackedby, /obj/item/reagent_containers))
+	if(istype(I, /obj/item/reagent_containers))
 		if(beaker)
 			to_chat(user, "<span class='warning'>There is already a reagent container loaded!</span>")
 			return
 
-		if((!istype(attackedby, /obj/item/reagent_containers/blood) && !istype(attackedby, /obj/item/reagent_containers/glass)) || istype(attackedby, /obj/item/reagent_containers/glass/bucket))
+		if((!istype(I, /obj/item/reagent_containers/blood) && !istype(I, /obj/item/reagent_containers/glass)) || istype(I, /obj/item/reagent_containers/glass/bucket))
 			to_chat(user, "<span class='warning'>That won't fit!</span>")
 			return
 
-		if(!user.transferItemToLoc(attackedby, src))
+		if(!user.transferItemToLoc(I, src))
 			return
 
-		beaker = attackedby
+		beaker = I
 
 		var/reagentnames = ""
 		for(var/datum/reagent/R in beaker.reagents.reagent_list)
 			reagentnames += ";[R.name]"
 
-		to_chat(user, "You attach \the [attackedby] to \the [src].")
+		to_chat(user, "You attach \the [I] to \the [src].")
 		update_icon()
 
 

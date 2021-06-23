@@ -88,18 +88,18 @@
 
 	updateUsrDialog()
 
-/obj/item/storage/secure/attackby(obj/item/attackedby, mob/user, params)
+/obj/item/storage/secure/attackby(obj/item/I, mob/user, params)
 	if(!locked)
 		return ..()
 
-	else if(isscrewdriver(attackedby))
+	else if(isscrewdriver(I))
 		if(!do_after(user, 20, TRUE, src, BUSY_ICON_BUILD))
 			return
 
 		open = !open
 		user.show_message("<span class='notice'> You [open ? "open" : "close"] the service panel.</span>")
 
-	else if(ismultitool(attackedby) && open && !l_hacking)
+	else if(ismultitool(I) && open && !l_hacking)
 		user.show_message("<span class='warning'> Now attempting to reset internal memory, please hold.</span>")
 		l_hacking = TRUE
 		if(!do_after(user, 100, TRUE, src, BUSY_ICON_BUILD))

@@ -7,7 +7,7 @@
 	anchored = FALSE
 
 	use_power = IDLE_POWER_USE
-	idle_power_usage = 100 //Watts, attackedby hope.  Just enough to do the computer and display things.
+	idle_power_usage = 100 //Watts, I hope.  Just enough to do the computer and display things.
 
 	var/obj/machinery/atmospherics/components/binary/circulator/circ1
 	var/obj/machinery/atmospherics/components/binary/circulator/circ2
@@ -73,10 +73,10 @@
 	add_avail(lastgen)
 
 
-/obj/machinery/power/generator/attackby(obj/item/attackedby, mob/user, params)
+/obj/machinery/power/generator/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(iswrench(attackedby))
+	if(iswrench(I))
 		anchored = !anchored
 		to_chat(user, "<span class='notice'>You [anchored ? "secure" : "unsecure"] the bolts holding [src] to the floor.</span>")
 		use_power = anchored

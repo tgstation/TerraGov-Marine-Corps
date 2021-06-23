@@ -64,16 +64,16 @@
 	buildstackamount = 2
 
 
-/obj/structure/bed/chair/reinforced/attackby(obj/item/attackedby, mob/user, params)
+/obj/structure/bed/chair/reinforced/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(iswrench(attackedby))
+	if(iswrench(I))
 		to_chat(user, "<span class='warning'>You can only deconstruct this by welding it down!</span>")
 
-	else if(iswelder(attackedby))
+	else if(iswelder(I))
 		if(user.do_actions)
 			return
-		var/obj/item/tool/weldingtool/WT = attackedby
+		var/obj/item/tool/weldingtool/WT = I
 
 		if(user.skills.getRating("engineer") < SKILL_ENGINEER_METAL)
 			user.visible_message("<span class='notice'>[user] fumbles around figuring out how to weld down \the [src].</span>",
@@ -285,10 +285,10 @@
 		"<span class='warning'>We smash \the [src], shearing the bolts!</span>")
 		fold_down(1)
 
-/obj/structure/bed/chair/dropship/passenger/attackby(obj/item/attackedby, mob/user, params)
+/obj/structure/bed/chair/dropship/passenger/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(iswrench(attackedby))
+	if(iswrench(I))
 		switch(chair_state)
 			if(DROPSHIP_CHAIR_UNFOLDED)
 				user.visible_message("<span class='warning'>[user] begins loosening the bolts on \the [src].</span>",
@@ -318,8 +318,8 @@
 				to_chat(user, "<span class='warning'>\The [src] appears to be broken and needs welding.</span>")
 				return
 
-	else if(iswelder(attackedby) && chair_state == DROPSHIP_CHAIR_BROKEN)
-		var/obj/item/tool/weldingtool/C = attackedby
+	else if(iswelder(I) && chair_state == DROPSHIP_CHAIR_BROKEN)
+		var/obj/item/tool/weldingtool/C = I
 		if(!C.remove_fuel(0, user))
 			return
 

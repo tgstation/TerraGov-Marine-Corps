@@ -13,23 +13,23 @@
 	var/obj/item/fuelCell/cell_right = null
 	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
 
-/obj/machinery/fuelcell_recycler/attackby(obj/item/attackedby, mob/user, params)
+/obj/machinery/fuelcell_recycler/attackby(obj/item/I, mob/user, params)
 	. = ..()
-	if(istype(attackedby, /obj/item/fuelCell))
+	if(istype(I, /obj/item/fuelCell))
 		if(!cell_left)
-			if(user.transferItemToLoc(attackedby, src))
-				cell_left = attackedby
+			if(user.transferItemToLoc(I, src))
+				cell_left = I
 				start_processing()
 		else if(!cell_right)
-			if(user.transferItemToLoc(attackedby, src))
-				cell_right = attackedby
+			if(user.transferItemToLoc(I, src))
+				cell_right = I
 				start_processing()
 		else
 			to_chat(user, "<span class='notice'>The recycler is full!</span>")
 		update_icon()
 		return
 
-	to_chat(user, "<span class='notice'>You can't see how you'd use [attackedby] with [src]...</span>")
+	to_chat(user, "<span class='notice'>You can't see how you'd use [I] with [src]...</span>")
 
 
 /obj/machinery/fuelcell_recycler/attack_hand(mob/living/user)

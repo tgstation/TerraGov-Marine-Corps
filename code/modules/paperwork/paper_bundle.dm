@@ -13,12 +13,12 @@
 	var/page = 1
 	var/screen = 0
 
-/obj/item/paper_bundle/attackby(obj/item/attackedby, mob/user, params)
+/obj/item/paper_bundle/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
 
-	if(istype(attackedby, /obj/item/paper))
-		var/obj/item/paper/P = attackedby
+	if(istype(I, /obj/item/paper))
+		var/obj/item/paper/P = I
 
 		if(istype(P, /obj/item/paper/carbon))
 			var/obj/item/paper/carbon/C = P
@@ -32,27 +32,27 @@
 		user.dropItemToGround(P)
 		attach_doc(P, user)
 
-	else if(istype(attackedby, /obj/item/photo))
+	else if(istype(I, /obj/item/photo))
 		if(loc != user)
 			return
 
-		user.dropItemToGround(attackedby)
-		attach_doc(attackedby, user)
+		user.dropItemToGround(I)
+		attach_doc(I, user)
 
-	else if(attackedby.heat >= 400)
-		burnpaper(attackedby, user)
+	else if(I.heat >= 400)
+		burnpaper(I, user)
 
-	else if(istype(attackedby, /obj/item/paper_bundle))
+	else if(istype(I, /obj/item/paper_bundle))
 		if(loc != user)
 			return
 
-		user.dropItemToGround(attackedby)
-		for(var/obj/O in attackedby)
+		user.dropItemToGround(I)
+		for(var/obj/O in I)
 			attach_doc(O, user, TRUE)
-		to_chat(user, "<span class='notice'>You add \the [attackedby] to [src].</span>")
-		qdel(attackedby)
+		to_chat(user, "<span class='notice'>You add \the [I] to [src].</span>")
+		qdel(I)
 
-	else if(istype(attackedby, /obj/item/tool/pen) || istype(attackedby, /obj/item/toy/crayon))
+	else if(istype(I, /obj/item/tool/pen) || istype(I, /obj/item/toy/crayon))
 		user << browse(null, "window=[name]") //Closes the dialog
 
 	update_icon()

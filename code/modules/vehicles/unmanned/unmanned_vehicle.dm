@@ -55,33 +55,33 @@
 	if(ishuman(user))
 		to_chat(user, "It has [current_rounds] out of [max_rounds] ammo left.")
 
-/obj/vehicle/unmanned/attackby(obj/item/attackedby, mob/user, params)
+/obj/vehicle/unmanned/attackby(obj/item/I, mob/user, params)
 	. = ..()
-	if(!istype(attackedby, /obj/item/uav_turret) && !istype(attackedby, /obj/item/explosive/plastique))
+	if(!istype(I, /obj/item/uav_turret) && !istype(I, /obj/item/explosive/plastique))
 		return
 	if(turret_type)
 		to_chat(user, "<span class='notice'>There's already something attached!</span>")
 		return
-	if(istype(attackedby, /obj/item/uav_turret))
-		var/obj/item/uav_turret/turret = attackedby
+	if(istype(I, /obj/item/uav_turret))
+		var/obj/item/uav_turret/turret = I
 		if(turret_pattern != turret.turret_pattern)
 			to_chat(user, "<span class='notice'>You can't attach that type of turret!</span>")
 			return
-	user.visible_message("<span class='notice'>[user] starts to attach [attackedby] to [src].</span>",
-	"<span class='notice'>You start to attach [attackedby] to [src].</span>")
+	user.visible_message("<span class='notice'>[user] starts to attach [I] to [src].</span>",
+	"<span class='notice'>You start to attach [I] to [src].</span>")
 	if(!do_after(user, 3 SECONDS, TRUE, src, BUSY_ICON_GENERIC))
 		return
-	if(istype(attackedby, /obj/item/uav_turret))
-		var/obj/item/uav_turret/turret = attackedby
+	if(istype(I, /obj/item/uav_turret))
+		var/obj/item/uav_turret/turret = I
 		turret_type = turret.turret_type
 		ammo = GLOB.ammo_list[turret.ammo_type]
-	else if(istype(attackedby, /obj/item/explosive/plastique))
+	else if(istype(I, /obj/item/explosive/plastique))
 		turret_type = TURRET_TYPE_EXPLOSIVE
-	user.visible_message("<span class='notice'>[user] attaches [attackedby] to [src].</span>",
-	"<span class='notice'>You attach [attackedby] to [src].</span>")
+	user.visible_message("<span class='notice'>[user] attaches [I] to [src].</span>",
+	"<span class='notice'>You attach [I] to [src].</span>")
 	update_icon()
 	SEND_SIGNAL(src, COMSIG_UNMANNED_TURRET_UPDATED, turret_type)
-	qdel(attackedby)
+	qdel(I)
 
 /**
  * Called when the drone is unlinked from a remote control

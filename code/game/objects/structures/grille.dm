@@ -71,24 +71,24 @@
 	else if(istype(mover, /obj/projectile))
 		return prob(90)
 
-/obj/structure/grille/attackby(obj/item/attackedby, mob/user, params)
+/obj/structure/grille/attackby(obj/item/I, mob/user, params)
 	. = ..()
 	if(.)
 		return
 
-	if(iswirecutter(attackedby))
+	if(iswirecutter(I))
 		playsound(loc, 'sound/items/wirecutter.ogg', 25, 1)
 		new /obj/item/stack/rods(loc, 2)
 		qdel(src)
 
-	else if(isscrewdriver(attackedby) && isopenturf(loc))
+	else if(isscrewdriver(I) && isopenturf(loc))
 		playsound(loc, 'sound/items/screwdriver.ogg', 25, 1)
 		anchored = !anchored
 		user.visible_message("<span class='notice'>[user] [anchored ? "fastens" : "unfastens"] the grille.</span>", \
 							"<span class='notice'>You have [anchored ? "fastened the grille to" : "unfastened the grill from"] the floor.</span>")
 
-	else if(istype(attackedby, /obj/item/stack/sheet/glass))
-		var/obj/item/stack/sheet/glass/ST = attackedby
+	else if(istype(I, /obj/item/stack/sheet/glass))
+		var/obj/item/stack/sheet/glass/ST = I
 		var/dir_to_set = NORTH
 
 		if(loc == user.loc)

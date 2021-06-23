@@ -204,13 +204,13 @@
 
 // Due to storage type consolidation this should get used more now.
 // I have cleaned it up a little, but it could probably use more.  -Sayu
-/obj/item/attackby(obj/item/attackedby, mob/user, params)
+/obj/item/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(!istype(attackedby, /obj/item/storage))
+	if(!istype(I, /obj/item/storage))
 		return
 
-	var/obj/item/storage/S = attackedby
+	var/obj/item/storage/S = I
 
 	if(!(S.flags_storage & STORAGE_FLAG_PICKUP) || !isturf(loc))
 		return

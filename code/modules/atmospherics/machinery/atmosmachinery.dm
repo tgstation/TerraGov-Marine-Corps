@@ -165,9 +165,9 @@
 	nodes[nodes.Find(reference)] = null
 	update_icon()
 
-/obj/machinery/atmospherics/attackby(obj/item/attackedby, mob/user, params)
-	if(istype(attackedby, /obj/item/pipe)) //lets you autodrop
-		var/obj/item/pipe/pipe = attackedby
+/obj/machinery/atmospherics/attackby(obj/item/I, mob/user, params)
+	if(istype(I, /obj/item/pipe)) //lets you autodrop
+		var/obj/item/pipe/pipe = I
 		if(!user.dropItemToGround(pipe))
 			return
 

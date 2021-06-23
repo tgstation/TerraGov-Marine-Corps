@@ -31,16 +31,16 @@
 		else
 			to_chat(user, "<span class='danger'>[src]'s parts look very loose!</span>")
 
-/obj/machinery/bot/attackby(obj/item/attackedby, mob/user, params)
+/obj/machinery/bot/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(isscrewdriver(attackedby))
+	if(isscrewdriver(I))
 		if(locked)
 			return
 		open = !open
 		to_chat(user, "<span class='notice'>Maintenance panel is now [src.open ? "opened" : "closed"].</span>")
 
-	else if(iswelder(attackedby))
+	else if(iswelder(I))
 		if(obj_integrity >= max_integrity)
 			to_chat(user, "<span class='notice'>[src] does not need a repair.</span>")
 			return

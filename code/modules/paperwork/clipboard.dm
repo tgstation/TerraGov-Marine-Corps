@@ -41,19 +41,19 @@
 	overlays += "clipboard_over"
 
 
-/obj/item/clipboard/attackby(obj/item/attackedby, mob/user, params)
+/obj/item/clipboard/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(istype(attackedby, /obj/item/paper) || istype(attackedby, /obj/item/photo))
+	if(istype(I, /obj/item/paper) || istype(I, /obj/item/photo))
 		user.drop_held_item()
-		attackedby.forceMove(src)
-		if(istype(attackedby, /obj/item/paper))
-			toppaper = attackedby
-		to_chat(user, "<span class='notice'>You clip the [attackedby] onto \the [src].</span>")
+		I.forceMove(src)
+		if(istype(I, /obj/item/paper))
+			toppaper = I
+		to_chat(user, "<span class='notice'>You clip the [I] onto \the [src].</span>")
 		update_icon()
 
-	else if(istype(toppaper) && istype(attackedby, /obj/item/tool/pen))
-		toppaper.attackby(attackedby, user, params)
+	else if(istype(toppaper) && istype(I, /obj/item/tool/pen))
+		toppaper.attackby(I, user, params)
 		update_icon()
 
 

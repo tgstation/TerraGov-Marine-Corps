@@ -59,16 +59,16 @@
 	..()
 	to_chat(user, "It contains [reagents.total_volume] unit\s of water!")
 
-/obj/structure/mopbucket/attackby(obj/item/attackedby, mob/user, params)
+/obj/structure/mopbucket/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(istype(attackedby, /obj/item/tool/mop))
+	if(istype(I, /obj/item/tool/mop))
 		if(reagents.total_volume < 1)
 			to_chat(user, "<span class='warning'>[src] is out of water!</span>")
 			return
 
-		reagents.trans_to(attackedby, 5)
-		to_chat(user, "<span class='notice'>You wet [attackedby] in [src].</span>")
+		reagents.trans_to(I, 5)
+		to_chat(user, "<span class='notice'>You wet [I] in [src].</span>")
 		playsound(loc, 'sound/effects/slosh.ogg', 25, 1)
 
 /obj/structure/shipmast

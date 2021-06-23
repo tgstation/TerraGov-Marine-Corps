@@ -51,10 +51,10 @@
 /obj/machinery/holosign_switch/attack_paw(mob/living/carbon/human/user)
 	return src.attack_hand(user)
 
-/obj/machinery/holosign_switch/attackby(obj/item/attackedby, mob/user, params)
+/obj/machinery/holosign_switch/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(istype(attackedby, /obj/item/detective_scanner))
+	if(istype(I, /obj/item/detective_scanner))
 		return
 	else
 		return attack_hand(user)

@@ -375,9 +375,9 @@
 	max_storage_space = 28
 	can_hold = list(/obj/item/ammo_magazine/handful)
 
-/obj/item/storage/belt/shotgun/attackby(obj/item/attackedby, mob/user, params)
-	if(istype(attackedby, /obj/item/ammo_magazine))
-		var/obj/item/ammo_magazine/magazine = attackedby
+/obj/item/storage/belt/shotgun/attackby(obj/item/item, mob/user, params)
+	if(istype(item, /obj/item/ammo_magazine))
+		var/obj/item/ammo_magazine/magazine = item
 
 		if(magazine.flags_magazine & AMMUNITION_REFILLABLE)
 			if(!magazine.current_rounds)
@@ -423,9 +423,9 @@
 	var/holding = round((contents.len + 1) / 2)
 	setDir(holding + round(holding/3))
 
-/obj/item/storage/belt/shotgun/martini/attackby(obj/item/attackedby, mob/user, params)
-	if(istype(attackedby, /obj/item/ammo_magazine))
-		var/obj/item/ammo_magazine/new_mag = attackedby
+/obj/item/storage/belt/shotgun/martini/attackby(obj/item/item, mob/user, params)
+	if(istype(item, /obj/item/ammo_magazine))
+		var/obj/item/ammo_magazine/new_mag = item
 		if(new_mag.caliber != CALIBER_557)
 			to_chat(user, "<span class='notice'>[src] can only be filled with .557/440 ball rifle rounds.</span>")
 			return

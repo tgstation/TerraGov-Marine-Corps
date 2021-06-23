@@ -28,11 +28,11 @@
 			qdel(src)
 
 
-/obj/structure/sign/attackby(obj/item/attackedby, mob/user, params)	//deconstruction
+/obj/structure/sign/attackby(obj/item/I, mob/user, params)	//deconstruction
 	. = ..()
 
-	if(isscrewdriver(attackedby) && !istype(src, /obj/structure/sign/double))
-		to_chat(user, "You unfasten the sign with your [attackedby].")
+	if(isscrewdriver(I) && !istype(src, /obj/structure/sign/double))
+		to_chat(user, "You unfasten the sign with your [I].")
 		var/obj/item/sign/S = new(loc)
 		S.name = name
 		S.desc = desc
@@ -47,10 +47,10 @@
 	w_class = WEIGHT_CLASS_NORMAL		//big
 	var/sign_state = ""
 
-/obj/item/sign/attackby(obj/item/attackedby, mob/user, params)	//construction
+/obj/item/sign/attackby(obj/item/I, mob/user, params)	//construction
 	. = ..()
 
-	if(isscrewdriver(attackedby) && isturf(user.loc))
+	if(isscrewdriver(I) && isturf(user.loc))
 		var/direction = tgui_input_list(user, "In which direction?", "Select direction.", list("North", "East", "South", "West"))
 		if(!direction)
 			return
@@ -69,7 +69,7 @@
 		S.name = name
 		S.desc = desc
 		S.icon_state = sign_state
-		to_chat(user, "You fasten \the [S] with your [attackedby].")
+		to_chat(user, "You fasten \the [S] with your [I].")
 		qdel(src)
 
 

@@ -97,10 +97,10 @@ Code:
 	updateUsrDialog()
 
 
-/obj/item/assembly/signaler/attackby(obj/item/attackedby, mob/user, params)
+/obj/item/assembly/signaler/attackby(obj/item/I, mob/user, params)
 	. = ..()
-	if(issignaler(attackedby))
-		var/obj/item/assembly/signaler/signaler2 = attackedby
+	if(issignaler(I))
+		var/obj/item/assembly/signaler/signaler2 = I
 		if(secured && signaler2.secured)
 			code = signaler2.code
 			set_frequency(signaler2.frequency)

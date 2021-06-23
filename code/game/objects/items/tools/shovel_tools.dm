@@ -158,7 +158,7 @@
 /obj/item/tool/shovel/etool/update_icon_state()
 	if(folded)
 		icon_state = "etool_c"
-	else if(sharp)
+	else if(sharp) 
 		icon_state = "etool_s"
 	else
 		icon_state = "etool"
@@ -178,8 +178,8 @@
 		force = 30
 	..()
 
-/obj/item/tool/shovel/etool/attackby(obj/item/attackedby, mob/user, params)
-	if(!attackedby.sharp)
+/obj/item/tool/shovel/etool/attackby(obj/item/I, mob/user, params)
+	if(!I.sharp)
 		return ..()
 	if(sharp)
 		to_chat(user, "<span class='notice'>The entrenching tool is already sharpened.</span>")
@@ -187,8 +187,8 @@
 	if(folded)
 		to_chat(user, "<span class='notice'>You cannot sharpen the entrenching tool while it is folded.</span>")
 		return
-	user.visible_message("<span class='notice'>[user] begins to sharpen the [src] with the [attackedby].</span>",
-	"<span class='notice'>You begin to sharpen the [src] with the [attackedby].</span>")
+	user.visible_message("<span class='notice'>[user] begins to sharpen the [src] with the [I].</span>",
+	"<span class='notice'>You begin to sharpen the [src] with the [I].</span>")
 	if(!do_after(user, 2 SECONDS, TRUE, src, BUSY_ICON_FRIENDLY))
 		return
 	sharp = IS_SHARP_ITEM_SIMPLE

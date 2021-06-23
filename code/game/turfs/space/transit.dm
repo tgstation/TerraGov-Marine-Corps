@@ -15,7 +15,7 @@
 	available_icon_state_amounts = 8
 
 //Overwrite because we dont want people building rods in space.
-/turf/open/space/transit/attackby(obj/item/attackedby, mob/user, params)
+/turf/open/space/transit/attackby(obj/item/I, mob/user, params)
 	return
 
 ///turf/open/space/transit/get_smooth_underlay_icon(mutable_appearance/underlay_appearance, turf/asking_turf, adjacency_dir)

@@ -33,11 +33,11 @@
 	name = "AI Interior Lockdown"
 	id = "ailockdowninterior"
 
-/obj/machinery/door_control/attackby(obj/item/attackedby, mob/user, params)
+/obj/machinery/door_control/attackby(obj/item/I, mob/user, params)
 	. = ..()
 	if(.)
 		return
-	if(istype(attackedby, /obj/item/detective_scanner))
+	if(istype(I, /obj/item/detective_scanner))
 		return
 	else
 		return attack_hand(user)
@@ -127,10 +127,10 @@
 	return attack_hand(AI)
 
 
-/obj/machinery/driver_button/attackby(obj/item/attackedby, mob/user, params)
+/obj/machinery/driver_button/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(istype(attackedby, /obj/item/detective_scanner))
+	if(istype(I, /obj/item/detective_scanner))
 		return
 	else
 		return attack_hand(user)

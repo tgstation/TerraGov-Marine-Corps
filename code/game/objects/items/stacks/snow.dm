@@ -13,11 +13,11 @@
 	max_amount = 25
 
 
-/obj/item/stack/snow/attackby(obj/item/attackedby, mob/user, params)
+/obj/item/stack/snow/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(istype(attackedby, /obj/item/tool/shovel))
-		var/obj/item/tool/shovel/ET = attackedby
+	if(istype(I, /obj/item/tool/shovel))
+		var/obj/item/tool/shovel/ET = I
 		if(!isturf(loc))
 			return
 

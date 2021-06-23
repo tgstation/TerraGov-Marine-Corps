@@ -138,10 +138,10 @@
 	update_icon()
 	playsound(loc, 'sound/items/welder2.ogg', 25, 1)
 
-/obj/machinery/computer/attackby(obj/item/attackedby, mob/user, params)
+/obj/machinery/computer/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(isscrewdriver(attackedby) && circuit)
+	if(isscrewdriver(I) && circuit)
 		if(user.skills.getRating("engineer") < SKILL_ENGINEER_MASTER)
 			user.visible_message("<span class='notice'>[user] fumbles around figuring out how to deconstruct [src].</span>",
 			"<span class='notice'>You fumble around figuring out how to deconstruct [src].</span>")

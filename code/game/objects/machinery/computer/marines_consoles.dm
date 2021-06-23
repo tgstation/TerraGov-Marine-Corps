@@ -12,11 +12,11 @@
 	var/printing = null
 
 
-/obj/machinery/computer/marine_card/attackby(obj/item/attackedby, mob/user, params)
+/obj/machinery/computer/marine_card/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(istype(attackedby, /obj/item/card/id))
-		var/obj/item/card/id/idcard = attackedby
+	if(istype(I, /obj/item/card/id))
+		var/obj/item/card/id/idcard = I
 		if(ACCESS_MARINE_LOGISTICS in idcard.access)
 			if(scan && modify)
 				to_chat(user, "Both slots are full already. Remove a card first.")
@@ -348,11 +348,11 @@
 	///Which faction this computer belongs to
 	var/faction = FACTION_TERRAGOV
 
-/obj/machinery/computer/squad_changer/attackby(obj/item/attackedby, mob/user, params)
+/obj/machinery/computer/squad_changer/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(istype(attackedby, /obj/item/card/id))
-		var/obj/item/card/id/idcard = attackedby
+	if(istype(I, /obj/item/card/id))
+		var/obj/item/card/id/idcard = I
 		if(modify)
 			to_chat(user, "Remove the inserted card first.")
 			return
@@ -429,7 +429,7 @@
 					if(squad.name == squad_name)
 						selected = squad
 						break
-
+				
 				//First, remove any existing squad access and clear the card.
 				for(var/datum/squad/Q in SSjob.squads)
 					if(findtext(modify.assignment, Q.name)) //Found one!

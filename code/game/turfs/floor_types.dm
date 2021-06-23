@@ -171,7 +171,7 @@
 /turf/open/floor/mainship/empty/fire_act(exposed_temperature, exposed_volume)
 	return
 
-/turf/open/floor/mainship/empty/attackby(obj/item/attackedby, mob/user, params) //This should fix everything else. No cables, etc
+/turf/open/floor/mainship/empty/attackby(obj/item/I, mob/user, params) //This should fix everything else. No cables, etc
 	return
 
 
@@ -326,12 +326,12 @@
 /turf/open/floor/engine/make_plating()
 	return
 
-/turf/open/floor/engine/attackby(obj/item/attackedby, mob/user, params)
-	if(iscrowbar(attackedby)) // Prevent generation of infinite 'floor_tile' objs caused by the overridden make_plating() above never clearing the var
+/turf/open/floor/engine/attackby(obj/item/I, mob/user, params)
+	if(iscrowbar(I)) // Prevent generation of infinite 'floor_tile' objs caused by the overridden make_plating() above never clearing the var
 		return
 	. = ..()
 
-	if(iswrench(attackedby))
+	if(iswrench(I))
 		user.visible_message("<span class='notice'>[user] starts removing [src]'s protective cover.</span>",
 		"<span class='notice'>You start removing [src]'s protective cover.</span>")
 		playsound(src, 'sound/items/ratchet.ogg', 25, 1)

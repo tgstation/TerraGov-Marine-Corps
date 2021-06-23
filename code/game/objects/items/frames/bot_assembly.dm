@@ -14,19 +14,19 @@
 	var/created_name = "Cleanbot"
 
 
-/obj/item/frame/bucket_sensor/attackby(obj/item/attackedby, mob/user, params)
+/obj/item/frame/bucket_sensor/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(istype(attackedby, /obj/item/robot_parts/l_arm) || istype(attackedby, /obj/item/robot_parts/r_arm))
+	if(istype(I, /obj/item/robot_parts/l_arm) || istype(I, /obj/item/robot_parts/r_arm))
 		user.drop_held_item()
-		qdel(attackedby)
+		qdel(I)
 		var/obj/machinery/bot/cleanbot/A = new(get_turf(src))
 		A.name = created_name
 		to_chat(user, "<span class='notice'>You add the robot arm to the bucket and sensor assembly. Beep boop!</span>")
 		user.temporarilyRemoveItemFromInventory(src)
 		qdel(src)
 
-	else if(istype(attackedby, /obj/item/tool/pen))
+	else if(istype(I, /obj/item/tool/pen))
 		var/t = copytext(stripped_input(user, "Enter new robot name", name, created_name),1,MAX_NAME_LEN)
 		if(!t)
 			return
@@ -52,11 +52,11 @@
 	var/created_name = "Floorbot"
 
 
-/obj/item/frame/toolbox_tiles/attackby(obj/item/attackedby, mob/user, params)
+/obj/item/frame/toolbox_tiles/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(isprox(attackedby))
-		qdel(attackedby)
+	if(isprox(I))
+		qdel(I)
 		var/obj/item/frame/toolbox_tiles_sensor/B = new
 		B.created_name = created_name
 		user.put_in_hands(B)
@@ -64,7 +64,7 @@
 		user.temporarilyRemoveItemFromInventory(src)
 		qdel(src)
 
-	else if(istype(attackedby, /obj/item/tool/pen))
+	else if(istype(I, /obj/item/tool/pen))
 		var/t = copytext(stripped_input(user, "Enter new robot name", name, created_name), 1, MAX_NAME_LEN)
 		if(!t)
 			return
@@ -87,18 +87,18 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	var/created_name = "Floorbot"
 
-/obj/item/frame/toolbox_tiles_sensor/attackby(obj/item/attackedby, mob/user, params)
+/obj/item/frame/toolbox_tiles_sensor/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(istype(attackedby, /obj/item/robot_parts/l_arm) || istype(attackedby, /obj/item/robot_parts/r_arm))
-		qdel(attackedby)
+	if(istype(I, /obj/item/robot_parts/l_arm) || istype(I, /obj/item/robot_parts/r_arm))
+		qdel(I)
 		var/obj/machinery/bot/floorbot/A = new(get_turf(user))
 		A.name = created_name
 		to_chat(user, "<span class='notice'>You add the robot arm to the odd looking toolbox assembly! Boop beep!</span>")
 		user.temporarilyRemoveItemFromInventory(src)
 		qdel(src)
 
-	else if(istype(attackedby, /obj/item/tool/pen))
+	else if(istype(I, /obj/item/tool/pen))
 		var/t = stripped_input(user, "Enter new robot name", name, created_name)
 		if(!t)
 			return
@@ -130,10 +130,10 @@
 		src.overlays += image('icons/obj/aibots.dmi', "kit_skin_[src.skin]")
 
 
-/obj/item/frame/firstaid_arm_assembly/attackby(obj/item/attackedby, mob/user, params)
+/obj/item/frame/firstaid_arm_assembly/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(istype(attackedby, /obj/item/tool/pen))
+	if(istype(I, /obj/item/tool/pen))
 		var/t = copytext(stripped_input(user, "Enter new robot name", name, created_name),1,MAX_NAME_LEN)
 		if(!t)
 			return
@@ -145,17 +145,17 @@
 
 	switch(build_step)
 		if(0)
-			if(istype(attackedby, /obj/item/healthanalyzer))
+			if(istype(I, /obj/item/healthanalyzer))
 				user.drop_held_item()
-				qdel(attackedby)
+				qdel(I)
 				build_step++
 				to_chat(user, "<span class='notice'>You add the health sensor to [src].</span>")
 				name = "First aid/robot arm/health analyzer assembly"
 				overlays += image('icons/obj/aibots.dmi', "na_scanner")
 		if(1)
-			if(isprox(attackedby))
+			if(isprox(I))
 				user.drop_held_item()
-				qdel(attackedby)
+				qdel(I)
 				build_step++
 				to_chat(user, "<span class='notice'>You complete the Medibot! Beep boop.</span>")
 				var/obj/machinery/bot/medbot/S = new /obj/machinery/bot/medbot(get_turf(src))

@@ -89,10 +89,10 @@
 	return secured
 
 
-/obj/item/assembly/attackby(obj/item/attackedby, mob/user, params)
+/obj/item/assembly/attackby(obj/item/I, mob/user, params)
 	. = ..()
-	if(isassembly(attackedby))
-		var/obj/item/assembly/A = attackedby
+	if(isassembly(I))
+		var/obj/item/assembly/A = I
 		if(!A.secured && !secured)
 			holder = new /obj/item/assembly_holder(get_turf(src))
 			holder.assemble(src, A, user)

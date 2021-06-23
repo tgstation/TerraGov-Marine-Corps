@@ -78,23 +78,23 @@
 	. = ..()
 	visible_message("<span class='notice'>[user] lovingly pats the [src].</span>", "<span class='notice'>You lovingly pat the [src].</span>")
 
-/obj/machinery/roomba/attackby(obj/item/attackedby, mob/user, params)
+/obj/machinery/roomba/attackby(obj/item/I, mob/living/user, def_zone)
 	if(!allow_claymore)
 		return
-	if(!istype(attackedby, /obj/item/explosive/mine) || claymore)
+	if(!istype(I, /obj/item/explosive/mine) || claymore)
 		return
-	visible_message("<span class='warning'>[user] begins to try to attach [attackedby] to [src]...</span>")
+	visible_message("<span class='warning'>[user] begins to try to attach [I] to [src]...</span>")
 	stop_processing()
 	if(!do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_HOSTILE))
 		start_processing()
 		return
 	start_processing()
-	visible_message("<span class='warning'>[user] slams [attackedby]'s prongs through [src]!</span>")
+	visible_message("<span class='warning'>[user] slams [I]'s prongs through [src]!</span>")
 	log_game("[user] has armed [src] with a claymore at [AREACOORD(src)]")
-	user.temporarilyRemoveItemFromInventory(attackedby)
-	attackedby.forceMove(src)
-	add_overlay(image(attackedby.icon, initial(attackedby.icon_state) + "_roomba"))
-	claymore = attackedby
+	user.temporarilyRemoveItemFromInventory(I)
+	I.forceMove(src)
+	add_overlay(image(I.icon, initial(I.icon_state) + "_roomba"))
+	claymore = I
 	claymore.armed = TRUE
 	RegisterSignal(src, COMSIG_MOVABLE_CROSSED_BY, .proc/attempt_mine_explode)
 

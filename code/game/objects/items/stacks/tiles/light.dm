@@ -24,10 +24,10 @@
 	else
 		state = 0 //fine
 
-/obj/item/stack/tile/light/attackby(obj/item/attackedby, mob/user, params)
+/obj/item/stack/tile/light/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(istype(attackedby, /obj/item/tool/crowbar))
+	if(istype(I, /obj/item/tool/crowbar))
 		new /obj/item/stack/sheet/metal(user.loc)
 		amount--
 		new /obj/item/stack/light_w(user.loc)

@@ -16,8 +16,8 @@
 	///List of reagents this dispenser will start with
 	var/list/list_reagents
 
-/obj/structure/reagent_dispensers/attackby(obj/item/attackedby, mob/user, params)
-	if(attackedby.is_refillable())
+/obj/structure/reagent_dispensers/attackby(obj/item/I, mob/user, params)
+	if(I.is_refillable())
 		return FALSE //Handled in reagent code, which refills the item
 	return ..()
 
@@ -132,25 +132,25 @@
 	return TRUE
 
 
-/obj/structure/reagent_dispensers/fueltank/attackby(obj/item/attackedby, mob/user, params)
+/obj/structure/reagent_dispensers/fueltank/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(!istype(attackedby, /obj/item/assembly_holder))
+	if(!istype(I, /obj/item/assembly_holder))
 		return
 	if(rig)
 		to_chat(user, "<span class='warning'>There is another device in the way.</span>")
 		return
 
-	user.visible_message("[user] begins rigging [attackedby] to \the [src].", "You begin rigging [attackedby] to \the [src]")
+	user.visible_message("[user] begins rigging [I] to \the [src].", "You begin rigging [I] to \the [src]")
 	if(!do_after(user, 20, TRUE, src, BUSY_ICON_HOSTILE) || rig)
 		return
 
-	user.visible_message("<span class='notice'>[user] rigs [attackedby] to \the [src].</span>", "<span class='notice'>You rig [attackedby] to \the [src].</span>")
-	rig = attackedby
-	user.transferItemToLoc(attackedby, src)
+	user.visible_message("<span class='notice'>[user] rigs [I] to \the [src].</span>", "<span class='notice'>You rig [I] to \the [src].</span>")
+	rig = I
+	user.transferItemToLoc(I, src)
 
 	var/mutable_appearance/overlay = new()
-	overlay.appearance = attackedby.appearance
+	overlay.appearance = I.appearance
 	overlay.pixel_x = 1
 	overlay.pixel_y = 6
 	add_overlay(overlay)

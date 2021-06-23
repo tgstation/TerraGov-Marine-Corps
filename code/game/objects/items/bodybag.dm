@@ -102,12 +102,12 @@
 			name = "[bag_name] (empty)"
 
 
-/obj/structure/closet/bodybag/attackby(obj/item/attackedby, mob/user, params)
+/obj/structure/closet/bodybag/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(istype(attackedby, /obj/item/tool/pen))
+	if(istype(I, /obj/item/tool/pen))
 		var/t = stripped_input(user, "What would you like the label to be?", name, null, MAX_MESSAGE_LEN)
-		if(user.get_active_held_item() != attackedby)
+		if(user.get_active_held_item() != I)
 			return
 
 		if(!in_range(src, user) && loc != user)
@@ -120,7 +120,7 @@
 		else
 			name = "body bag"
 
-	else if(iswirecutter(attackedby))
+	else if(iswirecutter(I))
 		to_chat(user, "<span class='notice'>You cut the tag off the bodybag.</span>")
 		name = "body bag"
 		overlays.Cut()
@@ -279,15 +279,15 @@
 	foldedbag_path = /obj/item/bodybag/cryobag
 
 
-/obj/structure/closet/bodybag/cryobag/attackby(obj/item/attackedby, mob/user, params)
-	if(!istype(attackedby, /obj/item/healthanalyzer))
+/obj/structure/closet/bodybag/cryobag/attackby(obj/item/I, mob/user, params)
+	if(!istype(I, /obj/item/healthanalyzer))
 		return ..()
 
 	if(!bodybag_occupant)
 		to_chat(user, "<span class='warning'>The stasis bag is empty!</span>")
 		return TRUE
 
-	var/obj/item/healthanalyzer/J = attackedby
+	var/obj/item/healthanalyzer/J = I
 	J.attack(bodybag_occupant, user) // yes this is awful -spookydonut
 	return TRUE
 

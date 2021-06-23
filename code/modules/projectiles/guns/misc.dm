@@ -44,9 +44,9 @@
 		num_flares++
 	return TRUE
 
-/obj/item/weapon/gun/flare/attackby(obj/item/attackedby, mob/user, params)
-	if(istype(attackedby, /obj/item/explosive/grenade/flare))
-		var/obj/item/explosive/grenade/flare = attackedby
+/obj/item/weapon/gun/flare/attackby(obj/item/I, mob/user, params)
+	if(istype(I, /obj/item/explosive/grenade/flare))
+		var/obj/item/explosive/grenade/flare = I
 		if(num_flares >= max_flares)
 			to_chat(user, "It's already full.")
 			return
@@ -102,9 +102,9 @@
 	if(user == loc)
 		to_chat(user, "<span class='notice'>[syringes.len] / [max_syringes] syringes.</span>")
 
-/obj/item/weapon/gun/syringe/attackby(obj/item/attackedby, mob/user, params)
-	if(istype(attackedby, /obj/item/reagent_containers/syringe))
-		var/obj/item/reagent_containers/syringe/S = attackedby
+/obj/item/weapon/gun/syringe/attackby(obj/item/I, mob/user, params)
+	if(istype(I, /obj/item/reagent_containers/syringe))
+		var/obj/item/reagent_containers/syringe/S = I
 		if(S.mode == 2)
 			to_chat(user, "<span class='warning'>This syringe is broken!</span>")
 			return
@@ -113,8 +113,8 @@
 			to_chat(user, "<span class='warning'>[src] cannot hold more syringes.</span>")
 			return
 
-		user.transferItemToLoc(attackedby, src)
-		syringes += attackedby
+		user.transferItemToLoc(I, src)
+		syringes += I
 		update_icon()
 		to_chat(user, "<span class='notice'>You put the syringe in [src].</span>")
 		to_chat(user, "<span class='notice'>[length(syringes)] / [max_syringes] syringes.</span>")

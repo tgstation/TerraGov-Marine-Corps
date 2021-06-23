@@ -313,8 +313,8 @@
 	if (hold.handle_mousedrop(usr, over_object))
 		..(over_object)
 
-/obj/item/clothing/tie/storage/attackby(obj/item/attackedby, mob/user, params)
-	return hold.attackby(attackedby, user, params)
+/obj/item/clothing/tie/storage/attackby(obj/item/I, mob/user, params)
+	return hold.attackby(I, user, params)
 
 /obj/item/clothing/tie/storage/emp_act(severity)
 	hold.emp_act(severity)
@@ -517,11 +517,11 @@
 	if(isliving(user))
 		user.visible_message("<span class='warning'> [user] displays their TGMC Internal Security Legal Authorization Badge.\nIt reads: [stored_name], TGMC Security.</span>","<span class='warning'> You display your TGMC Internal Security Legal Authorization Badge.\nIt reads: [stored_name], TGMC Security.</span>")
 
-/obj/item/clothing/tie/holobadge/attackby(obj/item/attackedby, mob/user, params)
+/obj/item/clothing/tie/holobadge/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(istype(attackedby, /obj/item/card/id))
-		var/obj/item/card/id/id_card = attackedby
+	if(istype(I, /obj/item/card/id))
+		var/obj/item/card/id/id_card = I
 
 		if(!(ACCESS_MARINE_BRIG in id_card.access))
 			to_chat(user, "[src] rejects your insufficient access rights.")

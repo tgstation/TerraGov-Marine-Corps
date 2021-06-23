@@ -20,15 +20,15 @@
 	var/order = 1 // -1 = Descending - 1 = Ascending
 
 
-/obj/machinery/computer/skills/attackby(obj/item/attackedby, mob/user, params)
+/obj/machinery/computer/skills/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(istype(attackedby, /obj/item/card/id) && !scan)
+	if(istype(I, /obj/item/card/id) && !scan)
 		if(!user.drop_held_item())
 			return
-		attackedby.forceMove(src)
-		scan = attackedby
-		to_chat(user, "You insert [attackedby].")
+		I.forceMove(src)
+		scan = I
+		to_chat(user, "You insert [I].")
 
 
 /obj/machinery/computer/skills/interact(mob/user)

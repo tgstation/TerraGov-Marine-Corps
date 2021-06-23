@@ -47,10 +47,10 @@
 	attack_verb = list("bashed", "battered", "bludgeoned", "whacked")
 
 
-/obj/item/grown/log/attackby(obj/item/attackedby, mob/user, params)
+/obj/item/grown/log/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(attackedby.sharp != IS_SHARP_ITEM_BIG)
+	if(I.sharp != IS_SHARP_ITEM_BIG)
 		return
 
 	user.show_message("<span class='notice'>You make planks out of \the [src]!</span>", 1)
@@ -170,10 +170,10 @@
 	throw_speed = 4
 	throw_range = 20
 
-/obj/item/corncob/attackby(obj/item/attackedby, mob/user, params)
+/obj/item/corncob/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(attackedby.sharp == IS_SHARP_ITEM_ACCURATE)
-		to_chat(user, "<span class='notice'>You use [attackedby] to fashion a pipe out of the corn cob!</span>")
+	if(I.sharp == IS_SHARP_ITEM_ACCURATE)
+		to_chat(user, "<span class='notice'>You use [I] to fashion a pipe out of the corn cob!</span>")
 		new /obj/item/clothing/mask/cigarette/pipe/cobpipe(user.loc)
 		qdel(src)

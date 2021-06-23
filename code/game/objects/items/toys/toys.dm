@@ -50,26 +50,26 @@
 		update_icon()
 
 
-/obj/item/toy/balloon/attackby(obj/item/attackedby, mob/user, params)
+/obj/item/toy/balloon/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(istype(attackedby, /obj/item/reagent_containers/glass))
-		if(!attackedby.reagents)
+	if(istype(I, /obj/item/reagent_containers/glass))
+		if(!I.reagents)
 			return
 
-		if(attackedby.reagents.total_volume < 1)
-			to_chat(user, "The [attackedby] is empty.")
+		if(I.reagents.total_volume < 1)
+			to_chat(user, "The [I] is empty.")
 			return
 
-		if(attackedby.reagents.has_reagent(/datum/reagent/toxin/acid/polyacid, 1))
+		if(I.reagents.has_reagent(/datum/reagent/toxin/acid/polyacid, 1))
 			to_chat(user, "The acid chews through the balloon!")
-			attackedby.reagents.reaction(user, TOUCH)
+			I.reagents.reaction(user, TOUCH)
 			qdel(src)
 			return
 
 		desc = "A translucent balloon with some form of liquid sloshing around in it."
-		to_chat(user, "<span class='notice'>You fill the balloon with the contents of [attackedby].</span>")
-		attackedby.reagents.trans_to(src, 10)
+		to_chat(user, "<span class='notice'>You fill the balloon with the contents of [I].</span>")
+		I.reagents.trans_to(src, 10)
 
 	update_icon()
 
@@ -533,11 +533,11 @@
 	var/id = ""
 
 
-/obj/structure/hoop/attackby(obj/item/attackedby, mob/user, params)
+/obj/structure/hoop/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(istype(attackedby, /obj/item/grab) && get_dist(src, user) <= 1)
-		var/obj/item/grab/G = attackedby
+	if(istype(I, /obj/item/grab) && get_dist(src, user) <= 1)
+		var/obj/item/grab/G = I
 		if(!isliving(G.grabbed_thing))
 			return
 
@@ -554,11 +554,11 @@
 		visible_message("<span class='danger'>[user] dunks [L] into the [src]!</span>")
 
 	else if(get_dist(src, user) < 2)
-		user.transferItemToLoc(attackedby, loc)
+		user.transferItemToLoc(I, loc)
 		for(var/obj/machinery/scoreboard/X in GLOB.machines)
 			if(X.id == id)
 				X.score(side)
-		visible_message("<span class='notice'>[user] dunks [attackedby] into the [src]!</span>")
+		visible_message("<span class='notice'>[user] dunks [I] into the [src]!</span>")
 
 
 /obj/structure/hoop/CanAllowThrough(atom/movable/mover, turf/target)

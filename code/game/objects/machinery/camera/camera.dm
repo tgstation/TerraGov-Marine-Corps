@@ -80,12 +80,12 @@
 	GLOB.cameranet.updateVisibility(src, 0)
 
 
-/obj/machinery/camera/attackby(obj/item/attackedby, mob/user, params)
+/obj/machinery/camera/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(istype(attackedby, /obj/item/paper) && isliving(user))
+	if(istype(I, /obj/item/paper) && isliving(user))
 		var/mob/living/U = user
-		var/obj/item/paper/X = attackedby
+		var/obj/item/paper/X = I
 		var/itemname = X.name
 		var/info = X.info
 

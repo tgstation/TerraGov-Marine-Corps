@@ -15,7 +15,7 @@
 	whistle_playsound(user)
 
 
-/obj/item/whistle/attackby(obj/item/attackedby, mob/user, params)
+/obj/item/whistle/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
 	if(user.wear_mask == src)

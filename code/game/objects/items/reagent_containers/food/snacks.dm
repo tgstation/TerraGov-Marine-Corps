@@ -141,11 +141,11 @@
 	else
 		to_chat(user, "<span class='notice'>\The [src] was bitten multiple times!</span>")
 
-/obj/item/reagent_containers/food/snacks/attackby(obj/item/attackedby, mob/user, params)
+/obj/item/reagent_containers/food/snacks/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(istype(attackedby, /obj/item/tool/kitchen/utensil))
-		var/obj/item/tool/kitchen/utensil/U = attackedby
+	if(istype(I, /obj/item/tool/kitchen/utensil))
+		var/obj/item/tool/kitchen/utensil/U = I
 
 		if(!U.reagents)
 			U.create_reagents(5)
@@ -170,26 +170,26 @@
 			qdel(src)
 
 
-/obj/item/reagent_containers/food/snacks/sliceable/attackby(obj/item/attackedby, mob/user, params)
+/obj/item/reagent_containers/food/snacks/sliceable/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(attackedby.sharp != IS_SHARP_ITEM_ACCURATE || attackedby.sharp != IS_SHARP_ITEM_BIG)
-		if(attackedby.w_class >= WEIGHT_CLASS_SMALL)
+	if(I.sharp != IS_SHARP_ITEM_ACCURATE || I.sharp != IS_SHARP_ITEM_BIG)
+		if(I.w_class >= WEIGHT_CLASS_SMALL)
 			return
-		if(!user.transferItemToLoc(attackedby, src))
+		if(!user.transferItemToLoc(I, src))
 			return
 		if(length(contents) > max_items)
-			to_chat(user, "<span class='warning'>[src] is full, you can't stuff [attackedby] inside.</span>")
+			to_chat(user, "<span class='warning'>[src] is full, you can't stuff [I] inside.</span>")
 			return
-		to_chat(user, "<span class='notice'>You slip [attackedby] inside of [src].</span>")
+		to_chat(user, "<span class='notice'>You slip [I] inside of [src].</span>")
 		return
 
 	if(!isturf(loc) || !(locate(/obj/structure/table) in loc) || !istype(loc, /obj/item/tool/kitchen/tray))
 		to_chat(user, "<span class='warning'>You cannot slice [src] here! You need a table or at least a tray to do it.</span>")
 		return
 
-	user.visible_message("<span class='notice'>[user] slices \the [src] with [attackedby]!</span>", \
-		"<span class='notice'>You crudely \the [src] with your [attackedby]!</span>")
+	user.visible_message("<span class='notice'>[user] slices \the [src] with [I]!</span>", \
+		"<span class='notice'>You crudely \the [src] with your [I]!</span>")
 
 	var/reagents_per_slice = reagents.total_volume / slices_num
 
@@ -467,11 +467,11 @@
 	src.visible_message("<span class='warning'> [src.name] has been squashed.</span>","<span class='warning'> You hear a smack.</span>")
 	qdel(src)
 
-/obj/item/reagent_containers/food/snacks/egg/attackby(obj/item/attackedby, mob/user, params)
+/obj/item/reagent_containers/food/snacks/egg/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(istype(attackedby, /obj/item/toy/crayon))
-		var/obj/item/toy/crayon/C = attackedby
+	if(istype(I, /obj/item/toy/crayon))
+		var/obj/item/toy/crayon/C = I
 		var/clr = C.colourName
 
 		if(!(clr in list("blue", "green", "mime", "orange", "purple", "rainbow", "red", "yellow")))
@@ -2302,11 +2302,11 @@
 
 	update_icon()
 
-/obj/item/pizzabox/attackby(obj/item/attackedby, mob/user, params)
+/obj/item/pizzabox/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(istype(attackedby, /obj/item/pizzabox))
-		var/obj/item/pizzabox/box = attackedby
+	if(istype(I, /obj/item/pizzabox))
+		var/obj/item/pizzabox/box = I
 
 		if(box.open || open)
 			to_chat(user, "<span class='warning'>Close the [box] first!</span>")
@@ -2331,19 +2331,19 @@
 
 		to_chat(user, "<span class='warning'>You put the [box] ontop of the [src]!</span>")
 
-	else if(istype(attackedby, /obj/item/reagent_containers/food/snacks/sliceable/pizza))
+	else if(istype(I, /obj/item/reagent_containers/food/snacks/sliceable/pizza))
 		if(!open)
-			to_chat(user, "<span class='warning'>You try to push the [attackedby] through the lid but it doesn't work!</span>")
+			to_chat(user, "<span class='warning'>You try to push the [I] through the lid but it doesn't work!</span>")
 			return
 
-		user.transferItemToLoc(attackedby, src)
-		pizza = attackedby
+		user.transferItemToLoc(I, src)
+		pizza = I
 
 		update_icon()
 
-		to_chat(user, "<span class='warning'>You put the [attackedby] in the [src]!</span>")
+		to_chat(user, "<span class='warning'>You put the [I] in the [src]!</span>")
 
-	else if(istype(attackedby, /obj/item/tool/pen))
+	else if(istype(I, /obj/item/tool/pen))
 		if(open)
 			return
 
@@ -2382,23 +2382,23 @@
 ///////////////////////////////////////////
 
 // Flour + egg = dough
-/obj/item/reagent_containers/food/snacks/flour/attackby(obj/item/attackedby, mob/user, params)
+/obj/item/reagent_containers/food/snacks/flour/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(istype(attackedby, /obj/item/reagent_containers/food/snacks/egg))
+	if(istype(I, /obj/item/reagent_containers/food/snacks/egg))
 		new /obj/item/reagent_containers/food/snacks/dough(src)
 		to_chat(user, "You make some dough.")
-		qdel(attackedby)
+		qdel(I)
 		qdel(src)
 
 // Egg + flour = dough
-/obj/item/reagent_containers/food/snacks/egg/attackby(obj/item/attackedby, mob/user, params)
+/obj/item/reagent_containers/food/snacks/egg/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(istype(attackedby, /obj/item/reagent_containers/food/snacks/flour))
+	if(istype(I, /obj/item/reagent_containers/food/snacks/flour))
 		new /obj/item/reagent_containers/food/snacks/dough(src)
 		to_chat(user, "You make some dough.")
-		qdel(attackedby)
+		qdel(I)
 		qdel(src)
 
 /obj/item/reagent_containers/food/snacks/dough
@@ -2411,10 +2411,10 @@
 	tastes = list("dough" = 1)
 
 // Dough + rolling pin = flat dough
-/obj/item/reagent_containers/food/snacks/dough/attackby(obj/item/attackedby, mob/user, params)
+/obj/item/reagent_containers/food/snacks/dough/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(istype(attackedby, /obj/item/tool/kitchen/rollingpin))
+	if(istype(I, /obj/item/tool/kitchen/rollingpin))
 		new /obj/item/reagent_containers/food/snacks/sliceable/flatdough(src)
 		to_chat(user, "You flatten the dough.")
 		qdel(src)
@@ -2448,47 +2448,47 @@
 	list_reagents = list(/datum/reagent/consumable/nutriment = 4)
 	tastes = list("bun" = 1) // the bun tastes of bun.
 
-/obj/item/reagent_containers/food/snacks/bun/attackby(obj/item/attackedby, mob/user, params)
+/obj/item/reagent_containers/food/snacks/bun/attackby(obj/item/I, mob/user, params)
 	. = ..()
 	// Bun + meatball = burger
-	if(istype(attackedby, /obj/item/reagent_containers/food/snacks/meatball))
+	if(istype(I, /obj/item/reagent_containers/food/snacks/meatball))
 		new /obj/item/reagent_containers/food/snacks/monkeyburger(src)
 		to_chat(user, "You make a burger.")
-		qdel(attackedby)
+		qdel(I)
 		qdel(src)
 
 	// Bun + cutlet = hamburger
-	else if(istype(attackedby, /obj/item/reagent_containers/food/snacks/cutlet))
+	else if(istype(I, /obj/item/reagent_containers/food/snacks/cutlet))
 		new /obj/item/reagent_containers/food/snacks/monkeyburger(src)
 		to_chat(user, "You make a burger.")
-		qdel(attackedby)
+		qdel(I)
 		qdel(src)
 
 	// Bun + sausage = hotdog
-	else if(istype(attackedby,/obj/item/reagent_containers/food/snacks/sausage))
+	else if(istype(I,/obj/item/reagent_containers/food/snacks/sausage))
 		new /obj/item/reagent_containers/food/snacks/hotdog(src)
 		to_chat(user, "You make a hotdog.")
-		qdel(attackedby)
+		qdel(I)
 		qdel(src)
 
 // Burger + cheese wedge = cheeseburger
-/obj/item/reagent_containers/food/snacks/monkeyburger/attackby(obj/item/attackedby, mob/user, params)
+/obj/item/reagent_containers/food/snacks/monkeyburger/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(istype(attackedby, /obj/item/reagent_containers/food/snacks/cheesewedge))
+	if(istype(I, /obj/item/reagent_containers/food/snacks/cheesewedge))
 		new /obj/item/reagent_containers/food/snacks/cheeseburger(src)
 		to_chat(user, "You make a cheeseburger.")
-		qdel(attackedby)
+		qdel(I)
 		qdel(src)
 
 // Human Burger + cheese wedge = cheeseburger
-/obj/item/reagent_containers/food/snacks/human/burger/attackby(obj/item/attackedby, mob/user, params)
+/obj/item/reagent_containers/food/snacks/human/burger/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(istype(attackedby, /obj/item/reagent_containers/food/snacks/cheesewedge))
+	if(istype(I, /obj/item/reagent_containers/food/snacks/cheesewedge))
 		new /obj/item/reagent_containers/food/snacks/cheeseburger(src)
 		to_chat(user, "You make a cheeseburger.")
-		qdel(attackedby)
+		qdel(I)
 		qdel(src)
 
 /obj/item/reagent_containers/food/snacks/taco
@@ -2507,10 +2507,10 @@
 	list_reagents = list(/datum/reagent/consumable/nutriment = 3)
 	bitesize = 3
 
-/obj/item/reagent_containers/food/snacks/meat/attackby(obj/item/attackedby, mob/user, params)
+/obj/item/reagent_containers/food/snacks/meat/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(istype(attackedby, /obj/item/tool/kitchen/knife))
+	if(istype(I, /obj/item/tool/kitchen/knife))
 		new /obj/item/reagent_containers/food/snacks/rawcutlet(src)
 		new /obj/item/reagent_containers/food/snacks/rawcutlet(src)
 		new /obj/item/reagent_containers/food/snacks/rawcutlet(src)
@@ -2578,10 +2578,10 @@
 	list_reagents = list(/datum/reagent/consumable/nutriment = 3)
 
 // potato + knife = raw sticks
-/obj/item/reagent_containers/food/snacks/grown/potato/attackby(obj/item/attackedby, mob/user, params)
+/obj/item/reagent_containers/food/snacks/grown/potato/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(istype(attackedby, /obj/item/tool/kitchen/utensil/knife))
+	if(istype(I, /obj/item/tool/kitchen/utensil/knife))
 		new /obj/item/reagent_containers/food/snacks/rawsticks(src)
 		to_chat(user, "You cut the potato.")
 		qdel(src)

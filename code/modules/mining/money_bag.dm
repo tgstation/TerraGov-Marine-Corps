@@ -52,17 +52,17 @@
 	popup.open()
 
 
-/obj/item/moneybag/attackby(obj/item/attackedby, mob/user, params)
+/obj/item/moneybag/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(istype(attackedby, /obj/item/coin))
-		var/obj/item/coin/C = attackedby
+	if(istype(I, /obj/item/coin))
+		var/obj/item/coin/C = I
 		to_chat(user, "<span class='notice'>You add the [C] into the bag.</span>")
 		user.drop_held_item()
 		C.forceMove(src)
 
-	else if(istype(attackedby, /obj/item/moneybag))
-		var/obj/item/moneybag/C = attackedby
+	else if(istype(I, /obj/item/moneybag))
+		var/obj/item/moneybag/C = I
 		for(var/obj/O in C.contents)
 			O.forceMove(src)
 		to_chat(user, "<span class='notice'>You empty the [C] into the bag.</span>")

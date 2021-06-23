@@ -135,23 +135,23 @@
 	attack_verb = list("hit", "bludgeoned", "whacked", "bonked")
 
 
-/obj/item/weapon/wirerod/attackby(obj/item/attackedby, mob/user, params)
+/obj/item/weapon/wirerod/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(istype(attackedby, /obj/item/shard))
+	if(istype(I, /obj/item/shard))
 		var/obj/item/weapon/twohanded/spear/S = new
 
 		user.put_in_hands(S)
 		to_chat(user, "<span class='notice'>You fasten the glass shard to the top of the rod with the cable.</span>")
-		qdel(attackedby)
+		qdel(I)
 		qdel(src)
 
-	else if(iswirecutter(attackedby))
+	else if(iswirecutter(I))
 		var/obj/item/weapon/baton/cattleprod/P = new
 
 		user.put_in_hands(P)
 		to_chat(user, "<span class='notice'>You fasten the wirecutters to the top of the rod with the cable, prongs outward.</span>")
-		qdel(attackedby)
+		qdel(I)
 		qdel(src)
 
 	update_icon(user)

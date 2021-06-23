@@ -114,7 +114,7 @@
 
 
 //Throwing Shiet
-/obj/effect/acid_hole/attackby(obj/item/attackedby, mob/user, params)
+/obj/effect/acid_hole/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
 	var/mob_dir = get_dir(user, src)
@@ -127,8 +127,8 @@
 	var/turf/T = get_step(src, crawl_dir)
 
 	//Throwing Grenades
-	if(istype(attackedby, /obj/item/explosive/grenade))
-		var/obj/item/explosive/grenade/G = attackedby
+	if(istype(I, /obj/item/explosive/grenade))
+		var/obj/item/explosive/grenade/G = I
 
 		if(issynth(user) && G.dangerous && !CONFIG_GET(flag/allow_synthetic_gun_use))
 			to_chat(user, "<span class='warning'>Your programming prevents you from doing this.</span>")
@@ -153,8 +153,8 @@
 			G.activate(user)
 
 	//Throwing Flares and flashlights
-	else if(istype(attackedby, /obj/item/flashlight))
-		var/obj/item/flashlight/F = attackedby
+	else if(istype(I, /obj/item/flashlight))
+		var/obj/item/flashlight/F = I
 
 		if(!T || T.density)
 			to_chat(user, "<span class='warning'>This hole leads nowhere!</span>")

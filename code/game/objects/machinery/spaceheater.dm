@@ -47,9 +47,9 @@
 		cell.emp_act(severity)
 	..(severity)
 
-/obj/machinery/space_heater/attackby(obj/item/attackedby, mob/user, params)
+/obj/machinery/space_heater/attackby(obj/item/I, mob/user, params)
 	. = ..()
-	if(istype(attackedby, /obj/item/cell))
+	if(istype(I, /obj/item/cell))
 		if(!open)
 			to_chat(user, "The hatch must be open to insert a power cell.")
 			return
@@ -69,7 +69,7 @@
 
 		user.visible_message("<span class='notice'> [user] inserts a power cell into [src].</span>", "<span class='notice'> You insert the power cell into [src].</span>")
 
-	else if(isscrewdriver(attackedby))
+	else if(isscrewdriver(I))
 		open = !open
 		user.visible_message("<span class='notice'> [user] [open ? "opens" : "closes"] the hatch on the [src].</span>", "<span class='notice'> You [open ? "open" : "close"] the hatch on the [src].</span>")
 		update_icon()

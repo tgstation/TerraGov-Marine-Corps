@@ -62,13 +62,13 @@ obj/structure/windoor_assembly/Destroy()
 		return TRUE
 
 
-/obj/structure/windoor_assembly/attackby(obj/item/attackedby, mob/user, params)
+/obj/structure/windoor_assembly/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
 	switch(state)
 		if("01")
-			if(iswelder(attackedby) && !anchored)
-				var/obj/item/tool/weldingtool/WT = attackedby
+			if(iswelder(I) && !anchored)
+				var/obj/item/tool/weldingtool/WT = I
 				if(!WT.remove_fuel(0, user))
 					to_chat(user, "<span class='notice'>You need more welding fuel to dissassemble the windoor assembly.</span>")
 					return
@@ -88,7 +88,7 @@ obj/structure/windoor_assembly/Destroy()
 				qdel(src)
 
 			//Wrenching an unsecure assembly anchors it in place. Step 4 complete
-			else if(iswrench(attackedby) && !anchored)
+			else if(iswrench(I) && !anchored)
 				playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
 				user.visible_message("[user] secures the windoor assembly to the floor.", "You start to secure the windoor assembly to the floor.")
 
@@ -103,7 +103,7 @@ obj/structure/windoor_assembly/Destroy()
 					name = "Anchored Windoor Assembly"
 
 			//Unwrenching an unsecure assembly un-anchors it. Step 4 undone
-			else if(iswrench(attackedby) && anchored)
+			else if(iswrench(I) && anchored)
 				playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
 				user.visible_message("[user] unsecures the windoor assembly to the floor.", "You start to unsecure the windoor assembly to the floor.")
 
@@ -119,8 +119,8 @@ obj/structure/windoor_assembly/Destroy()
 					name = "Windoor Assembly"
 
 			//Adding plasteel makes the assembly a secure windoor assembly. Step 2 (optional) complete.
-			else if(istype(attackedby, /obj/item/stack/rods) && !secure)
-				var/obj/item/stack/rods/R = attackedby
+			else if(istype(I, /obj/item/stack/rods) && !secure)
+				var/obj/item/stack/rods/R = I
 				if(R.get_amount() < 4)
 					to_chat(user, "<span class='warning'>You need more rods to do this.</span>")
 					return
@@ -140,10 +140,10 @@ obj/structure/windoor_assembly/Destroy()
 					name = "Secure Windoor Assembly"
 
 			//Adding cable to the assembly. Step 5 complete.
-			else if(iscablecoil(attackedby) && anchored)
+			else if(iscablecoil(I) && anchored)
 				user.visible_message("[user] wires the windoor assembly.", "You start to wire the windoor assembly.")
 
-				var/obj/item/stack/cable_coil/CC = attackedby
+				var/obj/item/stack/cable_coil/CC = I
 				if(!do_after(user, 40, TRUE, src, BUSY_ICON_BUILD))
 					return
 
@@ -158,7 +158,7 @@ obj/structure/windoor_assembly/Destroy()
 					name = "Wired Windoor Assembly"
 		if("02")
 			//Removing wire from the assembly. Step 5 undone.
-			if(iswirecutter(attackedby) && !electronics)
+			if(iswirecutter(I) && !electronics)
 				playsound(loc, 'sound/items/wirecutter.ogg', 25, 1)
 				user.visible_message("[user] cuts the wires from the airlock assembly.", "You start to cut the wires from airlock assembly.")
 
@@ -174,7 +174,7 @@ obj/structure/windoor_assembly/Destroy()
 					name = "Anchored Windoor Assembly"
 
 			//Adding airlock electronics for access. Step 6 complete.
-			else if(istype(attackedby, /obj/item/circuitboard/airlock) && attackedby.icon_state != "door_electronics_smoked")
+			else if(istype(I, /obj/item/circuitboard/airlock) && I.icon_state != "door_electronics_smoked")
 				playsound(loc, 'sound/items/screwdriver.ogg', 25, 1)
 				user.visible_message("[user] installs the electronics into the airlock assembly.", "You start to install electronics into the airlock assembly.")
 
@@ -182,13 +182,13 @@ obj/structure/windoor_assembly/Destroy()
 					return
 
 				user.drop_held_item()
-				attackedby.forceMove(src)
+				I.forceMove(src)
 				to_chat(user, "<span class='notice'>You've installed the airlock electronics!</span>")
 				name = "Near finished Windoor Assembly"
-				electronics = attackedby
+				electronics = I
 
 			//Screwdriver to remove airlock electronics. Step 6 undone.
-			else if(isscrewdriver(attackedby) && electronics)
+			else if(isscrewdriver(I) && electronics)
 				playsound(loc, 'sound/items/screwdriver.ogg', 25, 1)
 				user.visible_message("[user] removes the electronics from the airlock assembly.", "You start to uninstall electronics from the airlock assembly.")
 
@@ -210,7 +210,7 @@ obj/structure/windoor_assembly/Destroy()
 				ae.forceMove(loc)
 
 			//Crowbar to complete the assembly, Step 7 complete.
-			else if(iscrowbar(attackedby))
+			else if(iscrowbar(I))
 				if(!electronics)
 					to_chat(user, "<span class='warning'>The assembly is missing electronics.</span>")
 					return

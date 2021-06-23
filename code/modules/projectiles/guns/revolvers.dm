@@ -45,10 +45,10 @@
 /obj/item/weapon/gun/revolver/update_icon() //Special snowflake update icon.
 	icon_state = current_mag.chamber_closed ? initial(icon_state) : initial(icon_state) + "_o"
 
-/obj/item/weapon/gun/revolver/attackby(obj/item/attackedby, mob/user, params)
+/obj/item/weapon/gun/revolver/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(isscrewdriver(attackedby))
+	if(isscrewdriver(I))
 		to_chat(user, "[catchworking ? "You adjust the cylinder lock to allow the cylinder to be spun." : "You adjust the cylinder lock to the correct depth."]")
 		catchworking = !catchworking
 

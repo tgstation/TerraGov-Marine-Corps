@@ -87,15 +87,15 @@
 	update_icon()
 
 
-/obj/structure/morgue/attackby(obj/item/attackedby, mob/user, params)
+/obj/structure/morgue/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(istype(attackedby, /obj/item/tool/pen))
+	if(istype(I, /obj/item/tool/pen))
 		var/t = copytext(stripped_input(user, "What would you like the label to be?", name, null), 1, MAX_MESSAGE_LEN)
 		if(!t)
 			return
 
-		if(user.get_active_held_item() != attackedby)
+		if(user.get_active_held_item() != I)
 			return
 
 		if((!in_range(src, user) && loc != user))

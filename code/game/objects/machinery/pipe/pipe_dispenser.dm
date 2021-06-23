@@ -22,8 +22,8 @@
 		dat += "<b>[category]:</b><ul>"
 
 		for(var/i in cat_recipes)
-			var/datum/pipe_info/attackedby = i
-			dat += attackedby.Render(src)
+			var/datum/pipe_info/I = i
+			dat += I.Render(src)
 
 		dat += "</ul>"
 
@@ -61,14 +61,14 @@
 	updateUsrDialog()
 
 
-/obj/machinery/pipedispenser/attackby(obj/item/attackedby, mob/user, params)
+/obj/machinery/pipedispenser/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(istype(attackedby, /obj/item/pipe) || istype(attackedby, /obj/item/pipe_meter))
-		to_chat(usr, "<span class='notice'>You put [attackedby] back into [src].</span>")
-		qdel(attackedby)
+	if(istype(I, /obj/item/pipe) || istype(I, /obj/item/pipe_meter))
+		to_chat(usr, "<span class='notice'>You put [I] back into [src].</span>")
+		qdel(I)
 
-	else if(iswrench(attackedby))
+	else if(iswrench(I))
 		if(anchored)
 			playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
 			to_chat(user, "<span class='notice'>You begin to unfasten \the [src] from the floor...</span>")
@@ -149,8 +149,8 @@
 		dat += "<b>[category]:</b><ul>"
 
 		for(var/i in cat_recipes)
-			var/datum/pipe_info/attackedby = i
-			dat += attackedby.Render(src)
+			var/datum/pipe_info/I = i
+			dat += I.Render(src)
 
 		dat += "</ul>"
 

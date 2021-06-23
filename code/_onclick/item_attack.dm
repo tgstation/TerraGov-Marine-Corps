@@ -46,15 +46,15 @@
 	return
 
 
-/atom/proc/attackby(obj/item/attackedby, mob/user, params)
+/atom/proc/attackby(obj/item/I, mob/user, params)
 	SIGNAL_HANDLER_DOES_SLEEP
-	add_fingerprint(user, "attackby", attackedby)
-	if(SEND_SIGNAL(src, COMSIG_PARENT_ATTACKBY, attackedby, user, params) & COMPONENT_NO_AFTERATTACK)
+	add_fingerprint(user, "attackby", I)
+	if(SEND_SIGNAL(src, COMSIG_PARENT_ATTACKBY, I, user, params) & COMPONENT_NO_AFTERATTACK)
 		return TRUE
 	return FALSE
 
 
-/obj/attackby(obj/item/attackedby, mob/user, params)
+/obj/attackby(obj/item/I, mob/user, params)
 	. = ..()
 	if(.)
 		return TRUE
@@ -63,7 +63,7 @@
 		return
 
 	if(obj_flags & CAN_BE_HIT)
-		return attackedby.attack_obj(src, user)
+		return I.attack_obj(src, user)
 
 /obj/item/proc/attack_obj(obj/O, mob/living/user)
 	if(SEND_SIGNAL(src, COMSIG_ITEM_ATTACK_OBJ, O, user) & COMPONENT_NO_ATTACK_OBJ)
@@ -128,12 +128,12 @@
 	return TRUE
 
 
-/mob/living/attackby(obj/item/attackedby, mob/user, params)
+/mob/living/attackby(obj/item/I, mob/living/user, params)
 	. = ..()
 	if(.)
 		return TRUE
-	user.changeNext_move(attackedby.attack_speed)
-	return attackedby.attack(src, user)
+	user.changeNext_move(I.attack_speed)
+	return I.attack(src, user)
 
 
 // has_proximity is TRUE if this afterattack was called on something adjacent, in your square, or on your person.
@@ -166,12 +166,12 @@
 	if(. && hitsound)
 		playsound(loc, hitsound, 25, TRUE)
 
-/turf/attackby(obj/item/attackedby, mob/user, params)
+/turf/attackby(obj/item/I, mob/user, params)
 	. = ..()
 	if(.)
 		return TRUE
 
-	return attackedby.attack_turf(src, user)
+	return I.attack_turf(src, user)
 
 /obj/item/proc/attack_turf(turf/T, mob/living/user)
 	if(SEND_SIGNAL(src, COMSIG_ITEM_ATTACK_TURF, T, user) & COMPONENT_NO_ATTACK_TURF)

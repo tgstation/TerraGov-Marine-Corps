@@ -86,10 +86,10 @@
 
 
 //Step one - dehairing.
-/obj/item/stack/sheet/animalhide/attackby(obj/item/attackedby, mob/user, params)
+/obj/item/stack/sheet/animalhide/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(attackedby.sharp)
+	if(I.sharp)
 		user.visible_message("<span class='notice'> \the [user] starts cutting hair off \the [src]</span>", "<span class='notice'> You start cutting the hair off \the [src]</span>", "You hear the sound of a knife rubbing against flesh")
 		if(!do_after(user,50, TRUE, src, BUSY_ICON_HOSTILE))
 			return

@@ -37,15 +37,15 @@
 			return ..()
 
 
-/obj/item/explosive/grenade/chem_grenade/attackby(obj/item/attackedby, mob/user, params)
-	if(attackedby.tool_behaviour == TOOL_SCREWDRIVER)
+/obj/item/explosive/grenade/chem_grenade/attackby(obj/item/I, mob/user, params)
+	if(I.tool_behaviour == TOOL_SCREWDRIVER)
 		if(stage == CG_WIRED)
 			if(!length(beakers))
 				to_chat(user, "<span class='warning'>You need to add at least one beaker before locking the [initial(name)] assembly!</span>")
 			else
 				stage_change(CG_READY)
 				to_chat(user, "<span class='notice'>You lock the [initial(name)] assembly.</span>")
-				attackedby.play_tool_sound(src, 25)
+				I.play_tool_sound(src, 25)
 
 		else if(stage == CG_READY && !nadeassembly)
 			det_time = det_time == 50 ? 30 : 50	//toggle between 30 and 50
@@ -53,31 +53,31 @@
 		else if(stage == CG_EMPTY)
 			to_chat(user, "<span class='warning'>You need to add an activation mechanism!</span>")
 
-	else if(stage == CG_WIRED && is_type_in_list(attackedby, allowed_containers))
+	else if(stage == CG_WIRED && is_type_in_list(I, allowed_containers))
 		. = TRUE //no afterattack
-		if(is_type_in_list(attackedby, banned_containers))
-			to_chat(user, "<span class='warning'>[src] is too small to fit [attackedby]!</span>") // this one hits home huh anon?
+		if(is_type_in_list(I, banned_containers))
+			to_chat(user, "<span class='warning'>[src] is too small to fit [I]!</span>") // this one hits home huh anon?
 			return
 		if(length(beakers) == 2)
 			to_chat(user, "<span class='warning'>[src] can not hold more containers!</span>")
 			return
 		else
-			if(attackedby.reagents.total_volume)
-				if(!user.transferItemToLoc(attackedby, src))
+			if(I.reagents.total_volume)
+				if(!user.transferItemToLoc(I, src))
 					return
-				to_chat(user, "<span class='notice'>You add [attackedby] to the [initial(name)] assembly.</span>")
-				beakers += attackedby
-				var/reagent_list = pretty_string_from_reagent_list(attackedby.reagents)
-				user.log_message("inserted [attackedby] ([reagent_list]) into [src]",LOG_GAME)
+				to_chat(user, "<span class='notice'>You add [I] to the [initial(name)] assembly.</span>")
+				beakers += I
+				var/reagent_list = pretty_string_from_reagent_list(I.reagents)
+				user.log_message("inserted [I] ([reagent_list]) into [src]",LOG_GAME)
 			else
-				to_chat(user, "<span class='warning'>[attackedby] is empty!</span>")
+				to_chat(user, "<span class='warning'>[I] is empty!</span>")
 
-	else if(stage == CG_EMPTY && istype(attackedby, /obj/item/assembly_holder))
+	else if(stage == CG_EMPTY && istype(I, /obj/item/assembly_holder))
 		. = 1 // no afterattack
-		var/obj/item/assembly_holder/A = attackedby
+		var/obj/item/assembly_holder/A = I
 		if(isigniter(A.a_left) == isigniter(A.a_right))	//Check if either part of the assembly has an igniter, but if both parts are igniters, then fuck it
 			return
-		if(!user.transferItemToLoc(attackedby, src))
+		if(!user.transferItemToLoc(I, src))
 			return
 
 		nadeassembly = A
@@ -87,8 +87,8 @@
 		stage_change(CG_WIRED)
 		to_chat(user, "<span class='notice'>You add [A] to the [initial(name)] assembly.</span>")
 
-	else if(stage == CG_EMPTY && istype(attackedby, /obj/item/stack/cable_coil))
-		var/obj/item/stack/cable_coil/C = attackedby
+	else if(stage == CG_EMPTY && istype(I, /obj/item/stack/cable_coil))
+		var/obj/item/stack/cable_coil/C = I
 		if (C.use(1))
 			det_time = 50 // In case the cable_coil was removed and readded.
 			stage_change(CG_WIRED)
@@ -97,11 +97,11 @@
 			to_chat(user, "<span class='warning'>You need one length of coil to wire the assembly!</span>")
 			return
 
-	else if(stage == CG_READY && attackedby.tool_behaviour == TOOL_WIRECUTTER && !active)
+	else if(stage == CG_READY && I.tool_behaviour == TOOL_WIRECUTTER && !active)
 		stage_change(CG_WIRED)
 		to_chat(user, "<span class='notice'>You unlock the [initial(name)] assembly.</span>")
 
-	else if(stage == CG_WIRED && attackedby.tool_behaviour == TOOL_WRENCH)
+	else if(stage == CG_WIRED && I.tool_behaviour == TOOL_WRENCH)
 		if(length(beakers))
 			for(var/obj/O in beakers)
 				O.forceMove(drop_location())

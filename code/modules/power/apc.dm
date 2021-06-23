@@ -339,13 +339,13 @@
 		beenhit += 1
 
 //Attack with an item - open/close cover, insert cell, or (un)lock interface
-/obj/machinery/power/apc/attackby(obj/item/attackedby, mob/user, params)
+/obj/machinery/power/apc/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(istype(attackedby, /obj/item/cell) && opened) //Trying to put a cell inside
+	if(istype(I, /obj/item/cell) && opened) //Trying to put a cell inside
 		if(user.skills.getRating("engineer") < SKILL_ENGINEER_ENGI)
-			user.visible_message("<span class='notice'>[user] fumbles around figuring out how to fit [attackedby] into [src].</span>",
-			"<span class='notice'>You fumble around figuring out how to fit [attackedby] into [src].</span>")
+			user.visible_message("<span class='notice'>[user] fumbles around figuring out how to fit [I] into [src].</span>",
+			"<span class='notice'>You fumble around figuring out how to fit [I] into [src].</span>")
 			var/fumbling_time = 5 SECONDS * ( SKILL_ENGINEER_ENGI - user.skills.getRating("engineer") )
 			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 				return
@@ -358,19 +358,19 @@
 			to_chat(user, "<span class='warning'>There is no connector for your power cell.</span>")
 			return
 
-		if(!user.transferItemToLoc(attackedby, src))
+		if(!user.transferItemToLoc(I, src))
 			return
 
-		set_cell(attackedby)
-		user.visible_message("<span class='notice'>[user] inserts [attackedby] into [src]!",
-		"<span class='notice'>You insert [attackedby] into [src]!")
+		set_cell(I)
+		user.visible_message("<span class='notice'>[user] inserts [I] into [src]!",
+		"<span class='notice'>You insert [I] into [src]!")
 		chargecount = 0
 		update_icon()
 
-	else if(istype(attackedby, /obj/item/card/id)) //Trying to unlock the interface with an ID card
+	else if(istype(I, /obj/item/card/id)) //Trying to unlock the interface with an ID card
 		if(user.skills.getRating("engineer") < SKILL_ENGINEER_ENGI)
-			user.visible_message("<span class='notice'>[user] fumbles around figuring out where to swipe [attackedby] on [src].</span>",
-			"<span class='notice'>You fumble around figuring out where to swipe [attackedby] on [src].</span>")
+			user.visible_message("<span class='notice'>[user] fumbles around figuring out where to swipe [I] on [src].</span>",
+			"<span class='notice'>You fumble around figuring out where to swipe [I] on [src].</span>")
 			var/fumbling_time = 3 SECONDS * ( SKILL_ENGINEER_ENGI - user.skills.getRating("engineer") )
 			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 				return
@@ -396,8 +396,8 @@
 		"<span class='notice'>You [locked ? "lock" : "unlock"] [src]'s interface.</span>")
 		update_icon()
 
-	else if(iscablecoil(attackedby) && !terminal && opened && has_electronics != APC_ELECTRONICS_SECURED)
-		var/obj/item/stack/cable_coil/C = attackedby
+	else if(iscablecoil(I) && !terminal && opened && has_electronics != APC_ELECTRONICS_SECURED)
+		var/obj/item/stack/cable_coil/C = I
 
 		if(user.skills.getRating("engineer") < SKILL_ENGINEER_ENGI)
 			user.visible_message("<span class='notice'>[user] fumbles around figuring out what to do with [src].</span>",
@@ -437,10 +437,10 @@
 		make_terminal()
 		terminal.connect_to_network()
 
-	else if(istype(attackedby, /obj/item/circuitboard/apc) && opened && has_electronics == APC_ELECTRONICS_MISSING && !(machine_stat & BROKEN))
+	else if(istype(I, /obj/item/circuitboard/apc) && opened && has_electronics == APC_ELECTRONICS_MISSING && !(machine_stat & BROKEN))
 		if(user.skills.getRating("engineer") < SKILL_ENGINEER_ENGI)
-			user.visible_message("<span class='notice'>[user] fumbles around figuring out what to do with [attackedby].</span>",
-			"<span class='notice'>You fumble around figuring out what to do with [attackedby].</span>")
+			user.visible_message("<span class='notice'>[user] fumbles around figuring out what to do with [I].</span>",
+			"<span class='notice'>You fumble around figuring out what to do with [I].</span>")
 			var/fumbling_time = 5 SECONDS * ( SKILL_ENGINEER_ENGI - user.skills.getRating("engineer") )
 			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 				return
@@ -455,23 +455,23 @@
 		has_electronics = APC_ELECTRONICS_INSTALLED
 		user.visible_message("<span class='notice'>[user] inserts the power control board into [src].</span>",
 		"<span class='notice'>You insert the power control board into [src].</span>")
-		electronics = attackedby
-		qdel(attackedby)
+		electronics = I
+		qdel(I)
 
-	else if(istype(attackedby, /obj/item/circuitboard/apc) && opened && has_electronics == APC_ELECTRONICS_MISSING && (machine_stat & BROKEN))
+	else if(istype(I, /obj/item/circuitboard/apc) && opened && has_electronics == APC_ELECTRONICS_MISSING && (machine_stat & BROKEN))
 		if(user.skills.getRating("engineer") < SKILL_ENGINEER_ENGI)
-			user.visible_message("<span class='notice'>[user] fumbles around figuring out what to do with [attackedby].</span>",
-			"<span class='notice'>You fumble around figuring out what to do with [attackedby].</span>")
+			user.visible_message("<span class='notice'>[user] fumbles around figuring out what to do with [I].</span>",
+			"<span class='notice'>You fumble around figuring out what to do with [I].</span>")
 			var/fumbling_time = 5 SECONDS * ( SKILL_ENGINEER_ENGI - user.skills.getRating("engineer") )
 			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 				return
 
 		to_chat(user, "<span class='warning'>You cannot put the board inside, the frame is damaged.</span>")
 
-	else if(istype(attackedby, /obj/item/frame/apc) && opened && (machine_stat & BROKEN))
+	else if(istype(I, /obj/item/frame/apc) && opened && (machine_stat & BROKEN))
 		if(user.skills.getRating("engineer") < SKILL_ENGINEER_ENGI)
-			user.visible_message("<span class='notice'>[user] fumbles around figuring out what to do with [attackedby].</span>",
-			"<span class='notice'>You fumble around figuring out what to do with [attackedby].</span>")
+			user.visible_message("<span class='notice'>[user] fumbles around figuring out what to do with [I].</span>",
+			"<span class='notice'>You fumble around figuring out what to do with [I].</span>")
 			var/fumbling_time = 5 SECONDS * ( SKILL_ENGINEER_ENGI - user.skills.getRating("engineer") )
 			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 				return
@@ -488,16 +488,16 @@
 
 		user.visible_message("<span class='notice'>[user] replaces [src]'s damaged frontal panel with a new one.</span>",
 		"<span class='notice'>You replace [src]'s damaged frontal panel with a new one.</span>")
-		qdel(attackedby)
+		qdel(I)
 		DISABLE_BITFIELD(machine_stat, BROKEN)
 		if(opened == APC_COVER_REMOVED)
 			opened = APC_COVER_OPENED
 		update_icon()
 
-	else if(istype(attackedby, /obj/item/frame/apc) && opened)
+	else if(istype(I, /obj/item/frame/apc) && opened)
 		if(user.skills.getRating("engineer") < SKILL_ENGINEER_ENGI)
-			user.visible_message("<span class='notice'>[user] fumbles around figuring out what to do with [attackedby].</span>",
-			"<span class='notice'>You fumble around figuring out what to do with [attackedby].</span>")
+			user.visible_message("<span class='notice'>[user] fumbles around figuring out what to do with [I].</span>",
+			"<span class='notice'>You fumble around figuring out what to do with [I].</span>")
 			var/fumbling_time = 5 SECONDS * ( SKILL_ENGINEER_ENGI - user.skills.getRating("engineer") )
 			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 				return
@@ -506,23 +506,23 @@
 			opened = APC_COVER_OPENED
 		user.visible_message("<span class='notice'>[user] replaces [src]'s damaged frontal panel with a new one.</span>",
 		"<span class='notice'>You replace [src]'s damaged frontal panel with a new one.</span>")
-		qdel(attackedby)
+		qdel(I)
 		update_icon()
 
 	else
-		if(((machine_stat & BROKEN)) && !opened && attackedby.force >= 5)
+		if(((machine_stat & BROKEN)) && !opened && I.force >= 5)
 			opened = APC_COVER_REMOVED
-			user.visible_message("<span class='warning'>[user] knocks down [src]'s cover with [attackedby]!</span>", \
-				"<span class='warning'>You knock down [src]'s cover with [attackedby]!</span>")
+			user.visible_message("<span class='warning'>[user] knocks down [src]'s cover with [I]!</span>", \
+				"<span class='warning'>You knock down [src]'s cover with [I]!</span>")
 			update_icon()
 		else
 			if(issilicon(user))
 				return attack_hand(user)
 
-			if(!opened && CHECK_BITFIELD(machine_stat, PANEL_OPEN) && (ismultitool(attackedby) || iswirecutter(attackedby)))
+			if(!opened && CHECK_BITFIELD(machine_stat, PANEL_OPEN) && (ismultitool(I) || iswirecutter(I)))
 				return attack_hand(user)
-			user.visible_message("<span class='danger'>[user] hits [src] with [attackedby]!</span>", \
-			"<span class='danger'>You hit [src] with [attackedby]!</span>")
+			user.visible_message("<span class='danger'>[user] hits [src] with [I]!</span>", \
+			"<span class='danger'>You hit [src] with [I]!</span>")
 
 
 /obj/machinery/power/apc/crowbar_act(mob/user, obj/item/I)

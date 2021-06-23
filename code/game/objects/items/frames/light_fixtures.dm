@@ -10,10 +10,10 @@
 	var/obj/machinery/light/newlight = null
 	var/sheets_refunded = 2
 
-/obj/item/frame/light_fixture/attackby(obj/item/attackedby, mob/user, params)
+/obj/item/frame/light_fixture/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(iswrench(attackedby))
+	if(iswrench(I))
 		new /obj/item/stack/sheet/metal(loc, sheets_refunded)
 		qdel(src)
 

@@ -183,20 +183,20 @@
 
 	take_victim(usr,usr)
 
-/obj/machinery/optable/attackby(obj/item/attackedby, mob/user, params)
+/obj/machinery/optable/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(istype(attackedby, /obj/item/tank/anesthetic))
+	if(istype(I, /obj/item/tank/anesthetic))
 		if(anes_tank)
 			return
-		user.transferItemToLoc(attackedby, src)
-		anes_tank = attackedby
+		user.transferItemToLoc(I, src)
+		anes_tank = I
 		to_chat(user, "<span class='notice'>You connect \the [anes_tank] to \the [src].</span>")
 
-	if(!istype(attackedby, /obj/item/grab))
+	if(!istype(I, /obj/item/grab))
 		return
 
-	var/obj/item/grab/G = attackedby
+	var/obj/item/grab/G = I
 	if(victim && victim != G.grabbed_thing)
 		to_chat(user, "<span class='warning'>The table is already occupied!</span>")
 		return

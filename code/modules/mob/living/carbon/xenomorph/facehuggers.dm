@@ -582,8 +582,8 @@
 /obj/item/clothing/mask/facehugger/ex_act(severity)
 	kill_hugger()
 
-/obj/item/clothing/mask/facehugger/attackby(obj/item/attackedby, mob/user, params)
-	if(attackedby.flags_item & NOBLUDGEON || attached)
+/obj/item/clothing/mask/facehugger/attackby(obj/item/I, mob/user, params)
+	if(I.flags_item & NOBLUDGEON || attached)
 		return
 	kill_hugger()
 

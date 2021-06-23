@@ -41,14 +41,14 @@
 		return ..()
 
 
-/obj/item/clothing/shoes/marine/attackby(obj/item/attackedby, mob/user, params)
+/obj/item/clothing/shoes/marine/attackby(obj/item/I, mob/user, params)
 	. = ..()
 	if(.)
 		return
 	if(!pockets)
 		return
 
-	return pockets.attackby(attackedby, user, params)
+	return pockets.attackby(I, user, params)
 
 
 /obj/item/clothing/shoes/marine/emp_act(severity)

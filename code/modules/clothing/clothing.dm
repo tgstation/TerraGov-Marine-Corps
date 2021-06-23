@@ -176,9 +176,9 @@
 /obj/item/clothing/gloves/proc/Touch(atom/A, proximity)
 	return 0 // return 1 to cancel attack_hand()
 
-/obj/item/clothing/gloves/attackby(obj/item/attackedby, mob/user, params)
+/obj/item/clothing/gloves/attackby(obj/item/I, mob/user, params)
 	. = ..()
-	if(iswirecutter(attackedby) || istype(attackedby, /obj/item/tool/surgery/scalpel))
+	if(iswirecutter(I) || istype(I, /obj/item/tool/surgery/scalpel))
 		if(clipped)
 			to_chat(user, "<span class='notice'>The [src] have already been clipped!</span>")
 			update_icon()

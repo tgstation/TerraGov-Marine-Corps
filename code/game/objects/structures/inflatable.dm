@@ -62,11 +62,11 @@
 				deflate(1)
 
 
-/obj/structure/inflatable/attackby(obj/item/attackedby, mob/user, params)
+/obj/structure/inflatable/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(can_puncture(attackedby))
-		visible_message("<span class='danger'>[user] pierces [src] with [attackedby]!</span>")
+	if(can_puncture(I))
+		visible_message("<span class='danger'>[user] pierces [src] with [I]!</span>")
 		deflate(TRUE)
 
 

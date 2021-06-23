@@ -11,7 +11,7 @@
 	buildstacktype = null ///can't be disassembled and doesn't drop anything when destroyed
 	buckle_flags = CAN_BUCKLE
 	//copypaste sorry
-	var/amount_per_transfer_from_this = 5 //shit attackedby dunno, adding this so syringes stop runtime erroring. --NeoFite
+	var/amount_per_transfer_from_this = 5 //shit I dunno, adding this so syringes stop runtime erroring. --NeoFite
 	var/obj/item/storage/bag/trash/mybag	= null
 	var/callme = "pimpin' ride"	//how do people refer to it?
 	var/move_delay = 2
@@ -28,26 +28,26 @@
 		to_chat(user, "\A [mybag] is hanging on the [callme].")
 
 
-/obj/structure/bed/chair/janicart/attackby(obj/item/attackedby, mob/user, params)
+/obj/structure/bed/chair/janicart/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(istype(attackedby, /obj/item/tool/mop))
+	if(istype(I, /obj/item/tool/mop))
 		if(reagents.total_volume <= 1)
 			to_chat(user, "<span class='notice'>This [callme] is out of water!</span>")
 			return
 
-		reagents.trans_to(attackedby, 2)
-		to_chat(user, "<span class='notice'>You wet [attackedby] in the [callme].</span>")
+		reagents.trans_to(I, 2)
+		to_chat(user, "<span class='notice'>You wet [I] in the [callme].</span>")
 		playsound(loc, 'sound/effects/slosh.ogg', 25, 1)
 
-	else if(istype(attackedby, /obj/item/key))
-		to_chat(user, "Hold [attackedby] in one of your hands while you drive this [callme].")
+	else if(istype(I, /obj/item/key))
+		to_chat(user, "Hold [I] in one of your hands while you drive this [callme].")
 
-	else if(istype(attackedby, /obj/item/storage/bag/trash))
+	else if(istype(I, /obj/item/storage/bag/trash))
 		to_chat(user, "<span class='notice'>You hook the trashbag onto the [callme].</span>")
 		user.drop_held_item()
-		attackedby.forceMove(src)
-		mybag = attackedby
+		I.forceMove(src)
+		mybag = I
 
 /obj/structure/bed/chair/janicart/attack_hand(mob/living/user)
 	. = ..()

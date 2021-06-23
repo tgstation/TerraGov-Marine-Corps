@@ -52,11 +52,11 @@
 		to_chat(user, "<span class='notice'>You turn off \the [src].</span>")
 
 
-/obj/item/tool/hand_labeler/attackby(obj/item/attackedby, mob/user, params)
+/obj/item/tool/hand_labeler/attackby(obj/item/I, mob/user, params)
 	. = ..()
-	if(istype(attackedby, /obj/item/paper))
-		to_chat(user, "<span class='notice'>You insert [attackedby] into [src].</span>")
-		qdel(attackedby)
+	if(istype(I, /obj/item/paper))
+		to_chat(user, "<span class='notice'>You insert [I] into [src].</span>")
+		qdel(I)
 		labels_left = min(labels_left + 5, initial(labels_left))
 
 

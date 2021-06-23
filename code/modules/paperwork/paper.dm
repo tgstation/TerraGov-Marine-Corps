@@ -274,12 +274,12 @@
 		update_icon()
 
 
-/obj/item/paper/attackby(obj/item/attackedby, mob/user, params)
+/obj/item/paper/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(istype(attackedby, /obj/item/paper) || istype(attackedby, /obj/item/photo))
-		if(istype(attackedby, /obj/item/paper/carbon))
-			var/obj/item/paper/carbon/C = attackedby
+	if(istype(I, /obj/item/paper) || istype(I, /obj/item/photo))
+		if(istype(I, /obj/item/paper/carbon))
+			var/obj/item/paper/carbon/C = I
 			if(!C.iscopy && !C.copied)
 				to_chat(user, "<span class='notice'>Take off the carbon copy first.</span>")
 				return
@@ -288,28 +288,28 @@
 		var/obj/item/paper_bundle/B = new(get_turf(user))
 		if(name != "paper")
 			B.name = name
-		else if(attackedby.name != "paper" && attackedby.name != "photo")
-			B.name = attackedby.name
-		user.dropItemToGround(attackedby)
+		else if(I.name != "paper" && I.name != "photo")
+			B.name = I.name
+		user.dropItemToGround(I)
 		user.dropItemToGround(src)
-		to_chat(user, "<span class='notice'>You clip \the [attackedby] to [src].</span>")
+		to_chat(user, "<span class='notice'>You clip \the [I] to [src].</span>")
 		B.attach_doc(src, user, TRUE)
-		B.attach_doc(attackedby, user, TRUE)
+		B.attach_doc(I, user, TRUE)
 		user.put_in_hands(B)
 
-	else if(istype(attackedby, /obj/item/tool/pen) || istype(attackedby, /obj/item/toy/crayon))
+	else if(istype(I, /obj/item/tool/pen) || istype(I, /obj/item/toy/crayon))
 		user << browse("<HTML><HEAD><TITLE>[name]</TITLE></HEAD><BODY>[info_links][stamps]</BODY></HTML>", "window=[name]")
 
-	else if(istype(attackedby, /obj/item/tool/stamp))
-		if((!in_range(src, user) && loc != user && !(istype(loc, /obj/item/clipboard)) && loc.loc != user && user.get_active_held_item() != attackedby))
+	else if(istype(I, /obj/item/tool/stamp))
+		if((!in_range(src, user) && loc != user && !(istype(loc, /obj/item/clipboard)) && loc.loc != user && user.get_active_held_item() != I))
 			return
 
-		stamps += (stamps == "" ? "<HR>" : "<BR>") + "<i>This paper has been stamped with \the [attackedby].</i>"
+		stamps += (stamps == "" ? "<HR>" : "<BR>") + "<i>This paper has been stamped with \the [I].</i>"
 
 		var/image/stampoverlay = image('icons/obj/items/paper.dmi')
 		var/x
 		var/y
-		if(istype(attackedby, /obj/item/tool/stamp/captain) || istype(attackedby, /obj/item/tool/stamp/centcom))
+		if(istype(I, /obj/item/tool/stamp/captain) || istype(I, /obj/item/tool/stamp/centcom))
 			x = rand(-2, 0)
 			y = rand(-1, 2)
 		else
@@ -322,19 +322,19 @@
 
 		if(!ico)
 			ico = new
-		ico += "paper_[attackedby.icon_state]"
-		stampoverlay.icon_state = "paper_[attackedby.icon_state]"
+		ico += "paper_[I.icon_state]"
+		stampoverlay.icon_state = "paper_[I.icon_state]"
 
 		if(!stamped)
 			stamped = new
-		stamped += attackedby.type
+		stamped += I.type
 		overlays += stampoverlay
 
 		to_chat(user, "<span class='notice'>You stamp the paper with your rubber stamp.</span>")
 		playsound(src, 'sound/items/stamp.ogg', 15, 1)
 
-	else if(attackedby.heat >= 400)
-		burnpaper(attackedby, user)
+	else if(I.heat >= 400)
+		burnpaper(I, user)
 
 
 /*

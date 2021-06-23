@@ -226,7 +226,7 @@
 
 
 
-/obj/machinery/suit_storage_unit/attackby(obj/item/attackedby, mob/user, params)
+/obj/machinery/suit_storage_unit/attackby(obj/item/I, mob/user, params)
 	. = ..()
 	if(machine_stat & NOPOWER)
 		return
@@ -234,8 +234,8 @@
 	if(!isopen)
 		return
 
-	if(istype(attackedby, /obj/item/clothing/suit/space))
-		var/obj/item/clothing/suit/space/S = attackedby
+	if(istype(I, /obj/item/clothing/suit/space))
+		var/obj/item/clothing/suit/space/S = I
 		if(inserted_suit)
 			to_chat(user, "<span class='warning'>The unit already contains a suit.</span>")
 			return
@@ -246,8 +246,8 @@
 		to_chat(user, "<span class='notice'>You load the [S.name] into the storage compartment.</span>")
 		inserted_suit = S
 
-	else if(istype(attackedby,/obj/item/clothing/head/helmet))
-		var/obj/item/clothing/head/helmet/H = attackedby
+	else if(istype(I,/obj/item/clothing/head/helmet))
+		var/obj/item/clothing/head/helmet/H = I
 		if(inserted_helmet)
 			to_chat(user, "<span class='warning'>The unit already contains a helmet.</span>")
 			return
@@ -258,8 +258,8 @@
 		to_chat(user, "<span class='notice'>You load the [H.name] into the storage compartment.</span>")
 		inserted_helmet = H
 
-	else if(istype(attackedby, /obj/item/clothing/mask))
-		var/obj/item/clothing/mask/M = attackedby
+	else if(istype(I, /obj/item/clothing/mask))
+		var/obj/item/clothing/mask/M = I
 		if(inserted_mask)
 			to_chat(user, "<span class='warning'>The unit already contains a mask.</span>")
 			return
@@ -270,8 +270,8 @@
 		to_chat(user, "<span class='notice'>You load the [M.name] into the storage compartment.</span>")
 		inserted_mask = M
 
-	else if(istype(attackedby, /obj/item/tank))
-		var/obj/item/tank/T = attackedby
+	else if(istype(I, /obj/item/tank))
+		var/obj/item/tank/T = I
 		if(inserted_tank)
 			to_chat(user, "<span class='warning'>The unit already contains a tank.</span>")
 			return

@@ -126,9 +126,9 @@ text("<A href='?src=\ref[src];operation=oddbutton'>[oddbutton ? "Yes" : "No"]</A
 	updateUsrDialog()
 
 
-/obj/machinery/bot/cleanbot/attackby(obj/item/attackedby, mob/user, params)
+/obj/machinery/bot/cleanbot/attackby(obj/item/I, mob/user, params)
 	. = ..()
-	if(istype(attackedby, /obj/item/card/id))
+	if(istype(I, /obj/item/card/id))
 		if(allowed(user) && !open)
 			locked = !locked
 			to_chat(user, "<span class='notice'>You [locked ? "lock" : "unlock"] \the [src] behaviour controls.</span>")

@@ -70,9 +70,9 @@
 		successful_spread++
 	amount *= max(0, 1 - (successful_spread * slice_per_transfer))
 
-/obj/effect/decal/cleanable/liquid_fuel/attackby(obj/item/attackedby, mob/user, params)
+/obj/effect/decal/cleanable/liquid_fuel/attackby(obj/item/I, mob/user, params)
 	. = ..()
-	if(istype(attackedby, /obj/item/tool/lighter))
+	if(istype(I, /obj/item/tool/lighter))
 		ignite_fuel()
 		user.visible_message("<span class='notice'>[user] ignites \the [src]</span>", "<span class='notice'>You ignite some fuel on [src]</span>")
 		log_attack("[key_name(user)] ignites [src] in fuel in [AREACOORD(user)]")

@@ -52,7 +52,7 @@
 /obj/item/reagent_containers/syringe/attack_paw(mob/living/carbon/human/user)
 	return attack_hand()
 
-/obj/item/reagent_containers/syringe/attackby(obj/item/attackedby, mob/user, params)
+/obj/item/reagent_containers/syringe/attackby(obj/item/I, mob/user, params)
 	return
 
 /obj/item/reagent_containers/syringe/afterattack(obj/target, mob/user, proximity)

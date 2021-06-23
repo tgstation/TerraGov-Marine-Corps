@@ -276,9 +276,9 @@
 		to_chat(user, "<span class='notice'>It cannot be modified or attached.</span>")
 
 
-/obj/item/radio/attackby(obj/item/attackedby, mob/user, params)
+/obj/item/radio/attackby(obj/item/I, mob/user, params)
 	. = ..()
-	if(isscrewdriver(attackedby) && !subspace_transmission)
+	if(isscrewdriver(I) && !subspace_transmission)
 		unscrewed = !unscrewed
 		if(unscrewed)
 			to_chat(user, "<span class='notice'>The radio can now be attached and modified!</span>")

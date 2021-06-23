@@ -39,17 +39,17 @@
 		var/mob/M = src.loc
 		M.update_inv_w_uniform()
 
-/obj/item/clothing/under/attackby(obj/item/attackedby, mob/user, params)
+/obj/item/clothing/under/attackby(obj/item/I, mob/user, params)
 	if(hastie)
-		hastie.attackby(attackedby, user, params)
+		hastie.attackby(I, user, params)
 		return TRUE
 
 	else if(!ishuman(user))
 		return ..()
 
 	var/mob/living/carbon/human/H = user
-	if(!hastie && istype(attackedby, /obj/item/clothing/tie))
-		var/obj/item/clothing/tie/T = attackedby
+	if(!hastie && istype(I, /obj/item/clothing/tie))
+		var/obj/item/clothing/tie/T = I
 		if(!T.tie_check(src, user))
 			return ..()
 		user.drop_held_item()
@@ -57,12 +57,12 @@
 		hastie.on_attached(src, user)
 		H.update_inv_w_uniform()
 
-	else if(loc == user && istype(attackedby, /obj/item/clothing/under) && src != attackedby)
+	else if(loc == user && istype(I, /obj/item/clothing/under) && src != I)
 		if(H.w_uniform != src)
 			return ..()
 
 		H.dropItemToGround(src)
-		if(!H.equip_to_appropriate_slot(attackedby))
+		if(!H.equip_to_appropriate_slot(I))
 			return ..()
 		H.put_in_active_hand(src)
 

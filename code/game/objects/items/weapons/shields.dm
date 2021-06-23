@@ -48,11 +48,11 @@
 		if(80 to 100)
 			to_chat(user, "<span class='notice'>It appears in perfect condition.</span>")
 
-/obj/item/weapon/shield/riot/attackby(obj/item/attackedby, mob/user, params)
+/obj/item/weapon/shield/riot/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(istype(attackedby, /obj/item/stack/sheet/metal))
-		var/obj/item/stack/sheet/metal/metal_sheets = attackedby
+	if(istype(I, /obj/item/stack/sheet/metal))
+		var/obj/item/stack/sheet/metal/metal_sheets = I
 		if(obj_integrity > (max_integrity - integrity_failure) * 0.2)
 			return
 
@@ -121,9 +121,9 @@
 	playsound(loc, 'sound/items/welder2.ogg', 25, TRUE)
 	return TRUE
 
-/obj/item/weapon/shield/riot/attackby(obj/item/attackedby, mob/user, params)
-	if(istype(attackedby, /obj/item/weapon/baton) && world.time >= cooldown)
-		user.visible_message("<span class='warning'>[user] bashes [src] with [attackedby]!</span>")
+/obj/item/weapon/shield/riot/attackby(obj/item/I, mob/user)
+	if(istype(I, /obj/item/weapon/baton) && world.time >= cooldown)
+		user.visible_message("<span class='warning'>[user] bashes [src] with [I]!</span>")
 		playsound(user.loc, 'sound/effects/shieldbash.ogg', 25, 1)
 		cooldown = world.time + 2.5 SECONDS
 		return TRUE

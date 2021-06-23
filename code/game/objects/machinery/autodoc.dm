@@ -808,28 +808,28 @@
 	update_icon()
 	stop_processing()
 
-/obj/machinery/autodoc/attackby(obj/item/attackedby, mob/user, params)
+/obj/machinery/autodoc/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
 	if(!ishuman(user))
 		return // no
 
-	if(istype(attackedby, /obj/item/stack/sheet/metal))
-		var/obj/item/stack/sheet/metal/M = attackedby
+	if(istype(I, /obj/item/stack/sheet/metal))
+		var/obj/item/stack/sheet/metal/M = I
 		if(stored_metal >= stored_metal_max)
 			to_chat(user, "<span class='warning'>[src]'s metal reservoir is full; it can't hold any more material!</span>")
 			return
 		stored_metal = min(stored_metal_max,stored_metal + M.amount * 100)
-		to_chat(user, "<span class='notice'>[src] processes \the [attackedby]. Its metal reservoir now contains [stored_metal] of [stored_metal_max] units.</span>")
+		to_chat(user, "<span class='notice'>[src] processes \the [I]. Its metal reservoir now contains [stored_metal] of [stored_metal_max] units.</span>")
 		user.drop_held_item()
-		qdel(attackedby)
+		qdel(I)
 
-	else if(istype(attackedby, /obj/item/healthanalyzer) && occupant) //Allows us to use the analyzer on the occupant without taking him out.
-		var/obj/item/healthanalyzer/J = attackedby
+	else if(istype(I, /obj/item/healthanalyzer) && occupant) //Allows us to use the analyzer on the occupant without taking him out.
+		var/obj/item/healthanalyzer/J = I
 		J.attack(occupant, user)
 		return
 
-	else if(!istype(attackedby, /obj/item/grab))
+	else if(!istype(I, /obj/item/grab))
 		return
 
 	if(machine_stat & (NOPOWER|BROKEN))
@@ -840,10 +840,10 @@
 		to_chat(user, "<span class='notice'>[src] is already occupied!</span>")
 		return
 
-	if(!istype(attackedby, /obj/item/grab))
+	if(!istype(I, /obj/item/grab))
 		return
 
-	var/obj/item/grab/G = attackedby
+	var/obj/item/grab/G = I
 
 	var/mob/M
 	if(ismob(G.grabbed_thing))

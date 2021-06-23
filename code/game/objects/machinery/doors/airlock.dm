@@ -275,18 +275,18 @@
 		log_attack("[src] has been hit with [I] at [AREACOORD(src)] by [key_name(user)]")
 		msg_admin_ff("[ADMIN_TPMONTY(user)] hit [src] with [I] in [ADMIN_VERBOSEJMP(src)].")
 
-/obj/machinery/door/airlock/attackby(obj/item/attackedby, mob/user, params)
+/obj/machinery/door/airlock/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(istype(attackedby, /obj/item/clothing/mask/cigarette) && isElectrified())
-		var/obj/item/clothing/mask/cigarette/L = attackedby
+	if(istype(I, /obj/item/clothing/mask/cigarette) && isElectrified())
+		var/obj/item/clothing/mask/cigarette/L = I
 		L.light("<span class='notice'>[user] lights their [L] on an electrical arc from the [src]")
 
 	else if(!issilicon(user) && isElectrified())
 		shock(user, 75)
 
-	if(iswelder(attackedby) && !operating && density)
-		var/obj/item/tool/weldingtool/W = attackedby
+	if(iswelder(I) && !operating && density)
+		var/obj/item/tool/weldingtool/W = I
 
 		if(not_weldable)
 			to_chat(user, "<span class='warning'>\The [src] would require something a lot stronger than [W] to weld!</span>")
@@ -328,19 +328,19 @@
 								"<span class='notice'>You finish repairing the airlock.</span>")
 			update_icon()
 
-	else if(iswirecutter(attackedby))
+	else if(iswirecutter(I))
 		return attack_hand(user)
 
-	else if(ismultitool(attackedby))
+	else if(ismultitool(I))
 		return attack_hand(user)
 
-	else if(istype(attackedby, /obj/item/assembly/signaler))
+	else if(istype(I, /obj/item/assembly/signaler))
 		return attack_hand(user)
 
-	else if(!attackedby.pry_capable)
+	else if(!I.pry_capable)
 		return
 
-	else if(attackedby.pry_capable == IS_PRY_CAPABLE_CROWBAR && CHECK_BITFIELD(machine_stat, PANEL_OPEN) && (operating == -1 || (density && welded && operating != 1 && !hasPower() && !locked)))
+	else if(I.pry_capable == IS_PRY_CAPABLE_CROWBAR && CHECK_BITFIELD(machine_stat, PANEL_OPEN) && (operating == -1 || (density && welded && operating != 1 && !hasPower() && !locked)))
 		if(user.skills.getRating("engineer") < SKILL_ENGINEER_ENGI)
 			user.visible_message("<span class='notice'>[user] fumbles around figuring out how to deconstruct [src].</span>",
 			"<span class='notice'>You fumble around figuring out how to deconstruct [src].</span>")
@@ -398,7 +398,7 @@
 			operating = FALSE
 		qdel(src)
 
-	else if(hasPower() && attackedby.pry_capable != IS_PRY_CAPABLE_FORCE)
+	else if(hasPower() && I.pry_capable != IS_PRY_CAPABLE_FORCE)
 		to_chat(user, "<span class='warning'>The airlock's motors resist your efforts to force it.</span>")
 
 	else if(locked)
@@ -407,7 +407,7 @@
 	else if(welded)
 		to_chat(user, "<span class='warning'>The airlock is welded shut.</span>")
 
-	else if(attackedby.pry_capable == IS_PRY_CAPABLE_FORCE)
+	else if(I.pry_capable == IS_PRY_CAPABLE_FORCE)
 		return FALSE //handled by the item's afterattack
 
 	else if(!operating)

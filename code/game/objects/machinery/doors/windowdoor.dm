@@ -141,13 +141,13 @@
 	return try_to_activate_door(AI)
 
 
-/obj/machinery/door/window/attackby(obj/item/attackedby, mob/user, params)
+/obj/machinery/door/window/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
 	if(operating)
 		return TRUE
 
-	else if(operating == -1 && iscrowbar(attackedby))
+	else if(operating == -1 && iscrowbar(I))
 		playsound(loc, 'sound/items/crowbar.ogg', 25, 1)
 		user.visible_message("[user] starts to remove the electronics from the windoor.", "You start to remove electronics from the windoor.")
 

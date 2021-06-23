@@ -37,15 +37,15 @@
 	else
 		to_chat(usr, "There is nothing to remove from the console.")
 
-/obj/machinery/computer/secure_data/attackby(obj/item/attackedby, mob/user, params)
+/obj/machinery/computer/secure_data/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(istype(attackedby, /obj/item/card/id) && !scan)
+	if(istype(I, /obj/item/card/id) && !scan)
 		if(!user.drop_held_item())
 			return
-		attackedby.forceMove(src)
-		scan = attackedby
-		to_chat(user, "You insert [attackedby].")
+		I.forceMove(src)
+		scan = I
+		to_chat(user, "You insert [I].")
 
 
 /obj/machinery/computer/secure_data/interact(mob/user)
@@ -200,7 +200,7 @@
 	popup.open()
 
 /*Revised /N
-attackedby can't be bothered to look more of the actual code outside of switch but that probably needs revising too.
+I can't be bothered to look more of the actual code outside of switch but that probably needs revising too.
 What a mess.*/
 /obj/machinery/computer/secure_data/Topic(href, href_list)
 	. = ..()
@@ -240,11 +240,11 @@ What a mess.*/
 					scan.loc = get_turf(src)
 				scan = null
 			else
-				var/obj/item/attackedby = usr.get_active_held_item()
-				if (istype(attackedby, /obj/item/card/id))
+				var/obj/item/I = usr.get_active_held_item()
+				if (istype(I, /obj/item/card/id))
 					if(usr.drop_held_item())
-						attackedby.forceMove(src)
-						scan = attackedby
+						I.forceMove(src)
+						scan = I
 
 		if("Log Out")
 			authenticated = null

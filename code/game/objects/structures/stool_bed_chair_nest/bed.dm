@@ -171,10 +171,10 @@ obj/structure/bed/Destroy()
 	SEND_SIGNAL(X, COMSIG_XENOMORPH_ATTACK_BED)
 	return ..()
 
-/obj/structure/bed/attackby(obj/item/attackedby, mob/user, params)
+/obj/structure/bed/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(iswrench(attackedby))
+	if(iswrench(I))
 		if(!buildstacktype)
 			return
 
@@ -182,8 +182,8 @@ obj/structure/bed/Destroy()
 		new buildstacktype(loc, buildstackamount)
 		qdel(src)
 
-	else if(istype(attackedby, /obj/item/grab) && !LAZYLEN(buckled_mobs) && !buckled_bodybag)
-		var/obj/item/grab/G = attackedby
+	else if(istype(I, /obj/item/grab) && !LAZYLEN(buckled_mobs) && !buckled_bodybag)
+		var/obj/item/grab/G = I
 		if(!ismob(G.grabbed_thing))
 			return
 
@@ -243,11 +243,11 @@ obj/structure/bed/Destroy()
 		if(!T.density)
 			deploy_roller(user, target)
 
-/obj/item/roller/attackby(obj/item/attackedby, mob/user, params)
+/obj/item/roller/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(istype(attackedby, /obj/item/roller_holder) && rollertype == /obj/structure/bed/roller)
-		var/obj/item/roller_holder/RH = attackedby
+	if(istype(I, /obj/item/roller_holder) && rollertype == /obj/structure/bed/roller)
+		var/obj/item/roller_holder/RH = I
 		if(RH.held)
 			return
 
@@ -500,23 +500,23 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 	linked_beacon.medvac_alert(M) //We warn med channel about the mob, not what was teleported.
 	last_teleport = world.time + MEDEVAC_COOLDOWN
 
-/obj/structure/bed/medevac_stretcher/attackby(obj/item/attackedby, mob/user, params)
+/obj/structure/bed/medevac_stretcher/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(istype(attackedby, /obj/item/medevac_beacon))
-		var/obj/item/medevac_beacon/B = attackedby
+	if(istype(I, /obj/item/medevac_beacon))
+		var/obj/item/medevac_beacon/B = I
 		linked_beacon = B
 		B.linked_bed = src
 		to_chat(user, "<span class='notice'><b>You link the medvac beacon to the medvac stretcher.</b></span>")
 		playsound(loc,'sound/machines/ping.ogg', 25, FALSE)
 
-	else if(istype(attackedby, /obj/item/healthanalyzer)) //Allows us to use the analyzer on the occupant without taking him out.
+	else if(istype(I, /obj/item/healthanalyzer)) //Allows us to use the analyzer on the occupant without taking him out.
 		var/mob/living/occupant
 		if(LAZYLEN(buckled_mobs))
 			occupant = buckled_mobs[1]
 		else if(buckled_bodybag)
 			occupant = locate(/mob/living) in buckled_bodybag.contents
-		var/obj/item/healthanalyzer/J = attackedby
+		var/obj/item/healthanalyzer/J = I
 		J.attack(occupant, user)
 
 
@@ -566,11 +566,11 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 	to_chat(user, "<span class='notice'>[details.Join(" ")]</span>")
 
 
-/obj/item/roller/medevac/attackby(obj/item/attackedby, mob/user, params)
+/obj/item/roller/medevac/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(istype(attackedby, /obj/item/medevac_beacon))
-		var/obj/item/medevac_beacon/B = attackedby
+	if(istype(I, /obj/item/medevac_beacon))
+		var/obj/item/medevac_beacon/B = I
 		linked_beacon = B
 		B.linked_bed = src
 		to_chat(user, "<span class='notice'><b>You link the medvac beacon to the medvac stretcher.</b></span>")
@@ -646,10 +646,10 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 		icon_state = "med_beacon0"
 		playsound(loc,'sound/machines/click.ogg', 25, FALSE)
 
-/obj/item/medevac_beacon/attackby(obj/item/attackedby, mob/user, params) //Corpsmen can lock their beacons.
+/obj/item/medevac_beacon/attackby(obj/item/I, mob/user, params) //Corpsmen can lock their beacons.
 	. = ..()
 
-	if(istype(attackedby, /obj/item/card/id))
+	if(istype(I, /obj/item/card/id))
 		if(!allowed(user))
 			to_chat(user, "<span class='warning'>Access denied.</span>")
 			playsound(loc,'sound/machines/buzz-two.ogg', 25, FALSE)
@@ -657,13 +657,13 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 		locked = !locked
 		user.visible_message("<span class='notice'>[user] [locked ? "locks" : "unlocks"] [src]'s interface.</span>",
 		"<span class='notice'>You [locked ? "lock" : "unlock"] [src]'s interface.</span>")
-	else if(istype(attackedby, /obj/item/roller/medevac))
+	else if(istype(I, /obj/item/roller/medevac))
 		if(locked)
 			to_chat(user, "<span class='warning'>Access denied.</span>")
 			playsound(loc,'sound/machines/buzz-two.ogg', 25, FALSE)
 			return
 
-		var/obj/item/roller/medevac/R = attackedby
+		var/obj/item/roller/medevac/R = I
 		linked_bed = R
 		R.linked_beacon = src
 		to_chat(user, "<span class='notice'><b>You link the medvac beacon to the medvac stretcher.</b></span>")

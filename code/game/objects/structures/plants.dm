@@ -72,18 +72,18 @@
 						H.next_move_slowdown += rand(12,20)
 						to_chat(H, "<span class='warning'>You got completely tangeled in [src]! Oh boy...</span>")
 
-/obj/structure/bush/attackby(obj/item/attackedby, mob/user, params)
+/obj/structure/bush/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if((istype(attackedby, /obj/item/tool/hatchet) || istype(attackedby, /obj/item/weapon/combat_knife) || istype(attackedby, /obj/item/weapon/claymore/mercsword) && !stump))
+	if((istype(I, /obj/item/tool/hatchet) || istype(I, /obj/item/weapon/combat_knife) || istype(I, /obj/item/weapon/claymore/mercsword) && !stump))
 		var/damage = rand(2, 5)
-		if(istype(attackedby, /obj/item/weapon/claymore/mercsword))
+		if(istype(I, /obj/item/weapon/claymore/mercsword))
 			damage = rand(8, 18)
 		if(resistance_flags & INDESTRUCTIBLE)
 			to_chat(user, "<span class='warning'> You flail away at the undergrowth, but it's too thick here.</span>")
 			return
 
-		user.visible_message("<span class='warning'> [user] flails away at the  [src] with [attackedby].</span>","<span class='warning'> You flail away at the [src] with [attackedby].</span>")
+		user.visible_message("<span class='warning'> [user] flails away at the  [src] with [I].</span>","<span class='warning'> You flail away at the [src] with [I].</span>")
 		playsound(loc, 'sound/effects/vegetation_hit.ogg', 25, 1)
 		take_damage(damage)
 

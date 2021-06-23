@@ -157,10 +157,10 @@
 	to_chat(user, "<span class='notice'>You can't move.</span>")
 
 
-/obj/effect/spresent/attackby(obj/item/attackedby, mob/user, params)
+/obj/effect/spresent/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(!iswirecutter(attackedby))
+	if(!iswirecutter(I))
 		to_chat(user, "<span class='notice'>You need wirecutters for that.</span>")
 		return
 
@@ -184,7 +184,7 @@
 	var/amount = 20
 
 
-/obj/item/wrapping_paper/attackby(obj/item/attackedby, mob/user, params)
+/obj/item/wrapping_paper/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
 	var/a_used = 2 ** (w_class - 1)
@@ -193,7 +193,7 @@
 		to_chat(user, "<span class='notice'>You must put the paper on a table!</span>")
 		return
 
-	if(attackedby.w_class >= WEIGHT_CLASS_BULKY)
+	if(I.w_class >= WEIGHT_CLASS_BULKY)
 		to_chat(user, "<span class='notice'>The object is far too large!</span>")
 		return
 
@@ -206,7 +206,7 @@
 		to_chat(user, "<span class='notice'>You need more paper!</span>")
 		return
 
-	if(istype(attackedby, /obj/item/smallDelivery) || istype(attackedby, /obj/item/gift)) //No gift wrapping gifts!
+	if(istype(I, /obj/item/smallDelivery) || istype(I, /obj/item/gift)) //No gift wrapping gifts!
 		return
 
 	if(!user.drop_held_item())
@@ -214,11 +214,11 @@
 
 	amount -= a_used
 	var/obj/item/gift/G = new(loc)
-	G.size = attackedby.w_class
+	G.size = I.w_class
 	G.w_class = G.size + 1
 	G.icon_state = "gift[G.size]"
-	G.gift = attackedby
-	attackedby.forceMove(G)
+	G.gift = I
+	I.forceMove(G)
 
 	if(amount <= 0)
 		new /obj/item/trash/c_tube(loc)

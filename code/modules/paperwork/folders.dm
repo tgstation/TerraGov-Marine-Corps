@@ -49,16 +49,16 @@
 		overlays += "folder_paper"
 	return
 
-/obj/item/folder/attackby(obj/item/attackedby, mob/user, params)
+/obj/item/folder/attackby(obj/item/I, mob/user, params)
 	. = ..()
-	if(istype(attackedby, /obj/item/paper) || istype(attackedby, /obj/item/photo) || istype(attackedby, /obj/item/paper_bundle))
-		if(!user.transferItemToLoc(attackedby, src))
+	if(istype(I, /obj/item/paper) || istype(I, /obj/item/photo) || istype(I, /obj/item/paper_bundle))
+		if(!user.transferItemToLoc(I, src))
 			return
 
-		to_chat(user, "<span class='notice'>You put the [attackedby] into \the [src].</span>")
+		to_chat(user, "<span class='notice'>You put the [I] into \the [src].</span>")
 		update_icon()
 
-	else if(istype(attackedby, /obj/item/tool/pen))
+	else if(istype(I, /obj/item/tool/pen))
 		var/n_name = stripped_input(user, "What would you like to label the folder?", "Folder Labelling")
 		if(loc != user || user.stat != CONSCIOUS)
 			return

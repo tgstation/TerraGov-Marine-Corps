@@ -105,10 +105,10 @@
 	playsound(loc,'sound/items/screwdriver.ogg', 25, TRUE)
 	update_icon()
 
-/obj/machinery/miner/attackby(obj/item/attackedby, mob/user, params)
+/obj/machinery/miner/attackby(obj/item/I,mob/user,params)
 	. = ..()
-	if(istype(attackedby, /obj/item/minerupgrade))
-		var/obj/item/minerupgrade/upgrade = attackedby
+	if(istype(I, /obj/item/minerupgrade))
+		var/obj/item/minerupgrade/upgrade = I
 		if(!(miner_status == MINER_RUNNING))
 			to_chat(user, "<span class='info'>[src]'s module sockets seem bolted down.</span>")
 			return FALSE

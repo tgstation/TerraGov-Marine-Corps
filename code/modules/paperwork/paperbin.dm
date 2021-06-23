@@ -52,15 +52,15 @@
 	to_chat(user, "<span class='notice'>You take [P] out of the [src].</span>")
 
 
-/obj/structure/paper_bin/attackby(obj/item/attackedby, mob/user, params)
+/obj/structure/paper_bin/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(istype(attackedby, /obj/item/paper))
-		if(!user.transferItemToLoc(attackedby, src))
+	if(istype(I, /obj/item/paper))
+		if(!user.transferItemToLoc(I, src))
 			return
 
-		to_chat(user, "<span class='notice'>You put [attackedby] in [src].</span>")
-		LAZYADD(papers, attackedby)
+		to_chat(user, "<span class='notice'>You put [I] in [src].</span>")
+		LAZYADD(papers, I)
 		amount++
 
 

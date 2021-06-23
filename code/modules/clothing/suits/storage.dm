@@ -17,9 +17,9 @@
 		return ..(over_object)
 
 
-/obj/item/clothing/suit/storage/attackby(obj/item/attackedby, mob/user, params)
+/obj/item/clothing/suit/storage/attackby(obj/item/I, mob/user, params)
 	. = ..()
-	return pockets.attackby(attackedby, user, params)
+	return pockets.attackby(I, user, params)
 
 
 /obj/item/clothing/suit/storage/emp_act(severity)

@@ -219,34 +219,34 @@
 	else
 		to_chat(user, "[src] seems empty.")
 
-/obj/machinery/atmospherics/components/unary/cryo_cell/attackby(obj/item/attackedby, mob/user, params)
+/obj/machinery/atmospherics/components/unary/cryo_cell/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(istype(attackedby, /obj/item/reagent_containers/glass))
+	if(istype(I, /obj/item/reagent_containers/glass))
 		if(beaker)
 			to_chat(user, "<span class='warning'>A beaker is already loaded into the machine.</span>")
 			return
 
-		if(istype(attackedby, /obj/item/reagent_containers/glass/bucket))
+		if(istype(I, /obj/item/reagent_containers/glass/bucket))
 			to_chat(user, "<span class='warning'>That's too big to fit!</span>")
 			return
 
-		beaker =  attackedby
+		beaker =  I
 
 		var/reagentnames = ""
 		for(var/datum/reagent/R in beaker.reagents.reagent_list)
 			reagentnames += ", [R.name]"
 
-		if(!user.transferItemToLoc(attackedby, src))
+		if(!user.transferItemToLoc(I, src))
 			return
 
-		user.visible_message("[user] adds \a [attackedby] to \the [src]!", "You add \a [attackedby] to \the [src]!")
+		user.visible_message("[user] adds \a [I] to \the [src]!", "You add \a [I] to \the [src]!")
 
-	else if(istype(attackedby, /obj/item/healthanalyzer) && occupant) //Allows us to use the analyzer on the occupant without taking him out.
-		var/obj/item/healthanalyzer/J = attackedby
+	else if(istype(I, /obj/item/healthanalyzer) && occupant) //Allows us to use the analyzer on the occupant without taking him out.
+		var/obj/item/healthanalyzer/J = I
 		J.attack(occupant, user)
 
-	if(!istype(attackedby, /obj/item/grab))
+	if(!istype(I, /obj/item/grab))
 		return
 
 	if(machine_stat & (NOPOWER|BROKEN))
@@ -257,7 +257,7 @@
 		to_chat(user, "<span class='notice'>\ [src] is already occupied!</span>")
 		return
 
-	var/obj/item/grab/G = attackedby
+	var/obj/item/grab/G = I
 	var/mob/M
 
 	if(ismob(G.grabbed_thing))

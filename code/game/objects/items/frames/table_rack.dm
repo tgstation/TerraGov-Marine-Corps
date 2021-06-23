@@ -18,15 +18,15 @@
 	var/table_type = /obj/structure/table //what type of table it creates when assembled
 	var/deconstruct_type = /obj/item/stack/sheet/metal
 
-/obj/item/frame/table/attackby(obj/item/attackedby, mob/user, params)
+/obj/item/frame/table/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(iswrench(attackedby))
+	if(iswrench(I))
 		new deconstruct_type(loc)
 		qdel(src)
 
-	else if(istype(attackedby, /obj/item/stack/rods))
-		var/obj/item/stack/rods/R = attackedby
+	else if(istype(I, /obj/item/stack/rods))
+		var/obj/item/stack/rods/R = I
 		if(!R.use(4))
 			to_chat(user, "<span class='warning'>You need at least four rods to reinforce [src].</span>")
 			return
@@ -36,8 +36,8 @@
 		user.temporarilyRemoveItemFromInventory(src)
 		qdel(src)
 
-	else if(istype(attackedby, /obj/item/stack/sheet/wood))
-		var/obj/item/stack/sheet/wood/S = attackedby
+	else if(istype(I, /obj/item/stack/sheet/wood))
+		var/obj/item/stack/sheet/wood/S = I
 
 		if(!S.use(2))
 			to_chat(user, "<span class='warning'>You need at least two wood sheets to swap the metal parts of [src].</span>")
@@ -86,11 +86,11 @@
 	table_type = /obj/structure/table/woodentable
 	deconstruct_type = /obj/item/stack/sheet/wood
 
-/obj/item/frame/table/wood/attackby(obj/item/attackedby, mob/user, params)
+/obj/item/frame/table/wood/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(istype(attackedby, /obj/item/stack/tile/carpet))
-		var/obj/item/stack/tile/carpet/C = attackedby
+	if(istype(I, /obj/item/stack/tile/carpet))
+		var/obj/item/stack/tile/carpet/C = I
 		if(!C.use(1))
 			return
 
@@ -110,10 +110,10 @@
 	table_type = /obj/structure/table/gamblingtable
 	deconstruct_type = /obj/item/stack/sheet/wood
 
-/obj/item/frame/table/gambling/attackby(obj/item/attackedby, mob/user, params)
+/obj/item/frame/table/gambling/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(iscrowbar(attackedby))
+	if(iscrowbar(I))
 		to_chat(user, "<span class='notice'>You pry the carpet out of [src].</span>")
 		new /obj/item/stack/tile/carpet(loc)
 		new /obj/item/frame/table/wood(loc)
@@ -137,10 +137,10 @@
 	materials = list(/datum/material/metal = 3750)
 
 
-/obj/item/frame/rack/attackby(obj/item/attackedby, mob/user, params)
+/obj/item/frame/rack/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(iswrench(attackedby))
+	if(iswrench(I))
 		new /obj/item/stack/sheet/metal(loc)
 		qdel(src)
 

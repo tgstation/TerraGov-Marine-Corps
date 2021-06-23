@@ -14,11 +14,11 @@
 	attack_verb = list("hit", "bludgeoned", "whacked")
 
 
-/obj/item/stack/sandbags_empty/attackby(obj/item/attackedby, mob/user, params)
+/obj/item/stack/sandbags_empty/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(istype(attackedby, /obj/item/tool/shovel))
-		var/obj/item/tool/shovel/ET = attackedby
+	if(istype(I, /obj/item/tool/shovel))
+		var/obj/item/tool/shovel/ET = I
 		if(!ET.dirt_amt)
 			return
 
@@ -38,8 +38,8 @@
 		if(!E && replace)
 			user.put_in_hands(new_bags)
 
-	else if(istype(attackedby, /obj/item/stack/snow))
-		var/obj/item/stack/S = attackedby
+	else if(istype(I, /obj/item/stack/snow))
+		var/obj/item/stack/S = I
 		var/obj/item/stack/sandbags/new_bags = new(user.loc)
 		new_bags.add_to_stacks(user)
 		S.use(1)
