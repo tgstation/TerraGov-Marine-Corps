@@ -7,14 +7,13 @@
 	throwpass = TRUE //So people and xenos can shoot through!
 	anchored = TRUE //We can not be moved.
 	layer = WINDOW_LAYER
-	max_integrity = 250 //Its cheap but still viable to repair, cant be moved around, about 7 runner hits to take down
+	max_integrity = 200 //Its cheap but still viable to repair, cant be moved around, about 7 runner hits to take down
 	resistance_flags = XENO_DAMAGEABLE
 	minimap_color = MINIMAP_FENCE
 	var/cut = FALSE //Cut fences can be passed through
 	var/junction = 0 //Because everything is terrible, I'm making this a fence-level var
 	var/basestate = "fence"
-	//Form metal grills and then nerfed a bit
-	soft_armor = list("melee" = 20, "bullet" = 10, "laser" = 70, "energy" = 90, "bomb" = 10, "bio" = 50, "rad" = 100, "fire" = 0, "acid" = 0)
+	//We dont have armor do to being a bit more healthy!
 
 /obj/structure/fence/ex_act(severity)
 	switch(severity)
