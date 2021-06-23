@@ -252,7 +252,6 @@
 			to_chat(user, "<span class='notice'>You take a cigar out of the case.</span>")
 			update_icon()
 	return ..()
-		return ..()
 
 /*
 * Vial Box

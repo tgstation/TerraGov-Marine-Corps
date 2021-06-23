@@ -579,7 +579,7 @@
 
 ///This is called when the cooldown timer expires
 /obj/item/storage/backpack/marine/satchel/scout_cloak/proc/end_cooldown()
-	cooldown_active = 0
+	cooldown_expire = 0
 	camo_energy = initial(camo_energy)
 	playsound(loc, 'sound/effects/EMPulse.ogg', 25, 0, 1)
 	if(wearer)
