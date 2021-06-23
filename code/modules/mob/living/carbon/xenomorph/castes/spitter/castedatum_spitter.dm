@@ -40,7 +40,7 @@
 	soft_armor = list("melee" = 10, "bullet" = 20, "laser" = 20, "energy" = 20, "bomb" = XENO_BOMB_RESIST_0, "bio" = 10, "rad" = 10, "fire" = 20, "acid" = 10)
 
 	// *** Ranged Attack *** //
-	spit_delay = 1.3 SECONDS
+	spit_delay = 0.8 SECONDS
 	spit_types = list(/datum/ammo/xeno/acid/medium) //Gotta give them their own version of heavy acid; kludgy but necessary as 100 plasma is way too costly.
 
 	acid_spray_duration = 10 SECONDS
@@ -92,7 +92,7 @@
 	soft_armor = list("melee" = 15, "bullet" = 25, "laser" = 25, "energy" = 25, "bomb" = XENO_BOMB_RESIST_0, "bio" = 15, "rad" = 15, "fire" = 25, "acid" = 15)
 
 	// *** Ranged Attack *** //
-	spit_delay = 1.2 SECONDS
+	spit_delay = 0.7 SECONDS
 
 
 
@@ -125,7 +125,7 @@
 	soft_armor = list("melee" = 20, "bullet" = 30, "laser" = 30, "energy" = 30, "bomb" = XENO_BOMB_RESIST_0, "bio" = 18, "rad" = 18, "fire" = 30, "acid" = 18)
 
 	// *** Ranged Attack *** //
-	spit_delay = 1.1 SECONDS
+	spit_delay = 0.6 SECONDS
 
 
 
@@ -158,6 +158,6 @@
 	soft_armor = list("melee" = 25, "bullet" = 35, "laser" = 35, "energy" = 35, "bomb" = XENO_BOMB_RESIST_0, "bio" = 20, "rad" = 20, "fire" = 35, "acid" = 20)
 
 	// *** Ranged Attack *** //
-	spit_delay = 1 SECONDS
+	spit_delay = 0.5 SECONDS
 
 
