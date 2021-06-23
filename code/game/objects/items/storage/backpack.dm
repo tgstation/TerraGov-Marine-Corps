@@ -303,10 +303,10 @@
 		icon_state += "_0"
 
 ///Dragging the defib or power cell onto the backpack has special functionality we handle here
-/obj/item/storage/backpack/marine/corpsman/MouseDrop_T(obj/item/item, mob/living/user)
-	if(istype(item, /obj/item/defibrillator))
+/obj/item/storage/backpack/marine/corpsman/MouseDrop_T(obj/item/W, mob/living/user)
+	if(istype(W, /obj/item/defibrillator))
 		if(cell)
-			var/obj/item/defibrillator/defib = item
+			var/obj/item/defibrillator/defib = W
 			var/charge_difference = defib.dcell.maxcharge - defib.dcell.charge
 			if(charge_difference) //If the defib has less than max charge, recharge it.
 				use_charge(user, charge_difference) //consume an appropriate amount of charge
@@ -315,16 +315,16 @@
 				to_chat(user, "<span class='warning'>This defibrillator is already at maximum charge!</span>")
 		else
 			to_chat(user, "<span class='warning'>[src]'s defibrillator recharge unit does not have a power cell installed!</span>")
-	else if(istype(item, /obj/item/cell))
+	else if(istype(W, /obj/item/cell))
 		if(user.drop_held_item())
-			item.loc = src
+			W.loc = src
 			var/replace_install = "You replace the cell in [src]'s defibrillator recharge unit."
 			if(!cell)
 				replace_install = "You install a cell in [src]'s defibrillator recharge unit."
 			else
 				cell.update_icon()
 				user.put_in_hands(cell)
-			cell = item
+			cell = W
 			to_chat(user, "<span class='notice'>[replace_install] <b>Charge Remaining: [cell.charge]/[cell.maxcharge]</b></span>")
 			playsound(user, 'sound/weapons/guns/interact/rifle_reload.ogg', 25, 1, 5)
 			update_icon()
