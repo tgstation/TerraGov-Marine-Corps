@@ -230,9 +230,6 @@
 
 	return ..()
 
-/obj/machinery/deployable/mortar/disassemble(mob/user)
-	. = ..()
-	SEND_SIGNAL(src, COMSIG_PARENT_QDELETING)
 
 /obj/machinery/deployable/mortar/fixed
 	desc = "A manual, crew-operated mortar system intended to rain down 80mm goodness on anything it's aimed at. Uses manual targetting dials. Insert round to fire. This one is bolted and welded into the ground."

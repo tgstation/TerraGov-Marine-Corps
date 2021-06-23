@@ -51,6 +51,10 @@
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER|GUN_NO_WIELDING|GUN_WIELDED_FIRING_ONLY
 	gun_firemode_list = list(GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC)
 
+	starting_attachment_types = list(
+		/obj/item/attachable/scope/unremovable/tl102
+	)
+
 	deploy_time = 5 SECONDS
 
 	max_integrity = 300
@@ -75,9 +79,11 @@
 
 	current_mag = /obj/item/ammo_magazine/mounted/hsg_nest
 
-	deploy_flags = DEPLOYED_NO_PICKUP
+	starting_attachment_types = list(
+		/obj/item/attachable/scope/unremovable/tl102/nest
+	)
 
-	deploy_view_offset = 6
+	deploy_flags = DEPLOYED_NO_PICKUP
 
 ///This is my meme version, the first version of the TL-102 to have auto-fire, revel in its presence.
 /obj/item/weapon/gun/mounted/death

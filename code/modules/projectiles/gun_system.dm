@@ -129,10 +129,7 @@
 	///determines lower accuracy modifier in akimbo
 	var/lower_akimbo_accuracy = 1
 
-	///The amount of tiles the users view shifts once deployed and operated.
-	var/deploy_view_offset = 3
-
-	var/deploy_time
+	var/deploy_time = 0
 
 	var/deploy_flags = NONE
 //----------------------------------------------------------
@@ -530,28 +527,23 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 			//						   	    \\
 //----------------------------------------------------------
 ///Check if the gun can fire and add it to bucket auto_fire system if needed, or just fire the gun if not
-/obj/item/weapon/gun/proc/start_fire(datum/source, atom/object, turf/location, control, params)
+/obj/item/weapon/gun/proc/start_fire(datum/source, atom/object, turf/location, control, bypass_checks = FALSE, params)
 	SIGNAL_HANDLER
-	
-	if(gun_on_cooldown(gun_user))
-		return
-	if(gun_user.hand && !isgun(gun_user.l_hand) || !gun_user.hand && !isgun(gun_user.r_hand)) // If the object in our active hand is not a gun, abort
-		return
-	if(gun_user.hand && isgun(gun_user.r_hand) || !gun_user.hand && isgun(gun_user.l_hand)) // If we have a gun in our inactive hand too, both guns get innacuracy maluses
-		dual_wield = TRUE
-	if(gun_user.in_throw_mode)
-		return
-	if(gun_user.Adjacent(object)) //Dealt with by attack code
-		return
+	if(!bypass_checks)
+		if(gun_on_cooldown(gun_user))
+			return
+		if(gun_user.hand && !isgun(gun_user.l_hand) || !gun_user.hand && !isgun(gun_user.r_hand)) // If the object in our active hand is not a gun, abort
+			return
+		if(gun_user.hand && isgun(gun_user.r_hand) || !gun_user.hand && isgun(gun_user.l_hand)) // If we have a gun in our inactive hand too, both guns get innacuracy maluses
+			dual_wield = TRUE
+		if(gun_user.in_throw_mode)
+			return
+		if(gun_user.Adjacent(object)) //Dealt with by attack code
+			return
 	if(QDELETED(object))
 		return
+	set_target(get_turf_on_clickcatcher(object, gun_user, params))
 	var/list/modifiers = params2list(params)
-	if(istype(object, /obj/screen))
-		if(!istype(object, /obj/screen/click_catcher))
-			return
-		//Happens when you click a black tile
-		object = params2turf(modifiers["screen-loc"], get_turf(gun_user), gun_user.client)
-	set_target(object)
 	if(modifiers["right"] || modifiers["middle"] || modifiers["shift"])
 		if(active_attachable?.flags_attach_features & ATTACH_WEAPON)
 			do_fire_attachment()
@@ -606,12 +598,7 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 ///Update the target if you draged your mouse
 /obj/item/weapon/gun/proc/change_target(datum/source, atom/src_object, atom/over_object, turf/src_location, turf/over_location, src_control, over_control, params)
 	SIGNAL_HANDLER
-	if(istype(over_object, /obj/screen))
-		if(!istype(over_object, /obj/screen/click_catcher))
-			return
-		var/list/modifiers = params2list(params)
-		over_object = params2turf(modifiers["screen-loc"], get_turf(gun_user), gun_user.client)
-	set_target(over_object)
+	set_target(get_turf_on_clickcatcher(over_object, gun_user, params))
 	gun_user.face_atom(target)
 
 /*

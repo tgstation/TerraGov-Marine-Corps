@@ -8,14 +8,16 @@
 
 	hud_possible = list(MACHINE_HEALTH_HUD)
 
-/obj/machinery/deployable/Initialize()
+	var/map_based = FALSE
+
+/obj/machinery/deployable/Initialize(mapload, new_item)
 	. = ..()
 	prepare_huds()
 	for(var/datum/atom_hud/squad/sentry_status_hud in GLOB.huds) //Add to the squad HUD
 		sentry_status_hud.add_to_hud(src)
 
-/obj/machinery/deployable/Initialize(mapload, _internal_item, _deploy_flags)
-	. = ..()
+
+/obj/machinery/deployable/proc/create_stats(_internal_item, _deploy_flags)
 	internal_item = _internal_item
 	deploy_flags = _deploy_flags
 
@@ -27,7 +29,7 @@
 
 	icon = internal_item.icon
 	default_icon_state = internal_item.icon_state + "_deployed"
-
+	icon_state = default_icon_state
 	update_icon_state()
 
 /obj/machinery/deployable/update_icon_state()

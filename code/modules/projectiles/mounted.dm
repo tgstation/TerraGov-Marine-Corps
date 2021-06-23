@@ -10,10 +10,6 @@
 	soft_armor = list("melee" = 0, "bullet" = 50, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 100, "rad" = 0, "fire" = 0, "acid" = 0)
 	hud_possible = list(MACHINE_HEALTH_HUD, SENTRY_AMMO_HUD)
 
-
-	//this is amount of tiles we shift our vision towards guns direction when operated, currently its max is 7
-	var/view_tile_offset = 3
-
 ///generates the icon based on how much ammo it has.
 /obj/machinery/deployable/mounted/update_icon_state(mob/user)
 	var/obj/item/weapon/gun/gun = internal_item
@@ -24,7 +20,7 @@
 	hud_set_machine_health()
 	hud_set_gun_ammo()
 
-/obj/machinery/deployable/mounted/Initialize(mapload, _internal_item, _deploy_flags)
+/obj/machinery/deployable/mounted/create_stats(_internal_item, _deploy_flags)
 	. = ..()
 	if(!istype(internal_item, /obj/item/weapon/gun))
 		CRASH("[internal_item] was attempted to be deployed within the type /obj/machinery/deployable/mounted without being a gun]")
@@ -33,10 +29,6 @@
 
 	if(istype(new_gun.current_mag, /obj/item/ammo_magazine/internal) || istype(new_gun, /obj/item/weapon/gun/launcher))
 		CRASH("[new_gun] has been deployed, however it is incompatible because of either an internal magazine, or it is a launcher.")
-	
-	view_tile_offset = new_gun.deploy_view_offset
-	
-	update_icon_state()
 
 
 ///This is called when a user tries to operate the gun
@@ -62,8 +54,6 @@
 
 	visible_message("[icon2html(src, viewers(src))] <span class='notice'>[human_user] mans the [src]!</span>",
 		"<span class='notice'>You man the gun!</span>")
-
-	update_view(user)
 
 	return ..()
 
@@ -132,52 +122,23 @@
 
 	gun.gun_user = operator
 
-	update_view(operator)
-
-///Begins the Firing Process
+///Begins the Firing Process, copy-paste of gun-sytem code for the purpose of replacing can_fire()
 /obj/machinery/deployable/mounted/proc/start_fire(datum/source, atom/object, turf/location, control, params)
 	SIGNAL_HANDLER
 
-	update_icon_state()
-
 	var/obj/item/weapon/gun/gun = internal_item
-
-	if(gun.gun_on_cooldown(operator))
-		return
-
-	if(QDELETED(object))
-		return
 
 	if(object == src) //Clicking the gun gets off of it.
 		var/mob/living/carbon/human/user = source
 		user.unset_interaction()
 		return
 
-	var/target = object
-
-	var/list/modifiers = params2list(params)
-	if(istype(target, /obj/screen))
-		if(!istype(target, /obj/screen/click_catcher))
-			return
-		//Happens when you click a black tile
-		target = params2turf(modifiers["screen-loc"], get_turf(operator), operator.client)
+	var/target = get_turf_on_clickcatcher(object, operator, params)
 
 	if(!can_fire(target))
 		return
 
-	gun.set_target(target)
-
-	if(modifiers["right"] || modifiers["middle"] || modifiers["shift"])
-		if(gun.active_attachable?.flags_attach_features & ATTACH_WEAPON)
-			gun.do_fire_attachment()
-		return
-	if(gun.gun_firemode == GUN_FIREMODE_SEMIAUTO)
-		if(!gun.Fire(TRUE) || gun.windup_checked == WEAPON_WINDUP_CHECKING)
-			return
-		gun.reset_fire()
-		return
-	gun.gun_user.client.mouse_pointer_icon = 'icons/effects/supplypod_target.dmi'
-	SEND_SIGNAL(gun, COMSIG_GUN_FIRE)
+	gun.start_fire(source, target, location, control, TRUE, params)
 
 ///Happens when you drag the mouse.
 obj/machinery/deployable/mounted/proc/change_target(datum/source, atom/src_object, atom/over_object, turf/src_location, turf/over_location, src_control, over_control, params)
@@ -193,12 +154,11 @@ obj/machinery/deployable/mounted/proc/change_target(datum/source, atom/src_objec
 
 	var/obj/item/weapon/gun/gun = internal_item
 
-	gun.set_target(over_object)
-	operator.face_atom(over_object)
+	gun.change_target(source, src_object, over_object, src_location, over_location, src_control, over_control, params)
 
 ///Checks if you can fire
 /obj/machinery/deployable/mounted/proc/can_fire(atom/object)
-
+	update_icon_state()
 	if(operator.lying_angle || !Adjacent(operator) || operator.incapacitated() || get_step(src, REVERSE_DIR(dir)) != operator.loc)
 		operator.unset_interaction()
 		return FALSE
@@ -243,7 +203,6 @@ obj/machinery/deployable/mounted/proc/change_target(datum/source, atom/src_objec
 		user.set_interaction(src)
 		playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
 		operator.visible_message("[operator] rotates the [src].","You rotate the [src].")
-		update_view(operator)
 	return FALSE
 
 
@@ -262,7 +221,7 @@ obj/machinery/deployable/mounted/proc/change_target(datum/source, atom/src_objec
 	var/obj/screen/ammo/hud = operator.hud_used.ammo
 	hud.remove_hud(operator)
 
-	if(operator.client)	
+	if(operator.client) 
 		operator.client.change_view(WORLD_VIEW)
 		operator.client.pixel_x = 0
 		operator.client.pixel_y = 0
@@ -275,32 +234,3 @@ obj/machinery/deployable/mounted/proc/change_target(datum/source, atom/src_objec
 /obj/machinery/deployable/mounted/check_eye(mob/user)
 	if(user.lying_angle || !Adjacent(user) || user.incapacitated() || !user.client)
 		user.unset_interaction()
-
-///Updates view, sets max zoom distance to 7
-/obj/machinery/deployable/mounted/proc/update_view(mob/user)
-	if(view_tile_offset > 7)
-		stack_trace("[src] has its view_tile offset set higher than 7, please don't.")
-
-	user.client.change_view(WORLD_VIEW)
-	var/view_offset = view_tile_offset * 32
-	switch(dir)
-		if(NORTH)
-			user.client.pixel_x = 0
-			user.client.pixel_y = view_offset
-		if(SOUTH)
-			user.client.pixel_x = 0
-			user.client.pixel_y = -1 * view_offset
-		if(EAST)
-			user.client.pixel_x = view_offset
-			user.client.pixel_y = 0
-		if(WEST)
-			user.client.pixel_x = -1 * view_offset
-			user.client.pixel_y = 0
-
-///Mapbound version, it is initialized directly so it requires a gun to be set with it.
-/obj/machinery/deployable/mounted/hsg_nest
-	internal_item = /obj/item/weapon/gun/mounted/hsg_nest
-
-/obj/machinery/deployable/mounted/hsg_nest/Initialize(mapload, _internal_item, _deploy_flags)
-	. = ..()
-	deploy(new internal_item(), SOUTH)

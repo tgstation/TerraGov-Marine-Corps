@@ -21,34 +21,43 @@
 	wrench_dissasemble = _wrench_dissasemble
 	deploy_flags = _deploy_flags
 	
-	deployed_machine = new deployed_machine(parent, parent, deploy_flags)
+	deployed_machine = new deployed_machine(parent)
+	deployed_machine.create_stats(parent, deploy_flags)
 	RegisterSignal(parent, COMSIG_ITEM_DEPLOY, .proc/deploy)
 	RegisterSignal(parent, COMSIG_IS_DEPLOYED, .proc/is_deployed)
-	RegisterSignal(parent, COMSIG_DEPLOYABLE_SET_DEPLOYED, .proc/set_deploy)
 
 ///Wrapper for proc/finish_deploy
-/datum/component/deployable_item/proc/deploy(datum/source, mob/user)
+/datum/component/deployable_item/proc/deploy(datum/source, mob/user, location, direction)
 	SIGNAL_HANDLER
-	to_chat(user, "<span class='notice'>you start deploying the [source]</span>")
-	INVOKE_ASYNC(src, .proc/finish_deploy, source, user)
+	if(user)
+		to_chat(user, "<span class='notice'>you start deploying the [source]</span>")
+	INVOKE_ASYNC(src, .proc/finish_deploy, source, user, location, direction)
 
 ///Handles the conversion of item into machine
-/datum/component/deployable_item/proc/finish_deploy(datum/source, mob/user)
-	if(!ishuman(user)) 
-		return
-	var/turf/here = get_step(user, user.dir)
+/datum/component/deployable_item/proc/finish_deploy(datum/source, mob/user, location, direction)
+	var/new_direction
 	var/obj/item/parent_item = parent
-	if(parent_item.check_blocked_turf(here))
-		to_chat(user, "<span class='warning'>There is insufficient room to deploy [parent_item]!</span>")
-		return
-	var/direction = user.dir
-	if(!do_after(user, deploy_time, TRUE, parent_item, BUSY_ICON_BUILD))
-		return
+	if(user)
+		if(!ishuman(user)) 
+			return
+		var/turf/here = get_step(user, user.dir)
+		if(parent_item.check_blocked_turf(here))
+			to_chat(user, "<span class='warning'>There is insufficient room to deploy [parent_item]!</span>")
+			return
+		new_direction = user.dir
+		if(!do_after(user, deploy_time, TRUE, parent_item, BUSY_ICON_BUILD))
+			return
 
-	deployed_machine.forceMove(here)
-	deployed_machine.setDir(direction)
+		deployed_machine.forceMove(here)
+		user.temporarilyRemoveItemFromInventory(parent_item)
+	else
+		if(!location || !direction)
+			CRASH("/datum/component/deployable_item/deploy has been called from [source] without a user and therefore is missing the required vars of either 'location' or 'direction'")
+		
+		new_direction = direction
+		deployed_machine.forceMove(location)
 
-	user.temporarilyRemoveItemFromInventory(parent_item)
+	deployed_machine.setDir(new_direction)
 	parent_item.forceMove(deployed_machine)
 
 	deployed = TRUE
@@ -77,11 +86,7 @@
 	UnregisterSignal(deployed_machine, COMSIG_ITEM_UNDEPLOY)
 
 	deployed_machine.forceMove(parent)
-
-///This is used incase the machine needs to be set as deployed without a user
-/datum/component/deployable_item/proc/set_deploy(datum/source, _deployed)
-	SIGNAL_HANDLER
-	deployed = _deployed
+	SEND_SIGNAL(deployed_machine, COMSIG_PARENT_QDELETING)
 
 ///Returns Deployed
 /datum/component/deployable_item/proc/is_deployed()
@@ -97,4 +102,5 @@
 ///Unregisters for safety
 /datum/component/deployable_item/mounted_gun/finish_deploy(datum/source, mob/user)
 	. = ..()
-	parent.UnregisterSignal(user, list(COMSIG_MOB_MOUSEDOWN, COMSIG_MOB_MOUSEUP, COMSIG_MOB_MOUSEDRAG, COMSIG_KB_RAILATTACHMENT, COMSIG_KB_UNDERRAILATTACHMENT, COMSIG_KB_UNLOADGUN, COMSIG_KB_FIREMODE))
+	if(user)
+		parent.UnregisterSignal(user, list(COMSIG_MOB_MOUSEDOWN, COMSIG_MOB_MOUSEUP, COMSIG_MOB_MOUSEDRAG, COMSIG_KB_RAILATTACHMENT, COMSIG_KB_UNDERRAILATTACHMENT, COMSIG_KB_UNLOADGUN, COMSIG_KB_FIREMODE))
