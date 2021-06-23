@@ -1474,7 +1474,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 			var/mob/living/carbon/xenomorph/X = M
 			if(X.xeno_caste.caste_flags & CASTE_FIRE_IMMUNE)
 				continue
-			fire_mod = clamp(X.xeno_caste.fire_resist + X.fire_resist_modifier, 0, 1)
+			fire_mod = X.get_fire_resist()
 		else if(ishuman(M))
 			var/mob/living/carbon/human/H = M
 

@@ -1015,8 +1015,6 @@ TUNNEL
 	X.visible_message("<span class='notice'>[X] starts to cover themselves in a foul substance...</span>", "<span class='xenonotice'>We begin to cover ourselves in a foul substance...</span>")
 	if(!do_after(X, 2 SECONDS, TRUE, X, BUSY_ICON_MEDICAL))
 		return
-	if(X.fire_resist_modifier <= -20)
-		return
 	activate_jelly(X)
 
 /obj/item/resin_jelly/attack_self(mob/living/carbon/xenomorph/user)
@@ -1026,8 +1024,6 @@ TUNNEL
 		return
 	user.visible_message("<span class='notice'>[user] starts to cover themselves in a foul substance...</span>", "<span class='xenonotice'>We begin to cover ourselves in a foul substance...</span>")
 	if(!do_after(user, 2 SECONDS, TRUE, user, BUSY_ICON_MEDICAL))
-		return
-	if(user.fire_resist_modifier <= -20)
 		return
 	activate_jelly(user)
 
@@ -1041,8 +1037,6 @@ TUNNEL
 		return FALSE
 	if(!do_after(user, 1 SECONDS, TRUE, M, BUSY_ICON_MEDICAL))
 		return FALSE
-	if(M.fire_resist_modifier <= -20)
-		return FALSE
 	user.visible_message("<span class='notice'>[user] smears a viscous substance on [M].</span>","<span class='xenonotice'>We carefully smear [src] onto [user].</span>")
 	activate_jelly(M)
 	user.temporarilyRemoveItemFromInventory(src)
@@ -1051,13 +1045,5 @@ TUNNEL
 /obj/item/resin_jelly/proc/activate_jelly(mob/living/carbon/xenomorph/user)
 	user.visible_message("<span class='notice'>[user]'s chitin begins to gleam with an unseemly glow...</span>", "<span class='xenonotice'>We feel powerful as we are covered in [src]!</span>")
 	user.emote("roar")
-	user.add_filter("resin_jelly_outline", 2, outline_filter(1, COLOR_RED))
-	user.fire_resist_modifier -= 20
-	addtimer(CALLBACK(user, /mob/living/carbon/xenomorph/proc/deactivate_jelly), immune_time)
+	user.apply_status_effect(STATUS_EFFECT_RESIN_JELLY_COATING)
 	qdel(src)
-
-///Remove the jelly effect from the xenomorph
-/mob/living/carbon/xenomorph/proc/deactivate_jelly()
-	remove_filter("resin_jelly_outline")
-	fire_resist_modifier += 20
-	to_chat(src, "<span class='xenonotice'>We feel more vulnerable again.</span>")
