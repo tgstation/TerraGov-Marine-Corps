@@ -7,7 +7,7 @@
 	throwpass = TRUE //So people and xenos can shoot through!
 	anchored = TRUE //We can not be moved.
 	layer = WINDOW_LAYER
-	max_integrity = 200 //Its cheap but still viable to repair, cant be moved around, about 7 runner hits to take down
+	max_integrity = 150 //Its cheap but still viable to repair, cant be moved around, about 7 runner hits to take down
 	resistance_flags = XENO_DAMAGEABLE
 	minimap_color = MINIMAP_FENCE
 	var/cut = FALSE //Cut fences can be passed through
@@ -20,9 +20,9 @@
 		if(EXPLODE_DEVASTATE)
 			deconstruct(FALSE)
 		if(EXPLODE_HEAVY)
-			take_damage(rand(175, 225))//Almost broken or half way
+			take_damage(rand(100, 125))//Almost broken or half way
 		if(EXPLODE_LIGHT)
-			take_damage(rand(125, 175))
+			take_damage(rand(50, 75))
 
 /obj/structure/fence/attackby(obj/item/I, mob/user, params)
 	. = ..()
