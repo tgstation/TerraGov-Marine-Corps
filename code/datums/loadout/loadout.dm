@@ -138,7 +138,7 @@
 				TIMER_COOLDOWN_START(ui.user, COOLDOWN_LOADOUT_EQUIPPED, 30 SECONDS)
 			ui.close()
 		if("deleteLoadout")
-			ui.user.client.prefs.loadout_manager.delete_loadout(src)
+			ui.user.client.prefs.loadout_manager.delete_loadout(name, job)
 			ui.close()
 
 

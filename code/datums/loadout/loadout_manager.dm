@@ -17,9 +17,9 @@
 	var/version = CURRENT_LOADOUT_VERSION
 
 ///Remove the data of a loadout from the loadouts list
-/datum/loadout_manager/proc/delete_loadout(datum/loadout/loadout)
+/datum/loadout_manager/proc/delete_loadout(loadout_name, loadout_job)
 	for(var/i = 1; i <= length(loadouts_data); i += 2)
-		if(loadout.job == loadouts_data[i] && loadout.name == loadouts_data[i+1])
+		if(loadout_job == loadouts_data[i] && loadout_name == loadouts_data[i+1])
 			loadouts_data -= loadouts_data[i+1]
 			loadouts_data -= loadouts_data[i]
 			return
