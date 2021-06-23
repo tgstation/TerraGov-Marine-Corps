@@ -92,7 +92,6 @@
 	icon_activated = "motion1"
 	///The squad this OB beacon belongs to
 	var/datum/squad/squad = null
-	var/alt_name = null
 
 /obj/item/beacon/orbital_bombardment_beacon/activate(mob/living/carbon/human/H)
 	. = ..()
@@ -102,10 +101,10 @@
 		squad = H.assigned_squad
 		name += " ([squad.name])"
 		squad.squad_orbital_beacons += src
-	else	//So we can just get a goshdarn name.
-		alt_name = H.name
 		name += " ([H])"
-		//alt_name.squad_orbital_beacons += src
+		return
+	else	//So we can just get a goshdarn name.
+		name += " ([H])"
 
 /obj/item/beacon/orbital_bombardment_beacon/deactivate(mob/living/carbon/human/H)
 	. = ..()
@@ -163,14 +162,14 @@
 	var/faction = ""
 
 /datum/supply_beacon/New(_name, turf/_drop_location, _faction, life_time = 0 SECONDS)
-	name= _name 
-	drop_location = _drop_location	
+	name= _name
+	drop_location = _drop_location
 	faction = _faction
 	GLOB.supply_beacon[name] = src
 	if(life_time)
 		addtimer(CALLBACK(src, .proc/qdel), life_time)
 
-/// Remove that beacon from the list of glob supply beacon 
+/// Remove that beacon from the list of glob supply beacon
 /datum/supply_beacon/Destroy()
 	GLOB.supply_beacon[name] = null
 	return ..()
