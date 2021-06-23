@@ -85,10 +85,7 @@
 		var/obj/item/item_to_insert = item_representation.instantiate_object(seller, null, user)
 		if(!item_to_insert)
 			continue
-		if(storage.can_be_inserted(item_to_insert))
-			storage.handle_item_insertion(item_to_insert)
-			continue
-		item_to_insert.forceMove(get_turf(user))
+		storage.handle_item_insertion(item_to_insert)
 
 
 /**
