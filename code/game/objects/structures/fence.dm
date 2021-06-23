@@ -13,6 +13,7 @@
 	var/cut = FALSE //Cut fences can be passed through
 	var/junction = 0 //Because everything is terrible, I'm making this a fence-level var
 	var/basestate = "fence"
+	coverage = 0 //Were like 4 rods
 	//We dont have armor do to being a bit more healthy!
 
 /obj/structure/fence/ex_act(severity)
@@ -36,9 +37,9 @@
 				return
 
 		var/obj/item/stack/rods/R = I
-		var/amount_needed = 2
+		var/amount_needed = 4
 		if(obj_integrity)
-			amount_needed = 1
+			amount_needed = 4
 
 		if(R.amount < amount_needed)
 			to_chat(user, "<span class='warning'>You need more metal rods to repair [src].")
