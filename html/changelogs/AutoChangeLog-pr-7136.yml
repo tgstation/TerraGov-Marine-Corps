@@ -1,4 +1,0 @@
-author: "BraveMole"
-delete-after: True
-changes: 
-  - qol: "If there are silos, late join xenos will spawn in silos, and not in random locations"
