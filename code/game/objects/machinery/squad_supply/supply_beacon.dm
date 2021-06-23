@@ -104,7 +104,7 @@
 		squad.squad_orbital_beacons += src
 	else	//So we can just get a goshdarn name.
 		alt_name = H.name
-		name += " ([alt_name])"
+		name += " ([H])"
 		//alt_name.squad_orbital_beacons += src
 
 /obj/item/beacon/orbital_bombardment_beacon/deactivate(mob/living/carbon/human/H)
