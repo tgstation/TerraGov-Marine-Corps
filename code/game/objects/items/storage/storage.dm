@@ -482,7 +482,7 @@
 			user.client.screen -= item
 		if(!prevent_warning)
 			var/visidist = item.w_class >= 3 ? 3 : 1
-			user.visible_message("<span class='notice'>[usr] puts [item] into [src].</span>",\
+			user.visible_message("<span class='notice'>[user] puts [item] into [src].</span>",\
 								"<span class='notice'>You put \the [item] into [src].</span>",\
 								null, visidist)
 	update_watchers(TRUE)
