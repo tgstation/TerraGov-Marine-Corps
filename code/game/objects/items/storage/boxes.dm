@@ -602,10 +602,10 @@
 
 /obj/item/storage/box/visual/magazine/compact/update_stats()
 	for(var/item_path in can_hold)
-		var/obj/item/item = item_path
-		if(item)
-			max_storage_space = max(initial(item.w_class) * storage_slots, max_storage_space)
-			max_w_class = max(initial(item.w_class), max_w_class)
+		var/obj/item/I = item_path
+		if(I)
+			max_storage_space = max(initial(I.w_class) * storage_slots, max_storage_space)
+			max_w_class = max(initial(I.w_class), max_w_class)
 	return ..()
 
 // --PREFILLED MAG BOXES--
