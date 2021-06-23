@@ -102,14 +102,14 @@
 		return /datum/item_representation/stack
 	return /datum/item_representation
 
-/// Return TRUE if this handful should be savable, aka if it's corresponding aka box is in a linked vendor
-/proc/is_handful_savable(obj/item/ammo_magazine/handful/handful)
+/// Return TRUE if this handful should be buyable, aka if it's corresponding aka box is in a linked vendor
+/proc/is_handful_buyable(ammo_type)
 	for(var/datum/vending_product/item_datum AS in GLOB.vending_records[/obj/machinery/vending/marine/shared])
 		var/product_path = item_datum.product_path
 		if(!ispath(product_path, /obj/item/ammo_magazine))
 			continue
 		var/obj/item/ammo_magazine/ammo = product_path
-		if(initial(ammo.default_ammo) == handful.default_ammo)
+		if(initial(ammo.default_ammo) == ammo_type)
 			return TRUE
 	return FALSE
 

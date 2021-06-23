@@ -74,8 +74,8 @@
 	gun_type = handful_to_copy.gun_type
 
 /datum/item_representation/handful_representation/instantiate_object(datum/loadout_seller/seller, master = null, mob/living/user)
-	. = ..()
-	if(!.)
+	if(!is_handful_buyable(ammo))
 		return
-	var/obj/item/ammo_magazine/handful/handful = .
+	var/obj/item/ammo_magazine/handful/handful = new item_type(master)
 	handful.generate_handful(ammo, caliber, max_rounds, gun_type, max_rounds)
+	return handful
