@@ -244,18 +244,14 @@
 	if(!ismob(attacked))
 		return
 
-	if(attacked == user && user.zone_selected == "mouth" && contents.len > 0 && !user.wear_mask)
-		var/obj/item/clothing/mask/cigarette/cigar/cigar
-		for(var/obj in contents)
-			if(istype(obj, /obj/item/clothing/mask/cigarette/cigar))
-				cigar = obj
-				break
+	if(attacked == user && user.zone_selected == "mouth" && !user.wear_mask)
+		var/obj/item/clothing/mask/cigarette/cigar/cigar = locate() in contents
 		if(cigar)
 			remove_from_storage(cigar, get_turf(user), user)
 			user.equip_to_slot_if_possible(cigar, SLOT_WEAR_MASK)
 			to_chat(user, "<span class='notice'>You take a cigar out of the case.</span>")
 			update_icon()
-	else
+	return ..()
 		return ..()
 
 /*
