@@ -1950,6 +1950,22 @@ datum/ammo/bullet/revolver/tp44
 //================================================
 */
 
+/datum/ammo/bullet/pepperball
+	name = "pepperball"
+	hud_state = "grenade_frag"
+	hud_state_empty = "battery_empty"
+	flags_ammo_behavior = AMMO_BALLISTIC
+	accurate_range = 15
+	damage_type = STAMINA
+	armor_type = "bio"
+	damage = 70
+	penetration = 0
+
+/datum/ammo/bullet/pepperball/on_hit_mob(mob/living/victim, obj/projectile/proj)
+	if(isxeno(victim))
+		var/mob/living/carbon/xenomorph/X = victim
+		X.use_plasma(50)
+
 /datum/ammo/alloy_spike
 	name = "alloy spike"
 	ping = "ping_s"
