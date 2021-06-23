@@ -358,10 +358,7 @@
 	if(flags_storage & STORAGE_FLAG_DISPLAY_NUMBERED)
 		numbered_contents = list()
 		adjusted_contents = 0
-		for(var/content in contents)
-			if(!isitem(content))
-				continue
-			var/obj/item/item = content
+		for(var/obj/item/item in contents)
 			var/found = FALSE
 			for(var/datum/numbered_display/ND in numbered_contents)
 				if(ND.sample_object.type == item.type)
