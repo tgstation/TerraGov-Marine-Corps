@@ -4,25 +4,26 @@
 	icon = 'icons/obj/structures/fence.dmi'
 	icon_state = "fence0"
 	density = TRUE
-	anchored = TRUE
+	throwpass = TRUE //So people and xenos can shoot through!
+	anchored = TRUE //We can not be moved.
 	layer = WINDOW_LAYER
-	max_integrity = 100
+	max_integrity = 250 //Its cheap but still viable to repair, cant be moved around, about 7 runner hits to take down
 	resistance_flags = XENO_DAMAGEABLE
 	minimap_color = MINIMAP_FENCE
 	var/cut = FALSE //Cut fences can be passed through
 	var/junction = 0 //Because everything is terrible, I'm making this a fence-level var
 	var/basestate = "fence"
-
+	//Form metal grills and then nerfed a bit
+	soft_armor = list("melee" = 20, "bullet" = 10, "laser" = 70, "energy" = 90, "bomb" = 10, "bio" = 50, "rad" = 100, "fire" = 0, "acid" = 0)
 
 /obj/structure/fence/ex_act(severity)
 	switch(severity)
 		if(EXPLODE_DEVASTATE)
 			deconstruct(FALSE)
 		if(EXPLODE_HEAVY)
-			deconstruct(FALSE)
+			take_damage(rand(125, 200)//Almost broken or half way
 		if(EXPLODE_LIGHT)
-			take_damage(rand(25, 55))
-
+			take_damage(rand(55, 75)
 
 /obj/structure/fence/attackby(obj/item/I, mob/user, params)
 	. = ..()
