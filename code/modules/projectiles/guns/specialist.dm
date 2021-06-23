@@ -1202,7 +1202,7 @@
 // PEPPERBALL GUN
 
 //-------------------------------------------------------
-//TX-220 Railgun
+//TLLL-12
 
 /obj/item/weapon/gun/rifle/pepperball
 	name = "\improper TLLL-12 pepperball gun"
