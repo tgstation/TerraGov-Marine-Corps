@@ -18,7 +18,7 @@
 
 /obj/item/storage/belt/dropped(mob/user)
 	mouse_opacity = initial(mouse_opacity)
-	..()
+	return ..()
 
 /obj/item/storage/belt/champion
 	name = "championship belt"
