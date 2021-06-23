@@ -14,7 +14,7 @@
 /obj/item/storage/belt/equipped(mob/user, slot)
 	if(slot == SLOT_BELT)
 		mouse_opacity = 2 //so it's easier to click when properly equipped.
-	..()
+	return ..()
 
 /obj/item/storage/belt/dropped(mob/user)
 	mouse_opacity = initial(mouse_opacity)

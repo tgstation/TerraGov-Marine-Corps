@@ -33,11 +33,11 @@
 		mouse_opacity = 2 //so it's easier to click when properly equipped.
 		if(use_sound)
 			playsound(loc, use_sound, 15, 1, 6)
-	..()
+	return ..()
 
 /obj/item/storage/backpack/dropped(mob/user)
 	mouse_opacity = initial(mouse_opacity)
-	..()
+	return ..()
 
 /*
 * Backpack Types
@@ -412,7 +412,7 @@
 	var/camo_active = FALSE
 
 	///Are we currently in a cooldown state
-	var/cooldown_active = FALSE
+	var/cooldown_expire
 
 	///At what world.time did we last stealth
 	var/camo_last_stealth = 0
@@ -474,7 +474,7 @@
 		to_chat(M, "<span class='warning'>You are already cloaked!</span>")
 		return FALSE
 
-	if(!TIMER_COOLDOWN_CHECK(src, COOLDOWN_CAMO))
+	if(cooldown_expire) // If its set we're still in cooldown, save that tiny bit of cpu time yo
 		to_chat(M, "<span class='warning'>Your thermal cloak is still recharging!.</span>")
 		return
 
@@ -574,13 +574,12 @@
 
 ///Handles the camouflage cooldown, using a timer callback by default
 /obj/item/storage/backpack/marine/satchel/scout_cloak/proc/begin_cooldown(mob/living/user, cooldown)
-	TIMER_COOLDOWN_START(src, COOLDOWN_CAMO, cooldown)
-	cooldown_active = TRUE
+	cooldown_expire = world.time + cooldown
 	to_chat(user, "<span class='warning'>[src] has begun recharging and will be ready in [cooldown * 0.1] seconds.</span>")
 
 ///This is called when the cooldown timer expires
 /obj/item/storage/backpack/marine/satchel/scout_cloak/proc/end_cooldown()
-	cooldown_active = FALSE
+	cooldown_active = 0
 	camo_energy = initial(camo_energy)
 	playsound(loc, 'sound/effects/EMPulse.ogg', 25, 0, 1)
 	if(wearer)
@@ -593,7 +592,7 @@
 	var/list/details = list()
 	details +=("It has [camo_energy]/[initial(camo_energy)] charge. </br>")
 
-	if(!TIMER_COOLDOWN_CHECK(src, COOLDOWN_CAMO))
+	if(!cooldown_expire)
 		details += "It is currently recharging.<br />"
 
 	if(camo_active)
@@ -640,7 +639,7 @@
 	wearer.alpha = max(wearer.alpha,shimmer_alpha)
 
 /obj/item/storage/backpack/marine/satchel/scout_cloak/process()
-	if(cooldown_active && TIMER_COOLDOWN_CHECK(src, COOLDOWN_CAMO))
+	if(world.time >= cooldown_expire)
 		end_cooldown()
 
 	if(!wearer)
@@ -750,15 +749,15 @@
 /obj/item/storage/backpack/marine/engineerpack/afterattack(obj/object, mob/user, proximity)
 	if(!proximity) // this replaces and improves the get_dist(src,O) <= 1 checks used previously
 		return
-	if (istype(object, /obj/structure/reagent_dispensers/fueltank) && reagents.total_volume < max_fuel)
+	if(istype(object, /obj/structure/reagent_dispensers/fueltank) && reagents.total_volume < max_fuel)
 		object.reagents.trans_to(src, max_fuel)
 		to_chat(user, "<span class='notice'>You crack the cap off the top of the pack and fill it back up again from the tank.</span>")
 		playsound(loc, 'sound/effects/refill.ogg', 25, 1, 3)
 		return
-	else if (istype(object, /obj/structure/reagent_dispensers/fueltank) && reagents.total_volume == max_fuel)
+	if (istype(object, /obj/structure/reagent_dispensers/fueltank) && reagents.total_volume == max_fuel)
 		to_chat(user, "<span class='notice'>The pack is already full!</span>")
 		return
-	..()
+	return ..()
 
 /obj/item/storage/backpack/marine/engineerpack/examine(mob/user)
 	. = ..()

@@ -167,7 +167,7 @@
 			to_chat(user, "<span class='notice'>You take a cigarette out of the pack.</span>")
 			update_icon()
 	else
-		..()
+		return ..()
 
 /obj/item/storage/fancy/chemrettes
 	name = "Chemrette packet"
@@ -256,7 +256,7 @@
 			to_chat(user, "<span class='notice'>You take a cigar out of the case.</span>")
 			update_icon()
 	else
-		..()
+		return ..()
 
 /*
 * Vial Box
