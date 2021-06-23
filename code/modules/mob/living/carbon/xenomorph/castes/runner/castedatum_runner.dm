@@ -116,7 +116,7 @@
 
 	// *** Plasma *** //
 	plasma_max = 200
-	plasma_gain = 3
+	plasma_gain = 4
 
 	// *** Health *** //
 	max_health = 225
@@ -150,7 +150,7 @@
 
 	// *** Plasma *** //
 	plasma_max = 200
-	plasma_gain = 3
+	plasma_gain = 5
 
 	// *** Health *** //
 	max_health = 240
@@ -236,7 +236,7 @@
 
 	upgrade = XENO_UPGRADE_ONE
 
-	savage_cooldown = 30 SECONDS
+	savage_cooldown = 28 SECONDS
 
 	// *** Tackle *** //
 	tackle_damage = 17
@@ -269,7 +269,7 @@
 	// *** Melee Attacks *** //
 	melee_damage = 21
 
-	savage_cooldown = 30 SECONDS
+	savage_cooldown = 26 SECONDS
 
 	// *** Tackle *** //
 	tackle_damage = 21
@@ -279,7 +279,7 @@
 
 	// *** Plasma *** //
 	plasma_max = 200
-	plasma_gain = 3
+	plasma_gain = 4
 
 	// *** Health *** //
 	max_health = 225
@@ -300,7 +300,7 @@
 	upgrade = XENO_UPGRADE_THREE
 	wound_type = "runner" //used to match appropriate wound overlays
 
-	savage_cooldown = 30 SECONDS
+	savage_cooldown = 24 SECONDS
 
 	// *** Melee Attacks *** //
 	melee_damage = 21
@@ -313,7 +313,7 @@
 
 	// *** Plasma *** //
 	plasma_max = 200
-	plasma_gain = 3
+	plasma_gain = 5
 
 	// *** Health *** //
 	max_health = 240

@@ -52,7 +52,7 @@
 	GLOB.round_statistics.runner_savage_attacks++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "runner_savage_attacks")
 	M.attack_alien_harm(src, extra_dam, FALSE, TRUE, TRUE, TRUE) //Inflict a free attack on pounce that deals +1 extra damage per 4 plasma stored, up to 35 or twice the max damage of an Ancient Runner attack.
-	use_plasma(extra_dam * 5) //Expend plasma equal to 4 times the extra damage.
+	use_plasma(extra_dam * 4) //Expend plasma equal to 4 times the extra damage.
 	savage_used = TRUE
 	addtimer(CALLBACK(src, .proc/savage_cooldown), xeno_caste.savage_cooldown)
 
@@ -103,7 +103,7 @@
 	if(ishuman(M) && (M.dir in reverse_nearby_direction(X.dir)))
 		var/mob/living/carbon/human/H = M
 		if(!H.check_shields(COMBAT_TOUCH_ATTACK, 30, "melee"))
-			X.Paralyze(6 SECONDS)
+			X.Paralyze(3 SECONDS)
 			X.set_throwing(FALSE) //Reset throwing manually.
 			return COMPONENT_KEEP_THROWING
 
