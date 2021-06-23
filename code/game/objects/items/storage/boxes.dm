@@ -494,11 +494,11 @@
 
 	//Fill assoc list of every item type in the crate and have it's value be the total weight it takes up.
 	contents_weight = list()
-	for(var/obj/item/item AS in contents)
-		if(!contents_weight[item.type])
-			contents_weight[item.type] = 0
+	for(var/obj/item/I AS in contents)
+		if(!contents_weight[I.type])
+			contents_weight[I.type] = 0
 			variety++
-		contents_weight[item.type] += item.w_class
+		contents_weight[I.type] += I.w_class
 
 	if(!deployed)
 		icon_state = "[initial(icon_state)]"
