@@ -284,7 +284,7 @@
 		to_chat(user, "[dat.Join(" ")]")
 
 /obj/item/weapon/gun/wield(mob/user)
-	if(flags_gun_features & GUN_NO_WIELDING)
+	if(CHECK_BITFIELD(flags_gun_features, GUN_NO_WIELDING))
 		to_chat(user, "<span class='notice'>[src] cannot be fired by hand and must be deployed.</span>")
 		return
 	
@@ -307,8 +307,8 @@
 			wdelay += wield_penalty
 	wield_time = world.time + wdelay
 	var/obj/screen/ammo/A = user.hud_used.ammo
-	A.add_hud(user)
-	A.update_hud(user)
+	A.add_hud(user, src)
+	A.update_hud(user, src)
 	do_wield(user, wdelay)
 	if(CHECK_BITFIELD(flags_gun_features, AUTO_AIM_MODE))
 		toggle_aim_mode(user)
@@ -406,7 +406,7 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 
 	update_icon(user)
 	var/obj/screen/ammo/A = user.hud_used.ammo
-	A.update_hud(user)
+	A.update_hud(user, src)
 	return TRUE
 
 /obj/item/weapon/gun/proc/replace_magazine(mob/user, obj/item/ammo_magazine/magazine)
@@ -529,9 +529,9 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 ///Check if the gun can fire and add it to bucket auto_fire system if needed, or just fire the gun if not
 /obj/item/weapon/gun/proc/start_fire(datum/source, atom/object, turf/location, control, bypass_checks = FALSE, params)
 	SIGNAL_HANDLER
-	if(!bypass_checks)
-		if(gun_on_cooldown(gun_user))
-			return
+	if(gun_on_cooldown(gun_user))
+		return
+	if(bypass_checks)
 		if(gun_user.hand && !isgun(gun_user.l_hand) || !gun_user.hand && !isgun(gun_user.r_hand)) // If the object in our active hand is not a gun, abort
 			return
 		if(gun_user.hand && isgun(gun_user.r_hand) || !gun_user.hand && isgun(gun_user.l_hand)) // If we have a gun in our inactive hand too, both guns get innacuracy maluses
@@ -726,7 +726,7 @@ and you're good to go.
 
 
 	var/obj/screen/ammo/A = gun_user.hud_used.ammo //The ammo HUD
-	A.update_hud(gun_user)
+	A.update_hud(gun_user, src)
 
 
 	return TRUE
@@ -789,7 +789,7 @@ and you're good to go.
 		reload_into_chamber(user) //Reload into the chamber if the gun supports it.
 		if(user) //Update dat HUD
 			var/obj/screen/ammo/A = user.hud_used.ammo //The ammo HUD
-			A.update_hud(user)
+			A.update_hud(user, src)
 		return TRUE
 
 	if(M != user || user.zone_selected != "mouth")
@@ -914,7 +914,7 @@ and you're good to go.
 /obj/item/weapon/gun/proc/click_empty(mob/user)
 	if(user)
 		var/obj/screen/ammo/A = user.hud_used.ammo //The ammo HUD
-		A.update_hud(user)
+		A.update_hud(user, src)
 		to_chat(user, "<span class='warning'><b>*click*</b></span>")
 		playsound(user, dry_fire_sound, 25, 1, 5) //5 tile range
 	else

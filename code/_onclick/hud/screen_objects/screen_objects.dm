@@ -677,21 +677,14 @@
 	var/warned = FALSE
 
 
-/obj/screen/ammo/proc/add_hud(mob/living/user)
+/obj/screen/ammo/proc/add_hud(mob/living/user, obj/item/weapon/gun/G)
 	if(!user?.client)
 		return
 
-	var/obj/item/weapon/gun/G = user.get_active_held_item()
-
-	//Checks if the user is interacting with a machine, and whether that machine is a deployed gun.
-	if(user.interactee && istype(user.interactee, /obj/machinery/deployable/mounted))
-		var/obj/machinery/deployable/mounted/mounted_gun = user.interactee
-		G = mounted_gun.internal_item
-
-	else if(!istype(G)) //If it is not a deployed gun, makes sure the user is actually holding a gun.
+	if(!G)
 		return
 
-	if(!G.hud_enabled || !(G.flags_gun_features & GUN_AMMO_COUNTER))
+	if((user.get_active_held_item() != G && user.get_inactive_held_item() != G && !G.is_deployed()) || !G.hud_enabled || !CHECK_BITFIELD(G.flags_gun_features, GUN_AMMO_COUNTER))
 		return
 
 	user.client.screen += src
@@ -701,22 +694,15 @@
 	user?.client?.screen -= src
 
 
-/obj/screen/ammo/proc/update_hud(mob/living/user)
+/obj/screen/ammo/proc/update_hud(mob/living/user, obj/item/weapon/gun/G)
 	if(!user?.client?.screen.Find(src))
 		return
 
-	var/obj/item/weapon/gun/G = user.get_active_held_item()
-
-	//Same function as above
-	if(user.interactee && istype(user.interactee, /obj/machinery/deployable/mounted))
-		var/obj/machinery/deployable/mounted/mounted_gun = user.interactee
-		G = mounted_gun.internal_item
-
-	else if(!istype(G))
+	if(!G)
 		remove_hud(user)
 		return
 
-	if(!(G.flags_gun_features & GUN_AMMO_COUNTER) || !G.hud_enabled || !G.get_ammo_type() || isnull(G.get_ammo_count()))
+	if((user.get_active_held_item() != G && user.get_inactive_held_item() != G && !G.is_deployed()) || !G.hud_enabled || !CHECK_BITFIELD(G.flags_gun_features, GUN_AMMO_COUNTER))
 		remove_hud(user)
 		return
 

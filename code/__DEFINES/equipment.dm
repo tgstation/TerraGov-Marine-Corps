@@ -61,6 +61,7 @@
 #define CAN_BUMP_ATTACK (1<<11)	 //Item triggers bump attack
 #define NO_VACUUM (1<<12) //Roomba won't eat this
 #define IS_DEPLOYABLE (1<<12) //Item can be deployed into a machine
+#define IS_DEPLOYED (1<<13) //If this is on an item, said item is currently deployed
 
 //==========================================================================================
 

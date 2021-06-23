@@ -290,6 +290,9 @@ should be alright.
 /obj/item/weapon/gun/proc/is_wielded() //temporary proc until we get traits going
 	return CHECK_BITFIELD(flags_item, WIELDED)
 
+/obj/item/weapon/gun/proc/is_deployed()
+	return CHECK_BITFIELD(flags_item, IS_DEPLOYED)
+
 /obj/item/weapon/gun/proc/has_attachment(A)
 	if(!A)
 		return
@@ -871,7 +874,7 @@ should be alright.
 
 	hud_enabled = !hud_enabled
 	var/obj/screen/ammo/A = usr.hud_used.ammo
-	hud_enabled ? A.add_hud(usr) : A.remove_hud(usr)
+	hud_enabled ? A.add_hud(usr, src) : A.remove_hud(usr, src)
 	A.update_hud(usr)
 	to_chat(usr, "<span class='notice'>[hud_enabled ? "You enable the Ammo HUD for this weapon." : "You disable the Ammo HUD for this weapon."]</span>")
 

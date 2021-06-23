@@ -1,6 +1,4 @@
 /datum/component/deployable_item
-	///Whether or not the parent is deployed
-	var/deployed = FALSE
 	///Time it takes for the parent to be deployed/undeployed
 	var/deploy_time = 0
 
@@ -24,7 +22,6 @@
 	deployed_machine = new deployed_machine(parent)
 	deployed_machine.create_stats(parent, deploy_flags)
 	RegisterSignal(parent, COMSIG_ITEM_DEPLOY, .proc/deploy)
-	RegisterSignal(parent, COMSIG_IS_DEPLOYED, .proc/is_deployed)
 
 ///Wrapper for proc/finish_deploy
 /datum/component/deployable_item/proc/deploy(datum/source, mob/user, location, direction)
@@ -60,7 +57,7 @@
 	deployed_machine.setDir(new_direction)
 	parent_item.forceMove(deployed_machine)
 
-	deployed = TRUE
+	parent_item.flags_item |= IS_DEPLOYED
 
 	RegisterSignal(deployed_machine, COMSIG_ITEM_UNDEPLOY, .proc/undeploy)
 
@@ -72,30 +69,23 @@
 
 ///Transfers the machine into the item
 /datum/component/deployable_item/proc/finish_undeploy(datum/source, mob/user, using_wrench)
+	var/obj/item/parent_item = parent
 	if(!using_wrench && wrench_dissasemble)
 		return
 	if(!do_after(user, deploy_time, TRUE, deployed_machine, BUSY_ICON_BUILD))
 		return
-	user.visible_message("<span class='notice'> [user] disassembles [parent]! </span>","<span class='notice'> You disassemble [parent]!</span>")
+	user.visible_message("<span class='notice'> [user] disassembles [parent_item]! </span>","<span class='notice'> You disassemble [parent]!</span>")
 
 	user.unset_interaction()
-	user.put_in_hands(parent)
+	user.put_in_hands(parent_item)
 
-	deployed = FALSE
+	parent_item.flags_item &= -IS_DEPLOYED
 
 	UnregisterSignal(deployed_machine, COMSIG_ITEM_UNDEPLOY)
 
 	deployed_machine.forceMove(parent)
 	SEND_SIGNAL(deployed_machine, COMSIG_PARENT_QDELETING)
 
-///Returns Deployed
-/datum/component/deployable_item/proc/is_deployed()
-	SIGNAL_HANDLER
-	return deployed
-
-///Checks if the item is deployed
-/obj/item/proc/is_deployed()
-	return SEND_SIGNAL(src, COMSIG_IS_DEPLOYED)
 
 /datum/component/deployable_item/mounted_gun
 

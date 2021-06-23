@@ -36,12 +36,6 @@
 	. = ..()
 	hud_set_machine_health()
 
-///Bypasses the depoyable_item component in order to deploy the device without need for user
-/obj/machinery/deployable/proc/deploy(obj/item/deploying, direction)
-	deploying.forceMove(src)
-	setDir(direction)
-	SEND_SIGNAL(deploying, COMSIG_DEPLOYABLE_SET_DEPLOYED, TRUE)
-
 ///Repairs machine
 /obj/machinery/deployable/welder_act(mob/living/user, obj/item/I)
 	if(user.do_actions)

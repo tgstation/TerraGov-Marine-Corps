@@ -45,14 +45,14 @@
 
 	burst_amount = 3
 	burst_delay = 1
-	extra_delay = 1
+	extra_delay = 1 SECONDS
 
-	flags_item = IS_DEPLOYABLE
+	flags_item = IS_DEPLOYABLE|TWOHANDED
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER|GUN_NO_WIELDING|GUN_WIELDED_FIRING_ONLY
 	gun_firemode_list = list(GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC)
 
 	starting_attachment_types = list(
-		/obj/item/attachable/scope/unremovable/tl102
+		/obj/item/attachable/scope/unremovable/tl102,
 	)
 
 	deploy_time = 5 SECONDS
@@ -80,7 +80,7 @@
 	current_mag = /obj/item/ammo_magazine/mounted/hsg_nest
 
 	starting_attachment_types = list(
-		/obj/item/attachable/scope/unremovable/tl102/nest
+		/obj/item/attachable/scope/unremovable/tl102/nest,
 	)
 
 	deploy_flags = DEPLOYED_NO_PICKUP

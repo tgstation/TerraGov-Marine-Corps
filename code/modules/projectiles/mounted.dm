@@ -105,7 +105,7 @@
 	var/obj/item/weapon/gun/gun = internal_item
 
 	if(!gun)
-		CRASH("[src] has been deployed and attempted interaction with [user] without having a gun. This shouldn't happen.")
+		CRASH("[src] has been deployed and attempted interaction with [operator] without having a gun. This shouldn't happen.")
 	
 	
 
@@ -117,8 +117,8 @@
 		var/datum/action/A = X
 		A.give_action(operator)
 	var/obj/screen/ammo/hud = operator.hud_used.ammo
-	gun.hud_enabled ? hud.add_hud(operator) : hud.remove_hud(operator)
-	hud.update_hud(operator)
+	hud.add_hud(operator, internal_item)
+	hud.update_hud(operator, internal_item)
 
 	gun.gun_user = operator
 
@@ -143,11 +143,7 @@
 ///Happens when you drag the mouse.
 obj/machinery/deployable/mounted/proc/change_target(datum/source, atom/src_object, atom/over_object, turf/src_location, turf/over_location, src_control, over_control, params)
 	SIGNAL_HANDLER
-	if(istype(over_object, /obj/screen))
-		if(!istype(over_object, /obj/screen/click_catcher))
-			return
-		var/list/modifiers = params2list(params)
-		over_object = params2turf(modifiers["screen-loc"], get_turf(operator), operator.client)
+	over_object = get_turf_on_clickcatcher(over_object, operator)
 
 	if(!can_fire(over_object))
 		return
@@ -183,7 +179,7 @@ obj/machinery/deployable/mounted/proc/change_target(datum/source, atom/src_objec
 		var/obj/item/weapon/gun/gun = internal_item
 		gun.set_target(target)
 		return TRUE
-	if(deploy_flags & DEPLOYED_NO_ROTATE)
+	if(CHECK_BITFIELD(deploy_flags, DEPLOYED_NO_ROTATE))
 		to_chat(operator, "This one is anchored in place and cannot be rotated.")
 		return FALSE
 
