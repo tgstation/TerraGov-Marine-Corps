@@ -606,10 +606,10 @@
 	icon_state = "m4a3_holster"
 	item_state = "m4a3_holster"
 
-/obj/item/storage/belt/gun/pistol/attackby_alternate(obj/item/item, mob/user, params)
-	if(!istype(item, /obj/item/weapon/gun/pistol))
+/obj/item/storage/belt/gun/pistol/attackby_alternate(obj/item/I, mob/user, params)
+	if(!istype(I, /obj/item/weapon/gun/pistol))
 		return ..()
-	var/obj/item/weapon/gun/pistol/gun = item
+	var/obj/item/weapon/gun/pistol/gun = I
 	for(var/obj/item/ammo_magazine/mag in contents)
 		if(!istype(gun, mag.gun_type))
 			continue
