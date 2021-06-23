@@ -21,9 +21,9 @@
 		if(EXPLODE_DEVASTATE)
 			deconstruct(FALSE)
 		if(EXPLODE_HEAVY)
-			take_damage(rand(125, 200)//Almost broken or half way
+			take_damage(rand(175, 225))//Almost broken or half way
 		if(EXPLODE_LIGHT)
-			take_damage(rand(55, 75)
+			take_damage(rand(125, 175))
 
 /obj/structure/fence/attackby(obj/item/I, mob/user, params)
 	. = ..()
