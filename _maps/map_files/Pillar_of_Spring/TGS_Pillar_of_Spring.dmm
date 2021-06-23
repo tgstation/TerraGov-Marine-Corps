@@ -15488,7 +15488,6 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/shipboard/weapon_room)
 "ZQ" = (
-/obj/structure/reagent_dispensers/wallmounted/milk,
 /turf/open/floor/carpet{
 	dir = 9;
 	icon_state = "carpetside"
