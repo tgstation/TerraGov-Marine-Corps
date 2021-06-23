@@ -2,7 +2,7 @@
 	set category = "IC"
 	set name = "Give"
 	var/mob/living/carbon/human/is_giving = usr
-	is_giving.do_give(src)
+	is_giving.do_give()
 
 ///Signal handler for give keybind
 /mob/living/carbon/proc/give_signal_handler()
@@ -10,7 +10,7 @@
 	INVOKE_ASYNC(src, .proc/do_give)
 
 ///Look for a nearby human to give the held item, and ask him if he wants it
-/mob/living/carbon/proc/do_give(mob/living/carbon/human/to_give_to)
+/mob/living/carbon/proc/do_give()
 	if(stat != CONSCIOUS)
 		return
 	if(!hand && r_hand == null)
@@ -19,11 +19,11 @@
 	if(hand && l_hand == null)
 		to_chat(usr, "<span class='warning'>You don't have anything in your left hand to give.</span>")
 		return
-	if(!to_give_to)
-		for(var/mob/living/carbon/human AS in cheap_get_humans_near(src, 1))
-			if(human.stat == CONSCIOUS && human.client && src != human)
-				to_give_to = human
-				break
+	var/mob/living/carbon/to_give_to
+	for(var/mob/living/carbon/human AS in cheap_get_humans_near(src, 1))
+		if(human.stat == CONSCIOUS && human.client && src != human)
+			to_give_to = human
+			break
 	if(!to_give_to)
 		return
 	var/obj/item/item
