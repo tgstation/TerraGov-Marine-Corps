@@ -471,7 +471,7 @@
 		return
 
 	else if(deployed)
-		if((flags_storage & STORAGE_FLAG_DRAWMODE_TOGGLED) && ishuman(user) && contents.len)
+		if((flags_storage & STORAGE_FLAG_QUICKDRAW_ENABLED) && ishuman(user) && contents.len)
 			var/obj/item/item = contents[contents.len]
 			item.attack_hand(user)
 			return

@@ -6,7 +6,7 @@
 	max_w_class = 2
 	flags_equip_slot = ITEM_SLOT_POCKET
 	storage_slots = 1
-	flags_storage = STORAGE_FLAG_DRAWMODE_ALLOWED
+	flags_storage = STORAGE_FLAG_QUICKDRAW_ALLOWED
 
 /obj/item/storage/pouch/examine(mob/user)
 	..()

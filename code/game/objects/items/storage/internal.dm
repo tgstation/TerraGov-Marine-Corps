@@ -103,7 +103,7 @@
 			return FALSE
 
 	if(master_item.loc == user)
-		if((flags_storage & STORAGE_FLAG_DRAWMODE_TOGGLED) && ishuman(user) && contents.len)
+		if((flags_storage & STORAGE_FLAG_QUICKDRAW_ENABLED) && ishuman(user) && contents.len)
 			var/obj/item/I = contents[contents.len]
 			I.attack_hand(user)
 		else

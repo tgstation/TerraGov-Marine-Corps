@@ -547,7 +547,7 @@
 
 /obj/item/storage/attack_hand(mob/living/user)
 	if (loc == user)
-		if((flags_storage & STORAGE_FLAG_DRAWMODE_TOGGLED) && ishuman(user) && contents.len)
+		if((flags_storage & STORAGE_FLAG_QUICKDRAW_ENABLED) && ishuman(user) && contents.len)
 			var/obj/item/item = contents[contents.len]
 			item.attack_hand(user)
 		else
@@ -574,8 +574,8 @@
 	set category = "Object"
 
 
-	flags_storage ^= STORAGE_FLAG_DRAWMODE_TOGGLED
-	if(flags_storage & STORAGE_FLAG_DRAWMODE_TOGGLED)
+	flags_storage ^= STORAGE_FLAG_QUICKDRAW_ENABLED
+	if(flags_storage & STORAGE_FLAG_QUICKDRAW_ENABLED)
 		to_chat(usr, "Clicking [src] with an empty hand now puts the last stored item in your hand.")
 		return
 
@@ -605,7 +605,7 @@
 	if(!(flags_storage & STORAGE_FLAG_QUICK_GATHER))
 		verbs -= /obj/item/storage/verb/toggle_gathering_mode
 
-	if(!(flags_storage & STORAGE_FLAG_DRAWMODE_ALLOWED))
+	if(!(flags_storage & STORAGE_FLAG_QUICKDRAW_ALLOWED))
 		verbs -= /obj/item/storage/verb/toggle_draw_mode
 
 	boxes = new
