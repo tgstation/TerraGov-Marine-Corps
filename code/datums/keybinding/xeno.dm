@@ -4,14 +4,14 @@
 
 /datum/keybinding/xeno/headbite
 	name = "headbite"
-	full_name = "Headbite"
-	description = "Permanently kill a target."
+	full_name = "Headbite / Psydrain"
+	description = "Permanently kill a target. / Gather psy and larva points from a body."
 	keybind_signal = COMSIG_XENOABILITY_HEADBITE
 
 /datum/keybinding/xeno/regurgitate
 	name = "regurgitate"
-	full_name = "Regurgitate"
-	description = "Vomit whatever you have devoured."
+	full_name = "Regurgitate / Cocoon"
+	description = "Vomit whatever you have devoured. / Cocoon the targeted body, which will produce psy and larva points over time.s"
 	keybind_signal = COMSIG_XENOABILITY_REGURGITATE
 
 /datum/keybinding/xeno/drop_weeds
@@ -20,12 +20,6 @@
 	full_name = "Drop Weed"
 	description = "Drop weeds to help grow your hive."
 	keybind_signal = COMSIG_XENOABILITY_DROP_WEEDS
-
-/datum/keybinding/xeno/choose_resin
-	name = "choose_resin"
-	full_name = "Choose Resin Structure"
-	description = "Selects which structure you will build with the (secrete resin) ability."
-	keybind_signal = COMSIG_XENOABILITY_CHOOSE_RESIN
 
 /datum/keybinding/xeno/secrete_resin
 	name = "secrete_resin"
@@ -36,7 +30,7 @@
 /datum/keybinding/xeno/secrete_resin_silo
 	name = "secrete_resin_silo"
 	full_name = "Secrete Resin Silo"
-	description = "Builds a resin silo. Requires a number of dead bodies on a nest."
+	description = "Builds a resin silo."
 	keybind_signal = COMSIG_XENOABILITY_SECRETE_RESIN_SILO
 
 /datum/keybinding/xeno/emit_recovery
@@ -62,12 +56,6 @@
 	full_name = "Larval Growth Sting"
 	description = "Inject an impregnated host with growth serum, causing the larva inside to grow quicker."
 	keybind_signal = COMSIG_XENOABILITY_LARVAL_GROWTH_STING
-
-/datum/keybinding/xeno/shift_spits
-	name = "shift_spits"
-	full_name = "Toggle Spit Type"
-	description = "Switch from neurotoxin to acid spit."
-	keybind_signal = COMSIG_XENOABILITY_SHIFT_SPITS
 
 /datum/keybinding/xeno/corrosive_acid
 	name = "corrosive_acid"
@@ -207,12 +195,6 @@
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_CRESTTOSS
 
-/datum/keybinding/xeno/headbutt
-	name = "headbutt"
-	full_name = "Defender: Headbutt"
-	description = ""
-	keybind_signal = COMSIG_XENOABILITY_HEADBUTT
-
 /datum/keybinding/xeno/forward_charge
 	name = "forward charge"
 	full_name = "Defender: Forward charge"
@@ -260,12 +242,6 @@
 	full_name = "Defiler: Reagent Slash"
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_REAGENT_SLASH
-
-/datum/keybinding/xeno/salvage_plasma
-	name = "salvage_plasma"
-	full_name = "Drone: Salvage Biomass"
-	description = "Salvage plasma, upgrade and evolution points from the corpse of another xenomorph, gibbing it."
-	keybind_signal = COMSIG_XENOABILITY_SALVAGE_PLASMA
 
 /datum/keybinding/xeno/resin_walker
 	name = "resin_walker"
@@ -393,23 +369,17 @@
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_DEEVOLVE
 
-/datum/keybinding/xeno/queen_larval_growth
-	name = "queen_larval_growth"
-	full_name = "Queen: Larva Growth"
-	description = ""
-	keybind_signal = COMSIG_XENOABILITY_QUEEN_LARVAL_GROWTH
-
 /datum/keybinding/xeno/ravager_charge
 	name = "ravager_charge"
 	full_name = "Ravager: Eviscerating Charge"
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_RAVAGER_CHARGE
 
-/datum/keybinding/xeno/ravager_ignore_pain
-	name = "ravager_ignore_pain"
-	full_name = "Ravager: Ignore Pain"
-	description = "While active, you will not go into crit and can take increased damage before dying. You will still die when the effect ends."
-	keybind_signal = COMSIG_XENOABILITY_IGNORE_PAIN
+/datum/keybinding/xeno/ravager_endure
+	name = "ravager_endure"
+	full_name = "Ravager: Endure"
+	description = "For the next few moments you will not go into crit and become resistant to explosives and immune to stagger and slowdown, but you still die if you take damage exceeding your crit health."
+	keybind_signal = COMSIG_XENOABILITY_ENDURE
 
 /datum/keybinding/xeno/ravage
 	name = "ravage"
@@ -488,23 +458,6 @@
 	full_name = "Spitter: Scatter Spit"
 	description = "Fires a scattershot of 6 acid globules which create acid puddles on impact or at the end of their range."
 	keybind_signal = COMSIG_XENOABILITY_SCATTER_SPIT
-
-/datum/keybinding/xeno/vent
-	name = "vent"
-	full_name = "Vent crawl"
-	description = "Enter an air vent and crawl through the pipe system."
-	keybind_signal = COMSIG_XENOABILITY_VENTCRAWL
-
-/datum/keybinding/xeno/vent/down(client/user)
-	. = ..()
-	if(!isxeno(user.mob))
-		return
-	var/mob/living/carbon/xenomorph/xeno = user.mob
-	xeno.vent_crawl()
-
-
-//Wraith keybinds - BEGIN
-
 /datum/keybinding/xeno/place_warp_shadow
 	name = "place_warp_shadow"
 	full_name = "Wraith: Place Warp Shadow"
@@ -547,4 +500,33 @@
 	description = "Recall a target from netherspace, ending Banish's effect."
 	keybind_signal = COMSIG_XENOABILITY_RECALL
 
-//Wraith keybinds - END
+/datum/keybinding/xeno/nightfall 
+	name = "nightfall"
+	full_name = "King: Nightfall"
+	description = "Shut down all nearby electric lights for 10 seconds"
+	keybind_signal = COMSIG_XENOABILITY_NIGHTFALL
+
+/datum/keybinding/xeno/gravity_crush
+	name = "gravity_crush"
+	full_name = "King: Gravity Crush"
+	description = "Increases the localized gravity in an area and crushes everything in it."
+	keybind_signal = COMSIG_XENOABILITY_GRAVITY_CRUSH
+
+/datum/keybinding/xeno/psychic_summon
+	name = "psychic_summon"
+	full_name = "King: Psychic Summon"
+	description = "Summons all xenos in a hive to the caller's location, uses all plasma to activate."
+	keybind_signal = COMSIG_XENOABILITY_HIVE_SUMMON
+
+/datum/keybinding/xeno/vent
+	name = "vent"
+	full_name = "Vent crawl"
+	description = "Enter an air vent and crawl through the pipe system."
+	keybind_signal = COMSIG_XENOABILITY_VENTCRAWL
+
+/datum/keybinding/xeno/vent/down(client/user)
+	. = ..()
+	if(!isxeno(user.mob))
+		return
+	var/mob/living/carbon/xenomorph/xeno = user.mob
+	xeno.vent_crawl()

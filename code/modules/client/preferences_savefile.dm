@@ -92,7 +92,6 @@
 
 	savefile_version = SAVEFILE_VERSION_MAX
 
-
 /datum/preferences/proc/load_preferences()
 	if(!path)
 		return FALSE
@@ -229,8 +228,6 @@
 	ghost_hud 		= sanitize_integer(ghost_hud, NONE, MAX_BITFLAG, initial(ghost_hud))
 	windowflashing	= sanitize_integer(windowflashing, FALSE, TRUE, initial(windowflashing))
 	auto_fit_viewport= sanitize_integer(auto_fit_viewport, FALSE, TRUE, initial(auto_fit_viewport))
-	key_bindings	= sanitize_islist(key_bindings, list())
-	custom_emotes   = sanitize_is_full_emote_list(custom_emotes)
 	chem_macros		= sanitize_islist(chem_macros, list())
 	ghost_vision	= sanitize_integer(ghost_vision, FALSE, TRUE, initial(ghost_vision))
 	ghost_orbit		= sanitize_inlist(ghost_orbit, GLOB.ghost_orbits, initial(ghost_orbit))
@@ -267,8 +264,6 @@
 	WRITE_FILE(S["windowflashing"], windowflashing)
 	WRITE_FILE(S["auto_fit_viewport"], auto_fit_viewport)
 	WRITE_FILE(S["menuoptions"], menuoptions)
-	WRITE_FILE(S["key_bindings"], key_bindings)
-	WRITE_FILE(S["custom_emotes"], custom_emotes)
 	WRITE_FILE(S["chem_macros"], chem_macros)
 	WRITE_FILE(S["ghost_vision"], ghost_vision)
 	WRITE_FILE(S["ghost_orbit"], ghost_orbit)
@@ -291,6 +286,17 @@
 
 	return TRUE
 
+/datum/preferences/proc/save_keybinds()
+	if(!path)
+		return FALSE
+	var/savefile/S = new /savefile(path)
+	if(!S)
+		return FALSE
+	S.cd = "/"
+	key_bindings	= sanitize_islist(key_bindings, list())
+	custom_emotes   = sanitize_is_full_emote_list(custom_emotes)
+	WRITE_FILE(S["key_bindings"], key_bindings)
+	WRITE_FILE(S["custom_emotes"], custom_emotes)
 
 /datum/preferences/proc/load_character(slot)
 	if(!path)
