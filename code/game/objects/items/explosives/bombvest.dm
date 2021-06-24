@@ -37,10 +37,11 @@
 	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_BOMBVEST_SHIELD_DROP))
 		to_chat(activator, "<span class='warning'>You dropped a shield too recently to detonate, wait a few seconds!</span>")
 		return FALSE
-	if(!do_after(user, 3, TRUE, src, BUSY_ICON_DANGER, ignore_turf_checks = TRUE))
+	if(bomb_message)
+		activator.say("[bomb_message]!!")
+	if(!do_after(user, 2 SECONDS, TRUE, src, BUSY_ICON_DANGER, ignore_turf_checks = TRUE))
 		return FALSE
 	if(bomb_message) //Checks for a non null bomb message.
-		activator.say("[bomb_message]!!")
 		message_admins("[activator] has detonated an explosive vest with the warcry \"[bomb_message]\".") //Incase disputes show up about marines killing themselves and others.
 		log_game("[activator] has detonated an explosive vest with the warcry \"[bomb_message].\"")
 	else

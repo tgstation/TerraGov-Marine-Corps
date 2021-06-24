@@ -11,9 +11,6 @@
 	// *** Melee Attacks *** //
 	melee_damage = 16
 
-	// *** Tackle *** //
-	tackle_damage = 20
-
 	// *** Speed *** //
 	speed = -0.8
 	weeds_speed_mod = -0.1
@@ -76,9 +73,6 @@
 
 	upgrade = XENO_UPGRADE_ONE
 
-	// *** Tackle *** //
-	tackle_damage = 20
-
 	// *** Speed *** //
 	speed = -0.9
 
@@ -107,9 +101,6 @@
 	// *** Melee Attacks *** //
 	melee_damage = 20
 
-	// *** Tackle *** //
-	tackle_damage = 25
-
 	// *** Speed *** //
 	speed = -1.0
 
@@ -137,9 +128,6 @@
 
 	// *** Melee Attacks *** //
 	melee_damage = 20
-
-	// *** Tackle *** //
-	tackle_damage = 25
 
 	// *** Speed *** //
 	speed = -1.2

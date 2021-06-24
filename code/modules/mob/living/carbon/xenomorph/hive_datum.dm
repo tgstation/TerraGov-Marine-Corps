@@ -704,7 +704,15 @@ to_chat will check for valid clients itself already so no need to double check f
 /datum/hive_status/normal/on_shuttle_hijack(obj/docking_port/mobile/marine_dropship/hijacked_ship)
 	handle_silo_death_timer()
 	xeno_message("Our Ruler has commanded the metal bird to depart for the metal hive in the sky! Run and board it to avoid a cruel death!")
-	RegisterSignal(hijacked_ship, COMSIG_SHUTTLE_SETMODE, .proc/on_hijack_depart)
+	RegisterSignal(hijacked_ship, COMSIG_SHUTTLE_SETMODE, .proc/on_hijack_depart)	
+	
+	for(var/obj/structure/xeno/resin/silo/silo AS in GLOB.xeno_resin_silos)
+		if(!is_ground_level(silo.z))
+			continue
+		qdel(silo)
+
+	if(SSticker.mode?.flags_round_type & MODE_PSY_POINTS_ADVANCED)
+		SSpoints.xeno_points_by_hive[hivenumber] = SILO_PRICE + XENO_TURRET_PRICE //Give a free silo when going shipside and a turret
 
 
 /datum/hive_status/normal/proc/on_hijack_depart(datum/source, new_mode)
@@ -733,15 +741,6 @@ to_chat will check for valid clients itself already so no need to double check f
 	if(difference < 0)
 		if(xeno_job.total_positions < (-difference + xeno_job.current_positions))
 			xeno_job.set_job_positions(-difference + xeno_job.current_positions)
-
-	for(var/obj/structure/xeno/resin/silo/silo AS in GLOB.xeno_resin_silos)
-		if(!is_ground_level(silo.z))
-			continue
-		qdel(silo)
-
-	if(SSticker.mode?.flags_round_type & MODE_PSY_POINTS_ADVANCED)
-		SSpoints.xeno_points_by_hive[hivenumber] = SILO_PRICE + XENO_TURRET_PRICE //Give a free silo when going shipside and a turret
-
 
 // ***************************************
 // *********** Corrupted Xenos

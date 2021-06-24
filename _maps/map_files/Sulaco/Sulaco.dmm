@@ -10571,7 +10571,6 @@
 /obj/item/bedsheet/captain,
 /obj/item/storage/backpack/satchel/norm,
 /obj/machinery/alarm,
-/obj/structure/reagent_dispensers/wallmounted/milk,
 /turf/open/floor/wood,
 /area/sulaco/bridge/office)
 "cuo" = (
