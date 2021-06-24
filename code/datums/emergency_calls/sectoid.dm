@@ -1,7 +1,7 @@
 //Sectoids
 /datum/emergency_call/sectoid
 	name = "Sectoid Expedition"
-	base_probability = 26
+	base_probability = 20
 	spawn_type = /mob/living/carbon/human/species/sectoid
 	shuttle_id = "distress_ufo"
 	alignement_factor = 0
