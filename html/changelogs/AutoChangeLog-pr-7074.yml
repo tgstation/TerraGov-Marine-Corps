@@ -1,4 +1,0 @@
-author: "BraveMole"
-delete-after: True
-changes: 
-  - balance: "Resin doors open when you try to cross them as a xeno, and no longer when you are near them. Still instantanious"

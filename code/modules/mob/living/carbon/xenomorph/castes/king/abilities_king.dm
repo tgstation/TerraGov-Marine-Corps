@@ -6,11 +6,11 @@
 	name = "Nightfall"
 	action_icon_state = "nightfall"
 	ability_name = "Nightfall"
-	mechanics_text = "Shut down all electrical lights for five seconds."
-	cooldown_timer = 1 MINUTES
+	mechanics_text = "Shut down all electrical lights nearby for 10 seconds."
+	cooldown_timer = 45 SECONDS
 	plasma_cost = 100
 	/// How far nightfall will have an effect
-	var/range = 10
+	var/range = 12
 	/// How long till the lights go on again
 	var/duration = 10 SECONDS
 
@@ -31,14 +31,14 @@
 // ***************************************
 // *********** Gravity Crush
 // ***************************************
-#define WINDUP_GRAV 2 SECONDS
+#define WINDUP_GRAV 1 SECONDS
 
 /datum/action/xeno_action/activable/gravity_crush
 	name = "Gravity Crush"
 	action_icon_state = "fortify"
 	mechanics_text = "Increases the localized gravity in an area and crushes structures."
 	ability_name = "Gravity crush"
-	plasma_cost = 100
+	plasma_cost = 200
 	cooldown_timer = 30 SECONDS
 	keybind_signal = COMSIG_XENOABILITY_GRAVITY_CRUSH
 	/// How far can we use gravity crush
@@ -66,7 +66,9 @@
 	apply_filters(turfs)
 	if(!do_after(owner, WINDUP_GRAV, FALSE, owner, BUSY_ICON_DANGER))
 		remove_all_filters()
-		return fail_activate()
+		//Consume plasma when cancelling
+		succeed_activate()
+		return
 	do_grav_crush(turfs)
 	remove_all_filters()
 	succeed_activate()

@@ -253,13 +253,6 @@
 	amount_per_transfer_from_this = 45
 	list_reagents = list(/datum/reagent/consumable/capsaicin/condensed = 1000)
 
-/obj/structure/reagent_dispensers/wallmounted/milk
-	name = "milk dispenser"
-	desc = "Custom addition by your predecessor... why"
-	icon_state = "milktank"
-	amount_per_transfer_from_this = 10
-	list_reagents = list(/datum/reagent/consumable/drink/milk = 5000)
-
 /obj/structure/reagent_dispensers/wallmounted/virusfood
 	name = "virus food dispenser"
 	desc = "A dispenser of virus food."
