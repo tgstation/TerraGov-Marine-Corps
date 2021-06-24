@@ -89,8 +89,8 @@
 	start_processing()
 
 /obj/machinery/power/geothermal/process()
-	if(corrupted && corruption_on)
-		SSpoints.add_psy_points("[corrupted]", length(GLOB.humans_by_zlevel["2"]) * BASE_PSYCH_POINT_OUTPUT * corrupt_point_factor)
+	if(corrupted && corruption_on && length(GLOB.humans_by_zlevel["2"]) > 0.2 * length(GLOB.alive_human_list))
+		SSpoints.add_psy_points("[corrupted]", GENERATOR_PSYCH_POINT_OUTPUT * corrupt_point_factor)
 		return
 	if(!is_on || buildstate || !anchored || !powernet) //Default logic checking
 		return PROCESS_KILL
