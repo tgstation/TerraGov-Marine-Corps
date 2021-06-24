@@ -527,6 +527,8 @@
 #define COMSIG_XENOABILITY_RETRIEVE_EGG "xenoability_retrieve_egg"
 #define COMSIG_XENOABILITY_PLACE_TRAP "xenoability_place_trap"
 #define COMSIG_XENOABILITY_SPAWN_HUGGER "xenoability_spawn_hugger"
+#define COMSIG_XENOABILITY_SWITCH_HUGGER "xenoability_switch_hugger"
+#define COMSIG_XENOABILITY_CHOOSE_HUGGER "xenoability_choose_hugger"
 
 #define COMSIG_XENOABILITY_STOMP "xenoability_stomp"
 #define COMSIG_XENOABILITY_TOGGLE_CHARGE "xenoability_toggle_charge"

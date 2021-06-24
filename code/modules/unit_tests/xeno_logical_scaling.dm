@@ -20,7 +20,6 @@
 		var/list/greater_test_vars = list(
 			"max_health" = 0,
 			"melee_damage" = 0,
-			"tackle_damage" = 0,
 			"plasma_max" = 0,
 			"plasma_gain" = 0,
 			"upgrade_threshold" = 0
