@@ -734,10 +734,10 @@
 	if(!.)
 		return
 	var/mob/living/carbon/xenomorph/X = owner
-	/*if(SSticker.round_start_time + INVOKE_KING_TIME_LOCK > world.time)
+	if(SSticker.round_start_time + INVOKE_KING_TIME_LOCK > world.time)
 		if(!silent)
 			to_chat(owner, "<span class='warning'>It is too soon to summon a king!</span>")
-		return FALSE*/
+		return FALSE
 	if(SSpoints.xeno_points_by_hive[X.hivenumber] <= psych_cost)
 		if(!silent)
 			to_chat(owner, "<span class='warning'>Our hive does not have enough psychic energy to summon a King, we need [psych_cost] points!</span>")
