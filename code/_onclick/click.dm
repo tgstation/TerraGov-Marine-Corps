@@ -334,7 +334,7 @@ if(selected_ability.target_flags & flagname){\
 		if(selected_ability.can_use_ability(A))
 			selected_ability.use_ability(A)
 			return TRUE
-	. = ..()
+	return ..()
 
 /*
 	Right click
