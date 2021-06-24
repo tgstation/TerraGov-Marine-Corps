@@ -642,7 +642,7 @@
 	if(.)
 		return
 	sunder = clamp(sunder + adjustment, 0, xeno_caste.sunder_max)
-	if(sunder)
+	if(sunder && (xeno_caste.tier == XENO_TIER_THREE || xeno_caste.tier == XENO_TIER_FOUR))
 		add_movespeed_modifier(MOVESPEED_ID_XENO_SUNDER, TRUE, 80, NONE, TRUE, -(sunder/xeno_caste.sunder_max)*0.4)
 		return
 	remove_movespeed_modifier(MOVESPEED_ID_XENO_SUNDER)
@@ -652,7 +652,7 @@
 	if(.)
 		return
 	sunder = clamp(new_sunder, 0, xeno_caste.sunder_max)
-	if(sunder)
+	if(sunder && (xeno_caste.tier == XENO_TIER_THREE || xeno_caste.tier == XENO_TIER_FOUR))
 		add_movespeed_modifier(MOVESPEED_ID_XENO_SUNDER, TRUE, 80, NONE, TRUE, -(sunder/xeno_caste.sunder_max)*0.4)
 		return
 	remove_movespeed_modifier(MOVESPEED_ID_XENO_SUNDER)
