@@ -1,0 +1,5 @@
+author: "BraveMole"
+delete-after: True
+changes: 
+  - balance: "The king is selected among live xenos"
+  - balance: "I takes 5 minutes for the king to spawn, rather than 10"
