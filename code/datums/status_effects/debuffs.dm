@@ -334,7 +334,7 @@
 
 	new /obj/effect/temp_visual/telekinesis(get_turf(patient)) //Visual confirmation
 
-	patient.adjust_sunder(-1.8 * (1 + patient.recovery_aura * 0.05)) //5% bonus per rank of our recovery aura
+	patient.adjust_sunder(-0.6 * (1 + patient.recovery_aura * 0.05)) //5% bonus per rank of our recovery aura
 
 
 /obj/screen/alert/status_effect/healing_infusion
