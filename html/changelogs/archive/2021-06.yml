@@ -190,3 +190,9 @@
   - bugfix: Endure can now be used while staggered instead of Ravage.
   hyper2snyper:
   - balance: Increases bombvest's timer to Two seconds
+2021-06-24:
+  BraveMole:
+  - balance: Spitter can spit more often
+  jupyterkat, Wayland-Smithy:
+  - qol: you can now press space or enter to select in tgui input lists
+  - bugfix: tgui input lists no longer break when duplicate keys are passed
