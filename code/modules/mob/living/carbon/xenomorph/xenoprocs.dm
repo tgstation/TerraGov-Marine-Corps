@@ -642,12 +642,20 @@
 	if(.)
 		return
 	sunder = clamp(sunder + adjustment, 0, xeno_caste.sunder_max)
+	if(sunder)
+		add_movespeed_modifier(MOVESPEED_ID_XENO_SUNDER, TRUE, 80, NONE, TRUE, -(sunder/xeno_caste.sunder_max)*0.4)
+		return
+	remove_movespeed_modifier(MOVESPEED_ID_XENO_SUNDER)
 
 /mob/living/carbon/xenomorph/set_sunder(new_sunder)
 	. = ..()
 	if(.)
 		return
 	sunder = clamp(new_sunder, 0, xeno_caste.sunder_max)
+	if(sunder)
+		add_movespeed_modifier(MOVESPEED_ID_XENO_SUNDER, TRUE, 80, NONE, TRUE, -(sunder/xeno_caste.sunder_max)*0.4)
+		return
+	remove_movespeed_modifier(MOVESPEED_ID_XENO_SUNDER)
 
 /mob/living/carbon/xenomorph/get_sunder()
 	. = ..()
