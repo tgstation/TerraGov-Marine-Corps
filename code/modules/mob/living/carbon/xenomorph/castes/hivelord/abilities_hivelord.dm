@@ -213,6 +213,7 @@
 	playsound(T, "alien_resin_build", 25)
 	var/obj/structure/xeno/resin_jelly_pod/pod = new(T)
 	to_chat(owner, "<span class='xenonotice'>We shape some resin into \a [pod].</span>")
+	add_cooldown()
 
 /datum/action/xeno_action/create_jelly
 	name = "Create Resin Jelly"
@@ -233,6 +234,7 @@
 	var/obj/item/resin_jelly/jelly = new(owner.loc)
 	owner.put_in_hands(jelly)
 	to_chat(owner, "<span class='xenonotice'>We create a globule of resin from our ovipostor.</span>")
+	add_cooldown()
 	succeed_activate()
 
 // ***************************************
