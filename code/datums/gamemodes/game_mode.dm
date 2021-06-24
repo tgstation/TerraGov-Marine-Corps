@@ -20,8 +20,6 @@
 	var/distress_cancelled = FALSE
 
 	var/deploy_time_lock = 15 MINUTES
-	///List of available factions when spawning
-	var/list/joinable_factions = list()
 
 //Distress call variables.
 	var/list/datum/emergency_call/all_calls = list() //initialized at round start and stores the datums.
@@ -663,3 +661,6 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 /datum/game_mode/proc/scale_squad_jobs()
 	var/datum/job/scaled_job = SSjob.GetJobType(/datum/job/terragov/squad/leader)
 	scaled_job.total_positions = length(SSjob.active_squads[FACTION_TERRAGOV])
+
+/datum/game_mode/proc/get_joinable_factions()
+	return
