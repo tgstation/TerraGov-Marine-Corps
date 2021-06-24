@@ -112,6 +112,7 @@
 			savefile_version = SAVEFILE_VERSION_MAX
 			save_preferences()
 			save_character()
+			save_keybinds()
 			return FALSE
 
 	READ_FILE(S["default_slot"], default_slot)
@@ -605,7 +606,7 @@
 
 
 /datum/preferences/proc/save()
-	return (save_preferences() && save_character())
+	return (save_preferences() && save_character() && save_keybinds())
 
 
 /datum/preferences/proc/load()
