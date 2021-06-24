@@ -225,6 +225,8 @@
 
 /datum/action/xeno_action/create_jelly/can_use_action(silent = FALSE, override_flags)
 	. = ..()
+	if(!.)
+		return
 	if(owner.l_hand || owner.r_hand)
 		if(!silent)
 			to_chat(owner, "<span class='xenonotice'>We require free hands for this!</span>")
