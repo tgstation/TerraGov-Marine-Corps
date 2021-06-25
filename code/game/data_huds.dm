@@ -186,6 +186,7 @@
 	var/static/image/neurotox_image = image('icons/mob/hud.dmi', icon_state = "neurotoxin")
 	var/static/image/hemodile_image = image('icons/mob/hud.dmi', icon_state = "hemodile")
 	var/static/image/transvitox_image = image('icons/mob/hud.dmi', icon_state = "transvitox")
+	var/static/image/sanguinal_image = image('icons/mob/hud.dmi', src, "sanguinal")
 	var/static/image/neurotox_high_image = image('icons/mob/hud.dmi', icon_state = "neurotoxin_high")
 	var/static/image/hemodile_high_image = image('icons/mob/hud.dmi', icon_state = "hemodile_high")
 	var/static/image/transvitox_high_image = image('icons/mob/hud.dmi', icon_state = "transvitox_high")
@@ -211,6 +212,9 @@
 			xeno_reagent.overlays += transvitox_high_image
 		else if(transvitox_amount > 0)
 			xeno_reagent.overlays += transvitox_image
+
+		if(reagents.get_reagent_amount(/datum/reagent/toxin/xeno_sanguinal))
+			xeno_reagent.overlays += sanguinal_image
 
 	hud_list[XENO_REAGENT_HUD] = xeno_reagent
 
