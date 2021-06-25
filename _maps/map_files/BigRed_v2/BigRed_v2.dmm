@@ -1585,7 +1585,6 @@
 /turf/open/floor/tile/green/whitegreenfull,
 /area/bigredv2/outside/marshal_office)
 "afR" = (
-/obj/machinery/deployable/barrier,
 /turf/open/floor/tile/vault{
 	dir = 8
 	},
