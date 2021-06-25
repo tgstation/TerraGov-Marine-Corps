@@ -160,7 +160,7 @@
 	AddComponent(/datum/component/automatedfire/autofire, fire_delay, burst_delay, burst_amount, gun_firemode, CALLBACK(src, .proc/set_bursting), CALLBACK(src, .proc/reset_fire), CALLBACK(src, .proc/Fire)) //This should go after handle_starting_attachment() and setup_firemodes() to get the proper values set.
 
 	if(flags_item & IS_DEPLOYABLE)
-		AddComponent(/datum/component/deployable_item/mounted_gun, /obj/machinery/deployable/mounted, deploy_time, FALSE, deploy_flags)
+		AddComponent(/datum/component/deployable_item/mounted_gun, /obj/machinery/deployable/mounted, deploy_time, FALSE)
 
 	muzzle_flash = new(src, muzzleflash_iconstate)
 

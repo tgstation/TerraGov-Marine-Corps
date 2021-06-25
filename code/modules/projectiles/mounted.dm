@@ -20,7 +20,7 @@
 	hud_set_machine_health()
 	hud_set_gun_ammo()
 
-/obj/machinery/deployable/mounted/create_stats(_internal_item, _deploy_flags)
+/obj/machinery/deployable/mounted/New(loc, _internal_item, ...)
 	. = ..()
 	if(!istype(internal_item, /obj/item/weapon/gun))
 		CRASH("[internal_item] was attempted to be deployed within the type /obj/machinery/deployable/mounted without being a gun]")
@@ -173,6 +173,7 @@ obj/machinery/deployable/mounted/proc/change_target(datum/source, atom/src_objec
 
 	var/angle = get_dir(src, target)
 	var/direction = dir
+	var/obj/item/weapon/gun/gun = internal_item
 	//we can only fire in a 90 degree cone
 	if((direction & angle) && target.loc != loc && target.loc != operator.loc)
 		operator.setDir(direction)

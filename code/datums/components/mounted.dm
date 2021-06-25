@@ -7,7 +7,7 @@
 	///Machine that parent is deployed into and out of
 	var/obj/machinery/deployable/deployed_machine
 
-/datum/component/deployable_item/Initialize(deploy_type, _deploy_time, _wrench_dissasemble)
+/datum/component/deployable_item/Initialize(deploy_type, _deploy_time, _wrench_dissasemble, ...)
 	. = ..()
 	if(!isitem(parent))
 		return COMPONENT_INCOMPATIBLE
@@ -15,9 +15,8 @@
 	deploy_time = _deploy_time
 	deployed_machine = deploy_type
 	wrench_dissasemble = _wrench_dissasemble
-
-	
-	deployed_machine = new deployed_machine(parent, parent)
+	var/list/calling_arguments = length(args) > 3 ? args.Copy(4) : null
+	deployed_machine = call(deployed_machine, .proc/New)(arglist(calling_arguments))
 	RegisterSignal(parent, COMSIG_ITEM_DEPLOY, .proc/deploy)
 
 ///Wrapper for proc/finish_deploy

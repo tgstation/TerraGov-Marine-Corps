@@ -79,8 +79,8 @@
 
 ///Dissassembles the device
 /obj/machinery/deployable/proc/disassemble(mob/user, using_wrench)
-	var/item/item = internal_item
-	if(CHECK_BITFIELD(item.flags_item & DEPLOYED_NO_PICKUP))
+	var/obj/item/item = internal_item
+	if(CHECK_BITFIELD(item.flags_item, DEPLOYED_NO_PICKUP))
 		to_chat(user, "<span class='notice'>The [src] is anchored in place and cannot be disassembled.</span>")
 		return
 	SEND_SIGNAL(src, COMSIG_ITEM_UNDEPLOY, user, using_wrench)
