@@ -16,10 +16,10 @@
 
 /datum/action/xeno_action/stealth/give_action(mob/living/L)
 	. = ..()
-	RegisterSignal(L, COMSIG_XENOMORPH_POUNCE, .proc/sneak_attack_pounce)
+	RegisterSignal(L, COMSIG_XENOMORPH_POUNCE_END, .proc/sneak_attack_pounce)
 	RegisterSignal(L, COMSIG_XENO_LIVING_THROW_HIT, .proc/mob_hit)
 	RegisterSignal(L, COMSIG_XENOMORPH_ATTACK_LIVING, .proc/sneak_attack_slash)
-	RegisterSignal(L, COMSIG_XENOMORPH_DISARM_HUMAN, .proc/sneak_attack_disarm)
+	RegisterSignal(L, COMSIG_XENOMORPH_DISARM_HUMAN, .proc/sneak_attack_slash)
 	RegisterSignal(L, COMSIG_XENOMORPH_ZONE_SELECT, .proc/sneak_attack_zone)
 	RegisterSignal(L, COMSIG_XENOMORPH_PLASMA_REGEN, .proc/plasma_regen)
 
@@ -47,7 +47,7 @@
 
 /datum/action/xeno_action/stealth/remove_action(mob/living/L)
 	UnregisterSignal(L, list(
-		COMSIG_XENOMORPH_POUNCE,
+		COMSIG_XENOMORPH_POUNCE_END,
 		COMSIG_XENO_LIVING_THROW_HIT,
 		COMSIG_XENOMORPH_ATTACK_LIVING,
 		COMSIG_XENOMORPH_DISARM_HUMAN,
@@ -90,7 +90,6 @@
 /datum/action/xeno_action/stealth/action_activate()
 	if(stealth)
 		cancel_stealth()
-		add_cooldown()
 		return TRUE
 
 	succeed_activate()
@@ -99,13 +98,13 @@
 	stealth = TRUE
 	RegisterSignal(owner, COMSIG_MOVABLE_MOVED, .proc/handle_stealth)
 	handle_stealth()
-	add_cooldown()
 	addtimer(CALLBACK(src, .proc/sneak_attack_cooldown), HUNTER_POUNCE_SNEAKATTACK_DELAY) //Short delay before we can sneak attack.
 
 /datum/action/xeno_action/stealth/proc/cancel_stealth() //This happens if we take damage, attack, pounce, toggle stealth off, and do other such exciting stealth breaking activities.
 	SIGNAL_HANDLER
 	if(!stealth)//sanity check/safeguard
 		return
+	add_cooldown()
 	to_chat(owner, "<span class='xenodanger'>We emerge from the shadows.</span>")
 	UnregisterSignal(owner, COMSIG_MOVABLE_MOVED) //This should be handled on the ability datum or a component.
 	stealth = FALSE
@@ -148,20 +147,13 @@
 /// Callback listening for a xeno using the pounce ability
 /datum/action/xeno_action/stealth/proc/sneak_attack_pounce()
 	SIGNAL_HANDLER
-	// TODO: find out if this is needed
-	if(owner.m_intent == MOVE_INTENT_WALK) //Hunter that is currently using its stealth ability, need to unstealth him
+	if(owner.m_intent == MOVE_INTENT_WALK)
 		owner.toggle_move_intent(MOVE_INTENT_RUN)
 		if(owner.hud_used?.move_intent)
 			owner.hud_used.move_intent.icon_state = "running"
 		owner.update_icons()
 
 	cancel_stealth()
-
-	if(!can_sneak_attack)
-		return
-	to_chat(owner, "<span class='xenodanger'>Our pounce has left us off-balance; we'll need to wait [HUNTER_POUNCE_SNEAKATTACK_DELAY*0.1] seconds before we can Sneak Attack again.</span>")
-	can_sneak_attack = FALSE
-	addtimer(CALLBACK(src, .proc/sneak_attack_cooldown), HUNTER_POUNCE_SNEAKATTACK_DELAY)
 
 /// Callback for when a mob gets hit as part of a pounce
 /datum/action/xeno_action/stealth/proc/mob_hit(datum/source, mob/living/M)
@@ -174,27 +166,6 @@
 		to_chat(owner, "<span class='xenodanger'>Pouncing from the shadows, we stagger our victim.</span>")
 
 /datum/action/xeno_action/stealth/proc/sneak_attack_slash(datum/source, mob/living/target, damage, list/damage_mod, list/armor_mod)
-	SIGNAL_HANDLER
-	if(!stealth || !can_sneak_attack)
-		return
-
-	var/staggerslow_stacks = 2
-	var/flavour
-	if(owner.m_intent == MOVE_INTENT_RUN && ( owner.last_move_intent > (world.time - HUNTER_SNEAK_ATTACK_RUN_DELAY) ) ) //Allows us to slash while running... but only if we've been stationary for awhile
-		flavour = "vicious"
-	else
-		armor_mod += HUNTER_SNEAK_SLASH_ARMOR_PEN
-		staggerslow_stacks *= 2
-		flavour = "deadly"
-
-	owner.visible_message("<span class='danger'>\The [owner] strikes [target] with [flavour] precision!</span>", \
-	"<span class='danger'>We strike [target] with [flavour] precision!</span>")
-	target.adjust_stagger(staggerslow_stacks)
-	target.add_slowdown(staggerslow_stacks)
-
-	cancel_stealth()
-
-/datum/action/xeno_action/stealth/proc/sneak_attack_disarm(datum/source, mob/living/target, damage, list/damage_mod, list/armor_mod)
 	SIGNAL_HANDLER
 	if(!stealth || !can_sneak_attack)
 		return

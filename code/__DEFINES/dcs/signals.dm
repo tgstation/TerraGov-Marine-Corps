@@ -388,6 +388,7 @@
 	#define COMSIG_ACCURATE_ZONE (1<<0)
 
 #define COMSIG_XENOMORPH_POUNCE "xenomorph_pounce"
+#define COMSIG_XENOMORPH_POUNCE_END "xenomorph_pounce_end"
 
 #define COMSIG_XENOMORPH_HEADBITE "headbite"
 
