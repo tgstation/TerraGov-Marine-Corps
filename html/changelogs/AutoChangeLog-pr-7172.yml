@@ -1,0 +1,4 @@
+author: "Pariah919"
+delete-after: True
+changes: 
+  - bugfix: "fixed resin jelly not having proper cooldown and sending double messages when your hands are full"
