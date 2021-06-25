@@ -25,10 +25,10 @@
 	gloves = /obj/item/clothing/gloves/marine/veteran/PMC/commando
 	head = /obj/item/clothing/head/helmet/marine/veteran/PMC/commando
 	mask = /obj/item/clothing/mask/gas/PMC
-	glasses = /obj/item/clothing/glasses/m42_goggles
+	glasses = /obj/item/clothing/glasses/night/tx8
 	suit_store = /obj/item/weapon/gun/rifle/m412/elite
 	r_store = /obj/item/storage/pouch/magazine/large/pmc_rifle
-	l_store = /obj/item/storage/pouch/firstaid/full
+	l_store = /obj/item/storage/pouch/medkit
 	back = /obj/item/storage/backpack/commando
 
 
@@ -40,14 +40,21 @@
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/enrg_bar, SLOT_IN_HEAD)
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/enrg_bar, SLOT_IN_HEAD)
 
+	H.equip_to_slot_or_del(new /obj/item/storage/pill_bottle/bicaridine, SLOT_IN_L_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/storage/pill_bottle/kelotane, SLOT_IN_L_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/storage/pill_bottle/tramadol, SLOT_IN_L_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/stack/medical/advanced/bruise_pack, SLOT_IN_L_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/stack/medical/advanced/ointment, SLOT_IN_L_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/hypervene, SLOT_IN_L_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/advanced/combat_advanced, SLOT_IN_L_POUCH)
+
 	H.equip_to_slot_or_del(new /obj/item/radio, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/tool/crowbar/red, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/detpack, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/detpack, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/detpack, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/detpack, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/assembly/signaler, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/phosphorus, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/phosphorus, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/ap, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/ap, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/ap, SLOT_IN_BACKPACK)
@@ -71,10 +78,10 @@
 	gloves = /obj/item/clothing/gloves/marine/veteran/PMC/commando
 	head = /obj/item/clothing/head/helmet/marine/veteran/PMC/commando
 	mask = /obj/item/clothing/mask/gas/PMC
-	glasses = /obj/item/clothing/glasses/m42_goggles
+	glasses = /obj/item/clothing/glasses/night/tx8
 	suit_store = /obj/item/weapon/gun/energy/lasgun/pulse
 	r_store = /obj/item/storage/pouch/explosive
-	l_store = /obj/item/storage/pouch/firstaid/full
+	l_store = /obj/item/storage/pouch/medkit
 	back = /obj/item/storage/backpack/commando
 
 
@@ -85,6 +92,14 @@
 
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/enrg_bar, SLOT_IN_HEAD)
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/enrg_bar, SLOT_IN_HEAD)
+
+	H.equip_to_slot_or_del(new /obj/item/storage/pill_bottle/bicaridine, SLOT_IN_L_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/storage/pill_bottle/kelotane, SLOT_IN_L_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/storage/pill_bottle/tramadol, SLOT_IN_L_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/stack/medical/advanced/bruise_pack, SLOT_IN_L_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/stack/medical/advanced/ointment, SLOT_IN_L_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/hypervene, SLOT_IN_L_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/advanced/combat_advanced, SLOT_IN_L_POUCH)
 
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/frag/PMC, SLOT_IN_R_POUCH)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/frag/PMC, SLOT_IN_R_POUCH)
@@ -111,10 +126,10 @@
 	gloves = /obj/item/clothing/gloves/marine/veteran/PMC/commando
 	head = /obj/item/clothing/head/helmet/marine/veteran/PMC/commando
 	mask = /obj/item/clothing/mask/gas/PMC
-	glasses = /obj/item/clothing/glasses/m42_goggles
+	glasses = /obj/item/clothing/glasses/night/tx8
 	suit_store = /obj/item/weapon/gun/launcher/rocket/m57a4
 	r_store = /obj/item/storage/pouch/explosive
-	l_store = /obj/item/storage/pouch/firstaid/full
+	l_store = /obj/item/storage/pouch/medkit
 	back = /obj/item/storage/backpack/commando
 
 
@@ -131,6 +146,14 @@
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rocket/m57a4, SLOT_IN_R_POUCH)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rocket/m57a4, SLOT_IN_R_POUCH)
 
+	H.equip_to_slot_or_del(new /obj/item/storage/pill_bottle/bicaridine, SLOT_IN_L_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/storage/pill_bottle/kelotane, SLOT_IN_L_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/storage/pill_bottle/tramadol, SLOT_IN_L_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/stack/medical/advanced/bruise_pack, SLOT_IN_L_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/stack/medical/advanced/ointment, SLOT_IN_L_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/hypervene, SLOT_IN_L_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/advanced/combat_advanced, SLOT_IN_L_POUCH)
+
 	H.equip_to_slot_or_del(new /obj/item/radio, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/tool/crowbar/red, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_BACKPACK)
@@ -139,3 +162,5 @@
 	H.equip_to_slot_or_del(new /obj/item/detpack, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/detpack, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/assembly/signaler, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/phosphorus, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/phosphorus, SLOT_IN_BACKPACK)
