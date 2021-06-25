@@ -1,0 +1,6 @@
+author: "QualityVan"
+delete-after: True
+changes: 
+  - bugfix: "Jelly shouldn't last forever any more in certain cases."
+  - code_imp: "Refactored jelly to an effect, plus some fire resistance cleanup."
+  - balance: "Jelly heals a bit of burns while active."
