@@ -1,0 +1,6 @@
+author: "QualityVan"
+delete-after: True
+changes: 
+  - bugfix: "Hunter pounce out of stealth now correctly gets its tiny sneak attack bonus"
+  - code_imp: "Misc. hunter stealth code cleanup"
+  - balance: "Hunter stealth cooldown starts on leaving stealth."
