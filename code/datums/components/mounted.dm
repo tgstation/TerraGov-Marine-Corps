@@ -35,7 +35,7 @@
 			to_chat(user, "<span class='warning'>There is insufficient room to deploy [parent_item]!</span>")
 			return
 		new_direction = user.dir
-		to_chat(user, "<span class='notice'>you start deploying the [parent_item]</span>")
+		to_chat(user, "<span class='notice'>You start deploying the [parent_item].</span>")
 		if(!do_after(user, deploy_time, TRUE, parent_item, BUSY_ICON_BUILD))
 			return
 
@@ -51,6 +51,7 @@
 		deployed_machine.forceMove(location)
 
 	deployed_machine.setDir(new_direction)
+	deployed_machine.update_icon_state()
 	parent_item.forceMove(deployed_machine)
 
 	ENABLE_BITFIELD(parent_item.flags_item, IS_DEPLOYED)
@@ -80,6 +81,7 @@
 	DISABLE_BITFIELD(parent_item.flags_item, IS_DEPLOYED)
 	UnregisterSignal(deployed_machine, COMSIG_ITEM_UNDEPLOY)
 	deployed_machine.forceMove(parent_item)
+	parent_item.update_icon_state()
 	SEND_SIGNAL(deployed_machine, COMSIG_PARENT_QDELETING)
 
 
