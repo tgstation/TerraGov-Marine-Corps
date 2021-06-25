@@ -1,46 +1,113 @@
 #define DEFILER_NEUROTOXIN "Neurotoxin"
 #define DEFILER_HEMODILE "Hemodile"
 #define DEFILER_TRANSVITOX "Transvitox"
+GLOBAL_LIST_INIT(defile_purge_list, typecacheof(list(
+	/datum/reagent/toxin/xeno_hemodile, /datum/reagent/toxin/xeno_transvitox, /datum/reagent/toxin/xeno_neurotoxin)))
 
 // ***************************************
-// *********** Sting
+// *********** Defile
 // ***************************************
-/datum/action/xeno_action/activable/larval_growth_sting/defiler
+/datum/action/xeno_action/activable/defile
 	name = "Defile"
 	action_icon_state = "defiler_sting"
-	mechanics_text = "Channel to inject an adjacent target with larval growth serum. At the end of the channel your target will be infected."
+	mechanics_text = "Channel to inject an adjacent target with an accelerant that violently reacts with xeno toxins, releasing gas and dealing heavy tox damage in proportion to the amount in their system."
 	ability_name = "defiler sting"
-	plasma_cost = 150
-	cooldown_timer = 20 SECONDS
+	plasma_cost = 100
+	cooldown_timer = 15 SECONDS
 	target_flags = XABB_MOB_TARGET
+	keybind_signal = COMSIG_XENOABILITY_DEFILE
 
-/datum/action/xeno_action/activable/larval_growth_sting/defiler/on_cooldown_finish()
+/datum/action/xeno_action/activable/defile/on_cooldown_finish()
 	playsound(owner.loc, 'sound/voice/alien_drool1.ogg', 50, 1)
-	to_chat(owner, "<span class='xenodanger'>You feel your toxin glands refill, another young one ready for implantation. You can use Defile again.</span>")
+	to_chat(owner, "<span class='xenodanger'>You feel your accelerant glands refill. You can use Defile again.</span>")
 	return ..()
 
-/datum/action/xeno_action/activable/larval_growth_sting/defiler/use_ability(atom/A)
+/datum/action/xeno_action/activable/defile/can_use_ability(atom/A, silent = FALSE, override_flags)
+	. = ..()
+	if(!.)
+		return
+
+	if(!iscarbon(A))
+		if(!silent)
+			to_chat(owner, "<span class='xenodanger'>Our sting won't affect this target!</span>")
+		return FALSE
+
+	var/mob/living/carbon/victim = A
+
+	if(!victim?.can_sting())
+		if(!silent)
+			to_chat(owner, "<span class='xenodanger'>Our sting won't affect this target!</span>")
+		return FALSE
+
+	if(!owner.Adjacent(victim))
+		var/mob/living/carbon/xenomorph/X = owner
+		if(!silent)
+			to_chat(X, "<span class='warning'>We can't reach this target!</span>")
+		return FALSE
+
+/datum/action/xeno_action/activable/defile/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/Defiler/X = owner
-	var/mob/living/carbon/C = A
-	if(locate(/obj/item/alien_embryo) in C) // already got one, stops doubling up
-		return ..()
-	if(!do_after(X, DEFILER_STING_CHANNEL_TIME, TRUE, C, BUSY_ICON_HOSTILE))
+	var/mob/living/carbon/living_target = A
+	X.face_atom(living_target)
+	if(!do_after(X, DEFILER_STING_CHANNEL_TIME, TRUE, living_target, BUSY_ICON_HOSTILE))
 		return fail_activate()
 	if(!can_use_ability(A))
 		return fail_activate()
 	add_cooldown()
-	X.face_atom(C)
-	X.do_attack_animation(C)
-	playsound(C, pick('sound/voice/alien_drool1.ogg', 'sound/voice/alien_drool2.ogg'), 15, 1)
-	var/obj/item/alien_embryo/embryo = new(C)
-	embryo.hivenumber = X.hivenumber
-	GLOB.round_statistics.now_pregnant++
-	SSblackbox.record_feedback("tally", "round_statistics", 1, "now_pregnant")
-	to_chat(X, "<span class='xenodanger'>Our stinger successfully implants a larva into the host.</span>")
-	to_chat(C, "<span class='danger'>You feel horrible pain as something large is forcefully implanted in your thorax.</span>")
-	C.apply_damage(100, STAMINA)
-	C.apply_damage(10, BRUTE, "chest", updating_health = TRUE)
-	C.emote("scream")
+	X.face_atom(living_target)
+	X.do_attack_animation(living_target)
+	playsound(living_target, 'sound/effects/spray3.ogg', 15, TRUE)
+	playsound(living_target, pick('sound/voice/alien_drool1.ogg', 'sound/voice/alien_drool2.ogg'), 15, 1)
+	to_chat(X, "<span class='xenodanger'>Our stinger successfully discharges accelerant into our victim.</span>")
+	to_chat(living_target, "<span class='danger'>You feel horrible pain as something sharp forcibly pierces your thorax.</span>")
+	living_target.apply_damage(50, STAMINA)
+	living_target.apply_damage(5, BRUTE, "chest", updating_health = TRUE)
+	living_target.emote("scream")
+	var/defile_strength_multiplier = 1
+
+	var/hemodile_amount = living_target.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_hemodile)
+	var/transvitox_amount = living_target.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_transvitox)
+	var/neurotoxin_amount = living_target.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_neurotoxin) + living_target.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_neurotoxin/light)
+	if(living_target.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_hemodile)) //Each other Defiler toxin increases the multiplier by 2x; 2x if we have 2 combo chem, 4x if we have all 3
+		defile_strength_multiplier *= 2
+
+	if(living_target.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_transvitox)) //Each other Defiler toxin increases the multiplier by 2x; 2x if we have 2 combo chem, 4x if we have all 3
+		defile_strength_multiplier *= 2
+
+	if(living_target.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_neurotoxin))
+		defile_strength_multiplier *= 2
+
+	var/defile_power = (hemodile_amount + transvitox_amount + neurotoxin_amount) * defile_strength_multiplier //Total amount of toxin damage we deal
+
+	living_target.adjustToxLoss(defile_power) //Apply the toxin damage
+
+	var/purge_list = list(/datum/reagent/toxin/xeno_hemodile, /datum/reagent/toxin/xeno_transvitox, /datum/reagent/toxin/xeno_neurotoxin)
+
+	if(!LAZYLEN(purge_list))
+		return
+	var/count = LAZYLEN(purge_list)
+	for(var/datum/reagent/toxin/xeno_toxin as() in living_target.reagents.reagent_list) //Purge all the xeno chems
+		if(count < 1)
+			break
+		if(is_type_in_typecache(xeno_toxin, GLOB.defile_purge_list))
+			count--
+			living_target.reagents.remove_reagent(xeno_toxin.type,defile_power)
+
+	var/datum/effect_system/smoke_spread/xeno/sanguinal/blood_smoke = new(X)
+	var/turf/target_turf = get_turf(living_target)
+	message_admins("Defile Power: [defile_power] Blood Smoke Strength/Size (round): [round(clamp(defile_power*DEFILER_SANGUINAL_SMOKE_MULTIPLIER,1,3))]  Blood Smoke Strength/Size (ceiling): [CEILING(clamp(defile_power*DEFILER_SANGUINAL_SMOKE_MULTIPLIER,1,3),1)]")
+	//blood_smoke.strength = CEILING(clamp(defile_power*DEFILER_SANGUINAL_SMOKE_MULTIPLIER,1,3),1)
+	blood_smoke.set_up(CEILING(clamp(defile_power*DEFILER_SANGUINAL_SMOKE_MULTIPLIER,1,4),1), target_turf)
+	blood_smoke.start()
+
+	switch(defile_power) //Description varies in severity and probability with the multiplier
+		if(1 to 49)
+			to_chat(living_target, "<span class='warning'>Your body aches.</span>")
+		if(50 to 99)
+			to_chat(living_target, "<span class='danger'>Your insides are in agony!</span>")
+		if(100 to INFINITY)
+			to_chat(living_target, "<span class='highdanger'>YOUR INSIDES FEEL LIKE THEY'RE ON FIRE!!</span>")
+
 	GLOB.round_statistics.defiler_defiler_stings++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "defiler_defiler_stings")
 	succeed_activate()
