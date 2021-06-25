@@ -177,7 +177,6 @@ obj/machinery/deployable/mounted/proc/change_target(datum/source, atom/src_objec
 	//we can only fire in a 90 degree cone
 	if((direction & angle) && target.loc != loc && target.loc != operator.loc)
 		operator.setDir(direction)
-		var/obj/item/weapon/gun/gun = internal_item
 		gun.set_target(target)
 		return TRUE
 	if(CHECK_BITFIELD(gun.flags_item, DEPLOYED_NO_ROTATE))
