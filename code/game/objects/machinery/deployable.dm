@@ -14,7 +14,7 @@
 	for(var/datum/atom_hud/squad/sentry_status_hud in GLOB.huds) //Add to the squad HUD
 		sentry_status_hud.add_to_hud(src)
 
-/obj/machinery/deployable/New(loc, _internal_item, ...)
+/obj/machinery/deployable/New(loc, _internal_item)
 	. = ..()
 	internal_item = _internal_item
 
@@ -78,12 +78,12 @@
 	return TRUE
 
 ///Dissassembles the device
-/obj/machinery/deployable/proc/disassemble(mob/user, using_wrench)
+/obj/machinery/deployable/proc/disassemble(mob/user)
 	var/obj/item/item = internal_item
 	if(CHECK_BITFIELD(item.flags_item, DEPLOYED_NO_PICKUP))
 		to_chat(user, "<span class='notice'>The [src] is anchored in place and cannot be disassembled.</span>")
 		return
-	SEND_SIGNAL(src, COMSIG_ITEM_UNDEPLOY, user, using_wrench)
+	SEND_SIGNAL(src, COMSIG_ITEM_UNDEPLOY, user)
 
 /obj/machinery/deployable/Destroy()
 	if(internal_item)
@@ -99,9 +99,14 @@
 	if(!ishuman(usr))
 		return
 	var/mob/living/carbon/human/user = usr //this is us
-	if(over_object == user && in_range(src, user))
-		disassemble(user, FALSE)
+	if(over_object != user || !in_range(src, user))
+		return
+	if(CHECK_BITFIELD(internal_item.flags_item, DEPLOYED_WRENCH_DISASSEMBLE))
+		to_chat(user, "<span class = 'notice'>You cannot disassemble [src] without a wrench.</span>")
+		return
+	disassemble(user)
 
 /obj/machinery/deployable/wrench_act(mob/living/user, obj/item/I)
-	. = ..()
-	disassemble(user, TRUE)
+	if(!CHECK_BITFIELD(internal_item.flags_item, DEPLOYED_WRENCH_DISASSEMBLE))
+		return ..()
+	disassemble(user)

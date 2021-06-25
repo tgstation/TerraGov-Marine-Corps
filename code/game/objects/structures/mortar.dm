@@ -243,14 +243,14 @@
 	icon_state = "mortar"
 
 	max_integrity = 200
-	flags_item = IS_DEPLOYABLE
+	flags_item = IS_DEPLOYABLE|DEPLOYED_WRENCH_DISASSEMBLE
 
 	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
 	w_class = WEIGHT_CLASS_BULKY //No dumping this in most backpacks. Carry it, fatso
 
 /obj/item/mortar_kit/Initialize()
 	. = ..()
-	AddComponent(/datum/component/deployable_item, /obj/machinery/deployable/mortar, 5 SECONDS, TRUE)
+	AddComponent(/datum/component/deployable_item, /obj/machinery/deployable/mortar, 5 SECONDS)
 
 /obj/item/unique_action(mob/user)
 	. = ..()
