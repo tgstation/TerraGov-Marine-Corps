@@ -130,8 +130,6 @@
 	var/lower_akimbo_accuracy = 1
 
 	var/deploy_time = 0
-
-	var/deploy_flags = NONE
 //----------------------------------------------------------
 				//				    \\
 				// NECESSARY PROCS  \\
@@ -531,7 +529,7 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 	SIGNAL_HANDLER
 	if(gun_on_cooldown(gun_user))
 		return
-	if(bypass_checks)
+	if(!bypass_checks)
 		if(gun_user.hand && !isgun(gun_user.l_hand) || !gun_user.hand && !isgun(gun_user.r_hand)) // If the object in our active hand is not a gun, abort
 			return
 		if(gun_user.hand && isgun(gun_user.r_hand) || !gun_user.hand && isgun(gun_user.l_hand)) // If we have a gun in our inactive hand too, both guns get innacuracy maluses

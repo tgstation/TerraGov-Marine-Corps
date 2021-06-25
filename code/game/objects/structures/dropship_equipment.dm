@@ -424,7 +424,7 @@
 /obj/structure/dropship_equipment/mg_holder/Initialize()
 	. = ..()
 	if(!deployed_mg)
-		var/obj/item/weapon/gun/mounted/hsg_nest/new_gun = new /obj/item/weapon/gun/mounted/hsg_nest()
+		var/obj/item/weapon/gun/mounted/hsg_nest/new_gun = New()
 		SEND_SIGNAL(new_gun, COMSIG_ITEM_DEPLOY, null, src, SOUTH)
 		deployed_mg = new_gun.loc
 

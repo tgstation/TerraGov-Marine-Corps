@@ -62,6 +62,8 @@
 #define NO_VACUUM (1<<12) //Roomba won't eat this
 #define IS_DEPLOYABLE (1<<12) //Item can be deployed into a machine
 #define IS_DEPLOYED (1<<13) //If this is on an item, said item is currently deployed
+#define DEPLOYED_NO_PICKUP  (1<<14) //Disables deployed item pickup
+#define DEPLOYED_NO_ROTATE  (1<<15) //Disables deployed item rotation abilities to rotate.
 
 //==========================================================================================
 

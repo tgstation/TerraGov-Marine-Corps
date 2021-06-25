@@ -8,18 +8,15 @@
 
 	hud_possible = list(MACHINE_HEALTH_HUD)
 
-	var/map_based = FALSE
-
 /obj/machinery/deployable/Initialize(mapload, new_item)
 	. = ..()
 	prepare_huds()
 	for(var/datum/atom_hud/squad/sentry_status_hud in GLOB.huds) //Add to the squad HUD
 		sentry_status_hud.add_to_hud(src)
 
-
-/obj/machinery/deployable/proc/create_stats(_internal_item, _deploy_flags)
+/obj/machinery/deployable/New(loc, _internal_item, ...)
+	. = ..()
 	internal_item = _internal_item
-	deploy_flags = _deploy_flags
 
 	max_integrity = internal_item.max_integrity
 	obj_integrity = max_integrity
@@ -82,7 +79,8 @@
 
 ///Dissassembles the device
 /obj/machinery/deployable/proc/disassemble(mob/user, using_wrench)
-	if(deploy_flags & DEPLOYED_NO_PICKUP)
+	var/item/item = internal_item
+	if(CHECK_BITFIELD(item.flags_item & DEPLOYED_NO_PICKUP))
 		to_chat(user, "<span class='notice'>The [src] is anchored in place and cannot be disassembled.</span>")
 		return
 	SEND_SIGNAL(src, COMSIG_ITEM_UNDEPLOY, user, using_wrench)

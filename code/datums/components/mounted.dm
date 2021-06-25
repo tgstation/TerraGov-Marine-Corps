@@ -4,12 +4,10 @@
 
 	var/wrench_dissasemble = FALSE
 
-	var/deploy_flags
-
 	///Machine that parent is deployed into and out of
 	var/obj/machinery/deployable/deployed_machine
 
-/datum/component/deployable_item/Initialize(deploy_type, _deploy_time, _wrench_dissasemble, _deploy_flags)
+/datum/component/deployable_item/Initialize(deploy_type, _deploy_time, _wrench_dissasemble)
 	. = ..()
 	if(!isitem(parent))
 		return COMPONENT_INCOMPATIBLE
@@ -17,10 +15,9 @@
 	deploy_time = _deploy_time
 	deployed_machine = deploy_type
 	wrench_dissasemble = _wrench_dissasemble
-	deploy_flags = _deploy_flags
+
 	
-	deployed_machine = new deployed_machine(parent)
-	deployed_machine.create_stats(parent, deploy_flags)
+	deployed_machine = new deployed_machine(parent, parent)
 	RegisterSignal(parent, COMSIG_ITEM_DEPLOY, .proc/deploy)
 
 ///Wrapper for proc/finish_deploy

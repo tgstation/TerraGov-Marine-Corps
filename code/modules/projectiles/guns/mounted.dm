@@ -83,7 +83,7 @@
 		/obj/item/attachable/scope/unremovable/tl102/nest,
 	)
 
-	deploy_flags = DEPLOYED_NO_PICKUP
+	flags_item =  IS_DEPLOYABLE|TWOHANDED|DEPLOYED_NO_PICKUP
 
 ///This is my meme version, the first version of the TL-102 to have auto-fire, revel in its presence.
 /obj/item/weapon/gun/mounted/death

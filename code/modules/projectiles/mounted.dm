@@ -179,7 +179,7 @@ obj/machinery/deployable/mounted/proc/change_target(datum/source, atom/src_objec
 		var/obj/item/weapon/gun/gun = internal_item
 		gun.set_target(target)
 		return TRUE
-	if(CHECK_BITFIELD(deploy_flags, DEPLOYED_NO_ROTATE))
+	if(CHECK_BITFIELD(gun.flags_item, DEPLOYED_NO_ROTATE))
 		to_chat(operator, "This one is anchored in place and cannot be rotated.")
 		return FALSE
 
