@@ -135,12 +135,13 @@
 		current_mag.match_ammo(magazine)
 		current_mag.transfer_ammo(magazine,user,1) //Handful can get deleted, so we can't check through it.
 		add_to_cylinder(user)
+		return
 	//If bullets still remain in the gun, we want to check if the actual ammo matches.
-	else if(magazine.default_ammo == current_mag.default_ammo) //Ammo datums match, let's see if they are compatible.
+	if(magazine.default_ammo == current_mag.default_ammo) //Ammo datums match, let's see if they are compatible.
 		if(current_mag.transfer_ammo(magazine,user,1))
 			add_to_cylinder(user)//If the magazine is deleted, we're still fine.
-	else
-		to_chat(user, "[current_mag] is [current_mag.current_rounds ? "already loaded with some other ammo. Better not mix them up." : "not compatible with that ammo."]")
+		return
+	to_chat(user, "[current_mag] is [current_mag.current_rounds ? "already loaded with some other ammo. Better not mix them up." : "not compatible with that ammo."]")
 
 
 /obj/item/weapon/gun/revolver/unload(mob/user)
