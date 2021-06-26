@@ -128,7 +128,7 @@
 ///Attach the instantiated item on an armor
 /datum/item_representation/armor_module/proc/install_on_armor(datum/loadout_seller/seller, obj/item/clothing/suit/modular/armor, mob/living/user)
 	var/obj/item/armor_module/module = instantiate_object(seller, null, user)
-	module.do_attach(null, armor)
+	module?.do_attach(null, armor)
 
 /**
  * Allow to representate an armor piece of a jaeger, and to color it
