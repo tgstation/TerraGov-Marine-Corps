@@ -236,7 +236,7 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 		addtimer(CALLBACK(src, .proc/remove_fog), FOG_DELAY_INTERVAL + SSticker.round_start_time + rand(-5 MINUTES, 5 MINUTES))
 
 	if(flags_round_type & MODE_LZ_SHUTTERS)
-		addtimer(CALLBACK(GLOBAL_PROC, .proc/send_global_signal, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE), SSticker.round_start_time + 30 MINUTES)
+		addtimer(CALLBACK(GLOBAL_PROC, .proc/send_global_signal, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE), SSticker.round_start_time + LATEST_SHUTTER_OPENING)
 			//Called late because there used to be shutters opened earlier. To re-add them just copy the logic.
 
 	if(flags_round_type & MODE_XENO_SPAWN_PROTECT)

@@ -327,8 +327,8 @@
 #define ALIVE_HUMANS_FOR_CALLDOWN 0.1
 
 /datum/game_mode/proc/can_summon_dropship(mob/user)
-	if(SSticker.round_start_time + SHUTTLE_HIJACK_LOCK > world.time)
-		to_chat(user, "<span class='warning'>It's too early to call it. We must wait [DisplayTimeText(SSticker.round_start_time + SHUTTLE_HIJACK_LOCK - world.time, 1)].</span>")
+	if(SSticker.round_start_time + LATEST_SHUTTER_OPENING > world.time)
+		to_chat(user, "<span class='warning'>It's too early to call it. We must wait [DisplayTimeText(SSticker.round_start_time + LATEST_SHUTTER_OPENING - world.time, 1)].</span>")
 		return FALSE
 	if(!is_ground_level(user.z))
 		to_chat(user, "<span class='warning'>We can't call the bird from here!</span>")
@@ -442,7 +442,7 @@
 /obj/machinery/computer/shuttle/marine_dropship/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
 	if(!(X.xeno_caste.caste_flags & CASTE_IS_INTELLIGENT))
 		return
-	if(SSticker.round_start_time + SHUTTLE_HIJACK_LOCK > world.time)
+	if(SSticker.round_start_time + LATEST_SHUTTER_OPENING > world.time)
 		to_chat(X, "<span class='xenowarning'>It's too early to do this!</span>")
 		return
 	var/obj/docking_port/mobile/marine_dropship/M = SSshuttle.getShuttle(shuttleId)

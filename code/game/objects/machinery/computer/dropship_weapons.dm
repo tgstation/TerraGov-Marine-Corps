@@ -89,7 +89,7 @@
 					if(shuttle.mode != SHUTTLE_CALL)
 						to_chat(L, "<span class='warning'>Dropship can only fire while in flight.</span>")
 						return
-					if(shuttle.mode == SHUTTLE_HIJACK_LOCK)
+					if(shuttle.mode == LATEST_SHUTTER_OPENING)
 						return
 					if(!(selected_equipment?.dropship_equipment_flags & IS_WEAPON))
 						to_chat(L, "<span class='warning'>No weapon selected.</span>")
