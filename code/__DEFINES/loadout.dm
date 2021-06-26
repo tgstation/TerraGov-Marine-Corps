@@ -530,6 +530,12 @@ GLOBAL_LIST_INIT(bypass_loadout_check_item, typecacheof(list(
 	/obj/item/clothing/under/marine,
 )))
 
+///Storage items that will always have their default content
+GLOBAL_LIST_INIT(bypass_storage_content_save, typecacheof(list(
+	/obj/item/storage/box/MRE,
+	/obj/item/storage/pill_bottle/packet,
+)))
+
 ///List of all supported job titles by the loadout vendors
 GLOBAL_LIST_INIT(loadout_job_supported, list(
 	SQUAD_MARINE,

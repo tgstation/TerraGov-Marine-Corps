@@ -73,6 +73,9 @@
 	. = ..()
 	if(!.)
 		return
+	//Some storage cannot handle custom contents
+	if(is_type_in_typecache(item_type, GLOB.bypass_storage_content_save))
+		return
 	var/obj/item/storage/storage = .
 	var/list/obj/item/starting_items = list()
 	for(var/obj/item/I AS in storage.contents)
@@ -85,7 +88,10 @@
 		var/obj/item/item_to_insert = item_representation.instantiate_object(seller, null, user)
 		if(!item_to_insert)
 			continue
-		storage.handle_item_insertion(item_to_insert)
+		if(storage.can_be_inserted(item_to_insert))
+			storage.handle_item_insertion(item_to_insert)
+			continue
+		item_to_insert.forceMove(get_turf(user))
 
 
 /**
