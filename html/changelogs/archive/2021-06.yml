@@ -216,3 +216,21 @@
   - bugfix: Fixed "standard revolver bullet" still having shake.
   lbnesquik:
   - qol: The AI can now vend from MONEY restricted vendors.
+2021-06-26:
+  Pariah919:
+  - bugfix: fixed resin jelly not having proper cooldown and sending double messages
+      when your hands are full
+  QualityVan:
+  - bugfix: Jelly shouldn't last forever any more in certain cases.
+  - code_imp: Refactored jelly to an effect, plus some fire resistance cleanup.
+  - balance: Jelly heals a bit of burns while active.
+  - bugfix: Hunter pounce out of stealth now correctly gets its tiny sneak attack
+      bonus
+  - code_imp: Misc. hunter stealth code cleanup
+  - balance: Hunter stealth cooldown starts on leaving stealth.
+  - spellcheck: Rephrased codex entries for attachments with burst scatter modifiers
+  Trilbyspaceclone:
+  - bugfix: Basalt should now be able to dig up for sandbags
+  lbnesquik:
+  - bugfix: Lowered the vote noise.
+  - rscadd: Added a new way to ID the beacons
