@@ -615,7 +615,7 @@
 	scannable = TRUE
 	toxpwr = 0
 
-/datum/reagent/toxin/xeno_incarnidine/on_mob_life(mob/living/L, metabolism)
+/datum/reagent/toxin/xeno_sanguinal/on_mob_life(mob/living/L, metabolism)
 	if(L.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_hemodile)) //Each other Defiler toxin doubles the multiplier
 		L.adjustStaminaLoss(DEFILER_SANGUINAL_DAMAGE)
 		L.adjustOxyLoss(DEFILER_SANGUINAL_DAMAGE)
@@ -626,7 +626,6 @@
 	if(L.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_transvitox))
 		L.adjustFireLoss(DEFILER_SANGUINAL_DAMAGE)
 
-	L.adjustBruteLoss(DEFILER_SANGUINAL_DAMAGE)
-	L.apply_damage(DEFILER_SANGUINAL_DAMAGE, BRUTE, sharp = TRUE, updating_health = TRUE) //Causes bleeding
+	L.apply_damage(DEFILER_SANGUINAL_DAMAGE, BRUTE, sharp = TRUE) //Causes bleeding
 
 	return ..()
