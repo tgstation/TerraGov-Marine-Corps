@@ -19,7 +19,7 @@
 
 	var/distress_cancelled = FALSE
 
-	var/deploy_time_lock = 15 MINUTES
+	var/deploy_time_lock = 10 MINUTES
 	///List of available factions when spawning
 	var/list/joinable_factions = list()
 
