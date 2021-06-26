@@ -1,0 +1,4 @@
+author: "Alterist"
+delete-after: True
+changes: 
+  - bugfix: "a rogue beach tile on prison station have been captured and sent to centcom for study"
