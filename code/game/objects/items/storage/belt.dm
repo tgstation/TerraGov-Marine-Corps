@@ -110,12 +110,6 @@
 		/obj/item/clothing/mask/surgical,
 		/obj/item/clothing/gloves/latex,
 		/obj/item/storage/syringe_case,
-		/obj/item/ammo_magazine/pistol,
-		/obj/item/ammo_magazine/smg/m25,
-		/obj/item/ammo_magazine/smg/standard_smg,
-		/obj/item/ammo_magazine/smg/standard_machinepistol,
-		/obj/item/ammo_magazine/revolver,
-		/obj/item/ammo_magazine/handful,
 		/obj/item/flashlight/flare,
 		/obj/item/explosive/grenade/flare,
 		/obj/item/reagent_containers/hypospray,
@@ -124,6 +118,8 @@
 		/obj/item/storage/pill_bottle/packet,
 		/obj/item/roller,
 	)
+
+	cant_hold = list(/obj/item/ammo_magazine)
 
 /obj/item/storage/belt/medical/Initialize()
 	. = ..()
