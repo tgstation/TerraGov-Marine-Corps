@@ -63,40 +63,30 @@ GLOBAL_LIST_INIT(defile_purge_list, typecacheof(list(
 	living_target.apply_damage(50, STAMINA)
 	living_target.apply_damage(5, BRUTE, "chest", updating_health = TRUE)
 	living_target.emote("scream")
+
 	var/defile_strength_multiplier = 1
+	var/defile_reagent_amount
+	var/defile_power
 
-	var/hemodile_amount = living_target.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_hemodile)
-	var/transvitox_amount = living_target.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_transvitox)
-	var/neurotoxin_amount = living_target.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_neurotoxin) + living_target.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_neurotoxin/light)
-	if(living_target.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_hemodile)) //Each other Defiler toxin increases the multiplier by 2x; 2x if we have 2 combo chem, 4x if we have all 3
-		defile_strength_multiplier *= 2
-
-	if(living_target.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_transvitox)) //Each other Defiler toxin increases the multiplier by 2x; 2x if we have 2 combo chem, 4x if we have all 3
-		defile_strength_multiplier *= 2
-
-	if(living_target.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_neurotoxin))
-		defile_strength_multiplier *= 2
-
-	var/defile_power = (hemodile_amount + transvitox_amount + neurotoxin_amount) * defile_strength_multiplier //Total amount of toxin damage we deal
-
-	living_target.adjustToxLoss(defile_power) //Apply the toxin damage
-
-	var/purge_list = list(/datum/reagent/toxin/xeno_hemodile, /datum/reagent/toxin/xeno_transvitox, /datum/reagent/toxin/xeno_neurotoxin)
-
-	if(!LAZYLEN(purge_list))
+	if(!LAZYLEN(GLOB.defile_purge_list))
 		return
-	var/count = LAZYLEN(purge_list)
-	for(var/datum/reagent/toxin/xeno_toxin as() in living_target.reagents.reagent_list) //Purge all the xeno chems
+	var/count = LAZYLEN(GLOB.defile_purge_list)
+	for(var/datum/reagent/toxin/xeno_toxin AS in living_target.reagents.reagent_list) //Purge all the xeno chems
 		if(count < 1)
 			break
 		if(is_type_in_typecache(xeno_toxin, GLOB.defile_purge_list))
+			defile_reagent_amount += living_target.reagents.get_reagent_amount(xeno_toxin.type)
+			defile_strength_multiplier *= 2
 			count--
-			living_target.reagents.remove_reagent(xeno_toxin.type,defile_power)
+			living_target.reagents.remove_reagent(xeno_toxin.type,defile_reagent_amount)
 
-	var/datum/effect_system/smoke_spread/xeno/sanguinal/blood_smoke = new(X)
+	defile_power = defile_reagent_amount * defile_strength_multiplier //Total amount of toxin damage we deal
+
+	living_target.setToxLoss(min(200, living_target.getToxLoss() + defile_power)) //Apply the toxin damage; cap toxin damage at lower of 200 or defile power + current tox loss
+
+	var/datum/effect_system/smoke_spread/xeno/sanguinal/blood_smoke = new(living_target)
 	var/turf/target_turf = get_turf(living_target)
-	message_admins("Defile Power: [defile_power] Blood Smoke Strength/Size (round): [round(clamp(defile_power*DEFILER_SANGUINAL_SMOKE_MULTIPLIER,1,3))]  Blood Smoke Strength/Size (ceiling): [CEILING(clamp(defile_power*DEFILER_SANGUINAL_SMOKE_MULTIPLIER,1,3),1)]")
-	//blood_smoke.strength = CEILING(clamp(defile_power*DEFILER_SANGUINAL_SMOKE_MULTIPLIER,1,3),1)
+	blood_smoke.strength = CEILING(clamp(defile_power*DEFILER_SANGUINAL_SMOKE_MULTIPLIER,1,2),1)
 	blood_smoke.set_up(CEILING(clamp(defile_power*DEFILER_SANGUINAL_SMOKE_MULTIPLIER,1,4),1), target_turf)
 	blood_smoke.start()
 
