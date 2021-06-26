@@ -49,7 +49,8 @@ GLOBAL_LIST_INIT(defile_purge_list, typecacheof(list(
 	var/mob/living/carbon/xenomorph/Defiler/X = owner
 	var/mob/living/carbon/living_target = A
 	X.face_atom(living_target)
-	if(!do_after(X, DEFILER_STING_CHANNEL_TIME, TRUE, living_target, BUSY_ICON_HOSTILE))
+	if(!do_after(X, DEFILER_DEFILE_CHANNEL_TIME, TRUE, living_target, BUSY_ICON_HOSTILE))
+		add_cooldown(DEFILER_FAIL_COOLDOWN)
 		return fail_activate()
 	if(!can_use_ability(A))
 		return fail_activate()
@@ -84,7 +85,7 @@ GLOBAL_LIST_INIT(defile_purge_list, typecacheof(list(
 
 	living_target.setToxLoss(min(200, living_target.getToxLoss() + defile_power)) //Apply the toxin damage; cap toxin damage at lower of 200 or defile power + current tox loss
 
-	var/datum/effect_system/smoke_spread/xeno/sanguinal/blood_smoke = new(living_target)
+	var/datum/effect_system/smoke_spread/xeno/sanguinal/blood_smoke = new(living_target) //Set up Sanguinal smoke
 	var/turf/target_turf = get_turf(living_target)
 	blood_smoke.strength = CEILING(clamp(defile_power*DEFILER_SANGUINAL_SMOKE_MULTIPLIER,1,2),1)
 	blood_smoke.set_up(CEILING(clamp(defile_power*DEFILER_SANGUINAL_SMOKE_MULTIPLIER,1,4),1), target_turf)
