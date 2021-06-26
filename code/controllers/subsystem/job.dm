@@ -200,10 +200,10 @@ SUBSYSTEM_DEF(job)
 
 
 /datum/controller/subsystem/job/proc/assign_players_to_occupations(level, list/occupations_to_assign)
+	var/faction_rejected
 	for(var/mob/new_player/player AS in unassigned)
 		if(PopcapReached())
 			RejectPlayer(player)
-		var/faction_rejected
 		//Choose a faction in advance if needed
 		if(SSticker.mode?.flags_round_type & MODE_TWO_HUMAN_FACTIONS) //Alternates between the two factions
 			faction_rejected = faction_rejected == FACTION_TERRAGOV ? FACTION_TERRAGOV_REBEL : FACTION_TERRAGOV
