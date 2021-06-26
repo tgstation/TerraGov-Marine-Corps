@@ -69,8 +69,6 @@ GLOBAL_LIST_INIT(defile_purge_list, typecacheof(list(
 	var/defile_reagent_amount
 	var/defile_power
 
-	if(!LAZYLEN(GLOB.defile_purge_list))
-		return
 	var/count = LAZYLEN(GLOB.defile_purge_list)
 	for(var/datum/reagent/toxin/xeno_toxin AS in living_target.reagents.reagent_list) //Purge all the xeno chems
 		if(count < 1)
