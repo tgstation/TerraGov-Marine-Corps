@@ -131,16 +131,16 @@
 //How many psych point one gen gives every second
 #define GENERATOR_PSYCH_POINT_OUTPUT 0.03
 //How many psy points are gave for each marine psy drained at low pop
-#define PSY_DRAIN_REWARD_MAX 80
+#define PSY_DRAIN_REWARD_MAX 90
 //How many psy points are gave for each marine psy drained at high pop
 #define PSY_DRAIN_REWARD_MIN 30
 //How many psy points are gave every 5 second by a cocoon at low pop
-#define COCOON_PSY_POINTS_REWARD_MAX 2.6
+#define COCOON_PSY_POINTS_REWARD_MAX 3
 //How many psy points are gave every 5 second by a cocoon at high pop
 #define COCOON_PSY_POINTS_REWARD_MIN 1
 
 //The pop considered to be medium marine pop for the psy points calculation
-#define MEDIUM_MARINE_POP 40
+#define MEDIUM_MARINE_POP 50
 
 
 
