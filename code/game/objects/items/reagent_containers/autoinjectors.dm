@@ -250,6 +250,17 @@
 	volume = 1
 	list_reagents = list(/datum/reagent/medicine/roulettium = 1)
 
+/obj/item/reagent_containers/hypospray/autoinjector/elite //only deathsquad should be able to get this
+	name = "elite autoinjector"
+	desc = "An elite auto-injector loaded with a strong and versatile combination of chemicals, healing most types of damage. Issued almost excusively to the infamous deathsquads of the TGMC"
+	icon_state = "autoinjector-7"
+	amount_per_transfer_from_this = 5
+	volume = 20
+	list_reagents = list(
+		/datum/reagent/medicine/russian_red = 10,
+		/datum/reagent/medicine/rezadone = 10
+	)
+
 /obj/item/reagent_containers/hypospray/autoinjector/hydrocodone //made for debugging
 	name = "hydrocodone autoinjector"
 	desc = "An auto-injector loaded with hydrocodone."
