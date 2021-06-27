@@ -225,6 +225,7 @@ GLOBAL_LIST_INIT(toxin_images_list,  list(
 	update_button_icon()
 	return succeed_activate()
 
+/*
 /datum/action/xeno_action/select_reagent/alternate_keybind_action()
 	var/toxin_choice = show_radial_menu(owner, owner, GLOB.toxin_images_list, radius = 48)
 	if(!toxin_choice)
@@ -238,6 +239,7 @@ GLOBAL_LIST_INIT(toxin_images_list,  list(
 	to_chat(X, "<span class='notice'>We will now use <b>[toxin_choice]</b>.</span>")
 	update_button_icon()
 	return succeed_activate()
+*/
 
 // ***************************************
 // *********** Reagent slash
