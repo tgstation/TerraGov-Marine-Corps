@@ -19,7 +19,6 @@
 		new /obj/item/clothing/suit/fire/firefighter(src)
 		new /obj/item/tank/emergency_oxygen(src)
 		new /obj/item/clothing/mask/gas(src)
-		new /obj/item/clothing/glasses/meson(src)
 		new /obj/item/clothing/head/soft(src)
 		return
 
@@ -51,4 +50,3 @@
 	new /obj/item/flashlight/lantern(src)
 	new /obj/item/tool/shovel(src)
 	new /obj/item/tool/pickaxe(src)
-	new /obj/item/clothing/glasses/meson(src)

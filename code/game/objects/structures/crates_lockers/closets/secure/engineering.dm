@@ -99,7 +99,6 @@
 	new /obj/item/storage/toolbox/mechanical(src)
 	if(!is_ground_level(z))
 		new /obj/item/radio/headset/mainship/st(src)
-	new /obj/item/clothing/glasses/meson(src)
 	new /obj/item/tool/taperoll/engineering(src)
 	new /obj/item/clothing/suit/storage/hazardvest(src)
 	new /obj/item/storage/pouch/general(src)

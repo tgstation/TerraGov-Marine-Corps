@@ -1075,7 +1075,6 @@
 #include "code\modules\clothing\clothing.dm"
 #include "code\modules\clothing\glasses\glasses.dm"
 #include "code\modules\clothing\glasses\hud.dm"
-#include "code\modules\clothing\glasses\meson.dm"
 #include "code\modules\clothing\glasses\night.dm"
 #include "code\modules\clothing\glasses\thermal.dm"
 #include "code\modules\clothing\gloves\color.dm"
