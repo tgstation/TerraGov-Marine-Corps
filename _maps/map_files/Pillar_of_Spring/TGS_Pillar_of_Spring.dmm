@@ -149,7 +149,7 @@
 "aD" = (
 /obj/structure/window/framed/mainship/white,
 /obj/machinery/door/firedoor/mainship,
-/turf/open/floor/plating,
+/turf/open/floor/mainship/sterile,
 /area/mainship/medical/surgery_hallway)
 "aE" = (
 /obj/structure/closet/secure_closet/engineering_personal,
@@ -595,7 +595,7 @@
 /obj/machinery/door/firedoor/mainship{
 	dir = 2
 	},
-/turf/open/floor/plating,
+/turf/open/floor/mainship/sterile,
 /area/mainship/medical/operating_room_one)
 "ci" = (
 /obj/machinery/door/firedoor/mainship{
@@ -1165,7 +1165,7 @@
 /obj/machinery/door/firedoor/mainship{
 	dir = 2
 	},
-/turf/open/floor/plating,
+/turf/open/floor/mainship/sterile,
 /area/mainship/medical/lower_medical)
 "dY" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
@@ -1767,7 +1767,7 @@
 /area/mainship/living/briefing)
 "ga" = (
 /obj/structure/window/framed/mainship/white,
-/turf/open/space/basic,
+/turf/open/floor/mainship/sterile,
 /area/mainship/medical/lower_medical)
 "gb" = (
 /obj/effect/decal/warning_stripes/thin{
@@ -2171,7 +2171,7 @@
 /obj/machinery/door/firedoor/mainship{
 	dir = 2
 	},
-/turf/open/floor/plating,
+/turf/open/floor/mainship/sterile,
 /area/mainship/medical/operating_room_two)
 "hz" = (
 /obj/effect/decal/warning_stripes/thin{
@@ -4379,7 +4379,7 @@
 /obj/machinery/shower{
 	dir = 8
 	},
-/turf/open/floor/plating/plating_catwalk,
+/turf/open/floor/mainship/sterile,
 /area/mainship/medical/medical_science)
 "oR" = (
 /obj/machinery/light{
@@ -8034,8 +8034,8 @@
 /area/mainship/hallways/port_hallway)
 "AP" = (
 /obj/machinery/sleeper,
-/turf/open/floor/mainship/sterile/corner{
-	dir = 1
+/turf/open/floor/mainship/sterile/side{
+	dir = 8
 	},
 /area/mainship/medical/operating_room_one)
 "AQ" = (
@@ -12920,7 +12920,7 @@
 /obj/machinery/door/firedoor/mainship{
 	dir = 2
 	},
-/turf/open/floor/plating,
+/turf/open/floor/mainship/sterile,
 /area/mainship/medical/surgery_hallway)
 "QG" = (
 /obj/vehicle/powerloader,
@@ -13300,7 +13300,7 @@
 "RP" = (
 /obj/structure/window/framed/mainship/white,
 /obj/machinery/door/firedoor/mainship,
-/turf/open/floor/plating,
+/turf/open/floor/mainship/sterile,
 /area/mainship/medical/chemistry)
 "RQ" = (
 /obj/effect/decal/warning_stripes/thin{
@@ -14657,11 +14657,6 @@
 "WP" = (
 /turf/open/floor/plating/mainship,
 /area/mainship/hallways/starboard_hallway)
-"WQ" = (
-/turf/open/floor/mainship/sterile/side{
-	dir = 5
-	},
-/area/mainship/medical/lower_medical)
 "WS" = (
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/mainship/mono,
@@ -14710,12 +14705,6 @@
 /obj/machinery/vending/nanomed,
 /turf/closed/wall/mainship,
 /area/mainship/command/corporateliaison)
-"Xe" = (
-/obj/structure/cable,
-/turf/open/floor/mainship/sterile/side{
-	dir = 9
-	},
-/area/mainship/medical/lower_medical)
 "Xf" = (
 /obj/structure/table/mainship,
 /obj/item/pizzabox,
@@ -15509,7 +15498,6 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/shipboard/weapon_room)
 "ZQ" = (
-/obj/structure/reagent_dispensers/wallmounted/milk,
 /turf/open/floor/carpet{
 	dir = 9;
 	icon_state = "carpetside"
@@ -43172,7 +43160,7 @@ kH
 qE
 gd
 nj
-Xe
+dy
 cz
 cz
 cz
@@ -43429,7 +43417,7 @@ kI
 qE
 gd
 hH
-WQ
+aI
 aY
 hH
 gw
