@@ -15737,7 +15737,6 @@
 "bnx" = (
 /obj/structure/table,
 /obj/effect/decal/cleanable/dirt,
-/obj/item/clothing/glasses/meson,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "bny" = (
