@@ -166,7 +166,7 @@
 	keybind_signal = COMSIG_XENOABILITY_SPAWN_HUGGER
 
 /datum/keybinding/xeno/switch_hugger
-	name = "spawn_hugger"
+	name = "switch_hugger"
 	full_name = "Carrier: Switch Hugger"
 	description = "Cycles the hugger type you will deploy with the Throw Hugger ability."
 	keybind_signal = COMSIG_XENOABILITY_SWITCH_HUGGER
