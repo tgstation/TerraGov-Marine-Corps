@@ -3766,7 +3766,6 @@
 /obj/machinery/light/small{
 	dir = 1
 	},
-/obj/item/clothing/glasses/meson,
 /obj/structure/cable,
 /turf/open/floor/prison/darkyellow/full,
 /area/sulaco/engineering/engine_monitoring)
@@ -15778,7 +15777,6 @@
 "mBj" = (
 /obj/structure/table/reinforced,
 /obj/item/book/manual/supermatter_engine,
-/obj/item/clothing/glasses/meson,
 /obj/item/radio/intercom/general{
 	dir = 8
 	},
@@ -19965,7 +19963,6 @@
 /area/sulaco/cafeteria)
 "tJx" = (
 /obj/structure/table/mainship,
-/obj/item/clothing/glasses/meson,
 /obj/item/paper,
 /obj/item/tool/pen,
 /obj/item/explosive/grenade/chem_grenade/metalfoam,

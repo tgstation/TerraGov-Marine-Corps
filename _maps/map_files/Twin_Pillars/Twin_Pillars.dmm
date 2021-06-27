@@ -7340,7 +7340,6 @@
 "gDb" = (
 /obj/structure/table/mainship,
 /obj/item/clothing/gloves/yellow,
-/obj/item/clothing/glasses/meson,
 /obj/item/light_bulb/tube,
 /obj/item/radio,
 /turf/open/floor/mainship/mono,
@@ -9724,7 +9723,6 @@
 "iLN" = (
 /obj/structure/table/mainship,
 /obj/item/clothing/gloves/yellow,
-/obj/item/clothing/glasses/meson,
 /obj/item/light_bulb/tube,
 /obj/item/radio,
 /turf/open/floor/mainship/mono,

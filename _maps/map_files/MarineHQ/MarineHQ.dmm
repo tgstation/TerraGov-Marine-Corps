@@ -8118,7 +8118,6 @@
 "Mz" = (
 /obj/structure/table/woodentable,
 /obj/item/pizzabox/margherita,
-/obj/item/clothing/glasses/meson,
 /obj/item/flashlight/lantern,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves)
