@@ -119,7 +119,7 @@
 		if(count > 1)
 			N.set_up(smoke_range, T)
 		else //last emission is larger
-			N.set_up(round(smoke_range*1.3), T)
+			N.set_up(CEILING(smoke_range*1.3,1), T)
 		N.start()
 		T.visible_message("<span class='danger'>Noxious smoke billows from the hulking xenomorph!</span>")
 		count = max(0,count - 1)
