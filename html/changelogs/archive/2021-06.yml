@@ -234,3 +234,9 @@
   lbnesquik:
   - bugfix: Lowered the vote noise.
   - rscadd: Added a new way to ID the beacons
+2021-06-27:
+  Alterist:
+  - bugfix: a rogue beach tile on prison station have been captured and sent to centcom
+      for study
+  Wayland-Smithy:
+  - bugfix: Fixed an issue with add_fingerprint and power cables.

@@ -1,4 +1,0 @@
-author: "Wayland-Smithy"
-delete-after: True
-changes: 
-  - bugfix: "Fixed an issue with add_fingerprint and power cables."
