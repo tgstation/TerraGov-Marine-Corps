@@ -1,0 +1,5 @@
+author: "lbnesquik"
+delete-after: True
+changes: 
+  - rscadd: "Added extra cameras & lights to Pillar of Spring"
+  - bugfix: "fixed a few cameras placement"
