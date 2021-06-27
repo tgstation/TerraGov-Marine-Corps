@@ -1,0 +1,6 @@
+author: "Wayland-Smithy"
+delete-after: True
+changes: 
+  - balance: "Hivemind resin door manipulation cooldown is gone."
+  - qol: "Hivemind can now open and close doors with Ctrl+Click as well as Alt+Click."
+  - bugfix: "Fixed a duplicate proc override for /xenomorph/hivemind/"
