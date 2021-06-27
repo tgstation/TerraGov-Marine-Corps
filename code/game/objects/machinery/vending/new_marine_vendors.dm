@@ -255,7 +255,8 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 
 			if(bitf == MARINE_CAN_BUY_UNIFORM && ishumanbasic(usr))
 				var/mob/living/carbon/human/H = usr
-				new /obj/item/radio/headset/mainship/marine(loc, H.assigned_squad, vendor_role)
+				var/headset_type = H.faction == FACTION_TERRAGOV ? /obj/item/radio/headset/mainship/marine : /obj/item/radio/headset/mainship/marine/rebel
+				new headset_type(loc, H.assigned_squad, vendor_role)
 				if(!istype(H.job, /datum/job/terragov/squad/engineer))
 					new /obj/item/clothing/gloves/marine(loc, H.assigned_squad, vendor_role)
 				if(istype(H.job, /datum/job/terragov/squad/leader))
