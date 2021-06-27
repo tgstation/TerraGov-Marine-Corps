@@ -311,7 +311,7 @@
 	if(selected_ability.target_flags & XABB_MOB_TARGET && !isliving(A))
 		var/mob/living/target = locate(/mob/living) in get_turf(A)
 		return target ? target : A
-	if(selected_ability.target_flags & XABB_TURF_TARGET && !isturf(A))
+	if(selected_ability.target_flags & XABB_TURF_TARGET)
 		return get_turf(A)
 	return A
 
