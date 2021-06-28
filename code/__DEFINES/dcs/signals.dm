@@ -248,10 +248,8 @@
 #define COMSIG_CLOTHING_MECHANICS_INFO "clothing_mechanics_info"	//from base of /obj/item/clothing/get_mechanics_info()
 	#define COMPONENT_CLOTHING_MECHANICS_TINTED (1<<0)
 
-#define COMSIG_ITEM_DEPLOY "item_deploy"  //used in /obj/machinery/deployable and /datum/component/deployable_item
+#define COMSIG_ITEM_DEPLOY "item_deploy"  //used in /obj/machinery/deployable and /datum/element/deployable_item
 #define COMSIG_ITEM_UNDEPLOY "item_undeploy"
-
-
 
 // /obj/item/armor_module signals
 #define COMSIG_ARMOR_MODULE_ATTACHING "armor_module_attaching"

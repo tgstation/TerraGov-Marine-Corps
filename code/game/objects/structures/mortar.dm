@@ -250,7 +250,7 @@
 
 /obj/item/mortar_kit/Initialize()
 	. = ..()
-	AddComponent(/datum/component/deployable_item, /obj/machinery/deployable/mortar, 5 SECONDS)
+	AddElement(/datum/element/deployable_item, /obj/machinery/deployable/mortar, 5 SECONDS)
 
 /obj/item/unique_action(mob/user)
 	. = ..()

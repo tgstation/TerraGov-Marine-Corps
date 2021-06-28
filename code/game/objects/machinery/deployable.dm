@@ -18,9 +18,6 @@
 	. = ..()
 	internal_item = _internal_item
 
-	max_integrity = internal_item.max_integrity
-	obj_integrity = max_integrity
-
 	name = internal_item.name
 	desc = internal_item.desc
 
@@ -76,6 +73,10 @@
 	repair_damage(120)
 	update_icon_state()
 	return TRUE
+
+/obj/machinery/deployable/proc/on_deploy()
+
+/obj/machinery/deployable/proc/on_undeploy()
 
 ///Dissassembles the device
 /obj/machinery/deployable/proc/disassemble(mob/user)
