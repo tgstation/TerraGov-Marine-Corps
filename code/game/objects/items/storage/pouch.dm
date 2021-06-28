@@ -319,7 +319,7 @@
 	storage_slots = 1
 	can_hold = list(
 		/obj/item/ammo_magazine/standard_smartmachinegun,
-		/obj/item/ammo_magazine/minigun
+		/obj/item/ammo_magazine/minigun,
 	)
 
 
