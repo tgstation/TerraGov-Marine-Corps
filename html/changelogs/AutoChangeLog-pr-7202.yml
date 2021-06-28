@@ -1,4 +1,0 @@
-author: "Surrealaser"
-delete-after: True
-changes: 
-  - bugfix: "Emit Noxious Gas's last puff is now larger as previously intended."

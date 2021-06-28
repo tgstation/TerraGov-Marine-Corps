@@ -240,3 +240,17 @@
       for study
   Wayland-Smithy:
   - bugfix: Fixed an issue with add_fingerprint and power cables.
+2021-06-28:
+  BraveMole:
+  - bugfix: Fix headset, comms, minimap and supply for HvH
+  - expansion: Inform you on which faction you are on when spawning in HvH mode
+  Surrealaser:
+  - bugfix: Emit Noxious Gas's last puff is now larger as previously intended.
+  Wayland-Smithy:
+  - balance: Hivemind resin door manipulation cooldown is gone.
+  - qol: Hivemind can now open and close doors with Ctrl+Click as well as Alt+Click.
+  - bugfix: Fixed a duplicate proc override for /xenomorph/hivemind/
+  lbnesquik:
+  - rscadd: Added extra cameras & lights to Pillar of Spring
+  - bugfix: fixed a few cameras placement
+  - balance: Slightly increase sectoids fire rate.
