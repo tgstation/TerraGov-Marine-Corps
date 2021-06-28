@@ -552,6 +552,7 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 		reset_fire()
 		return
 	gun_user.client.mouse_pointer_icon = 'icons/effects/supplypod_target.dmi'
+	stack_trace("here")
 	SEND_SIGNAL(src, COMSIG_GUN_FIRE)
 
 ///Set the target and take care of hard delete

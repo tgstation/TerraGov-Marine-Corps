@@ -12,12 +12,12 @@
 
 ///generates the icon based on how much ammo it has.
 /obj/machinery/deployable/mounted/update_icon_state(mob/user)
+	. = ..()
 	var/obj/item/weapon/gun/gun = internal_item
 	if(!gun.current_mag)
 		icon_state = default_icon_state + "_e"
 	else
 		icon_state = default_icon_state
-	hud_set_machine_health()
 	hud_set_gun_ammo()
 
 /obj/machinery/deployable/mounted/New(loc, _internal_item)
@@ -90,7 +90,7 @@
 		update_icon_state()
 
 	var/tac_reload_time = max(0.5 SECONDS, 1.5 SECONDS - user.skills.getRating("firearms") * 5)
-	if(!do_after(user, tac_reload_time, TRUE, src))
+	if(!do_after(user, tac_reload_time, TRUE, src, BUSY_ICON_FRIENDLY))
 		return
 	
 	gun.reload(user, ammo_magazine)
@@ -122,7 +122,7 @@
 
 	gun.gun_user = operator
 
-///Begins the Firing Process, copy-paste of gun-sytem code for the purpose of replacing can_fire()
+///Begins the Firing Process, does custom checks before calling the guns start_fire()
 /obj/machinery/deployable/mounted/proc/start_fire(datum/source, atom/object, turf/location, control, params)
 	SIGNAL_HANDLER
 
@@ -154,7 +154,8 @@ obj/machinery/deployable/mounted/proc/change_target(datum/source, atom/src_objec
 
 ///Checks if you can fire
 /obj/machinery/deployable/mounted/proc/can_fire(atom/object)
-	update_icon_state()
+	if(!object)
+		return FALSE
 	if(operator.lying_angle || !Adjacent(operator) || operator.incapacitated() || get_step(src, REVERSE_DIR(dir)) != operator.loc)
 		operator.unset_interaction()
 		return FALSE
@@ -178,6 +179,7 @@ obj/machinery/deployable/mounted/proc/change_target(datum/source, atom/src_objec
 	if((direction & angle) && target.loc != loc && target.loc != operator.loc)
 		operator.setDir(direction)
 		gun.set_target(target)
+		update_icon_state()
 		return TRUE
 	if(CHECK_BITFIELD(gun.flags_item, DEPLOYED_NO_ROTATE))
 		to_chat(operator, "This one is anchored in place and cannot be rotated.")

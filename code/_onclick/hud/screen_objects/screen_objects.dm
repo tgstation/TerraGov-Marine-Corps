@@ -698,11 +698,7 @@
 	if(!user?.client?.screen.Find(src))
 		return
 
-	if(!G)
-		remove_hud(user)
-		return
-
-	if((user.get_active_held_item() != G && user.get_inactive_held_item() != G && !G.is_deployed()) || !G.hud_enabled || !CHECK_BITFIELD(G.flags_gun_features, GUN_AMMO_COUNTER))
+	if(!G || !(G.flags_gun_features & GUN_AMMO_COUNTER) || !G.hud_enabled || !G.get_ammo_type() || isnull(G.get_ammo_count()))
 		remove_hud(user)
 		return
 

@@ -3,7 +3,7 @@
 	var/obj/item/internal_item
 	///Flags for machine functions
 	var/deploy_flags = NONE
-
+	///Since /obj/machinery/deployable aquires its sprites from an item and are set in New(), initial(icon_state) would return null. This var exists as a substitute.
 	var/default_icon_state
 
 	hud_possible = list(MACHINE_HEALTH_HUD)
@@ -48,19 +48,23 @@
 	if(obj_integrity == max_integrity)
 		to_chat(user, "<span class='warning'>[src] doesn't need repairs.</span>")
 		return TRUE
+	
+	if(!WT.remove_fuel(2, user))
+		to_chat(user, "<span class='warning'>Not enough fuel to finish the task.</span>")
+		return TRUE
+
+	var/weld_time = 5 SECONDS
 
 	if(user.skills.getRating("engineer") < SKILL_ENGINEER_METAL)
 		user.visible_message("<span class='notice'>[user] fumbles around figuring out how to repair [src].</span>",
 		"<span class='notice'>You fumble around figuring out how to repair [src].</span>")
-		var/fumbling_time = 5 SECONDS * ( SKILL_ENGINEER_METAL - user.skills.getRating("engineer") )
-		if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_BUILD))
-			return TRUE
+		weld_time  *= ( SKILL_ENGINEER_METAL - user.skills.getRating("engineer") )
 
 	user.visible_message("<span class='notice'>[user] begins repairing damage to [src].</span>",
 	"<span class='notice'>You begin repairing the damage to [src].</span>")
 	playsound(loc, 'sound/items/welder2.ogg', 25, TRUE)
 
-	if(!do_after(user, 5 SECONDS, TRUE, src, BUSY_ICON_FRIENDLY))
+	if(!do_after(user, weld_time, TRUE, src, BUSY_ICON_FRIENDLY))
 		return TRUE
 
 	if(!WT.remove_fuel(2, user))
@@ -73,10 +77,6 @@
 	repair_damage(120)
 	update_icon_state()
 	return TRUE
-
-/obj/machinery/deployable/proc/on_deploy()
-
-/obj/machinery/deployable/proc/on_undeploy()
 
 ///Dissassembles the device
 /obj/machinery/deployable/proc/disassemble(mob/user)

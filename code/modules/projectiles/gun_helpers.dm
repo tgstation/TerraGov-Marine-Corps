@@ -417,12 +417,13 @@ should be alright.
 
 	return G
 
-///Helper proc that processes a clicked target, if the target is not black tiles, it will not change it. If they are it will return the turf of the black tiles.
+///Helper proc that processes a clicked target, if the target is not black tiles, it will not change it. If they are it will return the turf of the black tiles. It will return null if the object is a screen object other than black tiles.
 /proc/get_turf_on_clickcatcher(atom/target, mob/user, params)
 	var/list/modifiers = params2list(params)
-	if(!istype(target, /obj/screen/click_catcher))
+	if(!istype(target, /obj/screen))
 		return target
-	//Happens when you click a black tile
+	if(!istype(target, /obj/screen/click_catcher))
+		return null
 	return params2turf(modifiers["screen-loc"], get_turf(user), user.client)
 
 //----------------------------------------------------------

@@ -105,9 +105,6 @@
 	var/active = FALSE
 
 
-	//DEPLOYABLE RELATED VARS
-
-
 /obj/item/Initialize()
 	. = ..()
 

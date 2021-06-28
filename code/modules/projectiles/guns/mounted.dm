@@ -87,7 +87,7 @@
 
 ///This is my meme version, the first version of the TL-102 to have auto-fire, revel in its presence.
 /obj/item/weapon/gun/mounted/death
-	name = "\improper Death incarnate"
+	name = "\improper \"Death incarnate\" heavy machine gun"
 	desc = "It looks like a regular TL-102, however glowing archaeic writing glows faintly on its sides and top. It beckons for blood."
 	icon = 'icons/Marine/marine-hmg.dmi'
 

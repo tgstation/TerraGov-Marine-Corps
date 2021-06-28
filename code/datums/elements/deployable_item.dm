@@ -1,6 +1,6 @@
 /datum/element/deployable_item
 	element_flags = ELEMENT_BESPOKE
-	id_arg_index = 3
+	id_arg_index = 2
 
 	///Time it takes for the parent to be deployed/undeployed
 	var/deploy_time = 0
@@ -10,7 +10,7 @@
 /datum/element/deployable_item/Attach(datum/target, _deploy_type, _deploy_time)
 	. = ..()
 	if(!isitem(target))
-		CRASH("[src] was attempted to be attached to [target] of type [target.type], [target] should be a /obj/item in order for this element to function with it.")
+		return ELEMENT_INCOMPATIBLE
 	deploy_type = _deploy_type
 	deploy_time = _deploy_time
 
@@ -54,11 +54,9 @@
 	deployed_machine.max_integrity = attached_item.max_integrity //Syncs new machine or structure integrity with that of the item.
 	deployed_machine.obj_integrity = attached_item.obj_integrity
 
-	attached_item.forceMove(deployed_machine) //Moves the Item into the machine or structure
+	deployed_machine.update_icon_state()
 
-	if(istype(deployed_machine, /obj/machinery/deployable)) //If it is a /obj/machinery/deployable, it calls the extra proc on_deploy()
-		var/obj/machinery/deployable/_deployed_machine = deployed_machine
-		_deployed_machine.on_deploy()
+	attached_item.forceMove(deployed_machine) //Moves the Item into the machine or structure
 
 	ENABLE_BITFIELD(attached_item.flags_item, IS_DEPLOYED)
 
@@ -74,7 +72,7 @@
 	var/obj/deployed_machine = source //The machine/structure that is undeploying should be the the one sending the Signal
 	var/obj/item/attached_item //Item the machine/structure is undeploying
 	if(istype(deployed_machine, /obj/machinery/deployable)) //If the machine/structure is of type, '/obj/machinery/deployable' then it already has a saved var of the deploying/undeploying item. If it isn't the source should send along the undeploying item
-		var/obj/machinery/deployable/_deployed_machine
+		var/obj/machinery/deployable/_deployed_machine = deployed_machine
 		attached_item = _deployed_machine.internal_item
 	else if(!undeploying)
 		CRASH("[src] has called proc/undeploy from [source]. [source] is not of the type '/obj/machinery/deployable' and the argument 'undeploying' is null. Therefore proc/undeploy cannot determin what is undeploying.")
@@ -101,9 +99,10 @@
 	attached_item.max_integrity = deployed_machine.max_integrity
 	attached_item.obj_integrity = deployed_machine.obj_integrity
 
-	if(istype(deployed_machine, /obj/machinery/deployable))
+	if(istype(deployed_machine, /obj/machinery/deployable)) //Since /obj/machinery/deployable deletes 'internal_item' on qdel(), this sets internal_item to null so the item does not get deleted when undeploying.
 		var/obj/machinery/deployable/_deployed_machine = deployed_machine
-		_deployed_machine.on_undeploy()
+		_deployed_machine.internal_item = null
+
 	qdel(deployed_machine)
 	attached_item.update_icon_state()
 
