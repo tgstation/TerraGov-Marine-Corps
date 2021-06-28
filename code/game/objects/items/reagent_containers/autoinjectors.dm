@@ -258,7 +258,7 @@
 	volume = 30
 	list_reagents = list(
 		/datum/reagent/medicine/russian_red = 15,
-		/datum/reagent/medicine/rezadone = 15
+		/datum/reagent/medicine/rezadone = 15,
 	)
 
 /obj/item/reagent_containers/hypospray/autoinjector/hydrocodone //made for debugging
