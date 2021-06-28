@@ -84,6 +84,8 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 
 /obj/machinery/computer/camera_advanced/overwatch/rebel
 	faction = FACTION_TERRAGOV_REBEL
+	req_access = list(ACCESS_MARINE_BRIDGE_REBEL)
+
 /obj/machinery/computer/camera_advanced/overwatch/rebel/main
 	icon_state = "overwatch_main"
 	name = "Main Overwatch Console"

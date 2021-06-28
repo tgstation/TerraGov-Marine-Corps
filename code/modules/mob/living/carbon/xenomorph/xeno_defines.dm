@@ -32,8 +32,6 @@
 	var/tacklemin = 1
 	///The maximum amount of random paralyze applied to a human upon being 'pulled' multiplied by 20 ticks
 	var/tacklemax = 1
-	///How much STAMINA damage a xeno deals when tackling
-	var/tackle_damage = 20
 
 	// *** Speed *** //
 	var/speed = 1
@@ -328,6 +326,6 @@
 	var/fire_luminosity = 0 //Luminosity of the current fire while burning
 
 	///The xenos/silo/nuke currently tracked by the xeno_tracker arrow
-	var/tracked
+	var/atom/tracked
 
 	COOLDOWN_DECLARE(xeno_health_alert_cooldown)

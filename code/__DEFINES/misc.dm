@@ -26,6 +26,7 @@
 #define DIRT_TYPE_GROUND 1
 #define DIRT_TYPE_MARS 2
 #define DIRT_TYPE_SNOW 3
+#define DIRT_TYPE_LAVALAND 4
 
 //wet floors
 

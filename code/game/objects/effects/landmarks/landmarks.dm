@@ -68,6 +68,11 @@
 	GLOB.latejoin += loc
 	return INITIALIZE_HINT_QDEL
 
+/obj/effect/landmark/start/latejoinrebel/Initialize()
+	. = ..()
+	GLOB.latejoinrebel += loc
+	return INITIALIZE_HINT_QDEL
+
 /obj/effect/landmark/start/latejoin_gateway/Initialize()
 	. = ..()
 	GLOB.latejoin_gateway += loc
@@ -387,3 +392,25 @@
 						/obj/item/weapon/banhammer,
 						/obj/item/weapon/chainsword,
 						)
+
+//used to spawn a different dropship control console groundside for HvH mode
+/obj/effect/landmark/dropship_console_spawn_lz1
+	name = "Dropship console spawn lz1"
+	icon = 'icons/obj/machines/computer.dmi'
+	icon_state = "shuttle"
+
+/obj/effect/landmark/dropship_console_spawn_lz1/Initialize()
+	. =	..()
+	GLOB.lz1_shuttle_console_turfs_list += loc
+	return INITIALIZE_HINT_QDEL
+
+/obj/effect/landmark/dropship_console_spawn_lz2
+	name = "Dropship console spawn lz1"
+	icon = 'icons/obj/machines/computer.dmi'
+	icon_state = "shuttle"
+
+/obj/effect/landmark/dropship_console_spawn_lz2/Initialize()
+	. =	..()
+	GLOB.lz2_shuttle_console_turfs_list += loc
+	return INITIALIZE_HINT_QDEL
+

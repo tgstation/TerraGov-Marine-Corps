@@ -827,3 +827,9 @@
 	name = "Defend order arrow"
 	icon_state = "Defend_arrow"
 	duration = ORDER_DURATION
+
+/obj/screen/arrow/hunter_mark_arrow
+	name = "hunter mark arrow"
+	icon_state = "Red_arrow"
+	duration = HUNTER_PSYCHIC_TRACE_COOLDOWN
+	color = COLOR_ORANGE

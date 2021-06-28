@@ -1,0 +1,8 @@
+{
+    "map_name": "Twin Pillars",
+    "map_path": "map_files/Twin_Pillars",
+    "map_file": "Twin_Pillars.dmm",
+    "traits": [{"Marine Main Ship": true}],
+    "environment_traits": [{"Double Marine Ship": true}],
+    "squads": 2
+}
