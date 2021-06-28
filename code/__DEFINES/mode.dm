@@ -127,22 +127,12 @@
 #define SILO_PRICE 800
 #define XENO_TURRET_PRICE 100
 #define XENO_KING_PRICE 1800
-
-//How many psych point one gen gives every second
-#define GENERATOR_PSYCH_POINT_OUTPUT 0.03
-//How many psy points are gave for each marine psy drained at low pop
-#define PSY_DRAIN_REWARD_MAX 90
-//How many psy points are gave for each marine psy drained at high pop
-#define PSY_DRAIN_REWARD_MIN 30
-//How many psy points are gave every 5 second by a cocoon at low pop
-#define COCOON_PSY_POINTS_REWARD_MAX 3
-//How many psy points are gave every 5 second by a cocoon at high pop
-#define COCOON_PSY_POINTS_REWARD_MIN 1
-
-//The pop considered to be medium marine pop for the psy points calculation
-#define MEDIUM_MARINE_POP 50
-
-
+//How many psych point one gen gives per person on the server
+#define BASE_PSYCH_POINT_OUTPUT 0.008
+//How many psy points are gave for each marine psy drained
+#define PSY_DRAIN_REWARD 60
+//How many psy points are gave every 5 second by a cocoon
+#define COCOON_PSY_POINTS_REWARD 2
 
 #define INVOKE_KING_TIME_LOCK 1 HOURS
 
@@ -164,3 +154,5 @@
 #define DISTRESS_LARVA_POINTS_NEEDED 8
 #define HUNT_LARVA_POINTS_NEEDED 8
 #define CRASH_LARVA_POINTS_NEEDED 8
+
+#define FREE_XENO_AT_START 2
