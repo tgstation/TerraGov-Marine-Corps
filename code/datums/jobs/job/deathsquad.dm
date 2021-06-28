@@ -41,7 +41,7 @@
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/enrg_bar, SLOT_IN_HEAD)
 
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/hyperzine, SLOT_IN_L_POUCH)
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/hypervene, SLOT_IN_L_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/ryetalyn, SLOT_IN_L_POUCH)
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/elite, SLOT_IN_L_POUCH)
 	H.equip_to_slot_or_del(new /obj/item/stack/medical/advanced/bruise_pack, SLOT_IN_L_POUCH)
 	H.equip_to_slot_or_del(new /obj/item/stack/medical/advanced/ointment, SLOT_IN_L_POUCH)
@@ -53,8 +53,6 @@
 	H.equip_to_slot_or_del(new /obj/item/detpack, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/detpack, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/assembly/signaler, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/phosphorus, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/phosphorus, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/wrapped/chunk, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/ap, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/ap, SLOT_IN_BACKPACK)
@@ -95,7 +93,7 @@
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/enrg_bar, SLOT_IN_HEAD)
 
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/hyperzine, SLOT_IN_L_POUCH)
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/hypervene, SLOT_IN_L_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/ryetalyn, SLOT_IN_L_POUCH)
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/elite, SLOT_IN_L_POUCH)
 	H.equip_to_slot_or_del(new /obj/item/stack/medical/advanced/bruise_pack, SLOT_IN_L_POUCH)
 	H.equip_to_slot_or_del(new /obj/item/stack/medical/advanced/ointment, SLOT_IN_L_POUCH)
@@ -148,7 +146,7 @@
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rocket/m57a4, SLOT_IN_R_POUCH)
 
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/hyperzine, SLOT_IN_L_POUCH)
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/hypervene, SLOT_IN_L_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/ryetalyn, SLOT_IN_L_POUCH)
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/elite, SLOT_IN_L_POUCH)
 	H.equip_to_slot_or_del(new /obj/item/stack/medical/advanced/bruise_pack, SLOT_IN_L_POUCH)
 	H.equip_to_slot_or_del(new /obj/item/stack/medical/advanced/ointment, SLOT_IN_L_POUCH)
@@ -163,6 +161,4 @@
 	H.equip_to_slot_or_del(new /obj/item/detpack, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/detpack, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/assembly/signaler, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/phosphorus, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/phosphorus, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/wrapped/chunk, SLOT_IN_BACKPACK)
