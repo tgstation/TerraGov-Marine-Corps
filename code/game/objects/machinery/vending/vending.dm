@@ -566,7 +566,7 @@
 		flick(icon_deny, src)
 		return
 	
-	if(is_type_in_typecache(R.product_path, hvh_restricted_items_list))
+	if(SSticker.mode?.flags_round_type & MODE_HUMAN_ONLY && is_type_in_typecache(R.product_path, hvh_restricted_items_list))
 		to_chat(user, "<span class='warning'>This item was banned by the Space Geneva Convention.</span>")
 		flick(icon_deny, src)
 		return
