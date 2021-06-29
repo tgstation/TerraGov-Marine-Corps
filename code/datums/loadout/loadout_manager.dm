@@ -17,11 +17,12 @@
 	var/version = CURRENT_LOADOUT_VERSION
 
 ///Remove the data of a loadout from the loadouts list
-/datum/loadout_manager/proc/delete_loadout(loadout_name, loadout_job)
+/datum/loadout_manager/proc/delete_loadout(mob/user, loadout_name, loadout_job)
 	for(var/i = 1; i <= length(loadouts_data); i += 2)
 		if(loadout_job == loadouts_data[i] && loadout_name == loadouts_data[i+1])
 			loadouts_data -= loadouts_data[i+1]
 			loadouts_data -= loadouts_data[i]
+			user.client.prefs.delete_loadout(loadout_name, loadout_job)
 			return
 
 
@@ -115,7 +116,7 @@
 			var/datum/loadout/loadout = ui.user.client.prefs.load_loadout(name, job)
 			if(!loadout)
 				to_chat(ui.user, "<span class='warning'>Error when loading this loadout</span>")
-				delete_loadout(name, job)
+				delete_loadout(ui.user, name, job)
 				CRASH("Fail to load loadouts")
 			loadout.loadout_vendor = loadout_vendor
 			loadout.ui_interact(ui.user)

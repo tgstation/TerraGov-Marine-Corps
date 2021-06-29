@@ -574,9 +574,20 @@
 	S.cd = "/loadouts"
 	loadout.loadout_vendor = null
 	var/loadout_json = jatum_serialize(loadout)
-	log_debug("Loadout saved : [loadout_json]")
 	WRITE_FILE(S["[loadout.name + loadout.job]"], loadout_json)
 	return TRUE
+
+///Delete a loadout from the savefile
+/datum/preferences/proc/delete_loadout(loadout_name, loadout_job)
+	if(!path)
+		return
+	if(!fexists(path))
+		return
+	var/savefile/S = new /savefile(path)
+	if(!S)
+		return
+	S.cd = "/loadouts"
+	WRITE_FILE(S["[loadout_name + loadout_job]"], "")
 
 ///Load a loadout from the savefile and returns it
 /datum/preferences/proc/load_loadout(loadout_name, loadout_job)
@@ -636,8 +647,7 @@
 	var/savefile/S = new /savefile(path)
 	if(!S)
 		return FALSE
-	S.cd = "/loadouts"
-	WRITE_FILE(S, "")
+	S.dir.Remove("loadouts")
 
 /datum/preferences/proc/save()
 	return (save_preferences() && save_character())
