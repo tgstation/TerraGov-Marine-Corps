@@ -138,7 +138,7 @@
 	if(!can_fire(target))
 		return
 
-	gun.start_fire(source, target, location, control, TRUE, params)
+	gun.start_fire(source, target, location, control, params, TRUE)
 
 ///Happens when you drag the mouse.
 obj/machinery/deployable/mounted/proc/change_target(datum/source, atom/src_object, atom/over_object, turf/src_location, turf/over_location, src_control, over_control, params)
