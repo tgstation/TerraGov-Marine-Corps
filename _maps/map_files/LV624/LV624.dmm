@@ -4871,7 +4871,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/lazarus/quartstorage/outdoors)
 "aAm" = (
-/obj/item/tool/warning_cone,
+/obj/item/clothing/head/warning_cone,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/lazarus/quartstorage/outdoors)
 "aAn" = (
@@ -5440,7 +5440,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/compound/n)
 "aDK" = (
-/obj/item/tool/warning_cone,
+/obj/item/clothing/head/warning_cone,
 /turf/open/floor/plating/platebotc,
 /area/lv624/lazarus/quartstorage/outdoors)
 "aDL" = (
@@ -6493,7 +6493,7 @@
 /turf/closed/wall,
 /area/lv624/lazarus/quartstorage)
 "aLh" = (
-/obj/item/tool/warning_cone,
+/obj/item/clothing/head/warning_cone,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/quartstorage)
 "aLk" = (
