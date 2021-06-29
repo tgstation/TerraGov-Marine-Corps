@@ -89,12 +89,16 @@ Godspeed, captain! And remember, you are not above the law."})
 	if(!playtime_mins || playtime_mins < 1 )
 		return
 	switch(playtime_mins)
-		if(0 to 1500) // starting
-			new_human.wear_id.paygrade = "O6"
-		if(1501 to 7500) // 25hrs
-			new_human.wear_id.paygrade = "O7"
-		if(7501 to INFINITY) //125 hrs
-			new_human.wear_id.paygrade = "O8"
+		if(0 to 1800) // starting to 30 hrs CO
+			new_human.wear_id.paygrade = "O6" // Captian CO
+		if(1801 to 4200) // 30 hrs to 70 hrs COMM
+			new_human.wear_id.paygrade = "O7" // Commodore COMM
+		if(4201 to 7500) // 70 hrs to 125 hrs RADM
+			new_human.wear_id.paygrade = "O8" // Rear Admiral RADM
+		if(7500 to 60000) // 125 hrs to 1000 hrs VADM
+			new_human.wear_id.paygrade = "09" // Vice Admiral VADM
+		if(60000 to INFINITY) // 1000 hrs HOLY FUCK ADM
+			new_human.wear_id.paygrade = "10" // Admiral ADM
 
 //Field Commander
 /datum/job/terragov/command/fieldcommander
@@ -412,12 +416,16 @@ If you are not piloting, there is an autopilot fallback for command, but don't l
 	if(!playtime_mins || playtime_mins < 1 )
 		return
 	switch(playtime_mins)
-		if(0 to 1500) // starting
-			new_human.wear_id.paygrade = "O2"
-		if(1501 to 6000) // 25 hrs
-			new_human.wear_id.paygrade = "O3"
-		if(6001 to INFINITY) // 50 hrs
-			new_human.wear_id.paygrade = "O4"
+		if(0 to 1500) // starting to 25 hrs LTJG
+			new_human.wear_id.paygrade = "O2" // LTJG
+		if(1501 to 3000) // 25 hrs to 50 hrs LT
+			new_human.wear_id.paygrade = "O3" // LT
+		if(3001 to 6000) // 50 hrs to 100 hrs LCDR
+			new_human.wear_id.paygrade = "O4" // LCDR 
+		if(6001 to 60000) // 100 hrs to 1000 hrs CDR
+			new_human.wear_id.paygrade = "05" // CDR 
+		if(60001 to INFINITY) // 1000 hrs holy fuck CO
+			nwe_human.wear_id.paygrade = "06" // CO
 
 /datum/job/terragov/engineering/chief/radio_help_message(mob/M)
 	. = ..()
@@ -671,6 +679,23 @@ A happy ship is a well-functioning ship."})
 		/datum/job/terragov/silicon/synthetic/rebel = SYNTH_POINTS_REGULAR,
 	)
 
+/datum/job/terragov/medical/medicalofficer/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)
+	. = ..()
+	if(!ishuman(new_mob))
+		return
+	var/mob/living/carbon/human/new_human = new_mob
+	var/playtime_mins = user?.client?.get_exp(title)
+	if(!playtime_mins || playtime_mins < 1 )
+		return
+	switch(playtime_mins)
+		if(0 to 3000) // starting to 50 hrs LT
+			new_human.wear_id.paygrade = "O3" // LT
+		if(3001 to 6000) // 50 hrs to 100 hrs LCDR
+			new_human.wear_id.paygrade = "O4" // LCDR
+		if(6001 to 60000) // 100 hrs to 1000 hrs CDR
+			new_human.wear_id.paygrade = "O5" // CDR
+		if(60001 to INFINITY) // 1000 hrs holy fuck CO
+			new_human.wear_id.paygrade = "06" // CO
 
 /datum/job/terragov/medical/professor/radio_help_message(mob/M)
 	. = ..()
