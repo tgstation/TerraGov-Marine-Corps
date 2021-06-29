@@ -89,16 +89,12 @@ Godspeed, captain! And remember, you are not above the law."})
 	if(!playtime_mins || playtime_mins < 1 )
 		return
 	switch(playtime_mins)
-		if(0 to 1800) // starting to 30 hrs CO
-			new_human.wear_id.paygrade = "O6" // Captian CO
-		if(1801 to 4200) // 30 hrs to 70 hrs COMM
-			new_human.wear_id.paygrade = "O7" // Commodore COMM
-		if(4201 to 7500) // 70 hrs to 125 hrs RADM
-			new_human.wear_id.paygrade = "O8" // Rear Admiral RADM
-		if(7500 to 60000) // 125 hrs to 1000 hrs VADM
-			new_human.wear_id.paygrade = "09" // Vice Admiral VADM
-		if(60000 to INFINITY) // 1000 hrs HOLY FUCK ADM
-			new_human.wear_id.paygrade = "10" // Admiral ADM
+		if(0 to 1500) // starting
+			new_human.wear_id.paygrade = "O6"
+		if(1501 to 7500) // 25hrs
+			new_human.wear_id.paygrade = "O7"
+		if(7501 to INFINITY) //125 hrs
+			new_human.wear_id.paygrade = "O8"
 
 //Field Commander
 /datum/job/terragov/command/fieldcommander
@@ -425,7 +421,7 @@ If you are not piloting, there is an autopilot fallback for command, but don't l
 		if(6001 to 60000) // 100 hrs to 1000 hrs CDR
 			new_human.wear_id.paygrade = "05" // CDR 
 		if(60001 to INFINITY) // 1000 hrs holy fuck CO
-			nwe_human.wear_id.paygrade = "06" // CO
+			new_human.wear_id.paygrade = "06" // CO
 
 /datum/job/terragov/engineering/chief/radio_help_message(mob/M)
 	. = ..()
