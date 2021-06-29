@@ -254,3 +254,8 @@
   - rscadd: Added extra cameras & lights to Pillar of Spring
   - bugfix: fixed a few cameras placement
   - balance: Slightly increase sectoids fire rate.
+2021-06-29:
+  BraveMole:
+  - balance: FC has less skill in pistols and melee
+  - bugfix: Can join rebels now
+  - bugfix: No longer 4 squads on POS
