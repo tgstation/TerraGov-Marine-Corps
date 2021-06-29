@@ -58,8 +58,8 @@
 		center_turf = loc
 
 	if(SSticker.mode?.flags_round_type & MODE_SILO_RESPAWN)
-		for(var/i in RANGE_TURFS(XENO_SILO_DETECTION_RANGE, src))
-			RegisterSignal(i, COMSIG_ATOM_ENTERED, .proc/resin_silo_proxy_alert)
+		for(var/turfs in RANGE_TURFS(XENO_SILO_DETECTION_RANGE, src))
+			RegisterSignal(turfs, COMSIG_ATOM_ENTERED, .proc/resin_silo_proxy_alert)
 
 	SSminimaps.add_marker(src, z, hud_flags = MINIMAP_FLAG_XENO, iconstate = "silo")
 	return INITIALIZE_HINT_LATELOAD
