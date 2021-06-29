@@ -28,3 +28,9 @@
 
 	if(statpanel("Game"))
 		stat("Active Tunnel Sets:", "[LAZYLEN(tunnels)] / [HIVELORD_TUNNEL_SET_LIMIT]")
+
+///Clears out ownership of created structures
+/mob/living/carbon/xenomorph/hivelord/Destroy()
+	for(var/obj/structure/xeno/tunnel/tunnel AS in tunnels)
+		tunnel.creator = null
+	return ..()

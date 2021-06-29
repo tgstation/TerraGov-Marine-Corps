@@ -144,7 +144,7 @@
 
 	playsound(T, 'sound/weapons/pierce.ogg', 25, 1)
 
-	newt.hivenumber = X.hive //Set our structure's hive
+	newt.hivenumber = X.hivenumber //Set our structure's hivenumber for alerts/lists
 	newt.creator = X
 
 	X.tunnels.Add(newt)

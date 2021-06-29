@@ -658,7 +658,7 @@ TUNNEL
 	if(!QDELETED(creator))
 		to_chat(creator, "<span class='xenoannounce'>You sense your [name] at [tunnel_desc] has been destroyed!</span>") //Alert creator
 
-	xeno_message("Hive tunnel [name] at [tunnel_desc] has been destroyed!", "xenoannounce", 5, creator.hivenumber) //Also alert hive because tunnels matter.
+	xeno_message("Hive tunnel [name] at [tunnel_desc] has been destroyed!", "xenoannounce", 5, hivenumber) //Also alert hive because tunnels matter.
 
 	GLOB.xeno_tunnels -= src
 	if(creator)
@@ -666,6 +666,7 @@ TUNNEL
 
 	for(var/datum/atom_hud/xeno_tactical/xeno_tac_hud in GLOB.huds) //HUD clean up
 		xeno_tac_hud.remove_from_hud(src)
+	SSminimaps.remove_marker(src)
 
 	return ..()
 
