@@ -177,6 +177,18 @@
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_SPAWN_HUGGER
 
+/datum/keybinding/xeno/switch_hugger
+	name = "spawn_hugger"
+	full_name = "Carrier: Switch Hugger"
+	description = "Cycles the hugger type you will deploy with the Throw Hugger ability."
+	keybind_signal = COMSIG_XENOABILITY_SWITCH_HUGGER
+
+/datum/keybinding/xeno/choose_hugger
+	name = "choose_hugger"
+	full_name = "Carrier: Choose Hugger"
+	description = "Prompt a wheel to choose which hugger you will deploy with the Throw Hugger ability." 
+	keybind_signal = COMSIG_XENOABILITY_CHOOSE_HUGGER
+
 /datum/keybinding/xeno/stomp
 	name = "stomp"
 	full_name = "Crusher: Stomp"
@@ -321,6 +333,12 @@
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_UNRELENTING_FORCE
 
+/datum/keybinding/xeno/unrelenting_force_select
+	name = "unrelenting_force_select"
+	full_name = "Shrike: Select Unrelenting Force"
+	description = ""
+	keybind_signal = COMSIG_XENOABILITY_UNRELENTING_FORCE_SELECT
+
 /datum/keybinding/xeno/psychic_heal
 	name = "psychic_cure"
 	full_name = "Shrike: Psychic Cure"
@@ -399,6 +417,12 @@
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_RAVAGE
 
+/datum/keybinding/xeno/ravage_select
+	name = "ravage select"
+	full_name = "Ravager: Select Ravage"
+	description = ""
+	keybind_signal = COMSIG_XENOABILITY_RAVAGE_SELECT
+
 /datum/keybinding/xeno/toggle_savage
 	name = "toggle_savage"
 	full_name = "Runner: Toggle Savage"
@@ -459,3 +483,68 @@
 	description = "Imbues a target xeno with healing energy, restoring extra Sunder and Health once every 2 seconds up to 5 times whenever it regenerates normally. 60 second duration."
 	keybind_signal = COMSIG_XENOABILITY_HEALING_INFUSION
 
+/datum/keybinding/xeno/scatter_spit
+	name = "scatter_spit"
+	full_name = "Spitter: Scatter Spit"
+	description = "Fires a scattershot of 6 acid globules which create acid puddles on impact or at the end of their range."
+	keybind_signal = COMSIG_XENOABILITY_SCATTER_SPIT
+
+/datum/keybinding/xeno/vent
+	name = "vent"
+	full_name = "Vent crawl"
+	description = "Enter an air vent and crawl through the pipe system."
+	keybind_signal = COMSIG_XENOABILITY_VENTCRAWL
+
+/datum/keybinding/xeno/vent/down(client/user)
+	. = ..()
+	if(!isxeno(user.mob))
+		return
+	var/mob/living/carbon/xenomorph/xeno = user.mob
+	xeno.vent_crawl()
+
+
+//Wraith keybinds - BEGIN
+
+/datum/keybinding/xeno/place_warp_shadow
+	name = "place_warp_shadow"
+	full_name = "Wraith: Place Warp Shadow"
+	description = "Create a rift in space/time that you can swap locations with using the Hyperposition ability."
+	keybind_signal = COMSIG_XENOABILITY_PLACE_WARP_BEACON
+
+/datum/keybinding/xeno/hyperposition
+	name = "hyperposition"
+	full_name = "Wraith: Hyperposition"
+	description = "Swap locations with your warp shadow after a delay that scales with your distance from it."
+	keybind_signal = COMSIG_XENOABILITY_HYPERPOSITION
+
+/datum/keybinding/xeno/phase_shift
+	name = "phase_shift"
+	full_name = "Wraith: Phase Shift"
+	description = "Move out of phase with reality for a short duration after a short delay, gaining invulnerability and the ability to move through almost all physical obstacles. Can't move into space."
+	keybind_signal = COMSIG_XENOABILITY_PHASE_SHIFT
+
+/datum/keybinding/xeno/resync
+	name = "resync"
+	full_name = "Wraith: Resync"
+	description = "Resynchronize with reality, ending Phase Shift's effect."
+	keybind_signal = COMSIG_XENOABILITY_RESYNC
+
+/datum/keybinding/xeno/blink
+	name = "wraith_blink"
+	full_name = "Wraith: Blink"
+	description = "Teleport to a space a short distance away within line of sight. Can teleport mobs you're dragging with you at the cost of higher cooldown."
+	keybind_signal = COMSIG_XENOABILITY_BLINK
+
+/datum/keybinding/xeno/banish
+	name = "banish"
+	full_name = "Wraith: Banish"
+	description = "Banish a creature or object a short distance away within line of sight to null space. Can target oneself and allies. Can be manually cancelled with Recall."
+	keybind_signal = COMSIG_XENOABILITY_BANISH
+
+/datum/keybinding/xeno/recall
+	name = "recall"
+	full_name = "Wraith: Recall"
+	description = "Recall a target from netherspace, ending Banish's effect."
+	keybind_signal = COMSIG_XENOABILITY_RECALL
+
+//Wraith keybinds - END

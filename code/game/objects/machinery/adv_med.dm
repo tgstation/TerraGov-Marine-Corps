@@ -31,7 +31,7 @@
 	go_out()
 
 /obj/machinery/bodyscanner/proc/move_inside_wrapper(mob/living/M, mob/user)
-	if (M.stat != CONSCIOUS || !(ishuman(M) || ismonkey(M)))
+	if (M.stat != CONSCIOUS || !ishuman(M))
 		return
 	if (occupant)
 		to_chat(user, "<span class='boldnotice'>The scanner is already occupied!</span>")
@@ -70,7 +70,6 @@
 	occupant.forceMove(loc)
 	occupant = null
 	icon_state = "body_scanner_0"
-	return
 
 /obj/machinery/bodyscanner/attack_hand(mob/living/user)
 	. = ..()
@@ -137,14 +136,12 @@
 				qdel(src)
 				return
 		if(EXPLODE_LIGHT)
-			if (prob(25))
-				for(var/atom/movable/A as mob|obj in src)
-					A.loc = src.loc
-					ex_act(severity)
-				qdel(src)
+			if(!prob(75))
 				return
-		else
-	return
+			for(var/atom/movable/A as mob|obj in src)
+				A.loc = src.loc
+				ex_act(severity)
+			qdel(src)
 
 /obj/machinery/body_scanconsole/ex_act(severity)
 

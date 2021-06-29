@@ -7,6 +7,7 @@
 	det_time = 40
 	item_state = "grenade"
 	underslug_launchable = TRUE
+	icon_state_mini = "grenade_red"
 
 /obj/item/explosive/grenade/frag/prime()
 	explosion(loc, light_impact_range = 4, small_animation = TRUE)
@@ -24,6 +25,7 @@
 	item_state = "grenade"
 	hud_state = "grenade_dummy"
 	dangerous = FALSE
+	icon_state_mini = "grenade_white"
 
 /obj/item/explosive/grenade/frag/training/prime()
 	playsound(loc, 'sound/items/detector.ogg', 80, 0, 7)
@@ -46,6 +48,7 @@
 	arm_sound = 'sound/weapons/armbombpin.ogg'
 	hud_state = "grenade_frag"
 	underslug_launchable = FALSE
+	icon_state_mini = "grenade_red_white"
 
 /obj/item/explosive/grenade/frag/PMC/prime()
 	explosion(loc, light_impact_range = 5, small_animation = TRUE)
@@ -60,6 +63,7 @@
 	arm_sound = 'sound/weapons/armbombpin.ogg'
 	hud_state = "grenade_frag"
 	underslug_launchable = FALSE
+	icon_state_mini = "grenade_yellow"
 
 /obj/item/explosive/grenade/frag/m15/prime()
 	explosion(loc, light_impact_range = 5, small_animation = TRUE)
@@ -82,7 +86,7 @@
 
 /obj/item/explosive/grenade/frag/stick/prime()
 	explosion(loc, light_impact_range = 4, small_animation = TRUE)
-	del(src)
+	qdel(src)
 
 
 /obj/item/explosive/grenade/frag/upp
@@ -98,7 +102,7 @@
 
 /obj/item/explosive/grenade/frag/upp/prime()
 	explosion(loc, light_impact_range = 4, small_animation = TRUE)
-	del(src)
+	qdel(src)
 
 
 /obj/item/explosive/grenade/frag/sectoid
@@ -122,6 +126,7 @@
 	item_state = "grenade_fire"
 	hud_state = "grenade_fire"
 	underslug_launchable = TRUE
+	icon_state_mini = "grenade_orange"
 
 /obj/item/explosive/grenade/incendiary/prime()
 	flame_radius(2, get_turf(src))
@@ -172,6 +177,7 @@
 	underslug_launchable = TRUE
 	dangerous = FALSE
 	var/datum/effect_system/smoke_spread/bad/smoke
+	icon_state_mini = "grenade_blue"
 
 /obj/item/explosive/grenade/smokebomb/Initialize()
 	. = ..()
@@ -194,6 +200,7 @@
 	dangerous = FALSE
 	underslug_launchable = TRUE
 	var/datum/effect_system/smoke_spread/tactical/smoke
+	icon_state_mini = "grenade_green"
 
 /obj/item/explosive/grenade/cloakbomb/Initialize()
 	. = ..()
@@ -214,6 +221,7 @@
 	hud_state = "grenade_smoke"
 	underslug_launchable = TRUE
 	var/datum/effect_system/smoke_spread/plasmaloss/smoke
+	icon_state_mini = "grenade_blue"
 
 /obj/item/explosive/grenade/drainbomb/Initialize()
 	. = ..()
@@ -235,6 +243,7 @@
 	hud_state = "grenade_hide"
 	underslug_launchable = TRUE
 	var/datum/effect_system/smoke_spread/phosphorus/smoke
+	icon_state_mini = "grenade_cyan"
 
 /obj/item/explosive/grenade/phosphorus/Initialize()
 	. = ..()
@@ -264,6 +273,7 @@
 	det_time = 40
 	dangerous = TRUE
 	underslug_launchable = TRUE
+	icon_state_mini = "grenade_blue_white"
 
 /obj/item/explosive/grenade/impact/prime()
 	explosion(loc, light_impact_range = 3)

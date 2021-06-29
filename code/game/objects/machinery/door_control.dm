@@ -115,7 +115,7 @@
 	pressed = FALSE
 	update_icon()
 
-/obj/machinery/door_control/update_icon()
+/obj/machinery/door_control/update_icon_state()
 	if(machine_stat & NOPOWER)
 		icon_state = "doorctrl-p"
 	else if(pressed)
@@ -216,9 +216,17 @@
 	id = "cic_lockdown"
 	req_one_access = list(ACCESS_MARINE_BRIDGE)
 
+/obj/machinery/door_control/mainship/cic/rebel
+	id = "cic_lockdown_rebel"
+	req_one_access = list(ACCESS_MARINE_BRIDGE_REBEL)
+
 /obj/machinery/door_control/mainship/cic/armory
 	name = "Armory Lockdown"
 	id = "cic_armory"
+
+/obj/machinery/door_control/mainship/cic/armory/rebel
+	id = "cic_armory_armory"
+	req_one_access = list(ACCESS_MARINE_BRIDGE_REBEL)
 
 /obj/machinery/door_control/mainship/cic/hangar
 	name = "Hangar Lockdown"
@@ -229,6 +237,16 @@
 	id = "tcomms"
 	req_one_access = list(ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_BRIDGE)
 
+/obj/machinery/door_control/mainship/tcomms/rebel
+	id = "tcomms_rebel"
+	req_one_access = list(ACCESS_MARINE_ENGINEERING_REBEL, ACCESS_MARINE_LOGISTICS_REBEL, ACCESS_MARINE_BRIDGE_REBEL)
+
+/obj/machinery/door_control/mainship/engineering/armory
+	name = "Engineering Armory Lockdown"
+	id = "engi_armory"
+	req_one_access = list(ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_BRIDGE)
+
+
 /obj/machinery/door_control/mainship/corporate
 	name = "Privacy Shutters"
 	id = "cl_shutters"
@@ -238,6 +256,10 @@
 	name = "RO Line Shutters"
 	id = "ROlobby"
 	req_one_access = list(ACCESS_MARINE_CARGO, ACCESS_MARINE_LOGISTICS)
+
+/obj/machinery/door_control/mainship/req/rebel
+	id = "ROlobby_rebel"
+	req_one_access = list(ACCESS_MARINE_CARGO_REBEL, ACCESS_MARINE_LOGISTICS_REBEL)
 
 /obj/machinery/door_control/mainship/req/ro1
 	name = "RO Line 1 Shutters"

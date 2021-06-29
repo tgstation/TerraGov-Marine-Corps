@@ -140,13 +140,12 @@ proc/spawn_money(var/sum, spawnloc, mob/living/carbon/human/human_user as mob)
 		var/obj/cash = new cash_type (usr.loc)
 		if(ishuman(human_user) && !human_user.get_active_held_item())
 			human_user.put_in_hands(cash)
-	else
-		var/obj/item/spacecash/bundle/bundle = new (spawnloc)
-		bundle.worth = sum
-		bundle.update_icon()
-		if (ishuman(human_user) && !human_user.get_active_held_item())
-			human_user.put_in_hands(bundle)
-	return
+		return
+	var/obj/item/spacecash/bundle/bundle = new (spawnloc)
+	bundle.worth = sum
+	bundle.update_icon()
+	if (ishuman(human_user) && !human_user.get_active_held_item())
+		human_user.put_in_hands(bundle)
 
 /obj/item/spacecash/ewallet
 	name = "\improper Nanotrasen cash card"

@@ -1,10 +1,10 @@
-#define PARROT_PERCH	(1<<0)	//Sitting/sleeping, not moving
-#define PARROT_SWOOP	(1<<1)	//Moving towards or away from a target
-#define PARROT_WANDER	(1<<2)	//Moving without a specific target in mind
-#define PARROT_STEAL	(1<<3)	//Flying towards a target to steal it/from it
-#define PARROT_ATTACK	(1<<4)	//Flying towards a target to attack it
-#define PARROT_RETURN	(1<<5)	//Flying towards its perch
-#define PARROT_FLEE		(1<<6)	//Flying away from its attacker
+#define PARROT_PERCH (1<<0)	//Sitting/sleeping, not moving
+#define PARROT_SWOOP (1<<1)	//Moving towards or away from a target
+#define PARROT_WANDER (1<<2)	//Moving without a specific target in mind
+#define PARROT_STEAL (1<<3)	//Flying towards a target to steal it/from it
+#define PARROT_ATTACK (1<<4)	//Flying towards a target to attack it
+#define PARROT_RETURN (1<<5)	//Flying towards its perch
+#define PARROT_FLEE (1<<6)	//Flying away from its attacker
 
 
 /mob/living/simple_animal/parrot
@@ -110,7 +110,7 @@
 /mob/living/simple_animal/parrot/radio(message, message_mode, list/spans, language) //literally copied from human/radio(), but there's no other way to do this. at least it's better than it used to be.
 	. = ..()
 	if(. != 0)
-		return .
+		return
 
 	switch(message_mode)
 		if(MODE_HEADSET)
@@ -237,7 +237,7 @@
 		handle_automated_speech(1) //assured speak/emote
 
 
-/mob/living/simple_animal/parrot/attack_paw(mob/living/carbon/monkey/user)
+/mob/living/simple_animal/parrot/attack_paw(mob/living/carbon/human/user)
 	return attack_hand(user)
 
 

@@ -11,9 +11,6 @@
 	// *** Melee Attacks *** //
 	melee_damage = 17
 
-	// *** Tackle *** //
-	tackle_damage = 21
-
 	// *** Speed *** //
 	speed = 0.4
 
@@ -51,14 +48,18 @@
 	// *** Abilities *** //
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
+		/datum/action/xeno_action/activable/psydrain,
+		/datum/action/xeno_action/activable/headbite,
+		/datum/action/xeno_action/activable/devour,
+		/datum/action/xeno_action/activable/cocoon,
 		/datum/action/xeno_action/plant_weeds,
 		/datum/action/xeno_action/activable/healing_infusion,
 		/datum/action/xeno_action/place_acidwell,
-		/datum/action/xeno_action/choose_resin/hivelord,
 		/datum/action/xeno_action/activable/secrete_resin/hivelord,
 		/datum/action/xeno_action/activable/build_silo,
+		/datum/action/xeno_action/activable/build_hunt_den,
+		/datum/action/xeno_action/activable/build_turret,
 		/datum/action/xeno_action/activable/transfer_plasma/improved,
-		/datum/action/xeno_action/activable/salvage_biomass,
 		/datum/action/xeno_action/activable/corrosive_acid,
 		/datum/action/xeno_action/build_tunnel,
 		/datum/action/xeno_action/toggle_speed,
@@ -78,9 +79,6 @@
 	caste_desc = "A builder of REALLY BIG hives. It looks a little more dangerous."
 	upgrade = XENO_UPGRADE_ONE
 
-	// *** Tackle *** //
-	tackle_damage = 21
-
 	// *** Speed *** //
 	speed = 0.3
 
@@ -92,7 +90,7 @@
 	max_health = 325
 
 	// *** Evolution *** //
-	upgrade_threshold = 240
+	upgrade_threshold = 360
 
 	// *** Defense *** //
 	soft_armor = list("melee" = 20, "bullet" = 20, "laser" = 20, "energy" = 20, "bomb" = XENO_BOMB_RESIST_0, "bio" = 15, "rad" = 15, "fire" = 20, "acid" = 15)
@@ -112,9 +110,6 @@
 	// *** Melee Attacks *** //
 	melee_damage = 20
 
-	// *** Tackle *** //
-	tackle_damage = 25
-
 	// *** Speed *** //
 	speed = 0.2
 
@@ -126,7 +121,7 @@
 	max_health = 340
 
 	// *** Evolution *** //
-	upgrade_threshold = 480
+	upgrade_threshold = 840
 
 	// *** Defense *** //
 	soft_armor = list("melee" = 25, "bullet" = 25, "laser" = 25, "energy" = 25, "bomb" = XENO_BOMB_RESIST_0, "bio" = 18, "rad" = 18, "fire" = 25, "acid" = 18)
@@ -147,9 +142,6 @@
 	// *** Melee Attacks *** //
 	melee_damage = 20
 
-	// *** Tackle *** //
-	tackle_damage = 25
-
 	// *** Speed *** //
 	speed = 0.1
 
@@ -161,7 +153,7 @@
 	max_health = 350
 
 	// *** Evolution *** //
-	upgrade_threshold = 480
+	upgrade_threshold = 1320
 
 	// *** Defense *** //
 	soft_armor = list("melee" = 30, "bullet" = 30, "laser" = 30, "energy" = 30, "bomb" = XENO_BOMB_RESIST_0, "bio" = 20, "rad" = 20, "fire" = 30, "acid" = 20)

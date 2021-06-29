@@ -134,7 +134,7 @@
 		/obj/item/weapon/gun/,
 		/obj/item/flashlight,
 		/obj/item/storage/large_holster/machete,
-		/obj/item/storage/belt/gun/m4a3,
+		/obj/item/storage/belt/gun/pistol/m4a3,
 		/obj/item/storage/belt/gun/m44,
 	)
 
@@ -255,7 +255,7 @@
 //All of the armor below is mostly unused
 
 
-/obj/item/clothing/suit/armor/centcomm
+/obj/item/clothing/suit/armor/centcom
 	name = "Cent. Com. armor"
 	desc = "A suit that protects against some damage."
 	icon_state = "centcom"

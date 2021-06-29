@@ -83,8 +83,6 @@
 	//Finally, smash the bottle. This kills (del) the bottle.
 	smash(target, user)
 
-	return
-
 
 
 /obj/item/reagent_containers/food/drinks/bottle/gin

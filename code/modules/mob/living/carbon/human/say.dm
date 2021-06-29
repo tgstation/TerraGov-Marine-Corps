@@ -34,7 +34,7 @@
 /mob/living/carbon/human/radio(message, message_mode, list/spans, language)
 	. = ..()
 	if(. != 0)
-		return .
+		return
 
 	if(isxeno(loc))
 		message = Gibberish(message, 100)

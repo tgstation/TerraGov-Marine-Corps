@@ -1,4 +1,4 @@
-#define DEBUG_XENO_LIFE	0
+#define DEBUG_XENO_LIFE 0
 #define XENO_RESTING_HEAL 1.1
 #define XENO_STANDING_HEAL 0.2
 #define XENO_CRIT_DAMAGE 5
@@ -11,6 +11,9 @@
 		return
 
 	..()
+
+	if(notransform) //If we're in true stasis don't bother processing life
+		return
 
 	if(stat == DEAD) //Dead, nothing else to do but this.
 		if(plasma_stored && !(xeno_caste.caste_flags & CASTE_DECAY_PROOF))
@@ -47,7 +50,7 @@
 		return
 	if(!(xeno_caste.caste_flags & CASTE_FIRE_IMMUNE) && on_fire) //Sanity check; have to be on fire to actually take the damage.
 		SEND_SIGNAL(src, COMSIG_XENOMORPH_FIRE_BURNING)
-		adjustFireLoss((fire_stacks + 3) * clamp(xeno_caste.fire_resist + fire_resist_modifier, 0, 1) ) // modifier is negative
+		adjustFireLoss((fire_stacks + 3) * get_fire_resist() )
 
 /mob/living/carbon/xenomorph/proc/handle_living_health_updates()
 	if(health < 0)
@@ -96,7 +99,7 @@
 	var/turf/T = loc
 	if((istype(T) && locate(/obj/effect/alien/weeds) in T))
 		heal_wounds(XENO_RESTING_HEAL + (warding_aura * 0.5) * 0.5) //Warding pheromones provides 0.125 HP per second per step, up to 1.25 HP per tick.
-	else
+	else if(!endure) //If we're not Enduring we bleed out
 		adjustBruteLoss(XENO_CRIT_DAMAGE - (warding_aura * 0.5)) //Warding can heavily lower the impact of bleedout. Halved at 5.
 
 /mob/living/carbon/xenomorph/proc/heal_wounds(multiplier = XENO_RESTING_HEAL, scaling = FALSE)

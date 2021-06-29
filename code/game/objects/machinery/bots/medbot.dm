@@ -283,10 +283,9 @@
 				step_to(src, src.path[1])
 				src.path -= src.path[1]
 
-	if(src.path.len > 8 && src.patient)
-		src.frustration++
+	if(path.len > 8 && src.patient)
+		frustration++
 
-	return
 
 /obj/machinery/bot/medbot/proc/assess_patient(mob/living/carbon/C as mob)
 	//Time to see if they need medical help!
@@ -398,14 +397,12 @@
 
 //	src.speak(reagent_id)
 	reagent_id = null
-	return
 
 
 /obj/machinery/bot/medbot/proc/speak(message)
 	if((!src.on) || (!message))
 		return
 	visible_message("[src] beeps, \"[message]\"")
-	return
 
 /obj/machinery/bot/medbot/deconstruct(disassembled = TRUE)
 	new /obj/item/storage/firstaid(loc)

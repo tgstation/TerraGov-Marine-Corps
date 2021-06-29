@@ -34,7 +34,7 @@
 	else
 		. += image('icons/obj/kitchen.dmi', "gridle")
 
-/obj/machinery/gibber/attack_paw(mob/living/carbon/monkey/user)
+/obj/machinery/gibber/attack_paw(mob/living/carbon/human/user)
 	return attack_hand(user)
 
 /obj/machinery/gibber/relaymove(mob/user)
@@ -94,8 +94,7 @@
 
 	if (usr.stat != 0)
 		return
-	src.go_out()
-	return
+	go_out()
 
 /obj/machinery/gibber/proc/go_out()
 	if (!src.occupant)
@@ -108,7 +107,7 @@
 	src.occupant.loc = src.loc
 	src.occupant = null
 	update_icon()
-	return
+
 
 
 /obj/machinery/gibber/proc/startgibbing(mob/user as mob)
@@ -147,17 +146,17 @@
 		occupant.death(silent = TRUE)
 		src.occupant.ghostize()
 
-	else if( istype(src.occupant, /mob/living/carbon/) || istype(src.occupant, /mob/living/simple_animal/ ) )
+	else if(istype(occupant, /mob/living/carbon) || istype(occupant, /mob/living/simple_animal))
 
 		var/mob/living/carbon/C = occupant
 		var/sourcename = src.occupant.name
 		var/sourcenutriment = C.nutrition / 15
 		var/sourcetotalreagents = 0
 
-		if( istype(src.occupant, /mob/living/carbon/monkey/) || istype(src.occupant, /mob/living/carbon/xenomorph) ) // why are you gibbing aliens? oh well
+		if(ismonkey(occupant) || istype(occupant, /mob/living/carbon/xenomorph)) // why are you gibbing aliens? oh well
 			totalslabs = 3
 			sourcetotalreagents = src.occupant.reagents.total_volume
-		else if( istype(src.occupant, /mob/living/simple_animal/cow) || istype(src.occupant, /mob/living/simple_animal/hostile/bear) )
+		else if(istype(occupant, /mob/living/simple_animal/cow) || istype(occupant, /mob/living/simple_animal/hostile/bear))
 			totalslabs = 2
 		else
 			totalslabs = 1
@@ -196,5 +195,4 @@
 				new /obj/effect/decal/cleanable/blood/gibs(Tx,i)
 		src.operating = 0
 		update_icon()
-
 

@@ -117,3 +117,26 @@
 // ***************************************
 /datum/action/xeno_action/activable/psychic_cure/acidic_salve/queen
 	heal_range = HIVELORD_HEAL_RANGE
+
+// ***************************************
+// *********** Overwatch (from hivemind chat)
+// ***************************************
+/mob/living/carbon/xenomorph/queen/Topic(href, href_list)
+	. = ..()
+	if(.)
+		return
+
+	if(href_list["watch_xeno_name"])
+		if(!check_state())
+			return
+		var/xeno_name = href_list["watch_xeno_name"]
+		for(var/Y in hive.get_watchable_xenos())
+			var/mob/living/carbon/xenomorph/X = Y
+			if(isnum(X.nicknumber))
+				if(num2text(X.nicknumber) != xeno_name)
+					continue
+			else
+				if(X.nicknumber != xeno_name)
+					continue
+			SEND_SIGNAL(src, COMSIG_XENOMORPH_WATCHXENO, X)
+			break

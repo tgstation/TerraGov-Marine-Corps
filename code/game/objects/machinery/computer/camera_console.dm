@@ -167,11 +167,11 @@
 	circuit = null
 
 
-/obj/machinery/computer/security/telescreen/update_icon()
+/obj/machinery/computer/security/telescreen/update_icon_state()
 	icon_state = initial(icon_state)
 	if(machine_stat & (BROKEN|DISABLED))
 		icon_state += "b"
-	return
+
 
 /obj/machinery/computer/security/telescreen/entertainment
 	name = "entertainment monitor"
@@ -241,3 +241,8 @@
 /obj/machinery/computer/security/dropship/two
 	name = "\improper 'Normandy' camera controls"
 	network = list("dropship2")
+
+/obj/machinery/computer/security/dropship/three
+	name = "\improper 'Triump' camera controls"
+	network = list("dropship3")
+

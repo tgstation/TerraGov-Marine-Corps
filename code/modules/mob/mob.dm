@@ -47,6 +47,7 @@
 		stat("Operation Time:", stationTimestamp("hh:mm"))
 		stat("Current Map:", length(SSmapping.configs) ? SSmapping.configs[GROUND_MAP].map_name : "Loading...")
 		stat("Current Ship:", length(SSmapping.configs) ? SSmapping.configs[SHIP_MAP].map_name : "Loading...")
+		stat("Game Mode:", "[GLOB.master_mode]")
 
 	if(statpanel("Game"))
 		if(client)
@@ -399,9 +400,10 @@
 /client/verb/changes()
 	set name = "Changelog"
 	set category = "OOC"
-	var/datum/asset/simple/namespaced/changelog = get_asset_datum(/datum/asset/simple/namespaced/changelog)
-	changelog.send(src)
-	src << browse(changelog.get_htmlloader("changelog.html"), "window=changes;size=675x650")
+	if(!GLOB.changelog_tgui)
+		GLOB.changelog_tgui = new /datum/changelog()
+
+	GLOB.changelog_tgui.ui_interact(mob)
 	if(prefs.lastchangelog != GLOB.changelog_hash)
 		prefs.lastchangelog = GLOB.changelog_hash
 		prefs.save_preferences()
@@ -447,7 +449,7 @@
 
 
 /mob/living/start_pulling(atom/movable/AM, suppress_message = FALSE)
-	if(QDELETED(AM) || QDELETED(usr) || src == AM || !isturf(loc) || !Adjacent(AM))	//if there's no person pulling OR the person is pulling themself OR the object being pulled is inside something: abort!
+	if(QDELETED(AM) || QDELETED(usr) || src == AM || !isturf(loc) || !Adjacent(AM) || status_flags & INCORPOREAL)	//if there's no person pulling OR the person is pulling themself OR the object being pulled is inside something: abort!
 		return FALSE
 
 	if(!AM.can_be_pulled(src))
@@ -591,11 +593,11 @@
 
 
 /proc/is_species(A, species_datum)
-	. = FALSE
 	if(ishuman(A))
 		var/mob/living/carbon/human/H = A
 		if(istype(H.species, species_datum))
-			. = TRUE
+			return TRUE
+	return FALSE
 
 /mob/proc/get_species()
 	return ""

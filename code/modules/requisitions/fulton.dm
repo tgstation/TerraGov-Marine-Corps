@@ -23,14 +23,15 @@
 	return ..()
 
 
-/obj/item/fulton_extraction_pack/proc/extract(atom/movable/spirited_away, mob/user)
+/obj/item/fulton_extraction_pack/proc/extract(atom/movable/spirited_away, mob/living/user)
 	if(!do_checks(spirited_away, user))
 		return
 	do_extract(spirited_away, user)
-
-	. = spirited_away.supply_export()
+	var/datum/export_report/export_report = spirited_away.supply_export(user.faction)
+	if(export_report)
+		SSpoints.export_history += export_report
 	user.visible_message("<span class='notice'>[user] finishes attaching [src] to [spirited_away] and activates it.</span>",\
-	"<span class='notice'>You attach the pack to [spirited_away] and activate it. This looks like it will yield [. ? . : "no"] point[. == 1 ? "" : "s"].</span>", null, 5)
+	"<span class='notice'>You attach the pack to [spirited_away] and activate it. This looks like it will yield [export_report.points ? export_report.points : "no"] point[export_report.points == 1 ? "" : "s"].</span>", null, 5)
 
 	qdel(spirited_away)
 
@@ -83,7 +84,7 @@
 	animate(pixel_z = 10, time = 1 SECONDS)
 	animate(pixel_z = 15, time = 1 SECONDS)
 	animate(pixel_z = 10, time = 1 SECONDS)
-	animate(pixel_z = 480, time = 1 SECONDS)
+	animate(pixel_z = SCREEN_PIXEL_SIZE, time = 1 SECONDS)
 
 
 /obj/item/fulton_extraction_pack/proc/cleanup_extraction()
@@ -110,6 +111,17 @@
 		to_chat(user, "<span class='warning'>The extraction device buzzes, complaining. This one seems to be alive still.</span>")
 		return TRUE
 
+	var/obj/item/fulton_extraction_pack/ext_pack = I
+	ext_pack.extract(src, user)
+	return TRUE
+
+/mob/living/carbon/human/fulton_act(mob/living/user, obj/item/I)
+	if(!can_sell_human_body(src, user.faction))
+		to_chat(user, "<span class='notice'>High command is not interested in this target.</span>")
+		return TRUE
+	if(stat != DEAD)
+		to_chat(user, "<span class='warning'>The extraction device buzzes, complaining. This one seems to be alive still.</span>")
+		return TRUE
 	var/obj/item/fulton_extraction_pack/ext_pack = I
 	ext_pack.extract(src, user)
 	return TRUE

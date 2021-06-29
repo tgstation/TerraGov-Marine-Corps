@@ -1,17 +1,17 @@
-#define UPLOAD_LIMIT			1000000	//Restricts client uploads to the server to 1MB
-#define UPLOAD_LIMIT_ADMIN		10000000	//Restricts admin uploads to the server to 10MB
+#define UPLOAD_LIMIT 1000000	//Restricts client uploads to the server to 1MB
+#define UPLOAD_LIMIT_ADMIN 10000000	//Restricts admin uploads to the server to 10MB
 
-#define MAX_RECOMMENDED_CLIENT 1542
+#define MAX_RECOMMENDED_CLIENT 1556
 #define MIN_RECOMMENDED_CLIENT 1526
 #define REQUIRED_CLIENT_MAJOR 513
 #define REQUIRED_CLIENT_MINOR 1493
 
-#define LIMITER_SIZE	5
-#define CURRENT_SECOND	1
-#define SECOND_COUNT	2
-#define CURRENT_MINUTE	3
-#define MINUTE_COUNT	4
-#define ADMINSWARNED_AT	5
+#define LIMITER_SIZE 5
+#define CURRENT_SECOND 1
+#define SECOND_COUNT 2
+#define CURRENT_MINUTE 3
+#define MINUTE_COUNT 4
+#define ADMINSWARNED_AT 5
 	/*
 	When somebody clicks a link in game, this Topic is called first.
 	It does the stuff in this proc and  then is redirected to the Topic() proc for the src=[0xWhatever]
@@ -98,12 +98,7 @@
 		if("usr")
 			hsrc = mob
 		if("prefs")
-			if(inprefs)
-				return
-			inprefs = TRUE
-			. = prefs.process_link(usr, href_list)
-			inprefs = FALSE
-			return
+			stack_trace("This code path is no longer valid, migrate this to new TGUI prefs")
 		if("vars")
 			return view_var_Topic(href, href_list, hsrc)
 		if("vote")
@@ -323,6 +318,8 @@
 			menuitem.Load_checked(src)
 
 
+	update_ambience_pref()
+
 	//This is down here because of the browse() calls in tooltip/New()
 	if(!tooltips && prefs.tooltips)
 		tooltips = new /datum/tooltip(src)
@@ -376,6 +373,7 @@
 	QDEL_LIST_ASSOC_VAL(char_render_holders)
 	QDEL_NULL(tooltips)
 	Master.UpdateTickRate()
+	SSambience.ambience_listening_clients -= src
 	..() //Even though we're going to be hard deleted there are still some things like signals that want to know the destroy is happening
 	return QDEL_HINT_HARDDEL_NOW
 
@@ -482,7 +480,7 @@
 			screen |= O
 		O.appearance = MA
 		O.dir = D
-		O.screen_loc = "character_preview_map:0,[pos]"
+		O.screen_loc = "player_pref_map:[pos],1"
 
 
 /client/proc/clear_character_previews()
@@ -874,3 +872,12 @@ GLOBAL_VAR_INIT(automute_on, null)
 	if(holder)
 		holder.filteriffic = new /datum/filter_editor(in_atom)
 		holder.filteriffic.ui_interact(mob)
+
+///updates with the ambience preferrences of the user
+/client/proc/update_ambience_pref()
+	if(prefs.toggles_sound & SOUND_AMBIENCE)
+		if(SSambience.ambience_listening_clients[src] > world.time)
+			return // If already properly set we don't want to reset the timer.
+		SSambience.ambience_listening_clients[src] = world.time + 10 SECONDS //Just wait 10 seconds before the next one aight mate? cheers.
+	else
+		SSambience.ambience_listening_clients -= src

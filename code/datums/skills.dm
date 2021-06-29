@@ -359,9 +359,7 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	surgery = SKILL_SURGERY_AMATEUR
 	police = SKILL_POLICE_MP
 	powerloader = SKILL_POWERLOADER_TRAINED
-	pistols = SKILL_PISTOLS_TRAINED
 	cqc = SKILL_CQC_TRAINED
-	melee_weapons = SKILL_MELEE_TRAINED
 	spec_weapons = SKILL_SPEC_TRAINED
 
 /datum/skills/SO
@@ -414,7 +412,7 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	cqc = SKILL_CQC_TRAINED
 	construction = SKILL_CONSTRUCTION_PLASTEEL
 	engineer = SKILL_ENGINEER_PLASTEEL
-	leadership = SKILL_LEAD_TRAINED
+	leadership = SKILL_LEAD_EXPERT
 	medical = SKILL_MEDICAL_NOVICE
 	surgery = SKILL_SURGERY_AMATEUR
 
@@ -563,13 +561,6 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	medical = SKILL_MEDICAL_NOVICE
 	surgery = SKILL_SURGERY_AMATEUR
 	melee_weapons = SKILL_MELEE_SUPER
-
-/datum/skills/tank_crew
-	name = "Tank Crew"
-	large_vehicle = SKILL_LARGE_VEHICLE_TRAINED
-	powerloader = SKILL_POWERLOADER_DABBLING
-	leadership = SKILL_LEAD_TRAINED
-	engineer = SKILL_ENGINEER_METAL
 
 /datum/skills/spatial_agent
 	name = "Spatial Agent"

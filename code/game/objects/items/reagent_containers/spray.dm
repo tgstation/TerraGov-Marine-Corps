@@ -198,7 +198,6 @@
 				sleep(2)
 			qdel(D)
 
-	return
 
 // Plant-B-Gone
 /obj/item/reagent_containers/spray/plantbgone // -- Skie

@@ -159,4 +159,4 @@
 		//Update everything
 		attack_self(usr)
 		update_icon()
-	return
+

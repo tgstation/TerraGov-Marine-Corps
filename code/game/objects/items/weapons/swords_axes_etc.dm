@@ -85,7 +85,6 @@
 
 		overlays += blood_overlay
 
-	return
 
 /obj/item/weapon/telebaton/attack(mob/target as mob, mob/living/user as mob)
 	if(on)

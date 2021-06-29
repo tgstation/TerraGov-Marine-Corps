@@ -1,4 +1,4 @@
-/mob/living/carbon/human/attack_paw(mob/living/carbon/monkey/user)
+/mob/living/carbon/human/attack_paw(mob/living/carbon/human/user)
 	. = ..()
 	if (user.a_intent == INTENT_HELP)
 		help_shake_act(user)

@@ -38,7 +38,7 @@
 
 
 /obj/machinery/proc/is_operational()
-	return !(machine_stat & (NOPOWER|BROKEN|MAINT))
+	return !(machine_stat & (NOPOWER|BROKEN|MAINT|DISABLED))
 
 
 /obj/machinery/deconstruct(disassembled = TRUE)
@@ -159,7 +159,7 @@
 	if(!is_operational())
 		return FALSE
 
-	if(iscarbon(usr) && (!in_range(src, usr) || !isturf(loc)))
+	if(iscarbon(user) && (!in_range(src, user) || !isturf(loc)))
 		return FALSE
 
 	if(ishuman(user))
@@ -175,6 +175,8 @@
 
 
 /obj/machinery/attack_ai(mob/living/silicon/ai/user)
+	if(!is_operational())
+		return FALSE
 	return interact(user)
 
 
@@ -387,7 +389,7 @@
 			else
 				imp += "Unknown body present:<br>"
 
-		if(!AN && !open && !infected & !imp && !necrosis && !bled && !internal_bleeding && !lung_ruptured)
+		if(!AN && !open && !infected && !imp && !necrosis && !bled && !internal_bleeding && !lung_ruptured)
 			AN = "None:"
 		if(!(e.limb_status & LIMB_DESTROYED))
 			dat += "<td>[e.display_name]</td><td>[e.burn_dam]</td><td>[e.brute_dam]</td><td>[robot][bled][AN][splint][stabilized][open][infected][necrosis][imp][internal_bleeding][lung_ruptured]</td>"

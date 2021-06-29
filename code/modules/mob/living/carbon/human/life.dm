@@ -7,6 +7,9 @@
 	//update the current life tick, can be used to e.g. only do something every 4 ticks
 	life_tick++
 
+	if(notransform)
+		return
+
 	if(!HAS_TRAIT(src, TRAIT_STASIS))
 		if(stat != DEAD)
 
@@ -42,7 +45,7 @@
 
 
 /mob/living/carbon/human/proc/set_undefibbable()
-	ADD_TRAIT(src, TRAIT_UNDEFIBBABLE , TRAIT_UNDEFIBBABLE )
+	ADD_TRAIT(src, TRAIT_UNDEFIBBABLE , TRAIT_UNDEFIBBABLE)
 	SSmobs.stop_processing(src) //Last round of processing.
 
 	if(CHECK_BITFIELD(status_flags, XENO_HOST))

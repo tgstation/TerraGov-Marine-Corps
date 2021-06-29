@@ -92,7 +92,8 @@
 
 
 /obj/item/tool/soap/afterattack(atom/target, mob/user as mob, proximity)
-	if(!proximity) return
+	if(!proximity)
+		return
 	//I couldn't feasibly  fix the overlay bugs caused by cleaning items we are wearing.
 	//So this is a workaround. This also makes more sense from an IC standpoint. ~Carn
 	if(user.client && (target in user.client.screen))
@@ -103,7 +104,6 @@
 	else
 		to_chat(user, "<span class='notice'>You clean \the [target.name].</span>")
 		target.clean_blood()
-	return
 
 /obj/item/tool/soap/attack(mob/target, mob/user)
 	if(target && user && ishuman(target) && ishuman(user) && !target.stat && !user.stat && user.zone_selected == "mouth" )

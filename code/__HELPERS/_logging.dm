@@ -324,8 +324,6 @@
 		else if(fallback_name)
 			. += "/([fallback_name])"
 
-	return .
-
 
 /proc/key_name_admin(whom, include_name = TRUE)
 	return key_name(whom, TRUE, include_name)

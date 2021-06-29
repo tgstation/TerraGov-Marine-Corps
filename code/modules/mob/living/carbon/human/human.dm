@@ -27,6 +27,8 @@
 	issue_order_hold.give_action(src)
 	var/datum/action/skill/issue_order/focus/issue_order_focus = new
 	issue_order_focus.give_action(src)
+	var/datum/action/innate/order/rally_order/send_rally_order = new
+	send_rally_order.give_action(src)
 
 	//makes order hud visible
 	var/datum/atom_hud/H = GLOB.huds[DATA_HUD_ORDER]
@@ -34,13 +36,12 @@
 
 	randomize_appearance()
 
-	RegisterSignal(src, COMSIG_ATOM_ACIDSPRAY_ACT, .proc/acid_spray_crossed)
+	RegisterSignal(src, COMSIG_ATOM_ACIDSPRAY_ACT, .proc/acid_spray_entered)
 	RegisterSignal(src, list(COMSIG_KB_QUICKEQUIP, COMSIG_CLICK_QUICKEQUIP), .proc/do_quick_equip)
-	RegisterSignal(src, COMSIG_KB_HOLSTER, .proc/do_holster)
 	RegisterSignal(src, COMSIG_KB_UNIQUEACTION, .proc/do_unique_action)
-	RegisterSignal(src, COMSIG_KB_RAILATTACHMENT, .proc/do_activate_rail_attachment)
 	RegisterSignal(src, COMSIG_GRAB_SELF_ATTACK, .proc/fireman_carry_grabbed) // Fireman carry
 	AddComponent(/datum/component/footstep, FOOTSTEP_MOB_HUMAN)
+	AddComponent(/datum/component/bump_attack, FALSE, FALSE)
 
 /mob/living/carbon/human/proc/human_z_changed(datum/source, old_z, new_z)
 	SIGNAL_HANDLER
@@ -492,7 +493,7 @@
 									if("Fire Team 2") ID.assigned_fireteam = 2
 									if("Fire Team 3") ID.assigned_fireteam = 3
 									else return
-								hud_set_job()
+								hud_set_job(faction)
 
 
 	if (href_list["criminal"])
@@ -778,7 +779,7 @@
 		return
 	visible_message("<span class='notice'>[src] starts lifting [target] onto [p_their()] back...</span>",
 	"<span class='notice'>You start to lift [target] onto your back...</span>")
-	var/delay = 1 SECONDS + LERP(0 SECONDS, 4 SECONDS, skills.getPercent("medical", SKILL_MEDICAL_MASTER))
+	var/delay = 5 SECONDS - LERP(0 SECONDS, 4 SECONDS, skills.getPercent("medical", SKILL_MEDICAL_MASTER))
 	if(!do_mob(src, target, delay, target_display = BUSY_ICON_HOSTILE))
 		visible_message("<span class='warning'>[src] fails to fireman carry [target]!</span>")
 		return
@@ -965,6 +966,7 @@
 		setStaminaLoss(-max_stamina_buffer)
 
 	add_movespeed_modifier(MOVESPEED_ID_SPECIES, TRUE, 0, NONE, TRUE, species.slowdown)
+	species.on_species_gain(src, oldspecies) //todo move most of the stuff in this proc to here
 	return TRUE
 
 
@@ -974,7 +976,7 @@
 /mob/living/carbon/human/slip(slip_source_name, stun_level, weaken_level, run_only, override_noslip, slide_steps)
 	if(shoes && !override_noslip) // && (shoes.flags_inventory & NOSLIPPING)) // no more slipping if you have shoes on. -spookydonut
 		return FALSE
-	. = ..()
+	return ..()
 
 /mob/living/carbon/human/smokecloak_on()
 	var/obj/item/storage/backpack/marine/satchel/scout_cloak/S = back
@@ -991,7 +993,7 @@
 			if(S.turn_light(src, FALSE, 0, FALSE, forced))
 				light_off++
 		for(var/obj/item/clothing/head/hardhat/H in contents)
-			H.turn_light(src, FALSE, 0,FALSE, forced)				  
+			H.turn_light(src, FALSE, 0,FALSE, forced)
 			light_off++
 		for(var/obj/item/flashlight/L in contents)
 			if(istype(L, /obj/item/flashlight/flare))
@@ -1000,9 +1002,9 @@
 				light_off++
 	if(guns)
 		for(var/obj/item/weapon/gun/lit_gun in contents)
-			if(!isattachmentflashlight(lit_gun.rail))
+			var/obj/item/attachable/flashlight/lit_rail_flashlight = LAZYACCESS(lit_gun.attachments, ATTACHMENT_SLOT_RAIL)
+			if(!isattachmentflashlight(lit_rail_flashlight))
 				continue
-			var/obj/item/attachable/flashlight/lit_rail_flashlight = lit_gun.rail
 			lit_rail_flashlight.turn_light(src, FALSE, 0, FALSE, forced)
 			light_off++
 	if(flares)
@@ -1048,7 +1050,7 @@
 				to_chat(src, "<span class='notice'>Your sources of light short out.</span>")
 				return
 			to_chat(src, "<span class='notice'>Your source of light shorts out.</span>")
-		
+
 
 
 /mob/living/carbon/human/proc/randomize_appearance()

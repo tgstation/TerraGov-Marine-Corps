@@ -60,4 +60,10 @@
 	target_turf = get_step_rand(target_turf) //Scatter
 	H.throw_at(get_turf(target_turf), 4, 70, H)
 	H.Paralyze(40)
-	return
+
+
+/mob/living/carbon/xenomorph/defender/lay_down()
+	if(fortify) // Ensure the defender isn't fortified while laid down
+		to_chat(src, "<span class='warning'>You can't do that right now.</span>")
+		return
+	return ..()

@@ -178,7 +178,6 @@
 				C.setDir(text2num(href_list["dir"]))
 			C.update_icon()
 			wait = world.time + 15
-	return
 
 // adding a pipe dispensers that spawn unhooked from the ground
 /obj/machinery/pipedispenser/orderable

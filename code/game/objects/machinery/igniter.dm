@@ -140,4 +140,3 @@
 	icon_state = "launcherbtt"
 	active = 0
 
-	return

@@ -44,7 +44,7 @@
 	soft_armor = list("melee" = 60, "bullet" = 50, "laser" = 30, "energy" = 15, "bomb" = 30, "bio" = 30, "rad" = 30, "fire" = 15, "acid" = 15)
 	flags_inventory = NOPRESSUREDMAGE|BLOCKSHARPOBJ
 	flags_inv_hide = HIDEEYES
-	flags_armor_protection = 0
+	flags_armor_protection = NONE
 	siemens_coefficient = 0.9
 
 /obj/item/clothing/suit/space/pirate

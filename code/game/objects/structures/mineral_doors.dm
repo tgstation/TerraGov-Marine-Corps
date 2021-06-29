@@ -12,6 +12,7 @@
 
 	icon = 'icons/obj/doors/mineral_doors.dmi'
 	icon_state = "metal"
+	resistance_flags = DROPSHIP_IMMUNE
 
 	var/mineralType = "metal"
 	var/state = D_CLOSED
@@ -26,12 +27,11 @@
 
 
 /obj/structure/mineral_door/Bumped(atom/user)
-	..()
+	. = ..()
 	if(!state)
 		return TryToSwitchState(user)
-	return
 
-/obj/structure/mineral_door/attack_paw(mob/living/carbon/monkey/user)
+/obj/structure/mineral_door/attack_paw(mob/living/carbon/human/user)
 	return TryToSwitchState(user)
 
 /obj/structure/mineral_door/attack_hand(mob/living/user)
@@ -115,9 +115,8 @@
 		if(!P)
 			to_chat(user, "You hit the [name] with your [W.name]!")
 		CheckHardness()
-	else
-		attack_hand(user)
-	return
+		return
+	attack_hand(user)
 
 /obj/structure/mineral_door/proc/CheckHardness()
 	if(hardness <= 0)

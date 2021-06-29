@@ -41,6 +41,11 @@
 
 	var/datum/component/orbiter/orbiting
 
+	/// Either FALSE, [EMISSIVE_BLOCK_GENERIC], or [EMISSIVE_BLOCK_UNIQUE]
+	var/blocks_emissive = FALSE
+	///Internal holder for emissive blocker object, do not use directly use blocks_emissive
+	var/atom/movable/emissive_blocker/em_block
+
 	///Lazylist to keep track on the sources of illumination.
 	var/list/affected_dynamic_lights
 	///Highest-intensity light affecting us, which determines our visibility.
@@ -49,6 +54,17 @@
 //===========================================================================
 /atom/movable/Initialize(mapload, ...)
 	. = ..()
+	switch(blocks_emissive)
+		if(EMISSIVE_BLOCK_GENERIC)
+			var/mutable_appearance/gen_emissive_blocker = mutable_appearance(icon, icon_state, plane = EMISSIVE_PLANE, alpha = src.alpha)
+			gen_emissive_blocker.color = GLOB.em_block_color
+			gen_emissive_blocker.dir = dir
+			gen_emissive_blocker.appearance_flags |= appearance_flags
+			add_overlay(list(gen_emissive_blocker))
+		if(EMISSIVE_BLOCK_UNIQUE)
+			render_target = ref(src)
+			em_block = new(src, render_target)
+			add_overlay(list(em_block))
 	if(opacity)
 		AddElement(/datum/element/light_blocking)
 	if(light_system == MOVABLE_LIGHT)
@@ -58,6 +74,10 @@
 /atom/movable/Destroy()
 	QDEL_NULL(proximity_monitor)
 	QDEL_NULL(language_holder)
+	QDEL_NULL(em_block)
+
+	if(opacity)
+		RemoveElement(/datum/element/light_blocking)
 
 	if(LAZYLEN(buckled_mobs))
 		unbuckle_all_mobs(force = TRUE)
@@ -85,7 +105,27 @@
 		orbiting.end_orbit(src)
 		orbiting = null
 
+	vis_contents.Cut()
 
+///Updates this movables emissive overlay
+/atom/movable/proc/update_emissive_block()
+	if(!blocks_emissive)
+		return
+	if (blocks_emissive == EMISSIVE_BLOCK_GENERIC)
+		var/mutable_appearance/gen_emissive_blocker = mutable_appearance(icon, icon_state, plane = EMISSIVE_PLANE, alpha = src.alpha)
+		gen_emissive_blocker.color = GLOB.em_block_color
+		gen_emissive_blocker.dir = dir
+		gen_emissive_blocker.appearance_flags |= appearance_flags
+		return gen_emissive_blocker
+	if(blocks_emissive == EMISSIVE_BLOCK_UNIQUE)
+		if(!em_block)
+			render_target = ref(src)
+			em_block = new(src, render_target)
+		return em_block
+
+/atom/movable/update_overlays()
+	. = ..()
+	. += update_emissive_block()
 
 ////////////////////////////////////////
 // Here's where we rewrite how byond handles movement except slightly different
@@ -301,10 +341,10 @@
 
 /atom/movable/proc/doMove(atom/destination)
 	. = FALSE
+	var/atom/oldloc = loc
 	if(destination)
 		if(pulledby)
 			pulledby.stop_pulling()
-		var/atom/oldloc = loc
 		var/same_loc = oldloc == destination
 		var/area/old_area = get_area(oldloc)
 		var/area/destarea = get_area(destination)
@@ -333,19 +373,19 @@
 					continue
 				AM.Crossed(src, oldloc)
 
-		Moved(oldloc, NONE, TRUE)
 		. = TRUE
 
 	//If no destination, move the atom into nullspace (don't do this unless you know what you're doing)
 	else
 		. = TRUE
 		if (loc)
-			var/atom/oldloc = loc
 			var/area/old_area = get_area(oldloc)
 			oldloc.Exited(src, null)
 			if(old_area)
 				old_area.Exited(src, null)
 		loc = null
+
+	Moved(oldloc, NONE, TRUE)
 
 
 //called when src is thrown into hit_atom
@@ -483,10 +523,14 @@
 	if(isobj(src) && throwing)
 		throw_impact(get_turf(src), speed)
 	if(loc)
-		set_throwing(FALSE)
-		thrower = null
-		throw_source = null
+		stop_throw()
 	SEND_SIGNAL(src, COMSIG_MOVABLE_POST_THROW)
+
+/// Annul all throw var to ensure a clean exit out of throw state
+/atom/movable/proc/stop_throw()
+	set_throwing(FALSE)
+	thrower = null
+	throw_source = null
 
 /atom/movable/proc/handle_buckled_mob_movement(NewLoc, direct)
 	for(var/m in buckled_mobs)
@@ -860,6 +904,39 @@
 		return
 	set_glide_size(DELAY_TO_GLIDE_SIZE(cached_multiplicative_slowdown))
 
+///Change the direction of the atom to face the targeted atom
+/atom/movable/proc/face_atom(atom/A)
+	if(!A || !x || !y || !A.x || !A.y)
+		return
+	var/dx = A.x - x
+	var/dy = A.y - y
+	if(!dx && !dy) // Wall items are graphically shifted but on the floor
+		if(A.pixel_y > 16)
+			setDir(NORTH)
+		else if(A.pixel_y < -16)
+			setDir(SOUTH)
+		else if(A.pixel_x > 16)
+			setDir(EAST)
+		else if(A.pixel_x < -16)
+			setDir(WEST)
+		return
+
+	if(abs(dx) < abs(dy))
+		if(dy > 0)
+			setDir(NORTH)
+		else
+			setDir(SOUTH)
+	else
+		if(dx > 0)
+			setDir(EAST)
+		else
+			setDir(WEST)
+
+/mob/face_atom(atom/A)
+	if(buckled || stat != CONSCIOUS)
+		return
+	return ..()
+
 
 /atom/movable/vv_edit_var(var_name, var_value)
 	switch(var_name)
@@ -919,7 +996,7 @@
 		ENABLE_BITFIELD(flags_pass, HOVERING)
 		return
 	DISABLE_BITFIELD(flags_pass, HOVERING)
-	
+
 
 /atom/movable/CanAllowThrough(atom/movable/mover, turf/target)
 	. = ..()
@@ -929,6 +1006,9 @@
 /// Returns true or false to allow src to move through the blocker, mover has final say
 /atom/movable/proc/CanPassThrough(atom/blocker, turf/target, blocker_opinion)
 	SHOULD_CALL_PARENT(TRUE)
+	if(status_flags & INCORPOREAL) //Incorporeal can normally pass through anything
+		blocker_opinion = TRUE
+
 	return blocker_opinion
 
 ///returns FALSE if there isnt line of sight to target within view dist and TRUE if there is

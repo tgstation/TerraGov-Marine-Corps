@@ -10,9 +10,9 @@
 	lighting_alpha = LIGHTING_PLANE_ALPHA_INVISIBLE
 
 
-/obj/item/clothing/glasses/night/M4RA
-	name = "\improper M4RA Battle sight"
-	desc = "A headset and night vision goggles system for the M4RA Battle Rifle. Allows highlighted imaging of surroundings. Click it to toggle."
+/obj/item/clothing/glasses/night/tx8
+	name = "\improper TX-8 battle sight"
+	desc = "A headset and night vision goggles system for the TX-8 Battle Rifle. Allows highlighted imaging of surroundings. Click it to toggle."
 	icon = 'icons/obj/clothing/glasses.dmi'
 	icon_state = "m56_goggles"
 	deactive_state = "m56_goggles_0"

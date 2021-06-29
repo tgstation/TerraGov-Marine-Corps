@@ -228,18 +228,19 @@
 
 /datum/reagent/toxin/sleeptoxin/on_mob_life(mob/living/L, metabolism)
 	switch(current_cycle)
-		if(1 to 12)
+		if(1 to 6)
 			if(prob(5))
 				L.emote("yawn")
-		if(13 to 15)
 			L.blur_eyes(10)
-		if(16 to 40)
+		if(7 to 10)
 			if(prob(10))
-				L.Sleeping(20 SECONDS)
+				L.Sleeping(10 SECONDS)
 			L.drowsyness  = max(L.drowsyness, 20)
-		if(41 to INFINITY)
-			L.Sleeping(40 SECONDS) //previously knockdown, no good for a soporific.
+		if(11 to 80)
+			L.Sleeping(10 SECONDS) //previously knockdown, no good for a soporific.
 			L.drowsyness  = max(L.drowsyness, 30)
+		if(81 to INFINITY)
+			L.adjustDrowsyness(2)
 	L.reagent_pain_modifier += PAIN_REDUCTION_HEAVY
 	return ..()
 
@@ -261,13 +262,10 @@
 
 /datum/reagent/toxin/chloralhydrate/on_mob_life(mob/living/L, metabolism)
 	switch(current_cycle)
-		if(1 to 20)
-			L.AdjustConfused(40)
-			L.adjustDrowsyness(2)
-		if(21 to 60)
+		if(1 to 60)
 			L.Sleeping(10 SECONDS)
 		if(61 to INFINITY)
-			L.Sleeping(10 SECONDS)
+			L.adjustDrowsyness(2)
 			L.adjustToxLoss((current_cycle/4 - 25)*effect_str)
 	return ..()
 
@@ -394,18 +392,6 @@
 				qdel(H.glasses)
 				H.update_inv_glasses(0)
 
-	else if(ismonkey(L))
-		var/mob/living/carbon/monkey/MK = L
-		if(MK.wear_mask)
-			if(!CHECK_BITFIELD(MK.wear_mask.resistance_flags, UNACIDABLE|INDESTRUCTIBLE))
-				if(show_message)
-					to_chat(MK, "<span class='danger'>Your mask melts away but protects you from the acid!</span>")
-				qdel(MK.wear_mask)
-				MK.update_inv_wear_mask(0)
-			else if(show_message)
-				to_chat(MK, "<span class='warning'>Your mask protects you from the acid.</span>")
-			return
-
 	if(!isxeno(L))
 		if(ishuman(L) && volume >= 10)
 			var/mob/living/carbon/human/H = L
@@ -461,6 +447,12 @@
 	scannable = TRUE
 	toxpwr = 0
 
+/datum/reagent/toxin/xeno_neurotoxin/light
+	name = "Light Neurotoxin"
+	description = "A debilitating nerve toxin. Impedes motor control in high doses. Causes progressive loss of mobility over time. This one seems to be weaker enough to not remove other chemicals."
+	purge_list = null
+	purge_rate = 0
+
 
 /datum/reagent/toxin/xeno_neurotoxin/on_mob_life(mob/living/L, metabolism)
 	var/power
@@ -506,7 +498,7 @@
 	description = "A metabolic accelerant that dramatically increases the rate of larval growth in a host."
 	reagent_state = LIQUID
 	color = "#CF3600" // rgb: 207, 54, 0
-	purge_list = list(/datum/reagent/toxin/xeno_neurotoxin, /datum/reagent/medicine)
+	purge_list = list(/datum/reagent/medicine)
 	purge_rate = 3
 	overdose_threshold = REAGENTS_OVERDOSE
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
@@ -555,7 +547,7 @@
 
 /datum/reagent/toxin/xeno_transvitox //when damage is received, converts brute/burn equal to 50% of damage received to tox damage
 	name = "Transvitox"
-	description = "Heals brute and burn wounds, while producing toxins."
+	description = "Converts burn damage to toxin damage over time, and causes brute damage received to inflict extra toxin damage."
 	reagent_state = LIQUID
 	color = "#94FF00"
 	custom_metabolism = 0.4
@@ -567,18 +559,48 @@
 	RegisterSignal(L, COMSIG_HUMAN_DAMAGE_TAKEN, .proc/transvitox_human_damage_taken)
 
 /datum/reagent/toxin/xeno_transvitox/on_mob_life(mob/living/L, metabolism)
-	if(prob(25))
-		to_chat(L, "<span class='warning'>You notice being strangely revitalised.</span>")
+	if(prob(10))
+		to_chat(L, "<span class='warning'>You notice your wounds crusting over with disgusting green ichor.</span>")
+
+	var/fire_loss = L.getFireLoss()
+	if(!fire_loss) //If we have no burn damage, cancel out
+		return ..()
+
+	var/tox_cap_multiplier = 1
+
+	if(L.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_hemodile)) //Each other Defiler toxin doubles the multiplier
+		tox_cap_multiplier *= 2
+
+	if(L.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_neurotoxin))
+		tox_cap_multiplier *= 2
+
+	var/tox_loss = L.getToxLoss()
+	if(tox_loss > DEFILER_TRANSVITOX_CAP) //If toxin levels are already at their cap, cancel out
+		return ..()
+
+	var/dam = (current_cycle * 0.25 * tox_cap_multiplier) //Converts burn damage at this rate to toxin damage
+
+	if(fire_loss < dam) //If burn damage is less than damage to be converted, have the conversion value be equal to the burn damage
+		dam = fire_loss
+
+	L.heal_limb_damage(burn = dam, updating_health = TRUE) //Heal damage equal to toxin damage dealt; heal before applying toxin damage so we don't flash kill the target
+	L.adjustToxLoss(dam)
+
 	return ..()
 
 /datum/reagent/toxin/xeno_transvitox/proc/transvitox_human_damage_taken(mob/living/L, damage)
 	SIGNAL_HANDLER
-	var/dam = min(damage*0.4, 45 - L.getToxLoss()) // hard caps damage conversion to not exceed 45 tox
-	if((L.getBruteLoss() + L.getFireLoss()) < dam)
+
+	var/tox_cap_multiplier = 1
+
+	if(L.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_hemodile)) //Each other Defiler toxin doubles the multiplier
+		tox_cap_multiplier *= 2
+
+	if(L.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_neurotoxin))
+		tox_cap_multiplier *= 2
+
+	var/tox_loss = L.getToxLoss()
+	if(tox_loss > DEFILER_TRANSVITOX_CAP) //If toxin levels are already at their cap, cancel out
 		return
-	L.adjustToxLoss(dam)
-	var/healed_brute = min(dam, L.getBruteLoss())
-	L.heal_limb_damage(healed_brute)
-	if(!L.getFireLoss())
-		return
-	L.heal_limb_damage(0, dam - healed_brute)
+
+	L.setToxLoss(clamp(tox_loss + min(L.getBruteLoss() * 0.1 * tox_cap_multiplier, damage * 0.1 * tox_cap_multiplier), tox_loss, DEFILER_TRANSVITOX_CAP)) //Deal bonus tox damage equal to a % of the lesser of the damage taken or the target's brute damage; capped at DEFILER_TRANSVITOX_CAP.

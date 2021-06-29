@@ -18,8 +18,16 @@ tools/MapDaemon/logs/*.txt
 #Visual studio stuff
 *.vscode/*
 !/.vscode/extensions.json
+!/.vscode/launch.json
+!/.vscode/tasks.json
 
 tools/BalanceTool/raw.json
+
+#Temp files from cbt stuff
+tgmc.mdme
+
+# Ignore compiled linux libs in the root folder, e.g. librust_g.so
+/*.so
 
 #extra map stuff
 /_maps/**/backup/

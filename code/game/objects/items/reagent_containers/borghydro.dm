@@ -59,8 +59,6 @@
 		// to_chat(user, "<span class='notice'>[t] units injected. [reagent_volumes[reagent_ids[mode]]] units remaining.</span>")
 		to_chat(user, "<span class='notice'> [t] units of <span class='warning'> [reagent_ids[mode]] <span class='notice'> injected for a total of <span class='warning'> [round(M.reagents.get_reagent_amount(reagent_ids[mode]))]<span class='notice'>. [reagent_volumes[reagent_ids[mode]]] units remaining.</span>")
 
-	return
-
 /obj/item/reagent_containers/borghypo/attack_self(mob/user)
 	var/selection = tgui_input_list(user, "Please select a reagent:", "Reagent", reagent_ids)
 	if(!selection)
@@ -69,11 +67,12 @@
 	to_chat(user, "<span class='notice'> Synthesizer is now producing '[R.name]'.</span>")
 	mode = reagent_ids.Find(selection)
 	playsound(src.loc, 'sound/effects/pop.ogg', 15, 0)
-	return
+
 
 /obj/item/reagent_containers/borghypo/examine(mob/user)
-	..()
-	if (user != loc) return
+	. = ..()
+	if (user != loc)
+		return
 
 	var/datum/reagent/R = GLOB.chemical_reagents_list[reagent_ids[mode]]
 

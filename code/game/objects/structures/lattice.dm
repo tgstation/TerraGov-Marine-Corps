@@ -52,8 +52,6 @@
 		new /obj/item/stack/rods(src.loc)
 		qdel(src)
 
-	return
-
 /obj/structure/lattice/proc/updateOverlays()
 	//if(!isspaceturf(loc))
 	//	qdel(src)

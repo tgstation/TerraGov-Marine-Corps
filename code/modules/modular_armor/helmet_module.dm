@@ -31,7 +31,7 @@
 
 /// Called when the module is added to the armor
 /obj/item/helmet_module/proc/do_attach(mob/living/user, obj/item/clothing/head/modular/parent)
-	user.dropItemToGround(src)
+	user?.dropItemToGround(src)
 	forceMove(parent)
 	parent.installed_module = src
 	parent.update_overlays()

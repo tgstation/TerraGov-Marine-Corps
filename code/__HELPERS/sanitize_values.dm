@@ -19,6 +19,17 @@
 	if(default)
 		return default
 
+/// Sanitize the custom emote list
+/proc/sanitize_is_full_emote_list(value)
+	if(length(value) == CUSTOM_EMOTE_SLOTS)
+		return value
+	if(!value)
+		value = list()
+	for(var/i in (length(value)+1) to CUSTOM_EMOTE_SLOTS)
+		var/datum/custom_emote/emote = new
+		emote.id = i
+		value += emote
+	return value
 
 /proc/sanitize_inlist(value, list/L, default)
 	if(value in L)
@@ -103,3 +114,25 @@
 		return crunch + repeat_string(desired_format, "0")
 
 	return crunch + .
+
+/**
+ * Check if the value is of type loadout_manager, and with correct loadouts in its loadout list.
+ * Also null out loadouts_data, seller and loadout vendor to make saving possible in a jatum
+ */
+/proc/sanitize_loadout_manager(value)
+	var/datum/loadout_manager/manager
+	if(!istype(value, /datum/loadout_manager))
+		manager = new
+		return manager
+	manager = value
+	if(!islist(manager.loadouts_list))
+		manager = new
+		return manager
+	for(var/loadout in manager.loadouts_list)
+		if(!istype(loadout, /datum/loadout))
+			manager.loadouts_list -= loadout
+	manager.loadouts_data = null
+	manager.seller = null
+	manager.loadout_vendor = null
+	return manager
+

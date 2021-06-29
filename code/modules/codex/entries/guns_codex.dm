@@ -191,7 +191,7 @@
 	Though high unit cost didn't allow it to be more widely adopted it was eventually decided that it would meet limited adoption for Marksmen and be designated the T-26."
 
 /datum/codex_entry/battle_rifle
-	associated_paths = list(/obj/item/weapon/gun/rifle/m4ra)
+	associated_paths = list(/obj/item/weapon/gun/rifle/tx8)
 	lore_text = "The M45A was born from a commission order from the TGMC to the company which made the M42A and M56 smartgun systems. <br><br>\
 	The reason for this commission order resulted from complaints from light infantry and scout units about the poor accuracy of the new T-26 \
 	carbine at longer ranges and the large size of the T-29 making close combat uncomfortable eventually reached the higher ups, who kept getting \

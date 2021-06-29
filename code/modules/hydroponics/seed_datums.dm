@@ -360,7 +360,7 @@ GLOBAL_LIST_EMPTY(gene_tag_masks)   // Gene obfuscation for delicious trial and 
 						source_turf.visible_message("<span class='notice'> \The [display_name]'s flowers <font=[flower_colour]>changes colour</font>!</span>")
 					else
 						source_turf.visible_message("<span class='notice'> \The [display_name]'s flowers wither and fall off.</span>")
-	return
+
 
 //Mutates a specific trait/set of traits.
 /datum/seed/proc/apply_gene(datum/plantgene/gene)

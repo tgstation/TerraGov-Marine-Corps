@@ -82,8 +82,6 @@
 
 		user.visible_message("<span class='notice'>[user] fails to blind [M] with the flash!</span>")
 
-	return
-
 
 
 

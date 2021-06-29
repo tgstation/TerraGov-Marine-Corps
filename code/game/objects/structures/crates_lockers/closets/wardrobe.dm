@@ -359,7 +359,7 @@
 	new /obj/item/storage/belt/security/tactical(src)
 	new /obj/item/clothing/shoes/jackboots(src)
 	new /obj/item/clothing/gloves/black(src)
-	return
+
 
 /obj/structure/closet/wardrobe/suit
 	name = "suit locker"

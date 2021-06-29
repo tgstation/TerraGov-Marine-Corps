@@ -123,6 +123,8 @@
 
 
 /obj/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
+	if(X.status_flags & INCORPOREAL) //Ghosts can't attack machines
+		return
 	// SHOULD_CALL_PARENT(TRUE) // TODO: fix this
 	if(SEND_SIGNAL(src, COMSIG_OBJ_ATTACK_ALIEN, X) & COMPONENT_NO_ATTACK_ALIEN)
 		return
@@ -156,6 +158,7 @@
 
 ///what happens when the obj's integrity reaches zero.
 /obj/proc/obj_destruction(damage_amount, damage_type, damage_flag)
+	SHOULD_CALL_PARENT(TRUE)
 	if(destroy_sound)
 		playsound(loc, destroy_sound, 35, 1)
 	deconstruct(FALSE)

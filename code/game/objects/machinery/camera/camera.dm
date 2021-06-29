@@ -154,6 +154,9 @@
 
 
 /obj/machinery/camera/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
+	if(X.status_flags & INCORPOREAL)
+		return FALSE
+
 	if(obj_integrity <= 0)
 		to_chat(X, "<span class='warning'>The camera is already disabled.</span>")
 		return
@@ -305,6 +308,9 @@
 	name = "military-grade camera"
 	network = list("marinemainship")
 
+/obj/machinery/camera/autoname/mainship/rebelship
+	network = list("rebelmainship")
+
 //cameras installed inside the dropships, accessible via both cockpit monitor and ship camera computers
 /obj/machinery/camera/autoname/mainship/dropship_one
 	network = list("marinemainship", "dropship1")
@@ -312,6 +318,9 @@
 
 /obj/machinery/camera/autoname/mainship/dropship_two
 	network = list("marinemainship", "dropship2")
+
+/obj/machinery/camera/autoname/mainship/dropship_three
+	network = list("rebelmainship", "dropship3")
 
 /obj/machinery/camera/headset
 	name = "headset camera"

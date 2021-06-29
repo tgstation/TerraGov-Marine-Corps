@@ -1,4 +1,4 @@
-#define DISPLAY_ON_SHIP    0
+#define DISPLAY_ON_SHIP 0
 #define DISPLAY_PLANETSIDE 1
 #define DISPLAY_IN_TRANSIT 2
 
@@ -20,7 +20,7 @@
 	var/sortkey = "name"
 
 
-/obj/machinery/computer/crew/update_icon()
+/obj/machinery/computer/crew/update_icon_state()
 	if(machine_stat & (BROKEN|DISABLED))
 		icon_state = "crewb"
 	else if(machine_stat & NOPOWER)

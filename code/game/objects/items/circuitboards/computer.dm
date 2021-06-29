@@ -181,7 +181,7 @@
 			to_chat(user, "<span class='warning'>Circuit controls are locked.</span>")
 			return
 
-		var/existing_networks = list2text(network, ",")
+		var/existing_networks = jointext(network, ",")
 		var/input = strip_html(input(user, "Which networks would you like to connect this camera console circuit to? Seperate networks with a comma. No Spaces!\nFor example: military,Security,Secret ", "Multitool-Circuitboard interface", existing_networks))
 		if(!input)
 			to_chat(user, "No input found please hang up and try your call again.")

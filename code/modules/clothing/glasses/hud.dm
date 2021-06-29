@@ -63,7 +63,7 @@
 	desc = "A heads-up display that scans the humans in view and provides accurate data about their health status. The projector can be attached to compatable eyewear."
 	icon_state = "healthhud"
 	deactive_state = "degoggles_med"
-	flags_armor_protection = 0
+	flags_armor_protection = NONE
 	toggleable = TRUE
 	hud_type = DATA_HUD_MEDICAL_ADVANCED
 	actions_types = list(/datum/action/item_action/toggle)
@@ -113,7 +113,7 @@
 	icon_state = "securityhud"
 	deactive_state = "degoggles_sec"
 	toggleable = 1
-	flags_armor_protection = 0
+	flags_armor_protection = NONE
 	hud_type = DATA_HUD_SECURITY_ADVANCED
 	actions_types = list(/datum/action/item_action/toggle)
 	var/global/list/jobs[0]
@@ -132,7 +132,7 @@
 	desc = "A heads-up display that scans any nearby xenomorph's data."
 	icon_state = "securityhud"
 	deactive_state = "degoggles_sec"
-	flags_armor_protection = 0
+	flags_armor_protection = NONE
 	toggleable = TRUE
 	hud_type = DATA_HUD_XENO_STATUS
 	actions_types = list(/datum/action/item_action/toggle)

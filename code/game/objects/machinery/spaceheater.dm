@@ -26,12 +26,9 @@
 
 /obj/machinery/space_heater/CanAllowThrough(atom/movable/mover, turf/target)
 	. = ..()
-	if(!density) //Because broken racks -Agouri |TODO: SPRITE!|
-		return 1
 	if(istype(mover) && CHECK_BITFIELD(mover.flags_pass, PASSTABLE))
-		return 1
-	else
-		return 0
+		return TRUE
+
 
 /obj/machinery/space_heater/examine(mob/user)
 	..()

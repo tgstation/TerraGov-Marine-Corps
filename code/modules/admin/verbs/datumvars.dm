@@ -617,18 +617,14 @@
 		src.debug_variables(DAT)
 
 
-	else if(href_list["mark_object"])
+	else if(href_list[VV_HK_MARK])
 		if(!check_rights(R_DEBUG))
 			return
 
-		var/datum/D = locate(href_list["mark_object"])
+		var/datum/D = locate(href_list[VV_HK_MARK])
 		if(!istype(D))
 			return
-
-		if(holder.marked_datum)
-			vv_update_display(holder.marked_datum, "marked", "")
-		holder.marked_datum = D
-		vv_update_display(D, "marked", VV_MSG_MARKED)
+		mark_datum(D)
 
 
 	else if(href_list["proc_call"])
@@ -951,6 +947,12 @@
 					A.reagents.add_reagent(chosen_id, amount)
 					log_admin("[key_name(usr)] has added [amount] units of [chosen_id] to [A].")
 					message_admins("[ADMIN_TPMONTY(usr)] has added [amount] units of [chosen_id] to [A].")
+
+	else if(href_list["modify_greyscale"] && check_rights(R_DEBUG))
+		var/datum/greyscale_modify_menu/menu = new(locate(href_list["modify_greyscale"]), usr)
+		menu.ui_interact(usr)
+		return
+
 	else if(href_list["filteredit"] && check_rights(R_VAREDIT))
 		var/client/C = usr.client
 		C?.open_filter_editor(locate(href_list["filteredit"]))

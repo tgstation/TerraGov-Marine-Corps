@@ -100,6 +100,8 @@
 	return I
 
 /mob/living/carbon/xenomorph/proc/update_wounds()
+	if(QDELETED(src))
+		return
 	var/health_thresholds
 	wound_overlay.layer = layer + 0.3
 	if(health > health_threshold_crit)

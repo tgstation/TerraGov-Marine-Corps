@@ -13,6 +13,8 @@
 	resistance_flags = XENO_DAMAGEABLE
 	///Type of "turret" attached
 	var/turret_type
+	///Turret types we're allowed to attach
+	var/turret_pattern = PATTERN_TRACKED
 	///Boolean: do we want this turret to draw overlays for itself?
 	var/overlay_turret = TRUE
 	///Delay in byond ticks between weapon fires
@@ -25,6 +27,8 @@
 	var/datum/ammo/bullet/ammo = /datum/ammo/bullet/smg
 	///The currently loaded and ready to fire projectile
 	var/obj/projectile/in_chamber = null
+	///Sound file or string type for playing the shooting sound
+	var/gunnoise = "gun_smartgun"
 	COOLDOWN_DECLARE(fire_cooldown)
 
 /obj/vehicle/unmanned/Initialize()
@@ -43,6 +47,8 @@
 			. += image('icons/obj/unmanned_vehicles.dmi', src, "light_cannon")
 		if(TURRET_TYPE_EXPLOSIVE)
 			. += image('icons/obj/unmanned_vehicles.dmi', src, "bomb")
+		if(TURRET_TYPE_DROIDLASER)
+			. += image('icons/obj/unmanned_vehicles.dmi', src, "droidlaser")
 
 /obj/vehicle/unmanned/examine(mob/user, distance, infix, suffix)
 	. = ..()
@@ -53,17 +59,26 @@
 	. = ..()
 	if(!istype(I, /obj/item/uav_turret) && !istype(I, /obj/item/explosive/plastique))
 		return
-	user.visible_message("<span class='notice'>You start to attach [I] to [src].</span>",
-	"<span class='notice'>[user] starts to attach [I] to [src].</span>")
+	if(turret_type)
+		to_chat(user, "<span class='notice'>There's already something attached!</span>")
+		return
+	if(istype(I, /obj/item/uav_turret))
+		var/obj/item/uav_turret/turret = I
+		if(turret_pattern != turret.turret_pattern)
+			to_chat(user, "<span class='notice'>You can't attach that type of turret!</span>")
+			return
+	user.visible_message("<span class='notice'>[user] starts to attach [I] to [src].</span>",
+	"<span class='notice'>You start to attach [I] to [src].</span>")
 	if(!do_after(user, 3 SECONDS, TRUE, src, BUSY_ICON_GENERIC))
 		return
 	if(istype(I, /obj/item/uav_turret))
 		var/obj/item/uav_turret/turret = I
 		turret_type = turret.turret_type
+		ammo = GLOB.ammo_list[turret.ammo_type]
 	else if(istype(I, /obj/item/explosive/plastique))
 		turret_type = TURRET_TYPE_EXPLOSIVE
-	user.visible_message("<span class='notice'>You attach [I] to [src].</span>",
-	"<span class='notice'>[user] attaches [I] to [src].</span>")
+	user.visible_message("<span class='notice'>[user] attaches [I] to [src].</span>",
+	"<span class='notice'>You attach [I] to [src].</span>")
 	update_icon()
 	SEND_SIGNAL(src, COMSIG_UNMANNED_TURRET_UPDATED, turret_type)
 	qdel(I)
@@ -102,7 +117,7 @@
 		in_chamber.original_target = target
 		in_chamber.def_zone = pick("chest","chest","chest","head")
 		//Shoot at the thing
-		playsound(loc, "gun_smartgun", 75, 1)
+		playsound(loc, gunnoise, 75, 1)
 		in_chamber.fire_at(target, src, null, ammo.max_range, ammo.shell_speed)
 		in_chamber = null
 		COOLDOWN_START(src, fire_cooldown, fire_delay)

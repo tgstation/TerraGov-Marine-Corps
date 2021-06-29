@@ -495,7 +495,7 @@
 		return
 
 	if(choice == "Randomize")
-		SSticker.mode.picked_call	= SSticker.mode.get_random_call()
+		SSticker.mode.picked_call = SSticker.mode.get_random_call()
 	else
 		for(var/datum/emergency_call/C in SSticker.mode.all_calls)
 			if(C.name == choice)

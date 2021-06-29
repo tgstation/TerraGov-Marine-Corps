@@ -1293,6 +1293,10 @@
 	name = "Soul Patch"
 	icon_state = "facial_soulpatch"
 
+/datum/sprite_accessory/facial_hair/broken_man
+	name = "Broken Man"
+	icon_state = "facial_brokenman"
+
 /*
 ///////////////////////////////////
 /  =---------------------------=  /

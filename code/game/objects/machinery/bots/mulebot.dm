@@ -559,7 +559,6 @@
 			//to_chat(world, "Pending path calc.")
 		//if(7)
 			//to_chat(world, "No dest / no route.")
-	return
 
 
 // calculates a path to the current destination
@@ -626,7 +625,6 @@
 
 	send_status()	// report status to anyone listening
 
-	return
 
 // called when bot bumps into anything
 /obj/machinery/bot/mulebot/Bump(atom/A)

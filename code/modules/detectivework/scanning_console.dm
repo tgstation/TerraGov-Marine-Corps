@@ -147,7 +147,7 @@
 				var/list/filternames = list("Object"="name", "Area"="area", "Fingerprints"="fprints", "Fibers"="fibers", "DNA"="blood", "Label"="label")
 				for(var/filter in filternames)
 					var/fname = filternames[filter]
-					dat += "<br>[filter]: <a href='?src=\ref[src];operation=filter;filter=[fname]'>[filter_list[fname] ? list2text(filter_list[fname], ",") : "All"]</a>"
+					dat += "<br>[filter]: <a href='?src=\ref[src];operation=filter;filter=[fname]'>[filter_list[fname] ? jointext(filter_list[fname], ",") : "All"]</a>"
 
 				current_list = get_filtered_set()
 				dat+= "<br><hr><br>"

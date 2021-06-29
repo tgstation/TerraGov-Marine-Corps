@@ -26,6 +26,10 @@
 	var/message = stripped_input(user, "Shout a message?", "Megaphone")
 	if(!message)
 		return
+	if(CHAT_FILTER_CHECK(message))
+		to_chat(user, "<span class='warning'>That message contained a word prohibited in IC chat! Consider reviewing the server rules.\n<span replaceRegex='show_filtered_ic_chat'>\"[message]\"</span></span>")
+		SSblackbox.record_feedback(FEEDBACK_TALLY, "ic_blocked_words", 1, lowertext(config.ic_filter_regex.match))
+		return
 	message = capitalize(message)
 	user.log_talk(message, LOG_SAY, "(megaphone)")
 	if ((src.loc == user && usr.stat == 0))

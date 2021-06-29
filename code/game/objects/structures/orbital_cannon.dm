@@ -38,14 +38,14 @@
 	tray.linked_ob = src
 
 
-/obj/structure/orbital_cannon/update_icon()
+/obj/structure/orbital_cannon/update_icon_state()
 	if(chambered_tray)
 		icon_state = "OBC_chambered"
+		return
+	if(loaded_tray)
+		icon_state = "OBC_loaded"
 	else
-		if(loaded_tray)
-			icon_state = "OBC_loaded"
-		else
-			icon_state = "OBC_unloaded"
+		icon_state = "OBC_unloaded"
 
 
 /obj/structure/orbital_cannon/proc/load_tray(mob/user)
@@ -246,13 +246,12 @@
 	. = ..()
 
 
-/obj/structure/orbital_tray/update_icon()
-	overlays.Cut()
-	icon_state = "cannon_tray"
+/obj/structure/orbital_tray/update_overlays()
+	. = ..()
 	if(warhead)
-		overlays += image("cannon_tray_[warhead.warhead_kind]")
+		. += image("cannon_tray_[warhead.warhead_kind]")
 	if(fuel_amt)
-		overlays += image("cannon_tray_[fuel_amt]")
+		. += image("cannon_tray_[fuel_amt]")
 
 
 /obj/structure/orbital_tray/attackby(obj/item/I, mob/user, params)
@@ -391,7 +390,9 @@
 	. = ..()
 	var/range_num = max(15 - inaccuracy_amt, 12)
 	flame_radius(range_num, target,	burn_intensity = 36, burn_duration = 40, colour = "blue")
-
+	var/datum/effect_system/smoke_spread/phosphorus/warcrime = new
+	warcrime.set_up(17, target, 20)
+	warcrime.start()
 
 /obj/structure/ob_ammo/warhead/cluster
 	name = "\improper Cluster orbital warhead"
@@ -459,7 +460,7 @@
 	if(!allowed(user))
 		return
 
-	if(user.skills.getRating("engineer") < SKILL_ENGINEER_ENGI)
+	if(!isobserver(user) && user.skills.getRating("engineer") < SKILL_ENGINEER_ENGI)
 		user.visible_message("<span class='notice'>[user] fumbles around figuring out how to use the console.</span>",
 		"<span class='notice'>You fumble around figuring out how to use the console.</span>")
 		var/fumbling_time = 5 SECONDS * ( SKILL_ENGINEER_ENGI - user.skills.getRating("engineer") )
@@ -566,8 +567,8 @@
 	playsound(loc, 'sound/weapons/guns/fire/pred_plasma_shot.ogg', 70, 1)
 	var/turf/target = locate(T.x + pick(-2,2), T.y + pick(-2,2), T.z)
 	rail_gun_ammo.ammo_count = max(0, rail_gun_ammo.ammo_count - rail_gun_ammo.ammo_used_per_firing)
-	addtimer(CALLBACK(src, /obj/structure/ship_rail_gun/proc/impact_rail_gun, target), 2 SECONDS + (RG_FLY_TIME * (GLOB.current_orbit/3)))	
-		
+	addtimer(CALLBACK(src, /obj/structure/ship_rail_gun/proc/impact_rail_gun, target), 2 SECONDS + (RG_FLY_TIME * (GLOB.current_orbit/3)))
+
 /obj/structure/ship_rail_gun/proc/impact_rail_gun(turf/T)
 	rail_gun_ammo.detonate_on(T)
 	cannon_busy = FALSE

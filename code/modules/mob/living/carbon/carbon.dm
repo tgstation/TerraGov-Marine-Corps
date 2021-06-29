@@ -34,7 +34,7 @@
 		L.initiate_burst(src)
 
 
-/mob/living/carbon/attack_paw(mob/living/carbon/monkey/user)
+/mob/living/carbon/attack_paw(mob/living/carbon/human/user)
 	user.changeNext_move(CLICK_CD_MELEE) //Adds some lag to the 'attack'
 
 
@@ -478,3 +478,11 @@
 	else if(. == UNCONSCIOUS)
 		adjust_blindness(-1)
 		disabilities &= ~DEAF
+			
+/mob/living/carbon/human/set_stat(new_stat) //registers/unregisters critdragging signals
+	. = ..()
+	if(new_stat == UNCONSCIOUS)
+		RegisterSignal(src, COMSIG_MOVABLE_PULL_MOVED, /mob/living/carbon/human.proc/oncritdrag)
+		return
+	if(. == UNCONSCIOUS)
+		UnregisterSignal(src, COMSIG_MOVABLE_PULL_MOVED)

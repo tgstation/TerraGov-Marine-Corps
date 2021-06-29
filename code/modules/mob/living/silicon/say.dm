@@ -31,7 +31,7 @@
 /mob/living/silicon/radio(message, message_mode, list/spans, language)
 	. = ..()
 	if(. != 0)
-		return .
+		return
 
 	if(message_mode == MODE_ROBOT)
 		if(radio)
@@ -50,5 +50,3 @@
 	. = ..()
 	if(..() == MODE_HEADSET)
 		return MODE_ROBOT
-	else
-		return .

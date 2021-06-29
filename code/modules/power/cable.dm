@@ -156,16 +156,15 @@ GLOBAL_LIST_INIT(wire_node_generating_types, typecacheof(list(/obj/structure/gri
 		user.visible_message("<span class='notice'>[user] cuts the cable.</span>", "<span class='notice'>You cut the cable.</span>")
 		log_game("[src] was cut by [key_name(usr)] in [AREACOORD(src)]")
 		deconstruct()
+		add_fingerprint(user, "handlecable")
 		return
-
-	else if(W.tool_behaviour == TOOL_MULTITOOL)
+	if(W.tool_behaviour == TOOL_MULTITOOL)
 		if(powernet && (powernet.avail > 0))		// is it powered?
 			to_chat(user, "<span class='danger'>Total power: [DisplayPower(powernet.avail)]\nLoad: [DisplayPower(powernet.load)]\nExcess power: [DisplayPower(surplus())]</span>")
 		else
 			to_chat(user, "<span class='danger'>The cable is not powered.</span>")
 		shock(user, 5, 0.2)
-
-	add_fingerprint(user)
+		add_fingerprint(user, "handlecable")
 
 // Items usable on a cable :
 //   - Wirecutters : cut it duh !
@@ -709,4 +708,12 @@ GLOBAL_LIST(hub_radial_layer_list)
 	to_chat(user, "<span class='warning'>You pust reset button.</span>")
 	addtimer(CALLBACK(src, .proc/Reload), 10, TIMER_UNIQUE) //spam protect
 
+//Multilayer combinations so avoid linter issues in the future
+/obj/structure/cable/multilayer/layer12
+	cable_layer = CABLE_LAYER_1 | CABLE_LAYER_2
 
+/obj/structure/cable/multilayer/layer13
+	cable_layer = CABLE_LAYER_1 | CABLE_LAYER_3
+
+/obj/structure/cable/multilayer/layer23
+	cable_layer = CABLE_LAYER_2 | CABLE_LAYER_3

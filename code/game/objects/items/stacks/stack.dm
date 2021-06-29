@@ -163,7 +163,7 @@
 		if(R.skill_req && usr.skills.getRating("construction") < R.skill_req)
 			building_time += R.time * ( R.skill_req - usr.skills.getRating("construction") ) * 0.5 // +50% time each skill point lacking.
 		if(R.skill_req && usr.skills.getRating("construction") > R.skill_req)
-			building_time -= R.time * ( usr.skills.getRating("construction") - R.skill_req ) * 0.1 // -10% time each extra skill point
+			building_time -= clamp(R.time * ( usr.skills.getRating("construction") - R.skill_req ) * 0.40, 0 , 0.85 * building_time) // -40% time each extra skill point
 		if(building_time)
 			if(building_time > R.time)
 				usr.visible_message("<span class='notice'>[usr] fumbles around figuring out how to build \a [R.title].</span>",

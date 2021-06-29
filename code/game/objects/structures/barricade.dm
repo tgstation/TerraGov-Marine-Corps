@@ -54,6 +54,7 @@
 
 
 /obj/structure/barricade/CheckExit(atom/movable/O, turf/target)
+	. = ..()
 	if(closed)
 		return TRUE
 
@@ -67,11 +68,6 @@
 		if(!allow_thrown_objs && !istype(O, /obj/projectile))
 			if(get_dir(loc, target) & dir)
 				return FALSE
-		return TRUE
-
-	if(get_dir(loc, target) & dir)
-		return FALSE
-	else
 		return TRUE
 
 /obj/structure/barricade/CanAllowThrough(atom/movable/mover, turf/target)
@@ -112,6 +108,9 @@
 	return attack_alien(user)
 
 /obj/structure/barricade/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
+	if(X.status_flags & INCORPOREAL)
+		return FALSE
+
 	if(is_wired)
 		X.visible_message("<span class='danger'>The barbed wire slices into [X]!</span>",
 		"<span class='danger'>The barbed wire slices into us!</span>", null, 5)
@@ -265,7 +264,6 @@
 		return FALSE
 
 	setDir(turn(dir, 90))
-	return
 
 /obj/structure/barricade/verb/revrotate()
 	set name = "Rotate Barricade Clockwise"
@@ -277,7 +275,14 @@
 		return FALSE
 
 	setDir(turn(dir, 270))
-	return
+
+
+/obj/structure/barricade/attack_hand_alternate(mob/living/user)
+	if(anchored)
+		to_chat(user, "<span class='warning'>It is fastened to the floor, you can't rotate it!</span>")
+		return FALSE
+
+	setDir(turn(dir, 270))
 
 
 /*----------------------*/
@@ -413,9 +418,9 @@
 #define BARRICADE_METAL_ANCHORED 1
 #define BARRICADE_METAL_FIRM 2
 
-#define CADE_TYPE_BOMB	"concussive armor"
-#define CADE_TYPE_MELEE	"ballistic armor"
-#define CADE_TYPE_ACID	"caustic armor"
+#define CADE_TYPE_BOMB "concussive armor"
+#define CADE_TYPE_MELEE "ballistic armor"
+#define CADE_TYPE_ACID "caustic armor"
 
 #define CADE_UPGRADE_REQUIRED_SHEETS 2
 
@@ -1133,3 +1138,4 @@
 		repair_damage(max_integrity * 0.2) //Each sandbag restores 20% of max health as 5 sandbags = 1 sandbag barricade.
 		user.visible_message("<span class='notice'>[user] replaces a damaged sandbag, repairing [src].</span>",
 		"<span class='notice'>You replace a damaged sandbag, repairing it [src].</span>")
+		update_icon()

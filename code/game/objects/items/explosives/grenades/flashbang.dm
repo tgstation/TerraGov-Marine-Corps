@@ -30,7 +30,6 @@
 
 	new/obj/effect/particle_effect/smoke/flashbang(T)
 	qdel(src)
-	return
 
 /obj/item/explosive/grenade/flashbang/proc/bang(turf/T , mob/living/carbon/M)						// Added a new proc called 'bang' that takes a location and a person to be banged.
 	to_chat(M, "<span class='danger'>BANG</span>")

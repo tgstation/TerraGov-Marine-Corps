@@ -1,9 +1,9 @@
-#define EXT_BOUND	1
-#define INT_BOUND	2
-#define NO_BOUND	3
+#define EXT_BOUND 1
+#define INT_BOUND 2
+#define NO_BOUND 3
 
-#define SIPHONING	0
-#define RELEASING	1
+#define SIPHONING 0
+#define RELEASING 1
 
 /obj/machinery/atmospherics/components/unary/vent_pump
 	icon_state = "vent_map-2"
@@ -143,6 +143,8 @@
 	return !welded
 
 /obj/machinery/atmospherics/components/unary/vent_pump/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
+	if(X.status_flags & INCORPOREAL)
+		return
 	if(!welded || !(do_after(X, 20, FALSE, src, BUSY_ICON_HOSTILE)))
 		return
 	X.visible_message("[X] furiously claws at [src]!", "We manage to clear away the stuff blocking the vent", "You hear loud scraping noises.")

@@ -242,8 +242,8 @@
 		genetics = null
 		degradation = 0
 
-	src.updateUsrDialog()
-	return
+	updateUsrDialog()
+
 
 // Fires an extracted trait into another packet of seeds with a chance
 // of destroying it based on the size/complexity of the plasmid.

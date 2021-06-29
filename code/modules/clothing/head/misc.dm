@@ -1,19 +1,19 @@
 
 
 /obj/item/clothing/head/centhat
-	name = "\improper CentComm. hat"
+	name = "\improper CentCom. hat"
 	icon_state = "centcom"
 	desc = "It's good to be emperor."
 	item_state = "centhat"
 	siemens_coefficient = 0.9
-	flags_armor_protection = 0
+	flags_armor_protection = NONE
 
 /obj/item/clothing/head/hairflower
 	name = "hair flower pin"
 	icon_state = "hairflower"
 	desc = "Smells nice."
 	item_state = "hairflower"
-	flags_armor_protection = 0
+	flags_armor_protection = NONE
 
 /obj/item/clothing/head/powdered_wig
 	name = "powdered wig"
@@ -27,19 +27,19 @@
 	icon_state = "tophat"
 	item_state = "that"
 	siemens_coefficient = 0.9
-	flags_armor_protection = 0
+	flags_armor_protection = NONE
 
 /obj/item/clothing/head/redcoat
 	name = "redcoat's hat"
 	icon_state = "redcoat"
 	desc = "<i>'I guess it's a redhead.'</i>"
-	flags_armor_protection = 0
+	flags_armor_protection = NONE
 
 /obj/item/clothing/head/mailman
 	name = "station cap"
 	icon_state = "mailman"
 	desc = "<i>Choo-choo</i>!"
-	flags_armor_protection = 0
+	flags_armor_protection = NONE
 
 /obj/item/clothing/head/plaguedoctorhat
 	name = "plague doctor's hat"
@@ -47,7 +47,7 @@
 	icon_state = "plaguedoctor"
 	permeability_coefficient = 0.01
 	siemens_coefficient = 0.9
-	flags_armor_protection = 0
+	flags_armor_protection = NONE
 
 /obj/item/clothing/head/hasturhood
 	name = "hastur's hood"
@@ -62,7 +62,7 @@
 	desc = "It allows quick identification of trained medical personnel."
 	icon_state = "nursehat"
 	siemens_coefficient = 0.9
-	flags_armor_protection = 0
+	flags_armor_protection = NONE
 
 /obj/item/clothing/head/syndicatefake
 	name = "red space-helmet replica"
@@ -92,7 +92,7 @@
 	item_state = "greenbandanna"
 	flags_inventory = NONE
 	flags_inv_hide = NONE
-	flags_armor_protection = 0
+	flags_armor_protection = NONE
 
 /obj/item/clothing/head/cardborg
 	name = "cardborg helmet"
@@ -127,12 +127,6 @@
 	icon_state = "justicepink"
 	item_state = "justicepink"
 
-/obj/item/clothing/head/rabbitears
-	name = "rabbit ears"
-	desc = "Wearing these makes you looks useless, and only good for your sex appeal."
-	icon_state = "bunny"
-	flags_armor_protection = 0
-
 /obj/item/clothing/head/flatcap
 	name = "flat cap"
 	desc = "A working man's cap."
@@ -145,14 +139,14 @@
 	desc = "Yarr."
 	icon_state = "pirate"
 	item_state = "pirate"
-	flags_armor_protection = 0
+	flags_armor_protection = NONE
 
 /obj/item/clothing/head/hgpiratecap
 	name = "pirate hat"
 	desc = "Yarr."
 	icon_state = "hgpiratecap"
 	item_state = "hgpiratecap"
-	flags_armor_protection = 0
+	flags_armor_protection = NONE
 	flags_item = SYNTH_RESTRICTED
 	soft_armor = list("melee" = 50, "bullet" = 80, "laser" = 50, "energy" = 10, "bomb" = 50, "bio" = 0, "rad" = 0, "fire" = 10, "acid" = 10)
 
@@ -172,7 +166,7 @@
 	desc = "Gentleman, elite aboard!"
 	icon_state = "bowler"
 	item_state = "bowler"
-	flags_armor_protection = 0
+	flags_armor_protection = NONE
 
 //stylish bs12 hats
 
@@ -181,7 +175,7 @@
 	icon_state = "bowler_hat"
 	item_state = "bowler_hat"
 	desc = "For the gentleman of distinction."
-	flags_armor_protection = 0
+	flags_armor_protection = NONE
 
 /obj/item/clothing/head/beaverhat
 	name = "beaver hat"

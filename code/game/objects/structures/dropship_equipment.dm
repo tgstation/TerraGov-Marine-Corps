@@ -81,6 +81,9 @@
 /obj/effect/attach_point/weapon/dropship2
 	ship_tag = "normandy"
 
+/obj/effect/attach_point/weapon/dropship3
+	ship_tag = "triumph"
+
 /obj/effect/attach_point/weapon/cas
 	ship_tag = "casplane"
 	icon = 'icons/Marine/casship.dmi'
@@ -89,6 +92,12 @@
 /obj/effect/attach_point/weapon/minidropship
 	ship_tag = "minidropship"
 	icon_state = "equip_base"
+
+/obj/effect/attach_point/weapon/minidropship/pointing_east
+	dir = 4
+
+/obj/effect/attach_point/weapon/minidropship/pointing_west
+	dir = 8
 
 /obj/effect/attach_point/crew_weapon
 	name = "rear attach point"
@@ -103,6 +112,12 @@
 /obj/effect/attach_point/crew_weapon/minidropship
 	ship_tag = "minidropship"
 
+/obj/effect/attach_point/crew_weapon/dropship1
+	ship_tag = "alamo"
+
+/obj/effect/attach_point/crew_weapon/dropship3
+	ship_tag = "alamo"
+
 /obj/effect/attach_point/electronics
 	name = "electronic system attach point"
 	base_category = DROPSHIP_ELECTRONICS
@@ -113,6 +128,9 @@
 
 /obj/effect/attach_point/electronics/dropship2
 	ship_tag = "normandy"
+
+/obj/effect/attach_point/electronics/dropship3
+	ship_tag = "triumph"
 
 
 /obj/effect/attach_point/fuel
@@ -126,6 +144,9 @@
 
 /obj/effect/attach_point/fuel/dropship2
 	ship_tag = "normandy"
+
+/obj/effect/attach_point/fuel/dropship3
+	ship_tag = "triumph"
 
 
 /obj/effect/attach_point/computer
@@ -192,7 +213,7 @@
 		return
 	var/obj/item/powerloader_clamp/clamp = I
 	if(clamp.loaded)
-		if(((!dropship_equipment_flags & IS_NOT_REMOVABLE) && !ship_base) || !(dropship_equipment_flags & USES_AMMO) || ammo_equipped || !istype(clamp.loaded, /obj/structure/ship_ammo))
+		if((!(dropship_equipment_flags & IS_NOT_REMOVABLE) && !ship_base) || !(dropship_equipment_flags & USES_AMMO) || ammo_equipped || !istype(clamp.loaded, /obj/structure/ship_ammo))
 			return FALSE
 		var/obj/structure/ship_ammo/clamp_ammo = clamp.loaded
 		if(istype(type, clamp_ammo.equipment_type) || clamp_ammo.ammo_type != ammo_type_used) //Incompatible ammo
@@ -252,7 +273,7 @@
 			if(linked_shuttle)
 				linked_shuttle.equipments -= src
 				linked_shuttle = null
-				if(linked_console && linked_console.selected_equipment == src)
+				if(linked_console?.selected_equipment == src)
 					linked_console.selected_equipment = null
 		update_equipment()
 		return TRUE //removed or uninstalled equipment
@@ -658,7 +679,7 @@
 	if(firing_sound)
 		playsound(loc, firing_sound, 70, 1)
 	var/obj/structure/ship_ammo/SA = ammo_equipped //necessary because we nullify ammo_equipped when firing big rockets
-	var/ammo_travelling_time = SA.travelling_time * (GLOB.current_orbit/3) //how long the rockets/bullets take to reach the ground target.
+	var/ammo_travelling_time = SA.travelling_time * ((GLOB.current_orbit+3)/6) //how long the rockets/bullets take to reach the ground target.
 	var/ammo_warn_sound = SA.warning_sound
 	deplete_ammo()
 	COOLDOWN_START(src, last_fired, firing_delay)
@@ -672,6 +693,7 @@
 	var/obj/effect/overlay/blinking_laser/laser = new (target_turf)
 	addtimer(CALLBACK(SA, /obj/structure/ship_ammo.proc/detonate_on, target_turf, attackdir), ammo_travelling_time)
 	addtimer(CALLBACK(GLOBAL_PROC, .proc/qdel, laser), ammo_travelling_time)
+
 /obj/structure/dropship_equipment/weapon/heavygun
 	name = "\improper GAU-21 30mm cannon"
 	desc = "A dismounted GAU-21 'Rattler' 30mm rotary cannon. It seems to be missing its feed links and has exposed connection wires. Capable of firing 5200 rounds a minute, feared by many for its power. Earned the nickname 'Rattler' from the vibrations it would cause on dropships in its inital production run."

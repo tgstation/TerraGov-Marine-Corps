@@ -66,6 +66,8 @@
 				flag = R_SERVER
 			if("DEBUG")
 				flag = R_DEBUG
+			if("RUNTIME")
+				flag = R_RUNTIME
 			if("PERMISSIONS")
 				flag = R_PERMISSIONS
 			if("COLOR")

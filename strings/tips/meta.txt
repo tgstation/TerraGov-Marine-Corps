@@ -13,10 +13,10 @@ While alive, use 'resist' (Default: B) to stop drop and roll when on fire. Human
 Help Intent (Default: 1) allows you to exchange positions with another mob with their help intent active. Other intents (Disarm, Grab or Harm) will push mobs aside.
 When in doubt: Adminhelp for problems in common for people violating the rules, Mentorhelp for problems that you want to know.
 Check the SS13 Webmap to learn the layout of the ship or the map currently in play.
-After you ghosted out of the game (either from dying, cryo or manual ghost), you can respawn back into the game after waiting for 30 minutes (as a human) or 5 minutes (as a xenomorph) if there is a larva.
+After you ghosted out of the game (either from dying, cryo or manual ghost), you can respawn back into the game after waiting for 30 minutes (as a human) or 2 minutes (as a xenomorph) if there is a larva.
 To sing, add "%" before any text. Singing on radios will not work, but singing on intercomms will.
 You can respawn during End-Of-Round Deathmatch in the OOC tab.
-Sundering is a concept that reduces the effectiveness of xeno armor by percentage. Xenomorph drones can heal and decrease sunder.
+Sundering is a concept that reduces the effectiveness of xeno armor by percentage. Xenomorph drones can heal and decrease sunder. Resting heals sunder, but slowly.
 When you want to claim a mob, claim it now! Others will claim it as soon as they are available.
 You can customize your ghost using the Ghost Customization command under the Preferences tab.
-As either a marine or a xeno, you will die quickly and horribly if you find yourself in a pressureless enviroment (a.k.a spess).
+As either a marine or a xeno, you will die quickly and horribly if you find yourself in a pressureless enviroment (a.k.a spess or water).

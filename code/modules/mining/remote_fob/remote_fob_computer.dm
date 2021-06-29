@@ -13,17 +13,15 @@
 	var/drone_creation_allowed = TRUE
 	var/obj/docking_port/stationary/marine_dropship/spawn_spot
 	var/datum/action/innate/remote_fob/metal_cade/metal_cade
-	var/max_metal = 50 //mostly to prevent jokers collecting all the metal and dumping it in
-	var/metal_remaining = 0
+	var/metal_remaining = 200
 	var/datum/action/innate/remote_fob/plast_cade/plast_cade
-	var/max_plasteel = 50
-	var/plasteel_remaining = 0
+	var/plasteel_remaining = 100
 	var/datum/action/innate/remote_fob/toggle_wiring/toggle_wiring //whether or not new barricades will be wired
 	var/do_wiring = FALSE
 	var/datum/action/innate/remote_fob/sentry/sentry
 	var/sentry_remaining = 0
-	var/datum/action/innate/remote_fob/eject_metal/eject_metal
-	var/datum/action/innate/remote_fob/eject_plasteel/eject_plasteel
+	var/datum/action/innate/remote_fob/eject_metal_action/eject_metal_action
+	var/datum/action/innate/remote_fob/eject_plasteel_action/eject_plasteel_action
 
 /obj/machinery/computer/camera_advanced/remote_fob/Initialize()
 	. = ..()
@@ -31,14 +29,16 @@
 	plast_cade = new()
 	toggle_wiring = new()
 	sentry = new()
-	eject_metal = new()
-	eject_plasteel = new()
+	eject_metal_action = new()
+	eject_plasteel_action = new()
 
 	RegisterSignal(SSdcs, COMSIG_GLOB_DROPSHIP_TRANSIT, .proc/disable_drone_creation)
 
 /obj/machinery/computer/camera_advanced/remote_fob/proc/disable_drone_creation()
 	SIGNAL_HANDLER
 	drone_creation_allowed = FALSE
+	eject_mat(EJECT_METAL)
+	eject_mat(EJECT_PLASTEEL)
 	UnregisterSignal(SSdcs, COMSIG_GLOB_DROPSHIP_TRANSIT)
 
 
@@ -48,8 +48,8 @@
 	QDEL_NULL(plast_cade)
 	QDEL_NULL(toggle_wiring)
 	QDEL_NULL(sentry)
-	QDEL_NULL(eject_metal)
-	QDEL_NULL(eject_plasteel)
+	QDEL_NULL(eject_metal_action)
+	QDEL_NULL(eject_plasteel_action)
 
 	return ..()
 
@@ -71,12 +71,28 @@
 	if(eyeobj.eye_initialized)
 		eyeobj.setLoc(get_turf(spawn_spot))
 
+///Eject all of the selected mat from the fob drone console
+/obj/machinery/computer/camera_advanced/remote_fob/proc/eject_mat(mattype)
+	flick("fobpc-eject", src)
+	var/turf/consolespot = get_turf(loc)
+	switch(mattype)
+		if(EJECT_METAL)
+			var/obj/item/stack/sheet/metal/stack = /obj/item/stack/sheet/metal
+			while(metal_remaining>0)
+				stack = new /obj/item/stack/sheet/metal(consolespot)
+				stack.amount = min(metal_remaining, 50)
+				metal_remaining -= stack.amount
+			return
+		if(EJECT_PLASTEEL)
+			var/obj/item/stack/sheet/plasteel/stack = /obj/item/stack/sheet/plasteel
+			while(plasteel_remaining>0)
+				stack = new /obj/item/stack/sheet/plasteel(consolespot)
+				stack.amount = min(plasteel_remaining, 50)
+				plasteel_remaining -= stack.amount
+
 /obj/machinery/computer/camera_advanced/remote_fob/interact(mob/living/user)
 	if(machine_stat & (NOPOWER|BROKEN))
 		return
-	if(isAI(user))
-		to_chat(user, "<span class='warning'>#ERROR! Drone terminated AI connection on handshake. Error thrown: 'We don't want machines building machines, but good try.'</span>")
-		return // In order to allow AIs to use this update_sight() needs to be refactored to properly handle living
 	if(!allowed(user))
 		to_chat(user, "<span class='warning'>Access Denied!</span>")
 		return
@@ -117,20 +133,14 @@
 			flick("fobpc-insert", src)
 			return
 		if(istype(attacking_stack, /obj/item/stack/sheet/metal))
-			if(max_metal <= metal_remaining)
-				to_chat(user, "<span class='notice'>Can't insert any more metal.")
-				return
-			var/useamount = min(attacking_stack.amount, (max_metal-metal_remaining))
+			var/useamount = attacking_stack.amount
 			metal_remaining += useamount
 			attacking_stack.use(useamount)
 			to_chat(user, "<span class='notice'>Inserted [useamount] metal sheets.")
 			flick("fobpc-insert", src)
 			return
 		if(istype(attacking_stack, /obj/item/stack/sheet/plasteel))
-			if(max_plasteel <= plasteel_remaining)
-				to_chat(user, "<span class='notice'>Can't insert any more plasteel.")
-				return
-			var/useamount = min(attacking_stack.amount, (max_plasteel-plasteel_remaining))
+			var/useamount = attacking_stack.amount
 			plasteel_remaining += useamount
 			attacking_stack.use(useamount)
 			to_chat(user, "<span class='notice'>Inserted [useamount] plasteel sheets.")
@@ -164,15 +174,15 @@
 		sentry.give_action(user)
 		actions += sentry
 
-	if(eject_metal)
-		eject_metal.target = src
-		eject_metal.give_action(user)
-		actions += eject_metal
+	if(eject_metal_action)
+		eject_metal_action.target = src
+		eject_metal_action.give_action(user)
+		actions += eject_metal_action
 
-	if(eject_plasteel)
-		eject_plasteel.target = src
-		eject_plasteel.give_action(user)
-		actions += eject_plasteel
+	if(eject_plasteel_action)
+		eject_plasteel_action.target = src
+		eject_plasteel_action.give_action(user)
+		actions += eject_plasteel_action
 
 	eyeobj.invisibility = 0
 

@@ -226,8 +226,6 @@
 		. = list("reason" = "Stickyban", "desc" = desc)
 		log_access("Failed Login: [key] [computer_id] [address] - StickyBanned [ban["message"]] Target Username: [bannedckey] Placed by [ban["admin"]]")
 
-	return .
-
 /proc/restore_stickybans()
 	for (var/banned_ckey in GLOB.stickybanadmintexts)
 		world.SetConfig("ban", banned_ckey, GLOB.stickybanadmintexts[banned_ckey])

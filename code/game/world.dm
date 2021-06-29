@@ -9,7 +9,7 @@ GLOBAL_VAR(restart_counter)
 //So subsystems globals exist, but are not initialised
 /world/New()
 #ifdef USE_EXTOOLS
-	var/extools = world.GetConfig("env", "EXTOOLS_DLL") || "./byond-extools.dll"
+	var/extools = world.GetConfig("env", "EXTOOLS_DLL") || (world.system_type == MS_WINDOWS ? "./byond-extools.dll" : "./libbyond-extools.so")
 	if(fexists(extools))
 		call(extools, "maptick_initialize")()
 #ifdef REFERENCE_TRACKING
@@ -125,7 +125,8 @@ GLOBAL_VAR(restart_counter)
 	start_log(GLOB.world_debug_log)
 	start_log(GLOB.world_paper_log)
 
-	GLOB.changelog_hash = md5('html/changelog.html') //for telling if the changelog has changed recently
+	var/latest_changelog = file("[global.config.directory]/../html/changelogs/archive/" + time2text(world.timeofday, "YYYY-MM") + ".yml")
+	GLOB.changelog_hash = fexists(latest_changelog) ? md5(latest_changelog) : 0 //for telling if the changelog has changed recently
 	if(fexists(GLOB.config_error_log))
 		fcopy(GLOB.config_error_log, "[GLOB.log_directory]/config_error.log")
 		fdel(GLOB.config_error_log)
@@ -361,6 +362,7 @@ GLOBAL_VAR(restart_counter)
 /world/proc/on_tickrate_change()
 	SStimer?.reset_buckets()
 	SSrunechat?.reset_buckets()
+	SSautomatedfire?.reset_buckets()
 
 #undef MAX_TOPIC_LEN
 #undef TOPIC_BANNED

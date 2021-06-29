@@ -36,10 +36,9 @@
 	set src in usr
 
 	if (t)
-		src.name = text("data disk- '[]'", t)
+		name = text("data disk- '[]'", t)
 	else
-		src.name = "data disk"
-	return
+		name = "data disk"
 
 /obj/item/card/data/clown
 	name = "\proper the coordinates to clown planet"
@@ -124,7 +123,6 @@
 
 	to_chat(usr, "[icon2html(src, usr)] [name]: The current assignment on the card is [assignment].")
 	to_chat(usr, "The blood type on the card is [blood_type].")
-	return
 
 
 /obj/item/card/id/silver

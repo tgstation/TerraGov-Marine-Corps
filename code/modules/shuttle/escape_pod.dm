@@ -240,6 +240,9 @@
 		move_mob_inside(user)
 
 /obj/machinery/cryopod/evacuation/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
+	if(X.status_flags & INCORPOREAL)
+		return
+
 	if(being_forced)
 		to_chat(X, "<span class='xenowarning'>It's being forced open already!</span>")
 		return FALSE

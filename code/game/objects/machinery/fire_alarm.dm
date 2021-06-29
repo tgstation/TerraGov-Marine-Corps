@@ -205,7 +205,6 @@ FIRE ALARM
 	var/area/A = get_area(src)
 	A?.firereset()
 	update_icon()
-	return
 
 /obj/machinery/firealarm/proc/alarm()
 	if (!working)
@@ -214,4 +213,4 @@ FIRE ALARM
 	A?.firealert()
 	update_icon()
 	//playsound(src.loc, 'sound/ambience/signal.ogg', 50, 0)
-	return
+

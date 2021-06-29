@@ -12,9 +12,6 @@
 	melee_damage = 26
 	attack_delay = 7
 
-	// *** Tackle *** //
-	tackle_damage = 26
-
 	// *** Speed *** //
 	speed = -0.7
 
@@ -42,9 +39,12 @@
 	// *** Abilities *** //
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
+		/datum/action/xeno_action/activable/psydrain,
+		/datum/action/xeno_action/activable/headbite,
+		/datum/action/xeno_action/activable/devour,
 		/datum/action/xeno_action/activable/charge,
 		/datum/action/xeno_action/activable/ravage,
-		/datum/action/xeno_action/activable/ignore_pain,
+		/datum/action/xeno_action/endure,
 	)
 
 /datum/xeno_caste/ravager/young
@@ -58,9 +58,6 @@
 
 	upgrade = XENO_UPGRADE_ONE
 
-	// *** Tackle *** //
-	tackle_damage = 26
-
 	// *** Speed *** //
 	speed = -0.8
 
@@ -72,7 +69,7 @@
 	max_health = 310
 
 	// *** Evolution *** //
-	upgrade_threshold = 500
+	upgrade_threshold = 750
 
 	// *** Defense *** //
 	soft_armor = list("melee" = 40, "bullet" = 45, "laser" = 40, "energy" = 40, "bomb" = XENO_BOMB_RESIST_1, "bio" = 35, "rad" = 35, "fire" = 55, "acid" = 35)
@@ -86,9 +83,6 @@
 	// *** Melee Attacks *** //
 	melee_damage = 32
 
-	// *** Tackle *** //
-	tackle_damage = 32
-
 	// *** Speed *** //
 	speed = -0.9
 
@@ -100,7 +94,7 @@
 	max_health = 330
 
 	// *** Evolution *** //
-	upgrade_threshold = 1000
+	upgrade_threshold = 1750
 
 	// *** Defense *** //
 	soft_armor = list("melee" = 45, "bullet" = 50, "laser" = 45, "energy" = 45, "bomb" = XENO_BOMB_RESIST_1, "bio" = 38, "rad" = 38, "fire" = 65, "acid" = 38)
@@ -114,9 +108,6 @@
 	// *** Melee Attacks *** //
 	melee_damage = 32
 
-	// *** Tackle *** //
-	tackle_damage = 32
-
 	// *** Speed *** //
 	speed = -1
 
@@ -128,7 +119,7 @@
 	max_health = 350
 
 	// *** Evolution *** //
-	upgrade_threshold = 1000
+	upgrade_threshold = 2750
 
 	// *** Defense *** //
 	soft_armor = list("melee" = 50, "bullet" = 55, "laser" = 50, "energy" = 50, "bomb" = XENO_BOMB_RESIST_1, "bio" = 40, "rad" = 40, "fire" = 70, "acid" = 40)

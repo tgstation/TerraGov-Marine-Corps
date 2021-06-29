@@ -15,6 +15,7 @@ GLOBAL_DATUM_INIT(round_statistics, /datum/round_statistics, new)
 /datum/round_statistics
 	var/total_projectiles_fired = 0
 	var/total_bullets_fired = 0
+	var/human_bump_attacks = 0
 	var/total_xeno_deaths = 0
 	var/total_human_deaths = 0
 	var/total_xenos_created = 0
@@ -57,10 +58,17 @@ GLOBAL_DATUM_INIT(round_statistics, /datum/round_statistics, new)
 	var/defiler_inject_egg_neurogas = 0
 	var/defiler_reagent_slashes = 0
 	var/larval_growth_stings = 0
-	var/drone_salvage_biomass = 0
 	var/xeno_unarmed_attacks = 0
 	var/xeno_bump_attacks = 0
 	var/xeno_headbites = 0
 	var/xeno_silo_corpses = 0
 	var/xeno_rally_hive = 0
 	var/hivelord_healing_infusions = 0
+	var/spitter_acid_sprays = 0
+	var/spitter_scatter_spits = 0
+	var/wraith_hyperpositions = 0
+	var/wraith_phase_shifts = 0
+	var/wraith_blinks = 0
+	var/wraith_banishes = 0
+	var/ravager_endures = 0
+	var/hunter_marks = 0

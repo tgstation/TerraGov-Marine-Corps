@@ -453,7 +453,7 @@
 
 	if(choice != selecting)
 		selecting = choice
-		update_icon(usr)
+		update_icon(user)
 	return TRUE
 
 /obj/screen/zone_sel/update_icon(mob/user)
@@ -590,7 +590,7 @@
 	var/obj/item/weapon/gun/G = .
 	if(!G)
 		return
-	var/obj/item/attachable/flashlight/F = G.rail
+	var/obj/item/attachable/flashlight/F = LAZYACCESS(G.attachments, ATTACHMENT_SLOT_RAIL)
 	if(F?.activate_attachment(usr))
 		playsound(usr, F.activation_sound, 15, 1)
 
@@ -764,32 +764,43 @@
 /obj/screen/arrow/proc/add_hud(mob/living/carbon/tracker_input, atom/target_input)
 	if(!tracker_input?.client)
 		return
-
 	tracker = tracker_input
 	target = target_input
 	tracker.client.screen += src
+	RegisterSignal(tracker, COMSIG_PARENT_QDELETING, .proc/kill_arrow)
+	RegisterSignal(target, COMSIG_PARENT_QDELETING, .proc/kill_arrow)
 	process() //Ping immediately after parameters have been set
+
+///Stop the arrow to avoid runtime and hard del
+/obj/screen/arrow/proc/kill_arrow()
+	SIGNAL_HANDLER
+	qdel(src)
 
 /obj/screen/arrow/Initialize() //Self-deletes
 	. = ..()
 	START_PROCESSING(SSprocessing, src)
-	QDEL_IN(src, duration)	
+	QDEL_IN(src, duration)
 
 /obj/screen/arrow/process() //We ping the target, revealing its direction with an arrow
-	if(target.z != tracker.z || get_dist(tracker, target) < 5 || tracker == target)
+	if(!target || !tracker)
+		return PROCESS_KILL
+	if(target.z != tracker.z || get_dist(tracker, target) < 2 || tracker == target)
 		alpha = 0
 	else
 		alpha = 128
 		transform = 0 //Reset and 0 out
 		transform = turn(transform, Get_Angle(tracker, target))
 
-/obj/screen/xeno_health_alert/Destroy()
+/obj/screen/arrow/Destroy()
+	target = null
+	tracker = null
 	STOP_PROCESSING(SSprocessing, src)
 	return ..()
 
+
 /obj/screen/arrow/leader_tracker_arrow
 	name = "hive leader tracker arrow"
-	icon_state = "Blue_arrow"	
+	icon_state = "Blue_arrow"
 	duration = XENO_RALLYING_POINTER_DURATION
 
 /obj/screen/arrow/silo_damaged_arrow
@@ -797,17 +808,28 @@
 	icon_state = "Red_arrow"
 	duration = XENO_SILO_DAMAGE_POINTER_DURATION
 
+/obj/screen/arrow/turret_attacking_arrow
+	name = "Turret attacking arrow"
+	icon_state = "Green_arrow"
+	duration = XENO_SILO_DAMAGE_POINTER_DURATION
+
 /obj/screen/arrow/attack_order_arrow
 	name = "attack order arrow"
 	icon_state = "Attack_arrow"
 	duration = ORDER_DURATION
 
-/obj/screen/arrow/regroup_order_arrow
+/obj/screen/arrow/rally_order_arrow
 	name = "Rally order arrow"
-	icon_state = "Regroup_arrow"
-	duration = ORDER_DURATION
+	icon_state = "Rally_arrow"
+	duration = RALLY_ORDER_DURATION
 
 /obj/screen/arrow/defend_order_arrow
 	name = "Defend order arrow"
 	icon_state = "Defend_arrow"
 	duration = ORDER_DURATION
+
+/obj/screen/arrow/hunter_mark_arrow
+	name = "hunter mark arrow"
+	icon_state = "Red_arrow"
+	duration = HUNTER_PSYCHIC_TRACE_COOLDOWN
+	color = COLOR_ORANGE

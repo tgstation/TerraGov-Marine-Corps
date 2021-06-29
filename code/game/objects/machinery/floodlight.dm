@@ -7,6 +7,14 @@
 	///The brightness of the floodlight
 	var/brightness_on = 7
 
+/obj/machinery/floodlight/Initialize()
+	. = ..()
+	GLOB.nightfall_toggleable_lights += src
+
+/obj/machinery/floodlight/Destroy()
+	. = ..()
+	GLOB.nightfall_toggleable_lights -= src
+
 /obj/machinery/floodlight/attack_hand(mob/living/user)
 	return
 
@@ -18,7 +26,7 @@
 	if(. != CHECKS_PASSED)
 		return
 	if(toggle_on)
-		if(user)	
+		if(user)
 			to_chat(user, "<span class='notice'>You turn on the light.</span>")
 		set_light(brightness_on)
 		DISABLE_BITFIELD(resistance_flags, UNACIDABLE)
@@ -319,10 +327,10 @@
 	. = ..()
 	if(toggle_on)
 		fswitch?.active_power_usage += FLOODLIGHT_TICK_CONSUMPTION
-	else	
+	else
 		fswitch?.active_power_usage -= FLOODLIGHT_TICK_CONSUMPTION
 	update_icon()
-	
+
 
 /obj/machinery/floodlight/colony/update_icon()
 	. = ..()
@@ -343,7 +351,7 @@
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 5
 	active_power_usage = 0
-	resistance_flags = UNACIDABLE|XENO_DAMAGEABLE
+	resistance_flags = RESIST_ALL
 	var/turned_on = FALSE //has to be toggled in engineering
 
 /obj/machinery/colony_floodlight_switch/update_icon()
@@ -367,7 +375,7 @@
 	turned_on = switch_on
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_FLOODLIGHT_SWITCH, src, switch_on)
 
-/obj/machinery/colony_floodlight_switch/attack_paw(mob/living/carbon/monkey/user)
+/obj/machinery/colony_floodlight_switch/attack_paw(mob/living/carbon/human/user)
 	return attack_hand(user)
 
 /obj/machinery/colony_floodlight_switch/attack_hand(mob/living/user)

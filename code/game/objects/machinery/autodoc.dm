@@ -90,7 +90,7 @@
 	go_out(AUTODOC_NOTICE_NO_POWER)
 
 
-/obj/machinery/autodoc/update_icon()
+/obj/machinery/autodoc/update_icon_state()
 	if(machine_stat & NOPOWER)
 		icon_state = "autodoc_off"
 	else if(surgery)
@@ -861,7 +861,7 @@
 	if(!M)
 		return
 
-	else if(!ishuman(M)) // stop fucking monkeys and xenos being put in.
+	else if(!ishuman(M)) // stop fucking monkeys and xenos being put in. // MONKEEY IS FREE
 		to_chat(user, "<span class='notice'>[src] is compatible with humanoid anatomies only!</span>")
 		return
 
@@ -935,7 +935,7 @@
 	return ..()
 
 
-/obj/machinery/autodoc_console/update_icon()
+/obj/machinery/autodoc_console/update_icon_state()
 	if(machine_stat & NOPOWER)
 		icon_state = "sleeperconsole-p"
 	else

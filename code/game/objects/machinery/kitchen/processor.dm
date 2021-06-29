@@ -48,39 +48,9 @@
 		input = /obj/item/reagent_containers/food/snacks/flour
 		output = /obj/item/reagent_containers/food/snacks/spagetti
 
-	/* mobs */
-	mob
-		process(loc, what)
-			..()
-
-
-		monkey
-			process(loc, what)
-				var/mob/living/carbon/monkey/O = what
-				if (O.client) //grief-proof
-					O.loc = loc
-					O.visible_message("<span class='notice'> Suddenly [O] jumps out from the processor!</span>", \
-							"You jump out from the processor", \
-							"You hear chimp")
-					return
-				var/obj/item/reagent_containers/glass/bucket/bucket_of_blood = new(loc)
-				var/datum/reagent/blood/B = new()
-				B.holder = bucket_of_blood
-				B.volume = 70
-				//set reagent data
-				B.data["donor"] = O
-
-				bucket_of_blood.reagents.reagent_list += B
-				bucket_of_blood.reagents.update_total()
-				bucket_of_blood.on_reagent_change()
-				//bucket_of_blood.reagents.handle_reactions() //blood doesn't react
-				..()
-
-			input = /mob/living/carbon/monkey
-			output = null
 
 /obj/machinery/processor/proc/select_recipe(X)
-	for (var/Type in subtypesof(/datum/food_processor_process) - /datum/food_processor_process/mob)
+	for (var/Type in subtypesof(/datum/food_processor_process))
 		var/datum/food_processor_process/P = new Type()
 		if (!istype(X, P.input))
 			continue
@@ -141,4 +111,3 @@
 		src.processing = 0
 	src.visible_message("<span class='notice'> \the [src] finished processing.</span>", \
 		"You hear the food processor stopping/")
-

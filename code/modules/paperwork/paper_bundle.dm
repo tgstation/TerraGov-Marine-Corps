@@ -123,7 +123,7 @@
 			+ "[P.scribble ? "<div> Written on the back:<br><i>[P.scribble]</i>" : ""]"\
 			+ "</body></html>", "window=[name]")
 		update_icon()
-	return
+
 
 /obj/item/paper_bundle/Topic(href, href_list)
 	. = ..()

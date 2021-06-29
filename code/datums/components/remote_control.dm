@@ -36,7 +36,7 @@
 /datum/component/remote_control/proc/update_clickproc(datum/source, type)
 	SIGNAL_HANDLER
 	switch(type)
-		if(TURRET_TYPE_HEAVY, TURRET_TYPE_LIGHT)
+		if(TURRET_TYPE_HEAVY, TURRET_TYPE_LIGHT, TURRET_TYPE_DROIDLASER)
 			click_proc = CALLBACK(src, .proc/uv_handle_click)
 		if(TURRET_TYPE_EXPLOSIVE)
 			click_proc = CALLBACK(src, .proc/uv_handle_click_explosive)

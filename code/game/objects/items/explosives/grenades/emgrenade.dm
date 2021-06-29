@@ -8,5 +8,4 @@
 	..()
 	if(empulse(src, 4, 10))
 		qdel(src)
-	return
 

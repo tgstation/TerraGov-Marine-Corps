@@ -52,7 +52,7 @@
 	GLOB.ladder_list -= src
 	. = ..()
 
-/obj/structure/ladder/update_icon()
+/obj/structure/ladder/update_icon_state()
 	if(up && down)
 		icon_state = "ladder11"
 
@@ -111,7 +111,7 @@
 	user.visible_message("<span class='notice'>[user] climbs [ladder_dir_name] [src].</span>",
 	"<span class='notice'>You climb [ladder_dir_name] [src].</span>")
 
-/obj/structure/ladder/attack_paw(mob/living/carbon/monkey/user)
+/obj/structure/ladder/attack_paw(mob/living/carbon/human/user)
 	return attack_hand(user)
 
 

@@ -30,7 +30,7 @@
 		return
 
 	to_chat(user, "<span class='notice'>You can't see how you'd use [I] with [src]...</span>")
-	return
+
 
 /obj/machinery/fuelcell_recycler/attack_hand(mob/living/user)
 	. = ..()
