@@ -142,7 +142,8 @@
 		return
 	var/list/plasma_mod = list()
 
-	SEND_SIGNAL(src, COMSIG_XENOMORPH_PLASMA_REGEN, plasma_mod)
+	if(SEND_SIGNAL(src, COMSIG_XENOMORPH_PLASMA_REGEN, plasma_mod) & COMPONENT_PLASMA_REGEN_HANDLED)
+		return
 
 	var/plasma_gain_multiplier = 1
 	for(var/i in plasma_mod)
