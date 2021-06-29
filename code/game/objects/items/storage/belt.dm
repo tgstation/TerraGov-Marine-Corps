@@ -607,15 +607,14 @@
 	storage_slots = 7
 	max_storage_space = 15
 	max_w_class = 3
-	///Generic variable to determine if the holster already holds a gun.
-	var/holds_guns_now = FALSE
-	///How many guns can it hold? I think this can be any thing from 1 to whatever. Should calculate properly.
-	var/holds_guns_max = 1
 	///The gun it holds, used for referencing later so we can update the icon.
 	var/obj/item/weapon/gun/current_gun
 	var/image/gun_underlay
 	var/sheatheSound = 'sound/weapons/guns/misc/pistol_sheathe.ogg'
 	var/drawSound = 'sound/weapons/guns/misc/pistol_draw.ogg'
+	storage_type_limits = list(
+		/obj/item/weapon/gun = 1,
+	)
 	can_hold = list(
 		/obj/item/weapon/gun/pistol,
 		/obj/item/ammo_magazine/pistol,
@@ -640,7 +639,7 @@
 
 /obj/item/storage/belt/gun/proc/update_gun_icon() //We do not want to use regular update_icon as it's called for every item inserted. Not worth the icon math.
 	var/mob/user = loc
-	if(holds_guns_now) //So it has a gun, let's make an icon.
+	if(current_gun) //So it has a gun, let's make an icon.
 		/*
 		Have to use a workaround here, otherwise images won't display properly at all times.
 		Reason being, transform is not displayed when right clicking/alt+clicking an object,
@@ -663,24 +662,17 @@
 	if(istype(user)) user.update_inv_belt()
 	if(istype(user)) user.update_inv_s_store()
 
-
-//There are only two types here that can be inserted, and they are mutually exclusive. We only track the gun.
-/obj/item/storage/belt/gun/can_be_inserted(obj/item/W, warning) //We don't need to stop messages, but it can be left in.
+/obj/item/storage/belt/gun/handle_item_insertion(obj/item/item, prevent_warning = 0, mob/user)
 	. = ..()
-	if(!.) //If the parent did their thing, this should be fine. It pretty much handles all the checks.
-		return
-	if(istype(W,/obj/item/weapon/gun)) //Is it a gun?
-		if(holds_guns_now == holds_guns_max) //Are we at our gun capacity?
-			if(warning)
-				to_chat(usr, "<span class='warning'>[src] already holds a gun.</span>")
-			return FALSE
-	else //Must be ammo.
-	//We have slots open for the gun, so in total we should have storage_slots - guns_max in slots, plus whatever is already in the belt.
-		if(((storage_slots - holds_guns_max) + holds_guns_now) <= length(contents)) // We're over capacity, and the space is reserved for a gun.
-			if(warning)
-				to_chat(usr, "<span class='warning'>[src] can't hold any more magazines.</span>")
-			return FALSE
-	return TRUE
+	if(. && istype(item, /obj/item/weapon/gun))
+		current_gun = item
+		update_gun_icon()
+
+/obj/item/storage/belt/gun/remove_from_storage(obj/item/item, atom/new_location, mob/user)
+	. = ..()
+	if(. && istype(item, /obj/item/weapon/gun))
+		current_gun = null
+		update_gun_icon()
 
 //This deliniates between belt/gun/pistol and belt/gun/revolver
 /obj/item/storage/belt/gun/pistol
