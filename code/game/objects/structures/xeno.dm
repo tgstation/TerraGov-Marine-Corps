@@ -1062,4 +1062,4 @@ TUNNEL
 	if(X.fire_resist_modifier <= -20)
 		return
 	X.visible_message("<span class='notice'>[X] is splattered with jelly!</span>")
-	activate_jelly(X)
+	INVOKE_ASYNC(src, .proc/activate_jelly, X)
