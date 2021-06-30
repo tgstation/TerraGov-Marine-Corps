@@ -1746,7 +1746,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	icon_state = ""
 	attach_icon = ""
 	slot = ATTACHMENT_SLOT_UNDER
-	flags_attach_features = ATTACH_ACTIVATION|ATTACH_UTILITY|GUN_ALLOW_SYNTHETIC
+	flags_attach_features = ATTACH_UTILITY|GUN_ALLOW_SYNTHETIC
 	attachment_action_type = /datum/action/item_action/toggle_hydro
 
 /obj/item/attachable/hydro_cannon/activate_attachment(mob/living/user, turn_off)
