@@ -4609,6 +4609,7 @@
 /area/mainship/squads/req)
 "bpD" = (
 /obj/machinery/camera/autoname/mainship,
+/obj/machinery/vending/uniform_supply,
 /turf/open/floor/mainship/red{
 	dir = 1
 	},
@@ -7353,6 +7354,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
+/obj/machinery/loadout_vendor,
 /turf/open/floor/mainship/red{
 	dir = 1
 	},
@@ -8300,6 +8302,7 @@
 /area/mainship/living/port_emb)
 "ccT" = (
 /obj/machinery/light,
+/obj/machinery/loadout_vendor,
 /turf/open/floor/mainship/blue,
 /area/mainship/squads/delta)
 "cdi" = (
@@ -9594,6 +9597,7 @@
 /obj/machinery/camera/autoname/mainship{
 	dir = 1
 	},
+/obj/machinery/vending/uniform_supply,
 /turf/open/floor/mainship/blue,
 /area/mainship/squads/delta)
 "eAA" = (
@@ -9644,6 +9648,10 @@
 /obj/docking_port/stationary/marine_dropship/crash_target,
 /turf/open/floor/mainship/floor,
 /area/mainship/command/cic)
+"eHp" = (
+/obj/machinery/loadout_vendor,
+/turf/open/floor/mainship/mono,
+/area/mainship/squads/alpha)
 "eJk" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable,
@@ -12023,6 +12031,13 @@
 /obj/machinery/computer/med_data,
 /turf/open/floor/mainship/sterile/corner,
 /area/mainship/medical/upper_medical)
+"khN" = (
+/obj/machinery/camera/autoname/mainship{
+	dir = 1
+	},
+/obj/machinery/loadout_vendor,
+/turf/open/floor/mainship/blue,
+/area/mainship/squads/delta)
 "kjG" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/disposalpipe/segment/corner{
@@ -12115,6 +12130,11 @@
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/hangar)
+"ksc" = (
+/obj/machinery/light,
+/obj/machinery/vending/marine/shared,
+/turf/open/floor/mainship/blue,
+/area/mainship/squads/delta)
 "ksr" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 6
@@ -13068,6 +13088,15 @@
 	dir = 8
 	},
 /area/mainship/squads/req)
+"mjH" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/machinery/vending/marine/shared,
+/turf/open/floor/mainship/red{
+	dir = 1
+	},
+/area/mainship/squads/alpha)
 "mlK" = (
 /obj/machinery/cic_maptable,
 /turf/closed/wall/mainship,
@@ -15519,6 +15548,13 @@
 	dir = 6
 	},
 /area/mainship/command/cic)
+"rxD" = (
+/obj/machinery/camera/autoname/mainship,
+/obj/machinery/loadout_vendor,
+/turf/open/floor/mainship/red{
+	dir = 1
+	},
+/area/mainship/squads/alpha)
 "ryJ" = (
 /obj/structure/reagent_dispensers/water_cooler,
 /turf/open/floor/mainship/mono,
@@ -17137,6 +17173,10 @@
 	dir = 8
 	},
 /area/mainship/squads/req)
+"voc" = (
+/obj/machinery/loadout_vendor,
+/turf/open/floor/mainship/mono,
+/area/mainship/squads/delta)
 "vos" = (
 /obj/structure/bed/chair/wood/normal{
 	dir = 8
@@ -60237,7 +60277,7 @@ aWH
 aWH
 aWH
 aWH
-bri
+eHp
 abg
 iJv
 iJv
@@ -60277,7 +60317,7 @@ pGn
 pGn
 pGn
 vJr
-cec
+voc
 cbn
 cbn
 cbn
@@ -60494,7 +60534,7 @@ aWN
 bdv
 aMk
 aWH
-bpD
+rxD
 aad
 bCp
 brj
@@ -60534,7 +60574,7 @@ bUy
 ktN
 acX
 adI
-ezg
+khN
 cbn
 ceg
 cdQ
@@ -61265,7 +61305,7 @@ aWH
 aWH
 aWH
 aWH
-aXi
+eHp
 aaf
 kMY
 brj
@@ -61305,7 +61345,7 @@ bUy
 ktN
 ada
 vJr
-ced
+voc
 cbn
 cbn
 cbn
@@ -61522,7 +61562,7 @@ aWR
 bdv
 aZi
 aWH
-bpD
+rxD
 aaf
 kMY
 bri
@@ -61562,7 +61602,7 @@ dqb
 cec
 ada
 vJr
-ezg
+khN
 cbn
 cej
 cdQ
@@ -62036,7 +62076,7 @@ aWR
 bQr
 aZi
 aWH
-bSQ
+mjH
 jZv
 kMY
 brj
@@ -62076,7 +62116,7 @@ bUy
 ktN
 ada
 vJr
-ccT
+ksc
 cbn
 cej
 aXI
