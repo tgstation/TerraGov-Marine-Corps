@@ -173,6 +173,38 @@
 	recoil = -2
 	recoil_unwielded = -2
 
+/obj/item/weapon/gun/pistol/field_commander
+	name = "\improper TP-23A 'Ares' combat pistol"
+	desc = "A previous iteration of the TP-23 service pistol, the TP-23A was not brought into widescale production due to the price of itself and its ammunition. However it is a common sight among private officers and collectors."
+	icon_state = "tp23s"
+	item_state = "tp23s"
+	caliber = CALIBER_AP_45ACP //codex
+	max_shells = 14 //codex
+	fire_sound = 'sound/weapons/guns/fire/tp23.ogg'
+	unload_sound = 'sound/weapons/guns/interact/colt_unload.ogg'
+	reload_sound = 'sound/weapons/guns/interact/colt_reload.ogg'
+	cocked_sound = 'sound/weapons/guns/interact/colt_cocked.ogg'
+	current_mag = /obj/item/ammo_magazine/pistol/field_commander
+	attachable_allowed = list(
+		/obj/item/attachable/suppressor,
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/compensator,
+		/obj/item/attachable/extended_barrel,
+		/obj/item/attachable/heavy_barrel,
+		/obj/item/attachable/lace,
+	)
+
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
+	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 22,"rail_x" = 13, "rail_y" = 24, "under_x" = 21, "under_y" = 17, "stock_x" = 21, "stock_y" = 17)
+
+	fire_delay = 0.175 SECONDS
+	accuracy_mult = 1.20 //Has a forced laser sight.
+	accuracy_mult_unwielded = 0.95
+	recoil = -2
+	recoil_unwielded = -2
+
+
 //-------------------------------------------------------
 //M1911
 

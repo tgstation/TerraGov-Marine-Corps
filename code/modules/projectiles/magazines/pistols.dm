@@ -108,6 +108,15 @@
 	gun_type = /obj/item/weapon/gun/pistol/standard_heavypistol
 
 
+//TP-23A, the FC's varient. Fires Armor Piercing Rounds
+/obj/item/ammo_magazine/pistol/field_commander
+	name = "\improper TP-23 Armor Piercing magazine (.45)"
+	default_ammo = /datum/ammo/bullet/pistol/heavy/ap
+	caliber = CALIBER_AP_45ACP
+	icon_state = ".45ap"
+	max_rounds = 14
+	gun_type = /obj/item/weapon/gun/pistol/field_commander
+
 //-------------------------------------------------------
 //Beretta 92FS, the gun McClane carries around in Die Hard. Very similar to the service pistol, all around.
 

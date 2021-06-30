@@ -286,6 +286,12 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	shrapnel_chance = 25
 	sundering = 2.15
 
+/datum/ammo/bullet/pistol/heavy/ap
+	name = "armor piercing heavy pistol bullet"
+	hud_state = "pistol_ap"
+	damage = 40
+	penetration = 12.5
+
 /datum/ammo/bullet/pistol/incendiary
 	name = "incendiary pistol bullet"
 	hud_state = "pistol_fire"
