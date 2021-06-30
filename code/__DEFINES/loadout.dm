@@ -89,22 +89,10 @@ GLOBAL_LIST_INIT(engineer_gear_listed_products, list(
 		/obj/item/circuitboard/general = list(CAT_ENGSUP, "General circuit board", 1, "black"),
 		/obj/item/assembly/signaler = list(CAT_ENGSUP, "Signaler (for detpacks)", 1, "black"),
 		/obj/item/stack/voucher/sentry = list(CAT_ENGSUP, "UA 571-C Base defense sentry voucher", 26, "black"),
-
-		/obj/item/attachable/extended_barrel = list(CAT_ATT, "Extended barrel", 0, "orange"),
-		/obj/item/attachable/compensator = list(CAT_ATT, "Recoil compensator", 0, "black"),
-		/obj/item/attachable/magnetic_harness = list(CAT_ATT, "Magnetic harness", 0, "orange"),
-		/obj/item/attachable/reddot = list(CAT_ATT, "Red dot sight", 0, "black"),
-		/obj/item/attachable/lasersight = list(CAT_ATT, "Laser sight", 0, "black"),
-		/obj/item/attachable/scope/mini = list(CAT_ATT, "Mini-Scope", 0,"black"),
-		/obj/item/attachable/verticalgrip = list(CAT_ATT, "Vertical grip", 0, "black"),
-		/obj/item/attachable/angledgrip = list(CAT_ATT, "Angled grip", 0, "orange"),
-		/obj/item/attachable/stock/t35stock = list(CAT_ATT, "T-35 stock", 0, "black"),
-		/obj/item/attachable/stock/t19stock = list(CAT_ATT, "T-19 machine pistol stock", 0, "black"),
 	))
 
 GLOBAL_LIST_INIT(medic_gear_listed_products, list(
 		/obj/effect/essentials_set/medic = list(CAT_ESS, "Essential Medic Set", 0, "white"),
-		/obj/item/storage/backpack/lightpack = list(CAT_MEDSUP, "Combat Backpack", 15, "orange"),
 		/obj/item/storage/pill_bottle/meralyne = list(CAT_MEDSUP, "Meralyne pills", 16, "orange"),
 		/obj/item/storage/pill_bottle/dermaline = list(CAT_MEDSUP, "Dermaline pills", 16, "orange"),
 		/obj/item/storage/pill_bottle/paracetamol = list(CAT_MEDSUP, "Paracetamol pills", 8, "orange"),
@@ -127,18 +115,6 @@ GLOBAL_LIST_INIT(medic_gear_listed_products, list(
 		/obj/item/reagent_containers/hypospray/advanced = list(CAT_MEDSUP, "Advanced hypospray", 2, "black"),
 		/obj/item/reagent_containers/hypospray/advanced/big = list(CAT_MEDSUP, "Big hypospray", 10, "black"),
 		/obj/item/clothing/glasses/hud/health = list(CAT_MEDSUP, "Medical HUD glasses", 2, "black"),
-
-		/obj/item/attachable/extended_barrel = list(CAT_ATT, "Extended barrel", 0, "orange"),
-		/obj/item/attachable/compensator = list(CAT_ATT, "Recoil compensator", 0, "black"),
-		/obj/item/attachable/magnetic_harness = list(CAT_ATT, "Magnetic harness", 0, "orange"),
-		/obj/item/attachable/reddot = list(CAT_ATT, "Red dot sight", 0, "black"),
-		/obj/item/attachable/lasersight = list(CAT_ATT, "Laser sight", 0, "black"),
-		/obj/item/attachable/verticalgrip = list(CAT_ATT, "Vertical grip", 0, "black"),
-		/obj/item/attachable/angledgrip = list(CAT_ATT, "Angled grip", 0, "orange"),
-		/obj/item/attachable/stock/t35stock = list(CAT_ATT, "T-35 stock", 0, "black"),
-		/obj/item/attachable/stock/t19stock  = list(CAT_ATT, "T-19 machine pistol stock", 0, "black"),
-		/obj/item/attachable/gyro = list(CAT_ATT, "gyroscopic stabilizer", 0, "black"),
-		/obj/item/attachable/heavy_barrel = list(CAT_ATT, "barrel charger", 0, "black"),
 	))
 
 GLOBAL_LIST_INIT(leader_gear_listed_products, list(
@@ -169,17 +145,6 @@ GLOBAL_LIST_INIT(leader_gear_listed_products, list(
 		/obj/structure/closet/bodybag/tarp = list(CAT_LEDSUP, "V1 thermal-dampening tarp", 5, "black"),
 		/obj/item/storage/box/m94/cas = list(CAT_LEDSUP, "CAS flare box", 10, "orange"),
 		/obj/item/deployable_camera = list(CAT_LEDSUP, "Deployable Overwatch Camera", 2, "orange"),
-		/obj/item/attachable/suppressor = list(CAT_ATT, "Suppressor", 0, "black"),
-		/obj/item/attachable/extended_barrel = list(CAT_ATT, "Extended barrel", 0, "orange"),
-		/obj/item/attachable/compensator = list(CAT_ATT, "Recoil compensator", 0, "black"),
-		/obj/item/attachable/magnetic_harness = list(CAT_ATT, "Magnetic harness", 0, "orange"),
-		/obj/item/attachable/reddot = list(CAT_ATT, "Red dot sight", 0, "black"),
-		/obj/item/attachable/lasersight = list(CAT_ATT, "Laser sight", 0, "black"),
-		/obj/item/attachable/scope/mini = list(CAT_ATT, "Mini-Scope", 0,"black"),
-		/obj/item/attachable/verticalgrip = list(CAT_ATT, "Vertical grip", 0, "black"),
-		/obj/item/attachable/angledgrip = list(CAT_ATT, "Angled grip", 0, "orange"),
-		/obj/item/attachable/stock/t35stock = list(CAT_ATT, "T-35 stock", 0, "black"),
-		/obj/item/attachable/stock/t19stock = list(CAT_ATT, "T-19 machine pistol stock", 0, "black"),
 	))
 
 ///Assoc list linking the job title with their specific points vendor
@@ -486,14 +451,12 @@ GLOBAL_LIST_INIT(loadout_role_essential_set, list(
 	SQUAD_ENGINEER = list (
 		/obj/item/explosive/plastique = 1,
 		/obj/item/explosive/grenade/chem_grenade/razorburn_smol = 1,
-		/obj/item/stack/sandbags_empty/full = 1,
-		/obj/item/stack/sheet/metal/large_stack = 1,
-		/obj/item/stack/sheet/plasteel/medium_stack = 1,
+		/obj/item/clothing/glasses/welding = 1,
+		/obj/item/clothing/gloves/marine/insulated = 1,
 		/obj/item/cell/high = 1,
 		/obj/item/tool/shovel/etool = 1,
 		/obj/item/lightreplacer = 1,
 		/obj/item/circuitboard/general = 1,
-		/obj/item/clothing/gloves/marine/insulated = 1,
 	),
 	SQUAD_CORPSMAN = list(
 		/obj/item/bodybag/cryobag = 1,
