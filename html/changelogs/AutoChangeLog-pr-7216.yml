@@ -1,0 +1,7 @@
+author: "Vondiech"
+delete-after: True
+changes: 
+  - bugfix: "You can now put the M44 into the belt again."
+  - bugfix: "Chemrette's no longer dissapear when you take something out of it."
+  - bugfix: "The T-19 doesn't have floating barrel and under attachments anymore."
+  - bugfix: "The Mateba revolver belt now can be used at the max capacity."
