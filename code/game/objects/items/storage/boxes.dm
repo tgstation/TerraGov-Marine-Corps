@@ -313,6 +313,27 @@
 	spawn_number = 14
 	w_class = WEIGHT_CLASS_SMALL
 
+/obj/item/storage/box/combat_lolipop
+	name = "box of Commed-pops"
+	desc = "A small box of lolipops, has a reagent mix made to heal you up slowly. Recommended to be sucked on, rather than eaten."
+	icon_state = "lolipop_box_generic"
+	spawn_type = /obj/item/reagent_containers/food/snacks/lollipop/combat
+	spawn_number = 10
+	draw_mode = 1
+	w_class = WEIGHT_CLASS_SMALL
+
+/obj/item/storage/box/combat_lolipop/tricord
+	name = "box of Tricord-pops"
+	desc = "A small box of lolipops, they have tricord laced in for you up slowly. Recommended to be sucked on, rather than eaten."
+	icon_state = "lolipop_box_tricord"
+	spawn_type = /obj/item/reagent_containers/food/snacks/lollipop/tricord
+
+/obj/item/storage/box/combat_lolipop/tramadol
+	name = "box of Tram-pops"
+	desc = "A small box of lolipops, they have tramadol laced in to help kill the pain, Recommended to be sucked on, rather than eaten."
+	icon_state = "lolipop_box_tramadol"
+	spawn_type = /obj/item/reagent_containers/food/snacks/lollipop/tramadol/combat
+
 
 
 ////////// MARINES BOXES //////////////////////////

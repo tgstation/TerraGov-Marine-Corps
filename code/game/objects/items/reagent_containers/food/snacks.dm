@@ -2867,3 +2867,19 @@
 	desc = "Your reward for behaving so well in the medbay. Can be eaten or put in the mask slot."
 	list_reagents = list(/datum/reagent/consumable/sugar = 1, /datum/reagent/medicine/tramadol = 4)
 	tastes = list("cough syrup" = 1, "artificial sweetness" = 1)
+
+/obj/item/reagent_containers/food/snacks/lollipop/tramadol/combat
+	desc = "A lolipop devised after realizations that a massive amount of marines end up with a crippling opiod addiction, meant to fight against that. Whether it works or not is up to you, really. Can be eaten or put in the mask slot"
+	list_reagents = list(/datum/reagent/consumable/sugar = 1, /datum/reagent/medicine/tramadol = 10)
+	tastes = list("cough syrup" = 1, "artificial sweetness" = 1)
+
+/obj/item/reagent_containers/food/snacks/lollipop/combat
+	name = "Commed-pop"
+	desc = "A lolipop devised to heal wounds overtime, with a slower amount of reagent use. Can be eaten or put in the mask slot"
+	list_reagents = list(/datum/reagent/consumable/sugar = 1, /datum/reagent/medicine/bicaridine = 5, /datum/reagent/medicine/kelotane = 5)
+
+/obj/item/reagent_containers/food/snacks/lollipop/tricord
+	name = "Tricord-pop"
+	desc = "A lolipop laced with tricordazine, a slow healing reagent. Can be eaten or put in the mask slot."
+	list_reagents = list(/datum/reagent/consumable/sugar = 1, /datum/reagent/medicine/tricordrazine = 10)
+	tastes = list("cough syrup" = 1, "artificial sweetness" = 1)
