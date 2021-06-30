@@ -201,9 +201,6 @@
 	new /obj/item/clothing/mask/cigarette/emergency(src)
 	new /obj/item/tool/lighter(src)
 
-/obj/item/storage/fancy/chemrettes/update_icon_state()
-	icon_state = "[initial(icon_state)][contents.len]"
-
 /obj/item/storage/fancy/cigarettes/dromedaryco
 	name = "\improper Nanotrasen Gold packet"
 	desc = "Building better worlds, and rolling better cigarettes. These fancy cigarettes are Nanotrasen's entry into the market. Comes backed by a fierce legal team."
