@@ -307,10 +307,14 @@
 	if(held_thing && SEND_SIGNAL(held_thing, COMSIG_ITEM_MIDDLECLICKON, A, src) & COMPONENT_ITEM_CLICKON_BYPASS)
 		return FALSE
 
+#define TARGET_FLAGS_MACRO(flagname, typepath) \
+if(selected_ability.target_flags & flagname && !istype(A, typepath)){\
+	. = locate(typepath) in get_turf(A);\
+	if(.){\
+		return;}}
+
 /mob/living/carbon/xenomorph/proc/ability_target(atom/A)
-	if(selected_ability.target_flags & XABB_MOB_TARGET && !isliving(A))
-		var/mob/living/target = locate(/mob/living) in get_turf(A)
-		return target ? target : A
+	TARGET_FLAGS_MACRO(XABB_MOB_TARGET, /mob/living)
 	if(selected_ability.target_flags & XABB_TURF_TARGET && !isturf(A))
 		return get_turf(A)
 	return A
