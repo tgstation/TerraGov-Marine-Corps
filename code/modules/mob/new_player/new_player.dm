@@ -185,7 +185,7 @@
 		dat += "<div class='notice red'>You may no longer join the round.</div><br>"
 	var/faction
 	if(SSticker.mode.flags_round_type & MODE_TWO_HUMAN_FACTIONS)
-		faction = tgui_input_list(src, "What faction do you want to join", "Faction choice", SSticker.mode.joinable_factions)
+		faction = tgui_input_list(src, "What faction do you want to join", "Faction choice", SSticker.mode.get_joinable_factions())
 		if(!faction)
 			return
 	dat += "<div class='latejoin-container' style='width: 100%'>"
