@@ -662,5 +662,6 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 	var/datum/job/scaled_job = SSjob.GetJobType(/datum/job/terragov/squad/leader)
 	scaled_job.total_positions = length(SSjob.active_squads[FACTION_TERRAGOV])
 
+///Return the list of joinable factions, with regards with the current round balance
 /datum/game_mode/proc/get_joinable_factions()
 	return
