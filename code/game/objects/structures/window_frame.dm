@@ -56,6 +56,10 @@
 /obj/structure/window_frame/Destroy()
 	density = FALSE
 	update_nearby_icons()
+	for(var/obj/effect/alien/weeds/weedwall/WW in loc)
+		qdel(WW)
+		new /obj/effect/alien/weeds(loc)
+		break
 	return ..()
 
 /obj/structure/window_frame/attackby(obj/item/I, mob/user, params)
