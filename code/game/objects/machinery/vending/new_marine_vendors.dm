@@ -1081,8 +1081,8 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 	req_access = list(ACCESS_MARINE_SMARTPREP)
 
 	listed_products = list(
-		/obj/item/storage/box/t26_system = list(CAT_ESS, "T-26 Set", 0, "white"),
-		/obj/item/storage/box/t26_system/t25 = list(CAT_ESS, "T-25 Set", 0, "white"),
+		/obj/item/storage/box/t26_system = list(CAT_ESS, "T-26 Smartmachinegun Set", 0, "white"),
+		/obj/item/storage/box/t26_system/t25 = list(CAT_ESS, "T-25 Smartrifle Set", 0, "white"),
 
 
 		/obj/item/ammo_magazine/standard_smartmachinegun = list(CAT_SPEAMM, "T26 ammo drum", 45, "black"),
