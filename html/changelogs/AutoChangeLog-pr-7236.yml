@@ -1,0 +1,4 @@
+author: "InterroLouis"
+delete-after: True
+changes: 
+  - bugfix: "Planted medevac beacons are now vacuum-proof."
