@@ -399,7 +399,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	desc = "Red tipped. Has got a single word stamped on the side: \"(BICARDINE)\"."
 	icon_state = "bicacigoff"
 	item_state = "bicacigoff"
-	icon_on = "bicaigon"
+	icon_on = "bicacigon"
 	smoketime = 30
 	transquantity = 5 // one of each for the whole duration
 	list_reagents = list(/datum/reagent/medicine/bicaridine = 15)

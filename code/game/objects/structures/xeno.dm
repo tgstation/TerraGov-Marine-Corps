@@ -1047,3 +1047,19 @@ TUNNEL
 	user.emote("roar")
 	user.apply_status_effect(STATUS_EFFECT_RESIN_JELLY_COATING)
 	qdel(src)
+
+/obj/item/resin_jelly/throw_at(atom/target, range, speed, thrower, spin, flying)
+	. = ..()
+	if(isxenohivelord(thrower))
+		RegisterSignal(src, COMSIG_MOVABLE_IMPACT, .proc/jelly_throw_hit)
+
+/obj/item/resin_jelly/proc/jelly_throw_hit(datum/source, atom/hit_atom)
+	SIGNAL_HANDLER
+	UnregisterSignal(source, COMSIG_MOVABLE_IMPACT)
+	if(!isxeno(hit_atom))
+		return
+	var/mob/living/carbon/xenomorph/X = hit_atom
+	if(X.fire_resist_modifier <= -20)
+		return
+	X.visible_message("<span class='notice'>[X] is splattered with jelly!</span>")
+	INVOKE_ASYNC(src, .proc/activate_jelly, X)
