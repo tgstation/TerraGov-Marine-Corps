@@ -111,7 +111,7 @@
 			if(telegraph_message)
 				to_chat(M, telegraph_message)
 			if(telegraph_sound)
-				SEND_SOUND(M, sound(telegraph_sound))
+				SEND_SOUND(M, sound(telegraph_sound, volume = 60))
 	addtimer(CALLBACK(src, .proc/start), telegraph_duration)
 
 /**

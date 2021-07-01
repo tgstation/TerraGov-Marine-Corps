@@ -31,7 +31,6 @@
 #define COOLDOWN_CLOAK_IMPLANT "cloak_implant"
 #define COOLDOWN_DRONE_CLOAK "drone_cloak"
 #define COOLDOWN_XENO_TURRETS_ALERT "xeno_turrets_alert"
-#define COOLDOWN_HIVEMIND_DOOR "hivemind_manipulate_door"
 #define COOLDOWN_PARALYSE_ACID "acid_spray_paralyse"
 #define COOLDOWN_RELAY_MOVE "remote_relay_moves"
 #define COOLDOWN_PROJECTOR_LIGHT "projector_light"

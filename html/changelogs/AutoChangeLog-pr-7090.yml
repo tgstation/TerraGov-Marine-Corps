@@ -1,6 +1,0 @@
-author: "BraveMole"
-delete-after: True
-changes: 
-  - balance: "Nightfall; better range and lower CD"
-  - balance: "Gravity crush; higher plasma cost, lower windup, canceling the windup consumme the plasma"
-  - balance: "Young king get grav crush"

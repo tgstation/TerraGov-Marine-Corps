@@ -1,5 +1,0 @@
-author: "SpaceLove"
-delete-after: True
-changes: 
-  - rscdel: "Stripper suits gone."
-  - admin: "Removes admin ability to spawn stripper suits."
