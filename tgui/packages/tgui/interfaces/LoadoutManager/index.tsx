@@ -1,7 +1,7 @@
 import { useBackend, useLocalState } from "../../backend";
-import { Stack, Button, Section, LabeledList } from "../../components";
+import { Stack, Button, Section, LabeledList, Tabs, Box, Flex } from "../../components";
 import { Window } from "../../layouts";
-import { LoadoutListData, LoadoutManagerData, LoadoutItemData } from './Types';
+import { LoadoutListData, LoadoutTabData, LoadoutManagerData, LoadoutItemData } from './Types';
 import { NameInputModal } from './NameInputModal';
 
 const LoadoutItem = (props : LoadoutItemData, context) => { 
@@ -16,7 +16,7 @@ const LoadoutItem = (props : LoadoutItemData, context) => {
       buttons={
         <Button
           onClick={() => {
-            act('selectLoadout', { loadout_name: loadout.name });
+            act('selectLoadout', { loadout_name: loadout.name, loadout_job: loadout.job });
           }}>
           Select Loadout
         </Button>
@@ -102,6 +102,7 @@ export const LoadoutManager = (props, context) => {
       height={400}>
       <Window.Content>
         <Stack vertical>
+          <JobTabs job={job} setJob={setJob} />
           <LoadoutList 
             loadout_list={loadout_list.filter(loadout => loadout.job === job)} 
           />

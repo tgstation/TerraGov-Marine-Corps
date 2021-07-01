@@ -1,6 +1,7 @@
 export type Loadout =
   {
     name: string;
+    job: string;
   }
 
 export type LoadoutItemData = 

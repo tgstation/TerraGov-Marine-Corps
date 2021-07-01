@@ -9,6 +9,7 @@ const LoadoutNavigator = (props: Loadout, context) => {
   const { act } = useBackend(context);
   const {
     name,
+    job,
   }= props;
 
   return (

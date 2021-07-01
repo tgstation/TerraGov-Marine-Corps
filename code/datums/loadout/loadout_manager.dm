@@ -109,6 +109,7 @@
 			loadout.loadout_vendor = loadout_vendor
 			loadout.ui_interact(ui.user)
 		if("selectLoadout")
+			var/job = params["loadout_job"]
 			var/name = params["loadout_name"]
 			if(isnull(name))
 				return
