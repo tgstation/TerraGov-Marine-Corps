@@ -260,7 +260,7 @@
 
 /obj/item/storage/backpack/marine/corpsman/Initialize(mapload, ...)
 	. = ..()
-	cell = new (src)
+	cell = new
 	icon_skin = icon_state
 	update_icon()
 

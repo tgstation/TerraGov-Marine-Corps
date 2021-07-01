@@ -34,6 +34,9 @@
 	if(A && istype(A) && A.ceiling >= CEILING_DEEP_UNDERGROUND)
 		to_chat(H, "<span class='warning'>This won't work if you're standing deep underground.</span>")
 		return FALSE
+	if(istype(A, /area/shuttle/dropship))
+		to_chat(H, "<span class='warning'>You have to be outside the dropship to use this or it won't transmit.</span>")
+		return FALSE
 	var/delay = max(1.5 SECONDS, activation_time - 2 SECONDS * H.skills.getRating("leadership"))
 	H.visible_message("<span class='notice'>[H] starts setting up [src] on the ground.</span>",
 	"<span class='notice'>You start setting up [src] on the ground and inputting all the data it needs.</span>")
@@ -167,7 +170,7 @@
 	faction = _faction
 	GLOB.supply_beacon[name] = src
 	if(life_time)
-		addtimer(CALLBACK(src, .proc/qdel), life_time)
+		QDEL_IN(src, life_time)
 
 /// Remove that beacon from the list of glob supply beacon
 /datum/supply_beacon/Destroy()
