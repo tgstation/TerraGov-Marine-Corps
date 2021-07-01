@@ -974,6 +974,12 @@ MEDICAL
 	)
 	cost = 15
 
+/datum/supply_packs/medical/Medical_hud
+	name = "Medical Hud Crate"
+	contains = list(
+		/obj/item/clothing/glasses/hud/health,
+	)
+	cost = 2
 
 /datum/supply_packs/medical/medical
 	name = "Pills and Chemicals"
