@@ -459,7 +459,7 @@
 
 	for(var/i in embedded_objects)
 		var/obj/item/embedded = i
-		if(!(embedded.embedding.embedded_flags & EMBEDDEED_CAN_BE_YANKED_OUT))
+		if(!(embedded.embedding.embedded_flags & EMBEDDED_CAN_BE_YANKED_OUT))
 			continue
 		msg += "<span class='warning'><b>[t_He] has \a [embedded] sticking out of [t_his] flesh!</span>\n"
 
