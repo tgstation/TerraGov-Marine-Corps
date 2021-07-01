@@ -153,7 +153,9 @@
 /datum/surgery_step/cavity/implant_removal/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected, checks_only)
 	var/datum/internal_organ/brain/sponge = target.internal_organs_by_name["brain"]
 	//potential conflict with brain repair surgery
-	return ..() && (target_zone != "head" || (!sponge || !sponge.damage || sponge.damage>20))
+	var/is_open = affected.surgery_open_stage >= 2 && !(affected.limb_status & LIMB_BLEEDING)
+	var/not_fixing_brain = target_zone != "head" || (!sponge || !sponge.damage || sponge.damage>20) || affected.surgery_open_stage != 3
+	return is_open && not_fixing_brain
 
 /datum/surgery_step/cavity/implant_removal/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
 	user.visible_message("<span class='notice'>[user] starts poking around inside the incision on [target]'s [affected.display_name] with \the [tool].</span>", \
