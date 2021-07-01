@@ -664,13 +664,13 @@
 
 /obj/item/storage/belt/gun/handle_item_insertion(obj/item/item, prevent_warning = 0, mob/user)
 	. = ..()
-	if(. && istype(item, /obj/item/weapon/gun))
+	if(. && isgun(item))
 		current_gun = item
 		update_gun_icon()
 
 /obj/item/storage/belt/gun/remove_from_storage(obj/item/item, atom/new_location, mob/user)
 	. = ..()
-	if(. && istype(item, /obj/item/weapon/gun))
+	if(. && isgun(item))
 		current_gun = null
 		update_gun_icon()
 
