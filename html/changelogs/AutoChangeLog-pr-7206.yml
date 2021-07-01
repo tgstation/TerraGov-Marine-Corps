@@ -1,0 +1,5 @@
+author: "disappointedButNotSuprised"
+delete-after: True
+changes: 
+  - balance: "Refresh Deathsquad equippment - proper meds and buffs for armor and backpack"
+  - rscadd: "New Deathsquad role - Gunner"
