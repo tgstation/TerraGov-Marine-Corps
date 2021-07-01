@@ -128,7 +128,7 @@
 	var/upper_akimbo_accuracy = 2
 	///determines lower accuracy modifier in akimbo
 	var/lower_akimbo_accuracy = 1
-
+	///If the gun is deployable, the time it takes for the weapon to deploy and undeploy.
 	var/deploy_time = 0
 //----------------------------------------------------------
 				//				    \\
@@ -282,7 +282,7 @@
 		to_chat(user, "[dat.Join(" ")]")
 
 /obj/item/weapon/gun/wield(mob/user)
-	if(CHECK_BITFIELD(flags_gun_features, GUN_NO_WIELDING))
+	if(CHECK_BITFIELD(flags_gun_features, GUN_DEPLOYED_FIRE_ONLY))
 		to_chat(user, "<span class='notice'>[src] cannot be fired by hand and must be deployed.</span>")
 		return
 	
@@ -606,7 +606,7 @@ and you're good to go.
 */
 /obj/item/weapon/gun/proc/load_into_chamber(mob/user)
 
-	if(flags_gun_features & GUN_NO_WIELDING && !is_deployed())
+	if(CHECK_BITFIELD(flags_gun_features, GUN_DEPLOYED_FIRE_ONLY) && !CHECK_BITFIELD(flags_item, IS_DEPLOYED))
 		to_chat(user, "<span class='notice'>You cannot fire [src] while it is not deployed.</span>")
 
 	//The workhorse of the bullet procs.
@@ -683,7 +683,7 @@ and you're good to go.
 //----------------------------------------------------------
 
 /obj/item/weapon/gun/proc/Fire()
-	if(QDELETED(gun_user) || !ismob(gun_user) || !target || (!is_deployed() && !able_to_fire(gun_user)))
+	if(QDELETED(gun_user) || !ismob(gun_user) || !target || (!CHECK_BITFIELD(flags_item, IS_DEPLOYED) && !able_to_fire(gun_user)))
 		return
 
 	//The gun should return the bullet that it already loaded from the end cycle of the last Fire().
@@ -1013,7 +1013,7 @@ and you're good to go.
 
 	switch(gun_firemode)
 		if(GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOBURST, GUN_FIREMODE_AUTOMATIC) //Much higher chance on a burst or similar.
-			if(flags_item & WIELDED && wielded_stable() || is_deployed()) //if deployed, its pretty stable.
+			if(flags_item & WIELDED && wielded_stable() || CHECK_BITFIELD(flags_item, IS_DEPLOYED)) //if deployed, its pretty stable.
 				. += burst_amount * burst_scatter_mult
 			else
 				. += burst_amount * burst_scatter_mult * 5
@@ -1030,7 +1030,7 @@ and you're good to go.
 
 
 /obj/item/weapon/gun/proc/simulate_recoil(recoil_bonus = 0, mob/user)
-	if(is_deployed())
+	if(CHECK_BITFIELD(flags_item, IS_DEPLOYED))
 		return TRUE
 	var/total_recoil = recoil_bonus
 	if(flags_item & WIELDED && wielded_stable())

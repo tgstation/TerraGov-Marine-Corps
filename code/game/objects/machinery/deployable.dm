@@ -1,20 +1,12 @@
 /obj/machinery/deployable
 	///Item that is deployed to create src
 	var/obj/item/internal_item
-	///Flags for machine functions
-	var/deploy_flags = NONE
 	///Since /obj/machinery/deployable aquires its sprites from an item and are set in New(), initial(icon_state) would return null. This var exists as a substitute.
 	var/default_icon_state
 
 	hud_possible = list(MACHINE_HEALTH_HUD)
 
-/obj/machinery/deployable/Initialize(mapload, new_item)
-	. = ..()
-	prepare_huds()
-	for(var/datum/atom_hud/squad/sentry_status_hud in GLOB.huds) //Add to the squad HUD
-		sentry_status_hud.add_to_hud(src)
-
-/obj/machinery/deployable/New(loc, _internal_item)
+/obj/machinery/deployable/Initialize(mapload, _internal_item)
 	. = ..()
 	internal_item = _internal_item
 
@@ -24,6 +16,11 @@
 	icon = internal_item.icon
 	default_icon_state = internal_item.icon_state + "_deployed"
 	icon_state = default_icon_state
+
+	prepare_huds()
+	for(var/datum/atom_hud/squad/sentry_status_hud in GLOB.huds) //Add to the squad HUD
+		sentry_status_hud.add_to_hud(src)
+
 	update_icon_state()
 
 /obj/machinery/deployable/update_icon_state()

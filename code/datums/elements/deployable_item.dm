@@ -103,7 +103,7 @@
 		var/obj/machinery/deployable/_deployed_machine = deployed_machine
 		_deployed_machine.internal_item = null
 
-	qdel(deployed_machine)
+	QDEL_NULL(deployed_machine)
 	attached_item.update_icon_state()
 
 

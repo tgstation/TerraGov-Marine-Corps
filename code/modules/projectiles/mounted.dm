@@ -20,7 +20,7 @@
 		icon_state = default_icon_state
 	hud_set_gun_ammo()
 
-/obj/machinery/deployable/mounted/New(loc, _internal_item)
+/obj/machinery/deployable/mounted/Initialize(mapload, _internal_item)
 	. = ..()
 	if(!istype(internal_item, /obj/item/weapon/gun))
 		CRASH("[internal_item] was attempted to be deployed within the type /obj/machinery/deployable/mounted without being a gun]")
@@ -190,17 +190,18 @@ obj/machinery/deployable/mounted/proc/change_target(datum/source, atom/src_objec
 	var/right = leftright[2] + 1
 	if(!(left == (angle-1)) && !(right == (angle+1)))
 		to_chat(operator, "<span class='warning'> [src] cannot be rotated so violently.</span>")
-	else
-		var/turf/w = get_step(src, REVERSE_DIR(angle))
-		var/mob/living/carbon/human/user = operator
-		if(!operator.Move(w))
-			to_chat(operator, "You cannot rotate [src] that way.")
-			return FALSE
+		return FALSE
+	var/turf/w = get_step(src, REVERSE_DIR(angle))
+	var/mob/living/carbon/human/user = operator
 
-		setDir(angle)
-		user.set_interaction(src)
-		playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
-		operator.visible_message("[operator] rotates the [src].","You rotate the [src].")
+	if(!operator.Move(w))
+		to_chat(operator, "You cannot rotate [src] that way.")
+		return FALSE
+
+	setDir(angle)
+	user.set_interaction(src)
+	playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
+	operator.visible_message("[operator] rotates the [src].","You rotate the [src].")
 	return FALSE
 
 

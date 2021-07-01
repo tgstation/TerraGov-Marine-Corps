@@ -290,9 +290,6 @@ should be alright.
 /obj/item/weapon/gun/proc/is_wielded() //temporary proc until we get traits going
 	return CHECK_BITFIELD(flags_item, WIELDED)
 
-/obj/item/weapon/gun/proc/is_deployed()
-	return CHECK_BITFIELD(flags_item, IS_DEPLOYED)
-
 /obj/item/weapon/gun/proc/has_attachment(A)
 	if(!A)
 		return

@@ -678,10 +678,11 @@
 
 
 /obj/screen/ammo/proc/add_hud(mob/living/user, obj/item/weapon/gun/G)
-	if(!user?.client)
-		return
 
 	if(!G)
+		CRASH("/obj/screen/ammo/proc/add_hud() has been called from [src] without the required param of G")
+
+	if(!user?.client)
 		return
 
 	if((user.get_active_held_item() != G && user.get_inactive_held_item() != G && !G.is_deployed()) || !G.hud_enabled || !CHECK_BITFIELD(G.flags_gun_features, GUN_AMMO_COUNTER))
