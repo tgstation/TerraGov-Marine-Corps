@@ -1,7 +1,0 @@
-author: "BraveMole"
-delete-after: True
-changes: 
-  - rscadd: "Loadout vendor V2.0, support all items from essential sets, gear selector and job specific clothes vendor. Also support custom medic belt loadouts (if pills bottle are already free in vendors)"
-  - bugfix: "Loadouts list no longer reset when reaching too many loadouts"
-  - rscadd: "You can import loadouts from other players"
-  - balance: "Remove every mats from engineer essential sets, and give them the corresponding points."

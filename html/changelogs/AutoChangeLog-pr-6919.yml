@@ -1,4 +1,0 @@
-author: "BraveMole"
-delete-after: True
-changes: 
-  - rscdel: "Macros have been disabled to avoid server lag and abuse"
