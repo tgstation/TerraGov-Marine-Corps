@@ -302,7 +302,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 
 
 /obj/item/attachable/ui_action_click(mob/living/user, datum/action/item_action/action, obj/item/weapon/gun/G)
-	if(G != user.get_active_held_item() && G != user.get_inactive_held_item() && !G.is_deployed())
+	if(G != user.get_active_held_item() && G != user.get_inactive_held_item() && !CHECK_BITFIELD(G.flags_item, IS_DEPLOYED))
 		to_chat(user, "<span class='warning'>[G] must be in our hands to do this.</span>")
 
 /obj/item/attachable/hydro_cannon/ui_action_click(mob/living/user, datum/action/item_action/action, obj/item/weapon/gun/G)
@@ -753,7 +753,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 		zoom(user, zoom_offset, zoom_viewsize)
 		return TRUE
 
-	if(!master_gun.zoom && !(master_gun.flags_item & WIELDED) && !master_gun.is_deployed())
+	if(!master_gun.zoom && !(master_gun.flags_item & WIELDED) && !CHECK_BITFIELD(master_gun.flags_item, IS_DEPLOYED))
 		if(user)
 			to_chat(user, "<span class='warning'>You must hold [master_gun] with two hands to use [src].</span>")
 		return FALSE

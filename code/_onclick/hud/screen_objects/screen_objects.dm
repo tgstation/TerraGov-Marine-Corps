@@ -685,7 +685,7 @@
 	if(!user?.client)
 		return
 
-	if((user.get_active_held_item() != G && user.get_inactive_held_item() != G && !G.is_deployed()) || !G.hud_enabled || !CHECK_BITFIELD(G.flags_gun_features, GUN_AMMO_COUNTER))
+	if((user.get_active_held_item() != G && user.get_inactive_held_item() != G && !CHECK_BITFIELD(G.flags_item, IS_DEPLOYED)) || !G.hud_enabled || !CHECK_BITFIELD(G.flags_gun_features, GUN_AMMO_COUNTER))
 		return
 
 	user.client.screen += src

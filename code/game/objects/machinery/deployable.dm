@@ -1,5 +1,5 @@
 /obj/machinery/deployable
-	///Item that is deployed to create src
+	///Item that is deployed to create src.
 	var/obj/item/internal_item
 	///Since /obj/machinery/deployable aquires its sprites from an item and are set in New(), initial(icon_state) would return null. This var exists as a substitute.
 	var/default_icon_state

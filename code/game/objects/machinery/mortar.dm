@@ -230,11 +230,6 @@
 
 	return ..()
 
-
-/obj/machinery/deployable/mortar/fixed
-	desc = "A manual, crew-operated mortar system intended to rain down 80mm goodness on anything it's aimed at. Uses manual targetting dials. Insert round to fire. This one is bolted and welded into the ground."
-	deploy_flags = DEPLOYED_NO_PICKUP
-
 //The portable mortar item
 /obj/item/mortar_kit
 	name = "\improper M402 mortar"
