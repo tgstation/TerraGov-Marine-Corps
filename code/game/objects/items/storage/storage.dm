@@ -548,13 +548,6 @@
 		I.on_exit_storage(src)
 		qdel(I)
 
-/// Delete everything that's inside the storage
-/obj/item/storage/proc/delete_contents()
-	for(var/obj/item/I AS in contents)
-		I.on_exit_storage(src)
-		qdel(I)
-
-
 /obj/item/storage/Initialize(mapload, ...)
 	. = ..()
 	PopulateContents()

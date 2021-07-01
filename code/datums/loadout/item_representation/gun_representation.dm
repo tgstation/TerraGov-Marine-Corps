@@ -7,7 +7,7 @@
 	var/list/datum/item_representation/gun_attachement/attachments = list()
 
 
-/datum/item_representation/gun/New(obj/item/item_to_copy, datum/loadout/loadout)
+/datum/item_representation/gun/New(obj/item/item_to_copy)
 	if(!item_to_copy)
 		return
 	if(!isgun(item_to_copy))
@@ -30,7 +30,7 @@
  */
 /datum/item_representation/gun_attachement
 
-/datum/item_representation/gun_attachement/New(obj/item/item_to_copy, datum/loadout/loadout)
+/datum/item_representation/gun_attachement/New(obj/item/item_to_copy)
 	if(!item_to_copy)
 		return
 	if(!isgunattachment(item_to_copy))
@@ -60,7 +60,7 @@
 	/// The type of gun this handful can feed
 	var/gun_type
 
-/datum/item_representation/handful_representation/New(obj/item/item_to_copy, datum/loadout/loadout)
+/datum/item_representation/handful_representation/New(obj/item/item_to_copy)
 	if(!item_to_copy)
 		return
 	if(!ishandful(item_to_copy))

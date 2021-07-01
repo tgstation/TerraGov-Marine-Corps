@@ -9,7 +9,7 @@
 	/// If it's allowed to bypass the vendor check
 	var/bypass_vendor_check = FALSE
 
-/datum/item_representation/New(obj/item/item_to_copy, datum/loadout/loadout)
+/datum/item_representation/New(obj/item/item_to_copy)
 	if(!item_to_copy)
 		return
 	item_type = item_to_copy.type
@@ -53,7 +53,7 @@
 	/// The contents in the storage
 	var/list/contents = list()
 
-/datum/item_representation/storage/New(obj/item/item_to_copy, datum/loadout/loadout)
+/datum/item_representation/storage/New(obj/item/item_to_copy)
 	if(!item_to_copy)
 		return
 	if(!isstorage(item_to_copy))
@@ -67,7 +67,7 @@
 		if(!isitem(thing_in_content))
 			continue
 		item_representation_type = item2representation_type(thing_in_content.type)
-		contents += new item_representation_type(thing_in_content, loadout)
+		contents += new item_representation_type(thing_in_content)
 
 /datum/item_representation/storage/instantiate_object(datum/loadout_seller/seller, master = null, mob/living/user)
 	. = ..()
