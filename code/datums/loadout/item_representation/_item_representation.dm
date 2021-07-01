@@ -19,10 +19,13 @@
  * First, it tries to find that object in a vendor with enough supplies.
  * If it finds one vendor with that item in reserve, it sells it and instantiate that item.
  * If it fails to find a vendor, it will add that item to a list on seller to warns him that it failed
+ * Seller: The datum in charge of checking for points and buying_flags
+ * Master: used for modules, when the item need to be installed on master. Can be null
+ * User: The human trying to equip this item
  * Return the instantatiated item if it was successfully sold, and return null otherwise
  */
-/datum/item_representation/proc/instantiate_object(datum/loadout_seller/seller, master = null, datum/loadout/loadout, mob/user)
-	if(seller && !bypass_vendor_check && !buy_item_in_vendor(item_type, seller, loadout, user))
+/datum/item_representation/proc/instantiate_object(datum/loadout_seller/seller, master = null, mob/living/user)
+	if(seller && !bypass_vendor_check && !buy_item_in_vendor(item_type, seller, user))
 		return
 	var/obj/item/item = new item_type(master)
 	return item
@@ -66,9 +69,12 @@
 		item_representation_type = item2representation_type(thing_in_content.type)
 		contents += new item_representation_type(thing_in_content, loadout)
 
-/datum/item_representation/storage/instantiate_object(datum/loadout_seller/seller, master = null, datum/loadout/loadout, mob/user)
+/datum/item_representation/storage/instantiate_object(datum/loadout_seller/seller, master = null, mob/living/user)
 	. = ..()
 	if(!.)
+		return
+	//Some storage cannot handle custom contents
+	if(is_type_in_typecache(item_type, GLOB.bypass_storage_content_save))
 		return
 	var/obj/item/storage/storage = .
 	var/list/obj/item/starting_items = list()
@@ -79,13 +85,13 @@
 		if(!item_representation.bypass_vendor_check && starting_items[item_representation.item_type] > 0)
 			starting_items[item_representation.type] = starting_items[item_representation.item_type] - 1
 			item_representation.bypass_vendor_check = TRUE
-		var/obj/item/item_to_insert = item_representation.instantiate_object(seller, master, loadout, user)
+		var/obj/item/item_to_insert = item_representation.instantiate_object(seller, null, user)
 		if(!item_to_insert)
 			continue
 		if(storage.can_be_inserted(item_to_insert))
 			storage.handle_item_insertion(item_to_insert)
 			continue
-		item_to_insert.forceMove(user.loc)
+		item_to_insert.forceMove(get_turf(user))
 
 
 /**
@@ -95,7 +101,7 @@
 	///Amount of items in the stack
 	var/amount = 0
 
-/datum/item_representation/stack/New(obj/item/item_to_copy, datum/loadout/loadout)
+/datum/item_representation/stack/New(obj/item/item_to_copy)
 	if(!item_to_copy)
 		return
 	if(!isitemstack(item_to_copy))
@@ -104,8 +110,8 @@
 	var/obj/item/stack/stack_to_copy = item_to_copy
 	amount = stack_to_copy.amount
 
-/datum/item_representation/stack/instantiate_object(datum/loadout_seller/seller, master = null, datum/loadout/loadout, mob/user)
-	if(seller && !bypass_vendor_check && !buy_item_in_vendor(item_type, seller, loadout, user) && !buy_stack(item_type, seller, loadout, user, amount))
+/datum/item_representation/stack/instantiate_object(datum/loadout_seller/seller, master = null, mob/living/user)
+	if(seller && !bypass_vendor_check && !buy_stack(item_type, seller, user, amount) && !buy_item_in_vendor(item_type, seller, user))
 		return
 	var/obj/item/stack/stack = new item_type(master)
 	stack.amount = amount

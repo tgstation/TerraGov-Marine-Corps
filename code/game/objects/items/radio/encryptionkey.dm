@@ -12,7 +12,7 @@
 /obj/item/encryptionkey/engi
 	name = "Engineering Radio Encryption Key"
 	icon_state = "eng_cypherkey"
-	channels = list(RADIO_CHANNEL_ENGINEERING = TRUE,RADIO_CHANNEL_CAS = TRUE)
+	channels = list(RADIO_CHANNEL_ENGINEERING = TRUE,RADIO_CHANNEL_CAS = TRUE, RADIO_CHANNEL_REQUISITIONS = TRUE)
 
 /obj/item/encryptionkey/cas
 	name = "Fire support radio encryption key"
@@ -74,7 +74,7 @@
 	channels = list(RADIO_CHANNEL_COMMON = TRUE)
 
 /obj/item/encryptionkey/engi/rebel
-	channels = list(RADIO_CHANNEL_ENGINEERING_REBEL = TRUE,RADIO_CHANNEL_CAS_REBEL = TRUE)
+	channels = list(RADIO_CHANNEL_ENGINEERING_REBEL = TRUE,RADIO_CHANNEL_CAS_REBEL = TRUE, RADIO_CHANNEL_REQUISITIONS_REBEL = TRUE)
 
 /obj/item/encryptionkey/cas/rebel
 	channels = list(RADIO_CHANNEL_CAS_REBEL = TRUE)

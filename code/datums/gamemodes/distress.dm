@@ -30,8 +30,9 @@
 
 /datum/game_mode/infestation/distress/post_setup()
 	. = ..()
-	addtimer(CALLBACK(src, .proc/announce_bioscans, FALSE, 1), rand(30 SECONDS, 1 MINUTES)) //First scan shows no location but more precise numbers.
 	addtimer(CALLBACK(GLOB.hive_datums[XENO_HIVE_NORMAL], /datum/hive_status/proc/handle_silo_death_timer), MINIMUM_TIME_SILO_LESS_COLLAPSE)
+
+	SSpoints.add_psy_points(XENO_HIVE_NORMAL, SILO_PRICE + 2 * XENO_TURRET_PRICE)
 
 	for(var/i in GLOB.xeno_turret_turfs)
 		new /obj/structure/xeno/resin/xeno_turret(i)
@@ -44,7 +45,7 @@
 	if(!.)
 		return
 	var/datum/job/scaled_job = SSjob.GetJobType(/datum/job/xenomorph) //Xenos
-	scaled_job.job_points_needed  = CONFIG_GET(number/distress_larvapoints_required)
+	scaled_job.job_points_needed  = DISTRESS_LARVA_POINTS_NEEDED
 
 
 /datum/game_mode/infestation/distress/orphan_hivemind_collapse()

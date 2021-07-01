@@ -38,7 +38,7 @@
 	if(!.)
 		return
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
-	xeno_job.job_points_needed  = CONFIG_GET(number/crash_larvapoints_required)
+	xeno_job.job_points_needed  = CRASH_LARVA_POINTS_NEEDED
 
 
 /datum/game_mode/infestation/crash/pre_setup()

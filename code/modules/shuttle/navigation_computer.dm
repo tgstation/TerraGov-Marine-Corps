@@ -17,6 +17,8 @@
 	var/list/jumpto_ports = list()
 	/// The custom docking port placed by this console
 	var/obj/docking_port/stationary/my_port
+	/// The previous custom docking port that was safely landed at, for emergency landings
+	var/obj/docking_port/stationary/last_valid_ground_port
 	/// The mobile docking port of the connected shuttle
 	var/obj/docking_port/mobile/shuttle_port
 	/// Traits forbided for custom docking

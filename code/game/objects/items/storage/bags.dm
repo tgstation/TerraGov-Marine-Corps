@@ -213,9 +213,10 @@
 	update_icon()
 
 // Instead of removing
-/obj/item/storage/bag/sheetsnatcher/remove_from_storage(obj/item/W as obj, atom/new_location)
+/obj/item/storage/bag/sheetsnatcher/remove_from_storage(obj/item/W, atom/new_location, mob/user)
 	var/obj/item/stack/sheet/S = W
-	if(!istype(S)) return 0
+	if(!istype(S)) 
+		return FALSE
 
 	//I would prefer to drop a new stack, but the item/attack_hand(mob/living/user)
 	// that calls this can't recieve a different object than you clicked on.
@@ -227,7 +228,7 @@
 		temp.amount = S.amount - S.max_amount
 		S.amount = S.max_amount
 
-	return ..(S,new_location)
+	return ..(S,new_location,user)
 
 // -----------------------------
 //    Sheet Snatcher (Cyborg)

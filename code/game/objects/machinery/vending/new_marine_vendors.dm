@@ -72,7 +72,9 @@
 
 	.["vendor_name"] = name
 	.["show_points"] = use_points
-	.["total_marine_points"] = MARINE_TOTAL_BUY_POINTS
+	var/obj/item/card/id/ID = user.get_idcard()
+	.["total_marine_points"] = ID ? initial(ID.marine_points) : 0
+
 
 	for(var/i in listed_products)
 		var/list/myprod = listed_products[i]
@@ -182,7 +184,8 @@
 
 			if(bitf == MARINE_CAN_BUY_UNIFORM && ishumanbasic(usr))
 				var/mob/living/carbon/human/H = usr
-				new /obj/item/radio/headset/mainship/marine(loc, H.assigned_squad, vendor_role)
+				var/headset_type = H.faction == FACTION_TERRAGOV ? /obj/item/radio/headset/mainship/marine : /obj/item/radio/headset/mainship/marine/rebel
+				new headset_type(loc, H.assigned_squad, vendor_role)
 				if(!istype(H.job, /datum/job/terragov/squad/engineer))
 					new /obj/item/clothing/gloves/marine(loc, H.assigned_squad, vendor_role)
 				if(istype(H.job, /datum/job/terragov/squad/leader))
@@ -867,21 +870,17 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 
 /obj/effect/essentials_set/basic_engineer
 	spawned_gear_list = list(
-		/obj/item/clothing/glasses/welding,
 		/obj/item/clothing/under/marine/engineer,
 		/obj/item/clothing/shoes/marine/full,
 		/obj/item/storage/box/MRE,
-		/obj/item/clothing/gloves/marine/insulated,
 	)
 
 /obj/effect/essentials_set/basic_engineermodular
 	spawned_gear_list = list(
 		/obj/item/clothing/under/marine/jaeger,
 		/obj/item/clothing/suit/modular,
-		/obj/item/clothing/glasses/welding,
 		/obj/item/clothing/shoes/marine/full,
 		/obj/item/storage/box/MRE,
-		/obj/item/clothing/gloves/marine/insulated,
 		/obj/item/facepaint/green,
 	)
 
@@ -911,9 +910,8 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 	spawned_gear_list = list(
 		/obj/item/explosive/plastique,
 		/obj/item/explosive/grenade/chem_grenade/razorburn_smol,
-		/obj/item/stack/sandbags_empty = 50,
-		/obj/item/stack/sheet/metal/large_stack,
-		/obj/item/stack/sheet/plasteel/medium_stack,
+		/obj/item/clothing/glasses/welding,
+		/obj/item/clothing/gloves/marine/insulated,
 		/obj/item/cell/high,
 		/obj/item/tool/shovel/etool,
 		/obj/item/lightreplacer,
@@ -923,9 +921,9 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 /obj/effect/essentials_set/leader
 	spawned_gear_list = list(
 		/obj/item/explosive/plastique,
-		/obj/item/squad_beacon,
-		/obj/item/squad_beacon,
-		/obj/item/squad_beacon/bomb,
+		/obj/item/beacon/supply_beacon,
+		/obj/item/beacon/supply_beacon,
+		/obj/item/beacon/orbital_bombardment_beacon,
 		/obj/item/whistle,
 		/obj/item/radio,
 		/obj/item/motiondetector,
@@ -935,8 +933,8 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 
 /obj/effect/essentials_set/commander
 	spawned_gear_list = list(
-		/obj/item/squad_beacon,
-		/obj/item/squad_beacon/bomb,
+		/obj/item/beacon/supply_beacon,
+		/obj/item/beacon/orbital_bombardment_beacon,
 		/obj/item/healthanalyzer,
 		/obj/item/roller/medevac,
 		/obj/item/medevac_beacon,

@@ -434,7 +434,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define XENO_DEADHUMAN_DRAG_SLOWDOWN 2
 #define XENO_EXPLOSION_RESIST_3_MODIFIER 0.25 //multiplies top level explosive damage by this amount.
 
-#define KING_SUMMON_TIMER_DURATION 10 MINUTES
+#define KING_SUMMON_TIMER_DURATION 5 MINUTES
 
 #define SPIT_UPGRADE_BONUS(Xenomorph) (( max(0,Xenomorph.upgrade_as_number()) * 0.15 )) //increase damage by 15% per upgrade level; compensates for the loss of insane attack speed.
 
@@ -512,12 +512,18 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define HUNTER_SNEAKATTACK_RUN_REDUCTION 0.2
 #define HUNTER_SNEAKATTACK_WALK_INCREASE 1
 #define HUNTER_SNEAKATTACK_MULTI_RECOVER_DELAY 10
+#define HUNTER_MARK_WINDUP						1 SECONDS //Windup of the Hunter's Mark
+#define HUNTER_PSYCHIC_TRACE_COOLDOWN			5 SECONDS //Cooldown of the Hunter's Psychic Trace, and duration of its arrow
 
 //Ravager defines:
 #define RAV_CHARGESPEED 2
 #define RAV_CHARGESTRENGTH 2
 #define RAV_CHARGEDISTANCE 4
 #define RAV_CHARGE_TYPE 3
+
+#define RAVAGER_ENDURE_DURATION				10 SECONDS
+#define RAVAGER_ENDURE_DURATION_WARNING		0.7
+#define RAVAGER_ENDURE_HP_LIMIT				-200
 
 //crusher defines
 #define CRUSHER_STOMP_LOWER_DMG 40

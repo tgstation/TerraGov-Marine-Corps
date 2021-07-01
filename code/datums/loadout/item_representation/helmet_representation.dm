@@ -19,12 +19,12 @@
 		module = new /datum/item_representation/modular_helmet_module(helmet_to_copy.installed_module)
 	greyscale_colors = helmet_to_copy.greyscale_colors
 
-/datum/item_representation/modular_helmet/instantiate_object(datum/loadout_seller/seller, master = null, datum/loadout/loadout, mob/user)
+/datum/item_representation/modular_helmet/instantiate_object(datum/loadout_seller/seller, master = null, mob/living/user)
 	. = ..()
 	if(!.)
 		return
 	var/obj/item/clothing/head/modular/helmet = .
-	module?.install_on_helmet(seller, helmet, loadout, user)
+	module?.install_on_helmet(seller, helmet, user)
 	helmet.set_greyscale_colors(greyscale_colors)
 
 /datum/item_representation/modular_helmet/get_tgui_data()
@@ -62,6 +62,6 @@
 	..()
 
 ///Attach the instantiated item on an helmet
-/datum/item_representation/modular_helmet_module/proc/install_on_helmet(datum/loadout_seller/seller, obj/item/clothing/head/modular/helmet, datum/loadout/loadout, mob/user)
-	var/obj/item/helmet_module/module = instantiate_object(seller, null, loadout, user)
+/datum/item_representation/modular_helmet_module/proc/install_on_helmet(datum/loadout_seller/seller, obj/item/clothing/head/modular/helmet, mob/living/user)
+	var/obj/item/helmet_module/module = instantiate_object(seller, null, user)
 	module?.do_attach(null, helmet)

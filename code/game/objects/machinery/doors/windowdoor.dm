@@ -318,6 +318,9 @@
 	req_access = list(ACCESS_MARINE_BRIDGE)
 	dir = EAST
 
+/obj/machinery/door/window/secure/eastleft/bridge/rebel
+	req_access = list(ACCESS_MARINE_BRIDGE_REBEL)
+
 /obj/machinery/door/window/secure/westleft/bridge
 	req_access = list(ACCESS_MARINE_BRIDGE)
 	dir = WEST
@@ -375,13 +378,9 @@
 	req_one_access = list(ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_CARGO)
 	dir = SOUTH
 
-/obj/machinery/door/window/secure/southleft/req
-	req_one_access = list(ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_CARGO)
-	dir = SOUTH
+/obj/machinery/door/window/secure/southleft/req/rebel
+	req_one_access = list(ACCESS_MARINE_LOGISTICS_REBEL, ACCESS_MARINE_CARGO_REBEL)
 
-/obj/machinery/door/window/secure/southleft/req
-	req_one_access = list(ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_CARGO)
-	dir = SOUTH
 
 /obj/machinery/door/window/secure/northright/req
 	req_one_access = list(ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_CARGO)

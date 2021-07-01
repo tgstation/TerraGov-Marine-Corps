@@ -3,30 +3,35 @@
  * It also contains a tgui to navigate beetween loadouts
  */
 /datum/loadout_manager
-	/// The data sent to tgui
+	/**
+	 * List of all names/jobs of all loadouts. 
+	 * The format is like this: 
+	 * list(loadout_job_a, loadout_name_a, loadout_job_b, loadout_name_b,.... etc)
+	 * This is because jatum doesn't like list of list
+	 * This is converted to a list of list when sending to tgui
+	 */
 	var/loadouts_data = list()
 	/// The host of the loadout_manager, aka from which loadout vendor are you managing loadouts
 	var/loadout_vendor 
 	/// The version of the loadout manager
-	var/version = 1
+	var/version = CURRENT_LOADOUT_VERSION
 
-///Remove a loadout from the list.
-/datum/loadout_manager/proc/delete_loadout(datum/loadout/loadout)
-	for(var/i = 1 ; i <= length(loadouts_data), i += 2)
-		if(loadout.job == loadouts_data[i] && loadout.name == loadouts_data[i+1])
+///Remove the data of a loadout from the loadouts list
+/datum/loadout_manager/proc/delete_loadout(mob/user, loadout_name, loadout_job)
+	for(var/i = 1; i <= length(loadouts_data); i += 2)
+		if(loadout_job == loadouts_data[i] && loadout_name == loadouts_data[i+1])
 			loadouts_data -= loadouts_data[i+1]
 			loadouts_data -= loadouts_data[i]
+			user.client.prefs.delete_loadout(loadout_name, loadout_job)
 			return
 
-///Add one loadout to the loadout data
+
+///Add the name and the job of a datum/loadout into the list of all loadout data
 /datum/loadout_manager/proc/add_loadout(datum/loadout/next_loadout)
 	loadouts_data += next_loadout.job
 	loadouts_data += next_loadout.name
 
 /datum/loadout_manager/ui_interact(mob/living/user, datum/tgui/ui)
-	if(!(user.job.title in GLOB.loadout_job_supported))
-		to_chat(ui.user, "<span class='warning'>Only squad members can use this vendor!</span>")
-		return
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "LoadoutManager")
@@ -52,7 +57,7 @@
 	. = ..()
 	var/data = list()
 	var/list/loadouts_data_tgui = list()
-	for(var/i = 1 ; i <= length(loadouts_data), i += 2)
+	for(var/i = 1; i <= length(loadouts_data); i += 2)
 		var/next_loadout_data = list()
 		next_loadout_data["job"] = loadouts_data[i]
 		next_loadout_data["name"] = loadouts_data[i+1]
@@ -95,6 +100,9 @@
 			if(!istype(loadout))
 				to_chat(ui.user, "<span class='warning'>Loadout not found!</span>")
 				return
+			if(loadout.version != CURRENT_LOADOUT_VERSION)
+				to_chat(ui.user, "<span class='warning'>The loadouts was found but is from a past version, and cannot be imported.</span>")
+				return
 			ui.user.client.prefs.save_loadout(loadout)
 			add_loadout(loadout)
 			update_static_data(ui.user, ui)
@@ -108,7 +116,7 @@
 			var/datum/loadout/loadout = ui.user.client.prefs.load_loadout(name, job)
 			if(!loadout)
 				to_chat(ui.user, "<span class='warning'>Error when loading this loadout</span>")
-				delete_loadout(name, job)
+				delete_loadout(ui.user, name, job)
 				CRASH("Fail to load loadouts")
 			loadout.loadout_vendor = loadout_vendor
 			loadout.ui_interact(ui.user)

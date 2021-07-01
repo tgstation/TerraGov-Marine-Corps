@@ -14,9 +14,6 @@
 	melee_damage = 21
 	attack_delay = 7
 
-	// *** Tackle *** //
-	tackle_damage = 28
-
 	// *** Speed *** //
 	speed = -1.1
 	weeds_speed_mod = -0.1
@@ -54,6 +51,8 @@
 		/datum/action/xeno_action/activable/haunt,
 		/datum/action/xeno_action/activable/pounce/hunter,
 		/datum/action/xeno_action/stealth,
+		/datum/action/xeno_action/activable/hunter_mark,
+		/datum/action/xeno_action/psychic_trace,
 	)
 
 /datum/xeno_caste/hunter/young
@@ -65,9 +64,6 @@
 	upgrade_name = "Mature"
 	caste_desc = "A fast, powerful front line combatant. It looks a little more dangerous."
 	upgrade = XENO_UPGRADE_ONE
-
-	// *** Tackle *** //
-	tackle_damage = 28
 
 	// *** Speed *** //
 	speed = -1.2
@@ -95,9 +91,6 @@
 
 	// *** Melee Attacks *** //
 	melee_damage = 24
-
-	// *** Tackle *** //
-	tackle_damage = 32
 
 	// *** Speed *** //
 	speed = -1.3
@@ -127,9 +120,6 @@
 	// *** Melee Attacks *** //
 	melee_damage = 24
 
-	// *** Tackle *** //
-	tackle_damage = 32
-
 	// *** Speed *** //
 	speed = -1.4
 
@@ -148,4 +138,3 @@
 
 	// *** Ranged Attack *** //
 	pounce_delay = 10.0 SECONDS
-

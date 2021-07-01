@@ -48,11 +48,13 @@
 #define MODE_DEAD_GRAB_FORBIDDEN (1<<12)
 #define MODE_SILO_RESPAWN (1<<13)
 #define MODE_HUMAN_ONLY (1<<14)
+#define MODE_TWO_HUMAN_FACTIONS	(1<<15)
 
 #define MODE_LANDMARK_RANDOM_ITEMS (1<<0)
 #define MODE_LANDMARK_SPAWN_XENO_TUNNELS (1<<1)
 #define MODE_LANDMARK_SPAWN_MAP_ITEM (1<<2)
 #define MODE_LANDMARK_SPAWN_XENO_TURRETS (1<<3)
+#define MODE_LANDMARK_SPAWN_SPECIFIC_SHUTTLE_CONSOLE (1<<4)
 
 #define MODE_INFESTATION_X_MAJOR "Xenomorph Major Victory"
 #define MODE_INFESTATION_M_MAJOR "Marine Major Victory"
@@ -122,14 +124,22 @@
 
 #define COUNT_IGNORE_ALIVE_SSD (COUNT_IGNORE_HUMAN_SSD|COUNT_IGNORE_XENO_SSD)
 
-#define SILO_PRICE 1200
-#define XENO_TURRET_PRICE 150
-#define XENO_KING_PRICE 2500
+#define SILO_PRICE 800
+#define XENO_TURRET_PRICE 100
+#define XENO_KING_PRICE 1800
+//How many psych point one gen gives per person on the server
+#define BASE_PSYCH_POINT_OUTPUT 0.008
+//How many psy points are gave for each marine psy drained
+#define PSY_DRAIN_REWARD 60
+//How many psy points are gave every 5 second by a cocoon
+#define COCOON_PSY_POINTS_REWARD 2
 
 #define INVOKE_KING_TIME_LOCK 1 HOURS
 
-#define SMALL_SILO_MAXIMUM_PLAYER_COUNT 30
-
+/// How each alive marine contributes to burrower larva output per minute. So with one pool, 15 marines are giving 0.375 points per minute, so it's a new xeno every 22 minutes
+#define SILO_BASE_OUTPUT_PER_MARINE 0.03
+/// This is used to ponderate the number of silo, so to reduces the diminishing returns of having more and more silos
+#define SILO_OUTPUT_PONDERATION 2
 //Time (after round start) before siloless timer can start
 #define MINIMUM_TIME_SILO_LESS_COLLAPSE 1 HOURS
 
@@ -140,3 +150,7 @@
 #define COCOONED_DEATH "cocoon_death"
 #define SILO_DEATH "silo_death"
 #define HEADBITE_DEATH "headbite_death"
+
+#define DISTRESS_LARVA_POINTS_NEEDED 8
+#define HUNT_LARVA_POINTS_NEEDED 8
+#define CRASH_LARVA_POINTS_NEEDED 7

@@ -85,7 +85,7 @@ export const LoadoutManager = (props, context) => {
   const [
     job,
     setJob,
-  ] = useLocalState(context, 'job', "marine");
+  ] = useLocalState(context, 'job', "Squad Marine");
   const [
     saveNewLoadout,
     setSaveNewLoadout,

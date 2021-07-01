@@ -1050,24 +1050,10 @@
 	keybind_signal = COMSIG_XENOABILITY_SECRETE_RESIN_SILO
 	cooldown_timer = 60 SECONDS
 	gamemode_flags = ABILITY_DISTRESS
-	/// If we are building a small silo
-	var/build_small_silo = FALSE
 	/// How long does it take to build
 	var/build_time = 10 SECONDS
 	/// Pyschic point cost
 	var/psych_cost = SILO_PRICE
-
-/datum/action/xeno_action/activable/build_silo/action_activate()
-	var/mob/living/carbon/xenomorph/X = owner
-	if(X.selected_ability == src)
-		if(get_active_player_count(TRUE) > SMALL_SILO_MAXIMUM_PLAYER_COUNT)
-			to_chat(X, "<span class ='notice'>There are too many living sisters and hosts to place a small silo!</span>")
-			build_small_silo = FALSE
-			return
-		build_small_silo = !build_small_silo
-		var/silo_type = build_small_silo ? "small" : "regular"
-		to_chat(X, "<span class ='notice'> You will now build a [silo_type] silo </span>")
-	return ..()
 
 /datum/action/xeno_action/activable/build_silo/can_use_ability(atom/A, silent, override_flags)
 	. = ..()
@@ -1091,8 +1077,7 @@
 		return FALSE
 
 	var/mob/living/carbon/xenomorph/X = owner
-	var/final_psych_cost = psych_cost * (build_small_silo ? 0.5 : 1)
-	if(SSpoints.xeno_points_by_hive[X.hivenumber] < final_psych_cost)
+	if(SSpoints.xeno_points_by_hive[X.hivenumber] < psych_cost)
 		to_chat(owner, "<span class='xenowarning'>The hive doesn't have the necessary psychic points for you to do that!</span>")
 		return FALSE
 
@@ -1106,19 +1091,14 @@
 		return fail_activate()
 
 	var/mob/living/carbon/xenomorph/X = owner
-	var/final_psych_cost = psych_cost * (build_small_silo ? 0.5 : 1)
-	if(SSpoints.xeno_points_by_hive[X.hivenumber] < final_psych_cost)
+	if(SSpoints.xeno_points_by_hive[X.hivenumber] < psych_cost)
 		to_chat(owner, "<span class='xenowarning'>Someone used all the psych points while we were building!</span>")
 		return fail_activate()
 
-	to_chat(owner, "<span class='notice'>We build a new silo for [final_psych_cost] psy points.</span>")
-	SSpoints.xeno_points_by_hive[X.hivenumber] -= final_psych_cost
-	log_game("[owner] has built a silo in [AREACOORD(A)], spending [final_psych_cost] psy points in the process")
+	to_chat(owner, "<span class='notice'>We build a new silo for [psych_cost] psy points.</span>")
+	SSpoints.xeno_points_by_hive[X.hivenumber] -= psych_cost
+	log_game("[owner] has built a silo in [AREACOORD(A)], spending [psych_cost] psy points in the process")
 	succeed_activate()
-	if(build_small_silo)
-		new /obj/structure/xeno/resin/silo/small_silo (get_step(A, SOUTHWEST))
-		xeno_message("[X.name] has built a small silo at [get_area(A)]!", "xenoannounce", 5, X.hivenumber)
-		return
 	new /obj/structure/xeno/resin/silo (get_step(A, SOUTHWEST))
 	xeno_message("[X.name] has built a silo at [get_area(A)]!", "xenoannounce", 5, X.hivenumber)
 
@@ -1254,7 +1234,7 @@
 	gamemode_flags = ABILITY_DISTRESS
 	plasma_cost = 100
 	///How much psy points it give
-	var/psy_points_reward = 40
+	var/psy_points_reward = PSY_DRAIN_REWARD
 	///How much larva points it gives (8 points for one larva in distress)
 	var/larva_point_reward = 1
 
@@ -1324,7 +1304,7 @@
 
 	SSpoints.add_psy_points(X.hivenumber, psy_points_reward)
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
-	xeno_job.add_job_points(larva_point_reward, PSY_DRAIN_ORIGIN)
+	xeno_job.add_job_points(larva_point_reward, COCOON_ORIGIN)
 
 	log_combat(victim, owner, "was drained.")
 	log_game("[key_name(victim)] was drained at [AREACOORD(victim.loc)].")

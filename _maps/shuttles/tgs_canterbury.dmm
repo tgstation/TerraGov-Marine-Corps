@@ -273,7 +273,7 @@
 /turf/open/floor/mainship/cargo,
 /area/shuttle/canterbury)
 "aO" = (
-/obj/machinery/vending/marine/shared,
+/obj/machinery/loadout_vendor,
 /turf/open/floor/mainship/cargo,
 /area/shuttle/canterbury)
 "aP" = (
@@ -862,6 +862,13 @@
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/shuttle/canterbury)
+"Hv" = (
+/obj/structure/window/reinforced/toughened{
+	dir = 4
+	},
+/obj/machinery/loadout_vendor,
+/turf/open/floor/mainship/cargo,
+/area/shuttle/canterbury)
 "KE" = (
 /obj/effect/landmark/start/job/crash/squadmarine,
 /turf/open/floor/mainship/mono,
@@ -1088,7 +1095,7 @@ cP
 aJ
 cS
 aO
-bd
+Hv
 bd
 aJ
 bJ

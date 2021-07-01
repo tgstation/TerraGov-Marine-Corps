@@ -105,14 +105,6 @@
 			continue
 		item2representation_type = item2representation_type(item_in_slot.type)
 		item_list[slot_key] = new item2representation_type(item_in_slot, src)
-	if(!admin_loadout)
-		return
-	for(var/slot_key in GLOB.additional_admin_item_slot_list)
-		item_in_slot = user.get_item_by_slot(GLOB.slot_str_to_slot[slot_key])
-		if(!item_in_slot)
-			continue
-		item2representation_type = item2representation_type(item_in_slot.type)
-		item_list[slot_key] = new item2representation_type(item_in_slot, src)
 
 /datum/loadout/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
@@ -149,7 +141,7 @@
 				TIMER_COOLDOWN_START(ui.user, COOLDOWN_LOADOUT_EQUIPPED, 30 SECONDS)
 			ui.close()
 		if("deleteLoadout")
-			ui.user.client.prefs.loadout_manager.delete_loadout(src)
+			ui.user.client.prefs.loadout_manager.delete_loadout(ui.user, name, job)
 			ui.close()
 
 

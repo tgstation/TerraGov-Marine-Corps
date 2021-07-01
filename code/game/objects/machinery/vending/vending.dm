@@ -3,7 +3,7 @@
 #define CAT_COIN 2
 
 #define MAKE_VENDING_RECORD_DATA(record) list(\
-		"product_name" = adminscrub(record.product_name),\
+		"product_name" = record.product_name,\
 		"product_color" = record.display_color,\
 		"prod_price" = record.price,\
 		"prod_desc" = initial(record.product_path.desc),\
@@ -539,7 +539,9 @@
 			if(!istype(R) || !R.product_path || R.amount == 0)
 				return
 
-			if(R.price == null)
+			if(isAI(usr))
+				vend(R, usr)
+			else if(R.price == null)
 				vend(R, usr)
 			else
 				currently_vending = R
@@ -674,7 +676,7 @@
 
 		if(istype(item_to_stock.loc, /obj/item/storage)) //inside a storage item
 			var/obj/item/storage/S = item_to_stock.loc
-			S.remove_from_storage(item_to_stock, user.loc)
+			S.remove_from_storage(item_to_stock, user.loc, user)
 
 		qdel(item_to_stock)
 		if(!recharge)
