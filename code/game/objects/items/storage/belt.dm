@@ -652,7 +652,7 @@
 		icon_state += "_g"
 		item_state = icon_state
 		underlays += gun_underlay
-	else
+	else if(gun_underlay)
 		playsound(src,sheatheSound, 15, 1)
 		underlays -= gun_underlay
 		icon_state = copytext(icon_state,1,-2)
