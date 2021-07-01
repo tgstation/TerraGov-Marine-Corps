@@ -37,7 +37,7 @@
 
 #define isbrain(A) (istype(A, /mob/living/brain))
 
-#define isnestedhost(A)	((CHECK_BITFIELD(A.status_flags, XENO_HOST) && CHECK_BITFIELD(A.restrained_flags, RESTRAINED_XENO_NEST)))
+#define isnestedhost(A) ((CHECK_BITFIELD(A.status_flags, XENO_HOST) && CHECK_BITFIELD(A.restrained_flags, RESTRAINED_XENO_NEST)))
 
 //Carbon mobs
 #define iscarbon(A) (istype(A, /mob/living/carbon))
@@ -218,6 +218,8 @@
 #define isorgan(A) (istype(A, /datum/limb))
 
 #define isidcard(A) (istype(A, /obj/item/card/id))
+
+#define isreagentcontainer(A) (istype(A, /obj/item/reagent_containers)) //Checks for if something is a reagent container.
 
 //Assemblies
 #define isassembly(O) (istype(O, /obj/item/assembly))

@@ -1,7 +1,7 @@
-#define TANKFAB_MAIN_MENU	0
-#define TANKFAB_MOD_MAINT	1
-#define TANKFAB_PRINTER		2
-#define TANKFAB_BUSY		3
+#define TANKFAB_MAIN_MENU 0
+#define TANKFAB_MOD_MAINT 1
+#define TANKFAB_PRINTER 2
+#define TANKFAB_BUSY 3
 
 
 /obj/machinery/tank_part_fabricator

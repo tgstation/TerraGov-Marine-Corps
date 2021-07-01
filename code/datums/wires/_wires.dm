@@ -272,8 +272,8 @@
 	return data
 
 /datum/wires/ui_act(action, list/params)
-	. = ..() 
-	
+	. = ..()
+
 	if(. || !interactable(usr))
 		return
 	var/target_wire = params["wire"]

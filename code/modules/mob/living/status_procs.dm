@@ -621,6 +621,9 @@
 
 ///Where the magic happens. Actually applies stagger stacks.
 /mob/living/proc/adjust_stagger(amount, ignore_canstun = FALSE, capped = 0)
+	if(stagger > 0 && HAS_TRAIT(src, TRAIT_STAGGERIMMUNE))
+		return
+
 	if(SEND_SIGNAL(src, COMSIG_LIVING_STATUS_STUN, amount, ignore_canstun) & COMPONENT_NO_STUN) //Stun immunity also provides immunity to its lesser cousin stagger
 		return
 
@@ -641,6 +644,8 @@
 /mob/living/proc/set_slowdown(amount)
 	if(slowdown == amount)
 		return
+	if(amount > 0 && HAS_TRAIT(src, TRAIT_SLOWDOWNIMMUNE)) //We're immune to slowdown
+		return
 	SEND_SIGNAL(src, COMSIG_LIVING_STATUS_SLOWDOWN, amount)
 	slowdown = amount
 	if(slowdown)
@@ -651,12 +656,16 @@
 ///This is where we normalize the set_slowdown input to be at least 0
 /mob/living/proc/adjust_slowdown(amount)
 	if(amount > 0)
+		if(HAS_TRAIT(src, TRAIT_SLOWDOWNIMMUNE))
+			return slowdown
 		set_slowdown(max(slowdown, amount)) //Slowdown overlaps rather than stacking.
 	else
 		set_slowdown(max(slowdown + amount, 0))
 	return slowdown
 
 /mob/living/proc/add_slowdown(amount, capped = 0)
+	if(HAS_TRAIT(src, TRAIT_SLOWDOWNIMMUNE))
+		return
 	adjust_slowdown(amount * STANDARD_SLOWDOWN_REGEN)
 
 ///Standard slowdown regen called by life.dm
@@ -664,3 +673,8 @@
 	if(slowdown)
 		adjust_slowdown(-STANDARD_SLOWDOWN_REGEN)
 	return slowdown
+
+/mob/living/carbon/xenomorph/add_slowdown(amount)
+	if(HAS_TRAIT(src, TRAIT_SLOWDOWNIMMUNE))
+		return
+	adjust_slowdown(amount * XENO_SLOWDOWN_REGEN)

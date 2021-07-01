@@ -617,18 +617,14 @@
 		src.debug_variables(DAT)
 
 
-	else if(href_list["mark_object"])
+	else if(href_list[VV_HK_MARK])
 		if(!check_rights(R_DEBUG))
 			return
 
-		var/datum/D = locate(href_list["mark_object"])
+		var/datum/D = locate(href_list[VV_HK_MARK])
 		if(!istype(D))
 			return
-
-		if(holder.marked_datum)
-			vv_update_display(holder.marked_datum, "marked", "")
-		holder.marked_datum = D
-		vv_update_display(D, "marked", VV_MSG_MARKED)
+		mark_datum(D)
 
 
 	else if(href_list["proc_call"])

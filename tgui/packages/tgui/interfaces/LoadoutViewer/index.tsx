@@ -18,7 +18,7 @@ const LoadoutNavigator = (props: Loadout, context) => {
         <Flex.Item>
           <Button
             onClick={() => { 
-              act('equipLoadout', { loadout_name: name });
+              act('equipLoadout');
             }}>
             Equip Loadout
           </Button>
@@ -27,7 +27,7 @@ const LoadoutNavigator = (props: Loadout, context) => {
         <Flex.Item>
           <Button
             onClick={() => {
-              act('deleteLoadout', { loadout_name: name });
+              act('deleteLoadout');
             }}>
             Delete Loadout
           </Button>
@@ -58,6 +58,7 @@ export const LoadoutViewer = (props, context) => {
           />
           <LoadoutNavigator
             name={loadout.name}
+            job={loadout.job}
           /> 
         </Stack>
       </Window.Content>

@@ -72,7 +72,9 @@
 
 	.["vendor_name"] = name
 	.["show_points"] = use_points
-	.["total_marine_points"] = MARINE_TOTAL_BUY_POINTS
+	var/obj/item/card/id/ID = user.get_idcard()
+	.["total_marine_points"] = ID ? initial(ID.marine_points) : 0
+
 
 	for(var/i in listed_products)
 		var/list/myprod = listed_products[i]
@@ -182,7 +184,8 @@
 
 			if(bitf == MARINE_CAN_BUY_UNIFORM && ishumanbasic(usr))
 				var/mob/living/carbon/human/H = usr
-				new /obj/item/radio/headset/mainship/marine(loc, H.assigned_squad, vendor_role)
+				var/headset_type = H.faction == FACTION_TERRAGOV ? /obj/item/radio/headset/mainship/marine : /obj/item/radio/headset/mainship/marine/rebel
+				new headset_type(loc, H.assigned_squad, vendor_role)
 				if(!istype(H.job, /datum/job/terragov/squad/engineer))
 					new /obj/item/clothing/gloves/marine(loc, H.assigned_squad, vendor_role)
 				if(istype(H.job, /datum/job/terragov/squad/leader))
@@ -256,8 +259,8 @@
 	gives_webbing = FALSE
 
 /obj/machinery/marine_selector/clothes/engi/Initialize()
-	listed_products = GLOB.engineer_clothes_listed_products
 	. = ..()
+	listed_products = GLOB.engineer_clothes_listed_products
 
 /obj/machinery/marine_selector/clothes/engi/rebel
 	req_access = list(ACCESS_MARINE_ENGPREP_REBEL)
@@ -322,7 +325,7 @@
 	. = ..()
 	listed_products = GLOB.smartgunner_clothes_listed_products
 
-/obj/machinery/marine_selector/clothes/smartgun/rebel 
+/obj/machinery/marine_selector/clothes/smartgun/rebel
 	req_access = list(ACCESS_MARINE_SMARTPREP_REBEL)
 	vendor_role = /datum/job/terragov/squad/smartgunner/rebel
 
@@ -458,6 +461,8 @@
 	lock_flags = JOB_LOCK
 	gives_webbing = FALSE
 
+/obj/machinery/marine_selector/clothes/commander/Initialize()
+	. = ..()
 	listed_products = list(
 		/obj/effect/essentials_set/commander = list(CAT_STD, "Standard Commander kit ", 0, "white"),
 		/obj/effect/essentials_set/modular/skirmisher = list(CAT_AMR, "Light Skirmisher Jaeger kit", 0, "black"),
@@ -514,7 +519,7 @@
 		/obj/item/clothing/mask/rebreather = list(CAT_MAS, "Rebreather", 0, "black"),
 	)
 
-/obj/machinery/marine_selector/clothes/commander/rebel 
+/obj/machinery/marine_selector/clothes/commander/rebel
 	req_access = list(ACCESS_MARINE_COMMANDER_REBEL)
 	vendor_role = /datum/job/terragov/command/fieldcommander/rebel
 
@@ -527,6 +532,8 @@
 	vendor_role = /datum/job/terragov/silicon/synthetic
 	lock_flags = JOB_LOCK
 
+/obj/machinery/marine_selector/clothes/synth/Initialize()
+	. = ..()
 	listed_products = list(
 		/obj/effect/essentials_set/synth = list(CAT_ESS, "Essential synthetic set", 0, "white"),
 		/obj/item/clothing/under/marine = list(CAT_STD, "TGMC marine uniform", 0, "black"),
@@ -642,7 +649,7 @@
 		/obj/item/clothing/mask/gas/tactical/coif = list(CAT_MAS, "Tactical coifed gas mask", 0,"black"),
 	)
 
-/obj/machinery/marine_selector/clothes/synth/rebel 
+/obj/machinery/marine_selector/clothes/synth/rebel
 	vendor_role = /datum/job/terragov/silicon/synthetic/rebel
 
 ////////////////////// Gear ////////////////////////////////////////////////////////
@@ -669,12 +676,12 @@
 	req_access = list(ACCESS_MARINE_MEDPREP)
 
 /obj/machinery/marine_selector/gear/medic/Initialize()
-	listed_products = GLOB.medic_gear_listed_products
 	. = ..()
+	listed_products = GLOB.medic_gear_listed_products
 
-/obj/machinery/marine_selector/gear/medic/rebel 
+/obj/machinery/marine_selector/gear/medic/rebel
 	vendor_role = /datum/job/terragov/squad/corpsman/rebel
-	req_access = list(ACCESS_MARINE_MEDPREP_REBEL)	
+	req_access = list(ACCESS_MARINE_MEDPREP_REBEL)
 
 /obj/machinery/marine_selector/gear/engi
 	name = "NEXUS Automated Engineer Equipment Rack"
@@ -684,10 +691,10 @@
 	req_access = list(ACCESS_MARINE_ENGPREP)
 
 /obj/machinery/marine_selector/gear/engi/Initialize()
-	listed_products = GLOB.engineer_gear_listed_products
 	. = ..()
+	listed_products = GLOB.engineer_gear_listed_products
 
-/obj/machinery/marine_selector/gear/engi/rebel 
+/obj/machinery/marine_selector/gear/engi/rebel
 	vendor_role = /datum/job/terragov/squad/engineer/rebel
 	req_access = list(ACCESS_MARINE_ENGPREP_REBEL)
 
@@ -713,7 +720,7 @@
 		/obj/item/attachable/stock/t19stock = list(CAT_ATT, "T-19 machine pistol stock", 0, "black"),
 	)
 
-/obj/machinery/marine_selector/gear/smartgun/rebel 
+/obj/machinery/marine_selector/gear/smartgun/rebel
 	vendor_role = /datum/job/terragov/squad/smartgunner/rebel
 	req_access = list(ACCESS_MARINE_SMARTPREP_REBEL)
 
@@ -769,8 +776,8 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 	req_access = list(ACCESS_MARINE_LEADER)
 
 /obj/machinery/marine_selector/gear/leader/Initialize()
-	listed_products = GLOB.leader_gear_listed_products
 	. = ..()
+	listed_products = GLOB.leader_gear_listed_products
 
 /obj/machinery/marine_selector/gear/leader/rebel
 	vendor_role = /datum/job/terragov/squad/leader/rebel
@@ -831,7 +838,6 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 
 /obj/effect/essentials_set/basic_squadleader
 	spawned_gear_list = list(
-		/obj/item/clothing/glasses/hud/health,
 		/obj/item/clothing/under/marine,
 		/obj/item/clothing/shoes/marine/full,
 		/obj/item/storage/box/MRE,
@@ -841,7 +847,6 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 	spawned_gear_list = list(
 		/obj/item/clothing/under/marine/jaeger,
 		/obj/item/clothing/suit/modular,
-		/obj/item/clothing/glasses/hud/health,
 		/obj/item/clothing/shoes/marine/full,
 		/obj/item/storage/box/MRE,
 		/obj/item/facepaint/green,
@@ -849,7 +854,6 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 
 /obj/effect/essentials_set/basic_medic
 	spawned_gear_list = list(
-		/obj/item/clothing/glasses/hud/health,
 		/obj/item/clothing/under/marine/corpsman,
 		/obj/item/clothing/shoes/marine/full,
 		/obj/item/storage/box/MRE,
@@ -859,7 +863,6 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 	spawned_gear_list = list(
 		/obj/item/clothing/under/marine/jaeger,
 		/obj/item/clothing/suit/modular,
-		/obj/item/clothing/glasses/hud/health,
 		/obj/item/clothing/shoes/marine/full,
 		/obj/item/storage/box/MRE,
 		/obj/item/facepaint/green,
@@ -867,21 +870,17 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 
 /obj/effect/essentials_set/basic_engineer
 	spawned_gear_list = list(
-		/obj/item/clothing/glasses/welding,
 		/obj/item/clothing/under/marine/engineer,
 		/obj/item/clothing/shoes/marine/full,
 		/obj/item/storage/box/MRE,
-		/obj/item/clothing/gloves/marine/insulated,
 	)
 
 /obj/effect/essentials_set/basic_engineermodular
 	spawned_gear_list = list(
 		/obj/item/clothing/under/marine/jaeger,
 		/obj/item/clothing/suit/modular,
-		/obj/item/clothing/glasses/welding,
 		/obj/item/clothing/shoes/marine/full,
 		/obj/item/storage/box/MRE,
-		/obj/item/clothing/gloves/marine/insulated,
 		/obj/item/facepaint/green,
 	)
 
@@ -904,15 +903,15 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 		/obj/item/tweezers,
 		/obj/item/reagent_containers/hypospray/advanced/oxycodone,
 		/obj/item/storage/firstaid/adv,
+		/obj/item/clothing/glasses/hud/health,
 	)
 
 /obj/effect/essentials_set/engi
 	spawned_gear_list = list(
 		/obj/item/explosive/plastique,
 		/obj/item/explosive/grenade/chem_grenade/razorburn_smol,
-		/obj/item/stack/sandbags_empty = 50,
-		/obj/item/stack/sheet/metal/large_stack,
-		/obj/item/stack/sheet/plasteel/medium_stack,
+		/obj/item/clothing/glasses/welding,
+		/obj/item/clothing/gloves/marine/insulated,
 		/obj/item/cell/high,
 		/obj/item/tool/shovel/etool,
 		/obj/item/lightreplacer,
@@ -922,9 +921,9 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 /obj/effect/essentials_set/leader
 	spawned_gear_list = list(
 		/obj/item/explosive/plastique,
-		/obj/item/squad_beacon,
-		/obj/item/squad_beacon,
-		/obj/item/squad_beacon/bomb,
+		/obj/item/beacon/supply_beacon,
+		/obj/item/beacon/supply_beacon,
+		/obj/item/beacon/orbital_bombardment_beacon,
 		/obj/item/whistle,
 		/obj/item/radio,
 		/obj/item/motiondetector,
@@ -934,8 +933,8 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 
 /obj/effect/essentials_set/commander
 	spawned_gear_list = list(
-		/obj/item/squad_beacon,
-		/obj/item/squad_beacon/bomb,
+		/obj/item/beacon/supply_beacon,
+		/obj/item/beacon/orbital_bombardment_beacon,
 		/obj/item/healthanalyzer,
 		/obj/item/roller/medevac,
 		/obj/item/medevac_beacon,

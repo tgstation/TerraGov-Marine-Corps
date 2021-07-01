@@ -722,9 +722,9 @@
 	spawn_type = /obj/item/ammo_magazine/pistol/vp70
 
 /obj/item/storage/box/visual/magazine/compact/plasma_pistol
-	name = "TX-8 plasma cell box"
-	desc = "A box specifically designed to hold a large amount of TX-8 plasma cells."
-	closed_overlay = "mag_box_small_overlay_tx8"
+	name = "TX-7 plasma cell box"
+	desc = "A box specifically designed to hold a large amount of TX-7 plasma cells."
+	closed_overlay = "mag_box_small_overlay_tx7"
 	can_hold = list(
 		/obj/item/ammo_magazine/pistol/plasma_pistol,
 	)

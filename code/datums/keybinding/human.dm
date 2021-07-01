@@ -51,3 +51,15 @@
 	full_name = "Toggle aim mode"
 	description = ""
 	keybind_signal = COMSIG_KB_AIMMODE
+
+/datum/keybinding/human/switch_fire_mode
+	name = "switch_fire_mode"
+	full_name = "Switch fire mode"
+	description = ""
+	keybind_signal = COMSIG_KB_FIREMODE
+
+/datum/keybinding/human/give
+	name = "give"
+	full_name = "Give"
+	description = "Give the held item to the nearby marine"
+	keybind_signal = COMSIG_KB_GIVE

@@ -651,11 +651,8 @@
 /turf/open/floor/plating/ground/snow/get_dirt_type()
 	return DIRT_TYPE_SNOW
 
-
-
-
-
-
+/turf/open/lavaland/basalt/get_dirt_type()
+	return DIRT_TYPE_LAVALAND
 
 /turf/CanAllowThrough(atom/movable/mover, turf/target)
 	. = ..()

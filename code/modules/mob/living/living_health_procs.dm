@@ -5,6 +5,12 @@
 /mob/living/proc/getBruteLoss()
 	return bruteloss
 
+///We straight up set bruteloss/brute damage to a desired amount unless godmode is enabled
+/mob/living/proc/setBruteLoss(amount)
+	if(status_flags & GODMODE)
+		return FALSE
+	bruteloss = amount
+
 /mob/living/proc/adjustBruteLoss(amount, updating_health = FALSE)
 	if(status_flags & GODMODE)
 		return FALSE	//godmode
@@ -15,6 +21,12 @@
 
 /mob/living/proc/getFireLoss()
 	return fireloss
+
+///We straight up set fireloss/burn damage to a desired amount unless godmode is enabled
+/mob/living/proc/setFireLoss(amount)
+	if(status_flags & GODMODE)
+		return FALSE
+	fireloss = amount
 
 /mob/living/proc/adjustFireLoss(amount, updating_health = FALSE)
 	if(status_flags & GODMODE)

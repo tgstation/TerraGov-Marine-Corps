@@ -1,7 +1,7 @@
-#define GEOTHERMAL_NO_DAMAGE     0
-#define GEOTHERMAL_LIGHT_DAMAGE  1
+#define GEOTHERMAL_NO_DAMAGE 0
+#define GEOTHERMAL_LIGHT_DAMAGE 1
 #define GEOTHERMAL_MEDIUM_DAMAGE 2
-#define GEOTHERMAL_HEAVY_DAMAGE  3
+#define GEOTHERMAL_HEAVY_DAMAGE 3
 
 /obj/machinery/power/geothermal
 	name = "\improper G-11 geothermal generator"
@@ -90,7 +90,7 @@
 
 /obj/machinery/power/geothermal/process()
 	if(corrupted && corruption_on)
-		SSpoints.add_psy_points("[corrupted]", TGS_CLIENT_COUNT * BASE_PSYCH_POINT_OUTPUT * corrupt_point_factor)
+		SSpoints.add_psy_points("[corrupted]", length(GLOB.humans_by_zlevel["2"]) * BASE_PSYCH_POINT_OUTPUT * corrupt_point_factor)
 		return
 	if(!is_on || buildstate || !anchored || !powernet) //Default logic checking
 		return PROCESS_KILL

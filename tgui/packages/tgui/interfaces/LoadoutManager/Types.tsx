@@ -13,6 +13,12 @@ export type LoadoutListData =
     loadout_list: Loadout[];
   }
 
+export type LoadoutTabData = 
+{
+  job: string;
+  setJob: any;
+}
+
 export type LoadoutManagerData = 
   {
     loadout_list: Loadout[];

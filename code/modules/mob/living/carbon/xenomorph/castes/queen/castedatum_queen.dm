@@ -12,9 +12,6 @@
 	// *** Melee Attacks *** //
 	melee_damage = 20
 
-	// *** Tackle *** //
-	tackle_damage = 25
-
 	// *** Speed *** //
 	speed = 0
 
@@ -29,7 +26,7 @@
 	upgrade_threshold = 350
 
 	// *** Flags *** //
-	caste_flags = CASTE_IS_INTELLIGENT|CASTE_CAN_HOLD_FACEHUGGERS|CASTE_HIDE_IN_STATUS|CASTE_CAN_HOLD_JELLY|CASTE_CAN_CORRUPT_GENERATOR
+	caste_flags = CASTE_IS_INTELLIGENT|CASTE_CAN_HOLD_FACEHUGGERS|CASTE_CAN_HOLD_JELLY|CASTE_CAN_CORRUPT_GENERATOR
 
 	can_hold_eggs = CAN_HOLD_TWO_HANDS
 
@@ -60,6 +57,7 @@
 		/datum/action/xeno_action/activable/build_silo,
 		/datum/action/xeno_action/activable/build_hunt_den,
 		/datum/action/xeno_action/activable/build_turret,
+		/datum/action/xeno_action/summon_king,
 		/datum/action/xeno_action/place_acidwell,
 		/datum/action/xeno_action/activable/larval_growth_sting,
 		/datum/action/xeno_action/call_of_the_burrowed,
@@ -86,9 +84,6 @@
 	caste_desc = "The biggest and baddest xeno. The Queen controls the hive and plants eggs."
 
 	upgrade = XENO_UPGRADE_ONE
-
-	// *** Tackle *** //
-	tackle_damage = 25
 
 	// *** Speed *** //
 	speed = -0.1
@@ -123,9 +118,6 @@
 	// *** Melee Attacks *** //
 	melee_damage = 23
 
-	// *** Tackle *** //
-	tackle_damage = 28
-
 	// *** Speed *** //
 	speed = -0.2
 
@@ -158,9 +150,6 @@
 
 	// *** Melee Attacks *** //
 	melee_damage = 23
-
-	// *** Tackle *** //
-	tackle_damage = 28
 
 	// *** Speed *** //
 	speed = -0.3

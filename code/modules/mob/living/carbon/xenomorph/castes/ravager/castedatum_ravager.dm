@@ -12,9 +12,6 @@
 	melee_damage = 26
 	attack_delay = 7
 
-	// *** Tackle *** //
-	tackle_damage = 26
-
 	// *** Speed *** //
 	speed = -0.7
 
@@ -47,7 +44,7 @@
 		/datum/action/xeno_action/activable/devour,
 		/datum/action/xeno_action/activable/charge,
 		/datum/action/xeno_action/activable/ravage,
-		/datum/action/xeno_action/activable/ignore_pain,
+		/datum/action/xeno_action/endure,
 	)
 
 /datum/xeno_caste/ravager/young
@@ -60,9 +57,6 @@
 	caste_desc = "A brutal, devastating front-line attacker. It looks a little more dangerous."
 
 	upgrade = XENO_UPGRADE_ONE
-
-	// *** Tackle *** //
-	tackle_damage = 26
 
 	// *** Speed *** //
 	speed = -0.8
@@ -89,9 +83,6 @@
 	// *** Melee Attacks *** //
 	melee_damage = 32
 
-	// *** Tackle *** //
-	tackle_damage = 32
-
 	// *** Speed *** //
 	speed = -0.9
 
@@ -116,9 +107,6 @@
 
 	// *** Melee Attacks *** //
 	melee_damage = 32
-
-	// *** Tackle *** //
-	tackle_damage = 32
 
 	// *** Speed *** //
 	speed = -1

@@ -273,9 +273,6 @@
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 17,"rail_x" = 13, "rail_y" = 19, "under_x" = 24, "under_y" = 13, "stock_x" = 20, "stock_y" = 14)
 	starting_attachment_types = list(/obj/item/attachable/scope/slavic, /obj/item/attachable/slavicbarrel, /obj/item/attachable/stock/slavic)
-	actions_types = list(/datum/action/item_action/aim_mode)
-	aim_fire_delay = 0.2 SECONDS
-	aim_speed_modifier = 2
 
 	fire_delay = 1.2 SECONDS
 	burst_amount = 1
@@ -1061,11 +1058,12 @@
 	scatter = -100
 
 //-------------------------------------------------------
-//M5 RPG
+//Disposable RPG
 
 /obj/item/weapon/gun/launcher/rocket/oneuse
-	name = "\improper T-72 rocket launcher"
+	name = "\improper T-72 disposable rocket launcher"
 	desc = "This is the premier disposable rocket launcher used throughout the galaxy, it cannot be reloaded or unloaded on the field. This one fires a 68mm explosive rocket."
+	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "t72"
 	item_state = "t72"
 	max_shells = 1 //codex
@@ -1186,8 +1184,8 @@
 	unload_sound = 'sound/weapons/guns/interact/sniper_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/sniper_reload.ogg'
 	current_mag = /obj/item/ammo_magazine/railgun
-	force = 12
-	wield_delay = 2 SECONDS //You're not quick drawing this.
+	force = 40
+	wield_delay = 1 SECONDS //You're not quick drawing this.
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 20, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
 	attachable_allowed = list(
 		/obj/item/attachable/scope,
@@ -1195,7 +1193,7 @@
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
 
-	fire_delay = 20 SECONDS
+	fire_delay = 1 SECONDS
 	burst_amount = 1
 	accuracy_mult = 2
 	recoil = 0

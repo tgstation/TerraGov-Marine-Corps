@@ -243,6 +243,8 @@
 	item_state = "dogtag"
 	var/dogtag_taken = FALSE
 
+/obj/item/card/id/dogtag/engineer
+	marine_points = ENGINEER_TOTAL_BUY_POINTS
 
 /obj/item/card/id/dogtag/som
 	name = "\improper Sons of Mars dogtag"

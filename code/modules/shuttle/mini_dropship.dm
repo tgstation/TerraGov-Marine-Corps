@@ -152,12 +152,12 @@
 	if(damaged)
 		return
 	X.visible_message("[X] begins to slash delicately at the computer",
-	"You start slashing delicately at the computer.")
+	"We start slashing delicately at the computer. This will take a while.")
 	if(!do_after(X, 10 SECONDS, TRUE, src, BUSY_ICON_DANGER, BUSY_ICON_HOSTILE))
 		return
 	visible_message("The inner wiring is visible, it can be slashed!")
 	X.visible_message("[X] continue to slash at the computer",
-	"You continue slashing at the computer.")
+	"We continue slashing at the computer. If we stop now we will have to start all over again.")
 	var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
 	s.set_up(3, 1, src)
 	s.start()
@@ -168,7 +168,20 @@
 	s2.set_up(3, 1, src)
 	s2.start()
 	damaged = TRUE
+	open_prompt = FALSE
 	remove_eye_control(ui_user)
+
+	if(fly_state == SHUTTLE_IN_ATMOSPHERE && last_valid_ground_port)
+		visible_message("Autopilot detects loss of helm control. INITIATING EMERGENCY LANDING!")
+		shuttle_port.callTime = SHUTTLE_LANDING_CALLTIME
+		next_fly_state = SHUTTLE_ON_GROUND
+		shuttle_port.set_mode(SHUTTLE_CALL)
+		SSshuttle.moveShuttleToDock(shuttleId, last_valid_ground_port, TRUE)
+		return
+
+	if(next_fly_state == SHUTTLE_IN_ATMOSPHERE)
+		shuttle_port.set_idle() // don't go up with a broken console, cencel spooling
+		visible_message("Autopilot detects loss of helm control. Halting take off!")
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/ui_state(mob/user)
 	return GLOB.dropship_state
@@ -246,4 +259,5 @@
 	origin.open_prompt = FALSE
 	origin.remove_eye_control(origin.ui_user)
 	origin.shuttle_port.set_mode(SHUTTLE_CALL)
+	origin.last_valid_ground_port = origin.my_port
 	SSshuttle.moveShuttleToDock(origin.shuttleId, origin.my_port, TRUE)

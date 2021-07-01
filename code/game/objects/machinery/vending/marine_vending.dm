@@ -333,6 +333,7 @@
 			/obj/item/ammo_magazine/shotgun/mbx900 = 2,
 			/obj/item/bodybag/tarp = 2,
 			/obj/item/explosive/plastique = 2,
+			/obj/item/minerupgrade/automatic = 3,
 			/obj/item/clothing/suit/storage/marine/harness/boomvest = 20,
 			/obj/item/radio/headset/mainship/marine/alpha = -1,
 			/obj/item/radio/headset/mainship/marine/bravo = -1,
@@ -373,88 +374,47 @@
 		)
 	)
 
-/// HvH version of the vending machine, containing no ammo for spec weapons and restricted ones
 /obj/machinery/vending/marine/cargo_supply/hvh
 	products = list(
-		/obj/item/storage/box/visual/magazine = -1,
-		/obj/item/storage/box/visual/grenade = -1,
-		/obj/item/storage/box/visual/grenade/frag = 1,
-		/obj/item/storage/box/visual/grenade/incendiary = 1,
-		/obj/item/explosive/plastique = 2,
-		/obj/item/radio/headset/mainship/marine/alpha = -1,
-		/obj/item/radio/headset/mainship/marine/bravo = -1,
-		/obj/item/radio/headset/mainship/marine/charlie = -1,
-		/obj/item/radio/headset/mainship/marine/delta = -1,
-		/obj/item/big_ammo_box = 2,
-		/obj/item/storage/box/visual/magazine/compact/standard_smg/full = 2,
-		/obj/item/storage/box/visual/magazine/compact/standard_machinepistol/full = 2,
-		/obj/item/storage/box/visual/magazine/compact/standard_pistol/full = 2,
-		/obj/item/storage/box/visual/magazine/compact/standard_assaultrifle/full = 2,
-		/obj/item/storage/box/visual/magazine/compact/standard_carbine/full = 2,
+		"Surplus Special Equipment" = list(
+			/obj/item/bodybag/tarp = 2,
+			/obj/item/explosive/plastique = 2,
+			/obj/item/minerupgrade/automatic = 3,
+			/obj/item/radio/headset/mainship/marine/alpha = -1,
+			/obj/item/radio/headset/mainship/marine/bravo = -1,
+			/obj/item/radio/headset/mainship/marine/charlie = -1,
+			/obj/item/radio/headset/mainship/marine/delta = -1,
+		),
+		"Grenade Boxes" = list(
+			/obj/item/storage/box/visual/grenade/frag = 2,
+			/obj/item/storage/box/visual/grenade/incendiary = 2,
+			/obj/item/storage/box/visual/grenade/M15 = 2,
+			/obj/item/storage/box/visual/grenade/drain = 1,
+			/obj/item/storage/box/visual/grenade/cloak = 1,
+		),
+		"Ammo Boxes" = list(
+			/obj/item/big_ammo_box = 1,
+			/obj/item/storage/box/visual/magazine/compact/standard_pistol/full = 1,
+			/obj/item/storage/box/visual/magazine/compact/standard_heavypistol/full = 1,
+			/obj/item/storage/box/visual/magazine/compact/standard_pocketpistol/full = 1,
+			/obj/item/storage/box/visual/magazine/compact/vp70/full = 1,
+			/obj/item/storage/box/visual/magazine/compact/plasma_pistol/full = 1,
+			/obj/item/storage/box/visual/magazine/compact/standard_smg/full = 1,
+			/obj/item/storage/box/visual/magazine/compact/standard_machinepistol/full = 1,
+			/obj/item/storage/box/visual/magazine/compact/standard_assaultrifle/full = 1,
+			/obj/item/storage/box/visual/magazine/compact/standard_carbine/full = 1,
+			/obj/item/storage/box/visual/magazine/compact/tx11/full = 1,
+			/obj/item/storage/box/visual/magazine/compact/lasrifle/marine/full = 1,
+			/obj/item/storage/box/visual/magazine/compact/standard_dmr/full = 1,
+			/obj/item/storage/box/visual/magazine/compact/standard_br/full = 1,
+			/obj/item/storage/box/visual/magazine/compact/chamberedrifle/full = 1,
+			/obj/item/storage/box/visual/magazine/compact/standard_lmg/full = 1,
+			/obj/item/storage/box/visual/magazine/compact/standard_gpmg/full = 1,
+		)
 	)
 
-///HvH version
-///The only way to get LMG, DMR, shotguns and GPMG
-/obj/machinery/vending/marine/cargo_guns/hvh
-	products = list(
-		/obj/item/weapon/gun/pistol/standard_pistol = 10,
-		/obj/item/weapon/gun/revolver/standard_revolver = 10,
-		/obj/item/weapon/gun/pistol/standard_heavypistol = 10,
-		/obj/item/weapon/gun/pistol/vp70 = 10,
-		/obj/item/weapon/gun/smg/standard_smg = 10,
-		/obj/item/weapon/gun/smg/standard_machinepistol = 10,
-		/obj/item/weapon/gun/rifle/standard_carbine = 10,
-		/obj/item/weapon/gun/rifle/standard_assaultrifle = 10,
-		/obj/item/weapon/gun/rifle/standard_lmg = 2,
-		/obj/item/weapon/gun/rifle/standard_gpmg = 1,
-		/obj/item/weapon/gun/rifle/standard_dmr = 1,
-		/obj/item/weapon/gun/rifle/standard_br = 2,
-		/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_rifle = 10,
-		/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_carbine = 10,
-		/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_mlaser = 10,
-		/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_pistol = 10,
-		/obj/item/weapon/gun/pistol/plasma_pistol = 10,
-		/obj/item/weapon/gun/shotgun/pump/t35 = 2,
-		/obj/item/weapon/gun/rifle/standard_autoshotgun = 1,
-		/obj/item/weapon/gun/launcher/m92/standardmarine = 1,
-		/obj/item/weapon/gun/pistol/standard_pocketpistol = 20,
-		/obj/item/storage/belt/gun/ts34/full = 5,
-		/obj/item/weapon/gun/flamer/marinestandard = 1,
-		/obj/item/explosive/mine = 5,
-		/obj/item/explosive/grenade/incendiary = 5,
-		/obj/item/explosive/grenade/cloakbomb = 2,
-		/obj/item/storage/box/m94 = 30,
-		/obj/item/storage/box/m94/cas = 10,
-		/obj/item/storage/box/recoilless_system = 1,
-	)
-
-// HvH only
-/obj/machinery/vending/marine/cargo_ammo/hvh
-	products = list(
-		/obj/item/ammo_magazine/pistol/standard_pistol = 50,
-		/obj/item/ammo_magazine/revolver/standard_revolver = 50,
-		/obj/item/ammo_magazine/pistol/standard_heavypistol = 50,
-		/obj/item/ammo_magazine/pistol/vp70 = 50,
-		/obj/item/ammo_magazine/smg/standard_smg = 50,
-		/obj/item/ammo_magazine/smg/standard_machinepistol = 50,
-		/obj/item/ammo_magazine/rifle/standard_carbine = 50,
-		/obj/item/ammo_magazine/rifle/standard_assaultrifle = 50,
-		/obj/item/ammo_magazine/standard_lmg = 5,
-		/obj/item/ammo_magazine/standard_gpmg = 3,
-		/obj/item/ammo_magazine/rifle/standard_dmr = 5,
-		/obj/item/ammo_magazine/rifle/standard_br = 10,
-		/obj/item/cell/lasgun/lasrifle/marine = 125,
-		/obj/item/ammo_magazine/pistol/plasma_pistol = 50,
-		/obj/item/ammo_magazine/shotgun/buckshot = 3,
-		/obj/item/ammo_magazine/shotgun/flechette = 3,
-		/obj/item/ammo_magazine/rifle/tx15_flechette = 5,
-		/obj/item/ammo_magazine/pistol/standard_pocketpistol = 50,
-		/obj/item/ammo_magazine/flamer_tank/large = 1,
-		/obj/item/ammo_magazine/standard_smartmachinegun = 2,
-		/obj/item/ammo_magazine/flamer_tank = 5,
-		/obj/item/ammo_magazine/smg/ppsh/ = 10,
-		/obj/item/ammo_magazine/smg/ppsh/extended = 2,
-	)
+/obj/machinery/vending/marine/cargo_supply/hvh/rebel
+	req_one_access = list(ACCESS_MARINE_CARGO_REBEL, ACCESS_MARINE_LOGISTICS_REBEL)
 
 /obj/machinery/vending/lasgun
 	name = "\improper Terra Experimental cell field charger"
@@ -532,7 +492,7 @@
 
 			if(istype(item_to_stock.loc, /obj/item/storage)) //inside a storage item
 				var/obj/item/storage/S = item_to_stock.loc
-				S.remove_from_storage(item_to_stock, user.loc)
+				S.remove_from_storage(item_to_stock, user.loc, user)
 
 			qdel(item_to_stock)
 			if(!recharge)
@@ -595,43 +555,51 @@
 	product_ads = "Go save some lives!;The best stuff for your medbay.;Only the finest tools.;All natural chemicals!;This stuff saves lives.;Don't you want some?;Ping!"
 	req_one_access = ALL_MARINE_ACCESS
 	wrenchable = FALSE
+	isshared = TRUE
 	products = list(
-		/obj/item/reagent_containers/hypospray/autoinjector/bicaridine = 6,
-		/obj/item/reagent_containers/hypospray/autoinjector/kelotane = 6,
-		/obj/item/reagent_containers/hypospray/autoinjector/tramadol = 6,
-		/obj/item/reagent_containers/hypospray/autoinjector/oxycodone = 3,
-		/obj/item/reagent_containers/hypospray/autoinjector/tricordrazine = 8,
-		/obj/item/reagent_containers/hypospray/autoinjector/combat = 2,
-		/obj/item/reagent_containers/hypospray/autoinjector/inaprovaline = 6,
-		/obj/item/reagent_containers/hypospray/autoinjector/dylovene = 6,
-		/obj/item/reagent_containers/hypospray/autoinjector/hypervene = 4,
-		/obj/item/reagent_containers/hypospray/autoinjector/isotonic = 4,
-		/obj/item/reagent_containers/hypospray/autoinjector/quickclot = 4,
-		/obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus = 0,
-		/obj/item/reagent_containers/hypospray/autoinjector/quickclotplus = 0,
-		/obj/item/reagent_containers/hypospray/autoinjector/synaptizine = 0,
-		/obj/item/storage/pill_bottle/bicaridine = 3,
-		/obj/item/storage/pill_bottle/kelotane = 3,
-		/obj/item/storage/pill_bottle/tramadol = 3,
-		/obj/item/storage/pill_bottle/tricordrazine = 3,
-		/obj/item/storage/pill_bottle/inaprovaline = 3,
-		/obj/item/storage/pill_bottle/dexalin = 3,
-		/obj/item/storage/pill_bottle/dylovene = 3,
-		/obj/item/storage/pill_bottle/spaceacillin = 3,
-		/obj/item/storage/pill_bottle/alkysine = 3,
-		/obj/item/storage/pill_bottle/imidazoline = 3,
-		/obj/item/storage/pill_bottle/peridaxon = 2,
-		/obj/item/storage/pill_bottle/quickclot = 2,
-		/obj/item/storage/pill_bottle/hypervene = 2,
-		/obj/item/stack/medical/advanced/bruise_pack = 8,
-		/obj/item/stack/medical/bruise_pack = 8,
-		/obj/item/stack/medical/advanced/ointment = 8,
-		/obj/item/stack/medical/ointment = 8,
-		/obj/item/stack/medical/splint = 4,
-		/obj/item/healthanalyzer = 3,
-		/obj/item/bodybag/cryobag = 2,
+		"Pill Bottle" = list(
+			/obj/item/storage/pill_bottle/bicaridine = 12,
+			/obj/item/storage/pill_bottle/kelotane = 12,
+			/obj/item/storage/pill_bottle/tramadol = 12,
+			/obj/item/storage/pill_bottle/tricordrazine = 12,
+			/obj/item/storage/pill_bottle/inaprovaline = 12,
+			/obj/item/storage/pill_bottle/dexalin = 12,
+			/obj/item/storage/pill_bottle/dylovene = 12,
+			/obj/item/storage/pill_bottle/spaceacillin = 12,
+			/obj/item/storage/pill_bottle/alkysine = 12,
+			/obj/item/storage/pill_bottle/imidazoline = 12,
+			/obj/item/storage/pill_bottle/peridaxon = 8,
+			/obj/item/storage/pill_bottle/quickclot = 8,
+			/obj/item/storage/pill_bottle/hypervene = 8,
+		),
+		"Auto Injector" = list(
+			/obj/item/reagent_containers/hypospray/autoinjector/bicaridine = 24,
+			/obj/item/reagent_containers/hypospray/autoinjector/kelotane = 24,
+			/obj/item/reagent_containers/hypospray/autoinjector/tramadol = 24,
+			/obj/item/reagent_containers/hypospray/autoinjector/oxycodone = 12,
+			/obj/item/reagent_containers/hypospray/autoinjector/tricordrazine = 32,
+			/obj/item/reagent_containers/hypospray/autoinjector/combat = 8,
+			/obj/item/reagent_containers/hypospray/autoinjector/inaprovaline = 24,
+			/obj/item/reagent_containers/hypospray/autoinjector/dylovene = 24,
+			/obj/item/reagent_containers/hypospray/autoinjector/hypervene = 16,
+			/obj/item/reagent_containers/hypospray/autoinjector/isotonic = 16,
+			/obj/item/reagent_containers/hypospray/autoinjector/quickclot = 16,
+			/obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus = 0,
+			/obj/item/reagent_containers/hypospray/autoinjector/quickclotplus = 0,
+			/obj/item/reagent_containers/hypospray/autoinjector/synaptizine = 0,
+		),
+		"Heal Pack" = list(
+			/obj/item/stack/medical/advanced/bruise_pack = 32,
+			/obj/item/stack/medical/bruise_pack = 32,
+			/obj/item/stack/medical/advanced/ointment = 32,
+			/obj/item/stack/medical/ointment = 32,
+			/obj/item/stack/medical/splint = 16,
+		),
+		"Misc" = list(
+			/obj/item/healthanalyzer = 12,
+			/obj/item/bodybag/cryobag = 8,
+		),
 	)
-
 	contraband = list(
 		/obj/item/reagent_containers/hypospray/autoinjector/sleeptoxin = 3,
 		/obj/item/reagent_containers/hypospray/autoinjector/synaptizine_expired = 3,
@@ -820,8 +788,8 @@
 		/obj/item/clothing/suit/storage/marine/leader = 1,
 		/obj/item/clothing/head/helmet/marine/leader = 1,
 		/obj/item/clothing/tie/storage/webbing = 1,
-		/obj/item/squad_beacon = 1,
-		/obj/item/squad_beacon/bomb = 1,
+		/obj/item/beacon/supply_beacon = 1,
+		/obj/item/beacon/orbital_bombardment_beacon = 1,
 		/obj/item/explosive/plastique = 1,
 		/obj/item/explosive/grenade/smokebomb = 3,
 		/obj/item/binoculars/tactical = 1,
@@ -922,6 +890,9 @@
 	products = list(
 		"Clothing" = list(
 			/obj/item/clothing/under/marine/standard =-1,
+			/obj/item/clothing/under/marine/camo =-1,
+			/obj/item/clothing/under/marine/camo/desert =-1,
+			/obj/item/clothing/under/marine/camo/snow =-1,
 			/obj/item/clothing/under/marine/jaeger =-1,
 			/obj/item/clothing/gloves/marine =-1,
 			/obj/item/clothing/shoes/marine/full = -1,

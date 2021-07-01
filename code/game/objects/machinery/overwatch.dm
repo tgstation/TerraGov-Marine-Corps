@@ -30,7 +30,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	var/faction = FACTION_TERRAGOV
 	/// The list of all squads that can be watched
 	var/list/watchable_squads
-	
+
 	///Squad being currently overseen
 	var/datum/squad/current_squad = null
 	///Selected target for bombarding
@@ -84,6 +84,8 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 
 /obj/machinery/computer/camera_advanced/overwatch/rebel
 	faction = FACTION_TERRAGOV_REBEL
+	req_access = list(ACCESS_MARINE_BRIDGE_REBEL)
+
 /obj/machinery/computer/camera_advanced/overwatch/rebel/main
 	icon_state = "overwatch_main"
 	name = "Main Overwatch Console"
@@ -194,9 +196,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 						dat += "<span class='warning'>None</span><br>"
 					dat += "<B>[current_squad.name] Beacon Targets:</b><br>"
 					if(length(GLOB.active_orbital_beacons))
-						for(var/obj/item/squad_beacon/bomb/OB in current_squad.squad_orbital_beacons)
-							if(!istype(OB))
-								continue
+						for(var/obj/item/beacon/orbital_bombardment_beacon/OB AS in current_squad.squad_orbital_beacons)
 							dat += "<a href='?src=[REF(src)];operation=use_cam;cam_target=[REF(OB)];selected_target=[REF(OB)]'>[OB]</a><br>"
 					else
 						dat += "<span class='warning'>None transmitting</span><br>"
@@ -421,9 +421,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 					dat += "<span class='warning'>None</span><br>"
 				dat += "<B>Beacon Targets:</b><br>"
 				if(length(GLOB.active_orbital_beacons))
-					for(var/obj/item/squad_beacon/bomb/OB in GLOB.active_orbital_beacons)
-						if(!istype(OB))
-							continue
+					for(var/obj/item/beacon/orbital_bombardment_beacon/OB AS in GLOB.active_orbital_beacons)
 						dat += "<a href='?src=\ref[src];operation=use_cam;cam_target=[REF(OB)];selected_target=[REF(OB)]'>[OB]</a><br>"
 				else
 					dat += "<span class='warning'>None transmitting</span><br>"
@@ -587,7 +585,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	var/datum/squad/new_squad = tgui_input_list(usr, "Choose the marine's new squad", null,  watchable_squads)
 	if(!new_squad)
 		return
-	
+
 	if(S != current_squad)
 		return
 

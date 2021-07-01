@@ -1,26 +1,24 @@
-#define MARINE_CAN_BUY_UNIFORM      (1 << 0)
-#define MARINE_CAN_BUY_SHOES        (1 << 1)
-#define MARINE_CAN_BUY_HELMET       (1 << 2)
-#define MARINE_CAN_BUY_ARMOR        (1 << 3)
-#define MARINE_CAN_BUY_GLOVES       (1 << 4)
-#define MARINE_CAN_BUY_EAR          (1 << 5)
-#define MARINE_CAN_BUY_BACKPACK     (1 << 6)
-#define MARINE_CAN_BUY_R_POUCH      (1 << 7)
-#define MARINE_CAN_BUY_L_POUCH      (1 << 8)
-#define MARINE_CAN_BUY_BELT         (1 << 9)
-#define MARINE_CAN_BUY_GLASSES      (1 << 10)
-#define MARINE_CAN_BUY_MASK         (1 << 11)
-#define MARINE_CAN_BUY_ESSENTIALS   (1 << 12)
-#define MARINE_CAN_BUY_ATTACHMENT   (1 << 13)
-#define MARINE_CAN_BUY_ATTACHMENT2  (1 << 14)
+#define MARINE_CAN_BUY_UNIFORM (1 << 0)
+#define MARINE_CAN_BUY_SHOES (1 << 1)
+#define MARINE_CAN_BUY_HELMET (1 << 2)
+#define MARINE_CAN_BUY_ARMOR (1 << 3)
+#define MARINE_CAN_BUY_GLOVES (1 << 4)
+#define MARINE_CAN_BUY_EAR (1 << 5)
+#define MARINE_CAN_BUY_BACKPACK (1 << 6)
+#define MARINE_CAN_BUY_R_POUCH (1 << 7)
+#define MARINE_CAN_BUY_L_POUCH (1 << 8)
+#define MARINE_CAN_BUY_BELT (1 << 9)
+#define MARINE_CAN_BUY_GLASSES (1 << 10)
+#define MARINE_CAN_BUY_MASK (1 << 11)
+#define MARINE_CAN_BUY_ESSENTIALS (1 << 12)
+#define MARINE_CAN_BUY_ATTACHMENT (1 << 13)
+#define MARINE_CAN_BUY_ATTACHMENT2 (1 << 14)
 
-#define MARINE_CAN_BUY_WEBBING      (1 << 15)
-#define MARINE_CAN_BUY_MODULE       (1 << 16)
-#define MARINE_CAN_BUY_ARMORMOD     (1 << 17)
+#define MARINE_CAN_BUY_WEBBING (1 << 15)
+#define MARINE_CAN_BUY_MODULE (1 << 16)
+#define MARINE_CAN_BUY_ARMORMOD (1 << 17)
 
-
-
-#define MARINE_CAN_BUY_ALL          ((1 << 18) - 1)
+#define MARINE_CAN_BUY_ALL ((1 << 18) - 1)
 
 #define CAT_ESS "ESSENTIALS"
 #define CAT_STD "STANDARD EQUIPMENT"
@@ -91,22 +89,10 @@ GLOBAL_LIST_INIT(engineer_gear_listed_products, list(
 		/obj/item/circuitboard/general = list(CAT_ENGSUP, "General circuit board", 1, "black"),
 		/obj/item/assembly/signaler = list(CAT_ENGSUP, "Signaler (for detpacks)", 1, "black"),
 		/obj/item/stack/voucher/sentry = list(CAT_ENGSUP, "UA 571-C Base defense sentry voucher", 26, "black"),
-
-		/obj/item/attachable/extended_barrel = list(CAT_ATT, "Extended barrel", 0, "orange"),
-		/obj/item/attachable/compensator = list(CAT_ATT, "Recoil compensator", 0, "black"),
-		/obj/item/attachable/magnetic_harness = list(CAT_ATT, "Magnetic harness", 0, "orange"),
-		/obj/item/attachable/reddot = list(CAT_ATT, "Red dot sight", 0, "black"),
-		/obj/item/attachable/lasersight = list(CAT_ATT, "Laser sight", 0, "black"),
-		/obj/item/attachable/scope/mini = list(CAT_ATT, "Mini-Scope", 0,"black"),
-		/obj/item/attachable/verticalgrip = list(CAT_ATT, "Vertical grip", 0, "black"),
-		/obj/item/attachable/angledgrip = list(CAT_ATT, "Angled grip", 0, "orange"),
-		/obj/item/attachable/stock/t35stock = list(CAT_ATT, "T-35 stock", 0, "black"),
-		/obj/item/attachable/stock/t19stock = list(CAT_ATT, "T-19 machine pistol stock", 0, "black"),
 	))
 
 GLOBAL_LIST_INIT(medic_gear_listed_products, list(
 		/obj/effect/essentials_set/medic = list(CAT_ESS, "Essential Medic Set", 0, "white"),
-		/obj/item/storage/backpack/lightpack = list(CAT_MEDSUP, "Combat Backpack", 15, "orange"),
 		/obj/item/storage/pill_bottle/meralyne = list(CAT_MEDSUP, "Meralyne pills", 16, "orange"),
 		/obj/item/storage/pill_bottle/dermaline = list(CAT_MEDSUP, "Dermaline pills", 16, "orange"),
 		/obj/item/storage/pill_bottle/paracetamol = list(CAT_MEDSUP, "Paracetamol pills", 8, "orange"),
@@ -129,24 +115,12 @@ GLOBAL_LIST_INIT(medic_gear_listed_products, list(
 		/obj/item/reagent_containers/hypospray/advanced = list(CAT_MEDSUP, "Advanced hypospray", 2, "black"),
 		/obj/item/reagent_containers/hypospray/advanced/big = list(CAT_MEDSUP, "Big hypospray", 10, "black"),
 		/obj/item/clothing/glasses/hud/health = list(CAT_MEDSUP, "Medical HUD glasses", 2, "black"),
-
-		/obj/item/attachable/extended_barrel = list(CAT_ATT, "Extended barrel", 0, "orange"),
-		/obj/item/attachable/compensator = list(CAT_ATT, "Recoil compensator", 0, "black"),
-		/obj/item/attachable/magnetic_harness = list(CAT_ATT, "Magnetic harness", 0, "orange"),
-		/obj/item/attachable/reddot = list(CAT_ATT, "Red dot sight", 0, "black"),
-		/obj/item/attachable/lasersight = list(CAT_ATT, "Laser sight", 0, "black"),
-		/obj/item/attachable/verticalgrip = list(CAT_ATT, "Vertical grip", 0, "black"),
-		/obj/item/attachable/angledgrip = list(CAT_ATT, "Angled grip", 0, "orange"),
-		/obj/item/attachable/stock/t35stock = list(CAT_ATT, "T-35 stock", 0, "black"),
-		/obj/item/attachable/stock/t19stock  = list(CAT_ATT, "T-19 machine pistol stock", 0, "black"),
-		/obj/item/attachable/gyro = list(CAT_ATT, "gyroscopic stabilizer", 0, "black"),
-		/obj/item/attachable/heavy_barrel = list(CAT_ATT, "barrel charger", 0, "black"),
 	))
 
 GLOBAL_LIST_INIT(leader_gear_listed_products, list(
 		/obj/effect/essentials_set/leader = list(CAT_ESS, "Essential SL Set", 0, "white"),
-		/obj/item/squad_beacon = list(CAT_LEDSUP, "Supply beacon", 10, "black"),
-		/obj/item/squad_beacon/bomb = list(CAT_LEDSUP, "Orbital beacon", 15, "black"),
+		/obj/item/beacon/supply_beacon = list(CAT_LEDSUP, "Supply beacon", 10, "black"),
+		/obj/item/beacon/orbital_bombardment_beacon = list(CAT_LEDSUP, "Orbital beacon", 15, "black"),
 		/obj/item/tool/shovel/etool = list(CAT_LEDSUP, "Entrenching tool", 1, "black"),
 		/obj/item/stack/sandbags_empty/half = list(CAT_LEDSUP, "Sandbags x25", SANDBAG_PRICE_IN_GEAR_VENDOR, "black"),
 		/obj/item/explosive/plastique = list(CAT_LEDSUP, "Plastique explosive", 3, "black"),
@@ -171,17 +145,6 @@ GLOBAL_LIST_INIT(leader_gear_listed_products, list(
 		/obj/structure/closet/bodybag/tarp = list(CAT_LEDSUP, "V1 thermal-dampening tarp", 5, "black"),
 		/obj/item/storage/box/m94/cas = list(CAT_LEDSUP, "CAS flare box", 10, "orange"),
 		/obj/item/deployable_camera = list(CAT_LEDSUP, "Deployable Overwatch Camera", 2, "orange"),
-		/obj/item/attachable/suppressor = list(CAT_ATT, "Suppressor", 0, "black"),
-		/obj/item/attachable/extended_barrel = list(CAT_ATT, "Extended barrel", 0, "orange"),
-		/obj/item/attachable/compensator = list(CAT_ATT, "Recoil compensator", 0, "black"),
-		/obj/item/attachable/magnetic_harness = list(CAT_ATT, "Magnetic harness", 0, "orange"),
-		/obj/item/attachable/reddot = list(CAT_ATT, "Red dot sight", 0, "black"),
-		/obj/item/attachable/lasersight = list(CAT_ATT, "Laser sight", 0, "black"),
-		/obj/item/attachable/scope/mini = list(CAT_ATT, "Mini-Scope", 0,"black"),
-		/obj/item/attachable/verticalgrip = list(CAT_ATT, "Vertical grip", 0, "black"),
-		/obj/item/attachable/angledgrip = list(CAT_ATT, "Angled grip", 0, "orange"),
-		/obj/item/attachable/stock/t35stock = list(CAT_ATT, "T-35 stock", 0, "black"),
-		/obj/item/attachable/stock/t19stock = list(CAT_ATT, "T-19 machine pistol stock", 0, "black"),
 	))
 
 ///Assoc list linking the job title with their specific points vendor
@@ -214,6 +177,7 @@ GLOBAL_LIST_INIT(loadout_linked_vendor, list(
 	/obj/machinery/vending/uniform_supply,
 	/obj/machinery/vending/armor_supply,
 	/obj/machinery/vending/marineFood,
+	/obj/machinery/vending/MarineMed,
 ))
 
 GLOBAL_LIST_INIT(marine_clothes_listed_products, list(
@@ -487,9 +451,8 @@ GLOBAL_LIST_INIT(loadout_role_essential_set, list(
 	SQUAD_ENGINEER = list (
 		/obj/item/explosive/plastique = 1,
 		/obj/item/explosive/grenade/chem_grenade/razorburn_smol = 1,
-		/obj/item/stack/sandbags_empty/full = 1,
-		/obj/item/stack/sheet/metal/large_stack = 1,
-		/obj/item/stack/sheet/plasteel/medium_stack = 1,
+		/obj/item/clothing/glasses/welding = 1,
+		/obj/item/clothing/gloves/marine/insulated = 1,
 		/obj/item/cell/high = 1,
 		/obj/item/tool/shovel/etool = 1,
 		/obj/item/lightreplacer = 1,
@@ -505,6 +468,7 @@ GLOBAL_LIST_INIT(loadout_role_essential_set, list(
 		/obj/item/tweezers = 1,
 		/obj/item/reagent_containers/hypospray/advanced/oxycodone = 1,
 		/obj/item/storage/firstaid/adv = 1,
+		/obj/item/clothing/glasses/hud/health = 1,
 	),
 	SQUAD_SMARTGUNNER = list(
 		/obj/item/clothing/glasses/night/m56_goggles = 1,
@@ -513,25 +477,26 @@ GLOBAL_LIST_INIT(loadout_role_essential_set, list(
 	),
 	SQUAD_LEADER = list(
 		/obj/item/explosive/plastique = 1,
-		/obj/item/squad_beacon = 1,
-		/obj/item/squad_beacon = 1,
-		/obj/item/squad_beacon/bomb = 1,
+		/obj/item/beacon/supply_beacon = 2,
+		/obj/item/beacon/orbital_bombardment_beacon = 1,
 		/obj/item/whistle = 1,
 		/obj/item/radio = 1,
 		/obj/item/motiondetector = 1,
 		/obj/item/binoculars/tactical = 1,
 		/obj/item/pinpointer/pool = 1,
+		/obj/item/clothing/glasses/hud/health = 1,
 	)
 ))
-
-///Items that once they are in loadouts, should not have stock checked when sold by the loadout vendor
-GLOBAL_LIST_INIT(bypass_vendor_item, typecacheof(list(
-	/obj/item/ammo_magazine/handful,
-	)))
 
 ///Items that should be saved in loadouts no matter what
 GLOBAL_LIST_INIT(bypass_loadout_check_item, typecacheof(list(
 	/obj/item/clothing/under/marine,
+)))
+
+///Storage items that will always have their default content
+GLOBAL_LIST_INIT(bypass_storage_content_save, typecacheof(list(
+	/obj/item/storage/box/MRE,
+	/obj/item/storage/pill_bottle/packet,
 )))
 
 ///List of all supported job titles by the loadout vendors
@@ -550,8 +515,8 @@ GLOBAL_LIST_INIT(loadout_job_supported, list(
 #define MODULAR_ARMOR_OFFSET_Y "-10%"
 #define MODULAR_ARMOR_SCALING 1.2
 
-///The maximum number of loadouts one player can have per job
-#define MAXIMUM_LOADOUT 15
+///The maximum number of loadouts one player can have
+#define MAXIMUM_LOADOUT 50
 
 /// The currently accepted loadout version, all other loadouts will be erased from savefiles
-#define CURRENT_LOADOUT_VERSION 2
+#define CURRENT_LOADOUT_VERSION 5
