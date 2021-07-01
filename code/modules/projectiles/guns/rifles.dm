@@ -924,7 +924,7 @@
 	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/T42_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/T42_reload.ogg'
-	current_mag = /obj/item/ammo_magazine/standard_smartrifle
+	current_mag = /obj/item/ammo_magazine/rifle/standard_smartrifle
 	attachable_allowed = list(
 		/obj/item/attachable/reddot,
 		/obj/item/attachable/verticalgrip,

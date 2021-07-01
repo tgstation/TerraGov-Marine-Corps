@@ -548,7 +548,7 @@ AMMO
 
 /datum/supply_packs/ammo/smartrifle
 	name = "T-25 smartrifle ammo"
-	contains = list(/obj/item/ammo_magazine/standard_smartrifle)
+	contains = list(/obj/item/ammo_magazine/rifle/standard_smartrifle)
 	cost = 2
 
 /datum/supply_packs/ammo/sentry

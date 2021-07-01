@@ -18,6 +18,17 @@
 	new /obj/item/ammo_magazine/standard_smartmachinegun(src)
 	new /obj/item/ammo_magazine/standard_smartmachinegun(src)
 
+/obj/item/storage/box/t26_system/t25
+	name = "\improper T25 smart rifle system"
+	desc = "A large case containing the full T-26 Rifle System. Drag this sprite into you to open it up!\nNOTE: You cannot put items back inside this case."
+
+/obj/item/storage/box/t26_system/t25/Initialize(mapload, ...)
+	. = ..()
+	new /obj/item/clothing/glasses/night/m56_goggles(src)
+	new /obj/item/weapon/gun/rifle/standard_smartrifle(src)
+	new /obj/item/ammo_magazine/rifle/standard_smartrifle(src)
+	new /obj/item/ammo_magazine/rifle/standard_smartrifle(src)
+
 /obj/item/smartgun_powerpack
 	name = "\improper M56 powerpack"
 	desc = "A heavy reinforced backpack with support equipment, power cells, and spare rounds for the M56 Smartgun System.\nClick the icon in the top left to reload your M56."

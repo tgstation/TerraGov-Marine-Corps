@@ -305,7 +305,7 @@
 /obj/item/ammo_magazine/rifle/standard_smartrifle
 	name = "\improper T-25 magazine (10x26mm)"
 	desc = "A 10mm assault rifle magazine."
-	caliber = CALIBER_10X26_CASELESS
+	caliber = CALIBER_10x26_CASELESS
 	icon_state = "t25"
 	w_class = WEIGHT_CLASS_NORMAL
 	default_ammo = /datum/ammo/bullet/smartgun/smartrifle
