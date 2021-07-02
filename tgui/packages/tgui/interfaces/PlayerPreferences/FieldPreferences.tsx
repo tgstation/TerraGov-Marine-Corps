@@ -80,3 +80,23 @@ export const ToggleFieldPreference = (props, context) => {
     </LabeledList.Item>
   );
 };
+
+
+export const LoopingSelectionPreference = (props, context) => {
+  const { act } = useBackend<PlayerPreferencesData>(context);
+  const {
+    label,
+    value,
+    action,
+  } = props;
+
+  return (
+    <LabeledList.Item label={label}>
+      <Button
+        inline
+        content={value}
+        onClick={() => act(action)}
+      />
+    </LabeledList.Item>
+  );
+};
