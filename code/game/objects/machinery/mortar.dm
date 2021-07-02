@@ -252,7 +252,7 @@
 	if(current_area.ceiling >= CEILING_METAL)
 		to_chat(user, "<span class='warning'>You probably shouldn't deploy [src] indoors.</span>")
 		return
-	. = ..()
+	return ..()
 
 /obj/item/mortal_shell
 	name = "\improper 80mm mortar shell"
