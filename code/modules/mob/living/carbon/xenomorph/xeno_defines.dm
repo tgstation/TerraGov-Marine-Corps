@@ -188,6 +188,8 @@
 
 	///The iconstate for the xeno on the minimap
 	var/minimap_icon = "xeno"
+	///The iconstate of the plasma bar, format used is "[plasma_icon_state][amount]"
+	var/plasma_icon_state = "plasma"
 
 /mob/living/carbon/xenomorph
 	name = "Drone"

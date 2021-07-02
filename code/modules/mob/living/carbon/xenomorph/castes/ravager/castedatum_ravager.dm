@@ -19,6 +19,7 @@
 	plasma_max = 600
 	plasma_gain = 20
 	plasma_regen_limit = 0.5
+	plasma_icon_state = "fury"
 
 	// *** Health *** //
 	max_health = 290
