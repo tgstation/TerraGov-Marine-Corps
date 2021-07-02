@@ -48,6 +48,8 @@
 	var/middragtime = 0 //MMB exploit detection
 	var/atom/middragatom //MMB exploit detection
 
+	/// datum wrapper for client view
+	var/datum/view_data/view_size
 
 	//Database related
 	var/player_age = -1	//Used to determine how old the account is - in days.

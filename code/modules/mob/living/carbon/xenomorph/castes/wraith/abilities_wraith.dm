@@ -38,11 +38,22 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	ghost.visible_message("<span class='xenowarning'>The air starts to violently roil and shimmer around [ghost]!</span>", \
 	"<span class='xenodanger'>We begin to imprint our essence upon reality, causing the air about us to roil and shimmer...</span>") //Fluff
 
+	owner.add_filter("wraith_hyperposition_windup_filter_1", 3, motion_blur_filter()) //Cool filter appear
+	owner.add_filter("wraith_hyperposition_windup_filter_2", 3, motion_blur_filter()) //Cool filter appear
+
+	animate(owner.get_filter("wraith_hyperposition_windup_filter_1"), x = 30*rand() - 15, y = 30*rand() - 15, time = 0.5 SECONDS, loop = -1, flags=ANIMATION_PARALLEL)
+	animate(owner.get_filter("wraith_hyperposition_windup_filter_2"), x = 30*rand() - 15, y = 30*rand() - 15, time = 0.5 SECONDS, loop = -1, flags=ANIMATION_PARALLEL)
+
 	if(!do_after(ghost, WRAITH_PLACE_WARP_BEACON_WINDUP, TRUE, ghost, BUSY_ICON_BUILD)) //Channel time/wind up
 		ghost.visible_message("<span class='xenowarning'>The space around [ghost] abruptly stops shifting and wavering.</span>", \
 		"<span class='xenodanger'>We cease binding our essence to this place...</span>")
+		owner.remove_filter("wraith_hyperposition_windup_filter_1")
+		owner.remove_filter("wraith_hyperposition_windup_filter_2")
 		add_cooldown(cooldown_override = WRAITH_PLACE_WARP_BEACON_FAIL_COOLDOWN_OVERRIDE)
 		return fail_activate()
+
+	owner.remove_filter("wraith_hyperposition_windup_filter_1")
+	owner.remove_filter("wraith_hyperposition_windup_filter_2")
 
 	var/turf/T = get_turf(ghost)
 	ghost.visible_message("<span class='xenonotice'>\A shimmering point suddenly coalesces from the warped space above [T].</span>", \
@@ -128,7 +139,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	var/area/A = get_area(shadow)
 
 	var/distance = get_dist(owner, shadow) //Get the distance so we can calculate the wind up
-	var/hyperposition_windup = clamp(distance * 0.5 SECONDS - 5 SECONDS, WRAITH_HYPERPOSITION_MIN_WINDUP, WRAITH_HYPERPOSITION_MAX_WINDUP)
+	var/hyperposition_windup = clamp(distance * 0.25 SECONDS - 5 SECONDS, WRAITH_HYPERPOSITION_MIN_WINDUP, WRAITH_HYPERPOSITION_MAX_WINDUP)
 
 	owner.visible_message("<span class='warning'>The air starts to violently roil and shimmer around [owner]!</span>", \
 	"<span class='xenodanger'>We begin to teleport to our warp shadow located at [A] (X: [shadow.x], Y: [shadow.y]). We estimate this will take [hyperposition_windup * 0.1] seconds.</span>")
@@ -239,6 +250,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	phase_shift_active = TRUE //Flag phase shift as being active
 	update_button_icon("phase_shift_off") //Set to resync icon while active
 	succeed_activate()
+	plasma_cost = 0 //Toggling is free
 
 ///Warns the user when Phase Shift is about to end.
 /datum/action/xeno_action/phase_shift/proc/phase_shift_warning()
@@ -252,7 +264,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	owner.playsound_local(owner, 'sound/voice/hiss4.ogg', 50, 0, 1)
 
 ///Deactivates and turns off the Phase Shift ability/effects
-/datum/action/xeno_action/phase_shift/proc/phase_shift_deactivate()
+/datum/action/xeno_action/phase_shift/proc/phase_shift_deactivate(resync = FALSE)
 	if(!phase_shift_active) //If phase shift isn't active, don't deactivate again; generally here for the timed proc.
 		return
 
@@ -317,7 +329,11 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 		ghost.adjust_sunder(plasma_deficit)
 
 	starting_turf = null
-	add_cooldown()
+	plasma_cost = initial(plasma_cost) //Revert the plasma cost to its initial amount
+	var/cooldown_override
+	if(resync)
+		cooldown_override = 3 SECONDS //Partial cooldown if we cancelled out of Phase Shift with Resync
+	add_cooldown(cooldown_override)
 
 /datum/action/xeno_action/phase_shift/on_cooldown_finish()
 	to_chat(owner, "<span class='xenodanger'>We are able to fade from reality again.</span>")
@@ -337,7 +353,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 /datum/action/xeno_action/resync
 	name = "Resync"
 	action_icon_state = "resync"
-	mechanics_text = "Resynchronize with realspace, ending Phase Shift's effect and returning you to where the Phase Shift began."
+	mechanics_text = "Resynchronize with realspace, ending Phase Shift's effect and returning you to where the Phase Shift began with minimal cooldown."
 	cooldown_timer = 1 SECONDS //Token for anti-spam
 	keybind_signal = COMSIG_XENOABILITY_RESYNC
 
@@ -354,7 +370,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 
 	var/datum/action/xeno_action/phase_shift/disable_shift = owner.actions_by_path[/datum/action/xeno_action/phase_shift]
 	owner.forceMove(disable_shift.starting_turf) //Return to our initial position, then cancel the shift
-	disable_shift.phase_shift_deactivate()
+	disable_shift.phase_shift_deactivate(TRUE) //Resync is true; cooldown is sharply reduced
 	teleport_debuff_aoe(owner) //Debuff when we reappear
 
 	succeed_activate()
@@ -485,9 +501,9 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 					continue
 
 			shake_camera(living_target, 2, 1)
-			living_target.adjust_stagger(WRAITH_TELEPORT_DEBUFF_STACKS)
-			living_target.add_slowdown(WRAITH_TELEPORT_DEBUFF_STACKS)
-			living_target.adjust_blurriness(WRAITH_TELEPORT_DEBUFF_STACKS) //minor visual distortion
+			living_target.adjust_stagger(WRAITH_TELEPORT_DEBUFF_STAGGER_STACKS)
+			living_target.add_slowdown(WRAITH_TELEPORT_DEBUFF_SLOWDOWN_STACKS)
+			living_target.adjust_blurriness(WRAITH_TELEPORT_DEBUFF_SLOWDOWN_STACKS) //minor visual distortion
 			to_chat(living_target, "<span class='warning'>You feel nauseous as reality warps around you!</span>")
 
 /datum/action/xeno_action/activable/blink/on_cooldown_finish()
@@ -590,13 +606,14 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	animate(portal.get_filter("banish_portal_2"), x = 20*rand() - 10, y = 20*rand() - 10, time = 0.5 SECONDS, loop = -1, flags=ANIMATION_PARALLEL)
 
 	var/cooldown_mod = 1
+	var/plasma_mod = 1
 	if(isliving(banishment_target) && !(banishment_target.issamexenohive(ghost))) //We halve the max duration for living non-allies
 		duration *= WRAITH_BANISH_NONFRIENDLY_LIVING_MULTIPLIER
-	else if (banishment_target.issamexenohive(ghost))
-		cooldown_mod = 0.6 //40% cooldown reduction if used on friendly targets.
-
 	else if(is_type_in_typecache(banishment_target, GLOB.wraith_banish_very_short_duration_list)) //Barricades should only be gone long enough to admit an infiltrator xeno or two; one way.
 		duration *= WRAITH_BANISH_VERY_SHORT_MULTIPLIER
+	else
+		cooldown_mod = 0.6 //40% cooldown reduction if used on non-hostile, non-blacklisted targets.
+		plasma_mod = 0.4 //60% plasma cost reduction if used on non-hostile, non-blacklisted targets.
 
 	banishment_target.visible_message("<span class='warning'>Space abruptly twists and warps around [banishment_target] as it suddenly vanishes!</span>", \
 	"<span class='highdanger'>The world around you reels, reality seeming to twist and tear until you find yourself trapped in a forsaken void beyond space and time.</span>")
@@ -608,7 +625,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	addtimer(CALLBACK(src, .proc/banish_warning), duration * 0.7) //Warn when Banish is about to end
 	banish_duration_timer_id = addtimer(CALLBACK(src, .proc/banish_deactivate), duration, TIMER_STOPPABLE) //store the timer ID
 
-	succeed_activate()
+	succeed_activate(plasma_cost * plasma_mod)
 	add_cooldown(cooldown_timer * cooldown_mod)
 
 	GLOB.round_statistics.wraith_banishes++

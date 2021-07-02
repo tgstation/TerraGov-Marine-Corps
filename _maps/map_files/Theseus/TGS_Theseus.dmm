@@ -2295,7 +2295,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/item/tool/warning_cone,
+/obj/item/clothing/head/warning_cone,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "aTC" = (
@@ -6852,7 +6852,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "bPn" = (
-/obj/item/tool/warning_cone,
+/obj/item/clothing/head/warning_cone,
 /obj/effect/decal/warning_stripes/thin,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
@@ -10807,10 +10807,15 @@
 /area/mainship/living/officer_rnr)
 "hjv" = (
 /obj/effect/decal/warning_stripes/thin,
+<<<<<<< HEAD
 /obj/item/tool/warning_cone,
 /obj/machinery/camera/autoname/mainship{
 	dir = 1
 	},
+=======
+/obj/item/clothing/head/warning_cone,
+/obj/machinery/camera/autoname/mainship,
+>>>>>>> master
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "hjx" = (
@@ -14093,7 +14098,7 @@
 /area/mainship/hull/port_hull)
 "nZu" = (
 /obj/effect/decal/warning_stripes/thin,
-/obj/item/tool/warning_cone,
+/obj/item/clothing/head/warning_cone,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "nZA" = (

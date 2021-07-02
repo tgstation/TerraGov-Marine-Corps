@@ -28,3 +28,25 @@
   - bugfix: The Mateba revolver belt now can be used at the max capacity.
   Wayland-Smithy:
   - bugfix: Fixed revolver reload logic.
+2021-07-02:
+  BraveMole:
+  - balance: Prevent joining a faction with too many players in HvH gamemode
+  InterroLouis:
+  - bugfix: No more underbarrel guns for synthetics.
+  - bugfix: Planted medevac beacons are now vacuum-proof.
+  - bugfix: Fixed Mateba open sprite
+  Trilbyspaceclone:
+  - balance: Fences now need 4 rods rather then 2.
+  - balance: Repaired fences are now a bit harder to brake
+  - bugfix: Repaired fences are no longer bullet/acid sponges
+  Vondiech:
+  - rscadd: The TGMC has changed dress code so wearing warning cones on your head
+      is now acceptable, they also reported that the warning cones have the same amount
+      of armor as their TGMC-branded straw hats do.
+  Wayland-Smithy:
+  - expansion: Hivelord can apply resin jelly to xenos by throwing it at them.
+  - bugfix: Fixed OB beacons being activatable on dropships.
+  disappointedButNotSuprised:
+  - bugfix: fixed bicardine cigarette sprite dissapearing when lit
+  - balance: Refresh Deathsquad equippment - proper meds and buffs for armor and backpack
+  - rscadd: New Deathsquad role - Gunner
