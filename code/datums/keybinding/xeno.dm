@@ -256,11 +256,10 @@
 	keybind_signal = COMSIG_XENOABILITY_SELECT_REAGENT
 
 /datum/keybinding/xeno/radial_select_reagent
-	name = "select_reagent"
+	name = "radial_select_reagent"
 	full_name = "Defiler: Select Reagent (Radial)"
 	description = "Chooses a reagent from a radial menu to use for Defiler abilities."
 	keybind_signal = COMSIG_XENOABILITY_RADIAL_SELECT_REAGENT
-
 
 /datum/keybinding/xeno/reagent_slash
 	name = "reagent_slash"
