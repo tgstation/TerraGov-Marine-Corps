@@ -1,6 +1,0 @@
-author: "Trilbyspaceclone"
-delete-after: True
-changes: 
-  - balance: "Fences now need 4 rods rather then 2."
-  - balance: "Repaired fences are now a bit harder to brake"
-  - bugfix: "Repaired fences are no longer bullet/acid sponges"
