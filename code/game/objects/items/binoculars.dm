@@ -41,6 +41,7 @@
 	update_icon()
 
 /obj/item/binoculars/tactical/unique_action(mob/user)
+	. = ..()
 	toggle_mode(user)
 
 /obj/item/binoculars/tactical/examine(mob/user)

@@ -104,6 +104,7 @@
 
 
 /obj/item/weapon/gun/rifle/sniper/antimaterial/unique_action(mob/user)
+	. = ..()
 	if(!targetmarker_primed && !targetmarker_on)
 		return laser_on(user)
 	else
@@ -391,6 +392,7 @@
 	to_chat(user, "The restriction system is [restriction_toggled ? "<B>on</b>" : "<B>off</b>"].")
 
 /obj/item/weapon/gun/smartgun/unique_action(mob/living/carbon/user)
+	. = ..()
 	var/obj/item/smartgun_powerpack/power_pack = user.back
 	if(!istype(power_pack))
 		return FALSE

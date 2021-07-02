@@ -247,13 +247,12 @@
 	. = ..()
 	AddElement(/datum/element/deployable_item, /obj/machinery/deployable/mortar, 5 SECONDS)
 
-/obj/item/unique_action(mob/user)
-	. = ..()
+/obj/item/mortar_kit/unique_action(mob/user)
 	var/area/current_area = get_area(src)
 	if(current_area.ceiling >= CEILING_METAL)
 		to_chat(user, "<span class='warning'>You probably shouldn't deploy [src] indoors.</span>")
 		return
-	SEND_SIGNAL(src, COMSIG_ITEM_DEPLOY, user)
+	. = ..()
 
 /obj/item/mortal_shell
 	name = "\improper 80mm mortar shell"

@@ -113,9 +113,8 @@
 	gun.RegisterSignal(operator, COMSIG_MOB_MOUSEUP, /obj/item/weapon/gun/proc/stop_fire)
 	RegisterSignal(operator, COMSIG_MOB_MOUSEDRAG, .proc/change_target)
 
-	for(var/X in gun.actions)
-		var/datum/action/A = X
-		A.give_action(operator)
+	for(var/datum/action/action AS in gun.actions)
+		action.give_action(operator)
 	var/obj/screen/ammo/hud = operator.hud_used.ammo
 	hud.add_hud(operator, internal_item)
 	hud.update_hud(operator, internal_item)
@@ -141,7 +140,7 @@
 	gun.start_fire(source, target, location, control, params, TRUE)
 
 ///Happens when you drag the mouse.
-obj/machinery/deployable/mounted/proc/change_target(datum/source, atom/src_object, atom/over_object, turf/src_location, turf/over_location, src_control, over_control, params)
+/obj/machinery/deployable/mounted/proc/change_target(datum/source, atom/src_object, atom/over_object, turf/src_location, turf/over_location, src_control, over_control, params)
 	SIGNAL_HANDLER
 	over_object = get_turf_on_clickcatcher(over_object, operator)
 
@@ -191,10 +190,10 @@ obj/machinery/deployable/mounted/proc/change_target(datum/source, atom/src_objec
 	if(!(left == (angle-1)) && !(right == (angle+1)))
 		to_chat(operator, "<span class='warning'> [src] cannot be rotated so violently.</span>")
 		return FALSE
-	var/turf/w = get_step(src, REVERSE_DIR(angle))
+	var/turf/move_to = get_step(src, REVERSE_DIR(angle))
 	var/mob/living/carbon/human/user = operator
 
-	if(!operator.Move(w))
+	if(!operator.Move(move_to))
 		to_chat(operator, "You cannot rotate [src] that way.")
 		return FALSE
 
@@ -214,9 +213,8 @@ obj/machinery/deployable/mounted/proc/change_target(datum/source, atom/src_objec
 	var/obj/item/weapon/gun/gun = internal_item
 	gun.UnregisterSignal(operator, COMSIG_MOB_MOUSEUP)
 
-	for(var/X in gun.actions)
-		var/datum/action/A = X
-		A.remove_action(operator)
+	for(var/datum/action/action AS in gun.actions)
+		action.remove_action(operator)
 	var/obj/screen/ammo/hud = operator.hud_used.ammo
 	hud.remove_hud(operator)
 

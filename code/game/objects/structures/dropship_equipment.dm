@@ -426,8 +426,7 @@
 	if(deployed_mg)
 		return
 	var/obj/item/weapon/gun/mounted/hsg_nest/new_gun = new() //Creates the internal gun of the deployed_mg first.
-	SEND_SIGNAL(new_gun, COMSIG_ITEM_DEPLOY, null, src, SOUTH)	//Then deploys it without user, inside src, with direction south.
-	deployed_mg = new_gun.loc //new_gun.loc, since it is now deployed, is located within the deployed_mg. Therefore new_gun.loc = deployed_mg.
+	deployed_mg = new_gun.loc //new_gun.loc, since it deploys on new(), is located within the deployed_mg. Therefore new_gun.loc = deployed_mg.
 
 /obj/structure/dropship_equipment/mg_holder/examine(mob/user)
 	. = ..()

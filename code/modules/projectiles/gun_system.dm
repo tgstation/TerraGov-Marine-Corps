@@ -329,10 +329,9 @@
 	return TRUE
 
 /obj/item/weapon/gun/unique_action(mob/user)
+	. = ..()
 	if(flags_item & IS_DEPLOYABLE) //If the gun can be deployed, it deploys when unique_action is called.
-		SEND_SIGNAL(src, COMSIG_ITEM_DEPLOY, user)
 		return
-	return ..()
 
 //----------------------------------------------------------
 			//							        \\
@@ -605,10 +604,9 @@ If you need to change up how a gun fires, just change these procs for that subty
 and you're good to go.
 */
 /obj/item/weapon/gun/proc/load_into_chamber(mob/user)
-
 	if(CHECK_BITFIELD(flags_gun_features, GUN_DEPLOYED_FIRE_ONLY) && !CHECK_BITFIELD(flags_item, IS_DEPLOYED))
 		to_chat(user, "<span class='notice'>You cannot fire [src] while it is not deployed.</span>")
-
+		return
 	//The workhorse of the bullet procs.
 
 	//Let's check on the active attachable. It loads ammo on the go, so it never chambers anything

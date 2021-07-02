@@ -23,6 +23,7 @@
 
 
 /obj/item/weapon/gun/rifle/unique_action(mob/user)
+	. = ..()
 	return cock(user)
 
 
@@ -1014,6 +1015,7 @@
 		return FALSE
 
 /obj/item/weapon/gun/rifle/chambered/unique_action(mob/user)
+	. = ..()
 	if(racked_bolt)
 		to_chat(user, "<span class='warning'>[src] already has a round chambered!</span>")
 		return

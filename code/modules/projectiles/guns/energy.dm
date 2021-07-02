@@ -214,6 +214,7 @@
 	starting_attachment_types = list()
 
 /obj/item/weapon/gun/energy/lasgun/M43/unique_action(mob/user)
+	. = ..()
 	return toggle_chargemode(user)
 
 /obj/item/weapon/gun/energy/lasgun/Initialize(mapload, ...)
@@ -440,6 +441,7 @@
 	aim_slowdown = 0.35
 
 /obj/item/weapon/gun/energy/lasgun/M43/practice/unique_action(mob/user)
+	. = ..()
 	return
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle
@@ -510,6 +512,7 @@
 	var/radial_icon_state = "laser"
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/unique_action(mob/user)
+	. = ..()
 	return switch_modes(user)
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/proc/switch_modes(mob/user)

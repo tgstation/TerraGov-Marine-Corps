@@ -14,22 +14,29 @@
 	deploy_type = _deploy_type
 	deploy_time = _deploy_time
 
-	RegisterSignal(target, COMSIG_ITEM_DEPLOY, .proc/deploy)
+	var/obj/item/attached_item = target
+	if(CHECK_BITFIELD(attached_item.flags_item, DEPLOY_ON_INITIALIZE))
+		finish_deploy(attached_item, null, attached_item.loc, attached_item.dir)
+		return
+
+	RegisterSignal(attached_item, COMSIG_ITEM_UNIQUE_ACTION, .proc/deploy)
 
 ///Wrapper for proc/finish_deploy
 /datum/element/deployable_item/proc/deploy(datum/source, mob/user, location, direction)
 	SIGNAL_HANDLER
 	INVOKE_ASYNC(src, .proc/finish_deploy, source, user, location, direction)
 
-///Handles the conversion of item into machine. Source is the Item to be deployed, user is who is deploying. If !null then 'location' and 'direction' are required for deployment.
+
+///Handles the conversion of item into machine. Source is the Item to be deployed, user is who is deploying. If user is null then 'location' and 'direction' are required for deployment.
 /datum/element/deployable_item/proc/finish_deploy(datum/source, mob/user, location, direction)
 	var/obj/item/attached_item = source
 	var/obj/deployed_machine
 	var/deploy_location
 	var/new_direction
-	if(user) //If there is a 'mob/user' the location and direction of the deploying object will be based off of the user.
+	if(user) 
 		if(!ishuman(user)) 
 			return
+
 		deploy_location = get_step(user, user.dir)
 		if(attached_item.check_blocked_turf(deploy_location))
 			to_chat(user, "<span class='warning'>There is insufficient room to deploy [attached_item]!</span>")
@@ -42,10 +49,9 @@
 		user.temporarilyRemoveItemFromInventory(attached_item)
 
 		attached_item.UnregisterSignal(user, list(COMSIG_MOB_MOUSEDOWN, COMSIG_MOB_MOUSEUP, COMSIG_MOB_MOUSEDRAG, COMSIG_KB_RAILATTACHMENT, COMSIG_KB_UNDERRAILATTACHMENT, COMSIG_KB_UNLOADGUN, COMSIG_KB_FIREMODE)) //This unregisters Signals related to guns, its for safety
+
 	else
-		if(!location || !direction) //If there is no user, both 'location' and 'direction' are required for deploying the object.
-			CRASH("/datum/component/deployable_item/deploy has been called from [source] without a user and therefore is missing the required vars of either 'location' or 'direction'")
-		
+		deploy_location = location
 		new_direction = direction
 
 	deployed_machine = new deploy_type(deploy_location, attached_item) //Creates new structure or machine at 'deploy' location and passes on 'attached_item'
@@ -76,7 +82,6 @@
 		attached_item = _deployed_machine.internal_item
 	else if(!undeploying)
 		CRASH("[src] has called proc/undeploy from [source]. [source] is not of the type '/obj/machinery/deployable' and the argument 'undeploying' is null. Therefore proc/undeploy cannot determin what is undeploying.")
-
 	else
 		attached_item = undeploying
 
@@ -94,7 +99,7 @@
 
 		attached_item.forceMove(location)
 	DISABLE_BITFIELD(attached_item.flags_item, IS_DEPLOYED)
-	UnregisterSignal(deployed_machine, COMSIG_ITEM_UNDEPLOY)
+	UnregisterSignal(deployed_machine, COMSIG_ITEM_UNIQUE_ACTION)
 
 	attached_item.max_integrity = deployed_machine.max_integrity
 	attached_item.obj_integrity = deployed_machine.obj_integrity
@@ -105,6 +110,4 @@
 
 	QDEL_NULL(deployed_machine)
 	attached_item.update_icon_state()
-
-
 
