@@ -69,44 +69,32 @@
 	RegisterSignal(deployed_machine, COMSIG_ITEM_UNDEPLOY, .proc/undeploy)
 
 ///Wrapper for proc/finish_undeploy
-/datum/element/deployable_item/proc/undeploy(datum/source, mob/user, location, obj/item/undeploying)
+/datum/element/deployable_item/proc/undeploy(datum/source, mob/user)
 	SIGNAL_HANDLER
-	INVOKE_ASYNC(src, .proc/finish_undeploy, source, user, location, undeploying)
+	INVOKE_ASYNC(src, .proc/finish_undeploy, source, user)
 
 //Handles the conversion of Machine into Item. 'source' should be the Machine. User is the one undeploying. It can be undeployed without a user, if so, the var 'location' is required. If 'source' is not /obj/machinery/deployable then 'undeploying' should be the item to be undeployed from the machine.
-/datum/element/deployable_item/proc/finish_undeploy(datum/source, mob/user, location, undeploying)
-	var/obj/deployed_machine = source //The machine/structure that is undeploying should be the the one sending the Signal
-	var/obj/item/attached_item //Item the machine/structure is undeploying
-	if(istype(deployed_machine, /obj/machinery/deployable)) //If the machine/structure is of type, '/obj/machinery/deployable' then it already has a saved var of the deploying/undeploying item. If it isn't the source should send along the undeploying item
-		var/obj/machinery/deployable/_deployed_machine = deployed_machine
-		attached_item = _deployed_machine.internal_item
-	else if(!undeploying)
-		CRASH("[src] has called proc/undeploy from [source]. [source] is not of the type '/obj/machinery/deployable' and the argument 'undeploying' is null. Therefore proc/undeploy cannot determin what is undeploying.")
-	else
-		attached_item = undeploying
+/datum/element/deployable_item/proc/finish_undeploy(datum/source, mob/user)
+	var/obj/machinery/deployable/deployed_machine = source //The machinethat is undeploying should be the the one sending the Signal
+	var/obj/item/attached_item  = deployed_machine.internal_item //Item the machine is undeploying
 
-	if(user)
-		if(!ishuman(user))
-			return
-		to_chat(user, "<span class = 'notice'>You start disassembling the [attached_item]</span>")
-		if(!do_after(user, deploy_time, TRUE, deployed_machine, BUSY_ICON_BUILD))
-			return
-		user.unset_interaction()
-		user.put_in_hands(attached_item)
-	else
-		if(!location)
-			CRASH("/datum/element/deployable_item/proc/undeploy has been called from [source] without a user and therefore is missing the required var of 'location'")
+	if(!user)
+		CRASH("[source] has sent the signal COMSIG_ITEM_UNDEPLOY to [attached_item] without the arg 'user'")
+	if(!ishuman(user))
+		return
+	to_chat(user, "<span class = 'notice'>You start disassembling the [attached_item]</span>")
+	if(!do_after(user, deploy_time, TRUE, deployed_machine, BUSY_ICON_BUILD))
+		return
+	user.unset_interaction()
+	user.put_in_hands(attached_item)
 
-		attached_item.forceMove(location)
 	DISABLE_BITFIELD(attached_item.flags_item, IS_DEPLOYED)
 	UnregisterSignal(deployed_machine, COMSIG_ITEM_UNIQUE_ACTION)
 
 	attached_item.max_integrity = deployed_machine.max_integrity
 	attached_item.obj_integrity = deployed_machine.obj_integrity
 
-	if(istype(deployed_machine, /obj/machinery/deployable)) //Since /obj/machinery/deployable deletes 'internal_item' on qdel(), this sets internal_item to null so the item does not get deleted when undeploying.
-		var/obj/machinery/deployable/_deployed_machine = deployed_machine
-		_deployed_machine.internal_item = null
+	deployed_machine.internal_item = null
 
 	QDEL_NULL(deployed_machine)
 	attached_item.update_icon_state()
