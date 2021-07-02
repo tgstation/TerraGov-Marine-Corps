@@ -83,7 +83,7 @@ export const ToggleFieldPreference = (props, context) => {
 
 
 export const LoopingSelectionPreference = (props, context) => {
-  const { act} = useBackend<PlayerPreferencesData>(context);
+  const { act } = useBackend<PlayerPreferencesData>(context);
   const {
     label,
     value,
