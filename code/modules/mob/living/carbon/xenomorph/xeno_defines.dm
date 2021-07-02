@@ -48,6 +48,8 @@
 	var/plasma_max = 10
 	///How much plasma a caste gains every life tick.
 	var/plasma_gain = 5
+	///up to how % much plasma regens in decimals, generally used if you have a special way of regeninng plasma.
+	var/plasma_regen_limit = 1
 
 	// *** Health *** //
 	///Maximum health a caste has.

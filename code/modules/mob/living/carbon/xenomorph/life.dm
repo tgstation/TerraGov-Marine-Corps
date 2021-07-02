@@ -126,7 +126,7 @@
 	var/turf/T = loc
 	if(!T || !istype(T))
 		return
-	if(plasma_stored == xeno_caste.plasma_max)
+	if(plasma_stored >= xeno_caste.plasma_max * xeno_caste.plasma_regen_limit)
 		return
 
 	if(current_aura)
@@ -142,8 +142,8 @@
 		return
 	var/list/plasma_mod = list()
 
-	if(SEND_SIGNAL(src, COMSIG_XENOMORPH_PLASMA_REGEN, plasma_mod) & COMPONENT_PLASMA_REGEN_HANDLED)
-		return
+	SEND_SIGNAL(src, COMSIG_XENOMORPH_PLASMA_REGEN, plasma_mod)
+
 
 	var/plasma_gain_multiplier = 1
 	for(var/i in plasma_mod)
@@ -157,6 +157,7 @@
 
 	if(lying_angle || resting)
 		plasma_gain *= 2  // Doubled for resting
+
 
 	gain_plasma(plasma_gain * plasma_gain_multiplier)
 	hud_set_plasma() //update plasma amount on the plasma mob_hud

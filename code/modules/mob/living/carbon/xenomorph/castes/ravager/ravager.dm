@@ -14,6 +14,10 @@
 	pixel_x = -16
 	old_x = -16
 
+/mob/living/carbon/xenomorph/ravager/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/plasma_on_attack/ravager)
+
 // ***************************************
 // *********** Mob overrides
 // ***************************************
