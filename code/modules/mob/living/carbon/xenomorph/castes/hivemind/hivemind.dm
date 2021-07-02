@@ -56,7 +56,7 @@
 	. = TRUE
 	if(locate(/obj/flamer_fire) in T)
 		return FALSE
-	for(var/obj/effect/alien/weeds/W in range(1, T ? T : get_turf(src)))
+	for(var/obj/effect/alien/weeds/W in range(3, T ? T : get_turf(src)))
 		if(QDESTROYING(W))
 			continue
 		return
