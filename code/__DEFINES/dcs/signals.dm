@@ -358,7 +358,7 @@
 ///from [/mob/living/carbon/human/proc/remove_overlay]: (cache_index, list/overlays_to_remove)
 #define COMSIG_HUMAN_REMOVE_OVERLAY "human_overlay_removed"
 
-#define COMSIG_HUMAN_UNDEFIBBABLE "human_set_undefibbable"
+#define COMSIG_HUMAN_SET_UNDEFIBBABLE "human_set_undefibbable"
 
 // shuttle signals
 #define COMSIG_SHUTTLE_SETMODE "shuttle_setmode"

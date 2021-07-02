@@ -184,7 +184,8 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 		camera.c_tag = user.name
 		if(user.assigned_squad)
 			camera.network |= lowertext(user.assigned_squad.name)
-	RegisterSignal(user, list(COMSIG_MOB_DEATH, COMSIG_HUMAN_UNDEFIBBABLE, COMSIG_MOB_REVIVE), .proc/update_minimap_icon)
+	RegisterSignal(user, list(COMSIG_HUMAN_SET_UNDEFIBBABLE, COMSIG_MOB_REVIVE), .proc/update_minimap_icon)
+	RegisterSignal(user, COMSIG_MOB_DEATH, .proc/set_dead_on_minimap)
 	return ..()
 
 
@@ -199,7 +200,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 		camera.c_tag = "Unknown"
 		if(user.assigned_squad)
 			camera.network -= lowertext(user.assigned_squad.name)
-	UnregisterSignal(user, list(COMSIG_MOB_DEATH, COMSIG_HUMAN_UNDEFIBBABLE, COMSIG_MOB_REVIVE))
+	UnregisterSignal(user, list(COMSIG_MOB_DEATH, COMSIG_HUMAN_SET_UNDEFIBBABLE, COMSIG_MOB_REVIVE))
 	return ..()
 
 
@@ -255,16 +256,22 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	var/marker_flags = initial(minimap_type.marker_flags)
 	if(wearer.job?.job_flags & JOB_FLAG_ALWAYS_VISIBLE_ON_MINIMAP || wearer.stat == DEAD) //We show to all marines if we have this flag, separated by faction
 		marker_flags = hud_type == DATA_HUD_SQUAD_TERRAGOV ? MINIMAP_FLAG_ALL_MARINES : MINIMAP_FLAG_ALL_MARINES_REBEL
-	if(wearer.stat == DEAD)
-		if(HAS_TRAIT(wearer, TRAIT_UNDEFIBBABLE))
-			SSminimaps.add_marker(wearer, wearer.z, marker_flags, "undefibbable")
-			return
-		SSminimaps.add_marker(wearer, wearer.z, marker_flags, "defibbable")
+	if(HAS_TRAIT(wearer, TRAIT_UNDEFIBBABLE))
+		SSminimaps.add_marker(wearer, wearer.z, marker_flags, "undefibbable")
 		return
 	if(wearer.assigned_squad)
 		SSminimaps.add_marker(wearer, wearer.z, marker_flags, lowertext(wearer.assigned_squad.name)+"_"+wearer.job.minimap_icon)
 		return
 	SSminimaps.add_marker(wearer, wearer.z, marker_flags, wearer.job.minimap_icon)
+
+///Change the minimap icon to a dead icon
+/obj/item/radio/headset/mainship/proc/set_dead_on_minimap()
+	SIGNAL_HANDLER
+	SSminimaps.remove_marker(wearer)
+	if(!wearer.job || !wearer.job.minimap_icon)
+		return
+	var/marker_flags = hud_type == DATA_HUD_SQUAD_TERRAGOV ? MINIMAP_FLAG_ALL_MARINES : MINIMAP_FLAG_ALL_MARINES_REBEL
+	SSminimaps.add_marker(wearer, wearer.z, marker_flags, "defibbable")
 
 ///Remove all action of type minimap from the wearer, and make him disappear from the minimap
 /obj/item/radio/headset/mainship/proc/remove_minimap()
