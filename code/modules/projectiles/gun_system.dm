@@ -140,8 +140,6 @@
 	. = ..()					//This only affects guns you can get from vendors for now. Special guns spawn with their own things regardless.
 	base_gun_icon = icon_state
 
-	verbs -= /obj/item/verb/verb_pickup
-
 	if(current_mag)
 		if(spawn_empty && !(flags_gun_features & GUN_INTERNAL_MAG)) //Internal mags will still spawn, but they won't be filled.
 			current_mag = null
@@ -1151,6 +1149,9 @@ and you're good to go.
 		return
 	if(!wielded_stable())
 		to_chat(gun_user, "<span class='warning'>[active_attachable] is not ready to fire!</span>")
+		return
+	if(!(flags_gun_features & GUN_ALLOW_SYNTHETIC) && !CONFIG_GET(flag/allow_synthetic_gun_use) && issynth(gun_user))
+		to_chat(gun_user, "<span class='warning'>Your program does not allow you to use this firearm.</span>")
 		return
 	active_attachable.fire_attachment(target, src, gun_user) //Fire it.
 	last_fired = world.time

@@ -1072,13 +1072,13 @@ datum/ammo/bullet/revolver/tp44
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
 	shell_speed = 4
 	max_range = 12
-	damage = 100
+	damage = 250
 	penetration = 70
-	sundering = 70
+	sundering = 90
 	bullet_color = COLOR_PULSE_BLUE
 
 /datum/ammo/bullet/railgun/on_hit_mob(mob/M,obj/projectile/P)
-	staggerstun(M, P, weaken = 1, stagger = 3, slowdown = 2, knockback = 4)
+	staggerstun(M, P, weaken = 1, stagger = 6, slowdown = 2, knockback = 2)
 
 /*
 //================================================
