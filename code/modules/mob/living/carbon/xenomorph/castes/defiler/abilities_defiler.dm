@@ -2,13 +2,6 @@
 #define DEFILER_HEMODILE "Hemodile"
 #define DEFILER_TRANSVITOX "Transvitox"
 
-//List of toxin types
-GLOBAL_LIST_INIT(defiler_toxin_type_list, list(
-		/datum/reagent/toxin/xeno_neurotoxin,
-		/datum/reagent/toxin/xeno_hemodile,
-		/datum/reagent/toxin/xeno_transvitox,
-		))
-
 // ***************************************
 // *********** Sting
 // ***************************************
@@ -315,3 +308,7 @@ GLOBAL_LIST_INIT(defiler_toxin_type_list, list(
 	to_chat(owner, "<span class='xenodanger'>We are able to infuse our spines with toxins again.</span>")
 	owner.playsound_local(owner, 'sound/effects/xeno_newlarva.ogg', 25, 0, 1)
 	return ..()
+
+#undef DEFILER_NEUROTOXIN
+#undef DEFILER_HEMODILE
+#undef DEFILER_TRANSVITOX
