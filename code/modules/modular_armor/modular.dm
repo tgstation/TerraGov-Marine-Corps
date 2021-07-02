@@ -397,7 +397,7 @@
 		visor_color_hex = colors[2]
 
 ///Will force faction colors on this helmet
-/obj/item/clothing/head/modular/proc/limit_colorable_colors(var/faction)
+/obj/item/clothing/head/modular/proc/limit_colorable_colors(faction)
 	switch(faction)
 		if(FACTION_TERRAGOV)
 			var/split_colors = list("#2A4FB7")
