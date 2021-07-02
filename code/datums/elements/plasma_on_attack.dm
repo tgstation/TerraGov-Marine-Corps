@@ -12,7 +12,9 @@
 	RegisterSignal(target, COMSIG_XENOMORPH_ATTACK_LIVING, .proc/damage_dealt)
 	src.damage_plasma_multiplier = damage_plasma_multiplier
 
+///Gives plasma when damage is caused on living mob.
 /datum/element/plasma_on_attack/proc/damage_dealt(datum/source, mob/living/attacked, damage)
+	SIGNAL_HANDLER
 	var/mob/living/carbon/xenomorph/furious = source
 	furious.gain_plasma(damage * damage_plasma_multiplier)
 
