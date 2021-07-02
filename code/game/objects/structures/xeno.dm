@@ -619,7 +619,6 @@
 TUNNEL
 */
 
-
 /obj/structure/xeno/tunnel
 	name = "tunnel"
 	desc = "A tunnel entrance. Looks like it was dug by some kind of clawed beast."
@@ -641,8 +640,6 @@ TUNNEL
 
 	///Hive number of the structure; defaults to standard.
 	var/hivenumber = XENO_HIVE_NORMAL
-
-
 
 /obj/structure/xeno/tunnel/Initialize(mapload)
 	. = ..()
@@ -807,7 +804,7 @@ TUNNEL
 	destroy_sound = "alien_resin_move"
 
 	var/charges = 1
-	var/ccharging = FALSE
+	var/charging = FALSE
 	var/mob/living/carbon/xenomorph/creator = null
 
 /obj/structure/xeno/acidwell/Initialize()
@@ -832,7 +829,7 @@ TUNNEL
 
 	if(damage_amount) //Spawn the gas only if we actually get destroyed by damage
 		var/datum/effect_system/smoke_spread/xeno/acid/A = new(get_turf(src))
-		A.set_up(clamp(charges,0,2),src)
+		A.set_up(clamp(CEILING(charges*0.5, 1),0,3),src) //smoke scales with charges
 		A.start()
 	return ..()
 
@@ -840,7 +837,8 @@ TUNNEL
 	..()
 	if(!isxeno(user) && !isobserver(user))
 		return
-	to_chat(user, "<span class='xenoannounce'>This is an acid well made by [creator].</span>")
+	to_chat(user, "<span class='xenonotice'>An acid well made by [creator]. It currently has <b>[charges]/[XENO_ACID_WELL_MAX_CHARGES] charges</b>.</span>")
+
 
 /obj/structure/xeno/acidwell/deconstruct(disassembled = TRUE)
 	visible_message("<span class='danger'>[src] suddenly collapses!</span>")
@@ -860,36 +858,70 @@ TUNNEL
 		if(EXPLODE_LIGHT)
 			take_damage(70)
 
+/obj/structure/xeno/acidwell/flamer_fire_act() //Removes a charge of acid, but fire is extinguished
+	acid_well_fire_interaction()
+
+/obj/structure/xeno/acidwell/fire_act() //Removes a charge of acid, but fire is extinguished
+	acid_well_fire_interaction()
+
+///Handles fire based interactions with the acid well. Depletes 1 charge if there are any to extinguish all fires in the turf while producing acid smoke.
+/obj/structure/xeno/acidwell/proc/acid_well_fire_interaction()
+	if(!charges)
+		take_damage(50, BURN, "fire")
+		return
+
+	charges--
+	update_icon()
+	var/turf/T = get_turf(src)
+	var/datum/effect_system/smoke_spread/xeno/acid/acid_smoke = new(T) //spawn acid smoke when charges are actually used
+	acid_smoke.set_up(0, src) //acid smoke in the immediate vicinity
+	acid_smoke.start()
+
+	for(var/obj/flamer_fire/F in T) //Extinguish all flames in turf
+		qdel(F)
+
 /obj/structure/xeno/acidwell/attackby(obj/item/I, mob/user, params)
 	if(!isxeno(user))
 		return ..()
 	attack_alien(user)
 
 /obj/structure/xeno/acidwell/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
-	if(X.a_intent != INTENT_HARM)
-		if(charges >= 5)
-			to_chat(X, "<span class='xenoannounce'>[src] is already full!</span>")
-			return
-		if(ccharging)
-			to_chat(X, "<span class='xenoannounce'>[src] is already being filled!</span>")
-			return
-		ccharging = TRUE
-		if(!do_after(X, 10 SECONDS, FALSE, src, BUSY_ICON_BUILD))
-			ccharging = FALSE
-			return
-		if(X.plasma_stored < 200)
-			ccharging = FALSE
-			return
-		X.plasma_stored -= 200
-		charges++
-		ccharging = FALSE
-		update_icon()
-		to_chat(X,"<span class='xenonotice'>We fill up by one [src].</span>")
-	else
-		to_chat(X, "<span class='xenowarning'>We begin removing [src]...</span>")
-		if(do_after(X, 5 SECONDS, FALSE, src, BUSY_ICON_BUILD))
-			deconstruct(FALSE)
+	if(X.a_intent == INTENT_HARM && (CHECK_BITFIELD(X.xeno_caste.caste_flags, CASTE_IS_BUILDER) || X == creator) ) //If we're a builder caste or the creator and we're on harm intent, deconstruct it.
+		to_chat(X, "<span class='xenodanger'>We begin removing \the [src]...</span>")
+		if(!do_after(X, XENO_ACID_WELL_FILL_TIME, FALSE, src, BUSY_ICON_HOSTILE))
+			to_chat(X, "<span class='xenodanger'>We stop removing \the [src]...</span>")
+		playsound(src, "alien_resin_break", 25)
+		deconstruct(TRUE, X)
 		return
+
+	if(charges >= 5)
+		to_chat(X, "<span class='xenodanger'>[src] is already full!</span>")
+		return
+	if(charging)
+		to_chat(X, "<span class='xenodanger'>[src] is already being filled!</span>")
+		return
+
+	if(X.plasma_stored < XENO_ACID_WELL_FILL_COST) //You need to have enough plasma to attempt to fill the well
+		to_chat(X, "<span class='xenodanger'>We don't have enough plasma to fill [src]! We need <b>[XENO_ACID_WELL_FILL_COST - X.plasma_stored]</b> more plasma!</span>")
+		return
+
+	charging = TRUE
+	to_chat(X, "<span class='xenodanger'>We begin refilling [src]...</span>")
+	if(!do_after(X, XENO_ACID_WELL_FILL_TIME, FALSE, src, BUSY_ICON_BUILD))
+		charging = FALSE
+		to_chat(X, "<span class='xenodanger'>We abort refilling [src]!</span>")
+		return
+
+	if(X.plasma_stored < XENO_ACID_WELL_FILL_COST)
+		charging = FALSE
+		to_chat(X, "<span class='xenodanger'>We don't have enough plasma to fill [src]! We need <b>[XENO_ACID_WELL_FILL_COST - X.plasma_stored]</b> more plasma!</span>")
+		return
+
+	X.plasma_stored -= XENO_ACID_WELL_FILL_COST
+	charges++
+	charging = FALSE
+	update_icon()
+	to_chat(X,"<span class='xenonotice'>We add acid to [src]. It is currently has <b>[charges] / [XENO_ACID_WELL_MAX_CHARGES] charges</b>.</span>")
 
 /obj/structure/xeno/acidwell/Crossed(atom/A)
 	. = ..()
@@ -899,27 +931,39 @@ TUNNEL
 		HasProximity(A)
 
 /obj/structure/xeno/acidwell/HasProximity(atom/movable/AM)
-	if(!iscarbon(AM))
+	if(!isliving(AM))
 		return
-	var/mob/living/carbon/C = AM
-	if(C.stat == DEAD)
+	var/mob/living/stepper = AM
+	if(stepper.stat == DEAD)
 		return
 	if(!charges)
 		return
-	if(isxeno(C))
-		if(!(C.on_fire))
+
+	var/datum/effect_system/smoke_spread/xeno/acid/acid_smoke
+
+	if(isxeno(stepper))
+		if(!(stepper.on_fire))
 			return
-		C.ExtinguishMob()
+		acid_smoke = new(get_turf(stepper)) //spawn acid smoke when charges are actually used
+		acid_smoke.set_up(0, src) //acid smoke in the immediate vicinity
+		acid_smoke.start()
+		stepper.ExtinguishMob()
 		charges--
 		update_icon()
 		return
-	else
-		if(!charges)
-			return
-		C.adjustToxLoss(charges * 15)
-		charges = 0
-		update_icon()
-		return
+
+	stepper.next_move_slowdown += charges * 2 //Acid spray has slow down so this should too; scales with charges, Min 2 slowdown, Max 10
+	stepper.apply_damage(charges * 10, BURN, BODY_ZONE_PRECISE_L_FOOT, stepper.run_armor_check(BODY_ZONE_PRECISE_L_FOOT, "acid") * 0.66) //33% armor pen
+	stepper.apply_damage(charges * 10, BURN, BODY_ZONE_PRECISE_R_FOOT, stepper.run_armor_check(BODY_ZONE_PRECISE_R_FOOT, "acid") * 0.66) //33% armor pen
+	stepper.visible_message("<span class='danger'>[stepper] is immersed in [src]'s acid!</span>", \
+	"<span class='danger'>We are immersed in [src]'s acid!</span>", null, 5)
+	playsound(stepper, "sound/bullets/acid_impact1.ogg", 10 * charges)
+	new /obj/effect/temp_visual/acid_bath(get_turf(stepper))
+	acid_smoke = new(get_turf(stepper)) //spawn acid smoke when charges are actually used
+	acid_smoke.set_up(0, src) //acid smoke in the immediate vicinity
+	acid_smoke.start()
+	charges = 0
+	update_icon()
 
 /obj/structure/xeno/resin_jelly_pod
 	name = "Resin jelly pod"
