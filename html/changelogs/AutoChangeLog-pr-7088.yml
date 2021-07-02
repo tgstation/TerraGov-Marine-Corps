@@ -1,0 +1,8 @@
+author: "Surrealaser"
+delete-after: True
+changes: 
+  - balance: "Debuff stacks from the Wraith's warp field are increased; 2 stagger stacks up from 1, and 3 slowdown stacks up from 1."
+  - balance: "Banish cooldown and plasma cost decreased for friendly living targets and non-barricade targets to 60% and 40% respectively."
+  - balance: "Hyperposition windup will increase by 0.25 seconds per tile after 20 tiles of distance down from 0.5 seconds per tile after 10 tiles of distance."
+  - balance: "Using Resync while phased out (reverting to your prior location at the start of the Phase Shift) mostly removes the next cooldown for Phase Shift, reducing it to 3 seconds.
+bug: Phase Shift no longer consumes its baseline plasma cost when toggled off."
