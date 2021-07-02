@@ -145,7 +145,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	///What size should pixels be displayed as? 0 is strech to fit
 	var/pixel_size = 0
 	///What scaling method should we use? Distort means nearest neighbor
-	var/scaling_method = SCALING_METHOD_DISTORT
+	var/scaling_method = SCALING_METHOD_NORMAL
 
 	/// New TGUI Preference preview
 	var/map_name = "player_pref_map"
@@ -175,7 +175,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	if(!IsGuestKey(C.key))
 		load_path(C.ckey)
 		if(!load_loadout_manager() || loadout_manager.version != CURRENT_LOADOUT_VERSION)
-			loadout_manager = new 
+			loadout_manager = new
 			reset_loadouts_file()
 		if(load_preferences() && load_character())
 			return
@@ -187,7 +187,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	for(var/i in 1 to CUSTOM_EMOTE_SLOTS)
 		var/datum/custom_emote/emote = new
 		emote.id = i
-		custom_emotes += emote 
+		custom_emotes += emote
 	C.update_movement_keys(src)
 	loadout_manager = new
 
