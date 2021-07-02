@@ -68,7 +68,19 @@
 		hivenumber = input_hivenumber
 
 	if(input_source)
-		source = input_source
+		facehugger_register_source(input_source)
+
+/obj/item/clothing/mask/facehugger/proc/facehugger_register_source(var/mob/living/carbon/xenomorph/S)
+	if(source) //If we have an existing source, unregister
+		UnregisterSignal(source, COMSIG_PARENT_QDELETING)
+
+	source = S //set and register new source
+	RegisterSignal(S, COMSIG_PARENT_QDELETING, .proc/clear_hugger_source)
+
+/obj/item/clothing/mask/facehugger/proc/clear_hugger_source()
+	SIGNAL_HANDLER
+	UnregisterSignal(source, COMSIG_PARENT_QDELETING)
+	source = null
 
 /obj/item/clothing/mask/facehugger/Destroy()
 	. = ..()
@@ -77,7 +89,7 @@
 	remove_danger_overlay() //Remove the danger overlay
 	lifetimer = null
 	jumptimer = null
-	source = null
+	clear_hugger_source()
 
 /obj/item/clothing/mask/facehugger/update_icon()
 	if(stat == DEAD)
@@ -115,6 +127,7 @@
 			deltimer(jumptimer)
 			jumptimer = null
 			remove_danger_overlay() //Remove the exclamation overlay as we pick it up
+			facehugger_register_source(X)
 			return ..() // These can pick up huggers.
 		else
 			return FALSE // The rest can't.
@@ -161,7 +174,7 @@
 	. = ..()
 	// Whena  xeno removes the hugger from storage we don't want to start the active timer until they drop or throw it
 	if(isxeno(user)) //Set the source mob
-		source = user
+		facehugger_register_source(user)
 	if(isxenocarrier(user))
 		go_active(TRUE)
 
