@@ -70,7 +70,7 @@
 	if(input_source)
 		facehugger_register_source(input_source)
 
-/obj/item/clothing/mask/facehugger/proc/facehugger_register_source(var/mob/living/carbon/xenomorph/S)
+/obj/item/clothing/mask/facehugger/proc/facehugger_register_source(mob/living/carbon/xenomorph/S)
 	if(source) //If we have an existing source, unregister
 		UnregisterSignal(source, COMSIG_PARENT_QDELETING)
 
