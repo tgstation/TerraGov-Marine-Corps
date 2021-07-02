@@ -10807,15 +10807,10 @@
 /area/mainship/living/officer_rnr)
 "hjv" = (
 /obj/effect/decal/warning_stripes/thin,
-<<<<<<< HEAD
-/obj/item/tool/warning_cone,
+/obj/item/clothing/head/warning_cone,
 /obj/machinery/camera/autoname/mainship{
 	dir = 1
 	},
-=======
-/obj/item/clothing/head/warning_cone,
-/obj/machinery/camera/autoname/mainship,
->>>>>>> master
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "hjx" = (
