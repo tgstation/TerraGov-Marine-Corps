@@ -2,18 +2,11 @@
 #define DEFILER_HEMODILE "Hemodile"
 #define DEFILER_TRANSVITOX "Transvitox"
 
-//List of huggie types
-GLOBAL_LIST_INIT(toxin_type_list, list(
+//List of toxin types
+GLOBAL_LIST_INIT(defiler_toxin_type_list, list(
 		/datum/reagent/toxin/xeno_neurotoxin,
 		/datum/reagent/toxin/xeno_hemodile,
 		/datum/reagent/toxin/xeno_transvitox,
-		))
-
-//List of huggie images
-GLOBAL_LIST_INIT(toxin_images_list,  list(
-		DEFILER_NEUROTOXIN = image('icons/mob/actions.dmi', icon_state = DEFILER_NEUROTOXIN),
-		DEFILER_HEMODILE = image('icons/mob/actions.dmi', icon_state = DEFILER_HEMODILE),
-		DEFILER_TRANSVITOX = image('icons/mob/actions.dmi', icon_state = DEFILER_TRANSVITOX),
 		))
 
 // ***************************************
@@ -202,7 +195,7 @@ GLOBAL_LIST_INIT(toxin_images_list,  list(
 /datum/action/xeno_action/select_reagent/give_action(mob/living/L)
 	. = ..()
 	var/mob/living/carbon/xenomorph/X = owner
-	X.selected_reagent = GLOB.toxin_type_list[1] //Set our default
+	X.selected_reagent = GLOB.defiler_toxin_type_list[1] //Set our default
 	update_button_icon() //Update immediately to get our default
 
 /datum/action/xeno_action/select_reagent/update_button_icon()
@@ -214,11 +207,11 @@ GLOBAL_LIST_INIT(toxin_images_list,  list(
 
 /datum/action/xeno_action/select_reagent/action_activate()
 	var/mob/living/carbon/xenomorph/X = owner
-	var/i = GLOB.toxin_type_list.Find(X.selected_reagent)
-	if(length(GLOB.toxin_type_list) == i)
-		X.selected_reagent = GLOB.toxin_type_list[1]
+	var/i = GLOB.defiler_toxin_type_list.Find(X.selected_reagent)
+	if(length(GLOB.defiler_toxin_type_list) == i)
+		X.selected_reagent = GLOB.defiler_toxin_type_list[1]
 	else
-		X.selected_reagent = GLOB.toxin_type_list[i+1]
+		X.selected_reagent = GLOB.defiler_toxin_type_list[i+1]
 
 	var/atom/A = X.selected_reagent
 	to_chat(X, "<span class='notice'>We will now use <b>[initial(A.name)]</b>.</span>")
@@ -226,14 +219,20 @@ GLOBAL_LIST_INIT(toxin_images_list,  list(
 	return succeed_activate()
 
 /datum/action/xeno_action/select_reagent/alternate_keybind_action()
-	INVOKE_ASYNC(src, .proc/alternate_keybind_action_async)
+	INVOKE_ASYNC(src, .proc/select_reagent_radial)
 
-/datum/action/xeno_action/select_reagent/proc/alternate_keybind_action_async()
-	var/toxin_choice = show_radial_menu(owner, owner, GLOB.toxin_images_list, radius = 48)
+/datum/action/xeno_action/select_reagent/proc/select_reagent_radial()
+	//List of toxin images
+	var/static/list/defiler_toxin_images_list = list(
+			DEFILER_NEUROTOXIN = image('icons/mob/actions.dmi', icon_state = DEFILER_NEUROTOXIN),
+			DEFILER_HEMODILE = image('icons/mob/actions.dmi', icon_state = DEFILER_HEMODILE),
+			DEFILER_TRANSVITOX = image('icons/mob/actions.dmi', icon_state = DEFILER_TRANSVITOX),
+			)
+	var/toxin_choice = show_radial_menu(owner, owner, defiler_toxin_images_list, radius = 48)
 	if(!toxin_choice)
 		return
 	var/mob/living/carbon/xenomorph/X = owner
-	for(var/toxin in GLOB.toxin_type_list)
+	for(var/toxin in GLOB.defiler_toxin_type_list)
 		var/datum/reagent/R = GLOB.chemical_reagents_list[toxin]
 		if(R.name == toxin_choice)
 			X.selected_reagent = R.type
