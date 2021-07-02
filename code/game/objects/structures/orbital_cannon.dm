@@ -164,6 +164,10 @@
 
 /// Handles the playing of the Orbital Bombardment incoming sound and other visual and auditory effects of the cannon, usually a spiraling whistle noise but can be overridden.
 /obj/structure/orbital_cannon/proc/handle_ob_firing_effects(target, ob_sound = 'sound/effects/OB_incoming.ogg')
+	for(var/mob/living/silicon/ai/AI in GLOB.silicon_mobs)
+		if(!AI.client)
+			continue
+		to_chat(AI, "<span class='warning'>NOTICE - \The [src] has fired.</span>")
 	flick("OBC_firing",src)
 	playsound(loc, 'sound/effects/obfire.ogg', 100, FALSE, 20, 4)
 	for(var/i in hearers(WARHEAD_FALLING_SOUND_RANGE,target))
