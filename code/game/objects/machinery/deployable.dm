@@ -87,7 +87,7 @@
 	if(internal_item)
 		QDEL_NULL(internal_item)
 	operator?.unset_interaction()
-	. = ..()
+	return ..()
 
 /obj/machinery/deployable/examine(mob/user)
 	. = ..()
