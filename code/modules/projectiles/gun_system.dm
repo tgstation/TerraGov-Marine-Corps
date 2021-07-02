@@ -331,7 +331,7 @@
 /obj/item/weapon/gun/unique_action(mob/user)
 	. = ..()
 	if(flags_item & IS_DEPLOYABLE) //If the gun can be deployed, it deploys when unique_action is called.
-		return
+		return TRUE
 
 //----------------------------------------------------------
 			//							        \\

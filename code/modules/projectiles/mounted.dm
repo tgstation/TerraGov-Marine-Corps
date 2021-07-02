@@ -172,11 +172,10 @@
 
 
 	var/angle = get_dir(src, target)
-	var/direction = dir
 	var/obj/item/weapon/gun/gun = internal_item
 	//we can only fire in a 90 degree cone
-	if((direction & angle) && target.loc != loc && target.loc != operator.loc)
-		operator.setDir(direction)
+	if((dir & angle) && target.loc != loc && target.loc != operator.loc)
+		operator.setDir(dir)
 		gun.set_target(target)
 		update_icon_state()
 		return TRUE
@@ -184,7 +183,7 @@
 		to_chat(operator, "This one is anchored in place and cannot be rotated.")
 		return FALSE
 
-	var/list/leftright = LeftAndRightOfDir(direction)
+	var/list/leftright = LeftAndRightOfDir(dir)
 	var/left = leftright[1] - 1
 	var/right = leftright[2] + 1
 	if(!(left == (angle-1)) && !(right == (angle+1)))

@@ -316,7 +316,8 @@ can cause issues with ammo types getting mixed up during the burst.
 		to_chat(user, "It's open with [current_mag.current_rounds] shell\s loaded.")
 
 /obj/item/weapon/gun/shotgun/double/unique_action(mob/user)
-	. = ..()
+	if(.)
+		return
 	return empty_chamber(user)
 
 //Turns out it has some attachments.
@@ -490,7 +491,8 @@ can cause issues with ammo types getting mixed up during the burst.
 
 
 /obj/item/weapon/gun/shotgun/pump/unique_action(mob/user)
-	. = ..()
+	if(.)
+		return
 	return pump_shotgun(user)
 
 /obj/item/weapon/gun/shotgun/pump/ready_in_chamber() //If there wasn't a shell loaded through pump, this returns null.
@@ -654,7 +656,8 @@ can cause issues with ammo types getting mixed up during the burst.
 	wield_delay = 1 SECONDS
 
 /obj/item/weapon/gun/shotgun/pump/bolt/unique_action(mob/user)
-	. = ..()
+	if(.)
+		return
 	return pump_shotgun(user)
 
 /obj/item/weapon/gun/shotgun/pump/bolt/pump_fail_notice(mob/user)
@@ -756,7 +759,8 @@ can cause issues with ammo types getting mixed up during the burst.
 	pump_delay = 6
 
 /obj/item/weapon/gun/shotgun/pump/lever/unique_action(mob/user)
-	. = ..()
+	if(.)
+		return
 	return pump_shotgun(user)
 
 /obj/item/weapon/gun/shotgun/pump/lever/pump_fail_notice(mob/user)

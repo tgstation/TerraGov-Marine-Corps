@@ -199,7 +199,8 @@
 	return TRUE
 
 /obj/item/weapon/gun/revolver/unique_action(mob/user)
-	. = ..()
+	if(.)
+		return
 	if(catchworking)
 		return unload(user)
 	else
