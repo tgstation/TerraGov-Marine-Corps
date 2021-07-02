@@ -396,6 +396,34 @@
 	)
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 22,"rail_x" = 17, "rail_y" = 22, "under_x" = 22, "under_y" = 17, "stock_x" = 22, "stock_y" = 19)
 
+	var/rack_delay = 3
+	var/racked_bolt = TRUE
+	var/cooldown_time
+
+/obj/item/weapon/gun/revolver/m44/able_to_fire(mob/user)
+	. = ..()
+	if(!.)
+		return
+	if(!racked_bolt)
+		to_chat(user, "<span class='warning'>[src] does not have the hammer down!</span>")
+		return FALSE
+
+/obj/item/weapon/gun/revolver/m44/unique_action(mob/user)
+	if(racked_bolt)
+		to_chat(user, "<span class='warning'>[src] already has the hammer down!</span>")
+		return
+	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_RACK_BOLT))
+		return
+	return rack_bolt(user)
+/obj/item/weapon/gun/revolver/m44/proc/rack_bolt(mob/user)
+	to_chat(user, "<span class='notice'>You move the hammer of the [src] down, prepping it to fire!</span>")
+	TIMER_COOLDOWN_START(src, COOLDOWN_RACK_BOLT, rack_delay)
+	racked_bolt = TRUE
+
+/obj/item/weapon/gun/revolver/m44/reload_into_chamber(mob/user)
+	. = ..()
+	racked_bolt = FALSE
+
 //-------------------------------------------------------
 //RUSSIAN REVOLVER //Based on the 7.62mm Russian revolvers.
 
