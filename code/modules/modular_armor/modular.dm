@@ -354,6 +354,13 @@
 	/// How long it takes to attach or detach to this item
 	var/equip_delay = 3 SECONDS
 
+	///whether this helmet should be using its emissive overlay or not
+	var/visor_emissive_on = TRUE
+	///Initial hex color we use when applying the visor color
+	var/visor_color_hex = "#f7fb58"
+	///Greyscale config color we use for the visor
+	var/visor_greyscale_config = /datum/greyscale_config/modular_helmet_visor_emissive
+
 	///Assoc list of color-hex for colors we're allowed to color this armor
 	var/static/list/colorable_colors = list(
 		"black" = "#474A50",
@@ -371,10 +378,28 @@
 		"pink" = "#D354BA",
 	)
 
+/obj/item/clothing/head/modular/Initialize(mapload)
+	. = ..()
+	if(!visor_emissive_on || !visor_greyscale_config)
+		return
+	AddElement(/datum/element/special_clothing_overlay/modular_helmet_visor, HEAD_LAYER, visor_greyscale_config, visor_color_hex)
+	update_icon()
+
+/obj/item/clothing/head/modular/Destroy()
+	QDEL_NULL(installed_module)
+	return ..()
+
 /obj/item/clothing/head/modular/update_greyscale(list/colors, update)
 	. = ..()
 	item_icons = list(slot_head_str = icon)
 	item_state = list(slot_head_str = "")
+	if(length(colors) >= 2) //for only single color helmets with no visor
+		visor_color_hex = colors[2]
+
+/obj/item/clothing/head/modular/examine(mob/user, distance, infix, suffix)
+	. = ..()
+	if(visor_greyscale_config)
+		to_chat(user, "Right click the helmet to toggle the visor internal lighting.")
 
 /obj/item/clothing/head/modular/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -398,16 +423,23 @@
 	if(!do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_GENERIC))
 		return TRUE
 
-	var/list/raw_colors = splittext(greyscale_colors, "#")
 	var/list/split_colors = list(new_color)
-	split_colors += "#[raw_colors[3]]" //gets the visor color and keeps it(for now, rhis allows visor coloring later)
+	if(visor_color_hex)
+		split_colors += visor_color_hex
 	set_greyscale_colors(split_colors)
 	return TRUE
 
-
-/obj/item/clothing/head/modular/Destroy()
-	QDEL_NULL(installed_module)
-	return ..()
+/obj/item/clothing/head/modular/attack_hand_alternate(mob/living/carbon/human/user)
+	if(user.head == src)
+		return //must NOT be worn to toggle
+	if(!visor_greyscale_config)
+		return
+	visor_emissive_on = !visor_emissive_on
+	if(visor_emissive_on)
+		AddElement(/datum/element/special_clothing_overlay/modular_helmet_visor, HEAD_LAYER, visor_greyscale_config, visor_color_hex)
+	else
+		RemoveElement(/datum/element/special_clothing_overlay/modular_helmet_visor, HEAD_LAYER, visor_greyscale_config, visor_color_hex)
+	update_icon()
 
 /obj/item/clothing/head/modular/item_action_slot_check(mob/user, slot)
 	if(!ishuman(user))
@@ -461,6 +493,8 @@
 	. = ..()
 	if(installed_module)
 		. += image(installed_module.icon, installed_module.item_state)
+	if(visor_emissive_on)
+		. += emissive_appearance('icons/mob/modular/infantry.dmi', "visor")
 
 /obj/item/clothing/head/modular/apply_custom(image/standing)
 	if(installed_module)
@@ -507,46 +541,55 @@
 	soft_armor = list("melee" = 50, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = 50, "bio" = 50, "rad" = 50, "fire" = 50, "acid" = 50)
 	accuracy_mod = 0
 	greyscale_config = /datum/greyscale_config/modularhelmet_infantry
+	visor_greyscale_config = /datum/greyscale_config/modular_helmet_visor_emissive
 
 /obj/item/clothing/head/modular/marine/skirmisher
 	name = "Jaeger Pattern Skirmisher Helmet"
 	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has Skirmisher markings."
 	icon_state = "skirmisher_helmet"
 	greyscale_config = /datum/greyscale_config/modularhelmet_skirmisher
+	visor_greyscale_config = /datum/greyscale_config/modular_helmet_visor_emissive/skirmisher
 
 /obj/item/clothing/head/modular/marine/assault
 	name = "Jaeger Pattern Assault Helmet"
 	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has Assault markings."
 	icon_state = "assault_helmet"
 	greyscale_config = /datum/greyscale_config/modularhelmet_assault
+	visor_greyscale_config = /datum/greyscale_config/modular_helmet_visor_emissive/assault
 
 /obj/item/clothing/head/modular/marine/eva
 	name = "Jaeger Pattern EVA Helmet"
 	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has EVA markings."
 	icon_state = "eva_helmet"
 	greyscale_config = /datum/greyscale_config/modularhelmet_eva
+	visor_greyscale_config = /datum/greyscale_config/modular_helmet_visor_emissive/eva
 
 /obj/item/clothing/head/modular/marine/eva/skull
 	name = "Jaeger Pattern EVA Skull Helmet"
 	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has EVA markings and a skull on the visor."
 	icon_state = "eva_skull_helmet"
 	greyscale_config = /datum/greyscale_config/modularhelmet_eva_skull
+	visor_greyscale_config = /datum/greyscale_config/modular_helmet_visor_emissive_skull
 
 /obj/item/clothing/head/modular/marine/eod
 	name = "Jaeger Pattern EOD Helmet"
 	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has EOD markings"
 	icon_state = "eod_helmet"
 	greyscale_config = /datum/greyscale_config/modularhelmet_eod
+	visor_greyscale_config = /datum/greyscale_config/modular_helmet_visor_emissive/eod
 
 /obj/item/clothing/head/modular/marine/scout
 	name = "Jaeger Pattern Scout Helmet"
 	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has Scout markings"
 	icon_state = "scout_helmet"
 	greyscale_config = /datum/greyscale_config/modularhelmet_scout
+	visor_greyscale_config = /datum/greyscale_config/modular_helmet_visor_emissive/scout
 
 /obj/item/clothing/head/modular/marine/infantry
 	name = "Jaeger Pattern Infantry-Open Helmet"
 	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has Infantry markings and no visor."
 	icon_state = "infantryopen_helmet"
-	greyscale_colors = "#1861d5"
+	greyscale_colors = "#5B6036"
 	greyscale_config = /datum/greyscale_config/modularhelmet_infantry_open
+	visor_color_hex = null //no visor, no color
+	visor_greyscale_config = null

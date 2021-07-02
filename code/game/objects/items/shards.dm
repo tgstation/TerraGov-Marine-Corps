@@ -74,7 +74,7 @@
 		return ..()
 
 	var/mob/living/M = AM
-	if(M.status_flags & INCORPOREAL)  //Flying over shards doesn't break them 
+	if(M.status_flags & INCORPOREAL)  //Flying over shards doesn't break them
 		return ..()
 	if (CHECK_MULTIPLE_BITFIELDS(M.flags_pass, HOVERING))
 		return ..()
@@ -111,7 +111,7 @@
 	desc = "A bunch of tiny bits of shattered metal."
 	materials = list(/datum/material/metal = 50)
 	source_sheet_type = null
-	embedding = list("embedded_flags" = EMBEDDEED_DEL_ON_HOLDER_DEL, "embed_chance" = 0, "embedded_fall_chance" = 0)
+	embedding = list("embedded_flags" = EMBEDDED_DEL_ON_HOLDER_DEL, "embed_chance" = 0, "embedded_fall_chance" = 0)
 
 
 /obj/item/shard/shrapnel/Initialize(mapload, new_name, new_desc)

@@ -391,6 +391,10 @@
 
 /obj/machinery/cryopod/proc/climb_in(mob/living/carbon/user, mob/helper)
 	if(helper && user != helper)
+		if(user.stat == DEAD)
+			to_chat(helper, "<span class='notice'>[user] is dead!</span>")
+			return
+
 		if(!user.client && user.afk_status == MOB_RECENTLY_DISCONNECTED)
 			to_chat(helper, "<span class='notice'>You should wait another [round((timeleft(user.afk_timer_id) * 0.1) / 60, 2)] minutes before they are ready to enter cryosleep.</span>")
 			return

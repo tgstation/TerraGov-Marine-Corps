@@ -31,3 +31,19 @@
 			P.setDir(EAST)
 	addtimer(CALLBACK(P, /obj/machinery/door.proc/close), 16)
 	Detach(source)
+
+/datum/element/windowshutter/cokpitshutters/spawn_shutter(datum/source)
+	UnregisterSignal(source, ELEMENT_CLOSE_SHUTTER_LINKED)
+	for(var/direction in GLOB.cardinals)
+		for(var/obj/structure/window/W in get_step(source,direction))
+			SEND_SIGNAL(W, ELEMENT_CLOSE_SHUTTER_LINKED)
+	var/obj/machinery/door/poddoor/shutters/tadpole_cockpit/P = new(get_turf(source))
+	P.density = TRUE
+	var/obj/structure/window/attachee = source
+	switch(attachee.junction)
+		if(4,5,8,9,12)
+			P.setDir(SOUTH)
+		else
+			P.setDir(EAST)
+	addtimer(CALLBACK(P, /obj/machinery/door.proc/close), 16)
+	Detach(source)

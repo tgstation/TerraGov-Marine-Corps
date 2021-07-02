@@ -1,0 +1,10 @@
+author: "Surrealaser"
+delete-after: True
+changes: 
+  - code_imp: "Statistics tracking added for Acid Wells."
+  - qol: "Acid Wells now have improved Examine information."
+  - balance: "Acid Wells now extinguish fires in their square at the cost of 1 charge."
+  - balance: "Acid Wells now take 2 seconds to add 1 charge, down from 10 (wtf)."
+  - balance: "Acid Wells now do 10 armor respecting acid damage to each foot per charge with 33% armor penetration instead of 15 armor ignoring toxin damage."
+  - balance: "A hostile that moves into an Acid Well with charges takes 2 slowdown on its next move per charge."
+  - balance: "Acid Wells now emit a small amount of acid smoke whenever they extinguish fire."

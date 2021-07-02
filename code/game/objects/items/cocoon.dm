@@ -14,15 +14,19 @@
 	///What is inside the cocoon
 	var/mob/living/victim
 	///How much time the cocoon takes to deplete the life force of the marine
-	var/cocoon_life_time = 10 MINUTES
+	var/cocoon_life_time = 5 MINUTES
 	///How many psych points it is generating every 5 seconds
-	var/psych_points_output = 1.2
+	var/psych_points_output = COCOON_PSY_POINTS_REWARD
 	///Standard busy check
 	var/busy = FALSE
+	///How much larva points it gives at the end of its life time (8 points for one larva in distress)
+	var/larva_point_reward = 1.5
 
 
 /obj/structure/cocoon/Initialize(mapload, _hivenumber, mob/living/_victim)
 	. = ..()
+	if(!_hivenumber)
+		return
 	hivenumber =  _hivenumber
 	victim = _victim
 	victim.forceMove(src)
@@ -58,6 +62,8 @@
 	if(anchored)
 		unanchor_from_nest()
 	if(must_release_victim)
+		var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
+		xeno_job.add_job_points(larva_point_reward, PSY_DRAIN_ORIGIN)
 		release_victim()
 	update_icon()
 
@@ -102,4 +108,12 @@
 		icon_state = "xeno_cocoon_unnested"
 		return
 	icon_state = "xeno_cocoon_open"
+
+/obj/structure/cocoon/opened_cocoon
+	icon_state = "xeno_cocoon_open"
+	anchored = FALSE
 	
+/obj/structure/cocoon/opened_cocoon/Initialize()
+	. = ..()
+	new /obj/structure/bed/nest(loc)
+	new /obj/effect/alien/weeds/node(loc)

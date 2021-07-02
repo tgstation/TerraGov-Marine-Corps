@@ -28,6 +28,10 @@
 	create_reagents(1000)
 	stage_change() // If no argument is set, it will change the stage to the current stage, useful for stock grenades that start READY.
 
+/obj/item/explosive/grenade/chem_grenade/Destroy()
+	QDEL_LIST(beakers)
+	QDEL_NULL(nadeassembly)
+	return ..()
 
 /obj/item/explosive/grenade/chem_grenade/attack_self(mob/user)
 	if(stage == CG_READY && !active)
@@ -236,6 +240,7 @@
 /obj/item/explosive/grenade/chem_grenade/razorburn_smol
 	name = "Razorburn Grenade"
 	desc = "Contains construction nanites ready to turn a small area into razorwire after a few seconds. DO NOT ENTER AREA WHILE ACTIVE."
+	icon_state = "grenade_razorburn"
 	stage = CG_READY
 
 
@@ -254,6 +259,7 @@
 /obj/item/explosive/grenade/chem_grenade/razorburn_large
 	name = "Razorburn Canister"
 	desc = "Contains construction nanites ready to turn a large area into razorwire after a few seconds. DO NOT ENTER AREA WHILE ACTIVE."
+	icon_state = "grenade_large_razorburn"
 	stage = CG_READY
 
 

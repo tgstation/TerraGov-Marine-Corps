@@ -259,7 +259,7 @@
 
 		var/blocked = FALSE
 		for(var/obj/O in T)
-			if(O.density && !O.throwpass && !(O.flags_atom & ON_BORDER))
+			if(O.density && !O.throwpass && !(O.flags_atom & ON_BORDER) && !istype(O, /obj/structure/mineral_door/resin))
 				blocked = TRUE
 				break
 
@@ -318,7 +318,7 @@
 			var/mob/living/carbon/xenomorph/X = M
 			if(X.xeno_caste.caste_flags & CASTE_FIRE_IMMUNE)
 				continue
-			fire_mod = clamp(X.xeno_caste.fire_resist + X.fire_resist_modifier, 0, 1)
+			fire_mod = X.get_fire_resist()
 		else if(ishuman(M))
 			var/mob/living/carbon/human/H = M //fixed :s
 
@@ -499,7 +499,7 @@
 
 
 /obj/item/weapon/gun/flamer/marinestandard/unique_action(mob/user)
-	var/obj/item/attachable/hydro_cannon/hydro = under
+	var/obj/item/attachable/hydro_cannon/hydro = LAZYACCESS(attachments, ATTACHMENT_SLOT_UNDER)
 	if(!istype(hydro))
 		return
 	playsound(user, hydro.activation_sound, 15, 1)
@@ -567,7 +567,7 @@
 		windup_checked = WEAPON_WINDUP_NOT_CHECKED
 		return
 	windup_checked = WEAPON_WINDUP_CHECKED
-	Fire()	
+	Fire()
 
 /obj/item/weapon/gun/flamer/marinestandard/afterattack(atom/target, mob/user)
 	. = ..()
@@ -680,7 +680,7 @@
 /mob/living/carbon/xenomorph/flamer_fire_crossed(burnlevel, firelevel, fire_mod = 1)
 	if(xeno_caste.caste_flags & CASTE_FIRE_IMMUNE)
 		return
-	fire_mod = clamp(xeno_caste.fire_resist + fire_resist_modifier, 0, 1)
+	fire_mod = get_fire_resist()
 	return ..()
 
 
@@ -752,7 +752,7 @@
 /mob/living/carbon/xenomorph/flamer_fire_act(burnlevel, firelevel)
 	if(xeno_caste.caste_flags & CASTE_FIRE_IMMUNE)
 		return
-	burnlevel *= clamp(xeno_caste.fire_resist + fire_resist_modifier, 0, 1)
+	burnlevel *= get_fire_resist()
 	. = ..()
 	updatehealth()
 

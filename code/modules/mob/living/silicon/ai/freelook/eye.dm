@@ -134,7 +134,7 @@
 
 
 /mob/living/silicon/ai/proc/create_eye()
-	if(eyeobj)
+	if(!QDELETED(eyeobj))
 		return
 	eyeobj = new /mob/camera/aiEye()
 	all_eyes += eyeobj

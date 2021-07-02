@@ -16,8 +16,11 @@
 		imp = new imp(src)
 		update_icon()
 
+/obj/item/implantcase/Destroy()
+	QDEL_NULL(imp)
+	return ..()
 
-/obj/item/implantcase/update_icon()
+/obj/item/implantcase/update_icon_state()
 	if(imp)
 		icon_state = "implantcase-[imp.implant_color]"
 	else

@@ -6,15 +6,14 @@
 	var/list/access = list() //Which special access do we grant them
 
 	var/current_positions = list(
-		/datum/job/terragov/squad/standard = 0,
-		/datum/job/terragov/squad/engineer = 0,
-		/datum/job/terragov/squad/corpsman = 0,
-		/datum/job/terragov/squad/smartgunner = 0,
-		/datum/job/terragov/squad/specialist = 0,
-		/datum/job/terragov/squad/leader = 0)
+		SQUAD_MARINE = 0,
+		SQUAD_ENGINEER = 0,
+		SQUAD_CORPSMAN = 0,
+		SQUAD_SMARTGUNNER = 0,
+		SQUAD_LEADER = 0)
 	var/max_positions = list(
-		/datum/job/terragov/squad/standard = -1,
-		/datum/job/terragov/squad/leader = 1)
+		SQUAD_MARINE = -1,
+		SQUAD_LEADER = 1)
 
 	var/list/marines_list = list() // list of humans in that squad.
 
@@ -26,11 +25,10 @@
 	var/primary_objective = null //Text strings
 	var/secondary_objective = null
 
-	var/obj/item/squad_beacon/sbeacon = null
-	var/obj/structure/supply_drop/drop_pad = null
-
 	var/list/squad_orbital_beacons = list()
 	var/list/squad_laser_targets = list()
+	///Faction of that squad
+	var/faction = FACTION_TERRAGOV
 
 
 /datum/squad/alpha
@@ -62,6 +60,30 @@
 	color = "#4148c8" // rgb(65,72,200)
 	access = list(ACCESS_MARINE_DELTA)
 	radio_freq = FREQ_DELTA
+
+/datum/squad/alpha/rebel
+	id = ALPHA_SQUAD_REBEL
+	access = list(ACCESS_MARINE_ALPHA_REBEL)
+	radio_freq = FREQ_ALPHA_REBEL
+	faction = FACTION_TERRAGOV_REBEL
+
+/datum/squad/bravo/rebel
+	id = BRAVO_SQUAD_REBEL
+	access = list(ACCESS_MARINE_BRAVO_REBEL)
+	radio_freq = FREQ_BRAVO_REBEL
+	faction = FACTION_TERRAGOV_REBEL
+
+/datum/squad/charlie/rebel
+	id = CHARLIE_SQUAD_REBEL
+	access = list(ACCESS_MARINE_CHARLIE_REBEL)
+	radio_freq = FREQ_CHARLIE_REBEL
+	faction = FACTION_TERRAGOV_REBEL
+
+/datum/squad/delta/rebel
+	id = DELTA_SQUAD_REBEL
+	access = list(ACCESS_MARINE_DELTA_REBEL)
+	radio_freq = FREQ_DELTA_REBEL
+	faction = FACTION_TERRAGOV_REBEL
 
 GLOBAL_LIST_EMPTY(glovemarkings)
 GLOBAL_LIST_EMPTY(armormarkings)
@@ -106,10 +128,10 @@ GLOBAL_LIST_EMPTY(helmetmarkings_sl)
 	if(new_squaddie.assigned_squad)
 		CRASH("attempted to insert marine [new_squaddie] into squad while already having one")
 
-	if(!(new_squaddie.job.type in current_positions))
-		CRASH("Attempted to insert [new_squaddie.job.type] into squad [name]")
+	if(!(new_squaddie.job.title in current_positions))
+		CRASH("Attempted to insert [new_squaddie.job.title] into squad [name]")
 
-	current_positions[new_squaddie.job.type]++
+	current_positions[new_squaddie.job.title]++
 
 	if(ismarineleaderjob(new_squaddie.job) && !squad_leader)
 		squad_leader = new_squaddie
@@ -126,7 +148,6 @@ GLOBAL_LIST_EMPTY(helmetmarkings_sl)
 	if(istype(headset))
 		headset.set_frequency(radio_freq)
 		headset.recalculateChannels()
-		headset.remove_minimap()
 		headset.add_minimap()
 		if(headset.sl_direction && new_squaddie != squad_leader)
 			SSdirection.start_tracking(tracking_id, new_squaddie)
@@ -143,7 +164,7 @@ GLOBAL_LIST_EMPTY(helmetmarkings_sl)
 
 	marines_list += new_squaddie
 	new_squaddie.assigned_squad = src
-	new_squaddie.hud_set_job()
+	new_squaddie.hud_set_job(faction)
 	new_squaddie.update_action_buttons()
 	new_squaddie.update_inv_head()
 	new_squaddie.update_inv_wear_suit()
@@ -170,13 +191,14 @@ GLOBAL_LIST_EMPTY(helmetmarkings_sl)
 	else
 		SSdirection.stop_tracking(tracking_id, leaving_squaddie)
 
-	if(leaving_squaddie.job.type in current_positions)
-		current_positions[leaving_squaddie.job.type]--
+	if(leaving_squaddie.job.title in current_positions)
+		current_positions[leaving_squaddie.job.title]--
 	else
-		stack_trace("Removed [leaving_squaddie.job.type] from squad [name] somehow")
+		stack_trace("Removed [leaving_squaddie.job.title] from squad [name] somehow")
 
 	var/obj/item/radio/headset/mainship/headset = leaving_squaddie.wear_ear
 	if(istype(headset))
+		headset.remove_minimap()
 		headset.set_frequency(initial(headset.frequency))
 
 	for(var/datum/data/record/sheet AS in GLOB.datacore.general)
@@ -191,7 +213,7 @@ GLOBAL_LIST_EMPTY(helmetmarkings_sl)
 	marines_list -= leaving_squaddie
 
 	leaving_squaddie.assigned_squad = null
-	leaving_squaddie.hud_set_job()
+	leaving_squaddie.hud_set_job(faction)
 	leaving_squaddie.update_action_buttons()
 	leaving_squaddie.update_inv_head()
 	leaving_squaddie.update_inv_wear_suit()
@@ -223,7 +245,7 @@ GLOBAL_LIST_EMPTY(helmetmarkings_sl)
 	var/mob/living/carbon/human/H = squad_leader
 	squad_leader = null
 	H.update_action_buttons()
-	H.hud_set_job()
+	H.hud_set_job(faction)
 	H.update_inv_head()
 	H.update_inv_wear_suit()
 
@@ -250,7 +272,7 @@ GLOBAL_LIST_EMPTY(helmetmarkings_sl)
 		R.secure_radio_connections[RADIO_CHANNEL_COMMAND] = add_radio(R, GLOB.radiochannels[RADIO_CHANNEL_COMMAND])
 		R.use_command = TRUE
 
-	squad_leader.hud_set_job()
+	squad_leader.hud_set_job(faction)
 	squad_leader.update_action_buttons()
 	squad_leader.update_inv_head()
 	squad_leader.update_inv_wear_suit()
@@ -290,15 +312,15 @@ GLOBAL_LIST_EMPTY(helmetmarkings_sl)
 
 
 /datum/squad/proc/check_entry(datum/job/job)
-	if(!(job.type in current_positions))
-		CRASH("Attempted to insert [job.type] into squad [name]")
-	if(job.type in max_positions) //There's special behavior defined for it.
-		if(max_positions[job.type] == -1)
+	if(!(job.title in current_positions))
+		CRASH("Attempted to insert [job.title] into squad [name]")
+	if(job.title in max_positions) //There's special behavior defined for it.
+		if(max_positions[job.title] == -1)
 			return TRUE
-		if(current_positions[job.type] >= max_positions[job.type])
+		if(current_positions[job.title] >= max_positions[job.title])
 			return FALSE
 		return TRUE
-	if(current_positions[job.type] >= SQUAD_MAX_POSITIONS(job.total_positions))
+	if(current_positions[job.title] >= SQUAD_MAX_POSITIONS(job.total_positions))
 		return FALSE
 	return TRUE
 
@@ -306,102 +328,29 @@ GLOBAL_LIST_EMPTY(helmetmarkings_sl)
 //This reserves a player a spot in the squad by using a mind variable.
 //It is necessary so that they can smoothly reroll a squad role in case of the strict preference.
 /datum/squad/proc/assign_initial(mob/new_player/player, datum/job/job, latejoin = FALSE)
-	if(!(job.type in current_positions))
-		CRASH("Attempted to insert [job.type] into squad [name]")
+	if(!(job.title in current_positions))
+		CRASH("Attempted to insert [job.title] into squad [name]")
 	if(!latejoin)
-		current_positions[job.type]++
+		current_positions[job.title]++
 	player.assigned_squad = src
 	return TRUE
 
 
-//A generic proc for handling the initial squad role assignment in SSjob
-/proc/handle_initial_squad(mob/new_player/player, datum/job/job, latejoin = FALSE)
+///A generic proc for handling the initial squad role assignment in SSjob
+/proc/handle_initial_squad(mob/new_player/player, datum/job/job, latejoin = FALSE, faction = FACTION_TERRAGOV)
 	var/strict = player.client.prefs.be_special && (player.client.prefs.be_special & BE_SQUAD_STRICT)
-	var/datum/squad/P = SSjob.active_squads[player.client.prefs.preferred_squad]
-	var/datum/squad/R = SSjob.active_squads[pick(SSjob.active_squads)]
-	switch(job.title)
-		if(SQUAD_MARINE)
-			return P?.assign_initial(player, job, latejoin) || R.assign_initial(player, job, latejoin)
-		if(SQUAD_ENGINEER)
-			for(var/i in shuffle(SSjob.active_squads))
-				var/datum/squad/S = SSjob.active_squads[i]
-				if(!S.check_entry(job))
-					continue
-				if(P && P == S && S.assign_initial(player, job, latejoin))
-					return TRUE
-			if(strict && !latejoin)
-				return FALSE
-			for(var/i in shuffle(SSjob.active_squads))
-				var/datum/squad/S = SSjob.active_squads[i]
-				if(!S.check_entry(job))
-					continue
-				else if(S.assign_initial(player, job, latejoin))
-					return TRUE
-		if(SQUAD_CORPSMAN)
-			for(var/i in shuffle(SSjob.active_squads))
-				var/datum/squad/S = SSjob.active_squads[i]
-				if(!S.check_entry(job))
-					continue
-				if(P && P == S && S.assign_initial(player, job, latejoin))
-					return TRUE
-			if(strict && !latejoin)
-				return FALSE
-			for(var/i in shuffle(SSjob.active_squads))
-				var/datum/squad/S = SSjob.active_squads[i]
-				if(!S.check_entry(job))
-					continue
-				else if(S.assign_initial(player, job, latejoin))
-					return TRUE
-		if(SQUAD_SMARTGUNNER)
-			for(var/i in shuffle(SSjob.active_squads))
-				var/datum/squad/S = SSjob.active_squads[i]
-				if(!S.check_entry(job))
-					continue
-				if(P && P == S && S.assign_initial(player, job, latejoin))
-					return TRUE
-			if(strict && !latejoin)
-				return FALSE
-			for(var/i in shuffle(SSjob.active_squads))
-				var/datum/squad/S = SSjob.active_squads[i]
-				if(!S.check_entry(job, latejoin))
-					continue
-				else if(S.assign_initial(player, job, latejoin))
-					return TRUE
-		if(SQUAD_SPECIALIST)
-			for(var/i in shuffle(SSjob.active_squads))
-				var/datum/squad/S = SSjob.active_squads[i]
-				if(!S.check_entry(job))
-					continue
-				if(P && P == S && S.assign_initial(player, job, latejoin))
-					return TRUE
-			if(strict && !latejoin)
-				return FALSE
-			for(var/i in shuffle(SSjob.active_squads))
-				var/datum/squad/S = SSjob.active_squads[i]
-				if(!S.check_entry(job))
-					continue
-				else if(S.assign_initial(player, job, latejoin))
-					return TRUE
-		if(SQUAD_LEADER)
-			for(var/i in shuffle(SSjob.active_squads))
-				var/datum/squad/S = SSjob.active_squads[i]
-				if(!S.check_entry(job))
-					continue
-				if(P && P == S && S.assign_initial(player, job, latejoin))
-					return TRUE
-			if(strict && !latejoin)
-				return FALSE
-			for(var/i in shuffle(SSjob.active_squads))
-				var/datum/squad/S = SSjob.active_squads[i]
-				if(!S.check_entry(job))
-					continue
-				else if(S.assign_initial(player, job, latejoin))
-					return TRUE
+	//List of all the faction accessible squads
+	var/list/available_squads = SSjob.active_squads[faction]
+	var/datum/squad/preferred_squad = SSjob.squads_by_name[player.client.prefs.preferred_squad]
+	if(available_squads.Find(preferred_squad) && preferred_squad?.assign_initial(player, job, latejoin))
+		return TRUE
+	if(strict)
+		to_chat(player, "<span class='warning'>That squad is full!</span>")
+		return FALSE
+	//If our preferred squad is not available, we try every other squad
+	for(var/datum/squad/squad AS in shuffle(available_squads))
+		if(!squad.check_entry(job))
+			continue
+		if(squad.assign_initial(player, job, latejoin))
+			return TRUE
 	return FALSE
-
-
-/proc/reset_squads()
-	for(var/i in SSjob.squads)
-		var/datum/squad/squad = SSjob.squads[i]
-		for(var/j in squad.current_positions)
-			squad.current_positions[j] = 0

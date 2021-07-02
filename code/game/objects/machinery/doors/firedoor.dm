@@ -3,8 +3,8 @@
 #define FIREDOOR_MIN_TEMP 0
 
 // Bitflags
-#define FIREDOOR_ALERT_HOT      1
-#define FIREDOOR_ALERT_COLD     2
+#define FIREDOOR_ALERT_HOT 1
+#define FIREDOOR_ALERT_COLD 2
 
 
 /obj/machinery/door/firedoor

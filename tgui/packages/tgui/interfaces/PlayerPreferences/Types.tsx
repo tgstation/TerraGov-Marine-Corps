@@ -50,6 +50,7 @@ type PlayerPreferencesData = {
   windowflashing: number,
   auto_fit_viewport: number,
   focus_chat: number,
+  mute_xeno_health_alert_messages: number,
   clientfps: number,
   chat_on_map: number,
   max_chat_length: number,
@@ -60,6 +61,7 @@ type PlayerPreferencesData = {
   show_typing: number,
   tooltips: number,
   key_bindings: AssocStringStringArray,
+  custom_emotes: AssocStringEmoteArray,
   save_slot_names: AssocStringString,
   synth_types: string[],
   bodytypes: string[],
@@ -83,6 +85,15 @@ type AssocStringNumber = {
   [ key:string ]: number
 }
 
+type AssocStringEmoteArray = {
+  [ key: string ]: EmoteData,
+}
+
+type EmoteData = {
+  sentence: string,
+  emote_type: string,
+}
+
 type KeybindingsData = {
   name: string,
   display_name: string,
@@ -98,8 +109,8 @@ type PreferencesClothingTypeList = {
   underwear: PreferencesUnderWearTypes
   undershirt: string[],
   backpack: string[],
-
 }
+
 type PreferencesUnderWearTypes = {
   male: string[]
   female: string[]

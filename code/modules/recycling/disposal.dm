@@ -100,7 +100,7 @@
 		var/obj/item/storage/bag/trash/T = I
 		to_chat(user, "<span class='notice'>You empty the bag into [src].</span>")
 		for(var/obj/item/O in T.contents)
-			T.remove_from_storage(O, src)
+			T.remove_from_storage(O, src, user)
 		T.update_icon()
 		update()
 

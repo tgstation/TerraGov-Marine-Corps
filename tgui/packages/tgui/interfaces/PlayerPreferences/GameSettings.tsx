@@ -26,6 +26,13 @@ export const GameSettings = (props, context) => {
                 rightLabel={'Disabled'}
               />
               <ToggleFieldPreference
+                label="Mute xeno health alert messages"
+                value="mute_xeno_health_alert_messages"
+                action="mute_xeno_health_alert_messages"
+                leftLabel={'Muted'}
+                rightLabel={'Enabled'}
+              />
+              <ToggleFieldPreference
                 label="TGUI Window Mode"
                 value="tgui_fancy"
                 action="tgui_fancy"

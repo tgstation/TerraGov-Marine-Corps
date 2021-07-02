@@ -177,6 +177,18 @@
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_SPAWN_HUGGER
 
+/datum/keybinding/xeno/switch_hugger
+	name = "spawn_hugger"
+	full_name = "Carrier: Switch Hugger"
+	description = "Cycles the hugger type you will deploy with the Throw Hugger ability."
+	keybind_signal = COMSIG_XENOABILITY_SWITCH_HUGGER
+
+/datum/keybinding/xeno/choose_hugger
+	name = "choose_hugger"
+	full_name = "Carrier: Choose Hugger"
+	description = "Prompt a wheel to choose which hugger you will deploy with the Throw Hugger ability." 
+	keybind_signal = COMSIG_XENOABILITY_CHOOSE_HUGGER
+
 /datum/keybinding/xeno/stomp
 	name = "stomp"
 	full_name = "Crusher: Stomp"
@@ -477,6 +489,19 @@
 	description = "Fires a scattershot of 6 acid globules which create acid puddles on impact or at the end of their range."
 	keybind_signal = COMSIG_XENOABILITY_SCATTER_SPIT
 
+/datum/keybinding/xeno/vent
+	name = "vent"
+	full_name = "Vent crawl"
+	description = "Enter an air vent and crawl through the pipe system."
+	keybind_signal = COMSIG_XENOABILITY_VENTCRAWL
+
+/datum/keybinding/xeno/vent/down(client/user)
+	. = ..()
+	if(!isxeno(user.mob))
+		return
+	var/mob/living/carbon/xenomorph/xeno = user.mob
+	xeno.vent_crawl()
+
 
 //Wraith keybinds - BEGIN
 
@@ -505,7 +530,7 @@
 	keybind_signal = COMSIG_XENOABILITY_RESYNC
 
 /datum/keybinding/xeno/blink
-	name = "blink"
+	name = "wraith_blink"
 	full_name = "Wraith: Blink"
 	description = "Teleport to a space a short distance away within line of sight. Can teleport mobs you're dragging with you at the cost of higher cooldown."
 	keybind_signal = COMSIG_XENOABILITY_BLINK

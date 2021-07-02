@@ -21,6 +21,13 @@
 	if(!possible_transfer_amounts)
 		verbs -= /obj/item/reagent_containers/verb/set_APTFT
 
+/obj/item/reagent_containers/attack_hand_alternate(mob/living/user)
+	. = ..()
+	if(!possible_transfer_amounts)
+		return
+	var/result = tgui_input_list(user, "Amount per transfer from this:","[src]", possible_transfer_amounts)
+	if(result)
+		amount_per_transfer_from_this = result
 
 /obj/item/reagent_containers/interact(mob/user)
 	. = ..()

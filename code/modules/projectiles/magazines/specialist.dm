@@ -12,17 +12,20 @@
 	default_ammo = /datum/ammo/bullet/sniper
 	gun_type = /obj/item/weapon/gun/rifle/sniper/antimaterial
 	reload_delay = 3
+	icon_state_mini = "mag_sniper"
 
 
 /obj/item/ammo_magazine/sniper/incendiary
 	name = "\improper T-26 incendiary magazine (10x28mm)"
 	default_ammo = /datum/ammo/bullet/sniper/incendiary
 	icon_state = "t26_inc"
+	icon_state_mini = "mag_sniper_red"
 
 /obj/item/ammo_magazine/sniper/flak
 	name = "\improper T-26 flak magazine (10x28mm)"
 	default_ammo = /datum/ammo/bullet/sniper/flak
 	icon_state = "t26_flak"
+	icon_state_mini = "mag_sniper_blue"
 
 
 //M42C magazine
@@ -46,6 +49,7 @@
 	default_ammo = /datum/ammo/bullet/sniper/svd
 	max_rounds = 10
 	gun_type = /obj/item/weapon/gun/rifle/sniper/svd
+	icon_state_mini = "mag_rifle"
 
 
 
@@ -59,6 +63,7 @@
 	default_ammo = /datum/ammo/bullet/rifle/tx8
 	max_rounds = 25
 	gun_type = /obj/item/weapon/gun/rifle/tx8
+	icon_state_mini = "mag_rifle_big"
 
 /obj/item/ammo_magazine/rifle/tx8/incendiary
 	name = "\improper high velocity incendiary magazine (10x28mm)"
@@ -67,6 +72,7 @@
 	icon_state = "tx8_incend"
 	default_ammo = /datum/ammo/bullet/rifle/tx8/incendiary
 	gun_type = /obj/item/weapon/gun/rifle/tx8
+	icon_state_mini = "mag_rifle_big_red"
 
 /obj/item/ammo_magazine/rifle/tx8/impact
 	name = "\improper high velocity impact magazine (10x28mm)"
@@ -74,6 +80,7 @@
 	icon_state = "tx8_impact"
 	default_ammo = /datum/ammo/bullet/rifle/tx8/impact
 	gun_type = /obj/item/weapon/gun/rifle/tx8
+	icon_state_mini = "mag_rifle_big_blue"
 
 //-------------------------------------------------------
 //SMARTGUN
@@ -266,6 +273,7 @@
 	reload_delay = 50 //Hard to reload.
 	w_class = WEIGHT_CLASS_NORMAL
 	gun_type = /obj/item/weapon/gun/minigun
+	icon_state_mini = "mag_minigun"
 
 // railgun
 
@@ -279,3 +287,4 @@
 	reload_delay = 20 //Hard to reload.
 	w_class = WEIGHT_CLASS_NORMAL
 	gun_type = /obj/item/weapon/gun/rifle/railgun
+	icon_state_mini = "mag_railgun"

@@ -46,7 +46,6 @@
 
 /mob/living/carbon/human/proc/set_undefibbable()
 	ADD_TRAIT(src, TRAIT_UNDEFIBBABLE , TRAIT_UNDEFIBBABLE)
-	ADD_TRAIT(src, TRAIT_PSY_DRAINED, TRAIT_PSY_DRAINED)
 	SSmobs.stop_processing(src) //Last round of processing.
 
 	if(CHECK_BITFIELD(status_flags, XENO_HOST))

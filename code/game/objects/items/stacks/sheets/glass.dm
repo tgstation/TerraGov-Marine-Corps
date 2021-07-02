@@ -4,7 +4,6 @@
 *		Reinforced glass sheets
 *		Phoron Glass Sheets
 *		Reinforced Phoron Glass Sheets (AKA Holy fuck strong windows)
-*		Glass shards - TODO: Move this into code/game/object/item/weapons
 */
 
 /*
@@ -59,7 +58,7 @@
 	singular_name = "reinforced glass sheet"
 	icon_state = "sheet-rglass"
 
-	materials = list(/datum/material/metal = 1875, /datum/material/glass = 3750)
+	materials = list(/datum/material/metal = 20, /datum/material/glass = 3750)
 
 	created_window = /obj/structure/window/reinforced
 	is_reinforced = TRUE

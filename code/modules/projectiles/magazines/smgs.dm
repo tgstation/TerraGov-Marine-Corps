@@ -3,6 +3,7 @@
 	desc = "A submachinegun magazine."
 	default_ammo = /datum/ammo/bullet/smg
 	max_rounds = 30
+	icon_state_mini = "mag_smg"
 
 //-------------------------------------------------------
 //M25 SMG ammo
@@ -49,6 +50,7 @@
 	max_rounds = 50
 	w_class = WEIGHT_CLASS_SMALL
 	gun_type = /obj/item/weapon/gun/smg/standard_smg
+	icon_state_mini = "mag_t90"
 
 //-------------------------------------------------------
 //MP27, based on the MP27, based on the M7.

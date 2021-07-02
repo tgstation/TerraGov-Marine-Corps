@@ -27,12 +27,13 @@
 	var/accepts_bodybag = FALSE //Whether you can buckle bodybags to this bed
 	var/base_bed_icon //Used by beds that change sprite when something is buckled to them
 
-/obj/structure/bed/update_icon()
-	if(base_bed_icon)
-		if(LAZYLEN(buckled_mobs) || buckled_bodybag)
-			icon_state = "[base_bed_icon]_up"
-		else
-			icon_state = "[base_bed_icon]_down"
+/obj/structure/bed/update_icon_state()
+	if(!base_bed_icon)
+		return
+	if(LAZYLEN(buckled_mobs) || buckled_bodybag)
+		icon_state = "[base_bed_icon]_up"
+	else
+		icon_state = "[base_bed_icon]_down"
 
 obj/structure/bed/Destroy()
 	if(buckled_bodybag)
@@ -625,6 +626,7 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 		to_chat(user, "<span class='warning'>[src]'s interface is locked! Only a Squad Leader, Corpsman, or Medical Officer can unlock it now.</span>")
 		return
 	user.drop_held_item()
+	flags_item |= NO_VACUUM
 	anchored = TRUE
 	planted = TRUE
 	to_chat(user, "<span class='warning'>You plant and activate [src].</span>")
@@ -639,6 +641,7 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 		to_chat(user, "<span class='warning'>[src]'s interface is locked! Only a Squad Leader, Corpsman, or Medical Officer can unlock it now.</span>")
 		return
 	if(planted)
+		flags_item &= ~NO_VACUUM
 		anchored = FALSE
 		planted = FALSE
 		to_chat(user, "<span class='warning'>You retrieve and deactivate [src].</span>")

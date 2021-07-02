@@ -17,6 +17,8 @@
 	//Preferences related
 	var/datum/preferences/prefs 	= null
 	var/inprefs = FALSE
+	///remembers what our context menu setting is currently set to
+	var/shift_to_open_context_menu = TRUE
 
 
 	//Mob related
@@ -92,3 +94,4 @@
 	var/list/seen_messages
 
 	show_popup_menus = TRUE // right click menu no longer shows up
+	control_freak = CONTROL_FREAK_MACROS

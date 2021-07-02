@@ -44,6 +44,9 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	// Custom Keybindings
 	var/list/key_bindings = null
 
+	// Custom emotes list
+	var/list/custom_emotes = list()
+
 	///Saves chemical recipes based on client so they persist through games
 	var/list/chem_macros = list()
 
@@ -135,6 +138,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	///Should we automatically fit the viewport?
 	var/auto_fit_viewport = TRUE
 
+	///The loadout manager
+	var/datum/loadout_manager/loadout_manager
 	///Should we be in the widescreen mode set by the config?
 	var/widescreenpref = TRUE
 	///What size should pixels be displayed as? 0 is strech to fit
@@ -169,6 +174,9 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 	if(!IsGuestKey(C.key))
 		load_path(C.ckey)
+		if(!load_loadout_manager() || loadout_manager.version != CURRENT_LOADOUT_VERSION)
+			loadout_manager = new 
+			reset_loadouts_file()
 		if(load_preferences() && load_character())
 			return
 
@@ -176,7 +184,12 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	random_character()
 	menuoptions = list()
 	key_bindings = deepCopyList(GLOB.hotkey_keybinding_list_by_key) // give them default keybinds and update their movement keys
+	for(var/i in 1 to CUSTOM_EMOTE_SLOTS)
+		var/datum/custom_emote/emote = new
+		emote.id = i
+		custom_emotes += emote 
 	C.update_movement_keys(src)
+	loadout_manager = new
 
 
 /datum/preferences/can_interact(mob/user)
