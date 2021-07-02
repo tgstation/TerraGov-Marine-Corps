@@ -2,6 +2,7 @@
 	element_flags = ELEMENT_BESPOKE
 	id_arg_index = 2
 
+	///the multiplier of plasma won via causing damage to living things.
 	var/damage_plasma_multiplier = 1
 
 /datum/element/plasma_on_attack/Attach(datum/target, damage_plasma_multiplier)
