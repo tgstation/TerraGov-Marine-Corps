@@ -60,12 +60,12 @@
 #define DRAINS_XENO (1<<10)  //Enables the item to collect resource for chem_booster component
 #define CAN_BUMP_ATTACK (1<<11)	 //Item triggers bump attack
 #define NO_VACUUM (1<<12) //Roomba won't eat this
-#define IS_DEPLOYABLE (1<<12) //Item can be deployed into a machine
-#define DEPLOY_ON_INITIALIZE (1<<13)
-#define IS_DEPLOYED (1<<14) //If this is on an item, said item is currently deployed
-#define DEPLOYED_NO_PICKUP  (1<<15) //Disables deployed item pickup
-#define DEPLOYED_NO_ROTATE  (1<<16) //Disables deployed item rotation abilities to rotate.
-#define DEPLOYED_WRENCH_DISASSEMBLE (1<<17) //If this is on an item, the item can only be disassembled using a wrench once deployed.
+#define IS_DEPLOYABLE (1<<13) //Item can be deployed into a machine
+#define DEPLOY_ON_INITIALIZE (1<<14)
+#define IS_DEPLOYED (1<<15) //If this is on an item, said item is currently deployed
+#define DEPLOYED_NO_PICKUP  (1<<16) //Disables deployed item pickup
+#define DEPLOYED_NO_ROTATE  (1<<17) //Disables deployed item rotation abilities to rotate.
+#define DEPLOYED_WRENCH_DISASSEMBLE (1<<18) //If this is on an item, the item can only be disassembled using a wrench once deployed.
 
 //==========================================================================================
 
