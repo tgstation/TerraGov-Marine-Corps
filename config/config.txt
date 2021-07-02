@@ -198,6 +198,9 @@ MAXIMUM_CLIENTS_FOR_GAMEMODE_VOTE 40
 #MARINE_RESPAWN 18000
 #XENO_RESPAWN 1200
 
+## Automatic balance system
+IS_AUTOMATIC_BALANCE_ON
+
 ##Default view size, in tiles.
 ##	By default, this is 15x15, which gets simplified to 7 by byond
 ##  15x15 would be the standard square view. 21x15 is what goonstation uses for widescreen.

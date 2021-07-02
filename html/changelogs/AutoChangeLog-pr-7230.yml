@@ -1,0 +1,4 @@
+author: "Surrealaser"
+delete-after: True
+changes: 
+  - code_imp: "Xenos from the same hive as the one that drops or throws a Facehugger no longer reset that Facehugger's jump timer when they leave its tile."

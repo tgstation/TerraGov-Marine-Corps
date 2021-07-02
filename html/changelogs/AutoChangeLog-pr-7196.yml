@@ -1,0 +1,6 @@
+author: "Surrealaser"
+delete-after: True
+changes: 
+  - qol: "Emit Gas now activates immediately when selected."
+  - qol: "Radial mode support added for Defiler reagent swapping in addition to existing cycling options."
+  - code_imp: "Refactored reagent selection."
