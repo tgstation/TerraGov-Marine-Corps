@@ -12,7 +12,7 @@
 
 
 /datum/component/plasma_on_attack/ravager
-	damage_plasma_multiplier = 2
+	damage_plasma_multiplier = 1.5
 
 
 
