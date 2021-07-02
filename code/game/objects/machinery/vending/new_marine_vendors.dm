@@ -995,7 +995,7 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 	///List of all gear to spawn
 	var/list/spawned_gear_list = list()
 
-/obj/effect/modular_set/Initialize(var/mapload, faction)
+/obj/effect/modular_set/Initialize(mapload, faction)
 	. = ..()
 	for(var/typepath in spawned_gear_list)
 		var/item = new typepath(loc)

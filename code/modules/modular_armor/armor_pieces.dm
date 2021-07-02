@@ -43,7 +43,7 @@
 	item_state = initial(icon_state)
 
 ///Will force faction colors on this armor module
-/obj/item/armor_module/armor/proc/limit_colorable_colors(var/faction)
+/obj/item/armor_module/armor/proc/limit_colorable_colors(faction)
 	switch(faction)
 		if(FACTION_TERRAGOV)
 			set_greyscale_colors("#2A4FB7")
