@@ -17,7 +17,7 @@ body:
 - type: textarea
   attributes:
     label: Test Merges
-    description: What did you expect to happen and what happened instead?
+    description: What Pull Requests were being tested in the round the bug occured?
     placeholder: |
       1. Within the server 
       2. Goto the OOC Tab
