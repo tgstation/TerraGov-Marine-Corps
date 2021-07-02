@@ -70,6 +70,7 @@
 	if(input_source)
 		facehugger_register_source(input_source)
 
+///Registers the source of our facehugger for the purpose of anti-shuffle mechanics
 /obj/item/clothing/mask/facehugger/proc/facehugger_register_source(mob/living/carbon/xenomorph/S)
 	if(source) //If we have an existing source, unregister
 		UnregisterSignal(source, COMSIG_PARENT_QDELETING)
@@ -77,6 +78,7 @@
 	source = S //set and register new source
 	RegisterSignal(S, COMSIG_PARENT_QDELETING, .proc/clear_hugger_source)
 
+///Clears the source of our facehugger for the purpose of anti-shuffle mechanics
 /obj/item/clothing/mask/facehugger/proc/clear_hugger_source()
 	SIGNAL_HANDLER
 	UnregisterSignal(source, COMSIG_PARENT_QDELETING)
