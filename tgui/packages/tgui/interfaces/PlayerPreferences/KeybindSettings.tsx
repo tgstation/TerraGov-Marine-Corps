@@ -1,6 +1,5 @@
 import { useBackend, useLocalState } from '../../backend';
-import { Button, Input, Section, LabeledList, Box, Grid } from '../../components';
-import { ButtonKeybind } from '../ButtonKeybind';
+import { Button, Input, Section, LabeledList, Box, Grid, ButtonKeybind } from '../../components';
 import { TextInputModal } from './TextInputModal';
 
 const KEY_MODS = {
