@@ -1,6 +1,5 @@
 /datum/game_mode/infestation
 	round_end_states = list(MODE_INFESTATION_X_MAJOR, MODE_INFESTATION_M_MAJOR, MODE_INFESTATION_X_MINOR, MODE_INFESTATION_M_MINOR, MODE_INFESTATION_DRAW_DEATH)
-	joinable_factions = list(FACTION_TERRAGOV, FACTION_XENO)
 	/// If we are shipside or groundside
 	var/round_stage = INFESTATION_MARINE_DEPLOYMENT
 	/// Timer used to calculate how long till the hive collapse due to no ruler
