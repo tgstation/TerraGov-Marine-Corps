@@ -263,7 +263,7 @@
 	if(!.)
 		return FALSE
 
-	var/mob/living/carbon/xenomorph/ravager/rager = owner
+	var/mob/living/carbon/xenomorph/rager = owner
 
 	if(rager.health > rager.maxHealth * RAVAGER_RAGE_MIN_HEALTH_THRESHOLD) //Need to be at 50% of max hp or lower to rage
 		if(!silent)
@@ -272,7 +272,7 @@
 
 
 /datum/action/xeno_action/rage/action_activate()
-	var/mob/living/carbon/xenomorph/ravager/X = owner
+	var/mob/living/carbon/xenomorph/X = owner
 
 	rage_power = (1-(X.health/X.maxHealth)) * RAVAGER_RAGE_POWER_MULTIPLIER //Calculate the power of our rage; scales with difference between current and max HP
 
@@ -356,24 +356,24 @@
 ///Called when we want to end the Rage effect
 /datum/action/xeno_action/rage/proc/rage_deactivate()
 
-	var/mob/living/carbon/xenomorph/ravager/R = owner
+	var/mob/living/carbon/xenomorph/X = owner
 
-	R.do_jitter_animation(1000)
+	X.do_jitter_animation(1000)
 
-	R.remove_filter("ravager_rage_outline")
-	R.visible_message("<span class='warning'>[R] seems to calm down.</span>", \
+	X.remove_filter("ravager_rage_outline")
+	X.visible_message("<span class='warning'>[X] seems to calm down.</span>", \
 	"<span class='highdanger'>Our rage subsides and its power leaves our body, leaving us exhausted.</span>")
 
-	R.xeno_melee_damage_modifier = initial(R.xeno_melee_damage_modifier) //Reset rage melee damage bonus
-	R.remove_movespeed_modifier(MOVESPEED_ID_RAVAGER_RAGE) //Reset speed
-	R.adjust_sunder(rage_sunder) //Remove the temporary Sunder restoration
-	R.use_plasma(rage_plasma) //Remove the temporary Plasma
+	X.xeno_melee_damage_modifier = initial(X.xeno_melee_damage_modifier) //Reset rage melee damage bonus
+	X.remove_movespeed_modifier(MOVESPEED_ID_RAVAGER_RAGE) //Reset speed
+	X.adjust_sunder(rage_sunder) //Remove the temporary Sunder restoration
+	X.use_plasma(rage_plasma) //Remove the temporary Plasma
 
-	REMOVE_TRAIT(R, TRAIT_STUNIMMUNE, RAGE_TRAIT)
-	REMOVE_TRAIT(R, TRAIT_SLOWDOWNIMMUNE, RAGE_TRAIT)
-	REMOVE_TRAIT(R, TRAIT_STAGGERIMMUNE, RAGE_TRAIT)
+	REMOVE_TRAIT(X, TRAIT_STUNIMMUNE, RAGE_TRAIT)
+	REMOVE_TRAIT(X, TRAIT_SLOWDOWNIMMUNE, RAGE_TRAIT)
+	REMOVE_TRAIT(X, TRAIT_STAGGERIMMUNE, RAGE_TRAIT)
 
 	rage_sunder = 0
 	rage_power = 0
 	rage_plasma = 0
-	R.playsound_local(R, 'sound/voice/hiss5.ogg', 50) //Audio cue
+	X.playsound_local(X, 'sound/voice/hiss5.ogg', 50) //Audio cue
