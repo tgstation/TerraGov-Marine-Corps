@@ -160,6 +160,9 @@
 	/// How much damage we can take before tipping over.
 	var/knockdown_threshold = 100
 
+	///Faction of the vendor. Can be null
+	var/faction
+
 
 /obj/machinery/vending/Initialize(mapload, ...)
 	. = ..()
@@ -593,13 +596,19 @@
 			src.last_reply = world.time
 
 	var/obj/item/new_item = release_item(R, vend_delay)
+	if(faction)
+		if(ismodulararmorarmorpiece(new_item))
+			var/obj/item/armor_module/armor/armorpiece = new_item
+			armorpiece.limit_colorable_colors(faction)
+		if(ismodularhelmet(new_item))
+			var/obj/item/clothing/head/modular/helmet = new_item
+			helmet.limit_colorable_colors(faction)
 	if(istype(new_item))
 		user.put_in_any_hand_if_possible(new_item, warning = FALSE)
 	vend_ready = 1
 	updateUsrDialog()
 
 /obj/machinery/vending/proc/release_item(datum/vending_product/R, delay_vending = 0, dump_product = 0)
-	set waitfor = 0
 	if(delay_vending)
 		if(powered(power_channel))
 			use_power(active_power_usage)	//actuators and stuff

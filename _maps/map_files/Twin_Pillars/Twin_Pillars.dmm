@@ -976,7 +976,7 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/lower_medical/rebel)
 "aUs" = (
-/obj/machinery/marine_selector/clothes,
+/obj/machinery/marine_selector/clothes/rebel,
 /obj/structure/window/reinforced,
 /obj/structure/window/reinforced{
 	dir = 4
@@ -6782,7 +6782,7 @@
 /obj/structure/window/reinforced{
 	dir = 8
 	},
-/obj/machinery/marine_selector/clothes,
+/obj/machinery/marine_selector/clothes/loyalist,
 /turf/open/floor/mainship,
 /area/mainship/squads/general)
 "ghn" = (
@@ -7368,7 +7368,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/starboard_hallway/rebel)
 "gHl" = (
-/obj/machinery/marine_selector/clothes/medic,
+/obj/machinery/marine_selector/clothes/medic/loyalist,
 /turf/open/floor/mainship,
 /area/mainship/squads/general)
 "gHr" = (
@@ -7536,7 +7536,7 @@
 	},
 /area/mainship/living/grunt_rnr)
 "gOK" = (
-/obj/machinery/marine_selector/clothes/engi,
+/obj/machinery/marine_selector/clothes/engi/loyalist,
 /turf/open/floor/mainship,
 /area/mainship/squads/general)
 "gOP" = (
@@ -9535,7 +9535,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/command/corporateliaison/rebel)
 "iHH" = (
-/obj/machinery/vending/armor_supply,
+/obj/machinery/vending/armor_supply/loyalist,
 /turf/open/floor/mainship,
 /area/mainship/living/cafeteria_starboard)
 "iHW" = (
@@ -10944,7 +10944,7 @@
 	},
 /area/mainship/living/grunt_rnr/rebel)
 "jVu" = (
-/obj/machinery/marine_selector/clothes/smartgun,
+/obj/machinery/marine_selector/clothes/smartgun/loyalist,
 /turf/open/floor/mainship,
 /area/mainship/squads/general)
 "jVA" = (
@@ -12353,7 +12353,7 @@
 /turf/open/floor/freezer,
 /area/mainship/living/cafeteria_starboard/rebel)
 "ldI" = (
-/obj/machinery/marine_selector/clothes/leader,
+/obj/machinery/marine_selector/clothes/leader/loyalist,
 /turf/open/floor/mainship,
 /area/mainship/squads/general)
 "ldK" = (
@@ -16525,7 +16525,7 @@
 /obj/structure/window/reinforced{
 	dir = 8
 	},
-/obj/machinery/marine_selector/clothes,
+/obj/machinery/marine_selector/clothes/rebel,
 /turf/open/floor/mainship,
 /area/mainship/squads/general/rebel)
 "oNm" = (
@@ -17686,7 +17686,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "pKP" = (
-/obj/machinery/vending/armor_supply,
+/obj/machinery/vending/armor_supply/rebel,
 /turf/open/floor/mainship,
 /area/mainship/living/cafeteria_starboard/rebel)
 "pLj" = (
@@ -19124,7 +19124,7 @@
 	},
 /area/mainship/living/commandbunks/rebel)
 "qUU" = (
-/obj/machinery/marine_selector/clothes/commander,
+/obj/machinery/marine_selector/clothes/commander/loyalist,
 /turf/open/floor/carpet{
 	dir = 10;
 	icon_state = "carpetside"
@@ -20899,7 +20899,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/engineering_workshop)
 "sxH" = (
-/obj/machinery/marine_selector/clothes/leader,
+/obj/machinery/marine_selector/clothes/leader/loyalist,
 /turf/closed/wall/mainship,
 /area/mainship/squads/general)
 "sxI" = (
@@ -21788,7 +21788,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/engineering_workshop)
 "tnb" = (
-/obj/machinery/vending/marine/shared/hvh,
+/obj/machinery/vending/marine/shared/hvh/team_one,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/pilotbunks)
 "tnc" = (
@@ -23381,7 +23381,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/engineering_workshop/rebel)
 "uzH" = (
-/obj/machinery/vending/marine/shared/hvh,
+/obj/machinery/vending/marine/shared/hvh/team_one,
 /turf/open/floor/mainship/red/full,
 /area/mainship/command/cic)
 "uzM" = (
@@ -26738,7 +26738,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hull/lower_hull/rebel)
 "xzo" = (
-/obj/machinery/marine_selector/clothes,
+/obj/machinery/marine_selector/clothes/loyalist,
 /obj/structure/window/reinforced,
 /obj/structure/window/reinforced{
 	dir = 4

@@ -23,6 +23,8 @@
 
 	var/list/categories
 	var/list/listed_products
+	///The faction of that vendor, can be null
+	var/faction
 
 /obj/machinery/marine_selector/update_icon()
 	if(is_operational())
@@ -172,7 +174,12 @@
 					to_chat(usr, "<span class='warning'>You can't buy things from this category anymore.</span>")
 					return
 
-			var/obj/item/vended_item = new idx(loc)
+			var/obj/item/vended_item
+
+			if(faction && ispath(idx, /obj/effect/modular_set))
+				vended_item = new idx(loc, faction)
+			else
+				vended_item = new idx(loc)
 
 			if(istype(vended_item)) // in case of spawning /obj
 				usr.put_in_any_hand_if_possible(vended_item, warning = FALSE)
@@ -235,6 +242,12 @@
 	. = ..()
 	listed_products = GLOB.marine_clothes_listed_products
 
+/obj/machinery/marine_selector/clothes/loyalist
+	faction = FACTION_TERRAGOV
+
+/obj/machinery/marine_selector/clothes/rebel
+	faction = FACTION_TERRAGOV_REBEL
+
 /obj/machinery/marine_selector/clothes/alpha
 	squad_tag = "Alpha"
 	req_access = list(ACCESS_MARINE_ALPHA)
@@ -262,9 +275,13 @@
 	. = ..()
 	listed_products = GLOB.engineer_clothes_listed_products
 
+/obj/machinery/marine_selector/clothes/engi/loyalist
+	faction = FACTION_TERRAGOV
+
 /obj/machinery/marine_selector/clothes/engi/rebel
 	req_access = list(ACCESS_MARINE_ENGPREP_REBEL)
 	vendor_role = /datum/job/terragov/squad/engineer/rebel
+	faction = FACTION_TERRAGOV_REBEL
 
 /obj/machinery/marine_selector/clothes/engi/alpha
 	squad_tag = "Alpha"
@@ -294,9 +311,13 @@
 	. = ..()
 	listed_products = GLOB.medic_clothes_listed_products
 
+/obj/machinery/marine_selector/clothes/medic/loyalist
+	faction = FACTION_TERRAGOV
+
 /obj/machinery/marine_selector/clothes/medic/rebel
 	req_access = list(ACCESS_MARINE_MEDPREP_REBEL)
 	vendor_role = /datum/job/terragov/squad/corpsman/rebel
+	faction = FACTION_TERRAGOV_REBEL
 
 /obj/machinery/marine_selector/clothes/medic/alpha
 	squad_tag = "Alpha"
@@ -325,9 +346,13 @@
 	. = ..()
 	listed_products = GLOB.smartgunner_clothes_listed_products
 
+/obj/machinery/marine_selector/clothes/smartgun/loyalist
+	faction = FACTION_TERRAGOV
+
 /obj/machinery/marine_selector/clothes/smartgun/rebel
 	req_access = list(ACCESS_MARINE_SMARTPREP_REBEL)
 	vendor_role = /datum/job/terragov/squad/smartgunner/rebel
+	faction = FACTION_TERRAGOV_REBEL
 
 
 /obj/machinery/marine_selector/clothes/smartgun/alpha
@@ -355,12 +380,12 @@
 
 	listed_products = list(
 		/obj/effect/essentials_set/basic_specialist = list(CAT_STD, "Standard Kit", 0, "white"),
-		/obj/effect/essentials_set/modular/skirmisher = list(CAT_AMR, "Light Skirmisher Jaeger kit", 0, "black"),
-		/obj/effect/essentials_set/modular/scout = list(CAT_AMR, "Light Scout Jaeger kit", 0, "orange"),
-		/obj/effect/essentials_set/modular/infantry = list(CAT_AMR, "Medium Infantry Jaeger kit", 0, "black"),
-		/obj/effect/essentials_set/modular/eva = list(CAT_AMR, "Medium EVA Jaeger kit", 0, "black"),
-		/obj/effect/essentials_set/modular/assault = list(CAT_AMR, "Heavy Assault Jaeger kit", 0, "black"),
-		/obj/effect/essentials_set/modular/eod = list(CAT_AMR, "Heavy EOD Jaeger kit", 0, "black"),
+		/obj/effect/modular_set/skirmisher = list(CAT_AMR, "Light Skirmisher Jaeger kit", 0, "black"),
+		/obj/effect/modular_set/scout = list(CAT_AMR, "Light Scout Jaeger kit", 0, "orange"),
+		/obj/effect/modular_set/infantry = list(CAT_AMR, "Medium Infantry Jaeger kit", 0, "black"),
+		/obj/effect/modular_set/eva = list(CAT_AMR, "Medium EVA Jaeger kit", 0, "black"),
+		/obj/effect/modular_set/assault = list(CAT_AMR, "Heavy Assault Jaeger kit", 0, "black"),
+		/obj/effect/modular_set/eod = list(CAT_AMR, "Heavy EOD Jaeger kit", 0, "black"),
 		/obj/item/clothing/suit/storage/marine/pasvest = list(CAT_AMR, "Regular armor", 0, "orange"),
 		/obj/item/storage/backpack/marine/satchel = list(CAT_BAK, "Satchel", 0, "black"),
 		/obj/item/storage/backpack/marine/standard = list(CAT_BAK, "Backpack", 0, "black"),
@@ -433,9 +458,13 @@
 	. = ..()
 	listed_products = GLOB.leader_clothes_listed_products
 
+/obj/machinery/marine_selector/clothes/leader/loyalist
+	faction = FACTION_TERRAGOV
+
 /obj/machinery/marine_selector/clothes/leader/rebel
 	req_access = list(ACCESS_MARINE_LEADER_REBEL)
 	vendor_role = /datum/job/terragov/squad/leader/rebel
+	faction = FACTION_TERRAGOV_REBEL
 
 
 /obj/machinery/marine_selector/clothes/leader/alpha
@@ -465,12 +494,12 @@
 	. = ..()
 	listed_products = list(
 		/obj/effect/essentials_set/commander = list(CAT_STD, "Standard Commander kit ", 0, "white"),
-		/obj/effect/essentials_set/modular/skirmisher = list(CAT_AMR, "Light Skirmisher Jaeger kit", 0, "black"),
-		/obj/effect/essentials_set/modular/scout = list(CAT_AMR, "Light Scout Jaeger kit", 0, "orange"),
-		/obj/effect/essentials_set/modular/infantry = list(CAT_AMR, "Medium Infantry Jaeger kit", 0, "black"),
-		/obj/effect/essentials_set/modular/eva = list(CAT_AMR, "Medium EVA Jaeger kit", 0, "black"),
-		/obj/effect/essentials_set/modular/assault = list(CAT_AMR, "Heavy Assault Jaeger kit", 0, "black"),
-		/obj/effect/essentials_set/modular/eod = list(CAT_AMR, "Heavy EOD Jaeger kit", 0, "black"),
+		/obj/effect/modular_set/skirmisher = list(CAT_AMR, "Light Skirmisher Jaeger kit", 0, "black"),
+		/obj/effect/modular_set/scout = list(CAT_AMR, "Light Scout Jaeger kit", 0, "orange"),
+		/obj/effect/modular_set/infantry = list(CAT_AMR, "Medium Infantry Jaeger kit", 0, "black"),
+		/obj/effect/modular_set/eva = list(CAT_AMR, "Medium EVA Jaeger kit", 0, "black"),
+		/obj/effect/modular_set/assault = list(CAT_AMR, "Heavy Assault Jaeger kit", 0, "black"),
+		/obj/effect/modular_set/eod = list(CAT_AMR, "Heavy EOD Jaeger kit", 0, "black"),
 		/obj/item/clothing/suit/storage/marine/pasvest = list(CAT_AMR, "Regular armor", 0, "orange"),
 		/obj/item/storage/backpack/marine/satchel = list(CAT_BAK, "Satchel", 0, "black"),
 		/obj/item/storage/backpack/marine/standard = list(CAT_BAK, "Backpack", 0, "black"),
@@ -519,9 +548,13 @@
 		/obj/item/clothing/mask/rebreather = list(CAT_MAS, "Rebreather", 0, "black"),
 	)
 
+/obj/machinery/marine_selector/clothes/commander/loyalist
+	faction = FACTION_TERRAGOV
+
 /obj/machinery/marine_selector/clothes/commander/rebel
 	req_access = list(ACCESS_MARINE_COMMANDER_REBEL)
 	vendor_role = /datum/job/terragov/command/fieldcommander/rebel
+	faction = FACTION_TERRAGOV_REBEL
 
 /obj/machinery/marine_selector/clothes/synth
 	name = "M57 Synthetic Equipment Vendor"
@@ -958,7 +991,26 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 		/obj/item/tweezers,
 	)
 
-/obj/effect/essentials_set/modular/infantry
+/obj/effect/modular_set
+	///List of all gear to spawn
+	var/list/spawned_gear_list = list()
+
+/obj/effect/modular_set/Initialize(var/mapload, faction)
+	. = ..()
+	for(var/typepath in spawned_gear_list)
+		var/item = new typepath(loc)
+		if(faction)
+			if(ismodulararmorarmorpiece(item))
+				var/obj/item/armor_module/armor/armorpiece = item
+				armorpiece.limit_colorable_colors(faction)
+				continue
+			if(ismodularhelmet(item))
+				var/obj/item/clothing/head/modular/helmet = item
+				helmet.limit_colorable_colors(faction)
+	qdel(src)
+	
+
+/obj/effect/modular_set/infantry
 	desc = "A set of medium Infantry pattern Jaeger armor, including an exoskeleton, helmet, and armor plates."
 	spawned_gear_list = list(
 		/obj/item/clothing/head/modular/marine,
@@ -968,7 +1020,7 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 		/obj/item/armor_module/armor/legs/marine,
 	)
 
-/obj/effect/essentials_set/modular/eva
+/obj/effect/modular_set/eva
 	desc = "A set of medium EVA pattern Jaeger armor, including an exoskeleton, helmet, and armor plates."
 	spawned_gear_list = list(
 		/obj/item/clothing/head/modular/marine/eva,
@@ -978,7 +1030,7 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 		/obj/item/armor_module/armor/legs/marine/eva,
 	)
 
-/obj/effect/essentials_set/modular/skirmisher
+/obj/effect/modular_set/skirmisher
 	desc = "A set of light Skirmisher pattern Jaeger armor, including an exoskeleton, helmet, and armor plates."
 	spawned_gear_list = list(
 		/obj/item/clothing/head/modular/marine/skirmisher,
@@ -987,7 +1039,7 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 		/obj/item/armor_module/armor/legs/marine/skirmisher,
 	)
 
-/obj/effect/essentials_set/modular/scout
+/obj/effect/modular_set/scout
 	desc = "A set of light Scout pattern Jaeger armor, including an exoskeleton, helmet, and armor plates."
 	spawned_gear_list = list(
 		/obj/item/clothing/head/modular/marine/scout,
@@ -996,7 +1048,7 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 		/obj/item/armor_module/armor/legs/marine/scout,
 	)
 
-/obj/effect/essentials_set/modular/assault
+/obj/effect/modular_set/assault
 	desc = "A set of heavy Assault pattern Jaeger armor, including an exoskeleton, helmet, and armor plates."
 	spawned_gear_list = list(
 		/obj/item/clothing/head/modular/marine/assault,
@@ -1005,7 +1057,7 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 		/obj/item/armor_module/armor/legs/marine/assault,
 	)
 
-/obj/effect/essentials_set/modular/eod
+/obj/effect/modular_set/eod
 	desc = "A set of heavy EOD pattern Jaeger armor, including an exoskeleton, helmet, and armor plates."
 	spawned_gear_list = list(
 		/obj/item/clothing/head/modular/marine/eod,

@@ -879,6 +879,12 @@
 
 	prices = list()
 
+/obj/machinery/vending/armor_supply/loyalist
+	faction = FACTION_TERRAGOV
+
+/obj/machinery/vending/armor_supply/rebel
+	faction = FACTION_TERRAGOV_REBEL
+
 /obj/machinery/vending/uniform_supply
 	name = "\improper Surplus Clothing Vendor"
 	desc = "A automated equipment rack hooked up to a colossal storage of clothing and accessories."
