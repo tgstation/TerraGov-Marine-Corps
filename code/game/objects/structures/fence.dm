@@ -121,6 +121,10 @@
 /obj/structure/fence/Initialize(mapload, start_dir)
 	. = ..()
 
+	if(prob(80))
+		obj_integrity = 0
+		deconstruct(FALSE)
+
 	if(start_dir)
 		setDir(start_dir)
 
