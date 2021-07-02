@@ -87,11 +87,6 @@
 				list(/obj/item/weapon/gun/shotgun/pump/bolt, /obj/item/ammo_magazine/rifle/bolt),\
 				list(/obj/item/weapon/gun/shotgun/pump/lever, /obj/item/ammo_magazine/magnum))
 
-GLOBAL_LIST_INIT(hvh_restricted_items_list, typecacheof(list(
-	/obj/item/armor_module/attachable/ballistic_armor,
-	/obj/item/attachable/scope,
-)))
-
 
 #define LATEJOIN_LARVA_DISABLED 0
 
