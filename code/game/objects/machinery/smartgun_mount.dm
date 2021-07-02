@@ -180,7 +180,7 @@
 	var/icon_full = "turret" // Put this system in for other MGs or just other mounted weapons in general, future proofing.
 	var/icon_empty = "turret_e" //Empty
 	var/view_tile_offset = 3	//this is amount of tiles we shift our vision towards MG direction
-	///Number passed to setTo when you interact with the hmg, set to 0 if you dont want zoom
+	///Number passed to set_view_radius_to when you interact with the hmg, set to 0 if you dont want zoom
 	var/view_tiles = 0
 
 /obj/machinery/standard_hmg/Initialize()
@@ -540,7 +540,7 @@
 
 /obj/machinery/standard_hmg/on_set_interaction(mob/user)
 	if(view_tiles)
-		user.client.view_size.setTo(view_tiles)
+		user.client.view_size.set_view_radius_to(view_tiles)
 	switch(dir)
 		if(NORTH)
 			user.client.pixel_x = 0
@@ -560,7 +560,7 @@
 
 /obj/machinery/standard_hmg/on_unset_interaction(mob/user)
 	if(user.client)
-		user.client.view_size.resetToDefault()
+		user.client.view_size.reset_to_default()
 		user.client.pixel_x = 0
 		user.client.pixel_y = 0
 		user.client.click_intercept = null

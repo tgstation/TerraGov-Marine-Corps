@@ -696,7 +696,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 
 		if(user.client)
 			user.client.click_intercept = null
-			user.client.view_size.resetToDefault()
+			user.client.view_size.reset_to_default()
 			user.client.pixel_x = 0
 			user.client.pixel_y = 0
 		return
@@ -710,7 +710,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 		return
 
 	if(user.client)
-		user.client.view_size.setTo(viewsize/2-2)//sets the viewsize to reflect radius changes properly
+		user.client.view_size.set_view_radius_to(viewsize/2-2)//sets the viewsize to reflect radius changes properly
 
 		var/tilesize = 32
 		var/viewoffset = tilesize * tileoffset

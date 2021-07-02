@@ -54,7 +54,7 @@
 
 /mob/proc/on_death()
 	SHOULD_CALL_PARENT(TRUE) // no exceptions
-	client?.view_size.resetToDefault()//just so we never get stuck with a large view somehow
+	client?.view_size.reset_to_default()//just so we never get stuck with a large view somehow
 
 	hide_fullscreens()
 

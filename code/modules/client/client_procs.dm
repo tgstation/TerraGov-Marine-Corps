@@ -324,9 +324,9 @@
 	if(!tooltips && prefs.tooltips)
 		tooltips = new /datum/tooltip(src)
 
-	view_size = new(src, getScreenSize(prefs.widescreenpref))
-	view_size.resetFormat()
-	view_size.setZoomMode()
+	view_size = new(src, get_screen_size(prefs.widescreenpref))
+	view_size.update_pixel_format()
+	view_size.update_zoom_mode()
 	fit_viewport()
 
 	winset(src, null, "mainwindow.title='[CONFIG_GET(string/title)]'")
@@ -761,7 +761,7 @@
 	create_message("note", ckey(key), "SYSTEM", "Triggered automatic CID randomizer detection.", null, null, FALSE, FALSE, null, FALSE, "High")
 
 /client/proc/rescale_view(change, min, max)
-	view_size.setTo(clamp(change, min, max), clamp(change, min, max))
+	view_size.set_view_radius_to(clamp(change, min, max), clamp(change, min, max))
 
 
 /client/proc/update_movement_keys(datum/preferences/direct_prefs)
@@ -867,7 +867,7 @@ GLOBAL_VAR_INIT(automute_on, null)
 		if("key")
 			return FALSE
 		if("view")
-			view_size.setTo(var_value)
+			view_size.set_view_radius_to(var_value)
 			return TRUE
 	return ..()
 

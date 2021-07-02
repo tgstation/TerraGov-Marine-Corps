@@ -102,7 +102,7 @@
 	for(var/key in key_bindings)
 		for(var/kb_name in key_bindings[key])
 			.["key_bindings"][kb_name] += list(key)
-	
+
 	.["custom_emotes"] = list()
 	for(var/id in 1 to CUSTOM_EMOTE_SLOTS)
 		var/datum/custom_emote/emote = custom_emotes[id]
@@ -683,7 +683,7 @@
 
 		if("widescreenpref")
 			widescreenpref = !widescreenpref
-			user.client.view_size.setDefault(getScreenSize(widescreenpref))
+			user.client.view_size.set_default(get_screen_size(widescreenpref))
 
 		if("pixel_size")
 			switch(pixel_size)
@@ -707,7 +707,7 @@
 					scaling_method = SCALING_METHOD_BLUR
 				if(SCALING_METHOD_BLUR)
 					scaling_method = SCALING_METHOD_NORMAL
-			user.client.view_size.setZoomMode()
+			user.client.view_size.update_zoom_mode()
 
 		else //  Handle the unhandled cases
 			return
