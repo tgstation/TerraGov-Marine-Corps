@@ -499,6 +499,7 @@
 
 
 /obj/item/weapon/gun/flamer/marinestandard/unique_action(mob/user)
+	. = ..()
 	if(.)
 		return
 	var/obj/item/attachable/hydro_cannon/hydro = LAZYACCESS(attachments, ATTACHMENT_SLOT_UNDER)

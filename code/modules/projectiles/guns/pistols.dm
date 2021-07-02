@@ -37,6 +37,7 @@
 
 
 /obj/item/weapon/gun/pistol/unique_action(mob/user)
+	. = ..()
 	if(.)
 		return
 	return cock(user)

@@ -23,6 +23,7 @@
 
 
 /obj/item/weapon/gun/rifle/unique_action(mob/user)
+	. = ..()
 	if(.)
 		return
 	return cock(user)
@@ -1016,6 +1017,7 @@
 		return FALSE
 
 /obj/item/weapon/gun/rifle/chambered/unique_action(mob/user)
+	. = ..()
 	if(.)
 		return
 	if(racked_bolt)
