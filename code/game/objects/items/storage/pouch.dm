@@ -312,7 +312,15 @@
 	fill_type = /obj/item/ammo_magazine/rifle/ap
 	fill_number = 3
 
-
+/obj/item/storage/pouch/magazine/drum
+	name = "drum magazine pouch"
+	desc = "It can contain one drum magazine."
+	icon_state = "large_ammo_drum"
+	storage_slots = 1
+	can_hold = list(
+		/obj/item/ammo_magazine/standard_smartmachinegun,
+		/obj/item/ammo_magazine/minigun,
+	)
 
 
 /obj/item/storage/pouch/explosive

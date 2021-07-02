@@ -661,6 +661,34 @@
 		if("update-character-preview")
 			update_preview_icon()
 
+		if("widescreenpref")
+			widescreenpref = !widescreenpref
+			user.client.view_size.set_default(get_screen_size(widescreenpref))
+
+		if("pixel_size")
+			switch(pixel_size)
+				if(PIXEL_SCALING_AUTO)
+					pixel_size = PIXEL_SCALING_1X
+				if(PIXEL_SCALING_1X)
+					pixel_size = PIXEL_SCALING_1_2X
+				if(PIXEL_SCALING_1_2X)
+					pixel_size = PIXEL_SCALING_2X
+				if(PIXEL_SCALING_2X)
+					pixel_size = PIXEL_SCALING_3X
+				if(PIXEL_SCALING_3X)
+					pixel_size = PIXEL_SCALING_AUTO
+			user.client.view_size.apply() //Let's winset() it so it actually works
+
+		if("scaling_method")
+			switch(scaling_method)
+				if(SCALING_METHOD_NORMAL)
+					scaling_method = SCALING_METHOD_DISTORT
+				if(SCALING_METHOD_DISTORT)
+					scaling_method = SCALING_METHOD_BLUR
+				if(SCALING_METHOD_BLUR)
+					scaling_method = SCALING_METHOD_NORMAL
+			user.client.view_size.update_zoom_mode()
+
 		else //  Handle the unhandled cases
 			return
 

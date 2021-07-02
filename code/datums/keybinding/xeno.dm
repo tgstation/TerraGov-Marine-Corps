@@ -186,7 +186,7 @@
 /datum/keybinding/xeno/choose_hugger
 	name = "choose_hugger"
 	full_name = "Carrier: Choose Hugger"
-	description = "Prompt a wheel to choose which hugger you will deploy with the Throw Hugger ability." 
+	description = "Prompt a wheel to choose which hugger you will deploy with the Throw Hugger ability."
 	keybind_signal = COMSIG_XENOABILITY_CHOOSE_HUGGER
 
 /datum/keybinding/xeno/stomp
@@ -252,8 +252,14 @@
 /datum/keybinding/xeno/select_reagent
 	name = "select_reagent"
 	full_name = "Defiler: Select Reagent"
-	description = ""
+	description = "Cycles through reagents to choose one for Defiler abilities."
 	keybind_signal = COMSIG_XENOABILITY_SELECT_REAGENT
+
+/datum/keybinding/xeno/radial_select_reagent
+	name = "radial_select_reagent"
+	full_name = "Defiler: Select Reagent (Radial)"
+	description = "Chooses a reagent from a radial menu to use for Defiler abilities."
+	keybind_signal = COMSIG_XENOABILITY_RADIAL_SELECT_REAGENT
 
 /datum/keybinding/xeno/reagent_slash
 	name = "reagent_slash"
