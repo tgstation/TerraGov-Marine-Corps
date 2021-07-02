@@ -917,6 +917,7 @@
 /obj/item/weapon/gun/rifle/standard_smartrifle
 	name = "\improper T-25 smartrifle"
 	desc = "The T-25 is the TGMC's current standard IFF-capable  rifle. It's known for its ability to lay down quick fire support very well. Requires special training and it cannot turn off IFF. It uses 10x26mm ammunition."
+	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "t25"
 	item_state = "t25"
 	caliber = CALIBER_10x26_CASELESS //codex
