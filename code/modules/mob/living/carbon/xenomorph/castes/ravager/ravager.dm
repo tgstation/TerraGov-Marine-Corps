@@ -16,7 +16,7 @@
 
 /mob/living/carbon/xenomorph/ravager/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/plasma_on_attack/ravager)
+	AddComponent(/datum/component/plasma_on_attack, 1.5)
 
 // ***************************************
 // *********** Mob overrides
