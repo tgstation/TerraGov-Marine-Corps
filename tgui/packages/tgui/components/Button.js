@@ -352,7 +352,7 @@ export class ButtonKeybind extends Component {
 
   finishTimerStart() {
     clearInterval(this.timer);
-    this.timer = setInterval(() => this.doFinish(), 2000); // in 2 second
+    this.timer = setInterval(() => this.doFinish(), 1000); // in 1 second
   }
   
   doFocus() {
