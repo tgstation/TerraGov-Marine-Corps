@@ -12919,13 +12919,6 @@
 	dir = 4
 	},
 /area/space)
-"heL" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 4
-	},
-/obj/machinery/floor_warn_light/self_destruct,
-/turf/open/floor/mainship/tcomms,
-/area/mainship/command/self_destruct)
 "hff" = (
 /obj/effect/decal/cleanable/cobweb{
 	dir = 1
@@ -15317,7 +15310,6 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 6
 	},
-/obj/machinery/floor_warn_light/self_destruct,
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/self_destruct)
 "lGX" = (
@@ -21648,7 +21640,6 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 9
 	},
-/obj/machinery/floor_warn_light/self_destruct,
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/self_destruct)
 "wTC" = (
@@ -22202,10 +22193,6 @@
 /obj/structure/cable,
 /turf/open/floor/prison,
 /area/sulaco/briefing)
-"xSF" = (
-/obj/machinery/floor_warn_light/self_destruct,
-/turf/open/floor/prison/bright_clean,
-/area/mainship/command/self_destruct)
 "xTi" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
 	dir = 4
@@ -60179,11 +60166,11 @@ aRQ
 aPF
 sKM
 aPF
-jgt
+aPF
 bbh
 aRQ
 gHU
-jgt
+aPF
 aPF
 aPF
 bFa
@@ -60695,7 +60682,7 @@ aWh
 aWh
 aZw
 aKP
-xSF
+aWm
 aWm
 aZw
 aWh
@@ -64550,7 +64537,7 @@ feu
 cEU
 vaH
 hhn
-heL
+mFc
 ibr
 vaH
 nLo
