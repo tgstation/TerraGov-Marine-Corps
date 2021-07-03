@@ -17,8 +17,10 @@
 /// Causes any affecting light sources to be queued for a visibility update, for example a door got opened.
 /turf/proc/reconsider_lights()
 	//Consider static lights
-	for(var/datum/static_light_source/light AS in static_affecting_lights)
-		light.vis_update()
+	lighting_corner_NE?.vis_update()
+	lighting_corner_SE?.vis_update()
+	lighting_corner_SW?.vis_update()
+	lighting_corner_NW?.vis_update()
 
 	//consider dynamic lights
 	for(var/atom/movable/lighting_mask/mask AS in hybrid_lights_affecting)

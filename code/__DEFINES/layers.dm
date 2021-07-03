@@ -159,6 +159,7 @@
 #define LIGHTING_BACKPLANE_LAYER 14.5
 
 #define LIGHTING_PLANE 15
+#define LIGHTING_RENDER_TARGET "LIGHT_PLANE"
 
 /// Plane for balloon text (text that fades up)
 #define BALLOON_CHAT_PLANE 17

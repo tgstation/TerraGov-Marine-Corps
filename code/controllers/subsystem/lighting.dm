@@ -14,7 +14,7 @@ SUBSYSTEM_DEF(lighting)
 	started = TRUE
 	if(!initialized)
 		//Handle static lightnig
-		//create_all_lighting_objects()
+		create_all_lighting_objects()
 		//Handle hybrid lighting
 		to_chat(world, "<span class='boldannounce'>Generating shadows on [sources_that_need_updating.len] light sources.</span>")
 		var/timer = TICK_USAGE
@@ -65,8 +65,8 @@ GLOBAL_LIST_EMPTY(lighting_update_objects) //! List of lighting objects queued f
 	for(updators_num in 1 to GLOB.lighting_update_corners.len)
 		var/datum/static_lighting_corner/C = GLOB.lighting_update_corners[updators_num]
 
+		C.needs_update = FALSE //update_objects() can call qdel if the corner is storing no data
 		C.update_objects()
-		C.needs_update = FALSE
 		if(init_tick_checks)
 			CHECK_TICK
 		else if (MC_TICK_CHECK)
@@ -78,7 +78,7 @@ GLOBAL_LIST_EMPTY(lighting_update_objects) //! List of lighting objects queued f
 		MC_SPLIT_TICK
 
 	for(updators_num in 1 to GLOB.lighting_update_objects.len)
-		var/atom/movable/static_lighting_object/O = GLOB.lighting_update_objects[updators_num]
+		var/datum/static_lighting_object/O = GLOB.lighting_update_objects[updators_num]
 
 		if (QDELETED(O))
 			continue

@@ -85,25 +85,9 @@
 	var/matrix/rotated_matrix = matrix()
 	rotated_matrix.Turn(angle - current_angle)
 	rotated_matrix *= transform
-	//Overlays cannot be edited while applied, meaning their transform cannot be changed.
-	//Disconnect the shadows from the overlay, apply the transform and then reapply them as an overlay.
-	//Oh also since the matrix is really weird standard rotation matrices wont work here.
-	overlays.Cut()
 	//Disconnect from parent matrix, become a global position
-	for(var/mutable_appearance/shadow AS in shadows)	//Mutable appearances are children of icon
-		shadow.transform *= transform
-		shadow.transform /= rotated_matrix
 	//Apply our matrix
 	transform = rotated_matrix
-
-	//Readd the shadow overlays using overlay merging to update them.
-	var/static/atom/movable/lighting_mask/template/dud = new
-	dud.overlays += shadows
-	var/static/mutable_appearance/overlay_merger = new()
-	overlay_merger.appearance = dud.appearance
-	overlays += overlay_merger
-	dud.overlays.Cut()
-
 	//Now we are facing this direction
 	current_angle = angle
 

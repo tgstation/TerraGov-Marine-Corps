@@ -274,6 +274,7 @@
 /turf/open/lavaland/lava
 	name = "lava"
 	icon_state = "full"
+	light_system = STATIC_LIGHT //theres a lot of lava so lets just be sure
 	light_range = 2
 	light_power = 1.4
 	light_color = LIGHT_COLOR_LAVA

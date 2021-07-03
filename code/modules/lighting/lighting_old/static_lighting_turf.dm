@@ -1,57 +1,46 @@
 /turf
 	var/tmp/lighting_corners_initialised = FALSE
+	var/tmp/datum/static_lighting_object/static_lighting_object
 
-	var/tmp/list/datum/static_light_source/static_affecting_lights       // List of light sources affecting this turf.
-	var/tmp/list/datum/static_lighting_corner/static_lighting_corners
+	///Lighting Corner datums.
+	var/tmp/datum/static_lighting_corner/lighting_corner_NE
+	var/tmp/datum/static_lighting_corner/lighting_corner_SE
+	var/tmp/datum/static_lighting_corner/lighting_corner_SW
+	var/tmp/datum/static_lighting_corner/lighting_corner_NW
 
 /turf/proc/static_lighting_clear_overlay()
 	if (static_lighting_object)
 		qdel(static_lighting_object, TRUE)
 
-	var/datum/static_lighting_corner/C
-	for (var/thing in static_lighting_corners)
-		if(!thing)
-			continue
-		C = thing
-		C.update_active()
-
 /// Builds a lighting object for us, but only if our area is dynamic.
-/turf/proc/static_lighting_build_overlay(area/A = loc)
+/turf/proc/static_lighting_build_overlay(area/our_area = loc)
 	if(static_lighting_object)
 		qdel(static_lighting_object, force=TRUE) //Shitty fix for lighting objects persisting after death
 
-	if(!A.static_lighting && !static_light_sources)
+	if(!our_area.static_lighting && !static_light_sources)
 		return
 
-	if (!lighting_corners_initialised)
-		static_generate_missing_corners()
+	new/datum/static_lighting_object(src)
 
-	new/atom/movable/static_lighting_object(src)
-
-	var/datum/static_lighting_corner/C
-	var/datum/static_light_source/S
-	for(var/thing in static_lighting_corners)
-		if(!thing)
-			continue
-		C = thing
-		if (!C.active) // We would activate the corner, calculate the lighting for it.
-			for (thing in C.affecting)
-				S = thing
-				S.recalc_corner(C)
-			C.active = TRUE
 
 // Used to get a scaled lumcount.
 /turf/proc/static_get_lumcount(minlum = 0, maxlum = 1)
 	if (!static_lighting_object)
-		return 0
+		return 1
 
 	var/totallums = 0
-	var/thing
 	var/datum/static_lighting_corner/L
-	for (thing in static_lighting_corners)
-		if(!thing)
-			continue
-		L = thing
+	L = lighting_corner_NE
+	if (L)
+		totallums += L.lum_r + L.lum_b + L.lum_g
+	L = lighting_corner_SE
+	if (L)
+		totallums += L.lum_r + L.lum_b + L.lum_g
+	L = lighting_corner_SW
+	if (L)
+		totallums += L.lum_r + L.lum_b + L.lum_g
+	L = lighting_corner_NW
+	if (L)
 		totallums += L.lum_r + L.lum_b + L.lum_g
 
 	totallums /= 12 // 4 corners, each with 3 channels, get the average.
@@ -68,7 +57,7 @@
 	if (!static_lighting_object)
 		return FALSE
 
-	return !static_lighting_object.luminosity
+	return !(luminosity || dynamic_lumcount)
 
 /turf/proc/change_area(area/old_area, area/new_area)
 	if(SSlighting.initialized)
@@ -83,25 +72,18 @@
 	if(new_area.lighting_effect)
 		add_overlay(new_area.lighting_effect)
 
-/turf/proc/static_get_corners()
-	if (!lighting_corners_initialised)
-		static_generate_missing_corners()
-	if(opacity)
-		return null // Since this proc gets used in a for loop, null won't be looped though.
-
-	return static_lighting_corners
-
 /turf/proc/static_generate_missing_corners()
-	var/area/A = loc
-	if(!A.static_lighting && !static_light_sources)
-		return
+	if (!lighting_corner_NE)
+		lighting_corner_NE = new/datum/static_lighting_corner(src, NORTH|EAST)
+
+	if (!lighting_corner_SE)
+		lighting_corner_SE = new/datum/static_lighting_corner(src, SOUTH|EAST)
+
+	if (!lighting_corner_SW)
+		lighting_corner_SW = new/datum/static_lighting_corner(src, SOUTH|WEST)
+
+	if (!lighting_corner_NW)
+		lighting_corner_NW = new/datum/static_lighting_corner(src, NORTH|WEST)
+
 	lighting_corners_initialised = TRUE
-	if(!static_lighting_corners)
-		static_lighting_corners = list(null, null, null, null)
-
-	for(var/i = 1 to 4)
-		if(static_lighting_corners[i]) // Already have a corner on this direction.
-			continue
-
-		static_lighting_corners[i] = new/datum/static_lighting_corner(src, GLOB.LIGHTING_CORNER_DIAGONAL[i])
 

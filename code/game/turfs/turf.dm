@@ -51,11 +51,6 @@
 	///Lumcount added by sources other than lighting datum objects, such as the overlay lighting component.
 	var/dynamic_lumcount = 0
 	///List of light sources affecting this turf.
-	var/tmp/list/datum/dynamic_light_source/affecting_lights
-	///Our lighting object.
-	var/tmp/atom/movable/static_lighting_object/static_lighting_object
-	var/tmp/list/datum/static_lighting_corner/corners
-
 	///Which directions does this turf block the vision of, taking into account both the turf's opacity and the movable opacity_sources.
 	var/directional_opacity = NONE
 	///Lazylist of movable atoms providing opacity sources.
@@ -263,9 +258,11 @@
 		return new path(src)
 
 	//static lighting
-	var/old_affecting_lights = static_affecting_lights
 	var/old_lighting_object = static_lighting_object
-	var/old_corners = static_lighting_corners
+	var/old_lighting_corner_NE = lighting_corner_NE
+	var/old_lighting_corner_SE = lighting_corner_SE
+	var/old_lighting_corner_SW = lighting_corner_SW
+	var/old_lighting_corner_NW = lighting_corner_NW
 	//hybrid lighting
 	var/list/old_hybrid_lights_affecting = hybrid_lights_affecting?.Copy()
 	var/old_directional_opacity = directional_opacity
@@ -295,13 +292,16 @@
 
 	W.hybrid_lights_affecting = old_hybrid_lights_affecting
 
+	lighting_corner_NE = old_lighting_corner_NE
+	lighting_corner_SE = old_lighting_corner_SE
+	lighting_corner_SW = old_lighting_corner_SW
+	lighting_corner_NW = old_lighting_corner_NW
+
 	//static Update
 	if(SSlighting.initialized)
 		recalculate_directional_opacity()
 
 		W.static_lighting_object = old_lighting_object
-		W.static_affecting_lights = old_affecting_lights
-		W.static_lighting_corners = old_corners
 
 		var/area/A = loc
 
@@ -309,6 +309,9 @@
 			W.static_lighting_build_overlay()
 		else if(!A.static_lighting && old_lighting_object)
 			W.static_lighting_clear_overlay()
+
+		else if(static_lighting_object && !static_lighting_object.needs_update)
+			static_lighting_object.update()
 
 	//Since the old turf was removed from hybrid_lights_affecting, readd the new turf here
 	if(W.hybrid_lights_affecting)
@@ -344,7 +347,7 @@
 
 /turf/proc/empty(turf_type=/turf/open/space, baseturf_type, list/ignore_typecache, flags)
 	// Remove all atoms except observers, landmarks, docking ports
-	var/static/list/ignored_atoms = typecacheof(list(/mob/dead, /obj/effect/landmark, /obj/docking_port, /atom/movable/static_lighting_object))
+	var/static/list/ignored_atoms = typecacheof(list(/mob/dead, /obj/effect/landmark, /obj/docking_port))
 	var/list/allowed_contents = typecache_filter_list_reverse(GetAllContentsIgnoring(ignore_typecache), ignored_atoms)
 	allowed_contents -= src
 	for(var/i in 1 to allowed_contents.len)
@@ -751,10 +754,11 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 		var/obj/O
 		if(underlays.len)	//we have underlays, which implies some sort of transparency, so we want to a snapshot of the previous turf as an underlay
 			O = new()
-			O.underlays.Add(T)
+			O.underlays += T
 		T.ChangeTurf(type)
 		if(underlays.len)
-			T.underlays = O.underlays
+			T.underlays.Cut()
+			T.underlays += O.underlays
 	if(T.icon_state != icon_state)
 		T.icon_state = icon_state
 	if(T.icon != icon)

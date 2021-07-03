@@ -49,7 +49,7 @@
 	//light stuff
 
 	///Light systems, only one of the three should be active at the same time.
-	var/light_system = HYBRID_LIGHT//STATIC_LIGHT
+	var/light_system = STATIC_LIGHT
 	///Range of the light in tiles. Zero means no light.
 	var/light_range = 0
 	///Intensity of the light. The stronger, the less shadows you will see on the lit area.

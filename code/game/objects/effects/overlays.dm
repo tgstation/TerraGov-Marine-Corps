@@ -258,3 +258,4 @@
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	alpha = 0
 	vis_flags = NONE
+	blocks_emissive = NONE
