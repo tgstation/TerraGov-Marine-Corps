@@ -57,7 +57,7 @@
 	. = TRUE
 	if(locate(/obj/flamer_fire) in T)
 		return FALSE
-	weeding_range_holder = src.xeno_caste.weeding_range
+	weeding_range_holder = xeno_caste.weeding_range
 	for(var/obj/effect/alien/weeds/W in range(weeding_range_holder, T ? T : get_turf(src)))
 		if(QDESTROYING(W))
 			continue
