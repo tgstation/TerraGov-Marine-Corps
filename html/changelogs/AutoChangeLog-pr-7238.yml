@@ -1,0 +1,5 @@
+author: "BraveMole"
+delete-after: True
+changes: 
+  - rscadd: "New way of registering keybinds, you have to push the buttons for 2 seconds for it to register"
+  - code_imp: "better perfs on game prefs ui"
