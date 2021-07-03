@@ -345,9 +345,9 @@ datum/ammo/bullet/revolver/tp44
 
 /datum/ammo/bullet/revolver/tp44/on_hit_mob(mob/M,obj/projectile/P)
 	if(SEND_SIGNAL(P.shot_from, COMSIG_REVOLVER_AMMO_HIT_MOB) & COMSIG_REVOLVER_AMMO_SNUBNOSE_BARREL)
-		staggerstun(M, P, stagger = 1, slowdown = 0.5, knockback = 1)
+		staggerstun(M, P, stagger = 1, slowdown = 0.5, knockback = 1, shake = 0)
 	else
-		staggerstun(M, P, slowdown = 0.5)
+		staggerstun(M, P, slowdown = 0.5, shake = 0)
 
 /datum/ammo/bullet/revolver/small
 	name = "small revolver bullet"
@@ -1066,13 +1066,13 @@ datum/ammo/bullet/revolver/tp44
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
 	shell_speed = 4
 	max_range = 12
-	damage = 100
+	damage = 250
 	penetration = 70
-	sundering = 70
+	sundering = 90
 	bullet_color = COLOR_PULSE_BLUE
 
 /datum/ammo/bullet/railgun/on_hit_mob(mob/M,obj/projectile/P)
-	staggerstun(M, P, weaken = 1, stagger = 3, slowdown = 2, knockback = 4)
+	staggerstun(M, P, weaken = 1, stagger = 6, slowdown = 2, knockback = 2)
 
 /*
 //================================================
@@ -1797,6 +1797,7 @@ datum/ammo/bullet/revolver/tp44
 /datum/ammo/xeno/acid/medium
 	name = "acid spatter"
 	damage = 30
+	flags_ammo_behavior = AMMO_XENO
 
 /datum/ammo/xeno/acid/heavy
 	name = "acid splash"

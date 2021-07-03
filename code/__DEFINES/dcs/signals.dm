@@ -379,6 +379,9 @@
 #define COMSIG_WARRIOR_USED_FLING "warrior_used_fling"
 #define COMSIG_WARRIOR_USED_GRAPPLE_TOSS "warrior_used_grapple_toss"
 
+#define COMSIG_XENOABILITY_HUNTER_MARK "xenoability_hunter_mark"
+#define COMSIG_XENOABILITY_PSYCHIC_TRACE "xenoability_psychic_trace"
+
 #define COMSIG_XENOMORPH_PLASMA_REGEN "xenomorph_plasma_regen"
 #define COMSIG_XENOMORPH_HEALTH_REGEN "xenomorph_health_regen"
 #define COMSIG_XENOMORPH_SUNDER_REGEN "xenomorph_sunder_regen"
@@ -387,6 +390,7 @@
 	#define COMSIG_ACCURATE_ZONE (1<<0)
 
 #define COMSIG_XENOMORPH_POUNCE "xenomorph_pounce"
+#define COMSIG_XENOMORPH_POUNCE_END "xenomorph_pounce_end"
 
 #define COMSIG_XENOMORPH_HEADBITE "headbite"
 
@@ -526,6 +530,8 @@
 #define COMSIG_XENOABILITY_RETRIEVE_EGG "xenoability_retrieve_egg"
 #define COMSIG_XENOABILITY_PLACE_TRAP "xenoability_place_trap"
 #define COMSIG_XENOABILITY_SPAWN_HUGGER "xenoability_spawn_hugger"
+#define COMSIG_XENOABILITY_SWITCH_HUGGER "xenoability_switch_hugger"
+#define COMSIG_XENOABILITY_CHOOSE_HUGGER "xenoability_choose_hugger"
 
 #define COMSIG_XENOABILITY_STOMP "xenoability_stomp"
 #define COMSIG_XENOABILITY_TOGGLE_CHARGE "xenoability_toggle_charge"
@@ -544,6 +550,7 @@
 
 #define COMSIG_XENOABILITY_EMIT_NEUROGAS "xenoability_emit_neurogas"
 #define COMSIG_XENOABILITY_SELECT_REAGENT "xenoability_select_reagent"
+#define COMSIG_XENOABILITY_RADIAL_SELECT_REAGENT "xenoability_radial_select_reagent"
 #define COMSIG_XENOABILITY_REAGENT_SLASH "xenoability_reagent_slash"
 
 #define COMSIG_XENOABILITY_SALVAGE_PLASMA "xenoability_salvage_plasma"
@@ -627,6 +634,7 @@
 #define COMSIG_KB_UNLOADGUN "keybinding_unloadgun"
 #define COMSIG_KB_AIMMODE "keybinding_aimmode"
 #define COMSIG_KB_FIREMODE "keybind_firemode"
+#define COMSIG_KB_GIVE "keybind_give"
 
 // Ability adding/removing signals
 #define ACTION_GIVEN "gave_an_action"		//from base of /datum/action/proc/give_action(): (datum/action)

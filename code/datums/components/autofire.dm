@@ -44,6 +44,12 @@
 	callback_bursting = _callback_bursting
 	callback_reset_fire = _callback_reset_fire
 	callback_fire = _callback_fire
+
+/datum/component/automatedfire/autofire/Destroy(force, silent)
+	QDEL_NULL(callback_fire)
+	QDEL_NULL(callback_reset_fire)
+	QDEL_NULL(callback_bursting)
+	return ..()
 	
 ///Setter for fire mode
 /datum/component/automatedfire/autofire/proc/modify_fire_mode(datum/source, _fire_mode)

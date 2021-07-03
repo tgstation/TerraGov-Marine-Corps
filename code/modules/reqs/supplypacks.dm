@@ -166,6 +166,11 @@ OPERATIONS
 	containertype = null
 	available_against_xeno_only = TRUE
 
+/datum/supply_packs/operations/autominer
+	name = "Autominer upgrade"
+	contains = list(/obj/item/minerupgrade/automatic)
+	cost = 15
+
 /*******************************************************************************
 WEAPONS
 *******************************************************************************/

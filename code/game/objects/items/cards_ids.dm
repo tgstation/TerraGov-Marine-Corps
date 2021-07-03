@@ -80,6 +80,11 @@
 
 	var/blood_type = "\[UNSET\]"
 
+	///How many points you can use to buy items
+	var/marine_points = MARINE_TOTAL_BUY_POINTS
+	///What category of items can you buy
+	var/marine_buy_flags = MARINE_CAN_BUY_ALL
+
 	//alt titles are handled a bit weirdly in order to unobtrusively integrate into existing ID system
 	var/assignment = null	//can be alt title or the actual job
 	var/rank = null			//actual job
@@ -238,6 +243,8 @@
 	item_state = "dogtag"
 	var/dogtag_taken = FALSE
 
+/obj/item/card/id/dogtag/engineer
+	marine_points = ENGINEER_TOTAL_BUY_POINTS
 
 /obj/item/card/id/dogtag/som
 	name = "\improper Sons of Mars dogtag"

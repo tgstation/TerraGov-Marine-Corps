@@ -254,6 +254,7 @@
 	. = ..()
 	revive_grace_time = initial(revive_grace_time)
 	GLOB.alive_human_list += src
+	LAZYADD(GLOB.alive_human_list_faction[faction], src)
 	GLOB.dead_human_list -= src
 	LAZYADD(GLOB.humans_by_zlevel["[z]"], src)
 	RegisterSignal(src, COMSIG_MOVABLE_Z_CHANGED, .proc/human_z_changed)

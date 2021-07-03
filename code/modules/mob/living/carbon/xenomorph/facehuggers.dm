@@ -39,7 +39,8 @@
 	var/leaping = FALSE
 	///What hive this hugger belongs to
 	var/hivenumber = XENO_HIVE_NORMAL
-
+	///The xeno that spawned/threw/dropped the hugger. Used for anti-shuffle
+	var/mob/living/carbon/xenomorph/source
 	///The timer tracking when we die
 	var/lifetimer
 	///The timer tracking when we next jump
@@ -58,13 +59,30 @@
 	var/proximity_time = 0.75 SECONDS
 
 
-/obj/item/clothing/mask/facehugger/Initialize(mapload, input_hivenumber)
+/obj/item/clothing/mask/facehugger/Initialize(mapload, input_hivenumber, input_source)
 	. = ..()
 	if(stat == CONSCIOUS)
 		lifetimer = addtimer(CALLBACK(src, .proc/check_lifecycle), FACEHUGGER_DEATH, TIMER_STOPPABLE)
 
 	if(input_hivenumber)
 		hivenumber = input_hivenumber
+
+	if(input_source)
+		facehugger_register_source(input_source)
+
+///Registers the source of our facehugger for the purpose of anti-shuffle mechanics
+/obj/item/clothing/mask/facehugger/proc/facehugger_register_source(mob/living/carbon/xenomorph/S)
+	if(source) //If we have an existing source, unregister
+		UnregisterSignal(source, COMSIG_PARENT_QDELETING)
+
+	source = S //set and register new source
+	RegisterSignal(S, COMSIG_PARENT_QDELETING, .proc/clear_hugger_source)
+
+///Clears the source of our facehugger for the purpose of anti-shuffle mechanics
+/obj/item/clothing/mask/facehugger/proc/clear_hugger_source()
+	SIGNAL_HANDLER
+	UnregisterSignal(source, COMSIG_PARENT_QDELETING)
+	source = null
 
 /obj/item/clothing/mask/facehugger/Destroy()
 	. = ..()
@@ -73,6 +91,7 @@
 	remove_danger_overlay() //Remove the danger overlay
 	lifetimer = null
 	jumptimer = null
+	clear_hugger_source()
 
 /obj/item/clothing/mask/facehugger/update_icon()
 	if(stat == DEAD)
@@ -110,6 +129,7 @@
 			deltimer(jumptimer)
 			jumptimer = null
 			remove_danger_overlay() //Remove the exclamation overlay as we pick it up
+			facehugger_register_source(X)
 			return ..() // These can pick up huggers.
 		else
 			return FALSE // The rest can't.
@@ -155,6 +175,8 @@
 /obj/item/clothing/mask/facehugger/dropped(mob/user)
 	. = ..()
 	// Whena  xeno removes the hugger from storage we don't want to start the active timer until they drop or throw it
+	if(isxeno(user)) //Set the source mob
+		facehugger_register_source(user)
 	if(isxenocarrier(user))
 		go_active(TRUE)
 
@@ -305,7 +327,12 @@
 
 /obj/item/clothing/mask/facehugger/Uncross(atom/movable/AM)
 	. = ..()
-	if(. && stat == CONSCIOUS && issamexenohive(AM)) //shuffle hug prevention, if a xeno steps off go_idle()
+	if(!. || stat != CONSCIOUS) //Have to be conscious
+		return
+	if(!source && issamexenohive(AM)) //shuffle hug prevention, if we don't have a source and a xeno from the same hive steps off go_idle()
+		go_idle()
+		return
+	if(source == AM) //shuffle hug prevention, if we have a source and it steps off go_idle()
 		go_idle()
 
 /obj/item/clothing/mask/facehugger/on_found(mob/finder)

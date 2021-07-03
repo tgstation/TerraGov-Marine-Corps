@@ -25,6 +25,7 @@ require only minor tweaks.
 #define ZTRAIT_RESERVED "Transit/Reserved"
 #define ZTRAIT_GROUND "Ground"
 #define ZTRAIT_MARINE_MAIN_SHIP "Marine Main Ship"
+#define ZTRAIT_DOUBLE_SHIPS "Double Marine Ship"
 
 // boolean - weather types that occur on the level
 #define ZTRAIT_SNOWSTORM "weather_snowstorm"

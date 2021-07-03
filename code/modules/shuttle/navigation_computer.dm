@@ -137,7 +137,7 @@
 	if(!see_hidden)
 		to_add += SSshuttle.hidden_shuttle_turf_images
 	user.client.images += to_add
-	user.client.change_view(view_range)
+	user.client.view_size.set_view_radius_to(view_range)
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/remove_eye_control(mob/living/user)
 	. = ..()
@@ -150,7 +150,7 @@
 	if(!see_hidden)
 		to_remove += SSshuttle.hidden_shuttle_turf_images
 	user.client.images -= to_remove
-	user.client.change_view(WORLD_VIEW)
+	user.client.view_size.reset_to_default()
 
 /// Handles the creation of the custom landing spot
 /obj/machinery/computer/camera_advanced/shuttle_docker/proc/placeLandingSpot()

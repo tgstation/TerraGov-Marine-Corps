@@ -19,3 +19,8 @@ mode Extended
 	requiredplayers 0
 	votable 0
 endmode
+
+mode Civil War
+	requiredplayers 2
+	votable 0
+endmode

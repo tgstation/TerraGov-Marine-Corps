@@ -1184,8 +1184,8 @@
 	unload_sound = 'sound/weapons/guns/interact/sniper_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/sniper_reload.ogg'
 	current_mag = /obj/item/ammo_magazine/railgun
-	force = 12
-	wield_delay = 2 SECONDS //You're not quick drawing this.
+	force = 40
+	wield_delay = 1 SECONDS //You're not quick drawing this.
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 20, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
 	attachable_allowed = list(
 		/obj/item/attachable/scope,
@@ -1193,7 +1193,7 @@
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
 
-	fire_delay = 20 SECONDS
+	fire_delay = 1 SECONDS
 	burst_amount = 1
 	accuracy_mult = 2
 	recoil = 0

@@ -4,25 +4,26 @@
 	icon = 'icons/obj/structures/fence.dmi'
 	icon_state = "fence0"
 	density = TRUE
-	anchored = TRUE
+	throwpass = TRUE //So people and xenos can shoot through!
+	anchored = TRUE //We can not be moved.
 	layer = WINDOW_LAYER
-	max_integrity = 100
+	max_integrity = 150 //Its cheap but still viable to repair, cant be moved around, about 7 runner hits to take down
 	resistance_flags = XENO_DAMAGEABLE
 	minimap_color = MINIMAP_FENCE
 	var/cut = FALSE //Cut fences can be passed through
 	var/junction = 0 //Because everything is terrible, I'm making this a fence-level var
 	var/basestate = "fence"
-
+	coverage = 0 //Were like 4 rods
+	//We dont have armor do to being a bit more healthy!
 
 /obj/structure/fence/ex_act(severity)
 	switch(severity)
 		if(EXPLODE_DEVASTATE)
 			deconstruct(FALSE)
 		if(EXPLODE_HEAVY)
-			deconstruct(FALSE)
+			take_damage(rand(100, 125))//Almost broken or half way
 		if(EXPLODE_LIGHT)
-			take_damage(rand(25, 55))
-
+			take_damage(rand(50, 75))
 
 /obj/structure/fence/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -36,9 +37,9 @@
 				return
 
 		var/obj/item/stack/rods/R = I
-		var/amount_needed = 2
+		var/amount_needed = 4
 		if(obj_integrity)
-			amount_needed = 1
+			amount_needed = 4
 
 		if(R.amount < amount_needed)
 			to_chat(user, "<span class='warning'>You need more metal rods to repair [src].")
@@ -119,6 +120,10 @@
 
 /obj/structure/fence/Initialize(mapload, start_dir)
 	. = ..()
+
+	if(prob(80))
+		obj_integrity = 0
+		deconstruct(FALSE)
 
 	if(start_dir)
 		setDir(start_dir)

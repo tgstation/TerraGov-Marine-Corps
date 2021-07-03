@@ -2,7 +2,7 @@ import { useBackend, useLocalState } from '../../backend';
 import { Button, Section, TextArea, Box, Grid } from '../../components';
 
 export const BackgroundInformation = (props, context) => {
-  const { act, data, config } = useBackend<PlayerPreferencesData>(context);
+  const { act, data } = useBackend<BackgroundInformationData>(context);
   const {
     slot,
     flavor_text,
