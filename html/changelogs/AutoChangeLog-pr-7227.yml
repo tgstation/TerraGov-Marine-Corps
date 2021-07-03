@@ -1,0 +1,5 @@
+author: "InterroLouis"
+delete-after: True
+changes: 
+  - bugfix: "Fixed Hydro Cannon hud button."
+  - refactor: "Hydro Cannon only works via unique action and hud button, not load from attachment."
