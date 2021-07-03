@@ -31,6 +31,10 @@
 	add_filter("second_stage_openspace", 3, drop_shadow_filter(color = "#04080FAA", size = -15))
 	add_filter("third_stage_openspace", 4, drop_shadow_filter(color = "#04080FAA", size = -20))
 
+/atom/movable/lighting_mask/filtered/Initialize(mapload, ...)
+	. = ..()
+	add_filter("bbbbbbbbbb", 1, outline_filter(color = "#04080FAA", size = 10))
+
 ///Contains just the floor
 /obj/screen/plane_master/floor
 	name = "floor plane master"

@@ -97,7 +97,7 @@
 
 	if(!needs_update)
 		needs_update = TRUE
-		GLOB.lighting_update_corners += src
+		SSlighting.corners_queue += src
 
 /datum/static_lighting_corner/proc/update_objects()
 	// Cache these values a head of time so 4 individual lighting objects don't all calculate them individually.
@@ -127,22 +127,22 @@
 	var/datum/static_lighting_object/lighting_object = master_NE?.static_lighting_object
 	if (lighting_object && !lighting_object.needs_update)
 		lighting_object.needs_update = TRUE
-		GLOB.lighting_update_objects += lighting_object
+		SSlighting.objects_queue += lighting_object
 
 	lighting_object = master_SE?.static_lighting_object
 	if (lighting_object && !lighting_object.needs_update)
 		lighting_object.needs_update = TRUE
-		GLOB.lighting_update_objects += lighting_object
+		SSlighting.objects_queue += lighting_object
 
 	lighting_object = master_SW?.static_lighting_object
 	if (lighting_object && !lighting_object.needs_update)
 		lighting_object.needs_update = TRUE
-		GLOB.lighting_update_objects += lighting_object
+		SSlighting.objects_queue += lighting_object
 
 	lighting_object = master_NW?.static_lighting_object
 	if (lighting_object && !lighting_object.needs_update)
 		lighting_object.needs_update = TRUE
-		GLOB.lighting_update_objects += lighting_object
+		SSlighting.objects_queue += lighting_object
 
 	self_destruct_if_idle()
 
@@ -172,5 +172,5 @@
 		master_NW.lighting_corner_SE = null
 		master_NW.lighting_corners_initialised = FALSE
 	if(needs_update)
-		GLOB.lighting_update_corners -= src
+		SSlighting.corners_queue -= src
 	return ..()

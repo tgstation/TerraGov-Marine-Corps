@@ -23,31 +23,6 @@
 	new/datum/static_lighting_object(src)
 
 
-// Used to get a scaled lumcount.
-/turf/proc/static_get_lumcount(minlum = 0, maxlum = 1)
-	if (!static_lighting_object)
-		return 1
-
-	var/totallums = 0
-	var/datum/static_lighting_corner/L
-	L = lighting_corner_NE
-	if (L)
-		totallums += L.lum_r + L.lum_b + L.lum_g
-	L = lighting_corner_SE
-	if (L)
-		totallums += L.lum_r + L.lum_b + L.lum_g
-	L = lighting_corner_SW
-	if (L)
-		totallums += L.lum_r + L.lum_b + L.lum_g
-	L = lighting_corner_NW
-	if (L)
-		totallums += L.lum_r + L.lum_b + L.lum_g
-
-	totallums /= 12 // 4 corners, each with 3 channels, get the average.
-
-	totallums = (totallums - minlum) / (maxlum - minlum)
-
-	return CLAMP01(totallums)
 
 // Returns a boolean whether the turf is on soft lighting.
 // Soft lighting being the threshold at which point the overlay considers

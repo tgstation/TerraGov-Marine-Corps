@@ -28,13 +28,40 @@
 
 ///Used to get a scaled lumcount.
 /turf/proc/get_lumcount()
-	var/lums = static_get_lumcount()
+// Used to get a scaled lumcount.
+/turf/proc/static_get_lumcount(minlum = 0, maxlum = 1)
+	var/totallums = 0
+	if (static_lighting_object)
+
+		var/totallums = 0
+		var/datum/static_lighting_corner/L
+		L = lighting_corner_NE
+		if (L)
+			totallums += L.lum_r + L.lum_b + L.lum_g
+		L = lighting_corner_SE
+		if (L)
+			totallums += L.lum_r + L.lum_b + L.lum_g
+		L = lighting_corner_SW
+		if (L)
+			totallums += L.lum_r + L.lum_b + L.lum_g
+		L = lighting_corner_NW
+		if (L)
+			totallums += L.lum_r + L.lum_b + L.lum_g
+
+		totallums /= 12 // 4 corners, each with 3 channels, get the average.
+
+		totallums = (totallums - minlum) / (maxlum - minlum)
+
+		totallums = CLAMP01(totallums)
+	else
+		totallums = 1
+
 	for(var/atom/movable/lighting_mask/mask AS in hybrid_lights_affecting)
 		if(mask.blend_mode == BLEND_ADD)
-			lums += LIGHT_POWER_ESTIMATION(mask.alpha, mask.radius, get_dist(src, get_turf(mask.attached_atom)))
+			totallums += LIGHT_POWER_ESTIMATION(mask.alpha, mask.radius, get_dist(src, get_turf(mask.attached_atom)))
 		else
-			lums -= LIGHT_POWER_ESTIMATION(mask.alpha, mask.radius, get_dist(src, get_turf(mask.attached_atom)))
-	return clamp(lums, 0.0, 1.0)
+			totallums -= LIGHT_POWER_ESTIMATION(mask.alpha, mask.radius, get_dist(src, get_turf(mask.attached_atom)))
+	return clamp(totallums, 0.0, 1.0)
 
 ///Proc to add movable sources of opacity on the turf and let it handle lighting code.
 /turf/proc/add_opacity_source(atom/movable/new_source)

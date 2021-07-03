@@ -46,8 +46,7 @@
 
 /atom/movable/lighting_mask/Destroy()
 	//Make sure we werent destroyed in init
-	if(!SSlighting.started)
-		SSlighting.sources_that_need_updating -= src
+	SSlighting.mask_queue -= src
 	//Remove from affecting turfs
 	if(affecting_turfs)
 		for(var/turf/thing AS in affecting_turfs)
@@ -80,7 +79,7 @@
 		if(awaiting_update)
 			SSlighting.duplicate_shadow_updates_in_init++
 			return
-		SSlighting.sources_that_need_updating += src
+		SSlighting.mask_queue += src
 		awaiting_update = TRUE
 		return
 	//we moved to nullspace meanwhile dont bother
@@ -168,7 +167,6 @@
 	DO_SOMETHING_IF_DEBUGGING_SHADOWS(var/MA_vars_time = 0)
 	DO_SOMETHING_IF_DEBUGGING_SHADOWS(var/overlays_add_time = 0)
 
-	//we use a dud that we reset every time to merge the overlay s
 	var/list/overlays_to_add = list()
 	for(var/group in grouped_atoms)
 		DO_SOMETHING_IF_DEBUGGING_SHADOWS(temp_timer = TICK_USAGE)
@@ -224,7 +222,7 @@
 			DO_SOMETHING_IF_DEBUGGING_SHADOWS(temp_timer = TICK_USAGE)
 
 	//Put the overlays onto a dud object and copy the appearance to merge them
-	//Doesnt impact maptick, AND means much faster render times
+	//Doesnt impact maptick, AND means faster render times
 	DO_SOMETHING_IF_DEBUGGING_SHADOWS(var/mergetime = TICK_USAGE)
 	var/static/atom/movable/lighting_mask/template/dud = new
 	dud.overlays += overlays_to_add

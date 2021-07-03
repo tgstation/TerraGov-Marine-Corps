@@ -43,10 +43,7 @@
 	our_mask.rotate_mask_on_holder_turn(contained_atom.dir)
 	RegisterSignal(our_mask, COMSIG_ATOM_DIR_CHANGE, /atom/movable/lighting_mask.proc/rotate_mask_on_holder_turn)
 
-	SSlighting.hybrid_light_sources += src
-
 /datum/dynamic_light_source/Destroy(force)
-	SSlighting.hybrid_light_sources -= src
 	//Remove references to ourself.
 	LAZYREMOVE(source_atom?.hybrid_light_sources, src)
 	LAZYREMOVE(contained_atom?.hybrid_light_sources, src)

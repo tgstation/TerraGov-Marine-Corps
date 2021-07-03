@@ -27,15 +27,13 @@
 	var/tmp/applied_lum_g
 	var/tmp/applied_lum_b
 
-	var/list/turf/affecting_turfs
-
 	/// List used to store how much we're affecting corners.
 	var/list/datum/static_lighting_corner/effect_str
 
 	/// Whether we have applied our light yet or not.
 	var/applied = FALSE
 
-	/// whether we are to be added to SSlighting's sources_queue list for an update
+	/// whether we are to be added to SSlighting's static_sources_queue list for an update
 	var/needs_update = LIGHTING_NO_UPDATE
 
 // Thanks to Lohikar for flinging this tiny bit of code at me, increasing my brain cell count from 1 to 2 in the process.
@@ -71,7 +69,7 @@
 		LAZYREMOVE(top_atom.static_light_sources, src)
 
 	if (needs_update)
-		GLOB.lighting_update_lights -= src
+		SSlighting.static_sources_queue -= src
 	return ..()
 
 // Yes this doesn't align correctly on anything other than 4 width tabs.
@@ -79,7 +77,7 @@
 // Actually that'd be great if you could!
 #define EFFECT_UPDATE(level)                \
 	if (needs_update == LIGHTING_NO_UPDATE) \
-		GLOB.lighting_update_lights += src; \
+		SSlighting.static_sources_queue += src; \
 	if (needs_update < level)               \
 		needs_update            = level;    \
 
