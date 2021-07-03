@@ -76,6 +76,8 @@
 		/datum/action/xeno_action/activable/rally_hive/hivemind,
 	)
 
+	weeding_range = 1
+
 
 /datum/xeno_caste/hivemind/elder
 	upgrade_name = "Elder"
@@ -100,6 +102,8 @@
 		/datum/action/xeno_action/toggle_pheromones,
 		/datum/action/xeno_action/activable/rally_hive/hivemind,
 	)
+
+	weeding_range = 2
 
 /datum/xeno_caste/hivemind/ancient
 	upgrade_name = "Ancient"
@@ -126,3 +130,4 @@
 		/datum/action/xeno_action/activable/secrete_resin/slow,
 		/datum/action/xeno_action/activable/rally_hive/hivemind,
 	)
+	weeding_range = 3
