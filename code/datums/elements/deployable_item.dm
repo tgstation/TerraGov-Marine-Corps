@@ -82,7 +82,7 @@
 		CRASH("[source] has sent the signal COMSIG_ITEM_UNDEPLOY to [attached_item] without the arg 'user'")
 	if(!ishuman(user))
 		return
-	to_chat(user, "<span class = 'notice'>You start disassembling the [attached_item]</span>")
+	to_chat(user, "<span class='notice'>You start disassembling the [attached_item]</span>")
 	if(!do_after(user, deploy_time, TRUE, deployed_machine, BUSY_ICON_BUILD))
 		return
 	user.unset_interaction()
@@ -98,4 +98,3 @@
 
 	QDEL_NULL(deployed_machine)
 	attached_item.update_icon_state()
-
