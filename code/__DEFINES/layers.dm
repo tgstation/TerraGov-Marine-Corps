@@ -110,7 +110,7 @@
 #define POWERLOADER_LAYER 3.6 //above windows and wall mounts so the top of the loader doesn't clip.
 
 #define BELOW_MOB_LAYER 3.79
-#define LYING_MOB_LAYER	3.8
+#define LYING_MOB_LAYER 3.8
 
 #define ABOVE_LYING_MOB_LAYER 3.9 //drone (not the xeno)
 
@@ -160,7 +160,10 @@
 
 #define LIGHTING_PLANE 15
 
-#define O_LIGHTING_VISUAL_PLANE 16
+/// Plane for balloon text (text that fades up)
+#define BALLOON_CHAT_PLANE 17
+
+#define O_LIGHTING_VISUAL_PLANE 18
 #define O_LIGHTING_VISUAL_LAYER 16
 #define O_LIGHTING_VISUAL_RENDER_TARGET "O_LIGHT_VISUAL_PLANE"
 

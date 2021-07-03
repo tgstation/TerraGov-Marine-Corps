@@ -107,8 +107,6 @@ SUBSYSTEM_DEF(job)
 	if(!latejoin)
 		unassigned -= player
 	if(job.job_category != JOB_CAT_XENO && !GLOB.joined_player_list.Find(player.ckey))
-		if(SSticker.mode.flags_round_type & MODE_PSY_POINTS_ADVANCED)
-			SSpoints.add_psy_points(XENO_HIVE_NORMAL, SILO_PRICE / 15)
 		SSpoints.supply_points[job.faction] += SUPPLY_POINT_MARINE_SPAWN
 	job.occupy_job_positions(1, GLOB.joined_player_list.Find(player.ckey))
 	player.assigned_role = job
@@ -202,18 +200,22 @@ SUBSYSTEM_DEF(job)
 
 
 /datum/controller/subsystem/job/proc/assign_players_to_occupations(level, list/occupations_to_assign)
-	for(var/p in unassigned)
-		var/mob/new_player/player = p
+	var/faction_rejected
+	for(var/mob/new_player/player AS in unassigned)
 		if(PopcapReached())
 			RejectPlayer(player)
+		//Choose a faction in advance if needed
+		if(SSticker.mode?.flags_round_type & MODE_TWO_HUMAN_FACTIONS) //Alternates between the two factions
+			faction_rejected = faction_rejected == FACTION_TERRAGOV ? FACTION_TERRAGOV_REBEL : FACTION_TERRAGOV
 		// Loop through all jobs
-		for(var/j in occupations_to_assign)
-			var/datum/job/job = j
+		for(var/datum/job/job AS in occupations_to_assign)
 			// If the player wants that job on this level, then try give it to him.
 			if(player.client.prefs.job_preferences[job.title] != level)
 				continue
 			// If the job isn't filled
 			if((job.total_positions != -1 && job.current_positions >= job.total_positions))
+				continue
+			if(job.faction == faction_rejected)
 				continue
 			JobDebug("DO pass, Trying to assign Player: [player], Level:[level], Job:[job.title]")
 			if(AssignRole(player, job))
@@ -336,8 +338,14 @@ SUBSYSTEM_DEF(job)
 
 
 /datum/controller/subsystem/job/proc/SendToLateJoin(mob/M, datum/job/assigned_role)
+	if(isxenosjob(assigned_role) && length(GLOB.xeno_resin_silos))
+		SendToAtom(M, pick(GLOB.xeno_resin_silos))
+		return
 	if(assigned_role && length(GLOB.jobspawn_overrides[assigned_role])) //We're doing something special today.
 		SendToAtom(M, pick(GLOB.jobspawn_overrides[assigned_role]))
+		return
+	if(assigned_role.faction == FACTION_TERRAGOV_REBEL && length(GLOB.latejoinrebel))
+		SendToAtom(M, pick(GLOB.latejoinrebel))
 		return
 	if(length(GLOB.latejoin))
 		SendToAtom(M, pick(GLOB.latejoin))

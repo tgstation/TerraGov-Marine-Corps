@@ -46,7 +46,7 @@
 	if(damage_falloff_mod)
 		attach_strings += "Damage falloff: [damage_falloff_mod * 100]%"
 	if(burst_scatter_mod)
-		attach_strings += "Scatter chance: [burst_scatter_mod * 100]%"
+		attach_strings += "Burst scatter multiplier: [burst_scatter_mod]"
 	if(silence_mod)
 		attach_strings += "This can silence the weapon if it is attached."
 	if(light_mod)

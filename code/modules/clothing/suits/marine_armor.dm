@@ -417,7 +417,19 @@
 	icon_state = "commando_armor"
 	slowdown = SLOWDOWN_ARMOR_VERY_HEAVY
 	soft_armor = list("melee" = 90, "bullet" = 120, "laser" = 200, "energy" = 90, "bomb" = 90, "bio" = 100, "rad" = 100, "fire" = 90, "acid" = 90)
+	flags_armor_protection = CHEST|GROIN|ARMS|LEGS|FEET|HANDS
+	flags_cold_protection = CHEST|GROIN|ARMS|LEGS|FEET|HANDS
+	flags_heat_protection = CHEST|GROIN|ARMS|LEGS|FEET|HANDS
+	supporting_limbs = CHEST | GROIN | ARM_LEFT | ARM_RIGHT | HAND_LEFT | HAND_RIGHT | LEG_LEFT | LEG_RIGHT | FOOT_LEFT | FOOT_RIGHT | HEAD //B18 effectively stabilizes these.
 	resistance_flags = UNACIDABLE
+
+/obj/item/clothing/suit/storage/marine/veteran/PMC/commando/Initialize(mapload, ...)
+	. = ..()
+	AddComponent(/datum/component/suit_autodoc)
+	AddElement(/datum/element/limb_support, supporting_limbs)
+
+/obj/item/clothing/suit/storage/marine/veteran/PMC/commando/Destroy()
+	. = ..()
 
 /*===========================DISTRESS================================*/
 

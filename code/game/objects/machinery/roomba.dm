@@ -69,6 +69,8 @@
 /obj/machinery/roomba/proc/suck_items()
 	SIGNAL_HANDLER
 	for(var/obj/item/sucker in loc)
+		if(sucker.flags_item & NO_VACUUM)
+			return
 		sucker.store_in_cryo()
 		GLOB.cryoed_item_list[CRYO_REQ] += sucker
 		counter++

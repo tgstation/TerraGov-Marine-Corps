@@ -9,6 +9,19 @@
 	///List of warcries that are not allowed.
 	var/bad_warcries_regex = "allahu ackbar|allah|ackbar"
 
+/obj/item/clothing/suit/storage/marine/harness/boomvest/equipped(mob/user, slot)
+	. = ..()
+	RegisterSignal(user, COMSIG_MOB_SHIELD_DETATCH, .proc/shield_dropped)
+
+/obj/item/clothing/suit/storage/marine/harness/boomvest/unequipped(mob/unequipper, slot)
+	. = ..()
+	UnregisterSignal(unequipper, COMSIG_MOB_SHIELD_DETATCH)
+
+///Updates the last shield drop time when one is dropped
+/obj/item/clothing/suit/storage/marine/harness/boomvest/proc/shield_dropped()
+	SIGNAL_HANDLER
+	TIMER_COOLDOWN_START(src, COOLDOWN_BOMBVEST_SHIELD_DROP, 5 SECONDS)
+
 ///Overwrites the parent function for activating a light. Instead it now detonates the bomb.
 /obj/item/clothing/suit/storage/marine/harness/boomvest/attack_self(mob/user)
 	var/mob/living/carbon/human/activator = user
@@ -18,10 +31,17 @@
 	if(activator.wear_suit != src)
 		to_chat(activator, "Due to the rigging of this device, it can only be detonated while worn.") //If you are going to use this, you have to accept death. No armor allowed.
 		return FALSE
-	if(!do_after(user, 3, TRUE, src, BUSY_ICON_DANGER, ignore_turf_checks = TRUE))
+	if(istype(activator.l_hand, /obj/item/weapon/shield/riot) || istype(activator.r_hand, /obj/item/weapon/shield/riot) || istype(activator.back, /obj/item/weapon/shield/riot))
+		to_chat(activator, "<span class='warning'>Your bulky shield prevents you from reaching the detonator!</span>")
+		return FALSE
+	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_BOMBVEST_SHIELD_DROP))
+		to_chat(activator, "<span class='warning'>You dropped a shield too recently to detonate, wait a few seconds!</span>")
+		return FALSE
+	if(bomb_message)
+		activator.say("[bomb_message]!!")
+	if(!do_after(user, 2 SECONDS, TRUE, src, BUSY_ICON_DANGER, ignore_turf_checks = TRUE))
 		return FALSE
 	if(bomb_message) //Checks for a non null bomb message.
-		activator.say("[bomb_message]!!")
 		message_admins("[activator] has detonated an explosive vest with the warcry \"[bomb_message]\".") //Incase disputes show up about marines killing themselves and others.
 		log_game("[activator] has detonated an explosive vest with the warcry \"[bomb_message].\"")
 	else

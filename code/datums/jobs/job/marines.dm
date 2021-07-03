@@ -151,7 +151,7 @@ Your squaddies will look to you when it comes to construction in the field of ba
 	name = SQUAD_ENGINEER
 	jobtype = /datum/job/terragov/squad/engineer
 
-	id = /obj/item/card/id/dogtag
+	id = /obj/item/card/id/dogtag/engineer
 	back = /obj/item/storage/backpack/marine/satchel
 
 /datum/outfit/job/marine/engineer/rebel
@@ -500,9 +500,9 @@ You are also in charge of communicating with command and letting them know about
 
 /datum/outfit/job/marine/leader/equipped/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
-	H.equip_to_slot_or_del(new /obj/item/squad_beacon, SLOT_IN_SUIT)
-	H.equip_to_slot_or_del(new /obj/item/squad_beacon, SLOT_IN_SUIT)
-	H.equip_to_slot_or_del(new /obj/item/squad_beacon/bomb, SLOT_IN_SUIT)
+	H.equip_to_slot_or_del(new /obj/item/beacon/supply_beacon, SLOT_IN_SUIT)
+	H.equip_to_slot_or_del(new /obj/item/beacon/supply_beacon, SLOT_IN_SUIT)
+	H.equip_to_slot_or_del(new /obj/item/beacon/orbital_bombardment_beacon, SLOT_IN_SUIT)
 
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/enrg_bar, SLOT_IN_HEAD)
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/enrg_bar, SLOT_IN_HEAD)

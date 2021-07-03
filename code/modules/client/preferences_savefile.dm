@@ -130,6 +130,9 @@
 	READ_FILE(S["ghost_hud"], ghost_hud)
 	READ_FILE(S["windowflashing"], windowflashing)
 	READ_FILE(S["auto_fit_viewport"], auto_fit_viewport)
+	READ_FILE(S["widescreenpref"], widescreenpref)
+	READ_FILE(S["pixel_size"], pixel_size)
+	READ_FILE(S["scaling_method"], scaling_method)
 	READ_FILE(S["menuoptions"], menuoptions)
 	READ_FILE(S["ghost_vision"], ghost_vision)
 	READ_FILE(S["ghost_orbit"], ghost_orbit)
@@ -153,7 +156,6 @@
 	READ_FILE(S["see_chat_non_mob"], see_chat_non_mob)
 	READ_FILE(S["see_rc_emotes"], see_rc_emotes)
 
-
 	//try to fix any outdated data if necessary
 	if(needs_update >= 0)
 		update_preferences(needs_update, S)		//needs_update = savefile_version if we need an update (positive integer)
@@ -174,6 +176,9 @@
 	ghost_hud 		= sanitize_integer(ghost_hud, NONE, MAX_BITFLAG, initial(ghost_hud))
 	windowflashing	= sanitize_integer(windowflashing, FALSE, TRUE, initial(windowflashing))
 	auto_fit_viewport= sanitize_integer(auto_fit_viewport, FALSE, TRUE, initial(auto_fit_viewport))
+	widescreenpref = sanitize_integer(widescreenpref, FALSE, TRUE, initial(widescreenpref))
+	pixel_size = sanitize_float(pixel_size, PIXEL_SCALING_AUTO, PIXEL_SCALING_3X, 0.5, initial(pixel_size))
+	scaling_method  = sanitize_text(scaling_method, initial(scaling_method))
 	ghost_vision	= sanitize_integer(ghost_vision, FALSE, TRUE, initial(ghost_vision))
 	ghost_orbit		= sanitize_inlist(ghost_orbit, GLOB.ghost_orbits, initial(ghost_orbit))
 	ghost_form		= sanitize_inlist_assoc(ghost_form, GLOB.ghost_forms, initial(ghost_form))
@@ -230,6 +235,9 @@
 	ghost_hud 		= sanitize_integer(ghost_hud, NONE, MAX_BITFLAG, initial(ghost_hud))
 	windowflashing	= sanitize_integer(windowflashing, FALSE, TRUE, initial(windowflashing))
 	auto_fit_viewport= sanitize_integer(auto_fit_viewport, FALSE, TRUE, initial(auto_fit_viewport))
+	widescreenpref = sanitize_integer(widescreenpref, FALSE, TRUE, initial(widescreenpref))
+	pixel_size = sanitize_float(pixel_size, PIXEL_SCALING_AUTO, PIXEL_SCALING_3X, 0.5, initial(pixel_size))
+	scaling_method  = sanitize_text(scaling_method, initial(scaling_method))
 	key_bindings	= sanitize_islist(key_bindings, list())
 	custom_emotes   = sanitize_is_full_emote_list(custom_emotes)
 	chem_macros		= sanitize_islist(chem_macros, list())
@@ -267,6 +275,9 @@
 	WRITE_FILE(S["ghost_hud"], ghost_hud)
 	WRITE_FILE(S["windowflashing"], windowflashing)
 	WRITE_FILE(S["auto_fit_viewport"], auto_fit_viewport)
+	WRITE_FILE(S["widescreenpref"], widescreenpref)
+	WRITE_FILE(S["pixel_size"], pixel_size)
+	WRITE_FILE(S["scaling_method"], scaling_method)
 	WRITE_FILE(S["menuoptions"], menuoptions)
 	WRITE_FILE(S["key_bindings"], key_bindings)
 	WRITE_FILE(S["custom_emotes"], custom_emotes)
@@ -563,6 +574,92 @@
 
 	return TRUE
 
+///Save a loadout into the savefile
+/datum/preferences/proc/save_loadout(datum/loadout/loadout)
+	if(!path)
+		return FALSE
+	if(!fexists(path))
+		return FALSE
+	var/savefile/S = new /savefile(path)
+	if(!S)
+		return FALSE
+	S.cd = "/loadouts"
+	loadout.loadout_vendor = null
+	var/loadout_json = jatum_serialize(loadout)
+	WRITE_FILE(S["[loadout.name + loadout.job]"], loadout_json)
+	return TRUE
+
+///Delete a loadout from the savefile
+/datum/preferences/proc/delete_loadout(loadout_name, loadout_job)
+	if(!path)
+		return
+	if(!fexists(path))
+		return
+	var/savefile/S = new /savefile(path)
+	if(!S)
+		return
+	S.cd = "/loadouts"
+	WRITE_FILE(S["[loadout_name + loadout_job]"], "")
+
+///Load a loadout from the savefile and returns it
+/datum/preferences/proc/load_loadout(loadout_name, loadout_job)
+	if(!path)
+		return FALSE
+	if(!fexists(path))
+		return FALSE
+	var/savefile/S = new /savefile(path)
+	if(!S)
+		return FALSE
+	S.cd = "/loadouts"
+	var/loadout_json = ""
+	READ_FILE(S["[loadout_name + loadout_job]"], loadout_json)
+	if(!loadout_json)
+		return FALSE
+	var/datum/loadout/loadout = jatum_deserialize(loadout_json)
+	return loadout
+
+///Serialize and save into a savefile the loadout manager
+/datum/preferences/proc/save_loadout_manager()
+	if(!path)
+		return FALSE
+	if(!fexists(path))
+		return FALSE
+	var/savefile/S = new /savefile(path)
+	if(!S)
+		return FALSE
+	loadout_manager.loadout_vendor = null
+	var/json_loadout_manager = jatum_serialize(loadout_manager)
+	S.cd = "/loadouts"
+	WRITE_FILE(S["loadouts_manager"], json_loadout_manager)
+	return TRUE
+
+///Load from a savefile and unserialize the loadout manager
+/datum/preferences/proc/load_loadout_manager()
+	if(!path)
+		return FALSE
+	if(!fexists(path))
+		return FALSE
+	var/savefile/S = new /savefile(path)
+	if(!S)
+		return FALSE
+	S.cd = "/loadouts"
+	var/json_loadout_manager = ""
+	READ_FILE(S["loadouts_manager"], json_loadout_manager)
+	if(!json_loadout_manager)
+		return FALSE
+	loadout_manager = jatum_deserialize(json_loadout_manager)
+	return !isnull(loadout_manager)
+
+///Erase all loadouts that could be saved on the savefile
+/datum/preferences/proc/reset_loadouts_file()
+	if(!path)
+		return FALSE
+	if(!fexists(path))
+		return FALSE
+	var/savefile/S = new /savefile(path)
+	if(!S)
+		return FALSE
+	S.dir.Remove("loadouts")
 
 /datum/preferences/proc/save()
 	return (save_preferences() && save_character())

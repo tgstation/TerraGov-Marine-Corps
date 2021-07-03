@@ -38,7 +38,7 @@
 	if(!.)
 		return
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
-	xeno_job.job_points_needed  = CONFIG_GET(number/crash_larvapoints_required)
+	xeno_job.job_points_needed  = CRASH_LARVA_POINTS_NEEDED
 
 
 /datum/game_mode/infestation/crash/pre_setup()
@@ -81,8 +81,8 @@
 /datum/game_mode/infestation/crash/post_setup()
 	. = ..()
 	for(var/i in GLOB.xeno_resin_silo_turfs)
-		new /obj/structure/resin/silo(i)
-	
+		new /obj/structure/xeno/resin/silo(i)
+
 	for(var/obj/effect/landmark/corpsespawner/corpse AS in GLOB.corpse_landmarks_list)
 		corpse.create_mob(HEADBITE_DEATH)
 

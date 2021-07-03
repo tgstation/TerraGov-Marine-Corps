@@ -120,10 +120,10 @@
 	SIGNAL_HANDLER
 	var/mob/living/carbon/human/human_user = usr
 	if(human_user.incapacitated() || human_user.lying_angle)
-		return 
+		return
 	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_JETPACK))
 		to_chat(human_user,"<span class='warning'>You cannot use the jetpack yet!</span>")
-		return 
+		return
 	if(fuel_left < FUEL_USE)
 		to_chat(human_user,"<span class='warning'>The jetpack ran out of fuel!</span>")
 		return
@@ -180,7 +180,7 @@
 /obj/item/jetpack_marine/attackby(obj/item/I, mob/user, params)
 	. = ..()
 	if(!istype(I, /obj/item/ammo_magazine/flamer_tank))
-		return 
+		return
 	var/obj/item/ammo_magazine/flamer_tank/FT = I
 	if(FT.current_rounds == 0)
 		to_chat(user, "<span class='warning'>Out of fuel!</span>")
@@ -193,4 +193,4 @@
 	change_fuel_indicator()
 	playsound(loc, 'sound/effects/refill.ogg', 25, 1, 3)
 	to_chat(user, "<span class='notice'>You refill [src] with [I].</span>")
-	update_icon()	
+	update_icon()

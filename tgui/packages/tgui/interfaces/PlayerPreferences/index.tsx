@@ -9,12 +9,12 @@ import { KeybindSettings } from './KeybindSettings';
 import { BackgroundInformation } from './BackgroundInformation';
 
 export const PlayerPreferences = (props, context) => {
-  const { act, data, config } = useBackend<PlayerPreferencesData>(context);
-  const [tabIndex, setTabIndex] = useLocalState(context, 'selectedTabIndex', 1);
+  const { act, data } = useBackend<PlayerPreferencesData>(context);
 
   const {
     save_slot_names,
     slot,
+    tabIndex,
   } = data;
 
   let affectsSave = false;
@@ -67,7 +67,7 @@ export const PlayerPreferences = (props, context) => {
       <Window.Content scrollable>
         <Flex>
           <Flex.Item>
-            <NavigationSelector tabIndex={tabIndex} onTabChange={setTabIndex} />
+            <NavigationSelector tabIndex={tabIndex} />
           </Flex.Item>
           <Flex.Item grow={1} basis={0}>
             {affectsSave ? (
@@ -85,25 +85,26 @@ export const PlayerPreferences = (props, context) => {
 };
 
 const NavigationSelector = (props, context) => {
-  const { tabIndex, onTabChange } = props;
+  const { tabIndex } = props;
+  const { act } = useBackend(context);
   return (
     <Tabs vertical>
-      <Tabs.Tab selected={tabIndex === 1} onClick={() => onTabChange(1)}>
+      <Tabs.Tab selected={tabIndex === 1} onClick={() => act("tab_change", { tabIndex: 1 })}>
         Character Customization
       </Tabs.Tab>
-      <Tabs.Tab selected={tabIndex === 2} onClick={() => onTabChange(2)}>
+      <Tabs.Tab selected={tabIndex === 2} onClick={() => act("tab_change", { tabIndex: 2 })}>
         Background Information
       </Tabs.Tab>
-      <Tabs.Tab selected={tabIndex === 3} onClick={() => onTabChange(3)}>
+      <Tabs.Tab selected={tabIndex === 3} onClick={() => act("tab_change", { tabIndex: 3 })}>
         Gear Customization
       </Tabs.Tab>
-      <Tabs.Tab selected={tabIndex === 4} onClick={() => onTabChange(4)}>
+      <Tabs.Tab selected={tabIndex === 4} onClick={() => act("tab_change", { tabIndex: 4 })}>
         Job Preferences
       </Tabs.Tab>
-      <Tabs.Tab selected={tabIndex === 5} onClick={() => onTabChange(5)}>
+      <Tabs.Tab selected={tabIndex === 5} onClick={() => act("tab_change", { tabIndex: 5 })}>
         Game Settings
       </Tabs.Tab>
-      <Tabs.Tab selected={tabIndex === 6} onClick={() => onTabChange(6)}>
+      <Tabs.Tab selected={tabIndex === 6} onClick={() => act("tab_change", { tabIndex: 6 })}>
         Keybindings
       </Tabs.Tab>
     </Tabs>

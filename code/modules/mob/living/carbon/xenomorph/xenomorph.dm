@@ -79,12 +79,17 @@
 	xeno_caste = X
 
 	plasma_stored = xeno_caste.plasma_max
-	maxHealth = xeno_caste.max_health
+	maxHealth = xeno_caste.max_health * GLOB.xeno_stat_multiplicator_buff
 	health = maxHealth
 	setXenoCasteSpeed(xeno_caste.speed)
 	soft_armor = getArmor(arglist(xeno_caste.soft_armor))
 	hard_armor = getArmor(arglist(xeno_caste.hard_armor))
 	warding_aura = 0 //Resets aura for reapplying armor
+
+///Will multiply the base max health of this xeno by GLOB.xeno_stat_multiplicator_buff
+/mob/living/carbon/xenomorph/proc/apply_health_stat_buff()
+	maxHealth = max(xeno_caste.max_health * GLOB.xeno_stat_multiplicator_buff, 10)
+	health = min(health, maxHealth)
 
 /mob/living/carbon/xenomorph/set_armor_datum()
 	return //Handled in set_datum()
@@ -279,6 +284,8 @@
 	hud_to_add.add_hud_to(src)
 	hud_to_add = GLOB.huds[DATA_HUD_XENO_TACTICAL] //Allows us to see xeno tactical elements clearly via HUD elements
 	hud_to_add.add_hud_to(src)
+	hud_to_add = GLOB.huds[DATA_HUD_MEDICAL_PAIN]
+	hud_to_add.add_hud_to(src)
 
 
 /mob/living/carbon/xenomorph/point_to_atom(atom/A, turf/T)
@@ -318,65 +325,21 @@
 			LL_dir.icon_state = "trackoff"
 			return
 
-	if(isxeno(tracked))
-		var/mob/living/carbon/xenomorph/xeno_tracked = tracked
-		if(QDELETED(xeno_tracked))
-			tracked = null
-			return
-		if(xeno_tracked == src) // No need to track ourselves
-			LL_dir.icon_state = "trackoff"
-			return
-		if(xeno_tracked.z != z || get_dist(src, xeno_tracked) < 1)
-			LL_dir.icon_state = "trackondirect"
-			return
-		var/area/A = get_area(loc)
-		var/area/QA = get_area(xeno_tracked.loc)
-		if(A.fake_zlevel == QA.fake_zlevel)
-			LL_dir.icon_state = "trackon"
-			LL_dir.setDir(get_dir(src, xeno_tracked))
-			return
-
+	if(tracked == src) // No need to track ourselves
+		LL_dir.icon_state = "trackoff"
+		return
+	if(tracked.z != z || get_dist(src, tracked) < 1)
 		LL_dir.icon_state = "trackondirect"
 		return
-
-	if(isresinsilo(tracked))
-		var/mob/living/carbon/xenomorph/silo_tracked = tracked
-		if(QDELETED(silo_tracked))
-			tracked = null
-			return
-		if(silo_tracked.z != z || get_dist(src, silo_tracked) < 1)
-			LL_dir.icon_state = "trackondirect"
-			return
-
-		var/area/A = get_area(loc)
-		var/area/QA = get_area(silo_tracked.loc)
-		if(A.fake_zlevel == QA.fake_zlevel)
-			LL_dir.icon_state = "trackon"
-			LL_dir.setDir(get_dir(src, silo_tracked))
-			return
-		LL_dir.icon_state = "trackondirect"
+	var/area/A = get_area(loc)
+	var/area/QA = get_area(tracked.loc)
+	if(A.fake_zlevel == QA.fake_zlevel)
+		LL_dir.icon_state = "trackon"
+		LL_dir.setDir(get_dir(src, tracked))
 		return
 
-	if(istype(tracked, /obj/machinery/nuclearbomb))
-		var/obj/machinery/nuclearbomb/nuke_tracked = tracked
-		if(QDELETED(nuke_tracked))
-			tracked = null
-			return
-		if(!nuke_tracked.timer_enabled)
-			LL_dir.icon_state = "trackoff"
-			return
-		if(nuke_tracked.z != z || get_dist(src, nuke_tracked) < 1)
-			LL_dir.icon_state = "trackondirect"
-			return
-		var/area/A = get_area(loc)
-		var/area/QA = get_area(nuke_tracked.loc)
-		if(A.fake_zlevel == QA.fake_zlevel)
-			LL_dir.icon_state = "trackon"
-			LL_dir.setDir(get_dir(src, nuke_tracked))
-			return
-
-		LL_dir.icon_state = "trackondirect"
-		return
+	LL_dir.icon_state = "trackondirect"
+	return
 
 
 /mob/living/carbon/xenomorph/clear_leader_tracking()

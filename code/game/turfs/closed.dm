@@ -371,6 +371,15 @@
 /turf/closed/shuttle/dropship1/transparent
 	opacity = FALSE
 
+/turf/closed/shuttle/dropship3
+	name = "\improper Triumph"
+	icon = 'icons/turf/dropship.dmi'
+	icon_state = "1"
+	plane = GAME_PLANE
+
+/turf/closed/shuttle/dropship3/transparent
+	opacity = FALSE
+
 /turf/closed/shuttle/dropship2
 	name = "\improper Normandy"
 	icon = 'icons/turf/dropship2.dmi'

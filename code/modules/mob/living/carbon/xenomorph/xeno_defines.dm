@@ -32,8 +32,6 @@
 	var/tacklemin = 1
 	///The maximum amount of random paralyze applied to a human upon being 'pulled' multiplied by 20 ticks
 	var/tacklemax = 1
-	///How much STAMINA damage a xeno deals when tackling
-	var/tackle_damage = 20
 
 	// *** Speed *** //
 	var/speed = 1
@@ -315,8 +313,8 @@
 	var/savage_used = FALSE
 
 	// *** Ravager vars *** //
-	var/ignore_pain = FALSE // when true the rav will not go into crit or take crit damage.
-	var/ignore_pain_state = 0 // how far "dead" the rav has got while ignoring pain.
+	/// when true the rav will not go into crit or take crit damage.
+	var/endure = FALSE
 
 	// *** Carrier vars *** //
 	var/selected_hugger_type = /obj/item/clothing/mask/facehugger
@@ -328,6 +326,6 @@
 	var/fire_luminosity = 0 //Luminosity of the current fire while burning
 
 	///The xenos/silo/nuke currently tracked by the xeno_tracker arrow
-	var/tracked
+	var/atom/tracked
 
 	COOLDOWN_DECLARE(xeno_health_alert_cooldown)

@@ -12,6 +12,14 @@
 	light_power = 2
 	var/hardhat_color = "yellow" //Determines used sprites: hardhat[on]_[hardhat_color]
 
+/obj/item/clothing/head/hardhat/Initialize()
+	. = ..()
+	GLOB.nightfall_toggleable_lights += src
+
+/obj/item/clothing/head/hardhat/Destroy()
+	. = ..()
+	GLOB.nightfall_toggleable_lights -= src
+
 /obj/item/clothing/head/hardhat/attack_self(mob/user)
 	if(!isturf(user.loc))
 		to_chat(user, "You cannot turn the light on while in [user.loc]")

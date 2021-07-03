@@ -99,6 +99,11 @@
 	id = "alamo"
 	roundstart_template = /datum/map_template/shuttle/dropship_one
 
+/obj/docking_port/stationary/marine_dropship/hangar/rebel
+	name = "Shipside 'Triumph' Hangar Pad"
+	id = "triumph"
+	roundstart_template = /datum/map_template/shuttle/dropship_three
+
 /obj/docking_port/stationary/marine_dropship/hangar/two
 	name = "Shipside 'Normandy' Hangar Pad"
 	id = "normandy"
@@ -218,6 +223,11 @@
 	dwidth = 4
 	height = 13
 	width = 9
+
+/obj/docking_port/mobile/marine_dropship/three
+	name = "Triumph"
+	id = "triumph"
+	control_flags = SHUTTLE_REBEL_PRIMARY_DROPSHIP
 
 // queen calldown
 
@@ -668,11 +678,23 @@
 	desc = "The flight controls for the 'Alamo' Dropship. Named after the Alamo Mission, stage of the Battle of the Alamo in the United States' state of Texas in the Spring of 1836. The defenders held to the last, encouraging other Texians to rally to the flag."
 	possible_destinations = "lz1;lz2;alamo"
 
+/obj/machinery/computer/shuttle/marine_dropship/one/Initialize()
+	. = ..()
+	for(var/trait in SSmapping.configs[SHIP_MAP].environment_traits)
+		if(ZTRAIT_DOUBLE_SHIPS in trait)
+			possible_destinations = "lz2;alamo"
+
 /obj/machinery/computer/shuttle/marine_dropship/two
 	name = "\improper 'Normandy' flight controls"
 	desc = "The flight controls for the 'Normandy' Dropship. Named after a department in France, noteworthy for the famous naval invasion of Normandy on the 6th of June 1944, a bloody but decisive victory in World War II and the campaign for the Liberation of France."
 	icon_state = "console2"
 	possible_destinations = "lz1;lz2;alamo;normandy"
+
+/obj/machinery/computer/shuttle/marine_dropship/three
+	name = "\improper 'Triumph' flight controls"
+	desc = "The flight controls for the 'Triumph' Dropship."
+	possible_destinations = "lz1;triumph"
+	req_one_access = list(ACCESS_MARINE_DROPSHIP_REBEL, ACCESS_MARINE_LEADER_REBEL)
 
 /obj/machinery/door/poddoor/shutters/transit/afterShuttleMove(turf/oldT, list/movement_force, shuttle_dir, shuttle_preferred_direction, move_dir, rotation)
 	. = ..()
@@ -980,6 +1002,118 @@
 	icon_state = "blue_rearwing_rrrb"
 	opacity = FALSE
 
+
+/obj/structure/dropship_piece/three
+	name = "\improper Triumph"
+
+/obj/structure/dropship_piece/three/front
+	icon_state = "brown_front"
+	opacity = FALSE
+
+/obj/structure/dropship_piece/three/front/right
+	icon_state = "brown_fr"
+
+/obj/structure/dropship_piece/three/front/left
+	icon_state = "brown_fl"
+
+
+/obj/structure/dropship_piece/three/cockpit/left
+	icon_state = "brown_cockpit_fl"
+
+/obj/structure/dropship_piece/three/cockpit/right
+	icon_state = "brown_cockpit_fr"
+
+
+/obj/structure/dropship_piece/three/weapon
+	opacity = FALSE
+
+/obj/structure/dropship_piece/three/weapon/leftleft
+	icon_state = "brown_weapon_ll"
+
+/obj/structure/dropship_piece/three/weapon/leftright
+	icon_state = "brown_weapon_lr"
+
+/obj/structure/dropship_piece/three/weapon/rightleft
+	icon_state = "brown_weapon_rl"
+
+/obj/structure/dropship_piece/three/weapon/rightright
+	icon_state = "brown_weapon_rr"
+
+
+/obj/structure/dropship_piece/three/wing
+	opacity = FALSE
+
+/obj/structure/dropship_piece/three/wing/left/top
+	icon_state = "brown_wing_lt"
+
+/obj/structure/dropship_piece/three/wing/left/bottom
+	icon_state = "brown_wing_lb"
+
+/obj/structure/dropship_piece/three/wing/right/top
+	icon_state = "brown_wing_rt"
+
+/obj/structure/dropship_piece/three/wing/right/bottom
+	icon_state = "brown_wing_rb"
+
+
+/obj/structure/dropship_piece/three/corner/middleleft
+	icon_state = "brown_middle_lc"
+
+/obj/structure/dropship_piece/three/corner/middleright
+	icon_state = "brown_middle_rc"
+
+/obj/structure/dropship_piece/three/corner/rearleft
+	icon_state = "brown_rear_lc"
+
+/obj/structure/dropship_piece/three/corner/rearright
+	icon_state = "brown_rear_rc"
+
+
+/obj/structure/dropship_piece/three/engine
+	opacity = FALSE
+
+/obj/structure/dropship_piece/three/engine/lefttop
+	icon_state = "brown_engine_lt"
+
+/obj/structure/dropship_piece/three/engine/righttop
+	icon_state = "brown_engine_rt"
+
+/obj/structure/dropship_piece/three/engine/leftbottom
+	icon_state = "brown_engine_lb"
+
+/obj/structure/dropship_piece/three/engine/rightbottom
+	icon_state = "brown_engine_rb"
+
+
+/obj/structure/dropship_piece/three/rearwing/lefttop
+	icon_state = "brown_rearwing_lt"
+
+/obj/structure/dropship_piece/three/rearwing/righttop
+	icon_state = "brown_rearwing_rt"
+
+/obj/structure/dropship_piece/three/rearwing/leftbottom
+	icon_state = "brown_rearwing_lb"
+
+/obj/structure/dropship_piece/three/rearwing/rightbottom
+	icon_state = "brown_rearwing_rb"
+
+/obj/structure/dropship_piece/three/rearwing/leftlbottom
+	icon_state = "brown_rearwing_llb"
+	opacity = FALSE
+
+/obj/structure/dropship_piece/three/rearwing/rightrbottom
+	icon_state = "brown_rearwing_rrb"
+	opacity = FALSE
+
+/obj/structure/dropship_piece/three/rearwing/leftllbottom
+	icon_state = "brown_rearwing_lllb"
+	opacity = FALSE
+
+/obj/structure/dropship_piece/three/rearwing/rightrrbottom
+	icon_state = "brown_rearwing_rrrb"
+	opacity = FALSE
+
+
 //Dropship control console
 
 /obj/machinery/computer/shuttle/shuttle_control
@@ -1044,6 +1178,10 @@
 				visible_message("<span class='notice'>Destination updated, recalculating route.</span>")
 			else
 				visible_message("<span class='notice'>Shuttle departing. Please stand away from the doors.</span>")
+				for(var/mob/living/silicon/ai/AI in GLOB.silicon_mobs)
+					if(!AI.client)
+						continue
+					to_chat(AI, "<span class='info'>NOTICE - [M.name] taking off towards [params["destination"]]</span>")
 			return TRUE
 		if(1)
 			to_chat(usr, "<span class='warning'>Invalid shuttle requested.</span>")
@@ -1125,6 +1263,19 @@
 	desc = "The remote controls for the 'Normandy' Dropship. Named after a department in France, noteworthy for the famous naval invasion of Normandy on the 6th of June 1944, a bloody but decisive victory in World War II and the campaign for the Liberation of France."
 	shuttleId = "normandy"
 	possible_destinations = "lz1;lz2;alamo;normandy"
+
+/obj/machinery/computer/shuttle/shuttle_control/dropship/rebel 
+	name = "\improper 'Triumph' dropship console"
+	desc = "The remote controls for the 'Triumph' Dropship."
+	shuttleId = "triumph"
+	possible_destinations = "lz1;triumph"
+	compatible_control_flags = SHUTTLE_REBEL_PRIMARY_DROPSHIP
+
+/obj/machinery/computer/shuttle/shuttle_control/dropship/loyalist 
+	name = "\improper 'Alamo' dropship console"
+	desc = "The remote controls for the 'Alamo' Dropship."
+	shuttleId = "alamo"
+	possible_destinations = "lz2;alamo"
 
 /obj/machinery/computer/shuttle/shuttle_control/canterbury
 	name = "\improper 'Canterbury' shuttle console"

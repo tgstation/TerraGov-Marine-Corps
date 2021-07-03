@@ -15,7 +15,7 @@
 #define ALPHA_TO_INTENSITY(alpha) (-(((clamp(alpha, 0, 22) - 22) / 6) ** 4) + 255)
 
 
-#define LIGHT_RANGE_FIRE		3 //How many tiles standard fires glow.
+#define LIGHT_RANGE_FIRE 3 //How many tiles standard fires glow.
 
 #define LIGHTING_PLANE_ALPHA_VISIBLE 255
 #define LIGHTING_PLANE_ALPHA_NV_TRAIT 245

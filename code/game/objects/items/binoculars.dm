@@ -82,29 +82,16 @@
 
 	return FALSE
 
-/obj/item/binoculars/tactical/dropped(mob/user)
-	. = ..()
-	if(user.interactee != src)
-		return
-	user.unset_interaction()
-
-
-/obj/item/binoculars/tactical/on_set_interaction(mob/user)
+/obj/item/binoculars/tactical/onzoom(mob/living/user)
 	. = ..()
 	user.reset_perspective(src)
 	user.update_sight()
 	user.client.click_intercept = src
 
-
-/obj/item/binoculars/tactical/update_remote_sight(mob/living/user)
-	user.see_in_dark = 32 // Should include the offset from zoom and client viewport
-	user.lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE
-	user.sync_lighting_plane_alpha()
-	return TRUE
-
-
-/obj/item/binoculars/tactical/on_unset_interaction(mob/user)
+/obj/item/binoculars/tactical/onunzoom(mob/living/user)
 	. = ..()
+
+	QDEL_NULL(laser)
 
 	if(!user?.client)
 		return
@@ -113,10 +100,12 @@
 	user.reset_perspective(user)
 	user.update_sight()
 
-	if(zoom)
-		return
-	if(laser)
-		QDEL_NULL(laser)
+
+/obj/item/binoculars/tactical/update_remote_sight(mob/living/user)
+	user.see_in_dark = 32 // Should include the offset from zoom and client viewport
+	user.lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE
+	user.sync_lighting_plane_alpha()
+	return TRUE
 
 
 /obj/item/binoculars/tactical/update_overlays()

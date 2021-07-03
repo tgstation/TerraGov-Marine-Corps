@@ -298,7 +298,7 @@
 		return
 	if(contents.len)
 		var/obj/item/I = contents[1]
-		if(!remove_from_storage(I,user))
+		if(!remove_from_storage(I,user,user))
 			return
 		if(user.put_in_inactive_hand(I))
 			to_chat(user, "<span class='notice'>You take a pill out of \the [src].</span>")

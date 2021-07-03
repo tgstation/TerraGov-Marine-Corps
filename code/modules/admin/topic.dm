@@ -412,6 +412,8 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 				newmob = M.change_mob_type(/mob/living/carbon/xenomorph/shrike, location, null, delmob)
 			if("queen")
 				newmob = M.change_mob_type(/mob/living/carbon/xenomorph/queen, location, null, delmob)
+			if("king")
+				newmob = M.change_mob_type(/mob/living/carbon/xenomorph/king, location, null, delmob)
 			if("wraith")
 				newmob = M.change_mob_type(/mob/living/carbon/xenomorph/wraith, location, null, delmob)
 			if("human")
@@ -642,8 +644,8 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 
 		var/mob/new_player/NP = new()
 		M.client.screen.Cut()
-		NP.key = M.key
 		NP.name = M.key
+		NP.key = M.key
 		if(isobserver(M))
 			qdel(M)
 		else

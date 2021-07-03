@@ -183,9 +183,10 @@
 		to_chat(user, "[src] is anchored to the ground.")
 		return
 
+	var/remove_successful = TRUE
 	if(istype(loc, /obj/item/storage))
 		var/obj/item/storage/S = loc
-		S.remove_from_storage(src, user.loc)
+		remove_successful = S.remove_from_storage(src, user.loc, user)
 
 	set_throwing(FALSE)
 
@@ -196,7 +197,7 @@
 		return
 
 	pickup(user)
-	if(!user.put_in_active_hand(src))
+	if(!user.put_in_active_hand(src) || !remove_successful)
 		user.dropItemToGround(src)
 		dropped(user)
 
@@ -695,7 +696,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 
 		if(user.client)
 			user.client.click_intercept = null
-			user.client.change_view(WORLD_VIEW)
+			user.client.view_size.reset_to_default()
 			user.client.pixel_x = 0
 			user.client.pixel_y = 0
 		return
@@ -709,7 +710,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 		return
 
 	if(user.client)
-		user.client.change_view(VIEW_NUM_TO_STRING(viewsize))
+		user.client.view_size.set_view_radius_to(viewsize/2-2)//sets the viewsize to reflect radius changes properly
 
 		var/tilesize = 32
 		var/viewoffset = tilesize * tileoffset

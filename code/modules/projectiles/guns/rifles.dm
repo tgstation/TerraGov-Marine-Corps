@@ -905,6 +905,12 @@
 	desc = "The R-25 is a rather common IFF-capable medium machine gun. It's known for its ability to lay down heavy fire support very well. It is generally used when someone wants to hold a position or provide fire support. Requires special training and it cannot turn off IFF. It uses 10x26mm ammunition."
 	starting_attachment_types = list(/obj/item/attachable/stock/t29stock, /obj/item/attachable/t29barrel, /obj/item/attachable/magnetic_harness)
 
+/obj/item/weapon/gun/rifle/standard_smartmachinegun/ds
+	name = "\improper R-25 smart machine gun"
+	desc = "The R-25 is a rather common IFF-capable medium machine gun. It's known for its ability to lay down heavy fire support very well. It is generally used when someone wants to hold a position or provide fire support. Requires special training and it cannot turn off IFF. It uses 10x26mm ammunition."
+	starting_attachment_types = list(/obj/item/attachable/stock/t29stock, /obj/item/attachable/t29barrel, /obj/item/attachable/magnetic_harness)
+	gun_iff_signal = list(ACCESS_IFF_DS)
+
 //-------------------------------------------------------
 //Sectoid Rifle
 
@@ -930,6 +936,7 @@
 
 	fire_delay = 0.5 SECONDS
 	burst_amount = 3
+	burst_delay = 0.15 SECONDS
 	accuracy_mult = 2
 	accuracy_mult_unwielded = 0.8
 
@@ -981,8 +988,6 @@
 		/obj/item/attachable/scope/unremovable/tl127,
 		/obj/item/attachable/stock/tl127stock,
 	)
-	actions_types = list(/datum/action/item_action/aim_mode)
-	aim_fire_delay = 0.3 SECONDS
 
 	burst_amount = 0
 	fire_delay = 1.35 SECONDS

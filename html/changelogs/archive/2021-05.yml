@@ -390,3 +390,43 @@
   - code_imp: added SSpersistence and support for real-time-based progression of stuff
   jroinc:
   - balance: Airlocks have melee armor
+2021-05-28:
+  BraveMole:
+  - config: Extended now is in modes.txt
+  - rscadd: Keybinds for unloading gun and underrail attachments
+  - bugfix: Fix supply drop console
+  SplinterGP:
+  - balance: revolver barrel is now an attachment that comes with the revolver that
+      makes it larget(not fit in bags) removing this attachment makes the revolver
+      weaker in favor of making it fit in bags.
+  - code_imp: optimized item zoom code a bit.
+  TiviPlus:
+  - qol: the powerfist now uses "balloon text" when changing power levels
+  - refactor: refactored udders
+  Wayland-Smithy:
+  - admin: Fixed admin COLOR perm.
+  - balance: Body blocking xeno chargers while they are in CHARGE_BUILDINGUP phase
+      no longer resets their momentum if they shuffle through you.
+  - bugfix: Fixed some xeno charger movement signal handlers not checking for null
+      directions.
+2021-05-29:
+  Alterist:
+  - bugfix: fixed Theseus webmap
+  - rscadd: Revamped some parts of Barrenquilla.
+  BraveMole:
+  - bugfix: Should fix synth blood loss
+  - bugfix: gun can reload now
+  TiviPlus:
+  - code_imp: client button hold optimizations
+  - bugfix: Sanatize command announces better
+2021-05-30:
+  BraveMole:
+  - balance: Blue fire price reduced to 60 from 100
+  - balance: Blue fire firedelay reduced to 2 seconds (rather than 3.5)
+  - bugfix: fix overwatch
+  Surrealaser:
+  - bugfix: Hugger traps can now explode normally.
+  - bugfix: Xeno pings are now visible by xenos only.
+2021-05-31:
+  Walarks:
+  - code_imp: changed xeno structures typepaths, adds xeno_structure_flags var

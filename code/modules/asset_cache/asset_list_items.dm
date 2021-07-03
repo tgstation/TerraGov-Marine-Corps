@@ -3,21 +3,39 @@
 /datum/asset/simple/tgui_common
 	keep_local_name = TRUE
 	assets = list(
-		"tgui-common.bundle.js" = 'tgui/public/tgui-common.bundle.js',
+		"tgui-common.bundle.js" = file("tgui/public/tgui-common.bundle.js"),
 	)
 
 /datum/asset/simple/tgui
 	keep_local_name = TRUE
 	assets = list(
-		"tgui.bundle.js" = 'tgui/public/tgui.bundle.js',
-		"tgui.bundle.css" = 'tgui/public/tgui.bundle.css',
+		"tgui.bundle.js" = file("tgui/public/tgui.bundle.js"),
+		"tgui.bundle.css" = file("tgui/public/tgui.bundle.css"),
 	)
 
 /datum/asset/simple/tgui_panel
 	keep_local_name = TRUE
 	assets = list(
-		"tgui-panel.bundle.js" = 'tgui/public/tgui-panel.bundle.js',
-		"tgui-panel.bundle.css" = 'tgui/public/tgui-panel.bundle.css',
+		"tgui-panel.bundle.js" = file("tgui/public/tgui-panel.bundle.js"),
+		"tgui-panel.bundle.css" = file("tgui/public/tgui-panel.bundle.css"),
+	)
+
+/datum/asset/simple/inventory
+	assets = list(
+		"inventory-glasses.png" = 'icons/UI_Icons/inventory/glasses.png',
+		"inventory-head.png" = 'icons/UI_Icons/inventory/head.png',
+		"inventory-mask.png" = 'icons/UI_Icons/inventory/mask.png',
+		"inventory-ears.png" = 'icons/UI_Icons/inventory/ears.png',
+		"inventory-uniform.png" = 'icons/UI_Icons/inventory/uniform.png',
+		"inventory-suit.png" = 'icons/UI_Icons/inventory/suit.png',
+		"inventory-gloves.png" = 'icons/UI_Icons/inventory/gloves.png',
+		"inventory-hand_l.png" = 'icons/UI_Icons/inventory/hand_l.png',
+		"inventory-hand_r.png" = 'icons/UI_Icons/inventory/hand_r.png',
+		"inventory-shoes.png" = 'icons/UI_Icons/inventory/shoes.png',
+		"inventory-suit_storage.png" = 'icons/UI_Icons/inventory/suit_storage.png',
+		"inventory-belt.png" = 'icons/UI_Icons/inventory/belt.png',
+		"inventory-back.png" = 'icons/UI_Icons/inventory/back.png',
+		"inventory-pocket.png" = 'icons/UI_Icons/inventory/pocket.png',
 	)
 
 /datum/asset/simple/irv
@@ -51,10 +69,12 @@
 
 /datum/asset/simple/namespaced/tgfont
 	assets = list(
-		"tgfont.eot" = 'tgui/packages/tgfont/dist/tgfont.eot',
-		"tgfont.woff2" = 'tgui/packages/tgfont/dist/tgfont.woff2',
+		"tgfont.eot" = file("tgui/packages/tgfont/dist/tgfont.eot"),
+		"tgfont.woff2" = file("tgui/packages/tgfont/dist/tgfont.woff2"),
 	)
-	parents = list("tgfont.css" = 'tgui/packages/tgfont/dist/tgfont.css')
+	parents = list(
+		"tgfont.css" = file("tgui/packages/tgfont/dist/tgfont.css")
+	)
 
 /datum/asset/spritesheet/chat
 	name = "chat"
