@@ -2,7 +2,7 @@ import { useBackend } from '../../backend';
 import { Button, Input, LabeledList } from '../../components';
 
 export const TextFieldPreference = (props, context) => {
-  const { act, data, config } = useBackend(context);
+  const { act, data } = useBackend(context);
   const {
     label,
     value,

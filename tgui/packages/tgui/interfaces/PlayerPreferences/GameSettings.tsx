@@ -4,7 +4,7 @@ import { ToggleFieldPreference, TextFieldPreference, SelectFieldPreference, Loop
 
 export const GameSettings = (props, context) => {
   const { act, data } = useBackend<GameSettingData>(context);
-  const { ui_style_color } = data;
+  const { ui_style_color, scaling_method, pixel_size } = data;
   return (
     <Section title="Game Settings">
       <Grid>

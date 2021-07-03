@@ -33,6 +33,8 @@ type BackgroundInformationData = {
 
 type GameSettingData = {
   ui_style_color: string,
+  scaling_method: string,
+  pixel_size: number,
 }
 
 type GearCustomizationData = {

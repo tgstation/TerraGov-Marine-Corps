@@ -110,6 +110,9 @@
 			.["mute_self_combat_messages"] = mute_self_combat_messages
 			.["show_typing"] = show_typing
 			.["tooltips"] = tooltips
+			.["widescreenpref"] = widescreenpref
+			.["scaling_method"] = scaling_method
+			.["pixel_size"] = pixel_size
 		if(KEYBIND_SETTINGS)
 			.["is_admin"] = user.client?.holder ? TRUE : FALSE
 			.["key_bindings"] = list()
