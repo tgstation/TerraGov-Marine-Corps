@@ -166,3 +166,9 @@
 	icon = 'icons/Xeno/Effects.dmi'
 	icon_state = "splatter"
 	duration = 0.8 SECONDS
+
+/obj/effect/temp_visual/acid_bath
+	name = "acid bath"
+	icon = 'icons/obj/items/projectiles.dmi'
+	icon_state = "boiler_gas"
+	duration = 0.8 SECONDS

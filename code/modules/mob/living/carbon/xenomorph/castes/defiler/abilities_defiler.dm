@@ -1,3 +1,6 @@
+#define DEFILER_NEUROTOXIN "Neurotoxin"
+#define DEFILER_HEMODILE "Hemodile"
+#define DEFILER_TRANSVITOX "Transvitox"
 
 // ***************************************
 // *********** Sting
@@ -46,7 +49,7 @@
 // ***************************************
 // *********** Neurogas
 // ***************************************
-/datum/action/xeno_action/activable/emit_neurogas
+/datum/action/xeno_action/emit_neurogas
 	name = "Emit Noxious Gas"
 	action_icon_state = "emit_neurogas"
 	mechanics_text = "Channel for 3 seconds to emit a cloud of noxious smoke, based on selected reagent, that follows the Defiler. You must remain stationary while channeling; moving will cancel the ability but will still cost plasma."
@@ -56,12 +59,12 @@
 	keybind_flags = XACT_KEYBIND_USE_ABILITY|XACT_IGNORE_SELECTED_ABILITY
 	keybind_signal = COMSIG_XENOABILITY_EMIT_NEUROGAS
 
-/datum/action/xeno_action/activable/emit_neurogas/on_cooldown_finish()
+/datum/action/xeno_action/emit_neurogas/on_cooldown_finish()
 	playsound(owner.loc, 'sound/effects/xeno_newlarva.ogg', 50, 0)
 	to_chat(owner, "<span class='xenodanger'>We feel our dorsal vents bristle with heated gas. We can use Emit Noxious Gas again.</span>")
 	return ..()
 
-/datum/action/xeno_action/activable/emit_neurogas/use_ability(atom/A)
+/datum/action/xeno_action/emit_neurogas/action_activate()
 	var/mob/living/carbon/xenomorph/Defiler/X = owner
 
 	//give them fair warning
@@ -94,7 +97,7 @@
 	"<span class='xenodanger'>We emit noxious gas!</span>")
 	dispense_gas()
 
-/datum/action/xeno_action/activable/emit_neurogas/proc/dispense_gas(count = 3)
+/datum/action/xeno_action/emit_neurogas/proc/dispense_gas(count = 3)
 	var/mob/living/carbon/xenomorph/Defiler/X = owner
 	set waitfor = FALSE
 	var/smoke_range = 2
@@ -180,7 +183,13 @@
 	mechanics_text = "Selects which reagent to use for reagent slash and noxious gas. Hemodile slows by 25%, increased to 50% with neurotoxin present, and deals 20% of damage received as stamina damage. Transvitox converts brute/burn damage to toxin based on 40% of damage received up to 45 toxin on target, upon reaching which causes a stun. Neurotoxin deals increasing stamina damage the longer it remains in the victim's system and prevents stamina regeneration."
 	use_state_flags = XACT_USE_BUSY|XACT_USE_LYING
 	keybind_signal = COMSIG_XENOABILITY_SELECT_REAGENT
-	var/list_position
+	alternate_keybind_signal = COMSIG_XENOABILITY_RADIAL_SELECT_REAGENT
+
+/datum/action/xeno_action/select_reagent/give_action(mob/living/L)
+	. = ..()
+	var/mob/living/carbon/xenomorph/X = owner
+	X.selected_reagent = GLOB.defiler_toxin_type_list[1] //Set our default
+	update_button_icon() //Update immediately to get our default
 
 /datum/action/xeno_action/select_reagent/update_button_icon()
 	var/mob/living/carbon/xenomorph/X = owner
@@ -191,16 +200,40 @@
 
 /datum/action/xeno_action/select_reagent/action_activate()
 	var/mob/living/carbon/xenomorph/X = owner
-	var/list/available_reagents = X.xeno_caste.available_reagents_define
-	if(list_position < length(available_reagents))
-		list_position++
+	var/i = GLOB.defiler_toxin_type_list.Find(X.selected_reagent)
+	if(length(GLOB.defiler_toxin_type_list) == i)
+		X.selected_reagent = GLOB.defiler_toxin_type_list[1]
 	else
-		list_position = 1
-	X.selected_reagent = available_reagents[list_position]
+		X.selected_reagent = GLOB.defiler_toxin_type_list[i+1]
+
 	var/atom/A = X.selected_reagent
-	to_chat(X, "<span class='notice'>We will now slash with <b>[initial(A.name)]</b>.</span>")
+	to_chat(X, "<span class='notice'>We will now use <b>[initial(A.name)]</b>.</span>")
 	update_button_icon()
 	return succeed_activate()
+
+/datum/action/xeno_action/select_reagent/alternate_keybind_action()
+	INVOKE_ASYNC(src, .proc/select_reagent_radial)
+
+/datum/action/xeno_action/select_reagent/proc/select_reagent_radial()
+	//List of toxin images
+	var/static/list/defiler_toxin_images_list = list(
+			DEFILER_NEUROTOXIN = image('icons/mob/actions.dmi', icon_state = DEFILER_NEUROTOXIN),
+			DEFILER_HEMODILE = image('icons/mob/actions.dmi', icon_state = DEFILER_HEMODILE),
+			DEFILER_TRANSVITOX = image('icons/mob/actions.dmi', icon_state = DEFILER_TRANSVITOX),
+			)
+	var/toxin_choice = show_radial_menu(owner, owner, defiler_toxin_images_list, radius = 48)
+	if(!toxin_choice)
+		return
+	var/mob/living/carbon/xenomorph/X = owner
+	for(var/toxin in GLOB.defiler_toxin_type_list)
+		var/datum/reagent/R = GLOB.chemical_reagents_list[toxin]
+		if(R.name == toxin_choice)
+			X.selected_reagent = R.type
+			break
+	to_chat(X, "<span class='notice'>We will now use <b>[toxin_choice]</b>.</span>")
+	update_button_icon()
+	return succeed_activate()
+
 
 // ***************************************
 // *********** Reagent slash
@@ -275,3 +308,7 @@
 	to_chat(owner, "<span class='xenodanger'>We are able to infuse our spines with toxins again.</span>")
 	owner.playsound_local(owner, 'sound/effects/xeno_newlarva.ogg', 25, 0, 1)
 	return ..()
+
+#undef DEFILER_NEUROTOXIN
+#undef DEFILER_HEMODILE
+#undef DEFILER_TRANSVITOX

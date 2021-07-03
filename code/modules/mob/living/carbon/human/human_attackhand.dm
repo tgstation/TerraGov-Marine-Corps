@@ -265,4 +265,24 @@
 		if(90 to INFINITY)
 			final_msg += "<span class='info'>You're completely exhausted.</span>"
 
+	switch(oxyloss)
+		if(1 to 15)
+			final_msg += "<span class='info'>You feel slightly out of breath.</span>"
+		if(15 to 30)
+			final_msg += "<span class='info'>You are having trouble breathing.</span>"
+		if(30 to 49)
+			final_msg += "<span class='info'>You are getting faint from lack of breath.</span>"
+
+	switch(toxloss)
+		if(1 to 5)
+			final_msg += "<span class='info'>Your body stings slightly.</span>"
+		if(6 to 10)
+			final_msg += "<span class='info'>Your whole body hurts a little.</span>"
+		if(11 to 15)
+			final_msg += "<span class='info'>Your whole body hurts.</span>"
+		if(15 to 25.99)
+			final_msg += "<span class='info'>Your whole body hurts badly.</span>"
+		if(26 to INFINITY)
+			final_msg += "<span class='info'>Your body aches all over, it's driving you mad!</span>"
+
 	to_chat(src, final_msg.Join("\n"))
