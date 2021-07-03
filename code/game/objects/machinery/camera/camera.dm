@@ -198,6 +198,11 @@
 			M.reset_perspective(null)
 			to_chat(M, "The screen bursts into static.")
 
+	for(var/mob/living/silicon/ai/AI in GLOB.silicon_mobs)
+		if(!AI.client)
+			continue
+		to_chat(AI, "<span class='notice'>[src] has been desactived at [myarea]</span>")
+
 
 /obj/machinery/camera/update_icon()
 	if(obj_integrity <= 0)

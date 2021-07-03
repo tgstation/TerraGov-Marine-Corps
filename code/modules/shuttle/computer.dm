@@ -67,6 +67,11 @@
 					visible_message("<span class='notice'>Destination updated, recalculating route.</span>")
 				else
 					visible_message("<span class='notice'>Shuttle departing. Please stand away from the doors.</span>")
+
+					for(var/mob/living/silicon/ai/AI in GLOB.silicon_mobs)
+						if(!AI.client)
+							continue
+						to_chat(AI, "<span class='info'>[src] just took off..</span>")
 			if(1)
 				to_chat(usr, "<span class='warning'>Invalid shuttle requested.</span>")
 				return TRUE

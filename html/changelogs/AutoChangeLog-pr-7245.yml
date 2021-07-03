@@ -1,0 +1,4 @@
+author: "Wayland-Smithy"
+delete-after: True
+changes: 
+  - qol: "Some groundmap fences start broken, so xenos do not need to slash them all to get around during prep."

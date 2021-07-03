@@ -3,10 +3,14 @@ import { useBackend, useLocalState } from '../../backend';
 import { Section, LabeledList, Modal, Button, Box, Grid, Flex } from '../../components';
 
 export const JobPreferences = (props, context) => {
-  const { act, data, config } = useBackend<PlayerPreferencesData>(context);
+  const { act, data } = useBackend<JobPreferencesData>(context);
   const {
-    alternate_option, squads, preferred_squad, overflow_job,
-    special_occupations, special_occupation,
+    alternate_option,
+    squads,
+    preferred_squad,
+    overflow_job,
+    special_occupations,
+    special_occupation,
   } = data;
   const [shownDescription, setShownDescription] = useLocalState(
     context,
@@ -157,7 +161,7 @@ export const JobPreferences = (props, context) => {
 };
 
 const JobPreference = (props, context) => {
-  const { act, data, config } = useBackend<PlayerPreferencesData>(context);
+  const { act, data } = useBackend<JobPreferenceData>(context);
   const { jobs, job_preferences } = data;
   const { job, setShownDescription } = props;
   const jobData = jobs[job];

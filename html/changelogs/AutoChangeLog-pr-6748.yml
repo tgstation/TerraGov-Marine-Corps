@@ -1,5 +1,0 @@
-author: "TiviPlus"
-delete-after: True
-changes: 
-  - qol: "Players can now set their pixel scaling and scaling method"
-  - refactor: "refactored view code"

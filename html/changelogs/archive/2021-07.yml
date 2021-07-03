@@ -50,3 +50,39 @@
   - bugfix: fixed bicardine cigarette sprite dissapearing when lit
   - balance: Refresh Deathsquad equippment - proper meds and buffs for armor and backpack
   - rscadd: New Deathsquad role - Gunner
+2021-07-03:
+  BraveMole:
+  - rscadd: Automatic balance system when not enough players chose xenos
+  InterroLouis:
+  - spellcheck: Fixed some define typos.
+  - expansion: Self examine gives a bit more info.
+  Surrealaser:
+  - code_imp: Statistics tracking added for Acid Wells.
+  - qol: Acid Wells now have improved Examine information.
+  - balance: Acid Wells now extinguish fires in their square at the cost of 1 charge.
+  - balance: Acid Wells now take 2 seconds to add 1 charge, down from 10 (wtf).
+  - balance: Acid Wells now do 10 armor respecting acid damage to each foot per charge
+      with 33% armor penetration instead of 15 armor ignoring toxin damage.
+  - balance: A hostile that moves into an Acid Well with charges takes 2 slowdown
+      on its next move per charge.
+  - balance: Acid Wells now emit a small amount of acid smoke whenever they extinguish
+      fire.
+  - qol: Emit Gas now activates immediately when selected.
+  - qol: Radial mode support added for Defiler reagent swapping in addition to existing
+      cycling options.
+  - code_imp: Refactored reagent selection.
+  - balance: Debuff stacks from the Wraith's warp field are increased; 2 stagger stacks
+      up from 1, and 3 slowdown stacks up from 1.
+  - balance: Banish cooldown and plasma cost decreased for friendly living targets
+      and non-barricade targets to 60% and 40% respectively.
+  - balance: Hyperposition windup will increase by 0.25 seconds per tile after 20
+      tiles of distance down from 0.5 seconds per tile after 10 tiles of distance.
+  - balance: 'Using Resync while phased out (reverting to your prior location at the
+      start of the Phase Shift) mostly removes the next cooldown for Phase Shift,
+      reducing it to 3 seconds. bug: Phase Shift no longer consumes its baseline plasma
+      cost when toggled off.'
+  - code_imp: Xenos from the same hive as the one that drops or throws a Facehugger
+      no longer reset that Facehugger's jump timer when they leave its tile.
+  TiviPlus:
+  - qol: Players can now set their pixel scaling and scaling method
+  - refactor: refactored view code

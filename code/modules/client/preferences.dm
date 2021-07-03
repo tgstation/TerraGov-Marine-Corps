@@ -47,6 +47,9 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	// Custom emotes list
 	var/list/custom_emotes = list()
 
+	/// Current tab index of the game preferences ui
+	var/tab_index = CHARACTER_CUSTOMIZATION
+
 	///Saves chemical recipes based on client so they persist through games
 	var/list/chem_macros = list()
 
