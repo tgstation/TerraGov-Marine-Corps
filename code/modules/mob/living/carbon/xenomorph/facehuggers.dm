@@ -764,8 +764,8 @@
 	color = COLOR_RED
 	combat_hugger = TRUE
 	impact_time = 0.5 SECONDS
-	activate_time = 1.5 SECONDS
-	jump_cooldown = 1.5 SECONDS
+	activate_time = 1 SECONDS
+	jump_cooldown = 1 SECONDS
 	proximity_time = 0.5 SECONDS
 
 /obj/item/clothing/mask/facehugger/slash/Attach(mob/M)
