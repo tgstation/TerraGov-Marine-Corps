@@ -468,7 +468,7 @@
 
 	var/victim_count
 	var/list/target_turfs = RANGE_TURFS(2, A)
-	for(var/turf/targetted as() in target_turfs)
+	for(var/turf/targetted AS in target_turfs)
 		for(var/mob/living/target as() in targetted.contents)
 			if(!isliving(target)) //Filter out non-living
 				continue
@@ -482,7 +482,7 @@
 					continue
 			var/silence_multiplier = 1
 			if(mark_target == target) //Double debuff stacks for the marked target
-				silence_multiplier *= HUNTER_SILENCE_MULTIPLIER
+				silence_multiplier = HUNTER_SILENCE_MULTIPLIER
 			to_chat(target, "<span class='danger'>Your mind convulses at the touch of something ominous as the world seems to blur, your voice dies in your throat, and everything falls silent!</span>") //Notify privately
 			target.playsound_local(target, 'sound/effects/ghost.ogg', 25, 0, 1) //Spooky psychic noises.
 			target.adjust_stagger(HUNTER_SILENCE_STAGGER_STACKS * silence_multiplier) //Stagger for a very short duration
@@ -493,8 +493,7 @@
 
 	if(!victim_count)
 		to_chat(X, "<span class='xenodanger'>We were unable to violate the minds of any victims.") //Notify privately
-		cooldown_timer = HUNTER_SILENCE_WHIFF_COOLDOWN //We cooldown to prevent spam, but only for a short duration
-		add_cooldown()
+		add_cooldown(HUNTER_SILENCE_WHIFF_COOLDOWN) //We cooldown to prevent spam, but only for a short duration
 		return fail_activate()
 
 	X.playsound_local(X, 'sound/effects/ghost.ogg', 25, 0, 1) //Spooky psychic noises.

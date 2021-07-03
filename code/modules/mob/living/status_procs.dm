@@ -712,20 +712,22 @@
 	if(SEND_SIGNAL(src, COMSIG_LIVING_STATUS_MUTE, amount) & COMPONENT_NO_MUTE)
 		return
 	var/datum/status_effect/mute/M = IsMute()
-	if(amount <= 0)
-		if(M)
+
+	if(M)
+		if(amount <= 0)
 			qdel(M)
-	else
-		if(absorb_stun(amount))
 			return
-		if(M)
-			M.duration = world.time + amount
-		else
-			M = apply_status_effect(STATUS_EFFECT_MUTED, amount)
+
+		M.duration = world.time + amount
+		return
+
+	M = apply_status_effect(STATUS_EFFECT_MUTED, amount)
 	return M
 
 ///Adds to remaining mute duration
 /mob/living/proc/AdjustMute(amount)
+	if(!amount)
+		return
 	if(status_flags & GODMODE)
 		return
 	if(SEND_SIGNAL(src, COMSIG_LIVING_STATUS_MUTE, amount) & COMPONENT_NO_MUTE)
