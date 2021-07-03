@@ -139,7 +139,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/see_rc_emotes = TRUE
 
 	///Should we automatically fit the viewport?
-	var/auto_fit_viewport = TRUE
+	var/auto_fit_viewport = FALSE
 
 	///The loadout manager
 	var/datum/loadout_manager/loadout_manager
