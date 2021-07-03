@@ -652,7 +652,7 @@
 		icon_state += "_g"
 		item_state = icon_state
 		underlays += gun_underlay
-	else if(gun_underlay)
+	else
 		playsound(src,sheatheSound, 15, 1)
 		underlays -= gun_underlay
 		icon_state = copytext(icon_state,1,-2)
@@ -716,7 +716,8 @@
 	new /obj/item/ammo_magazine/pistol/extended(src)
 	new /obj/item/ammo_magazine/pistol/extended(src)
 	new /obj/item/ammo_magazine/pistol/extended(src)
-	new_gun.on_enter_storage(src)
+	current_gun = new_gun
+	update_gun_icon()
 
 /obj/item/storage/belt/gun/pistol/m4a3/officer/Initialize()
 	. = ..()
@@ -727,7 +728,8 @@
 	new /obj/item/ammo_magazine/pistol/ap(src)
 	new /obj/item/ammo_magazine/pistol/ap(src)
 	new /obj/item/ammo_magazine/pistol/ap(src)
-	new_gun.on_enter_storage(src)
+	current_gun = new_gun
+	update_gun_icon()
 
 /obj/item/storage/belt/gun/pistol/m4a3/fieldcommander/Initialize()
 	. = ..()
@@ -738,7 +740,8 @@
 	new /obj/item/ammo_magazine/pistol/m1911(src)
 	new /obj/item/ammo_magazine/pistol/m1911(src)
 	new /obj/item/ammo_magazine/pistol/m1911(src)
-	new_gun.on_enter_storage(src)
+	current_gun = new_gun
+	update_gun_icon()
 
 /obj/item/storage/belt/gun/pistol/m4a3/vp70/Initialize()
 	. = ..()
@@ -749,7 +752,8 @@
 	new /obj/item/ammo_magazine/pistol/vp70(src)
 	new /obj/item/ammo_magazine/pistol/vp70(src)
 	new /obj/item/ammo_magazine/pistol/vp70(src)
-	new_gun.on_enter_storage(src)
+	current_gun = new_gun
+	update_gun_icon()
 
 /obj/item/storage/belt/gun/pistol/m4a3/vp78/Initialize()
 	. = ..()
@@ -760,8 +764,8 @@
 	new /obj/item/ammo_magazine/pistol/vp78(src)
 	new /obj/item/ammo_magazine/pistol/vp78(src)
 	new /obj/item/ammo_magazine/pistol/vp78(src)
-	new_gun.on_enter_storage(src)
-
+	current_gun = new_gun
+	update_gun_icon()
 
 /obj/item/storage/belt/gun/pistol/m4a3/som
 	name = "\improper S19 holster rig"
@@ -815,7 +819,8 @@
 	new /obj/item/ammo_magazine/revolver(src)
 	new /obj/item/ammo_magazine/revolver(src)
 	new /obj/item/ammo_magazine/revolver(src)
-	new_gun.on_enter_storage(src)
+	current_gun = new_gun
+	update_gun_icon()
 
 /obj/item/storage/belt/gun/mateba
 	name = "\improper M276 pattern Mateba holster rig"
@@ -839,7 +844,8 @@
 	new /obj/item/ammo_magazine/revolver/mateba(src)
 	new /obj/item/ammo_magazine/revolver/mateba(src)
 	new /obj/item/ammo_magazine/revolver/mateba(src)
-	new_gun.on_enter_storage(src)
+	current_gun = new_gun
+	update_gun_icon()
 
 /obj/item/storage/belt/gun/mateba/captain
 	icon_state = "c_mateba_holster"
@@ -854,7 +860,8 @@
 	new /obj/item/ammo_magazine/revolver/mateba(src)
 	new /obj/item/ammo_magazine/revolver/mateba(src)
 	new /obj/item/ammo_magazine/revolver/mateba(src)
-	new_gun.on_enter_storage(src)
+	current_gun = new_gun
+	update_gun_icon()
 
 /obj/item/storage/belt/gun/mateba/notmarine/Initialize()
 	. = ..()
@@ -867,7 +874,8 @@
 	new /obj/item/ammo_magazine/revolver/mateba(src)
 	new /obj/item/ammo_magazine/revolver/mateba(src)
 	new /obj/item/ammo_magazine/revolver/mateba(src)
-	new_gun.on_enter_storage(src)
+	current_gun = new_gun
+	update_gun_icon()
 
 /obj/item/storage/belt/gun/korovin
 	name = "\improper Type 41 pistol holster rig"
@@ -889,7 +897,8 @@
 	new /obj/item/ammo_magazine/pistol/c99(src)
 	new /obj/item/ammo_magazine/pistol/c99(src)
 	new /obj/item/ammo_magazine/pistol/c99(src)
-	new_gun.on_enter_storage(src)
+	current_gun = new_gun
+	update_gun_icon()
 
 /obj/item/storage/belt/gun/korovin/tranq/Initialize()
 	. = ..()
@@ -900,7 +909,8 @@
 	new /obj/item/ammo_magazine/pistol/c99(src)
 	new /obj/item/ammo_magazine/pistol/c99(src)
 	new /obj/item/ammo_magazine/pistol/c99(src)
-	new_gun.on_enter_storage(src)
+	current_gun = new_gun
+	update_gun_icon()
 
 /obj/item/storage/belt/gun/ts34
 	name = "\improper M276 pattern TS-34 shotgun holster rig"
@@ -921,4 +931,5 @@
 	. = ..()
 	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/shotgun/double/marine(src)
 	new /obj/item/ammo_magazine/shotgun(src)
-	new_gun.on_enter_storage(src)
+	current_gun = new_gun
+	update_gun_icon()
