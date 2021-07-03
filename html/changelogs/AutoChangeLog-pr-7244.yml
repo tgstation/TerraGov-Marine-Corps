@@ -1,0 +1,4 @@
+author: "Wayland-Smithy"
+delete-after: True
+changes: 
+  - expansion: "Miner minimap icons now show if they are active or not."
