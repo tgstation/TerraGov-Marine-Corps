@@ -76,6 +76,7 @@
 		/datum/action/xeno_action/activable/rally_hive/hivemind,
 	)
 
+	// *** Weeding range *** //
 	weeding_range = 1
 
 
@@ -103,6 +104,7 @@
 		/datum/action/xeno_action/activable/rally_hive/hivemind,
 	)
 
+	// *** Weeding range *** //
 	weeding_range = 2
 
 /datum/xeno_caste/hivemind/ancient
@@ -130,4 +132,6 @@
 		/datum/action/xeno_action/activable/secrete_resin/slow,
 		/datum/action/xeno_action/activable/rally_hive/hivemind,
 	)
+
+	// *** Weeding range *** //
 	weeding_range = 3

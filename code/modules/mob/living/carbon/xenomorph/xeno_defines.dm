@@ -168,7 +168,6 @@
 
 	// *** Hivemind Abilities *** //
 	///Distance of weeding allowed.
-	//Starts at 1 then reaches 3 at the end.
 	var/weeding_range = 1
 
 

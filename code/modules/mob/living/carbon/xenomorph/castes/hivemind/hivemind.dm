@@ -32,7 +32,6 @@
 	hud_possible = list(PLASMA_HUD, PHEROMONE_HUD, QUEEN_OVERWATCH_HUD)
 
 	var/obj/effect/alien/hivemindcore/core
-	var/weeding_range_holder = 1	//Starts at 1 then reaches 3 at the end.
 
 /mob/living/carbon/xenomorph/hivemind/Initialize(mapload)
 	. = ..()
@@ -57,8 +56,7 @@
 	. = TRUE
 	if(locate(/obj/flamer_fire) in T)
 		return FALSE
-	weeding_range_holder = xeno_caste.weeding_range
-	for(var/obj/effect/alien/weeds/W in range(weeding_range_holder, T ? T : get_turf(src)))
+	for(var/obj/effect/alien/weeds/W in range(xeno_caste.weeding_range, T ? T : get_turf(src)))
 		if(QDESTROYING(W))
 			continue
 		return
