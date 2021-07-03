@@ -567,7 +567,6 @@
 
 /obj/item/storage/Initialize(mapload, ...)
 	. = ..()
-	LAZYINITLIST(storage_type_limits)
 	PopulateContents()
 	if(length(can_hold))
 		can_hold = typecacheof(can_hold)
