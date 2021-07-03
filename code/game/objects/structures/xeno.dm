@@ -670,6 +670,7 @@ TUNNEL
 
 	return ..()
 
+///Signal handler for creator destruction to clear reference
 /obj/structure/xeno/tunnel/proc/clear_creator()
 	SIGNAL_HANDLER
 	creator = null
