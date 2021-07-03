@@ -106,11 +106,8 @@
 
 	if(!gun)
 		CRASH("[src] has been deployed and attempted interaction with [operator] without having a gun. This shouldn't happen.")
-	
-	
 
 	RegisterSignal(operator, COMSIG_MOB_MOUSEDOWN, .proc/start_fire)
-	gun.RegisterSignal(operator, COMSIG_MOB_MOUSEUP, /obj/item/weapon/gun/proc/stop_fire)
 	RegisterSignal(operator, COMSIG_MOB_MOUSEDRAG, .proc/change_target)
 
 	for(var/datum/action/action AS in gun.actions)
@@ -120,6 +117,7 @@
 	hud.update_hud(operator, internal_item)
 
 	gun.set_gun_user(operator)
+
 
 ///Begins the Firing Process, does custom checks before calling the guns start_fire()
 /obj/machinery/deployable/mounted/proc/start_fire(datum/source, atom/object, turf/location, control, params)

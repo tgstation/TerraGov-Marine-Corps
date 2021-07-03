@@ -219,6 +219,9 @@
 	if(!user)
 		return
 	gun_user = user
+	if(!CHECK_BITFIELD(flags_item, IS_DEPLOYED))
+		RegisterSignal(gun_user, COMSIG_MOB_MOUSEDOWN, .proc/start_fire)
+		RegisterSignal(gun_user, COMSIG_MOB_MOUSEDRAG, .proc/change_target)
 	RegisterSignal(gun_user, COMSIG_PARENT_QDELETING, .proc/clean_gun_user)
 	RegisterSignal(gun_user, COMSIG_MOB_MOUSEDOWN, .proc/start_fire)
 	RegisterSignal(gun_user, COMSIG_MOB_MOUSEUP, .proc/stop_fire)

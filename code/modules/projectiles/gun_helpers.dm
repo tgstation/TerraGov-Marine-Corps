@@ -963,7 +963,7 @@ should be alright.
 /// Signal handler to activate the rail attachement of that gun if it's in our active hand
 /obj/item/weapon/gun/proc/activate_rail_attachment()
 	SIGNAL_HANDLER
-	if(gun_user?.get_active_held_item() != src)
+	if(gun_user?.get_active_held_item() != src && !CHECK_BITFIELD(flags_item, IS_DEPLOYED))
 		return
 	var/obj/item/attachable/underrail_attachment = LAZYACCESS(attachments, ATTACHMENT_SLOT_RAIL)
 	underrail_attachment?.activate_attachment(gun_user)
@@ -972,7 +972,7 @@ should be alright.
 /// Signal handler to activate the underrail attachement of that gun if it's in our active hand
 /obj/item/weapon/gun/proc/activate_underrail_attachment()
 	SIGNAL_HANDLER
-	if(gun_user?.get_active_held_item() != src)
+	if(gun_user?.get_active_held_item() != src && !CHECK_BITFIELD(flags_item, IS_DEPLOYED))
 		return
 	var/obj/item/attachable/rail_attachment = LAZYACCESS(attachments, ATTACHMENT_SLOT_UNDER)
 	rail_attachment?.activate_attachment(gun_user)
