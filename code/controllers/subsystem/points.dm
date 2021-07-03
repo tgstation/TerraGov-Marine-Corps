@@ -100,7 +100,7 @@ SUBSYSTEM_DEF(points)
 	approvedrequests["[O.id]"] = O
 	O.authorised_by = user.real_name
 	supply_points[user.faction] -= cost
-	LAZYADDASSOC(shoppinglist[O.faction], "[O.id]", O)
+	LAZYADDASSOCSIMPLE(shoppinglist[O.faction], "[O.id]", O)
 	if(GLOB.directory[O.orderer])
 		to_chat(GLOB.directory[O.orderer], "<span class='notice'>Your request [O.id] has been approved!</span>")
 
@@ -167,7 +167,7 @@ SUBSYSTEM_DEF(points)
 	var/list/datum/supply_order/orders = process_cart(user, shopping_cart)
 	for(var/i in 1 to length(orders))
 		orders[i].authorised_by = user.real_name
-		LAZYADDASSOC(shoppinglist[user.faction], "[orders[i].id]", orders[i])
+		LAZYADDASSOCSIMPLE(shoppinglist[user.faction], "[orders[i].id]", orders[i])
 	supply_points[user.faction] -= cost
 	shopping_cart.Cut()
 
