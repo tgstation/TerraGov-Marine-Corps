@@ -26,10 +26,8 @@
 	for(var/atom/movable/lighting_mask/mask AS in hybrid_lights_affecting)
 		mask.calculate_lighting_shadows()
 
-///Used to get a scaled lumcount.
-/turf/proc/get_lumcount()
 // Used to get a scaled lumcount.
-/turf/proc/static_get_lumcount(minlum = 0, maxlum = 1)
+/turf/proc/get_lumcount(minlum = 0, maxlum = 1)
 	var/totallums = 0
 	if (static_lighting_object)
 		var/datum/static_lighting_corner/L

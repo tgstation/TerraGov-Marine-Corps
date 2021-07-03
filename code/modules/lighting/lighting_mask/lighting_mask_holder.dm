@@ -19,4 +19,4 @@
 
 /obj/effect/lighting_mask_holder/Moved(atom/OldLoc, Dir)
 	. = ..()
-	held_mask.calculate_lighting_shadows()
+	held_mask?.calculate_lighting_shadows()//held mask can be null when it is deleted
