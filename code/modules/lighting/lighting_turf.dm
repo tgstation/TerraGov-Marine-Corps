@@ -32,8 +32,6 @@
 /turf/proc/static_get_lumcount(minlum = 0, maxlum = 1)
 	var/totallums = 0
 	if (static_lighting_object)
-
-		var/totallums = 0
 		var/datum/static_lighting_corner/L
 		L = lighting_corner_NE
 		if (L)
