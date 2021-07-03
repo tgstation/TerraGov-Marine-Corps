@@ -36,6 +36,8 @@
 /atom/movable/lighting_mask
 	///Turfs that are being affected by this mask, this is for the sake of luminosity
 	var/list/turf/affecting_turfs
+	///list of mutable appearance shadows
+	var/list/mutable_appearance/shadows
 	var/times_calculated = 0
 
 	//Please dont change these
@@ -54,6 +56,8 @@
 			if(!LAZYLEN(thing.hybrid_lights_affecting) && !A.base_lighting_alpha)
 				thing.luminosity = 0
 		affecting_turfs = null
+	//Cut the shadows. Since they are overlays they will be deleted when cut from overlays.
+	LAZYCLEARLIST(shadows)
 	return ..()
 
 /atom/movable/lighting_mask/proc/link_turf_to_light(turf/T)
@@ -119,6 +123,7 @@
 
 	//Clear the list
 	LAZYCLEARLIST(affecting_turfs)
+	LAZYCLEARLIST(shadows)
 
 	//Optimise grouping by storing as
 	// Key : x (AS A STRING BECAUSE BYOND DOESNT ALLOW FOR INT KEY DICTIONARIES)
@@ -163,9 +168,8 @@
 	DO_SOMETHING_IF_DEBUGGING_SHADOWS(var/MA_vars_time = 0)
 	DO_SOMETHING_IF_DEBUGGING_SHADOWS(var/overlays_add_time = 0)
 
-	//we use a dud that we reset every time to merge the overlays
-	//Doesnt impact maptick, AND means much faster render times
-	var/static/atom/movable/lighting_mask/template/dud = new
+	//we use a dud that we reset every time to merge the overlay s
+	var/list/overlays_to_add = list()
 	for(var/group in grouped_atoms)
 		DO_SOMETHING_IF_DEBUGGING_SHADOWS(temp_timer = TICK_USAGE)
 
@@ -200,20 +204,34 @@
 			DO_SOMETHING_IF_DEBUGGING_SHADOWS(matrix_division_time += TICK_USAGE_TO_MS(temp_timer))
 			DO_SOMETHING_IF_DEBUGGING_SHADOWS(temp_timer = TICK_USAGE)
 
+			var/mutable_appearance/shadow = new()
+
 			DO_SOMETHING_IF_DEBUGGING_SHADOWS(MA_new_time += TICK_USAGE_TO_MS(temp_timer))
 			DO_SOMETHING_IF_DEBUGGING_SHADOWS(temp_timer = TICK_USAGE)
 
-			dud.filters += filter(type="layer", icon = icon(LIGHTING_ICON_BIG, "triangle"), color = "#000", transform = triangle_matrix)
+			shadow.icon = LIGHTING_ICON_BIG
+			shadow.icon_state = "triangle"
+			shadow.color = "#000"
+			shadow.transform = triangle_matrix
 
 			DO_SOMETHING_IF_DEBUGGING_SHADOWS(MA_vars_time += TICK_USAGE_TO_MS(temp_timer))
 			DO_SOMETHING_IF_DEBUGGING_SHADOWS(temp_timer = TICK_USAGE)
 
+			LAZYADD(shadows, shadow)
+			overlays_to_add += shadow
 
+			DO_SOMETHING_IF_DEBUGGING_SHADOWS(overlays_add_time += TICK_USAGE_TO_MS(temp_timer))
+			DO_SOMETHING_IF_DEBUGGING_SHADOWS(temp_timer = TICK_USAGE)
+
+	//Put the overlays onto a dud object and copy the appearance to merge them
+	//Doesnt impact maptick, AND means much faster render times
 	DO_SOMETHING_IF_DEBUGGING_SHADOWS(var/mergetime = TICK_USAGE)
+	var/static/atom/movable/lighting_mask/template/dud = new
+	dud.overlays += overlays_to_add
 	var/static/mutable_appearance/overlay_merger = new()
 	overlay_merger.appearance = dud.appearance
 	overlays += overlay_merger
-	dud.filters.Cut()
+	dud.overlays.Cut()
 	DO_SOMETHING_IF_DEBUGGING_SHADOWS(var/mergetimereal = TICK_USAGE_TO_MS(mergetime))
 
 

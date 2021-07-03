@@ -133,9 +133,9 @@
 	idle_power_usage = 2
 	active_power_usage = 20
 	power_channel = LIGHT //Lights are calc'd via area so they dont need to be in the machine list
-	light_system = HYBRID_LIGHT//STATIC_LIGHT
-	var/brightness = 1			// power usage and light range when on
-	var/bulb_power = 4			// basically the light_power of the emitted light source
+	light_system = HYBRID_LIGHT
+	var/brightness = 10			// power usage and light range when on
+	var/bulb_power = 10			// basically the light_power of the emitted light source
 	var/bulb_colour = COLOR_WHITE
 
 	var/status = LIGHT_OK		// LIGHT_OK, _EMPTY, _BURNED or _BROKEN
@@ -179,17 +179,26 @@
 
 // create a new lighting fixture
 /obj/machinery/light/Initialize(mapload, ...)
+	switch(dir)
+		if(NORTH)
+			light_pixel_y = 15
+		if(SOUTH)
+			light_pixel_y = -15
+		if(WEST)
+			light_pixel_x = 15
+		if(EAST)
+			light_pixel_x = -15
 	. = ..()
 
 	GLOB.nightfall_toggleable_lights += src
 
 	switch(fitting)
 		if("tube")
-			brightness = 5
+			brightness = 8
 			if(prob(2))
 				broken(TRUE)
 		if("bulb")
-			brightness = 3
+			brightness = 5
 			if(prob(5))
 				broken(TRUE)
 
@@ -546,12 +555,12 @@
 	base_state = "ltube"
 	item_state = "c_tube"
 	materials = list(/datum/material/glass = 100)
-	brightness = 8
+	brightness = 10
 
 /obj/item/light_bulb/tube/large
 	w_class = WEIGHT_CLASS_SMALL
 	name = "large light tube"
-	brightness = 15
+	brightness = 8
 
 /obj/item/light_bulb/bulb
 	name = "light bulb"
@@ -589,9 +598,9 @@
 	. = ..()
 	switch(name)
 		if("light tube")
-			brightness = rand(6,9)
+			brightness = rand(9,12)
 		if("light bulb")
-			brightness = rand(4,6)
+			brightness = rand(7,9)
 	update()
 
 
