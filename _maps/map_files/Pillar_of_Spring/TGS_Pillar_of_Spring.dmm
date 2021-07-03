@@ -4030,6 +4030,10 @@
 	dir = 4
 	},
 /area/mainship/squads/general)
+"nF" = (
+/obj/machinery/floor_warn_light/self_destruct,
+/turf/open/floor/mainship/black/full,
+/area/mainship/command/self_destruct)
 "nG" = (
 /obj/structure/prop/mainship/missile_tube,
 /obj/effect/decal/warning_stripes/thin,
@@ -15277,11 +15281,9 @@
 /turf/open/floor/mainship/black/corner,
 /area/mainship/squads/general)
 "Yy" = (
-/obj/machinery/computer/cryopod,
-/turf/open/floor/mainship/black{
-	dir = 4
-	},
-/area/mainship/squads/general)
+/obj/machinery/floor_warn_light/self_destruct,
+/turf/open/floor/mainship/floor,
+/area/mainship/command/self_destruct)
 "Yz" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
@@ -50042,7 +50044,7 @@ oM
 eG
 xe
 jb
-Lb
+Yy
 jc
 rp
 bk
@@ -51584,7 +51586,7 @@ oM
 eZ
 fG
 wo
-dh
+nF
 eZ
 fG
 wo
@@ -53126,7 +53128,7 @@ bk
 eZ
 fG
 wo
-dh
+nF
 eZ
 fG
 wo
@@ -54668,7 +54670,7 @@ bk
 eZ
 fG
 wo
-dh
+nF
 eZ
 fG
 wo
