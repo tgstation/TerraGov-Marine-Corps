@@ -119,7 +119,7 @@
 	hud.add_hud(operator, internal_item)
 	hud.update_hud(operator, internal_item)
 
-	gun.gun_user = operator
+	gun.set_gun_user(operator)
 
 ///Begins the Firing Process, does custom checks before calling the guns start_fire()
 /obj/machinery/deployable/mounted/proc/start_fire(datum/source, atom/object, turf/location, control, params)
@@ -224,7 +224,7 @@
 		operator.client.mouse_pointer_icon = initial(operator.client.mouse_pointer_icon)
 
 	operator = null
-	gun?.gun_user = null
+	gun?.set_gun_user(null)
 
 ///makes sure you can see and or use the gun
 /obj/machinery/deployable/mounted/check_eye(mob/user)
