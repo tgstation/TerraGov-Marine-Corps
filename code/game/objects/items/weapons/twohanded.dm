@@ -50,6 +50,7 @@
 
 	toggle_wielded(user, TRUE)
 	SEND_SIGNAL(src, COMSIG_ITEM_WIELD, user)
+	label_name = "[name]"
 	name = "[name] (Wielded)"
 	update_item_state(user)
 	place_offhand(user, name)
@@ -62,7 +63,7 @@
 
 	toggle_wielded(user, FALSE)
 	SEND_SIGNAL(src, COMSIG_ITEM_UNWIELD, user)
-	name = initial(name)
+	name = label_name
 	update_item_state(user)
 	remove_offhand(user)
 	return TRUE
