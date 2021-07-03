@@ -72,5 +72,6 @@ GLOBAL_DATUM_INIT(round_statistics, /datum/round_statistics, new)
 	var/wraith_banishes = 0
 	var/ravager_endures = 0
 	var/hunter_marks = 0
+	var/hunter_silence_targets = 0
 	var/xeno_acid_wells = 0
 	var/ravager_rages = 0
