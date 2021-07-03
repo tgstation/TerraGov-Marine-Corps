@@ -146,6 +146,7 @@
 
 	newt.hivenumber = X.hivenumber //Set our structure's hivenumber for alerts/lists
 	newt.creator = X
+	newt.RegisterSignal(X, COMSIG_PARENT_QDELETING, /obj/structure/xeno/tunnel/proc/clear_creator)
 
 	X.tunnels.Add(newt)
 

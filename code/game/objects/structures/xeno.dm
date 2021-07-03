@@ -670,6 +670,10 @@ TUNNEL
 
 	return ..()
 
+/obj/structure/xeno/tunnel/proc/clear_creator()
+	SIGNAL_HANDLER
+	creator = null
+
 /obj/structure/xeno/tunnel/examine(mob/user)
 	. = ..()
 	if(!isxeno(user) && !isobserver(user))
