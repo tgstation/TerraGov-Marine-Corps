@@ -32,24 +32,24 @@
 // Creates or destroys it if needed, makes it update values, makes sure it's got the correct source turf...
 /atom/proc/update_light()
 	set waitfor = FALSE
+
+	if(QDELETED(src))
+		return
 	if(light_system == STATIC_LIGHT)
 		static_update_light()
-		return
-
-	if (QDELETED(src))
 		return
 
 	if (!light_power || !light_range) // We won't emit light anyways, destroy the light source.
 		if(light)
 			QDEL_NULL(light)
-	else
-		if(light && light_mask_type && (light_mask_type != light.mask_type))
-			QDEL_NULL(light)
-		if (!light) // Update the light or create it if it does not exist.
-			light = new /datum/dynamic_light_source(src, light_mask_type)
-		else
-			light.set_light(light_range, light_power, light_color)
-			light.update_position()
+		return
+	if(light && light_mask_type && (light_mask_type != light.mask_type))
+		QDEL_NULL(light)
+	if(!light) // Update the light or create it if it does not exist.
+		light = new /datum/dynamic_light_source(src, light_mask_type)
+		return
+	light.set_light(light_range, light_power, light_color)
+	light.update_position()
 
 
 // If we have opacity, make sure to tell (potentially) affected light sources.

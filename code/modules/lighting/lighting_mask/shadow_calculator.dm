@@ -245,9 +245,10 @@
 	DO_SOMETHING_IF_DEBUGGING_SHADOWS(log_game("merge_overlays_time: [mergetimereal]ms"))
 	DO_SOMETHING_IF_DEBUGGING_SHADOWS(log_game("[TICK_USAGE_TO_MS(timer)]ms to process total."))
 
-///Converts a triangle into a matrix that can be applied to a standardized triangle
-///to make it represent the points.
-///Note: Ignores translation because
+/**
+ * Converts a triangle into a matrix that can be applied to a standardized triangle
+ * to make it represent the points.
+ */
 /atom/movable/lighting_mask/proc/triangle_to_matrix(list/triangle)
 	//We need the world position raw, if we use the calculated position then the pixel values will cancel.
 	var/turf/our_turf = get_turf(attached_atom)

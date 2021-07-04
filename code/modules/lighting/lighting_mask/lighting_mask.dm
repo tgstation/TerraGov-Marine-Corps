@@ -122,6 +122,7 @@
 
 ///The holder atom turned, spins the mask if it's needed
 /atom/movable/lighting_mask/proc/rotate_mask_on_holder_turn(new_direction)
+	SIGNAL_HANDLER
 	rotate(dir2angle(new_direction) - 180)
 
 ///This is the template mask used for overlay merging, DO NOT TOUCH THIS FOR NO REASON

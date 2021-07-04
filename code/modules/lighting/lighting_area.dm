@@ -29,11 +29,11 @@
 	if(!area_has_base_lighting && (!base_lighting_alpha || !base_lighting_color))
 		return
 
-	if(area_has_base_lighting)
-		remove_base_lighting()
-		if(base_lighting_alpha && base_lighting_color)
-			add_base_lighting()
-	else
+	if(!area_has_base_lighting)
+		add_base_lighting()
+		return
+	remove_base_lighting()
+	if(base_lighting_alpha && base_lighting_color)
 		add_base_lighting()
 
 /area/proc/remove_base_lighting()

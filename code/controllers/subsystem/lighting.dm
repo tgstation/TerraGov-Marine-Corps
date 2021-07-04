@@ -3,16 +3,19 @@ SUBSYSTEM_DEF(lighting)
 	wait = 2
 	init_order = INIT_ORDER_LIGHTING
 
+	//debug var for tracking updates before init is complete
 	var/duplicate_shadow_updates_in_init = 0
+	///Total times shadows were updated, debug
 	var/total_shadow_calculations = 0
 
+	///Whether the SS has begun setting up yet
 	var/started = FALSE
 
-	var/static/list/static_sources_queue = list() // List of static lighting sources queued for update.
-	var/static/list/corners_queue = list() // List of lighting corners queued for update.
-	var/static/list/objects_queue = list() // List of lighting objects queued for update.
+	var/static/list/static_sources_queue = list() //! List of static lighting sources queued for update.
+	var/static/list/corners_queue = list() //! List of lighting corners queued for update.
+	var/static/list/objects_queue = list() //! List of lighting objects queued for update.
 
-	var/static/list/mask_queue = list() // List of hybrid lighting sources queued for update.
+	var/static/list/mask_queue = list() //! List of hybrid lighting sources queued for update.
 
 /datum/controller/subsystem/lighting/Initialize(timeofday)
 	started = TRUE
@@ -75,6 +78,7 @@ SUBSYSTEM_DEF(lighting)
 			break
 	if(updators_num)
 		objects_queue.Cut(1, ++updators_num)
+		updators_num = 0
 	if(!init_tick_checks)
 		MC_SPLIT_TICK
 
@@ -88,7 +92,6 @@ SUBSYSTEM_DEF(lighting)
 			break
 	if(updators_num)
 		mask_queue.Cut(1, ++updators_num)
-		updators_num = 0
 
 /datum/controller/subsystem/lighting/Recover()
 	initialized = SSlighting.initialized

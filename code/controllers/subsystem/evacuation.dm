@@ -6,6 +6,7 @@ SUBSYSTEM_DEF(evacuation)
 	var/pod_cooldown
 	var/evac_time
 	var/evac_status = EVACUATION_STATUS_STANDING_BY
+	///list of alarm lights that we activate with self detruct
 	var/list/alarm_lights = list()
 
 	var/obj/machinery/self_destruct/console/dest_master
