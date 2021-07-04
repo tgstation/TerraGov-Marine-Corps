@@ -18,7 +18,7 @@
 	  	)
 	  Any inserted objects will decrement the allowed count of every listed type which matches or is a parent of that object.
 	  With entries for both /obj/A and /obj/A/B, inserting a B requires non-zero allowed count remaining for, and reduces, both. */
-	var/list/storage_type_limits = null
+	var/list/storage_type_limits
 	var/list/click_border_start = list() //In slotless storage, stores areas where clicking will refer to the associated item
 	var/list/click_border_end = list()
 	var/max_w_class = 2 //Max size of objects that this object can store (in effect only if can_hold isn't set)
