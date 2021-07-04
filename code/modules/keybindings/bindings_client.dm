@@ -62,6 +62,7 @@
 		if("Alt", "Ctrl", "Shift")
 			full_key = "[AltMod][CtrlMod][ShiftMod]"
 		else
+			_key = capitalize(_key)
 			full_key = "[AltMod][CtrlMod][ShiftMod][_key]"
 	var/keycount = 0
 	for(var/kb_name in prefs.key_bindings[full_key])
