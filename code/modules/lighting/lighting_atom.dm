@@ -39,9 +39,8 @@
 		static_update_light()
 		return
 
-	if (!light_power || !light_range) // We won't emit light anyways, destroy the light source.
-		if(light)
-			QDEL_NULL(light)
+	if ((!light_power || !light_range) && light) // We won't emit light anyways, destroy the light source.
+		QDEL_NULL(light)
 		return
 	if(light && light_mask_type && (light_mask_type != light.mask_type))
 		QDEL_NULL(light)
@@ -185,4 +184,3 @@
 	SEND_SIGNAL(src, COMSIG_ATOM_SET_LIGHT_ON, new_value)
 	. = light_on
 	light_on = new_value
-
