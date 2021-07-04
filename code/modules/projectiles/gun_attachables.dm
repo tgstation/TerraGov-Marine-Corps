@@ -193,6 +193,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	master_gun.recoil						+= recoil_mod
 	master_gun.recoil_unwielded				+= recoil_unwielded_mod
 	master_gun.force						+= melee_mod
+	master_gun.sharp						+= sharp
 	master_gun.aim_slowdown					+= aim_speed_mod
 	master_gun.wield_delay					+= wield_delay_mod
 	master_gun.burst_scatter_mult			+= burst_scatter_mod
@@ -258,6 +259,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	master_gun.recoil						-= recoil_mod
 	master_gun.recoil_unwielded				-= recoil_unwielded_mod
 	master_gun.force						-= melee_mod
+	master_gun.sharp						-= sharp
 	master_gun.aim_slowdown					-= aim_speed_mod
 	master_gun.wield_delay					-= wield_delay_mod
 	master_gun.burst_scatter_mult			-= burst_scatter_mod
