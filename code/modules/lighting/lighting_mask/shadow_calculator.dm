@@ -52,8 +52,8 @@
 		for(var/turf/thing AS in affecting_turfs)
 			var/area/A = thing.loc
 			LAZYREMOVE(thing.hybrid_lights_affecting, src)
-			if(!LAZYLEN(thing.hybrid_lights_affecting) && !A.base_lighting_alpha)
-				thing.luminosity = 0
+			if(!A.base_lighting_alpha)
+				thing.luminosity -= 1
 		affecting_turfs = null
 	//Cut the shadows. Since they are overlays they will be deleted when cut from overlays.
 	LAZYCLEARLIST(shadows)
@@ -117,8 +117,8 @@
 			LAZYREMOVE(T?.hybrid_lights_affecting, src)
 			//The turf is no longer affected by any lights, make it non-luminous.
 			var/area/A = T.loc
-			if(T?.luminosity && !LAZYLEN(T.hybrid_lights_affecting) && !A.base_lighting_alpha)
-				T.luminosity = FALSE
+			if(T?.luminosity && !A.base_lighting_alpha)
+				T.luminosity -= 1
 
 	//Clear the list
 	LAZYCLEARLIST(affecting_turfs)
@@ -134,8 +134,7 @@
 	for(var/turf/thing in dview(range, get_turf(attached_atom))) //most expensive part of shadow code is this dview and group_atoms
 		link_turf_to_light(thing)
 		//The turf is now affected by our light, make it luminous
-		if(!thing.luminosity)
-			thing.luminosity = 1
+		thing.luminosity += 1
 		//Dont consider shadows about our turf.
 		if(!is_on_closed_turf)
 			if(thing == our_turf)

@@ -9,11 +9,11 @@
 	if(l_power != null)
 		light_power = l_power
 
-	if (l_range != null)
+	if(l_range != null)
 		light_range = l_range
 		light_on = (light_range>0) ? TRUE : FALSE
 
-	if (l_color != NONSENSICAL_VALUE)
+	if(l_color != NONSENSICAL_VALUE)
 		light_color = l_color
 
 	if(mask_type != null)
@@ -28,8 +28,7 @@
 	if(light?.our_mask)
 		animate(light.our_mask, color = new_colour, time = time)
 
-// Will update 	the light (duh).
-// Creates or destroys it if needed, makes it update values, makes sure it's got the correct source turf...
+/// Will update the light (duh).Creates or destroys it if needed, makes it update values, makes sure it's got the correct source turf...
 /atom/proc/update_light()
 	set waitfor = FALSE
 
@@ -39,7 +38,7 @@
 		static_update_light()
 		return
 
-	if ((!light_power || !light_range) && light) // We won't emit light anyways, destroy the light source.
+	if((!light_power || !light_range) && light) // We won't emit light anyways, destroy the light source.
 		QDEL_NULL(light)
 		return
 	if(light && light_mask_type && (light_mask_type != light.mask_type))
@@ -88,15 +87,11 @@
 		return
 	recalculate_directional_opacity()
 
-
-
 // If we have opacity, make sure to tell (potentially) affected light sources.
 /atom/movable/Destroy()
 	. = ..()
 	QDEL_NULL(light)
 	QDEL_NULL(static_light)
-
-
 
 /atom/vv_edit_var(var_name, var_value)
 	switch(var_name)

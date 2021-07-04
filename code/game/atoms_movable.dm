@@ -47,7 +47,7 @@
 	var/atom/movable/emissive_blocker/em_block
 
 	///Lazylist to keep track on the sources of illumination.
-	var/list/affected_dynamic_lights
+	var/list/affected_movable_lights
 	///Highest-intensity light affecting us, which determines our visibility.
 	var/affecting_dynamic_lumi = 0
 

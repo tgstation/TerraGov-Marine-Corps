@@ -140,14 +140,14 @@
 
 ///Adds the luminosity and source for the afected movable atoms to keep track of their visibility.
 /datum/component/overlay_lighting/proc/add_dynamic_lumi(atom/movable/affected_movable)
-	LAZYSET(affected_movable.affected_dynamic_lights, src, lumcount_range + 1)
+	LAZYSET(affected_movable.affected_movable_lights, src, lumcount_range + 1)
 	affected_movable.vis_contents += visible_mask
 	affected_movable.update_dynamic_luminosity()
 
 
 ///Removes the luminosity and source for the afected movable atoms to keep track of their visibility.
 /datum/component/overlay_lighting/proc/remove_dynamic_lumi(atom/movable/affected_movable)
-	LAZYREMOVE(affected_movable.affected_dynamic_lights, src)
+	LAZYREMOVE(affected_movable.affected_movable_lights, src)
 	affected_movable.vis_contents -= visible_mask
 	affected_movable.update_dynamic_luminosity()
 
@@ -198,6 +198,7 @@
 
 ///Called when parent changes loc.
 /datum/component/overlay_lighting/proc/on_parent_moved(atom/movable/source, OldLoc, Dir, Forced)
+	SIGNAL_HANDLER
 	check_holder()
 	if(!(overlay_lighting_flags & LIGHTING_ON) || !current_holder)
 		return
@@ -206,6 +207,7 @@
 
 ///Changes the range which the light reaches. 0 means no light, 6 is the maximum value.
 /datum/component/overlay_lighting/proc/set_range(atom/source, new_range)
+	SIGNAL_HANDLER
 	if(range == new_range)
 		return
 	if(range == 0)
@@ -227,6 +229,7 @@
 
 ///Changes the intensity/brightness of the light by altering the visual object's alpha.
 /datum/component/overlay_lighting/proc/set_power(atom/source, new_power)
+	SIGNAL_HANDLER
 	set_lum_power(new_power >= 0 ? 0.5 : -0.5)
 	set_alpha = min(230, (abs(new_power) * 120) + 30)
 	visible_mask.alpha = set_alpha
@@ -234,11 +237,13 @@
 
 ///Changes the light's color, pretty straightforward.
 /datum/component/overlay_lighting/proc/set_color(atom/source, new_color)
+	SIGNAL_HANDLER
 	visible_mask.color = new_color
 
 
 ///Toggles the light on and off.
 /datum/component/overlay_lighting/proc/on_toggle(atom/source, new_value)
+	SIGNAL_HANDLER
 	if(new_value) //Truthy value input, turn on.
 		turn_on()
 		return
