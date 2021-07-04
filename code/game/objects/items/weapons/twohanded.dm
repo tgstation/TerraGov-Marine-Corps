@@ -50,7 +50,6 @@
 
 	toggle_wielded(user, TRUE)
 	SEND_SIGNAL(src, COMSIG_ITEM_WIELD, user)
-	label_name = "[name]"
 	name = "[name] (Wielded)"
 	update_item_state(user)
 	place_offhand(user, name)
@@ -63,7 +62,11 @@
 
 	toggle_wielded(user, FALSE)
 	SEND_SIGNAL(src, COMSIG_ITEM_UNWIELD, user)
-	name = label_name
+	var/sf = findtext(name, " (Wielded)", -10) // 10 == length(" (Wielded)")
+	if(sf)
+		name = copytext(name, 1, sf)
+	else
+		name = "[initial(name)]"
 	update_item_state(user)
 	remove_offhand(user)
 	return TRUE
