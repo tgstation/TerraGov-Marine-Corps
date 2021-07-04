@@ -2434,9 +2434,9 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/lower_engineering/rebel)
 "clB" = (
-/obj/machinery/cryopod/right,
 /obj/machinery/power/apc/mainship,
 /obj/structure/cable,
+/obj/machinery/cryopod/right/rebel,
 /turf/open/floor/mainship/cargo,
 /area/mainship/living/cryo_cells/rebel)
 "clV" = (
@@ -3989,10 +3989,10 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/engineering_workshop/rebel)
 "dKH" = (
-/obj/machinery/cryopod/right,
 /obj/machinery/light{
 	dir = 4
 	},
+/obj/machinery/cryopod/right/rebel,
 /turf/open/floor/mainship/cargo,
 /area/mainship/living/cryo_cells/rebel)
 "dKM" = (
@@ -4228,8 +4228,8 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/upper_engineering/rebel)
 "dWX" = (
-/obj/machinery/cryopod/right,
 /obj/machinery/alarm,
+/obj/machinery/cryopod/right/rebel,
 /turf/open/floor/mainship/cargo,
 /area/mainship/living/cryo_cells/rebel)
 "dXh" = (
@@ -5677,9 +5677,6 @@
 /obj/effect/landmark/start/latejoinrebel,
 /turf/open/floor/mainship,
 /area/mainship/living/cryo_cells/rebel)
-"fmr" = (
-/turf/closed/wall/mainship,
-/area/mainship/hallways/hangar/rebel)
 "fmx" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/power/apc/mainship{
@@ -6072,9 +6069,6 @@
 	dir = 8
 	},
 /area/mainship/medical/operating_room_one/rebel)
-"fzP" = (
-/turf/closed/wall/mainship,
-/area/mainship/hallways/hangar)
 "fzS" = (
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
@@ -23442,7 +23436,7 @@
 /turf/open/floor/mainship,
 /area/mainship/squads/general)
 "uCe" = (
-/obj/machinery/cryopod/right,
+/obj/machinery/cryopod/right/rebel,
 /turf/open/floor/mainship/cargo,
 /area/mainship/living/cryo_cells/rebel)
 "uCX" = (
@@ -42170,7 +42164,7 @@ tYj
 jwe
 jwe
 pHE
-fmr
+tYj
 iUC
 vEY
 xxw
@@ -81093,7 +81087,7 @@ gRM
 gRM
 gRM
 cFc
-fzP
+sRB
 ojp
 poi
 qQf
@@ -81350,7 +81344,7 @@ gRM
 gRM
 gRM
 cFc
-fzP
+sRB
 ngi
 poi
 nlG
@@ -81620,11 +81614,11 @@ gRM
 gRM
 gRM
 gRM
-fzP
+sRB
 vgk
 vgk
 fLt
-fzP
+sRB
 nIs
 kxs
 voD
@@ -82652,7 +82646,7 @@ eqB
 xRu
 hkh
 ovH
-fzP
+sRB
 fiH
 wzm
 bdi
@@ -82905,7 +82899,7 @@ aAA
 jTt
 gRM
 gRM
-fzP
+sRB
 vgk
 vgk
 gax
