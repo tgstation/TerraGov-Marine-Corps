@@ -5678,7 +5678,6 @@
 /turf/open/floor/mainship,
 /area/mainship/living/cryo_cells/rebel)
 "fmr" = (
-/obj/item/radio/intercom/general,
 /turf/closed/wall/mainship,
 /area/mainship/hallways/hangar/rebel)
 "fmx" = (
@@ -7285,7 +7284,6 @@
 /obj/item/clothing/gloves/yellow,
 /obj/item/clothing/glasses/meson,
 /obj/item/light_bulb/tube,
-/obj/item/radio,
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/engineering_workshop/rebel)
 "gDk" = (
@@ -9640,7 +9638,6 @@
 /obj/item/clothing/gloves/yellow,
 /obj/item/clothing/glasses/meson,
 /obj/item/light_bulb/tube,
-/obj/item/radio,
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/engineering_workshop)
 "iMk" = (
@@ -12551,8 +12548,6 @@
 /obj/structure/table/mainship,
 /obj/item/tool/extinguisher/mini,
 /obj/item/tool/extinguisher/mini,
-/obj/item/radio,
-/obj/item/radio,
 /obj/item/attachable/extended_barrel,
 /obj/item/attachable/extended_barrel,
 /obj/item/attachable/scope,
@@ -13644,8 +13639,6 @@
 /obj/structure/table/mainship,
 /obj/item/tool/extinguisher/mini,
 /obj/item/tool/extinguisher/mini,
-/obj/item/radio,
-/obj/item/radio,
 /obj/item/attachable/extended_barrel,
 /obj/item/attachable/extended_barrel,
 /obj/item/attachable/scope,
@@ -13745,7 +13738,6 @@
 	pixel_y = -5
 	},
 /obj/machinery/light,
-/obj/item/radio,
 /turf/open/floor/plating/mainship,
 /area/mainship/command/cic/rebel)
 "mqp" = (
@@ -14123,7 +14115,6 @@
 /obj/machinery/cell_charger,
 /obj/item/tool/hand_labeler,
 /obj/item/cell/high,
-/obj/item/radio,
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/engineering_workshop)
 "mGs" = (
@@ -15282,7 +15273,6 @@
 	pixel_y = 4
 	},
 /obj/item/flashlight,
-/obj/item/radio,
 /turf/open/floor/mainship/stripesquare,
 /area/mainship/hallways/port_umbilical/rebel)
 "nKC" = (
@@ -16235,7 +16225,6 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/item/radio,
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/lower_engineering/rebel)
 "oAu" = (
@@ -21038,7 +21027,6 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/item/radio,
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/lower_engineering)
 "sHd" = (
@@ -21305,7 +21293,6 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/starboard_hallway)
 "sRB" = (
-/obj/item/radio/intercom/general,
 /turf/closed/wall/mainship,
 /area/mainship/hallways/hangar)
 "sSt" = (
@@ -21907,7 +21894,6 @@
 	pixel_y = -5
 	},
 /obj/machinery/light,
-/obj/item/radio,
 /turf/open/floor/plating/mainship,
 /area/mainship/command/cic)
 "tqL" = (
@@ -22366,7 +22352,6 @@
 	pixel_y = 4
 	},
 /obj/item/flashlight,
-/obj/item/radio,
 /turf/open/floor/mainship/stripesquare,
 /area/mainship/hallways/port_umbilical)
 "tLt" = (
@@ -23465,7 +23450,6 @@
 /obj/machinery/cell_charger,
 /obj/item/tool/hand_labeler,
 /obj/item/cell/high,
-/obj/item/radio,
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/engineering_workshop/rebel)
 "uDk" = (
