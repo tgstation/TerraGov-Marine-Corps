@@ -45,6 +45,7 @@
 
 
 /mob/living/carbon/human/proc/set_undefibbable()
+	SEND_SIGNAL(src, COMSIG_HUMAN_SET_UNDEFIBBABLE)
 	ADD_TRAIT(src, TRAIT_UNDEFIBBABLE , TRAIT_UNDEFIBBABLE)
 	SSmobs.stop_processing(src) //Last round of processing.
 
