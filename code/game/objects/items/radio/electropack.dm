@@ -41,7 +41,7 @@
 
 	if(href_list["freq"])
 		SSradio.remove_object(src, frequency)
-		frequency = sanitize_frequency(frequency)
+		frequency = sanitize_frequency(frequency + text2num(href_list["freq"]))
 		SSradio.add_object(src, frequency, RADIO_SIGNALER)
 
 	else if(href_list["code"])
