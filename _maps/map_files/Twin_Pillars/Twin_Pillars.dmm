@@ -1928,7 +1928,7 @@
 	},
 /area/mainship/command/cic/rebel)
 "bSr" = (
-/obj/machinery/telecomms/server/presets/alpha,
+/obj/machinery/telecomms/server/presets/alpha/rebel,
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/telecomms/rebel)
 "bSC" = (
@@ -2165,7 +2165,7 @@
 /turf/open/floor/plating/mainship,
 /area/mainship/shipboard/firing_range/rebel)
 "cah" = (
-/obj/machinery/telecomms/processor/preset_one,
+/obj/machinery/telecomms/processor/preset_one/rebel,
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/telecomms/rebel)
 "caJ" = (
@@ -2774,7 +2774,7 @@
 /turf/open/floor/mainship,
 /area/mainship/living/cryo_cells)
 "cFL" = (
-/obj/machinery/telecomms/bus/preset_one,
+/obj/machinery/telecomms/bus/preset_one/rebel,
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/telecomms/rebel)
 "cFR" = (
@@ -2793,7 +2793,7 @@
 /turf/open/floor/mainship/cargo,
 /area/mainship/engineering/engineering_workshop/rebel)
 "cHk" = (
-/obj/machinery/telecomms/server/presets/delta,
+/obj/machinery/telecomms/server/presets/delta/rebel,
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/telecomms/rebel)
 "cHm" = (
@@ -3523,7 +3523,7 @@
 	},
 /area/mainship/squads/general/rebel)
 "doB" = (
-/obj/machinery/telecomms/server/presets/engineering,
+/obj/machinery/telecomms/server/presets/engineering/rebel,
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/telecomms/rebel)
 "doO" = (
@@ -5191,7 +5191,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/port_atmos/rebel)
 "eQS" = (
-/obj/machinery/telecomms/server/presets/cas,
+/obj/machinery/telecomms/server/presets/requisitions/rebel,
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/telecomms/rebel)
 "eQZ" = (
@@ -5375,7 +5375,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
 "eXJ" = (
-/obj/machinery/telecomms/hub/preset,
+/obj/machinery/telecomms/hub/preset/rebel,
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/telecomms/rebel)
 "eXZ" = (
@@ -6271,7 +6271,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/port_hallway/rebel)
 "fHo" = (
-/obj/machinery/telecomms/processor/preset_four,
+/obj/machinery/telecomms/processor/preset_four/rebel,
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/telecomms/rebel)
 "fHv" = (
@@ -6667,7 +6667,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/living/port_emb)
 "fZR" = (
-/obj/machinery/telecomms/processor/preset_two,
+/obj/machinery/telecomms/processor/preset_two/rebel,
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/telecomms/rebel)
 "fZZ" = (
@@ -7497,7 +7497,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/shipboard/starboard_missiles/rebel)
 "gMO" = (
-/obj/machinery/telecomms/receiver/preset_left,
+/obj/machinery/telecomms/receiver/preset_left/rebel,
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/telecomms/rebel)
 "gNq" = (
@@ -9226,7 +9226,7 @@
 	},
 /area/mainship/command/self_destruct)
 "iqK" = (
-/obj/machinery/telecomms/server/presets/command,
+/obj/machinery/telecomms/server/presets/cas/rebel,
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/telecomms/rebel)
 "iqU" = (
@@ -10502,7 +10502,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/port_hallway)
 "jEQ" = (
-/obj/machinery/telecomms/server/presets/common,
+/obj/machinery/telecomms/server/presets/common/rebel,
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/telecomms/rebel)
 "jEU" = (
@@ -11082,7 +11082,7 @@
 	},
 /area/mainship/living/cafeteria_starboard)
 "jZZ" = (
-/obj/machinery/telecomms/broadcaster/preset_left,
+/obj/machinery/telecomms/broadcaster/preset_left/rebel,
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/telecomms/rebel)
 "kak" = (
@@ -13385,7 +13385,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/engineering_workshop/rebel)
 "mah" = (
-/obj/machinery/telecomms/bus/preset_four,
+/obj/machinery/telecomms/bus/preset_four/rebel,
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/telecomms/rebel)
 "mai" = (
@@ -13477,7 +13477,7 @@
 /turf/open/floor/wood,
 /area/mainship/living/numbertwobunks)
 "mfR" = (
-/obj/machinery/telecomms/server/presets/bravo,
+/obj/machinery/telecomms/server/presets/bravo/rebel,
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/telecomms/rebel)
 "mha" = (
@@ -14053,7 +14053,7 @@
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/telecomms/rebel)
 "mDo" = (
-/obj/machinery/telecomms/server/presets/medical,
+/obj/machinery/telecomms/server/presets/medical/rebel,
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/telecomms/rebel)
 "mEn" = (
@@ -19851,7 +19851,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/living/port_emb)
 "rzH" = (
-/obj/machinery/telecomms/processor/preset_three,
+/obj/machinery/telecomms/processor/preset_three/rebel,
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/telecomms/rebel)
 "rBk" = (
@@ -19941,7 +19941,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/lower_hull)
 "rEI" = (
-/obj/machinery/telecomms/bus/preset_three,
+/obj/machinery/telecomms/bus/preset_three/rebel,
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/telecomms/rebel)
 "rEL" = (
@@ -24139,7 +24139,7 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/lower_medical)
 "vlE" = (
-/obj/machinery/telecomms/server/presets/requisitions,
+/obj/machinery/telecomms/server/presets/command/rebel,
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/telecomms/rebel)
 "vlW" = (
@@ -25071,7 +25071,7 @@
 /turf/open/floor/freezer,
 /area/mainship/living/cafeteria_starboard)
 "whE" = (
-/obj/machinery/telecomms/receiver/preset_right,
+/obj/machinery/telecomms/receiver/preset_right/rebel,
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/telecomms/rebel)
 "whL" = (
@@ -26135,8 +26135,8 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/lower_hull)
 "wXe" = (
-/obj/machinery/telecomms/server/presets/charlie,
 /obj/machinery/camera/autoname/mainship/rebelship,
+/obj/machinery/telecomms/server/presets/charlie/rebel,
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/telecomms/rebel)
 "wXx" = (

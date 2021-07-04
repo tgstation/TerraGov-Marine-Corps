@@ -80,7 +80,7 @@ Code:
 			if(!can_interact(usr))
 				return
 			new_freq = unformat_frequency(new_freq)
-			new_freq = sanitize_frequency(new_freq, TRUE)
+			new_freq = sanitize_frequency(new_freq)
 			set_frequency(new_freq)
 
 		if(href_list["set"] == "code")

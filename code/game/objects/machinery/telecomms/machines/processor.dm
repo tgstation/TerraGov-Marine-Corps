@@ -55,3 +55,22 @@
 	id = "Processor 4"
 	network = "tcommsat"
 	autolinkers = list("processor4")
+
+/obj/machinery/telecomms/processor/preset_one/rebel
+	id = "Processor 1 rebel"
+	autolinkers = list("processor1_rebel")
+
+
+/obj/machinery/telecomms/processor/preset_two/rebel
+	id = "Processor 2 rebel"
+	autolinkers = list("processor2_rebel")
+
+
+/obj/machinery/telecomms/processor/preset_three/rebel
+	id = "Processor 3 rebel"
+	autolinkers = list("processor3_rebel")
+
+
+/obj/machinery/telecomms/processor/preset_four/rebel
+	id = "Processor 4 rebel"
+	autolinkers = list("processor4_rebel")
