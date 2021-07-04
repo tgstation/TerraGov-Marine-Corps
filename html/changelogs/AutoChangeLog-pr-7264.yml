@@ -1,0 +1,7 @@
+author: "lbnesquik"
+delete-after: True
+changes: 
+  - qol: "Added some noises for the AI whenever the OB is fired."
+  - qol: "Added the OB warhead type to AI notifications"
+  - bugfix: "typos in beacon code."
+  - bugfix: "improved some backend stuff so the AI is warned before everyone else"
