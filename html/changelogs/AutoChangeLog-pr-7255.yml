@@ -1,5 +1,0 @@
-author: "InterroLouis"
-delete-after: True
-changes: 
-  - rscadd: "Attachments now transfer their sharp to the gun."
-  - bugfix: "Pizza and other foods are now sliceable."

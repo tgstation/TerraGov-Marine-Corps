@@ -86,3 +86,27 @@
   TiviPlus:
   - qol: Players can now set their pixel scaling and scaling method
   - refactor: refactored view code
+2021-07-04:
+  Alterist:
+  - rscadd: Theseus 2.2, now with Loadout Vendors!(tm)
+  BraveMole:
+  - rscadd: New way of registering keybinds, you have to push the buttons for 2 seconds
+      for it to register
+  - code_imp: better perfs on game prefs ui
+  InterroLouis:
+  - bugfix: Condor Radial Minigun no longer printable.
+  - rscadd: Attachments now transfer their sharp to the gun.
+  - bugfix: Pizza and other foods are now sliceable.
+  - bugfix: Fixed Hydro Cannon hud button.
+  - refactor: Hydro Cannon only works via unique action and hud button, not load from
+      attachment.
+  Wayland-Smithy:
+  - expansion: Miner minimap icons now show if they are active or not.
+  - qol: Some groundmap fences start broken, so xenos do not need to slash them all
+      to get around during prep.
+  lbnesquik:
+  - qol: The AI can now turn fusion reactors on and off.
+  - rscadd: Added notifications to the AI whenever the Alamo moves, the railgun is
+      fired, the OB is fired and when a camera gets slashed.
+  - qol: Added some handy status lines to the 'Game' tab for the AI, like OB status
+      or orbital level.
