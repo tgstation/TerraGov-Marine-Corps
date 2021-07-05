@@ -491,7 +491,7 @@ mob/proc/get_standard_bodytemperature()
 	. = list("[type]")
 
 
-/// Try to perform a unique action on the current active held item.
+/// Try to perform a unique action on the held items
 /mob/living/carbon/human/proc/do_unique_action()
 	SIGNAL_HANDLER
 	. = COMSIG_KB_ACTIVATED //The return value must be a flag compatible with the signals triggering this.
@@ -499,8 +499,10 @@ mob/proc/get_standard_bodytemperature()
 		return
 
 	var/obj/item/active_item = get_active_held_item()
-	if(!istype(active_item))
-		return
+	if(istype(active_item))
+		active_item.unique_action(src)
+	var/obj/item/inactive_item =get_inactive_held_item()
+	if(istype(inactive_item))
+		inactive_item.unique_action(src)
 
-	active_item.unique_action(src)
 

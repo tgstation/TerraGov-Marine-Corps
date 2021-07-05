@@ -45,6 +45,12 @@
 	description = ""
 	keybind_signal = COMSIG_KB_UNLOADGUN
 
+/datum/keybinding/human/toggle_gun_safety
+	name = "toggle_safety"
+	full_name = "Toggle gun safety"
+	description = ""
+	keybind_signal = COMSIG_KB_GUN_SAFETY
+
 /datum/keybinding/human/toggle_aim_mode
 	hotkey_keys = list("6")
 	name = "toggle_aim_mode"
