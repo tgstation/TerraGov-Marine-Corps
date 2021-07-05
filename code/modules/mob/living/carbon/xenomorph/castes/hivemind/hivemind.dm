@@ -105,6 +105,9 @@
 /mob/living/carbon/xenomorph/hivemind/update_icons()
 	return FALSE
 
+/mob/living/carbon/xenomorph/hivemind/set_lying_angle()
+	CRASH("Something caused a hivemind to change its lying angle. Add checks to prevent that.")
+
 /mob/living/carbon/xenomorph/hivemind/DblClickOn(atom/A, params)
 	if(!istype(A, /obj/effect/alien/weeds))
 		return
@@ -166,7 +169,8 @@
 	parent.playsound_local(parent, get_sfx("alien_help"), 30, TRUE)
 	to_chat(parent, "<span class='xenohighdanger'>Your core has been destroyed!</span>")
 	xeno_message("A sudden tremor ripples through the hive... \the [parent] has been slain!", "xenoannounce", 5, parent.hivenumber)
-	parent.death()
+	parent.timeofdeath = world.time
+	parent.ghostize()
 	if(!QDELETED(parent))
 		QDEL_NULL(parent)
 	else
