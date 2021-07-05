@@ -144,7 +144,7 @@
 		status = MOTION_DETECTOR_HOSTILE //Reset the status to default
 		if(ishuman(M))
 			var/mob/living/carbon/human/H = M
-			if(!H.wear_id?.iff_signal & iff_signal) //device checks for IFF data and status
+			if(!(H.wear_id?.iff_signal & iff_signal)) //device checks for IFF data and status
 				if(M.stat == DEAD)
 					if(H.has_working_organs() && H.get_ghost())
 						if(detect_revivable)
