@@ -105,9 +105,6 @@
 /mob/living/carbon/xenomorph/hivemind/update_icons()
 	return FALSE
 
-/mob/living/carbon/xenomorph/hivemind/set_lying_angle()
-	CRASH("Something caused a hivemind to change its lying angle. Add checks to prevent that.")
-
 /mob/living/carbon/xenomorph/hivemind/DblClickOn(atom/A, params)
 	if(!istype(A, /obj/effect/alien/weeds))
 		return
