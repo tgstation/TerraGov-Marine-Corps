@@ -260,6 +260,9 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	if(HAS_TRAIT(wearer, TRAIT_UNDEFIBBABLE))
 		SSminimaps.add_marker(wearer, wearer.z, marker_flags, "undefibbable")
 		return
+	if(wearer.stat == DEAD)
+		SSminimaps.add_marker(wearer, wearer.z, marker_flags, "defibbable")
+		return
 	if(wearer.assigned_squad)
 		SSminimaps.add_marker(wearer, wearer.z, marker_flags, lowertext(wearer.assigned_squad.name)+"_"+wearer.job.minimap_icon)
 		return
