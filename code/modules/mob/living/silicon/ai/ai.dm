@@ -71,7 +71,7 @@
 		apply_assigned_role_to_spawn(ai_job)
 
 	GLOB.ai_list += src
-	var/datum/atom_hud/H = GLOB.huds[DATA_HUD_SQUAD]
+	var/datum/atom_hud/H = GLOB.huds[DATA_HUD_SQUAD_TERRAGOV]
 	H.add_hud_to(src)
 
 	RegisterSignal(src, COMSIG_MOB_CLICK_ALT, .proc/send_order)
@@ -278,6 +278,17 @@
 			return
 
 		stat("System integrity:", "[(health + 100) / 2]%")
+		stat("<BR>- Operation information - <BR>")
+		stat("Current orbit:", "[GLOB.current_orbit]")
+
+		if(!GLOB.marine_main_ship?.orbital_cannon?.chambered_tray)
+			stat("<b>Orbital bombardment status:</b>", "<font color='red'>No ammo chambered in the cannon.</font><br>")
+		else
+			stat("Orbital bombardment warhead:", "[GLOB.marine_main_ship.orbital_cannon.tray.warhead.name] Detected<BR>")
+
+
+		stat("Current alert level:", "[GLOB.marine_main_ship.get_security_level()]")
+
 
 
 /mob/living/silicon/ai/fully_replace_character_name(oldname, newname)
@@ -301,7 +312,7 @@
 		return FALSE
 
 	var/atom/A = D
-	if(level_locked && A.z != z)
+	if(!isturf(A) && level_locked && A.z != z)
 		return FALSE
 
 	return GLOB.cameranet.checkTurfVis(get_turf(A))

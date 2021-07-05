@@ -25,7 +25,7 @@
 	use_state_flags = XACT_USE_STAGGERED|XACT_USE_FORTIFIED|XACT_USE_CRESTED //can't use while staggered, defender fortified or crest down
 	keybind_signal = COMSIG_XENOABILITY_HEADBITE
 	plasma_cost = 100
-	gamemode_flags = ABILITY_HUNT|ABILITY_CRASH
+	gamemode_flags = ABILITY_HUNT
 
 /datum/action/xeno_action/activable/headbite/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..() //do after checking the below stuff
@@ -86,7 +86,11 @@
 		O = H.internal_organs_by_name["brain"] //This removes (and later garbage collects) the organ. No brain means instant death.
 		H.internal_organs_by_name -= "brain"
 		H.internal_organs -= O
-		H.set_undefibbable()
+		ADD_TRAIT(H, TRAIT_PSY_DRAINED, TRAIT_PSY_DRAINED) //for xeno hud
+		if(HAS_TRAIT(H, TRAIT_UNDEFIBBABLE)) //If true then force a hud update because SSmobs will not
+			H.med_hud_set_status()
+		else
+			H.set_undefibbable()
 
 	X.do_attack_animation(victim, ATTACK_EFFECT_BITE)
 	playsound(victim, pick( 'sound/weapons/alien_tail_attack.ogg', 'sound/weapons/alien_bite1.ogg'), 50)
@@ -118,7 +122,7 @@
 	if(!T.check_alien_construction(owner, FALSE))
 		return fail_activate()
 
-	if(locate(/obj/effect/alien/resin/trap) in T)
+	if(locate(/obj/structure/xeno/trap) in T)
 		to_chat(owner, "<span class='warning'>There is a resin trap in the way!</span>")
 		return fail_activate()
 
@@ -212,11 +216,14 @@
 		return
 	var/mob/living/carbon/xenomorph/X = owner
 
-	var/sticky_resin_modifier = 1
-	if(X.selected_resin == /obj/effect/alien/resin/sticky) //Sticky resin builds twice as fast
-		sticky_resin_modifier = 0.5
+	var/build_resin_modifier = 1
+	switch(X.selected_resin)
+		if(/obj/effect/alien/resin/sticky)
+			build_resin_modifier = 0.5
+		if(/obj/structure/mineral_door/resin)
+			build_resin_modifier = 3
 
-	return (base_wait + scaling_wait - max(0, (scaling_wait * X.health / X.maxHealth))) * sticky_resin_modifier
+	return (base_wait + scaling_wait - max(0, (scaling_wait * X.health / X.maxHealth))) * build_resin_modifier
 
 /datum/action/xeno_action/activable/secrete_resin/proc/build_resin(turf/T)
 	var/mob/living/carbon/xenomorph/X = owner
@@ -306,8 +313,11 @@
 	else
 		new_resin = new X.selected_resin(T)
 
-	if(X.selected_resin == /obj/effect/alien/resin/sticky) //Sticky resin is discounted because let's face it, it's nowhere near as good as a wall or door
-		plasma_cost = 25
+	switch(X.selected_resin)
+		if(/obj/effect/alien/resin/sticky)
+			plasma_cost = initial(plasma_cost) / 3
+		if(/obj/structure/mineral_door/resin)
+			plasma_cost = initial(plasma_cost) * 3
 
 	if(new_resin)
 		add_cooldown()
@@ -1015,7 +1025,7 @@
 	if(!do_after(owner, build_time, TRUE, A, BUSY_ICON_BUILD))
 		return fail_activate()
 
-	var/obj/structure/resin/silo/hivesilo = new(get_step(A, SOUTHWEST))
+	var/obj/structure/xeno/resin/silo/hivesilo = new(get_step(A, SOUTHWEST))
 
 	var/moved_human_number = 0
 	for(var/mob/living/to_use AS in valid_mobs)
@@ -1025,7 +1035,7 @@
 		to_use.update_burst()
 		to_use.forceMove(hivesilo)
 		moved_human_number++
-	
+
 	succeed_activate()
 
 ////////////////////
@@ -1040,25 +1050,26 @@
 	keybind_signal = COMSIG_XENOABILITY_SECRETE_RESIN_SILO
 	cooldown_timer = 60 SECONDS
 	gamemode_flags = ABILITY_DISTRESS
-	/// If we are building a small silo
-	var/build_small_silo = FALSE
 	/// How long does it take to build
 	var/build_time = 10 SECONDS
 	/// Pyschic point cost
 	var/psych_cost = SILO_PRICE
 
-/datum/action/xeno_action/activable/build_silo/action_activate()
-	var/mob/living/carbon/xenomorph/X = owner
-	if(X.selected_ability == src)
-		build_small_silo = !build_small_silo
-		var/silo_type = build_small_silo ? "small" : "regular"
-		to_chat(X, "<span class ='notice'> You will now build a [silo_type] silo </span>")
-	return ..()
-
 /datum/action/xeno_action/activable/build_silo/can_use_ability(atom/A, silent, override_flags)
 	. = ..()
 	if(!.)
 		return FALSE
+
+	var/turf/T = get_turf(A)
+	if(T?.density)
+		to_chat(owner, "<span class='xenowarning'>You need open ground to place that!</span>")
+		return FALSE
+
+	for(var/direction in GLOB.cardinals - REVERSE_DIR(Get_Angle(owner, A)))
+		T = get_step(A, direction)
+		if(!T || T.density)
+			to_chat(owner, "<span class='xenowarning'>You need open ground to place that!</span>")
+			return FALSE
 
 	if(!in_range(owner, A))
 		if(!silent)
@@ -1066,12 +1077,11 @@
 		return FALSE
 
 	var/mob/living/carbon/xenomorph/X = owner
-	var/final_psych_cost = psych_cost * (build_small_silo ? 0.5 : 1)
-	if(SSpoints.xeno_points_by_hive[X.hivenumber] < final_psych_cost)
+	if(SSpoints.xeno_points_by_hive[X.hivenumber] < psych_cost)
 		to_chat(owner, "<span class='xenowarning'>The hive doesn't have the necessary psychic points for you to do that!</span>")
 		return FALSE
 
-	for(var/obj/structure/resin/silo/silo AS in GLOB.xeno_resin_silos)
+	for(var/obj/structure/xeno/resin/silo/silo AS in GLOB.xeno_resin_silos)
 		if(get_dist(silo, A) < 15)
 			to_chat(owner, "<span class='xenowarning'>Another silo is too close!</span>")
 			return FALSE
@@ -1081,20 +1091,15 @@
 		return fail_activate()
 
 	var/mob/living/carbon/xenomorph/X = owner
-	var/final_psych_cost = psych_cost * (build_small_silo ? 0.5 : 1)
-	if(SSpoints.xeno_points_by_hive[X.hivenumber] < final_psych_cost)
+	if(SSpoints.xeno_points_by_hive[X.hivenumber] < psych_cost)
 		to_chat(owner, "<span class='xenowarning'>Someone used all the psych points while we were building!</span>")
 		return fail_activate()
 
-	to_chat(owner, "<span class='notice'>We build a new silo for [final_psych_cost] psy points.</span>")
-	SSpoints.xeno_points_by_hive[X.hivenumber] -= final_psych_cost
-	log_game("[owner] has built a silo in [AREACOORD(A)], spending [final_psych_cost] psy points in the process")
+	to_chat(owner, "<span class='notice'>We build a new silo for [psych_cost] psy points.</span>")
+	SSpoints.xeno_points_by_hive[X.hivenumber] -= psych_cost
+	log_game("[owner] has built a silo in [AREACOORD(A)], spending [psych_cost] psy points in the process")
 	succeed_activate()
-	if(build_small_silo)
-		new /obj/structure/resin/silo/small_silo (get_step(A, SOUTHWEST))
-		xeno_message("[X.name] has built a small silo at [get_area(A)]!", "xenoannounce", 5, X.hivenumber)
-		return
-	new /obj/structure/resin/silo (get_step(A, SOUTHWEST))
+	new /obj/structure/xeno/resin/silo (get_step(A, SOUTHWEST))
 	xeno_message("[X.name] has built a silo at [get_area(A)]!", "xenoannounce", 5, X.hivenumber)
 
 
@@ -1146,7 +1151,7 @@
 		to_chat(X, "<span class='warning'>We can only shape on weeds. We must find some resin before we start building!</span>")
 		return FALSE
 
-	if(!T.check_alien_construction(X, planned_building = /obj/structure/resin/xeno_turret) || !T.check_disallow_alien_fortification(X))
+	if(!T.check_alien_construction(X, planned_building = /obj/structure/xeno/resin/xeno_turret) || !T.check_disallow_alien_fortification(X))
 		return FALSE
 
 	if(SSpoints.xeno_points_by_hive[X.hivenumber] < psych_cost)
@@ -1164,7 +1169,7 @@
 		return fail_activate()
 
 	to_chat(owner, "<span class='xenowarning'>We build a new acid turret, spending 100 psychic points in the process</span>")
-	new /obj/structure/resin/xeno_turret(get_turf(A), X.hivenumber)
+	new /obj/structure/xeno/resin/xeno_turret(get_turf(A), X.hivenumber)
 
 	SSpoints.xeno_points_by_hive[X.hivenumber] -= psych_cost
 	log_game("[owner] built a turret in [AREACOORD(A)], spending [psych_cost] psy points in the process")
@@ -1229,7 +1234,7 @@
 	gamemode_flags = ABILITY_DISTRESS
 	plasma_cost = 100
 	///How much psy points it give
-	var/psy_points_reward = 60
+	var/psy_points_reward = PSY_DRAIN_REWARD
 	///How much larva points it gives (8 points for one larva in distress)
 	var/larva_point_reward = 1
 
@@ -1294,10 +1299,12 @@
 	victim.do_jitter_animation(2)
 
 	ADD_TRAIT(victim, TRAIT_PSY_DRAINED, TRAIT_PSY_DRAINED)
+	if(HAS_TRAIT(victim, TRAIT_UNDEFIBBABLE))
+		victim.med_hud_set_status()
 
 	SSpoints.add_psy_points(X.hivenumber, psy_points_reward)
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
-	xeno_job.add_job_points(larva_point_reward, PSY_DRAIN_ORIGIN)
+	xeno_job.add_job_points(larva_point_reward, COCOON_ORIGIN)
 
 	log_combat(victim, owner, "was drained.")
 	log_game("[key_name(victim)] was drained at [AREACOORD(victim.loc)].")

@@ -82,29 +82,16 @@
 
 	return FALSE
 
-/obj/item/binoculars/tactical/dropped(mob/user)
-	. = ..()
-	if(user.interactee != src)
-		return
-	user.unset_interaction()
-
-
-/obj/item/binoculars/tactical/on_set_interaction(mob/user)
+/obj/item/binoculars/tactical/onzoom(mob/living/user)
 	. = ..()
 	user.reset_perspective(src)
 	user.update_sight()
 	user.client.click_intercept = src
 
-
-/obj/item/binoculars/tactical/update_remote_sight(mob/living/user)
-	user.see_in_dark = 32 // Should include the offset from zoom and client viewport
-	user.lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE
-	user.sync_lighting_plane_alpha()
-	return TRUE
-
-
-/obj/item/binoculars/tactical/on_unset_interaction(mob/user)
+/obj/item/binoculars/tactical/onunzoom(mob/living/user)
 	. = ..()
+
+	QDEL_NULL(laser)
 
 	if(!user?.client)
 		return
@@ -113,10 +100,12 @@
 	user.reset_perspective(user)
 	user.update_sight()
 
-	if(zoom)
-		return
-	if(laser)
-		QDEL_NULL(laser)
+
+/obj/item/binoculars/tactical/update_remote_sight(mob/living/user)
+	user.see_in_dark = 32 // Should include the offset from zoom and client viewport
+	user.lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE
+	user.sync_lighting_plane_alpha()
+	return TRUE
 
 
 /obj/item/binoculars/tactical/update_overlays()
@@ -281,9 +270,13 @@
 	var/y_offset = rand(-2,2)
 	var/turf/target = locate(current_turf.x + x_offset,current_turf.y + y_offset,current_turf.z)
 	GLOB.marine_main_ship?.orbital_cannon?.fire_ob_cannon(target, user)
+	var/warhead_type = GLOB.marine_main_ship.orbital_cannon.tray.warhead.name
+	for(var/mob/living/silicon/ai/AI in GLOB.silicon_mobs)
+		to_chat(AI, "<span class='warning'>NOTICE - Orbital bombardment triggered by ground operator. Warhead type: [warhead_type]. Target: [AREACOORD_NO_Z(current_turf)]</span>")
+		playsound(AI,'sound/machines/triple_beep.ogg', 25, 1, 20)
 	to_chat(user, "<span class='notice'>FIRING REQUEST RECIEVED. CLEAR TARGET AREA</span>")
-	log_attack("[key_name(user)] fired an orbital bombardment in [AREACOORD(current_turf)].")
-	message_admins("[ADMIN_TPMONTY(user)] fired an orbital bombardment in [ADMIN_VERBOSEJMP(current_turf)].")
+	log_attack("[key_name(user)] fired a [warhead_type] in [AREACOORD(current_turf)].")
+	message_admins("[ADMIN_TPMONTY(user)] fired a [warhead_type] in [ADMIN_VERBOSEJMP(current_turf)].")
 	QDEL_NULL(laser)
 
 ///Sets or unsets the binocs linked mortar.

@@ -6,7 +6,7 @@
 	icon = 'icons/Marine/marine-weapons.dmi'
 	icon_state = "smartgun_case"
 	w_class = WEIGHT_CLASS_HUGE
-	storage_slots = 4
+	storage_slots = 5
 	slowdown = 1
 	can_hold = list() //Nada. Once you take the stuff out it doesn't fit back in.
 	foldable = null
@@ -15,6 +15,7 @@
 	. = ..()
 	new /obj/item/clothing/glasses/night/m56_goggles(src)
 	new /obj/item/weapon/gun/rifle/standard_smartmachinegun(src)
+	new /obj/item/ammo_magazine/standard_smartmachinegun(src)
 	new /obj/item/ammo_magazine/standard_smartmachinegun(src)
 	new /obj/item/ammo_magazine/standard_smartmachinegun(src)
 
@@ -532,9 +533,9 @@
 	new /obj/item/storage/belt/grenade/b17(src)
 	new /obj/item/clothing/suit/storage/marine/B17(src)
 	new /obj/item/clothing/head/helmet/marine/grenadier(src)
-	new /obj/item/storage/box/nade_box(src)
-	new /obj/item/storage/box/nade_box(src)
-	new /obj/item/storage/box/nade_box/HIDP(src)
+	new /obj/item/storage/box/visual/grenade/frag(src)
+	new /obj/item/storage/box/visual/grenade/frag(src)
+	new /obj/item/storage/box/visual/grenade/incendiary(src)
 
 /obj/item/storage/box/spec/heavy_gunner
 	name = "\improper Heavy Minigunner case"
@@ -1059,9 +1060,9 @@
 	new /obj/item/clothing/head/helmet/marine/grenadier(src)
 	new /obj/item/reagent_containers/food/snacks/enrg_bar(src)
 	new /obj/item/reagent_containers/food/snacks/enrg_bar(src)
-	new /obj/item/storage/box/nade_box(src)
-	new /obj/item/storage/box/nade_box(src)
-	new /obj/item/storage/box/nade_box/HIDP(src)
+	new /obj/item/storage/box/visual/grenade/frag(src)
+	new /obj/item/storage/box/visual/grenade/frag(src)
+	new /obj/item/storage/box/visual/grenade/incendiary(src)
 	new /obj/item/storage/backpack/marine/standard(src)
 	new /obj/item/storage/backpack/marine/standard(src)
 	new /obj/item/storage/backpack/marine/standard(src)

@@ -12,7 +12,7 @@
 	keybind_signal = COMSIG_XENOABILITY_STOMP
 
 /datum/action/xeno_action/activable/stomp/use_ability(atom/A)
-	var/mob/living/carbon/xenomorph/crusher/X = owner
+	var/mob/living/carbon/xenomorph/X = owner
 	succeed_activate()
 	add_cooldown()
 
@@ -24,27 +24,24 @@
 	"<span class='xenodanger'>We smash into the ground!</span>")
 	X.create_stomp() //Adds the visual effect. Wom wom wom
 
-	for(var/mob/living/M in range(0,X.loc))
-		if(isxeno(M) || M.stat == DEAD || isnestedhost(M))
+	for(var/mob/living/M in range(1, get_turf(X)))
+		if(X.issamexenohive(M) || M.stat == DEAD || isnestedhost(M))
 			continue
 		var/distance = get_dist(M, X)
 		var/damage = X.xeno_caste.stomp_damage/max(1, distance + 1)
 		if(distance == 0) //If we're on top of our victim, give him the full impact
 			GLOB.round_statistics.crusher_stomp_victims++
 			SSblackbox.record_feedback("tally", "round_statistics", 1, "crusher_stomp_victims")
-			M.take_overall_damage_armored(damage, BRUTE, "melee", FALSE, FALSE)
-			M.Paralyze(20)
+			M.take_overall_damage_armored(damage, BRUTE, "melee", FALSE, FALSE, TRUE)
+			M.Paralyze(3 SECONDS)
 			to_chat(M, "<span class='highdanger'>You are stomped on by [X]!</span>")
 			shake_camera(M, 3, 3)
 		else
 			step_away(M, X, 1) //Knock away
 			shake_camera(M, 2, 2)
 			to_chat(M, "<span class='highdanger'>You reel from the shockwave of [X]'s stomp!</span>")
-		if(distance < 2) //If we're beside or adjacent to the Crusher, we get knocked down.
-			M.Paralyze(20)
-		else
-			M.Stun(20) //Otherwise we just get stunned.
-		M.apply_damage(damage, STAMINA, updating_health = TRUE) //Armour ignoring Stamina
+			M.take_overall_damage_armored(damage, BRUTE, "melee", FALSE, FALSE, TRUE) 
+			M.Paralyze(0.5 SECONDS)
 
 /datum/action/xeno_action/activable/stomp/ai_should_start_consider()
 	return TRUE
@@ -66,8 +63,8 @@
 	action_icon_state = "cresttoss"
 	mechanics_text = "Fling an adjacent target over and behind you. Also works over barricades."
 	ability_name = "crest toss"
-	plasma_cost = 100
-	cooldown_timer = 18 SECONDS
+	plasma_cost = 75
+	cooldown_timer = 12 SECONDS
 	keybind_signal = COMSIG_XENOABILITY_CRESTTOSS
 	target_flags = XABB_MOB_TARGET
 
@@ -86,10 +83,6 @@
 	var/mob/living/L = A
 	if(L.stat == DEAD || isnestedhost(L)) //no bully
 		return FALSE
-	if(L.mob_size >= MOB_SIZE_BIG)
-		if(!silent)
-			to_chat(owner, "<span class='xenowarning'>[L] is too large to fling!</span>")
-		return FALSE
 
 /datum/action/xeno_action/activable/cresttoss/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/X = owner
@@ -100,6 +93,12 @@
 	var/toss_distance = X.xeno_caste.crest_toss_distance
 	var/turf/T = X.loc
 	var/turf/temp = X.loc
+	var/big_mob_message
+
+	if(L.mob_size >= MOB_SIZE_BIG) //Penalize toss distance for big creatures
+		toss_distance = FLOOR(toss_distance * 0.5, 1)
+		big_mob_message = ", struggling mightily to heft its bulk"
+
 	if(X.a_intent == INTENT_HARM) //If we use the ability on hurt intent, we throw them in front; otherwise we throw them behind.
 		for(var/x in 1 to toss_distance)
 			temp = get_step(T, facing)
@@ -134,8 +133,8 @@
 
 	X.icon_state = "Crusher Charging"  //Momentarily lower the crest for visual effect
 
-	X.visible_message("<span class='xenowarning'>\The [X] flings [L] away with its crest!</span>", \
-	"<span class='xenowarning'>We fling [L] away with our crest!</span>")
+	X.visible_message("<span class='xenowarning'>\The [X] flings [L] away with its crest[big_mob_message]!</span>", \
+	"<span class='xenowarning'>We fling [L] away with our crest[big_mob_message]!</span>")
 
 	succeed_activate()
 
@@ -143,10 +142,9 @@
 
 	//Handle the damage
 	if(!X.issamexenohive(L)) //Friendly xenos don't take damage.
-		var/damage = toss_distance * 5
+		var/damage = toss_distance * 6
 
-		L.take_overall_damage_armored(damage, BRUTE, "melee")
-		L.apply_damage(damage, STAMINA, updating_health = TRUE) //...But decent armour ignoring Stamina
+		L.take_overall_damage_armored(damage, BRUTE, "melee", updating_health = TRUE)
 		shake_camera(L, 2, 2)
 		playsound(L,pick('sound/weapons/alien_claw_block.ogg','sound/weapons/alien_bite2.ogg'), 50, 1)
 

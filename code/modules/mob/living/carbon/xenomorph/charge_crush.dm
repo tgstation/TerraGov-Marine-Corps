@@ -82,7 +82,7 @@
 	var/mob/living/carbon/xenomorph/charger = owner
 	if(charger.is_charging == CHARGE_OFF)
 		return
-	if(old_dir == new_dir)
+	if(!old_dir || !new_dir || old_dir == new_dir) //Check for null direction from help shuffle signals
 		return
 	do_stop_momentum()
 
@@ -147,7 +147,7 @@
 
 /datum/action/xeno_action/ready_charge/proc/check_momentum(newdir)
 	var/mob/living/carbon/xenomorph/charger = owner
-	if(ISDIAGONALDIR(newdir) || charge_dir != newdir)
+	if(newdir && (ISDIAGONALDIR(newdir) || charge_dir != newdir)) //Check for null direction from help shuffle signals
 		return FALSE
 
 	if(next_move_limit && world.time > next_move_limit)
@@ -286,6 +286,8 @@
 
 	if(isobj(crushed))
 		var/obj/crushed_obj = crushed
+		if(istype(crushed_obj, /obj/structure/xeno/resin/silo) || istype(crushed_obj, /obj/structure/xeno/resin/xeno_turret))
+			return precrush2signal(crushed_obj.post_crush_act(charger, src))
 		playsound(crushed_obj.loc, "punch", 25, 1)
 		var/crushed_behavior = crushed_obj.crushed_special_behavior()
 		crushed_obj.take_damage(precrush, BRUTE, "melee")
@@ -549,7 +551,7 @@
 		if(CHARGE_BULL_GORE)
 			if(world.time > charge_datum.next_special_attack)
 				charge_datum.next_special_attack = world.time + 2 SECONDS
-				attack_alien_harm(charger, 0, BODY_ZONE_CHEST, FALSE, TRUE, TRUE) //Free gore attack.
+				attack_alien_harm(charger, charger.xeno_caste.melee_damage, charger.zone_selected, FALSE, TRUE, TRUE) //Free gore attack.
 				emote_gored()
 				var/turf/destination = get_step(loc, charger.dir)
 				if(destination)

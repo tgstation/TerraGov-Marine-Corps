@@ -358,6 +358,7 @@ GLOBAL_PROTECT(admin_verbs_asay)
 	/datum/admins/proc/reestablish_db_connection,
 	/datum/admins/proc/view_runtimes,
 	/datum/admins/proc/spatial_agent,
+	/datum/admins/proc/set_xeno_stat_buffs,
 #ifdef REFERENCE_TRACKING
 	/datum/admins/proc/view_refs,
 	/datum/admins/proc/view_del_failures,
@@ -367,6 +368,13 @@ GLOBAL_PROTECT(admin_verbs_asay)
 	)
 GLOBAL_LIST_INIT(admin_verbs_debug, world.AVdebug())
 GLOBAL_PROTECT(admin_verbs_debug)
+
+/world/proc/AVruntimes()
+	return list(
+	/datum/admins/proc/view_runtimes,
+	)
+GLOBAL_LIST_INIT(admin_verbs_runtimes, world.AVruntimes())
+GLOBAL_PROTECT(admin_verbs_runtimes)
 
 /world/proc/AVvaredit()
 	return list(
@@ -498,6 +506,8 @@ GLOBAL_PROTECT(admin_verbs_spawn)
 			verbs += GLOB.admin_verbs_server
 		if(rights & R_DEBUG)
 			verbs += GLOB.admin_verbs_debug
+		if(rights & R_RUNTIME) 
+			verbs += GLOB.admin_verbs_runtimes
 		if(rights & R_PERMISSIONS)
 			verbs += GLOB.admin_verbs_permissions
 		if(rights & R_DBRANKS)

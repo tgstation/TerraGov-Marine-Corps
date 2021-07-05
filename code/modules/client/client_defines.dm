@@ -17,6 +17,8 @@
 	//Preferences related
 	var/datum/preferences/prefs 	= null
 	var/inprefs = FALSE
+	///remembers what our context menu setting is currently set to
+	var/shift_to_open_context_menu = TRUE
 
 
 	//Mob related
@@ -46,6 +48,8 @@
 	var/middragtime = 0 //MMB exploit detection
 	var/atom/middragatom //MMB exploit detection
 
+	/// datum wrapper for client view
+	var/datum/view_data/view_size
 
 	//Database related
 	var/player_age = -1	//Used to determine how old the account is - in days.
@@ -90,3 +94,4 @@
 	var/list/seen_messages
 
 	show_popup_menus = TRUE // right click menu no longer shows up
+	control_freak = CONTROL_FREAK_MACROS

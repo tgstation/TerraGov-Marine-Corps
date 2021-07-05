@@ -194,40 +194,54 @@
 	//product_ads = "Go save some lives!;The best stuff for your medbay.;Only the finest tools.;Natural chemicals!;This stuff saves lives.;Don't you want some?;Ping!"
 	req_access = list(ACCESS_MARINE_MEDBAY, ACCESS_MARINE_CHEMISTRY) //only doctors and researchers can access these
 	products = list(
-		/obj/item/healthanalyzer = 5,
-		/obj/item/clothing/glasses/hud/health = 2,
-		/obj/item/storage/belt/medical = 2,
-		/obj/item/defibrillator = 2,
-		/obj/item/reagent_containers/hypospray/autoinjector/quickclotplus = 5,
-		/obj/item/reagent_containers/hypospray/autoinjector/dexalinplus = 5,
-		/obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus = 5,
-		/obj/item/reagent_containers/hypospray/autoinjector/sleeptoxin =3,
-		/obj/item/reagent_containers/hypospray/autoinjector/inaprovaline = 5,
-		/obj/item/reagent_containers/hypospray/autoinjector/hypervene = 5,
-		/obj/item/reagent_containers/hypospray/advanced/tricordrazine = 2,
-		/obj/item/reagent_containers/syringe = 20,
-		/obj/item/reagent_containers/glass/bottle/dylovene = 4,
-		/obj/item/reagent_containers/glass/bottle/bicaridine = 4,
-		/obj/item/reagent_containers/glass/bottle/inaprovaline = 4,
-		/obj/item/reagent_containers/glass/bottle/sleeptoxin = 2,
-		/obj/item/reagent_containers/glass/bottle/spaceacillin = 4,
-		/obj/item/reagent_containers/glass/bottle/peridaxon = 2,
-		/obj/item/reagent_containers/glass/bottle/kelotane = 4,
-		/obj/item/reagent_containers/glass/bottle/dexalin = 4,
-		/obj/item/reagent_containers/glass/bottle/tramadol = 4,
-		/obj/item/reagent_containers/glass/bottle/oxycodone = 4,
-		/obj/item/reagent_containers/glass/bottle/polyhexanide = 2,
-		/obj/item/reagent_containers/glass/bottle/neurotoxin = 1,
-		/obj/item/reagent_containers/glass/bottle/xeno_growthtoxin = 1,
-		/obj/item/storage/pill_bottle/peridaxon = 2,
-		/obj/item/stack/medical/advanced/bruise_pack = 5,
-		/obj/item/stack/medical/advanced/ointment = 5,
-		/obj/item/stack/medical/ointment = 10,
-		/obj/item/stack/medical/bruise_pack = 10,
-		/obj/item/stack/medical/splint = 5,
+		"Hypospray" = list (
+			/obj/item/defibrillator = 2,
+			/obj/item/reagent_containers/hypospray/autoinjector/dexalinplus = 5,
+			/obj/item/reagent_containers/hypospray/autoinjector/sleeptoxin = 3,
+			/obj/item/reagent_containers/hypospray/autoinjector/inaprovaline = 5,
+			/obj/item/reagent_containers/hypospray/autoinjector/hypervene = 5,
+			/obj/item/reagent_containers/hypospray/advanced/tricordrazine = 2,
+		),
+		"Reagent Bottle" = list(
+			/obj/item/reagent_containers/glass/bottle/dylovene = 4,
+			/obj/item/reagent_containers/glass/bottle/bicaridine = 4,
+			/obj/item/reagent_containers/glass/bottle/inaprovaline = 4,
+			/obj/item/reagent_containers/glass/bottle/sleeptoxin = 2,
+			/obj/item/reagent_containers/glass/bottle/spaceacillin = 4,
+			/obj/item/reagent_containers/glass/bottle/peridaxon = 2,
+			/obj/item/reagent_containers/glass/bottle/kelotane = 4,
+			/obj/item/reagent_containers/glass/bottle/dexalin = 4,
+			/obj/item/reagent_containers/glass/bottle/tramadol = 4,
+			/obj/item/reagent_containers/glass/bottle/oxycodone = 4,
+			/obj/item/reagent_containers/glass/bottle/polyhexanide = 2,
+		),
+		"Pill Bottle" = list(
+			/obj/item/storage/pill_bottle/peridaxon = 2,
+			/obj/item/storage/pill_bottle/russian_red = 2,
+		),
+		"Heal Pack" = list(
+			/obj/item/stack/medical/advanced/bruise_pack = 5,
+			/obj/item/stack/medical/advanced/ointment = 5,
+			/obj/item/stack/medical/ointment = 10,
+			/obj/item/stack/medical/bruise_pack = 10,
+			/obj/item/stack/medical/splint = 5,
+		),
+		"Misc" = list(
+			/obj/item/healthanalyzer = 5,
+			/obj/item/clothing/glasses/hud/health = 2,
+			/obj/item/storage/belt/medical = 2,
+			/obj/item/reagent_containers/syringe = 20,
+		),
 	)
 
-	contraband = list(/obj/item/reagent_containers/glass/bottle/toxin = 1)
+	contraband = list(
+		/obj/item/reagent_containers/glass/bottle/toxin = 1,
+		/obj/item/reagent_containers/glass/bottle/neurotoxin = 1,
+		/obj/item/reagent_containers/glass/bottle/xeno_growthtoxin = 1,
+		/obj/item/reagent_containers/glass/bottle/neurotoxin/light = 1,
+		/obj/item/reagent_containers/glass/bottle/xeno_hemodile = 1,
+		/obj/item/reagent_containers/glass/bottle/xeno_transvitox = 1,
+	)
 
 	idle_power_usage = 211
 

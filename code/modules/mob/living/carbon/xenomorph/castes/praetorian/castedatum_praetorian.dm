@@ -11,9 +11,6 @@
 	// *** Melee Attacks *** //
 	melee_damage = 20
 
-	// *** Tackle *** //
-	tackle_damage = 25
-
 	// *** Speed *** //
 	speed = -0.2
 
@@ -72,9 +69,6 @@
 	caste_desc = "A giant ranged monster. It looks a little more dangerous."
 	upgrade = XENO_UPGRADE_ONE
 
-	// *** Tackle *** //
-	tackle_damage = 25
-
 	// *** Speed *** //
 	speed = -0.3
 
@@ -108,9 +102,6 @@
 
 	// *** Melee Attacks *** //
 	melee_damage = 23
-
-	// *** Tackle *** //
-	tackle_damage = 28
 
 	// *** Speed *** //
 	speed = -0.4
@@ -146,9 +137,6 @@
 
 	// *** Melee Attacks *** //
 	melee_damage = 23
-
-	// *** Tackle *** //
-	tackle_damage = 28
 
 	// *** Speed *** //
 	speed = -0.5

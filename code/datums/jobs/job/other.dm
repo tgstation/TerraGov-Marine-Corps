@@ -52,8 +52,8 @@
 //Spatial Agent
 /datum/job/spatial_agent
 	title = "Spatial Agent"
-	access = ALL_MARINE_ACCESS
-	minimal_access = ALL_MARINE_ACCESS
+	access = ALL_ACCESS
+	minimal_access = ALL_ACCESS
 	skills_type = /datum/skills/spatial_agent
 	outfit = /datum/outfit/job/other/spatial_agent
 
@@ -85,3 +85,10 @@
 	w_uniform = /obj/item/clothing/under/liaison_suit/galaxy_blue
 	belt = null
 	back = null
+
+/datum/job/spatial_agent/xeno_suit
+	outfit = /datum/outfit/job/other/spatial_agent/xeno_suit
+
+/datum/outfit/job/other/spatial_agent/xeno_suit
+	head = /obj/item/clothing/head/xenos
+	wear_suit = /obj/item/clothing/suit/xenos

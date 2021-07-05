@@ -15,10 +15,11 @@
 	icon = 'icons/Marine/marine-hmg.dmi'
 	icon_state = "mag"
 	flags_magazine = NONE //can't be refilled or emptied by hand
-	caliber = "10x30mm"
+	caliber = CALIBER_10X30
 	max_rounds = 300
 	default_ammo = /datum/ammo/bullet/smartgun
 	gun_type = null
+	icon_state_mini = "mag_gpmg"
 
 
 // Now we need a box for this.
@@ -179,17 +180,16 @@
 	var/icon_full = "turret" // Put this system in for other MGs or just other mounted weapons in general, future proofing.
 	var/icon_empty = "turret_e" //Empty
 	var/view_tile_offset = 3	//this is amount of tiles we shift our vision towards MG direction
-	var/view_tiles = WORLD_VIEW
+	///Number passed to set_view_radius_to when you interact with the hmg, set to 0 if you dont want zoom
+	var/view_tiles = 0
 
 /obj/machinery/standard_hmg/Initialize()
 	. = ..()
 	ammo = GLOB.ammo_list[ammo] //dunno how this works but just sliding this in from sentry-code.
-	update_icon()
 	prepare_huds() //Set up HUDS
+	update_icon()
 	for(var/datum/atom_hud/squad/sentry_status_hud in GLOB.huds) //Add to the squad HUD
 		sentry_status_hud.add_to_hud(src)
-	hud_set_machine_health()
-	hud_set_hsg_ammo()
 
 /obj/machinery/standard_hmg/Destroy() //Make sure we pick up our trash.
 	operator?.unset_interaction()
@@ -211,6 +211,8 @@
 		icon_state = "[icon_empty]"
 	else
 		icon_state = "[icon_full]"
+	hud_set_machine_health()
+	hud_set_hsg_ammo()
 
 
 /obj/machinery/standard_hmg/attackby(obj/item/I, mob/user, params) //This will be how we take it apart.
@@ -247,7 +249,6 @@
 			D.current_rounds = rounds - (rounds_max - M.current_rounds)
 		rounds = min(rounds + M.current_rounds, rounds_max)
 		update_icon()
-		hud_set_hsg_ammo()
 		qdel(I)
 
 /obj/machinery/standard_hmg/welder_act(mob/living/user, obj/item/I)
@@ -289,7 +290,6 @@
 	user.visible_message("<span class='notice'>[user] repairs some damage on [src].</span>",
 	"<span class='notice'>You repair [src].</span>")
 	repair_damage(120)
-	hud_set_machine_health()
 	update_icon()
 	playsound(loc, 'sound/items/welder2.ogg', 25, TRUE)
 	return TRUE
@@ -328,7 +328,7 @@
 /obj/machinery/standard_hmg/take_damage(damage_amount, damage_type, damage_flag, effects, attack_dir, armour_penetration)
 	. = ..()
 	hud_set_machine_health()
-	
+
 
 /obj/machinery/standard_hmg/proc/load_into_chamber()
 	if(in_chamber)
@@ -539,7 +539,8 @@
 
 
 /obj/machinery/standard_hmg/on_set_interaction(mob/user)
-	user.client.change_view(view_tiles)
+	if(view_tiles)
+		user.client.view_size.set_view_radius_to(view_tiles)
 	switch(dir)
 		if(NORTH)
 			user.client.pixel_x = 0
@@ -559,7 +560,7 @@
 
 /obj/machinery/standard_hmg/on_unset_interaction(mob/user)
 	if(user.client)
-		user.client.change_view(WORLD_VIEW)
+		user.client.view_size.reset_to_default()
 		user.client.pixel_x = 0
 		user.client.pixel_y = 0
 		user.client.click_intercept = null

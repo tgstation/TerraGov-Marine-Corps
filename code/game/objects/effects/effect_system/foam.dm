@@ -44,7 +44,7 @@
 
 			var/turf/open/T = mystery_turf
 			if(T.allow_construction) //No loopholes.
-				new /obj/structure/razorwire/foam(loc)
+				new /obj/structure/razorwire(loc)
 
 		else if(metal == METAL_FOAM)
 			new /obj/structure/foamedmetal(loc)

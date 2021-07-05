@@ -6,15 +6,12 @@
 	job_type = /datum/job/xenomorph/queen
 	caste_type_path = /mob/living/carbon/xenomorph/shrike
 
-	tier = XENO_TIER_THREE
+	tier = XENO_TIER_FOUR
 	upgrade = XENO_UPGRADE_BASETYPE
 	wound_type = "shrike" //used to match appropriate wound overlays
 
 	// *** Melee Attacks *** //
 	melee_damage = 20
-
-	// *** Tackle *** //
-	tackle_damage = 25
 
 	// *** Speed *** //
 	speed = -0.3
@@ -83,9 +80,6 @@
 
 	upgrade = XENO_UPGRADE_ONE
 
-	// *** Tackle *** //
-	tackle_damage = 25
-
 	// *** Speed *** //
 	speed = -0.4
 
@@ -114,9 +108,6 @@
 	// *** Melee Attacks *** //
 	melee_damage = 23
 
-	// *** Tackle *** //
-	tackle_damage = 28
-
 	// *** Speed *** //
 	speed = -0.5
 
@@ -144,9 +135,6 @@
 
 	// *** Melee Attacks *** //
 	melee_damage = 23
-
-	// *** Tackle *** //
-	tackle_damage = 28
 
 	// *** Speed *** //
 	speed = -0.6

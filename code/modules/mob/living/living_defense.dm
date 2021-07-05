@@ -75,7 +75,7 @@
 		var/armor = run_armor_check(null, "melee")
 
 		if(armor < 1)
-			apply_damage(throw_damage, dtype, null, armor, is_sharp(O), has_edge(O))
+			apply_damage(throw_damage, dtype, null, armor, is_sharp(O), has_edge(O), TRUE)
 
 		if(O.item_fire_stacks)
 			fire_stacks += O.item_fire_stacks
@@ -146,8 +146,10 @@
 			emote("scream")
 
 /mob/living/carbon/xenomorph/IgniteMob()
+	if(fire_resist_modifier <= -1)	//having high fire resist makes you immune
+		return
 	. = ..()
-	if(!. || fire_resist_modifier <= -1)	//having high fire resist makes you immune
+	if(!.)
 		return
 	var/fire_light = min(fire_stacks,5)
 	if(fire_light > fire_luminosity) // light up xenos if new light source thats bigger hits them

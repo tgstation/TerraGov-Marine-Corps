@@ -154,7 +154,7 @@
 	new /obj/item/reagent_containers/hypospray/autoinjector/combat (src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/combat (src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/oxycodone (src)
-	new /obj/item/reagent_containers/hypospray/autoinjector/synaptizine_expired (src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/russian_red (src)
 
 
 /obj/item/storage/pouch/firstaid/som
@@ -192,6 +192,7 @@
 	can_hold = list(
 		/obj/item/weapon/gun/pistol,
 		/obj/item/weapon/gun/revolver,
+		/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_pistol,
 	)
 	draw_mode = 1
 
@@ -311,7 +312,15 @@
 	fill_type = /obj/item/ammo_magazine/rifle/ap
 	fill_number = 3
 
-
+/obj/item/storage/pouch/magazine/drum
+	name = "drum magazine pouch"
+	desc = "It can contain one drum magazine."
+	icon_state = "large_ammo_drum"
+	storage_slots = 1
+	can_hold = list(
+		/obj/item/ammo_magazine/standard_smartmachinegun,
+		/obj/item/ammo_magazine/minigun,
+	)
 
 
 /obj/item/storage/pouch/explosive
@@ -400,43 +409,43 @@
 	name = "auto-injector pouch"
 	desc = "A pouch specifically for auto-injectors."
 	icon_state = "autoinjector"
-	storage_slots = 7
+	storage_slots = 8
 	max_storage_space = 14
 	can_hold = list(
 		/obj/item/reagent_containers/hypospray/autoinjector,
 	)
 
-/obj/item/storage/pouch/autoinjector/full/Initialize()
+/obj/item/storage/pouch/autoinjector/full/Initialize() //synth autoinjector pouch gets a bunch of specialized chems, considering it's trivial for them to get general healing meds.
 	. = ..()
-	new /obj/item/reagent_containers/hypospray/autoinjector/combat(src)
-	new /obj/item/reagent_containers/hypospray/autoinjector/combat(src)
-	new /obj/item/reagent_containers/hypospray/autoinjector/combat(src)
-	new /obj/item/reagent_containers/hypospray/autoinjector/quickclot (src)
-	new /obj/item/reagent_containers/hypospray/autoinjector/dexalinplus (src)
-	new /obj/item/reagent_containers/hypospray/autoinjector/hypervene(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/isotonic(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/dexalinplus(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/synaptizine(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/quickclotplus(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/polyhexanide(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/sleeptoxin(src)
 
 /obj/item/storage/pouch/autoinjector/advanced
 	name = "auto-injector pouch"
 	desc = "A pouch specifically for auto-injectors. This one comes pre-loaded with goodies!"
 	icon_state = "autoinjector"
-	storage_slots = 7
+	storage_slots = 8
 	max_storage_space = 14
 	can_hold = list(
 		/obj/item/reagent_containers/hypospray/autoinjector,
 	)
 
-/obj/item/storage/pouch/autoinjector/advanced/full/Initialize()
+/obj/item/storage/pouch/autoinjector/advanced/full/Initialize() //corpsman autoinjector pouch gets upgraded, but more general chems.
 	. = ..()
 	new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced(src)
-	new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced (src)
-	new /obj/item/reagent_containers/hypospray/autoinjector/synaptizine (src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/isotonic(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/dexalinplus(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/synaptizine(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/quickclotplus(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus(src)
-
-
 
 /obj/item/storage/pouch/syringe
 	name = "syringe pouch"
@@ -450,7 +459,7 @@
 	name = "hypospray pouch"
 	desc = "It can contain hyposprays and autoinjectors."
 	icon_state = "syringe"
-	storage_slots = 3 //2 less than injectors yet more flexible options
+	storage_slots = 3
 	can_hold = list(/obj/item/reagent_containers/hypospray)
 
 
@@ -458,17 +467,15 @@
 	name = "Corps hypospray pouch"
 	desc = "It can contain hyposprays and autoinjectors, this one has a Terragov corpsman logo on its back."
 	icon_state = "syringe"
-	storage_slots = 4 //1 extra for corps
+	storage_slots = 4
 	can_hold = list(/obj/item/reagent_containers/hypospray)
 
-/obj/item/storage/pouch/hypospray/corps/full/Initialize()   //literally the same stuff as the other pouch but instead of 4 combat AUTO injectors get 1 hypo of the mix
+/obj/item/storage/pouch/hypospray/corps/full/Initialize()
 	. = ..()
 	new /obj/item/reagent_containers/hypospray/advanced/combat_advanced(src)
-	new /obj/item/reagent_containers/hypospray/autoinjector/synaptizine (src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/synaptizine(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/quickclotplus(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus(src)
-
-// It really fits here more, but essentially a medkit in your pouch
 
 /obj/item/storage/pouch/medkit
 	name = "medkit pouch"
@@ -590,7 +597,7 @@
 		/obj/item/flashlight,
 		/obj/item/whistle,
 		/obj/item/binoculars,
-		/obj/item/squad_beacon,
+		/obj/item/beacon/supply_beacon,
 	)
 
 /obj/item/storage/pouch/field_pouch/full/Initialize()

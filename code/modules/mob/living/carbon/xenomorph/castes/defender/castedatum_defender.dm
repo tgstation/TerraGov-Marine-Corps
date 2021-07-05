@@ -13,9 +13,6 @@
 	// *** Melee Attacks *** //
 	melee_damage = 17
 
-	// *** Tackle *** //
-	tackle_damage = 21
-
 	// *** Speed *** //
 	speed = -0.3
 
@@ -54,7 +51,7 @@
 		/datum/action/xeno_action/toggle_crest_defense,
 		/datum/action/xeno_action/fortify,
 		/datum/action/xeno_action/activable/forward_charge,
-		/datum/action/xeno_action/activable/tail_sweep,
+		/datum/action/xeno_action/tail_sweep,
 		/datum/action/xeno_action/activable/regenerate_skin,
 	)
 
@@ -67,9 +64,6 @@
 	upgrade_name = "Mature"
 	caste_desc = "An alien with an armored crest. It looks pretty durable."
 	upgrade = XENO_UPGRADE_ONE
-
-	// *** Tackle *** //
-	tackle_damage = 21
 
 	// *** Speed *** //
 	speed = -0.4
@@ -100,9 +94,6 @@
 	// *** Melee Attacks *** //
 	melee_damage = 21
 
-	// *** Tackle *** //
-	tackle_damage = 26
-
 	// *** Speed *** //
 	speed = -0.5
 
@@ -132,9 +123,6 @@
 
 	// *** Melee Attacks *** //
 	melee_damage = 21
-
-	// *** Tackle *** //
-	tackle_damage = 26
 
 	// *** Speed *** //
 	speed = -0.6

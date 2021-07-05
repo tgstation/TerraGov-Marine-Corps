@@ -4,6 +4,7 @@
 
 #define CONFIG_GROUND_MAPS_FILE "maps.txt"
 #define CONFIG_SHIP_MAPS_FILE "shipmaps.txt"
+#define CONFIG_MODES_FILE "modes.txt"
 
 //flags
 #define CONFIG_ENTRY_LOCKED (1<<0)	//can't edit

@@ -7,6 +7,14 @@
 	///The brightness of the floodlight
 	var/brightness_on = 7
 
+/obj/machinery/floodlight/Initialize()
+	. = ..()
+	GLOB.nightfall_toggleable_lights += src
+
+/obj/machinery/floodlight/Destroy()
+	. = ..()
+	GLOB.nightfall_toggleable_lights -= src
+
 /obj/machinery/floodlight/attack_hand(mob/living/user)
 	return
 
@@ -343,7 +351,7 @@
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 5
 	active_power_usage = 0
-	resistance_flags = UNACIDABLE|XENO_DAMAGEABLE
+	resistance_flags = RESIST_ALL
 	var/turned_on = FALSE //has to be toggled in engineering
 
 /obj/machinery/colony_floodlight_switch/update_icon()

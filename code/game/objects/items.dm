@@ -13,6 +13,8 @@
 	var/item_state = null //if you don't want to use icon_state for onmob inhand/belt/back/ear/suitstorage/glove sprite.
 						//e.g. most headsets have different icon_state but they all use the same sprite when shown on the mob's ears.
 						//also useful for items with many icon_state values when you don't want to make an inhand sprite for each value.
+	///The icon state used to represent this image in "icons/obj/items/items_mini.dmi" Used in /obj/item/storage/box/visual to display tiny items in the box
+	var/icon_state_mini = "item"
 	var/force = 0
 	var/damtype = BRUTE
 	///Byond tick delay between left click attacks
@@ -181,9 +183,10 @@
 		to_chat(user, "[src] is anchored to the ground.")
 		return
 
+	var/remove_successful = TRUE
 	if(istype(loc, /obj/item/storage))
 		var/obj/item/storage/S = loc
-		S.remove_from_storage(src, user.loc)
+		remove_successful = S.remove_from_storage(src, user.loc, user)
 
 	set_throwing(FALSE)
 
@@ -194,7 +197,7 @@
 		return
 
 	pickup(user)
-	if(!user.put_in_active_hand(src))
+	if(!user.put_in_active_hand(src) || !remove_successful)
 		user.dropItemToGround(src)
 		dropped(user)
 
@@ -306,7 +309,7 @@
 
 	var/equipped_to_slot = flags_equip_slot & slotdefine2slotbit(slot)
 	if(equipped_to_slot) // flags_equip_slot is a bitfield
-		SEND_SIGNAL(src, COMSIG_ITEM_EQUIPPED_TO_SLOT, user)
+		SEND_SIGNAL(src, COMSIG_ITEM_EQUIPPED_TO_SLOT, user, slot)
 	else
 		SEND_SIGNAL(src, COMSIG_ITEM_EQUIPPED_NOT_IN_SLOT, user, slot)
 
@@ -667,10 +670,6 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 		return
 	var/zoom_device = zoomdevicename ? "\improper [zoomdevicename] of [src]" : "\improper [src]"
 
-	for(var/obj/item/I in user.contents)
-		if(I.zoom && I != src)
-			to_chat(user, "<span class='warning'>You are already looking through \the [zoom_device].</span>")
-			return //Return in the interest of not unzooming the other item. Check first in the interest of not fucking with the other clauses
 
 	if(is_blind(user))
 		to_chat(user, "<span class='warning'>You are too blind to see anything.</span>")
@@ -688,6 +687,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 		user.visible_message("<span class='notice'>[user] looks up from [zoom_device].</span>",
 		"<span class='notice'>You look up from [zoom_device].</span>")
 		zoom = FALSE
+		UnregisterSignal(user, COMSIG_ITEM_ZOOM)
 		onunzoom(user)
 		TIMER_COOLDOWN_START(user, COOLDOWN_ZOOM, 2 SECONDS)
 
@@ -696,7 +696,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 
 		if(user.client)
 			user.client.click_intercept = null
-			user.client.change_view(WORLD_VIEW)
+			user.client.view_size.reset_to_default()
 			user.client.pixel_x = 0
 			user.client.pixel_y = 0
 		return
@@ -705,8 +705,12 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 		return
 	TIMER_COOLDOWN_START(user, COOLDOWN_ZOOM, 2 SECONDS)
 
+	if(SEND_SIGNAL(user, COMSIG_ITEM_ZOOM) &  COMSIG_ITEM_ALREADY_ZOOMED)
+		to_chat(user, "<span class='warning'>You are already looking through another zoom device..</span>")
+		return
+
 	if(user.client)
-		user.client.change_view(VIEW_NUM_TO_STRING(viewsize))
+		user.client.view_size.set_view_radius_to(viewsize/2-2)//sets the viewsize to reflect radius changes properly
 
 		var/tilesize = 32
 		var/viewoffset = tilesize * tileoffset
@@ -728,21 +732,25 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 	user.visible_message("<span class='notice'>[user] peers through \the [zoom_device].</span>",
 	"<span class='notice'>You peer through \the [zoom_device].</span>")
 	zoom = TRUE
+	RegisterSignal(user, COMSIG_ITEM_ZOOM, .proc/zoom_check_return)
 	onzoom(user)
-	if(user.interactee)
-		user.unset_interaction()
-	else if(!istype(src, /obj/item/attachable/scope))
-		user.set_interaction(src)
 
+///returns a bitflag when another item tries to zoom same user.
+/obj/item/proc/zoom_check_return(datum/source)
+	SIGNAL_HANDLER
+	return COMSIG_ITEM_ALREADY_ZOOMED
 
+///Wrapper for signal turning scope off.
 /obj/item/proc/zoom_item_turnoff(datum/source, mob/living/carbon/user)
 	SIGNAL_HANDLER
 	zoom(user)
 
+///called when zoom is activated.
 /obj/item/proc/onzoom(mob/living/user)
 	RegisterSignal(user, list(COMSIG_MOVABLE_MOVED, COMSIG_CARBON_SWAPPED_HANDS), .proc/zoom)
 	RegisterSignal(src, list(COMSIG_ITEM_EQUIPPED, COMSIG_ITEM_DROPPED), .proc/zoom_item_turnoff)
 
+///called when zoom is deactivated.
 /obj/item/proc/onunzoom(mob/living/user)
 	UnregisterSignal(user, list(COMSIG_MOVABLE_MOVED, COMSIG_CARBON_SWAPPED_HANDS))
 	UnregisterSignal(src, list(COMSIG_ITEM_EQUIPPED, COMSIG_ITEM_DROPPED))

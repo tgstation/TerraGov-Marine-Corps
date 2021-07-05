@@ -81,6 +81,9 @@
 /obj/effect/attach_point/weapon/dropship2
 	ship_tag = "normandy"
 
+/obj/effect/attach_point/weapon/dropship3
+	ship_tag = "triumph"
+
 /obj/effect/attach_point/weapon/cas
 	ship_tag = "casplane"
 	icon = 'icons/Marine/casship.dmi'
@@ -89,6 +92,12 @@
 /obj/effect/attach_point/weapon/minidropship
 	ship_tag = "minidropship"
 	icon_state = "equip_base"
+
+/obj/effect/attach_point/weapon/minidropship/pointing_east
+	dir = 4
+
+/obj/effect/attach_point/weapon/minidropship/pointing_west
+	dir = 8
 
 /obj/effect/attach_point/crew_weapon
 	name = "rear attach point"
@@ -103,6 +112,12 @@
 /obj/effect/attach_point/crew_weapon/minidropship
 	ship_tag = "minidropship"
 
+/obj/effect/attach_point/crew_weapon/dropship1
+	ship_tag = "alamo"
+
+/obj/effect/attach_point/crew_weapon/dropship3
+	ship_tag = "alamo"
+
 /obj/effect/attach_point/electronics
 	name = "electronic system attach point"
 	base_category = DROPSHIP_ELECTRONICS
@@ -113,6 +128,9 @@
 
 /obj/effect/attach_point/electronics/dropship2
 	ship_tag = "normandy"
+
+/obj/effect/attach_point/electronics/dropship3
+	ship_tag = "triumph"
 
 
 /obj/effect/attach_point/fuel
@@ -126,6 +144,9 @@
 
 /obj/effect/attach_point/fuel/dropship2
 	ship_tag = "normandy"
+
+/obj/effect/attach_point/fuel/dropship3
+	ship_tag = "triumph"
 
 
 /obj/effect/attach_point/computer
@@ -192,7 +213,7 @@
 		return
 	var/obj/item/powerloader_clamp/clamp = I
 	if(clamp.loaded)
-		if(((!dropship_equipment_flags & IS_NOT_REMOVABLE) && !ship_base) || !(dropship_equipment_flags & USES_AMMO) || ammo_equipped || !istype(clamp.loaded, /obj/structure/ship_ammo))
+		if((!(dropship_equipment_flags & IS_NOT_REMOVABLE) && !ship_base) || !(dropship_equipment_flags & USES_AMMO) || ammo_equipped || !istype(clamp.loaded, /obj/structure/ship_ammo))
 			return FALSE
 		var/obj/structure/ship_ammo/clamp_ammo = clamp.loaded
 		if(istype(type, clamp_ammo.equipment_type) || clamp_ammo.ammo_type != ammo_type_used) //Incompatible ammo
@@ -252,7 +273,7 @@
 			if(linked_shuttle)
 				linked_shuttle.equipments -= src
 				linked_shuttle = null
-				if(linked_console && linked_console.selected_equipment == src)
+				if(linked_console?.selected_equipment == src)
 					linked_console.selected_equipment = null
 		update_equipment()
 		return TRUE //removed or uninstalled equipment
@@ -693,6 +714,7 @@
 
 /obj/structure/dropship_equipment/weapon/heavygun/radial_cas
 	name = "Condor Jet Radial minigun"
+	point_cost = 0
 	dropship_equipment_flags = USES_AMMO|IS_WEAPON|IS_INTERACTABLE|IS_NOT_REMOVABLE
 
 /obj/structure/dropship_equipment/weapon/heavygun/radial_cas/Initialize()

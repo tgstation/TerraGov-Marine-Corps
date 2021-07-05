@@ -77,6 +77,25 @@
 	log_admin("[key_name(M)] has turned stealth mode [M.client.holder.fakekey ? "on - [M.client.holder.fakekey]" : "off"].")
 	message_admins("[ADMIN_TPMONTY(M)] has turned stealth mode [M.client.holder.fakekey ? "on - [M.client.holder.fakekey]" : "off"].")
 
+/// Will apply on every xeno a multiplicative buff on health, regen and damage.
+/datum/admins/proc/set_xeno_stat_buffs()
+	set category = "Debug"
+	set name = "Set Xeno Buffs"
+	set desc = "Allows you to change stats on all xeno. It is a multiplicator buff, so input 1 to put back everything to normal"
+
+	if(!check_rights(R_DEBUG))
+		return
+
+	var/multiplicator_buff_wanted = input("Input the factor that will multiply xeno stat", "1 is normal stat, 2 is doubling health, regen and melee attack") as num
+	if(!multiplicator_buff_wanted)
+		return
+	GLOB.xeno_stat_multiplicator_buff = multiplicator_buff_wanted
+	SSmonitor.apply_balance_changes()
+
+	var/logging = "[usr.ckey] has multiplied all health, melee damage and regen of xeno by [multiplicator_buff_wanted * 100]%"
+	log_admin(logging)
+	message_admins(logging)
+
 
 /datum/admins/proc/give_mob(mob/living/given_living in GLOB.mob_living_list)
 	set category = null
@@ -537,6 +556,11 @@
 	if(!check_rights(R_ADMIN|R_MENTOR))
 		return
 
+	msg = copytext_char(sanitize(msg), 1, MAX_MESSAGE_LEN)
+
+	if(!msg)
+		return
+
 	if(is_mentor(src) && mob.stat != DEAD)
 		to_chat(src, "<span class='warning'>You must be an observer to use dsay.</span>")
 		return
@@ -546,11 +570,6 @@
 		return
 
 	if(handle_spam_prevention(msg, MUTE_DEADCHAT))
-		return
-
-	msg = copytext_char(sanitize(msg), 1, MAX_MESSAGE_LEN)
-
-	if(!msg)
 		return
 
 	log_dsay("[key_name(src)]: [msg]")

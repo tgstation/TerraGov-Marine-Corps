@@ -14,10 +14,6 @@
 	///minimap obj ref that we will display to users
 	var/obj/screen/minimap/map
 
-/obj/machinery/cic_maptable/Initialize()
-	. = ..()
-	map = SSminimaps.fetch_minimap_object(targetted_zlevel, allowed_flags)
-
 /obj/machinery/cic_maptable/Destroy()
 	map = null
 	return ..()
@@ -28,6 +24,8 @@
 		return
 	if(!user.client)
 		return
+	if (!map)
+		map = SSminimaps.fetch_minimap_object(targetted_zlevel, allowed_flags)
 	user.client.screen += map
 
 /obj/machinery/cic_maptable/on_unset_interaction(mob/user)

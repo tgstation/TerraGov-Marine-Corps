@@ -150,14 +150,15 @@ obj/machinery/airlock_sensor
 	var/alert = 0
 	var/previousPressure
 
-obj/machinery/airlock_sensor/update_icon()
+obj/machinery/airlock_sensor/update_icon_state()
 	if(on)
-		if(alert)
-			icon_state = "airlock_sensor_alert"
-		else
-			icon_state = "airlock_sensor_standby"
-	else
 		icon_state = "airlock_sensor_off"
+		return
+	if(alert)
+		icon_state = "airlock_sensor_alert"
+	else
+		icon_state = "airlock_sensor_standby"
+
 
 obj/machinery/airlock_sensor/attack_hand(mob/living/user)
 	. = ..()
@@ -227,7 +228,7 @@ obj/machinery/access_button
 	var/on = 1
 
 
-obj/machinery/access_button/update_icon()
+obj/machinery/access_button/update_icon_state()
 	if(on)
 		icon_state = "access_button_standby"
 	else

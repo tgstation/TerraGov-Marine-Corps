@@ -38,10 +38,9 @@
 
 	RegisterSignal(src, COMSIG_ATOM_ACIDSPRAY_ACT, .proc/acid_spray_entered)
 	RegisterSignal(src, list(COMSIG_KB_QUICKEQUIP, COMSIG_CLICK_QUICKEQUIP), .proc/do_quick_equip)
-	RegisterSignal(src, COMSIG_KB_HOLSTER, .proc/do_holster)
 	RegisterSignal(src, COMSIG_KB_UNIQUEACTION, .proc/do_unique_action)
-	RegisterSignal(src, COMSIG_KB_RAILATTACHMENT, .proc/do_activate_rail_attachment)
 	RegisterSignal(src, COMSIG_GRAB_SELF_ATTACK, .proc/fireman_carry_grabbed) // Fireman carry
+	RegisterSignal(src, COMSIG_KB_GIVE, .proc/give_signal_handler)
 	AddComponent(/datum/component/footstep, FOOTSTEP_MOB_HUMAN)
 	AddComponent(/datum/component/bump_attack, FALSE, FALSE)
 
@@ -78,6 +77,7 @@
 	remove_from_all_mob_huds()
 	GLOB.human_mob_list -= src
 	GLOB.alive_human_list -= src
+	LAZYREMOVE(GLOB.alive_human_list_faction[faction], src)
 	LAZYREMOVE(GLOB.humans_by_zlevel["[z]"], src)
 	GLOB.dead_human_list -= src
 	return ..()
@@ -495,7 +495,7 @@
 									if("Fire Team 2") ID.assigned_fireteam = 2
 									if("Fire Team 3") ID.assigned_fireteam = 3
 									else return
-								hud_set_job()
+								hud_set_job(faction)
 
 
 	if (href_list["criminal"])
@@ -1004,9 +1004,9 @@
 				light_off++
 	if(guns)
 		for(var/obj/item/weapon/gun/lit_gun in contents)
-			if(!isattachmentflashlight(lit_gun.rail))
+			var/obj/item/attachable/flashlight/lit_rail_flashlight = LAZYACCESS(lit_gun.attachments, ATTACHMENT_SLOT_RAIL)
+			if(!isattachmentflashlight(lit_rail_flashlight))
 				continue
-			var/obj/item/attachable/flashlight/lit_rail_flashlight = lit_gun.rail
 			lit_rail_flashlight.turn_light(src, FALSE, 0, FALSE, forced)
 			light_off++
 	if(flares)

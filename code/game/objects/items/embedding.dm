@@ -32,7 +32,7 @@
 	var/yankable_embedded = FALSE
 	for(var/i in embedded_objects)
 		var/obj/item/embedded_obj = i
-		if(!(embedded_obj.embedding.embedded_flags & EMBEDDEED_CAN_BE_YANKED_OUT))
+		if(!(embedded_obj.embedding.embedded_flags & EMBEDDED_CAN_BE_YANKED_OUT))
 			continue
 		yankable_embedded = TRUE
 		break
@@ -47,7 +47,7 @@
 	var/yankable_embedded = FALSE
 	for(var/i in embedded_objects)
 		var/obj/item/embedded_obj = i
-		if(!(embedded_obj.embedding.embedded_flags & EMBEDDEED_CAN_BE_YANKED_OUT))
+		if(!(embedded_obj.embedding.embedded_flags & EMBEDDED_CAN_BE_YANKED_OUT))
 			continue
 		yankable_embedded = TRUE
 		break
@@ -87,7 +87,7 @@
 	if(!silent)
 		owner.visible_message("<span class='danger'>\The [embedding] sticks in the wound!</span>")
 	implants += embedding
-	if(embedding.embedding.embedded_flags & EMBEDDEED_CAN_BE_YANKED_OUT)
+	if(embedding.embedding.embedded_flags & EMBEDDED_CAN_BE_YANKED_OUT)
 		owner.verbs += /mob/living/proc/yank_out_object
 	embedding.add_mob_blood(owner)
 	embedding.forceMove(owner)
@@ -176,7 +176,7 @@
 	var/list/valid_objects = list()
 	for(var/i in embedded_objects)
 		var/obj/item/embedded_item = i
-		if(!(embedded_item.embedding.embedded_flags & EMBEDDEED_CAN_BE_YANKED_OUT))
+		if(!(embedded_item.embedding.embedded_flags & EMBEDDED_CAN_BE_YANKED_OUT))
 			continue
 		valid_objects += embedded_item
 

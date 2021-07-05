@@ -864,6 +864,10 @@
 	},
 /turf/open/floor/mainship/red/full,
 /area/shuttle/canterbury)
+"Fl" = (
+/obj/machinery/loadout_vendor,
+/turf/open/floor/mainship/mono,
+/area/shuttle/canterbury)
 "FQ" = (
 /obj/structure/bed/chair/dropship/passenger{
 	dir = 1
@@ -1513,8 +1517,8 @@ Wk
 an
 ac
 FQ
-bG
-bG
+Fl
+Fl
 bG
 an
 ac

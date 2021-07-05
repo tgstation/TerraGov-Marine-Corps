@@ -63,9 +63,6 @@
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_NUKE_START, src)
 	notify_ghosts("[usr] enabled the [src], it has [timeleft] seconds on the timer.", source = src, action = NOTIFY_ORBIT, extra_large = TRUE)
 
-	// Set the nuke as the hive leader so its tracked
-	SSdirection.clear_leader(XENO_HIVE_NORMAL)
-	SSdirection.set_leader(XENO_HIVE_NORMAL, src)
 
 
 /obj/machinery/nuclearbomb/stop_processing()
@@ -73,12 +70,6 @@
 	countdown.stop()
 	GLOB.active_nuke_list -= src
 	timeleft = initial(timeleft)
-
-	// Reset the hive leader
-	SSdirection.clear_leader()
-	var/datum/hive_status/HS = GLOB.hive_datums[XENO_HIVE_NORMAL]
-	SSdirection.set_leader(XENO_HIVE_NORMAL, HS.living_xeno_ruler)
-
 	return ..()
 
 

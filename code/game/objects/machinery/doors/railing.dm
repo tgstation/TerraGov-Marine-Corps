@@ -39,7 +39,7 @@
 	. = ..()
 	if(!density)
 		return 1
-	
+
 	if(get_dir(loc, target) == dir)
 		return 0
 	else

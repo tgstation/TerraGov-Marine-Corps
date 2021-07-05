@@ -4,7 +4,6 @@
 	return
 
 /mob/living/carbon/xenomorph/attack_animal(mob/living/M as mob)
-
 	if(isanimal(M))
 		var/mob/living/simple_animal/S = M
 		if(!S.melee_damage)

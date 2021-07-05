@@ -438,7 +438,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 	set name = "View Runtimes"
 	set desc = "Open the runtime Viewer"
 
-	if(!check_rights(R_DEBUG))
+	if(!check_rights(R_RUNTIME|R_DEBUG))
 		return
 
 	GLOB.error_cache.show_to(usr.client)
