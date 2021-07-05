@@ -329,6 +329,8 @@
 	view_size.update_zoom_mode()
 	fit_viewport()
 
+	set_fullscreen(prefs.fullscreen_mode)
+
 	winset(src, null, "mainwindow.title='[CONFIG_GET(string/title)]'")
 
 	Master.UpdateTickRate()
