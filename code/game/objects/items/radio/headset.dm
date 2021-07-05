@@ -180,12 +180,13 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 		wearer = user
 		squadhud = GLOB.huds[hud_type]
 		enable_squadhud()
+		RegisterSignal(user, COMSIG_MOB_REVIVE, .proc/update_minimap_icon)
+		RegisterSignal(user, COMSIG_MOB_DEATH, .proc/set_dead_on_minimap)
+		RegisterSignal(user, COMSIG_HUMAN_SET_UNDEFIBBABLE, .proc/set_undefibbable_on_minimap)
 	if(camera)
 		camera.c_tag = user.name
 		if(user.assigned_squad)
 			camera.network |= lowertext(user.assigned_squad.name)
-	RegisterSignal(user, list(COMSIG_HUMAN_SET_UNDEFIBBABLE, COMSIG_MOB_REVIVE), .proc/update_minimap_icon)
-	RegisterSignal(user, COMSIG_MOB_DEATH, .proc/set_dead_on_minimap)
 	return ..()
 
 
@@ -272,6 +273,15 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 		return
 	var/marker_flags = hud_type == DATA_HUD_SQUAD_TERRAGOV ? MINIMAP_FLAG_ALL_MARINES : MINIMAP_FLAG_ALL_MARINES_REBEL
 	SSminimaps.add_marker(wearer, wearer.z, marker_flags, "defibbable")
+
+///Change the minimap icon to a undefibbable icon
+/obj/item/radio/headset/mainship/proc/set_undefibbable_on_minimap()
+	SIGNAL_HANDLER
+	SSminimaps.remove_marker(wearer)
+	if(!wearer.job || !wearer.job.minimap_icon)
+		return
+	var/marker_flags = hud_type == DATA_HUD_SQUAD_TERRAGOV ? MINIMAP_FLAG_ALL_MARINES : MINIMAP_FLAG_ALL_MARINES_REBEL
+	SSminimaps.add_marker(wearer, wearer.z, marker_flags, "undefibbable")
 
 ///Remove all action of type minimap from the wearer, and make him disappear from the minimap
 /obj/item/radio/headset/mainship/proc/remove_minimap()
@@ -403,7 +413,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	icon_state = "cargo_headset"
 	keyslot = /obj/item/encryptionkey/req
 
-/obj/item/radio/headset/mainship/ct/rebel 
+/obj/item/radio/headset/mainship/ct/rebel
 	keyslot = /obj/item/encryptionkey/req/rebel
 	hud_type = DATA_HUD_SQUAD_REBEL
 	minimap_type = /datum/action/minimap/marine/rebel
@@ -415,7 +425,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	use_command = TRUE
 	command = TRUE
 
-/obj/item/radio/headset/mainship/mcom/rebel 
+/obj/item/radio/headset/mainship/mcom/rebel
 	keyslot = /obj/item/encryptionkey/mcom/rebel
 	hud_type = DATA_HUD_SQUAD_REBEL
 	minimap_type = /datum/action/minimap/marine/rebel
