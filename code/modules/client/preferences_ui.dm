@@ -113,6 +113,7 @@
 			.["widescreenpref"] = widescreenpref
 			.["scaling_method"] = scaling_method
 			.["pixel_size"] = pixel_size
+			.["fullscreen_mode"] = fullscreen_mode
 		if(KEYBIND_SETTINGS)
 			.["is_admin"] = user.client?.holder ? TRUE : FALSE
 			.["key_bindings"] = list()
@@ -573,6 +574,11 @@
 			else if(!current_client.tooltips && tooltips)
 				current_client.tooltips = new /datum/tooltip(current_client)
 
+		if("fullscreen_mode")
+			fullscreen_mode = !fullscreen_mode
+			user.client?.set_fullscreen(fullscreen_mode)
+			return
+
 		if("set_keybind")
 			var/kb_name = params["keybind_name"]
 			if(!kb_name)
@@ -583,7 +589,7 @@
 				key_bindings[old_key] -= kb_name
 				if(!length(key_bindings[old_key]))
 					key_bindings -= old_key
-			
+
 			if(!params["key"])
 				return
 			var/mods = params["key_mods"]
@@ -603,7 +609,7 @@
 			key_bindings[full_key] = sortList(key_bindings[full_key])
 			current_client.update_movement_keys()
 			return TRUE
-		
+
 		if("clear_keybind")
 			var/kb_name = params["keybinding"]
 			for(var/key in key_bindings)

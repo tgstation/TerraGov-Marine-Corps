@@ -797,6 +797,20 @@
 	if(prefs.auto_fit_viewport)
 		INVOKE_NEXT_TICK(src, .verb/fit_viewport, 1 SECONDS) //Delayed to avoid wingets from Login calls.
 
+///Change the fullscreen setting of the client
+/client/proc/set_fullscreen(fullscreen_mode)
+	if(fullscreen_mode)
+		winset(src, "mainwindow", "is-maximized=false;can-resize=false;titlebar=false")
+		winset(src, "mainwindow", "menu=null;statusbar=false")
+		winset(src, "mainwindow.split", "pos=0x0")
+		winset(src, "mainwindow", "is-maximized=true")
+		return
+	winset(src, "mainwindow", "is-maximized=false;can-resize=true;titlebar=true")
+	winset(src, "mainwindow", "menu=menu;statusbar=true")
+	winset(src, "mainwindow.split", "pos=3x0")
+	winset(src, "mainwindow", "is-maximized=true")
+
+
 /client/proc/generate_clickcatcher()
 	if(void)
 		return
