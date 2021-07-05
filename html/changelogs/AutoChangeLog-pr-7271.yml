@@ -1,0 +1,4 @@
+author: "Alterist"
+delete-after: True
+changes: 
+  - bugfix: "PoS research doors should now be accessible."
