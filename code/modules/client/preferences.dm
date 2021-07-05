@@ -183,9 +183,9 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			loadout_manager = new
 			reset_loadouts_file()
 		if(load_preferences() && load_character())
+			C.set_fullscreen(fullscreen_mode)
 			return
 
-	C.set_fullscreen(fullscreen_mode)
 
 	// We don't have a savefile or we failed to load them
 	random_character()
