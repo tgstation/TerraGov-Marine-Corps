@@ -110,3 +110,13 @@
       fired, the OB is fired and when a camera gets slashed.
   - qol: Added some handy status lines to the 'Game' tab for the AI, like OB status
       or orbital level.
+2021-07-05:
+  BraveMole:
+  - expansion: Minimap icons change when marines die
+  InterroLouis:
+  - bugfix: Non-Chemrette cigarettes now transfer chems properly.
+  lbnesquik:
+  - qol: Added some noises for the AI whenever the OB is fired.
+  - qol: Added the OB warhead type to AI notifications
+  - bugfix: typos in beacon code.
+  - bugfix: improved some backend stuff so the AI is warned before everyone else
