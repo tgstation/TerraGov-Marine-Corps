@@ -320,6 +320,7 @@ SUBSYSTEM_DEF(minimaps)
 	var/minimap_displayed = FALSE
 	///Minimap object we'll be displaying
 	var/obj/screen/minimap/map
+	var/default_overwatch_level = 2
 
 /datum/action/minimap/Destroy()
 	map = null
@@ -339,6 +340,9 @@ SUBSYSTEM_DEF(minimaps)
 	. = ..()
 	RegisterSignal(M, COMSIG_MOVABLE_Z_CHANGED, .proc/on_owner_z_change)
 	if(!SSminimaps.minimaps_by_z["[M.z]"] || !SSminimaps.minimaps_by_z["[M.z]"].hud_image)
+		return
+	if(isAI(M))
+		map = SSminimaps.fetch_minimap_object(default_overwatch_level, minimap_flags)
 		return
 	map = SSminimaps.fetch_minimap_object(M.z, minimap_flags)
 
@@ -360,6 +364,9 @@ SUBSYSTEM_DEF(minimaps)
 	map = null
 	if(!SSminimaps.minimaps_by_z["[newz]"] || !SSminimaps.minimaps_by_z["[newz]"].hud_image)
 		return
+	if(isAI(owner))
+		map = SSminimaps.fetch_minimap_object(default_overwatch_level, minimap_flags)
+		return
 	map = SSminimaps.fetch_minimap_object(newz, minimap_flags)
 
 /datum/action/minimap/xeno
@@ -368,6 +375,11 @@ SUBSYSTEM_DEF(minimaps)
 /datum/action/minimap/marine
 	minimap_flags = MINIMAP_FLAG_MARINE
 	marker_flags = MINIMAP_FLAG_MARINE
+
+/datum/action/minimap/ai
+	minimap_flags = MINIMAP_FLAG_MARINE
+	marker_flags = MINIMAP_FLAG_MARINE
+	default_overwatch_level = 2
 
 /datum/action/minimap/alpha
 	minimap_flags = MINIMAP_FLAG_ALPHA
