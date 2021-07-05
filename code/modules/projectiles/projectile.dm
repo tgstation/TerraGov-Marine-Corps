@@ -67,8 +67,8 @@
 
 	var/scatter = 0 //Chance of scattering, also maximum amount scattered. High variance.
 
-	/// The factions this projectile will ignore, used for iff
-	var/list/factions = list()
+	/// The iff signal that will be compared to the target's one, to apply iff if needed
+	var/iff_signal = NONE
 
 	var/distance_travelled = 0
 
@@ -582,7 +582,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 		return TRUE
 	if(!throwpass)
 		return TRUE
-	if(proj.ammo.flags_ammo_behavior & AMMO_SNIPER || length(proj.factions) || proj.ammo.flags_ammo_behavior & AMMO_ROCKET) //sniper, rockets and IFF rounds bypass cover
+	if(proj.ammo.flags_ammo_behavior & AMMO_SNIPER || iff_signal || proj.ammo.flags_ammo_behavior & AMMO_ROCKET) //sniper, rockets and IFF rounds bypass cover
 		return FALSE
 	if(proj.distance_travelled <= proj.ammo.barricade_clear_distance)
 		return FALSE
@@ -619,14 +619,13 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 	return TRUE
 
 /obj/machinery/marine_turret/projectile_hit(obj/projectile/proj, cardinal_move, uncrossing)
-	for(var/faction in factions)
-		if(proj.factions?.Find(faction))
-			return FALSE
+	if(iff_signal & proj.iff_signal)
+		return FALSE
 	return src == proj.original_target
 
 
 /obj/machinery/standard_hmg/projectile_hit(obj/projectile/proj, cardinal_move, uncrossing)
-	return operator?.faction in proj.factions ? FALSE : src == proj.original_target
+	return FALSE // Conflict with HMG anyway
 
 /obj/machinery/door/poddoor/railing/projectile_hit(obj/projectile/proj, cardinal_move, uncrossing)
 	return src == proj.original_target
@@ -727,6 +726,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 /mob/living/do_projectile_hit(obj/projectile/proj)
 	proj.ammo.on_hit_mob(src, proj)
 	bullet_act(proj)
+
 /mob/living/carbon/do_projectile_hit(obj/projectile/proj)
 	. = ..()
 	if(!(species?.species_flags & NO_BLOOD) && proj.ammo.flags_ammo_behavior & AMMO_BALLISTIC)
@@ -734,7 +734,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 
 
 /mob/living/carbon/human/projectile_hit(obj/projectile/proj, cardinal_move, uncrossing)
-	if(faction in proj.factions)
+	if(wear_id.iff_signal & proj.iff_signal)
 		proj.damage += proj.damage*proj.damage_marine_falloff
 		return FALSE
 	if(mobility_aura)

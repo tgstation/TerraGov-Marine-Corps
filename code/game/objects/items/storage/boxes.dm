@@ -342,7 +342,7 @@
 
 /obj/item/storage/box/explosive_mines/pmc
 	name = "\improper M20P mine box"
-	spawn_type = /obj/item/explosive/mine
+	spawn_type = /obj/item/explosive/mine/pmc
 
 /obj/item/storage/box/m94
 	name = "\improper M40 FLDP flare pack"

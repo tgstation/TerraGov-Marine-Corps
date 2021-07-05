@@ -16,8 +16,8 @@ Stepping directly on the mine will also blow it up
 	throw_speed = 3
 	flags_atom = CONDUCT
 
-	/// Used to determine friendly units
-	var/list/factions
+	/// IFF signal - used to determine friendly units
+	var/iff_signal = NONE
 	/// If the mine has been triggered
 	var/triggered = FALSE
 	/// State of the mine. Will the mine explode or not
@@ -70,7 +70,8 @@ Stepping directly on the mine will also blow it up
 		return
 	user.visible_message("<span class='notice'>[user] finishes deploying [src].</span>", \
 	"<span class='notice'>You finish deploying [src].</span>")
-	factions = list(user.faction)
+	var/obj/item/card/id/id = user.get_idcard()
+	iff_signal = id?.iff_signal
 	anchored = TRUE
 	armed = TRUE
 	playsound(src.loc, 'sound/weapons/mine_armed.ogg', 25, 1)
@@ -119,10 +120,9 @@ Stepping directly on the mine will also blow it up
 		return FALSE
 	if((L.status_flags & INCORPOREAL))
 		return FALSE
-	if(ishuman(L))
-		var/mob/living/carbon/human/H = L
-		if(factions.Find(H.faction))
-			return FALSE
+	var/obj/item/card/id/id = L.get_idcard()
+	if(id.iff_signal & iff_signal)
+		return FALSE
 
 	L.visible_message("<span class='danger'>[icon2html(src, viewers(L))] \The [src] clicks as [L] moves in front of it.</span>", \
 	"<span class='danger'>[icon2html(src, viewers(L))] \The [src] clicks as you move in front of it.</span>", \
@@ -174,7 +174,7 @@ Stepping directly on the mine will also blow it up
 	if(!linked_mine)
 		qdel(src)
 		return
-	
+
 	if(CHECK_MULTIPLE_BITFIELDS(A.flags_pass, HOVERING))
 		return
 

@@ -87,6 +87,8 @@
 	var/paygrade = null  // Marine's paygrade
 
 	var/assigned_fireteam = "" //which fire team this ID belongs to, only used by squad marines.
+	/// Iff bitfield to determines hit and misses
+	var/iff_signal = NONE
 
 
 /obj/item/card/id/Initialize()
@@ -236,6 +238,7 @@
 	desc = "A marine dog tag."
 	icon_state = "dogtag"
 	item_state = "dogtag"
+	iff_signal = TGMC_LOYALIST_IFF
 	var/dogtag_taken = FALSE
 
 
@@ -244,6 +247,7 @@
 	desc = "Used by the Sons of Mars."
 	icon_state = "dogtag_som"
 	item_state = "dogtag_som"
+	iff_signal = SON_OF_MARS_IFF
 
 
 /obj/item/card/id/dogtag/examine(mob/user)

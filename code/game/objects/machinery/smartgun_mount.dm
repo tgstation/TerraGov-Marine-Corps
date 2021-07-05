@@ -370,7 +370,7 @@
 
 	target = null
 
-/obj/machinery/standard_hmg/proc/fire_shot(mob/living/user) //Bang Bang
+/obj/machinery/standard_hmg/proc/fire_shot(mob/user) //Bang Bang
 	if(!ammo)
 		return //No ammo.
 	if(last_fired)
@@ -410,7 +410,7 @@
 		A = target
 	proj_to_fire.setDir(dir)
 	proj_to_fire.def_zone = pick("chest","chest","chest","head")
-	proj_to_fire.factions = list(user.faction)
+	proj_to_fire.iff_signal = NONE // conflict with HMG
 	playsound(loc, 'sound/weapons/guns/fire/hmg2.ogg', 65, TRUE)
 	if(!QDELETED(target))
 		var/angle = round(Get_Angle(src,target))
