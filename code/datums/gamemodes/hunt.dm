@@ -30,15 +30,16 @@
 /datum/game_mode/infestation/hunt/post_setup()
 	. = ..()
 	for(var/i in GLOB.xeno_resin_silo_turfs)
-		new /obj/structure/resin/silo(i)
-	addtimer(CALLBACK(src, .proc/announce_bioscans, FALSE, 1), 5 MINUTES)
+		new /obj/structure/xeno/resin/silo(i)
+	for(var/obj/effect/landmark/corpsespawner/corpse AS in GLOB.corpse_landmarks_list)
+		corpse.create_mob(SILO_DEATH)
 
 /datum/game_mode/infestation/hunt/scale_roles(initial_players_assigned)
 	. = ..()
 	if(!.)
 		return
 	var/datum/job/scaled_job = SSjob.GetJobType(/datum/job/xenomorph) //Xenos
-	scaled_job.job_points_needed  = CONFIG_GET(number/hunt_larvapoints_required)
+	scaled_job.job_points_needed  = HUNT_LARVA_POINTS_NEEDED
 
 /datum/game_mode/infestation/hunt/orphan_hivemind_collapse()
 	if(round_finished)

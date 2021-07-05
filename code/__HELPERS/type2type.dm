@@ -257,6 +257,8 @@
 		. += "[seperator]+MENTOR"
 	if(rights & R_DBRANKS)
 		. += "[seperator]+DBRANKS"
+	if(rights & R_RUNTIME)
+		. += "[seperator]+RUNTIME"
 
 
 /proc/ui_style2icon(ui_style)

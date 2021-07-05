@@ -123,9 +123,9 @@
 /mob/living/carbon/human/drip(amt)
 	if(HAS_TRAIT(src, TRAIT_STASIS)) // stasis now stops bloodloss
 		return
-	if(NO_BLOOD in species.species_flags)
+	if(species.species_flags & NO_BLOOD)
 		return
-	..()
+	return ..()
 
 
 
@@ -277,7 +277,7 @@
 	return "xenoblood"
 
 /mob/living/carbon/human/get_blood_id()
-	if((NO_BLOOD in species.species_flags))
+	if((species.species_flags & NO_BLOOD))
 		return
 	if(issynth(src))
 		return "whiteblood"
@@ -372,7 +372,7 @@
 
 
 /mob/living/carbon/human/add_splatter_floor(turf/T, small_drip, b_color)
-	if(NO_BLOOD in species.species_flags)
+	if(species.species_flags & NO_BLOOD)
 		return
 
 	b_color = species.blood_color

@@ -96,16 +96,17 @@
 /obj/effect/temp_visual/order
 	icon = 'icons/Marine/marine-items.dmi'
 	var/icon_state_on
-	hud_possible = list(SQUAD_HUD)
+	hud_possible = list(SQUAD_HUD_TERRAGOV, SQUAD_HUD_REBEL)
 	duration = ORDER_DURATION
 	layer = TURF_LAYER
 
-/obj/effect/temp_visual/order/Initialize(mapload)
+/obj/effect/temp_visual/order/Initialize(mapload, faction)
 	. = ..()
 	prepare_huds()
-	var/datum/atom_hud/squad/squad_hud = GLOB.huds[DATA_HUD_SQUAD]
+	var/hud_type = faction == FACTION_TERRAGOV ? DATA_HUD_SQUAD_TERRAGOV : DATA_HUD_SQUAD_REBEL
+	var/datum/atom_hud/squad/squad_hud = GLOB.huds[hud_type]
 	squad_hud.add_to_hud(src)
-	set_visuals()
+	set_visuals(faction)
 
 /obj/effect/temp_visual/order/attack_order
 	name = "attack order"
@@ -125,13 +126,14 @@
 	duration = RALLY_ORDER_DURATION
 
 ///Set visuals for the hud
-/obj/effect/temp_visual/order/proc/set_visuals()
-	var/image/holder = hud_list[SQUAD_HUD]
+/obj/effect/temp_visual/order/proc/set_visuals(faction)
+	var/hud_type = faction == FACTION_TERRAGOV ? SQUAD_HUD_TERRAGOV : SQUAD_HUD_REBEL
+	var/image/holder = hud_list[hud_type]
 	if(!holder)
 		return
 	holder.icon = 'icons/Marine/marine-items.dmi'
 	holder.icon_state = icon_state_on
-	hud_list[SQUAD_HUD] = holder
+	hud_list[hud_type] = holder
 
 /obj/effect/temp_visual/healing
 	name = "healing"
@@ -163,4 +165,10 @@
 	name = "acid_splatter"
 	icon = 'icons/Xeno/Effects.dmi'
 	icon_state = "splatter"
+	duration = 0.8 SECONDS
+
+/obj/effect/temp_visual/acid_bath
+	name = "acid bath"
+	icon = 'icons/obj/items/projectiles.dmi'
+	icon_state = "boiler_gas"
 	duration = 0.8 SECONDS

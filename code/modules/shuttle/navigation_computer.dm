@@ -17,6 +17,8 @@
 	var/list/jumpto_ports = list()
 	/// The custom docking port placed by this console
 	var/obj/docking_port/stationary/my_port
+	/// The previous custom docking port that was safely landed at, for emergency landings
+	var/obj/docking_port/stationary/last_valid_ground_port
 	/// The mobile docking port of the connected shuttle
 	var/obj/docking_port/mobile/shuttle_port
 	/// Traits forbided for custom docking
@@ -135,7 +137,7 @@
 	if(!see_hidden)
 		to_add += SSshuttle.hidden_shuttle_turf_images
 	user.client.images += to_add
-	user.client.change_view(view_range)
+	user.client.view_size.set_view_radius_to(view_range)
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/remove_eye_control(mob/living/user)
 	. = ..()
@@ -148,7 +150,7 @@
 	if(!see_hidden)
 		to_remove += SSshuttle.hidden_shuttle_turf_images
 	user.client.images -= to_remove
-	user.client.change_view(WORLD_VIEW)
+	user.client.view_size.reset_to_default()
 
 /// Handles the creation of the custom landing spot
 /obj/machinery/computer/camera_advanced/shuttle_docker/proc/placeLandingSpot()

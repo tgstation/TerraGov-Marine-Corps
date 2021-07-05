@@ -153,7 +153,7 @@
 
 /proc/random_unique_name(gender, attempts_to_find_unique_name = 10)
 	for(var/i in 1 to attempts_to_find_unique_name)
-		. = GLOB.namepool[/datum/namepool/clf].get_random_name(gender)
+		. = GLOB.namepool[/datum/namepool].get_random_name(gender)
 
 		if(!findname(.))
 			break

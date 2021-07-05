@@ -63,7 +63,8 @@
 	ADD_TRAIT(src, TRAIT_BATONIMMUNE, TRAIT_XENO)
 	ADD_TRAIT(src, TRAIT_FLASHBANGIMMUNE, TRAIT_XENO)
 	hive.update_tier_limits()
-	SSminimaps.add_marker(src, z, hud_flags = MINIMAP_FLAG_XENO, iconstate = xeno_caste.minimap_icon)
+	if(z) //Larva are initiated in null space
+		SSminimaps.add_marker(src, z, hud_flags = MINIMAP_FLAG_XENO, iconstate = xeno_caste.minimap_icon)
 
 /mob/living/carbon/xenomorph/proc/set_datum()
 	if(!caste_base_type)
@@ -78,12 +79,17 @@
 	xeno_caste = X
 
 	plasma_stored = xeno_caste.plasma_max
-	maxHealth = xeno_caste.max_health
+	maxHealth = xeno_caste.max_health * GLOB.xeno_stat_multiplicator_buff
 	health = maxHealth
 	setXenoCasteSpeed(xeno_caste.speed)
 	soft_armor = getArmor(arglist(xeno_caste.soft_armor))
 	hard_armor = getArmor(arglist(xeno_caste.hard_armor))
 	warding_aura = 0 //Resets aura for reapplying armor
+
+///Will multiply the base max health of this xeno by GLOB.xeno_stat_multiplicator_buff
+/mob/living/carbon/xenomorph/proc/apply_health_stat_buff()
+	maxHealth = max(xeno_caste.max_health * GLOB.xeno_stat_multiplicator_buff, 10)
+	health = min(health, maxHealth)
 
 /mob/living/carbon/xenomorph/set_armor_datum()
 	return //Handled in set_datum()
@@ -240,14 +246,16 @@
 	return ..()
 
 /mob/living/carbon/xenomorph/pull_response(mob/puller)
+	if(stat != CONSCIOUS) // If the Xeno is unconscious, don't fight back against a grab/pull
+		return TRUE
+	if(!ishuman(puller))
+		return TRUE
 	var/mob/living/carbon/human/H = puller
-	if(stat == CONSCIOUS && H.species?.count_human) // If the Xeno is conscious, fight back against a grab/pull
-		H.Paralyze(rand(xeno_caste.tacklemin,xeno_caste.tacklemax) * 20)
-		playsound(H.loc, 'sound/weapons/pierce.ogg', 25, 1)
-		H.visible_message("<span class='warning'>[H] tried to pull [src] but instead gets a tail swipe to the head!</span>")
-		H.stop_pulling()
-		return FALSE
-	return TRUE
+	H.Paralyze(rand(xeno_caste.tacklemin,xeno_caste.tacklemax) * 20)
+	playsound(H.loc, 'sound/weapons/pierce.ogg', 25, 1)
+	H.visible_message("<span class='warning'>[H] tried to pull [src] but instead gets a tail swipe to the head!</span>")
+	H.stop_pulling()
+	return FALSE
 
 /mob/living/carbon/xenomorph/resist_grab()
 	if(pulledby.grab_state)
@@ -275,6 +283,8 @@
 	hud_to_add = GLOB.huds[DATA_HUD_XENO_REAGENTS]
 	hud_to_add.add_hud_to(src)
 	hud_to_add = GLOB.huds[DATA_HUD_XENO_TACTICAL] //Allows us to see xeno tactical elements clearly via HUD elements
+	hud_to_add.add_hud_to(src)
+	hud_to_add = GLOB.huds[DATA_HUD_MEDICAL_PAIN]
 	hud_to_add.add_hud_to(src)
 
 
@@ -308,50 +318,28 @@
 	if(!hud_used?.locate_leader)
 		return
 	var/obj/screen/LL_dir = hud_used.locate_leader
-	if (!tracked)
+	if(!tracked)
 		if(hive.living_xeno_ruler)
 			tracked = hive.living_xeno_ruler
 		else
 			LL_dir.icon_state = "trackoff"
 			return
 
-	if (isxeno(tracked))
-		var/mob/living/carbon/xenomorph/xeno_tracked = tracked
-		if(QDELETED(xeno_tracked))
-			tracked = null
-			return
-		if(xeno_tracked == src) // No need to track ourselves
-			LL_dir.icon_state = "trackoff"
-			return
-		if(xeno_tracked.z != z || get_dist(src,xeno_tracked) < 1)
-			LL_dir.icon_state = "trackondirect"
-			return
-		var/area/A = get_area(src.loc)
-		var/area/QA = get_area(xeno_tracked.loc)
-		if(A.fake_zlevel == QA.fake_zlevel)
-			LL_dir.icon_state = "trackon"
-			LL_dir.setDir(get_dir(src, xeno_tracked))
-			return
-
+	if(tracked == src) // No need to track ourselves
+		LL_dir.icon_state = "trackoff"
+		return
+	if(tracked.z != z || get_dist(src, tracked) < 1)
 		LL_dir.icon_state = "trackondirect"
 		return
+	var/area/A = get_area(loc)
+	var/area/QA = get_area(tracked.loc)
+	if(A.fake_zlevel == QA.fake_zlevel)
+		LL_dir.icon_state = "trackon"
+		LL_dir.setDir(get_dir(src, tracked))
+		return
 
-	if (isresinsilo(tracked))
-		var/mob/living/carbon/xenomorph/silo_tracked = tracked
-		if(QDELETED(silo_tracked))
-			tracked = null
-			return
-		if(silo_tracked.z != z || get_dist(src,silo_tracked) < 1)
-			LL_dir.icon_state = "trackondirect"
-			return
-
-		var/area/A = get_area(src.loc)
-		var/area/QA = get_area(silo_tracked.loc)
-		if(A.fake_zlevel == QA.fake_zlevel)
-			LL_dir.icon_state = "trackon"
-			LL_dir.setDir(get_dir(src, silo_tracked))
-			return
-		LL_dir.icon_state = "trackondirect"
+	LL_dir.icon_state = "trackondirect"
+	return
 
 
 /mob/living/carbon/xenomorph/clear_leader_tracking()

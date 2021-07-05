@@ -82,7 +82,7 @@
 /mob/living/Destroy()
 	for(var/i in embedded_objects)
 		var/obj/item/embedded = i
-		if(embedded.embedding.embedded_flags & EMBEDDEED_DEL_ON_HOLDER_DEL)
+		if(embedded.embedding.embedded_flags & EMBEDDED_DEL_ON_HOLDER_DEL)
 			qdel(embedded) //This should remove the object from the list via temporarilyRemoveItemFromInventory() => COMSIG_ITEM_DROPPED.
 		else
 			embedded.unembed_ourself() //This should remove the object from the list directly.
@@ -170,7 +170,7 @@
 
 
 /mob/living/proc/get_limbzone_target()
-	return ran_zone(zone_selected)
+	return ran_zone(zone_selected, 100)
 
 
 
@@ -418,7 +418,7 @@
 /mob/living/throw_at(atom/target, range, speed, thrower, spin, flying = FALSE)
 	if(!target)
 		return 0
-	if(pulling)
+	if(pulling && !flying)
 		stop_pulling() //being thrown breaks pulls.
 	if(pulledby)
 		pulledby.stop_pulling()

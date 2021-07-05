@@ -10,6 +10,11 @@
 	var/obj/machinery/light/newlight = null
 	var/sheets_refunded = 2
 
+/obj/item/frame/light_fixture/Destroy()
+	QDEL_NULL(newlight)
+	return ..()
+	
+
 /obj/item/frame/light_fixture/attackby(obj/item/I, mob/user, params)
 	. = ..()
 

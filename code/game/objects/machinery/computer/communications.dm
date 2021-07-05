@@ -1,7 +1,7 @@
 
 #define STATE_DEFAULT 1
 #define STATE_EVACUATION 2
-#define STATE_EVACUATION_CANCEL	3
+#define STATE_EVACUATION_CANCEL 3
 #define STATE_DISTRESS 4
 #define STATE_MESSAGELIST 5
 #define STATE_VIEWMESSAGE 6
@@ -108,6 +108,10 @@
 				if(CHAT_FILTER_CHECK(input))
 					to_chat(usr, "<span class='warning'>That announcement contained a word prohibited in IC chat! Consider reviewing the server rules.\n<span replaceRegex='show_filtered_ic_chat'>\"[input]\"</span></span>")
 					SSblackbox.record_feedback(FEEDBACK_TALLY, "ic_blocked_words", 1, lowertext(config.ic_filter_regex.match))
+					return FALSE
+
+				if(NON_ASCII_CHECK(input))
+					to_chat(usr, "<span class='warning'>That announcement contained charachters prohibited in IC chat! Consider reviewing the server rules.</span>")
 					return FALSE
 
 				priority_announce(input, type = ANNOUNCEMENT_COMMAND)

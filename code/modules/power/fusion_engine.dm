@@ -1,10 +1,10 @@
-#define FUSION_ENGINE_MAX_POWER_GEN	80000 //Full capacity
-#define FUSION_ENGINE_FAIL_CHECK_TICKS	1000 //Check for failure every this many ticks
+#define FUSION_ENGINE_MAX_POWER_GEN 80000 //Full capacity
+#define FUSION_ENGINE_FAIL_CHECK_TICKS 1000 //Check for failure every this many ticks
 #define FUSION_ENGINE_FULL_STRENGTH_FULL_RATE 0.1
-#define FUSION_ENGINE_NO_DAMAGE     0
-#define FUSION_ENGINE_LIGHT_DAMAGE  1
+#define FUSION_ENGINE_NO_DAMAGE 0
+#define FUSION_ENGINE_LIGHT_DAMAGE 1
 #define FUSION_ENGINE_MEDIUM_DAMAGE 2
-#define FUSION_ENGINE_HEAVY_DAMAGE  3
+#define FUSION_ENGINE_HEAVY_DAMAGE 3
 
 /obj/machinery/power/fusion_engine
 	name = "\improper S-52 fusion reactor"
@@ -99,6 +99,13 @@
 	if(!ishuman(user))
 		to_chat(user, "<span class='warning'>You have no idea how to use that.</span>")
 		return FALSE
+	interact_hand(user)
+
+/obj/machinery/power/fusion_engine/attack_ai(mob/living/silicon/ai/user)
+	interact_hand(user)
+
+//It is a bit messy to split attack_hand into this proc, but it is the easiest way to have the AI be able to toggle them.
+/obj/machinery/power/fusion_engine/proc/interact_hand(mob/living/user)
 	switch(buildstate)
 		if(FUSION_ENGINE_HEAVY_DAMAGE)
 			to_chat(user, "<span class='info'>Use a blowtorch, then wirecutters, then wrench to repair it.</span>")

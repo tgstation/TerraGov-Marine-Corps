@@ -2,8 +2,6 @@
 *.dmm merge=dmm
 *.dmi merge=dmi
 
-# force changelog merging to use union
-html/changelog.html merge=union
 
 # force line endings
 * text eol=lf

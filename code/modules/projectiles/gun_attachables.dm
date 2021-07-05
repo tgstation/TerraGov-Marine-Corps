@@ -123,6 +123,8 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	var/charge_mod = 0
 	///what firemodes this attachment allows/adds.
 	var/gun_firemode_list_mod = null
+	///lazylist of attachment slot offsets for a gun.
+	var/list/gun_attachment_offset_mod
 
 	///what gun this attachment is currently attached to, if any.
 	var/obj/item/weapon/gun/master_gun
@@ -191,6 +193,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	master_gun.recoil						+= recoil_mod
 	master_gun.recoil_unwielded				+= recoil_unwielded_mod
 	master_gun.force						+= melee_mod
+	master_gun.sharp						+= sharp
 	master_gun.aim_slowdown					+= aim_speed_mod
 	master_gun.wield_delay					+= wield_delay_mod
 	master_gun.burst_scatter_mult			+= burst_scatter_mod
@@ -203,6 +206,10 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 		master_gun.charge_cost				+= charge_mod
 	for(var/i in gun_firemode_list_mod)
 		master_gun.add_firemode(i, user)
+	if(LAZYLEN(gun_attachment_offset_mod))
+		for(var/overlay_mod in gun_attachment_offset_mod)
+			master_gun.attachable_offset[overlay_mod] += gun_attachment_offset_mod[overlay_mod]
+		master_gun.update_attachables()
 
 	master_gun.update_force_list() //This updates the gun to use proper force verbs.
 
@@ -252,6 +259,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	master_gun.recoil						-= recoil_mod
 	master_gun.recoil_unwielded				-= recoil_unwielded_mod
 	master_gun.force						-= melee_mod
+	master_gun.sharp						-= sharp
 	master_gun.aim_slowdown					-= aim_speed_mod
 	master_gun.wield_delay					-= wield_delay_mod
 	master_gun.burst_scatter_mult			-= burst_scatter_mod
@@ -264,6 +272,11 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 		master_gun.charge_cost -= charge_mod
 	for(var/i in gun_firemode_list_mod)
 		master_gun.remove_firemode(i, user)
+
+	if(LAZYLEN(gun_attachment_offset_mod))
+		for(var/overlay_mod in gun_attachment_offset_mod)
+			master_gun.attachable_offset[overlay_mod] -= gun_attachment_offset_mod[overlay_mod]
+		master_gun.update_attachables()
 
 
 	master_gun.update_force_list()
@@ -281,7 +294,9 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 		qdel(action_to_update)
 		break
 
-	forceMove(get_turf(master_gun))
+	var/turf/master_gun_turf = get_turf(master_gun)
+	if(master_gun_turf)
+		forceMove(master_gun_turf)
 
 	master_gun = null
 
@@ -293,7 +308,9 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	else
 		to_chat(user, "<span class='warning'>[G] must be in our hands to do this.</span>")
 
-
+/obj/item/attachable/hydro_cannon/ui_action_click(mob/living/user, datum/action/item_action/action, obj/item/weapon/gun/G)
+	if(G == user.get_active_held_item() || G == user.get_inactive_held_item())
+		G.unique_action(user)
 
 
 /obj/item/attachable/proc/activate_attachment(mob/user, turn_off) //This is for activating stuff like flamethrowers, or switching weapon modes.
@@ -410,14 +427,12 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 
 /obj/item/attachable/heavy_barrel
 	name = "barrel charger"
-	desc = "A fitted barrel extender that goes on the muzzle, with a small shaped charge that propels a bullet much faster.\nGreatly increases projectile damage at the cost of accuracy and scatter."
+	desc = "A fitted barrel extender that goes on the muzzle, with a small shaped charge that propels a bullet much faster.\nGreatly increases projectile speed."
 	slot = ATTACHMENT_SLOT_MUZZLE
 	icon_state = "hbarrel"
 	attach_icon = "hbarrel_a"
-	accuracy_mod = -0.6
-	damage_mod = 0.1
-	scatter_mod = 25
-	accuracy_unwielded_mod = -0.3
+	attach_shell_speed_mod = 2
+	accuracy_mod = -0.1
 
 
 /obj/item/attachable/compensator
@@ -609,7 +624,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 
 	if(ismob(master_gun.loc) && !user)
 		user = master_gun.loc
-	if(!toggle_on & light_on)
+	if(!toggle_on && light_on)
 		icon_state = "flashlight"
 		attach_icon = "flashlight_a"
 		master_gun.set_light_range(0)
@@ -1465,7 +1480,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 			var/mob/living/carbon/xenomorph/X = M
 			if(X.xeno_caste.caste_flags & CASTE_FIRE_IMMUNE)
 				continue
-			fire_mod = clamp(X.xeno_caste.fire_resist + X.fire_resist_modifier, 0, 1)
+			fire_mod = X.get_fire_resist()
 		else if(ishuman(M))
 			var/mob/living/carbon/human/H = M
 
@@ -1737,7 +1752,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	icon_state = ""
 	attach_icon = ""
 	slot = ATTACHMENT_SLOT_UNDER
-	flags_attach_features = ATTACH_ACTIVATION|ATTACH_UTILITY|GUN_ALLOW_SYNTHETIC
+	flags_attach_features = ATTACH_UTILITY|GUN_ALLOW_SYNTHETIC
 	attachment_action_type = /datum/action/item_action/toggle_hydro
 
 /obj/item/attachable/hydro_cannon/activate_attachment(mob/living/user, turn_off)
@@ -1756,3 +1771,47 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	for(var/X in master_gun.actions)
 		var/datum/action/A = X
 		A.update_button_icon()
+
+
+/obj/item/attachable/standard_revolver_longbarrel
+	name = "TP-44 long barrel"
+	desc = "A longer barrel for the TP-44, makes the gun more accurate and deal more damage on impact."
+	icon_state = "tp44_barrel"
+	attach_icon = "tp44_barrel"
+	slot = ATTACHMENT_BARREL_MOD
+	damage_mod = 0.25
+	scatter_mod = -2.5
+	recoil_unwielded_mod = 0.25
+	damage_falloff_mod = -0.5
+	pixel_shift_x = 0
+	pixel_shift_y = 0
+	size_mod = 1
+	detach_delay = 0
+	gun_attachment_offset_mod = list("muzzle_x" = 7)
+
+/obj/item/attachable/standard_revolver_longbarrel/attach_to_gun(obj/item/weapon/gun/gun_to_attach, mob/user)
+	. = ..()
+	RegisterSignal(gun_to_attach, COMSIG_REVOLVER_AMMO_HIT_MOB, .proc/ammo_hit_mob)
+
+/obj/item/attachable/standard_revolver_longbarrel/detach_from_master_gun(mob/user)
+	UnregisterSignal(master_gun, COMSIG_REVOLVER_AMMO_HIT_MOB)
+	return ..()
+
+/obj/item/attachable/standard_revolver_longbarrel/proc/ammo_hit_mob()
+	SIGNAL_HANDLER
+	return COMSIG_REVOLVER_AMMO_SNUBNOSE_BARREL
+
+/obj/item/attachable/mateba_longbarrel
+	name = "Mateba long barrel"
+	desc = "A longer barrel for the Mateba, makes the gun more accurate and deal more damage on impact."
+	icon_state = "mateba_barrel"
+	attach_icon = "mateba_barrel"
+	slot = ATTACHMENT_BARREL_MOD
+	damage_mod = 0.20
+	scatter_mod = -3.5
+	damage_falloff_mod = -0.5
+	pixel_shift_x = 0
+	pixel_shift_y = 0
+	size_mod = 1
+	detach_delay = 0
+	gun_attachment_offset_mod = list("muzzle_x" = 8)

@@ -17,6 +17,8 @@
 
 #define STATUS_EFFECT_GUN_SKILL_SCATTER_BUFF /datum/status_effect/stacking/gun_skill/scatter/buff // Increases the scatter of the mob
 
+#define STATUS_EFFECT_RESIN_JELLY_COATING /datum/status_effect/resin_jelly_coating
+
 /////////////
 // DEBUFFS //
 /////////////

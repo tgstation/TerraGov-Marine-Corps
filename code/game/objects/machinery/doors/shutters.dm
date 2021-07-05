@@ -189,6 +189,9 @@
 	name = "\improper RO Line"
 	id = "ROlobby"
 
+/obj/machinery/door/poddoor/shutters/mainship/req/ro/rebel
+	id = "ROlobby_rebel"
+
 /obj/machinery/door/poddoor/shutters/mainship/req/ro1
 	name = "\improper RO Line 1"
 	id = "ROlobby1"
@@ -222,6 +225,9 @@
 	name = "\improper Armory Shutters"
 	id = "cic_armory"
 	icon_state = "shutter1"
+
+/obj/machinery/door/poddoor/shutters/mainship/cic/armory/rebel
+	id = "cic_armory_rebel"
 
 /obj/machinery/door/poddoor/shutters/mainship/engineering/armory
 	name = "\improper Engineering Armory Shutters"

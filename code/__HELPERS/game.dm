@@ -122,6 +122,10 @@
 	return ((temp - T0C))
 
 
+/// Removes an image from a client's `.images`. Useful as a callback.
+/proc/remove_image_from_client(image/image, client/remove_from)
+	remove_from?.images -= image
+
 /proc/remove_images_from_clients(image/I, list/show_to)
 	for(var/client/C in show_to)
 		C.images -= I
@@ -166,7 +170,7 @@
 		var/mob/M = GLOB.player_list[i]
 		if(!(M && M.client))
 			continue
-		if(alive_check && M.stat)
+		if(alive_check && M.stat == DEAD)
 			continue
 		else if(afk_check && M.client.is_afk())
 			continue

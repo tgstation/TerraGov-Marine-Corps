@@ -14,11 +14,6 @@
 		/obj/structure/mineral_door/resin/thick,
 	)
 
-GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
-	/turf/closed/wall/resin,
-	/turf/closed/wall/resin/membrane,
-	/obj/structure/mineral_door/resin), FALSE, TRUE))
-
 /datum/action/xeno_action/activable/secrete_resin/hivelord/use_ability(atom/A)
 	if(get_dist(owner, A) != 1)
 		return ..()
@@ -112,7 +107,7 @@ GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
 	if(!.)
 		return FALSE
 	var/turf/T = get_turf(owner)
-	if(locate(/obj/structure/tunnel) in T)
+	if(locate(/obj/structure/xeno/tunnel) in T)
 		if(!silent)
 			to_chat(owner, "<span class='warning'>There already is a tunnel here.</span>")
 		return
@@ -145,7 +140,7 @@ GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
 	var/mob/living/carbon/xenomorph/hivelord/X = owner
 	X.visible_message("<span class='xenonotice'>\The [X] digs out a tunnel entrance.</span>", \
 	"<span class='xenonotice'>We dig out a tunnel, connecting it to our network.</span>", null, 5)
-	var/obj/structure/tunnel/newt = new(T)
+	var/obj/structure/xeno/tunnel/newt = new(T)
 
 	playsound(T, 'sound/weapons/pierce.ogg', 25, 1)
 
@@ -165,7 +160,7 @@ GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
 	xeno_message("[X.name] has built a new tunnel named [newt.name] at [newt.tunnel_desc]!", "xenoannounce", 5, X.hivenumber)
 
 	if(LAZYLEN(X.tunnels) > HIVELORD_TUNNEL_SET_LIMIT) //if we exceed the limit, delete the oldest tunnel set.
-		var/obj/structure/tunnel/old_tunnel = X.tunnels[1]
+		var/obj/structure/xeno/tunnel/old_tunnel = X.tunnels[1]
 		old_tunnel.deconstruct(FALSE)
 		to_chat(X, "<span class='xenodanger'>Having exceeding our tunnel limit, our oldest tunnel has collapsed.</span>")
 
@@ -188,7 +183,7 @@ GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
 	action_icon_state = "haunt"
 	mechanics_text = "Place down a dispenser that allows xenos to retrieve fireproof jelly."
 	plasma_cost = 500
-	cooldown_timer = 3 MINUTES
+	cooldown_timer = 1 MINUTES
 	keybind_signal = COMSIG_XENOABILITY_PLACE_JELLY_POD
 
 /datum/action/xeno_action/place_jelly_pod/can_use_action(silent = FALSE, override_flags)
@@ -210,30 +205,28 @@ GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
 	if(!T.check_alien_construction(owner, silent))
 		return FALSE
 
-	if(locate(/obj/effect/alien/weeds/node) in T)
-		if(!silent)
-			to_chat(owner, "<span class='warning'>There is a resin node in the way!</span>")
-		return FALSE
-
 /datum/action/xeno_action/place_jelly_pod/action_activate()
 	var/turf/T = get_turf(owner)
 
 	succeed_activate()
 
 	playsound(T, "alien_resin_build", 25)
-	var/obj/structure/resin_jelly_pod/pod = new(T)
+	var/obj/structure/xeno/resin_jelly_pod/pod = new(T)
 	to_chat(owner, "<span class='xenonotice'>We shape some resin into \a [pod].</span>")
+	add_cooldown()
 
 /datum/action/xeno_action/create_jelly
 	name = "Create Resin Jelly"
 	action_icon_state = "gut"
 	mechanics_text = "Create a fireproof jelly."
 	plasma_cost = 100
-	cooldown_timer = 1 MINUTES
+	cooldown_timer = 5 SECONDS
 	keybind_signal = COMSIG_XENOABILITY_CREATE_JELLY
 
 /datum/action/xeno_action/create_jelly/can_use_action(silent = FALSE, override_flags)
 	. = ..()
+	if(!.)
+		return
 	if(owner.l_hand || owner.r_hand)
 		if(!silent)
 			to_chat(owner, "<span class='xenonotice'>We require free hands for this!</span>")
@@ -243,6 +236,7 @@ GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
 	var/obj/item/resin_jelly/jelly = new(owner.loc)
 	owner.put_in_hands(jelly)
 	to_chat(owner, "<span class='xenonotice'>We create a globule of resin from our ovipostor.</span>")
+	add_cooldown()
 	succeed_activate()
 
 // ***************************************

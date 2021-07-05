@@ -122,7 +122,7 @@
 	master_item.on_pocket_insertion()
 
 
-/obj/item/storage/internal/remove_from_storage(obj/item/W, atom/new_location)
+/obj/item/storage/internal/remove_from_storage(obj/item/W, atom/new_location, mob/user)
 	. = ..()
 	master_item.on_pocket_removal()
 

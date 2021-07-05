@@ -1,7 +1,3 @@
-
-
-
-
 /*****************************Shovels********************************/
 
 /obj/item/tool/shovel
@@ -18,11 +14,10 @@
 	attack_verb = list("bashed", "bludgeoned", "thrashed", "whacked")
 	var/dirt_overlay = "shovel_overlay"
 	var/folded = FALSE
-	var/dirt_type = NO_DIRT // 0 for no dirt, 1 for brown dirt, 2 for snow, 3 for big red.
+	var/dirt_type = NO_DIRT // 0 for no dirt, 1 for brown dirt, 2 for snow, 3 for big red, 4 for basalt(lava-land).
 	var/shovelspeed = 15
 	var/dirt_amt = 0
 	var/dirt_amt_per_dig = 5
-
 
 /obj/item/tool/shovel/update_overlays()
 	. = ..()
@@ -36,9 +31,9 @@
 			I.color = "#FF5500"
 		if(DIRT_TYPE_SNOW)
 			I.color = "#EBEBEB"
+		if(DIRT_TYPE_LAVALAND)
+			I.color = "#7A6D6A"
 	. += I
-
-
 
 /obj/item/tool/shovel/examine(mob/user)
 	. = ..()
@@ -62,7 +57,6 @@
 
 	update_icon()
 
-
 /obj/item/tool/shovel/afterattack(atom/target, mob/user, proximity)
 	if(!proximity)
 		return
@@ -71,7 +65,6 @@
 
 	if(user.do_actions)
 		return
-
 
 	if(isturf(target))
 		if(!dirt_amt)
@@ -114,8 +107,6 @@
 			dirt_amt = 0
 			update_icon()
 
-
-
 /obj/item/tool/shovel/spade
 	name = "spade"
 	desc = "A small tool for digging and moving dirt."
@@ -128,7 +119,6 @@
 	shovelspeed = 40
 	dirt_amt_per_dig = 1
 
-
 //Snow Shovel----------
 /obj/item/tool/shovel/snow
 	name = "snow shovel"
@@ -136,9 +126,6 @@
 	w_class = WEIGHT_CLASS_BULKY
 	force = 5
 	throwforce = 3
-
-
-
 
 // Entrenching tool.
 /obj/item/tool/shovel/etool
@@ -163,7 +150,6 @@
 	else
 		icon_state = "etool"
 	..()
-
 
 /obj/item/tool/shovel/etool/attack_self(mob/user as mob)
 	if(sharp)

@@ -4,14 +4,11 @@
 	upgrade_name = ""
 	caste_desc = "The mind of the hive"
 	caste_type_path = /mob/living/carbon/xenomorph/hivemind
-	tier = XENO_TIER_THREE
+	tier = XENO_TIER_ZERO
 	upgrade = XENO_UPGRADE_BASETYPE
 	wound_type = "hivemind" //used to match appropriate wound overlays
 	// *** Melee Attacks *** //
 	melee_damage = 0
-
-	// *** Tackle *** //
-	tackle_damage = 0
 
 	// *** Speed *** //
 	speed = 0
@@ -31,7 +28,7 @@
 	evolves_to = list()
 
 	// *** Flags *** //
-	caste_flags = CASTE_INNATE_PLASMA_REGEN | CASTE_FIRE_IMMUNE
+	caste_flags = CASTE_INNATE_PLASMA_REGEN|CASTE_FIRE_IMMUNE|CASTE_IS_BUILDER
 
 	can_hold_eggs = CANNOT_HOLD_EGGS
 

@@ -1,17 +1,8 @@
 import { Button, Flex, Modal, TextArea } from "../../components";
 import { useLocalState } from '../../backend';
 
-type TextInputModalData = {
-	label : string,
-	button_text : string,
-	onSubmit : Function,
-	onBack : Function,
-	areaHeigh : string,
-	areaWidth : string,
-}
-
 export const TextInputModal = (props: TextInputModalData, context) => {
-  
+
   const {
     label,
     button_text,

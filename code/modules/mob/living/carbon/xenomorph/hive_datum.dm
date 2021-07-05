@@ -527,17 +527,19 @@ to_chat will check for valid clients itself already so no need to double check f
 				arrow_hud.color = arrow_color
 			new /obj/effect/temp_visual/xenomorph/xeno_tracker_target(target, target) //Ping the source of our alert
 
-		if(report_distance)
-			var/distance = get_dist(X, target)
-			message += " Distance: [distance]"
-
-		to_chat(X, "<span class='[span_class]'><font size=[size]> [message]</font></span>")
+		to_chat(X, "<span class='[span_class]'><font size=[size]> [message][report_distance ? " Distance: [get_dist(X, target)]" : ""]</font></span>")
 
 // This is to simplify the process of talking in hivemind, this will invoke the receive proc of all xenos in this hive
 /datum/hive_status/proc/hive_mind_message(mob/living/carbon/xenomorph/sender, message)
 	for(var/i in get_all_xenos())
 		var/mob/living/carbon/xenomorph/X = i
 		X.receive_hivemind_message(sender, message)
+
+///Used for setting the trackers of all xenos in the hive, like when a nuke activates
+/datum/hive_status/proc/set_all_xeno_trackers(atom/target)
+	for(var/mob/living/carbon/xenomorph/X AS in get_all_xenos())
+		X.tracked = target
+		to_chat(X, "<span class='notice'> Now tracking [target.name]</span>")
 
 // ***************************************
 // *********** Normal Xenos
@@ -554,7 +556,7 @@ to_chat will check for valid clients itself already so no need to double check f
 /datum/hive_status/normal/handle_ruler_timer()
 	if(!isinfestationgamemode(SSticker.mode)) //Check just need for unit test
 		return
-	if(!SSticker.mode?.flags_round_type & MODE_XENO_RULER)
+	if(!(SSticker.mode?.flags_round_type & MODE_XENO_RULER))
 		return
 	var/datum/game_mode/infestation/D = SSticker.mode
 
@@ -624,7 +626,7 @@ to_chat will check for valid clients itself already so no need to double check f
 
 
 /datum/hive_status/proc/attempt_to_spawn_larva_in_silo(mob/xeno_candidate, possible_silos, larva_already_reserved = FALSE)
-	var/obj/structure/resin/silo/chosen_silo
+	var/obj/structure/xeno/resin/silo/chosen_silo
 	if(length(possible_silos) > 1)
 		chosen_silo = tgui_input_list(xeno_candidate, "Available Egg Silos", "Spawn location", possible_silos)
 		if(!chosen_silo)
@@ -702,7 +704,15 @@ to_chat will check for valid clients itself already so no need to double check f
 /datum/hive_status/normal/on_shuttle_hijack(obj/docking_port/mobile/marine_dropship/hijacked_ship)
 	handle_silo_death_timer()
 	xeno_message("Our Ruler has commanded the metal bird to depart for the metal hive in the sky! Run and board it to avoid a cruel death!")
-	RegisterSignal(hijacked_ship, COMSIG_SHUTTLE_SETMODE, .proc/on_hijack_depart)
+	RegisterSignal(hijacked_ship, COMSIG_SHUTTLE_SETMODE, .proc/on_hijack_depart)	
+	
+	for(var/obj/structure/xeno/resin/silo/silo AS in GLOB.xeno_resin_silos)
+		if(!is_ground_level(silo.z))
+			continue
+		qdel(silo)
+
+	if(SSticker.mode?.flags_round_type & MODE_PSY_POINTS_ADVANCED)
+		SSpoints.xeno_points_by_hive[hivenumber] = SILO_PRICE + XENO_TURRET_PRICE //Give a free silo when going shipside and a turret
 
 
 /datum/hive_status/normal/proc/on_hijack_depart(datum/source, new_mode)
@@ -731,19 +741,6 @@ to_chat will check for valid clients itself already so no need to double check f
 	if(difference < 0)
 		if(xeno_job.total_positions < (-difference + xeno_job.current_positions))
 			xeno_job.set_job_positions(-difference + xeno_job.current_positions)
-
-	for(var/obj/structure/resin/silo/silo AS in GLOB.xeno_resin_silos)
-		if(!is_ground_level(silo.z))
-			continue
-		qdel(silo)
-
-	if(SSticker.mode?.flags_round_type & MODE_PSY_POINTS)
-		SSpoints.xeno_points_by_hive[hivenumber] = SILO_PRICE + XENO_TURRET_PRICE //Give a free silo when going shipside and a turret
-
-	var/list/living_player_list = SSticker.mode.count_humans_and_xenos(count_flags = COUNT_IGNORE_HUMAN_SSD)
-	var/num_humans = living_player_list[1]
-	SSsilo.larva_rate_boost = num_humans / 12.5 //That mean that one silo give 1 larva every minute for 40 marines
-
 
 // ***************************************
 // *********** Corrupted Xenos
@@ -826,6 +823,9 @@ to_chat will check for valid clients itself already so no need to double check f
 /mob/living/carbon/xenomorph/wraith/Corrupted
 	hivenumber = XENO_HIVE_CORRUPTED
 
+/mob/living/carbon/xenomorph/king/Corrupted
+	hivenumber = XENO_HIVE_CORRUPTED
+
 // ***************************************
 // *********** Misc Xenos
 // ***************************************
@@ -895,6 +895,9 @@ to_chat will check for valid clients itself already so no need to double check f
 /mob/living/carbon/xenomorph/wraith/Alpha
 	hivenumber = XENO_HIVE_ALPHA
 
+/mob/living/carbon/xenomorph/king/Alpha
+	hivenumber = XENO_HIVE_ALPHA
+
 /datum/hive_status/beta
 	name = "Beta"
 	hivenumber = XENO_HIVE_BETA
@@ -959,6 +962,9 @@ to_chat will check for valid clients itself already so no need to double check f
 	hivenumber = XENO_HIVE_BETA
 
 /mob/living/carbon/xenomorph/wraith/Beta
+	hivenumber = XENO_HIVE_BETA
+
+/mob/living/carbon/xenomorph/king/Beta
 	hivenumber = XENO_HIVE_BETA
 
 /datum/hive_status/zeta
@@ -1027,12 +1033,18 @@ to_chat will check for valid clients itself already so no need to double check f
 /mob/living/carbon/xenomorph/wraith/Zeta
 	hivenumber = XENO_HIVE_ZETA
 
+/mob/living/carbon/xenomorph/king/Zeta
+	hivenumber = XENO_HIVE_ZETA
+
 /datum/hive_status/admeme
 	name = "Admeme"
 	hivenumber = XENO_HIVE_ADMEME
 	prefix = "Admeme "
 
 /mob/living/carbon/xenomorph/queen/admeme
+	hivenumber = XENO_HIVE_ADMEME
+
+/mob/living/carbon/xenomorph/king/admeme
 	hivenumber = XENO_HIVE_ADMEME
 
 // ***************************************
@@ -1065,10 +1077,10 @@ to_chat will check for valid clients itself already so no need to double check f
 /mob/living/carbon/xenomorph/get_xeno_hivenumber()
 	return hivenumber
 
-/obj/structure/tunnel/get_xeno_hivenumber()
+/obj/structure/xeno/tunnel/get_xeno_hivenumber()
 	return hivenumber
 
-/obj/structure/resin/xeno_turret/get_xeno_hivenumber()
+/obj/structure/xeno/resin/xeno_turret/get_xeno_hivenumber()
 	return associated_hive.hivenumber
 
 /datum/hive_status/ui_state(mob/user)
@@ -1151,8 +1163,8 @@ to_chat will check for valid clients itself already so no need to double check f
 			return TRUE
 
 /datum/hive_status/proc/update_tier_limits()
-	tier3_xeno_limit = max(length(xenos_by_tier[XENO_TIER_THREE]),FLOOR((length(xenos_by_tier[XENO_TIER_ZERO])+length(xenos_by_tier[XENO_TIER_ONE])+length(xenos_by_tier[XENO_TIER_TWO]))/3+1,1))
-	tier2_xeno_limit = max(length(xenos_by_tier[XENO_TIER_TWO]),length(xenos_by_tier[XENO_TIER_ZERO]) + length(xenos_by_tier[XENO_TIER_ONE])+1 - length(xenos_by_tier[XENO_TIER_THREE]))
+	tier3_xeno_limit = max(length(xenos_by_tier[XENO_TIER_THREE]),FLOOR((length(xenos_by_tier[XENO_TIER_ZERO])+length(xenos_by_tier[XENO_TIER_ONE])+length(xenos_by_tier[XENO_TIER_TWO])+length(xenos_by_tier[XENO_TIER_FOUR]))/3+1,1))
+	tier2_xeno_limit = max(length(xenos_by_tier[XENO_TIER_TWO]),length(xenos_by_tier[XENO_TIER_ZERO]) + length(xenos_by_tier[XENO_TIER_ONE]) + length(xenos_by_tier[XENO_TIER_FOUR])+1 - length(xenos_by_tier[XENO_TIER_THREE]))
 
 ///Handles the timer when all silos are destroyed
 /datum/hive_status/proc/handle_silo_death_timer()
