@@ -387,13 +387,11 @@
 	description = "For the next few moments you will not go into crit and become resistant to explosives and immune to stagger and slowdown, but you still die if you take damage exceeding your crit health."
 	keybind_signal = COMSIG_XENOABILITY_ENDURE
 
-/*
 /datum/keybinding/xeno/ravager_rage
 	name = "ravager_rage"
 	full_name = "Ravager: Rage"
-	description = "While active, you will recover plasma and gain a bonus to speed, armor and melee damage in proportion to the percentage of your missing health."
+	description = "While active, you will temporarily recover plasma and sunder and gain a bonus to speed and melee damage in proportion to the percentage of your missing health. At negative HP your ability cooldowns reset and your slash damage restores health."
 	keybind_signal = COMSIG_XENOABILITY_RAGE
-*/
 
 /datum/keybinding/xeno/ravage
 	name = "ravage"
