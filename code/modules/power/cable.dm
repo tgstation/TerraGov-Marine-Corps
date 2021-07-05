@@ -156,16 +156,15 @@ GLOBAL_LIST_INIT(wire_node_generating_types, typecacheof(list(/obj/structure/gri
 		user.visible_message("<span class='notice'>[user] cuts the cable.</span>", "<span class='notice'>You cut the cable.</span>")
 		log_game("[src] was cut by [key_name(usr)] in [AREACOORD(src)]")
 		deconstruct()
+		add_fingerprint(user, "handlecable")
 		return
-
-	else if(W.tool_behaviour == TOOL_MULTITOOL)
+	if(W.tool_behaviour == TOOL_MULTITOOL)
 		if(powernet && (powernet.avail > 0))		// is it powered?
 			to_chat(user, "<span class='danger'>Total power: [DisplayPower(powernet.avail)]\nLoad: [DisplayPower(powernet.load)]\nExcess power: [DisplayPower(surplus())]</span>")
 		else
 			to_chat(user, "<span class='danger'>The cable is not powered.</span>")
 		shock(user, 5, 0.2)
-
-	add_fingerprint(user)
+		add_fingerprint(user, "handlecable")
 
 // Items usable on a cable :
 //   - Wirecutters : cut it duh !

@@ -138,8 +138,6 @@
 	. = ..()					//This only affects guns you can get from vendors for now. Special guns spawn with their own things regardless.
 	base_gun_icon = icon_state
 
-	verbs -= /obj/item/verb/verb_pickup
-
 	if(current_mag)
 		if(spawn_empty && !(flags_gun_features & GUN_INTERNAL_MAG)) //Internal mags will still spawn, but they won't be filled.
 			current_mag = null
@@ -196,27 +194,38 @@
 /obj/item/weapon/gun/equipped(mob/user, slot)
 	unwield(user)
 	if(ishandslot(slot))
-		gun_user = user
-		RegisterSignal(gun_user, COMSIG_MOB_MOUSEDOWN, .proc/start_fire) //All of this should and will be put inside an aiming component
-		RegisterSignal(gun_user, COMSIG_MOB_MOUSEUP, .proc/stop_fire)
-		RegisterSignal(gun_user, COMSIG_MOB_MOUSEDRAG, .proc/change_target)
-		RegisterSignal(gun_user, COMSIG_KB_RAILATTACHMENT, .proc/activate_rail_attachment)
-		RegisterSignal(gun_user, COMSIG_KB_UNDERRAILATTACHMENT, .proc/activate_underrail_attachment)
-		RegisterSignal(gun_user, COMSIG_KB_UNLOADGUN, .proc/unload_gun)
-		RegisterSignal(gun_user, COMSIG_KB_FIREMODE, .proc/do_toggle_firemode)
+		set_gun_user(user)
 		return ..()
-	if(gun_user)
-		UnregisterSignal(gun_user, list(COMSIG_MOB_MOUSEDOWN, COMSIG_MOB_MOUSEUP, COMSIG_MOB_MOUSEDRAG, COMSIG_KB_RAILATTACHMENT, COMSIG_KB_UNDERRAILATTACHMENT, COMSIG_KB_UNLOADGUN, COMSIG_KB_FIREMODE))
-		gun_user.client.mouse_pointer_icon = initial(gun_user.client.mouse_pointer_icon)
-		gun_user = null
+	set_gun_user(null)
 	return ..()
 
 /obj/item/weapon/gun/removed_from_inventory(mob/user)
-	if(!gun_user)
+	set_gun_user(null)
+
+///Set the user in argument as gun_user
+/obj/item/weapon/gun/proc/set_gun_user(mob/user)
+	if(user == gun_user)
 		return
-	UnregisterSignal(gun_user, list(COMSIG_MOB_MOUSEDOWN, COMSIG_MOB_MOUSEUP, COMSIG_MOB_MOUSEDRAG, COMSIG_KB_RAILATTACHMENT, COMSIG_KB_UNDERRAILATTACHMENT, COMSIG_KB_UNLOADGUN, COMSIG_KB_FIREMODE))
-	gun_user.client?.mouse_pointer_icon = initial(gun_user.client.mouse_pointer_icon)
-	gun_user = null
+	if(gun_user)
+		UnregisterSignal(gun_user, list(COMSIG_MOB_MOUSEDOWN, COMSIG_MOB_MOUSEUP, COMSIG_MOB_MOUSEDRAG, COMSIG_KB_RAILATTACHMENT, COMSIG_KB_UNDERRAILATTACHMENT, COMSIG_KB_UNLOADGUN, COMSIG_KB_FIREMODE, COMSIG_PARENT_QDELETING))
+		gun_user.client.mouse_pointer_icon = initial(gun_user.client.mouse_pointer_icon)
+		gun_user = null
+	if(!user)
+		return
+	gun_user = user
+	RegisterSignal(gun_user, COMSIG_PARENT_QDELETING, .proc/clean_gun_user)
+	RegisterSignal(gun_user, COMSIG_MOB_MOUSEDOWN, .proc/start_fire)
+	RegisterSignal(gun_user, COMSIG_MOB_MOUSEUP, .proc/stop_fire)
+	RegisterSignal(gun_user, COMSIG_MOB_MOUSEDRAG, .proc/change_target)
+	RegisterSignal(gun_user, COMSIG_KB_RAILATTACHMENT, .proc/activate_rail_attachment)
+	RegisterSignal(gun_user, COMSIG_KB_UNDERRAILATTACHMENT, .proc/activate_underrail_attachment)
+	RegisterSignal(gun_user, COMSIG_KB_UNLOADGUN, .proc/unload_gun)
+	RegisterSignal(gun_user, COMSIG_KB_FIREMODE, .proc/do_toggle_firemode)
+
+///Null out gun user to prevent hard del
+/obj/item/weapon/gun/proc/clean_gun_user()
+	SIGNAL_HANDLER
+	set_gun_user(null)
 
 /obj/item/weapon/gun/update_icon(mob/user)
 	if(!current_mag || current_mag.current_rounds <= 0)
@@ -1151,6 +1160,9 @@ and you're good to go.
 		return
 	if(!wielded_stable())
 		to_chat(gun_user, "<span class='warning'>[active_attachable] is not ready to fire!</span>")
+		return
+	if(!(flags_gun_features & GUN_ALLOW_SYNTHETIC) && !CONFIG_GET(flag/allow_synthetic_gun_use) && issynth(gun_user))
+		to_chat(gun_user, "<span class='warning'>Your program does not allow you to use this firearm.</span>")
 		return
 	active_attachable.fire_attachment(target, src, gun_user) //Fire it.
 	last_fired = world.time

@@ -43019,11 +43019,6 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/open/space/sea,
 /area/space)
-"ogQ" = (
-/turf/open/ground/coast{
-	dir = 8
-	},
-/area/prison/residential/north)
 "oie" = (
 /turf/open/floor/prison/darkred,
 /area/prison/security/monitoring/highsec)
@@ -56047,7 +56042,7 @@ azg
 avN
 aCa
 aDJ
-ogQ
+aBV
 aBV
 aBV
 aBV

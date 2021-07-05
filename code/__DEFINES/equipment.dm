@@ -59,6 +59,7 @@
 #define IMPEDE_JETPACK (1<<9)  //Reduce the range of jetpack
 #define DRAINS_XENO (1<<10)  //Enables the item to collect resource for chem_booster component
 #define CAN_BUMP_ATTACK (1<<11)	 //Item triggers bump attack
+#define NO_VACUUM (1<<12) //Roomba won't eat this
 //==========================================================================================
 
 //flags_inv_hide

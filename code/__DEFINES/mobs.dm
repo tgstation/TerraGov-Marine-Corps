@@ -425,6 +425,9 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 //Xeno Defines
 
 #define XENO_DEFAULT_ACID_PUDDLE_DAMAGE 14 //Standard damage dealt by acid puddles
+#define XENO_ACID_WELL_FILL_TIME 2 SECONDS //How long it takes to add a charge to an acid pool
+#define XENO_ACID_WELL_FILL_COST 200 //Cost in plasma to apply a charge to an acid pool
+#define XENO_ACID_WELL_MAX_CHARGES 5 //Maximum number of charges for the acid well
 
 #define HIVE_CAN_HIJACK (1<<0)
 
@@ -434,7 +437,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define XENO_DEADHUMAN_DRAG_SLOWDOWN 2
 #define XENO_EXPLOSION_RESIST_3_MODIFIER 0.25 //multiplies top level explosive damage by this amount.
 
-#define KING_SUMMON_TIMER_DURATION 10 MINUTES
+#define KING_SUMMON_TIMER_DURATION 5 MINUTES
 
 #define SPIT_UPGRADE_BONUS(Xenomorph) (( max(0,Xenomorph.upgrade_as_number()) * 0.15 )) //increase damage by 15% per upgrade level; compensates for the loss of insane attack speed.
 
@@ -481,6 +484,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define CASTE_CAN_HOLD_JELLY (1<<14)//whether we can hold fireproof jelly in our hands
 #define CASTE_IS_STRONG (1<<15)//can tear open acided walls without being big
 #define CASTE_CAN_CORRUPT_GENERATOR (1<<16) //Can corrupt a generator
+#define CASTE_IS_BUILDER (1<<17) //whether we are classified as a builder caste
 
 //Charge-Crush
 #define CHARGE_OFF 0
@@ -512,6 +516,8 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define HUNTER_SNEAKATTACK_RUN_REDUCTION 0.2
 #define HUNTER_SNEAKATTACK_WALK_INCREASE 1
 #define HUNTER_SNEAKATTACK_MULTI_RECOVER_DELAY 10
+#define HUNTER_MARK_WINDUP						1 SECONDS //Windup of the Hunter's Mark
+#define HUNTER_PSYCHIC_TRACE_COOLDOWN			5 SECONDS //Cooldown of the Hunter's Psychic Trace, and duration of its arrow
 
 //Ravager defines:
 #define RAV_CHARGESPEED 2
@@ -604,7 +610,8 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define WRAITH_BANISH_NONFRIENDLY_LIVING_MULTIPLIER 0.5
 #define WRAITH_BANISH_VERY_SHORT_MULTIPLIER 0.3
 
-#define WRAITH_TELEPORT_DEBUFF_STACKS 1 //Stagger and slow stacks applied to adjacent living hostiles before/after a teleport
+#define WRAITH_TELEPORT_DEBUFF_STAGGER_STACKS 2 //Stagger and slow stacks applied to adjacent living hostiles before/after a teleport
+#define WRAITH_TELEPORT_DEBUFF_SLOWDOWN_STACKS 3 //Stagger and slow stacks applied to adjacent living hostiles before/after a teleport
 
 #define DEFILER_TRANSVITOX_CAP 180 //Max toxin damage transvitox will allow
 

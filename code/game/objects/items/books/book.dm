@@ -17,6 +17,9 @@
 	var/carved = 0	 // Has the book been hollowed out for use as a secret storage item?
 	var/obj/item/store	//What's in the book?
 
+/obj/item/book/Destroy()
+	store = null
+	return ..()
 
 /obj/item/book/interact(mob/user)
 	. = ..()

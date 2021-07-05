@@ -50,7 +50,7 @@
 		return
 	if(!(xeno_caste.caste_flags & CASTE_FIRE_IMMUNE) && on_fire) //Sanity check; have to be on fire to actually take the damage.
 		SEND_SIGNAL(src, COMSIG_XENOMORPH_FIRE_BURNING)
-		adjustFireLoss((fire_stacks + 3) * clamp(xeno_caste.fire_resist + fire_resist_modifier, 0, 1) ) // modifier is negative
+		adjustFireLoss((fire_stacks + 3) * get_fire_resist() )
 
 /mob/living/carbon/xenomorph/proc/handle_living_health_updates()
 	if(health < 0)
@@ -115,7 +115,7 @@
 		else
 			regen_power = min(regen_power + xeno_caste.regen_ramp_amount*20,1)
 		amount *= regen_power
-	amount *= multiplier
+	amount *= multiplier * GLOB.xeno_stat_multiplicator_buff
 
 	SEND_SIGNAL(src, COMSIG_XENOMORPH_HEALTH_REGEN, src)
 
