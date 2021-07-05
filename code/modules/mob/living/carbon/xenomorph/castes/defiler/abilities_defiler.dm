@@ -1,6 +1,7 @@
 #define DEFILER_NEUROTOXIN "Neurotoxin"
 #define DEFILER_HEMODILE "Hemodile"
 #define DEFILER_TRANSVITOX "Transvitox"
+
 GLOBAL_LIST_INIT(defile_purge_list, typecacheof(list(
 	/datum/reagent/toxin/xeno_hemodile, /datum/reagent/toxin/xeno_transvitox, /datum/reagent/toxin/xeno_neurotoxin)))
 
@@ -65,19 +66,15 @@ GLOBAL_LIST_INIT(defile_purge_list, typecacheof(list(
 	living_target.apply_damage(5, BRUTE, "chest", updating_health = TRUE)
 	living_target.emote("scream")
 
-	var/defile_strength_multiplier = 1
+	var/defile_strength_multiplier = 0.5
 	var/defile_reagent_amount
 	var/defile_power
 
-	var/count = LAZYLEN(GLOB.defile_purge_list)
-	for(var/datum/reagent/toxin/xeno_toxin AS in living_target.reagents.reagent_list) //Purge all the xeno chems
-		if(count < 1)
-			break
-		if(is_type_in_typecache(xeno_toxin, GLOB.defile_purge_list))
-			defile_reagent_amount += living_target.reagents.get_reagent_amount(xeno_toxin.type)
+	for(var/datum/reagent/current_reagent AS in living_target.reagents.reagent_list) //Cycle through all chems
+		defile_reagent_amount += living_target.reagents.get_reagent_amount(current_reagent.type)
+		if(is_type_in_typecache(current_reagent, GLOB.defile_purge_list)) //For each xeno toxin reagent, double the strength multiplire
 			defile_strength_multiplier *= 2
-			count--
-			living_target.reagents.remove_reagent(xeno_toxin.type,defile_reagent_amount)
+		living_target.reagents.remove_reagent(current_reagent.type,defile_reagent_amount) //Purge current chem
 
 	defile_power = defile_reagent_amount * defile_strength_multiplier //Total amount of toxin damage we deal
 
