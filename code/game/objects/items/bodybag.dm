@@ -143,6 +143,7 @@
 		var/mob/living/carbon/human/new_guest = locate() in contents
 		if(new_guest)
 			bodybag_occupant = new_guest
+			ADD_TRAIT(bodybag_occupant, TRAIT_CANNOT_SHOOT, BODYBAG_TRAIT)
 		update_name()
 		return TRUE
 	return FALSE
@@ -151,6 +152,7 @@
 /obj/structure/closet/bodybag/open()
 	. = ..()
 	if(bodybag_occupant)
+		REMOVE_TRAIT(bodybag_occupant, TRAIT_CANNOT_SHOOT, BODYBAG_TRAIT)
 		bodybag_occupant = null
 	update_name()
 

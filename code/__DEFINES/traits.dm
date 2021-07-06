@@ -88,6 +88,7 @@
 #define FORTIFY_TRAIT "fortify" //Defender fortify ability.
 #define TRAIT_STASIS "stasis"//Subject to the stasis effect
 #define ENDURE_TRAIT "endure" //Ravager Endure ability.
+#define BODYBAG_TRAIT "bodybag" //bodybag
 
 //mob traits
 #define TRAIT_KNOCKEDOUT "knockedout" //Forces the user to stay unconscious.
@@ -105,8 +106,9 @@
 #define TRAIT_UNDEFIBBABLE "undefibbable"//human can't be revived
 #define TRAIT_HEALING_INFUSION "healing_infusion"//greatly improves natural healing for xenos
 #define TRAIT_PSY_DRAINED "psy_drained"//mob was drained of life force by a xenos
-#define TRAIT_STAGGERIMMUNE		"stagger_immunity" //Immunity to stagger
-#define TRAIT_SLOWDOWNIMMUNE	"slowdown_immunity" //Immunity to slowdown
+#define TRAIT_STAGGERIMMUNE	"stagger_immunity" //Immunity to stagger
+#define TRAIT_SLOWDOWNIMMUNE "slowdown_immunity" //Immunity to slowdown
+#define TRAIT_CANNOT_SHOOT "cannot_shoot" //Cannot use a gun with this trait
 
 // item traits
 #define TRAIT_T_RAY_VISIBLE "t-ray-visible" // Visible on t-ray scanners if the atom/var/level == 1

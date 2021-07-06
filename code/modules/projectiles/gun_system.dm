@@ -674,7 +674,7 @@ and you're good to go.
 //----------------------------------------------------------
 
 /obj/item/weapon/gun/proc/Fire()
-	if(QDELETED(gun_user) || !ismob(gun_user) || !able_to_fire(gun_user) || !target)
+	if(QDELETED(gun_user) || !ismob(gun_user) || !able_to_fire(gun_user) || !target || HAS_TRAIT(gun_user, TRAIT_CANNOT_SHOOT))
 		return
 
 	//The gun should return the bullet that it already loaded from the end cycle of the last Fire().
