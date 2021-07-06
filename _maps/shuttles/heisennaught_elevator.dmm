@@ -1,0 +1,22 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"G" = (
+/obj/structure/catwalk,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/squads/req)
+"Y" = (
+/obj/structure/catwalk{
+	layer = 1
+	},
+/obj/machinery/computer/shuttle/heisennaught_elevator,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/squads/req)
+
+(1,1,1) = {"
+Y
+"}
+(2,1,1) = {"
+G
+"}
+(3,1,1) = {"
+G
+"}

@@ -5639,6 +5639,9 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/heisennaught/lower_deck/engineering)
+"uy" = (
+/turf/open/floor/elevatorshaft,
+/area/heisennaught/upper_deck/space)
 "uA" = (
 /obj/structure/anti_air_cannon{
 	density = 0;
@@ -5764,15 +5767,6 @@
 	},
 /turf/open/floor/wood,
 /area/mainship/command/corporateliaison)
-"uX" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 6
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 6
-	},
-/turf/open/floor/mainship/mono,
-/area/mainship/squads/req)
 "uY" = (
 /obj/structure/platform_decoration{
 	dir = 8
@@ -5878,6 +5872,16 @@
 /obj/item/explosive/grenade/incendiary/molotov,
 /turf/open/floor/wood,
 /area/heisennaught/lower_deck/engineering)
+"vq" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 6
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 6
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/squads/req)
 "vr" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 6
@@ -6627,6 +6631,15 @@
 	dir = 8
 	},
 /area/heisennaught/upper_deck/space)
+"yi" = (
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
+	dir = 4
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/squads/req)
 "yk" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden,
@@ -7594,6 +7607,10 @@
 /obj/machinery/marine_selector/gear/engi,
 /turf/open/floor/mainship/mono,
 /area/heisennaught/lower_deck/prep)
+"Cb" = (
+/obj/docking_port/stationary/heisennaught_elevator/down,
+/turf/open/floor/elevatorshaft,
+/area/mainship/squads/req)
 "Cd" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 1
@@ -7676,6 +7693,16 @@
 	dir = 5
 	},
 /area/mainship/command/self_destruct)
+"Co" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/squads/req)
 "Cp" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber{
 	dir = 8
@@ -8242,6 +8269,10 @@
 /obj/item/target/syndicate,
 /turf/open/floor/mainship/mono,
 /area/heisennaught/lower_deck/firing_range)
+"Eq" = (
+/obj/docking_port/stationary/heisennaught_elevator/up,
+/turf/open/floor/elevatorshaft,
+/area/heisennaught/upper_deck/space)
 "Er" = (
 /obj/structure/bed,
 /obj/item/bedsheet/purple,
@@ -9318,6 +9349,15 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/heisennaught/lower_deck/hallway/central)
+"Iq" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 6
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 5
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/squads/req)
 "Ir" = (
 /obj/machinery/keycard_auth,
 /turf/closed/wall/mainship,
@@ -9833,13 +9873,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/heisennaught/lower_deck/showers)
-"Km" = (
-/obj/structure/cable,
-/obj/machinery/light{
-	bulb_colour = "#FA6708"
-	},
-/turf/open/floor/mainship/mono,
-/area/mainship/squads/req)
 "Kn" = (
 /obj/machinery/telecomms/broadcaster/preset_right,
 /turf/open/floor/mainship/tcomms,
@@ -9908,13 +9941,6 @@
 /obj/item/reagent_containers/food/drinks/bottle/whiskey,
 /turf/open/floor/wood,
 /area/heisennaught/lower_deck/kitchen)
-"KF" = (
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
-	dir = 1
-	},
-/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden,
-/turf/open/floor/mainship/mono,
-/area/mainship/squads/req)
 "KG" = (
 /obj/structure/cable,
 /obj/machinery/power/smes,
@@ -11616,6 +11642,10 @@
 /obj/item/tool/pen,
 /turf/open/floor/mainship/mono,
 /area/heisennaught/lower_deck/engineering)
+"Rh" = (
+/obj/machinery/computer/shuttle/heisennaught_elevator,
+/turf/open/floor/mainship/mono,
+/area/mainship/squads/req)
 "Ri" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 9
@@ -12476,6 +12506,9 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/heisennaught/lower_deck/engineering)
+"Ut" = (
+/turf/open/floor/elevatorshaft,
+/area/mainship/squads/req)
 "Uu" = (
 /obj/structure/bed/chair/office/light,
 /obj/machinery/light{
@@ -12905,6 +12938,19 @@
 /obj/machinery/door/airlock/mainship/maint,
 /turf/open/floor/plating/plating_catwalk,
 /area/heisennaught/lower_deck/prep)
+"Ww" = (
+/obj/structure/cable,
+/obj/machinery/light{
+	bulb_colour = "#FA6708"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/squads/req)
 "Wy" = (
 /obj/structure/table/mainship,
 /obj/item/reagent_containers/food/snacks/breadslice,
@@ -56161,9 +56207,9 @@ vR
 IR
 Cq
 om
-uX
-Av
-YY
+Ay
+Ay
+vq
 sw
 BL
 sj
@@ -56358,7 +56404,7 @@ vR
 tA
 Gm
 AX
-AX
+uy
 nE
 pk
 TL
@@ -56418,9 +56464,9 @@ vR
 IR
 Ta
 Ay
-Mh
-Ay
-WK
+Ut
+Rh
+Co
 zv
 Gg
 Bw
@@ -56614,8 +56660,8 @@ vR
 vR
 tA
 Gm
-OD
 AX
+Eq
 nE
 gY
 qf
@@ -56675,9 +56721,9 @@ vR
 IR
 Cq
 om
-Mh
+Cb
 Ay
-Km
+Ww
 zv
 uo
 Bw
@@ -56872,7 +56918,7 @@ vR
 Cj
 Gm
 AX
-AX
+uy
 nE
 pk
 TL
@@ -56932,9 +56978,9 @@ vR
 IR
 Ta
 Ay
-Mh
+Ut
 Ay
-WK
+Co
 zv
 ri
 pV
@@ -57189,9 +57235,9 @@ vR
 IR
 Cq
 om
-Mh
 Ay
-WK
+Ay
+Co
 zv
 zv
 zv
@@ -57446,9 +57492,9 @@ vR
 IR
 ZH
 gI
-KF
+Iq
 YO
-WK
+Co
 WK
 Ig
 WK
@@ -57705,7 +57751,7 @@ Ay
 Ay
 XK
 Av
-Av
+yi
 Av
 Av
 Av
