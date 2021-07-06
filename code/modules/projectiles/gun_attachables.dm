@@ -746,7 +746,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	desc = "An unremovable smart sight built for use with the tl102, it does nearly all the aiming work for the gun's integrated IFF systems."
 	attach_icon = "none"
 	zoom_offset = 3
-	zoom_viewsize = 0
+	zoom_viewsize = 7
 
 /obj/item/attachable/scope/unremovable/tl102/nest
 	zoom_offset = 6

@@ -9,7 +9,7 @@
 
 /datum/element/deployable_item/Attach(datum/target, _deploy_type, _deploy_time)
 	. = ..()
-	if(!isitem(target) || !isobj(_deploy_type))
+	if(!isitem(target))
 		return ELEMENT_INCOMPATIBLE
 	deploy_type = _deploy_type
 	deploy_time = _deploy_time

@@ -50,7 +50,8 @@
 	if(issynth(human_user) && !CONFIG_GET(flag/allow_synthetic_gun_use))
 		to_chat(human_user, "<span class='warning'>Your programming restricts operating heavy weaponry.</span>")
 		return TRUE
-
+	playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, TRUE, 7)
+	do_attack_animation(src, ATTACK_EFFECT_GRAB)
 	visible_message("[icon2html(src, viewers(src))] <span class='notice'>[human_user] mans the [src]!</span>",
 		"<span class='notice'>You man the gun!</span>")
 
