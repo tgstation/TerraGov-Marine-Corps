@@ -25,12 +25,12 @@
 		DISABLE_BITFIELD(parent.flags_inventory, COVEREYES)
 		DISABLE_BITFIELD(parent.flags_inv_hide, HIDEEYES)
 		DISABLE_BITFIELD(parent.flags_armor_protection, EYES)
-		parent.eye_protection += eye_protection_mod // reset to the users base eye
+		parent.eye_protection -= eye_protection_mod // reset to the users base eye
 	else
 		ENABLE_BITFIELD(parent.flags_inventory, COVEREYES)
 		ENABLE_BITFIELD(parent.flags_inv_hide, HIDEEYES)
 		ENABLE_BITFIELD(parent.flags_armor_protection, EYES)
-		parent.eye_protection -= eye_protection_mod
+		parent.eye_protection += eye_protection_mod
 
 	active = !active
 	SEND_SIGNAL(parent, COMSIG_ITEM_TOGGLE_ACTION, user)
