@@ -1,0 +1,4 @@
+author: "Cowbin"
+delete-after: True
+changes: 
+  - rscadd: "Medical Huds added to req for 2 points."

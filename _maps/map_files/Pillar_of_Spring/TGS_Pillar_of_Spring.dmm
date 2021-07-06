@@ -2517,7 +2517,9 @@
 /turf/open/floor/wood,
 /area/mainship/command/corporateliaison)
 "iX" = (
-/turf/open/floor/mainship/mono,
+/obj/structure/window/reinforced/extratoughened,
+/obj/machinery/camera/autoname/mainship,
+/turf/open/floor/mainship/tcomms,
 /area/mainship/command/airoom)
 "iY" = (
 /obj/item/bedsheet/blue,
@@ -3152,14 +3154,14 @@
 	dir = 2
 	},
 /turf/open/floor/mainship/stripesquare,
-/area/mainship/hallways/aft_hallway)
+/area/mainship/hallways/hangar)
 "kP" = (
 /obj/machinery/light{
 	dir = 4
 	},
 /obj/machinery/vending/tool,
 /turf/open/floor/mainship/mono,
-/area/mainship/squads/req)
+/area/mainship/hallways/aft_hallway)
 "kQ" = (
 /obj/machinery/camera/autoname/mainship,
 /obj/machinery/vending/coffee,
@@ -3176,7 +3178,7 @@
 	dir = 1
 	},
 /turf/open/floor/mainship/cargo,
-/area/mainship/squads/req)
+/area/mainship/hallways/aft_hallway)
 "kT" = (
 /obj/structure/table/reinforced,
 /obj/machinery/door/window/northleft,
@@ -4102,6 +4104,12 @@
 	},
 /turf/open/floor/wood,
 /area/mainship/medical/surgery_hallway)
+"nQ" = (
+/obj/machinery/camera/autoname{
+	dir = 1
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/starboard_hallway)
 "nR" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
 	dir = 4
@@ -10169,14 +10177,17 @@
 /area/mainship/hallways/port_umbilical)
 "HL" = (
 /obj/structure/cable,
-/turf/open/floor/mainship/mono,
+/turf/open/floor/mainship/tcomms,
 /area/mainship/command/airoom)
 "HM" = (
 /obj/structure/cable,
 /obj/machinery/power/apc/mainship/hardened{
 	dir = 8
 	},
-/turf/open/floor/mainship/mono,
+/obj/structure/window/reinforced/extratoughened{
+	dir = 1
+	},
+/turf/open/floor/mainship/tcomms,
 /area/mainship/command/airoom)
 "HN" = (
 /obj/machinery/door/airlock/mainship/command/cic{
@@ -10587,6 +10598,12 @@
 /obj/machinery/door/airlock/mainship/maint,
 /turf/open/floor/mainship/mono,
 /area/mainship/medical/surgery_hallway)
+"IW" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/mainship/tcomms,
+/area/mainship/command/airoom)
 "IX" = (
 /turf/open/floor/mainship/black{
 	dir = 10
@@ -14034,7 +14051,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/mainship/stripesquare,
-/area/mainship/hallways/aft_hallway)
+/area/mainship/hallways/hangar)
 "Uk" = (
 /obj/machinery/door/airlock/mainship/maint,
 /turf/open/floor/mainship/mono,
@@ -14403,9 +14420,11 @@
 /turf/open/floor/mainship/black,
 /area/mainship/command/self_destruct)
 "Vl" = (
-/obj/machinery/door/firedoor/mainship,
+/obj/machinery/door/firedoor/mainship{
+	dir = 2
+	},
 /turf/open/floor/mainship/stripesquare,
-/area/mainship/squads/req)
+/area/mainship/hallways/hangar)
 "Vm" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
@@ -14422,7 +14441,7 @@
 	dir = 1
 	},
 /turf/open/floor/mainship/mono,
-/area/mainship/squads/req)
+/area/mainship/hallways/aft_hallway)
 "Vo" = (
 /turf/open/floor/mainship_hull/dir,
 /area/space)
@@ -14795,6 +14814,12 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
+"WT" = (
+/obj/structure/window/reinforced/extratoughened{
+	dir = 4
+	},
+/turf/open/floor/mainship/tcomms,
+/area/mainship/command/airoom)
 "WU" = (
 /obj/machinery/telecomms/broadcaster/preset_left,
 /turf/open/floor/mainship/tcomms,
@@ -15240,7 +15265,7 @@
 	dir = 1
 	},
 /turf/open/floor/mainship/cargo,
-/area/mainship/squads/req)
+/area/mainship/hallways/aft_hallway)
 "Yr" = (
 /obj/machinery/status_display,
 /turf/closed/wall/mainship,
@@ -15277,11 +15302,8 @@
 /turf/open/floor/mainship/black/corner,
 /area/mainship/squads/general)
 "Yy" = (
-/obj/machinery/computer/cryopod,
-/turf/open/floor/mainship/black{
-	dir = 4
-	},
-/area/mainship/squads/general)
+/turf/closed/wall/mainship,
+/area/mainship/hallways/aft_hallway)
 "Yz" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
@@ -46130,8 +46152,8 @@ ZO
 az
 Le
 Tl
-Vl
-Vl
+Tl
+Tl
 qG
 Tb
 Tb
@@ -46387,8 +46409,8 @@ NE
 Jb
 Cq
 gd
-kM
-kM
+gd
+gd
 de
 VM
 kE
@@ -46644,8 +46666,8 @@ eM
 eN
 Cq
 gd
-kM
-kM
+gd
+gd
 de
 no
 oF
@@ -46901,7 +46923,7 @@ eM
 eN
 Cq
 gd
-kM
+gd
 kP
 de
 pO
@@ -47159,7 +47181,7 @@ az
 ee
 gd
 Vn
-qG
+Yy
 JH
 LM
 Rm
@@ -47415,7 +47437,7 @@ mq
 dA
 Nt
 gd
-kM
+gd
 Yq
 kT
 nr
@@ -47672,7 +47694,7 @@ Cq
 Cq
 Cq
 gd
-kM
+gd
 kS
 nf
 kM
@@ -47929,7 +47951,7 @@ Vd
 Vd
 gI
 gd
-kM
+gd
 kS
 nf
 kM
@@ -47979,8 +48001,8 @@ mK
 mX
 tZ
 xD
-mI
-iX
+IW
+WT
 HL
 OE
 MW
@@ -48179,14 +48201,14 @@ bh
 bh
 hz
 EP
-AB
+Vl
 Cq
 XN
 Cq
 Cq
 KY
 gd
-kM
+gd
 kS
 nf
 kM
@@ -48443,7 +48465,7 @@ mU
 mU
 XN
 gd
-kM
+gd
 kS
 nf
 UW
@@ -48700,8 +48722,8 @@ AH
 mU
 XN
 gd
-kM
-kM
+gd
+gd
 qG
 ly
 Tb
@@ -49238,7 +49260,7 @@ RB
 wS
 RB
 CG
-jy
+nQ
 qC
 ZS
 Rg
@@ -49494,7 +49516,7 @@ jy
 jy
 AR
 jy
-BG
+jy
 jy
 qC
 Ir
