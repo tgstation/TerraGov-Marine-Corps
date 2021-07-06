@@ -219,7 +219,7 @@
 		if(!istype(attachable, /obj/item/attachable/scope))
 			return
 		var/obj/item/attachable/scope/scope = attachable
-		scope.zoom_item_turnoff(user, user)
+		scope.zoom_item_turnoff(operator, operator)
 
 	if(operator.client) 
 		operator.client.change_view(WORLD_VIEW)
