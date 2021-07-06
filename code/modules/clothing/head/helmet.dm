@@ -305,6 +305,28 @@
 /obj/item/clothing/head/helmet/marine/standard
 	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_PRISON_VARIANT|ITEM_ICE_PROTECTION)
 
+/obj/item/clothing/head/helmet/marine/standard/attack_self(mob/user)
+
+	///List of colors for the M-10 and their respective icon states
+	var/static/list/helmet_colors = list(
+		"classic" = "helmet",
+		"snow" = "s_helmet",
+		"black" = "k_helmet",
+		"green" = "m_helmet",
+	)
+
+	. = ..()
+	if(.)
+		return
+
+	if(!do_after(user, 3 SECONDS, TRUE, src, BUSY_ICON_GENERIC))
+		return TRUE
+
+	var/new_icon = tgui_input_list(user, "Pick a color", "Pick color", helmet_colors)
+	if(!new_icon)
+		return
+	icon_state = helmet_colors[new_icon]
+
 /obj/item/clothing/head/helmet/marine/tech
 	name = "\improper M10 technician helmet"
 	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_PRISON_VARIANT|ITEM_ICE_PROTECTION)
