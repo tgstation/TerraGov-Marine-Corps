@@ -91,6 +91,7 @@
 			.["job_preferences"] = job_preferences
 			.["preferred_squad"] = preferred_squad
 			.["alternate_option"] = alternate_option
+			.["special_occupation"] = be_special
 		if(GAME_SETTINGS)
 			.["ui_style_color"] = ui_style_color
 			.["ui_style"] = ui_style
@@ -583,7 +584,7 @@
 				key_bindings[old_key] -= kb_name
 				if(!length(key_bindings[old_key]))
 					key_bindings -= old_key
-			
+
 			if(!params["key"])
 				return
 			var/mods = params["key_mods"]
@@ -603,7 +604,7 @@
 			key_bindings[full_key] = sortList(key_bindings[full_key])
 			current_client.update_movement_keys()
 			return TRUE
-		
+
 		if("clear_keybind")
 			var/kb_name = params["keybinding"]
 			for(var/key in key_bindings)
