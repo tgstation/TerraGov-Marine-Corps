@@ -320,6 +320,7 @@ SUBSYSTEM_DEF(minimaps)
 	var/minimap_displayed = FALSE
 	///Minimap object we'll be displaying
 	var/obj/screen/minimap/map
+	///This is mostly for the AI & other things which do not move groundside.
 	var/default_overwatch_level = 0
 
 
@@ -362,7 +363,7 @@ SUBSYSTEM_DEF(minimaps)
 	map = null
 	if(!SSminimaps.minimaps_by_z["[newz]"] || !SSminimaps.minimaps_by_z["[newz]"].hud_image)
 		return
-	if(default_overwatch_level)
+	if(default_overwatch_level)	//For da AI
 		map = SSminimaps.fetch_minimap_object(default_overwatch_level, minimap_flags)
 		return
 	map = SSminimaps.fetch_minimap_object(newz, minimap_flags)
