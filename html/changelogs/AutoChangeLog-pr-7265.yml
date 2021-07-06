@@ -1,4 +1,0 @@
-author: "Wayland-Smithy"
-delete-after: True
-changes: 
-  - qol: "Observers can spawn from the larva queue without silos before shutters open on Distress rounds."
