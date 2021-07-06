@@ -310,6 +310,16 @@
 	max_integrity = 300
 	reinf = TRUE
 
+//For the sulaco and POS AI core.
+/obj/structure/window/reinforced/extratoughened
+	name = "protective AI glass"
+	desc = "Heavily reinforced glass with many layers of a rod matrice. This is rarely used for anything but the most important windows"
+	icon_state = "rwindow"
+	basestate = "rwindow"
+	max_integrity = 1500
+	reinf = TRUE
+	resistance_flags = 10 // I have no clue what those are.
+
 /obj/structure/window/reinforced/tinted
 	name = "tinted window"
 	desc = "A glass window with a rod matrice. It looks rather strong and opaque. Might take a few good hits to shatter it."

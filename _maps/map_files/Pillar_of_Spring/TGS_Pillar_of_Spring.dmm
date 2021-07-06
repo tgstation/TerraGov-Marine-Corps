@@ -2517,7 +2517,9 @@
 /turf/open/floor/wood,
 /area/mainship/command/corporateliaison)
 "iX" = (
-/turf/open/floor/mainship/mono,
+/obj/structure/window/reinforced/extratoughened,
+/obj/machinery/camera/autoname/mainship,
+/turf/open/floor/mainship/tcomms,
 /area/mainship/command/airoom)
 "iY" = (
 /obj/item/bedsheet/blue,
@@ -10175,14 +10177,17 @@
 /area/mainship/hallways/port_umbilical)
 "HL" = (
 /obj/structure/cable,
-/turf/open/floor/mainship/mono,
+/turf/open/floor/mainship/tcomms,
 /area/mainship/command/airoom)
 "HM" = (
 /obj/structure/cable,
 /obj/machinery/power/apc/mainship/hardened{
 	dir = 8
 	},
-/turf/open/floor/mainship/mono,
+/obj/structure/window/reinforced/extratoughened{
+	dir = 1
+	},
+/turf/open/floor/mainship/tcomms,
 /area/mainship/command/airoom)
 "HN" = (
 /obj/machinery/door/airlock/mainship/command/cic{
@@ -10593,6 +10598,12 @@
 /obj/machinery/door/airlock/mainship/maint,
 /turf/open/floor/mainship/mono,
 /area/mainship/medical/surgery_hallway)
+"IW" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/mainship/tcomms,
+/area/mainship/command/airoom)
 "IX" = (
 /turf/open/floor/mainship/black{
 	dir = 10
@@ -14803,6 +14814,12 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
+"WT" = (
+/obj/structure/window/reinforced/extratoughened{
+	dir = 4
+	},
+/turf/open/floor/mainship/tcomms,
+/area/mainship/command/airoom)
 "WU" = (
 /obj/machinery/telecomms/broadcaster/preset_left,
 /turf/open/floor/mainship/tcomms,
@@ -47984,8 +48001,8 @@ mK
 mX
 tZ
 xD
-mI
-iX
+IW
+WT
 HL
 OE
 MW
