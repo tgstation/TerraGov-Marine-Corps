@@ -91,6 +91,7 @@
 			.["job_preferences"] = job_preferences
 			.["preferred_squad"] = preferred_squad
 			.["alternate_option"] = alternate_option
+			.["special_occupation"] = be_special
 		if(GAME_SETTINGS)
 			.["ui_style_color"] = ui_style_color
 			.["ui_style"] = ui_style
