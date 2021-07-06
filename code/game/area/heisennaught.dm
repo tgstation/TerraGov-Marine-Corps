@@ -123,3 +123,7 @@
 /area/heisennaught/lower_deck/droppodbay
 	name = "Heisennaught Drop Pod Bay"
 	icon_state = "hallC1"
+
+//wtf its now a water ship!!!
+/area/space/sea
+	name = "/improper Deep Sea"

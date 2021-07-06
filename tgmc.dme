@@ -730,6 +730,7 @@
 #include "code\game\objects\machinery\floodlight.dm"
 #include "code\game\objects\machinery\fuelcell_recycler.dm"
 #include "code\game\objects\machinery\gear.dm"
+#include "code\game\objects\machinery\heisennaught.dm"
 #include "code\game\objects\machinery\hologram.dm"
 #include "code\game\objects\machinery\holosign.dm"
 #include "code\game\objects\machinery\igniter.dm"
