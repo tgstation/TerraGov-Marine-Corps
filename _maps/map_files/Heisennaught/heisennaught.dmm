@@ -1664,17 +1664,6 @@
 /area/sulaco/cafeteria/kitchen{
 	name = "Heisennaught Kitchen"
 	})
-"fS" = (
-/obj/structure/cable,
-/obj/machinery/power/smes,
-/obj/machinery/light{
-	bulb_colour = "#FA6708";
-	dir = 1
-	},
-/turf/open/floor/mainship/mono,
-/area/sulaco/engineering{
-	name = "Heisennaught Engineering"
-	})
 "fT" = (
 /obj/structure/bed,
 /obj/item/bedsheet/blue,
@@ -3180,15 +3169,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/stern_hallway)
-"kY" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/structure/cable,
-/obj/machinery/power/smes,
-/turf/open/floor/mainship/mono,
-/area/sulaco/engineering{
-	name = "Heisennaught Engineering"
-	})
 "lb" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -4126,6 +4106,13 @@
 /area/mainship/hallways{
 	name = "Command Deck Hallway"
 	})
+"oA" = (
+/obj/machinery/power/smes,
+/obj/structure/cable,
+/turf/open/floor/mainship/mono,
+/area/sulaco/engineering{
+	name = "Heisennaught Engineering"
+	})
 "oB" = (
 /obj/structure/bed,
 /obj/item/bedsheet/purple,
@@ -4369,16 +4356,6 @@
 /obj/machinery/telecomms/server/presets/charlie,
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/telecomms)
-"ps" = (
-/obj/structure/cable,
-/obj/machinery/light{
-	bulb_colour = "#FA6708";
-	dir = 1
-	},
-/turf/open/floor/plating/plating_catwalk,
-/area/sulaco/engineering{
-	name = "Heisennaught Engineering"
-	})
 "pt" = (
 /obj/structure/bed/chair/comfy,
 /obj/machinery/light{
@@ -4953,17 +4930,6 @@
 /obj/machinery/atmospherics/pipe/manifold4w/scrubbers/hidden,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/general)
-"rr" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/structure/cable,
-/obj/machinery/power/terminal{
-	dir = 1
-	},
-/turf/open/floor/mainship/mono,
-/area/sulaco/engineering{
-	name = "Heisennaught Engineering"
-	})
 "rs" = (
 /obj/structure/window/framed/mainship,
 /turf/open/floor/mainship/mono,
@@ -9691,6 +9657,15 @@
 /obj/item/reagent_containers/food/snacks/protein_pack,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/general)
+"Hj" = (
+/obj/structure/cable,
+/obj/machinery/power/terminal{
+	dir = 8
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/sulaco/engineering{
+	name = "Heisennaught Engineering"
+	})
 "Hm" = (
 /obj/machinery/marine_selector/clothes/medic,
 /obj/machinery/light{
@@ -11537,6 +11512,15 @@
 /area/mainship/command/cic{
 	name = "Strategy and Planning"
 	})
+"Nw" = (
+/obj/machinery/power/terminal{
+	dir = 8
+	},
+/obj/structure/cable,
+/turf/open/floor/plating/plating_catwalk,
+/area/sulaco/engineering{
+	name = "Heisennaught Engineering"
+	})
 "Ny" = (
 /obj/machinery/marine_selector/gear/engi,
 /obj/machinery/light{
@@ -13128,15 +13112,6 @@
 /obj/structure/flora/pottedplant,
 /turf/open/floor/mainship/office,
 /area/mainship/living/bridgebunks)
-"Tc" = (
-/obj/structure/cable,
-/obj/machinery/power/terminal{
-	dir = 1
-	},
-/turf/open/floor/mainship/mono,
-/area/sulaco/engineering{
-	name = "Heisennaught Engineering"
-	})
 "Td" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -13871,6 +13846,17 @@
 /obj/item/tool/pen,
 /turf/open/floor/mainship/office,
 /area/mainship/shipboard/brig)
+"Vw" = (
+/obj/machinery/light{
+	bulb_colour = "#FA6708";
+	dir = 1
+	},
+/obj/machinery/power/smes,
+/obj/structure/cable,
+/turf/open/floor/mainship/mono,
+/area/sulaco/engineering{
+	name = "Heisennaught Engineering"
+	})
 "Vy" = (
 /obj/structure/bed/fancy,
 /obj/item/bedsheet/hos,
@@ -68161,8 +68147,8 @@ eB
 MG
 we
 rO
-kY
-rr
+eB
+Va
 eB
 eB
 nE
@@ -68418,9 +68404,9 @@ pF
 sr
 GW
 Iq
-fS
-Tc
-pF
+Vw
+qf
+oA
 pF
 Of
 pF
@@ -68675,9 +68661,9 @@ pF
 dD
 EI
 Iq
-qf
-Tc
-pF
+Nw
+Hj
+Nw
 pF
 Of
 pF
@@ -68932,8 +68918,8 @@ pF
 tn
 Rd
 Iq
-Of
 pF
+Of
 pF
 pF
 Of
@@ -69189,7 +69175,7 @@ pF
 pF
 GW
 Iq
-ps
+Li
 Of
 Of
 Of
