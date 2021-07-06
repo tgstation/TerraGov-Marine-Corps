@@ -340,10 +340,14 @@ SUBSYSTEM_DEF(minimaps)
 
 /datum/action/minimap/give_action(mob/M)
 	. = ..()
-	RegisterSignal(M, COMSIG_MOVABLE_Z_CHANGED, .proc/on_owner_z_change)
+	if(default_overwatch_level)
+		map = SSminimaps.fetch_minimap_object(default_overwatch_level, minimap_flags)
+	else
+		RegisterSignal(M, COMSIG_MOVABLE_Z_CHANGED, .proc/on_owner_z_change)
+		map = SSminimaps.fetch_minimap_object(M.z, minimap_flags)
 	if(!SSminimaps.minimaps_by_z["[M.z]"] || !SSminimaps.minimaps_by_z["[M.z]"].hud_image)
 		return
-	map = SSminimaps.fetch_minimap_object(M.z, minimap_flags)
+
 
 /datum/action/minimap/remove_action(mob/M)
 	. = ..()
