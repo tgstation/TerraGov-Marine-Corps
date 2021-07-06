@@ -1,0 +1,8 @@
+author: "SplinterGP"
+delete-after: True
+changes: 
+  - expansion: "Ravager plasma now regens when they cause damage on an enemy."
+  - balance: "Ravager plasma regen reduced."
+  - balance: "Ravager plasma now regens even off weeds."
+  - balance: "Ravager plasma is now limited to regenning up to 50% until elder+ which is 60%"
+  - imageadd: "Ravager now has a red plasma bar to imply fury."
