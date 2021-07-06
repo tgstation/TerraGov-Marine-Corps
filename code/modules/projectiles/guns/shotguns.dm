@@ -673,7 +673,7 @@ can cause issues with ammo types getting mixed up during the burst.
 
 /obj/item/weapon/gun/shotgun/double/martini
 	name = "\improper Martini Henry lever action rifle"
-	desc = "A lever action with room for a single round of .557/440 ball. Perfect for any kind of hunt, be it elephant or xeno."
+	desc = "A lever action with room for a single round of .557/440 ball. Perfect for any kind of hunt, be it elephant or human."
 	flags_equip_slot = ITEM_SLOT_BACK
 	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "martini"
@@ -713,7 +713,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	recoil_unwielded = 10
 
 	aim_slowdown = 1
-	wield_delay = 7 SECONDS //Pretty god dam heavy gun, but more so for balance reasons.
+	wield_delay = 5 SECONDS //Pretty god dam heavy gun, but more so for balance reasons.
 
 //***********************************************************
 // Yee Haw it's a cowboy lever action gun!
