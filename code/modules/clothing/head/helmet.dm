@@ -304,9 +304,6 @@
 
 /obj/item/clothing/head/helmet/marine/standard
 	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_PRISON_VARIANT|ITEM_ICE_PROTECTION)
-
-/obj/item/clothing/head/helmet/marine/standard/attack_self(mob/user)
-
 	///List of colors for the M-10 and their respective icon states
 	var/static/list/helmet_colors = list(
 		"classic" = "helmet",
@@ -314,6 +311,8 @@
 		"black" = "k_helmet",
 		"green" = "m_helmet",
 	)
+
+/obj/item/clothing/head/helmet/marine/standard/attack_self(mob/user)
 
 	. = ..()
 	if(.)
