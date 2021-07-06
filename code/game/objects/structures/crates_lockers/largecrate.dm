@@ -81,6 +81,56 @@
 	spawn_type = /mob/living/simple_animal/chick
 	spawn_amount = 4
 
+/obj/structure/largecrate/barrel/welder_act(mob/living/user, obj/item/tool/weldingtool/welder) //a proper c*derman is gonna look at this and have a heart attack. thankfully im not one
+	if(!welder.isOn())
+		return FALSE
+	if(!do_after(user, 5 SECONDS, TRUE, src, BUSY_ICON_BUILD))
+		return TRUE
+	if(!welder.remove_fuel(1, user))
+		return TRUE
+	user.visible_message("<span class='notice'>[user] welds \the [src] open.</span>",
+		"<span class='notice'>You weld open \the [src].</span>",
+		"<span class='notice'>You hear loud hissing and the sound of metal falling over.</span>")
+	playsound(loc, 'sound/items/welder2.ogg', 25, TRUE)
+	deconstruct(TRUE)
+	return TRUE
+
+
+/obj/structure/largecrate/barrel/examine(mob/user)
+	. = ..()
+	to_chat(user, "<span class='notice'>You need a blowtorch to weld this open!</span>")
+
+
+/obj/structure/largecrate/barrel
+	name = "blue barrel"
+	desc = "A blue storage barrel"
+	icon_state = "barrel_blue"
+	hit_sound = 'sound/effects/metalhit.ogg'
+
+/obj/structure/largecrate/barrel/blue
+	name = "blue barrel"
+	desc = "A blue storage barrel"
+	icon_state = "barrel_blue"
+
+/obj/structure/largecrate/barrel/red
+	name = "red barrel"
+	desc = "A red storage barrel"
+	icon_state = "barrel_red"
+
+/obj/structure/largecrate/barrel/green
+	name = "green barrel"
+	desc = "A green storage barrel"
+	icon_state = "barrel_green"
+
+/obj/structure/largecrate/barrel/yellow
+	name = "yellow barrel"
+	desc = "A yellow storage barrel"
+	icon_state = "barrel_yellow"
+
+/obj/structure/largecrate/barrel/white
+	name = "white barrel"
+	desc = "A white storage barrel"
+	icon_state = "barrel_white"
 
 ///////////CM largecrates ///////////////////////
 
