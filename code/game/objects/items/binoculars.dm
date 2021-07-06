@@ -42,6 +42,7 @@
 
 /obj/item/binoculars/tactical/unique_action(mob/user)
 	toggle_mode(user)
+	return TRUE
 
 /obj/item/binoculars/tactical/examine(mob/user)
 	..()

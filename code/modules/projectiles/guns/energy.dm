@@ -440,7 +440,7 @@
 	aim_slowdown = 0.35
 
 /obj/item/weapon/gun/energy/lasgun/M43/practice/unique_action(mob/user)
-	return
+	return FALSE
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle
 	name = "\improper TX-73 lasrifle MK2"

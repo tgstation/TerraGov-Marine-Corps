@@ -513,6 +513,7 @@
 	var/obj/screen/ammo/A = user.hud_used.ammo
 	A.update_hud(user)
 	SEND_SIGNAL(src, COMSIG_ITEM_HYDRO_CANNON_TOGGLED)
+	return TRUE
 
 /obj/item/weapon/gun/flamer/marinestandard/attach_fueltank(mob/user, obj/item/ammo_magazine/flamer_tank/backtank/fueltank)
 	if (!istype(fueltank))
