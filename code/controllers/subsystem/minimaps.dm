@@ -341,9 +341,6 @@ SUBSYSTEM_DEF(minimaps)
 	RegisterSignal(M, COMSIG_MOVABLE_Z_CHANGED, .proc/on_owner_z_change)
 	if(!SSminimaps.minimaps_by_z["[M.z]"] || !SSminimaps.minimaps_by_z["[M.z]"].hud_image)
 		return
-	if(isAI(M))
-		map = SSminimaps.fetch_minimap_object(default_overwatch_level, minimap_flags)
-		return
 	map = SSminimaps.fetch_minimap_object(M.z, minimap_flags)
 
 /datum/action/minimap/remove_action(mob/M)
