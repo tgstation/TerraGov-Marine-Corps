@@ -92,7 +92,6 @@
 
 	savefile_version = SAVEFILE_VERSION_MAX
 
-
 /datum/preferences/proc/load_preferences()
 	if(!path)
 		return FALSE
@@ -113,6 +112,7 @@
 			savefile_version = SAVEFILE_VERSION_MAX
 			save_preferences()
 			save_character()
+			save_keybinds()
 			return FALSE
 
 	READ_FILE(S["default_slot"], default_slot)
@@ -234,7 +234,7 @@
 	show_typing		= sanitize_integer(show_typing, FALSE, TRUE, initial(show_typing))
 	ghost_hud 		= sanitize_integer(ghost_hud, NONE, MAX_BITFLAG, initial(ghost_hud))
 	windowflashing	= sanitize_integer(windowflashing, FALSE, TRUE, initial(windowflashing))
-	auto_fit_viewport= sanitize_integer(auto_fit_viewport, FALSE, TRUE, initial(auto_fit_viewport))
+	auto_fit_viewport = sanitize_integer(auto_fit_viewport, FALSE, TRUE, initial(auto_fit_viewport))
 	widescreenpref = sanitize_integer(widescreenpref, FALSE, TRUE, initial(widescreenpref))
 	pixel_size = sanitize_float(pixel_size, PIXEL_SCALING_AUTO, PIXEL_SCALING_3X, 0.5, initial(pixel_size))
 	scaling_method  = sanitize_text(scaling_method, initial(scaling_method))
@@ -279,8 +279,6 @@
 	WRITE_FILE(S["pixel_size"], pixel_size)
 	WRITE_FILE(S["scaling_method"], scaling_method)
 	WRITE_FILE(S["menuoptions"], menuoptions)
-	WRITE_FILE(S["key_bindings"], key_bindings)
-	WRITE_FILE(S["custom_emotes"], custom_emotes)
 	WRITE_FILE(S["chem_macros"], chem_macros)
 	WRITE_FILE(S["ghost_vision"], ghost_vision)
 	WRITE_FILE(S["ghost_orbit"], ghost_orbit)
@@ -303,6 +301,17 @@
 
 	return TRUE
 
+/datum/preferences/proc/save_keybinds()
+	if(!path)
+		return FALSE
+	var/savefile/S = new /savefile(path)
+	if(!S)
+		return FALSE
+	S.cd = "/"
+	key_bindings	= sanitize_islist(key_bindings, list())
+	custom_emotes   = sanitize_is_full_emote_list(custom_emotes)
+	WRITE_FILE(S["key_bindings"], key_bindings)
+	WRITE_FILE(S["custom_emotes"], custom_emotes)
 
 /datum/preferences/proc/load_character(slot)
 	if(!path)
@@ -662,7 +671,7 @@
 	S.dir.Remove("loadouts")
 
 /datum/preferences/proc/save()
-	return (save_preferences() && save_character())
+	return (save_preferences() && save_character() && save_keybinds())
 
 
 /datum/preferences/proc/load()

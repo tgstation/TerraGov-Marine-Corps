@@ -148,7 +148,7 @@
 	ability_name = "Endure"
 	plasma_cost = 200
 	cooldown_timer = 60 SECONDS
-	keybind_signal = COMSIG_XENOABILITY_IGNORE_PAIN
+	keybind_signal = COMSIG_XENOABILITY_ENDURE
 	use_state_flags = XACT_USE_STAGGERED //Can use this while staggered
 
 /datum/action/xeno_action/endure/on_cooldown_finish()
