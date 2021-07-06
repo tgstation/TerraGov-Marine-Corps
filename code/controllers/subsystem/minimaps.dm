@@ -320,7 +320,8 @@ SUBSYSTEM_DEF(minimaps)
 	var/minimap_displayed = FALSE
 	///Minimap object we'll be displaying
 	var/obj/screen/minimap/map
-	var/default_overwatch_level = 2
+	var/default_overwatch_level = 0
+
 
 /datum/action/minimap/Destroy()
 	map = null
@@ -361,7 +362,7 @@ SUBSYSTEM_DEF(minimaps)
 	map = null
 	if(!SSminimaps.minimaps_by_z["[newz]"] || !SSminimaps.minimaps_by_z["[newz]"].hud_image)
 		return
-	if(isAI(owner))
+	if(default_overwatch_level)
 		map = SSminimaps.fetch_minimap_object(default_overwatch_level, minimap_flags)
 		return
 	map = SSminimaps.fetch_minimap_object(newz, minimap_flags)
