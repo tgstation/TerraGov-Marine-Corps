@@ -410,6 +410,8 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 				newmob = M.change_mob_type(/mob/living/carbon/xenomorph/Defiler, location, null, delmob)
 			if("shrike")
 				newmob = M.change_mob_type(/mob/living/carbon/xenomorph/shrike, location, null, delmob)
+			if("hivemind")
+				newmob = M.change_mob_type(/mob/living/carbon/xenomorph/hivemind, location, null, delmob)
 			if("queen")
 				newmob = M.change_mob_type(/mob/living/carbon/xenomorph/queen, location, null, delmob)
 			if("king")
