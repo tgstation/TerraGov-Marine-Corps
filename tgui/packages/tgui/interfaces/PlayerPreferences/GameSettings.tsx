@@ -33,6 +33,13 @@ export const GameSettings = (props, context) => {
                 rightLabel={'Enabled'}
               />
               <ToggleFieldPreference
+                label="Fullscreen mode"
+                value="fullscreen_mode"
+                action="fullscreen_mode"
+                leftLabel={'Fullscreen'}
+                rightLabel={'Windowed'}
+              />
+              <ToggleFieldPreference
                 label="TGUI Window Mode"
                 value="tgui_fancy"
                 action="tgui_fancy"
