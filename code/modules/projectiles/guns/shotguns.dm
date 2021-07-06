@@ -702,17 +702,18 @@ can cause issues with ammo types getting mixed up during the burst.
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_INTERNAL_MAG|GUN_AMMO_COUNTER
 	attachable_offset = list("muzzle_x" = 45, "muzzle_y" = 23,"rail_x" = 17, "rail_y" = 25, "under_x" = 19, "under_y" = 14, "stock_x" = 15, "stock_y" = 12)
 
-	fire_delay = 1 SECONDS
-	accuracy_mult = 1.45
+	fire_delay = 4 SECONDS
+	accuracy_mult = 1.0
+	accuracy_mult_unwielded = 0.2 //You're gonna miss.
 
 	scatter = -25
-	scatter_unwielded = 30
+	scatter_unwielded = 60
 
 	recoil = 2
-	recoil_unwielded = 4
+	recoil_unwielded = 10
 
 	aim_slowdown = 1
-	wield_delay = 1 SECONDS
+	wield_delay = 7 SECONDS //Pretty god dam heavy gun, but more so for balance reasons.
 
 //***********************************************************
 // Yee Haw it's a cowboy lever action gun!

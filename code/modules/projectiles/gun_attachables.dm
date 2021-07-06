@@ -361,17 +361,17 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	desc = "A sharp blade for mounting on a weapon. It can be used to stab manually on anything but harm intent. Slightly reduces the accuracy of the gun when mounted."
 	icon_state = "bayonet"
 	attach_icon = "bayonet_a"
-	force = 20
+	force = 50
 	throwforce = 10
 	attach_delay = 10 //Bayonets attach/detach quickly.
 	detach_delay = 10
 	attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
-	melee_mod = 25
+	melee_mod = 70 //Did you know bayonet wounds are hard as all fucking hell to seal?
 	slot = ATTACHMENT_SLOT_MUZZLE
 	pixel_shift_x = 14 //Below the muzzle.
 	pixel_shift_y = 18
-	accuracy_mod = -0.05
-	accuracy_unwielded_mod = -0.1
+	accuracy_mod = -1.0 //I wouldn't suggest using this while in combat, reason why adjusting bayonets was a order.
+	accuracy_unwielded_mod = -2.0
 	size_mod = 1
 	sharp = IS_SHARP_ITEM_ACCURATE
 
@@ -391,7 +391,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	icon_state = "bayonetknife"
 	item_state = "combat_knife"
 	attach_icon = "bayonetknife_a"
-	force = 25
+	force = 50 //hitting someone on the head with a knife does tend to you know, kill them?
 	throwforce = 20
 	throw_speed = 3
 	throw_range = 6
@@ -399,12 +399,12 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	attach_delay = 10 //Bayonets attach/detach quickly.
 	detach_delay = 10
 	attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
-	melee_mod = 25
+	melee_mod = 70
 	slot = ATTACHMENT_SLOT_MUZZLE
 	pixel_shift_x = 14 //Below the muzzle.
 	pixel_shift_y = 18
-	accuracy_mod = -0.05
-	accuracy_unwielded_mod = -0.1
+	accuracy_mod = -1.0
+	accuracy_unwielded_mod = -2.0
 	size_mod = 1
 	sharp = IS_SHARP_ITEM_ACCURATE
 

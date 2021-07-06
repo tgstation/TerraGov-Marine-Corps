@@ -921,10 +921,10 @@ datum/ammo/bullet/revolver/tp44
 	name = "crude heavy sniper bullet"
 	handful_icon_state = "crude heavy sniper bullet"
 	hud_state = "sniper_crude"
-	handful_amount = 5
+	handful_amount = 2
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
-	damage = 120
-	penetration = 20
+	damage = 130
+	penetration = 100 //If someone somehow finds armor in the event and tries to powergame, this says f*ck you to them.
 	sundering = 10
 
 /datum/ammo/bullet/sniper/martini/on_hit_mob(mob/M, obj/projectile/P)

@@ -13,6 +13,23 @@
 /obj/item/clothing/under/marine/standard
 	flags_item_map_variant = null
 
+//1776
+
+/obj/item/clothing/under/marine/rebel
+	name = "Standard rebel uniform"
+	desc = "A standard uniform made for rebels."
+	icon_state = "rebels"
+	item_state = "rebels"
+	rollable_sleeves = FALSE
+	flags_armor_protection = CHEST|GROIN|ARMS|LEGS|HANDS|FEET
+	soft_armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
+
+/obj/item/clothing/under/marine/rebel/loyalist
+	name = "Standard loyalist uniform"
+	desc = "A standard uniform made for loyalists"
+	icon_state = "loyals"
+	item_state = "loyals"
+
 // camo things stuff yeah!
 
 /obj/item/clothing/under/marine/camo
