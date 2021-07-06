@@ -608,6 +608,7 @@
 			key_bindings[full_key] += list(kb_name)
 			key_bindings[full_key] = sortList(key_bindings[full_key])
 			current_client.update_movement_keys()
+			save_keybinds()
 			return TRUE
 
 		if("clear_keybind")
@@ -621,6 +622,7 @@
 					continue
 				key_bindings[key] = sortList(key_bindings[key])
 			current_client.update_movement_keys()
+			save_keybinds()
 			return TRUE
 
 		if("setCustomSentence")
@@ -648,6 +650,7 @@
 		if("reset-keybindings")
 			key_bindings = GLOB.hotkey_keybinding_list_by_key
 			current_client.update_movement_keys()
+			save_keybinds()
 
 		if("bancheck")
 			var/list/ban_details = is_banned_from_with_details(user.ckey, user.client.address, user.client.computer_id, params["role"])
@@ -703,6 +706,7 @@
 
 	save_preferences()
 	save_character()
+	save_keybinds()
 	update_preview_icon()
 	ui_interact(user, ui)
 	SEND_SIGNAL(current_client, COMSIG_CLIENT_PREFERENCES_UIACTED)
