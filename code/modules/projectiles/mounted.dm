@@ -215,6 +215,12 @@
 	var/obj/screen/ammo/hud = operator.hud_used.ammo
 	hud.remove_hud(operator)
 
+	for(var/attachable in gun.attachments)
+		if(!istype(attachable, /obj/item/attachable/scope))
+			return
+		var/obj/item/attachable/scope/scope = attachable
+		scope.zoom_item_turnoff(user, user)
+
 	if(operator.client) 
 		operator.client.change_view(WORLD_VIEW)
 		operator.client.pixel_x = 0
