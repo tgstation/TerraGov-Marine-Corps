@@ -1,6 +1,5 @@
 // MARINE STORAGE ARMOR
 
-
 /obj/item/clothing/suit/storage/marine
 	name = "\improper M3 pattern marine armor"
 	desc = "A standard TerraGov Marine Corps M3 Pattern Chestplate. Protects the chest from ballistic rounds, bladed objects and accidents. It has a small leather pouch strapped to it for limited storage."
@@ -274,7 +273,28 @@
 	soft_armor = list("melee" = 40, "bullet" = 60, "laser" = 60, "energy" = 45, "bomb" = 45, "bio" = 45, "rad" = 45, "fire" = 45, "acid" = 50)
 	slowdown = 0.5 //a bit less
 	light_range = 6
+	
+/obj/item/clothing/suit/storage/marine/pasvest/attack_self(mob/user)
 
+	///List of colors for the PAS-11 and their respective icon states
+	var/static/list/vest_colors = list(
+		"classic" = "2",
+		"snow" = "s_2",
+		"black" = "k_2",
+		"green" = "m_2",
+	)
+
+	. = ..()
+	if(.)
+		return
+
+	if(!do_after(user, 3 SECONDS, TRUE, src, BUSY_ICON_GENERIC))
+		return TRUE
+
+	var/new_icon = tgui_input_list(user, "Pick a color", "Pick color", vest_colors)
+	if(!new_icon)
+		return
+	icon_state = vest_colors[new_icon]
 
 //===========================SPECIALIST================================
 
