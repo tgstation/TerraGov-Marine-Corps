@@ -579,6 +579,12 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define SHRIKE_CURE_HEAL_MULTIPLIER 10
 #define SHRIKE_HEAL_RANGE 3
 
+//Hivemind defines
+
+#define HIVEMIND_HEAL_MULTIPLIER 2
+#define HIVEMIND_HEAL_RANGE 6
+
+
 //Drone defines
 
 //Runner defines

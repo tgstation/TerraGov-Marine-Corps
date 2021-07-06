@@ -489,6 +489,12 @@
 	description = "Imbues a target xeno with healing energy, restoring extra Sunder and Health once every 2 seconds up to 5 times whenever it regenerates normally. 60 second duration."
 	keybind_signal = COMSIG_XENOABILITY_HEALING_INFUSION
 
+/datum/keybinding/xeno/hivemind_heal
+	name = "hivemind_heal"
+	full_name = "Hivemind: Hivemind Heal"
+	description = ""
+	keybind_signal = COMSIG_XENOABILITY_HIVEMIND_HEAL
+
 /datum/keybinding/xeno/scatter_spit
 	name = "scatter_spit"
 	full_name = "Spitter: Scatter Spit"
