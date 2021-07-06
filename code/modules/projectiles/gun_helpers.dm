@@ -975,7 +975,7 @@ should be alright.
 	unload(gun_user)
 	return COMSIG_KB_ACTIVATED
 
-/// Signal handler to unload that gun if it's in our active hand
+/// Signal handler to toggle the safety of the gun
 /obj/item/weapon/gun/proc/toggle_gun_safety_keybind()
 	SIGNAL_HANDLER
 	toggle_gun_safety()
