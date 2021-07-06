@@ -46,8 +46,7 @@
 		to_chat(human_user, "<span class='warning'>Someone's already controlling it.</span>")
 		return TRUE
 	if(human_user.interactee) //Make sure we're not manning two guns at once, tentacle arms.
-		to_chat(human_user, "<span class='warning'>You're already busy!</span>")
-		return TRUE
+		human_user.unset_interaction()
 	if(issynth(human_user) && !CONFIG_GET(flag/allow_synthetic_gun_use))
 		to_chat(human_user, "<span class='warning'>Your programming restricts operating heavy weaponry.</span>")
 		return TRUE

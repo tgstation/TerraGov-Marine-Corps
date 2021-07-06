@@ -746,7 +746,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	desc = "An unremovable smart sight built for use with the tl102, it does nearly all the aiming work for the gun's integrated IFF systems."
 	attach_icon = "none"
 	zoom_offset = 3
-	zoom_viewsize = 7
+	zoom_viewsize = 0
 
 /obj/item/attachable/scope/unremovable/tl102/nest
 	zoom_offset = 6
@@ -760,6 +760,8 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 		if(user)
 			to_chat(user, "<span class='warning'>You must hold [master_gun] with two hands to use [src].</span>")
 		return FALSE
+	if(CHECK_BITFIELD(master_gun.flags_item, IS_DEPLOYED) && user.dir != master_gun.loc.dir)
+		user.setDir(master_gun.loc.dir)
 	zoom(user, zoom_offset, zoom_viewsize)
 	return TRUE
 

@@ -8,7 +8,7 @@
 ///box for storage of ammo and gun
 /obj/item/storage/box/standard_hmg 
 	name = "\improper TL-102 crate"
-	desc = "A large metal case with Japanese writing on the top. However it also comes with English text to the side. This is a TL-102 heavy smartgun, it clearly has various labeled warnings."
+	desc = "A large and rusted metal case. It has not seen much use. Written in faded letters on its top, it says, \"This is a TL-102 heavy smartgun\". There are many other warning labels atop that are too faded to read."
 	icon = 'icons/Marine/marine-hmg.dmi'
 	icon_state = "crate"
 	w_class = WEIGHT_CLASS_HUGE
@@ -26,7 +26,7 @@
 ///TL-102, now with full auto. It is not a superclass of deployed guns, however there are a few varients.
 /obj/item/weapon/gun/mounted
 	name = "\improper TL-102 mounted heavy smartgun"
-	desc = "The TL-102 heavy machinegun, it's too heavy to be wielded or operated without the tripod. IFF capable. No extra work required, just deploy it. Can be repaired with a blowtorch once deployed."
+	desc = "The TL-102 heavy machinegun, it's too heavy to be wielded or operated without the tripod. IFF capable. No extra work required, just deploy it with unique action. Can be repaired with a blowtorch once deployed."
 
 	w_class = WEIGHT_CLASS_HUGE
 	flags_equip_slot = ITEM_SLOT_BACK
@@ -97,7 +97,7 @@
 	aim_slowdown = 3
 	scatter = 30
 
-	fire_delay = 0.1
+	fire_delay = 0.5
 	burst_amount = 3
 	burst_delay = 0.1
 
