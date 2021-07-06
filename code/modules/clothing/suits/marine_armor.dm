@@ -273,9 +273,6 @@
 	soft_armor = list("melee" = 40, "bullet" = 60, "laser" = 60, "energy" = 45, "bomb" = 45, "bio" = 45, "rad" = 45, "fire" = 45, "acid" = 50)
 	slowdown = 0.5 //a bit less
 	light_range = 6
-	
-/obj/item/clothing/suit/storage/marine/pasvest/attack_self(mob/user)
-
 	///List of colors for the PAS-11 and their respective icon states
 	var/static/list/vest_colors = list(
 		"classic" = "2",
@@ -283,6 +280,8 @@
 		"black" = "k_2",
 		"green" = "m_2",
 	)
+	
+/obj/item/clothing/suit/storage/marine/pasvest/attack_self(mob/user)
 
 	. = ..()
 	if(.)
