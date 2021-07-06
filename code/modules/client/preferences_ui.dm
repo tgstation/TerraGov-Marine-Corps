@@ -703,6 +703,7 @@
 
 	save_preferences()
 	save_character()
+	save_keybinds()
 	update_preview_icon()
 	ui_interact(user, ui)
 	SEND_SIGNAL(current_client, COMSIG_CLIENT_PREFERENCES_UIACTED)
