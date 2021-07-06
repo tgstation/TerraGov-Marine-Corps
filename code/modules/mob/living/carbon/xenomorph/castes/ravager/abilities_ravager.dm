@@ -8,7 +8,6 @@
 	ability_name = "charge"
 	cooldown_timer = 20 SECONDS
 	plasma_cost = 500 //Can't ignore pain/Charge and ravage in the same timeframe, but you can combo one of them.
-	keybind_flags = XACT_KEYBIND_USE_ABILITY | XACT_IGNORE_SELECTED_ABILITY
 	keybind_signal = COMSIG_XENOABILITY_RAVAGER_CHARGE
 
 /datum/action/xeno_action/activable/charge/proc/charge_complete()
