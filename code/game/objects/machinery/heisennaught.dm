@@ -1,26 +1,26 @@
 //the light fixture code was forced to dig its own grave then shot in the middle of the deserts of new mexico
 //because i just can't find it!!! :c
-/obj/machinery/button/heisennaught/artillery
+/obj/machinery/door_control/mainship/heisennaught/artillery
 	name = "artillery blastdoors"
 	id = "artillery"
 
-/obj/machinery/button/heisennaught/briefing
+/obj/machinery/door_control/mainship/heisennaught/briefing
 	name = "forced attendance blastdoors"
 	id = "evil"
 
-/obj/machinery/button/heisennaught/strategy_and_planning
+/obj/machinery/door_control/mainship/heisennaught/strategy_and_planning
 	name = "window blastdoors"
 	id = "strategy_and_planning"
 
-/obj/machinery/button/heisennaught/fc
+/obj/machinery/door_control/mainship/heisennaught/fc
 	name = "window blastdoors"
 	id = "fc"
 
-/obj/machinery/button/heisennaught/cap
+/obj/machinery/door_control/mainship/heisennaught/cap
 	name = "window blastdoors"
 	id = "cap"
 
-/obj/machinery/button/heisennaught/connector
+/obj/machinery/door_control/mainship/heisennaught/connector
 	name = "room connector"
 	id = "connector"
 
@@ -34,6 +34,11 @@
 
 /obj/machinery/door/poddoor/mainship/heisennaught/briefing
 	id = "evil"
+
+/obj/machinery/door/poddoor/mainship/heisennaught/briefing/open
+	density = FALSE
+	opacity = FALSE
+	icon_state = "pdoor0"
 
 /obj/machinery/door/poddoor/mainship/heisennaught/strategy_and_planning
 	id = "strategy_and_planning"

@@ -360,6 +360,17 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/heisennaught/lower_deck/hallway/central)
+"bx" = (
+/obj/machinery/light/small{
+	brightness = 6;
+	bulb_colour = "#08FAE8";
+	bulb_power = 1;
+	dir = 4;
+	flickering = 1;
+	name = "technological glow"
+	},
+/turf/open/floor/mainship/tcomms,
+/area/mainship/command/airoom)
 "by" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
 	dir = 1
@@ -556,14 +567,6 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/office,
 /area/heisennaught/upper_deck/hallway)
-"cj" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/obj/structure/cable,
-/obj/machinery/door/poddoor/mainship/heisennaught/briefing,
-/turf/open/floor/mainship/floor,
-/area/mainship/living/bridgebunks)
 "ck" = (
 /obj/machinery/door/poddoor/mainship/open/cic{
 	dir = 8
@@ -772,20 +775,6 @@
 	},
 /turf/open/floor/mainship/floor,
 /area/mainship/command/telecomms)
-"cT" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/obj/structure/cable,
-/obj/machinery/door/airlock/mainship/maint{
-	name = "\improper Artillery Battery Access"
-	},
-/obj/machinery/door/poddoor/mainship/heisennaught/briefing,
-/turf/open/floor/mainship/mono,
-/area/heisennaught/upper_deck/hallway)
 "cV" = (
 /obj/machinery/computer/camera,
 /obj/structure/table/mainship,
@@ -802,6 +791,19 @@
 	dir = 6
 	},
 /area/heisennaught/upper_deck/space)
+"cZ" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber{
+	dir = 4
+	},
+/obj/item/bedsheet/blue,
+/obj/effect/landmark/start/job/fieldcommander,
+/obj/structure/bed/fancy,
+/obj/machinery/door_control/mainship/heisennaught/fc{
+	pixel_x = 1;
+	pixel_y = 31
+	},
+/turf/open/floor/carpet,
+/area/mainship/living/numbertwobunks)
 "da" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -871,6 +873,9 @@
 /obj/structure/cable,
 /turf/open/floor/wood,
 /area/mainship/shipboard/brig)
+"dr" = (
+/turf/open/floor/carpet,
+/area/mainship/living/numbertwobunks)
 "dt" = (
 /obj/structure/reagent_dispensers/water_cooler,
 /turf/open/floor/mainship/sterile/corner{
@@ -945,12 +950,6 @@
 /obj/machinery/light,
 /turf/open/floor/mainship/office,
 /area/heisennaught/upper_deck/hallway)
-"dH" = (
-/obj/machinery/button/heisennaught/connector{
-	dir = 1
-	},
-/turf/open/floor/carpet,
-/area/mainship/living/commandbunks)
 "dI" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
@@ -1048,6 +1047,10 @@
 	dir = 10
 	},
 /area/heisennaught/command_deck/hallway)
+"ea" = (
+/obj/machinery/door/poddoor/mainship/heisennaught/briefing/open,
+/turf/open/floor/mainship/floor,
+/area/heisennaught/upper_deck/medbay)
 "eb" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 1
@@ -1572,6 +1575,13 @@
 	},
 /turf/open/floor/mainship/office,
 /area/mainship/living/bridgebunks)
+"gb" = (
+/obj/machinery/door_control/mainship/heisennaught/connector{
+	pixel_x = 2;
+	pixel_y = 28
+	},
+/turf/open/floor/carpet,
+/area/mainship/living/commandbunks)
 "gc" = (
 /obj/structure/platform{
 	dir = 1
@@ -1957,12 +1967,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/living/commandbunks)
-"ho" = (
-/obj/machinery/door/poddoor/shutters/mainship/heisennaught/connector{
-	dir = 2
-	},
-/turf/open/floor/carpet,
-/area/mainship/living/numbertwobunks)
 "hp" = (
 /turf/open/floor/mainship/cargo/arrow{
 	dir = 1
@@ -2450,17 +2454,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/heisennaught/lower_deck/showers)
-"jh" = (
-/obj/machinery/light/small{
-	brightness = 6;
-	bulb_colour = "#0000ff";
-	bulb_power = 1;
-	dir = 8;
-	flickering = 1;
-	name = "technological glow"
-	},
-/turf/open/floor/mainship/tcomms,
-/area/mainship/command/airoom)
 "ji" = (
 /obj/machinery/door/poddoor/railing{
 	id = "supply_elevator_railing"
@@ -2550,12 +2543,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/shuttle/escapepod/plain,
 /area/mainship/command/self_destruct)
-"jy" = (
-/obj/machinery/button/heisennaught/connector{
-	dir = 1
-	},
-/turf/open/floor/carpet,
-/area/mainship/living/numbertwobunks)
 "jz" = (
 /obj/structure/cable,
 /obj/structure/table/mainship,
@@ -2833,17 +2820,6 @@
 	dir = 5
 	},
 /area/heisennaught/upper_deck/medbay)
-"ku" = (
-/obj/machinery/light/small{
-	brightness = 6;
-	bulb_colour = "#0000ff";
-	bulb_power = 1;
-	dir = 4;
-	flickering = 1;
-	name = "technological glow"
-	},
-/turf/open/floor/mainship/tcomms,
-/area/mainship/command/airoom)
 "kv" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -2918,13 +2894,6 @@
 	dir = 4
 	},
 /area/heisennaught/lower_deck/rnr)
-"kH" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 4
-	},
-/obj/machinery/door/poddoor/mainship/heisennaught/briefing,
-/turf/open/floor/mainship/floor,
-/area/mainship/living/bridgebunks)
 "kI" = (
 /obj/structure/bed/chair/sofa/corner{
 	dir = 1
@@ -3717,19 +3686,6 @@
 	},
 /turf/open/floor/wood,
 /area/mainship/shipboard/brig)
-"nL" = (
-/obj/structure/table/reinforced,
-/obj/machinery/button{
-	id = "evil";
-	name = "exit shutters";
-	pixel_x = 7
-	},
-/obj/machinery/flasher_button{
-	id = "flashy";
-	pixel_x = -4
-	},
-/turf/open/floor/mainship/office,
-/area/mainship/living/bridgebunks)
 "nP" = (
 /obj/machinery/light{
 	bulb_colour = "#FA6708";
@@ -4049,19 +4005,6 @@
 /obj/item/tool/pen,
 /turf/open/floor/mainship/office,
 /area/mainship/shipboard/brig)
-"oX" = (
-/obj/machinery/atmospherics/components/unary/vent_scrubber{
-	dir = 8
-	},
-/obj/item/bedsheet/captain,
-/obj/effect/landmark/start/job/captain,
-/mob/living/simple_animal/cat/Jones,
-/obj/structure/bed/fancy,
-/obj/machinery/button/heisennaught/cap{
-	dir = 1
-	},
-/turf/open/floor/carpet,
-/area/mainship/living/commandbunks)
 "oY" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
 	dir = 1
@@ -4797,6 +4740,18 @@
 /obj/item/target/syndicate,
 /turf/open/ground/grass,
 /area/heisennaught/lower_deck/bootcamp)
+"rB" = (
+/obj/structure/table/reinforced,
+/obj/machinery/flasher_button{
+	id = "flashy";
+	pixel_x = -4
+	},
+/obj/machinery/door_control/mainship/heisennaught/briefing{
+	pixel_x = 5;
+	pixel_y = 1
+	},
+/turf/open/floor/mainship/office,
+/area/mainship/living/bridgebunks)
 "rC" = (
 /turf/open/floor/mainship/sterile/side{
 	dir = 8
@@ -5843,6 +5798,17 @@
 /obj/machinery/shower,
 /turf/open/floor/plating/plating_catwalk,
 /area/heisennaught/lower_deck/showers)
+"vc" = (
+/obj/machinery/light/small{
+	brightness = 6;
+	bulb_colour = "#08FAE8";
+	bulb_power = 1;
+	dir = 8;
+	flickering = 1;
+	name = "technological glow"
+	},
+/turf/open/floor/mainship/tcomms,
+/area/mainship/command/airoom)
 "vd" = (
 /obj/structure/bed/chair/sofa,
 /obj/machinery/light{
@@ -6357,19 +6323,6 @@
 	},
 /turf/open/floor/mainship/office,
 /area/mainship/living/pilotbunks)
-"xa" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 9
-	},
-/obj/machinery/light/small{
-	brightness = 6;
-	bulb_colour = "#0000ff";
-	bulb_power = 1;
-	flickering = 1;
-	name = "technological glow"
-	},
-/turf/open/floor/mainship/tcomms,
-/area/mainship/command/telecomms)
 "xb" = (
 /obj/machinery/alarm,
 /obj/structure/table/mainship,
@@ -6467,6 +6420,16 @@
 	dir = 1
 	},
 /area/heisennaught/lower_deck/bootcamp)
+"xw" = (
+/obj/machinery/light/small{
+	brightness = 6;
+	bulb_colour = "#08FAE8";
+	bulb_power = 1;
+	flickering = 1;
+	name = "technological glow"
+	},
+/turf/open/floor/mainship/tcomms,
+/area/mainship/command/telecomms)
 "xy" = (
 /obj/structure/cable,
 /obj/structure/closet/firecloset,
@@ -7398,6 +7361,13 @@
 /obj/structure/table/mainship,
 /turf/open/floor/mainship/office,
 /area/heisennaught/lower_deck/security_checkpoint)
+"Bh" = (
+/obj/machinery/mech_bay_recharge_port,
+/obj/machinery/door_control/mainship/heisennaught/artillery{
+	pixel_x = -24
+	},
+/turf/open/floor/mainship/tcomms,
+/area/heisennaught/upper_deck/artillery_battery)
 "Bi" = (
 /obj/structure/cable,
 /turf/open/space/sea,
@@ -7810,13 +7780,6 @@
 /obj/item/reagent_containers/food/snacks/fries,
 /turf/open/floor/wood,
 /area/heisennaught/lower_deck/kitchen)
-"CL" = (
-/obj/machinery/mech_bay_recharge_port,
-/obj/machinery/button/heisennaught/artillery{
-	dir = 8
-	},
-/turf/open/floor/mainship/tcomms,
-/area/heisennaught/upper_deck/artillery_battery)
 "CM" = (
 /obj/machinery/dropship_part_fabricator,
 /obj/machinery/light{
@@ -8385,6 +8348,10 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/sterile/dark,
 /area/heisennaught/upper_deck/medbay)
+"EI" = (
+/obj/machinery/door/poddoor/mainship/heisennaught/briefing/open,
+/turf/open/floor/mainship/floor,
+/area/mainship/living/bridgebunks)
 "EJ" = (
 /obj/machinery/vending/cigarette,
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
@@ -8419,16 +8386,6 @@
 	dir = 9
 	},
 /area/heisennaught/upper_deck/medbay)
-"EQ" = (
-/obj/machinery/light/small{
-	brightness = 6;
-	bulb_colour = "#0000ff";
-	bulb_power = 1;
-	flickering = 1;
-	name = "technological glow"
-	},
-/turf/open/floor/mainship/tcomms,
-/area/mainship/command/telecomms)
 "ER" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -8898,18 +8855,6 @@
 	},
 /turf/open/floor/prison/marked,
 /area/heisennaught/lower_deck/hallway/aft)
-"Gy" = (
-/obj/machinery/atmospherics/components/unary/vent_scrubber{
-	dir = 4
-	},
-/obj/item/bedsheet/blue,
-/obj/effect/landmark/start/job/fieldcommander,
-/obj/structure/bed/fancy,
-/obj/machinery/button/heisennaught/fc{
-	dir = 1
-	},
-/turf/open/floor/carpet,
-/area/mainship/living/numbertwobunks)
 "Gz" = (
 /turf/open/ground/grass,
 /area/heisennaught/lower_deck/bootcamp)
@@ -9830,12 +9775,6 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/heisennaught/lower_deck/rnr)
-"Ka" = (
-/obj/machinery/door/poddoor/mainship/heisennaught/briefing{
-	dir = 2
-	},
-/turf/open/floor/mainship/floor,
-/area/heisennaught/upper_deck/medbay)
 "Kb" = (
 /obj/structure/bed/chair/sofa{
 	dir = 1
@@ -10476,17 +10415,6 @@
 	},
 /turf/open/floor/wood,
 /area/heisennaught/lower_deck/kitchen)
-"Mx" = (
-/obj/machinery/light/small{
-	brightness = 6;
-	bulb_colour = "#0000ff";
-	bulb_power = 1;
-	dir = 1;
-	flickering = 1;
-	name = "technological glow"
-	},
-/turf/open/floor/mainship/tcomms,
-/area/mainship/command/telecomms)
 "Mz" = (
 /turf/open/floor/mainship_hull/dir{
 	dir = 5
@@ -10929,6 +10857,20 @@
 	dir = 1
 	},
 /area/heisennaught/lower_deck/prep)
+"On" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/structure/cable,
+/obj/machinery/door/airlock/mainship/maint{
+	name = "\improper Artillery Battery Access"
+	},
+/obj/machinery/door/poddoor/mainship/heisennaught/briefing/open,
+/turf/open/floor/mainship/mono,
+/area/heisennaught/upper_deck/hallway)
 "Oo" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -11043,6 +10985,19 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/heisennaught/lower_deck/prep)
+"ON" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 9
+	},
+/obj/machinery/light/small{
+	brightness = 6;
+	bulb_colour = "#08FAE8";
+	bulb_power = 1;
+	flickering = 1;
+	name = "technological glow"
+	},
+/turf/open/floor/mainship/tcomms,
+/area/mainship/command/telecomms)
 "OP" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 9
@@ -11601,6 +11556,13 @@
 /obj/machinery/computer/arcade,
 /turf/open/floor/mainship/mono,
 /area/heisennaught/lower_deck/rnr)
+"QW" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/obj/machinery/door/poddoor/mainship/heisennaught/briefing/open,
+/turf/open/floor/mainship/floor,
+/area/mainship/living/bridgebunks)
 "QX" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -12102,6 +12064,20 @@
 	},
 /turf/open/floor/prison,
 /area/mainship/command/airoom)
+"ST" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber{
+	dir = 8
+	},
+/obj/item/bedsheet/captain,
+/obj/effect/landmark/start/job/captain,
+/mob/living/simple_animal/cat/Jones,
+/obj/structure/bed/fancy,
+/obj/machinery/door_control/mainship/heisennaught/cap{
+	pixel_x = 1;
+	pixel_y = 31
+	},
+/turf/open/floor/carpet,
+/area/mainship/living/commandbunks)
 "SU" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 5
@@ -12373,6 +12349,17 @@
 "TX" = (
 /turf/open/floor/mainship/cargo,
 /area/mainship/squads/req)
+"TY" = (
+/obj/machinery/light/small{
+	brightness = 6;
+	bulb_colour = "#08FAE8";
+	bulb_power = 1;
+	dir = 1;
+	flickering = 1;
+	name = "technological glow"
+	},
+/turf/open/floor/mainship/tcomms,
+/area/mainship/command/telecomms)
 "TZ" = (
 /obj/structure/cable,
 /obj/machinery/light/heisennaught/floorlight,
@@ -12423,6 +12410,13 @@
 /obj/machinery/door/poddoor/mainship/droppod,
 /turf/open/floor/mainship/stripesquare,
 /area/heisennaught/lower_deck/droppodbay)
+"Ui" = (
+/obj/machinery/door_control/mainship/heisennaught/connector{
+	pixel_x = 2;
+	pixel_y = 29
+	},
+/turf/open/floor/carpet,
+/area/mainship/living/numbertwobunks)
 "Uj" = (
 /obj/machinery/telecomms/server/presets/delta,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
@@ -13006,12 +13000,6 @@
 "WN" = (
 /turf/open/floor/mainship/ai,
 /area/mainship/command/airoom)
-"WO" = (
-/obj/machinery/button/heisennaught/strategy_and_planning{
-	pixel_y = 26
-	},
-/turf/open/floor/wood,
-/area/heisennaught/command_deck/strategy_and_planning)
 "WP" = (
 /obj/structure/platform{
 	dir = 4
@@ -13427,16 +13415,19 @@
 /obj/machinery/light,
 /turf/open/floor/mainship/sterile/side,
 /area/heisennaught/upper_deck/medbay)
+"Yt" = (
+/obj/machinery/door_control/mainship/heisennaught/strategy_and_planning{
+	pixel_x = 2;
+	pixel_y = 28
+	},
+/turf/open/floor/wood,
+/area/heisennaught/command_deck/strategy_and_planning)
 "Yu" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
 /turf/open/floor/mainship/office,
-/area/mainship/living/bridgebunks)
-"Yv" = (
-/obj/machinery/door/poddoor/mainship/heisennaught/briefing,
-/turf/open/floor/mainship/floor,
 /area/mainship/living/bridgebunks)
 "Yx" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
@@ -13760,6 +13751,14 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/heisennaught/lower_deck/prep)
+"ZJ" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/structure/cable,
+/obj/machinery/door/poddoor/mainship/heisennaught/briefing/open,
+/turf/open/floor/mainship/floor,
+/area/mainship/living/bridgebunks)
 "ZK" = (
 /obj/machinery/vending/engivend,
 /obj/machinery/light{
@@ -44806,7 +44805,7 @@ ye
 ye
 ye
 RO
-CL
+Bh
 Ai
 ye
 ye
@@ -48918,7 +48917,7 @@ nE
 nE
 nE
 MQ
-cT
+On
 MQ
 Wr
 Wr
@@ -49432,7 +49431,7 @@ nX
 hW
 nE
 MQ
-cT
+On
 MQ
 Wr
 Go
@@ -52331,9 +52330,9 @@ gQ
 HV
 WN
 WU
-jh
+vc
 dy
-jh
+vc
 ZV
 vR
 vR
@@ -52845,9 +52844,9 @@ bS
 WN
 WN
 WU
-ku
+bx
 gi
-ku
+bx
 ZV
 vR
 vR
@@ -52971,14 +52970,14 @@ vR
 vR
 eK
 TH
-Mx
+TY
 Tm
 EK
 Tm
 Tm
 Tm
 Tm
-EQ
+xw
 TH
 YJ
 Ce
@@ -53247,7 +53246,7 @@ KB
 QJ
 RD
 vU
-Gy
+cZ
 Ya
 iA
 eK
@@ -54018,8 +54017,8 @@ De
 Yc
 AW
 vU
-jy
-ho
+Ui
+dr
 iA
 eK
 vR
@@ -54513,14 +54512,14 @@ vR
 vR
 eK
 TH
-Mx
+TY
 fW
 GU
 fW
 fW
 fW
 qo
-xa
+ON
 TH
 sR
 Ce
@@ -54532,7 +54531,7 @@ rM
 nc
 zp
 oC
-dH
+gb
 vo
 kx
 eK
@@ -55085,9 +55084,9 @@ TL
 po
 Br
 TI
-Yv
-kH
-cj
+EI
+QW
+ZJ
 yv
 Br
 po
@@ -55560,7 +55559,7 @@ Oi
 nc
 lf
 oC
-oX
+ST
 Bu
 kx
 eK
@@ -55604,7 +55603,7 @@ vn
 CB
 yv
 Br
-nL
+rB
 Fa
 FW
 ga
@@ -56882,7 +56881,7 @@ Lv
 ff
 HD
 bF
-Ka
+ea
 qr
 iq
 yF
@@ -57086,7 +57085,7 @@ Vj
 Vj
 Vj
 jt
-WO
+Yt
 cQ
 cQ
 sH
@@ -57139,7 +57138,7 @@ Lv
 Lv
 tE
 xR
-Ka
+ea
 qr
 sX
 NW
