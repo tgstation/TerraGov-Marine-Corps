@@ -356,7 +356,9 @@
 /turf/open/floor/mainship/orange/full,
 /area/shuttle/canterbury)
 "bs" = (
-/obj/machinery/door/window/westleft,
+/obj/machinery/door/window{
+	dir = 8
+	},
 /turf/open/floor/mainship/red{
 	dir = 1
 	},
@@ -556,7 +558,9 @@
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "cR" = (
-/obj/machinery/door/window/westright,
+/obj/machinery/door/window/right{
+	dir = 8
+	},
 /turf/open/floor/mainship/floor,
 /area/shuttle/canterbury)
 "fL" = (
@@ -1112,7 +1116,7 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/shuttle/canterbury/medical)
 "Xp" = (
-/obj/machinery/door/window/eastleft,
+/obj/machinery/door/window,
 /turf/open/floor/mainship/floor,
 /area/shuttle/canterbury)
 "XO" = (

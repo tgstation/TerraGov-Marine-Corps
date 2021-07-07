@@ -1753,7 +1753,7 @@
 /obj/structure/window/reinforced/tinted{
 	dir = 8
 	},
-/obj/machinery/door/window/westleft{
+/obj/machinery/door/window{
 	dir = 2
 	},
 /obj/machinery/shower{
@@ -3181,7 +3181,9 @@
 /area/mainship/hallways/aft_hallway)
 "kT" = (
 /obj/structure/table/reinforced,
-/obj/machinery/door/window/northleft,
+/obj/machinery/door/window{
+	dir = 1
+	},
 /obj/machinery/door/poddoor/shutters/mainship/req/ro{
 	dir = 2
 	},
@@ -3191,7 +3193,9 @@
 /obj/item/tool/hand_labeler,
 /obj/item/tool/hand_labeler,
 /obj/item/tool/hand_labeler,
-/obj/machinery/door/window/secure/southleft/req,
+/obj/machinery/door/window/secure/req{
+	dir = 2
+	},
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
 "kX" = (
@@ -3615,7 +3619,7 @@
 /obj/structure/window/reinforced/tinted{
 	dir = 8
 	},
-/obj/machinery/door/window/westleft{
+/obj/machinery/door/window{
 	dir = 2
 	},
 /obj/machinery/shower{
@@ -5126,7 +5130,9 @@
 	dir = 1
 	},
 /obj/structure/window/reinforced/toughened,
-/obj/machinery/door/window/westleft,
+/obj/machinery/door/window{
+	dir = 8
+	},
 /obj/item/weapon/claymore/mercsword/captain,
 /turf/open/floor/wood,
 /area/mainship/living/commandbunks)
@@ -5749,7 +5755,7 @@
 /obj/structure/bed/chair/office/dark{
 	dir = 1
 	},
-/obj/machinery/door/window/secure/eastleft/bridge,
+/obj/machinery/door/window/secure/bridge,
 /mob/living/simple_animal/corgi/Ian,
 /turf/open/floor/plating/mainship,
 /area/mainship/command/cic)
@@ -5785,8 +5791,12 @@
 /area/mainship/hull/lower_hull)
 "tF" = (
 /obj/structure/table/reinforced,
-/obj/machinery/door/window/secure/northleft,
-/obj/machinery/door/window/secure/southleft,
+/obj/machinery/door/window/secure{
+	dir = 1
+	},
+/obj/machinery/door/window/secure{
+	dir = 2
+	},
 /obj/structure/paper_bin{
 	pixel_x = -4;
 	pixel_y = 5
@@ -7208,10 +7218,14 @@
 /area/mainship/engineering/upper_engineering)
 "yb" = (
 /obj/structure/table/reinforced,
-/obj/machinery/door/window/secure/northleft,
-/obj/machinery/door/window/secure/southleft,
 /obj/machinery/door/firedoor/mainship{
 	dir = 2
+	},
+/obj/machinery/door/window/secure/engineering{
+	dir = 2
+	},
+/obj/machinery/door/window{
+	dir = 1
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/lower_engineering)
@@ -9214,7 +9228,7 @@
 	dir = 4;
 	pixel_y = -3
 	},
-/obj/machinery/door/window/eastleft,
+/obj/machinery/door/window,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/living/numbertwobunks)
 "Ep" = (
@@ -9397,8 +9411,10 @@
 /turf/open/floor/mainship,
 /area/mainship/squads/general)
 "EU" = (
-/obj/machinery/door/window/westright,
-/obj/machinery/door/window/eastleft,
+/obj/machinery/door/window/right,
+/obj/machinery/door/window{
+	dir = 8
+	},
 /turf/open/floor/mainship/mono,
 /area/mainship/living/port_emb)
 "EX" = (
@@ -13292,7 +13308,9 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/shipboard/weapon_room)
 "Rs" = (
-/obj/machinery/door/window/southleft,
+/obj/machinery/door/window{
+	dir = 2
+	},
 /turf/open/floor/mainship/stripesquare,
 /area/mainship/shipboard/firing_range)
 "Rt" = (
@@ -13805,7 +13823,9 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/machinery/door/window/westright,
+/obj/machinery/door/window/right{
+	dir = 8
+	},
 /obj/structure/window/reinforced,
 /turf/open/floor/grime,
 /area/mainship/living/cafeteria_starboard)
