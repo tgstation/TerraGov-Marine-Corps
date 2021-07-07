@@ -548,7 +548,6 @@
 		I.on_exit_storage(src)
 		qdel(I)
 
-
 /obj/item/storage/Initialize(mapload, ...)
 	. = ..()
 	PopulateContents()

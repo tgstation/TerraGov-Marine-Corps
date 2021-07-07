@@ -405,7 +405,6 @@ GLOBAL_PROTECT(admin_verbs_varedit)
 	/datum/admins/proc/drop_dynex_bomb,
 	/datum/admins/proc/change_security_level,
 	/datum/admins/proc/edit_appearance,
-	/datum/admins/proc/outfit_manager,
 	/datum/admins/proc/offer,
 	/datum/admins/proc/force_dropship,
 	/datum/admins/proc/open_shuttlepanel,
