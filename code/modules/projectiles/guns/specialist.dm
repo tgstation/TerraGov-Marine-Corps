@@ -112,6 +112,8 @@
 	else
 		return laser_off(user)
 
+/obj/item/weapon/gun/rifle/sniper/antimaterial/cock(mob/user)
+	return
 
 /obj/item/weapon/gun/rifle/sniper/antimaterial/Destroy()
 	laser_off()

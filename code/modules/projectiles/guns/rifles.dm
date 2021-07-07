@@ -1017,7 +1017,6 @@
 		return FALSE
 
 /obj/item/weapon/gun/rifle/chambered/unique_action(mob/user)
-	. = ..()
 	if(.)
 		return
 	if(racked_bolt)
@@ -1025,9 +1024,9 @@
 		return
 	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_RACK_BOLT))
 		return
-	return rack_bolt(user)
+	return ..()
 
-/obj/item/weapon/gun/rifle/chambered/proc/rack_bolt(mob/user)
+/obj/item/weapon/gun/rifle/chambered/cock(mob/user)
 	to_chat(user, "<span class='notice'>You cycle the bolt of the [src], loading in a new round!</span>")
 	TIMER_COOLDOWN_START(src, COOLDOWN_RACK_BOLT, rack_delay)
 	racked_bolt = TRUE

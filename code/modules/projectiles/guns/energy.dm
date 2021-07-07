@@ -442,10 +442,7 @@
 	fire_delay = 0.33 SECONDS
 	aim_slowdown = 0.35
 
-/obj/item/weapon/gun/energy/lasgun/M43/practice/unique_action(mob/user)
-	. = ..()
-	if(.)
-		return
+/obj/item/weapon/gun/energy/lasgun/M43/practice/toggle_chargemode(mob/user)
 	return
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle
