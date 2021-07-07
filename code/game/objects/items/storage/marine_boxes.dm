@@ -34,7 +34,7 @@
 	. = ..()
 	new /obj/item/clothing/glasses/night/m56_goggles(src)
 	new /obj/item/weapon/gun/rifle/standard_smartrifle(src)
-	new /obj/item/ammo_magazine/rifle/standard_smartrifle(src)
+	new /obj/item/storage/belt/marine/t25(src)
 	new /obj/item/ammo_magazine/rifle/standard_smartrifle(src)
 
 /obj/item/smartgun_powerpack
