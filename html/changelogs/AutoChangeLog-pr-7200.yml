@@ -1,5 +1,0 @@
-author: "BraveMole"
-delete-after: True
-changes: 
-  - balance: "Silos no longer have alert proximity in modes other than distress"
-  - bugfix: "Cannot silo bodies in crash"
