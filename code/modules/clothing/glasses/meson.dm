@@ -13,6 +13,9 @@
 	vision_flags = SEE_TURFS
 	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE
 
+/obj/item/clothing/glasses/meson/Initialize()
+	. = ..()
+	AddComponent(/datum/component/clothing_tint, TINT_5, TRUE)
 
 /obj/item/clothing/glasses/meson/prescription
 	name = "prescription optical meson scanner"

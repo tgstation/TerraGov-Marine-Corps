@@ -26,6 +26,7 @@
 	if(target)
 		var/obj/item/I = target
 		I.ui_action_click(owner, src, holder_item)
+		SEND_SIGNAL(holder_item, COMSIG_ITEM_TOGGLE_ACTION, owner)
 
 /datum/action/item_action/can_use_action()
 	if(QDELETED(owner) || owner.incapacitated() || owner.lying_angle)
