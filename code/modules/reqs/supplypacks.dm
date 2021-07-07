@@ -503,7 +503,17 @@ AMMO
 /datum/supply_packs/ammo/railgun
 	name = "Railgun round"
 	contains = list(/obj/item/ammo_magazine/railgun)
-	cost = 3
+	cost = 2
+
+/datum/supply_packs/ammo/railgun_pack
+	name = "Railgun round"
+	notes = "Contains three railgun rounds."
+	contains = list(
+		/obj/item/ammo_magazine/railgun,
+		/obj/item/ammo_magazine/railgun,
+		/obj/item/ammo_magazine/railgun,
+	)
+	cost = 5
 
 /datum/supply_packs/ammo/shotguntracker
 	name = "12 Gauge Tracker Shells"
