@@ -12,7 +12,7 @@
 			continue
 		if(!("[typepath]" in by_xeno))
 			by_xeno["[typepath]"] = list()
-		by_xeno["[typepath]"]["[upgrade]"] = caste
+		by_xeno["[typepath]"] += list("[upgrade]" = caste)
 
 	for(var/xenopath in by_xeno)
 		var/list/mob_data = by_xeno[xenopath]
@@ -30,7 +30,8 @@
 			"speed" = 99,
 		)
 		for(var/upgradepath in mob_data)
-			var/mob/living/carbon/xenomorph/xeno_mob = new mob_data[upgradepath]
+			var/fullxenopath = mob_data[upgradepath]
+			var/mob/living/carbon/xenomorph/xeno_mob = new fullxenopath()
 			// Check for values that are should grow with each level
 			for(var/stat in greater_test_vars)
 				var/new_value = xeno_mob.vars[stat]
