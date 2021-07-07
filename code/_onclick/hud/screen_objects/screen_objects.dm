@@ -744,10 +744,16 @@
 			overlays += image('icons/mob/ammoHUD.dmi', src, "o[rounds[3]]")
 			overlays += image('icons/mob/ammoHUD.dmi', src, "t[rounds[2]]")
 			overlays += image('icons/mob/ammoHUD.dmi', src, "h[rounds[1]]")
-		else //"0" is still length 1 so this means it's over 999
+		if(4)
+			overlays += image('icons/mob/ammoHUD.dmi', src, "o[rounds[4]]")
+			overlays += image('icons/mob/ammoHUD.dmi', src, "t[rounds[3]]")
+			overlays += image('icons/mob/ammoHUD.dmi', src, "h[rounds[2]]")
+			overlays += image('icons/mob/ammoHUD.dmi', src, "m[rounds[2]]")
+		else //"0" is still length 1 so this means it's over 9999
 			overlays += image('icons/mob/ammoHUD.dmi', src, "o9")
 			overlays += image('icons/mob/ammoHUD.dmi', src, "t9")
 			overlays += image('icons/mob/ammoHUD.dmi', src, "h9")
+			overlays += image('icons/mob/ammoHUD.dmi', src, "m9")
 
 /obj/screen/arrow
 	icon = 'icons/Marine/marine-items.dmi'
