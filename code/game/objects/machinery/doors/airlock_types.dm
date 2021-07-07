@@ -340,7 +340,7 @@
 	icon = 'icons/obj/doors/mainship/securedoor.dmi'
 	req_access = list(ACCESS_MARINE_BRIDGE)
 
-/obj/machinery/door/airlock/mainship/secure/rebel 
+/obj/machinery/door/airlock/mainship/secure/rebel
 	req_access = list(ACCESS_MARINE_BRIDGE_REBEL)
 
 /obj/machinery/door/airlock/mainship/secure/free_access
@@ -550,7 +550,7 @@
 	icon = 'icons/obj/doors/mainship/medidoor.dmi'
 	req_access = list(ACCESS_MARINE_RESEARCH)
 
-/obj/machinery/door/airlock/mainship/research
+/obj/machinery/door/airlock/mainship/research/rebel
 	req_access = list(ACCESS_MARINE_RESEARCH_REBEL)
 
 /obj/machinery/door/airlock/mainship/research/free_access
@@ -676,7 +676,7 @@
 	opacity = FALSE
 	glass = TRUE
 
-/obj/machinery/door/airlock/mainship/marine/general/sl/rebel 
+/obj/machinery/door/airlock/mainship/marine/general/sl/rebel
 	req_access = list(ACCESS_MARINE_LEADER_REBEL)
 
 /obj/machinery/door/airlock/mainship/marine/general/spec

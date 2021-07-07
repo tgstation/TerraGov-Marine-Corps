@@ -2,7 +2,7 @@ import { useBackend } from '../../backend';
 import { Button, Input, LabeledList } from '../../components';
 
 export const TextFieldPreference = (props, context) => {
-  const { act, data, config } = useBackend<PlayerPreferencesData>(context);
+  const { act, data } = useBackend(context);
   const {
     label,
     value,
@@ -29,7 +29,7 @@ export const TextFieldPreference = (props, context) => {
 };
 
 export const SelectFieldPreference = (props, context) => {
-  const { act, data, config } = useBackend<PlayerPreferencesData>(context);
+  const { act, data, config } = useBackend(context);
   const {
     label,
     value,
@@ -48,7 +48,7 @@ export const SelectFieldPreference = (props, context) => {
 };
 
 export const ToggleFieldPreference = (props, context) => {
-  const { act, data, config } = useBackend<PlayerPreferencesData>(context);
+  const { act, data } = useBackend(context);
   const {
     label,
     value,
@@ -75,6 +75,26 @@ export const ToggleFieldPreference = (props, context) => {
         inline
         content={labelRight}
         checked={data[value] === rightValue}
+        onClick={() => act(action)}
+      />
+    </LabeledList.Item>
+  );
+};
+
+
+export const LoopingSelectionPreference = (props, context) => {
+  const { act } = useBackend<PlayerPreferencesData>(context);
+  const {
+    label,
+    value,
+    action,
+  } = props;
+
+  return (
+    <LabeledList.Item label={label}>
+      <Button
+        inline
+        content={value}
         onClick={() => act(action)}
       />
     </LabeledList.Item>

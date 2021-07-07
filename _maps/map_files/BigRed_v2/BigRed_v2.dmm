@@ -3790,7 +3790,7 @@
 /area/bigredv2/caves/lambda_lab)
 "anS" = (
 /obj/structure/cable,
-/obj/item/tool/warning_cone,
+/obj/item/clothing/head/warning_cone,
 /turf/open/floor/tile/white/warningstripe{
 	dir = 8
 	},
@@ -17086,7 +17086,7 @@
 	},
 /area/bigredv2/outside/s)
 "buL" = (
-/obj/item/tool/warning_cone,
+/obj/item/clothing/head/warning_cone,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/outside/s)
 "buM" = (
@@ -19796,7 +19796,7 @@
 	},
 /area/bigredv2/outside/c)
 "fJR" = (
-/obj/item/tool/warning_cone,
+/obj/item/clothing/head/warning_cone,
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/se)
 "fLz" = (

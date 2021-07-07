@@ -57,8 +57,9 @@
 	if(!istype(center_turf))
 		center_turf = loc
 
-	for(var/i in RANGE_TURFS(XENO_SILO_DETECTION_RANGE, src))
-		RegisterSignal(i, COMSIG_ATOM_ENTERED, .proc/resin_silo_proxy_alert)
+	if(SSticker.mode?.flags_round_type & MODE_SILO_RESPAWN)
+		for(var/turfs in RANGE_TURFS(XENO_SILO_DETECTION_RANGE, src))
+			RegisterSignal(turfs, COMSIG_ATOM_ENTERED, .proc/resin_silo_proxy_alert)
 
 	SSminimaps.add_marker(src, z, hud_flags = MINIMAP_FLAG_XENO, iconstate = "silo")
 	return INITIALIZE_HINT_LATELOAD
@@ -85,7 +86,7 @@
 	if(associated_hive)
 		UnregisterSignal(associated_hive, list(COMSIG_HIVE_XENO_MOTHER_PRE_CHECK, COMSIG_HIVE_XENO_MOTHER_CHECK))
 		associated_hive.xeno_message("A resin silo has been destroyed at [AREACOORD_NO_Z(src)]!", "xenoannounce", 5, FALSE,src.loc, 'sound/voice/alien_help2.ogg',FALSE , null, /obj/screen/arrow/silo_damaged_arrow)
-		associated_hive.handle_silo_death_timer()
+		INVOKE_NEXT_TICK(associated_hive, /datum/hive_status.proc/handle_silo_death_timer) // checks all silos next tick after this one is gone
 		associated_hive = null
 		notify_ghosts("\ A resin silo has been destroyed at [AREACOORD_NO_Z(src)]!", source = get_turf(src), action = NOTIFY_JUMP)
 		playsound(loc,'sound/effects/alien_egg_burst.ogg', 75)
@@ -175,6 +176,8 @@
 //*******************
 /obj/structure/xeno/resin/silo/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(!(SSticker.mode?.flags_round_type & MODE_SILOABLE_BODIES))
+		return
 	if(!isxeno(user)) //only xenos can deposit corpses
 		return
 

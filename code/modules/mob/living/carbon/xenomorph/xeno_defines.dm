@@ -32,8 +32,6 @@
 	var/tacklemin = 1
 	///The maximum amount of random paralyze applied to a human upon being 'pulled' multiplied by 20 ticks
 	var/tacklemax = 1
-	///How much STAMINA damage a xeno deals when tackling
-	var/tackle_damage = 20
 
 	// *** Speed *** //
 	var/speed = 1
@@ -50,6 +48,8 @@
 	var/plasma_max = 10
 	///How much plasma a caste gains every life tick.
 	var/plasma_gain = 5
+	///up to how % much plasma regens in decimals, generally used if you have a special way of regeninng plasma.
+	var/plasma_regen_limit = 1
 
 	// *** Health *** //
 	///Maximum health a caste has.
@@ -188,6 +188,8 @@
 
 	///The iconstate for the xeno on the minimap
 	var/minimap_icon = "xeno"
+	///The iconstate of the plasma bar, format used is "[plasma_icon_state][amount]"
+	var/plasma_icon_state = "plasma"
 
 /mob/living/carbon/xenomorph
 	name = "Drone"
@@ -328,6 +330,6 @@
 	var/fire_luminosity = 0 //Luminosity of the current fire while burning
 
 	///The xenos/silo/nuke currently tracked by the xeno_tracker arrow
-	var/tracked
+	var/atom/tracked
 
 	COOLDOWN_DECLARE(xeno_health_alert_cooldown)

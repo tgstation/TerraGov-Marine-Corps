@@ -64,7 +64,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 			to_chat(X, "<span class='warning'>We don't have any facehuggers to use!</span>")
 			return fail_activate()
 
-		F = new X.selected_hugger_type(get_turf(X), X.hivenumber)
+		F = new X.selected_hugger_type(get_turf(X), X.hivenumber, X)
 		X.huggers--
 
 		X.put_in_active_hand(F)
@@ -80,6 +80,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 		F.throw_at(A, CARRIER_HUGGER_THROW_DISTANCE, CARRIER_HUGGER_THROW_SPEED)
 		F.stat = CONSCIOUS //Hugger is conscious
 		F.leaping = FALSE //Hugger is not leaping
+		F.facehugger_register_source(X) //Set us as the source
 		X.visible_message("<span class='xenowarning'>\The [X] throws something towards \the [A]!</span>", \
 		"<span class='xenowarning'>We throw a facehugger towards \the [A]!</span>")
 		add_cooldown()

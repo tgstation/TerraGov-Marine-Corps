@@ -34,6 +34,9 @@
 	if(A && istype(A) && A.ceiling >= CEILING_DEEP_UNDERGROUND)
 		to_chat(H, "<span class='warning'>This won't work if you're standing deep underground.</span>")
 		return FALSE
+	if(istype(A, /area/shuttle/dropship))
+		to_chat(H, "<span class='warning'>You have to be outside the dropship to use this or it won't transmit.</span>")
+		return FALSE
 	var/delay = max(1.5 SECONDS, activation_time - 2 SECONDS * H.skills.getRating("leadership"))
 	H.visible_message("<span class='notice'>[H] starts setting up [src] on the ground.</span>",
 	"<span class='notice'>You start setting up [src] on the ground and inputting all the data it needs.</span>")
@@ -51,8 +54,8 @@
 	layer = ABOVE_FLY_LAYER
 	set_light(2)
 	playsound(src, 'sound/machines/twobeep.ogg', 15, 1)
-	H.visible_message("[H] activates [src]",
-	"You activate [src]")
+	H.visible_message("[H] activates [src].",
+	"You activate [src].")
 	update_icon()
 	return TRUE
 
@@ -72,8 +75,8 @@
 	name = initial(name)
 	set_light(0)
 	playsound(src, 'sound/machines/twobeep.ogg', 15, 1)
-	H.visible_message("[H] deactivates [src]",
-	"You deactivate [src]")
+	H.visible_message("[H] deactivates [src].",
+	"You deactivate [src].")
 	H.put_in_active_hand(src)
 	update_icon()
 	return TRUE
@@ -101,6 +104,10 @@
 		squad = H.assigned_squad
 		name += " ([squad.name])"
 		squad.squad_orbital_beacons += src
+		name += " ([H])"
+		return
+	else	//So we can just get a goshdarn name.
+		name += " ([H])"
 
 /obj/item/beacon/orbital_bombardment_beacon/deactivate(mob/living/carbon/human/H)
 	. = ..()
@@ -158,14 +165,14 @@
 	var/faction = ""
 
 /datum/supply_beacon/New(_name, turf/_drop_location, _faction, life_time = 0 SECONDS)
-	name= _name 
-	drop_location = _drop_location	
+	name= _name
+	drop_location = _drop_location
 	faction = _faction
 	GLOB.supply_beacon[name] = src
 	if(life_time)
-		addtimer(CALLBACK(src, .proc/qdel), life_time)
+		QDEL_IN(src, life_time)
 
-/// Remove that beacon from the list of glob supply beacon 
+/// Remove that beacon from the list of glob supply beacon
 /datum/supply_beacon/Destroy()
 	GLOB.supply_beacon[name] = null
 	return ..()

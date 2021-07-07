@@ -202,6 +202,7 @@
 	if(opened)
 		return FALSE // stop xeno closing things
 	X.do_attack_animation(src, ATTACK_EFFECT_CLAW)
+	bodybag_occupant?.attack_alien(X)
 	open()
 	X.visible_message("<span class='danger'>\The [X] slashes \the [src] open!</span>", \
 		"<span class='danger'>We slash \the [src] open!</span>", null, 5)

@@ -28,6 +28,10 @@
 	create_reagents(1000)
 	stage_change() // If no argument is set, it will change the stage to the current stage, useful for stock grenades that start READY.
 
+/obj/item/explosive/grenade/chem_grenade/Destroy()
+	QDEL_LIST(beakers)
+	QDEL_NULL(nadeassembly)
+	return ..()
 
 /obj/item/explosive/grenade/chem_grenade/attack_self(mob/user)
 	if(stage == CG_READY && !active)

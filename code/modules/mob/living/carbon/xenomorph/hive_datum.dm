@@ -599,9 +599,19 @@ to_chat will check for valid clients itself already so no need to double check f
 	if(!length(possible_mothers))
 		if(length(possible_silos))
 			return attempt_to_spawn_larva_in_silo(xeno_candidate, possible_silos, larva_already_reserved)
-		else
-			to_chat(xeno_candidate, "<span class='warning'>There are no places currently available to receive new larvas.</span>")
-			return FALSE
+		if(SSticker.mode?.flags_round_type & MODE_SILO_RESPAWN && !SSsilo.can_fire) // Distress mode & prior to shutters opening, so let the queue bypass silos if needed
+			if(!isnewplayer(xeno_candidate) && XENODEATHTIME_CHECK(xeno_candidate))
+				if(check_other_rights(xeno_candidate.client, R_ADMIN, FALSE))
+					if(tgui_alert(xeno_candidate, "You wouldn't normally qualify for this respawn. Are you sure you want to bypass it with your admin powers?", "Bypass Respawn", list("Yes", "No")) != "Yes")
+						log_admin("[key_name(xeno_candidate)] used their admin power to bypass respawn before their timer was over")
+						XENODEATHTIME_MESSAGE(xeno_candidate)
+						return FALSE
+				else
+					XENODEATHTIME_MESSAGE(xeno_candidate)
+					return FALSE
+			return do_spawn_larva(xeno_candidate, pick(GLOB.spawns_by_job[/datum/job/xenomorph]), larva_already_reserved)
+		to_chat(xeno_candidate, "<span class='warning'>There are no places currently available to receive new larvas.</span>")
+		return FALSE
 
 	var/mob/living/carbon/xenomorph/chosen_mother
 	if(length(possible_mothers) > 1)
@@ -704,7 +714,15 @@ to_chat will check for valid clients itself already so no need to double check f
 /datum/hive_status/normal/on_shuttle_hijack(obj/docking_port/mobile/marine_dropship/hijacked_ship)
 	handle_silo_death_timer()
 	xeno_message("Our Ruler has commanded the metal bird to depart for the metal hive in the sky! Run and board it to avoid a cruel death!")
-	RegisterSignal(hijacked_ship, COMSIG_SHUTTLE_SETMODE, .proc/on_hijack_depart)
+	RegisterSignal(hijacked_ship, COMSIG_SHUTTLE_SETMODE, .proc/on_hijack_depart)	
+	
+	for(var/obj/structure/xeno/resin/silo/silo AS in GLOB.xeno_resin_silos)
+		if(!is_ground_level(silo.z))
+			continue
+		qdel(silo)
+
+	if(SSticker.mode?.flags_round_type & MODE_PSY_POINTS_ADVANCED)
+		SSpoints.xeno_points_by_hive[hivenumber] = SILO_PRICE + XENO_TURRET_PRICE //Give a free silo when going shipside and a turret
 
 
 /datum/hive_status/normal/proc/on_hijack_depart(datum/source, new_mode)
@@ -733,18 +751,6 @@ to_chat will check for valid clients itself already so no need to double check f
 	if(difference < 0)
 		if(xeno_job.total_positions < (-difference + xeno_job.current_positions))
 			xeno_job.set_job_positions(-difference + xeno_job.current_positions)
-
-	for(var/obj/structure/xeno/resin/silo/silo AS in GLOB.xeno_resin_silos)
-		if(!is_ground_level(silo.z))
-			continue
-		qdel(silo)
-
-	if(SSticker.mode?.flags_round_type & MODE_PSY_POINTS_ADVANCED)
-		SSpoints.xeno_points_by_hive[hivenumber] = SILO_PRICE + XENO_TURRET_PRICE //Give a free silo when going shipside and a turret
-
-	var/list/living_player_list = SSticker.mode.count_humans_and_xenos(count_flags = COUNT_IGNORE_HUMAN_SSD)
-	var/num_humans = living_player_list[1]
-
 
 // ***************************************
 // *********** Corrupted Xenos
@@ -1207,7 +1213,7 @@ to_chat will check for valid clients itself already so no need to double check f
 	var/list/possible_mothers = list()
 	var/list/possible_silos = list()
 	SEND_SIGNAL(src, COMSIG_HIVE_XENO_MOTHER_PRE_CHECK, possible_mothers, possible_silos)
-	if(stored_larva > 0 && !LAZYLEN(candidate) && (length(possible_mothers) || length(possible_silos)))
+	if(stored_larva > 0 && !LAZYLEN(candidate) && (length(possible_mothers) || length(possible_silos) || (SSticker.mode?.flags_round_type & MODE_SILO_RESPAWN && !SSsilo.can_fire)))
 		attempt_to_spawn_larva(observer)
 		return
 	if(LAZYFIND(candidate, observer))
