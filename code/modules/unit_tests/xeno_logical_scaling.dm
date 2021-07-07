@@ -35,11 +35,11 @@
 			// Check for values that are should grow with each level
 			for(var/stat in greater_test_vars)
 				if(xeno_mob.vars[stat] < greater_test_vars[stat])
-					Fail("Invalid stats on [xenopath]. It's [stat]@[upgradepath] has [new_value] compared to base value of [greater_test_vars[stat]] (expected greater)")
+					Fail("Invalid stats on [xenopath]. It's [stat]@[upgradepath] has [xeno_mob.vars[stat]] compared to base value of [greater_test_vars[stat]] (expected greater)")
 				greater_test_vars[stat] = xeno_mob.vars[stat]
 
 			// Test for values that are should shrink with each level
 			for(var/stat in lesser_test_vars)
 				if(xeno_mob.vars[stat] > lesser_test_vars[stat])
-					Fail("Invalid stats on [xenopath]. It's [stat]@[XENO_UPGRADE_ZERO] has [new_value] compared to base value of [lesser_test_vars[stat]] (expected lower)")
+					Fail("Invalid stats on [xenopath]. It's [stat]@[XENO_UPGRADE_ZERO] has [xeno_mob.vars[stat]] compared to base value of [lesser_test_vars[stat]] (expected lower)")
 				lesser_test_vars[stat] = xeno_mob.vars[stat]
