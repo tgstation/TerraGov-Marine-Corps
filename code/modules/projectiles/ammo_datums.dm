@@ -1067,7 +1067,7 @@ datum/ammo/bullet/revolver/tp44
 	shell_speed = 4
 	max_range = 12
 	damage = 150
-	penetration = 75
+	penetration = 70
 	sundering = 90
 	bullet_color = COLOR_PULSE_BLUE
 
