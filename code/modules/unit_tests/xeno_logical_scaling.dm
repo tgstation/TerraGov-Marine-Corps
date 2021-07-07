@@ -37,6 +37,7 @@
 				if(new_value < greater_test_vars[stat])
 					Fail("Invalid stats on [xeno_path]. It's [stat]@[upgradepath] has [new_value] compared to base value of [greater_test_vars[stat]] (expected greater)")
 				greater_test_vars[stat] = new_value
+				world.log << greater_test_vars[stat]
 
 			// Test for values that are should shrink with each level
 			for(var/stat in lesser_test_vars)
