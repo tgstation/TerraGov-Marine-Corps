@@ -14,8 +14,8 @@
 			by_xeno["[typepath]"] = list()
 		by_xeno["[typepath]"]["[upgrade]"] = caste
 
-	for(var/castepath in by_xeno)
-		var/xeno_path = by_xeno[castepath]
+	for(var/xenopath in by_xeno)
+		var/list/mob/living/carbon/xenomorph/mob_data = by_xeno[xenopath]
 		// Each of these values should get larger or stay the same each evolution
 		var/list/greater_test_vars = list(
 			"max_health" = 0,
@@ -29,13 +29,13 @@
 		var/list/lesser_test_vars = list(
 			"speed" = 99,
 		)
-		for(var/upgradepath in by_xeno[xeno_path])
-			var/mob/living/carbon/xenomorph/xeno_mob = new xeno_path[upgradepath]
+		for(var/upgradepath in mob_data)
+			var/mob/living/carbon/xenomorph/xeno_mob = new mob_data[upgradepath]
 			// Check for values that are should grow with each level
 			for(var/stat in greater_test_vars)
 				var/new_value = xeno_mob.vars[stat]
 				if(new_value < greater_test_vars[stat])
-					Fail("Invalid stats on [xeno_path]. It's [stat]@[upgradepath] has [new_value] compared to base value of [greater_test_vars[stat]] (expected greater)")
+					Fail("Invalid stats on [xenopath]. It's [stat]@[upgradepath] has [new_value] compared to base value of [greater_test_vars[stat]] (expected greater)")
 				greater_test_vars[stat] = new_value
 				world.log << greater_test_vars[stat]
 
@@ -43,5 +43,5 @@
 			for(var/stat in lesser_test_vars)
 				var/new_value =  xeno_mob.vars[stat]
 				if(new_value > lesser_test_vars[stat])
-					Fail("Invalid stats on [xeno_path]. It's [stat]@[XENO_UPGRADE_ZERO] has [new_value] compared to base value of [lesser_test_vars[stat]] (expected lower)")
+					Fail("Invalid stats on [xenopath]. It's [stat]@[XENO_UPGRADE_ZERO] has [new_value] compared to base value of [lesser_test_vars[stat]] (expected lower)")
 				lesser_test_vars[stat] = new_value
