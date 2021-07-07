@@ -88,7 +88,7 @@
 
 //Hot hot Aliens on Aliens action.
 //Actually just used for eating people.
-/mob/living/carbon/xenomorph/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage * X.xeno_melee_damage_modifier, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
+/mob/living/carbon/xenomorph/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
 	if(status_flags & INCORPOREAL || X.status_flags & INCORPOREAL) //Incorporeal xenos cannot attack or be attacked
 		return
 
@@ -131,7 +131,7 @@
 				return TRUE
 			// copypasted from attack_alien.dm
 			//From this point, we are certain a full attack will go out. Calculate damage and modifiers
-			var/damage = X.xeno_caste.melee_damage * X.xeno_melee_damage_modifier
+			var/damage = X.xeno_caste.melee_damage
 
 			//Somehow we will deal no damage on this attack
 			if(!damage)

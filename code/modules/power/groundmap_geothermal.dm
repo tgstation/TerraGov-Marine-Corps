@@ -136,7 +136,7 @@
 		return TRUE
 	return FALSE //Nope, all fine
 
-/obj/machinery/power/geothermal/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage * X.xeno_melee_damage_modifier, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
+/obj/machinery/power/geothermal/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
 	. = ..()
 	if(CHECK_BITFIELD(X.xeno_caste.caste_flags, CASTE_CAN_CORRUPT_GENERATOR) && is_corruptible)
 		to_chat(X, "<span class='notice'>You start to corrupt [src]</span>")

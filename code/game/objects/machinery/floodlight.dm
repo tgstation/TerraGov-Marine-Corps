@@ -154,7 +154,7 @@
 		return TRUE
 	break_a_light()
 
-/obj/machinery/floodlightcombat/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage * X.xeno_melee_damage_modifier, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
+/obj/machinery/floodlightcombat/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
 	if(X.a_intent == INTENT_DISARM)
 		to_chat(X, "<span class='xenodanger'>You begin tipping the [src]")
 		if(!density)

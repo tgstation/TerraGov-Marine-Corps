@@ -303,8 +303,8 @@
 	for(var/turf/affected_tiles AS in RANGE_TURFS(rage_power_radius, X.loc))
 		affected_tiles.Shake(4, 4, 1 SECONDS) //SFX
 
-	for(var/mob/living/L AS in cheap_get_living_near(X, rage_power_radius)) //Roar that applies cool SFX
-		if(L.stat == DEAD || !L.hud_used) //We don't care about the dead
+	for(var/mob/living/L AS in GLOB.mob_living_list) //Roar that applies cool SFX
+		if(L.stat == DEAD || !L.hud_used || (get_dist(L, X) > WORLD_VIEW_NUM)) //We don't care about the dead
 			continue
 
 		shake_camera(L, 1 SECONDS, 1)
@@ -340,7 +340,7 @@
 	ADD_TRAIT(X, TRAIT_STAGGERIMMUNE, RAGE_TRAIT)
 
 	addtimer(CALLBACK(src, .proc/rage_warning, bonus_duration), (RAVAGER_RAGE_DURATION + bonus_duration) * RAVAGER_RAGE_WARNING) //Warn the ravager when rage is about to expire.
-	addtimer(CALLBACK(src, .proc/rage_deactivate), (RAVAGER_RAGE_DURATION + bonus_duration) )
+	addtimer(CALLBACK(src, .proc/rage_deactivate), (RAVAGER_RAGE_DURATION + bonus_duration))
 
 	succeed_activate()
 	add_cooldown()

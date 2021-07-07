@@ -39,7 +39,7 @@
 		H.add_filter("defender_tail_sweep", 2, gauss_blur_filter(1)) //Add cool SFX; motion blur
 		addtimer(CALLBACK(H, /atom.proc/remove_filter, "defender_tail_sweep"), 0.5 SECONDS) //Remove cool SFX
 		if(H.stat != DEAD && !isnestedhost(H) ) //No bully
-			var/damage = X.xeno_caste.melee_damage * X.xeno_melee_damage_modifier
+			var/damage = X.xeno_caste.melee_damage
 			var/affecting = H.get_limb(ran_zone(null, 0))
 			if(!affecting) //Still nothing??
 				affecting = H.get_limb("chest") //Gotta have a torso?!
