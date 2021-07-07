@@ -657,12 +657,6 @@ can cause issues with ammo types getting mixed up during the burst.
 	aim_slowdown = 1
 	wield_delay = 1 SECONDS
 
-/obj/item/weapon/gun/shotgun/pump/bolt/unique_action(mob/user)
-	. = ..()
-	if(.)
-		return
-	return pump_shotgun(user)
-
 /obj/item/weapon/gun/shotgun/pump/bolt/pump_fail_notice(mob/user)
 	playsound(user,'sound/weapons/throwtap.ogg', 25, 1)
 	to_chat(user,"<span class='warning'><b>[src] bolt has already been worked, locking the bolt; fire or unload a round to unlock it.</b></span>")
@@ -760,12 +754,6 @@ can cause issues with ammo types getting mixed up during the burst.
 	recoil = 2
 	recoil_unwielded = 4
 	pump_delay = 6
-
-/obj/item/weapon/gun/shotgun/pump/lever/unique_action(mob/user)
-	. = ..()
-	if(.)
-		return
-	return pump_shotgun(user)
 
 /obj/item/weapon/gun/shotgun/pump/lever/pump_fail_notice(mob/user)
 	playsound(user,'sound/weapons/throwtap.ogg', 25, 1)
