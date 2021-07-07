@@ -13,8 +13,8 @@
 	name = internal_item.name
 	desc = internal_item.desc
 
-	icon = internal_item.icon
-	default_icon_state = internal_item.icon_state + "_deployed"
+	icon = initial(internal_item.icon)
+	default_icon_state = initial(internal_item.icon_state) + "_deployed"
 	icon_state = default_icon_state
 
 	prepare_huds()
