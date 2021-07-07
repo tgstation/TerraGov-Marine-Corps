@@ -250,6 +250,11 @@ WEAPONS
 	contains = list(/obj/item/weapon/gun/rifle/standard_smartmachinegun)
 	cost = 40
 
+/datum/supply_packs/weapons/thermobaric
+	name = "TL-102 Mounted Heavy Smartgun"
+	contains = list(/obj/item/weapon/gun/launcher/rocket/m57a4/tgmc)
+	cost = 200
+
 /datum/supply_packs/weapons/flamethrower
 	name = "TL-84 Flamethrower"
 	contains = list(/obj/item/weapon/gun/flamer/marinestandard)
@@ -623,10 +628,10 @@ AMMO
 	contains = list(/obj/item/ammo_magazine/flamer_tank/backtank)
 	cost = 20
 
-/datum/supply_packs/ammo/back_fuel_tank_x
-	name = "Type X back fuel tank"
-	contains = list(/obj/item/ammo_magazine/flamer_tank/backtank/X)
-	cost = 60
+/datum/supply_packs/ammo/thermobaric
+	name = "T-57 rocket array"
+	contains = list(/obj/item/ammo_magazine/rocket/m57a4/tgmc)
+	cost = 10
 
 
 /*******************************************************************************

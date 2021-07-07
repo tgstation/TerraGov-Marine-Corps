@@ -1021,6 +1021,13 @@
 	burst_amount = 4
 	accuracy_mult = 0.8
 
+/obj/item/weapon/gun/launcher/rocket/m57a4/tgmc
+	name = "\improper T-57 quad thermobaric launcher"
+	desc = "The T-57 is a thermobaric rocket launcher, it is a four shot rocket launcher that fire incendiary rockets in a four shot package.."
+	aim_slowdown = 2
+	burst_amount = 1
+	damage_mult = 0.5
+
 
 //-------------------------------------------------------
 //T-160 Recoilless Rifle. Its effectively an RPG codewise.

@@ -254,6 +254,9 @@
 	gun_type = /obj/item/weapon/gun/launcher/rocket/m57a4
 	reload_delay = 200
 
+/obj/item/ammo_magazine/rocket/m57a4/tgmc
+	desc = "A thermobaric rocket tube for a T-57 quad launcher. Activate in hand to receive some metal when it's used up."
+
 /obj/item/ammo_magazine/internal/launcher/rocket/m57a4
 	desc = "The internal tube of an M57A4 thermobaric launcher."
 	caliber = CALIBER_ROCKETARRAY
