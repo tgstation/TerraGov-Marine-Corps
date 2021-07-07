@@ -501,8 +501,7 @@ mob/proc/get_standard_bodytemperature()
 	var/obj/item/active_item = get_active_held_item()
 	if(istype(active_item) && active_item.unique_action(src))
 		return
-	var/obj/item/inactive_item =get_inactive_held_item()
+	var/obj/item/inactive_item = get_inactive_held_item()
 	if(istype(inactive_item))
 		inactive_item.unique_action(src)
-
 
