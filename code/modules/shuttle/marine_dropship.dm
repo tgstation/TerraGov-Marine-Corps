@@ -1264,14 +1264,14 @@
 	shuttleId = "normandy"
 	possible_destinations = "lz1;lz2;alamo;normandy"
 
-/obj/machinery/computer/shuttle/shuttle_control/dropship/rebel 
+/obj/machinery/computer/shuttle/shuttle_control/dropship/rebel
 	name = "\improper 'Triumph' dropship console"
 	desc = "The remote controls for the 'Triumph' Dropship."
 	shuttleId = "triumph"
 	possible_destinations = "lz1;triumph"
 	compatible_control_flags = SHUTTLE_REBEL_PRIMARY_DROPSHIP
 
-/obj/machinery/computer/shuttle/shuttle_control/dropship/loyalist 
+/obj/machinery/computer/shuttle/shuttle_control/dropship/loyalist
 	name = "\improper 'Alamo' dropship console"
 	desc = "The remote controls for the 'Alamo' Dropship."
 	shuttleId = "alamo"
