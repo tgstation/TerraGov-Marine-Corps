@@ -7,7 +7,9 @@
 		if(isnull(typepath))
 			Fail("[i] has a null caste_type_path")
 			continue
-		if(isnull(upgrade) || upgrade == "basetype")
+		if(upgrade == "basetype")
+			continue
+		if(isnull(upgrade))
 			Fail("[i] has a null upgrade")
 			continue
 		if(!("[typepath]" in by_xeno))
