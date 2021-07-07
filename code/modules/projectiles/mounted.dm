@@ -217,7 +217,7 @@
 
 	for(var/attachable in gun.attachments)
 		if(!istype(attachable, /obj/item/attachable/scope))
-			return
+			continue
 		var/obj/item/attachable/scope/scope = attachable
 		scope.zoom_item_turnoff(operator, operator)
 

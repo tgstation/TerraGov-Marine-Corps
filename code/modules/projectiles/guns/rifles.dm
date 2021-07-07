@@ -1016,17 +1016,12 @@
 		to_chat(user, "<span class='warning'>[src] does not have a round chambered!</span>")
 		return FALSE
 
-/obj/item/weapon/gun/rifle/chambered/unique_action(mob/user)
-	if(.)
-		return
+/obj/item/weapon/gun/rifle/chambered/cock(mob/user)
 	if(racked_bolt)
 		to_chat(user, "<span class='warning'>[src] already has a round chambered!</span>")
 		return
 	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_RACK_BOLT))
 		return
-	return ..()
-
-/obj/item/weapon/gun/rifle/chambered/cock(mob/user)
 	to_chat(user, "<span class='notice'>You cycle the bolt of the [src], loading in a new round!</span>")
 	TIMER_COOLDOWN_START(src, COOLDOWN_RACK_BOLT, rack_delay)
 	racked_bolt = TRUE
