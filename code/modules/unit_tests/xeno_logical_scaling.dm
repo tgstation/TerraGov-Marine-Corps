@@ -15,7 +15,7 @@
 		by_xeno["[typepath]"]["[upgrade]"] = caste
 
 	for(var/xenopath in by_xeno)
-		var/list/mob/living/carbon/xenomorph/mob_data = by_xeno[xenopath]
+		var/list/mob_data = by_xeno[xenopath]
 		// Each of these values should get larger or stay the same each evolution
 		var/list/greater_test_vars = list(
 			"max_health" = 0,
@@ -37,7 +37,6 @@
 				if(new_value < greater_test_vars[stat])
 					Fail("Invalid stats on [xenopath]. It's [stat]@[upgradepath] has [new_value] compared to base value of [greater_test_vars[stat]] (expected greater)")
 				greater_test_vars[stat] = new_value
-				world.log << greater_test_vars[stat]
 
 			// Test for values that are should shrink with each level
 			for(var/stat in lesser_test_vars)
