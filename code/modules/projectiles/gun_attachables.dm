@@ -193,6 +193,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	master_gun.recoil						+= recoil_mod
 	master_gun.recoil_unwielded				+= recoil_unwielded_mod
 	master_gun.force						+= melee_mod
+	master_gun.sharp						+= sharp
 	master_gun.aim_slowdown					+= aim_speed_mod
 	master_gun.wield_delay					+= wield_delay_mod
 	master_gun.burst_scatter_mult			+= burst_scatter_mod
@@ -258,6 +259,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	master_gun.recoil						-= recoil_mod
 	master_gun.recoil_unwielded				-= recoil_unwielded_mod
 	master_gun.force						-= melee_mod
+	master_gun.sharp						-= sharp
 	master_gun.aim_slowdown					-= aim_speed_mod
 	master_gun.wield_delay					-= wield_delay_mod
 	master_gun.burst_scatter_mult			-= burst_scatter_mod
@@ -292,7 +294,9 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 		qdel(action_to_update)
 		break
 
-	forceMove(get_turf(master_gun))
+	var/turf/master_gun_turf = get_turf(master_gun)
+	if(master_gun_turf)
+		forceMove(master_gun_turf)
 
 	master_gun = null
 
@@ -304,7 +308,9 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	else
 		to_chat(user, "<span class='warning'>[G] must be in our hands to do this.</span>")
 
-
+/obj/item/attachable/hydro_cannon/ui_action_click(mob/living/user, datum/action/item_action/action, obj/item/weapon/gun/G)
+	if(G == user.get_active_held_item() || G == user.get_inactive_held_item())
+		G.unique_action(user)
 
 
 /obj/item/attachable/proc/activate_attachment(mob/user, turn_off) //This is for activating stuff like flamethrowers, or switching weapon modes.
@@ -1746,7 +1752,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	icon_state = ""
 	attach_icon = ""
 	slot = ATTACHMENT_SLOT_UNDER
-	flags_attach_features = ATTACH_ACTIVATION|ATTACH_UTILITY|GUN_ALLOW_SYNTHETIC
+	flags_attach_features = ATTACH_UTILITY|GUN_ALLOW_SYNTHETIC
 	attachment_action_type = /datum/action/item_action/toggle_hydro
 
 /obj/item/attachable/hydro_cannon/activate_attachment(mob/living/user, turn_off)

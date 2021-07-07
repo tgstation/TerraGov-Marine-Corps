@@ -450,7 +450,7 @@
 		return
 	zoom_turf = get_turf(src)
 	is_zoomed = 1
-	client.change_view(VIEW_NUM_TO_STRING(viewsize))
+	client.view_size.set_view_radius_to(viewsize/2-2) //convert diameter to radius
 	var/viewoffset = 32 * tileoffset
 	switch(dir)
 		if(NORTH)
@@ -471,7 +471,7 @@
 	zoom_turf = null
 	if(!client)
 		return
-	client.change_view(WORLD_VIEW)
+	client.view_size.reset_to_default()
 	client.pixel_x = 0
 	client.pixel_y = 0
 

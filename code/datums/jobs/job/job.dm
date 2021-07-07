@@ -266,6 +266,7 @@ GLOBAL_PROTECT(exp_specialmap)
 	job = assigned_role
 	skills = getSkillsType(job.return_skills_type(player?.prefs))
 	faction = job.faction
+	LAZYADD(GLOB.alive_human_list_faction[faction], src)
 	job.announce(src)
 
 

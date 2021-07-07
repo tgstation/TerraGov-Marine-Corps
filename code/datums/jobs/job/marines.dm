@@ -151,7 +151,7 @@ Your squaddies will look to you when it comes to construction in the field of ba
 	name = SQUAD_ENGINEER
 	jobtype = /datum/job/terragov/squad/engineer
 
-	id = /obj/item/card/id/dogtag
+	id = /obj/item/card/id/dogtag/engineer
 	back = /obj/item/storage/backpack/marine/satchel
 
 /datum/outfit/job/marine/engineer/rebel

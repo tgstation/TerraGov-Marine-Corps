@@ -423,7 +423,7 @@
 	if(!handle_access_delay(item, user, taking_out=FALSE))
 		item.forceMove(item.drop_location())
 		return FALSE
-	if(item.loc == user)
+	if(user && item.loc == user)
 		if(!user.transferItemToLoc(item, src))
 			return FALSE
 	else
@@ -541,6 +541,12 @@
 	hide_from(usr)
 	for(var/obj/item/I in contents)
 		remove_from_storage(I, T, usr)
+
+/// Delete everything that's inside the storage
+/obj/item/storage/proc/delete_contents()
+	for(var/obj/item/I AS in contents)
+		I.on_exit_storage(src)
+		qdel(I)
 
 
 /obj/item/storage/Initialize(mapload, ...)

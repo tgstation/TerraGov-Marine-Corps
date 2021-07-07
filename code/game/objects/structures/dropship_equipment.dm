@@ -714,6 +714,7 @@
 
 /obj/structure/dropship_equipment/weapon/heavygun/radial_cas
 	name = "Condor Jet Radial minigun"
+	point_cost = 0
 	dropship_equipment_flags = USES_AMMO|IS_WEAPON|IS_INTERACTABLE|IS_NOT_REMOVABLE
 
 /obj/structure/dropship_equipment/weapon/heavygun/radial_cas/Initialize()

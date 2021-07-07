@@ -4,10 +4,6 @@
 	var/unwieldsound
 	flags_item = TWOHANDED
 
-/obj/item/weapon/twohanded/Initialize()
-	. = ..()
-	verbs -= /obj/item/verb/verb_pickup
-
 /obj/item/weapon/twohanded/update_icon()
 	return
 
@@ -62,7 +58,11 @@
 
 	toggle_wielded(user, FALSE)
 	SEND_SIGNAL(src, COMSIG_ITEM_UNWIELD, user)
-	name = initial(name)
+	var/sf = findtext(name, " (Wielded)", -10) // 10 == length(" (Wielded)")
+	if(sf)
+		name = copytext(name, 1, sf)
+	else
+		name = "[initial(name)]"
 	update_item_state(user)
 	remove_offhand(user)
 	return TRUE

@@ -324,6 +324,12 @@
 	if(!tooltips && prefs.tooltips)
 		tooltips = new /datum/tooltip(src)
 
+	view_size = new(src, get_screen_size(prefs.widescreenpref))
+	view_size.update_pixel_format()
+	view_size.update_zoom_mode()
+	fit_viewport()
+
+	set_fullscreen(prefs.fullscreen_mode)
 
 	winset(src, null, "mainwindow.title='[CONFIG_GET(string/title)]'")
 
@@ -757,12 +763,7 @@
 	create_message("note", ckey(key), "SYSTEM", "Triggered automatic CID randomizer detection.", null, null, FALSE, FALSE, null, FALSE, "High")
 
 /client/proc/rescale_view(change, min, max)
-	var/viewscale = getviewsize(view)
-	var/x = viewscale[1]
-	var/y = viewscale[2]
-	x = clamp(x + change, min, max)
-	y = clamp(y + change, min,max)
-	change_view("[x]x[y]")
+	view_size.set_view_radius_to(clamp(change, min, max), clamp(change, min, max))
 
 
 /client/proc/update_movement_keys(datum/preferences/direct_prefs)
@@ -788,11 +789,29 @@
 		CRASH("change_view called without argument.")
 	if(isnum(new_size))
 		CRASH("change_view called with a number argument. Use the string format instead.")
+
+	if(prefs && !prefs.widescreenpref && new_size == CONFIG_GET(string/default_view))
+		new_size = CONFIG_GET(string/default_view_square)
+
 	view = new_size
 	apply_clickcatcher()
 	mob.reload_fullscreens()
 	if(prefs.auto_fit_viewport)
 		INVOKE_NEXT_TICK(src, .verb/fit_viewport, 1 SECONDS) //Delayed to avoid wingets from Login calls.
+
+///Change the fullscreen setting of the client
+/client/proc/set_fullscreen(fullscreen_mode)
+	if(fullscreen_mode)
+		winset(src, "mainwindow", "is-maximized=false;can-resize=false;titlebar=false")
+		winset(src, "mainwindow", "menu=null;statusbar=false")
+		winset(src, "mainwindow.split", "pos=0x0")
+		winset(src, "mainwindow", "is-maximized=true")
+		return
+	winset(src, "mainwindow", "is-maximized=false;can-resize=true;titlebar=true")
+	winset(src, "mainwindow", "menu=menu;statusbar=true")
+	winset(src, "mainwindow.split", "pos=3x0")
+	winset(src, "mainwindow", "is-maximized=true")
+
 
 /client/proc/generate_clickcatcher()
 	if(void)
@@ -864,7 +883,7 @@ GLOBAL_VAR_INIT(automute_on, null)
 		if("key")
 			return FALSE
 		if("view")
-			change_view(var_value)
+			view_size.set_view_radius_to(var_value)
 			return TRUE
 	return ..()
 

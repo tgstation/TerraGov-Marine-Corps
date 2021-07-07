@@ -712,13 +712,13 @@ Currently only has the tank hardpoints
 	if(!M.client)
 		return
 	if(is_active)
-		M.client.change_view(WORLD_VIEW)
+		M.client.view_size.reset_to_default()
 		M.client.pixel_x = 0
 		M.client.pixel_y = 0
 		is_active = FALSE
 		C.is_zoomed = FALSE
 		return
-	M.client.change_view(view_buff)
+	M.client.view_size.reset_to_default()
 	is_active = TRUE
 	C.is_zoomed = TRUE
 	switch(C.dir)
@@ -743,7 +743,7 @@ Currently only has the tank hardpoints
 	if(!M.client)
 		return
 	is_active = FALSE
-	M.client.change_view(WORLD_VIEW)
+	M.client.view_size.reset_to_default()
 	M.client.pixel_x = 0
 	M.client.pixel_y = 0
 

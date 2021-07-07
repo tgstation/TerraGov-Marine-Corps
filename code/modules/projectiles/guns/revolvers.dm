@@ -114,19 +114,8 @@
 		to_chat(user, "<span class='warning'>It's already full!</span>")
 		return
 
-	if(istype(magazine, /obj/item/ammo_magazine/handful)) //Looks like we're loading via handful.
-		if( !current_mag.current_rounds && current_mag.caliber == magazine.caliber) //Make sure nothing's loaded and the calibers match.
-			replace_ammo(user, magazine) //We are going to replace the ammo just in case.
-			current_mag.match_ammo(magazine)
-			current_mag.transfer_ammo(magazine,user,1) //Handful can get deleted, so we can't check through it.
-			add_to_cylinder(user)
-		//If bullets still remain in the gun, we want to check if the actual ammo matches.
-		else if(magazine.default_ammo == current_mag.default_ammo) //Ammo datums match, let's see if they are compatible.
-			if(current_mag.transfer_ammo(magazine,user,1))
-				add_to_cylinder(user)//If the magazine is deleted, we're still fine.
-		else
-			to_chat(user, "[current_mag] is [current_mag.current_rounds ? "already loaded with some other ammo. Better not mix them up." : "not compatible with that ammo."]")
-	else //So if it's not a handful, it's an actual speedloader.
+	// speedloaders go fast
+	if(istype(magazine, /obj/item/ammo_magazine/revolver))
 		if(!current_mag.current_rounds) //We can't have rounds in the gun if it's a speeloader.
 			if(current_mag.gun_type == magazine.gun_type) //Has to be the same gun type.
 				if(current_mag.transfer_ammo(magazine,user,magazine.current_rounds))//Make sure we're successful.
@@ -138,6 +127,22 @@
 				to_chat(user, "<span class='warning'>\The [magazine] doesn't fit!</span>")
 		else
 			to_chat(user, "<span class='warning'>You can't load a speedloader when there's something in the cylinder!</span>")
+		return
+
+	// the rest go slow: handfuls, boxes, etc..
+	if(!current_mag.current_rounds && current_mag.caliber == magazine.caliber) //Make sure nothing's loaded and the calibers match.
+		replace_ammo(user, magazine) //We are going to replace the ammo just in case.
+		current_mag.match_ammo(magazine)
+		current_mag.transfer_ammo(magazine,user,1) //Handful can get deleted, so we can't check through it.
+		add_to_cylinder(user)
+		return
+	//If bullets still remain in the gun, we want to check if the actual ammo matches.
+	if(magazine.default_ammo == current_mag.default_ammo) //Ammo datums match, let's see if they are compatible.
+		if(current_mag.transfer_ammo(magazine,user,1))
+			add_to_cylinder(user)//If the magazine is deleted, we're still fine.
+		return
+	to_chat(user, "[current_mag] is [current_mag.current_rounds ? "already loaded with some other ammo. Better not mix them up." : "not compatible with that ammo."]")
+
 
 /obj/item/weapon/gun/revolver/unload(mob/user)
 	if(flags_gun_features & GUN_BURST_FIRING)

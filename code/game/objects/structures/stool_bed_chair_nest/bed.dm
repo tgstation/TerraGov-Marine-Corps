@@ -626,6 +626,7 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 		to_chat(user, "<span class='warning'>[src]'s interface is locked! Only a Squad Leader, Corpsman, or Medical Officer can unlock it now.</span>")
 		return
 	user.drop_held_item()
+	flags_item |= NO_VACUUM
 	anchored = TRUE
 	planted = TRUE
 	to_chat(user, "<span class='warning'>You plant and activate [src].</span>")
@@ -640,6 +641,7 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 		to_chat(user, "<span class='warning'>[src]'s interface is locked! Only a Squad Leader, Corpsman, or Medical Officer can unlock it now.</span>")
 		return
 	if(planted)
+		flags_item &= ~NO_VACUUM
 		anchored = FALSE
 		planted = FALSE
 		to_chat(user, "<span class='warning'>You retrieve and deactivate [src].</span>")

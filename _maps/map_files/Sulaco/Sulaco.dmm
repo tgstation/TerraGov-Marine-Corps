@@ -2015,11 +2015,11 @@
 /obj/item/storage/briefcase/inflatable,
 /obj/item/storage/briefcase/inflatable,
 /obj/item/storage/briefcase/inflatable,
-/obj/item/tool/warning_cone,
-/obj/item/tool/warning_cone,
-/obj/item/tool/warning_cone,
-/obj/item/tool/warning_cone,
-/obj/item/tool/warning_cone,
+/obj/item/clothing/head/warning_cone,
+/obj/item/clothing/head/warning_cone,
+/obj/item/clothing/head/warning_cone,
+/obj/item/clothing/head/warning_cone,
+/obj/item/clothing/head/warning_cone,
 /obj/item/inflatable/door,
 /obj/item/inflatable/door,
 /obj/item/clothing/head/beret/eng,
@@ -10327,7 +10327,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 6
 	},
-/obj/item/tool/warning_cone,
+/obj/item/clothing/head/warning_cone,
 /turf/open/floor/prison/bright_clean,
 /area/sulaco/hangar)
 "bVR" = (
@@ -10432,12 +10432,8 @@
 /obj/machinery/camera/autoname{
 	dir = 1
 	},
-/obj/structure/window/reinforced/toughened{
-	desc = "Metal Laticed Glass, it looks remarkably thick, it is probably bullet proof, it appears to have a caustic barrier";
-	dir = 1;
-	max_integrity = 1500;
-	name = "Protective AI Glass";
-	resistance_flags = 10
+/obj/structure/window/reinforced/extratoughened{
+	dir = 1
 	},
 /turf/open/floor/mainship/tcomms,
 /area/sulaco/command/ai)
@@ -14510,7 +14506,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 10
 	},
-/obj/item/tool/warning_cone,
+/obj/item/clothing/head/warning_cone,
 /turf/open/floor/prison/bright_clean,
 /area/sulaco/hangar)
 "kio" = (
@@ -15148,7 +15144,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 9
 	},
-/obj/item/tool/warning_cone,
+/obj/item/clothing/head/warning_cone,
 /turf/open/floor/prison/bright_clean,
 /area/sulaco/hangar)
 "lsO" = (
@@ -15536,7 +15532,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 5
 	},
-/obj/item/tool/warning_cone,
+/obj/item/clothing/head/warning_cone,
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
 	},
@@ -19160,12 +19156,8 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/structure/window/reinforced/toughened{
-	desc = "Metal Laticed Glass, it looks remarkably thick, it is probably bullet proof, it appears to have a caustic barrier";
-	dir = 8;
-	max_integrity = 1500;
-	name = "Protective AI Glass";
-	resistance_flags = 10
+/obj/structure/window/reinforced/extratoughened{
+	dir = 8
 	},
 /turf/open/floor/mainship/tcomms,
 /area/sulaco/command/ai)
@@ -19629,12 +19621,7 @@
 /turf/open/floor/prison,
 /area/sulaco/marine)
 "teI" = (
-/obj/structure/window/reinforced/toughened{
-	desc = "Metal Laticed Glass, it looks remarkably thick, it is probably bullet proof, it appears to have a caustic barrier";
-	max_integrity = 1500;
-	name = "Protective AI Glass";
-	resistance_flags = 10
-	},
+/obj/structure/window/reinforced/extratoughened,
 /turf/open/floor/mainship/tcomms,
 /area/sulaco/command/ai)
 "tfx" = (
@@ -19748,12 +19735,8 @@
 	dir = 8
 	},
 /obj/structure/cable,
-/obj/structure/window/reinforced/toughened{
-	desc = "Metal Laticed Glass, it looks remarkably thick, it is probably bullet proof, it appears to have a caustic barrier";
-	dir = 4;
-	max_integrity = 1500;
-	name = "Protective AI Glass";
-	resistance_flags = 10
+/obj/structure/window/reinforced/extratoughened{
+	dir = 4
 	},
 /turf/open/floor/mainship/tcomms,
 /area/sulaco/command/ai)
@@ -21221,11 +21204,11 @@
 /area/sulaco/maintenance/upperdeck_AIcore_maint)
 "wco" = (
 /obj/structure/table/mainship,
-/obj/item/tool/warning_cone,
-/obj/item/tool/warning_cone,
-/obj/item/tool/warning_cone,
-/obj/item/tool/warning_cone,
-/obj/item/tool/warning_cone,
+/obj/item/clothing/head/warning_cone,
+/obj/item/clothing/head/warning_cone,
+/obj/item/clothing/head/warning_cone,
+/obj/item/clothing/head/warning_cone,
+/obj/item/clothing/head/warning_cone,
 /turf/open/floor/plating,
 /area/sulaco/maintenance/lower_maint2)
 "wfi" = (
