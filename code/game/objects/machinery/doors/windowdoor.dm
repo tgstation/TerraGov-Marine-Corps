@@ -280,7 +280,7 @@
 	icon_state = "rightsecure"
 	base_state = "rightsecure"
 
-	/obj/machinery/door/window/secure/engineering/rebel
+/obj/machinery/door/window/secure/engineering/rebel
 	req_access = list(ACCESS_MARINE_ENGINEERING_REBEL)
 
 /obj/machinery/door/window/secure/engineering/rebel/right
