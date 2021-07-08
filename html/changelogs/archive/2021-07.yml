@@ -163,3 +163,12 @@
   - bugfix: Fixed window weeds not updating after the frame is gone.
   lbnesquik:
   - rscadd: AI core strengthened on the Pillar of Spring
+2021-07-08:
+  BraveMole:
+  - bugfix: Fix Eviscerating Charge Keybind
+  - expansion: Loadout build mode system for admins
+  InterroLouis:
+  - bugfix: Welding helmet module protects eyes properly.
+  Pariah919:
+  - balance: you can fire the combat shotgun one handed
+  - expansion: Added new T-25 SmartRifle for smartgunners
