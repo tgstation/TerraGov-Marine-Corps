@@ -1171,6 +1171,22 @@ datum/ammo/bullet/revolver/tp44
 	penetration = 25
 	max_range = 30
 	sundering = 2
+	var/datum/effect_system/smoke_spread/smoke_system
+	var/danger_message = "<span class='danger'>The rocket explodes explodes into white gas!</span>"
+
+/datum/ammo/rocket/wp/quad/set_smoke()
+	smoke_system = new /datum/effect_system/smoke_spread/phosphorus()
+
+/datum/ammo/rocket/wp/quad/drop_nade(turf/T, atom/firer, range = 3, radius = 3)
+	set_smoke()
+	smoke_system.set_up(range, T)
+	smoke_system.start()
+	T.visible_message(danger_message)
+	if(!T || !isturf(T))
+		return
+	playsound(T, 'sound/weapons/guns/fire/flamethrower2.ogg', 50, 1, 4)
+	flame_radius(radius, T, 27, 27, 27, 17)
+
 
 /datum/ammo/rocket/wp/quad/ds
 	name = "super thermobaric rocket"
@@ -1180,12 +1196,6 @@ datum/ammo/bullet/revolver/tp44
 	penetration = 75
 	max_range = 30
 	sundering = 100
-
-/datum/ammo/rocket/wp/quad/drop_nade(turf/T, radius = 3)
-	. = ..()
-	if(!.)
-		return
-	explosion(T, 0, 3, 5, 5, throw_range = 0)
 
 /datum/ammo/rocket/recoilless
 	name = "high explosive shell"

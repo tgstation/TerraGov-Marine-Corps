@@ -246,7 +246,7 @@
 
 /obj/item/ammo_magazine/rocket/m57a4
 	name = "\improper 84mm thermobaric rocket array"
-	desc = "A thermobaric rocket tube for a M57A4 quad launcher. Activate in hand to receive some metal when it's used up. The Rockets don't do much damage on a direct hit, but the fire effect is strong.."
+	desc = "A thermobaric rocket tube for a T-57 quad launcher. Activate in hand to receive some metal when it's used up. The Rockets don't do much damage on a direct hit, but the fire effect is strong.."
 	caliber = CALIBER_ROCKETARRAY
 	icon_state = "quad_rocket"
 	max_rounds = 4
