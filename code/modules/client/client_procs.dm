@@ -327,7 +327,6 @@
 	view_size = new(src, get_screen_size(prefs.widescreenpref))
 	view_size.update_pixel_format()
 	view_size.update_zoom_mode()
-	fit_viewport()
 
 	winset(src, null, "mainwindow.title='[CONFIG_GET(string/title)]'")
 
