@@ -360,7 +360,8 @@
 	if(console.check_hovering_spot(T) != nvg_vision_possible) //Cannot see in caves
 		nvg_vision_possible = !nvg_vision_possible
 		update_remote_sight(user)
-	setLoc(T)
+	if(T)
+		setLoc(T)
 
 /mob/camera/aiEye/remote/shuttle_docker/setLoc(T)
 	..()
