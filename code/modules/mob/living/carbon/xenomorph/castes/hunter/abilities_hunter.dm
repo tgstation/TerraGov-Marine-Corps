@@ -469,7 +469,7 @@
 	var/victim_count
 	var/list/target_turfs = RANGE_TURFS(2, A)
 	for(var/turf/targetted AS in target_turfs)
-		for(var/mob/living/target as() in targetted.contents)
+		for(var/mob/living/target AS in targetted.contents)
 			if(!isliving(target)) //Filter out non-living
 				continue
 			if(target.stat == DEAD) //Ignore the dead

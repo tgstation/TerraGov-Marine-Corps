@@ -350,6 +350,7 @@
 /obj/screen/alert/status_effect/mute
 	name = "Muted"
 	desc = "You can't speak!"
+	icon_state = "mute"
 
 /datum/status_effect/mute/on_creation(mob/living/new_owner, set_duration)
 	owner = new_owner

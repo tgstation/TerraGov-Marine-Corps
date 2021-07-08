@@ -73,9 +73,8 @@
 
 //disabilities
 #define BLIND (1<<0)
-#define MUTE (1<<1)
-#define DEAF (1<<2)
-#define NEARSIGHTED (1<<3)
+#define DEAF (1<<1)
+#define NEARSIGHTED (1<<2)
 //=================================================
 
 //mob/var/stat things
