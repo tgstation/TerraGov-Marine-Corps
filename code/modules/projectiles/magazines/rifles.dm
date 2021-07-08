@@ -299,6 +299,21 @@
 	reload_delay = 2.5 SECONDS
 	icon_state_mini = "mag_t29"
 
+//-------------------------------------------------------
+//T-25 THING
+
+/obj/item/ammo_magazine/rifle/standard_smartrifle
+	name = "\improper T-25 magazine (10x26mm)"
+	desc = "A 10mm assault rifle magazine."
+	caliber = CALIBER_10x26_CASELESS
+	icon_state = "t25"
+	w_class = WEIGHT_CLASS_NORMAL
+	default_ammo = /datum/ammo/bullet/smartgun/smartrifle
+	max_rounds = 50
+	gun_type = /obj/item/weapon/gun/rifle/standard_smartrifle
+	icon_state_mini = "mag_rifle"
+
+
 
 //-------------------------------------------------------
 //Sectoid Rifle

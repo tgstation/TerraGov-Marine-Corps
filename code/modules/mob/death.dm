@@ -43,10 +43,10 @@
 	SEND_SIGNAL(src, COMSIG_MOB_DEATH, gibbing)
 	log_combat(src, src, "[deathmessage]")
 
+	set_stat(DEAD)
+
 	if(deathmessage && !silent && !gibbing)
 		visible_message("<b>\The [name]</b> [deathmessage]")
-
-	set_stat(DEAD)
 
 	if(!QDELETED(src) && gibbing)
 		qdel(src)

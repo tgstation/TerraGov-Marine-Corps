@@ -139,7 +139,7 @@
 //////////////////////////////////////////////////////////////////
 
 
-/datum/surgery_step/cavity/implant_removal
+/datum/surgery_step/implant_removal
 	priority = 1
 	allowed_tools = list(
 		/obj/item/tool/surgery/hemostat = 100,
@@ -150,18 +150,16 @@
 	min_duration = HEMOSTAT_REMOVE_MIN_DURATION
 	max_duration = HEMOSTAT_REMOVE_MAX_DURATION
 
-/datum/surgery_step/cavity/implant_removal/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected, checks_only)
-	var/datum/internal_organ/brain/sponge = target.internal_organs_by_name["brain"]
-	//potential conflict with brain repair surgery
-	return ..() && (target_zone != "head" || (!sponge || !sponge.damage || sponge.damage>20))
+/datum/surgery_step/implant_removal/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected, checks_only)
+	return affected.surgery_open_stage >= 2
 
-/datum/surgery_step/cavity/implant_removal/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
+/datum/surgery_step/implant_removal/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
 	user.visible_message("<span class='notice'>[user] starts poking around inside the incision on [target]'s [affected.display_name] with \the [tool].</span>", \
 	"<span class='notice'>You start poking around inside the incision on [target]'s [affected.display_name] with \the [tool].</span>")
 	target.custom_pain("The pain in your chest is living hell!", 1)
 	..()
 
-/datum/surgery_step/cavity/implant_removal/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
+/datum/surgery_step/implant_removal/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
 	if(affected.implants.len)
 
 		var/obj/item/implantfound = affected.implants[1]
@@ -180,7 +178,7 @@
 		user.visible_message("<span class='notice'>[user] could not find anything inside [target]'s [affected.display_name], and pulls \the [tool] out.</span>", \
 		"<span class='notice'>You could not find anything inside [target]'s [affected.display_name].</span>")
 
-/datum/surgery_step/cavity/implant_removal/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
+/datum/surgery_step/implant_removal/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
 	user.visible_message("<span class='warning'>[user]'s hand slips, scraping tissue inside [target]'s [affected.display_name] with \the [tool]!</span>", \
 	"<span class='warning'>Your hand slips, scraping tissue inside [target]'s [affected.display_name] with \the [tool]!</span>")
 	affected.createwound(CUT, 20)
