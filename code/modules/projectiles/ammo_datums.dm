@@ -1967,6 +1967,7 @@ datum/ammo/bullet/revolver/tp44
 	armor_type = "bio"
 	damage = 70
 	penetration = 0
+	shrapnel_chance = 0
 
 /datum/ammo/bullet/pepperball/on_hit_mob(mob/living/victim, obj/projectile/proj)
 	if(isxeno(victim))
