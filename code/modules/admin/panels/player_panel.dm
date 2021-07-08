@@ -474,6 +474,7 @@
 		<br> Alien Tier 4:
 		<a href='?src=[ref];transform=queen;mob=[REF(M)]'>Queen</a> |
 		<a href='?src=[ref];transform=shrike;mob=[REF(M)]'>Shrike</a> |
+		<a href='?src=[ref];transform=hivemind;mob=[REF(M)]'>Hivemind</a> |
 		<a href='?src=[ref];transform=king;mob=[REF(M)]'>King</a>
 		<br>
 	"}
