@@ -499,7 +499,7 @@ mob/proc/get_standard_bodytemperature()
 		return
 
 	var/obj/item/active_item = get_active_held_item()
-	if((istype(active_item) && (active_item.unique_action(src) != ITEM_HAS_NO_UNIQUE_ACTION)) || !client?.prefs.unique_action_behaviour)
+	if((istype(active_item) && active_item.unique_action(src) != ITEM_HAS_NO_UNIQUE_ACTION) || client?.prefs.unique_action_use_active_hand)
 		return
 	var/obj/item/inactive_item = get_inactive_held_item()
 	if(istype(inactive_item))

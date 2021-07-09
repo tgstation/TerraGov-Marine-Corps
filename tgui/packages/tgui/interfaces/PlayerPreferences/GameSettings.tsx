@@ -27,8 +27,8 @@ export const GameSettings = (props, context) => {
               />
               <ToggleFieldPreference
                 label="Unique action behaviour"
-                value="unique_action_behaviour"
-                action="unique_action_behaviour"
+                value="unique_action_use_active_hand"
+                action="unique_action_use_active_hand"
                 leftLabel={'Use on active hand'}
                 rightLabel={'Use on both hands'}
               />
