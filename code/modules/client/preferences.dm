@@ -157,6 +157,9 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/obj/screen/map_view/screen_main
 	var/obj/screen/background/screen_bg
 
+	/// If unique action can act on the item is in the inactive hand
+	var/unique_action_behaviour = FALSE
+
 
 /datum/preferences/New(client/C)
 	if(!istype(C))

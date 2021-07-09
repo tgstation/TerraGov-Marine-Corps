@@ -34,6 +34,8 @@
 			continue
 		.["save_slot_names"]["[i]"] = name
 
+	.["unique_action_behaviour"] = unique_action_behaviour
+
 	switch(tab_index)
 		if(CHARACTER_CUSTOMIZATION)
 			.["r_hair"] = r_hair
