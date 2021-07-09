@@ -61,7 +61,7 @@
 	lighting_alpha = LIGHTING_PLANE_ALPHA_INVISIBLE
 	flags_item = NODROP|DELONDROP
 
-/obj/item/clothing/glasses/imager_goggles
+/obj/item/clothing/glasses/night/imager_goggles
 	name = "optical imager goggles"
 	desc = "Uses image scanning to increase visibility of even the most dimly lit surroundings except total darkness"
 	icon_state = "securityhud"
