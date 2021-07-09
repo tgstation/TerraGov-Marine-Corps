@@ -480,11 +480,11 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define CASTE_QUICK_HEAL_STANDING (1<<11) // Xenomorphs heal standing same if they were resting.
 #define CASTE_CAN_HEAL_WITHOUT_QUEEN (1<<12) // Xenomorphs can heal even without a queen on the same z level
 #define CASTE_INNATE_PLASMA_REGEN (1<<13) // Xenos get full plasma regardless if they are on weeds or not
-#define CASTE_ACID_BLOOD (1<<13) //The acid blood effect which damages humans near xenos that take damage
-#define CASTE_CAN_HOLD_JELLY (1<<14)//whether we can hold fireproof jelly in our hands
-#define CASTE_IS_STRONG (1<<15)//can tear open acided walls without being big
-#define CASTE_CAN_CORRUPT_GENERATOR (1<<16) //Can corrupt a generator
-#define CASTE_IS_BUILDER (1<<17) //whether we are classified as a builder caste
+#define CASTE_ACID_BLOOD (1<<14) //The acid blood effect which damages humans near xenos that take damage
+#define CASTE_CAN_HOLD_JELLY (1<<15)//whether we can hold fireproof jelly in our hands
+#define CASTE_IS_STRONG (1<<16)//can tear open acided walls without being big
+#define CASTE_CAN_CORRUPT_GENERATOR (1<<17) //Can corrupt a generator
+#define CASTE_IS_BUILDER (1<<18) //whether we are classified as a builder caste
 
 //Charge-Crush
 #define CHARGE_OFF 0
