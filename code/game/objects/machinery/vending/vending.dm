@@ -563,7 +563,12 @@
 /obj/machinery/vending/proc/vend(datum/vending_product/R, mob/user)
 	if(!allowed(user) && (!wires.is_cut(WIRE_IDSCAN) || hacking_safety)) //For SECURE VENDING MACHINES YEAH
 		to_chat(user, "<span class='warning'>Access denied.</span>")
-		flick(src.icon_deny,src)
+		flick(icon_deny, src)
+		return
+	
+	if(SSticker.mode?.flags_round_type & MODE_HUMAN_ONLY && is_type_in_typecache(R.product_path, GLOB.hvh_restricted_items_list))
+		to_chat(user, "<span class='warning'>This item is banned by the Space Geneva Convention.</span>")
+		flick(icon_deny, src)
 		return
 
 	if(R.category == CAT_HIDDEN && !extended_inventory)

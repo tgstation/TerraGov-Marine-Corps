@@ -169,6 +169,7 @@
 	parent.playsound_local(parent, get_sfx("alien_help"), 30, TRUE)
 	to_chat(parent, "<span class='xenohighdanger'>Your core has been destroyed!</span>")
 	xeno_message("A sudden tremor ripples through the hive... \the [parent] has been slain!", "xenoannounce", 5, parent.hivenumber)
+	parent.timeofdeath = world.time
 	parent.ghostize()
 	if(!QDELETED(parent))
 		QDEL_NULL(parent)

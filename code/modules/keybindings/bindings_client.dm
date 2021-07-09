@@ -67,6 +67,12 @@
 	for(var/kb_name in prefs.key_bindings[full_key])
 		keycount++
 		var/datum/keybinding/kb = GLOB.keybindings_by_name[kb_name]
+		if(!kb)
+			prefs.key_bindings[full_key] -= kb_name
+			if(!prefs.key_bindings[full_key])
+				prefs.key_bindings -= full_key
+			prefs.save_keybinds()
+			continue
 		if(kb.down(src) && keycount >= MAX_COMMANDS_PER_KEY)
 			break
 
