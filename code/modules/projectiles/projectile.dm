@@ -681,6 +681,9 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 		else if(shooter_living.m_intent == MOVE_INTENT_WALK) //We get a decent accuracy bonus for walking
 			BULLET_DEBUG("walk intent bonus (+10).")
 			. += 10
+		if(shooter_living.faction == faction)
+			proj.accuracy -= 30
+			return FALSE
 		if(ishuman(proj.firer))
 			var/mob/living/carbon/human/shooter_human = shooter_living
 			BULLET_DEBUG("Traumatic shock (-[round(min(30, shooter_human.traumatic_shock * 0.2))]).")
