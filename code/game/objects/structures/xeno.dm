@@ -890,6 +890,7 @@ TUNNEL
 		to_chat(X, "<span class='xenodanger'>We begin removing \the [src]...</span>")
 		if(!do_after(X, XENO_ACID_WELL_FILL_TIME, FALSE, src, BUSY_ICON_HOSTILE))
 			to_chat(X, "<span class='xenodanger'>We stop removing \the [src]...</span>")
+			return
 		playsound(src, "alien_resin_break", 25)
 		deconstruct(TRUE, X)
 		return
