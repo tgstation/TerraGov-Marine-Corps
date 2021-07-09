@@ -19,7 +19,7 @@
 	icon_state_mini = "ammo_packet"
 	w_class = WEIGHT_CLASS_NORMAL
 
-/obj/item/ammo_magazine/packet/10x24mm
+/obj/item/ammo_magazine/packet/p10x24mm
 	name = "box of 10x24mm"
 	desc = "A box containing 150 rounds of 10x24mm caseless.."
 	caliber = CALIBER_10X24_CASELESS
@@ -28,7 +28,7 @@
 	current_rounds = 150
 	max_rounds = 150
 
-/obj/item/ammo_magazine/packet/10x27mm
+/obj/item/ammo_magazine/packet/p10x27mm
 	name = "box of 10x27mm"
 	desc = "A box containing 100 rounds of 10x27mm caseless.."
 	caliber = CALIBER_10x27_CASELESS
@@ -38,7 +38,7 @@
 	current_rounds = 100
 	max_rounds = 100
 
-/obj/item/ammo_magazine/packet/492x34mm
+/obj/item/ammo_magazine/packet/p492x34mm
 	name = "box of 10x27mm"
 	desc = "A box containing 210 rounds of 4.92x34mm caseless.."
 	caliber = CALIBER_492X34_CASELESS
@@ -49,7 +49,7 @@
 
 // pistol packets
 
-/obj/item/ammo_magazine/packet/9mm
+/obj/item/ammo_magazine/packet/p9mm
 	name = "packet of 9mm"
 	desc = "A packet containing 70 rounds of 9mm."
 	caliber = CALIBER_9X19
@@ -79,7 +79,7 @@
 	current_rounds = 50
 	max_rounds = 50
 
-/obj/item/ammo_magazine/packet/10x26mm
+/obj/item/ammo_magazine/packet/p10x26mm
 	name = "packet of 10x26mm"
 	desc = "A packet containing 100 rounds of 10x26mm caseless.."
 	icon_state = "box_10x26mm"
