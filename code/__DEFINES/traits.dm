@@ -108,7 +108,6 @@
 #define TRAIT_PSY_DRAINED "psy_drained"//mob was drained of life force by a xenos
 #define TRAIT_STAGGERIMMUNE	"stagger_immunity" //Immunity to stagger
 #define TRAIT_SLOWDOWNIMMUNE "slowdown_immunity" //Immunity to slowdown
-#define TRAIT_CANNOT_SHOOT "cannot_shoot" //Cannot use a gun with this trait
 
 // item traits
 #define TRAIT_T_RAY_VISIBLE "t-ray-visible" // Visible on t-ray scanners if the atom/var/level == 1
