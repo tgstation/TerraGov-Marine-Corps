@@ -798,7 +798,7 @@ TUNNEL
 	opacity = FALSE
 	anchored = TRUE
 	max_integrity = 5
-	layer = RESIN_STRUCTURE_LAYER
+	layer = UPPER_ITEM_LAYER
 
 	hit_sound = "alien_resin_move"
 	destroy_sound = "alien_resin_move"
