@@ -172,3 +172,8 @@
   Pariah919:
   - balance: you can fire the combat shotgun one handed
   - expansion: Added new T-25 SmartRifle for smartgunners
+2021-07-09:
+  BraveMole:
+  - qol: Better keybind registering system
+  lbnesquik:
+  - admin: add the hivemind to player transform
