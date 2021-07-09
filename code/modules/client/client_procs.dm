@@ -1,7 +1,7 @@
 #define UPLOAD_LIMIT 1000000	//Restricts client uploads to the server to 1MB
 #define UPLOAD_LIMIT_ADMIN 10000000	//Restricts admin uploads to the server to 10MB
 
-#define MAX_RECOMMENDED_CLIENT 1556
+#define MAX_RECOMMENDED_CLIENT 1557
 #define MIN_RECOMMENDED_CLIENT 1526
 #define REQUIRED_CLIENT_MAJOR 513
 #define REQUIRED_CLIENT_MINOR 1493
@@ -328,6 +328,8 @@
 	view_size.update_pixel_format()
 	view_size.update_zoom_mode()
 	fit_viewport()
+
+	set_fullscreen(prefs.fullscreen_mode)
 
 	winset(src, null, "mainwindow.title='[CONFIG_GET(string/title)]'")
 
@@ -796,6 +798,20 @@
 	mob.reload_fullscreens()
 	if(prefs.auto_fit_viewport)
 		INVOKE_NEXT_TICK(src, .verb/fit_viewport, 1 SECONDS) //Delayed to avoid wingets from Login calls.
+
+///Change the fullscreen setting of the client
+/client/proc/set_fullscreen(fullscreen_mode)
+	if(fullscreen_mode)
+		winset(src, "mainwindow", "is-maximized=false;can-resize=false;titlebar=false")
+		winset(src, "mainwindow", "menu=null;statusbar=false")
+		winset(src, "mainwindow.split", "pos=0x0")
+		winset(src, "mainwindow", "is-maximized=true")
+		return
+	winset(src, "mainwindow", "is-maximized=false;can-resize=true;titlebar=true")
+	winset(src, "mainwindow", "menu=menu;statusbar=true")
+	winset(src, "mainwindow.split", "pos=3x0")
+	winset(src, "mainwindow", "is-maximized=true")
+
 
 /client/proc/generate_clickcatcher()
 	if(void)

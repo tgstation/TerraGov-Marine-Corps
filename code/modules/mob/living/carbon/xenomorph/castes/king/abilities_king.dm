@@ -9,6 +9,7 @@
 	mechanics_text = "Shut down all electrical lights nearby for 10 seconds."
 	cooldown_timer = 45 SECONDS
 	plasma_cost = 100
+	keybind_signal = COMSIG_XENOABILITY_NIGHTFALL
 	/// How far nightfall will have an effect
 	var/range = 12
 	/// How long till the lights go on again
@@ -36,7 +37,7 @@
 /datum/action/xeno_action/activable/gravity_crush
 	name = "Gravity Crush"
 	action_icon_state = "fortify"
-	mechanics_text = "Increases the localized gravity in an area and crushes structures."
+	mechanics_text = "Increases the localized gravity in an area and crushes everything in it."
 	ability_name = "Gravity crush"
 	plasma_cost = 200
 	cooldown_timer = 30 SECONDS
