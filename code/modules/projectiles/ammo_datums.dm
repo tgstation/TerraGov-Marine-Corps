@@ -1065,7 +1065,7 @@ datum/ammo/bullet/revolver/tp44
 	icon_state 	= "blue_bullet"
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
 	shell_speed = 4
-	max_range = 12
+	max_range = 9
 	damage = 150
 	penetration = 70
 	sundering = 90
