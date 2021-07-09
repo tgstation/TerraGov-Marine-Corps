@@ -644,7 +644,7 @@ ARMOR
 /datum/supply_packs/armor/imager_goggle
 	name = "Optical Imager Goggles"
 	contains = list(/obj/item/clothing/glasses/night/imager_goggles)
-	cost = 5
+	cost = 3
 
 /datum/supply_packs/armor/riot
 	name = "Heavy Riot Armor Set"
