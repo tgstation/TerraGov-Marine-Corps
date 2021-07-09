@@ -11,7 +11,6 @@
 	toggleable = 1
 	darkness_view = 2
 	vision_flags = SEE_TURFS
-	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE
 
 
 /obj/item/clothing/glasses/meson/prescription
