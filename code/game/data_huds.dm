@@ -356,10 +356,10 @@
 	if(!holder)
 		return
 	if(stat == DEAD)
-		holder.icon_state = "plasma0"
+		holder.icon_state = "[xeno_caste.plasma_icon_state]0"
 	else
 		var/amount = round(plasma_stored * 100 / xeno_caste.plasma_max, 10)
-		holder.icon_state = "plasma[amount]"
+		holder.icon_state = "[xeno_caste.plasma_icon_state][amount]"
 
 
 /mob/living/carbon/xenomorph/proc/hud_set_pheromone()
@@ -549,6 +549,6 @@
 	if(!rounds)
 		holder.icon_state = "plasma0"
 		return
-	
+
 	var/amount = round(rounds * 100 / rounds_max, 10)
 	holder.icon_state = "plasma[amount]"

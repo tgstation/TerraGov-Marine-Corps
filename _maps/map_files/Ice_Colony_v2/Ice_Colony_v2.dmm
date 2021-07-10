@@ -6873,7 +6873,9 @@
 	},
 /area/ice_colony/surface/disposals)
 "azd" = (
-/obj/machinery/door/window/northright,
+/obj/machinery/door/window/right{
+	dir = 1
+	},
 /turf/open/floor/tile/dark/brown2{
 	dir = 5
 	},
@@ -8694,10 +8696,10 @@
 /area/ice_colony/surface/command/control)
 "aEW" = (
 /obj/structure/table/reinforced,
-/obj/machinery/door/window/secure/westleft{
+/obj/machinery/door/window/secure{
 	name = "Security Desk"
 	},
-/obj/machinery/door/window/eastright{
+/obj/machinery/door/window/right{
 	name = "Security Desk"
 	},
 /obj/structure/paper_bin,
@@ -11234,10 +11236,11 @@
 /area/ice_colony/surface/hangar/checkpoint)
 "aNp" = (
 /obj/structure/table/reinforced,
-/obj/machinery/door/window/secure/westright{
+/obj/machinery/door/window/secure/right{
+	dir = 8;
 	name = "Security Desk"
 	},
-/obj/machinery/door/window/eastleft{
+/obj/machinery/door/window{
 	name = "Security Desk"
 	},
 /obj/item/clipboard,
@@ -11430,10 +11433,11 @@
 /area/ice_colony/exterior/surface/clearing/south)
 "aNS" = (
 /obj/structure/table/reinforced,
-/obj/machinery/door/window/secure/westleft{
+/obj/machinery/door/window/secure{
+	dir = 8;
 	name = "Security Desk"
 	},
-/obj/machinery/door/window/eastright{
+/obj/machinery/door/window/right{
 	name = "Security Desk"
 	},
 /obj/structure/paper_bin,
@@ -11657,7 +11661,8 @@
 /turf/open/floor/freezer,
 /area/ice_colony/surface/bar/canteen)
 "aOG" = (
-/obj/machinery/door/window/northright{
+/obj/machinery/door/window/right{
+	dir = 1;
 	name = "Canteen"
 	},
 /turf/open/floor/freezer,
@@ -12170,8 +12175,7 @@
 /area/ice_colony/surface/hydroponics/lobby)
 "aQo" = (
 /obj/item/reagent_containers/food/drinks/cans/beer,
-/obj/machinery/door/window/northright{
-	dir = 4;
+/obj/machinery/door/window/right{
 	name = "Bar"
 	},
 /turf/open/floor/wood,
@@ -16695,7 +16699,7 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/excavation)
 "beO" = (
-/obj/machinery/door/window/eastright{
+/obj/machinery/door/window/right{
 	name = "Technical Storage"
 	},
 /turf/open/floor/tile/dark/purple2{
@@ -17692,13 +17696,12 @@
 /turf/closed/wall/r_wall,
 /area/ice_colony/underground/requesition/lobby)
 "biq" = (
-/obj/structure/table/woodentable{
-	icon_state = "reinf_table"
-	},
-/obj/machinery/door/window/secure/southleft{
+/obj/machinery/door/window/secure{
+	dir = 1;
 	name = "Requesitions Desk"
 	},
-/obj/machinery/door/window/southright{
+/obj/machinery/door/window/right{
+	dir = 2;
 	name = "Requesitions Desk"
 	},
 /obj/item/tool/pen/blue{
@@ -18680,10 +18683,8 @@
 /turf/open/floor/wood,
 /area/ice_colony/underground/crew/library)
 "bmq" = (
-/obj/structure/table/woodentable{
-	icon_state = "reinf_table"
-	},
 /obj/item/frame/light_fixture,
+/obj/structure/table/woodentable,
 /turf/open/floor/tile/dark/yellow2{
 	dir = 1
 	},
@@ -19125,32 +19126,26 @@
 	},
 /area/ice_colony/underground/hallway/north_west)
 "bnO" = (
-/obj/structure/table/woodentable{
-	icon_state = "reinf_table"
-	},
 /obj/item/storage/box/lightstick,
+/obj/structure/table/woodentable,
 /turf/open/floor/tile/dark/yellow2{
 	dir = 1
 	},
 /area/ice_colony/underground/engineering)
 "bnP" = (
-/obj/structure/table/woodentable{
-	icon_state = "reinf_table"
-	},
 /obj/item/inflatable,
 /obj/item/inflatable/door,
 /obj/item/storage/box/engineer,
+/obj/structure/table/woodentable,
 /turf/open/floor/tile/dark/yellow2{
 	dir = 1
 	},
 /area/ice_colony/underground/engineering)
 "bnQ" = (
-/obj/structure/table/woodentable{
-	icon_state = "reinf_table"
-	},
 /obj/item/stack/cable_coil,
 /obj/item/stack/rods,
 /obj/item/storage/donut_box,
+/obj/structure/table/woodentable,
 /turf/open/floor/tile/dark/yellow2{
 	dir = 1
 	},
@@ -19745,10 +19740,10 @@
 /area/ice_colony/underground/hallway/south_east)
 "bpY" = (
 /obj/structure/table/reinforced,
-/obj/machinery/door/window/secure/eastleft{
+/obj/machinery/door/window/secure{
 	id = "brg"
 	},
-/obj/machinery/door/window/secure/westleft{
+/obj/machinery/door/window/secure{
 	id = "brg"
 	},
 /obj/structure/paper_bin,
@@ -20079,10 +20074,8 @@
 /turf/open/floor/tile/dark/yellow2,
 /area/ice_colony/underground/engineering)
 "brd" = (
-/obj/structure/table/woodentable{
-	icon_state = "reinf_table"
-	},
 /obj/item/storage/box/lights,
+/obj/structure/table/woodentable,
 /turf/open/floor/tile/dark/yellow2,
 /area/ice_colony/underground/engineering)
 "bre" = (
@@ -20542,12 +20535,14 @@
 "bsR" = (
 /obj/structure/table/reinforced,
 /obj/structure/paper_bin,
-/obj/machinery/door/window/secure/southleft{
+/obj/machinery/door/window/secure{
+	dir = 2;
 	id = "brg";
 	name = "Security Desk"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/machinery/door/window/northright{
+/obj/machinery/door/window/right{
+	dir = 1;
 	name = "Security Desk"
 	},
 /obj/item/tool/stamp,
@@ -20924,7 +20919,7 @@
 /obj/effect/decal/warning_stripes{
 	icon_state = "E-corner"
 	},
-/obj/machinery/door/window/eastleft{
+/obj/machinery/door/window{
 	name = "Basketball Court"
 	},
 /turf/open/floor/wood,
@@ -21313,7 +21308,8 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
 	},
-/obj/machinery/door/window/westright{
+/obj/machinery/door/window/right{
+	dir = 8;
 	name = "Basketball Court"
 	},
 /turf/open/floor/wood,
@@ -21376,7 +21372,9 @@
 /area/ice_colony/underground/medical/lobby)
 "bvv" = (
 /obj/structure/table/reinforced,
-/obj/machinery/door/window/secure/northright,
+/obj/machinery/door/window/secure/right{
+	dir = 1
+	},
 /obj/structure/paper_bin,
 /obj/item/tool/pen/blue,
 /turf/open/floor/tile/red/whitered{
@@ -21428,7 +21426,7 @@
 /obj/effect/decal/warning_stripes{
 	icon_state = "E-corner"
 	},
-/obj/machinery/door/window/eastright{
+/obj/machinery/door/window/right{
 	name = "Basketball Court"
 	},
 /turf/open/floor/wood,
@@ -21743,7 +21741,8 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
 	},
-/obj/machinery/door/window/westleft{
+/obj/machinery/door/window{
+	dir = 8;
 	name = "Basketball Court"
 	},
 /turf/open/floor/wood,
@@ -21790,7 +21789,9 @@
 /area/ice_colony/underground/medical/lobby)
 "bwF" = (
 /obj/structure/table/reinforced,
-/obj/machinery/door/window/secure/westleft,
+/obj/machinery/door/window/secure{
+	dir = 8
+	},
 /obj/structure/paper_bin,
 /obj/item/tool/pen/blue,
 /turf/open/floor/tile/red/whitered{
@@ -24772,10 +24773,10 @@
 /area/ice_colony/underground/security/hallway)
 "bGg" = (
 /obj/structure/table/reinforced,
-/obj/machinery/door/window/secure/eastleft{
+/obj/machinery/door/window/secure{
 	id = "brg"
 	},
-/obj/machinery/door/window/secure/westleft{
+/obj/machinery/door/window/secure{
 	id = "brg"
 	},
 /obj/structure/paper_bin,
@@ -25315,10 +25316,11 @@
 	pixel_x = -6
 	},
 /obj/structure/paper_bin,
-/obj/machinery/door/window/secure/westright{
+/obj/machinery/door/window/secure/right{
+	dir = 8;
 	name = "Security Desk"
 	},
-/obj/machinery/door/window/eastleft{
+/obj/machinery/door/window{
 	name = "Security Desk"
 	},
 /turf/open/floor/plating,
@@ -26381,8 +26383,7 @@
 	},
 /area/ice_colony/underground/security/brig)
 "bLf" = (
-/obj/machinery/door/window/secure/westleft{
-	dir = 4;
+/obj/machinery/door/window/secure{
 	id = "brg"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -26847,7 +26848,7 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/security/armory)
 "bMQ" = (
-/obj/machinery/door/window/secure/westleft{
+/obj/machinery/door/window/secure{
 	dir = 1;
 	id = "brg"
 	},
@@ -27558,7 +27559,8 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/responsehangar)
 "bOR" = (
-/obj/machinery/door/window/northright{
+/obj/machinery/door/window/right{
+	dir = 1;
 	name = "Disposals Chute"
 	},
 /turf/open/floor/plating/warning{
@@ -27788,7 +27790,9 @@
 	dir = 8
 	},
 /obj/structure/window/reinforced,
-/obj/machinery/door/window/westleft,
+/obj/machinery/door/window{
+	dir = 8
+	},
 /turf/open/floor/tile/white,
 /area/ice_colony/underground/security/brig)
 "bPI" = (
@@ -28111,7 +28115,9 @@
 /obj/machinery/shower{
 	dir = 8
 	},
-/obj/machinery/door/window/westleft,
+/obj/machinery/door/window{
+	dir = 8
+	},
 /turf/open/floor/tile/white,
 /area/ice_colony/underground/security/brig)
 "bQS" = (
@@ -28470,10 +28476,11 @@
 /area/ice_colony/exterior/surface/valley/south)
 "bSg" = (
 /obj/structure/table/reinforced,
-/obj/machinery/door/window/secure/westleft{
+/obj/machinery/door/window/secure{
+	dir = 8;
 	name = "Security Desk"
 	},
-/obj/machinery/door/window/eastright{
+/obj/machinery/door/window/right{
 	name = "Security Desk"
 	},
 /obj/item/tool/stamp,
@@ -29246,8 +29253,8 @@
 /turf/open/floor/plating/ground/ice,
 /area/ice_colony/exterior/underground/caves/ice_se)
 "bVj" = (
-/obj/machinery/door/window/secure/northleft,
-/obj/machinery/door/window/secure/southright,
+/obj/machinery/door/window/secure,
+/obj/machinery/door/window/secure/right,
 /obj/structure/table/reinforced,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -29400,7 +29407,7 @@
 	dir = 4
 	},
 /obj/structure/window/reinforced,
-/obj/machinery/door/window/eastleft,
+/obj/machinery/door/window,
 /turf/open/floor/tile/white,
 /area/ice_colony/surface/excavationbarracks)
 "bVM" = (
@@ -29642,7 +29649,7 @@
 /turf/open/floor/tile/dark,
 /area/ice_colony/surface/excavationbarracks)
 "bWC" = (
-/obj/machinery/door/window/eastleft,
+/obj/machinery/door/window,
 /turf/open/floor/tile/dark/purple2{
 	dir = 4
 	},
@@ -29668,7 +29675,7 @@
 /obj/machinery/shower{
 	dir = 4
 	},
-/obj/machinery/door/window/eastleft,
+/obj/machinery/door/window,
 /turf/open/floor/tile/white,
 /area/ice_colony/surface/excavationbarracks)
 "bWH" = (

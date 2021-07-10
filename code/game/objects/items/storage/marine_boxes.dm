@@ -19,6 +19,24 @@
 	new /obj/item/ammo_magazine/standard_smartmachinegun(src)
 	new /obj/item/ammo_magazine/standard_smartmachinegun(src)
 
+/obj/item/storage/box/t25_system
+	name = "\improper T25 smart rifle system"
+	desc = "A large case containing the full T-26 Rifle System. Drag this sprite into you to open it up!\nNOTE: You cannot put items back inside this case."
+	icon = 'icons/Marine/marine-weapons.dmi'
+	icon_state = "smartgun_case"
+	w_class = WEIGHT_CLASS_HUGE
+	storage_slots = 5
+	slowdown = 1
+	can_hold = list() //Nada. Once you take the stuff out it doesn't fit back in.
+	foldable = null
+
+/obj/item/storage/box/t25_system/Initialize(mapload, ...)
+	. = ..()
+	new /obj/item/clothing/glasses/night/m56_goggles(src)
+	new /obj/item/weapon/gun/rifle/standard_smartrifle(src)
+	new /obj/item/storage/belt/marine/t25(src)
+	new /obj/item/ammo_magazine/rifle/standard_smartrifle(src)
+
 /obj/item/smartgun_powerpack
 	name = "\improper M56 powerpack"
 	desc = "A heavy reinforced backpack with support equipment, power cells, and spare rounds for the M56 Smartgun System.\nClick the icon in the top left to reload your M56."
