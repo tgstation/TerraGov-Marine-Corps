@@ -33,13 +33,12 @@
 	desc = "A box containing 100 rounds of 10x27mm caseless.."
 	caliber = CALIBER_10x27_CASELESS
 	icon_state = "box_10x27mm"
-	w_class = WEIGHT_CLASS_NORMAL
 	default_ammo = /datum/ammo/bullet/rifle/standard_dmr
 	current_rounds = 100
 	max_rounds = 100
 
 /obj/item/ammo_magazine/packet/p492x34mm
-	name = "box of 10x27mm"
+	name = "box of 4.92x34mm"
 	desc = "A box containing 210 rounds of 4.92x34mm caseless.."
 	caliber = CALIBER_492X34_CASELESS
 	icon_state = "box_492x34mm"
@@ -88,5 +87,4 @@
 	w_class = WEIGHT_CLASS_SMALL
 	current_rounds = 100
 	max_rounds = 100
-
 
