@@ -69,7 +69,7 @@
 
 
 /obj/machinery/door/airlock/proc/canAIControl(mob/user)
-	if(src.z != user.z)
+	if(z != user.z)
 		return
 	return ((aiControlDisabled != 1) && !isAllPowerCut())
 
