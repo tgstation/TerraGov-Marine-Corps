@@ -330,7 +330,9 @@ can cause issues with ammo types getting mixed up during the burst.
 		return
 	return TRUE
 
-/obj/item/weapon/gun/shotgun/double/attack_hand(mob/living/user)
+/obj/item/weapon/gun/shotgun/double/unload(mob/user)
+	if(flags_gun_features & GUN_BURST_FIRING)
+		return FALSE
 	return cock(user)
 
 /obj/item/weapon/gun/shotgun/double/add_to_tube(mob/user,selection) //Load it on the go, nothing chambered.
