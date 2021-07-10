@@ -162,7 +162,7 @@
 			/obj/item/ammo_magazine/flamer_tank/large = 20,
 			/obj/item/ammo_magazine/flamer_tank = 20,
 			/obj/item/weapon/shield/riot/marine = 6,
-			/obj/item/ammo_magazine/pepperball = 40,
+			/obj/item/ammo_magazine/rifle/pepperball = 40,
 			/obj/item/weapon/powerfist = -1,
 			/obj/item/weapon/throwing_knife = -1,
 			/obj/item/weapon/combat_knife = -1,

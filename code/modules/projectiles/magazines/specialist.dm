@@ -291,9 +291,9 @@
 
 // pepperball
 
-/obj/item/ammo_magazine/pepperball
+/obj/item/ammo_magazine/rifle/pepperball
 	name = "pepperball canister (SAN balls)"
-	desc = "A canister holding a projectile to be used inside a railgun."
+	desc = "A canister holding a projectile to be used inside a pepperball gun."
 	caliber = CALIBER_PEPPERBALL
 	icon_state = "pepperball"
 	default_ammo = /datum/ammo/bullet/pepperball

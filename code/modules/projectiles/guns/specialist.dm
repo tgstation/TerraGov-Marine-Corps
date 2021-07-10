@@ -1213,7 +1213,7 @@
 	flags_equip_slot = ITEM_SLOT_BACK|ITEM_SLOT_BELT
 	max_shells = 70 //codex
 	caliber = CALIBER_PEPPERBALL
-	current_mag = /obj/item/ammo_magazine/pepperball
+	current_mag = /obj/item/ammo_magazine/rifle/pepperball
 	force = 30 // two shots weeds as it has no bayonet
 	wield_delay = 0.5 SECONDS // Very fast to put up.
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 20, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
