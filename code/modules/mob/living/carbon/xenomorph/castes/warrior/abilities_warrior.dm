@@ -231,7 +231,7 @@
 /datum/action/xeno_action/activable/toss
 	name = "Grapple Toss"
 	action_icon_state = "grapple_toss"
-	mechanics_text = "Throw a creature you're grappling up to 5 tiles away."
+	mechanics_text = "Throw a creature you're grappling up to 3 tiles away."
 	ability_name = "grapple toss"
 	plasma_cost = 18
 	cooldown_timer = 20 SECONDS //Shared cooldown with Fling
@@ -256,7 +256,7 @@
 /datum/action/xeno_action/activable/toss/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/X = owner
 	var/atom/movable/target = owner.pulling
-	var/fling_distance = 5
+	var/fling_distance = 3
 	var/stagger_slow_stacks = 3
 	var/stun_duration = 1 SECONDS
 	var/big_mob_message
