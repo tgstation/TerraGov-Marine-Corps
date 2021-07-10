@@ -297,7 +297,7 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber{
 	dir = 8
 	},
-/obj/machinery/door/window/westright{
+/obj/machinery/door/window/right{
 	dir = 2
 	},
 /turf/open/floor/mainship/mono,
@@ -364,7 +364,6 @@
 /obj/machinery/light/small{
 	brightness = 6;
 	bulb_colour = "#08FAE8";
-	bulb_power = 1;
 	dir = 4;
 	flickering = 1;
 	name = "technological glow"
@@ -1157,7 +1156,6 @@
 /obj/machinery/light/small{
 	brightness = 6;
 	bulb_colour = "#0000ff";
-	bulb_power = 1;
 	dir = 1;
 	flickering = 1;
 	name = "technological glow"
@@ -1200,9 +1198,7 @@
 /turf/open/floor/wood,
 /area/mainship/living/bridgebunks)
 "eK" = (
-/obj/structure/catwalk{
-	name = "catwalk"
-	},
+/obj/structure/catwalk,
 /turf/open/floor/plating/space/sea,
 /area/heisennaught/command_deck/space)
 "eL" = (
@@ -1410,7 +1406,7 @@
 /obj/structure/sink{
 	dir = 8
 	},
-/obj/machinery/door/window/eastleft{
+/obj/machinery/door/window{
 	dir = 2
 	},
 /obj/structure/mirror,
@@ -1730,8 +1726,7 @@
 /area/heisennaught/command_deck/hallway)
 "gE" = (
 /obj/structure/catwalk{
-	layer = 1;
-	name = "catwalk"
+	layer = 1
 	},
 /obj/structure/ladder{
 	height = 3;
@@ -1767,7 +1762,7 @@
 	dir = 4;
 	pixel_x = 8
 	},
-/obj/machinery/door/window/westright{
+/obj/machinery/door/window/right{
 	dir = 2
 	},
 /obj/structure/mirror,
@@ -2914,9 +2909,7 @@
 /turf/open/floor/mainship_hull,
 /area/heisennaught/upper_deck/space)
 "kL" = (
-/obj/machinery/door_control/mainship/droppod{
-	pixel_x = 0
-	},
+/obj/machinery/door_control/mainship/droppod,
 /turf/closed/wall/mainship,
 /area/heisennaught/lower_deck/droppodbay)
 "kM" = (
@@ -3539,7 +3532,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 8
 	},
-/obj/machinery/door/window/eastleft{
+/obj/machinery/door/window{
 	dir = 2
 	},
 /turf/open/floor/mainship/mono,
@@ -3548,10 +3541,10 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/structure/cable,
-/obj/machinery/door/window/eastright{
+/obj/machinery/door/window/right{
 	dir = 2
 	},
-/obj/machinery/door/window/secure/eastleft/req{
+/obj/machinery/door/window/secure/req{
 	dir = 1
 	},
 /obj/structure/table/reinforced{
@@ -4055,7 +4048,6 @@
 /turf/open/floor/carpet,
 /area/mainship/living/numbertwobunks)
 "ph" = (
-/obj/machinery/door/window/secure,
 /obj/structure/bed/chair/comfy{
 	dir = 8
 	},
@@ -4065,6 +4057,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
+/obj/machinery/door/window/secure/bridge,
 /turf/open/floor/mainship/office,
 /area/heisennaught/command_deck/cic)
 "pi" = (
@@ -5796,7 +5789,6 @@
 /obj/machinery/light/small{
 	brightness = 6;
 	bulb_colour = "#08FAE8";
-	bulb_power = 1;
 	dir = 8;
 	flickering = 1;
 	name = "technological glow"
@@ -6428,7 +6420,6 @@
 /obj/machinery/light/small{
 	brightness = 6;
 	bulb_colour = "#08FAE8";
-	bulb_power = 1;
 	flickering = 1;
 	name = "technological glow"
 	},
@@ -6459,8 +6450,12 @@
 /obj/machinery/door/poddoor/shutters/mainship/open/checkpoint/south{
 	dir = 2
 	},
-/obj/machinery/door/window/secure/northleft,
-/obj/machinery/door/window/secure/southleft,
+/obj/machinery/door/window/secure{
+	dir = 1
+	},
+/obj/machinery/door/window/secure{
+	dir = 2
+	},
 /obj/structure/table/reinforced,
 /obj/structure/paper_bin{
 	pixel_x = -4;
@@ -7634,7 +7629,7 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber{
 	dir = 4
 	},
-/obj/machinery/door/window/eastleft{
+/obj/machinery/door/window{
 	dir = 2
 	},
 /turf/open/floor/mainship/mono,
@@ -10979,7 +10974,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/obj/machinery/door/window/westright{
+/obj/machinery/door/window/right{
 	dir = 2
 	},
 /turf/open/floor/mainship/mono,
@@ -11018,7 +11013,6 @@
 /obj/machinery/light/small{
 	brightness = 6;
 	bulb_colour = "#08FAE8";
-	bulb_power = 1;
 	flickering = 1;
 	name = "technological glow"
 	},
@@ -12383,7 +12377,6 @@
 /obj/machinery/light/small{
 	brightness = 6;
 	bulb_colour = "#08FAE8";
-	bulb_power = 1;
 	dir = 1;
 	flickering = 1;
 	name = "technological glow"
@@ -12753,7 +12746,7 @@
 /area/mainship/shipboard/brig)
 "Vw" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden,
-/obj/machinery/door/window/westright{
+/obj/machinery/door/window/right{
 	dir = 2
 	},
 /turf/open/floor/mainship/mono,
