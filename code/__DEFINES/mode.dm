@@ -142,7 +142,7 @@
 /// This is used to ponderate the number of silo, so to reduces the diminishing returns of having more and more silos
 #define SILO_OUTPUT_PONDERATION 2
 //Time (after round start) before siloless timer can start
-#define MINIMUM_TIME_SILO_LESS_COLLAPSE 40 MINUTES
+#define MINIMUM_TIME_SILO_LESS_COLLAPSE 45 MINUTES
 
 #define INFESTATION_MARINE_DEPLOYMENT 0
 #define INFESTATION_MARINE_CRASHING 1
