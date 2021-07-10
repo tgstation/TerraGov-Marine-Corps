@@ -521,7 +521,7 @@ datum/ammo/bullet/revolver/tp44
 	damage = 25
 	accuracy = 10
 	penetration = 20
-	sundering = 2
+	sundering = 2.5
 
 /datum/ammo/bullet/rifle/tx8/impact
 	name = "high velocity impact bullet"
