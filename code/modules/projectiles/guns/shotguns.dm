@@ -330,6 +330,9 @@ can cause issues with ammo types getting mixed up during the burst.
 		return
 	return TRUE
 
+/obj/item/weapon/gun/shotgun/double/attack_hand(mob/living/user)
+	return cock(user)
+
 /obj/item/weapon/gun/shotgun/double/add_to_tube(mob/user,selection) //Load it on the go, nothing chambered.
 	current_mag.chamber_position++
 	current_mag.chamber_contents[current_mag.chamber_position] = selection

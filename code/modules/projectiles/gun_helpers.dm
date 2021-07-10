@@ -914,7 +914,7 @@ should be alright.
 
 /obj/item/weapon/gun/proc/toggle_auto_aim_mode(mob/living/carbon/human/user) //determines whether toggle_aim_mode activates at the end of gun/wield proc
 
-	if(CHECK_BITFIELD(flags_item, WIELDED)) //if gun is wielded it toggles aim mode directly instead
+	if(CHECK_BITFIELD(flags_item, WIELDED) || CHECK_BITFIELD(flags_item, IS_DEPLOYED)) //if gun is wielded it toggles aim mode directly instead
 		toggle_aim_mode(user)
 		return
 
@@ -935,7 +935,7 @@ should be alright.
 		modify_fire_delay(-aim_fire_delay)
 		to_chat(user, "<span class='notice'>You cease aiming.</b></span>")
 		return
-	if(!CHECK_BITFIELD(flags_item, WIELDED))
+	if(!CHECK_BITFIELD(flags_item, WIELDED) && !CHECK_BITFIELD(flags_item, IS_DEPLOYED))
 		to_chat(user, "<span class='notice'>You need to wield your gun before aiming.</b></span>")
 		return
 	if(!user.wear_id)
@@ -949,9 +949,6 @@ should be alright.
 		if(!do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_BAR, ignore_turf_checks = TRUE))
 			to_chat(user, "<span class='warning'>Your concentration is interrupted!</b></span>")
 			return
-	if(!CHECK_BITFIELD(flags_item, WIELDED))
-		to_chat(user, "<span class='notice'>You need to wield your gun before aiming.</b></span>")
-		return
 	user.overlays += aim_mode_visual
 	ENABLE_BITFIELD(flags_gun_features, GUN_IS_AIMING)
 	user.add_movespeed_modifier(MOVESPEED_ID_AIM_MODE_SLOWDOWN, TRUE, 0, NONE, TRUE, aim_speed_modifier)

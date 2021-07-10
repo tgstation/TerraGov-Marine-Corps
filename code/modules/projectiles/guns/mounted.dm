@@ -6,7 +6,7 @@
 	flags_token = TOKEN_ENGI
 
 ///box for storage of ammo and gun
-/obj/item/storage/box/standard_hmg 
+/obj/item/storage/box/tl102
 	name = "\improper TL-102 crate"
 	desc = "A large and rusted metal case. It has not seen much use. Written in faded letters on its top, it says, \"This is a TL-102 heavy smartgun\". There are many other warning labels atop that are too faded to read."
 	icon = 'icons/Marine/marine-hmg.dmi'
@@ -14,17 +14,17 @@
 	w_class = WEIGHT_CLASS_HUGE
 	storage_slots = 7
 	bypass_w_limit = list(
-		/obj/item/weapon/gun/mounted,
-		/obj/item/ammo_magazine/mounted,
+		/obj/item/weapon/gun/tl102,
+		/obj/item/ammo_magazine/tl102,
 	)
 
-/obj/item/storage/box/standard_hmg/Initialize()
+/obj/item/storage/box/tl102/Initialize()
 	. = ..()
-	new /obj/item/weapon/gun/mounted(src) //gun itself
-	new /obj/item/ammo_magazine/mounted(src) //ammo for the gun
+	new /obj/item/weapon/gun/tl102(src) //gun itself
+	new /obj/item/ammo_magazine/tl102(src) //ammo for the gun
 
 ///TL-102, now with full auto. It is not a superclass of deployed guns, however there are a few varients.
-/obj/item/weapon/gun/mounted
+/obj/item/weapon/gun/tl102
 	name = "\improper TL-102 mounted heavy smartgun"
 	desc = "The TL-102 heavy machinegun, it's too heavy to be wielded or operated without the tripod. IFF capable. No extra work required, just deploy it with unique action. Can be repaired with a blowtorch once deployed."
 
@@ -36,7 +36,7 @@
 	fire_sound = 'sound/weapons/guns/fire/hmg2.ogg'
 	reload_sound = 'sound/weapons/guns/interact/minigun_cocked.ogg'
 
-	current_mag = /obj/item/ammo_magazine/mounted
+	current_mag = /obj/item/ammo_magazine/tl102
 
 	gun_iff_signal = list(ACCESS_IFF_MARINE)
 
@@ -62,24 +62,24 @@
 	max_integrity = 300
 
 ///This and get_ammo_count is to make sure the ammo counter functions.
-/obj/item/weapon/gun/mounted/get_ammo_type()
+/obj/item/weapon/gun/tl102/get_ammo_type()
 	if(!ammo)
 		return list("unknown", "unknown")
 	return list(ammo.hud_state, ammo.hud_state_empty)
 
-/obj/item/weapon/gun/mounted/get_ammo_count()
+/obj/item/weapon/gun/tl102/get_ammo_count()
 	if(!current_mag)
 		return in_chamber ? 1 : 0
 	return in_chamber ? (current_mag.current_rounds + 1) : current_mag.current_rounds
 
 ///Unmovable ship mounted version.
-/obj/item/weapon/gun/mounted/hsg_nest
+/obj/item/weapon/gun/tl102/hsg_nest
 	name = "\improper TL-102 heavy smartgun nest"
 	desc = "A TL-102 heavy smartgun mounted upon a small reinforced post with sandbags to provide a small machinegun nest for all your defense purpose needs.</span>"
 	icon = 'icons/Marine/marine-hmg.dmi'
 	icon_state = "entrenched"
 
-	current_mag = /obj/item/ammo_magazine/mounted/hsg_nest
+	current_mag = /obj/item/ammo_magazine/tl102/hsg_nest
 
 	starting_attachment_types = list(
 		/obj/item/attachable/scope/unremovable/tl102/nest,
@@ -88,7 +88,7 @@
 	flags_item =  IS_DEPLOYABLE|TWOHANDED|DEPLOYED_NO_PICKUP|DEPLOY_ON_INITIALIZE
 
 ///This is my meme version, the first version of the TL-102 to have auto-fire, revel in its presence.
-/obj/item/weapon/gun/mounted/death
+/obj/item/weapon/gun/tl102/death
 	name = "\improper \"Death incarnate\" heavy machine gun"
 	desc = "It looks like a regular TL-102, however glowing archaeic writing glows faintly on its sides and top. It beckons for blood."
 	icon = 'icons/Marine/marine-hmg.dmi'
