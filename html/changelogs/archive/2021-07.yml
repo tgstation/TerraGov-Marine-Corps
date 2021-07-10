@@ -177,3 +177,10 @@
   - qol: Better keybind registering system
   lbnesquik:
   - admin: add the hivemind to player transform
+2021-07-10:
+  InterroLouis:
+  - bugfix: Ravagers have normal blood now.
+  - balance: Mesons dont hide darkness slightly anymore, removing a effect that on
+      diagonals each light  showed xenos 2/3 tiles away
+  Surrealaser:
+  - bugfix: Missing return added to Acid Well dismantle code.
