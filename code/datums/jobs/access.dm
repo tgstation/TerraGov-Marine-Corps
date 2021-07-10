@@ -226,67 +226,69 @@
 		if("NT")
 			. = size ? (gender == FEMALE ? "Ms. " : "Mr. ") : "Junior Executive"
 		if("E1")
-			. = size ? "PVT " : "Private"
+			. = size ? "Soldat " : "Soldat"
 		if("E2")
-			. = size ? "PFC " : "Private First Class"
+			. = size ? "Gefreiter " : "Gefreiter"
 		if("E3")
-			. = size ? "LCPL " : "Lance Corporal"
+			. = size ? "Oberegefreiter " : "Oberegefreiter"
 		if("E3E")
-			. = size ? "SCPL " : "Section Corporal" //Anachronistic if we're going by common US ranks, above E3 but below E4.
+			. = size ? "Stabsgefreiter " : "Stabsgefreiter"
 		if("E4")
-			. = size ? "CPL " : "Corporal"
+			. = size ? "Oberstabsgefreiter. " : "Oberstabsgefreiter"
 		if("E5")
-			. = size ? "SGT " : "Sergeant"
+			. = size ? "Unteroffizier " : "Unteroffizier"
 		if("E6")
-			. = size ? "SSGT " : "Staff Sergeant"
+			. = size ? "Stabsunteroffizier " : "Stabsunteroffizier"
 		if("E7")
-			. = size ? "GYSGT " : "Gunnery Sergeant"
+			. = size ? "Feldwebel " : "Feldwebel"
 		if("E8")
-			. = size ? "MSGT " : "Master Sergeant"
+			. = size ? "Oberfeldwebel " : "Oberfeldwebel"
 		if("E8E")
-			. = size ? "FSGT " : "First Sergeant"
+			. = size ? "Hauptfeldwebel " : "Hauptfeldwebel"
 		if("E9")
-			. = size ? "SGM " : "Sergeant Major"
+			. = size ? "Stabsfeldwebel " : "Stabsfeldwebel"
 		if("E9E")
-			. = size ? "CSGM " : "Command Sergeant Major"
+			. = size ? "Oberstabsfeldwebel " : "Oberstabsfeldwebel"
 		if("O1")
-			. = size ? "ENS " : "Ensign"
+			. = size ? "Leutnant " : "Leutnant "
 		if("O2")
-			. = size ? "LTJG " : "Lieutenant Junior Grade"
+			. = size ? "Oberleutnant " : "Oberleutnant"
 		if("O3")
-			. = size ? "LT " : "Lieutenant"
+			. = size ? "Kapitanleutnant " : "Kapitanleutnant"
 		if("O4")
-			. = size ? "LCDR " : "Lieutenant Commander"
+			. = size ? "Stabskapitanleutnant " : "Stabskapitanleutnant"
 		if("O5")
-			. = size ? "CDR " : "Commander"
+			. = size ? "Fregattenkapitan " : "Fregattenkapitan"
 		if("O6")
-			. = size ? "CPT " : "Captain"
+			. = size ? "Kapitan " : "Kapitan"
 		if("O7")
-			. = size ? "COMM " : "Commodore"
+			. = size ? "Flottillenadmiral " : "Flottillenadmiral"
 		if("O8")
-			. = size ? "RADM " : "Rear Admiral"
+			. = size ? "Konteradmiral " : "Konteradmiral"
 		if("O9")
-			. = size ? "VADM " : "Vice Admiral"
+			. = size ? "Vizeadmiral " : "Vizeadmiral"
 		if("10")
-			. = size ? "ADM " : "Admiral"
+			. = size ? "Admiral " : "Admiral"
 		if("11")
-			. = size ? "FADM " : "Fleet Admiral"
+			. = size ? "Fleet Admiral " : "Fleet Admiral"
 		if("WO")
-			. = size ? "WO " : "Warrant Officer"
+			. = size ? "Seekadett " : "Seekadett"
 		if("CWO")
-			. = size ? "CWO " : "Chief Warrant Officer"
+			. = size ? "Oberseekadett " : "Oberseekadett"
 		if("PO3")
-			. = size ? "PO3 " : "Petty Officer Third Class"
+			. = size ? "Bootsmann " : "Bootsmann"
 		if("PO2")
-			. = size ? "PO2 " : "Petty Officer Second Class"
+			. = size ? "Oberbootsmann " : "Oberbootsmann"
 		if("PO1")
-			. = size ? "PO1 " : "Petty Officer First Class"
+			. = size ? "Hauptbootsmann " : "Hauptbootsmann"
 		if("CPO")
-			. = size ? "CPO " : "Chief Petty Officer"
+			. = size ? "Stabsbootsmann " : "Stabsbootsmann"
+		if("MO3")
+			. = size ? "Major " : "Major"
 		if("MO4")
-			. = size ? "MAJ " : "Major"
+			. = size ? "Oberstleutnant " : "Oberstleutnant"
 		if("MO5")
-			. = size ? "LtCol " : "Lieutenant Colonel"
+			. = size ? "Oberst " : "Oberst"
 		if("UPP1")
 			. = size ? "UGNR " : "USL Gunner"
 		if("UPP2")
