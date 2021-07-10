@@ -1181,9 +1181,6 @@
 		if(initial(O.can_be_admin_equipped))
 			outfits[initial(O.name)] = path
 
-	for(var/datum/outfit/D in GLOB.custom_outfits)
-		outfits[D.name] = D
-
 	if(!(equipment in outfits))
 		return FALSE
 

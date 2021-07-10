@@ -1794,7 +1794,7 @@
 /area/bigredv2/outside/marshal_office)
 "agI" = (
 /obj/structure/table/reinforced,
-/obj/machinery/door/window/secure/eastleft,
+/obj/machinery/door/window/secure,
 /obj/item/weapon/shield/riot,
 /turf/open/floor/tile/vault{
 	dir = 8
@@ -2528,7 +2528,7 @@
 /area/bigredv2/outside/marshal_office)
 "ajF" = (
 /obj/structure/table/reinforced,
-/obj/machinery/door/window/secure/westright,
+/obj/machinery/door/window/secure/right,
 /turf/open/floor/tile/vault{
 	dir = 8
 	},
@@ -2912,7 +2912,9 @@
 "akQ" = (
 /obj/structure/table/reinforced,
 /obj/structure/cable,
-/obj/machinery/door/window/secure/southright,
+/obj/machinery/door/window/secure/right{
+	dir = 2
+	},
 /turf/open/floor/tile/vault{
 	dir = 8
 	},
@@ -12975,7 +12977,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "aZv" = (
-/obj/machinery/door/window/eastleft,
+/obj/machinery/door/window,
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "aZw" = (

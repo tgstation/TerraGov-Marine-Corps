@@ -546,6 +546,11 @@ AMMO
 	contains = list(/obj/item/ammo_magazine/standard_smartmachinegun)
 	cost = 5
 
+/datum/supply_packs/ammo/smartrifle
+	name = "T-25 smartrifle ammo"
+	contains = list(/obj/item/ammo_magazine/rifle/standard_smartrifle)
+	cost = 2
+
 /datum/supply_packs/ammo/sentry
 	name = "UA 571-C sentry ammunition"
 	contains = list(/obj/item/ammo_magazine/sentry)

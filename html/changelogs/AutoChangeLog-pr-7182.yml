@@ -1,6 +1,0 @@
-author: "BraveMole"
-delete-after: True
-changes: 
-  - code_imp: "Clean up keybinds"
-  - qol: "King get keybinds"
-  - bugfix: "Spawn hugger keybind fixed"

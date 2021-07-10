@@ -1,4 +1,4 @@
 author: "BraveMole"
 delete-after: True
 changes: 
-  - qol: "Fullscreen setting"
+  - bugfix: "Cannot shoot while tarping anymore"
