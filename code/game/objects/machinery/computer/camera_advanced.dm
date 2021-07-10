@@ -238,12 +238,11 @@
 	if(!eye_user)
 		return
 	var/turf/T = get_turf(target)
-	if(T)
-		if(T.z != z && use_static != USE_STATIC_NONE)
-			GLOB.cameranet.visibility(src, GetViewerClient(), null, use_static)
-		forceMove(T)
-	else
-		moveToNullspace()
+	if(!T)
+		return
+	if(T.z != z && use_static != USE_STATIC_NONE)
+		GLOB.cameranet.visibility(src, GetViewerClient(), null, use_static)
+	forceMove(T)
 	if(use_static != USE_STATIC_NONE)
 		GLOB.cameranet.visibility(src, GetViewerClient(), null, use_static)
 	if(visible_icon && eye_user.client)
