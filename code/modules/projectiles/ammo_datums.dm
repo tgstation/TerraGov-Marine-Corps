@@ -472,7 +472,7 @@ datum/ammo/bullet/revolver/tp44
 	accurate_range = 15
 	damage = 25
 	penetration = 5
-	sundering = 0.5
+	sundering = 1
 
 /datum/ammo/bullet/rifle/ap
 	name = "armor-piercing rifle bullet"
@@ -486,7 +486,7 @@ datum/ammo/bullet/revolver/tp44
 	hud_state = "hivelo"
 	damage = 20
 	penetration = 10
-	sundering = 1
+	sundering = 1.5
 
 /datum/ammo/bullet/rifle/incendiary
 	name = "incendiary rifle bullet"
@@ -512,7 +512,7 @@ datum/ammo/bullet/revolver/tp44
 	accurate_range_min = 6
 	damage = 40
 	penetration = 20
-	sundering = 10
+	sundering = 7.5
 
 /datum/ammo/bullet/rifle/tx8/incendiary
 	name = "high velocity incendiary bullet"
@@ -521,7 +521,7 @@ datum/ammo/bullet/revolver/tp44
 	damage = 25
 	accuracy = 10
 	penetration = 20
-	sundering = 2.5
+	sundering = 2
 
 /datum/ammo/bullet/rifle/tx8/impact
 	name = "high velocity impact bullet"
@@ -529,7 +529,7 @@ datum/ammo/bullet/revolver/tp44
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
 	damage = 25
 	penetration = 45
-	sundering = 5
+	sundering = 3.5
 
 /datum/ammo/bullet/rifle/tx8/impact/on_hit_mob(mob/M, obj/projectile/P)
 	staggerstun(M, P, max_range = 40, stagger = 2, slowdown = 3.5, knockback = 1)
@@ -586,7 +586,7 @@ datum/ammo/bullet/revolver/tp44
 	max_range = 15
 	damage = 80
 	penetration = 40
-	sundering = 7
+	sundering = 5
 
 /datum/ammo/bullet/shotgun/slug/on_hit_mob(mob/M,obj/projectile/P)
 	staggerstun(M, P, weaken = 1, stagger = 2, knockback = 1, slowdown = 2)
@@ -944,7 +944,7 @@ datum/ammo/bullet/revolver/tp44
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING|AMMO_SNIPER
 	damage = 80
 	penetration = 30
-	sundering = 7.5
+	sundering = 5
 	accurate_range_min = 2
 	damage_falloff = 0.25
 
