@@ -67,6 +67,6 @@
 	icon_state = "securityhud"
 	deactive_state = "degoggles_sec"
 	actions_types = list(/datum/action/item_action/toggle)
-	toggleable = 1
+	toggleable = TRUE
 	darkness_view = 2
 	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE
