@@ -1,6 +1,6 @@
 {
     "map_name": "heisennaught",
-    "map_path": "map_files/heisennaught",
+    "map_path": "map_files/Heisennaught",
     "map_file": "heisennaught.dmm",
     "traits": [{"Marine Main Ship": true}]
 }
