@@ -1970,7 +1970,6 @@ datum/ammo/bullet/revolver/tp44
 	shrapnel_chance = 0
 
 /datum/ammo/bullet/pepperball/on_hit_mob(mob/living/victim, obj/projectile/proj)
-	staggerstun(M, P, stagger = 1, shake = 0)
 	if(isxeno(victim))
 		var/mob/living/carbon/xenomorph/X = victim
 		X.use_plasma(50)
