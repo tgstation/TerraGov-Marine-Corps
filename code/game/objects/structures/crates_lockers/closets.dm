@@ -262,6 +262,10 @@
 
 
 /obj/structure/closet/MouseDrop_T(atom/movable/O, mob/user)
+	if(!isliving(user))
+		return
+	if(isxenohivemind(user))
+		return
 	if(!opened)
 		return
 	if(!isturf(O.loc))
