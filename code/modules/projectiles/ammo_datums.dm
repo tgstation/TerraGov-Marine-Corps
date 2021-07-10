@@ -586,7 +586,7 @@ datum/ammo/bullet/revolver/tp44
 	max_range = 15
 	damage = 80
 	penetration = 40
-	sundering = 5
+	sundering = 7
 
 /datum/ammo/bullet/shotgun/slug/on_hit_mob(mob/M,obj/projectile/P)
 	staggerstun(M, P, weaken = 1, stagger = 2, knockback = 1, slowdown = 2)
