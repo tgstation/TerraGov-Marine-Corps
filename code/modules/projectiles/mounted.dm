@@ -221,11 +221,7 @@
 		var/obj/item/attachable/scope/scope = attachable
 		scope.zoom_item_turnoff(operator, operator)
 
-	if(operator.client) 
-		operator.client.change_view(WORLD_VIEW)
-		operator.client.pixel_x = 0
-		operator.client.pixel_y = 0
-		operator.client.mouse_pointer_icon = initial(operator.client.mouse_pointer_icon)
+	operator.client?.view_size.reset_to_default()
 
 	operator = null
 	gun?.set_gun_user(null)
