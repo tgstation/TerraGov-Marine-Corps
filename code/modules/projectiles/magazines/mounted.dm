@@ -16,3 +16,17 @@
 /obj/item/ammo_magazine/tl102/hsg_nest
 	max_rounds = 1500
 	gun_type = /obj/item/weapon/gun/tl102/hsg_nest
+
+/obj/item/ammo_magazine/mg08
+	name = "MG-08/495 drum magazine (10x30mm Caseless)"
+	desc = "A box of 500, 10x30mm caseless tungsten rounds for the MG-08/495 mounted heavy machinegun. Is probably not going to fit in your backpack."
+	w_class = WEIGHT_CLASS_BULKY
+	flags_equip_slot = ITEM_SLOT_BACK|ITEM_SLOT_BELT
+	icon = 'icons/Marine/marine-hmg.dmi'
+	icon_state = "mg08_mag"
+	flags_magazine = NONE
+	caliber = CALIBER_10X30
+	max_rounds = 500
+	default_ammo = /datum/ammo/bullet/machinegun
+	gun_type = /obj/item/weapon/gun/mg08
+	reload_delay = 10 SECONDS

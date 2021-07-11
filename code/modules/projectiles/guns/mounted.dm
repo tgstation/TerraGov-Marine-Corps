@@ -108,3 +108,39 @@
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER
 
+// This is a deployed IFF-less mACHINEGUN, has 500 rounds, drums do not fit anywhere but your belt slot and your back slot. But it has 500 rounds. That's nice.
+
+/obj/item/weapon/gun/mg08
+	name = "\improper MG-08/495 heavy machinegun"
+	desc = "An absolute monster of a weapon, this is a watercooled heavy machinegun modernized by some crazy armorer, or maybe even several. Holds 500 rounds of 10x30mm caseless in a box case. IS NOT IFF CAPABLE. Aiming carefully recommended. Can be repaired with a blowtorch once deployed."
+
+	w_class = WEIGHT_CLASS_HUGE
+	flags_equip_slot = ITEM_SLOT_BACK
+	icon = 'icons/Marine/marine-hmg.dmi'
+	icon_state = "mg08"
+
+	fire_sound = 'sound/weapons/guns/fire/mg08.ogg'
+	reload_sound = 'sound/weapons/guns/interact/minigun_cocked.ogg'
+
+	current_mag = /obj/item/ammo_magazine/mg08
+
+
+	scatter = 25
+	fire_delay = 0.15 SECONDS
+
+	burst_amount = 1
+	burst_accuracy_mult = 2
+	burst_scatter_mult = -2
+
+	flags_item = IS_DEPLOYABLE|TWOHANDED
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER|GUN_DEPLOYED_FIRE_ONLY|GUN_WIELDED_FIRING_ONLY
+	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
+
+	starting_attachment_types = list(
+		/obj/item/attachable/scope/unremovable/tl102,
+	)
+
+	deploy_time = 8 SECONDS
+
+	max_integrity = 500
+
