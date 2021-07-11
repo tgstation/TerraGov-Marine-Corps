@@ -234,7 +234,7 @@
 		if("E3E")
 			. = size ? "Stabsgefreiter " : "Stabsgefreiter"
 		if("E4")
-			. = size ? "Oberstabsgefreiter. " : "Oberstabsgefreiter"
+			. = size ? "Oberstabsgefreiter " : "Oberstabsgefreiter"
 		if("E5")
 			. = size ? "Unteroffizier " : "Unteroffizier"
 		if("E6")
