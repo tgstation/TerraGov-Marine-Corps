@@ -116,7 +116,6 @@
 
 /obj/item/helmet_module/antenna/toggle_module(mob/living/user, obj/item/clothing/head/modular/parent)
 	var/turf/location = get_turf(src)
-	playsound(user, 'sound/machines/twobeep.ogg', 60, 1)
 	if(beacon_datum)
 		UnregisterSignal(beacon_datum, COMSIG_PARENT_QDELETING)
 		QDEL_NULL(beacon_datum)
