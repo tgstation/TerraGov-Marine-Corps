@@ -112,7 +112,7 @@
 
 /obj/item/weapon/gun/mg08
 	name = "\improper MG-08/495 heavy machinegun"
-	desc = "An absolute monster of a weapon, this is a watercooled heavy machinegun modernized by some crazy armorer, or maybe even several. Holds 500 rounds of 10x30mm caseless in a box case. IS NOT IFF CAPABLE. Aiming carefully recommended. Can be repaired with a blowtorch once deployed."
+	desc = "An absolute monster of a weapon, this is a watercooled heavy machinegun modernized by some crazy armorer. The pinnacle at holding a chokepoint. Holds 500 rounds of 10x30mm caseless in a box case. IS NOT IFF CAPABLE. Aiming carefully recommended. Can be repaired with a blowtorch once deployed."
 
 	w_class = WEIGHT_CLASS_HUGE
 	flags_equip_slot = ITEM_SLOT_BACK
@@ -126,7 +126,7 @@
 
 
 	scatter = 25
-	fire_delay = 0.15 SECONDS
+	fire_delay = 0.2 SECONDS
 
 	burst_amount = 1
 	burst_accuracy_mult = 2
