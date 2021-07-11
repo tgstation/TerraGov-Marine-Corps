@@ -1171,6 +1171,8 @@ datum/ammo/bullet/revolver/tp44
 	penetration = 25
 	max_range = 30
 	sundering = 2
+
+	///The smoke system that the WP gas uses to spread.
 	var/datum/effect_system/smoke_spread/smoke_system
 	var/danger_message = "<span class='danger'>The rocket explodes explodes into white gas!</span>"
 
@@ -1182,8 +1184,6 @@ datum/ammo/bullet/revolver/tp44
 	smoke_system.set_up(range, T)
 	smoke_system.start()
 	T.visible_message(danger_message)
-	if(!T || !isturf(T))
-		return
 	playsound(T, 'sound/weapons/guns/fire/flamethrower2.ogg', 50, 1, 4)
 	flame_radius(radius, T, 27, 27, 27, 17)
 

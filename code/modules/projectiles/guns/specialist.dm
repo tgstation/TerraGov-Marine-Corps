@@ -1024,8 +1024,8 @@
 /obj/item/weapon/gun/launcher/rocket/m57a4/t57
 	name = "\improper T-57 quad thermobaric launcher"
 	desc = "The T-57 is posssibly the most awful man portable weapon. It is a 4-barreled missile launcher capable of burst-firing 4 thermobaric missiles with nearly no force to the rocket. Enough said."
-	icon_state = "m57a4"
-	item_state = "m57a4"
+	icon_state = "t57"
+	item_state = "t57"
 	current_mag = /obj/item/ammo_magazine/rocket/m57a4
 
 
