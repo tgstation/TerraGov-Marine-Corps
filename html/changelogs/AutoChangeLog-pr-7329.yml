@@ -1,4 +1,0 @@
-author: "Wayland-Smithy"
-delete-after: True
-changes: 
-  - bugfix: "Fixed all clients being forced to Fit Viewport on connect regardless of their Auto Fit Preference."
