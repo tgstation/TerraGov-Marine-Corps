@@ -370,7 +370,7 @@
 	name = "\improper M4 pattern PMC armor"
 	desc = "A common armor vest that is designed for high-profile security operators and corporate mercenaries in mind."
 	icon_state = "pmc_armor"
-	soft_armor = list("melee" = 45, "bullet" = 60, "laser" = 60, "energy" = 38, "bomb" = 40, "bio" = 15, "rad" = 15, "fire" = 38, "acid" = 45)
+	soft_armor = list("melee" = 50, "bullet" = 65, "laser" = 65, "energy" = 35, "bomb" = 45, "bio" = 20, "rad" = 20, "fire" = 43, "acid" = 50)
 	slowdown = SLOWDOWN_ARMOR_LIGHT
 	allowed = list(
 		/obj/item/weapon/gun,
@@ -393,7 +393,7 @@
 	name = "\improper M4 pattern PMC leader armor"
 	desc = "A modification of the M4 body armor, it is designed for high-profile security operators and corporate mercenaries in mind. This particular suit looks like it belongs to a high-ranking officer."
 	icon_state = "officer_armor"
-	soft_armor = list("melee" = 50, "bullet" = 65, "laser" = 65, "energy" = 65, "bomb" = 50, "bio" = 50, "rad" = 50, "fire" = 50, "acid" = 45)
+	soft_armor = list("melee" = 55, "bullet" = 70, "laser" = 70, "energy" = 70, "bomb" = 55, "bio" = 55, "rad" = 55, "fire" = 55, "acid" = 50)
 
 
 /obj/item/clothing/suit/storage/marine/veteran/PMC/sniper
@@ -408,7 +408,7 @@
 	desc = "A modification of the standard M4 body armor. Hooked up with harnesses and straps allowing the user to carry a smartgun."
 	icon_state = "pmc_heavyarmor"
 	slowdown = SLOWDOWN_ARMOR_HEAVY
-	soft_armor = list("melee" = 55, "bullet" = 70, "laser" = 70, "energy" = 70, "bomb" = 70, "bio" = 30, "rad" = 20, "fire" = 65, "acid" = 65)
+	soft_armor = list("melee" = 60, "bullet" = 75, "laser" = 75, "energy" = 75, "bomb" = 75, "bio" = 35, "rad" = 25, "fire" = 70, "acid" = 70)
 	flags_item_map_variant = NONE
 
 /obj/item/clothing/suit/storage/marine/veteran/PMC/commando
