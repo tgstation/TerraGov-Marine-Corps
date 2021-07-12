@@ -1,0 +1,4 @@
+author: "BraveMole"
+delete-after: True
+changes: 
+  - bugfix: "Wraith banishing no longer auto-target humans rather than cades or nades"
