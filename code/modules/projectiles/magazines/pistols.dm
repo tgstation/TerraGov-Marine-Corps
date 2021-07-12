@@ -231,6 +231,7 @@
 	name = "\improper T-XX ricochet magazine (9x23mm)"
 	desc = "A pistol magazine loaded with specialized rounds that will set whatever it hits on fire. Better not hit friendlies. But it won't hit you!"
 	icon_state = "tp14"
+	max_rounds = 8
 	default_ammo = /datum/ammo/bullet/pistol/incendiary
 
 //-------------------------------------------------------

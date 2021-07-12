@@ -259,6 +259,11 @@
 			/obj/item/ammo_magazine/pistol/vp70 = -1,
 			/obj/item/weapon/gun/pistol/plasma_pistol = -1,
 			/obj/item/ammo_magazine/pistol/plasma_pistol = -1,
+			/obj/item/weapon/gun/pistol/standard_marksmanpistol = - 1,
+			/obj/item/ammo_magazine/pistol/standard_marksman = -1,
+			/obj/item/ammo_magazine/pistol/standard_marksman/incend = -1,
+			/obj/item/ammo_magazine/pistol/standard_marksman/ricochet = -1,
+			/obj/item/ammo_magazine/pistol/standard_marksman/tracking = -1,
 		),
 		"Specialized" = list(
 			/obj/item/weapon/gun/flamer/marinestandard = 4,

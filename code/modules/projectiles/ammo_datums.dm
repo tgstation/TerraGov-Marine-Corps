@@ -321,7 +321,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 		P.visible_message("<span class='danger'>The [src] chimpers furiously!</span>")
 		new /mob/living/carbon/human/species/monkey(P.loc)
 
-/datum/ammo/bullet/revolver/ricochet/pistol // isn't the first bullet
+/datum/ammo/bullet/revolver/ricochet/pistol // isn't the first bounce, it's around the 3rdish. Five damage per bounce.
 	name = "ricochet pistol bullet"
 	damage = 35
 	penetration = 5

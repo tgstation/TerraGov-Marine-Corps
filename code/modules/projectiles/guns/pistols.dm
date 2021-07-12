@@ -530,7 +530,7 @@ It is a modified Beretta 93R, and can fire three round burst or single fire. Whe
 	recoil_unwielded = 3
 
 //-------------------------------------------------------
-//Delivery pistol, delivers specialized ammo
+//Marksman pistol, delivers specialized ammo
 
 /obj/item/weapon/gun/pistol/standard_marksmanpistol
 	name = "T-WORK marksman pistol"
@@ -554,6 +554,7 @@ It is a modified Beretta 93R, and can fire three round burst or single fire. Whe
 	attachable_offset = list("muzzle_x" = 25, "muzzle_y" = 20,"rail_x" = 12, "rail_y" = 22, "under_x" = 17, "under_y" = 15, "stock_x" = 22, "stock_y" = 17)
 
 	fire_delay = 0.15 SECONDS
+	damage_falloff_mult = 0.5
 
 //-------------------------------------------------------
 //The first rule of monkey pistol is we don't talk about monkey pistol.
