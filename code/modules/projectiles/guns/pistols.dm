@@ -540,7 +540,7 @@ It is a modified Beretta 93R, and can fire three round burst or single fire. Whe
 	caliber = CALIBER_9X23 //codex
 	max_shells = 11 //codex
 	fire_sound = 'sound/weapons/guns/fire/beretta.ogg'
-	current_mag = /obj/item/ammo_magazine/pistol/delivery
+	current_mag = /obj/item/ammo_magazine/pistol/standard_marksman
 	force = 8
 	attachable_allowed = list(
 		/obj/item/attachable/suppressor,

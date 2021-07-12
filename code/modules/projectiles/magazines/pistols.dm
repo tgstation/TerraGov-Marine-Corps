@@ -223,9 +223,9 @@
 
 /obj/item/ammo_magazine/pistol/standard_marksman/ricochet
 	name = "\improper T-XX ricochet magazine (9x23mm)"
-	desc = "A pistol magazine loaded with specialized rounds that will bounce off walls. Has a huge warning sign on the other side of the magazine. Better not hit friendlies. But it won't hit you!"
+	desc = "A pistol magazine loaded with specialized rounds that will bounce off walls. Will bounce for about three times, every time adds more damage! Has a huge warning sign on the other side of the magazine. Better not hit friendlies. But it won't hit you!"
 	icon_state = "tp14"
-	default_ammo = /datum/ammo/bullet/pistol/ricochet
+	default_ammo = /datum/ammo/bullet/revolver/ricochet/pistol/three
 
 /obj/item/ammo_magazine/pistol/standard_marksman/incend
 	name = "\improper T-XX ricochet magazine (9x23mm)"
