@@ -37,7 +37,7 @@
 /obj/item/radio/Initialize()
 	secure_radio_connections = new
 	. = ..()
-	frequency = sanitize_frequency(frequency)
+	frequency = sanitize_frequency(frequency, freerange)
 	set_frequency(frequency)
 
 	wires = new /datum/wires/radio(src)
