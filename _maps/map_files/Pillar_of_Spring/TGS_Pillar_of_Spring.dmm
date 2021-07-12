@@ -2761,7 +2761,7 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
-/area/mainship/hallways/aft_hallway)
+/area/mainship/hallways/hangar)
 "jN" = (
 /obj/machinery/door/airlock/mainship/maint,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
@@ -2874,6 +2874,10 @@
 /turf/open/floor/mainship/orange{
 	dir = 8
 	},
+/area/mainship/hallways/hangar)
+"kf" = (
+/obj/machinery/door/firedoor/mainship,
+/turf/open/floor/mainship/stripesquare,
 /area/mainship/hallways/hangar)
 "kg" = (
 /obj/structure/target_stake,
@@ -3591,7 +3595,7 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
-/area/mainship/hallways/aft_hallway)
+/area/mainship/hallways/hangar)
 "mi" = (
 /obj/structure/reagent_dispensers/water_cooler,
 /turf/open/floor/mainship/mono,
@@ -4908,7 +4912,7 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/mainship/cargo,
-/area/mainship/hallways/aft_hallway)
+/area/mainship/hallways/hangar)
 "qF" = (
 /obj/structure/table/mainship,
 /obj/item/tool/minihoe,
@@ -8804,6 +8808,17 @@
 	},
 /turf/open/floor/mainship/stripesquare,
 /area/mainship/hallways/port_hallway)
+"Dh" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/structure/cable,
+/obj/machinery/door/firedoor/mainship,
+/turf/open/floor/mainship/stripesquare,
+/area/mainship/hallways/hangar)
 "Di" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
@@ -9519,9 +9534,12 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/command/cic)
 "FA" = (
-/obj/machinery/light,
-/turf/open/floor/mainship/mono,
-/area/mainship/hallways/aft_hallway)
+/obj/effect/decal/warning_stripes/thin{
+	dir = 9
+	},
+/obj/machinery/door/firedoor/mainship,
+/turf/open/floor/mainship/stripesquare,
+/area/mainship/hallways/hangar)
 "FB" = (
 /obj/machinery/light{
 	dir = 4
@@ -9873,7 +9891,7 @@
 	on = 1
 	},
 /turf/open/floor/mainship/mono,
-/area/mainship/hallways/aft_hallway)
+/area/mainship/hallways/hangar)
 "GR" = (
 /turf/open/floor/mainship/sterile/side{
 	dir = 6
@@ -15431,6 +15449,16 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/living/numbertwobunks)
+"YS" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/hallways/hangar)
 "YT" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/junction{
@@ -15448,6 +15476,14 @@
 /obj/machinery/holopad,
 /turf/open/floor/mainship/sterile/side,
 /area/mainship/medical/surgery_hallway)
+"YX" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/machinery/door/firedoor/mainship{
+	dir = 2
+	},
+/turf/open/floor/mainship/stripesquare,
+/area/mainship/hallways/hangar)
 "YY" = (
 /turf/open/floor/mainship/black{
 	dir = 8
@@ -41792,8 +41828,8 @@ bn
 ap
 ca
 fS
-lO
-gd
+YS
+ap
 cC
 lQ
 zA
@@ -42050,7 +42086,7 @@ gf
 WB
 je
 jM
-gd
+ap
 cC
 bl
 bC
@@ -42306,8 +42342,8 @@ bh
 bh
 bh
 Yf
-lO
-gd
+YS
+ap
 cC
 bs
 bE
@@ -42820,8 +42856,8 @@ bh
 bh
 bh
 QM
-lO
-gd
+YS
+ap
 cC
 nO
 AP
@@ -43077,8 +43113,8 @@ bh
 bh
 bh
 VA
-lO
-gd
+YS
+ap
 ga
 dy
 RO
@@ -43335,7 +43371,7 @@ bh
 bh
 kH
 qE
-gd
+ap
 nj
 dy
 cz
@@ -43592,7 +43628,7 @@ bh
 bh
 kI
 qE
-gd
+ap
 hH
 aI
 aY
@@ -43849,7 +43885,7 @@ bh
 bh
 kJ
 qE
-gd
+ap
 bd
 IL
 ks
@@ -44105,8 +44141,8 @@ bh
 bh
 bh
 VA
-lO
-gd
+YS
+ap
 nk
 nk
 nk
@@ -44362,8 +44398,8 @@ bh
 bh
 bh
 Yf
-lO
-gd
+YS
+ap
 nk
 eu
 km
@@ -44619,8 +44655,8 @@ bh
 bh
 bh
 PX
-lO
-FA
+YS
+Np
 nk
 bv
 bL
@@ -44876,8 +44912,8 @@ bh
 bh
 bh
 QM
-lO
-gd
+YS
+ap
 nk
 RU
 qR
@@ -45132,9 +45168,9 @@ bF
 jI
 YL
 kp
-aB
-lO
-gd
+FA
+Dh
+kf
 nk
 RP
 TW
@@ -45389,7 +45425,7 @@ eB
 bn
 ap
 ca
-eB
+Vl
 lO
 gd
 gd
@@ -45646,7 +45682,7 @@ Go
 Gp
 Gq
 hr
-Go
+YX
 nR
 Kg
 Kg
@@ -45903,7 +45939,7 @@ NL
 ap
 ap
 Ni
-ap
+Vl
 gd
 gd
 gd
