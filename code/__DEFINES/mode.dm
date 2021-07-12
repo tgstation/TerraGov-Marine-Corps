@@ -86,7 +86,7 @@
 				list(/obj/item/weapon/gun/smg/m25, /obj/item/ammo_magazine/smg/m25),\
 				list(/obj/item/weapon/gun/rifle/m16, /obj/item/ammo_magazine/rifle/m16),\
 				list(/obj/item/weapon/gun/shotgun/pump/bolt, /obj/item/ammo_magazine/rifle/bolt),\
-				list(/obj/item/weapon/gun/shotgun/pump/lever, /obj/item/ammo_magazine/magnum))
+				list(/obj/item/weapon/gun/shotgun/pump/lever, /obj/item/ammo_magazine/packet/magnum))
 
 
 #define LATEJOIN_LARVA_DISABLED 0

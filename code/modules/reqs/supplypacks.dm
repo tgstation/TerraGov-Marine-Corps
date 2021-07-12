@@ -1370,7 +1370,7 @@ Imports
 
 /datum/supply_packs/imports/leveraction/ammo
 	name = "Lever Action Rifle Ammo"
-	contains = list(/obj/item/ammo_magazine/magnum)
+	contains = list(/obj/item/ammo_magazine/packet/magnum)
 	cost = 5
 	available_against_xeno_only = TRUE
 
