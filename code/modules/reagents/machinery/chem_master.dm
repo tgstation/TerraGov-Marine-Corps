@@ -184,7 +184,7 @@
 				if(loaded_pill_bottle)
 					to_chat(user, "<span class='warning'>A pill bottle is already loaded into the machine.</span>")
 					return
-				var/bottle_label = reject_bad_text(input(user, "Label:", "Enter desired bottle label.", null) as text|null)
+				var/bottle_label = reject_bad_text(input(user, "Label:", "Enter desired bottle label", null) as text|null)
 				var/obj/item/storage/pill_bottle/I = new/obj/item/storage/pill_bottle
 				I.icon_state = "pill_canister"+pillbottlesprite
 				if(bottle_label)
