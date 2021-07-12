@@ -213,7 +213,7 @@ WEAPONS
 /datum/supply_packs/weapons/railgun
 	name = "TX-220 Railgun"
 	contains = list(/obj/item/weapon/gun/rifle/railgun)
-	cost = 75
+	cost = 40
 
 /datum/supply_packs/weapons/tx8
 	name = "TX-8 Scout Rifle"
@@ -230,13 +230,13 @@ WEAPONS
 /datum/supply_packs/weapons/autosniper
 	name = "IFF Auto Sniper kit"
 	contains = list(/obj/item/weapon/gun/rifle/standard_autosniper)
-	cost = 40
+	cost = 30
 	available_against_xeno_only = TRUE
 
 /datum/supply_packs/weapons/antimaterial
 	name = "T-26 Antimaterial rifle kit"
 	contains = list(/obj/item/weapon/gun/rifle/sniper/antimaterial)
-	cost = 70
+	cost = 60
 	available_against_xeno_only = TRUE
 
 /datum/supply_packs/weapons/specminigun
@@ -256,9 +256,9 @@ WEAPONS
 	cost = 15
 
 /datum/supply_packs/weapons/rpgoneuse
-	name = "T-72 RPGs"
+	name = "T-72 RPG"
 	contains = list(/obj/item/weapon/gun/launcher/rocket/oneuse)
-	cost = 10
+	cost = 5
 	available_against_xeno_only = TRUE
 
 /datum/supply_packs/weapons/mateba
@@ -545,6 +545,11 @@ AMMO
 	name = "T-29 smartmachinegun ammo"
 	contains = list(/obj/item/ammo_magazine/standard_smartmachinegun)
 	cost = 5
+
+/datum/supply_packs/ammo/smartrifle
+	name = "T-25 smartrifle ammo"
+	contains = list(/obj/item/ammo_magazine/rifle/standard_smartrifle)
+	cost = 2
 
 /datum/supply_packs/ammo/sentry
 	name = "UA 571-C sentry ammunition"
@@ -974,6 +979,12 @@ MEDICAL
 	)
 	cost = 15
 
+/datum/supply_packs/medical/Medical_hud
+	name = "Medical Hud Crate"
+	contains = list(
+		/obj/item/clothing/glasses/hud/health,
+	)
+	cost = 2
 
 /datum/supply_packs/medical/medical
 	name = "Pills and Chemicals"

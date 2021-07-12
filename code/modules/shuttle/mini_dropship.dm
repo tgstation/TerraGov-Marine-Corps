@@ -66,7 +66,7 @@
 	for(var/datum/action/action_from_shuttle_docker AS in actions)
 		action_from_shuttle_docker.remove_action(user)
 	actions.Cut()
-	
+
 	if(off_action)
 		off_action.target = user
 		off_action.give_action(user)
@@ -74,7 +74,7 @@
 
 	if(fly_state != SHUTTLE_IN_ATMOSPHERE)
 		return
-	
+
 	if(rotate_action)
 		rotate_action.target = user
 		rotate_action.give_action(user)
@@ -136,7 +136,7 @@
 	if(!origin_port_id)
 		return
 	open_prompt = FALSE
-	remove_eye_control(ui_user)
+	clean_ui_user()
 	SSshuttle.moveShuttle(shuttleId, origin_port_id, TRUE)
 
 /// Toggle the vision between small nightvision and turf vision
@@ -169,7 +169,7 @@
 	s2.start()
 	damaged = TRUE
 	open_prompt = FALSE
-	remove_eye_control(ui_user)
+	clean_ui_user()
 
 	if(fly_state == SHUTTLE_IN_ATMOSPHERE && last_valid_ground_port)
 		visible_message("Autopilot detects loss of helm control. INITIATING EMERGENCY LANDING!")
@@ -189,23 +189,26 @@
 /obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/ui_interact(mob/user, datum/tgui/ui)
 	. = ..()
 	ui = SStgui.try_update_ui(user, src, ui)
+	if(ui_user)
+		return
 
 	if(!ui)
-		if(ui_user)
-			UnregisterSignal(ui_user, COMSIG_PARENT_QDELETING)
 		ui_user = user
-		RegisterSignal(ui_user, COMSIG_PARENT_QDELETING, .proc/clean_ui_user)
+		RegisterSignal(ui_user, list(COMSIG_PARENT_QDELETING, COMSIG_MOVABLE_MOVED), .proc/clean_ui_user)
 		ui = new(user, src, "Minidropship", name)
 		ui.open()
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/ui_close(mob/user)
 	. = ..()
-	remove_eye_control(ui_user)
+	clean_ui_user()
 
 /// Set ui_user to null to prevent hard del
 /obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/proc/clean_ui_user()
-	UnregisterSignal(ui_user, COMSIG_PARENT_QDELETING)
-	ui_user = null
+	SIGNAL_HANDLER
+	if(ui_user)
+		remove_eye_control(ui_user)
+		UnregisterSignal(ui_user, list(COMSIG_PARENT_QDELETING, COMSIG_MOVABLE_MOVED))
+		ui_user = null
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/ui_data(mob/user)
 	. = list()
@@ -257,7 +260,7 @@
 	origin.shuttle_port.callTime = SHUTTLE_LANDING_CALLTIME
 	origin.next_fly_state = SHUTTLE_ON_GROUND
 	origin.open_prompt = FALSE
-	origin.remove_eye_control(origin.ui_user)
+	origin.clean_ui_user()
 	origin.shuttle_port.set_mode(SHUTTLE_CALL)
 	origin.last_valid_ground_port = origin.my_port
 	SSshuttle.moveShuttleToDock(origin.shuttleId, origin.my_port, TRUE)

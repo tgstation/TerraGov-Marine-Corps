@@ -120,3 +120,67 @@
   - qol: Added the OB warhead type to AI notifications
   - bugfix: typos in beacon code.
   - bugfix: improved some backend stuff so the AI is warned before everyone else
+2021-07-06:
+  Alterist:
+  - bugfix: PoS research doors should now be accessible.
+  Pariah919:
+  - balance: Reduced the price of the Railgun, IFF/AMR snipers and 1 use RPGs in req
+  Wayland-Smithy:
+  - qol: Observers can spawn from the larva queue without silos before shutters open
+      on Distress rounds.
+  lbnesquik:
+  - bugfix: reshape some areas to fit fire alarms better.
+  - qol: The AI can now see current supply points within their game tab.
+2021-07-07:
+  BraveMole:
+  - bugfix: Fix HvH req
+  - bugfix: Fix undefibbable icons on minimap
+  - code_imp: Clean up keybinds
+  - qol: King get keybinds
+  - bugfix: Spawn hugger keybind fixed
+  - bugfix: Fix be special settings (EORD, etc) not showing on tgui
+  - bugfix: Fix perspective bug with tadpole
+  - qol: Fullscreen setting
+  - balance: Prevent from buying scopes and ballistic module in HvH
+  - balance: Silos no longer have alert proximity in modes other than distress
+  - bugfix: Cannot silo bodies in crash
+  - bugfix: Keybinds are saving now
+  Cowbin:
+  - rscadd: Medical Huds added to req for 2 points.
+  InterroLouis:
+  - bugfix: Hiveminds don't get fast respawns from dying.
+  - bugfix: Guns keep labels on unwield now.
+  QualityVan:
+  - qol: You don't need to open the bone to remove shrapnel from head/chest
+  SplinterGP:
+  - expansion: Ravager plasma now regens when they cause damage on an enemy.
+  - balance: Ravager plasma regen reduced.
+  - balance: Ravager plasma now regens even off weeds.
+  - balance: Ravager plasma is now limited to regenning up to 50% until elder+ which
+      is 60%
+  - imageadd: Ravager now has a red plasma bar to imply fury.
+  Wayland-Smithy:
+  - bugfix: Fixed window weeds not updating after the frame is gone.
+  lbnesquik:
+  - rscadd: AI core strengthened on the Pillar of Spring
+2021-07-08:
+  BraveMole:
+  - bugfix: Fix Eviscerating Charge Keybind
+  - expansion: Loadout build mode system for admins
+  InterroLouis:
+  - bugfix: Welding helmet module protects eyes properly.
+  Pariah919:
+  - balance: you can fire the combat shotgun one handed
+  - expansion: Added new T-25 SmartRifle for smartgunners
+2021-07-09:
+  BraveMole:
+  - qol: Better keybind registering system
+  lbnesquik:
+  - admin: add the hivemind to player transform
+2021-07-10:
+  InterroLouis:
+  - bugfix: Ravagers have normal blood now.
+  - balance: Mesons dont hide darkness slightly anymore, removing a effect that on
+      diagonals each light  showed xenos 2/3 tiles away
+  Surrealaser:
+  - bugfix: Missing return added to Acid Well dismantle code.
