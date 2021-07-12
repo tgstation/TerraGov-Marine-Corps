@@ -38,8 +38,6 @@
 
 	current_mag = /obj/item/ammo_magazine/tl102
 
-	gun_iff_signal = list(ACCESS_IFF_MARINE)
-
 	scatter = 20
 	fire_delay = 2
 
@@ -50,7 +48,7 @@
 	burst_scatter_mult = -2
 
 	flags_item = IS_DEPLOYABLE|TWOHANDED
-	flags_gun_features = GUN_AUTO_EJECTOR|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER|GUN_DEPLOYED_FIRE_ONLY|GUN_WIELDED_FIRING_ONLY
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER|GUN_DEPLOYED_FIRE_ONLY|GUN_WIELDED_FIRING_ONLY|GUN_IFF
 	gun_firemode_list = list(GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC)
 
 	starting_attachment_types = list(
@@ -93,9 +91,6 @@
 	desc = "It looks like a regular TL-102, however glowing archaeic writing glows faintly on its sides and top. It beckons for blood."
 	icon = 'icons/Marine/marine-hmg.dmi'
 
-
-	gun_iff_signal = list()
-
 	aim_slowdown = 3
 	scatter = 30
 
@@ -106,5 +101,5 @@
 	aim_slowdown = 3
 	wield_delay = 5 SECONDS
 
-	flags_gun_features = GUN_AUTO_EJECTOR|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER|GUN_IFF
 
