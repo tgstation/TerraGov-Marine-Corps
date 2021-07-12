@@ -629,8 +629,8 @@
 	var/datum/loadout/loadout = jatum_deserialize(loadout_json)
 	return loadout
 
-///Serialize and save into a savefile the loadout manager
-/datum/preferences/proc/save_loadout_manager()
+///Save the loadout list
+/datum/preferences/proc/save_loadout_list(loadouts_data, loadout_version)
 	if(!path)
 		return FALSE
 	if(!fexists(path))
@@ -638,14 +638,14 @@
 	var/savefile/S = new /savefile(path)
 	if(!S)
 		return FALSE
-	loadout_manager.loadout_vendor = null
-	var/json_loadout_manager = jatum_serialize(loadout_manager)
 	S.cd = "/loadouts"
-	WRITE_FILE(S["loadouts_manager"], json_loadout_manager)
+	loadouts_data = sanitize_islist(loadouts_data, list())
+	WRITE_FILE(S["loadouts_list"], loadouts_data)
+	WRITE_FILE(S["loadout_version"], loadout_version)
 	return TRUE
 
-///Load from a savefile and unserialize the loadout manager
-/datum/preferences/proc/load_loadout_manager()
+///Load the loadout list
+/datum/preferences/proc/load_loadout_list()
 	if(!path)
 		return FALSE
 	if(!fexists(path))
@@ -654,12 +654,14 @@
 	if(!S)
 		return FALSE
 	S.cd = "/loadouts"
-	var/json_loadout_manager = ""
-	READ_FILE(S["loadouts_manager"], json_loadout_manager)
-	if(!json_loadout_manager)
-		return FALSE
-	loadout_manager = jatum_deserialize(json_loadout_manager)
-	return !isnull(loadout_manager)
+	var/loadout_version = 0
+	READ_FILE(S["loadout_version"], loadout_version)
+	if(loadout_version != CURRENT_LOADOUT_VERSION)
+		return list()
+	var/list/loadouts_data = list()
+	READ_FILE(S["loadouts_list"], loadouts_data)
+	return sanitize_islist(loadouts_data, list())
+
 
 ///Erase all loadouts that could be saved on the savefile
 /datum/preferences/proc/reset_loadouts_file()
