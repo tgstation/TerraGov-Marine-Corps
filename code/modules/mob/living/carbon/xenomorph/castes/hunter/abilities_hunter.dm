@@ -467,37 +467,35 @@
 		mark_target = hunter_mark_ability.hunter_mark_target
 
 	var/victim_count
-	var/list/target_turfs = RANGE_TURFS(2, A)
-	for(var/turf/targetted AS in target_turfs)
-		for(var/mob/living/target AS in targetted.contents)
-			if(!isliving(target)) //Filter out non-living
+	for(var/mob/living/target AS in hearers(HUNTER_SILENCE_AOE, A))
+		if(!isliving(target)) //Filter out non-living
+			continue
+		if(target.stat == DEAD) //Ignore the dead
+			continue
+		if(!X.line_of_sight(target)) //Need line of sight
+			continue
+		if(isxeno(target)) //Ignore friendlies
+			var/mob/living/carbon/xenomorph/xeno_victim = target
+			if(X.issamexenohive(xeno_victim))
 				continue
-			if(target.stat == DEAD) //Ignore the dead
-				continue
-			if(!X.line_of_sight(target)) //Need line of sight
-				continue
-			if(isxeno(target)) //Ignore friendlies
-				var/mob/living/carbon/xenomorph/xeno_victim = target
-				if(X.issamexenohive(xeno_victim))
-					continue
-			var/silence_multiplier = 1
-			if(mark_target == target) //Double debuff stacks for the marked target
-				silence_multiplier = HUNTER_SILENCE_MULTIPLIER
-			to_chat(target, "<span class='danger'>Your mind convulses at the touch of something ominous as the world seems to blur, your voice dies in your throat, and everything falls silent!</span>") //Notify privately
-			target.playsound_local(target, 'sound/effects/ghost.ogg', 25, 0, 1) //Spooky psychic noises.
-			target.adjust_stagger(HUNTER_SILENCE_STAGGER_STACKS * silence_multiplier) //Stagger for a very short duration
-			target.adjust_blurriness(HUNTER_SILENCE_SENSORY_STACKS * silence_multiplier) //Eye blur
-			target.adjust_ear_damage(deaf = HUNTER_SILENCE_SENSORY_STACKS * silence_multiplier) //Temporary deafness
-			target.apply_status_effect(/datum/status_effect/mute, HUNTER_SILENCE_DURATION * silence_multiplier) //Temporary mute; in your desperate final moments, no one can hear you scream
-			victim_count++
+		var/silence_multiplier = 1
+		if(mark_target == target) //Double debuff stacks for the marked target
+			silence_multiplier = HUNTER_SILENCE_MULTIPLIER
+		to_chat(target, "<span class='danger'>Your mind convulses at the touch of something ominous as the world seems to blur, your voice dies in your throat, and everything falls silent!</span>") //Notify privately
+		target.playsound_local(target, 'sound/effects/ghost.ogg', 25, 0, 1)
+		target.adjust_stagger(HUNTER_SILENCE_STAGGER_STACKS * silence_multiplier)
+		target.adjust_blurriness(HUNTER_SILENCE_SENSORY_STACKS * silence_multiplier)
+		target.adjust_ear_damage(deaf = HUNTER_SILENCE_SENSORY_STACKS * silence_multiplier)
+		target.apply_status_effect(/datum/status_effect/mute, HUNTER_SILENCE_DURATION * silence_multiplier)
+		victim_count++
 
 	if(!victim_count)
-		to_chat(X, "<span class='xenodanger'>We were unable to violate the minds of any victims.") //Notify privately
+		to_chat(X, "<span class='xenodanger'>We were unable to violate the minds of any victims.")
 		add_cooldown(HUNTER_SILENCE_WHIFF_COOLDOWN) //We cooldown to prevent spam, but only for a short duration
 		return fail_activate()
 
-	X.playsound_local(X, 'sound/effects/ghost.ogg', 25, 0, 1) //Spooky psychic noises.
-	to_chat(X, "<span class='xenodanger'>We invade the mind of [victim_count] [victim_count > 1 ? "victims" : "victim"], silencing and muting them...</span>") //Notify privately
+	X.playsound_local(X, 'sound/effects/ghost.ogg', 25, 0, 1)
+	to_chat(X, "<span class='xenodanger'>We invade the mind of [victim_count] [victim_count > 1 ? "victims" : "victim"], silencing and muting them...</span>")
 	succeed_activate()
 	add_cooldown()
 

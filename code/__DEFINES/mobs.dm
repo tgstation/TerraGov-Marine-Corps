@@ -521,6 +521,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define HUNTER_SILENCE_SENSORY_STACKS 6 //Silence imposes this many eyeblur, mute and deafen stacks.
 #define HUNTER_SILENCE_DURATION 10 SECONDS //Removes mute from the Hunter's Silence after this delay.
 #define HUNTER_SILENCE_RANGE 5 //Range in tiles of the Hunter's Silence.
+#define HUNTER_SILENCE_AOE 2 //AoE size of Silence in tiles
 #define HUNTER_SILENCE_WINDUP 0.5 SECONDS //Windup of the Hunter's Silence
 #define HUNTER_SILENCE_MULTIPLIER 1.5 //Multiplier of stacks vs Hunter's Mark targets
 #define HUNTER_SILENCE_WHIFF_COOLDOWN 3 SECONDS //If we fail to target anyone with Silence, partial cooldown to prevent spam.
