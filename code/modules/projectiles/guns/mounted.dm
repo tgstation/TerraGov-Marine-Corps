@@ -137,7 +137,7 @@
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
 
 	starting_attachment_types = list(
-		/obj/item/attachable/scope/unremovable/tl102,
+		/obj/item/attachable/scope/unremovable/mg08,
 	)
 
 	deploy_time = 8 SECONDS
