@@ -235,8 +235,8 @@
 	var/max_burst = 6
 	var/min_burst = 2
 	var/atom/target = null
-	obj_integrity = 150
-	max_integrity = 150
+	obj_integrity = 300
+	max_integrity = 300
 	soft_armor = list("melee" = 50, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = 50, "bio" = 100, "rad" = 0, "fire" = 80, "acid" = 50)
 	machine_stat = 0 //Used just like mob.stat
 	var/datum/effect_system/spark_spread/spark_system //The spark system, used for generating... sparks?
@@ -1198,8 +1198,8 @@
 	burst_size = 3
 	min_burst = 2
 	max_burst = 5
-	obj_integrity = 100
-	max_integrity = 100
+	obj_integrity = 200
+	max_integrity = 200
 	rounds = 500
 	rounds_max = 500
 	knockdown_threshold = 100 //lighter, not as well secured.
