@@ -213,3 +213,7 @@
       from the maps for I have stolen their typepaths for my own use.
   lbnesquik:
   - bugfix: Add a missing light to POS starboard hallway.
+2021-07-12:
+  InterroLouis:
+  - bugfix: EORD thermobarics can be reloaded reliably.
+  - bugfix: Tesla projectiles once more visible.
