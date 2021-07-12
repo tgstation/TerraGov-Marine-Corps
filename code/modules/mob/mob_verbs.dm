@@ -61,9 +61,9 @@
 	if(DEATHTIME_CHECK(usr))
 		if(check_other_rights(usr.client, R_ADMIN, FALSE))
 			if(tgui_alert(usr, "You wouldn't normally qualify for this respawn. Are you sure you want to bypass it with your admin powers?", "Bypass Respawn", list("Yes", "No"), 0) != "Yes")
-				log_admin("[key_name(usr)] used his admin power to bypass respawn before his timer was over")
 				DEATHTIME_MESSAGE(usr)
 				return
+			log_admin("[key_name(usr)] used his admin power to bypass respawn before his timer was over")
 		else
 			DEATHTIME_MESSAGE(usr)
 			return
