@@ -429,6 +429,8 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define XENO_ACID_WELL_FILL_COST 200 //Cost in plasma to apply a charge to an acid pool
 #define XENO_ACID_WELL_MAX_CHARGES 5 //Maximum number of charges for the acid well
 
+#define XENO_CORROSIVE_ACID_DELTA_TIME_BASE 5 SECONDS //Assumed default process delay for xeno corrosive acid; used to ensure timing is maintained for different process delays
+
 #define HIVE_CAN_HIJACK (1<<0)
 
 #define XENO_PULL_CHARGE_TIME 2 SECONDS

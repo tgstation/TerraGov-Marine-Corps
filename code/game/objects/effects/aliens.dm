@@ -133,21 +133,21 @@
 	anchored = TRUE
 	var/atom/acid_t
 	var/ticks = 0
-	var/acid_strength = 1 //100% speed, normal
+	var/acid_strength = 0.2 //base speed, normal
 	var/acid_damage = 125 //acid damage on pick up, subject to armor
 	var/strength_t
 
 //Sentinel weakest acid
 /obj/effect/xenomorph/acid/weak
 	name = "weak acid"
-	acid_strength = 0.4 //250% normal speed
+	acid_strength = 0.08 //40% of base speed
 	acid_damage = 75
 	icon_state = "acid_weak"
 
 //Superacid
 /obj/effect/xenomorph/acid/strong
 	name = "strong acid"
-	acid_strength = 2.5 //20% normal speed
+	acid_strength = 0.5 //250% normal speed
 	acid_damage = 175
 	icon_state = "acid_strong"
 
@@ -168,7 +168,10 @@
 		return
 	if(loc != acid_t.loc && !isturf(acid_t))
 		loc = acid_t.loc
-	ticks += ((delta_time*0.1) * (rand(2,3)*0.1) * (acid_strength)) * 0.1
+	var/current_delta = delta_time //We need to set this var so it calcs properly
+	var/delta_base = XENO_CORROSIVE_ACID_DELTA_TIME_BASE //We need to set this var so it calcs properly
+	ticks += (current_delta / delta_base) * acid_strength
+	message_admins("acid process, acid_strength: [acid_strength] ticks: [ticks] delta_time: [delta_time] delta_base: [XENO_CORROSIVE_ACID_DELTA_TIME_BASE]")
 	if(ticks >= strength_t)
 		visible_message("<span class='xenodanger'>[acid_t] collapses under its own weight into a puddle of goop and undigested debris!</span>")
 		playsound(src, "acid_hit", 25)
