@@ -1021,7 +1021,7 @@ datum/ammo/bullet/revolver/tp44
 	accuracy_var_high = 3
 	damage = 40
 	penetration = 10
-	sundering = 2
+	sundering = 0
 	damage_falloff = 0.5 //forgot to add this
 
 /datum/ammo/bullet/turret/dumb
