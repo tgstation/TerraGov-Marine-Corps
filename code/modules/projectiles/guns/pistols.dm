@@ -530,6 +530,32 @@ It is a modified Beretta 93R, and can fire three round burst or single fire. Whe
 	recoil_unwielded = 3
 
 //-------------------------------------------------------
+//Delivery pistol, delivers specialized ammo
+
+/obj/item/weapon/gun/pistol/standard_marksmanpistol
+	name = "T-WORK marksman pistol"
+	desc = "A pistol meant for use by TGMC troops to send out specialized payloads in a small package. Or just to shoot accurately with. Uses 9x23mm bullets."
+	icon_state = "holdout"
+	item_state = "holdout"
+	caliber = CALIBER_9X23 //codex
+	max_shells = 11 //codex
+	fire_sound = 'sound/weapons/guns/fire/beretta.ogg'
+	current_mag = /obj/item/ammo_magazine/pistol/delivery
+	force = 8
+	attachable_allowed = list(
+		/obj/item/attachable/suppressor,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/heavy_barrel,
+		/obj/item/attachable/lasersight,
+		/obj/item/attachable/lace,
+	)
+
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
+	attachable_offset = list("muzzle_x" = 25, "muzzle_y" = 20,"rail_x" = 12, "rail_y" = 22, "under_x" = 17, "under_y" = 15, "stock_x" = 22, "stock_y" = 17)
+
+	fire_delay = 0.15 SECONDS
+
+//-------------------------------------------------------
 //The first rule of monkey pistol is we don't talk about monkey pistol.
 
 /obj/item/weapon/gun/pistol/chimp

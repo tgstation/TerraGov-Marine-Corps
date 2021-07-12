@@ -203,6 +203,35 @@
 	max_rounds = 18
 	gun_type = /obj/item/weapon/gun/pistol/vp78
 
+//delivery pistol
+
+/obj/item/ammo_magazine/pistol/standard_marksman
+	name = "\improper T-XX magazine (9x23mm)"
+	desc = "A pistol magazine."
+	caliber = CALIBER_9X23
+	icon_state = "tp14"
+	max_rounds = 12
+	w_class = WEIGHT_CLASS_SMALL
+	default_ammo = /datum/ammo/bullet/pistol
+	gun_type = /obj/item/weapon/gun/pistol/standard_marksmanpistol
+
+/obj/item/ammo_magazine/pistol/standard_marksman/tracking
+	name = "\improper T-XX tracking magazine (9x23mm)"
+	desc = "A pistol magazine loaded with specialized rounds to make your target easier to find. Just follow the trail of unwipeable blue paint!"
+	icon_state = "tp14"
+	default_ammo = /datum/ammo/bullet/pistol/tracking
+
+/obj/item/ammo_magazine/pistol/standard_marksman/ricochet
+	name = "\improper T-XX ricochet magazine (9x23mm)"
+	desc = "A pistol magazine loaded with specialized rounds that will bounce off walls. Has a huge warning sign on the other side of the magazine. Better not hit friendlies. But it won't hit you!"
+	icon_state = "tp14"
+	default_ammo = /datum/ammo/bullet/pistol/ricochet
+
+/obj/item/ammo_magazine/pistol/standard_marksman/incend
+	name = "\improper T-XX ricochet magazine (9x23mm)"
+	desc = "A pistol magazine loaded with specialized rounds that will set whatever it hits on fire. Better not hit friendlies. But it won't hit you!"
+	icon_state = "tp14"
+	default_ammo = /datum/ammo/bullet/pistol/incendiary
 
 //-------------------------------------------------------
 

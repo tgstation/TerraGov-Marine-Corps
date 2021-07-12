@@ -321,6 +321,32 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 		P.visible_message("<span class='danger'>The [src] chimpers furiously!</span>")
 		new /mob/living/carbon/human/species/monkey(P.loc)
 
+/datum/ammo/bullet/pistol/ricochet
+	bonus_projectiles_type = /datum/ammo/bullet/pistol/smalle
+
+/// when we hit something we want it to ricochet off.
+/datum/ammo/bullet/pistol/ricochet/on_hit_turf(turf/T, obj/projectile/proj)
+	. = ..()
+	var/ricochet_angle = 360 - Get_Angle(proj.firer, T)
+
+	// Check for the neightbour tile
+	var/rico_dir_check
+	switch(ricochet_angle)
+		if(-INFINITY to 45)
+			rico_dir_check = EAST
+		if(46 to 135)
+			rico_dir_check = ricochet_angle > 90 ? SOUTH : NORTH
+		if(136 to 225)
+			rico_dir_check = ricochet_angle > 180 ? WEST : EAST
+		if(126 to 315)
+			rico_dir_check = ricochet_angle > 270 ? NORTH : SOUTH
+		if(316 to INFINITY)
+			rico_dir_check = WEST
+
+	var/turf/next_turf = get_step(T, rico_dir_check)
+	if(next_turf.density)
+		ricochet_angle += 180
+
 /*
 //================================================
 					Revolver Ammo
