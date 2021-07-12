@@ -191,7 +191,7 @@ WEAPONS
 
 /datum/supply_packs/weapons/m56d_emplacement
 	name = "TL-102 Mounted Heavy Smartgun"
-	contains = list(/obj/item/storage/box/standard_hmg)
+	contains = list(/obj/item/storage/box/tl102)
 	cost = 80
 
 /datum/supply_packs/weapons/tesla
@@ -598,7 +598,7 @@ AMMO
 
 /datum/supply_packs/ammo/m56d
 	name = "TL-102 mounted heavy smartgun ammo"
-	contains = list(/obj/item/ammo_magazine/standard_hmg)
+	contains = list(/obj/item/ammo_magazine/tl102)
 	cost = 10
 
 /datum/supply_packs/ammo/lasguncharger
@@ -1370,7 +1370,7 @@ Imports
 
 /datum/supply_packs/imports/leveraction/ammo
 	name = "Lever Action Rifle Ammo"
-	contains = list(/obj/item/ammo_magazine/magnum)
+	contains = list(/obj/item/ammo_magazine/packet/magnum)
 	cost = 5
 	available_against_xeno_only = TRUE
 
