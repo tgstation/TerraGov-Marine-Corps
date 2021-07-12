@@ -1174,7 +1174,7 @@ datum/ammo/bullet/revolver/tp44
 
 	///The smoke system that the WP gas uses to spread.
 	var/datum/effect_system/smoke_spread/smoke_system
-	var/danger_message = "<span class='danger'>The rocket explodes explodes into white gas!</span>"
+	var/danger_message = "<span class='danger'>The rocket explodes into white gas!</span>"
 
 /datum/ammo/rocket/wp/quad/set_smoke()
 	smoke_system = new /datum/effect_system/smoke_spread/phosphorus()
