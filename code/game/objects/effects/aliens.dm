@@ -171,7 +171,6 @@
 	var/current_delta = delta_time //We need to set this var so it calcs properly
 	var/delta_base = XENO_CORROSIVE_ACID_DELTA_TIME_BASE //We need to set this var so it calcs properly
 	ticks += (current_delta / delta_base) * acid_strength
-	message_admins("acid process, acid_strength: [acid_strength] ticks: [ticks] delta_time: [delta_time] delta_base: [XENO_CORROSIVE_ACID_DELTA_TIME_BASE]")
 	if(ticks >= strength_t)
 		visible_message("<span class='xenodanger'>[acid_t] collapses under its own weight into a puddle of goop and undigested debris!</span>")
 		playsound(src, "acid_hit", 25)
