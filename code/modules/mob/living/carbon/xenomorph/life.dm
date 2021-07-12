@@ -119,8 +119,9 @@
 
 	SEND_SIGNAL(src, COMSIG_XENOMORPH_HEALTH_REGEN, src)
 
+	var/remainder = max(0, amount-getBruteLoss())
 	adjustBruteLoss(-amount)
-	adjustFireLoss(-amount)
+	adjustFireLoss(-remainder)
 
 /mob/living/carbon/xenomorph/proc/handle_living_plasma_updates()
 	var/turf/T = loc
