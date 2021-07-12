@@ -177,3 +177,43 @@
   - qol: Better keybind registering system
   lbnesquik:
   - admin: add the hivemind to player transform
+2021-07-10:
+  InterroLouis:
+  - bugfix: Ravagers have normal blood now.
+  - balance: Mesons dont hide darkness slightly anymore, removing a effect that on
+      diagonals each light  showed xenos 2/3 tiles away
+  Surrealaser:
+  - bugfix: Missing return added to Acid Well dismantle code.
+2021-07-11:
+  BraveMole:
+  - bugfix: Fix tadpole eye going to null space
+  - bugfix: Cannot shoot while tarping anymore
+  InterroLouis:
+  - bugfix: The veil has been pushed back closed. Ghosts can no longer interact with
+      the living.
+  Pariah919:
+  - balance: railgun lost 100 damage from 250 to 150, knocks back further and no longer
+      shakes the screen when you're hit, 750ms more wield delay, mag harness instead
+      of scope
+  - balance: warrior grapple toss distance reduced to 3 from 5.
+  'The Fuckup: Hyper2Snyper':
+  - bugfix: Fixes Double Barrels
+  Wayland-Smithy:
+  - bugfix: Fixed all clients being forced to Fit Viewport on connect regardless of
+      their Auto Fit Preference.
+  hyper2snyper:
+  - rscadd: The TL-102 HSG now has auto-fire.
+  - balance: The Stationary TL-102 can now be rotated.
+  - balance: Both TL-102 variants now have scopes. These will replace the default
+      zoom that they had prior.
+  - code_imp: New Bespoke Element capable of taking items and making them machines.
+  - refactor: Refactors TL-102 code, basically rewrites it completely.
+  - refactor: Slight Mortar refactor.
+  - rscdel: removes the few security barriers (/obj/machinery/deployable/barrier)
+      from the maps for I have stolen their typepaths for my own use.
+  lbnesquik:
+  - bugfix: Add a missing light to POS starboard hallway.
+2021-07-12:
+  InterroLouis:
+  - bugfix: EORD thermobarics can be reloaded reliably.
+  - bugfix: Tesla projectiles once more visible.

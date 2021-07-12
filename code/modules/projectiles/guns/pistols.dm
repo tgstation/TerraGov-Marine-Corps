@@ -37,6 +37,9 @@
 
 
 /obj/item/weapon/gun/pistol/unique_action(mob/user)
+	. = ..()
+	if(.)
+		return
 	return cock(user)
 
 /obj/item/weapon/gun/pistol/get_ammo_type()

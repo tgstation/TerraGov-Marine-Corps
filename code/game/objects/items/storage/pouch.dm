@@ -40,6 +40,8 @@
 	icon_state = "small_drop"
 	draw_mode = 1
 
+	bypass_w_limit = list(/obj/item/ammo_magazine/packet)
+
 /obj/item/storage/pouch/general/medium
 	name = "medium general pouch"
 	storage_slots = 2

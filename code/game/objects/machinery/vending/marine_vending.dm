@@ -202,12 +202,13 @@
 			/obj/item/attachable/standard_revolver_longbarrel = -1
 		),
 		"Boxes" = list(
-		/obj/item/ammo_magazine/box9mm = 100,
-		/obj/item/ammo_magazine/acp = 100,
-		/obj/item/ammo_magazine/magnum = 100,
-		/obj/item/ammo_magazine/box10x24mm = 100,
-		/obj/item/ammo_magazine/box10x26mm = 100,
-		/obj/item/ammo_magazine/box10x27mm = 100,
+		/obj/item/ammo_magazine/packet/p9mm = 100,
+		/obj/item/ammo_magazine/packet/acp = 100,
+		/obj/item/ammo_magazine/packet/magnum = 100,
+		/obj/item/ammo_magazine/packet/p10x24mm = 100,
+		/obj/item/ammo_magazine/packet/p10x26mm = 100,
+		/obj/item/ammo_magazine/packet/p10x27mm = 100,
+		/obj/item/ammo_magazine/packet/p492x34mm = 100,
 		/obj/item/storage/box/visual/magazine = 30,
 		/obj/item/storage/box/visual/grenade = 10,
 		),
@@ -301,12 +302,13 @@
 			/obj/item/attachable/attached_gun/grenade = -1,
 		),
 		"Boxes" = list(
-		/obj/item/ammo_magazine/box9mm = 100,
-		/obj/item/ammo_magazine/acp = 100,
-		/obj/item/ammo_magazine/magnum = 100,
-		/obj/item/ammo_magazine/box10x24mm = 100,
-		/obj/item/ammo_magazine/box10x26mm = 100,
-		/obj/item/ammo_magazine/box10x27mm = 100,
+		/obj/item/ammo_magazine/packet/p9mm = 100,
+		/obj/item/ammo_magazine/packet/acp = 100,
+		/obj/item/ammo_magazine/packet/magnum = 100,
+		/obj/item/ammo_magazine/packet/p10x24mm = 100,
+		/obj/item/ammo_magazine/packet/p10x26mm = 100,
+		/obj/item/ammo_magazine/packet/p10x27mm = 100,
+		/obj/item/ammo_magazine/packet/p492x34mm = 100,
 		/obj/item/storage/box/visual/magazine = 30,
 		/obj/item/storage/box/visual/grenade = 10,
 		),
@@ -745,7 +747,7 @@
 	products = list(
 		/obj/structure/closet/crate/mortar_ammo/mortar_kit = 1,
 		/obj/item/storage/box/sentry = 3,
-		/obj/item/storage/box/standard_hmg = 1,
+		/obj/item/storage/box/tl102 = 1,
 	)
 
 	contraband = list(/obj/item/cell/super = 1)

@@ -1046,6 +1046,8 @@ datum/ammo/bullet/revolver/tp44
 	name = "machinegun bullet"
 	icon_state 	= "bullet" // Keeping it bog standard with the turret but allows it to be changed.
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
+	hud_state   = "smartgun"
+	hud_state_empty = "smartgun_empty"
 	accurate_range = 15
 	damage = 40 //Reduced damage due to vastly increased mobility
 	penetration = 40 //Reduced penetration due to vastly increased mobility
@@ -1071,14 +1073,14 @@ datum/ammo/bullet/revolver/tp44
 	icon_state 	= "blue_bullet"
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
 	shell_speed = 4
-	max_range = 12
-	damage = 250
+	max_range = 9
+	damage = 150
 	penetration = 70
 	sundering = 90
 	bullet_color = COLOR_PULSE_BLUE
 
 /datum/ammo/bullet/railgun/on_hit_mob(mob/M,obj/projectile/P)
-	staggerstun(M, P, weaken = 1, stagger = 6, slowdown = 2, knockback = 2)
+	staggerstun(M, P, weaken = 1, stagger = 3, slowdown = 2, knockback = 3, shake = 0)
 
 /*
 //================================================

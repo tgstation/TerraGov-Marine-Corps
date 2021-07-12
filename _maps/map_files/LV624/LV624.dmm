@@ -10015,7 +10015,6 @@
 /turf/open/ground/grass/grass2,
 /area/lv624/ground/jungle9)
 "beu" = (
-/obj/machinery/deployable/barrier,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/security)
 "bev" = (

@@ -10270,7 +10270,7 @@
 /obj/structure/table/mainship,
 /obj/item/whistle,
 /obj/item/megaphone,
-/obj/item/ammo_magazine/acp,
+/obj/item/ammo_magazine/packet/acp,
 /turf/open/floor/mainship/floor,
 /area/mainship/living/numbertwobunks)
 "gaj" = (
