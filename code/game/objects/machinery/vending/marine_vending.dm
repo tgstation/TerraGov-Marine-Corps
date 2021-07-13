@@ -218,9 +218,9 @@
 		/obj/item/flashlight/combat = -1,
 		/obj/item/binoculars = -1,
 		/obj/item/compass = -1,
-		/obj/item/explosive/plastique = 50,
+		/obj/item/explosive/plastique = 25,
 		/obj/item/detpack = 15,
-		/obj/item/assembly/signaler = 15,
+		/obj/item/assembly/signaler = -1,
 		),
 	)
 
