@@ -1538,6 +1538,10 @@
 	dir = 1
 	},
 /area/mainship/hallways/hangar)
+"fo" = (
+/obj/machinery/holopad,
+/turf/open/floor/mainship/black/full,
+/area/mainship/command/self_destruct)
 "fp" = (
 /obj/structure/closet/firecloset,
 /obj/item/clothing/mask/gas,
@@ -5634,8 +5638,8 @@
 /area/mainship/hull/lower_hull)
 "te" = (
 /obj/machinery/holopad,
-/turf/open/floor/mainship/floor,
-/area/mainship/command/self_destruct)
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/hangar)
 "tf" = (
 /obj/effect/landmark/start/job/squadmarine,
 /turf/open/floor/mainship,
@@ -7753,6 +7757,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
+/obj/machinery/holopad,
 /turf/open/floor/mainship/orange{
 	dir = 4
 	},
@@ -9319,6 +9324,7 @@
 /area/mainship/living/commandbunks)
 "EE" = (
 /obj/machinery/light,
+/obj/machinery/holopad,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/briefing)
 "EF" = (
@@ -12070,6 +12076,12 @@
 /obj/item/weapon/gun/energy/taser,
 /turf/open/floor/mainship/red/full,
 /area/mainship/command/cic)
+"Nz" = (
+/obj/machinery/holopad,
+/turf/open/floor/mainship/black{
+	dir = 4
+	},
+/area/mainship/squads/general)
 "NA" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -13019,6 +13031,10 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
+"Qz" = (
+/obj/machinery/holopad,
+/turf/open/floor/mainship/mono,
+/area/mainship/command/cic)
 "QA" = (
 /obj/structure/rack,
 /obj/item/reagent_containers/jerrycan,
@@ -13893,6 +13909,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/command/telecomms)
 "Tx" = (
+/obj/machinery/holopad,
 /turf/open/floor/mainship/red/full,
 /area/mainship/shipboard/firing_range)
 "Tz" = (
@@ -15043,6 +15060,10 @@
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/engineering/upper_engineering)
+"XD" = (
+/obj/machinery/holopad,
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/aft_hallway)
 "XG" = (
 /obj/machinery/camera/autoname/mainship{
 	dir = 8
@@ -45892,7 +45913,7 @@ aA
 Gm
 MD
 ap
-ap
+te
 ur
 bp
 ao
@@ -46200,7 +46221,7 @@ WP
 WP
 WP
 Iz
-GA
+Qz
 Du
 Fz
 lf
@@ -46933,7 +46954,7 @@ gz
 eM
 eN
 Cq
-gd
+XD
 gd
 kP
 de
@@ -50332,7 +50353,7 @@ oM
 eG
 xf
 xL
-te
+Lb
 cX
 Xi
 gF
@@ -52098,7 +52119,7 @@ Ph
 nE
 PW
 Ph
-nE
+Nz
 PW
 Ph
 Ob
@@ -52109,7 +52130,7 @@ nE
 nE
 PW
 Ph
-nE
+Nz
 nE
 PW
 Ph
@@ -53159,7 +53180,7 @@ bk
 eZ
 fG
 wo
-dh
+fo
 eZ
 fG
 wo
