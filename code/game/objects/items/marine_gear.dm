@@ -225,3 +225,17 @@
 	. = ..()
 	if(slot == SLOT_BELT)
 		playsound(src,'sound/machines/click.ogg', 15, FALSE, 1)
+
+//compass
+
+/obj/item/compass
+	name = "compass"
+	desc = "A small compass that can tell you your coordinates on use."
+	icon_state = "compass"
+	w_class = WEIGHT_CLASS_TINY
+
+/obj/item/compass/attack_self(mob/living/user)
+	var/turf/location = get_turf(src)
+	user.show_message("<span class='warning'>After looking at the [src] you getting your bearings you can guess your general coordinates. LONGITUDE [location.x]. LATITUDE [location.y].")
+
+
