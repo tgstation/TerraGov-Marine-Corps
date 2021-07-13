@@ -9,6 +9,8 @@
 	var/loadouts_data = list()
 	/// The host of the loadout_manager, aka from which loadout vendor are you managing loadouts
 	var/loadout_vendor
+	/// The version of the loadout manager
+	var/version = CURRENT_LOADOUT_VERSION
 
 ///Remove the data of a loadout from the loadouts list
 /datum/loadout_manager/proc/delete_loadout(mob/user, loadout_name, loadout_job)

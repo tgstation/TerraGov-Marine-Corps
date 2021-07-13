@@ -177,7 +177,7 @@
 	var/list/new_loadouts_data = list()
 	for(var/i = 1; i <= length(loadouts_data); i += 2)
 		var/next_loadout_data = list()
-		next_loadout_data["job"] = loadouts_data[i]
-		next_loadout_data["name"] = loadouts_data[i+1]
+		next_loadout_data += loadouts_data[i]
+		next_loadout_data += loadouts_data[i+1]
 		new_loadouts_data += list(next_loadout_data)
 	return new_loadouts_data

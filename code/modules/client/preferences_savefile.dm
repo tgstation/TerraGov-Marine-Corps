@@ -685,8 +685,8 @@
 	READ_FILE(S["loadouts_manager"], json_loadout_manager)
 	if(!json_loadout_manager)
 		return FALSE
-	loadout_manager = jatum_deserialize(json_loadout_manager)
-	return !isnull(loadout_manager)
+	var/datum/loadout_manager/manager = jatum_deserialize(json_loadout_manager)
+	return manager
 
 
 ///Erase all loadouts that could be saved on the savefile
