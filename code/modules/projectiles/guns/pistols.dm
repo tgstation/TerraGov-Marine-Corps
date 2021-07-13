@@ -413,7 +413,7 @@
 
 /obj/item/weapon/gun/pistol/highpower
 	name = "\improper Highpower automag"
-	desc = "A, powerful semi-automatic pistol chambered in the devastating .50 AE caliber rounds. Used for centuries by law enforcement and criminals alike, recently recreated with this new model."
+	desc = "A powerful semi-automatic pistol chambered in the devastating .50 AE caliber rounds. Used for centuries by law enforcement and criminals alike, recently recreated with this new model."
 	icon_state = "highpower"
 	item_state = "highpower"
 	caliber = CALIBER_50AE //codex
