@@ -110,7 +110,7 @@
 
 // This is a deployed IFF-less mACHINEGUN, has 500 rounds, drums do not fit anywhere but your belt slot and your back slot. But it has 500 rounds. That's nice.
 
-/obj/item/weapon/gun/mg08
+/obj/item/weapon/gun/heavymachinegun
 	name = "\improper MG-08/495 heavy machinegun"
 	desc = "An absolute monster of a weapon, this is a watercooled heavy machinegun modernized by some crazy armorer. The pinnacle at holding a chokepoint. Holds 500 rounds of 10x30mm caseless in a box case. IS NOT IFF CAPABLE. Aiming carefully recommended. Can be repaired with a blowtorch once deployed."
 
@@ -122,7 +122,7 @@
 	fire_sound = 'sound/weapons/guns/fire/mg08.ogg'
 	reload_sound = 'sound/weapons/guns/interact/minigun_cocked.ogg'
 
-	current_mag = /obj/item/ammo_magazine/mg08
+	current_mag = /obj/item/ammo_magazine/heavymachinegun
 
 
 	scatter = 25
