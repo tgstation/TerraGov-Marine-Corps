@@ -176,6 +176,7 @@
 	add_cooldown()
 	X.reset_bombard_pointer()
 	X.set_light_on(FALSE)
+	succeed_activate()
 
 /datum/action/xeno_action/activable/bombard/fail_activate()
 	. = ..()
