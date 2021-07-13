@@ -522,7 +522,6 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	plasma_cost = 100
 	cooldown_timer = 20 SECONDS
 	keybind_signal = COMSIG_XENOABILITY_BANISH
-	target_flags = XABB_MOB_TARGET
 	///Target we've banished
 	var/atom/movable/banishment_target = null
 	///SFX indicating the banished target's position

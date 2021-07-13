@@ -1,0 +1,4 @@
+author: "jroinc"
+delete-after: True
+changes: 
+  - expansion: "Human deaths and defib-based revives now are logged as a statistic."

@@ -294,8 +294,7 @@
 /obj/effect/decal/warning_stripes/thin,
 /obj/effect/decal/warning_stripes/thin,
 /obj/effect/decal/warning_stripes/thin{
-	dir = 4;
-	
+	dir = 4
 	},
 /obj/effect/landmark/deathmatch,
 /turf/open/floor/wood,
@@ -452,7 +451,7 @@
 /turf/open/floor/wood,
 /area/deathmatch)
 "cd" = (
-/obj/machinery/door/window/eastright,
+/obj/machinery/door/window/right,
 /turf/open/floor/mainship/mono,
 /area/deathmatch)
 "cP" = (
@@ -507,13 +506,6 @@
 /obj/structure/closet/swimsuit,
 /obj/effect/landmark/weapon_spawn/tier3_weapon_spawn,
 /turf/open/floor/mainship/mono,
-/area/deathmatch)
-"jq" = (
-/obj/structure/bed/chair{
-	dir = 8;
-	icon_state = "chair"
-	},
-/turf/open/floor/wood,
 /area/deathmatch)
 "ki" = (
 /obj/structure/flora/ausbushes/fullgrass,
@@ -642,7 +634,9 @@
 /turf/open/floor/wood,
 /area/deathmatch)
 "yt" = (
-/obj/machinery/door/window/westleft,
+/obj/machinery/door/window{
+	dir = 8
+	},
 /turf/open/floor/wood,
 /area/deathmatch)
 "zl" = (
@@ -872,8 +866,7 @@
 /area/deathmatch)
 "TC" = (
 /obj/structure/bed/chair{
-	dir = 8;
-	icon_state = "chair"
+	dir = 8
 	},
 /obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
 /turf/open/floor/wood,
@@ -955,7 +948,9 @@
 /turf/open/floor/grass,
 /area/deathmatch)
 "Xx" = (
-/obj/machinery/door/window/westleft,
+/obj/machinery/door/window{
+	dir = 8
+	},
 /turf/open/floor/mainship/mono,
 /area/deathmatch)
 "Yy" = (
@@ -2992,10 +2987,10 @@ aF
 aF
 aF
 TC
-jq
+yq
 eo
 TC
-jq
+yq
 aa
 ab
 "}

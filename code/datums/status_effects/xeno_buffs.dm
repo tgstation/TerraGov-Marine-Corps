@@ -10,7 +10,7 @@
 		return FALSE
 	var/mob/living/carbon/xenomorph/X = owner
 	X.fire_resist_modifier -= 20
-	X.add_filter("resin_jelly_outline", 2, outline_filter(1, COLOR_RED))
+	X.add_filter("resin_jelly_outline", 2, outline_filter(1, COLOR_TAN_ORANGE))
 	return TRUE
 
 /datum/status_effect/resin_jelly_coating/on_remove()

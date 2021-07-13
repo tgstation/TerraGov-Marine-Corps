@@ -12,17 +12,6 @@
 	default_ammo = /datum/ammo/bullet/pistol
 	gun_type = /obj/item/weapon/gun/pistol/standard_pistol
 
-/obj/item/ammo_magazine/box9mm
-	name = "packet of 9mm"
-	desc = "A packet containing 70 rounds of 9mm."
-	caliber = CALIBER_9X19
-	icon_state = "box_9mm"
-	current_rounds = 70
-	max_rounds = 70
-	w_class = WEIGHT_CLASS_SMALL
-	default_ammo = /datum/ammo/bullet/pistol
-	icon_state_mini = "ammo_packet"
-
 //-------------------------------------------------------
 //TX-7 Plasma Pistol
 /obj/item/ammo_magazine/pistol/plasma_pistol
@@ -86,14 +75,6 @@
 	max_rounds = 10
 	gun_type = /obj/item/weapon/gun/pistol/m1911
 
-/obj/item/ammo_magazine/acp
-	name = "packet of .45 ACP"
-	icon_state = "box_45acp"
-	default_ammo = /datum/ammo/bullet/pistol/heavy
-	caliber = CALIBER_45ACP
-	current_rounds = 50
-	max_rounds = 50
-	icon_state_mini = "ammo_packet"
 
 
 //-------------------------------------------------------

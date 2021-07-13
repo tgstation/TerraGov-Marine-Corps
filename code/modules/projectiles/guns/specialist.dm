@@ -104,11 +104,16 @@
 
 
 /obj/item/weapon/gun/rifle/sniper/antimaterial/unique_action(mob/user)
+	. = ..()
+	if(.)
+		return
 	if(!targetmarker_primed && !targetmarker_on)
 		return laser_on(user)
 	else
 		return laser_off(user)
 
+/obj/item/weapon/gun/rifle/sniper/antimaterial/cock(mob/user)
+	return
 
 /obj/item/weapon/gun/rifle/sniper/antimaterial/Destroy()
 	laser_off()
@@ -391,6 +396,9 @@
 	to_chat(user, "The restriction system is [restriction_toggled ? "<B>on</b>" : "<B>off</b>"].")
 
 /obj/item/weapon/gun/smartgun/unique_action(mob/living/carbon/user)
+	. = ..()
+	if(.)
+		return
 	var/obj/item/smartgun_powerpack/power_pack = user.back
 	if(!istype(power_pack))
 		return FALSE
@@ -1193,10 +1201,10 @@
 	reload_sound = 'sound/weapons/guns/interact/sniper_reload.ogg'
 	current_mag = /obj/item/ammo_magazine/railgun
 	force = 40
-	wield_delay = 1 SECONDS //You're not quick drawing this.
+	wield_delay = 1.75 SECONDS //You're not quick drawing this.
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 20, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
 	attachable_allowed = list(
-		/obj/item/attachable/scope,
+		/obj/item/attachable/magnetic_harness,
 	)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
@@ -1205,3 +1213,35 @@
 	burst_amount = 1
 	accuracy_mult = 2
 	recoil = 0
+
+
+// PEPPERBALL GUN
+
+//-------------------------------------------------------
+//TLLL-12
+
+/obj/item/weapon/gun/rifle/pepperball
+	name = "\improper TLLL-12 pepperball gun"
+	desc = "The TLLL-12 is ostensibly riot control device used by the TGMC in spiffy colors, working through a SAN ball that sends a short acting neutralizing chemical to knock out it's target, or weaken them. Guranteed to work on just about everything. Uses SAN Ball Holders as magazines."
+	icon = 'icons/Marine/gun64.dmi'
+	icon_state = "pepperball"
+	item_state = "pepperball"
+	flags_equip_slot = ITEM_SLOT_BACK|ITEM_SLOT_BELT
+	max_shells = 70 //codex
+	caliber = CALIBER_PEPPERBALL
+	current_mag = /obj/item/ammo_magazine/rifle/pepperball
+	force = 30 // two shots weeds as it has no bayonet
+	wield_delay = 0.5 SECONDS // Very fast to put up.
+	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 20, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
+	attachable_allowed = list() // Nada.
+	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_AUTOMATIC)
+
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_AMMO_COUNTER
+
+	fire_delay = 0.1 SECONDS
+	burst_amount = 1
+	accuracy_mult = 1.75
+	recoil = 0
+	accuracy_mult_unwielded = 0.75
+	scatter = -5
+	scatter_unwielded = 5

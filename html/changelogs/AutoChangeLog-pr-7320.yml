@@ -1,0 +1,5 @@
+author: "Pariah919"
+delete-after: True
+changes: 
+  - expansion: "tx-11 has an ammo packet"
+  - balance: "general pouches can hold ammo packets."
