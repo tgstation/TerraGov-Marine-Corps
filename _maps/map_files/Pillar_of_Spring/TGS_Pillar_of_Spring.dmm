@@ -9519,6 +9519,10 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/command/airoom)
+"Fo" = (
+/obj/structure/reagent_dispensers/watertank,
+/turf/open/floor/mainship/mono,
+/area/mainship/hull/lower_hull)
 "Fr" = (
 /obj/machinery/telecomms/receiver/preset_right,
 /turf/open/floor/mainship/tcomms,
@@ -11064,6 +11068,10 @@
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/aft_hallway)
+"Kj" = (
+/obj/structure/reagent_dispensers/watertank,
+/turf/open/floor/mainship/mono,
+/area/mainship/shipboard/starboard_missiles)
 "Kk" = (
 /obj/machinery/light/small{
 	dir = 8
@@ -13214,6 +13222,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
+/obj/structure/reagent_dispensers/watertank,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/hangar)
 "QZ" = (
@@ -38254,7 +38263,7 @@ jr
 wq
 rc
 ad
-bZ
+Fo
 Zp
 Zv
 Zv
@@ -50329,7 +50338,7 @@ Mb
 AV
 eU
 eF
-nA
+Kj
 nA
 Sy
 eF
