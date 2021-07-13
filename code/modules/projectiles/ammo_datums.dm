@@ -286,6 +286,16 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	shrapnel_chance = 25
 	sundering = 2.15
 
+/datum/ammo/bullet/pistol/superheavy
+	name = "high impact pistol bullet"
+	hud_state = "pistol_hollow"
+	damage = 45
+	penetration = 15
+	sundering = 3.5
+
+/datum/ammo/bullet/pistol/superheavy/on_hit_mob(mob/M,obj/projectile/P)
+	staggerstun(M, P, stagger = 1, slowdown = 1, shake = 0)
+
 /datum/ammo/bullet/pistol/incendiary
 	name = "incendiary pistol bullet"
 	hud_state = "pistol_fire"
