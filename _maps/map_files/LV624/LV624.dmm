@@ -15733,16 +15733,6 @@
 	},
 /turf/open/floor,
 /area/lv624/ground/compound/n)
-"oVz" = (
-/obj/machinery/door/airlock/mainship/engineering/free_access{
-	dir = 1;
-	name = "\improper Engineering Dome"
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/turf/open/floor/tile/dark,
-/area/lv624/lazarus/engineering)
 "paG" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
@@ -34792,7 +34782,7 @@ agv
 agv
 bjH
 gXw
-oVz
+bnW
 gXw
 bjH
 ajG
