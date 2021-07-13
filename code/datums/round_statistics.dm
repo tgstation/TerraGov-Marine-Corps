@@ -18,6 +18,7 @@ GLOBAL_DATUM_INIT(round_statistics, /datum/round_statistics, new)
 	var/human_bump_attacks = 0
 	var/total_xeno_deaths = 0
 	var/total_human_deaths = 0
+	var/total_human_revives = 0
 	var/total_xenos_created = 0
 	var/total_humans_created = 0
 	var/total_bullet_hits_on_humans = 0

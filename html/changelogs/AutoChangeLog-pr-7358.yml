@@ -1,0 +1,5 @@
+author: "lbnesquik"
+delete-after: True
+changes: 
+  - bugfix: "fixed the : thinking : emoji for AI"
+  - rscadd: "Added more displays for the AI"
