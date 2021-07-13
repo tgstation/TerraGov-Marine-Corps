@@ -46,6 +46,14 @@
 	max_rounds = 210
 	gun_type = /obj/item/weapon/gun/rifle/tx11
 
+/obj/item/ammo_magazine/packet/t25
+	name = "box of 10x26mm (T-25)"
+	desc = "A box containing 200 rounds of 10x26mm caseless tuned for a T-25 smartrifle.."
+	icon_state = "box_t25"
+	default_ammo = /datum/ammo/bullet/smartgun/smartrifle
+	caliber = CALIBER_10x26_CASELESS
+	max_rounds = 200
+
 // pistol packets
 
 /obj/item/ammo_magazine/packet/p9mm

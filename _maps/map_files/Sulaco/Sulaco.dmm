@@ -11831,6 +11831,13 @@
 	},
 /turf/open/floor/mainship/ai,
 /area/sulaco/command/ai)
+"eMl" = (
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/machinery/cic_maptable,
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/bridge)
 "eNh" = (
 /obj/effect/attach_point/weapon/dropship2{
 	dir = 4;
@@ -42061,7 +42068,7 @@ asf
 arA
 acc
 ayS
-asf
+eMl
 asr
 aDd
 tbJ

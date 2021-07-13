@@ -250,6 +250,11 @@ WEAPONS
 	contains = list(/obj/item/weapon/gun/rifle/standard_smartmachinegun)
 	cost = 40
 
+/datum/supply_packs/weapons/smartrifle
+	name = "T-26 Smart Rifle"
+	contains = list(/obj/item/weapon/gun/rifle/standard_smartrifle)
+	cost = 40
+
 /datum/supply_packs/weapons/flamethrower
 	name = "TL-84 Flamethrower"
 	contains = list(/obj/item/weapon/gun/flamer/marinestandard)
@@ -547,9 +552,15 @@ AMMO
 	cost = 5
 
 /datum/supply_packs/ammo/smartrifle
-	name = "T-25 smartrifle ammo"
+	name = "T-25 smartrifle magazine"
 	contains = list(/obj/item/ammo_magazine/rifle/standard_smartrifle)
 	cost = 2
+
+/datum/supply_packs/ammo/smartrifle
+	name = "T-25 smartrifle ammo box"
+	notes = "Contains a box with 200 rounds for a T-25 (MAGAZINES SOLD SEPERATELY)"
+	contains = list(/obj/item/ammo_magazine/packet/t25)
+	cost = 4
 
 /datum/supply_packs/ammo/sentry
 	name = "UA 571-C sentry ammunition"
