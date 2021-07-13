@@ -140,6 +140,9 @@
 	. = ..()
 	linked_cam = new(loc, name)
 	GLOB.active_cas_targets += src
+	for(var/mob/living/silicon/ai/AI in GLOB.silicon_mobs)
+		to_chat(AI, "<span class='notice'>CAS laser detected. Target: [AREACOORD_NO_Z(src)]</span>")
+
 
 /obj/effect/overlay/temp/laser_target/cas/Destroy()
 	. = ..()
@@ -156,6 +159,9 @@
 /obj/effect/overlay/temp/laser_target/OB/Initialize(mapload, named, assigned_squad)
 	. = ..()
 	GLOB.active_laser_targets += src
+	for(var/mob/living/silicon/ai/AI in GLOB.silicon_mobs)
+		to_chat(AI, "<span class='notice'>Orbital Bombardment laser detected. Target: [AREACOORD_NO_Z(src)]</span>")
+		playsound(AI, 'sound/effects/binoctarget.ogg', 15)
 
 /obj/effect/overlay/temp/laser_target/OB/Destroy()
 	. = ..()
