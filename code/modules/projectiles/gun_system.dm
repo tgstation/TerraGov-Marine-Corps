@@ -137,6 +137,7 @@
 	///Battery used for radial mode on deployed turrets.
 	var/obj/item/cell/battery
 	var/cell_type = /obj/item/cell
+	var/cell_drain = 20
 //----------------------------------------------------------
 				//				    \\
 				// NECESSARY PROCS  \\
