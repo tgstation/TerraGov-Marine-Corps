@@ -15,13 +15,13 @@
 		X.zoom_out()
 		X.visible_message("<span class='notice'>[X] stops looking off into the distance.</span>", \
 		"<span class='notice'>We stop looking off into the distance.</span>", null, 5)
-	else
-		X.visible_message("<span class='notice'>[X] starts looking off into the distance.</span>", \
-			"<span class='notice'>We start focusing your sight to look off into the distance.</span>", null, 5)
-		if(!do_after(X, 1 SECONDS, FALSE, null, BUSY_ICON_GENERIC) || X.is_zoomed)
-			return
-		X.zoom_in(11)
-		..()
+		return
+	X.visible_message("<span class='notice'>[X] starts looking off into the distance.</span>", \
+		"<span class='notice'>We start focusing your sight to look off into the distance.</span>", null, 5)
+	if(!do_after(X, 1 SECONDS, FALSE, null, BUSY_ICON_GENERIC) || X.is_zoomed)
+		return
+	X.zoom_in(11)
+	..()
 
 // ***************************************
 // *********** Gas type toggle
@@ -33,15 +33,6 @@
 	mechanics_text = "Switches Boiler Bombard type between Corrosive Acid and Neurotoxin."
 	use_state_flags = XACT_USE_BUSY|XACT_USE_LYING
 	keybind_signal = COMSIG_XENOABILITY_TOGGLE_BOMB
-
-/datum/action/xeno_action/toggle_bomb/can_use_action(silent = FALSE, override_flags)
-	. = ..()
-	var/mob/living/carbon/xenomorph/boiler/X = owner
-	if((X.corrosive_ammo + X.neuro_ammo) >= X.xeno_caste.max_ammo)
-		if((X.ammo.type == /datum/ammo/xeno/boiler_gas/corrosive && X.neuro_ammo==0) || (X.ammo.type == /datum/ammo/xeno/boiler_gas && X.corrosive_ammo==0))
-			if (!silent)
-				to_chat(X, "<span class='warning'>We won't be able to carry this kind of globule</span>")
-			return FALSE
 
 /datum/action/xeno_action/toggle_bomb/action_activate()
 	var/mob/living/carbon/xenomorph/boiler/X = owner
@@ -60,47 +51,6 @@
 		button.overlays += image('icons/mob/actions.dmi', button, "toggle_bomb1")
 	else
 		button.overlays += image('icons/mob/actions.dmi', button, "toggle_bomb0")
-	return ..()
-
-// ***************************************
-// *********** Gas cloud bomb maker
-// ***************************************
-
-/datum/action/xeno_action/create_boiler_bomb
-	name = "Create bomb"
-	action_icon_state = "toggle_bomb0" //to be changed
-	mechanics_text = "Creates a Boiler Bombard of the type currently selected."
-	plasma_cost = 200
-	use_state_flags = XACT_USE_BUSY|XACT_USE_LYING
-	keybind_signal = COMSIG_XENOABILITY_CREATE_BOMB
-
-/datum/action/xeno_action/create_boiler_bomb/action_activate()
-	var/mob/living/carbon/xenomorph/boiler/X = owner
-
-	if(X.is_zoomed)
-		to_chat(X, "<span class='notice'>We can not prepare globules as we are now. We must stop concentrating into the distance!</span>")
-		return
-
-	var/current_ammo = X.corrosive_ammo + X.neuro_ammo
-	if(current_ammo >= X.xeno_caste.max_ammo)
-		to_chat(X, "<span class='notice'>We can carry no more globules.</span>")
-		return
-
-	succeed_activate()
-	if(X.ammo.type == /datum/ammo/xeno/boiler_gas/corrosive)
-		X.corrosive_ammo++
-		to_chat(X, "<span class='notice'>We prepare a corrosive acid globule.</span>")
-	else
-		X.neuro_ammo++
-		to_chat(X, "<span class='notice'>We prepare a neurotoxic gas globule.</span>")
-	X.update_boiler_glow()
-	update_button_icon()
-
-/datum/action/xeno_action/create_boiler_bomb/update_button_icon()
-	var/mob/living/carbon/xenomorph/boiler/X = owner
-	button.overlays.Cut()
-	//the bit where the ammo counter sprite updates.
-	button.overlays += image('icons/xeno/actions_boiler_glob.dmi', button, "bomb_count_[X.corrosive_ammo][X.neuro_ammo]")
 	return ..()
 
 // ***************************************
@@ -127,10 +77,6 @@
 
 /datum/action/xeno_action/activable/bombard/on_activation()
 	var/mob/living/carbon/xenomorph/boiler/X = owner
-	var/current_ammo = X.corrosive_ammo + X.neuro_ammo
-	if(current_ammo <= 0)
-		to_chat(X, "<span class='notice'>We have nothing prepared to fire.</span>")
-		return FALSE
 
 	X.visible_message("<span class='notice'>\The [X] begins digging their claws into the ground.</span>", \
 	"<span class='notice'>We begin digging ourselves into place.</span>", null, 5)
@@ -200,14 +146,8 @@
 	if(!istype(target))
 		return
 
-	if(X.ammo.type == /datum/ammo/xeno/boiler_gas/corrosive)
-		if(X.corrosive_ammo <= 0)
-			to_chat(X, "<span class='warning'>We have no corrosive globules available.</span>")
-			return
-	else
-		if(X.neuro_ammo <= 0)
-			to_chat(X, "<span class='warning'>We have no neurotoxin globules available.</span>")
-			return
+	X.set_light_on(TRUE)
+	X.set_light_color(X.ammo == GLOB.ammo_list[/datum/ammo/xeno/boiler_gas/corrosive] ? BOILER_LUMINOSITY_AMMO_CORROSIVE_COLOR : BOILER_LUMINOSITY_AMMO_NEUROTOXIN_COLOR)
 
 	to_chat(X, "<span class='xenonotice'>We begin building up pressure.</span>")
 
@@ -228,16 +168,18 @@
 	if(X.ammo.type == /datum/ammo/xeno/boiler_gas/corrosive)
 		GLOB.round_statistics.boiler_acid_smokes++
 		SSblackbox.record_feedback("tally", "round_statistics", 1, "boiler_acid_smokes")
-		X.corrosive_ammo--
 	else
 		GLOB.round_statistics.boiler_neuro_smokes++
 		SSblackbox.record_feedback("tally", "round_statistics", 1, "boiler_neuro_smokes")
-		X.neuro_ammo--
 
-	X.update_boiler_glow()
 	update_button_icon()
 	add_cooldown()
 	X.reset_bombard_pointer()
+	X.set_light_on(FALSE)
+
+/datum/action/xeno_action/activable/bombard/fail_activate()
+	. = ..()
+	owner.set_light_on(FALSE)
 
 // ***************************************
 // *********** Acid spray
