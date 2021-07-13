@@ -62,11 +62,20 @@
 		if("Alt", "Ctrl", "Shift")
 			full_key = "[AltMod][CtrlMod][ShiftMod]"
 		else
+			//Every character is capitalised by Byond except special ones like é and è. Since they are always capitalised by the tgui registering window,
+			//we ensure that they are capitalised also by DM so they match.
+			_key = capitalize(_key)
 			full_key = "[AltMod][CtrlMod][ShiftMod][_key]"
 	var/keycount = 0
 	for(var/kb_name in prefs.key_bindings[full_key])
 		keycount++
 		var/datum/keybinding/kb = GLOB.keybindings_by_name[kb_name]
+		if(!kb)
+			prefs.key_bindings[full_key] -= kb_name
+			if(!prefs.key_bindings[full_key])
+				prefs.key_bindings -= full_key
+			prefs.save_keybinds()
+			continue
 		if(kb.down(src) && keycount >= MAX_COMMANDS_PER_KEY)
 			break
 

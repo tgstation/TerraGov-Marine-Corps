@@ -286,6 +286,7 @@
 		else
 			stat("Orbital bombardment warhead:", "[GLOB.marine_main_ship.orbital_cannon.tray.warhead.name] Detected<BR>")
 
+		stat("Current supply points:", "[round(SSpoints.supply_points[FACTION_TERRAGOV])]")
 
 		stat("Current alert level:", "[GLOB.marine_main_ship.get_security_level()]")
 

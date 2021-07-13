@@ -149,6 +149,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/pixel_size = 0
 	///What scaling method should we use? Distort means nearest neighbor
 	var/scaling_method = SCALING_METHOD_NORMAL
+	///If the game is in fullscreen mode
+	var/fullscreen_mode = FALSE
 
 	/// New TGUI Preference preview
 	var/map_name = "player_pref_map"
@@ -181,7 +183,9 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			loadout_manager = new
 			reset_loadouts_file()
 		if(load_preferences() && load_character())
+			C.set_fullscreen(fullscreen_mode)
 			return
+
 
 	// We don't have a savefile or we failed to load them
 	random_character()

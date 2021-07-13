@@ -193,6 +193,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	master_gun.recoil						+= recoil_mod
 	master_gun.recoil_unwielded				+= recoil_unwielded_mod
 	master_gun.force						+= melee_mod
+	master_gun.sharp						+= sharp
 	master_gun.aim_slowdown					+= aim_speed_mod
 	master_gun.wield_delay					+= wield_delay_mod
 	master_gun.burst_scatter_mult			+= burst_scatter_mod
@@ -258,6 +259,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	master_gun.recoil						-= recoil_mod
 	master_gun.recoil_unwielded				-= recoil_unwielded_mod
 	master_gun.force						-= melee_mod
+	master_gun.sharp						-= sharp
 	master_gun.aim_slowdown					-= aim_speed_mod
 	master_gun.wield_delay					-= wield_delay_mod
 	master_gun.burst_scatter_mult			-= burst_scatter_mod
@@ -300,14 +302,18 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 
 
 /obj/item/attachable/ui_action_click(mob/living/user, datum/action/item_action/action, obj/item/weapon/gun/G)
-	if(G == user.get_active_held_item() || G == user.get_inactive_held_item())
+	if(G == user.get_active_held_item() || G == user.get_inactive_held_item() || CHECK_BITFIELD(G.flags_item, IS_DEPLOYED))
 		if(activate_attachment(user)) //success
 			playsound(user, activation_sound, 15, 1)
 	else
 		to_chat(user, "<span class='warning'>[G] must be in our hands to do this.</span>")
 
-
-
+/obj/item/attachable/hydro_cannon/ui_action_click(mob/living/user, datum/action/item_action/action, obj/item/weapon/gun/G)
+	if(G == user.get_active_held_item() || G == user.get_inactive_held_item() || CHECK_BITFIELD(G.flags_item, IS_DEPLOYED))
+		G.unique_action(user)
+		return
+	if(activate_attachment(user)) //success
+		playsound(user, activation_sound, 15, 1)
 
 /obj/item/attachable/proc/activate_attachment(mob/user, turn_off) //This is for activating stuff like flamethrowers, or switching weapon modes.
 	return
@@ -735,15 +741,27 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	desc = "A rail mounted zoom sight scope specialized for the T-127 sniper rifle. Allows zoom by activating the attachment. Use F12 if your HUD doesn't come back."
 	flags_attach_features = ATTACH_ACTIVATION
 
+/obj/item/attachable/scope/unremovable/tl102
+	name = "TL-102 smart sight"
+	desc = "An unremovable smart sight built for use with the tl102, it does nearly all the aiming work for the gun's integrated IFF systems."
+	attach_icon = "none"
+	zoom_offset = 3
+	zoom_viewsize = 7
+
+/obj/item/attachable/scope/unremovable/tl102/nest
+	zoom_offset = 6
+
 /obj/item/attachable/scope/activate_attachment(mob/living/carbon/user, turn_off)
 	if(turn_off)
 		zoom(user, zoom_offset, zoom_viewsize)
 		return TRUE
 
-	if(!master_gun.zoom && !(master_gun.flags_item & WIELDED))
+	if(!master_gun.zoom && !(master_gun.flags_item & WIELDED) && !CHECK_BITFIELD(master_gun.flags_item, IS_DEPLOYED))
 		if(user)
 			to_chat(user, "<span class='warning'>You must hold [master_gun] with two hands to use [src].</span>")
 		return FALSE
+	if(CHECK_BITFIELD(master_gun.flags_item, IS_DEPLOYED) && user.dir != master_gun.loc.dir)
+		user.setDir(master_gun.loc.dir)
 	zoom(user, zoom_offset, zoom_viewsize)
 	return TRUE
 
@@ -1748,7 +1766,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	icon_state = ""
 	attach_icon = ""
 	slot = ATTACHMENT_SLOT_UNDER
-	flags_attach_features = ATTACH_ACTIVATION|ATTACH_UTILITY|GUN_ALLOW_SYNTHETIC
+	flags_attach_features = ATTACH_UTILITY|GUN_ALLOW_SYNTHETIC
 	attachment_action_type = /datum/action/item_action/toggle_hydro
 
 /obj/item/attachable/hydro_cannon/activate_attachment(mob/living/user, turn_off)

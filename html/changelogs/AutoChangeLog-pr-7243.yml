@@ -1,5 +1,0 @@
-author: "lbnesquik"
-delete-after: True
-changes: 
-  - rscadd: "Added notifications to the AI whenever the Alamo moves, the railgun is fired, the OB is fired and when a camera gets slashed."
-  - qol: "Added some handy status lines to the 'Game' tab for the AI, like OB status or orbital level."

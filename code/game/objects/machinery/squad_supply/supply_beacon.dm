@@ -54,8 +54,8 @@
 	layer = ABOVE_FLY_LAYER
 	set_light(2)
 	playsound(src, 'sound/machines/twobeep.ogg', 15, 1)
-	H.visible_message("[H] activates [src]",
-	"You activate [src]")
+	H.visible_message("[H] activates [src].",
+	"You activate [src].")
 	update_icon()
 	return TRUE
 
@@ -75,8 +75,8 @@
 	name = initial(name)
 	set_light(0)
 	playsound(src, 'sound/machines/twobeep.ogg', 15, 1)
-	H.visible_message("[H] deactivates [src]",
-	"You deactivate [src]")
+	H.visible_message("[H] deactivates [src].",
+	"You deactivate [src].")
 	H.put_in_active_hand(src)
 	update_icon()
 	return TRUE
