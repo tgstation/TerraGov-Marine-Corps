@@ -184,8 +184,11 @@
 				if(loaded_pill_bottle)
 					to_chat(user, "<span class='warning'>A pill bottle is already loaded into the machine.</span>")
 					return
+				var/bottle_label = reject_bad_text(input(user, "Label:", "Enter desired bottle label", null) as text|null)
 				var/obj/item/storage/pill_bottle/I = new/obj/item/storage/pill_bottle
 				I.icon_state = "pill_canister"+pillbottlesprite
+				if(bottle_label)
+					I.name = "[bottle_label] pill bottle"
 				loaded_pill_bottle = I
 				to_chat(user, "<span class='notice'>The Chemmaster 3000 sets a pill bottle into the dispenser slot.</span>")
 				updateUsrDialog()
