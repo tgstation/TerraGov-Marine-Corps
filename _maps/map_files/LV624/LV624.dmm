@@ -2029,7 +2029,7 @@
 /obj/structure/extinguisher_cabinet{
 	dir = 1
 	},
-/obj/machinery/door/window/eastleft,
+/obj/machinery/door/window,
 /turf/open/floor/plating/platebot,
 /area/lv624/ground/filtration)
 "ama" = (
@@ -2190,7 +2190,7 @@
 /turf/open/floor/plating/platebot,
 /area/lv624/ground/filtration)
 "amF" = (
-/obj/machinery/door/window/eastright,
+/obj/machinery/door/window/right,
 /obj/structure/window/reinforced,
 /turf/open/floor/plating/platebot,
 /area/lv624/ground/filtration)
@@ -4871,7 +4871,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/lazarus/quartstorage/outdoors)
 "aAm" = (
-/obj/item/tool/warning_cone,
+/obj/item/clothing/head/warning_cone,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/lazarus/quartstorage/outdoors)
 "aAn" = (
@@ -4899,7 +4899,9 @@
 /area/lv624/lazarus/quart)
 "aAx" = (
 /obj/structure/table,
-/obj/machinery/door/window/westright,
+/obj/machinery/door/window/right{
+	dir = 8
+	},
 /obj/structure/paper_bin,
 /obj/item/tool/pen,
 /obj/structure/cable,
@@ -5061,7 +5063,9 @@
 /turf/open/floor/tile/blue/whitebluecorner,
 /area/lv624/lazarus/medbay)
 "aBn" = (
-/obj/machinery/door/window/southright,
+/obj/machinery/door/window/right{
+	dir = 2
+	},
 /turf/open/floor/tile/blue/whitebluecorner,
 /area/lv624/lazarus/medbay)
 "aBq" = (
@@ -5440,7 +5444,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/compound/n)
 "aDK" = (
-/obj/item/tool/warning_cone,
+/obj/item/clothing/head/warning_cone,
 /turf/open/floor/plating/platebotc,
 /area/lv624/lazarus/quartstorage/outdoors)
 "aDL" = (
@@ -6493,7 +6497,7 @@
 /turf/closed/wall,
 /area/lv624/lazarus/quartstorage)
 "aLh" = (
-/obj/item/tool/warning_cone,
+/obj/item/clothing/head/warning_cone,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/quartstorage)
 "aLk" = (
@@ -8609,7 +8613,9 @@
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/quart)
 "aWk" = (
-/obj/machinery/door/window/westleft,
+/obj/machinery/door/window{
+	dir = 8
+	},
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/quart)
 "aWl" = (
@@ -10009,7 +10015,6 @@
 /turf/open/ground/grass/grass2,
 /area/lv624/ground/jungle9)
 "beu" = (
-/obj/machinery/deployable/barrier,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/security)
 "bev" = (
@@ -14423,7 +14428,9 @@
 /turf/open/floor,
 /area/lv624/ground/compound/n)
 "jGr" = (
-/obj/machinery/door/window/southleft,
+/obj/machinery/door/window{
+	dir = 2
+	},
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/blue/whitebluecorner,
 /area/lv624/lazarus/medbay)

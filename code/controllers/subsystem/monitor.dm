@@ -30,6 +30,8 @@ SUBSYSTEM_DEF(monitor)
 	var/datum/monitor_statistics/stats = new
 	///If the game is currently before shutters drop, after, or shipside
 	var/gamestate = SHUTTERS_CLOSED
+	///If the automatic balance system is online
+	var/is_automatic_balance_on = TRUE
 	
 /datum/monitor_statistics
 	var/ancient_queen = 0
@@ -48,6 +50,7 @@ SUBSYSTEM_DEF(monitor)
 	. = ..()
 	RegisterSignal(SSdcs, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE, .proc/set_groundside_calculation)
 	RegisterSignal(SSdcs, COMSIG_GLOB_DROPSHIP_HIJACKED, .proc/set_shipside_calculation)
+	is_automatic_balance_on = CONFIG_GET(flag/is_automatic_balance_on)
 
 /datum/controller/subsystem/monitor/fire(resumed = 0)
 	current_points = calculate_state_points() / max(GLOB.alive_human_list.len + GLOB.alive_xeno_list.len, 10)//having less than 10 players gives bad results
@@ -55,6 +58,13 @@ SUBSYSTEM_DEF(monitor)
 		process_human_positions()
 		FOB_hugging_check()
 	set_state(current_points)
+	var/proposed_balance_buff = 1
+	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
+	if(is_automatic_balance_on && current_state < STATE_BALANCED && ((xeno_job.total_positions - xeno_job.current_positions) > (length(GLOB.alive_xeno_list) * TOO_MUCH_BURROWED_PROPORTION)) && gamestate == GROUNDSIDE)
+		proposed_balance_buff = balance_xeno_team()
+	if(abs(proposed_balance_buff - GLOB.xeno_stat_multiplicator_buff) >= 0.05 || (proposed_balance_buff == 1 && GLOB.xeno_stat_multiplicator_buff != 1))
+		GLOB.xeno_stat_multiplicator_buff = proposed_balance_buff
+		apply_balance_changes()
 
 /datum/controller/subsystem/monitor/proc/set_groundside_calculation()
 	SIGNAL_HANDLER
@@ -139,3 +149,34 @@ SUBSYSTEM_DEF(monitor)
 		stalemate = TRUE
 	else
 		stalemate = FALSE
+
+/**
+ * Return the proposed xeno buff calculated with the number of burrowed, and the state of the game
+ */
+/datum/controller/subsystem/monitor/proc/balance_xeno_team()
+	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
+	var/xeno_alive_plus_burrowed = length(GLOB.alive_xeno_list) + (xeno_job.total_positions - xeno_job.current_positions)
+	var/buff_needed_estimation = min( MAXIMUM_XENO_BUFF_POSSIBLE , 1 + (xeno_job.total_positions-xeno_job.current_positions) / (xeno_alive_plus_burrowed ? xeno_alive_plus_burrowed : 1))
+	// No need to ask admins every time
+	if(GLOB.xeno_stat_multiplicator_buff != 1)
+		return buff_needed_estimation
+	var/admin_response = admin_approval("<span color='prefix'>AUTO BALANCE SYSTEM:</span> An excessive amount of burrowed was detected, while the balance system consider that marines are winning. <span class='boldnotice'>Considering the amount of burrowed larvas, a stat buff of [buff_needed_estimation * 100]% will be applied to health, health recovery, and melee damages.</span>",
+		options = list("approve" = "approve", "deny" = "deny", "shutdown balance system" = "shutdown balance system"),
+		admin_sound = sound('sound/effects/sos-morse-code.ogg', channel = CHANNEL_ADMIN))
+	if(admin_response != "approve")
+		if(admin_response == "shutdown balance system")
+			is_automatic_balance_on = FALSE
+		return 1
+	return buff_needed_estimation
+	
+
+/**
+ * Will multiply every base health, regen and melee damage stat on all xeno by GLOB.xeno_stat_multiplicator_buff
+ */
+/datum/controller/subsystem/monitor/proc/apply_balance_changes()
+	for(var/mob/living/carbon/xenomorph/xeno AS in GLOB.alive_xeno_list)
+		xeno.apply_health_stat_buff()
+	for(var/xeno_caste_typepath in GLOB.xeno_caste_datums)
+		for(var/upgrade in GLOB.xeno_caste_datums[xeno_caste_typepath])
+			var/datum/xeno_caste/caste = GLOB.xeno_caste_datums[xeno_caste_typepath][upgrade]
+			caste.melee_damage = initial(caste.melee_damage) * GLOB.xeno_stat_multiplicator_buff

@@ -141,7 +141,7 @@
 				to_chat(usr, "<span class='warning'>Spawning currently disabled, please observe.</span>")
 				return
 			var/datum/job/job_datum = locate(href_list["job_selected"])
-			if(!isxenosjob(job_datum) && (SSmonitor.gamestate == SHUTTERS_CLOSED || (SSmonitor.gamestate == GROUNDSIDE && SSmonitor.current_state == XENOS_LOSING)))
+			if(!isxenosjob(job_datum) && (SSmonitor.gamestate == SHUTTERS_CLOSED || (SSmonitor.gamestate == GROUNDSIDE && SSmonitor.current_state <= XENOS_LOSING)))
 				var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
 				if((xeno_job.total_positions-xeno_job.current_positions) > GLOB.alive_xeno_list.len * TOO_MUCH_BURROWED_PROPORTION)
 					if(tgui_alert(src, "There is a lack of xenos players on this round, unbalanced rounds are unfun for everyone. Are you sure you want to play as a marine? ", "Warning : the game is unbalanced", list("Yes", "No")) != "Yes")
@@ -185,7 +185,7 @@
 		dat += "<div class='notice red'>You may no longer join the round.</div><br>"
 	var/faction
 	if(SSticker.mode.flags_round_type & MODE_TWO_HUMAN_FACTIONS)
-		faction = tgui_input_list(src, "What faction do you want to join", "Faction choice", SSticker.mode.joinable_factions)
+		faction = tgui_input_list(src, "What faction do you want to join", "Faction choice", SSticker.mode.get_joinable_factions())
 		if(!faction)
 			return
 	dat += "<div class='latejoin-container' style='width: 100%'>"

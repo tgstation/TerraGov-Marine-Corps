@@ -117,6 +117,7 @@
 	return TRUE
 
 /obj/item/weapon/claymore/harvester/unique_action(mob/user)
+	. = ..()
 	if(loaded_reagent)
 		to_chat(user, "<span class='rose'>The blade is powered with [loaded_reagent.name]. You can release the effect by stabbing a creature.</span>")
 		return FALSE

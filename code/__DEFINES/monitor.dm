@@ -1,12 +1,9 @@
-//When do we start calculating the states
-#define START_STATE_CALCULATION 30 MINUTES
-
 //The different states possible
-#define STATE_BALANCED "state balanced"
-#define XENOS_LOSING "xenos losing"
-#define MARINES_LOSING "marines losing"
-#define MARINES_DELAYING "marines delaying"
-#define XENOS_DELAYING "xenos delaying"
+#define XENOS_LOSING -1
+#define XENOS_DELAYING -2
+#define STATE_BALANCED 0
+#define MARINES_LOSING 1
+#define MARINES_DELAYING 2
 
 //The threshold to get to those state, after correction from number of players
 #define XENOS_DELAYING_THRESHOLD 40
@@ -23,7 +20,7 @@
 
 //The differente gamestate
 #define SHUTTERS_CLOSED "shutters closed"
-#define GROUNDSIDE "GROUNDSIDE"
+#define GROUNDSIDE "groundside"
 #define SHIPSIDE "shipside"
 
 //The weight of each statistics in the state calculator when GROUNDSIDE
@@ -51,3 +48,9 @@
 
 //Minimum proportion of burrowed larvas compared to live xenos for the unbalance join detector to show up
 #define TOO_MUCH_BURROWED_PROPORTION 0.2
+
+///How much xeno stats (health, damage and recov) are buffed
+GLOBAL_VAR_INIT(xeno_stat_multiplicator_buff, 1)
+
+///50% is the maximum buff that xeno can receive
+#define  MAXIMUM_XENO_BUFF_POSSIBLE 1.5

@@ -60,6 +60,7 @@ The main purpose of this is to handle cleanup and setting up the initial ai beha
 	if(ai_behavior)
 		STOP_PROCESSING(SSprocessing, ai_behavior)
 		ai_behavior.unregister_action_signals(ai_behavior.cur_action)
+		QDEL_NULL(ai_behavior)
 
 /datum/component/ai_controller/Destroy()
 	clean_up()

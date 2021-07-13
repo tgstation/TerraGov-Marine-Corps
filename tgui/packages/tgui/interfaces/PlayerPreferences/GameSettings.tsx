@@ -1,10 +1,10 @@
 import { useBackend } from '../../backend';
 import { Button, Section, LabeledList, Grid, ColorBox } from '../../components';
-import { ToggleFieldPreference, TextFieldPreference, SelectFieldPreference } from './FieldPreferences';
+import { ToggleFieldPreference, TextFieldPreference, SelectFieldPreference, LoopingSelectionPreference } from './FieldPreferences';
 
 export const GameSettings = (props, context) => {
-  const { act, data, config } = useBackend<PlayerPreferencesData>(context);
-  const { ui_style_color } = data;
+  const { act, data } = useBackend<GameSettingData>(context);
+  const { ui_style_color, scaling_method, pixel_size } = data;
   return (
     <Section title="Game Settings">
       <Grid>
@@ -31,6 +31,13 @@ export const GameSettings = (props, context) => {
                 action="mute_xeno_health_alert_messages"
                 leftLabel={'Muted'}
                 rightLabel={'Enabled'}
+              />
+              <ToggleFieldPreference
+                label="Fullscreen mode"
+                value="fullscreen_mode"
+                action="fullscreen_mode"
+                leftLabel={'Fullscreen'}
+                rightLabel={'Windowed'}
               />
               <ToggleFieldPreference
                 label="TGUI Window Mode"
@@ -107,7 +114,6 @@ export const GameSettings = (props, context) => {
                 rightValue={0}
                 rightLabel={'Disabled'}
               />
-
               <ToggleFieldPreference
                 label="Show self combat messages"
                 value="mute_self_combat_messages"
@@ -154,6 +160,23 @@ export const GameSettings = (props, context) => {
                 label={'UI Alpha'}
                 value={'ui_style_alpha'}
                 action={'uialpha'}
+              />
+              <ToggleFieldPreference
+                label="Widescreen mode"
+                value="widescreenpref"
+                action="widescreenpref"
+                leftLabel={'Enabled'}
+                rightLabel={'Disabled'}
+              />
+              <LoopingSelectionPreference
+                label="Scaling Method"
+                value={scaling_method}
+                action="scaling_method"
+              />
+              <LoopingSelectionPreference
+                label="Pixel Size Scaling"
+                value={pixel_size}
+                action="pixel_size"
               />
             </LabeledList>
           </Section>

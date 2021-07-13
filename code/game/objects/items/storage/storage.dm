@@ -409,6 +409,10 @@
 	if(!access_delay || !should_access_delay(accessed, user, taking_out))
 		return TRUE
 
+	if(LAZYLEN(user.do_actions))
+		to_chat(user, "<span class='warning'>You are busy doing something else!</span>")
+		return FALSE
+
 	if(!alert_user)
 		return do_after(user, access_delay, TRUE, src, ignore_turf_checks=TRUE)
 
@@ -438,7 +442,7 @@
 	if(!handle_access_delay(item, user, taking_out=FALSE))
 		item.forceMove(item.drop_location())
 		return FALSE
-	if(item.loc == user)
+	if(user && item.loc == user)
 		if(!user.transferItemToLoc(item, src))
 			return FALSE
 	else
@@ -466,6 +470,9 @@
 //Call this proc to handle the removal of an item from the storage item. The item will be moved to the atom sent as new_target
 /obj/item/storage/proc/remove_from_storage(obj/item/item, atom/new_location, mob/user)
 	if(!istype(item))
+		return FALSE
+
+	if(!handle_access_delay(item, user))
 		return FALSE
 
 	for(var/mob/M AS in can_see_content())
@@ -501,7 +508,7 @@
 		if(istype(item, limited_type))
 			storage_type_limits[limited_type] += 1
 
-	return handle_access_delay(item, user)
+	return TRUE
 
 //This proc is called when you want to place an item into the storage item.
 /obj/item/storage/attackby(obj/item/I, mob/user, params)
@@ -564,6 +571,11 @@
 	for(var/obj/item/I in contents)
 		remove_from_storage(I, T, usr)
 
+/// Delete everything that's inside the storage
+/obj/item/storage/proc/delete_contents()
+	for(var/obj/item/I AS in contents)
+		I.on_exit_storage(src)
+		qdel(I)
 
 /obj/item/storage/Initialize(mapload, ...)
 	. = ..()

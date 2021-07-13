@@ -16,12 +16,12 @@
 	var/obj/item/clothing/suit/storage/suit_to_copy = item_to_copy
 	pockets = new /datum/item_representation/storage(suit_to_copy.pockets)
 
-/datum/item_representation/suit_with_storage/instantiate_object(datum/loadout_seller/seller)
+/datum/item_representation/suit_with_storage/instantiate_object(datum/loadout_seller/seller, master = null, mob/living/user)
 	. = ..()
 	if(!.)
 		return
 	var/obj/item/clothing/suit/storage/suit = .
-	suit.pockets = pockets.instantiate_object(seller, suit)
+	suit.pockets = pockets.instantiate_object(seller, suit, user)
 
 /**
  * Allow to representate a jaeger modular armor with its modules
@@ -54,22 +54,22 @@
 	if(jaeger_to_copy.installed_storage)
 		installed_storage = new /datum/item_representation/armor_module(jaeger_to_copy.installed_storage)
 		storage_implementation = new /datum/item_representation/storage(jaeger_to_copy.storage)
-	if(!length(jaeger_to_copy.installed_modules) || !is_savable_in_loadout(jaeger_to_copy.installed_modules[1])) //Not supporting mutiple modules, but no object in game has that so
+	if(!length(jaeger_to_copy.installed_modules)) //Not supporting mutiple modules, but no object in game has that so
 		return
 	installed_module = new /datum/item_representation/armor_module(jaeger_to_copy.installed_modules[1])
 
-/datum/item_representation/modular_armor/instantiate_object(datum/loadout_seller/seller)
+/datum/item_representation/modular_armor/instantiate_object(datum/loadout_seller/seller, master = null, mob/living/user)
 	. = ..()
 	if(!.)
 		return
 	var/obj/item/clothing/suit/modular/modular_armor = .
 	for(var/key in armor_modules)
 		var/datum/item_representation/armor_module/colored/armor_module = armor_modules[key]
-		armor_module.install_on_armor(seller, modular_armor)
-	installed_module?.install_on_armor(seller, modular_armor)
+		armor_module.install_on_armor(seller, modular_armor, user)
+	installed_module?.install_on_armor(seller, modular_armor, user)
 	if(installed_storage)
-		installed_storage.install_on_armor(seller, modular_armor)
-		modular_armor.storage = storage_implementation.instantiate_object(seller, modular_armor)
+		installed_storage.install_on_armor(seller, modular_armor, user)
+		modular_armor.storage = storage_implementation.instantiate_object(seller, modular_armor, user)
 	modular_armor.update_icon()
 
 
@@ -126,9 +126,9 @@
 	..()
 
 ///Attach the instantiated item on an armor
-/datum/item_representation/armor_module/proc/install_on_armor(datum/loadout_seller/seller, obj/item/clothing/suit/modular/armor)
-	var/obj/item/armor_module/module = instantiate_object(seller)
-	module.do_attach(null, armor)
+/datum/item_representation/armor_module/proc/install_on_armor(datum/loadout_seller/seller, obj/item/clothing/suit/modular/armor, mob/living/user)
+	var/obj/item/armor_module/module = instantiate_object(seller, null, user)
+	module?.do_attach(null, armor)
 
 /**
  * Allow to representate an armor piece of a jaeger, and to color it
@@ -146,7 +146,7 @@
 	..()
 	greyscale_colors = item_to_copy.greyscale_colors
 
-/datum/item_representation/armor_module/colored/instantiate_object(datum/loadout_seller/seller)
+/datum/item_representation/armor_module/colored/instantiate_object(datum/loadout_seller/seller, master = null, mob/living/user)
 	. = ..()
 	if(!.)
 		return

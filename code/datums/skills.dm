@@ -359,9 +359,7 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	surgery = SKILL_SURGERY_AMATEUR
 	police = SKILL_POLICE_MP
 	powerloader = SKILL_POWERLOADER_TRAINED
-	pistols = SKILL_PISTOLS_TRAINED
 	cqc = SKILL_CQC_TRAINED
-	melee_weapons = SKILL_MELEE_TRAINED
 	spec_weapons = SKILL_SPEC_TRAINED
 
 /datum/skills/SO

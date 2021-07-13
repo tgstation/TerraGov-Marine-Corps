@@ -1,0 +1,48 @@
+name: "Bug Report"
+description: Create a report to help reproduce and fix the issue
+labels: 'Bug'
+body:
+- type: markdown
+  attributes:
+    value: |
+      Please [search for existing issues](https://github.com/tgstation/TerraGov-Marine-Corps/issues) before creating a new one.
+
+- type: textarea
+  attributes:
+    label: Description
+    description: What did you expect to happen and what happened instead?
+  validations:
+    required: true
+
+- type: textarea
+  attributes:
+    label: Test Merges
+    description: What Pull Requests were being tested in the round the bug occured?
+    placeholder: |
+      1. Within the server 
+      2. Goto the OOC Tab
+      3. Click Show server revision
+      4. Copy text here
+  validations:
+    required: true
+
+- type: textarea
+  attributes:
+    label: Reproduction Steps
+    description: Please list out the steps to reproduce your bug.
+    placeholder: |
+      1. Go to '...'
+      2. Click on '....'
+      3. Scroll down to '....'
+      4. See error
+  validations:
+    required: true
+
+- type: textarea
+  attributes:
+    label: Screenshots
+    description: If applicable, add screenshots to help explain your problem.
+    placeholder: Click here to attach your screenshots via the editor button in the top right.
+  validations:
+    required: false
+    

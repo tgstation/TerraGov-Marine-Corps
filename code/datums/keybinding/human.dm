@@ -10,14 +10,12 @@
 	description = ""
 	keybind_signal = COMSIG_KB_QUICKEQUIP
 
-
 /datum/keybinding/human/holster
 	hotkey_keys = list("H")
 	name = "holster"
 	full_name = "Holster"
 	description = ""
 	keybind_signal = COMSIG_KB_HOLSTER
-
 
 /datum/keybinding/human/unique_action
 	hotkey_keys = list("Space")
@@ -57,3 +55,9 @@
 	full_name = "Switch fire mode"
 	description = ""
 	keybind_signal = COMSIG_KB_FIREMODE
+
+/datum/keybinding/human/give
+	name = "give"
+	full_name = "Give"
+	description = "Give the held item to the nearby marine"
+	keybind_signal = COMSIG_KB_GIVE

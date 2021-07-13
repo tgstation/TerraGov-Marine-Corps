@@ -173,7 +173,7 @@ Stepping directly on the mine will also blow it up
 	if(!linked_mine)
 		qdel(src)
 		return
-	
+
 	if(CHECK_MULTIPLE_BITFIELDS(A.flags_pass, HOVERING))
 		return
 

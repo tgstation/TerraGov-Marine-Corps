@@ -49,6 +49,7 @@
 #define MODE_SILO_RESPAWN (1<<13)
 #define MODE_HUMAN_ONLY (1<<14)
 #define MODE_TWO_HUMAN_FACTIONS	(1<<15)
+#define MODE_SILOABLE_BODIES (1<<16)
 
 #define MODE_LANDMARK_RANDOM_ITEMS (1<<0)
 #define MODE_LANDMARK_SPAWN_XENO_TUNNELS (1<<1)
@@ -85,7 +86,7 @@
 				list(/obj/item/weapon/gun/smg/m25, /obj/item/ammo_magazine/smg/m25),\
 				list(/obj/item/weapon/gun/rifle/m16, /obj/item/ammo_magazine/rifle/m16),\
 				list(/obj/item/weapon/gun/shotgun/pump/bolt, /obj/item/ammo_magazine/rifle/bolt),\
-				list(/obj/item/weapon/gun/shotgun/pump/lever, /obj/item/ammo_magazine/magnum))
+				list(/obj/item/weapon/gun/shotgun/pump/lever, /obj/item/ammo_magazine/packet/magnum))
 
 
 #define LATEJOIN_LARVA_DISABLED 0
@@ -154,3 +155,5 @@
 #define DISTRESS_LARVA_POINTS_NEEDED 8
 #define HUNT_LARVA_POINTS_NEEDED 8
 #define CRASH_LARVA_POINTS_NEEDED 7
+
+#define MAX_UNBALANCED_RATIO_TWO_HUMAN_FACTIONS 1.2
