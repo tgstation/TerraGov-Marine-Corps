@@ -81,11 +81,12 @@
 	max_w_class = 5
 	storage_slots = 6
 	max_storage_space = 16
-	bypass_w_limit = list(
+	bypass_w_limit = list
+		(
 		/obj/item/weapon/gun/sentry,
 		/obj/item/cell,
 		/obj/item/ammo_magazine/sentry,
-	)
+		)
 
 /obj/item/storage/box/sentry/Initialize()
 	. = ..()
@@ -120,8 +121,9 @@
 	icon = 'icons/Marine/marine-weapons.dmi'
 	icon_state = "sentry_case"
 	w_class = WEIGHT_CLASS_HUGE
-	storage_slots = 4
-	can_hold = list(
+	storage_slots = 6
+	can_hold = list
+		(
 		/obj/item/weapon/gun/sentry/mini,
 		/obj/item/ammo_magazine/minisentry,
 		/obj/item/cell/lasgun/lasrifle/marine,
