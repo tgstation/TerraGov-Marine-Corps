@@ -344,7 +344,7 @@ TUNNEL
 		if(A)
 			to_chat(creator, "<span class='xenoannounce'>You sense your acid well at [A.name] has been destroyed!</span>")
 
-	if(damage_amount) //Spawn the gas only if we actually get destroyed by damage
+	if(damage_amount || damage_flag) //Spawn the gas only if we actually get destroyed by damage
 		var/datum/effect_system/smoke_spread/xeno/acid/A = new(get_turf(src))
 		A.set_up(clamp(CEILING(charges*0.5, 1),0,3),src) //smoke scales with charges
 		A.start()
@@ -810,6 +810,7 @@ TUNNEL
 	layer =  ABOVE_MOB_LAYER
 	density = TRUE
 	resistance_flags = UNACIDABLE | DROPSHIP_IMMUNE
+	xeno_structure_flags = IGNORE_WEED_REMOVAL
 	///The hive it belongs to
 	var/datum/hive_status/associated_hive
 	///What kind of spit it uses
