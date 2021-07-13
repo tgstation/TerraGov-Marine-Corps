@@ -33,9 +33,7 @@
 
 /obj/machinery/deployable/mounted/sentry/Initialize(mapload, _internal_item)
 	. = ..()
-	var/obj/item/weapon/gun/sentry/sentry = internal_item
-	if(!istype(internal_item, /obj/item/weapon/gun/sentry))
-		CRASH("[sentry] has been deployed, however it is incompatible because it is not of type '/obj/item/weapon/gun/sentry")
+	var/obj/item/weapon/gun/sentry = internal_item
 
 	if((sentry.gun_firemode_list.len == 1 && sentry.gun_firemode != GUN_FIREMODE_SEMIAUTO))
 		CRASH("[sentry] has been deployed, yet it does not have the option for Semi-Automatic fire. GUN_FIREMODE_SEMIAUTO should be available.")
@@ -43,7 +41,7 @@
 	sentry.set_gun_user(null)
 	sentry.do_toggle_firemode(new_firemode = GUN_FIREMODE_SEMIAUTO)
 	knockdown_threshold = sentry.knockdown_threshold
-	range = sentry.range
+	range = sentry.turret_range
 
 	radio = new(src)
 
@@ -108,7 +106,7 @@
 	set_on(TRUE)
 
 /obj/machinery/deployable/mounted/sentry/attack_hand(mob/living/user)
-	var/obj/item/weapon/gun/sentry/sentry = internal_item
+	var/obj/item/weapon/gun/sentry = internal_item
 	if(CHECK_BITFIELD(sentry.turret_flags, TURRET_IMMOBILE))
 		to_chat(user, "<span class='warning'>[src]'s panel is completely locked, you can't do anything.</span>")
 		return
@@ -136,7 +134,7 @@
 		ui.open()
 
 /obj/machinery/deployable/mounted/sentry/ui_data(mob/user)
-	var/obj/item/weapon/gun/sentry/sentry = internal_item
+	var/obj/item/weapon/gun/sentry = internal_item
 	. = list(
 		"name" = copytext(src.name, 2),
 		"rounds" = sentry.current_mag.current_rounds,
@@ -157,7 +155,7 @@
 	. = ..()
 	if(.)
 		return
-	var/obj/item/weapon/gun/sentry/sentry = internal_item
+	var/obj/item/weapon/gun/sentry = internal_item
 	var/mob/living/carbon/human/user = usr
 	if(!istype(user) || CHECK_BITFIELD(sentry.turret_flags, TURRET_IMMOBILE) || knocked_down)
 		return
@@ -199,7 +197,7 @@
 
 ///Handles turning the sentry ON and OFF. new_state is a bool
 /obj/machinery/deployable/mounted/sentry/proc/set_on(new_state)
-	var/obj/item/weapon/gun/sentry/sentry = internal_item
+	var/obj/item/weapon/gun/sentry = internal_item
 	if(!new_state)
 		visible_message("<span class='notice'>The [name] powers down and goes silent.</span>")
 		DISABLE_BITFIELD(sentry.turret_flags, TURRET_ON)
@@ -260,7 +258,7 @@
 /obj/machinery/deployable/mounted/sentry/proc/sentry_alert(alert_code, mob/mob)
 	if(!internal_item)
 		return
-	var/obj/item/weapon/gun/sentry/sentry = internal_item
+	var/obj/item/weapon/gun/sentry = internal_item
 	if(!alert_code || !CHECK_BITFIELD(sentry.turret_flags, TURRET_ALERTS) || !CHECK_BITFIELD(sentry.turret_flags, TURRET_ON))
 		return
 	
@@ -291,7 +289,7 @@
 	last_damage_alert = world.time
 
 /obj/machinery/deployable/mounted/sentry/process()
-	var/obj/item/weapon/gun/sentry/sentry = internal_item
+	var/obj/item/weapon/gun/sentry = internal_item
 	if(knocked_down)
 		stop_processing()
 		return
@@ -312,8 +310,7 @@
 
 ///Sees if theres a target to shoot, then handles firing.
 /obj/machinery/deployable/mounted/sentry/proc/sentry_start_fire()
-	update_icon_state()
-	var/obj/item/weapon/gun/sentry/sentry = internal_item
+	var/obj/item/weapon/gun/sentry = internal_item
 
 	var/new_target = get_target()
 
@@ -348,7 +345,7 @@
 
 ///Gets eligable targets for the sentry.
 /obj/machinery/deployable/mounted/sentry/proc/get_target()
-	var/obj/item/weapon/gun/sentry/sentry = internal_item
+	var/obj/item/weapon/gun/sentry = internal_item
 	var/list/mob/potential_targets = view(range, src)
 
 	var/list/turf/path = list()
@@ -409,3 +406,4 @@
 		return pick(targets)
 
 	return null
+

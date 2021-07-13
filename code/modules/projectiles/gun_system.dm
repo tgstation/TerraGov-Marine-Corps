@@ -128,6 +128,15 @@
 	var/lower_akimbo_accuracy = 1
 	///If the gun is deployable, the time it takes for the weapon to deploy and undeploy.
 	var/deploy_time = 0
+	///Flags that the deployed sentry uses upon deployment.
+	var/turret_flags = NONE
+	///Damage threshold for whether a turret will be knocked down.
+	var/knockdown_threshold = 150
+	///Range of deployed turret
+	var/turret_range = 7
+	///Battery used for radial mode on deployed turrets.
+	var/obj/item/cell/battery
+	var/cell_type = /obj/item/cell
 //----------------------------------------------------------
 				//				    \\
 				// NECESSARY PROCS  \\
@@ -164,6 +173,7 @@
 
 	if(flags_item & IS_SENTRY)
 		AddElement(/datum/element/deployable_item, /obj/machinery/deployable/mounted/sentry, deploy_time)
+		battery = new cell_type(src)
 
 
 //Hotfix for attachment offsets being set AFTER the core New() proc. Causes a small graphical artifact when spawning, hopefully works even with lag
@@ -192,6 +202,8 @@
 		QDEL_NULL(current_mag)
 	if(muzzle_flash)
 		QDEL_NULL(muzzle_flash)
+	if(battery)
+		QDEL_NULL(battery)
 	return ..()
 
 /obj/item/weapon/gun/emp_act(severity)
