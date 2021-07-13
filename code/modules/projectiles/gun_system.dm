@@ -591,7 +591,6 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 		ENABLE_BITFIELD(flags_gun_features, GUN_BURST_FIRING)
 		return
 	DISABLE_BITFIELD(flags_gun_features, GUN_BURST_FIRING)
-	extra_delay = fire_delay * 1.5
 
 ///Update the target if you draged your mouse
 /obj/item/weapon/gun/proc/change_target(datum/source, atom/src_object, atom/over_object, turf/src_location, turf/over_location, src_control, over_control, params)
