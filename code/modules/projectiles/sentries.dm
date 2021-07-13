@@ -21,10 +21,17 @@
 	var/knockdown_threshold = 150
 	///Current target of the sentry
 	var/mob/living/target
+	var/mob/living/last_hostile
+	var/mob/living/potential_targets
+
 	///Time of last alert
 	var/last_alert = 0
 	///Time of last damage alert
 	var/last_damage_alert = 0
+
+
+	var/last_scan_time
+
 	///Radio so that the sentry can scream for help
 	var/obj/item/radio/radio
 
@@ -288,40 +295,50 @@
 	radio.talk_into(src, "[notice]", FREQ_COMMON)
 	last_damage_alert = world.time
 
+
 /obj/machinery/deployable/mounted/sentry/process()
 	var/obj/item/weapon/gun/sentry = internal_item
-	if(knocked_down)
-		stop_processing()
-		return
-
-	if(!sentry.current_mag)
-		sentry_alert(SENTRY_ALERT_AMMO)
-		return
-
+	if(world.time > last_scan_time + sentry.fire_delay)
+		scan()
+		last_scan_time = world.time
 	playsound(loc, 'sound/items/detector.ogg', 25, FALSE)
+	if(!potential_targets.len)
+		return
+	set_target(get_target())
+	if (!target)
+		if(last_target)
+			set_last_target(null)
+		return
+	if(target != last_target)
+		set_last_target(target)
+		sentry_start_fire()
 
-	var/fire_delay = sentry.fire_delay
-	if(fire_delay >= 2 SECONDS)
-		fire_delay = 2 SECONDS
-	var/checks_per_proccess = round(2 SECONDS / fire_delay, 1)
 
-	for(var/check = 1, check < checks_per_proccess, check++)
-		addtimer(CALLBACK(src, .proc/sentry_start_fire), fire_delay*check)
+/obj/machinery/deployable/mounted/sentry/proc/set_target(_target)
+	if(target != _target)
+		target = _target
+		RegisterSignal(target, COMSIG_PARENT_QDELETING, .proc/unset_target)
+
+///Signal handler for hard del of target
+/obj/machinery/deployable/mounted/sentry/proc/unset_target()
+	SIGNAL_HANDLER
+	target = null
+
+///Signal handler for hard del of last_target
+/obj/machinery/deployable/mounted/sentry/proc/unset_last_target()
+	SIGNAL_HANDLER
+	last_target = null
+
+/obj/machinery/deployable/mounted/sentry/proc/set_last_target(_last_target)
+	if(last_target)
+		UnregisterSignal(last_target, COMSIG_PARENT_QDELETING)
+	last_target = _last_target
 
 ///Sees if theres a target to shoot, then handles firing.
 /obj/machinery/deployable/mounted/sentry/proc/sentry_start_fire()
 	var/obj/item/weapon/gun/sentry = internal_item
-
-	var/new_target = get_target()
-
-	if(!new_target)
-		target = new_target
-		sentry.stop_fire()
-		return
-
-	target = new_target
 	if(CHECK_BITFIELD(sentry.turret_flags, TURRET_RADIAL))
-		sentry.battery.charge -= 20
+		sentry.battery.charge -= sentry.cell_drain
 		var/new_dir = get_dir(src, target)
 		switch(new_dir)
 			if(NORTHWEST)
@@ -343,21 +360,27 @@
 		sentry.do_toggle_firemode(new_firemode = GUN_FIREMODE_SEMIAUTO)
 	sentry.start_fire(src, target, bypass_checks = TRUE)
 
-///Gets eligable targets for the sentry.
+/obj/machinery/deployable/mounted/sentry/proc/scan()
+	potential_targets.Cut()
+	for (var/mob/living/carbon/human/nearby_human AS in cheap_get_humans_near(src, range))
+		if(nearby_human.stat == DEAD)
+			continue
+		potential_targets += nearby_human
+	for (var/mob/living/carbon/xenomorph/nearby_xeno AS in cheap_get_xenos_near(src, range))
+		if(associated_hive == nearby_xeno.hive) //Xenomorphs not in our hive will be attacked as well!
+			continue
+		if(nearby_xeno.stat == DEAD)
+			continue
+		potential_targets += nearby_xeno
+
+
+
 /obj/machinery/deployable/mounted/sentry/proc/get_target()
-	var/obj/item/weapon/gun/sentry = internal_item
-	var/list/mob/potential_targets = view(range, src)
-
+	var/distance = range + 0.5 //we add 0.5 so if a potential target is at range, it is accepted by the system
+	var/buffer_distance
 	var/list/turf/path = list()
-	var/turf/turf
-
-	var/list/mob/targets = list()
-
-	if(!potential_targets.len)
-		return null
-
-	for(var/mob/living/mob AS in potential_targets)
-		if(!istype(mob) || mob.stat == DEAD)
+	for (var/mob/living/nearby_target AS in potential_targets)
+		if(nearby_target.stat == DEAD)
 			continue
 
 		var/mob/living/carbon/human/human = mob
@@ -368,42 +391,40 @@
 		if(!(angle & dir) && !CHECK_BITFIELD(sentry.turret_flags, TURRET_RADIAL))
 			continue
 
-		path = getline(src, mob)
-		path -= get_turf(src)
+		buffer_distance = get_dist(nearby_target, src)
+
+		if (distance <= buffer_distance) //If we already found a target that's closer
+			continue
 
 		sentry_alert(SENTRY_ALERT_HOSTILE, mob)
 
-		if(!path.len)
-			return
+		path = getline(src, nearby_target)
+		path -= get_turf(src)
+		if(!path.len) //Can't shoot if it's on the same turf
+			continue
 		var/blocked = FALSE
-		for(turf in path)
+		for(var/turf/T AS in path)
 
 			var/obj/effect/particle_effect/smoke/smoke = locate() in turf
 			if(smoke)
 				blocked = TRUE
 				break
 
-			if(IS_OPAQUE_TURF(turf) || turf.density && turf.throwpass == FALSE)
+			if(IS_OPAQUE_TURF(T) || T.density && T.throwpass == FALSE)
 				blocked = TRUE
 				break //LoF Broken; stop checking; we can't proceed further.
-	
-			for(var/obj/machinery/machinery in turf)
-				if(machinery.opacity || machinery.density && machinery.throwpass == FALSE)
+
+			for(var/obj/machinery/MA in T)
+				if(MA.opacity || MA.density && MA.throwpass == FALSE)
 					blocked = TRUE
 					break //LoF Broken; stop checking; we can't proceed further.
 
-			for(var/obj/structure/structure in turf)
-				if(structure.opacity || structure.density && structure.throwpass == FALSE )
+			for(var/obj/structure/S in T)
+				if(S.opacity || S.density && S.throwpass == FALSE )
 					blocked = TRUE
 					break //LoF Broken; stop checking; we can't proceed further.
 		if(!blocked)
-			targets.Add(mob)
+			distance = buffer_distance
+			. = nearby_hostile
 
-	if(target in targets)
-		return target
-
-	if(targets.len) 
-		return pick(targets)
-
-	return null
 
