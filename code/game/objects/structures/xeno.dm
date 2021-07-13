@@ -12,8 +12,18 @@
 	resistance_flags = UNACIDABLE
 	obj_flags = CAN_BE_HIT
 	var/on_fire = FALSE
-	var/ignore_weed_destruction = FALSE //Set this to true if this object isn't destroyed when the weeds under it is.
+	///Set this to true if this object isn't destroyed when the weeds under it is.
+	var/ignore_weed_destruction = FALSE
 
+/obj/effect/alien/Initialize()
+	. = ..()
+	if(!ignore_weed_destruction)
+		RegisterSignal(loc, COMSIG_TURF_WEED_REMOVED, .proc/weed_removed)
+
+/// Destroy the alien effect when the weed it was on is destroyed
+/obj/effect/alien/proc/weed_removed()
+	SIGNAL_HANDLER
+	obj_destruction(damage_flag = "melee")
 
 /obj/effect/alien/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -128,12 +138,19 @@
 	anchored = TRUE
 	max_integrity = 5
 	layer = RESIN_STRUCTURE_LAYER
+	destroy_sound = "alien_resin_break"
 	var/obj/item/clothing/mask/facehugger/hugger = null
 
 /obj/structure/xeno/trap/Initialize(mapload)
 	. = ..()
 	RegisterSignal(src, COMSIG_MOVABLE_SHUTTLE_CRUSH, .proc/shuttle_crush)
 	RegisterSignal(src, COMSIG_MOVABLE_CROSSED_BY, .proc/trigger_hugger_trap) //Set up the trap signal on our turf
+	RegisterSignal(loc, COMSIG_TURF_WEED_REMOVED, .proc/weed_removed)
+
+/// Destroy the carrier trap when the weed it was on is destroyed
+/obj/structure/xeno/trap/proc/weed_removed()
+	SIGNAL_HANDLER
+	obj_destruction(damage_flag = "melee")
 
 /obj/structure/xeno/trap/ex_act(severity)
 	switch(severity)
@@ -146,7 +163,7 @@
 
 
 /obj/structure/xeno/trap/obj_destruction(damage_amount, damage_type, damage_flag)
-	if(damage_amount && hugger && loc)
+	if((damage_amount || damage_flag) && hugger && loc)
 		drop_hugger()
 
 	return ..()
