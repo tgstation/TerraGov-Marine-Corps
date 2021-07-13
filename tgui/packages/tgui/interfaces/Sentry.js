@@ -10,15 +10,7 @@ export const Sentry = (props, context) => {
       width={360}
       height={320}>
       <Window.Content>
-        <Section title={data.name}
-          buttons={
-            <Button
-              icon="power-off"
-              selected={data.is_on}
-              onClick={() => act('power')}>
-              {data.is_on ? 'On' : 'Off'}
-            </Button>
-          }>
+        <Section title={data.name}>
           <LabeledList>
             <LabeledList.Item
               label="Power Cell Status">
@@ -57,62 +49,33 @@ export const Sentry = (props, context) => {
             <LabeledList.Item
               buttons={
                 <Button
-                  selected={data.burst_fire}
-                  onClick={() => act('burst')}
-                  icon={data.burst_fire ? "step-forward" : "play"}
-                  disabled={!data.is_on}>
-                  Burst Fire
-                </Button>
-              }
-              label="Burst Fire" />
-            <LabeledList.Item
-              buttons={
-                <>
-                  <Button
-                    onClick={() => act('burstup')}
-                    icon="plus"
-                    disabled={!data.is_on} />
-                  <Box inline mr={1} ml={1}>{data.burst_size}</Box>
-                  <Button
-                    onClick={() => act('burstdown')}
-                    icon="minus"
-                    disabled={!data.is_on} />
-                </>
-              }
-              label="Burst Count" />
-            <LabeledList.Item
-              buttons={
-                <Button
                   selected={data.safety_toggle}
                   onClick={() => act('safety')}
-                  icon={data.safety_toggle ? "check" : "times"}
-                  disabled={!data.is_on}>
+                  icon={data.safety_toggle ? "check" : "times"}>
                   Safety
                 </Button>
               }
               label="Weapon Safety">
               {data.safety_toggle ? "Only Xenos" : "Everything"}
             </LabeledList.Item>
-            {!data.mini && (
-              <LabeledList.Item
-                buttons={
-                  <Button
-                    selected={data.manual_override}
-                    onClick={() => act('manual')}
-                    icon={data.manual_override ? "check" : "times"}
-                    disabled={!data.is_on}>
-                    Manual Override
-                  </Button>
-                }
-                label="Manual Override" />
-            )}
+            <LabeledList.Item
+              buttons={
+                <Button
+                  selected={data.manual_override}
+                  onClick={() => act('manual')}
+                  icon={data.manual_override ? "check" : "times"}>
+                  Manual Override
+                </Button>
+              }
+              label="Manual Override">
+            </LabeledList.Item>
             <LabeledList.Item
               buttons={
                 <Button
                   selected={data.radial_mode}
                   onClick={() => act('toggle_radial')}
                   icon={data.radial_mode ? "check" : "times"}
-                  disabled={!data.is_on}>
+                  disabled={!data.has_cell}>
                   Radial Mode
                 </Button>
               }
@@ -122,8 +85,7 @@ export const Sentry = (props, context) => {
                 <Button
                   selected={data.alerts_on}
                   onClick={() => act('toggle_alert')}
-                  icon={data.alerts_on ? "check" : "times"}
-                  disabled={!data.is_on}>
+                  icon={data.alerts_on ? "check" : "times"}>
                   Alert Mode
                 </Button>
               }
