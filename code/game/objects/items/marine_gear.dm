@@ -238,4 +238,3 @@
 	var/turf/location = get_turf(src)
 	user.show_message("<span class='warning'>After looking at the [src] you getting your bearings you can guess your general coordinates. LONGITUDE [location.x]. LATITUDE [location.y].")
 
-
