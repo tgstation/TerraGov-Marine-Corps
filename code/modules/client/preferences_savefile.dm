@@ -4,7 +4,7 @@
 //	You do not need to raise this if you are adding new values that have sane defaults.
 //	Only raise this value when changing the meaning/format/name/layout of an existing value
 //	where you would want the updater procs below to run
-#define SAVEFILE_VERSION_MAX 43
+#define SAVEFILE_VERSION_MAX 44
 
 /datum/preferences/proc/savefile_needs_update(savefile/S)
 	var/savefile_version
@@ -79,6 +79,12 @@
 		WRITE_FILE(S["chat_on_map"], chat_on_map)
 		WRITE_FILE(S["max_chat_length"], max_chat_length)
 		WRITE_FILE(S["see_chat_non_mob"], see_chat_non_mob)
+
+	if(savefile_version == 43)
+		var/datum/loadout_manager/manager = load_loadout_manager()
+		if(istype(manager))
+			loadout_manager.loadouts_data = convert_loadouts_list(manager?.loadouts_data)
+
 
 	savefile_version = SAVEFILE_VERSION_MAX
 	return TRUE
@@ -661,6 +667,26 @@
 	var/list/loadouts_data = list()
 	READ_FILE(S["loadouts_list"], loadouts_data)
 	return sanitize_islist(loadouts_data, list())
+
+/**
+ * Load from a savefile and unserialize the loadout manager
+ * This is deprecated and should be used only to convert old loadout list save system to new one
+ */
+/datum/preferences/proc/load_loadout_manager()
+	if(!path)
+		return FALSE
+	if(!fexists(path))
+		return FALSE
+	var/savefile/S = new /savefile(path)
+	if(!S)
+		return FALSE
+	S.cd = "/loadouts"
+	var/json_loadout_manager = ""
+	READ_FILE(S["loadouts_manager"], json_loadout_manager)
+	if(!json_loadout_manager)
+		return FALSE
+	loadout_manager = jatum_deserialize(json_loadout_manager)
+	return !isnull(loadout_manager)
 
 
 ///Erase all loadouts that could be saved on the savefile

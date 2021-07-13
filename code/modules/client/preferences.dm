@@ -181,7 +181,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		load_path(C.ckey)
 		loadout_manager = new
 		loadout_manager.loadouts_data = load_loadout_list()
-		reset_loadouts_file()
 		if(load_preferences() && load_character())
 			C.set_fullscreen(fullscreen_mode)
 			return

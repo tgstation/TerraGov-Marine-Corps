@@ -91,9 +91,11 @@
 			if(!istype(loadout))
 				to_chat(ui.user, "<span class='warning'>Loadout not found!</span>")
 				return
-			if(loadout.version != CURRENT_LOADOUT_VERSION)
+			if(!(loadout.version in GLOB.accepted_loadout_versions))
 				to_chat(ui.user, "<span class='warning'>The loadouts was found but is from a past version, and cannot be imported.</span>")
 				return
+			if(loadout.version != CURRENT_LOADOUT_VERSION)
+				loadout.version = CURRENT_LOADOUT_VERSION
 			ui.user.client.prefs.save_loadout(loadout)
 			add_loadout(loadout)
 			update_static_data(ui.user, ui)

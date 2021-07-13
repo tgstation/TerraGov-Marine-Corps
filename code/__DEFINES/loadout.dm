@@ -526,5 +526,7 @@ GLOBAL_LIST_INIT(loadout_job_supported, list(
 ///The maximum number of loadouts one player can have
 #define MAXIMUM_LOADOUT 50
 
-/// The currently accepted loadout version, all other loadouts will be erased from savefiles
+/// The current loadout version
 #define CURRENT_LOADOUT_VERSION 6
+
+GLOBAL_LIST_INIT(accepted_loadout_versions, list(5,6))
