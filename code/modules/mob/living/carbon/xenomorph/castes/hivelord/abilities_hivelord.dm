@@ -220,7 +220,7 @@
 	action_icon_state = "gut"
 	mechanics_text = "Create a fireproof jelly."
 	plasma_cost = 100
-	cooldown_timer = 5 SECONDS
+	cooldown_timer = 20 SECONDS
 	keybind_signal = COMSIG_XENOABILITY_CREATE_JELLY
 
 /datum/action/xeno_action/create_jelly/can_use_action(silent = FALSE, override_flags)
