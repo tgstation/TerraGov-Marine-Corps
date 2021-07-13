@@ -492,7 +492,6 @@ GLOBAL_LIST_INIT(loadout_role_essential_set, list(
 		/obj/item/motiondetector = 1,
 		/obj/item/binoculars/tactical = 1,
 		/obj/item/pinpointer/pool = 1,
-		/obj/item/clothing/glasses/hud/health = 1,
 	)
 ))
 
@@ -515,7 +514,7 @@ GLOBAL_LIST_INIT(loadout_job_supported, list(
 	SQUAD_SMARTGUNNER,
 	SQUAD_LEADER,
 ))
-	
+
 
 //Defines use for the visualisation of loadouts
 #define NO_OFFSET "0%"
