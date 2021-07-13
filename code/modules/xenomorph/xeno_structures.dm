@@ -298,6 +298,7 @@
 	return ..()
 
 /obj/structure/xeno/resin/xeno_turret/Destroy()
+	GLOB.xeno_turret_turfs -= loc
 	set_hostile(null)
 	set_last_hostile(null)
 	STOP_PROCESSING(SSobj, src)
