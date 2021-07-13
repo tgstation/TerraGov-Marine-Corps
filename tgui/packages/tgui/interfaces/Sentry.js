@@ -67,8 +67,7 @@ export const Sentry = (props, context) => {
                   Manual Override
                 </Button>
               }
-              label="Manual Override">
-            </LabeledList.Item>
+              label="Manual Override" />
             <LabeledList.Item
               buttons={
                 <Button
