@@ -121,8 +121,6 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 /obj/item/radio/headset/talk_into(mob/living/M, message, channel, list/spans, datum/language/language)
 	if(!listening)
 		return ITALICS | REDUCE_RANGE
-	if(channel && frequency == FREQ_COMMON_REBEL)
-		channel += " Rebel"
 	return ..()
 
 
@@ -158,6 +156,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	item_state = "headset"
 	frequency = FREQ_COMMON
 	flags_atom = CONDUCT | PREVENT_CONTENTS_EXPLOSION
+	freerange = TRUE
 	var/obj/machinery/camera/camera
 	var/datum/atom_hud/squadhud = null
 	var/mob/living/carbon/human/wearer = null
@@ -451,7 +450,6 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 
 /obj/item/radio/headset/mainship/marine
 	keyslot = /obj/item/encryptionkey/general
-	freerange = TRUE
 
 /obj/item/radio/headset/mainship/marine/rebel
 	frequency = FREQ_COMMON_REBEL
