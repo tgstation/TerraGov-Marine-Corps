@@ -2369,6 +2369,9 @@
 "ix" = (
 /obj/structure/disposalpipe/trunk,
 /obj/machinery/disposal,
+/obj/machinery/light{
+	dir = 4
+	},
 /turf/open/floor/mainship/red{
 	dir = 5
 	},
@@ -2788,6 +2791,9 @@
 "jQ" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
 	name = "\improper Firing Range"
+	},
+/obj/machinery/door/firedoor/mainship{
+	dir = 2
 	},
 /turf/open/floor/mainship/red{
 	dir = 8
@@ -4139,6 +4145,9 @@
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/door/firedoor/mainship{
+	dir = 2
+	},
 /turf/open/floor/mainship/mono,
 /area/mainship/shipboard/starboard_missiles)
 "nV" = (
@@ -4642,6 +4651,9 @@
 /area/mainship/medical/medical_science)
 "pF" = (
 /obj/machinery/door/airlock/mainship/maint{
+	dir = 2
+	},
+/obj/machinery/door/firedoor/mainship{
 	dir = 2
 	},
 /turf/open/floor/mainship/mono,
@@ -5158,6 +5170,9 @@
 	name = "\improper Firing Range"
 	},
 /obj/structure/cable,
+/obj/machinery/door/firedoor/mainship{
+	dir = 2
+	},
 /turf/open/floor/mainship/red{
 	dir = 8
 	},
@@ -5525,6 +5540,9 @@
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment{
 	dir = 4
+	},
+/obj/machinery/door/firedoor/mainship{
+	dir = 2
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/shipboard/starboard_missiles)
@@ -6499,6 +6517,9 @@
 "vS" = (
 /obj/machinery/door/airlock/mainship/maint,
 /obj/structure/cable,
+/obj/machinery/door/firedoor/mainship{
+	dir = 2
+	},
 /turf/open/floor/mainship/mono,
 /area/mainship/shipboard/starboard_missiles)
 "vT" = (
@@ -11339,6 +11360,14 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/engineering_workshop)
+"Li" = (
+/obj/machinery/door/firedoor/mainship{
+	dir = 2
+	},
+/turf/open/floor/mainship/red{
+	dir = 4
+	},
+/area/mainship/shipboard/firing_range)
 "Lj" = (
 /obj/structure/cable,
 /obj/machinery/alarm{
@@ -14127,6 +14156,9 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
+/obj/machinery/door/firedoor/mainship{
+	dir = 2
+	},
 /turf/open/floor/mainship/cargo/arrow{
 	dir = 8
 	},
@@ -15621,11 +15653,11 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/living/pilotbunks)
 "ZF" = (
-/obj/machinery/light{
-	dir = 4
-	},
 /obj/structure/largecrate/random/case/double,
 /obj/structure/disposalpipe/segment/corner{
+	dir = 8
+	},
+/obj/machinery/firealarm{
 	dir = 8
 	},
 /turf/open/floor/mainship/red{
@@ -50826,7 +50858,7 @@ qV
 IG
 hW
 Te
-Te
+Li
 LQ
 jl
 ot
@@ -52111,7 +52143,7 @@ qz
 qY
 Vv
 Te
-Te
+Li
 Ol
 nE
 Qj
