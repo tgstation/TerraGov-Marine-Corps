@@ -1,0 +1,6 @@
+author: "lbnesquik"
+delete-after: True
+changes: 
+  - qol: "Made the OB room on POS less bad. Did you notice POS sounds like something rude?"
+  - bugfix: "Fixed some oddly placed or oriented cameras on the POS."
+  - bugfix: "Fixed a few floating lights and APC's"

@@ -1,0 +1,4 @@
+author: "lbnesquik"
+delete-after: True
+changes: 
+  - rscadd: "Add some water tanks to the water scarce POS."

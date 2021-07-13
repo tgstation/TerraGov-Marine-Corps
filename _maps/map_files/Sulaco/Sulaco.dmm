@@ -1733,7 +1733,9 @@
 /obj/structure/window/reinforced/tinted/frosted{
 	dir = 4
 	},
-/obj/machinery/door/window/southright,
+/obj/machinery/door/window/right{
+	dir = 2
+	},
 /turf/open/floor/freezer,
 /area/sulaco/showers)
 "agM" = (
@@ -2459,7 +2461,9 @@
 	dir = 8
 	},
 /obj/structure/window/reinforced/tinted/frosted,
-/obj/machinery/door/window/westleft,
+/obj/machinery/door/window{
+	dir = 8
+	},
 /turf/open/floor/freezer,
 /area/sulaco/showers)
 "amm" = (
@@ -2745,10 +2749,12 @@
 /turf/closed/wall/mainship/gray,
 /area/sulaco/bridge)
 "aoq" = (
-/obj/machinery/door/window/eastleft,
+/obj/machinery/door/window,
 /obj/structure/table/reinforced,
 /obj/machinery/door/poddoor/open/bridge,
-/obj/machinery/door/window/secure/westleft/bridge,
+/obj/machinery/door/window/secure/bridge{
+	dir = 8
+	},
 /turf/open/floor/carpet,
 /area/sulaco/bridge/office)
 "aor" = (
@@ -2847,7 +2853,7 @@
 /obj/structure/window/reinforced{
 	dir = 1
 	},
-/obj/machinery/door/window/secure/eastleft/bridge{
+/obj/machinery/door/window/secure/bridge{
 	name = "interior door"
 	},
 /turf/open/floor/stairs/rampbottom{
@@ -2924,7 +2930,7 @@
 	},
 /area/sulaco/bridge)
 "apq" = (
-/obj/machinery/door/window/secure/eastright/bridge,
+/obj/machinery/door/window/secure/bridge/right,
 /turf/open/floor/stairs/rampbottom{
 	dir = 4
 	},
@@ -3633,7 +3639,7 @@
 /turf/open/floor/prison/red,
 /area/sulaco/hallway/central_hall)
 "ast" = (
-/obj/machinery/door/window/secure/eastleft/bridge{
+/obj/machinery/door/window/secure/bridge{
 	name = "Commander's Deck"
 	},
 /turf/open/floor/stairs/rampbottom{
@@ -4401,7 +4407,7 @@
 /area/sulaco/briefing)
 "avv" = (
 /obj/structure/window/reinforced,
-/obj/machinery/door/window/secure/eastright/bridge,
+/obj/machinery/door/window/secure/bridge/right,
 /turf/open/floor/stairs/rampbottom{
 	dir = 4
 	},
@@ -4598,7 +4604,7 @@
 /turf/open/floor/plating/platebotc,
 /area/sulaco/briefing)
 "awn" = (
-/obj/machinery/door/window/secure/eastleft/bridge{
+/obj/machinery/door/window/secure/bridge{
 	name = "interior door"
 	},
 /turf/open/floor/stairs/rampbottom{
@@ -5267,8 +5273,10 @@
 	},
 /area/sulaco/bridge)
 "azG" = (
-/obj/machinery/door/window/secure/westleft/bridge,
-/obj/machinery/door/window/eastleft,
+/obj/machinery/door/window/secure/bridge{
+	dir = 8
+	},
+/obj/machinery/door/window,
 /obj/structure/table/reinforced,
 /obj/machinery/door/poddoor/open/bridge,
 /obj/machinery/door/firedoor,
@@ -5352,7 +5360,9 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 1
 	},
-/obj/machinery/door/window/secure/northleft/req,
+/obj/machinery/door/window/secure/bridge{
+	dir = 1
+	},
 /turf/open/floor/prison,
 /area/sulaco/briefing)
 "aAg" = (
@@ -5553,7 +5563,7 @@
 	dir = 8
 	},
 /obj/structure/window/reinforced,
-/obj/machinery/door/window/northright,
+/obj/machinery/door/window/right,
 /turf/open/floor/bcircuit,
 /area/sulaco/bridge)
 "aBj" = (
@@ -5809,7 +5819,9 @@
 	dir = 8
 	},
 /obj/structure/window/reinforced,
-/obj/machinery/door/window/northleft,
+/obj/machinery/door/window{
+	dir = 1
+	},
 /turf/open/floor/bcircuit,
 /area/sulaco/bridge)
 "aCo" = (
@@ -5818,7 +5830,9 @@
 	dir = 4
 	},
 /obj/structure/window/reinforced,
-/obj/machinery/door/window/northright,
+/obj/machinery/door/window/right{
+	dir = 1
+	},
 /turf/open/floor/bcircuit,
 /area/sulaco/bridge)
 "aCp" = (
@@ -5930,7 +5944,9 @@
 /turf/open/floor/prison,
 /area/sulaco/maintenance/upperdeck_AIcore_maint)
 "aCK" = (
-/obj/machinery/door/window/secure/westleft/req,
+/obj/machinery/door/window/secure{
+	dir = 8
+	},
 /turf/open/floor/prison,
 /area/sulaco/briefing)
 "aCL" = (
@@ -11820,6 +11836,13 @@
 	},
 /turf/open/floor/mainship/ai,
 /area/sulaco/command/ai)
+"eMl" = (
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/machinery/cic_maptable,
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/bridge)
 "eNh" = (
 /obj/effect/attach_point/weapon/dropship2{
 	dir = 4;
@@ -12242,7 +12265,7 @@
 /turf/open/floor/prison,
 /area/mainship/living/pilotbunks)
 "fGp" = (
-/obj/machinery/door/window/eastleft{
+/obj/machinery/door/window{
 	dir = 2;
 	name = "Basketball Court"
 	},
@@ -12705,7 +12728,9 @@
 /obj/machinery/shower{
 	dir = 8
 	},
-/obj/machinery/door/window/westleft,
+/obj/machinery/door/window{
+	dir = 8
+	},
 /turf/open/floor/freezer,
 /area/sulaco/showers)
 "gKQ" = (
@@ -15813,7 +15838,7 @@
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/sulaco/hallway/central_hall3)
 "mBV" = (
-/obj/machinery/door/window/eastleft{
+/obj/machinery/door/window{
 	dir = 8;
 	name = "Basketball Court"
 	},
@@ -15882,7 +15907,7 @@
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/self_destruct)
 "mGX" = (
-/obj/machinery/door/window/eastleft{
+/obj/machinery/door/window{
 	name = "Basketball Court"
 	},
 /obj/effect/decal/warning_stripes/thin{
@@ -17337,7 +17362,7 @@
 /turf/open/floor/plating,
 /area/sulaco/maintenance/lower_maint3)
 "php" = (
-/obj/machinery/door/window/eastleft{
+/obj/machinery/door/window{
 	dir = 1;
 	name = "Basketball Court"
 	},
@@ -20301,7 +20326,7 @@
 /turf/open/floor/freezer,
 /area/sulaco/cafeteria/kitchen)
 "utY" = (
-/obj/machinery/door/window/eastleft{
+/obj/machinery/door/window{
 	dir = 2
 	},
 /turf/open/floor/prison/sterilewhite,
@@ -21227,10 +21252,10 @@
 /obj/structure/table/reinforced{
 	layer = 2.1
 	},
-/obj/machinery/door/window/secure/eastleft/req{
+/obj/machinery/door/window/secure/req{
 	dir = 8
 	},
-/obj/machinery/door/window/eastright,
+/obj/machinery/door/window/right,
 /obj/machinery/door/poddoor/shutters/mainship/req/ro,
 /obj/machinery/door/firedoor/mainship,
 /turf/open/floor/prison/marked,
@@ -21433,11 +21458,11 @@
 /area/space)
 "wAj" = (
 /obj/structure/table/mainship,
-/obj/machinery/door/window/westleft/engineering{
-	dir = 4
+/obj/machinery/door/window{
+	dir = 8
 	},
-/obj/machinery/door/window/westleft,
 /obj/item/tool/crowbar,
+/obj/machinery/door/window/secure/engineering,
 /turf/open/floor/prison/darkyellow/corner,
 /area/sulaco/engineering)
 "wAz" = (
@@ -22270,7 +22295,7 @@
 /turf/open/floor/prison/sterilewhite,
 /area/sulaco/cafeteria/kitchen)
 "yai" = (
-/obj/machinery/door/window/eastleft{
+/obj/machinery/door/window{
 	dir = 8
 	},
 /turf/open/floor/freezer,
@@ -42055,7 +42080,7 @@ asf
 arA
 acc
 ayS
-asf
+eMl
 asr
 aDd
 tbJ

@@ -1,0 +1,4 @@
+author: "lbnesquik"
+delete-after: True
+changes: 
+  - bugfix: "fixed a messy area on the POS hangar, extended the fire shutters to match."

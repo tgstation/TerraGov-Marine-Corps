@@ -89,7 +89,7 @@
 	if(!can_xeno_slash(X))
 		return FALSE
 
-	var/damage = X.xeno_caste.melee_damage
+	var/damage = X.xeno_caste.melee_damage * X.xeno_melee_damage_modifier
 	if(!damage)
 		return FALSE
 

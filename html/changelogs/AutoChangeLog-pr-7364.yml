@@ -1,0 +1,5 @@
+author: "Pariah919"
+delete-after: True
+changes: 
+  - expansion: "t-25 ammo packet added to req"
+  - bugfix: "you can buy the t-25 smartrifle in req"

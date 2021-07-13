@@ -394,6 +394,10 @@
 	if(!access_delay || !should_access_delay(accessed, user, taking_out))
 		return TRUE
 
+	if(LAZYLEN(user.do_actions))
+		to_chat(user, "<span class='warning'>You are busy doing something else!</span>")
+		return FALSE
+
 	if(!alert_user)
 		return do_after(user, access_delay, TRUE, src, ignore_turf_checks=TRUE)
 
@@ -411,14 +415,14 @@
 	return FALSE
 
 /**
- * This proc handles items being inserted. It does not perform any checks of whether an item can or can't be inserted.     
+ * This proc handles items being inserted. It does not perform any checks of whether an item can or can't be inserted.
  * That's done by can_be_inserted()
  * The stop_warning parameter will stop the insertion message from being displayed. It is intended for cases where you are inserting multiple items at once,
  * such as when picking up all the items on a tile with one click.
  * user can be null, it refers to the potential mob doing the insertion.
  */
 /obj/item/storage/proc/handle_item_insertion(obj/item/item, prevent_warning = 0, mob/user)
-	if(!istype(item)) 
+	if(!istype(item))
 		return FALSE
 	if(!handle_access_delay(item, user, taking_out=FALSE))
 		item.forceMove(item.drop_location())
@@ -450,6 +454,9 @@
 	if(!istype(item))
 		return FALSE
 
+	if(!handle_access_delay(item, user))
+		return FALSE
+
 	for(var/mob/M AS in can_see_content())
 		if(!M.client)
 			continue
@@ -479,7 +486,7 @@
 
 	update_icon()
 
-	return handle_access_delay(item, user)
+	return TRUE
 
 //This proc is called when you want to place an item into the storage item.
 /obj/item/storage/attackby(obj/item/I, mob/user, params)
