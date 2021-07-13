@@ -1,5 +1,0 @@
-author: "Surrealaser"
-delete-after: True
-changes: 
-  - rscadd: "Rage ability added to the Ravager."
-  - code_imp: "Added support for Xeno melee damage multipliers."
