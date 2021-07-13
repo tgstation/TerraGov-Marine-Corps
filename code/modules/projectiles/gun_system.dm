@@ -1124,6 +1124,20 @@ and you're good to go.
 		flash_loc.vis_contents -= muzzle_flash
 	muzzle_flash.applied = FALSE
 
+/obj/item/weapon/gun/on_enter_storage(obj/item/I)
+	if(istype(I,/obj/item/storage/belt/gun))
+		var/obj/item/storage/belt/gun/GB = I
+		if(!GB.current_gun)
+			GB.current_gun = src //If there's no active gun, we want to make this our icon.
+			GB.update_gun_icon()
+
+/obj/item/weapon/gun/on_exit_storage(obj/item/I)
+	if(istype(I,/obj/item/storage/belt/gun))
+		var/obj/item/storage/belt/gun/GB = I
+		if(GB.current_gun == src)
+			GB.current_gun = null
+			GB.update_gun_icon()
+
 /obj/item/weapon/gun/proc/do_fire_attachment()
 	if(!CHECK_BITFIELD(flags_item, WIELDED))
 		to_chat(gun_user, "<span class='warning'>[active_attachable] must be wielded to fire!</span>")
