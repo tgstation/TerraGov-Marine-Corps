@@ -54,7 +54,7 @@
 /mob/living/carbon/human/on_death()
 	if(pulledby)
 		pulledby.stop_pulling()
-		adjustCloneLoss(human_death_penalty)
+		adjustCloneLoss(HUMAN_DEATH_PENALTY)
 
 	//Handle species-specific deaths.
 	species.handle_death(src)
