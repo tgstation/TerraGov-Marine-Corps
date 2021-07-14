@@ -33,16 +33,16 @@
 	var/obj/deployed_machine
 	var/deploy_location
 	var/new_direction
-	if(user) 
-		if(!ishuman(user)) 
+	if(user)
+		if(!ishuman(user))
 			return
 
 		deploy_location = get_step(user, user.dir)
 		if(attached_item.check_blocked_turf(deploy_location))
-			to_chat(user, "<span class='warning'>There is insufficient room to deploy [attached_item]!</span>")
+			to_chat(user, span_warning("There is insufficient room to deploy [attached_item]!"))
 			return
 		new_direction = user.dir
-		to_chat(user, "<span class='notice'>You start deploying the [attached_item].</span>")
+		to_chat(user, span_notice("You start deploying the [attached_item]."))
 		if(!do_after(user, deploy_time, TRUE, attached_item, BUSY_ICON_BUILD))
 			return
 
@@ -82,7 +82,7 @@
 		CRASH("[source] has sent the signal COMSIG_ITEM_UNDEPLOY to [attached_item] without the arg 'user'")
 	if(!ishuman(user))
 		return
-	to_chat(user, "<span class='notice'>You start disassembling the [attached_item]</span>")
+	to_chat(user, span_notice("You start disassembling the [attached_item]"))
 	if(!do_after(user, deploy_time, TRUE, deployed_machine, BUSY_ICON_BUILD))
 		return
 	user.unset_interaction()

@@ -26,17 +26,17 @@
 	..()
 	if(get_dist(user, src) > 2 && user != loc)
 		if(!is_open_container())
-			to_chat(user, "<span class='info'>An airtight lid seals it completely.</span>")
+			to_chat(user, span_info("An airtight lid seals it completely."))
 
 /obj/item/reagent_containers/glass/verb/attach_lid()
 	set name = "Attach/Detach lid"
 	set category = "Object"
 	if(is_open_container())
-		to_chat(usr, "<span class='notice'>You put the lid on \the [src].</span>")
+		to_chat(usr, span_notice("You put the lid on \the [src]."))
 		DISABLE_BITFIELD(reagents.reagent_flags, OPENCONTAINER)
 		ENABLE_BITFIELD(reagents.reagent_flags, TRANSPARENT)
 	else
-		to_chat(usr, "<span class='notice'>You take the lid off \the [src].</span>")
+		to_chat(usr, span_notice("You take the lid off \the [src]."))
 		DISABLE_BITFIELD(reagents.reagent_flags, TRANSPARENT)
 		ENABLE_BITFIELD(reagents.reagent_flags, OPENCONTAINER)
 	update_icon()
@@ -49,39 +49,39 @@
 
 	if(target.is_refillable()) //Something like a glass. Player probably wants to transfer TO it.
 		if(!is_drainable())
-			to_chat(user, "<span class='warning'>take [src]'s lid off first!</span>")
+			to_chat(user, span_warning("take [src]'s lid off first!"))
 			return
 		if(!reagents.total_volume)
-			to_chat(user, "<span class='warning'>[src] is empty!</span>")
+			to_chat(user, span_warning("[src] is empty!"))
 			return
 		if(target.reagents.holder_full())
-			to_chat(user, "<span class='warning'>[target] is full.</span>")
+			to_chat(user, span_warning("[target] is full."))
 			return
 
 		var/trans = reagents.trans_to(target, amount_per_transfer_from_this)
-		to_chat(user, "<span class='notice'>You transfer [trans] unit\s of the solution to [target].</span>")
+		to_chat(user, span_notice("You transfer [trans] unit\s of the solution to [target]."))
 
 	else if(target.is_drainable()) //A dispenser. Transfer FROM it TO us.
 		if(!is_refillable())
-			to_chat(user, "<span class='warning'>take [src]'s lid off first!</span>")
+			to_chat(user, span_warning("take [src]'s lid off first!"))
 			return
 		if(!target.reagents.total_volume)
-			to_chat(user, "<span class='warning'>[target] is empty and can't be refilled!</span>")
+			to_chat(user, span_warning("[target] is empty and can't be refilled!"))
 			return
 		if(reagents.holder_full())
-			to_chat(user, "<span class='warning'>[src] is full.</span>")
+			to_chat(user, span_warning("[src] is full."))
 			return
 
 		var/trans = target.reagents.trans_to(src, amount_per_transfer_from_this)
-		to_chat(user, "<span class='notice'>You fill [src] with [trans] unit\s of the contents of [target].</span>")
+		to_chat(user, span_notice("You fill [src] with [trans] unit\s of the contents of [target]."))
 
 	if(user.a_intent == INTENT_HARM)
 		if(!is_open_container()) //Can't splash stuff from a sealed container. I dare you to try.
-			to_chat(user, "<span class='warning'>An airtight seal prevents you from splashing the solution!</span>")
+			to_chat(user, span_warning("An airtight seal prevents you from splashing the solution!"))
 			return
 
 		if(ismob(target) && target.reagents && reagents.total_volume)
-			to_chat(user, "<span class='notice'>You splash the solution onto [target].</span>")
+			to_chat(user, span_notice("You splash the solution onto [target]."))
 			playsound(target, 'sound/effects/slosh.ogg', 25, 1)
 
 			var/mob/living/M = target
@@ -91,14 +91,14 @@
 			var/contained = english_list(injected)
 			log_combat(user, M, "splashed", src, "Reagents: [contained]")
 
-			visible_message("<span class='warning'>[target] has been splashed with something by [user]!</span>")
+			visible_message(span_warning("[target] has been splashed with something by [user]!"))
 			reagents.reaction(target, TOUCH)
 			addtimer(CALLBACK(reagents, /datum/reagents.proc/clear_reagents), 5)
 			return
 
 
 		else if(reagents.total_volume)
-			to_chat(user, "<span class='notice'>You splash the solution onto [target].</span>")
+			to_chat(user, span_notice("You splash the solution onto [target]."))
 			playsound(target, 'sound/effects/slosh.ogg', 25, 1)
 			reagents.reaction(target, TOUCH)
 			addtimer(CALLBACK(reagents, /datum/reagents.proc/clear_reagents), 5)
@@ -110,11 +110,11 @@
 	if(istype(I, /obj/item/tool/pen) || istype(I, /obj/item/flashlight/pen))
 		var/tmp_label = stripped_input(user, "Enter a label for [name]", "Label", label_text)
 		if(length(tmp_label) > MAX_NAME_LEN)
-			to_chat(user, "<span class='warning'>The label can be at most [MAX_NAME_LEN] characters long.</span>")
+			to_chat(user, span_warning("The label can be at most [MAX_NAME_LEN] characters long."))
 			return
 
-		user.visible_message("<span class='notice'>[user] labels [src] as \"[tmp_label]\".</span>", \
-							"<span class='notice'>You label [src] as \"[tmp_label]\".</span>")
+		user.visible_message(span_notice("[user] labels [src] as \"[tmp_label]\"."), \
+							span_notice("You label [src] as \"[tmp_label]\"."))
 
 		label_text = tmp_label
 		update_name_label()
@@ -265,7 +265,7 @@
 			return
 
 		reagents.trans_to(I, 5)
-		to_chat(user, "<span class='notice'>You wet [I] in [src].</span>")
+		to_chat(user, span_notice("You wet [I] in [src]."))
 		playsound(loc, 'sound/effects/slosh.ogg', 25, 1)
 
 /obj/item/reagent_containers/glass/bucket/update_icon()

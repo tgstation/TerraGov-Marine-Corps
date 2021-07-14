@@ -276,7 +276,7 @@
 			qdel(W)
 			return FALSE
 		if(warning)
-			to_chat(src, "<span class='warning'>You are unable to equip that.</span>")
+			to_chat(src, span_warning("You are unable to equip that."))
 		return FALSE
 	if(W.time_to_equip && !ignore_delay)
 		if(!do_after(src, W.time_to_equip, TRUE, W, BUSY_ICON_FRIENDLY))
@@ -466,7 +466,7 @@
 			return FALSE
 	else if(l_hand && r_hand)
 		if(!suppress_message)
-			to_chat(src, "<span class='warning'>Cannot grab, lacking free hands to do so!</span>")
+			to_chat(src, span_warning("Cannot grab, lacking free hands to do so!"))
 		return FALSE
 
 	AM.add_fingerprint(src, "pull")
@@ -475,9 +475,9 @@
 
 	if(AM.pulledby)
 		if(!suppress_message)
-			AM.visible_message("<span class='danger'>[src] has pulled [AM] from [AM.pulledby]'s grip.</span>",
-				"<span class='danger'>[src] has pulled you from [AM.pulledby]'s grip.</span>", null, null, src)
-			to_chat(src, "<span class='notice'>You pull [AM] from [AM.pulledby]'s grip!</span>")
+			AM.visible_message(span_danger("[src] has pulled [AM] from [AM.pulledby]'s grip."),
+				span_danger("[src] has pulled you from [AM.pulledby]'s grip."), null, null, src)
+			to_chat(src, span_notice("You pull [AM] from [AM.pulledby]'s grip!"))
 		log_combat(AM, AM.pulledby, "pulled from", src)
 		AM.pulledby.stop_pulling() //an object can't be pulled by two mobs at once.
 
@@ -510,7 +510,7 @@
 		do_attack_animation(pulled_mob, ATTACK_EFFECT_GRAB)
 
 		if(!suppress_message)
-			visible_message("<span class='warning'>[src] has grabbed [pulled_mob] passively!</span>", null, null, 5)
+			visible_message(span_warning("[src] has grabbed [pulled_mob] passively!"), null, null, 5)
 
 		if(pulled_mob.mob_size > MOB_SIZE_HUMAN || !(pulled_mob.status_flags & CANPUSH))
 			grab_item.icon_state = "!reinforce"

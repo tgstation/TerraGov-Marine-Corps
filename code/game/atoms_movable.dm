@@ -787,7 +787,7 @@
 			M.set_glide_size(glide_size)
 		log_combat(src, M, "grabbed", addition = "passive grab")
 		if(!suppress_message)
-			visible_message("<span class='warning'>[src] has grabbed [M] passively!</span>")
+			visible_message(span_warning("[src] has grabbed [M] passively!"))
 	else
 		pulling.set_glide_size(glide_size)
 	return TRUE

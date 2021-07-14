@@ -438,15 +438,15 @@
 
 		if(M.flags_magazine & AMMUNITION_REFILLABLE)
 			if(!M.current_rounds)
-				to_chat(user, "<span class='warning'>[M] is empty.</span>")
+				to_chat(user, span_warning("[M] is empty."))
 				return
 
 			if(length(contents) >= storage_slots)
-				to_chat(user, "<span class='warning'>[src] is full.</span>")
+				to_chat(user, span_warning("[src] is full."))
 				return
 
 
-			to_chat(user, "<span class='notice'>You start refilling [src] with [M].</span>")
+			to_chat(user, span_notice("You start refilling [src] with [M]."))
 			if(!do_after(user, 1.5 SECONDS, TRUE, src, BUSY_ICON_GENERIC))
 				return
 
@@ -456,7 +456,7 @@
 					break
 
 			playsound(user.loc, "rustle", 15, TRUE, 6)
-			to_chat(user, "<span class='notice'>You refill [src] with [M].</span>")
+			to_chat(user, span_notice("You refill [src] with [M]."))
 			return TRUE
 
 	return ..()
@@ -489,7 +489,7 @@
 	if(istype(I, /obj/item/ammo_magazine))
 		var/obj/item/ammo_magazine/new_mag = I
 		if(new_mag.caliber != CALIBER_557)
-			to_chat(user, "<span class='notice'>[src] can only be filled with .557/440 ball rifle rounds.</span>")
+			to_chat(user, span_notice("[src] can only be filled with .557/440 ball rifle rounds."))
 			return
 	. = ..()
 	update_icon()
@@ -680,13 +680,13 @@
 	if(istype(W,/obj/item/weapon/gun)) //Is it a gun?
 		if(holds_guns_now == holds_guns_max) //Are we at our gun capacity?
 			if(warning)
-				to_chat(usr, "<span class='warning'>[src] already holds a gun.</span>")
+				to_chat(usr, span_warning("[src] already holds a gun."))
 			return FALSE
 	else //Must be ammo.
 	//We have slots open for the gun, so in total we should have storage_slots - guns_max in slots, plus whatever is already in the belt.
 		if(((storage_slots - holds_guns_max) + holds_guns_now) <= length(contents)) // We're over capacity, and the space is reserved for a gun.
 			if(warning)
-				to_chat(usr, "<span class='warning'>[src] can't hold any more magazines.</span>")
+				to_chat(usr, span_warning("[src] can't hold any more magazines."))
 			return FALSE
 	return TRUE
 
@@ -713,7 +713,7 @@
 
 /obj/item/storage/belt/gun/pistol/examine(mob/user, distance, infix, suffix)
 	. = ..()
-	to_chat(user, "<span class='notice'>To perform a reload with the amunition inside, disable right click and right click on the belt with an empty pistol.</span>")
+	to_chat(user, span_notice("To perform a reload with the amunition inside, disable right click and right click on the belt with an empty pistol."))
 
 /obj/item/storage/belt/gun/pistol/m4a3
 	name = "\improper M4A3 holster rig"

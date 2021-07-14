@@ -1006,7 +1006,7 @@
 		return FALSE
 	var/mob/living/carbon/human/H = user
 	if(!(H.species.species_flags & USES_ALIEN_WEAPONS))
-		to_chat(user, "<span class='warning'>There's no trigger on this gun, you have no idea how to fire it!</span>")
+		to_chat(user, span_warning("There's no trigger on this gun, you have no idea how to fire it!"))
 		return FALSE
 	return TRUE
 
@@ -1067,16 +1067,16 @@
 	if(!.)
 		return
 	if(!racked_bolt)
-		to_chat(user, "<span class='warning'>[src] does not have a round chambered!</span>")
+		to_chat(user, span_warning("[src] does not have a round chambered!"))
 		return FALSE
 
 /obj/item/weapon/gun/rifle/chambered/cock(mob/user)
 	if(racked_bolt)
-		to_chat(user, "<span class='warning'>[src] already has a round chambered!</span>")
+		to_chat(user, span_warning("[src] already has a round chambered!"))
 		return
 	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_RACK_BOLT))
 		return
-	to_chat(user, "<span class='notice'>You cycle the bolt of the [src], loading in a new round!</span>")
+	to_chat(user, span_notice("You cycle the bolt of the [src], loading in a new round!"))
 	TIMER_COOLDOWN_START(src, COOLDOWN_RACK_BOLT, rack_delay)
 	racked_bolt = TRUE
 	playsound(loc, rack_sound, 25, 1, 4)

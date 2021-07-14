@@ -18,7 +18,7 @@
 			take_damage(70)
 
 /obj/structure/xeno/resin/attack_hand(mob/living/user)
-	to_chat(user, "<span class='warning'>You scrape ineffectively at \the [src].</span>")
+	to_chat(user, span_warning("You scrape ineffectively at \the [src]."))
 	return TRUE
 
 /obj/structure/xeno/resin/flamer_fire_act()
@@ -111,15 +111,15 @@
 	var/current_integrity = (obj_integrity / max_integrity) * 100
 	switch(current_integrity)
 		if(0 to 20)
-			to_chat(user, "<span class='warning'>It's barely holding, there's leaking oozes all around, and most eggs are broken. Yet it is not inert.</span>")
+			to_chat(user, span_warning("It's barely holding, there's leaking oozes all around, and most eggs are broken. Yet it is not inert."))
 		if(20 to 40)
-			to_chat(user, "<span class='warning'>It looks severely damaged, its movements slow.</span>")
+			to_chat(user, span_warning("It looks severely damaged, its movements slow."))
 		if(40 to 60)
-			to_chat(user, "<span class='warning'>It's quite beat up, but it seems alive.</span>")
+			to_chat(user, span_warning("It's quite beat up, but it seems alive."))
 		if(60 to 80)
-			to_chat(user, "<span class='warning'>It's slightly damaged, but still seems healthy.</span>")
+			to_chat(user, span_warning("It's slightly damaged, but still seems healthy."))
 		if(80 to 100)
-			to_chat(user, "<span class='info'>It appears in good shape, pulsating healthily.</span>")
+			to_chat(user, span_info("It appears in good shape, pulsating healthily."))
 
 
 /obj/structure/xeno/resin/silo/take_damage(damage_amount, damage_type, damage_flag, sound_effect, attack_dir, armour_penetration)
@@ -189,19 +189,19 @@
 		return
 	var/mob/living/carbon/victim = G.grabbed_thing
 	if(!(ishuman(victim) || ismonkey(victim))) //humans and monkeys only for now
-		to_chat(user, "<span class='notice'>[src] can only process humanoid anatomies!</span>")
+		to_chat(user, span_notice("[src] can only process humanoid anatomies!"))
 		return
 
 	if(victim.stat != DEAD)
-		to_chat(user, "<span class='notice'>[victim] is not dead!</span>")
+		to_chat(user, span_notice("[victim] is not dead!"))
 		return
 
 	if(victim.chestburst)
-		to_chat(user, "<span class='notice'>[victim] has already been exhausted to incubate a sister!</span>")
+		to_chat(user, span_notice("[victim] has already been exhausted to incubate a sister!"))
 		return
 
 	if(issynth(victim))
-		to_chat(user, "<span class='notice'>[victim] has no useful biomass for us.</span>")
+		to_chat(user, span_notice("[victim] has no useful biomass for us."))
 		return
 
 	visible_message("[user] starts putting [victim] into [src].", 3)

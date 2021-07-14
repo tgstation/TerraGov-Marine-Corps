@@ -99,7 +99,7 @@
 /mob/living/silicon/ai/proc/send_order(datum/source, atom/target)
 	SIGNAL_HANDLER
 	if(!current_order)
-		to_chat(src, "<span class='warning'>Your have no order selected.</span>")
+		to_chat(src, span_warning("Your have no order selected."))
 		return
 	current_order.send_order(target)
 
@@ -153,7 +153,7 @@
 		if(name == string)
 			target += src
 		if(!length(target))
-			to_chat(src, "<span class='warning'>Target is not on or near any active cameras on the station.</span>")
+			to_chat(src, span_warning("Target is not on or near any active cameras on the station."))
 			return
 
 		ai_actual_track(pick(target))
@@ -179,10 +179,10 @@
 		for(var/obj/machinery/camera/C in lit_cameras)
 			C.set_light(0)
 			lit_cameras = list()
-		to_chat(src, "<span class='notice'>Camera lights deactivated.</span>")
+		to_chat(src, span_notice("Camera lights deactivated."))
 	else
 		light_cameras()
-		to_chat(src, "<span class='notice'>Camera lights activated.</span>")
+		to_chat(src, span_notice("Camera lights activated."))
 	camera_light_on = !camera_light_on
 
 
@@ -232,7 +232,7 @@
 	else
 		jobpart = "Unknown"
 
-	var/rendered = "<i><span class='game say'>[start]<span class='name'>[hrefpart][namepart] ([jobpart])</a> </span><span class='message'>[raw_message]</span></span></i>"
+	var/rendered = "<i><span class='game say'>[start][span_name("[hrefpart][namepart] ([jobpart])</a> ")][span_message("[raw_message]")]</span></i>"
 
 	show_message(rendered, 2)
 

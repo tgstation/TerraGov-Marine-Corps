@@ -366,29 +366,29 @@
 		if(H.head)
 			if(prob(meltprob) && !CHECK_BITFIELD(H.head.resistance_flags, UNACIDABLE|INDESTRUCTIBLE))
 				if(show_message)
-					to_chat(H, "<span class='danger'>Your headgear melts away but protects you from the acid!</span>")
+					to_chat(H, span_danger("Your headgear melts away but protects you from the acid!"))
 				qdel(H.head)
 				H.update_inv_head(0)
 				H.update_hair(0)
 			else if(show_message)
-				to_chat(H, "<span class='warning'>Your headgear protects you from the acid.</span>")
+				to_chat(H, span_warning("Your headgear protects you from the acid."))
 			return
 
 		if(H.wear_mask)
 			if(prob(meltprob) && !CHECK_BITFIELD(H.wear_mask.resistance_flags, UNACIDABLE|INDESTRUCTIBLE))
 				if(show_message)
-					to_chat(H, "<span class='danger'>Your mask melts away but protects you from the acid!</span>")
+					to_chat(H, span_danger("Your mask melts away but protects you from the acid!"))
 				qdel(H.wear_mask)
 				H.update_inv_wear_mask(0)
 				H.update_hair(0)
 			else if(show_message)
-				to_chat(H, "<span class='warning'>Your mask protects you from the acid.</span>")
+				to_chat(H, span_warning("Your mask protects you from the acid."))
 			return
 
 		if(H.glasses) //Doesn't protect you from the acid but can melt anyways!
 			if(prob(meltprob) && !CHECK_BITFIELD(H.glasses.resistance_flags, UNACIDABLE|INDESTRUCTIBLE))
 				if(show_message)
-					to_chat(H, "<span class='danger'>Your glasses melts away!</span>")
+					to_chat(H, span_danger("Your glasses melts away!"))
 				qdel(H.glasses)
 				H.update_inv_glasses(0)
 
@@ -412,7 +412,7 @@
 		if(!CHECK_BITFIELD(O.resistance_flags, UNACIDABLE|INDESTRUCTIBLE))
 			var/obj/effect/decal/cleanable/molten_item/I = new/obj/effect/decal/cleanable/molten_item(O.loc)
 			I.desc = "Looks like this was \an [O] some time ago."
-			O.visible_message("<span class='warning'>\the [O] melts.</span>", null, 5)
+			O.visible_message(span_warning("\the [O] melts."), null, 5)
 			qdel(O)
 
 /datum/reagent/toxin/acid/polyacid
@@ -531,7 +531,7 @@
 
 /datum/reagent/toxin/xeno_hemodile/on_mob_life(mob/living/L, metabolism)
 	if(prob(25))
-		to_chat(L, "<span class='warning'>You feel your legs tense up.</span>")
+		to_chat(L, span_warning("You feel your legs tense up."))
 	if(!L.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_neurotoxin))
 		L.add_movespeed_modifier(MOVESPEED_ID_XENO_HEMODILE, TRUE, 0, NONE, TRUE, 1)
 	else
@@ -560,7 +560,7 @@
 
 /datum/reagent/toxin/xeno_transvitox/on_mob_life(mob/living/L, metabolism)
 	if(prob(10))
-		to_chat(L, "<span class='warning'>You notice your wounds crusting over with disgusting green ichor.</span>")
+		to_chat(L, span_warning("You notice your wounds crusting over with disgusting green ichor."))
 
 	var/fire_loss = L.getFireLoss()
 	if(!fire_loss) //If we have no burn damage, cancel out

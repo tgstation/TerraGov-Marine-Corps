@@ -26,10 +26,10 @@
 	if(!do_mob(owner, target, 1 SECONDS, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
 		return FALSE
 
-	owner.visible_message("<span class='xenowarning'>\the [owner] vomits acid over [target]!</span>", \
-	"<span class='xenowarning'>We cover [target] with our rejuvinating goo!</span>")
-	target.visible_message("<span class='xenowarning'>[target]'s wounds are mended by the acid.</span>", \
-	"<span class='xenowarning'>We feel a sudden soothing chill.</span>")
+	owner.visible_message(span_xenowarning("\the [owner] vomits acid over [target]!"), \
+	span_xenowarning("We cover [target] with our rejuvinating goo!"))
+	target.visible_message(span_xenowarning("[target]'s wounds are mended by the acid."), \
+	span_xenowarning("We feel a sudden soothing chill."))
 
 	playsound(target, "alien_drool", 25)
 
