@@ -334,7 +334,7 @@
 		if(!B.current_gun)
 			return FALSE
 		var/obj/item/W = B.current_gun
-		B.remove_from_storage(W)
+		B.remove_from_storage(W, user = src)
 		put_in_hands(W)
 		return TRUE
 	else if(istype(I, /obj/item/clothing/under))
@@ -348,7 +348,7 @@
 		if(!length(S.contents))
 			return FALSE
 		var/obj/item/W = S.contents[length(S.contents)]
-		S.remove_from_storage(W)
+		S.remove_from_storage(W, user = src)
 		put_in_hands(W)
 		return TRUE
 	else if(istype(I, /obj/item/clothing/suit/storage))
@@ -359,7 +359,7 @@
 		if(!length(P.contents))
 			return FALSE
 		var/obj/item/W = P.contents[length(P.contents)]
-		P.remove_from_storage(W)
+		P.remove_from_storage(W, user = src)
 		put_in_hands(W)
 		return TRUE
 	else if(istype(I, /obj/item/storage))
@@ -367,7 +367,7 @@
 		if(!length(S.contents))
 			return FALSE
 		var/obj/item/W = S.contents[length(S.contents)]
-		S.remove_from_storage(W)
+		S.remove_from_storage(W, user = src)
 		put_in_hands(W)
 		return TRUE
 	else
