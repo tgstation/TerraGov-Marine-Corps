@@ -39,7 +39,7 @@
 
 /obj/item/minigun_powerpack
 	name = "\improper M56 powerpack"
-	desc = "A heavy reinforced backpack with support equipment, power cells, and spare rounds for the M56 minigun System.\nClick the icon in the top left to reload your M56."
+	desc = "A heavy reinforced backpack with support equipment, power cells, and spare rounds for the T-100 Minigun System.\nClick the icon in the top left to reload your M56."
 	icon = 'icons/obj/items/storage/storage.dmi'
 	icon_state = "powerpack"
 	flags_atom = CONDUCT
@@ -63,7 +63,7 @@
 	var/obj/item/weapon/gun/minigun/mygun = user.get_active_held_item()
 
 	if(!istype(mygun))
-		to_chat(user, "You must be holding an M56 minigun to begin the reload process.")
+		to_chat(user, "You must be holding an T-100 Minigun to begin the reload process.")
 		return TRUE
 	if(rounds_remaining < 1)
 		to_chat(user, "Your powerpack is completely devoid of spare ammo belts! Looks like you're up shit creek, maggot!")
@@ -82,9 +82,9 @@
 
 	reloading = TRUE
 	if(!automatic)
-		user.visible_message("[user.name] begins feeding an ammo belt into the M56 minigun.","You begin feeding a fresh ammo belt into the M56 minigun. Don't move or you'll be interrupted.")
+		user.visible_message("[user.name] begins feeding an ammo belt into the T-100 Minigun.","You begin feeding a fresh ammo belt into the T-100 Minigun. Don't move or you'll be interrupted.")
 	else
-		user.visible_message("[user.name]'s powerpack servos begin automatically feeding an ammo belt into the M56 minigun.","The powerpack servos begin automatically feeding a fresh ammo belt into the M56 minigun.")
+		user.visible_message("[user.name]'s powerpack servos begin automatically feeding an ammo belt into the T-100 Minigun.","The powerpack servos begin automatically feeding a fresh ammo belt into the T-100 Minigun.")
 	var/reload_duration = 5 SECONDS
 	var/obj/screen/ammo/A = user.hud_used.ammo
 	if(automatic)
@@ -151,9 +151,9 @@
 	rounds_remaining -= rounds_to_reload
 
 	if(!automatic)
-		to_chat(user, "You finish loading [rounds_to_reload] shells into the M56 minigun. Ready to rumble!")
+		to_chat(user, "You finish loading [rounds_to_reload] shells into the T-100 Minigun. Ready to rumble!")
 	else
-		to_chat(user, "The powerpack servos finish loading [rounds_to_reload] shells into the M56 minigun. Ready to rumble!")
+		to_chat(user, "The powerpack servos finish loading [rounds_to_reload] shells into the T-100 Minigun. Ready to rumble!")
 	playsound(user, 'sound/weapons/guns/interact/minigun_unload.ogg', 25, 1)
 
 	reloading = FALSE
