@@ -623,7 +623,6 @@
 #define COMSIG_KB_RAILATTACHMENT "keybinding_railattachment"
 #define COMSIG_KB_UNDERRAILATTACHMENT "keybinding_underrailattachment"
 #define COMSIG_KB_UNLOADGUN "keybinding_unloadgun"
-#define COMSIG_KB_GUN_SAFETY "keybinding_gun_safety"
 #define COMSIG_KB_AIMMODE "keybinding_aimmode"
 #define COMSIG_KB_FIREMODE "keybind_firemode"
 #define COMSIG_KB_GIVE "keybind_give"
