@@ -35,7 +35,7 @@ type GameSettingData = {
   ui_style_color: string,
   scaling_method: string,
   pixel_size: number,
-  parallax: number
+  parallax: number,
 }
 
 type GearCustomizationData = {
