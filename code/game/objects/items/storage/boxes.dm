@@ -411,7 +411,7 @@
 	new /obj/item/reagent_containers/food/snacks/packaged_meal(src, snack)
 	new /obj/item/reagent_containers/food/snacks/packaged_meal(src, desert)
 
-/obj/item/storage/box/MRE/remove_from_storage()
+/obj/item/storage/box/MRE/remove_from_storage(obj/item/item, atom/new_location, mob/user)
 	. = ..()
 	if(. && !contents.len && !gc_destroyed)
 		qdel(src)
