@@ -28,6 +28,8 @@
 
 	//If it's in a clothes vendor that uses buying bitfield, we check if we still have that field and we use it
 	job_specific_list = GLOB.job_specific_clothes_vendor[user.job.title]
+	if(!islist(job_specific_list))
+		return FALSE
 	var/list/item_info = job_specific_list[item_to_buy_type]
 	if(item_info && buy_category(item_info[1], seller))
 		return TRUE
