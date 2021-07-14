@@ -288,3 +288,16 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	gun_type = /obj/item/weapon/gun/rifle/railgun
 	icon_state_mini = "mag_railgun"
+
+// pepperball
+
+/obj/item/ammo_magazine/rifle/pepperball
+	name = "pepperball canister (SAN balls)"
+	desc = "A canister holding a projectile to be used inside a pepperball gun."
+	caliber = CALIBER_PEPPERBALL
+	icon_state = "pepperball"
+	default_ammo = /datum/ammo/bullet/pepperball
+	max_rounds = 70
+	w_class = WEIGHT_CLASS_NORMAL
+	gun_type = /obj/item/weapon/gun/rifle/pepperball
+	icon_state_mini = "mag_rifle"
