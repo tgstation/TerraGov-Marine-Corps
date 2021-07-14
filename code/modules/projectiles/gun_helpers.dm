@@ -414,6 +414,15 @@ should be alright.
 
 	return G
 
+///Helper proc that processes a clicked target, if the target is not black tiles, it will not change it. If they are it will return the turf of the black tiles. It will return null if the object is a screen object other than black tiles.
+/proc/get_turf_on_clickcatcher(atom/target, mob/user, params)
+	var/list/modifiers = params2list(params)
+	if(!istype(target, /obj/screen))
+		return target
+	if(!istype(target, /obj/screen/click_catcher))
+		return null
+	return params2turf(modifiers["screen-loc"], get_turf(user), user.client)
+
 //----------------------------------------------------------
 					//				   \\
 					// GUN VERBS PROCS \\
@@ -654,7 +663,7 @@ should be alright.
 			var/datum/action/new_action = new /datum/action/item_action/firemode(src)
 			if(user)
 				var/mob/living/living_user = user
-				if(src == living_user.l_hand || src == living_user.r_hand)
+				if((src == living_user.l_hand || src == living_user.r_hand) && !CHECK_BITFIELD(flags_item, IS_DEPLOYED))
 					new_action.give_action(living_user)
 		else //The action should already be there by now.
 			return
@@ -669,7 +678,7 @@ should be alright.
 			var/datum/action/old_action = locate(/datum/action/item_action/firemode) in actions
 			if(user)
 				var/mob/living/living_user = user
-				if(src == living_user.l_hand || src == living_user.r_hand)
+				if((src == living_user.l_hand || src == living_user.r_hand) && !CHECK_BITFIELD(flags_item, IS_DEPLOYED))
 					old_action.remove_action(living_user)
 			qdel(old_action)
 
@@ -863,13 +872,13 @@ should be alright.
 
 	hud_enabled = !hud_enabled
 	var/obj/screen/ammo/A = usr.hud_used.ammo
-	hud_enabled ? A.add_hud(usr) : A.remove_hud(usr)
+	hud_enabled ? A.add_hud(usr, src) : A.remove_hud(usr, src)
 	A.update_hud(usr)
 	to_chat(usr, "<span class='notice'>[hud_enabled ? "You enable the Ammo HUD for this weapon." : "You disable the Ammo HUD for this weapon."]</span>")
 
 
 /obj/item/weapon/gun/item_action_slot_check(mob/user, slot)
-	if(slot != SLOT_L_HAND && slot != SLOT_R_HAND)
+	if(slot != SLOT_L_HAND && slot != SLOT_R_HAND && !CHECK_BITFIELD(flags_item, IS_DEPLOYED))
 		return FALSE
 	return TRUE
 
@@ -905,7 +914,7 @@ should be alright.
 
 /obj/item/weapon/gun/proc/toggle_auto_aim_mode(mob/living/carbon/human/user) //determines whether toggle_aim_mode activates at the end of gun/wield proc
 
-	if(CHECK_BITFIELD(flags_item, WIELDED)) //if gun is wielded it toggles aim mode directly instead
+	if(CHECK_BITFIELD(flags_item, WIELDED) || CHECK_BITFIELD(flags_item, IS_DEPLOYED)) //if gun is wielded it toggles aim mode directly instead
 		toggle_aim_mode(user)
 		return
 
@@ -926,7 +935,7 @@ should be alright.
 		modify_fire_delay(-aim_fire_delay)
 		to_chat(user, "<span class='notice'>You cease aiming.</b></span>")
 		return
-	if(!CHECK_BITFIELD(flags_item, WIELDED))
+	if(!CHECK_BITFIELD(flags_item, WIELDED) && !CHECK_BITFIELD(flags_item, IS_DEPLOYED))
 		to_chat(user, "<span class='notice'>You need to wield your gun before aiming.</b></span>")
 		return
 	if(!user.wear_id)
@@ -940,9 +949,6 @@ should be alright.
 		if(!do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_BAR, ignore_turf_checks = TRUE))
 			to_chat(user, "<span class='warning'>Your concentration is interrupted!</b></span>")
 			return
-	if(!CHECK_BITFIELD(flags_item, WIELDED))
-		to_chat(user, "<span class='notice'>You need to wield your gun before aiming.</b></span>")
-		return
 	user.overlays += aim_mode_visual
 	ENABLE_BITFIELD(flags_gun_features, GUN_IS_AIMING)
 	user.add_movespeed_modifier(MOVESPEED_ID_AIM_MODE_SLOWDOWN, TRUE, 0, NONE, TRUE, aim_speed_modifier)
@@ -954,7 +960,7 @@ should be alright.
 /// Signal handler to activate the rail attachement of that gun if it's in our active hand
 /obj/item/weapon/gun/proc/activate_rail_attachment()
 	SIGNAL_HANDLER
-	if(gun_user?.get_active_held_item() != src)
+	if(gun_user?.get_active_held_item() != src && !CHECK_BITFIELD(flags_item, IS_DEPLOYED))
 		return
 	var/obj/item/attachable/underrail_attachment = LAZYACCESS(attachments, ATTACHMENT_SLOT_RAIL)
 	underrail_attachment?.activate_attachment(gun_user)
@@ -963,7 +969,7 @@ should be alright.
 /// Signal handler to activate the underrail attachement of that gun if it's in our active hand
 /obj/item/weapon/gun/proc/activate_underrail_attachment()
 	SIGNAL_HANDLER
-	if(gun_user?.get_active_held_item() != src)
+	if(gun_user?.get_active_held_item() != src && !CHECK_BITFIELD(flags_item, IS_DEPLOYED))
 		return
 	var/obj/item/attachable/rail_attachment = LAZYACCESS(attachments, ATTACHMENT_SLOT_UNDER)
 	rail_attachment?.activate_attachment(gun_user)

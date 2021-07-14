@@ -191,7 +191,7 @@ WEAPONS
 
 /datum/supply_packs/weapons/m56d_emplacement
 	name = "TL-102 Mounted Heavy Smartgun"
-	contains = list(/obj/item/storage/box/standard_hmg)
+	contains = list(/obj/item/storage/box/tl102)
 	cost = 80
 
 /datum/supply_packs/weapons/tesla
@@ -248,6 +248,11 @@ WEAPONS
 /datum/supply_packs/weapons/smartgun
 	name = "T-29 Smart Machinegun"
 	contains = list(/obj/item/weapon/gun/rifle/standard_smartmachinegun)
+	cost = 40
+
+/datum/supply_packs/weapons/smartrifle
+	name = "T-26 Smart Rifle"
+	contains = list(/obj/item/weapon/gun/rifle/standard_smartrifle)
 	cost = 40
 
 /datum/supply_packs/weapons/flamethrower
@@ -547,9 +552,15 @@ AMMO
 	cost = 5
 
 /datum/supply_packs/ammo/smartrifle
-	name = "T-25 smartrifle ammo"
+	name = "T-25 smartrifle magazine"
 	contains = list(/obj/item/ammo_magazine/rifle/standard_smartrifle)
 	cost = 2
+
+/datum/supply_packs/ammo/smartrifle
+	name = "T-25 smartrifle ammo box"
+	notes = "Contains a box with 200 rounds for a T-25 (MAGAZINES SOLD SEPERATELY)"
+	contains = list(/obj/item/ammo_magazine/packet/t25)
+	cost = 4
 
 /datum/supply_packs/ammo/sentry
 	name = "UA 571-C sentry ammunition"
@@ -598,7 +609,7 @@ AMMO
 
 /datum/supply_packs/ammo/m56d
 	name = "TL-102 mounted heavy smartgun ammo"
-	contains = list(/obj/item/ammo_magazine/standard_hmg)
+	contains = list(/obj/item/ammo_magazine/tl102)
 	cost = 10
 
 /datum/supply_packs/ammo/lasguncharger
@@ -1370,7 +1381,7 @@ Imports
 
 /datum/supply_packs/imports/leveraction/ammo
 	name = "Lever Action Rifle Ammo"
-	contains = list(/obj/item/ammo_magazine/magnum)
+	contains = list(/obj/item/ammo_magazine/packet/magnum)
 	cost = 5
 	available_against_xeno_only = TRUE
 

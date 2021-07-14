@@ -177,3 +177,90 @@
   - qol: Better keybind registering system
   lbnesquik:
   - admin: add the hivemind to player transform
+2021-07-10:
+  InterroLouis:
+  - bugfix: Ravagers have normal blood now.
+  - balance: Mesons dont hide darkness slightly anymore, removing a effect that on
+      diagonals each light  showed xenos 2/3 tiles away
+  Surrealaser:
+  - bugfix: Missing return added to Acid Well dismantle code.
+2021-07-11:
+  BraveMole:
+  - bugfix: Fix tadpole eye going to null space
+  - bugfix: Cannot shoot while tarping anymore
+  InterroLouis:
+  - bugfix: The veil has been pushed back closed. Ghosts can no longer interact with
+      the living.
+  Pariah919:
+  - balance: railgun lost 100 damage from 250 to 150, knocks back further and no longer
+      shakes the screen when you're hit, 750ms more wield delay, mag harness instead
+      of scope
+  - balance: warrior grapple toss distance reduced to 3 from 5.
+  'The Fuckup: Hyper2Snyper':
+  - bugfix: Fixes Double Barrels
+  Wayland-Smithy:
+  - bugfix: Fixed all clients being forced to Fit Viewport on connect regardless of
+      their Auto Fit Preference.
+  hyper2snyper:
+  - rscadd: The TL-102 HSG now has auto-fire.
+  - balance: The Stationary TL-102 can now be rotated.
+  - balance: Both TL-102 variants now have scopes. These will replace the default
+      zoom that they had prior.
+  - code_imp: New Bespoke Element capable of taking items and making them machines.
+  - refactor: Refactors TL-102 code, basically rewrites it completely.
+  - refactor: Slight Mortar refactor.
+  - rscdel: removes the few security barriers (/obj/machinery/deployable/barrier)
+      from the maps for I have stolen their typepaths for my own use.
+  lbnesquik:
+  - bugfix: Add a missing light to POS starboard hallway.
+2021-07-12:
+  InterroLouis:
+  - bugfix: EORD thermobarics can be reloaded reliably.
+  - bugfix: Tesla projectiles once more visible.
+2021-07-13:
+  BraveMole:
+  - bugfix: Can no longer give plasma to ravager (they use fury)
+  - qol: "You can use \xE9 and \xE8 as a keybind"
+  - bugfix: Wraith banishing no longer auto-target humans rather than cades or nades
+  InterroLouis:
+  - bugfix: Admins can aheal dead xenos again.
+  Pariah919:
+  - expansion: tx-11 has an ammo packet
+  - balance: general pouches can hold ammo packets.
+  - rscadd: 'Added new pepperball gun spriteadd: Pepperballgun and magazine'
+  Surrealaser:
+  - rscadd: Rage ability added to the Ravager.
+  - code_imp: Added support for Xeno melee damage multipliers.
+  jroinc:
+  - expansion: Human deaths and defib-based revives now are logged as a statistic.
+  lbnesquik:
+  - bugfix: 'fixed the : thinking : emoji for AI'
+  - rscadd: Added more displays for the AI
+  - qol: disable antenna module beeping due to spam.
+2021-07-14:
+  BraveMole:
+  - bugfix: Fix being able to queue multiple items draw from backpacks
+  InterroLouis:
+  - bugfix: Impact grenades work with the T-81 launcher.
+  Pariah919:
+  - expansion: t-25 ammo packet added to req
+  - bugfix: you can buy the t-25 smartrifle in req
+  - balance: buffed automag and deagle to do much more damage, stagger and slow xenos
+      on hit
+  QualityVan:
+  - rscadd: Hivelord tunnels show up on the minimap
+  - bugfix: Xeno's Tunnel List verb should work now
+  - rscadd: You can name pill bottles when you dispense them from a chem master
+  TiviPlus:
+  - bugfix: Admin respawn bypass is now logged in the correct cases
+  lbnesquik:
+  - rscadd: Added some extra holopads to the POS.
+  - rscadd: Added a map table to the Sulaco CIC.
+  - rscadd: Add some water tanks to the water scarce POS.
+  - qol: Made the OB room on POS less bad. Did you notice POS sounds like something
+      rude?
+  - bugfix: Fixed some oddly placed or oriented cameras on the POS.
+  - bugfix: Fixed a few floating lights and APC's
+  - bugfix: fixes a few missing fire alarms doors on POS.
+  - bugfix: fixed a messy area on the POS hangar, extended the fire shutters to match.
+  - bugfix: Change the holopad layer so it renders above catwalks

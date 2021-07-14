@@ -67,17 +67,6 @@
 	gun_type = /obj/item/weapon/gun/rifle/standard_assaultrifle
 	icon_state_mini = "mag_rifle_big"
 
-/obj/item/ammo_magazine/box10x24mm
-	name = "box of 10x24mm"
-	desc = "A box containing 150 rounds of 10x24mm caseless.."
-	caliber = CALIBER_10X24_CASELESS
-	icon_state = "box_10x24mm"
-	w_class = WEIGHT_CLASS_NORMAL
-	default_ammo = /datum/ammo/bullet/rifle
-	current_rounds = 150
-	max_rounds = 150
-	icon_state_mini = "ammo_packet"
-
 //-------------------------------------------------------
 //T37 DMR
 
@@ -127,17 +116,6 @@
 	max_rounds = 35
 	gun_type = /obj/item/weapon/gun/rifle/standard_br
 	icon_state_mini = "mag_rifle_big_red"
-
-/obj/item/ammo_magazine/box10x27mm
-	name = "box of 10x27mm"
-	desc = "A box containing 100 rounds of 10x27mm caseless.."
-	caliber = CALIBER_10x27_CASELESS
-	icon_state = "box_10x27mm"
-	w_class = WEIGHT_CLASS_NORMAL
-	default_ammo = /datum/ammo/bullet/rifle/standard_dmr
-	current_rounds = 100
-	max_rounds = 100
-	icon_state_mini = "ammo_packet"
 
 //-------------------------------------------------------
 //M41A TRUE AND ORIGINAL
@@ -224,17 +202,6 @@
 	gun_type = /obj/item/weapon/gun/rifle/standard_gpmg
 	reload_delay = 3 SECONDS
 	icon_state_mini = "mag_gpmg"
-
-/obj/item/ammo_magazine/box10x26mm
-	name = "packet of 10x26mm"
-	desc = "A packet containing 100 rounds of 10x26mm caseless.."
-	icon_state = "box_10x26mm"
-	caliber = CALIBER_10x26_CASELESS
-	default_ammo = /datum/ammo/bullet/rifle/machinegun
-	w_class = WEIGHT_CLASS_SMALL
-	current_rounds = 100
-	max_rounds = 100
-	icon_state_mini = "ammo_packet"
 
 //-------------------------------------------------------
 //M412L1 HEAVY PULSE RIFLE
