@@ -902,17 +902,6 @@
 	scatter = -20
 	scatter_unwielded = 80
 
-/obj/item/weapon/gun/rifle/standard_smartmachinegun/pmc
-	name = "\improper R-25 smart machine gun"
-	desc = "The R-25 is a rather common IFF-capable medium machine gun. It's known for its ability to lay down heavy fire support very well. It is generally used when someone wants to hold a position or provide fire support. Requires special training and it cannot turn off IFF. It uses 10x26mm ammunition."
-	starting_attachment_types = list(/obj/item/attachable/stock/t29stock, /obj/item/attachable/t29barrel, /obj/item/attachable/magnetic_harness)
-
-/obj/item/weapon/gun/rifle/standard_smartmachinegun/ds
-	name = "\improper R-25 smart machine gun"
-	desc = "The R-25 is a rather common IFF-capable medium machine gun. It's known for its ability to lay down heavy fire support very well. It is generally used when someone wants to hold a position or provide fire support. Requires special training and it cannot turn off IFF. It uses 10x26mm ammunition."
-	starting_attachment_types = list(/obj/item/attachable/stock/t29stock, /obj/item/attachable/t29barrel, /obj/item/attachable/magnetic_harness)
-
-
 // T-25 Smartrifle
 
 /obj/item/weapon/gun/rifle/standard_smartrifle
