@@ -96,8 +96,8 @@
 		reload(user, mygun, TRUE)
 		A.update_hud(user)
 		return TRUE
-	if(user.skills.getRating("minigun") > 0)
-		reload_duration = max(reload_duration - 1 SECONDS * user.skills.getRating("minigun"), 3 SECONDS)
+	if(user.skills.getRating("firearms") > 0)
+		reload_duration = max(reload_duration - 1 SECONDS * user.skills.getRating("firearms"), 3 SECONDS)
 	if(!do_after(user, reload_duration, TRUE, src, BUSY_ICON_GENERIC) || !pcell)
 		to_chat(user, "Your reloading was interrupted!")
 		playsound(src,'sound/machines/buzz-two.ogg', 25, TRUE)
