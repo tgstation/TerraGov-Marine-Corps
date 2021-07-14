@@ -1,0 +1,4 @@
+author: "Surrealaser"
+delete-after: True
+changes: 
+  - bugfix: "Fixes corrosive acid melt times, and its processing time adjustment, considerably faster like it was before."
