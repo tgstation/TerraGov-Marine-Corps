@@ -588,8 +588,6 @@
 			/obj/item/reagent_containers/hypospray/autoinjector/hypervene = 16,
 			/obj/item/reagent_containers/hypospray/autoinjector/isotonic = 16,
 			/obj/item/reagent_containers/hypospray/autoinjector/quickclot = 16,
-			/obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus = 0,
-			/obj/item/reagent_containers/hypospray/autoinjector/quickclotplus = 0,
 			/obj/item/reagent_containers/hypospray/autoinjector/synaptizine = 0,
 		),
 		"Heal Pack" = list(
