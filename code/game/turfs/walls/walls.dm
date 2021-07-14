@@ -502,3 +502,23 @@
 
 /turf/closed/wall/can_be_dissolved()
 	return !(resistance_flags & INDESTRUCTIBLE)
+
+///Let them in if the atom has PASSTABLE and is in the hole's direction
+/turf/closed/wall/CanAllowThrough(atom/movable/mover, turf/target)
+	. = ..()
+	if(!acided_hole)
+		return FALSE
+	var/move_dir = mover.dir
+	var/hole_facing = acided_hole.dir
+	if(((move_dir & hole_facing) | (move_dir & turn(hole_facing, 180)) & move_dir) && mover.flags_pass & PASSTABLE)
+		return TRUE
+
+///Only let them out in the hole's two exits
+/turf/closed/wall/CheckExit(atom/movable/mover, turf/target)
+	. = ..()
+	if(!acided_hole)
+		return FALSE
+	var/exit_dir = get_dir(src, target)
+	var/exit_options = acided_hole.dir | turn(acided_hole.dir, 180)
+	if(exit_dir & exit_options)
+		return TRUE
