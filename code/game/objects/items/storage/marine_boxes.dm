@@ -38,7 +38,7 @@
 	new /obj/item/ammo_magazine/rifle/standard_smartrifle(src)
 
 /obj/item/minigun_powerpack
-	name = "\improper M56 powerpack"
+	name = "\improper T-100 powerpack"
 	desc = "A heavy reinforced backpack with support equipment, power cells, and spare rounds for the T-100 Minigun System.\nClick the icon in the top left to reload your M56."
 	icon = 'icons/obj/items/storage/storage.dmi'
 	icon_state = "powerpack"
