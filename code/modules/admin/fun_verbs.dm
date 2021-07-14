@@ -869,7 +869,7 @@
 	togglebuildmode(usr)
 
 
-/datum/admins/proc/imaginary_friend()
+/datum/admins/proc/imaginary_friend(mob/M)
 	set category = "Fun"
 	set name = "Imaginary Friend"
 
@@ -883,19 +883,24 @@
 		IF.ghostize()
 		return
 
-	if(!isobserver(C.mob))
-		if(is_mentor(C))
-			to_chat(C, "<span class='warning'>Can only become an imaginary friend while observing.</span>")
+	var/mob/living/L
+	if(usr == M) // self selected, or a naked verb call which always passes self for mob args
+		L = C.holder.apicker("Select by:", "Imaginary Friend", list(APICKER_CLIENT, APICKER_LIVING))
+	else
+		L = M
+		if(tgui_alert(usr, "Become Imaginary Friend of [L]?", "Confirm", list("Yes", "No")) != "Yes")
 			return
-		C.holder.admin_ghost()
-
-	var/mob/living/L = C.holder.apicker("Select by:", "Imaginary Friend", list(APICKER_CLIENT, APICKER_LIVING))
-	if(!istype(L) || !isobserver(C.mob))
+	if(!istype(L))
+		to_chat(usr, "<span class='warning'>That creature can not have Imaginary Friends</span>")
 		return
+
+	if(!isobserver(C.mob))
+		C.holder.admin_ghost()
 
 	var/mob/camera/imaginary_friend/IF = new(get_turf(L), L)
 	C.mob.mind.transfer_to(IF)
 
+	admin_ticket_log(L, "[key_name_admin(C)] became an imaginary friend of [key_name(L)]")
 	log_admin("[key_name(IF)] started being imaginary friend of [key_name(L)].")
 	message_admins("[ADMIN_TPMONTY(IF)] started being imaginary friend of [ADMIN_TPMONTY(L)].")
 
