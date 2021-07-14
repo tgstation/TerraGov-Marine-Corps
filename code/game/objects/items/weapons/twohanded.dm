@@ -253,11 +253,6 @@
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	attack_verb = list("attacked", "stabbed", "jabbed", "torn", "gored")
 
-/obj/item/weapon/twohanded/spear/tactical
-	name = "M-23 spear"
-	desc = "A tactical spear. Used for 'tactical' combat."
-	icon_state = "spear"
-	item_state = "spear"
 
 /obj/item/weapon/twohanded/glaive
 	name = "war glaive"
