@@ -1611,10 +1611,6 @@
 /obj/structure/flora/ausbushes/reedbush,
 /turf/open/ground/river,
 /area/lv624/ground/river3)
-"ajD" = (
-/obj/structure/girder,
-/turf/closed/mineral,
-/area/lv624/ground/caves/west1)
 "ajG" = (
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/sand8)
@@ -2170,13 +2166,6 @@
 	dir = 8
 	},
 /area/lv624/ground/jungle7)
-"amy" = (
-/obj/effect/decal/remains/xeno,
-/obj/effect/decal/warning_stripes/thin{
-	dir = 1
-	},
-/turf/open/floor,
-/area/lv624/ground/sand8)
 "amC" = (
 /obj/structure/window/framed/colony,
 /turf/open/floor/plating,
@@ -2394,7 +2383,6 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 6
 	},
-/obj/effect/decal/remains/xeno,
 /turf/open/floor,
 /area/lv624/ground/sand8)
 "any" = (
@@ -16805,6 +16793,10 @@
 "tCM" = (
 /turf/open/floor,
 /area/lv624/ground/jungle6)
+"tCY" = (
+/obj/structure/girder,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/caves/west1)
 "tEm" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -17636,10 +17628,6 @@
 /obj/effect/landmark/xeno_silo_spawn,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/west1)
-"xPF" = (
-/obj/effect/landmark/weed_node,
-/turf/closed/wall/indestructible/mineral,
-/area/lv624/ground/sand1)
 "xQg" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -26372,7 +26360,7 @@ abc
 abb
 abb
 abk
-ajD
+abb
 abb
 abb
 udq
@@ -26389,7 +26377,7 @@ flw
 wwE
 wwE
 dsV
-xPF
+fEo
 fEo
 ara
 aqD
@@ -26552,7 +26540,7 @@ abd
 abb
 abk
 abb
-abc
+tCY
 vkR
 flw
 wwE
@@ -30657,7 +30645,7 @@ acN
 acN
 acO
 acO
-acO
+nxQ
 acO
 acO
 acO
@@ -33181,7 +33169,7 @@ bjH
 bjH
 ajG
 ajG
-amy
+alo
 amU
 ang
 ane
@@ -33696,7 +33684,7 @@ acN
 acN
 acN
 oqF
-acO
+nxQ
 acO
 acO
 acO
