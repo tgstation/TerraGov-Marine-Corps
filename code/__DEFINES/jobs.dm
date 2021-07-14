@@ -126,7 +126,6 @@ MEDICAL_OFFICER, MEDICAL_RESEARCHER, SQUAD_LEADER, SQUAD_SPECIALIST, SQUAD_SMART
 
 #define SURVIVOR_POINTS_REGULAR 1
 
-#define SPEC_POINTS_REGULAR 1
 #define SMARTIE_POINTS_REGULAR 1
 #define SPEC_POINTS_MEDIUM 2
 #define SMARTIE_POINTS_MEDIUM 2
@@ -143,5 +142,5 @@ MEDICAL_OFFICER, MEDICAL_RESEARCHER, SQUAD_LEADER, SQUAD_SPECIALIST, SQUAD_SMART
 
 /// How many points a marine can spend in job specific vendors
 #define MARINE_TOTAL_BUY_POINTS		45
-/// How many points an engineer can spend 
+/// How many points an engineer can spend
 #define ENGINEER_TOTAL_BUY_POINTS 75

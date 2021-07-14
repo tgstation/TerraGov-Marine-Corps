@@ -263,8 +263,6 @@
 				dept_console = CRYO_CHARLIE
 			if(DELTA_SQUAD)
 				dept_console = CRYO_DELTA
-		if(istype(job, /datum/job/terragov/squad/specialist) && specset && !GLOB.available_specialist_sets.Find(specset))
-			GLOB.available_specialist_sets += specset //we make the set this specialist took if any available again
 		assigned_squad.remove_from_squad(src)
 	return ..()
 
