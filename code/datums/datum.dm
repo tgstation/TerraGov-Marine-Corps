@@ -124,11 +124,7 @@
 
 	clear_signal_refs()
 	//END: ECS SHIT
-	#ifdef REFERENCE_TRACKING
-	return QDEL_HINT_IFFAIL_FINDREFERENCE
-	#else
 	return QDEL_HINT_QUEUE
-	#endif
 
 
 /datum/proc/clear_signal_refs()
