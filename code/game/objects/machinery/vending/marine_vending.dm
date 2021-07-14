@@ -275,6 +275,7 @@
 		),
 		"Grenades" = list(
 			/obj/item/explosive/grenade/frag = 600,
+			/obj/item/explosive/grenade/impact = 125,
 			/obj/item/explosive/grenade/frag/m15 = 50,
 			/obj/item/explosive/grenade/incendiary = 50,
 			/obj/item/explosive/grenade/cloakbomb = 50,
@@ -347,6 +348,7 @@
 		),
 		"Grenade Boxes" = list(
 			/obj/item/storage/box/visual/grenade/frag = 2,
+			/obj/item/storage/box/visual/grenade/impact = 2,
 			/obj/item/storage/box/visual/grenade/incendiary = 2,
 			/obj/item/storage/box/visual/grenade/M15 = 2,
 			/obj/item/storage/box/visual/grenade/drain = 1,
