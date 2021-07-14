@@ -36,7 +36,7 @@
 #endif
 
 #ifdef REFERENCE_TRACKING_LOG
-#define log_reftracker(msg) to_chat(world, "## REF SEARCH [msg]")
+#define log_reftracker(msg) log_world("## REF SEARCH [msg]")
 #else
 #define log_reftracker(msg)
 #endif

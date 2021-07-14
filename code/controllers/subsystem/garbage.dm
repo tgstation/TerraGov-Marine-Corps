@@ -2,7 +2,7 @@
 ## Debugging GC issues
 
 In order to debug `qdel()` failures, there are several tools available.
-To enable these tools, define `TESTING` and 'Destroy' in [_compile_options.dm](https://github.com/tgstation/TerraGov-Marine-Corps/blob/master/code/_compile_options.dm).
+To enable these tools, define `TESTING` and 'REFERENCE_TRACKING' in [_compile_options.dm](https://github.com/tgstation/TerraGov-Marine-Corps/blob/master/code/_compile_options.dm).
 
 First is a verb called "Find References", which lists **every** refererence to an object in the world. This allows you to track down any indirect or obfuscated references that you might have missed.
 
@@ -15,9 +15,13 @@ If you have a datum or something you are not destroying directly (say via the si
 the next tool is `QDEL_HINT_FINDREFERENCE`. You can return this in `Destroy()` (where you would normally `return ..()`),
 to print a list of references once it enters the GC queue.
 
+You can define 'GC_FAILURE_HARD_LOOKUP' to check for references on all hard_dels. Defining 'FIND_REF_NO_CHECK_TICK' will cause the game to
+freeze, so do not define this on live.
+
+If you are only using the reference_tracking system, you do not need to define 'TESTING'; All results are logged in runtime logs
+
 Finally is a verb, "Show qdel() Log", which shows the deletion log that the garbage subsystem keeps. This is helpful if you are having race conditions or need to review the order of deletions.
 
-Note that for any of these tools to work `TESTING` must be defined.
 By using these methods of finding references, you can make your life far, far easier when dealing with `qdel()` failures.
 */
 
