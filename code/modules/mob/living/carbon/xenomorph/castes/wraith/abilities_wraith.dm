@@ -450,7 +450,8 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 			if(ishuman(pulled_target))
 				var/mob/living/carbon/human/H = pulled_target
 				if(H.stat == UNCONSCIOUS) //Apply critdrag damage as if they were quickly pulled the same distance
-					H.adjustOxyLoss(HUMAN_CRITDRAG_OXYLOSS * get_dist(H.loc, T))
+					H.adjustOxyLoss(HUMAN_CRITDRAG_DAMAGE /2 * get_dist(H.loc, T))
+					H.adjustBruteLoss(HUMAN_CRITDRAG_DAMAGE /2 * get_dist(H.loc, T))
 
 		to_chat(X, "<span class='xenodanger'>We bring [pulled_target] with us. We won't be ready to blink again for [cooldown_timer * cooldown_mod * 0.1] seconds due to the strain of doing so.</span>")
 
