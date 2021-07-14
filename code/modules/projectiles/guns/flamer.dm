@@ -500,11 +500,9 @@
 
 /obj/item/weapon/gun/flamer/marinestandard/unique_action(mob/user)
 	. = ..()
-	if(.)
-		return
 	var/obj/item/attachable/hydro_cannon/hydro = LAZYACCESS(attachments, ATTACHMENT_SLOT_UNDER)
 	if(!istype(hydro))
-		return
+		return FALSE
 	playsound(user, hydro.activation_sound, 15, 1)
 	if (hydro.activate_attachment(user))
 		hydro_active = TRUE

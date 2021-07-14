@@ -105,8 +105,6 @@
 
 /obj/item/weapon/gun/rifle/sniper/antimaterial/unique_action(mob/user)
 	. = ..()
-	if(.)
-		return
 	if(!targetmarker_primed && !targetmarker_on)
 		return laser_on(user)
 	else
@@ -397,8 +395,6 @@
 
 /obj/item/weapon/gun/smartgun/unique_action(mob/living/carbon/user)
 	. = ..()
-	if(.)
-		return
 	var/obj/item/smartgun_powerpack/power_pack = user.back
 	if(!istype(power_pack))
 		return FALSE
