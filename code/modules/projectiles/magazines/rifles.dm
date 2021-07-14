@@ -144,8 +144,8 @@
 /obj/item/ammo_magazine/rifle/ak47/extended
 	name = "\improper AK extended magazine (7.62x39mm)"
 	desc = "A 7.62x39mm Kalashnikov magazine, this one carries more rounds than the average magazine."
+	icon_state = "ak47_ext"
 	max_rounds = 60
-	bonus_overlay = "ak47_ex"
 	icon_state_mini = "mag_rifle_big_yellow"
 
 
