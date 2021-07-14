@@ -239,12 +239,6 @@ WEAPONS
 	cost = 60
 	available_against_xeno_only = TRUE
 
-/datum/supply_packs/weapons/specminigun
-	name = "MIC-A7 Vindicator Minigun"
-	contains = list(/obj/item/weapon/gun/minigun)
-	cost = MINIGUN_PRICE
-	available_against_xeno_only = TRUE
-
 /datum/supply_packs/weapons/smartgun
 	name = "T-29 Smart Machinegun"
 	contains = list(/obj/item/weapon/gun/rifle/standard_smartmachinegun)
@@ -622,12 +616,6 @@ AMMO
 	name = "Terra Experimental standard battery"
 	contains = list(/obj/item/cell/lasgun/lasrifle/marine)
 	cost = 2
-
-/datum/supply_packs/ammo/minigun
-	name = "Vindicator Minigun Ammo Drum"
-	contains = list(/obj/item/ammo_magazine/minigun)
-	cost = 5
-	available_against_xeno_only = TRUE
 
 /datum/supply_packs/ammo/back_fuel_tank
 	name = "Standard back fuel tank"
