@@ -510,7 +510,7 @@
 		return FALSE
 	var/move_dir = mover.dir
 	var/hole_facing = acided_hole.dir
-	if(((move_dir & hole_facing) | (move_dir & turn(hole_facing, 180)) & move_dir) && mover.flags_pass & PASSTABLE)
+	if(((move_dir & hole_facing) | (move_dir & turn(hole_facing, 180))) && (mover.flags_pass & PASSTABLE))
 		return TRUE
 
 ///Only let them out in the hole's two exits
