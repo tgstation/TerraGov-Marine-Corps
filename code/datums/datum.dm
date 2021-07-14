@@ -67,10 +67,6 @@
 	#endif
 #endif
 
-#ifdef DATUMVAR_DEBUGGING_MODE
-	var/list/cached_vars
-#endif
-
 /**
  * Called when a href for this datum is clicked
  *
@@ -128,8 +124,12 @@
 
 	clear_signal_refs()
 	//END: ECS SHIT
-
+	#ifdef REFERENCE_TRACKING
+	return QDEL_HINT_IFFAIL_FINDREFERENCE
+	#else
 	return QDEL_HINT_QUEUE
+	#endif
+
 
 /datum/proc/clear_signal_refs()
 	var/list/lookup = comp_lookup
