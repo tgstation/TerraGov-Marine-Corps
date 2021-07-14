@@ -1,0 +1,5 @@
+author: "BraveMole"
+delete-after: True
+changes: 
+  - bugfix: "Fix observers not being able to spawn when no silos are there in distress before shutter drop"
+  - bugfix: "Fix larvas spawning outside silos when there are silos"
