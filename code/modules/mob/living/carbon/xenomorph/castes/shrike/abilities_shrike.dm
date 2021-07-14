@@ -188,7 +188,7 @@
 			var/throwlocation = affected.loc //first we get the target's location
 			for(var/x in 1 to 6)
 				throwlocation = get_step(throwlocation, owner.dir) //then we find where they're being thrown to, checking tile by tile.
-			affected.throw_at(throwlocation, 6, 1, owner, TRUE)
+			affected.throw_at(throwlocation, 3, 1, owner, TRUE)
 
 	owner.visible_message("<span class='xenowarning'>[owner] sends out a huge blast of psychic energy!</span>", \
 	"<span class='xenowarning'>We send out a huge blast of psychic energy!</span>")
