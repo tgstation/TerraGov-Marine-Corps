@@ -22,7 +22,7 @@ const ParallaxNumToString = (integer) => {
       break;
     default:
       returnval = "Error!";
-  };
+  }
   return returnval;
 };
 
