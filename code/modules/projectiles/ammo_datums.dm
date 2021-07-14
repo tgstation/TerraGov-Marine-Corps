@@ -1176,7 +1176,6 @@ datum/ammo/bullet/revolver/tp44
 
 	///The smoke system that the WP gas uses to spread.
 	var/datum/effect_system/smoke_spread/smoke_system
-	var/danger_message = "<span class='danger'>The rocket explodes into white gas!</span>"
 
 /datum/ammo/rocket/wp/quad/set_smoke()
 	smoke_system = new /datum/effect_system/smoke_spread/phosphorus()
@@ -1185,7 +1184,7 @@ datum/ammo/bullet/revolver/tp44
 	set_smoke()
 	smoke_system.set_up(range, T)
 	smoke_system.start()
-	T.visible_message(danger_message)
+	T.visible_message("<span class='danger'>The rocket explodes into white gas!</span>")
 	playsound(T, 'sound/weapons/guns/fire/flamethrower2.ogg', 50, 1, 4)
 	flame_radius(radius, T, 27, 27, 27, 17)
 
