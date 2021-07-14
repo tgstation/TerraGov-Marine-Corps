@@ -55,7 +55,7 @@
 #endif
 
 ///Used to find the sources of harddels, quite laggy, don't be surpised if it freezes your client for a good while
-//#define REFERENCE_TRACKING
+#define REFERENCE_TRACKING
 #ifdef REFERENCE_TRACKING
 
 ///Should we be logging our findings or not
