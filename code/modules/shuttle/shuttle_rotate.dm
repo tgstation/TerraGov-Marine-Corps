@@ -55,7 +55,7 @@ If ever any of these procs are useful for non-shuttles, rename it to proc/rotate
 			new_dpdir = new_dpdir | angle2dir(rotation+dir2angle(D))
 	dpdir = new_dpdir
 
-/obj/structure/window/framed:shuttleRotate(rotation, params)
+/obj/structure/window/framed/shuttleRotate(rotation, params)
 	. = ..()
 	update_icon()
 
