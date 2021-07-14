@@ -237,3 +237,30 @@
   - bugfix: 'fixed the : thinking : emoji for AI'
   - rscadd: Added more displays for the AI
   - qol: disable antenna module beeping due to spam.
+2021-07-14:
+  BraveMole:
+  - bugfix: Fix being able to queue multiple items draw from backpacks
+  InterroLouis:
+  - bugfix: Impact grenades work with the T-81 launcher.
+  Pariah919:
+  - expansion: t-25 ammo packet added to req
+  - bugfix: you can buy the t-25 smartrifle in req
+  - balance: buffed automag and deagle to do much more damage, stagger and slow xenos
+      on hit
+  QualityVan:
+  - rscadd: Hivelord tunnels show up on the minimap
+  - bugfix: Xeno's Tunnel List verb should work now
+  - rscadd: You can name pill bottles when you dispense them from a chem master
+  TiviPlus:
+  - bugfix: Admin respawn bypass is now logged in the correct cases
+  lbnesquik:
+  - rscadd: Added some extra holopads to the POS.
+  - rscadd: Added a map table to the Sulaco CIC.
+  - rscadd: Add some water tanks to the water scarce POS.
+  - qol: Made the OB room on POS less bad. Did you notice POS sounds like something
+      rude?
+  - bugfix: Fixed some oddly placed or oriented cameras on the POS.
+  - bugfix: Fixed a few floating lights and APC's
+  - bugfix: fixes a few missing fire alarms doors on POS.
+  - bugfix: fixed a messy area on the POS hangar, extended the fire shutters to match.
+  - bugfix: Change the holopad layer so it renders above catwalks
