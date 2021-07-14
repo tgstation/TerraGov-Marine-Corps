@@ -399,7 +399,6 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_PREP)
 	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_PREP, ACCESS_MARINE_DROPSHIP)
 	skills_type = /datum/skills/specialist
-	display_order = JOB_DISPLAY_ORDER_SQUAD_SPECIALIST
 	outfit = /datum/outfit/job/marine/specialist
 	exp_requirements = XP_REQ_UNSEASONED
 	exp_type = EXP_TYPE_REGULAR_ALL
