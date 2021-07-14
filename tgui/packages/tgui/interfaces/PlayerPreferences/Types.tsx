@@ -19,7 +19,7 @@ type CharacterCustomizationData = {
   r_eyes: number,
   g_eyes: number,
   b_eyes: number,
-  
+
 }
 
 type BackgroundInformationData = {
@@ -35,6 +35,7 @@ type GameSettingData = {
   ui_style_color: string,
   scaling_method: string,
   pixel_size: number,
+  parallax: number
 }
 
 type GearCustomizationData = {
