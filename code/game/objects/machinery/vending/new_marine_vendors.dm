@@ -988,7 +988,7 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 	for(var/typepath in spawned_gear_list)
 		var/item = new typepath(loc)
 		if(!faction)
-			break
+			continue
 		if(ismodulararmorarmorpiece(item))
 			var/obj/item/armor_module/armor/armorpiece = item
 			armorpiece.limit_colorable_colors(faction)
