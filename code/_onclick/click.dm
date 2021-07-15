@@ -329,12 +329,12 @@ if(selected_ability.target_flags & flagname){\
 		selected_ability.use_ability(A)
 
 /mob/living/carbon/xenomorph/RightClickOn(atom/A)
+	. = ..()
 	if(selected_ability) //If we have a selected ability that we can use, return TRUE
 		A = ability_target(A)
 		if(selected_ability.can_use_ability(A))
 			selected_ability.use_ability(A)
 			return TRUE
-	return ..()
 
 /*
 	Right click
