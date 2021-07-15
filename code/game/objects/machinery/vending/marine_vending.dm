@@ -154,6 +154,7 @@
 		),
 		"Specialized" = list(
 			/obj/item/weapon/gun/launcher/m92/standardmarine = -1,
+			/obj/item/weapon/gun/heavymachinegun = 1,
 			/obj/item/weapon/gun/launcher/m81 = -1,
 			/obj/item/weapon/gun/rifle/pepperball = 4,
 			/obj/item/storage/box/recoilless_system = 2,
@@ -162,6 +163,7 @@
 			/obj/item/ammo_magazine/flamer_tank/large = 20,
 			/obj/item/ammo_magazine/flamer_tank = 20,
 			/obj/item/weapon/shield/riot/marine = 6,
+			/obj/item/ammo_magazine/heavymachinegun = 10,
 			/obj/item/ammo_magazine/rifle/pepperball = 40,
 			/obj/item/weapon/powerfist = -1,
 			/obj/item/weapon/throwing_knife = -1,
