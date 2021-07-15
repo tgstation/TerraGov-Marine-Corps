@@ -32,7 +32,7 @@
 #if DM_VERSION < MIN_COMPILER_VERSION || DM_BUILD < MIN_COMPILER_BUILD
 //Don't forget to update this part
 #error Your version of BYOND is too out-of-date to compile this project. Go to https://secure.byond.com/download and update.
-#error You need version 513.1523 or higher
+#error You need version 513.1539 or higher
 #endif
 #endif
 
