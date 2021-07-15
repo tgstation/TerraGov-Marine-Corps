@@ -141,6 +141,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	///Should we automatically fit the viewport?
 	var/auto_fit_viewport = TRUE
 
+	var/parallax
+
 	///The loadout manager
 	var/datum/loadout_manager/loadout_manager
 	///Should we be in the widescreen mode set by the config?

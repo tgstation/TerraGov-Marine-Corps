@@ -18,6 +18,11 @@
 /datum/job/xenomorph/return_spawn_type(datum/preferences/prefs)
 	return /mob/living/carbon/xenomorph/larva
 
+/datum/job/xenomorph/return_spawn_turf()
+	if(length(GLOB.xeno_resin_silos))
+		return pick(GLOB.xeno_resin_silos)
+	return pick(GLOB.spawns_by_job[/datum/job/xenomorph])
+
 /datum/job/xenomorph/add_job_points(amount, origin = MARINE_SPAWN_ORIGIN)
 	. = ..()
 	SSblackbox.record_feedback("tally", "round_statistics", 0.125 * amount, origin)

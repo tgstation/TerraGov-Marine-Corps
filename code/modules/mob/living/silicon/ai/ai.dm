@@ -54,7 +54,7 @@
 	builtInCamera = new(src)
 	builtInCamera.network = list("marinemainship")
 
-	holo_icon = getHologramIcon(icon('icons/mob/AI.dmi', "holo1"))
+	holo_icon = getHologramIcon(icon('icons/mob/AI.dmi', "default"))
 
 	laws = list()
 	laws += "Safeguard: Protect your assigned vessel from damage to the best of your abilities."

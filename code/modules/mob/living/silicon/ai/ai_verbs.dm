@@ -98,8 +98,7 @@
 			"cat" = 'icons/mob/pets.dmi',
 			"cat2" = 'icons/mob/pets.dmi',
 			"parrot_fly" = 'icons/mob/animal.dmi',
-			"pug" = 'icons/mob/pets.dmi',
-			"guard" = 'icons/mob/animal.dmi'
+			"pug" = 'icons/mob/pets.dmi'
 			)
 
 			hologram = tgui_input_list(src, "Please select a hologram:", null, icon_list)
@@ -112,8 +111,8 @@
 			var/list/icon_list = list(
 				"default" = 'icons/mob/ai.dmi',
 				"floating face" = 'icons/mob/ai.dmi',
-				"alienq" = 'icons/mob/alien.dmi',
-				"horror" = 'icons/mob/ai.dmi'
+				"xeno_queen" = 'icons/mob/ai.dmi',
+				"void_horror" = 'icons/mob/ai.dmi'
 				)
 
 			hologram = tgui_input_list(src, "Please select a hologram:", null, icon_list)
