@@ -12,12 +12,15 @@
 	var/list/can_hold = list() //List of objects which this item can store (if set, it can't store anything else)
 	var/list/cant_hold = list() //List of objects which this item can't store (in effect only if can_hold isn't set)
 	var/list/bypass_w_limit = list() //a list of objects which this item can store despite not passing the w_class limit
-	/**Associated list of types and their max count, formatted as
-	  	storage_type_limits = list(
-	  		/obj/A = 1,
-	  	)
-	  Any inserted objects will decrement the allowed count of every listed type which matches or is a parent of that object.
-	  With entries for both /obj/A and /obj/A/B, inserting a B requires non-zero allowed count remaining for, and reduces, both. */
+	/**
+	 * Associated list of types and their max count, formatted as
+	 * 	storage_type_limits = list(
+	 * 		/obj/A = 3,
+	 * 	)
+	 *
+	 * Any inserted objects will decrement the allowed count of every listed type which matches or is a parent of that object.
+	 * With entries for both /obj/A and /obj/A/B, inserting a B requires non-zero allowed count remaining for, and reduces, both. 
+	 */
 	var/list/storage_type_limits
 	var/list/click_border_start = list() //In slotless storage, stores areas where clicking will refer to the associated item
 	var/list/click_border_end = list()
