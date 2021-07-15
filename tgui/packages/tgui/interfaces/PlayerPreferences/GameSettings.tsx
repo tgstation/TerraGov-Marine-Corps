@@ -2,9 +2,33 @@ import { useBackend } from '../../backend';
 import { Button, Section, LabeledList, Grid, ColorBox } from '../../components';
 import { ToggleFieldPreference, TextFieldPreference, SelectFieldPreference, LoopingSelectionPreference } from './FieldPreferences';
 
+const ParallaxNumToString = (integer) => {
+  let returnval = "";
+  switch (integer) {
+    case -1:
+      returnval = "Insane";
+      break;
+    case 0:
+      returnval = "High";
+      break;
+    case 1:
+      returnval = "Medium";
+      break;
+    case 2:
+      returnval = "Low";
+      break;
+    case 3:
+      returnval = "Disabled";
+      break;
+    default:
+      returnval = "Error!";
+  }
+  return returnval;
+};
+
 export const GameSettings = (props, context) => {
   const { act, data } = useBackend<GameSettingData>(context);
-  const { ui_style_color, scaling_method, pixel_size } = data;
+  const { ui_style_color, scaling_method, pixel_size, parallax } = data;
   return (
     <Section title="Game Settings">
       <Grid>
@@ -177,6 +201,11 @@ export const GameSettings = (props, context) => {
                 label="Pixel Size Scaling"
                 value={pixel_size}
                 action="pixel_size"
+              />
+              <LoopingSelectionPreference
+                label="Parallax"
+                value={ParallaxNumToString(parallax)}
+                action="parallax"
               />
             </LabeledList>
           </Section>

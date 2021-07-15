@@ -65,7 +65,7 @@
 		if(5)
 			return list(ACCESS_MARINE_WO, ACCESS_MARINE_ARMORY, ACCESS_MARINE_BRIG)//security
 		if(6)
-			return list(ACCESS_IFF_MARINE, ACCESS_MARINE_PREP, ACCESS_MARINE_MEDPREP, ACCESS_MARINE_ENGPREP, ACCESS_MARINE_SMARTPREP, ACCESS_MARINE_LEADER, ACCESS_MARINE_SPECPREP)//spess mahreens
+			return list(ACCESS_MARINE_PREP, ACCESS_MARINE_MEDPREP, ACCESS_MARINE_ENGPREP, ACCESS_MARINE_SMARTPREP, ACCESS_MARINE_LEADER, ACCESS_MARINE_SPECPREP)//spess mahreens
 		if(7)
 			return list(ACCESS_MARINE_ALPHA, ACCESS_MARINE_BRAVO, ACCESS_MARINE_CHARLIE, ACCESS_MARINE_DELTA)//squads
 		if(8)
@@ -162,8 +162,6 @@
 			return "Civilian Engineering"
 		if(ACCESS_CIVILIAN_PUBLIC)
 			return "Civilian"
-		if(ACCESS_IFF_MARINE)
-			return "Crew Identification"
 
 /proc/get_centcom_access_desc(A)
 	switch(A)
@@ -179,8 +177,6 @@
 			return "NT PMC White"
 		if(ACCESS_NT_CORPORATE)
 			return "NT Executive"
-		if(ACCESS_IFF_PMC)
-			return "NT Identification"
 
 
 /proc/get_access_job_name(obj/item/card/id/ID)

@@ -1587,7 +1587,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 			return
 		job.add_job_positions(1)
 
-		usr.client.holder.job_slots()
+		usr.client?.holder.job_slots()
 
 		log_admin("[key_name(src)] has added a [slot] job slot.")
 		message_admins("[ADMIN_TPMONTY(usr)] has added a [slot] job slot.")

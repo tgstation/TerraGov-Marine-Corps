@@ -246,7 +246,7 @@
 
 /obj/item/ammo_magazine/rocket/m57a4
 	name = "\improper 84mm thermobaric rocket array"
-	desc = "A thermobaric rocket tube for a M57A4 quad launcher. Activate in hand to receive some metal when it's used up."
+	desc = "A thermobaric rocket tube for a T-57 quad launcher. Activate in hand to receive some metal when it's used up. The Rockets don't do much damage on a direct hit, but the fire effect is strong.."
 	caliber = CALIBER_ROCKETARRAY
 	icon_state = "quad_rocket"
 	max_rounds = 4
@@ -254,11 +254,22 @@
 	gun_type = /obj/item/weapon/gun/launcher/rocket/m57a4
 	reload_delay = 200
 
+/obj/item/ammo_magazine/rocket/m57a4/ds
+	name = "\improper 84mm thermobaric rocket array"
+	desc = "A thermobaric rocket tube for a M57A4 quad launcher. Activate in hand to receive some metal when it's used up. Has huge red markings..."
+	caliber = CALIBER_ROCKETARRAY
+	icon_state = "quad_rocket"
+	max_rounds = 4
+	default_ammo = /datum/ammo/rocket/wp/quad/ds
+
 /obj/item/ammo_magazine/internal/launcher/rocket/m57a4
 	desc = "The internal tube of an M57A4 thermobaric launcher."
 	caliber = CALIBER_ROCKETARRAY
 	default_ammo = /datum/ammo/rocket/wp/quad
 	max_rounds = 4
+
+/obj/item/ammo_magazine/internal/launcher/rocket/m57a4/ds
+	default_ammo = /datum/ammo/rocket/wp/quad/ds
 
 //-------------------------------------------------------
 //Minigun
