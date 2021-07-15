@@ -152,6 +152,7 @@ TUNNEL
 	max_integrity = 140
 
 	hud_possible = list(XENO_TACTICAL_HUD)
+	xeno_structure_flags = IGNORE_WEED_REMOVAL
 
 	var/tunnel_desc = "" //description added by the hivelord.
 	var/mob/living/carbon/xenomorph/hivelord/creator = null
@@ -501,6 +502,7 @@ TUNNEL
 	layer = RESIN_STRUCTURE_LAYER
 	pixel_x = -16
 	pixel_y = -16
+	xeno_structure_flags = IGNORE_WEED_REMOVAL
 
 	hit_sound = "alien_resin_move"
 	destroy_sound = "alien_resin_move"
