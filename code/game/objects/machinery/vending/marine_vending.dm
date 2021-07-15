@@ -177,7 +177,7 @@
 			/obj/item/explosive/grenade/cloakbomb = 25,
 			/obj/item/explosive/grenade/drainbomb = 10,
 			/obj/item/explosive/grenade/mirage = 100,
-			/obj/item/storage/box/m94 = 200,
+			/obj/item/storage/box/m94 = -1,
 			/obj/item/storage/box/m94/cas = 30,
 		),
 		"Attachments" = list(
