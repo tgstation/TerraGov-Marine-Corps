@@ -2,6 +2,8 @@
 /datum/job/colonist
 	title = "Colonist"
 	paygrade = "C"
+	access = list(ACCESS_IFF_MARINE)
+	minimal_access = list(ACCESS_IFF_MARINE)
 	outfit = /datum/outfit/job/other/colonist
 
 
@@ -20,6 +22,8 @@
 /datum/job/passenger
 	title = "Passenger"
 	paygrade = "C"
+	access = list(ACCESS_IFF_MARINE)
+	minimal_access = list(ACCESS_IFF_MARINE)
 
 
 //Pizza Deliverer
