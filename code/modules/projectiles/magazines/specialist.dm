@@ -263,7 +263,6 @@
 	default_ammo = /datum/ammo/rocket/wp/quad
 	max_rounds = 4
 
-
 /obj/item/ammo_magazine/internal/launcher/rocket/m57a4/ds
 	default_ammo = /datum/ammo/rocket/wp/quad/ds
 
