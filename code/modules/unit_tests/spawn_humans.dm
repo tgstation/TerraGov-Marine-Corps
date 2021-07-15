@@ -15,4 +15,4 @@
 		H.equipOutfit(outfits_to_test[outfits_to_test.len])
 		outfits_to_test.len--
 
-	sleep(100)
+	sleep(20)
