@@ -86,16 +86,16 @@ SUBSYSTEM_DEF(persistence)
 	return TRUE
 
 ///Constructs a message with information about the active seasons and their current buckets
-/datum/controller/subsystem/persistence/proc/seasons_announce()
+/datum/controller/subsystem/persistence/proc/seasons_info_message()
 	var/message = ""
 	for(var/season_entry in season_progress)
 		var/season_name = jointext(splittext("[season_entry]", "_"), " ")
 		var/season_name_first_letter = uppertext(copytext(season_name, 1, 2))
 		var/season_name_remainder = copytext(season_name, 2, length(season_name) + 1)
 		season_name = season_name_first_letter + season_name_remainder
-		message += "<span style='color: #1ABC9C; font-size: 1.1em'><b>[season_name]</b> - season [season_progress[season_entry][CURRENT_SEASON_NUMBER]]<br></span>"
-		message += "<span style='color: #283747'><b>Title:</b> [season_progress[season_entry][CURRENT_SEASON_NAME]]<br></span>"
-		message += "<span style='color: #283747'><b>Description:</b> [season_progress[season_entry][CURRENT_SEASON_DESC]]<br></span>"
+		message += "<span class='seasons_announce'><b>[season_name]</b> - season [season_progress[season_entry][CURRENT_SEASON_NUMBER]]<br></span>"
+		message += "<span class='season_additional_info'><b>Title:</b> [season_progress[season_entry][CURRENT_SEASON_NAME]]<br></span>"
+		message += "<span class='season_additional_info'><b>Description:</b> [season_progress[season_entry][CURRENT_SEASON_DESC]]<br></span>"
 
 	return message
 
