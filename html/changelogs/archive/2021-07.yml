@@ -264,3 +264,24 @@
   - bugfix: fixes a few missing fire alarms doors on POS.
   - bugfix: fixed a messy area on the POS hangar, extended the fire shutters to match.
   - bugfix: Change the holopad layer so it renders above catwalks
+2021-07-15:
+  BraveMole:
+  - bugfix: Loadouts vendor will no longer runtime when equipping a loadout as a non
+      squad role
+  - bugfix: Fix observers not being able to spawn when no silos are there in distress
+      before shutter drop
+  - bugfix: Fix larvas spawning outside silos when there are silos
+  - bugfix: Fix quick equip not respecting storage delay
+  InterroLouis:
+  - imageadd: Added a new icon for being full.
+  Pariah919:
+  - balance: spawn jelly has 20 seconds of cooldown from 5
+  - rscadd: Added back impact grenades to marine vendors
+  Surrealaser:
+  - bugfix: Fixes corrosive acid melt times, and its processing time adjustment, considerably
+      faster like it was before.
+  TiviPlus:
+  - rscadd: Space is now fancier, this can be adjusted in preferences
+  lbnesquik:
+  - bugfix: Fixed the AI holopad being seemingly broken. Don't forget to use the Change
+      Hologram verb!
