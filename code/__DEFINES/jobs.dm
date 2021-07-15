@@ -120,7 +120,7 @@ MEDICAL_OFFICER, MEDICAL_RESEARCHER, SQUAD_LEADER, SQUAD_SPECIALIST, SQUAD_SMART
 
 // how much a job is going to contribute towards burrowed larva. see config for points required to larva. old balance was 1 larva per 3 humans.
 #define LARVA_POINTS_SHIPSIDE 1
-#define LARVA_POINTS_SHIPSIDE_STRONG 2
+#define LARVA_POINTS_SHIPSIDE_STRONG 1.5
 #define LARVA_POINTS_REGULAR 3
 #define LARVA_POINTS_STRONG 6
 
@@ -140,3 +140,8 @@ MEDICAL_OFFICER, MEDICAL_RESEARCHER, SQUAD_LEADER, SQUAD_SPECIALIST, SQUAD_SMART
 #define SILO_ORIGIN "xenos from silo generation"
 
 #define SQUAD_MAX_POSITIONS(total_positions) CEILING(total_positions / length(SSjob.active_squads), 1)
+
+/// How many points a marine can spend in job specific vendors
+#define MARINE_TOTAL_BUY_POINTS		45
+/// How many points an engineer can spend 
+#define ENGINEER_TOTAL_BUY_POINTS 75

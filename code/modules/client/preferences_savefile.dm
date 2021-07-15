@@ -92,7 +92,6 @@
 
 	savefile_version = SAVEFILE_VERSION_MAX
 
-
 /datum/preferences/proc/load_preferences()
 	if(!path)
 		return FALSE
@@ -113,6 +112,7 @@
 			savefile_version = SAVEFILE_VERSION_MAX
 			save_preferences()
 			save_character()
+			save_keybinds()
 			return FALSE
 
 	READ_FILE(S["default_slot"], default_slot)
@@ -126,10 +126,14 @@
 	READ_FILE(S["toggles_chat"], toggles_chat)
 	READ_FILE(S["toggles_sound"], toggles_sound)
 	READ_FILE(S["toggles_gameplay"], toggles_gameplay)
+	READ_FILE(S["fullscreen_mode"], fullscreen_mode)
 	READ_FILE(S["show_typing"], show_typing)
 	READ_FILE(S["ghost_hud"], ghost_hud)
 	READ_FILE(S["windowflashing"], windowflashing)
 	READ_FILE(S["auto_fit_viewport"], auto_fit_viewport)
+	READ_FILE(S["widescreenpref"], widescreenpref)
+	READ_FILE(S["pixel_size"], pixel_size)
+	READ_FILE(S["scaling_method"], scaling_method)
 	READ_FILE(S["menuoptions"], menuoptions)
 	READ_FILE(S["ghost_vision"], ghost_vision)
 	READ_FILE(S["ghost_orbit"], ghost_orbit)
@@ -138,6 +142,7 @@
 	READ_FILE(S["observer_actions"], observer_actions)
 	READ_FILE(S["focus_chat"], focus_chat)
 	READ_FILE(S["clientfps"], clientfps)
+	READ_FILE(S["parallax"], parallax)
 	READ_FILE(S["tooltips"], tooltips)
 	READ_FILE(S["key_bindings"], key_bindings)
 	READ_FILE(S["custom_emotes"], custom_emotes)
@@ -169,10 +174,14 @@
 	toggles_chat	= sanitize_integer(toggles_chat, NONE, MAX_BITFLAG, initial(toggles_chat))
 	toggles_sound	= sanitize_integer(toggles_sound, NONE, MAX_BITFLAG, initial(toggles_sound))
 	toggles_gameplay= sanitize_integer(toggles_gameplay, NONE, MAX_BITFLAG, initial(toggles_gameplay))
+	fullscreen_mode = sanitize_integer(fullscreen_mode, FALSE, TRUE, initial(fullscreen_mode))
 	show_typing		= sanitize_integer(show_typing, FALSE, TRUE, initial(show_typing))
 	ghost_hud 		= sanitize_integer(ghost_hud, NONE, MAX_BITFLAG, initial(ghost_hud))
 	windowflashing	= sanitize_integer(windowflashing, FALSE, TRUE, initial(windowflashing))
 	auto_fit_viewport= sanitize_integer(auto_fit_viewport, FALSE, TRUE, initial(auto_fit_viewport))
+	widescreenpref = sanitize_integer(widescreenpref, FALSE, TRUE, initial(widescreenpref))
+	pixel_size = sanitize_float(pixel_size, PIXEL_SCALING_AUTO, PIXEL_SCALING_3X, 0.5, initial(pixel_size))
+	scaling_method  = sanitize_text(scaling_method, initial(scaling_method))
 	ghost_vision	= sanitize_integer(ghost_vision, FALSE, TRUE, initial(ghost_vision))
 	ghost_orbit		= sanitize_inlist(ghost_orbit, GLOB.ghost_orbits, initial(ghost_orbit))
 	ghost_form		= sanitize_inlist_assoc(ghost_form, GLOB.ghost_forms, initial(ghost_form))
@@ -180,6 +189,7 @@
 	observer_actions= sanitize_integer(observer_actions, FALSE, TRUE, initial(observer_actions))
 	focus_chat		= sanitize_integer(focus_chat, FALSE, TRUE, initial(focus_chat))
 	clientfps		= sanitize_integer(clientfps, 0, 240, initial(clientfps))
+	parallax = sanitize_integer(parallax, PARALLAX_INSANE, PARALLAX_DISABLE, null)
 	tooltips		= sanitize_integer(tooltips, FALSE, TRUE, initial(tooltips))
 
 	key_bindings 	= sanitize_islist(key_bindings, list())
@@ -225,12 +235,14 @@
 	toggles_chat	= sanitize_integer(toggles_chat, NONE, MAX_BITFLAG, initial(toggles_chat))
 	toggles_sound	= sanitize_integer(toggles_sound, NONE, MAX_BITFLAG, initial(toggles_sound))
 	toggles_gameplay= sanitize_integer(toggles_gameplay, NONE, MAX_BITFLAG, initial(toggles_gameplay))
+	fullscreen_mode = sanitize_integer(fullscreen_mode, FALSE, TRUE, initial(fullscreen_mode))
 	show_typing		= sanitize_integer(show_typing, FALSE, TRUE, initial(show_typing))
 	ghost_hud 		= sanitize_integer(ghost_hud, NONE, MAX_BITFLAG, initial(ghost_hud))
 	windowflashing	= sanitize_integer(windowflashing, FALSE, TRUE, initial(windowflashing))
-	auto_fit_viewport= sanitize_integer(auto_fit_viewport, FALSE, TRUE, initial(auto_fit_viewport))
-	key_bindings	= sanitize_islist(key_bindings, list())
-	custom_emotes   = sanitize_is_full_emote_list(custom_emotes)
+	auto_fit_viewport = sanitize_integer(auto_fit_viewport, FALSE, TRUE, initial(auto_fit_viewport))
+	widescreenpref = sanitize_integer(widescreenpref, FALSE, TRUE, initial(widescreenpref))
+	pixel_size = sanitize_float(pixel_size, PIXEL_SCALING_AUTO, PIXEL_SCALING_3X, 0.5, initial(pixel_size))
+	scaling_method  = sanitize_text(scaling_method, initial(scaling_method))
 	chem_macros		= sanitize_islist(chem_macros, list())
 	ghost_vision	= sanitize_integer(ghost_vision, FALSE, TRUE, initial(ghost_vision))
 	ghost_orbit		= sanitize_inlist(ghost_orbit, GLOB.ghost_orbits, initial(ghost_orbit))
@@ -239,6 +251,7 @@
 	observer_actions= sanitize_integer(observer_actions, FALSE, TRUE, initial(observer_actions))
 	focus_chat		= sanitize_integer(focus_chat, FALSE, TRUE, initial(focus_chat))
 	clientfps		= sanitize_integer(clientfps, 0, 240, initial(clientfps))
+	parallax = sanitize_integer(parallax, PARALLAX_INSANE, PARALLAX_DISABLE, null)
 	tooltips		= sanitize_integer(tooltips, FALSE, TRUE, initial(tooltips))
 
 	mute_self_combat_messages	= sanitize_integer(mute_self_combat_messages, FALSE, TRUE, initial(mute_self_combat_messages))
@@ -262,13 +275,15 @@
 	WRITE_FILE(S["toggles_chat"], toggles_chat)
 	WRITE_FILE(S["toggles_sound"], toggles_sound)
 	WRITE_FILE(S["toggles_gameplay"], toggles_gameplay)
+	WRITE_FILE(S["fullscreen_mode"], fullscreen_mode)
 	WRITE_FILE(S["show_typing"], show_typing)
 	WRITE_FILE(S["ghost_hud"], ghost_hud)
 	WRITE_FILE(S["windowflashing"], windowflashing)
 	WRITE_FILE(S["auto_fit_viewport"], auto_fit_viewport)
+	WRITE_FILE(S["widescreenpref"], widescreenpref)
+	WRITE_FILE(S["pixel_size"], pixel_size)
+	WRITE_FILE(S["scaling_method"], scaling_method)
 	WRITE_FILE(S["menuoptions"], menuoptions)
-	WRITE_FILE(S["key_bindings"], key_bindings)
-	WRITE_FILE(S["custom_emotes"], custom_emotes)
 	WRITE_FILE(S["chem_macros"], chem_macros)
 	WRITE_FILE(S["ghost_vision"], ghost_vision)
 	WRITE_FILE(S["ghost_orbit"], ghost_orbit)
@@ -277,6 +292,7 @@
 	WRITE_FILE(S["observer_actions"], observer_actions)
 	WRITE_FILE(S["focus_chat"], focus_chat)
 	WRITE_FILE(S["clientfps"], clientfps)
+	WRITE_FILE(S["parallax"], parallax)
 	WRITE_FILE(S["tooltips"], tooltips)
 
 	WRITE_FILE(S["mute_self_combat_messages"], mute_self_combat_messages)
@@ -291,6 +307,17 @@
 
 	return TRUE
 
+/datum/preferences/proc/save_keybinds()
+	if(!path)
+		return FALSE
+	var/savefile/S = new /savefile(path)
+	if(!S)
+		return FALSE
+	S.cd = "/"
+	key_bindings	= sanitize_islist(key_bindings, list())
+	custom_emotes   = sanitize_is_full_emote_list(custom_emotes)
+	WRITE_FILE(S["key_bindings"], key_bindings)
+	WRITE_FILE(S["custom_emotes"], custom_emotes)
 
 /datum/preferences/proc/load_character(slot)
 	if(!path)
@@ -562,6 +589,50 @@
 
 	return TRUE
 
+///Save a loadout into the savefile
+/datum/preferences/proc/save_loadout(datum/loadout/loadout)
+	if(!path)
+		return FALSE
+	if(!fexists(path))
+		return FALSE
+	var/savefile/S = new /savefile(path)
+	if(!S)
+		return FALSE
+	S.cd = "/loadouts"
+	loadout.loadout_vendor = null
+	var/loadout_json = jatum_serialize(loadout)
+	WRITE_FILE(S["[loadout.name + loadout.job]"], loadout_json)
+	return TRUE
+
+///Delete a loadout from the savefile
+/datum/preferences/proc/delete_loadout(loadout_name, loadout_job)
+	if(!path)
+		return
+	if(!fexists(path))
+		return
+	var/savefile/S = new /savefile(path)
+	if(!S)
+		return
+	S.cd = "/loadouts"
+	WRITE_FILE(S["[loadout_name + loadout_job]"], "")
+
+///Load a loadout from the savefile and returns it
+/datum/preferences/proc/load_loadout(loadout_name, loadout_job)
+	if(!path)
+		return FALSE
+	if(!fexists(path))
+		return FALSE
+	var/savefile/S = new /savefile(path)
+	if(!S)
+		return FALSE
+	S.cd = "/loadouts"
+	var/loadout_json = ""
+	READ_FILE(S["[loadout_name + loadout_job]"], loadout_json)
+	if(!loadout_json)
+		return FALSE
+	var/datum/loadout/loadout = jatum_deserialize(loadout_json)
+	return loadout
+
 ///Serialize and save into a savefile the loadout manager
 /datum/preferences/proc/save_loadout_manager()
 	if(!path)
@@ -571,7 +642,7 @@
 	var/savefile/S = new /savefile(path)
 	if(!S)
 		return FALSE
-	loadout_manager = sanitize_loadout_manager(loadout_manager)
+	loadout_manager.loadout_vendor = null
 	var/json_loadout_manager = jatum_serialize(loadout_manager)
 	S.cd = "/loadouts"
 	WRITE_FILE(S["loadouts_manager"], json_loadout_manager)
@@ -592,14 +663,21 @@
 	if(!json_loadout_manager)
 		return FALSE
 	loadout_manager = jatum_deserialize(json_loadout_manager)
-	loadout_manager = sanitize_loadout_manager(loadout_manager)
-	if(loadout_manager.current_loadout)
-		loadout_manager.loadouts_list += loadout_manager.current_loadout //Has to be done since jatum cannot handle duplication well. Unless you fix jatum, don't touch this
-	return TRUE
+	return !isnull(loadout_manager)
 
+///Erase all loadouts that could be saved on the savefile
+/datum/preferences/proc/reset_loadouts_file()
+	if(!path)
+		return FALSE
+	if(!fexists(path))
+		return FALSE
+	var/savefile/S = new /savefile(path)
+	if(!S)
+		return FALSE
+	S.dir.Remove("loadouts")
 
 /datum/preferences/proc/save()
-	return (save_preferences() && save_character())
+	return (save_preferences() && save_character() && save_keybinds())
 
 
 /datum/preferences/proc/load()

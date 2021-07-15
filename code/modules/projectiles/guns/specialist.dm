@@ -37,9 +37,8 @@
 		/obj/item/attachable/lasersight,
 	)
 
-	flags_gun_features = GUN_AUTO_EJECTOR|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER|GUN_IFF
 	starting_attachment_types = list(/obj/item/attachable/scope/antimaterial, /obj/item/attachable/sniperbarrel)
-	gun_iff_signal = list(ACCESS_IFF_MARINE)
 
 	fire_delay = 2.5 SECONDS
 	burst_amount = 1
@@ -104,11 +103,16 @@
 
 
 /obj/item/weapon/gun/rifle/sniper/antimaterial/unique_action(mob/user)
+	. = ..()
+	if(.)
+		return
 	if(!targetmarker_primed && !targetmarker_on)
 		return laser_on(user)
 	else
 		return laser_off(user)
 
+/obj/item/weapon/gun/rifle/sniper/antimaterial/cock(mob/user)
+	return
 
 /obj/item/weapon/gun/rifle/sniper/antimaterial/Destroy()
 	laser_off()
@@ -222,11 +226,10 @@
 	current_mag = /obj/item/ammo_magazine/sniper/elite
 	force = 17
 	attachable_allowed = list()
-	flags_gun_features = GUN_AUTO_EJECTOR|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER|GUN_IFF
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 18,"rail_x" = 15, "rail_y" = 19, "under_x" = 20, "under_y" = 15, "stock_x" = 20, "stock_y" = 15)
 	flags_item_map_variant = NONE
 	starting_attachment_types = list(/obj/item/attachable/scope/pmc, /obj/item/attachable/sniperbarrel)
-	gun_iff_signal = list(ACCESS_IFF_PMC)
 
 	fire_delay = 1.5 SECONDS
 	accuracy_mult = 1.50
@@ -323,8 +326,7 @@
 		/obj/item/attachable/attached_gun/shotgun,
 	)
 
-	flags_gun_features = GUN_AUTO_EJECTOR|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
-	gun_iff_signal = list(ACCESS_IFF_MARINE)
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER|GUN_IFF
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_AUTOMATIC)
 	gun_skill_category = GUN_SKILL_FIREARMS
 	attachable_offset = list("muzzle_x" = 44, "muzzle_y" = 18,"rail_x" = 16, "rail_y" = 25, "under_x" = 27, "under_y" = 13, "stock_x" = 24, "stock_y" = 13)
@@ -369,11 +371,10 @@
 		/obj/item/attachable/lasersight,
 	)
 
-	flags_gun_features = GUN_INTERNAL_MAG|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
+	flags_gun_features = GUN_INTERNAL_MAG|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER|GUN_IFF
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
 	starting_attachment_types = list(/obj/item/attachable/flashlight)
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 16,"rail_x" = 11, "rail_y" = 18, "under_x" = 22, "under_y" = 14, "stock_x" = 22, "stock_y" = 14)
-	gun_iff_signal = list(ACCESS_IFF_MARINE)
 
 	fire_delay = 0.3 SECONDS
 	burst_amount = 4
@@ -391,6 +392,9 @@
 	to_chat(user, "The restriction system is [restriction_toggled ? "<B>on</b>" : "<B>off</b>"].")
 
 /obj/item/weapon/gun/smartgun/unique_action(mob/living/carbon/user)
+	. = ..()
+	if(.)
+		return
 	var/obj/item/smartgun_powerpack/power_pack = user.back
 	if(!istype(power_pack))
 		return FALSE
@@ -756,6 +760,7 @@
 						"<span class='warning'>You fire the grenade launcher!</span>")
 	var/obj/item/explosive/grenade/F = grenade
 	grenade = null
+	F.launched = TRUE
 	F.loc = user.loc
 	F.throw_range = 20
 	F.throw_at(target, 20, 2, user)
@@ -1010,7 +1015,7 @@
 	max_shells = 4 //codex
 	caliber = CALIBER_ROCKETARRAY //codex
 	load_method = MAGAZINE //codex
-	current_mag = /obj/item/ammo_magazine/rocket/m57a4
+	current_mag = /obj/item/ammo_magazine/rocket/m57a4/ds
 	aim_slowdown = 2.75
 	attachable_allowed = list()
 	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
@@ -1020,6 +1025,14 @@
 	burst_delay = 0.4 SECONDS
 	burst_amount = 4
 	accuracy_mult = 0.8
+
+/obj/item/weapon/gun/launcher/rocket/m57a4/t57
+	name = "\improper T-57 quad thermobaric launcher"
+	desc = "The T-57 is posssibly the most awful man portable weapon. It is a 4-barreled missile launcher capable of burst-firing 4 thermobaric missiles with nearly no force to the rocket. Enough said."
+	icon_state = "t57"
+	item_state = "t57"
+	current_mag = /obj/item/ammo_magazine/rocket/m57a4
+
 
 
 //-------------------------------------------------------
@@ -1184,16 +1197,48 @@
 	unload_sound = 'sound/weapons/guns/interact/sniper_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/sniper_reload.ogg'
 	current_mag = /obj/item/ammo_magazine/railgun
-	force = 12
-	wield_delay = 2 SECONDS //You're not quick drawing this.
+	force = 40
+	wield_delay = 1.75 SECONDS //You're not quick drawing this.
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 20, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
 	attachable_allowed = list(
-		/obj/item/attachable/scope,
+		/obj/item/attachable/magnetic_harness,
 	)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
 
-	fire_delay = 20 SECONDS
+	fire_delay = 1 SECONDS
 	burst_amount = 1
 	accuracy_mult = 2
 	recoil = 0
+
+
+// PEPPERBALL GUN
+
+//-------------------------------------------------------
+//TLLL-12
+
+/obj/item/weapon/gun/rifle/pepperball
+	name = "\improper TLLL-12 pepperball gun"
+	desc = "The TLLL-12 is ostensibly riot control device used by the TGMC in spiffy colors, working through a SAN ball that sends a short acting neutralizing chemical to knock out it's target, or weaken them. Guranteed to work on just about everything. Uses SAN Ball Holders as magazines."
+	icon = 'icons/Marine/gun64.dmi'
+	icon_state = "pepperball"
+	item_state = "pepperball"
+	flags_equip_slot = ITEM_SLOT_BACK|ITEM_SLOT_BELT
+	max_shells = 70 //codex
+	caliber = CALIBER_PEPPERBALL
+	current_mag = /obj/item/ammo_magazine/rifle/pepperball
+	force = 30 // two shots weeds as it has no bayonet
+	wield_delay = 0.5 SECONDS // Very fast to put up.
+	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 20, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
+	attachable_allowed = list() // Nada.
+	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_AUTOMATIC)
+
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_AMMO_COUNTER
+
+	fire_delay = 0.1 SECONDS
+	burst_amount = 1
+	accuracy_mult = 1.75
+	recoil = 0
+	accuracy_mult_unwielded = 0.75
+	scatter = -5
+	scatter_unwielded = 5

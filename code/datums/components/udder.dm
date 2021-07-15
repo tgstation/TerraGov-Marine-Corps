@@ -21,6 +21,7 @@
 
 /datum/component/udder/UnregisterFromParent()
 	QDEL_NULL(udder)
+	QDEL_NULL(on_milk_callback)
 	UnregisterSignal(parent, list(COMSIG_PARENT_EXAMINE, COMSIG_PARENT_ATTACKBY))
 
 ///signal called on parent being examined

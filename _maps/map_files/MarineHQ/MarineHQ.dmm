@@ -3844,7 +3844,9 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/machinery/door/window/southleft,
+/obj/machinery/door/window{
+	dir = 2
+	},
 /turf/open/floor/mainship/plate,
 /area/mainship/command/cic)
 "mO" = (
@@ -4916,10 +4918,6 @@
 "xe" = (
 /turf/open/floor/mainship/sterile,
 /area/centcom/practice/medical)
-"xf" = (
-/obj/machinery/vending/marine/cargo_ammo,
-/turf/open/floor/mainship/red/full,
-/area/mainship/shipboard/weapon_room)
 "xp" = (
 /obj/machinery/door/airlock/mainship/generic{
 	name = "\improper Garden"
@@ -7976,7 +7974,6 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/centcom/practice/medical)
 "LZ" = (
-/obj/machinery/vending/marine/cargo_guns,
 /turf/open/floor/mainship/red/full,
 /area/mainship/shipboard/weapon_room)
 "Ma" = (
@@ -8425,7 +8422,6 @@
 /turf/open/floor/mainship/green,
 /area/mainship/shipboard/firing_range)
 "PI" = (
-/obj/machinery/vending/marine/cargo_guns,
 /turf/open/floor/mainship/stripesquare,
 /area/mainship/shipboard/weapon_room)
 "PJ" = (
@@ -35425,9 +35421,9 @@ Ft
 FI
 gD
 Qo
-xf
+LZ
 LC
-xf
+LZ
 RV
 bJ
 bJ

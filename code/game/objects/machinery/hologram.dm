@@ -5,7 +5,7 @@
 	name = "holopad"
 	desc = "It's a floor-mounted device for projecting holographic images."
 	icon_state = "holopad0"
-	layer = LOW_OBJ_LAYER
+	layer = HOLOPAD_LAYER
 	plane = FLOOR_PLANE
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 5

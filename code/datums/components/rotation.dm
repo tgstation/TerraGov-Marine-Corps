@@ -98,7 +98,6 @@
 	QDEL_NULL(can_user_rotate)
 	QDEL_NULL(can_be_rotated)
 	QDEL_NULL(after_rotation)
-	//Signals + verbs removed via UnRegister
 	return ..()
 
 

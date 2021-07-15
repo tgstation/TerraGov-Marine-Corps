@@ -122,7 +122,7 @@ All ShuttleMove procs go here
 	if(rotation)
 		shuttleRotate(rotation)
 
-//	update_parallax_contents()
+	update_parallax_contents()
 
 	return TRUE
 
@@ -158,7 +158,7 @@ All ShuttleMove procs go here
 	//The old turf has now been given back to the area that turf originaly belonged to
 
 	var/area/old_dest_area = newT.loc
-	//parallax_movedir = old_dest_area.parallax_movedir
+	parallax_movedir = old_dest_area.parallax_movedir
 
 	old_dest_area.contents -= newT
 	contents += newT
@@ -167,7 +167,7 @@ All ShuttleMove procs go here
 
 // Called on areas after everything has been moved
 /area/proc/afterShuttleMove(new_parallax_dir)
-	//parallax_movedir = new_parallax_dir
+	parallax_movedir = new_parallax_dir
 	return TRUE
 
 /area/proc/lateShuttleMove()

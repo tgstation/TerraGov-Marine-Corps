@@ -80,6 +80,11 @@
 
 	var/blood_type = "\[UNSET\]"
 
+	///How many points you can use to buy items
+	var/marine_points = MARINE_TOTAL_BUY_POINTS
+	///What category of items can you buy
+	var/marine_buy_flags = MARINE_CAN_BUY_ALL
+
 	//alt titles are handled a bit weirdly in order to unobtrusively integrate into existing ID system
 	var/assignment = null	//can be alt title or the actual job
 	var/rank = null			//actual job
@@ -87,6 +92,8 @@
 	var/paygrade = null  // Marine's paygrade
 
 	var/assigned_fireteam = "" //which fire team this ID belongs to, only used by squad marines.
+	/// Iff bitfield to determines hit and misses
+	var/iff_signal = NONE
 
 
 /obj/item/card/id/Initialize()
@@ -236,14 +243,18 @@
 	desc = "A marine dog tag."
 	icon_state = "dogtag"
 	item_state = "dogtag"
+	iff_signal = TGMC_LOYALIST_IFF
 	var/dogtag_taken = FALSE
 
+/obj/item/card/id/dogtag/engineer
+	marine_points = ENGINEER_TOTAL_BUY_POINTS
 
 /obj/item/card/id/dogtag/som
 	name = "\improper Sons of Mars dogtag"
 	desc = "Used by the Sons of Mars."
 	icon_state = "dogtag_som"
 	item_state = "dogtag_som"
+	iff_signal = SON_OF_MARS_IFF
 
 
 /obj/item/card/id/dogtag/examine(mob/user)

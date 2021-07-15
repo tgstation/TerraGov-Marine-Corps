@@ -13,9 +13,6 @@
 	// *** Melee Attacks *** //
 	melee_damage = 17
 
-	// *** Tackle *** //
-	tackle_damage = 21
-
 	// *** Speed *** //
 	speed = -0.3
 
@@ -68,9 +65,6 @@
 	caste_desc = "An alien with an armored crest. It looks pretty durable."
 	upgrade = XENO_UPGRADE_ONE
 
-	// *** Tackle *** //
-	tackle_damage = 21
-
 	// *** Speed *** //
 	speed = -0.4
 
@@ -99,9 +93,6 @@
 
 	// *** Melee Attacks *** //
 	melee_damage = 21
-
-	// *** Tackle *** //
-	tackle_damage = 26
 
 	// *** Speed *** //
 	speed = -0.5
@@ -132,9 +123,6 @@
 
 	// *** Melee Attacks *** //
 	melee_damage = 21
-
-	// *** Tackle *** //
-	tackle_damage = 26
 
 	// *** Speed *** //
 	speed = -0.6

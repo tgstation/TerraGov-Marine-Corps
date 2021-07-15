@@ -20,8 +20,6 @@
 	var/distress_cancelled = FALSE
 
 	var/deploy_time_lock = 15 MINUTES
-	///List of available factions when spawning
-	var/list/joinable_factions = list()
 
 //Distress call variables.
 	var/list/datum/emergency_call/all_calls = list() //initialized at round start and stores the datums.
@@ -356,6 +354,8 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 		dat += "[GLOB.round_statistics.grenades_thrown] total grenades exploding."
 	else
 		dat += "No grenades exploded."
+	if(GLOB.round_statistics.total_human_deaths)
+		dat += "[GLOB.round_statistics.total_human_deaths] people were killed, among which [GLOB.round_statistics.total_human_revives] were revived. For a [(GLOB.round_statistics.total_human_revives / max(GLOB.round_statistics.total_human_deaths, 1)) * 100]% medical revival rate."
 	if(GLOB.round_statistics.now_pregnant)
 		dat += "[GLOB.round_statistics.now_pregnant] people infected among which [GLOB.round_statistics.total_larva_burst] burst. For a [(GLOB.round_statistics.total_larva_burst / max(GLOB.round_statistics.now_pregnant, 1)) * 100]% successful delivery rate!"
 	if(GLOB.round_statistics.queen_screech)
@@ -398,6 +398,8 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 		dat += "[GLOB.round_statistics.ravager_endures] number of times Ravagers used Endure."
 	if(GLOB.round_statistics.hunter_marks)
 		dat += "[GLOB.round_statistics.hunter_marks] number of times Hunters marked a target for death."
+	if(GLOB.round_statistics.ravager_rages)
+		dat += "[GLOB.round_statistics.ravager_rages] number of times Ravagers raged."
 
 	var/output = jointext(dat, "<br>")
 	for(var/mob/player in GLOB.player_list)
@@ -629,7 +631,7 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 	for(var/key in shuffle(SSjob.squads))
 		var/datum/squad/squad = SSjob.squads[key]
 		if(squad.faction == FACTION_TERRAGOV)
-			preferred_squads += squad
+			preferred_squads[squad.name] = 0
 	if(!length(preferred_squads))
 		to_chat(world, "<span class='boldnotice'>Error, no squads found.</span>")
 		return FALSE
@@ -639,17 +641,16 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 		var/squad_choice = player.client.prefs.preferred_squad
 		if(squad_choice == "None")
 			continue
-		if(!preferred_squads[squad_choice])
+		if(isnull(preferred_squads[squad_choice]))
 			stack_trace("[player.client] has in its prefs [squad_choice] for a squad. Not valid.")
 			continue
 		preferred_squads[squad_choice]++
 	sortTim(preferred_squads, cmp=/proc/cmp_numeric_dsc, associative = TRUE)
 
 	preferred_squads.len = max_squad_num
-	for(var/s in preferred_squads) //Back from weight to type.
-		preferred_squads[s] = SSjob.squads[s]
-	SSjob.active_squads[FACTION_TERRAGOV] = preferred_squads.Copy()
-
+	SSjob.active_squads[FACTION_TERRAGOV] = list()
+	for(var/name in preferred_squads) //Back from weight to instantiate var
+		SSjob.active_squads[FACTION_TERRAGOV] += SSjob.squads_by_name[name]
 	return TRUE
 
 
@@ -663,3 +664,7 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 /datum/game_mode/proc/scale_squad_jobs()
 	var/datum/job/scaled_job = SSjob.GetJobType(/datum/job/terragov/squad/leader)
 	scaled_job.total_positions = length(SSjob.active_squads[FACTION_TERRAGOV])
+
+///Return the list of joinable factions, with regards with the current round balance
+/datum/game_mode/proc/get_joinable_factions()
+	return

@@ -144,8 +144,9 @@
 
 	playsound(T, 'sound/weapons/pierce.ogg', 25, 1)
 
-	newt.hivenumber = X.hive //Set our structure's hive
+	newt.hivenumber = X.hivenumber //Set our structure's hivenumber for alerts/lists
 	newt.creator = X
+	newt.RegisterSignal(X, COMSIG_PARENT_QDELETING, /obj/structure/xeno/tunnel.proc/clear_creator)
 
 	X.tunnels.Add(newt)
 
@@ -183,7 +184,7 @@
 	action_icon_state = "haunt"
 	mechanics_text = "Place down a dispenser that allows xenos to retrieve fireproof jelly."
 	plasma_cost = 500
-	cooldown_timer = 3 MINUTES
+	cooldown_timer = 1 MINUTES
 	keybind_signal = COMSIG_XENOABILITY_PLACE_JELLY_POD
 
 /datum/action/xeno_action/place_jelly_pod/can_use_action(silent = FALSE, override_flags)
@@ -213,17 +214,20 @@
 	playsound(T, "alien_resin_build", 25)
 	var/obj/structure/xeno/resin_jelly_pod/pod = new(T)
 	to_chat(owner, "<span class='xenonotice'>We shape some resin into \a [pod].</span>")
+	add_cooldown()
 
 /datum/action/xeno_action/create_jelly
 	name = "Create Resin Jelly"
 	action_icon_state = "gut"
 	mechanics_text = "Create a fireproof jelly."
 	plasma_cost = 100
-	cooldown_timer = 1 MINUTES
+	cooldown_timer = 20 SECONDS
 	keybind_signal = COMSIG_XENOABILITY_CREATE_JELLY
 
 /datum/action/xeno_action/create_jelly/can_use_action(silent = FALSE, override_flags)
 	. = ..()
+	if(!.)
+		return
 	if(owner.l_hand || owner.r_hand)
 		if(!silent)
 			to_chat(owner, "<span class='xenonotice'>We require free hands for this!</span>")
@@ -233,6 +237,7 @@
 	var/obj/item/resin_jelly/jelly = new(owner.loc)
 	owner.put_in_hands(jelly)
 	to_chat(owner, "<span class='xenonotice'>We create a globule of resin from our ovipostor.</span>")
+	add_cooldown()
 	succeed_activate()
 
 // ***************************************

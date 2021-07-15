@@ -72,6 +72,7 @@
 
 	current_user = null
 	user.unset_interaction()
+	user.client.view_size.unsupress()
 	playsound(src, 'sound/machines/terminal_off.ogg', 25, 0)
 
 
@@ -167,6 +168,7 @@
 	user.remote_control = eyeobj
 	user.reset_perspective(eyeobj)
 	eyeobj.setLoc(eyeobj.loc)
+	user.client.view_size.supress()
 
 /obj/machinery/computer/camera_advanced/proc/track(mob/living/target)
 	if(!istype(target))
@@ -236,12 +238,11 @@
 	if(!eye_user)
 		return
 	var/turf/T = get_turf(target)
-	if(T)
-		if(T.z != z && use_static != USE_STATIC_NONE)
-			GLOB.cameranet.visibility(src, GetViewerClient(), null, use_static)
-		forceMove(T)
-	else
-		moveToNullspace()
+	if(!T)
+		return
+	if(T.z != z && use_static != USE_STATIC_NONE)
+		GLOB.cameranet.visibility(src, GetViewerClient(), null, use_static)
+	forceMove(T)
 	if(use_static != USE_STATIC_NONE)
 		GLOB.cameranet.visibility(src, GetViewerClient(), null, use_static)
 	if(visible_icon && eye_user.client)

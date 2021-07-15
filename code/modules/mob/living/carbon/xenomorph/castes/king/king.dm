@@ -44,12 +44,58 @@
 	icon_state = "king_pod"
 	density = FALSE
 	anchored = TRUE
-	var/ownerhive
+	///Which hive own this pod
+	var/ownerhive = ""
+	///What xeno was designed to be the new king
+	var/mob/living/carbon/xenomorph/future_king
 
 /obj/structure/resin/king_pod/Initialize(mapload, hivenumber)
 	. = ..()
 	ownerhive = hivenumber
-	addtimer(CALLBACK(src, .proc/try_summon_king), KING_SUMMON_TIMER_DURATION)
+	addtimer(CALLBACK(src, .proc/choose_king), KING_SUMMON_TIMER_DURATION)
+
+/obj/structure/resin/king_pod/Destroy()
+	. = ..()
+	future_king?.tracked = null
+	future_king = null
+
+/obj/structure/resin/king_pod/attack_alien(mob/living/carbon/xenomorph/X, damage_amount, damage_type, damage_flag, effects, armor_penetration, isrightclick)
+	if(X != future_king)
+		to_chat(X, "<span class='notice'>You are not the future king, you cannot use the pod!</span>")
+		return
+	if(!do_after(X, 5 SECONDS, TRUE, src))
+		return
+	try_summon_king()
+
+/**
+ * Choose at random a xeno beyond live xeno of the ownerhive, and ask them if they want to become the king
+ * If no xeno accepted to become king, give it to ghosts
+ */
+/obj/structure/resin/king_pod/proc/choose_king()
+	for(var/mob/living/carbon/xenomorph/xenomorph_alive AS in shuffle(GLOB.alive_xeno_list))
+		if(xenomorph_alive.hivenumber != ownerhive)
+			continue
+		if(isxenoqueen(xenomorph_alive) || isxenoshrike(xenomorph_alive) || isxenohivemind(xenomorph_alive))
+			continue
+		var/accept_to_be_king = tgui_alert(xenomorph_alive, "The fate has landed and you, and you can become the King. Do you accept?", "Rise of the King", list("Accept", "Leave it for another xeno"), 20 SECONDS)
+		if(accept_to_be_king != "Accept")
+			continue
+		future_king = xenomorph_alive
+		RegisterSignal(future_king, COMSIG_HIVE_XENO_DEATH, .proc/choose_another_king)
+		to_chat(future_king, "<span class='notice'>You have 5 minutes to go to the [src] to ascend to the king position! Your tracker will guide you to it.</span>")
+		future_king.tracked = src
+		addtimer(CALLBACK(src, .proc/choose_another_king), 5 MINUTES)
+		return
+	//If no xeno accepted, give it to ghost
+	try_summon_king()
+
+///Signal handler for when the futur king died and another one must be chose
+/obj/structure/resin/king_pod/proc/choose_another_king()
+	SIGNAL_HANDLER
+	if(future_king?.stat != DEAD)
+		to_chat(future_king, "<span class='warning'>You lost your chance to become the king...</span>")
+	future_king = null
+	INVOKE_ASYNC(src, .proc/choose_king)
 
 ///creates a new king and tries to get a mob for it
 /obj/structure/resin/king_pod/proc/try_summon_king()
@@ -67,6 +113,9 @@
 			new_caste_type = /mob/living/carbon/xenomorph/king/admeme
 	var/mob/living/carbon/xenomorph/king/kong = new new_caste_type(src)
 	RegisterSignal(kong, COMSIG_MOB_LOGIN , .proc/on_king_occupied)
+	if(future_king)
+		future_king.mind.transfer_to(kong)
+		return
 	kong.offer_mob()
 
 ///When the king mob is offered and then accepted this proc ejects the king and does announcements
@@ -74,10 +123,11 @@
 	SIGNAL_HANDLER
 	UnregisterSignal(occupied, COMSIG_MOB_LOGIN)
 	occupied.forceMove(get_turf(src))
-	desc += " This one has already been used."
 	var/myarea = get_area(src)
 	priority_announce("Warning: Psychic anomaly signature in [myarea] has spiked and begun to move.", "TGMC Intel Division")
-	xeno_message("<span class='xenoannounce'>[occupied] has awakened at [myarea]. Praise the Queen Mother!</span>", 3 ,ownerhive)
+	xeno_message("<span class='xenoannounce'>[occupied] has awakened at [myarea]. Praise the Queen Mother!</span>", 3, ownerhive)
+	future_king?.offer_mob()
+	qdel(src)
 
 /obj/structure/resin/king_pod/obj_destruction(damage_flag)
 	xeno_message("<B>The [src] has been destroyed at [get_area(src)]!</B>",3,ownerhive)
