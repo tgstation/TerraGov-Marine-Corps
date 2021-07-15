@@ -99,7 +99,7 @@ GLOBAL_LIST_INIT(restricted_camera_networks, list( //Those networks can only be 
 #define TOKEN_GENERAL (1<<1)
 #define TOKEN_MARINE (1<<2)
 #define TOKEN_ENGI (1<<3)
-#define TOKEN_ALL 7
+#define TOKEN_ALL (1 << 4) -1
 
 //MEDEVAC DEFINES
 #define MEDEVAC_COOLDOWN 1500 //150 seconds or 2,5 minutes aka 2 minutes and 30 secs
