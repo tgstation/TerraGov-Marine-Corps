@@ -253,7 +253,7 @@
 	icon_state_mini = "mag_tx15_slug"
 
 /obj/item/ammo_magazine/rifle/tx15_buckshot
-	name = "\improper TX-15 slug magazine (16 gauge)"
+	name = "\improper TX-15 buckshot magazine (16 gauge)"
 	desc = "A magazine of 16 gauge buckshot, for the TX-15."
 	caliber = CALIBER_16G
 	icon_state = "tx15_buck"
