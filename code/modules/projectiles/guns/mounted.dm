@@ -41,10 +41,10 @@
 	gun_iff_signal = list(ACCESS_IFF_MARINE)
 
 	scatter = 20
-	fire_delay = 2
+	fire_delay = 0.25 SECONDS
 
 	burst_amount = 3
-	burst_delay = 1
+	burst_delay = 0.1 SECONDS
 	extra_delay = 1 SECONDS
 	burst_accuracy_mult = 2
 	burst_scatter_mult = -2
@@ -129,8 +129,6 @@
 	fire_delay = 0.2 SECONDS
 
 	burst_amount = 1
-	burst_accuracy_mult = 2
-	burst_scatter_mult = -2
 
 	flags_item = IS_DEPLOYABLE|TWOHANDED
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER|GUN_DEPLOYED_FIRE_ONLY|GUN_WIELDED_FIRING_ONLY
@@ -140,7 +138,7 @@
 		/obj/item/attachable/scope/unremovable/heavymachinegun,
 	)
 
-	deploy_time = 8 SECONDS
+	deploy_time = 8.5 SECONDS
 
 	max_integrity = 500
 
