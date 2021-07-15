@@ -386,6 +386,7 @@
 	. = ..()
 	if(visor_greyscale_config)
 		to_chat(user, "Right click the helmet to toggle the visor internal lighting.")
+		to_chat(user, "Right click the helmet with paint to color the visor internal lighting.")
 
 /obj/item/clothing/head/modular/attackby(obj/item/I, mob/user, params)
 	. = ..()
