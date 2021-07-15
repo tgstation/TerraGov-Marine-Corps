@@ -568,7 +568,7 @@ AMMO
 	contains = list(/obj/item/ammo_magazine/rifle/standard_smartrifle)
 	cost = 2
 
-/datum/supply_packs/ammo/smartrifle
+/datum/supply_packs/ammo/smartrifle_pack
 	name = "T-25 smartrifle ammo box"
 	notes = "Contains a box with 200 rounds for a T-25 (MAGAZINES SOLD SEPERATELY)"
 	contains = list(/obj/item/ammo_magazine/packet/t25)
