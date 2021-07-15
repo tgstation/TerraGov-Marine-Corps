@@ -39,6 +39,7 @@
 	max_integrity = 200
 	spawn_equipped_type = null
 	unmanned_flags = GIVE_NIGHT_VISION|OVERLAY_TURRET
+	turret_pattern = NO_PATTERN
 	var/cloaktimer
 
 /obj/vehicle/unmanned/droid/scout/examine(mob/user, distance, infix, suffix)
@@ -71,7 +72,7 @@
 	remove_wibbly_filters(src)
 	playsound(src, 'sound/effects/pred_cloakon.ogg', 60, TRUE)
 	alpha = CLOAK_IMPLANT_ALPHA
-	cloaktimer = addtimer(CALLBACK(src, .proc/deactivate_cloak), 12 SECONDS, TIMER_STOPPABLE)
+	cloaktimer = addtimer(CALLBACK(src, .proc/deactivate_cloak), 1 MINUTES, TIMER_STOPPABLE)
 
 ///Deactivates the cloak when someone turns it off or its forced off
 /obj/vehicle/unmanned/droid/scout/proc/deactivate_cloak()

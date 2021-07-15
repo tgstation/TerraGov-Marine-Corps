@@ -7,5 +7,6 @@
 
 #define CLOAK_ABILITY 0
 
+#define NO_PATTERN 0
 #define PATTERN_TRACKED 1
 #define PATTERN_DROID 2
