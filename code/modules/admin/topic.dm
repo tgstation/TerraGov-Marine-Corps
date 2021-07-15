@@ -138,7 +138,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 
 	else if(href_list["imginaryfriend"])
 		var/mob/M = locate(href_list["imginaryfriend"])
-		imaginary_friend(M)
+		create_ifriend(M, TRUE)
 
 	else if(href_list["individuallog"])
 		if(!check_rights(R_ADMIN))

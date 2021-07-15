@@ -869,7 +869,7 @@
 	togglebuildmode(usr)
 
 
-/datum/admins/proc/imaginary_friend(mob/M)
+/datum/admins/proc/imaginary_friend()
 	set category = "Fun"
 	set name = "Imaginary Friend"
 
@@ -883,27 +883,31 @@
 		IF.ghostize()
 		return
 
-	var/mob/living/L
-	if(usr == M) // self selected, or a naked verb call which always passes self for mob args
-		L = C.holder.apicker("Select by:", "Imaginary Friend", list(APICKER_CLIENT, APICKER_LIVING))
-	else
-		L = M
-		if(tgui_alert(usr, "Become Imaginary Friend of [L]?", "Confirm", list("Yes", "No")) != "Yes")
-			return
-	if(!istype(L))
+	var/mob/living/friend_owner = C.holder.apicker("Select by:", "Imaginary Friend", list(APICKER_CLIENT, APICKER_LIVING))
+	if(!friend_owner)
+		// nothing was picked, probably canceled
+		return
+	C.holder.create_ifriend(friend_owner)
+
+/// Handles actually spawning in the friend, if the rest of the checks pass
+/datum/admins/proc/create_ifriend(mob/living/friend_owner, seek_confirm = FALSE)
+	if(!check_rights(R_FUN|R_MENTOR))
+		return
+	if(!istype(friend_owner)) // living only
 		to_chat(usr, "<span class='warning'>That creature can not have Imaginary Friends</span>")
 		return
+	if(seek_confirm && tgui_alert(usr, "Become Imaginary Friend of [friend_owner]?", "Confirm", list("Yes", "No")) != "Yes")
+		return
 
+	var/client/C = usr.client
 	if(!isobserver(C.mob))
 		C.holder.admin_ghost()
-
-	var/mob/camera/imaginary_friend/IF = new(get_turf(L), L)
+	var/mob/camera/imaginary_friend/IF = new(get_turf(friend_owner), friend_owner)
 	C.mob.mind.transfer_to(IF)
 
-	admin_ticket_log(L, "[key_name_admin(C)] became an imaginary friend of [key_name(L)]")
-	log_admin("[key_name(IF)] started being imaginary friend of [key_name(L)].")
-	message_admins("[ADMIN_TPMONTY(IF)] started being imaginary friend of [ADMIN_TPMONTY(L)].")
-
+	admin_ticket_log(friend_owner, "[key_name_admin(C)] became an imaginary friend of [key_name(friend_owner)]")
+	log_admin("[key_name(IF)] started being imaginary friend of [key_name(friend_owner)].")
+	message_admins("[ADMIN_TPMONTY(IF)] started being imaginary friend of [ADMIN_TPMONTY(friend_owner)].")
 
 /datum/admins/proc/force_dropship()
 	set category = "Fun"
