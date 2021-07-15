@@ -1,4 +1,4 @@
 author: "InterroLouis"
 delete-after: True
 changes: 
-  - imageadd: "Added a new icon for being full."
+  - bugfix: "Impact Grenade Box Vends Properly."

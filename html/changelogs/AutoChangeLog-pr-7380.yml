@@ -1,4 +1,0 @@
-author: "BraveMole"
-delete-after: True
-changes: 
-  - bugfix: "Loadouts vendor will no longer runtime when equipping a loadout as a non squad role"
