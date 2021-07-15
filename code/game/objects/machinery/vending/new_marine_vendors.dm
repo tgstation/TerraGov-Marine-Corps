@@ -682,9 +682,6 @@
 		/obj/item/clothing/mask/gas/tactical/coif = list(CAT_MAS, "Tactical coifed gas mask", 0,"black"),
 	)
 
-/obj/machinery/marine_selector/clothes/synth/rebel
-	vendor_role = /datum/job/terragov/silicon/synthetic/rebel
-
 ////////////////////// Gear ////////////////////////////////////////////////////////
 
 
@@ -713,7 +710,6 @@
 	listed_products = GLOB.medic_gear_listed_products
 
 /obj/machinery/marine_selector/gear/medic/rebel
-	vendor_role = /datum/job/terragov/squad/corpsman/rebel
 	req_access = list(ACCESS_MARINE_MEDPREP_REBEL)
 
 /obj/machinery/marine_selector/gear/engi
@@ -728,7 +724,6 @@
 	listed_products = GLOB.engineer_gear_listed_products
 
 /obj/machinery/marine_selector/gear/engi/rebel
-	vendor_role = /datum/job/terragov/squad/engineer/rebel
 	req_access = list(ACCESS_MARINE_ENGPREP_REBEL)
 
 
@@ -740,7 +735,9 @@
 	req_access = list(ACCESS_MARINE_SMARTPREP)
 
 	listed_products = list(
-		/obj/item/storage/box/t26_system = list(CAT_ESS, "Essential Smartgunner Set", 0, "white"),
+		/obj/item/storage/box/t26_system = list(CAT_ESS, "T-26 Smartmachinegun Set", 0, "white"),
+		/obj/item/storage/box/t25_system = list(CAT_ESS, "T-25 Smartrifle Set", 0, "white"),
+
 
 		/obj/item/attachable/extended_barrel = list(CAT_ATT, "Extended barrel", 0, "orange"),
 		/obj/item/attachable/compensator = list(CAT_ATT, "Recoil compensator", 0, "black"),
@@ -754,7 +751,6 @@
 	)
 
 /obj/machinery/marine_selector/gear/smartgun/rebel
-	vendor_role = /datum/job/terragov/squad/smartgunner/rebel
 	req_access = list(ACCESS_MARINE_SMARTPREP_REBEL)
 
 //todo: move this to some sort of kit controller/datum
@@ -813,7 +809,6 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 	listed_products = GLOB.leader_gear_listed_products
 
 /obj/machinery/marine_selector/gear/leader/rebel
-	vendor_role = /datum/job/terragov/squad/leader/rebel
 	req_access = list(ACCESS_MARINE_LEADER_REBEL)
 
 
@@ -917,14 +912,6 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 		/obj/item/facepaint/green,
 	)
 
-/obj/effect/essentials_set/basic_commander
-	spawned_gear_list = list(
-		/obj/item/clothing/glasses/hud/health,
-		/obj/item/clothing/under/marine,
-		/obj/item/clothing/shoes/marine/full,
-		/obj/item/storage/box/MRE,
-	)
-
 /obj/effect/essentials_set/medic
 	spawned_gear_list = list(
 		/obj/item/bodybag/cryobag,
@@ -962,6 +949,7 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 		/obj/item/motiondetector,
 		/obj/item/binoculars/tactical,
 		/obj/item/pinpointer/pool,
+		/obj/item/clothing/glasses/hud/health,
 	)
 
 /obj/effect/essentials_set/commander
@@ -1008,7 +996,7 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 				var/obj/item/clothing/head/modular/helmet = item
 				helmet.limit_colorable_colors(faction)
 	qdel(src)
-	
+
 
 /obj/effect/modular_set/infantry
 	desc = "A set of medium Infantry pattern Jaeger armor, including an exoskeleton, helmet, and armor plates."

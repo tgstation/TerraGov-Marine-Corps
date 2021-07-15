@@ -103,7 +103,7 @@
 		adjustBruteLoss(XENO_CRIT_DAMAGE - (warding_aura * 0.5)) //Warding can heavily lower the impact of bleedout. Halved at 5.
 
 /mob/living/carbon/xenomorph/proc/heal_wounds(multiplier = XENO_RESTING_HEAL, scaling = FALSE)
-	var/amount = 1 + (maxHealth * 0.03) // 1 damage + 2% max health, with scaling power.
+	var/amount = 1 + (maxHealth * 0.0375) // 1 damage + 2% max health, with scaling power.
 	if(recovery_aura)
 		amount += recovery_aura * maxHealth * 0.008 // +0.8% max health per recovery level, up to +4%
 	if(scaling)
@@ -115,18 +115,19 @@
 		else
 			regen_power = min(regen_power + xeno_caste.regen_ramp_amount*20,1)
 		amount *= regen_power
-	amount *= multiplier
+	amount *= multiplier * GLOB.xeno_stat_multiplicator_buff
 
 	SEND_SIGNAL(src, COMSIG_XENOMORPH_HEALTH_REGEN, src)
 
+	var/remainder = max(0, amount-getBruteLoss())
 	adjustBruteLoss(-amount)
-	adjustFireLoss(-amount)
+	adjustFireLoss(-remainder)
 
 /mob/living/carbon/xenomorph/proc/handle_living_plasma_updates()
 	var/turf/T = loc
 	if(!T || !istype(T))
 		return
-	if(plasma_stored == xeno_caste.plasma_max)
+	if(plasma_stored >= xeno_caste.plasma_max * xeno_caste.plasma_regen_limit)
 		return
 
 	if(current_aura)
@@ -144,6 +145,7 @@
 
 	SEND_SIGNAL(src, COMSIG_XENOMORPH_PLASMA_REGEN, plasma_mod)
 
+
 	var/plasma_gain_multiplier = 1
 	for(var/i in plasma_mod)
 		plasma_gain_multiplier *= i
@@ -156,6 +158,7 @@
 
 	if(lying_angle || resting)
 		plasma_gain *= 2  // Doubled for resting
+
 
 	gain_plasma(plasma_gain * plasma_gain_multiplier)
 	hud_set_plasma() //update plasma amount on the plasma mob_hud

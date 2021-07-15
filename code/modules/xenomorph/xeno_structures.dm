@@ -57,8 +57,9 @@
 	if(!istype(center_turf))
 		center_turf = loc
 
-	for(var/i in RANGE_TURFS(XENO_SILO_DETECTION_RANGE, src))
-		RegisterSignal(i, COMSIG_ATOM_ENTERED, .proc/resin_silo_proxy_alert)
+	if(SSticker.mode?.flags_round_type & MODE_SILO_RESPAWN)
+		for(var/turfs in RANGE_TURFS(XENO_SILO_DETECTION_RANGE, src))
+			RegisterSignal(turfs, COMSIG_ATOM_ENTERED, .proc/resin_silo_proxy_alert)
 
 	SSminimaps.add_marker(src, z, hud_flags = MINIMAP_FLAG_XENO, iconstate = "silo")
 	return INITIALIZE_HINT_LATELOAD
@@ -175,6 +176,8 @@
 //*******************
 /obj/structure/xeno/resin/silo/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(!(SSticker.mode?.flags_round_type & MODE_SILOABLE_BODIES))
+		return
 	if(!isxeno(user)) //only xenos can deposit corpses
 		return
 

@@ -155,15 +155,18 @@
 		"Specialized" = list(
 			/obj/item/weapon/gun/launcher/m92/standardmarine = -1,
 			/obj/item/weapon/gun/launcher/m81 = -1,
+			/obj/item/weapon/gun/rifle/pepperball = 4,
 			/obj/item/storage/box/recoilless_system = 2,
 			/obj/item/weapon/gun/flamer/marinestandard = 4,
 			/obj/item/ammo_magazine/flamer_tank/backtank = 4,
 			/obj/item/ammo_magazine/flamer_tank/large = 20,
 			/obj/item/ammo_magazine/flamer_tank = 20,
 			/obj/item/weapon/shield/riot/marine = 6,
+			/obj/item/ammo_magazine/rifle/pepperball = 40,
 			/obj/item/weapon/powerfist = -1,
 			/obj/item/weapon/throwing_knife = -1,
 			/obj/item/weapon/combat_knife = -1,
+			/obj/item/weapon/twohanded/spear/tactical = -1,
 			/obj/item/ammo_magazine/standard_smartmachinegun = 4,
 		),
 		"Grenades" = list(
@@ -202,12 +205,13 @@
 			/obj/item/attachable/standard_revolver_longbarrel = -1
 		),
 		"Boxes" = list(
-		/obj/item/ammo_magazine/box9mm = 100,
-		/obj/item/ammo_magazine/acp = 100,
-		/obj/item/ammo_magazine/magnum = 100,
-		/obj/item/ammo_magazine/box10x24mm = 100,
-		/obj/item/ammo_magazine/box10x26mm = 100,
-		/obj/item/ammo_magazine/box10x27mm = 100,
+		/obj/item/ammo_magazine/packet/p9mm = 100,
+		/obj/item/ammo_magazine/packet/acp = 100,
+		/obj/item/ammo_magazine/packet/magnum = 100,
+		/obj/item/ammo_magazine/packet/p10x24mm = 100,
+		/obj/item/ammo_magazine/packet/p10x26mm = 100,
+		/obj/item/ammo_magazine/packet/p10x27mm = 100,
+		/obj/item/ammo_magazine/packet/p492x34mm = 100,
 		/obj/item/storage/box/visual/magazine = 30,
 		/obj/item/storage/box/visual/grenade = 10,
 		),
@@ -271,6 +275,7 @@
 		),
 		"Grenades" = list(
 			/obj/item/explosive/grenade/frag = 600,
+			/obj/item/explosive/grenade/impact = 125,
 			/obj/item/explosive/grenade/frag/m15 = 50,
 			/obj/item/explosive/grenade/incendiary = 50,
 			/obj/item/explosive/grenade/cloakbomb = 50,
@@ -301,12 +306,13 @@
 			/obj/item/attachable/attached_gun/grenade = -1,
 		),
 		"Boxes" = list(
-		/obj/item/ammo_magazine/box9mm = 100,
-		/obj/item/ammo_magazine/acp = 100,
-		/obj/item/ammo_magazine/magnum = 100,
-		/obj/item/ammo_magazine/box10x24mm = 100,
-		/obj/item/ammo_magazine/box10x26mm = 100,
-		/obj/item/ammo_magazine/box10x27mm = 100,
+		/obj/item/ammo_magazine/packet/p9mm = 100,
+		/obj/item/ammo_magazine/packet/acp = 100,
+		/obj/item/ammo_magazine/packet/magnum = 100,
+		/obj/item/ammo_magazine/packet/p10x24mm = 100,
+		/obj/item/ammo_magazine/packet/p10x26mm = 100,
+		/obj/item/ammo_magazine/packet/p10x27mm = 100,
+		/obj/item/ammo_magazine/packet/p492x34mm = 100,
 		/obj/item/storage/box/visual/magazine = 30,
 		/obj/item/storage/box/visual/grenade = 10,
 		),
@@ -342,6 +348,7 @@
 		),
 		"Grenade Boxes" = list(
 			/obj/item/storage/box/visual/grenade/frag = 2,
+			/obj/item/storage/box/visual/grenade/impact = 2,
 			/obj/item/storage/box/visual/grenade/incendiary = 2,
 			/obj/item/storage/box/visual/grenade/M15 = 2,
 			/obj/item/storage/box/visual/grenade/drain = 1,
@@ -584,8 +591,6 @@
 			/obj/item/reagent_containers/hypospray/autoinjector/hypervene = 16,
 			/obj/item/reagent_containers/hypospray/autoinjector/isotonic = 16,
 			/obj/item/reagent_containers/hypospray/autoinjector/quickclot = 16,
-			/obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus = 0,
-			/obj/item/reagent_containers/hypospray/autoinjector/quickclotplus = 0,
 			/obj/item/reagent_containers/hypospray/autoinjector/synaptizine = 0,
 		),
 		"Heal Pack" = list(
@@ -745,7 +750,7 @@
 	products = list(
 		/obj/structure/closet/crate/mortar_ammo/mortar_kit = 1,
 		/obj/item/storage/box/sentry = 3,
-		/obj/item/storage/box/standard_hmg = 1,
+		/obj/item/storage/box/tl102 = 1,
 	)
 
 	contraband = list(/obj/item/cell/super = 1)

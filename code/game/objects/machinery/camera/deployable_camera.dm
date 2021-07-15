@@ -24,6 +24,9 @@ GLOBAL_VAR_INIT(deployed_cameras, 0)
 /obj/item/deployable_camera/attack_self(mob/user)
 	user.visible_message("<span class='notice'>[user] throws [src] into the air!</span>",
 		"<span class='notice'>You throw [src] into the air!</span>")
+
+	for(var/mob/living/silicon/ai/AI in GLOB.silicon_mobs)
+		to_chat(AI, "<span class='notice'>NOTICE - \"Huginn\" ROC-58 Observer has been deployed at [AREACOORD_NO_Z(user)].</span>")
 	var/obj/machinery/camera/deployable/newcam = new(get_turf(user))
 	var/dat
 	if(ishuman(user))

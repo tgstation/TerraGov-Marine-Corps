@@ -171,6 +171,14 @@ GLOBAL_LIST_INIT(visible_item_slot_list, list(
 	slot_r_store_str,
 ))
 
+///List of all additional item slot used by the admin loadout build mode
+GLOBAL_LIST_INIT(additional_admin_item_slot_list, list(
+	slot_l_hand_str,
+	slot_r_hand_str,
+	slot_wear_id_str,
+	slot_ear_str,
+))
+
 ///All the vendor types which the automated loadout vendor can take items from
 GLOBAL_LIST_INIT(loadout_linked_vendor, list(
 	/obj/machinery/vending/marine/shared,

@@ -1,4 +1,0 @@
-author: "BraveMole"
-delete-after: True
-changes: 
-  - balance: "Prevent joining a faction with too many players in HvH gamemode"

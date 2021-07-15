@@ -8,7 +8,7 @@
 		changeNext_move(CLICK_CD_MELEE)
 
 	var/atom/S = A.handle_barriers(src)
-	S.attack_alien(src, isrightclick = islist(modifiers) ? modifiers["right"] : FALSE)
+	S.attack_alien(src, xeno_caste.melee_damage * xeno_melee_damage_modifier, isrightclick = islist(modifiers) ? modifiers["right"] : FALSE)
 	GLOB.round_statistics.xeno_unarmed_attacks++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "xeno_unarmed_attacks")
 

@@ -49,13 +49,23 @@
 	autolinkers = list("receiverA") // link to relay
 	freq_listening = list(FREQ_MEDICAL, FREQ_REQUISITIONS, FREQ_ALPHA, FREQ_BRAVO, FREQ_CHARLIE, FREQ_DELTA, FREQ_COMMAND, FREQ_ENGINEERING, FREQ_CAS, FREQ_PMC, FREQ_COLONIST, FREQ_USL, FREQ_DEATHSQUAD, FREQ_IMPERIAL, FREQ_SOM, FREQ_SECTOID, FREQ_ECHO)
 
+/obj/machinery/telecomms/receiver/preset_left/rebel
+	id = "Receiver A rebel"
+	autolinkers = list("receiverA_rebel") // link to relay
+	freq_listening = list(FREQ_MEDICAL_REBEL, FREQ_REQUISITIONS_REBEL, FREQ_ALPHA_REBEL, FREQ_BRAVO_REBEL, FREQ_CHARLIE_REBEL, FREQ_DELTA_REBEL, FREQ_COMMAND_REBEL, FREQ_ENGINEERING_REBEL, FREQ_CAS_REBEL, FREQ_PMC, FREQ_COLONIST, FREQ_USL, FREQ_DEATHSQUAD, FREQ_IMPERIAL, FREQ_SOM, FREQ_SECTOID, FREQ_ECHO)
+
 
 //--PRESET RIGHT--//
 /obj/machinery/telecomms/receiver/preset_right
 	id = "Receiver B"
 	network = "tcommsat"
 	autolinkers = list("receiverB") // link to relay
-	freq_listening = list()
+	freq_listening = list(FREQ_COMMON)
+
+/obj/machinery/telecomms/receiver/preset_right/rebel
+	id = "Receiver B rebel"
+	autolinkers = list("receiverB_rebel") // link to relay
+	freq_listening = list(FREQ_COMMON_REBEL)
 
 
 //Common and other radio frequencies for people to freely use

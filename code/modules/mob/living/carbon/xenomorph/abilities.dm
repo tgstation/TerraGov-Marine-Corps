@@ -448,6 +448,11 @@
 
 	var/mob/living/carbon/xenomorph/target = A
 
+	if(!(target.xeno_caste.caste_flags & CASTE_CAN_BE_GIVEN_PLASMA))
+		if(!silent)
+			to_chat(owner, "<span class='warning'>We can't give that caste plasma.</span>")
+			return FALSE
+
 	if(get_dist(owner, target) > max_range)
 		if(!silent)
 			to_chat(owner, "<span class='warning'>We need to be closer to [target].</span>")

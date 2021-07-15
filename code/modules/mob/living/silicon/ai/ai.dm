@@ -54,7 +54,7 @@
 	builtInCamera = new(src)
 	builtInCamera.network = list("marinemainship")
 
-	holo_icon = getHologramIcon(icon('icons/mob/AI.dmi', "holo1"))
+	holo_icon = getHologramIcon(icon('icons/mob/AI.dmi', "default"))
 
 	laws = list()
 	laws += "Safeguard: Protect your assigned vessel from damage to the best of your abilities."
@@ -278,6 +278,18 @@
 			return
 
 		stat("System integrity:", "[(health + 100) / 2]%")
+		stat("<BR>- Operation information - <BR>")
+		stat("Current orbit:", "[GLOB.current_orbit]")
+
+		if(!GLOB.marine_main_ship?.orbital_cannon?.chambered_tray)
+			stat("<b>Orbital bombardment status:</b>", "<font color='red'>No ammo chambered in the cannon.</font><br>")
+		else
+			stat("Orbital bombardment warhead:", "[GLOB.marine_main_ship.orbital_cannon.tray.warhead.name] Detected<BR>")
+
+		stat("Current supply points:", "[round(SSpoints.supply_points[FACTION_TERRAGOV])]")
+
+		stat("Current alert level:", "[GLOB.marine_main_ship.get_security_level()]")
+
 
 
 /mob/living/silicon/ai/fully_replace_character_name(oldname, newname)
