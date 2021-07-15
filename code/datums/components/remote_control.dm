@@ -100,15 +100,15 @@
 		to_chat(newuser, "<span class='warning'>The linked device is destroyed!</span>")
 		controlled = null
 		return
-	is_controlling = TRUE
-	newuser.remote_control = controlled	//Movement inputs are handled by the controlled thing in relaymove()
-	newuser.reset_perspective(controlled)
-	user = newuser
-	SEND_SIGNAL(controlled, COMSIG_REMOTECONTROL_CHANGED, TRUE, user)
+	SEND_SIGNAL(controlled, COMSIG_REMOTECONTROL_CHANGED, TRUE, newuser)
 	RegisterSignal(newuser, COMSIG_MOB_CLICKON, .proc/invoke)
 	RegisterSignal(newuser, COMSIG_MOB_LOGOUT, .proc/remote_control_off)
 	RegisterSignal(newuser, COMSIG_RELAYED_SPEECH, .proc/on_relayed_speech)
 	RegisterSignal(parent, COMSIG_ITEM_DROPPED, .proc/remote_control_off)
+	is_controlling = TRUE
+	newuser.remote_control = controlled	//Movement inputs are handled by the controlled thing in relaymove()
+	newuser.reset_perspective(controlled)
+	user = newuser
 
 ///Invokes the callback for when the controller clicks
 /datum/component/remote_control/proc/invoke(datum/source, atom/target, params)

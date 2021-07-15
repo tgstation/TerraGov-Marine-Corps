@@ -21,8 +21,6 @@
 	var/turret_type
 	///Turret types we're allowed to attach
 	var/turret_pattern = PATTERN_TRACKED
-	///Boolean: do we want this turret to draw overlays for itself?
-	var/overlay_turret = TRUE
 	///Delay in byond ticks between weapon fires
 	var/fire_delay = 5
 	///Ammo remaining for the robot
@@ -41,8 +39,8 @@
 	var/obj/item/uav_turret/spawn_equipped_type = null
 	/// If something is already controlling the vehicle
 	var/controlled = FALSE
-	/// If the UV has traditional vehicle parts and room underneath a small xeno could pass
-	var/undercarriage = TRUE
+	/// Flags for unmanned vehicules
+	var/unmanned_flags = OVERLAY_TURRET|HAS_LIGHTS|UNDERCARRIAGE
 	COOLDOWN_DECLARE(fire_cooldown)
 
 /obj/vehicle/unmanned/Initialize()
@@ -80,7 +78,7 @@
 
 /obj/vehicle/unmanned/update_overlays()
 	. = ..()
-	if(!overlay_turret)
+	if(!(unmanned_flags & OVERLAY_TURRET))
 		return
 	switch(turret_type)
 		if(TURRET_TYPE_HEAVY)
@@ -106,7 +104,7 @@
 
 /obj/vehicle/unmanned/CanAllowThrough(atom/movable/mover, turf/target)
 	. = ..()
-	if(undercarriage && istype(mover) && CHECK_BITFIELD(mover.flags_pass, PASSTABLE))
+	if((unmanned_flags & UNDERCARRIAGE) && istype(mover) && CHECK_BITFIELD(mover.flags_pass, PASSTABLE))
 		return TRUE
 
 ///Try to desequip the turret
@@ -199,7 +197,13 @@
 ///Called when remote control is taken
 /obj/vehicle/unmanned/proc/on_remote_toggle(datum/source, is_on, mob/user)
 	SIGNAL_HANDLER
-	set_light_on(is_on)
+	if(unmanned_flags & HAS_LIGHTS)
+		set_light_on(is_on)
+	if(unmanned_flags & GIVE_NIGHT_VISION)
+		if(is_on)
+			ADD_TRAIT(user, TRAIT_SEE_IN_DARK, UNMANNED_VEHICLE)
+		else
+			REMOVE_TRAIT(user, TRAIT_SEE_IN_DARK, UNMANNED_VEHICLE)
 
 ///Checks if we can or already have a bullet loaded that we can shoot
 /obj/vehicle/unmanned/proc/load_into_chamber()

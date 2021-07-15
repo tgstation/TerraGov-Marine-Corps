@@ -413,6 +413,10 @@
 	if(see_override)
 		see_invisible = see_override
 
+	if(HAS_TRAIT(src, TRAIT_SEE_IN_DARK))
+		see_in_dark = max(see_in_dark, 8)
+		lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
+
 	return ..()
 
 
@@ -478,7 +482,7 @@
 	else if(. == UNCONSCIOUS)
 		adjust_blindness(-1)
 		disabilities &= ~DEAF
-			
+
 /mob/living/carbon/human/set_stat(new_stat) //registers/unregisters critdragging signals
 	. = ..()
 	if(new_stat == UNCONSCIOUS)
