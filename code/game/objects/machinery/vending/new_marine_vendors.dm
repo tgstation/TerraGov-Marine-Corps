@@ -232,7 +232,6 @@
 
 /obj/machinery/marine_selector/clothes/engi/rebel
 	req_access = list(ACCESS_MARINE_ENGPREP_REBEL)
-	vendor_role = /datum/job/terragov/squad/engineer/rebel
 
 /obj/machinery/marine_selector/clothes/engi/alpha
 	squad_tag = "Alpha"
@@ -264,7 +263,6 @@
 
 /obj/machinery/marine_selector/clothes/medic/rebel
 	req_access = list(ACCESS_MARINE_MEDPREP_REBEL)
-	vendor_role = /datum/job/terragov/squad/corpsman/rebel
 
 /obj/machinery/marine_selector/clothes/medic/alpha
 	squad_tag = "Alpha"
@@ -295,7 +293,6 @@
 
 /obj/machinery/marine_selector/clothes/smartgun/rebel
 	req_access = list(ACCESS_MARINE_SMARTPREP_REBEL)
-	vendor_role = /datum/job/terragov/squad/smartgunner/rebel
 
 
 /obj/machinery/marine_selector/clothes/smartgun/alpha
@@ -326,7 +323,6 @@
 
 /obj/machinery/marine_selector/clothes/leader/rebel
 	req_access = list(ACCESS_MARINE_LEADER_REBEL)
-	vendor_role = /datum/job/terragov/squad/leader/rebel
 
 
 /obj/machinery/marine_selector/clothes/leader/alpha
@@ -412,7 +408,6 @@
 
 /obj/machinery/marine_selector/clothes/commander/rebel
 	req_access = list(ACCESS_MARINE_COMMANDER_REBEL)
-	vendor_role = /datum/job/terragov/command/fieldcommander/rebel
 
 /obj/machinery/marine_selector/clothes/synth
 	name = "M57 Synthetic Equipment Vendor"
@@ -540,9 +535,6 @@
 		/obj/item/clothing/mask/gas/tactical/coif = list(CAT_MAS, "Tactical coifed gas mask", 0,"black"),
 	)
 
-/obj/machinery/marine_selector/clothes/synth/rebel
-	vendor_role = /datum/job/terragov/silicon/synthetic/rebel
-
 ////////////////////// Gear ////////////////////////////////////////////////////////
 
 
@@ -571,7 +563,6 @@
 	listed_products = GLOB.medic_gear_listed_products
 
 /obj/machinery/marine_selector/gear/medic/rebel
-	vendor_role = /datum/job/terragov/squad/corpsman/rebel
 	req_access = list(ACCESS_MARINE_MEDPREP_REBEL)
 
 /obj/machinery/marine_selector/gear/engi
@@ -586,7 +577,6 @@
 	listed_products = GLOB.engineer_gear_listed_products
 
 /obj/machinery/marine_selector/gear/engi/rebel
-	vendor_role = /datum/job/terragov/squad/engineer/rebel
 	req_access = list(ACCESS_MARINE_ENGPREP_REBEL)
 
 
@@ -614,7 +604,6 @@
 	)
 
 /obj/machinery/marine_selector/gear/smartgun/rebel
-	vendor_role = /datum/job/terragov/squad/smartgunner/rebel
 	req_access = list(ACCESS_MARINE_SMARTPREP_REBEL)
 
 /obj/machinery/marine_selector/gear/leader
@@ -629,7 +618,6 @@
 	listed_products = GLOB.leader_gear_listed_products
 
 /obj/machinery/marine_selector/gear/leader/rebel
-	vendor_role = /datum/job/terragov/squad/leader/rebel
 	req_access = list(ACCESS_MARINE_LEADER_REBEL)
 
 
@@ -726,14 +714,6 @@
 		/obj/item/facepaint/green,
 	)
 
-/obj/effect/essentials_set/basic_commander
-	spawned_gear_list = list(
-		/obj/item/clothing/glasses/hud/health,
-		/obj/item/clothing/under/marine,
-		/obj/item/clothing/shoes/marine/full,
-		/obj/item/storage/box/MRE,
-	)
-
 /obj/effect/essentials_set/medic
 	spawned_gear_list = list(
 		/obj/item/bodybag/cryobag,
@@ -771,6 +751,7 @@
 		/obj/item/motiondetector,
 		/obj/item/binoculars/tactical,
 		/obj/item/pinpointer/pool,
+		/obj/item/clothing/glasses/hud/health,
 	)
 
 /obj/effect/essentials_set/commander
