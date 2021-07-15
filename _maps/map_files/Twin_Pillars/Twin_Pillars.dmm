@@ -5543,7 +5543,7 @@
 /obj/machinery/camera/autoname/mainship/rebelship{
 	dir = 1
 	},
-/obj/machinery/computer/ordercomp/rebel,
+/obj/machinery/computer/ordercomp,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req/rebel)
 "fgB" = (
