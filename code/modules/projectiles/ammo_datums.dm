@@ -805,7 +805,7 @@ datum/ammo/bullet/revolver/tp44
 	hud_state = "shotgun_buckshot"
 	flags_ammo_behavior = AMMO_BALLISTIC
 	bonus_projectiles_type = /datum/ammo/bullet/shotgun/tx15_flechette/spread
-	bonus_projectiles_amount = 6
+	bonus_projectiles_amount = 5
 	bonus_projectiles_scatter = 2
 	damage = 20
 	penetration = 0

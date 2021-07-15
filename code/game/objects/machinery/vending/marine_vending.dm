@@ -131,6 +131,7 @@
 			/obj/item/weapon/gun/rifle/standard_autoshotgun = -1,
 			/obj/item/ammo_magazine/rifle/tx15_flechette = -1,
 			/obj/item/ammo_magazine/rifle/tx15_slug = -1,
+			/obj/item/ammo_magazine/rifle/tx15_buckshot = -1,
 		),
 		"Machinegun" = list(
 			/obj/item/weapon/gun/rifle/standard_lmg = -1,
