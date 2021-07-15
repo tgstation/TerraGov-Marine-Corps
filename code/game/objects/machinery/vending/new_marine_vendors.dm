@@ -987,14 +987,15 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 	. = ..()
 	for(var/typepath in spawned_gear_list)
 		var/item = new typepath(loc)
-		if(faction)
-			if(ismodulararmorarmorpiece(item))
-				var/obj/item/armor_module/armor/armorpiece = item
-				armorpiece.limit_colorable_colors(faction)
-				continue
-			if(ismodularhelmet(item))
-				var/obj/item/clothing/head/modular/helmet = item
-				helmet.limit_colorable_colors(faction)
+		if(!faction)
+			break
+		if(ismodulararmorarmorpiece(item))
+			var/obj/item/armor_module/armor/armorpiece = item
+			armorpiece.limit_colorable_colors(faction)
+			continue
+		if(ismodularhelmet(item))
+			var/obj/item/clothing/head/modular/helmet = item
+			helmet.limit_colorable_colors(faction)
 	qdel(src)
 
 
