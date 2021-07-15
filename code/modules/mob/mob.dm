@@ -9,6 +9,7 @@
 		for(var/i in observers)
 			var/mob/dead/D = i
 			D.reset_perspective(null)
+	clear_client_in_contents() //Gotta do this here as well as Logout, since client will be null by the time it gets there, cause of that ghostize
 	ghostize()
 	clear_fullscreens()
 	if(mind)
@@ -333,7 +334,7 @@
 		if(!B.current_gun)
 			return FALSE
 		var/obj/item/W = B.current_gun
-		B.remove_from_storage(W)
+		B.remove_from_storage(W, user = src)
 		put_in_hands(W)
 		return TRUE
 	else if(istype(I, /obj/item/clothing/under))
@@ -347,7 +348,7 @@
 		if(!length(S.contents))
 			return FALSE
 		var/obj/item/W = S.contents[length(S.contents)]
-		S.remove_from_storage(W)
+		S.remove_from_storage(W, user = src)
 		put_in_hands(W)
 		return TRUE
 	else if(istype(I, /obj/item/clothing/suit/storage))
@@ -358,7 +359,7 @@
 		if(!length(P.contents))
 			return FALSE
 		var/obj/item/W = P.contents[length(P.contents)]
-		P.remove_from_storage(W)
+		P.remove_from_storage(W, user = src)
 		put_in_hands(W)
 		return TRUE
 	else if(istype(I, /obj/item/storage))
@@ -366,7 +367,7 @@
 		if(!length(S.contents))
 			return FALSE
 		var/obj/item/W = S.contents[length(S.contents)]
-		S.remove_from_storage(W)
+		S.remove_from_storage(W, user = src)
 		put_in_hands(W)
 		return TRUE
 	else
@@ -880,3 +881,10 @@
 		return
 	. = stat //old stat
 	stat = new_stat
+
+///Clears the client in contents list of our current "eye". Prevents hard deletes
+/mob/proc/clear_client_in_contents()
+	if(client?.movingmob) //In the case the client was transferred to another mob and not deleted.
+		client.movingmob.client_mobs_in_contents -= src
+		UNSETEMPTY(client.movingmob.client_mobs_in_contents)
+		client.movingmob = null

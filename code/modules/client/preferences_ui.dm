@@ -114,6 +114,7 @@
 			.["widescreenpref"] = widescreenpref
 			.["scaling_method"] = scaling_method
 			.["pixel_size"] = pixel_size
+			.["parallax"] = parallax
 			.["fullscreen_mode"] = fullscreen_mode
 		if(KEYBIND_SETTINGS)
 			.["is_admin"] = user.client?.holder ? TRUE : FALSE
@@ -691,6 +692,11 @@
 				if(PIXEL_SCALING_3X)
 					pixel_size = PIXEL_SCALING_AUTO
 			user.client.view_size.apply() //Let's winset() it so it actually works
+
+		if("parallax")
+			parallax = WRAP(parallax + 1, PARALLAX_INSANE, PARALLAX_DISABLE + 1)
+			if(parent && parent.mob && parent.mob.hud_used)
+				parent.mob.hud_used.update_parallax_pref(parent.mob)
 
 		if("scaling_method")
 			switch(scaling_method)

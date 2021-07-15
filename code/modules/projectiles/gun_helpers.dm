@@ -931,7 +931,6 @@ should be alright.
 		user.overlays -= aim_mode_visual
 		DISABLE_BITFIELD(flags_gun_features, GUN_IS_AIMING)
 		user.remove_movespeed_modifier(MOVESPEED_ID_AIM_MODE_SLOWDOWN)
-		gun_iff_signal = null
 		modify_fire_delay(-aim_fire_delay)
 		to_chat(user, span_notice("You cease aiming.</b>"))
 		return
@@ -952,8 +951,6 @@ should be alright.
 	user.overlays += aim_mode_visual
 	ENABLE_BITFIELD(flags_gun_features, GUN_IS_AIMING)
 	user.add_movespeed_modifier(MOVESPEED_ID_AIM_MODE_SLOWDOWN, TRUE, 0, NONE, TRUE, aim_speed_modifier)
-	var/obj/item/card/id/C = user.wear_id
-	gun_iff_signal = C.access
 	modify_fire_delay(aim_fire_delay)
 	to_chat(user, span_notice("You line up your aim, allowing you to shoot past allies.</b>"))
 
@@ -981,6 +978,12 @@ should be alright.
 	if(gun_user?.get_active_held_item() != src)
 		return
 	unload(gun_user)
+	return COMSIG_KB_ACTIVATED
+
+/// Signal handler to toggle the safety of the gun
+/obj/item/weapon/gun/proc/toggle_gun_safety_keybind()
+	SIGNAL_HANDLER
+	toggle_gun_safety()
 	return COMSIG_KB_ACTIVATED
 
 //----------------------------------------------------------

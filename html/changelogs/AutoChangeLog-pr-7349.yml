@@ -1,0 +1,5 @@
+author: "SplinterGP"
+delete-after: True
+changes: 
+  - expansion: "Ravager now also gets fury on receiving damage."
+  - balance: "Ravager Passive fury regen has been severely reduced."

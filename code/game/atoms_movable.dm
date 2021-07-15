@@ -46,6 +46,8 @@
 	///Internal holder for emissive blocker object, do not use directly use blocks_emissive
 	var/atom/movable/emissive_blocker/em_block
 
+	var/list/client_mobs_in_contents // This contains all the client mobs within this container
+
 	///Lazylist to keep track on the sources of illumination.
 	var/list/affected_dynamic_lights
 	///Highest-intensity light affecting us, which determines our visibility.
@@ -92,9 +94,10 @@
 
 	loc?.handle_atom_del(src)
 
-	for(var/i in contents)
-		var/atom/movable/AM = i
-		qdel(AM)
+	for(var/movable_content in contents)
+		qdel(movable_content)
+
+	LAZYCLEARLIST(client_mobs_in_contents)
 
 	moveToNullspace()
 	invisibility = INVISIBILITY_ABSTRACT
@@ -319,6 +322,8 @@
 
 /atom/movable/proc/Moved(atom/oldloc, direction, Forced = FALSE)
 	SEND_SIGNAL(src, COMSIG_MOVABLE_MOVED, oldloc, direction, Forced)
+	if(length(client_mobs_in_contents))
+		update_parallax_contents()
 	if(pulledby)
 		SEND_SIGNAL(src, COMSIG_MOVABLE_PULL_MOVED, oldloc, direction, Forced)
 	for(var/thing in light_sources) // Cycle through the light sources on this atom and tell them to update.

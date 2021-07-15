@@ -590,10 +590,6 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 	icon_state = "request"
 	circuit = null
 	var/datum/supply_ui/requests/SU
-	req_access = list(ACCESS_IFF_MARINE)
-
-/obj/machinery/computer/ordercomp/rebel
-	req_access = list(ACCESS_IFF_MARINE_REBEL)
 
 /obj/machinery/computer/ordercomp/interact(mob/user)
 	. = ..()

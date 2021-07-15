@@ -71,7 +71,7 @@
 	deadchat_broadcast(rendered, source, follow_target = src, speaker_key = displayed_key)
 
 
-/mob/proc/get_message_mode(message)
+/mob/living/proc/get_message_mode(message)
 	var/key = message[1]
 	if(key == "#")
 		return MODE_WHISPER
@@ -81,6 +81,8 @@
 		return MODE_HEADSET
 	else if((length(message) > (length(key) + 1)) && (key in GLOB.department_radio_prefixes))
 		var/key_symbol = lowertext(message[length(key) + 1])
+		if(faction == FACTION_TERRAGOV_REBEL)
+			return GLOB.department_radio_keys_rebel[key_symbol]
 		return GLOB.department_radio_keys[key_symbol]
 
 

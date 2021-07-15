@@ -722,6 +722,7 @@
 	var/turf/T = get_turf(M)
 
 	N.forceMove(T)
+	N.update_parallax_contents()
 
 	log_admin("[key_name(N)] jumped to [key_name(M)]'s mob [AREACOORD(T)]")
 	if(!isobserver(N))
