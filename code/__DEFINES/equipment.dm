@@ -66,6 +66,7 @@
 #define DEPLOYED_NO_PICKUP  (1<<16) //Disables deployed item pickup
 #define DEPLOYED_NO_ROTATE  (1<<17) //Disables deployed item rotation abilities to rotate.
 #define DEPLOYED_WRENCH_DISASSEMBLE (1<<18) //If this is on an item, the item can only be disassembled using a wrench once deployed.
+#define IS_SENTRY (1<<19)
 
 //==========================================================================================
 

@@ -1024,32 +1024,30 @@ datum/ammo/bullet/revolver/tp44
 
 /datum/ammo/bullet/turret
 	name = "autocannon bullet"
-	icon_state 	= "redbullet" //Red bullets to indicate friendly fire restriction
+	icon_state 	= "redbullet"
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING|AMMO_SENTRY
 	accurate_range = 10
-	accuracy_var_low = 3
-	accuracy_var_high = 3
-	damage = 20
-	penetration = 10
-	sundering = 3 //small damage big sunder
-	damage_falloff = 0.5 //forgot to add this
+	damage = 80
+	penetration = 30
+	sundering = 15
+	damage_falloff = 0.5
 
 /datum/ammo/bullet/turret/dumb
 	icon_state 	= "bullet"
 
 /datum/ammo/bullet/turret/gauss
 	name = "heavy gauss turret slug"
-	damage = 25
-	penetration = 30
+	damage = 90
+	penetration = 10
 	accurate_range = 3
 	sundering = 0
 
 
 /datum/ammo/bullet/turret/mini
 	name = "small caliber autocannon bullet"
-	damage = 15
+	damage = 30
 	penetration = 10
-	sundering = 2
+	sundering = 5
 
 
 /datum/ammo/bullet/machinegun //Adding this for the MG Nests (~Art)

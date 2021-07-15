@@ -224,10 +224,42 @@ should be alright.
 	if(active_attachable?.flags_attach_features & ATTACH_RELOADABLE && check_inactive_hand(user) && active_attachable.reload_attachment(I, user, TRUE))
 		return
 
+	if(istype(I, /obj/item/cell) && CHECK_BITFIELD(flags_item, IS_SENTRY))
+		if(battery)
+			to_chat(user, "<span class='warning'>[src] already has a battery installed!</span>")
+			return
+		if(!istype(I, cell_type))
+			to_chat(user, "<span class='warning'>[I] wont fit there!</span>")
+			return
+		var/obj/item/cell/new_cell = I
+		if(!new_cell.charge)
+			to_chat(user, "<span class='warning'>[new_cell] is out of charge!</span>")
+			return
+		playsound(src, 'sound/weapons/guns/interact/standard_laser_rifle_reload.ogg', 20)
+		battery = new_cell
+		user.temporarilyRemoveItemFromInventory(new_cell)
+		new_cell.forceMove(src)
+		to_chat(user, "<span class='notice'>You install the [new_cell] into the [src].</span>")
+		return
+
 	if((istype(I, /obj/item/ammo_magazine) || istype(I, /obj/item/cell/lasgun)) && check_inactive_hand(user))
 		reload(user, I)
 		return
 
+/obj/item/weapon/gun/AltClick(mob/user)
+	. = ..()
+	if(!user.Adjacent(src) || !ishuman(user) || !CHECK_BITFIELD(flags_item, IS_SENTRY))
+		return
+	var/mob/living/carbon/human/human = user
+	if(!battery)
+		to_chat(human, "<span class='warning'> There is no battery to remove from [src].</span>")
+		return
+	if(human.get_active_held_item() != src && human.get_inactive_held_item() != src && !CHECK_BITFIELD(flags_item, IS_DEPLOYED))
+		to_chat(human, "<span class='notice'>You have to hold [src] to take out its battery.</span>")
+		return
+	playsound(src, 'sound/weapons/flipblade.ogg', 20)
+	human.put_in_hands(battery)
+	battery = null
 
 //tactical reloads
 /obj/item/weapon/gun/MouseDrop_T(atom/dropping, mob/living/carbon/human/user)
