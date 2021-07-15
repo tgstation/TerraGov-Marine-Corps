@@ -172,6 +172,7 @@
 		"Grenades" = list(
 			/obj/item/explosive/grenade/frag = 600,
 			/obj/item/explosive/grenade/frag/m15 = 30,
+			/obj/item/explosive/grenade/impact = 125,
 			/obj/item/explosive/grenade/incendiary = 50,
 			/obj/item/explosive/grenade/cloakbomb = 25,
 			/obj/item/explosive/grenade/drainbomb = 10,
@@ -275,7 +276,6 @@
 		),
 		"Grenades" = list(
 			/obj/item/explosive/grenade/frag = 600,
-			/obj/item/explosive/grenade/impact = 125,
 			/obj/item/explosive/grenade/frag/m15 = 50,
 			/obj/item/explosive/grenade/incendiary = 50,
 			/obj/item/explosive/grenade/cloakbomb = 50,
