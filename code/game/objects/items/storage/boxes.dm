@@ -994,7 +994,7 @@
 	closed_overlay = "grenade_box_overlay_phosphorus"
 
 /obj/item/storage/box/visual/grenade/impact
-	name = "\improper M15 grenade box"
+	name = "\improper M40 IMDP grenade box"
 	desc = "A secure box holding 25 M40 IMDP impact grenades. High explosive, don't store near the flamer fuel."
 	spawn_number = 25
 	spawn_type = /obj/item/explosive/grenade/impact
