@@ -901,6 +901,8 @@
 
 	var/client/C = usr.client
 	if(!isobserver(C.mob))
+		if(is_mentor(C) && tgui_alert(usr, "You will be unable to return to your old body without admin help. Are you sure?", "Confirm", list("Yes", "No")) != "Yes")
+			return
 		C.holder.admin_ghost()
 	var/mob/camera/imaginary_friend/IF = new(get_turf(friend_owner), friend_owner)
 	C.mob.mind.transfer_to(IF)
