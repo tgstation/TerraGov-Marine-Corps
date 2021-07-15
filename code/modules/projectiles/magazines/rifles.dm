@@ -145,6 +145,7 @@
 	name = "\improper AK extended magazine (7.62x39mm)"
 	desc = "A 7.62x39mm Kalashnikov magazine, this one carries more rounds than the average magazine."
 	icon_state = "ak47_ext"
+	bonus_overlay = "ak47_ex"
 	max_rounds = 60
 	icon_state_mini = "mag_rifle_big_yellow"
 
