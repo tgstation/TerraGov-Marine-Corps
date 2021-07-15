@@ -252,6 +252,16 @@
 	gun_type = /obj/item/weapon/gun/rifle/standard_autoshotgun
 	icon_state_mini = "mag_tx15_slug"
 
+/obj/item/ammo_magazine/rifle/tx15_buckshot
+	name = "\improper TX-15 slug magazine (16 gauge)"
+	desc = "A magazine of 16 gauge buckshot, for the TX-15."
+	caliber = CALIBER_16G
+	icon_state = "tx15_buck"
+	default_ammo = /datum/ammo/bullet/shotgun/tx15_buckshot
+	max_rounds = 12
+	gun_type = /obj/item/weapon/gun/rifle/standard_autoshotgun
+	icon_state_mini = "mag_tx15_slug"
+
 //-------------------------------------------------------
 //SMARTMACHINEGUN AMMUNITION
 

@@ -798,6 +798,28 @@ datum/ammo/bullet/revolver/tp44
 	damage_falloff = 0.25
 	penetration = 15
 
+/datum/ammo/bullet/shotgun/tx15_buckshot
+	name = "small buckshot shell"
+	handful_icon_state = "shotgun buckshot shell"
+	icon_state = "buckshot"
+	hud_state = "shotgun_buckshot"
+	flags_ammo_behavior = AMMO_BALLISTIC
+	bonus_projectiles_type = /datum/ammo/bullet/shotgun/tx15_flechette/spread
+	bonus_projectiles_amount = 6
+	bonus_projectiles_scatter = 2
+	damage = 20
+	penetration = 0
+	damage_falloff = 2
+	max_range = 7
+	shell_speed = 2
+
+/datum/ammo/bullet/shotgun/tx15_buckshot/on_hit_mob(mob/M, obj/projectile/P)
+	staggerstun(M, P, slowdown = 1, knockback = 2, shake = 0)
+
+/datum/ammo/bullet/shotgun/tx15_buckshot/spread
+	name = "additional small buckshot"
+	damage = 20
+
 /datum/ammo/bullet/shotgun/tx15_slug
 	name = "shotgun slug"
 	handful_icon_state = "shotgun slug"
