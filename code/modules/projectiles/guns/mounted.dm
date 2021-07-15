@@ -144,3 +144,51 @@
 
 	max_integrity = 500
 
+
+
+//-------------------------------------------------------
+//T-27 General Purpose Machine Gun
+
+/obj/item/weapon/gun/standard_mmg
+	name = "\improper T-27 medium machinegun"
+	desc = "The T-27 is the T-29s aging IFF-less cousin, made for rapid accurate machinegun fire in a short amount of time, you could use it while standing, not a great idea. Use the tripod. It uses 10x27mm boxes."
+	icon = 'icons/Marine/marine-mmg.dmi'
+	icon_state = "t27"
+	item_state = "t27"
+	caliber = CALIBER_10x26_CASELESS //codex
+	max_shells = 125 //codex
+	force = 40
+	aim_slowdown = 1.2
+	wield_delay = 2 SECONDS
+	fire_sound =  'sound/weapons/guns/fire/hmg.ogg'
+	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
+	unload_sound = 'sound/weapons/guns/interact/T42_unload.ogg'
+	reload_sound = 'sound/weapons/guns/interact/T42_reload.ogg'
+	current_mag = /obj/item/ammo_magazine/standard_mmg
+	attachable_allowed = list(
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/lasersight,
+		/obj/item/attachable/suppressor,
+		/obj/item/attachable/bayonet,
+		/obj/item/attachable/bayonetknife,
+		/obj/item/attachable/scope/mini,
+		/obj/item/attachable/magnetic_harness,
+	)
+
+	scatter = 80 // you're not firing this standing.
+	recoil = 3
+	scatter_unwielded = 15
+	fire_delay = 0.15 SECONDS
+
+	burst_amount = 1
+	burst_accuracy_mult = 2
+	burst_scatter_mult = -2
+
+	flags_item = IS_DEPLOYABLE|TWOHANDED
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER|GUN_WIELDED_FIRING_ONLY
+	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
+
+	deploy_time = 1 SECONDS
+
+	max_integrity = 125
