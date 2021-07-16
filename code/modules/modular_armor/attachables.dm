@@ -220,3 +220,16 @@
 	var/datum/component/chem_booster/chemsystem = parent.GetComponent(/datum/component/chem_booster)
 	chemsystem.RemoveComponent()
 	return ..()
+
+/** Zeus energy shield armor */
+/obj/item/armor_module/attachable/zeus
+	name = "\improper Zeus MK1 energy shield"
+	desc = "Designed for mounting on the Jaeger Combat Exoskeleton."
+	icon_state = "mod_ff_icon"
+	item_state = "mod_ff"
+	slowdown = 0.1
+	flags_atom = CONDUCT
+
+/obj/item/armor_module/attachable/zeus/do_attach(mob/living/user, obj/item/clothing/suit/modular/parent)
+	. = ..()
+	parent.AddComponent(/datum/component/shield/overhealth/marine)
