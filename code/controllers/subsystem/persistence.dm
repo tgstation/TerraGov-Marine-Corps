@@ -26,6 +26,7 @@ SUBSYSTEM_DEF(persistence)
 		/datum/season_datum/weapons/guns/pistol_seasonal_two,
 		/datum/season_datum/weapons/guns/rifle_seasonal_two,
 		/datum/season_datum/weapons/guns/pistol_seasonal_three,
+		/datum/season_datum/weapons/guns/copsandrobbers_seasonal,
 		)
 	)
 	///The saved list of custom outfits names
@@ -189,3 +190,14 @@ SUBSYSTEM_DEF(persistence)
 		/obj/item/weapon/gun/pistol/highpower = -1,
 		/obj/item/ammo_magazine/pistol/highpower = -1,
 		)
+
+/datum/season_datum/weapons/guns/copsandrobbers_seasonal
+	name = "cops and robbers"
+	description = "A Revolver and a classic SMG. Truly cops and robbers."
+	item_list = list(
+		/obj/item/weapon/gun/smg/uzi = -1,
+		/obj/item/ammo_magazine/smg/uzi = -1,
+		/obj/item/weapon/gun/revolver/cmb = -1,
+		/obj/item/ammo_magazine/revolver/cmb = -1,
+		)
+
