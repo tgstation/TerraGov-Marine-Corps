@@ -39,7 +39,6 @@
 #define CAT_MEDSUP "MEDICAL SUPPLIES"
 #define CAT_ENGSUP "ENGINEERING SUPPLIES"
 #define CAT_LEDSUP "LEADER SUPPLIES"
-#define CAT_SPEAMM "SPECIAL AMMUNITION"
 
 GLOBAL_LIST_INIT(marine_selector_cats, list(
 		CAT_MOD = list(MARINE_CAN_BUY_MODULE),
@@ -61,7 +60,6 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 		CAT_MEDSUP = null,
 		CAT_ENGSUP = null,
 		CAT_LEDSUP = null,
-		CAT_SPEAMM = null,
 	))
 
 #define METAL_PRICE_IN_GEAR_VENDOR 2
@@ -515,7 +513,7 @@ GLOBAL_LIST_INIT(loadout_job_supported, list(
 	SQUAD_SMARTGUNNER,
 	SQUAD_LEADER,
 ))
-	
+
 
 //Defines use for the visualisation of loadouts
 #define NO_OFFSET "0%"

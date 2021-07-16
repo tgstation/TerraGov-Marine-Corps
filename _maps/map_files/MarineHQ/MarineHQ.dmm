@@ -5756,7 +5756,6 @@
 /turf/open/floor/wood,
 /area/mainship/living/pilotbunks)
 "CC" = (
-/obj/machinery/vending/marine_special,
 /turf/open/floor/mainship/red/full,
 /area/mainship/shipboard/weapon_room)
 "CD" = (

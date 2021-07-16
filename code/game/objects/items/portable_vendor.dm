@@ -271,21 +271,6 @@ A breacher kit with the least firepower, has a high capacity SMG and a machete f
 		list("M4A3 Pistol", 1, /obj/item/storage/box/squadmarine/smartgunnerm4a3, "white", "A kit containing a M4A3 pistol and ammo.")
 	)
 
-/obj/item/portable_vendor/marine/squadmarine/specialist
-	name = "\improper TerraGov Squad Specialist Storage Backpack"
-	desc = "A backpack-sized automated storage and retrieval system. Designed to efficiently store and selectively dispense large kits during immediate operations. Can only vend one kit per person. Has a faded tag saying that this backpack is only for Squad Specialists, you wonder if you are either lucky or just disappointed."
-	req_role = /datum/job/terragov/squad/specialist
-	listed_products = list(
-		list("SPECIALIST KITS", 0, null, null, null),
-		list("Demolitionist (RPG, T-19 MP)", 1, /obj/item/storage/box/squadmarine/demolitionist, "white", "A kit specializing in explosives."),
-		list("Sniper (Antimaterial Scoped Rifle, 88 Mod 4 Pistol)", 1, /obj/item/storage/box/squadmarine/sniper, "white", "A kit specializing in long-ranged dispatch."),
-		list("Scout (TX-8 Battle Rifle, 88 Mod 4 Pistol)", 1, /obj/item/storage/box/squadmarine/scout, "white", "A kit specializing in area scouting."),
-		list("Tracker (MBX900 Lever-Action Shotgun, M1911 Pistol)", 1, /obj/item/storage/box/squadmarine/tracker, "white", "A kit specializing in chasing enemy targets."),
-		list("Pyrotechician (TL-84 Flamethrower, T-19 MP)", 1, /obj/item/storage/box/squadmarine/pyro, "white", "A kit specializing in firey area denial."),
-		list("Heavy Grenadier (M92 Grenade Launcher)", 1, /obj/item/storage/box/squadmarine/heavy_grenadier, "white", "A kit specializing in explosive area denial."),
-		list("Heavy Minigunner (MIC-A7 Minigun, M4A3 Pistol)", 1, /obj/item/storage/box/squadmarine/heavy_gunner, "white", "A kit specializing in direct assault and tanking.")
-	)
-
 /obj/item/portable_vendor/marine/process()
 	STOP_PROCESSING(SSobj, src)
 	return FALSE

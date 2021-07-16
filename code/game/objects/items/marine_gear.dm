@@ -19,11 +19,6 @@
 /obj/item/coin/marine/attackby(obj/item/I, mob/user, params) //To remove attaching a string functionality
 	return
 
-/obj/item/coin/marine/specialist
-	name = "marine specialist weapon token"
-	desc = "Insert this into a specialist vendor in order to access a single highly dangerous weapon."
-	flags_token = TOKEN_SPEC
-
 /obj/structure/broken_apc
 	name = "\improper M577 armored personnel carrier"
 	desc = "A large, armored behemoth capable of ferrying marines around. \nThis one is sitting nonfunctional."
