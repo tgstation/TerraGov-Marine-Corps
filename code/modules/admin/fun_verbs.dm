@@ -5,8 +5,8 @@
 	if(!check_rights(R_FUN))
 		return
 
-	if(usr.client.view != WORLD_VIEW)
-		usr.client.change_view(WORLD_VIEW)
+	if(usr.client.view_size.get_client_view_size() != usr.client.view_size.default)
+		usr.client.view_size.reset_to_default()
 		return
 
 	var/newview = input("Select view range:", "Change View Range", 7) as null|num
@@ -17,7 +17,7 @@
 	if(newview == usr.client.view)
 		return
 
-	usr.client.change_view(newview)
+	usr.client.view_size.set_view_radius_to(newview)
 
 	log_admin("[key_name(usr)] changed their view range to [usr.client.view].")
 	message_admins("[ADMIN_TPMONTY(usr)] changed their view range to [usr.client.view].")
@@ -717,151 +717,6 @@
 	browser.open(FALSE)
 
 
-/datum/admins/proc/outfit_manager()
-	set category = "Fun"
-	set name = "Outfit Manager"
-
-	if(!check_rights(R_FUN))
-		return
-
-	var/dat = "<ul>"
-	for(var/datum/outfit/O in GLOB.custom_outfits)
-		var/vv = FALSE
-		var/datum/outfit/varedit/VO = O
-		if(istype(VO))
-			vv = length(VO.vv_values)
-		dat += "<li>[O.name][vv ? "(VV)" : ""]</li> <a href='?src=holder;[HrefToken()];save_outfit=1;chosen_outfit=[REF(O)]'>Save</a> <a href='?src=holder;[HrefToken()];delete_outfit=1;chosen_outfit=[REF(O)]'>Delete</a>"
-	dat += "</ul>"
-	dat += "<a href='?_src_=holder;[HrefToken()];create_outfit_menu=1'>Create</a><br>"
-	dat += "<a href='?_src_=holder;[HrefToken()];load_outfit=1'>Load from file</a>"
-
-	var/datum/browser/browser = new(usr, "outfitmanager", "<div align='center'>Outfit Manager</div>")
-	browser.set_content(dat)
-	browser.open(FALSE)
-
-
-/datum/admins/proc/create_outfit()
-	if(!check_rights(R_FUN))
-		return
-
-	var/dat = {"<div>Input typepaths and watch the magic happen.</div>
-	<form name="outfit" action="byond://?src=[REF(usr.client.holder)];[HrefToken()]" method="get">
-	<input type="hidden" name="src" value="[REF(usr.client.holder)];[HrefToken()]">
-	[HrefTokenFormField()]
-	<input type="hidden" name="create_outfit_finalize" value="1">
-	<table>
-		<tr>
-			<th>Name:</th>
-			<td>
-				<input type="text" name="outfit_name" value="Custom Outfit">
-			</td>
-		</tr>
-		<tr>
-			<th>Uniform:</th>
-			<td>
-				<input type="text" name="outfit_uniform" value="">
-			</td>
-		</tr>
-		<tr>
-			<th>Suit:</th>
-			<td>
-				<input type="text" name="outfit_suit" value="">
-			</td>
-		</tr>
-		<tr>
-			<th>Back:</th>
-			<td>
-				<input type="text" name="outfit_back" value="">
-			</td>
-		</tr>
-		<tr>
-			<th>Belt:</th>
-			<td>
-				<input type="text" name="outfit_belt" value="">
-			</td>
-		</tr>
-		<tr>
-			<th>Gloves:</th>
-			<td>
-				<input type="text" name="outfit_gloves" value="">
-			</td>
-		</tr>
-		<tr>
-			<th>Shoes:</th>
-			<td>
-				<input type="text" name="outfit_shoes" value="">
-			</td>
-		</tr>
-		<tr>
-			<th>Head:</th>
-			<td>
-				<input type="text" name="outfit_head" value="">
-			</td>
-		</tr>
-		<tr>
-			<th>Mask:</th>
-			<td>
-				<input type="text" name="outfit_mask" value="">
-			</td>
-		</tr>
-		<tr>
-			<th>Ears:</th>
-			<td>
-				<input type="text" name="outfit_ears" value="">
-			</td>
-		</tr>
-		<tr>
-			<th>Glasses:</th>
-			<td>
-				<input type="text" name="outfit_glasses" value="">
-			</td>
-		</tr>
-		<tr>
-			<th>ID:</th>
-			<td>
-				<input type="text" name="outfit_id" value="">
-			</td>
-		</tr>
-		<tr>
-			<th>Left Pocket:</th>
-			<td>
-				<input type="text" name="outfit_l_pocket" value="">
-			</td>
-		</tr>
-		<tr>
-			<th>Right Pocket:</th>
-			<td>
-				<input type="text" name="outfit_r_pocket" value="">
-			</td>
-		</tr>
-		<tr>
-			<th>Suit Store:</th>
-			<td>
-				<input type="text" name="outfit_s_store" value="">
-			</td>
-		</tr>
-		<tr>
-			<th>Right Hand:</th>
-			<td>
-				<input type="text" name="outfit_r_hand" value="">
-			</td>
-		</tr>
-		<tr>
-			<th>Left Hand:</th>
-			<td>
-				<input type="text" name="outfit_l_hand" value="">
-			</td>
-		</tr>
-	</table>
-	<br>
-	<input type="submit" value="Save">
-	</form>"}
-
-	var/datum/browser/browser = new(usr, "create_outfit", "<div align='center'>Create Outfit</div>", 550, 600)
-	browser.set_content(dat)
-	browser.open()
-
-
 /datum/admins/proc/edit_appearance(mob/living/carbon/human/H in GLOB.human_mob_list)
 	set category = "Fun"
 	set name = "Edit Appearance"
@@ -1028,22 +883,33 @@
 		IF.ghostize()
 		return
 
-	if(!isobserver(C.mob))
-		if(is_mentor(C))
-			to_chat(C, "<span class='warning'>Can only become an imaginary friend while observing.</span>")
-			return
-		C.holder.admin_ghost()
+	var/mob/living/friend_owner = C.holder.apicker("Select by:", "Imaginary Friend", list(APICKER_CLIENT, APICKER_LIVING))
+	if(!friend_owner)
+		// nothing was picked, probably canceled
+		return
+	C.holder.create_ifriend(friend_owner)
 
-	var/mob/living/L = C.holder.apicker("Select by:", "Imaginary Friend", list(APICKER_CLIENT, APICKER_LIVING))
-	if(!istype(L) || !isobserver(C.mob))
+/// Handles actually spawning in the friend, if the rest of the checks pass
+/datum/admins/proc/create_ifriend(mob/living/friend_owner, seek_confirm = FALSE)
+	if(!check_rights(R_FUN|R_MENTOR))
+		return
+	if(!istype(friend_owner)) // living only
+		to_chat(usr, "<span class='warning'>That creature can not have Imaginary Friends</span>")
+		return
+	if(seek_confirm && tgui_alert(usr, "Become Imaginary Friend of [friend_owner]?", "Confirm", list("Yes", "No")) != "Yes")
 		return
 
-	var/mob/camera/imaginary_friend/IF = new(get_turf(L), L)
+	var/client/C = usr.client
+	if(!isobserver(C.mob))
+		if(is_mentor(C) && tgui_alert(usr, "You will be unable to return to your old body without admin help. Are you sure?", "Confirm", list("Yes", "No")) != "Yes")
+			return
+		C.holder.admin_ghost()
+	var/mob/camera/imaginary_friend/IF = new(get_turf(friend_owner), friend_owner)
 	C.mob.mind.transfer_to(IF)
 
-	log_admin("[key_name(IF)] started being imaginary friend of [key_name(L)].")
-	message_admins("[ADMIN_TPMONTY(IF)] started being imaginary friend of [ADMIN_TPMONTY(L)].")
-
+	admin_ticket_log(friend_owner, "[key_name_admin(C)] became an imaginary friend of [key_name(friend_owner)]")
+	log_admin("[key_name(IF)] started being imaginary friend of [key_name(friend_owner)].")
+	message_admins("[ADMIN_TPMONTY(IF)] started being imaginary friend of [ADMIN_TPMONTY(friend_owner)].")
 
 /datum/admins/proc/force_dropship()
 	set category = "Fun"

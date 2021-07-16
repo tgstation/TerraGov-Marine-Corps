@@ -51,7 +51,7 @@
 	max_storage_space = 28
 
 /obj/item/storage/backpack/holding/proc/failcheck(mob/user)
-	if (prob(reliability)) 
+	if (prob(reliability))
 		return TRUE //No failure
 	if (prob(reliability))
 		to_chat(user, "<span class='warning'>The Bluespace portal resists your attempt to add another item.</span>")
@@ -260,7 +260,7 @@
 
 /obj/item/storage/backpack/marine/corpsman/Initialize(mapload, ...)
 	. = ..()
-	cell = new (src)
+	cell = new
 	icon_skin = icon_state
 	update_icon()
 
@@ -335,8 +335,8 @@
 	desc = "The standard-issue backpack worn by TGMC technicians. Specially equipped to hold sentry gun and M56D emplacement parts."
 	icon_state = "marinepackt"
 	bypass_w_limit = list(
-		/obj/item/standard_hmg,
-		/obj/item/ammo_magazine/standard_hmg,
+		/obj/item/weapon/gun/tl102,
+		/obj/item/ammo_magazine/tl102,
 		/obj/item/turret_top,
 		/obj/item/ammo_magazine/sentry,
 		/obj/item/ammo_magazine/minisentry,
@@ -754,6 +754,7 @@
 	icon_state = "commandopack"
 	storage_slots = null
 	max_storage_space = 30
+	access_delay = 0
 
 /obj/item/storage/backpack/captain
 	name = "marine captain backpack"

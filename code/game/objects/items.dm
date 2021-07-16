@@ -357,7 +357,10 @@
 
 ///Anything unique the item can do, like pumping a shotgun, spin or whatever.
 /obj/item/proc/unique_action(mob/user)
-	return FALSE
+	SHOULD_CALL_PARENT(TRUE)
+	if(SEND_SIGNAL(src, COMSIG_ITEM_UNIQUE_ACTION, user) & COMSIG_KB_ACTIVATED)
+		return COMSIG_KB_ACTIVATED
+	return COMSIG_KB_NOT_ACTIVATED
 
 ///Used to enable/disable an item's bump attack. Grouped in a proc to make sure the signal or flags aren't missed
 /obj/item/proc/toggle_item_bump_attack(mob/user, enable_bump_attack)
@@ -696,7 +699,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 
 		if(user.client)
 			user.client.click_intercept = null
-			user.client.change_view(WORLD_VIEW)
+			user.client.view_size.reset_to_default()
 			user.client.pixel_x = 0
 			user.client.pixel_y = 0
 		return
@@ -710,7 +713,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 		return
 
 	if(user.client)
-		user.client.change_view(VIEW_NUM_TO_STRING(viewsize))
+		user.client.view_size.set_view_radius_to(viewsize/2-2)//sets the viewsize to reflect radius changes properly
 
 		var/tilesize = 32
 		var/viewoffset = tilesize * tileoffset

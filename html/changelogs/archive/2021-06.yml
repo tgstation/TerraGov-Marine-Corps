@@ -259,3 +259,7 @@
   - balance: FC has less skill in pistols and melee
   - bugfix: Can join rebels now
   - bugfix: No longer 4 squads on POS
+2021-06-30:
+  Wayland-Smithy:
+  - bugfix: Fixes the silo collapse timer.
+  - bugfix: Fixed the TX-7 ammo box icon and name.

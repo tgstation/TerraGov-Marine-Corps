@@ -173,7 +173,7 @@
 /obj/item/reagent_containers/food/snacks/sliceable/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(I.sharp != IS_SHARP_ITEM_ACCURATE || I.sharp != IS_SHARP_ITEM_BIG)
+	if(I.sharp == IS_NOT_SHARP_ITEM)
 		if(I.w_class >= WEIGHT_CLASS_SMALL)
 			return
 		if(!user.transferItemToLoc(I, src))
@@ -184,12 +184,12 @@
 		to_chat(user, "<span class='notice'>You slip [I] inside of [src].</span>")
 		return
 
-	if(!isturf(loc) || !(locate(/obj/structure/table) in loc) || !istype(loc, /obj/item/tool/kitchen/tray))
+	if(!isturf(loc) || !(locate(/obj/structure/table) in loc))
 		to_chat(user, "<span class='warning'>You cannot slice [src] here! You need a table or at least a tray to do it.</span>")
 		return
 
 	user.visible_message("<span class='notice'>[user] slices \the [src] with [I]!</span>", \
-		"<span class='notice'>You crudely \the [src] with your [I]!</span>")
+		"<span class='notice'>You crudely slice \the [src] with your [I]!</span>")
 
 	var/reagents_per_slice = reagents.total_volume / slices_num
 

@@ -390,8 +390,10 @@
 		unfolded_tarp.name = "\improper [serial_number] [unfolded_tarp.name]" //Set the name with the serial number
 
 /obj/item/bodybag/tarp/unique_action(mob/user)
+	. = ..()
 	deploy_bodybag(user, get_turf(user))
 	unfoldedbag_instance.close()
+	return TRUE
 
 
 /obj/item/bodybag/tarp/snow

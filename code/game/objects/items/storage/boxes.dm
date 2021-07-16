@@ -432,7 +432,7 @@
 	new /obj/item/reagent_containers/food/snacks/packaged_meal(src, snack)
 	new /obj/item/reagent_containers/food/snacks/packaged_meal(src, desert)
 
-/obj/item/storage/box/MRE/remove_from_storage()
+/obj/item/storage/box/MRE/remove_from_storage(obj/item/item, atom/new_location, mob/user)
 	. = ..()
 	if(. && !contents.len && !gc_destroyed)
 		qdel(src)
@@ -627,15 +627,15 @@
 	storage_slots = 32 // 8 images x 4 items
 	max_storage_space = 64	//SMG and pistol sized (tiny and small) mags can fit all 32 slots, normal (LMG and AR) fit 21
 	can_hold = list(
-		/obj/item/ammo_magazine/acp,
-		/obj/item/ammo_magazine/box10x24mm,
-		/obj/item/ammo_magazine/box10x26mm,
-		/obj/item/ammo_magazine/box10x27mm,
-		/obj/item/ammo_magazine/box9mm,
+		/obj/item/ammo_magazine/packet/acp,
+		/obj/item/ammo_magazine/packet/p10x24mm,
+		/obj/item/ammo_magazine/packet/p10x26mm,
+		/obj/item/ammo_magazine/packet/p10x27mm,
+		/obj/item/ammo_magazine/packet/p9mm,
 		/obj/item/ammo_magazine/flamer_tank,
 		/obj/item/ammo_magazine/handful,
 		/obj/item/ammo_magazine/m412l1_hpr,
-		/obj/item/ammo_magazine/magnum,
+		/obj/item/ammo_magazine/packet/magnum,
 		/obj/item/ammo_magazine/minigun,
 		/obj/item/ammo_magazine/pistol,
 		/obj/item/ammo_magazine/railgun,
@@ -645,7 +645,7 @@
 		/obj/item/ammo_magazine/smg,
 		/obj/item/ammo_magazine/sniper,
 		/obj/item/ammo_magazine/standard_gpmg,
-		/obj/item/ammo_magazine/standard_hmg,
+		/obj/item/ammo_magazine/tl102,
 		/obj/item/ammo_magazine/standard_lmg,
 		/obj/item/ammo_magazine/standard_smartmachinegun,
 		/obj/item/cell/lasgun,
@@ -1015,7 +1015,7 @@
 	closed_overlay = "grenade_box_overlay_phosphorus"
 
 /obj/item/storage/box/visual/grenade/impact
-	name = "\improper M15 grenade box"
+	name = "\improper M40 IMDP grenade box"
 	desc = "A secure box holding 25 M40 IMDP impact grenades. High explosive, don't store near the flamer fuel."
 	spawn_number = 25
 	spawn_type = /obj/item/explosive/grenade/impact

@@ -51,7 +51,8 @@
 	w_class = WEIGHT_CLASS_SMALL
 	var/recycletime = 120
 	var/long_range_cooldown = 2
-	var/list/iff_signal = list(ACCESS_IFF_MARINE)
+	/// Iff signal to distinguish friendlies from foes
+	var/iff_signal = NONE
 	var/detect_friendlies = TRUE
 	var/detect_revivable = TRUE
 	var/detect_fubar = TRUE
@@ -143,7 +144,7 @@
 		status = MOTION_DETECTOR_HOSTILE //Reset the status to default
 		if(ishuman(M))
 			var/mob/living/carbon/human/H = M
-			if(H.get_target_lock(iff_signal)) //device checks for IFF data and status
+			if(!(H.wear_id?.iff_signal & iff_signal)) //device checks for IFF data and status
 				if(M.stat == DEAD)
 					if(H.has_working_organs() && H.get_ghost())
 						if(detect_revivable)
@@ -270,13 +271,6 @@
 	update_icon()
 	screen_loc = "[screen_pos_x],[screen_pos_y]"
 
-
-/obj/item/motiondetector/pmc
-	name = "motion detector (PMC)"
-	desc = "A device that detects hostile movement. Hostiles appear as red blips. Friendlies with the correct IFF signature appear as green, and their bodies as blue, unrevivable bodies as dark blue. It has a mode selection interface. This one has been modified for use by the NT PMC forces."
-	iff_signal = list(ACCESS_IFF_PMC)
-
-
 /obj/item/motiondetector/Topic(href, href_list)
 	. = ..()
 	if(.)
@@ -287,6 +281,8 @@
 		if(active)
 			to_chat(usr, "<span class='notice'>You activate [src].</span>")
 			operator = usr
+			var/obj/item/card/id/id = operator.get_idcard()
+			iff_signal = id?.iff_signal
 			START_PROCESSING(SSobj, src)
 		else
 			to_chat(usr, "<span class='notice'>You deactivate [src].</span>")

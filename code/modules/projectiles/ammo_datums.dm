@@ -286,6 +286,16 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	shrapnel_chance = 25
 	sundering = 2.15
 
+/datum/ammo/bullet/pistol/superheavy
+	name = "high impact pistol bullet"
+	hud_state = "pistol_hollow"
+	damage = 45
+	penetration = 15
+	sundering = 3.5
+
+/datum/ammo/bullet/pistol/superheavy/on_hit_mob(mob/M,obj/projectile/P)
+	staggerstun(M, P, stagger = 1, slowdown = 1, shake = 0)
+
 /datum/ammo/bullet/pistol/incendiary
 	name = "incendiary pistol bullet"
 	hud_state = "pistol_fire"
@@ -987,6 +997,12 @@ datum/ammo/bullet/revolver/tp44
 	penetration = 15
 	sundering = 2
 
+/datum/ammo/bullet/smartgun/smartrifle
+	name = "smartrifle bullet"
+	damage = 15
+	penetration = 15
+	sundering = 1
+
 /datum/ammo/bullet/smartgun/lethal
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
 	icon_state 	= "bullet"
@@ -1040,6 +1056,8 @@ datum/ammo/bullet/revolver/tp44
 	name = "machinegun bullet"
 	icon_state 	= "bullet" // Keeping it bog standard with the turret but allows it to be changed.
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
+	hud_state   = "smartgun"
+	hud_state_empty = "smartgun_empty"
 	accurate_range = 15
 	damage = 40 //Reduced damage due to vastly increased mobility
 	penetration = 40 //Reduced penetration due to vastly increased mobility
@@ -1065,14 +1083,14 @@ datum/ammo/bullet/revolver/tp44
 	icon_state 	= "blue_bullet"
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
 	shell_speed = 4
-	max_range = 12
-	damage = 100
+	max_range = 9
+	damage = 150
 	penetration = 70
-	sundering = 70
+	sundering = 90
 	bullet_color = COLOR_PULSE_BLUE
 
 /datum/ammo/bullet/railgun/on_hit_mob(mob/M,obj/projectile/P)
-	staggerstun(M, P, weaken = 1, stagger = 3, slowdown = 2, knockback = 4)
+	staggerstun(M, P, weaken = 1, stagger = 3, slowdown = 2, knockback = 3, shake = 0)
 
 /*
 //================================================
@@ -1161,14 +1179,34 @@ datum/ammo/bullet/revolver/tp44
 	name = "thermobaric rocket"
 	hud_state = "rocket_thermobaric"
 	flags_ammo_behavior = AMMO_ROCKET
-	damage = 200
+	damage = 40
+	penetration = 25
 	max_range = 30
+	sundering = 2
 
-/datum/ammo/rocket/wp/quad/drop_nade(turf/T, radius = 3)
-	. = ..()
-	if(!.)
-		return
-	explosion(T, 0, 3, 5, 5, throw_range = 0)
+	///The smoke system that the WP gas uses to spread.
+	var/datum/effect_system/smoke_spread/smoke_system
+
+/datum/ammo/rocket/wp/quad/set_smoke()
+	smoke_system = new /datum/effect_system/smoke_spread/phosphorus()
+
+/datum/ammo/rocket/wp/quad/drop_nade(turf/T, atom/firer, range = 3, radius = 3)
+	set_smoke()
+	smoke_system.set_up(range, T)
+	smoke_system.start()
+	T.visible_message("<span class='danger'>The rocket explodes into white gas!</span>")
+	playsound(T, 'sound/weapons/guns/fire/flamethrower2.ogg', 50, 1, 4)
+	flame_radius(radius, T, 27, 27, 27, 17)
+
+
+/datum/ammo/rocket/wp/quad/ds
+	name = "super thermobaric rocket"
+	hud_state = "rocket_thermobaric"
+	flags_ammo_behavior = AMMO_ROCKET
+	damage = 200
+	penetration = 75
+	max_range = 30
+	sundering = 100
 
 /datum/ammo/rocket/recoilless
 	name = "high explosive shell"
@@ -1950,6 +1988,23 @@ datum/ammo/bullet/revolver/tp44
 					Misc Ammo
 //================================================
 */
+
+/datum/ammo/bullet/pepperball
+	name = "pepperball"
+	hud_state = "grenade_frag"
+	hud_state_empty = "battery_empty"
+	flags_ammo_behavior = AMMO_BALLISTIC
+	accurate_range = 15
+	damage_type = STAMINA
+	armor_type = "bio"
+	damage = 70
+	penetration = 0
+	shrapnel_chance = 0
+
+/datum/ammo/bullet/pepperball/on_hit_mob(mob/living/victim, obj/projectile/proj)
+	if(isxeno(victim))
+		var/mob/living/carbon/xenomorph/X = victim
+		X.use_plasma(50)
 
 /datum/ammo/alloy_spike
 	name = "alloy spike"

@@ -34,14 +34,16 @@
 	///Last stored turf targetted by rangefinders
 	var/turf/targetturf
 	///Linked mortar for remote targeting.
-	var/obj/structure/mortar/linked_mortar
+	var/obj/machinery/deployable/mortar/linked_mortar
 
 /obj/item/binoculars/tactical/Initialize()
 	. = ..()
 	update_icon()
 
 /obj/item/binoculars/tactical/unique_action(mob/user)
+	. = ..()
 	toggle_mode(user)
+	return TRUE
 
 /obj/item/binoculars/tactical/examine(mob/user)
 	..()
@@ -270,9 +272,13 @@
 	var/y_offset = rand(-2,2)
 	var/turf/target = locate(current_turf.x + x_offset,current_turf.y + y_offset,current_turf.z)
 	GLOB.marine_main_ship?.orbital_cannon?.fire_ob_cannon(target, user)
+	var/warhead_type = GLOB.marine_main_ship.orbital_cannon.tray.warhead.name
+	for(var/mob/living/silicon/ai/AI in GLOB.silicon_mobs)
+		to_chat(AI, "<span class='warning'>NOTICE - Orbital bombardment triggered by ground operator. Warhead type: [warhead_type]. Target: [AREACOORD_NO_Z(current_turf)]</span>")
+		playsound(AI,'sound/machines/triple_beep.ogg', 25, 1, 20)
 	to_chat(user, "<span class='notice'>FIRING REQUEST RECIEVED. CLEAR TARGET AREA</span>")
-	log_attack("[key_name(user)] fired an orbital bombardment in [AREACOORD(current_turf)].")
-	message_admins("[ADMIN_TPMONTY(user)] fired an orbital bombardment in [ADMIN_VERBOSEJMP(current_turf)].")
+	log_attack("[key_name(user)] fired a [warhead_type] in [AREACOORD(current_turf)].")
+	message_admins("[ADMIN_TPMONTY(user)] fired a [warhead_type] in [ADMIN_VERBOSEJMP(current_turf)].")
 	QDEL_NULL(laser)
 
 ///Sets or unsets the binocs linked mortar.

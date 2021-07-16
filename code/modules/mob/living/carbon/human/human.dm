@@ -40,6 +40,7 @@
 	RegisterSignal(src, list(COMSIG_KB_QUICKEQUIP, COMSIG_CLICK_QUICKEQUIP), .proc/do_quick_equip)
 	RegisterSignal(src, COMSIG_KB_UNIQUEACTION, .proc/do_unique_action)
 	RegisterSignal(src, COMSIG_GRAB_SELF_ATTACK, .proc/fireman_carry_grabbed) // Fireman carry
+	RegisterSignal(src, COMSIG_KB_GIVE, .proc/give_signal_handler)
 	AddComponent(/datum/component/footstep, FOOTSTEP_MOB_HUMAN)
 	AddComponent(/datum/component/bump_attack, FALSE, FALSE)
 
@@ -76,6 +77,7 @@
 	remove_from_all_mob_huds()
 	GLOB.human_mob_list -= src
 	GLOB.alive_human_list -= src
+	LAZYREMOVE(GLOB.alive_human_list_faction[faction], src)
 	LAZYREMOVE(GLOB.humans_by_zlevel["[z]"], src)
 	GLOB.dead_human_list -= src
 	return ..()
@@ -1178,9 +1180,6 @@
 		var/datum/outfit/O = path
 		if(initial(O.can_be_admin_equipped))
 			outfits[initial(O.name)] = path
-
-	for(var/datum/outfit/D in GLOB.custom_outfits)
-		outfits[D.name] = D
 
 	if(!(equipment in outfits))
 		return FALSE

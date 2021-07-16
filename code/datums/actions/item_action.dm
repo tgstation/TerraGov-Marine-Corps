@@ -116,9 +116,6 @@
 	holder_flamer = holder_item
 	RegisterSignal(holder_flamer, COMSIG_ITEM_HYDRO_CANNON_TOGGLED, .proc/update_toggle_button_icon)
 
-/datum/action/item_action/toggle_hydro/action_activate()
-	. = ..()
-	holder_flamer.unique_action(owner)
 
 /datum/action/item_action/toggle_hydro/update_button_icon()
 	button.overlays.Cut()

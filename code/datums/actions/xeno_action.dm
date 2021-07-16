@@ -124,9 +124,15 @@
 /datum/action/xeno_action/fail_activate()
 	update_button_icon()
 
-/datum/action/xeno_action/proc/succeed_activate()
+///Plasma cost override allows for actions/abilities to override the normal plasma costs
+/datum/action/xeno_action/proc/succeed_activate(plasma_cost_override)
+	if(QDELETED(owner))
+		return
 	var/mob/living/carbon/xenomorph/X = owner
-	if(plasma_cost && !QDELETED(owner))
+	if(plasma_cost_override)
+		X.use_plasma(plasma_cost_override)
+		return
+	if(plasma_cost)
 		X.use_plasma(plasma_cost)
 
 //checks if the linked ability is on some cooldown.

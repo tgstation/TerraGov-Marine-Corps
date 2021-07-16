@@ -142,7 +142,7 @@
 	},
 /obj/item/tool/hand_labeler,
 /obj/item/storage/toolbox/electrical,
-/obj/item/storage/box/standard_hmg,
+/obj/item/storage/box/tl102,
 /obj/machinery/light/small{
 	dir = 1
 	},
@@ -273,7 +273,7 @@
 /turf/open/floor/mainship/cargo,
 /area/shuttle/canterbury)
 "aO" = (
-/obj/machinery/vending/marine/shared,
+/obj/machinery/loadout_vendor,
 /turf/open/floor/mainship/cargo,
 /area/shuttle/canterbury)
 "aP" = (
@@ -499,7 +499,9 @@
 /turf/open/floor/mainship/red,
 /area/shuttle/canterbury)
 "bE" = (
-/obj/machinery/door/window/northleft,
+/obj/machinery/door/window{
+	dir = 1
+	},
 /obj/structure/window/reinforced/toughened{
 	dir = 8
 	},
@@ -600,7 +602,9 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/shuttle/canterbury/medical)
 "cc" = (
-/obj/machinery/door/window/northright,
+/obj/machinery/door/window/right{
+	dir = 1
+	},
 /obj/structure/window/reinforced/toughened{
 	dir = 4
 	},
@@ -705,7 +709,9 @@
 /turf/open/floor/mainship/red/full,
 /area/shuttle/canterbury)
 "cy" = (
-/obj/machinery/door/window/southleft,
+/obj/machinery/door/window{
+	dir = 2
+	},
 /obj/structure/window/reinforced/toughened{
 	dir = 8
 	},
@@ -861,6 +867,13 @@
 /obj/structure/window/framed/mainship/canterbury,
 /obj/structure/cable,
 /turf/open/floor/plating,
+/area/shuttle/canterbury)
+"Hv" = (
+/obj/structure/window/reinforced/toughened{
+	dir = 4
+	},
+/obj/machinery/loadout_vendor,
+/turf/open/floor/mainship/cargo,
 /area/shuttle/canterbury)
 "KE" = (
 /obj/effect/landmark/start/job/crash/squadmarine,
@@ -1088,7 +1101,7 @@ cP
 aJ
 cS
 aO
-bd
+Hv
 bd
 aJ
 bJ

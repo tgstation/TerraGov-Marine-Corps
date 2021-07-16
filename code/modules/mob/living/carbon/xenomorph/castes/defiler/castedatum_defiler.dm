@@ -45,7 +45,7 @@
 		/datum/action/xeno_action/activable/larval_growth_sting/defiler,
 		/datum/action/xeno_action/lay_egg,
 		/datum/action/xeno_action/activable/inject_egg_neurogas,
-		/datum/action/xeno_action/activable/emit_neurogas,
+		/datum/action/xeno_action/emit_neurogas,
 		/datum/action/xeno_action/select_reagent,
 		/datum/action/xeno_action/reagent_slash,
 		/datum/action/xeno_action/toggle_pheromones,

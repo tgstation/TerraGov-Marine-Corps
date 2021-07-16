@@ -566,6 +566,8 @@
 	playsound(loc, 'sound/weapons/guns/fire/tank_smokelauncher.ogg', 70, 1)
 	playsound(loc, 'sound/weapons/guns/fire/pred_plasma_shot.ogg', 70, 1)
 	var/turf/target = locate(T.x + pick(-2,2), T.y + pick(-2,2), T.z)
+	for(var/mob/living/silicon/ai/AI in GLOB.silicon_mobs)
+		to_chat(AI, "<span class='notice'>NOTICE - \The [src] has fired.</span>")
 	rail_gun_ammo.ammo_count = max(0, rail_gun_ammo.ammo_count - rail_gun_ammo.ammo_used_per_firing)
 	addtimer(CALLBACK(src, /obj/structure/ship_rail_gun/proc/impact_rail_gun, target), 2 SECONDS + (RG_FLY_TIME * (GLOB.current_orbit/3)))
 

@@ -47,6 +47,9 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	// Custom emotes list
 	var/list/custom_emotes = list()
 
+	/// Current tab index of the game preferences ui
+	var/tab_index = CHARACTER_CUSTOMIZATION
+
 	///Saves chemical recipes based on client so they persist through games
 	var/list/chem_macros = list()
 
@@ -135,14 +138,29 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	///Whether emotes will be displayed on runechat. Requires chat_on_map to have effect.
 	var/see_rc_emotes = TRUE
 
+	///Should we automatically fit the viewport?
 	var/auto_fit_viewport = TRUE
+
+	var/parallax
 
 	///The loadout manager
 	var/datum/loadout_manager/loadout_manager
+	///Should we be in the widescreen mode set by the config?
+	var/widescreenpref = TRUE
+	///What size should pixels be displayed as? 0 is strech to fit
+	var/pixel_size = 0
+	///What scaling method should we use? Distort means nearest neighbor
+	var/scaling_method = SCALING_METHOD_NORMAL
+	///If the game is in fullscreen mode
+	var/fullscreen_mode = FALSE
+
 	/// New TGUI Preference preview
 	var/map_name = "player_pref_map"
 	var/obj/screen/map_view/screen_main
 	var/obj/screen/background/screen_bg
+
+	/// If unique action will only act on the item in the active hand. If false, it will try to act on the item on the inactive hand as well in certain conditions.
+	var/unique_action_use_active_hand = TRUE
 
 
 /datum/preferences/New(client/C)
@@ -166,10 +184,13 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 	if(!IsGuestKey(C.key))
 		load_path(C.ckey)
-		if(!load_loadout_manager())
-			loadout_manager = new 
+		if(!load_loadout_manager() || loadout_manager.version != CURRENT_LOADOUT_VERSION)
+			loadout_manager = new
+			reset_loadouts_file()
 		if(load_preferences() && load_character())
+			C.set_fullscreen(fullscreen_mode)
 			return
+
 
 	// We don't have a savefile or we failed to load them
 	random_character()
@@ -178,7 +199,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	for(var/i in 1 to CUSTOM_EMOTE_SLOTS)
 		var/datum/custom_emote/emote = new
 		emote.id = i
-		custom_emotes += emote 
+		custom_emotes += emote
 	C.update_movement_keys(src)
 	loadout_manager = new
 

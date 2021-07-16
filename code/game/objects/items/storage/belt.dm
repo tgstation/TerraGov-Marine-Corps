@@ -369,6 +369,14 @@
 	new /obj/item/ammo_magazine/rifle/tx8/incendiary(src)
 	new /obj/item/ammo_magazine/rifle/tx8(src)
 
+/obj/item/storage/belt/marine/t25/Initialize()
+	. = ..()
+	new /obj/item/ammo_magazine/rifle/standard_smartrifle(src)
+	new /obj/item/ammo_magazine/rifle/standard_smartrifle(src)
+	new /obj/item/ammo_magazine/rifle/standard_smartrifle(src)
+	new /obj/item/ammo_magazine/rifle/standard_smartrifle(src)
+	new /obj/item/ammo_magazine/rifle/standard_smartrifle(src)
+
 /obj/item/storage/belt/marine/upp
 	name = "\improper Type 41 pattern load rig"
 	desc = "The Type 41 load rig is the standard-issue LBE of the USL pirates. The primary function of this belt is to provide easy access to mags for the Type 71 during operations. Despite being designed for the Type 71 weapon system, the pouches are modular enough to fit other types of ammo and equipment."
@@ -809,6 +817,8 @@
 	desc = "The M276 is the standard load-bearing equipment of the TGMC. It consists of a modular belt with various clips. This version is for the M44 magnum revolver, along with three pouches for speedloaders."
 	icon_state = "m44_holster"
 	item_state = "m44_holster"
+	max_storage_space = 16
+	max_w_class = 4
 	can_hold = list(
 		/obj/item/weapon/gun/revolver,
 		/obj/item/ammo_magazine/revolver,
@@ -830,6 +840,7 @@
 	desc = "The M276 is the standard load-bearing equipment of the TGMC. It consists of a modular belt with various clips. This version is for the powerful Mateba magnum revolver, along with three pouches for speedloaders."
 	icon_state = "mateba_holster"
 	item_state = "mateba_holster"
+	max_storage_space = 16
 	bypass_w_limit = list(
 		/obj/item/weapon/gun/revolver/mateba,
 	)

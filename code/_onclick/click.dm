@@ -307,9 +307,8 @@
 	if(held_thing && SEND_SIGNAL(held_thing, COMSIG_ITEM_MIDDLECLICKON, A, src) & COMPONENT_ITEM_CLICKON_BYPASS)
 		return FALSE
 
-
 #define TARGET_FLAGS_MACRO(flagname, typepath) \
-if(selected_ability.target_flags & flagname){\
+if(selected_ability.target_flags & flagname && !istype(A, typepath)){\
 	. = locate(typepath) in get_turf(A);\
 	if(.){\
 		return;}}

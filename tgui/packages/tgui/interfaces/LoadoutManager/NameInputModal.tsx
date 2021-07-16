@@ -25,11 +25,11 @@ export const NameInputModal = (props: NameInputModalData, context) => {
           <TextArea
             fluid
             height="10vh"
-            width="40vw"
+            width="70vw"
             backgroundColor="black"
             textColor="white"
             onInput={(_, value) => {
-              setInput(value.substring(0, 25));
+              setInput(value.substring(0, 150));
             }}
             value={input}
           />

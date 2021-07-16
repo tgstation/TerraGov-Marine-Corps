@@ -172,8 +172,8 @@
 	name = "Chemrette packet"
 	desc = "Terragov, chem filled, cigarettes. Now with extra Flavors!"
 	icon = 'icons/obj/items/cigarettes.dmi'
-	icon_state = "chempacket"
-	item_state = "chempacket"
+	icon_state = "chempacketbox"
+	item_state = "chempacketbox"
 	w_class = WEIGHT_CLASS_TINY
 	throwforce = 2
 	flags_equip_slot = ITEM_SLOT_BELT

@@ -148,6 +148,10 @@
 	upper_akimbo_accuracy = 5
 	lower_akimbo_accuracy = 3
 
+/obj/item/weapon/gun/energy/lasgun/unique_action(mob/user)
+	. = ..()
+	return cock(user)
+
 /obj/item/weapon/gun/energy/lasgun/tesla
 	name = "\improper M43-T tesla shock rifle"
 	desc = "A prototype TGMC energy rifle that fires balls of elecricity that shock all those near them, it is meant to drain the plasma of unidentified creatures from within, limiting their abilities. Handle only with insulated clothing. Reloaded with power cells."
@@ -213,16 +217,13 @@
 /obj/item/weapon/gun/energy/lasgun/M43/stripped
 	starting_attachment_types = list()
 
-/obj/item/weapon/gun/energy/lasgun/M43/unique_action(mob/user)
-	return toggle_chargemode(user)
-
 /obj/item/weapon/gun/energy/lasgun/Initialize(mapload, ...)
 	. = ..()
 	update_icon()
 
 
 //Toggles Overcharge mode. Overcharge mode significantly increases damage and AP in exchange for doubled ammo usage and increased fire delay.
-/obj/item/weapon/gun/energy/lasgun/proc/toggle_chargemode(mob/user)
+/obj/item/weapon/gun/energy/lasgun/cock(mob/user)
 	//if(in_chamber)
 	//	delete_bullet(in_chamber, TRUE)
 	if(ammo_diff == null)
@@ -292,7 +293,7 @@
 	if(!active_attachable && cell) //We don't need to check for the mag if an attachment was used to shoot.
 		if(cell) //If there is no mag, we can't reload.
 			if(overcharge && cell.charge < ENERGY_OVERCHARGE_AMMO_COST && cell.charge >= ENERGY_STANDARD_AMMO_COST) //Revert to standard shot if we don't have enough juice for overcharge, but enough for the standard mode
-				toggle_chargemode(user)
+				cock(user)
 				return
 			if(cell.charge <= 0 && flags_gun_features & GUN_AUTO_EJECTOR) // This is where the magazine is auto-ejected.
 				unload(user,1,1) // We want to quickly autoeject the magazine. This proc does the rest based on magazine type. User can be passed as null.
@@ -439,7 +440,7 @@
 	fire_delay = 0.33 SECONDS
 	aim_slowdown = 0.35
 
-/obj/item/weapon/gun/energy/lasgun/M43/practice/unique_action(mob/user)
+/obj/item/weapon/gun/energy/lasgun/M43/practice/cock(mob/user)
 	return
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle
@@ -509,10 +510,7 @@
 	///The icon state the radial menu will use.
 	var/radial_icon_state = "laser"
 
-/obj/item/weapon/gun/energy/lasgun/lasrifle/unique_action(mob/user)
-	return switch_modes(user)
-
-/obj/item/weapon/gun/energy/lasgun/lasrifle/proc/switch_modes(mob/user)
+/obj/item/weapon/gun/energy/lasgun/lasrifle/cock(mob/user)
 	if(!user)
 		CRASH("switch_modes called with no user.")
 

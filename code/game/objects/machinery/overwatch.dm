@@ -469,9 +469,15 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 		to_chat(usr, "[icon2html(src, usr)] <span class='warning'>The target's landing zone appears to be out of bounds.</span>")
 		return
 	busy = TRUE //All set, let's do this.
+	var/warhead_type = GLOB.marine_main_ship.orbital_cannon.tray.warhead.name	//For the AI and Admin logs.
+
+	for(var/mob/living/silicon/ai/AI in GLOB.silicon_mobs)
+		to_chat(AI, "<span class='warning'>NOTICE - Orbital bombardment triggered from overwatch consoles. Warhead type: [warhead_type]. Target: [AREACOORD_NO_Z(T)]</span>")
+		playsound(AI,'sound/machines/triple_beep.ogg', 25, 1, 20)
+
 	if(A)
-		log_attack("[key_name(usr)] fired an orbital bombardment in for squad [current_squad] in [AREACOORD(T)].")
-		message_admins("[ADMIN_TPMONTY(usr)] fired an orbital bombardment for squad [current_squad] in [ADMIN_VERBOSEJMP(T)].")
+		log_attack("[key_name(usr)] fired a [warhead_type]in for squad [current_squad] in [AREACOORD(T)].")
+		message_admins("[ADMIN_TPMONTY(usr)] fired a [warhead_type]for squad [current_squad] in [ADMIN_VERBOSEJMP(T)].")
 	visible_message("<span class='boldnotice'>Orbital bombardment request accepted. Orbital cannons are now calibrating.</span>")
 	send_to_squads("Initializing fire coordinates...")
 	if(selected_target)
@@ -760,8 +766,6 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 		return dat
 	var/leader_text = ""
 	var/leader_count = 0
-	var/spec_text = ""
-	var/spec_count = 0
 	var/medic_text = ""
 	var/medic_count = 0
 	var/engi_text = ""
@@ -837,9 +841,6 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 			if(SQUAD_LEADER)
 				leader_text += marine_infos
 				leader_count++
-			if(SQUAD_SPECIALIST)
-				spec_text += marine_infos
-				spec_count++
 			if(SQUAD_CORPSMAN)
 				medic_text += marine_infos
 				medic_count++
@@ -860,7 +861,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 		dat += "<b>Squad Overwatch:</b> <font color=red>NONE</font><br>"
 	dat += "----------------------<br>"
 	dat += "<b>[leader_count ? "Squad Leader Deployed":"<font color='red'>No Squad Leader Deployed!</font>"]</b><br>"
-	dat += "<b>Squad Specialists: [spec_count] Deployed | Squad Smartgunners: [smart_count] Deployed</b><br>"
+	dat += "<b>Squad Smartgunners: [smart_count] Deployed</b><br>"
 	dat += "<b>Squad Corpsmen: [medic_count] Deployed | Squad Engineers: [engi_count] Deployed</b><br>"
 	dat += "<b>Squad Marines: [marine_count] Deployed</b><br>"
 	dat += "<b>Total: [current_squad.get_total_members()] Deployed</b><br>"
@@ -868,7 +869,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	dat += "<table border='1' style='width:100%' align='center'><tr>"
 	dat += "<th>Name</th><th>Role</th><th>State</th><th>Location</th><th>SL Distance</th></tr>"
 	if(!living_marines_sorting)
-		dat += leader_text + spec_text + medic_text + engi_text + smart_text + marine_text + misc_text
+		dat += leader_text + medic_text + engi_text + smart_text + marine_text + misc_text
 	else
 		dat += conscious_text + unconscious_text + dead_text + gibbed_text
 	dat += "</table>"

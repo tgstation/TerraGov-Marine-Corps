@@ -36,6 +36,8 @@
 	var/pressure = ONE_ATMOSPHERE
 	var/temperature = T20C
 
+	var/parallax_movedir = 0
+
 	///the material the ceiling is made of. Used for debris from airstrikes and orbital beacons in ceiling_debris()
 	var/ceiling = CEILING_NONE
 	///Used in designating the "level" of maps pretending to be multi-z one Z

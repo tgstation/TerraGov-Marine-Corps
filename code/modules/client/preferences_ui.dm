@@ -17,98 +17,9 @@
 	return GLOB.always_state
 
 /datum/preferences/ui_data(mob/user)
-	. = list(
-		"is_admin" = user.client?.holder ? TRUE : FALSE,
-		"slot" = default_slot,
-		"real_name" = real_name,
-		"random_name" = random_name,
-		"synthetic_name" = synthetic_name,
-		"synthetic_type" = synthetic_type,
-		"xeno_name" = xeno_name,
-		"ai_name" = ai_name,
-
-		"age" = age,
-		"gender" = gender,
-		"ethnicity" = ethnicity,
-		"species" = species || "Human", //Sometimes species is null on creation of random char
-		"body_type" = body_type,
-		"good_eyesight" = good_eyesight,
-		"h_style" = h_style,
-		"r_hair" = r_hair,
-		"g_hair" = g_hair,
-		"b_hair" = b_hair,
-		"grad_style" = grad_style,
-		"r_grad" = r_grad,
-		"g_grad" = g_grad,
-		"b_grad" = b_grad,
-		"f_style" = f_style,
-		"r_facial" = r_facial,
-		"g_facial" = g_facial,
-		"b_facial" = b_facial,
-		"r_eyes" = r_eyes,
-		"g_eyes" = g_eyes,
-		"b_eyes" = b_eyes,
-
-		"citizenship" = citizenship,
-		"religion" = religion,
-		"nanotrasen_relation" = nanotrasen_relation,
-
-		// Records
-		"flavor_text" = flavor_text,
-		"med_record" = med_record,
-		"gen_record" = gen_record,
-		"sec_record" = sec_record,
-		"exploit_record" = exploit_record,
-
-		// Clothing
-		"undershirt" = undershirt,
-		"underwear" = underwear,
-		"backpack" = backpack,
-		"gear" = gear || list(),
-
-		// Job prefs
-		"job_preferences" = job_preferences,
-		"preferred_squad" = preferred_squad,
-		"alternate_option" = alternate_option,
-
-		"special_occupation" = be_special,
-
-		// Game prefs
-		"ui_style" = ui_style,
-		"ui_style_color" = ui_style_color,
-		"ui_style_alpha" = ui_style_alpha,
-		"windowflashing" = windowflashing,
-		"auto_fit_viewport" = auto_fit_viewport,
-		"focus_chat" = focus_chat,
-		"mute_xeno_health_alert_messages" = mute_xeno_health_alert_messages,
-		"tgui_fancy" = tgui_fancy,
-		"tgui_lock" = tgui_lock,
-		"clientfps" = clientfps,
-
-		"chat_on_map" = chat_on_map,
-		"max_chat_length" = max_chat_length,
-		"see_chat_non_mob" = see_chat_non_mob,
-		"see_rc_emotes" = see_rc_emotes,
-		"mute_others_combat_messages" = mute_others_combat_messages,
-		"mute_self_combat_messages" = mute_self_combat_messages,
-		"show_typing" = show_typing,
-
-		"tooltips" = tooltips,
-	)
-	.["key_bindings"] = list()
-	for(var/key in key_bindings)
-		for(var/kb_name in key_bindings[key])
-			.["key_bindings"][kb_name] += list(key)
-	
-	.["custom_emotes"] = list()
-	for(var/id in 1 to CUSTOM_EMOTE_SLOTS)
-		var/datum/custom_emote/emote = custom_emotes[id]
-		.["custom_emotes"]["Custom emote :[id]"] = list(
-			sentence = emote.message,
-			emote_type = (emote.spoken_emote ? "say" : "me"),
-			)
-
-	// Get save slot name
+	. = list()
+	.["tabIndex"] = tab_index
+	.["slot"] = default_slot
 	.["save_slot_names"] = list()
 	if(!path)
 		return
@@ -123,83 +34,158 @@
 			continue
 		.["save_slot_names"]["[i]"] = name
 
+	.["unique_action_use_active_hand"] = unique_action_use_active_hand
 
+	switch(tab_index)
+		if(CHARACTER_CUSTOMIZATION)
+			.["r_hair"] = r_hair
+			.["g_hair"] = g_hair
+			.["b_hair"] = b_hair
+			.["r_grad"] = r_grad
+			.["g_grad"] = g_grad
+			.["b_grad"] = b_grad
+			.["r_facial"] = r_facial
+			.["g_facial"] = g_facial
+			.["b_facial"] = b_facial
+			.["r_eyes"] = r_eyes
+			.["g_eyes"] = g_eyes
+			.["b_eyes"] = b_eyes
+			.["real_name"] = real_name
+			.["xeno_name"] = xeno_name
+			.["synthetic_name"] = synthetic_name
+			.["synthetic_type"] = synthetic_type
+			.["random_name"] = random_name
+			.["ai_name"] = ai_name
+			.["age"] = age
+			.["gender"] = gender
+			.["ethnicity"] = ethnicity
+			.["species"] = species || "Human"
+			.["body_type"] = body_type
+			.["good_eyesight"] = good_eyesight
+			.["citizenship"] = citizenship
+			.["religion"] = religion
+			.["nanotrasen_relation"] = nanotrasen_relation
+			.["h_style"] = h_style
+			.["grad_style"] = grad_style
+			.["f_style"] = f_style
+		if(BACKGROUND_INFORMATION)
+			.["slot"] = default_slot
+			.["flavor_text"] = flavor_text
+			.["med_record"] = med_record
+			.["gen_record"] = gen_record
+			.["sec_record"] = sec_record
+			.["exploit_record"] = exploit_record
+		if(GEAR_CUSTOMIZATION)
+			.["gearsets"] = list()
+			for(var/g in GLOB.gear_datums)
+				var/datum/gear/gearset = GLOB.gear_datums[g]
+				.["gearsets"][gearset.display_name] = list(
+					"name" = gearset.display_name,
+					"cost" = gearset.cost,
+					"slot" = gearset.slot,
+				)
+			.["gear"] = gear || list()
+			.["undershirt"] = undershirt
+			.["underwear"] = underwear
+			.["backpack"] = backpack
+			.["gender"] = gender
+		if(JOB_PREFERENCES)
+			.["job_preferences"] = job_preferences
+			.["preferred_squad"] = preferred_squad
+			.["alternate_option"] = alternate_option
+			.["special_occupation"] = be_special
+		if(GAME_SETTINGS)
+			.["ui_style_color"] = ui_style_color
+			.["ui_style"] = ui_style
+			.["ui_style_alpha"] = ui_style_alpha
+			.["windowflashing"] = windowflashing
+			.["auto_fit_viewport"] = auto_fit_viewport
+			.["focus_chat"] = focus_chat
+			.["mute_xeno_health_alert_messages"] = mute_xeno_health_alert_messages
+			.["tgui_fancy"] = tgui_fancy
+			.["tgui_lock"] = tgui_lock
+			.["clientfps"] = clientfps
+			.["chat_on_map"] = chat_on_map
+			.["max_chat_length"] = max_chat_length
+			.["see_chat_non_mob"] = see_chat_non_mob
+			.["see_rc_emotes"] = see_rc_emotes
+			.["mute_others_combat_messages"] = mute_others_combat_messages
+			.["mute_self_combat_messages"] = mute_self_combat_messages
+			.["show_typing"] = show_typing
+			.["tooltips"] = tooltips
+			.["widescreenpref"] = widescreenpref
+			.["scaling_method"] = scaling_method
+			.["pixel_size"] = pixel_size
+			.["parallax"] = parallax
+			.["fullscreen_mode"] = fullscreen_mode
+		if(KEYBIND_SETTINGS)
+			.["is_admin"] = user.client?.holder ? TRUE : FALSE
+			.["key_bindings"] = list()
+			for(var/key in key_bindings)
+				for(var/kb_name in key_bindings[key])
+					.["key_bindings"][kb_name] += list(key)
+			.["custom_emotes"] = list()
+			for(var/id in 1 to CUSTOM_EMOTE_SLOTS)
+				var/datum/custom_emote/emote = custom_emotes[id]
+				.["custom_emotes"]["Custom emote :[id]"] = list(
+					sentence = emote.message,
+					emote_type = (emote.spoken_emote ? "say" : "me"),
+					)
 
 /datum/preferences/ui_static_data(mob/user)
-	update_preview_icon()
-	. = list(
-		"all_species" = get_playable_species(),
-		"synth_types" = SYNTH_TYPES,
-		"bodytypes" = GLOB.body_types_list,
-		"ethnicities" = GLOB.ethnicities_list,
-		"citizenships" = CITIZENSHIP_CHOICES,
-		"religions" = RELIGION_CHOICES,
-		"corporate_relations" = CORP_RELATIONS,
-		"squads" = SELECTABLE_SQUADS,
-		"clothing" = list(
-			"underwear" = list(
-				"male" = GLOB.underwear_m,
-				"female" = GLOB.underwear_f,
-			),
-			"undershirt" = GLOB.undershirt_t,
-			"backpack" = GLOB.backpacklist,
-		),
-		"hairstyles" = GLOB.hair_styles_list,
-		"facialhair" = GLOB.facial_hair_styles_list,
-		"hairgradient" = GLOB.hair_gradients_list,
-		"genders" = list(
-			"NEUTER",
-			"MALE",
-			"FEMALE",
-			"PLURAL",
-		),
-		"validation" = list(
-			"age" = list("min" = AGE_MIN, "max" = AGE_MAX),
-		),
-		"overflow_job" = SSjob?.overflow_role?.title,
-		"ui_styles" = UI_STYLES,
-	)
-	.["gearsets"] = list()
-	for(var/g in GLOB.gear_datums)
-		var/datum/gear/gearset = GLOB.gear_datums[g]
-		.["gearsets"][gearset.display_name] = list(
-			"name" = gearset.display_name,
-			"cost" = gearset.cost,
-			"slot" = gearset.slot,
-		)
-
-	.["jobs"] = list()
-	for(var/datum/job/job AS in SSjob.joinable_occupations)
-		var/rank = job.title
-		.["jobs"][rank] = list(
-			"color" = job.selection_color,
-			"description" = job.html_description,
-			"banned" = is_banned_from(user.ckey, rank),
-			"playtime_req" = job.required_playtime_remaining(user.client),
-			"account_age_req" = !job.player_old_enough(user.client),
-			"flags" = list(
-				"bold" = (job.job_flags & JOB_FLAG_BOLD_NAME_ON_SELECTION) ? TRUE : FALSE
+	. = list()
+	switch(tab_index)
+		if(CHARACTER_CUSTOMIZATION)
+			update_preview_icon()
+			.["mapRef"] = "player_pref_map"
+		if(GEAR_CUSTOMIZATION)
+			.["clothing"] = list(
+				"underwear" = list(
+					"male" = GLOB.underwear_m,
+					"female" = GLOB.underwear_f,
+				),
+				"undershirt" = GLOB.undershirt_t,
+				"backpack" = GLOB.backpacklist,
+				)
+			.["gearsets"] = list()
+			for(var/g in GLOB.gear_datums)
+				var/datum/gear/gearset = GLOB.gear_datums[g]
+				.["gearsets"][gearset.display_name] = list(
+					"name" = gearset.display_name,
+					"cost" = gearset.cost,
+					"slot" = gearset.slot,
+				)
+		if(JOB_PREFERENCES)
+			.["squads"] = SELECTABLE_SQUADS
+			.["jobs"] = list()
+			for(var/datum/job/job AS in SSjob.joinable_occupations)
+				var/rank = job.title
+				.["jobs"][rank] = list(
+					"color" = job.selection_color,
+					"description" = job.html_description,
+					"banned" = is_banned_from(user.ckey, rank),
+					"playtime_req" = job.required_playtime_remaining(user.client),
+					"account_age_req" = !job.player_old_enough(user.client),
+					"flags" = list(
+						"bold" = (job.job_flags & JOB_FLAG_BOLD_NAME_ON_SELECTION) ? TRUE : FALSE
+					)
+				)
+			.["special_occupations"] = list(
+				"Latejoin Xenomorph" = BE_ALIEN,
+				"Xenomorph when unrevivable" = BE_ALIEN_UNREVIVABLE,
+				"End of Round Deathmatch" = BE_DEATHMATCH,
+				"Prefer Squad over Role" = BE_SQUAD_STRICT
 			)
-		)
-	.["special_occupations"] = list(
-		"Latejoin Xenomorph" = BE_ALIEN,
-		"Xenomorph when unrevivable" = BE_ALIEN_UNREVIVABLE,
-		"End of Round Deathmatch" = BE_DEATHMATCH,
-		"Prefer Squad over Role" = BE_SQUAD_STRICT
-	)
-
-	// Group keybinds by category
-	.["all_keybindings"] = list()
-	for(var/name in GLOB.keybindings_by_name)
-		var/datum/keybinding/kb = GLOB.keybindings_by_name[name]
-		.["all_keybindings"][kb.category] += list(list(
-			name = kb.name,
-			display_name = kb.full_name,
-			desc = kb.description,
-			category = kb.category,
-		))
-	.["mapRef"] = "player_pref_map"
-
+		if(KEYBIND_SETTINGS)
+			.["all_keybindings"] = list()
+			for(var/name in GLOB.keybindings_by_name)
+				var/datum/keybinding/kb = GLOB.keybindings_by_name[name]
+				.["all_keybindings"][kb.category] += list(list(
+					name = kb.name,
+					display_name = kb.full_name,
+					desc = kb.description,
+					category = kb.category,
+				))
 
 /datum/preferences/ui_act(action, list/params, datum/tgui/ui)
 	. = ..()
@@ -214,6 +200,10 @@
 				random_character()
 				real_name = random_unique_name(gender)
 				save_character()
+
+		if("tab_change")
+			tab_index = params["tabIndex"]
+			update_static_data(ui.user, ui)
 
 		if("random")
 			randomize_appearance_for()
@@ -588,48 +578,55 @@
 			else if(!current_client.tooltips && tooltips)
 				current_client.tooltips = new /datum/tooltip(current_client)
 
-		if("keybindings_set")
-			var/kb_name = params["keybinding"]
+		if("fullscreen_mode")
+			fullscreen_mode = !fullscreen_mode
+			user.client?.set_fullscreen(fullscreen_mode)
+
+		if("set_keybind")
+			var/kb_name = params["keybind_name"]
 			if(!kb_name)
 				return
 
-			var/clear_key = text2num(params["clear_key"])
 			var/old_key = params["old_key"]
-			if(clear_key)
-				if(key_bindings[old_key])
-					key_bindings[old_key] -= kb_name
-					if(!length(key_bindings[old_key]))
-						key_bindings -= old_key
+			if(key_bindings[old_key])
+				key_bindings[old_key] -= kb_name
+				if(!length(key_bindings[old_key]))
+					key_bindings -= old_key
 
-			else
-				var/new_key = uppertext(params["key"])
-				var/AltMod = text2num(params["alt"]) ? "Alt" : ""
-				var/CtrlMod = text2num(params["ctrl"]) ? "Ctrl" : ""
-				var/ShiftMod = text2num(params["shift"]) ? "Shift" : ""
-				var/numpad = text2num(params["numpad"]) ? "Numpad" : ""
-				// var/key_code = text2num(params["key_code"])
+			if(!params["key"])
+				return
+			var/mods = params["key_mods"]
+			var/full_key = params["key"]
+			var/Altmod = ("ALT" in mods) ? "Alt" : ""
+			var/Ctrlmod = ("CONTROL" in mods) ? "Ctrl" : ""
+			var/Shiftmod = ("SHIFT" in mods) ? "Shift" : ""
+			full_key = Altmod + Ctrlmod + Shiftmod + full_key
 
-				if(GLOB._kbMap[new_key])
-					new_key = GLOB._kbMap[new_key]
+			if(GLOB._kbMap[full_key])
+				full_key = GLOB._kbMap[full_key]
 
-				var/full_key
-				switch(new_key)
-					if("Alt")
-						full_key = "[new_key][CtrlMod][ShiftMod]"
-					if("Ctrl")
-						full_key = "[AltMod][new_key][ShiftMod]"
-					if("Shift")
-						full_key = "[AltMod][CtrlMod][new_key]"
-					else
-						full_key = "[AltMod][CtrlMod][ShiftMod][numpad][new_key]"
-				if(key_bindings[old_key])
-					key_bindings[old_key] -= kb_name
-					if(!length(key_bindings[old_key]))
-						key_bindings -= old_key
-				key_bindings[full_key] += list(kb_name)
-				key_bindings[full_key] = sortList(key_bindings[full_key])
+			if(kb_name in key_bindings[full_key]) //We pressed the same key combination that was already bound here, so let's remove to re-add and re-sort.
+				key_bindings[full_key] -= kb_name
 
-				current_client.update_movement_keys()
+			key_bindings[full_key] += list(kb_name)
+			key_bindings[full_key] = sortList(key_bindings[full_key])
+			current_client.update_movement_keys()
+			save_keybinds()
+			return TRUE
+
+		if("clear_keybind")
+			var/kb_name = params["keybinding"]
+			for(var/key in key_bindings)
+				if(!(kb_name in key_bindings[key]))
+					continue
+				key_bindings[key] -= kb_name
+				if(!length(key_bindings[key]))
+					key_bindings -= key
+					continue
+				key_bindings[key] = sortList(key_bindings[key])
+			current_client.update_movement_keys()
+			save_keybinds()
+			return TRUE
 
 		if("setCustomSentence")
 			var/kb_name = params["name"]
@@ -656,6 +653,7 @@
 		if("reset-keybindings")
 			key_bindings = GLOB.hotkey_keybinding_list_by_key
 			current_client.update_movement_keys()
+			save_keybinds()
 
 		if("bancheck")
 			var/list/ban_details = is_banned_from_with_details(user.ckey, user.client.address, user.client.computer_id, params["role"])
@@ -678,11 +676,48 @@
 		if("update-character-preview")
 			update_preview_icon()
 
+		if("widescreenpref")
+			widescreenpref = !widescreenpref
+			user.client.view_size.set_default(get_screen_size(widescreenpref))
+
+		if("pixel_size")
+			switch(pixel_size)
+				if(PIXEL_SCALING_AUTO)
+					pixel_size = PIXEL_SCALING_1X
+				if(PIXEL_SCALING_1X)
+					pixel_size = PIXEL_SCALING_1_2X
+				if(PIXEL_SCALING_1_2X)
+					pixel_size = PIXEL_SCALING_2X
+				if(PIXEL_SCALING_2X)
+					pixel_size = PIXEL_SCALING_3X
+				if(PIXEL_SCALING_3X)
+					pixel_size = PIXEL_SCALING_AUTO
+			user.client.view_size.apply() //Let's winset() it so it actually works
+
+		if("parallax")
+			parallax = WRAP(parallax + 1, PARALLAX_INSANE, PARALLAX_DISABLE + 1)
+			if(parent && parent.mob && parent.mob.hud_used)
+				parent.mob.hud_used.update_parallax_pref(parent.mob)
+
+		if("scaling_method")
+			switch(scaling_method)
+				if(SCALING_METHOD_NORMAL)
+					scaling_method = SCALING_METHOD_DISTORT
+				if(SCALING_METHOD_DISTORT)
+					scaling_method = SCALING_METHOD_BLUR
+				if(SCALING_METHOD_BLUR)
+					scaling_method = SCALING_METHOD_NORMAL
+			user.client.view_size.update_zoom_mode()
+
+		if("unique_action_use_active_hand")
+			unique_action_use_active_hand = !unique_action_use_active_hand
+
 		else //  Handle the unhandled cases
 			return
 
 	save_preferences()
 	save_character()
+	save_keybinds()
 	update_preview_icon()
 	ui_interact(user, ui)
 	SEND_SIGNAL(current_client, COMSIG_CLIENT_PREFERENCES_UIACTED)

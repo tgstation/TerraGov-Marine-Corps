@@ -56,7 +56,7 @@ GLOBAL_PROTECT(exp_specialmap)
 
 	/// Description shown in the player's job preferences
 	var/html_description = ""
-	
+
 	///string; typepath for the icon that this job will show on the minimap
 	var/minimap_icon
 
@@ -85,9 +85,9 @@ GLOBAL_PROTECT(exp_specialmap)
 		M.mind.initial_account = bank_account
 
 		var/mob/living/carbon/human/H = L
-		var/obj/item/card/id/C = H.wear_id
-		if(istype(C))
-			C.associated_account_number = bank_account.account_number
+		var/obj/item/card/id/id = H.wear_id
+		if(istype(id))
+			id.associated_account_number = bank_account.account_number
 
 
 /datum/job/proc/announce(mob/living/announced_mob)
@@ -171,21 +171,22 @@ GLOBAL_PROTECT(exp_specialmap)
 
 
 /datum/outfit/job/proc/handle_id(mob/living/carbon/human/H)
-	var/datum/job/J = SSjob.GetJobType(jobtype)
-	if(!J)
-		J = H.job
+	var/datum/job/job = SSjob.GetJobType(jobtype)
+	if(!job)
+		job = H.job
 
-	var/obj/item/card/id/C = H.wear_id
-	if(istype(C))
-		C.access = J.get_access()
-		shuffle_inplace(C.access) // Shuffle access list to make NTNet passkeys less predictable
-		C.registered_name = H.real_name
-		C.assignment = J.title
-		C.rank = J.title
-		C.paygrade = J.paygrade
-		C.update_label()
+	var/obj/item/card/id/id = H.wear_id
+	if(istype(id))
+		id.access = job.get_access()
+		id.iff_signal = GLOB.faction_to_iff[job.faction]
+		shuffle_inplace(id.access) // Shuffle access list to make NTNet passkeys less predictable
+		id.registered_name = H.real_name
+		id.assignment = job.title
+		id.rank = job.title
+		id.paygrade = job.paygrade
+		id.update_label()
 		if(H.mind?.initial_account) // In most cases they won't have a mind at this point.
-			C.associated_account_number = H.mind.initial_account.account_number
+			id.associated_account_number = H.mind.initial_account.account_number
 
 	H.update_action_buttons()
 
@@ -266,6 +267,7 @@ GLOBAL_PROTECT(exp_specialmap)
 	job = assigned_role
 	skills = getSkillsType(job.return_skills_type(player?.prefs))
 	faction = job.faction
+	LAZYADD(GLOB.alive_human_list_faction[faction], src)
 	job.announce(src)
 
 
