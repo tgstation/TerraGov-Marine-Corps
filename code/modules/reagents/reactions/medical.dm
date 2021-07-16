@@ -208,4 +208,4 @@
 /datum/chemical_reaction/bihexajuline
 	name = "Bihexajuline"
 	results = list(/datum/reagent/medicine/bihexajuline = 5)
-	required_reagents = list(/datum/reagent/medicine/bicaridine = 2, /datum/reagent/milk = 1, /datum/reagent/iron = 2)
+	required_reagents = list(/datum/reagent/medicine/bicaridine = 2, /datum/reagent/drink/milk = 1, /datum/reagent/iron = 2)
