@@ -228,6 +228,10 @@
 		to_chat(src, "<span class='userdanger'>Your version of byond has known client crash issues, it's recommended you update your version.</span>")
 		to_chat(src, "<span class='danger'>Please download a new version of byond. If [byond_build] is the latest, you can go to <a href=\"https://secure.byond.com/download/build\">BYOND's website</a> to download other versions.</span>")
 
+	if(byond_build < 1555)
+		to_chat(src, "<span class='userdanger'>Your version of byond has rendering lag issues, it is highly recommended you update your version.</span>")
+		to_chat(src, "<span class='danger'>You can go to <a href=\"https://secure.byond.com/download/build\">BYOND's website</a> to download other versions.</span>")
+
 	if(byond_build > MAX_RECOMMENDED_CLIENT)
 		to_chat(src, "<span class='userdanger'>Your version of byond is likely to be very buggy.</span>")
 		to_chat(src, "<span class='danger'>Please download a old version of byond. If [byond_build] is the latest, you can go to <a href=\"https://secure.byond.com/download/build\">BYOND's website</a> to download other versions.</span>")

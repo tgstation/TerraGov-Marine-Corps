@@ -200,7 +200,7 @@
 				to_chat(X, "<span class='warning'>We disable the creatures hivemind sight apparatus.</span>")
 				return FALSE
 
-		if(length(light_sources) || locate(/obj/effect/overlay/light_visible) in vis_contents)
+		if(LAZYLEN(static_light_sources) || LAZYLEN(hybrid_light_sources) || locate(/obj/effect/overlay/light_visible) in vis_contents)
 			playsound(loc, "alien_claw_metal", 25, 1)
 			X.do_attack_animation(src, ATTACK_EFFECT_CLAW)
 			disable_lights(sparks = TRUE)

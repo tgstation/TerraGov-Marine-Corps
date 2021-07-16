@@ -405,4 +405,3 @@
 	icon_state = "0"
 	can_bloody = FALSE
 	light_power = 0.25
-	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED

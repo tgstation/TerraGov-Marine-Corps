@@ -403,7 +403,6 @@
 	icon_state = "" //No sprite
 	invisibility = INVISIBILITY_MAXIMUM
 	resistance_flags = RESIST_ALL
-	light_system = STATIC_LIGHT
 	light_power = 7 //Magnesium/sodium fires (White star) really are bright
 
 /obj/effect/cas_flare/Initialize()
