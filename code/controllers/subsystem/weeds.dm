@@ -49,45 +49,43 @@ SUBSYSTEM_DEF(weeds)
 
 
 	// We create weeds outside of the loop to not influence new weeds within the loop
-	for(var/A in creating)
+	for(var/turf/T AS in creating)
 		if(MC_TICK_CHECK)
 			return
-		var/turf/T = A
-		creating -= T
-
 		var/obj/effect/alien/weeds/node/N = creating[T]
+		creating -= T
 		// Adds a bit of jitter to the spawning weeds.
 		addtimer(CALLBACK(src, .proc/create_weed, T, N), rand(1, 3 SECONDS))
 		pending -= T
 
 
 
-/datum/controller/subsystem/weeds/proc/add_node(obj/effect/alien/weeds/node/N)
-	if(!N)
+/datum/controller/subsystem/weeds/proc/add_node(obj/effect/alien/weeds/node/node)
+	if(!node)
 		stack_trace("SSweed.add_node called with a null obj")
 		return FALSE
 
-	for(var/X in N.node_turfs)
-		var/turf/T = X
-
-		// Skip if there is a node there
-		var/obj/effect/alien/weeds/W = locate() in T
-		if(W)
-			W.parent_node = N // new parent
+	for(var/turf/T AS in node.node_turfs)
+		var/obj/effect/alien/weeds/weed = locate(node.weed_type) in T
+		if(weed?.type == node.weed_type)//strict type check
+			weed.parent_node = node // new parent
 			continue
 
-		pending[T] = N
+		pending[T] = node
 
-/datum/controller/subsystem/weeds/proc/add_weed(obj/effect/alien/weeds/W)
-	if(!W)
+/datum/controller/subsystem/weeds/proc/add_weed(obj/effect/alien/weeds/weed)
+	if(!weed)
 		stack_trace("SSweed.add_weed called with a null obj")
 		return FALSE
 
-	var/turf/T = get_turf(W)
-	pending[T] = W.parent_node
+	var/turf/T = get_turf(weed)
+	pending[T] = weed.parent_node
 
 
-/datum/controller/subsystem/weeds/proc/create_weed(turf/T, obj/effect/alien/weeds/node/N)
+/datum/controller/subsystem/weeds/proc/create_weed(turf/T, obj/effect/alien/weeds/node/node)
+	if(QDELETED(node))
+		return
+
 	if(iswallturf(T))
 		new /obj/effect/alien/weeds/weedwall(T)
 		return
@@ -99,7 +97,7 @@ SUBSYSTEM_DEF(weeds)
 		else if(istype(O, /obj/structure/window_frame))
 			new /obj/effect/alien/weeds/weedwall/frame(T)
 			return
-		else if(istype(O, /obj/machinery/door) && O.density /*&& (!(O.flags_atom & ON_BORDER) || O.dir != dirn)*/)
+		else if(istype(O, /obj/machinery/door) && O.density)
 			return
 
-	new /obj/effect/alien/weeds(T, N)
+	new node.weed_type(T, node)

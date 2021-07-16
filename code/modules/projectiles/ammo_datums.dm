@@ -1,6 +1,6 @@
 #define DEBUG_STAGGER_SLOWDOWN 0
 
-GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/facehugger, /obj/effect/alien/egg, /obj/structure/mineral_door, /obj/effect/alien/resin, /obj/structure/bed/nest))) //For sticky/acid spit
+GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/facehugger, /obj/effect/alien/egg, /obj/structure/mineral_door, /obj/effect/alien/weeds/sticky, /obj/structure/bed/nest))) //For sticky/acid spit
 
 /datum/ammo
 	var/name 		= "generic bullet"
@@ -1809,7 +1809,7 @@ datum/ammo/bullet/revolver/tp44
 		if(is_type_in_typecache(O, GLOB.no_sticky_resin))
 			return
 
-	new /obj/effect/alien/resin/sticky/thin(T)
+	new /obj/effect/alien/weeds/sticky(T)
 
 /datum/ammo/xeno/acid
 	name = "acid spit"

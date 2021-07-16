@@ -181,7 +181,7 @@
 	///List of buildable structures
 	var/list/buildable_structures = list(
 		/turf/closed/wall/resin/regenerating,
-		/obj/effect/alien/resin/sticky,
+		/obj/effect/alien/weeds/node/sticky,
 		/obj/structure/mineral_door/resin)
 
 /datum/action/xeno_action/activable/secrete_resin/update_button_icon()
@@ -218,8 +218,8 @@
 
 	var/build_resin_modifier = 1
 	switch(X.selected_resin)
-		if(/obj/effect/alien/resin/sticky)
-			build_resin_modifier = 0.5
+		if(/obj/effect/alien/weeds/node/sticky)
+			build_resin_modifier = 0
 		if(/obj/structure/mineral_door/resin)
 			build_resin_modifier = 3
 
@@ -314,8 +314,8 @@
 		new_resin = new X.selected_resin(T)
 
 	switch(X.selected_resin)
-		if(/obj/effect/alien/resin/sticky)
-			plasma_cost = initial(plasma_cost) / 3
+		if(/obj/effect/alien/weeds/node/sticky)
+			plasma_cost = initial(plasma_cost) * 10
 		if(/obj/structure/mineral_door/resin)
 			plasma_cost = initial(plasma_cost) * 3
 

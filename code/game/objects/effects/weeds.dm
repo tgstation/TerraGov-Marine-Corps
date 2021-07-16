@@ -1,7 +1,4 @@
-#define NODERANGE 2
-
-// =================
-// basic weed type
+// base weed type
 /obj/effect/alien/weeds
 	name = "weeds"
 	desc = "Weird black weeds..."
@@ -12,7 +9,6 @@
 	layer = XENO_WEEDS_LAYER
 	plane = FLOOR_PLANE
 	max_integrity = 25
-
 	var/obj/effect/alien/weeds/node/parent_node
 
 /obj/effect/alien/weeds/deconstruct(disassembled = TRUE)
@@ -27,8 +23,7 @@
 		if(!istype(node))
 			CRASH("Weed craeted with non-weed node. Type: [node.type]")
 		parent_node = node
-
-	update_sprite()
+	update_icon()
 	update_neighbours()
 
 /obj/effect/alien/weeds/Destroy()
@@ -50,12 +45,6 @@
 	if(isfloorturf(T))
 		T.ceiling_desc(user)
 
-/obj/effect/alien/weeds/Crossed(atom/movable/AM)
-	. = ..()
-	if(isxeno(AM))
-		var/mob/living/carbon/xenomorph/X = AM
-		X.next_move_slowdown += X.xeno_caste.weeds_speed_mod
-
 /obj/effect/alien/weeds/proc/update_neighbours(turf/U)
 	if(!U)
 		U = loc
@@ -68,9 +57,10 @@
 
 			var/obj/effect/alien/weeds/W = locate() in T
 			if(W)
-				W.update_sprite()
+				W.update_icon()
 
-/obj/effect/alien/weeds/proc/update_sprite()
+/obj/effect/alien/weeds/update_icon_state()
+	. = ..()
 	var/my_dir = 0
 	for (var/check_dir in GLOB.cardinals)
 		var/turf/check = get_step(src, check_dir)
@@ -90,6 +80,38 @@
 	else
 		icon_state = "weed_dir[my_dir]"
 
+/obj/effect/alien/weeds/speedy/Crossed(atom/movable/AM)
+	. = ..()
+	if(isxeno(AM))
+		var/mob/living/carbon/xenomorph/X = AM
+		X.next_move_slowdown += X.xeno_caste.weeds_speed_mod
+
+/obj/effect/alien/weeds/sticky
+	name = "sticky resin"
+	desc = "A layer of disgusting sticky slime."
+	icon_state = "sticky"
+	density = FALSE
+	opacity = FALSE
+	max_integrity = 36
+	layer = RESIN_STRUCTURE_LAYER
+	hit_sound = "alien_resin_move"
+	color = COLOR_MAROON
+
+/obj/effect/alien/weeds/sticky/Crossed(atom/movable/AM)
+	. = ..()
+	if(!ishuman(AM))
+		return
+
+	if(CHECK_MULTIPLE_BITFIELDS(AM.flags_pass, HOVERING))
+		return
+
+	var/mob/living/carbon/human/H = AM
+
+	if(H.lying_angle)
+		return
+
+	H.next_move_slowdown += 2
+
 
 // =================
 // weed wall
@@ -98,7 +120,7 @@
 	plane = GAME_PLANE
 	icon_state = "weedwall"
 
-/obj/effect/alien/weeds/weedwall/update_sprite()
+/obj/effect/alien/weeds/weedwall/update_icon()
 	if(iswallturf(loc))
 		var/turf/closed/wall/W = loc
 		if(W.junctiontype)
@@ -110,7 +132,7 @@
 /obj/effect/alien/weeds/weedwall/window
 	layer = ABOVE_TABLE_LAYER
 
-/obj/effect/alien/weeds/weedwall/window/update_sprite()
+/obj/effect/alien/weeds/weedwall/window/update_icon()
 	var/obj/structure/window/framed/F = locate() in loc
 	if(F && F.junction)
 		icon_state = "weedwall[F.junction]"
@@ -124,7 +146,7 @@
 /obj/effect/alien/weeds/weedwall/frame
 	layer = ABOVE_TABLE_LAYER
 
-/obj/effect/alien/weeds/weedwall/frame/update_sprite()
+/obj/effect/alien/weeds/weedwall/frame/update_icon()
 	var/obj/structure/window_frame/WF = locate() in loc
 	if(WF && WF.junction)
 		icon_state = "weedframe[WF.junction]"
@@ -145,8 +167,9 @@
 	max_integrity = 60
 	ignore_weed_destruction = TRUE
 	var/node_icon = "weednode"
-	var/node_range = NODERANGE
 	var/node_turfs = list() // list of all potential turfs that we can expand to
+	/// What type of weeds this node spreads
+	var/weed_type = /obj/effect/alien/weeds
 
 /obj/effect/alien/weeds/node/Destroy()
 	. = ..()
@@ -154,6 +177,7 @@
 
 
 /obj/effect/alien/weeds/node/update_icon()
+	. = ..()
 	overlays.Cut()
 	overlays += node_icon
 
@@ -167,16 +191,17 @@
 	update_icon()
 
 	// Generate our full graph before adding to SSweeds
-	node_turfs = filled_turfs(src, node_range, "square")
+	node_turfs = filled_turfs(src, 2, "square")
 	SSweeds.add_node(src)
 
 
-// =================
-// stronger weed node
-/obj/effect/alien/weeds/node/strong
-	name = "strong purple sac"
-	desc = "A weird, pulsating node. This looks pretty tough."
-	node_range = NODERANGE*2
+//Sticky weed node
+/obj/effect/alien/weeds/node/sticky
+	name = "sticky weed sac"
+	desc = "A weird, pulsating green node."
 	max_integrity = 120
+	weed_type = /obj/effect/alien/weeds/sticky
 
-#undef NODERANGE
+//Speedy weed node
+/obj/effect/alien/weeds/node/speedy
+

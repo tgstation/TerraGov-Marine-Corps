@@ -740,7 +740,7 @@
 
 	for(var/turf/sticky_tile AS in RANGE_TURFS(1, loc))
 		if(!locate(/obj/effect/xenomorph/spray) in sticky_tile.contents)
-			new /obj/effect/alien/resin/sticky/thin(sticky_tile)
+			new /obj/effect/alien/weeds/sticky(sticky_tile)
 
 	var/armor_block
 	for(var/mob/living/target in range(1, loc))
