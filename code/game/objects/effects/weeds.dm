@@ -12,6 +12,7 @@
 	layer = XENO_WEEDS_LAYER
 	plane = FLOOR_PLANE
 	max_integrity = 25
+	ignore_weed_destruction = TRUE
 
 	var/obj/effect/alien/weeds/node/parent_node
 
@@ -34,11 +35,7 @@
 /obj/effect/alien/weeds/Destroy()
 	for(var/mob/living/L in range(1, src))
 		SEND_SIGNAL(L, COMSIG_LIVING_WEEDS_ADJACENT_REMOVED)
-	for(var/obj/effect/alien/A in loc.contents)
-		if(QDELETED(A) || A == src || A.ignore_weed_destruction)
-			continue
-		A.obj_destruction(damage_flag = "melee")
-
+	SEND_SIGNAL(loc, COMSIG_TURF_WEED_REMOVED)
 	var/oldloc = loc
 	parent_node = null
 	. = ..()
@@ -143,7 +140,6 @@
 	desc = "A weird, pulsating node."
 	icon_state = "weednode"
 	max_integrity = 60
-	ignore_weed_destruction = TRUE
 	var/node_icon = "weednode"
 	var/node_range = NODERANGE
 	var/node_turfs = list() // list of all potential turfs that we can expand to
