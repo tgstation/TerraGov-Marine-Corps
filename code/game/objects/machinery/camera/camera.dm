@@ -198,7 +198,7 @@
 			M.reset_perspective(null)
 			to_chat(M, "The screen bursts into static.")
 
-	if(!powered)
+	if(!powered())
 		return
 
 	for(var/mob/living/silicon/ai/AI in GLOB.silicon_mobs)
