@@ -298,6 +298,7 @@
 			charge.clear_cooldown() //Reset charge cooldown
 		if(ravage)
 			ravage.clear_cooldown() //Reset ravage cooldown
+		RegisterSignal(X, COMSIG_XENOMORPH_ATTACK_LIVING, .proc/drain_slash) //We can now regain HP by dealing damage
 
 	for(var/turf/affected_tiles AS in RANGE_TURFS(rage_power_radius, X.loc))
 		affected_tiles.Shake(4, 4, 1 SECONDS) //SFX
@@ -352,6 +353,27 @@
 	to_chat(owner,"<span class='highdanger'>Our rage begins to subside... [ability_name] will only last for only [(RAVAGER_RAGE_DURATION + bonus_duration) * (1-RAVAGER_RAGE_WARNING) * 0.1] more seconds!</span>")
 	owner.playsound_local(owner, 'sound/voice/hiss4.ogg', 50, 0, 1)
 
+///Warns the user when his rage is about to end.
+/datum/action/xeno_action/rage/proc/drain_slash(datum/source, mob/living/target, damage, list/damage_mod, list/armor_mod)
+	SIGNAL_HANDLER
+	if(!target) //Sanity
+		return
+	var/mob/living/rager = owner
+	var/brute_damage = rager.getBruteLoss()
+	var/burn_damage = rager.getFireLoss()
+	if(!brute_damage && !burn_damage) //If we have no healable damage, don't bother proceeding
+		return
+	var/health_recovery = rage_power * damage //Amount of health we leech per slash
+	var/health_modifier
+	if(brute_damage) //First heal Brute damage, then heal Burn damage with remainder
+		health_modifier = min(brute_damage, health_recovery)*-1 //Get the lower of our Brute Loss or the health we're leeching
+		rager.adjustBruteLoss(health_modifier)
+		health_recovery += health_modifier //Decrement the amount healed from our total healing pool
+	if(burn_damage)
+		health_modifier = min(burn_damage, health_recovery)*-1
+		rager.adjustFireLoss(health_modifier)
+
+
 ///Called when we want to end the Rage effect
 /datum/action/xeno_action/rage/proc/rage_deactivate()
 
@@ -371,6 +393,7 @@
 	REMOVE_TRAIT(X, TRAIT_STUNIMMUNE, RAGE_TRAIT)
 	REMOVE_TRAIT(X, TRAIT_SLOWDOWNIMMUNE, RAGE_TRAIT)
 	REMOVE_TRAIT(X, TRAIT_STAGGERIMMUNE, RAGE_TRAIT)
+	UnregisterSignal(X, COMSIG_XENOMORPH_ATTACK_LIVING) //unregister the signals; party's over
 
 	rage_sunder = 0
 	rage_power = 0
