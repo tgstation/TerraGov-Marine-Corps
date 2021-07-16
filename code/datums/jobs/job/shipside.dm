@@ -188,7 +188,7 @@ Make the TGMC proud!"})
 //Staff Officer
 /datum/job/terragov/command/staffofficer
 	title = STAFF_OFFICER
-	paygrade = "O4"
+	paygrade = "O3"
 	comm_title = "SO"
 	total_positions = 4
 	access = list(ACCESS_MARINE_BRIDGE, ACCESS_MARINE_BRIG, ACCESS_MARINE_CARGO, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_ALPHA, ACCESS_MARINE_BRAVO, ACCESS_MARINE_CHARLIE, ACCESS_MARINE_DELTA)
@@ -239,7 +239,9 @@ You are in charge of logistics and the overwatch system. You are also in line to
 	if(!playtime_mins || playtime_mins < 1 )
 		return
 	switch(playtime_mins)
-		if(0 to 3000) // starting
+		if(0 to 1500) // starting
+			new_human.wear_id.paygrade = "O3"
+		if(1501 to 3000) // 25 hrs
 			new_human.wear_id.paygrade = "O4"
 		if(3001 to INFINITY) // 50 hrs
 			new_human.wear_id.paygrade = "O5"
@@ -404,9 +406,9 @@ If you are not piloting, there is an autopilot fallback for command, but don't l
 	switch(playtime_mins)
 		if(0 to 1500) // starting
 			new_human.wear_id.paygrade = "O2"
-		if(1501 to 6000) // 25 hrs
+		if(1501 to 3000) // 25 hrs
 			new_human.wear_id.paygrade = "O3"
-		if(6001 to INFINITY) // 50 hrs
+		if(3001 to INFINITY) // 50 hrs
 			new_human.wear_id.paygrade = "O4"
 
 /datum/job/terragov/engineering/chief/radio_help_message(mob/M)
@@ -661,6 +663,22 @@ A happy ship is a well-functioning ship."})
 	to_chat(M, {"You are the chief medical officer aboard the [SSmapping.configs[SHIP_MAP].map_name], navy officer and supervisor to the medical department.
 You have final authority over the medical department, medications, and treatments.
 Make sure that the doctors and nurses are doing their jobs and keeping the marines healthy and strong."})
+
+/datum/job/terragov/medical/professor/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)
+	. = ..()
+	if(!ishuman(new_mob))
+		return
+	var/mob/living/carbon/human/new_human = new_mob
+	var/playtime_mins = user?.client?.get_exp(title)
+	if(!playtime_mins || playtime_mins < 1 )
+		return
+	switch(playtime_mins)
+		if(0 to 1500) // starting
+			new_human.wear_id.paygrade = "O3"
+		if(1501 to 3000) // 25 hrs
+			new_human.wear_id.paygrade = "O4"
+		if(3001 to INFINITY) // 50 hrs
+			new_human.wear_id.paygrade = "O5"
 
 
 /datum/outfit/job/medical/professor
