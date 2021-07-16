@@ -393,6 +393,7 @@
 	. = ..()
 	deploy_bodybag(user, get_turf(user))
 	unfoldedbag_instance.close()
+	return TRUE
 
 
 /obj/item/bodybag/tarp/snow
