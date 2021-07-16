@@ -111,6 +111,7 @@
 		return
 	if(AM.projectile_hit(src))
 		AM.do_projectile_hit(src)
+		qdel(src)
 		return
 	permutated[AM] = TRUE //Don't want to hit them again.
 
