@@ -285,3 +285,45 @@
   lbnesquik:
   - bugfix: Fixed the AI holopad being seemingly broken. Don't forget to use the Change
       Hologram verb!
+2021-07-16:
+  BraveMole:
+  - refactor: Refactor IFF
+  - bugfix: Larvas cannot become king anymore
+  - bugfix: Fix shuttle windows not rotating
+  - balance: Remove 2 xenos jobs at roundstart, no matter the pop
+  - balance: Less xeno in crash
+  - balance: Less xeno for marines overall
+  - bugfix: Impact grenades are actually in normal vendors, not HvH one
+  - expansion: Add a gun safety keybind
+  - bugfix: Rebel have their own comms
+  - bugfix: SL have its medhud back in essential kits
+  EvilMelonTheSecond:
+  - expansion: Added meson-like goggles to req
+  InterroLouis:
+  - bugfix: Impact Grenade Box Vends Properly.
+  Pariah919:
+  - bugfix: resin walls now die to devastating explosions such as OBs, and other things
+  - balance: resin walls now die to devastating explosions. Which include HE OBs.
+  - expansion: adds marine spear in vendors
+  - balance: can't refill qc+ and peri + at marine med
+  - expansion: Adds an IFF-less heavy machinegun to the game, not in yet for acquireable
+      players.
+  - expansion: added a thermobaric to req, way weaker and cheaper than before.
+  - bugfix: smartrifle magazines pop up in req
+  QualityVan:
+  - bugfix: Xeno healing now splits properly between brute and burn instead of doubling,
+      base healing increased 25% to compensate
+  RipGrayson:
+  - balance: LV624 caves are now slightly less cramped, engineering is slightly larger.
+  SplinterGP:
+  - expansion: Ravager now also gets fury on receiving damage.
+  - balance: Ravager Passive fury regen has been severely reduced.
+  Surrealaser:
+  - balance: Clawed Hugger melee damage increased from 23 to 25.
+  - balance: Clawed Hugger jump timer decreased from 1.5 to 1.2 seconds.
+  - balance: Hemodile no longer deals stamina damage.
+  - balance: Hemodile base slowdown increased from 1 to 1.5.
+  - balance: Hemodile slowdown is multiplied by 2 for each other Xeno chem in the
+      victim's system (Neurotoxin and Transvitox).
+  Wayland-Smithy:
+  - admin: Added a button to become an Imaginary Friend to the ticket panel.

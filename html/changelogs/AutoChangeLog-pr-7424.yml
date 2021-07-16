@@ -1,4 +1,4 @@
 author: "BraveMole"
 delete-after: True
 changes: 
-  - bugfix: "Larvas cannot become king anymore"
+  - rscdel: "Remove specialist from code"

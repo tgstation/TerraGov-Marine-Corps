@@ -127,7 +127,7 @@
 		return FALSE
 
 	if(user.do_actions)
-		return
+		return FALSE
 
 	to_chat(user, span_rose("You start filling up the small chambers along the blade's edge."))
 	if(!do_after(user, 2 SECONDS, TRUE, src, BUSY_ICON_BAR, ignore_turf_checks = TRUE))

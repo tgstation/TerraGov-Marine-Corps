@@ -25,6 +25,7 @@
 /datum/element/deployable_item/proc/deploy(datum/source, mob/user, location, direction)
 	SIGNAL_HANDLER
 	INVOKE_ASYNC(src, .proc/finish_deploy, source, user, location, direction)
+	return COMSIG_KB_ACTIVATED
 
 
 ///Handles the conversion of item into machine. Source is the Item to be deployed, user is who is deploying. If user is null then 'location' and 'direction' are required for deployment.

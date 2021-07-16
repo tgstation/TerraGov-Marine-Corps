@@ -1,4 +1,0 @@
-author: "QualityVan"
-delete-after: True
-changes: 
-  - bugfix: "Xeno healing now splits properly between brute and burn instead of doubling, base healing increased 25% to compensate"
