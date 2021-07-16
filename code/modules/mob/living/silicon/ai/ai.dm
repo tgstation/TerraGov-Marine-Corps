@@ -45,6 +45,8 @@
 	var/datum/trackable/track
 	///Selected order to give to marine
 	var/datum/action/innate/order/current_order
+	/// If it is currently controlling an object
+	var/controlling = FALSE
 
 
 /mob/living/silicon/ai/Initialize(mapload, ...)
@@ -86,6 +88,8 @@
 	send_defend_order.give_action(src)
 	send_retreat_order.target = src
 	send_retreat_order.give_action(src)
+	var/datum/action/control_vehicle/control = new
+	control.give_action(src)
 
 /mob/living/silicon/ai/Destroy()
 	GLOB.ai_list -= src
@@ -238,6 +242,14 @@
 
 
 /mob/living/silicon/ai/reset_perspective(atom/A)
+	if(A?.flags_atom & AI_CONTROLLABLE)
+		sight = NONE
+		eyeobj?.use_static = USE_STATIC_NONE
+		GLOB.cameranet.visibility(eyeobj, client, all_eyes, USE_STATIC_NONE)
+	else
+		sight = initial(sight)
+		eyeobj?.use_static = initial(eyeobj?.use_static)
+		GLOB.cameranet.visibility(eyeobj, client, all_eyes, initial(eyeobj?.use_static))
 	if(camera_light_on)
 		light_cameras()
 	if(istype(A, /obj/machinery/camera))
@@ -266,6 +278,19 @@
 			AT.get_remote_view_fullscreens(src)
 		else
 			clear_fullscreen("remote_view", 0)
+
+/mob/living/silicon/ai/update_sight()
+	. = ..()
+	if(HAS_TRAIT(src, TRAIT_SEE_IN_DARK))
+		see_in_dark = max(see_in_dark, 8)
+		lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
+		eyeobj.see_in_dark = max(eyeobj.see_in_dark, 8)
+		eyeobj.lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
+		return
+	eyeobj.see_in_dark = initial(eyeobj.see_in_dark)
+	eyeobj.lighting_alpha = initial(eyeobj.lighting_alpha)
+	see_in_dark = initial(see_in_dark)
+	lighting_alpha = initial(lighting_alpha) // yes you really have to change both the eye and the ai vars
 
 
 /mob/living/silicon/ai/Stat()
@@ -317,3 +342,44 @@
 		return FALSE
 
 	return GLOB.cameranet.checkTurfVis(get_turf(A))
+
+/datum/action/control_vehicle
+	name = "Select vehicle to control"
+	action_icon_state = "enter_droid"
+	/// The current controlled vehicle
+	var/obj/vehicle/unmanned/vehicle
+
+/datum/action/control_vehicle/action_activate()
+	. = ..()
+	var/mob/living/silicon/ai/ai = owner
+	if(vehicle)
+		SEND_SIGNAL(ai, COMSIG_REMOTECONTROL_TOGGLE, ai)
+		clear_vehicle()
+		return
+	if(!length(GLOB.unmanned_vehicles))
+		to_chat(ai, "<span class='warning'>No unmanned vehicles detected</span>")
+		return
+	var/obj/vehicle/unmanned/new_vehicle = tgui_input_list(ai, "What vehicle do you want to control?","vehicle choice", GLOB.unmanned_vehicles)
+	if(!new_vehicle)
+		return
+	if(new_vehicle.controlled)
+		to_chat(ai, "<span class='warning'>Something is already controlling this vehicle</span>")
+		return
+	link_with_vehicle(new_vehicle)
+	ai.controlling = TRUE
+
+/// Signal handler to clear vehicle and stop remote control
+/datum/action/control_vehicle/proc/clear_vehicle()
+	SIGNAL_HANDLER
+	UnregisterSignal(vehicle, COMSIG_PARENT_QDELETING)
+	vehicle.on_unlink()
+	vehicle = null
+	var/mob/living/silicon/ai/ai = owner
+	ai.controlling = FALSE
+
+/datum/action/control_vehicle/proc/link_with_vehicle(obj/vehicle/unmanned/_vehicle)
+	vehicle = _vehicle
+	RegisterSignal(vehicle, COMSIG_PARENT_QDELETING, .proc/clear_vehicle)
+	vehicle.on_link()
+	owner.AddComponent(/datum/component/remote_control, vehicle, vehicle.turret_type)
+	SEND_SIGNAL(owner, COMSIG_REMOTECONTROL_TOGGLE, owner)

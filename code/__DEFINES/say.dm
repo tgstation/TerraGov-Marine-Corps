@@ -19,7 +19,7 @@
 #define MODE_TOKEN_DEPARTMENT ":h"
 
 #define MODE_ALIEN "alientalk"
-#define MODE_HOLOPAD "holopad"
+#define MODE_RELAYED "relayed"
 
 #define MODE_BINARY "binary"
 #define MODE_KEY_BINARY "n"

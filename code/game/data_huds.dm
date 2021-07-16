@@ -96,7 +96,7 @@
 
 //medical hud used by ghosts
 /datum/atom_hud/medical/observer
-	hud_icons = list(HEALTH_HUD, XENO_EMBRYO_HUD, XENO_REAGENT_HUD, STATUS_HUD, MACHINE_HEALTH_HUD, SENTRY_AMMO_HUD)
+	hud_icons = list(HEALTH_HUD, XENO_EMBRYO_HUD, XENO_REAGENT_HUD, STATUS_HUD, MACHINE_HEALTH_HUD, MACHINE_AMMO_HUD)
 
 
 /datum/atom_hud/medical/pain
@@ -442,10 +442,10 @@
 
 
 /datum/atom_hud/squad
-	hud_icons = list(SQUAD_HUD_TERRAGOV, MACHINE_HEALTH_HUD, SENTRY_AMMO_HUD)
+	hud_icons = list(SQUAD_HUD_TERRAGOV, MACHINE_HEALTH_HUD, MACHINE_AMMO_HUD)
 
 /datum/atom_hud/squad_rebel
-	hud_icons = list(SQUAD_HUD_REBEL, MACHINE_HEALTH_HUD, SENTRY_AMMO_HUD)
+	hud_icons = list(SQUAD_HUD_REBEL, MACHINE_HEALTH_HUD, MACHINE_AMMO_HUD)
 
 
 /mob/proc/hud_set_job(faction = FACTION_TERRAGOV)
@@ -510,7 +510,7 @@
 	hud_list[ORDER_HUD] = holder
 
 ///Makes sentry health visible
-/obj/machinery/proc/hud_set_machine_health()
+/obj/proc/hud_set_machine_health()
 	var/image/holder = hud_list[MACHINE_HEALTH_HUD]
 
 	if(!holder)
@@ -527,7 +527,7 @@
 
 ///Makes sentry ammo visible
 /obj/machinery/marine_turret/proc/hud_set_sentry_ammo()
-	var/image/holder = hud_list[SENTRY_AMMO_HUD]
+	var/image/holder = hud_list[MACHINE_AMMO_HUD]
 
 	if(!holder)
 		return
@@ -537,6 +537,20 @@
 		return
 
 	var/amount = round(rounds * 100 / rounds_max, 10)
+	holder.icon_state = "plasma[amount]"
+
+///Makes unmanned vehicle ammo visible
+/obj/vehicle/unmanned/proc/hud_set_uav_ammo()
+	var/image/holder = hud_list[MACHINE_AMMO_HUD]
+
+	if(!holder)
+		return
+
+	if(!current_rounds)
+		holder.icon_state = "plasma0"
+		return
+
+	var/amount = round(current_rounds * 100 / max_rounds, 10)
 	holder.icon_state = "plasma[amount]"
 
 ///Makes mounted guns ammo visible

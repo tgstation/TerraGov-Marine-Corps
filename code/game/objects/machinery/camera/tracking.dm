@@ -16,6 +16,8 @@
 
 
 /mob/living/silicon/ai/proc/show_camera_list()
+	if(controlling)
+		return
 	var/list/cameras = get_camera_list()
 	var/camera = tgui_input_list(src, "Choose which camera you want to view", "Cameras", cameras)
 	switchCamera(cameras[camera])
@@ -66,6 +68,9 @@
 	set hidden = TRUE
 
 	if(!target_name)
+		return
+
+	if(controlling)
 		return
 
 	if(!track.initialized)

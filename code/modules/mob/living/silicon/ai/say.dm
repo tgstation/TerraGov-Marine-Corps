@@ -13,7 +13,7 @@
 	return ..()
 
 
-//For holopads only. Usable by AI.
+/// Handles relayed speech
 /mob/living/silicon/ai/proc/holopad_talk(message, language)
 	message = trim(message)
 	if(!message)
@@ -38,5 +38,5 @@
 /mob/living/silicon/ai/get_message_mode(message)
 	var/static/regex/holopad_finder = regex(@"[:.#][hH]")
 	if(holopad_finder.Find(message, 1, 1))
-		return MODE_HOLOPAD
+		return MODE_RELAYED
 	return ..()
