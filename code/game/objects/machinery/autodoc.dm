@@ -762,6 +762,16 @@
 		start_processing()
 		for(var/obj/O in src)
 			qdel(O)
+		if(automaticmode)
+			say("Automatic mode engaged, initialising procedures.")
+			addtimer(CALLBACK(src, .proc/auto_start), 5 SECONDS)
+
+///Callback to start auto mode on someone entering
+/obj/machinery/autodoc/proc/auto_start()
+	if(!occupant || !automaticmode)
+		return
+	surgery_op()
+
 
 /obj/machinery/autodoc/MouseDrop_T(mob/M, mob/user)
 	if(!isliving(M) || !ishuman(user))
@@ -974,6 +984,11 @@
 	else
 		dat += "<hr><a href='?src=\ref[src];noticetoggle=1'>Notifications On</a> | Notifications Off<BR>"
 
+	if(connected.automaticmode)
+		dat += "<hr><span class='notice'>Automatic Mode</span> | <a href='?src=\ref[src];automatictoggle=1'>Manual Mode</a>"
+	else
+		dat += "<hr><a href='?src=\ref[src];automatictoggle=1'>Automatic Mode</a> | Manual Mode"
+
 	dat += "<hr><font color='#487553'><B>Occupant Statistics:</B></FONT><BR>"
 	if(!connected.occupant)
 		dat += "No occupant detected."
@@ -1003,10 +1018,6 @@
 	dat += text("[]\t-Respiratory Damage %: []</FONT><BR>", (connected.occupant.getOxyLoss() < 60 ? "<font color='#487553'>" : "<font color='#b54646'>"), connected.occupant.getOxyLoss())
 	dat += text("[]\t-Toxin Content %: []</FONT><BR>", (connected.occupant.getToxLoss() < 60 ? "<font color='#487553'>" : "<font color='#b54646'>"), connected.occupant.getToxLoss())
 	dat += text("[]\t-Burn Severity %: []</FONT><BR>", (connected.occupant.getFireLoss() < 60 ? "<font color='#487553'>" : "<font color='#b54646'>"), connected.occupant.getFireLoss())
-	if(connected.automaticmode)
-		dat += "<hr><span class='notice'>Automatic Mode</span> | <a href='?src=\ref[src];automatictoggle=1'>Manual Mode</a>"
-	else
-		dat += "<hr><a href='?src=\ref[src];automatictoggle=1'>Automatic Mode</a> | Manual Mode"
 	dat += "<hr> Surgery Queue:<br>"
 
 	var/list/surgeryqueue = list()
