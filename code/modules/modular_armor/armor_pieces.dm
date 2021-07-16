@@ -20,22 +20,6 @@
 	greyscale_config = /datum/greyscale_config/modularchest_infantry
 	greyscale_colors = "#444732"
 
-	///Assoc list of color-hex for colors we're allowed to color this armor
-	var/static/list/colorable_colors = list(
-		"black" = "#474A50",
-		"snow" = "#D5CCC3",
-		"desert" = "#A57F7C",
-		"gray" = "#828282",
-		"brown" = "#60452B",
-		"red" = "#CC2C32",
-		"blue" = "#2A4FB7",
-		"yellow" = "#B7B21F",
-		"green" = "#2B7F1E",
-		"aqua" = "#2098A0",
-		"purple" = "#871F8F",
-		"orange" = "#BC4D25",
-		"pink" = "#D354BA",
-	)
 
 /obj/item/armor_module/armor/Initialize()
 	. = ..()
@@ -56,11 +40,9 @@
 		to_chat(user, "<span class='warning'>\the [paint] is out of color!</span>")
 		return TRUE
 
-
-	var/new_color = tgui_input_list(user, "Pick a color", "Pick color", colorable_colors)
+	var/new_color = input(user, "Pick a color", "Pick color") as null|color
 	if(!new_color)
 		return
-	new_color = colorable_colors[new_color]
 
 	if(!do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_GENERIC))
 		return TRUE
