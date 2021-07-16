@@ -417,7 +417,10 @@
 		hugger.hivenumber = hivenumber
 		if(!hugger.stasis)
 			hugger.go_idle(TRUE)
-	addtimer(CALLBACK(src, .proc/Grow), rand(EGG_MIN_GROWTH_TIME, EGG_MAX_GROWTH_TIME))
+	if(status == EGG_GROWING)
+		addtimer(CALLBACK(src, .proc/Grow), rand(EGG_MIN_GROWTH_TIME, EGG_MAX_GROWTH_TIME))
+	else if(status == EGG_GROWN)
+		deploy_egg_triggers()
 
 /obj/effect/alien/egg/Destroy()
 	QDEL_LIST(egg_triggers)
@@ -593,20 +596,27 @@
 
 
 /obj/effect/alien/egg/gas
+	icon = "Egg"
 	hugger_type = null
 	trigger_size = 2
+	status = EGG_GROWN
+	///Holds a typepath for the gas particle to create
+	var/gas_type = /datum/effect_system/smoke_spread/xeno/neuro/medium
+	///Bonus size for certain gasses
+	var/gas_size_bonus = 0
 
 /obj/effect/alien/egg/gas/Burst(kill)
 	var/spread = EGG_GAS_DEFAULT_SPREAD
 	if(kill) // Kill is more violent
 		spread = EGG_GAS_KILL_SPREAD
+	spread += gas_size_bonus
 
 	QDEL_LIST(egg_triggers)
 	update_status(EGG_DESTROYED)
 	flick("Egg Exploding", src)
 	playsound(loc, "sound/effects/alien_egg_burst.ogg", 30)
 
-	var/datum/effect_system/smoke_spread/xeno/neuro/NS = new(src)
+	var/datum/effect_system/smoke_spread/xeno/NS = new gas_type(src)
 	NS.set_up(spread, get_turf(src))
 	NS.start()
 

@@ -101,15 +101,18 @@
 	var/mob/living/carbon/xenomorph/Defiler/X = owner
 	set waitfor = FALSE
 	var/smoke_range = 2
-	var/datum/effect_system/smoke_spread/xeno/neuro/medium/N = new(X)
-	N.strength = 1
-	if(X.selected_reagent == /datum/reagent/toxin/xeno_hemodile)
-		N.smoke_type = /obj/effect/particle_effect/smoke/xeno/hemodile
-		smoke_range = 3
-	else if(X.selected_reagent == /datum/reagent/toxin/xeno_transvitox)
-		N.smoke_type = /obj/effect/particle_effect/smoke/xeno/transvitox
-		N.strength = 0.75
-		smoke_range = 4
+	var/datum/effect_system/smoke_spread/xeno/gas
+
+	switch(X.selected_reagent)
+		if(/datum/reagent/toxin/xeno_neurotoxin)
+			gas = new /datum/effect_system/smoke_spread/xeno/neuro/medium(X)
+		if(/datum/reagent/toxin/xeno_hemodile)
+			gas = new /datum/effect_system/smoke_spread/xeno/hemodile(X)
+			smoke_range = 3
+		if(/datum/reagent/toxin/xeno_transvitox)
+			gas = new /datum/effect_system/smoke_spread/xeno/transvitox(X)
+			smoke_range = 4
+
 	while(count)
 		if(X.stagger) //If we got staggered, return
 			to_chat(X, "<span class='xenowarning'>We try to emit toxins but are staggered!</span>")
@@ -168,7 +171,16 @@
 	succeed_activate()
 	add_cooldown()
 
-	new /obj/effect/alien/egg/gas(A.loc)
+	var/obj/effect/alien/egg/gas/newegg = new(A.loc)
+	switch(X.selected_reagent)
+		if(/datum/reagent/toxin/xeno_neurotoxin)
+			newegg.gas_type = /datum/effect_system/smoke_spread/xeno/neuro/medium
+		if(/datum/reagent/toxin/xeno_hemodile)
+			newegg.gas_type = /datum/effect_system/smoke_spread/xeno/hemodile
+			newegg.gas_size_bonus = 1
+		if(/datum/reagent/toxin/xeno_transvitox)
+			newegg.gas_type = datum/effect_system/smoke_spread/xeno/transvitox
+			newegg.gas_size_bonus = 2
 	qdel(alien_egg)
 
 	GLOB.round_statistics.defiler_inject_egg_neurogas++
