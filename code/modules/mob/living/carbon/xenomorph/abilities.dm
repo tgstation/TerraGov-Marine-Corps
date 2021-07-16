@@ -107,14 +107,32 @@
 // ***************************************
 // *********** Drone-y abilities
 // ***************************************
+#define SPEEDY_WEED "speed weed sac"
+#define STICKY_WEED "sticky weed sac"
+
+
+//List of weed types
+GLOBAL_LIST_INIT(weed_type_list, list(
+		/obj/effect/alien/weeds/node/speedy,
+		/obj/effect/alien/weeds/node/sticky,
+		))
+
+//List of weed images
+GLOBAL_LIST_INIT(weed_images_list,  list(
+		SPEEDY_WEED = image('icons/mob/actions.dmi', icon_state = SPEEDY_WEED),
+		STICKY_WEED = image('icons/mob/actions.dmi', icon_state = STICKY_WEED),
+		))
+
 /datum/action/xeno_action/plant_weeds
 	name = "Plant Weeds"
 	action_icon_state = "plant_weeds"
 	plasma_cost = 75
 	mechanics_text = "Plant a weed node (purple sac) on your tile."
 	keybind_signal = COMSIG_XENOABILITY_DROP_WEEDS
+	alternate_keybind_signal = COMSIG_XENOABILITY_CHOOSE_WEEDS
 	use_state_flags = XACT_USE_LYING
-
+	///The seleted type of weeds
+	var/obj/effect/alien/weeds/node/weed_type = /obj/effect/alien/weeds/node/speedy
 
 /datum/action/xeno_action/plant_weeds/action_activate()
 	var/turf/T = get_turf(owner)
@@ -136,12 +154,31 @@
 
 	owner.visible_message("<span class='xenonotice'>\The [owner] regurgitates a pulsating node and plants it on the ground!</span>", \
 		"<span class='xenonotice'>We regurgitate a pulsating node and plant it on the ground!</span>", null, 5)
-	new /obj/effect/alien/weeds/node(owner.loc)
+	new weed_type(owner.loc)
 	playsound(owner.loc, "alien_resin_build", 25)
 	GLOB.round_statistics.weeds_planted++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "weeds_planted")
 	add_cooldown()
 	return succeed_activate()
+
+/datum/action/xeno_action/plant_weeds/alternate_keybind_action()
+	INVOKE_ASYNC(src, .proc/choose_weed)
+
+/datum/action/xeno_action/plant_weeds/proc/choose_weed()
+	var/weed_choice = show_radial_menu(owner, owner, GLOB.weed_images_list, radius = 48)
+	if(!weed_choice)
+		return
+	for(var/obj/effect/alien/weeds/node/weed_type_possible AS in GLOB.weed_type_list)
+		if(initial(weed_type_possible.name) == weed_choice)
+			weed_type = weed_type_possible
+			break
+	to_chat(owner, "<span class='notice'>We will now spawn <b>[weed_choice]\s</b> when using the spawn hugger ability.</span>")
+	update_button_icon()
+
+/datum/action/xeno_action/plant_weeds/update_button_icon()
+	button.overlays.Cut()
+	button.overlays += image('icons/mob/actions.dmi', button, initial(weed_type.name))
+	return ..()
 
 //AI stuff
 /datum/action/xeno_action/plant_weeds/ai_should_start_consider()

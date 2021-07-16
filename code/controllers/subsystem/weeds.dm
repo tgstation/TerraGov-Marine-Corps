@@ -45,7 +45,6 @@ SUBSYSTEM_DEF(weeds)
 			creating[T] = currentrun[T][1]
 			break
 		pending[T][2]--
-		message_admins(pending[T][2])
 		if(!pending[T][2])
 			pending -= T
 

@@ -93,12 +93,6 @@
 /obj/effect/alien/weeds/sticky
 	name = "sticky resin"
 	desc = "A layer of disgusting sticky slime."
-	icon_state = "sticky"
-	density = FALSE
-	opacity = FALSE
-	max_integrity = 36
-	layer = RESIN_STRUCTURE_LAYER
-	hit_sound = "alien_resin_move"
 	color_variant = "green"
 
 /obj/effect/alien/weeds/sticky/Crossed(atom/movable/AM)
@@ -114,7 +108,7 @@
 	if(H.lying_angle)
 		return
 
-	H.next_move_slowdown += 2
+	H.next_move_slowdown += 1
 
 
 // =================
@@ -172,7 +166,7 @@
 	var/node_icon = "weednode"
 	var/node_turfs = list() // list of all potential turfs that we can expand to
 	/// What type of weeds this node spreads
-	var/weed_type = /obj/effect/alien/weeds
+	var/weed_type = /obj/effect/alien/weeds/speedy
 
 /obj/effect/alien/weeds/node/Destroy()
 	. = ..()
@@ -202,11 +196,18 @@
 /obj/effect/alien/weeds/node/sticky
 	name = "sticky weed sac"
 	desc = "A weird, pulsating green node."
-	max_integrity = 120
 	weed_type = /obj/effect/alien/weeds/sticky
 	color_variant = "green"
 	node_icon = "weednodegreen"
 
 //Speedy weed node
 /obj/effect/alien/weeds/node/speedy
+	name = "speed weed sac"
+	desc = "A weird, pulsating purple node."
+
+//Healing weed node
+/obj/effect/alien/weeds/node/healing
+	name = "heal weed sac"
+	desc = "A weird, pulsating blue node."
+	weed_type = /obj/effect/alien/weeds/healing
 
