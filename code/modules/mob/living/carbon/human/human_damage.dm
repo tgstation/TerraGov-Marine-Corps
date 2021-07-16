@@ -274,7 +274,7 @@
 	if(!parts.len)
 		return
 	var/datum/limb/picked = pick(parts)
-	if(picked.heal_limb_damage(brute, burn, updating_health))
+	if(picked.heal_limb_damage(brute, burn, updating_health = updating_health))
 		UpdateDamageIcon()
 	if(updating_health)
 		updatehealth()
