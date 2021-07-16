@@ -230,11 +230,7 @@
 				return TRUE
 			if(!client)
 				var/mob/dead/observer/ghost = get_ghost()
-				if(ghost)
-					if(!ghost.can_reenter_corpse)
-						status_hud.icon_state = "huddead"
-						return TRUE
-				else
+				if(!ghost?.can_reenter_corpse)
 					status_hud.icon_state = "huddead"
 					return TRUE
 			var/stage
