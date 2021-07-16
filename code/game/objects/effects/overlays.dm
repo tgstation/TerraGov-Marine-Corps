@@ -140,8 +140,8 @@
 	. = ..()
 	linked_cam = new(loc, name)
 	GLOB.active_cas_targets += src
-	for(var/mob/living/silicon/ai/AI in GLOB.silicon_mobs)
-		to_chat(AI, "<span class='notice'>CAS laser detected. Target: [AREACOORD_NO_Z(src)]</span>")
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_CAS_LASER_SENT, src)
+
 
 
 /obj/effect/overlay/temp/laser_target/cas/Destroy()
@@ -158,7 +158,7 @@
 
 /obj/effect/overlay/temp/laser_target/OB/Initialize(mapload, named, assigned_squad)
 	. = ..()
-	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_LASER_SENT, src)
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_OB_LASER_SENT, src)
 	GLOB.active_laser_targets += src
 
 /obj/effect/overlay/temp/laser_target/OB/Destroy()
