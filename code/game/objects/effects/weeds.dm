@@ -25,6 +25,7 @@
 		if(!istype(node))
 			CRASH("Weed craeted with non-weed node. Type: [node.type]")
 		parent_node = node
+		color_variant = node.color_variant
 	update_icon()
 	update_neighbours()
 
