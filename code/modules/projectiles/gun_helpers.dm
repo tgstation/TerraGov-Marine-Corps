@@ -975,8 +975,6 @@ should be alright.
 /// Signal handler to unload that gun if it's in our active hand
 /obj/item/weapon/gun/proc/unload_gun()
 	SIGNAL_HANDLER
-	if(gun_user?.get_active_held_item() != src)
-		return
 	unload(gun_user)
 	return COMSIG_KB_ACTIVATED
 
