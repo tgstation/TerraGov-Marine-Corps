@@ -1,6 +1,0 @@
-author: "BraveMole"
-delete-after: True
-changes: 
-  - balance: "Remove 2 xenos jobs at roundstart, no matter the pop"
-  - balance: "Less xeno in crash"
-  - balance: "Less xeno for marines overall"
