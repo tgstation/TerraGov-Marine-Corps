@@ -1,0 +1,5 @@
+author: "Pariah919"
+delete-after: True
+changes: 
+  - rscadd: "Added new lolipop pouch with cool lolipops that heal you and stuff. As an equivalent to the marine medical pouches.
+spriteadd: new boxes for lolipops"
