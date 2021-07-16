@@ -552,12 +552,17 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 //Defiler defines
 #define DEFILER_GAS_CHANNEL_TIME 0.5 SECONDS
 #define DEFILER_GAS_DELAY 1 SECONDS
-#define DEFILER_STING_CHANNEL_TIME 1.5 SECONDS
+#define DEFILER_DEFILE_CHANNEL_TIME 0.3 SECONDS
+#define DEFILER_FAIL_COOLDOWN 5 SECONDS
 #define DEFILER_CLAW_AMOUNT 6.5
 #define DEFILER_STING_AMOUNT_RECURRING 10
 #define DEFILER_REAGENT_SLASH_COUNT 3
 #define DEFILER_REAGENT_SLASH_INJECT_AMOUNT 4
 #define DEFILER_REAGENT_SLASH_DURATION 4 SECONDS
+#define DEFILER_TRANSVITOX_CAP 180 //Max toxin damage transvitox will allow
+#define DEFILER_DEFILE_STRENGTH_MULTIPLIER 0.5 //Base multiplier for determining the power of Defile
+#define DEFILER_SANGUINAL_DAMAGE 1 //Damage dealt per tick per xeno toxin by the sanguinal toxin
+#define DEFILER_SANGUINAL_SMOKE_MULTIPLIER 0.03 //Amount the defile power is multiplied by which determines sanguinal smoke strength/size
 
 //Drone defines
 #define DRONE_HEAL_RANGE 1
@@ -620,8 +625,6 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 
 #define WRAITH_TELEPORT_DEBUFF_STAGGER_STACKS 2 //Stagger and slow stacks applied to adjacent living hostiles before/after a teleport
 #define WRAITH_TELEPORT_DEBUFF_SLOWDOWN_STACKS 3 //Stagger and slow stacks applied to adjacent living hostiles before/after a teleport
-
-#define DEFILER_TRANSVITOX_CAP 180 //Max toxin damage transvitox will allow
 
 //misc
 

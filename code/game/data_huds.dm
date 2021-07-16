@@ -186,6 +186,7 @@
 	var/static/image/neurotox_image = image('icons/mob/hud.dmi', src, "neurotoxin")
 	var/static/image/hemodile_image = image('icons/mob/hud.dmi', src, "hemodile")
 	var/static/image/transvitox_image = image('icons/mob/hud.dmi', src, "transvitox")
+	var/static/image/sanguinal_image = image('icons/mob/hud.dmi', src, "sanguinal")
 
 	xeno_reagent.overlays.Cut()
 	xeno_reagent.icon_state = ""
@@ -199,6 +200,9 @@
 
 		if(reagents.get_reagent_amount(/datum/reagent/toxin/xeno_transvitox))
 			xeno_reagent.overlays += transvitox_image
+
+		if(reagents.get_reagent_amount(/datum/reagent/toxin/xeno_sanguinal))
+			xeno_reagent.overlays += sanguinal_image
 
 	hud_list[XENO_REAGENT_HUD] = xeno_reagent
 
