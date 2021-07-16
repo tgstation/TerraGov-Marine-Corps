@@ -29,7 +29,7 @@ SUBSYSTEM_DEF(weeds)
 			pending -= T
 			continue
 
-		if ((locate(/obj/effect/alien/weeds) in T) || (locate(/obj/effect/alien/weeds/node) in T))
+		if (locate(/obj/effect/alien/weeds/node) in T)
 			pending -= T
 			continue
 
@@ -52,11 +52,10 @@ SUBSYSTEM_DEF(weeds)
 	for(var/turf/T AS in creating)
 		if(MC_TICK_CHECK)
 			return
-		var/obj/effect/alien/weeds/node/N = creating[T]
-		creating -= T
 		// Adds a bit of jitter to the spawning weeds.
-		addtimer(CALLBACK(src, .proc/create_weed, T, N), rand(1, 3 SECONDS))
+		addtimer(CALLBACK(src, .proc/create_weed, T, creating[T]), rand(1, 3 SECONDS))
 		pending -= T
+		creating -= T
 
 
 
@@ -66,21 +65,15 @@ SUBSYSTEM_DEF(weeds)
 		return FALSE
 
 	for(var/turf/T AS in node.node_turfs)
-		var/obj/effect/alien/weeds/weed = locate(node.weed_type) in T
-		if(weed?.type == node.weed_type)//strict type check
-			weed.parent_node = node // new parent
+		var/obj/effect/alien/weeds/weed = locate() in T
+		if(weed?.type == node.weed_type)
+			weed.parent_node = node
 			continue
-
+		if(weed && get_dist(node, weed) >= get_dist(weed.parent_node, weed))
+			continue
+		if(pending[T] && (get_dist(node, T) >= get_dist(pending[T], T)))
+			continue
 		pending[T] = node
-
-/datum/controller/subsystem/weeds/proc/add_weed(obj/effect/alien/weeds/weed)
-	if(!weed)
-		stack_trace("SSweed.add_weed called with a null obj")
-		return FALSE
-
-	var/turf/T = get_turf(weed)
-	pending[T] = weed.parent_node
-
 
 /datum/controller/subsystem/weeds/proc/create_weed(turf/T, obj/effect/alien/weeds/node/node)
 	if(QDELETED(node))
@@ -99,5 +92,6 @@ SUBSYSTEM_DEF(weeds)
 			return
 		else if(istype(O, /obj/machinery/door) && O.density)
 			return
-
+		else if(istype(O, /obj/effect/alien/weeds) && !istype(O, /obj/effect/alien/weeds/node))
+			qdel(O)
 	new node.weed_type(T, node)

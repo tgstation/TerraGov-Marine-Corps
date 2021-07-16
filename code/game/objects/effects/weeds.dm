@@ -10,6 +10,8 @@
 	plane = FLOOR_PLANE
 	max_integrity = 25
 	var/obj/effect/alien/weeds/node/parent_node
+	///The color variant of the sprite
+	var/color_variant = ""
 
 /obj/effect/alien/weeds/deconstruct(disassembled = TRUE)
 	GLOB.round_statistics.weeds_destroyed++
@@ -79,6 +81,7 @@
 		icon_state = "base"
 	else
 		icon_state = "weed_dir[my_dir]"
+	icon_state += color_variant
 
 /obj/effect/alien/weeds/speedy/Crossed(atom/movable/AM)
 	. = ..()
@@ -95,7 +98,7 @@
 	max_integrity = 36
 	layer = RESIN_STRUCTURE_LAYER
 	hit_sound = "alien_resin_move"
-	color = COLOR_MAROON
+	color_variant = "green"
 
 /obj/effect/alien/weeds/sticky/Crossed(atom/movable/AM)
 	. = ..()
@@ -163,7 +166,6 @@
 /obj/effect/alien/weeds/node
 	name = "purple sac"
 	desc = "A weird, pulsating node."
-	icon_state = "weednode"
 	max_integrity = 60
 	ignore_weed_destruction = TRUE
 	var/node_icon = "weednode"
@@ -201,6 +203,8 @@
 	desc = "A weird, pulsating green node."
 	max_integrity = 120
 	weed_type = /obj/effect/alien/weeds/sticky
+	color_variant = "green"
+	node_icon = "weednodegreen"
 
 //Speedy weed node
 /obj/effect/alien/weeds/node/speedy
