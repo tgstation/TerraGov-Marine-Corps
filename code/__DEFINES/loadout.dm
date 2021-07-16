@@ -515,7 +515,7 @@ GLOBAL_LIST_INIT(loadout_job_supported, list(
 	SQUAD_SMARTGUNNER,
 	SQUAD_LEADER,
 ))
-	
+
 
 //Defines use for the visualisation of loadouts
 #define NO_OFFSET "0%"
@@ -526,5 +526,7 @@ GLOBAL_LIST_INIT(loadout_job_supported, list(
 ///The maximum number of loadouts one player can have
 #define MAXIMUM_LOADOUT 50
 
-/// The currently accepted loadout version, all other loadouts will be erased from savefiles
-#define CURRENT_LOADOUT_VERSION 5
+/// The current loadout version
+#define CURRENT_LOADOUT_VERSION 6
+
+GLOBAL_LIST_INIT(accepted_loadout_versions, list(5,6))
