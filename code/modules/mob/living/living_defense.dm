@@ -182,10 +182,6 @@
 	. = ..()
 	set_light_on(FALSE) //Reset lighting
 
-/mob/living/carbon/xenomorph/boiler/ExtinguishMob()
-	. = ..()
-	update_boiler_glow()
-
 /mob/living/proc/update_fire()
 	return
 
