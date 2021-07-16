@@ -21,7 +21,7 @@
 	greyscale_colors = "#444732"
 
 	///Assoc list of color-hex for colors we're allowed to color this armor
-	var/static/list/colorable_colors = list(
+	var/list/colorable_colors = list(
 		"black" = "#474A50",
 		"snow" = "#D5CCC3",
 		"desert" = "#A57F7C",
@@ -42,6 +42,23 @@
 	icon_state = "[initial(icon_state)]_icon"
 	item_state = initial(icon_state)
 
+///Will force faction colors on this armor module
+/obj/item/armor_module/armor/proc/limit_colorable_colors(faction)
+	switch(faction)
+		if(FACTION_TERRAGOV)
+			set_greyscale_colors("#2A4FB7")
+			colorable_colors = list(
+				"blue" = "#2A4FB7",
+				"aqua" = "#2098A0",
+				"purple" = "#871F8F",
+			)
+		if(FACTION_TERRAGOV_REBEL)
+			set_greyscale_colors("#CC2C32")
+			colorable_colors = list(
+				"red" = "#CC2C32",
+				"orange" = "#BC4D25",
+				"yellow" = "#B7B21F",
+			)
 
 /obj/item/armor_module/armor/attackby(obj/item/I, mob/user, params)
 	. = ..()

@@ -19,6 +19,7 @@
 		#include "map_files\Research_Outpost\Research_Outpost.dmm"
 		#include "map_files\Barrenquilla_Mining\Barrenquilla_Mining_Facility.dmm"
 		#include "map_files\Magmoor_Digsite_IV\Magmoor_Digsite_IV.dmm"
+		#include "map_files\Twin_Pillars\Twin_Pillars.dmm"
 		#ifdef CIBUILDING
 			#include "templates.dm"
 		#endif
