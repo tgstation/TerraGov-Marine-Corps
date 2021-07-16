@@ -249,7 +249,7 @@ GLOBAL_LIST_INIT(department_radio_keys_rebel, list(
 /mob/living/IsVocal()
 	. = ..()
 
-	if(disabilities & MUTE)
+	if(HAS_TRAIT(src, TRAIT_MUTED))
 		return FALSE
 
 /mob/living/proc/can_speak_vocal(message) //Check AFTER handling of xeno channels

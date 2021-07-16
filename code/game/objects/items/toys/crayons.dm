@@ -110,5 +110,4 @@
 
 	M.adjustToxLoss(1) // add a little bit of toxic damage
 	if(istype(src, /obj/item/toy/crayon/mime))
-		M.disabilities |= MUTE
-		addtimer(VARSET_CALLBACK(M, disabilities, M.disabilities & ~MUTE), 30 SECONDS)
+		M.apply_status_effect(/datum/status_effect/mute, 30 SECONDS)

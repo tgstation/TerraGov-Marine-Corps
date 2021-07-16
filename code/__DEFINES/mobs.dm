@@ -73,9 +73,8 @@
 
 //disabilities
 #define BLIND (1<<0)
-#define MUTE (1<<1)
-#define DEAF (1<<2)
-#define NEARSIGHTED (1<<3)
+#define DEAF (1<<1)
+#define NEARSIGHTED (1<<2)
 //=================================================
 
 //mob/var/stat things
@@ -516,8 +515,17 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define HUNTER_SNEAKATTACK_RUN_REDUCTION 0.2
 #define HUNTER_SNEAKATTACK_WALK_INCREASE 1
 #define HUNTER_SNEAKATTACK_MULTI_RECOVER_DELAY 10
-#define HUNTER_MARK_WINDUP						1 SECONDS //Windup of the Hunter's Mark
-#define HUNTER_PSYCHIC_TRACE_COOLDOWN			5 SECONDS //Cooldown of the Hunter's Psychic Trace, and duration of its arrow
+#define HUNTER_MARK_WINDUP 1 SECONDS //Windup of the Hunter's Mark
+#define HUNTER_PSYCHIC_TRACE_COOLDOWN 5 SECONDS //Cooldown of the Hunter's Psychic Trace, and duration of its arrow
+#define HUNTER_SILENCE_STAGGER_STACKS 1 //Silence imposes this many stagger stacks
+#define HUNTER_SILENCE_SENSORY_STACKS 6 //Silence imposes this many eyeblur, mute and deafen stacks.
+#define HUNTER_SILENCE_DURATION 10 SECONDS //Removes mute from the Hunter's Silence after this delay.
+#define HUNTER_SILENCE_RANGE 5 //Range in tiles of the Hunter's Silence.
+#define HUNTER_SILENCE_AOE 2 //AoE size of Silence in tiles
+#define HUNTER_SILENCE_WINDUP 0.5 SECONDS //Windup of the Hunter's Silence
+#define HUNTER_SILENCE_MULTIPLIER 1.5 //Multiplier of stacks vs Hunter's Mark targets
+#define HUNTER_SILENCE_WHIFF_COOLDOWN 3 SECONDS //If we fail to target anyone with Silence, partial cooldown to prevent spam.
+
 
 //Ravager defines:
 #define RAV_CHARGESPEED 2

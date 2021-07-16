@@ -400,6 +400,8 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 		dat += "[GLOB.round_statistics.hunter_marks] number of times Hunters marked a target for death."
 	if(GLOB.round_statistics.ravager_rages)
 		dat += "[GLOB.round_statistics.ravager_rages] number of times Ravagers raged."
+	if(GLOB.round_statistics.hunter_silence_targets)
+		dat += "[GLOB.round_statistics.hunter_silence_targets] number of targets silenced by Hunters."
 
 	var/output = jointext(dat, "<br>")
 	for(var/mob/player in GLOB.player_list)
