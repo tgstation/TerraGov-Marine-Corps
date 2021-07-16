@@ -32,3 +32,6 @@ endmap
 map twin_pillars
 	voteweight 0
 endmap
+
+map heisennaught
+endmap

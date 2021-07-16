@@ -163,3 +163,7 @@
 /datum/map_template/shuttle/escape_shuttle
 	shuttle_id = "escape_shuttle"
 	name = "Escape Shuttle"
+
+/datum/map_template/shuttle/heisennaught_elevator
+	shuttle_id = "heisennaught_elevator"
+	name = "Heisennaught Elevator"

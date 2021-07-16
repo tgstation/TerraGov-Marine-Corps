@@ -139,3 +139,20 @@
 
 /turf/open/floor/plating/dmg3
 	icon_state = "platingdmg3"
+
+
+/turf/open/floor/plating/space
+	plane = PLANE_SPACE
+	layer = SPACE_LAYER
+	icon = 'icons/turf/space.dmi'
+	name = "\proper space"
+	icon_state = "0"
+	can_bloody = FALSE
+	light_power = 0.25
+	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
+
+
+/turf/open/floor/plating/space/sea //used on heisennaught for flavor
+	icon = 'icons/misc/beach.dmi'
+	name = "sea"
+	icon_state = "seadeep"
