@@ -12,9 +12,6 @@ GLOBAL_VAR(restart_counter)
 	var/extools = world.GetConfig("env", "EXTOOLS_DLL") || (world.system_type == MS_WINDOWS ? "./byond-extools.dll" : "./libbyond-extools.so")
 	if(fexists(extools))
 		call(extools, "maptick_initialize")()
-#ifdef REFERENCE_TRACKING
-	enable_reference_tracking()
-#endif
 #endif
 	enable_debugger()
 

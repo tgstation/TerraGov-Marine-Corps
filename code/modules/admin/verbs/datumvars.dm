@@ -159,9 +159,6 @@
 	.["Mark Object"] = "?_src_=vars;[HrefToken()];[VV_HK_MARK]=[REF(src)]"
 	.["Delete"] = "?_src_=vars;[HrefToken()];[VV_HK_DELETE]=[REF(src)]"
 	.["Show VV To Player"] = "?_src_=vars;[HrefToken()];[VV_HK_EXPOSE]=[REF(src)]"
-	#ifdef REFERENCE_TRACKING
-	.["View References"] = "?_src_=vars;[HrefToken()];[VV_HK_VIEW_REFERENCES]=[REF(src)]"
-	#endif
 
 
 /client/proc/debug_variables(datum/D in world)
@@ -647,18 +644,6 @@
 		usr.client.holder.delete_atom(D)
 		if(isturf(D))  // show the turf that took its place
 			debug_variables(D)
-
-	#ifdef REFERENCE_TRACKING
-	else if(href_list[VV_HK_VIEW_REFERENCES])
-		if(!check_rights(R_DEBUG))
-			return
-		var/datum/D = locate(href_list[VV_HK_TARGET])
-		if(!D)
-			to_chat(usr, "<span class='warning'>Unable to locate item.</span>")
-			return
-		usr.client.holder.view_refs(D)
-		return
-	#endif
 
 	else if(href_list["regenerateicons"])
 		if(!check_rights(R_DEBUG))
