@@ -40,6 +40,9 @@
 ///Sent when the floodlight switch is powered
 #define COMSIG_GLOB_FLOODLIGHT_SWITCH "floodlight_switch_power_change"
 
+//Signals for fire support
+#define COMSIG_GLOB_LASER_SENT "ob_laser_sent"
+
 //////////////////////////////////////////////////////////////////
 
 // /datum signals

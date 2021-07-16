@@ -158,10 +158,8 @@
 
 /obj/effect/overlay/temp/laser_target/OB/Initialize(mapload, named, assigned_squad)
 	. = ..()
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_LASER_SENT, src)
 	GLOB.active_laser_targets += src
-	for(var/mob/living/silicon/ai/AI in GLOB.silicon_mobs)
-		to_chat(AI, "<span class='notice'>Orbital Bombardment laser detected. Target: [AREACOORD_NO_Z(src)]</span>")
-		playsound(AI, 'sound/effects/binoctarget.ogg', 15)
 
 /obj/effect/overlay/temp/laser_target/OB/Destroy()
 	. = ..()

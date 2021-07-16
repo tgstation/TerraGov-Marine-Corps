@@ -76,6 +76,7 @@
 
 	RegisterSignal(src, COMSIG_MOB_CLICK_ALT, .proc/send_order)
 	RegisterSignal(src, COMSIG_ORDER_SELECTED, .proc/set_order)
+	RegisterSignal(SSdcs, COMSIG_GLOB_LASER_SENT, .proc/receive_laser)
 
 	var/datum/action/innate/order/attack_order/send_attack_order = new
 	var/datum/action/innate/order/defend_order/send_defend_order = new
@@ -107,6 +108,13 @@
 /mob/living/silicon/ai/proc/set_order(datum/source, datum/action/innate/order/order)
 	SIGNAL_HANDLER
 	current_order = order
+
+
+///Receive fire support laser notifications
+/mob/living/silicon/ai/proc/receive_laser(datum/source, obj/effect/overlay/temp/laser_target/OB/incoming_laser)
+	SIGNAL_HANDLER
+	to_chat(src, "<span class='notice'>Orbital Bombardment laser detected. Target: [AREACOORD_NO_Z(incoming_laser)] </span>")
+	playsound(src, 'sound/effects/binoctarget.ogg', 15)
 
 /mob/living/silicon/ai/restrained(ignore_checks)
 	return FALSE
