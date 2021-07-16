@@ -1178,3 +1178,11 @@ and you're good to go.
 		return
 	active_attachable.fire_attachment(target, src, gun_user) //Fire it.
 	last_fired = world.time
+
+///For letting xenos turn off the flashlights on any guns left lying around.
+/obj/item/weapon/gun/attack_alien(mob/living/carbon/xenomorph/X, isrightclick = FALSE)
+	if(flags_gun_features & GUN_FLASHLIGHT_ON)
+		attachments[ATTACHMENT_SLOT_RAIL].turn_light(null, FALSE)
+		playsound(loc, "alien_claw_metal", 25, 1)
+		X.do_attack_animation(src, ATTACK_EFFECT_CLAW)
+		to_chat(X, "<span class='warning'>We disable the metal thing's lights.</span>")
