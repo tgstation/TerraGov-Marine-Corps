@@ -596,7 +596,7 @@
 
 
 /obj/effect/alien/egg/gas
-	icon = "Egg"
+	icon_state = "Egg"
 	hugger_type = null
 	trigger_size = 2
 	status = EGG_GROWN

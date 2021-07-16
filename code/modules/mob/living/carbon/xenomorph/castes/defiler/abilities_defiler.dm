@@ -123,10 +123,10 @@
 		var/turf/T = get_turf(X)
 		playsound(T, 'sound/effects/smoke.ogg', 25)
 		if(count > 1)
-			N.set_up(smoke_range, T)
+			gas.set_up(smoke_range, T)
 		else //last emission is larger
-			N.set_up(CEILING(smoke_range*1.3,1), T)
-		N.start()
+			gas.set_up(CEILING(smoke_range*1.3,1), T)
+		gas.start()
 		T.visible_message("<span class='danger'>Noxious smoke billows from the hulking xenomorph!</span>")
 		count = max(0,count - 1)
 		sleep(DEFILER_GAS_DELAY)
@@ -136,9 +136,9 @@
 // *********** Inject Egg Neurogas
 // ***************************************
 /datum/action/xeno_action/activable/inject_egg_neurogas
-	name = "Inject Neurogas"
+	name = "Inject Gas"
 	action_icon_state = "inject_egg"
-	mechanics_text = "Inject an egg with neurogas, killing the egg, but filling it full with neurogas ready to explode."
+	mechanics_text = "Inject an egg with toxins, killing the larva, but filling it full with gas ready to explode."
 	ability_name = "inject neurogas"
 	plasma_cost = 100
 	cooldown_timer = 5 SECONDS
@@ -147,13 +147,17 @@
 
 /datum/action/xeno_action/activable/inject_egg_neurogas/on_cooldown_finish()
 	playsound(owner.loc, 'sound/effects/xeno_newlarva.ogg', 50, 0)
-	to_chat(owner, "<span class='xenodanger'>We feel our dorsal vents bristle with neurotoxic gas. We can use Emit Neurogas again.</span>")
+	to_chat(owner, "<span class='xenodanger'>We feel our stinger fill with toxins. We can inject an egg again.</span>")
 	return ..()
 
 /datum/action/xeno_action/activable/inject_egg_neurogas/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/Defiler/X = owner
 
 	if(!istype(A, /obj/effect/alien/egg))
+		return fail_activate()
+
+	if(istype(A, /obj/effect/alien/egg/gas))
+		to_chat(X, "<span class='warning'>That egg has already been filled with toxic gas.</span>")
 		return fail_activate()
 
 	var/obj/effect/alien/egg/alien_egg = A
@@ -179,7 +183,7 @@
 			newegg.gas_type = /datum/effect_system/smoke_spread/xeno/hemodile
 			newegg.gas_size_bonus = 1
 		if(/datum/reagent/toxin/xeno_transvitox)
-			newegg.gas_type = datum/effect_system/smoke_spread/xeno/transvitox
+			newegg.gas_type = /datum/effect_system/smoke_spread/xeno/transvitox
 			newegg.gas_size_bonus = 2
 	qdel(alien_egg)
 
