@@ -636,8 +636,8 @@ AMMO
 	cost = 2
 
 /datum/supply_packs/ammo/minigun
-	name = "Vindicator Minigun Ammo Drum"
-	contains = list(/obj/item/ammo_magazine/minigun)
+	name = "Minigun Powerpack"
+	contains = list(/obj/item/minigun_powerpack)
 	cost = 5
 	available_against_xeno_only = TRUE
 

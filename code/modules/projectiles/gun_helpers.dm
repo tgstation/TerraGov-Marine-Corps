@@ -165,7 +165,7 @@ should be alright.
 	if(!ishuman(user))
 		return FALSE
 	var/mob/living/carbon/human/owner = user
-	if(!has_attachment(/obj/item/attachable/magnetic_harness) && !istype(src,/obj/item/weapon/gun/smartgun))
+	if(!has_attachment(/obj/item/attachable/magnetic_harness))
 		var/obj/item/B = owner.belt	//if they don't have a magharness, are they wearing a harness belt?
 		if(!istype(B, /obj/item/belt_harness))
 			return FALSE

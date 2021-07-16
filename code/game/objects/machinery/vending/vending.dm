@@ -565,7 +565,7 @@
 		to_chat(user, "<span class='warning'>Access denied.</span>")
 		flick(icon_deny, src)
 		return
-	
+
 	if(SSticker.mode?.flags_round_type & MODE_HUMAN_ONLY && is_type_in_typecache(R.product_path, GLOB.hvh_restricted_items_list))
 		to_chat(user, "<span class='warning'>This item is banned by the Space Geneva Convention.</span>")
 		flick(icon_deny, src)
@@ -661,8 +661,8 @@
 			if(A.current_rounds < A.max_rounds)
 				to_chat(user, "<span class='warning'>[A] isn't full. Fill it before you can restock it.</span>")
 				return
-		else if(istype(item_to_stock, /obj/item/smartgun_powerpack))
-			var/obj/item/smartgun_powerpack/P = item_to_stock
+		else if(istype(item_to_stock, /obj/item/minigun_powerpack))
+			var/obj/item/minigun_powerpack/P = item_to_stock
 			if(!P.pcell)
 				to_chat(user, "<span class='warning'>The [P] doesn't have a cell. You must put one in before you can restock it.</span>")
 				return
