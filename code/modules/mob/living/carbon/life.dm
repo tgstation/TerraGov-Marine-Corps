@@ -48,7 +48,8 @@
 /mob/living/carbon/human/proc/oncritdrag()
 	SIGNAL_HANDLER
 	if(isxeno(pulledby))
-		adjustOxyLoss(HUMAN_CRITDRAG_OXYLOSS) //take oxy damage per tile dragged
+		adjustOxyLoss(HUMAN_CRITDRAG_DAMAGE /2) //take oxy damage per tile dragged
+		adjustBruteLoss(HUMAN_CRITDRAG_DAMAGE /2) //take brute damage per tile dragged
 
 /mob/living/carbon/update_stat()
 	. = ..()
