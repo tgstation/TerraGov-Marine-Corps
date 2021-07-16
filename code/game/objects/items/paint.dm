@@ -17,7 +17,7 @@
 	afterattack(turf/target, mob/user, proximity)
 		if(!proximity) return
 		if(istype(target) && reagents.total_volume > 5)
-			user.visible_message("<span class='warning'> \The [target] has been splashed with something by [user]!</span>")
+			user.visible_message(span_warning(" \The [target] has been splashed with something by [user]!"))
 			spawn(5)
 				reagents.reaction(target, TOUCH)
 				reagents.remove_any(5)

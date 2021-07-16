@@ -78,8 +78,8 @@
 			if(!istype(L))
 				return
 			if(!L.skills.getRating("pilot")) //everyone can fire dropship weapons while fumbling.
-				L.visible_message("<span class='notice'>[L] fumbles around figuring out how to use the automated targeting system.</span>",
-				"<span class='notice'>You fumble around figuring out how to use the automated targeting system.</span>")
+				L.visible_message(span_notice("[L] fumbles around figuring out how to use the automated targeting system."),
+				span_notice("You fumble around figuring out how to use the automated targeting system."))
 				var/fumbling_time = 10 SECONDS
 				if(!do_after(L, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 					return FALSE
@@ -87,19 +87,19 @@
 				var/obj/effect/overlay/temp/laser_target/LT = X
 				if(LT.target_id == targ_id)
 					if(shuttle.mode != SHUTTLE_CALL)
-						to_chat(L, "<span class='warning'>Dropship can only fire while in flight.</span>")
+						to_chat(L, span_warning("Dropship can only fire while in flight."))
 						return
 					if(shuttle.mode == SHUTTLE_HIJACK_LOCK)
 						return
 					if(!(selected_equipment?.dropship_equipment_flags & IS_WEAPON))
-						to_chat(L, "<span class='warning'>No weapon selected.</span>")
+						to_chat(L, span_warning("No weapon selected."))
 						return
 					var/obj/structure/dropship_equipment/weapon/DEW = selected_equipment
 					if(!DEW.ammo_equipped || DEW.ammo_equipped.ammo_count <= 0)
-						to_chat(L, "<span class='warning'>[DEW] has no ammo.</span>")
+						to_chat(L, span_warning("[DEW] has no ammo."))
 						return
 					if(!COOLDOWN_CHECK(DEW, last_fired))
-						to_chat(L, "<span class='warning'>[DEW] just fired, wait for it to cool down.</span>")
+						to_chat(L, span_warning("[DEW] just fired, wait for it to cool down."))
 						return
 					if(QDELETED(LT)) // Quick final check on the Laser target
 						return

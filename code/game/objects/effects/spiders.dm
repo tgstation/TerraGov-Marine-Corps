@@ -25,7 +25,7 @@
 		if(istype(mover.pulledby, /mob/living/simple_animal/hostile/poison/giant_spider))
 			return TRUE
 		if(prob(50))
-			to_chat(mover, "<span class='danger'>You get stuck in \the [src] for a moment.</span>")
+			to_chat(mover, span_danger("You get stuck in \the [src] for a moment."))
 			return FALSE
 	else if(istype(mover, /obj/projectile))
 		return prob(30)
@@ -122,7 +122,7 @@
 			var/obj/machinery/atmospherics/components/unary/vent_pump/exit_vent = pick(vents)
 			if(prob(50))
 				visible_message("<B>[src] scrambles into the ventilation ducts!</B>", \
-								"<span class='italics'>You hear something scampering through the ventilation ducts.</span>")
+								span_italics("You hear something scampering through the ventilation ducts."))
 
 			addtimer(CALLBACK(src, .proc/move_to_vent, exit_vent), rand(2 SECONDS, 6 SECONDS))
 
@@ -132,7 +132,7 @@
 			var/target_atom = pick(nearby)
 			walk_to(src, target_atom)
 			if(prob(40))
-				visible_message("<span class='notice'>\The [src] skitters[pick(" away"," around","")].</span>")
+				visible_message(span_notice("\The [src] skitters[pick(" away"," around","")]."))
 	else if(prob(10))
 		for(var/obj/machinery/atmospherics/components/unary/vent_pump/v in view(7,src))
 			if(!v.welded)
@@ -165,7 +165,7 @@
 		return
 
 	if(prob(50))
-		audible_message("<span class='italics'>You hear something scampering through the ventilation ducts.</span>")
+		audible_message(span_italics("You hear something scampering through the ventilation ducts."))
 
 	addtimer(CALLBACK(src, .proc/exit_vent, exit_vent), travel_time)
 
@@ -196,7 +196,7 @@
 
 /obj/structure/spider/cocoon/Destroy()
 	var/turf/T = get_turf(src)
-	src.visible_message("<span class='warning'>\The [src] splits open.</span>")
+	src.visible_message(span_warning("\The [src] splits open."))
 	for(var/atom/movable/A in contents)
 		A.forceMove(T)
 	return ..()

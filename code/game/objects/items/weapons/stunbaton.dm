@@ -19,7 +19,7 @@
 	var/has_user_lock = TRUE //whether the baton prevents people without correct access from using it.
 
 /obj/item/weapon/baton/suicide_act(mob/user)
-	user.visible_message("<span class='suicide'>[user] is putting the live [name] in [user.p_their()] mouth! It looks like [user.p_theyre()] trying to commit suicide.</span>")
+	user.visible_message(span_suicide("[user] is putting the live [name] in [user.p_their()] mouth! It looks like [user.p_theyre()] trying to commit suicide."))
 	return (FIRELOSS)
 
 /obj/item/weapon/baton/Initialize()
@@ -48,9 +48,9 @@
 /obj/item/weapon/baton/examine(mob/user)
 	..()
 	if(bcell)
-		to_chat(user, "<span class='notice'>The baton is [round(bcell.percent())]% charged.</span>")
+		to_chat(user, span_notice("The baton is [round(bcell.percent())]% charged."))
 	else
-		to_chat(user, "<span class='warning'>The baton does not have a power source installed.</span>")
+		to_chat(user, span_warning("The baton does not have a power source installed."))
 
 /obj/item/weapon/baton/attack_hand(mob/living/user)
 	. = ..()
@@ -72,9 +72,9 @@
 	if(istype(H))
 		var/obj/item/card/id/I = H.wear_id
 		if(!istype(I) || !check_access(I))
-			H.visible_message("<span class='notice'> [src] beeeps as [H] picks it up</span>", "<span class='danger'>WARNING: Unauthorized user detected. Denying access...</span>")
+			H.visible_message(span_notice(" [src] beeeps as [H] picks it up"), span_danger("WARNING: Unauthorized user detected. Denying access..."))
 			H.Paralyze(40 SECONDS)
-			H.visible_message("<span class='warning'>[src] beeps and sends a shock through [H]'s body!</span>")
+			H.visible_message(span_warning("[src] beeps and sends a shock through [H]'s body!"))
 			deductcharge(hitcost)
 			return FALSE
 	return TRUE
@@ -87,7 +87,7 @@
 
 	if(istype(I, /obj/item/cell))
 		if(bcell)
-			to_chat(user, "<span class='notice'>[src] already has a cell.</span>")
+			to_chat(user, span_notice("[src] already has a cell."))
 			return
 
 		if(!user.drop_held_item())
@@ -95,7 +95,7 @@
 
 		I.forceMove(src)
 		bcell = I
-		to_chat(user, "<span class='notice'>You install a cell in [src].</span>")
+		to_chat(user, span_notice("You install a cell in [src]."))
 
 	else if(isscrewdriver(I))
 		if(!bcell)
@@ -104,26 +104,26 @@
 		bcell.forceMove(get_turf(src))
 		bcell.update_icon()
 		bcell = null
-		to_chat(user, "<span class='notice'>You remove the cell from the [src].</span>")
+		to_chat(user, span_notice("You remove the cell from the [src]."))
 		status = 0
 
 	update_icon()
 
 /obj/item/weapon/baton/attack_self(mob/user)
 	if(has_user_lock && user.skills.getRating("police") < SKILL_POLICE_MP)
-		to_chat(user, "<span class='warning'>You don't seem to know how to use [src]...</span>")
+		to_chat(user, span_warning("You don't seem to know how to use [src]..."))
 		return
 	if(bcell && bcell.charge > hitcost)
 		status = !status
-		to_chat(user, "<span class='notice'>[src] is now [status ? "on" : "off"].</span>")
+		to_chat(user, span_notice("[src] is now [status ? "on" : "off"]."))
 		playsound(loc, "sparks", 25, 1, 6)
 		update_icon()
 	else
 		status = 0
 		if(!bcell)
-			to_chat(user, "<span class='warning'>[src] does not have a power source!</span>")
+			to_chat(user, span_warning("[src] does not have a power source!"))
 		else
-			to_chat(user, "<span class='warning'>[src] is out of charge.</span>")
+			to_chat(user, span_warning("[src] is out of charge."))
 
 
 /obj/item/weapon/baton/attack(mob/M, mob/user)
@@ -131,7 +131,7 @@
 		return
 
 	if(has_user_lock && user.skills.getRating("police") < SKILL_POLICE_MP)
-		to_chat(user, "<span class='warning'>You don't seem to know how to use [src]...</span>")
+		to_chat(user, span_warning("You don't seem to know how to use [src]..."))
 		return
 
 	var/agony = agonyforce
@@ -153,23 +153,23 @@
 				target_zone = get_zone_with_miss_chance(user.zone_selected, L)
 
 			if(!target_zone)
-				L.visible_message("<span class='danger'>[user] misses [L] with \the [src]!</span>")
+				L.visible_message(span_danger("[user] misses [L] with \the [src]!"))
 				return 0
 
 			var/mob/living/carbon/human/H = L
 			var/datum/limb/affecting = H.get_limb(target_zone)
 			if (affecting)
 				if(!status)
-					L.visible_message("<span class='warning'>[L] has been prodded in the [affecting.display_name] with [src] by [user]. Luckily it was off.</span>")
+					L.visible_message(span_warning("[L] has been prodded in the [affecting.display_name] with [src] by [user]. Luckily it was off."))
 					return 1
 				else
-					H.visible_message("<span class='danger'>[L] has been prodded in the [affecting.display_name] with [src] by [user]!</span>")
+					H.visible_message(span_danger("[L] has been prodded in the [affecting.display_name] with [src] by [user]!"))
 		else
 			if(!status)
-				L.visible_message("<span class='warning'>[L] has been prodded with [src] by [user]. Luckily it was off.</span>")
+				L.visible_message(span_warning("[L] has been prodded with [src] by [user]. Luckily it was off."))
 				return 1
 			else
-				L.visible_message("<span class='danger'>[L] has been prodded with [src] by [user]!</span>")
+				L.visible_message(span_danger("[L] has been prodded with [src] by [user]!"))
 
 	//stun effects
 	if(!HAS_TRAIT(L, TRAIT_BATONIMMUNE))
@@ -218,7 +218,7 @@
 
 
 /obj/item/weapon/stunprod/suicide_act(mob/user)
-	user.visible_message("<span class='danger'>[user] is putting the live [src] in [user.p_their()] mouth! It looks like [p_theyre()] trying to commit suicide.</span>")
+	user.visible_message(span_danger("[user] is putting the live [src] in [user.p_their()] mouth! It looks like [p_theyre()] trying to commit suicide."))
 	return FIRELOSS
 
 
@@ -232,12 +232,12 @@
 /obj/item/weapon/stunprod/attack_self(mob/user)
 	if(charges > 0)
 		status = !status
-		to_chat(user, "<span class='notice'>\The [src] is now [status ? "on" : "off"].</span>")
+		to_chat(user, span_notice("\The [src] is now [status ? "on" : "off"]."))
 		playsound(loc, "sparks", 15, 1)
 		update_icon()
 	else
 		status = 0
-		to_chat(user, "<span class='warning'>\The [src] is out of charge.</span>")
+		to_chat(user, span_warning("\The [src] is out of charge."))
 
 
 /obj/item/weapon/stunprod/attack(mob/M, mob/user)
@@ -245,14 +245,14 @@
 		return
 
 	else if(!status)
-		M.visible_message("<span class='warning'>[M] has been poked with [src] whilst it's turned off by [user].</span>")
+		M.visible_message(span_warning("[M] has been poked with [src] whilst it's turned off by [user]."))
 		return
 
 	if(status && isliving(M))
 		var/mob/living/L = M
 		L.Paralyze(12 SECONDS)
 		charges -= 2
-		L.visible_message("<span class='danger'>[L] has been prodded with the [src] by [user]!</span>")
+		L.visible_message(span_danger("[L] has been prodded with the [src] by [user]!"))
 
 		log_combat(user, L, "stunned", src)
 
@@ -291,4 +291,4 @@
 
 /obj/item/weapon/stunprod/improved/examine(mob/user)
 	. = ..()
-	to_chat(user, "<span class='notice'>It has [charges] charges left.</span>")
+	to_chat(user, span_notice("It has [charges] charges left."))

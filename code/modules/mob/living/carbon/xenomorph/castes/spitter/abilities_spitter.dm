@@ -27,8 +27,8 @@
 	succeed_activate()
 
 	playsound(X.loc, 'sound/effects/refill.ogg', 50, 1)
-	X.visible_message("<span class='xenowarning'>\The [X] spews forth a virulent spray of acid!</span>", \
-	"<span class='xenowarning'>We spew forth a spray of acid!</span>", null, 5)
+	X.visible_message(span_xenowarning("\The [X] spews forth a virulent spray of acid!"), \
+	span_xenowarning("We spew forth a spray of acid!"), null, 5)
 	var/turflist = getline(X, target)
 	spray_turfs(turflist)
 	add_cooldown()
@@ -96,7 +96,7 @@
 		sleep(2)
 
 /datum/action/xeno_action/activable/spray_acid/line/on_cooldown_finish() //Give acid spray a proper cooldown notification
-	to_chat(owner, "<span class='xenodanger'>Our dermal pouches bloat with fresh acid; we can use acid spray again.</span>")
+	to_chat(owner, span_xenodanger("Our dermal pouches bloat with fresh acid; we can use acid spray again."))
 	owner.playsound_local(owner, 'sound/voice/alien_drool2.ogg', 25, 0, 1)
 	return ..()
 
@@ -137,6 +137,6 @@
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "spitter_scatter_spits")
 
 /datum/action/xeno_action/activable/scatter_spit/on_cooldown_finish()
-	to_chat(owner, "<span class='xenodanger'>Our auxiliary sacks fill to bursting; we can use scatter spit again.</span>")
+	to_chat(owner, span_xenodanger("Our auxiliary sacks fill to bursting; we can use scatter spit again."))
 	owner.playsound_local(owner, 'sound/voice/alien_drool1.ogg', 25, 0, 1)
 	return ..()

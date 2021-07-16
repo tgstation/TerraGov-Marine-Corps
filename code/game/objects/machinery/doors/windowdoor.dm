@@ -154,7 +154,7 @@
 		if(!do_after(user, 40, TRUE, src, BUSY_ICON_BUILD))
 			return TRUE
 
-		to_chat(user, "<span class='notice'>You removed the windoor electronics!</span>")
+		to_chat(user, span_notice("You removed the windoor electronics!"))
 
 		var/obj/structure/windoor_assembly/WA = new(loc)
 

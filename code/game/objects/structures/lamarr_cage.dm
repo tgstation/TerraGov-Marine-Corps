@@ -41,7 +41,7 @@
 	. = ..()
 	if(.)
 		return
-	user.visible_message("<span class='warning'>[user] kicks the lab cage.</span>", "<span class='notice'>You kick the lab cage.</span>")
+	user.visible_message(span_warning("[user] kicks the lab cage."), span_notice("You kick the lab cage."))
 	take_damage(2)
 
 

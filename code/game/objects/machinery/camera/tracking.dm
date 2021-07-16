@@ -84,11 +84,11 @@
 	tracking = TRUE
 
 	if(!target || !target.can_track(src))
-		to_chat(src, "<span class='warning'>Target is not near any active cameras.</span>")
+		to_chat(src, span_warning("Target is not near any active cameras."))
 		cameraFollow = null
 		return
 
-	to_chat(src, "<span class='notice'>Now tracking [target.get_visible_name()] on camera.</span>")
+	to_chat(src, span_notice("Now tracking [target.get_visible_name()] on camera."))
 
 	var/cameraticks = 0
 	spawn(0)
@@ -99,11 +99,11 @@
 			if(!target.can_track(src))
 				tracking = TRUE
 				if(!cameraticks)
-					to_chat(src, "<span class='warning'>Target is not near any active cameras. Attempting to reacquire...</span>")
+					to_chat(src, span_warning("Target is not near any active cameras. Attempting to reacquire..."))
 				cameraticks++
 				if(cameraticks > 9)
 					cameraFollow = null
-					to_chat(src, "<span class='warning'>Unable to reacquire, cancelling track...</span>")
+					to_chat(src, span_warning("Unable to reacquire, cancelling track..."))
 					tracking = FALSE
 					return
 				else

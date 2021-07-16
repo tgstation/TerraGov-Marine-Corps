@@ -114,7 +114,7 @@
 
 
 /datum/game_mode/infestation/crash/announce()
-	to_chat(world, "<span class='round_header'>The current map is - [SSmapping.configs[GROUND_MAP].map_name]!</span>")
+	to_chat(world, span_round_header("The current map is - [SSmapping.configs[GROUND_MAP].map_name]!"))
 	priority_announce("Scheduled for landing in T-10 Minutes. Prepare for landing. Known hostiles near LZ. Detonation Protocol Active, planet disposable. Marines disposable.", type = ANNOUNCEMENT_PRIORITY)
 	playsound(shuttle, 'sound/machines/warning-buzzer.ogg', 75, 0, 30)
 
@@ -229,7 +229,7 @@
 			new_xeno.upgrade_xeno(XENO_UPGRADE_ONE)
 
 /datum/game_mode/infestation/crash/can_summon_dropship(mob/user)
-	to_chat(src, "<span class='warning'>This power doesn't work in this gamemode.</span>")
+	to_chat(src, span_warning("This power doesn't work in this gamemode."))
 	return FALSE
 
 /datum/game_mode/infestation/crash/proc/balance_scales()

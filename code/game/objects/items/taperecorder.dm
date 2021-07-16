@@ -34,7 +34,7 @@
 		return
 	icon_state = "taperecorderrecording"
 	if(timerecorded < 3600 && playing == 0)
-		to_chat(usr, "<span class='notice'>Recording started.</span>")
+		to_chat(usr, span_notice("Recording started."))
 		recording = 1
 		timestamp+= timerecorded
 		storedinfo += "\[[time2text(timerecorded*10,"mm:ss")]\] Recording started."
@@ -47,7 +47,7 @@
 		icon_state = "taperecorderidle"
 		return
 	else
-		to_chat(usr, "<span class='notice'>Either [src]'s memory is full, or it is currently playing back its memory.</span>")
+		to_chat(usr, span_notice("Either [src]'s memory is full, or it is currently playing back its memory."))
 
 
 /obj/item/taperecorder/verb/stop()
@@ -60,7 +60,7 @@
 		recording = 0
 		timestamp+= timerecorded
 		storedinfo += "\[[time2text(timerecorded*10,"mm:ss")]\] Recording stopped."
-		to_chat(usr, "<span class='notice'>Recording stopped.</span>")
+		to_chat(usr, span_notice("Recording stopped."))
 		icon_state = "taperecorderidle"
 		return
 	else if(playing == 1)
@@ -78,13 +78,13 @@
 	if(usr.stat)
 		return
 	if(recording == 1 || playing == 1)
-		to_chat(usr, "<span class='notice'>You can't clear the memory while playing or recording!</span>")
+		to_chat(usr, span_notice("You can't clear the memory while playing or recording!"))
 		return
 	else
 		if(storedinfo)	storedinfo.Cut()
 		if(timestamp)	timestamp.Cut()
 		timerecorded = 0
-		to_chat(usr, "<span class='notice'>Memory cleared.</span>")
+		to_chat(usr, span_notice("Memory cleared."))
 		return
 
 
@@ -95,14 +95,14 @@
 	if(usr.stat)
 		return
 	if(recording == 1)
-		to_chat(usr, "<span class='notice'>You can't playback when recording!</span>")
+		to_chat(usr, span_notice("You can't playback when recording!"))
 		return
 	if(playing == 1)
-		to_chat(usr, "<span class='notice'>You're already playing!</span>")
+		to_chat(usr, span_notice("You're already playing!"))
 		return
 	playing = 1
 	icon_state = "taperecorderplaying"
-	to_chat(usr, "<span class='notice'>Playing started.</span>")
+	to_chat(usr, span_notice("Playing started."))
 	for(var/i=1,timerecorded<3600,sleep(10 * (playsleepseconds) ))
 		if(playing == 0)
 			break
@@ -134,12 +134,12 @@
 	if(usr.stat)
 		return
 	if(!canprint)
-		to_chat(usr, "<span class='notice'>The recorder can't print that fast!</span>")
+		to_chat(usr, span_notice("The recorder can't print that fast!"))
 		return
 	if(recording == 1 || playing == 1)
-		to_chat(usr, "<span class='notice'>You can't print the transcript while playing or recording!</span>")
+		to_chat(usr, span_notice("You can't print the transcript while playing or recording!"))
 		return
-	to_chat(usr, "<span class='notice'>Transcript printed.</span>")
+	to_chat(usr, span_notice("Transcript printed."))
 	var/obj/item/paper/P = new /obj/item/paper(get_turf(src))
 	var/t1 = "<B>Transcript:</B><BR><BR>"
 	for(var/i=1,storedinfo.len >= i,i++)
@@ -157,7 +157,7 @@
 			return
 		icon_state = "taperecorderrecording"
 		if(timerecorded < 3600 && playing == 0)
-			to_chat(usr, "<span class='notice'>Recording started.</span>")
+			to_chat(usr, span_notice("Recording started."))
 			recording = 1
 			timestamp+= timerecorded
 			storedinfo += "\[[time2text(timerecorded*10,"mm:ss")]\] Recording started."
@@ -170,7 +170,7 @@
 			icon_state = "taperecorderidle"
 			return
 		else
-			to_chat(usr, "<span class='warning'>Either [src]'s memory is full, or it is currently playing back its memory.</span>")
+			to_chat(usr, span_warning("Either [src]'s memory is full, or it is currently playing back its memory."))
 	else
 		if(usr.stat)
 			to_chat(usr, "Not when you're incapacitated.")
@@ -179,7 +179,7 @@
 			recording = 0
 			timestamp+= timerecorded
 			storedinfo += "\[[time2text(timerecorded*10,"mm:ss")]\] Recording stopped."
-			to_chat(usr, "<span class='notice'>Recording stopped.</span>")
+			to_chat(usr, span_notice("Recording stopped."))
 			icon_state = "taperecorderidle"
 			return
 		else if(playing == 1)
@@ -188,5 +188,5 @@
 			icon_state = "taperecorderidle"
 			return
 		else
-			to_chat(usr, "<span class='warning'>Stop what?</span>")
+			to_chat(usr, span_warning("Stop what?"))
 			return

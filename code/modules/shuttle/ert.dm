@@ -126,7 +126,7 @@
 
 		if(M.departing)
 			playsound(loc, 'sound/machines/twobeep.ogg', 25, 1)
-			visible_message("<span class='warning'>ERROR: Launch protocols already in process. Please standby.</span>", 3)
+			visible_message(span_warning("ERROR: Launch protocols already in process. Please standby."), 3)
 			return
 
 		log_game("[key_name(usr)] has departed an ERT shuttle")

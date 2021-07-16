@@ -102,14 +102,14 @@ SUBSYSTEM_DEF(points)
 	supply_points[user.faction] -= cost
 	LAZYADDASSOCSIMPLE(shoppinglist[O.faction], "[O.id]", O)
 	if(GLOB.directory[O.orderer])
-		to_chat(GLOB.directory[O.orderer], "<span class='notice'>Your request [O.id] has been approved!</span>")
+		to_chat(GLOB.directory[O.orderer], span_notice("Your request [O.id] has been approved!"))
 
 /datum/controller/subsystem/points/proc/deny_request(datum/supply_order/O)
 	requestlist -= "[O.id]"
 	deniedrequests["[O.id]"] = O
 	O.authorised_by = "denied"
 	if(GLOB.directory[O.orderer])
-		to_chat(GLOB.directory[O.orderer], "<span class='notice'>Your request [O.id] has been denied!</span>")
+		to_chat(GLOB.directory[O.orderer], span_notice("Your request [O.id] has been denied!"))
 
 /datum/controller/subsystem/points/proc/copy_order(datum/supply_order/O)
 	var/datum/supply_order/NO = new

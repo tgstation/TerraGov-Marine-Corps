@@ -26,4 +26,4 @@
 
 	var/datum/job/J = SSjob.GetJobType(/datum/job/colonist)
 	H.apply_assigned_role_to_spawn(J)
-	to_chat(H, "<p style='font-size:1.5em'><span class='notice'>You are a colonist. You... wait for further orders!</span></p>")
+	to_chat(H, "<p style='font-size:1.5em'>[span_notice("You are a colonist. You... wait for further orders!")]</p>")

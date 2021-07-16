@@ -23,10 +23,10 @@
 		return
 	var/T = user.loc
 	if (!( istype(T, /turf) ))
-		to_chat(user, "<span class='warning'>You must be on the ground!</span>")
+		to_chat(user, span_warning("You must be on the ground!"))
 		return
 	if (!isspaceturf(T))
-		to_chat(user, "<span class='warning'>You cannot build on or repair this turf!</span>")
+		to_chat(user, span_warning("You cannot build on or repair this turf!"))
 		return
 	src.build(T)
 	use(1)

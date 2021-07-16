@@ -22,7 +22,7 @@
 	if(istype(target, /obj/structure/reagent_dispensers/fueltank) && get_dist(user,target) <= 1)
 		var/obj/structure/reagent_dispensers/fueltank/FT = target
 		if(FT.reagents.total_volume == 0)
-			to_chat(user, "<span class='warning'>Out of fuel!</span>")
+			to_chat(user, span_warning("Out of fuel!"))
 			return..()
 
 		//Reworked and much simpler equation; fuel capacity minus the current amount, with a check for insufficient fuel
@@ -31,7 +31,7 @@
 		current_rounds += fuel_transfer_amount
 		playsound(loc, 'sound/effects/refill.ogg', 25, 1, 3)
 		caliber = CALIBER_FUEL
-		to_chat(user, "<span class='notice'>You refill [src] with [lowertext(caliber)].</span>")
+		to_chat(user, span_notice("You refill [src] with [lowertext(caliber)]."))
 		update_icon()
 
 	else
@@ -75,7 +75,7 @@
 	var/mob/living/carbon/human/humanuser = user
 
 	if (!humanuser.is_item_in_slots(src))
-		to_chat(user, "<span class='warning'>You must equip or hold this fuel tank to be able to link it to a flamer</span>")
+		to_chat(user, span_warning("You must equip or hold this fuel tank to be able to link it to a flamer"))
 		return
 
 	if(FLT.current_mag == src)
@@ -83,7 +83,7 @@
 		return
 
 	if (attached_flamer)
-		to_chat(user, "<span class='warning'>This fuel tank is already attached to something</span>")
+		to_chat(user, span_warning("This fuel tank is already attached to something"))
 		return
 
 	FLT.attach_fueltank(user,src)

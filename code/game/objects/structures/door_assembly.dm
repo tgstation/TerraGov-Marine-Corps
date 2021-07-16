@@ -152,7 +152,7 @@ obj/structure/door_assembly
 	else if(iswelder(I) && (istext(glass) || glass == 1 || !anchored))
 		var/obj/item/tool/weldingtool/WT = I
 		if(!WT.remove_fuel(0, user))
-			to_chat(user, "<span class='notice'>You need more welding fuel.</span>")
+			to_chat(user, span_notice("You need more welding fuel."))
 			return
 
 		playsound(loc, 'sound/items/welder2.ogg', 25, 1)
@@ -163,7 +163,7 @@ obj/structure/door_assembly
 
 			if(!WT.isOn())
 				return
-			to_chat(user, "<span class='notice'>You welded the [glass] plating off!</span>")
+			to_chat(user, span_notice("You welded the [glass] plating off!"))
 			var/M = text2path("/obj/item/stack/sheet/mineral/[glass]")
 			new M(loc, 2)
 			glass = 0
@@ -175,7 +175,7 @@ obj/structure/door_assembly
 
 			if(!WT.isOn())
 				return
-			to_chat(user, "<span class='notice'>You welded the glass panel out!</span>")
+			to_chat(user, span_notice("You welded the glass panel out!"))
 			new /obj/item/stack/sheet/glass/reinforced(loc)
 			glass = 0
 
@@ -187,7 +187,7 @@ obj/structure/door_assembly
 			if(!WT.isOn())
 				return
 
-			to_chat(user, "<span class='notice'>You dissasembled the airlock assembly!</span>")
+			to_chat(user, span_notice("You dissasembled the airlock assembly!"))
 			new /obj/item/stack/sheet/metal(loc, 4)
 			qdel(src)
 
@@ -201,13 +201,13 @@ obj/structure/door_assembly
 		if(!do_after(user, 40, TRUE, src, BUSY_ICON_BUILD))
 			return
 
-		to_chat(user, "<span class='notice'>You [anchored ? "un" : ""]secured the airlock assembly!</span>")
+		to_chat(user, span_notice("You [anchored ? "un" : ""]secured the airlock assembly!"))
 		anchored = !anchored
 
 	else if(iscablecoil(I) && state == 0 && anchored)
 		var/obj/item/stack/cable_coil/C = I
 		if(C.get_amount() < 1)
-			to_chat(user, "<span class='warning'>You need one length of coil to wire the airlock assembly.</span>")
+			to_chat(user, span_warning("You need one length of coil to wire the airlock assembly."))
 			return
 
 		user.visible_message("[user] wires the airlock assembly.", "You start to wire the airlock assembly.")
@@ -219,7 +219,7 @@ obj/structure/door_assembly
 			return
 
 		state = 1
-		to_chat(user, "<span class='notice'>You wire the airlock.</span>")
+		to_chat(user, span_notice("You wire the airlock."))
 
 	else if(iswirecutter(I) && state == 1 )
 		playsound(loc, 'sound/items/wirecutter.ogg', 25, 1)
@@ -228,7 +228,7 @@ obj/structure/door_assembly
 		if(!do_after(user, 40, TRUE, src, BUSY_ICON_BUILD))
 			return
 
-		to_chat(user, "<span class='notice'>You cut the airlock wires.!</span>")
+		to_chat(user, span_notice("You cut the airlock wires.!"))
 		new /obj/item/stack/cable_coil(loc, 1)
 		state = 0
 
@@ -241,7 +241,7 @@ obj/structure/door_assembly
 
 		user.drop_held_item()
 		I.forceMove(src)
-		to_chat(user, "<span class='notice'>You installed the airlock electronics!</span>")
+		to_chat(user, span_notice("You installed the airlock electronics!"))
 		state = 2
 		name = "Near finished Airlock Assembly"
 		electronics = I
@@ -253,7 +253,7 @@ obj/structure/door_assembly
 		if(!do_after(user, 40, TRUE, src, BUSY_ICON_BUILD))
 			return
 
-		to_chat(user, "<span class='notice'>You removed the airlock electronics!</span>")
+		to_chat(user, span_notice("You removed the airlock electronics!"))
 		state = 1
 		name = "Wired Airlock Assembly"
 		var/obj/item/circuitboard/airlock/AE
@@ -279,7 +279,7 @@ obj/structure/door_assembly
 			if(!S.use(1))
 				return
 
-			to_chat(user, "<span class='notice'>You installed reinforced glass windows into the airlock assembly.</span>")
+			to_chat(user, span_notice("You installed reinforced glass windows into the airlock assembly."))
 			glass = 1
 
 		else if(istype(S, /obj/item/stack/sheet/mineral) && S.sheettype)
@@ -295,17 +295,17 @@ obj/structure/door_assembly
 			if(!S.use(2))
 				return
 
-			to_chat(user, "<span class='notice'>You installed [M] plating into the airlock assembly.</span>")
+			to_chat(user, span_notice("You installed [M] plating into the airlock assembly."))
 			glass = "[M]"
 
 	else if(isscrewdriver(I) && state == 2 )
 		playsound(loc, 'sound/items/screwdriver.ogg', 25, 1)
-		to_chat(user, "<span class='notice'>Now finishing the airlock.</span>")
+		to_chat(user, span_notice("Now finishing the airlock."))
 
 		if(!do_after(user, 40, TRUE, src, BUSY_ICON_BUILD))
 			return
 
-		to_chat(user, "<span class='notice'>You finish the airlock!</span>")
+		to_chat(user, span_notice("You finish the airlock!"))
 		var/path
 		if(istext(glass))
 			path = text2path("/obj/machinery/door/airlock/[glass]")

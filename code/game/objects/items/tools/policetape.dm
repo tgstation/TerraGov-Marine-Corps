@@ -47,13 +47,13 @@
 /obj/item/tool/taperoll/attack_self(mob/user as mob)
 	if(icon_state == "[icon_base]_start")
 		start = get_turf(src)
-		to_chat(usr, "<span class='notice'>You place the first end of the [src].</span>")
+		to_chat(usr, span_notice("You place the first end of the [src]."))
 		icon_state = "[icon_base]_stop"
 	else
 		icon_state = "[icon_base]_start"
 		end = get_turf(src)
 		if(start.y != end.y && start.x != end.x || start.z != end.z)
-			to_chat(usr, "<span class='notice'>[src] can only be laid horizontally or vertically.</span>")
+			to_chat(usr, span_notice("[src] can only be laid horizontally or vertically."))
 			return
 
 		var/turf/cur = start
@@ -82,7 +82,7 @@
 						break
 			cur = get_step_towards(cur,end)
 		if (!can_place)
-			to_chat(usr, "<span class='notice'>You can't run \the [src] through that!</span>")
+			to_chat(usr, span_notice("You can't run \the [src] through that!"))
 			return
 
 		cur = start
@@ -96,7 +96,7 @@
 				P.icon_state = "[P.icon_base]_[dir]"
 			cur = get_step_towards(cur,end)
 	//is_blocked_turf(var/turf/T)
-		to_chat(usr, "<span class='notice'> You finish placing the [src].</span>"	)
+		to_chat(usr, span_notice(" You finish placing the [src].")	)
 
 /obj/item/tool/taperoll/afterattack(atom/A, mob/user as mob, proximity)
 	if (proximity && istype(A, /obj/machinery/door/airlock))
@@ -105,7 +105,7 @@
 		P.loc = locate(T.x,T.y,T.z)
 		P.icon_state = "[src.icon_base]_door"
 		P.layer = WINDOW_LAYER
-		to_chat(user, "<span class='notice'>You finish placing the [src].</span>")
+		to_chat(user, span_notice("You finish placing the [src]."))
 
 /obj/item/tape/proc/crumple()
 	if(!crumpled)
@@ -119,7 +119,7 @@
 		var/mob/M = AM
 		if(!allowed(M))	//only select few learn art of not crumpling the tape
 			if(ishuman(M))
-				to_chat(M, "<span class='warning'>You are not supposed to go past [src]...</span>")
+				to_chat(M, span_warning("You are not supposed to go past [src]..."))
 			crumple()
 
 /obj/item/tape/attackby(obj/item/I, mob/user, params)
@@ -131,7 +131,7 @@
 	if(.)
 		return
 	if (user.a_intent == INTENT_HELP && allowed(user))
-		user.visible_message("<span class='notice'>[user] lifts [src], allowing passage.</span>")
+		user.visible_message(span_notice("[user] lifts [src], allowing passage."))
 		crumple()
 		lifted = TRUE
 		addtimer(VARSET_CALLBACK(src, lifted, FALSE), 20 SECONDS)
@@ -145,7 +145,7 @@
 	if(user.a_intent == INTENT_HELP && ((!can_puncture(W) && src.allowed(user))))
 		to_chat(user, "You can't break the [src] with that!")
 		return
-	user.visible_message("<span class='notice'> [user] breaks the [src]!</span>")
+	user.visible_message(span_notice(" [user] breaks the [src]!"))
 
 	var/dir[2]
 	var/icon_dir = src.icon_state

@@ -42,7 +42,7 @@
 
 	if(istype(I, /obj/item/cell) && anchored)
 		if(charging)
-			to_chat(user, "<span class='warning'>There is already a cell in the charger.</span>")
+			to_chat(user, span_warning("There is already a cell in the charger."))
 			return
 
 		var/area/A = loc.loc
@@ -50,7 +50,7 @@
 			return
 
 		if(A.power_equip == 0) // There's no APC in this area, don't try to cheat power!
-			to_chat(user, "<span class='warning'>The [name] blinks red as you try to insert the cell!</span>")
+			to_chat(user, span_warning("The [name] blinks red as you try to insert the cell!"))
 			return
 
 		if(user.transferItemToLoc(I, src))
@@ -63,7 +63,7 @@
 
 	else if(iswrench(I))
 		if(charging)
-			to_chat(user, "<span class='warning'>Remove the cell first!</span>")
+			to_chat(user, span_warning("Remove the cell first!"))
 			return
 
 		anchored = !anchored

@@ -36,7 +36,7 @@
 			h_user.temporarilyRemoveItemFromInventory(src)
 			h_user.temporarilyRemoveItemFromInventory(bundle)
 			h_user.put_in_hands(bundle)
-		to_chat(user, "<span class='notice'>You add [worth] dollars worth of money to the bundles.<br>It holds [bundle.worth] dollars now.</span>")
+		to_chat(user, span_notice("You add [worth] dollars worth of money to the bundles.<br>It holds [bundle.worth] dollars now."))
 		qdel(src)
 
 /obj/item/spacecash/bundle
@@ -156,4 +156,4 @@ proc/spawn_money(var/sum, spawnloc, mob/living/carbon/human/human_user as mob)
 /obj/item/spacecash/ewallet/examine(mob/user)
 	. = ..()
 	if(user == loc)
-		to_chat(user, "<span class='notice'>Charge card's owner: [owner_name]. Dollars remaining: [worth].</span>")
+		to_chat(user, span_notice("Charge card's owner: [owner_name]. Dollars remaining: [worth]."))

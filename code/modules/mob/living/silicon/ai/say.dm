@@ -8,7 +8,7 @@
 	if(incapacitated())
 		return FALSE
 	if(control_disabled)
-		to_chat(src, "<span class='danger'>Your radio transmitter is offline!</span>")
+		to_chat(src, span_danger("Your radio transmitter is offline!"))
 		return FALSE
 	return ..()
 
@@ -21,7 +21,7 @@
 
 	var/obj/machinery/holopad/T = current
 	if(!istype(T) || !T.masters[src])
-		to_chat(src, "<span class='warning'>No holopad connected.</span>")
+		to_chat(src, span_warning("No holopad connected."))
 		return
 
 	var/turf/padturf = get_turf(T)
@@ -32,7 +32,7 @@
 		padloc = "(UNKNOWN)"
 	log_talk(message, LOG_SAY, tag = "HOLOPAD in [padloc]")
 	send_speech(message, 7, T, "robot", message_language = language)
-	to_chat(src, "<span class='notice'>Holopad transmitted: [real_name]: \"[message]\"</span>")
+	to_chat(src, span_notice("Holopad transmitted: [real_name]: \"[message]\""))
 
 
 /mob/living/silicon/ai/get_message_mode(message)

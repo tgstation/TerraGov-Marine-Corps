@@ -70,7 +70,7 @@ obj/structure/windoor_assembly/Destroy()
 			if(iswelder(I) && !anchored)
 				var/obj/item/tool/weldingtool/WT = I
 				if(!WT.remove_fuel(0, user))
-					to_chat(user, "<span class='notice'>You need more welding fuel to dissassemble the windoor assembly.</span>")
+					to_chat(user, span_notice("You need more welding fuel to dissassemble the windoor assembly."))
 					return
 
 				user.visible_message("[user] dissassembles the windoor assembly.", "You start to dissassemble the windoor assembly.")
@@ -81,7 +81,7 @@ obj/structure/windoor_assembly/Destroy()
 
 				if(!src || !WT.isOn())
 					return
-				to_chat(user, "<span class='notice'>You dissasembled the windoor assembly!</span>")
+				to_chat(user, span_notice("You dissasembled the windoor assembly!"))
 				new /obj/item/stack/sheet/glass/reinforced(get_turf(src), 5)
 				if(secure)
 					new /obj/item/stack/rods(get_turf(src), 4)
@@ -95,7 +95,7 @@ obj/structure/windoor_assembly/Destroy()
 				if(!do_after(user, 40, TRUE, src, BUSY_ICON_BUILD))
 					return
 
-				to_chat(user, "<span class='notice'>You've secured the windoor assembly!</span>")
+				to_chat(user, span_notice("You've secured the windoor assembly!"))
 				anchored = TRUE
 				if(secure)
 					name = "Secure Anchored Windoor Assembly"
@@ -110,7 +110,7 @@ obj/structure/windoor_assembly/Destroy()
 				if(!do_after(user, 40, TRUE, src, BUSY_ICON_BUILD))
 					return
 
-				to_chat(user, "<span class='notice'>You've unsecured the windoor assembly!</span>")
+				to_chat(user, span_notice("You've unsecured the windoor assembly!"))
 				anchored = FALSE
 
 				if(secure)
@@ -122,17 +122,17 @@ obj/structure/windoor_assembly/Destroy()
 			else if(istype(I, /obj/item/stack/rods) && !secure)
 				var/obj/item/stack/rods/R = I
 				if(R.get_amount() < 4)
-					to_chat(user, "<span class='warning'>You need more rods to do this.</span>")
+					to_chat(user, span_warning("You need more rods to do this."))
 					return
 
-				to_chat(user, "<span class='notice'>You start to reinforce the windoor with rods.</span>")
+				to_chat(user, span_notice("You start to reinforce the windoor with rods."))
 				if(!do_after(user,40, TRUE, src, BUSY_ICON_BUILD) || secure)
 					return
 
 				if(!R.use(4))
 					return
 
-				to_chat(user, "<span class='notice'>You reinforce the windoor.</span>")
+				to_chat(user, span_notice("You reinforce the windoor."))
 				secure = "secure_"
 				if(anchored)
 					name = "Secure Anchored Windoor Assembly"
@@ -150,7 +150,7 @@ obj/structure/windoor_assembly/Destroy()
 				if(!CC.use(1))
 					return
 
-				to_chat(user, "<span class='notice'>You wire the windoor!</span>")
+				to_chat(user, span_notice("You wire the windoor!"))
 				state = "02"
 				if(secure)
 					name = "Secure Wired Windoor Assembly"
@@ -165,7 +165,7 @@ obj/structure/windoor_assembly/Destroy()
 				if(!do_after(user, 40, TRUE, src, BUSY_ICON_BUILD))
 					return
 
-				to_chat(user, "<span class='notice'>You cut the windoor wires.!</span>")
+				to_chat(user, span_notice("You cut the windoor wires.!"))
 				new /obj/item/stack/cable_coil(get_turf(user), 1)
 				state = "01"
 				if(secure)
@@ -183,7 +183,7 @@ obj/structure/windoor_assembly/Destroy()
 
 				user.drop_held_item()
 				I.forceMove(src)
-				to_chat(user, "<span class='notice'>You've installed the airlock electronics!</span>")
+				to_chat(user, span_notice("You've installed the airlock electronics!"))
 				name = "Near finished Windoor Assembly"
 				electronics = I
 
@@ -198,7 +198,7 @@ obj/structure/windoor_assembly/Destroy()
 				if(!electronics)
 					return
 
-				to_chat(user, "<span class='notice'>You've removed the airlock electronics!</span>")
+				to_chat(user, span_notice("You've removed the airlock electronics!"))
 				if(secure)
 					name = "Secure Wired Windoor Assembly"
 				else
@@ -212,7 +212,7 @@ obj/structure/windoor_assembly/Destroy()
 			//Crowbar to complete the assembly, Step 7 complete.
 			else if(iscrowbar(I))
 				if(!electronics)
-					to_chat(user, "<span class='warning'>The assembly is missing electronics.</span>")
+					to_chat(user, span_warning("The assembly is missing electronics."))
 					return
 				DIRECT_OUTPUT(user, browse(null, "window=windoor_access"))
 				playsound(loc, 'sound/items/crowbar.ogg', 25, 1)
@@ -222,7 +222,7 @@ obj/structure/windoor_assembly/Destroy()
 					return
 
 				density = TRUE //Shouldn't matter but just incase
-				to_chat(user, "<span class='notice'>You finish the windoor!</span>")
+				to_chat(user, span_notice("You finish the windoor!"))
 
 				if(secure)
 					var/obj/machinery/door/window/secure/BR = new(loc)

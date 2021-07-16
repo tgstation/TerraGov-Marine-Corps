@@ -27,19 +27,19 @@
 	necro_step = 0
 
 /datum/surgery_step/necro/fix_dead_tissue/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
-	user.visible_message("<span class='notice'>[user] starts cutting away necrotic tissue in [target]'s [affected.display_name] with \the [tool].</span>" , \
-	"<span class='notice'>You start cutting away necrotic tissue in [target]'s [affected.display_name] with \the [tool].</span>")
+	user.visible_message(span_notice("[user] starts cutting away necrotic tissue in [target]'s [affected.display_name] with \the [tool].") , \
+	span_notice("You start cutting away necrotic tissue in [target]'s [affected.display_name] with \the [tool]."))
 	target.custom_pain("The pain in [affected.display_name] is unbearable!", 1)
 	..()
 
 /datum/surgery_step/necro/fix_dead_tissue/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
-	user.visible_message("<span class='notice'>[user] has cut away necrotic tissue in [target]'s [affected.display_name] with \the [tool].</span>", \
-		"<span class='notice'>You have cut away necrotic tissue in [target]'s [affected.display_name] with \the [tool].</span>")
+	user.visible_message(span_notice("[user] has cut away necrotic tissue in [target]'s [affected.display_name] with \the [tool]."), \
+		span_notice("You have cut away necrotic tissue in [target]'s [affected.display_name] with \the [tool]."))
 	affected.necro_surgery_stage = 1
 
 /datum/surgery_step/necro/fix_dead_tissue/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
-	user.visible_message("<span class='warning'>[user]'s hand slips, slicing an artery inside [target]'s [affected.display_name] with \the [tool]!</span>", \
-	"<span class='warning'>Your hand slips, slicing an artery inside [target]'s [affected.display_name] with \the [tool]!</span>")
+	user.visible_message(span_warning("[user]'s hand slips, slicing an artery inside [target]'s [affected.display_name] with \the [tool]!"), \
+	span_warning("Your hand slips, slicing an artery inside [target]'s [affected.display_name] with \the [tool]!"))
 	affected.createwound(CUT, 20, 1)
 	affected.update_wounds()
 
@@ -58,8 +58,8 @@
 	necro_step = 1
 
 /datum/surgery_step/necro/treat_necrosis/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
-	user.visible_message("<span class='notice'>[user] starts applying \the [tool] on the affected tissue in [target]'s [affected.display_name].</span>" , \
-	"<span class='notice'>You start applying \the [tool] on the affected tissue in [target]'s [affected.display_name].</span>")
+	user.visible_message(span_notice("[user] starts applying \the [tool] on the affected tissue in [target]'s [affected.display_name].") , \
+	span_notice("You start applying \the [tool] on the affected tissue in [target]'s [affected.display_name]."))
 	target.custom_pain("Something in your [affected.display_name] is causing you a lot of pain!", 1)
 	..()
 
@@ -67,10 +67,10 @@
 	affected.remove_limb_flags(LIMB_NECROTIZED)
 	target.update_body()
 
-	user.visible_message("<span class='notice'>[user] applies \the [tool] on the affected tissue in [target]'s [affected.display_name].</span>", \
-	"<span class='notice'>You apply \the [tool] on the affected tissue in [target]'s [affected.display_name].</span>")
+	user.visible_message(span_notice("[user] applies \the [tool] on the affected tissue in [target]'s [affected.display_name]."), \
+	span_notice("You apply \the [tool] on the affected tissue in [target]'s [affected.display_name]."))
 	affected.necro_surgery_stage = 0
 
 /datum/surgery_step/treat_necrosis/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
-	user.visible_message("<span class='warning'>[user]'s hand slips, applying \the [tool] to the wrong place in [target]'s [affected.display_name]!</span>" , \
-	"<span class='warning'>Your hand slips, applying \the [tool] to the wrong place in [target]'s [affected.display_name]!</span>")
+	user.visible_message(span_warning("[user]'s hand slips, applying \the [tool] to the wrong place in [target]'s [affected.display_name]!") , \
+	span_warning("Your hand slips, applying \the [tool] to the wrong place in [target]'s [affected.display_name]!"))

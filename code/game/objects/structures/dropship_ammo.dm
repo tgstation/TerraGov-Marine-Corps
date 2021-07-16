@@ -43,7 +43,7 @@
 								ammo_count += transf_amt
 								SA.ammo_count -= transf_amt
 								playsound(loc, 'sound/machines/hydraulics_1.ogg', 40, 1)
-								to_chat(user, "<span class='notice'>You transfer [transf_amt] [ammo_name] to [src].</span>")
+								to_chat(user, span_notice("You transfer [transf_amt] [ammo_name] to [src]."))
 								if(!SA.ammo_count)
 									PC.loaded = null
 									PC.update_icon()
@@ -53,7 +53,7 @@
 					PC.loaded = src
 					playsound(loc, 'sound/machines/hydraulics_2.ogg', 40, 1)
 					PC.update_icon()
-					to_chat(user, "<span class='notice'>You grab [PC.loaded] with [PC].</span>")
+					to_chat(user, span_notice("You grab [PC.loaded] with [PC]."))
 					update_icon()
 			return TRUE
 		return ..()
@@ -410,6 +410,6 @@
 	. = ..()
 	var/turf/T = get_turf(src)
 	set_light(light_power)
-	T.visible_message("<span class='warning'>You see a tiny flash, and then a blindingly bright light from a flare as it lights off in the sky!</span>")
+	T.visible_message(span_warning("You see a tiny flash, and then a blindingly bright light from a flare as it lights off in the sky!"))
 	playsound(T, 'sound/weapons/guns/fire/flare.ogg', 50, 1, 4) // stolen from the mortar i'm not even sorry
 	QDEL_IN(src, rand(70 SECONDS, 90 SECONDS)) // About the same burn time as a flare, considering it requires it's own CAS run.

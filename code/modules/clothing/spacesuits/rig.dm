@@ -173,17 +173,17 @@
 	if(H.head == helmet)
 		helmet.flags_item &= ~NODROP
 		H.transferItemToLoc(helmet, src)
-		to_chat(H, "<span class='notice'>You retract your hardsuit helmet.</span>")
+		to_chat(H, span_notice("You retract your hardsuit helmet."))
 	else
 		if(H.head)
-			to_chat(H, "<span class='warning'>You cannot deploy your helmet while wearing another helmet.</span>")
+			to_chat(H, span_warning("You cannot deploy your helmet while wearing another helmet."))
 			return
 		//TODO: Species check, skull damage for forcing an unfitting helmet on?
 		helmet.loc = H
 		helmet.pickup(H)
 		H.equip_to_slot(helmet, SLOT_HEAD)
 		helmet.flags_item |= NODROP
-		to_chat(H, "<span class='notice'>You deploy your hardsuit helmet, sealing you off from the world.</span>")
+		to_chat(H, span_notice("You deploy your hardsuit helmet, sealing you off from the world."))
 
 /obj/item/clothing/suit/space/rig/attackby(obj/item/I, mob/user, params)
 	. = ..()

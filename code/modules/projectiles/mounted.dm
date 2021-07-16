@@ -24,8 +24,8 @@
 	. = ..()
 	if(!istype(internal_item, /obj/item/weapon/gun))
 		CRASH("[internal_item] was attempted to be deployed within the type /obj/machinery/deployable/mounted without being a gun]")
-	
-	var/obj/item/weapon/gun/new_gun = internal_item 
+
+	var/obj/item/weapon/gun/new_gun = internal_item
 
 	if(istype(new_gun.current_mag, /obj/item/ammo_magazine/internal) || istype(new_gun, /obj/item/weapon/gun/launcher))
 		CRASH("[new_gun] has been deployed, however it is incompatible because of either an internal magazine, or it is a launcher.")
@@ -37,23 +37,23 @@
 		return TRUE
 	var/mob/living/carbon/human/human_user = user
 	if(get_step(src, REVERSE_DIR(dir)) != human_user.loc) //cant man the gun from the barrels side
-		to_chat(human_user, "<span class='warning'>You should be behind [src] to man it!</span>")
+		to_chat(human_user, span_warning("You should be behind [src] to man it!"))
 		return TRUE
 	if(operator) //If there is already a operator then they're manning it.
 		if(!operator.interactee)
 			stack_trace("/obj/machinery/deployable/mounted/interact(mob/user) called by user [human_user] with an operator with a null interactee: [operator].")
 			operator = null //this shouldn't happen, but just in case
-		to_chat(human_user, "<span class='warning'>Someone's already controlling it.</span>")
+		to_chat(human_user, span_warning("Someone's already controlling it."))
 		return TRUE
 	if(human_user.interactee) //Make sure we're not manning two guns at once, tentacle arms.
 		human_user.unset_interaction()
 	if(issynth(human_user) && !CONFIG_GET(flag/allow_synthetic_gun_use))
-		to_chat(human_user, "<span class='warning'>Your programming restricts operating heavy weaponry.</span>")
+		to_chat(human_user, span_warning("Your programming restricts operating heavy weaponry."))
 		return TRUE
 	playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, TRUE, 7)
 	do_attack_animation(src, ATTACK_EFFECT_GRAB)
-	visible_message("[icon2html(src, viewers(src))] <span class='notice'>[human_user] mans the [src]!</span>",
-		"<span class='notice'>You man the gun!</span>")
+	visible_message("[icon2html(src, viewers(src))] [span_notice("[human_user] mans the [src]!")]",
+		span_notice("You man the gun!"))
 
 	return ..()
 
@@ -82,7 +82,7 @@
 	if(!istype(gun, ammo.gun_type))
 		return
 	if(ammo.current_rounds <= 0)
-		to_chat(user, "<span class='warning'>[ammo] is empty!</span>")
+		to_chat(user, span_warning("[ammo] is empty!"))
 		return
 
 	if(gun.current_mag)
@@ -92,7 +92,7 @@
 	var/tac_reload_time = max(0.5 SECONDS, 1.5 SECONDS - user.skills.getRating("firearms") * 5)
 	if(!do_after(user, tac_reload_time, TRUE, src, BUSY_ICON_FRIENDLY))
 		return
-	
+
 	gun.reload(user, ammo_magazine)
 	update_icon_state()
 
@@ -157,7 +157,7 @@
 		operator.unset_interaction()
 		return FALSE
 	if(operator.get_active_held_item())
-		to_chat(operator, "<span class='warning'>You need a free hand to shoot the [src].</span>")
+		to_chat(operator, span_warning("You need a free hand to shoot the [src]."))
 		return FALSE
 
 	var/atom/target = object
@@ -185,7 +185,7 @@
 	var/left = leftright[1] - 1
 	var/right = leftright[2] + 1
 	if(!(left == (angle-1)) && !(right == (angle+1)))
-		to_chat(operator, "<span class='warning'> [src] cannot be rotated so violently.</span>")
+		to_chat(operator, span_warning(" [src] cannot be rotated so violently."))
 		return FALSE
 	var/turf/move_to = get_step(src, REVERSE_DIR(angle))
 	var/mob/living/carbon/human/user = operator

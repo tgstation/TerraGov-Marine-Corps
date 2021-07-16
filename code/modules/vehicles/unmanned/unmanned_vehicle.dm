@@ -60,15 +60,15 @@
 	if(!istype(I, /obj/item/uav_turret) && !istype(I, /obj/item/explosive/plastique))
 		return
 	if(turret_type)
-		to_chat(user, "<span class='notice'>There's already something attached!</span>")
+		to_chat(user, span_notice("There's already something attached!"))
 		return
 	if(istype(I, /obj/item/uav_turret))
 		var/obj/item/uav_turret/turret = I
 		if(turret_pattern != turret.turret_pattern)
-			to_chat(user, "<span class='notice'>You can't attach that type of turret!</span>")
+			to_chat(user, span_notice("You can't attach that type of turret!"))
 			return
-	user.visible_message("<span class='notice'>[user] starts to attach [I] to [src].</span>",
-	"<span class='notice'>You start to attach [I] to [src].</span>")
+	user.visible_message(span_notice("[user] starts to attach [I] to [src]."),
+	span_notice("You start to attach [I] to [src]."))
 	if(!do_after(user, 3 SECONDS, TRUE, src, BUSY_ICON_GENERIC))
 		return
 	if(istype(I, /obj/item/uav_turret))
@@ -77,8 +77,8 @@
 		ammo = GLOB.ammo_list[turret.ammo_type]
 	else if(istype(I, /obj/item/explosive/plastique))
 		turret_type = TURRET_TYPE_EXPLOSIVE
-	user.visible_message("<span class='notice'>[user] attaches [I] to [src].</span>",
-	"<span class='notice'>You attach [I] to [src].</span>")
+	user.visible_message(span_notice("[user] attaches [I] to [src]."),
+	span_notice("You attach [I] to [src]."))
 	update_icon()
 	SEND_SIGNAL(src, COMSIG_UNMANNED_TURRET_UPDATED, turret_type)
 	qdel(I)

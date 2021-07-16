@@ -20,7 +20,7 @@
 	materials = list(/datum/material/metal = 700, /datum/material/glass = 50)
 
 /obj/item/cell/suicide_act(mob/user)
-	user.visible_message("<span class='danger'>[user] is licking the electrodes of the [src.name]! It looks like [user.p_theyre()] trying to commit suicide.</span>")
+	user.visible_message(span_danger("[user] is licking the electrodes of the [src.name]! It looks like [user.p_theyre()] trying to commit suicide."))
 	return (FIRELOSS)
 
 /obj/item/cell/crap

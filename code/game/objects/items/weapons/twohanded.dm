@@ -33,7 +33,7 @@
 		else if(offhand == user.l_hand)
 			user.drop_l_hand()
 		if(user.get_inactive_held_item()) //Failsafe; if there's somehow still something in the off-hand (undroppable), bail.
-			to_chat(user, "<span class='warning'>You need your other hand to be empty!</span>")
+			to_chat(user, span_warning("You need your other hand to be empty!"))
 			return FALSE
 
 	if(ishuman(user))
@@ -41,7 +41,7 @@
 		var/mob/living/carbon/human/wielder = user
 		var/datum/limb/hand = wielder.get_limb(check_hand)
 		if(!istype(hand) || !hand.is_usable())
-			to_chat(user, "<span class='warning'>Your other hand can't hold [src]!</span>")
+			to_chat(user, span_warning("Your other hand can't hold [src]!"))
 			return FALSE
 
 	toggle_wielded(user, TRUE)
@@ -69,7 +69,7 @@
 
 
 /obj/item/proc/place_offhand(mob/user, item_name)
-	to_chat(user, "<span class='notice'>You grab [item_name] with both hands.</span>")
+	to_chat(user, span_notice("You grab [item_name] with both hands."))
 	var/obj/item/weapon/twohanded/offhand/offhand = new /obj/item/weapon/twohanded/offhand(user)
 	offhand.name = "[item_name] - offhand"
 	offhand.desc = "Your second grip on the [item_name]."
@@ -79,7 +79,7 @@
 
 
 /obj/item/proc/remove_offhand(mob/user)
-	to_chat(user, "<span class='notice'>You are now carrying [name] with one hand.</span>")
+	to_chat(user, span_notice("You are now carrying [name] with one hand."))
 	var/obj/item/weapon/twohanded/offhand/offhand = user.get_inactive_held_item()
 	if(istype(offhand) && !QDELETED(offhand))
 		qdel(offhand)
@@ -122,7 +122,7 @@
 /obj/item/weapon/twohanded/attack_self(mob/user)
 	. = ..()
 	if(ismonkey(user)) //TODO MAKE THIS A SPECIES FLAG
-		to_chat(user, "<span class='warning'>It's too heavy for you to wield fully!</span>")
+		to_chat(user, span_warning("It's too heavy for you to wield fully!"))
 		return
 
 	if(flags_item & WIELDED)

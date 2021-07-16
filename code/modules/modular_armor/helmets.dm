@@ -34,7 +34,7 @@
 
 	active = !active
 	SEND_SIGNAL(parent, COMSIG_ITEM_TOGGLE_ACTION, user)
-	to_chat(user, "<span class='notice'>You toggle \the [src]. [active ? "enabling" : "disabling"] it.</span>")
+	to_chat(user, span_notice("You toggle \the [src]. [active ? "enabling" : "disabling"] it."))
 	item_state = "welding_head_[active ? "" : "in"]active"
 	parent.update_overlays()
 	user.update_inv_head()
@@ -89,7 +89,7 @@
 			zoom(user)
 
 	active = !active
-	to_chat(user, "<span class='notice'>You toggle \the [src]. [active ? "enabling" : "disabling"] it.</span>")
+	to_chat(user, span_notice("You toggle \the [src]. [active ? "enabling" : "disabling"] it."))
 	item_state = "binocular_head_[active ? "" : "in"]active"
 	parent.update_overlays()
 	user.update_inv_head()
@@ -119,18 +119,18 @@
 	if(beacon_datum)
 		UnregisterSignal(beacon_datum, COMSIG_PARENT_QDELETING)
 		QDEL_NULL(beacon_datum)
-		user.show_message("<span class='warning'>The [src] beeps and states, \"Your last position is no longer accessible by the supply console</span>", EMOTE_AUDIBLE, "<span class='notice'>The [src] vibrates but you can not hear it!</span>")
+		user.show_message(span_warning("The [src] beeps and states, \"Your last position is no longer accessible by the supply console"), EMOTE_AUDIBLE, span_notice("The [src] vibrates but you can not hear it!"))
 		return
 	if(!is_ground_level(user.z))
-		to_chat(user, "<span class='warning'>You have to be on the planet to use this or it won't transmit.</span>")
+		to_chat(user, span_warning("You have to be on the planet to use this or it won't transmit."))
 		return FALSE
 	var/area/A = get_area(user)
 	if(A && istype(A) && A.ceiling >= CEILING_METAL)
-		to_chat(user, "<span class='warning'>You have to be outside or under a glass ceiling to activate this.</span>")
+		to_chat(user, span_warning("You have to be outside or under a glass ceiling to activate this."))
 		return
 	beacon_datum = new /datum/supply_beacon(user.name, user.loc, user.faction, 1 MINUTES)
 	RegisterSignal(beacon_datum, COMSIG_PARENT_QDELETING, .proc/clean_beacon_datum)
-	user.show_message("<span class='notice'>The [src] beeps and states, \"Your current coordinates were registered by the supply console. LONGITUDE [location.x]. LATITUDE [location.y]. Area ID: [get_area(src)]\"</span>", EMOTE_AUDIBLE, "<span class='notice'>The [src] vibrates but you can not hear it!</span>")
+	user.show_message(span_notice("The [src] beeps and states, \"Your current coordinates were registered by the supply console. LONGITUDE [location.x]. LATITUDE [location.y]. Area ID: [get_area(src)]\""), EMOTE_AUDIBLE, span_notice("The [src] vibrates but you can not hear it!"))
 
 /// Signal handler to nullify beacon datum
 /obj/item/helmet_module/antenna/proc/clean_beacon_datum()

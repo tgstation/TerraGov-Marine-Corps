@@ -226,7 +226,7 @@ directive is properly returned.
 	set category = "IC"
 
 	if(is_blind(src))
-		to_chat(src, "<span class='notice'>Something is there but you can't see it.</span>")
+		to_chat(src, span_notice("Something is there but you can't see it."))
 		return
 
 	face_atom(A)
@@ -266,14 +266,14 @@ directive is properly returned.
 					var/total_volume = 0
 					for(var/datum/reagent/R in reagents.reagent_list)
 						total_volume += R.volume
-					to_chat(user, "<span class='notice'>[total_volume] units of various reagents.</span>")
+					to_chat(user, span_notice("[total_volume] units of various reagents."))
 				else
 					to_chat(user, "<span class='notice'>Nothing.")
 			else if(CHECK_BITFIELD(reagents.reagent_flags, AMOUNT_VISIBLE))
 				if(reagents.total_volume)
-					to_chat(user, "<span class='notice'>It has [reagents.total_volume] unit\s left.</span>")
+					to_chat(user, span_notice("It has [reagents.total_volume] unit\s left."))
 				else
-					to_chat(user, "<span class='warning'>It's empty.</span>")
+					to_chat(user, span_warning("It's empty."))
 			else if(CHECK_BITFIELD(reagents.reagent_flags, AMOUNT_SKILLCHECK))
 				if(isxeno(user))
 					return
@@ -289,15 +289,15 @@ directive is properly returned.
 			else if(reagents.reagent_flags & AMOUNT_ESTIMEE)
 				var/obj/item/reagent_containers/C = src
 				if(!reagents.total_volume)
-					to_chat(user, "<span class='notice'>\The [src] is empty!</span>")
+					to_chat(user, span_notice("\The [src] is empty!"))
 				else if (reagents.total_volume<= C.volume*0.3)
-					to_chat(user, "<span class='notice'>\The [src] is almost empty!</span>")
+					to_chat(user, span_notice("\The [src] is almost empty!"))
 				else if (reagents.total_volume<= C.volume*0.6)
-					to_chat(user, "<span class='notice'>\The [src] is half full!</span>")
+					to_chat(user, span_notice("\The [src] is half full!"))
 				else if (reagents.total_volume<= C.volume*0.9)
-					to_chat(user, "<span class='notice'>\The [src] is almost full!</span>")
+					to_chat(user, span_notice("\The [src] is almost full!"))
 				else
-					to_chat(user, "<span class='notice'>\The [src] is full!</span>")
+					to_chat(user, span_notice("\The [src] is full!"))
 
 	SEND_SIGNAL(src, COMSIG_PARENT_EXAMINE, user)
 
@@ -738,7 +738,7 @@ Proc for attack log creation, because really why not
 /atom/proc/multitool_check_buffer(user, obj/item/I, silent = FALSE)
 	if(!istype(I, /obj/item/multitool))
 		if(user && !silent)
-			to_chat(user, "<span class='warning'>[I] has no data buffer!</span>")
+			to_chat(user, span_warning("[I] has no data buffer!"))
 		return FALSE
 	return TRUE
 
@@ -764,7 +764,7 @@ Proc for attack log creation, because really why not
 /atom/proc/fulton_act(mob/living/user, obj/item/I)
 	if(!isturf(loc))
 		return FALSE //Storage screens, worn containers, anything we want to be able to interact otherwise.
-	to_chat(user, "<span class='warning'>Cannot extract [src].</span>")
+	to_chat(user, span_warning("Cannot extract [src]."))
 	return TRUE
 
 ///This proc is called on atoms when they are loaded into a shuttle

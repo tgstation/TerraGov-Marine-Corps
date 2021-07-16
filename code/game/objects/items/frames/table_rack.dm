@@ -28,11 +28,11 @@
 	else if(istype(I, /obj/item/stack/rods))
 		var/obj/item/stack/rods/R = I
 		if(!R.use(4))
-			to_chat(user, "<span class='warning'>You need at least four rods to reinforce [src].</span>")
+			to_chat(user, span_warning("You need at least four rods to reinforce [src]."))
 			return
 
 		new /obj/item/frame/table/reinforced(loc)
-		to_chat(user, "<span class='notice'>You reinforce [src].</span>")
+		to_chat(user, span_notice("You reinforce [src]."))
 		user.temporarilyRemoveItemFromInventory(src)
 		qdel(src)
 
@@ -40,21 +40,21 @@
 		var/obj/item/stack/sheet/wood/S = I
 
 		if(!S.use(2))
-			to_chat(user, "<span class='warning'>You need at least two wood sheets to swap the metal parts of [src].</span>")
+			to_chat(user, span_warning("You need at least two wood sheets to swap the metal parts of [src]."))
 			return
 
 		new /obj/item/frame/table/wood(loc)
 		new /obj/item/stack/sheet/metal(loc)
-		to_chat(user, "<span class='notice'>You replace the metal parts of [src].</span>")
+		to_chat(user, span_notice("You replace the metal parts of [src]."))
 		user.temporarilyRemoveItemFromInventory(src)
 		qdel(src)
 
 /obj/item/frame/table/attack_self(mob/user)
 	if(locate(/obj/structure/table) in get_turf(user))
-		to_chat(user, "<span class='warning'>There is another table built in here already.</span>")
+		to_chat(user, span_warning("There is another table built in here already."))
 		return
 	if(istype(get_area(loc), /area/shuttle))  //HANGAR/SHUTTLE BUILDING
-		to_chat(user, "<span class='warning'>No. This area is needed for the dropship.</span>")
+		to_chat(user, span_warning("No. This area is needed for the dropship."))
 		return
 
 	new table_type(user.loc)
@@ -94,7 +94,7 @@
 		if(!C.use(1))
 			return
 
-		to_chat(user, "<span class='notice'>You put a layer of carpet on [src].</span>")
+		to_chat(user, span_notice("You put a layer of carpet on [src]."))
 		new /obj/item/frame/table/gambling(get_turf(src))
 		qdel(src)
 
@@ -114,7 +114,7 @@
 	. = ..()
 
 	if(iscrowbar(I))
-		to_chat(user, "<span class='notice'>You pry the carpet out of [src].</span>")
+		to_chat(user, span_notice("You pry the carpet out of [src]."))
 		new /obj/item/stack/tile/carpet(loc)
 		new /obj/item/frame/table/wood(loc)
 		qdel(src)
@@ -147,15 +147,15 @@
 /obj/item/frame/rack/attack_self(mob/user as mob)
 
 	if(istype(get_area(loc), /area/shuttle))  //HANGAR/SHUTTLE BUILDING
-		to_chat(user, "<span class='warning'>No. This area is needed for the dropship.</span>")
+		to_chat(user, span_warning("No. This area is needed for the dropship."))
 		return
 
 	if(locate(/obj/structure/table) in user.loc || locate(/obj/structure/barricade) in user.loc)
-		to_chat(user, "<span class='warning'>There is already a structure here.</span>")
+		to_chat(user, span_warning("There is already a structure here."))
 		return
 
 	if(locate(/obj/structure/rack) in user.loc)
-		to_chat(user, "<span class='warning'>There already is a rack here.</span>")
+		to_chat(user, span_warning("There already is a rack here."))
 		return
 
 	new /obj/structure/rack(user.loc)

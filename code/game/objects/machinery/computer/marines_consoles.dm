@@ -272,11 +272,11 @@
 							break
 
 					if(!jobdatum)
-						to_chat(usr, "<span class='warning'>No log exists for this job.</span>")
+						to_chat(usr, span_warning("No log exists for this job."))
 						return
 
 					if(!modify)
-						to_chat(usr, "<span class='warning'>No card to modify!</span>")
+						to_chat(usr, span_warning("No card to modify!"))
 						return
 
 					modify.access = jobdatum.get_access()
@@ -292,7 +292,7 @@
 					if(temp_name)
 						modify.registered_name = temp_name
 					else
-						src.visible_message("<span class='notice'>[src] buzzes rudely.</span>")
+						src.visible_message(span_notice("[src] buzzes rudely."))
 		if ("account")
 			if (authenticated)
 				var/t2 = modify
@@ -429,7 +429,7 @@
 					if(squad.name == squad_name)
 						selected = squad
 						break
-				
+
 				//First, remove any existing squad access and clear the card.
 				for(var/datum/squad/Q in SSjob.squads)
 					if(findtext(modify.assignment, Q.name)) //Found one!

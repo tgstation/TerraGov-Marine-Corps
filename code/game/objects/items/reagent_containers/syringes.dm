@@ -62,7 +62,7 @@
 		return
 
 	if(mode == SYRINGE_BROKEN)
-		to_chat(user, "<span class='warning'>This syringe is broken!</span>")
+		to_chat(user, span_warning("This syringe is broken!"))
 		return
 
 	if (user.a_intent == INTENT_HARM && ismob(target) && isliving(user))
@@ -71,8 +71,8 @@
 		if(M != L && M.stat != DEAD && M.a_intent != INTENT_HELP && !M.incapacitated() && M.skills.getRating("cqc") >= SKILL_CQC_MP)
 			L.Paralyze(60)
 			log_combat(M, L, "blocked", addition="using their cqc skill (syringe injection)")
-			M.visible_message("<span class='danger'>[M]'s reflexes kick in and knock [L] to the ground before they could use \the [src]'!</span>", \
-				"<span class='warning'>You knock [L] to the ground before they could inject you!</span>", null, 5)
+			M.visible_message(span_danger("[M]'s reflexes kick in and knock [L] to the ground before they could use \the [src]'!"), \
+				span_warning("You knock [L] to the ground before they could inject you!"), null, 5)
 			playsound(L.loc, 'sound/weapons/thudswoosh.ogg', 25, 1, 7)
 			return
 
@@ -85,7 +85,7 @@
 		if(SYRINGE_DRAW)
 
 			if(reagents.holder_full())
-				to_chat(user, "<span class='warning'>The syringe is full.</span>")
+				to_chat(user, span_warning("The syringe is full."))
 				return
 
 			if(ismob(target))//Blood!
@@ -93,16 +93,16 @@
 					var/amount = src.reagents.maximum_volume - src.reagents.total_volume
 					var/mob/living/carbon/T = target
 					if(T.get_blood_id() && reagents.has_reagent(T.get_blood_id()))
-						to_chat(user, "<span class='warning'>There is already a blood sample in this syringe.</span>")
+						to_chat(user, span_warning("There is already a blood sample in this syringe."))
 						return
 					if(!T.blood_type)
-						to_chat(user, "<span class='warning'>You are unable to locate any blood.</span>")
+						to_chat(user, span_warning("You are unable to locate any blood."))
 						return
 
 					if(ishuman(T))
 						var/mob/living/carbon/human/H = T
 						if(H.species.species_flags & NO_BLOOD)
-							to_chat(user, "<span class='warning'>You are unable to locate any blood.</span>")
+							to_chat(user, span_warning("You are unable to locate any blood."))
 							return
 						else
 							T.take_blood(src,amount)
@@ -112,7 +112,7 @@
 					on_reagent_change()
 					reagents.handle_reactions()
 					user.visible_message("<span clas='warning'>[user] takes a blood sample from [target].</span>",
-										"<span class='notice'>You take a blood sample from [target].</span>", null, 4)
+										span_notice("You take a blood sample from [target]."), null, 4)
 
 			else //if not mob
 				if(!target.reagents.total_volume)
@@ -120,26 +120,26 @@
 					return
 
 				if(!target.is_drawable())
-					to_chat(user, "<span class='warning'>You cannot directly remove reagents from this object.</span>")
+					to_chat(user, span_warning("You cannot directly remove reagents from this object."))
 					return
 
 				var/trans = target.reagents.trans_to(src, amount_per_transfer_from_this) // transfer from, transfer to - who cares?
 
-				to_chat(user, "<span class='notice'>You fill the syringe with [trans] units of the solution.</span>")
+				to_chat(user, span_notice("You fill the syringe with [trans] units of the solution."))
 			if (reagents.holder_full())
 				mode=!mode
 				update_icon()
 
 		if(SYRINGE_INJECT)
 			if(!reagents.total_volume)
-				to_chat(user, "<span class='warning'>The syringe is empty.</span>")
+				to_chat(user, span_warning("The syringe is empty."))
 				return
 
 			if(!target.is_injectable() && !ismob(target))
-				to_chat(user, "<span class='warning'>You cannot directly fill this object.</span>")
+				to_chat(user, span_warning("You cannot directly fill this object."))
 				return
 			if(target.reagents.holder_full())
-				to_chat(user, "<span class='warning'>[target] is full.</span>")
+				to_chat(user, span_warning("[target] is full."))
 				return
 
 			if(ismob(target))
@@ -161,14 +161,14 @@
 							return
 
 					if(injection_time != 6 SECONDS)
-						user.visible_message("<span class='danger'>[user] is trying to inject [target]!</span>")
+						user.visible_message(span_danger("[user] is trying to inject [target]!"))
 					else
-						user.visible_message("<span class='danger'>[user] begins hunting for an injection port on [target]'s suit!</span>")
+						user.visible_message(span_danger("[user] begins hunting for an injection port on [target]'s suit!"))
 
 					if(!do_mob(user, target, injection_time, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
 						return
 
-					user.visible_message("<span class='warning'>[user] injects [target] with the syringe!</span>")
+					user.visible_message(span_warning("[user] injects [target] with the syringe!"))
 
 					if(istype(target,/mob/living))
 						var/mob/living/M = target
@@ -188,7 +188,7 @@
 			else
 				trans = reagents.trans_to(target, amount_per_transfer_from_this)
 
-			to_chat(user, "<span class='notice'>You inject [trans] units of the solution. The syringe now contains [src.reagents.total_volume] units.</span>")
+			to_chat(user, span_notice("You inject [trans] units of the solution. The syringe now contains [src.reagents.total_volume] units."))
 			if (reagents.total_volume <= 0 && mode==SYRINGE_INJECT)
 				mode = SYRINGE_DRAW
 				update_icon()
@@ -242,18 +242,18 @@
 			return
 
 		if (target != user && prob(target.getarmor(target_zone, "melee")))
-			visible_message("<span class='danger'>[user] tries to stab [target] in \the [hit_area] with [src], but the attack is deflected by armor!</span>")
+			visible_message(span_danger("[user] tries to stab [target] in \the [hit_area] with [src], but the attack is deflected by armor!"))
 			user.temporarilyRemoveItemFromInventory(src)
 			qdel(src)
 			return
 
-		visible_message("<span class='danger'>[user] stabs [target] in \the [hit_area] with [src]!</span>")
+		visible_message(span_danger("[user] stabs [target] in \the [hit_area] with [src]!"))
 
 		if(affecting.take_damage_limb(3))
 			target:UpdateDamageIcon()
 
 	else
-		visible_message("<span class='danger'>[user] stabs [target] with [src]!</span>")
+		visible_message(span_danger("[user] stabs [target] with [src]!"))
 		target.take_limb_damage(3)// 7 is the same as crowbar punch
 
 	reagents.reaction(target, INJECT)
@@ -283,46 +283,46 @@
 		if(SYRINGE_DRAW)
 
 			if(reagents.total_volume >= reagents.maximum_volume)
-				to_chat(user, "<span class='warning'>The syringe is full.</span>")
+				to_chat(user, span_warning("The syringe is full."))
 				return
 
 			if(ismob(target))
 				if(iscarbon(target))//I Do not want it to suck 50 units out of people
-					to_chat(usr, "<span class='warning'>This needle isn't designed for drawing blood.</span>")
+					to_chat(usr, span_warning("This needle isn't designed for drawing blood."))
 					return
 			else //if not mob
 				if(!target.reagents.total_volume)
-					to_chat(user, "<span class='warning'>[target] is empty.</span>")
+					to_chat(user, span_warning("[target] is empty."))
 					return
 
 				if(!target.is_drawable())
-					to_chat(user, "<span class='warning'>You cannot directly remove reagents from this object.</span>")
+					to_chat(user, span_warning("You cannot directly remove reagents from this object."))
 					return
 
 				var/trans = target.reagents.trans_to(src, amount_per_transfer_from_this) // transfer from, transfer to - who cares?
 
-				to_chat(user, "<span class='notice'>You fill the syringe with [trans] units of the solution.</span>")
+				to_chat(user, span_notice("You fill the syringe with [trans] units of the solution."))
 			if (reagents.total_volume >= reagents.maximum_volume)
 				mode=!mode
 				update_icon()
 
 		if(SYRINGE_INJECT)
 			if(!reagents.total_volume)
-				to_chat(user, "<span class='warning'>[src] is empty.</span>")
+				to_chat(user, span_warning("[src] is empty."))
 				return
 
 			if(!target.is_injectable() && !ismob(target))
-				to_chat(user, "<span class='warning'>You cannot directly fill this object.</span>")
+				to_chat(user, span_warning("You cannot directly fill this object."))
 				return
 			if(target.reagents.holder_full())
-				to_chat(user, "<span class='warning'>[target] is full.</span>")
+				to_chat(user, span_warning("[target] is full."))
 				return
 
 			if(ismob(target) && target != user)
-				user.visible_message("<span class='danger'>[user] is trying to inject [target] with a giant syringe!</span>")
+				user.visible_message(span_danger("[user] is trying to inject [target] with a giant syringe!"))
 				if(!do_mob(user, target, 30 SECONDS, BUSY_ICON_DANGER, BUSY_ICON_DANGER))
 					return
-				user.visible_message("<span class='warning'>[user] injects [target] with a giant syringe!</span>")
+				user.visible_message(span_warning("[user] injects [target] with a giant syringe!"))
 			spawn(5)
 				var/trans = reagents.trans_to(target, amount_per_transfer_from_this)
 				if(iscarbon(target) && locate(/datum/reagent/blood) in reagents.reagent_list)
@@ -331,7 +331,7 @@
 				else
 					reagents.reaction(target, INJECT)
 					trans = reagents.trans_to(target, amount_per_transfer_from_this)
-				to_chat(user, "<span class='notice'>You inject [trans] units of the solution. The syringe now contains [src.reagents.total_volume] units.</span>")
+				to_chat(user, span_notice("You inject [trans] units of the solution. The syringe now contains [src.reagents.total_volume] units."))
 				if (reagents.total_volume >= reagents.maximum_volume && mode==SYRINGE_INJECT)
 					mode = SYRINGE_DRAW
 					update_icon()

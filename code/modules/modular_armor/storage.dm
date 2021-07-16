@@ -19,7 +19,7 @@
 		return
 	if(parent.installed_storage)
 		if(!silent)
-			to_chat(user,"<span class='warning'>There is already an installed storage module.</span>")
+			to_chat(user,span_warning("There is already an installed storage module."))
 		return FALSE
 
 /obj/item/armor_module/storage/can_detach(mob/living/user, obj/item/clothing/suit/modular/parent, silent = FALSE)

@@ -30,7 +30,7 @@
 
 	var/turf/loc = get_turf(user)
 	if(!isfloorturf(loc))
-		to_chat(user, "<span class='warning'>[src] cannot be placed on this spot.</span>")
+		to_chat(user, span_warning("[src] cannot be placed on this spot."))
 		return
 
 	user.visible_message("[user] begins attaching [src] to the wall.", "You being attaching [src] to the wall.")
@@ -63,13 +63,13 @@
 
 	switch(state)
 		if(STATE_WRENCHED)
-			to_chat(user, "<span class='info'>You can secure it in place with a <b>welder</b>, or removed with a <b>wrench</b>.</span>")
+			to_chat(user, span_info("You can secure it in place with a <b>welder</b>, or removed with a <b>wrench</b>."))
 		if(STATE_WELDED)
-			to_chat(user, "<span class='info'>You can add <b>wires</b> to it, or <b>unweld</b> it from the wall.</span>")
+			to_chat(user, span_info("You can add <b>wires</b> to it, or <b>unweld</b> it from the wall."))
 		if(STATE_WIRED)
-			to_chat(user, "<span class='info'>You can complete it with a <b>screwdriver</b>, or <b>unwire</b> it to start removal.</span>")
+			to_chat(user, span_info("You can complete it with a <b>screwdriver</b>, or <b>unwire</b> it to start removal."))
 		if(STATE_FINISHED)
-			to_chat(user, "<span class='boldwarning'>You shouldn't be seeing this, tell a coder!</span>")
+			to_chat(user, span_boldwarning("You shouldn't be seeing this, tell a coder!"))
 
 
 /obj/structure/camera_assembly/Initialize(mapload, newDir)
@@ -100,7 +100,7 @@
 			if(!weld(I, user))
 				return
 
-			to_chat(user, "<span class='notice'>You weld [src] securely into place.</span>")
+			to_chat(user, span_notice("You weld [src] securely into place."))
 			anchored = TRUE
 			state = STATE_WELDED
 
@@ -108,10 +108,10 @@
 			if(istype(I, /obj/item/stack/cable_coil))
 				var/obj/item/stack/cable_coil/C = I
 				if(!C.use(2))
-					to_chat(user, "<span class='warning'>You need two lengths of cable to wire a camera!</span>")
+					to_chat(user, span_warning("You need two lengths of cable to wire a camera!"))
 					return
 
-				to_chat(user, "<span class='notice'>You add wires to [src].</span>")
+				to_chat(user, span_notice("You add wires to [src]."))
 				state = STATE_WIRED
 
 			else if(I.tool_behaviour == TOOL_WELDER)
@@ -119,7 +119,7 @@
 				if(!weld(I, user))
 					return
 
-				to_chat(user, "<span class='notice'>You unweld [src] from its place.</span>")
+				to_chat(user, span_notice("You unweld [src] from its place."))
 				anchored = TRUE
 				state = STATE_WRENCHED
 
@@ -135,11 +135,11 @@
 	tool.play_tool_sound(src)
 	var/input = stripped_input(user, "Which networks would you like to connect this camera to? Separate networks with a comma. No Spaces!\nFor example: marinemainship, marine, dropship1, dropship2", "Set Network", "marinemainship")
 	if(!input)
-		to_chat(user, "<span class='warning'>No network entered.</span>")
+		to_chat(user, span_warning("No network entered."))
 		return
 	var/list/tempnetwork = splittext(input, ",")
 	if(!length(tempnetwork))
-		to_chat(user, "<span class='warning'>Invalid network entry.</span>")
+		to_chat(user, span_warning("Invalid network entry."))
 		return
 	for(var/i in tempnetwork)
 		tempnetwork -= i
@@ -157,7 +157,7 @@
 
 	new /obj/item/stack/cable_coil(drop_location(), 2)
 	I.play_tool_sound(src)
-	to_chat(user, "<span class='notice'>You cut the wires from the circuits.</span>")
+	to_chat(user, span_notice("You cut the wires from the circuits."))
 	state = STATE_WELDED
 	return TRUE
 
@@ -166,7 +166,7 @@
 	if(state != STATE_WRENCHED)
 		return FALSE
 	I.play_tool_sound(src)
-	to_chat(user, "<span class='notice'>You detach [src] from its place.</span>")
+	to_chat(user, span_notice("You detach [src] from its place."))
 	new /obj/item/frame/camera(drop_location())
 
 	qdel(src)
@@ -176,7 +176,7 @@
 /obj/structure/camera_assembly/proc/weld(obj/item/tool/weldingtool/W, mob/living/user)
 	if(!W.tool_start_check(user, amount = 3))
 		return FALSE
-	to_chat(user, "<span class='notice'>You start to weld [src]...</span>")
+	to_chat(user, span_notice("You start to weld [src]..."))
 	if(W.use_tool(src, user, 20, amount = 3, volume = 50))
 		return TRUE
 	return FALSE

@@ -141,7 +141,7 @@
 
 	else if(href_list["delete"])
 		if(!allowed(usr))
-			to_chat(usr, "<span class='danger'>ACCESS DENIED.</span>")
+			to_chat(usr, span_danger("ACCESS DENIED."))
 			return
 
 		if(SelectedServer)

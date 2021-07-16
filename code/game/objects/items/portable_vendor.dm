@@ -46,7 +46,7 @@
 	if(isliving(user))
 		var/obj/item/card/id/I = user.get_idcard()
 		if(!istype(I))
-			to_chat(usr, "<span class='warning'>Access denied. Authorized roles only.</span>")
+			to_chat(usr, span_warning("Access denied. Authorized roles only."))
 			return FALSE
 
 		if(I.registered_name != user.real_name)
@@ -55,7 +55,7 @@
 		if(req_role)
 			var/mob/living/living_user = user
 			if(!istype(living_user.job, req_role))
-				to_chat(usr, "<span class='warning'>Access denied. Authorized roles only.</span>")
+				to_chat(usr, span_warning("Access denied. Authorized roles only."))
 				return FALSE
 
 	return TRUE
@@ -102,7 +102,7 @@
 	switch(action)
 		if("vend")
 			if(!allowed(usr))
-				to_chat(usr, "<span class='warning'>Access denied.</span>")
+				to_chat(usr, span_warning("Access denied."))
 				return
 
 			var/idx = text2num(params["vend"])
@@ -111,12 +111,12 @@
 			var/cost = L[2]
 
 			if(use_points && points < cost)
-				to_chat(usr, "<span class='warning'>Not enough points.</span>")
+				to_chat(usr, span_warning("Not enough points."))
 
 
 			var/turf/T = get_turf(src)
 			if(length(T.contents) > 25)
-				to_chat(usr, "<span class='warning'>The floor is too cluttered, make some space.</span>")
+				to_chat(usr, span_warning("The floor is too cluttered, make some space."))
 				return
 
 
@@ -124,7 +124,7 @@
 				points -= cost
 
 			playsound(src, "sound/machines/fax.ogg", 5)
-			to_chat(usr, "<span class='notice'>The automated system clunks as it starts to vend something.</span>")
+			to_chat(usr, span_notice("The automated system clunks as it starts to vend something."))
 			fabricating = TRUE
 			update_overlays()
 			addtimer(CALLBACK(src, .proc/do_vend, L[3], usr), 3 SECONDS)
@@ -166,7 +166,7 @@
 
 /obj/item/portable_vendor/proc/malfunction()
 	var/turf/T = get_turf(src)
-	T.visible_message("<span class='warning'>[src] shudders as its internal components break apart!</span>")
+	T.visible_message(span_warning("[src] shudders as its internal components break apart!"))
 	broken = 1
 	STOP_PROCESSING(SSobj, src)
 	update_overlays()

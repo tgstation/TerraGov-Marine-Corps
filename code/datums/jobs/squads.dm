@@ -290,7 +290,7 @@ GLOBAL_LIST_EMPTY(helmetmarkings_sl)
 
 
 /datum/squad/proc/message_squad(message, mob/living/carbon/human/sender)
-	var/text = "<span class='notice'><B>\[Overwatch\]:</b> [format_message(message, sender)]</span>"
+	var/text = span_notice("<B>\[Overwatch\]:</b> [format_message(message, sender)]")
 	for(var/i in marines_list)
 		var/mob/living/L = i
 		message_member(L, text, sender)
@@ -299,7 +299,7 @@ GLOBAL_LIST_EMPTY(helmetmarkings_sl)
 /datum/squad/proc/message_leader(message, mob/living/carbon/human/sender)
 	if(!squad_leader || squad_leader.stat != CONSCIOUS || !squad_leader.client)
 		return FALSE
-	return message_member(squad_leader, "<span class='notice'><B>\[SL Overwatch\]:</b> [format_message(message, sender)]</span>", sender)
+	return message_member(squad_leader, span_notice("<B>\[SL Overwatch\]:</b> [format_message(message, sender)]"), sender)
 
 
 /datum/squad/proc/message_member(mob/living/target, message, mob/living/carbon/human/sender)
@@ -345,7 +345,7 @@ GLOBAL_LIST_EMPTY(helmetmarkings_sl)
 	if(available_squads.Find(preferred_squad) && preferred_squad?.assign_initial(player, job, latejoin))
 		return TRUE
 	if(strict)
-		to_chat(player, "<span class='warning'>That squad is full!</span>")
+		to_chat(player, span_warning("That squad is full!"))
 		return FALSE
 	//If our preferred squad is not available, we try every other squad
 	for(var/datum/squad/squad AS in shuffle(available_squads))

@@ -37,14 +37,14 @@
 /mob/proc/say_dead(message)
 	if(!check_rights(R_ADMIN, FALSE))
 		if(!GLOB.dsay_allowed)
-			to_chat(src, "<span class='warning'>Deadchat is globally muted</span>")
+			to_chat(src, span_warning("Deadchat is globally muted"))
 			return
 		if(client)
 			if(client.prefs.muted & MUTE_DEADCHAT)
-				to_chat(src, "<span class='danger'>You cannot talk in deadchat (muted).</span>")
+				to_chat(src, span_danger("You cannot talk in deadchat (muted)."))
 				return
 			if(client?.prefs && !(client.prefs.toggles_chat & CHAT_DEAD))
-				to_chat(usr, "<span class='warning'>You have deadchat muted.</span>")
+				to_chat(usr, span_warning("You have deadchat muted."))
 				return
 			if(client.handle_spam_prevention(message, MUTE_DEADCHAT))
 				return
@@ -59,8 +59,8 @@
 		alt_name = " (died as [real_name])"
 
 	var/spanned = say_quote(say_emphasis(message))
-	var/source = "<span class='game'><span class='prefix'>DEAD:</span> <span class='name'>[name]</span>[alt_name]"
-	var/rendered = " <span class='message'>[emoji_parse(spanned)]</span></span>"
+	var/source = "[span_game("<span class='prefix'>DEAD:")] [span_name("[name]")][alt_name]"
+	var/rendered = " [span_message("[emoji_parse(spanned)]")]</span>"
 	log_talk(message, LOG_SAY, tag = "DEAD")
 	if(SEND_SIGNAL(src, COMSIG_MOB_DEADSAY, message) & MOB_DEADSAY_SIGNAL_INTERCEPT)
 		return

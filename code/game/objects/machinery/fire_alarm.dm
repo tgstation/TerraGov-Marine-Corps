@@ -91,11 +91,11 @@ FIRE ALARM
 			if(ismultitool(I))
 				detecting = !detecting
 				if(detecting)
-					user.visible_message("<span class='warning'> [user] has reconnected [src]'s detecting unit!</span>", "You have reconnected [src]'s detecting unit.")
+					user.visible_message(span_warning(" [user] has reconnected [src]'s detecting unit!"), "You have reconnected [src]'s detecting unit.")
 				else
-					user.visible_message("<span class='warning'> [user] has disconnected [src]'s detecting unit!</span>", "You have disconnected [src]'s detecting unit.")
+					user.visible_message(span_warning(" [user] has disconnected [src]'s detecting unit!"), "You have disconnected [src]'s detecting unit.")
 			else if(iswirecutter(I))
-				user.visible_message("<span class='warning'> [user] has cut the wires inside \the [src]!</span>", "You have cut the wires inside \the [src].")
+				user.visible_message(span_warning(" [user] has cut the wires inside \the [src]!"), "You have cut the wires inside \the [src].")
 				playsound(loc, 'sound/items/wirecutter.ogg', 25, 1)
 				buildstage = 1
 				update_icon()
@@ -103,11 +103,11 @@ FIRE ALARM
 			if(iscablecoil(I))
 				var/obj/item/stack/cable_coil/C = I
 				if(C.use(5))
-					to_chat(user, "<span class='notice'>You wire \the [src].</span>")
+					to_chat(user, span_notice("You wire \the [src]."))
 					buildstage = 2
 					return
 				else
-					to_chat(user, "<span class='warning'>You need 5 pieces of cable to do wire \the [src].</span>")
+					to_chat(user, span_warning("You need 5 pieces of cable to do wire \the [src]."))
 					return
 			else if(iscrowbar(I))
 				to_chat(user, "You pry out the circuit!")

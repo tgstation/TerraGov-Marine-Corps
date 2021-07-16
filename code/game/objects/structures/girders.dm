@@ -57,13 +57,13 @@
 				var/obj/item/stack/sheet/stack = I
 				if(stack.amount < 2)
 					return
-				to_chat(user, "<span class='notice'>Now adding plating...</span>")
+				to_chat(user, span_notice("Now adding plating..."))
 				if(!do_after(user, 4 SECONDS, TRUE, src, BUSY_ICON_BUILD))
 					return TRUE
 				if(QDELETED(stack) || stack.amount < 2 || girder_state != GIRDER_BROKEN)
 					return TRUE
 				stack.use(2)
-				to_chat(user, "<span class='notice'>You added the metal to the girder!</span>")
+				to_chat(user, span_notice("You added the metal to the girder!"))
 				change_state(GIRDER_BROKEN_PATCHED)
 				return TRUE
 			if(GIRDER_NORMAL)
@@ -71,13 +71,13 @@
 				var/reinforced = istype(I, GIRDER_REINF_PLASTEEL)
 				if(stack.amount < (reinforced ? 15 : 2))
 					return TRUE
-				to_chat(user, "<span class='notice'>Now adding plating...</span>")
+				to_chat(user, span_notice("Now adding plating..."))
 				if(!do_after(user, 4 SECONDS * (reinforced ? 2 : 1), TRUE, src, BUSY_ICON_BUILD))
 					return TRUE
 				if(QDELETED(stack) || stack.amount < (reinforced ? 15 : 2) || girder_state != GIRDER_NORMAL)
 					return TRUE
 				stack.use(reinforced ? 15 : 2)
-				to_chat(user, "<span class='notice'>You added the plating!</span>")
+				to_chat(user, span_notice("You added the plating!"))
 				change_state(GIRDER_BUILDING1_LOOSE)
 				reinforcement = (reinforced ? GIRDER_REINF_PLASTEEL : GIRDER_REINF_METAL)
 				return TRUE
@@ -89,13 +89,13 @@
 				if(stack.amount < (reinforced ? 15 : 2))
 					return TRUE
 				var/old_girder_state = girder_state
-				to_chat(user, "<span class='notice'>Now adding plating...</span>")
+				to_chat(user, span_notice("Now adding plating..."))
 				if(!do_after(user, 4 SECONDS * (reinforced ? 2 : 1), TRUE, src, BUSY_ICON_BUILD))
 					return TRUE
 				if(QDELETED(stack) || stack.amount < (reinforced ? 15 : 2) || girder_state != old_girder_state)
 					return TRUE
 				stack.use(reinforced ? 15 : 2)
-				to_chat(user, "<span class='notice'>You added the plating!</span>")
+				to_chat(user, span_notice("You added the plating!"))
 				change_state(girder_state + 1)
 				return TRUE
 		return FALSE
@@ -120,7 +120,7 @@
 			if(!welder.remove_fuel(1, user))
 				return TRUE
 			playsound(loc, 'sound/items/welder2.ogg', 25, 1)
-			to_chat(user, "<span class='notice'>You weld the [girder_state == GIRDER_BROKEN_PATCHED ? "girder together" : "metal to the girder"]!</span>")
+			to_chat(user, span_notice("You weld the [girder_state == GIRDER_BROKEN_PATCHED ? "girder together" : "metal to the girder"]!"))
 			change_state(girder_state + 1)
 			return TRUE
 	return FALSE
@@ -132,12 +132,12 @@
 	switch(girder_state)
 		if(GIRDER_BROKEN)
 			playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
-			to_chat(user, "<span class='notice'>Now unbolting the remaining girder base.</span>")
+			to_chat(user, span_notice("Now unbolting the remaining girder base."))
 			if(!do_after(user, 1.5 SECONDS, TRUE, src, BUSY_ICON_BUILD))
 				return TRUE
 			if(girder_state != GIRDER_BROKEN)
 				return TRUE
-			to_chat(user, "<span class='notice'>You scrap what is left from the girder!</span>")
+			to_chat(user, span_notice("You scrap what is left from the girder!"))
 			new /obj/item/stack/sheet/metal(loc)
 			qdel(src)
 			return TRUE
@@ -146,15 +146,15 @@
 			if(anchored)
 				return FALSE
 			if(!isfloorturf(T) && !isbasalt(T) && !islavacatwalk(T) && !isopengroundturf(T))
-				to_chat(usr, "<span class='warning'>The girder must be secured on the floor!</span>")
+				to_chat(usr, span_warning("The girder must be secured on the floor!"))
 				return FALSE
 			playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
-			to_chat(user, "<span class='notice'>Now securing the girder</span>")
+			to_chat(user, span_notice("Now securing the girder"))
 			if(!do_after(user, 4 SECONDS, TRUE, src, BUSY_ICON_BUILD))
 				return TRUE
 			if(anchored || girder_state != GIRDER_NORMAL)
 				return TRUE
-			to_chat(user, "<span class='notice'>You secured the girder!</span>")
+			to_chat(user, span_notice("You secured the girder!"))
 			anchored = TRUE
 			modify_max_integrity(150)
 			update_icon()
@@ -169,12 +169,12 @@
 			if(!anchored)
 				return FALSE
 			playsound(loc, 'sound/items/crowbar.ogg', 25, 1)
-			to_chat(user, "<span class='notice'>Now dislodging the girder...</span>")
+			to_chat(user, span_notice("Now dislodging the girder..."))
 			if(!do_after(user, 4 SECONDS, TRUE, src, BUSY_ICON_BUILD))
 				return TRUE
 			if(!anchored || girder_state != GIRDER_NORMAL)
 				return TRUE
-			to_chat(user, "<span class='notice'>You dislodged the girder!</span>")
+			to_chat(user, span_notice("You dislodged the girder!"))
 			anchored = FALSE
 			modify_max_integrity(50)
 			update_icon()
@@ -189,7 +189,7 @@
 			if(girder_state != old_girder_state)
 				return TRUE
 			playsound(loc, 'sound/items/crowbar.ogg', 25, 1)
-			to_chat(user, "<span class='notice'>You pry the external reinforcement layer out of the girder!</span>")
+			to_chat(user, span_notice("You pry the external reinforcement layer out of the girder!"))
 			new reinforcement(loc) //This should come before change_state() as the var may get nulled there.
 			change_state(girder_state - 1)
 			return TRUE
@@ -204,17 +204,17 @@
 			if(anchored)
 				return FALSE
 			playsound(loc, 'sound/items/screwdriver.ogg', 25, 1)
-			to_chat(user, "<span class='notice'>Now dissassembling the girder</span>")
+			to_chat(user, span_notice("Now dissassembling the girder"))
 			if(!do_after(user, 4 SECONDS, TRUE, src, BUSY_ICON_BUILD))
 				return TRUE
 			if(anchored || girder_state != GIRDER_NORMAL)
 				return TRUE
-			to_chat(user, "<span class='notice'>You finished dissassembling the girder!</span>")
+			to_chat(user, span_notice("You finished dissassembling the girder!"))
 			new /obj/item/stack/sheet/metal(loc)
 			qdel(src)
 			return TRUE
 		if(GIRDER_BUILDING1_LOOSE, GIRDER_BUILDING2_LOOSE)
-			to_chat(user, "<span class='notice'>Now securing support struts</span>")
+			to_chat(user, span_notice("Now securing support struts"))
 			var/old_girder_state = girder_state
 			var/work_time = 3 SECONDS
 			if(reinforcement == GIRDER_REINF_PLASTEEL)
@@ -224,11 +224,11 @@
 			if(girder_state != old_girder_state)
 				return TRUE
 			playsound(loc, 'sound/items/screwdriver.ogg', 25, 1)
-			to_chat(user, "<span class='notice'>You secured the support struts!</span>")
+			to_chat(user, span_notice("You secured the support struts!"))
 			change_state(girder_state + 1)
 			return TRUE
 		if(GIRDER_BUILDING1_SECURED, GIRDER_BUILDING2_SECURED)
-			to_chat(user, "<span class='notice'>Now unsecuring support struts</span>")
+			to_chat(user, span_notice("Now unsecuring support struts"))
 			var/old_girder_state = girder_state
 			var/work_time = 3 SECONDS
 			if(reinforcement == GIRDER_REINF_PLASTEEL)
@@ -238,7 +238,7 @@
 			if(girder_state != old_girder_state)
 				return TRUE
 			playsound(loc, 'sound/items/crowbar.ogg', 25, 1)
-			to_chat(user, "<span class='notice'>You unsecured the support struts!</span>")
+			to_chat(user, span_notice("You unsecured the support struts!"))
 			change_state(girder_state - 1)
 			return TRUE
 	return FALSE
@@ -250,10 +250,10 @@
 	switch(girder_state)
 		if(GIRDER_BROKEN_PATCHED)
 			playsound(loc, 'sound/items/wirecutter.ogg', 25, 1)
-			to_chat(user, "<span class='notice'>Now cutting the metal plate...</span>")
+			to_chat(user, span_notice("Now cutting the metal plate..."))
 			if(!do_after(user, 4 SECONDS, TRUE, src, BUSY_ICON_BUILD))
 				return TRUE
-			to_chat(user, "<span class='notice'>You finished cutting the metal plate!</span>")
+			to_chat(user, span_notice("You finished cutting the metal plate!"))
 			deconstruct()
 			return TRUE
 		if(GIRDER_BUILDING1_WELDED)
@@ -261,13 +261,13 @@
 			var/work_time = 3 SECONDS
 			if(reinforcement == GIRDER_REINF_PLASTEEL)
 				work_time += 3 SECONDS
-			to_chat(user, "<span class='notice'>Now cutting the support struts...</span>")
+			to_chat(user, span_notice("Now cutting the support struts..."))
 			if(!do_after(user, 4 SECONDS, TRUE, src, BUSY_ICON_BUILD))
 				return
 			if(girder_state != old_girder_state)
 				return TRUE
 			playsound(loc, 'sound/items/wirecutter.ogg', 25, 1)
-			to_chat(user, "<span class='notice'>You've cut the support struts!</span>")
+			to_chat(user, span_notice("You've cut the support struts!"))
 			change_state(girder_state - 1)
 	return FALSE
 

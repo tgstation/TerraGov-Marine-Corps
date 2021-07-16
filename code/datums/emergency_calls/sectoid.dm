@@ -35,9 +35,9 @@
 		leader = H
 		var/datum/job/J = SSjob.GetJobType(/datum/job/sectoid/leader)
 		H.apply_assigned_role_to_spawn(J)
-		to_chat(H, "<p style='font-size:1.5em'><span class='notice'>You are the leader of this scouting expedition. You are able to use your stronger psionic powers to protect yourself from harm.</span></p>")
+		to_chat(H, "<p style='font-size:1.5em'>[span_notice("You are the leader of this scouting expedition. You are able to use your stronger psionic powers to protect yourself from harm.")]</p>")
 		return
 
 	var/datum/job/J = SSjob.GetJobType(/datum/job/sectoid/grunt)
 	H.apply_assigned_role_to_spawn(J)
-	to_chat(H, "<p style='font-size:1.5em'><span class='notice'>You are a grunt, with limited psionic potential.</span></p>")
+	to_chat(H, "<p style='font-size:1.5em'>[span_notice("You are a grunt, with limited psionic potential.")]</p>")

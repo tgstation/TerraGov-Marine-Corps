@@ -25,7 +25,7 @@
 				new_board = new /obj/item/circuitboard/airalarm(user.loc)
 		if(new_board)
 			qdel(src)
-			to_chat(user, "<span class='notice'>You set the general circuit to act as [new_board].</span>")
+			to_chat(user, span_notice("You set the general circuit to act as [new_board]."))
 			new_board.set_general()
 			user.put_in_hands(new_board)
 

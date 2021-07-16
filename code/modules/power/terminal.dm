@@ -46,14 +46,14 @@
 /obj/machinery/power/terminal/deconstruct(mob/living/user)
 	var/turf/T = get_turf(src)
 	if(T.intact_tile)
-		to_chat(user, "<span class='warning'>You must first expose the power terminal!</span>")
+		to_chat(user, span_warning("You must first expose the power terminal!"))
 		return FALSE
 
 	if(master && !master.can_terminal_dismantle())
 		return FALSE
 
-	user.visible_message("<span class='notice'>[user] starts removing [master]'s wiring and terminal.</span>",
-		"<span class='notice'>You start removing [master]'s wiring and terminal.</span>")
+	user.visible_message(span_notice("[user] starts removing [master]'s wiring and terminal."),
+		span_notice("You start removing [master]'s wiring and terminal."))
 
 	playsound(loc, 'sound/items/deconstruct.ogg', 50, 1)
 	if(!do_after(user, 50, TRUE, src, BUSY_ICON_BUILD))
@@ -69,9 +69,9 @@
 		return FALSE
 
 	new /obj/item/stack/cable_coil(get_turf(src), 10)
-	user.visible_message("<span class='notice'>[user] removes [src]'s wiring and terminal.</span>",
-			"<span class='notice'>You remove [src]'s wiring and terminal.</span>")
-	
+	user.visible_message(span_notice("[user] removes [src]'s wiring and terminal."),
+			span_notice("You remove [src]'s wiring and terminal."))
+
 	. = TRUE
 
 	return ..()

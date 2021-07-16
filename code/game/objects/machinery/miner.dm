@@ -73,16 +73,16 @@
 /// Called whenever someone attacks the miner with a object which is considered a upgrade.The object needs to have a uptype var.
 /obj/machinery/miner/proc/attempt_upgrade(obj/item/minerupgrade/upgrade, mob/user, params)
 	if(miner_upgrade_type)
-		to_chat(user, "<span class='info'>The [src]'s module sockets are already occupied by the [miner_upgrade_type].</span>")
+		to_chat(user, span_info("The [src]'s module sockets are already occupied by the [miner_upgrade_type]."))
 		return FALSE
 	if(user.skills.getRating("engineer") < SKILL_ENGINEER_ENGI)
-		user.visible_message("<span class='notice'>[user] fumbles around figuring out how to install the module on [src].</span>",
-		"<span class='notice'>You fumble around figuring out how to install the module on [src].</span>")
+		user.visible_message(span_notice("[user] fumbles around figuring out how to install the module on [src]."),
+		span_notice("You fumble around figuring out how to install the module on [src]."))
 		var/fumbling_time = 15 SECONDS - 2 SECONDS * user.skills.getRating("engineer")
 		if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 			return FALSE
-	user.visible_message("<span class='notice'>[user] begins attaching a module to [src]'s sockets.</span>")
-	to_chat(user, "<span class='info'>You begin installing the [upgrade] on the miner.</span>")
+	user.visible_message(span_notice("[user] begins attaching a module to [src]'s sockets."))
+	to_chat(user, span_info("You begin installing the [upgrade] on the miner."))
 	if(!do_after(user, 15 SECONDS, TRUE, src, BUSY_ICON_BUILD))
 		return FALSE
 	switch(upgrade.uptype)
@@ -100,7 +100,7 @@
 				stored_mineral = 0
 				start_processing()
 	miner_upgrade_type = upgrade.uptype
-	user.visible_message("<span class='notice'>[user] attaches the [miner_upgrade_type] to the [src]!</span>")
+	user.visible_message(span_notice("[user] attaches the [miner_upgrade_type] to the [src]!"))
 	qdel(upgrade)
 	playsound(loc,'sound/items/screwdriver.ogg', 25, TRUE)
 	update_icon()
@@ -110,7 +110,7 @@
 	if(istype(I, /obj/item/minerupgrade))
 		var/obj/item/minerupgrade/upgrade = I
 		if(!(miner_status == MINER_RUNNING))
-			to_chat(user, "<span class='info'>[src]'s module sockets seem bolted down.</span>")
+			to_chat(user, span_info("[src]'s module sockets seem bolted down."))
 			return FALSE
 		attempt_upgrade(upgrade,user)
 
@@ -119,13 +119,13 @@
 	var/obj/item/tool/weldingtool/weldingtool = I
 	if((miner_status == MINER_RUNNING) && miner_upgrade_type)
 		if(!weldingtool.remove_fuel(2,user))
-			to_chat(user, "<span class='info'>You need more welding fuel to complete this task!</span>")
+			to_chat(user, span_info("You need more welding fuel to complete this task!"))
 			return FALSE
-		to_chat(user, "<span class='info'>You begin uninstalling the [miner_upgrade_type] from the miner!</span>")
-		user.visible_message("<span class='notice'>[user] begins dismantling the [miner_upgrade_type] from the miner.</span>")
+		to_chat(user, span_info("You begin uninstalling the [miner_upgrade_type] from the miner!"))
+		user.visible_message(span_notice("[user] begins dismantling the [miner_upgrade_type] from the miner."))
 		if(!do_after(user, 30 SECONDS, TRUE, src, BUSY_ICON_BUILD))
 			return FALSE
-		user.visible_message("<span class='notice'>[user] dismantles the [miner_upgrade_type] from the miner!</span>")
+		user.visible_message(span_notice("[user] dismantles the [miner_upgrade_type] from the miner!"))
 		var/obj/item/upgrade
 		switch(miner_upgrade_type)
 			if(MINER_RESISTANT)
@@ -145,17 +145,17 @@
 	if(miner_status != MINER_DESTROYED)
 		return
 	if(!weldingtool.remove_fuel(1, user))
-		to_chat(user, "<span class='warning'>You need more welding fuel to complete this task.</span>")
+		to_chat(user, span_warning("You need more welding fuel to complete this task."))
 		return FALSE
 	if(user.skills.getRating("engineer") < SKILL_ENGINEER_ENGI)
-		user.visible_message("<span class='notice'>[user] fumbles around figuring out [src]'s internals.</span>",
-		"<span class='notice'>You fumble around figuring out [src]'s internals.</span>")
+		user.visible_message(span_notice("[user] fumbles around figuring out [src]'s internals."),
+		span_notice("You fumble around figuring out [src]'s internals."))
 		var/fumbling_time = 10 SECONDS - 2 SECONDS * user.skills.getRating("engineer")
 		if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED, extra_checks = CALLBACK(weldingtool, /obj/item/tool/weldingtool/proc/isOn)))
 			return FALSE
 	playsound(loc, 'sound/items/weldingtool_weld.ogg', 25)
-	user.visible_message("<span class='notice'>[user] starts welding [src]'s internal damage.</span>",
-	"<span class='notice'>You start welding [src]'s internal damage.</span>")
+	user.visible_message(span_notice("[user] starts welding [src]'s internal damage."),
+	span_notice("You start welding [src]'s internal damage."))
 	if(!do_after(user, 200, TRUE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(weldingtool, /obj/item/tool/weldingtool/proc/isOn)))
 		return FALSE
 	if(miner_status != MINER_DESTROYED )
@@ -163,22 +163,22 @@
 	playsound(loc, 'sound/items/welder2.ogg', 25, TRUE)
 	miner_integrity = 0.33 * max_miner_integrity
 	set_miner_status()
-	user.visible_message("<span class='notice'>[user] welds [src]'s internal damage.</span>",
-	"<span class='notice'>You weld [src]'s internal damage.</span>")
+	user.visible_message(span_notice("[user] welds [src]'s internal damage."),
+	span_notice("You weld [src]'s internal damage."))
 	return TRUE
 
 /obj/machinery/miner/wirecutter_act(mob/living/user, obj/item/I)
 	if(miner_status != MINER_MEDIUM_DAMAGE)
 		return
 	if(user.skills.getRating("engineer") < SKILL_ENGINEER_ENGI)
-		user.visible_message("<span class='notice'>[user] fumbles around figuring out [src]'s wiring.</span>",
-		"<span class='notice'>You fumble around figuring out [src]'s wiring.</span>")
+		user.visible_message(span_notice("[user] fumbles around figuring out [src]'s wiring."),
+		span_notice("You fumble around figuring out [src]'s wiring."))
 		var/fumbling_time = 10 SECONDS - 2 SECONDS * user.skills.getRating("engineer")
 		if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 			return FALSE
 	playsound(loc, 'sound/items/wirecutter.ogg', 25, TRUE)
-	user.visible_message("<span class='notice'>[user] starts securing [src]'s wiring.</span>",
-	"<span class='notice'>You start securing [src]'s wiring.</span>")
+	user.visible_message(span_notice("[user] starts securing [src]'s wiring."),
+	span_notice("You start securing [src]'s wiring."))
 	if(!do_after(user, 120, TRUE, src, BUSY_ICON_BUILD))
 		return FALSE
 	if(miner_status != MINER_MEDIUM_DAMAGE)
@@ -186,22 +186,22 @@
 	playsound(loc, 'sound/items/wirecutter.ogg', 25, TRUE)
 	miner_integrity = 0.66 * max_miner_integrity
 	set_miner_status()
-	user.visible_message("<span class='notice'>[user] secures [src]'s wiring.</span>",
-	"<span class='notice'>You secure [src]'s wiring.</span>")
+	user.visible_message(span_notice("[user] secures [src]'s wiring."),
+	span_notice("You secure [src]'s wiring."))
 	return TRUE
 
 /obj/machinery/miner/wrench_act(mob/living/user, obj/item/I)
 	if(miner_status != MINER_SMALL_DAMAGE)
 		return
 	if(user.skills.getRating("engineer") < SKILL_ENGINEER_ENGI)
-		user.visible_message("<span class='notice'>[user] fumbles around figuring out [src]'s tubing and plating.</span>",
-		"<span class='notice'>You fumble around figuring out [src]'s tubing and plating.</span>")
+		user.visible_message(span_notice("[user] fumbles around figuring out [src]'s tubing and plating."),
+		span_notice("You fumble around figuring out [src]'s tubing and plating."))
 		var/fumbling_time = 10 SECONDS - 2 SECONDS * user.skills.getRating("engineer")
 		if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 			return FALSE
 	playsound(loc, 'sound/items/ratchet.ogg', 25, TRUE)
-	user.visible_message("<span class='notice'>[user] starts repairing [src]'s tubing and plating.</span>",
-	"<span class='notice'>You start repairing [src]'s tubing and plating.</span>")
+	user.visible_message(span_notice("[user] starts repairing [src]'s tubing and plating."),
+	span_notice("You start repairing [src]'s tubing and plating."))
 	if(!do_after(user, 150, TRUE, src, BUSY_ICON_BUILD))
 		return FALSE
 	if(miner_status != MINER_SMALL_DAMAGE)
@@ -209,8 +209,8 @@
 	playsound(loc, 'sound/items/ratchet.ogg', 25, TRUE)
 	miner_integrity = max_miner_integrity
 	set_miner_status()
-	user.visible_message("<span class='notice'>[user] repairs [src]'s tubing and plating.</span>",
-	"<span class='notice'>You repair [src]'s tubing and plating.</span>")
+	user.visible_message(span_notice("[user] repairs [src]'s tubing and plating."),
+	span_notice("You repair [src]'s tubing and plating."))
 	start_processing()
 	faction = user.faction
 	return TRUE
@@ -220,29 +220,29 @@
 	if(!ishuman(user))
 		return
 	if(!miner_upgrade_type)
-		to_chat(user, "<span class='info'>[src]'s module sockets seem empty, an upgrade could be installed.</span>")
+		to_chat(user, span_info("[src]'s module sockets seem empty, an upgrade could be installed."))
 	else
-		to_chat(user, "<span class='info'>[src]'s module sockets are occupied by the [miner_upgrade_type].</span>")
+		to_chat(user, span_info("[src]'s module sockets are occupied by the [miner_upgrade_type]."))
 
 	switch(miner_status)
 		if(MINER_DESTROYED)
-			to_chat(user, "<span class='info'>It's heavily damaged, and you can see internal workings.</span>\n<span class='info'>Use a blowtorch, then wirecutters, then a wrench to repair it.</span>")
+			to_chat(user, span_info("It's heavily damaged, and you can see internal workings.</span>\n<span class='info'>Use a blowtorch, then wirecutters, then a wrench to repair it."))
 		if(MINER_MEDIUM_DAMAGE)
-			to_chat(user, "<span class='info'>It's damaged, and there are broken wires hanging out.</span>\n<span class='info'>Use wirecutters, then wrench to repair it.</span>")
+			to_chat(user, span_info("It's damaged, and there are broken wires hanging out.</span>\n<span class='info'>Use wirecutters, then wrench to repair it."))
 		if(MINER_SMALL_DAMAGE)
-			to_chat(user, "<span class='info'>It's lightly damaged, and you can see some dents and loose piping.</span>\n<span class='info'>Use a wrench to repair it.</span>")
+			to_chat(user, span_info("It's lightly damaged, and you can see some dents and loose piping.</span>\n<span class='info'>Use a wrench to repair it."))
 		if(MINER_RUNNING)
-			to_chat(user, "<span class='info'>[src]'s storage module displays [stored_mineral] crates are ready to be exported.</span>")
+			to_chat(user, span_info("[src]'s storage module displays [stored_mineral] crates are ready to be exported."))
 
 /obj/machinery/miner/attack_hand(mob/living/user)
 	if(miner_status != MINER_RUNNING)
-		to_chat(user, "<span class='warning'>[src] is damaged!</span>")
+		to_chat(user, span_warning("[src] is damaged!"))
 		return
 	if(miner_upgrade_type == MINER_AUTOMATED)
-		to_chat(user, "<span class='warning'>[src] is automated!</span>")
+		to_chat(user, span_warning("[src] is automated!"))
 		return
 	if(!stored_mineral)
-		to_chat(user, "<span class='warning'>[src] is not ready to produce a shipment yet!</span>")
+		to_chat(user, span_warning("[src] is not ready to produce a shipment yet!"))
 		return
 
 	SSpoints.supply_points[faction] += mineral_value * stored_mineral
@@ -286,8 +286,8 @@
 		if(!do_after(X, 3 SECONDS, TRUE, src, BUSY_ICON_DANGER, BUSY_ICON_HOSTILE))
 			return
 		X.do_attack_animation(src, ATTACK_EFFECT_CLAW)
-		X.visible_message("<span class='danger'>[X] slashes \the [src]!</span>", \
-		"<span class='danger'>We slash \the [src]!</span>", null, 5)
+		X.visible_message(span_danger("[X] slashes \the [src]!"), \
+		span_danger("We slash \the [src]!"), null, 5)
 		playsound(loc, "alien_claw_metal", 25, TRUE)
 		miner_integrity -= 25
 		set_miner_status()

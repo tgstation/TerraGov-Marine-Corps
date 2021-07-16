@@ -59,7 +59,7 @@
 	if(!ishuman(target))
 		return FALSE
 	if(!(user.zone_selected in allowed_limbs))
-		to_chat(user, "<span class='warning'>You cannot implant this into that limb!</span>")
+		to_chat(user, span_warning("You cannot implant this into that limb!"))
 		return FALSE
 	return implant(target, user)
 
@@ -107,7 +107,7 @@
 
 ///Destroys and makes the implant unusable
 /obj/item/implant/proc/meltdown()
-	to_chat(implant_owner, "<span class='warning'>You feel something melting inside [part ? "your [part.display_name]" : "you"]!</span>")
+	to_chat(implant_owner, span_warning("You feel something melting inside [part ? "your [part.display_name]" : "you"]!"))
 	part.take_damage_limb(0, 15)
 
 	name = "melted implant"

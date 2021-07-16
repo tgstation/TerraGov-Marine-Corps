@@ -154,7 +154,7 @@
 		switch(remove_from)
 			if("ears")
 				if(!ears)
-					to_chat(usr, "<span class='warning'>There is nothing to remove from its [remove_from]!</span>")
+					to_chat(usr, span_warning("There is nothing to remove from its [remove_from]!"))
 					return
 				if(!stat)
 					say("[available_channels.len ? "[pick(available_channels)] " : null]BAWWWWWK LEAVE THE HEADSET BAWKKKKK!")
@@ -168,12 +168,12 @@
 	else if(href_list["add_inv"])
 		var/add_to = href_list["add_inv"]
 		if(!usr.get_active_held_item())
-			to_chat(usr, "<span class='warning'>You have nothing in your hand to put on its [add_to]!</span>")
+			to_chat(usr, span_warning("You have nothing in your hand to put on its [add_to]!"))
 			return
 		switch(add_to)
 			if("ears")
 				if(ears)
-					to_chat(usr, "<span class='warning'>It's already wearing something!</span>")
+					to_chat(usr, span_warning("It's already wearing something!"))
 					return
 				else
 					var/obj/item/item_to_add = usr.get_active_held_item()
@@ -181,7 +181,7 @@
 						return
 
 					if( !istype(item_to_add,  /obj/item/radio/headset) )
-						to_chat(usr, "<span class='warning'>This object won't fit!</span>")
+						to_chat(usr, span_warning("This object won't fit!"))
 						return
 
 					var/obj/item/radio/headset/headset_to_add = item_to_add
@@ -189,7 +189,7 @@
 					if(!usr.transferItemToLoc(headset_to_add, src))
 						return
 					ears = headset_to_add
-					to_chat(usr, "<span class='notice'>You fit the headset onto [src].</span>")
+					to_chat(usr, span_notice("You fit the headset onto [src]."))
 
 					clearlist(available_channels)
 					for(var/ch in headset_to_add.channels)
@@ -401,7 +401,7 @@
 			if(!isliving(parrot_interest) && (!parrot_perch || parrot_interest.loc != parrot_perch.loc))
 				held_item = parrot_interest
 				parrot_interest.forceMove(src)
-				visible_message("[src] grabs [held_item]!", "<span class='notice'>You grab [held_item]!</span>", "<span class='italics'>You hear the sounds of wings flapping furiously.</span>")
+				visible_message("[src] grabs [held_item]!", span_notice("You grab [held_item]!"), span_italics("You hear the sounds of wings flapping furiously."))
 
 			parrot_interest = null
 			parrot_state = PARROT_SWOOP|PARROT_RETURN
@@ -485,7 +485,7 @@
 
 		held_item = I
 		I.forceMove(src)
-		visible_message("[src] grabs [held_item]!", "<span class='notice'>You grab [held_item]!</span>", "<span class='italics'>You hear the sounds of wings flapping furiously.</span>")
+		visible_message("[src] grabs [held_item]!", span_notice("You grab [held_item]!"), span_italics("You hear the sounds of wings flapping furiously."))
 		return held_item
 
 

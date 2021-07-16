@@ -15,7 +15,7 @@
 		return
 	if(L.mob_size != MOB_SIZE_BIG && prob(80))
 		return
-	visible_message("<span class='danger'>[L] tramples the [src]!</span>")
+	visible_message(span_danger("[L] tramples the [src]!"))
 	playsound(src, 'sound/weapons/genhit.ogg', 25, 1)
 	if(isxeno(L) && prob(40))
 		qdel(src)

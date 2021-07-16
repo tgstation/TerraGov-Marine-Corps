@@ -37,21 +37,21 @@
 		leader = H
 		var/datum/job/J = SSjob.GetJobType(/datum/job/deathsquad/leader)
 		H.apply_assigned_role_to_spawn(J)
-		to_chat(H, "<p style='font-size:1.5em'><span class='notice'>You are the leader of the elite Asset Protection commando squad.</span></p>")
+		to_chat(H, "<p style='font-size:1.5em'>[span_notice("You are the leader of the elite Asset Protection commando squad.")]</p>")
 		return
 
 	if(prob(30))
 		var/datum/job/J = SSjob.GetJobType(/datum/job/deathsquad/standard/energy)
 		H.apply_assigned_role_to_spawn(J)
-		to_chat(H, "<p style='font-size:1.5em'><span class='notice'>You are a member of the elite Asset Protection commando squad.</span></p>")
+		to_chat(H, "<p style='font-size:1.5em'>[span_notice("You are a member of the elite Asset Protection commando squad.")]</p>")
 		return
 
 	if(prob(30))
 		var/datum/job/J = SSjob.GetJobType(/datum/job/deathsquad/gunner)
 		H.apply_assigned_role_to_spawn(J)
-		to_chat(H, "<p style='font-size:1.5em'><span class='notice'>You are a member of the elite Asset Protection commando squad.</span></p>")
+		to_chat(H, "<p style='font-size:1.5em'>[span_notice("You are a member of the elite Asset Protection commando squad.")]</p>")
 		return
 
 	var/datum/job/J = SSjob.GetJobType(/datum/job/deathsquad/standard)
 	H.apply_assigned_role_to_spawn(J)
-	to_chat(H, "<p style='font-size:1.5em'><span class='notice'>You are a member of the elite Asset Protection commando squad.</span></p>")
+	to_chat(H, "<p style='font-size:1.5em'>[span_notice("You are a member of the elite Asset Protection commando squad.")]</p>")

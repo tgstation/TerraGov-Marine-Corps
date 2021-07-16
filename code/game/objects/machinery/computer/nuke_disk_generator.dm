@@ -109,7 +109,7 @@
 
 	if(href_list["generate"])
 		if(printing || current_timer)
-			to_chat(usr, "<span class='warning'>A program is already running.</span>")
+			to_chat(usr, span_warning("A program is already running."))
 			return
 		if(reprintable)
 			printing = TRUE
@@ -141,15 +141,15 @@
 
 	if(completed_segments == total_segments)
 		reprintable = TRUE
-		visible_message("<span class='notice'>[src] beeps as it ready to print.</span>")
+		visible_message(span_notice("[src] beeps as it ready to print."))
 		return
 
-	visible_message("<span class='notice'>[src] beeps as it program requires attention.</span>")
+	visible_message(span_notice("[src] beeps as it program requires attention."))
 
 
 /obj/machinery/computer/nuke_disk_generator/proc/print_disc()
 	disk = new disk_type(loc)
-	visible_message("<span class='notice'>[src] beeps as it finishes printing the disc.</span>")
+	visible_message(span_notice("[src] beeps as it finishes printing the disc."))
 	reprintable = TRUE
 
 /obj/machinery/computer/nuke_disk_generator/red

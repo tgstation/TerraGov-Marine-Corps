@@ -101,7 +101,7 @@
 			return
 		else if(L.restrained(RESTRAINED_NECKGRAB))
 			move_delay = world.time + 1 SECONDS //to reduce the spam
-			to_chat(src, "<span class='warning'>You're restrained! You can't move!</span>")
+			to_chat(src, span_warning("You're restrained! You can't move!"))
 			return
 		else
 			move_delay = world.time + 1 SECONDS
@@ -161,7 +161,7 @@
 
 	//Check to see if we slipped
 	if(prob(Process_Spaceslipping(5)))
-		to_chat(src, "<span class='boldnotice'>You slipped!</span>")
+		to_chat(src, span_boldnotice("You slipped!"))
 		step(src, src.inertia_dir)
 		return 0
 	//If not then we can reset inertia and move

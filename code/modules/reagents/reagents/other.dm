@@ -69,7 +69,7 @@
 /datum/reagent/water/overdose_process(mob/living/L, metabolism)
 	if(prob(10))
 		L.adjustStaminaLoss(50*effect_str)
-		to_chat(L, "<span class='warning'>You cramp up! Too much water!</span>")
+		to_chat(L, span_warning("You cramp up! Too much water!"))
 
 /datum/reagent/water/holywater
 	name = "Holy Water"
@@ -644,7 +644,7 @@
 			if(C.species.species_flags & NO_PAIN)
 				return
 		if(show_message)
-			to_chat(L, "<span class='warning'>Your open wounds feel like they're on fire!</span>")
+			to_chat(L, span_warning("Your open wounds feel like they're on fire!"))
 		L.emote(pick("scream","pain","moan"))
 		L.flash_pain()
 		L.reagent_shock_modifier -= PAIN_REDUCTION_MEDIUM

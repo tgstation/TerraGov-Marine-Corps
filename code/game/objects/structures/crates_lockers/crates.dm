@@ -88,19 +88,19 @@
 	if(iscablecoil(I))
 		var/obj/item/stack/cable_coil/C = I
 		if(rigged)
-			to_chat(user, "<span class='notice'>[src] is already rigged!</span>")
+			to_chat(user, span_notice("[src] is already rigged!"))
 			return
 		if(!C.use(1))
 			return
 
-		to_chat(user, "<span class='notice'>You rig [src].</span>")
+		to_chat(user, span_notice("You rig [src]."))
 		rigged = TRUE
 
 	else if(istype(I, /obj/item/electropack))
 		if(!rigged)
 			return
 
-		to_chat(user, "<span class='notice'>You attach [I] to [src].</span>")
+		to_chat(user, span_notice("You attach [I] to [src]."))
 		user.drop_held_item()
 		I.forceMove(src)
 
@@ -108,7 +108,7 @@
 		if(!rigged)
 			return
 
-		to_chat(user, "<span class='notice'>You cut away the wiring.</span>")
+		to_chat(user, span_notice("You cut away the wiring."))
 		playsound(loc, 'sound/items/wirecutter.ogg', 25, 1)
 		rigged = FALSE
 

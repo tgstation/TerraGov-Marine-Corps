@@ -40,7 +40,7 @@
 		details +=("It appears set to breaching mode.")
 	if(armed)
 		details +=("<b>It is armed!</b>")
-	to_chat(user, "<span class='warning'>[details.Join(" ")]</span>")
+	to_chat(user, span_warning("[details.Join(" ")]"))
 
 
 /obj/item/detpack/Destroy()
@@ -77,8 +77,8 @@
 
 	if(ismultitool(I) && armed)
 		if(user.skills.getRating("engineer") < SKILL_ENGINEER_METAL)
-			user.visible_message("<span class='notice'>[user] fumbles around figuring out how to use the [src].</span>",
-			"<span class='notice'>You fumble around figuring out how to use [src].</span>")
+			user.visible_message(span_notice("[user] fumbles around figuring out how to use the [src]."),
+			span_notice("You fumble around figuring out how to use [src]."))
 			var/fumbling_time = 30
 			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 				return
@@ -87,14 +87,14 @@
 				to_chat(user, "<font color='danger'>After several seconds of your clumsy meddling the [src] buzzes angrily as if offended. You have a <b>very</b> bad feeling about this.</font>")
 				timer = 0 //Oops. Now you fucked up. Immediate detonation.
 
-		user.visible_message("<span class='notice'>[user] begins disarming [src] with [I].</span>",
-		"<span class='notice'>You begin disarming [src] with [I].</span>")
+		user.visible_message(span_notice("[user] begins disarming [src] with [I]."),
+		span_notice("You begin disarming [src] with [I]."))
 
 		if(!do_after(user, 30, TRUE, src, BUSY_ICON_FRIENDLY))
 			return
 
-		user.visible_message("<span class='notice'>[user] disarms [src].</span>",
-		"<span class='notice'>You disarm [src].</span>")
+		user.visible_message(span_notice("[user] disarms [src]."),
+		span_notice("You disarm [src]."))
 		armed = FALSE
 		update_icon()
 
@@ -104,12 +104,12 @@
 		to_chat(user, "<font color='warning'>Active anchor bolts are holding it in place! Disarm [src] first to remove it!</font>")
 		return
 	if(plant_target)
-		user.visible_message("<span class='notice'>[user] begins unsecuring [src] from [plant_target].</span>",
-		"<span class='notice'>You begin unsecuring [src] from [plant_target].</span>")
+		user.visible_message(span_notice("[user] begins unsecuring [src] from [plant_target]."),
+		span_notice("You begin unsecuring [src] from [plant_target]."))
 		if(!do_after(user, 30, TRUE, src, BUSY_ICON_BUILD))
 			return
-		user.visible_message("<span class='notice'>[user] unsecures [src] from [plant_target].</span>",
-		"<span class='notice'>You unsecure [src] from [plant_target].</span>")
+		user.visible_message(span_notice("[user] unsecures [src] from [plant_target]."),
+		span_notice("You unsecure [src] from [plant_target]."))
 		nullvars()
 	return ..()
 
@@ -237,24 +237,24 @@
 	if(istype(target, /obj/structure/window))
 		var/obj/structure/window/W = target
 		if(!W.damageable)
-			to_chat(user, "<span class='warning'>[W] is much too tough for you to do anything to it with [src]</span>.")
+			to_chat(user, "[span_warning("[W] is much too tough for you to do anything to it with [src]")].")
 			return FALSE
 	if((locate(/obj/item/detpack) in target) || (locate(/obj/item/explosive/plastique) in target)) //This needs a refactor.
-		to_chat(user, "<span class='warning'>There is already a device attached to [target]</span>.")
+		to_chat(user, "[span_warning("There is already a device attached to [target]")].")
 		return FALSE
 
 	if(user.skills.getRating("engineer") < SKILL_ENGINEER_METAL)
-		user.visible_message("<span class='notice'>[user] fumbles around figuring out how to use [src].</span>",
-		"<span class='notice'>You fumble around figuring out how to use [src].</span>")
+		user.visible_message(span_notice("[user] fumbles around figuring out how to use [src]."),
+		span_notice("You fumble around figuring out how to use [src]."))
 		if(!do_after(user, 5 SECONDS, TRUE, target, BUSY_ICON_UNSKILLED))
 			return
 
-	user.visible_message("<span class='warning'>[user] is trying to plant [name] on [target]!</span>",
-	"<span class='warning'>You are trying to plant [name] on [target]!</span>")
+	user.visible_message(span_warning("[user] is trying to plant [name] on [target]!"),
+	span_warning("You are trying to plant [name] on [target]!"))
 
 	if(do_after(user, 3 SECONDS, TRUE, target, BUSY_ICON_HOSTILE))
 		if((locate(/obj/item/detpack) in target) || (locate(/obj/item/explosive/plastique) in target)) //This needs a refactor.
-			to_chat(user, "<span class='warning'>There is already a device attached to [target]</span>.")
+			to_chat(user, "[span_warning("There is already a device attached to [target]")].")
 			return
 		user.drop_held_item()
 		playsound(src.loc, 'sound/weapons/mine_armed.ogg', 25, 1)
@@ -268,8 +268,8 @@
 		notify_ghosts("<b>[user]</b> has planted \a <b>[name]</b> on <b>[target.name]</b> with a <b>[timer]</b> second fuse!", source = user, action = NOTIFY_ORBIT)
 
 		//target.overlays += image('icons/obj/items/assemblies.dmi', "plastic-explosive2")
-		user.visible_message("<span class='warning'>[user] plants [name] on [target]!</span>",
-		"<span class='warning'>You plant [name] on [target]! Timer set for [timer] seconds.</span>")
+		user.visible_message(span_warning("[user] plants [name] on [target]!"),
+		span_warning("You plant [name] on [target]! Timer set for [timer] seconds."))
 
 		plant_target = target
 		if(ismovableatom(plant_target))

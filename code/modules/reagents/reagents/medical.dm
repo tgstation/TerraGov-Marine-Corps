@@ -126,7 +126,7 @@
 
 /datum/reagent/medicine/oxycodone/on_mob_add(mob/living/L, metabolism)
 	L.adjustStaminaLoss(-20*effect_str)
-	to_chat(L, "<span class='userdanger'>You feel a burst of energy revitalize you all of a sudden! You can do anything!</span>")
+	to_chat(L, span_userdanger("You feel a burst of energy revitalize you all of a sudden! You can do anything!"))
 
 /datum/reagent/medicine/oxycodone/on_mob_life(mob/living/L, metabolism)
 	L.reagent_pain_modifier += PAIN_REDUCTION_FULL
@@ -148,7 +148,7 @@
 			E.take_damage(3*effect_str, TRUE)
 
 /datum/reagent/medicine/oxycodone/on_mob_delete(mob/living/L, metabolism)
-	to_chat(L, "<span class='userdanger'>The room spins slightly as you start to come down off your painkillers!</span>")
+	to_chat(L, span_userdanger("The room spins slightly as you start to come down off your painkillers!"))
 	addtimer(CALLBACK(L, /mob/living.proc/Paralyze, 3), 10 SECONDS)
 
 /datum/reagent/medicine/hydrocodone
@@ -400,7 +400,7 @@
 
 /datum/reagent/medicine/synaptizine/on_mob_add(mob/living/L, metabolism)
 	L.adjustStaminaLoss(-30*effect_str)
-	to_chat(L, "<span class='userdanger'>You feel a burst of energy as the stimulants course through you! Time to go!</span>")
+	to_chat(L, span_userdanger("You feel a burst of energy as the stimulants course through you! Time to go!"))
 
 /datum/reagent/medicine/synaptizine/on_mob_life(mob/living/L, metabolism)
 	L.reagent_shock_modifier += PAIN_REDUCTION_MEDIUM
@@ -426,7 +426,7 @@
 	L.apply_damages(effect_str, effect_str, effect_str)
 
 /datum/reagent/medicine/synaptizine/on_mob_delete(mob/living/L, metabolism)
-	to_chat(L, "<span class='userdanger'>The room spins as you start to come down off your stimulants!</span>")
+	to_chat(L, span_userdanger("The room spins as you start to come down off your stimulants!"))
 	addtimer(CALLBACK(L, /mob/living.proc/Paralyze, 15), 10 SECONDS)
 
 /datum/reagent/medicine/neuraline //injected by neurostimulator implant and medic-only injector
@@ -783,23 +783,23 @@
 	L.adjustOxyLoss(amount)
 	L.adjustStaminaLoss(amount * 1.5)
 	if(L.stat == DEAD)
-		var/death_message = "<span class='danger'>Your body is unable to bear the strain. The last thing you feel, aside from crippling exhaustion, is an explosive pain in your chest as you drop dead. It's a sad thing your adventures have ended here!</span>"
+		var/death_message = span_danger("Your body is unable to bear the strain. The last thing you feel, aside from crippling exhaustion, is an explosive pain in your chest as you drop dead. It's a sad thing your adventures have ended here!")
 		if(iscarbon(L))
 			var/mob/living/carbon/C = L
 			if(C.species.species_flags & NO_PAIN)
-				death_message = "<span class='danger'>Your body is unable to bear the strain. The last thing you feel as you drop dead is utterly crippling exhaustion. It's a sad thing your adventures have ended here!</span>"
+				death_message = span_danger("Your body is unable to bear the strain. The last thing you feel as you drop dead is utterly crippling exhaustion. It's a sad thing your adventures have ended here!")
 
 		to_chat(L, "[death_message]")
 	else
 		switch(amount)
 			if(4 to 20)
-				to_chat(L, "<span class='warning'>You feel a bit tired.</span>")
+				to_chat(L, span_warning("You feel a bit tired."))
 			if(21 to 50)
 				L.Paralyze(amount * 2)
-				to_chat(L, "<span class='danger'>You collapse as a sudden wave of fatigue washes over you.</span>")
+				to_chat(L, span_danger("You collapse as a sudden wave of fatigue washes over you."))
 			if(50 to INFINITY)
 				L.Unconscious(amount * 2)
-				to_chat(L, "<span class='danger'>Your world convulses as a wave of extreme fatigue washes over you!</span>") //when hyperzine is removed from the body, there's a backlash as it struggles to transition and operate without the drug
+				to_chat(L, span_danger("Your world convulses as a wave of extreme fatigue washes over you!")) //when hyperzine is removed from the body, there's a backlash as it struggles to transition and operate without the drug
 
 	return ..()
 
@@ -864,7 +864,7 @@
 
 /datum/reagent/medicine/ultrazine/addiction_act_stage1(mob/living/L, metabolism)
 	if(prob(10))
-		to_chat(L, "<span class='notice'>[pick("You could use another hit.", "More of that would be nice.", "Another dose would help.", "One more dose wouldn't hurt", "Why not take one more?")]</span>")
+		to_chat(L, span_notice("[pick("You could use another hit.", "More of that would be nice.", "Another dose would help.", "One more dose wouldn't hurt", "Why not take one more?")]"))
 	if(prob(5))
 		L.emote(pick("twitch","blink_r","shiver"))
 		L.adjustStaminaLoss(20)
@@ -873,7 +873,7 @@
 
 /datum/reagent/medicine/ultrazine/addiction_act_stage2(mob/living/L, metabolism)
 	if(prob(10))
-		to_chat(L, "<span class='warning'>[pick("It's just not the same without it.", "You could use another hit.", "You should take another.", "Just one more.", "Looks like you need another one.")]</span>")
+		to_chat(L, span_warning("[pick("It's just not the same without it.", "You could use another hit.", "You should take another.", "Just one more.", "Looks like you need another one.")]"))
 	if(prob(5))
 		L.emote("me", EMOTE_VISIBLE, pick("winces slightly.", "grimaces."))
 		L.adjustStaminaLoss(35)
@@ -885,7 +885,7 @@
 
 /datum/reagent/medicine/ultrazine/addiction_act_stage3(mob/living/L, metabolism)
 	if(prob(10))
-		to_chat(L, "<span class='warning'>[pick("You need more.", "It's hard to go on like this.", "You want more. You need more.", "Just take another hit. Now.", "One more.")]</span>")
+		to_chat(L, span_warning("[pick("You need more.", "It's hard to go on like this.", "You want more. You need more.", "Just take another hit. Now.", "One more.")]"))
 	if(prob(5))
 		L.emote("me", EMOTE_VISIBLE, pick("winces.", "grimaces.", "groans!"))
 		L.Stun(30)
@@ -898,7 +898,7 @@
 
 /datum/reagent/medicine/ultrazine/addiction_act_stage4(mob/living/L, metabolism)
 	if(prob(10))
-		to_chat(L, "<span class='danger'>[pick("You need another dose, now. NOW.", "You can't stand it. You have to go back. You have to go back.", "You need more. YOU NEED MORE.", "MORE", "TAKE MORE.")]</span>")
+		to_chat(L, span_danger("[pick("You need another dose, now. NOW.", "You can't stand it. You have to go back. You have to go back.", "You need more. YOU NEED MORE.", "MORE", "TAKE MORE.")]"))
 	if(prob(5))
 		L.emote("me", EMOTE_VISIBLE, pick("groans painfully!", "contorts with pain!"))
 		L.Stun(80)

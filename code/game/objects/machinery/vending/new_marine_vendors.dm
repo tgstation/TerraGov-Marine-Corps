@@ -108,7 +108,7 @@
 	switch(action)
 		if("vend")
 			if(!allowed(usr))
-				to_chat(usr, "<span class='warning'>Access denied.</span>")
+				to_chat(usr, span_warning("Access denied."))
 				if(icon_deny)
 					flick(icon_deny, src)
 				return
@@ -120,14 +120,14 @@
 			var/cost = L[3]
 
 			if(use_points && I.marine_points < cost)
-				to_chat(usr, "<span class='warning'>Not enough points.</span>")
+				to_chat(usr, span_warning("Not enough points."))
 				if(icon_deny)
 					flick(icon_deny, src)
 				return
 
 			var/turf/T = loc
 			if(length(T.contents) > 25)
-				to_chat(usr, "<span class='warning'>The floor is too cluttered, make some space.</span>")
+				to_chat(usr, span_warning("The floor is too cluttered, make some space."))
 				if(icon_deny)
 					flick(icon_deny, src)
 				return
@@ -141,10 +141,10 @@
 						return
 					var/mob/living/user = usr
 					if(!ismarinespecjob(user.job))
-						to_chat(usr, "<span class='warning'>Only specialists can take specialist sets.</span>")
+						to_chat(usr, span_warning("Only specialists can take specialist sets."))
 						return
 					if(usr.skills.getRating("spec_weapons") != SKILL_SPEC_TRAINED)
-						to_chat(usr, "<span class='warning'>You already have a specialist specialization.</span>")
+						to_chat(usr, span_warning("You already have a specialist specialization."))
 						return
 					var/p_name = L[2]
 					if(findtext(p_name, "Scout Set")) //Makes sure there can only be one Scout kit taken despite the two variants.
@@ -152,7 +152,7 @@
 					else if(findtext(p_name, "Heavy Armor Set")) //Makes sure there can only be one Heavy kit taken despite the two variants.
 						p_name = "Heavy Armor Set"
 					if(!GLOB.available_specialist_sets.Find(p_name))
-						to_chat(usr, "<span class='warning'>That set is already taken</span>")
+						to_chat(usr, span_warning("That set is already taken"))
 						return
 
 				if(I.marine_buy_flags & bitf)
@@ -169,7 +169,7 @@
 					else
 						I.marine_buy_flags &= ~bitf
 				else
-					to_chat(usr, "<span class='warning'>You can't buy things from this category anymore.</span>")
+					to_chat(usr, span_warning("You can't buy things from this category anymore."))
 					return
 
 			var/obj/item/vended_item = new idx(loc)

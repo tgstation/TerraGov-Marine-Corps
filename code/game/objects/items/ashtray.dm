@@ -37,7 +37,7 @@
 
 
 /obj/item/ashtray/deconstruct(disassembled = TRUE)
-	visible_message("<span class='warning'>[src] shatters, spilling its contents!</span>")
+	visible_message(span_warning("[src] shatters, spilling its contents!"))
 	for(var/i in contents)
 		var/atom/movable/AM = i
 		AM.forceMove(loc)

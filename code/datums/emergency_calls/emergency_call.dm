@@ -24,7 +24,7 @@
 	var/base_probability = 0
 	/**
 	 * How the current_weight change with the monitor state. A big positive number will make the current weight go down drasticly when marines are winning
-	 * A small negative number will make the current weight get smaller when xenos are winning. 
+	 * A small negative number will make the current weight get smaller when xenos are winning.
 	 * All effects are symetric (if it goes down when marine are winning, it will go up when xeno are winning)
 	 * if the alignement_factor factor is 0, it will proc a specific case
 	 */
@@ -62,7 +62,7 @@
 
 /**
  * Return a new current_weight using the base probability, the Alignement factor of the ERT and the monitor state
- * monitor_state : the normalised state of the monitor. If it's equal to -1, monitor is barely in its MARINE_LOSING state. 
+ * monitor_state : the normalised state of the monitor. If it's equal to -1, monitor is barely in its MARINE_LOSING state.
  * A +2.5 value mean we are beyond the XENO_DELAYING state, aka marines have crushed the xenos
  */
 /datum/emergency_call/proc/get_actualised_weight(monitor_state)
@@ -78,8 +78,8 @@
 
 	for(var/i in GLOB.observer_list)
 		var/mob/dead/observer/M = i
-		to_chat(M, "<br><font size='3'><span class='attack'>An emergency beacon has been activated. Use the <B>Ghost > <a href='byond://?src=[REF(M)];join_ert=1'>Join Response Team</a></b> verb to join!</span></font><br>")
-		to_chat(M, "<span class='attack'>You cannot join if you have Ghosted before this message.</span><br>")
+		to_chat(M, "<br><font size='3'>[span_attack("An emergency beacon has been activated. Use the <B>Ghost > <a href='byond://?src=[REF(M)];join_ert=1'>Join Response Team</a></b> verb to join!")]</font><br>")
+		to_chat(M, "[span_attack("You cannot join if you have Ghosted before this message.")]<br>")
 
 
 /datum/game_mode/proc/activate_distress(datum/emergency_call/chosen_call)
@@ -101,27 +101,27 @@
 	var/datum/emergency_call/distress = SSticker?.mode?.picked_call //Just to simplify things a bit
 
 	if(is_banned_from(usr.ckey, ROLE_ERT))
-		to_chat(usr, "<span class='danger'>You are jobbanned from the emergency reponse team!</span>")
+		to_chat(usr, span_danger("You are jobbanned from the emergency reponse team!"))
 		return
 
 	if(!istype(distress) || !SSticker.mode.waiting_for_candidates || distress.mob_max < 1)
-		to_chat(usr, "<span class='warning'>No distress beacons that need candidates are active. You will be notified if that changes.</span>")
+		to_chat(usr, span_warning("No distress beacons that need candidates are active. You will be notified if that changes."))
 		return
 
 	var/deathtime = world.time - usr.timeofdeath
 
 	if(deathtime < 600 && !check_other_rights(usr.client, R_ADMIN, FALSE)) //They have ghosted after the announcement.
-		to_chat(usr, "<span class='warning'>You ghosted too recently. Try again later.</span>")
+		to_chat(usr, span_warning("You ghosted too recently. Try again later."))
 		return
 
 	if(usr.mind in distress.candidates)
-		to_chat(usr, "<span class='warning'>You are already a candidate for this emergency response team.</span>")
+		to_chat(usr, span_warning("You are already a candidate for this emergency response team."))
 		return
 
 	if(distress.add_candidate(usr))
-		to_chat(usr, "<span class='boldnotice'>You are now a candidate in the emergency response team! If there are enough candidates, you may be picked to be part of the team.</span>")
+		to_chat(usr, span_boldnotice("You are now a candidate in the emergency response team! If there are enough candidates, you may be picked to be part of the team."))
 	else
-		to_chat(usr, "<span class='warning'>Something went wrong while adding you into the candidate list!</span>")
+		to_chat(usr, span_warning("Something went wrong while adding you into the candidate list!"))
 
 /datum/emergency_call/proc/reset()
 	if(candidate_timer)
@@ -170,11 +170,11 @@
 			continue
 		if(M.current) //If they still have a body
 			if(!isaghost(M.current) && M.current.stat != DEAD) // and not dead or admin ghosting,
-				to_chat(M.current, "<span class='warning'>You didn't get selected to join the distress team because you aren't dead.</span>")
+				to_chat(M.current, span_warning("You didn't get selected to join the distress team because you aren't dead."))
 				continue
 		if(name == "Xenomorphs" && is_banned_from(ckey(M.key), ROLE_XENOMORPH))
 			if(M.current)
-				to_chat(M, "<span class='warning'>You didn't get selected to join the distress team because you are jobbanned from Xenomorph.</span>")
+				to_chat(M, span_warning("You didn't get selected to join the distress team because you are jobbanned from Xenomorph."))
 			continue
 		valid_candidates += M
 
@@ -204,7 +204,7 @@
 
 		for(var/datum/mind/M in valid_candidates)
 			if(M.current)
-				to_chat(M.current, "<span class='warning'>You didn't get selected to join the distress team. Better luck next time!</span>")
+				to_chat(M.current, span_warning("You didn't get selected to join the distress team. Better luck next time!"))
 		message_admins("Distress beacon: [length(valid_candidates)] valid candidates were not selected.")
 	else
 		picked_candidates = valid_candidates // save some time

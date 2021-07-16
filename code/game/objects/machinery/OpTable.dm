@@ -53,7 +53,7 @@
 	if(get_dist(user, src) > 2 && !isobserver(user))
 		return
 	if(anes_tank)
-		to_chat(user, "<span class='information'>It has an [anes_tank] connected with the gauge showing [round(anes_tank.pressure,0.1)] kPa.</span>")
+		to_chat(user, span_information("It has an [anes_tank] connected with the gauge showing [round(anes_tank.pressure,0.1)] kPa."))
 
 /obj/machinery/optable/attack_hand(mob/living/user)
 	. = ..()
@@ -61,7 +61,7 @@
 		return
 	if(anes_tank)
 		user.put_in_active_hand(anes_tank)
-		to_chat(user, "<span class='notice'>You remove \the [anes_tank] from \the [src].</span>")
+		to_chat(user, span_notice("You remove \the [anes_tank] from \the [src]."))
 		anes_tank = null
 
 
@@ -71,34 +71,34 @@
 	if(buckling_mob == user)
 		return FALSE
 	if(!ishuman(user)) //xenos buckling humans into op tables and applying anesthetic masks? no way.
-		to_chat(user, "<span class='xenowarning'>We don't have the manual dexterity to do this.</span>")
+		to_chat(user, span_xenowarning("We don't have the manual dexterity to do this."))
 		return FALSE
 	if(buckling_mob != victim)
-		to_chat(user, "<span class='warning'>Lay the patient on the table first!</span>")
+		to_chat(user, span_warning("Lay the patient on the table first!"))
 		return FALSE
 	if(!anes_tank)
-		to_chat(user, "<span class='warning'>There is no anesthetic tank connected to the table, load one first.</span>")
+		to_chat(user, span_warning("There is no anesthetic tank connected to the table, load one first."))
 		return FALSE
-	buckling_mob.visible_message("<span class='notice'>[user] begins to connect [buckling_mob] to the anesthetic system.</span>")
+	buckling_mob.visible_message(span_notice("[user] begins to connect [buckling_mob] to the anesthetic system."))
 	if(!do_after(user, 2.5 SECONDS, FALSE, src, BUSY_ICON_GENERIC))
 		if(buckling_mob != victim)
-			to_chat(user, "<span class='warning'>The patient must remain on the table!</span>")
+			to_chat(user, span_warning("The patient must remain on the table!"))
 			return FALSE
-		to_chat(user, "<span class='notice'>You stop placing the mask on [buckling_mob]'s face.</span>")
+		to_chat(user, span_notice("You stop placing the mask on [buckling_mob]'s face."))
 		return FALSE
 	if(!anes_tank)
-		to_chat(user, "<span class='warning'>There is no anesthetic tank connected to the table, load one first.</span>")
+		to_chat(user, span_warning("There is no anesthetic tank connected to the table, load one first."))
 		return FALSE
 	var/mob/living/carbon/human/buckling_human = buckling_mob
 	if(buckling_human.wear_mask && !buckling_human.dropItemToGround(buckling_human.wear_mask))
-		to_chat(user, "<span class='danger'>You can't remove their mask!</span>")
+		to_chat(user, span_danger("You can't remove their mask!"))
 		return FALSE
 	if(!buckling_human.equip_to_slot_or_del(new /obj/item/clothing/mask/breath/medical(buckling_human), SLOT_WEAR_MASK))
-		to_chat(user, "<span class='danger'>You can't fit the gas mask over their face!</span>")
+		to_chat(user, span_danger("You can't fit the gas mask over their face!"))
 		return FALSE
 	buckling_human.internal = anes_tank
-	buckling_human.visible_message("<span class='notice'>[user] fits the mask over [buckling_human]'s face and turns on the anesthetic.</span>'")
-	to_chat(buckling_human, "<span class='information'>You begin to feel sleepy.</span>")
+	buckling_human.visible_message("[span_notice("[user] fits the mask over [buckling_human]'s face and turns on the anesthetic.")]'")
+	to_chat(buckling_human, span_information("You begin to feel sleepy."))
 	buckling_human.setDir(SOUTH)
 	return ..()
 
@@ -108,7 +108,7 @@
 	if(!.)
 		return
 	if(!silent)
-		buckled_mob.visible_message("<span class='notice'>[user] turns off the anesthetic and removes the mask from [buckled_mob].</span>")
+		buckled_mob.visible_message(span_notice("[user] turns off the anesthetic and removes the mask from [buckled_mob]."))
 
 
 /obj/machinery/optable/post_unbuckle_mob(mob/living/buckled_mob)
@@ -159,9 +159,9 @@
 
 /obj/machinery/optable/proc/take_victim(mob/living/carbon/C, mob/living/carbon/user)
 	if (C == user)
-		user.visible_message("<span class='notice'>[user] climbs on the operating table.","You climb on the operating table.</span>", null, null, 4)
+		user.visible_message(span_notice("[user] climbs on the operating table."), span_notice("You climb on the operating table."), null, null, 4)
 	else
-		visible_message("<span class='notice'>[C] has been laid on the operating table by [user].</span>", null, null, 4)
+		visible_message(span_notice("[C] has been laid on the operating table by [user]."), null, null, 4)
 	C.set_resting(TRUE)
 	C.forceMove(loc)
 
@@ -191,20 +191,20 @@
 			return
 		user.transferItemToLoc(I, src)
 		anes_tank = I
-		to_chat(user, "<span class='notice'>You connect \the [anes_tank] to \the [src].</span>")
+		to_chat(user, span_notice("You connect \the [anes_tank] to \the [src]."))
 
 	if(!istype(I, /obj/item/grab))
 		return
 
 	var/obj/item/grab/G = I
 	if(victim && victim != G.grabbed_thing)
-		to_chat(user, "<span class='warning'>The table is already occupied!</span>")
+		to_chat(user, span_warning("The table is already occupied!"))
 		return
 	var/mob/living/carbon/M
 	if(iscarbon(G.grabbed_thing))
 		M = G.grabbed_thing
 		if(M.buckled)
-			to_chat(user, "<span class='warning'>Unbuckle first!</span>")
+			to_chat(user, span_warning("Unbuckle first!"))
 			return
 	else if(istype(G.grabbed_thing, /obj/structure/closet/bodybag/cryobag))
 		var/obj/structure/closet/bodybag/cryobag/C = G.grabbed_thing
@@ -222,11 +222,11 @@
 
 /obj/machinery/optable/proc/check_table(mob/living/carbon/patient as mob)
 	if(victim)
-		to_chat(usr, "<span class='boldnotice'>The table is already occupied!</span>")
+		to_chat(usr, span_boldnotice("The table is already occupied!"))
 		return 0
 
 	if(patient.buckled)
-		to_chat(usr, "<span class='boldnotice'>Unbuckle first!</span>")
+		to_chat(usr, span_boldnotice("Unbuckle first!"))
 		return 0
 
 	return 1

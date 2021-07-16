@@ -19,7 +19,7 @@
 	. = ..()
 
 	if(!(I.type in allowed) || coat)
-		to_chat(user, "<span class='notice'>You cannot hang [I] on [src]</span>")
+		to_chat(user, span_notice("You cannot hang [I] on [src]"))
 		return
 
 	user.visible_message("[user] hangs [I] on \the [src].", "You hang [I] on the \the [src]")

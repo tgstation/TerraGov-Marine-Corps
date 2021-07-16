@@ -24,16 +24,16 @@
 /obj/machinery/computer/examine(mob/user)
 	. = ..()
 	if(machine_stat & NOPOWER)
-		to_chat(user, "<span class='warning'>It is currently unpowered.</span>")
+		to_chat(user, span_warning("It is currently unpowered."))
 
 	if(durability < initial(durability))
-		to_chat(user, "<span class='warning'>It is damaged, and can be fixed with a welder.</span>")
+		to_chat(user, span_warning("It is damaged, and can be fixed with a welder."))
 
 	if(machine_stat & DISABLED)
-		to_chat(user, "<span class='warning'>It is currently disabled, and can be fixed with a welder.</span>")
+		to_chat(user, span_warning("It is currently disabled, and can be fixed with a welder."))
 
 	if(machine_stat & BROKEN)
-		to_chat(user, "<span class='warning'>It is broken and needs to be rebuilt.</span>")
+		to_chat(user, span_warning("It is broken and needs to be rebuilt."))
 
 /obj/machinery/computer/process()
 	if(machine_stat & (NOPOWER|BROKEN|DISABLED))
@@ -107,32 +107,32 @@
 	var/obj/item/tool/weldingtool/welder = I
 
 	if(!(machine_stat & DISABLED) && durability == initial(durability))
-		to_chat(user, "<span class='notice'>The [src] doesn't need welding!</span>")
+		to_chat(user, span_notice("The [src] doesn't need welding!"))
 		return FALSE
 
 	if(!welder.tool_use_check(user, 2))
 		return FALSE
 
 	if(user.skills.getRating("engineer") < SKILL_ENGINEER_MASTER)
-		user.visible_message("<span class='notice'>[user] fumbles around figuring out how to deconstruct [src].</span>",
-		"<span class='notice'>You fumble around figuring out how to deconstruct [src].</span>")
+		user.visible_message(span_notice("[user] fumbles around figuring out how to deconstruct [src]."),
+		span_notice("You fumble around figuring out how to deconstruct [src]."))
 		var/fumbling_time = 5 SECONDS * (SKILL_ENGINEER_MASTER - user.skills.getRating("engineer"))
 		if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 			return
 
-	user.visible_message("<span class='notice'>[user] begins repairing damage to [src].</span>",
-	"<span class='notice'>You begin repairing the damage to [src].</span>")
+	user.visible_message(span_notice("[user] begins repairing damage to [src]."),
+	span_notice("You begin repairing the damage to [src]."))
 	playsound(loc, 'sound/items/welder2.ogg', 25, 1)
 
 	if(!do_after(user, 5 SECONDS, TRUE, src, BUSY_ICON_BUILD))
 		return
 
 	if(!welder.remove_fuel(2, user))
-		to_chat(user, "<span class='warning'>Not enough fuel to finish the task.</span>")
+		to_chat(user, span_warning("Not enough fuel to finish the task."))
 		return TRUE
 
-	user.visible_message("<span class='notice'>[user] repairs [src]'s damage.</span>",
-	"<span class='notice'>You repair [src].</span>")
+	user.visible_message(span_notice("[user] repairs [src]'s damage."),
+	span_notice("You repair [src]."))
 	machine_stat &= ~DISABLED //Remove the disabled flag
 	durability = initial(durability) //Reset its durability to its initial value
 	update_icon()
@@ -143,8 +143,8 @@
 
 	if(isscrewdriver(I) && circuit)
 		if(user.skills.getRating("engineer") < SKILL_ENGINEER_MASTER)
-			user.visible_message("<span class='notice'>[user] fumbles around figuring out how to deconstruct [src].</span>",
-			"<span class='notice'>You fumble around figuring out how to deconstruct [src].</span>")
+			user.visible_message(span_notice("[user] fumbles around figuring out how to deconstruct [src]."),
+			span_notice("You fumble around figuring out how to deconstruct [src]."))
 			var/fumbling_time = 50 * ( SKILL_ENGINEER_MASTER - user.skills.getRating("engineer") )
 			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 				return
@@ -163,12 +163,12 @@
 			C.forceMove(loc)
 
 		if(machine_stat & BROKEN)
-			to_chat(user, "<span class='notice'>The broken glass falls out.</span>")
+			to_chat(user, span_notice("The broken glass falls out."))
 			new /obj/item/shard(loc)
 			A.state = 3
 			A.icon_state = "3"
 		else
-			to_chat(user, "<span class='notice'>You disconnect the monitor.</span>")
+			to_chat(user, span_notice("You disconnect the monitor."))
 			A.state = 4
 			A.icon_state = "4"
 
@@ -195,19 +195,19 @@
 		return FALSE
 
 	if(resistance_flags & INDESTRUCTIBLE)
-		to_chat(X, "<span class='xenowarning'>We're unable to damage this!</span>")
+		to_chat(X, span_xenowarning("We're unable to damage this!"))
 		return
 
 	if(machine_stat & (BROKEN|DISABLED)) //If we're already broken or disabled, don't bother
-		to_chat(X, "<span class='xenowarning'>This peculiar thing is already broken!</span>")
+		to_chat(X, span_xenowarning("This peculiar thing is already broken!"))
 		return
 
 	if(durability <= 0)
 		set_disabled()
-		to_chat(X, "<span class='xenowarning'>We smash the annoying device, disabling it!</span>")
+		to_chat(X, span_xenowarning("We smash the annoying device, disabling it!"))
 	else
 		durability--
-		to_chat(X, "<span class='xenowarning'>We smash the annoying device!</span>")
+		to_chat(X, span_xenowarning("We smash the annoying device!"))
 
 	X.do_attack_animation(src, ATTACK_EFFECT_DISARM2) //SFX
 	playsound(loc, pick('sound/effects/bang.ogg','sound/effects/metal_crash.ogg','sound/effects/meteorimpact.ogg'), 25, 1) //SFX

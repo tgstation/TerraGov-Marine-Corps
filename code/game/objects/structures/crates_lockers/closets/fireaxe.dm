@@ -23,7 +23,7 @@
 
 		if (locked)
 			if(ismultitool(O))
-				to_chat(user, "<span class='warning'>Resetting circuitry...</span>")
+				to_chat(user, span_warning("Resetting circuitry..."))
 				playsound(user, 'sound/machines/lockreset.ogg', 25, 1)
 				if(do_after(user, 20, TRUE, src, BUSY_ICON_BUILD))
 					locked = FALSE
@@ -41,7 +41,7 @@
 				else
 					playsound(user, 'sound/effects/Glasshit.ogg', 25, 1) //We don't want this playing every time
 				if(W.force < 15)
-					to_chat(user, "<span class='notice'>The cabinet's protective glass glances off the hit.</span>")
+					to_chat(user, span_notice("The cabinet's protective glass glances off the hit."))
 				else
 					src.hitstaken++
 					if(src.hitstaken == 4)
@@ -54,12 +54,12 @@
 		if (istype(O, /obj/item/weapon/twohanded/fireaxe) && src.localopened)
 			if(!fireaxe)
 				if(O.flags_item & WIELDED)
-					to_chat(user, "<span class='warning'>Unwield the axe first.</span>")
+					to_chat(user, span_warning("Unwield the axe first."))
 					return
 				fireaxe = O
 				user.drop_held_item()
 				src.contents += O
-				to_chat(user, "<span class='notice'>You place the fire axe back in the [src.name].</span>")
+				to_chat(user, span_notice("You place the fire axe back in the [src.name]."))
 				update_icon()
 			else
 				if(src.smashed)
@@ -82,10 +82,10 @@
 					spawn(10) update_icon()
 					return
 				else
-					to_chat(user, "<span class='warning'>Resetting circuitry...</span>")
+					to_chat(user, span_warning("Resetting circuitry..."))
 					sleep(50)
 					src.locked = 1
-					to_chat(user, "<span class='notice'>You re-enable the locking modules.</span>")
+					to_chat(user, span_notice("You re-enable the locking modules."))
 					playsound(user, 'sound/machines/lockenable.ogg', 25, 1)
 					if(do_after(user,20, TRUE, src, BUSY_ICON_BUILD))
 						locked = TRUE
@@ -110,13 +110,13 @@
 			hasaxe = 1
 		if(!ishuman(user)) return
 		if(src.locked)
-			to_chat(user, "<span class='warning'>The cabinet won't budge!</span>")
+			to_chat(user, span_warning("The cabinet won't budge!"))
 			return
 		if(localopened)
 			if(fireaxe)
 				user.put_in_hands(fireaxe)
 				fireaxe = null
-				to_chat(user, "<span class='notice'>You take the fire axe from the [name].</span>")
+				to_chat(user, span_notice("You take the fire axe from the [name]."))
 				update_icon()
 			else
 				if(src.smashed)
@@ -145,9 +145,9 @@
 
 		if (locked || smashed)
 			if(src.locked)
-				to_chat(usr, "<span class='warning'>The cabinet won't budge!</span>")
+				to_chat(usr, span_warning("The cabinet won't budge!"))
 			else if(src.smashed)
-				to_chat(usr, "<span class='notice'>The protective glass is broken!</span>")
+				to_chat(usr, span_notice("The protective glass is broken!"))
 			return
 
 		localopened = !localopened
@@ -164,11 +164,11 @@
 			if(fireaxe)
 				usr.put_in_hands(fireaxe)
 				fireaxe = null
-				to_chat(usr, "<span class='notice'>You take the Fire axe from the [name].</span>")
+				to_chat(usr, span_notice("You take the Fire axe from the [name]."))
 			else
-				to_chat(usr, "<span class='notice'>The [src.name] is empty.</span>")
+				to_chat(usr, span_notice("The [src.name] is empty."))
 		else
-			to_chat(usr, "<span class='notice'>The [src.name] is closed.</span>")
+			to_chat(usr, span_notice("The [src.name] is closed."))
 		update_icon()
 
 	attack_paw(mob/user as mob)
@@ -177,14 +177,14 @@
 
 	attack_ai(mob/user as mob)
 		if(src.smashed)
-			to_chat(user, "<span class='warning'>The security of the cabinet is compromised.</span>")
+			to_chat(user, span_warning("The security of the cabinet is compromised."))
 			return
 		else
 			locked = !locked
 			if(locked)
-				to_chat(user, "<span class='warning'>Cabinet locked.</span>")
+				to_chat(user, span_warning("Cabinet locked."))
 			else
-				to_chat(user, "<span class='notice'>Cabinet unlocked.</span>")
+				to_chat(user, span_notice("Cabinet unlocked."))
 			return
 
 	update_icon() //Template: fireaxe[has fireaxe][is opened][hits taken][is smashed]. If you want the opening or closing animations, add "opening" or "closing" right after the numbers

@@ -285,7 +285,7 @@
 	if(probability <= 0)
 		return
 
-	//to_chat(world, "<span class='notice'>Spread([probability])</span>")
+	//to_chat(world, span_notice("Spread([probability])"))
 	for(var/turf/open/ground/jungle/J in orange(1, src))
 		if(!J.bushes_spawn)
 			continue
@@ -363,13 +363,13 @@
 	var/mob/living/L = AM
 	//slip in the murky water if we try to run through it
 	if(prob(10 + (L.m_intent == MOVE_INTENT_RUN ? 40 : 0)))
-		to_chat(L, pick("<span class='notice'> You slip on something slimy.</span>", "<span class='notice'>You fall over into the murk.</span>"))
+		to_chat(L, pick(span_notice(" You slip on something slimy."), span_notice("You fall over into the murk.")))
 		L.Stun(40)
 		L.Paralyze(20)
 
 	//piranhas
 	if(prob(25))
-		to_chat(L, pick("<span class='warning'> Something sharp bites you!</span>","<span class='warning'> Sharp teeth grab hold of you!</span>","<span class='warning'> You feel something take a chunk out of your leg!</span>"))
+		to_chat(L, pick(span_warning(" Something sharp bites you!"),span_warning(" Sharp teeth grab hold of you!"),span_warning(" You feel something take a chunk out of your leg!")))
 		L.apply_damage(1, BRUTE, sharp = TRUE)
 
 

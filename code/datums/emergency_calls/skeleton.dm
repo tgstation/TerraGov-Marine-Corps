@@ -33,9 +33,9 @@
 		leader = H
 		var/datum/job/J = SSjob.GetJobType(/datum/job/skeleton/leader)
 		H.apply_assigned_role_to_spawn(J)
-		to_chat(H, "<p style='font-size:1.5em'><span class='notice'>You are the skeleton-in-chief. Lead your long-dead comrades to un-undeath or glory.</span></p>")
+		to_chat(H, "<p style='font-size:1.5em'>[span_notice("You are the skeleton-in-chief. Lead your long-dead comrades to un-undeath or glory.")]</p>")
 		return
 
 	var/datum/job/J = SSjob.GetJobType(/datum/job/skeleton/basic)
 	H.apply_assigned_role_to_spawn(J)
-	to_chat(H, "<p style='font-size:1.5em'><span class='notice'>You are a skeleton, with cool bones and stuff.</span></p>")
+	to_chat(H, "<p style='font-size:1.5em'>[span_notice("You are a skeleton, with cool bones and stuff.")]</p>")

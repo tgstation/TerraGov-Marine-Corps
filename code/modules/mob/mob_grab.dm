@@ -63,20 +63,20 @@
 	switch(grab_state)
 		if(GRAB_AGGRESSIVE)
 			log_combat(src, victim, "aggressive grabbed")
-			visible_message("<span class='danger'>[src] grabs [victim] aggressively!</span>",
-				"<span class='danger'>You grab [victim] aggressively!</span>",
-				"<span class='hear'>You hear aggressive shuffling!</span>", ignored_mob = victim)
-			to_chat(victim, "<span class='userdanger'>[src] grabs you aggressively!</span>")
+			visible_message(span_danger("[src] grabs [victim] aggressively!"),
+				span_danger("You grab [victim] aggressively!"),
+				span_hear("You hear aggressive shuffling!"), ignored_mob = victim)
+			to_chat(victim, span_userdanger("[src] grabs you aggressively!"))
 			victim.drop_all_held_items()
 			if(victim.pulling)
 				victim.stop_pulling()
 		if(GRAB_NECK)
 			icon_state = "disarm/kill"
 			log_combat(src, victim, "neck grabbed")
-			visible_message("<span class='danger'>[src] grabs [victim] by the neck!</span>",
-				"<span class='danger'>You grab [victim] by the neck!</span>",
-				"<span class='hear'>You hear aggressive shuffling!</span>", ignored_mob = victim)
-			to_chat(victim, "<span class='userdanger'>[src] grabs you by the neck!</span>")
+			visible_message(span_danger("[src] grabs [victim] by the neck!"),
+				span_danger("You grab [victim] by the neck!"),
+				span_hear("You hear aggressive shuffling!"), ignored_mob = victim)
+			to_chat(victim, span_userdanger("[src] grabs you by the neck!"))
 			victim.drop_all_held_items()
 			ENABLE_BITFIELD(victim.restrained_flags, RESTRAINED_NECKGRAB)
 			if(!victim.buckled && !victim.density)
@@ -84,10 +84,10 @@
 		if(GRAB_KILL)
 			icon_state = "disarm/kill1"
 			log_combat(src, victim, "strangled")
-			visible_message("<span class='danger'>[src] is strangling [victim]!</span>",
-				"<span class='danger'>You're strangling [victim]!</span>",
-				"<span class='hear'>You hear aggressive shuffling!</span>", ignored_mob = victim)
-			to_chat(victim, "<span class='userdanger'>[src] is strangling you!</span>")
+			visible_message(span_danger("[src] is strangling [victim]!"),
+				span_danger("You're strangling [victim]!"),
+				span_hear("You hear aggressive shuffling!"), ignored_mob = victim)
+			to_chat(victim, span_userdanger("[src] is strangling you!"))
 			victim.drop_all_held_items()
 			ENABLE_BITFIELD(victim.restrained_flags, RESTRAINED_NECKGRAB)
 			if(!victim.buckled && !victim.density)

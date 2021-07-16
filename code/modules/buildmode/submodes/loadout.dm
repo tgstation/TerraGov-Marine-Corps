@@ -34,7 +34,7 @@
 
 	if(!ishuman(object))
 		return
-	
+
 	var/mob/living/carbon/human/dollie = object
 
 	if(right_click)
@@ -44,7 +44,7 @@
 		loadout = create_empty_loadout(loadout_name)
 		loadout.save_mob_loadout(dollie, TRUE)
 		SSpersistence.save_loadout(loadout)
-		to_chat(c, "<span class='notice'>New loadout copied from [dollie].</span>")
+		to_chat(c, span_notice("New loadout copied from [dollie]."))
 		return
 
 	if(shift_click && left_click)
@@ -54,7 +54,7 @@
 	if(left_click)
 		dollie.delete_equipment()
 		if(isnull(loadout))
-			to_chat(c, "<span class='warning'>Pick an loadout first.</span>")
+			to_chat(c, span_warning("Pick an loadout first."))
 			return
 		loadout.equip_mob(dollie)
 

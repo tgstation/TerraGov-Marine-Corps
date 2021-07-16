@@ -59,5 +59,5 @@
 /obj/machinery/portable_atmospherics/examine(mob/user)
 	..()
 	if(holding)
-		to_chat(user, "<span class='notice'>\The [src] contains [holding]. Alt-click [src] to remove it.</span>")
-		to_chat(user, "<span class='notice'>Click [src] with another gas tank to hot swap [holding].</span>")
+		to_chat(user, span_notice("\The [src] contains [holding]. Alt-click [src] to remove it."))
+		to_chat(user, span_notice("Click [src] with another gas tank to hot swap [holding]."))

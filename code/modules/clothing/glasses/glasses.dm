@@ -74,7 +74,7 @@
 
 	if(istype(I, /obj/item/clothing/glasses/hud/health))
 		var/obj/item/clothing/glasses/hud/medpatch/P = new
-		to_chat(user, "<span class='notice'>You fasten the medical hud projector to the inside of the eyepatch.</span>")
+		to_chat(user, span_notice("You fasten the medical hud projector to the inside of the eyepatch."))
 		qdel(I)
 		qdel(src)
 		user.put_in_hands(P)
@@ -109,7 +109,7 @@
 
 	if(istype(I, /obj/item/clothing/glasses/hud/health))
 		var/obj/item/clothing/glasses/hud/medglasses/P = new
-		to_chat(user, "<span class='notice'>You fasten the medical hud projector to the inside of the glasses.</span>")
+		to_chat(user, span_notice("You fasten the medical hud projector to the inside of the glasses."))
 		qdel(I)
 		qdel(src)
 		user.put_in_hands(P)
@@ -157,13 +157,13 @@
 	if(istype(I, /obj/item/clothing/glasses/hud/health))
 		if(prescription)
 			var/obj/item/clothing/glasses/hud/medgoggles/prescription/P = new
-			to_chat(user, "<span class='notice'>You fasten the medical hud projector to the inside of the goggles.</span>")
+			to_chat(user, span_notice("You fasten the medical hud projector to the inside of the goggles."))
 			qdel(I)
 			qdel(src)
 			user.put_in_hands(P)
 		else
 			var/obj/item/clothing/glasses/hud/medgoggles/S = new
-			to_chat(user, "<span class='notice'>You fasten the medical hud projector to the inside of the goggles.</span>")
+			to_chat(user, span_notice("You fasten the medical hud projector to the inside of the goggles."))
 			qdel(I)
 			qdel(src)
 			user.put_in_hands(S)

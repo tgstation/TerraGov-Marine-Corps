@@ -74,7 +74,7 @@
 	. = ..()
 	if(istype(I, /obj/item/tool/lighter))
 		ignite_fuel()
-		user.visible_message("<span class='notice'>[user] ignites \the [src]</span>", "<span class='notice'>You ignite some fuel on [src]</span>")
+		user.visible_message(span_notice("[user] ignites \the [src]"), span_notice("You ignite some fuel on [src]"))
 		log_attack("[key_name(user)] ignites [src] in fuel in [AREACOORD(user)]")
 
 /obj/effect/decal/cleanable/liquid_fuel/flamer_fire_act()

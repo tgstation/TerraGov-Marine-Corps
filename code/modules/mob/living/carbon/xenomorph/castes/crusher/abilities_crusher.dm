@@ -20,8 +20,8 @@
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "crusher_stomps")
 
 	playsound(X.loc, 'sound/effects/bang.ogg', 25, 0)
-	X.visible_message("<span class='xenodanger'>[X] smashes into the ground!</span>", \
-	"<span class='xenodanger'>We smash into the ground!</span>")
+	X.visible_message(span_xenodanger("[X] smashes into the ground!"), \
+	span_xenodanger("We smash into the ground!"))
 	X.create_stomp() //Adds the visual effect. Wom wom wom
 
 	for(var/mob/living/M in range(1, get_turf(X)))
@@ -34,13 +34,13 @@
 			SSblackbox.record_feedback("tally", "round_statistics", 1, "crusher_stomp_victims")
 			M.take_overall_damage_armored(damage, BRUTE, "melee", FALSE, FALSE, TRUE)
 			M.Paralyze(3 SECONDS)
-			to_chat(M, "<span class='highdanger'>You are stomped on by [X]!</span>")
+			to_chat(M, span_highdanger("You are stomped on by [X]!"))
 			shake_camera(M, 3, 3)
 		else
 			step_away(M, X, 1) //Knock away
 			shake_camera(M, 2, 2)
-			to_chat(M, "<span class='highdanger'>You reel from the shockwave of [X]'s stomp!</span>")
-			M.take_overall_damage_armored(damage, BRUTE, "melee", FALSE, FALSE, TRUE) 
+			to_chat(M, span_highdanger("You reel from the shockwave of [X]'s stomp!"))
+			M.take_overall_damage_armored(damage, BRUTE, "melee", FALSE, FALSE, TRUE)
 			M.Paralyze(0.5 SECONDS)
 
 /datum/action/xeno_action/activable/stomp/ai_should_start_consider()
@@ -70,7 +70,7 @@
 
 /datum/action/xeno_action/activable/cresttoss/on_cooldown_finish()
 	var/mob/living/carbon/xenomorph/X = owner
-	to_chat(X, "<span class='xenowarning'><b>We can now crest toss again.</b></span>")
+	to_chat(X, span_xenowarning("<b>We can now crest toss again.</b>"))
 	playsound(X, 'sound/effects/xeno_newlarva.ogg', 50, 0, 1)
 	return ..()
 
@@ -109,11 +109,11 @@
 		facing = get_dir(L, X)
 		var/turf/throw_origin = get_step(T, facing)
 		if(isclosedturf(throw_origin)) //Make sure the victim can actually go to the target turf
-			to_chat(X, "<span class='xenowarning'>We try to fling [L] behind us, but there's no room!</span>")
+			to_chat(X, span_xenowarning("We try to fling [L] behind us, but there's no room!"))
 			return fail_activate()
 		for(var/obj/O in throw_origin)
 			if(!O.CanPass(L, get_turf(X)) && !istype(O, /obj/structure/barricade)) //Ignore barricades because they will once thrown anyway
-				to_chat(X, "<span class='xenowarning'>We try to fling [L] behind us, but there's no room!</span>")
+				to_chat(X, span_xenowarning("We try to fling [L] behind us, but there's no room!"))
 				return fail_activate()
 
 		L.forceMove(throw_origin) //Move the victim behind us before flinging
@@ -133,8 +133,8 @@
 
 	X.icon_state = "Crusher Charging"  //Momentarily lower the crest for visual effect
 
-	X.visible_message("<span class='xenowarning'>\The [X] flings [L] away with its crest[big_mob_message]!</span>", \
-	"<span class='xenowarning'>We fling [L] away with our crest[big_mob_message]!</span>")
+	X.visible_message(span_xenowarning("\The [X] flings [L] away with its crest[big_mob_message]!"), \
+	span_xenowarning("We fling [L] away with our crest[big_mob_message]!"))
 
 	succeed_activate()
 
