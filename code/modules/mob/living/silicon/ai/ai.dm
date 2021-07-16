@@ -34,7 +34,7 @@
 	var/icon/holo_icon //Default is assigned when AI is created.
 	var/list/datum/AI_Module/current_modules = list()
 
-	var/level_locked = TRUE
+	var/level_locked = FALSE	//Can the AI use things on other Z levels?
 	var/control_disabled = FALSE
 	var/radiomod = ";"
 	var/list/laws
