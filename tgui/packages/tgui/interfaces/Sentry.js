@@ -61,6 +61,16 @@ export const Sentry = (props, context) => {
             <LabeledList.Item
               buttons={
                 <Button
+                  onClick={() => act('firemode')}>
+                  Fire Mode
+                </Button>
+              }
+              label="Fire Mode">
+              {data.fire_mode}
+            </LabeledList.Item>
+            <LabeledList.Item
+              buttons={
+                <Button
                   selected={data.manual_override}
                   onClick={() => act('manual')}
                   icon={data.manual_override ? "check" : "times"}>

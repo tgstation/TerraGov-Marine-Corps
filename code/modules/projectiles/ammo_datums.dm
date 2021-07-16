@@ -1029,7 +1029,7 @@ datum/ammo/bullet/revolver/tp44
 	accurate_range = 10
 	damage = 80
 	penetration = 30
-	sundering = 15
+	sundering = 5
 	damage_falloff = 0.5
 
 /datum/ammo/bullet/turret/dumb

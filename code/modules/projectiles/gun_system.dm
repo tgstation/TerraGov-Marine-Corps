@@ -135,9 +135,9 @@
 	///Range of deployed turret
 	var/turret_range = 7
 	///Battery used for radial mode on deployed turrets.
-	var/obj/item/cell/battery
-	var/cell_type = /obj/item/cell
-	var/cell_drain = 20
+	var/obj/item/cell/sentry_battery
+	var/sentry_battery_type = /obj/item/cell
+	var/sentry_battery_drain = 20
 //----------------------------------------------------------
 				//				    \\
 				// NECESSARY PROCS  \\
@@ -174,7 +174,7 @@
 
 	if(flags_item & IS_SENTRY)
 		AddElement(/datum/element/deployable_item, /obj/machinery/deployable/mounted/sentry, deploy_time)
-		battery = new cell_type(src)
+		sentry_battery = new sentry_battery_type(src)
 
 
 //Hotfix for attachment offsets being set AFTER the core New() proc. Causes a small graphical artifact when spawning, hopefully works even with lag
@@ -203,8 +203,8 @@
 		QDEL_NULL(current_mag)
 	if(muzzle_flash)
 		QDEL_NULL(muzzle_flash)
-	if(battery)
-		QDEL_NULL(battery)
+	if(sentry_battery)
+		QDEL_NULL(sentry_battery)
 	return ..()
 
 /obj/item/weapon/gun/emp_act(severity)
@@ -474,7 +474,7 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 	cock_cooldown = world.time + cock_delay
 	cock_gun(user)
 	if(in_chamber)
-		user.visible_message("<span class='notice'>[user] cocks [src], clearing a [in_chamber.name] from its chamber.</span>",
+		user?.visible_message("<span class='notice'>[user] cocks [src], clearing a [in_chamber.name] from its chamber.</span>",
 		"<span class='notice'>You cock [src], clearing a [in_chamber.name] from its chamber.</span>", null, 4)
 
 		// Get gun information from the current mag if its equipped otherwise the default ammo & caliber
@@ -487,9 +487,9 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 
 		// Try to find an existing handful in our hands or on the floor under us
 		var/obj/item/ammo_magazine/handful/X
-		if (istype(user.r_hand, /obj/item/ammo_magazine/handful))
+		if (istype(user.r_hand, /obj/item/ammo_magazine/handful) && user)
 			X = user.r_hand
-		else if (istype(user.l_hand, /obj/item/ammo_magazine/handful))
+		else if (istype(user.l_hand, /obj/item/ammo_magazine/handful) && user)
 			X = user.l_hand
 
 		var/obj/item/ammo_magazine/handful/H
@@ -502,17 +502,19 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 					break
 		if(H)
 			H.current_rounds++
-		else
+		else 
 			H = new
 			H.generate_handful(bullet_ammo_type, bullet_caliber, 1, type)
-			user.put_in_hands(H)
+			if(user)
+				user.put_in_hands(H)
+			else
+				H.forceMove(get_turf(loc))
 
 		H.update_icon()
 		QDEL_NULL(in_chamber)
 	else
-		if(user)
-			user.visible_message("<span class='notice'>[user] cocks [src].</span>",
-			"<span class='notice'>You cock [src].</span>", null, 4)
+		user?.visible_message("<span class='notice'>[user] cocks [src].</span>",
+		"<span class='notice'>You cock [src].</span>", null, 4)
 	ready_in_chamber() //This will already check for everything else, loading the next bullet.
 
 	return TRUE
@@ -569,9 +571,7 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 		reset_fire()
 		return
 	SEND_SIGNAL(src, COMSIG_GUN_FIRE)
-	if(!gun_user || !gun_user.client)
-		return
-	gun_user.client.mouse_pointer_icon = 'icons/effects/supplypod_target.dmi'
+	gun_user?.client?.mouse_pointer_icon = 'icons/effects/supplypod_target.dmi'
 
 ///Set the target and take care of hard delete
 /obj/item/weapon/gun/proc/set_target(atom/object)
@@ -601,9 +601,7 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 	set_target(null)
 	windup_checked = WEAPON_WINDUP_NOT_CHECKED
 	dual_wield = FALSE
-	if(!gun_user || !gun_user.client)
-		return
-	gun_user.client.mouse_pointer_icon = initial(gun_user.client.mouse_pointer_icon)
+	gun_user?.client?.mouse_pointer_icon = initial(gun_user.client.mouse_pointer_icon)
 
 ///Inform the gun if he is currently bursting, to prevent reloading
 /obj/item/weapon/gun/proc/set_bursting(bursting)
@@ -616,9 +614,7 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 /obj/item/weapon/gun/proc/change_target(datum/source, atom/src_object, atom/over_object, turf/src_location, turf/over_location, src_control, over_control, params)
 	SIGNAL_HANDLER
 	set_target(get_turf_on_clickcatcher(over_object, gun_user, params))
-	if(!gun_user)
-		return
-	gun_user.face_atom(target)
+	gun_user?.face_atom(target)
 
 /*
 load_into_chamber() and reload_into_chamber() do all of the heavy lifting.
@@ -627,7 +623,8 @@ and you're good to go.
 */
 /obj/item/weapon/gun/proc/load_into_chamber(mob/user)
 	if(CHECK_BITFIELD(flags_gun_features, GUN_DEPLOYED_FIRE_ONLY) && !CHECK_BITFIELD(flags_item, IS_DEPLOYED))
-		to_chat(user, "<span class='notice'>You cannot fire [src] while it is not deployed.</span>")
+		if(user)
+			to_chat(user, "<span class='notice'>You cannot fire [src] while it is not deployed.</span>")
 		return
 	//The workhorse of the bullet procs.
 
@@ -636,9 +633,10 @@ and you're good to go.
 		if(active_attachable.current_rounds > 0) //If it's still got ammo and stuff.
 			active_attachable.current_rounds--
 			return create_bullet(active_attachable.ammo)
-		to_chat(user, "<span class='warning'>[active_attachable] is empty!</span>")
-		to_chat(user, "<span class='notice'>You disable [active_attachable].</span>")
-		playsound(user, active_attachable.activation_sound, 15, 1)
+		if(user)
+			to_chat(user, "<span class='warning'>[active_attachable] is empty!</span>")
+			to_chat(user, "<span class='notice'>You disable [active_attachable].</span>")
+		playsound(loc, active_attachable.activation_sound, 15, 1)
 		active_attachable.activate_attachment(null, TRUE)
 		return
 
@@ -726,11 +724,11 @@ and you're good to go.
 
 	play_fire_sound(loc)
 	muzzle_flash(firing_angle, loc)
-	simulate_recoil(dual_wield, loc)
+	simulate_recoil(dual_wield, gun_user)
 
 	//This is where the projectile leaves the barrel and deals with projectile code only.
 	//vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
-	projectile_to_fire.fire_at(target, gun_user, src, projectile_to_fire.ammo.max_range, projectile_to_fire.ammo.shell_speed, firing_angle, suppress_light = CHECK_BITFIELD(flags_gun_features, GUN_SILENCED))
+	projectile_to_fire.fire_at(target, loc, src, projectile_to_fire.ammo.max_range, projectile_to_fire.ammo.shell_speed, firing_angle, suppress_light = CHECK_BITFIELD(flags_gun_features, GUN_SILENCED))
 	//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 	shots_fired++
@@ -740,13 +738,10 @@ and you're good to go.
 
 	last_fired = world.time
 	reload_into_chamber(gun_user)
-	if(!gun_user || !gun_user.client)
-		return
-	SEND_SIGNAL(gun_user, COMSIG_MOB_GUN_FIRED, target, src)
-	var/obj/screen/ammo/A = gun_user.hud_used.ammo //The ammo HUD
-	A.update_hud(gun_user, src)
-
-
+	if(gun_user && gun_user.client)
+		var/obj/screen/ammo/A = gun_user.hud_used.ammo //The ammo HUD
+		A.update_hud(gun_user, src)
+	SEND_SIGNAL(src, COMSIG_MOB_GUN_FIRED, target, src)
 	return TRUE
 
 /obj/item/weapon/gun/attack(mob/living/M, mob/living/user, def_zone)
@@ -935,9 +930,7 @@ and you're good to go.
 		var/obj/screen/ammo/A = user.hud_used.ammo //The ammo HUD
 		A.update_hud(user, src)
 		to_chat(user, "<span class='warning'><b>*click*</b></span>")
-		playsound(user, dry_fire_sound, 25, 1, 5) //5 tile range
-	else
-		playsound(src, dry_fire_sound, 25, 1, 5)
+	playsound(src, dry_fire_sound, 25, 1, 5)
 
 
 /obj/item/weapon/gun/proc/play_fire_sound(mob/user)
@@ -1053,7 +1046,7 @@ and you're good to go.
 
 
 /obj/item/weapon/gun/proc/simulate_recoil(recoil_bonus = 0, mob/user)
-	if(CHECK_BITFIELD(flags_item, IS_DEPLOYED))
+	if(CHECK_BITFIELD(flags_item, IS_DEPLOYED) || !user)
 		return TRUE
 	var/total_recoil = recoil_bonus
 	if(flags_item & WIELDED && wielded_stable())

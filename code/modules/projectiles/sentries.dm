@@ -19,18 +19,14 @@
 	var/range = 7
 	///Damage required to knock the sentry over and disable it
 	var/knockdown_threshold = 150
-	///Current target of the sentry
-	var/mob/living/target
-	var/mob/living/last_hostile
-	var/mob/living/potential_targets
+
+	var/list/mob/living/potential_targets = list()
 
 	///Time of last alert
 	var/last_alert = 0
 	///Time of last damage alert
 	var/last_damage_alert = 0
 
-
-	var/last_scan_time
 
 	///Radio so that the sentry can scream for help
 	var/obj/item/radio/radio
@@ -46,7 +42,6 @@
 		CRASH("[sentry] has been deployed, yet it does not have the option for Semi-Automatic fire. GUN_FIREMODE_SEMIAUTO should be available.")
 
 	sentry.set_gun_user(null)
-	sentry.do_toggle_firemode(new_firemode = GUN_FIREMODE_SEMIAUTO)
 	knockdown_threshold = sentry.knockdown_threshold
 	range = sentry.turret_range
 
@@ -73,10 +68,8 @@
 /obj/machinery/deployable/mounted/sentry/Destroy()
 	QDEL_NULL(radio)
 	QDEL_NULL(camera)
-
-	target = null
-
-	stop_processing()
+	STOP_PROCESSING(SSobj, src)
+	UnregisterSignal(sentry, COMSIG_MOB_GUN_FIRED)
 	GLOB.marine_turrets -= src
 	return ..()
 
@@ -93,7 +86,8 @@
 // Interaction
 
 /obj/machinery/deployable/mounted/sentry/attackby(obj/item/I, mob/user, params)
-	if(istype(I, /obj/item/cell/lasgun/lasrifle/marine))
+	var/obj/item/weapon/gun/sentry = internal_item
+	if(istype(I, sentry.sentry_battery_type))
 		internal_item.attackby(I, user, params)
 		return
 	return ..()
@@ -144,13 +138,14 @@
 	var/obj/item/weapon/gun/sentry = internal_item
 	. = list(
 		"name" = copytext(src.name, 2),
-		"rounds" = sentry.current_mag.current_rounds,
-		"rounds_max" = sentry.current_mag.max_rounds,
+		"rounds" = (sentry.current_mag ? sentry.current_mag.current_rounds : 0),
+		"rounds_max" = (sentry.current_mag ? sentry.current_mag.max_rounds : sentry.max_shells),
+		"fire_mode" = sentry.gun_firemode,
 		"health" = obj_integrity,
 		"health_max" = max_integrity,
-		"has_cell" = (sentry.battery ? 1 : 0),
-		"cell_charge" = sentry.battery ? sentry.battery.charge : 0,
-		"cell_maxcharge" = sentry.battery ? sentry.battery.maxcharge : 0,
+		"has_cell" = (sentry.sentry_battery ? 1 : 0),
+		"cell_charge" = sentry.sentry_battery ? sentry.sentry_battery.charge : 0,
+		"cell_maxcharge" = sentry.sentry_battery ? sentry.sentry_battery.maxcharge : 0,
 		"dir" = dir,
 		"safety_toggle" = CHECK_BITFIELD(sentry.turret_flags, TURRET_SAFETY),
 		"manual_override" = operator,
@@ -175,6 +170,10 @@
 			user.visible_message("<span class='warning'>[user] [safe ? "" : "de"]activates [src]'s safety lock.</span>",
 			"<span class='warning'>You [safe ? "" : "de"]activate [src]'s safety lock.</span>")
 			visible_message("<span class='warning'>A red light on [src] blinks brightly!")
+			. = TRUE
+
+		if("firemode")
+			sentry.do_toggle_firemode(user)
 			. = TRUE
 
 		if("manual")
@@ -208,10 +207,11 @@
 	if(!new_state)
 		visible_message("<span class='notice'>The [name] powers down and goes silent.</span>")
 		DISABLE_BITFIELD(sentry.turret_flags, TURRET_ON)
-		target = null
+		sentry.set_target(null)
 		set_light(0)
 		update_icon_state()
-		stop_processing()
+		STOP_PROCESSING(SSobj, src)
+		UnregisterSignal(sentry, COMSIG_MOB_GUN_FIRED)
 		return
 
 	ENABLE_BITFIELD(sentry.turret_flags, TURRET_ON)
@@ -220,7 +220,8 @@
 	set_light_color(initial(light_color))
 	set_light(SENTRY_LIGHT_POWER)
 	update_icon_state()
-	start_processing()
+	START_PROCESSING(SSobj, src)
+	RegisterSignal(sentry, COMSIG_MOB_GUN_FIRED, .proc/check_next_shot)
 
 ///Bonks the sentry onto its side. This currently is used here, and in /living/carbon/xeno/warrior/xeno_abilities in punch
 /obj/machinery/deployable/mounted/sentry/proc/knock_down()
@@ -268,77 +269,78 @@
 	var/obj/item/weapon/gun/sentry = internal_item
 	if(!alert_code || !CHECK_BITFIELD(sentry.turret_flags, TURRET_ALERTS) || !CHECK_BITFIELD(sentry.turret_flags, TURRET_ON))
 		return
-	
+
 	var/notice
-
-	if(alert_code == SENTRY_ALERT_HOSTILE && (world.time >= (last_alert + SENTRY_ALERT_DELAY)))
-		notice = "<b>ALERT! [src] detected Hostile/Unknown: [mob.name] at: [AREACOORD_NO_Z(src)].</b>"
-		last_alert = world.time
-
-	else 
-		if(world.time < (last_damage_alert + SENTRY_DAMAGE_ALERT_DELAY))
-			return
-
-		switch(alert_code)
-			if(SENTRY_ALERT_AMMO)
-				notice = "<b>ALERT! [src]'s ammo depleted at: [AREACOORD_NO_Z(src)].</b>"
-			if(SENTRY_ALERT_FALLEN)
-				notice = "<b>ALERT! [src] has been knocked over at: [AREACOORD_NO_Z(src)].</b>"
-			if(SENTRY_ALERT_DAMAGE)
-				notice = "<b>ALERT! [src] has taken damage at: [AREACOORD_NO_Z(src)]. Remaining Structural Integrity: ([obj_integrity]/[max_integrity])[obj_integrity < 50 ? " CONDITION CRITICAL!!" : ""]</b>"
-			if(SENTRY_ALERT_DESTROYED)
-				notice = "<b>ALERT! [src] at: [AREACOORD_NO_Z(src)] has been destroyed!</b>"
-			if(SENTRY_ALERT_BATTERY)
-				notice = "<b>ALERT! [src]'s battery depleted at: [AREACOORD_NO_Z(src)].</b>"
+	switch(alert_code)
+		if(SENTRY_ALERT_HOSTILE)
+			if(world.time < (last_alert + SENTRY_ALERT_DELAY))
+				return
+			notice = "<b>ALERT! [src] detected Hostile/Unknown: [mob.name] at: [AREACOORD_NO_Z(src)].</b>"
+			last_alert = world.time
+		if(SENTRY_ALERT_AMMO)
+			if(world.time < (last_damage_alert + SENTRY_ALERT_DELAY))
+				return
+			notice = "<b>ALERT! [src]'s ammo depleted at: [AREACOORD_NO_Z(src)].</b>"
+			last_damage_alert = world.time
+		if(SENTRY_ALERT_FALLEN)
+			notice = "<b>ALERT! [src] has been knocked over at: [AREACOORD_NO_Z(src)].</b>"
+		if(SENTRY_ALERT_DAMAGE)
+			if(world.time < (last_damage_alert + SENTRY_DAMAGE_ALERT_DELAY))
+				return
+			notice = "<b>ALERT! [src] has taken damage at: [AREACOORD_NO_Z(src)]. Remaining Structural Integrity: ([obj_integrity]/[max_integrity])[obj_integrity < 50 ? " CONDITION CRITICAL!!" : ""]</b>"
+			last_damage_alert = world.time
+		if(SENTRY_ALERT_DESTROYED)
+			notice = "<b>ALERT! [src] at: [AREACOORD_NO_Z(src)] has been destroyed!</b>"
+		if(SENTRY_ALERT_BATTERY)
+			notice = "<b>ALERT! [src]'s battery depleted at: [AREACOORD_NO_Z(src)].</b>"
 
 	playsound(loc, 'sound/machines/warning-buzzer.ogg', 50, FALSE)
 	radio.talk_into(src, "[notice]", FREQ_COMMON)
-	last_damage_alert = world.time
 
 
 /obj/machinery/deployable/mounted/sentry/process()
-	var/obj/item/weapon/gun/sentry = internal_item
-	if(world.time > last_scan_time + sentry.fire_delay)
-		scan()
-		last_scan_time = world.time
+	
+	if(!scan())
+		var/obj/item/weapon/gun/sentry = internal_item
+		sentry.stop_fire()
+		return
 	playsound(loc, 'sound/items/detector.ogg', 25, FALSE)
-	if(!potential_targets.len)
-		return
-	set_target(get_target())
-	if (!target)
-		if(last_target)
-			set_last_target(null)
-		return
-	if(target != last_target)
-		set_last_target(target)
-		sentry_start_fire()
 
+	sentry_start_fire()
 
-/obj/machinery/deployable/mounted/sentry/proc/set_target(_target)
-	if(target != _target)
-		target = _target
-		RegisterSignal(target, COMSIG_PARENT_QDELETING, .proc/unset_target)
+/obj/machinery/deployable/mounted/sentry/proc/scan()
+	var/obj/item/weapon/gun/sentry = internal_item
+	potential_targets.Cut()
+	for (var/mob/living/carbon/human/nearby_human AS in cheap_get_humans_near(src, range))
+		if(nearby_human.stat == DEAD || (CHECK_BITFIELD(sentry.turret_flags, TURRET_SAFETY) || nearby_human.get_target_lock(sentry.gun_iff_signal)))
+			continue
+		potential_targets += nearby_human
+	for (var/mob/living/carbon/xenomorph/nearby_xeno AS in cheap_get_xenos_near(src, range))
+		if(nearby_xeno.stat == DEAD)
+			continue
+		potential_targets += nearby_xeno
+	return potential_targets.len ? TRUE : FALSE
 
-///Signal handler for hard del of target
-/obj/machinery/deployable/mounted/sentry/proc/unset_target()
+/obj/machinery/deployable/mounted/sentry/proc/check_next_shot(datum/source, atom/gun_target, obj/item/weapon/gun/gun)
 	SIGNAL_HANDLER
-	target = null
-
-///Signal handler for hard del of last_target
-/obj/machinery/deployable/mounted/sentry/proc/unset_last_target()
-	SIGNAL_HANDLER
-	last_target = null
-
-/obj/machinery/deployable/mounted/sentry/proc/set_last_target(_last_target)
-	if(last_target)
-		UnregisterSignal(last_target, COMSIG_PARENT_QDELETING)
-	last_target = _last_target
+	var/obj/item/weapon/gun/sentry = internal_item
+	if(get_dist(src, gun_target) <= range && (CHECK_BITFIELD(get_dir(src, gun_target), dir) || CHECK_BITFIELD(sentry.turret_flags, TURRET_RADIAL)) && check_target_path(gun_target))
+		return
+	sentry.stop_fire()
 
 ///Sees if theres a target to shoot, then handles firing.
 /obj/machinery/deployable/mounted/sentry/proc/sentry_start_fire()
 	var/obj/item/weapon/gun/sentry = internal_item
+	var/mob/living/target = get_target()
+	update_icon_state()
+	if(target != sentry.target || get_dist(src, target) > range)
+		sentry.stop_fire()
+	if(!sentry.current_mag)
+		sentry_alert(SENTRY_ALERT_AMMO)
+		return
 	if(CHECK_BITFIELD(sentry.turret_flags, TURRET_RADIAL))
-		sentry.battery.charge -= sentry.cell_drain
+		var/obj/item/cell/battery = sentry.sentry_battery
+		battery.charge -= sentry.sentry_battery_drain
 		var/new_dir = get_dir(src, target)
 		switch(new_dir)
 			if(NORTHWEST)
@@ -350,81 +352,62 @@
 			if(SOUTHEAST)
 				new_dir = SOUTH
 		setDir(new_dir)
-		if(sentry.battery.charge <= 0)
+		if(battery.charge <= 0)
 			sentry_alert(SENTRY_ALERT_BATTERY)
 			DISABLE_BITFIELD(sentry.turret_flags, TURRET_RADIAL)
-			sentry.battery.forceMove(loc)
-			sentry.battery.charge = 0
-			sentry.battery = null
-	if(sentry.gun_firemode != GUN_FIREMODE_SEMIAUTO)
-		sentry.do_toggle_firemode(new_firemode = GUN_FIREMODE_SEMIAUTO)
+			battery.forceMove(loc)
+			battery.charge = 0
+			battery = null
+	if(CHECK_BITFIELD(sentry.flags_gun_features, GUN_BURST_FIRING))
+		sentry.set_target(target)
+		return
 	sentry.start_fire(src, target, bypass_checks = TRUE)
 
-/obj/machinery/deployable/mounted/sentry/proc/scan()
-	potential_targets.Cut()
-	for (var/mob/living/carbon/human/nearby_human AS in cheap_get_humans_near(src, range))
-		if(nearby_human.stat == DEAD)
-			continue
-		potential_targets += nearby_human
-	for (var/mob/living/carbon/xenomorph/nearby_xeno AS in cheap_get_xenos_near(src, range))
-		if(associated_hive == nearby_xeno.hive) //Xenomorphs not in our hive will be attacked as well!
-			continue
-		if(nearby_xeno.stat == DEAD)
-			continue
-		potential_targets += nearby_xeno
 
+/obj/machinery/deployable/mounted/sentry/proc/check_target_path(mob/living/target)
+	var/list/turf/path = getline(src, target)
+	path -= get_turf(src)
+	if(!path.len)
+		return FALSE
+	for(var/turf/T AS in path)
+		var/obj/effect/particle_effect/smoke/smoke = locate() in T
+		if(smoke)
+			return FALSE
 
+		if(IS_OPAQUE_TURF(T) || T.density && T.throwpass == FALSE)
+			return FALSE
+
+		for(var/obj/machinery/MA in T)
+			if(MA.opacity || MA.density && MA.throwpass == FALSE)
+				return FALSE
+
+		for(var/obj/structure/S in T)
+			if(S.opacity || S.density && S.throwpass == FALSE )
+				return FALSE
+		
+	return TRUE
 
 /obj/machinery/deployable/mounted/sentry/proc/get_target()
 	var/distance = range + 0.5 //we add 0.5 so if a potential target is at range, it is accepted by the system
 	var/buffer_distance
 	var/list/turf/path = list()
+	var/obj/item/weapon/gun/sentry = internal_item
 	for (var/mob/living/nearby_target AS in potential_targets)
-		if(nearby_target.stat == DEAD)
-			continue
 
-		var/mob/living/carbon/human/human = mob
-		if(istype(human) && (CHECK_BITFIELD(sentry.turret_flags, TURRET_SAFETY) || human.get_target_lock(sentry.gun_iff_signal)))
-			continue
-
-		var/angle = get_dir(src, mob)
-		if(!(angle & dir) && !CHECK_BITFIELD(sentry.turret_flags, TURRET_RADIAL))
+		if(!(get_dir(src, nearby_target) & dir) && !CHECK_BITFIELD(sentry.turret_flags, TURRET_RADIAL))
 			continue
 
 		buffer_distance = get_dist(nearby_target, src)
 
-		if (distance <= buffer_distance) //If we already found a target that's closer
+		if (distance <= buffer_distance)
 			continue
 
-		sentry_alert(SENTRY_ALERT_HOSTILE, mob)
+		sentry_alert(SENTRY_ALERT_HOSTILE, nearby_target)
 
-		path = getline(src, nearby_target)
-		path -= get_turf(src)
-		if(!path.len) //Can't shoot if it's on the same turf
+		if(!check_target_path(nearby_target))
 			continue
-		var/blocked = FALSE
-		for(var/turf/T AS in path)
 
-			var/obj/effect/particle_effect/smoke/smoke = locate() in turf
-			if(smoke)
-				blocked = TRUE
-				break
-
-			if(IS_OPAQUE_TURF(T) || T.density && T.throwpass == FALSE)
-				blocked = TRUE
-				break //LoF Broken; stop checking; we can't proceed further.
-
-			for(var/obj/machinery/MA in T)
-				if(MA.opacity || MA.density && MA.throwpass == FALSE)
-					blocked = TRUE
-					break //LoF Broken; stop checking; we can't proceed further.
-
-			for(var/obj/structure/S in T)
-				if(S.opacity || S.density && S.throwpass == FALSE )
-					blocked = TRUE
-					break //LoF Broken; stop checking; we can't proceed further.
-		if(!blocked)
-			distance = buffer_distance
-			. = nearby_hostile
+		distance = buffer_distance
+		return nearby_target
 
 

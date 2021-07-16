@@ -8,17 +8,20 @@
 
 	max_integrity = 200
 
-	fire_delay = 1 SECONDS
+	fire_delay = 0.5 SECONDS
 	scatter = 0
 	scatter_unwielded = 0
 	burst_scatter_mult = 0
+	burst_amount = 2
 
 	gun_iff_signal = list(ACCESS_IFF_MARINE)
 	turret_flags = TURRET_HAS_CAMERA|TURRET_SAFETY|TURRET_ALERTS
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER|GUN_DEPLOYED_FIRE_ONLY|GUN_WIELDED_FIRING_ONLY
-	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO)
+	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE)
 	flags_item = IS_SENTRY|TWOHANDED
 	deploy_time = 5 SECONDS
+
+	sentry_battery_type = /obj/item/cell/lasgun/lasrifle/marine
 
 
 /obj/item/weapon/gun/sentry/get_ammo_type()
@@ -30,21 +33,6 @@
 	if(!current_mag)
 		return in_chamber ? 1 : 0
 	return in_chamber ? (current_mag.current_rounds + 1) : current_mag.current_rounds
-
-/obj/item/weapon/gun/sentry/AltClick(mob/user)
-	. = ..()
-	if(!user.Adjacent(src) || !ishuman(user))
-		return
-	var/mob/living/carbon/human/human = user
-	if(!battery)
-		to_chat(human, "<span class='warning'> There is no battery to remove from [src].</span>")
-		return
-	if(human.get_active_held_item() != src && human.get_inactive_held_item() != src && !CHECK_BITFIELD(flags_item, IS_DEPLOYED))
-		to_chat(human, "<span class='notice'>You have to hold [src] to take out its battery.</span>")
-		return
-	playsound(src, 'sound/weapons/flipblade.ogg', 20)
-	human.put_in_hands(battery)
-	battery = null
 
 /obj/item/storage/box/sentry
 	name = "\improper UA 571-C sentry crate"
@@ -76,7 +64,7 @@
 
 	turret_range = 9
 	deploy_time = 12 SECONDS
-	max_shells = 25
+	max_shells = 50
 
 	ammo = /datum/ammo/bullet/turret
 	current_mag = /obj/item/ammo_magazine/sentry
@@ -114,7 +102,7 @@
 	desc = "A deployable, automated turret with AI targeting capabilities. This is a lightweight portable model meant for rapid deployment and point defense. Armed with an light, high velocity machine gun and a 100-round drum magazine."
 	icon_state = "minisentry"
 
-	max_shells = 100
+	max_shells = 150
 	knockdown_threshold = 100
 
 	ammo = /datum/ammo/bullet/turret/mini
@@ -123,6 +111,7 @@
 	fire_delay = 3
 	scatter = 2
 
+	deploy_time = 3 SECONDS
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_AUTOMATIC)
 
 /obj/item/weapon/gun/sentry/premade
