@@ -4,6 +4,7 @@
 
 // Pistols
 #define CALIBER_9X19 "9x19mm Parabellum"
+#define CALIBER_9X23 "9x23mm Steyr"
 #define CALIBER_9X19_TRANQUILIZER "9x19mm Tranquilizer"
 #define CALIBER_45ACP ".45 ACP"
 #define CALIBER_22LR ".22 LR"

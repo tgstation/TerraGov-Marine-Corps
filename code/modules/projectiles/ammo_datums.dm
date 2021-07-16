@@ -331,6 +331,44 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 		P.visible_message("<span class='danger'>The [src] chimpers furiously!</span>")
 		new /mob/living/carbon/human/species/monkey(P.loc)
 
+/datum/ammo/bullet/revolver/ricochet/pistol // isn't the first bounce, it's around the 3rdish. Five damage per bounce.
+	name = "ricochet pistol bullet"
+	damage = 35
+	penetration = 5
+	accurate_range = 15
+	sundering = 0.5
+	shell_speed = 5
+
+/datum/ammo/bullet/revolver/ricochet/pistol/final
+	damage = 40
+	bonus_projectiles_amount = 0
+
+/datum/ammo/bullet/revolver/ricochet/pistol
+	bonus_projectiles_type = /datum/ammo/bullet/revolver/ricochet/pistol/final
+
+/datum/ammo/bullet/revolver/ricochet/pistol/one
+	damage = 30
+	bonus_projectiles_type = /datum/ammo/bullet/revolver/ricochet/pistol
+
+/datum/ammo/bullet/revolver/ricochet/pistol/two
+	damage = 25
+	bonus_projectiles_type = /datum/ammo/bullet/revolver/ricochet/pistol/one
+
+/datum/ammo/bullet/revolver/ricochet/pistol/three // is the actual first bullet
+	damage = 20
+	bonus_projectiles_type = /datum/ammo/bullet/revolver/ricochet/pistol/two
+
+
+/datum/ammo/bullet/pistol/tracking
+	name = "tracking pistol bullet"
+	damage = 5
+	penetration = 100
+	accurate_range = 10
+	sundering = 0
+
+/datum/ammo/bullet/pistol/tracking/on_hit_mob(mob/living/victim, obj/projectile/proj)
+	victim.AddComponent(/datum/component/dripping, DRIP_ON_TIME, 40 SECONDS, 2 SECONDS)
+
 /*
 //================================================
 					Revolver Ammo
