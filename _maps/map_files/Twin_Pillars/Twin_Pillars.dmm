@@ -8917,6 +8917,10 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/living/bridgebunks)
+"ibC" = (
+/obj/machinery/vending/security,
+/turf/open/floor/mainship/red/full,
+/area/mainship/command/cic/rebel)
 "icB" = (
 /obj/machinery/light,
 /turf/open/floor/mainship/mono,
@@ -20340,6 +20344,12 @@
 "rZt" = (
 /turf/closed/wall/mainship/outer,
 /area/mainship/hallways/port_hallway/rebel)
+"rZv" = (
+/obj/machinery/vending/security,
+/turf/open/floor/mainship/black{
+	dir = 4
+	},
+/area/mainship/squads/general/rebel)
 "rZA" = (
 /obj/structure/closet/secure_closet/personal/morgue,
 /turf/open/floor/mainship/mono,
@@ -26738,10 +26748,8 @@
 /area/mainship/hull/lower_hull/rebel)
 "xzo" = (
 /obj/machinery/vending/security,
-/turf/open/floor/mainship/black{
-	dir = 4
-	},
-/area/mainship/squads/general/rebel)
+/turf/open/floor/mainship/red/full,
+/area/mainship/command/cic)
 "xzq" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -40950,7 +40958,7 @@ pbx
 wyZ
 wyZ
 lmg
-xFT
+ibC
 wGe
 ohp
 iIM
@@ -41207,7 +41215,7 @@ kqY
 vhZ
 vhZ
 qzU
-xFT
+ibC
 wGe
 xRh
 iIM
@@ -47345,7 +47353,7 @@ raH
 fmC
 uDB
 cLy
-xzo
+rZv
 xOi
 wOb
 fMG
@@ -81689,7 +81697,7 @@ cQs
 bKd
 bKd
 gOP
-uLQ
+xzo
 tCD
 pVo
 iVC
@@ -81946,7 +81954,7 @@ rTH
 gqp
 gqp
 raY
-uLQ
+xzo
 tCD
 gMl
 iVC
