@@ -15,7 +15,8 @@
 /datum/emergency_call/xenomorphs/spawn_items()
 	var/turf/drop_spawn	= get_spawn_point(TRUE)
 	if(istype(drop_spawn))
-		new /obj/effect/alien/weeds/node(drop_spawn) //Drop some weeds for xeno plasma regen.
+		var/weed_type = pick(GLOB.weed_type_list)
+		new weed_type(drop_spawn) //Drop some weeds for xeno plasma regen.
 
 
 /datum/emergency_call/xenomorphs/create_member(datum/mind/M)

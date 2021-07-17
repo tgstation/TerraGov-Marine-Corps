@@ -33,7 +33,6 @@
 	START_PROCESSING(SSslowprocess, src)
 	addtimer(CALLBACK(src, .proc/life_draining_over, TRUE), cocoon_life_time)
 	RegisterSignal(SSdcs, COMSIG_GLOB_DROPSHIP_HIJACKED, .proc/life_draining_over)
-	new /obj/effect/alien/weeds/node(loc)
 
 /obj/structure/cocoon/examine(mob/user, distance, infix, suffix)
 	. = ..()
@@ -72,7 +71,7 @@
 		release_victim()
 	return ..()
 
-///Open the cocoon and move the victim out 
+///Open the cocoon and move the victim out
 /obj/structure/cocoon/proc/release_victim()
 	REMOVE_TRAIT(victim, TRAIT_STASIS, TRAIT_STASIS)
 	playsound(loc, "alien_resin_move", 35)
@@ -112,8 +111,7 @@
 /obj/structure/cocoon/opened_cocoon
 	icon_state = "xeno_cocoon_open"
 	anchored = FALSE
-	
+
 /obj/structure/cocoon/opened_cocoon/Initialize()
 	. = ..()
 	new /obj/structure/bed/nest(loc)
-	new /obj/effect/alien/weeds/node(loc)

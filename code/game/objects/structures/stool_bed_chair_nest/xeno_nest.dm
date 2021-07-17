@@ -15,11 +15,6 @@
 	var/resisting_time = 0
 	layer = RESIN_STRUCTURE_LAYER
 
-/obj/structure/bed/nest/Initialize(mapload)
-	. = ..()
-	if(!locate(/obj/effect/alien/weeds) in loc)
-		new /obj/effect/alien/weeds(loc)
-
 /obj/structure/bed/nest/attackby(obj/item/I, mob/user, params)
 	. = ..()
 

@@ -191,8 +191,6 @@
 
 	relativewall()
 	relativewall_neighbours()
-	if(!locate(/obj/effect/alien/weeds) in loc)
-		new /obj/effect/alien/weeds(loc)
 
 /obj/structure/mineral_door/resin/CanAllowThrough(atom/movable/mover, turf/target)
 	. = ..()

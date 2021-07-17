@@ -1,3 +1,9 @@
+//Color variant defines
+#define SPEED_COLOR ""
+#define HEALING_COLOR "green"
+#define TOXIN_COLOR "green"
+#define STICKY_COLOR "green"
+
 // base weed type
 /obj/effect/alien/weeds
 	name = "weeds"
@@ -93,7 +99,7 @@
 /obj/effect/alien/weeds/sticky
 	name = "sticky resin"
 	desc = "A layer of disgusting sticky slime."
-	color_variant = "green"
+	color_variant = STICKY_COLOR
 
 /obj/effect/alien/weeds/sticky/Crossed(atom/movable/AM)
 	. = ..()
@@ -110,6 +116,30 @@
 
 	H.next_move_slowdown += 1
 
+/obj/effect/alien/weeds/healing
+	name = "healing weed"
+	desc = "This looks almost confortable."
+	color_variant = HEALING_COLOR
+
+/obj/effect/alien/weeds/toxin
+	name = "toxin weed"
+	desc = "This reeks of disease."
+	color_variant = TOXIN_COLOR
+
+/obj/effect/alien/weeds/toxins/Crossed(atom/movable/AM)
+	. = ..()
+	if(!ishuman(AM))
+		return
+
+	if(CHECK_MULTIPLE_BITFIELDS(AM.flags_pass, HOVERING))
+		return
+
+	var/mob/living/carbon/human/H = AM
+
+	if(H.lying_angle)
+		return
+
+	H.apply_damage(2, TOX)
 
 // =================
 // weed wall
@@ -195,9 +225,9 @@
 //Sticky weed node
 /obj/effect/alien/weeds/node/sticky
 	name = "sticky weed sac"
-	desc = "A weird, pulsating green node."
+	desc = "A weird, pulsating red node."
 	weed_type = /obj/effect/alien/weeds/sticky
-	color_variant = "green"
+	color_variant = STICKY_COLOR
 	node_icon = "weednodegreen"
 
 //Speedy weed node
@@ -210,4 +240,13 @@
 	name = "heal weed sac"
 	desc = "A weird, pulsating blue node."
 	weed_type = /obj/effect/alien/weeds/healing
+	color_variant = HEALING_COLOR
+	node_icon = "weednodeblue"
 
+//Toxin weed node
+/obj/effect/alien/weeds/node/toxin
+	name = "toxin weed sac"
+	desc = "A weird, pulsating green node."
+	weed_type = /obj/effect/alien/weeds/toxin
+	color_variant = TOXIN_COLOR
+	node_icon = "weednodegreen"
