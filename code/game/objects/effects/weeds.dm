@@ -1,8 +1,9 @@
 //Color variant defines
 #define SPEED_COLOR ""
-#define HEALING_COLOR "green"
+#define RESTING_COLOR "white"
 #define TOXIN_COLOR "green"
-#define STICKY_COLOR "green"
+#define STICKY_COLOR "red"
+#define PLASMA_COLOR "blue"
 
 // base weed type
 /obj/effect/alien/weeds
@@ -90,14 +91,17 @@
 		icon_state = "weed_dir[my_dir]"
 	icon_state += color_variant
 
-/obj/effect/alien/weeds/speedy/Crossed(atom/movable/AM)
+/obj/effect/alien/weeds/speed
+	name = "speed weeds"
+
+/obj/effect/alien/weeds/speed/Crossed(atom/movable/AM)
 	. = ..()
 	if(isxeno(AM))
 		var/mob/living/carbon/xenomorph/X = AM
 		X.next_move_slowdown += X.xeno_caste.weeds_speed_mod
 
 /obj/effect/alien/weeds/sticky
-	name = "sticky resin"
+	name = "sticky weeds"
 	desc = "A layer of disgusting sticky slime."
 	color_variant = STICKY_COLOR
 
@@ -116,13 +120,13 @@
 
 	H.next_move_slowdown += 1.5
 
-/obj/effect/alien/weeds/healing
-	name = "healing weed"
+/obj/effect/alien/weeds/resting
+	name = "resting weeds"
 	desc = "This looks almost confortable."
-	color_variant = HEALING_COLOR
+	color_variant = RESTING_COLOR
 
 /obj/effect/alien/weeds/toxin
-	name = "toxin weed"
+	name = "toxin weeds"
 	desc = "This reeks of disease."
 	color_variant = TOXIN_COLOR
 
@@ -140,6 +144,11 @@
 		return
 
 	H.apply_damage(3, TOX)
+
+/obj/effect/alien/weeds/plasma
+	name = "plasma weeds"
+	desc = "This reeks of disease."
+	color_variant = PLASMA_COLOR
 
 // =================
 // weed wall
@@ -247,10 +256,10 @@
 //Healing weed node
 /obj/effect/alien/weeds/node/healing
 	name = "heal weed sac"
-	desc = "A weird, pulsating blue node."
+	desc = "A weird, pulsating white node."
 	weed_type = /obj/effect/alien/weeds/healing
 	color_variant = HEALING_COLOR
-	node_icon = "weednodeblue"
+	node_icon = "weednodewhite"
 
 //Toxin weed node
 /obj/effect/alien/weeds/node/toxin
@@ -259,3 +268,11 @@
 	weed_type = /obj/effect/alien/weeds/toxin
 	color_variant = TOXIN_COLOR
 	node_icon = "weednodegreen"
+
+//Plasma weed node
+/obj/effect/alien/weeds/node/plasma
+	name = "plasma weed sac"
+	desc = "A weird, pulsating blue node."
+	weed_type = /obj/effect/alien/weeds/toxin
+	color_variant = PLASMA_COLOR
+	node_icon = "weednodeblue"

@@ -218,7 +218,6 @@ GLOBAL_LIST_INIT(weed_images_list,  list(
 	///List of buildable structures
 	var/list/buildable_structures = list(
 		/turf/closed/wall/resin/regenerating,
-		/obj/effect/alien/weeds/node/sticky,
 		/obj/structure/mineral_door/resin)
 
 /datum/action/xeno_action/activable/secrete_resin/update_button_icon()
@@ -254,11 +253,8 @@ GLOBAL_LIST_INIT(weed_images_list,  list(
 	var/mob/living/carbon/xenomorph/X = owner
 
 	var/build_resin_modifier = 1
-	switch(X.selected_resin)
-		if(/obj/effect/alien/weeds/node/sticky)
-			build_resin_modifier = 0
-		if(/obj/structure/mineral_door/resin)
-			build_resin_modifier = 3
+	if (X.selected_resin == /obj/structure/mineral_door/resin)
+		build_resin_modifier = 3
 
 	return (base_wait + scaling_wait - max(0, (scaling_wait * X.health / X.maxHealth))) * build_resin_modifier
 

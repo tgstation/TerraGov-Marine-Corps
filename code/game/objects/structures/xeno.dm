@@ -49,6 +49,64 @@
 	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_BLISTERING))
 		take_damage(rand(2, 20) * 0.1)
 
+/*
+* Resin
+*/
+/obj/effect/alien/resin
+	name = "resin"
+	desc = "Looks like some kind of slimy growth."
+	icon_state = "Resin1"
+	max_integrity = 200
+	resistance_flags = XENO_DAMAGEABLE
+
+
+/obj/effect/alien/resin/attack_hand(mob/living/user)
+	to_chat(usr, "<span class='warning'>You scrape ineffectively at \the [src].</span>")
+	return TRUE
+
+
+/obj/effect/alien/resin/sticky
+	name = "sticky resin"
+	desc = "A layer of disgusting sticky slime."
+	icon_state = "sticky"
+	density = FALSE
+	opacity = FALSE
+	max_integrity = 36
+	layer = RESIN_STRUCTURE_LAYER
+	hit_sound = "alien_resin_move"
+	ignore_weed_destruction = TRUE
+
+/obj/effect/alien/resin/sticky/Initialize()
+	. = ..()
+	QDEL_IN(3 MINUTES)
+
+/obj/effect/alien/resin/sticky/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
+	if(X.status_flags & INCORPOREAL)
+		return FALSE
+
+	if(X.a_intent == INTENT_HARM) //Clear it out on hit; no need to double tap.
+		X.do_attack_animation(src, ATTACK_EFFECT_CLAW) //SFX
+		playsound(src, "alien_resin_break", 25) //SFX
+		deconstruct(TRUE)
+		return
+
+	return ..()
+
+/obj/effect/alien/resin/sticky/Crossed(atom/movable/AM)
+	. = ..()
+	if(!ishuman(AM))
+		return
+
+	if(CHECK_MULTIPLE_BITFIELDS(AM.flags_pass, HOVERING))
+		return
+
+	var/mob/living/carbon/human/H = AM
+
+	if(H.lying_angle)
+		return
+
+	H.next_move_slowdown += 6
+
 //Carrier trap
 /obj/structure/xeno/trap
 	desc = "It looks like a hiding hole."

@@ -10,7 +10,6 @@
 	plasma_cost = 100
 	buildable_structures = list(
 		/turf/closed/wall/resin/regenerating/thick,
-		/obj/effect/alien/weeds/node/sticky,
 		/obj/structure/mineral_door/resin/thick,
 	)
 

@@ -8,6 +8,8 @@ SUBSYSTEM_DEF(weeds)
 	var/list/creating = list()
 	var/list/pending = list()
 	var/list/currentrun
+	/// The amount of time a weed will try to spawn on a given tile
+	var/list/attempt = list()
 
 /datum/controller/subsystem/weeds/stat_entry()
 	return ..("Nodes: [length(pending)]")
@@ -21,18 +23,22 @@ SUBSYSTEM_DEF(weeds)
 		if(MC_TICK_CHECK)
 			return
 
-		var/obj/effect/alien/weeds/node/node = currentrun[T][1]
+		var/obj/effect/alien/weeds/node/node = currentrun[T]
+		currentrun -= T
 
 		if(QDELETED(node) || QDELETED(T))
 			pending -= T
+			attempt -= T
 			continue
 
 		if (locate(/obj/effect/alien/weeds/node) in T)
 			pending -= T
+			attempt -= T
 			continue
 
 		if (!T.is_weedable())
 			pending -= T
+			attempt -= T
 			continue
 
 		for(var/direction in GLOB.cardinals)
@@ -40,11 +46,13 @@ SUBSYSTEM_DEF(weeds)
 			if (!(locate(/obj/effect/alien/weeds) in AdjT))
 				continue
 
-			creating[T] = currentrun[T][1]
-			break
-		pending[T][2]--
-		if(!pending[T][2])
+			creating[T] = node
 			pending -= T
+			break
+		attempt[T]--
+		if(attempt[T] <= 0)
+			pending -= T
+			attempt -= T
 
 
 	// We create weeds outside of the loop to not influence new weeds within the loop
@@ -54,6 +62,7 @@ SUBSYSTEM_DEF(weeds)
 		// Adds a bit of jitter to the spawning weeds.
 		addtimer(CALLBACK(src, .proc/create_weed, T, creating[T]), rand(1, 3 SECONDS))
 		pending -= T
+		attempt -= T
 		creating -= T
 
 
@@ -64,9 +73,10 @@ SUBSYSTEM_DEF(weeds)
 		return FALSE
 
 	for(var/turf/T AS in node.node_turfs)
-		if(pending[T] && (get_dist_euclide_square(node, T) >= get_dist_euclide_square(get_step(pending[T][1], 0), T)))
+		if(pending[T] && (get_dist_euclide_square(node, T) >= get_dist_euclide_square(get_step(pending[T], 0), T)))
 			continue
-		pending[T] = list(node, 5)
+		pending[T] = node
+		attempt[T] = 5 //5 attempts maximum
 
 /datum/controller/subsystem/weeds/proc/create_weed(turf/T, obj/effect/alien/weeds/node/node)
 	if(QDELETED(node))
