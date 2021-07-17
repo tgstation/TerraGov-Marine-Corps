@@ -1,6 +1,6 @@
 /datum/component/remote_control
 	///User of the component
-	var/mob/user
+	var/mob/living/user
 	///Movable atom being controlled by the component
 	var/atom/movable/controlled
 	///whether the component is currently active or not
@@ -95,7 +95,7 @@
 		remote_control_off()
 
 ///Turns the remote control on
-/datum/component/remote_control/proc/remote_control_on(mob/newuser)
+/datum/component/remote_control/proc/remote_control_on(mob/living/newuser)
 	if(QDELETED(controlled))
 		to_chat(newuser, "<span class='warning'>The linked device is destroyed!</span>")
 		controlled = null
@@ -106,8 +106,7 @@
 	RegisterSignal(newuser, COMSIG_RELAYED_SPEECH, .proc/on_relayed_speech)
 	RegisterSignal(parent, COMSIG_ITEM_DROPPED, .proc/remote_control_off)
 	is_controlling = TRUE
-	newuser.remote_control = controlled	//Movement inputs are handled by the controlled thing in relaymove()
-	newuser.reset_perspective(controlled)
+	newuser.set_remote_control(controlled)	//Movement inputs are handled by the controlled thing in relaymove()
 	user = newuser
 
 ///Invokes the callback for when the controller clicks
@@ -127,8 +126,7 @@
 	SIGNAL_HANDLER
 	SEND_SIGNAL(controlled, COMSIG_REMOTECONTROL_CHANGED, FALSE, user)
 	is_controlling = FALSE
-	user.remote_control = null
-	user.reset_perspective()
+	user.set_remote_control(null)
 	UnregisterSignal(user, list(COMSIG_MOB_CLICKON, COMSIG_MOB_LOGOUT, COMSIG_RELAYED_SPEECH))
 	UnregisterSignal(parent, COMSIG_ITEM_DROPPED)
 	user = null

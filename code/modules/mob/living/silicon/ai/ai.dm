@@ -241,15 +241,15 @@
 	show_message(rendered, 2)
 
 
-/mob/living/silicon/ai/reset_perspective(atom/A)
-	if(A?.flags_atom & AI_CONTROLLABLE)
-		sight = NONE
-		eyeobj?.use_static = USE_STATIC_NONE
-		GLOB.cameranet.visibility(eyeobj, client, all_eyes, USE_STATIC_NONE)
-	else
+/mob/living/silicon/ai/reset_perspective(atom/A, has_static = TRUE)
+	if(has_static)
 		sight = initial(sight)
 		eyeobj?.use_static = initial(eyeobj?.use_static)
 		GLOB.cameranet.visibility(eyeobj, client, all_eyes, initial(eyeobj?.use_static))
+	else
+		sight = NONE
+		eyeobj?.use_static = USE_STATIC_NONE
+		GLOB.cameranet.visibility(eyeobj, client, all_eyes, USE_STATIC_NONE)
 	if(camera_light_on)
 		light_cameras()
 	if(istype(A, /obj/machinery/camera))
@@ -342,6 +342,15 @@
 		return FALSE
 
 	return GLOB.cameranet.checkTurfVis(get_turf(A))
+
+/mob/living/silicon/ai/set_remote_control(atom/movable/controlled)
+	if(controlled)
+		reset_perspective(controlled, FALSE)
+	else
+		eyeobj.forceMove(remote_control)
+		reset_perspective()
+	remote_control = controlled
+
 
 /datum/action/control_vehicle
 	name = "Select vehicle to control"

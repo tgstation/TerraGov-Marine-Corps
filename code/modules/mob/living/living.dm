@@ -382,24 +382,6 @@
 		if(!(L.status_flags & CANPUSH))
 			return
 
-	if(isdroid(A) && a_intent == INTENT_HELP)
-		var/obj/vehicle/unmanned/droid/deet = A
-		now_pushing = TRUE
-		var/oldloc = loc
-		var/oldLloc = deet.loc
-		var/src_passmob = (flags_pass & PASSMOB)
-		flags_pass |= PASSMOB
-		deet.density = FALSE
-
-		deet.Move(oldloc)
-		Move(oldLloc)
-
-		deet.density = TRUE
-		if(!src_passmob)
-			flags_pass &= ~PASSMOB
-		now_pushing = FALSE
-		return
-
 	if(ismovableatom(A))
 		if(isxeno(src) && ishuman(A))
 			var/mob/living/carbon/human/H = A
@@ -848,3 +830,8 @@ below 100 is not dizzy
 	else if(. >= GRAB_NECK) //Released from neckgrab.
 		REMOVE_TRAIT(pulling, TRAIT_IMMOBILE, NECKGRAB_TRAIT)
 		REMOVE_TRAIT(pulling, TRAIT_FLOORED, NECKGRAB_TRAIT)
+
+///Set the remote_control and reset the perspective
+/mob/living/proc/set_remote_control(atom/movable/controlled)
+	remote_control = controlled
+	reset_perspective(controlled)

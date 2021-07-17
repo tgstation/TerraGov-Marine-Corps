@@ -13,10 +13,10 @@
 	max_integrity = 300
 	hud_possible = list(MACHINE_HEALTH_HUD, MACHINE_AMMO_HUD)
 	resistance_flags = XENO_DAMAGEABLE
-	flags_atom = BUMP_ATTACKABLE|AI_CONTROLLABLE
+	flags_atom = BUMP_ATTACKABLE
 	soft_armor = list("melee" = 25, "bullet" = 50, "laser" = 50, "energy" = 100, "bomb" = 50, "bio" = 100, "rad" = 100, "fire" = 25, "acid" = 25)
 	/// Path of "turret" attached
-	var/obj/item/turret_path
+	var/obj/item/uav_turret/turret_path = /obj/item/uav_turret
 	/// Type of the turret attached
 	var/turret_type
 	///Turret types we're allowed to attach
