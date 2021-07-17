@@ -114,7 +114,7 @@
 	if(H.lying_angle)
 		return
 
-	H.next_move_slowdown += 1
+	H.next_move_slowdown += 1.5
 
 /obj/effect/alien/weeds/healing
 	name = "healing weed"
@@ -139,7 +139,7 @@
 	if(H.lying_angle)
 		return
 
-	H.apply_damage(2, TOX)
+	H.apply_damage(3, TOX)
 
 // =================
 // weed wall
@@ -201,6 +201,16 @@
 /obj/effect/alien/weeds/node/Destroy()
 	. = ..()
 	SSweeds_decay.decay_weeds(node_turfs)
+
+/obj/effect/alien/weeds/node/attack_alien(mob/living/carbon/xenomorph/X, damage_amount, damage_type, damage_flag, effects, armor_penetration, isrightclick)
+	if(X.status_flags & INCORPOREAL)
+		return FALSE
+	if(!do_after(X, 1 SECONDS, FALSE, src, BUSY_ICON_BUILD))
+		return
+	X.visible_message("<span class='danger'>\The [X] removed \the [src]!</span>", \
+		"<span class='danger'>We remove \the [src]!</span>", null, 5)
+	take_damage(max_integrity)
+	return TRUE
 
 
 /obj/effect/alien/weeds/node/update_icon()
