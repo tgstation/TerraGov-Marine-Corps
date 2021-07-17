@@ -582,13 +582,24 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 
 /obj/item/attachable/reddot
 	name = "red-dot sight"
-	desc = "A red-dot sight for short to medium range. Does not have a zoom feature, but does increase weapon accuracy by a good amount. \nNo drawbacks."
+	desc = "A red-dot sight for short to medium range. Does not have a zoom feature, but does increase weapon accuracy and fire rate while aiming by a good amount. \nNo drawbacks."
 	icon_state = "reddot"
 	attach_icon = "reddot_a"
 	slot = ATTACHMENT_SLOT_RAIL
 	accuracy_mod = 0.15
 	accuracy_unwielded_mod = 0.1
+	var/aim_mode_fire_rate_debuff_reduction = 0.5
+	var/cached_fire_rate
 
+/obj/item/attachable/reddot/attach_to_gun(obj/item/weapon/gun/gun_to_attach, mob/user)
+	. = ..()
+	cached_fire_rate = master_gun.aim_fire_delay * aim_mode_fire_rate_debuff_reduction
+	master_gun.aim_fire_delay -= cached_fire_rate
+
+/obj/item/attachable/reddot/detach_from_master_gun(mob/user)
+	master_gun.aim_fire_delay += cached_fire_rate
+	cached_fire_rate = 0
+	return ..()
 
 /obj/item/attachable/m16sight
 	name = "M16 iron sights"
