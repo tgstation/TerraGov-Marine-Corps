@@ -154,9 +154,9 @@
 		),
 		"Specialized" = list(
 			/obj/item/weapon/gun/launcher/m92/standardmarine = -1,
+			/obj/item/weapon/gun/launcher/m81 = -1,
 			/obj/item/weapon/gun/heavymachinegun = 1,
 			/obj/item/ammo_magazine/heavymachinegun = 4,
-			/obj/item/weapon/gun/launcher/m81 = -1,
 			/obj/item/weapon/gun/rifle/pepperball = 4,
 			/obj/item/ammo_magazine/rifle/pepperball = 40,
 			/obj/item/storage/box/recoilless_system = 2,
