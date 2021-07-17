@@ -276,7 +276,7 @@
 	starting_attachment_types = list(/obj/item/attachable/stock/br,/obj/item/attachable/scope/mini)
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 17, "rail_y" = 18, "under_x" = 25, "under_y" = 12, "stock_x" = 14, "stock_y" = 10)
 	actions_types = list(/datum/action/item_action/aim_mode)
-	aim_fire_delay = 0.17 SECONDS
+	aim_fire_delay = 0.2 SECONDS
 	aim_speed_modifier = 3
 
 	fire_delay = 0.35 SECONDS
