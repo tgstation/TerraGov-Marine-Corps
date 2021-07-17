@@ -976,15 +976,10 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/lower_medical/rebel)
 "aUs" = (
-/obj/machinery/marine_selector/clothes/rebel,
-/obj/structure/window/reinforced,
-/obj/structure/window/reinforced{
+/obj/machinery/vending/security,
+/turf/open/floor/mainship/black{
 	dir = 4
 	},
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/turf/open/floor/mainship,
 /area/mainship/squads/general)
 "aUt" = (
 /obj/structure/cable,
@@ -2890,6 +2885,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
+/obj/machinery/vending/security,
 /turf/open/floor/mainship/black{
 	dir = 4
 	},
@@ -4940,6 +4936,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
+/obj/machinery/vending/security,
 /turf/open/floor/mainship/black{
 	dir = 4
 	},
@@ -26740,15 +26737,10 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hull/lower_hull/rebel)
 "xzo" = (
-/obj/machinery/marine_selector/clothes/loyalist,
-/obj/structure/window/reinforced,
-/obj/structure/window/reinforced{
+/obj/machinery/vending/security,
+/turf/open/floor/mainship/black{
 	dir = 4
 	},
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/turf/open/floor/mainship,
 /area/mainship/squads/general/rebel)
 "xzq" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
@@ -47353,7 +47345,7 @@ raH
 fmC
 uDB
 cLy
-vKO
+xzo
 xOi
 wOb
 fMG
@@ -47871,19 +47863,19 @@ xEi
 nxv
 vzI
 sXj
-xzo
+oNl
 uuq
 vzI
 sXj
-xzo
+oNl
 tGI
 vzI
 sXj
-xzo
+oNl
 tGI
 vzI
 sXj
-xzo
+oNl
 tGI
 tGI
 iON
@@ -88092,7 +88084,7 @@ jCA
 fhq
 mJp
 eCB
-gfj
+aUs
 gnI
 djU
 bMG
@@ -88610,19 +88602,19 @@ erm
 fgF
 mJM
 enP
-aUs
+ggZ
 aEv
 mJM
 enP
-aUs
+ggZ
 nXa
 mJM
 enP
-aUs
+ggZ
 nXa
 mJM
 enP
-aUs
+ggZ
 nXa
 nXa
 jxe
