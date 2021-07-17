@@ -3418,9 +3418,6 @@
 /obj/structure/flora/ausbushes/reedbush,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle6)
-"atf" = (
-/turf/open/floor/plating/ground/dirtgrassborder/corner,
-/area/lv624/ground/compound/sw)
 "atj" = (
 /turf/open/ground/grass,
 /area/lv624/ground/compound/sw)
@@ -21284,8 +21281,8 @@ bmq
 eXq
 aYj
 sod
+bSW
 slv
-cFF
 muv
 ous
 nnu
@@ -21463,8 +21460,8 @@ aXb
 aXb
 aXb
 sod
-iCH
 bSW
+iCH
 bcg
 bcg
 bcg
@@ -21642,8 +21639,8 @@ cev
 esj
 aXb
 sod
-iCH
 bSW
+iCH
 bcg
 bcg
 bcg
@@ -21821,8 +21818,8 @@ cev
 pOc
 nrr
 sod
-iCH
 bSW
+iCH
 bcg
 bcg
 bcg
@@ -22000,8 +21997,8 @@ cev
 qNG
 nrr
 sod
-iCH
 bSW
+iCH
 bcg
 bcg
 iTb
@@ -22179,8 +22176,8 @@ cev
 cev
 aXb
 sod
-iCH
 bSW
+iCH
 bcg
 bcg
 bcg
@@ -22358,8 +22355,8 @@ dXO
 dXO
 aXb
 sod
-iCH
 bSW
+iCH
 bcg
 bcg
 iTb
@@ -22537,8 +22534,8 @@ eTI
 hiA
 aXb
 sod
-iCH
 bSW
+iCH
 bcg
 biQ
 bch
@@ -22716,8 +22713,8 @@ aXb
 eIl
 aXb
 sod
+bSW
 iCH
-atj
 bch
 bcm
 bch
@@ -22895,8 +22892,8 @@ tHf
 vjX
 iHs
 sod
+bSW
 iCH
-atf
 bmz
 bmz
 bmz
@@ -23074,8 +23071,8 @@ aXb
 aXb
 aXb
 sod
+bSW
 iCH
-bnj
 bnE
 hAe
 bnE
@@ -23253,8 +23250,8 @@ aXb
 rWf
 bSW
 bSW
+bSW
 iCH
-bnj
 bnE
 fcU
 srl
@@ -23432,8 +23429,8 @@ dul
 dul
 iWp
 cFF
+cFF
 iCH
-bnj
 hAe
 cml
 bfa
