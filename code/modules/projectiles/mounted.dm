@@ -29,6 +29,8 @@
 	if(istype(new_gun.current_mag, /obj/item/ammo_magazine/internal) || istype(new_gun, /obj/item/weapon/gun/launcher))
 		CRASH("[new_gun] has been deployed, however it is incompatible because of either an internal magazine, or it is a launcher.")
 
+	new_gun.set_gun_user(null)
+
 /obj/machinery/deployable/mounted/attackby(obj/item/I, mob/user, params) //This handles reloading the gun, if its in acid cant touch it.
 	. = ..()
 

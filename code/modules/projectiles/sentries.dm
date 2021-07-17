@@ -9,6 +9,8 @@
 
 	soft_armor = list("melee" = 50, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = 50, "bio" = 100, "rad" = 0, "fire" = 80, "acid" = 50)
 
+	interaction_flags = INTERACT_UI_INTERACT
+
 	///Spark system for making sparks
 	var/datum/effect_system/spark_spread/spark_system 
 	///Camera for viewing with cam consoles
@@ -37,20 +39,16 @@
 
 /obj/machinery/deployable/mounted/sentry/Initialize(mapload, _internal_item, deployer)
 	. = ..()
-	var/obj/item/weapon/gun/sentry = internal_item
+	var/obj/item/weapon/gun/gun = internal_item
 
-	if((sentry.gun_firemode_list.len == 1 && sentry.gun_firemode != GUN_FIREMODE_SEMIAUTO))
-		CRASH("[sentry] has been deployed, yet it does not have the option for Semi-Automatic fire. GUN_FIREMODE_SEMIAUTO should be available.")
-
-	sentry.set_gun_user(null)
-	iff_signal = sentry.sentry_iff_signal
+	iff_signal = gun.sentry_iff_signal
 	if(!iff_signal && deployer)
 		var/mob/living/carbon/human/_deployer = deployer
 		var/obj/item/card/id/id = _deployer.get_idcard(TRUE)
 		iff_signal = id?.iff_signal
 
-	knockdown_threshold = sentry.knockdown_threshold
-	range = sentry.turret_range
+	knockdown_threshold = gun.knockdown_threshold
+	range = gun.turret_range
 
 	radio = new(src)
 
@@ -58,7 +56,7 @@
 	spark_system.set_up(5, 0, src)
 	spark_system.attach(src)
 
-	if(CHECK_BITFIELD(sentry.turret_flags, TURRET_HAS_CAMERA))
+	if(CHECK_BITFIELD(gun.turret_flags, TURRET_HAS_CAMERA))
 		camera = new (src)
 		camera.network = list("military")
 		camera.c_tag = "[name] ([rand(0, 1000)])"
@@ -68,13 +66,14 @@
 
 /obj/machinery/deployable/mounted/sentry/update_icon_state()
 	. = ..()
-	if(!machine_stat)
+	if(!CHECK_BITFIELD(machine_stat, DISABLED))
 		return
 	icon_state += "_f"
 
 /obj/machinery/deployable/mounted/sentry/Destroy()
 	QDEL_NULL(radio)
 	QDEL_NULL(camera)
+	QDEL_NULL(spark_system)
 	STOP_PROCESSING(SSobj, src)
 	UnregisterSignal(internal_item, COMSIG_MOB_GUN_FIRED)
 	GLOB.marine_turrets -= src
@@ -93,8 +92,8 @@
 // Interaction
 
 /obj/machinery/deployable/mounted/sentry/attackby(obj/item/I, mob/user, params)
-	var/obj/item/weapon/gun/sentry = internal_item
-	if(istype(I, sentry.sentry_battery_type))
+	var/obj/item/weapon/gun/gun = internal_item
+	if(istype(I, gun.sentry_battery_type))
 		internal_item.attackby(I, user, params)
 		return
 	return ..()
@@ -114,13 +113,10 @@
 	set_on(TRUE)
 
 /obj/machinery/deployable/mounted/sentry/attack_hand(mob/living/user)
-	var/obj/item/weapon/gun/sentry = internal_item
-	if(CHECK_BITFIELD(sentry.turret_flags, TURRET_IMMOBILE))
-		to_chat(user, "<span class='warning'>[src]'s panel is completely locked, you can't do anything.</span>")
-		return
+	. = ..()
+	var/obj/item/weapon/gun/gun = internal_item
 
-	if(!machine_stat)
-		ui_interact(user)
+	if(!CHECK_BITFIELD(machine_stat, DISABLED))
 		return
 
 	user.visible_message("<span class='notice'>[user] begins to set [src] upright.</span>",
@@ -132,52 +128,59 @@
 	user.visible_message("<span class='notice'>[user] sets [src] upright.</span>",
 	"<span class='notice'>You set [src] upright.</span>")
 
-	machine_stat = 0
+	DISABLE_BITFIELD(machine_stat, DISABLED)
 	set_on(TRUE)
 
 /obj/machinery/deployable/mounted/sentry/ui_interact(mob/user, datum/tgui/ui)
+	var/obj/item/weapon/gun/gun = internal_item
+	if(CHECK_BITFIELD(gun.turret_flags, TURRET_IMMOBILE))
+		to_chat(user, "<span class='warning'>[src]'s panel is completely locked, you can't do anything.</span>")
+		return
+	if(CHECK_BITFIELD(machine_stat, DISABLED))
+		return
+
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "Sentry", "Sentry Gun")
 		ui.open()
 
 /obj/machinery/deployable/mounted/sentry/ui_data(mob/user)
-	var/obj/item/weapon/gun/sentry = internal_item
+	var/obj/item/weapon/gun/gun = internal_item
 	. = list(
 		"name" = copytext(name, 2),
-		"rounds" = (sentry.current_mag ? sentry.current_mag.current_rounds : 0),
-		"rounds_max" = (sentry.current_mag ? sentry.current_mag.max_rounds : sentry.max_shells),
-		"fire_mode" = sentry.gun_firemode,
+		"rounds" = (gun.current_mag ? gun.current_mag.current_rounds : 0),
+		"rounds_max" = (gun.current_mag ? gun.current_mag.max_rounds : gun.max_shells),
+		"fire_mode" = gun.gun_firemode,
 		"health" = obj_integrity,
 		"health_max" = max_integrity,
-		"has_cell" = (sentry.sentry_battery ? 1 : 0),
-		"cell_charge" = sentry.sentry_battery ? sentry.sentry_battery.charge : 0,
-		"cell_maxcharge" = sentry.sentry_battery ? sentry.sentry_battery.maxcharge : 0,
-		"safety_toggle" = CHECK_BITFIELD(sentry.turret_flags, TURRET_SAFETY),
+		"has_cell" = (gun.sentry_battery ? 1 : 0),
+		"cell_charge" = gun.sentry_battery ? gun.sentry_battery.charge : 0,
+		"cell_maxcharge" = gun.sentry_battery ? gun.sentry_battery.maxcharge : 0,
+		"safety_toggle" = CHECK_BITFIELD(gun.turret_flags, TURRET_SAFETY),
 		"manual_override" = operator,
-		"alerts_on" = CHECK_BITFIELD(sentry.turret_flags, TURRET_ALERTS),
-		"radial_mode" = CHECK_BITFIELD(sentry.turret_flags, TURRET_RADIAL),
+		"alerts_on" = CHECK_BITFIELD(gun.turret_flags, TURRET_ALERTS),
+		"radial_mode" = CHECK_BITFIELD(gun.turret_flags, TURRET_RADIAL),
 	)
 
 /obj/machinery/deployable/mounted/sentry/ui_act(action, list/params)
 	. = ..()
 	if(.)
 		return
-	var/obj/item/weapon/gun/sentry = internal_item
+	var/obj/item/weapon/gun/gun = internal_item
 	var/mob/living/carbon/human/user = usr
-	if(!istype(user) || CHECK_BITFIELD(sentry.turret_flags, TURRET_IMMOBILE) || machine_stat)
+	if(!istype(user) || CHECK_BITFIELD(gun.turret_flags, TURRET_IMMOBILE) || CHECK_BITFIELD(machine_stat, DISABLED))
 		return
 	switch(action)
 		if("safety")
-			TOGGLE_BITFIELD(sentry.turret_flags, TURRET_SAFETY)
-			var/safe = CHECK_BITFIELD(sentry.turret_flags, TURRET_SAFETY)
+			TOGGLE_BITFIELD(gun.turret_flags, TURRET_SAFETY)
+			var/safe = CHECK_BITFIELD(gun.turret_flags, TURRET_SAFETY)
 			user.visible_message("<span class='warning'>[user] [safe ? "" : "de"]activates [src]'s safety lock.</span>",
 			"<span class='warning'>You [safe ? "" : "de"]activate [src]'s safety lock.</span>")
 			visible_message("<span class='warning'>A red light on [src] blinks brightly!")
 			. = TRUE
 
 		if("firemode")
-			sentry.do_toggle_firemode(user)
+			gun.do_toggle_firemode(user)
 			. = TRUE
 
 		if("manual")
@@ -188,8 +191,8 @@
 			. = TRUE
 
 		if("toggle_alert")
-			TOGGLE_BITFIELD(sentry.turret_flags, TURRET_ALERTS)
-			var/alert = CHECK_BITFIELD(sentry.turret_flags, TURRET_ALERTS)
+			TOGGLE_BITFIELD(gun.turret_flags, TURRET_ALERTS)
+			var/alert = CHECK_BITFIELD(gun.turret_flags, TURRET_ALERTS)
 			user.visible_message("<span class='notice'>[user] [alert ? "" : "de"]activates [src]'s alert notifications.</span>",
 			"<span class='notice'>You [alert ? "" : "de"]activate [src]'s alert notifications.</span>")
 			say("Alert notification system [alert ? "initiated" : "deactivated"]")
@@ -197,8 +200,8 @@
 			. = TRUE
 
 		if("toggle_radial")
-			TOGGLE_BITFIELD(sentry.turret_flags, TURRET_RADIAL)
-			var/rad_msg = CHECK_BITFIELD(sentry.turret_flags, TURRET_RADIAL) ? "activate" : "deactivate"
+			TOGGLE_BITFIELD(gun.turret_flags, TURRET_RADIAL)
+			var/rad_msg = CHECK_BITFIELD(gun.turret_flags, TURRET_RADIAL) ? "activate" : "deactivate"
 			user.visible_message("<span class='notice'>[user] [rad_msg]s [src]'s radial mode.</span>", "<span class='notice'>You [rad_msg] [src]'s radial mode.</span>")
 			say("Radial mode [rad_msg]d.")
 			. = TRUE
@@ -207,31 +210,31 @@
 
 ///Handles turning the sentry ON and OFF. new_state is a bool
 /obj/machinery/deployable/mounted/sentry/proc/set_on(new_state)
-	var/obj/item/weapon/gun/sentry = internal_item
+	var/obj/item/weapon/gun/gun = internal_item
 	if(!new_state)
 		visible_message("<span class='notice'>The [name] powers down and goes silent.</span>")
-		DISABLE_BITFIELD(sentry.turret_flags, TURRET_ON)
-		sentry.set_target(null)
+		DISABLE_BITFIELD(gun.turret_flags, TURRET_ON)
+		gun.set_target(null)
 		set_light(0)
 		update_icon_state()
 		STOP_PROCESSING(SSobj, src)
-		UnregisterSignal(sentry, COMSIG_MOB_GUN_FIRED)
+		UnregisterSignal(gun, COMSIG_MOB_GUN_FIRED)
 		return
 
-	ENABLE_BITFIELD(sentry.turret_flags, TURRET_ON)
+	ENABLE_BITFIELD(gun.turret_flags, TURRET_ON)
 	visible_message("<span class='notice'>The [name] powers up with a warm hum.</span>")
 	set_light_range(initial(light_power))
 	set_light_color(initial(light_color))
 	set_light(SENTRY_LIGHT_POWER)
 	update_icon_state()
 	START_PROCESSING(SSobj, src)
-	RegisterSignal(sentry, COMSIG_MOB_GUN_FIRED, .proc/check_next_shot)
+	RegisterSignal(gun, COMSIG_MOB_GUN_FIRED, .proc/check_next_shot)
 
 ///Bonks the sentry onto its side. This currently is used here, and in /living/carbon/xeno/warrior/xeno_abilities in punch
 /obj/machinery/deployable/mounted/sentry/proc/knock_down()
 	visible_message("<span class='danger'>The [name] is knocked over!</span>")
 	sentry_alert(SENTRY_ALERT_FALLEN)
-	machine_stat = 1
+	ENABLE_BITFIELD(machine_stat, DISABLED)
 	density = FALSE
 	set_on(FALSE)
 	update_icon_state()
@@ -270,8 +273,8 @@
 /obj/machinery/deployable/mounted/sentry/proc/sentry_alert(alert_code, mob/mob)
 	if(!internal_item)
 		return
-	var/obj/item/weapon/gun/sentry = internal_item
-	if(!alert_code || !CHECK_BITFIELD(sentry.turret_flags, TURRET_ALERTS) || !CHECK_BITFIELD(sentry.turret_flags, TURRET_ON))
+	var/obj/item/weapon/gun/gun = internal_item
+	if(!alert_code || !CHECK_BITFIELD(gun.turret_flags, TURRET_ALERTS) || !CHECK_BITFIELD(gun.turret_flags, TURRET_ON))
 		return
 
 	var/notice
@@ -304,8 +307,8 @@
 
 /obj/machinery/deployable/mounted/sentry/process()
 	if(!scan())
-		var/obj/item/weapon/gun/sentry = internal_item
-		sentry.stop_fire()
+		var/obj/item/weapon/gun/gun = internal_item
+		gun.stop_fire()
 		return
 	playsound(loc, 'sound/items/detector.ogg', 25, FALSE)
 
@@ -313,10 +316,10 @@
 
 ///Checks the nearby mobs for eligability. If they can be targets it stores them in potential_targets. Returns TRUE if there are targets, FALSE if not.
 /obj/machinery/deployable/mounted/sentry/proc/scan()
-	var/obj/item/weapon/gun/sentry = internal_item
+	var/obj/item/weapon/gun/gun = internal_item
 	potential_targets.Cut()
 	for (var/mob/living/carbon/human/nearby_human AS in cheap_get_humans_near(src, range))
-		if(nearby_human.stat == DEAD || CHECK_BITFIELD(nearby_human.status_flags, INCORPOREAL)  || (CHECK_BITFIELD(sentry.turret_flags, TURRET_SAFETY) || nearby_human.wear_id?.iff_signal & iff_signal))
+		if(nearby_human.stat == DEAD || CHECK_BITFIELD(nearby_human.status_flags, INCORPOREAL)  || (CHECK_BITFIELD(gun.turret_flags, TURRET_SAFETY) || nearby_human.wear_id?.iff_signal & iff_signal))
 			continue
 		potential_targets += nearby_human
 	for (var/mob/living/carbon/xenomorph/nearby_xeno AS in cheap_get_xenos_near(src, range))
@@ -328,22 +331,22 @@
 ///Checks the range and the path of the target currently being shot at to see if it is eligable for being shot at again. If not it will stop the firing.
 /obj/machinery/deployable/mounted/sentry/proc/check_next_shot(datum/source, atom/gun_target, obj/item/weapon/gun/gun)
 	SIGNAL_HANDLER
-	var/obj/item/weapon/gun/sentry = internal_item
-	if(get_dist(src, gun_target) <= range && (CHECK_BITFIELD(get_dir(src, gun_target), dir) || CHECK_BITFIELD(sentry.turret_flags, TURRET_RADIAL)) && check_target_path(gun_target))
+	var/obj/item/weapon/gun/internal_gun = internal_item
+	if(get_dist(src, gun_target) <= range && (CHECK_BITFIELD(get_dir(src, gun_target), dir) || CHECK_BITFIELD(internal_gun.turret_flags, TURRET_RADIAL)) && check_target_path(gun_target))
 		return
-	sentry.stop_fire()
+	internal_gun.stop_fire()
 
 ///Sees if theres a target to shoot, then handles firing.
 /obj/machinery/deployable/mounted/sentry/proc/sentry_start_fire()
-	var/obj/item/weapon/gun/sentry = internal_item
+	var/obj/item/weapon/gun/gun = internal_item
 	var/mob/living/target = get_target()
 	update_icon_state()
-	if(target != sentry.target || get_dist(src, target) > range)
-		sentry.stop_fire()
-	if(!sentry.current_mag)
+	if(target != gun.target || get_dist(src, target) > range)
+		gun.stop_fire()
+	if(!gun.current_mag)
 		sentry_alert(SENTRY_ALERT_AMMO)
 		return
-	if(CHECK_BITFIELD(sentry.turret_flags, TURRET_RADIAL))
+	if(CHECK_BITFIELD(gun.turret_flags, TURRET_RADIAL))
 		var/new_dir = get_dir(src, target)
 		switch(new_dir)
 			if(NORTHWEST)
@@ -355,12 +358,12 @@
 			if(SOUTHEAST)
 				new_dir = SOUTH
 		setDir(new_dir)
-		if(sentry.sentry_battery.charge <= 0)
+		if(gun.sentry_battery.charge <= 0)
 			sentry_alert(SENTRY_ALERT_BATTERY)
-	if(CHECK_BITFIELD(sentry.flags_gun_features, GUN_BURST_FIRING))
-		sentry.set_target(target)
+	if(CHECK_BITFIELD(gun.flags_gun_features, GUN_BURST_FIRING))
+		gun.set_target(target)
 		return
-	sentry.start_fire(src, target, bypass_checks = TRUE)
+	gun.start_fire(src, target, bypass_checks = TRUE)
 
 ///Checks the path to the target for obstructions. Returns TRUE if the path is clear, FALSE if not.
 /obj/machinery/deployable/mounted/sentry/proc/check_target_path(mob/living/target)
@@ -376,15 +379,23 @@
 		if(IS_OPAQUE_TURF(T) || T.density && T.throwpass == FALSE)
 			return FALSE
 
+		for(var/obj/machinery/MA in T)
+			if(MA.density && MA.throwpass == FALSE)
+				return FALSE
+
+		for(var/obj/structure/S in T)
+			if(S.density && S.throwpass == FALSE )
+				return FALSE
+
 	return TRUE
 
 ///Works through potential targets. First checks if they are in range, and if they are friend/foe. Then checks the path to them. Returns the first eligable target.
 /obj/machinery/deployable/mounted/sentry/proc/get_target()
 	var/distance = range + 0.5 //we add 0.5 so if a potential target is at range, it is accepted by the system
 	var/buffer_distance
-	var/obj/item/weapon/gun/sentry = internal_item
+	var/obj/item/weapon/gun/gun = internal_item
 	for (var/mob/living/nearby_target AS in potential_targets)
-		if(!(get_dir(src, nearby_target) & dir) && !CHECK_BITFIELD(sentry.turret_flags, TURRET_RADIAL))
+		if(!(get_dir(src, nearby_target) & dir) && !CHECK_BITFIELD(gun.turret_flags, TURRET_RADIAL))
 			continue
 
 		buffer_distance = get_dist(nearby_target, src)

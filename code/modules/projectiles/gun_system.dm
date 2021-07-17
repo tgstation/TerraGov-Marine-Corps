@@ -490,9 +490,9 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 
 		// Try to find an existing handful in our hands or on the floor under us
 		var/obj/item/ammo_magazine/handful/X
-		if (istype(user.r_hand, /obj/item/ammo_magazine/handful) && user)
+		if (istype(user?.r_hand, /obj/item/ammo_magazine/handful))
 			X = user.r_hand
-		else if (istype(user.l_hand, /obj/item/ammo_magazine/handful) && user)
+		else if (istype(user?.l_hand, /obj/item/ammo_magazine/handful))
 			X = user.l_hand
 
 		var/obj/item/ammo_magazine/handful/H
@@ -744,7 +744,7 @@ and you're good to go.
 
 	last_fired = world.time
 	reload_into_chamber(gun_user)
-	if(gun_user && gun_user.client)
+	if(gun_user?.client)
 		var/obj/screen/ammo/A = gun_user.hud_used.ammo //The ammo HUD
 		A.update_hud(gun_user, src)
 	SEND_SIGNAL(src, COMSIG_MOB_GUN_FIRED, target, src)
@@ -961,19 +961,19 @@ and you're good to go.
 	playsound(user, fire_sound, 60, firing_sndfreq ? TRUE : FALSE, frequency = firing_sndfreq)
 
 
-/obj/item/weapon/gun/proc/apply_gun_modifiers(obj/projectile/projectile_to_fire, atom/target, user)
+/obj/item/weapon/gun/proc/apply_gun_modifiers(obj/projectile/projectile_to_fire, atom/target, firer)
 	projectile_to_fire.shot_from = src
 	projectile_to_fire.damage *= damage_mult
 	projectile_to_fire.damage_falloff *= damage_falloff_mult
 	projectile_to_fire.projectile_speed += shell_speed_mod
 	if(flags_gun_features & GUN_IFF || flags_gun_features & GUN_IS_AIMING|| projectile_to_fire.ammo.flags_ammo_behavior & AMMO_IFF)
 		var/iff_signal
-		var/mob/living/carbon/human/firer = user
-		if(istype(firer))
-			var/obj/item/card/id/id = firer.get_idcard()
+		if(ishuman(firer))
+			var/mob/living/carbon/human/_firer = firer
+			var/obj/item/card/id/id = _firer.get_idcard()
 			iff_signal = id?.iff_signal
-		else if(istype(user, /obj/machinery/deployable/mounted/sentry))
-			var/obj/machinery/deployable/mounted/sentry/sentry = user
+		else if(istype(firer, /obj/machinery/deployable/mounted/sentry))
+			var/obj/machinery/deployable/mounted/sentry/sentry = firer
 			iff_signal = sentry.iff_signal
 		projectile_to_fire.iff_signal = iff_signal
 	projectile_to_fire.damage_marine_falloff = iff_marine_damage_falloff

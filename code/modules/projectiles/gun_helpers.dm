@@ -674,7 +674,7 @@ should be alright.
 		else
 			gun_firemode = gun_firemode_list[1]
 
-	if(istype(source, /mob/living/carbon/human))
+	if(ishuman(source))
 		to_chat(source, "<span class='notice'>[icon2html(src, source)] You switch to <b>[gun_firemode]</b>.</span>")
 		if(source == gun_user)
 			gun_user.update_action_buttons()
