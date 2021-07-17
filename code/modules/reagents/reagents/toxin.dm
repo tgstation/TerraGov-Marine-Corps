@@ -566,12 +566,12 @@
 	RegisterSignal(L, COMSIG_HUMAN_DAMAGE_TAKEN, .proc/transvitox_human_damage_taken)
 
 /datum/reagent/toxin/xeno_transvitox/on_mob_life(mob/living/L, metabolism)
-	if(prob(10))
-		to_chat(L, "<span class='warning'>You notice your wounds crusting over with disgusting green ichor.</span>")
-
 	var/fire_loss = L.getFireLoss()
 	if(!fire_loss) //If we have no burn damage, cancel out
 		return ..()
+
+	if(prob(10))
+		to_chat(L, "<span class='warning'>You notice your wounds crusting over with disgusting green ichor.</span>")
 
 	var/tox_cap_multiplier = 1
 

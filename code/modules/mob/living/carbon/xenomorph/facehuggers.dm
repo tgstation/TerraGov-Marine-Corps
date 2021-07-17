@@ -91,7 +91,8 @@
 	remove_danger_overlay() //Remove the danger overlay
 	lifetimer = null
 	jumptimer = null
-	clear_hugger_source()
+	if(source)
+		clear_hugger_source()
 
 /obj/item/clothing/mask/facehugger/update_icon()
 	if(stat == DEAD)
