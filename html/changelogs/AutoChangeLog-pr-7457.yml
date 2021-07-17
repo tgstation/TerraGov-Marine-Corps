@@ -1,0 +1,5 @@
+author: "Pariah919"
+delete-after: True
+changes: 
+  - qol: "throwing knife belt auto pulls knives automatically if you click on it"
+  - balance: "throwing knive belt holds 15 knives, and throwing knives deal more force, still less than a normal knife though."
