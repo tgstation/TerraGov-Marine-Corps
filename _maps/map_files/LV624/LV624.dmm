@@ -13055,12 +13055,6 @@
 	},
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle1)
-"dEX" = (
-/obj/structure/catwalk,
-/turf/open/ground/coast/corner{
-	dir = 4
-	},
-/area/lv624/ground/river1)
 "dFh" = (
 /obj/machinery/power/smes/buildable/empty{
 	dir = 1
@@ -14155,12 +14149,6 @@
 	},
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle2)
-"iaD" = (
-/obj/structure/catwalk,
-/turf/open/ground/coast/corner2{
-	dir = 8
-	},
-/area/lv624/ground/river1)
 "ibX" = (
 /obj/effect/decal/remains/human,
 /turf/open/floor/plating/ground/dirt,
@@ -20348,8 +20336,8 @@ abc
 abc
 abb
 abb
-udq
-vqU
+abb
+ktj
 awg
 awC
 awC
@@ -21074,13 +21062,13 @@ awC
 awC
 awX
 awC
-vPT
-aCl
-aCl
-aCl
-aCl
-iaD
-dEX
+auZ
+are
+are
+are
+are
+avb
+avc
 avL
 gqX
 avL
@@ -21243,8 +21231,8 @@ abc
 abc
 abc
 abc
-udq
-vqU
+abb
+ktj
 awg
 awC
 awC
@@ -22820,7 +22808,7 @@ abc
 abk
 tMx
 udq
-udq
+abb
 abk
 abk
 abk
@@ -26772,7 +26760,7 @@ flw
 abb
 abb
 flw
-wwE
+flw
 wwA
 ahr
 ahr
