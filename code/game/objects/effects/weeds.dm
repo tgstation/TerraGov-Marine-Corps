@@ -148,11 +148,10 @@
 	plane = GAME_PLANE
 	icon_state = "weedwall"
 
-/obj/effect/alien/weeds/weedwall/update_icon()
-	if(iswallturf(loc))
-		var/turf/closed/wall/W = loc
-		if(W.junctiontype)
-			icon_state = "weedwall[W.junctiontype]"
+/obj/effect/alien/weeds/weedwall/update_icon_state()
+	var/turf/closed/wall/W = loc
+	icon_state = W.junctiontype ? "weedwall[W.junctiontype]" : initial(icon_state)
+	icon_state += color_variant
 
 
 // =================
@@ -160,10 +159,10 @@
 /obj/effect/alien/weeds/weedwall/window
 	layer = ABOVE_TABLE_LAYER
 
-/obj/effect/alien/weeds/weedwall/window/update_icon()
+/obj/effect/alien/weeds/weedwall/window/update_icon_state()
 	var/obj/structure/window/framed/F = locate() in loc
-	if(F && F.junction)
-		icon_state = "weedwall[F.junction]"
+	icon_state = F?.junction ? "weedwall[F.junction]" : initial(icon_state)
+	icon_state += color_variant
 
 /obj/effect/alien/weeds/weedwall/window/MouseDrop_T(atom/dropping, mob/user)
 	var/obj/structure/window/framed/F = locate() in loc
@@ -174,10 +173,10 @@
 /obj/effect/alien/weeds/weedwall/frame
 	layer = ABOVE_TABLE_LAYER
 
-/obj/effect/alien/weeds/weedwall/frame/update_icon()
+/obj/effect/alien/weeds/weedwall/frame/update_icon_state()
 	var/obj/structure/window_frame/WF = locate() in loc
-	if(WF && WF.junction)
-		icon_state = "weedframe[WF.junction]"
+	icon_state = WF?.junction ? "weedframe[WF.junction]" : initial(icon_state)
+	icon_state += color_variant
 
 /obj/effect/alien/weeds/weedwall/frame/MouseDrop_T(atom/dropping, mob/user)
 	var/obj/structure/window_frame/WF = locate() in loc
