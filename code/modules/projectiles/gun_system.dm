@@ -175,11 +175,11 @@
 	muzzle_flash = new(src, muzzleflash_iconstate)
 
 	if(flags_item & IS_DEPLOYABLE)
+		if(flags_gun_features & GUN_IS_SENTRY)
+			AddElement(/datum/element/deployable_item, /obj/machinery/deployable/mounted/sentry, deploy_time)
+			sentry_battery = new sentry_battery_type(src)
+			return
 		AddElement(/datum/element/deployable_item, /obj/machinery/deployable/mounted, deploy_time)
-
-	if(flags_item & IS_SENTRY)
-		AddElement(/datum/element/deployable_item, /obj/machinery/deployable/mounted/sentry, deploy_time)
-		sentry_battery = new sentry_battery_type(src)
 
 
 //Hotfix for attachment offsets being set AFTER the core New() proc. Causes a small graphical artifact when spawning, hopefully works even with lag
@@ -208,8 +208,7 @@
 		QDEL_NULL(current_mag)
 	if(muzzle_flash)
 		QDEL_NULL(muzzle_flash)
-	if(sentry_battery)
-		QDEL_NULL(sentry_battery)
+	QDEL_NULL(sentry_battery)
 	return ..()
 
 /obj/item/weapon/gun/emp_act(severity)
@@ -457,9 +456,8 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 		user.put_in_hands(current_mag)
 
 	playsound(loc, unload_sound, 25, 1, 5)
-	if(user)
-		user.visible_message("<span class='notice'>[user] unloads [current_mag] from [src].</span>",
-		"<span class='notice'>You unload [current_mag] from [src].</span>", null, 4)
+	user?.visible_message("<span class='notice'>[user] unloads [current_mag] from [src].</span>",
+	"<span class='notice'>You unload [current_mag] from [src].</span>", null, 4)
 	current_mag.update_icon()
 	current_mag = null
 
@@ -507,7 +505,7 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 					break
 		if(H)
 			H.current_rounds++
-		else 
+		else
 			H = new
 			H.generate_handful(bullet_ammo_type, bullet_caliber, 1, type)
 			if(user)
@@ -628,8 +626,7 @@ and you're good to go.
 */
 /obj/item/weapon/gun/proc/load_into_chamber(mob/user)
 	if(CHECK_BITFIELD(flags_gun_features, GUN_DEPLOYED_FIRE_ONLY) && !CHECK_BITFIELD(flags_item, IS_DEPLOYED))
-		if(user)
-			to_chat(user, "<span class='notice'>You cannot fire [src] while it is not deployed.</span>")
+		to_chat(user, "<span class='notice'>You cannot fire [src] while it is not deployed.</span>")
 		return
 	//The workhorse of the bullet procs.
 
@@ -638,9 +635,8 @@ and you're good to go.
 		if(active_attachable.current_rounds > 0) //If it's still got ammo and stuff.
 			active_attachable.current_rounds--
 			return create_bullet(active_attachable.ammo)
-		if(user)
-			to_chat(user, "<span class='warning'>[active_attachable] is empty!</span>")
-			to_chat(user, "<span class='notice'>You disable [active_attachable].</span>")
+		to_chat(user, "<span class='warning'>[active_attachable] is empty!</span>")
+		to_chat(user, "<span class='notice'>You disable [active_attachable].</span>")
 		playsound(loc, active_attachable.activation_sound, 15, 1)
 		active_attachable.activate_attachment(null, TRUE)
 		return
@@ -716,7 +712,12 @@ and you're good to go.
 		click_empty(gun_user)
 		return
 
-	apply_gun_modifiers(projectile_to_fire, target, gun_user)
+	var/firer
+	if(istype(loc, /obj/machinery/deployable/mounted/sentry) && !gun_user)
+		firer = loc
+	else
+		firer = gun_user
+	apply_gun_modifiers(projectile_to_fire, target, firer)
 	setup_bullet_accuracy(projectile_to_fire, gun_user, shots_fired, dual_wield) //User can be passed as null.
 
 	var/firing_angle = get_angle_with_scatter((gun_user || get_turf(src)), target, get_scatter(projectile_to_fire.scatter, gun_user), projectile_to_fire.p_x, projectile_to_fire.p_y)
@@ -747,7 +748,7 @@ and you're good to go.
 		var/obj/screen/ammo/A = gun_user.hud_used.ammo //The ammo HUD
 		A.update_hud(gun_user, src)
 	SEND_SIGNAL(src, COMSIG_MOB_GUN_FIRED, target, src)
-	if(CHECK_BITFIELD(flags_item, IS_SENTRY) && CHECK_BITFIELD(flags_item, IS_DEPLOYED) && CHECK_BITFIELD(turret_flags, TURRET_RADIAL))
+	if(CHECK_BITFIELD(flags_gun_features, GUN_IS_SENTRY) && CHECK_BITFIELD(flags_item, IS_DEPLOYED) && CHECK_BITFIELD(turret_flags, TURRET_RADIAL))
 		sentry_battery.charge -= sentry_battery_drain
 		if(sentry_battery.charge <= 0)
 			DISABLE_BITFIELD(turret_flags, TURRET_RADIAL)
@@ -960,14 +961,21 @@ and you're good to go.
 	playsound(user, fire_sound, 60, firing_sndfreq ? TRUE : FALSE, frequency = firing_sndfreq)
 
 
-/obj/item/weapon/gun/proc/apply_gun_modifiers(obj/projectile/projectile_to_fire, atom/target, mob/living/user)
+/obj/item/weapon/gun/proc/apply_gun_modifiers(obj/projectile/projectile_to_fire, atom/target, user)
 	projectile_to_fire.shot_from = src
 	projectile_to_fire.damage *= damage_mult
 	projectile_to_fire.damage_falloff *= damage_falloff_mult
 	projectile_to_fire.projectile_speed += shell_speed_mod
 	if(flags_gun_features & GUN_IFF || flags_gun_features & GUN_IS_AIMING|| projectile_to_fire.ammo.flags_ammo_behavior & AMMO_IFF)
-		var/obj/item/card/id/id = user.get_idcard()
-		projectile_to_fire.iff_signal = id?.iff_signal
+		var/iff_signal
+		var/mob/living/carbon/human/firer = user
+		if(istype(firer))
+			var/obj/item/card/id/id = firer.get_idcard()
+			iff_signal = id?.iff_signal
+		else if(istype(user, /obj/machinery/deployable/mounted/sentry))
+			var/obj/machinery/deployable/mounted/sentry/sentry = user
+			iff_signal = sentry.iff_signal
+		projectile_to_fire.iff_signal = iff_signal
 	projectile_to_fire.damage_marine_falloff = iff_marine_damage_falloff
 
 

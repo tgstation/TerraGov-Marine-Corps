@@ -19,7 +19,7 @@
 		icon_state = default_icon_state
 	hud_set_gun_ammo()
 
-/obj/machinery/deployable/mounted/Initialize(mapload, _internal_item)
+/obj/machinery/deployable/mounted/Initialize(mapload, _internal_item, deployer)
 	. = ..()
 	if(!istype(internal_item, /obj/item/weapon/gun))
 		CRASH("[internal_item] was attempted to be deployed within the type /obj/machinery/deployable/mounted without being a gun]")

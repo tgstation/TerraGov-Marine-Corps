@@ -13,8 +13,6 @@
 	var/datum/effect_system/spark_spread/spark_system 
 	///Camera for viewing with cam consoles
 	var/obj/machinery/camera/camera
-	///True if the sentry is tipped over
-	var/knocked_down = FALSE
 	///View and fire range of the sentry
 	var/range = 7
 	///Damage required to knock the sentry over and disable it
@@ -28,7 +26,6 @@
 	///Time of last damage alert
 	var/last_damage_alert = 0
 
-
 	///Radio so that the sentry can scream for help
 	var/obj/item/radio/radio
 
@@ -38,7 +35,7 @@
 //------------------------------------------------------------------
 //Setup and Deletion
 
-/obj/machinery/deployable/mounted/sentry/Initialize(mapload, _internal_item)
+/obj/machinery/deployable/mounted/sentry/Initialize(mapload, _internal_item, deployer)
 	. = ..()
 	var/obj/item/weapon/gun/sentry = internal_item
 
@@ -47,6 +44,11 @@
 
 	sentry.set_gun_user(null)
 	iff_signal = sentry.sentry_iff_signal
+	if(!iff_signal && deployer)
+		var/mob/living/carbon/human/_deployer = deployer
+		var/obj/item/card/id/id = _deployer.get_idcard(TRUE)
+		iff_signal = id?.iff_signal
+
 	knockdown_threshold = sentry.knockdown_threshold
 	range = sentry.turret_range
 
@@ -66,7 +68,7 @@
 
 /obj/machinery/deployable/mounted/sentry/update_icon_state()
 	. = ..()
-	if(!knocked_down)
+	if(!machine_stat)
 		return
 	icon_state += "_f"
 
@@ -85,7 +87,7 @@
 
 /obj/machinery/deployable/mounted/sentry/on_deconstruction()
 	sentry_alert(SENTRY_ALERT_DESTROYED)
-	. = ..()
+	return ..()
 	
 //-----------------------------------------------------------------
 // Interaction
@@ -117,7 +119,7 @@
 		to_chat(user, "<span class='warning'>[src]'s panel is completely locked, you can't do anything.</span>")
 		return
 
-	if(!knocked_down)
+	if(!machine_stat)
 		ui_interact(user)
 		return
 
@@ -130,7 +132,7 @@
 	user.visible_message("<span class='notice'>[user] sets [src] upright.</span>",
 	"<span class='notice'>You set [src] upright.</span>")
 
-	knocked_down = FALSE
+	machine_stat = 0
 	set_on(TRUE)
 
 /obj/machinery/deployable/mounted/sentry/ui_interact(mob/user, datum/tgui/ui)
@@ -142,7 +144,7 @@
 /obj/machinery/deployable/mounted/sentry/ui_data(mob/user)
 	var/obj/item/weapon/gun/sentry = internal_item
 	. = list(
-		"name" = copytext(src.name, 2),
+		"name" = copytext(name, 2),
 		"rounds" = (sentry.current_mag ? sentry.current_mag.current_rounds : 0),
 		"rounds_max" = (sentry.current_mag ? sentry.current_mag.max_rounds : sentry.max_shells),
 		"fire_mode" = sentry.gun_firemode,
@@ -151,7 +153,6 @@
 		"has_cell" = (sentry.sentry_battery ? 1 : 0),
 		"cell_charge" = sentry.sentry_battery ? sentry.sentry_battery.charge : 0,
 		"cell_maxcharge" = sentry.sentry_battery ? sentry.sentry_battery.maxcharge : 0,
-		"dir" = dir,
 		"safety_toggle" = CHECK_BITFIELD(sentry.turret_flags, TURRET_SAFETY),
 		"manual_override" = operator,
 		"alerts_on" = CHECK_BITFIELD(sentry.turret_flags, TURRET_ALERTS),
@@ -164,9 +165,8 @@
 		return
 	var/obj/item/weapon/gun/sentry = internal_item
 	var/mob/living/carbon/human/user = usr
-	if(!istype(user) || CHECK_BITFIELD(sentry.turret_flags, TURRET_IMMOBILE) || knocked_down)
+	if(!istype(user) || CHECK_BITFIELD(sentry.turret_flags, TURRET_IMMOBILE) || machine_stat)
 		return
-
 	switch(action)
 		if("safety")
 
@@ -232,7 +232,7 @@
 /obj/machinery/deployable/mounted/sentry/proc/knock_down()
 	visible_message("<span class='danger'>The [name] is knocked over!</span>")
 	sentry_alert(SENTRY_ALERT_FALLEN)
-	knocked_down = TRUE
+	machine_stat = 1
 	density = FALSE
 	set_on(FALSE)
 	update_icon_state()
@@ -318,11 +318,11 @@
 	var/obj/item/weapon/gun/sentry = internal_item
 	potential_targets.Cut()
 	for (var/mob/living/carbon/human/nearby_human AS in cheap_get_humans_near(src, range))
-		if(nearby_human.stat == DEAD || (CHECK_BITFIELD(sentry.turret_flags, TURRET_SAFETY) || nearby_human.wear_id?.iff_signal & iff_signal))
+		if(nearby_human.stat == DEAD || CHECK_BITFIELD(nearby_human.status_flags, INCORPOREAL)  || (CHECK_BITFIELD(sentry.turret_flags, TURRET_SAFETY) || nearby_human.wear_id?.iff_signal & iff_signal))
 			continue
 		potential_targets += nearby_human
 	for (var/mob/living/carbon/xenomorph/nearby_xeno AS in cheap_get_xenos_near(src, range))
-		if(nearby_xeno.stat == DEAD)
+		if(nearby_xeno.stat == DEAD || CHECK_BITFIELD(nearby_xeno.status_flags, INCORPOREAL)) //So wraiths wont be shot at when in phase shift
 			continue
 		potential_targets += nearby_xeno
 	return potential_targets.len ? TRUE : FALSE
@@ -378,14 +378,6 @@
 		if(IS_OPAQUE_TURF(T) || T.density && T.throwpass == FALSE)
 			return FALSE
 
-		for(var/obj/machinery/MA in T)
-			if(MA.opacity || MA.density && MA.throwpass == FALSE)
-				return FALSE
-
-		for(var/obj/structure/S in T)
-			if(S.opacity || S.density && S.throwpass == FALSE )
-				return FALSE
-		
 	return TRUE
 
 ///Works through potential targets. First checks if they are in range, and if they are friend/foe. Then checks the path to them. Returns the first eligable target.
@@ -394,7 +386,6 @@
 	var/buffer_distance
 	var/obj/item/weapon/gun/sentry = internal_item
 	for (var/mob/living/nearby_target AS in potential_targets)
-
 		if(!(get_dir(src, nearby_target) & dir) && !CHECK_BITFIELD(sentry.turret_flags, TURRET_RADIAL))
 			continue
 

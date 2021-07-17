@@ -224,7 +224,7 @@ should be alright.
 	if(active_attachable?.flags_attach_features & ATTACH_RELOADABLE && check_inactive_hand(user) && active_attachable.reload_attachment(I, user, TRUE))
 		return
 
-	if(istype(I, /obj/item/cell) && CHECK_BITFIELD(flags_item, IS_SENTRY))
+	if(istype(I, /obj/item/cell) && CHECK_BITFIELD(flags_gun_features, GUN_IS_SENTRY))
 		if(sentry_battery)
 			to_chat(user, "<span class='warning'>[src] already has a battery installed!</span>")
 			return
@@ -248,7 +248,7 @@ should be alright.
 
 /obj/item/weapon/gun/AltClick(mob/user)
 	. = ..()
-	if(!user.Adjacent(src) || !ishuman(user) || !CHECK_BITFIELD(flags_item, IS_SENTRY))
+	if(!user.Adjacent(src) || !ishuman(user) || !CHECK_BITFIELD(flags_gun_features, GUN_IS_SENTRY))
 		return
 	var/mob/living/carbon/human/human = user
 	if(!sentry_battery)

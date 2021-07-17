@@ -16,9 +16,9 @@
 	burst_amount = 2
 
 	turret_flags = TURRET_HAS_CAMERA|TURRET_SAFETY|TURRET_ALERTS
-	flags_gun_features = GUN_AUTO_EJECTOR|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER|GUN_DEPLOYED_FIRE_ONLY|GUN_WIELDED_FIRING_ONLY
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER|GUN_DEPLOYED_FIRE_ONLY|GUN_WIELDED_FIRING_ONLY|GUN_IS_SENTRY|GUN_IFF
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE)
-	flags_item = IS_SENTRY|TWOHANDED
+	flags_item = IS_DEPLOYABLE|TWOHANDED
 	deploy_time = 5 SECONDS
 
 	sentry_battery_type = /obj/item/cell/lasgun/lasrifle/marine
@@ -76,7 +76,7 @@
 	)
 
 /obj/item/weapon/gun/sentry/big_sentry/premade
-	flags_item = IS_SENTRY|TWOHANDED|DEPLOY_ON_INITIALIZE
+	flags_item = IS_DEPLOYABLE|TWOHANDED|DEPLOY_ON_INITIALIZE
 
 /obj/item/storage/box/minisentry
 	name = "\improper UA-580 point defense sentry crate"
@@ -128,12 +128,12 @@
 
 	ammo = /datum/ammo/bullet/turret/gauss
 	current_mag = /obj/item/ammo_magazine/sentry_premade
-	flags_item = IS_SENTRY|TWOHANDED|DEPLOYED_NO_PICKUP|DEPLOY_ON_INITIALIZE
+	flags_item = IS_DEPLOYABLE|TWOHANDED|DEPLOYED_NO_PICKUP|DEPLOY_ON_INITIALIZE
 
 /obj/item/weapon/gun/sentry/premade/dumb
 	name = "\improper Modified UA 571-C sentry gun"
 	desc = "A deployable, semi-automated turret with AI targeting capabilities. Armed with an M30 Autocannon and a 500-round drum magazine. This one's IFF system has been disabled, and it will open fire on any targets within range."
-	flags_gun_features = GUN_AUTO_EJECTOR|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER|GUN_DEPLOYED_FIRE_ONLY|GUN_WIELDED_FIRING_ONLY
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER|GUN_DEPLOYED_FIRE_ONLY|GUN_WIELDED_FIRING_ONLY|GUN_IS_SENTRY
 	ammo = /datum/ammo/bullet/turret/dumb
 	current_mag = /obj/item/ammo_magazine/sentry_premade/dumb
 	max_shells = 500
@@ -143,6 +143,7 @@
 	name = "malfunctioning UA 571-C sentry gun"
 	desc = "Oh god oh fuck."
 	turret_flags = TURRET_LOCKED|TURRET_ON|TURRET_BURSTFIRE|TURRET_IMMOBILE|TURRET_RADIAL
+	sentry_iff_signal = NONE
 
 
 /obj/item/weapon/gun/sentry/premade/dropship

@@ -6,7 +6,7 @@
 
 	hud_possible = list(MACHINE_HEALTH_HUD)
 
-/obj/machinery/deployable/Initialize(mapload, _internal_item)
+/obj/machinery/deployable/Initialize(mapload, _internal_item, deployer)
 	. = ..()
 	internal_item = _internal_item
 

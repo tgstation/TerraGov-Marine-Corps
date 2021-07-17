@@ -395,7 +395,7 @@
 	return TRUE
 
 /obj/machinery/deployable/mounted/sentry/punch_act(mob/living/carbon/xenomorph/X, damage, target_zone)
-	if(!knocked_down)
+	if(!machine_stat)
 		knock_down()
 	return ..()
 

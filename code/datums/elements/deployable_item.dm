@@ -54,15 +54,8 @@
 		deploy_location = location
 		new_direction = direction
 
-	deployed_machine = new deploy_type(deploy_location, attached_item) //Creates new structure or machine at 'deploy' location and passes on 'attached_item'
+	deployed_machine = new deploy_type(deploy_location, attached_item, user) //Creates new structure or machine at 'deploy' location and passes on 'attached_item'
 	deployed_machine.setDir(new_direction)
-
-	if(istype(deployed_machine, /obj/machinery/deployable/mounted/sentry))
-		var/obj/item/weapon/gun/sentry = attached_item
-		var/obj/machinery/deployable/mounted/sentry/_deployed_machine = deployed_machine
-		if(!sentry.sentry_iff_signal && ishuman(user))
-			var/obj/item/card/id/id = user.get_idcard()
-			_deployed_machine.iff_signal = id?.iff_signal
 
 	deployed_machine.max_integrity = attached_item.max_integrity //Syncs new machine or structure integrity with that of the item.
 	deployed_machine.obj_integrity = attached_item.obj_integrity
@@ -89,11 +82,11 @@
 		CRASH("[source] has sent the signal COMSIG_ITEM_UNDEPLOY to [attached_item] without the arg 'user'")
 	if(!ishuman(user))
 		return
-	var/obj/machinery/deployable/mounted/sentry/_deployed_machine = deployed_machine
-	_deployed_machine?.set_on(FALSE)
+	var/obj/machinery/deployable/mounted/sentry/sentry = deployed_machine
+	sentry?.set_on(FALSE)
 	to_chat(user, "<span class='notice'>You start disassembling the [attached_item]</span>")
 	if(!do_after(user, deploy_time, TRUE, deployed_machine, BUSY_ICON_BUILD))
-		_deployed_machine?.set_on(TRUE)
+		sentry?.set_on(TRUE)
 		return
 
 	user.unset_interaction()

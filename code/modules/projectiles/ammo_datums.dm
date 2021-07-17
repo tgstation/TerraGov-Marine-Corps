@@ -1024,7 +1024,7 @@ datum/ammo/bullet/revolver/tp44
 
 /datum/ammo/bullet/turret
 	name = "autocannon bullet"
-	icon_state 	= "redbullet"
+	icon_state = "redbullet"
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING|AMMO_SENTRY
 	accurate_range = 10
 	damage = 80
@@ -1033,7 +1033,7 @@ datum/ammo/bullet/revolver/tp44
 	damage_falloff = 0.5
 
 /datum/ammo/bullet/turret/dumb
-	icon_state 	= "bullet"
+	icon_state = "bullet"
 
 /datum/ammo/bullet/turret/gauss
 	name = "heavy gauss turret slug"

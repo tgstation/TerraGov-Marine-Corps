@@ -155,8 +155,7 @@
 	if(!do_after(fobdrone, 3 SECONDS, FALSE, buildplace, BUSY_ICON_BUILD))
 		return
 	console.sentry_remaining -= 1
-	var/obj/item/weapon/gun/sentry/big_sentry/premade/new_gun
-	new_gun = new(buildplace)
+	var/obj/item/weapon/gun/sentry/big_sentry/premade/new_gun = new(buildplace)
 	new_gun.loc.setDir(fobdrone.dir)
 
 /datum/action/innate/remote_fob/eject_metal_action
