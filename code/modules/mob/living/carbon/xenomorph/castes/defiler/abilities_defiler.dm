@@ -147,7 +147,7 @@
 
 /datum/action/xeno_action/activable/inject_egg_neurogas/on_cooldown_finish()
 	playsound(owner.loc, 'sound/effects/xeno_newlarva.ogg', 50, 0)
-	to_chat(owner, "<span class='xenodanger'>We feel our stinger fill with toxins. We can inject an egg again.</span>")
+	to_chat(owner, "<span class='xenodanger'>We feel our stinger fill with toxins. We can inject an egg with gas again.</span>")
 	return ..()
 
 /datum/action/xeno_action/activable/inject_egg_neurogas/use_ability(atom/A)

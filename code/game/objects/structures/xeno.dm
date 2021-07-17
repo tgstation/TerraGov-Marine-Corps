@@ -627,13 +627,8 @@
 	return TRUE
 
 /obj/effect/alien/egg/gas/attack_alien(mob/living/carbon/xenomorph/M, damage_amount = M.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
-	if(status == EGG_DESTROYED)
-		M.visible_message("<span class='xenonotice'>\The [M] clears the hatched egg.</span>", \
-			"<span class='xenonotice'>We clear the hatched egg.</span>")
-		playsound(src.loc, "alien_resin_break", 25)
-		M.plasma_stored++
-		qdel(src)
-		return
+	if(status != EGG_GROWN)
+		return ..()
 
 	if(!issamexenohive(M) || M.a_intent != INTENT_HELP)
 		M.do_attack_animation(src, ATTACK_EFFECT_SMASH)
