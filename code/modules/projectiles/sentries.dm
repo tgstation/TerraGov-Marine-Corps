@@ -169,7 +169,6 @@
 		return
 	switch(action)
 		if("safety")
-
 			TOGGLE_BITFIELD(sentry.turret_flags, TURRET_SAFETY)
 			var/safe = CHECK_BITFIELD(sentry.turret_flags, TURRET_SAFETY)
 			user.visible_message("<span class='warning'>[user] [safe ? "" : "de"]activates [src]'s safety lock.</span>",
