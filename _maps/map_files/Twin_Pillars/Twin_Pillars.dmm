@@ -6131,6 +6131,12 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/engineering_workshop/rebel)
+"fCg" = (
+/obj/machinery/vending/security,
+/turf/open/floor/mainship/black{
+	dir = 4
+	},
+/area/mainship/squads/general/rebel)
 "fCm" = (
 /obj/machinery/door/airlock/mainship/engineering/storage{
 	dir = 8
@@ -8917,10 +8923,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/living/bridgebunks)
-"ibC" = (
-/obj/machinery/vending/security,
-/turf/open/floor/mainship/red/full,
-/area/mainship/command/cic/rebel)
 "icB" = (
 /obj/machinery/light,
 /turf/open/floor/mainship/mono,
@@ -14136,6 +14138,10 @@
 	},
 /turf/open/floor/mainship,
 /area/mainship/squads/req/rebel)
+"mGY" = (
+/obj/machinery/vending/security,
+/turf/open/floor/mainship/red/full,
+/area/mainship/command/cic/rebel)
 "mIb" = (
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/mainship/mono,
@@ -19425,6 +19431,7 @@
 	icon_state = "plant-05"
 	},
 /obj/machinery/vending/nanomed,
+/obj/machinery/vending/security,
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/engineering_workshop)
 "rkd" = (
@@ -20344,12 +20351,6 @@
 "rZt" = (
 /turf/closed/wall/mainship/outer,
 /area/mainship/hallways/port_hallway/rebel)
-"rZv" = (
-/obj/machinery/vending/security,
-/turf/open/floor/mainship/black{
-	dir = 4
-	},
-/area/mainship/squads/general/rebel)
 "rZA" = (
 /obj/structure/closet/secure_closet/personal/morgue,
 /turf/open/floor/mainship/mono,
@@ -40958,7 +40959,7 @@ pbx
 wyZ
 wyZ
 lmg
-ibC
+mGY
 wGe
 ohp
 iIM
@@ -41215,7 +41216,7 @@ kqY
 vhZ
 vhZ
 qzU
-ibC
+mGY
 wGe
 xRh
 iIM
@@ -47353,7 +47354,7 @@ raH
 fmC
 uDB
 cLy
-rZv
+fCg
 xOi
 wOb
 fMG
