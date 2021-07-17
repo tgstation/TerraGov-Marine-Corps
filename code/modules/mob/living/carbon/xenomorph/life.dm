@@ -150,7 +150,7 @@
 	for(var/i in plasma_mod)
 		plasma_gain_multiplier *= i
 
-	var/obj/effect/alien/weeds = locate() in T
+	var/obj/effect/alien/weeds/weeds = locate() in T
 
 	if(!weeds && !(xeno_caste.caste_flags & CASTE_INNATE_PLASMA_REGEN))
 		hud_set_plasma() // since we used some plasma via the aura
