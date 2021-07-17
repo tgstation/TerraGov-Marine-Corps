@@ -110,6 +110,7 @@
 #define TRAIT_STAGGERIMMUNE	"stagger_immunity" //Immunity to stagger
 #define TRAIT_SLOWDOWNIMMUNE "slowdown_immunity" //Immunity to slowdown
 #define TRAIT_SEE_IN_DARK "see_in_dark" //Able to see in dark
+#define TRAIT_MUTED "muted" //target is mute and can't speak
 
 // item traits
 #define TRAIT_T_RAY_VISIBLE "t-ray-visible" // Visible on t-ray scanners if the atom/var/level == 1

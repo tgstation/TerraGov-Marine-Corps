@@ -75,7 +75,7 @@
 	for(var/mob/living/carbon/xenomorph/xenomorph_alive AS in shuffle(GLOB.alive_xeno_list))
 		if(xenomorph_alive.hivenumber != ownerhive)
 			continue
-		if(isxenoqueen(xenomorph_alive) || isxenoshrike(xenomorph_alive) || isxenohivemind(xenomorph_alive))
+		if(isxenoqueen(xenomorph_alive) || isxenoshrike(xenomorph_alive) || isxenohivemind(xenomorph_alive) || isxenolarva(xenomorph_alive))
 			continue
 		var/accept_to_be_king = tgui_alert(xenomorph_alive, "The fate has landed and you, and you can become the King. Do you accept?", "Rise of the King", list("Accept", "Leave it for another xeno"), 20 SECONDS)
 		if(accept_to_be_king != "Accept")

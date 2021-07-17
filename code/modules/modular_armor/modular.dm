@@ -362,7 +362,7 @@
 	var/visor_greyscale_config = /datum/greyscale_config/modular_helmet_visor_emissive
 
 	///Assoc list of color-hex for colors we're allowed to color this armor
-	var/static/list/colorable_colors = list(
+	var/list/colorable_colors = list(
 		"black" = "#474A50",
 		"snow" = "#D5CCC3",
 		"desert" = "#A57F7C",
@@ -395,6 +395,30 @@
 	item_state = list(slot_head_str = "")
 	if(length(colors) >= 2) //for only single color helmets with no visor
 		visor_color_hex = colors[2]
+
+///Will force faction colors on this helmet
+/obj/item/clothing/head/modular/proc/limit_colorable_colors(faction)
+	switch(faction)
+		if(FACTION_TERRAGOV)
+			var/split_colors = list("#2A4FB7")
+			if(visor_color_hex)
+				split_colors += visor_color_hex
+			set_greyscale_colors(split_colors)
+			colorable_colors = list(
+				"blue" = "#2A4FB7",
+				"aqua" = "#2098A0",
+				"purple" = "#871F8F",
+			)
+		if(FACTION_TERRAGOV_REBEL)
+			var/split_colors = list("#CC2C32")
+			if(visor_color_hex)
+				split_colors += visor_color_hex
+			set_greyscale_colors(split_colors)
+			colorable_colors = list(
+				"red" = "#CC2C32",
+				"orange" = "#BC4D25",
+				"yellow" = "#B7B21F",
+			)
 
 /obj/item/clothing/head/modular/examine(mob/user, distance, infix, suffix)
 	. = ..()

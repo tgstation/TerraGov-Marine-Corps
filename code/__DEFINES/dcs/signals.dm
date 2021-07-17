@@ -346,6 +346,9 @@
 
 	#define COMPONENT_NO_STUN (1<<0)			//For all of them
 
+#define COMSIG_LIVING_STATUS_MUTE "living_mute"					//from base of mob/living/Mute()
+	#define COMPONENT_NO_MUTE (1<<0)
+
 #define COMSIG_LIVING_ADD_VENTCRAWL "living_add_ventcrawl"
 #define COMSIG_LIVING_WEEDS_ADJACENT_REMOVED "living_weeds_adjacent_removed"	///from obj/effect/alien/weeds/Destroy()
 
@@ -456,6 +459,7 @@
 //keybindings
 
 #define COMSIG_KB_ACTIVATED (1<<0)
+#define COMSIG_KB_NOT_ACTIVATED (1<<1) //used in unique action
 #define COMSIG_KB_ADMIN_ASAY_DOWN "keybinding_admin_asay_down"
 #define COMSIG_KB_ADMIN_MSAY_DOWN "keybinding_admin_msay_down"
 #define COMSIG_KB_ADMIN_DSAY_DOWN "keybinding_admin_dsay_down"

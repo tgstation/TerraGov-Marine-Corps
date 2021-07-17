@@ -1,0 +1,5 @@
+author: "Surrealaser"
+delete-after: True
+changes: 
+  - bugfix: "Fixes Right Click mode for Xenos so that it doesn't try to attack at the same time it uses an ability (thus triggering click/bump slash cooldowns)."
+  - bugfix: "Turf targeting with melee attacks no longer triggers click/bump slash cooldowns."

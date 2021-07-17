@@ -1,0 +1,6 @@
+author: "lbnesquik"
+delete-after: True
+changes: 
+  - rscadd: "More holopads to the POS"
+  - rscadd: "Gave the RO a map table. Fairly eager to see how helpful that is for most players."
+  - bugfix: "fixed a number of oddities in the POS map, mostly areas and fire alarms."

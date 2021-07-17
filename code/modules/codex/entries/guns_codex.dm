@@ -219,15 +219,6 @@
 	rare sight outside of specialized users. and the rising prevalence of shipside combat making it dangerous to fire inside those \
 	spaces makes it even used less. Not that it makes it any less dangerous on an open field."
 
-/datum/codex_entry/smartgun
-	associated_paths = list(/obj/item/weapon/gun/smartgun)
-	lore_text = "The T-90A's design is the one used by most forces under the world who use the M56 4-kit smartgun system, \
-	it has several different other names depending on the user but the one used by the TGMC is defined as T-90A. <br><br>\
-	The M56 4-piece system was adopted when the technology eventually developed a practical point as older systems required \
-	a much heavier powerpack or assistant to carry ammunition due to the lack of an autoloading system. After these problems \
-	were solved with the powerpacks autoloading system and eventual size reductions to allow for more practical use of the gun \
-	inside combat, the M56 system was offered to the TGMC and was eventually met with adoption after combat tests showed good results."
-
 /datum/codex_entry/standard_shotgun
 	associated_paths = list(/obj/item/weapon/gun/shotgun/pump/t35)
 	lore_text = "The K23 itself was designed at first for military use as 12 gauge pump-action shotguns were starting to pick up steam \

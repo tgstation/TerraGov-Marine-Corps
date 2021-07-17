@@ -1060,6 +1060,7 @@
 	rounds_max = 50000
 	icon_state = "sentry_base"
 	initial_cell_type = /obj/item/cell/super
+	iff_signal = TGMC_LOYALIST_IFF
 
 /obj/machinery/marine_turret/premade/Initialize()
 	. = ..()
@@ -1107,6 +1108,7 @@
 	name = "malfunctioning UA 571-C sentry gun"
 	desc = "Oh god oh fuck."
 	turret_flags = TURRET_LOCKED|TURRET_ON|TURRET_BURSTFIRE|TURRET_IMMOBILE
+	iff_signal = SON_OF_MARS_IFF
 
 /obj/machinery/marine_turret/premade/dumb/hostile/attack_hand(mob/living/user)
 	to_chat(user,"<span class='warning'>\The [src.name] refuses to cooperate!</span>")

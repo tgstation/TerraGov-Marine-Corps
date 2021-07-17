@@ -34,6 +34,8 @@
 			continue
 		.["save_slot_names"]["[i]"] = name
 
+	.["unique_action_use_active_hand"] = unique_action_use_active_hand
+
 	switch(tab_index)
 		if(CHARACTER_CUSTOMIZATION)
 			.["r_hair"] = r_hair
@@ -579,7 +581,6 @@
 		if("fullscreen_mode")
 			fullscreen_mode = !fullscreen_mode
 			user.client?.set_fullscreen(fullscreen_mode)
-			return
 
 		if("set_keybind")
 			var/kb_name = params["keybind_name"]
@@ -707,6 +708,9 @@
 				if(SCALING_METHOD_BLUR)
 					scaling_method = SCALING_METHOD_NORMAL
 			user.client.view_size.update_zoom_mode()
+
+		if("unique_action_use_active_hand")
+			unique_action_use_active_hand = !unique_action_use_active_hand
 
 		else //  Handle the unhandled cases
 			return

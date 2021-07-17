@@ -1,0 +1,4 @@
+author: "lbnesquik"
+delete-after: True
+changes: 
+  - bugfix: "fixed cameras notifying the AI of their demise, despite a lack of power."
