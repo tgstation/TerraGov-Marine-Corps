@@ -67,11 +67,11 @@
 	if(hive?.living_xeno_ruler?.loc?.z == T.z || xeno_caste.caste_flags & CASTE_CAN_HEAL_WITHOUT_QUEEN) //if the living queen's z-level is the same as ours.
 		ruler_healing_penalty = 1
 	var/obj/effect/alien/weeds/weed = locate() in T
-	if(weed.color_variant == HEALING_COLOR || xeno_caste.caste_flags & CASTE_INNATE_HEALING) //We regenerate on weeds or can on our own.
+	if(weed || xeno_caste.caste_flags & CASTE_INNATE_HEALING) //We regenerate on weeds or can on our own.
 		if(lying_angle || resting || xeno_caste.caste_flags & CASTE_QUICK_HEAL_STANDING)
-			heal_wounds(XENO_RESTING_HEAL * ruler_healing_penalty, TRUE)
+			heal_wounds(XENO_RESTING_HEAL * ruler_healing_penalty * (weed?.color_variant == RESTING_COLOR ? 1 : 0.4), TRUE)
 		else
-			heal_wounds(XENO_STANDING_HEAL * ruler_healing_penalty, TRUE) //Major healing nerf if standing.
+			heal_wounds(XENO_STANDING_HEAL * ruler_healing_penalty * (weed?.color_variant == RESTING_COLOR ? 1 : 0.4), TRUE) //Major healing nerf if standing.
 	updatehealth()
 
 ///Handles sunder modification/recovery during life.dm for xenos
@@ -85,7 +85,7 @@
 	if(resting) //Resting doubles sunder recovery
 		sunder_recov *= 2
 
-	if(locate(/obj/effect/alien/weeds/healing) in loc) //Weeds double sunder recovery
+	if(locate(/obj/effect/alien/weeds/resting) in loc) //Weeds double sunder recovery
 		sunder_recov *= 2
 
 	if(recovery_aura)

@@ -204,7 +204,7 @@
 	var/node_icon = "weednode"
 	var/node_turfs = list() // list of all potential turfs that we can expand to
 	/// What type of weeds this node spreads
-	var/weed_type = /obj/effect/alien/weeds/speedy
+	var/weed_type = /obj/effect/alien/weeds/speed
 
 /obj/effect/alien/weeds/node/Destroy()
 	. = ..()
@@ -257,8 +257,8 @@
 /obj/effect/alien/weeds/node/healing
 	name = "heal weed sac"
 	desc = "A weird, pulsating white node."
-	weed_type = /obj/effect/alien/weeds/healing
-	color_variant = HEALING_COLOR
+	weed_type = /obj/effect/alien/weeds/resting
+	color_variant = RESTING_COLOR
 	node_icon = "weednodewhite"
 
 //Toxin weed node
