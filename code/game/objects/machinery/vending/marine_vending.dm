@@ -232,8 +232,6 @@
 			/obj/item/ammo_magazine/rifle/standard_assaultrifle = -1,
 			/obj/item/weapon/gun/rifle/standard_carbine = -1,
 			/obj/item/ammo_magazine/rifle/standard_carbine = -1,
-			/obj/item/weapon/gun/rifle/tx11 = -1,
-			/obj/item/ammo_magazine/rifle/tx11 = -1,
 		),
 		"Energy Weapons" = list(
 			/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_rifle = -1,
