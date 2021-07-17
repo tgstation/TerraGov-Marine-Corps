@@ -318,11 +318,12 @@
 	point_cost = 500
 	var/deployment_cooldown
 	var/obj/machinery/deployable/mounted/sentry/deployed_turret
+	var/sentry_type = /obj/item/weapon/gun/sentry/premade/dropship
 
 /obj/structure/dropship_equipment/sentry_holder/Initialize()
 	. = ..()
 	if(!deployed_turret)
-		var/obj/item/weapon/gun/sentry/premade/dropship/new_gun = new(src)
+		var/obj/new_gun = new sentry_type(src)
 		deployed_turret = new_gun.loc
 		RegisterSignal(deployed_turret, COMSIG_OBJ_DECONSTRUCT, .proc/clean_refs)
 
@@ -417,6 +418,8 @@
 	deployed_turret.update_icon()
 	icon_state = "sentry_system_installed"
 
+/obj/structure/dropship_equipment/sentry_holder/rebel
+	sentry_type = /obj/item/weapon/gun/sentry/premade/dropship/rebel
 
 
 /obj/structure/dropship_equipment/mg_holder

@@ -31,6 +31,8 @@
 	///Radio so that the sentry can scream for help
 	var/obj/item/radio/radio
 
+	var/iff_signal = NONE
+
 //------------------------------------------------------------------
 //Setup and Deletion
 
@@ -42,6 +44,7 @@
 		CRASH("[sentry] has been deployed, yet it does not have the option for Semi-Automatic fire. GUN_FIREMODE_SEMIAUTO should be available.")
 
 	sentry.set_gun_user(null)
+	iff_signal = sentry.sentry_iff_signal
 	knockdown_threshold = sentry.knockdown_threshold
 	range = sentry.turret_range
 
@@ -69,7 +72,7 @@
 	QDEL_NULL(radio)
 	QDEL_NULL(camera)
 	STOP_PROCESSING(SSobj, src)
-	UnregisterSignal(sentry, COMSIG_MOB_GUN_FIRED)
+	UnregisterSignal(internal_item, COMSIG_MOB_GUN_FIRED)
 	GLOB.marine_turrets -= src
 	return ..()
 
@@ -312,7 +315,7 @@
 	var/obj/item/weapon/gun/sentry = internal_item
 	potential_targets.Cut()
 	for (var/mob/living/carbon/human/nearby_human AS in cheap_get_humans_near(src, range))
-		if(nearby_human.stat == DEAD || (CHECK_BITFIELD(sentry.turret_flags, TURRET_SAFETY) || nearby_human.get_target_lock(sentry.gun_iff_signal)))
+		if(nearby_human.stat == DEAD || (CHECK_BITFIELD(sentry.turret_flags, TURRET_SAFETY) || nearby_human.wear_id?.iff_signal & iff_signal))
 			continue
 		potential_targets += nearby_human
 	for (var/mob/living/carbon/xenomorph/nearby_xeno AS in cheap_get_xenos_near(src, range))

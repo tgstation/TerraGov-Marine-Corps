@@ -50,13 +50,19 @@
 		user.temporarilyRemoveItemFromInventory(attached_item)
 
 		attached_item.UnregisterSignal(user, list(COMSIG_MOB_MOUSEDOWN, COMSIG_MOB_MOUSEUP, COMSIG_MOB_MOUSEDRAG, COMSIG_KB_RAILATTACHMENT, COMSIG_KB_UNDERRAILATTACHMENT, COMSIG_KB_UNLOADGUN, COMSIG_KB_FIREMODE)) //This unregisters Signals related to guns, its for safety
-
 	else
 		deploy_location = location
 		new_direction = direction
 
 	deployed_machine = new deploy_type(deploy_location, attached_item) //Creates new structure or machine at 'deploy' location and passes on 'attached_item'
 	deployed_machine.setDir(new_direction)
+
+	if(istype(deployed_machine, /obj/machinery/deployable/mounted/sentry))
+		var/obj/item/weapon/gun/sentry = attached_item
+		var/obj/machinery/deployable/mounted/sentry/_deployed_machine = deployed_machine
+		if(!sentry.sentry_iff_signal && ishuman(user))
+			var/obj/item/card/id/id = user.get_idcard()
+			_deployed_machine.iff_signal = id?.iff_signal
 
 	deployed_machine.max_integrity = attached_item.max_integrity //Syncs new machine or structure integrity with that of the item.
 	deployed_machine.obj_integrity = attached_item.obj_integrity

@@ -138,6 +138,7 @@
 	var/obj/item/cell/sentry_battery
 	var/sentry_battery_type = /obj/item/cell
 	var/sentry_battery_drain = 20
+	var/sentry_iff_signal = NONE
 //----------------------------------------------------------
 				//				    \\
 				// NECESSARY PROCS  \\

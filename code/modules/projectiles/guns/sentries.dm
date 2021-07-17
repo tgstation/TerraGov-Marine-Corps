@@ -14,7 +14,6 @@
 	burst_scatter_mult = 0
 	burst_amount = 2
 
-	gun_iff_signal = list(ACCESS_IFF_MARINE)
 	turret_flags = TURRET_HAS_CAMERA|TURRET_SAFETY|TURRET_ALERTS
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER|GUN_DEPLOYED_FIRE_ONLY|GUN_WIELDED_FIRING_ONLY
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE)
@@ -131,7 +130,7 @@
 /obj/item/weapon/gun/sentry/premade/dumb
 	name = "\improper Modified UA 571-C sentry gun"
 	desc = "A deployable, semi-automated turret with AI targeting capabilities. Armed with an M30 Autocannon and a 500-round drum magazine. This one's IFF system has been disabled, and it will open fire on any targets within range."
-	gun_iff_signal = list()
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER|GUN_DEPLOYED_FIRE_ONLY|GUN_WIELDED_FIRING_ONLY
 	ammo = /datum/ammo/bullet/turret/dumb
 	current_mag = /obj/item/ammo_magazine/sentry_premade/dumb
 	max_shells = 500
@@ -149,7 +148,12 @@
 	turret_flags = TURRET_HAS_CAMERA|TURRET_BURSTFIRE|TURRET_IMMOBILE
 	var/obj/structure/dropship_equipment/sentry_holder/deployment_system
 	current_mag = /obj/item/ammo_magazine/sentry_premade/dropship
+	sentry_iff_signal = TGMC_LOYALIST_IFF
 
 /obj/item/weapon/gun/sentry/premade/canterbury
 	name = "UA-577 Gauss Dropship Turret"
 	ammo = /datum/ammo/bullet/turret
+	sentry_iff_signal = TGMC_LOYALIST_IFF
+
+/obj/item/weapon/gun/sentry/premade/dropship/rebel
+	sentry_iff_signal = TGMC_REBEL_IFF
