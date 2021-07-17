@@ -17859,6 +17859,12 @@
 	dir = 8
 	},
 /area/lv624/ground/jungle9)
+"xUO" = (
+/obj/machinery/colony_floodlight_switch{
+	pixel_x = 32
+	},
+/turf/open/floor/plating,
+/area/lv624/lazarus/engineering)
 "xVe" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/warning,
@@ -33553,8 +33559,8 @@ blo
 xSy
 blj
 vTg
-xSy
-bqo
+xUO
+pkq
 blj
 wit
 dmG
