@@ -1178,7 +1178,7 @@ and you're good to go.
 	active_attachable.fire_attachment(target, src, gun_user) //Fire it.
 	last_fired = world.time
 
-///For letting xenos turn off the flashlights on any guns left lying around.
+//For letting xenos turn off the flashlights on any guns left lying around.
 /obj/item/weapon/gun/attack_alien(mob/living/carbon/xenomorph/X, isrightclick = FALSE)
 	if(!CHECK_BITFIELD(flags_gun_features, GUN_FLASHLIGHT_ON))
 		return
