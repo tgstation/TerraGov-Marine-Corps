@@ -37,8 +37,6 @@ SUBSYSTEM_DEF(weeds)
 
 		for(var/direction in GLOB.cardinals)
 			var/turf/AdjT = get_step(T, direction)
-			if (!(AdjT in node.node_turfs)) // only count our weed graph as eligble
-				continue
 			if (!(locate(/obj/effect/alien/weeds) in AdjT))
 				continue
 
@@ -66,9 +64,7 @@ SUBSYSTEM_DEF(weeds)
 		return FALSE
 
 	for(var/turf/T AS in node.node_turfs)
-		var/obj/effect/alien/weeds/weed = locate() in T
-		if(weed?.type == node.weed_type)
-			weed.parent_node = node
+		if(pending[T] && (get_dist_euclide_square(node, T) >= get_dist_euclide_square(get_step(pending[T][1], 0), T)))
 			continue
 		pending[T] = list(node, 5)
 
@@ -94,6 +90,9 @@ SUBSYSTEM_DEF(weeds)
 				return
 			var/obj/effect/alien/weeds/weed = O
 			if(get_dist_euclide_square(node, weed) >= get_dist_euclide_square(weed.parent_node, weed))
+				return
+			if(weed.type == node.weed_type)
+				weed.parent_node = node
 				return
 			qdel(O)
 	new node.weed_type(T, node)
