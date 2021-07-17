@@ -152,7 +152,7 @@
 
 	var/obj/effect/alien/weeds = locate() in T
 
-	if(!weed && !(xeno_caste.caste_flags & CASTE_INNATE_PLASMA_REGEN))
+	if(!weeds && !(xeno_caste.caste_flags & CASTE_INNATE_PLASMA_REGEN))
 		hud_set_plasma() // since we used some plasma via the aura
 		return
 
@@ -161,7 +161,7 @@
 	if(lying_angle || resting)
 		plasma_gain *= 2  // Doubled for resting
 
-	plasma_gain *= weed.color_variant == PLASMA_COLOR ? 1.25 : 0.5
+	plasma_gain *= weeds.color_variant == PLASMA_COLOR ? 1.25 : 0.5
 
 	gain_plasma(plasma_gain * plasma_gain_multiplier)
 	hud_set_plasma() //update plasma amount on the plasma mob_hud
