@@ -1147,7 +1147,7 @@
 		to_chat(X, "<span class='warning'>We can't build so close to the fog!</span>")
 		return FALSE
 
-	for(var/obj/structure/xeno/resin/xeno_turret/turret AS in GLOB.xeno_turret_tiles)
+	for(var/obj/structure/xeno/resin/xeno_turret/turret AS in GLOB.xeno_resin_turrets)
 		if(get_dist(turret, A) < 6)
 			to_chat(owner, "<span class='xenowarning'>Another turret is too close!</span>")
 			return FALSE

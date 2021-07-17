@@ -277,7 +277,7 @@
 	ammo.max_range = range + 2 //To prevent funny gamers to abuse the turrets that easily
 	potential_hostiles = list()
 	associated_hive = GLOB.hive_datums[hivenumber]
-	GLOB.xeno_turret_tiles += loc
+	GLOB.xeno_resin_turrets += src
 	START_PROCESSING(SSobj, src)
 	AddComponent(/datum/component/automatedfire/xeno_turret_autofire, firerate)
 	RegisterSignal(src, COMSIG_AUTOMATIC_SHOOTER_SHOOT, .proc/shoot)
@@ -298,7 +298,7 @@
 	return ..()
 
 /obj/structure/xeno/resin/xeno_turret/Destroy()
-	GLOB.xeno_turret_tiles -= loc
+	GLOB.xeno_resin_turrets -= src
 	set_hostile(null)
 	set_last_hostile(null)
 	STOP_PROCESSING(SSobj, src)
