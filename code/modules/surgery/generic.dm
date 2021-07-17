@@ -263,6 +263,7 @@
 	open_step = 0
 	min_duration = SUTURE_MIN_DURATION
 	max_duration = SUTURE_MAX_DURATION
+	///Healing applied on step success, split between burn and brute
 	var/base_healing = 10
 
 /datum/surgery_step/generic/repair/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected, checks_only)
