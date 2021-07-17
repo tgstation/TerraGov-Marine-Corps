@@ -304,7 +304,6 @@
 
 
 /obj/machinery/deployable/mounted/sentry/process()
-	
 	if(!scan())
 		var/obj/item/weapon/gun/sentry = internal_item
 		sentry.stop_fire()
