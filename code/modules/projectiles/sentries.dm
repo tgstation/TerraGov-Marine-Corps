@@ -20,6 +20,7 @@
 	///Damage required to knock the sentry over and disable it
 	var/knockdown_threshold = 150
 
+	///List of targets that can be shot at
 	var/list/mob/living/potential_targets = list()
 
 	///Time of last alert
@@ -31,6 +32,7 @@
 	///Radio so that the sentry can scream for help
 	var/obj/item/radio/radio
 
+	///Iff signal of the sentry. If the /gun has a set IFF then this will be the same as that. If not the sentry will get its IFF signal from the deployer
 	var/iff_signal = NONE
 
 //------------------------------------------------------------------
@@ -311,6 +313,7 @@
 
 	sentry_start_fire()
 
+///Checks the nearby mobs for eligability. If they can be targets it stores them in potential_targets. Returns TRUE if there are targets, FALSE if not.
 /obj/machinery/deployable/mounted/sentry/proc/scan()
 	var/obj/item/weapon/gun/sentry = internal_item
 	potential_targets.Cut()
@@ -324,6 +327,7 @@
 		potential_targets += nearby_xeno
 	return potential_targets.len ? TRUE : FALSE
 
+///Checks the range and the path of the target currently being shot at to see if it is eligable for being shot at again. If not it will stop the firing.
 /obj/machinery/deployable/mounted/sentry/proc/check_next_shot(datum/source, atom/gun_target, obj/item/weapon/gun/gun)
 	SIGNAL_HANDLER
 	var/obj/item/weapon/gun/sentry = internal_item
@@ -342,8 +346,6 @@
 		sentry_alert(SENTRY_ALERT_AMMO)
 		return
 	if(CHECK_BITFIELD(sentry.turret_flags, TURRET_RADIAL))
-		var/obj/item/cell/battery = sentry.sentry_battery
-		battery.charge -= sentry.sentry_battery_drain
 		var/new_dir = get_dir(src, target)
 		switch(new_dir)
 			if(NORTHWEST)
@@ -355,18 +357,14 @@
 			if(SOUTHEAST)
 				new_dir = SOUTH
 		setDir(new_dir)
-		if(battery.charge <= 0)
+		if(sentry.sentry_battery.charge <= 0)
 			sentry_alert(SENTRY_ALERT_BATTERY)
-			DISABLE_BITFIELD(sentry.turret_flags, TURRET_RADIAL)
-			battery.forceMove(loc)
-			battery.charge = 0
-			battery = null
 	if(CHECK_BITFIELD(sentry.flags_gun_features, GUN_BURST_FIRING))
 		sentry.set_target(target)
 		return
 	sentry.start_fire(src, target, bypass_checks = TRUE)
 
-
+///Checks the path to the target for obstructions. Returns TRUE if the path is clear, FALSE if not.
 /obj/machinery/deployable/mounted/sentry/proc/check_target_path(mob/living/target)
 	var/list/turf/path = getline(src, target)
 	path -= get_turf(src)
@@ -390,10 +388,10 @@
 		
 	return TRUE
 
+///Works through potential targets. First checks if they are in range, and if they are friend/foe. Then checks the path to them. Returns the first eligable target.
 /obj/machinery/deployable/mounted/sentry/proc/get_target()
 	var/distance = range + 0.5 //we add 0.5 so if a potential target is at range, it is accepted by the system
 	var/buffer_distance
-	var/list/turf/path = list()
 	var/obj/item/weapon/gun/sentry = internal_item
 	for (var/mob/living/nearby_target AS in potential_targets)
 
@@ -412,5 +410,3 @@
 
 		distance = buffer_distance
 		return nearby_target
-
-

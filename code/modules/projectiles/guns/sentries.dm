@@ -8,7 +8,8 @@
 
 	max_integrity = 200
 
-	fire_delay = 0.5 SECONDS
+	fire_delay = 0.75 SECONDS
+	burst_delay = 1 SECONDS
 	scatter = 0
 	scatter_unwielded = 0
 	burst_scatter_mult = 0
@@ -67,6 +68,8 @@
 
 	ammo = /datum/ammo/bullet/turret
 	current_mag = /obj/item/ammo_magazine/sentry
+
+	sentry_battery_drain = 50
 
 	starting_attachment_types = list(
 		/obj/item/attachable/scope/unremovable/tl102,

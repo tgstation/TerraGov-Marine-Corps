@@ -126,6 +126,7 @@
 	var/upper_akimbo_accuracy = 2
 	///determines lower accuracy modifier in akimbo
 	var/lower_akimbo_accuracy = 1
+
 	///If the gun is deployable, the time it takes for the weapon to deploy and undeploy.
 	var/deploy_time = 0
 	///Flags that the deployed sentry uses upon deployment.
@@ -136,8 +137,11 @@
 	var/turret_range = 7
 	///Battery used for radial mode on deployed turrets.
 	var/obj/item/cell/sentry_battery
+	///Battery type for sentries
 	var/sentry_battery_type = /obj/item/cell
+	///Battery drain per shot for radial sentry mode
 	var/sentry_battery_drain = 20
+	///IFF signal for sentries. If it is set here it will be this signal forever. If null the IFF signal will be dependant on the deployer.
 	var/sentry_iff_signal = NONE
 //----------------------------------------------------------
 				//				    \\
@@ -743,6 +747,13 @@ and you're good to go.
 		var/obj/screen/ammo/A = gun_user.hud_used.ammo //The ammo HUD
 		A.update_hud(gun_user, src)
 	SEND_SIGNAL(src, COMSIG_MOB_GUN_FIRED, target, src)
+	if(CHECK_BITFIELD(flags_item, IS_SENTRY) && CHECK_BITFIELD(flags_item, IS_DEPLOYED) && CHECK_BITFIELD(turret_flags, TURRET_RADIAL))
+		sentry_battery.charge -= sentry_battery_drain
+		if(sentry_battery.charge <= 0)
+			DISABLE_BITFIELD(turret_flags, TURRET_RADIAL)
+			sentry_battery.forceMove(get_turf(src))
+			sentry_battery.charge = 0
+			sentry_battery = null
 	return TRUE
 
 /obj/item/weapon/gun/attack(mob/living/M, mob/living/user, def_zone)
@@ -905,23 +916,22 @@ and you're good to go.
 	var/added_delay = fire_delay
 	if(active_attachable?.attachment_firing_delay && active_attachable.flags_attach_features & ATTACH_PROJECTILE)
 		added_delay = active_attachable.attachment_firing_delay
-	else
-		if(user)
-			if(!user.skills.getRating("firearms")) //no training in any firearms
-				added_delay += 3 //untrained humans fire more slowly.
-			else
-				switch(gun_skill_category)
-					if(GUN_SKILL_HEAVY_WEAPONS)
-						if(fire_delay > 1 SECONDS) //long delay to fire
-							added_delay = max(fire_delay - 3 * user.skills.getRating(gun_skill_category), 6)
-					if(GUN_SKILL_SMARTGUN)
-						if(user.skills.getRating(gun_skill_category) < 0)
-							added_delay -= 2 * user.skills.getRating(gun_skill_category)
+	else if(user)
+		if(!user.skills.getRating("firearms")) //no training in any firearms
+			added_delay += 3 //untrained humans fire more slowly.
+		else
+			switch(gun_skill_category)
+				if(GUN_SKILL_HEAVY_WEAPONS)
+					if(fire_delay > 1 SECONDS) //long delay to fire
+						added_delay = max(fire_delay - 3 * user.skills.getRating(gun_skill_category), 6)
+				if(GUN_SKILL_SMARTGUN)
+					if(user.skills.getRating(gun_skill_category) < 0)
+						added_delay -= 2 * user.skills.getRating(gun_skill_category)
 
 	if(world.time >= last_fired + added_delay + extra_delay) //check the last time it was fired.
 		return FALSE
 
-	if(world.time % 3 && user && user.client && !user.client.prefs.mute_self_combat_messages)
+	if(world.time % 3 && !user?.client?.prefs.mute_self_combat_messages)
 		to_chat(user, "<span class='warning'>[src] is not ready to fire again!</span>")
 	return TRUE
 
@@ -1035,7 +1045,7 @@ and you're good to go.
 			else
 				. += burst_amount * burst_scatter_mult * 5
 
-	if(user || !user.skills.getRating("firearms")) //no training in any firearms
+	if(!user?.skills.getRating("firearms")) //no training in any firearms
 		. += 15
 	else
 		var/scatter_tweak = user.skills.getRating(gun_skill_category)
