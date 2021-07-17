@@ -126,7 +126,7 @@
 	user.visible_message("<span class='notice'>[user] begins to set [src] upright.</span>",
 	"<span class='notice'>You begin to set [src] upright.</span>")
 
-	if(!do_after(user, 20, TRUE, src, BUSY_ICON_BUILD))
+	if(!do_after(user, 2 SECONDS, TRUE, src, BUSY_ICON_BUILD))
 		return
 
 	user.visible_message("<span class='notice'>[user] sets [src] upright.</span>",
