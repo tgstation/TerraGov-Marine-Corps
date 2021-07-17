@@ -204,13 +204,13 @@
 		if("PROF")
 			. = size ? "Prof. " : "Professor"
 		if("RES")
-			. = size ? "RES" : "Medical Resident"
+			. = size ? "RES " : "Medical Resident"
 		if("MD")
-			. = size ? "MD" : "Medical Doctor"
+			. = size ? "MD " : "Medical Doctor"
 		if("CHO")
-			. = size ? "CHO" : "Chief Health Officer"
+			. = size ? "CHO " : "Chief Health Officer"
 		if("CMO")
-			. = size ? "CMO" : "Chief Medical Officer"
+			. = size ? "CMO " : "Chief Medical Officer"
 		if("CMN")
 			. = size ? "CMN" : "Crewman"
 		if("PMC1")
