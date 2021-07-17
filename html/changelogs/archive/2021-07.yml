@@ -327,3 +327,19 @@
       victim's system (Neurotoxin and Transvitox).
   Wayland-Smithy:
   - admin: Added a button to become an Imaginary Friend to the ticket panel.
+2021-07-17:
+  BraveMole:
+  - rscdel: Remove specialist from code
+  - qol: Unique action and unload gun works even if the gun is in your inactive hand
+  - bugfix: Fix premade sentries IFF (tadpole, canterbury, fob drone, etc...)
+  - bugfix: Fix projectile double tap
+  Pariah919:
+  - expansion: new seasonal bucket with uzi and cmb revolver
+  - balance: cmb now has tp-44 fire rate, now has a 2 round burst with 0.1 fire delay.
+      Uzi buffed to fire as fast as normal smgs and is built for one handed use.
+  - rscadd: 'Added new lolipop pouch with cool lolipops that heal you and stuff. As
+      an equivalent to the marine medical pouches. spriteadd: new boxes for lolipops'
+  - balance: silo collaspe takes 45 minutes from roundstart to begin happening, rather
+      than an hour
+  TiviPlus:
+  - bugfix: certain player messages will now appear large and red correctly

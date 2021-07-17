@@ -335,7 +335,7 @@
 			/obj/item/ammo_magazine/rifle/autosniper = 3,
 			/obj/item/ammo_magazine/rifle/tx8 = 3,
 			/obj/item/ammo_magazine/rocket/sadar = 3,
-			/obj/item/ammo_magazine/minigun = 2,
+			/obj/item/minigun_powerpack = 2,
 			/obj/item/ammo_magazine/shotgun/mbx900 = 2,
 			/obj/item/bodybag/tarp = 2,
 			/obj/item/explosive/plastique = 2,
@@ -681,62 +681,6 @@
 /obj/machinery/vending/marine_medic/rebel
 	req_access = list(ACCESS_MARINE_MEDPREP_REBEL)
 
-/obj/machinery/vending/marine_special
-	name = "\improper TerraGovTech Specialist Vendor"
-	desc = "A marine specialist equipment vendor"
-	product_ads = "If it moves, it's hostile!;How many enemies have you killed today?;Shoot first, perform autopsy later!;Your ammo is right here.;Guns!;Die, scumbag!;Don't shoot me bro!;Shoot them, bro.;Why not have a donut?"
-	req_access = list(ACCESS_MARINE_SPECPREP)
-	icon_state = "specialist"
-	icon_deny = "specialist-deny"
-	wrenchable = FALSE
-	tokensupport = TOKEN_SPEC
-
-	products = list(
-		/obj/item/coin/marine/specialist = 1,
-		/obj/item/clothing/tie/storage/webbing = 1,
-		/obj/item/explosive/plastique = 2,
-		/obj/item/explosive/grenade/frag = 2,
-		/obj/item/explosive/grenade/incendiary = 2,
-		/obj/item/storage/pouch/magazine/large = 1,
-		/obj/item/storage/pouch/general/medium = 1,
-		/obj/item/clothing/mask/gas = 1,
-	)
-	contraband = list()
-	premium = list(
-		/obj/item/storage/box/spec/demolitionist = 1,
-		/obj/item/storage/box/spec/heavy_grenadier = 1,
-		/obj/item/storage/box/m42c_system = 1,
-		/obj/item/storage/box/m42c_system_Jungle = 1,
-		/obj/item/storage/box/spec/pyro = 1,
-		/obj/item/storage/box/spec/tracker = 1,
-	)
-	prices = list()
-
-
-/obj/machinery/vending/shared_vending/marine_special
-	name = "\improper TerraGovTech Specialist Vendor"
-	desc = "A marine specialist equipment vendor"
-	product_ads = "If it moves, it's hostile!;How many enemies have you killed today?;Shoot first, perform autopsy later!;Your ammo is right here.;Guns!;Die, scumbag!;Don't shoot me bro!;Shoot them, bro.;Why not have a donut?"
-	req_access = list(ACCESS_MARINE_SPECPREP)
-	icon_state = "specialist"
-	icon_deny = "specialist-deny"
-	wrenchable = FALSE
-	tokensupport = TOKEN_SPEC
-	isshared = TRUE
-
-	products = list(
-		/obj/item/storage/box/spec/demolitionist = 1,
-		/obj/item/storage/box/spec/heavy_grenadier = 1,
-		/obj/item/storage/box/spec/sniper = 1,
-		/obj/item/storage/box/spec/scout = 1,
-		/obj/item/storage/box/spec/pyro = 1,
-		/obj/item/storage/box/spec/tracker = 1,)
-	contraband = list()
-	premium = list()
-
-	prices = list()
-
-
 /obj/machinery/vending/shared_vending/marine_engi
 	name = "\improper TerraGovTech Engineer System Vendor"
 	desc = "A marine engineering system vendor"
@@ -771,7 +715,7 @@
 	products = list(
 		/obj/item/clothing/tie/storage/webbing = 1,
 		/obj/item/storage/box/t26_system = 1,
-		/obj/item/smartgun_powerpack = 1,
+		/obj/item/minigun_powerpack = 1,
 		/obj/item/storage/pouch/magazine/large = 1,
 		/obj/item/clothing/mask/gas = 1,
 	)
@@ -941,6 +885,7 @@
 			/obj/item/storage/pouch/firstaid = -1,
 			/obj/item/storage/pouch/syringe = -1,
 			/obj/item/storage/pouch/medkit = -1,
+			/obj/item/storage/pouch/med_lolipops = -1,
 			/obj/item/storage/pouch/autoinjector = -1,
 			/obj/item/storage/pouch/construction = -1,
 			/obj/item/storage/pouch/electronics/full = -1,
