@@ -529,7 +529,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define HUNTER_SILENCE_WINDUP 0.5 SECONDS //Windup of the Hunter's Silence
 #define HUNTER_SILENCE_MULTIPLIER 1.5 //Multiplier of stacks vs Hunter's Mark targets
 #define HUNTER_SILENCE_WHIFF_COOLDOWN 3 SECONDS //If we fail to target anyone with Silence, partial cooldown to prevent spam.
-
+#define HUNTER_VENT_CRAWL_TIME 2 SECONDS //Hunters can enter vents fast
 
 //Ravager defines:
 #define RAV_CHARGESPEED 2
@@ -632,6 +632,9 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 
 #define WRAITH_TELEPORT_DEBUFF_STAGGER_STACKS 2 //Stagger and slow stacks applied to adjacent living hostiles before/after a teleport
 #define WRAITH_TELEPORT_DEBUFF_SLOWDOWN_STACKS 3 //Stagger and slow stacks applied to adjacent living hostiles before/after a teleport
+
+//Larva defines
+#define LARVA_VENT_CRAWL_TIME 1 SECONDS //Larva can crawl into vents fast
 
 #define DEFILER_TRANSVITOX_CAP 180 //Max toxin damage transvitox will allow
 
