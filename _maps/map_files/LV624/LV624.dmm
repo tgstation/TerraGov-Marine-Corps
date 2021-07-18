@@ -17857,6 +17857,12 @@
 "xVM" = (
 /turf/open/space/basic,
 /area/lv624/lazarus/atmos)
+"xXf" = (
+/obj/machinery/light{
+	icon_state = "tube-broken"
+	},
+/turf/open/ground/grass,
+/area/shuttle/drop2/lz2)
 "xYk" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/blue/whitebluecorner,
@@ -20207,7 +20213,7 @@ dVC
 dVC
 hvg
 sod
-hBa
+xXf
 gWo
 aAz
 aAz
@@ -21102,7 +21108,7 @@ aPE
 dVC
 mup
 sod
-hBa
+xXf
 gWo
 gWo
 gWo
