@@ -644,7 +644,7 @@
 	name = "construction pouch"
 	desc = "It's designed to hold construction materials - glass/metal sheets, metal rods, barbed wire, cable coil, and empty sandbags. It also has a hook for an entrenching tool."
 	storage_slots = 4
-	max_w_class = 3
+	max_w_class = 4
 	icon_state = "construction"
 	can_hold = list(
 		/obj/item/stack/barbed_wire,
@@ -655,12 +655,15 @@
 		/obj/item/stack/sandbags_empty,
 		/obj/item/stack/sandbags,
 	)
+	storage_type_limits = list(
+		/obj/item/tool/shovel/etool = 1,
+	)
 
 /obj/item/storage/pouch/construction/full/Initialize()
 	. = ..()
 	new /obj/item/stack/sandbags_empty/half (src)
 	new /obj/item/stack/barbed_wire/small_stack (src)
-	new /obj/item/tool/shovel/etool (src)
+	INVOKE_ASYNC(src, .proc/handle_item_insertion, new /obj/item/tool/shovel/etool (src))
 
 /obj/item/storage/pouch/construction/equippedengineer/Initialize()
 	. = ..()

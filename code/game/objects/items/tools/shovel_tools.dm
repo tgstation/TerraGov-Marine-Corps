@@ -137,7 +137,7 @@
 	throwforce = 2
 	item_state = "crowbar"
 	hitsound = "swing_hit"
-	w_class = WEIGHT_CLASS_BULKY //three for unfolded, 3 for folded. This should keep it outside backpacks until its folded, made it 3 because 2 lets you fit in pockets appearntly.
+	w_class = WEIGHT_CLASS_BULKY //4 for unfolded, 3 for folded. This should keep it outside backpacks until its folded, made it 3 because 2 lets you fit in pockets.
 	dirt_overlay = "etool_overlay"
 	dirt_amt_per_dig = 5
 	shovelspeed = 20
@@ -145,7 +145,7 @@
 /obj/item/tool/shovel/etool/update_icon_state()
 	if(folded)
 		icon_state = "etool_c"
-	else if(sharp) 
+	else if(sharp)
 		icon_state = "etool_s"
 	else
 		icon_state = "etool"
