@@ -43,6 +43,8 @@
 
 #define STATUS_EFFECT_GUN_SKILL_SCATTER_DEBUFF /datum/status_effect/stacking/gun_skill/scatter/debuff // Decreases the scatter of the mob
 
+#define STATUS_EFFECT_MUTED /datum/status_effect/mute //Mutes the affected mob
+
 /////////////
 // NEUTRAL //
 /////////////

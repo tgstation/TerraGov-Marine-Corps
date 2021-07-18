@@ -1,4 +1,0 @@
-author: "QualityVan"
-delete-after: True
-changes: 
-  - code_imp: "Added the ability for all storage spaces to have item-specific limits"
