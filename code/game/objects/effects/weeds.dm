@@ -1,9 +1,8 @@
 //Color variant defines
-#define SPEED_COLOR ""
+#define SPEED_COLOR "blue"
 #define RESTING_COLOR "white"
 #define TOXIN_COLOR "green"
 #define STICKY_COLOR "red"
-#define PLASMA_COLOR "blue"
 
 // base weed type
 /obj/effect/alien/weeds
@@ -89,10 +88,12 @@
 		icon_state = "base"
 	else
 		icon_state = "weed_dir[my_dir]"
-	icon_state += color_variant
+	if(prob(20))
+		icon_state += color_variant
 
 /obj/effect/alien/weeds/speed
 	name = "speed weeds"
+	color_variant = SPEED_COLOR
 
 /obj/effect/alien/weeds/speed/Crossed(atom/movable/AM)
 	. = ..()
@@ -143,12 +144,7 @@
 	if(H.lying_angle)
 		return
 
-	H.apply_damage(3, TOX)
-
-/obj/effect/alien/weeds/plasma
-	name = "plasma weeds"
-	desc = "This reeks of disease."
-	color_variant = PLASMA_COLOR
+	H.apply_damage(2, TOX)
 
 // =================
 // weed wall
@@ -160,7 +156,8 @@
 /obj/effect/alien/weeds/weedwall/update_icon_state()
 	var/turf/closed/wall/W = loc
 	icon_state = W.junctiontype ? "weedwall[W.junctiontype]" : initial(icon_state)
-	icon_state += color_variant
+	if(prob(30))
+		icon_state += color_variant
 
 
 // =================
@@ -171,7 +168,8 @@
 /obj/effect/alien/weeds/weedwall/window/update_icon_state()
 	var/obj/structure/window/framed/F = locate() in loc
 	icon_state = F?.junction ? "weedwall[F.junction]" : initial(icon_state)
-	icon_state += color_variant
+	if(prob(30))
+		icon_state += color_variant
 
 /obj/effect/alien/weeds/weedwall/window/MouseDrop_T(atom/dropping, mob/user)
 	var/obj/structure/window/framed/F = locate() in loc
@@ -185,7 +183,8 @@
 /obj/effect/alien/weeds/weedwall/frame/update_icon_state()
 	var/obj/structure/window_frame/WF = locate() in loc
 	icon_state = WF?.junction ? "weedframe[WF.junction]" : initial(icon_state)
-	icon_state += color_variant
+	if(prob(30))
+		icon_state += color_variant
 
 /obj/effect/alien/weeds/weedwall/frame/MouseDrop_T(atom/dropping, mob/user)
 	var/obj/structure/window_frame/WF = locate() in loc
@@ -246,16 +245,19 @@
 	desc = "A weird, pulsating red node."
 	weed_type = /obj/effect/alien/weeds/sticky
 	color_variant = STICKY_COLOR
-	node_icon = "weednodegreen"
+	node_icon = "weednodered"
 
 //Speedy weed node
-/obj/effect/alien/weeds/node/speedy
+/obj/effect/alien/weeds/node/speed
 	name = "speed weed sac"
 	desc = "A weird, pulsating purple node."
+	weed_type = /obj/effect/alien/weeds/speed
+	color_variant = SPEED_COLOR
+	node_icon = "weednodeblue"
 
-//Healing weed node
-/obj/effect/alien/weeds/node/healing
-	name = "heal weed sac"
+//Resting weed node
+/obj/effect/alien/weeds/node/resting
+	name = "resting weed sac"
 	desc = "A weird, pulsating white node."
 	weed_type = /obj/effect/alien/weeds/resting
 	color_variant = RESTING_COLOR
@@ -268,11 +270,3 @@
 	weed_type = /obj/effect/alien/weeds/toxin
 	color_variant = TOXIN_COLOR
 	node_icon = "weednodegreen"
-
-//Plasma weed node
-/obj/effect/alien/weeds/node/plasma
-	name = "plasma weed sac"
-	desc = "A weird, pulsating blue node."
-	weed_type = /obj/effect/alien/weeds/toxin
-	color_variant = PLASMA_COLOR
-	node_icon = "weednodeblue"

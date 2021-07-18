@@ -161,7 +161,7 @@
 	if(lying_angle || resting)
 		plasma_gain *= 2  // Doubled for resting
 
-	plasma_gain *= weeds.color_variant == PLASMA_COLOR ? 1.25 : 0.5
+	plasma_gain *= weeds.color_variant == RESTING_COLOR ? 1.25 : 0.5
 
 	gain_plasma(plasma_gain * plasma_gain_multiplier)
 	hud_set_plasma() //update plasma amount on the plasma mob_hud
