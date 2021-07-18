@@ -137,6 +137,7 @@
 	throwforce = 2
 	item_state = "crowbar"
 	hitsound = "swing_hit"
+	flags_equip_slot = ITEM_SLOT_BELT | ITEM_SLOT_BACK
 	w_class = WEIGHT_CLASS_BULKY //4 for unfolded, 3 for folded. This should keep it outside backpacks until its folded, made it 3 because 2 lets you fit in pockets.
 	dirt_overlay = "etool_overlay"
 	dirt_amt_per_dig = 5
