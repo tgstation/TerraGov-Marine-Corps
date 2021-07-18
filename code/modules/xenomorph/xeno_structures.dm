@@ -27,6 +27,8 @@
 	max_integrity = 5
 	layer = RESIN_STRUCTURE_LAYER
 	destroy_sound = "alien_resin_break"
+	xeno_structure_flags = IGNORE_WEED_REMOVAL
+	///The hugger inside our trap
 	var/obj/item/clothing/mask/facehugger/hugger = null
 
 /obj/structure/xeno/trap/Initialize(mapload)
