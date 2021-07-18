@@ -183,9 +183,12 @@
 	var/image/infection_hud = hud_list[XENO_EMBRYO_HUD] //State of the xeno embryo.
 	var/image/simple_status_hud = hud_list[STATUS_HUD_SIMPLE] //Status for the naked eye.
 	var/image/xeno_reagent = hud_list[XENO_REAGENT_HUD] // Displays active xeno reagents
-	var/image/neurotox_image = image('icons/mob/hud.dmi', src, "neurotoxin")
-	var/image/hemodile_image = image('icons/mob/hud.dmi', src, "hemodile")
-	var/image/transvitox_image = image('icons/mob/hud.dmi', src, "transvitox")
+	var/static/image/neurotox_image = image('icons/mob/hud.dmi', src, "neurotoxin")
+	var/static/image/hemodile_image = image('icons/mob/hud.dmi', src, "hemodile")
+	var/static/image/transvitox_image = image('icons/mob/hud.dmi', src, "transvitox")
+	var/static/image/neurotox_high_image = image('icons/mob/hud.dmi', src, "neurotoxin_high")
+	var/static/image/hemodile_high_image = image('icons/mob/hud.dmi', src, "hemodile_high")
+	var/static/image/transvitox_high_image = image('icons/mob/hud.dmi', src, "transvitox_high")
 
 	xeno_reagent.overlays.Cut()
 	xeno_reagent.icon_state = ""
@@ -196,17 +199,21 @@
 
 		if(neurotox_amount)
 			if(neurotox_amount > 10) //Blinking image for particularly high concentrations
-				neurotox_image = image('icons/mob/hud.dmi', src, "neurotoxin_high")
-			xeno_reagent.overlays += neurotox_image
+				xeno_reagent.overlays += neurotox_high_image
+			else
+				xeno_reagent.overlays += neurotox_image
 
 		if(hemodile_amount)
 			if(hemodile_amount > 10)
-				hemodile_image = image('icons/mob/hud.dmi', src, "hemodile_high")
-			xeno_reagent.overlays += hemodile_image
+				xeno_reagent.overlays += hemodile_high_image
+			else
+				xeno_reagent.overlays += hemodile_image
 
 		if(transvitox_amount)
 			if(transvitox_amount > 10)
-				transvitox_image = image('icons/mob/hud.dmi', src, "transvitox_high")
+				xeno_reagent.overlays += transvitox_high_image
+			else
+				xeno_reagent.overlays += transvitox_image
 
 	hud_list[XENO_REAGENT_HUD] = xeno_reagent
 
