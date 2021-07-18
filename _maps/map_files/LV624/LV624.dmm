@@ -17674,7 +17674,7 @@
 "xlI" = (
 /obj/machinery/door/airlock/mainship/engineering/free_access{
 	dir = 1;
-	name = "\improper Storage Dome"
+	name = "\improper South Landing Zone"
 	},
 /obj/structure/flora/ausbushes/fullgrass,
 /turf/open/ground/grass,
@@ -17683,7 +17683,7 @@
 /obj/structure/flora/ausbushes/fullgrass,
 /obj/machinery/door/airlock/mainship/engineering/free_access{
 	dir = 1;
-	name = "\improper Storage Dome"
+	name = "\improper South Landing Zone"
 	},
 /turf/open/ground/grass,
 /area/shuttle/drop2/lz2)
@@ -17729,7 +17729,7 @@
 "xtz" = (
 /obj/machinery/door/airlock/mainship/engineering/free_access{
 	dir = 1;
-	name = "\improper Storage Dome"
+	name = "\improper North Landing Zone"
 	},
 /turf/open/floor,
 /area/shuttle/drop2/lz2)
