@@ -768,7 +768,12 @@
 
 ///Callback to start auto mode on someone entering
 /obj/machinery/autodoc/proc/auto_start()
-	if(!occupant || !automaticmode)
+	if(surgery)
+		return
+	if(!occupant)
+		return
+	if(!automaticmode)
+		say("Automatic mode disengaged, awaiting manual inputs.")
 		return
 	surgery_op()
 
