@@ -343,3 +343,53 @@
       than an hour
   TiviPlus:
   - bugfix: certain player messages will now appear large and red correctly
+2021-07-18:
+  BraveMole:
+  - rscadd: SG is added in civil war
+  - expansion: Forces HvH faction to wear certain colors
+  - bugfix: Rebels have iff too
+  Pariah919:
+  - qol: throwing knife belt auto pulls knives automatically if you click on it
+  - balance: throwing knive belt holds 15 knives, and throwing knives deal more force,
+      still less than a normal knife though.
+  - rscdel: Removed old m56
+  - balance: minigun now has magnetic harness, and works off powerpacks that reload
+      it instead of ammo magazines
+  - balance: endure has less crit hp, 150 from 200
+  - balance: runner has higher melee armor now.
+  - bugfix: t-25 iff
+  QualityVan:
+  - rscadd: Defilers can inject hemo and transvit into eggs now if they want.
+  - bugfix: Injected eggs don't have to grow up a second time
+  - code_imp: Added the ability for all storage spaces to have item-specific limits
+  - rscadd: Added bihexajuline for treating broken bones in cryo. Recipe is 2 bicaridine,
+      1 milk, 2 iron
+  - rscadd: Put bihexajuline in the starting cryo mix
+  - bugfix: If your arm gets torn off, it isn't broken any more.
+  - bugfix: Cryotubes no longer fix broken bones due to incorrect argument passing
+  - bugfix: The recent 25% boost to xeno healing now also includes the gain from recovery
+      pheromones
+  - rscadd: Slashing guns as a xeno will turn any lights on them off
+  Surrealaser:
+  - rscadd: The Silence ability replaces the Haunt ability on the Hunter. This mutes
+      and silences living hostiles the Hunter has direct line of sight to in a 5x5
+      area for about 10 seconds (15 seconds for the Hunter Mark target).
+  - bugfix: Minor text fix for the Wraith's Place Warp Shadow ability.
+  - bugfix: Fixes Right Click mode for Xenos so that it doesn't try to attack at the
+      same time it uses an ability (thus triggering click/bump slash cooldowns).
+  - bugfix: Turf targeting with melee attacks no longer triggers click/bump slash
+      cooldowns.
+  Walarks:
+  - qol: Added active seasons announcement, changed seasonal buckets names/descriptions
+      to be more flavourful
+  - qol: Added tgchat format styles
+  lbnesquik:
+  - rscadd: More holopads to the POS
+  - rscadd: Gave the RO a map table. Fairly eager to see how helpful that is for most
+      players.
+  - bugfix: fixed a number of oddities in the POS map, mostly areas and fire alarms.
+  - admin: expand the quick create paths
+  - bugfix: fixed some walls of the POS being outerhull instead of being hull.
+  - bugfix: fixed a missing floodlight in LV engineering
+  - bugfix: fixed cameras notifying the AI of their demise, despite a lack of power.
+  - balance: Allows the AI to interface with groundside equipment

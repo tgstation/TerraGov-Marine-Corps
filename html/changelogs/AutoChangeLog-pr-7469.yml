@@ -1,5 +1,0 @@
-author: "QualityVan"
-delete-after: True
-changes: 
-  - rscadd: "Defilers can inject hemo and transvit into eggs now if they want."
-  - bugfix: "Injected eggs don't have to grow up a second time"

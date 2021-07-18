@@ -1,5 +1,0 @@
-author: "Walarks"
-delete-after: True
-changes: 
-  - qol: "Added active seasons announcement, changed seasonal buckets names/descriptions to be more flavourful"
-  - qol: "Added tgchat format styles"

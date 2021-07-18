@@ -1,4 +1,0 @@
-author: "QualityVan"
-delete-after: True
-changes: 
-  - bugfix: "The recent 25% boost to xeno healing now also includes the gain from recovery pheromones"
