@@ -181,8 +181,6 @@
 			return
 		AddElement(/datum/element/deployable_item, /obj/machinery/deployable/mounted, deploy_time)
 
-	muzzle_flash = new(src, muzzleflash_iconstate)
-
 	GLOB.nightfall_toggleable_lights += src
 
 //Hotfix for attachment offsets being set AFTER the core New() proc. Causes a small graphical artifact when spawning, hopefully works even with lag
