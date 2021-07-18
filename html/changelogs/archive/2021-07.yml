@@ -285,3 +285,111 @@
   lbnesquik:
   - bugfix: Fixed the AI holopad being seemingly broken. Don't forget to use the Change
       Hologram verb!
+2021-07-16:
+  BraveMole:
+  - refactor: Refactor IFF
+  - bugfix: Larvas cannot become king anymore
+  - bugfix: Fix shuttle windows not rotating
+  - balance: Remove 2 xenos jobs at roundstart, no matter the pop
+  - balance: Less xeno in crash
+  - balance: Less xeno for marines overall
+  - bugfix: Impact grenades are actually in normal vendors, not HvH one
+  - expansion: Add a gun safety keybind
+  - bugfix: Rebel have their own comms
+  - bugfix: SL have its medhud back in essential kits
+  EvilMelonTheSecond:
+  - expansion: Added meson-like goggles to req
+  InterroLouis:
+  - bugfix: Impact Grenade Box Vends Properly.
+  Pariah919:
+  - bugfix: resin walls now die to devastating explosions such as OBs, and other things
+  - balance: resin walls now die to devastating explosions. Which include HE OBs.
+  - expansion: adds marine spear in vendors
+  - balance: can't refill qc+ and peri + at marine med
+  - expansion: Adds an IFF-less heavy machinegun to the game, not in yet for acquireable
+      players.
+  - expansion: added a thermobaric to req, way weaker and cheaper than before.
+  - bugfix: smartrifle magazines pop up in req
+  QualityVan:
+  - bugfix: Xeno healing now splits properly between brute and burn instead of doubling,
+      base healing increased 25% to compensate
+  RipGrayson:
+  - balance: LV624 caves are now slightly less cramped, engineering is slightly larger.
+  SplinterGP:
+  - expansion: Ravager now also gets fury on receiving damage.
+  - balance: Ravager Passive fury regen has been severely reduced.
+  Surrealaser:
+  - balance: Clawed Hugger melee damage increased from 23 to 25.
+  - balance: Clawed Hugger jump timer decreased from 1.5 to 1.2 seconds.
+  - balance: Hemodile no longer deals stamina damage.
+  - balance: Hemodile base slowdown increased from 1 to 1.5.
+  - balance: Hemodile slowdown is multiplied by 2 for each other Xeno chem in the
+      victim's system (Neurotoxin and Transvitox).
+  Wayland-Smithy:
+  - admin: Added a button to become an Imaginary Friend to the ticket panel.
+2021-07-17:
+  BraveMole:
+  - rscdel: Remove specialist from code
+  - qol: Unique action and unload gun works even if the gun is in your inactive hand
+  - bugfix: Fix premade sentries IFF (tadpole, canterbury, fob drone, etc...)
+  - bugfix: Fix projectile double tap
+  Pariah919:
+  - expansion: new seasonal bucket with uzi and cmb revolver
+  - balance: cmb now has tp-44 fire rate, now has a 2 round burst with 0.1 fire delay.
+      Uzi buffed to fire as fast as normal smgs and is built for one handed use.
+  - rscadd: 'Added new lolipop pouch with cool lolipops that heal you and stuff. As
+      an equivalent to the marine medical pouches. spriteadd: new boxes for lolipops'
+  - balance: silo collaspe takes 45 minutes from roundstart to begin happening, rather
+      than an hour
+  TiviPlus:
+  - bugfix: certain player messages will now appear large and red correctly
+2021-07-18:
+  BraveMole:
+  - rscadd: SG is added in civil war
+  - expansion: Forces HvH faction to wear certain colors
+  - bugfix: Rebels have iff too
+  Pariah919:
+  - qol: throwing knife belt auto pulls knives automatically if you click on it
+  - balance: throwing knive belt holds 15 knives, and throwing knives deal more force,
+      still less than a normal knife though.
+  - rscdel: Removed old m56
+  - balance: minigun now has magnetic harness, and works off powerpacks that reload
+      it instead of ammo magazines
+  - balance: endure has less crit hp, 150 from 200
+  - balance: runner has higher melee armor now.
+  - bugfix: t-25 iff
+  QualityVan:
+  - rscadd: Defilers can inject hemo and transvit into eggs now if they want.
+  - bugfix: Injected eggs don't have to grow up a second time
+  - code_imp: Added the ability for all storage spaces to have item-specific limits
+  - rscadd: Added bihexajuline for treating broken bones in cryo. Recipe is 2 bicaridine,
+      1 milk, 2 iron
+  - rscadd: Put bihexajuline in the starting cryo mix
+  - bugfix: If your arm gets torn off, it isn't broken any more.
+  - bugfix: Cryotubes no longer fix broken bones due to incorrect argument passing
+  - bugfix: The recent 25% boost to xeno healing now also includes the gain from recovery
+      pheromones
+  - rscadd: Slashing guns as a xeno will turn any lights on them off
+  Surrealaser:
+  - rscadd: The Silence ability replaces the Haunt ability on the Hunter. This mutes
+      and silences living hostiles the Hunter has direct line of sight to in a 5x5
+      area for about 10 seconds (15 seconds for the Hunter Mark target).
+  - bugfix: Minor text fix for the Wraith's Place Warp Shadow ability.
+  - bugfix: Fixes Right Click mode for Xenos so that it doesn't try to attack at the
+      same time it uses an ability (thus triggering click/bump slash cooldowns).
+  - bugfix: Turf targeting with melee attacks no longer triggers click/bump slash
+      cooldowns.
+  Walarks:
+  - qol: Added active seasons announcement, changed seasonal buckets names/descriptions
+      to be more flavourful
+  - qol: Added tgchat format styles
+  lbnesquik:
+  - rscadd: More holopads to the POS
+  - rscadd: Gave the RO a map table. Fairly eager to see how helpful that is for most
+      players.
+  - bugfix: fixed a number of oddities in the POS map, mostly areas and fire alarms.
+  - admin: expand the quick create paths
+  - bugfix: fixed some walls of the POS being outerhull instead of being hull.
+  - bugfix: fixed a missing floodlight in LV engineering
+  - bugfix: fixed cameras notifying the AI of their demise, despite a lack of power.
+  - balance: Allows the AI to interface with groundside equipment

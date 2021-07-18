@@ -1,6 +1,0 @@
-author: "Surrealaser"
-delete-after: True
-changes: 
-  - balance: "Hemodile no longer deals stamina damage."
-  - balance: "Hemodile base slowdown increased from 1 to 1.5."
-  - balance: "Hemodile slowdown is multiplied by 2 for each other Xeno chem in the victim's system (Neurotoxin and Transvitox)."
