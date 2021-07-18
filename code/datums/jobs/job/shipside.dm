@@ -406,7 +406,7 @@ If you are not piloting, there is an autopilot fallback for command, but don't l
 			new_human.wear_id.paygrade = "O2"
 		if(1501 to 6000) // 25 hrs
 			new_human.wear_id.paygrade = "O3"
-		if(6001 to INFINITY) // 50 hrs
+		if(6001 to INFINITY) // 100 hrs
 			new_human.wear_id.paygrade = "O4"
 
 /datum/job/terragov/engineering/chief/radio_help_message(mob/M)

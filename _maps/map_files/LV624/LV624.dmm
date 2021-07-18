@@ -17369,6 +17369,12 @@
 	dir = 1
 	},
 /area/lv624/ground/jungle2)
+"wux" = (
+/obj/machinery/colony_floodlight_switch{
+	pixel_x = 32
+	},
+/turf/open/floor/plating,
+/area/lv624/lazarus/engineering)
 "wvF" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /obj/structure/jungle/vines,
@@ -33335,8 +33341,8 @@ blo
 xSy
 blj
 vTg
-xSy
-bqo
+wux
+pkq
 blj
 wit
 dmG

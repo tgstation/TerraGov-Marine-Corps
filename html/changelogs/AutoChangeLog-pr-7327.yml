@@ -1,4 +1,0 @@
-author: "Pariah919"
-delete-after: True
-changes: 
-  - balance: "silo collaspe takes 45 minutes from roundstart to begin happening, rather than an hour"
