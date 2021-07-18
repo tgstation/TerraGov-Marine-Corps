@@ -311,10 +311,10 @@
 	desc="A military knife designed to be thrown at the enemy. Much quieter than a firearm, but requires a steady hand to be used effectively."
 	flags_atom = CONDUCT
 	sharp = IS_SHARP_ITEM_ACCURATE
-	force = 10
+	force = 20
 	w_class = WEIGHT_CLASS_TINY
 	throwforce = 35
-	throw_speed = 4
+	throw_speed = 5
 	throw_range = 7
 	hitsound = 'sound/weapons/slash.ogg'
 	attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")

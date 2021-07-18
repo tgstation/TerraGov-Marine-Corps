@@ -321,7 +321,6 @@
 	storage_slots = 1
 	can_hold = list(
 		/obj/item/ammo_magazine/standard_smartmachinegun,
-		/obj/item/ammo_magazine/minigun,
 	)
 
 
@@ -427,6 +426,20 @@
 	new /obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/polyhexanide(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/sleeptoxin(src)
+
+/obj/item/storage/pouch/med_lolipops
+	name = "medical pouch"
+	desc = "It's able to contain boxes of lolipops, nothing else."
+	icon_state = "medical"
+	storage_slots = 3
+
+	can_hold = list(/obj/item/storage/box/combat_lolipop,)
+
+/obj/item/storage/pouch/med_lolipops/full/Initialize()
+	. = ..()
+	new /obj/item/storage/box/combat_lolipop(src)
+	new /obj/item/storage/box/combat_lolipop/tricord(src)
+	new /obj/item/storage/box/combat_lolipop/tramadol(src)
 
 /obj/item/storage/pouch/autoinjector/advanced
 	name = "auto-injector pouch"

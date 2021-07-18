@@ -101,15 +101,18 @@
 	var/mob/living/carbon/xenomorph/Defiler/X = owner
 	set waitfor = FALSE
 	var/smoke_range = 2
-	var/datum/effect_system/smoke_spread/xeno/neuro/medium/N = new(X)
-	N.strength = 1
-	if(X.selected_reagent == /datum/reagent/toxin/xeno_hemodile)
-		N.smoke_type = /obj/effect/particle_effect/smoke/xeno/hemodile
-		smoke_range = 3
-	else if(X.selected_reagent == /datum/reagent/toxin/xeno_transvitox)
-		N.smoke_type = /obj/effect/particle_effect/smoke/xeno/transvitox
-		N.strength = 0.75
-		smoke_range = 4
+	var/datum/effect_system/smoke_spread/xeno/gas
+
+	switch(X.selected_reagent)
+		if(/datum/reagent/toxin/xeno_neurotoxin)
+			gas = new /datum/effect_system/smoke_spread/xeno/neuro/medium(X)
+		if(/datum/reagent/toxin/xeno_hemodile)
+			gas = new /datum/effect_system/smoke_spread/xeno/hemodile(X)
+			smoke_range = 3
+		if(/datum/reagent/toxin/xeno_transvitox)
+			gas = new /datum/effect_system/smoke_spread/xeno/transvitox(X)
+			smoke_range = 4
+
 	while(count)
 		if(X.stagger) //If we got staggered, return
 			to_chat(X, span_xenowarning("We try to emit toxins but are staggered!"))
@@ -120,10 +123,10 @@
 		var/turf/T = get_turf(X)
 		playsound(T, 'sound/effects/smoke.ogg', 25)
 		if(count > 1)
-			N.set_up(smoke_range, T)
+			gas.set_up(smoke_range, T)
 		else //last emission is larger
-			N.set_up(CEILING(smoke_range*1.3,1), T)
-		N.start()
+			gas.set_up(CEILING(smoke_range*1.3,1), T)
+		gas.start()
 		T.visible_message(span_danger("Noxious smoke billows from the hulking xenomorph!"))
 		count = max(0,count - 1)
 		sleep(DEFILER_GAS_DELAY)
@@ -133,9 +136,9 @@
 // *********** Inject Egg Neurogas
 // ***************************************
 /datum/action/xeno_action/activable/inject_egg_neurogas
-	name = "Inject Neurogas"
+	name = "Inject Gas"
 	action_icon_state = "inject_egg"
-	mechanics_text = "Inject an egg with neurogas, killing the egg, but filling it full with neurogas ready to explode."
+	mechanics_text = "Inject an egg with toxins, killing the larva, but filling it full with gas ready to explode."
 	ability_name = "inject neurogas"
 	plasma_cost = 100
 	cooldown_timer = 5 SECONDS
@@ -144,13 +147,17 @@
 
 /datum/action/xeno_action/activable/inject_egg_neurogas/on_cooldown_finish()
 	playsound(owner.loc, 'sound/effects/xeno_newlarva.ogg', 50, 0)
-	to_chat(owner, span_xenodanger("We feel our dorsal vents bristle with neurotoxic gas. We can use Emit Neurogas again."))
+	to_chat(owner, span_xenodanger("We feel our stinger fill with toxins. We can inject an egg with gas again."))
 	return ..()
 
 /datum/action/xeno_action/activable/inject_egg_neurogas/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/Defiler/X = owner
 
 	if(!istype(A, /obj/effect/alien/egg))
+		return fail_activate()
+
+	if(istype(A, /obj/effect/alien/egg/gas))
+		to_chat(X, "<span class='warning'>That egg has already been filled with toxic gas.</span>")
 		return fail_activate()
 
 	var/obj/effect/alien/egg/alien_egg = A
@@ -168,7 +175,16 @@
 	succeed_activate()
 	add_cooldown()
 
-	new /obj/effect/alien/egg/gas(A.loc)
+	var/obj/effect/alien/egg/gas/newegg = new(A.loc)
+	switch(X.selected_reagent)
+		if(/datum/reagent/toxin/xeno_neurotoxin)
+			newegg.gas_type = /datum/effect_system/smoke_spread/xeno/neuro/medium
+		if(/datum/reagent/toxin/xeno_hemodile)
+			newegg.gas_type = /datum/effect_system/smoke_spread/xeno/hemodile
+			newegg.gas_size_bonus = 1
+		if(/datum/reagent/toxin/xeno_transvitox)
+			newegg.gas_type = /datum/effect_system/smoke_spread/xeno/transvitox
+			newegg.gas_size_bonus = 2
 	qdel(alien_egg)
 
 	GLOB.round_statistics.defiler_inject_egg_neurogas++

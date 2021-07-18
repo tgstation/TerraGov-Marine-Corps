@@ -335,7 +335,7 @@
 			/obj/item/ammo_magazine/rifle/autosniper = 3,
 			/obj/item/ammo_magazine/rifle/tx8 = 3,
 			/obj/item/ammo_magazine/rocket/sadar = 3,
-			/obj/item/ammo_magazine/minigun = 2,
+			/obj/item/minigun_powerpack = 2,
 			/obj/item/ammo_magazine/shotgun/mbx900 = 2,
 			/obj/item/bodybag/tarp = 2,
 			/obj/item/explosive/plastique = 2,
@@ -715,7 +715,7 @@
 	products = list(
 		/obj/item/clothing/tie/storage/webbing = 1,
 		/obj/item/storage/box/t26_system = 1,
-		/obj/item/smartgun_powerpack = 1,
+		/obj/item/minigun_powerpack = 1,
 		/obj/item/storage/pouch/magazine/large = 1,
 		/obj/item/clothing/mask/gas = 1,
 	)
@@ -828,6 +828,12 @@
 
 	prices = list()
 
+/obj/machinery/vending/armor_supply/loyalist
+	faction = FACTION_TERRAGOV
+
+/obj/machinery/vending/armor_supply/rebel
+	faction = FACTION_TERRAGOV_REBEL
+
 /obj/machinery/vending/uniform_supply
 	name = "\improper Surplus Clothing Vendor"
 	desc = "A automated equipment rack hooked up to a colossal storage of clothing and accessories."
@@ -885,6 +891,7 @@
 			/obj/item/storage/pouch/firstaid = -1,
 			/obj/item/storage/pouch/syringe = -1,
 			/obj/item/storage/pouch/medkit = -1,
+			/obj/item/storage/pouch/med_lolipops = -1,
 			/obj/item/storage/pouch/autoinjector = -1,
 			/obj/item/storage/pouch/construction = -1,
 			/obj/item/storage/pouch/electronics/full = -1,

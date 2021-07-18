@@ -245,7 +245,6 @@
 		/obj/item/explosive/mine,
 		/obj/item/weapon/combat_knife,
 		/obj/item/attachable/bayonetknife,
-		/obj/item/weapon/gun/smartgun,
 		/obj/item/weapon/gun/rifle/standard_smartmachinegun,
 		/obj/item/storage/belt/sparepouch,
 	)

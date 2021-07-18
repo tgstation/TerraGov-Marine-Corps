@@ -66,6 +66,7 @@ SUBSYSTEM_DEF(ticker)
 			to_chat(world, span_round_body("Welcome to the pre-game lobby of [CONFIG_GET(string/server_name)]!"))
 			to_chat(world, span_role_body("Please, setup your character and select ready. Game will start in [round(time_left / 10) || CONFIG_GET(number/lobby_countdown)] seconds."))
 			current_state = GAME_STATE_PREGAME
+			to_chat(world, SSpersistence.seasons_info_message())
 			fire()
 
 		if(GAME_STATE_PREGAME)

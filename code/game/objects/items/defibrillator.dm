@@ -278,6 +278,10 @@
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "total_human_revives")
 	to_chat(H, span_notice("You suddenly feel a spark and your consciousness returns, dragging you back to the mortal plane."))
 
+	if(CHECK_BITFIELD(H.status_flags, XENO_HOST))
+		var/obj/item/alien_embryo/friend = locate() in H
+		START_PROCESSING(SSobj, friend)
+
 	notify_ghosts("<b>[user]</b> has brought <b>[H.name]</b> back to life!", source = H, action = NOTIFY_ORBIT)
 
 /obj/item/defibrillator/civi

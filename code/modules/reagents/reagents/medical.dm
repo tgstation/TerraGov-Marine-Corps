@@ -1153,3 +1153,33 @@
 	color = "#66801e"
 	taste_description = "piss"
 
+/datum/reagent/medicine/bihexajuline
+	name = "Bihexajuline"
+	description = "Accelerates natural bone repair in a low temperature environment. Causes severe pain."
+	color = "#DFDFDF"
+	taste_description = "skim milk"
+	scannable = TRUE
+	overdose_threshold = REAGENTS_OVERDOSE
+
+/datum/reagent/medicine/bihexajuline/on_mob_life(mob/living/L, metabolism)
+	. = ..()
+	if(!ishuman(L))
+		return
+	var/mob/living/carbon/human/host = L
+	host.reagent_shock_modifier -= PAIN_REDUCTION_VERY_HEAVY //oof ow ouch
+	if(host.bodytemperature < 170)
+		for(var/datum/limb/limb_to_fix AS in host.limbs)
+			if(limb_to_fix.limb_status & (LIMB_BROKEN | LIMB_SPLINTED | LIMB_STABILIZED))
+				limb_to_fix.remove_limb_flags(LIMB_BROKEN | LIMB_SPLINTED | LIMB_STABILIZED)
+				limb_to_fix.add_limb_flags(LIMB_REPAIRED)
+				break
+
+/datum/reagent/medicine/bihexajuline/overdose_process(mob/living/L, metabolism)
+	if(!ishuman(L))
+		return
+	var/mob/living/carbon/human/host = L
+	for(var/datum/limb/limb_to_unfix AS in host.limbs)
+		if(limb_to_unfix.limb_status & (LIMB_BROKEN | LIMB_SPLINTED | LIMB_STABILIZED | LIMB_DESTROYED | LIMB_AMPUTATED))
+			continue
+		limb_to_unfix.fracture()
+		break

@@ -1960,8 +1960,6 @@
 /area/mainship/hallways/hangar)
 "aCs" = (
 /obj/structure/closet/secure_closet/securecom,
-/obj/item/weapon/gun/smartgun,
-/obj/item/smartgun_powerpack/fancy,
 /obj/item/clothing/suit/storage/marine/smartgunner/fancy,
 /obj/machinery/camera/autoname/mainship{
 	dir = 1
