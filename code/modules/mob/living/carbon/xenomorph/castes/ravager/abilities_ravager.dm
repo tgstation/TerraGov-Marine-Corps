@@ -298,7 +298,7 @@
 			charge.clear_cooldown() //Reset charge cooldown
 		if(ravage)
 			ravage.clear_cooldown() //Reset ravage cooldown
-		RegisterSignal(X, COMSIG_XENOMORPH_ATTACK_LIVING, .proc/drain_slash) //We can now regain HP by dealing damage
+		RegisterSignal(X, COMSIG_XENOMORPH_ATTACK_LIVING, .proc/drain_slash)
 
 	for(var/turf/affected_tiles AS in RANGE_TURFS(rage_power_radius, X.loc))
 		affected_tiles.Shake(4, 4, 1 SECONDS) //SFX
@@ -356,8 +356,6 @@
 ///Warns the user when his rage is about to end.
 /datum/action/xeno_action/rage/proc/drain_slash(datum/source, mob/living/target, damage, list/damage_mod, list/armor_mod)
 	SIGNAL_HANDLER
-	if(!target) //Sanity
-		return
 	var/mob/living/rager = owner
 	var/brute_damage = rager.getBruteLoss()
 	var/burn_damage = rager.getFireLoss()
@@ -393,7 +391,7 @@
 	REMOVE_TRAIT(X, TRAIT_STUNIMMUNE, RAGE_TRAIT)
 	REMOVE_TRAIT(X, TRAIT_SLOWDOWNIMMUNE, RAGE_TRAIT)
 	REMOVE_TRAIT(X, TRAIT_STAGGERIMMUNE, RAGE_TRAIT)
-	UnregisterSignal(X, COMSIG_XENOMORPH_ATTACK_LIVING) //unregister the signals; party's over
+	UnregisterSignal(X, COMSIG_XENOMORPH_ATTACK_LIVING)
 
 	rage_sunder = 0
 	rage_power = 0
