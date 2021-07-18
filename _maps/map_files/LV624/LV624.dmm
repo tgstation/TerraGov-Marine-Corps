@@ -14515,7 +14515,7 @@
 	dir = 2
 	},
 /turf/open/ground/grass,
-/area/lv624/ground/jungle4)
+/area/lv624/lazarus/atmos)
 "jyv" = (
 /obj/structure/fence,
 /turf/open/floor/plating/ground/dirt,
