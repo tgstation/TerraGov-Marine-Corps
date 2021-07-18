@@ -56,7 +56,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	owner.remove_filter("wraith_hyperposition_windup_filter_2")
 
 	var/turf/T = get_turf(ghost)
-	ghost.visible_message("<span class='xenonotice'>\A shimmering point suddenly coalesces from the warped space above [T].</span>", \
+	ghost.visible_message("<span class='xenonotice'>A shimmering point suddenly coalesces from the warped space above [T].</span>", \
 	"<span class='xenodanger'>We complete our work, binding our essence to this point.</span>", null, 5) //Fluff
 	var/obj/effect/xenomorph/warp_shadow/shadow = new(T) //Create the new warp shadow.
 	playsound(T, 'sound/weapons/emitter.ogg', 25, 1)

@@ -91,7 +91,8 @@
 	remove_danger_overlay() //Remove the danger overlay
 	lifetimer = null
 	jumptimer = null
-	clear_hugger_source()
+	if(source)
+		clear_hugger_source()
 
 /obj/item/clothing/mask/facehugger/update_icon()
 	if(stat == DEAD)
@@ -764,8 +765,8 @@
 	color = COLOR_RED
 	combat_hugger = TRUE
 	impact_time = 0.5 SECONDS
-	activate_time = 1.5 SECONDS
-	jump_cooldown = 1.5 SECONDS
+	activate_time = 1.2 SECONDS
+	jump_cooldown = 1.2 SECONDS
 	proximity_time = 0.5 SECONDS
 
 /obj/item/clothing/mask/facehugger/slash/Attach(mob/M)

@@ -282,6 +282,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 
 	if(newloc)
 		forceMove(newloc)
+		update_parallax_contents()
 	else
 		forceMove(get_turf(src))  //Get out of closets and such as a ghost
 		if((direct & NORTH) && y < world.maxy)
@@ -433,6 +434,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 		return
 
 	forceMove(pick(get_area_turfs(A)))
+	update_parallax_contents()
 
 
 /mob/dead/observer/verb/follow_ghost()

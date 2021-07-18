@@ -221,6 +221,12 @@ WEAPONS
 	cost = 50
 	available_against_xeno_only = TRUE
 
+/datum/supply_packs/weapons/thermobaric
+	name = "T-57 Thermobaric"
+	contains = list(/obj/item/weapon/gun/launcher/rocket/m57a4/t57)
+	cost = 50
+	available_against_xeno_only = TRUE
+
 /datum/supply_packs/weapons/specdemo
 	name = "Demolitionist Specialist kit"
 	contains = list(/obj/item/weapon/gun/launcher/rocket/sadar)
@@ -534,6 +540,12 @@ AMMO
 	cost = 7
 	available_against_xeno_only = TRUE
 
+/datum/supply_packs/ammo/thermobaric
+	name = "T-57 WP rocket array"
+	contains = list(/obj/item/ammo_magazine/rocket/m57a4)
+	cost = 5
+	available_against_xeno_only = TRUE
+
 /datum/supply_packs/ammo/shell_regular
 	name = "T-160 RR HE shell"
 	contains = list(/obj/item/ammo_magazine/rocket/recoilless)
@@ -556,7 +568,7 @@ AMMO
 	contains = list(/obj/item/ammo_magazine/rifle/standard_smartrifle)
 	cost = 2
 
-/datum/supply_packs/ammo/smartrifle
+/datum/supply_packs/ammo/smartrifle_pack
 	name = "T-25 smartrifle ammo box"
 	notes = "Contains a box with 200 rounds for a T-25 (MAGAZINES SOLD SEPERATELY)"
 	contains = list(/obj/item/ammo_magazine/packet/t25)
@@ -624,8 +636,8 @@ AMMO
 	cost = 2
 
 /datum/supply_packs/ammo/minigun
-	name = "Vindicator Minigun Ammo Drum"
-	contains = list(/obj/item/ammo_magazine/minigun)
+	name = "Minigun Powerpack"
+	contains = list(/obj/item/minigun_powerpack)
 	cost = 5
 	available_against_xeno_only = TRUE
 
@@ -650,6 +662,11 @@ ARMOR
 /datum/supply_packs/armor/masks
 	name = "SWAT protective mask"
 	contains = list(/obj/item/clothing/mask/gas/swat)
+	cost = 5
+
+/datum/supply_packs/armor/imager_goggle
+	name = "Optical Imager Goggles"
+	contains = list(/obj/item/clothing/glasses/night/imager_goggles)
 	cost = 5
 
 /datum/supply_packs/armor/riot

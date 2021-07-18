@@ -165,7 +165,7 @@ should be alright.
 	if(!ishuman(user))
 		return FALSE
 	var/mob/living/carbon/human/owner = user
-	if(!has_attachment(/obj/item/attachable/magnetic_harness) && !istype(src,/obj/item/weapon/gun/smartgun))
+	if(!has_attachment(/obj/item/attachable/magnetic_harness))
 		var/obj/item/B = owner.belt	//if they don't have a magharness, are they wearing a harness belt?
 		if(!istype(B, /obj/item/belt_harness))
 			return FALSE
@@ -931,7 +931,6 @@ should be alright.
 		user.overlays -= aim_mode_visual
 		DISABLE_BITFIELD(flags_gun_features, GUN_IS_AIMING)
 		user.remove_movespeed_modifier(MOVESPEED_ID_AIM_MODE_SLOWDOWN)
-		gun_iff_signal = null
 		modify_fire_delay(-aim_fire_delay)
 		to_chat(user, "<span class='notice'>You cease aiming.</b></span>")
 		return
@@ -952,8 +951,6 @@ should be alright.
 	user.overlays += aim_mode_visual
 	ENABLE_BITFIELD(flags_gun_features, GUN_IS_AIMING)
 	user.add_movespeed_modifier(MOVESPEED_ID_AIM_MODE_SLOWDOWN, TRUE, 0, NONE, TRUE, aim_speed_modifier)
-	var/obj/item/card/id/C = user.wear_id
-	gun_iff_signal = C.access
 	modify_fire_delay(aim_fire_delay)
 	to_chat(user, "<span class='notice'>You line up your aim, allowing you to shoot past allies.</b></span>")
 
@@ -978,9 +975,13 @@ should be alright.
 /// Signal handler to unload that gun if it's in our active hand
 /obj/item/weapon/gun/proc/unload_gun()
 	SIGNAL_HANDLER
-	if(gun_user?.get_active_held_item() != src)
-		return
 	unload(gun_user)
+	return COMSIG_KB_ACTIVATED
+
+/// Signal handler to toggle the safety of the gun
+/obj/item/weapon/gun/proc/toggle_gun_safety_keybind()
+	SIGNAL_HANDLER
+	toggle_gun_safety()
 	return COMSIG_KB_ACTIVATED
 
 //----------------------------------------------------------

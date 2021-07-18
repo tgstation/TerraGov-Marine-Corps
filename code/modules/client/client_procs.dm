@@ -380,6 +380,10 @@
 	GLOB.clients -= src
 	seen_messages = null
 	QDEL_LIST_ASSOC_VAL(char_render_holders)
+	if(movingmob != null)
+		movingmob.client_mobs_in_contents -= mob
+		UNSETEMPTY(movingmob.client_mobs_in_contents)
+		movingmob = null
 	QDEL_NULL(tooltips)
 	Master.UpdateTickRate()
 	SSambience.ambience_listening_clients -= src

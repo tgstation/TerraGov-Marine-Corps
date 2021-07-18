@@ -228,7 +228,8 @@
 	req_one_access = list(ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_ENGPREP, ACCESS_MARINE_LEADER)
 	hud_possible = list(MACHINE_HEALTH_HUD, SENTRY_AMMO_HUD)
 	var/turret_flags = TURRET_HAS_CAMERA|TURRET_SAFETY|TURRET_ALERTS
-	var/list/iff_signal = list(ACCESS_IFF_MARINE)
+	/// The iff bitfield used to determine friendlies from hostiles
+	var/iff_signal = NONE
 	var/rounds = 500
 	var/rounds_max = 500
 	var/burst_size = 5
@@ -497,6 +498,8 @@
 				target = null
 				ENABLE_BITFIELD(turret_flags, TURRET_ON)
 				set_light(SENTRY_LIGHT_POWER)
+				var/obj/item/card/id/id = user.get_idcard()
+				iff_signal = id?.iff_signal
 				if(!camera && CHECK_BITFIELD(turret_flags, TURRET_HAS_CAMERA))
 					camera = new /obj/machinery/camera(src)
 					camera.network = list("military")
@@ -954,7 +957,7 @@
 	proj_to_fire.original_target = target
 	proj_to_fire.setDir(dir)
 	proj_to_fire.def_zone = pick("chest", "chest", "chest", "head")
-	proj_to_fire.projectile_iff = iff_signal
+	proj_to_fire.iff_signal = iff_signal
 
 	//Shoot at the thing
 	playsound(loc, 'sound/weapons/guns/fire/smg_heavy.ogg', 75, TRUE)
@@ -1010,16 +1013,10 @@
 			continue
 		if(CHECK_BITFIELD(turret_flags, TURRET_SAFETY) && !isxeno(M)) //When safeties are on, Xenos only.
 			continue
-		/*
-		I really, really need to replace this with some that isn't insane. You shouldn't have to fish for access like this.
-		This should be enough shortcircuiting, but it is possible for the code to go all over the possibilities and generally
-		slow down. It'll serve for now.
-		*/
+
 		var/mob/living/carbon/human/H = M
-		if(istype(H) && H.get_target_lock(iff_signal))
+		if(istype(H) && H.wear_id.iff_signal & iff_signal)
 			continue
-
-
 
 		var/angle = get_dir(src, M)
 		if(angle & dir || CHECK_BITFIELD(turret_flags, TURRET_RADIAL))
@@ -1063,6 +1060,7 @@
 	rounds_max = 50000
 	icon_state = "sentry_base"
 	initial_cell_type = /obj/item/cell/super
+	iff_signal = TGMC_LOYALIST_IFF
 
 /obj/machinery/marine_turret/premade/Initialize()
 	. = ..()
@@ -1071,7 +1069,7 @@
 /obj/machinery/marine_turret/premade/dumb
 	name = "\improper Modified UA 571-C sentry gun"
 	desc = "A deployable, semi-automated turret with AI targeting capabilities. Armed with an M30 Autocannon and a 500-round drum magazine. This one's IFF system has been disabled, and it will open fire on any targets within range."
-	iff_signal = null
+	iff_signal = NONE
 	ammo = /datum/ammo/bullet/turret/dumb
 	magazine_type = /obj/item/ammo_magazine/sentry/premade/dumb
 	rounds_max = 500
@@ -1110,6 +1108,7 @@
 	name = "malfunctioning UA 571-C sentry gun"
 	desc = "Oh god oh fuck."
 	turret_flags = TURRET_LOCKED|TURRET_ON|TURRET_BURSTFIRE|TURRET_IMMOBILE
+	iff_signal = SON_OF_MARS_IFF
 
 /obj/machinery/marine_turret/premade/dumb/hostile/attack_hand(mob/living/user)
 	to_chat(user,"<span class='warning'>\The [src.name] refuses to cooperate!</span>")

@@ -166,11 +166,13 @@
 			/obj/item/weapon/powerfist = -1,
 			/obj/item/weapon/throwing_knife = -1,
 			/obj/item/weapon/combat_knife = -1,
+			/obj/item/weapon/twohanded/spear/tactical = -1,
 			/obj/item/ammo_magazine/standard_smartmachinegun = 4,
 		),
 		"Grenades" = list(
 			/obj/item/explosive/grenade/frag = 600,
 			/obj/item/explosive/grenade/frag/m15 = 30,
+			/obj/item/explosive/grenade/impact = 125,
 			/obj/item/explosive/grenade/incendiary = 50,
 			/obj/item/explosive/grenade/cloakbomb = 25,
 			/obj/item/explosive/grenade/drainbomb = 10,
@@ -333,7 +335,7 @@
 			/obj/item/ammo_magazine/rifle/autosniper = 3,
 			/obj/item/ammo_magazine/rifle/tx8 = 3,
 			/obj/item/ammo_magazine/rocket/sadar = 3,
-			/obj/item/ammo_magazine/minigun = 2,
+			/obj/item/minigun_powerpack = 2,
 			/obj/item/ammo_magazine/shotgun/mbx900 = 2,
 			/obj/item/bodybag/tarp = 2,
 			/obj/item/explosive/plastique = 2,
@@ -346,6 +348,7 @@
 		),
 		"Grenade Boxes" = list(
 			/obj/item/storage/box/visual/grenade/frag = 2,
+			/obj/item/storage/box/visual/grenade/impact = 2,
 			/obj/item/storage/box/visual/grenade/incendiary = 2,
 			/obj/item/storage/box/visual/grenade/M15 = 2,
 			/obj/item/storage/box/visual/grenade/drain = 1,
@@ -588,8 +591,6 @@
 			/obj/item/reagent_containers/hypospray/autoinjector/hypervene = 16,
 			/obj/item/reagent_containers/hypospray/autoinjector/isotonic = 16,
 			/obj/item/reagent_containers/hypospray/autoinjector/quickclot = 16,
-			/obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus = 0,
-			/obj/item/reagent_containers/hypospray/autoinjector/quickclotplus = 0,
 			/obj/item/reagent_containers/hypospray/autoinjector/synaptizine = 0,
 		),
 		"Heal Pack" = list(
@@ -680,62 +681,6 @@
 /obj/machinery/vending/marine_medic/rebel
 	req_access = list(ACCESS_MARINE_MEDPREP_REBEL)
 
-/obj/machinery/vending/marine_special
-	name = "\improper TerraGovTech Specialist Vendor"
-	desc = "A marine specialist equipment vendor"
-	product_ads = "If it moves, it's hostile!;How many enemies have you killed today?;Shoot first, perform autopsy later!;Your ammo is right here.;Guns!;Die, scumbag!;Don't shoot me bro!;Shoot them, bro.;Why not have a donut?"
-	req_access = list(ACCESS_MARINE_SPECPREP)
-	icon_state = "specialist"
-	icon_deny = "specialist-deny"
-	wrenchable = FALSE
-	tokensupport = TOKEN_SPEC
-
-	products = list(
-		/obj/item/coin/marine/specialist = 1,
-		/obj/item/clothing/tie/storage/webbing = 1,
-		/obj/item/explosive/plastique = 2,
-		/obj/item/explosive/grenade/frag = 2,
-		/obj/item/explosive/grenade/incendiary = 2,
-		/obj/item/storage/pouch/magazine/large = 1,
-		/obj/item/storage/pouch/general/medium = 1,
-		/obj/item/clothing/mask/gas = 1,
-	)
-	contraband = list()
-	premium = list(
-		/obj/item/storage/box/spec/demolitionist = 1,
-		/obj/item/storage/box/spec/heavy_grenadier = 1,
-		/obj/item/storage/box/m42c_system = 1,
-		/obj/item/storage/box/m42c_system_Jungle = 1,
-		/obj/item/storage/box/spec/pyro = 1,
-		/obj/item/storage/box/spec/tracker = 1,
-	)
-	prices = list()
-
-
-/obj/machinery/vending/shared_vending/marine_special
-	name = "\improper TerraGovTech Specialist Vendor"
-	desc = "A marine specialist equipment vendor"
-	product_ads = "If it moves, it's hostile!;How many enemies have you killed today?;Shoot first, perform autopsy later!;Your ammo is right here.;Guns!;Die, scumbag!;Don't shoot me bro!;Shoot them, bro.;Why not have a donut?"
-	req_access = list(ACCESS_MARINE_SPECPREP)
-	icon_state = "specialist"
-	icon_deny = "specialist-deny"
-	wrenchable = FALSE
-	tokensupport = TOKEN_SPEC
-	isshared = TRUE
-
-	products = list(
-		/obj/item/storage/box/spec/demolitionist = 1,
-		/obj/item/storage/box/spec/heavy_grenadier = 1,
-		/obj/item/storage/box/spec/sniper = 1,
-		/obj/item/storage/box/spec/scout = 1,
-		/obj/item/storage/box/spec/pyro = 1,
-		/obj/item/storage/box/spec/tracker = 1,)
-	contraband = list()
-	premium = list()
-
-	prices = list()
-
-
 /obj/machinery/vending/shared_vending/marine_engi
 	name = "\improper TerraGovTech Engineer System Vendor"
 	desc = "A marine engineering system vendor"
@@ -770,7 +715,7 @@
 	products = list(
 		/obj/item/clothing/tie/storage/webbing = 1,
 		/obj/item/storage/box/t26_system = 1,
-		/obj/item/smartgun_powerpack = 1,
+		/obj/item/minigun_powerpack = 1,
 		/obj/item/storage/pouch/magazine/large = 1,
 		/obj/item/clothing/mask/gas = 1,
 	)
@@ -883,6 +828,12 @@
 
 	prices = list()
 
+/obj/machinery/vending/armor_supply/loyalist
+	faction = FACTION_TERRAGOV
+
+/obj/machinery/vending/armor_supply/rebel
+	faction = FACTION_TERRAGOV_REBEL
+
 /obj/machinery/vending/uniform_supply
 	name = "\improper Surplus Clothing Vendor"
 	desc = "A automated equipment rack hooked up to a colossal storage of clothing and accessories."
@@ -940,6 +891,7 @@
 			/obj/item/storage/pouch/firstaid = -1,
 			/obj/item/storage/pouch/syringe = -1,
 			/obj/item/storage/pouch/medkit = -1,
+			/obj/item/storage/pouch/med_lolipops = -1,
 			/obj/item/storage/pouch/autoinjector = -1,
 			/obj/item/storage/pouch/construction = -1,
 			/obj/item/storage/pouch/electronics/full = -1,

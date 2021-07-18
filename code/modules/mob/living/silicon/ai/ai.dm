@@ -34,7 +34,7 @@
 	var/icon/holo_icon //Default is assigned when AI is created.
 	var/list/datum/AI_Module/current_modules = list()
 
-	var/level_locked = TRUE
+	var/level_locked = FALSE	//Can the AI use things on other Z levels?
 	var/control_disabled = FALSE
 	var/radiomod = ";"
 	var/list/laws
@@ -54,7 +54,7 @@
 	builtInCamera = new(src)
 	builtInCamera.network = list("marinemainship")
 
-	holo_icon = getHologramIcon(icon('icons/mob/AI.dmi', "holo1"))
+	holo_icon = getHologramIcon(icon('icons/mob/AI.dmi', "default"))
 
 	laws = list()
 	laws += "Safeguard: Protect your assigned vessel from damage to the best of your abilities."
