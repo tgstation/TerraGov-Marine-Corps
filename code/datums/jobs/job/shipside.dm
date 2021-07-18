@@ -619,7 +619,7 @@ A happy ship is a well-functioning ship."})
 	title = CHIEF_MEDICAL_OFFICER
 	req_admin_notify = TRUE
 	comm_title = "CMO"
-	paygrade = "O3"
+	paygrade = "CHO"
 	total_positions = 1
 	supervisors = "the acting captain"
 	selection_color = "#99FF99"
@@ -641,7 +641,7 @@ A happy ship is a well-functioning ship."})
 		<b>You answer to the</b> acting Command Staff<br /><br />
 		<b>Unlock Requirement</b>: Starting Role<br /><br />
 		<b>Gamemode Availability</b>: Crash, Distress<br /><br /><br />
-		<b>Duty</b>: Communicate and lead your fellow medical officers (if available), supervise the medical department. Coordinate and teach fellow medical officers and corpsmen what they’re doing for treating an injury. Be the sole doctor in the Canterbury.
+		<b>Duty</b>: Communicate and lead your fellow medical staff (if available), supervise the medical department. Coordinate and teach fellow medical officers and corpsmen what they’re doing for treating an injury. Be the sole doctor in the Canterbury.
 	"}
 
 /datum/job/terragov/medical/professor/rebel
@@ -662,6 +662,19 @@ A happy ship is a well-functioning ship."})
 You have final authority over the medical department, medications, and treatments.
 Make sure that the doctors and nurses are doing their jobs and keeping the marines healthy and strong."})
 
+/datum/job/terragov/medical/professor/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)
+	. = ..()
+	if(!ishuman(new_mob))
+		return
+	var/mob/living/carbon/human/new_human = new_mob
+	var/playtime_mins = user?.client?.get_exp(title)
+	if(!playtime_mins || playtime_mins < 1 )
+		return
+	switch(playtime_mins)
+		if(0 to 3000) // starting
+			new_human.wear_id.paygrade = "CHO"
+		if(3001 to INFINITY) // 50 hrs
+			new_human.wear_id.paygrade = "CMO"
 
 /datum/outfit/job/medical/professor
 	name = CHIEF_MEDICAL_OFFICER
@@ -692,9 +705,9 @@ Make sure that the doctors and nurses are doing their jobs and keeping the marin
 
 //Medical Officer
 /datum/job/terragov/medical/medicalofficer
-	title = MEDICAL_OFFICER
-	comm_title = "MO"
-	paygrade = "O1"
+	title = MEDICAL_DOCTOR
+	comm_title = "MD"
+	paygrade = "RES"
 	total_positions = 6
 	supervisors = "the chief medical officer"
 	access = list(ACCESS_MARINE_MEDBAY, ACCESS_MARINE_CHEMISTRY)
@@ -736,12 +749,10 @@ Make sure that the doctors and nurses are doing their jobs and keeping the marin
 	if(!playtime_mins || playtime_mins < 1 )
 		return
 	switch(playtime_mins)
-		if(0 to 1500) // starting
-			new_human.wear_id.paygrade = "O1"
-		if(1501 to 3000) // 25 hrs
-			new_human.wear_id.paygrade = "O2"
+		if(0 to 3000) // starting
+			new_human.wear_id.paygrade = "RES"
 		if(3001 to INFINITY) // 50 hrs
-			new_human.wear_id.paygrade = "O3"
+			new_human.wear_id.paygrade = "MD"
 
 /datum/job/terragov/medical/medicalofficer/radio_help_message(mob/M)
 	. = ..()
@@ -751,7 +762,7 @@ You are also an expert when it comes to medication and treatment. If you do not 
 
 
 /datum/outfit/job/medical/medicalofficer
-	name = MEDICAL_OFFICER
+	name = MEDICAL_DOCTOR
 	jobtype = /datum/job/terragov/medical/medicalofficer
 
 	id = /obj/item/card/id
@@ -820,6 +831,20 @@ You are also an expert when it comes to medication and treatment. If you do not 
 You are tasked with researching and developing new medical treatments, weapons, conducting xenomorph studies, and learning new things.
 Your role involves some roleplaying and gimmickry, but you can perform the function of a regular doctor.
 While the Corporate Liaison is not your boss, it would be wise to consult them on your findings or ask to use their NT fax machine."})
+
+/datum/job/terragov/medical/researcher/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)
+	. = ..()
+	if(!ishuman(new_mob))
+		return
+	var/mob/living/carbon/human/new_human = new_mob
+	var/playtime_mins = user?.client?.get_exp(title)
+	if(!playtime_mins || playtime_mins < 1 )
+		return
+	switch(playtime_mins)
+		if(0 to 3000) // starting
+			new_human.wear_id.paygrade = "CD"
+		if(3001 to INFINITY) // 50 hrs
+			new_human.wear_id.paygrade = "PROF"
 
 
 /datum/outfit/job/medical/researcher
