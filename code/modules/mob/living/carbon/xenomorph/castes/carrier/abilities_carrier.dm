@@ -7,10 +7,10 @@
 //List of huggie types
 GLOBAL_LIST_INIT(hugger_type_list, list(
 		/obj/item/clothing/mask/facehugger/larval,
-		/obj/item/clothing/mask/facehugger/slash,
-		/obj/item/clothing/mask/facehugger/neuro,
-		/obj/item/clothing/mask/facehugger/acid,
-		/obj/item/clothing/mask/facehugger/resin,
+		/obj/item/clothing/mask/facehugger/combat/slash,
+		/obj/item/clothing/mask/facehugger/combat/neuro,
+		/obj/item/clothing/mask/facehugger/combat/acid,
+		/obj/item/clothing/mask/facehugger/combat/resin,
 		))
 
 //List of huggie images
