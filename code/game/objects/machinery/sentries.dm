@@ -1014,6 +1014,9 @@
 		if(CHECK_BITFIELD(turret_flags, TURRET_SAFETY) && !isxeno(M)) //When safeties are on, Xenos only.
 			continue
 
+		if(CHECK_BITFIELD(SEND_SIGNAL(M, COMSIG_MOB_TURRET_TARGETTED), COMSIG_MOB_TURRET_HIDDEN))
+			continue
+
 		var/mob/living/carbon/human/H = M
 		if(istype(H) && H.wear_id.iff_signal & iff_signal)
 			continue
