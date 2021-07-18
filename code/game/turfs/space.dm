@@ -87,3 +87,12 @@
 		to_chat(AM, "<span class='danger'>The cold vacuum instantly freezes you, maybe this was a bad idea?</span>")
 		var/mob/living/spaceman = AM
 		spaceman.adjustFireLoss(600) //Death. Space shouldn't be entered.
+
+
+/turf/open/space/sea //used on prison for flavor
+	icon = 'icons/misc/beach.dmi'
+	name = "sea"
+	icon_state = "seadeep"
+
+/turf/open/space/sea/update_icon_state()
+	return

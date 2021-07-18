@@ -10,6 +10,10 @@
 	var/keybind_signal
 	var/cooldown_id
 	var/target_flags = NONE
+	/// flags to restrict a xeno ability to certain gamemode
+	var/gamemode_flags = ABILITY_ALL_GAMEMODE
+	///Alternative keybind signal, to use the action differently
+	var/alternate_keybind_signal
 
 /datum/action/xeno_action/New(Target)
 	. = ..()
@@ -26,6 +30,8 @@
 	X.xeno_abilities += src
 	if(keybind_signal)
 		RegisterSignal(L, keybind_signal, .proc/keybind_activation)
+	if(alternate_keybind_signal)
+		RegisterSignal(L, alternate_keybind_signal, .proc/alternate_keybind_action)
 	RegisterSignal(L, COMSIG_XENOMORPH_ABILITY_ON_UPGRADE, .proc/on_xeno_upgrade)
 
 /datum/action/xeno_action/remove_action(mob/living/L)
@@ -44,6 +50,10 @@
 	if(can_use_action())
 		INVOKE_ASYNC(src, .proc/action_activate)
 	return COMSIG_KB_ACTIVATED
+
+///Signal Handler for alternate keybind actions
+/datum/action/xeno_action/proc/alternate_keybind_action()
+	SIGNAL_HANDLER
 
 /datum/action/xeno_action/proc/on_xeno_upgrade()
 	return
@@ -114,9 +124,15 @@
 /datum/action/xeno_action/fail_activate()
 	update_button_icon()
 
-/datum/action/xeno_action/proc/succeed_activate()
+///Plasma cost override allows for actions/abilities to override the normal plasma costs
+/datum/action/xeno_action/proc/succeed_activate(plasma_cost_override)
+	if(QDELETED(owner))
+		return
 	var/mob/living/carbon/xenomorph/X = owner
-	if(plasma_cost && !QDELETED(owner))
+	if(plasma_cost_override)
+		X.use_plasma(plasma_cost_override)
+		return
+	if(plasma_cost)
 		X.use_plasma(plasma_cost)
 
 //checks if the linked ability is on some cooldown.
@@ -170,19 +186,22 @@
 		button.color = "#ffffffff" // rgb(255,255,255,255)
 
 
-
-/datum/action/xeno_action/activable
-
-/datum/action/xeno_action/activable/New()
-	. = ..()
-
-
 /datum/action/xeno_action/activable/Destroy()
 	var/mob/living/carbon/xenomorph/X = owner
 	if(X.selected_ability == src)
 		deselect()
 	return ..()
 
+/datum/action/xeno_action/activable/alternate_keybind_action()
+	INVOKE_ASYNC(src, .proc/action_activate)
+
+/datum/action/xeno_action/activable/action_activate()
+	var/mob/living/carbon/xenomorph/X = owner
+	if(X.selected_ability == src)
+		return
+	if(X.selected_ability)
+		X.selected_ability.deselect()
+	select()
 
 /datum/action/xeno_action/activable/keybind_activation()
 	. = COMSIG_KB_ACTIVATED

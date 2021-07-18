@@ -27,6 +27,8 @@
 	issue_order_hold.give_action(src)
 	var/datum/action/skill/issue_order/focus/issue_order_focus = new
 	issue_order_focus.give_action(src)
+	var/datum/action/innate/order/rally_order/send_rally_order = new
+	send_rally_order.give_action(src)
 
 	//makes order hud visible
 	var/datum/atom_hud/H = GLOB.huds[DATA_HUD_ORDER]
@@ -34,13 +36,13 @@
 
 	randomize_appearance()
 
-	RegisterSignal(src, COMSIG_ATOM_ACIDSPRAY_ACT, .proc/acid_spray_crossed)
+	RegisterSignal(src, COMSIG_ATOM_ACIDSPRAY_ACT, .proc/acid_spray_entered)
 	RegisterSignal(src, list(COMSIG_KB_QUICKEQUIP, COMSIG_CLICK_QUICKEQUIP), .proc/do_quick_equip)
-	RegisterSignal(src, COMSIG_KB_HOLSTER, .proc/do_holster)
 	RegisterSignal(src, COMSIG_KB_UNIQUEACTION, .proc/do_unique_action)
-	RegisterSignal(src, COMSIG_KB_RAILATTACHMENT, .proc/do_activate_rail_attachment)
 	RegisterSignal(src, COMSIG_GRAB_SELF_ATTACK, .proc/fireman_carry_grabbed) // Fireman carry
+	RegisterSignal(src, COMSIG_KB_GIVE, .proc/give_signal_handler)
 	AddComponent(/datum/component/footstep, FOOTSTEP_MOB_HUMAN)
+	AddComponent(/datum/component/bump_attack, FALSE, FALSE)
 
 /mob/living/carbon/human/proc/human_z_changed(datum/source, old_z, new_z)
 	SIGNAL_HANDLER
@@ -75,6 +77,7 @@
 	remove_from_all_mob_huds()
 	GLOB.human_mob_list -= src
 	GLOB.alive_human_list -= src
+	LAZYREMOVE(GLOB.alive_human_list_faction[faction], src)
 	LAZYREMOVE(GLOB.humans_by_zlevel["[z]"], src)
 	GLOB.dead_human_list -= src
 	return ..()
@@ -492,7 +495,7 @@
 									if("Fire Team 2") ID.assigned_fireteam = 2
 									if("Fire Team 3") ID.assigned_fireteam = 3
 									else return
-								hud_set_job()
+								hud_set_job(faction)
 
 
 	if (href_list["criminal"])
@@ -1001,9 +1004,9 @@
 				light_off++
 	if(guns)
 		for(var/obj/item/weapon/gun/lit_gun in contents)
-			if(!isattachmentflashlight(lit_gun.rail))
+			var/obj/item/attachable/flashlight/lit_rail_flashlight = LAZYACCESS(lit_gun.attachments, ATTACHMENT_SLOT_RAIL)
+			if(!isattachmentflashlight(lit_rail_flashlight))
 				continue
-			var/obj/item/attachable/flashlight/lit_rail_flashlight = lit_gun.rail
 			lit_rail_flashlight.turn_light(src, FALSE, 0, FALSE, forced)
 			light_off++
 	if(flares)
@@ -1177,9 +1180,6 @@
 		var/datum/outfit/O = path
 		if(initial(O.can_be_admin_equipped))
 			outfits[initial(O.name)] = path
-
-	for(var/datum/outfit/D in GLOB.custom_outfits)
-		outfits[D.name] = D
 
 	if(!(equipment in outfits))
 		return FALSE

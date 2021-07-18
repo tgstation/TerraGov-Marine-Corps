@@ -20,7 +20,7 @@
 	var/txt = stripped_input(src, "Set the hive's orders to what? Leave blank to clear it.", "Hive Orders")
 
 	if(txt)
-		xeno_message("<B>The Queen has given a new order. Check Status panel for details.</B>",3,hivenumber)
+		xeno_message("<B>The Queen has given a new order. Check Status panel for details.</B>", "xenoannounce", 6,hivenumber)
 		hive.hive_orders = txt
 	else
 		hive.hive_orders = ""
@@ -244,10 +244,11 @@
 /datum/action/xeno_action/watch_xeno
 	name = "Watch Xenomorph"
 	action_icon_state = "watch_xeno"
-	mechanics_text = "See from the target Xenomorphs vision."
+	mechanics_text = "See from the target Xenomorphs vision. Click again the ability to stop observing"
 	plasma_cost = 0
 	keybind_signal = COMSIG_XENOABILITY_WATCH_XENO
 	var/overwatch_active = FALSE
+	use_state_flags = XACT_USE_LYING
 
 
 /datum/action/xeno_action/watch_xeno/give_action(mob/living/L)
@@ -265,6 +266,11 @@
 
 
 /datum/action/xeno_action/watch_xeno/action_activate()
+	if(overwatch_active)
+		stop_overwatch()
+		remove_selected_frame()
+		return
+	add_selected_frame()
 	select_xeno()
 
 
@@ -277,7 +283,7 @@
 		var/list/possible_xenos = X.hive.get_watchable_xenos()
 
 		selected_xeno = tgui_input_list(X, "Target", "Watch which xenomorph?", possible_xenos)
-		if(QDELETED(selected_xeno) || selected_xeno == X.observed_xeno || selected_xeno.stat == DEAD || is_centcom_level(selected_xeno.z) || !X.check_state())
+		if(QDELETED(selected_xeno) || selected_xeno == X.observed_xeno || selected_xeno.stat == DEAD || is_centcom_level(selected_xeno.z))
 			if(!X.observed_xeno)
 				return
 			stop_overwatch()
@@ -298,6 +304,7 @@
 	RegisterSignal(target, list(COMSIG_XENOMORPH_EVOLVED, COMSIG_XENOMORPH_DEEVOLVED), .proc/on_xeno_evolution)
 	RegisterSignal(watcher, COMSIG_MOVABLE_MOVED, .proc/on_movement)
 	overwatch_active = TRUE
+	to_chat(owner, "<span class='notice'>Click again on overwatch ability button to stop overwatching</span>")
 
 
 /datum/action/xeno_action/watch_xeno/proc/stop_overwatch(do_reset_perspective = TRUE)
@@ -406,12 +413,11 @@
 	mechanics_text = "Make a target Xenomorph a leader."
 	plasma_cost = 0
 	keybind_signal = COMSIG_XENOABILITY_XENO_LEADERS
+	use_state_flags = XACT_USE_LYING
 
 
 /datum/action/xeno_action/set_xeno_lead/action_activate()
 	var/mob/living/carbon/xenomorph/queen/X = owner
-	if(!X.check_state())
-		return
 	if(!X.hive)
 		return
 
@@ -424,7 +430,7 @@
 		var/list/possible_xenos = xeno_ruler.hive.get_leaderable_xenos()
 
 		selected_xeno = tgui_input_list(xeno_ruler, "Target", "Watch which xenomorph?", possible_xenos)
-		if(QDELETED(selected_xeno) || selected_xeno.stat == DEAD || is_centcom_level(selected_xeno.z) || !xeno_ruler.check_state())
+		if(QDELETED(selected_xeno) || selected_xeno.stat == DEAD || is_centcom_level(selected_xeno.z))
 			return
 
 	if(selected_xeno.queen_chosen_lead)
@@ -530,6 +536,8 @@
 	plasma_cost = 150
 	cooldown_timer = 8 SECONDS
 	keybind_signal = COMSIG_XENOABILITY_QUEEN_GIVE_PLASMA
+	use_state_flags = XACT_USE_LYING
+	target_flags = XABB_MOB_TARGET
 
 
 /datum/action/xeno_action/activable/queen_give_plasma/can_use_ability(atom/target, silent = FALSE, override_flags)
@@ -575,10 +583,11 @@
 	action_icon_state = "queen_order"
 	plasma_cost = 100
 	keybind_signal = COMSIG_XENOABILITY_QUEEN_GIVE_ORDER
+	use_state_flags = XACT_USE_LYING
 
 /datum/action/xeno_action/queen_order/action_activate()
 	var/mob/living/carbon/xenomorph/queen/X = owner
-	if(!X.check_state())
+	if(!X.check_concious_state())
 		return
 	if(X.observed_xeno)
 		var/mob/living/carbon/xenomorph/target = X.observed_xeno
@@ -608,11 +617,10 @@
 	mechanics_text = "De-evolve a target Xenomorph of Tier 2 or higher to the next lowest tier."
 	plasma_cost = 600
 	keybind_signal = COMSIG_XENOABILITY_DEEVOLVE
+	use_state_flags = XACT_USE_LYING
 
 /datum/action/xeno_action/deevolve/action_activate()
 	var/mob/living/carbon/xenomorph/queen/X = owner
-	if(!X.check_state())
-		return
 	if(!X.observed_xeno)
 		to_chat(X, "<span class='warning'>We must overwatch the xeno we want to de-evolve.</span>")
 		return
@@ -648,7 +656,7 @@
 		to_chat(X, "<span class='xenowarning'>You must provide a reason for deevolving [T].</span>")
 		return
 
-	if(!X.check_state() || !X.check_plasma(600) || X.observed_xeno != T)
+	if(!X.check_concious_state() || !X.check_plasma(600) || X.observed_xeno != T)
 		return
 
 	if(T.is_ventcrawling)
@@ -711,32 +719,37 @@
 	qdel(T)
 	X.use_plasma(600)
 
-/datum/action/xeno_action/activable/corrupt_generator
-	name = "Corrupt generator"
-	action_icon_state = "tunnel"
-	mechanics_text = "Corrupt a generator to begin increasing the psycic energy of the hive."
-	plasma_cost = 200
-	//keybind_signal = COMSIG_XENOABILITY_CORRUPT_GENERATOR
+/datum/action/xeno_action/summon_king
+	name = "Summon Xenomorph King"
+	action_icon_state = "grow_ovipositor"
+	mechanics_text = "Deploy a pod to summon a xeno king."
+	plasma_cost = 0 //hive points cost
+	keybind_signal = COMSIG_XENOABILITY_SUMMON_KING_POD
+	gamemode_flags = ABILITY_DISTRESS
+	/// Pyschic point cost
+	var/psych_cost = XENO_KING_PRICE
 
-/datum/action/xeno_action/activable/corrupt_generator/can_use_ability(atom/A, silent, override_flags)
+/datum/action/xeno_action/summon_king/can_use_action(silent, override_flags)
 	. = ..()
 	if(!.)
 		return
-	if(!istype(A, /obj/machinery/power/geothermal))
+	var/mob/living/carbon/xenomorph/X = owner
+	if(SSticker.round_start_time + INVOKE_KING_TIME_LOCK > world.time)
 		if(!silent)
-			to_chat(owner, "<span class='warning'>You can only use this ability on generators!</span>")
+			to_chat(owner, "<span class='warning'>It is too soon to summon a king!</span>")
 		return FALSE
-	var/obj/machinery/power/geothermal/gen = A
-	if(!gen.is_corruptible)
+	if(SSpoints.xeno_points_by_hive[X.hivenumber] <= psych_cost)
 		if(!silent)
-			to_chat(owner, "<span class='warning'>[A] is reinforced and cannot be corrupted!</span>")
+			to_chat(owner, "<span class='warning'>Our hive does not have enough psychic energy to summon a King, we need [psych_cost] points!</span>")
 		return FALSE
 
-/datum/action/xeno_action/activable/corrupt_generator/use_ability(atom/A)
-	var/obj/machinery/power/geothermal/gen = A
-	if(!do_after(owner, 10 SECONDS, TRUE, gen, BUSY_ICON_HOSTILE))
-		return fail_activate()
+/datum/action/xeno_action/summon_king/action_activate()
 	var/mob/living/carbon/xenomorph/X = owner
-	gen.corrupt(X.hivenumber)
-	to_chat(owner, "<span class='notice'>You have corrupted [A]</span>")
-	succeed_activate()
+	to_chat(X, "<span class='xenonotice'>We begin constructing a psychic echo chamber for the Queen Mother...</span>")
+	if(!do_after(X, 15 SECONDS, FALSE, X, BUSY_ICON_HOSTILE))
+		return fail_activate()
+	SSpoints.xeno_points_by_hive[X.hivenumber] -= psych_cost
+	var/obj/structure/resin/king_pod = new /obj/structure/resin/king_pod(X.loc, X.hivenumber)
+	log_game("[key_name(X)] has created a pod in [AREACOORD(X)]")
+	xeno_message("<B>[X] has created a king pod at [get_area(X)]. Defend it until the Queen Mother summons a king!</B>", size = 3, hivenumber = X.hivenumber, target = king_pod, arrow_type = /obj/screen/arrow/leader_tracker_arrow)
+	priority_announce("WARNING: Psychic anomaly detected at [get_area(X)]. Assault of the area reccomended.", "TGMC Intel Division")

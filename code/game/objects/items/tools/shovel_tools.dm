@@ -1,7 +1,3 @@
-
-
-
-
 /*****************************Shovels********************************/
 
 /obj/item/tool/shovel
@@ -18,11 +14,10 @@
 	attack_verb = list("bashed", "bludgeoned", "thrashed", "whacked")
 	var/dirt_overlay = "shovel_overlay"
 	var/folded = FALSE
-	var/dirt_type = NO_DIRT // 0 for no dirt, 1 for brown dirt, 2 for snow, 3 for big red.
+	var/dirt_type = NO_DIRT // 0 for no dirt, 1 for brown dirt, 2 for snow, 3 for big red, 4 for basalt(lava-land).
 	var/shovelspeed = 15
 	var/dirt_amt = 0
 	var/dirt_amt_per_dig = 5
-
 
 /obj/item/tool/shovel/update_overlays()
 	. = ..()
@@ -36,9 +31,9 @@
 			I.color = "#FF5500"
 		if(DIRT_TYPE_SNOW)
 			I.color = "#EBEBEB"
+		if(DIRT_TYPE_LAVALAND)
+			I.color = "#7A6D6A"
 	. += I
-
-
 
 /obj/item/tool/shovel/examine(mob/user)
 	. = ..()
@@ -62,7 +57,6 @@
 
 	update_icon()
 
-
 /obj/item/tool/shovel/afterattack(atom/target, mob/user, proximity)
 	if(!proximity)
 		return
@@ -71,7 +65,6 @@
 
 	if(user.do_actions)
 		return
-
 
 	if(isturf(target))
 		if(!dirt_amt)
@@ -114,8 +107,6 @@
 			dirt_amt = 0
 			update_icon()
 
-
-
 /obj/item/tool/shovel/spade
 	name = "spade"
 	desc = "A small tool for digging and moving dirt."
@@ -128,7 +119,6 @@
 	shovelspeed = 40
 	dirt_amt_per_dig = 1
 
-
 //Snow Shovel----------
 /obj/item/tool/shovel/snow
 	name = "snow shovel"
@@ -137,31 +127,34 @@
 	force = 5
 	throwforce = 3
 
-
-
-
 // Entrenching tool.
 /obj/item/tool/shovel/etool
 	name = "entrenching tool"
-	desc = "Used to dig holes and bash heads in. Folds in to fit in small spaces."
+	desc = "Used to dig holes and bash heads in. Folds in to fit in small spaces. Use a sharp item on it to sharpen it."
 	icon = 'icons/Marine/marine-items.dmi'
 	icon_state = "etool"
 	force = 30
 	throwforce = 2
 	item_state = "crowbar"
+	hitsound = "swing_hit"
 	w_class = WEIGHT_CLASS_BULKY //three for unfolded, 3 for folded. This should keep it outside backpacks until its folded, made it 3 because 2 lets you fit in pockets appearntly.
 	dirt_overlay = "etool_overlay"
 	dirt_amt_per_dig = 5
 	shovelspeed = 20
 
-
-/obj/item/tool/shovel/etool/update_icon()
-	if(folded) icon_state = "etool_c"
-	else icon_state = "etool"
+/obj/item/tool/shovel/etool/update_icon_state()
+	if(folded)
+		icon_state = "etool_c"
+	else if(sharp) 
+		icon_state = "etool_s"
+	else
+		icon_state = "etool"
 	..()
 
-
 /obj/item/tool/shovel/etool/attack_self(mob/user as mob)
+	if(sharp)
+		to_chat(user, "It has been sharpened and cannot be folded")
+		return
 	folded = !folded
 	if(folded)
 		w_class = WEIGHT_CLASS_NORMAL
@@ -171,7 +164,26 @@
 		force = 30
 	..()
 
+/obj/item/tool/shovel/etool/attackby(obj/item/I, mob/user, params)
+	if(!I.sharp)
+		return ..()
+	if(sharp)
+		to_chat(user, "<span class='notice'>The entrenching tool is already sharpened.</span>")
+		return
+	if(folded)
+		to_chat(user, "<span class='notice'>You cannot sharpen the entrenching tool while it is folded.</span>")
+		return
+	user.visible_message("<span class='notice'>[user] begins to sharpen the [src] with the [I].</span>",
+	"<span class='notice'>You begin to sharpen the [src] with the [I].</span>")
+	if(!do_after(user, 2 SECONDS, TRUE, src, BUSY_ICON_FRIENDLY))
+		return
+	sharp = IS_SHARP_ITEM_SIMPLE
+	name = "sharpened " + name
+	force = 60
+	update_icon()
 
-
-
+/obj/item/tool/shovel/etool/examine(mob/user)
+	. = ..()
+	if(sharp)
+		to_chat(user, "<span class='notice'> This one has been sharpened and can no longer be folded.</span>")
 

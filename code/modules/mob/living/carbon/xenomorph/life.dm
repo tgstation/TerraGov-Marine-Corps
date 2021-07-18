@@ -1,4 +1,4 @@
-#define DEBUG_XENO_LIFE	0
+#define DEBUG_XENO_LIFE 0
 #define XENO_RESTING_HEAL 1.1
 #define XENO_STANDING_HEAL 0.2
 #define XENO_CRIT_DAMAGE 5
@@ -50,7 +50,7 @@
 		return
 	if(!(xeno_caste.caste_flags & CASTE_FIRE_IMMUNE) && on_fire) //Sanity check; have to be on fire to actually take the damage.
 		SEND_SIGNAL(src, COMSIG_XENOMORPH_FIRE_BURNING)
-		adjustFireLoss((fire_stacks + 3) * clamp(xeno_caste.fire_resist + fire_resist_modifier, 0, 1) ) // modifier is negative
+		adjustFireLoss((fire_stacks + 3) * get_fire_resist() )
 
 /mob/living/carbon/xenomorph/proc/handle_living_health_updates()
 	if(health < 0)
@@ -99,13 +99,13 @@
 	var/turf/T = loc
 	if((istype(T) && locate(/obj/effect/alien/weeds) in T))
 		heal_wounds(XENO_RESTING_HEAL + (warding_aura * 0.5) * 0.5) //Warding pheromones provides 0.125 HP per second per step, up to 1.25 HP per tick.
-	else
+	else if(!endure) //If we're not Enduring we bleed out
 		adjustBruteLoss(XENO_CRIT_DAMAGE - (warding_aura * 0.5)) //Warding can heavily lower the impact of bleedout. Halved at 5.
 
 /mob/living/carbon/xenomorph/proc/heal_wounds(multiplier = XENO_RESTING_HEAL, scaling = FALSE)
-	var/amount = 1 + (maxHealth * 0.03) // 1 damage + 2% max health, with scaling power.
+	var/amount = 1 + (maxHealth * 0.0375) // 1 damage + 3.75% max health, with scaling power.
 	if(recovery_aura)
-		amount += recovery_aura * maxHealth * 0.008 // +0.8% max health per recovery level, up to +4%
+		amount += recovery_aura * maxHealth * 0.01 // +1% max health per recovery level, up to +5%
 	if(scaling)
 		if(recovery_aura)
 			regen_power = clamp(regen_power + xeno_caste.regen_ramp_amount*30,0,1) //Ignores the cooldown, and gives a 50% boost.
@@ -115,18 +115,19 @@
 		else
 			regen_power = min(regen_power + xeno_caste.regen_ramp_amount*20,1)
 		amount *= regen_power
-	amount *= multiplier
+	amount *= multiplier * GLOB.xeno_stat_multiplicator_buff
 
 	SEND_SIGNAL(src, COMSIG_XENOMORPH_HEALTH_REGEN, src)
 
+	var/remainder = max(0, amount-getBruteLoss())
 	adjustBruteLoss(-amount)
-	adjustFireLoss(-amount)
+	adjustFireLoss(-remainder)
 
 /mob/living/carbon/xenomorph/proc/handle_living_plasma_updates()
 	var/turf/T = loc
 	if(!T || !istype(T))
 		return
-	if(plasma_stored == xeno_caste.plasma_max)
+	if(plasma_stored >= xeno_caste.plasma_max * xeno_caste.plasma_regen_limit)
 		return
 
 	if(current_aura)
@@ -144,6 +145,7 @@
 
 	SEND_SIGNAL(src, COMSIG_XENOMORPH_PLASMA_REGEN, plasma_mod)
 
+
 	var/plasma_gain_multiplier = 1
 	for(var/i in plasma_mod)
 		plasma_gain_multiplier *= i
@@ -156,6 +158,7 @@
 
 	if(lying_angle || resting)
 		plasma_gain *= 2  // Doubled for resting
+
 
 	gain_plasma(plasma_gain * plasma_gain_multiplier)
 	hud_set_plasma() //update plasma amount on the plasma mob_hud

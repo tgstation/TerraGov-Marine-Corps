@@ -117,16 +117,19 @@
 /mob/living/carbon/xenomorph/hivemind/CtrlClick(mob/user)
 	return FALSE
 
-/mob/living/carbon/xenomorph/hivemind/CtrlClickOn(atom/A)
-	return FALSE
-
 /mob/living/carbon/xenomorph/hivemind/CtrlShiftClickOn(atom/A)
 	return FALSE
 
 /mob/living/carbon/xenomorph/hivemind/CtrlClickOn(atom/A)
+	if(istype(A, /obj/structure/mineral_door/resin))
+		var/obj/structure/mineral_door/resin/door = A
+		door.TryToSwitchState(src)
 	return FALSE
 
 /mob/living/carbon/xenomorph/hivemind/AltClickOn(atom/A)
+	if(istype(A, /obj/structure/mineral_door/resin))
+		var/obj/structure/mineral_door/resin/door = A
+		door.TryToSwitchState(src)
 	return FALSE
 
 /mob/living/carbon/xenomorph/hivemind/a_intent_change()
@@ -165,7 +168,8 @@
 		return ..()
 	parent.playsound_local(parent, get_sfx("alien_help"), 30, TRUE)
 	to_chat(parent, "<span class='xenohighdanger'>Your core has been destroyed!</span>")
-	xeno_message("<span class='xenoannounce'>A sudden tremor ripples through the hive... \the [parent] has been slain!</span>", 2, parent.hivenumber)
+	xeno_message("A sudden tremor ripples through the hive... \the [parent] has been slain!", "xenoannounce", 5, parent.hivenumber)
+	parent.timeofdeath = world.time
 	parent.ghostize()
 	if(!QDELETED(parent))
 		QDEL_NULL(parent)

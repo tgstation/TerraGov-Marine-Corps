@@ -5,7 +5,6 @@
 /proc/random_body_type()
 	return pick(GLOB.body_types_list)
 
-
 /proc/random_hair_style(gender, species = "Human")
 	var/list/valid_hairstyles = list()
 	for(var/hairstyle in GLOB.hair_styles_list)
@@ -44,8 +43,7 @@
 
 
 /proc/get_playable_species()
-	var/list/playable_species = list(GLOB.roundstart_species)
-	return playable_species
+	return GLOB.roundstart_species
 
 
 /proc/do_mob(mob/user, mob/target, delay = 30, user_display, target_display, prog_bar = PROGRESS_GENERIC, ignore_flags = NONE, datum/callback/extra_checks)
@@ -155,7 +153,7 @@
 
 /proc/random_unique_name(gender, attempts_to_find_unique_name = 10)
 	for(var/i in 1 to attempts_to_find_unique_name)
-		. = GLOB.namepool[/datum/namepool/clf].get_random_name(gender)
+		. = GLOB.namepool[/datum/namepool].get_random_name(gender)
 
 		if(!findname(.))
 			break

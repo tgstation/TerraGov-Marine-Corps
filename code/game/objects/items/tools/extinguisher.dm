@@ -42,6 +42,11 @@
 	icon_state = "[sprite_name][!safety]"
 	to_chat(user, "The safety is [safety ? "on" : "off"].")
 
+/obj/item/tool/extinguisher/attack(mob/M, mob/user)
+	if(user.a_intent == INTENT_HELP && !safety) //If we're on help intent and going to spray people, don't bash them.
+		return FALSE
+	return ..()
+
 
 /obj/item/tool/extinguisher/afterattack(atom/target, mob/user, flag)
 	//TODO; Add support for reagents in water.
@@ -59,4 +64,3 @@
 		return
 	extinguish(target, user)
 	last_use = world.time
-

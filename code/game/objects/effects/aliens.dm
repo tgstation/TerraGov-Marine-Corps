@@ -46,27 +46,49 @@
 	var/slow_amt = 0.8
 	var/duration = 10 SECONDS
 	var/acid_damage = XENO_DEFAULT_ACID_PUDDLE_DAMAGE
+	/// Who created that spray
+	var/mob/xeno_owner
 
-/obj/effect/xenomorph/spray/Initialize(mapload, duration = 10 SECONDS, damage = XENO_DEFAULT_ACID_PUDDLE_DAMAGE) //Self-deletes
+/obj/effect/xenomorph/spray/Initialize(mapload, duration = 10 SECONDS, damage = XENO_DEFAULT_ACID_PUDDLE_DAMAGE, mob/living/_xeno_owner) //Self-deletes
 	. = ..()
 	START_PROCESSING(SSprocessing, src)
 	QDEL_IN(src, duration + rand(0, 2 SECONDS))
 	acid_damage = damage
+	xeno_owner = _xeno_owner
+	RegisterSignal(xeno_owner, COMSIG_PARENT_QDELETING, .proc/clean_mob_owner)
+	RegisterSignal(loc, COMSIG_ATOM_ENTERED, .proc/atom_enter_turf)
+	TIMER_COOLDOWN_START(src, COOLDOWN_PARALYSE_ACID, 5)
 
 /obj/effect/xenomorph/spray/Destroy()
 	STOP_PROCESSING(SSprocessing, src)
+	xeno_owner = null
 	return ..()
 
-/obj/effect/xenomorph/spray/Crossed(atom/movable/AM)
-	. = ..()
-	SEND_SIGNAL(AM, COMSIG_ATOM_ACIDSPRAY_ACT, src, acid_damage, slow_amt)
+/// Signal handler to check if an human is entering the acid spray turf
+/obj/effect/xenomorph/spray/proc/atom_enter_turf(datum/source, atom/movable/moved_in)
+	SIGNAL_HANDLER
+	if(!ishuman(moved_in))
+		return
+	var/mob/living/carbon/human/victim = moved_in
+	if(victim.flags_pass & HOVERING)
+		return
+	victim.acid_spray_entered(null, src, acid_damage, slow_amt)
 
+/// Set xeno_owner to null to avoid hard del
+/obj/effect/xenomorph/spray/proc/clean_mob_owner()
+	UnregisterSignal(xeno_owner, COMSIG_PARENT_QDELETING)
+	xeno_owner = null
 
-/mob/living/carbon/human/proc/acid_spray_crossed(datum/source, obj/effect/xenomorph/spray/acid_spray, acid_damage, slow_amt)
+/// Signal handler to burn and maybe stun the human entering the acid spray
+/mob/living/carbon/human/proc/acid_spray_entered(datum/source, obj/effect/xenomorph/spray/acid_spray, acid_damage, slow_amt)
 	SIGNAL_HANDLER
 	if(CHECK_MULTIPLE_BITFIELDS(flags_pass, HOVERING))
 		return
 	
+	if(acid_spray.xeno_owner && TIMER_COOLDOWN_CHECK(acid_spray, COOLDOWN_PARALYSE_ACID)) //To prevent being able to walk "over" acid sprays
+		acid_spray_act(acid_spray.xeno_owner)
+		return
+
 	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_ACID))
 		return
 
@@ -111,21 +133,21 @@
 	anchored = TRUE
 	var/atom/acid_t
 	var/ticks = 0
-	var/acid_strength = 1 //100% speed, normal
+	var/acid_strength = 0.004 //base speed, normal
 	var/acid_damage = 125 //acid damage on pick up, subject to armor
 	var/strength_t
 
 //Sentinel weakest acid
 /obj/effect/xenomorph/acid/weak
 	name = "weak acid"
-	acid_strength = 0.4 //250% normal speed
+	acid_strength = 0.0016 //40% of base speed
 	acid_damage = 75
 	icon_state = "acid_weak"
 
 //Superacid
 /obj/effect/xenomorph/acid/strong
 	name = "strong acid"
-	acid_strength = 2.5 //20% normal speed
+	acid_strength = 0.01 //250% normal speed
 	acid_damage = 175
 	icon_state = "acid_strong"
 
@@ -146,7 +168,7 @@
 		return
 	if(loc != acid_t.loc && !isturf(acid_t))
 		loc = acid_t.loc
-	ticks += ((delta_time*0.1) * (rand(2,3)*0.1) * (acid_strength)) * 0.1
+	ticks += delta_time * acid_strength
 	if(ticks >= strength_t)
 		visible_message("<span class='xenodanger'>[acid_t] collapses under its own weight into a puddle of goop and undigested debris!</span>")
 		playsound(src, "acid_hit", 25)

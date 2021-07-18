@@ -25,17 +25,17 @@
 	var/tiers_to_pick_from
 	switch(tier)
 		if(XENO_TIER_ZERO, XENO_TIER_FOUR)
-			to_chat(src, "<span class='warning'>Your tier does not allow you to regress.</span>")
-			return
+			if(isxenoshrike(src))
+				tiers_to_pick_from = GLOB.xeno_types_tier_one
+			else
+				to_chat(src, "<span class='warning'>Your tier does not allow you to regress.</span>")
+				return
 		if(XENO_TIER_ONE)
 			tiers_to_pick_from = list(/mob/living/carbon/xenomorph/larva)
 		if(XENO_TIER_TWO)
 			tiers_to_pick_from = GLOB.xeno_types_tier_one
 		if(XENO_TIER_THREE)
-			if(isxenoshrike(src))
-				tiers_to_pick_from = GLOB.xeno_types_tier_one
-			else
-				tiers_to_pick_from = GLOB.xeno_types_tier_two
+			tiers_to_pick_from = GLOB.xeno_types_tier_two
 		else
 			CRASH("side_evolve() called without a valid tier")
 
@@ -105,6 +105,10 @@
 		to_chat(src, "<span class='warning'>We cannot evolve while in this stance.</span>")
 		return
 
+	if(LAZYLEN(stomach_contents))
+		to_chat(src, "<span class='warning'>We cannot evolve with a belly full.</span>")
+		return
+
 	var/new_caste_type
 	var/castepick
 	if(caste_type)
@@ -152,6 +156,7 @@
 	var/tierones
 	var/tiertwos
 	var/tierthrees
+	var/tierfours
 
 	if(new_caste_type == /mob/living/carbon/xenomorph/queen) //Special case for dealing with queenae
 		if(is_banned_from(ckey, ROLE_XENO_QUEEN))
@@ -162,7 +167,7 @@
 		if(xenojob.required_playtime_remaining(client))
 			to_chat(src, "<span class='warning'>[get_exp_format(xenojob.required_playtime_remaining(client))] as [xenojob.get_exp_req_type()] required to play the queen role.</span>")
 			return
-		
+
 		if(hive.living_xeno_queen)
 			to_chat(src, "<span class='warning'>There already is a living Queen.</span>")
 			return
@@ -228,16 +233,17 @@
 		tierones = length(hive.xenos_by_tier[XENO_TIER_ONE])
 		tiertwos = length(hive.xenos_by_tier[XENO_TIER_TWO])
 		tierthrees = length(hive.xenos_by_tier[XENO_TIER_THREE])
+		tierfours = length(hive.xenos_by_tier[XENO_TIER_FOUR])
 
 		if(forced)
 			//Nothing, go on as normal.
-		else if((tier == XENO_TIER_ONE && TO_XENO_TIER_2_FORMULA(tierzeros + tierones, tiertwos, tierthrees))
+		else if((tier == XENO_TIER_ONE && TO_XENO_TIER_2_FORMULA(tierzeros + tierones + tierfours, tiertwos, tierthrees))
 			to_chat(src, "<span class='warning'>The hive cannot support another Tier 2, wait for either more aliens to be born or someone to die.</span>")
 			return
-		else if(tier == XENO_TIER_TWO && TO_XENO_TIER_3_FORMULA(tierzeros + tierones, tiertwos, tierthrees))
+		else if(tier == XENO_TIER_TWO && TO_XENO_TIER_3_FORMULA(tierzeros + tierones, tiertwos + tierfours, tierthrees))
 			to_chat(src, "<span class='warning'>The hive cannot support another Tier 3, wait for either more aliens to be born or someone to die.</span>")
 			return
-		else if(isdistress(SSticker.mode) && !hive.living_xeno_ruler && potential_queens == 1)
+		else if(SSticker.mode?.flags_round_type & MODE_XENO_RULER && !hive.living_xeno_ruler && potential_queens == 1)
 			if(isxenolarva(src) && new_caste_type != /mob/living/carbon/xenomorph/drone)
 				to_chat(src, "<span class='xenonotice'>The hive currently has no sister able to become a ruler! The survival of the hive requires from us to be a Drone!</span>")
 				return
@@ -265,6 +271,7 @@
 	tierones = length(hive.xenos_by_tier[XENO_TIER_ONE])
 	tiertwos = length(hive.xenos_by_tier[XENO_TIER_TWO])
 	tierthrees = length(hive.xenos_by_tier[XENO_TIER_THREE])
+	tierfours = length(hive.xenos_by_tier[XENO_TIER_FOUR])
 
 	if(new_caste_type == /mob/living/carbon/xenomorph/queen)
 		if(hive.living_xeno_queen) //Do another check after the tick.
@@ -279,10 +286,10 @@
 			to_chat(src, "<span class='warning'>There cannot be two manifestations of the hivemind's will at once.</span>")
 			return
 	else if(!forced) // these shouldnt be checked if trying to become a queen.
-		if((tier == XENO_TIER_ONE && TO_XENO_TIER_2_FORMULA(tierzeros + tierones, tiertwos, tierthrees))
+		if((tier == XENO_TIER_ONE && TO_XENO_TIER_2_FORMULA(tierzeros + tierones + tierfours, tiertwos, tierthrees))
 			to_chat(src, "<span class='warning'>Another sister evolved meanwhile. The hive cannot support another Tier 2.</span>")
 			return
-		else if(tier == XENO_TIER_TWO && TO_XENO_TIER_3_FORMULA(tierzeros + tierones, tiertwos, tierthrees))
+		else if(tier == XENO_TIER_TWO && TO_XENO_TIER_3_FORMULA(tierzeros + tierones, tiertwos + tierfours, tierthrees))
 			to_chat(src, "<span class='warning'>Another sister evolved meanwhile. The hive cannot support another Tier 3.</span>")
 			return
 
@@ -347,13 +354,11 @@
 	GLOB.round_statistics.total_xenos_created-- //so an evolved xeno doesn't count as two.
 	SSblackbox.record_feedback("tally", "round_statistics", -1, "total_xenos_created")
 
-	if(queen_chosen_lead && new_caste_type != /mob/living/carbon/xenomorph/queen) // xeno leader is removed by Destroy()
-		new_xeno.queen_chosen_lead = TRUE
-		hive.xeno_leader_list += new_xeno
+	if(queen_chosen_lead && (new_xeno.xeno_caste.caste_flags & CASTE_CAN_BE_LEADER)) // xeno leader is removed by Destroy()
+		hive.add_leader(new_xeno)
 		new_xeno.hud_set_queen_overwatch()
 		if(hive.living_xeno_queen)
 			new_xeno.handle_xeno_leader_pheromones(hive.living_xeno_queen)
-		new_xeno.give_rally_hive_ability() //Give them back their rally hive ability
 
 	if(upgrade == XENO_UPGRADE_THREE)
 		switch(tier)
@@ -365,6 +370,8 @@
 	new_xeno.upgrade_stored = upgrade_stored
 	while(new_xeno.upgrade_possible() && new_xeno.upgrade_stored >= new_xeno.xeno_caste.upgrade_threshold)
 		new_xeno.upgrade_xeno(new_xeno.upgrade_next(), TRUE)
+	var/obj/screen/zone_sel/selector = new_xeno.hud_used.zone_sel
+	selector?.set_selected_zone(zone_selected, new_xeno)
 	qdel(src)
 	INVOKE_ASYNC(new_xeno, /mob/living.proc/do_jitter_animation, 1000)
 

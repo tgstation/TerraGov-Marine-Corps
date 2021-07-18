@@ -13,9 +13,6 @@
 	melee_damage = 21
 	attack_delay = 8
 
-	// *** Tackle *** //
-	tackle_damage = 26
-
 	// *** Speed *** //
 	speed = 0.1
 
@@ -39,11 +36,13 @@
 
 	// *** Crusher Abilities *** //
 	stomp_damage = 45
-	crest_toss_distance = 4
+	crest_toss_distance = 3
 
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/activable/psydrain,
+		/datum/action/xeno_action/activable/headbite,
+		/datum/action/xeno_action/activable/devour,
 		/datum/action/xeno_action/activable/stomp,
 		/datum/action/xeno_action/ready_charge,
 		/datum/action/xeno_action/activable/cresttoss,
@@ -59,9 +58,6 @@
 	caste_desc = "A huge tanky xenomorph. It looks a little more dangerous."
 
 	upgrade = XENO_UPGRADE_ONE
-
-	// *** Tackle *** //
-	tackle_damage = 26
 
 	// *** Speed *** //
 	speed = 0.1
@@ -81,6 +77,7 @@
 
 	// *** Abilities *** //
 	stomp_damage = 50
+	crest_toss_distance = 4
 
 /datum/xeno_caste/crusher/elder
 	upgrade_name = "Elder"
@@ -90,9 +87,6 @@
 
 	// *** Melee Attacks *** //
 	melee_damage = 24
-
-	// *** Tackle *** //
-	tackle_damage = 30
 
 	// *** Speed *** //
 	speed = 0.1
@@ -112,6 +106,7 @@
 
 	// *** Abilities *** //
 	stomp_damage = 55
+	crest_toss_distance = 5
 
 /datum/xeno_caste/crusher/ancient
 	upgrade_name = "Ancient"
@@ -121,9 +116,6 @@
 
 	// *** Melee Attacks *** //
 	melee_damage = 24
-
-	// *** Tackle *** //
-	tackle_damage = 30
 
 	// *** Speed *** //
 	speed = 0.1
@@ -142,3 +134,4 @@
 	soft_armor = list("melee" = 90, "bullet" = 75, "laser" = 75, "energy" = 75, "bomb" = XENO_BOMB_RESIST_3, "bio" = 100, "rad" = 100, "fire" = 75, "acid" = 100)
 	// *** Abilities *** //
 	stomp_damage = 60
+	crest_toss_distance = 6

@@ -26,6 +26,7 @@
 	if(is_storm_immune(L))
 		return
 	L.adjustBruteLoss(6)
+	to_chat(L, "<span class='boldannounce'>You are battered by the coarse sand!</span>")
 
 /datum/weather/ash_storm/sand/harmless
 	name = "Sandfall"

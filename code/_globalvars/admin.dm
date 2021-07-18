@@ -18,7 +18,7 @@ GLOBAL_PROTECT(non_ascii_regex)
 ///Returns true if this contains text that is not ASCII
 #define NON_ASCII_CHECK(text) (findtext(text, GLOB.non_ascii_regex))
 
-GLOBAL_LIST_EMPTY(custom_outfits)
+GLOBAL_LIST_EMPTY(custom_loadouts)
 
 GLOBAL_LIST_EMPTY(admin_datums)
 GLOBAL_PROTECT(admin_datums)

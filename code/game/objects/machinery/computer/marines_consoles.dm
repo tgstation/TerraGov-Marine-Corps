@@ -345,6 +345,8 @@
 	resistance_flags = INDESTRUCTIBLE
 	var/obj/item/card/id/modify = null
 	var/screen = 0 //0: main, 1: squad menu
+	///Which faction this computer belongs to
+	var/faction = FACTION_TERRAGOV
 
 /obj/machinery/computer/squad_changer/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -414,11 +416,20 @@
 	else if(href_list["squad"])
 		if(allowed(usr))
 			if(modify && istype(modify))
-				var/squad_name = tgui_input_list(usr, "Which squad would you like to put the person in?", null, SSjob.active_squads)
-				if(!squad_name)
-					return
-				var/datum/squad/selected = SSjob.active_squads[squad_name]
+				var/list/squad_choices = list()
+				for(var/datum/squad/squad AS in SSjob.active_squads[faction])
+					if(!squad.overwatch_officer)
+						squad_choices += squad.name
 
+				var/squad_name = tgui_input_list(usr, "Which squad would you like to claim for Overwatch?", null, squad_choices)
+				if(!squad_name || operator != usr)
+					return
+				var/datum/squad/selected
+				for(var/datum/squad/squad AS in SSjob.active_squads[faction])
+					if(squad.name == squad_name)
+						selected = squad
+						break
+				
 				//First, remove any existing squad access and clear the card.
 				for(var/datum/squad/Q in SSjob.squads)
 					if(findtext(modify.assignment, Q.name)) //Found one!

@@ -27,6 +27,7 @@
 
 
 /obj/item/weapon/gun/smg/unique_action(mob/user)
+	. = ..()
 	return cock(user)
 
 /obj/item/weapon/gun/smg/get_ammo_type()
@@ -49,7 +50,7 @@
 	desc = "The T-19 is the TerraGov Marine Corps standard-issue machine pistol. It's known for it's low recoil and scatter when used one handed. It's usually carried by specialized troops who do not have the space to carry a much larger gun like medics and engineers. It uses 10x20mm caseless rounds."
 	icon_state = "t19"
 	item_state = "t19"
-	caliber = "10x20mm caseless" //codex
+	caliber = CALIBER_10X20_CASELESS //codex
 	max_shells = 30 //codex
 	flags_equip_slot = ITEM_SLOT_BACK|ITEM_SLOT_BELT
 	current_mag = /obj/item/ammo_magazine/smg/standard_machinepistol
@@ -70,17 +71,19 @@
 		/obj/item/attachable/gyro,
 	)
 
-	attachable_offset = list("muzzle_x" = 27, "muzzle_y" = 17,"rail_x" = 9, "rail_y" = 20, "under_x" = 21, "under_y" = 12, "stock_x" = 24, "stock_y" = 10)
+	attachable_offset = list("muzzle_x" = 27, "muzzle_y" = 19,"rail_x" = 9, "rail_y" = 20, "under_x" = 21, "under_y" = 14, "stock_x" = 24, "stock_y" = 10)
 
 	accuracy_mult = 1.5
 	accuracy_mult_unwielded = 0.85
 	recoil_unwielded = 0
 	scatter = 0
-	fire_delay = 0.2 SECONDS
-	scatter_unwielded = 10 //Made to be used one handed.
+	fire_delay = 0.15 SECONDS
+	scatter_unwielded = 5 //Made to be better used one handed.
 	aim_slowdown = 0.15
 	burst_amount = 5
 	movement_acc_penalty_mult = 0
+	upper_akimbo_accuracy = 5
+	lower_akimbo_accuracy = 3
 
 //-------------------------------------------------------
 // War is hell. Not glorious.
@@ -91,7 +94,7 @@
 	fire_sound = 'sound/weapons/guns/fire/t90.ogg'
 	icon_state = "t90"
 	item_state = "t90"
-	caliber = "10x20mm caseless" //codex
+	caliber = CALIBER_10X20_CASELESS //codex
 	max_shells = 50 //codex
 	flags_equip_slot = ITEM_SLOT_BACK
 	wield_delay = 0.5 SECONDS
@@ -139,7 +142,7 @@
 	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "m25"
 	item_state = "m25"
-	caliber = "10x20mm caseless" //codex
+	caliber = CALIBER_10X20_CASELESS //codex
 	max_shells = 60 //codex
 	fire_sound = 'sound/weapons/guns/fire/mp5.ogg'
 	unload_sound = 'sound/weapons/guns/interact/mp5_unload.ogg'
@@ -214,7 +217,7 @@
 	desc = "An archaic design going back hundreds of years, the MP27 was common in its day. Today it sees limited use as cheap computer-printed replicas or family heirlooms, though it somehow got into the hands of colonial rebels."
 	icon_state = "mp7"
 	item_state = "mp7"
-	caliber = "4.6x30mm" //codex
+	caliber = CALIBER_46X30 //codex
 	max_shells = 30 //codex
 	fire_sound = 'sound/weapons/guns/fire/mp7.ogg'
 	current_mag = /obj/item/ammo_magazine/smg/mp7
@@ -245,7 +248,7 @@
 	desc = "A robust, 20th century firearm that's a combination of pistol and submachinegun. Fires .32ACP caliber rounds from a 20 round magazine."
 	icon_state = "skorpion"
 	item_state = "skorpion"
-	caliber = ".32 ACP" //codex
+	caliber = CALIBER_32ACP //codex
 	max_shells = 20 //codex
 	fire_sound = 'sound/weapons/guns/fire/skorpion.ogg'
 	unload_sound = 'sound/weapons/guns/interact/skorpion_unload.ogg'
@@ -270,8 +273,9 @@
 	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "ppsh"
 	item_state = "ppsh"
-	caliber = "7.62x25mm" //codex
+	caliber = CALIBER_762X25 //codex
 	max_shells = 35 //codex
+	flags_equip_slot = ITEM_SLOT_BACK
 	fire_sound = 'sound/weapons/guns/fire/ppsh.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/ppsh_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/ppsh_unload.ogg'
@@ -305,11 +309,11 @@
 //GENERIC UZI //Based on the uzi submachinegun, of course.
 
 /obj/item/weapon/gun/smg/uzi
-	name = "\improper GAL9 submachinegun"
-	desc = "A cheap, reliable design and manufacture make this ubiquitous submachinegun useful despite the age. Put the fire mode to full auto for maximum firepower."
+	name = "\improper MP-2 submachinegun"
+	desc = "A cheap, reliable design and manufacture make this ubiquitous submachinegun useful despite the age. Put the fire selector to full auto for maximum firepower. Use two if you really want to go ham."
 	icon_state = "uzi"
 	item_state = "uzi"
-	caliber = "9x19mm Parabellum" //codex
+	caliber = CALIBER_9X19 //codex
 	max_shells = 32 //codex
 	fire_sound = 'sound/weapons/guns/fire/uzi.ogg'
 	unload_sound = 'sound/weapons/guns/interact/uzi_unload.ogg'
@@ -318,10 +322,11 @@
 	current_mag = /obj/item/ammo_magazine/smg/uzi
 	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 20,"rail_x" = 11, "rail_y" = 22, "under_x" = 22, "under_y" = 16, "stock_x" = 22, "stock_y" = 16)
 
-	fire_delay = 0.175 SECONDS
+	fire_delay = 0.15 SECONDS
 	burst_amount = 4
-	accuracy_mult_unwielded = 0.85
-	scatter = 15
-	scatter_unwielded = 60
+	accuracy_mult_unwielded = 0.9
+	accuracy_mult = 1
+	scatter = 0
+	scatter_unwielded = 10
 	aim_slowdown = 0.15
-	wield_delay = 0.5 SECONDS
+	wield_delay = 0.2 SECONDS

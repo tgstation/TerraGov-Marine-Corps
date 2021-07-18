@@ -37,7 +37,7 @@
 
 #define isbrain(A) (istype(A, /mob/living/brain))
 
-#define isnestedhost(A)	((CHECK_BITFIELD(A.status_flags, XENO_HOST) && CHECK_BITFIELD(A.restrained_flags, RESTRAINED_XENO_NEST)))
+#define isnestedhost(A) ((CHECK_BITFIELD(A.status_flags, XENO_HOST) && CHECK_BITFIELD(A.restrained_flags, RESTRAINED_XENO_NEST)))
 
 //Carbon mobs
 #define iscarbon(A) (istype(A, /mob/living/carbon))
@@ -107,7 +107,7 @@
 #define isxenohivemind(A) (istype(A, /mob/living/carbon/xenomorph/hivemind))
 #define isxenowraith(A) (istype(A, /mob/living/carbon/xenomorph/wraith))
 
-#define isresinsilo(A) (istype(A, /obj/structure/resin/silo))
+#define isresinsilo(A) (istype(A, /obj/structure/xeno/resin/silo))
 
 //Silicon mobs
 #define issilicon(A) (istype(A, /mob/living/silicon))
@@ -161,7 +161,33 @@
 
 #define isgun(A) (istype(A, /obj/item/weapon/gun))
 
+#define isstorage(A) (istype(A, /obj/item/storage))
+
+#define isitemstack(A) (istype(A, /obj/item/stack))
+
+#define issuitwithstorage(A) (istype(A, /obj/item/clothing/suit/storage))
+
+#define isuniform(A) (istype(A, /obj/item/clothing/under))
+
+#define iswebbing(A) (istype(A, /obj/item/clothing/tie/storage))
+
+#define ismodulararmor(A) (istype(A, /obj/item/clothing/suit/modular))
+
+#define ismodulararmormodule(A) (istype(A, /obj/item/armor_module))
+
+#define ismodulararmorstoragemodule(A) (istype(A, /obj/item/armor_module/storage))
+
+#define ismodulararmorarmorpiece(A) (istype(A, /obj/item/armor_module/armor))
+
+#define ismodularhelmet(A) (istype(A, /obj/item/clothing/head/modular))
+
+#define ishelmetmodule(A) (istype (A, /obj/item/helmet_module))
+
 #define isattachmentflashlight(A) (istype(A, /obj/item/attachable/flashlight))
+
+#define isgunattachment(A) (istype(A, /obj/item/attachable))
+
+#define ishandful(A) (istype(A, /obj/item/ammo_magazine/handful))
 
 #define iswrench(I) (istype(I, /obj/item/tool/wrench))
 
@@ -193,6 +219,8 @@
 
 #define isidcard(A) (istype(A, /obj/item/card/id))
 
+#define isreagentcontainer(A) (istype(A, /obj/item/reagent_containers)) //Checks for if something is a reagent container.
+
 //Assemblies
 #define isassembly(O) (istype(O, /obj/item/assembly))
 
@@ -211,8 +239,10 @@
 #define isainode(O) (istype(O, /obj/effect/ai_node))
 
 //Gamemode
-#define isdistress(O) (istype(O, /datum/game_mode/infestation/distress))
+#define isdistressgamemode(O) (istype(O, /datum/game_mode/infestation/distress))
+#define ishuntgamemode(O) (istype(O, /datum/game_mode/infestation/hunt))
 #define iscrashgamemode(O) (istype(O, /datum/game_mode/infestation/crash))
+#define isinfestationgamemode(O) (istype(O, /datum/game_mode/infestation))
 
 #define isxenoresearcharea(A) (istype(A, /area/mainship/medical/medical_science))
 
@@ -224,8 +254,11 @@
 
 // Shuttles
 #define isshuttleturf(T) (length(T.baseturfs) && (/turf/baseturf_skipover/shuttle in T.baseturfs))
-#define isalamoarea(A) (istype(A, /area/shuttle/dropship/alamo))
+#define isdropshiparea(A) (istype(A, /area/shuttle/dropship))
 
 // Xeno hives
 #define isnormalhive(hive) (istype(hive, /datum/hive_status/normal))
 #define isxenohive(A) ((A == XENO_HIVE_NONE) || (A == XENO_HIVE_NORMAL) || (A == XENO_HIVE_CORRUPTED) || (A == XENO_HIVE_ALPHA) || (A == XENO_HIVE_BETA) || (A == XENO_HIVE_ZETA) || (A == XENO_HIVE_ADMEME))
+
+// Slot helpers
+#define ishandslot(A) ((A == SLOT_L_HAND) || (A == SLOT_R_HAND))

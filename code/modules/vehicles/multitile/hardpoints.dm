@@ -458,7 +458,6 @@ Currently only has the tank hardpoints
 	starter_ammo = /obj/item/ammo_magazine/tank/m56_cupola
 	max_clips = 1
 	max_angle = 90
-	var/list/iff_signal = list(ACCESS_IFF_MARINE)
 
 /obj/item/hardpoint/secondary/m56cupola/broken
 	obj_integrity = 0
@@ -479,7 +478,6 @@ Currently only has the tank hardpoints
 		A = get_step(A, pick(GLOB.cardinals))
 	var/obj/projectile/P = new
 	P.generate_bullet(new ammo.default_ammo)
-	P.projectile_iff = iff_signal
 	P.fire_at(A, owner, src, P.ammo.max_range, P.ammo.shell_speed)
 	playsound(get_turf(src), pick(list('sound/weapons/guns/fire/smartgun1.ogg', 'sound/weapons/guns/fire/smartgun2.ogg', 'sound/weapons/guns/fire/smartgun3.ogg')), 60, 1)
 	ammo.current_rounds--
@@ -712,13 +710,13 @@ Currently only has the tank hardpoints
 	if(!M.client)
 		return
 	if(is_active)
-		M.client.change_view(WORLD_VIEW)
+		M.client.view_size.reset_to_default()
 		M.client.pixel_x = 0
 		M.client.pixel_y = 0
 		is_active = FALSE
 		C.is_zoomed = FALSE
 		return
-	M.client.change_view(view_buff)
+	M.client.view_size.reset_to_default()
 	is_active = TRUE
 	C.is_zoomed = TRUE
 	switch(C.dir)
@@ -743,7 +741,7 @@ Currently only has the tank hardpoints
 	if(!M.client)
 		return
 	is_active = FALSE
-	M.client.change_view(WORLD_VIEW)
+	M.client.view_size.reset_to_default()
 	M.client.pixel_x = 0
 	M.client.pixel_y = 0
 
@@ -934,7 +932,7 @@ Currently only has the tank hardpoints
 /obj/item/ammo_magazine/tank/ltb_cannon
 	name = "LTB Cannon Magazine"
 	desc = "A primary armament cannon magazine"
-	caliber = "86mm" //Making this unique on purpose
+	caliber = CALIBER_86 //Making this unique on purpose
 	icon_state = "ltbcannon_4"
 	w_class = 15 //Heavy fucker
 	default_ammo = /datum/ammo/rocket/ltb
@@ -949,7 +947,7 @@ Currently only has the tank hardpoints
 /obj/item/ammo_magazine/tank/ltaaap_minigun
 	name = "LTAA-AP Minigun Magazine"
 	desc = "A primary armament minigun magazine"
-	caliber = "7.62x51mm" //Correlates to miniguns
+	caliber = CALIBER_762X51 //Correlates to miniguns
 	icon_state = "painless"
 	w_class = 10
 	default_ammo = /datum/ammo/bullet/minigun
@@ -961,7 +959,7 @@ Currently only has the tank hardpoints
 /obj/item/ammo_magazine/tank/flamer
 	name = "Flamer Magazine"
 	desc = "A secondary armament flamethrower magazine"
-	caliber = "UT-Napthal Fuel" //correlates to flamer mags
+	caliber = CALIBER_FUEL_THICK //correlates to flamer mags
 	icon_state = "flametank_large"
 	w_class = 12
 	default_ammo = /datum/ammo/flamethrower/tank_flamer
@@ -973,7 +971,7 @@ Currently only has the tank hardpoints
 /obj/item/ammo_magazine/tank/towlauncher
 	name = "TOW Launcher Magazine"
 	desc = "A secondary armament rocket magazine"
-	caliber = "rocket" //correlates to any rocket mags
+	caliber = CALIBER_84MM //correlates to any rocket mags
 	icon_state = "quad_rocket"
 	w_class = 10
 	default_ammo = /datum/ammo/rocket/ap //Fun fact, AP rockets seem to be a straight downgrade from normal rockets. Maybe I'm missing something...
@@ -985,7 +983,7 @@ Currently only has the tank hardpoints
 /obj/item/ammo_magazine/tank/m56_cupola
 	name = "M56 Cupola Magazine"
 	desc = "A secondary armament MG magazine"
-	caliber = "10x28mm" //Correlates to smartguns
+	caliber = CALIBER_10X28 //Correlates to smartguns
 	icon_state = "big_ammo_box"
 	w_class = 12
 	default_ammo = /datum/ammo/bullet/smartgun
@@ -997,7 +995,7 @@ Currently only has the tank hardpoints
 /obj/item/ammo_magazine/tank/tank_glauncher
 	name = "Grenade Launcher Magazine"
 	desc = "A secondary armament grenade magazine"
-	caliber = "grenade"
+	caliber = CALIBER_40MM
 	icon_state = "glauncher_2"
 	w_class = 9
 	default_ammo = /datum/ammo/grenade_container
@@ -1017,7 +1015,7 @@ Currently only has the tank hardpoints
 /obj/item/ammo_magazine/tank/tank_slauncher
 	name = "Smoke Launcher Magazine"
 	desc = "A support armament grenade magazine"
-	caliber = "grenade"
+	caliber = CALIBER_40MM
 	icon_state = "slauncher_1"
 	w_class = 12
 	default_ammo = /datum/ammo/grenade_container/smoke

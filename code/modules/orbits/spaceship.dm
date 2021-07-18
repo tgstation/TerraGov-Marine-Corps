@@ -1,16 +1,16 @@
 //A thing for 'navigating' the current ship map up or down the gravity well.
 
-#define ESCAPE_VELOCITY 	5
-#define SAFE_DISTANCE 		4
-#define STANDARD_ORBIT 		3
-#define CLOSE_ORBIT 		2
-#define SKIM_ATMOSPHERE 	1
+#define ESCAPE_VELOCITY 5
+#define SAFE_DISTANCE 4
+#define STANDARD_ORBIT 3
+#define CLOSE_ORBIT 2
+#define SKIM_ATMOSPHERE 1
 
 #define REQUIRED_POWER_AMOUNT 250000
 #define AUTO_LOGOUT_TIME 1 MINUTES
 
-#define AUTHORIZED 		1
-#define AUTHORIZED_PLUS	2
+#define AUTHORIZED 1
+#define AUTHORIZED_PLUS 2
 
 //so we can use the current orbit in other files
 GLOBAL_VAR_INIT(current_orbit,STANDARD_ORBIT)
@@ -190,8 +190,8 @@ GLOBAL_VAR_INIT(current_orbit,STANDARD_ORBIT)
 	changing_orbit = TRUE
 	engine_shudder()
 
-	var/message = "Arriving at new orbital level.<br><br>Prepare for engine ignition and stabilization."
-	addtimer(CALLBACK(src, .proc/priority_announce, message, "Orbit Change"), 290 SECONDS)
+	var/message = "Arriving at new orbital level. Prepare for engine ignition and stabilization."
+	addtimer(CALLBACK(GLOBAL_PROC, .proc/priority_announce, message, "Orbit Change"), 290 SECONDS)
 	addtimer(CALLBACK(src, .proc/orbit_gets_changed, current_orbit, direction), 5 MINUTES)
 
 /obj/machinery/computer/navigation/proc/orbit_gets_changed(current_orbit, direction)

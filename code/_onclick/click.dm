@@ -307,17 +307,14 @@
 	if(held_thing && SEND_SIGNAL(held_thing, COMSIG_ITEM_MIDDLECLICKON, A, src) & COMPONENT_ITEM_CLICKON_BYPASS)
 		return FALSE
 
-
 #define TARGET_FLAGS_MACRO(flagname, typepath) \
-if(selected_ability.target_flags & flagname){\
+if(selected_ability.target_flags & flagname && !istype(A, typepath)){\
 	. = locate(typepath) in get_turf(A);\
 	if(.){\
 		return;}}
 
 /mob/living/carbon/xenomorph/proc/ability_target(atom/A)
 	TARGET_FLAGS_MACRO(XABB_MOB_TARGET, /mob/living)
-	TARGET_FLAGS_MACRO(XABB_OBJ_TARGET, /obj)
-	TARGET_FLAGS_MACRO(XABB_WALL_TARGET, /turf/closed/wall)
 	if(selected_ability.target_flags & XABB_TURF_TARGET)
 		return get_turf(A)
 	return A
@@ -332,11 +329,11 @@ if(selected_ability.target_flags & flagname){\
 
 /mob/living/carbon/xenomorph/RightClickOn(atom/A)
 	. = ..()
-	if(!selected_ability)
-		return FALSE
-	A = ability_target(A)
-	if(selected_ability.can_use_ability(A))
-		selected_ability.use_ability(A)
+	if(selected_ability) //If we have a selected ability that we can use, return TRUE
+		A = ability_target(A)
+		if(selected_ability.can_use_ability(A))
+			selected_ability.use_ability(A)
+			return TRUE
 
 /*
 	Right click
@@ -559,6 +556,9 @@ if(selected_ability.target_flags & flagname){\
 			modifiers["icon-y"] = num2text(ABS_PIXEL_TO_REL(text2num(modifiers["icon-y"])))
 			T.Click(location, control, list2params(modifiers))
 	. = TRUE
+
+/obj/screen/click_catcher/MouseMove(location, control, params)//This allow to catch mouse drag on click catcher, aka black tiles
+	return
 
 
 /* MouseWheelOn */

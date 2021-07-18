@@ -1,6 +1,6 @@
 /datum/emergency_call/imperial
 	name = "Imperial Guard Squad"
-	probability = 0
+	base_probability = 0
 
 /datum/emergency_call/imperial/print_backstory(mob/living/carbon/human/H)
 	to_chat(H, "<B>You grew up [pick("on Cadia, the guardsmen factory", "on Holy Terra, the cradle of the Imperium")] to [pick(5;"a wealthy family of nobles, but you weren't as good as they wanted you to be, so they kicked you out",95;"a poor family that let you go on your own after you reached mature age, you never saw them again")].</B>")

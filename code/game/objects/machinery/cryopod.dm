@@ -177,14 +177,23 @@
 	var/mob/living/occupant //Person waiting to be despawned.
 	var/orient_right = FALSE // Flips the sprite.
 	var/obj/item/radio/radio
+	/// The frequency of the radio
+	var/frequency = FREQ_COMMON
+
+/obj/machinery/cryopod/rebel
+	frequency = FREQ_COMMON_REBEL
 
 /obj/machinery/cryopod/right
 	orient_right = TRUE
 	icon_state = "body_scanner_0-r"
 
+/obj/machinery/cryopod/right/rebel
+	frequency = FREQ_COMMON_REBEL
+
 /obj/machinery/cryopod/Initialize()
 	. = ..()
 	radio = new(src)
+	radio.set_frequency(frequency)
 	update_icon()
 	RegisterSignal(src, COMSIG_MOVABLE_SHUTTLE_CRUSH, .proc/shuttle_crush)
 
@@ -247,7 +256,7 @@
 		pod.visible_message("<span class='notice'>[pod] hums and hisses as it moves [real_name] into hypersleep storage.</span>")
 		pod.occupant = null
 		pod.update_icon()
-		pod.radio.talk_into(pod, "[real_name] has entered long-term hypersleep storage. Belongings moved to hypersleep inventory.", FREQ_COMMON)
+		pod.radio.talk_into(pod, "[real_name] has entered long-term hypersleep storage. Belongings moved to hypersleep inventory.", pod.frequency)
 
 	qdel(src)
 
@@ -263,8 +272,6 @@
 				dept_console = CRYO_CHARLIE
 			if(DELTA_SQUAD)
 				dept_console = CRYO_DELTA
-		if(istype(job, /datum/job/terragov/squad/specialist) && specset && !GLOB.available_specialist_sets.Find(specset))
-			GLOB.available_specialist_sets += specset //we make the set this specialist took if any available again
 		assigned_squad.remove_from_squad(src)
 	return ..()
 
@@ -315,12 +322,6 @@
 		hold.remove_from_storage(I, loc)
 		items = I.store_in_cryo(items)
 	return ..()
-
-/obj/item/clothing/tie/holster/store_in_cryo(list/items, nullspace_it = TRUE)
-	if(holstered)
-		items = holstered.store_in_cryo(items)
-		holstered = null
-		update_icon()
 
 /obj/machinery/cryopod/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -397,6 +398,10 @@
 
 /obj/machinery/cryopod/proc/climb_in(mob/living/carbon/user, mob/helper)
 	if(helper && user != helper)
+		if(user.stat == DEAD)
+			to_chat(helper, "<span class='notice'>[user] is dead!</span>")
+			return
+
 		if(!user.client && user.afk_status == MOB_RECENTLY_DISCONNECTED)
 			to_chat(helper, "<span class='notice'>You should wait another [round((timeleft(user.afk_timer_id) * 0.1) / 60, 2)] minutes before they are ready to enter cryosleep.</span>")
 			return

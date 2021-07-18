@@ -4,7 +4,6 @@
 	var/unwieldsound
 	flags_item = TWOHANDED
 
-
 /obj/item/weapon/twohanded/update_icon()
 	return
 
@@ -59,7 +58,11 @@
 
 	toggle_wielded(user, FALSE)
 	SEND_SIGNAL(src, COMSIG_ITEM_UNWIELD, user)
-	name = initial(name)
+	var/sf = findtext(name, " (Wielded)", -10) // 10 == length(" (Wielded)")
+	if(sf)
+		name = copytext(name, 1, sf)
+	else
+		name = "[initial(name)]"
 	update_item_state(user)
 	remove_offhand(user)
 	return TRUE
@@ -238,17 +241,23 @@
 	desc = "A haphazardly-constructed yet still deadly weapon of ancient design."
 	icon_state = "spearglass"
 	item_state = "spearglass"
-	force = 25
+	force = 40
 	w_class = WEIGHT_CLASS_BULKY
 	flags_equip_slot = ITEM_SLOT_BACK
-	force_wielded = 40
+	force_wielded = 75
 	throwforce = 75
 	throw_speed = 3
+	reach = 2
 	edge = 1
 	sharp = IS_SHARP_ITEM_SIMPLE
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	attack_verb = list("attacked", "stabbed", "jabbed", "torn", "gored")
 
+/obj/item/weapon/twohanded/spear/tactical
+	name = "M-23 spear"
+	desc = "A tactical spear. Used for 'tactical' combat."
+	icon_state = "spear"
+	item_state = "spear"
 
 /obj/item/weapon/twohanded/glaive
 	name = "war glaive"

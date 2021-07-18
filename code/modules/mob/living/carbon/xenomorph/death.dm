@@ -19,6 +19,7 @@
 	if(is_zoomed)
 		zoom_out()
 
+	SSminimaps.remove_marker(src)
 	set_light_on(FALSE)
 
 	if(hud_used)
@@ -60,6 +61,8 @@
 	if(GetComponent(/datum/component/ai_controller))
 		gib()
 
+	eject_victim()
+
 	to_chat(src,"<b><span class='deadsay'><p style='font-size:1.5em'><big>We have perished.</big><br><small>But it is not the end of us yet... wait until a newborn can rise in this world...</small></p></span></b>")
 
 	return ..()
@@ -69,7 +72,7 @@
 	if(is_centcom_level(z))
 		return
 	var/area/A = get_area(src)
-	xeno_message("Hive: \The [src] has <b>died</b>[A? " at [A]":""]!", 3, hivenumber)
+	xeno_message("Hive: \The [src] has <b>died</b>[A? " at [A]":""]!", "xenoannounce", 5, hivenumber)
 
 /mob/living/carbon/xenomorph/gib()
 

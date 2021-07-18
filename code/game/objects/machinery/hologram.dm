@@ -5,7 +5,7 @@
 	name = "holopad"
 	desc = "It's a floor-mounted device for projecting holographic images."
 	icon_state = "holopad0"
-	layer = LOW_OBJ_LAYER
+	layer = HOLOPAD_LAYER
 	plane = FLOOR_PLANE
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 5
@@ -298,7 +298,7 @@ For the other part of the code, check silicon say.dm. Particularly robot talk.*/
 		set_light(0)
 	update_icon()
 
-/obj/machinery/holopad/update_icon()
+/obj/machinery/holopad/update_icon_state()
 	var/total_users = LAZYLEN(masters) + LAZYLEN(holo_calls)
 	if(ringing)
 		icon_state = "holopad_ringing"

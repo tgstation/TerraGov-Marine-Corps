@@ -1,6 +1,6 @@
 /datum/emergency_call/skeleton
 	name = "The Bone Zone"
-	probability = 0
+	base_probability = 0
 	spawn_type = /mob/living/carbon/human/species/skeleton
 
 

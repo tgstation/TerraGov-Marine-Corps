@@ -205,3 +205,7 @@
 	results = list(/datum/reagent/medicine/dylovene = 2)
 	required_reagents = list(/datum/reagent/virilyth = 1, /datum/reagent/medicine/dylovene = 1)
 
+/datum/chemical_reaction/bihexajuline
+	name = "Bihexajuline"
+	results = list(/datum/reagent/medicine/bihexajuline = 5)
+	required_reagents = list(/datum/reagent/medicine/bicaridine = 2, /datum/reagent/consumable/drink/milk = 1, /datum/reagent/iron = 2)

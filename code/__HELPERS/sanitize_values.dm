@@ -6,6 +6,12 @@
 			return number
 	return default
 
+/proc/sanitize_float(number, min=0, max=1, accuracy=1, default=0)
+	if(isnum(number))
+		number = round(number, accuracy)
+		if(min <= number && number <= max)
+			return number
+	return default
 
 /proc/sanitize_text(text, default = "")
 	if(istext(text))
@@ -19,6 +25,17 @@
 	if(default)
 		return default
 
+/// Sanitize the custom emote list
+/proc/sanitize_is_full_emote_list(value)
+	if(length(value) == CUSTOM_EMOTE_SLOTS)
+		return value
+	if(!value)
+		value = list()
+	for(var/i in (length(value)+1) to CUSTOM_EMOTE_SLOTS)
+		var/datum/custom_emote/emote = new
+		emote.id = i
+		value += emote
+	return value
 
 /proc/sanitize_inlist(value, list/L, default)
 	if(value in L)

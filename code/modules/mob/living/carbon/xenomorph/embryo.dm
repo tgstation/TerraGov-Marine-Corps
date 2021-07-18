@@ -54,12 +54,7 @@
 		affected_mob = null
 		return PROCESS_KILL
 
-	if(affected_mob.stat == DEAD)//DEAD CODE TO BE REMOVED
-		if(ishuman(affected_mob))
-			if(!HAS_TRAIT(affected_mob, TRAIT_UNDEFIBBABLE)) 
-				var/mob/living/carbon/xenomorph/larva/L = locate() in affected_mob
-				L?.initiate_burst(affected_mob)
-				return PROCESS_KILL
+	if(affected_mob.stat == DEAD)
 		var/mob/living/carbon/xenomorph/larva/L = locate() in affected_mob
 		L?.initiate_burst(affected_mob)
 		return PROCESS_KILL
@@ -164,6 +159,7 @@
 		return
 
 	victim.chestburst = 1
+	ADD_TRAIT(victim, TRAIT_PSY_DRAINED, TRAIT_PSY_DRAINED)
 	to_chat(src, "<span class='danger'>We start bursting out of [victim]'s chest!</span>")
 
 	victim.Unconscious(40 SECONDS)

@@ -1,3 +1,6 @@
+#define DEFILER_NEUROTOXIN "Neurotoxin"
+#define DEFILER_HEMODILE "Hemodile"
+#define DEFILER_TRANSVITOX "Transvitox"
 
 // ***************************************
 // *********** Sting
@@ -9,6 +12,7 @@
 	ability_name = "defiler sting"
 	plasma_cost = 150
 	cooldown_timer = 20 SECONDS
+	target_flags = XABB_MOB_TARGET
 
 /datum/action/xeno_action/activable/larval_growth_sting/defiler/on_cooldown_finish()
 	playsound(owner.loc, 'sound/voice/alien_drool1.ogg', 50, 1)
@@ -45,7 +49,7 @@
 // ***************************************
 // *********** Neurogas
 // ***************************************
-/datum/action/xeno_action/activable/emit_neurogas
+/datum/action/xeno_action/emit_neurogas
 	name = "Emit Noxious Gas"
 	action_icon_state = "emit_neurogas"
 	mechanics_text = "Channel for 3 seconds to emit a cloud of noxious smoke, based on selected reagent, that follows the Defiler. You must remain stationary while channeling; moving will cancel the ability but will still cost plasma."
@@ -55,12 +59,12 @@
 	keybind_flags = XACT_KEYBIND_USE_ABILITY|XACT_IGNORE_SELECTED_ABILITY
 	keybind_signal = COMSIG_XENOABILITY_EMIT_NEUROGAS
 
-/datum/action/xeno_action/activable/emit_neurogas/on_cooldown_finish()
+/datum/action/xeno_action/emit_neurogas/on_cooldown_finish()
 	playsound(owner.loc, 'sound/effects/xeno_newlarva.ogg', 50, 0)
 	to_chat(owner, "<span class='xenodanger'>We feel our dorsal vents bristle with heated gas. We can use Emit Noxious Gas again.</span>")
 	return ..()
 
-/datum/action/xeno_action/activable/emit_neurogas/use_ability(atom/A)
+/datum/action/xeno_action/emit_neurogas/action_activate()
 	var/mob/living/carbon/xenomorph/Defiler/X = owner
 
 	//give them fair warning
@@ -93,19 +97,22 @@
 	"<span class='xenodanger'>We emit noxious gas!</span>")
 	dispense_gas()
 
-/datum/action/xeno_action/activable/emit_neurogas/proc/dispense_gas(count = 3)
+/datum/action/xeno_action/emit_neurogas/proc/dispense_gas(count = 3)
 	var/mob/living/carbon/xenomorph/Defiler/X = owner
 	set waitfor = FALSE
 	var/smoke_range = 2
-	var/datum/effect_system/smoke_spread/xeno/neuro/medium/N = new(X)
-	N.strength = 1
-	if(X.selected_reagent == /datum/reagent/toxin/xeno_hemodile)
-		N.smoke_type = /obj/effect/particle_effect/smoke/xeno/hemodile
-		smoke_range = 3
-	else if(X.selected_reagent == /datum/reagent/toxin/xeno_transvitox)
-		N.smoke_type = /obj/effect/particle_effect/smoke/xeno/transvitox
-		N.strength = 0.75
-		smoke_range = 4
+	var/datum/effect_system/smoke_spread/xeno/gas
+
+	switch(X.selected_reagent)
+		if(/datum/reagent/toxin/xeno_neurotoxin)
+			gas = new /datum/effect_system/smoke_spread/xeno/neuro/medium(X)
+		if(/datum/reagent/toxin/xeno_hemodile)
+			gas = new /datum/effect_system/smoke_spread/xeno/hemodile(X)
+			smoke_range = 3
+		if(/datum/reagent/toxin/xeno_transvitox)
+			gas = new /datum/effect_system/smoke_spread/xeno/transvitox(X)
+			smoke_range = 4
+
 	while(count)
 		if(X.stagger) //If we got staggered, return
 			to_chat(X, "<span class='xenowarning'>We try to emit toxins but are staggered!</span>")
@@ -116,10 +123,10 @@
 		var/turf/T = get_turf(X)
 		playsound(T, 'sound/effects/smoke.ogg', 25)
 		if(count > 1)
-			N.set_up(smoke_range, T)
+			gas.set_up(smoke_range, T)
 		else //last emission is larger
-			N.set_up(round(smoke_range*1.3), T)
-		N.start()
+			gas.set_up(CEILING(smoke_range*1.3,1), T)
+		gas.start()
 		T.visible_message("<span class='danger'>Noxious smoke billows from the hulking xenomorph!</span>")
 		count = max(0,count - 1)
 		sleep(DEFILER_GAS_DELAY)
@@ -129,9 +136,9 @@
 // *********** Inject Egg Neurogas
 // ***************************************
 /datum/action/xeno_action/activable/inject_egg_neurogas
-	name = "Inject Neurogas"
+	name = "Inject Gas"
 	action_icon_state = "inject_egg"
-	mechanics_text = "Inject an egg with neurogas, killing the egg, but filling it full with neurogas ready to explode."
+	mechanics_text = "Inject an egg with toxins, killing the larva, but filling it full with gas ready to explode."
 	ability_name = "inject neurogas"
 	plasma_cost = 100
 	cooldown_timer = 5 SECONDS
@@ -140,13 +147,17 @@
 
 /datum/action/xeno_action/activable/inject_egg_neurogas/on_cooldown_finish()
 	playsound(owner.loc, 'sound/effects/xeno_newlarva.ogg', 50, 0)
-	to_chat(owner, "<span class='xenodanger'>We feel our dorsal vents bristle with neurotoxic gas. We can use Emit Neurogas again.</span>")
+	to_chat(owner, "<span class='xenodanger'>We feel our stinger fill with toxins. We can inject an egg with gas again.</span>")
 	return ..()
 
 /datum/action/xeno_action/activable/inject_egg_neurogas/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/Defiler/X = owner
 
 	if(!istype(A, /obj/effect/alien/egg))
+		return fail_activate()
+
+	if(istype(A, /obj/effect/alien/egg/gas))
+		to_chat(X, "<span class='warning'>That egg has already been filled with toxic gas.</span>")
 		return fail_activate()
 
 	var/obj/effect/alien/egg/alien_egg = A
@@ -164,7 +175,16 @@
 	succeed_activate()
 	add_cooldown()
 
-	new /obj/effect/alien/egg/gas(A.loc)
+	var/obj/effect/alien/egg/gas/newegg = new(A.loc)
+	switch(X.selected_reagent)
+		if(/datum/reagent/toxin/xeno_neurotoxin)
+			newegg.gas_type = /datum/effect_system/smoke_spread/xeno/neuro/medium
+		if(/datum/reagent/toxin/xeno_hemodile)
+			newegg.gas_type = /datum/effect_system/smoke_spread/xeno/hemodile
+			newegg.gas_size_bonus = 1
+		if(/datum/reagent/toxin/xeno_transvitox)
+			newegg.gas_type = /datum/effect_system/smoke_spread/xeno/transvitox
+			newegg.gas_size_bonus = 2
 	qdel(alien_egg)
 
 	GLOB.round_statistics.defiler_inject_egg_neurogas++
@@ -177,9 +197,15 @@
 	name = "Select Reagent"
 	action_icon_state = "select_reagent0"
 	mechanics_text = "Selects which reagent to use for reagent slash and noxious gas. Hemodile slows by 25%, increased to 50% with neurotoxin present, and deals 20% of damage received as stamina damage. Transvitox converts brute/burn damage to toxin based on 40% of damage received up to 45 toxin on target, upon reaching which causes a stun. Neurotoxin deals increasing stamina damage the longer it remains in the victim's system and prevents stamina regeneration."
-	use_state_flags = XACT_USE_BUSY
+	use_state_flags = XACT_USE_BUSY|XACT_USE_LYING
 	keybind_signal = COMSIG_XENOABILITY_SELECT_REAGENT
-	var/list_position
+	alternate_keybind_signal = COMSIG_XENOABILITY_RADIAL_SELECT_REAGENT
+
+/datum/action/xeno_action/select_reagent/give_action(mob/living/L)
+	. = ..()
+	var/mob/living/carbon/xenomorph/X = owner
+	X.selected_reagent = GLOB.defiler_toxin_type_list[1] //Set our default
+	update_button_icon() //Update immediately to get our default
 
 /datum/action/xeno_action/select_reagent/update_button_icon()
 	var/mob/living/carbon/xenomorph/X = owner
@@ -190,16 +216,40 @@
 
 /datum/action/xeno_action/select_reagent/action_activate()
 	var/mob/living/carbon/xenomorph/X = owner
-	var/list/available_reagents = X.xeno_caste.available_reagents_define
-	if(list_position < length(available_reagents))
-		list_position++
+	var/i = GLOB.defiler_toxin_type_list.Find(X.selected_reagent)
+	if(length(GLOB.defiler_toxin_type_list) == i)
+		X.selected_reagent = GLOB.defiler_toxin_type_list[1]
 	else
-		list_position = 1
-	X.selected_reagent = available_reagents[list_position]
+		X.selected_reagent = GLOB.defiler_toxin_type_list[i+1]
+
 	var/atom/A = X.selected_reagent
-	to_chat(X, "<span class='notice'>We will now slash with <b>[initial(A.name)]</b>.</span>")
+	to_chat(X, "<span class='notice'>We will now use <b>[initial(A.name)]</b>.</span>")
 	update_button_icon()
 	return succeed_activate()
+
+/datum/action/xeno_action/select_reagent/alternate_keybind_action()
+	INVOKE_ASYNC(src, .proc/select_reagent_radial)
+
+/datum/action/xeno_action/select_reagent/proc/select_reagent_radial()
+	//List of toxin images
+	var/static/list/defiler_toxin_images_list = list(
+			DEFILER_NEUROTOXIN = image('icons/mob/actions.dmi', icon_state = DEFILER_NEUROTOXIN),
+			DEFILER_HEMODILE = image('icons/mob/actions.dmi', icon_state = DEFILER_HEMODILE),
+			DEFILER_TRANSVITOX = image('icons/mob/actions.dmi', icon_state = DEFILER_TRANSVITOX),
+			)
+	var/toxin_choice = show_radial_menu(owner, owner, defiler_toxin_images_list, radius = 48)
+	if(!toxin_choice)
+		return
+	var/mob/living/carbon/xenomorph/X = owner
+	for(var/toxin in GLOB.defiler_toxin_type_list)
+		var/datum/reagent/R = GLOB.chemical_reagents_list[toxin]
+		if(R.name == toxin_choice)
+			X.selected_reagent = R.type
+			break
+	to_chat(X, "<span class='notice'>We will now use <b>[toxin_choice]</b>.</span>")
+	update_button_icon()
+	return succeed_activate()
+
 
 // ***************************************
 // *********** Reagent slash
@@ -274,3 +324,7 @@
 	to_chat(owner, "<span class='xenodanger'>We are able to infuse our spines with toxins again.</span>")
 	owner.playsound_local(owner, 'sound/effects/xeno_newlarva.ogg', 25, 0, 1)
 	return ..()
+
+#undef DEFILER_NEUROTOXIN
+#undef DEFILER_HEMODILE
+#undef DEFILER_TRANSVITOX

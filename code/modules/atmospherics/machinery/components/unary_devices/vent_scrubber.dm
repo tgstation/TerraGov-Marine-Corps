@@ -1,5 +1,5 @@
-#define SIPHONING	0
-#define SCRUBBING	1
+#define SIPHONING 0
+#define SCRUBBING 1
 
 /obj/machinery/atmospherics/components/unary/vent_scrubber
 	icon_state = "scrub_map-2"

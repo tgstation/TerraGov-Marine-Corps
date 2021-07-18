@@ -190,6 +190,10 @@ Voting
 
 /datum/config_entry/flag/allow_vote_mode
 
+/datum/config_entry/flag/allow_vote_groundmap
+
+/datum/config_entry/flag/allow_vote_shipmap
+
 /datum/config_entry/flag/default_no_vote
 
 /datum/config_entry/flag/no_dead_vote
@@ -390,3 +394,6 @@ This maintains a list of ip addresses that are able to bypass topic filtering.
 /datum/config_entry/number/ff_damage_reset
 	min_val = 0
 	config_entry_value = 30 SECONDS
+
+/datum/config_entry/flag/is_automatic_balance_on
+	config_entry_value = TRUE

@@ -54,6 +54,12 @@ GLOBAL_PROTECT(exp_specialmap)
 
 	var/list/jobworth = list() //Associative list of indexes increased when someone joins as this job.
 
+	/// Description shown in the player's job preferences
+	var/html_description = ""
+
+	///string; typepath for the icon that this job will show on the minimap
+	var/minimap_icon
+
 /datum/job/New()
 	if(outfit)
 		if(!ispath(outfit, /datum/outfit))
@@ -79,9 +85,9 @@ GLOBAL_PROTECT(exp_specialmap)
 		M.mind.initial_account = bank_account
 
 		var/mob/living/carbon/human/H = L
-		var/obj/item/card/id/C = H.wear_id
-		if(istype(C))
-			C.associated_account_number = bank_account.account_number
+		var/obj/item/card/id/id = H.wear_id
+		if(istype(id))
+			id.associated_account_number = bank_account.account_number
 
 
 /datum/job/proc/announce(mob/living/announced_mob)
@@ -165,21 +171,22 @@ GLOBAL_PROTECT(exp_specialmap)
 
 
 /datum/outfit/job/proc/handle_id(mob/living/carbon/human/H)
-	var/datum/job/J = SSjob.GetJobType(jobtype)
-	if(!J)
-		J = H.job
+	var/datum/job/job = SSjob.GetJobType(jobtype)
+	if(!job)
+		job = H.job
 
-	var/obj/item/card/id/C = H.wear_id
-	if(istype(C))
-		C.access = J.get_access()
-		shuffle_inplace(C.access) // Shuffle access list to make NTNet passkeys less predictable
-		C.registered_name = H.real_name
-		C.assignment = J.title
-		C.rank = J.title
-		C.paygrade = J.paygrade
-		C.update_label()
+	var/obj/item/card/id/id = H.wear_id
+	if(istype(id))
+		id.access = job.get_access()
+		id.iff_signal = GLOB.faction_to_iff[job.faction]
+		shuffle_inplace(id.access) // Shuffle access list to make NTNet passkeys less predictable
+		id.registered_name = H.real_name
+		id.assignment = job.title
+		id.rank = job.title
+		id.paygrade = job.paygrade
+		id.update_label()
 		if(H.mind?.initial_account) // In most cases they won't have a mind at this point.
-			C.associated_account_number = H.mind.initial_account.account_number
+			id.associated_account_number = H.mind.initial_account.account_number
 
 	H.update_action_buttons()
 
@@ -189,15 +196,16 @@ GLOBAL_PROTECT(exp_specialmap)
 
 /datum/job/proc/occupy_job_positions(amount, respawn = FALSE)
 	if(amount <= 0)
-		CRASH("free_job_positions() called with amount: [amount]")
+		CRASH("occupy_job_positions() called with amount: [amount]")
 	current_positions += amount
 	for(var/index in jobworth)
 		var/datum/job/scaled_job = SSjob.GetJobType(index)
 		if(!(scaled_job in SSjob.active_joinable_occupations))
 			continue
-		if(isxenosjob(scaled_job) && respawn)
+		if(isxenosjob(scaled_job) && respawn && (SSticker.mode?.flags_round_type & MODE_SILO_RESPAWN))
 			continue
 		scaled_job.add_job_points(jobworth[index])
+	return TRUE
 
 /datum/job/proc/free_job_positions(amount)
 	if(amount <= 0)
@@ -259,6 +267,7 @@ GLOBAL_PROTECT(exp_specialmap)
 	job = assigned_role
 	skills = getSkillsType(job.return_skills_type(player?.prefs))
 	faction = job.faction
+	LAZYADD(GLOB.alive_human_list_faction[faction], src)
 	job.announce(src)
 
 
@@ -281,8 +290,8 @@ GLOBAL_PROTECT(exp_specialmap)
 
 	if(!src.assigned_squad && assigned_squad)
 		job.equip_spawning_squad(src, assigned_squad, player)
-	
-	hud_set_job()
+
+	hud_set_job(faction)
 
 /datum/job/proc/equip_spawning_squad(mob/living/carbon/human/new_character, datum/squad/assigned_squad, client/player)
 	return
@@ -312,3 +321,9 @@ GLOBAL_PROTECT(exp_specialmap)
 
 /datum/job/proc/handle_special_preview(client/parent)
 	return FALSE
+
+/datum/job/xenomorph/occupy_job_positions(amount, respawn)
+	if((total_positions - current_positions - amount) < 0)
+		CRASH("Occupy xenomorph position was call with amount = [amount] and respawn =[respawn ? "TRUE" : "FALSE"] \n \
+		This would have created a negative larva situation")
+	return ..()

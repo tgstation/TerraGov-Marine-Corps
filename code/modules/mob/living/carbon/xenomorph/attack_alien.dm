@@ -18,7 +18,7 @@
 
 /mob/living/carbon/human/attack_alien_grab(mob/living/carbon/xenomorph/X)
 
-	if(check_shields(COMBAT_TOUCH_ATTACK, X.xeno_caste.tackle_damage, "melee"))
+	if(check_shields(COMBAT_TOUCH_ATTACK, X.xeno_caste.melee_damage, "melee"))
 		return ..()
 	X.visible_message("<span class='danger'>\The [X]'s grab is blocked by [src]'s shield!</span>",
 		"<span class='danger'>Our grab was blocked by [src]'s shield!</span>", null, 5)
@@ -89,7 +89,7 @@
 	if(!can_xeno_slash(X))
 		return FALSE
 
-	var/damage = X.xeno_caste.melee_damage
+	var/damage = X.xeno_caste.melee_damage * X.xeno_melee_damage_modifier
 	if(!damage)
 		return FALSE
 

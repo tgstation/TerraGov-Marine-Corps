@@ -201,8 +201,6 @@
 		else // Many other things have registered here
 			lookup[sig_type][src] = TRUE
 
-	signal_enabled = TRUE
-
 /**
  * Stop listening to a given signal from target
  *
@@ -234,6 +232,8 @@
 						target.comp_lookup = null
 						break
 			if(0)
+				if(lookup[sig] != src)
+					continue
 				lookup -= sig
 				if(!length(lookup))
 					target.comp_lookup = null
@@ -309,18 +309,11 @@
 /datum/proc/_SendSignal(sigtype, list/arguments)
 	var/target = comp_lookup[sigtype]
 	if(!length(target))
-		var/datum/C = target
-		if(!C.signal_enabled)
-			return NONE
-		var/proctype = C.signal_procs[src][sigtype]
-		return NONE | CallAsync(C, proctype, arguments)
+		var/datum/listening_datum = target
+		return NONE | CallAsync(listening_datum, listening_datum.signal_procs[src][sigtype], arguments)
 	. = NONE
-	for(var/I in target)
-		var/datum/C = I
-		if(!C.signal_enabled)
-			continue
-		var/proctype = C.signal_procs[src][sigtype]
-		. |= CallAsync(C, proctype, arguments)
+	for(var/datum/listening_datum as anything in target)
+		. |= CallAsync(listening_datum, listening_datum.signal_procs[src][sigtype], arguments)
 
 // The type arg is casted so initial works, you shouldn't be passing a real instance into this
 /**
@@ -466,10 +459,10 @@
  * * component_type The typepath of the component to create or return
  * * ... additional arguments to be passed when creating the component if it does not exist
  */
-/datum/proc/LoadComponent(component_type, ...)
-	. = GetComponent(component_type)
+/datum/proc/_LoadComponent(list/arguments)
+	. = GetComponent(arguments[1])
 	if(!.)
-		return _AddComponent(args)
+		return _AddComponent(arguments)
 
 /**
  * Removes the component from parent, ends up with a null parent

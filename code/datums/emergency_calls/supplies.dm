@@ -1,5 +1,5 @@
 //Supply drop. Just crates, no members.
-#define ERT_CRATES  pick(list(/obj/item/weapon/gun/smg/m25, \
+#define ERT_CRATES pick(list(/obj/item/weapon/gun/smg/m25, \
 							/obj/item/weapon/gun/smg/m25, \
 							/obj/item/ammo_magazine/smg/m25/extended, \
 							/obj/item/ammo_magazine/smg/m25/extended, \
@@ -41,7 +41,7 @@
 	name = "Supply Drop"
 	mob_max = 0
 	mob_min = 0
-	probability = 0
+	base_probability = 0
 	auto_shuttle_launch = TRUE
 
 

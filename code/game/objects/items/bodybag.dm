@@ -202,6 +202,7 @@
 	if(opened)
 		return FALSE // stop xeno closing things
 	X.do_attack_animation(src, ATTACK_EFFECT_CLAW)
+	bodybag_occupant?.attack_alien(X)
 	open()
 	X.visible_message("<span class='danger'>\The [X] slashes \the [src] open!</span>", \
 		"<span class='danger'>We slash \the [src] open!</span>", null, 5)
@@ -389,8 +390,10 @@
 		unfolded_tarp.name = "\improper [serial_number] [unfolded_tarp.name]" //Set the name with the serial number
 
 /obj/item/bodybag/tarp/unique_action(mob/user)
+	. = ..()
 	deploy_bodybag(user, get_turf(user))
 	unfoldedbag_instance.close()
+	return TRUE
 
 
 /obj/item/bodybag/tarp/snow

@@ -34,7 +34,7 @@
 	var/icon/holo_icon //Default is assigned when AI is created.
 	var/list/datum/AI_Module/current_modules = list()
 
-	var/level_locked = TRUE
+	var/level_locked = FALSE	//Can the AI use things on other Z levels?
 	var/control_disabled = FALSE
 	var/radiomod = ";"
 	var/list/laws
@@ -43,6 +43,8 @@
 	var/list/obj/machinery/camera/lit_cameras = list()
 
 	var/datum/trackable/track
+	///Selected order to give to marine
+	var/datum/action/innate/order/current_order
 
 
 /mob/living/silicon/ai/Initialize(mapload, ...)
@@ -52,7 +54,7 @@
 	builtInCamera = new(src)
 	builtInCamera.network = list("marinemainship")
 
-	holo_icon = getHologramIcon(icon('icons/mob/AI.dmi', "holo1"))
+	holo_icon = getHologramIcon(icon('icons/mob/AI.dmi', "default"))
 
 	laws = list()
 	laws += "Safeguard: Protect your assigned vessel from damage to the best of your abilities."
@@ -69,14 +71,42 @@
 		apply_assigned_role_to_spawn(ai_job)
 
 	GLOB.ai_list += src
+	var/datum/atom_hud/H = GLOB.huds[DATA_HUD_SQUAD_TERRAGOV]
+	H.add_hud_to(src)
 
+	RegisterSignal(src, COMSIG_MOB_CLICK_ALT, .proc/send_order)
+	RegisterSignal(src, COMSIG_ORDER_SELECTED, .proc/set_order)
+
+	var/datum/action/innate/order/attack_order/send_attack_order = new
+	var/datum/action/innate/order/defend_order/send_defend_order = new
+	var/datum/action/innate/order/retreat_order/send_retreat_order = new
+	send_attack_order.target = src
+	send_attack_order.give_action(src)
+	send_defend_order.target = src
+	send_defend_order.give_action(src)
+	send_retreat_order.target = src
+	send_retreat_order.give_action(src)
 
 /mob/living/silicon/ai/Destroy()
 	GLOB.ai_list -= src
 	QDEL_NULL(builtInCamera)
 	QDEL_NULL(track)
+	UnregisterSignal(src, COMSIG_ORDER_SELECTED)
+	UnregisterSignal(src, COMSIG_MOB_CLICK_ALT)
 	return ..()
 
+///Print order visual to all marines squad hud and give them an arrow to follow the waypoint
+/mob/living/silicon/ai/proc/send_order(datum/source, atom/target)
+	SIGNAL_HANDLER
+	if(!current_order)
+		to_chat(src, "<span class='warning'>Your have no order selected.</span>")
+		return
+	current_order.send_order(target)
+
+///Set the current order
+/mob/living/silicon/ai/proc/set_order(datum/source, datum/action/innate/order/order)
+	SIGNAL_HANDLER
+	current_order = order
 
 /mob/living/silicon/ai/restrained(ignore_checks)
 	return FALSE
@@ -248,6 +278,18 @@
 			return
 
 		stat("System integrity:", "[(health + 100) / 2]%")
+		stat("<BR>- Operation information - <BR>")
+		stat("Current orbit:", "[GLOB.current_orbit]")
+
+		if(!GLOB.marine_main_ship?.orbital_cannon?.chambered_tray)
+			stat("<b>Orbital bombardment status:</b>", "<font color='red'>No ammo chambered in the cannon.</font><br>")
+		else
+			stat("Orbital bombardment warhead:", "[GLOB.marine_main_ship.orbital_cannon.tray.warhead.name] Detected<BR>")
+
+		stat("Current supply points:", "[round(SSpoints.supply_points[FACTION_TERRAGOV])]")
+
+		stat("Current alert level:", "[GLOB.marine_main_ship.get_security_level()]")
+
 
 
 /mob/living/silicon/ai/fully_replace_character_name(oldname, newname)
@@ -271,7 +313,7 @@
 		return FALSE
 
 	var/atom/A = D
-	if(level_locked && A.z != z)
+	if(!isturf(A) && level_locked && A.z != z)
 		return FALSE
 
 	return GLOB.cameranet.checkTurfVis(get_turf(A))

@@ -8,7 +8,7 @@
 	anchored = TRUE
 	layer = WINDOW_LAYER
 	flags_atom = ON_BORDER
-	resistance_flags = XENO_DAMAGEABLE
+	resistance_flags = XENO_DAMAGEABLE | DROPSHIP_IMMUNE
 	coverage = 20
 	var/dismantle = FALSE //If we're dismantling the window properly no smashy smashy
 	max_integrity = 15
@@ -310,6 +310,16 @@
 	max_integrity = 300
 	reinf = TRUE
 
+//For the sulaco and POS AI core.
+/obj/structure/window/reinforced/extratoughened
+	name = "protective AI glass"
+	desc = "Heavily reinforced glass with many layers of a rod matrice. This is rarely used for anything but the most important windows"
+	icon_state = "rwindow"
+	basestate = "rwindow"
+	max_integrity = 1500
+	reinf = TRUE
+	resistance_flags = 10 // I have no clue what those are.
+
 /obj/structure/window/reinforced/tinted
 	name = "tinted window"
 	desc = "A glass window with a rod matrice. It looks rather strong and opaque. Might take a few good hits to shatter it."
@@ -390,6 +400,17 @@
 	name = "safety glass"
 	desc = "A very tough looking glass window with a special rod matrice, probably bullet proof."
 	max_integrity = 300
+
+/obj/structure/window/framed/mainship/spaceworthy
+	name = "cockpit window"
+	desc = "A very tough looking glass window with a special rod matrice, made to be space worthy."
+	max_integrity = 500
+	icon_state = "gray_window0_frame"
+	basestate = "gray_window"
+
+/obj/structure/window/framed/mainship/spaceworthy/Initialize()
+	. = ..()
+	AddElement(/datum/element/windowshutter/cokpitshutters)
 
 /obj/structure/window/framed/mainship/hull
 	name = "hull window"

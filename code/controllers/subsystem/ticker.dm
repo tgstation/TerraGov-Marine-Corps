@@ -41,6 +41,9 @@ SUBSYSTEM_DEF(ticker)
 
 /datum/controller/subsystem/ticker/Initialize(timeofday)
 	load_mode()
+	
+	GLOB.respawntime = CONFIG_GET(number/marine_respawn)
+	GLOB.xenorespawntime = CONFIG_GET(number/xeno_respawn)
 
 	var/all_music = CONFIG_GET(keyed_list/lobby_music)
 	var/key = SAFEPICK(all_music)
@@ -63,6 +66,7 @@ SUBSYSTEM_DEF(ticker)
 			to_chat(world, "<span class='round_body'>Welcome to the pre-game lobby of [CONFIG_GET(string/server_name)]!</span>")
 			to_chat(world, "<span class='role_body'>Please, setup your character and select ready. Game will start in [round(time_left / 10) || CONFIG_GET(number/lobby_countdown)] seconds.</span>")
 			current_state = GAME_STATE_PREGAME
+			to_chat(world, SSpersistence.seasons_info_message())
 			fire()
 
 		if(GAME_STATE_PREGAME)
@@ -104,9 +108,8 @@ SUBSYSTEM_DEF(ticker)
 				GLOB.ooc_allowed = TRUE
 				GLOB.dooc_allowed = TRUE
 				mode.declare_completion(force_ending)
-				addtimer(CALLBACK(SSvote, /datum/controller/subsystem/vote.proc/initiate_vote, "shipmap", "SERVER"), 2 SECONDS)
-				addtimer(CALLBACK(SSvote, /datum/controller/subsystem/vote.proc/initiate_vote, "groundmap", "SERVER"), 63 SECONDS)
-				addtimer(CALLBACK(src, .proc/Reboot), 63 SECONDS)
+				addtimer(CALLBACK(SSvote, /datum/controller/subsystem/vote/proc/automatic_vote), 2 SECONDS)
+				addtimer(CALLBACK(src, .proc/Reboot), CONFIG_GET(number/vote_period) * 3 + 9 SECONDS)
 				Master.SetRunLevel(RUNLEVEL_POSTGAME)
 
 

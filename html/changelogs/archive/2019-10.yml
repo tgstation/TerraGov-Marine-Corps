@@ -1,0 +1,239 @@
+2019-10-01:
+  Jalleo:
+  - bugfix: The first person on the observers list is no longer the next person to
+      be a alien (If they want to be or get picked by a birthing larva maybe)
+  Kuro & MetroidLover:
+  - rscadd: Added Bandanas of all Squad and Map colors to be worn on your face. Also
+      yes, there is a skull one
+  - rscadd: Ballistic Goggles and the new Bandannas are now able to be found in Marine
+      Surplus Vendors
+  - spellcheck: '"Bandanna" instead of "Bandana"'
+  - imageadd: New sprites for Ballistic Goggles
+  Rohesie:
+  - imageadd: Add Manezinho-made xeno resin silos, removing the Cimex placeholders.
+  Spyroshark:
+  - bugfix: Facehuggers aren't invisible when being thrown anymore.
+  factoryman942:
+  - balance: neurotox reagent injection from neurospit has been multiplied by 0.8
+  spookydonut:
+  - bugfix: ice lz1 (top left one) restored to full size to avoid squashing people
+2019-10-02:
+  KwinOriginal:
+  - bugfix: 'Issue #3040'
+2019-10-04:
+  factoryman942:
+  - balance: acid spit stops wherever you clicked again
+2019-10-06:
+  Hughgent:
+  - bugfix: now the box of 45, ammo actually fits in 45 magazines.
+  Rohesie:
+  - rscdel: Queen Ovi is no more.
+  - balance: Queens can zoom out at any time, and can overwatch xenos as if they were
+      in ovi mode, either by selecting the ability, selecting a xeno from the hive
+      status list, or using ctrl + middle click. The ability stacks with the zoom,
+      so they can provide more effective overwatch support and guidance. The leader
+      pheromone bonus is kept even as the Queen moves.
+2019-10-08:
+  Kuro & MetroidLover & Spyroshark:
+  - rscdel: Removed Squad markings on armor suits
+  - bugfix: fixed the Scout Helmet's Icon Sprites
+  - imageadd: added some new Helmet Sprites and Snow Variants for the recently added
+      armors
+  - imageadd: New sprites, again. Some new colorings aswell.
+  MetroidLover:
+  - tweak: B18 no longer has a hole for your ponytails
+  Spyroshark:
+  - rscadd: Marines now have belt harnesses, an alternative to using the magnetic
+      harness attachment. Check your vendor for one!
+  - rscadd: Survivors now start with their own variant of the belt harness instead
+      of a revolver belt.
+2019-10-10:
+  ma44:
+  - balance: Burrowed and regular larva will now count towards evolution equations,
+      meaning xenomorphs can evolve as if burrowed and unburrowed larva were actual
+      xenomorphs possessed by players
+2019-10-11:
+  MJP & MetroidLover:
+  - balance: HPR rework
+  - balance: Positive changes; Burst upped to 5, The guns fire delay down to 0.4,
+      Slight accuracy buff of +5% instead of 0%, Added 1-2 into the Req vendor.
+  - balance: Negative Changes; Unable to run a QFA, BFA, or BC, Wield Delay upped
+      to 2 seconds, Mags now pretty much only fit in Backpacks and Satchels, 0.8 slowdown,
+      200 round magazines,
+  Manezinho:
+  - balance: Resin Holes are now harder to see
+  Tupinambis:
+  - bugfix: Fixes the text telling Boilers which gas type they have selected.
+2019-10-12:
+  Hughgent:
+  - rscadd: The M43 Sunfury now has different lens attachments that fit to the barrel,
+      they decide what overcharge you have, or if you have one at all!
+  - balance: Tweaks the damage for the M43 Sunfury.
+  MetroidLover:
+  - imagedel: All of Kuro's armor rework Sprites are gone and Squad Markings are back
+  Rohesie:
+  - rscadd: Re-add the gun and clothing sprite variants for LV and Ice. Adds Kuro's
+      armor sprite variants as well.
+  Spyroshark:
+  - rscadd: The shrike has a new ability, "Unrelenting Force" that sends everything
+      in front of the shrike flying away.
+  - tweak: Psychic Fling now only works from 2 tiles away, but can fling items as
+      well as humans.
+  - tweak: Psychic Choke has been replaced with Unrelenting Force.
+  Tupinambis:
+  - balance: Improved defender's base bullet/laser resistance by a large margin (~19)
+      at all ages while lowering the bonus armor on Crest and fortify (~10 and ~20
+      respectively)
+  jroinc:
+  - balance: Lowers hyperzine damage when it runs out to 10 pts oxy and 12 pts halloss/unit.
+      Slightly lowers max attainable speed to ultrazine levels. Allows dexalin+ to
+      be used in hyperzine blends.
+  - rscadd: Adds 2 different autoinjectors- -Hyperzine injectors, available from medic
+      prep for 15 points offer a safe speedboost with some hunger as the only downside.
+      -Expired Hyperzine injectors, available as contraband in marinemeds offer a
+      speedboost for the cost of 5 brain and 10 toxin damage. Also hunger.
+2019-10-13:
+  Kuro:
+  - imageadd: Fourth round of base marine armor resprites
+  spookydonut:
+  - balance: resin holes and resin sacs can no longer be placed on the same spot
+  - rscdel: Fog lines no longer spawn in distress gamemode
+2019-10-15:
+  spookydonut:
+  - balance: In crash gamemode fog now only protects the xeno silos and lasts 20-30
+      minutes
+2019-10-16:
+  Isy232:
+  - balance: 88 Mod 4 damage_mult = 1.4 => 1.2
+  Spyroshark and Drawstuff:
+  - rscadd: New voice clips have been added, and some old ones were replaced.
+  - rscdel: Rare joke screams like the half life scientist and TF2 spy have been removed.
+  Tupinambis:
+  - rscadd: Xeno Queen now has Call of the Burrowed
+  jroinc:
+  - rscadd: Added 4 syringe cases, each buyable for 15 points, containing a syringe,
+      and respectively 2 60u bottles of meralyne, dermaline, meraderm mix, and ironsugar
+      mix.
+  - rscadd: Added a bottle of "synthetic" neurotoxin for later addition to MD vendors
+      to test their chem mixes ingame and up RSR gameplay.
+  - rscdel: Removed a few things from medic vendor that were available for free in
+      prep. I'll get the rest later.
+  - balance: 'swapped the burn medkit''s bottle of dermaline for an oxy bottle. Derm
+      should not be found on the map at roundstart.
+
+      also everything with the hyperzine rework I made earlier'
+2019-10-18:
+  InterroLouis:
+  - balance: Hunter stealth attack damage multiplier has been reduced.
+  Rohesie:
+  - bugfix: Fixed a bug in where only admins would suffer a 5 minutes cooldown before
+      they could rejoin as xeno, or anything. In compensation, reduced the time to
+      only 2 minutes, where before it was zero for everyone else.
+  spookydonut:
+  - balance: removed some entrances from the canterbury and made turrets face outwards
+2019-10-19:
+  Spyroshark:
+  - soundadd: Added "Bomber" from Carmen Miranda's Ghost as a lobby song.
+2019-10-20:
+  Guprei:
+  - balance: The M56B smartgun trades the burst fire assembly for the recoil compensator
+      and the laser sight attachments. Scatter and penetration to its ammo increased.
+      Burst amount increased and fire delay reduced.
+  - balance: The M41A old pulse rifle is re-purposed It. can take a lot more attachments.
+      Scatter increased. Wield delay, wield slowdown, burst delay, and accuracy rebalanced.
+  Isy232:
+  - balance: Nerfs DS turrets.
+  MJP & MetroidLover:
+  - rscadd: There is now a crate that you can purchase for two fully stocked non-captain
+      Mateba belts
+  - rscadd: You can now buy Heavy/PW-MX revolver speedloaders and Incinidary pistol
+      mags
+  - tweak: The Captain's Mateba now uses the basic Mateba sprite and vice-versa
+  - balance: All revolver crates now contain 5 more speedloaders
+  - balance: All non-spec related ammo crates now cost ten points less
+  Tupinambis:
+  - balance: Buffs base health regeneration, slightly nerfs regenerative pheromone
+      buff
+  - balance: Frenzy now increased movespeed significantly more than it previously
+      did. Completely removes all Frenzy Damage buffs from the game.
+2019-10-22:
+  MetroidLover:
+  - balance: Resin Holes are now slightly easier to see.
+  - bugfix: The basic Marine Helmets are now properly set when facing left
+  Rohesie:
+  - bugfix: Fixed broken evolution to Queen once the current one dies. There's a 5
+      minutes cooldown period to get a new one.
+  - tweak: Xenos now know through their Stat panel how long until the hivemind collapses
+      due to the lack of a ruler.
+  - balance: Xenos are now able to gain evolution points even if there's no ruler
+      on Crash game mode.
+  - rscadd: Xenos can switch with their toggle-nightvision hud icon between 4 light
+      intensity levels, from marine-like no-nightvision to fully shadowless, instead
+      of only having two options.
+  ma44:
+  - rscdel: Xenomorphs no longer get critical hits
+2019-10-23:
+  grinkgo and Kwin_Original:
+  - rscadd: Added a new ship, the TGS Pillar of Spring, for low-mid pop
+  ma44:
+  - rscdel: Ravager rage and its mechanics are no longer a thing
+  - balance: Ravager has been reverted to old ravager statline alongside a overall
+      health buff
+2019-10-24:
+  XSlayer300:
+  - tweak: Made batteries self-rechargable, only the pulse energy rifle's batteries
+      can be recharged.
+  - tweak: Changed the sprites of the laser bolts.
+  - tweak: Changed the lens descriptions, adding more fluff.
+  - rscadd: Added the M19C4 pulse energy rifle, an admin-only deathsquad weapon. Feast
+      your eyes on destruction!
+  nemvar:
+  - tweak: Cryopods now prevent internal wounds from getting worse.
+2019-10-26:
+  Isy232:
+  - balance: Ravager slash damage decreased by 10 to young maturity.
+  - balance: Ravager slash damage decreased by 15 to all maturity levels past young.
+  - balance: Slowdown from weilded minigun 1 => 1.4
+  - balance: Burst Fire Count to 7
+  MetroidLover:
+  - balance: Racks no longer have insane health
+  - bugfix: fixed the MP5's accuracy values to no longer be more accurate when one-handed
+      firing
+  Spyroshark, Rohesie, and Manezinho:
+  - rscadd: Xenos can now toggle auto-attacking targets by bumping into them. Sprites
+      by Manezinho.
+  - imageadd: Night vision mode sprites also by Manezinho.
+  ma44:
+  - bugfix: Xenomorphs will no longer attempt to slash destroyed (delimbed) limbs
+  - balance: Delimbs now occur based on thresholds instead of rng, see below for details
+  - balance: Delimbs occur when the limb has 75 or 100 brute damage occurred to it
+      if it's a hand/foot or arm/leg respectively
+  - balance: When a limb is delimbed, only 25% of it's damage is transferred to it's
+      "parent" (hand to arm to chest for example)
+  - balance: Bone breaks now only occur at 37 and 50 damage for hands/feet and arms/legs
+      respectively
+  - balance: 'FOR XENOS: This means if you want to kill a marine as fast as possible,
+      you target their chest, otherwise you can target a limb to disable a limb but
+      expect a longer fight due to a decreased damage transfer upon limb dismembering'
+2019-10-27:
+  Isy232:
+  - rscadd: Icy Caves Test Map
+  Kuro & MetroidLover:
+  - rscadd: Sniper has a helmet now
+  - imageadd: All new sprites for every Specialist
+  Rohesie:
+  - rscadd: Darkmode enabled.
+  XSlayer300:
+  - tweak: Updated the energy pulse rifle because I didn't have time to merge that
+      carp.
+  spookydonut:
+  - rscadd: you can now set traits for maps via json instead of them being hardcoded
+2019-10-29:
+  InterroLouis:
+  - balance: Boots protect more from acid.
+2019-10-30:
+  MerryweatherLost:
+  - soundadd: added new gun sounds
+  - sounddel: removed some gun sounds
+  XSlayer300:
+  - tweak: ERP removed. You now hold wrists instead of hands, if there is one.

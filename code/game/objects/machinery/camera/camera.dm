@@ -198,6 +198,14 @@
 			M.reset_perspective(null)
 			to_chat(M, "The screen bursts into static.")
 
+	if(!powered())
+		return
+
+	for(var/mob/living/silicon/ai/AI in GLOB.silicon_mobs)
+		if(!AI.client)
+			continue
+		to_chat(AI, "<span class='notice'>[src] has been desactived at [myarea]</span>")
+
 
 /obj/machinery/camera/update_icon()
 	if(obj_integrity <= 0)
@@ -308,6 +316,9 @@
 	name = "military-grade camera"
 	network = list("marinemainship")
 
+/obj/machinery/camera/autoname/mainship/rebelship
+	network = list("rebelmainship")
+
 //cameras installed inside the dropships, accessible via both cockpit monitor and ship camera computers
 /obj/machinery/camera/autoname/mainship/dropship_one
 	network = list("marinemainship", "dropship1")
@@ -315,6 +326,9 @@
 
 /obj/machinery/camera/autoname/mainship/dropship_two
 	network = list("marinemainship", "dropship2")
+
+/obj/machinery/camera/autoname/mainship/dropship_three
+	network = list("rebelmainship", "dropship3")
 
 /obj/machinery/camera/headset
 	name = "headset camera"

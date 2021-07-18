@@ -621,6 +621,9 @@
 
 ///Where the magic happens. Actually applies stagger stacks.
 /mob/living/proc/adjust_stagger(amount, ignore_canstun = FALSE, capped = 0)
+	if(stagger > 0 && HAS_TRAIT(src, TRAIT_STAGGERIMMUNE))
+		return
+
 	if(SEND_SIGNAL(src, COMSIG_LIVING_STATUS_STUN, amount, ignore_canstun) & COMPONENT_NO_STUN) //Stun immunity also provides immunity to its lesser cousin stagger
 		return
 
@@ -641,6 +644,8 @@
 /mob/living/proc/set_slowdown(amount)
 	if(slowdown == amount)
 		return
+	if(amount > 0 && HAS_TRAIT(src, TRAIT_SLOWDOWNIMMUNE)) //We're immune to slowdown
+		return
 	SEND_SIGNAL(src, COMSIG_LIVING_STATUS_SLOWDOWN, amount)
 	slowdown = amount
 	if(slowdown)
@@ -651,12 +656,16 @@
 ///This is where we normalize the set_slowdown input to be at least 0
 /mob/living/proc/adjust_slowdown(amount)
 	if(amount > 0)
+		if(HAS_TRAIT(src, TRAIT_SLOWDOWNIMMUNE))
+			return slowdown
 		set_slowdown(max(slowdown, amount)) //Slowdown overlaps rather than stacking.
 	else
 		set_slowdown(max(slowdown + amount, 0))
 	return slowdown
 
 /mob/living/proc/add_slowdown(amount, capped = 0)
+	if(HAS_TRAIT(src, TRAIT_SLOWDOWNIMMUNE))
+		return
 	adjust_slowdown(amount * STANDARD_SLOWDOWN_REGEN)
 
 ///Standard slowdown regen called by life.dm
@@ -664,3 +673,69 @@
 	if(slowdown)
 		adjust_slowdown(-STANDARD_SLOWDOWN_REGEN)
 	return slowdown
+
+/mob/living/carbon/xenomorph/add_slowdown(amount)
+	if(HAS_TRAIT(src, TRAIT_SLOWDOWNIMMUNE))
+		return
+	adjust_slowdown(amount * XENO_SLOWDOWN_REGEN)
+
+////////////////////////////// MUTE ////////////////////////////////////
+
+///Checks to see if we're muted
+/mob/living/proc/IsMute()
+	return has_status_effect(STATUS_EFFECT_MUTED)
+
+///Checks the duration left on our mute status effect
+/mob/living/proc/AmountMute()
+	var/datum/status_effect/mute/M = IsMute()
+	if(M)
+		return M.duration - world.time
+	return 0
+
+///Mutes the target for the stated duration
+/mob/living/proc/Mute(amount) //Can't go below remaining duration
+	if(status_flags & GODMODE)
+		return
+	if(SEND_SIGNAL(src, COMSIG_LIVING_STATUS_MUTE, amount) & COMPONENT_NO_MUTE)
+		return
+	var/datum/status_effect/mute/M = IsMute()
+	if(M)
+		M.duration = max(world.time + amount, M.duration)
+	else if(amount > 0)
+		M = apply_status_effect(STATUS_EFFECT_MUTED, amount)
+	return M
+
+//Sets remaining mute duration
+/mob/living/proc/SetMute(amount)
+	if(status_flags & GODMODE)
+		return
+	if(SEND_SIGNAL(src, COMSIG_LIVING_STATUS_MUTE, amount) & COMPONENT_NO_MUTE)
+		return
+	var/datum/status_effect/mute/M = IsMute()
+
+	if(M)
+		if(amount <= 0)
+			qdel(M)
+			return
+
+		M.duration = world.time + amount
+		return
+
+	M = apply_status_effect(STATUS_EFFECT_MUTED, amount)
+	return M
+
+///Adds to remaining mute duration
+/mob/living/proc/AdjustMute(amount)
+	if(!amount)
+		return
+	if(status_flags & GODMODE)
+		return
+	if(SEND_SIGNAL(src, COMSIG_LIVING_STATUS_MUTE, amount) & COMPONENT_NO_MUTE)
+		return
+
+	var/datum/status_effect/mute/M = IsMute()
+	if(M)
+		M.duration += amount
+	else if(amount > 0)
+		M = apply_status_effect(STATUS_EFFECT_MUTED, amount)
+	return M

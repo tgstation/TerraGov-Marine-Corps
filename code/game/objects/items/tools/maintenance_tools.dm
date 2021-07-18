@@ -16,8 +16,8 @@
 /obj/item/tool/screwdriver
 	name = "screwdriver"
 	desc = "You can be totally screwwy with this."
-	icon = 'icons/obj/items/items.dmi'
-	icon_state = "screwdriver"
+	icon = 'icons/obj/items/screwdriver.dmi'
+	icon_state = "screwdriver_map"
 	flags_atom = CONDUCT
 	flags_equip_slot = ITEM_SLOT_BELT
 	force = 5.0
@@ -27,6 +27,18 @@
 	throw_range = 5
 	attack_verb = list("stabbed")
 	tool_behaviour = TOOL_SCREWDRIVER
+	/// If the item should be assigned a random color
+	var/random_color = TRUE
+	/// List of possible random colors
+	var/static/list/screwdriver_colors = list(
+		"blue" = "#1861d5",
+		"red" = "#ff0000",
+		"pink" = "#d5188d",
+		"brown" = "#a05212",
+		"green" = "#0e7f1b",
+		"cyan" = "#18a2d5",
+		"yellow" = "#ffa500"
+	)
 
 
 /obj/item/tool/screwdriver/suicide_act(mob/user)
@@ -35,33 +47,21 @@
 
 
 /obj/item/tool/screwdriver/Initialize()
+	if(random_color)
+		set_greyscale_config(/datum/greyscale_config/screwdriver)
+		var/our_color = pick(screwdriver_colors)
+		set_greyscale_colors(list(screwdriver_colors[our_color]))
+		item_icons = list(
+			slot_l_hand_str = SSgreyscale.GetColoredIconByType(/datum/greyscale_config/screwdriver_inhand_left, greyscale_colors),
+			slot_r_hand_str = SSgreyscale.GetColoredIconByType(/datum/greyscale_config/screwdriver_inhand_right, greyscale_colors),
+		)
+		item_state_slots = list(
+			slot_l_hand_str = null,
+			slot_r_hand_str = null,
+		)
 	. = ..()
-	switch(pick("red","blue","purple","brown","green","cyan","yellow"))
-		if ("red")
-			icon_state = "screwdriver2"
-			item_state = "screwdriver"
-		if ("blue")
-			icon_state = "screwdriver"
-			item_state = "screwdriver_blue"
-		if ("purple")
-			icon_state = "screwdriver3"
-			item_state = "screwdriver_purple"
-		if ("brown")
-			icon_state = "screwdriver4"
-			item_state = "screwdriver_brown"
-		if ("green")
-			icon_state = "screwdriver5"
-			item_state = "screwdriver_green"
-		if ("cyan")
-			icon_state = "screwdriver6"
-			item_state = "screwdriver_cyan"
-		if ("yellow")
-			icon_state = "screwdriver7"
-			item_state = "screwdriver_yellow"
-
 	if(prob(75))
 		pixel_y = rand(0, 16)
-
 
 /obj/item/tool/wirecutters
 	name = "wirecutters"
@@ -420,7 +420,7 @@
 		reagents.remove_reagent(/datum/reagent/fuel, fuel_transfer_amount)
 		FT.current_rounds += fuel_transfer_amount
 		playsound(loc, 'sound/effects/refill.ogg', 25, 1, 3)
-		FT.caliber = "Fuel"
+		FT.caliber = CALIBER_FUEL
 		to_chat(user, "<span class='notice'>You refill [FT] with [lowertext(FT.caliber)].</span>")
 		FT.update_icon()
 

@@ -7,6 +7,7 @@
 	layer = WINDOW_FRAME_LAYER
 	density = TRUE
 	throwpass = TRUE
+	resistance_flags = DROPSHIP_IMMUNE
 	climbable = 1 //Small enough to vault over, but you do need to vault over it
 	climb_delay = 15 //One second and a half, gotta vault fast
 	var/obj/item/stack/sheet/sheet_type = /obj/item/stack/sheet/glass/reinforced
@@ -55,6 +56,10 @@
 /obj/structure/window_frame/Destroy()
 	density = FALSE
 	update_nearby_icons()
+	var/obj/effect/alien/weeds/weedwall/window_wall_weeds = locate() in loc
+	if(window_wall_weeds)
+		qdel(window_wall_weeds)
+		new /obj/effect/alien/weeds(loc)
 	return ..()
 
 /obj/structure/window_frame/attackby(obj/item/I, mob/user, params)

@@ -7,6 +7,7 @@
 	plane = BLACKNESS_PLANE
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	invisibility = INVISIBILITY_LIGHTING
+	minimap_color = MINIMAP_AREA
 
 	var/flags_alarm_state = NONE
 
@@ -34,6 +35,8 @@
 	var/gas_type = GAS_TYPE_AIR
 	var/pressure = ONE_ATMOSPHERE
 	var/temperature = T20C
+
+	var/parallax_movedir = 0
 
 	///the material the ceiling is made of. Used for debris from airstrikes and orbital beacons in ceiling_debris()
 	var/ceiling = CEILING_NONE

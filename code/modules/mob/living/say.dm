@@ -18,6 +18,24 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 	RADIO_KEY_REQUISITIONS = RADIO_CHANNEL_REQUISITIONS,
 ))
 
+GLOBAL_LIST_INIT(department_radio_keys_rebel, list(
+	MODE_KEY_R_HAND = MODE_R_HAND,
+	MODE_KEY_L_HAND = MODE_L_HAND,
+	MODE_KEY_INTERCOM = MODE_INTERCOM,
+
+	MODE_KEY_DEPARTMENT = MODE_DEPARTMENT,
+
+	RADIO_KEY_MEDICAL = RADIO_CHANNEL_MEDICAL_REBEL,
+	RADIO_KEY_ENGINEERING = RADIO_CHANNEL_ENGINEERING_REBEL,
+	RADIO_KEY_COMMAND = RADIO_CHANNEL_COMMAND_REBEL,
+	RADIO_KEY_ALPHA = RADIO_CHANNEL_ALPHA_REBEL,
+	RADIO_KEY_BRAVO = RADIO_CHANNEL_BRAVO_REBEL,
+	RADIO_KEY_CHARLIE = RADIO_CHANNEL_CHARLIE_REBEL,
+	RADIO_KEY_DELTA = RADIO_CHANNEL_DELTA_REBEL,
+	RADIO_KEY_CAS = RADIO_CHANNEL_CAS_REBEL,
+	RADIO_KEY_REQUISITIONS = RADIO_CHANNEL_REQUISITIONS_REBEL,
+))
+
 /mob/living/proc/Ellipsis(original_msg, chance = 50, keep_words)
 	if(chance <= 0)
 		return "..."
@@ -231,7 +249,7 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 /mob/living/IsVocal()
 	. = ..()
 
-	if(disabilities & MUTE)
+	if(HAS_TRAIT(src, TRAIT_MUTED))
 		return FALSE
 
 /mob/living/proc/can_speak_vocal(message) //Check AFTER handling of xeno channels
@@ -245,9 +263,9 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 
 
 /mob/living/proc/get_key(message)
-	var/key = message[1]
-	if(key in GLOB.department_radio_prefixes)
-		return lowertext(message[1 + length(key)])
+	var/prefix = message[1]
+	if(length(message) >= 2 && (prefix in GLOB.department_radio_prefixes))
+		return lowertext(message[2])
 
 /mob/living/proc/get_message_language(message)
 	if(length(message) >= 2 && message[1] == ",")

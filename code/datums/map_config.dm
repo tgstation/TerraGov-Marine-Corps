@@ -52,7 +52,7 @@
 		if(default)
 			configs[i] = config
 			continue
-		if(!config.LoadConfig(filename, error_if_missing, i))
+		if(!config.LoadConfig(filename, error_if_missing, i, TRUE))
 			qdel(config)
 			config = new /datum/map_config
 		if(delete_after)
@@ -61,11 +61,17 @@
 	return configs
 
 #define CHECK_EXISTS(X) if(!istext(json[X])) { log_world("[##X] missing from json!"); return; }
-/datum/map_config/proc/LoadConfig(filename, error_if_missing, maptype)
+/datum/map_config/proc/LoadConfig(filename, error_if_missing, maptype, load_default)
 	if(!fexists(filename))
 		if(error_if_missing)
 			log_world("map_config not found: [filename]")
-		return
+		if(!load_default)
+			return
+		switch(maptype)
+			if(GROUND_MAP)
+				return LoadConfig("_maps/lv624.json", error_if_missing, maptype)
+			if(SHIP_MAP)
+				return LoadConfig("_maps/pillar_of_spring.json", error_if_missing, maptype)
 
 	var/json = file(filename)
 	if(!json)
@@ -158,24 +164,23 @@
 	var/list/gamemode_names = list()
 	for(var/t in subtypesof(/datum/game_mode))
 		var/datum/game_mode/G = t
-		gamemode_names += initial(G.config_tag)
+		if(initial(G.config_tag))
+			gamemode_names += initial(G.config_tag)
 
 	if(islist(json["gamemodes"]))
 		for(var/g in json["gamemodes"])
 			if(!(g in gamemode_names))
 				log_world("map_config has an invalid gamemode name!")
 				return
-			if(g == "Extended") // always allow extended
-				continue
 			gamemodes += g
-		gamemodes += "Extended"
 	else if(!isnull(json["gamemodes"]))
 		log_world("map_config gamemodes is not a list!")
 		return
 	else
 		for(var/a in subtypesof(/datum/game_mode))
 			var/datum/game_mode/G = a
-			gamemodes += initial(G.config_tag)
+			if(initial(G.config_tag))
+				gamemodes += initial(G.config_tag)
 
 	defaulted = FALSE
 	return TRUE

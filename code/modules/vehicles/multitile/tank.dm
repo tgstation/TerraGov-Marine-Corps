@@ -31,30 +31,6 @@
 
 /obj/effect/multitile_spawner/cm_armored/tank/Initialize()
 	. = ..()
-	var/obj/vehicle/multitile/root/cm_armored/tank/R = new(loc)
-	R.setDir(EAST)
-
-	var/datum/coords/dimensions = new
-	dimensions.x_pos = width
-	dimensions.y_pos = height
-	var/datum/coords/root_pos = new
-	root_pos.x_pos = 1
-	root_pos.y_pos = 1
-
-	//Entrance relative to the root object. The tank spawns with the root centered on the marker
-	var/datum/coords/entr_mark = new
-	entr_mark.x_pos = -2
-	entr_mark.y_pos = 0
-
-	R.load_hitboxes(dimensions, root_pos)
-	R.load_entrance_marker(entr_mark)
-
-	var/hardpoint_path
-	for(var/slot in spawn_hardpoints)
-		hardpoint_path = spawn_hardpoints[slot]
-		R.add_hardpoint(new hardpoint_path)
-	R.healthcheck()
-
 	return INITIALIZE_HINT_QDEL
 
 //Spawns a tank that has a bunch of broken hardpoints
@@ -267,20 +243,7 @@
 
 	. = ..(user, direction)
 
-	//Someone remind me to fix this fucking snow code --MadSnailDisease
-	//The check is made here since the snowplow won't fit on the APC
-	if(. && istype(hardpoints[HDPT_ARMOR], /obj/item/hardpoint/armor/snowplow) && direction == dir)
-		var/obj/item/hardpoint/armor/snowplow/SP = hardpoints[HDPT_ARMOR]
-		if(SP.obj_integrity > 0)
-			for(var/datum/coords/C in linked_objs)
-				var/turf/T = locate(x + C.x_pos, y + C.y_pos, z + C.z_pos)
-				if(!istype(T, /turf/open/floor/plating/ground/snow)) continue
-				var/turf/open/floor/plating/ground/snow/ST = T
-				if(!ST || !ST.slayer)
-					continue
-				new /obj/item/stack/snow(ST, ST.slayer)
-				ST.slayer = 0
-				ST.update_icon(1, 0)
+
 
 	if(next_sound_play < world.time)
 		playsound(src, 'sound/ambience/tank_driving.ogg', vol = 20, sound_range = 30)

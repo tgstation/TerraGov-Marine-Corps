@@ -11,9 +11,6 @@
 	// *** Melee Attacks *** //
 	melee_damage = 19
 
-	// *** Tackle *** //
-	tackle_damage = 23
-
 	// *** Speed *** //
 	speed = -0.7
 
@@ -40,6 +37,8 @@
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/activable/psydrain,
+		/datum/action/xeno_action/activable/headbite,
+		/datum/action/xeno_action/activable/devour,
 		/datum/action/xeno_action/ready_charge/bull_charge,
 		/datum/action/xeno_action/activable/bull_charge,
 	)
@@ -54,9 +53,6 @@
 	caste_desc = "A bright red alien with a matching temper. It looks a little more dangerous."
 
 	upgrade = XENO_UPGRADE_ONE
-
-	// *** Tackle *** //
-	tackle_damage = 23
 
 	// *** Speed *** //
 	speed = -0.7
@@ -77,6 +73,8 @@
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/activable/psydrain,
+		/datum/action/xeno_action/activable/headbite,
+		/datum/action/xeno_action/activable/devour,
 		/datum/action/xeno_action/ready_charge/bull_charge,
 		/datum/action/xeno_action/activable/bull_charge,
 		/datum/action/xeno_action/activable/bull_charge/headbutt,
@@ -90,9 +88,6 @@
 
 	// *** Melee Attacks *** //
 	melee_damage = 21
-
-	// *** Tackle *** //
-	tackle_damage = 26
 
 	// *** Speed *** //
 	speed = -0.7
@@ -113,6 +108,8 @@
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/activable/psydrain,
+		/datum/action/xeno_action/activable/headbite,
+		/datum/action/xeno_action/activable/devour,
 		/datum/action/xeno_action/ready_charge/bull_charge,
 		/datum/action/xeno_action/activable/bull_charge,
 		/datum/action/xeno_action/activable/bull_charge/headbutt,
@@ -126,9 +123,6 @@
 
 	// *** Melee Attacks *** //
 	melee_damage = 21
-
-	// *** Tackle *** //
-	tackle_damage = 26
 
 	// *** Speed *** //
 	speed = -0.8
@@ -149,6 +143,8 @@
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/activable/psydrain,
+		/datum/action/xeno_action/activable/headbite,
+		/datum/action/xeno_action/activable/devour,
 		/datum/action/xeno_action/ready_charge/bull_charge,
 		/datum/action/xeno_action/activable/bull_charge,
 		/datum/action/xeno_action/activable/bull_charge/headbutt,

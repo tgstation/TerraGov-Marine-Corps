@@ -10,9 +10,6 @@
 	// *** Melee Attacks *** //
 	melee_damage = 16
 
-	// *** Tackle *** //
-	tackle_damage = 20
-
 	// *** Speed *** //
 	speed = -0.8
 
@@ -43,8 +40,9 @@
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/activable/psydrain,
+		/datum/action/xeno_action/activable/headbite,
+		/datum/action/xeno_action/activable/devour,
 		/datum/action/xeno_action/activable/corrosive_acid/drone,
-		/datum/action/xeno_action/shift_spits,
 		/datum/action/xeno_action/activable/xeno_spit,
 		/datum/action/xeno_action/activable/neurotox_sting,
 	)
@@ -59,9 +57,6 @@
 	caste_desc = "A ranged combat alien. It looks a little more dangerous."
 
 	upgrade = XENO_UPGRADE_ONE
-
-	// *** Tackle *** //
-	tackle_damage = 20
 
 	// *** Speed *** //
 	speed = -0.8
@@ -92,9 +87,6 @@
 	// *** Melee Attacks *** //
 	melee_damage = 17
 
-	// *** Tackle *** //
-	tackle_damage = 21
-
 	// *** Speed *** //
 	speed = -0.8
 
@@ -123,9 +115,6 @@
 
 	// *** Melee Attacks *** //
 	melee_damage = 17
-
-	// *** Tackle *** //
-	tackle_damage = 21
 
 	// *** Speed *** //
 	speed = -0.8

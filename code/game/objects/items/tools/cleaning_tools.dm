@@ -54,17 +54,19 @@
 	w_class = WEIGHT_CLASS_SMALL
 	attack_verb = list("warned", "cautioned", "smashed")
 
-/obj/item/tool/warning_cone
+/obj/item/clothing/head/warning_cone
 	name = "warning cone"
 	desc = "This cone is trying to warn you of something!"
 	icon_state = "cone"
 	icon = 'icons/obj/janitor.dmi'
+	item_icons = list(slot_head_str = 'icons/mob/head_0.dmi')
 	force = 1
 	throwforce = 3
 	throw_speed = 1
 	throw_range = 5
 	w_class = WEIGHT_CLASS_SMALL
 	attack_verb = list("warned", "cautioned", "smashed")
+	soft_armor = list("melee" = 30, "bullet" = 30, "laser" = 30, "energy" = 30, "bomb" = 15, "bio" = 10, "rad" = 0, "fire" = 20, "acid" = 20)
 
 
 

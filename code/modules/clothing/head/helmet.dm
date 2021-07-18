@@ -331,7 +331,7 @@
 	name = "\improper B18 helmet"
 	desc = "The B18 Helmet that goes along with the B18 Defensive Armor. It's heavy, reinforced, and protects more of the face."
 	icon_state = "minigunner_helmet"
-	soft_armor = list("melee" = 65, "bullet" = 80, "laser" = 75, "energy" = 65, "bomb" = 70, "bio" = 65, "rad" = 15, "fire" = 65, "acid" = 65)
+	soft_armor = list("melee" = 75, "bullet" = 80, "laser" = 75, "energy" = 65, "bomb" = 70, "bio" = 65, "rad" = 15, "fire" = 65, "acid" = 65)
 	flags_inv_hide = HIDEALLHAIR|HIDEEARS
 	flags_item = SYNTH_RESTRICTED
 	resistance_flags = UNACIDABLE
@@ -342,7 +342,7 @@
 	name = "\improper B17 helmet"
 	desc = "A heavy duty helmet created to complement the B17 marine armor. Practically explosive proof. Unless you stand next to a nuke or something like that."
 	icon_state = "grenadier_helmet"
-	soft_armor = list("melee" = 60, "bullet" = 70, "laser" = 60, "energy" = 65, "bomb" = 100, "bio" = 60, "rad" = 15, "fire" = 65, "acid" = 60)
+	soft_armor = list("melee" = 75, "bullet" = 70, "laser" = 60, "energy" = 65, "bomb" = 100, "bio" = 60, "rad" = 15, "fire" = 65, "acid" = 60)
 	flags_inv_hide = HIDEALLHAIR|HIDEEARS
 	max_heat_protection_temperature = HEAVYARMOR_MAX_HEAT_PROTECTION_TEMPERATURE
 	resistance_flags = UNACIDABLE

@@ -25,12 +25,12 @@
 		DISABLE_BITFIELD(parent.flags_inventory, COVEREYES)
 		DISABLE_BITFIELD(parent.flags_inv_hide, HIDEEYES)
 		DISABLE_BITFIELD(parent.flags_armor_protection, EYES)
-		parent.eye_protection += eye_protection_mod // reset to the users base eye
+		parent.eye_protection -= eye_protection_mod // reset to the users base eye
 	else
 		ENABLE_BITFIELD(parent.flags_inventory, COVEREYES)
 		ENABLE_BITFIELD(parent.flags_inv_hide, HIDEEYES)
 		ENABLE_BITFIELD(parent.flags_armor_protection, EYES)
-		parent.eye_protection -= eye_protection_mod
+		parent.eye_protection += eye_protection_mod
 
 	active = !active
 	SEND_SIGNAL(parent, COMSIG_ITEM_TOGGLE_ACTION, user)
@@ -102,7 +102,7 @@
 	RegisterSignal(src, list(COMSIG_ITEM_EQUIPPED, COMSIG_ITEM_DROPPED), .proc/zoom_item_turnoff)
 
 /obj/item/helmet_module/binoculars/onunzoom(mob/living/user)
-	UnregisterSignal(user, list(COMSIG_MOVABLE_MOVED, COMSIG_MOB_MOUSEDOWN))	
+	UnregisterSignal(user, list(COMSIG_MOVABLE_MOVED, COMSIG_MOB_MOUSEDOWN))
 	UnregisterSignal(src, list(COMSIG_ITEM_EQUIPPED, COMSIG_ITEM_DROPPED))
 
 /obj/item/helmet_module/antenna
@@ -111,7 +111,28 @@
 	icon_state = "antenna_head_obj"
 	item_state = "antenna_head"
 	module_type = ARMOR_MODULE_TOGGLE
+	/// Reference to the datum used by the supply drop console
+	var/datum/supply_beacon/beacon_datum
 
 /obj/item/helmet_module/antenna/toggle_module(mob/living/user, obj/item/clothing/head/modular/parent)
 	var/turf/location = get_turf(src)
-	user.show_message("<span class='warning'>The [src] beeps and states, \"Current location coordinates: LONGITUDE [location.x]. LATITUDE [location.y]. Area ID: [get_area(src)]\"</span>", EMOTE_AUDIBLE, "<span class='notice'>The [src] vibrates but you can not hear it!</span>")
+	if(beacon_datum)
+		UnregisterSignal(beacon_datum, COMSIG_PARENT_QDELETING)
+		QDEL_NULL(beacon_datum)
+		user.show_message("<span class='warning'>The [src] beeps and states, \"Your last position is no longer accessible by the supply console</span>", EMOTE_AUDIBLE, "<span class='notice'>The [src] vibrates but you can not hear it!</span>")
+		return
+	if(!is_ground_level(user.z))
+		to_chat(user, "<span class='warning'>You have to be on the planet to use this or it won't transmit.</span>")
+		return FALSE
+	var/area/A = get_area(user)
+	if(A && istype(A) && A.ceiling >= CEILING_METAL)
+		to_chat(user, "<span class='warning'>You have to be outside or under a glass ceiling to activate this.</span>")
+		return
+	beacon_datum = new /datum/supply_beacon(user.name, user.loc, user.faction, 1 MINUTES)
+	RegisterSignal(beacon_datum, COMSIG_PARENT_QDELETING, .proc/clean_beacon_datum)
+	user.show_message("<span class='notice'>The [src] beeps and states, \"Your current coordinates were registered by the supply console. LONGITUDE [location.x]. LATITUDE [location.y]. Area ID: [get_area(src)]\"</span>", EMOTE_AUDIBLE, "<span class='notice'>The [src] vibrates but you can not hear it!</span>")
+
+/// Signal handler to nullify beacon datum
+/obj/item/helmet_module/antenna/proc/clean_beacon_datum()
+	SIGNAL_HANDLER
+	beacon_datum = null

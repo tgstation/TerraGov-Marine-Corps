@@ -14,6 +14,11 @@
 	pixel_x = -16
 	old_x = -16
 
+/mob/living/carbon/xenomorph/ravager/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/plasma_on_attack, 1.5)
+	AddElement(/datum/element/plasma_on_attacked, 0.5)
+
 // ***************************************
 // *********** Mob overrides
 // ***************************************
@@ -23,7 +28,7 @@
 	if(!ishuman(A)) //Must also be a human; regular Bump() will default to throw_impact() which means ravager will plow through tables but get stopped by cades and walls
 		return ..()
 	var/mob/living/carbon/human/H = A
-	H.attack_alien(src,  xeno_caste.melee_damage * 0.25, FALSE, TRUE, FALSE, TRUE, INTENT_HARM) //Location is always random, cannot crit, harm only
+	H.attack_alien_harm(src, xeno_caste.melee_damage * xeno_melee_damage_modifier * 0.25, FALSE, TRUE, FALSE, TRUE, INTENT_HARM) //Location is always random, cannot crit, harm only
 	var/target_turf = get_step_away(src, H, rand(1, 3)) //This is where we blast our target
 	target_turf =  get_step_rand(target_turf) //Scatter
 	H.throw_at(get_turf(target_turf), RAV_CHARGEDISTANCE, RAV_CHARGESPEED, H)
@@ -35,20 +40,12 @@
 // ***************************************
 /mob/living/carbon/xenomorph/ravager/get_crit_threshold()
 	. = ..()
-	if(!ignore_pain)
+	if(!endure)
 		return
-	if(ignore_pain_state == 0 && health < .)
-		emote("roar")
-		to_chat(src, "<span class='xenohighdanger' style='color: red;'>Our body becomes weak, we won't be able to withstand this much longer.</span>")
-		ignore_pain_state++
-	return -INFINITY
+	return RAVAGER_ENDURE_HP_LIMIT
 
 /mob/living/carbon/xenomorph/ravager/get_death_threshold()
 	. = ..()
-	if(!ignore_pain)
+	if(!endure)
 		return
-	if(ignore_pain_state == 1 && health < .)
-		emote("roar")
-		to_chat(src, "<span class='xenohighdanger' style='color: red;'>We've taken too much damage and surpassed our limits, we now look forward to the sweet embrace of death.</span>")
-		ignore_pain_state++
-	return . * 3
+	return RAVAGER_ENDURE_HP_LIMIT

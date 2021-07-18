@@ -1,6 +1,7 @@
 /datum/emergency_call/freelancers
 	name = "Freelancer Mercenary Group"
-	probability = 25
+	base_probability = 26
+	alignement_factor = -1
 
 
 /datum/emergency_call/freelancers/print_backstory(mob/living/carbon/human/H)

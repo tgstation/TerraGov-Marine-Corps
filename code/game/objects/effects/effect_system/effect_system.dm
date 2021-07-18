@@ -51,6 +51,11 @@ would spawn and follow the beaker, even if it is carried or thrown.
 /datum/effect_system/proc/spawn_particle()
 	return
 
+/datum/effect_system/Destroy()
+	holder = null
+	return ..()
+	
+
 /////////////////////////////////////////////
 // GENERIC STEAM SPREAD SYSTEM
 

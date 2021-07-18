@@ -19,11 +19,14 @@
 /mob/living/carbon/xenomorph/queen/hivemind_start()
 	return "<span class='hivemind xenoqueen'>Hivemind, <span class='name'>[name]</span>"
 
+/mob/living/carbon/xenomorph/king/hivemind_start()
+	return "<span class='game say hivemind xenoshrike'>Hivemind, <span class='name'>[name]</span>"
+
 /mob/living/carbon/xenomorph/shrike/hivemind_start()
 	return "<span class='hivemind xenoshrike'>Hivemind, <span class='name'>[name]</span>"
 
 /mob/living/carbon/xenomorph/hivemind/hivemind_start()
-	return "<span class='hivemind xenohivemind'><span class='name'>The Hivemind</span>"
+	return "<span class='hivemind xenohivemind'><span class='name'>The Hivemind ([nicknumber])</span>"
 
 
 /mob/living/carbon/xenomorph/proc/render_hivemind_message(message)
