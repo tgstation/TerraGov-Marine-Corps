@@ -1,4 +1,0 @@
-author: "BraveMole"
-delete-after: True
-changes: 
-  - qol: "Unique action and unload gun works even if the gun is in your inactive hand"

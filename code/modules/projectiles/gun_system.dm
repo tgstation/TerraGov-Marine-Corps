@@ -181,6 +181,9 @@
 			return
 		AddElement(/datum/element/deployable_item, /obj/machinery/deployable/mounted, deploy_time)
 
+	muzzle_flash = new(src, muzzleflash_iconstate)
+
+	GLOB.nightfall_toggleable_lights += src
 
 //Hotfix for attachment offsets being set AFTER the core New() proc. Causes a small graphical artifact when spawning, hopefully works even with lag
 /obj/item/weapon/gun/proc/handle_starting_attachment()
@@ -209,7 +212,14 @@
 	if(muzzle_flash)
 		QDEL_NULL(muzzle_flash)
 	QDEL_NULL(sentry_battery)
+	GLOB.nightfall_toggleable_lights -= src
 	return ..()
+
+/obj/item/weapon/gun/turn_light(mob/user, toggle_on, cooldown, sparks, forced)
+	. = ..()
+	if(. != CHECKS_PASSED)
+		return
+	attachments[ATTACHMENT_SLOT_RAIL].turn_light(user, toggle_on, cooldown, sparks, forced)
 
 /obj/item/weapon/gun/emp_act(severity)
 	for(var/obj/O in contents)
@@ -1180,11 +1190,9 @@ and you're good to go.
 		flash_loc.vis_contents -= muzzle_flash
 	muzzle_flash.applied = FALSE
 
-
 /obj/item/weapon/gun/on_enter_storage(obj/item/I)
 	if(istype(I,/obj/item/storage/belt/gun))
 		var/obj/item/storage/belt/gun/GB = I
-		GB.holds_guns_now++ //Slide it in.
 		if(!GB.current_gun)
 			GB.current_gun = src //If there's no active gun, we want to make this our icon.
 			GB.update_gun_icon()
@@ -1192,7 +1200,6 @@ and you're good to go.
 /obj/item/weapon/gun/on_exit_storage(obj/item/I)
 	if(istype(I,/obj/item/storage/belt/gun))
 		var/obj/item/storage/belt/gun/GB = I
-		GB.holds_guns_now--
 		if(GB.current_gun == src)
 			GB.current_gun = null
 			GB.update_gun_icon()
@@ -1213,3 +1220,12 @@ and you're good to go.
 		return
 	active_attachable.fire_attachment(target, src, gun_user) //Fire it.
 	last_fired = world.time
+
+//For letting xenos turn off the flashlights on any guns left lying around.
+/obj/item/weapon/gun/attack_alien(mob/living/carbon/xenomorph/X, isrightclick = FALSE)
+	if(!CHECK_BITFIELD(flags_gun_features, GUN_FLASHLIGHT_ON))
+		return
+	attachments[ATTACHMENT_SLOT_RAIL].turn_light(null, FALSE)
+	playsound(loc, "alien_claw_metal", 25, 1)
+	X.do_attack_animation(src, ATTACK_EFFECT_CLAW)
+	to_chat(X, "<span class='warning'>We disable the metal thing's lights.</span>")

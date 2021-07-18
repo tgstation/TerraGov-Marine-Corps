@@ -364,7 +364,6 @@ GLOBAL_LIST_INIT(bitfields, list(
 		),
 	"disabilities" = list(
 		"BLIND" = BLIND,
-		"MUTE" = MUTE,
 		"DEAF" = DEAF,
 		"NEARSIGHTED" = NEARSIGHTED,
 		),

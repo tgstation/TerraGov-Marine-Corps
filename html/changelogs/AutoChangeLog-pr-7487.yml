@@ -1,0 +1,5 @@
+author: "BraveMole"
+delete-after: True
+changes: 
+  - bugfix: "Fix coloring in hvh"
+  - rscadd: "Give sec vendors in hvh, so admins don't have to spawn handcuffs"

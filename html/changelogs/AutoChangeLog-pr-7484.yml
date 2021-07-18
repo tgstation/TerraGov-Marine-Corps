@@ -1,0 +1,7 @@
+author: "Hekzder"
+delete-after: True
+changes: 
+  - rscadd: "Added various civilian pay grades for medical staff."
+  - rscadd: "CMO and MR now have rank progression."
+  - rscadd: "MD has changed rank progression, starting at Resident and going to Medical Doctor at 50 hours."
+  - bugfix: "Medical staff are now properly civilian."
