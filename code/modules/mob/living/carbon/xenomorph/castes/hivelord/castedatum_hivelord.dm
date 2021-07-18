@@ -86,7 +86,6 @@
 	// *** Plasma *** //
 	plasma_max = 1800
 	plasma_gain = 60
-	plasma_regen_limit = 0.5
 
 	// *** Health *** //
 	max_health = 325
@@ -118,7 +117,6 @@
 	// *** Plasma *** //
 	plasma_max = 2000
 	plasma_gain = 63
-	plasma_regen_limit = 0.5
 
 	// *** Health *** //
 	max_health = 340
@@ -151,7 +149,6 @@
 	// *** Plasma *** //
 	plasma_max = 2400
 	plasma_gain = 65
-	plasma_regen_limit = 0.5
 
 	// *** Health *** //
 	max_health = 350
