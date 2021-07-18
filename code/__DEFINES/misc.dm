@@ -132,6 +132,3 @@ GLOBAL_VAR_INIT(global_unique_id, 1)
 #define LIGHT_EMPTY 1
 #define LIGHT_BROKEN 2
 #define LIGHT_BURNED 3
-
-//Xeno structure flags
-#define IGNORE_WEED_REMOVAL (1<<0)

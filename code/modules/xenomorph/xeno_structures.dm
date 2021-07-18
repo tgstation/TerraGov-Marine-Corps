@@ -1,3 +1,6 @@
+//Xeno structure flags
+#define IGNORE_WEED_REMOVAL (1<<0)
+
 /obj/structure/xeno
 	///Bitflags specific to xeno structures
 	var/xeno_structure_flags
@@ -53,28 +56,29 @@
 
 /obj/structure/xeno/trap/examine(mob/user)
 	. = ..()
-	if(isxeno(user))
-		to_chat(user, "A hole for a little one to hide in ambush.")
-		if(hugger)
-			to_chat(user, "There's a little one inside.")
-		else
-			to_chat(user, "It's empty.")
+	if(!isxeno(user))
+		return
+	to_chat(user, "A hole for a little one to hide in ambush.")
+	if(hugger)
+		to_chat(user, "There's a little one inside.")
+		return
+	to_chat(user, "It's empty.")
 
 /obj/structure/xeno/trap/flamer_fire_act()
-	if(hugger)
-		hugger.forceMove(loc)
-		hugger.kill_hugger()
-		hugger = null
-		icon_state = "trap0"
-	..()
+	if(!hugger)
+		return
+	hugger.forceMove(loc)
+	hugger.kill_hugger()
+	hugger = null
+	icon_state = "trap0"
 
 /obj/structure/xeno/trap/fire_act()
-	if(hugger)
-		hugger.forceMove(loc)
-		hugger.kill_hugger()
-		hugger = null
-		icon_state = "trap0"
-	..()
+	if(!hugger)
+		return
+	hugger.forceMove(loc)
+	hugger.kill_hugger()
+	hugger = null
+	icon_state = "trap0"
 
 ///Triggers the hugger trap
 /obj/structure/xeno/trap/proc/trigger_hugger_trap(datum/source, atom/movable/AM, oldloc)
@@ -91,6 +95,7 @@
 	xeno_message("A facehugger trap at [AREACOORD_NO_Z(src)] has been triggered!", "xenoannounce", 5, hugger.hivenumber,  FALSE, get_turf(src), 'sound/voice/alien_talk2.ogg', FALSE, null, /obj/screen/arrow/attack_order_arrow, COLOR_ORANGE, TRUE) //Follow the trend of hive wide alerts for important events
 	drop_hugger()
 
+/// Move the hugger out of the trap
 /obj/structure/xeno/trap/proc/drop_hugger()
 	hugger.forceMove(loc)
 	hugger.go_active(TRUE, TRUE) //Removes stasis
@@ -118,21 +123,22 @@
 /obj/structure/xeno/trap/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(istype(I, /obj/item/clothing/mask/facehugger) && isxeno(user))
-		var/obj/item/clothing/mask/facehugger/FH = I
-		if(hugger)
-			to_chat(user, "<span class='warning'>There is already a facehugger in [src].</span>")
-			return
+	if(!istype(I, /obj/item/clothing/mask/facehugger) || !isxeno(user))
+		return
+	var/obj/item/clothing/mask/facehugger/FH = I
+	if(hugger)
+		to_chat(user, "<span class='warning'>There is already a facehugger in [src].</span>")
+		return
 
-		if(FH.stat == DEAD)
-			to_chat(user, "<span class='warning'>You can't put a dead facehugger in [src].</span>")
-			return
+	if(FH.stat == DEAD)
+		to_chat(user, "<span class='warning'>You can't put a dead facehugger in [src].</span>")
+		return
 
-		user.transferItemToLoc(FH, src)
-		FH.go_idle(TRUE)
-		hugger = FH
-		icon_state = "trap1"
-		to_chat(user, "<span class='xenonotice'>You place a facehugger in [src].</span>")
+	user.transferItemToLoc(FH, src)
+	FH.go_idle(TRUE)
+	hugger = FH
+	icon_state = "trap1"
+	to_chat(user, "<span class='xenonotice'>You place a facehugger in [src].</span>")
 
 /*
 TUNNEL
@@ -153,10 +159,10 @@ TUNNEL
 
 	hud_possible = list(XENO_TACTICAL_HUD)
 	xeno_structure_flags = IGNORE_WEED_REMOVAL
-
-	var/tunnel_desc = "" //description added by the hivelord.
+	///Description added by the hivelord.
+	var/tunnel_desc = ""
+	///What hivelord created that tunnel. Can be null
 	var/mob/living/carbon/xenomorph/hivelord/creator = null
-
 	///Hive number of the structure; defaults to standard.
 	var/hivenumber = XENO_HIVE_NORMAL
 
@@ -170,7 +176,7 @@ TUNNEL
 	SSminimaps.add_marker(src, src.z, MINIMAP_FLAG_XENO, "xenotunnel")
 
 /obj/structure/xeno/tunnel/Destroy()
-	var/drop_loc = get_turf(src)
+	var/turf/drop_loc = get_turf(src)
 	for(var/atom/movable/thing AS in contents) //Empty the tunnel of contents
 		thing.forceMove(drop_loc)
 
@@ -287,24 +293,23 @@ TUNNEL
 	if(isxenolarva(M)) //Larva can zip through near-instantly, they are wormlike after all
 		tunnel_time = 5
 
-	if(do_after(M, tunnel_time, FALSE, src, BUSY_ICON_GENERIC))
-		if(targettunnel && isturf(targettunnel.loc)) //Make sure the end tunnel is still there
-			M.forceMove(targettunnel)
-			var/double_check = tgui_alert(M, "Emerge here?", "Tunnel: [targettunnel]", list("Yes","Pick another tunnel"))
-			if(M.loc != targettunnel) //double check that we're still in the tunnel in the event it gets destroyed while we still have the interface open
-				return
-			if(double_check == "Pick another tunnel")
-				return targettunnel.pick_a_tunnel(M)
-			else //Whether we say yes or cancel out of it
-				M.forceMove(targettunnel.loc)
-				M.visible_message("<span class='xenonotice'>\The [M] pops out of \the [src].</span>", \
-				"<span class='xenonotice'>We pop out through the other side!</span>")
-		else
-			to_chat(M, "<span class='warning'>\The [src] ended unexpectedly, so we return back up.</span>")
-	else
+	if(!do_after(M, tunnel_time, FALSE, src, BUSY_ICON_GENERIC))
 		to_chat(M, "<span class='warning'>Our crawling was interrupted!</span>")
+		return
+	if(!targettunnel || !isturf(targettunnel.loc)) //Make sure the end tunnel is still there
+		to_chat(M, "<span class='warning'>\The [src] ended unexpectedly, so we return back up.</span>")
+		return
+	M.forceMove(targettunnel)
+	var/double_check = tgui_alert(M, "Emerge here?", "Tunnel: [targettunnel]", list("Yes","Pick another tunnel"))
+	if(M.loc != targettunnel) //double check that we're still in the tunnel in the event it gets destroyed while we still have the interface open
+		return
+	if(double_check == "Pick another tunnel")
+		return targettunnel.pick_a_tunnel(M)
+	M.forceMove(targettunnel.loc)
+	M.visible_message("<span class='xenonotice'>\The [M] pops out of \the [src].</span>", \
+	"<span class='xenonotice'>We pop out through the other side!</span>")
 
-//Makes sure the tunnel is visible to other xenos even through obscuration.
+///Makes sure the tunnel is visible to other xenos even through obscuration.
 /obj/structure/xeno/tunnel/proc/hud_set_xeno_tunnel()
 	var/image/holder = hud_list[XENO_TACTICAL_HUD]
 	if(!holder)
@@ -327,9 +332,11 @@ TUNNEL
 
 	hit_sound = "alien_resin_move"
 	destroy_sound = "alien_resin_move"
-
+	///How many charges of acid this well contains
 	var/charges = 1
+	///If a xeno is charging this well
 	var/charging = FALSE
+	///What xeno created this well
 	var/mob/living/carbon/xenomorph/creator = null
 
 /obj/structure/xeno/acidwell/Initialize()
