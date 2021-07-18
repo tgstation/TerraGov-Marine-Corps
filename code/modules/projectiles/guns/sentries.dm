@@ -9,7 +9,7 @@
 	max_integrity = 200
 
 	fire_delay = 0.75 SECONDS
-	burst_delay = 1 SECONDS
+	burst_delay = 0.5 SECONDS
 	scatter = 0
 	scatter_unwielded = 0
 	burst_scatter_mult = 0
@@ -105,7 +105,7 @@
 	icon_state = "minisentry"
 
 	max_shells = 150
-	knockdown_threshold = 100
+	knockdown_threshold = 80
 
 	ammo = /datum/ammo/bullet/turret/mini
 	current_mag = /obj/item/ammo_magazine/minisentry

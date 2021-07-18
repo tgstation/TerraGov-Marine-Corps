@@ -9,8 +9,6 @@
 
 	soft_armor = list("melee" = 50, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = 50, "bio" = 100, "rad" = 0, "fire" = 80, "acid" = 50)
 
-	interaction_flags = INTERACT_UI_INTERACT
-
 	///Spark system for making sparks
 	var/datum/effect_system/spark_spread/spark_system 
 	///Camera for viewing with cam consoles
@@ -66,7 +64,7 @@
 
 /obj/machinery/deployable/mounted/sentry/update_icon_state()
 	. = ..()
-	if(!CHECK_BITFIELD(machine_stat, DISABLED))
+	if(!CHECK_BITFIELD(machine_stat, KNOCKED_DOWN))
 		return
 	icon_state += "_f"
 
@@ -114,11 +112,8 @@
 
 /obj/machinery/deployable/mounted/sentry/attack_hand(mob/living/user)
 	. = ..()
-	var/obj/item/weapon/gun/gun = internal_item
-
-	if(!CHECK_BITFIELD(machine_stat, DISABLED))
+	if(!. || !CHECK_BITFIELD(machine_stat, KNOCKED_DOWN))
 		return
-
 	user.visible_message("<span class='notice'>[user] begins to set [src] upright.</span>",
 	"<span class='notice'>You begin to set [src] upright.</span>")
 
@@ -128,15 +123,27 @@
 	user.visible_message("<span class='notice'>[user] sets [src] upright.</span>",
 	"<span class='notice'>You set [src] upright.</span>")
 
-	DISABLE_BITFIELD(machine_stat, DISABLED)
+	DISABLE_BITFIELD(machine_stat, KNOCKED_DOWN)
+	density = TRUE
 	set_on(TRUE)
 
-/obj/machinery/deployable/mounted/sentry/ui_interact(mob/user, datum/tgui/ui)
+/obj/machinery/deployable/mounted/sentry/interact(mob/user, manual_mode = FALSE)
 	var/obj/item/weapon/gun/gun = internal_item
+	if(manual_mode)
+		return ..()
+
+	if(CHECK_BITFIELD(machine_stat, KNOCKED_DOWN))
+		return TRUE
+	
 	if(CHECK_BITFIELD(gun.turret_flags, TURRET_IMMOBILE))
 		to_chat(user, "<span class='warning'>[src]'s panel is completely locked, you can't do anything.</span>")
-		return
-	if(CHECK_BITFIELD(machine_stat, DISABLED))
+		return TRUE
+
+	ui_interact(user)
+
+/obj/machinery/deployable/mounted/sentry/ui_interact(mob/user, datum/tgui/ui)
+
+	if(CHECK_BITFIELD(machine_stat, KNOCKED_DOWN))
 		return
 
 	ui = SStgui.try_update_ui(user, src, ui)
@@ -168,7 +175,7 @@
 		return
 	var/obj/item/weapon/gun/gun = internal_item
 	var/mob/living/carbon/human/user = usr
-	if(!istype(user) || CHECK_BITFIELD(gun.turret_flags, TURRET_IMMOBILE) || CHECK_BITFIELD(machine_stat, DISABLED))
+	if(!istype(user) || CHECK_BITFIELD(gun.turret_flags, TURRET_IMMOBILE) || CHECK_BITFIELD(machine_stat, KNOCKED_DOWN))
 		return
 	switch(action)
 		if("safety")
@@ -187,7 +194,7 @@
 			if(operator)
 				user.unset_interaction()
 			else
-				interact(user)
+				interact(user, TRUE)
 			. = TRUE
 
 		if("toggle_alert")
@@ -232,9 +239,11 @@
 
 ///Bonks the sentry onto its side. This currently is used here, and in /living/carbon/xeno/warrior/xeno_abilities in punch
 /obj/machinery/deployable/mounted/sentry/proc/knock_down()
+	if(CHECK_BITFIELD(machine_stat, KNOCKED_DOWN))
+		return
 	visible_message("<span class='danger'>The [name] is knocked over!</span>")
 	sentry_alert(SENTRY_ALERT_FALLEN)
-	ENABLE_BITFIELD(machine_stat, DISABLED)
+	ENABLE_BITFIELD(machine_stat, KNOCKED_DOWN)
 	density = FALSE
 	set_on(FALSE)
 	update_icon_state()

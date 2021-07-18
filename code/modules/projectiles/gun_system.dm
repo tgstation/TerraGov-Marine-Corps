@@ -132,7 +132,7 @@
 	///Flags that the deployed sentry uses upon deployment.
 	var/turret_flags = NONE
 	///Damage threshold for whether a turret will be knocked down.
-	var/knockdown_threshold = 150
+	var/knockdown_threshold = 100
 	///Range of deployed turret
 	var/turret_range = 7
 	///Battery used for radial mode on deployed turrets.

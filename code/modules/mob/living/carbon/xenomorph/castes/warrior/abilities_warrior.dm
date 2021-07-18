@@ -395,8 +395,7 @@
 	return TRUE
 
 /obj/machinery/deployable/mounted/sentry/punch_act(mob/living/carbon/xenomorph/X, damage, target_zone)
-	if(!CHECK_BITFIELD(machine_stat, DISABLED))
-		knock_down()
+	knock_down()
 	return ..()
 
 /obj/machinery/computer/punch_act(mob/living/carbon/xenomorph/X, damage, target_zone) //Break open the machine
