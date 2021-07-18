@@ -299,7 +299,7 @@
 		visible_message("[src] buzzes, no surgical procedures were queued.")
 		return
 
-	visible_message("[src] begins to operate, loud audible clicks lock the pod.")
+	visible_message("[src] begins to operate, the pod locking shut with a loud click.")
 	surgery = TRUE
 	update_icon()
 
@@ -771,7 +771,7 @@
 	if(surgery)
 		return
 	if(!occupant)
-		return
+		say("Occupant missing, procedures canceled.")
 	if(!automaticmode)
 		say("Automatic mode disengaged, awaiting manual inputs.")
 		return
@@ -910,6 +910,10 @@
 	var/mob/living/carbon/human/H = occupant
 	med_scan(H, null, implants, TRUE)
 	start_processing()
+
+	if(automaticmode)
+		say("Automatic mode engaged, initialising procedures.")
+		addtimer(CALLBACK(src, .proc/auto_start), 5 SECONDS)
 
 
 /////////////////////////////////////////////////////////////
