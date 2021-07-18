@@ -48,6 +48,7 @@ Make your way to the cafeteria for some post-cryosleep chow, and then get equipp
 /datum/job/terragov/squad/standard/rebel
 	faction = FACTION_TERRAGOV_REBEL
 	access = list(ACCESS_MARINE_PREP_REBEL)
+	outfit = /datum/outfit/job/marine/standard/rebel
 	jobworth = list(
 		/datum/job/xenomorph = LARVA_POINTS_REGULAR,
 		/datum/job/terragov/squad/smartgunner/rebel = SMARTIE_POINTS_REGULAR,
@@ -86,6 +87,9 @@ What you lack alone, you gain standing shoulder to shoulder with the men and wom
 
 	id = /obj/item/card/id/dogtag
 	back = /obj/item/storage/backpack/marine/satchel
+
+/datum/outfit/job/marine/standard/rebel
+	jobtype = /datum/job/terragov/squad/standard/rebel
 
 /datum/outfit/job/marine/standard/equipped
 	name = "Squad Marine (Equipped)"
