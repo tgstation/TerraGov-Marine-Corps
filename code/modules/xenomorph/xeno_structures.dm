@@ -1,6 +1,3 @@
-//Xeno structure flags
-#define IGNORE_WEED_REMOVAL (1<<0)
-
 /obj/structure/xeno
 	///Bitflags specific to xeno structures
 	var/xeno_structure_flags
