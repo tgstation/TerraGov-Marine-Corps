@@ -370,13 +370,13 @@
 		return ..()
 	if(iscarbon(hit_atom))
 		var/mob/living/carbon/M = hit_atom
-		if(leaping && M.can_be_facehugged(src)) //Standard leaping behaviour, not attributable to being _thrown_ such as by a Carrier.
+		if(loc == M) //Caught
+			update_icon()
+			pre_leap(impact_time)
+		else if(leaping && M.can_be_facehugged(src)) //Standard leaping behaviour, not attributable to being _thrown_ such as by a Carrier.
 			if(!Attach(M))
 				go_idle()
 			return
-		else if(loc == M) //Caught, doesn't harm the catcher immediately but is still hostile
-			update_icon()
-			pre_leap(impact_time)
 		else
 			step(src, REVERSE_DIR(dir)) //We want the hugger to bounce off if it hits a mob.
 			update_icon()
