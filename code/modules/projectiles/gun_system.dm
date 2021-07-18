@@ -198,7 +198,7 @@
 	. = ..()
 	if(. != CHECKS_PASSED)
 		return
-	attachments[ATTACHMENT_SLOT_RAIL].turn_light(user, toggle_on, cooldown, sparks, forced)
+	attachments[ATTACHMENT_SLOT_RAIL]?.turn_light(user, toggle_on, cooldown, sparks, forced)
 
 /obj/item/weapon/gun/emp_act(severity)
 	for(var/obj/O in contents)
