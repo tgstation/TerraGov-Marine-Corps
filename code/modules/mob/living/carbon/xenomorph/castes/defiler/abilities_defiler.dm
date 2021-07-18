@@ -76,7 +76,7 @@ GLOBAL_LIST_INIT(defile_purge_list, typecacheof(list(
 			defile_strength_multiplier *= 2
 		living_target.reagents.remove_reagent(current_reagent.type,defile_reagent_amount) //Purge current chem
 
-	defile_power = defile_reagent_amount * defile_strength_multiplier //Total amount of toxin damage we deal
+	defile_power = DEFILER_DEFILE_BASE_POWER + defile_reagent_amount * defile_strength_multiplier //Total amount of toxin damage we deal
 
 	living_target.setToxLoss(min(200, living_target.getToxLoss() + defile_power)) //Apply the toxin damage; cap toxin damage at lower of 200 or defile power + current tox loss
 

@@ -249,13 +249,11 @@
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_REAGENT_SLASH
 
-/*
 /datum/keybinding/xeno/defile
 	name = "defile"
 	full_name = "Defiler: Defile"
 	description = "Purges xeno toxins in exchange for dealing toxin damage and generating toxic sanguinal smoke."
 	keybind_signal = COMSIG_XENOABILITY_DEFILE
-*/
 
 /datum/keybinding/xeno/resin_walker
 	name = "resin_walker"
