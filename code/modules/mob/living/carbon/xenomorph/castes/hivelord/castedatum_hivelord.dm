@@ -18,6 +18,7 @@
 	plasma_max = 1600
 	plasma_gain = 50
 	plasma_regen_limit = 0.5
+	plasma_icon_state = "hivelord_plasma"
 
 	// *** Health *** //
 	max_health = 300
