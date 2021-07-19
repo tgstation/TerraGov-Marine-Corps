@@ -189,6 +189,11 @@ GLOBAL_LIST_EMPTY(autolathe_categories)
 	path = /obj/item/tool/surgery/hemostat
 	category = "Medical"
 
+/datum/autolathe/recipe/suture
+	name = "suture"
+	path = /obj/item/tool/surgery/suture
+	category = "Medical"
+
 /datum/autolathe/recipe/beaker
 	name = "glass beaker"
 	path = /obj/item/reagent_containers/glass/beaker

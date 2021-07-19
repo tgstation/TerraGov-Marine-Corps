@@ -359,10 +359,6 @@ GLOBAL_PROTECT(admin_verbs_asay)
 	/datum/admins/proc/view_runtimes,
 	/datum/admins/proc/spatial_agent,
 	/datum/admins/proc/set_xeno_stat_buffs,
-#ifdef REFERENCE_TRACKING
-	/datum/admins/proc/view_refs,
-	/datum/admins/proc/view_del_failures,
-#endif
 	/datum/admins/proc/check_bomb_impacts,
 	/client/proc/toggle_cdn
 	)
@@ -505,7 +501,7 @@ GLOBAL_PROTECT(admin_verbs_spawn)
 			verbs += GLOB.admin_verbs_server
 		if(rights & R_DEBUG)
 			verbs += GLOB.admin_verbs_debug
-		if(rights & R_RUNTIME) 
+		if(rights & R_RUNTIME)
 			verbs += GLOB.admin_verbs_runtimes
 		if(rights & R_PERMISSIONS)
 			verbs += GLOB.admin_verbs_permissions

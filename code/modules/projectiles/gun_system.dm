@@ -63,8 +63,6 @@
 	var/movement_acc_penalty_mult = 5				//Multiplier. Increased and decreased through attachments. Multiplies the accuracy/scatter penalty of the projectile when firing onehanded while moving.
 	var/fire_delay = 6							//For regular shots, how long to wait before firing again.
 	var/shell_speed_mod	= 0						//Modifies the speed of projectiles fired.
-	/// Determines which humans the gun's shot will pass through based on the victim's ID access list.
-	var/list/gun_iff_signal = null
 	///Modifies projectile damage by a % when a marine gets passed, but not hit
 	var/iff_marine_damage_falloff = 0
 	///Determines how fire delay is changed when aim mode is active
@@ -164,6 +162,8 @@
 
 	muzzle_flash = new(src, muzzleflash_iconstate)
 
+	GLOB.nightfall_toggleable_lights += src
+
 
 //Hotfix for attachment offsets being set AFTER the core New() proc. Causes a small graphical artifact when spawning, hopefully works even with lag
 /obj/item/weapon/gun/proc/handle_starting_attachment()
@@ -191,7 +191,14 @@
 		QDEL_NULL(current_mag)
 	if(muzzle_flash)
 		QDEL_NULL(muzzle_flash)
+	GLOB.nightfall_toggleable_lights -= src
 	return ..()
+
+/obj/item/weapon/gun/turn_light(mob/user, toggle_on, cooldown, sparks, forced)
+	. = ..()
+	if(. != CHECKS_PASSED)
+		return
+	attachments[ATTACHMENT_SLOT_RAIL].turn_light(user, toggle_on, cooldown, sparks, forced)
 
 /obj/item/weapon/gun/emp_act(severity)
 	for(var/obj/O in contents)
@@ -213,7 +220,7 @@
 	if(user == gun_user)
 		return
 	if(gun_user)
-		UnregisterSignal(gun_user, list(COMSIG_MOB_MOUSEDOWN, COMSIG_MOB_MOUSEUP, COMSIG_MOB_MOUSEDRAG, COMSIG_KB_RAILATTACHMENT, COMSIG_KB_UNDERRAILATTACHMENT, COMSIG_KB_UNLOADGUN, COMSIG_KB_FIREMODE, COMSIG_PARENT_QDELETING))
+		UnregisterSignal(gun_user, list(COMSIG_MOB_MOUSEDOWN, COMSIG_MOB_MOUSEUP, COMSIG_MOB_MOUSEDRAG, COMSIG_KB_RAILATTACHMENT, COMSIG_KB_UNDERRAILATTACHMENT, COMSIG_KB_UNLOADGUN, COMSIG_KB_FIREMODE, COMSIG_KB_GUN_SAFETY, COMSIG_PARENT_QDELETING))
 		gun_user.client.mouse_pointer_icon = initial(gun_user.client.mouse_pointer_icon)
 		gun_user = null
 	if(!user)
@@ -228,6 +235,7 @@
 	RegisterSignal(gun_user, COMSIG_KB_UNDERRAILATTACHMENT, .proc/activate_underrail_attachment)
 	RegisterSignal(gun_user, COMSIG_KB_UNLOADGUN, .proc/unload_gun)
 	RegisterSignal(gun_user, COMSIG_KB_FIREMODE, .proc/do_toggle_firemode)
+	RegisterSignal(gun_user, COMSIG_KB_GUN_SAFETY, .proc/toggle_gun_safety_keybind)
 
 ///Null out gun user to prevent hard del
 /obj/item/weapon/gun/proc/clean_gun_user()
@@ -286,7 +294,7 @@
 	if(CHECK_BITFIELD(flags_gun_features, GUN_DEPLOYED_FIRE_ONLY))
 		to_chat(user, "<span class='notice'>[src] cannot be fired by hand and must be deployed.</span>")
 		return
-	
+
 	. = ..()
 
 	if(!.)
@@ -692,7 +700,7 @@ and you're good to go.
 		click_empty(gun_user)
 		return
 
-	apply_gun_modifiers(projectile_to_fire, target)
+	apply_gun_modifiers(projectile_to_fire, target, gun_user)
 	setup_bullet_accuracy(projectile_to_fire, gun_user, shots_fired, dual_wield) //User can be passed as null.
 
 	var/firing_angle = get_angle_with_scatter((gun_user || get_turf(src)), target, get_scatter(projectile_to_fire.scatter, gun_user), projectile_to_fire.p_x, projectile_to_fire.p_y)
@@ -758,7 +766,7 @@ and you're good to go.
 			return // no ..(), already invoked above
 
 		user.visible_message("<span class='danger'>[user] fires [src] point blank at [M]!</span>")
-		apply_gun_modifiers(projectile_to_fire, M)
+		apply_gun_modifiers(projectile_to_fire, M, user)
 		setup_bullet_accuracy(projectile_to_fire, user) //We add any damage effects that we need.
 		projectile_to_fire.setDir(get_dir(user, M))
 		projectile_to_fire.distance_travelled = get_dist(user, M)
@@ -934,12 +942,14 @@ and you're good to go.
 	playsound(user, fire_sound, 60, firing_sndfreq ? TRUE : FALSE, frequency = firing_sndfreq)
 
 
-/obj/item/weapon/gun/proc/apply_gun_modifiers(obj/projectile/projectile_to_fire, atom/target)
+/obj/item/weapon/gun/proc/apply_gun_modifiers(obj/projectile/projectile_to_fire, atom/target, mob/living/user)
 	projectile_to_fire.shot_from = src
 	projectile_to_fire.damage *= damage_mult
 	projectile_to_fire.damage_falloff *= damage_falloff_mult
 	projectile_to_fire.projectile_speed += shell_speed_mod
-	projectile_to_fire.projectile_iff = gun_iff_signal
+	if(flags_gun_features & GUN_IFF || flags_gun_features & GUN_IS_AIMING|| projectile_to_fire.ammo.flags_ammo_behavior & AMMO_IFF)
+		var/obj/item/card/id/id = user.get_idcard()
+		projectile_to_fire.iff_signal = id?.iff_signal
 	projectile_to_fire.damage_marine_falloff = iff_marine_damage_falloff
 
 
@@ -1144,11 +1154,9 @@ and you're good to go.
 		flash_loc.vis_contents -= muzzle_flash
 	muzzle_flash.applied = FALSE
 
-
 /obj/item/weapon/gun/on_enter_storage(obj/item/I)
 	if(istype(I,/obj/item/storage/belt/gun))
 		var/obj/item/storage/belt/gun/GB = I
-		GB.holds_guns_now++ //Slide it in.
 		if(!GB.current_gun)
 			GB.current_gun = src //If there's no active gun, we want to make this our icon.
 			GB.update_gun_icon()
@@ -1156,7 +1164,6 @@ and you're good to go.
 /obj/item/weapon/gun/on_exit_storage(obj/item/I)
 	if(istype(I,/obj/item/storage/belt/gun))
 		var/obj/item/storage/belt/gun/GB = I
-		GB.holds_guns_now--
 		if(GB.current_gun == src)
 			GB.current_gun = null
 			GB.update_gun_icon()
@@ -1177,3 +1184,12 @@ and you're good to go.
 		return
 	active_attachable.fire_attachment(target, src, gun_user) //Fire it.
 	last_fired = world.time
+
+//For letting xenos turn off the flashlights on any guns left lying around.
+/obj/item/weapon/gun/attack_alien(mob/living/carbon/xenomorph/X, isrightclick = FALSE)
+	if(!CHECK_BITFIELD(flags_gun_features, GUN_FLASHLIGHT_ON))
+		return
+	attachments[ATTACHMENT_SLOT_RAIL].turn_light(null, FALSE)
+	playsound(loc, "alien_claw_metal", 25, 1)
+	X.do_attack_animation(src, ATTACK_EFFECT_CLAW)
+	to_chat(X, "<span class='warning'>We disable the metal thing's lights.</span>")

@@ -28,8 +28,6 @@
 
 /obj/item/weapon/gun/smg/unique_action(mob/user)
 	. = ..()
-	if(.)
-		return
 	return cock(user)
 
 /obj/item/weapon/gun/smg/get_ammo_type()
@@ -315,8 +313,8 @@
 //GENERIC UZI //Based on the uzi submachinegun, of course.
 
 /obj/item/weapon/gun/smg/uzi
-	name = "\improper GAL9 submachinegun"
-	desc = "A cheap, reliable design and manufacture make this ubiquitous submachinegun useful despite the age. Put the fire mode to full auto for maximum firepower."
+	name = "\improper MP-2 submachinegun"
+	desc = "A cheap, reliable design and manufacture make this ubiquitous submachinegun useful despite the age. Put the fire selector to full auto for maximum firepower. Use two if you really want to go ham."
 	icon_state = "uzi"
 	item_state = "uzi"
 	caliber = CALIBER_9X19 //codex
@@ -328,10 +326,11 @@
 	current_mag = /obj/item/ammo_magazine/smg/uzi
 	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 20,"rail_x" = 11, "rail_y" = 22, "under_x" = 22, "under_y" = 16, "stock_x" = 22, "stock_y" = 16)
 
-	fire_delay = 0.175 SECONDS
+	fire_delay = 0.15 SECONDS
 	burst_amount = 4
-	accuracy_mult_unwielded = 0.85
-	scatter = 15
-	scatter_unwielded = 60
+	accuracy_mult_unwielded = 0.9
+	accuracy_mult = 1
+	scatter = 0
+	scatter_unwielded = 10
 	aim_slowdown = 0.15
-	wield_delay = 0.5 SECONDS
+	wield_delay = 0.2 SECONDS
