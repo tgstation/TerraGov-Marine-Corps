@@ -756,7 +756,7 @@ and you're good to go.
 		var/obj/screen/ammo/A = gun_user.hud_used.ammo //The ammo HUD
 		A.update_hud(gun_user, src)
 	SEND_SIGNAL(src, COMSIG_MOB_GUN_FIRED, target, src)
-	if(CHECK_BITFIELD(flags_gun_features, GUN_IS_SENTRY) && CHECK_BITFIELD(flags_item, IS_DEPLOYED) && CHECK_BITFIELD(turret_flags, TURRET_RADIAL))
+	if(CHECK_BITFIELD(flags_gun_features, GUN_IS_SENTRY) && CHECK_BITFIELD(flags_item, IS_DEPLOYED) && CHECK_BITFIELD(turret_flags, TURRET_RADIAL) && !gun_user)
 		sentry_battery.charge -= sentry_battery_drain
 		if(sentry_battery.charge <= 0)
 			DISABLE_BITFIELD(turret_flags, TURRET_RADIAL)

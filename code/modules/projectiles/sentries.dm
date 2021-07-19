@@ -93,6 +93,7 @@
 	var/obj/item/weapon/gun/gun = internal_item
 	if(istype(I, gun.sentry_battery_type))
 		internal_item.attackby(I, user, params)
+		update_static_data(user)
 		return
 	return ..()
 
@@ -127,6 +128,10 @@
 	density = TRUE
 	set_on(TRUE)
 
+/obj/machinery/deployable/mounted/sentry/reload(mob/user, ammo_magazine)
+	. = ..()
+	update_static_data(user)
+
 /obj/machinery/deployable/mounted/sentry/interact(mob/user, manual_mode = FALSE)
 	var/obj/item/weapon/gun/gun = internal_item
 	if(manual_mode)
@@ -155,22 +160,22 @@
 	var/obj/item/weapon/gun/gun = internal_item
 	. = list(
 		"rounds" = (gun.current_mag ? gun.current_mag.current_rounds : 0),
+		"cell_charge" = gun.sentry_battery ? gun.sentry_battery.charge : 0,
+		"health" = obj_integrity
+	)
+
+/obj/machinery/deployable/mounted/sentry/ui_static_data(mob/user)
+	var/obj/item/weapon/gun/gun = internal_item
+	. = list(
+		"name" = copytext(name, 2),
 		"rounds_max" = (gun.current_mag ? gun.current_mag.max_rounds : gun.max_shells),
 		"fire_mode" = gun.gun_firemode,
-		"health" = obj_integrity,
 		"has_cell" = (gun.sentry_battery ? 1 : 0),
-		"cell_charge" = gun.sentry_battery ? gun.sentry_battery.charge : 0,
 		"cell_maxcharge" = gun.sentry_battery ? gun.sentry_battery.maxcharge : 0,
 		"safety_toggle" = CHECK_BITFIELD(gun.turret_flags, TURRET_SAFETY),
 		"manual_override" = operator,
 		"alerts_on" = CHECK_BITFIELD(gun.turret_flags, TURRET_ALERTS),
-		"radial_mode" = CHECK_BITFIELD(gun.turret_flags, TURRET_RADIAL),
-	)
-
-/obj/machinery/deployable/mounted/sentry/ui_static_data(mob/user)
-	. = list(
-		"name" = copytext(name, 2),
-		"health_max" = max_integrity
+		"radial_mode" = CHECK_BITFIELD(gun.turret_flags, TURRET_RADIAL)
 	)
 
 /obj/machinery/deployable/mounted/sentry/ui_act(action, list/params)
@@ -188,10 +193,12 @@
 			user.visible_message("<span class='warning'>[user] [safe ? "" : "de"]activates [src]'s safety lock.</span>",
 			"<span class='warning'>You [safe ? "" : "de"]activate [src]'s safety lock.</span>")
 			visible_message("<span class='warning'>A red light on [src] blinks brightly!")
+			update_static_data(user)
 			. = TRUE
 
 		if("firemode")
 			gun.do_toggle_firemode(user)
+			update_static_data(user)
 			. = TRUE
 
 		if("manual")
@@ -199,6 +206,7 @@
 				user.unset_interaction()
 			else
 				interact(user, TRUE)
+			update_static_data(user)
 			. = TRUE
 
 		if("toggle_alert")
@@ -207,7 +215,7 @@
 			user.visible_message("<span class='notice'>[user] [alert ? "" : "de"]activates [src]'s alert notifications.</span>",
 			"<span class='notice'>You [alert ? "" : "de"]activate [src]'s alert notifications.</span>")
 			say("Alert notification system [alert ? "initiated" : "deactivated"]")
-			update_icon()
+			update_static_data(user)
 			. = TRUE
 
 		if("toggle_radial")
@@ -215,6 +223,7 @@
 			var/rad_msg = CHECK_BITFIELD(gun.turret_flags, TURRET_RADIAL) ? "activate" : "deactivate"
 			user.visible_message("<span class='notice'>[user] [rad_msg]s [src]'s radial mode.</span>", "<span class='notice'>You [rad_msg] [src]'s radial mode.</span>")
 			say("Radial mode [rad_msg]d.")
+			update_static_data(user)
 			. = TRUE
 
 	attack_hand(user)
@@ -386,7 +395,7 @@
 		return FALSE
 	for(var/turf/T AS in path)
 		var/obj/effect/particle_effect/smoke/smoke = locate() in T
-		if(smoke)
+		if(smoke && smoke.opacity)
 			return FALSE
 
 		if(IS_OPAQUE_TURF(T) || T.density && T.throwpass == FALSE)
