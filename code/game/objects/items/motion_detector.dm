@@ -13,10 +13,15 @@
 	if(!operator?.client)
 		return
 	if(edge_blip) // we want to draw the blip directly on the screen edges, so we use client.screen
+		moveToNullspace()
+		icon_state = initial(icon_state)
 		screen_loc = "[screen_pos_x],[screen_pos_y]"
 		operator.client.screen += src
 	else //we want to draw the blip on the target, so we need a game loc, so we use client.images
-		blip_image = image('icons/Marine/marine-items.dmi', get_turf(target), "detector_blip[identifier]")
+		forceMove(get_turf(target))
+		icon_state = ""
+		if(!blip_image)
+			blip_image = image('icons/Marine/marine-items.dmi', src, "detector_blip[identifier]")
 		blip_image.layer = BELOW_FULLSCREEN_LAYER
 		operator.client.images |= blip_image
 	addtimer(CALLBACK(src, .proc/remove_blip, operator), 1 SECONDS)
