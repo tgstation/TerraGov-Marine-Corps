@@ -6973,7 +6973,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/lower_hull)
 "wW" = (
-/obj/structure/closet/secure_closet/guncabinet/mp_armory,
+/obj/structure/closet/secure_closet/guncabinet/mp_armory/engineering,
 /turf/open/floor/mainship/red/full,
 /area/mainship/engineering/upper_engineering)
 "wX" = (
