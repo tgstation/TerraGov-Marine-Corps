@@ -98,7 +98,7 @@
 /mob/living/carbon/xenomorph/proc/handle_critical_health_updates()
 	var/turf/T = loc
 	if((istype(T) && locate(/obj/effect/alien/weeds) in T))
-		heal_wounds(XENO_RESTING_HEAL * 0.5)
+		heal_wounds(XENO_RESTING_HEAL)
 	else if(!endure) //If we're not Enduring we bleed out
 		adjustBruteLoss(XENO_CRIT_DAMAGE)
 
