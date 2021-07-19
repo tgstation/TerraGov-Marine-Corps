@@ -37,7 +37,7 @@
 	"}
 	minimap_icon = "captain"
 
-/datum/job/terragov/command/captain/rebel 
+/datum/job/terragov/command/captain/rebel
 	faction = FACTION_TERRAGOV_REBEL
 	access = ALL_MARINE_REBEL_ACCESS
 	minimal_access = ALL_MARINE_REBEL_ACCESS
@@ -75,7 +75,7 @@ Godspeed, captain! And remember, you are not above the law."})
 	l_store = /obj/item/hud_tablet/leadership
 	back = /obj/item/storage/backpack/marine/satchel
 
-/datum/outfit/job/command/captain/rebel 
+/datum/outfit/job/command/captain/rebel
 	jobtype = /datum/job/terragov/command/captain/rebel
 	ears = /obj/item/radio/headset/mainship/mcom/rebel
 
@@ -103,7 +103,7 @@ Godspeed, captain! And remember, you are not above the law."})
 	paygrade = "O3"
 	comm_title = "FCDR"
 	total_positions = 1
-	skills_type = /datum/skills/FO
+	skills_type = /datum/skills/fo
 	access = ALL_MARINE_ACCESS
 	minimal_access = ALL_MARINE_ACCESS
 	display_order = JOB_DISPLAY_ORDER_EXECUTIVE_OFFICER
@@ -126,7 +126,7 @@ Godspeed, captain! And remember, you are not above the law."})
 	"}
 	minimap_icon = "fieldcommander"
 
-/datum/job/terragov/command/fieldcommander/rebel 
+/datum/job/terragov/command/fieldcommander/rebel
 	faction = FACTION_TERRAGOV_REBEL
 	access = ALL_MARINE_REBEL_ACCESS
 	minimal_access = ALL_MARINE_REBEL_ACCESS
@@ -184,7 +184,7 @@ Make the TGMC proud!"})
 	back = /obj/item/storage/backpack/marine/satchel
 	suit_store = /obj/item/storage/belt/gun/pistol/m4a3/fieldcommander/
 
-/datum/outfit/job/command/fieldcommander/rebel 
+/datum/outfit/job/command/fieldcommander/rebel
 	jobtype = /datum/job/terragov/command/fieldcommander/rebel
 	ears = /obj/item/radio/headset/mainship/mcom/rebel
 
@@ -197,7 +197,7 @@ Make the TGMC proud!"})
 	total_positions = 4
 	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_BRIG, ACCESS_MARINE_CARGO, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_ALPHA, ACCESS_MARINE_BRAVO, ACCESS_MARINE_CHARLIE, ACCESS_MARINE_DELTA)
 	minimal_access = ALL_MARINE_ACCESS
-	skills_type = /datum/skills/SO
+	skills_type = /datum/skills/so
 	display_order = JOB_DISPLAY_ORDER_STAFF_OFFICER
 	outfit = /datum/outfit/job/command/staffofficer
 	exp_requirements = XP_REQ_INTERMEDIATE
@@ -219,7 +219,7 @@ Make the TGMC proud!"})
 
 	minimap_icon = "staffofficer"
 
-/datum/job/terragov/command/staffofficer/rebel 
+/datum/job/terragov/command/staffofficer/rebel
 	faction = FACTION_TERRAGOV_REBEL
 	access = list(ACCESS_IFF_MARINE_REBEL, ACCESS_MARINE_BRIDGE_REBEL, ACCESS_MARINE_BRIG_REBEL, ACCESS_MARINE_CARGO_REBEL, ACCESS_MARINE_DROPSHIP_REBEL, ACCESS_MARINE_LOGISTICS_REBEL, ACCESS_MARINE_ALPHA_REBEL, ACCESS_MARINE_BRAVO_REBEL, ACCESS_MARINE_CHARLIE_REBEL, ACCESS_MARINE_DELTA_REBEL)
 	minimal_access = ALL_MARINE_REBEL_ACCESS
@@ -264,9 +264,9 @@ You are in charge of logistics and the overwatch system. You are also in line to
 	l_store = /obj/item/binoculars/tactical
 	back = /obj/item/storage/backpack/marine/satchel
 
-/datum/outfit/job/command/staffofficer/rebel 
+/datum/outfit/job/command/staffofficer/rebel
 	jobtype = /datum/job/terragov/command/staffofficer/rebel
-	ears = /obj/item/radio/headset/mainship/mcom/rebel 
+	ears = /obj/item/radio/headset/mainship/mcom/rebel
 
 //Pilot Officer
 /datum/job/terragov/command/pilot
@@ -370,7 +370,7 @@ If you are not piloting, there is an autopilot fallback for command, but don't l
 	total_positions = 1
 	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_CE, ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_BRIDGE, ACCESS_CIVILIAN_ENGINEERING, ACCESS_MARINE_CARGO, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_PREP)
 	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_CE, ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_BRIDGE, ACCESS_CIVILIAN_ENGINEERING, ACCESS_MARINE_CARGO, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_PREP, ACCESS_MARINE_RO, ACCESS_MARINE_MEDBAY)
-	skills_type = /datum/skills/CE
+	skills_type = /datum/skills/ce
 	display_order = JOB_DISPLAY_ORDER_CHIEF_ENGINEER
 	outfit = /datum/outfit/job/engineering/chief
 	exp_requirements = XP_REQ_EXPERIENCED
@@ -391,7 +391,7 @@ If you are not piloting, there is an autopilot fallback for command, but don't l
 	"}
 	minimap_icon = "cse"
 
-/datum/job/terragov/engineering/chief/rebel 
+/datum/job/terragov/engineering/chief/rebel
 	faction = FACTION_TERRAGOV_REBEL
 	access = list(ACCESS_IFF_MARINE_REBEL, ACCESS_MARINE_CE_REBEL, ACCESS_MARINE_ENGINEERING_REBEL, ACCESS_MARINE_BRIDGE_REBEL, ACCESS_CIVILIAN_ENGINEERING, ACCESS_MARINE_CARGO_REBEL, ACCESS_MARINE_DROPSHIP_REBEL, ACCESS_MARINE_PREP_REBEL)
 	minimal_access = list(ACCESS_IFF_MARINE_REBEL, ACCESS_MARINE_CE_REBEL, ACCESS_MARINE_ENGINEERING_REBEL, ACCESS_MARINE_BRIDGE_REBEL, ACCESS_CIVILIAN_ENGINEERING, ACCESS_MARINE_CARGO_REBEL, ACCESS_MARINE_DROPSHIP_REBEL, ACCESS_MARINE_LOGISTICS_REBEL, ACCESS_MARINE_PREP_REBEL, ACCESS_MARINE_RO_REBEL, ACCESS_MARINE_MEDBAY_REBEL)
@@ -442,7 +442,7 @@ You are also next in the chain of command, should the bridge crew fall in the li
 	r_store = /obj/item/storage/pouch/electronics
 	back = /obj/item/storage/backpack/marine/satchel/tech
 
-/datum/outfit/job/engineering/chief/rebel 
+/datum/outfit/job/engineering/chief/rebel
 	jobtype = /datum/job/terragov/engineering/chief/rebel
 	ears = /obj/item/radio/headset/mainship/mcom/rebel
 
@@ -455,7 +455,7 @@ You are also next in the chain of command, should the bridge crew fall in the li
 	supervisors = "the chief ship engineer and the requisitions officer"
 	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_PREP, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_CARGO, ACCESS_CIVILIAN_ENGINEERING)
 	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_PREP, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_CARGO, ACCESS_CIVILIAN_ENGINEERING)
-	skills_type = /datum/skills/ST
+	skills_type = /datum/skills/st
 	display_order = JOB_DISPLAY_ORDER_SHIP_TECH
 	outfit = /datum/outfit/job/engineering/tech
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_PROVIDES_SQUAD_HUD
@@ -525,7 +525,7 @@ requisitions line and later on to be ready to send supplies for marines who are 
 	r_store = /obj/item/storage/pouch/general/medium
 	back = /obj/item/storage/backpack/marine/engineerpack
 
-/datum/outfit/job/engineering/tech/rebel 
+/datum/outfit/job/engineering/tech/rebel
 	jobtype = /datum/job/terragov/engineering/tech/rebel
 	ears = /obj/item/radio/headset/mainship/st/rebel
 
@@ -546,7 +546,7 @@ requisitions line and later on to be ready to send supplies for marines who are 
 	total_positions = 1
 	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_CARGO, ACCESS_MARINE_RO, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_PREP, ACCESS_MARINE_ALPHA, ACCESS_MARINE_BRAVO, ACCESS_MARINE_CHARLIE, ACCESS_MARINE_DELTA)
 	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_CARGO, ACCESS_MARINE_RO, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_PREP, ACCESS_MARINE_ALPHA, ACCESS_MARINE_BRAVO, ACCESS_MARINE_CHARLIE, ACCESS_MARINE_DELTA, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS)
-	skills_type = /datum/skills/RO
+	skills_type = /datum/skills/ro
 	display_order = JOB_DISPLAY_ORDER_REQUISITIONS_OFFICER
 	outfit = /datum/outfit/job/requisitions/officer
 	exp_requirements = XP_REQ_UNSEASONED
@@ -566,7 +566,7 @@ requisitions line and later on to be ready to send supplies for marines who are 
 		Requisition supplies to the battlefield. Ensure that the marines are reparing miners for more points. Supply the marines with deluxe equipment to ensure success.
 	"}
 
-/datum/job/terragov/requisitions/officer/rebel 
+/datum/job/terragov/requisitions/officer/rebel
 	faction = FACTION_TERRAGOV_REBEL
 	access = list(ACCESS_IFF_MARINE_REBEL, ACCESS_MARINE_DROPSHIP_REBEL, ACCESS_MARINE_CARGO_REBEL, ACCESS_MARINE_RO_REBEL, ACCESS_MARINE_BRIDGE_REBEL, ACCESS_MARINE_PREP_REBEL, ACCESS_MARINE_ALPHA_REBEL, ACCESS_MARINE_BRAVO_REBEL, ACCESS_MARINE_CHARLIE_REBEL, ACCESS_MARINE_DELTA_REBEL)
 	minimal_access = list(ACCESS_IFF_MARINE_REBEL, ACCESS_MARINE_CARGO_REBEL, ACCESS_MARINE_RO_REBEL, ACCESS_MARINE_BRIDGE_REBEL, ACCESS_MARINE_PREP_REBEL, ACCESS_MARINE_ALPHA_REBEL, ACCESS_MARINE_BRAVO_REBEL, ACCESS_MARINE_CHARLIE_REBEL, ACCESS_MARINE_DELTA_REBEL, ACCESS_MARINE_MEDBAY_REBEL, ACCESS_MARINE_DROPSHIP_REBEL, ACCESS_MARINE_LOGISTICS_REBEL)
@@ -619,7 +619,7 @@ A happy ship is a well-functioning ship."})
 	r_store = /obj/item/storage/pouch/general/large
 	back = /obj/item/storage/backpack/marine/satchel
 
-/datum/outfit/job/requisitions/officer/rebel 
+/datum/outfit/job/requisitions/officer/rebel
 	jobtype = /datum/job/terragov/requisitions/officer/rebel
 	ears = /obj/item/radio/headset/mainship/mcom/rebel
 
@@ -639,7 +639,7 @@ A happy ship is a well-functioning ship."})
 	selection_color = "#99FF99"
 	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_CMO, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_RESEARCH, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_CHEMISTRY)
 	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_CMO, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_RESEARCH, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_CHEMISTRY, ACCESS_MARINE_CARGO, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS)
-	skills_type = /datum/skills/CMO
+	skills_type = /datum/skills/cmo
 	display_order = JOB_DISPLAY_ORDER_CHIEF_MEDICAL_OFFICER
 	outfit = /datum/outfit/job/medical/professor
 	exp_requirements = XP_REQ_EXPERIENCED
@@ -733,7 +733,7 @@ Make sure that the doctors and nurses are doing their jobs and keeping the marin
 		<b>Duty</b>: Tend severely wounded patients to your aid in the form of surgery, repair broken bones and damaged organs, fix internal bleeding and prevent the birth of a xenomorph larva. Develop superior healing medicines.
 	"}
 
-/datum/job/terragov/medical/medicalofficer/rebel 
+/datum/job/terragov/medical/medicalofficer/rebel
 	faction = FACTION_TERRAGOV_REBEL
 	access = list(ACCESS_IFF_MARINE_REBEL, ACCESS_MARINE_MEDBAY_REBEL, ACCESS_MARINE_CHEMISTRY_REBEL)
 	minimal_access = list(ACCESS_IFF_MARINE_REBEL, ACCESS_MARINE_MEDBAY_REBEL, ACCESS_MARINE_CHEMISTRY_REBEL, ACCESS_MARINE_CARGO_REBEL, ACCESS_MARINE_DROPSHIP_REBEL)
@@ -1009,7 +1009,7 @@ In addition, being a Synthetic gives you knowledge in every field and specializa
 	l_store = /obj/item/storage/pouch/general/medium
 	back = /obj/item/storage/backpack/marine/satchel
 
-/datum/outfit/job/civilian/synthetic/rebel 
+/datum/outfit/job/civilian/synthetic/rebel
 	jobtype = /datum/job/terragov/silicon/synthetic/rebel
 	ears = /obj/item/radio/headset/mainship/mcom/rebel
 
@@ -1042,7 +1042,7 @@ In addition, being a Synthetic gives you knowledge in every field and specializa
 		<b>Duty</b>: Assist the crew whenever you’re needed, be the doorknob of the ship. Recon the areas for threats via cameras, report your findings to the crew at various communication channels. Follow your laws.
 	"}
 
-/datum/job/terragov/silicon/ai/rebel 
+/datum/job/terragov/silicon/ai/rebel
 	faction = FACTION_TERRAGOV_REBEL
 	jobworth = list(
 		/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE,

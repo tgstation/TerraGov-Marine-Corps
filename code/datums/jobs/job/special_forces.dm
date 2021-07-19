@@ -63,7 +63,7 @@
 //Special forces Leader
 /datum/job/special_forces/leader
 	title = "Special Response Force Leader"
-	skills_type = /datum/skills/SL/pmc/special_forces
+	skills_type = /datum/skills/sl/pmc/special_forces
 	outfit = /datum/outfit/job/special_forces/leader
 
 
