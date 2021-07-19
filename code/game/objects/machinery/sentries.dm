@@ -227,6 +227,7 @@
 	use_power = 0
 	req_one_access = list(ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_ENGPREP, ACCESS_MARINE_LEADER)
 	hud_possible = list(MACHINE_HEALTH_HUD, SENTRY_AMMO_HUD)
+	interaction_flags = INTERACT_MACHINE_TGUI
 	var/turret_flags = TURRET_HAS_CAMERA|TURRET_SAFETY|TURRET_ALERTS
 	/// The iff bitfield used to determine friendlies from hostiles
 	var/iff_signal = NONE
@@ -410,7 +411,7 @@
 		return
 
 	var/mob/living/carbon/human/user = usr
-	if(!istype(user))
+	if(!istype(user) && !issilicon(user))
 		return
 
 	switch(action)
