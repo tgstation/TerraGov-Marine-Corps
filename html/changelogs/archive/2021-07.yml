@@ -393,3 +393,31 @@
   - bugfix: fixed a missing floodlight in LV engineering
   - bugfix: fixed cameras notifying the AI of their demise, despite a lack of power.
   - balance: Allows the AI to interface with groundside equipment
+2021-07-19:
+  BraveMole:
+  - bugfix: Fix hud going DNR when ghost leave body
+  - bugfix: Fix coloring in hvh
+  - rscadd: Give sec vendors in hvh, so admins don't have to spawn handcuffs
+  - bugfix: Fix iff for standard rebel marine
+  - expansion: Loadout tools will now save job title, id's access and iff signal,
+      and headset
+  - bugfix: Rail flashlight can be shut down by nightfall
+  - bugfix: Fix carrier trap not being killed when weeds are destroyed
+  - balance: Acid wells are destroyed when the weeds below them is removed
+  Hekzder:
+  - spellcheck: CSE rank time now properly lists 100 hours instead of 50 hours.
+  - rscadd: Added various civilian pay grades for medical staff.
+  - rscadd: CMO and MR now have rank progression.
+  - rscadd: MD has changed rank progression, starting at Resident and going to Medical
+      Doctor at 50 hours.
+  - bugfix: Medical staff are now properly civilian.
+  InterroLouis:
+  - balance: Xeno turrets can't be built too close to each other.
+  Joniroq:
+  - balance: T-64 battle rifle can now have an angled grip.
+  QualityVan:
+  - rscadd: Medbay is now stocked with sutures for sewing people's wounds closed.
+      You need to have not opened an incision to use them.
+  - rscdel: Removed the drills from the surgery trays and vests. You can still print
+      one at a lathe if you're really torn up by their loss.
+  - bugfix: Larva now start growing again if their host stops being dead.
