@@ -172,6 +172,7 @@
 		"fire_mode" = gun.gun_firemode,
 		"has_cell" = (gun.sentry_battery ? 1 : 0),
 		"cell_maxcharge" = gun.sentry_battery ? gun.sentry_battery.maxcharge : 0,
+		"health_max" = max_integrity,
 		"safety_toggle" = CHECK_BITFIELD(gun.turret_flags, TURRET_SAFETY),
 		"manual_override" = operator,
 		"alerts_on" = CHECK_BITFIELD(gun.turret_flags, TURRET_ALERTS),
