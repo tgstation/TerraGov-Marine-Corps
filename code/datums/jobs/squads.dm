@@ -74,7 +74,8 @@
 		REBEL_SQUAD_LEADER = 0)
 	max_positions = list(
 		REBEL_SQUAD_MARINE = -1,
-		REBEL_SQUAD_LEADER = 1)
+		REBEL_SQUAD_LEADER = 1
+)
 
 /datum/squad/bravo/rebel
 	id = BRAVO_SQUAD_REBEL
@@ -89,7 +90,8 @@
 		REBEL_SQUAD_LEADER = 0)
 	max_positions = list(
 		REBEL_SQUAD_MARINE = -1,
-		REBEL_SQUAD_LEADER = 1)
+		REBEL_SQUAD_LEADER = 1
+)
 
 /datum/squad/charlie/rebel
 	id = CHARLIE_SQUAD_REBEL
@@ -104,7 +106,8 @@
 		REBEL_SQUAD_LEADER = 0)
 	max_positions = list(
 		REBEL_SQUAD_MARINE = -1,
-		REBEL_SQUAD_LEADER = 1)
+		REBEL_SQUAD_LEADER = 1
+)
 
 /datum/squad/delta/rebel
 	id = DELTA_SQUAD_REBEL
@@ -119,7 +122,8 @@
 		REBEL_SQUAD_LEADER = 0)
 	max_positions = list(
 		REBEL_SQUAD_MARINE = -1,
-		REBEL_SQUAD_LEADER = 1)
+		REBEL_SQUAD_LEADER = 1
+)
 
 GLOBAL_LIST_EMPTY(glovemarkings)
 GLOBAL_LIST_EMPTY(armormarkings)
