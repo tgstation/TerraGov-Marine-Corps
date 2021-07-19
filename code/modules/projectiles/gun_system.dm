@@ -581,7 +581,7 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 /obj/item/weapon/gun/proc/stop_fire()
 	SIGNAL_HANDLER
 	gun_user.client.mouse_pointer_icon = initial(gun_user.client.mouse_pointer_icon)
-	if(windup_checked != WEAPON_WINDUP_CHECKING && !CHECK_BITFIELD(flags_gun_features, GUN_BURST_FIRING))
+	if(!CHECK_BITFIELD(flags_gun_features, GUN_BURST_FIRING))
 		reset_fire()
 	SEND_SIGNAL(src, COMSIG_GUN_STOP_FIRE)
 
