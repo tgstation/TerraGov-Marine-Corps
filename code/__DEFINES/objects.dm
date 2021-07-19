@@ -251,3 +251,10 @@ GLOBAL_LIST_INIT(restricted_camera_networks, list( //Those networks can only be 
 #define TURRET_SCAN_RANGE 25
 #define TURRET_SCAN_FREQUENCY 16 SECONDS
 #define TURRET_HEALTH_REGEN 8
+
+//Motion detector define
+#define MOTION_DETECTOR_RANGE 14
+#define MOTION_DETECTOR_HOSTILE "hostile"
+#define MOTION_DETECTOR_FRIENDLY "friendly"
+#define MOTION_DETECTOR_DEAD "dead"
+#define MOTION_DETECTOR_RECYCLE_TIME 3 MINUTES

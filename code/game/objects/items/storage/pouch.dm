@@ -605,7 +605,6 @@
 	draw_mode = 1
 	desc = "It can contain a motion detector, signaller, beacons, maps, flares, radios and other handy battlefield communication and detection devices."
 	can_hold = list(
-		/obj/item/motiondetector,
 		/obj/item/radio,
 		/obj/item/assembly/signaler,
 		/obj/item/megaphone,
@@ -617,7 +616,6 @@
 
 /obj/item/storage/pouch/field_pouch/full/Initialize()
 	. = ..()
-	new /obj/item/motiondetector (src)
 	new /obj/item/whistle (src)
 	new /obj/item/radio (src)
 	new /obj/item/binoculars/tactical (src)
