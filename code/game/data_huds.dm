@@ -183,12 +183,12 @@
 	var/image/infection_hud = hud_list[XENO_EMBRYO_HUD] //State of the xeno embryo.
 	var/image/simple_status_hud = hud_list[STATUS_HUD_SIMPLE] //Status for the naked eye.
 	var/image/xeno_reagent = hud_list[XENO_REAGENT_HUD] // Displays active xeno reagents
-	var/static/image/neurotox_image = image('icons/mob/hud.dmi', src, "neurotoxin")
-	var/static/image/hemodile_image = image('icons/mob/hud.dmi', src, "hemodile")
-	var/static/image/transvitox_image = image('icons/mob/hud.dmi', src, "transvitox")
-	var/static/image/neurotox_high_image = image('icons/mob/hud.dmi', src, "neurotoxin_high")
-	var/static/image/hemodile_high_image = image('icons/mob/hud.dmi', src, "hemodile_high")
-	var/static/image/transvitox_high_image = image('icons/mob/hud.dmi', src, "transvitox_high")
+	var/static/image/neurotox_image = image('icons/mob/hud.dmi', icon_state = "neurotoxin")
+	var/static/image/hemodile_image = image('icons/mob/hud.dmi', icon_state = "hemodile")
+	var/static/image/transvitox_image = image('icons/mob/hud.dmi', icon_state = "transvitox")
+	var/static/image/neurotox_high_image = image('icons/mob/hud.dmi', icon_state = "neurotoxin_high")
+	var/static/image/hemodile_high_image = image('icons/mob/hud.dmi', icon_state = "hemodile_high")
+	var/static/image/transvitox_high_image = image('icons/mob/hud.dmi', icon_state = "transvitox_high")
 
 	xeno_reagent.overlays.Cut()
 	xeno_reagent.icon_state = ""
