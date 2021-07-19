@@ -154,12 +154,10 @@
 /obj/machinery/deployable/mounted/sentry/ui_data(mob/user)
 	var/obj/item/weapon/gun/gun = internal_item
 	. = list(
-		"name" = copytext(name, 2),
 		"rounds" = (gun.current_mag ? gun.current_mag.current_rounds : 0),
 		"rounds_max" = (gun.current_mag ? gun.current_mag.max_rounds : gun.max_shells),
 		"fire_mode" = gun.gun_firemode,
 		"health" = obj_integrity,
-		"health_max" = max_integrity,
 		"has_cell" = (gun.sentry_battery ? 1 : 0),
 		"cell_charge" = gun.sentry_battery ? gun.sentry_battery.charge : 0,
 		"cell_maxcharge" = gun.sentry_battery ? gun.sentry_battery.maxcharge : 0,
@@ -167,6 +165,12 @@
 		"manual_override" = operator,
 		"alerts_on" = CHECK_BITFIELD(gun.turret_flags, TURRET_ALERTS),
 		"radial_mode" = CHECK_BITFIELD(gun.turret_flags, TURRET_RADIAL),
+	)
+
+/obj/machinery/deployable/mounted/sentry/ui_static_data(mob/user)
+	. = list(
+		"name" = copytext(name, 2),
+		"health_max" = max_integrity
 	)
 
 /obj/machinery/deployable/mounted/sentry/ui_act(action, list/params)

@@ -710,7 +710,7 @@ and you're good to go.
 //----------------------------------------------------------
 
 /obj/item/weapon/gun/proc/Fire()
-	if(!target)
+	if(!target || (!gun_user && !istype(loc, /obj/machinery/deployable/mounted/sentry)))
 		return
 
 	//The gun should return the bullet that it already loaded from the end cycle of the last Fire().

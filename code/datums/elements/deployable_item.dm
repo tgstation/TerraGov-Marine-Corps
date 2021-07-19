@@ -82,11 +82,14 @@
 		CRASH("[source] has sent the signal COMSIG_ITEM_UNDEPLOY to [attached_item] without the arg 'user'")
 	if(!ishuman(user))
 		return
-	var/obj/machinery/deployable/mounted/sentry/sentry = deployed_machine
-	sentry?.set_on(FALSE)
+	if(istype(deployed_machine, /obj/machinery/deployable/mounted/sentry))
+		var/obj/machinery/deployable/mounted/sentry/sentry = deployed_machine
+		sentry.set_on(FALSE)
 	to_chat(user, "<span class='notice'>You start disassembling the [attached_item]</span>")
 	if(!do_after(user, deploy_time, TRUE, deployed_machine, BUSY_ICON_BUILD))
-		sentry?.set_on(TRUE)
+		if(istype(deployed_machine, /obj/machinery/deployable/mounted/sentry))
+			var/obj/machinery/deployable/mounted/sentry/sentry = deployed_machine
+			sentry.set_on(TRUE)
 		return
 
 	user.unset_interaction()
