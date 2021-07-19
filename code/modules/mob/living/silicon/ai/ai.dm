@@ -76,8 +76,8 @@
 
 	RegisterSignal(src, COMSIG_MOB_CLICK_ALT, .proc/send_order)
 	RegisterSignal(src, COMSIG_ORDER_SELECTED, .proc/set_order)
-	RegisterSignal(SSdcs, COMSIG_GLOB_OB_LASER_SENT, .proc/receive_laser_OB)
-	RegisterSignal(SSdcs, COMSIG_GLOB_CAS_LASER_SENT, .proc/receive_laser_CAS)
+	RegisterSignal(SSdcs, COMSIG_GLOB_OB_LASER_CREATED, .proc/receive_laser_ob)
+	RegisterSignal(SSdcs, COMSIG_GLOB_CAS_LASER_CREATED, .proc/receive_laser_cas)
 
 
 
@@ -97,6 +97,8 @@
 	QDEL_NULL(track)
 	UnregisterSignal(src, COMSIG_ORDER_SELECTED)
 	UnregisterSignal(src, COMSIG_MOB_CLICK_ALT)
+	UnregisterSignal(SSdcs, COMSIG_GLOB_OB_LASER_CREATED)
+	UnregisterSignal(SSdcs, COMSIG_GLOB_CAS_LASER_CREATED)
 	return ..()
 
 ///Print order visual to all marines squad hud and give them an arrow to follow the waypoint
@@ -114,12 +116,12 @@
 
 
 ///Receive fire support laser notifications
-/mob/living/silicon/ai/proc/receive_laser_OB(datum/source, obj/effect/overlay/temp/laser_target/OB/incoming_laser)
+/mob/living/silicon/ai/proc/receive_laser_ob(datum/source, obj/effect/overlay/temp/laser_target/OB/incoming_laser)
 	SIGNAL_HANDLER
 	to_chat(src, "<span class='notice'>Orbital Bombardment laser detected. Target: [AREACOORD_NO_Z(incoming_laser)] </span>")
 	playsound(src, 'sound/effects/binoctarget.ogg', 15)
 
-/mob/living/silicon/ai/proc/receive_laser_CAS(datum/source, obj/effect/overlay/temp/laser_target/cas/incoming_laser)
+/mob/living/silicon/ai/proc/receive_laser_cas(datum/source, obj/effect/overlay/temp/laser_target/cas/incoming_laser)
 	SIGNAL_HANDLER
 	to_chat(src, "<span class='notice'>CAS laser detected. Target: [AREACOORD_NO_Z(src)]</span>")
 	playsound(src, 'sound/effects/binoctarget.ogg', 15)
