@@ -142,8 +142,6 @@
 	GLOB.active_cas_targets += src
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_CAS_LASER_CREATED, src)
 
-
-
 /obj/effect/overlay/temp/laser_target/cas/Destroy()
 	. = ..()
 	GLOB.active_cas_targets -= src
