@@ -48,9 +48,10 @@
 /obj/item/attachable/motiondetector
 	name = "tactical sensor"
 	desc = "A device that detects hostile movement. Hostiles appear as red blips. Friendlies with the correct IFF signature appear as green, and their bodies as blue, unrevivable bodies as dark blue. It has a mode selection interface."
-	icon_state = "marinescope_a"
-	attach_icon = "marinescope_a"
+	icon_state = "minidetector"
+	attach_icon = "sniperscope_a"
 	slot = ATTACHMENT_SLOT_RAIL
+	attachment_action_type = /datum/action/item_action/toggle/motion_detector
 	/// Our list of blips
 	var/list/obj/effect/detector_blip/blip_pool = list()
 	/// Who's using this item
@@ -65,13 +66,21 @@
 	return ..()
 
 /obj/item/attachable/motiondetector/activate_attachment(mob/user, turn_off)
-	. = ..()
 	if(operator)
 		clean_user()
 		return
 	operator = user
 	RegisterSignal(operator, COMSIG_PARENT_QDELETING, .proc/clean_user)
 	START_PROCESSING(SSobj, src)
+	update_icon()
+
+obj/item/attachable/motiondetector/update_icon()
+	. = ..()
+	for(var/datum/action/action AS in master_gun?.actions)
+		action.update_button_icon()
+
+/obj/item/attachable/motiondetector/update_icon_state()
+	icon_state = initial(icon_state) + (isnull(operator) ? "" : "_on")
 
 /// Signal handler to clean out user vars
 /obj/item/attachable/motiondetector/proc/clean_user()
@@ -81,6 +90,7 @@
 		UnregisterSignal(operator, COMSIG_PARENT_QDELETING)
 		operator = null
 	QDEL_LIST_ASSOC_VAL(blip_pool)
+	update_icon()
 
 /obj/item/attachable/motiondetector/process()
 	if(!operator?.client || operator.stat != CONSCIOUS)
