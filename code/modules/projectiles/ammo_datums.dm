@@ -1025,11 +1025,12 @@ datum/ammo/bullet/revolver/tp44
 /datum/ammo/bullet/turret
 	name = "autocannon bullet"
 	icon_state = "redbullet"
+	hud_state = "smartgun"
+	hud_state_empty = "smartgun_empty"
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING|AMMO_SENTRY
 	accurate_range = 10
-	damage = 80
-	penetration = 30
-	sundering = 5
+	damage = 50
+	penetration = 5
 	damage_falloff = 0.5
 
 /datum/ammo/bullet/turret/dumb
@@ -1037,16 +1038,12 @@ datum/ammo/bullet/revolver/tp44
 
 /datum/ammo/bullet/turret/gauss
 	name = "heavy gauss turret slug"
-	damage = 90
-	penetration = 10
-	accurate_range = 3
-	sundering = 0
-
-
+	damage = 60
+	accurate_range = 5
 /datum/ammo/bullet/turret/mini
 	name = "small caliber autocannon bullet"
-	damage = 30
-	penetration = 10
+	damage = 25
+	penetration = 5
 	sundering = 5
 
 

@@ -9,11 +9,11 @@
 	max_integrity = 200
 
 	fire_delay = 0.75 SECONDS
-	burst_delay = 0.5 SECONDS
+	burst_delay = 0.3 SECONDS
 	scatter = 0
 	scatter_unwielded = 0
 	burst_scatter_mult = 0
-	burst_amount = 2
+	burst_amount = 4
 
 	turret_flags = TURRET_HAS_CAMERA|TURRET_SAFETY|TURRET_ALERTS
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER|GUN_DEPLOYED_FIRE_ONLY|GUN_WIELDED_FIRING_ONLY|GUN_IS_SENTRY|GUN_IFF
@@ -110,7 +110,7 @@
 	ammo = /datum/ammo/bullet/turret/mini
 	current_mag = /obj/item/ammo_magazine/minisentry
 
-	fire_delay = 3
+	fire_delay = 0.2 SECONDS
 	scatter = 2
 
 	deploy_time = 3 SECONDS
@@ -122,9 +122,6 @@
 	icon_state = "sentry"
 	turret_flags = TURRET_HAS_CAMERA|TURRET_ON|TURRET_BURSTFIRE|TURRET_IMMOBILE|TURRET_SAFETY|TURRET_RADIAL
 	max_shells = 50000
-
-	fire_delay = 3
-	scatter = 2
 
 	ammo = /datum/ammo/bullet/turret/gauss
 	current_mag = /obj/item/ammo_magazine/sentry_premade

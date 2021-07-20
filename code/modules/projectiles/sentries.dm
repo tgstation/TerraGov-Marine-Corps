@@ -145,6 +145,7 @@
 		return TRUE
 
 	ui_interact(user)
+	update_static_data(user)
 
 /obj/machinery/deployable/mounted/sentry/ui_interact(mob/user, datum/tgui/ui)
 
