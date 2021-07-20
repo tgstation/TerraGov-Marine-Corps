@@ -72,7 +72,7 @@
 	operator = user
 	RegisterSignal(operator, list(COMSIG_PARENT_QDELETING, COMSIG_GUN_USER_UNSET), .proc/clean_user)
 	RegisterSignal(src, list(COMSIG_ITEM_EQUIPPED_TO_SLOT, COMSIG_ITEM_REMOVED_INVENTORY), .proc/clean_user)
-	START_PROCESSING(SSslowprocess, src)
+	START_PROCESSING(SSobj, src)
 	update_icon()
 
 /obj/item/attachable/motiondetector/detach_from_master_gun()
@@ -93,7 +93,7 @@ obj/item/attachable/motiondetector/update_icon()
 /// Signal handler to clean out user vars
 /obj/item/attachable/motiondetector/proc/clean_user()
 	SIGNAL_HANDLER
-	STOP_PROCESSING(SSslowprocess, src)
+	STOP_PROCESSING(SSobj, src)
 	if(operator)
 		UnregisterSignal(operator, list(COMSIG_PARENT_QDELETING, COMSIG_GUN_USER_UNSET))
 		UnregisterSignal(src, list(COMSIG_ITEM_EQUIPPED_TO_SLOT, COMSIG_ITEM_REMOVED_INVENTORY))
