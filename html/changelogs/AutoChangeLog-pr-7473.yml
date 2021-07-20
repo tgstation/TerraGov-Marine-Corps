@@ -1,5 +1,0 @@
-author: "QualityVan"
-delete-after: True
-changes: 
-  - rscadd: "Medbay is now stocked with sutures for sewing people's wounds closed. You need to have not opened an incision to use them."
-  - rscdel: "Removed the drills from the surgery trays and vests. You can still print one at a lathe if you're really torn up by their loss."

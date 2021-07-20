@@ -147,7 +147,7 @@
 ///Adds additional text for the component when examining the item it is attached to
 /datum/component/chem_booster/proc/examine(datum/source, mob/user)
 	SIGNAL_HANDLER
-	to_chat(user, "<span class='notice'>The chemical system currently holds [resource_storage_current]u of green blood. Its' enhancement level is set to [boost_amount+1].</span>")
+	to_chat(user, "<span class='notice'>The chemical system currently holds [resource_storage_current]u of green blood. Its enhancement level is set to [boost_amount].</span>")
 	show_meds_beaker_contents(user)
 
 ///Disables active functions and cleans up actions when the suit is unequipped
@@ -188,7 +188,7 @@
 	update_resource(-resource_drain_amount)
 
 	wearer.adjustToxLoss(-tox_heal*boost_amount)
-	wearer.heal_limb_damage(6*boost_amount*brute_heal_amp, 6*boost_amount*brute_heal_amp)
+	wearer.heal_limb_damage(6*boost_amount*brute_heal_amp, 6*boost_amount*burn_heal_amp)
 	if(connected_weapon && world.time - processing_start < 20 SECONDS)
 		wearer.adjustStaminaLoss(-7*stamina_regen_amp*((20 - (world.time - processing_start)/10)/20)) //stamina gain scales inversely with passed time, up to 20 seconds
 	if(world.time - processing_start > 12 SECONDS && world.time - processing_start < 15 SECONDS)
@@ -253,7 +253,6 @@
 					break
 
 		UnregisterSignal(wearer, COMSIG_MOB_DEATH, .proc/on_off)
-		update_boost(0, FALSE)
 		power_action.action_icon_state = "cboost_off"
 		power_action.update_button_icon()
 		boost_on = FALSE
@@ -274,7 +273,6 @@
 	processing_start = world.time
 	START_PROCESSING(SSobj, src)
 	RegisterSignal(wearer, COMSIG_MOB_DEATH, .proc/on_off)
-	update_boost(boost_amount*2, FALSE)
 	power_action.action_icon_state = "cboost_on"
 	power_action.update_button_icon()
 	playsound(get_turf(wearer), 'sound/effects/bubbles.ogg', 30, 1)
@@ -285,11 +283,9 @@
 	setup_bonus_effects()
 
 ///Updates the boost amount of the suit and effect_str of reagents if component is on. "amount" is the final level you want to set the boost to.
-/datum/component/chem_booster/proc/update_boost(amount, update_boost_amount = TRUE)
-	amount -= boost_amount
-	if(update_boost_amount)
-		boost_amount += amount
-		to_chat(wearer, "<span class='notice'>Power set to [boost_amount].</span>")
+/datum/component/chem_booster/proc/update_boost(amount)
+	boost_amount = amount
+	to_chat(wearer, "<span class='notice'>Power set to [boost_amount].</span>")
 	resource_drain_amount = boost_amount*(3 + boost_amount)
 
 ///Handles Vali stat boosts and any other potential buffs on activation/deactivation
@@ -408,8 +404,8 @@
 		to_chat(wearer, "<span class='warning'>You need to be holding a specialized chemical liquid container.</span>")
 		return
 
-	var/amount = min(held_item.reagents.maximum_volume-held_item.reagents.total_volume, volume)
-	if(!amount)
+	if((held_item.reagents.maximum_volume-held_item.reagents.total_volume) < volume)
+		to_chat(wearer, "<span class='warning'>External container lacks sufficient space..</span>")
 		return
 
 	to_chat(wearer, "<span class='notice'>You begin filling [held_item].</span>")
@@ -420,8 +416,8 @@
 		to_chat(wearer, "<span class='warning'>Not enough resource to extract.</span>")
 		return
 
-	update_resource(-amount)
-	held_item.reagents.add_reagent(/datum/reagent/virilyth, amount)
+	update_resource(-volume)
+	held_item.reagents.add_reagent(/datum/reagent/virilyth, volume)
 	extract(volume)
 
 ///Fills an internal beaker that gets injected into the wearer on suit activation
@@ -440,7 +436,7 @@
 			automatic_meds_use = TRUE
 		else if(pick == "No")
 			automatic_meds_use = FALSE
-		to_chat(wearer, "<span class='notice'>The chemical system will <b>[automatic_meds_use ? "inject" : "not inject"]</b> loaded reagets on activation.</span>")
+		to_chat(wearer, "<span class='notice'>The chemical system will <b>[automatic_meds_use ? "inject" : "not inject"]</b> loaded reagents on activation.</span>")
 		return
 
 	var/obj/item/reagent_containers/held_beaker = held_item
