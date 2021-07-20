@@ -4040,11 +4040,11 @@
 /area/whiskey_outpost)
 "rl" = (
 /obj/structure/rack,
-/obj/item/motiondetector,
-/obj/item/motiondetector,
-/obj/item/motiondetector,
-/obj/item/motiondetector,
-/obj/item/motiondetector,
+/obj/item/attachable/motiondetector,
+/obj/item/attachable/motiondetector,
+/obj/item/attachable/motiondetector,
+/obj/item/attachable/motiondetector,
+/obj/item/attachable/motiondetector,
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost)
 "rm" = (
