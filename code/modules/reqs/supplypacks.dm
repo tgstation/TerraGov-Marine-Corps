@@ -475,6 +475,12 @@ AMMO
 	cost = 3
 	available_against_xeno_only = TRUE
 
+/datum/supply_packs/ammo/mateba_packet
+	name = "Mateba packet"
+	contains = list(/obj/item/ammo_magazine/packet/mateba)
+	cost = 12
+	available_against_xeno_only = TRUE
+
 /datum/supply_packs/ammo/incendiaryslugs
 	name = "Box of Incendiary Slugs"
 	contains = list(/obj/item/ammo_magazine/shotgun/incendiary)
