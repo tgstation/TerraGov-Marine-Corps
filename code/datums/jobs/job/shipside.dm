@@ -641,7 +641,7 @@ A happy ship is a well-functioning ship."})
 		<b>You answer to the</b> acting Command Staff<br /><br />
 		<b>Unlock Requirement</b>: Starting Role<br /><br />
 		<b>Gamemode Availability</b>: Crash, Distress<br /><br /><br />
-		<b>Duty</b>: Communicate and lead your fellow medical staff (if available), supervise the medical department. Coordinate and teach fellow medical officers and corpsmen what they’re doing for treating an injury. Be the sole doctor in the Canterbury.
+		<b>Duty</b>: Communicate and lead your fellow medical staff (if available), supervise the medical department. Coordinate and teach fellow medical staff and corpsmen what they’re doing for treating an injury. Be the sole doctor in the Canterbury.
 	"}
 
 /datum/job/terragov/medical/professor/rebel
@@ -658,7 +658,7 @@ A happy ship is a well-functioning ship."})
 
 /datum/job/terragov/medical/professor/radio_help_message(mob/M)
 	. = ..()
-	to_chat(M, {"You are the chief medical officer aboard the [SSmapping.configs[SHIP_MAP].map_name], navy officer and supervisor to the medical department.
+	to_chat(M, {"You are the chief medical officer aboard the [SSmapping.configs[SHIP_MAP].map_name] and supervisor to the medical department.
 You have final authority over the medical department, medications, and treatments.
 Make sure that the doctors and nurses are doing their jobs and keeping the marines healthy and strong."})
 
@@ -756,7 +756,7 @@ Make sure that the doctors and nurses are doing their jobs and keeping the marin
 
 /datum/job/terragov/medical/medicalofficer/radio_help_message(mob/M)
 	. = ..()
-	to_chat(M, {"You are a military doctor stationed aboard the [SSmapping.configs[SHIP_MAP].map_name].
+	to_chat(M, {"You are a doctor stationed aboard the [SSmapping.configs[SHIP_MAP].map_name].
 You are tasked with keeping the marines healthy and strong, usually in the form of surgery.
 You are also an expert when it comes to medication and treatment. If you do not know what you are doing, <b>mentorhelp</b> so a mentor can assist you."})
 
