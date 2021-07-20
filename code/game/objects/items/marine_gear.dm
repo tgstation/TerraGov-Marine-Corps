@@ -226,8 +226,6 @@
 	if(slot == SLOT_BELT)
 		playsound(src,'sound/machines/click.ogg', 15, FALSE, 1)
 
-//compass
-
 /obj/item/compass
 	name = "compass"
 	desc = "A small compass that can tell you your coordinates on use."
