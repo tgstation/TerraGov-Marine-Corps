@@ -253,7 +253,7 @@ GLOBAL_LIST_INIT(restricted_camera_networks, list( //Those networks can only be 
 #define TURRET_HEALTH_REGEN 8
 
 //Motion detector define
-#define MOTION_DETECTOR_RANGE 15
+#define MOTION_DETECTOR_RANGE 20
 #define MOTION_DETECTOR_HOSTILE ""
 #define MOTION_DETECTOR_FRIENDLY "_friendly"
 #define MOTION_DETECTOR_DEAD "_dead"

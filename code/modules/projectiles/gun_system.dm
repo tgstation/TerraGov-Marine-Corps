@@ -221,7 +221,8 @@
 		return
 	if(gun_user)
 		UnregisterSignal(gun_user, list(COMSIG_MOB_MOUSEDOWN, COMSIG_MOB_MOUSEUP, COMSIG_MOB_MOUSEDRAG, COMSIG_KB_RAILATTACHMENT, COMSIG_KB_UNDERRAILATTACHMENT, COMSIG_KB_UNLOADGUN, COMSIG_KB_FIREMODE, COMSIG_KB_GUN_SAFETY, COMSIG_PARENT_QDELETING))
-		gun_user.client.mouse_pointer_icon = initial(gun_user.client.mouse_pointer_icon)
+		gun_user.client?.mouse_pointer_icon = initial(gun_user.client.mouse_pointer_icon)
+		SEND_SIGNAL(gun_user, COMSIG_GUN_USER_UNSET)
 		gun_user = null
 	if(!user)
 		return

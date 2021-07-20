@@ -59,7 +59,7 @@
 	/// A recycle countdown, when at zero the blip pool is cleaned up
 	var/recycle_countdown = MOTION_DETECTOR_RECYCLE_TIME
 	/// Distane to the closest hostile
-	var/detected = MOTION_DETECTOR_RANGE + 1
+	var/closest_hostile_distance = MOTION_DETECTOR_RANGE + 1
 
 /obj/item/attachable/motiondetector/Destroy()
 	clean_user()
@@ -70,9 +70,17 @@
 		clean_user()
 		return
 	operator = user
-	RegisterSignal(operator, COMSIG_PARENT_QDELETING, .proc/clean_user)
-	START_PROCESSING(SSobj, src)
+	RegisterSignal(operator, list(COMSIG_PARENT_QDELETING, COMSIG_GUN_USER_UNSET), .proc/clean_user)
+	RegisterSignal(src, list(COMSIG_ITEM_EQUIPPED_TO_SLOT, COMSIG_ITEM_REMOVED_INVENTORY), .proc/clean_user)
+	START_PROCESSING(SSslowprocess, src)
 	update_icon()
+
+/obj/item/attachable/motiondetector/detach_from_master_gun()
+	. = ..()
+	clean_user()
+
+/obj/item/attachable/motiondetector/attack_self(mob/user)
+	activate_attachment(user)
 
 obj/item/attachable/motiondetector/update_icon()
 	. = ..()
@@ -85,9 +93,10 @@ obj/item/attachable/motiondetector/update_icon()
 /// Signal handler to clean out user vars
 /obj/item/attachable/motiondetector/proc/clean_user()
 	SIGNAL_HANDLER
-	STOP_PROCESSING(SSobj, src)
+	STOP_PROCESSING(SSslowprocess, src)
 	if(operator)
-		UnregisterSignal(operator, COMSIG_PARENT_QDELETING)
+		UnregisterSignal(operator, list(COMSIG_PARENT_QDELETING, COMSIG_GUN_USER_UNSET))
+		UnregisterSignal(src, list(COMSIG_ITEM_EQUIPPED_TO_SLOT, COMSIG_ITEM_REMOVED_INVENTORY))
 		operator = null
 	QDEL_LIST_ASSOC_VAL(blip_pool)
 	update_icon()
@@ -96,15 +105,15 @@ obj/item/attachable/motiondetector/update_icon()
 	if(!operator?.client || operator.stat != CONSCIOUS)
 		clean_user()
 		return
-	detected = MOTION_DETECTOR_RANGE + 1
+	closest_hostile_distance = MOTION_DETECTOR_RANGE + 1
 	for (var/mob/living/carbon/human/nearby_human AS in cheap_get_humans_near(operator, MOTION_DETECTOR_RANGE))
 		if(nearby_human == operator)
 			continue
 		prepare_blip(nearby_human, nearby_human.stat != DEAD ? nearby_human.wear_id?.iff_signal & operator.wear_id.iff_signal ? MOTION_DETECTOR_FRIENDLY : MOTION_DETECTOR_HOSTILE : MOTION_DETECTOR_DEAD)
 	for (var/mob/living/carbon/xenomorph/nearby_xeno AS in cheap_get_xenos_near(operator, MOTION_DETECTOR_RANGE))
 		prepare_blip(nearby_xeno, nearby_xeno.stat == DEAD ? MOTION_DETECTOR_DEAD : MOTION_DETECTOR_HOSTILE)
-	if(detected <= MOTION_DETECTOR_RANGE)
-		playsound(loc, 'sound/items/tick.ogg', 85 - detected * 2, 0, 7, 2)
+	if(closest_hostile_distance <= MOTION_DETECTOR_RANGE)
+		operator.playsound_local(loc, 'sound/items/tick.ogg', 100 - closest_hostile_distance * 3, 0, 7, 2)
 	recycle_countdown--
 	if(recycle_countdown <= 0)
 		recycle_countdown = MOTION_DETECTOR_RECYCLE_TIME
@@ -125,7 +134,7 @@ obj/item/attachable/motiondetector/update_icon()
 
 	var/obj/effect/detector_blip/detector_blip = blip_pool[target]
 	if(detector_blip.identifier == MOTION_DETECTOR_HOSTILE)
-		detected = min(detected, get_dist(target, operator))
+		closest_hostile_distance = min(closest_hostile_distance, get_dist(target, operator))
 
 	var/list/actualview = getviewsize(operator.client.view)
 	var/viewX = actualview[1]
