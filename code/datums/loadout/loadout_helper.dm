@@ -102,6 +102,8 @@
 		return /datum/item_representation/handful_representation
 	if(ispath(item_type, /obj/item/stack))
 		return /datum/item_representation/stack
+	if(ispath(item_type, /obj/item/card/id))
+		return /datum/item_representation/id
 	return /datum/item_representation
 
 /// Return TRUE if this handful should be buyable, aka if it's corresponding aka box is in a linked vendor

@@ -255,6 +255,7 @@
 		/obj/item/attachable/compensator,
 		/obj/item/attachable/reddot,
 		/obj/item/attachable/verticalgrip,
+		/obj/item/attachable/angledgrip,
 		/obj/item/attachable/lasersight,
 		/obj/item/attachable/flashlight,
 		/obj/item/attachable/bipod,
@@ -1156,3 +1157,6 @@
 	scatter = -10
 	scatter_unwielded = 30
 	aim_slowdown = 0.45
+
+/obj/item/weapon/gun/rifle/tx11/scopeless
+	starting_attachment_types = list(/obj/item/attachable/stock/irremoveable/tx11)
