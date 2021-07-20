@@ -1,0 +1,4 @@
+author: "BraveMole"
+delete-after: True
+changes: 
+  - expansion: "Loadout tools will now save job title, id's access and iff signal, and headset"

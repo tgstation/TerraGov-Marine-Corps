@@ -191,7 +191,7 @@ WEAPONS
 
 /datum/supply_packs/weapons/m56d_emplacement
 	name = "TL-102 Mounted Heavy Smartgun"
-	contains = list(/obj/item/storage/box/standard_hmg)
+	contains = list(/obj/item/storage/box/tl102)
 	cost = 80
 
 /datum/supply_packs/weapons/tesla
@@ -218,6 +218,12 @@ WEAPONS
 /datum/supply_packs/weapons/tx8
 	name = "TX-8 Scout Rifle"
 	contains = list(/obj/item/weapon/gun/rifle/tx8)
+	cost = 50
+	available_against_xeno_only = TRUE
+
+/datum/supply_packs/weapons/thermobaric
+	name = "T-57 Thermobaric"
+	contains = list(/obj/item/weapon/gun/launcher/rocket/m57a4/t57)
 	cost = 50
 	available_against_xeno_only = TRUE
 
@@ -248,6 +254,11 @@ WEAPONS
 /datum/supply_packs/weapons/smartgun
 	name = "T-29 Smart Machinegun"
 	contains = list(/obj/item/weapon/gun/rifle/standard_smartmachinegun)
+	cost = 40
+
+/datum/supply_packs/weapons/smartrifle
+	name = "T-26 Smart Rifle"
+	contains = list(/obj/item/weapon/gun/rifle/standard_smartrifle)
 	cost = 40
 
 /datum/supply_packs/weapons/flamethrower
@@ -529,6 +540,12 @@ AMMO
 	cost = 7
 	available_against_xeno_only = TRUE
 
+/datum/supply_packs/ammo/thermobaric
+	name = "T-57 WP rocket array"
+	contains = list(/obj/item/ammo_magazine/rocket/m57a4)
+	cost = 5
+	available_against_xeno_only = TRUE
+
 /datum/supply_packs/ammo/shell_regular
 	name = "T-160 RR HE shell"
 	contains = list(/obj/item/ammo_magazine/rocket/recoilless)
@@ -545,6 +562,17 @@ AMMO
 	name = "T-29 smartmachinegun ammo"
 	contains = list(/obj/item/ammo_magazine/standard_smartmachinegun)
 	cost = 5
+
+/datum/supply_packs/ammo/smartrifle
+	name = "T-25 smartrifle magazine"
+	contains = list(/obj/item/ammo_magazine/rifle/standard_smartrifle)
+	cost = 2
+
+/datum/supply_packs/ammo/smartrifle_pack
+	name = "T-25 smartrifle ammo box"
+	notes = "Contains a box with 200 rounds for a T-25 (MAGAZINES SOLD SEPERATELY)"
+	contains = list(/obj/item/ammo_magazine/packet/t25)
+	cost = 4
 
 /datum/supply_packs/ammo/sentry
 	name = "UA 571-C sentry ammunition"
@@ -593,7 +621,7 @@ AMMO
 
 /datum/supply_packs/ammo/m56d
 	name = "TL-102 mounted heavy smartgun ammo"
-	contains = list(/obj/item/ammo_magazine/standard_hmg)
+	contains = list(/obj/item/ammo_magazine/tl102)
 	cost = 10
 
 /datum/supply_packs/ammo/lasguncharger
@@ -608,8 +636,8 @@ AMMO
 	cost = 2
 
 /datum/supply_packs/ammo/minigun
-	name = "Vindicator Minigun Ammo Drum"
-	contains = list(/obj/item/ammo_magazine/minigun)
+	name = "Minigun Powerpack"
+	contains = list(/obj/item/minigun_powerpack)
 	cost = 5
 	available_against_xeno_only = TRUE
 
@@ -634,6 +662,11 @@ ARMOR
 /datum/supply_packs/armor/masks
 	name = "SWAT protective mask"
 	contains = list(/obj/item/clothing/mask/gas/swat)
+	cost = 5
+
+/datum/supply_packs/armor/imager_goggle
+	name = "Optical Imager Goggles"
+	contains = list(/obj/item/clothing/glasses/night/imager_goggles)
 	cost = 5
 
 /datum/supply_packs/armor/riot
@@ -1365,7 +1398,7 @@ Imports
 
 /datum/supply_packs/imports/leveraction/ammo
 	name = "Lever Action Rifle Ammo"
-	contains = list(/obj/item/ammo_magazine/magnum)
+	contains = list(/obj/item/ammo_magazine/packet/magnum)
 	cost = 5
 	available_against_xeno_only = TRUE
 

@@ -136,6 +136,9 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		var/mob/M = locate(href_list["subtlemessage"])
 		subtle_message(M)
 
+	else if(href_list["imginaryfriend"])
+		var/mob/M = locate(href_list["imginaryfriend"])
+		create_ifriend(M, TRUE)
 
 	else if(href_list["individuallog"])
 		if(!check_rights(R_ADMIN))
@@ -410,6 +413,8 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 				newmob = M.change_mob_type(/mob/living/carbon/xenomorph/Defiler, location, null, delmob)
 			if("shrike")
 				newmob = M.change_mob_type(/mob/living/carbon/xenomorph/shrike, location, null, delmob)
+			if("hivemind")
+				newmob = M.change_mob_type(/mob/living/carbon/xenomorph/hivemind, location, null, delmob)
 			if("queen")
 				newmob = M.change_mob_type(/mob/living/carbon/xenomorph/queen, location, null, delmob)
 			if("king")
@@ -1316,90 +1321,6 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		browser.open(FALSE)
 
 
-	else if(href_list["create_outfit_finalize"])
-		if(!check_rights(R_FUN))
-			return
-
-		var/datum/outfit/O = new
-
-		O.name = href_list["outfit_name"]
-		O.w_uniform = text2path(href_list["outfit_uniform"])
-		O.shoes = text2path(href_list["outfit_shoes"])
-		O.gloves = text2path(href_list["outfit_gloves"])
-		O.wear_suit = text2path(href_list["outfit_suit"])
-		O.head = text2path(href_list["outfit_head"])
-		O.back = text2path(href_list["outfit_back"])
-		O.mask = text2path(href_list["outfit_mask"])
-		O.glasses = text2path(href_list["outfit_glasses"])
-		O.r_hand = text2path(href_list["outfit_r_hand"])
-		O.l_hand = text2path(href_list["outfit_l_hand"])
-		O.suit_store = text2path(href_list["outfit_s_store"])
-		O.l_store = text2path(href_list["outfit_l_pocket"])
-		O.r_store = text2path(href_list["outfit_r_pocket"])
-		O.id = text2path(href_list["outfit_id"])
-		O.belt = text2path(href_list["outfit_belt"])
-		O.ears = text2path(href_list["outfit_ears"])
-
-		GLOB.custom_outfits += O
-
-		log_admin("[key_name(usr)] created a \"[O.name]\" outfit.")
-		message_admins("[ADMIN_TPMONTY(usr)] created a \"[O.name]\" outfit.")
-
-
-	else if(href_list["load_outfit"])
-		if(!check_rights(R_FUN))
-			return
-
-		var/outfit_file = input("Pick outfit json file:", "Load Outfit") as null|file
-		if(!outfit_file)
-			return
-
-		var/filedata = file2text(outfit_file)
-		var/json = json_decode(filedata)
-		if(!json)
-			to_chat(usr, "<span class='warning'>JSON decode error.</span>")
-			return
-
-		var/otype = text2path(json["outfit_type"])
-		if(!ispath(otype, /datum/outfit))
-			to_chat(usr, "<span class='warning'>Malformed/Outdated file.</span>")
-			return
-
-		var/datum/outfit/O = new otype
-		if(!O.load_from(json))
-			to_chat(usr, "<span class='warning'>Malformed/Outdated file.</span>")
-			return
-
-		GLOB.custom_outfits += O
-		outfit_manager()
-
-
-	else if(href_list["create_outfit_menu"])
-		if(!check_rights(R_FUN))
-			return
-
-		create_outfit()
-
-
-	else if(href_list["delete_outfit"])
-		if(!check_rights(R_ADMIN))
-			return
-		var/datum/outfit/O = locate(href_list["chosen_outfit"]) in GLOB.custom_outfits
-		GLOB.custom_outfits -= O
-		log_admin("[key_name(usr)] deleted the \"[O.name]\" outfit.")
-		message_admins("[ADMIN_TPMONTY(usr)] deleted the \"[O.name]\" outfit.")
-		qdel(O)
-		outfit_manager()
-
-
-	else if(href_list["save_outfit"])
-		if(!check_rights(R_ADMIN))
-			return
-		var/datum/outfit/O = locate(href_list["chosen_outfit"]) in GLOB.custom_outfits
-		O.save_to_file()
-		outfit_manager()
-
-
 	else if(href_list["viewruntime"])
 		var/datum/error_viewer/error_viewer = locate(href_list["viewruntime"])
 		if(!istype(error_viewer))
@@ -1669,7 +1590,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 			return
 		job.add_job_positions(1)
 
-		usr.client.holder.job_slots()
+		usr.client?.holder.job_slots()
 
 		log_admin("[key_name(src)] has added a [slot] job slot.")
 		message_admins("[ADMIN_TPMONTY(usr)] has added a [slot] job slot.")
@@ -2141,17 +2062,11 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 						job_outfits[outfit_name] = path
 
 				var/list/picker = sortList(job_outfits)
-				picker.Insert(1, "{Custom}", "{Naked}")
+				picker.Insert(1, "{Naked}")
 
 				var/dresscode = input("Select job equipment", "Select Equipment") as null|anything in picker
 
-				if(dresscode == "{Custom}")
-					var/list/custom_names = list()
-					for(var/datum/outfit/D in GLOB.custom_outfits)
-						custom_names[D.name] = D
-					var/selected_name = input("Select outfit", "Select Equipment") as null|anything in sortList(custom_names)
-					dresscode = custom_names[selected_name]
-				else if(dresscode != "{Naked}")
+				if(dresscode != "{Naked}")
 					dresscode = job_outfits[dresscode]
 
 				if(!dresscode || !istype(H))
@@ -2302,9 +2217,3 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		var/datum/poll_question/poll = locate(href_list["submitoptionpoll"]) in GLOB.polls
 		poll_option_parse_href(href_list, poll, option)
 
-	#ifdef REFERENCE_TRACKING
-	else if(href_list["delfail_clearnulls"])
-		listclearnulls(GLOB.deletion_failures)
-		view_del_failures()
-		return
-	#endif

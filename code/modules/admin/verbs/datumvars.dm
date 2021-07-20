@@ -159,9 +159,6 @@
 	.["Mark Object"] = "?_src_=vars;[HrefToken()];[VV_HK_MARK]=[REF(src)]"
 	.["Delete"] = "?_src_=vars;[HrefToken()];[VV_HK_DELETE]=[REF(src)]"
 	.["Show VV To Player"] = "?_src_=vars;[HrefToken()];[VV_HK_EXPOSE]=[REF(src)]"
-	#ifdef REFERENCE_TRACKING
-	.["View References"] = "?_src_=vars;[HrefToken()];[VV_HK_VIEW_REFERENCES]=[REF(src)]"
-	#endif
 
 
 /client/proc/debug_variables(datum/D in world)
@@ -647,18 +644,6 @@
 		usr.client.holder.delete_atom(D)
 		if(isturf(D))  // show the turf that took its place
 			debug_variables(D)
-
-	#ifdef REFERENCE_TRACKING
-	else if(href_list[VV_HK_VIEW_REFERENCES])
-		if(!check_rights(R_DEBUG))
-			return
-		var/datum/D = locate(href_list[VV_HK_TARGET])
-		if(!D)
-			to_chat(usr, "<span class='warning'>Unable to locate item.</span>")
-			return
-		usr.client.holder.view_refs(D)
-		return
-	#endif
 
 	else if(href_list["regenerateicons"])
 		if(!check_rights(R_DEBUG))
@@ -1172,20 +1157,6 @@
 
 		log_admin("[key_name(usr)] has sent atom [A] to [AREACOORD(target)].")
 		message_admins("[ADMIN_TPMONTY(usr)] has sent atom [A] to [ADMIN_VERBOSEJMP(target)].")
-
-
-	else if(href_list["copyoutfit"])
-		if(!check_rights(R_SPAWN))
-			return
-		var/mob/living/carbon/human/H = locate(href_list["copyoutfit"])
-		if(!istype(H))
-			return
-
-		H.copy_outfit()
-
-		log_admin("[key_name(usr)] copied the outfit of [key_name(H)].")
-		message_admins("[ADMIN_TPMONTY(usr)] copied the outfit of [ADMIN_TPMONTY(H)].")
-
 
 	else if(href_list["dropeverything"])
 		if(!check_rights(R_DEBUG))

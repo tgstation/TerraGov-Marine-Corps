@@ -379,7 +379,6 @@
 	weapon_list = list(
 		/obj/item/weapon/gun/launcher/rocket,
 		/obj/item/weapon/gun/launcher/rocket/m57a4,
-		/obj/item/weapon/gun/launcher/rocket/m57a4/xmas,
 		/obj/item/weapon/gun/minigun,
 		/obj/item/weapon/gun/launcher/m92,
 		/obj/item/weapon/gun/energy/lasgun/pulse,

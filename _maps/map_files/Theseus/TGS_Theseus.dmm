@@ -1960,8 +1960,6 @@
 /area/mainship/hallways/hangar)
 "aCs" = (
 /obj/structure/closet/secure_closet/securecom,
-/obj/item/weapon/gun/smartgun,
-/obj/item/smartgun_powerpack/fancy,
 /obj/item/clothing/suit/storage/marine/smartgunner/fancy,
 /obj/machinery/camera/autoname/mainship{
 	dir = 1
@@ -4892,7 +4890,7 @@
 	},
 /obj/structure/window/reinforced/toughened,
 /obj/item/weapon/claymore/mercsword/captain,
-/obj/machinery/door/window{
+/obj/machinery/door/window/secure{
 	dir = 8
 	},
 /turf/open/floor/wood,
@@ -8846,8 +8844,10 @@
 	name = "\improper CIC Checkpoint Shutters"
 	},
 /obj/structure/table/reinforced,
-/obj/machinery/door/window/secure/westleft,
-/obj/machinery/door/window/eastleft,
+/obj/machinery/door/window/secure/bridge{
+	dir = 8
+	},
+/obj/machinery/door/window,
 /turf/open/floor/mainship/floor,
 /area/mainship/command/cic)
 "cYh" = (
@@ -10268,7 +10268,7 @@
 /obj/structure/table/mainship,
 /obj/item/whistle,
 /obj/item/megaphone,
-/obj/item/ammo_magazine/acp,
+/obj/item/ammo_magazine/packet/acp,
 /turf/open/floor/mainship/floor,
 /area/mainship/living/numbertwobunks)
 "gaj" = (
@@ -11372,7 +11372,9 @@
 /obj/machinery/door/firedoor/mainship{
 	dir = 2
 	},
-/obj/machinery/door/window/secure/northleft/req,
+/obj/machinery/door/window/secure/req{
+	dir = 1
+	},
 /obj/machinery/door/window{
 	dir = 2
 	},
@@ -14928,9 +14930,8 @@
 /turf/open/floor/grass,
 /area/mainship/living/starboard_garden)
 "pRV" = (
-/obj/machinery/door/window/secure/westleft{
-	dir = 1;
-	id = "brg"
+/obj/machinery/door/window/secure/bridge{
+	dir = 1
 	},
 /turf/open/floor/mainship/floor,
 /area/mainship/command/cic)
@@ -15218,9 +15219,8 @@
 	},
 /area/mainship/engineering/lower_engine_monitoring)
 "qsB" = (
-/obj/machinery/door/window/secure/westleft{
-	dir = 2;
-	id = "brg"
+/obj/machinery/door/window/secure/bridge{
+	dir = 2
 	},
 /turf/open/floor/mainship/floor,
 /area/mainship/command/cic)
@@ -15890,7 +15890,7 @@
 	layer = 2.1
 	},
 /obj/machinery/door/firedoor/mainship,
-/obj/machinery/door/window/secure/eastleft/req,
+/obj/machinery/door/window/secure/req,
 /obj/machinery/door/poddoor/shutters/mainship/req/ro,
 /obj/machinery/door/window{
 	dir = 8
@@ -16068,11 +16068,11 @@
 	},
 /area/mainship/shipboard/firing_range)
 "sjM" = (
-/obj/machinery/door/window{
-	dir = 1
-	},
 /obj/structure/bed/chair/comfy/black{
 	dir = 8
+	},
+/obj/machinery/door/window/secure{
+	dir = 1
 	},
 /turf/open/floor/mainship/floor,
 /area/mainship/shipboard/brig)
@@ -16376,6 +16376,13 @@
 /obj/structure/window/framed/mainship,
 /turf/open/floor/plating,
 /area/mainship/hallways/port_hallway)
+"sYp" = (
+/obj/structure/table/mainship,
+/obj/machinery/door/window/right{
+	dir = 1
+	},
+/turf/open/floor/mainship/stripesquare,
+/area/mainship/shipboard/firing_range)
 "sYL" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -18258,6 +18265,15 @@
 /obj/effect/decal/warning_stripes/thin,
 /turf/open/floor/mainship/floor,
 /area/mainship/command/cic)
+"xsU" = (
+/obj/machinery/conveyor{
+	id = "lower_garbage"
+	},
+/obj/machinery/door/window/right,
+/turf/open/floor/plating/mainship/striped{
+	dir = 4
+	},
+/area/mainship/hull/port_hull)
 "xvC" = (
 /obj/machinery/marine_selector/clothes/leader/alpha,
 /turf/open/floor/mainship/mono,
@@ -47948,7 +47964,7 @@ aVs
 cYP
 gaj
 lPt
-lPt
+xsU
 xab
 pfb
 aVs
@@ -54080,7 +54096,7 @@ bFL
 bFL
 bFL
 bFL
-bev
+sYp
 bfu
 aXN
 kCg
@@ -54851,7 +54867,7 @@ vjI
 baT
 vjI
 cFQ
-bev
+sYp
 bfu
 aXN
 kCg

@@ -86,7 +86,7 @@
 				list(/obj/item/weapon/gun/smg/m25, /obj/item/ammo_magazine/smg/m25),\
 				list(/obj/item/weapon/gun/rifle/m16, /obj/item/ammo_magazine/rifle/m16),\
 				list(/obj/item/weapon/gun/shotgun/pump/bolt, /obj/item/ammo_magazine/rifle/bolt),\
-				list(/obj/item/weapon/gun/shotgun/pump/lever, /obj/item/ammo_magazine/magnum))
+				list(/obj/item/weapon/gun/shotgun/pump/lever, /obj/item/ammo_magazine/packet/magnum))
 
 
 #define LATEJOIN_LARVA_DISABLED 0
@@ -140,9 +140,9 @@
 /// How each alive marine contributes to burrower larva output per minute. So with one pool, 15 marines are giving 0.375 points per minute, so it's a new xeno every 22 minutes
 #define SILO_BASE_OUTPUT_PER_MARINE 0.03
 /// This is used to ponderate the number of silo, so to reduces the diminishing returns of having more and more silos
-#define SILO_OUTPUT_PONDERATION 2
+#define SILO_OUTPUT_PONDERATION 1.75
 //Time (after round start) before siloless timer can start
-#define MINIMUM_TIME_SILO_LESS_COLLAPSE 1 HOURS
+#define MINIMUM_TIME_SILO_LESS_COLLAPSE 45 MINUTES
 
 #define INFESTATION_MARINE_DEPLOYMENT 0
 #define INFESTATION_MARINE_CRASHING 1
@@ -154,6 +154,8 @@
 
 #define DISTRESS_LARVA_POINTS_NEEDED 8
 #define HUNT_LARVA_POINTS_NEEDED 8
-#define CRASH_LARVA_POINTS_NEEDED 7
+#define CRASH_LARVA_POINTS_NEEDED 10
+
+#define FREE_XENO_AT_START 2
 
 #define MAX_UNBALANCED_RATIO_TWO_HUMAN_FACTIONS 1.2

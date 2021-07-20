@@ -448,6 +448,11 @@
 
 	var/mob/living/carbon/xenomorph/target = A
 
+	if(!(target.xeno_caste.caste_flags & CASTE_CAN_BE_GIVEN_PLASMA))
+		if(!silent)
+			to_chat(owner, "<span class='warning'>We can't give that caste plasma.</span>")
+			return FALSE
+
 	if(get_dist(owner, target) > max_range)
 		if(!silent)
 			to_chat(owner, "<span class='warning'>We need to be closer to [target].</span>")
@@ -1146,6 +1151,11 @@
 	for(var/obj/effect/forcefield/fog/F in range(1, X))
 		to_chat(X, "<span class='warning'>We can't build so close to the fog!</span>")
 		return FALSE
+
+	for(var/obj/structure/xeno/resin/xeno_turret/turret AS in GLOB.xeno_resin_turrets)
+		if(get_dist(turret, A) < 6)
+			to_chat(owner, "<span class='xenowarning'>Another turret is too close!</span>")
+			return FALSE
 
 	if(!alien_weeds)
 		to_chat(X, "<span class='warning'>We can only shape on weeds. We must find some resin before we start building!</span>")

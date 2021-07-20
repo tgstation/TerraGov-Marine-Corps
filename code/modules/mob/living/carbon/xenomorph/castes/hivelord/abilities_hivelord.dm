@@ -144,8 +144,9 @@
 
 	playsound(T, 'sound/weapons/pierce.ogg', 25, 1)
 
-	newt.hivenumber = X.hive //Set our structure's hive
+	newt.hivenumber = X.hivenumber //Set our structure's hivenumber for alerts/lists
 	newt.creator = X
+	newt.RegisterSignal(X, COMSIG_PARENT_QDELETING, /obj/structure/xeno/tunnel.proc/clear_creator)
 
 	X.tunnels.Add(newt)
 
@@ -220,7 +221,7 @@
 	action_icon_state = "gut"
 	mechanics_text = "Create a fireproof jelly."
 	plasma_cost = 100
-	cooldown_timer = 5 SECONDS
+	cooldown_timer = 20 SECONDS
 	keybind_signal = COMSIG_XENOABILITY_CREATE_JELLY
 
 /datum/action/xeno_action/create_jelly/can_use_action(silent = FALSE, override_flags)

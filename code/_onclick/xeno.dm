@@ -2,13 +2,11 @@
 	if(lying_angle)
 		return FALSE
 
-	if(xeno_caste)
-		changeNext_move(xeno_caste.attack_delay)
-	else
-		changeNext_move(CLICK_CD_MELEE)
+	if(!isopenturf(A)) //We don't care about open turfs; they don't trigger our melee click cooldown
+		changeNext_move(xeno_caste ? xeno_caste.attack_delay : CLICK_CD_MELEE)
 
 	var/atom/S = A.handle_barriers(src)
-	S.attack_alien(src, isrightclick = islist(modifiers) ? modifiers["right"] : FALSE)
+	S.attack_alien(src, xeno_caste.melee_damage * xeno_melee_damage_modifier, isrightclick = islist(modifiers) ? modifiers["right"] : FALSE)
 	GLOB.round_statistics.xeno_unarmed_attacks++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "xeno_unarmed_attacks")
 

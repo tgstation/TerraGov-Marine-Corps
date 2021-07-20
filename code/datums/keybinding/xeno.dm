@@ -280,9 +280,9 @@
 	keybind_signal = COMSIG_XENOABILITY_TOGGLE_STEALTH
 
 /datum/keybinding/xeno/haunt
-	name = "haunt"
-	full_name = "Hunter: Haunt"
-	description = "Haunt the target, causing minor hallucinations"
+	name = "impair senses"
+	full_name = "Hunter: Silence"
+	description = "Impairs the ability of hostile living creatures we can see in a 5x5 area. Targets will be unable to speak and hear for 10 seconds."
 	keybind_signal = COMSIG_XENOABILITY_HAUNT
 
 /datum/keybinding/xeno/psychic_whisper
@@ -386,6 +386,12 @@
 	full_name = "Ravager: Endure"
 	description = "For the next few moments you will not go into crit and become resistant to explosives and immune to stagger and slowdown, but you still die if you take damage exceeding your crit health."
 	keybind_signal = COMSIG_XENOABILITY_ENDURE
+
+/datum/keybinding/xeno/ravager_rage
+	name = "ravager_rage"
+	full_name = "Ravager: Rage"
+	description = "While active, you will temporarily recover plasma and sunder and gain a bonus to speed and melee damage in proportion to the percentage of your missing health. At negative HP your ability cooldowns reset and your slash damage restores health."
+	keybind_signal = COMSIG_XENOABILITY_RAGE
 
 /datum/keybinding/xeno/ravage
 	name = "ravage"
