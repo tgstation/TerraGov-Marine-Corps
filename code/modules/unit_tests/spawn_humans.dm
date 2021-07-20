@@ -2,6 +2,8 @@
 	var/list/outfits_to_test = subtypesof(/datum/outfit/job)
 	var/list/humans = list()
 
+	sleep(50) //Bold move, i know
+
 	for(var/I in outfits_to_test)
 		var/mob/living/carbon/human/H = allocate(/mob/living/carbon/human)
 		humans += H
