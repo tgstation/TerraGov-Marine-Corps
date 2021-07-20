@@ -1,0 +1,4 @@
+author: "Hekzder"
+delete-after: True
+changes: 
+  - bugfix: "Fixes NTOS crash on job prefs, round start text for MD and CMO, and missing hud icon for MD."
