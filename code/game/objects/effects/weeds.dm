@@ -1,5 +1,5 @@
 //Color variant defines
-#define SPEED_COLOR "blue"
+#define SPEED_COLOR ""
 #define RESTING_COLOR "white"
 #define TOXIN_COLOR "green"
 #define STICKY_COLOR "red"
@@ -19,7 +19,7 @@
 
 	var/obj/effect/alien/weeds/node/parent_node
 	///The color variant of the sprite
-	var/color_variant = ""
+	var/color_variant = SPEED_COLOR
 
 /obj/effect/alien/weeds/deconstruct(disassembled = TRUE)
 	GLOB.round_statistics.weeds_destroyed++
@@ -86,16 +86,11 @@
 		icon_state = "base"
 	else
 		icon_state = "weed_dir[my_dir]"
-	if(prob(20))
-		icon_state += color_variant
+	icon_state += color_variant
 
-/obj/effect/alien/weeds/speed
-	name = "speed weeds"
-	color_variant = SPEED_COLOR
-
-/obj/effect/alien/weeds/speed/Crossed(atom/movable/AM)
+/obj/effect/alien/weeds/Crossed(atom/movable/AM)
 	. = ..()
-	if(isxeno(AM))
+	if(color_variant == SPEED_COLOR && isxeno(AM))
 		var/mob/living/carbon/xenomorph/X = AM
 		X.next_move_slowdown += X.xeno_caste.weeds_speed_mod
 
@@ -154,8 +149,7 @@
 /obj/effect/alien/weeds/weedwall/update_icon_state()
 	var/turf/closed/wall/W = loc
 	icon_state = W.junctiontype ? "weedwall[W.junctiontype]" : initial(icon_state)
-	if(prob(30))
-		icon_state += color_variant
+	icon_state += color_variant
 
 
 // =================
@@ -166,8 +160,7 @@
 /obj/effect/alien/weeds/weedwall/window/update_icon_state()
 	var/obj/structure/window/framed/F = locate() in loc
 	icon_state = F?.junction ? "weedwall[F.junction]" : initial(icon_state)
-	if(prob(30))
-		icon_state += color_variant
+	icon_state += color_variant
 
 /obj/effect/alien/weeds/weedwall/window/MouseDrop_T(atom/dropping, mob/user)
 	var/obj/structure/window/framed/F = locate() in loc
@@ -181,8 +174,7 @@
 /obj/effect/alien/weeds/weedwall/frame/update_icon_state()
 	var/obj/structure/window_frame/WF = locate() in loc
 	icon_state = WF?.junction ? "weedframe[WF.junction]" : initial(icon_state)
-	if(prob(30))
-		icon_state += color_variant
+	icon_state += color_variant
 
 /obj/effect/alien/weeds/weedwall/frame/MouseDrop_T(atom/dropping, mob/user)
 	var/obj/structure/window_frame/WF = locate() in loc
@@ -200,7 +192,7 @@
 	var/node_icon = "weednode"
 	var/node_turfs = list() // list of all potential turfs that we can expand to
 	/// What type of weeds this node spreads
-	var/weed_type = /obj/effect/alien/weeds/speed
+	var/weed_type = /obj/effect/alien/weeds
 
 /obj/effect/alien/weeds/node/Destroy()
 	. = ..()
@@ -243,14 +235,6 @@
 	weed_type = /obj/effect/alien/weeds/sticky
 	color_variant = STICKY_COLOR
 	node_icon = "weednodered"
-
-//Speedy weed node
-/obj/effect/alien/weeds/node/speed
-	name = "speed weed sac"
-	desc = "A weird, pulsating purple node."
-	weed_type = /obj/effect/alien/weeds/speed
-	color_variant = SPEED_COLOR
-	node_icon = "weednodeblue"
 
 //Resting weed node
 /obj/effect/alien/weeds/node/resting

@@ -115,17 +115,7 @@
 	if(H.lying_angle)
 		return
 
-	H.next_move_slowdown += slow_amt
-
-
-// Praetorian Sticky Resin spit uses this.
-/obj/effect/alien/resin/sticky/thin
-	name = "thin sticky resin"
-	desc = "A thin layer of disgusting sticky slime."
-	max_integrity = 6
-	slow_amt = 4
-
-	ignore_weed_destruction = FALSE
+	H.next_move_slowdown += 6
 
 //Resin Doors
 /obj/structure/mineral_door/resin

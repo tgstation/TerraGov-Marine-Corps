@@ -107,27 +107,6 @@
 // ***************************************
 // *********** Drone-y abilities
 // ***************************************
-#define SPEED_WEED "speed weed sac"
-#define STICKY_WEED "sticky weed sac"
-#define RESTING_WEED "resting weed sac"
-#define TOXIN_WEED "toxin weed sac"
-
-//List of weed types
-GLOBAL_LIST_INIT(weed_type_list, list(
-		/obj/effect/alien/weeds/node/speed,
-		/obj/effect/alien/weeds/node/sticky,
-		/obj/effect/alien/weeds/node/resting,
-		/obj/effect/alien/weeds/node/toxin,
-		))
-
-//List of weed images
-GLOBAL_LIST_INIT(weed_images_list,  list(
-		SPEED_WEED = image('icons/mob/actions.dmi', icon_state = SPEED_WEED),
-		STICKY_WEED = image('icons/mob/actions.dmi', icon_state = STICKY_WEED),
-		RESTING_WEED = image('icons/mob/actions.dmi', icon_state = RESTING_WEED),
-		TOXIN_WEED = image('icons/mob/actions.dmi', icon_state = TOXIN_WEED),
-		))
-
 /datum/action/xeno_action/plant_weeds
 	name = "Plant Weeds"
 	action_icon_state = "plant_weeds"
@@ -137,7 +116,7 @@ GLOBAL_LIST_INIT(weed_images_list,  list(
 	alternate_keybind_signal = COMSIG_XENOABILITY_CHOOSE_WEEDS
 	use_state_flags = XACT_USE_LYING
 	///The seleted type of weeds
-	var/obj/effect/alien/weeds/node/weed_type = /obj/effect/alien/weeds/node/speed
+	var/obj/effect/alien/weeds/node/weed_type = /obj/effect/alien/weeds/node
 
 /datum/action/xeno_action/plant_weeds/action_activate()
 	var/turf/T = get_turf(owner)
