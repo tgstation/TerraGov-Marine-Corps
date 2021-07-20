@@ -121,7 +121,7 @@ Stepping directly on the mine will also blow it up
 	if((L.status_flags & INCORPOREAL))
 		return FALSE
 	var/obj/item/card/id/id = L.get_idcard()
-	if(id.iff_signal & iff_signal)
+	if(id?.iff_signal & iff_signal)
 		return FALSE
 
 	L.visible_message("<span class='danger'>[icon2html(src, viewers(L))] \The [src] clicks as [L] moves in front of it.</span>", \
