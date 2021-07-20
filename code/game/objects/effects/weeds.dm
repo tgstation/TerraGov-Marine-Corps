@@ -116,7 +116,7 @@
 
 /obj/effect/alien/weeds/resting
 	name = "resting weeds"
-	desc = "This looks almost confortable."
+	desc = "This looks almost comfortable."
 	color_variant = RESTING_COLOR
 
 /obj/effect/alien/weeds/toxin

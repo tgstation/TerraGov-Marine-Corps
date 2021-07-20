@@ -1,7 +1,7 @@
 //Xeno structure flags
 #define IGNORE_WEED_REMOVAL (1<<0)
 
-//Weeds degine
+//Weeds deine
 #define SPEED_WEED "speed weed sac"
 #define STICKY_WEED "sticky weed sac"
 #define RESTING_WEED "resting weed sac"
