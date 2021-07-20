@@ -753,3 +753,52 @@
 	log_game("[key_name(X)] has created a pod in [AREACOORD(X)]")
 	xeno_message("<B>[X] has created a king pod at [get_area(X)]. Defend it until the Queen Mother summons a king!</B>", size = 3, hivenumber = X.hivenumber, target = king_pod, arrow_type = /obj/screen/arrow/leader_tracker_arrow)
 	priority_announce("WARNING: Psychic anomaly detected at [get_area(X)]. Assault of the area reccomended.", "TGMC Intel Division")
+
+// ***********************************************************
+// *********** Queen Larval Inject (Formerly Defiler's Sting)
+// ***********************************************************
+/datum/action/xeno_action/activable/larval_growth_sting/queen
+	name = "Larval Injection Sting"
+	action_icon_state = "defiler_sting"
+	mechanics_text = "Channel to inject an adjacent target with a larva. At the end of the channel your target will be infected."
+	ability_name = "queen sting"
+	plasma_cost = 150
+	cooldown_timer = 20 SECONDS
+	target_flags = XABB_MOB_TARGET
+
+/datum/action/xeno_action/activable/larval_growth_sting/defiler/on_cooldown_finish()
+	playsound(owner.loc, 'sound/voice/alien_drool1.ogg', 50, 1)
+	to_chat(owner, "<span class='xenodanger'>You feel your toxin glands refill, another young one ready for implantation. We can use Injection Sting again.</span>")
+	return ..()
+
+/datum/action/xeno_action/activable/larval_growth_sting/defiler/use_ability(atom/A)
+	var/mob/living/carbon/xenomorph/Queen/X = owner
+	var/mob/living/carbon/C = A
+
+	if(locate(/obj/item/alien_embryo) in C) // already got one, stops doubling up
+		return ..()
+	if(!do_after(X, QUEEN_STING_CHANNEL_TIME, TRUE, C, BUSY_ICON_HOSTILE) || !can_use_ability(A))
+		return fail_activate()
+
+	add_cooldown()
+	X.face_atom(C)
+	X.do_attack_animation(C)
+	playsound(C, pick('sound/voice/alien_drool1.ogg', 'sound/voice/alien_drool2.ogg'), 15, 1)
+
+	var/obj/item/alien_embryo/embryo = new(C)
+	embryo.hivenumber = X.hivenumber
+	GLOB.round_statistics.now_pregnant++
+	SSblackbox.record_feedback("tally", "round_statistics", 1, "now_pregnant")
+
+	to_chat(X, "<span class='xenodanger'>Our stinger successfully implants a larva into the host.</span>")
+	to_chat(C, "<span class='danger'>You feel horrible pain as something large is forcefully implanted in your thorax.</span>")
+
+	C.apply_damage(100, STAMINA)
+	C.apply_damage(10, BRUTE, "chest", updating_health = TRUE)
+	C.emote("scream")
+
+	GLOB.round_statistics.queen_stings++
+	SSblackbox.record_feedback("tally", "round_statistics", 1, "queen_stings")
+
+	succeed_activate()
+	return ..()

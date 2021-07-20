@@ -3,50 +3,6 @@
 #define DEFILER_TRANSVITOX "Transvitox"
 
 // ***************************************
-// *********** Sting
-// ***************************************
-/datum/action/xeno_action/activable/larval_growth_sting/defiler
-	name = "Defile"
-	action_icon_state = "defiler_sting"
-	mechanics_text = "Channel to inject an adjacent target with larval growth serum. At the end of the channel your target will be infected."
-	ability_name = "defiler sting"
-	plasma_cost = 150
-	cooldown_timer = 20 SECONDS
-	target_flags = XABB_MOB_TARGET
-
-/datum/action/xeno_action/activable/larval_growth_sting/defiler/on_cooldown_finish()
-	playsound(owner.loc, 'sound/voice/alien_drool1.ogg', 50, 1)
-	to_chat(owner, "<span class='xenodanger'>You feel your toxin glands refill, another young one ready for implantation. You can use Defile again.</span>")
-	return ..()
-
-/datum/action/xeno_action/activable/larval_growth_sting/defiler/use_ability(atom/A)
-	var/mob/living/carbon/xenomorph/Defiler/X = owner
-	var/mob/living/carbon/C = A
-	if(locate(/obj/item/alien_embryo) in C) // already got one, stops doubling up
-		return ..()
-	if(!do_after(X, DEFILER_STING_CHANNEL_TIME, TRUE, C, BUSY_ICON_HOSTILE))
-		return fail_activate()
-	if(!can_use_ability(A))
-		return fail_activate()
-	add_cooldown()
-	X.face_atom(C)
-	X.do_attack_animation(C)
-	playsound(C, pick('sound/voice/alien_drool1.ogg', 'sound/voice/alien_drool2.ogg'), 15, 1)
-	var/obj/item/alien_embryo/embryo = new(C)
-	embryo.hivenumber = X.hivenumber
-	GLOB.round_statistics.now_pregnant++
-	SSblackbox.record_feedback("tally", "round_statistics", 1, "now_pregnant")
-	to_chat(X, "<span class='xenodanger'>Our stinger successfully implants a larva into the host.</span>")
-	to_chat(C, "<span class='danger'>You feel horrible pain as something large is forcefully implanted in your thorax.</span>")
-	C.apply_damage(100, STAMINA)
-	C.apply_damage(10, BRUTE, "chest", updating_health = TRUE)
-	C.emote("scream")
-	GLOB.round_statistics.defiler_defiler_stings++
-	SSblackbox.record_feedback("tally", "round_statistics", 1, "defiler_defiler_stings")
-	succeed_activate()
-	return ..()
-
-// ***************************************
 // *********** Neurogas
 // ***************************************
 /datum/action/xeno_action/emit_neurogas
