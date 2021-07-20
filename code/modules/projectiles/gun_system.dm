@@ -711,13 +711,13 @@ and you're good to go.
 //----------------------------------------------------------
 
 /obj/item/weapon/gun/proc/Fire()
-	if(!target || (!gun_user && !istype(loc, /obj/machinery/deployable/mounted/sentry)) || (!CHECK_BITFIELD(flags_item, IS_DEPLOYED) && !able_to_fire(gun_user)) || !isturf(gun_user.loc))
+	if(!target || (!gun_user && !istype(loc, /obj/machinery/deployable/mounted/sentry)) || (!CHECK_BITFIELD(flags_item, IS_DEPLOYED) && !able_to_fire(gun_user)))
 		return
 
 	//The gun should return the bullet that it already loaded from the end cycle of the last Fire().
 	var/obj/projectile/projectile_to_fire = load_into_chamber(gun_user) //Load a bullet in or check for existing one.
 	in_chamber = null //Projectiles live and die fast. It's better to null the reference early so the GC can handle it immediately.
-	if(!projectile_to_fire) //If there is nothing to fire, click.
+	if(!projectile_to_fire && !CHECK_BITFIELD(flags_gun_features, GUN_DEPLOYED_FIRE_ONLY)) //If there is nothing to fire, click.
 		click_empty(gun_user)
 		return
 
