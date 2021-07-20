@@ -772,7 +772,7 @@
 	return ..()
 
 /datum/action/xeno_action/activable/larval_growth_sting/defiler/use_ability(atom/A)
-	var/mob/living/carbon/xenomorph/Queen/X = owner
+	var/mob/living/carbon/xenomorph/X = owner
 	var/mob/living/carbon/C = A
 
 	if(locate(/obj/item/alien_embryo) in C) // already got one, stops doubling up
