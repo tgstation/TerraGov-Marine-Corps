@@ -281,7 +281,7 @@ TUNNEL
 	var/distance = get_dist(get_turf(src), get_turf(targettunnel))
 	var/tunnel_time = clamp(distance, HIVELORD_TUNNEL_MIN_TRAVEL_TIME, HIVELORD_TUNNEL_SMALL_MAX_TRAVEL_TIME)
 
-	if(M.mob_size == MOB_SIZE_BIG) //Big xenos take longer
+	if(!CHECK_BITFIELD(M.xeno_caste.caste_flags, CASTE_CAN_VENT_CRAWL)) //Nimble xenos get through faster
 		tunnel_time = clamp(distance * 1.5, HIVELORD_TUNNEL_MIN_TRAVEL_TIME, HIVELORD_TUNNEL_LARGE_MAX_TRAVEL_TIME)
 		M.visible_message("<span class='xenonotice'>[M] begins heaving their huge bulk down into \the [src].</span>", \
 		"<span class='xenonotice'>We begin heaving our monstrous bulk into \the [src] to <b>[targettunnel.tunnel_desc]</b>.</span>")
