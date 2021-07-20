@@ -307,6 +307,12 @@
 	var/obj/screen/ammo/A = user.hud_used.ammo
 	A.add_hud(user, src)
 	A.update_hud(user, src)
+	if(src.attachments["muzzle"] != null)
+		if(istype(src.attachments["muzzle"],  /obj/item/attachable/bayonet) || istype(src.attachments["muzzle"],  /obj/item/attachable/bayonetknife))
+			if(CHECK_BITFIELD(flags_gun_features, GUN_CAN_POINTBLANK))
+				src.charge.give_action(user, src)
+
+
 	do_wield(user, wdelay)
 	if(CHECK_BITFIELD(flags_gun_features, AUTO_AIM_MODE))
 		toggle_aim_mode(user)
@@ -325,6 +331,9 @@
 
 	if(CHECK_BITFIELD(flags_gun_features, GUN_IS_AIMING))
 		toggle_aim_mode(user)
+
+	if(istype(src.attachments["muzzle"],  /obj/item/attachable/bayonet) || istype(src.attachments["muzzle"],  /obj/item/attachable/bayonetknife))
+		src.charge.remove_action(user)
 
 	return TRUE
 
