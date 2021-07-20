@@ -413,3 +413,132 @@
 	T.visible_message("<span class='warning'>You see a tiny flash, and then a blindingly bright light from a flare as it lights off in the sky!</span>")
 	playsound(T, 'sound/weapons/guns/fire/flare.ogg', 50, 1, 4) // stolen from the mortar i'm not even sorry
 	QDEL_IN(src, rand(70 SECONDS, 90 SECONDS)) // About the same burn time as a flare, considering it requires it's own CAS run.
+
+///////////////////
+//
+//BOMBS
+//
+//////////////////
+
+/obj/structure/ship_ammo/cas_bomb
+	name = "default bomb"
+	desc = "A bog standard bomb."
+	icon_state = "default_bomb"
+	icon = 'icons/Marine/mainship_props64.dmi'
+	equipment_type = /obj/structure/dropship_equipment/weapon/bomb_pylon
+	ammo_count = 1
+	max_ammo_count = 1
+	ammo_name = "bomb"
+	travelling_time = 10 SECONDS
+	transferable_ammo = FALSE
+	point_cost = 100
+	ammo_type = CAS_BOMB
+
+//smol bomb
+/obj/structure/ship_ammo/cas_bomb/m64
+	name = "\improper AN-M64A1"
+	desc = "A rather old and scuffed looking bomb, much of the metallic coating seems to have worn off thanks to some rough handling, and the fins look rather finnicky. This thing is probably several times older than your dad. Is the explosive in there still working?"
+	icon_state = "m64"
+	ammo_id = "m64"
+	point_cost = 50
+
+/obj/structure/ship_ammo/cas_bomb/m64/detonate_on(turf/impact, attackdir = NORTH)
+	impact.ceiling_debris_check(3)
+	explosion(impact, 2, 3, 4, 6, small_animation = TRUE) //relatively weak
+	qdel(src)
+
+//big bomb
+/obj/structure/ship_ammo/cas_bomb/mark84
+	name = "\improper mark 84 bomb"
+	desc = "The mark 84 or BLU-117 is a venerable specimen of military technology, being a rather large, unguided and cheap bomb. At least, for its size. It has seen many, many decades of service, especially in places where accuracy isn't needed."
+	icon_state = "mark84"
+	ammo_id = "MARK84"
+	point_cost = 175
+
+/obj/structure/ship_ammo/cas_bomb/mark84/detonate_on(turf/impact, attackdir = NORTH)
+	impact.ceiling_debris_check(3)
+	explosion(impact, 4, 6, 8, 10) //more spread out, with flames
+	qdel(src)
+
+
+//Mine laying bomb
+
+/obj/structure/ship_ammo/cas_bomb/minelaying
+	name = "\improper M43 'ML' bomb"
+	desc = "A small, blocky cylinder with a number of smaller tubes strapped to its sides. As the handsome and smart marine you are, you recognize this as a mine laying bomb, meant to dispere its payload over a wide area."
+	icon_state = "default_bomb"
+	ammo_id = "m43"
+	point_cost = 300
+
+	detonate_on(turf/impact)
+		set waitfor = 0
+		var/turf/J = get_turf(src)
+		playsound(J, 'sound/effects/explosionfar.ogg', 10, 1, 4)
+		J.visible_message("<span class='notice'>You hear a far away crack before hearing whistling!</span>")
+
+		impact.ceiling_debris_check(2)
+		sleep(15)
+		playsound(J, 'sound/machines/hydraulics_2.ogg', 40, 1)
+		var/list/impact_coords = list(list(-3,3),list(0,4),list(3,3),list(-4,0),list(4,0),list(-3,-3),list(0,-4), list(3,-3))
+		var/turf/T
+		var/list/coords
+		for(var/i=1 to 8)
+			coords = impact_coords[i]
+			T = locate(impact.x+coords[1],impact.y+coords[2],impact.z)
+			T.ceiling_debris_check(2)
+			spawn(5)
+				new/obj/item/explosive/mine(T)
+		qdel(src)
+
+/obj/structure/ship_ammo/cas_bomb/cluster
+	name = "\improper cluster U402 bomb"
+	desc = "A cluster bomb which blows up before smothering a wide area with bomblets."
+	icon_state = "default_bomb"
+	ammo_id = "U402"
+	point_cost = 300
+
+	detonate_on(turf/impact)
+		impact.ceiling_debris_check(2)
+		sleep(5)
+
+		var/strikes_amount = 18 //the amount of bombs it drop. This
+		for(var/i = 1 to strikes_amount)
+			var/offset_target //Temp var that is used for the subbomb coordinate
+			sleep(5)
+			offset_target =  get_offset_target_turf(impact, rand(5)-rand(5), rand(5)-rand(5))
+			explosion(offset_target,2,2,1)
+
+
+
+//White phosphorus
+/obj/structure/ship_ammo/cas_bomb/wpsmoke
+	name = "\improper M77 'WP' bomb"
+	desc = "White phosphorus, also known as Willie Pete. Anywhere the bomb hit will be smothered in a blanket of burning smoke."
+	icon_state = "default_bomb"
+	ammo_id = "m77"
+	point_cost = 300
+
+	detonate_on(turf/impact)
+		impact.ceiling_debris_check(3)
+		spawn(5)
+			explosion(impact,1,2,3,6,1,0, small_animation = TRUE) //relatively weak
+			spawn(5)
+				var/datum/effect_system/smoke_spread/phosphorus/S = new/datum/effect_system/smoke_spread/phosphorus()
+				S.set_up(1,0,impact,null)
+				S.start()
+
+			for(var/turf/T in range(4,impact))
+				for(var/obj/flamer_fire/F in T) // No stacking flames!
+					qdel(F)
+				new/obj/flamer_fire(T, 60, 30) //cooking for a long time
+			qdel(src)
+
+
+
+//Thermometric bomb
+
+//welder barrel bomb
+
+//Nail bomb
+
+//toilet-sink

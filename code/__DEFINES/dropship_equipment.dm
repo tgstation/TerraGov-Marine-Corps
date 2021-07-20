@@ -16,3 +16,4 @@
 #define CAS_MINI_ROCKET 2
 #define CAS_MISSILE 3
 #define CAS_30MM 4
+#define CAS_BOMB 5

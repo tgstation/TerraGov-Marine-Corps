@@ -812,6 +812,32 @@
 			icon_state = "launch_bay"
 
 
+/obj/structure/dropship_equipment/weapon/bomb_pylon
+	name = "Bomb pylon"
+	icon_state = "bomb_pylon"
+	desc = "A standardized attachement points for all kinds of bombs. Moving this will require some sort of lifter."
+	firing_sound = 'sound/weapons/gunship_rocket.ogg'	//Just need a 'clank' for the drop
+	firing_delay = 10
+	point_cost = 300
+	icon = 'icons/Marine/mainship_props64.dmi'
+	icon_state = "laser_beam"
+	ammo_type_used = CAS_BOMB
+	bomb_pylon
+
+/obj/structure/dropship_equipment/weapon/bomb_pylon/deplete_ammo()
+	ammo_equipped = null //nothing left to empty after firing
+	update_icon()
+
+/obj/structure/dropship_equipment/weapon/bomb_pylon/update_icon()
+	if(ammo_equipped && ammo_equipped.ammo_count)//leaving it as 'rocket' till i get prites OKAY????
+		icon_state = "bomb_pylon_loaded[ammo_equipped.ammo_id]"
+	else
+		if(ship_base)
+			icon_state = "bomb_pylon_installed"
+		else
+			icon_state = "bomb_pylon"
+
+
 
 
 //////////////// OTHER EQUIPMENT /////////////////
