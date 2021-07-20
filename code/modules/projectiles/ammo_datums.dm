@@ -999,7 +999,7 @@ datum/ammo/bullet/revolver/tp44
 
 /datum/ammo/bullet/smartgun/smartrifle
 	name = "smartrifle bullet"
-	damage = 15
+	damage = 25
 	penetration = 15
 	sundering = 1
 
