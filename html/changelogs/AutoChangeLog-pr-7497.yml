@@ -1,0 +1,5 @@
+author: "Surrealaser"
+delete-after: True
+changes: 
+  - bugfix: "Fixes issue where light neurotoxin wasn't being reported by Xeno Toxin HUD."
+  - qol: "HUD elements for high concentrations of xeno toxins (more than 10U) now blink."
