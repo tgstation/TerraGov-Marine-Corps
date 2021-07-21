@@ -26,6 +26,9 @@
 
 ////////////////////////////Single-area shuttles////////////////////////////
 
+/area/shuttle/dropship
+	ceiling = CEILING_DEEP_UNDERGROUND
+
 /area/shuttle/dropship/alamo
 	name = "Dropship Alamo"
 

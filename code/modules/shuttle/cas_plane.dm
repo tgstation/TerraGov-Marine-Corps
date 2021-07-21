@@ -314,7 +314,7 @@
 		return
 	var/area/A = get_area(target)
 	if(A.ceiling >= CEILING_DEEP_UNDERGROUND)
-		to_chat(source, "<span class='warning'>That target is too deep underground!</span>")
+		to_chat(source, "<span class='warning'>Our payload won't reach this target!</span>")
 		return
 	if(active_weapon.ammo_equipped?.ammo_count <= 0)
 		to_chat(source, "<span class='warning'>No ammo remaining!</span>")
