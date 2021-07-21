@@ -389,7 +389,7 @@
 
 //The minigun needs to wind up to fire.
 /obj/item/weapon/gun/minigun/Fire()
-	if(!able_to_fire(gun_user)))
+	if(!able_to_fire(gun_user))
 		return
 	if(windup_checked == WEAPON_WINDUP_NOT_CHECKED)
 		playsound(get_turf(src), 'sound/weapons/guns/fire/tank_minigun_start.ogg', 30)
