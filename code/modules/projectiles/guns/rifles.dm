@@ -1088,6 +1088,7 @@
 	type_of_casings = "cartridge"
 	attachable_allowed = list(
 		/obj/item/attachable/autosniperbarrel,
+		/obj/item/attachable/scope/marine,
 		/obj/item/attachable/scope/nightvision,
 		/obj/item/attachable/extended_barrel,
 		/obj/item/attachable/suppressor,
@@ -1120,7 +1121,7 @@
 
 	starting_attachment_types = list(
 		/obj/item/attachable/autosniperbarrel,
-		/obj/item/attachable/scope,
+		/obj/item/attachable/scope/marine,
 	)
 
 

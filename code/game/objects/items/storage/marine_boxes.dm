@@ -53,7 +53,7 @@
 	new /obj/item/clothing/glasses/night/m56_goggles(src)
 	new /obj/item/weapon/gun/rifle/standard_autosniper(src)
 	new /obj/item/storage/belt/marine/t81(src)
-	new /obj/item/ammo_magazine/rifle/autosniper(src)
+	new /obj/item/ammo_magazine/rifle/autosniper/sg(src)
 
 /obj/item/minigun_powerpack
 	name = "\improper T-100 powerpack"
