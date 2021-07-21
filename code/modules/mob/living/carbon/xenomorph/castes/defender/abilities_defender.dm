@@ -135,15 +135,15 @@
 	if(!do_after(X, 0.5 SECONDS, FALSE, X, BUSY_ICON_GENERIC, extra_checks = CALLBACK(src, .proc/can_use_ability, A, FALSE, XACT_USE_BUSY)))
 		return fail_activate()
 
-	var/mob/living/carbon/xenomorph/defender/D = X
-	if(D.fortify)
-		var/datum/action/xeno_action/fortify/FT = X.actions_by_path[/datum/action/xeno_action/fortify]
-		if(FT.cooldown_id)
+	var/mob/living/carbon/xenomorph/defender/defender = X
+	if(defender.fortify)
+		var/datum/action/xeno_action/fortify/fortify_action = X.actions_by_path[/datum/action/xeno_action/fortify]
+		if(fortify_action.cooldown_id)
 			to_chat(X, "<span class='xenowarning'>We cannot yet untuck ourselves from our fortified stance!</span>")
 			return fail_activate()
 
-		FT.set_fortify(FALSE, TRUE)
-		FT.add_cooldown()
+		fortify_action.set_fortify(FALSE, TRUE)
+		fortify_action.add_cooldown()
 		to_chat(X, "<span class='xenowarning'>We rapidly untuck ourselves, preparing to surge forward.</span>")
 
 	X.visible_message("<span class='danger'>[X] charges towards \the [A]!</span>", \
