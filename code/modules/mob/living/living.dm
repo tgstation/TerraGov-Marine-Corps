@@ -500,6 +500,7 @@
 	XI.remove_from_hud(src)
 	var/datum/atom_hud/xeno_reagents/RE = GLOB.huds[DATA_HUD_XENO_REAGENTS]
 	RE.remove_from_hud(src)
+	ADD_TRAIT(src, TRAIT_TURRET_HIDDEN, CAMO_SMOKE_TRAIT)
 
 	smokecloaked = TRUE
 
@@ -516,6 +517,7 @@
 	XI.add_to_hud(src)
 	var/datum/atom_hud/xeno_reagents/RE = GLOB.huds[DATA_HUD_XENO_REAGENTS]
 	RE.add_to_hud(src)
+	REMOVE_TRAIT(src, TRAIT_TURRET_HIDDEN, CAMO_SMOKE_TRAIT)
 
 	smokecloaked = FALSE
 
