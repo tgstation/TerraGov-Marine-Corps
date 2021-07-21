@@ -139,8 +139,7 @@
 		return FALSE
 
 /datum/action/xeno_action/activable/pounce/proc/prepare_to_pounce()
-	if(owner.layer == XENO_HIDING_LAYER) //Xeno is currently hiding, unhide him
-		owner.layer = MOB_LAYER
+	owner.layer = initial(owner.layer)
 
 /datum/action/xeno_action/activable/pounce/get_cooldown()
 	var/mob/living/carbon/xenomorph/X = owner
