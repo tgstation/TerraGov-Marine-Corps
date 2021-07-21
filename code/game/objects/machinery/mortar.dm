@@ -215,6 +215,7 @@
 /obj/machinery/deployable/mortar/proc/detonate_shell(turf/target, obj/item/mortal_shell/mortar_shell)
 	target.ceiling_debris_check(2)
 	mortar_shell.detonate(target)
+	playsound(target,'sound/weapons/guns/misc/mortar_long_whistle.ogg')
 	qdel(mortar_shell)
 	firing = FALSE
 

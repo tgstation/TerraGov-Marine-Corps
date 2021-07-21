@@ -791,7 +791,7 @@
 			icon_state = "laser_beam"
 
 
-
+//This stuff looks depreciated. Anyone knows what this does, or is it supposed to be a template?
 /obj/structure/dropship_equipment/weapon/launch_bay
 	name = "launch bay"
 	icon_state = "launch_bay"
@@ -828,15 +828,14 @@
 	ammo_equipped = null //nothing left to empty after firing
 	update_icon()
 
-/obj/structure/dropship_equipment/weapon/bomb_pylon/update_icon()
-	if(ammo_equipped && ammo_equipped.ammo_count)//leaving it as 'rocket' till i get prites OKAY????
+/obj/structure/dropship_equipment/weapon/bomb_pylon/update_icon_state()
+	if(ammo_equipped && ammo_equipped.ammo_count)
 		icon_state = "bomb_pylon_loaded[ammo_equipped.ammo_id]"
+		return
+	else if(ship_base)
+		icon_state = "bomb_pylon_installed"
 	else
-		if(ship_base)
-			icon_state = "bomb_pylon_installed"
-		else
-			icon_state = "bomb_pylon"
-
+		icon_state = "bomb_pylon"
 
 
 

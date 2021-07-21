@@ -434,7 +434,7 @@
 	point_cost = 100
 	ammo_type = CAS_BOMB
 
-//smol bomb
+//Smol bomb
 /obj/structure/ship_ammo/cas_bomb/m64
 	name = "\improper AN-M64A1"
 	desc = "A rather old and scuffed looking bomb, much of the metallic coating seems to have worn off thanks to some rough handling, and the fins look rather finnicky. This thing is probably several times older than your dad. Is the explosive in there still working?"
@@ -447,9 +447,9 @@
 	explosion(impact, 2, 3, 4, 6, small_animation = TRUE) //relatively weak
 	qdel(src)
 
-//big bomb
+//Beg bomb
 /obj/structure/ship_ammo/cas_bomb/mark84
-	name = "\improper mark 84 bomb"
+	name = "\improper Mark 84 bomb"
 	desc = "The mark 84 or BLU-117 is a venerable specimen of military technology, being a rather large, unguided and cheap bomb. At least, for its size. It has seen many, many decades of service, especially in places where accuracy isn't needed."
 	icon_state = "mark84"
 	ammo_id = "MARK84"
@@ -460,7 +460,6 @@
 	explosion(impact, 4, 6, 8, 10) //more spread out, with flames
 	qdel(src)
 
-
 //Mine laying bomb
 
 /obj/structure/ship_ammo/cas_bomb/minelaying
@@ -470,25 +469,33 @@
 	ammo_id = "m43"
 	point_cost = 300
 
-	detonate_on(turf/impact)
-		set waitfor = 0
-		var/turf/J = get_turf(src)
-		playsound(J, 'sound/effects/explosionfar.ogg', 10, 1, 4)
-		J.visible_message("<span class='notice'>You hear a far away crack before hearing whistling!</span>")
+/obj/structure/ship_ammo/cas_bomb/minelaying/detonate_on(turf/impact, attackdir = NORTH)
 
-		impact.ceiling_debris_check(2)
-		sleep(15)
-		playsound(J, 'sound/machines/hydraulics_2.ogg', 40, 1)
-		var/list/impact_coords = list(list(-3,3),list(0,4),list(3,3),list(-4,0),list(4,0),list(-3,-3),list(0,-4), list(3,-3))
-		var/turf/T
-		var/list/coords
-		for(var/i=1 to 8)
-			coords = impact_coords[i]
-			T = locate(impact.x+coords[1],impact.y+coords[2],impact.z)
-			T.ceiling_debris_check(2)
-			spawn(5)
-				new/obj/item/explosive/mine(T)
-		qdel(src)
+	playsound(impact, 'sound/effects/explosionfar.ogg', 10, 1, 4)
+	impact.visible_message("<span class='notice'>You hear the far away crack of an explosion.</span>")
+
+	impact.ceiling_debris_check(2)
+	addtimer(CALLBACK(src, .proc/drop_mine, impact), 1.5 SECONDS)
+	if(!ammo_count)
+		QDEL_IN(src, travelling_time) //deleted after last minirocket has fired and impacted the ground.
+
+/obj/structure/ship_ammo/cas_bomb/minelaying/proc/drop_mine(turf/impact)
+	playsound(loc, 'sound/weapons/guns/interact/mortar_unpack.ogg', 25, 1)
+	var/list/impact_coords = list(list(-3,3),list(0,4),list(3,3),list(-4,0),list(4,0),list(-3,-3),list(0,-4), list(3,-3))
+	var/turf/T
+	var/list/coords
+	var/obj/item/explosive/mine/planted_mine
+	for(var/i=1 to 8)
+		coords = impact_coords[i]
+		T = locate(impact.x+coords[1],impact.y+coords[2],impact.z)
+		T.ceiling_debris_check(2)
+		new/obj/item/explosive/mine(T)
+		planted_mine.attack_self()
+	qdel(src)
+
+///
+///CLUSTER
+///
 
 /obj/structure/ship_ammo/cas_bomb/cluster
 	name = "\improper cluster U402 bomb"
@@ -496,21 +503,22 @@
 	icon_state = "default_bomb"
 	ammo_id = "U402"
 	point_cost = 300
+	var/strikes_amount = 18 //the amount of bombs it drop. This
 
-	detonate_on(turf/impact)
-		impact.ceiling_debris_check(2)
-		sleep(5)
+/obj/structure/ship_ammo/cas_bomb/cluster/detonate_on(turf/impact, attackdir = NORTH)
+	impact.ceiling_debris_check(2)
+	addtimer(CALLBACK(src, .proc/cluster_impacts, impact), 1.5 SECONDS)
 
-		var/strikes_amount = 18 //the amount of bombs it drop. This
-		for(var/i = 1 to strikes_amount)
-			var/offset_target //Temp var that is used for the subbomb coordinate
-			sleep(5)
-			offset_target =  get_offset_target_turf(impact, rand(5)-rand(5), rand(5)-rand(5))
-			explosion(offset_target,2,2,1)
+/obj/structure/ship_ammo/cas_bomb/cluster/proc/cluster_impacts(turf/impact)
+	for(var/i = 1 to strikes_amount)
+		var/offset_target //Temp var that is used for the subbomb coordinate
+		offset_target =  get_offset_target_turf(impact, rand(5)-rand(5), rand(5)-rand(5))
+		explosion(offset_target,2,2,1,  adminlog = FALSE)
 
+///
+///White phosphorus
+///
 
-
-//White phosphorus
 /obj/structure/ship_ammo/cas_bomb/wpsmoke
 	name = "\improper M77 'WP' bomb"
 	desc = "White phosphorus, also known as Willie Pete. Anywhere the bomb hit will be smothered in a blanket of burning smoke."
@@ -518,26 +526,18 @@
 	ammo_id = "m77"
 	point_cost = 300
 
-	detonate_on(turf/impact)
-		impact.ceiling_debris_check(3)
-		spawn(5)
-			explosion(impact,1,2,3,6,1,0, small_animation = TRUE) //relatively weak
-			spawn(5)
-				var/datum/effect_system/smoke_spread/phosphorus/S = new/datum/effect_system/smoke_spread/phosphorus()
-				S.set_up(1,0,impact,null)
-				S.start()
-
-			for(var/turf/T in range(4,impact))
-				for(var/obj/flamer_fire/F in T) // No stacking flames!
-					qdel(F)
-				new/obj/flamer_fire(T, 60, 30) //cooking for a long time
-			qdel(src)
-
-
+/obj/structure/ship_ammo/cas_bomb/wpsmoke/detonate_on(turf/impact, attackdir = NORTH)
+	impact.ceiling_debris_check(3)
+	explosion(impact,2,2,1, small_animation = TRUE)
+	flame_radius(6, impact, 40, 40) //cooking for a long time
+	var/datum/effect_system/smoke_spread/phosphorus/warcrime = new
+	warcrime.set_up(10, impact, 12)
+	warcrime.start()
+	qdel(src)
 
 //Thermometric bomb
 
-//welder barrel bomb
+//Welder barrel bomb
 
 //Nail bomb
 
