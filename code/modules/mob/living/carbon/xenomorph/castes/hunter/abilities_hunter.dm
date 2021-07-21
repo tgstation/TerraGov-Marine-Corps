@@ -43,7 +43,7 @@
 
 	RegisterSignal(L, list(SIGNAL_ADDTRAIT(TRAIT_KNOCKEDOUT), SIGNAL_ADDTRAIT(TRAIT_FLOORED)), .proc/cancel_stealth)
 
-	RegisterSignal(src, COMSIG_XENOMORPH_TAKING_DAMAGE, .proc/damage_taken)
+	RegisterSignal(L, COMSIG_XENOMORPH_TAKING_DAMAGE, .proc/damage_taken)
 
 /datum/action/xeno_action/stealth/remove_action(mob/living/L)
 	UnregisterSignal(L, list(
