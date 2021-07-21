@@ -30,3 +30,16 @@
 	default_ammo = /datum/ammo/bullet/machinegun
 	gun_type = /obj/item/weapon/gun/heavymachinegun
 	reload_delay = 10 SECONDS
+
+/obj/item/ammo_magazine/ags
+	name = "GWG-19 drum magazine (40mm HEIM Grenades)"
+	desc = "A box of 50 40mm HEIM grenades. The grenades inside can't be thrown as normal grenades, don't bother."
+	w_class = WEIGHT_CLASS_NORMAL
+	icon = 'icons/Marine/marine-hmg.dmi'
+	icon_state = "ags_mag"
+	flags_magazine = NONE
+	caliber = CALIBER_40MM
+	max_rounds = 50
+	default_ammo = /datum/ammo/rocket/ags
+	gun_type = /obj/item/weapon/gun/ags
+	reload_delay = 3 SECONDS

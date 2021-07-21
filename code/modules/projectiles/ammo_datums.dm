@@ -1271,6 +1271,24 @@ datum/ammo/bullet/revolver/tp44
 	penetration = 100
 	sundering = 100
 
+/datum/ammo/rocket/ags
+	name = "high explosive grenade"
+	icon_state = "grenade_ags"
+	hud_state = "grenade_he"
+	hud_state_empty = "rocket_empty"
+	flags_ammo_behavior = AMMO_BALLISTIC
+	armor_type = "bomb"
+	damage_falloff = 0
+	shell_speed = 1
+	accuracy = 40
+	accurate_range = 20
+	max_range = 30
+	damage = 100
+	penetration = 100
+
+/datum/ammo/rocket/ags/drop_nade(turf/T)
+	explosion(T, 0, 2, 2, 3, adminlog = FALSE)
+
 /*
 //================================================
 					Energy Ammo

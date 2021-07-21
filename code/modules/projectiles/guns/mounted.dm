@@ -139,3 +139,39 @@
 
 	max_integrity = 500
 
+
+
+/obj/item/weapon/gun/ags
+	name = "\improper GWG-19 automatic grenade launcher"
+	desc = "The GWG-19 is probably the most destructive one or two man portable device ever conceived, it is a smart, portable, grenade launcher that fires heavy impact grenades out of a 50-round belt that explode on impact, leaving behind nothing. Accept no subsitutes for bunker destruction."
+
+	w_class = WEIGHT_CLASS_HUGE
+	flags_equip_slot = ITEM_SLOT_BACK
+	icon = 'icons/Marine/marine-hmg.dmi'
+	icon_state = "ags"
+	caliber = CALIBER_40MM
+	fire_sound = 'sound/weapons/guns/fire/ags.ogg'
+	reload_sound = 'sound/weapons/guns/interact/minigun_cocked.ogg'
+
+	current_mag = /obj/item/ammo_magazine/ags
+
+
+	scatter = 25
+	fire_delay = 0.25 SECONDS
+
+	burst_amount = 1
+	burst_accuracy_mult = 2
+	burst_scatter_mult = -2
+
+	flags_item = IS_DEPLOYABLE|TWOHANDED
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER|GUN_DEPLOYED_FIRE_ONLY|GUN_WIELDED_FIRING_ONLY|GUN_IFF
+	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
+
+	starting_attachment_types = list(
+		/obj/item/attachable/scope/unremovable/tl102,
+	)
+
+	deploy_time = 3.5 SECONDS
+
+	max_integrity = 700
+
