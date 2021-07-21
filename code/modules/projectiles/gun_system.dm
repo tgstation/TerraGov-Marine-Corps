@@ -311,8 +311,12 @@
 		if(istype(src.attachments["muzzle"],  /obj/item/attachable/bayonet) || istype(src.attachments["muzzle"],  /obj/item/attachable/bayonetknife))
 			if(CHECK_BITFIELD(flags_gun_features, GUN_CAN_POINTBLANK))
 				//add the bayonetcharge component
-				AddComponent(/datum/component/bayonetcharge)
-				var/datum/component/bayonetcharge/comp
+				var/datum/component/bayonetcharge/comp = GetComponent(/datum/component/bayonetcharge)
+				if(!comp)
+					AddComponent(/datum/component/bayonetcharge)
+				else
+					comp.updatevalues()
+
 
 
 	do_wield(user, wdelay)
@@ -338,7 +342,7 @@
 		//remove the bayonetcharge component
 		var/datum/component/bayonetcharge/comp
 		comp = GetComponent(/datum/component/bayonetcharge)
-		comp.RemoveComponent(/datum/component/bayonetcharge)
+		comp.child.remove_action(comp.charger)
 
 	return TRUE
 

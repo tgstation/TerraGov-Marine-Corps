@@ -37,20 +37,12 @@
 	var/mob/living/carbon/human/charger
 	///the child action of this component
 	var/datum/action/bayonetcharge/child
-	///The list of melee/not gun weapons available to be charged with
-	var/list/enabled_melee_weapons = list(
-		/obj/item/weapon/powerfist,
-		/obj/item/weapon/claymore/mercsword/machete,
-		/obj/item/weapon/claymore/mercsword/officersword,
-		/obj/item/weapon/twohanded/spear/tactical,
-	)
-
-/datum/component/bayonetcharge/RemoveComponent()
-	. = ..()
-	child.remove_action(charger)
 
 /datum/component/bayonetcharge/Initialize(...)
 	. = ..()
+	updatevalues()
+
+/datum/component/bayonetcharge/proc/updatevalues()
 	weaponinhand = src.parent
 	charger = weaponinhand.gun_user
 	child = new
@@ -158,22 +150,22 @@
 	stepstaken = 0
 
 /datum/component/bayonetcharge/proc/on_contact_with_enemy(datum/source, atom/crushed)
-	if(istype(crushed, /mob/living) && amcharging == TRUE)
-		if(isliving(crushed))
-			var/mob/living/crushedliving = crushed
-			if(istype(weaponinhand, /obj/item/weapon/gun))
-				//handles the damage for guns'
-				var/obj/item/weapon/gun/gun_weapon = weaponinhand
-				var/originalbayodamage = weaponinhand.force * damagemult
-				var/preserved_name = crushed.name
-				crushedliving.apply_damage(originalbayodamage, BRUTE, BODY_ZONE_CHEST, crushedliving.get_soft_armor("melee", BODY_ZONE_CHEST), updating_health = TRUE)
+	if(isliving(crushed) && amcharging == TRUE)
+		var/mob/living/crushedliving = crushed
+		if(istype(weaponinhand, /obj/item/weapon/gun))
+			//handles the damage for guns'
+			var/obj/item/weapon/gun/gun_weapon = weaponinhand
+			var/originalbayodamage = weaponinhand.force * damagemult
+			var/preserved_name = crushed.name
+			crushedliving.apply_damage(originalbayodamage, BRUTE, BODY_ZONE_CHEST, crushedliving.get_soft_armor("melee", BODY_ZONE_CHEST), updating_health = TRUE)
 
-				crushedliving.do_item_attack_animation(crushedliving, used_item = gun_weapon )
-				playsound(crushed.loc, 'sound/weapons/slice.ogg',35, 1)
-				charger.visible_message("<span class='danger'>[charger] stabs [preserved_name]!</span>")
-				crushedliving.Stun(slownesstime)
-				log_combat(charger, crushedliving, "human charged")
-				charger.setStaminaLoss(-charger.max_stamina_buffer)
+			crushedliving.do_item_attack_animation(crushedliving, used_item = gun_weapon )
+			playsound(crushed.loc, 'sound/weapons/slice.ogg',35, 1)
+			charger.visible_message("<span class='danger'>[charger] stabs [preserved_name]!</span>")
+			crushedliving.Stun(slownesstime)
+			log_combat(charger, crushedliving, "human charged")
+
+			charger.setStaminaLoss(-charger.max_stamina_buffer)
 
 	incooldown = TRUE
 	addtimer(CALLBACK(src, .proc/cooldownend), cooldowntime)
