@@ -144,14 +144,6 @@
 		return
 	toggle_breaker(usr)
 
-/* Keycard Authentication Device */
-/obj/machinery/keycard_auth/AICtrlClick(mob/living/silicon/ai/user)
-	if(screen == 2)
-		event_triggered_by = user
-		trigger_event(event)
-		log_game("[key_name(event_triggered_by)] triggered event [event].")
-		message_admins("[ADMIN_TPMONTY(event_triggered_by)] triggered event [event].")
-
 /* Firealarm */
 /obj/machinery/firealarm/AICtrlClick(mob/living/silicon/ai/user) // turn on the fire alarm
 	if(z != user.z)
