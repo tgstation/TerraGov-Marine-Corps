@@ -310,7 +310,9 @@
 	if(src.attachments["muzzle"] != null)
 		if(istype(src.attachments["muzzle"],  /obj/item/attachable/bayonet) || istype(src.attachments["muzzle"],  /obj/item/attachable/bayonetknife))
 			if(CHECK_BITFIELD(flags_gun_features, GUN_CAN_POINTBLANK))
-				src.charge.give_action(user, src)
+				//add the bayonetcharge component
+				AddComponent(/datum/component/bayonetcharge)
+				var/datum/component/bayonetcharge/comp
 
 
 	do_wield(user, wdelay)
@@ -333,7 +335,10 @@
 		toggle_aim_mode(user)
 
 	if(istype(src.attachments["muzzle"],  /obj/item/attachable/bayonet) || istype(src.attachments["muzzle"],  /obj/item/attachable/bayonetknife))
-		src.charge.remove_action(user)
+		//remove the bayonetcharge component
+		var/datum/component/bayonetcharge/comp
+		comp = GetComponent(/datum/component/bayonetcharge)
+		comp.RemoveComponent(/datum/component/bayonetcharge)
 
 	return TRUE
 
