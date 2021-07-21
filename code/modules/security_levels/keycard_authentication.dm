@@ -63,7 +63,6 @@
 	if(issilicon(user))
 		synth_activation = 1
 
-
 	var/dat
 	dat += "This device is used to trigger some high security events. It requires the simultaneous swipe of two high-level ID cards."
 	dat += "<br><hr><br>"
