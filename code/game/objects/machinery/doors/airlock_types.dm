@@ -852,6 +852,9 @@
 	no_panel = TRUE
 	not_weldable = TRUE
 
+/obj/machinery/door/airlock/canAIControl(mob/user)
+	return TRUE
+
 /obj/machinery/door/airlock/dropship_hatch/proc/lockdown()
 	unlock()
 	close()
@@ -895,7 +898,9 @@
 	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
 	no_panel = TRUE
 	not_weldable = TRUE
-	aiControlDisabled = TRUE
+
+/obj/machinery/door/airlock/hatch/cockpit/canAIControl(mob/user)
+	return TRUE
 
 /obj/machinery/door/airlock/hatch/cockpit/rebel
 	req_access = list(ACCESS_MARINE_DROPSHIP_REBEL)
