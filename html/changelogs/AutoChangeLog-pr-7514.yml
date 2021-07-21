@@ -1,5 +1,0 @@
-author: "InterroLouis"
-delete-after: True
-changes: 
-  - bugfix: "Fixed doubled job slots, now rebel jobs have their own job slots that can be altered separately from regular job slots."
-  - spellcheck: "Fixed medical researcher job display order."
