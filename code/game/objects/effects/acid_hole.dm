@@ -47,9 +47,6 @@
 	if(!user.CanReach(src))
 		return
 	if(holed_wall)
-		if(user.mob_size == MOB_SIZE_BIG)
-			expand_hole(user)
-			return
 		use_wall_hole(user)
 
 /obj/effect/acid_hole/proc/expand_hole(mob/living/carbon/xenomorph/user)
@@ -63,7 +60,12 @@
 
 /obj/effect/acid_hole/proc/use_wall_hole(mob/user)
 
-	if(user.mob_size == MOB_SIZE_BIG || user.incapacitated() || user.lying_angle || user.buckled || user.anchored)
+	if(user.incapacitated() || user.lying_angle || user.buckled || user.anchored)
+		return
+
+	var/mob/living/carbon/xenomorph/xuser = user
+	if(user.mob_size == MOB_SIZE_BIG && !CHECK_BITFIELD(xuser.xeno_caste.caste_flags, CASTE_CAN_VENT_CRAWL))
+		expand_hole(xuser)
 		return
 
 	var/mob_dir = get_dir(user, src)
