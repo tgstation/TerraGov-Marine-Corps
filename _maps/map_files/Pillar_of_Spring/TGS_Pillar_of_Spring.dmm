@@ -8408,8 +8408,10 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/port_hallway)
 "Bv" = (
-/obj/structure/sign/prop1,
-/turf/closed/wall/mainship,
+/obj/structure/sign/prop1{
+	dir = 1
+	},
+/turf/open/floor/mainship,
 /area/mainship/squads/general)
 "Bx" = (
 /obj/effect/decal/warning_stripes/thin{
@@ -51366,7 +51368,7 @@ qC
 sx
 Nn
 sx
-Bv
+qC
 xr
 wf
 wf
@@ -51624,7 +51626,7 @@ qC
 Ah
 PR
 qC
-jl
+Bv
 CN
 CN
 ob
