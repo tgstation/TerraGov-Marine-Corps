@@ -498,9 +498,9 @@
 ///
 
 /obj/structure/ship_ammo/cas_bomb/cluster
-	name = "\improper U402 'Cluster'  bomb"
+	name = "\improper U402 'Cluster' bomb"
 	desc = "A cluster bomb which blows up before smothering a wide area with bomblets."
-	icon_state = "default_bomb"
+	icon_state = "cluster"
 	ammo_id = "U402"
 	point_cost = 300
 	var/strikes_amount = 18 //the amount of bombs it drop. This
