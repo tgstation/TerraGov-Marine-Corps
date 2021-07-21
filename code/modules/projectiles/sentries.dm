@@ -427,10 +427,10 @@
 		if (distance <= buffer_distance)
 			continue
 
-		sentry_alert(SENTRY_ALERT_HOSTILE, nearby_target)
-
 		if(!check_target_path(nearby_target))
 			continue
+		
+		sentry_alert(SENTRY_ALERT_HOSTILE, nearby_target)
 
 		distance = buffer_distance
 		return nearby_target
