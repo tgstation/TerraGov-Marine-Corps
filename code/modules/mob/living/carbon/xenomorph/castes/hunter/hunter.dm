@@ -12,6 +12,7 @@
 	inherent_verbs = list(
 		/mob/living/carbon/xenomorph/proc/vent_crawl,
 	)
+	layer = XENO_HIDING_LAYER //Hunters just stay hidden on their own.
 
 // ***************************************
 // *********** Death

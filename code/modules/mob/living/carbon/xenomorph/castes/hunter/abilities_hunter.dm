@@ -213,6 +213,9 @@
 	plasma_cost = 20
 	range = 7
 
+//Don't need to do anything here, just overriding runner's pounce so we maintain layer
+/datum/action/xeno_action/activable/pounce/hunter/prepare_to_pounce()
+
 // ***************************************
 // *********** Haunt
 // ***************************************
