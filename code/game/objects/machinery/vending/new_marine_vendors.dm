@@ -628,6 +628,7 @@
 	listed_products = list(
 		/obj/item/storage/box/t26_system = list(CAT_ESS, "T-26 Smartmachinegun Set", 0, "white"),
 		/obj/item/storage/box/t25_system = list(CAT_ESS, "T-25 Smartrifle Set", 0, "white"),
+		/obj/item/storage/box/t81_system = list(CAT_ESS, "T-81 Smartsniper Set", 0, "white"),
 
 
 		/obj/item/attachable/extended_barrel = list(CAT_ATT, "Extended barrel", 0, "orange"),

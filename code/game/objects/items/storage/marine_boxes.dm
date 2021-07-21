@@ -37,6 +37,24 @@
 	new /obj/item/storage/belt/marine/t25(src)
 	new /obj/item/ammo_magazine/rifle/standard_smartrifle(src)
 
+/obj/item/storage/box/t81_system
+	name = "\improper T-81 smart sniper system"
+	desc = "A large case containing the full T-81 System. Drag this sprite into you to open it up!\nNOTE: You cannot put items back inside this case."
+	icon = 'icons/Marine/marine-weapons.dmi'
+	icon_state = "smartgun_case"
+	w_class = WEIGHT_CLASS_HUGE
+	storage_slots = 5
+	slowdown = 1
+	can_hold = list() //Nada. Once you take the stuff out it doesn't fit back in.
+	foldable = null
+
+/obj/item/storage/box/t81_system/Initialize(mapload, ...)
+	. = ..()
+	new /obj/item/clothing/glasses/night/m56_goggles(src)
+	new /obj/item/weapon/gun/rifle/standard_autosniper(src)
+	new /obj/item/storage/belt/marine/t81(src)
+	new /obj/item/ammo_magazine/rifle/autosniper(src)
+
 /obj/item/minigun_powerpack
 	name = "\improper T-100 powerpack"
 	desc = "A heavy reinforced backpack with support equipment, power cells, and spare rounds for the T-100 Minigun System.\nClick the icon in the top left to reload your M56."

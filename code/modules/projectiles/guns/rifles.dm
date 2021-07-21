@@ -1115,6 +1115,15 @@
 	aim_slowdown = 1
 	wield_delay = 1.3 SECONDS
 
+/obj/item/weapon/gun/rifle/standard_autosniper/sg // no nvg for u
+	desc = "The T-81 is the TerraGov Marine Corps's automatic sniper rifle. It is rather well-known for it's night vision scope and IFF ammo, however this one was packed without the former, for cost reasons.. It is mostly used by people who prefer to do more careful shooting than most. Uses 8.6x70mm caseless IFF caliber."
+
+	starting_attachment_types = list(
+		/obj/item/attachable/autosniperbarrel,
+		/obj/item/attachable/scope,
+	)
+
+
 //-------------------------------------------------------
 //TX-11 Rifle, based on the gamer-11
 

@@ -446,6 +446,12 @@ ATTACHMENTS
 	contains = list(/obj/item/attachable/stock/tactical)
 	cost = 1
 
+/datum/supply_packs/attachments/t81scope
+	name = "T-46 NVG Scope"
+	notes = "Used on T-81s."
+	contains = list(/obj/item/attachable/scope/nightvision)
+	cost = 15
+
 /*******************************************************************************
 AMMO
 *******************************************************************************/
