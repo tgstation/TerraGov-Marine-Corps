@@ -22,13 +22,12 @@
 	///the amount of time cooldown lasts in deciseconds
 	var/cooldowntime = 150
 
-	//Below are static variables that should not be changed, ever.
+	//Below are variables that are used internally. Do not externally change
 	var/stepstaken = 0
 	var/chargedir = null
 
 	var/amcharging = FALSE
 	var/chargewhenmove = FALSE
-	var/incooldown = FALSE
 	var/obj/item/weapon/gun/weaponinhand
 
 	///represents the time when the stepstaken var resets
@@ -48,6 +47,8 @@
 	child = new
 	child.give_action(src.charger)
 	child.parent = src
+
+
 
 /datum/action/bayonetcharge
 	name = "Toggle Bayonet Charge"
@@ -74,7 +75,7 @@
 	parent.charge_on()
 
 /datum/component/bayonetcharge/proc/charge_on()
-	if(incooldown)
+	if(TIMER_COOLDOWN_CHECK(charger, COOLDOWN_HUMAN_CHARGE))
 		to_chat(charger, "<span class='warning'>Charge is still on cooldown!</span>")
 		return
 	chargewhenmove = TRUE
@@ -104,11 +105,10 @@
 //called when the marine moves
 /datum/component/bayonetcharge/proc/update_charging(datum/source, atom/oldloc, direction, Forced)
 	SIGNAL_HANDLER_DOES_SLEEP
-	if(movementcontinuationlimit && world.time > movementcontinuationlimit) //if you have stopped moving, it resetss the steps taken coutner
+	if(movementcontinuationlimit && world.time > movementcontinuationlimit) //if you have stopped moving, it resetss the steps taken counter
 		if(amcharging)
 			amcharging = FALSE
-			incooldown = TRUE
-			addtimer(CALLBACK(src, .proc/cooldownend), cooldowntime)
+			TIMER_COOLDOWN_START(charger, COOLDOWN_HUMAN_CHARGE, cooldowntime)
 		stop_charge()
 		movementcontinuationlimit = null
 		return
@@ -167,9 +167,6 @@
 
 			charger.setStaminaLoss(-charger.max_stamina_buffer)
 
-	incooldown = TRUE
-	addtimer(CALLBACK(src, .proc/cooldownend), cooldowntime)
+	TIMER_COOLDOWN_START(charger, COOLDOWN_HUMAN_CHARGE, cooldowntime)
 	charge_off()
 
-/datum/component/bayonetcharge/proc/cooldownend()
-	incooldown = FALSE

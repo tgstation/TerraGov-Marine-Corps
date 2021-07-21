@@ -39,6 +39,8 @@
 #define COOLDOWN_LOADOUT_VISUALIZATION "cooldown_loadout_visualization"
 #define COOLDOWN_TADPOLE_LAUNCHING "cooldown_tadpole_launching"
 #define COOLDOWN_BOMBVEST_SHIELD_DROP "cooldown_bombvest_shield_drop"
+#define COOLDOWN_HUMAN_CHARGE "cooldown_human_charge"
+
 
 //// COOLDOWN SYSTEMS
 /*
