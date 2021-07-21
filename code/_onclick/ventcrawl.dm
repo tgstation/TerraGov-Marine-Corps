@@ -92,7 +92,7 @@ GLOBAL_LIST_INIT(ventcrawl_machinery, typecacheof(list(
 			visible_message(span_notice("[src] scrambles into the ventilation ducts!"),span_notice("You climb into the ventilation ducts."))
 			if(!isxenohunter(src)) //Hunters silently enter/exit vents.
 			visible_message("<span class='notice'>[src] scrambles into the ventilation ducts!</span>","<span class='notice'>You climb into the ventilation ducts.</span>")
-			if(!stealthy) //Hunters silently enter/exit vents.
+			if(!stealthy) //Xenos with stealth vent crawling can silently enter/exit vents.
 				playsound(src, get_sfx("alien_ventpass"), 35, TRUE)
 
 			forceMove(vent_found)

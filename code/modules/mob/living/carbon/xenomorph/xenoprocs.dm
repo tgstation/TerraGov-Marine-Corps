@@ -578,29 +578,7 @@
 		return
 	var/pipe = start_ventcrawl()
 	if(pipe)
-		handle_ventcrawl(pipe)
-
-// Hunter Vent Crawl
-/mob/living/carbon/xenomorph/hunter/vent_crawl()
-	set name = "Crawl through Vent"
-	set desc = "Enter an air vent and crawl through the pipe system."
-	set category = "Alien"
-	if(!check_state())
-		return
-	var/pipe = start_ventcrawl()
-	if(pipe)
-		handle_ventcrawl(pipe, HUNTER_VENT_CRAWL_TIME, TRUE)
-
-// Larva Vent Crawl
-/mob/living/carbon/xenomorph/larva/vent_crawl()
-	set name = "Crawl through Vent"
-	set desc = "Enter an air vent and crawl through the pipe system."
-	set category = "Alien"
-	if(!check_state())
-		return
-	var/pipe = start_ventcrawl()
-	if(pipe)
-		handle_ventcrawl(pipe, LARVA_VENT_CRAWL_TIME, TRUE)
+		handle_ventcrawl(pipe, xeno_caste.vent_enter_speed, xeno_caste.silent_vent_crawl)
 
 /mob/living/carbon/xenomorph/verb/toggle_xeno_mobhud()
 	set name = "Toggle Xeno Status HUD"
