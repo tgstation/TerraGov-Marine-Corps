@@ -51,9 +51,9 @@
 /obj/item/storage/box/t81_system/Initialize(mapload, ...)
 	. = ..()
 	new /obj/item/clothing/glasses/night/m56_goggles(src)
-	new /obj/item/weapon/gun/rifle/standard_autosniper(src)
+	new /obj/item/weapon/gun/rifle/standard_autosniper/sg(src)
 	new /obj/item/storage/belt/marine/t81(src)
-	new /obj/item/ammo_magazine/rifle/autosniper/sg(src)
+	new /obj/item/ammo_magazine/rifle/autosniper(src)
 
 /obj/item/minigun_powerpack
 	name = "\improper T-100 powerpack"
