@@ -537,7 +537,7 @@ AMMO
 /datum/supply_packs/ammo/rpg_wp
 	name = "T-152 RPG WP rocket"
 	contains = list(/obj/item/ammo_magazine/rocket/sadar/wp)
-	cost = 6
+	cost = 5
 	available_against_xeno_only = TRUE
 
 /datum/supply_packs/ammo/thermobaric
