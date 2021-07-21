@@ -338,7 +338,7 @@
 	if(CHECK_BITFIELD(flags_gun_features, GUN_IS_AIMING))
 		toggle_aim_mode(user)
 
-	if(istype(src.attachments["muzzle"],  /obj/item/attachable/bayonet) || istype(src.attachments["muzzle"],  /obj/item/attachable/bayonetknife))
+	if(istype(attachments["muzzle"],  /obj/item/attachable/bayonet) || istype(attachments["muzzle"],  /obj/item/attachable/bayonetknife))
 		//remove the bayonetcharge component
 		var/datum/component/bayonetcharge/comp
 		comp = GetComponent(/datum/component/bayonetcharge)
