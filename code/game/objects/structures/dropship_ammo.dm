@@ -436,7 +436,7 @@
 
 //Smol bomb
 /obj/structure/ship_ammo/cas_bomb/m64
-	name = "\improper AN-M64A1"
+	name = "\improper AN-M64A1 'GP'"
 	desc = "A rather old and scuffed looking bomb, much of the metallic coating seems to have worn off thanks to some rough handling, and the fins look rather finnicky. This thing is probably several times older than your dad. Is the explosive in there still working?"
 	icon_state = "m64"
 	ammo_id = "m64"
@@ -498,7 +498,7 @@
 ///
 
 /obj/structure/ship_ammo/cas_bomb/cluster
-	name = "\improper cluster U402 bomb"
+	name = "\improper U402 'Cluster'  bomb"
 	desc = "A cluster bomb which blows up before smothering a wide area with bomblets."
 	icon_state = "default_bomb"
 	ammo_id = "U402"
