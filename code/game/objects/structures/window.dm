@@ -564,3 +564,4 @@
 	desc = "A glass window with a special rod matrice inside a wall frame. Has no reachable screws to prevent enterprising prisoners from deconstructing it."
 	//icon_state = "rwindow0_debug" //Uncomment to check hull in the map editor
 	deconstructable = FALSE
+	max_integrity = 300
