@@ -362,7 +362,8 @@
 	var/main_color_hex = "#5B6036"
 	///Greyscale config color we use for the visor
 	var/visor_greyscale_config = /datum/greyscale_config/modular_helmet_visor_emissive
-
+	///optional assoc list of colors we can color this armor
+	var/list/colorable_colors
 
 /obj/item/clothing/head/modular/Initialize(mapload)
 	. = ..()
@@ -425,8 +426,12 @@
 		to_chat(user, "<span class='warning'>\the [paint] is out of color!</span>")
 		return TRUE
 	paint.uses--
+	var/new_color
+	if(colorable_colors)
+		new_color = tgui_input_list(user, "Pick a color", "Pick color", colorable_colors)
+	else
+		new_color = input(user, "Pick a color", "Pick color") as null|color
 
-	var/new_color = input(user, "Pick a color", "Pick color") as null|color
 	if(!new_color)
 		return
 

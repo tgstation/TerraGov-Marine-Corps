@@ -20,6 +20,9 @@
 	greyscale_config = /datum/greyscale_config/modularchest_infantry
 	greyscale_colors = "#444732"
 
+	///optional assoc list of colors we can color this armor
+	var/list/colorable_colors
+
 
 /obj/item/armor_module/armor/Initialize()
 	. = ..()
@@ -57,7 +60,12 @@
 		to_chat(user, "<span class='warning'>\the [paint] is out of color!</span>")
 		return TRUE
 
-	var/new_color = input(user, "Pick a color", "Pick color") as null|color
+	var/new_color
+	if(colorable_colors)
+		new_color = tgui_input_list(user, "Pick a color", "Pick color", colorable_colors)
+	else
+		new_color = input(user, "Pick a color", "Pick color") as null|color
+
 	if(!new_color)
 		return
 
