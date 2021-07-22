@@ -60,7 +60,7 @@
 	desc = "Designed for mounting on the Jaeger Combat Exoskeleton. Has a variety of chemicals it can inject, as well as automatically securing the bones and body of the wearer, to minimize the impact of broken bones or mangled limbs in the field. Will definitely impact mobility."
 	icon_state = "mod_autodoc_icon"
 	item_state = "mod_autodoc"
-	slowdown = 0.25
+	slowdown = 0.3
 
 /obj/item/armor_module/attachable/valkyrie_autodoc/do_attach(mob/living/user, obj/item/clothing/suit/modular/parent)
 	. = ..()
@@ -87,18 +87,14 @@
 	icon_state = "mod_fire_icon"
 	item_state = "mod_fire"
 	hard_armor = list("fire" = 200)
-	slowdown = 0.4
-	/// How much the suit light is modified by
-	var/light_mod = -2
+	slowdown = 0.3
 
 /obj/item/armor_module/attachable/fire_proof/do_attach(mob/living/user, obj/item/clothing/suit/modular/parent)
 	. = ..()
-	parent.set_light_range(parent.light_range + light_mod)
 	parent.hard_armor = parent.hard_armor.attachArmor(hard_armor)
 	parent.max_heat_protection_temperature += FIRESUIT_MAX_HEAT_PROTECTION_TEMPERATURE
 
 /obj/item/armor_module/attachable/fire_proof/do_detach(mob/living/user, obj/item/clothing/suit/modular/parent)
-	parent.set_light_range(parent.light_range - light_mod)
 	parent.hard_armor = parent.hard_armor.detachArmor(hard_armor)
 	parent.max_heat_protection_temperature -= FIRESUIT_MAX_HEAT_PROTECTION_TEMPERATURE
 	return ..()
