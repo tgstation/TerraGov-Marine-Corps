@@ -12559,6 +12559,10 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/port_hull)
+"lbM" = (
+/obj/machinery/vending/MarineMed,
+/turf/open/floor/mainship/mono,
+/area/mainship/squads/req)
 "lbX" = (
 /turf/open/floor/mainship/orange{
 	dir = 8
@@ -16952,6 +16956,13 @@
 	},
 /turf/open/floor/mainship/blue/full,
 /area/mainship/hallways/hangar)
+"uoD" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 10
+	},
+/obj/machinery/vending/uniform_supply,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/squads/req)
 "utR" = (
 /obj/machinery/light{
 	dir = 4
@@ -18534,6 +18545,13 @@
 /obj/machinery/vending/marine,
 /turf/open/floor/mainship/red/full,
 /area/mainship/command/cic)
+"xWO" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/machinery/vending/marine/shared,
+/turf/open/floor/mainship/mono,
+/area/mainship/squads/req)
 "xZF" = (
 /obj/effect/landmark/start/latejoin_cryo,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -60280,10 +60298,10 @@ bGm
 wcO
 bwf
 pbV
-ace
-bnD
-bnD
-bnD
+xWO
+lbM
+aat
+uoD
 ace
 jFn
 qNK

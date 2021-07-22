@@ -2350,6 +2350,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 10
 	},
+/obj/machinery/vending/uniform_supply,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/squads/req)
 "iq" = (
@@ -4265,6 +4266,10 @@
 	dir = 1
 	},
 /turf/open/floor/mainship/cargo,
+/area/mainship/squads/req)
+"oj" = (
+/obj/machinery/vending/armor_supply,
+/turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
 "ok" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -11062,6 +11067,10 @@
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/squads/req)
+"JO" = (
+/obj/machinery/vending/MarineMed,
+/turf/open/floor/mainship/mono,
+/area/mainship/squads/req)
 "JQ" = (
 /obj/structure/cable,
 /obj/machinery/power/apc/mainship{
@@ -14880,6 +14889,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
+/obj/machinery/vending/marine/shared,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
 "Wd" = (
@@ -48764,8 +48774,8 @@ on
 SR
 wk
 Wc
-kM
-kM
+JO
+oj
 ip
 Xn
 yZ
