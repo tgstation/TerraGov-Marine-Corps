@@ -16157,6 +16157,13 @@
 	},
 /turf/open/floor/prison,
 /area/sulaco/hallway/lower_foreship)
+"ndf" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/machinery/vending/marine/shared,
+/turf/open/floor/mainship/mono,
+/area/sulaco/cargo)
 "nfk" = (
 /obj/machinery/door/airlock/mainship/generic,
 /obj/structure/cable,
@@ -20309,6 +20316,10 @@
 	dir = 1
 	},
 /area/sulaco/engineering/lower_engineering)
+"utJ" = (
+/obj/machinery/vending/armor_supply,
+/turf/open/floor/mainship/mono,
+/area/sulaco/cargo)
 "utO" = (
 /obj/structure/kitchenspike,
 /turf/open/floor/freezer,
@@ -20349,10 +20360,8 @@
 /turf/open/floor/plating,
 /area/sulaco/engineering/storage)
 "uxf" = (
-/obj/machinery/firealarm{
-	dir = 8
-	},
-/turf/open/floor/prison/plate,
+/obj/machinery/vending/MarineMed,
+/turf/open/floor/mainship/mono,
 /area/sulaco/cargo)
 "uyf" = (
 /obj/machinery/door/airlock/mainship/marine/requisitions{
@@ -20811,6 +20820,13 @@
 	dir = 10
 	},
 /area/sulaco/marine)
+"vln" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 10
+	},
+/obj/machinery/vending/uniform_supply,
+/turf/open/floor/plating/plating_catwalk,
+/area/sulaco/cargo)
 "vlG" = (
 /obj/effect/decal/cleanable/cobweb{
 	dir = 1
@@ -48074,10 +48090,10 @@ bPM
 bPM
 aLn
 bPM
-bPM
+ndf
 uxf
-bPM
-bPM
+utJ
+vln
 bPM
 bPM
 mZj

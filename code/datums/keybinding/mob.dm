@@ -341,3 +341,9 @@
 		return
 	user.body_l_leg()
 	return TRUE
+
+/datum/keybinding/mob/toggle_minimap
+	name = "toggle_minimap"
+	full_name = "Toggle minimap"
+	description = "Toggle the minimap screen"
+	keybind_signal = COMSIG_KB_TOGGLE_MINIMAP

@@ -1,0 +1,4 @@
+author: "lbnesquik"
+delete-after: True
+changes: 
+  - qol: "You can now use Z to activate your mortar. Simple QOL."

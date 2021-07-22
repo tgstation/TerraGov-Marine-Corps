@@ -275,10 +275,8 @@
 			brute = W.heal_wound_damage(brute)
 		else if(W.damage_type == BURN)
 			burn = W.heal_wound_damage(burn)
-
-	if(internal)
-		remove_limb_flags(LIMB_BROKEN | LIMB_SPLINTED | LIMB_STABILIZED)
-		add_limb_flags(LIMB_REPAIRED)
+		else if(internal)
+			brute = W.heal_wound_damage(brute)
 
 	//Sync the organ's damage with its wounds
 	update_damages()
@@ -756,8 +754,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	if(body_part == CHEST)
 		return FALSE
 
-	remove_limb_flags()
-	add_limb_flags(LIMB_BLEEDING | LIMB_DESTROYED)
+	set_limb_flags(LIMB_DESTROYED)
 
 	for(var/i in implants)
 		var/obj/item/embedded_thing = i
@@ -993,6 +990,15 @@ Note that amputating the affected organ does in fact remove the infection from t
 		if(W.germ_level > INFECTION_LEVEL_ONE)
 			return 1
 	return 0
+
+///Returns the first non-internal wound at non-zero damage if any exist
+/datum/limb/proc/has_external_wound()
+	for(var/datum/wound/wound_to_check AS in wounds)
+		if(wound_to_check.internal)
+			continue
+		if(!wound_to_check.damage)
+			continue
+		return wound_to_check
 
 /datum/limb/proc/get_icon(icon/race_icon, icon/deform_icon,gender="")
 

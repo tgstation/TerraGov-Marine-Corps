@@ -50,6 +50,13 @@ export const GameSettings = (props, context) => {
                 rightLabel={'Disabled'}
               />
               <ToggleFieldPreference
+                label="Unique action behaviour"
+                value="unique_action_use_active_hand"
+                action="unique_action_use_active_hand"
+                leftLabel={'Use on active hand'}
+                rightLabel={'Use on both hands'}
+              />
+              <ToggleFieldPreference
                 label="Mute xeno health alert messages"
                 value="mute_xeno_health_alert_messages"
                 action="mute_xeno_health_alert_messages"

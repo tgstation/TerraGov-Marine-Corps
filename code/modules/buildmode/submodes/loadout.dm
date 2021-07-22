@@ -34,14 +34,14 @@
 
 	if(!ishuman(object))
 		return
-	
+
 	var/mob/living/carbon/human/dollie = object
 
 	if(right_click)
 		var/loadout_name = input(c, "Chose a name for this loadout", "Copy loadout from mob") as text
 		if(!loadout_name)
 			return
-		loadout = create_empty_loadout(loadout_name)
+		loadout = create_empty_loadout(loadout_name, dollie.job.title)
 		loadout.save_mob_loadout(dollie, TRUE)
 		SSpersistence.save_loadout(loadout)
 		to_chat(c, "<span class='notice'>New loadout copied from [dollie].</span>")
@@ -57,5 +57,11 @@
 			to_chat(c, "<span class='warning'>Pick an loadout first.</span>")
 			return
 		loadout.equip_mob(dollie)
+		dollie.job = SSjob.name_occupations[loadout.job]
+		dollie.skills = getSkillsType(dollie.job.skills_type)
+		if(dollie.wear_id)
+			dollie.wear_id.registered_name = dollie.name
+			dollie.wear_id.assignment = dollie.job.title
+			dollie.wear_id.rank = dollie.job.title
 
 

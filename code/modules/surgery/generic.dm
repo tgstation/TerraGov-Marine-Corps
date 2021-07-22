@@ -253,3 +253,41 @@
 	user.visible_message("<span class='warning'>[user]'s hand slips, leaving a small burn on [target]'s [affected.display_name] with \the [tool]!</span>", \
 	"<span class='warning'>Your hand slips, leaving a small burn on [target]'s [affected.display_name] with \the [tool]!</span>")
 	target.apply_damage(3, BURN, affected, updating_health = TRUE)
+
+///Sewing people closed. Not fast, but works on corpses.
+/datum/surgery_step/generic/repair
+	allowed_tools = list(
+		/obj/item/tool/surgery/suture = 100,
+		/obj/item/shard = 20,
+	)
+	open_step = 0
+	min_duration = SUTURE_MIN_DURATION
+	max_duration = SUTURE_MAX_DURATION
+	///Healing applied on step success, split between burn and brute
+	var/base_healing = 10
+
+/datum/surgery_step/generic/repair/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected, checks_only)
+	if(!..())
+		return FALSE
+	if(affected.has_external_wound())//limb has treatable damage
+		return TRUE
+	to_chat(user, "<span class='notice'>[target]'s [affected.display_name] has no external injuries.</span>")
+	return SPECIAL_SURGERY_INVALID
+
+/datum/surgery_step/generic/repair/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
+	user.visible_message("<span class='notice'>[user] is beginning to suture the wounds on [target]'s [affected.display_name].</span>" , \
+	"<span class='notice'>You are beginning to suture the wounds on [target]'s [affected.display_name].</span>")
+	target.custom_pain("Your [affected.display_name] is getting stabbed!!", 1)
+	..()
+
+/datum/surgery_step/generic/repair/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
+	user.visible_message("<span class='notice'>[user] sews some of the wounds on [target]'s [affected.display_name] shut.</span>", \
+	"<span class='notice'>You finish suturing some of the wounds on [target]'s [affected.display_name].</span>")
+	var/burn_heal = min(base_healing, affected.burn_dam)
+	var/brute_heal = max(base_healing - burn_heal, 0)
+	target.HealDamage(target_zone, brute_heal, burn_heal)
+
+/datum/surgery_step/generic/repair/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
+	user.visible_message("<span class='warning'>[user]'s hand slips, tearing through [target]'s skin with \the [tool]!</span>", \
+	"<span class='warning'>Your hand slips, tearing \the [tool] through [target]'s skin!</span>")
+	affected.take_damage_limb(5, updating_health = TRUE)

@@ -118,3 +118,32 @@
 	stack.update_weight()
 	stack.update_icon()
 	return stack
+
+/**
+ * Allow to representate an id card (/obj/item/card/id)
+ */
+/datum/item_representation/id
+	/// the access of the id
+	var/list/access = list()
+	/// the iff signal registered on the id
+	var/iff_signal = NONE
+
+/datum/item_representation/id/New(obj/item/item_to_copy)
+	if(!item_to_copy)
+		return
+	if(!isidcard(item_to_copy))
+		CRASH("/datum/item_representation/id created from an item that is not an id card")
+	..()
+	var/obj/item/card/id/id_to_copy = item_to_copy
+	access = id_to_copy.access
+	iff_signal = id_to_copy.iff_signal
+
+/datum/item_representation/id/instantiate_object(datum/loadout_seller/seller, master = null, mob/living/user)
+	. = ..()
+	if(!.)
+		return
+	var/obj/item/card/id/id = .
+	id.access = access
+	id.iff_signal = iff_signal
+	return id
+
