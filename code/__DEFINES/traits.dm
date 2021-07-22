@@ -89,7 +89,6 @@
 #define TRAIT_STASIS "stasis"//Subject to the stasis effect
 #define ENDURE_TRAIT "endure" //Ravager Endure ability.
 #define RAGE_TRAIT "rage" //Ravager Rage ability.
-#define CAMO_SMOKE_TRAIT "camosmoke" //From tactical smoke grenades
 #define STEALTH_TRAIT "stealth" //From hunter stealth
 
 //mob traits
