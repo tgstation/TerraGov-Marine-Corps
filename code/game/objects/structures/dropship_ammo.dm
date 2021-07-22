@@ -457,7 +457,7 @@
 
 /obj/structure/ship_ammo/cas_bomb/mark84/detonate_on(turf/impact, attackdir = NORTH)
 	impact.ceiling_debris_check(3)
-	explosion(impact, 4, 6, 8, 10) //more spread out, with flames
+	explosion(impact, 4, 6, 8, 10, flame_range = 3) ///more spread out, with flames
 	qdel(src)
 
 //Mine laying bomb
@@ -477,7 +477,7 @@
 	impact.ceiling_debris_check(2)
 	addtimer(CALLBACK(src, .proc/drop_mine, impact), 1.5 SECONDS)
 	if(!ammo_count)
-		QDEL_IN(src, travelling_time) //deleted after last minirocket has fired and impacted the ground.
+		QDEL_IN(src, travelling_time) ///deleted after the last BOMB has impacted the ground.
 
 /obj/structure/ship_ammo/cas_bomb/minelaying/proc/drop_mine(turf/impact)
 	playsound(loc, 'sound/weapons/guns/interact/mortar_unpack.ogg', 25, 1)
@@ -503,7 +503,7 @@
 	icon_state = "cluster"
 	ammo_id = "U402"
 	point_cost = 300
-	var/strikes_amount = 18 //the amount of bombs it drop. This
+	var/strikes_amount = 18 //the amount of cluster bombs
 
 /obj/structure/ship_ammo/cas_bomb/cluster/detonate_on(turf/impact, attackdir = NORTH)
 	impact.ceiling_debris_check(2)
@@ -511,7 +511,7 @@
 
 /obj/structure/ship_ammo/cas_bomb/cluster/proc/cluster_impacts(turf/impact)
 	for(var/i = 1 to strikes_amount)
-		var/offset_target //Temp var that is used for the subbomb coordinate
+		var/offset_target ///Temp var that is used for the subbomb coordinate
 		offset_target =  get_offset_target_turf(impact, rand(5)-rand(5), rand(5)-rand(5))
 		explosion(offset_target,2,2,1,  adminlog = FALSE)
 

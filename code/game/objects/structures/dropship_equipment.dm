@@ -835,7 +835,7 @@
 	if(ship_base)
 		icon_state = "bomb_pylon_installed"
 		return
-icon_state = "bomb_pylon"
+	icon_state = "bomb_pylon"
 
 
 
