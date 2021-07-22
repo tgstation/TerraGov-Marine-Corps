@@ -32,30 +32,30 @@
 // ***************************************
 /datum/action/xeno_action/hive_message
 	name = "Hive Message" // Also known as Word of Queen.
-	action_icon_state = "queen_order" // Reusing Queen Order icon. This action replaces queen order.
+	action_icon_state = "queen_order"
+	mechanics_text = "Announces a message to the hive."
 	plasma_cost = 50
 	keybind_signal = COMSIG_XENOABILITY_QUEEN_HIVE_MESSAGE
 	use_state_flags = XACT_USE_LYING
 
 /datum/action/xeno_action/hive_message/action_activate()
-	var/mob/living/carbon/xenomorph/queen/X = owner
-	if(!X.check_concious_state())
+	var/mob/living/carbon/xenomorph/queen/xeno = owner
+	if(!xeno.check_concious_state())
 		return
 
-	var/input = stripped_multiline_input(src, "This message will be broadcast throughout the hive.", "Hive Message", "")
+	var/input = stripped_multiline_input(xeno, "This message will be broadcast throughout the hive.", "Hive Message", "")
 	if(!input)
 		return
 
 	if(CHAT_FILTER_CHECK(input))
-		to_chat(src, "<span class='warning'>That announcement contained a word prohibited in IC chat! Consider reviewing the server rules.\n<span replaceRegex='show_filtered_ic_chat'>\"[input]\"</span></span>")
+		to_chat(xeno, "<span class='warning'>That announcement contained a word prohibited in IC chat! Consider reviewing the server rules.\n<span replaceRegex='show_filtered_ic_chat'>\"[input]\"</span></span>")
 		SSblackbox.record_feedback(FEEDBACK_TALLY, "ic_blocked_words", 1, lowertext(config.ic_filter_regex.match))
 		return FALSE
 	
 	var/queensWord = "<br><h2 class='alert'>The words of the queen reverberate in your head...</h2>"
-	queensWord += "<br><span class='alert'>[input]</span><br>"
-	queensWord += "<br>"
+	queensWord += "<br><span class='alert'>[input]</span><br><br>"
 
-	INVOKE_ASYNC(src, X/proc/do_hive_message, queensWord)
+	INVOKE_ASYNC(xeno, /mob/living/carbon/xenomorph/queen/proc/do_hive_message, queensWord)
 
 /mob/living/carbon/xenomorph/queen/proc/do_hive_message(queensWord)
 	var/sound/queen_sound = sound(get_sfx("queen"), channel = CHANNEL_ANNOUNCEMENTS)
@@ -374,6 +374,7 @@
 
 
 /datum/action/xeno_action/toggle_queen_zoom/action_activate()
+	to_chat(owner, "<span class='xenowarning'>TEST!</span>")
 	var/mob/living/carbon/xenomorph/queen/xeno = owner
 	if(xeno.do_actions)
 		return
