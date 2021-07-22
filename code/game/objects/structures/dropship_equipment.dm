@@ -832,7 +832,7 @@
 	if(ammo_equipped && ammo_equipped.ammo_count)
 		icon_state = "bomb_pylon_loaded[ammo_equipped.ammo_id]"
 		return
-	else if(ship_base)
+	if(ship_base)
 		icon_state = "bomb_pylon_installed"
 		return
 icon_state = "bomb_pylon"
