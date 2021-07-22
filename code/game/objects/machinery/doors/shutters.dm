@@ -3,6 +3,7 @@
 	icon = 'icons/obj/doors/rapid_pdoor.dmi'
 	icon_state = "shutter1"
 	power_channel = ENVIRON
+	resistance_flags = DROPSHIP_IMMUNE
 
 /obj/machinery/door/poddoor/shutters/Initialize()
 	. = ..()
@@ -112,7 +113,7 @@
 	name = "Transit shutters"
 	desc = "Safety shutters to prevent dangerous depressurization during flight"
 	icon = 'icons/obj/doors/mainship/blastdoors_shutters.dmi'
-	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
+	resistance_flags = UNACIDABLE|INDESTRUCTIBLE|DROPSHIP_IMMUNE
 	id = "ghhjmugggggtgggbg" // do not have any button or thing have an ID assigned to this, it is a very bad idea.
 
 
@@ -142,24 +143,24 @@
 
 
 /obj/machinery/door/poddoor/shutters/mainship/open/indestructible
-	resistance_flags = RESIST_ALL
+	resistance_flags = RESIST_ALL|DROPSHIP_IMMUNE
 
 
 /obj/machinery/door/poddoor/shutters/transit/open
 	density = FALSE
 	opacity = FALSE
-	resistance_flags = RESIST_ALL
+	resistance_flags = RESIST_ALL|DROPSHIP_IMMUNE
 	layer = PODDOOR_OPEN_LAYER
 	icon_state = "shutter0"
 
 /obj/machinery/door/poddoor/shutters/barren
-	resistance_flags = UNACIDABLE
+	resistance_flags = UNACIDABLE|DROPSHIP_IMMUNE
 
 /obj/machinery/door/poddoor/shutters/mainship/pressure
 	name = "pressure shutters"
 	density = FALSE
 	opacity = FALSE
-	resistance_flags = RESIST_ALL
+	resistance_flags = RESIST_ALL|DROPSHIP_IMMUNE
 	icon_state = "shutter0"
 	open_layer = PODDOOR_CLOSED_LAYER
 	closed_layer = PODDOOR_CLOSED_LAYER

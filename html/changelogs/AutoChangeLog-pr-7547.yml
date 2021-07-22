@@ -1,4 +1,4 @@
 author: "BraveMole"
 delete-after: True
 changes: 
-  - bugfix: "Rebel have their own comms"
+  - qol: "Keybind for minimap"

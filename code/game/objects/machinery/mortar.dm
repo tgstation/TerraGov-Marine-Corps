@@ -247,6 +247,9 @@
 	. = ..()
 	AddElement(/datum/element/deployable_item, /obj/machinery/deployable/mortar, 5 SECONDS)
 
+/obj/item/mortar_kit/attack_self(mob/user)
+	unique_action(user)
+
 /obj/item/mortar_kit/unique_action(mob/user)
 	var/area/current_area = get_area(src)
 	if(current_area.ceiling >= CEILING_METAL)
