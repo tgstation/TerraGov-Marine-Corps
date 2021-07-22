@@ -60,7 +60,7 @@
 	desc = "Designed for mounting on the Jaeger Combat Exoskeleton. Has a variety of chemicals it can inject, as well as automatically securing the bones and body of the wearer, to minimize the impact of broken bones or mangled limbs in the field. Will definitely impact mobility."
 	icon_state = "mod_autodoc_icon"
 	item_state = "mod_autodoc"
-	slowdown = 0.3
+	slowdown = 0.25
 
 /obj/item/armor_module/attachable/valkyrie_autodoc/do_attach(mob/living/user, obj/item/clothing/suit/modular/parent)
 	. = ..()
