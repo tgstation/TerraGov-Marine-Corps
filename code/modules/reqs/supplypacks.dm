@@ -475,6 +475,12 @@ AMMO
 	cost = 3
 	available_against_xeno_only = TRUE
 
+/datum/supply_packs/ammo/mateba_packet
+	name = "Mateba packet"
+	contains = list(/obj/item/ammo_magazine/packet/mateba)
+	cost = 12
+	available_against_xeno_only = TRUE
+
 /datum/supply_packs/ammo/incendiaryslugs
 	name = "Box of Incendiary Slugs"
 	contains = list(/obj/item/ammo_magazine/shotgun/incendiary)
@@ -525,7 +531,7 @@ AMMO
 /datum/supply_packs/ammo/rpg_regular
 	name = "T-152 RPG HE rocket"
 	contains = list(/obj/item/ammo_magazine/rocket/sadar)
-	cost = 7
+	cost = 6
 	available_against_xeno_only = TRUE
 
 /datum/supply_packs/ammo/rpg_ap
@@ -537,7 +543,7 @@ AMMO
 /datum/supply_packs/ammo/rpg_wp
 	name = "T-152 RPG WP rocket"
 	contains = list(/obj/item/ammo_magazine/rocket/sadar/wp)
-	cost = 7
+	cost = 5
 	available_against_xeno_only = TRUE
 
 /datum/supply_packs/ammo/thermobaric
