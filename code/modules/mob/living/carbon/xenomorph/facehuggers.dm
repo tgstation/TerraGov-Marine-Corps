@@ -687,7 +687,7 @@
 /obj/item/clothing/mask/facehugger/combat
 	sterile = TRUE
 	combat_hugger = TRUE
-	flags_equip_slot = 0
+	flags_equip_slot = NONE
 
 
 /obj/item/clothing/mask/facehugger/combat/neuro
