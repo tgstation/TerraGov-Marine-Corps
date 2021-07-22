@@ -824,7 +824,7 @@ ARMOR
 	cost = 12
 
 /datum/supply_packs/armor/modular/attachments/mimir_environment_protection
-	name = "Jaeger mimir module"
+	name = "Jaeger Mark 2 Mimir module bundle"
 	contains = list(
 		/obj/item/armor_module/attachable/mimir_environment_protection,
 		/obj/item/helmet_module/attachable/mimir_environment_protection,
