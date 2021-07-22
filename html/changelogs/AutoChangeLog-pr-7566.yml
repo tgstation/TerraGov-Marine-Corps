@@ -1,0 +1,4 @@
+author: "lbnesquik"
+delete-after: True
+changes: 
+  - expansion: "Allow the AI to access cryo cells."
