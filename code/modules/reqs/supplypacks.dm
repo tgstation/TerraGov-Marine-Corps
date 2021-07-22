@@ -79,6 +79,7 @@ OPERATIONS
 	name = "flare packs"
 	contains = list(/obj/item/storage/box/m94)
 	cost = 1
+
 /datum/supply_packs/operations/tarps
 	name = "V1 thermal-dampening tarp"
 	contains = list(/obj/item/bodybag/tarp)
@@ -89,35 +90,6 @@ OPERATIONS
 	name = "3 Deployable Cameras"
 	contains = list(/obj/item/deployable_camera)
 	cost = 2
-
-/datum/supply_packs/operations/exportpad
-	name = "ASRS Bluespace Export Point"
-	contains = list(/obj/machinery/exportpad)
-	cost = 50
-
-/datum/supply_packs/operations/alpha
-	name = "Alpha Supply Crate"
-	contains = list(/obj/structure/closet/crate/alpha)
-	cost = 5
-	containertype = null
-
-/datum/supply_packs/operations/bravo
-	name = "Bravo Supply Crate"
-	contains = list(/obj/structure/closet/crate/bravo)
-	cost = 5
-	containertype = null
-
-/datum/supply_packs/operations/charlie
-	name = "Charlie Supply Crate"
-	contains = list(/obj/structure/closet/crate/charlie)
-	cost = 5
-	containertype = null
-
-/datum/supply_packs/operations/delta
-	name = "Delta Supply Crate"
-	contains = list(/obj/structure/closet/crate/delta)
-	cost = 5
-	containertype = null
 
 /datum/supply_packs/operations/warhead_cluster
 	name = "Cluster orbital warhead"
@@ -204,7 +176,7 @@ WEAPONS
 	cost = 60
 
 /datum/supply_packs/weapons/recoillesskit
-	name = "Recoilless rifle kit"
+	name = "T-160 Recoilless rifle kit"
 	contains = list(/obj/item/storage/box/recoilless_system)
 	cost = 40
 	available_against_xeno_only = TRUE
@@ -222,13 +194,13 @@ WEAPONS
 	available_against_xeno_only = TRUE
 
 /datum/supply_packs/weapons/thermobaric
-	name = "T-57 Thermobaric"
+	name = "T-57 Thermobaric Launcher"
 	contains = list(/obj/item/weapon/gun/launcher/rocket/m57a4/t57)
 	cost = 50
 	available_against_xeno_only = TRUE
 
 /datum/supply_packs/weapons/specdemo
-	name = "Demolitionist Specialist kit"
+	name = "T-152 SADAR Rocket Launcher"
 	contains = list(/obj/item/weapon/gun/launcher/rocket/sadar)
 	cost = SADAR_PRICE
 	available_against_xeno_only = TRUE
@@ -257,7 +229,7 @@ WEAPONS
 	cost = 40
 
 /datum/supply_packs/weapons/smartrifle
-	name = "T-26 Smart Rifle"
+	name = "T-25 Smart Rifle"
 	contains = list(/obj/item/weapon/gun/rifle/standard_smartrifle)
 	cost = 40
 
@@ -267,7 +239,7 @@ WEAPONS
 	cost = 15
 
 /datum/supply_packs/weapons/rpgoneuse
-	name = "T-72 RPG"
+	name = "T-72 Disposable RPG"
 	contains = list(/obj/item/weapon/gun/launcher/rocket/oneuse)
 	cost = 5
 	available_against_xeno_only = TRUE
@@ -286,7 +258,7 @@ WEAPONS
 	cost = 15
 
 /datum/supply_packs/weapons/explosives_razor
-	name = "RB grenade box crate"
+	name = "Razorburn grenade box crate"
 	notes = "Containers 20 razor burns"
 	contains = list(/obj/item/storage/box/visual/grenade/razorburn)
 	cost = 50
@@ -512,7 +484,7 @@ AMMO
 	available_against_xeno_only = TRUE
 
 /datum/supply_packs/ammo/antimaterial
-	name = "T-26 magazine"
+	name = "T-26 AMR magazine"
 	contains = list(/obj/item/ammo_magazine/sniper)
 	cost = 5
 	available_against_xeno_only = TRUE
@@ -529,25 +501,25 @@ AMMO
 	available_against_xeno_only = TRUE
 
 /datum/supply_packs/ammo/rpg_regular
-	name = "T-152 RPG HE rocket"
+	name = "T-152 SADAR HE rocket"
 	contains = list(/obj/item/ammo_magazine/rocket/sadar)
 	cost = 6
 	available_against_xeno_only = TRUE
 
 /datum/supply_packs/ammo/rpg_ap
-	name = "T-152 RPG AP rocket"
+	name = "T-152 SADAR AP rocket"
 	contains = list(/obj/item/ammo_magazine/rocket/sadar/ap)
 	cost = 7
 	available_against_xeno_only = TRUE
 
 /datum/supply_packs/ammo/rpg_wp
-	name = "T-152 RPG WP rocket"
+	name = "T-152 SADAR WP rocket"
 	contains = list(/obj/item/ammo_magazine/rocket/sadar/wp)
 	cost = 5
 	available_against_xeno_only = TRUE
 
 /datum/supply_packs/ammo/thermobaric
-	name = "T-57 WP rocket array"
+	name = "T-57 Thermobaric WP rocket array"
 	contains = list(/obj/item/ammo_magazine/rocket/m57a4)
 	cost = 5
 	available_against_xeno_only = TRUE
@@ -803,37 +775,38 @@ ARMOR
 	cost = 10
 
 /datum/supply_packs/armor/modular/attachments/valkyrie_autodoc
-	name = "Jaeger valkyrie modules"
+	name = "Jaeger Valkyrie autodoc module"
 	contains = list(
 		/obj/item/armor_module/attachable/valkyrie_autodoc,
 	)
 	cost = 12
 
 /datum/supply_packs/armor/modular/attachments/fire_proof
-	name = "Jaeger surt modules"
+	name = "Jaeger Surt fireproof module"
 	contains = list(
 		/obj/item/armor_module/attachable/fire_proof,
 	)
 	cost = 12
 
 /datum/supply_packs/armor/modular/attachments/tyr_extra_armor
-	name = "Jaeger tyr mark 2 modules"
+	name = "Jaeger Tyr mark 2 module"
 	contains = list(
 		/obj/item/armor_module/attachable/tyr_extra_armor,
 	)
 	cost = 12
 
 /datum/supply_packs/armor/modular/attachments/mimir_environment_protection
-	name = "Jaeger mimir module"
+	name = "Jaeger Mimir mark 2 module"
 	contains = list(
 		/obj/item/armor_module/attachable/mimir_environment_protection,
 	)
 	cost = 12
 
 /datum/supply_packs/armor/modular/attachments/mimir_helmet_protection
-	name = "Jaeger helmet mimir module"
+	name = "Jaeger helmet mimir mark 2 module"
 	contains = list(/obj/item/helmet_module/attachable/mimir_environment_protection)
 	cost = 5
+
 /datum/supply_packs/armor/modular/attachments/generic_helmet_modules
 	name = "Generic Jaeger helmet modules"
 	contains = list(
@@ -845,6 +818,7 @@ ARMOR
 		/obj/item/helmet_module/antenna,
 	)
 	cost = 5
+
 /datum/supply_packs/armor/modular/attachments/hlin_bombimmune
 	name = "Jaeger Hlin module"
 	contains = list(/obj/item/armor_module/attachable/hlin_explosive_armor)
