@@ -30,17 +30,19 @@
 // ***************************************
 // *********** Hive message
 // ***************************************
-/mob/living/carbon/xenomorph/queen/proc/hive_Message()
-	set category = "Alien"
-	set name = "Word of the Queen (50)"
-	set desc = "Send a message to all aliens in the hive that is big and visible"
-	if(!check_plasma(50))
+/datum/action/xeno_action/hive_message
+	name = "Hive Message" // Also known as Word of Queen.
+	action_icon_state = "queen_order" // Reusing Queen Order icon. This action replaces queen order.
+	plasma_cost = 50
+	keybind_signal = COMSIG_XENOABILITY_QUEEN_HIVE_MESSAGE
+	use_state_flags = XACT_USE_LYING
+
+/datum/action/xeno_action/hive_message/action_activate()
+	var/mob/living/carbon/xenomorph/queen/X = owner
+	if(!X.check_concious_state())
 		return
-	plasma_stored -= 50
-	if(health <= 0)
-		to_chat(src, "<span class='warning'>We can't do that while unconcious.</span>")
-		return 0
-	var/input = stripped_multiline_input(src, "This message will be broadcast throughout the hive.", "Word of the Queen", "")
+
+	var/input = stripped_multiline_input(src, "This message will be broadcast throughout the hive.", "Hive Message", "")
 	if(!input)
 		return
 
@@ -48,14 +50,15 @@
 		to_chat(src, "<span class='warning'>That announcement contained a word prohibited in IC chat! Consider reviewing the server rules.\n<span replaceRegex='show_filtered_ic_chat'>\"[input]\"</span></span>")
 		SSblackbox.record_feedback(FEEDBACK_TALLY, "ic_blocked_words", 1, lowertext(config.ic_filter_regex.match))
 		return FALSE
-
+	
 	var/queensWord = "<br><h2 class='alert'>The words of the queen reverberate in your head...</h2>"
 	queensWord += "<br><span class='alert'>[input]</span><br>"
+	queensWord += "<br>"
 
-	INVOKE_ASYNC(src, .proc/do_hive_message, queensWord)
+	INVOKE_ASYNC(src, X/proc/do_hive_message, queensWord)
 
 /mob/living/carbon/xenomorph/queen/proc/do_hive_message(queensWord)
-	var/sound/queen_sound = sound(get_sfx("queen"), wait = 0,volume = 50, channel = CHANNEL_ANNOUNCEMENTS)
+	var/sound/queen_sound = sound(get_sfx("queen"), channel = CHANNEL_ANNOUNCEMENTS)
 	if(SSticker?.mode)
 		hive.xeno_message("[queensWord]")
 		for(var/i in hive.get_watchable_xenos())
@@ -67,8 +70,8 @@
 		SEND_SOUND(G, queen_sound)
 		to_chat(G, "[queensWord]")
 
-	log_game("[key_name(src)] has created a Word of the Queen report: [queensWord]")
-	message_admins("[ADMIN_TPMONTY(src)] has created a Word of the Queen report.")
+	log_game("[key_name(src)] has created a Hive Message: [queensWord]")
+	message_admins("[ADMIN_TPMONTY(src)] has created a Hive Message.")
 
 // ***************************************
 // *********** Slashing permissions
@@ -582,7 +585,6 @@
 	name = "Give Order"
 	action_icon_state = "queen_order"
 	plasma_cost = 100
-	keybind_signal = COMSIG_XENOABILITY_QUEEN_GIVE_ORDER
 	use_state_flags = XACT_USE_LYING
 
 /datum/action/xeno_action/queen_order/action_activate()
