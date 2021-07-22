@@ -24,6 +24,11 @@
 		var/mob/living/carbon/C = L
 		if(C.losebreath > 10)
 			C.set_Losebreath(10)
+		if(C.stat == UNCONSCIOUS)
+			C.adjustFireLoss(-0.5*effect_str)
+			C.adjustBruteLoss(-0.5*effect_str)
+			C.adjustToxLoss(-0.5*effect_str)
+			C.adjustOxyLoss(-0.5*effect_str)
 	return ..()
 
 /datum/reagent/medicine/inaprovaline/overdose_process(mob/living/L, metabolism)
