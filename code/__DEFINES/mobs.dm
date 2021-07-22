@@ -570,7 +570,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define DEFILER_REAGENT_SLASH_INJECT_AMOUNT 4
 #define DEFILER_REAGENT_SLASH_DURATION 4 SECONDS
 #define DEFILER_TRANSVITOX_CAP 180 //Max toxin damage transvitox will allow
-#define DEFILER_DEFILE_CHANNEL_TIME 0.3 SECONDS //Wind up time for the Defile ability
+#define DEFILER_DEFILE_CHANNEL_TIME 0.5 SECONDS //Wind up time for the Defile ability
 #define DEFILER_DEFILE_FAIL_COOLDOWN 5 SECONDS //Time Defile goes on cooldown for when it fails
 #define DEFILER_DEFILE_STRENGTH_MULTIPLIER 0.5 //Base multiplier for determining the power of Defile
 #define DEFILER_DEFILE_BASE_POWER 30 //Base power of Defile; not multiplied
