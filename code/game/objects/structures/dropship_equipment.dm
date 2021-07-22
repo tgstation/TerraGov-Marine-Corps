@@ -834,6 +834,7 @@
 		return
 	else if(ship_base)
 		icon_state = "bomb_pylon_installed"
+		return
 	else
 		icon_state = "bomb_pylon"
 
