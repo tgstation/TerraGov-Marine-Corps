@@ -2,7 +2,7 @@
 /datum/emergency_call/clf
 	name = "CLF Cell"
 	base_probability = 20
-	alignement_factor = -1
+	alignement_factor = 0
 
 
 /datum/emergency_call/clf/print_backstory(mob/living/carbon/human/H)
