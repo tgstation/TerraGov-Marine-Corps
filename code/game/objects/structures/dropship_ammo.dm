@@ -362,7 +362,7 @@
 
 /obj/structure/ship_ammo/minirocket/smoke
 	name = "smoke mini rocket stack"
-	desc = "A pack of laser guided cloaking smoke mini rockets."
+	desc = "A pack of laser guided screening smoke mini rockets."
 	icon_state = "minirocket_smoke"
 	point_cost = 25
 
