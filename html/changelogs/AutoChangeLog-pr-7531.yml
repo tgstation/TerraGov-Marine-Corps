@@ -1,0 +1,5 @@
+author: "InterroLouis"
+delete-after: True
+changes: 
+  - rscadd: "Mateba ammo packets now available in req."
+  - balance: "Revolver ammo packets have one less bullet."
