@@ -51,7 +51,7 @@ GLOBAL_LIST_INIT(defile_purge_list, typecacheof(list(
 	var/mob/living/carbon/living_target = A
 	X.face_atom(living_target)
 	if(!do_after(X, DEFILER_DEFILE_CHANNEL_TIME, TRUE, living_target, BUSY_ICON_HOSTILE))
-		add_cooldown(DEFILER_FAIL_COOLDOWN)
+		add_cooldown(DEFILER_DEFILE_FAIL_COOLDOWN)
 		return fail_activate()
 	if(!can_use_ability(A))
 		return fail_activate()
