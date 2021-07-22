@@ -444,3 +444,6 @@
   - bugfix: Fixes issue where light neurotoxin wasn't being reported by Xeno Toxin
       HUD.
   - qol: HUD elements for high concentrations of xeno toxins (more than 10U) now blink.
+2021-07-22:
+  InterroLouis:
+  - bugfix: Triumph shuttle has appropriate intercoms.
