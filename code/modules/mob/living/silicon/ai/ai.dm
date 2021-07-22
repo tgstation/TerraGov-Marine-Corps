@@ -1,3 +1,4 @@
+///This elevator serves me alone. I have complete control over this entire level. With cameras as my eyes and nodes as my hands, I rule here, insect.
 /mob/living/silicon/ai
 	name = "ARES v3.2"
 	real_name = "ARES v3.2"
@@ -119,12 +120,12 @@
 /mob/living/silicon/ai/proc/receive_laser_ob(datum/source, obj/effect/overlay/temp/laser_target/OB/incoming_laser)
 	SIGNAL_HANDLER
 	to_chat(src, "<span class='notice'>Orbital Bombardment laser detected. Target: [AREACOORD_NO_Z(incoming_laser)] </span>")
-	playsound(src, 'sound/effects/binoctarget.ogg', 15)
+	playsound_local(src, 'sound/effects/binoctarget.ogg', 15)
 
 /mob/living/silicon/ai/proc/receive_laser_cas(datum/source, obj/effect/overlay/temp/laser_target/cas/incoming_laser)
 	SIGNAL_HANDLER
 	to_chat(src, "<span class='notice'>CAS laser detected. Target: [AREACOORD_NO_Z(src)]</span>")
-	playsound(src, 'sound/effects/binoctarget.ogg', 15)
+	playsound_local(src, 'sound/effects/binoctarget.ogg', 15)
 
 /mob/living/silicon/ai/restrained(ignore_checks)
 	return FALSE
