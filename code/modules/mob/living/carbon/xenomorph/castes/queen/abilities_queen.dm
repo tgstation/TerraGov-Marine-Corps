@@ -374,7 +374,6 @@
 
 
 /datum/action/xeno_action/toggle_queen_zoom/action_activate()
-	to_chat(owner, "<span class='xenowarning'>TEST!</span>")
 	var/mob/living/carbon/xenomorph/queen/xeno = owner
 	if(xeno.do_actions)
 		return
