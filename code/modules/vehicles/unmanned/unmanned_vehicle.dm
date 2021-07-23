@@ -136,10 +136,10 @@
 	if(!ispath(turret_path, ammo.gun_type))
 		to_chat(user, span_warning("This is not the right ammo!"))
 		return
-	user.visible_message(span_notice("[user] starts to reload [src] with [ammo].", span_notice("You start to reload [src] with [ammo].")
+	user.visible_message(span_notice("[user] starts to reload [src] with [ammo]."), span_notice("You start to reload [src] with [ammo]."))
 	if(!do_after(user, 3 SECONDS, TRUE, src))
 		return
-	user.visible_message(span_notice("[user] reloads [src] with [ammo].", span_notice("You reload [src] with [ammo]."))
+	user.visible_message(span_notice("[user] reloads [src] with [ammo]."), span_notice("You reload [src] with [ammo]."))
 	current_rounds = min(current_rounds + ammo.current_rounds, max_rounds)
 	playsound(loc, 'sound/weapons/guns/interact/smartgun_unload.ogg', 25, 1)
 	qdel(ammo)
