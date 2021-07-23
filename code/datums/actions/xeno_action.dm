@@ -23,6 +23,7 @@
 	cooldown_image = image('icons/effects/progressicons.dmi', null, "busy_clock")
 	cooldown_image.pixel_y = 7
 	cooldown_image.appearance_flags = RESET_COLOR|RESET_ALPHA
+	RegisterSignal(button, COMSIG_CLICK_RIGHT, .proc/alternate_keybind_action)
 
 /datum/action/xeno_action/give_action(mob/living/L)
 	. = ..()
