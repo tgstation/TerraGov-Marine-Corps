@@ -790,7 +790,25 @@
 		else
 			icon_state = "laser_beam"
 
+/obj/structure/dropship_equipment/weapon/railgun
+	name = "railgun"
+	icon_state = "laser_beam"
+	desc = "The pinnacle of technological development of TGMC, airborne railgun, it drives shells to insane speed by power stored in capacitor unit. Moving this will require some sort of lifter."
+	icon = 'icons/Marine/mainship_props64.dmi'
+	firing_sound = 'sound/effects/obfire.ogg'
+	firing_delay = 300 //30 seconds
+	point_cost = 800
+	dropship_equipment_flags = USES_AMMO|IS_WEAPON|IS_INTERACTABLE
+	ammo_type_used = CAS_RAILGUN
 
+/obj/structure/dropship_equipment/weapon/railgun/update_icon()
+	if(ammo_equipped && ammo_equipped.ammo_count)
+		icon_state = "laser_beam_loaded"
+	else
+		if(ship_base)
+			icon_state = "laser_beam_installed"
+		else
+			icon_state = "laser_beam"
 
 /obj/structure/dropship_equipment/weapon/launch_bay
 	name = "launch bay"
