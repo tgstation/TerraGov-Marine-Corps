@@ -32,7 +32,7 @@
 ///Turns the roomba around when it leaves an area to make sure it doesnt wander off
 /obj/machinery/roomba/proc/turn_around(datum/target)
 	SIGNAL_HANDLER
-	visible_message("<span class='warning'>The [src] beeps angrily as it is moved out of it's designated area!</span>")
+	visible_message(span_warning("The [src] beeps angrily as it is moved out of it's designated area!"))
 	step_to(src, get_step(src,REVERSE_DIR(dir)))
 
 /obj/machinery/roomba/process()
@@ -55,7 +55,7 @@
 	if(++stuck_counter <= 3)
 		step_to(src, get_step(src, turn(dir, pick(90, -90))))
 		return
-	visible_message("<span class='warning'>The [src] beeps angrily as it get stuck!</span>")
+	visible_message(span_warning("The [src] beeps angrily as it get stuck!"))
 	stop_processing()
 	addtimer(CALLBACK(src, .proc/reactivate), 20 SECONDS)
 
@@ -78,20 +78,20 @@
 
 /obj/machinery/roomba/attack_hand(mob/living/user)
 	. = ..()
-	visible_message("<span class='notice'>[user] lovingly pats the [src].</span>", "<span class='notice'>You lovingly pat the [src].</span>")
+	visible_message(span_notice("[user] lovingly pats the [src]."), span_notice("You lovingly pat the [src]."))
 
 /obj/machinery/roomba/attackby(obj/item/I, mob/living/user, def_zone)
 	if(!allow_claymore)
 		return
 	if(!istype(I, /obj/item/explosive/mine) || claymore)
 		return
-	visible_message("<span class='warning'>[user] begins to try to attach [I] to [src]...</span>")
+	visible_message(span_warning("[user] begins to try to attach [I] to [src]..."))
 	stop_processing()
 	if(!do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_HOSTILE))
 		start_processing()
 		return
 	start_processing()
-	visible_message("<span class='warning'>[user] slams [I]'s prongs through [src]!</span>")
+	visible_message(span_warning("[user] slams [I]'s prongs through [src]!"))
 	log_game("[user] has armed [src] with a claymore at [AREACOORD(src)]")
 	user.temporarilyRemoveItemFromInventory(I)
 	I.forceMove(src)

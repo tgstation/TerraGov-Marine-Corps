@@ -37,7 +37,7 @@
 /obj/structure/cocoon/examine(mob/user, distance, infix, suffix)
 	. = ..()
 	if(anchored && victim && ishuman(user))
-		to_chat(user, "<span class='notice'>There seems to be someone inside it. You think you can open it with a sharp object.</span>")
+		to_chat(user, span_notice("There seems to be someone inside it. You think you can open it with a sharp object."))
 
 /obj/structure/cocoon/process()
 	SSpoints.add_psy_points(hivenumber, psych_points_output)

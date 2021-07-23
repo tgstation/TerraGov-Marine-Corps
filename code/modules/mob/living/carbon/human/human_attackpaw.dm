@@ -7,7 +7,7 @@
 			return
 
 		user.do_attack_animation(src, ATTACK_EFFECT_BITE)
-		visible_message("<span class='danger'>[user] has bit [src]!</span>", null, null, 5)
+		visible_message(span_danger("[user] has bit [src]!"), null, null, 5)
 		var/damage = rand(1, 3)
 		var/dam_zone = pick("chest", "l_hand", "r_hand", "l_leg", "r_leg")
 		var/datum/limb/affecting = get_limb(ran_zone(dam_zone))

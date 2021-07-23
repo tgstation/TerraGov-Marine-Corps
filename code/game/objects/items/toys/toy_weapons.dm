@@ -28,17 +28,17 @@
 
 		if (istype(A, /obj/item/toy/gun_ammo))
 			if (src.bullets >= 7)
-				to_chat(user, "<span class='notice'>It's already fully loaded!</span>")
+				to_chat(user, span_notice("It's already fully loaded!"))
 				return 1
 			if (A.amount_left <= 0)
-				to_chat(user, "<span class='warning'>There is no more caps!</span>")
+				to_chat(user, span_warning("There is no more caps!"))
 				return 1
 			if (A.amount_left < (7 - bullets))
 				src.bullets += A.amount_left
-				to_chat(user, "<span class='warning'>You reload [A.amount_left] caps\s!</span>")
+				to_chat(user, span_warning("You reload [A.amount_left] caps\s!"))
 				A.amount_left = 0
 			else
-				to_chat(user, "<span class='warning'>You reload [7 - bullets] caps\s!</span>")
+				to_chat(user, span_warning("You reload [7 - bullets] caps\s!"))
 				A.amount_left -= 7 - bullets
 				bullets = 7
 			A.update_icon()
@@ -50,12 +50,12 @@
 		if (flag)
 			return
 		if (src.bullets < 1)
-			user.show_message("<span class='warning'> *click* *click*</span>", 2)
+			user.show_message(span_warning(" *click* *click*"), 2)
 			playsound(user, 'sound/weapons/guns/fire/empty.ogg', 15, 1)
 			return
 		playsound(user, 'sound/weapons/guns/fire/gunshot.ogg', 15, 1)
 		src.bullets--
-		visible_message("<span class='danger'>[user] fires a cap gun at [target]!</span>", null, "<span class='warning'> You hear a gunshot</span>")
+		visible_message(span_danger("[user] fires a cap gun at [target]!"), null, span_warning(" You hear a gunshot"))
 
 /obj/item/toy/gun_ammo
 	name = "ammo-caps"
@@ -88,7 +88,7 @@
 	examine(mob/user)
 		..()
 		if (bullets)
-			to_chat(user, "<span class='notice'>It is loaded with [bullets] foam darts!</span>")
+			to_chat(user, span_notice("It is loaded with [bullets] foam darts!"))
 
 	attackby(obj/item/I as obj, mob/user as mob)
 		if(istype(I, /obj/item/toy/crossbow_ammo))
@@ -96,9 +96,9 @@
 				if(user.drop_held_item())
 					qdel(I)
 					bullets++
-					to_chat(user, "<span class='notice'>You load the foam dart into the crossbow.</span>")
+					to_chat(user, span_notice("You load the foam dart into the crossbow."))
 			else
-				to_chat(usr, "<span class='warning'>It's already fully loaded.</span>")
+				to_chat(usr, span_warning("It's already fully loaded."))
 
 
 	afterattack(atom/target as mob|obj|turf|area, mob/user as mob, flag)
@@ -123,7 +123,7 @@
 					for(var/mob/living/M in D.loc)
 						if(!istype(M,/mob/living)) continue
 						if(M == user) continue
-						visible_message("<span class='warning'>[M] was hit by the foam dart!</span>", visible_message_flags = COMBAT_MESSAGE)
+						visible_message(span_warning("[M] was hit by the foam dart!"), visible_message_flags = COMBAT_MESSAGE)
 						new /obj/item/toy/crossbow_ammo(M.loc)
 						qdel(D)
 						return
@@ -145,7 +145,7 @@
 		else if(!bullets && isliving(user))
 			var/mob/living/L = user
 			L.Paralyze(10 SECONDS)
-			visible_message("<span class='warning'>[user] realized they were out of ammo and starting scrounging for some!</span>")
+			visible_message(span_warning("[user] realized they were out of ammo and starting scrounging for some!"))
 
 
 	attack(mob/M as mob, mob/user as mob)
@@ -153,15 +153,15 @@
 // ******* Check
 
 		if (bullets > 0 && M.lying_angle)
-			visible_message("<span class='danger'>[user] casually lines up a shot with [M]'s head and pulls the trigger!</span>", null, "<span class='warning'>You hear the sound of foam against skull</span>")
-			visible_message("<span class='warning'>[M] was hit in the head by the foam dart!</span>")
+			visible_message(span_danger("[user] casually lines up a shot with [M]'s head and pulls the trigger!"), null, span_warning("You hear the sound of foam against skull"))
+			visible_message(span_warning("[M] was hit in the head by the foam dart!"))
 
 			playsound(user.loc, 'sound/items/syringeproj.ogg', 15, 1)
 			new /obj/item/toy/crossbow_ammo(M.loc)
 			src.bullets--
 		else if(M.lying_angle && !bullets && isliving(M))
 			var/mob/living/L = M
-			L.visible_message("<span class='danger'>[user] casually lines up a shot with [L]'s head, pulls the trigger, then realizes they are out of ammo and drops to the floor in search of some!</span>")
+			L.visible_message(span_danger("[user] casually lines up a shot with [L]'s head, pulls the trigger, then realizes they are out of ammo and drops to the floor in search of some!"))
 			L.Paralyze(10 SECONDS)
 		return
 
@@ -196,13 +196,13 @@
 	attack_self(mob/user as mob)
 		src.active = !( src.active )
 		if (src.active)
-			to_chat(user, "<span class='notice'>You extend the plastic blade with a quick flick of your wrist.</span>")
+			to_chat(user, span_notice("You extend the plastic blade with a quick flick of your wrist."))
 			playsound(user, 'sound/weapons/saberon.ogg', 15, 1)
 			src.icon_state = "swordblue"
 			src.item_state = "swordblue"
 			src.w_class = WEIGHT_CLASS_BULKY
 		else
-			to_chat(user, "<span class='notice'>You push the plastic blade back down into the handle.</span>")
+			to_chat(user, span_notice("You push the plastic blade back down into the handle."))
 			playsound(user, 'sound/weapons/saberoff.ogg', 15, 1)
 			src.icon_state = "sword0"
 			src.item_state = "sword0"

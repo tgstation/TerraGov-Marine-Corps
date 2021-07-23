@@ -110,7 +110,7 @@
 	switch(action)
 		if("vend")
 			if(!allowed(usr))
-				to_chat(usr, "<span class='warning'>Access denied.</span>")
+				to_chat(usr, span_warning("Access denied."))
 				if(icon_deny)
 					flick(icon_deny, src)
 				return
@@ -122,14 +122,14 @@
 			var/cost = L[3]
 
 			if(use_points && I.marine_points < cost)
-				to_chat(usr, "<span class='warning'>Not enough points.</span>")
+				to_chat(usr, span_warning("Not enough points."))
 				if(icon_deny)
 					flick(icon_deny, src)
 				return
 
 			var/turf/T = loc
 			if(length(T.contents) > 25)
-				to_chat(usr, "<span class='warning'>The floor is too cluttered, make some space.</span>")
+				to_chat(usr, span_warning("The floor is too cluttered, make some space."))
 				if(icon_deny)
 					flick(icon_deny, src)
 				return
@@ -152,7 +152,7 @@
 					else
 						I.marine_buy_flags &= ~bitf
 				else
-					to_chat(usr, "<span class='warning'>You can't buy things from this category anymore.</span>")
+					to_chat(usr, span_warning("You can't buy things from this category anymore."))
 					return
 
 			var/obj/item/vended_item
@@ -625,21 +625,9 @@
 	vendor_role = /datum/job/terragov/squad/smartgunner
 	req_access = list(ACCESS_MARINE_SMARTPREP)
 
-	listed_products = list(
-		/obj/item/storage/box/t26_system = list(CAT_ESS, "T-26 Smartmachinegun Set", 0, "white"),
-		/obj/item/storage/box/t25_system = list(CAT_ESS, "T-25 Smartrifle Set", 0, "white"),
-
-
-		/obj/item/attachable/extended_barrel = list(CAT_ATT, "Extended barrel", 0, "orange"),
-		/obj/item/attachable/compensator = list(CAT_ATT, "Recoil compensator", 0, "black"),
-		/obj/item/attachable/magnetic_harness = list(CAT_ATT, "Magnetic harness", 0, "orange"),
-		/obj/item/attachable/reddot = list(CAT_ATT, "Red dot sight", 0, "black"),
-		/obj/item/attachable/lasersight = list(CAT_ATT, "Laser sight", 0, "black"),
-		/obj/item/attachable/verticalgrip = list(CAT_ATT, "Vertical grip", 0, "black"),
-		/obj/item/attachable/angledgrip = list(CAT_ATT, "Angled grip", 0, "orange"),
-		/obj/item/attachable/stock/t35stock = list(CAT_ATT, "T-35 stock", 0, "black"),
-		/obj/item/attachable/stock/t19stock = list(CAT_ATT, "T-19 machine pistol stock", 0, "black"),
-	)
+/obj/machinery/marine_selector/gear/smartgun/Initialize()
+	. = ..()
+	listed_products = GLOB.smartgunner_gear_listed_products
 
 /obj/machinery/marine_selector/gear/smartgun/rebel
 	req_access = list(ACCESS_MARINE_SMARTPREP_REBEL)

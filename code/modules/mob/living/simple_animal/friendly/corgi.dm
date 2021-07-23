@@ -65,7 +65,7 @@
 		if(P == src || !prob(5))
 			continue
 
-		visible_message("<span class='warning'>[src] devours [P]!</span>", \
+		visible_message(span_warning("[src] devours [P]!"), \
 		"<span class='cult big bold'>DELICIOUS SOULS</span>")
 		playsound(src, 'sound/effects/phasein.ogg', 75, TRUE)
 		P.gib()

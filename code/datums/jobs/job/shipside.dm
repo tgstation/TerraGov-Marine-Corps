@@ -37,6 +37,7 @@
 	minimap_icon = "captain"
 
 /datum/job/terragov/command/captain/rebel
+	title = REBEL_CAPTAIN
 	faction = FACTION_TERRAGOV_REBEL
 	access = ALL_MARINE_REBEL_ACCESS
 	minimal_access = ALL_MARINE_REBEL_ACCESS
@@ -124,6 +125,7 @@ Godspeed, captain! And remember, you are not above the law."})
 	minimap_icon = "fieldcommander"
 
 /datum/job/terragov/command/fieldcommander/rebel
+	title = REBEL_FIELD_COMMANDER
 	faction = FACTION_TERRAGOV_REBEL
 	access = ALL_MARINE_REBEL_ACCESS
 	minimal_access = ALL_MARINE_REBEL_ACCESS
@@ -188,7 +190,7 @@ Make the TGMC proud!"})
 //Staff Officer
 /datum/job/terragov/command/staffofficer
 	title = STAFF_OFFICER
-	paygrade = "O4"
+	paygrade = "O3"
 	comm_title = "SO"
 	total_positions = 4
 	access = list(ACCESS_MARINE_BRIDGE, ACCESS_MARINE_BRIG, ACCESS_MARINE_CARGO, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_ALPHA, ACCESS_MARINE_BRAVO, ACCESS_MARINE_CHARLIE, ACCESS_MARINE_DELTA)
@@ -215,6 +217,7 @@ Make the TGMC proud!"})
 	minimap_icon = "staffofficer"
 
 /datum/job/terragov/command/staffofficer/rebel
+	title = REBEL_STAFF_OFFICER
 	faction = FACTION_TERRAGOV_REBEL
 	access = list(ACCESS_MARINE_BRIDGE_REBEL, ACCESS_MARINE_BRIG_REBEL, ACCESS_MARINE_CARGO_REBEL, ACCESS_MARINE_DROPSHIP_REBEL, ACCESS_MARINE_LOGISTICS_REBEL, ACCESS_MARINE_ALPHA_REBEL, ACCESS_MARINE_BRAVO_REBEL, ACCESS_MARINE_CHARLIE_REBEL, ACCESS_MARINE_DELTA_REBEL)
 	minimal_access = ALL_MARINE_REBEL_ACCESS
@@ -239,7 +242,9 @@ You are in charge of logistics and the overwatch system. You are also in line to
 	if(!playtime_mins || playtime_mins < 1 )
 		return
 	switch(playtime_mins)
-		if(0 to 3000) // starting
+		if(0 to 1500) // starting
+			new_human.wear_id.paygrade = "O3"
+		if(1501 to 3000) // 25 hrs
 			new_human.wear_id.paygrade = "O4"
 		if(3001 to INFINITY) // 50 hrs
 			new_human.wear_id.paygrade = "O5"
@@ -289,6 +294,7 @@ You are in charge of logistics and the overwatch system. You are also in line to
 	"}
 
 /datum/job/terragov/command/pilot/rebel
+	title = REBEL_PILOT_OFFICER
 	faction = FACTION_TERRAGOV_REBEL
 	access = list(ACCESS_MARINE_BRIDGE_REBEL, ACCESS_MARINE_DROPSHIP_REBEL, ACCESS_MARINE_PILOT_REBEL)
 	minimal_access = list(ACCESS_MARINE_BRIDGE_REBEL, ACCESS_MARINE_DROPSHIP_REBEL, ACCESS_MARINE_PILOT_REBEL, ACCESS_MARINE_LOGISTICS_REBEL, ACCESS_MARINE_CARGO_REBEL, ACCESS_MARINE_RO_REBEL, ACCESS_MARINE_MEDBAY_REBEL)
@@ -383,6 +389,7 @@ If you are not piloting, there is an autopilot fallback for command, but don't l
 	minimap_icon = "cse"
 
 /datum/job/terragov/engineering/chief/rebel
+	title = REBEL_CHIEF_SHIP_ENGINEER
 	faction = FACTION_TERRAGOV_REBEL
 	access = list(ACCESS_MARINE_CE_REBEL, ACCESS_MARINE_ENGINEERING_REBEL, ACCESS_MARINE_BRIDGE_REBEL, ACCESS_CIVILIAN_ENGINEERING, ACCESS_MARINE_CARGO_REBEL, ACCESS_MARINE_DROPSHIP_REBEL, ACCESS_MARINE_PREP_REBEL)
 	minimal_access = list(ACCESS_MARINE_CE_REBEL, ACCESS_MARINE_ENGINEERING_REBEL, ACCESS_MARINE_BRIDGE_REBEL, ACCESS_CIVILIAN_ENGINEERING, ACCESS_MARINE_CARGO_REBEL, ACCESS_MARINE_DROPSHIP_REBEL, ACCESS_MARINE_LOGISTICS_REBEL, ACCESS_MARINE_PREP_REBEL, ACCESS_MARINE_RO_REBEL, ACCESS_MARINE_MEDBAY_REBEL)
@@ -463,6 +470,7 @@ You are also next in the chain of command, should the bridge crew fall in the li
 	"}
 
 /datum/job/terragov/engineering/tech/rebel
+	title = REBEL_SHIP_TECH
 	faction = FACTION_TERRAGOV_REBEL
 	access = list(ACCESS_MARINE_ENGINEERING_REBEL, ACCESS_MARINE_PREP_REBEL, ACCESS_MARINE_MEDBAY_REBEL, ACCESS_MARINE_CARGO_REBEL, ACCESS_CIVILIAN_ENGINEERING)
 	minimal_access = list(ACCESS_MARINE_ENGINEERING_REBEL, ACCESS_MARINE_PREP_REBEL, ACCESS_MARINE_MEDBAY_REBEL, ACCESS_MARINE_DROPSHIP_REBEL, ACCESS_MARINE_CARGO_REBEL, ACCESS_CIVILIAN_ENGINEERING)
@@ -554,6 +562,7 @@ requisitions line and later on to be ready to send supplies for marines who are 
 	"}
 
 /datum/job/terragov/requisitions/officer/rebel
+	title = REBEL_REQUISITIONS_OFFICER
 	faction = FACTION_TERRAGOV_REBEL
 	access = list(ACCESS_MARINE_DROPSHIP_REBEL, ACCESS_MARINE_CARGO_REBEL, ACCESS_MARINE_RO_REBEL, ACCESS_MARINE_BRIDGE_REBEL, ACCESS_MARINE_PREP_REBEL, ACCESS_MARINE_ALPHA_REBEL, ACCESS_MARINE_BRAVO_REBEL, ACCESS_MARINE_CHARLIE_REBEL, ACCESS_MARINE_DELTA_REBEL)
 	minimal_access = list(ACCESS_MARINE_CARGO_REBEL, ACCESS_MARINE_RO_REBEL, ACCESS_MARINE_BRIDGE_REBEL, ACCESS_MARINE_PREP_REBEL, ACCESS_MARINE_ALPHA_REBEL, ACCESS_MARINE_BRAVO_REBEL, ACCESS_MARINE_CHARLIE_REBEL, ACCESS_MARINE_DELTA_REBEL, ACCESS_MARINE_MEDBAY_REBEL, ACCESS_MARINE_DROPSHIP_REBEL, ACCESS_MARINE_LOGISTICS_REBEL)
@@ -641,10 +650,11 @@ A happy ship is a well-functioning ship."})
 		<b>You answer to the</b> acting Command Staff<br /><br />
 		<b>Unlock Requirement</b>: Starting Role<br /><br />
 		<b>Gamemode Availability</b>: Crash, Distress<br /><br /><br />
-		<b>Duty</b>: Communicate and lead your fellow medical staff (if available), supervise the medical department. Coordinate and teach fellow medical officers and corpsmen what they’re doing for treating an injury. Be the sole doctor in the Canterbury.
+		<b>Duty</b>: Communicate and lead your fellow medical staff (if available), supervise the medical department. Coordinate and teach fellow medical staff and corpsmen what they’re doing for treating an injury. Be the sole doctor in the Canterbury.
 	"}
 
 /datum/job/terragov/medical/professor/rebel
+	title = REBEL_CHIEF_MEDICAL_OFFICER
 	faction = FACTION_TERRAGOV_REBEL
 	access = list(ACCESS_MARINE_DROPSHIP_REBEL, ACCESS_MARINE_CMO_REBEL, ACCESS_MARINE_MEDBAY_REBEL, ACCESS_MARINE_RESEARCH_REBEL, ACCESS_MARINE_BRIDGE_REBEL, ACCESS_MARINE_CHEMISTRY_REBEL)
 	minimal_access = list(ACCESS_MARINE_CMO_REBEL, ACCESS_MARINE_MEDBAY_REBEL, ACCESS_MARINE_RESEARCH_REBEL, ACCESS_MARINE_BRIDGE_REBEL, ACCESS_MARINE_CHEMISTRY_REBEL, ACCESS_MARINE_CARGO_REBEL, ACCESS_MARINE_DROPSHIP_REBEL, ACCESS_MARINE_LOGISTICS_REBEL)
@@ -658,7 +668,7 @@ A happy ship is a well-functioning ship."})
 
 /datum/job/terragov/medical/professor/radio_help_message(mob/M)
 	. = ..()
-	to_chat(M, {"You are the chief medical officer aboard the [SSmapping.configs[SHIP_MAP].map_name], navy officer and supervisor to the medical department.
+	to_chat(M, {"You are the chief medical officer aboard the [SSmapping.configs[SHIP_MAP].map_name] and supervisor to the medical department.
 You have final authority over the medical department, medications, and treatments.
 Make sure that the doctors and nurses are doing their jobs and keeping the marines healthy and strong."})
 
@@ -730,6 +740,7 @@ Make sure that the doctors and nurses are doing their jobs and keeping the marin
 	"}
 
 /datum/job/terragov/medical/medicalofficer/rebel
+	title = REBEL_MEDICAL_DOCTOR
 	faction = FACTION_TERRAGOV_REBEL
 	access = list(ACCESS_MARINE_MEDBAY_REBEL, ACCESS_MARINE_CHEMISTRY_REBEL)
 	minimal_access = list(ACCESS_MARINE_MEDBAY_REBEL, ACCESS_MARINE_CHEMISTRY_REBEL, ACCESS_MARINE_CARGO_REBEL, ACCESS_MARINE_DROPSHIP_REBEL)
@@ -756,7 +767,7 @@ Make sure that the doctors and nurses are doing their jobs and keeping the marin
 
 /datum/job/terragov/medical/medicalofficer/radio_help_message(mob/M)
 	. = ..()
-	to_chat(M, {"You are a military doctor stationed aboard the [SSmapping.configs[SHIP_MAP].map_name].
+	to_chat(M, {"You are a doctor stationed aboard the [SSmapping.configs[SHIP_MAP].map_name].
 You are tasked with keeping the marines healthy and strong, usually in the form of surgery.
 You are also an expert when it comes to medication and treatment. If you do not know what you are doing, <b>mentorhelp</b> so a mentor can assist you."})
 
@@ -797,7 +808,7 @@ You are also an expert when it comes to medication and treatment. If you do not 
 	access = list(ACCESS_MARINE_MEDBAY, ACCESS_MARINE_RESEARCH, ACCESS_MARINE_CHEMISTRY)
 	minimal_access = list(ACCESS_MARINE_MEDBAY, ACCESS_MARINE_RESEARCH, ACCESS_MARINE_CHEMISTRY, ACCESS_MARINE_CARGO, ACCESS_MARINE_DROPSHIP)
 	skills_type = /datum/skills/doctor
-	display_order = JOB_DISPLAY_ORDER_MEDIAL_RESEARCHER
+	display_order = JOB_DISPLAY_ORDER_MEDICAL_RESEARCHER
 	outfit = /datum/outfit/job/medical/researcher
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_PROVIDES_SQUAD_HUD
 	jobworth = list(
@@ -814,6 +825,7 @@ You are also an expert when it comes to medication and treatment. If you do not 
 	"}
 
 /datum/job/terragov/medical/researcher/rebel
+	title = REBEL_MEDICAL_RESEARCHER
 	faction = FACTION_TERRAGOV_REBEL
 	access = list(ACCESS_MARINE_MEDBAY_REBEL, ACCESS_MARINE_RESEARCH_REBEL, ACCESS_MARINE_CHEMISTRY_REBEL)
 	minimal_access = list(ACCESS_MARINE_MEDBAY_REBEL, ACCESS_MARINE_RESEARCH_REBEL, ACCESS_MARINE_CHEMISTRY_REBEL, ACCESS_MARINE_CARGO_REBEL, ACCESS_MARINE_DROPSHIP_REBEL)
@@ -954,6 +966,7 @@ Use your office fax machine to communicate with corporate headquarters or to acq
 	"}
 
 /datum/job/terragov/silicon/synthetic/rebel
+	title = REBEL_SYNTHETIC
 	faction = FACTION_TERRAGOV_REBEL
 	outfit = /datum/outfit/job/civilian/synthetic/rebel
 	jobworth = list(
@@ -1044,6 +1057,7 @@ In addition, being a Synthetic gives you knowledge in every field and specializa
 	"}
 
 /datum/job/terragov/silicon/ai/rebel
+	title = REBEL_SILICON_AI
 	faction = FACTION_TERRAGOV_REBEL
 	jobworth = list(
 		/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE,

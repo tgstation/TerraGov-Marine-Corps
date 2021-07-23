@@ -141,7 +141,7 @@
 	if(istype(I, /obj/item/dogtag))
 		var/obj/item/dogtag/D = I
 		if(D.fallen_names)
-			to_chat(user, "<span class='notice'>You add [D] to [src].</span>")
+			to_chat(user, span_notice("You add [D] to [src]."))
 			if(!fallen_list)
 				fallen_list = list()
 			fallen_list += D.fallen_names
@@ -159,7 +159,7 @@
 				faltext += "[fallen_list[i]], "
 			else
 				faltext += fallen_list[i]
-		to_chat(user, "<span class='notice'>To our fallen soldiers:</span> <b>[faltext]</b>.")
+		to_chat(user, "[span_notice("To our fallen soldiers:")] <b>[faltext]</b>.")
 
 
 /obj/structure/prop/mainship/particle_cannon

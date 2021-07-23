@@ -1,0 +1,6 @@
+author: "BraveMole"
+delete-after: True
+changes: 
+  - bugfix: "King can use minimap"
+  - qol: "King get a new minimap icon"
+  - bugfix: "Kings can no longer be chosen to become kings"
