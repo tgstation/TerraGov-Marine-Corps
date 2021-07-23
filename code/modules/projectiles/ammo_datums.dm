@@ -563,7 +563,7 @@ datum/ammo/bullet/revolver/tp44
 	accurate_range_min = 0
 	accurate_range = 30
 	max_range = 40
-	damage = 65
+	damage = 70
 	scatter = -15
 	penetration = 15
 	sundering = 2
