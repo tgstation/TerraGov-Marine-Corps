@@ -1,8 +1,8 @@
 //Color variant defines
 #define SPEED_COLOR ""
 #define RESTING_COLOR "white"
-#define TOXIN_COLOR "green"
-#define STICKY_COLOR "red"
+#define BARBED_COLOR "red"
+#define STICKY_COLOR "green"
 
 // base weed type
 /obj/effect/alien/weeds
@@ -88,9 +88,13 @@
 		icon_state = "weed_dir[my_dir]"
 	icon_state += color_variant
 
-/obj/effect/alien/weeds/Crossed(atom/movable/AM)
+/obj/effect/alien/weeds/speed
+	name = "speed weeds"
+	desc = "A layer of oozy slime"
+
+/obj/effect/alien/weeds/speed/Crossed(atom/movable/AM)
 	. = ..()
-	if(color_variant == SPEED_COLOR && isxeno(AM))
+	if(isxeno(AM))
 		var/mob/living/carbon/xenomorph/X = AM
 		X.next_move_slowdown += X.xeno_caste.weeds_speed_mod
 
@@ -119,12 +123,12 @@
 	desc = "This looks almost comfortable."
 	color_variant = RESTING_COLOR
 
-/obj/effect/alien/weeds/toxin
-	name = "toxin weeds"
-	desc = "This reeks of disease."
-	color_variant = TOXIN_COLOR
+/obj/effect/alien/weeds/barbed
+	name = "barbed weeds"
+	desc = "This looks pointy"
+	color_variant = BARBED_COLOR
 
-/obj/effect/alien/weeds/toxins/Crossed(atom/movable/AM)
+/obj/effect/alien/weeds/barbeds/Crossed(atom/movable/AM)
 	. = ..()
 	if(!ishuman(AM))
 		return
@@ -137,7 +141,7 @@
 	if(H.lying_angle)
 		return
 
-	H.apply_damage(2, TOX)
+	H.apply_damage(3, BRUTE)
 
 // =================
 // weed wall
@@ -199,17 +203,20 @@
 	SSweeds_decay.decay_weeds(node_turfs)
 
 /obj/effect/alien/weeds/node/attack_alien(mob/living/carbon/xenomorph/X, damage_amount, damage_type, damage_flag, effects, armor_penetration, isrightclick)
+	. = ..()
 	if(X.status_flags & INCORPOREAL)
 		return FALSE
 	if(!do_after(X, 1 SECONDS, FALSE, src, BUSY_ICON_BUILD))
 		return
 	X.visible_message("<span class='danger'>\The [X] removed \the [src]!</span>", \
 		"<span class='danger'>We remove \the [src]!</span>", null, 5)
+	log_game("[X] has removed [src] at [AREACOORD(src)]")
 	take_damage(max_integrity)
 	return TRUE
 
 
-/obj/effect/alien/weeds/node/update_icon()
+/obj/effect/alien/weeds/node/update_overlays()
+
 	. = ..()
 	overlays.Cut()
 	overlays += node_icon
@@ -227,6 +234,11 @@
 	node_turfs = filled_turfs(src, 2, "square")
 	SSweeds.add_node(src)
 
+//Speed weed node
+/obj/effect/alien/weeds/node/speed
+	name = "speed weed sac"
+	desc = "A weird, pulsating purple node."
+	weed_type = /obj/effect/alien/weeds/speed
 
 //Sticky weed node
 /obj/effect/alien/weeds/node/sticky
@@ -234,7 +246,7 @@
 	desc = "A weird, pulsating red node."
 	weed_type = /obj/effect/alien/weeds/sticky
 	color_variant = STICKY_COLOR
-	node_icon = "weednodered"
+	node_icon = "weednodegreen"
 
 //Resting weed node
 /obj/effect/alien/weeds/node/resting
@@ -245,9 +257,9 @@
 	node_icon = "weednodewhite"
 
 //Toxin weed node
-/obj/effect/alien/weeds/node/toxin
-	name = "toxin weed sac"
+/obj/effect/alien/weeds/node/barbed
+	name = "barbed weed sac"
 	desc = "A weird, pulsating green node."
-	weed_type = /obj/effect/alien/weeds/toxin
-	color_variant = TOXIN_COLOR
-	node_icon = "weednodegreen"
+	weed_type = /obj/effect/alien/weeds/barbed
+	color_variant = BARBED_COLOR
+	node_icon = "weednodered"

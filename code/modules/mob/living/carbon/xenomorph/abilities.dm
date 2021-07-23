@@ -237,8 +237,11 @@
 	var/mob/living/carbon/xenomorph/X = owner
 
 	var/build_resin_modifier = 1
-	if (X.selected_resin == /obj/structure/mineral_door/resin)
-		build_resin_modifier = 3
+	switch(X.selected_resin)
+		if(/obj/effect/alien/resin/sticky)
+			build_resin_modifier = 0.5
+		if(/obj/structure/mineral_door/resin)
+			build_resin_modifier = 3
 
 	return (base_wait + scaling_wait - max(0, (scaling_wait * X.health / X.maxHealth))) * build_resin_modifier
 
@@ -331,8 +334,8 @@
 		new_resin = new X.selected_resin(T)
 
 	switch(X.selected_resin)
-		if(/obj/effect/alien/weeds/node/sticky)
-			plasma_cost = initial(plasma_cost) * 10
+		if(/obj/effect/alien/resin/sticky)
+			plasma_cost = initial(plasma_cost) / 3
 		if(/obj/structure/mineral_door/resin)
 			plasma_cost = initial(plasma_cost) * 3
 

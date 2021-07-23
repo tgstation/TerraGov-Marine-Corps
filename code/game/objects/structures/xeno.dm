@@ -84,11 +84,9 @@
 	max_integrity = 36
 	layer = RESIN_STRUCTURE_LAYER
 	hit_sound = "alien_resin_move"
-	ignore_weed_destruction = TRUE
+	var/slow_amt = 8
 
-/obj/effect/alien/resin/sticky/Initialize()
-	. = ..()
-	QDEL_IN(src, 3 MINUTES)
+	ignore_weed_destruction = TRUE
 
 /obj/effect/alien/resin/sticky/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
 	if(X.status_flags & INCORPOREAL)
@@ -101,6 +99,7 @@
 		return
 
 	return ..()
+
 
 /obj/effect/alien/resin/sticky/Crossed(atom/movable/AM)
 	. = ..()
@@ -115,7 +114,17 @@
 	if(H.lying_angle)
 		return
 
-	H.next_move_slowdown += 6
+	H.next_move_slowdown += slow_amt
+
+
+// Praetorian Sticky Resin spit uses this.
+/obj/effect/alien/resin/sticky/thin
+	name = "thin sticky resin"
+	desc = "A thin layer of disgusting sticky slime."
+	max_integrity = 6
+	slow_amt = 4
+
+	ignore_weed_destruction = FALSE
 
 //Resin Doors
 /obj/structure/mineral_door/resin
@@ -134,6 +143,8 @@
 
 	relativewall()
 	relativewall_neighbours()
+	if(!locate(/obj/effect/alien/weeds) in loc)
+		new /obj/effect/alien/weeds(loc)
 
 /obj/structure/mineral_door/resin/CanAllowThrough(atom/movable/mover, turf/target)
 	. = ..()

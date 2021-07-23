@@ -1,6 +1,6 @@
 #define DEBUG_XENO_LIFE 0
-#define XENO_RESTING_HEAL 1.5
-#define XENO_STANDING_HEAL 0.3
+#define XENO_RESTING_HEAL 1.1
+#define XENO_STANDING_HEAL 0.2
 #define XENO_CRIT_DAMAGE 5
 
 #define XENO_HUD_ICON_BUCKETS 16  // should equal the number of icons you use to represent health / plasma (from 0 -> X)
