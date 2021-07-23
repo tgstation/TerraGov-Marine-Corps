@@ -837,6 +837,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	attach_icon = "none"
 	desc = "A rail mounted zoom sight scope specialized for the antimaterial Sniper Rifle . Allows zoom by activating the attachment. Can activate its targeting laser while zoomed to take aim for increased damage and penetration. Use F12 if your HUD doesn't come back."
 	scoped_accuracy_mod = SCOPE_RAIL_SNIPER
+	has_nightvision = TRUE
 	flags_attach_features = ATTACH_ACTIVATION
 
 /obj/item/attachable/scope/slavic

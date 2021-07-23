@@ -162,6 +162,8 @@
 
 	muzzle_flash = new(src, muzzleflash_iconstate)
 
+	GLOB.nightfall_toggleable_lights += src
+
 
 //Hotfix for attachment offsets being set AFTER the core New() proc. Causes a small graphical artifact when spawning, hopefully works even with lag
 /obj/item/weapon/gun/proc/handle_starting_attachment()
@@ -189,7 +191,14 @@
 		QDEL_NULL(current_mag)
 	if(muzzle_flash)
 		QDEL_NULL(muzzle_flash)
+	GLOB.nightfall_toggleable_lights -= src
 	return ..()
+
+/obj/item/weapon/gun/turn_light(mob/user, toggle_on, cooldown, sparks, forced)
+	. = ..()
+	if(. != CHECKS_PASSED)
+		return
+	attachments[ATTACHMENT_SLOT_RAIL]?.turn_light(user, toggle_on, cooldown, sparks, forced)
 
 /obj/item/weapon/gun/emp_act(severity)
 	for(var/obj/O in contents)
@@ -572,7 +581,7 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 /obj/item/weapon/gun/proc/stop_fire()
 	SIGNAL_HANDLER
 	gun_user.client.mouse_pointer_icon = initial(gun_user.client.mouse_pointer_icon)
-	if(windup_checked != WEAPON_WINDUP_CHECKING && !CHECK_BITFIELD(flags_gun_features, GUN_BURST_FIRING))
+	if(!CHECK_BITFIELD(flags_gun_features, GUN_BURST_FIRING))
 		reset_fire()
 	SEND_SIGNAL(src, COMSIG_GUN_STOP_FIRE)
 

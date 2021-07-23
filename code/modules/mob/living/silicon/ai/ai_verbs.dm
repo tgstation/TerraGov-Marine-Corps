@@ -226,6 +226,21 @@
 	popup.set_content(dat)
 	popup.open(FALSE)
 
+/mob/living/silicon/ai/verb/toggle_anchor()
+	set category = "Silicon"
+	set name = "Toggle Floor Bolts"
+
+	if(!isturf(loc)) // if their location isn't a turf
+		return // stop
+	if(stat == DEAD)
+		return
+
+	src.anchored = !anchored
+	playsound(loc,'sound/mecha/mechanical_toggle.ogg', 20)
+
+
+	to_chat(src, "<b>You are now [anchored ? "" : "un"]anchored.</b>")
+
 
 /mob/living/silicon/ai/verb/show_laws()
 	set category = "Silicon"

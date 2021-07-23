@@ -325,7 +325,7 @@
 	if(!.)
 		return
 
-	if(A.resistance_flags == RESIST_ALL || A.resistance_flags == INDESTRUCTIBLE) //no bolting down indestructible airlocks
+	if(A.resistance_flags & (UNACIDABLE|INDESTRUCTIBLE)) //no bolting down indestructible airlocks
 		if(!silent)
 			to_chat(owner, span_xenodanger("We cannot damage this target!"))
 		return FALSE

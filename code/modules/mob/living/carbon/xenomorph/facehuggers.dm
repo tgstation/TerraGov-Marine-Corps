@@ -137,6 +137,8 @@
 	if(stat == DEAD || (sterile && !combat_hugger))
 		return ..() // Dead or sterile (lamarr) can be picked.
 	else if(stat == CONSCIOUS && user.can_be_facehugged(src, provoked = TRUE)) // If you try to take a healthy one it will try to hug or attack you.
+		user.visible_message("<span class ='warning'>\The [src] skitters up [user]'s arm as [user.p_they()] try to grab it!", \
+		"<span class ='warning'>\The [src] skitters up your arm as you try to grab it!")
 		if(!Attach(user))
 			go_idle()
 	return FALSE // Else you can't pick.
@@ -160,6 +162,12 @@
 	if(isxenocarrier(user))
 		var/mob/living/carbon/xenomorph/carrier/C = user
 		C.store_hugger(src)
+	if(ishuman(user))
+		if(stat == DEAD)
+			return
+		user.visible_message("<span class ='warning'>[user] crushes \the [src] in [user.p_their()] hand!", \
+		"<span class ='warning'>You crushes \the [src] in your hand!")
+		kill_hugger()
 
 /obj/item/clothing/mask/facehugger/examine(mob/user)
 	. = ..()
@@ -230,7 +238,7 @@
 	apply_danger_overlay()
 
 /obj/item/clothing/mask/facehugger/proc/leap_at_nearest_target()
-	if(!isturf(loc))
+	if(!isturf(loc) && !(ishuman(loc)))
 		return
 
 	if(stat != CONSCIOUS) //need to be active to leap
@@ -244,6 +252,13 @@
 		if(CHECK_BITFIELD(xeno_smoke.smoke_traits, SMOKE_HUGGER_PACIFY)) //Cancel out and make the hugger go idle if we have the xeno pacify tag
 			go_idle()
 			return
+
+	if(ishuman(loc)) //Having an angry xeno in your hand is a bad idea.
+		var/mob/living/carbon/human/holder = loc
+		holder.visible_message("<span class='warning'>The facehugger [holder] is carrying leaps at [holder.p_them()]!</span>", "<span class ='danger'>The facehugger you're carrying leaps at you!</span>")
+		if(!Attach(holder))
+			go_idle()
+		return
 
 	var/i = 10//So if we have a pile of dead bodies around, it doesn't scan everything, just ten iterations.
 	for(var/mob/living/carbon/M in view(4,src))
@@ -338,6 +353,9 @@
 
 /obj/item/clothing/mask/facehugger/on_found(mob/finder)
 	if(stat == CONSCIOUS)
+		finder.visible_message("<span class='danger'>\A [src] leaps out of \the [loc]!</span>")
+		forceMove(get_turf(src))
+		reset_life_timer()
 		HasProximity(finder)
 		return TRUE
 	return FALSE
@@ -352,7 +370,10 @@
 		return ..()
 	if(iscarbon(hit_atom))
 		var/mob/living/carbon/M = hit_atom
-		if(leaping && M.can_be_facehugged(src)) //Standard leaping behaviour, not attributable to being _thrown_ such as by a Carrier.
+		if(loc == M) //Caught
+			update_icon()
+			pre_leap(impact_time)
+		else if(leaping && M.can_be_facehugged(src)) //Standard leaping behaviour, not attributable to being _thrown_ such as by a Carrier.
 			if(!Attach(M))
 				go_idle()
 			return
@@ -662,18 +683,23 @@
 /obj/item/clothing/mask/facehugger/larval
 	name = "larval hugger"
 
-/obj/item/clothing/mask/facehugger/neuro
+///Parent type for all non-larval huggers: can't be worn, is sterile
+/obj/item/clothing/mask/facehugger/combat
+	sterile = TRUE
+	combat_hugger = TRUE
+	flags_equip_slot = NONE
+
+
+/obj/item/clothing/mask/facehugger/combat/neuro
 	name = "neuro hugger"
 	desc = "This strange creature has a single prominent sharp proboscis."
-	sterile = TRUE
 	color = COLOR_DARK_ORANGE
-	combat_hugger = TRUE
 	impact_time = 1 SECONDS
 	activate_time = 1.5 SECONDS
 	jump_cooldown = 1.5 SECONDS
 	proximity_time = 0.5 SECONDS
 
-/obj/item/clothing/mask/facehugger/neuro/Attach(mob/M, mob/user)
+/obj/item/clothing/mask/facehugger/combat/neuro/Attach(mob/M, mob/user)
 	if(!combat_hugger_check_target(M))
 		return FALSE
 
@@ -689,18 +715,16 @@
 	go_idle() //We're a bit slow on the recovery
 	return TRUE
 
-/obj/item/clothing/mask/facehugger/acid
+/obj/item/clothing/mask/facehugger/combat/acid
 	name = "acid hugger"
 	desc = "This repulsive looking thing is bloated with throbbing, putrescent green sacks of flesh."
-	sterile = TRUE
 	color = COLOR_GREEN
-	combat_hugger = TRUE
 	impact_time = 1 SECONDS
 	activate_time = 1.5 SECONDS
 	jump_cooldown = 1.5 SECONDS
 	proximity_time = 0.5 SECONDS
 
-/obj/item/clothing/mask/facehugger/acid/Attach(mob/M, mob/user)
+/obj/item/clothing/mask/facehugger/combat/acid/Attach(mob/M, mob/user)
 	if(!combat_hugger_check_target(M))
 		return FALSE
 
@@ -721,18 +745,16 @@
 	return TRUE
 
 
-/obj/item/clothing/mask/facehugger/resin
+/obj/item/clothing/mask/facehugger/combat/resin
 	name = "resin hugger"
 	desc = "This truly bizzare, bloated creature drips with purple, viscous resin."
-	sterile = TRUE
 	color = COLOR_STRONG_VIOLET
-	combat_hugger = TRUE
 	impact_time = 1 SECONDS
 	activate_time = 1.5 SECONDS
 	jump_cooldown = 1.5 SECONDS
 	proximity_time = 0.5 SECONDS
 
-/obj/item/clothing/mask/facehugger/resin/Attach(mob/M, mob/user)
+/obj/item/clothing/mask/facehugger/combat/resin/Attach(mob/M, mob/user)
 	if(!combat_hugger_check_target(M))
 		return FALSE
 
@@ -758,18 +780,16 @@
 	return TRUE
 
 
-/obj/item/clothing/mask/facehugger/slash
+/obj/item/clothing/mask/facehugger/combat/slash
 	name = "clawed hugger"
 	desc = "This nasty little creature is a nightmarish scrabble of muscle and sharp, long claws."
-	sterile = TRUE
 	color = COLOR_RED
-	combat_hugger = TRUE
 	impact_time = 0.5 SECONDS
 	activate_time = 1.2 SECONDS
 	jump_cooldown = 1.2 SECONDS
 	proximity_time = 0.5 SECONDS
 
-/obj/item/clothing/mask/facehugger/slash/Attach(mob/M)
+/obj/item/clothing/mask/facehugger/combat/slash/Attach(mob/M)
 	if(!combat_hugger_check_target(M))
 		return FALSE
 

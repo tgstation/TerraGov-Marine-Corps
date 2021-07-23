@@ -270,8 +270,11 @@
 		/obj/item/clothing/glasses/hud/security,
 		/obj/item/flashlight,
 		/obj/item/radio/headset,
-		/obj/item/weapon,
 		/obj/item/tool/taperoll/police,
+	)
+
+	cant_hold = list(
+		/obj/item/weapon/gun,
 	)
 
 

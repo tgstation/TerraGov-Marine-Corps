@@ -1,0 +1,4 @@
+author: "Surrealaser"
+delete-after: True
+changes: 
+  - balance: "If Rage is used while at less than 0 HP, the Ravager will regain HP whenever it slashes a living target equal to 50% to 100% of the damage dealt depending on Rage Power (how low the Ravager's HP was when Rage was used)."

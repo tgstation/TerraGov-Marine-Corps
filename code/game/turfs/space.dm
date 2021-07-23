@@ -93,6 +93,7 @@
 	icon = 'icons/misc/beach.dmi'
 	name = "sea"
 	icon_state = "seadeep"
+	plane = FLOOR_PLANE
 
 /turf/open/space/sea/update_icon_state()
 	return
