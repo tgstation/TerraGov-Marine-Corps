@@ -75,7 +75,7 @@
 	for(var/mob/living/carbon/xenomorph/xenomorph_alive AS in shuffle(GLOB.alive_xeno_list))
 		if(xenomorph_alive.hivenumber != ownerhive)
 			continue
-		if(isxenoqueen(xenomorph_alive) || isxenoshrike(xenomorph_alive) || isxenohivemind(xenomorph_alive) || isxenolarva(xenomorph_alive))
+		if(!(xenomorph_alive.xeno_caste.caste_flags & CAN_BECOME_KING))
 			continue
 		var/accept_to_be_king = tgui_alert(xenomorph_alive, "The fate has landed and you, and you can become the King. Do you accept?", "Rise of the King", list("Accept", "Leave it for another xeno"), 20 SECONDS)
 		if(accept_to_be_king != "Accept")
@@ -123,10 +123,6 @@
 	SIGNAL_HANDLER
 	UnregisterSignal(occupied, COMSIG_MOB_LOGIN)
 	occupied.forceMove(get_turf(src))
-	SSminimaps.add_marker(occupied, z, hud_flags = MINIMAP_FLAG_XENO, iconstate = "xenoking")
-	for(var/datum/action/minimap/mini in occupied.actions)
-		mini.map = SSminimaps.fetch_minimap_object(occupied.z, mini.minimap_flags)
-
 	var/myarea = get_area(src)
 	priority_announce("Warning: Psychic anomaly signature in [myarea] has spiked and begun to move.", "TGMC Intel Division")
 	xeno_message("<span class='xenoannounce'>[occupied] has awakened at [myarea]. Praise the Queen Mother!</span>", 3, ownerhive)
