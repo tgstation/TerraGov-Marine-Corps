@@ -1,0 +1,8 @@
+author: "Pariah919"
+delete-after: True
+changes: 
+  - expansion: "Marines get one HMG, it is harder to lug around than a TL-102, has no IFF, but it fires faster, and deploys slower. Better not lose it."
+  - balance: "TL-102 HSG fires slower (0.25 fire delay from 0.2), added one cool HMG gun to the marine vendor. Better not lose it.
+spriteadd: sprites for the MG08/495 and TL-102 while in your hand."
+  - bugfix: "tl-102 and mg08 can no longer take any attachments."
+  - qol: "minor reorganization of specialized tab in marine vendors"

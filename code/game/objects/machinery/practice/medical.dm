@@ -15,16 +15,16 @@
 
 /obj/machinery/practice/medical/surgery/attack_hand(mob/living/user)
 	if(user.a_intent == INTENT_HARM)
-		to_chat(user, "<span class='warning'>You are unable to damage the button.</span>")
+		to_chat(user, span_warning("You are unable to damage the button."))
 		return
 	if(humanspawned)
 		QDEL_NULL(humanspawned)
-		visible_message("<span class='notice'>The dummy vanishes, ending the simulation.</span>")
+		visible_message(span_notice("The dummy vanishes, ending the simulation."))
 		return
 	else
 		var/choice = tgui_input_list(user, "What surgery would you like to simulate?", null, list("larval host", "broken bones", "missing limbs", "damaged organs"))
 		if(!choice)
-			to_chat(user, "<span class='notice'>You must select a surgery to start the simulation.</span>")
+			to_chat(user, span_notice("You must select a surgery to start the simulation."))
 			return
 		switch(choice)
 			if("larval host")

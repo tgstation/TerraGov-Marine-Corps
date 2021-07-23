@@ -59,14 +59,14 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 					keyslot2 = null
 
 			recalculateChannels()
-			to_chat(user, "<span class='notice'>You pop out the encryption keys in the headset.</span>")
+			to_chat(user, span_notice("You pop out the encryption keys in the headset."))
 
 		else
-			to_chat(user, "<span class='warning'>This headset doesn't have any unique encryption keys!  How useless...</span>")
+			to_chat(user, span_warning("This headset doesn't have any unique encryption keys!  How useless..."))
 
 	else if(istype(I, /obj/item/encryptionkey))
 		if(keyslot && keyslot2)
-			to_chat(user, "<span class='warning'>The headset can't hold another key!</span>")
+			to_chat(user, span_warning("The headset can't hold another key!"))
 			return
 
 		if(!keyslot)
@@ -102,9 +102,9 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 		to_chat(user, "<span class='notice'>A small screen on the headset displays the following available frequencies:\n[english_list(avail_chans)].")
 
 		if(command)
-			to_chat(user, "<span class='info'>Alt-click to toggle the high-volume mode.</span>")
+			to_chat(user, span_info("Alt-click to toggle the high-volume mode."))
 	else
-		to_chat(user, "<span class='notice'>A small screen on the headset flashes, it's too small to read without holding or wearing the headset.</span>")
+		to_chat(user, span_notice("A small screen on the headset flashes, it's too small to read without holding or wearing the headset."))
 
 
 /obj/item/radio/headset/recalculateChannels()
@@ -130,7 +130,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 
 	if(command)
 		use_command = !use_command
-		to_chat(user, "<span class='notice'>You toggle high-volume mode [use_command ? "on" : "off"].</span>")
+		to_chat(user, span_notice("You toggle high-volume mode [use_command ? "on" : "off"]."))
 
 
 /obj/item/radio/headset/can_receive(freq, level)
@@ -229,7 +229,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	if(wearer.mind && wearer.assigned_squad && !sl_direction)
 		enable_sl_direction()
 	add_minimap()
-	to_chat(wearer, "<span class='notice'>You toggle the Squad HUD on.</span>")
+	to_chat(wearer, span_notice("You toggle the Squad HUD on."))
 	playsound(loc, 'sound/machines/click.ogg', 15, 0, 1)
 
 
@@ -241,7 +241,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	if(sl_direction)
 		disable_sl_direction()
 	remove_minimap()
-	to_chat(wearer, "<span class='notice'>You toggle the Squad HUD off.</span>")
+	to_chat(wearer, span_notice("You toggle the Squad HUD off."))
 	playsound(loc, 'sound/machines/click.ogg', 15, 0, 1)
 
 /obj/item/radio/headset/mainship/proc/add_minimap()
@@ -296,7 +296,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 
 /obj/item/radio/headset/mainship/proc/enable_sl_direction()
 	if(!headset_hud_on)
-		to_chat(wearer, "<span class='warning'>You need to turn the HUD on first!</span>")
+		to_chat(wearer, span_warning("You need to turn the HUD on first!"))
 		return
 
 	if(wearer.mind && wearer.assigned_squad && wearer.hud_used?.SL_locator)
@@ -308,7 +308,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 			SSdirection.start_tracking(wearer.assigned_squad.tracking_id, wearer)
 
 	sl_direction = TRUE
-	to_chat(wearer, "<span class='notice'>You toggle the SL directional display on.</span>")
+	to_chat(wearer, span_notice("You toggle the SL directional display on."))
 	playsound(loc, 'sound/machines/click.ogg', 15, 0, 1)
 
 
@@ -326,7 +326,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 		SSdirection.stop_tracking(wearer.assigned_squad.tracking_id, wearer)
 
 	sl_direction = FALSE
-	to_chat(wearer, "<span class='notice'>You toggle the SL directional display off.</span>")
+	to_chat(wearer, span_notice("You toggle the SL directional display off."))
 	playsound(loc, 'sound/machines/click.ogg', 15, 0, TRUE)
 
 

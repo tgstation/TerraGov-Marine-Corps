@@ -31,15 +31,15 @@
 	if(!proximity) return
 	if(istype(A, /turf) || istype(A, /obj/effect/decal/cleanable) || istype(A, /obj/effect/overlay) || istype(A, /obj/effect/rune))
 		if(reagents.total_volume < 1)
-			to_chat(user, "<span class='notice'>Your mop is dry!</span>")
+			to_chat(user, span_notice("Your mop is dry!"))
 			return
 
 		var/turf/T = get_turf(A)
-		user.visible_message("<span class='warning'>[user] begins to clean \the [T].</span>")
+		user.visible_message(span_warning("[user] begins to clean \the [T]."))
 
 		if(do_after(user, 40, TRUE, T, BUSY_ICON_GENERIC))
 			T.clean(src)
-			to_chat(user, "<span class='notice'>You have finished mopping!</span>")
+			to_chat(user, span_notice("You have finished mopping!"))
 
 
 /obj/item/tool/wet_sign
@@ -99,17 +99,17 @@
 	//I couldn't feasibly  fix the overlay bugs caused by cleaning items we are wearing.
 	//So this is a workaround. This also makes more sense from an IC standpoint. ~Carn
 	if(user.client && (target in user.client.screen))
-		to_chat(user, "<span class='notice'>You need to take that [target.name] off before cleaning it.</span>")
+		to_chat(user, span_notice("You need to take that [target.name] off before cleaning it."))
 	else if(istype(target,/obj/effect/decal/cleanable))
-		to_chat(user, "<span class='notice'>You scrub \the [target.name] out.</span>")
+		to_chat(user, span_notice("You scrub \the [target.name] out."))
 		qdel(target)
 	else
-		to_chat(user, "<span class='notice'>You clean \the [target.name].</span>")
+		to_chat(user, span_notice("You clean \the [target.name]."))
 		target.clean_blood()
 
 /obj/item/tool/soap/attack(mob/target, mob/user)
 	if(target && user && ishuman(target) && ishuman(user) && !target.stat && !user.stat && user.zone_selected == "mouth" )
-		user.visible_message("<span class='warning'> \the [user] washes \the [target]'s mouth out with soap!</span>")
+		user.visible_message(span_warning(" \the [user] washes \the [target]'s mouth out with soap!"))
 		return
 	..()
 

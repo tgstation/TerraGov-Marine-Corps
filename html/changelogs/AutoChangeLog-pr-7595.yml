@@ -1,0 +1,5 @@
+author: "spookydonut"
+delete-after: True
+changes: 
+  - bugfix: "Warrior punch no longer allows you to destroy many machines that can not otherwise be damaged"
+  - bugfix: "Crushers can no longer destroy SMESes"

@@ -242,7 +242,7 @@ WEAPONS
 /datum/supply_packs/weapons/antimaterial
 	name = "T-26 Antimaterial rifle kit"
 	contains = list(/obj/item/weapon/gun/rifle/sniper/antimaterial)
-	cost = 60
+	cost = 75
 	available_against_xeno_only = TRUE
 
 /datum/supply_packs/weapons/specminigun
@@ -629,6 +629,11 @@ AMMO
 	name = "TL-102 mounted heavy smartgun ammo"
 	contains = list(/obj/item/ammo_magazine/tl102)
 	cost = 10
+
+/datum/supply_packs/ammo/hmg
+	name = "MG-08/495 heavy machinegun ammo"
+	contains = list(/obj/item/ammo_magazine/heavymachinegun)
+	cost = 7
 
 /datum/supply_packs/ammo/lasguncharger
 	name = "ColMarTech Lasrifle Field Charger"
