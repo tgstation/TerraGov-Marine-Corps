@@ -145,11 +145,21 @@ GLOBAL_LIST_INIT(leader_gear_listed_products, list(
 		/obj/item/deployable_camera = list(CAT_LEDSUP, "Deployable Overwatch Camera", 2, "orange"),
 	))
 
+GLOBAL_LIST_INIT(smartgunner_gear_listed_products, list(
+	/obj/item/clothing/glasses/night/m56_goggles = list(CAT_ESS, "M26 head mounted sight", 0, "white"),
+	/obj/item/weapon/gun/rifle/standard_smartmachinegun = list(CAT_LEDSUP, "T-26 Smartmachinegun", 30 , "white"),
+	/obj/item/ammo_magazine/standard_smartmachinegun = list(CAT_LEDSUP, "T-26 Smartmachinegun ammo", 5 , "black"),
+	/obj/item/weapon/gun/rifle/standard_smartrifle = list(CAT_LEDSUP, "T-25 smartrifle", 30 , "white"),
+	/obj/item/ammo_magazine/rifle/standard_smartrifle = list(CAT_LEDSUP, "T-25 smartrifle ammo", 2 , "black"),
+	))
+
+
 ///Assoc list linking the job title with their specific points vendor
 GLOBAL_LIST_INIT(job_specific_points_vendor, list(
 	SQUAD_ENGINEER = GLOB.engineer_gear_listed_products,
 	SQUAD_CORPSMAN = GLOB.medic_gear_listed_products,
 	SQUAD_LEADER = GLOB.leader_gear_listed_products,
+	SQUAD_SMARTGUNNER = GLOB.smartgunner_gear_listed_products,
 ))
 
 
@@ -483,8 +493,6 @@ GLOBAL_LIST_INIT(loadout_role_essential_set, list(
 	),
 	SQUAD_SMARTGUNNER = list(
 		/obj/item/clothing/glasses/night/m56_goggles = 1,
-		/obj/item/weapon/gun/rifle/standard_smartmachinegun = 1,
-		/obj/item/ammo_magazine/standard_smartmachinegun = 3,
 	),
 	SQUAD_LEADER = list(
 		/obj/item/explosive/plastique = 1,
@@ -509,15 +517,6 @@ GLOBAL_LIST_INIT(bypass_storage_content_save, typecacheof(list(
 	/obj/item/storage/box/MRE,
 	/obj/item/storage/pill_bottle/packet,
 )))
-
-///List of all supported job titles by the loadout vendors
-GLOBAL_LIST_INIT(loadout_job_supported, list(
-	SQUAD_MARINE,
-	SQUAD_ENGINEER,
-	SQUAD_CORPSMAN,
-	SQUAD_SMARTGUNNER,
-	SQUAD_LEADER,
-))
 
 
 //Defines use for the visualisation of loadouts
