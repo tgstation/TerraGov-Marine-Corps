@@ -389,6 +389,8 @@
 
 //The minigun needs to wind up to fire.
 /obj/item/weapon/gun/minigun/Fire()
+	if(!able_to_fire(gun_user))
+		return
 	if(windup_checked == WEAPON_WINDUP_NOT_CHECKED)
 		playsound(get_turf(src), 'sound/weapons/guns/fire/tank_minigun_start.ogg', 30)
 		INVOKE_ASYNC(src, .proc/do_windup)
@@ -1076,7 +1078,7 @@
 
 /obj/item/weapon/gun/launcher/rocket/oneuse
 	name = "\improper T-72 disposable rocket launcher"
-	desc = "This is the premier disposable rocket launcher used throughout the galaxy, it cannot be reloaded or unloaded on the field. This one fires a 68mm explosive rocket."
+	desc = "This is the premier disposable rocket launcher used throughout the galaxy, it cannot be reloaded or unloaded on the field. This one fires an 84mm explosive rocket."
 	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "t72"
 	item_state = "t72"

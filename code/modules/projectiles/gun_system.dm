@@ -162,6 +162,8 @@
 
 	muzzle_flash = new(src, muzzleflash_iconstate)
 
+	GLOB.nightfall_toggleable_lights += src
+
 
 //Hotfix for attachment offsets being set AFTER the core New() proc. Causes a small graphical artifact when spawning, hopefully works even with lag
 /obj/item/weapon/gun/proc/handle_starting_attachment()
@@ -189,7 +191,14 @@
 		QDEL_NULL(current_mag)
 	if(muzzle_flash)
 		QDEL_NULL(muzzle_flash)
+	GLOB.nightfall_toggleable_lights -= src
 	return ..()
+
+/obj/item/weapon/gun/turn_light(mob/user, toggle_on, cooldown, sparks, forced)
+	. = ..()
+	if(. != CHECKS_PASSED)
+		return
+	attachments[ATTACHMENT_SLOT_RAIL]?.turn_light(user, toggle_on, cooldown, sparks, forced)
 
 /obj/item/weapon/gun/emp_act(severity)
 	for(var/obj/O in contents)
@@ -572,7 +581,7 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 /obj/item/weapon/gun/proc/stop_fire()
 	SIGNAL_HANDLER
 	gun_user.client.mouse_pointer_icon = initial(gun_user.client.mouse_pointer_icon)
-	if(windup_checked != WEAPON_WINDUP_CHECKING && !CHECK_BITFIELD(flags_gun_features, GUN_BURST_FIRING))
+	if(!CHECK_BITFIELD(flags_gun_features, GUN_BURST_FIRING))
 		reset_fire()
 	SEND_SIGNAL(src, COMSIG_GUN_STOP_FIRE)
 
@@ -1175,3 +1184,12 @@ and you're good to go.
 		return
 	active_attachable.fire_attachment(target, src, gun_user) //Fire it.
 	last_fired = world.time
+
+//For letting xenos turn off the flashlights on any guns left lying around.
+/obj/item/weapon/gun/attack_alien(mob/living/carbon/xenomorph/X, isrightclick = FALSE)
+	if(!CHECK_BITFIELD(flags_gun_features, GUN_FLASHLIGHT_ON))
+		return
+	attachments[ATTACHMENT_SLOT_RAIL].turn_light(null, FALSE)
+	playsound(loc, "alien_claw_metal", 25, 1)
+	X.do_attack_animation(src, ATTACK_EFFECT_CLAW)
+	to_chat(X, "<span class='warning'>We disable the metal thing's lights.</span>")

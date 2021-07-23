@@ -1,5 +1,0 @@
-author: "Pariah919"
-delete-after: True
-changes: 
-  - rscdel: "Removed old m56"
-  - balance: "minigun now has magnetic harness, and works off powerpacks that reload it instead of ammo magazines"

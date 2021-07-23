@@ -150,3 +150,11 @@
 	throw_range = 5
 	w_class = WEIGHT_CLASS_SMALL
 	attack_verb = list("attacked", "hit", "bludgeoned")
+
+/obj/item/tool/surgery/suture
+	name = "surgical suture"
+	icon_state = "suture"
+	force = 3
+	throwforce = 0
+	w_class = WEIGHT_CLASS_SMALL
+	attack_verb = list("needled", "sewed", "stabbed")

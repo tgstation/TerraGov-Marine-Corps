@@ -103,6 +103,7 @@
 #include "code\__DEFINES\vehicles.dm"
 #include "code\__DEFINES\vv.dm"
 #include "code\__DEFINES\wires.dm"
+#include "code\__DEFINES\xeno.dm"
 #include "code\__DEFINES\dcs\flags.dm"
 #include "code\__DEFINES\dcs\helpers.dm"
 #include "code\__DEFINES\dcs\signals.dm"

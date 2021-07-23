@@ -441,19 +441,19 @@
 //		ignite(is_hot(C))
 //	..()
 
-/obj/machinery/door/airlock/open(forced=0)
-	if( operating || welded || locked || !loc)
-		return 0
+/obj/machinery/door/airlock/open(forced = FALSE)
+	if(operating || welded || locked || !loc)
+		return FALSE
 	if(!forced)
 		if(!hasPower() || wires.is_cut(WIRE_OPEN))
-			return 0
+			return FALSE
 	use_power(active_power_usage)	//360 W seems much more appropriate for an actuator moving an industrial door capable of crushing people
 	if(istype(src, /obj/machinery/door/airlock/glass))
-		playsound(src.loc, 'sound/machines/windowdoor.ogg', 25, 1)
+		playsound(loc, 'sound/machines/windowdoor.ogg', 25, 1)
 	else
-		playsound(src.loc, 'sound/machines/airlock.ogg', 25, 0)
-	if(src.closeOther != null && istype(src.closeOther, /obj/machinery/door/airlock/) && !src.closeOther.density)
-		src.closeOther.close()
+		playsound(loc, 'sound/machines/airlock.ogg', 25, 0)
+	if(istype(closeOther, /obj/machinery/door/airlock) && !closeOther.density)
+		closeOther.close()
 	return ..()
 
 /obj/machinery/door/airlock/close(forced = FALSE)
@@ -503,16 +503,16 @@
 	audible_message("You hear a click from the bottom of the door.", null, 1)
 	update_icon()
 
-/obj/machinery/door/airlock/proc/unlock(forced=0)
+/obj/machinery/door/airlock/proc/unlock(forced = FALSE)
 	if (operating || !locked)
 		return
 
 	if(forced || hasPower()) //only can raise bolts if power's on
-		src.locked = 0
+		locked = FALSE
 		audible_message("You hear a click from the bottom of the door.", null, 1)
 		update_icon()
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
 /obj/machinery/door/airlock/Initialize(mapload, ...)
 	. = ..()

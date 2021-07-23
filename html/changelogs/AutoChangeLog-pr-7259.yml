@@ -1,4 +1,0 @@
-author: "Surrealaser"
-delete-after: True
-changes: 
-  - rscadd: "The Silence ability replaces the Haunt ability on the Hunter. This mutes and silences living hostiles the Hunter has direct line of sight to in a 5x5 area for about 10 seconds (15 seconds for the Hunter Mark target)."

@@ -2217,9 +2217,3 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		var/datum/poll_question/poll = locate(href_list["submitoptionpoll"]) in GLOB.polls
 		poll_option_parse_href(href_list, poll, option)
 
-	#ifdef REFERENCE_TRACKING
-	else if(href_list["delfail_clearnulls"])
-		listclearnulls(GLOB.deletion_failures)
-		view_del_failures()
-		return
-	#endif
