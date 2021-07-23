@@ -12943,6 +12943,11 @@
 "dsV" = (
 /turf/closed/wall/indestructible/mineral,
 /area/lv624/ground/sand4)
+"dtQ" = (
+/obj/structure/jungle/vines,
+/obj/structure/jungle/vines,
+/turf/open/ground/grass,
+/area/lv624/ground/jungle3)
 "duf" = (
 /obj/structure/jungle/vines,
 /obj/effect/landmark/weed_node,
@@ -13838,12 +13843,6 @@
 	dir = 8
 	},
 /area/lv624/ground/jungle7)
-"gKE" = (
-/obj/structure/flora/ausbushes/fullgrass,
-/turf/open/floor/plating/ground/dirtgrassborder{
-	dir = 8
-	},
-/area/lv624/ground/jungle3)
 "gKR" = (
 /obj/structure/jungle/vines/heavy,
 /turf/open/floor/plating/ground/dirtgrassborder{
@@ -14297,6 +14296,13 @@
 	},
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle9)
+"iLL" = (
+/obj/structure/jungle/vines,
+/obj/structure/jungle/vines,
+/turf/open/floor/plating/ground/dirtgrassborder/corner{
+	dir = 4
+	},
+/area/lv624/ground/jungle3)
 "iMd" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	on = 1
@@ -15459,9 +15465,8 @@
 /area/lv624/lazarus/engineering)
 "nAE" = (
 /obj/structure/jungle/vines,
-/obj/structure/jungle/vines,
-/turf/open/floor/plating/ground/dirtgrassborder{
-	dir = 8
+/turf/open/floor/plating/ground/dirtgrassborder/corner2{
+	dir = 1
 	},
 /area/lv624/ground/jungle3)
 "nAQ" = (
@@ -17713,10 +17718,6 @@
 	dir = 1
 	},
 /area/lv624/ground/compound/c)
-"xyp" = (
-/obj/structure/jungle/vines,
-/turf/closed/gm/dense,
-/area/lv624/ground/jungle3)
 "xzK" = (
 /obj/structure/fence,
 /turf/open/floor/plating/ground/dirtgrassborder{
@@ -22691,7 +22692,7 @@ iCH
 bch
 bcm
 bch
-bch
+bcm
 bcg
 bcg
 bch
@@ -23226,16 +23227,16 @@ bSW
 bSW
 iCH
 bnE
-fcU
-srl
-bmB
-bmB
-gKE
-bmB
-dFN
+bnE
+bnE
+bnE
+bnE
+bnE
+bnE
+biP
 nAE
-bmB
-bfb
+dFN
+fOi
 bch
 beh
 bck
@@ -23405,16 +23406,16 @@ cFF
 cFF
 iCH
 hAe
-cml
-bfa
-bcg
-bcg
-bck
-bck
-bcg
-bcg
-bck
-bck
+fcU
+srl
+bmB
+bmB
+bmB
+bmB
+dFN
+iLL
+dtQ
+dtQ
 bcg
 bck
 bck
@@ -23584,16 +23585,16 @@ bpG
 aZk
 bnj
 cml
-bnE
-npd
-xyp
-bcg
-bcg
-bcg
+cml
+bfa
 bcg
 bcg
 bck
-apB
+bck
+bcg
+bcg
+bch
+bla
 bla
 bla
 bpi
