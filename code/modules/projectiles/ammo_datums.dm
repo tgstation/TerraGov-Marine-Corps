@@ -341,6 +341,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	name = "revolver bullet"
 	hud_state = "revolver"
 	hud_state_empty = "revolver_empty"
+	handful_amount = 7
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
 	damage = 45
 	penetration = 10
@@ -388,6 +389,7 @@ datum/ammo/bullet/revolver/tp44
 /datum/ammo/bullet/revolver/highimpact
 	name = "high-impact revolver bullet"
 	hud_state = "revolver_impact"
+	handful_amount = 6
 	accuracy_var_high = 10
 	damage = 50
 	penetration = 20
@@ -1179,14 +1181,34 @@ datum/ammo/bullet/revolver/tp44
 	name = "thermobaric rocket"
 	hud_state = "rocket_thermobaric"
 	flags_ammo_behavior = AMMO_ROCKET
-	damage = 200
+	damage = 40
+	penetration = 25
 	max_range = 30
+	sundering = 2
 
-/datum/ammo/rocket/wp/quad/drop_nade(turf/T, radius = 3)
-	. = ..()
-	if(!.)
-		return
-	explosion(T, 0, 3, 5, 5, throw_range = 0)
+	///The smoke system that the WP gas uses to spread.
+	var/datum/effect_system/smoke_spread/smoke_system
+
+/datum/ammo/rocket/wp/quad/set_smoke()
+	smoke_system = new /datum/effect_system/smoke_spread/phosphorus()
+
+/datum/ammo/rocket/wp/quad/drop_nade(turf/T, atom/firer, range = 3, radius = 3)
+	set_smoke()
+	smoke_system.set_up(range, T)
+	smoke_system.start()
+	T.visible_message("<span class='danger'>The rocket explodes into white gas!</span>")
+	playsound(T, 'sound/weapons/guns/fire/flamethrower2.ogg', 50, 1, 4)
+	flame_radius(radius, T, 27, 27, 27, 17)
+
+
+/datum/ammo/rocket/wp/quad/ds
+	name = "super thermobaric rocket"
+	hud_state = "rocket_thermobaric"
+	flags_ammo_behavior = AMMO_ROCKET
+	damage = 200
+	penetration = 75
+	max_range = 30
+	sundering = 100
 
 /datum/ammo/rocket/recoilless
 	name = "high explosive shell"

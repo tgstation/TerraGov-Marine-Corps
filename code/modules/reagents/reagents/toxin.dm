@@ -516,9 +516,9 @@
 /datum/reagent/toxin/xeno_growthtoxin/overdose_crit_process(mob/living/L, metabolism)
 	L.Losebreath(2)
 
-/datum/reagent/toxin/xeno_hemodile //slows by 25% and 50% based on base movement speed of marine with shoes on and deals an additional 20% of damage received as stamina damage
+/datum/reagent/toxin/xeno_hemodile //Slows its victim. The slow becomes twice as strong with each other xeno toxin in the victim's system.
 	name = "Hemodile"
-	description = "A stamina draining toxin. Causes increased stamina loss and slower movement."
+	description = "Impedes motor functions and muscle response, causing slower movement."
 	reagent_state = LIQUID
 	color = "#602CFF"
 	custom_metabolism = 0.4
@@ -526,24 +526,31 @@
 	scannable = TRUE
 	toxpwr = 0
 
-/datum/reagent/toxin/xeno_hemodile/on_mob_add(mob/living/L, metabolism, affecting)
-	RegisterSignal(L, COMSIG_HUMAN_DAMAGE_TAKEN, .proc/hemodile_human_damage_taken)
-
 /datum/reagent/toxin/xeno_hemodile/on_mob_life(mob/living/L, metabolism)
-	if(prob(25))
-		to_chat(L, "<span class='warning'>You feel your legs tense up.</span>")
-	if(!L.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_neurotoxin))
-		L.add_movespeed_modifier(MOVESPEED_ID_XENO_HEMODILE, TRUE, 0, NONE, TRUE, 1)
-	else
-		L.add_movespeed_modifier(MOVESPEED_ID_XENO_HEMODILE, TRUE, 0, NONE, TRUE, 3)
-	return ..()
 
-/datum/reagent/toxin/xeno_hemodile/proc/hemodile_human_damage_taken(mob/living/L, damage)
-	SIGNAL_HANDLER
-	L.adjustStaminaLoss(damage*0.2)
+	var/slowdown_multiplier = 1
+
+	if(L.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_transvitox)) //Each other Defiler toxin increases the multiplier by 2x; 2x if we have 1 combo chem, 4x if we have 2
+		slowdown_multiplier *= 2
+
+	if(L.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_neurotoxin))
+		slowdown_multiplier *= 2
+
+	switch(slowdown_multiplier) //Description varies in severity and probability with the multiplier
+		if(0 to 1 && prob(10))
+			to_chat(L, "<span class='warning'>You feel your legs tense up.</span>")
+		if(2 to 3.9 && prob(20))
+			to_chat(L, "<span class='warning'>You feel your legs go numb.</span>")
+		if(4 to INFINITY && prob(30))
+			to_chat(L, "<span class='danger'>You can barely feel your legs!</span>")
+
+	L.add_movespeed_modifier(MOVESPEED_ID_XENO_HEMODILE, TRUE, 0, NONE, TRUE, 1.5 * slowdown_multiplier)
+
+	return ..()
 
 /datum/reagent/toxin/xeno_hemodile/on_mob_delete(mob/living/L, metabolism)
 	L.remove_movespeed_modifier(MOVESPEED_ID_XENO_HEMODILE)
+
 
 /datum/reagent/toxin/xeno_transvitox //when damage is received, converts brute/burn equal to 50% of damage received to tox damage
 	name = "Transvitox"
@@ -559,12 +566,12 @@
 	RegisterSignal(L, COMSIG_HUMAN_DAMAGE_TAKEN, .proc/transvitox_human_damage_taken)
 
 /datum/reagent/toxin/xeno_transvitox/on_mob_life(mob/living/L, metabolism)
-	if(prob(10))
-		to_chat(L, "<span class='warning'>You notice your wounds crusting over with disgusting green ichor.</span>")
-
 	var/fire_loss = L.getFireLoss()
 	if(!fire_loss) //If we have no burn damage, cancel out
 		return ..()
+
+	if(prob(10))
+		to_chat(L, "<span class='warning'>You notice your wounds crusting over with disgusting green ichor.</span>")
 
 	var/tox_cap_multiplier = 1
 

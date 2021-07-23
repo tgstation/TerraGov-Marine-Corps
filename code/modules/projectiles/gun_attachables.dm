@@ -741,6 +741,15 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	desc = "A rail mounted zoom sight scope specialized for the T-127 sniper rifle. Allows zoom by activating the attachment. Use F12 if your HUD doesn't come back."
 	flags_attach_features = ATTACH_ACTIVATION
 
+/obj/item/attachable/scope/unremovable/heavymachinegun
+	name = "MG-08/495 long range ironsights"
+	desc = "An unremovable set of long range ironsights for an MG-08/495 machinegun."
+	flags_attach_features = ATTACH_ACTIVATION
+	attach_icon = "none"
+	zoom_offset = 3
+	zoom_viewsize = 7
+
+
 /obj/item/attachable/scope/unremovable/tl102
 	name = "TL-102 smart sight"
 	desc = "An unremovable smart sight built for use with the tl102, it does nearly all the aiming work for the gun's integrated IFF systems."
@@ -828,6 +837,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	attach_icon = "none"
 	desc = "A rail mounted zoom sight scope specialized for the antimaterial Sniper Rifle . Allows zoom by activating the attachment. Can activate its targeting laser while zoomed to take aim for increased damage and penetration. Use F12 if your HUD doesn't come back."
 	scoped_accuracy_mod = SCOPE_RAIL_SNIPER
+	has_nightvision = TRUE
 	flags_attach_features = ATTACH_ACTIVATION
 
 /obj/item/attachable/scope/slavic

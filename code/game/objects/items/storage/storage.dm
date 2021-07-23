@@ -12,6 +12,16 @@
 	var/list/can_hold = list() //List of objects which this item can store (if set, it can't store anything else)
 	var/list/cant_hold = list() //List of objects which this item can't store (in effect only if can_hold isn't set)
 	var/list/bypass_w_limit = list() //a list of objects which this item can store despite not passing the w_class limit
+	/**
+	 * Associated list of types and their max count, formatted as
+	 * 	storage_type_limits = list(
+	 * 		/obj/A = 3,
+	 * 	)
+	 *
+	 * Any inserted objects will decrement the allowed count of every listed type which matches or is a parent of that object.
+	 * With entries for both /obj/A and /obj/A/B, inserting a B requires non-zero allowed count remaining for, and reduces, both. 
+	 */
+	var/list/storage_type_limits
 	var/list/click_border_start = list() //In slotless storage, stores areas where clicking will refer to the associated item
 	var/list/click_border_end = list()
 	var/max_w_class = 2 //Max size of objects that this object can store (in effect only if can_hold isn't set)
@@ -376,6 +386,14 @@
 				to_chat(usr, "<span class='notice'>[src] cannot hold [W] as it's a storage item of the same size.</span>")
 			return FALSE //To prevent the stacking of same sized storage items.
 
+	for(var/limited_type in storage_type_limits)
+		if(!istype(W, limited_type))
+			continue
+		if(storage_type_limits[limited_type] == 0)
+			if(warning)
+				to_chat(usr, "<span class='warning'>[src] can't fit any more of those.</span>")
+			return FALSE
+
 	if(istype(W, /obj/item/tool/hand_labeler))
 		var/obj/item/tool/hand_labeler/L = W
 		if(L.on)
@@ -447,6 +465,9 @@
 	if (storage_slots)
 		item.mouse_opacity = 2 //not having to click the item's tiny sprite to take it out of the storage.
 	update_icon()
+	for(var/limited_type in storage_type_limits)
+		if(istype(item, limited_type))
+			storage_type_limits[limited_type] -= 1
 	return 1
 
 //Call this proc to handle the removal of an item from the storage item. The item will be moved to the atom sent as new_target
@@ -485,6 +506,10 @@
 		item.mouse_opacity = initial(item.mouse_opacity)
 
 	update_icon()
+
+	for(var/limited_type in storage_type_limits)
+		if(istype(item, limited_type))
+			storage_type_limits[limited_type] += 1
 
 	return TRUE
 

@@ -37,9 +37,8 @@
 		/obj/item/attachable/lasersight,
 	)
 
-	flags_gun_features = GUN_AUTO_EJECTOR|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER|GUN_IFF
 	starting_attachment_types = list(/obj/item/attachable/scope/antimaterial, /obj/item/attachable/sniperbarrel)
-	gun_iff_signal = list(ACCESS_IFF_MARINE)
 
 	fire_delay = 2.5 SECONDS
 	burst_amount = 1
@@ -105,8 +104,6 @@
 
 /obj/item/weapon/gun/rifle/sniper/antimaterial/unique_action(mob/user)
 	. = ..()
-	if(.)
-		return
 	if(!targetmarker_primed && !targetmarker_on)
 		return laser_on(user)
 	else
@@ -227,11 +224,10 @@
 	current_mag = /obj/item/ammo_magazine/sniper/elite
 	force = 17
 	attachable_allowed = list()
-	flags_gun_features = GUN_AUTO_EJECTOR|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER|GUN_IFF
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 18,"rail_x" = 15, "rail_y" = 19, "under_x" = 20, "under_y" = 15, "stock_x" = 20, "stock_y" = 15)
 	flags_item_map_variant = NONE
 	starting_attachment_types = list(/obj/item/attachable/scope/pmc, /obj/item/attachable/sniperbarrel)
-	gun_iff_signal = list(ACCESS_IFF_PMC)
 
 	fire_delay = 1.5 SECONDS
 	accuracy_mult = 1.50
@@ -328,8 +324,7 @@
 		/obj/item/attachable/attached_gun/shotgun,
 	)
 
-	flags_gun_features = GUN_AUTO_EJECTOR|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
-	gun_iff_signal = list(ACCESS_IFF_MARINE)
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER|GUN_IFF
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_AUTOMATIC)
 	gun_skill_category = GUN_SKILL_FIREARMS
 	attachable_offset = list("muzzle_x" = 44, "muzzle_y" = 18,"rail_x" = 16, "rail_y" = 25, "under_x" = 27, "under_y" = 13, "stock_x" = 24, "stock_y" = 13)
@@ -341,84 +336,112 @@
 	scatter = -15
 	recoil = 2
 
-//-------------------------------------------------------
-//SMARTGUN
 
-//Come get some.
-/obj/item/weapon/gun/smartgun
-	name = "\improper T-90A smartgun"
-	desc = "The actual firearm in the 4-piece M56B Smartgun System. This one has TGMC markings, thus designating it a T-90A. It is essentially a heavy, mobile machinegun.\nReloading is a cumbersome process requiring a powerpack. Click the powerpack icon in the top left or use special action to reload."
-	icon_state = "m56"
-	item_state = "m56"
-	max_shells = 100 //codex
-	caliber = CALIBER_10X28_CASELESS //codex
-	fire_sound = "gun_smartgun"
-	load_method = POWERPACK //codex
-	current_mag = /obj/item/ammo_magazine/internal/smartgun
-	flags_equip_slot = NONE
+//-------------------------------------------------------
+// MINIGUN
+
+/obj/item/weapon/gun/minigun
+	name = "\improper T-100 Minigun"
+	desc = "A six barreled rotary machine gun, The ultimate in man-portable firepower, capable of laying down high velocity armor piercing rounds this thing will no doubt pack a punch."
+	icon_state = "minigun"
+	item_state = "minigun"
+	max_shells = 500 //codex
+	caliber = CALIBER_762X51 //codex
+	load_method = MAGAZINE //codex
+	fire_sound = 'sound/weapons/guns/fire/minigun.ogg'
+	unload_sound = 'sound/weapons/guns/interact/minigun_unload.ogg'
+	reload_sound = 'sound/weapons/guns/interact/minigun_reload.ogg'
+	cocked_sound = 'sound/weapons/guns/interact/minigun_cocked.ogg'
+	current_mag = /obj/item/ammo_magazine/internal/minigun
+	type_of_casings = "cartridge"
 	w_class = WEIGHT_CLASS_HUGE
 	force = 20
-	wield_delay = 1.6 SECONDS
-	aim_slowdown = 1.5
-	var/datum/ammo/ammo_secondary = /datum/ammo/bullet/smartgun/lethal//Toggled ammo type
-	var/shells_fired_max = 50 //Smartgun only; once you fire # of shells, it will attempt to reload automatically. If you start the reload, the counter resets.
+	wield_delay = 12
+	var/shells_fired_max = 50 //minigun only; once you fire # of shells, it will attempt to reload automatically. If you start the reload, the counter resets.
 	var/shells_fired_now = 0 //The actual counter used. shells_fired_max is what it is compared to.
-	var/restriction_toggled = TRUE //Begin with the safety on.
-	gun_skill_category = GUN_SKILL_SMARTGUN
-	attachable_allowed = list(
-		/obj/item/attachable/extended_barrel,
-		/obj/item/attachable/heavy_barrel,
-		/obj/item/attachable/flashlight,
-		/obj/item/attachable/bipod,
-		/obj/item/attachable/compensator,
-		/obj/item/attachable/lasersight,
-	)
 
+	gun_skill_category = GUN_SKILL_FIREARMS
+	aim_slowdown = 0.8
 	flags_gun_features = GUN_INTERNAL_MAG|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
-	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
-	starting_attachment_types = list(/obj/item/attachable/flashlight)
-	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 16,"rail_x" = 11, "rail_y" = 18, "under_x" = 22, "under_y" = 14, "stock_x" = 22, "stock_y" = 14)
-	gun_iff_signal = list(ACCESS_IFF_MARINE)
+	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
+	attachable_allowed = list(/obj/item/attachable/flashlight, /obj/item/attachable/magnetic_harness)
+	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 19,"rail_x" = 10, "rail_y" = 21, "under_x" = 24, "under_y" = 14, "stock_x" = 24, "stock_y" = 12)
 
-	fire_delay = 0.3 SECONDS
-	burst_amount = 4
-	accuracy_mult = 1.15
+	fire_delay = 0.175 SECONDS
+	scatter = 10
+	recoil = 2
+	recoil_unwielded = 4
 	damage_falloff_mult = 0.5
 
 
-/obj/item/weapon/gun/smartgun/Initialize()
+
+/obj/item/weapon/gun/minigun/Initialize()
 	. = ..()
-	ammo_secondary = GLOB.ammo_list[ammo_secondary]
+	SSmonitor.stats.miniguns_in_use += src
+
+/obj/item/weapon/gun/minigun/Destroy()
+	. = ..()
+	SSmonitor.stats.miniguns_in_use -= src
 
 
-/obj/item/weapon/gun/smartgun/examine_ammo_count(mob/user)
+/obj/item/weapon/gun/minigun/examine_ammo_count(mob/user)
 	to_chat(user, "[current_mag?.current_rounds ? "Ammo counter shows [current_mag.current_rounds] round\s remaining." : "It's dry."]")
-	to_chat(user, "The restriction system is [restriction_toggled ? "<B>on</b>" : "<B>off</b>"].")
 
-/obj/item/weapon/gun/smartgun/unique_action(mob/living/carbon/user)
-	. = ..()
-	if(.)
+//The minigun needs to wind up to fire.
+/obj/item/weapon/gun/minigun/Fire()
+	if(!able_to_fire(gun_user))
 		return
-	var/obj/item/smartgun_powerpack/power_pack = user.back
+	if(windup_checked == WEAPON_WINDUP_NOT_CHECKED)
+		playsound(get_turf(src), 'sound/weapons/guns/fire/tank_minigun_start.ogg', 30)
+		INVOKE_ASYNC(src, .proc/do_windup)
+		return
+	else if (windup_checked == WEAPON_WINDUP_CHECKING)//We are already in windup, continue
+		return
+	. = ..()
+	if(!.)
+		windup_checked = WEAPON_WINDUP_NOT_CHECKED
+
+///Windup before firing
+/obj/item/weapon/gun/minigun/proc/do_windup()
+	windup_checked = WEAPON_WINDUP_CHECKING
+	if(!do_after(gun_user, 0.4 SECONDS, TRUE, src, BUSY_ICON_DANGER, BUSY_ICON_DANGER, ignore_turf_checks = TRUE))
+		windup_checked = WEAPON_WINDUP_NOT_CHECKED
+		return
+	windup_checked = WEAPON_WINDUP_CHECKED
+	SEND_SIGNAL(src, COMSIG_GUN_FIRE)
+
+/obj/item/weapon/gun/minigun/get_ammo_type()
+	if(!ammo)
+		return list("unknown", "unknown")
+	return list(ammo.hud_state, ammo.hud_state_empty)
+
+/obj/item/weapon/gun/minigun/get_ammo_count()
+	if(!current_mag)
+		return in_chamber ? 1 : 0
+	return in_chamber ? (current_mag.current_rounds + 1) : current_mag.current_rounds
+
+/obj/item/weapon/gun/minigun/unique_action(mob/living/carbon/user)
+	. = ..()
+	var/obj/item/minigun_powerpack/power_pack = user.back
 	if(!istype(power_pack))
 		return FALSE
 	return power_pack.attack_self(user)
 
-/obj/item/weapon/gun/smartgun/able_to_fire(mob/living/user)
+/obj/item/weapon/gun/minigun/able_to_fire(mob/living/user)
 	. = ..()
 	if(.)
 		if(!ishuman(user))
 			return FALSE
 		var/mob/living/carbon/human/H = user
-		if(!istype(H.wear_suit,/obj/item/clothing/suit/storage/marine/smartgunner) || !istype(H.back,/obj/item/smartgun_powerpack))
+		if(!istype(H.back,/obj/item/minigun_powerpack))
 			click_empty(H)
 			return FALSE
 
-/obj/item/weapon/gun/smartgun/load_into_chamber(mob/user)
+/obj/item/weapon/gun/minigun/load_into_chamber(mob/user)
 	return ready_in_chamber()
 
-/obj/item/weapon/gun/smartgun/reload_into_chamber(mob/living/carbon/user)
-	var/obj/item/smartgun_powerpack/power_pack = user.back
+/obj/item/weapon/gun/minigun/reload_into_chamber(mob/living/carbon/user)
+	var/obj/item/minigun_powerpack/power_pack = user.back
 	if(!istype(power_pack))
 		return current_mag.current_rounds
 	if(shells_fired_now >= shells_fired_max && power_pack.rounds_remaining > 0) // If shells fired exceeds shells needed to reload, and we have ammo.
@@ -428,50 +451,26 @@
 
 	return current_mag.current_rounds
 
-/obj/item/weapon/gun/smartgun/delete_bullet(obj/projectile/projectile_to_fire, refund = 0)
+/obj/item/weapon/gun/minigun/delete_bullet(obj/projectile/projectile_to_fire, refund = 0)
 	qdel(projectile_to_fire)
 	if(refund) current_mag.current_rounds++
 	return 1
 
-/obj/item/weapon/gun/smartgun/toggle_gun_safety()
-	var/obj/item/weapon/gun/smartgun/G = get_active_firearm(usr)
-	if(!istype(G))
-		return //Right kind of gun is not in hands, abort.
-	to_chat(usr, "[icon2html(src, usr)] You [restriction_toggled? "<B>disable</b>" : "<B>enable</b>"] the [src]'s fire restriction. You will [restriction_toggled ? "harm anyone in your way" : "target through IFF"].")
-	playsound(loc,'sound/machines/click.ogg', 25, 1)
-	var/A = ammo
-	ammo = ammo_secondary
-	ammo_secondary = A
-	restriction_toggled = !restriction_toggled
+/obj/item/weapon/gun/minigun/proc/auto_reload(mob/minigunner, obj/item/minigun_powerpack/power_pack)
+	if(power_pack?.loc == minigunner)
+		power_pack.attack_self(minigunner, TRUE)
 
-/obj/item/weapon/gun/smartgun/proc/auto_reload(mob/smart_gunner, obj/item/smartgun_powerpack/power_pack)
-	if(power_pack?.loc == smart_gunner)
-		power_pack.attack_self(smart_gunner, TRUE)
-
-/obj/item/weapon/gun/smartgun/get_ammo_type()
+/obj/item/weapon/gun/minigun/get_ammo_type()
 	if(!ammo)
 		return list("unknown", "unknown")
 	else
 		return list(ammo.hud_state, ammo.hud_state_empty)
 
-/obj/item/weapon/gun/smartgun/get_ammo_count()
+/obj/item/weapon/gun/minigun/get_ammo_count()
 	if(!current_mag)
 		return 0
 	else
 		return current_mag.current_rounds
-
-
-/obj/item/weapon/gun/smartgun/dirty
-	name = "\improper M56D 'dirty' smartgun"
-	desc = "The actual firearm in the 4-piece M56D Smartgun System. If you have this, you're about to bring some serious pain to anyone in your way."
-	current_mag = /obj/item/ammo_magazine/internal/smartgun/dirty
-	ammo_secondary = /datum/ammo/bullet/smartgun/dirty/lethal
-	attachable_allowed = list() //Cannot be upgraded.
-	flags_gun_features = GUN_INTERNAL_MAG|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
-
-	fire_delay = 0.3 SECONDS
-	accuracy_mult = 1.1
-
 
 //-------------------------------------------------------
 //GRENADE LAUNCHER
@@ -1019,7 +1018,7 @@
 	max_shells = 4 //codex
 	caliber = CALIBER_ROCKETARRAY //codex
 	load_method = MAGAZINE //codex
-	current_mag = /obj/item/ammo_magazine/rocket/m57a4
+	current_mag = /obj/item/ammo_magazine/rocket/m57a4/ds
 	aim_slowdown = 2.75
 	attachable_allowed = list()
 	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
@@ -1029,6 +1028,14 @@
 	burst_delay = 0.4 SECONDS
 	burst_amount = 4
 	accuracy_mult = 0.8
+
+/obj/item/weapon/gun/launcher/rocket/m57a4/t57
+	name = "\improper T-57 quad thermobaric launcher"
+	desc = "The T-57 is posssibly the most awful man portable weapon. It is a 4-barreled missile launcher capable of burst-firing 4 thermobaric missiles with nearly no force to the rocket. Enough said."
+	icon_state = "t57"
+	item_state = "t57"
+	current_mag = /obj/item/ammo_magazine/rocket/m57a4
+
 
 
 //-------------------------------------------------------
@@ -1071,7 +1078,7 @@
 
 /obj/item/weapon/gun/launcher/rocket/oneuse
 	name = "\improper T-72 disposable rocket launcher"
-	desc = "This is the premier disposable rocket launcher used throughout the galaxy, it cannot be reloaded or unloaded on the field. This one fires a 68mm explosive rocket."
+	desc = "This is the premier disposable rocket launcher used throughout the galaxy, it cannot be reloaded or unloaded on the field. This one fires an 84mm explosive rocket."
 	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "t72"
 	item_state = "t72"
@@ -1100,81 +1107,6 @@
 		to_chat(user, "It's loaded.")
 	else
 		to_chat(user, "It's empty.")
-
-//-------------------------------------------------------
-//This gun is very powerful, but also has a kick.
-
-/obj/item/weapon/gun/minigun
-	name = "\improper T-100 Minigun"
-	desc = "A six barreled rotary machine gun, The ultimate in man-portable firepower, capable of laying down high velocity armor piercing rounds this thing will no doubt pack a punch."
-	icon_state = "minigun"
-	item_state = "minigun"
-	max_shells = 500 //codex
-	caliber = CALIBER_762X51 //codex
-	load_method = MAGAZINE //codex
-	fire_sound = 'sound/weapons/guns/fire/minigun.ogg'
-	unload_sound = 'sound/weapons/guns/interact/minigun_unload.ogg'
-	reload_sound = 'sound/weapons/guns/interact/minigun_reload.ogg'
-	cocked_sound = 'sound/weapons/guns/interact/minigun_cocked.ogg'
-	current_mag = /obj/item/ammo_magazine/minigun
-	type_of_casings = "cartridge"
-	w_class = WEIGHT_CLASS_HUGE
-	force = 20
-	wield_delay = 12
-	gun_skill_category = GUN_SKILL_FIREARMS
-	aim_slowdown = 0.8
-	flags_gun_features = GUN_AUTO_EJECTOR|GUN_WIELDED_FIRING_ONLY|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
-	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
-	attachable_allowed = list(/obj/item/attachable/flashlight)
-	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 19,"rail_x" = 10, "rail_y" = 21, "under_x" = 24, "under_y" = 14, "stock_x" = 24, "stock_y" = 12)
-
-	fire_delay = 0.175 SECONDS
-	scatter = 10
-	recoil = 2
-	recoil_unwielded = 4
-	damage_falloff_mult = 0.5
-
-/obj/item/weapon/gun/minigun/Initialize(mapload, spawn_empty)
-	. = ..()
-	SSmonitor.stats.miniguns_in_use += src
-
-/obj/item/weapon/gun/minigun/Destroy()
-	. = ..()
-	SSmonitor.stats.miniguns_in_use -= src
-
-//This is a minigun not a chaingun.
-/obj/item/weapon/gun/minigun/Fire()
-	if(windup_checked == WEAPON_WINDUP_NOT_CHECKED)
-		playsound(get_turf(src), 'sound/weapons/guns/fire/tank_minigun_start.ogg', 30)
-		INVOKE_ASYNC(src, .proc/do_windup)
-		return
-	else if (windup_checked == WEAPON_WINDUP_CHECKING)//We are already in windup, continue
-		return
-	. = ..()
-	if(!.)
-		windup_checked = WEAPON_WINDUP_NOT_CHECKED
-
-///Windup before firing
-/obj/item/weapon/gun/minigun/proc/do_windup()
-	windup_checked = WEAPON_WINDUP_CHECKING
-	if(!do_after(gun_user, 0.4 SECONDS, TRUE, src, BUSY_ICON_DANGER, BUSY_ICON_DANGER, ignore_turf_checks = TRUE))
-		windup_checked = WEAPON_WINDUP_NOT_CHECKED
-		return
-	windup_checked = WEAPON_WINDUP_CHECKED
-	SEND_SIGNAL(src, COMSIG_GUN_FIRE)
-
-/obj/item/weapon/gun/minigun/get_ammo_type()
-	if(!ammo)
-		return list("unknown", "unknown")
-	else
-		return list(ammo.hud_state, ammo.hud_state_empty)
-
-/obj/item/weapon/gun/minigun/get_ammo_count()
-	if(!current_mag)
-		return in_chamber ? 1 : 0
-	else
-		return in_chamber ? (current_mag.current_rounds + 1) : current_mag.current_rounds
-
 
 //-------------------------------------------------------
 //TX-220 Railgun

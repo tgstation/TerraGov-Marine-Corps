@@ -264,3 +264,223 @@
   - bugfix: fixes a few missing fire alarms doors on POS.
   - bugfix: fixed a messy area on the POS hangar, extended the fire shutters to match.
   - bugfix: Change the holopad layer so it renders above catwalks
+2021-07-15:
+  BraveMole:
+  - bugfix: Loadouts vendor will no longer runtime when equipping a loadout as a non
+      squad role
+  - bugfix: Fix observers not being able to spawn when no silos are there in distress
+      before shutter drop
+  - bugfix: Fix larvas spawning outside silos when there are silos
+  - bugfix: Fix quick equip not respecting storage delay
+  InterroLouis:
+  - imageadd: Added a new icon for being full.
+  Pariah919:
+  - balance: spawn jelly has 20 seconds of cooldown from 5
+  - rscadd: Added back impact grenades to marine vendors
+  Surrealaser:
+  - bugfix: Fixes corrosive acid melt times, and its processing time adjustment, considerably
+      faster like it was before.
+  TiviPlus:
+  - rscadd: Space is now fancier, this can be adjusted in preferences
+  lbnesquik:
+  - bugfix: Fixed the AI holopad being seemingly broken. Don't forget to use the Change
+      Hologram verb!
+2021-07-16:
+  BraveMole:
+  - refactor: Refactor IFF
+  - bugfix: Larvas cannot become king anymore
+  - bugfix: Fix shuttle windows not rotating
+  - balance: Remove 2 xenos jobs at roundstart, no matter the pop
+  - balance: Less xeno in crash
+  - balance: Less xeno for marines overall
+  - bugfix: Impact grenades are actually in normal vendors, not HvH one
+  - expansion: Add a gun safety keybind
+  - bugfix: Rebel have their own comms
+  - bugfix: SL have its medhud back in essential kits
+  EvilMelonTheSecond:
+  - expansion: Added meson-like goggles to req
+  InterroLouis:
+  - bugfix: Impact Grenade Box Vends Properly.
+  Pariah919:
+  - bugfix: resin walls now die to devastating explosions such as OBs, and other things
+  - balance: resin walls now die to devastating explosions. Which include HE OBs.
+  - expansion: adds marine spear in vendors
+  - balance: can't refill qc+ and peri + at marine med
+  - expansion: Adds an IFF-less heavy machinegun to the game, not in yet for acquireable
+      players.
+  - expansion: added a thermobaric to req, way weaker and cheaper than before.
+  - bugfix: smartrifle magazines pop up in req
+  QualityVan:
+  - bugfix: Xeno healing now splits properly between brute and burn instead of doubling,
+      base healing increased 25% to compensate
+  RipGrayson:
+  - balance: LV624 caves are now slightly less cramped, engineering is slightly larger.
+  SplinterGP:
+  - expansion: Ravager now also gets fury on receiving damage.
+  - balance: Ravager Passive fury regen has been severely reduced.
+  Surrealaser:
+  - balance: Clawed Hugger melee damage increased from 23 to 25.
+  - balance: Clawed Hugger jump timer decreased from 1.5 to 1.2 seconds.
+  - balance: Hemodile no longer deals stamina damage.
+  - balance: Hemodile base slowdown increased from 1 to 1.5.
+  - balance: Hemodile slowdown is multiplied by 2 for each other Xeno chem in the
+      victim's system (Neurotoxin and Transvitox).
+  Wayland-Smithy:
+  - admin: Added a button to become an Imaginary Friend to the ticket panel.
+2021-07-17:
+  BraveMole:
+  - rscdel: Remove specialist from code
+  - qol: Unique action and unload gun works even if the gun is in your inactive hand
+  - bugfix: Fix premade sentries IFF (tadpole, canterbury, fob drone, etc...)
+  - bugfix: Fix projectile double tap
+  Pariah919:
+  - expansion: new seasonal bucket with uzi and cmb revolver
+  - balance: cmb now has tp-44 fire rate, now has a 2 round burst with 0.1 fire delay.
+      Uzi buffed to fire as fast as normal smgs and is built for one handed use.
+  - rscadd: 'Added new lolipop pouch with cool lolipops that heal you and stuff. As
+      an equivalent to the marine medical pouches. spriteadd: new boxes for lolipops'
+  - balance: silo collaspe takes 45 minutes from roundstart to begin happening, rather
+      than an hour
+  TiviPlus:
+  - bugfix: certain player messages will now appear large and red correctly
+2021-07-18:
+  BraveMole:
+  - rscadd: SG is added in civil war
+  - expansion: Forces HvH faction to wear certain colors
+  - bugfix: Rebels have iff too
+  Pariah919:
+  - qol: throwing knife belt auto pulls knives automatically if you click on it
+  - balance: throwing knive belt holds 15 knives, and throwing knives deal more force,
+      still less than a normal knife though.
+  - rscdel: Removed old m56
+  - balance: minigun now has magnetic harness, and works off powerpacks that reload
+      it instead of ammo magazines
+  - balance: endure has less crit hp, 150 from 200
+  - balance: runner has higher melee armor now.
+  - bugfix: t-25 iff
+  QualityVan:
+  - rscadd: Defilers can inject hemo and transvit into eggs now if they want.
+  - bugfix: Injected eggs don't have to grow up a second time
+  - code_imp: Added the ability for all storage spaces to have item-specific limits
+  - rscadd: Added bihexajuline for treating broken bones in cryo. Recipe is 2 bicaridine,
+      1 milk, 2 iron
+  - rscadd: Put bihexajuline in the starting cryo mix
+  - bugfix: If your arm gets torn off, it isn't broken any more.
+  - bugfix: Cryotubes no longer fix broken bones due to incorrect argument passing
+  - bugfix: The recent 25% boost to xeno healing now also includes the gain from recovery
+      pheromones
+  - rscadd: Slashing guns as a xeno will turn any lights on them off
+  Surrealaser:
+  - rscadd: The Silence ability replaces the Haunt ability on the Hunter. This mutes
+      and silences living hostiles the Hunter has direct line of sight to in a 5x5
+      area for about 10 seconds (15 seconds for the Hunter Mark target).
+  - bugfix: Minor text fix for the Wraith's Place Warp Shadow ability.
+  - bugfix: Fixes Right Click mode for Xenos so that it doesn't try to attack at the
+      same time it uses an ability (thus triggering click/bump slash cooldowns).
+  - bugfix: Turf targeting with melee attacks no longer triggers click/bump slash
+      cooldowns.
+  Walarks:
+  - qol: Added active seasons announcement, changed seasonal buckets names/descriptions
+      to be more flavourful
+  - qol: Added tgchat format styles
+  lbnesquik:
+  - rscadd: More holopads to the POS
+  - rscadd: Gave the RO a map table. Fairly eager to see how helpful that is for most
+      players.
+  - bugfix: fixed a number of oddities in the POS map, mostly areas and fire alarms.
+  - admin: expand the quick create paths
+  - bugfix: fixed some walls of the POS being outerhull instead of being hull.
+  - bugfix: fixed a missing floodlight in LV engineering
+  - bugfix: fixed cameras notifying the AI of their demise, despite a lack of power.
+  - balance: Allows the AI to interface with groundside equipment
+2021-07-19:
+  BraveMole:
+  - bugfix: Fix hud going DNR when ghost leave body
+  - bugfix: Fix coloring in hvh
+  - rscadd: Give sec vendors in hvh, so admins don't have to spawn handcuffs
+  - bugfix: Fix iff for standard rebel marine
+  - expansion: Loadout tools will now save job title, id's access and iff signal,
+      and headset
+  - bugfix: Rail flashlight can be shut down by nightfall
+  - bugfix: Fix carrier trap not being killed when weeds are destroyed
+  - balance: Acid wells are destroyed when the weeds below them is removed
+  Hekzder:
+  - spellcheck: CSE rank time now properly lists 100 hours instead of 50 hours.
+  - rscadd: Added various civilian pay grades for medical staff.
+  - rscadd: CMO and MR now have rank progression.
+  - rscadd: MD has changed rank progression, starting at Resident and going to Medical
+      Doctor at 50 hours.
+  - bugfix: Medical staff are now properly civilian.
+  InterroLouis:
+  - balance: Xeno turrets can't be built too close to each other.
+  Joniroq:
+  - balance: T-64 battle rifle can now have an angled grip.
+  QualityVan:
+  - rscadd: Medbay is now stocked with sutures for sewing people's wounds closed.
+      You need to have not opened an incision to use them.
+  - rscdel: Removed the drills from the surgery trays and vests. You can still print
+      one at a lathe if you're really torn up by their loss.
+  - bugfix: Larva now start growing again if their host stops being dead.
+2021-07-20:
+  BraveMole:
+  - bugfix: Minigun no longer has aimbot
+  - bugfix: Fix runtime in gun system
+  - bugfix: Fix shutters being crushable by tadpole
+  - balance: Remove the scope from TX_11 in hvh
+  QualityVan:
+  - bugfix: Vali should have fewer typos and more accurately express the current power
+      level.
+2021-07-21:
+  BraveMole:
+  - bugfix: Fix mines not blowing up xeno
+  Hekzder:
+  - bugfix: Fixes NTOS crash on job prefs, round start text for MD and CMO, and missing
+      hud icon for MD.
+  InterroLouis:
+  - bugfix: Fixed doubled job slots, now rebel jobs have their own job slots that
+      can be altered separately from regular job slots.
+  - spellcheck: Fixed medical researcher job display order.
+  Surrealaser:
+  - bugfix: Fixes issue where light neurotoxin wasn't being reported by Xeno Toxin
+      HUD.
+  - qol: HUD elements for high concentrations of xeno toxins (more than 10U) now blink.
+2021-07-22:
+  InterroLouis:
+  - bugfix: Triumph shuttle has appropriate intercoms.
+2021-07-23:
+  BraveMole:
+  - qol: Ai can manipuate shuttle doors even groundside, but won't be able to lock
+      them (unless it uses the console)
+  - qol: Keybind for minimap
+  - bugfix: Fix rebel squadies not having all their comm channels
+  - qol: Add some vendors in req
+  - bugfix: Smartrifle are available in loadout vendors
+  - bugfix: Fix prison being in space instead of the ocean
+  - bugfix: Fix minigun safety
+  Hekzder:
+  - rscadd: Added O-3 to SO as starting rank. SO now gets O-4 at 25 hours and O-5
+      at 50 hours.
+  - balance: Hlin no longer gives explosive immunity, instead results in about 90
+      bomb armor.
+  InterroLouis:
+  - rscadd: Mateba ammo packets now available in req.
+  - balance: Revolver ammo packets have one less bullet.
+  - balance: Antimaterial rifle has an NV scope now.
+  - spellcheck: Fixed a typo in the T-72 disposable rocket launcher description.
+  Pariah919:
+  - bugfix: mp belt no longer holds pistols
+  - balance: tl has aim mode
+  QualityVan:
+  - rscadd: Humans can use a hugger in-hand to crush it.
+  - bugfix: Huggers don't break storage containers and will leap out now.
+  - bugfix: Catching huggers works now instead of causing quantum huggers.
+  lbnesquik:
+  - balance: Very slight reduction in price of HE and WP sadar rockets, with the aim
+      of varying ammo usages.
+  - expansion: Allow the AI to access cryo cells.
+  - bugfix: fixed engineering staff on POS not having access to their gun cabinet.
+  - admin: Added dropship equipement to the quick create menu
+  - rscadd: Brought back the CLF ERT to life.
+  - bugfix: fixed a misplaced poster.
+  - expansion: Allow the AI to unbolt their core
+  - qol: You can now use Z to activate your mortar. Simple QOL.
