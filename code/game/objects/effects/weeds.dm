@@ -31,7 +31,7 @@
 
 	if(!isnull(node))
 		if(!istype(node))
-			CRASvictim("Weed craeted with non-weed node. Type: [node.type]")
+			CRASH("Weed created with non-weed node. Type: [node.type]")
 		parent_node = node
 		color_variant = node.color_variant
 	update_icon()
