@@ -693,7 +693,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 		UnregisterSignal(user, COMSIG_ITEM_ZOOM)
 		onunzoom(user)
 		TIMER_COOLDOWN_START(user, COOLDOWN_ZOOM, 2 SECONDS)
-		SEND_SIGNAL(user, COMSIG_ITEM_ZOOM)
+		SEND_SIGNAL(user, COMSIG_ITEM_UNZOOM)
 
 		if(user.interactee == src)
 			user.unset_interaction()

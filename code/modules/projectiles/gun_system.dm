@@ -230,7 +230,7 @@
 		RegisterSignal(gun_user, COMSIG_MOB_MOUSEDOWN, .proc/start_fire)
 		RegisterSignal(gun_user, COMSIG_MOB_MOUSEDRAG, .proc/change_target)
 	RegisterSignal(gun_user, COMSIG_PARENT_QDELETING, .proc/clean_gun_user)
-	RegisterSignal(gun_user, list(COMSIG_MOB_MOUSEUP, COMSIG_ITEM_ZOOM), .proc/stop_fire)
+	RegisterSignal(gun_user, list(COMSIG_MOB_MOUSEUP, COMSIG_ITEM_ZOOM, COMSIG_ITEM_UNZOOM), .proc/stop_fire)
 	RegisterSignal(gun_user, COMSIG_KB_RAILATTACHMENT, .proc/activate_rail_attachment)
 	RegisterSignal(gun_user, COMSIG_KB_UNDERRAILATTACHMENT, .proc/activate_underrail_attachment)
 	RegisterSignal(gun_user, COMSIG_KB_UNLOADGUN, .proc/unload_gun)
