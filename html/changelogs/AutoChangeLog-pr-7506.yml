@@ -1,6 +1,0 @@
-author: "QualityVan"
-delete-after: True
-changes: 
-  - rscadd: "Humans can use a hugger in-hand to crush it."
-  - bugfix: "Huggers don't break storage containers and will leap out now."
-  - bugfix: "Catching huggers works now instead of causing quantum huggers."

@@ -447,3 +447,40 @@
 2021-07-22:
   InterroLouis:
   - bugfix: Triumph shuttle has appropriate intercoms.
+2021-07-23:
+  BraveMole:
+  - qol: Ai can manipuate shuttle doors even groundside, but won't be able to lock
+      them (unless it uses the console)
+  - qol: Keybind for minimap
+  - bugfix: Fix rebel squadies not having all their comm channels
+  - qol: Add some vendors in req
+  - bugfix: Smartrifle are available in loadout vendors
+  - bugfix: Fix prison being in space instead of the ocean
+  - bugfix: Fix minigun safety
+  Hekzder:
+  - rscadd: Added O-3 to SO as starting rank. SO now gets O-4 at 25 hours and O-5
+      at 50 hours.
+  - balance: Hlin no longer gives explosive immunity, instead results in about 90
+      bomb armor.
+  InterroLouis:
+  - rscadd: Mateba ammo packets now available in req.
+  - balance: Revolver ammo packets have one less bullet.
+  - balance: Antimaterial rifle has an NV scope now.
+  - spellcheck: Fixed a typo in the T-72 disposable rocket launcher description.
+  Pariah919:
+  - bugfix: mp belt no longer holds pistols
+  - balance: tl has aim mode
+  QualityVan:
+  - rscadd: Humans can use a hugger in-hand to crush it.
+  - bugfix: Huggers don't break storage containers and will leap out now.
+  - bugfix: Catching huggers works now instead of causing quantum huggers.
+  lbnesquik:
+  - balance: Very slight reduction in price of HE and WP sadar rockets, with the aim
+      of varying ammo usages.
+  - expansion: Allow the AI to access cryo cells.
+  - bugfix: fixed engineering staff on POS not having access to their gun cabinet.
+  - admin: Added dropship equipement to the quick create menu
+  - rscadd: Brought back the CLF ERT to life.
+  - bugfix: fixed a misplaced poster.
+  - expansion: Allow the AI to unbolt their core
+  - qol: You can now use Z to activate your mortar. Simple QOL.
