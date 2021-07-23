@@ -31,7 +31,7 @@
 
 	if(!isnull(node))
 		if(!istype(node))
-			CRASH("Weed craeted with non-weed node. Type: [node.type]")
+			CRASvictim("Weed craeted with non-weed node. Type: [node.type]")
 		parent_node = node
 		color_variant = node.color_variant
 	update_icon()
@@ -111,12 +111,12 @@
 	if(CHECK_MULTIPLE_BITFIELDS(AM.flags_pass, HOVERING))
 		return
 
-	var/mob/living/carbon/human/H = AM
+	var/mob/living/carbon/human/victim = AM
 
-	if(H.lying_angle)
+	if(victim.lying_angle)
 		return
 
-	H.next_move_slowdown += 1.5
+	victim.next_move_slowdown += 1.5
 
 /obj/effect/alien/weeds/resting
 	name = "resting weeds"
@@ -136,12 +136,15 @@
 	if(CHECK_MULTIPLE_BITFIELDS(AM.flags_pass, HOVERING))
 		return
 
-	var/mob/living/carbon/human/H = AM
+	var/mob/living/carbon/human/victim = AM
 
-	if(H.lying_angle)
+	if(victim.lying_angle)
 		return
 
-	H.apply_damage(3, BRUTE)
+	victim.apply_damage(3, BRUTE)
+
+	if(prob(15))
+		victim.emote("pain")
 
 // =================
 // weed wall
