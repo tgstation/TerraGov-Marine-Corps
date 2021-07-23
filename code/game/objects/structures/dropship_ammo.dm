@@ -152,14 +152,13 @@
 
 //laser battery
 
-/obj/structure/ship_ammo/laser_battery
+/obj/structure/ship_ammo/energy
 	name = "high-capacity laser battery"
 	icon_state = "laser_battery"
 	desc = "A high-capacity laser battery used to power laser beam weapons."
 	travelling_time = 1 SECONDS
 	ammo_count = 100
 	max_ammo_count = 100
-	ammo_used_per_firing = 40
 	equipment_type = /obj/structure/dropship_equipment/weapon/laser_beam_gun
 	ammo_name = "charge"
 	transferable_ammo = TRUE
@@ -167,42 +166,42 @@
 	warning_sound = 'sound/effects/nightvision.ogg'
 	point_cost = 150
 	///The length of the beam that will come out of when we fire do both ends xxxoxxx where o is where you click
-	var/laze_radius = 4
+	var/impact_radius = 4
 	ammo_type = CAS_LASER_BATTERY
 
-/obj/structure/ship_ammo/laser_battery/examine(mob/user)
+/obj/structure/ship_ammo/energy/examine(mob/user)
 	. = ..()
 	to_chat(user, "It's at [round(100*ammo_count/max_ammo_count)]% charge.")
 
 
-/obj/structure/ship_ammo/laser_battery/show_loaded_desc(mob/user)
+/obj/structure/ship_ammo/energy/show_loaded_desc(mob/user)
 	if(ammo_count)
 		to_chat(user, "It's loaded with \a [src] at [round(100*ammo_count/max_ammo_count)]% charge.")
 	else
 		to_chat(user, "It's loaded with an empty [name].")
 
 
-/obj/structure/ship_ammo/laser_battery/detonate_on(turf/impact, attackdir = NORTH)
+/obj/structure/ship_ammo/energy/detonate_on(turf/impact, attackdir = NORTH)
 	var/turf/beginning = impact
 	var/turf/end = impact
 	var/revdir = REVERSE_DIR(attackdir)
-	for(var/i=0 to laze_radius)
+	for(var/i=0 to impact_radius)
 		beginning = get_step(beginning, revdir)
 		end = get_step(end, attackdir)
-	var/list/turf/lazertargets = getline(beginning, end)
-	process_lazer(lazertargets)
+	var/list/turf/impacttargets = getline(beginning, end)
+	process_impact(impacttargets)
 	if(!ammo_count)
-		QDEL_IN(src, laze_radius+1) //deleted after last laser beam is fired and impact the ground.
+		QDEL_IN(src, impact_radius+1) //deleted after last is fired and hit the ground.
 
-///takes the top lazertarget on the stack and fires the lazer at it
-/obj/structure/ship_ammo/laser_battery/proc/process_lazer(list/lazertargets)
-	laser_burn(lazertargets[1])
-	lazertargets -= lazertargets[1]
-	if(length(lazertargets))
-		INVOKE_NEXT_TICK(src, .proc/process_lazer, lazertargets)
+///takes the top hittarget on the stack and fires the at it
+/obj/structure/ship_ammo/energy/proc/process_impact(list/impacttargets)
+	projectile_impact(impacttargets[1])
+	impacttargets -= impacttargets[1]
+	if(length(impacttargets))
+		INVOKE_NEXT_TICK(src, .proc/process_impact, impacttargets)
 
-///Lazer ammo acts on the turf passed in
-/obj/structure/ship_ammo/laser_battery/proc/laser_burn(turf/T)
+///Projectile ammo acts on the turf passed in
+/obj/structure/ship_ammo/energy/proc/projectile_impact(turf/T)
 	playsound(T, 'sound/effects/pred_vision.ogg', 30, 1)
 	for(var/mob/living/L in T)
 		L.adjustFireLoss(120)
@@ -211,57 +210,33 @@
 	T.ignite(5, 30) //short but intense
 
 
-//Railgun
+//railgun
 
-/obj/structure/ship_ammo/railgun
+/obj/structure/ship_ammo/energy/railgun
 	name = "railgun ammunition unit"
 	icon_state = "laser_battery"
 	desc = "Changeable capacitors and projectiles clip in single unit, complexity of the design does not allow transfer of ammo. Used to fire railgun."
 	travelling_time = 2 SECONDS
-	ammo_count = 5
-	max_ammo_count = 5
 	equipment_type = /obj/structure/dropship_equipment/weapon/railgun
-	ammo_name = "projectile charges"
 	transferable_ammo = FALSE
-	ammo_used_per_firing = 1
-	warning_sound = 'sound/effects/nightvision.ogg'
+	ammo_used_per_firing = 20 // 5 shots
 	point_cost = 200
-	var/rail_radius = 1
+	impact_radius = 0
 	ammo_type = CAS_RAILGUN
 
-/obj/structure/ship_ammo/railgun/examine(mob/user)
+/obj/structure/ship_ammo/energy/railgun/examine(mob/user)
 	. = ..()
-	to_chat(user, "It's at [round(100*ammo_count/max_ammo_count)]% charge and [ammo_count] projectiles.")
+	to_chat(user, "It's at [round(100*ammo_count/max_ammo_count)]% charge and [ammo_count/20] projectiles.")
 
 
-/obj/structure/ship_ammo/railgun/show_loaded_desc(mob/user)
+/obj/structure/ship_ammo/energy/railgun/show_loaded_desc(mob/user)
 	if(ammo_count)
 		to_chat(user, "It's loaded with \a [src] at [round(100*ammo_count/max_ammo_count)]% charge and [ammo_count] projectiles.")
 	else
 		to_chat(user, "[name] is empty.")
 
-
-/obj/structure/ship_ammo/railgun/detonate_on(turf/impact, attackdir = NORTH)
-	var/turf/beginning = impact
-	var/turf/end = impact
-	var/revdir = REVERSE_DIR(attackdir)
-	for(var/i=0 to rail_radius)
-		beginning = get_step(beginning, revdir)
-		end = get_step(end, attackdir)
-	var/list/turf/railtargets = getline(beginning, end)
-	process_rail(railtargets)
-	if(!ammo_count)
-		QDEL_IN(src, rail_radius+1) //deleted after last is fired and impacts the ground
-
-///takes the top railtarget on the stack and fires the rail at it
-/obj/structure/ship_ammo/railgun/proc/process_rail(list/railtargets)
-	rail_hit(railtargets[1])
-	railtargets -= railtargets[1]
-	if(length(railtargets))
-		INVOKE_NEXT_TICK(src, .proc/process_rail, railtargets)
-
 ///Rail ammo acts on the turf passed in
-/obj/structure/ship_ammo/railgun/proc/rail_hit(turf/T)
+/obj/structure/ship_ammo/energy/railgun/projectile_impact(turf/T)
 	playsound(T, 'sound/effects/explosion6.ogg', 4, 1)
 	T.ex_act(EXPLODE_DEVASTATE)
 	new /obj/effect/particle_effect/expl_particles(T)
