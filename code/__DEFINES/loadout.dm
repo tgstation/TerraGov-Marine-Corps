@@ -491,6 +491,7 @@ GLOBAL_LIST_INIT(loadout_role_essential_set, list(
 		/obj/item/beacon/orbital_bombardment_beacon = 1,
 		/obj/item/whistle = 1,
 		/obj/item/radio = 1,
+		/obj/item/binoculars/tactical = 1,
 		/obj/item/pinpointer/pool = 1,
 		/obj/item/clothing/glasses/hud/health = 1,
 	)

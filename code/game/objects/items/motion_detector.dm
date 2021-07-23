@@ -9,7 +9,7 @@
 	var/image/blip_image
 
 /// Print the blip on the operator screen
-/obj/effect/detector_blip/proc/show_bip(mob/operator, mob/target, screen_pos_x, screen_pos_y,)
+/obj/effect/detector_blip/proc/show_blip(mob/operator, mob/target, screen_pos_x, screen_pos_y)
 	if(!operator?.client)
 		return
 	if(edge_blip) // we want to draw the blip directly on the screen edges, so we use client.screen
@@ -82,7 +82,7 @@
 /obj/item/attachable/motiondetector/attack_self(mob/user)
 	activate_attachment(user)
 
-obj/item/attachable/motiondetector/update_icon()
+/obj/item/attachable/motiondetector/update_icon()
 	. = ..()
 	for(var/datum/action/action AS in master_gun?.actions)
 		action.update_button_icon()
@@ -159,4 +159,4 @@ obj/item/attachable/motiondetector/update_icon()
 		detector_blip.setDir(detector_blip.edge_blip ? detector_blip.dir == SOUTH ? SOUTHEAST : NORTHEAST : EAST)
 		detector_blip.edge_blip = TRUE
 		screen_pos_x = viewX
-	detector_blip.show_bip(operator, target, screen_pos_x, screen_pos_y)
+	detector_blip.show_blip(operator, target, screen_pos_x, screen_pos_y)
