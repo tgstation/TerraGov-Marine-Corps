@@ -49,7 +49,7 @@
 	///What xeno was designed to be the new king
 	var/mob/living/carbon/xenomorph/future_king
 
-/obj/structure/resin/king_pod/Initialize(mapload, hivenumber)
+/obj/structure/resin/king_pod/Initialize(mapload, hivenumber = XENO_HIVE_NORMAL)
 	. = ..()
 	ownerhive = hivenumber
 	addtimer(CALLBACK(src, .proc/choose_king), KING_SUMMON_TIMER_DURATION)
@@ -75,7 +75,7 @@
 	for(var/mob/living/carbon/xenomorph/xenomorph_alive AS in shuffle(GLOB.alive_xeno_list))
 		if(xenomorph_alive.hivenumber != ownerhive)
 			continue
-		if(isxenoqueen(xenomorph_alive) || isxenoshrike(xenomorph_alive) || isxenohivemind(xenomorph_alive) || isxenolarva(xenomorph_alive))
+		if(!(xenomorph_alive.xeno_caste.caste_flags & CAN_BECOME_KING))
 			continue
 		var/accept_to_be_king = tgui_alert(xenomorph_alive, "The fate has landed and you, and you can become the King. Do you accept?", "Rise of the King", list("Accept", "Leave it for another xeno"), 20 SECONDS)
 		if(accept_to_be_king != "Accept")
@@ -111,7 +111,8 @@
 			new_caste_type = /mob/living/carbon/xenomorph/king/Zeta
 		if(XENO_HIVE_ADMEME)
 			new_caste_type = /mob/living/carbon/xenomorph/king/admeme
-	var/mob/living/carbon/xenomorph/king/kong = new new_caste_type(src)
+	var/mob/living/carbon/xenomorph/king/kong = new new_caste_type()
+	SSminimaps.add_marker(kong, kong.z, hud_flags = MINIMAP_FLAG_XENO, iconstate = kong.xeno_caste.minimap_icon)
 	RegisterSignal(kong, COMSIG_MOB_LOGIN , .proc/on_king_occupied)
 	if(future_king)
 		future_king.mind.transfer_to(kong)
