@@ -138,7 +138,7 @@
 #define INVOKE_KING_TIME_LOCK 1 HOURS
 
 /// How each alive marine contributes to burrower larva output per minute. So with one pool, 15 marines are giving 0.375 points per minute, so it's a new xeno every 22 minutes
-#define SILO_BASE_OUTPUT_PER_MARINE 0.03
+#define SILO_BASE_OUTPUT_PER_MARINE 0.035
 /// This is used to ponderate the number of silo, so to reduces the diminishing returns of having more and more silos
 #define SILO_OUTPUT_PONDERATION 1.75
 //Time (after round start) before siloless timer can start
