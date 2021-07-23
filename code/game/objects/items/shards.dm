@@ -17,7 +17,7 @@
 	var/shardsize
 
 /obj/item/shard/suicide_act(mob/user)
-	user.visible_message("<span class='danger'>[user] is slitting [user.p_their()] [pick("wrists", "throat")] with [src]! It looks like [user.p_theyre()] trying to commit suicide.</span>")
+	user.visible_message(span_danger("[user] is slitting [user.p_their()] [pick("wrists", "throat")] with [src]! It looks like [user.p_theyre()] trying to commit suicide."))
 	return (BRUTELOSS)
 
 /obj/item/shard/attack(mob/living/carbon/M, mob/living/carbon/user)
@@ -81,12 +81,12 @@
 
 	playsound(loc, 'sound/effects/glass_step.ogg', 25, TRUE)
 	if(prob(20))
-		to_chat(M, "<span class='danger'>[isxeno(M) ? "We" : "You"] step on \the [src], shattering it!</span>")
+		to_chat(M, span_danger("[isxeno(M) ? "We" : "You"] step on \the [src], shattering it!"))
 		qdel(src)
 		return
 
 	if(!M.buckled)
-		to_chat(M, "<span class='danger'>[isxeno(M) ? "We" : "You"] step on \the [src]!</span>")
+		to_chat(M, span_danger("[isxeno(M) ? "We" : "You"] step on \the [src]!"))
 		if(ishuman(M))
 			var/mob/living/carbon/human/H = M
 

@@ -68,7 +68,7 @@
 	switch(action)
 		if("saveLoadout")
 			if(length(loadouts_data) >= MAXIMUM_LOADOUT * 2)
-				to_chat(ui.user, "<span class='warning'>You've reached the maximum number of loadouts saved, please delete some before saving new ones</span>")
+				to_chat(ui.user, span_warning("You've reached the maximum number of loadouts saved, please delete some before saving new ones"))
 				return
 			var/loadout_name = params["loadout_name"]
 			if(isnull(loadout_name))
@@ -87,14 +87,14 @@
 				return
 			var/list/items = splittext(loadout_id, "//")
 			if(length(items) != 3)
-				to_chat(ui.user, "<span class='warning'>Wrong format!</span>")
+				to_chat(ui.user, span_warning("Wrong format!"))
 				return
 			var/datum/loadout/loadout = load_player_loadout(items[1], items[2], items[3])
 			if(!istype(loadout))
-				to_chat(ui.user, "<span class='warning'>Loadout not found!</span>")
+				to_chat(ui.user, span_warning("Loadout not found!"))
 				return
 			if(!(loadout.version in GLOB.accepted_loadout_versions))
-				to_chat(ui.user, "<span class='warning'>The loadouts was found but is from a past version, and cannot be imported.</span>")
+				to_chat(ui.user, span_warning("The loadouts was found but is from a past version, and cannot be imported."))
 				return
 			if(loadout.version != CURRENT_LOADOUT_VERSION)
 				loadout.version = CURRENT_LOADOUT_VERSION
@@ -110,7 +110,7 @@
 				return
 			var/datum/loadout/loadout = ui.user.client.prefs.load_loadout(name, job)
 			if(!loadout)
-				to_chat(ui.user, "<span class='warning'>Error when loading this loadout</span>")
+				to_chat(ui.user, span_warning("Error when loading this loadout"))
 				delete_loadout(ui.user, name, job)
 				CRASH("Fail to load loadouts")
 			loadout.loadout_vendor = loadout_vendor

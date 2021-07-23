@@ -4,7 +4,7 @@
 	msg += "This is [icon2html(src, user)] <b>[src]</b>!<br>"
 
 	if(stat == DEAD)
-		msg += "<span class='deadsay'>It appears to be powered-down.</span><br>"
+		msg += "[span_deadsay("It appears to be powered-down.")]<br>"
 	else
 		msg += "<span class='warning'>"
 		if(getBruteLoss())

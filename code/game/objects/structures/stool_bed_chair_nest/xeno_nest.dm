@@ -28,7 +28,7 @@
 		if(!ismob(G.grabbed_thing))
 			return
 		var/mob/M = G.grabbed_thing
-		to_chat(user, "<span class='notice'>You place [M] on [src].</span>")
+		to_chat(user, span_notice("You place [M] on [src]."))
 		M.forceMove(loc)
 
 
@@ -42,37 +42,37 @@
 	if(user.incapacitated() || !in_range(user, src) || buckling_mob.buckled)
 		return FALSE
 	if(!isxeno(user))
-		to_chat(user, "<span class='warning'>Gross! You're not touching that stuff.</span>")
+		to_chat(user, span_warning("Gross! You're not touching that stuff."))
 		return FALSE
 	if(LAZYLEN(buckled_mobs))
-		to_chat(user, "<span class='warning'>There's already someone in [src].</span>")
+		to_chat(user, span_warning("There's already someone in [src]."))
 		return FALSE
 	if(ishuman(buckling_mob))
 		var/mob/living/carbon/human/H = buckling_mob
 		if(TIMER_COOLDOWN_CHECK(H, COOLDOWN_NEST))
-			to_chat(user, "<span class='warning'>[H] was recently unbuckled. Wait a bit.</span>")
+			to_chat(user, span_warning("[H] was recently unbuckled. Wait a bit."))
 			return FALSE
 		if(!H.lying_angle)
-			to_chat(user, "<span class='warning'>[H] is resisting, ground [H.p_them()].</span>")
+			to_chat(user, span_warning("[H] is resisting, ground [H.p_them()]."))
 			return FALSE
 
-	user.visible_message("<span class='warning'>[user] pins [buckling_mob] into [src], preparing the securing resin.</span>",
-	"<span class='warning'>[user] pins [buckling_mob] into [src], preparing the securing resin.</span>")
+	user.visible_message(span_warning("[user] pins [buckling_mob] into [src], preparing the securing resin."),
+	span_warning("[user] pins [buckling_mob] into [src], preparing the securing resin."))
 
 	if(!do_mob(user, buckling_mob, 1 SECONDS, BUSY_ICON_HOSTILE))
 		return FALSE
 	if(QDELETED(src))
 		return FALSE
 	if(LAZYLEN(buckled_mobs))
-		to_chat(user, "<span class='warning'>There's already someone in [src].</span>")
+		to_chat(user, span_warning("There's already someone in [src]."))
 		return FALSE
 	if(ishuman(buckling_mob) && !buckling_mob.lying_angle) //Improperly stunned Marines won't be nested
-		to_chat(user, "<span class='warning'>[buckling_mob] is resisting, ground [buckling_mob.p_them()].</span>")
+		to_chat(user, span_warning("[buckling_mob] is resisting, ground [buckling_mob.p_them()]."))
 		return FALSE
 
-	buckling_mob.visible_message("<span class='xenonotice'>[user] secretes a thick, vile resin, securing [buckling_mob] into [src]!</span>",
-		"<span class='xenonotice'>[user] drenches you in a foul-smelling resin, trapping you in [src]!</span>",
-		"<span class='notice'>You hear squelching.</span>")
+	buckling_mob.visible_message(span_xenonotice("[user] secretes a thick, vile resin, securing [buckling_mob] into [src]!"),
+		span_xenonotice("[user] drenches you in a foul-smelling resin, trapping you in [src]!"),
+		span_notice("You hear squelching."))
 	playsound(loc, "alien_resin_move", 50)
 
 	silent = TRUE
@@ -83,30 +83,30 @@
 	if(buckled_mob != user)
 		if(user.incapacitated())
 			return FALSE
-		buckled_mob.visible_message("<span class='notice'>\The [user] pulls \the [buckled_mob] free from \the [src]!</span>",
-			"<span class='notice'>\The [user] pulls you free from \the [src].</span>",
-			"<span class='notice'>You hear squelching.</span>")
+		buckled_mob.visible_message(span_notice("\The [user] pulls \the [buckled_mob] free from \the [src]!"),
+			span_notice("\The [user] pulls you free from \the [src]."),
+			span_notice("You hear squelching."))
 		playsound(loc, "alien_resin_move", 50)
 		TIMER_COOLDOWN_START(user, COOLDOWN_NEST, NEST_UNBUCKLED_COOLDOWN)
 		silent = TRUE
 		return ..()
 
 	if(buckled_mob.incapacitated(TRUE))
-		to_chat(buckled_mob, "<span class='warning'>You're currently unable to try that.</span>")
+		to_chat(buckled_mob, span_warning("You're currently unable to try that."))
 		return FALSE
 	if(!resisting_time)
 		resisting_time = world.time
-		buckled_mob.visible_message("<span class='warning'>\The [buckled_mob] struggles to break free of \the [src].</span>",
-			"<span class='warning'>You struggle to break free from \the [src].</span>",
-			"<span class='notice'>You hear squelching.</span>")
+		buckled_mob.visible_message(span_warning("\The [buckled_mob] struggles to break free of \the [src]."),
+			span_warning("You struggle to break free from \the [src]."),
+			span_notice("You hear squelching."))
 		addtimer(CALLBACK(src, .proc/unbuckle_time_message, user), NEST_RESIST_TIME)
 		return FALSE
 	if(resisting_time + NEST_RESIST_TIME > world.time)
-		to_chat(buckled_mob, "<span class='warning'>You're already trying to free yourself. Give it some time.</span>")
+		to_chat(buckled_mob, span_warning("You're already trying to free yourself. Give it some time."))
 		return FALSE
-	buckled_mob.visible_message("<span class='danger'>\The [buckled_mob] breaks free from \the [src]!</span>",
-		"<span class='danger'>You pull yourself free from \the [src]!</span>",
-		"<span class='notice'>You hear squelching.</span>")
+	buckled_mob.visible_message(span_danger("\The [buckled_mob] breaks free from \the [src]!"),
+		span_danger("You pull yourself free from \the [src]!"),
+		span_notice("You hear squelching."))
 	silent = TRUE
 	return ..()
 
@@ -116,7 +116,7 @@
 		return //Time has passed, conditions may have changed.
 	if(resisting_time + NEST_RESIST_TIME > world.time)
 		return //We've been freed and re-nested.
-	to_chat(user, "<span class='danger'>You are ready to break free! Resist once more to free yourself!</span>")
+	to_chat(user, span_danger("You are ready to break free! Resist once more to free yourself!"))
 
 
 /obj/structure/bed/nest/post_buckle_mob(mob/living/buckling_mob)

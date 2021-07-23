@@ -8,7 +8,7 @@
 
 /obj/item/inflatable/attack_self(mob/user)
 	playsound(loc, 'sound/items/zip.ogg', 25, 1)
-	to_chat(user, "<span class='notice'>You inflate [src].</span>")
+	to_chat(user, span_notice("You inflate [src]."))
 	new /obj/structure/inflatable(user.loc)
 	qdel(src)
 
@@ -22,7 +22,7 @@
 
 	attack_self(mob/user)
 		playsound(loc, 'sound/items/zip.ogg', 25, 1)
-		to_chat(user, "<span class='notice'>You inflate [src].</span>")
+		to_chat(user, span_notice("You inflate [src]."))
 		new /obj/structure/inflatable/door(user.loc)
 		qdel(src)
 
@@ -66,7 +66,7 @@
 	. = ..()
 
 	if(can_puncture(I))
-		visible_message("<span class='danger'>[user] pierces [src] with [I]!</span>")
+		visible_message(span_danger("[user] pierces [src] with [I]!"))
 		deflate(TRUE)
 
 
@@ -84,7 +84,7 @@
 		//var/obj/item/inflatable/torn/R = new /obj/item/inflatable/torn(loc)
 		qdel(src)
 	else
-		//to_chat(user, "<span class='notice'>You slowly deflate the inflatable wall.</span>")
+		//to_chat(user, span_notice("You slowly deflate the inflatable wall."))
 		visible_message("[src] slowly deflates.")
 		flick("wall_deflating", src)
 		spawn(50)
@@ -222,7 +222,7 @@
 		//var/obj/item/inflatable/door/torn/R = new /obj/item/inflatable/door/torn(loc)
 		qdel(src)
 	else
-		//to_chat(user, "<span class='notice'>You slowly deflate the inflatable wall.</span>")
+		//to_chat(user, span_notice("You slowly deflate the inflatable wall."))
 		visible_message("[src] slowly deflates.")
 		flick("door_deflating", src)
 		spawn(50)

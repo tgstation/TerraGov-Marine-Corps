@@ -28,7 +28,7 @@
 	if(current_version < 39)
 		key_bindings = (!focus_chat) ? deepCopyList(GLOB.hotkey_keybinding_list_by_key) : deepCopyList(GLOB.classic_keybinding_list_by_key)
 		parent.update_movement_keys(src)
-		to_chat(parent, "<span class='userdanger'>Empty keybindings, setting default to [!focus_chat ? "Hotkey" : "Classic"] mode</span>")
+		to_chat(parent, span_userdanger("Empty keybindings, setting default to [!focus_chat ? "Hotkey" : "Classic"] mode"))
 
 	// Add missing keybindings for T L O M for when they were removed as defaults
 	if(current_version < 42)
@@ -45,13 +45,13 @@
 			if(!(kb_path in key_bindings[key]))
 				key_bindings[key] += list(kb_path)
 
-		to_chat(parent, "<span class='userdanger'>Forced keybindings for say (T), me (M), ooc (O), looc (L) have been applied.</span>")
+		to_chat(parent, span_userdanger("Forced keybindings for say (T), me (M), ooc (O), looc (L) have been applied."))
 
 	// Reset the xeno crit health alerts to default
 	if(current_version < 43)
 		WRITE_FILE(S["mute_xeno_health_alert_messages"], TRUE)
 		mute_xeno_health_alert_messages = TRUE
-		to_chat(parent, "<span class='userdanger'>Preferences for Mute xeno health alert messages have been reverted to default settings; these are now muted. Go into Preferences and set Mute xeno health alert messages to No if you wish to get xeno critical health alerts.</span>")
+		to_chat(parent, span_userdanger("Preferences for Mute xeno health alert messages have been reverted to default settings; these are now muted. Go into Preferences and set Mute xeno health alert messages to No if you wish to get xeno critical health alerts."))
 
 //handles converting savefiles to new formats
 //MAKE SURE YOU KEEP THIS UP TO DATE!
@@ -225,7 +225,7 @@
 	try
 		WRITE_FILE(S["savefile_write_test"], "lebowskilebowski")
 	catch
-		to_chat(parent, "<span class='warning'>Writing to the savefile failed, please try again.</span>")
+		to_chat(parent, span_warning("Writing to the savefile failed, please try again."))
 		return FALSE
 
 	WRITE_FILE(S["version"], savefile_version)
@@ -478,7 +478,7 @@
 	try
 		WRITE_FILE(S["savefile_write_test"], "lebowskilebowski")
 	catch
-		to_chat(parent, "<span class='warning'>Writing to the savefile failed, please try again.</span>")
+		to_chat(parent, span_warning("Writing to the savefile failed, please try again."))
 		return FALSE
 
 	be_special		= sanitize_integer(be_special, NONE, MAX_BITFLAG, initial(be_special))

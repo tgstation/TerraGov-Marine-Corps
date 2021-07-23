@@ -60,17 +60,17 @@
 					if(0 to 4)
 						H.next_move_slowdown += rand(2,3)
 						if(prob(2))
-							to_chat(H, "<span class='warning'>Moving through [src] slows you down.</span>")
+							to_chat(H, span_warning("Moving through [src] slows you down."))
 					if(5 to 7)
 						H.next_move_slowdown += rand(4,7)
 						if(prob(10))
-							to_chat(H, "<span class='warning'>It is very hard to move trough this [src]...</span>")
+							to_chat(H, span_warning("It is very hard to move trough this [src]..."))
 					if(8 to 9)
 						H.next_move_slowdown += rand(8,11)
-						to_chat(H, "<span class='warning'>You got tangeled in [src]!</span>")
+						to_chat(H, span_warning("You got tangeled in [src]!"))
 					if(10)
 						H.next_move_slowdown += rand(12,20)
-						to_chat(H, "<span class='warning'>You got completely tangeled in [src]! Oh boy...</span>")
+						to_chat(H, span_warning("You got completely tangeled in [src]! Oh boy..."))
 
 /obj/structure/bush/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -80,10 +80,10 @@
 		if(istype(I, /obj/item/weapon/claymore/mercsword))
 			damage = rand(8, 18)
 		if(resistance_flags & INDESTRUCTIBLE)
-			to_chat(user, "<span class='warning'> You flail away at the undergrowth, but it's too thick here.</span>")
+			to_chat(user, span_warning(" You flail away at the undergrowth, but it's too thick here."))
 			return
 
-		user.visible_message("<span class='warning'> [user] flails away at the  [src] with [I].</span>","<span class='warning'> You flail away at the [src] with [I].</span>")
+		user.visible_message(span_warning(" [user] flails away at the  [src] with [I]."),span_warning(" You flail away at the [src] with [I]."))
 		playsound(loc, 'sound/effects/vegetation_hit.ogg', 25, 1)
 		take_damage(damage)
 
@@ -136,7 +136,7 @@ GLOBAL_LIST_INIT(reagent_effects, list(/datum/reagent/toxin,/datum/reagent/medic
 		return
 	if(fruits_left > 0)
 		fruits_left--
-		to_chat(user, "<span class='notice'>You pick a fruit off [src].</span>")
+		to_chat(user, span_notice("You pick a fruit off [src]."))
 
 		var/obj/item/reagent_containers/food/snacks/grown/jungle_fruit/J = new (src.loc)
 		J.potency = plant_strength
@@ -150,5 +150,5 @@ GLOBAL_LIST_INIT(reagent_effects, list(/datum/reagent/toxin,/datum/reagent/medic
 		fruit_overlay.Blend(rgb(fruit_r, fruit_g, fruit_b), ICON_ADD)
 		overlays += fruit_overlay
 	else
-		to_chat(user, "<span class='warning'> There are no fruit left on [src].</span>")
+		to_chat(user, span_warning(" There are no fruit left on [src]."))
 

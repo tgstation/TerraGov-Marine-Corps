@@ -147,10 +147,10 @@
 	if(stat != CONSCIOUS)
 		return ..()
 	if(!M.can_be_facehugged(src, provoked = TRUE))
-		to_chat(user, "<span class='warning'>The facehugger refuses to attach.</span>")
+		to_chat(user, span_warning("The facehugger refuses to attach."))
 		return ..()
-	user.visible_message("<span class='warning'>\ [user] attempts to plant [src] on [M]'s face!</span>", \
-	"<span class='warning'>We attempt to plant [src] on [M]'s face!</span>")
+	user.visible_message(span_warning("\ [user] attempts to plant [src] on [M]'s face!"), \
+	span_warning("We attempt to plant [src] on [M]'s face!"))
 	if(M.client && !M.stat) //Delay for conscious cliented mobs, who should be resisting.
 		if(!do_after(user, 1 SECONDS, TRUE, M, BUSY_ICON_DANGER))
 			return
@@ -173,13 +173,13 @@
 	. = ..()
 	switch(stat)
 		if(CONSCIOUS)
-			to_chat(user, "<span class='warning'>[src] seems to be active.</span>")
+			to_chat(user, span_warning("[src] seems to be active."))
 		if(UNCONSCIOUS)
-			to_chat(user, "<span class='warning'>[src] seems to be asleep.</span>")
+			to_chat(user, span_warning("[src] seems to be asleep."))
 		if(DEAD)
-			to_chat(user, "<span class='danger'>[src] is not moving.</span>")
+			to_chat(user, span_danger("[src] is not moving."))
 	if(initial(sterile))
-		to_chat(user, "<span class='warning'>It looks like the proboscis has been removed.</span>")
+		to_chat(user, span_warning("It looks like the proboscis has been removed."))
 
 /obj/item/clothing/mask/facehugger/dropped(mob/user)
 	. = ..()
@@ -255,7 +255,7 @@
 
 	if(ishuman(loc)) //Having an angry xeno in your hand is a bad idea.
 		var/mob/living/carbon/human/holder = loc
-		holder.visible_message("<span class='warning'>The facehugger [holder] is carrying leaps at [holder.p_them()]!</span>", "<span class ='danger'>The facehugger you're carrying leaps at you!</span>")
+		holder.visible_message(span_warning("The facehugger [holder] is carrying leaps at [holder.p_them()]!") , "<span class ='danger'>The facehugger you're carrying leaps at you!</span>")
 		if(!Attach(holder))
 			go_idle()
 		return
@@ -265,7 +265,7 @@
 		if(!i)
 			break
 		if(M.can_be_facehugged(src))
-			visible_message("<span class='warning'>\The scuttling [src] leaps at [M]!</span>", null, null, 4)
+			visible_message(span_warning("\The scuttling [src] leaps at [M]!"), null, null, 4)
 			leaping = TRUE
 			throw_at(M, 4, 1)
 			return //We found a target and will jump towards it; cancel out. If we didn't find anything, continue and try again later
@@ -308,7 +308,7 @@
 	if(isturf(loc))
 		var/obj/effect/alien/egg/E = locate() in loc
 		if(E?.status == EGG_BURST)
-			visible_message("<span class='xenowarning'>[src] crawls back into [E]!</span>")
+			visible_message(span_xenowarning("[src] crawls back into [E]!"))
 			forceMove(E)
 			E.hugger = src
 			E.update_status(EGG_GROWN)
@@ -317,7 +317,7 @@
 			return FALSE
 		var/obj/structure/xeno/trap/T = locate() in loc
 		if(T && !T.hugger)
-			visible_message("<span class='xenowarning'>[src] crawls into [T]!</span>")
+			visible_message(span_xenowarning("[src] crawls into [T]!"))
 			forceMove(T)
 			T.hugger = src
 			T.icon_state = "trap1"
@@ -353,7 +353,7 @@
 
 /obj/item/clothing/mask/facehugger/on_found(mob/finder)
 	if(stat == CONSCIOUS)
-		finder.visible_message("<span class='danger'>\A [src] leaps out of \the [loc]!</span>")
+		finder.visible_message(span_danger("\A [src] leaps out of \the [loc]!") )
 		forceMove(get_turf(src))
 		reset_life_timer()
 		HasProximity(finder)
@@ -499,7 +499,7 @@
 		var/mob/living/carbon/human/H = M
 
 		if(!H.has_limb(HEAD))
-			visible_message("<span class='warning'>[src] looks for a face to hug on [H], but finds none!</span>")
+			visible_message(span_warning("[src] looks for a face to hug on [H], but finds none!"))
 			return FALSE
 
 		if(H.head)
@@ -528,11 +528,11 @@
 				if(!blocked)
 					blocked = W
 				W.anti_hug = max(0, --W.anti_hug)
-				M.visible_message("<span class='danger'>[src] smashes against [M]'s [blocked]!</span>")
+				M.visible_message(span_danger("[src] smashes against [M]'s [blocked]!"))
 				return FALSE
 
 			if(!blocked)
-				M.visible_message("<span class='danger'>[src] smashes against [M]'s [W.name] and rips it off!</span>")
+				M.visible_message(span_danger("[src] smashes against [M]'s [W.name] and rips it off!"))
 				M.dropItemToGround(W)
 			if(ishuman(M)) //Check for camera; if we have one, turn it off.
 				var/mob/living/carbon/human/H = M
@@ -543,7 +543,7 @@
 						to_chat(H, "<span class='danger'>Your headset camera flickers off; you'll need to reactivate it by rebooting your headset HUD!<span>")
 
 	if(blocked)
-		M.visible_message("<span class='danger'>[src] smashes against [M]'s [blocked]!</span>")
+		M.visible_message(span_danger("[src] smashes against [M]'s [blocked]!"))
 		return FALSE
 
 	M.equip_to_slot(src, SLOT_WEAR_MASK)
@@ -585,9 +585,9 @@
 
 	if(as_planned)
 		if(sterile || target.status_flags & XENO_HOST)
-			target.visible_message("<span class='danger'>[src] falls limp after violating [target]'s face!</span>")
+			target.visible_message(span_danger("[src] falls limp after violating [target]'s face!"))
 		else //Huggered but not impregnated, deal damage.
-			target.visible_message("<span class='danger'>[src] frantically claws at [target]'s face before falling down!</span>","<span class='danger'>[src] frantically claws at your face before falling down! Auugh!</span>")
+			target.visible_message(span_danger("[src] frantically claws at [target]'s face before falling down!"),span_danger("[src] frantically claws at your face before falling down! Auugh!"))
 			target.apply_damage(15, BRUTE, "head", updating_health = TRUE)
 
 
@@ -605,7 +605,7 @@
 	remove_danger_overlay() //Remove the danger overlay
 
 	update_icon()
-	visible_message("\icon[src] <span class='danger'>\The [src] curls up into a ball!</span>")
+	visible_message("\icon[src] [span_danger("\The [src] curls up into a ball!")]")
 	playsound(loc, 'sound/voice/alien_facehugger_dies.ogg', 25, 1)
 
 	layer = BELOW_MOB_LAYER //so dead hugger appears below live hugger if stacked on same tile.
@@ -621,7 +621,7 @@
 	update_icon()
 
 /obj/item/clothing/mask/facehugger/proc/melt_away()
-	visible_message("[icon2html(src, viewers(src))] <span class='danger'>\The [src] decays into a mass of acid and chitin.</span>")
+	visible_message("[icon2html(src, viewers(src))] [span_danger("\The [src] decays into a mass of acid and chitin.")]")
 	qdel(src)
 
 ///////////////////////////////
@@ -710,7 +710,7 @@
 	victim.apply_damage(1, BRUTE, sharp = TRUE) //Token brute for the injection
 	victim.reagents.add_reagent(/datum/reagent/toxin/xeno_neurotoxin, 10, no_overdose = TRUE)
 	playsound(victim, 'sound/effects/spray3.ogg', 25, 1)
-	victim.visible_message("<span class='danger'>[src] penetrates [victim] with its sharp probscius!</span>","<span class='danger'>[src] penetrates you with a sharp probscius before falling down!</span>")
+	victim.visible_message(span_danger("[src] penetrates [victim] with its sharp probscius!"),span_danger("[src] penetrates you with a sharp probscius before falling down!"))
 	leaping = FALSE
 	go_idle() //We're a bit slow on the recovery
 	return TRUE
@@ -728,7 +728,7 @@
 	if(!combat_hugger_check_target(M))
 		return FALSE
 
-	visible_message("<span class='danger'>[src] explodes into a smoking splatter of acid!</span>")
+	visible_message(span_danger("[src] explodes into a smoking splatter of acid!"))
 	playsound(loc, 'sound/bullets/acid_impact1.ogg', 50, 1)
 
 	for(var/turf/acid_tile AS in RANGE_TURFS(1, loc))
@@ -758,7 +758,7 @@
 	if(!combat_hugger_check_target(M))
 		return FALSE
 
-	visible_message("<span class='danger'>[src] explodes into a mess of viscous resin!</span>")
+	visible_message(span_danger("[src] explodes into a mess of viscous resin!"))
 	playsound(loc, get_sfx("alien_resin_build"), 50, 1)
 
 	for(var/turf/sticky_tile AS in RANGE_TURFS(1, loc))
@@ -801,7 +801,7 @@
 		affecting = BODY_ZONE_CHEST //Gotta have a torso?!
 	var/armor_block = victim.run_armor_check(affecting, "melee")
 	victim.apply_damage(CARRIER_SLASH_HUGGER_DAMAGE, BRUTE, affecting, armor_block) //Crap base damage after armour...
-	victim.visible_message("<span class='danger'>[src] frantically claws at [victim]!</span>","<span class='danger'>[src] frantically claws at you!</span>")
+	victim.visible_message(span_danger("[src] frantically claws at [victim]!"),span_danger("[src] frantically claws at you!"))
 	leaping = FALSE
 	go_active() //Slashy boys recover *very* fast.
 	return TRUE

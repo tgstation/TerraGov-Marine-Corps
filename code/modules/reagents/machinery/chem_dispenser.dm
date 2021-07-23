@@ -216,7 +216,7 @@
 				var/reagent = GLOB.name2reagent[key]
 				var/dispense_amount = chemicals_to_dispense[key]
 				if(!dispensable_reagents.Find(reagent))
-					to_chat(usr, "<span class='danger'>[src] cannot find <b>[key]</b>!</span>")
+					to_chat(usr, span_danger("[src] cannot find <b>[key]</b>!"))
 					return
 				if(!recording_recipe)
 					if(!beaker)
@@ -253,14 +253,14 @@
 			if(usr.client.prefs.chem_macros[name] && tgui_alert(usr, "\"[name]\" already exists, do you want to overwrite it?", null, list("Yes", "No")) == "No")
 				return
 			else if(length(usr.client.prefs.chem_macros) >= 10)
-				to_chat(usr, "<span class='danger'>You can remember <b>up to 10</b> recipes!</span>")
+				to_chat(usr, span_danger("You can remember <b>up to 10</b> recipes!"))
 				return
 			if(name && recording_recipe)
 				for(var/reagent in recording_recipe)
 					var/reagent_id = GLOB.name2reagent[reagent]
 					if(!dispensable_reagents.Find(reagent_id))
-						visible_message("<span class='warning'>[src] buzzes.</span>", "<span class='hear'>You hear a faint buzz.</span>")
-						to_chat(usr, "<span class='danger'>[src] cannot find <b>[reagent]</b>!</span>")
+						visible_message(span_warning("[src] buzzes."), span_hear("You hear a faint buzz."))
+						to_chat(usr, span_danger("[src] cannot find <b>[reagent]</b>!"))
 						playsound(src, 'sound/machines/buzz-two.ogg', 50, TRUE)
 						return
 				usr.client.prefs.chem_macros[name] = recording_recipe

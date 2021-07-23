@@ -113,13 +113,12 @@
 	if(!turret_path)
 		to_chat(user,"<span class='warning'>There is nothing to remove from [src]!</span>")
 		return
-	user.visible_message("<span class='notice'>[user] starts to remove [initial(turret_path.name)] from [src].</span>",
-	"<span class='notice'>You start to remove [initial(turret_path.name)] from [src].</span>")
+	user.visible_message(span_notice("[user] starts to remove [initial(turret_path.name)] from [src]"),	span_notice("You start to remove [initial(turret_path.name)] from [src]"))
 	if(!do_after(user, 3 SECONDS, TRUE, src))
 		return
 	var/obj/item/equipment = new turret_path
-	user.visible_message("<span class='notice'>[user] removes [equipment] from [src].</span>",
-	"<span class='notice'>You remove [equipment] from [src].</span>")
+	user.visible_message(span_notice("[user] removes [equipment] from [src]."),
+	span_notice("You remove [equipment] from [src]."))
 	user.put_in_hands(equipment)
 	if(istype(equipment, /obj/item/uav_turret))
 		var/obj/item/uav_turret/turret = equipment
@@ -135,14 +134,12 @@
 ///Try to reload the turret of our vehicule
 /obj/vehicle/unmanned/proc/reload_turret(obj/item/ammo_magazine/ammo, mob/user)
 	if(!ispath(turret_path, ammo.gun_type))
-		to_chat(user, "<span class='warning'>This is not the right ammo!</span>")
+		to_chat(user, span_warning("This is not the right ammo!"))
 		return
-	user.visible_message("<span class='notice'>[user] starts to reload [src] with [ammo].</span>",
-	"<span class='notice'>You start to reload [src] with [ammo].</span>")
+	user.visible_message(span_notice("[user] starts to reload [src] with [ammo].", span_notice("You start to reload [src] with [ammo].")
 	if(!do_after(user, 3 SECONDS, TRUE, src))
 		return
-	user.visible_message("<span class='notice'>[user] reloads [src] with [ammo].</span>",
-	"<span class='notice'>You reload [src] with [ammo].</span>")
+	user.visible_message(span_notice("[user] reloads [src] with [ammo].", span_notice("You reload [src] with [ammo]."))
 	current_rounds = min(current_rounds + ammo.current_rounds, max_rounds)
 	playsound(loc, 'sound/weapons/guns/interact/smartgun_unload.ogg', 25, 1)
 	qdel(ammo)
@@ -150,15 +147,15 @@
 /// Try to equip a turret on the vehicle
 /obj/vehicle/unmanned/proc/equip_turret(obj/item/I, mob/user)
 	if(turret_path)
-		to_chat(user, "<span class='notice'>There's already something attached!</span>")
+		to_chat(user, span_notice("There's already something attached!"))
 		return
 	if(istype(I, /obj/item/uav_turret))
 		var/obj/item/uav_turret/turret = I
 		if(turret_pattern != turret.turret_pattern)
-			to_chat(user, "<span class='notice'>You can't attach that type of turret!</span>")
+			to_chat(user, span_notice("You can't attach that type of turret!"))
 			return
-	user.visible_message("<span class='notice'>[user] starts to attach [I] to [src].</span>",
-	"<span class='notice'>You start to attach [I] to [src].</span>")
+	user.visible_message(span_notice("[user] starts to attach [I] to [src]."),
+	span_notice("You start to attach [I] to [src]."))
 	if(!do_after(user, 3 SECONDS, TRUE, src, BUSY_ICON_GENERIC))
 		return
 	turret_path = I.type
@@ -172,8 +169,8 @@
 		hud_set_uav_ammo()
 	else
 		turret_type = TURRET_TYPE_EXPLOSIVE
-	user.visible_message("<span class='notice'>[user] attaches [I] to [src].</span>",
-	"<span class='notice'>You attach [I] to [src].</span>")
+	user.visible_message(span_notice("[user] attaches [I] to [src]."),
+	span_notice("You attach [I] to [src]."))
 	update_icon()
 	SEND_SIGNAL(src, COMSIG_UNMANNED_TURRET_UPDATED, turret_type)
 	qdel(I)

@@ -61,7 +61,7 @@ Currently only has the tank hardpoints
 	if(!iswelder(W) && !iswrench(W))
 		return ..()
 	if(obj_integrity >= max_integrity)
-		to_chat(user, "<span class='notice'>[src] is already in perfect conditions.</span>")
+		to_chat(user, span_notice("[src] is already in perfect conditions."))
 		return
 	var/repair_delays = 6
 	var/obj/item/tool/repair_tool = /obj/item/tool/weldingtool
@@ -78,23 +78,23 @@ Currently only has the tank hardpoints
 			repair_delays = 10
 	var/obj/item/tool/weldingtool/WT = iswelder(W) ? W : null
 	if(!istype(W, repair_tool))
-		to_chat(user, "<span class='warning'>That's the wrong tool. Use a [WT ? "wrench" : "welder"].</span>")
+		to_chat(user, span_warning("That's the wrong tool. Use a [WT ? "wrench" : "welder"]."))
 		return
 	if(WT && !WT.isOn())
-		to_chat(user, "<span class='warning'>You need to light your [WT] first.</span>")
+		to_chat(user, span_warning("You need to light your [WT] first."))
 		return
-	user.visible_message("<span class='notice'>[user] starts repairing [src].</span>",
-		"<span class='notice'>You start repairing [src].</span>")
+	user.visible_message(span_notice("[user] starts repairing [src]."),
+		span_notice("You start repairing [src]."))
 	if(!do_after(user, 3 SECONDS * repair_delays, TRUE, src, BUSY_ICON_BUILD))
-		user.visible_message("<span class='notice'>[user] stops repairing [src].</span>",
-							"<span class='notice'>You stop repairing [src].</span>")
+		user.visible_message(span_notice("[user] stops repairing [src]."),
+							span_notice("You stop repairing [src]."))
 		return
 	if(WT)
 		if(!WT.isOn())
 			return
 		WT.remove_fuel(repair_delays, user)
-	user.visible_message("<span class='notice'>[user] finishes repairing [src].</span>",
-		"<span class='notice'>You finish repairing [src].</span>")
+	user.visible_message(span_notice("[user] finishes repairing [src]."),
+		span_notice("You finish repairing [src]."))
 	repair_damage(max_integrity)
 
 //Called on attaching, for weapons sets the actual cooldowns
@@ -119,36 +119,36 @@ Currently only has the tank hardpoints
 //If our cooldown has elapsed
 /obj/item/hardpoint/proc/is_ready()
 	if(world.time < next_use)
-		to_chat(usr, "<span class='warning'>This module is not ready to be used yet.</span>")
+		to_chat(usr, span_warning("This module is not ready to be used yet."))
 		return FALSE
 	if(!obj_integrity)
-		to_chat(usr, "<span class='warning'>This module is too broken to be used.</span>")
+		to_chat(usr, span_warning("This module is too broken to be used."))
 		return FALSE
 	return TRUE
 
 /obj/item/hardpoint/proc/try_add_clip(obj/item/ammo_magazine/tank/A, mob/user)
 
 	if(!max_clips)
-		to_chat(user, "<span class='warning'>This module does not have room for additional ammo.</span>")
+		to_chat(user, span_warning("This module does not have room for additional ammo."))
 		return FALSE
 	else if(length(backup_clips) >= max_clips)
-		to_chat(user, "<span class='warning'>The reloader is full.</span>")
+		to_chat(user, span_warning("The reloader is full."))
 		return FALSE
 	else if(!istype(A, starter_ammo))
-		to_chat(user, "<span class='warning'>That is the wrong ammo type.</span>")
+		to_chat(user, span_warning("That is the wrong ammo type."))
 		return FALSE
 
-	to_chat(user, "<span class='notice'>You start loading [A] in [src].</span>")
+	to_chat(user, span_notice("You start loading [A] in [src]."))
 
 	var/atom/target = owner ? owner : src
 
 	if(!do_after(user, 10, TRUE, target) || QDELETED(src))
-		to_chat(user, "<span class='warning'>Something interrupted you while loading [src].</span>")
+		to_chat(user, span_warning("Something interrupted you while loading [src]."))
 		return FALSE
 
 	user.temporarilyRemoveItemFromInventory(A, FALSE)
-	user.visible_message("<span class='notice'>[user] loads [A] in [src]</span>",
-				"<span class='notice'>You finish loading [A] in \the [src].</span>", null, 3)
+	user.visible_message(span_notice("[user] loads [A] in [src]"),
+				span_notice("You finish loading [A] in \the [src]."), null, 3)
 	backup_clips += A
 	playsound(user.loc, 'sound/weapons/guns/interact/minigun_cocked.ogg', 25)
 	return TRUE
@@ -243,7 +243,7 @@ Currently only has the tank hardpoints
 /obj/item/hardpoint/primary/cannon/active_effect(atom/A)
 
 	if(!(ammo?.current_rounds > 0))
-		to_chat(usr, "<span class='warning'>This module does not have any ammo.</span>")
+		to_chat(usr, span_warning("This module does not have any ammo."))
 		return
 
 	next_use = world.time + owner.internal_cooldowns["primary"] * owner.misc_ratios["prim_cool"]
@@ -261,10 +261,10 @@ Currently only has the tank hardpoints
 		delay = 20
 		TL = new /obj/effect/overlay/temp/tank_laser (T)
 
-	to_chat(usr, "<span class='warning'>Preparing to fire... keep the tank still for [delay * 0.1] seconds.</span>")
+	to_chat(usr, span_warning("Preparing to fire... keep the tank still for [delay * 0.1] seconds."))
 
 	if(!do_after(usr, delay, FALSE, src) || QDELETED(owner))
-		to_chat(usr, "<span class='warning'>The [name]'s firing was interrupted.</span>")
+		to_chat(usr, span_warning("The [name]'s firing was interrupted."))
 		qdel(TL)
 
 		return
@@ -318,7 +318,7 @@ Currently only has the tank hardpoints
 
 /obj/item/hardpoint/primary/minigun/active_effect(atom/A)
 	if(!(ammo?.current_rounds > 0))
-		to_chat(usr, "<span class='warning'>This module does not have any ammo.</span>")
+		to_chat(usr, span_warning("This module does not have any ammo."))
 		return
 	var/S = 'sound/weapons/guns/fire/tank_minigun_start.ogg'
 	if(world.time - next_use <= 5)
@@ -372,7 +372,7 @@ Currently only has the tank hardpoints
 /obj/item/hardpoint/secondary/flamer/active_effect(atom/A)
 
 	if(!(ammo?.current_rounds > 0))
-		to_chat(usr, "<span class='warning'>This module does not have any ammo.</span>")
+		to_chat(usr, span_warning("This module does not have any ammo."))
 		return
 
 	next_use = world.time + owner.internal_cooldowns["secondary"] * owner.misc_ratios["secd_cool"]
@@ -407,7 +407,7 @@ Currently only has the tank hardpoints
 /obj/item/hardpoint/secondary/towlauncher/active_effect(atom/A)
 
 	if(!(ammo?.current_rounds > 0))
-		to_chat(usr, "<span class='warning'>This module does not have any ammo.</span>")
+		to_chat(usr, span_warning("This module does not have any ammo."))
 		return
 
 	var/delay = 3
@@ -420,10 +420,10 @@ Currently only has the tank hardpoints
 		delay = 15
 		TL = new /obj/effect/overlay/temp/tank_laser (T)
 
-	to_chat(usr, "<span class='warning'>Preparing to fire... keep the tank still for [delay * 0.1] seconds.</span>")
+	to_chat(usr, span_warning("Preparing to fire... keep the tank still for [delay * 0.1] seconds."))
 
 	if(!do_after(usr, delay, FALSE, src) || QDELETED(owner))
-		to_chat(usr, "<span class='warning'>The [name]'s firing was interrupted.</span>")
+		to_chat(usr, span_warning("The [name]'s firing was interrupted."))
 		qdel(TL)
 		return
 
@@ -470,7 +470,7 @@ Currently only has the tank hardpoints
 /obj/item/hardpoint/secondary/m56cupola/active_effect(atom/A)
 
 	if(!(ammo?.current_rounds > 0))
-		to_chat(usr, "<span class='warning'>This module does not have any ammo.</span>")
+		to_chat(usr, span_warning("This module does not have any ammo."))
 		return
 
 	next_use = world.time + owner.internal_cooldowns["secondary"] * owner.misc_ratios["secd_cool"]
@@ -505,7 +505,7 @@ Currently only has the tank hardpoints
 /obj/item/hardpoint/secondary/grenade_launcher/active_effect(atom/A)
 
 	if(!(ammo?.current_rounds > 0))
-		to_chat(usr, "<span class='warning'>This module does not have any ammo.</span>")
+		to_chat(usr, span_warning("This module does not have any ammo."))
 		return
 
 	next_use = world.time + owner.internal_cooldowns["secondary"] * owner.misc_ratios["secd_cool"]
@@ -553,7 +553,7 @@ Currently only has the tank hardpoints
 /obj/item/hardpoint/support/smoke_launcher/active_effect(atom/A)
 
 	if(!(ammo?.current_rounds > 0))
-		to_chat(usr, "<span class='warning'>This module does not have any ammo.</span>")
+		to_chat(usr, span_warning("This module does not have any ammo."))
 		return
 
 	next_use = world.time + owner.internal_cooldowns["support"] * owner.misc_ratios["supp_cool"]
@@ -632,7 +632,7 @@ Currently only has the tank hardpoints
 /obj/item/hardpoint/support/overdrive_enhancer/proc/nitros_on(mob/M)
 	owner.misc_ratios["move"] = 0.2
 	if(M)
-		to_chat(M, "<span class='danger'>You hit the nitros! RRRRRRRMMMM!!</span>")
+		to_chat(M, span_danger("You hit the nitros! RRRRRRRMMMM!!"))
 	playsound(M, 'sound/mecha/hydraulic.ogg', 60, 1, vary = 0)
 	addtimer(CALLBACK(src, .proc/boost_off), TANK_OVERDRIVE_BOOST_DURATION)
 	addtimer(CALLBACK(src, .proc/boost_ready_notice), TANK_OVERDRIVE_BOOST_COOLDOWN)
@@ -652,14 +652,14 @@ Currently only has the tank hardpoints
 /obj/item/hardpoint/support/overdrive_enhancer/proc/boost_ready_notice()
 	var/obj/vehicle/multitile/root/cm_armored/tank/C = owner
 	if(C.driver)
-		to_chat(C.driver, "<span class='danger'>The overdrive nitros are ready for use.</span>")
+		to_chat(C.driver, span_danger("The overdrive nitros are ready for use."))
 
 /obj/item/hardpoint/support/overdrive_enhancer/proc/activate_overdrive()
 	var/obj/vehicle/multitile/root/cm_armored/tank/C = owner
 	if(!C.driver)
 		return
 	if(world.time < last_boost + TANK_OVERDRIVE_BOOST_COOLDOWN)
-		to_chat(C.driver, "<span class='warning'>Your nitro overdrive isn't yet ready. It will be available again in [(last_boost + TANK_OVERDRIVE_BOOST_COOLDOWN - world.time) * 0.1] seconds.</span>")
+		to_chat(C.driver, span_warning("Your nitro overdrive isn't yet ready. It will be available again in [(last_boost + TANK_OVERDRIVE_BOOST_COOLDOWN - world.time) * 0.1] seconds."))
 		return
 	last_boost = world.time
 	nitros_on(C.driver)
@@ -674,12 +674,12 @@ Currently only has the tank hardpoints
 		return
 
 	if(usr != driver)
-		to_chat(usr, "<span class='warning'>You need to be in the driver seat to use this!</span>")
+		to_chat(usr, span_warning("You need to be in the driver seat to use this!"))
 		return
 
 	var/obj/item/hardpoint/support/overdrive_enhancer/OE = hardpoints[HDPT_SUPPORT]
 	if(!istype(OE, /obj/item/hardpoint/support/overdrive_enhancer) || OE.obj_integrity <= 0)
-		to_chat(usr, "<span class='warning'>The overdrive engine is missing or too badly damaged!</span>")
+		to_chat(usr, span_warning("The overdrive engine is missing or too badly damaged!"))
 		return
 	OE.activate_overdrive(usr)
 
@@ -750,7 +750,7 @@ Currently only has the tank hardpoints
 
 /obj/item/hardpoint/support/artillery_module/is_ready()
 	if(!obj_integrity)
-		to_chat(usr, "<span class='warning'>This module is too broken to be used.</span>")
+		to_chat(usr, span_warning("This module is too broken to be used."))
 		return FALSE
 	return TRUE
 

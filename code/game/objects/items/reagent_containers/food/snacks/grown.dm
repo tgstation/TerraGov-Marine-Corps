@@ -88,7 +88,7 @@
 		if(!C.use(5))
 			return
 
-		to_chat(user, "<span class='notice'>You add some cable to the potato and slide it inside the battery encasing.</span>")
+		to_chat(user, span_notice("You add some cable to the potato and slide it inside the battery encasing."))
 		var/obj/item/cell/potato/pocell = new /obj/item/cell/potato(user.loc)
 		pocell.maxcharge = potency * 10
 		pocell.charge = pocell.maxcharge
@@ -162,7 +162,7 @@
 	poultice.heal_burn = potency
 	qdel(src)
 
-	to_chat(user, "<span class='notice'>You mash the petals into a poultice.</span>")
+	to_chat(user, span_notice("You mash the petals into a poultice."))
 
 /obj/item/reagent_containers/food/snacks/grown/shand/attack_self(mob/user as mob)
 	if(istype(user.loc,/turf/open/space))
@@ -172,7 +172,7 @@
 	poultice.heal_brute = potency
 	qdel(src)
 
-	to_chat(user, "<span class='notice'>You mash the leaves into a poultice.</span>")
+	to_chat(user, span_notice("You mash the leaves into a poultice."))
 
 /obj/item/reagent_containers/food/snacks/grown/glowberries
 	name = "bunch of glow-berries"
@@ -278,7 +278,7 @@
 	. = ..()
 
 	if(I.sharp == IS_SHARP_ITEM_ACCURATE || I.sharp == IS_SHARP_ITEM_BIG)
-		to_chat(user, "<span class='notice'>You carve a face into [src]!</span>")
+		to_chat(user, span_notice("You carve a face into [src]!"))
 		new /obj/item/clothing/head/pumpkinhead(user.loc)
 		qdel(src)
 
@@ -357,7 +357,7 @@
 /obj/item/reagent_containers/food/snacks/grown/tomato/throw_impact(atom/hit_atom)
 	..()
 	new/obj/effect/decal/cleanable/tomato_smudge(src.loc)
-	src.visible_message("<span class='notice'>The [src.name] has been squashed.</span>","<span class='moderate'>You hear a smack.</span>")
+	src.visible_message(span_notice("The [src.name] has been squashed."),span_moderate("You hear a smack."))
 	qdel(src)
 
 
@@ -381,7 +381,7 @@
 /obj/item/reagent_containers/food/snacks/grown/bloodtomato/throw_impact(atom/hit_atom)
 	..()
 	new/obj/effect/decal/cleanable/blood/splatter(src.loc)
-	src.visible_message("<span class='notice'>The [src.name] has been squashed.</span>","<span class='moderate'>You hear a smack.</span>")
+	src.visible_message(span_notice("The [src.name] has been squashed."),span_moderate("You hear a smack."))
 	src.reagents.reaction(get_turf(hit_atom))
 	for(var/atom/A in get_turf(hit_atom))
 		src.reagents.reaction(A)
@@ -399,7 +399,7 @@
 /obj/item/reagent_containers/food/snacks/grown/bluetomato/throw_impact(atom/hit_atom)
 	..()
 	new/obj/effect/decal/cleanable/blood/oil(src.loc)
-	src.visible_message("<span class='notice'>The [src.name] has been squashed.</span>","<span class='moderate'>You hear a smack.</span>")
+	src.visible_message(span_notice("The [src.name] has been squashed."),span_moderate("You hear a smack."))
 	src.reagents.reaction(get_turf(hit_atom))
 	for(var/atom/A in get_turf(hit_atom))
 		src.reagents.reaction(A)
@@ -522,7 +522,7 @@
 	planted.potency = potency
 	qdel(src)
 
-	to_chat(user, "<span class='notice'>You plant the glowshroom.</span>")
+	to_chat(user, span_notice("You plant the glowshroom."))
 
 
 // *************************************
@@ -547,7 +547,7 @@
 	var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
 	if(inner_teleport_radius < 1) //Wasn't potent enough, it just splats.
 		new/obj/effect/decal/cleanable/blood/oil(src.loc)
-		src.visible_message("<span class='notice'>The [src.name] has been squashed.</span>","<span class='moderate'>You hear a smack.</span>")
+		src.visible_message(span_notice("The [src.name] has been squashed."),span_moderate("You hear a smack."))
 		qdel(src)
 		return
 	for(var/turf/T in orange(M,outer_teleport_radius))
@@ -584,6 +584,6 @@
 				s.set_up(3, 1, A)
 				s.start()
 	new/obj/effect/decal/cleanable/blood/oil(src.loc)
-	src.visible_message("<span class='notice'>The [src.name] has been squashed, causing a distortion in space-time.</span>","<span class='moderate'>You hear a splat and a crackle.</span>")
+	src.visible_message(span_notice("The [src.name] has been squashed, causing a distortion in space-time."),span_moderate("You hear a splat and a crackle."))
 	qdel(src)
 
