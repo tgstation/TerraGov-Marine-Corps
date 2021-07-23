@@ -41,6 +41,7 @@
 /datum/action/xeno_action/hive_message/action_activate()
 	var/mob/living/carbon/xenomorph/queen/xeno = owner
 	if(!xeno.check_concious_state())
+		to_chat(xeno, "<span class='warning'>We can't do that while unconcious.</span>")
 		return
 
 	var/input = stripped_multiline_input(xeno, "This message will be broadcast throughout the hive.", "Hive Message", "")
