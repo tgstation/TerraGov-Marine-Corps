@@ -26,7 +26,7 @@
 	if(!huggers)
 		return
 
-	visible_message("<span class='xenowarning'>A chittering mass of tiny aliens is trying to escape [src]!</span>")
+	visible_message(span_xenowarning("A chittering mass of tiny aliens is trying to escape [src]!"))
 	while(huggers > FLOOR(huggers * 0.5,1)) //Half our huggers will avenge us!
 
 		var/obj/item/clothing/mask/facehugger/F = new selected_hugger_type(get_turf(src))

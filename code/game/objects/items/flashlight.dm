@@ -61,7 +61,7 @@
 			return
 
 		if(light_on)
-			to_chat(user, "<span class='warning'>Turn off [src] first.</span>")
+			to_chat(user, span_warning("Turn off [src] first."))
 			return
 
 		if(loc == user)
@@ -69,8 +69,8 @@
 
 		var/obj/item/attachable/flashlight/F = new(loc)
 		user.put_in_hands(F) //This proc tries right, left, then drops it all-in-one.
-		to_chat(user, "<span class='notice'>You modify [src]. It can now be mounted on a weapon.</span>")
-		to_chat(user, "<span class='notice'>Use a screwdriver on [F] to change it back.</span>")
+		to_chat(user, span_notice("You modify [src]. It can now be mounted on a weapon."))
+		to_chat(user, span_notice("Use a screwdriver on [F] to change it back."))
 		qdel(src) //Delete da old flashlight
 
 
@@ -83,25 +83,25 @@
 
 		var/mob/living/carbon/human/H = M	//mob has protective eyewear
 		if(ishuman(M) && ((H.head && H.head.flags_inventory & COVEREYES) || (H.wear_mask && H.wear_mask.flags_inventory & COVEREYES) || (H.glasses && H.glasses.flags_inventory & COVEREYES)))
-			to_chat(user, "<span class='notice'>You're going to need to remove that [(H.head && H.head.flags_inventory & COVEREYES) ? "helmet" : (H.wear_mask && H.wear_mask.flags_inventory & COVEREYES) ? "mask": "glasses"] first.</span>")
+			to_chat(user, span_notice("You're going to need to remove that [(H.head && H.head.flags_inventory & COVEREYES) ? "helmet" : (H.wear_mask && H.wear_mask.flags_inventory & COVEREYES) ? "mask": "glasses"] first."))
 			return
 
 		if(M == user)	//they're using it on themselves
 			M.flash_act()
-			M.visible_message("<span class='notice'>[M] directs [src] to [M.p_their()] eyes.</span>", \
-								"<span class='notice'>You wave the light in front of your eyes! Trippy!</span>")
+			M.visible_message(span_notice("[M] directs [src] to [M.p_their()] eyes."), \
+								span_notice("You wave the light in front of your eyes! Trippy!"))
 			return
 
-		user.visible_message("<span class='notice'>[user] directs [src] to [M]'s eyes.</span>", \
-							"<span class='notice'>You direct [src] to [M]'s eyes.</span>")
+		user.visible_message(span_notice("[user] directs [src] to [M]'s eyes."), \
+							span_notice("You direct [src] to [M]'s eyes."))
 
 		if(ishuman(M))	//robots and aliens are unaffected
 			var/mob/living/carbon/C = M
 			if(C.stat == DEAD || C.disabilities & BLIND)	//mob is dead or fully blind
-				to_chat(user, "<span class='notice'>[C] pupils does not react to the light!</span>")
+				to_chat(user, span_notice("[C] pupils does not react to the light!"))
 			else	//they're okay!
 				C.flash_act()
-				to_chat(user, "<span class='notice'>[C]'s pupils narrow.</span>")
+				to_chat(user, span_notice("[C]'s pupils narrow."))
 	else
 		return ..()
 
@@ -169,8 +169,8 @@
 		return FALSE
 	X.do_attack_animation(src, ATTACK_EFFECT_SMASH)
 	playsound(loc, 'sound/effects/metalhit.ogg', 20, TRUE)
-	X.visible_message("<span class='danger'>\The [X] smashes [src]!</span>", \
-	"<span class='danger'>We smash [src]!</span>", null, 5)
+	X.visible_message(span_danger("\The [X] smashes [src]!"), \
+	span_danger("We smash [src]!"), null, 5)
 	deconstruct(FALSE)
 
 // FLARES
@@ -212,7 +212,7 @@
 
 	// Usual checks
 	if(!fuel)
-		to_chat(user, "<span class='notice'>It's out of fuel.</span>")
+		to_chat(user, span_notice("It's out of fuel."))
 		return
 	if(light_on)
 		return
@@ -220,7 +220,7 @@
 	. = ..()
 	// All good, turn it on.
 	if(.)
-		user.visible_message("<span class='notice'>[user] activates the flare.</span>", "<span class='notice'>You pull the cord on the flare, activating it!</span>")
+		user.visible_message(span_notice("[user] activates the flare."), span_notice("You pull the cord on the flare, activating it!"))
 		force = on_damage
 		heat = 1500
 		damtype = "fire"

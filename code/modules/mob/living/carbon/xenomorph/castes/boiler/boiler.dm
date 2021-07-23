@@ -24,7 +24,7 @@
 /mob/living/carbon/xenomorph/boiler/proc/update_boiler_glow()
 	var/current_ammo = corrosive_ammo + neuro_ammo
 	var/ammo_glow = BOILER_LUMINOSITY_AMMO * (current_ammo/2)
-	var/glow = CEILING(BOILER_LUMINOSITY_BASE + ammo_glow, 1) 
+	var/glow = CEILING(BOILER_LUMINOSITY_BASE + ammo_glow, 1)
 	var/color = BOILER_LUMINOSITY_BASE_COLOR
 	if(current_ammo)
 		var/ammo_color = BlendRGB(BOILER_LUMINOSITY_AMMO_CORROSIVE_COLOR, BOILER_LUMINOSITY_AMMO_NEUROTOXIN_COLOR, neuro_ammo/current_ammo)
@@ -52,6 +52,6 @@
 // ***************************************
 /mob/living/carbon/xenomorph/boiler/proc/gib_explode()
 	SIGNAL_HANDLER
-	visible_message("<span class='danger'>[src] begins to bulge grotesquely, and explodes in a cloud of corrosive gas!</span>")
+	visible_message(span_danger("[src] begins to bulge grotesquely, and explodes in a cloud of corrosive gas!"))
 	smoke.set_up(2, get_turf(src))
 	smoke.start()

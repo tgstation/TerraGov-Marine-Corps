@@ -70,10 +70,10 @@
 	else if(isscrewdriver(I))
 		disable = !disable
 		if(disable)
-			user.visible_message("<span class='warning'> [user] has disabled the [src]!</span>", "<span class='warning'> You disable the connection to the [src].</span>")
+			user.visible_message(span_warning(" [user] has disabled the [src]!"), span_warning(" You disable the connection to the [src]."))
 			icon_state = "[base_state]-d"
 		else
-			user.visible_message("<span class='warning'> [user] has reconnected the [src]!</span>", "<span class='warning'> You fix the connection to the [src].</span>")
+			user.visible_message(span_warning(" [user] has reconnected the [src]!"), span_warning(" You fix the connection to the [src]."))
 			if(powered())
 				icon_state = "[base_state]"
 			else

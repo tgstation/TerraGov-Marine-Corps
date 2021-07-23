@@ -84,7 +84,7 @@
 	if(istype(W, /obj/item/tool/pickaxe/plasmacutter))
 		var/obj/item/tool/pickaxe/plasmacutter/P = W
 		if(!welded)
-			to_chat(user, "<span class='warning'>\The [P] can only cut open welds!</span>")
+			to_chat(user, span_warning("\The [P] can only cut open welds!"))
 			return FALSE
 		if(!(P.start_cut(user, src.name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD)))
 			return FALSE
@@ -99,35 +99,35 @@
 	if(iswelder(I))
 		var/obj/item/tool/weldingtool/WT = I
 		if(WT.remove_fuel(1, user))
-			user.visible_message("<span class='notice'>[user] starts welding [src] with [WT].</span>", \
-			"<span class='notice'>You start welding [src] with [WT].</span>")
+			user.visible_message(span_notice("[user] starts welding [src] with [WT]."), \
+			span_notice("You start welding [src] with [WT]."))
 			playsound(loc, 'sound/items/weldingtool_weld.ogg', 25)
 			if(do_after(user, 50, TRUE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(WT, /obj/item/tool/weldingtool/proc/isOn)))
 				playsound(get_turf(src), 'sound/items/welder2.ogg', 25, 1)
 				if(!welded)
-					user.visible_message("<span class='notice'>[user] welds [src] shut.</span>", \
-					"<span class='notice'>You weld [src] shut.</span>")
+					user.visible_message(span_notice("[user] welds [src] shut."), \
+					span_notice("You weld [src] shut."))
 					welded = TRUE
 				else
-					user.visible_message("<span class='notice'>[user] welds [src] open.</span>", \
-					"<span class='notice'>You weld [src] open.</span>")
+					user.visible_message(span_notice("[user] welds [src] open."), \
+					span_notice("You weld [src] open."))
 					welded = FALSE
 				update_icon()
 				pipe_vision_img = image(src, loc, layer = ABOVE_HUD_LAYER, dir = dir)
 				pipe_vision_img.plane = ABOVE_HUD_PLANE
 				return TRUE
 			else
-				to_chat(user, "<span class='warning'>[WT] needs to be on to start this task.</span>")
+				to_chat(user, span_warning("[WT] needs to be on to start this task."))
 				return FALSE
 		else
-			to_chat(user, "<span class='warning'>You need more welding fuel to complete this task.</span>")
+			to_chat(user, span_warning("You need more welding fuel to complete this task."))
 			return TRUE
 	return FALSE
 
 /obj/machinery/atmospherics/components/unary/vent_pump/can_unwrench(mob/user)
 	. = ..()
 	if(. && on && is_operational())
-		to_chat(user, "<span class='warning'>You cannot unwrench [src], turn it off first!</span>")
+		to_chat(user, span_warning("You cannot unwrench [src], turn it off first!"))
 		return FALSE
 
 /obj/machinery/atmospherics/components/unary/vent_pump/examine(mob/user)

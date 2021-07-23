@@ -67,11 +67,11 @@
 
 		cell = C
 
-		user.visible_message("<span class='notice'> [user] inserts a power cell into [src].</span>", "<span class='notice'> You insert the power cell into [src].</span>")
+		user.visible_message(span_notice(" [user] inserts a power cell into [src]."), span_notice(" You insert the power cell into [src]."))
 
 	else if(isscrewdriver(I))
 		open = !open
-		user.visible_message("<span class='notice'> [user] [open ? "opens" : "closes"] the hatch on the [src].</span>", "<span class='notice'> You [open ? "open" : "close"] the hatch on the [src].</span>")
+		user.visible_message(span_notice(" [user] [open ? "opens" : "closes"] the hatch on the [src]."), span_notice(" You [open ? "open" : "close"] the hatch on the [src]."))
 		update_icon()
 
 
@@ -86,7 +86,7 @@
 	else
 		stop_processing()
 
-	user.visible_message("<span class='notice'> [user] switches [on ? "on" : "off"] the [src].</span>","<span class='notice'> You switch [on ? "on" : "off"] the [src].</span>")
+	user.visible_message(span_notice(" [user] switches [on ? "on" : "off"] the [src]."),span_notice(" You switch [on ? "on" : "off"] the [src]."))
 	update_icon()
 
 
@@ -145,7 +145,7 @@
 
 		if("cellremove")
 			if(open && cell && !usr.get_active_held_item())
-				usr.visible_message("<span class='notice'> [usr] removes \the [cell] from \the [src].</span>", "<span class='notice'> You remove \the [cell] from \the [src].</span>")
+				usr.visible_message(span_notice(" [usr] removes \the [cell] from \the [src]."), span_notice(" You remove \the [cell] from \the [src]."))
 				cell.update_icon()
 				usr.put_in_hands(cell)
 				cell = null
@@ -159,7 +159,7 @@
 						cell = C
 						C.forceMove(src)
 
-						usr.visible_message("<span class='notice'> [usr] inserts \the [C] into \the [src].</span>", "<span class='notice'> You insert \the [C] into \the [src].</span>")
+						usr.visible_message(span_notice(" [usr] inserts \the [C] into \the [src]."), span_notice(" You insert \the [C] into \the [src]."))
 
 	updateUsrDialog()
 
