@@ -285,7 +285,7 @@
 ///Updates the boost amount of the suit and effect_str of reagents if component is on. "amount" is the final level you want to set the boost to.
 /datum/component/chem_booster/proc/update_boost(amount)
 	boost_amount = amount
-	to_chat(wearer, span_notice("Power set to [boost_amount]")
+	to_chat(wearer, span_notice("Power set to [boost_amount]"))
 	resource_drain_amount = boost_amount*(3 + boost_amount)
 
 ///Handles Vali stat boosts and any other potential buffs on activation/deactivation
@@ -405,7 +405,7 @@
 		return
 
 	if((held_item.reagents.maximum_volume-held_item.reagents.total_volume) < volume)
-		to_chat(wearer, "<span class='warning'>External container lacks sufficient space..</span>")
+		to_chat(wearer, span_warning("External container lacks sufficient space..") )
 		return
 
 	to_chat(wearer, span_notice("You begin filling [held_item]."))

@@ -255,7 +255,7 @@
 
 	if(ishuman(loc)) //Having an angry xeno in your hand is a bad idea.
 		var/mob/living/carbon/human/holder = loc
-		holder.visible_message("<span class='warning'>The facehugger [holder] is carrying leaps at [holder.p_them()]!</span>", "<span class ='danger'>The facehugger you're carrying leaps at you!</span>")
+		holder.visible_message(span_warning("The facehugger [holder] is carrying leaps at [holder.p_them()]!") , "<span class ='danger'>The facehugger you're carrying leaps at you!</span>")
 		if(!Attach(holder))
 			go_idle()
 		return
@@ -353,7 +353,7 @@
 
 /obj/item/clothing/mask/facehugger/on_found(mob/finder)
 	if(stat == CONSCIOUS)
-		finder.visible_message("<span class='danger'>\A [src] leaps out of \the [loc]!</span>")
+		finder.visible_message(span_danger("\A [src] leaps out of \the [loc]!") )
 		forceMove(get_turf(src))
 		reset_life_timer()
 		HasProximity(finder)

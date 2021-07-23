@@ -271,23 +271,23 @@
 		return FALSE
 	if(affected.has_external_wound())//limb has treatable damage
 		return TRUE
-	to_chat(user, "<span class='notice'>[target]'s [affected.display_name] has no external injuries.</span>")
+	to_chat(user, span_notice("[target]'s [affected.display_name] has no external injuries.") )
 	return SPECIAL_SURGERY_INVALID
 
 /datum/surgery_step/generic/repair/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
-	user.visible_message("<span class='notice'>[user] is beginning to suture the wounds on [target]'s [affected.display_name].</span>" , \
-	"<span class='notice'>You are beginning to suture the wounds on [target]'s [affected.display_name].</span>")
+	user.visible_message(span_notice("[user] is beginning to suture the wounds on [target]'s [affected.display_name].")  , \
+	span_notice("You are beginning to suture the wounds on [target]'s [affected.display_name].") )
 	target.custom_pain("Your [affected.display_name] is getting stabbed!!", 1)
 	..()
 
 /datum/surgery_step/generic/repair/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
-	user.visible_message("<span class='notice'>[user] sews some of the wounds on [target]'s [affected.display_name] shut.</span>", \
-	"<span class='notice'>You finish suturing some of the wounds on [target]'s [affected.display_name].</span>")
+	user.visible_message(span_notice("[user] sews some of the wounds on [target]'s [affected.display_name] shut.") , \
+	span_notice("You finish suturing some of the wounds on [target]'s [affected.display_name].") )
 	var/burn_heal = min(base_healing, affected.burn_dam)
 	var/brute_heal = max(base_healing - burn_heal, 0)
 	target.HealDamage(target_zone, brute_heal, burn_heal)
 
 /datum/surgery_step/generic/repair/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
-	user.visible_message("<span class='warning'>[user]'s hand slips, tearing through [target]'s skin with \the [tool]!</span>", \
-	"<span class='warning'>Your hand slips, tearing \the [tool] through [target]'s skin!</span>")
+	user.visible_message(span_warning("[user]'s hand slips, tearing through [target]'s skin with \the [tool]!") , \
+	span_warning("Your hand slips, tearing \the [tool] through [target]'s skin!") )
 	affected.take_damage_limb(5, updating_health = TRUE)

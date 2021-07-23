@@ -538,11 +538,11 @@
 
 	switch(slowdown_multiplier) //Description varies in severity and probability with the multiplier
 		if(0 to 1 && prob(10))
-			to_chat(L, "<span class='warning'>You feel your legs tense up.</span>")
+			to_chat(L, span_warning("You feel your legs tense up.") )
 		if(2 to 3.9 && prob(20))
-			to_chat(L, "<span class='warning'>You feel your legs go numb.</span>")
+			to_chat(L, span_warning("You feel your legs go numb.") )
 		if(4 to INFINITY && prob(30))
-			to_chat(L, "<span class='danger'>You can barely feel your legs!</span>")
+			to_chat(L, span_danger("You can barely feel your legs!") )
 
 	L.add_movespeed_modifier(MOVESPEED_ID_XENO_HEMODILE, TRUE, 0, NONE, TRUE, 1.5 * slowdown_multiplier)
 
@@ -571,7 +571,7 @@
 		return ..()
 
 	if(prob(10))
-		to_chat(L, "<span class='warning'>You notice your wounds crusting over with disgusting green ichor.</span>")
+		to_chat(L, span_warning("You notice your wounds crusting over with disgusting green ichor.") )
 
 	var/tox_cap_multiplier = 1
 

@@ -446,7 +446,7 @@
 
 	if(!impairer.line_of_sight(A)) //Need line of sight.
 		if(!silent)
-			to_chat(impairer, "<span class='xenowarning'>We require line of sight to the target location!</span>")
+			to_chat(impairer, span_xenowarning("We require line of sight to the target location!") )
 		return FALSE
 
 	return TRUE
@@ -458,7 +458,7 @@
 	X.face_atom(A)
 
 	if(!do_after(X, HUNTER_SILENCE_WINDUP, TRUE, target, BUSY_ICON_HOSTILE)) //Slight wind up
-		to_chat(X, "<span class='xenodanger'>We abort silencing...</span>")
+		to_chat(X, span_xenodanger("We abort silencing...") )
 		return fail_activate()
 
 	var/mob/living/mark_target
@@ -481,7 +481,7 @@
 		var/silence_multiplier = 1
 		if(mark_target == target) //Double debuff stacks for the marked target
 			silence_multiplier = HUNTER_SILENCE_MULTIPLIER
-		to_chat(target, "<span class='danger'>Your mind convulses at the touch of something ominous as the world seems to blur, your voice dies in your throat, and everything falls silent!</span>") //Notify privately
+		to_chat(target, span_danger("Your mind convulses at the touch of something ominous as the world seems to blur, your voice dies in your throat, and everything falls silent!") ) //Notify privately
 		target.playsound_local(target, 'sound/effects/ghost.ogg', 25, 0, 1)
 		target.adjust_stagger(HUNTER_SILENCE_STAGGER_STACKS * silence_multiplier)
 		target.adjust_blurriness(HUNTER_SILENCE_SENSORY_STACKS * silence_multiplier)
@@ -495,7 +495,7 @@
 		return fail_activate()
 
 	X.playsound_local(X, 'sound/effects/ghost.ogg', 25, 0, 1)
-	to_chat(X, "<span class='xenodanger'>We invade the mind of [victim_count] [victim_count > 1 ? "victims" : "victim"], silencing and muting them...</span>")
+	to_chat(X, span_xenodanger("We invade the mind of [victim_count] [victim_count > 1 ? "victims" : "victim"], silencing and muting them...") )
 	succeed_activate()
 	add_cooldown()
 
@@ -503,7 +503,7 @@
 	SSblackbox.record_feedback("tally", "round_statistics", victim_count, "hunter_silence_targets") //Statistics
 
 /datum/action/xeno_action/activable/silence/on_cooldown_finish()
-	to_chat(owner, "<span class='xenowarning'><b>We refocus our psionic energies, allowing us to impose silence again.</b></span>")
+	to_chat(owner, span_xenowarning("<b>We refocus our psionic energies, allowing us to impose silence again.</b>") )
 	owner.playsound_local(owner, 'sound/effects/xeno_newlarva.ogg', 25, 0, 1)
 	cooldown_timer = initial(cooldown_timer) //Reset the cooldown timer to its initial state in the event of a whiffed Silence.
 	return ..()

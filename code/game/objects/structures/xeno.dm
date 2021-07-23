@@ -520,7 +520,7 @@
 		Burst(TRUE)
 		return
 
-	to_chat(M, "<span class='warning'>That egg is filled with gas and has no child to retrieve.</span>")
+	to_chat(M, span_warning("That egg is filled with gas and has no child to retrieve.") )
 
 /obj/item/resin_jelly
 	name = "resin jelly"

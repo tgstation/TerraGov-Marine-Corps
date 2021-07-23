@@ -1192,4 +1192,4 @@ and you're good to go.
 	attachments[ATTACHMENT_SLOT_RAIL].turn_light(null, FALSE)
 	playsound(loc, "alien_claw_metal", 25, 1)
 	X.do_attack_animation(src, ATTACK_EFFECT_CLAW)
-	to_chat(X, "<span class='warning'>We disable the metal thing's lights.</span>")
+	to_chat(X, span_warning("We disable the metal thing's lights.") )

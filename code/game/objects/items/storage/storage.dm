@@ -19,7 +19,7 @@
 	 * 	)
 	 *
 	 * Any inserted objects will decrement the allowed count of every listed type which matches or is a parent of that object.
-	 * With entries for both /obj/A and /obj/A/B, inserting a B requires non-zero allowed count remaining for, and reduces, both. 
+	 * With entries for both /obj/A and /obj/A/B, inserting a B requires non-zero allowed count remaining for, and reduces, both.
 	 */
 	var/list/storage_type_limits
 	var/list/click_border_start = list() //In slotless storage, stores areas where clicking will refer to the associated item
@@ -391,7 +391,7 @@
 			continue
 		if(storage_type_limits[limited_type] == 0)
 			if(warning)
-				to_chat(usr, "<span class='warning'>[src] can't fit any more of those.</span>")
+				to_chat(usr, span_warning("[src] can't fit any more of those.") )
 			return FALSE
 
 	if(istype(W, /obj/item/tool/hand_labeler))

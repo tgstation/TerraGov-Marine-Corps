@@ -1154,7 +1154,7 @@
 
 	for(var/obj/structure/xeno/resin/xeno_turret/turret AS in GLOB.xeno_resin_turrets)
 		if(get_dist(turret, A) < 6)
-			to_chat(owner, "<span class='xenowarning'>Another turret is too close!</span>")
+			to_chat(owner, span_xenowarning("Another turret is too close!") )
 			return FALSE
 
 	if(!alien_weeds)

@@ -894,7 +894,7 @@
 	if(!check_rights(R_FUN|R_MENTOR))
 		return
 	if(!istype(friend_owner)) // living only
-		to_chat(usr, "<span class='warning'>That creature can not have Imaginary Friends</span>")
+		to_chat(usr, span_warning("That creature can not have Imaginary Friends") )
 		return
 	if(seek_confirm && tgui_alert(usr, "Become Imaginary Friend of [friend_owner]?", "Confirm", list("Yes", "No")) != "Yes")
 		return

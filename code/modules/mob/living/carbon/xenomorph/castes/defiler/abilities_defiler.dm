@@ -157,7 +157,7 @@
 		return fail_activate()
 
 	if(istype(A, /obj/effect/alien/egg/gas))
-		to_chat(X, "<span class='warning'>That egg has already been filled with toxic gas.</span>")
+		to_chat(X, span_warning("That egg has already been filled with toxic gas.") )
 		return fail_activate()
 
 	var/obj/effect/alien/egg/alien_egg = A

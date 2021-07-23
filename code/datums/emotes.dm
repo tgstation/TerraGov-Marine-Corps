@@ -137,7 +137,7 @@
 
 		if(sound || get_sound(user))
 			if(HAS_TRAIT(user, TRAIT_MUTED))
-				to_chat(user, "<span class='danger'>You're muted, and can't make any sounds!</span>")
+				to_chat(user, span_danger("You're muted, and can't make any sounds!") )
 				return FALSE
 			if(TIMER_COOLDOWN_CHECK(user, COOLDOWN_EMOTE))
 				to_chat(user, span_notice("You just did an audible emote. Wait a while."))
