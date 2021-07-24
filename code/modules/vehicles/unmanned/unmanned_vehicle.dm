@@ -238,7 +238,7 @@
 /obj/vehicle/unmanned/punch_act(mob/living/carbon/xenomorph/X, damage, target_zone)
 	X.do_attack_animation(src, ATTACK_EFFECT_YELLOWPUNCH)
 	X.do_attack_animation(src, ATTACK_EFFECT_DISARM2)
-	attack_generic(X, damage * 2, BRUTE, "", FALSE) //Deals 2 times regular damage to machines
+	attack_generic(X, damage * 4, BRUTE, "", FALSE) //Deals 4 times regular damage to uavs
 	X.visible_message(span_xenodanger("\The [X] smashes [src] with a devastating punch!"), \
 		span_xenodanger("We smash [src] with a devastating punch!"), visible_message_flags = COMBAT_MESSAGE)
 	playsound(src, pick('sound/effects/bang.ogg','sound/effects/metal_crash.ogg','sound/effects/meteorimpact.ogg'), 50, 1)
