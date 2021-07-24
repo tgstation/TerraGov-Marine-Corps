@@ -41,34 +41,34 @@
 		return FALSE
 	if(X.on_fire)
 		if(!silent)
-			to_chat(X, "<span class='warning'>We're too busy being on fire to do this!</span>")
+			to_chat(X, span_warning("We're too busy being on fire to do this!"))
 		return FALSE
 	if(victim.stat != DEAD)
 		if(!silent)
-			to_chat(X, "<span class='warning'>This creature is struggling too much for us to aim precisely.</span>")
+			to_chat(X, span_warning("This creature is struggling too much for us to aim precisely."))
 		return FALSE
 	if(victim.headbitten)
 		if(!silent)
-			to_chat(X, "<span class='warning'>This creature has already been headbitten.</span>")
+			to_chat(X, span_warning("This creature has already been headbitten."))
 		return FALSE
 	if(victim.chestburst)
 		if(!silent)
-			to_chat(X, "<span class='warning'>This creature has already served its purpose.</span>")
+			to_chat(X, span_warning("This creature has already served its purpose."))
 		return FALSE
 	if(X.issamexenohive(victim)) //checks if target and victim are in the same hive
 		if(!silent)
-			to_chat(X, "<span class='warning'>We can't bring ourselves to harm a fellow sister to this magnitude.</span>")
+			to_chat(X, span_warning("We can't bring ourselves to harm a fellow sister to this magnitude."))
 		return FALSE
 	if(issynth(victim)) //checks if target is a synth
 		if(!silent)
-			to_chat(X, "<span class='warning'>We have no reason to bite this non-living thing.</span>")
+			to_chat(X, span_warning("We have no reason to bite this non-living thing."))
 		return FALSE
 	X.face_atom(victim) //Face towards the target so we don't look silly
-	X.visible_message("<span class='xenowarning'>\The [X] begins opening its mouth and extending a second jaw towards \the [victim].</span>", \
-	"<span class='danger'>We prepare our inner jaw for a finishing blow on \the [victim]!</span>", null, 20)
+	X.visible_message(span_xenowarning("\The [X] begins opening its mouth and extending a second jaw towards \the [victim]."), \
+	span_danger("We prepare our inner jaw for a finishing blow on \the [victim]!"), null, 20)
 	if(!do_after(X, 10 SECONDS, FALSE, victim, BUSY_ICON_DANGER, extra_checks = CALLBACK(X, /mob.proc/break_do_after_checks, list("health" = X.health))))
-		X.visible_message("<span class='xenowarning'>\The [X] retracts its inner jaw.</span>", \
-		"<span class='danger'>We retract our inner jaw.</span>", null, 20)
+		X.visible_message(span_xenowarning("\The [X] retracts its inner jaw."), \
+		span_danger("We retract our inner jaw."), null, 20)
 		return FALSE
 	succeed_activate() //dew it
 
@@ -76,8 +76,8 @@
 	var/mob/living/carbon/xenomorph/X = owner
 	var/mob/living/carbon/victim = M
 
-	X.visible_message("<span class='xenodanger'>\The [X] viciously bites into \the [victim]'s head with its inner jaw!</span>", \
-	"<span class='xenodanger'>We suddenly bite into the \the [victim]'s head with our second jaw!</span>")
+	X.visible_message(span_xenodanger("\The [X] viciously bites into \the [victim]'s head with its inner jaw!"), \
+	span_xenodanger("We suddenly bite into the \the [victim]'s head with our second jaw!"))
 
 	if(ishuman(victim))
 		var/mob/living/carbon/human/H = victim
@@ -123,19 +123,19 @@
 		return fail_activate()
 
 	if(locate(/obj/structure/xeno/trap) in T)
-		to_chat(owner, "<span class='warning'>There is a resin trap in the way!</span>")
+		to_chat(owner, span_warning("There is a resin trap in the way!"))
 		return fail_activate()
 
 	if(!T.is_weedable())
-		to_chat(owner, "<span class='warning'>Bad place for a garden!</span>")
+		to_chat(owner, span_warning("Bad place for a garden!"))
 		return fail_activate()
 
 	if(locate(/obj/effect/alien/weeds/node) in T)
-		to_chat(owner, "<span class='warning'>There's a pod here already!</span>")
+		to_chat(owner, span_warning("There's a pod here already!"))
 		return fail_activate()
 
-	owner.visible_message("<span class='xenonotice'>\The [owner] regurgitates a pulsating node and plants it on the ground!</span>", \
-		"<span class='xenonotice'>We regurgitate a pulsating node and plant it on the ground!</span>", null, 5)
+	owner.visible_message(span_xenonotice("\The [owner] regurgitates a pulsating node and plants it on the ground!"), \
+		span_xenonotice("We regurgitate a pulsating node and plant it on the ground!"), null, 5)
 	new /obj/effect/alien/weeds/node(owner.loc)
 	playsound(owner.loc, "alien_resin_build", 25)
 	GLOB.round_statistics.weeds_planted++
@@ -163,7 +163,7 @@
 		return ..()
 	var/mob/living/carbon/xenomorph/hivemind/hiveminde = owner
 	hiveminde.forceMove(get_turf(hiveminde.core))
-	to_chat(hiveminde, "<span class='xenonotice'>We can't plant a node without weeds nearby, we've been moved back to our core.</span>")
+	to_chat(hiveminde, span_xenonotice("We can't plant a node without weeds nearby, we've been moved back to our core."))
 	return fail_activate()
 
 // Secrete Resin
@@ -203,7 +203,7 @@
 	else
 		X.selected_resin = buildable_structures[i+1]
 	var/atom/A = X.selected_resin
-	to_chat(X, "<span class='notice'>We will now build <b>[initial(A.name)]\s</b> when secreting resin.</span>")
+	to_chat(X, span_notice("We will now build <b>[initial(A.name)]\s</b> when secreting resin."))
 	update_button_icon()
 
 
@@ -229,21 +229,21 @@
 	var/mob/living/carbon/xenomorph/X = owner
 	var/mob/living/carbon/xenomorph/blocker = locate() in T
 	if(blocker && blocker != X && blocker.stat != DEAD)
-		to_chat(X, "<span class='warning'>Can't do that with [blocker] in the way!</span>")
+		to_chat(X, span_warning("Can't do that with [blocker] in the way!"))
 		return fail_activate()
 
 	if(!T.is_weedable())
-		to_chat(X, "<span class='warning'>We can't do that here.</span>")
+		to_chat(X, span_warning("We can't do that here."))
 		return fail_activate()
 
 	var/obj/effect/alien/weeds/alien_weeds = locate() in T
 
 	for(var/obj/effect/forcefield/fog/F in range(1, X))
-		to_chat(X, "<span class='warning'>We can't build so close to the fog!</span>")
+		to_chat(X, span_warning("We can't build so close to the fog!"))
 		return fail_activate()
 
 	if(!alien_weeds)
-		to_chat(X, "<span class='warning'>We can only shape on weeds. We must find some resin before we start building!</span>")
+		to_chat(X, span_warning("We can only shape on weeds. We must find some resin before we start building!"))
 		return fail_activate()
 
 	if(!T.check_alien_construction(X, planned_building = X.selected_resin) || !T.check_disallow_alien_fortification(X))
@@ -261,7 +261,7 @@
 					wall_support = TRUE
 					break
 		if(!wall_support)
-			to_chat(X, "<span class='warning'>Resin doors need a wall or resin door next to them to stand up.</span>")
+			to_chat(X, span_warning("Resin doors need a wall or resin door next to them to stand up."))
 			return fail_activate()
 
 	if(!do_after(X, get_wait(), TRUE, T, BUSY_ICON_BUILD))
@@ -296,11 +296,11 @@
 					wall_support = TRUE
 					break
 		if(!wall_support)
-			to_chat(X, "<span class='warning'>Resin doors need a wall or resin door next to them to stand up.</span>")
+			to_chat(X, span_warning("Resin doors need a wall or resin door next to them to stand up."))
 			return fail_activate()
 	var/atom/AM = X.selected_resin
-	X.visible_message("<span class='xenonotice'>\The [X] regurgitates a thick substance and shapes it into \a [initial(AM.name)]!</span>", \
-	"<span class='xenonotice'>We regurgitate some resin and shape it into \a [initial(AM.name)].</span>", null, 5)
+	X.visible_message(span_xenowarning("\The [X] regurgitates a thick substance and shapes it into \a [initial(AM.name)]!"), \
+	span_xenonotice("We regurgitate some resin and shape it into \a [initial(AM.name)]."), null, 5)
 	playsound(owner.loc, "alien_resin_build", 25)
 
 	var/atom/new_resin
@@ -387,8 +387,8 @@
 		return FALSE
 
 	if(X.current_aura == aura_type)
-		X.visible_message("<span class='xenowarning'>\The [X] stops emitting strange pheromones.</span>", \
-		"<span class='xenowarning'>We stop emitting [X.current_aura] pheromones.</span>", null, 5)
+		X.visible_message(span_xenowarning("\The [X] stops emitting strange pheromones."), \
+		span_xenowarning("We stop emitting [X.current_aura] pheromones."), null, 5)
 		X.current_aura = null
 		if(isxenoqueen(X))
 			X.hive?.update_leader_pheromones()
@@ -396,8 +396,8 @@
 		return fail_activate() // dont use plasma
 
 	X.current_aura = aura_type
-	X.visible_message("<span class='xenowarning'>\The [X] begins to emit strange-smelling pheromones.</span>", \
-	"<span class='xenowarning'>We begin to emit '[X.current_aura]' pheromones.</span>", null, 5)
+	X.visible_message(span_xenowarning("\The [X] begins to emit strange-smelling pheromones."), \
+	span_xenowarning("We begin to emit '[X.current_aura]' pheromones."), null, 5)
 	playsound(X.loc, "alien_drool", 25)
 
 	if(isxenoqueen(X))
@@ -450,23 +450,23 @@
 
 	if(!(target.xeno_caste.caste_flags & CASTE_CAN_BE_GIVEN_PLASMA))
 		if(!silent)
-			to_chat(owner, "<span class='warning'>We can't give that caste plasma.</span>")
+			to_chat(owner, span_warning("We can't give that caste plasma."))
 			return FALSE
 
 	if(get_dist(owner, target) > max_range)
 		if(!silent)
-			to_chat(owner, "<span class='warning'>We need to be closer to [target].</span>")
+			to_chat(owner, span_warning("We need to be closer to [target]."))
 		return FALSE
 
 	if(target.plasma_stored >= target.xeno_caste.plasma_max) //We can't select targets that won't benefit
-		to_chat(owner, "<span class='xenowarning'>[target] already has full plasma.</span>")
+		to_chat(owner, span_xenowarning("[target] already has full plasma."))
 		return FALSE
 
 /datum/action/xeno_action/activable/transfer_plasma/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/X = owner
 	var/mob/living/carbon/xenomorph/target = A
 
-	to_chat(X, "<span class='notice'>We start focusing our plasma towards [target].</span>")
+	to_chat(X, span_notice("We start focusing our plasma towards [target]."))
 	new /obj/effect/temp_visual/transfer_plasma(get_turf(X)) //Cool SFX that confirms our source and our target
 	new /obj/effect/temp_visual/transfer_plasma(get_turf(target)) //Cool SFX that confirms our source and our target
 	playsound(X, "alien_drool", 25)
@@ -492,8 +492,8 @@
 
 	X.use_plasma(amount)
 	target.gain_plasma(amount)
-	to_chat(target, "<span class='xenodanger'>[X] has transfered [amount] units of plasma to us. We now have [target.plasma_stored]/[target.xeno_caste.plasma_max].</span>")
-	to_chat(X, "<span class='xenodanger'>We have transferred [amount] units of plasma to [target]. We now have [X.plasma_stored]/[X.xeno_caste.plasma_max].</span>")
+	to_chat(target, span_xenodanger("[X] has transfered [amount] units of plasma to us. We now have [target.plasma_stored]/[target.xeno_caste.plasma_max]."))
+	to_chat(X, span_xenodanger("We have transferred [amount] units of plasma to [target]. We now have [X.plasma_stored]/[X.xeno_caste.plasma_max]."))
 	playsound(X, "alien_drool", 25)
 
 //Xeno Larval Growth Sting
@@ -509,7 +509,7 @@
 
 /datum/action/xeno_action/activable/larval_growth_sting/on_cooldown_finish()
 	playsound(owner.loc, 'sound/voice/alien_drool1.ogg', 50, 1)
-	to_chat(owner, "<span class='xenodanger'>We feel our growth toxin glands refill. We can use Growth Sting again.</span>")
+	to_chat(owner, span_xenodanger("We feel our growth toxin glands refill. We can use Growth Sting again."))
 	return ..()
 
 /datum/action/xeno_action/activable/larval_growth_sting/can_use_ability(atom/A, silent = FALSE, override_flags)
@@ -522,20 +522,20 @@
 
 	if(!A?.can_sting())
 		if(!silent)
-			to_chat(owner, "<span class='warning'>Our sting won't affect this target!</span>")
+			to_chat(owner, span_warning("Our sting won't affect this target!"))
 		return FALSE
 
 	if(!owner.Adjacent(A))
 		var/mob/living/carbon/xenomorph/X = owner
 		if(!silent && world.time > (X.recent_notice + X.notice_delay))
-			to_chat(X, "<span class='warning'>We can't reach this target!</span>")
+			to_chat(X, span_warning("We can't reach this target!"))
 			X.recent_notice = world.time //anti-notice spam
 		return FALSE
 
 	var/mob/living/carbon/C = A
 	if (isnestedhost(C))
 		if(!silent)
-			to_chat(owner, "<span class='warning'>Ashamed, we reconsider bullying the poor, nested host with our stinger.</span>")
+			to_chat(owner, span_warning("Ashamed, we reconsider bullying the poor, nested host with our stinger."))
 		return FALSE
 
 /datum/action/xeno_action/activable/larval_growth_sting/use_ability(atom/A)
@@ -568,35 +568,35 @@
 		return FALSE
 	if(!owner.Adjacent(A))
 		if(!silent)
-			to_chat(owner, "<span class='warning'>\The [A] is too far away.</span>")
+			to_chat(owner, span_warning("\The [A] is too far away."))
 		return FALSE
 	if(isobj(A))
 		var/obj/O = A
 		if(CHECK_BITFIELD(O.resistance_flags, UNACIDABLE|INDESTRUCTIBLE))
 			if(!silent)
-				to_chat(owner, "<span class='warning'>We cannot dissolve \the [O].</span>")
+				to_chat(owner, span_warning("We cannot dissolve \the [O]."))
 			return FALSE
 		if(O.acid_check(acid_type))
 			if(!silent)
-				to_chat(owner, "<span class='warning'>This object is already subject to a more or equally powerful acid.</span>")
+				to_chat(owner, span_warning("This object is already subject to a more or equally powerful acid."))
 			return FALSE
 		if(istype(O, /obj/structure/window_frame))
 			var/obj/structure/window_frame/WF = O
 			if(WF.reinforced && acid_type != /obj/effect/xenomorph/acid/strong)
 				if(!silent)
-					to_chat(owner, "<span class='warning'>This [WF.name] is too tough to be melted by our weak acid.</span>")
+					to_chat(owner, span_warning("This [WF.name] is too tough to be melted by our weak acid."))
 				return FALSE
 	else if(isturf(A))
 		var/turf/T = A
 		if(T.acid_check(acid_type))
 			if(!silent)
-				to_chat(owner, "<span class='warning'>This object is already subject to a more or equally powerful acid.</span>")
+				to_chat(owner, span_warning("This object is already subject to a more or equally powerful acid."))
 			return FALSE
 		if(iswallturf(T))
 			var/turf/closed/wall/wall_target = T
 			if(wall_target.acided_hole)
 				if(!silent)
-					to_chat(owner, "<span class='warning'>[wall_target] is already weakened.</span>")
+					to_chat(owner, span_warning("[wall_target] is already weakened."))
 				return FALSE
 
 /obj/proc/acid_check(obj/effect/xenomorph/acid/new_acid)
@@ -639,20 +639,20 @@
 		var/dissolvability = T.can_be_dissolved()
 		switch(dissolvability)
 			if(0)
-				to_chat(X, "<span class='warning'>We cannot dissolve \the [T].</span>")
+				to_chat(X, span_warning("We cannot dissolve \the [T]."))
 				return fail_activate()
 			if(1)
 				wait_time = 50
 			if(2)
 				if(acid_type != /obj/effect/xenomorph/acid/strong)
-					to_chat(X, "<span class='warning'>This [T.name] is too tough to be melted by our weak acid.</span>")
+					to_chat(X, span_warning("This [T.name] is too tough to be melted by our weak acid."))
 					return fail_activate()
 				wait_time = 100
 			else
 				return fail_activate()
-		to_chat(X, "<span class='xenowarning'>We begin generating enough acid to melt through \the [T].</span>")
+		to_chat(X, span_xenowarning("We begin generating enough acid to melt through \the [T]."))
 	else
-		to_chat(X, "<span class='warning'>We cannot dissolve \the [A].</span>")
+		to_chat(X, span_warning("We cannot dissolve \the [A]."))
 		return fail_activate()
 
 	if(!do_after(X, wait_time, TRUE, A, BUSY_ICON_HOSTILE))
@@ -668,8 +668,8 @@
 	if(istype(A, /obj/vehicle/multitile/root/cm_armored))
 		var/obj/vehicle/multitile/root/cm_armored/R = A
 		R.take_damage_type( (1 * newacid.acid_strength) * 20, "acid", X)
-		X.visible_message("<span class='xenowarning'>\The [X] vomits globs of vile stuff at \the [R]. It sizzles under the bubbling mess of acid!</span>", \
-			"<span class='xenowarning'>We vomit globs of vile stuff at \the [R]. It sizzles under the bubbling mess of acid!</span>", null, 5)
+		X.visible_message(span_xenowarning("\The [X] vomits globs of vile stuff at \the [R]. It sizzles under the bubbling mess of acid!"), \
+			span_xenowarning("We vomit globs of vile stuff at \the [R]. It sizzles under the bubbling mess of acid!"), null, 5)
 		playsound(X.loc, "sound/bullets/acid_impact1.ogg", 25)
 		QDEL_IN(newacid, 20)
 		return TRUE
@@ -698,8 +698,8 @@
 
 	if(!isturf(A))
 		log_combat(X, A, "spat on", addition="with corrosive acid")
-	X.visible_message("<span class='xenowarning'>\The [X] vomits globs of vile stuff all over \the [A]. It begins to sizzle and melt under the bubbling mess of acid!</span>", \
-	"<span class='xenowarning'>We vomit globs of vile stuff all over \the [A]. It begins to sizzle and melt under the bubbling mess of acid!</span>", null, 5)
+	X.visible_message(span_xenowarning("\The [X] vomits globs of vile stuff all over \the [A]. It begins to sizzle and melt under the bubbling mess of acid!"), \
+	span_xenowarning("We vomit globs of vile stuff all over \the [A]. It begins to sizzle and melt under the bubbling mess of acid!"), null, 5)
 	playsound(X.loc, "sound/bullets/acid_impact1.ogg", 25)
 
 /datum/action/xeno_action/activable/corrosive_acid/proc/acid_progress_transfer(acid_type, obj/O, turf/T)
@@ -746,13 +746,13 @@
 	var/turf/T2 = get_turf(A)
 	if(T == T2)
 		if(!silent)
-			to_chat(owner, "<span class='warning'>That's far too close!</span>")
+			to_chat(owner, span_warning("That's far too close!"))
 		return FALSE
 
 
 /datum/action/xeno_action/activable/spray_acid/on_cooldown_finish()
 	playsound(owner.loc, 'sound/voice/alien_drool1.ogg', 50, 1)
-	to_chat(owner, "<span class='xenodanger'>We feel our acid glands refill. We can spray acid again.</span>")
+	to_chat(owner, span_xenodanger("We feel our acid glands refill. We can spray acid again."))
 	return ..()
 
 /datum/action/xeno_action/activable/spray_acid/proc/acid_splat_turf(turf/T)
@@ -795,7 +795,7 @@
 				break
 			X.ammo = GLOB.ammo_list[X.xeno_caste.spit_types[i+1]]
 			break
-	to_chat(X, "<span class='notice'>We will now spit [X.ammo.name] ([X.ammo.spit_cost] plasma).</span>")
+	to_chat(X, span_notice("We will now spit [X.ammo.name] ([X.ammo.spit_cost] plasma)."))
 	update_button_icon()
 
 /datum/action/xeno_action/activable/xeno_spit/can_use_ability(atom/A, silent = FALSE, override_flags)
@@ -807,7 +807,7 @@
 		return FALSE
 	if(X.ammo?.spit_cost > X.plasma_stored)
 		if(!silent)
-			to_chat(X, "<span class='warning'>We need [X.ammo?.spit_cost - X.plasma_stored] more plasma!</span>")
+			to_chat(X, span_warning("We need [X.ammo?.spit_cost - X.plasma_stored] more plasma!"))
 		return FALSE
 
 /datum/action/xeno_action/activable/xeno_spit/get_cooldown()
@@ -816,7 +816,7 @@
 
 /datum/action/xeno_action/activable/xeno_spit/on_cooldown_finish()
 	var/mob/living/carbon/xenomorph/X = owner
-	to_chat(X, "<span class='notice'>We feel our neurotoxin glands swell with ichor. We can spit again.</span>")
+	to_chat(X, span_notice("We feel our neurotoxin glands swell with ichor. We can spit again."))
 	return ..()
 
 /datum/action/xeno_action/activable/xeno_spit/use_ability(atom/A)
@@ -827,8 +827,8 @@
 	if(!current_turf)
 		return fail_activate()
 
-	X.visible_message("<span class='xenowarning'>\The [X] spits at \the [A]!</span>", \
-	"<span class='xenowarning'>We spit at \the [A]!</span>" )
+	X.visible_message(span_xenowarning("\The [X] spits at \the [A]!"), \
+	span_xenowarning("We spit at \the [A]!") )
 	var/sound_to_play = pick(1, 2) == 1 ? 'sound/voice/alien_spitacid.ogg' : 'sound/voice/alien_spitacid2.ogg'
 	playsound(X.loc, sound_to_play, 25, 1)
 
@@ -867,10 +867,10 @@
 	var/mob/living/carbon/xenomorph/X = owner
 	if(X.layer != XENO_HIDING_LAYER)
 		X.layer = XENO_HIDING_LAYER
-		to_chat(X, "<span class='notice'>We are now hiding.</span>")
+		to_chat(X, span_notice("We are now hiding."))
 	else
 		X.layer = MOB_LAYER
-		to_chat(X, "<span class='notice'>We have stopped hiding.</span>")
+		to_chat(X, span_notice("We have stopped hiding."))
 
 
 //Neurotox Sting
@@ -891,23 +891,23 @@
 
 	if(!A?.can_sting())
 		if(!silent)
-			to_chat(owner, "<span class='warning'>Our sting won't affect this target!</span>")
+			to_chat(owner, span_warning("Our sting won't affect this target!"))
 		return FALSE
 	if(!owner.Adjacent(A))
 		var/mob/living/carbon/xenomorph/X = owner
 		if(!silent && world.time > (X.recent_notice + X.notice_delay)) //anti-notice spam
-			to_chat(X, "<span class='warning'>We can't reach this target!</span>")
+			to_chat(X, span_warning("We can't reach this target!"))
 			X.recent_notice = world.time //anti-notice spam
 		return FALSE
 	var/mob/living/carbon/C = A
 	if (isnestedhost(C))
 		if(!silent)
-			to_chat(owner, "<span class='warning'>Ashamed, we reconsider bullying the poor, nested host with our stinger.</span>")
+			to_chat(owner, span_warning("Ashamed, we reconsider bullying the poor, nested host with our stinger."))
 		return FALSE
 
 /datum/action/xeno_action/activable/neurotox_sting/on_cooldown_finish()
 	playsound(owner.loc, 'sound/voice/alien_drool1.ogg', 50, 1)
-	to_chat(owner, "<span class='xenodanger'>We feel our neurotoxin glands refill. We can use our Neurotoxin Sting again.</span>")
+	to_chat(owner, span_xenodanger("We feel our neurotoxin glands refill. We can use our Neurotoxin Sting again."))
 	return ..()
 
 /datum/action/xeno_action/activable/neurotox_sting/use_ability(atom/A)
@@ -943,7 +943,7 @@
 		target_list += possible_target
 
 	if(!length(target_list))
-		to_chat(X, "<span class='warning'>There's nobody nearby to whisper to.</span>")
+		to_chat(X, span_warning("There's nobody nearby to whisper to."))
 		return
 
 	var/mob/living/L = tgui_input_list(X, "Target", "Send a Psychic Whisper to whom?", target_list)
@@ -958,8 +958,8 @@
 		return
 
 	log_directed_talk(X, L, msg, LOG_SAY, "psychic whisper")
-	to_chat(L, "<span class='alien'>You hear a strange, alien voice in your head. <i>\"[msg]\"</i></span>")
-	to_chat(X, "<span class='xenonotice'>We said: \"[msg]\" to [L]</span>")
+	to_chat(L, span_alien("You hear a strange, alien voice in your head. <i>\"[msg]\"</i>"))
+	to_chat(X, span_xenonotice("We said: \"[msg]\" to [L]"))
 
 
 // ***************************************
@@ -979,7 +979,7 @@
 
 	var/obj/effect/alien/weeds/alien_weeds = locate() in current_turf
 	if(!alien_weeds)
-		to_chat(owner, "<span class='warning'>Our eggs wouldn't grow well enough here. Lay them on resin.</span>")
+		to_chat(owner, span_warning("Our eggs wouldn't grow well enough here. Lay them on resin."))
 		return FALSE
 
 	if(!do_after(owner, 3 SECONDS, FALSE, alien_weeds))
@@ -988,8 +988,8 @@
 	if(!current_turf.check_alien_construction(owner) || !current_turf.check_disallow_alien_fortification(owner))
 		return FALSE
 
-	owner.visible_message("<span class='xenowarning'>\The [owner] has laid an egg!</span>", \
-		"<span class='xenowarning'>We have laid an egg!</span>")
+	owner.visible_message(span_xenowarning("\The [owner] has laid an egg!"), \
+		span_xenowarning("We have laid an egg!"))
 
 	new /obj/item/xeno_egg(current_turf, xeno.hivenumber)
 	playsound(owner.loc, 'sound/effects/splat.ogg', 25)
@@ -1024,7 +1024,7 @@
 			valid_mobs += turf_mob
 
 	if(length(valid_mobs) < required_mobs)
-		to_chat(owner, "<span class='warning'>There are not enough dead bodies, we need [required_mobs] bodies for a silo!</span>")
+		to_chat(owner, span_warning("There are not enough dead bodies, we need [required_mobs] bodies for a silo!"))
 		return fail_activate()
 
 	if(!do_after(owner, build_time, TRUE, A, BUSY_ICON_BUILD))
@@ -1067,28 +1067,28 @@
 
 	var/turf/T = get_turf(A)
 	if(T?.density)
-		to_chat(owner, "<span class='xenowarning'>You need open ground to place that!</span>")
+		to_chat(owner, span_xenowarning("You need open ground to place that!"))
 		return FALSE
 
 	for(var/direction in GLOB.cardinals - REVERSE_DIR(Get_Angle(owner, A)))
 		T = get_step(A, direction)
 		if(!T || T.density)
-			to_chat(owner, "<span class='xenowarning'>You need open ground to place that!</span>")
+			to_chat(owner, span_xenowarning("You need open ground to place that!"))
 			return FALSE
 
 	if(!in_range(owner, A))
 		if(!silent)
-			to_chat(owner, "<span class='warning'>We need to get closer!.</span>")
+			to_chat(owner, span_warning("We need to get closer!."))
 		return FALSE
 
 	var/mob/living/carbon/xenomorph/X = owner
 	if(SSpoints.xeno_points_by_hive[X.hivenumber] < psych_cost)
-		to_chat(owner, "<span class='xenowarning'>The hive doesn't have the necessary psychic points for you to do that!</span>")
+		to_chat(owner, span_xenowarning("The hive doesn't have the necessary psychic points for you to do that!"))
 		return FALSE
 
 	for(var/obj/structure/xeno/resin/silo/silo AS in GLOB.xeno_resin_silos)
 		if(get_dist(silo, A) < 15)
-			to_chat(owner, "<span class='xenowarning'>Another silo is too close!</span>")
+			to_chat(owner, span_xenowarning("Another silo is too close!"))
 			return FALSE
 
 /datum/action/xeno_action/activable/build_silo/use_ability(atom/A)
@@ -1097,10 +1097,10 @@
 
 	var/mob/living/carbon/xenomorph/X = owner
 	if(SSpoints.xeno_points_by_hive[X.hivenumber] < psych_cost)
-		to_chat(owner, "<span class='xenowarning'>Someone used all the psych points while we were building!</span>")
+		to_chat(owner, span_xenowarning("Someone used all the psych points while we were building!"))
 		return fail_activate()
 
-	to_chat(owner, "<span class='notice'>We build a new silo for [psych_cost] psy points.</span>")
+	to_chat(owner, span_notice("We build a new silo for [psych_cost] psy points."))
 	SSpoints.xeno_points_by_hive[X.hivenumber] -= psych_cost
 	log_game("[owner] has built a silo in [AREACOORD(A)], spending [psych_cost] psy points in the process")
 	succeed_activate()
@@ -1133,39 +1133,39 @@
 
 	if(!in_range(owner, A))
 		if(!silent)
-			to_chat(owner, "<span class='warning'>We need to get closer!.</span>")
+			to_chat(owner, span_warning("We need to get closer!."))
 		return FALSE
 	var/turf/T = get_turf(A)
 	var/mob/living/carbon/xenomorph/X = owner
 	var/mob/living/carbon/xenomorph/blocker = locate() in T
 	if(blocker && blocker != X && blocker.stat != DEAD)
-		to_chat(X, "<span class='warning'>Can't do that with [blocker] in the way!</span>")
+		to_chat(X, span_warning("Can't do that with [blocker] in the way!"))
 		return FALSE
 
 	if(!T.is_weedable())
-		to_chat(X, "<span class='warning'>We can't do that here.</span>")
+		to_chat(X, span_warning("We can't do that here."))
 		return FALSE
 
 	var/obj/effect/alien/weeds/alien_weeds = locate() in T
 
 	for(var/obj/effect/forcefield/fog/F in range(1, X))
-		to_chat(X, "<span class='warning'>We can't build so close to the fog!</span>")
+		to_chat(X, span_warning("We can't build so close to the fog!"))
 		return FALSE
 
 	for(var/obj/structure/xeno/resin/xeno_turret/turret AS in GLOB.xeno_resin_turrets)
 		if(get_dist(turret, A) < 6)
-			to_chat(owner, "<span class='xenowarning'>Another turret is too close!</span>")
+			to_chat(owner, span_xenowarning("Another turret is too close!") )
 			return FALSE
 
 	if(!alien_weeds)
-		to_chat(X, "<span class='warning'>We can only shape on weeds. We must find some resin before we start building!</span>")
+		to_chat(X, span_warning("We can only shape on weeds. We must find some resin before we start building!"))
 		return FALSE
 
 	if(!T.check_alien_construction(X, planned_building = /obj/structure/xeno/resin/xeno_turret) || !T.check_disallow_alien_fortification(X))
 		return FALSE
 
 	if(SSpoints.xeno_points_by_hive[X.hivenumber] < psych_cost)
-		to_chat(owner, "<span class='xenowarning'>The hive doesn't have the necessary psychic points for you to do that!</span>")
+		to_chat(owner, span_xenowarning("The hive doesn't have the necessary psychic points for you to do that!"))
 		return FALSE
 
 /datum/action/xeno_action/activable/build_turret/use_ability(atom/A)
@@ -1175,8 +1175,9 @@
 	var/mob/living/carbon/xenomorph/X = owner
 
 	if(SSpoints.xeno_points_by_hive[X.hivenumber] < psych_cost)
-		to_chat(owner, "<span class='xenowarning'>Someone used all the psych points while we were building!</span>")
+		to_chat(owner, span_xenowarning("Someone used all the psych points while we were building!"))
 		return fail_activate()
+
 
 	to_chat(owner, "<span class='xenowarning'>We build a new acid turret, spending 150 psychic points in the process</span>")
 	new /obj/structure/xeno/resin/xeno_turret(get_turf(A), X.hivenumber)
@@ -1262,32 +1263,32 @@
 		return FALSE
 	if(X.on_fire)
 		if(!silent)
-			to_chat(X, "<span class='warning'>We're too busy being on fire to do this!</span>")
+			to_chat(X, span_warning("We're too busy being on fire to do this!"))
 		return FALSE
 	if(victim.stat != DEAD)
 		if(!silent)
-			to_chat(X, "<span class='warning'>This creature is struggling too much for us to drain its life force.</span>")
+			to_chat(X, span_warning("This creature is struggling too much for us to drain its life force."))
 		return FALSE
 	if(HAS_TRAIT(victim, TRAIT_PSY_DRAINED))
 		if(!silent)
-			to_chat(X, "<span class='warning'>There is no longer any life force in this creature!</span>")
+			to_chat(X, span_warning("There is no longer any life force in this creature!"))
 		return FALSE
 	if(!ishuman(victim))
 		if(!silent)
-			to_chat(X, "<span class='warning'>We can't drain something that is not human.</span>")
+			to_chat(X, span_warning("We can't drain something that is not human."))
 		return FALSE
 	if(issynth(victim)) //checks if target is a synth
 		if(!silent)
-			to_chat(X, "<span class='warning'>This artificial construct has no life force to drain</span>")
+			to_chat(X, span_warning("This artificial construct has no life force to drain"))
 		return FALSE
 	X.face_atom(victim) //Face towards the target so we don't look silly
-	X.visible_message("<span class='xenowarning'>\The [X] begins opening its mouth and extending a second jaw towards \the [victim].</span>", \
-	"<span class='danger'>We slowly drain \the [victim]'s life force!</span>", null, 20)
+	X.visible_message(span_xenowarning("\The [X] begins opening its mouth and extending a second jaw towards \the [victim]."), \
+	span_danger("We slowly drain \the [victim]'s life force!"), null, 20)
 	var/channel = SSsounds.random_available_channel()
 	playsound(X, 'sound/magic/nightfall.ogg', 40, channel = channel)
 	if(!do_after(X, 5 SECONDS, FALSE, victim, BUSY_ICON_DANGER, extra_checks = CALLBACK(X, /mob.proc/break_do_after_checks, list("health" = X.health))))
-		X.visible_message("<span class='xenowarning'>\The [X] retracts its inner jaw.</span>", \
-		"<span class='danger'>We retract our inner jaw.</span>", null, 20)
+		X.visible_message(span_xenowarning("\The [X] retracts its inner jaw."), \
+		span_danger("We retract our inner jaw."), null, 20)
 		X.stop_sound_channel(channel)
 		return FALSE
 	X.stop_sound_channel(channel)
@@ -1298,13 +1299,13 @@
 	var/mob/living/carbon/victim = M
 
 	if(HAS_TRAIT(victim, TRAIT_PSY_DRAINED))
-		to_chat(X, "<span class='warning'>Someone drained the life force of our victim before we could do it!</span>")
+		to_chat(X, span_warning("Someone drained the life force of our victim before we could do it!"))
 		return fail_activate()
 
 	playsound(X, 'sound/magic/end_of_psy_drain.ogg', 40)
 
-	X.visible_message("<span class='xenodanger'>\The [victim]'s life force is drained by \the [X]!</span>", \
-	"<span class='xenodanger'>We suddenly feel \the [victim]'s life force streaming into us!</span>")
+	X.visible_message(span_xenodanger("\The [victim]'s life force is drained by \the [X]!"), \
+	span_xenodanger("We suddenly feel \the [victim]'s life force streaming into us!"))
 
 	victim.do_jitter_animation(2)
 
@@ -1339,7 +1340,7 @@
 	if(LAZYLEN(X.stomach_contents)) //Only one thing in the stomach at a time, please
 		succeed_activate()
 	if(!ishuman(A) || issynth(A))
-		to_chat(owner, "<span class='warning'>That wouldn't taste very good.</span>")
+		to_chat(owner, span_warning("That wouldn't taste very good."))
 		return FALSE
 	var/mob/living/carbon/human/victim = A
 	if(owner.do_actions) //can't use if busy
@@ -1348,23 +1349,23 @@
 		return FALSE
 	if(victim.stat != DEAD)
 		if(!silent)
-			to_chat(owner, "<span class='warning'>This creature is struggling too much for us to devour it.</span>")
+			to_chat(owner, span_warning("This creature is struggling too much for us to devour it."))
 		return FALSE
 	if(victim.buckled)
 		if(!silent)
-			to_chat(owner, "<span class='warning'>[victim] is buckled to something.</span>")
+			to_chat(owner, span_warning("[victim] is buckled to something."))
 		return FALSE
 	if(X.on_fire)
 		if(!silent)
-			to_chat(X, "<span class='warning'>We're too busy being on fire to do this!</span>")
+			to_chat(X, span_warning("We're too busy being on fire to do this!"))
 		return FALSE
 	for(var/obj/effect/forcefield/fog in range(1, X))
 		if(!silent)
-			to_chat(X, "<span class='warning'>We are too close to the fog.</span>")
+			to_chat(X, span_warning("We are too close to the fog."))
 		return FALSE
 	X.face_atom(victim)
-	X.visible_message("<span class='danger'>[X] starts to devour [victim]!</span>", \
-	"<span class='danger'>We start to devour [victim]!</span>", null, 5)
+	X.visible_message(span_danger("[X] starts to devour [victim]!"), \
+	span_danger("We start to devour [victim]!"), null, 5)
 
 	succeed_activate()
 
@@ -1376,7 +1377,7 @@
 	var/channel = SSsounds.random_available_channel()
 	playsound(X, 'sound/vore/escape.ogg', 40, channel = channel)
 	if(!do_after(X, 3 SECONDS, FALSE, null, BUSY_ICON_DANGER))
-		to_chat(owner, "<span class='warning'>We moved too soon!</span>")
+		to_chat(owner, span_warning("We moved too soon!"))
 		X.stop_sound_channel(channel)
 		return fail_activate()
 	X.eject_victim()
@@ -1389,11 +1390,11 @@
 	var/channel = SSsounds.random_available_channel()
 	playsound(X, 'sound/vore/struggle.ogg', 40, channel = channel)
 	if(!do_after(X, 7 SECONDS, FALSE, victim, BUSY_ICON_DANGER, extra_checks = CALLBACK(owner, /mob.proc/break_do_after_checks, list("health" = X.health))))
-		to_chat(owner, "<span class='warning'>We stop devouring \the [victim]. They probably tasted gross anyways.</span>")
+		to_chat(owner, span_warning("We stop devouring \the [victim]. They probably tasted gross anyways."))
 		X.stop_sound_channel(channel)
 		return fail_activate()
-	owner.visible_message("<span class='warning'>[X] devours [victim]!</span>", \
-	"<span class='warning'>We devour [victim]!</span>", null, 5)
+	owner.visible_message(span_warning("[X] devours [victim]!"), \
+	span_warning("We devour [victim]!"), null, 5)
 	LAZYADD(X.stomach_contents, victim)
 	victim.forceMove(X)
 
@@ -1417,7 +1418,7 @@
 	if(!.)
 		return
 	if(!ishuman(A) || issynth(A))
-		to_chat(owner, "<span class='warning'>That wouldn't taste very good.</span>")
+		to_chat(owner, span_warning("That wouldn't taste very good."))
 		return FALSE
 	var/mob/living/carbon/human/victim = A
 	if(owner.do_actions) //can't use if busy
@@ -1426,32 +1427,32 @@
 		return FALSE
 	if(victim.stat != DEAD)
 		if(!silent)
-			to_chat(owner, "<span class='warning'>This creature is struggling too much for us to devour it.</span>")
+			to_chat(owner, span_warning("This creature is struggling too much for us to devour it."))
 		return FALSE
 	if(HAS_TRAIT(victim, TRAIT_PSY_DRAINED))
 		if(!silent)
-			to_chat(owner, "<span class='warning'>There is no longer any life force in this creature!</span>")
+			to_chat(owner, span_warning("There is no longer any life force in this creature!"))
 		return FALSE
 	if(victim.buckled)
 		if(!silent)
-			to_chat(owner, "<span class='warning'>[victim] is buckled to something.</span>")
+			to_chat(owner, span_warning("[victim] is buckled to something."))
 		return FALSE
 	var/mob/living/carbon/xenomorph/X = owner
 	if(X.on_fire)
 		if(!silent)
-			to_chat(X, "<span class='warning'>We're too busy being on fire to do this!</span>")
+			to_chat(X, span_warning("We're too busy being on fire to do this!"))
 		return FALSE
 	if(LAZYLEN(X.stomach_contents)) //Only one thing in the stomach at a time, please
 		if(!silent)
-			to_chat(X, "<span class='warning'>We already have something in our stomach, there's no way that will fit.</span>")
+			to_chat(X, span_warning("We already have something in our stomach, there's no way that will fit."))
 		return FALSE
 	for(var/obj/effect/forcefield/fog in range(1, X))
 		if(!silent)
-			to_chat(X, "<span class='warning'>We are too close to the fog.</span>")
+			to_chat(X, span_warning("We are too close to the fog."))
 		return FALSE
 	X.face_atom(victim)
-	X.visible_message("<span class='danger'>[X] starts to devour [victim]!</span>", \
-	"<span class='danger'>We start to devour [victim]!</span>", null, 5)
+	X.visible_message(span_danger("[X] starts to devour [victim]!"), \
+	span_danger("We start to devour [victim]!"), null, 5)
 
 	succeed_activate()
 
@@ -1461,15 +1462,15 @@
 	var/channel = SSsounds.random_available_channel()
 	playsound(X, 'sound/vore/struggle.ogg', 40, channel = channel)
 	if(!do_after(X, 7 SECONDS, FALSE, victim, BUSY_ICON_DANGER, extra_checks = CALLBACK(owner, /mob.proc/break_do_after_checks, list("health" = X.health))))
-		to_chat(owner, "<span class='warning'>We stop devouring \the [victim]. They probably tasted gross anyways.</span>")
+		to_chat(owner, span_warning("We stop devouring \the [victim]. They probably tasted gross anyways."))
 		X.stop_sound_channel(channel)
 		return fail_activate()
 	if(HAS_TRAIT(victim, TRAIT_PSY_DRAINED))
-		to_chat(owner, "<span class='warning'>Someone drained the life force of our victim before we could devour it!</span>")
+		to_chat(owner, span_warning("Someone drained the life force of our victim before we could devour it!"))
 		return fail_activate()
-	owner.visible_message("<span class='warning'>[X] devours [victim]!</span>", \
-	"<span class='warning'>We devour [victim]!</span>", null, 5)
-	to_chat(owner, "<span class='warning'>We will eject the cocoon in [cocoon_production_time / 10] seconds! Do not move until it is done.</span>")
+	owner.visible_message(span_warning("[X] devours [victim]!"), \
+	span_warning("We devour [victim]!"), null, 5)
+	to_chat(owner, span_warning("We will eject the cocoon in [cocoon_production_time / 10] seconds! Do not move until it is done."))
 	LAZYADD(X.stomach_contents, victim)
 	var/turf/starting_turf = get_turf(victim)
 	victim.forceMove(X)
@@ -1478,7 +1479,7 @@
 	channel = SSsounds.random_available_channel()
 	playsound(X, 'sound/vore/escape.ogg', 40, channel = channel)
 	if(!do_after(X, cocoon_production_time, FALSE, null, BUSY_ICON_DANGER))
-		to_chat(owner, "<span class='warning'>We moved too soon and we will have to devour our victim again!</span>")
+		to_chat(owner, span_warning("We moved too soon and we will have to devour our victim again!"))
 		X.eject_victim(FALSE, starting_turf)
 		X.stop_sound_channel(channel)
 		return fail_activate()

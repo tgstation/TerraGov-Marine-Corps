@@ -11,7 +11,7 @@
 	var/mob/living/carbon/human/H = A
 
 	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_CHEW))
-		to_chat(H, "<span class='warning'>You can't bite your hand again yet...</span>")
+		to_chat(H, span_warning("You can't bite your hand again yet..."))
 		return
 
 	if (!H.handcuffed)
@@ -28,8 +28,8 @@
 	var/datum/limb/O = H.get_limb(H.hand?"l_hand":"r_hand")
 	if (!O) return
 
-	var/s = "<span class='warning'>[H.name] chews on [H.p_their()] [O.display_name]!</span>"
-	H.visible_message(s, "<span class='warning'>You chew on your [O.display_name]!</span>")
+	var/s = span_warning("[H.name] chews on [H.p_their()] [O.display_name]!")
+	H.visible_message(s, span_warning("You chew on your [O.display_name]!"))
 	H.log_message("[s] ([key_name(H)])", LOG_ATTACK)
 
 	if(O.take_damage_limb(1, 0, TRUE, TRUE))
