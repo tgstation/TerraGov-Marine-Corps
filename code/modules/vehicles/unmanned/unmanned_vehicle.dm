@@ -233,6 +233,15 @@
 /obj/vehicle/unmanned/post_crush_act(mob/living/carbon/xenomorph/charger, datum/action/xeno_action/ready_charge/charge_datum)
 	take_damage(charger.xeno_caste.melee_damage * charger.xeno_melee_damage_modifier, BRUTE, "melee")
 
+/obj/vehicle/unmanned/punch_act(mob/living/carbon/xenomorph/X, damage, target_zone)
+	X.do_attack_animation(src, ATTACK_EFFECT_YELLOWPUNCH)
+	X.do_attack_animation(src, ATTACK_EFFECT_DISARM2)
+	attack_generic(X, damage * 2, BRUTE, "", FALSE) //Deals 2 times regular damage to machines
+	X.visible_message(span_xenodanger("\The [X] smashes [src] with a devastating punch!"), \
+		span_xenodanger("We smash [src] with a devastating punch!"), visible_message_flags = COMBAT_MESSAGE)
+	playsound(src, pick('sound/effects/bang.ogg','sound/effects/metal_crash.ogg','sound/effects/meteorimpact.ogg'), 50, 1)
+	Shake(4, 4, 2 SECONDS)
+
 /obj/vehicle/unmanned/medium
 	name = "medium unmanned vehicle"
 	icon_state = "medium_uv"
