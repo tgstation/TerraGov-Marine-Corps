@@ -14,65 +14,6 @@
 	var/can_sneak_attack = FALSE
 	var/stealth_alpha_multiplier = 1
 
-/datum/action/xeno_action/stealth/give_action(mob/living/L)
-	. = ..()
-	RegisterSignal(L, COMSIG_XENOMORPH_POUNCE_END, .proc/sneak_attack_pounce)
-	RegisterSignal(L, COMSIG_XENO_LIVING_THROW_HIT, .proc/mob_hit)
-	RegisterSignal(L, COMSIG_XENOMORPH_ATTACK_LIVING, .proc/sneak_attack_slash)
-	RegisterSignal(L, COMSIG_XENOMORPH_DISARM_HUMAN, .proc/sneak_attack_slash)
-	RegisterSignal(L, COMSIG_XENOMORPH_ZONE_SELECT, .proc/sneak_attack_zone)
-	RegisterSignal(L, COMSIG_XENOMORPH_PLASMA_REGEN, .proc/plasma_regen)
-
-	// TODO: attack_alien() overrides are a mess and need a lot of work to make them require parentcalling
-	RegisterSignal(L, list(
-		COMSIG_XENOMORPH_GRAB,
-		COMSIG_XENOMORPH_ATTACK_BARRICADE,
-		COMSIG_XENOMORPH_ATTACK_CLOSET,
-		COMSIG_XENOMORPH_ATTACK_RAZORWIRE,
-		COMSIG_XENOMORPH_ATTACK_BED,
-		COMSIG_XENOMORPH_ATTACK_NEST,
-		COMSIG_XENOMORPH_ATTACK_TABLE,
-		COMSIG_XENOMORPH_ATTACK_RACK,
-		COMSIG_XENOMORPH_ATTACK_SENTRY,
-		COMSIG_XENOMORPH_ATTACK_M56_POST,
-		COMSIG_XENOMORPH_ATTACK_M56,
-		COMSIG_XENOMORPH_ATTACK_TANK,
-		COMSIG_XENOMORPH_THROW_HIT,
-		COMSIG_XENOMORPH_FIRE_BURNING,
-		COMSIG_LIVING_ADD_VENTCRAWL), .proc/cancel_stealth)
-
-	RegisterSignal(L, list(SIGNAL_ADDTRAIT(TRAIT_KNOCKEDOUT), SIGNAL_ADDTRAIT(TRAIT_FLOORED)), .proc/cancel_stealth)
-
-	RegisterSignal(L, COMSIG_XENOMORPH_TAKING_DAMAGE, .proc/damage_taken)
-
-/datum/action/xeno_action/stealth/remove_action(mob/living/L)
-	UnregisterSignal(L, list(
-		COMSIG_XENOMORPH_POUNCE_END,
-		COMSIG_XENO_LIVING_THROW_HIT,
-		COMSIG_XENOMORPH_ATTACK_LIVING,
-		COMSIG_XENOMORPH_DISARM_HUMAN,
-		COMSIG_XENOMORPH_GRAB,
-		COMSIG_XENOMORPH_ATTACK_BARRICADE,
-		COMSIG_XENOMORPH_ATTACK_CLOSET,
-		COMSIG_XENOMORPH_ATTACK_RAZORWIRE,
-		COMSIG_XENOMORPH_ATTACK_BED,
-		COMSIG_XENOMORPH_ATTACK_NEST,
-		COMSIG_XENOMORPH_ATTACK_TABLE,
-		COMSIG_XENOMORPH_ATTACK_RACK,
-		COMSIG_XENOMORPH_ATTACK_SENTRY,
-		COMSIG_XENOMORPH_ATTACK_M56_POST,
-		COMSIG_XENOMORPH_ATTACK_M56,
-		COMSIG_XENOMORPH_ATTACK_TANK,
-		COMSIG_XENOMORPH_THROW_HIT,
-		COMSIG_XENOMORPH_FIRE_BURNING,
-		COMSIG_LIVING_ADD_VENTCRAWL,
-		SIGNAL_ADDTRAIT(TRAIT_KNOCKEDOUT),
-		SIGNAL_ADDTRAIT(TRAIT_FLOORED),
-		COMSIG_XENOMORPH_ZONE_SELECT,
-		COMSIG_XENOMORPH_PLASMA_REGEN,
-		COMSIG_XENOMORPH_TAKING_DAMAGE,))
-	return ..()
-
 /datum/action/xeno_action/stealth/can_use_action(silent = FALSE, override_flags)
 	. = ..()
 	if(!.)
@@ -97,7 +38,38 @@
 	to_chat(owner, "<span class='xenodanger'>We vanish into the shadows...</span>")
 	last_stealth = world.time
 	stealth = TRUE
+
+
 	RegisterSignal(owner, COMSIG_MOVABLE_MOVED, .proc/handle_stealth)
+	RegisterSignal(owner, COMSIG_XENOMORPH_POUNCE_END, .proc/sneak_attack_pounce)
+	RegisterSignal(owner, COMSIG_XENO_LIVING_THROW_HIT, .proc/mob_hit)
+	RegisterSignal(owner, COMSIG_XENOMORPH_ATTACK_LIVING, .proc/sneak_attack_slash)
+	RegisterSignal(owner, COMSIG_XENOMORPH_DISARM_HUMAN, .proc/sneak_attack_slash)
+	RegisterSignal(owner, COMSIG_XENOMORPH_ZONE_SELECT, .proc/sneak_attack_zone)
+	RegisterSignal(owner, COMSIG_XENOMORPH_PLASMA_REGEN, .proc/plasma_regen)
+
+	// TODO: attack_alien() overrides are a mess and need a lot of work to make them require parentcalling
+	RegisterSignal(owner, list(
+		COMSIG_XENOMORPH_GRAB,
+		COMSIG_XENOMORPH_ATTACK_BARRICADE,
+		COMSIG_XENOMORPH_ATTACK_CLOSET,
+		COMSIG_XENOMORPH_ATTACK_RAZORWIRE,
+		COMSIG_XENOMORPH_ATTACK_BED,
+		COMSIG_XENOMORPH_ATTACK_NEST,
+		COMSIG_XENOMORPH_ATTACK_TABLE,
+		COMSIG_XENOMORPH_ATTACK_RACK,
+		COMSIG_XENOMORPH_ATTACK_SENTRY,
+		COMSIG_XENOMORPH_ATTACK_M56_POST,
+		COMSIG_XENOMORPH_ATTACK_M56,
+		COMSIG_XENOMORPH_ATTACK_TANK,
+		COMSIG_XENOMORPH_THROW_HIT,
+		COMSIG_XENOMORPH_FIRE_BURNING,
+		COMSIG_LIVING_ADD_VENTCRAWL), .proc/cancel_stealth)
+
+	RegisterSignal(owner, list(SIGNAL_ADDTRAIT(TRAIT_KNOCKEDOUT), SIGNAL_ADDTRAIT(TRAIT_FLOORED)), .proc/cancel_stealth)
+
+	RegisterSignal(owner, COMSIG_XENOMORPH_TAKING_DAMAGE, .proc/damage_taken)
+
 	handle_stealth()
 	addtimer(CALLBACK(src, .proc/sneak_attack_cooldown), HUNTER_POUNCE_SNEAKATTACK_DELAY) //Short delay before we can sneak attack.
 
@@ -107,7 +79,32 @@
 		return
 	add_cooldown()
 	to_chat(owner, "<span class='xenodanger'>We emerge from the shadows.</span>")
-	UnregisterSignal(owner, COMSIG_MOVABLE_MOVED) //This should be handled on the ability datum or a component.
+	UnregisterSignal(owner, list(
+		COMSIG_MOVABLE_MOVED,
+		COMSIG_XENOMORPH_POUNCE_END,
+		COMSIG_XENO_LIVING_THROW_HIT,
+		COMSIG_XENOMORPH_ATTACK_LIVING,
+		COMSIG_XENOMORPH_DISARM_HUMAN,
+		COMSIG_XENOMORPH_GRAB,
+		COMSIG_XENOMORPH_ATTACK_BARRICADE,
+		COMSIG_XENOMORPH_ATTACK_CLOSET,
+		COMSIG_XENOMORPH_ATTACK_RAZORWIRE,
+		COMSIG_XENOMORPH_ATTACK_BED,
+		COMSIG_XENOMORPH_ATTACK_NEST,
+		COMSIG_XENOMORPH_ATTACK_TABLE,
+		COMSIG_XENOMORPH_ATTACK_RACK,
+		COMSIG_XENOMORPH_ATTACK_SENTRY,
+		COMSIG_XENOMORPH_ATTACK_M56_POST,
+		COMSIG_XENOMORPH_ATTACK_M56,
+		COMSIG_XENOMORPH_ATTACK_TANK,
+		COMSIG_XENOMORPH_THROW_HIT,
+		COMSIG_XENOMORPH_FIRE_BURNING,
+		COMSIG_LIVING_ADD_VENTCRAWL,
+		SIGNAL_ADDTRAIT(TRAIT_KNOCKEDOUT),
+		SIGNAL_ADDTRAIT(TRAIT_FLOORED),
+		COMSIG_XENOMORPH_ZONE_SELECT,
+		COMSIG_XENOMORPH_PLASMA_REGEN,
+		COMSIG_XENOMORPH_TAKING_DAMAGE,))
 	stealth = FALSE
 	can_sneak_attack = FALSE
 	owner.alpha = 255 //no transparency/translucency
@@ -189,8 +186,6 @@
 
 /datum/action/xeno_action/stealth/proc/damage_taken(mob/living/carbon/xenomorph/X, damage_taken)
 	SIGNAL_HANDLER
-	if(!stealth)
-		return
 	var/mob/living/carbon/xenomorph/xenoowner = owner
 	if(damage_taken > xenoowner.xeno_caste.stealth_break_threshold)
 		cancel_stealth()
