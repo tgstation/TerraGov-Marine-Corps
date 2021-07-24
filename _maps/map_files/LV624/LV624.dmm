@@ -3653,11 +3653,6 @@
 /obj/structure/flora/ausbushes/reedbush,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/sand1)
-"auF" = (
-/turf/open/floor/plating/ground/dirtgrassborder{
-	dir = 8
-	},
-/area/lv624/ground/river1)
 "auG" = (
 /turf/open/floor/plating/ground/dirtgrassborder/corner{
 	dir = 8
@@ -13156,6 +13151,12 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/compound/c)
+"egO" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/miner/damaged,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/southcargo)
 "ejZ" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /obj/effect/landmark/xeno_resin_door,
@@ -14493,15 +14494,12 @@
 	dir = 5
 	},
 /area/lv624/lazarus/research)
-"jxG" = (
-/turf/open/ground/grass,
-/area/lv624/ground/river1)
 "jyr" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
 	dir = 2
 	},
 /turf/open/ground/grass,
-/area/lv624/lazarus/atmos)
+/area/lv624/ground/jungle4)
 "jyv" = (
 /obj/structure/fence,
 /turf/open/floor/plating/ground/dirt,
@@ -14583,7 +14581,7 @@
 	dir = 2
 	},
 /turf/open/ground/grass,
-/area/lv624/ground/jungle6)
+/area/lv624/ground/river1)
 "jQP" = (
 /turf/open/floor/plating/ground/dirtgrassborder/corner2{
 	dir = 1
@@ -14893,12 +14891,6 @@
 "lgv" = (
 /turf/closed/gm/dense,
 /area/lv624/ground/southcargo)
-"lik" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/effect/landmark/weed_node,
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/southcargo)
 "liu" = (
 /turf/open/floor/plating/ground/dirtgrassborder/corner2{
 	dir = 1
@@ -15203,10 +15195,6 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/closed/gm/dense,
 /area/lv624/ground/jungle3)
-"muw" = (
-/obj/structure/flora/ausbushes/fullgrass,
-/turf/closed/wall/r_wall,
-/area/shuttle/drop2/lz2)
 "mwH" = (
 /obj/structure/jungle/vines,
 /obj/effect/landmark/weed_node,
@@ -16551,10 +16539,6 @@
 /obj/structure/jungle/vines,
 /turf/open/floor,
 /area/lv624/ground/river3)
-"sgk" = (
-/obj/machinery/miner/damaged,
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/southcargo)
 "sgU" = (
 /obj/machinery/floodlight/colony,
 /turf/open/floor/plating/ground/dirt,
@@ -17286,7 +17270,7 @@
 "vwq" = (
 /obj/structure/flora/ausbushes/grassybush,
 /turf/open/ground/grass,
-/area/lv624/ground/river1)
+/area/lv624/ground/jungle6)
 "vxZ" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
@@ -17556,6 +17540,12 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/open/floor/plating/ground/dirtgrassborder,
 /area/lv624/ground/compound/sw)
+"wFS" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
+	dir = 2
+	},
+/turf/open/ground/grass,
+/area/lv624/ground/river1)
 "wGx" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/marking/warning/corner{
@@ -20189,8 +20179,8 @@ hvg
 sod
 xXf
 gWo
-aAz
-aAz
+gWo
+gWo
 ugW
 boo
 bnE
@@ -20369,7 +20359,7 @@ sod
 hBa
 hBa
 iGV
-muw
+gWo
 odt
 bnE
 bnE
@@ -20548,7 +20538,7 @@ sod
 hBa
 hBa
 hBa
-muw
+gWo
 odt
 bnE
 cml
@@ -20694,7 +20684,7 @@ gqX
 avL
 avL
 dxb
-unZ
+wFS
 elu
 xtz
 gSa
@@ -20727,7 +20717,7 @@ sod
 hBa
 iGV
 hBa
-muw
+gWo
 odt
 hAe
 bnE
@@ -20873,7 +20863,7 @@ avL
 avL
 gqX
 dxb
-unZ
+wFS
 elu
 xHV
 aXb
@@ -20906,7 +20896,7 @@ sod
 hBa
 hBa
 hBa
-muw
+gWo
 odt
 cml
 bnE
@@ -21052,7 +21042,7 @@ avL
 avL
 avL
 dxb
-unZ
+wFS
 elu
 xtz
 gSa
@@ -21231,7 +21221,7 @@ avL
 avL
 avL
 dxb
-unZ
+wFS
 uGq
 gWo
 lTs
@@ -21410,7 +21400,7 @@ avO
 avL
 unC
 dxb
-unZ
+wFS
 hBa
 gWo
 gWo
@@ -21768,7 +21758,7 @@ avL
 uyV
 gqX
 dxb
-unZ
+wFS
 iBN
 aVS
 gWo
@@ -21947,7 +21937,7 @@ avO
 avL
 jQP
 rgp
-jxG
+avd
 nSO
 aVS
 gWo
@@ -22123,10 +22113,10 @@ auH
 axx
 awi
 awi
-auF
-rgp
+awi
+auk
 vwq
-jxG
+avd
 unZ
 aVS
 gWo
@@ -30384,7 +30374,7 @@ aMm
 aMm
 ojy
 lQF
-lQF
+jcQ
 lQF
 lQF
 xij
@@ -30563,8 +30553,8 @@ jqR
 aOi
 eMm
 hwz
-lik
 hwz
+egO
 oHi
 nFi
 lud
@@ -31822,7 +31812,7 @@ ojy
 ojy
 ojy
 lQF
-sgk
+lQF
 lQF
 ojy
 ojy
