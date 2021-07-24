@@ -202,7 +202,9 @@
 	///List of buildable structures
 	var/list/buildable_structures = list(
 		/turf/closed/wall/resin/regenerating,
-		/obj/structure/mineral_door/resin)
+		/obj/effect/alien/resin/sticky,
+		/obj/structure/mineral_door/resin,
+		)
 
 /datum/action/xeno_action/activable/secrete_resin/update_button_icon()
 	var/mob/living/carbon/xenomorph/X = owner

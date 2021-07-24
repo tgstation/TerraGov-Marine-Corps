@@ -85,7 +85,7 @@
 	if(resting) //Resting doubles sunder recovery
 		sunder_recov *= 2
 
-	if(locate(/obj/effect/alien/weeds/resting) in loc) //Weeds double sunder recovery
+	if(locate(/obj/effect/alien/weeds/resting) in loc) //Resting weeds double sunder recovery
 		sunder_recov *= 2
 
 	if(recovery_aura)

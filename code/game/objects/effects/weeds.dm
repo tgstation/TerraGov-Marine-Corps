@@ -226,7 +226,6 @@
 
 
 /obj/effect/alien/weeds/node/update_overlays()
-
 	. = ..()
 	overlays.Cut()
 	overlays += node_icon
