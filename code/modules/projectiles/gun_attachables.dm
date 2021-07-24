@@ -135,7 +135,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 
 	if(flags_attach_features & ATTACH_RELOADABLE)
 		if(user.get_inactive_held_item() != src)
-			to_chat(user, "<span class='warning'>You have to hold [src] to do that!</span>")
+			to_chat(user, span_warning("You have to hold [src] to do that!"))
 		else
 			reload_attachment(I, user)
 		return TRUE
@@ -306,7 +306,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 		if(activate_attachment(user)) //success
 			playsound(user, activation_sound, 15, 1)
 	else
-		to_chat(user, "<span class='warning'>[G] must be in our hands to do this.</span>")
+		to_chat(user, span_warning("[G] must be in our hands to do this."))
 
 /obj/item/attachable/hydro_cannon/ui_action_click(mob/living/user, datum/action/item_action/action, obj/item/weapon/gun/G)
 	if(G == user.get_active_held_item() || G == user.get_inactive_held_item() || CHECK_BITFIELD(G.flags_item, IS_DEPLOYED))
@@ -378,7 +378,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	sharp = IS_SHARP_ITEM_ACCURATE
 
 /obj/item/attachable/bayonet/screwdriver_act(mob/living/user, obj/item/I)
-	to_chat(user, "<span class='notice'>You modify the bayonet back into a combat knife.</span>")
+	to_chat(user, span_notice("You modify the bayonet back into a combat knife."))
 	if(loc == user)
 		user.dropItemToGround(src)
 	var/obj/item/weapon/combat_knife/knife = new(loc)
@@ -448,19 +448,6 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	recoil_mod = -2
 	scatter_unwielded_mod = -15
 	recoil_unwielded_mod = -2
-
-
-/obj/item/attachable/slavicbarrel
-	name = "sniper barrel"
-	icon_state = "slavicbarrel"
-	desc = "A heavy barrel. CANNOT BE REMOVED."
-	slot = ATTACHMENT_SLOT_MUZZLE
-
-	pixel_shift_x = 20
-	pixel_shift_y = 16
-	flags_attach_features = NONE
-	accuracy_mod = 0.05
-	scatter_mod = -15
 
 /obj/item/attachable/sniperbarrel
 	name = "sniper barrel"
@@ -655,7 +642,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	. = ..()
 
 	if(istype(I,/obj/item/tool/screwdriver))
-		to_chat(user, "<span class='notice'>You modify the rail flashlight back into a normal flashlight.</span>")
+		to_chat(user, span_notice("You modify the rail flashlight back into a normal flashlight."))
 		if(loc == user)
 			user.temporarilyRemoveItemFromInventory(src)
 		var/obj/item/flashlight/F = new(user)
@@ -767,7 +754,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 
 	if(!master_gun.zoom && !(master_gun.flags_item & WIELDED) && !CHECK_BITFIELD(master_gun.flags_item, IS_DEPLOYED))
 		if(user)
-			to_chat(user, "<span class='warning'>You must hold [master_gun] with two hands to use [src].</span>")
+			to_chat(user, span_warning("You must hold [master_gun] with two hands to use [src]."))
 		return FALSE
 	if(CHECK_BITFIELD(master_gun.flags_item, IS_DEPLOYED) && user.dir != master_gun.loc.dir)
 		user.setDir(master_gun.loc.dir)
@@ -906,19 +893,6 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	accuracy_mod = 0.05
 	recoil_mod = -2
 	scatter_mod = -5
-
-/obj/item/attachable/stock/slavic
-	name = "wooden stock"
-	desc = "A standard heavy wooden stock for Slavic firearms."
-	icon_state = "slavicstock"
-	wield_delay_mod = 0.6 SECONDS
-	pixel_shift_x = 32
-	pixel_shift_y = 13
-	flags_attach_features = NONE
-	accuracy_mod = 0.05
-	recoil_mod = -3
-	scatter_mod = -20
-	movement_acc_penalty_mod = 0.1
 
 /obj/item/attachable/stock/mosin
 	name = "mosin wooden stock"
@@ -1254,13 +1228,13 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 /obj/item/attachable/attached_gun/activate_attachment(mob/living/user, turn_off)
 	if(master_gun.active_attachable == src)
 		if(master_gun.gun_user)
-			to_chat(master_gun.gun_user, "<span class='notice'>You are no longer using [src].</span>")
+			to_chat(master_gun.gun_user, span_notice("You are no longer using [src]."))
 			UnregisterSignal(master_gun.gun_user, COMSIG_ITEM_EXCLUSIVE_TOGGLE)
 		master_gun.active_attachable = null
 		icon_state = initial(icon_state)
 	else if(!turn_off)
 		if(user)
-			to_chat(user, "<span class='notice'>You are now using [src].</span>")
+			to_chat(user, span_notice("You are now using [src]."))
 			SEND_SIGNAL(user, COMSIG_ITEM_EXCLUSIVE_TOGGLE, user)
 			RegisterSignal(user, COMSIG_ITEM_EXCLUSIVE_TOGGLE, .proc/deactivate)
 		master_gun.active_attachable = src
@@ -1309,23 +1283,23 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 /obj/item/attachable/attached_gun/grenade/reload_attachment(obj/item/explosive/grenade/G, mob/user, silent)
 	if(!istype(G))
 		if(!silent)
-			to_chat(user, "<span class='warning'>[src] doesn't accept that type of grenade.</span>")
+			to_chat(user, span_warning("[src] doesn't accept that type of grenade."))
 		return FALSE
 	if(G.active) //can't load live grenades
 		return FALSE
 	if(!G.underslug_launchable)
 		if(!silent)
-			to_chat(user, "<span class='warning'>[src] doesn't accept that type of grenade.</span>")
+			to_chat(user, span_warning("[src] doesn't accept that type of grenade."))
 		return FALSE
 	if(current_rounds >= max_rounds)
 		if(!silent)
-			to_chat(user, "<span class='warning'>[src] is full.</span>")
+			to_chat(user, span_warning("[src] is full."))
 		return FALSE
 	playsound(user, 'sound/weapons/guns/interact/shotgun_shell_insert.ogg', 25, 1)
 	current_rounds++
 	loaded_grenades += G.type
 	if(!silent)
-		to_chat(user, "<span class='notice'>You load [G] in [src].</span>")
+		to_chat(user, span_notice("You load [G] in [src]."))
 	user.temporarilyRemoveItemFromInventory(G)
 	qdel(G)
 	return TRUE
@@ -1334,7 +1308,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 /obj/item/attachable/attached_gun/grenade/fire_attachment(atom/target,obj/item/weapon/gun/gun,mob/living/user)
 	. = ..()
 	if(get_dist(user,target) > max_range)
-		to_chat(user, "<span class='warning'>Too far to fire the attachment!</span>")
+		to_chat(user, span_warning("Too far to fire the attachment!"))
 		return
 	if(current_rounds > 0)
 		prime_grenade(target,gun,user)
@@ -1390,69 +1364,69 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 		var/obj/item/ammo_magazine/flamer_tank/I = object
 		if(current_rounds >= max_rounds)
 			if(!silent)
-				to_chat(user, "<span class='warning'>[src] is full.</span>")
+				to_chat(user, span_warning("[src] is full."))
 		else if(I.current_rounds <= 0)
 			if(!silent)
-				to_chat(user, "<span class='warning'>[I] is empty!</span>")
+				to_chat(user, span_warning("[I] is empty!"))
 		else
 			var/transfered_rounds = min(max_rounds - current_rounds, I.current_rounds)
 			current_rounds += transfered_rounds
 			I.current_rounds -= transfered_rounds
 			playsound(user, 'sound/effects/refill.ogg', 25, 1, 3)
 			if(!silent)
-				to_chat(user, "<span class='notice'>You refill [src] with [I].</span>")
+				to_chat(user, span_notice("You refill [src] with [I]."))
 	else if(istype(object, /obj/item/tool/weldpack))
 		var/obj/item/tool/weldpack/FT = object
 		if(current_rounds >= max_rounds)
 			if(!silent)
-				to_chat(user, "<span class='warning'>[src] is full.</span>")
+				to_chat(user, span_warning("[src] is full."))
 		else if(!FT.reagents.get_reagent_amount(/datum/reagent/fuel))
 			if(!silent)
-				to_chat(user, "<span class='warning'>The [FT] doesn't have any welding fuel!</span>")
+				to_chat(user, span_warning("The [FT] doesn't have any welding fuel!"))
 		else
 			var/transfered_rounds = min(max_rounds - current_rounds, FT.reagents.get_reagent_amount(/datum/reagent/fuel))
 			current_rounds += transfered_rounds
 			FT.reagents.remove_reagent(/datum/reagent/fuel, transfered_rounds)
 			if(!silent)
-				to_chat(user, "<span class='notice'>You refill [src] with [FT].</span>")
+				to_chat(user, span_notice("You refill [src] with [FT]."))
 			playsound(user, 'sound/effects/refill.ogg', 25, 1, 3)
 	else if(istype(object, /obj/item/storage/backpack/marine/engineerpack))
 		var/obj/item/storage/backpack/marine/engineerpack/FT = object
 		if(current_rounds >= max_rounds)
 			if(!silent)
-				to_chat(user, "<span class='warning'>[src] is full.</span>")
+				to_chat(user, span_warning("[src] is full."))
 		else if(!FT.reagents.get_reagent_amount(/datum/reagent/fuel))
 			if(!silent)
-				to_chat(user, "<span class='warning'>The [FT] doesn't have any welding fuel!</span>")
+				to_chat(user, span_warning("The [FT] doesn't have any welding fuel!"))
 		else
 			var/transfered_rounds = min(max_rounds - current_rounds, FT.reagents.get_reagent_amount(/datum/reagent/fuel))
 			current_rounds += transfered_rounds
 			FT.reagents.remove_reagent(/datum/reagent/fuel, transfered_rounds)
 			if(!silent)
-				to_chat(user, "<span class='notice'>You refill [src] with [FT].</span>")
+				to_chat(user, span_notice("You refill [src] with [FT]."))
 			playsound(user, 'sound/effects/refill.ogg', 25, 1, 3)
 	else if(istype(object, /obj/item/reagent_containers))
 		var/obj/item/reagent_containers/FT = object
 		if(current_rounds >= max_rounds)
 			if(!silent)
-				to_chat(user, "<span class='warning'>[src] is full.</span>")
+				to_chat(user, span_warning("[src] is full."))
 		else if(!FT.reagents.get_reagent_amount(/datum/reagent/fuel))
 			if(!silent)
-				to_chat(user, "<span class='warning'>The [FT] doesn't have any welding fuel!</span>")
+				to_chat(user, span_warning("The [FT] doesn't have any welding fuel!"))
 		else
 			var/transfered_rounds = min(max_rounds - current_rounds, FT.reagents.get_reagent_amount(/datum/reagent/fuel))
 			current_rounds += transfered_rounds
 			FT.reagents.remove_reagent(/datum/reagent/fuel, transfered_rounds)
 			if(!silent)
-				to_chat(user, "<span class='notice'>You refill [src] with [FT].</span>")
+				to_chat(user, span_notice("You refill [src] with [FT]."))
 			playsound(user, 'sound/effects/refill.ogg', 25, 1, 3)
 	else if(!silent)
-		to_chat(user, "<span class='warning'>[src] can be refilled only with welding fuel.</span>")
+		to_chat(user, span_warning("[src] can be refilled only with welding fuel."))
 
 /obj/item/attachable/attached_gun/flamer/fire_attachment(atom/target, obj/item/weapon/gun/gun, mob/living/user)
 	. = ..()
 	if(get_dist(user,target) > max_range+3)
-		to_chat(user, "<span class='warning'>Too far to fire the attachment!</span>")
+		to_chat(user, span_warning("Too far to fire the attachment!"))
 		return
 	if(current_rounds && COOLDOWN_CHECK(src, last_fired))
 		unleash_flame(target, user)
@@ -1551,25 +1525,25 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 		if(mag.default_ammo == /datum/ammo/bullet/shotgun/buckshot)
 			if(current_rounds >= max_rounds)
 				if(!silent)
-					to_chat(user, "<span class='warning'>[src] is full.</span>")
+					to_chat(user, span_warning("[src] is full."))
 			else
 				current_rounds++
 				mag.current_rounds--
 				mag.update_icon()
 				if(!silent)
-					to_chat(user, "<span class='notice'>You load one shotgun shell in [src].</span>")
+					to_chat(user, span_notice("You load one shotgun shell in [src]."))
 				playsound(user, 'sound/weapons/guns/interact/shotgun_shell_insert.ogg', 25, 1)
 				if(mag.current_rounds <= 0)
 					user.temporarilyRemoveItemFromInventory(mag)
 					qdel(mag)
 			return
 	if(!silent)
-		to_chat(user, "<span class='warning'>[src] only accepts shotgun buckshot.</span>")
+		to_chat(user, span_warning("[src] only accepts shotgun buckshot."))
 
 
 /obj/item/attachable/verticalgrip
 	name = "vertical grip"
-	desc = "A custom-built improved foregrip for better accuracy, less recoil, and less scatter when wielded especially during burst fire. \nHowever, it also increases weapon size, slightly increases wield delay and makes unwielded fire more cumbersome."
+	desc = "A custom-built improved foregrip for better accuracy, moderately faster aimed movement speed, less recoil, and less scatter when wielded especially during burst fire. \nHowever, it also increases weapon size, slightly increases wield delay and makes unwielded fire more cumbersome."
 	icon_state = "verticalgrip"
 	attach_icon = "verticalgrip_a"
 	wield_delay_mod = 0.2 SECONDS
@@ -1582,6 +1556,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	burst_scatter_mod = -1
 	accuracy_unwielded_mod = -0.05
 	scatter_unwielded_mod = 5
+	aim_mode_movement_mult = -0.2
 
 
 /obj/item/attachable/angledgrip
@@ -1651,7 +1626,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 /obj/item/attachable/bipod/activate_attachment(mob/living/user, turn_off)
 	if(bipod_deployed)
 		bipod_deployed = FALSE
-		to_chat(user, "<span class='notice'>You retract [src].</span>")
+		to_chat(user, span_notice("You retract [src]."))
 		master_gun.aim_slowdown -= 1
 		master_gun.wield_delay -= 0.4 SECONDS
 		master_gun.accuracy_mult -= deployment_accuracy_mod
@@ -1673,7 +1648,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 		if(bipod_deployed)
 			return
 		bipod_deployed = TRUE
-		to_chat(user, "<span class='notice'>You deploy [src].</span>")
+		to_chat(user, span_notice("You deploy [src]."))
 		master_user = user
 		RegisterSignal(master_user, COMSIG_MOVABLE_MOVED, .proc/retract_bipod)
 		RegisterSignal(master_gun, list(COMSIG_ITEM_DROPPED, COMSIG_ITEM_EQUIPPED), .proc/retract_bipod)
@@ -1699,7 +1674,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	if(!ismob(source))
 		return
 	INVOKE_ASYNC(src, .proc/activate_attachment, source, TRUE)
-	to_chat(source, "<span class='warning'>Losing support, the bipod retracts!</span>")
+	to_chat(source, span_warning("Losing support, the bipod retracts!"))
 	playsound(source, 'sound/machines/click.ogg', 15, 1, 4)
 
 
@@ -1732,7 +1707,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 /obj/item/attachable/lace/activate_attachment(mob/living/user, turn_off)
 	if(lace_deployed)
 		DISABLE_BITFIELD(master_gun.flags_item, NODROP)
-		to_chat(user, "<span class='notice'>You feel the [src] loosen around your wrist!</span>")
+		to_chat(user, span_notice("You feel the [src] loosen around your wrist!"))
 		playsound(user, 'sound/weapons/fistunclamp.ogg', 25, 1, 7)
 		icon_state = "lace"
 		attach_icon = "lace_a"
@@ -1741,9 +1716,9 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 			return
 		if(!do_after(user, 0.5 SECONDS, TRUE, src, BUSY_ICON_BAR))
 			return
-		to_chat(user, "<span class='notice'>You deploy the [src].</span>")
+		to_chat(user, span_notice("You deploy the [src]."))
 		ENABLE_BITFIELD(master_gun.flags_item, NODROP)
-		to_chat(user, "<span class='warning'>You feel the [src] shut around your wrist!</span>")
+		to_chat(user, span_warning("You feel the [src] shut around your wrist!"))
 		playsound(user, 'sound/weapons/fistclamp.ogg', 25, 1, 7)
 		icon_state = "lace-on"
 		attach_icon = "lace_a_on"
@@ -1782,13 +1757,13 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 /obj/item/attachable/hydro_cannon/activate_attachment(mob/living/user, turn_off)
 	if(master_gun.active_attachable == src)
 		if(user)
-			to_chat(user, "<span class='notice'>You are no longer using [src].</span>")
+			to_chat(user, span_notice("You are no longer using [src]."))
 		master_gun.active_attachable = null
 		icon_state = initial(icon_state)
 		. = FALSE
 	else if(!turn_off)
 		if(user)
-			to_chat(user, "<span class='notice'>You are now using [src].</span>")
+			to_chat(user, span_notice("You are now using [src]."))
 		master_gun.active_attachable = src
 		icon_state += "-on"
 		. = TRUE
@@ -1839,3 +1814,13 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	size_mod = 1
 	detach_delay = 0
 	gun_attachment_offset_mod = list("muzzle_x" = 8)
+
+
+/obj/item/attachable/slavicbarrel
+	name = "sniper barrel"
+	icon_state = "svdbarrel"
+	desc = "A heavy barrel. CANNOT BE REMOVED."
+	slot = ATTACHMENT_BARREL_MOD
+	pixel_shift_x = -40
+	pixel_shift_y = 0
+	flags_attach_features = NONE

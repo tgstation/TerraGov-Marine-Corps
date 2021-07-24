@@ -38,7 +38,11 @@
 ///Sent when nightfall is casted
 #define COMSIG_GLOB_LIGHT_OFF "item_light_off"
 ///Sent when the floodlight switch is powered
-#define COMSIG_GLOB_FLOODLIGHT_SWITCH "floodlight_switch_power_change"
+#define COMSIG_GLOB_FLOODLIGHT_SWITCH "!floodlight_switch_power_change"
+
+//Signals for fire support
+#define COMSIG_GLOB_OB_LASER_CREATED "!ob_laser_sent"
+#define COMSIG_GLOB_CAS_LASER_CREATED "!cas_laser_sent"
 
 //////////////////////////////////////////////////////////////////
 
@@ -229,6 +233,7 @@
 	#define COMPONENT_NO_ATTACK_OBJ (1<<0)
 #define COMSIG_ITEM_ATTACK_TURF "item_attack_turf"				//from base of obj/item/attack_turf(): (/turf, /mob)
 	#define COMPONENT_NO_ATTACK_TURF (1<<0)
+#define COMSIG_ITEM_UNZOOM "item_unzoom"
 #define COMSIG_ITEM_ZOOM "item_zoom"                            //from base of /obj/item/zoom(), used for telling when a scope zooms and for checking if another zoom is already on mob.
 	#define COMSIG_ITEM_ALREADY_ZOOMED (1<<0)                         //bitshift that tells to a item when zoom checking that there already soemthing zooming user.
 #define COMSIG_ITEM_UNIQUE_ACTION "item_unique_action"			//from base of /obj/item/unique_action(): (atom/target, mob/user)
@@ -575,7 +580,7 @@
 #define COMSIG_XENOABILITY_XENO_LEADERS "xenoability_xeno_leaders"
 #define COMSIG_XENOABILITY_QUEEN_HEAL "xenoability_queen_heal"
 #define COMSIG_XENOABILITY_QUEEN_GIVE_PLASMA "xenoability_queen_give_plasma"
-#define COMSIG_XENOABILITY_QUEEN_GIVE_ORDER "xenoability_queen_give_order"
+#define COMSIG_XENOABILITY_QUEEN_HIVE_MESSAGE "xenoability_queen_hive_message"
 #define COMSIG_XENOABILITY_DEEVOLVE "xenoability_deevolve"
 
 #define COMSIG_XENOABILITY_LAY_HIVEMIND "xenoability_lay_hivemind"

@@ -227,7 +227,7 @@
 	return ..()
 
 /datum/status_effect/noplasmaregen/tick()
-	to_chat(owner, "<span class='warning'>You feel too weak to summon new plasma...</span>")
+	to_chat(owner, span_warning("You feel too weak to summon new plasma..."))
 
 /datum/status_effect/incapacitating/harvester_slowdown
 	id = "harvest_slow"
@@ -284,7 +284,7 @@
 	new /obj/effect/temp_visual/telekinesis(get_turf(owner)) //Wearing off SFX
 	new /obj/effect/temp_visual/healing(get_turf(owner)) //Wearing off SFX
 
-	to_chat(owner, "<span class='xenodanger'>Our regeneration is no longer accelerated.</span>") //Let the target know
+	to_chat(owner, span_xenodanger("Our regeneration is no longer accelerated.")) //Let the target know
 	owner.playsound_local(owner, 'sound/voice/hiss5.ogg', 25)
 
 	return ..()

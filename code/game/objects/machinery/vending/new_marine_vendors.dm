@@ -110,7 +110,7 @@
 	switch(action)
 		if("vend")
 			if(!allowed(usr))
-				to_chat(usr, "<span class='warning'>Access denied.</span>")
+				to_chat(usr, span_warning("Access denied."))
 				if(icon_deny)
 					flick(icon_deny, src)
 				return
@@ -122,14 +122,14 @@
 			var/cost = L[3]
 
 			if(use_points && I.marine_points < cost)
-				to_chat(usr, "<span class='warning'>Not enough points.</span>")
+				to_chat(usr, span_warning("Not enough points."))
 				if(icon_deny)
 					flick(icon_deny, src)
 				return
 
 			var/turf/T = loc
 			if(length(T.contents) > 25)
-				to_chat(usr, "<span class='warning'>The floor is too cluttered, make some space.</span>")
+				to_chat(usr, span_warning("The floor is too cluttered, make some space."))
 				if(icon_deny)
 					flick(icon_deny, src)
 				return
@@ -152,7 +152,7 @@
 					else
 						I.marine_buy_flags &= ~bitf
 				else
-					to_chat(usr, "<span class='warning'>You can't buy things from this category anymore.</span>")
+					to_chat(usr, span_warning("You can't buy things from this category anymore."))
 					return
 
 			var/obj/item/vended_item

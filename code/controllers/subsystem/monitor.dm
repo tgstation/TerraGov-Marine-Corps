@@ -32,7 +32,7 @@ SUBSYSTEM_DEF(monitor)
 	var/gamestate = SHUTTERS_CLOSED
 	///If the automatic balance system is online
 	var/is_automatic_balance_on = TRUE
-	
+
 /datum/monitor_statistics
 	var/ancient_queen = 0
 	var/elder_queen = 0
@@ -73,8 +73,8 @@ SUBSYSTEM_DEF(monitor)
 /datum/controller/subsystem/monitor/proc/set_shipside_calculation()
 	SIGNAL_HANDLER
 	gamestate = SHIPSIDE
-	
-///Calculate the points supposedly representating of the situation	
+
+///Calculate the points supposedly representating of the situation
 /datum/controller/subsystem/monitor/proc/calculate_state_points()
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
 	switch(gamestate)
@@ -96,10 +96,10 @@ SUBSYSTEM_DEF(monitor)
 			. += SSpoints.supply_points[FACTION_TERRAGOV] * REQ_POINTS_WEIGHT
 			. += stats.OB_available * OB_AVAILABLE_WEIGHT
 			. += GLOB.xeno_resin_silos.len * SPAWNING_POOL_WEIGHT
-		if(SHUTTERS_CLOSED)	
+		if(SHUTTERS_CLOSED)
 			. += GLOB.alive_human_list.len * HUMAN_LIFE_WEIGHT_PREGAME
 			. += GLOB.alive_xeno_list.len * XENOS_LIFE_WEIGHT_PREGAME
-		if(SHIPSIDE)	
+		if(SHIPSIDE)
 			. += GLOB.alive_human_list.len * HUMAN_LIFE_WEIGHT_SHIPSIDE
 			. += GLOB.alive_xeno_list.len * XENOS_LIFE_WEIGHT_SHIPSIDE
 
@@ -139,7 +139,7 @@ SUBSYSTEM_DEF(monitor)
 		current_state = MARINES_LOSING
 	else
 		current_state = MARINES_DELAYING
-	
+
 	if(!gamestate == GROUNDSIDE)
 		return
 	//We check for possible stalemate
@@ -160,7 +160,7 @@ SUBSYSTEM_DEF(monitor)
 	// No need to ask admins every time
 	if(GLOB.xeno_stat_multiplicator_buff != 1)
 		return buff_needed_estimation
-	var/admin_response = admin_approval("<span color='prefix'>AUTO BALANCE SYSTEM:</span> An excessive amount of burrowed was detected, while the balance system consider that marines are winning. <span class='boldnotice'>Considering the amount of burrowed larvas, a stat buff of [buff_needed_estimation * 100]% will be applied to health, health recovery, and melee damages.</span>",
+	var/admin_response = admin_approval("<span color='prefix'>AUTO BALANCE SYSTEM:</span> An excessive amount of burrowed was detected, while the balance system consider that marines are winning. [span_boldnotice("Considering the amount of burrowed larvas, a stat buff of [buff_needed_estimation * 100]% will be applied to health, health recovery, and melee damages.")]",
 		options = list("approve" = "approve", "deny" = "deny", "shutdown balance system" = "shutdown balance system"),
 		admin_sound = sound('sound/effects/sos-morse-code.ogg', channel = CHANNEL_ADMIN))
 	if(admin_response != "approve")
@@ -168,7 +168,7 @@ SUBSYSTEM_DEF(monitor)
 			is_automatic_balance_on = FALSE
 		return 1
 	return buff_needed_estimation
-	
+
 
 /**
  * Will multiply every base health, regen and melee damage stat on all xeno by GLOB.xeno_stat_multiplicator_buff

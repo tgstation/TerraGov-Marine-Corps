@@ -93,7 +93,7 @@
 
 
 /obj/effect/forcefield/fog/attack_hand(mob/living/user)
-	to_chat(user, "<span class='notice'>You peer through the fog, but it's impossible to tell what's on the other side...</span>")
+	to_chat(user, span_notice("You peer through the fog, but it's impossible to tell what's on the other side..."))
 	return TRUE
 
 

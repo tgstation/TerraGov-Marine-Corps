@@ -13,21 +13,21 @@
 /obj/item/megaphone/attack_self(mob/living/user)
 	if (user.client)
 		if(user.client.prefs.muted & MUTE_IC)
-			to_chat(src, "<span class='warning'>You cannot speak in IC (muted).</span>")
+			to_chat(src, span_warning("You cannot speak in IC (muted)."))
 			return
 	if(!ishuman(user))
-		to_chat(user, "<span class='warning'>You don't know how to use this!</span>")
+		to_chat(user, span_warning("You don't know how to use this!"))
 		return
 
 	if(spamcheck)
-		to_chat(user, "<span class='warning'>\The [src] needs to recharge!</span>")
+		to_chat(user, span_warning("\The [src] needs to recharge!"))
 		return
 
 	var/message = stripped_input(user, "Shout a message?", "Megaphone")
 	if(!message)
 		return
 	if(CHAT_FILTER_CHECK(message))
-		to_chat(user, "<span class='warning'>That message contained a word prohibited in IC chat! Consider reviewing the server rules.\n<span replaceRegex='show_filtered_ic_chat'>\"[message]\"</span></span>")
+		to_chat(user, span_warning("That message contained a word prohibited in IC chat! Consider reviewing the server rules.\n<span replaceRegex='show_filtered_ic_chat'>\"[message]\"</span>"))
 		SSblackbox.record_feedback(FEEDBACK_TALLY, "ic_blocked_words", 1, lowertext(config.ic_filter_regex.match))
 		return
 	message = capitalize(message)

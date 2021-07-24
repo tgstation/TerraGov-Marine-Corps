@@ -1,4 +1,0 @@
-author: "BraveMole"
-delete-after: True
-changes: 
-  - qol: "Ai can manipuate shuttle doors even groundside, but won't be able to lock them (unless it uses the console)"
