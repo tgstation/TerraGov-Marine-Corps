@@ -230,5 +230,4 @@
 /obj/item/compass/attack_self(mob/living/user)
 	. = ..()
 	var/turf/location = get_turf(src)
-	user.show_message("<span class='warning'>After looking at [src] you getting your bearings you can guess your general coordinates. LONGITUDE [location.x]. LATITUDE [location.y].")
-
+	to_chat(user, span_notice("After looking at the [src] you can tell your general coordinates.") + span_bold("LONGITUDE [location.x]. LATITUDE [location.y]."))
