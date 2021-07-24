@@ -189,7 +189,7 @@ REAGENT SCANNER
 
 	// Show red messages - broken bokes, infection, etc
 	if (M.getCloneLoss())
-		dat += "\t<span class='scanner'> *Subject appears to have been imperfectly cloned.</span>\n"
+		dat += "\t<span class='scanner'> *Cellular damage detected. Recommend cryogenic treatment.</span>\n"
 	if (M.getBrainLoss() >= 100 || !M.has_brain())
 		dat += "\t<span class='scanner'> *Subject is <b>brain dead</b></span>.\n"
 	else if (M.getBrainLoss() >= 60)
