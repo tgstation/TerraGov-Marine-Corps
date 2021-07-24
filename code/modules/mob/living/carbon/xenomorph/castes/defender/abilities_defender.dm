@@ -139,15 +139,13 @@
 	if(defender.fortify)
 		var/datum/action/xeno_action/fortify/fortify_action = X.actions_by_path[/datum/action/xeno_action/fortify]
 		if(fortify_action.cooldown_id)
-			to_chat(X, "<span class='xenowarning'>We cannot yet untuck ourselves from our fortified stance!</span>")
+			to_chat(X, span_xenowarning("We cannot yet untuck ourselves from our fortified stance!"))
 			return fail_activate()
 
 		fortify_action.set_fortify(FALSE, TRUE)
 		fortify_action.add_cooldown()
-		to_chat(X, "<span class='xenowarning'>We rapidly untuck ourselves, preparing to surge forward.</span>")
+		to_chat(X, span_xenowarning("We rapidly untuck ourselves, preparing to surge forward."))
 
-	X.visible_message("<span class='danger'>[X] charges towards \the [A]!</span>", \
-	"<span class='danger'>We charge towards \the [A]!</span>" )
 	X.visible_message(span_danger("[X] charges towards \the [A]!"), \
 	span_danger("We charge towards \the [A]!") )
 	X.emote("roar")
