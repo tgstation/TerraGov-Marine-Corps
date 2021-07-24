@@ -449,19 +449,6 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	scatter_unwielded_mod = -15
 	recoil_unwielded_mod = -2
 
-
-/obj/item/attachable/slavicbarrel
-	name = "sniper barrel"
-	icon_state = "slavicbarrel"
-	desc = "A heavy barrel. CANNOT BE REMOVED."
-	slot = ATTACHMENT_SLOT_MUZZLE
-
-	pixel_shift_x = 20
-	pixel_shift_y = 16
-	flags_attach_features = NONE
-	accuracy_mod = 0.05
-	scatter_mod = -15
-
 /obj/item/attachable/sniperbarrel
 	name = "sniper barrel"
 	icon_state = "sniperbarrel"
@@ -906,19 +893,6 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	accuracy_mod = 0.05
 	recoil_mod = -2
 	scatter_mod = -5
-
-/obj/item/attachable/stock/slavic
-	name = "wooden stock"
-	desc = "A standard heavy wooden stock for Slavic firearms."
-	icon_state = "slavicstock"
-	wield_delay_mod = 0.6 SECONDS
-	pixel_shift_x = 32
-	pixel_shift_y = 13
-	flags_attach_features = NONE
-	accuracy_mod = 0.05
-	recoil_mod = -3
-	scatter_mod = -20
-	movement_acc_penalty_mod = 0.1
 
 /obj/item/attachable/stock/mosin
 	name = "mosin wooden stock"
@@ -1569,7 +1543,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 
 /obj/item/attachable/verticalgrip
 	name = "vertical grip"
-	desc = "A custom-built improved foregrip for better accuracy, less recoil, and less scatter when wielded especially during burst fire. \nHowever, it also increases weapon size, slightly increases wield delay and makes unwielded fire more cumbersome."
+	desc = "A custom-built improved foregrip for better accuracy, moderately faster aimed movement speed, less recoil, and less scatter when wielded especially during burst fire. \nHowever, it also increases weapon size, slightly increases wield delay and makes unwielded fire more cumbersome."
 	icon_state = "verticalgrip"
 	attach_icon = "verticalgrip_a"
 	wield_delay_mod = 0.2 SECONDS
@@ -1582,6 +1556,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	burst_scatter_mod = -1
 	accuracy_unwielded_mod = -0.05
 	scatter_unwielded_mod = 5
+	aim_mode_movement_mult = -0.2
 
 
 /obj/item/attachable/angledgrip
@@ -1839,3 +1814,13 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	size_mod = 1
 	detach_delay = 0
 	gun_attachment_offset_mod = list("muzzle_x" = 8)
+
+
+/obj/item/attachable/slavicbarrel
+	name = "sniper barrel"
+	icon_state = "svdbarrel"
+	desc = "A heavy barrel. CANNOT BE REMOVED."
+	slot = ATTACHMENT_BARREL_MOD
+	pixel_shift_x = -40
+	pixel_shift_y = 0
+	flags_attach_features = NONE

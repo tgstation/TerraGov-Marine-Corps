@@ -1,4 +1,4 @@
-#define SIGNAL_ADDTRAIT(trait_ref) "addtrait [trait_ref]"
+nearby_living_hostile#define SIGNAL_ADDTRAIT(trait_ref) "addtrait [trait_ref]"
 #define SIGNAL_REMOVETRAIT(trait_ref) "removetrait [trait_ref]"
 
 // trait accessor defines
@@ -90,6 +90,7 @@
 #define ENDURE_TRAIT "endure" //Ravager Endure ability.
 #define RAGE_TRAIT "rage" //Ravager Rage ability.
 #define UNMANNED_VEHICLE "unmanned"
+#define STEALTH_TRAIT "stealth" //From hunter stealth
 
 //mob traits
 #define TRAIT_KNOCKEDOUT "knockedout" //Forces the user to stay unconscious.
@@ -111,6 +112,7 @@
 #define TRAIT_SLOWDOWNIMMUNE "slowdown_immunity" //Immunity to slowdown
 #define TRAIT_SEE_IN_DARK "see_in_dark" //Able to see in dark
 #define TRAIT_MUTED "muted" //target is mute and can't speak
+#define TRAIT_TURRET_HIDDEN "turret_hidden" //target gets passed over by turrets choosing a victim
 
 // item traits
 #define TRAIT_T_RAY_VISIBLE "t-ray-visible" // Visible on t-ray scanners if the atom/var/level == 1

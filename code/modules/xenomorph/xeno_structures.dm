@@ -975,9 +975,11 @@ TUNNEL
 	var/list/turf/path = list()
 	for (var/atom/nearby_hostile AS in potential_hostiles)
 		if(isliving(nearby_hostile))
-			var/mob/living/living_hostile = nearby_hostile
-			if(living_hostile.stat == DEAD)
+			var/mob/living/nearby_living_hostile = nearby_hostile
+			if(nearby_living_hostile.stat == DEAD)
 				continue
+		if(HAS_TRAIT(nearby_hostile, TRAIT_TURRET_HIDDEN))
+			continue
 		buffer_distance = get_dist(nearby_hostile, src)
 		if (distance <= buffer_distance) //If we already found a target that's closer
 			continue
