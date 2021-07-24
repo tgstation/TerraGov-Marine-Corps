@@ -219,6 +219,8 @@
 
 #define isidcard(A) (istype(A, /obj/item/card/id))
 
+#define isuav(A) (istype(A, /obj/vehicle/unmanned))
+
 #define isdroid(A) (istype(A, /obj/vehicle/unmanned/droid))
 
 #define isreagentcontainer(A) (istype(A, /obj/item/reagent_containers)) //Checks for if something is a reagent container.

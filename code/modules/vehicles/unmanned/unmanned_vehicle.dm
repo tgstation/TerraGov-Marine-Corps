@@ -41,6 +41,8 @@
 	var/controlled = FALSE
 	/// Flags for unmanned vehicules
 	var/unmanned_flags = OVERLAY_TURRET|HAS_LIGHTS|UNDERCARRIAGE
+	/// Iff flags, to prevent friendly fire from sg and aiming marines
+	var/iff_signal = TGMC_LOYALIST_IFF
 	COOLDOWN_DECLARE(fire_cooldown)
 
 /obj/vehicle/unmanned/Initialize()
