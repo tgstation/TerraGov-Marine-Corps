@@ -22,14 +22,14 @@
 
 	if(istype(I, /obj/item/paper))
 		if(notices >= 5)
-			to_chat(user, "<span class='notice'>You reach to pin your paper to the board but hesitate. You are certain your paper will not be seen among the many others already attached.</span>")
+			to_chat(user, span_notice("You reach to pin your paper to the board but hesitate. You are certain your paper will not be seen among the many others already attached."))
 			return
 
 		user.drop_held_item()
 		I.forceMove(src)
 		notices++
 		icon_state = "nboard0[notices]"	//update sprite
-		to_chat(user, "<span class='notice'>You pin the paper to the noticeboard.</span>")
+		to_chat(user, span_notice("You pin the paper to the noticeboard."))
 
 
 /obj/structure/noticeboard/interact(mob/user)
@@ -67,7 +67,7 @@
 				if(istype(usr.l_hand, /obj/item/tool/pen)) //check other hand for pen
 					P.attackby(usr.l_hand, usr)
 				else
-					to_chat(usr, "<span class='notice'>You'll need something to write with!</span>")
+					to_chat(usr, span_notice("You'll need something to write with!"))
 
 	if(href_list["read"])
 		var/obj/item/paper/P = locate(href_list["read"])

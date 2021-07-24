@@ -59,7 +59,7 @@ They're all essentially identical when it comes to getting the job done.
 		if(src != user.get_inactive_held_item()) //Have to be holding it in the hand.
 			return ..()
 		if (current_rounds <= 0)
-			to_chat(user, "<span class='notice'>[src] is empty. Nothing to grab.</span>")
+			to_chat(user, span_notice("[src] is empty. Nothing to grab."))
 			return
 		create_handful(user)
 		return
@@ -76,11 +76,11 @@ They're all essentially identical when it comes to getting the job done.
 
 		var/obj/item/ammo_magazine/H = I
 		if(src != user.get_inactive_held_item()) //It has to be held.
-			to_chat(user, "<span class='notice'>Try holding [src] before you attempt to restock it.</span>")
+			to_chat(user, span_notice("Try holding [src] before you attempt to restock it."))
 			return
 
 		if(default_ammo != H.default_ammo)
-			to_chat(user, "<span class='notice'>Those aren't the same rounds. Better not mix them up.</span>")
+			to_chat(user, span_notice("Those aren't the same rounds. Better not mix them up."))
 			return
 
 		transfer_ammo(H, user, H.current_rounds) // This takes care of the rest.
@@ -88,24 +88,24 @@ They're all essentially identical when it comes to getting the job done.
 //Generic proc to transfer ammo between ammo mags. Can work for anything, mags, handfuls, etc.
 /obj/item/ammo_magazine/proc/transfer_ammo(obj/item/ammo_magazine/source, mob/user, transfer_amount = 1)
 	if(current_rounds == max_rounds) //Does the mag actually need reloading?
-		to_chat(user, "<span class='notice'>[src] is already full.</span>")
+		to_chat(user, span_notice("[src] is already full."))
 		return
 
 	if(source.caliber != caliber) //Are they the same caliber?
-		to_chat(user, "<span class='notice'>The rounds don't match up. Better not mix them up.</span>")
+		to_chat(user, span_notice("The rounds don't match up. Better not mix them up."))
 		return
 
 	if(!source.current_rounds)
-		to_chat(user, "<span class='warning'>\The [source] is empty.</span>")
+		to_chat(user, span_warning("\The [source] is empty."))
 		return
 
 	//using handfuls; and filling internal mags has no delay.
 	if(!istype(source, /obj/item/ammo_magazine/handful) && !istype(src, /obj/item/ammo_magazine/internal) )
-		to_chat(user, "<span class='notice'>You start refilling [src] with [source].</span>")
+		to_chat(user, span_notice("You start refilling [src] with [source]."))
 		if(!do_after(user, 1.5 SECONDS, TRUE, src, BUSY_ICON_GENERIC))
 			return
 
-	to_chat(user, "<span class='notice'>You refill [src] with [source].</span>")
+	to_chat(user, span_notice("You refill [src] with [source]."))
 
 	var/S = clamp(min(transfer_amount, max_rounds - current_rounds), 0, source.current_rounds)
 	source.current_rounds -= S
@@ -132,7 +132,7 @@ They're all essentially identical when it comes to getting the job done.
 
 	if(user)
 		user.put_in_hands(new_handful)
-		to_chat(user, "<span class='notice'>You grab <b>[rounds]</b> round\s from [src].</span>")
+		to_chat(user, span_notice("You grab <b>[rounds]</b> round\s from [src]."))
 		update_icon(-rounds) //Update the other one.
 		return rounds //Give the number created.
 	else
@@ -206,7 +206,7 @@ If it is the same and the other stack isn't full, transfer an amount (default 1)
 	if(istype(I, /obj/item/ammo_magazine/handful)) // We have a handful. They don't need to hold it.
 		var/obj/item/ammo_magazine/handful/H = I
 		if(default_ammo != H.default_ammo) //Has to match.
-			to_chat(user, "<span class='notice'>Those aren't the same rounds. Better not mix them up.</span>")
+			to_chat(user, span_notice("Those aren't the same rounds. Better not mix them up."))
 			return
 
 		transfer_ammo(H, user, H.current_rounds) // Transfer it from currently held to src
@@ -342,17 +342,17 @@ Turn() or Shift() as there is virtually no overhead. ~N
 	if(istype(I, /obj/item/ammo_magazine))
 		var/obj/item/ammo_magazine/AM = I
 		if(!isturf(loc))
-			to_chat(user, "<span class='warning'>[src] must be on the ground to be used.</span>")
+			to_chat(user, span_warning("[src] must be on the ground to be used."))
 			return
 		if(AM.flags_magazine & AMMUNITION_REFILLABLE)
 			if(default_ammo != AM.default_ammo)
-				to_chat(user, "<span class='warning'>Those aren't the same rounds. Better not mix them up.</span>")
+				to_chat(user, span_warning("Those aren't the same rounds. Better not mix them up."))
 				return
 			if(caliber != AM.caliber)
-				to_chat(user, "<span class='warning'>The rounds don't match up. Better not mix them up.</span>")
+				to_chat(user, span_warning("The rounds don't match up. Better not mix them up."))
 				return
 			if(AM.current_rounds == AM.max_rounds)
-				to_chat(user, "<span class='warning'>[AM] is already full.</span>")
+				to_chat(user, span_warning("[AM] is already full."))
 				return
 
 			if(!do_after(user, 15, TRUE, src, BUSY_ICON_GENERIC))
@@ -365,22 +365,22 @@ Turn() or Shift() as there is virtually no overhead. ~N
 			AM.update_icon(S)
 			update_icon()
 			if(AM.current_rounds == AM.max_rounds)
-				to_chat(user, "<span class='notice'>You refill [AM].</span>")
+				to_chat(user, span_notice("You refill [AM]."))
 			else
-				to_chat(user, "<span class='notice'>You put [S] rounds in [AM].</span>")
+				to_chat(user, span_notice("You put [S] rounds in [AM]."))
 		else if(AM.flags_magazine & AMMUNITION_HANDFUL)
 			if(caliber != AM.caliber)
-				to_chat(user, "<span class='warning'>The rounds don't match up. Better not mix them up.</span>")
+				to_chat(user, span_warning("The rounds don't match up. Better not mix them up."))
 				return
 			if(bullet_amount == max_bullet_amount)
-				to_chat(user, "<span class='warning'>[src] is full!</span>")
+				to_chat(user, span_warning("[src] is full!"))
 				return
 			playsound(loc, 'sound/weapons/guns/interact/revolver_load.ogg', 25, 1)
 			var/S = min(AM.current_rounds, max_bullet_amount - bullet_amount)
 			AM.current_rounds -= S
 			bullet_amount += S
 			AM.update_icon()
-			to_chat(user, "<span class='notice'>You put [S] rounds in [src].</span>")
+			to_chat(user, span_notice("You put [S] rounds in [src]."))
 			if(AM.current_rounds <= 0)
 				user.temporarilyRemoveItemFromInventory(AM)
 				qdel(AM)
@@ -458,7 +458,7 @@ Turn() or Shift() as there is virtually no overhead. ~N
 	current_rounds -= rounds
 
 	user.put_in_hands(H)
-	to_chat(user, "<span class='notice'>You grab <b>[rounds]</b> round\s from [src].</span>")
+	to_chat(user, span_notice("You grab <b>[rounds]</b> round\s from [src]."))
 	update_icon()
 
 
@@ -471,11 +471,11 @@ Turn() or Shift() as there is virtually no overhead. ~N
 	var/obj/item/ammo_magazine/handful/H = I
 
 	if(!deployed)
-		to_chat(user, "<span class='warning'>[src] must be deployed on the ground to be refilled.</span>")
+		to_chat(user, span_warning("[src] must be deployed on the ground to be refilled."))
 		return
 
 	if(H.default_ammo != ammo_type)
-		to_chat(user, "<span class='warning'>That's not the right kind of ammo.</span>")
+		to_chat(user, span_warning("That's not the right kind of ammo."))
 		return
 
 	if(current_rounds == max_rounds)

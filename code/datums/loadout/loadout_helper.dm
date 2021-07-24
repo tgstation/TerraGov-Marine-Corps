@@ -176,3 +176,12 @@
 		return
 	var/datum/loadout/loadout = jatum_deserialize(loadout_json)
 	return loadout
+
+/proc/convert_loadouts_list(list/loadouts_data)
+	var/list/new_loadouts_data = list()
+	for(var/i = 1 to length(loadouts_data) step 2)
+		var/next_loadout_data = list()
+		next_loadout_data += loadouts_data[i]
+		next_loadout_data += loadouts_data[++i]
+		new_loadouts_data += list(next_loadout_data)
+	return new_loadouts_data

@@ -136,7 +136,7 @@
 		return
 	if(!can_see(user, laser_target, length=24))
 		laser_off()
-		to_chat(user, "<span class='danger'>You lose sight of your target!</span>")
+		to_chat(user, span_danger("You lose sight of your target!"))
 		playsound(user,'sound/machines/click.ogg', 25, 1)
 
 /obj/item/weapon/gun/rifle/sniper/antimaterial/zoom(mob/living/user, tileoffset = 11, viewsize = 12) //tileoffset is client view offset in the direction the user is facing. viewsize is how far out this thing zooms. 7 is normal view
@@ -158,7 +158,7 @@
 
 /obj/item/weapon/gun/rifle/sniper/antimaterial/proc/activate_laser_target(atom/target, mob/living/user)
 	laser_target = target
-	to_chat(user, "<span class='danger'>You focus your target marker on [target]!</span>")
+	to_chat(user, span_danger("You focus your target marker on [target]!"))
 	targetmarker_primed = FALSE
 	targetmarker_on = TRUE
 	RegisterSignal(src, COMSIG_PROJ_SCANTURF, .proc/scan_turf_for_target)
@@ -184,12 +184,12 @@
 /obj/item/weapon/gun/rifle/sniper/antimaterial/proc/laser_on(mob/user)
 	var/obj/item/attachable/scope = LAZYACCESS(attachments, ATTACHMENT_SLOT_RAIL)
 	if(!scope.zoom) //Can only use and prime the laser targeter when zoomed.
-		to_chat(user, "<span class='warning'>You must be zoomed in to use your target marker!</span>")
+		to_chat(user, span_warning("You must be zoomed in to use your target marker!"))
 		return TRUE
 	targetmarker_primed = TRUE //We prime the target laser
 	if(user?.client)
 		user.client.click_intercept = src
-		to_chat(user, "<span class='notice'><b>You activate your target marker and take careful aim.</b></span>")
+		to_chat(user, span_notice("<b>You activate your target marker and take careful aim.</b>"))
 		playsound(user,'sound/machines/click.ogg', 25, 1)
 	return TRUE
 
@@ -204,7 +204,7 @@
 	targetmarker_primed = FALSE
 	if(user?.client)
 		user.client.click_intercept = null
-		to_chat(user, "<span class='notice'><b>You deactivate your target marker.</b></span>")
+		to_chat(user, span_notice("<b>You deactivate your target marker.</b>"))
 		playsound(user,'sound/machines/click.ogg', 25, 1)
 	return TRUE
 
@@ -241,7 +241,7 @@
 	if(.)
 		var/mob/living/carbon/human/PMC_sniper = user
 		if(PMC_sniper.lying_angle == 0 && !istype(PMC_sniper.wear_suit,/obj/item/clothing/suit/storage/marine/smartgunner/veteran/PMC) && !istype(PMC_sniper.wear_suit,/obj/item/clothing/suit/storage/marine/veteran))
-			PMC_sniper.visible_message("<span class='warning'>[PMC_sniper] is blown backwards from the recoil of the [src]!</span>","<span class='highdanger'>You are knocked prone by the blowback!</span>")
+			PMC_sniper.visible_message(span_warning("[PMC_sniper] is blown backwards from the recoil of the [src]!"),span_highdanger("You are knocked prone by the blowback!"))
 			step(PMC_sniper,turn(PMC_sniper.dir,180))
 			PMC_sniper.Paralyze(10 SECONDS)
 
@@ -249,7 +249,8 @@
 
 /obj/item/weapon/gun/rifle/sniper/svd
 	name = "\improper SVD Dragunov-033 sniper rifle"
-	desc = "A sniper variant of the AK-47 service rifle, with a new stock, barrel, and scope. It doesn't have the punch of modern sniper rifles, but it's finely crafted in 2133 by someone probably illiterate. Fires 7.62x54mmR rounds."
+	desc = "A semiautomatic sniper rifle, famed for it's marksmanship, and is built from the ground up for it. Fires 7.62x54mmR rounds."
+	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "svd"
 	item_state = "svd"
 	max_shells = 10 //codex
@@ -272,14 +273,15 @@
 	)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
-	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 17,"rail_x" = 13, "rail_y" = 19, "under_x" = 24, "under_y" = 13, "stock_x" = 20, "stock_y" = 14)
-	starting_attachment_types = list(/obj/item/attachable/scope/slavic, /obj/item/attachable/slavicbarrel, /obj/item/attachable/stock/slavic)
+	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 17,"rail_x" = 22, "rail_y" = 22, "under_x" = 24, "under_y" = 13, "stock_x" = 20, "stock_y" = 14)
+	starting_attachment_types = list(/obj/item/attachable/scope/slavic, /obj/item/attachable/slavicbarrel)
 
 	fire_delay = 1.2 SECONDS
 	burst_amount = 1
-	accuracy_mult = 0.85
-	scatter = 15
-	recoil = 2
+	accuracy_mult = 0.95
+	scatter = -20
+	recoil = -1
+	wield_delay = 1.8 SECONDS
 
 
 
@@ -517,13 +519,13 @@
 /obj/item/weapon/gun/launcher/m92/examine_ammo_count(mob/user)
 	if(!length(grenades) || (get_dist(user, src) > 2 && user != loc))
 		return
-	to_chat(user, "<span class='notice'> It is loaded with <b>[length(grenades)] / [max_grenades]</b> grenades.</span>")
+	to_chat(user, span_notice(" It is loaded with <b>[length(grenades)] / [max_grenades]</b> grenades."))
 
 
 /obj/item/weapon/gun/launcher/m92/attackby(obj/item/I, mob/user, params)
 	if(istype(I, /obj/item/explosive/grenade))
 		if(length(grenades) >= max_grenades)
-			to_chat(user, "<span class='warning'>The grenade launcher cannot hold more grenades!</span>")
+			to_chat(user, span_warning("The grenade launcher cannot hold more grenades!"))
 			return
 
 		if(!user.transferItemToLoc(I, src))
@@ -531,8 +533,8 @@
 
 		grenades += I
 		playsound(user, 'sound/weapons/guns/interact/shotgun_shell_insert.ogg', 25, 1)
-		to_chat(user, "<span class='notice'>You put [I] in the grenade launcher.</span>")
-		to_chat(user, "<span class='info'>Now storing: [grenades.len] / [max_grenades] grenades.</span>")
+		to_chat(user, span_notice("You put [I] in the grenade launcher."))
+		to_chat(user, span_info("Now storing: [grenades.len] / [max_grenades] grenades."))
 
 	else if(istype(I, /obj/item/attachable) && check_inactive_hand(user))
 		attach_to_gun(user, I)
@@ -548,10 +550,10 @@
 	if(user.skills.getRating("firearms") < 0 && !do_after(user, 0.8 SECONDS, TRUE, src))
 		return
 	if(get_dist(target,user) <= 2)
-		to_chat(user, "<span class='warning'>The grenade launcher beeps a warning noise. You are too close!</span>")
+		to_chat(user, span_warning("The grenade launcher beeps a warning noise. You are too close!"))
 		return
 	if(!length(grenades))
-		to_chat(user, "<span class='warning'>The grenade launcher is empty.</span>")
+		to_chat(user, span_warning("The grenade launcher is empty."))
 		return
 	fire_grenade(target,user)
 	var/obj/screen/ammo/A = user.hud_used.ammo
@@ -577,15 +579,15 @@
 			nade.loc = get_turf(src)
 		grenades -= nade
 	else
-		to_chat(user, "<span class='warning'>It's empty!</span>")
+		to_chat(user, span_warning("It's empty!"))
 	return TRUE
 
 
 /obj/item/weapon/gun/launcher/m92/proc/fire_grenade(atom/target, mob/user)
 	playsound(user.loc, cocked_sound, 25, 1)
 	last_fired = world.time
-	visible_message("<span class='danger'>[user] fired a grenade!</span>")
-	to_chat(user, "<span class='warning'>You fire the grenade launcher!</span>")
+	visible_message(span_danger("[user] fired a grenade!"))
+	to_chat(user, span_warning("You fire the grenade launcher!"))
 	var/obj/item/explosive/grenade/F = grenades[1]
 	grenades -= F
 	F.loc = user.loc
@@ -695,24 +697,24 @@
 /obj/item/weapon/gun/launcher/m81/examine_ammo_count(mob/user)
 	if(!grenade || (get_dist(user, src) > 2 && user != loc))
 		return
-	to_chat(user, "<span class='notice'> It is loaded with a grenade.</span>")
+	to_chat(user, span_notice(" It is loaded with a grenade."))
 
 
 /obj/item/weapon/gun/launcher/m81/attackby(obj/item/I, mob/user, params)
 	if(istype(I, /obj/item/explosive/grenade))
 		if(!istype(I, grenade_type_allowed))
-			to_chat(user, "<span class='warning'>[src] can't use this type of grenade!</span>")
+			to_chat(user, span_warning("[src] can't use this type of grenade!"))
 			return
 
 		if(grenade)
-			to_chat(user, "<span class='warning'>The grenade launcher cannot hold more grenades!</span>")
+			to_chat(user, span_warning("The grenade launcher cannot hold more grenades!"))
 			return
 
 		if(!user.transferItemToLoc(I, src))
 			return
 
 		grenade = I
-		to_chat(user, "<span class='notice'>You put [I] in the grenade launcher.</span>")
+		to_chat(user, span_notice("You put [I] in the grenade launcher."))
 
 	else if(istype(I, /obj/item/attachable) && check_inactive_hand(user))
 		attach_to_gun(user, I)
@@ -724,10 +726,10 @@
 	if(gun_on_cooldown(user))
 		return
 	if(get_dist(target,user) <= 2)
-		to_chat(user, "<span class='warning'>The grenade launcher beeps a warning noise. You are too close!</span>")
+		to_chat(user, span_warning("The grenade launcher beeps a warning noise. You are too close!"))
 		return
 	if(!grenade)
-		to_chat(user, "<span class='warning'>The grenade launcher is empty.</span>")
+		to_chat(user, span_warning("The grenade launcher is empty."))
 		return
 	fire_grenade(target,user)
 	playsound(user.loc, cocked_sound, 25, 1)
@@ -752,15 +754,15 @@
 			nade.loc = get_turf(src)
 		grenade = null
 	else
-		to_chat(user, "<span class='warning'>It's empty!</span>")
+		to_chat(user, span_warning("It's empty!"))
 	return TRUE
 
 
 /obj/item/weapon/gun/launcher/m81/proc/fire_grenade(atom/target, mob/user)
 	set waitfor = 0
 	last_fired = world.time
-	user.visible_message("<span class='danger'>[user] fired a grenade!</span>", \
-						"<span class='warning'>You fire the grenade launcher!</span>")
+	user.visible_message(span_danger("[user] fired a grenade!"), \
+						span_warning("You fire the grenade launcher!"))
 	var/obj/item/explosive/grenade/F = grenade
 	grenade = null
 	F.launched = TRUE
@@ -903,8 +905,8 @@
 	user.transferItemToLoc(magazine, src) //Click!
 	current_mag = magazine
 	ammo = GLOB.ammo_list[current_mag.default_ammo]
-	user.visible_message("<span class='notice'>[user] loads [magazine] into [src]!</span>",
-	"<span class='notice'>You load [magazine] into [src]!</span>", null, 3)
+	user.visible_message(span_notice("[user] loads [magazine] into [src]!"),
+	span_notice("You load [magazine] into [src]!"), null, 3)
 	if(reload_sound)
 		playsound(user, reload_sound, 25, 1, 5)
 	update_icon()
@@ -914,11 +916,11 @@
 	if(!user)
 		return FALSE
 	if(!current_mag || current_mag.loc != src)
-		to_chat(user, "<span class='warning'>[src] is already empty!</span>")
+		to_chat(user, span_warning("[src] is already empty!"))
 		return TRUE
-	to_chat(user, "<span class='notice'>You begin unloading [src].</span>")
+	to_chat(user, span_notice("You begin unloading [src]."))
 	if(!do_after(user, current_mag.reload_delay * 0.5, TRUE, src, BUSY_ICON_GENERIC))
-		to_chat(user, "<span class='warning'>Your unloading was interrupted!</span>")
+		to_chat(user, span_warning("Your unloading was interrupted!"))
 		return TRUE
 	if(!user) //If we want to drop it on the ground or there's no user.
 		current_mag.loc = get_turf(src) //Drop it on the ground.
@@ -926,8 +928,8 @@
 		user.put_in_hands(current_mag)
 
 	playsound(user, unload_sound, 25, 1, 5)
-	user.visible_message("<span class='notice'>[user] unloads [current_mag] from [src].</span>",
-	"<span class='notice'>You unload [current_mag] from [src].</span>", null, 4)
+	user.visible_message(span_notice("[user] unloads [current_mag] from [src]."),
+	span_notice("You unload [current_mag] from [src]."), null, 4)
 	current_mag.update_icon()
 	current_mag = null
 
@@ -1098,7 +1100,7 @@
 	scatter = -100
 
 /obj/item/weapon/gun/launcher/rocket/oneuse/unload(mob/user) // Unsurprisngly you can't unload this.
-	to_chat(user, "<span class='warning'>You can't unload this!</span>")
+	to_chat(user, span_warning("You can't unload this!"))
 	return FALSE
 
 
