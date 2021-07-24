@@ -230,6 +230,9 @@
 		hud_set_uav_ammo()
 	return TRUE
 
+/obj/vehicle/unmanned/post_crush_act(mob/living/carbon/xenomorph/charger, datum/action/xeno_action/ready_charge/charge_datum)
+	take_damage(charger.xeno_caste.melee_damage * charger.xeno_melee_damage_modifier, BRUTE, "melee")
+
 /obj/vehicle/unmanned/medium
 	name = "medium unmanned vehicle"
 	icon_state = "medium_uv"
