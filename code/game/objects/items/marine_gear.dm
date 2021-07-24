@@ -228,6 +228,7 @@
 	w_class = WEIGHT_CLASS_TINY
 
 /obj/item/compass/attack_self(mob/living/user)
+	. = ..()
 	var/turf/location = get_turf(src)
-	user.show_message("<span class='warning'>After looking at the [src] you getting your bearings you can guess your general coordinates. LONGITUDE [location.x]. LATITUDE [location.y].")
+	user.show_message("<span class='warning'>After looking at [src] you getting your bearings you can guess your general coordinates. LONGITUDE [location.x]. LATITUDE [location.y].")
 
