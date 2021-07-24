@@ -1,0 +1,4 @@
+author: "KornFlaks"
+delete-after: True
+changes: 
+  - rscadd: "Replaces the button for Hive Order with Hive Message, also known as Word of Queen."
