@@ -44,24 +44,24 @@
 			else
 				descriptive = "furiously hot"
 
-		to_chat(user, span_notice("\The [icon2html(src, user)][src] feels [descriptive], the gauge reads [return_pressure()] kPa."))
+		to_chat(user, "<span class='notice'>\The [icon2html(src, user)][src] feels [descriptive], the gauge reads [return_pressure()] kPa.</span>")
 
 
 /obj/item/tank/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
 	if((istype(I, /obj/item/analyzer)) && get_dist(user, src) <= 1)
-		visible_message(span_warning("[user] has used [I] on [icon2html(src, user)] [src]"))
+		visible_message("<span class='warning'>[user] has used [I] on [icon2html(src, user)] [src]</span>")
 
 		manipulated_by = user.real_name			//This person is aware of the contents of the tank.
 
-		to_chat(user, span_notice("Results of analysis of [icon2html(src, user)]"))
+		to_chat(user, "<span class='notice'>Results of analysis of [icon2html(src, user)]</span>")
 		if(pressure > 0)
-			to_chat(user, span_notice("Pressure: [round(pressure, 0.1)] kPa"))
-			to_chat(user, span_notice("[gas_type]: 100%"))
-			to_chat(user, span_notice("Temperature: [round(temperature - T0C)]&deg;C"))
+			to_chat(user, "<span class='notice'>Pressure: [round(pressure, 0.1)] kPa</span>")
+			to_chat(user, "<span class='notice'>[gas_type]: 100%</span>")
+			to_chat(user, "<span class='notice'>Temperature: [round(temperature - T0C)]&deg;C</span>")
 		else
-			to_chat(user, span_notice("Tank is empty!"))
+			to_chat(user, "<span class='notice'>Tank is empty!</span>")
 
 /obj/item/tank/return_air()
 	return list(gas_type, temperature, distribute_pressure)

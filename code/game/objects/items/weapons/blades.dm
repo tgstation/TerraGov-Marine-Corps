@@ -17,7 +17,7 @@
 	AddElement(/datum/element/scalping)
 
 /obj/item/weapon/claymore/suicide_act(mob/user)
-	user.visible_message(span_danger("[user] is falling on the [src.name]! It looks like [user.p_theyre()] trying to commit suicide."))
+	user.visible_message("<span class='danger'>[user] is falling on the [src.name]! It looks like [user.p_theyre()] trying to commit suicide.</span>")
 	return(BRUTELOSS)
 
 /obj/item/weapon/claymore/harvester
@@ -51,7 +51,7 @@
 
 /obj/item/weapon/claymore/harvester/examine(mob/user)
 	. = ..()
-	to_chat(user, span_rose("[length(beaker.reagents.reagent_list) ? "It currently holds [beaker.reagents.total_volume]u of [beaker.reagents.reagent_list[1].name]" : "The internal storage is empty"].\n<b>Compatible chemicals:</b>"))
+	to_chat(user, "<span class='rose'>[length(beaker.reagents.reagent_list) ? "It currently holds [beaker.reagents.total_volume]u of [beaker.reagents.reagent_list[1].name]" : "The internal storage is empty"].\n<b>Compatible chemicals:</b></span>")
 	for(var/R in loadable_reagents)
 		var/atom/L = R
 		to_chat(user, "[initial(L.name)]")
@@ -77,7 +77,7 @@
 		return TRUE
 
 	if(!isreagentcontainer(I) || istype(I, /obj/item/reagent_containers/pill))
-		to_chat(user, span_rose("[I] isn't compatible with [src]."))
+		to_chat(user, "<span class='rose'>[I] isn't compatible with [src].</span>")
 		return TRUE
 
 	var/trans
@@ -85,53 +85,53 @@
 
 	if(!container.reagents.total_volume)
 		trans = beaker.reagents.trans_to(container, 30)
-		to_chat(user, span_rose("[trans ? "You take [trans]u out of the internal storage. It now contains [beaker.reagents.total_volume]u" : "[src]'s storage is empty."]."))
+		to_chat(user, "<span class='rose'>[trans ? "You take [trans]u out of the internal storage. It now contains [beaker.reagents.total_volume]u" : "[src]'s storage is empty."].</span>")
 		return TRUE
 
 	if(length(container.reagents.reagent_list) > 1)
-		to_chat(user, span_rose("The solution needs to be uniform and contain only a single type of reagent to be compatible."))
+		to_chat(user, "<span class='rose'>The solution needs to be uniform and contain only a single type of reagent to be compatible.</span>")
 		return TRUE
 
 	if(beaker.reagents.total_volume && (container.reagents.reagent_list[1].type != beaker.reagents.reagent_list[1].type))
-		to_chat(user, span_rose("[src]'s internal storage can contain only one kind of solution at the same time. It currently contains <b>[beaker.reagents.reagent_list[1].name]</b>"))
+		to_chat(user, "<span class='rose'>[src]'s internal storage can contain only one kind of solution at the same time. It currently contains <b>[beaker.reagents.reagent_list[1].name]</b></span>")
 		return TRUE
 
 	if(!locate(container.reagents.reagent_list[1].type) in loadable_reagents)
-		to_chat(user, span_rose("This reagent is not compatible with the weapon's mechanism. Check the engraved symbols for further information."))
+		to_chat(user, "<span class='rose'>This reagent is not compatible with the weapon's mechanism. Check the engraved symbols for further information.</span>")
 		return TRUE
 
 	if(container.reagents.total_volume < 5)
-		to_chat(user, span_rose("At least 5u of the substance is needed."))
+		to_chat(user, "<span class='rose'>At least 5u of the substance is needed.</span>")
 		return TRUE
 
 	if(beaker.reagents.total_volume >= 30)
-		to_chat(user, span_rose("The internal storage is full."))
+		to_chat(user, "<span class='rose'>The internal storage is full.</span>")
 		return TRUE
 
-	to_chat(user, span_notice("You begin filling up the [src] with [container.reagents.reagent_list[1]]."))
+	to_chat(user, "<span class='notice'>You begin filling up the [src] with [container.reagents.reagent_list[1]].</span>")
 	if(!do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_BAR, null, PROGRESS_BRASS))
 		return TRUE
 
 	trans = container.reagents.trans_to(beaker, container.amount_per_transfer_from_this)
-	to_chat(user, span_rose("You load [trans]u into the internal system. It now holds [beaker.reagents.total_volume]u."))
+	to_chat(user, "<span class='rose'>You load [trans]u into the internal system. It now holds [beaker.reagents.total_volume]u.</span>")
 	return TRUE
 
 /obj/item/weapon/claymore/harvester/unique_action(mob/user)
 	. = ..()
 	if(loaded_reagent)
-		to_chat(user, span_rose("The blade is powered with [loaded_reagent.name]. You can release the effect by stabbing a creature."))
+		to_chat(user, "<span class='rose'>The blade is powered with [loaded_reagent.name]. You can release the effect by stabbing a creature.</span>")
 		return FALSE
 
 	if(beaker.reagents.total_volume < 5)
-		to_chat(user, span_rose("You don't have enough substance."))
+		to_chat(user, "<span class='rose'>You don't have enough substance.</span>")
 		return FALSE
 
 	if(user.do_actions)
 		return FALSE
 
-	to_chat(user, span_rose("You start filling up the small chambers along the blade's edge."))
+	to_chat(user, "<span class='rose'>You start filling up the small chambers along the blade's edge.</span>")
 	if(!do_after(user, 2 SECONDS, TRUE, src, BUSY_ICON_BAR, ignore_turf_checks = TRUE))
-		to_chat(user, span_rose("Due to the sudden movement, the safety machanism drains out the reagent back into the main storage."))
+		to_chat(user, "<span class='rose'>Due to the sudden movement, the safety machanism drains out the reagent back into the main storage.</span>")
 		return FALSE
 
 	loaded_reagent = beaker.reagents.reagent_list[1]
@@ -157,12 +157,13 @@
 				for(var/mob/living/victim in T)
 					victim.flamer_fire_act(10)
 					victim.apply_damage(max(0, 20 - 20*victim.hard_armor.getRating("fire")), BURN, user.zone_selected, victim.get_soft_armor("fire", user.zone_selected))
-					//TODO BRAVEMOLE
+					if(victim.IgniteMob())
+						victim.visible_message("<span class='danger'>[victim] bursts into flames!</span>","[isxeno(victim)?"<span class='xenodanger'>":"<span class='highdanger'>"]You burst into flames!</span>")
 
 		if(/datum/reagent/medicine/bicaridine)
 			if(isxeno(M))
 				return ..()
-			to_chat(user, span_rose("You prepare to stab <b>[M != user ? "[M]" : "yourself"]</b>!"))
+			to_chat(user, "<span class='rose'>You prepare to stab <b>[M != user ? "[M]" : "yourself"]</b>!</span>")
 			new /obj/effect/temp_visual/telekinesis(get_turf(M))
 			if((M != user) && do_after(user, 2 SECONDS, TRUE, M, BUSY_ICON_DANGER))
 				M.heal_overall_damage(12.5, 0, TRUE)
@@ -234,7 +235,7 @@
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 
 /obj/item/weapon/katana/suicide_act(mob/user)
-	user.visible_message(span_danger("[user] is slitting [user.p_their()] stomach open with the [name]! It looks like [user.p_theyre()] trying to commit seppuku."))
+	user.visible_message("<span class='danger'>[user] is slitting [user.p_their()] stomach open with the [name]! It looks like [user.p_theyre()] trying to commit seppuku.</span>")
 	return(BRUTELOSS)
 
 //To do: replace the toys.
@@ -272,7 +273,7 @@
 		return ..()
 	var/obj/item/stack/cable_coil/CC = I
 	if(!CC.use(5))
-		to_chat(user, span_notice("You don't have enough cable for that."))
+		to_chat(user, "<span class='notice'>You don't have enough cable for that.</span>")
 		return
 	to_chat(user, "You wrap some cable around the bayonet. It can now be attached to a gun.")
 	if(loc == user)
@@ -288,9 +289,9 @@
 	AddElement(/datum/element/scalping)
 
 /obj/item/weapon/combat_knife/suicide_act(mob/user)
-	user.visible_message(pick(span_danger("[user] is slitting [user.p_their()] wrists with the [name]! It looks like [user.p_theyre()] trying to commit suicide."), \
-							span_danger("[user] is slitting [user.p_their()] throat with the [name]! It looks like [user.p_theyre()] trying to commit suicide."), \
-							span_danger("[user] is slitting [user.p_their()] stomach open with the [name]! It looks like [user.p_theyre()] trying to commit seppuku.")))
+	user.visible_message(pick("<span class='danger'>[user] is slitting [user.p_their()] wrists with the [name]! It looks like [user.p_theyre()] trying to commit suicide.</span>", \
+							"<span class='danger'>[user] is slitting [user.p_their()] throat with the [name]! It looks like [user.p_theyre()] trying to commit suicide.</span>", \
+							"<span class='danger'>[user] is slitting [user.p_their()] stomach open with the [name]! It looks like [user.p_theyre()] trying to commit seppuku.</span>"))
 	return (BRUTELOSS)
 
 /obj/item/weapon/combat_knife/upp
@@ -361,5 +362,5 @@
 	return ..()
 
 /obj/item/weapon/chainsword/suicide_act(mob/user)
-	user.visible_message(span_danger("[user] is falling on the [src.name]! It looks like [user.p_theyre()] trying to commit suicide."))
+	user.visible_message("<span class='danger'>[user] is falling on the [src.name]! It looks like [user.p_theyre()] trying to commit suicide.</span>")
 	return(BRUTELOSS)

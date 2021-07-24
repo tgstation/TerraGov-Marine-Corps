@@ -192,23 +192,23 @@
 	. = ..()
 
 	if(machine_stat & BROKEN)
-		to_chat(user, span_info("It appears to be completely broken. It's hard to see what else is wrong with it."))
+		to_chat(user, "<span class='info'>It appears to be completely broken. It's hard to see what else is wrong with it.</span>")
 		return
 
 	if(opened)
 		if(has_electronics && terminal)
-			to_chat(user, span_info("The cover is [opened == APC_COVER_REMOVED ? "removed":"open"] and the power cell is [cell ? "installed":"missing"]."))
+			to_chat(user, "<span class='info'>The cover is [opened == APC_COVER_REMOVED ? "removed":"open"] and the power cell is [cell ? "installed":"missing"].</span>")
 		else
-			to_chat(user, span_info("It's [ !terminal ? "not" : "" ] wired up."))
-			to_chat(user, span_info("The electronics are[!has_electronics?"n't":""] installed."))
+			to_chat(user, "<span class='info'>It's [ !terminal ? "not" : "" ] wired up.</span>")
+			to_chat(user, "<span class='info'>The electronics are[!has_electronics?"n't":""] installed.</span>")
 	else
 		if(machine_stat & MAINT)
-			to_chat(user, span_info("The cover is closed. Something is wrong with it, it doesn't work."))
+			to_chat(user, "<span class='info'>The cover is closed. Something is wrong with it, it doesn't work.</span>")
 		else
-			to_chat(user, span_info("The cover is closed."))
+			to_chat(user, "<span class='info'>The cover is closed.</span>")
 
 	if(CHECK_BITFIELD(machine_stat, PANEL_OPEN))
-		to_chat(user, span_info("The wiring is exposed."))
+		to_chat(user, "<span class='info'>The wiring is exposed.</span>")
 
 //Update the APC icon to show the three base states
 //Also add overlays for indicator lights
@@ -320,8 +320,8 @@
 
 	if(effects)
 		X.do_attack_animation(src, ATTACK_EFFECT_CLAW)
-		X.visible_message(span_danger("[X] slashes \the [src]!"), \
-		span_danger("We slash \the [src]!"), null, 5)
+		X.visible_message("<span class='danger'>[X] slashes \the [src]!</span>", \
+		"<span class='danger'>We slash \the [src]!</span>", null, 5)
 		playsound(loc, "alien_claw_metal", 25, 1)
 
 	var/allcut = wires.is_all_cut()
@@ -329,12 +329,12 @@
 	if(beenhit >= pick(3, 4) && !CHECK_BITFIELD(machine_stat, PANEL_OPEN))
 		ENABLE_BITFIELD(machine_stat, PANEL_OPEN)
 		update_icon()
-		visible_message(span_danger("\The [src]'s cover swings open, exposing the wires!"), null, null, 5)
+		visible_message("<span class='danger'>\The [src]'s cover swings open, exposing the wires!</span>", null, null, 5)
 
 	else if(CHECK_BITFIELD(machine_stat, PANEL_OPEN) && !allcut)
 		wires.cut_all()
 		update_icon()
-		visible_message(span_danger("\The [src]'s wires snap apart in a rain of sparks!"), null, null, 5)
+		visible_message("<span class='danger'>\The [src]'s wires snap apart in a rain of sparks!</span>", null, null, 5)
 	else
 		beenhit += 1
 
@@ -344,18 +344,18 @@
 
 	if(istype(I, /obj/item/cell) && opened) //Trying to put a cell inside
 		if(user.skills.getRating("engineer") < SKILL_ENGINEER_ENGI)
-			user.visible_message(span_notice("[user] fumbles around figuring out how to fit [I] into [src]."),
-			span_notice("You fumble around figuring out how to fit [I] into [src]."))
+			user.visible_message("<span class='notice'>[user] fumbles around figuring out how to fit [I] into [src].</span>",
+			"<span class='notice'>You fumble around figuring out how to fit [I] into [src].</span>")
 			var/fumbling_time = 5 SECONDS * ( SKILL_ENGINEER_ENGI - user.skills.getRating("engineer") )
 			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 				return
 
 		if(cell)
-			to_chat(user, span_warning("There is a power cell already installed."))
+			to_chat(user, "<span class='warning'>There is a power cell already installed.</span>")
 			return
 
 		if(machine_stat & MAINT)
-			to_chat(user, span_warning("There is no connector for your power cell."))
+			to_chat(user, "<span class='warning'>There is no connector for your power cell.</span>")
 			return
 
 		if(!user.transferItemToLoc(I, src))
@@ -369,54 +369,54 @@
 
 	else if(istype(I, /obj/item/card/id)) //Trying to unlock the interface with an ID card
 		if(user.skills.getRating("engineer") < SKILL_ENGINEER_ENGI)
-			user.visible_message(span_notice("[user] fumbles around figuring out where to swipe [I] on [src]."),
-			span_notice("You fumble around figuring out where to swipe [I] on [src]."))
+			user.visible_message("<span class='notice'>[user] fumbles around figuring out where to swipe [I] on [src].</span>",
+			"<span class='notice'>You fumble around figuring out where to swipe [I] on [src].</span>")
 			var/fumbling_time = 3 SECONDS * ( SKILL_ENGINEER_ENGI - user.skills.getRating("engineer") )
 			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 				return
 
 		if(opened)
-			to_chat(user, span_warning("You must close the cover to swipe an ID card."))
+			to_chat(user, "<span class='warning'>You must close the cover to swipe an ID card.</span>")
 			return
 
 		if(CHECK_BITFIELD(machine_stat, PANEL_OPEN))
-			to_chat(user, span_warning("You must close the panel."))
+			to_chat(user, "<span class='warning'>You must close the panel.</span>")
 			return
 
 		if(machine_stat & (BROKEN|MAINT))
-			to_chat(user, span_warning("Nothing happens."))
+			to_chat(user, "<span class='warning'>Nothing happens.</span>")
 			return
 
 		if(!allowed(user))
-			to_chat(user, span_warning("Access denied."))
+			to_chat(user, "<span class='warning'>Access denied.</span>")
 			return
 
 		locked = !locked
-		user.visible_message(span_notice("[user] [locked ? "locks" : "unlocks"] [src]'s interface."),
-		span_notice("You [locked ? "lock" : "unlock"] [src]'s interface."))
+		user.visible_message("<span class='notice'>[user] [locked ? "locks" : "unlocks"] [src]'s interface.</span>",
+		"<span class='notice'>You [locked ? "lock" : "unlock"] [src]'s interface.</span>")
 		update_icon()
 
 	else if(iscablecoil(I) && !terminal && opened && has_electronics != APC_ELECTRONICS_SECURED)
 		var/obj/item/stack/cable_coil/C = I
 
 		if(user.skills.getRating("engineer") < SKILL_ENGINEER_ENGI)
-			user.visible_message(span_notice("[user] fumbles around figuring out what to do with [src]."),
-			span_notice("You fumble around figuring out what to do with [src]."))
+			user.visible_message("<span class='notice'>[user] fumbles around figuring out what to do with [src].</span>",
+			"<span class='notice'>You fumble around figuring out what to do with [src].</span>")
 			var/fumbling_time = 5 SECONDS * ( SKILL_ENGINEER_ENGI - user.skills.getRating("engineer") )
 			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 				return
 
 		var/turf/T = get_turf(src)
 		if(T.intact_tile)
-			to_chat(user, span_warning("You must remove the floor plating in front of the APC first."))
+			to_chat(user, "<span class='warning'>You must remove the floor plating in front of the APC first.</span>")
 			return
 
 		if(C.get_amount() < 10)
-			to_chat(user, span_warning("You need more wires."))
+			to_chat(user, "<span class='warning'>You need more wires.</span>")
 			return
 
-		user.visible_message(span_notice("[user] starts wiring [src]'s frame."),
-		span_notice("You start wiring [src]'s frame."))
+		user.visible_message("<span class='notice'>[user] starts wiring [src]'s frame.</span>",
+		"<span class='notice'>You start wiring [src]'s frame.</span>")
 		playsound(loc, 'sound/items/deconstruct.ogg', 25, 1)
 
 		if(!do_after(user, 20, TRUE, src, BUSY_ICON_BUILD) || terminal || !opened || has_electronics == APC_ELECTRONICS_SECURED)
@@ -432,62 +432,62 @@
 		if(!C.use(10))
 			return
 
-		user.visible_message(span_notice("[user] wires [src]'s frame."),
-		span_notice("You wire [src]'s frame."))
+		user.visible_message("<span class='notice'>[user] wires [src]'s frame.</span>",
+		"<span class='notice'>You wire [src]'s frame.</span>")
 		make_terminal()
 		terminal.connect_to_network()
 
 	else if(istype(I, /obj/item/circuitboard/apc) && opened && has_electronics == APC_ELECTRONICS_MISSING && !(machine_stat & BROKEN))
 		if(user.skills.getRating("engineer") < SKILL_ENGINEER_ENGI)
-			user.visible_message(span_notice("[user] fumbles around figuring out what to do with [I]."),
-			span_notice("You fumble around figuring out what to do with [I]."))
+			user.visible_message("<span class='notice'>[user] fumbles around figuring out what to do with [I].</span>",
+			"<span class='notice'>You fumble around figuring out what to do with [I].</span>")
 			var/fumbling_time = 5 SECONDS * ( SKILL_ENGINEER_ENGI - user.skills.getRating("engineer") )
 			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 				return
 
-		user.visible_message(span_notice("[user] starts inserting the power control board into [src]."),
-		span_notice("You start inserting the power control board into [src]."))
+		user.visible_message("<span class='notice'>[user] starts inserting the power control board into [src].</span>",
+		"<span class='notice'>You start inserting the power control board into [src].</span>")
 		playsound(loc, 'sound/items/deconstruct.ogg', 25, 1)
 
 		if(!do_after(user, 15, TRUE, src, BUSY_ICON_BUILD))
 			return
 
 		has_electronics = APC_ELECTRONICS_INSTALLED
-		user.visible_message(span_notice("[user] inserts the power control board into [src]."),
-		span_notice("You insert the power control board into [src]."))
+		user.visible_message("<span class='notice'>[user] inserts the power control board into [src].</span>",
+		"<span class='notice'>You insert the power control board into [src].</span>")
 		electronics = I
 		qdel(I)
 
 	else if(istype(I, /obj/item/circuitboard/apc) && opened && has_electronics == APC_ELECTRONICS_MISSING && (machine_stat & BROKEN))
 		if(user.skills.getRating("engineer") < SKILL_ENGINEER_ENGI)
-			user.visible_message(span_notice("[user] fumbles around figuring out what to do with [I]."),
-			span_notice("You fumble around figuring out what to do with [I]."))
+			user.visible_message("<span class='notice'>[user] fumbles around figuring out what to do with [I].</span>",
+			"<span class='notice'>You fumble around figuring out what to do with [I].</span>")
 			var/fumbling_time = 5 SECONDS * ( SKILL_ENGINEER_ENGI - user.skills.getRating("engineer") )
 			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 				return
 
-		to_chat(user, span_warning("You cannot put the board inside, the frame is damaged."))
+		to_chat(user, "<span class='warning'>You cannot put the board inside, the frame is damaged.</span>")
 
 	else if(istype(I, /obj/item/frame/apc) && opened && (machine_stat & BROKEN))
 		if(user.skills.getRating("engineer") < SKILL_ENGINEER_ENGI)
-			user.visible_message(span_notice("[user] fumbles around figuring out what to do with [I]."),
-			span_notice("You fumble around figuring out what to do with [I]."))
+			user.visible_message("<span class='notice'>[user] fumbles around figuring out what to do with [I].</span>",
+			"<span class='notice'>You fumble around figuring out what to do with [I].</span>")
 			var/fumbling_time = 5 SECONDS * ( SKILL_ENGINEER_ENGI - user.skills.getRating("engineer") )
 			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 				return
 
 		if(has_electronics)
-			to_chat(user, span_warning("You cannot repair this APC until you remove the electronics still inside."))
+			to_chat(user, "<span class='warning'>You cannot repair this APC until you remove the electronics still inside.</span>")
 			return
 
-		user.visible_message(span_notice("[user] begins replacing [src]'s damaged frontal panel with a new one."),
-		span_notice("You begin replacing [src]'s damaged frontal panel with a new one."))
+		user.visible_message("<span class='notice'>[user] begins replacing [src]'s damaged frontal panel with a new one.</span>",
+		"<span class='notice'>You begin replacing [src]'s damaged frontal panel with a new one.</span>")
 
 		if(!do_after(user, 50, TRUE, src, BUSY_ICON_BUILD))
 			return
 
-		user.visible_message(span_notice("[user] replaces [src]'s damaged frontal panel with a new one."),
-		span_notice("You replace [src]'s damaged frontal panel with a new one."))
+		user.visible_message("<span class='notice'>[user] replaces [src]'s damaged frontal panel with a new one.</span>",
+		"<span class='notice'>You replace [src]'s damaged frontal panel with a new one.</span>")
 		qdel(I)
 		DISABLE_BITFIELD(machine_stat, BROKEN)
 		if(opened == APC_COVER_REMOVED)
@@ -496,24 +496,24 @@
 
 	else if(istype(I, /obj/item/frame/apc) && opened)
 		if(user.skills.getRating("engineer") < SKILL_ENGINEER_ENGI)
-			user.visible_message(span_notice("[user] fumbles around figuring out what to do with [I]."),
-			span_notice("You fumble around figuring out what to do with [I]."))
+			user.visible_message("<span class='notice'>[user] fumbles around figuring out what to do with [I].</span>",
+			"<span class='notice'>You fumble around figuring out what to do with [I].</span>")
 			var/fumbling_time = 5 SECONDS * ( SKILL_ENGINEER_ENGI - user.skills.getRating("engineer") )
 			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 				return
 
 		if(opened == APC_COVER_REMOVED)
 			opened = APC_COVER_OPENED
-		user.visible_message(span_notice("[user] replaces [src]'s damaged frontal panel with a new one."),
-		span_notice("You replace [src]'s damaged frontal panel with a new one."))
+		user.visible_message("<span class='notice'>[user] replaces [src]'s damaged frontal panel with a new one.</span>",
+		"<span class='notice'>You replace [src]'s damaged frontal panel with a new one.</span>")
 		qdel(I)
 		update_icon()
 
 	else
 		if(((machine_stat & BROKEN)) && !opened && I.force >= 5)
 			opened = APC_COVER_REMOVED
-			user.visible_message(span_warning("[user] knocks down [src]'s cover with [I]!"), \
-				span_warning("You knock down [src]'s cover with [I]!"))
+			user.visible_message("<span class='warning'>[user] knocks down [src]'s cover with [I]!</span>", \
+				"<span class='warning'>You knock down [src]'s cover with [I]!</span>")
 			update_icon()
 		else
 			if(issilicon(user))
@@ -521,8 +521,8 @@
 
 			if(!opened && CHECK_BITFIELD(machine_stat, PANEL_OPEN) && (ismultitool(I) || iswirecutter(I)))
 				return attack_hand(user)
-			user.visible_message(span_danger("[user] hits [src] with [I]!"), \
-			span_danger("You hit [src] with [I]!"))
+			user.visible_message("<span class='danger'>[user] hits [src] with [I]!</span>", \
+			"<span class='danger'>You hit [src] with [I]!</span>")
 
 
 /obj/machinery/power/apc/crowbar_act(mob/user, obj/item/I)
@@ -530,29 +530,29 @@
 	if(opened)
 		if(has_electronics == APC_ELECTRONICS_INSTALLED)
 			if(terminal)
-				to_chat(user, span_warning("Disconnect the wires first!"))
+				to_chat(user, "<span class='warning'>Disconnect the wires first!</span>")
 				return
 			if(user.skills.getRating("engineer") < SKILL_ENGINEER_ENGI)
-				user.visible_message(span_notice("[user] fumbles around figuring out how to remove the power cell from [src]."),
-				span_notice("You fumble around figuring out how to remove the power cell from [src]."))
+				user.visible_message("<span class='notice'>[user] fumbles around figuring out how to remove the power cell from [src].</span>",
+				"<span class='notice'>You fumble around figuring out how to remove the power cell from [src].</span>")
 				var/fumbling_time = 5 SECONDS * ( SKILL_ENGINEER_ENGI - user.skills.getRating("engineer") )
 				if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 					return
 			I.play_tool_sound(src)
-			to_chat(user, span_notice("You attempt to remove the power control board...") )
+			to_chat(user, "<span class='notice'>You attempt to remove the power control board...</span>" )
 			if(I.use_tool(src, user, 50))
 				if(has_electronics == APC_ELECTRONICS_INSTALLED)
 					has_electronics = APC_ELECTRONICS_MISSING
 					if(machine_stat & BROKEN)
 						user.visible_message(\
 							"[user.name] has broken the power control board inside [src]!",\
-							span_notice("You break the charred power control board and remove the remains."),
-							span_notice("You hear a crack."))
+							"<span class='notice'>You break the charred power control board and remove the remains.</span>",
+							"<span class='notice'>You hear a crack.</span>")
 						return
 					else
 						user.visible_message(\
 							"[user.name] has removed the power control board from [src]!",\
-							span_notice("You remove the power control board."))
+							"<span class='notice'>You remove the power control board.</span>")
 						new /obj/item/circuitboard/apc(loc)
 						return
 		else if(opened != APC_COVER_REMOVED)
@@ -562,10 +562,10 @@
 			return
 	else if(!(machine_stat & BROKEN))
 		if(coverlocked && !(machine_stat & MAINT)) // locked...
-			to_chat(user, span_warning("The cover is locked and cannot be opened!"))
+			to_chat(user, "<span class='warning'>The cover is locked and cannot be opened!</span>")
 			return
 		else if(machine_stat & PANEL_OPEN)
-			to_chat(user, span_warning("Exposed wires prevents you from opening it!"))
+			to_chat(user, "<span class='warning'>Exposed wires prevents you from opening it!</span>")
 			return
 		else
 			opened = APC_COVER_OPENED
@@ -581,12 +581,12 @@
 	if(opened)
 		if(cell)
 			if(user.skills.getRating("engineer") < SKILL_ENGINEER_ENGI)
-				user.visible_message(span_notice("[user] fumbles around figuring out what to do with [I]."),
-				span_notice("You fumble around figuring out what to do with [I]."))
+				user.visible_message("<span class='notice'>[user] fumbles around figuring out what to do with [I].</span>",
+				"<span class='notice'>You fumble around figuring out what to do with [I].</span>")
 				var/fumbling_time = 5 SECONDS * ( SKILL_ENGINEER_ENGI - user.skills.getRating("engineer") )
 				if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 					return
-			user.visible_message("[user] removes \the [cell] from [src]!", span_notice("You remove \the [cell]."))
+			user.visible_message("[user] removes \the [cell] from [src]!", "<span class='notice'>You remove \the [cell].</span>")
 			var/turf/T = get_turf(user)
 			cell.forceMove(T)
 			cell.update_icon()
@@ -600,14 +600,14 @@
 					has_electronics = APC_ELECTRONICS_SECURED
 					machine_stat &= ~MAINT
 					I.play_tool_sound(src)
-					to_chat(user, span_notice("You screw the circuit electronics into place."))
+					to_chat(user, "<span class='notice'>You screw the circuit electronics into place.</span>")
 				if(APC_ELECTRONICS_SECURED)
 					has_electronics = APC_ELECTRONICS_INSTALLED
 					machine_stat |= MAINT
 					I.play_tool_sound(src)
-					to_chat(user, span_notice("You unfasten the electronics."))
+					to_chat(user, "<span class='notice'>You unfasten the electronics.</span>")
 				else
-					to_chat(user, span_warning("There is nothing to secure!"))
+					to_chat(user, "<span class='warning'>There is nothing to secure!</span>")
 					return
 			update_icon()
 	else
@@ -627,8 +627,8 @@
 		return
 
 	if(user.skills.getRating("engineer") < SKILL_ENGINEER_ENGI)
-		user.visible_message(span_notice("[user] fumbles around figuring out what to do with [I]."),
-		span_notice("You fumble around figuring out what to do with [I]."))
+		user.visible_message("<span class='notice'>[user] fumbles around figuring out what to do with [I].</span>",
+		"<span class='notice'>You fumble around figuring out what to do with [I].</span>")
 		var/fumbling_time = 5 SECONDS * ( SKILL_ENGINEER_ENGI - user.skills.getRating("engineer") )
 		if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 			return
@@ -636,8 +636,8 @@
 	if(!I.tool_start_check(user, amount = 3))
 		return
 	user.visible_message("[user.name] welds [src].", \
-						span_notice("You start welding the APC frame..."), \
-						span_notice("You hear welding."))
+						"<span class='notice'>You start welding the APC frame...</span>", \
+						"<span class='notice'>You hear welding.</span>")
 
 	if(!I.use_tool(src, user, 50, volume = 50, amount = 3))
 		return
@@ -646,12 +646,12 @@
 		new /obj/item/stack/sheet/metal(loc)
 		user.visible_message(\
 			"[user.name] has cut [src] apart with [I].",\
-			span_notice("You disassembled the broken APC frame."))
+			"<span class='notice'>You disassembled the broken APC frame.</span>")
 	else
 		new /obj/item/frame/apc(loc)
 		user.visible_message(\
-			span_notice("[user.name] has cut [src] from the wall with [I]."),\
-			span_notice("You cut the APC frame from the wall."))
+			"<span class='notice'>[user.name] has cut [src] from the wall with [I].</span>",\
+			"<span class='notice'>You cut the APC frame from the wall.</span>")
 	qdel(src)
 	return TRUE
 
@@ -664,12 +664,12 @@
 
 	if(opened && cell && !issilicon(user))
 		if(user.skills.getRating("engineer") < SKILL_ENGINEER_ENGI)
-			user.visible_message(span_notice("[user] fumbles around figuring out what to do with [src]."),
-			span_notice("You fumble around figuring out what to do with [src]."))
+			user.visible_message("<span class='notice'>[user] fumbles around figuring out what to do with [src].</span>",
+			"<span class='notice'>You fumble around figuring out what to do with [src].</span>")
 			var/fumbling_time = 5 SECONDS * ( SKILL_ENGINEER_ENGI - user.skills.getRating("engineer") )
 			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 				return
-		user.visible_message("[user] removes \the [cell] from [src]!", span_notice("You remove \the [cell]."))
+		user.visible_message("[user] removes \the [cell] from [src]!", "<span class='notice'>You remove \the [cell].</span>")
 		user.put_in_hands(cell)
 		cell.update_icon()
 		set_cell(null)
@@ -752,7 +752,7 @@
 		return TRUE
 	if(isAI(user) && aidisabled)
 		if(!loud)
-			to_chat(user, span_danger("\The [src] has eee disabled!"))
+			to_chat(user, "<span class='danger'>\The [src] has eee disabled!</span>")
 		return FALSE
 	return TRUE
 
@@ -1049,12 +1049,12 @@
 
 /obj/machinery/power/apc/proc/set_broken()
 	//Aesthetically much better!
-	visible_message(span_warning("[src]'s screen flickers with warnings briefly!"))
+	visible_message("<span class='warning'>[src]'s screen flickers with warnings briefly!</span>")
 	addtimer(CALLBACK(src, .proc/do_break), rand(2, 5))
 
 
 /obj/machinery/power/apc/proc/do_break()
-	visible_message(span_danger("[src]'s screen suddenly explodes in rain of sparks and small debris!"))
+	visible_message("<span class='danger'>[src]'s screen suddenly explodes in rain of sparks and small debris!</span>")
 	machine_stat |= BROKEN
 	operating = FALSE
 	update_icon()

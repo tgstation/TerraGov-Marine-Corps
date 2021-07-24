@@ -181,70 +181,70 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	if(iswelder(W))
 		var/obj/item/tool/weldingtool/WT = W
 		if(WT.isOn())//Badasses dont get blinded while lighting their cig with a blowtorch
-			light(span_notice("[user] casually lights the [name] with [W]."))
+			light("<span class='notice'>[user] casually lights the [name] with [W].</span>")
 
 	else if(istype(W, /obj/item/tool/lighter/zippo))
 		var/obj/item/tool/lighter/zippo/Z = W
 		if(Z.heat)
-			light(span_rose("With a flick of their wrist, [user] lights their [name] with [W]."))
+			light("<span class='rose'>With a flick of their wrist, [user] lights their [name] with [W].</span>")
 
 	else if(istype(W, /obj/item/flashlight/flare))
 		var/obj/item/flashlight/flare/FL = W
 		if(FL.heat)
-			light(span_notice("[user] lights their [name] with [W]."))
+			light("<span class='notice'>[user] lights their [name] with [W].</span>")
 
 	else if(istype(W, /obj/item/explosive/grenade/flare))
 		var/obj/item/explosive/grenade/flare/FL2 = W
 		if(FL2.heat)
-			light(span_notice("[user] lights their [name] with [W]."))
+			light("<span class='notice'>[user] lights their [name] with [W].</span>")
 
 	else if(istype(W, /obj/item/tool/lighter))
 		var/obj/item/tool/lighter/L = W
 		if(L.heat)
-			light(span_notice("[user] manages to light their [name] with [W]."))
+			light("<span class='notice'>[user] manages to light their [name] with [W].</span>")
 
 	else if(istype(W, /obj/item/tool/match))
 		var/obj/item/tool/match/M = W
 		if(M.heat)
-			light(span_notice("[user] lights their [name] with their [W]."))
+			light("<span class='notice'>[user] lights their [name] with their [W].</span>")
 
 	else if(istype(W, /obj/item/weapon/energy/sword))
 		var/obj/item/weapon/energy/sword/S = W
 		if(S.active)
-			light(span_warning("[user] swings their [W], barely missing their nose. They light their [name] in the process."))
+			light("<span class='warning'>[user] swings their [W], barely missing their nose. They light their [name] in the process.</span>")
 
 	else if(istype(W, /obj/item/assembly/igniter))
-		light(span_notice("[user] fiddles with [W], and manages to light their [name]."))
+		light("<span class='notice'>[user] fiddles with [W], and manages to light their [name].</span>")
 
 	else if(istype(W, /obj/item/attachable/attached_gun/flamer))
-		light(span_notice("[user] lights their [src] with the [W]."))
+		light("<span class='notice'>[user] lights their [src] with the [W].</span>")
 
 	else if(istype(W, /obj/item/weapon/gun/flamer))
-		light(span_notice("[user] lights their [src] with the pilot light of the [W]."))
+		light("<span class='notice'>[user] lights their [src] with the pilot light of the [W].</span>")
 
 	else if(istype(W, /obj/item/weapon/gun))
 		var/obj/item/weapon/gun/G = W
 		if(istype(G, /obj/item/weapon/gun/energy/lasgun))
 			var/obj/item/weapon/gun/energy/lasgun/L = G
 			if(L.cell.charge)
-				light(span_notice("[user] deftly lights their [src] with the [L]'s low power setting."))
+				light("<span class='notice'>[user] deftly lights their [src] with the [L]'s low power setting.</span>")
 			else
-				to_chat(user, span_warning("You try to light your [src] with the [L] but your power cell has no charge!"))
+				to_chat(user, "<span class='warning'>You try to light your [src] with the [L] but your power cell has no charge!</span>")
 		else if(istype(LAZYACCESS(G.attachments, ATTACHMENT_SLOT_UNDER), /obj/item/attachable/attached_gun/flamer))
-			light(span_notice("[user] lights their [src] with the underbarrel [LAZYACCESS(G.attachments, ATTACHMENT_SLOT_UNDER)]."))
+			light("<span class='notice'>[user] lights their [src] with the underbarrel [LAZYACCESS(G.attachments, ATTACHMENT_SLOT_UNDER)].</span>")
 
 
 	else if(istype(W, /obj/item/tool/surgery/cautery))
-		light(span_notice("[user] lights their [src] with the [W]."))
+		light("<span class='notice'>[user] lights their [src] with the [W].</span>")
 
 	else if(istype(W, /obj/item/clothing/mask/cigarette))
 		var/obj/item/clothing/mask/cigarette/C = W
 		if(C.lit)
-			light(span_notice("[user] lights their [src] with the [C] after a few attempts."))
+			light("<span class='notice'>[user] lights their [src] with the [C] after a few attempts.</span>")
 
 	else if(istype(W, /obj/item/tool/candle))
 		if(W.heat > 200)
-			light(span_notice("[user] lights their [src] with the [W] after a few attempts."))
+			light("<span class='notice'>[user] lights their [src] with the [W] after a few attempts.</span>")
 
 	else
 		return ..()
@@ -256,12 +256,12 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		return
 	if(istype(glass))	//you can dip cigarettes into beakers
 		if(glass.reagents.trans_to(src, chem_volume))	//if reagents were transfered, show the message
-			to_chat(user, span_notice("You dip \the [src] into \the [glass]."))
+			to_chat(user, "<span class='notice'>You dip \the [src] into \the [glass].</span>")
 		else			//if not, either the beaker was empty, or the cigarette was full
 			if(!glass.reagents.total_volume)
-				to_chat(user, span_notice("[glass] is empty."))
+				to_chat(user, "<span class='notice'>[glass] is empty.</span>")
 			else
-				to_chat(user, span_notice("[src] is full."))
+				to_chat(user, "<span class='notice'>[src] is full.</span>")
 
 /obj/item/clothing/mask/cigarette/proc/light(flavor_text = null)
 	if(lit)
@@ -311,7 +311,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	smoketime--
 	if(smoketime < 1)
 		if(ismob(loc))
-			to_chat(M, span_notice("Your [name] goes out."))
+			to_chat(M, "<span class='notice'>Your [name] goes out.</span>")
 			playsound(src, 'sound/items/cig_snuff.ogg', 15, 1)
 		die()
 		return
@@ -334,7 +334,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 
 /obj/item/clothing/mask/cigarette/attack_self(mob/user)
 	if(lit)
-		user.visible_message(span_notice("[user] calmly drops and treads on the lit [src], putting it out instantly."))
+		user.visible_message("<span class='notice'>[user] calmly drops and treads on the lit [src], putting it out instantly.</span>")
 		playsound(src, 'sound/items/cig_snuff.ogg', 15, 1)
 		die()
 	return ..()
@@ -344,22 +344,22 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		if(isturf(target))
 			var/turf/T = target
 			if(locate(/obj/flamer_fire) in T.contents)
-				light(span_notice("[user] lights their [src] with the burning ground."))
+				light("<span class='notice'>[user] lights their [src] with the burning ground.</span>")
 				return
 
 		if(isliving(target) && user.a_intent == INTENT_HELP)
 			var/mob/living/M = target
 			if(M.on_fire)
 				if(user == M)
-					light(span_notice("[user] lights their [src] from their own burning body, that's crazy!"))
+					light("<span class='notice'>[user] lights their [src] from their own burning body, that's crazy!</span>")
 				else
-					light(span_notice("[user] lights their [src] from the burning body of [M], that's stone cold."))
+					light("<span class='notice'>[user] lights their [src] from the burning body of [M], that's stone cold.</span>")
 				return
 
 		if(istype(target, /obj/machinery/light))
 			var/obj/machinery/light/fixture = target
 			if(fixture.is_broken())
-				light(span_notice("[user] lights their [src] from the broken light."))
+				light("<span class='notice'>[user] lights their [src] from the broken light.</span>")
 				return
 	return ..()
 
@@ -474,7 +474,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		new /obj/effect/decal/cleanable/ash(location)
 		if(ismob(loc))
 			var/mob/living/M = loc
-			to_chat(M, span_notice("Your [name] goes out, and you empty the ash."))
+			to_chat(M, "<span class='notice'>Your [name] goes out, and you empty the ash.</span>")
 			heat = 0
 			lit = FALSE
 			icon_state = icon_off
@@ -485,7 +485,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 
 /obj/item/clothing/mask/cigarette/pipe/attack_self(mob/user as mob) //Refills the pipe. Can be changed to an attackby later, if loose tobacco is added to vendors or something.
 	if(lit)
-		user.visible_message(span_notice("[user] puts out [src]."))
+		user.visible_message("<span class='notice'>[user] puts out [src].</span>")
 		heat = 0
 		lit = FALSE
 		icon_state = icon_off
@@ -493,7 +493,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		STOP_PROCESSING(SSobj, src)
 		return
 	if(smoketime <= 0)
-		to_chat(user, span_notice("You refill the pipe with tobacco."))
+		to_chat(user, "<span class='notice'>You refill the pipe with tobacco.</span>")
 		smoketime = initial(smoketime)
 
 
@@ -552,18 +552,18 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 			icon_state = icon_on
 			item_state = icon_on
 			if(istype(src, /obj/item/tool/lighter/zippo) )
-				user.visible_message(span_rose("Without even breaking stride, [user] flips open and lights [src] in one smooth movement."))
+				user.visible_message("<span class='rose'>Without even breaking stride, [user] flips open and lights [src] in one smooth movement.</span>")
 				playsound(loc, 'sound/items/zippo_on.ogg', 15, 1)
 			else
 				if(prob(95))
-					user.visible_message(span_notice("After a few attempts, [user] manages to light the [src]."))
+					user.visible_message("<span class='notice'>After a few attempts, [user] manages to light the [src].</span>")
 				else
-					to_chat(user, span_warning("You burn yourself while lighting the lighter."))
+					to_chat(user, "<span class='warning'>You burn yourself while lighting the lighter.</span>")
 					if (user.l_hand == src)
 						user.apply_damage(2,BURN,"l_hand")
 					else
 						user.apply_damage(2,BURN,"r_hand")
-					user.visible_message(span_notice("After a few attempts, [user] manages to light the [src], they however burn their finger in the process."))
+					user.visible_message("<span class='notice'>After a few attempts, [user] manages to light the [src], they however burn their finger in the process.</span>")
 				playsound(loc, 'sound/items/lighter_on.ogg', 15, 1)
 			set_light_on(TRUE)
 		else
@@ -600,8 +600,8 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 			cig.attackby(src, user)
 		else
 			if(istype(src, /obj/item/tool/lighter/zippo))
-				cig.light(span_rose("[user] whips the [name] out and holds it for [M]."))
+				cig.light("<span class='rose'>[user] whips the [name] out and holds it for [M].</span>")
 			else
-				cig.light(span_notice("[user] holds the [name] out for [M], and lights the [cig.name]."))
+				cig.light("<span class='notice'>[user] holds the [name] out for [M], and lights the [cig.name].</span>")
 	else
 		return ..()

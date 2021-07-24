@@ -279,23 +279,23 @@
 	if(href_list["power"])
 		active = !active
 		if(active)
-			to_chat(usr, span_notice("You activate [src]."))
+			to_chat(usr, "<span class='notice'>You activate [src].</span>")
 			operator = usr
 			var/obj/item/card/id/id = operator.get_idcard()
 			iff_signal = id?.iff_signal
 			START_PROCESSING(SSobj, src)
 		else
-			to_chat(usr, span_notice("You deactivate [src]."))
+			to_chat(usr, "<span class='notice'>You deactivate [src].</span>")
 			STOP_PROCESSING(SSobj, src)
 		update_icon()
 
 	else if(href_list["detector_mode"])
 		detector_mode = !detector_mode
 		if(detector_mode)
-			to_chat(usr, span_notice("You switch [src] to short range mode."))
+			to_chat(usr, "<span class='notice'>You switch [src] to short range mode.</span>")
 			detector_range = 7
 		else
-			to_chat(usr, span_notice("You switch [src] to long range mode."))
+			to_chat(usr, "<span class='notice'>You switch [src] to long range mode.</span>")
 			detector_range = 14
 
 	else if(href_list["detect_friendlies"])

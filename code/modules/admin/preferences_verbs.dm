@@ -10,9 +10,9 @@
 	usr.client.prefs.save_preferences()
 
 	if(usr.client.prefs.toggles_chat & CHAT_FFATTACKLOGS)
-		to_chat(usr, span_boldnotice("You will now get friendly fire attack log messages."))
+		to_chat(usr, "<span class='boldnotice'>You will now get friendly fire attack log messages.</span>")
 	else
-		to_chat(usr, span_boldnotice("You will no longer get friendly fire attack log messages."))
+		to_chat(usr, "<span class='boldnotice'>You will no longer get friendly fire attack log messages.</span>")
 
 
 /datum/admins/proc/pref_end_attack_logs()
@@ -27,9 +27,9 @@
 	usr.client.prefs.save_preferences()
 
 	if(usr.client.prefs.toggles_chat & CHAT_ENDROUNDLOGS)
-		to_chat(usr, span_boldnotice("You will now get end-round attack log messages."))
+		to_chat(usr, "<span class='boldnotice'>You will now get end-round attack log messages.</span>")
 	else
-		to_chat(usr, span_boldnotice("You will no longer get end-round attack log messages."))
+		to_chat(usr, "<span class='boldnotice'>You will no longer get end-round attack log messages.</span>")
 
 
 /datum/admins/proc/pref_debug_logs()
@@ -44,9 +44,9 @@
 	usr.client.prefs.save_preferences()
 
 	if(usr.client.prefs.toggles_chat & CHAT_DEBUGLOGS)
-		to_chat(usr, span_boldnotice("You will now get debug log messages."))
+		to_chat(usr, "<span class='boldnotice'>You will now get debug log messages.</span>")
 	else
-		to_chat(usr, span_boldnotice("You will no longer get debug log messages."))
+		to_chat(usr, "<span class='boldnotice'>You will no longer get debug log messages.</span>")
 
 
 /datum/admins/proc/set_ooc_color_self()
@@ -72,7 +72,7 @@
 	usr.client.prefs.toggles_chat ^= CHAT_PRAYER
 	usr.client.prefs.save_preferences()
 
-	to_chat(src, span_notice("You will [(usr.client.prefs.toggles_chat & CHAT_PRAYER) ? "now" : "no longer"] see prayerchat."))
+	to_chat(src, "<span class='notice'>You will [(usr.client.prefs.toggles_chat & CHAT_PRAYER) ? "now" : "no longer"] see prayerchat.</span>")
 
 
 /datum/admins/proc/toggle_adminhelp_sound()
@@ -82,5 +82,5 @@
 	usr.client.prefs.toggles_sound ^= SOUND_ADMINHELP
 	usr.client.prefs.save_preferences()
 
-	to_chat(usr, span_notice("You will [(usr.client.prefs.toggles_sound & SOUND_ADMINHELP) ? "now" : "no longer"] hear a sound when adminhelps arrive."))
+	to_chat(usr, "<span class='notice'>You will [(usr.client.prefs.toggles_sound & SOUND_ADMINHELP) ? "now" : "no longer"] hear a sound when adminhelps arrive.</span>")
 

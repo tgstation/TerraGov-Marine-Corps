@@ -54,11 +54,11 @@
 			return
 
 		if(!G.use(1))
-			to_chat(user, span_warning("You need one sheet of glass to replace lights."))
+			to_chat(user, "<span class='warning'>You need one sheet of glass to replace lights.</span>")
 			return
 
 		AddUses(5)
-		to_chat(user, span_notice("You insert a piece of glass into \the [src]. You have [uses] lights remaining."))
+		to_chat(user, "<span class='notice'>You insert a piece of glass into \the [src]. You have [uses] lights remaining.</span>")
 
 	else if(istype(I, /obj/item/light_bulb))
 		var/obj/item/light_bulb/L = I
@@ -101,7 +101,7 @@
 	if(target.status != LIGHT_OK)
 		if(CanUse(U))
 			if(!Use(U)) return
-			to_chat(U, span_notice("You replace the [target.fitting] with the [src]."))
+			to_chat(U, "<span class='notice'>You replace the [target.fitting] with the [src].</span>")
 
 			if(target.status != LIGHT_EMPTY)
 

@@ -35,11 +35,11 @@
 	var/udder_filled_percentage = PERCENT(udder.reagents.total_volume / udder.reagents.maximum_volume)
 	switch(udder_filled_percentage)
 		if(0 to 10)
-			examine_list += span_notice("[parent]'s [udder] is dry.")
+			examine_list += "<span class='notice'>[parent]'s [udder] is dry.</span>"
 		if(11 to 99)
-			examine_list += span_notice("[parent]'s [udder] can be milked if you have something to contain it.")
+			examine_list += "<span class='notice'>[parent]'s [udder] can be milked if you have something to contain it.</span>"
 		if(100)
-			examine_list += span_notice("[parent]'s [udder] is round and full, and can be milked if you have something to contain it.")
+			examine_list += "<span class='notice'>[parent]'s [udder] is round and full, and can be milked if you have something to contain it.</span>"
 
 
 ///signal called on parent being attacked with an item
@@ -111,10 +111,10 @@
  */
 /obj/item/udder/proc/milk(obj/item/reagent_containers/glass/milk_holder, mob/user)
 	if(milk_holder.reagents.total_volume >= milk_holder.volume)
-		to_chat(user, span_warning("[milk_holder] is full."))
+		to_chat(user, "<span class='warning'>[milk_holder] is full.</span>")
 		return
 	var/transfered = reagents.trans_to(milk_holder, rand(5,10))
 	if(transfered)
-		user.visible_message(span_notice("[user] milks [src] using \the [milk_holder]."), span_notice("You milk [src] using \the [milk_holder]."))
+		user.visible_message("<span class='notice'>[user] milks [src] using \the [milk_holder].</span>", "<span class='notice'>You milk [src] using \the [milk_holder].</span>")
 	else
-		to_chat(user, span_warning("The udder is dry. Wait a bit longer..."))
+		to_chat(user, "<span class='warning'>The udder is dry. Wait a bit longer...</span>")

@@ -48,7 +48,7 @@
 		return user_unbuckle_mob(user, user) //clicking the powerloader with its own clamp unbuckles the pilot.
 
 	else if(isscrewdriver(I))
-		to_chat(user, span_notice("You screw the panel [panel_open ? "closed" : "open"]."))
+		to_chat(user, "<span class='notice'>You screw the panel [panel_open ? "closed" : "open"].</span>")
 		playsound(loc, 'sound/items/screwdriver.ogg', 25, 1)
 		panel_open = !panel_open
 
@@ -80,8 +80,8 @@
 		playsound(loc, 'sound/mecha/powerloader_unbuckle.ogg', 25)
 		return ..()
 	buckled_mob.visible_message(
-		span_warning("[user] tries to move [buckled_mob] out of [src]."),
-		span_danger("[user] tries to move you out of [src]!")
+		"<span class='warning'>[user] tries to move [buckled_mob] out of [src].</span>",
+		"<span class='danger'>[user] tries to move you out of [src]!</span>"
 		)
 	var/olddir = dir
 	if(!do_after(user, 3 SECONDS, TRUE, src, BUSY_ICON_HOSTILE) || dir != olddir)
@@ -124,7 +124,7 @@
 		return FALSE
 	var/mob/living/carbon/human/buckling_human = buckling_mob
 	if(buckling_human.r_hand || buckling_human.l_hand)
-		to_chat(buckling_human, span_warning("You need your two hands to use [src]."))
+		to_chat(buckling_human, "<span class='warning'>You need your two hands to use [src].</span>")
 		return FALSE
 	return ..()
 
@@ -179,8 +179,8 @@
 		loaded = victim
 		playsound(src, 'sound/machines/hydraulics_2.ogg', 40, 1)
 		update_icon()
-		user.visible_message(span_notice("[user] grabs [loaded] with [src]."),
-			span_notice("You grab [loaded] with [src]."))
+		user.visible_message("<span class='notice'>[user] grabs [loaded] with [src].</span>",
+			"<span class='notice'>You grab [loaded] with [src].</span>")
 	return ..()
 
 
@@ -198,32 +198,32 @@
 			var/atom/movable/blocky_stuff = i
 			if(!blocky_stuff.density)
 				continue
-			to_chat(user, span_warning("You can't drop [loaded] here, [blocky_stuff] blocks the way."))
+			to_chat(user, "<span class='warning'>You can't drop [loaded] here, [blocky_stuff] blocks the way.</span>")
 			return
 		if(loaded.bound_height > 32)
 			var/turf/next_turf = get_step(T, NORTH)
 			if(next_turf.density)
-				to_chat(user, span_warning("You can't drop [loaded] here, something blocks the way."))
+				to_chat(user, "<span class='warning'>You can't drop [loaded] here, something blocks the way.</span>")
 				return
 			for(var/i in next_turf.contents)
 				var/atom/movable/blocky_stuff = i
 				if(!blocky_stuff.density)
 					continue
-				to_chat(user, span_warning("You can't drop [loaded] here, [blocky_stuff] blocks the way."))
+				to_chat(user, "<span class='warning'>You can't drop [loaded] here, [blocky_stuff] blocks the way.</span>")
 				return
 		if(loaded.bound_width > 32)
 			var/turf/next_turf = get_step(T, EAST)
 			if(next_turf.density)
-				to_chat(user, span_warning("You can't drop [loaded] here, something blocks the way."))
+				to_chat(user, "<span class='warning'>You can't drop [loaded] here, something blocks the way.</span>")
 				return
 			for(var/i in next_turf.contents)
 				var/atom/movable/blocky_stuff = i
 				if(!blocky_stuff.density)
 					continue
-				to_chat(user, span_warning("You can't drop [loaded] here, [blocky_stuff] blocks the way."))
+				to_chat(user, "<span class='warning'>You can't drop [loaded] here, [blocky_stuff] blocks the way.</span>")
 				return
-		user.visible_message(span_notice("[user] drops [loaded] on [T] with [src]."),
-		span_notice("You drop [loaded] on [T] with [src]."))
+		user.visible_message("<span class='notice'>[user] drops [loaded] on [T] with [src].</span>",
+		"<span class='notice'>You drop [loaded] on [T] with [src].</span>")
 		loaded.forceMove(T)
 		loaded = null
 		playsound(src, 'sound/machines/hydraulics_1.ogg', 40, 1)
@@ -232,10 +232,10 @@
 	else if(istype(target, /obj/structure/closet))
 		var/obj/structure/closet/C = target
 		if(C.mob_size_counter)
-			to_chat(user, span_warning("There is a creature inside!"))
+			to_chat(user, "<span class='warning'>There is a creature inside!</span>")
 			return
 		if(C.anchored)
-			to_chat(user, span_warning("It is bolted to the ground!"))
+			to_chat(user, "<span class='warning'>It is bolted to the ground!</span>")
 			return
 		if(!linked_powerloader)
 			CRASH("[src] called afterattack on [C] without a linked_powerloader")
@@ -243,44 +243,44 @@
 		loaded = C
 		playsound(src, 'sound/machines/hydraulics_2.ogg', 40, 1)
 		update_icon()
-		user.visible_message(span_notice("[user] grabs [loaded] with [src]."),
-		span_notice("You grab [loaded] with [src]."))
+		user.visible_message("<span class='notice'>[user] grabs [loaded] with [src].</span>",
+		"<span class='notice'>You grab [loaded] with [src].</span>")
 
 	else if(istype(target, /obj/structure/largecrate))
 		var/obj/structure/largecrate/LC = target
 		if(LC.anchored)
-			to_chat(user, span_warning("It is bolted to the ground!"))
+			to_chat(user, "<span class='warning'>It is bolted to the ground!</span>")
 			return
 		LC.forceMove(linked_powerloader)
 		loaded = LC
 		playsound(src, 'sound/machines/hydraulics_2.ogg', 40, 1)
 		update_icon()
-		user.visible_message(span_notice("[user] grabs [loaded] with [src]."),
-		span_notice("You grab [loaded] with [src]."))
+		user.visible_message("<span class='notice'>[user] grabs [loaded] with [src].</span>",
+		"<span class='notice'>You grab [loaded] with [src].</span>")
 
 	else if(istype(target, /obj/machinery/vending))
 		var/obj/machinery/vending/V = target
 		if(V.anchored)
-			to_chat(user, span_warning("It is bolted to the ground!"))
+			to_chat(user, "<span class='warning'>It is bolted to the ground!</span>")
 			return
 		V.forceMove(linked_powerloader)
 		loaded = V
 		playsound(src, 'sound/machines/hydraulics_2.ogg', 40, 1)
 		update_icon()
-		user.visible_message(span_notice("[user] grabs [loaded] with [src]."),
-		span_notice("You grab [loaded] with [src]."))
+		user.visible_message("<span class='notice'>[user] grabs [loaded] with [src].</span>",
+		"<span class='notice'>You grab [loaded] with [src].</span>")
 
 	else if(istype(target, /obj/structure/reagent_dispensers))
 		var/obj/structure/reagent_dispensers/RD = target
 		if(RD.anchored)
-			to_chat(user, span_warning("You can't lift this!"))
+			to_chat(user, "<span class='warning'>You can't lift this!</span>")
 			return
 		RD.forceMove(linked_powerloader)
 		loaded = RD
 		playsound(src, 'sound/machines/hydraulics_2.ogg', 40, 1)
 		update_icon()
-		user.visible_message(span_notice("[user] grabs [loaded] with [src]."),
-		span_notice("You grab [loaded] with [src]."))
+		user.visible_message("<span class='notice'>[user] grabs [loaded] with [src].</span>",
+		"<span class='notice'>You grab [loaded] with [src].</span>")
 
 	else if(istype(target, /obj/structure/ore_box))
 		var/obj/structure/ore_box/OB = target
@@ -288,11 +288,11 @@
 		loaded = OB
 		playsound(src, 'sound/machines/hydraulics_2.ogg', 40, TRUE)
 		update_icon()
-		user.visible_message(span_notice("[user] grabs [loaded] with [src]."),
-		span_notice("You grab [loaded] with [src]."))
+		user.visible_message("<span class='notice'>[user] grabs [loaded] with [src].</span>",
+		"<span class='notice'>You grab [loaded] with [src].</span>")
 
 	else if(istype(target, /obj))
-		to_chat(user, span_warning("The powerloader is not capable of carrying this!"))
+		to_chat(user, "<span class='warning'>The powerloader is not capable of carrying this!</span>")
 		return
 
 /obj/item/powerloader_clamp/update_icon()

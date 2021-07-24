@@ -180,12 +180,12 @@
 	. = ..()
 	if(iswirecutter(I) || istype(I, /obj/item/tool/surgery/scalpel))
 		if(clipped)
-			to_chat(user, span_notice("The [src] have already been clipped!"))
+			to_chat(user, "<span class='notice'>The [src] have already been clipped!</span>")
 			update_icon()
 			return
 
 		playsound(loc, 'sound/items/wirecutter.ogg', 25, 1)
-		user.visible_message(span_warning(" [user] cuts the fingertips off of the [src]."),span_warning(" You cut the fingertips off of the [src]."))
+		user.visible_message("<span class='warning'> [user] cuts the fingertips off of the [src].</span>","<span class='warning'> You cut the fingertips off of the [src].</span>")
 
 		clipped = TRUE
 		name = "mangled [name]"

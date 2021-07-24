@@ -85,7 +85,7 @@
 	if(limb_status & LIMB_DESTROYED)
 		return FALSE
 	if(!silent)
-		owner.visible_message(span_danger("\The [embedding] sticks in the wound!"))
+		owner.visible_message("<span class='danger'>\The [embedding] sticks in the wound!</span>")
 	implants += embedding
 	if(embedding.embedding.embedded_flags & EMBEDDED_CAN_BE_YANKED_OUT)
 		owner.verbs += /mob/living/proc/yank_out_object
@@ -123,11 +123,11 @@
 
 	switch(rand(1,3))
 		if(1)
-			. =span_warning("A spike of pain jolts your [display_name] as you bump [embedded] inside.")
+			. ="<span class='warning'>A spike of pain jolts your [display_name] as you bump [embedded] inside.</span>"
 		if(2)
-			. =span_warning("Your movement jostles [embedded] in your [display_name] painfully.")
+			. ="<span class='warning'>Your movement jostles [embedded] in your [display_name] painfully.</span>"
 		if(3)
-			. =span_warning("[embedded] in your [display_name] twists painfully as you move.")
+			. ="<span class='warning'>[embedded] in your [display_name] twists painfully as you move.</span>"
 	to_chat(owner, .)
 
 	take_damage_limb(embedded.embedding.embed_limb_damage)
@@ -139,8 +139,8 @@
 	if(prob(embedded.embedding.embedded_fall_chance))
 		take_damage_limb(embedded.embedding.embed_limb_damage * embedded.embedding.embedded_fall_dmg_multiplier)
 		UPDATEHEALTH(owner)
-		owner.visible_message(span_danger("[embedded] falls out of [owner]'s [display_name]!"),
-			span_userdanger("[embedded] falls out of your [display_name]!"))
+		owner.visible_message("<span class='danger'>[embedded] falls out of [owner]'s [display_name]!</span>",
+			"<span class='userdanger'>[embedded] falls out of your [display_name]!</span>")
 		embedded.unembed_ourself()
 
 
@@ -186,21 +186,21 @@
 	var/obj/item/selection = tgui_input_list(user, "What do you want to yank out?", "Embedded objects", valid_objects)
 
 	if(user.get_active_held_item())
-		to_chat(user, span_warning("You need an empty hand for this!"))
+		to_chat(user, "<span class='warning'>You need an empty hand for this!</span>")
 		return FALSE
 
 	if(self)
-		to_chat(user, span_warning("You attempt to get a good grip on [selection] in your body."))
+		to_chat(user, "<span class='warning'>You attempt to get a good grip on [selection] in your body.</span>")
 	else
-		to_chat(user, span_warning("You attempt to get a good grip on [selection] in [src]'s body."))
+		to_chat(user, "<span class='warning'>You attempt to get a good grip on [selection] in [src]'s body.</span>")
 
 	if(!do_after(user, selection.embedding.embedded_unsafe_removal_time, TRUE, src, BUSY_ICON_GENERIC) || QDELETED(selection) || !(selection in embedded_objects))
 		return
 
 	if(self)
-		visible_message(span_warning("<b>[user] rips [selection] out of [user.p_their()] body.</b>"),span_warning("<b>You rip [selection] out of your body.</b>"), null, 5)
+		visible_message("<span class='warning'><b>[user] rips [selection] out of [user.p_their()] body.</b></span>","<span class='warning'><b>You rip [selection] out of your body.</b></span>", null, 5)
 	else
-		visible_message(span_warning("<b>[user] rips [selection] out of [src]'s body.</b>"),span_warning("<b>[user] rips [selection] out of your body.</b>"), null, 5)
+		visible_message("<span class='warning'><b>[user] rips [selection] out of [src]'s body.</b></span>","<span class='warning'><b>[user] rips [selection] out of your body.</b></span>", null, 5)
 
 	handle_yank_out_damage()
 

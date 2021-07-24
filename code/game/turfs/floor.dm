@@ -403,22 +403,22 @@ GLOBAL_LIST_INIT(wood_icons, list("wood", "wood-broken"))
 		if(is_light_floor())
 			var/obj/item/stack/tile/light/T = floor_tile
 			if(!T.state)
-				to_chat(user, span_notice("The lightbulb seems fine, no need to replace it."))
+				to_chat(user, "<span class='notice'>The lightbulb seems fine, no need to replace it.</span>")
 				return
 
 			user.drop_held_item(I)
 			qdel(I)
 			T.state = I //Fixing it by bashing it with a light bulb, fun eh?
 			update_icon()
-			to_chat(user, span_notice("You replace the light bulb."))
+			to_chat(user, "<span class='notice'>You replace the light bulb.</span>")
 
 	else if(iscrowbar(I) && !is_plating() && floor_tile)
 		if(broken || burnt)
-			to_chat(user, span_warning("You remove the broken plating."))
+			to_chat(user, "<span class='warning'>You remove the broken plating.</span>")
 		else if(is_wood_floor())
-			to_chat(user, span_warning("You forcefully pry off the planks, destroying them in the process."))
+			to_chat(user, "<span class='warning'>You forcefully pry off the planks, destroying them in the process.</span>")
 		else
-			to_chat(user, span_warning("You remove the [floor_tile]."))
+			to_chat(user, "<span class='warning'>You remove the [floor_tile].</span>")
 			new floor_tile.type(src)
 
 		make_plating()
@@ -429,7 +429,7 @@ GLOBAL_LIST_INIT(wood_icons, list("wood", "wood-broken"))
 			return
 
 		if(is_wood_floor())
-			to_chat(user, span_warning("You unscrew the planks."))
+			to_chat(user, "<span class='warning'>You unscrew the planks.</span>")
 			new floor_tile.type(src)
 
 		make_plating()
@@ -439,14 +439,14 @@ GLOBAL_LIST_INIT(wood_icons, list("wood", "wood-broken"))
 	else if(istype(I, /obj/item/stack/rods))
 		var/obj/item/stack/rods/R = I
 		if(!is_plating())
-			to_chat(user, span_warning("You must remove the plating first."))
+			to_chat(user, "<span class='warning'>You must remove the plating first.</span>")
 			return
 
 		if(R.get_amount() < 2)
-			to_chat(user, span_warning("You need more rods."))
+			to_chat(user, "<span class='warning'>You need more rods.</span>")
 			return
 
-		to_chat(user, span_notice("Reinforcing the floor."))
+		to_chat(user, "<span class='notice'>Reinforcing the floor.</span>")
 		if(!do_after(user, 30, TRUE, src, BUSY_ICON_BUILD) || !is_plating())
 			return
 
@@ -461,7 +461,7 @@ GLOBAL_LIST_INIT(wood_icons, list("wood", "wood-broken"))
 			return
 
 		if(broken || burnt)
-			to_chat(user, span_notice("This section is too damaged to support a tile. Use a welder to fix the damage."))
+			to_chat(user, "<span class='notice'>This section is too damaged to support a tile. Use a welder to fix the damage.</span>")
 			return
 
 		var/obj/item/stack/tile/T = I
@@ -492,12 +492,12 @@ GLOBAL_LIST_INIT(wood_icons, list("wood", "wood-broken"))
 
 	else if(istype(I, /obj/item/tool/shovel))
 		if(!is_grass_floor())
-			to_chat(user, span_warning("You cannot shovel this."))
+			to_chat(user, "<span class='warning'>You cannot shovel this.</span>")
 			return
 
 		new /obj/item/ore/glass(src)
 		new /obj/item/ore/glass(src) //Make some sand if you shovel grass
-		to_chat(user, span_notice("You shovel the grass."))
+		to_chat(user, "<span class='notice'>You shovel the grass.</span>")
 		make_plating()
 
 	else if(iswelder(I))
@@ -509,10 +509,10 @@ GLOBAL_LIST_INIT(wood_icons, list("wood", "wood-broken"))
 			return
 
 		if(!welder.remove_fuel(0, user))
-			to_chat(user, span_warning("You need more welding fuel to complete this task."))
+			to_chat(user, "<span class='warning'>You need more welding fuel to complete this task.</span>")
 			return
 
-		to_chat(user, span_warning("You fix some dents on the broken plating."))
+		to_chat(user, "<span class='warning'>You fix some dents on the broken plating.</span>")
 		playsound(src, 'sound/items/welder.ogg', 25, 1)
 		icon_state = "plating"
 		burnt = FALSE

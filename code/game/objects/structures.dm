@@ -74,7 +74,7 @@
 
 		//dense obstacles (border or not) on the structure's tile
 		if(O.density && (!(O.flags_atom & ON_BORDER) || O.dir & get_dir(src,user)))
-			to_chat(user, span_warning("There's \a [O.name] in the way."))
+			to_chat(user, "<span class='warning'>There's \a [O.name] in the way.</span>")
 			return FALSE
 
 	for(var/obj/O in U.contents)
@@ -84,27 +84,27 @@
 				continue
 		//dense border obstacles on our tile
 		if(O.density && (O.flags_atom & ON_BORDER) && O.dir & get_dir(user, src))
-			to_chat(user, span_warning("There's \a [O.name] in the way."))
+			to_chat(user, "<span class='warning'>There's \a [O.name] in the way.</span>")
 			return FALSE
 
 	if((flags_atom & ON_BORDER))
 		if(user.loc != loc && user.loc != get_step(T, dir))
-			to_chat(user, span_warning("You need to be up against [src] to leap over."))
+			to_chat(user, "<span class='warning'>You need to be up against [src] to leap over.</span>")
 			return
 		if(user.loc == loc)
 			var/turf/target = get_step(T, dir)
 			if(target.density) //Turf is dense, not gonna work
-				to_chat(user, span_warning("You cannot leap this way."))
+				to_chat(user, "<span class='warning'>You cannot leap this way.</span>")
 				return
 			for(var/atom/movable/A in target)
 				if(A && A.density && !(A.flags_atom & ON_BORDER))
 					if(istype(A, /obj/structure))
 						var/obj/structure/S = A
 						if(!S.climbable) //Transfer onto climbable surface
-							to_chat(user, span_warning("You cannot leap this way."))
+							to_chat(user, "<span class='warning'>You cannot leap this way.</span>")
 							return
 					else
-						to_chat(user, span_warning("You cannot leap this way."))
+						to_chat(user, "<span class='warning'>You cannot leap this way.</span>")
 						return
 	return TRUE
 
@@ -112,7 +112,7 @@
 	if(!can_climb(user))
 		return
 
-	user.visible_message(span_warning("[user] starts [flags_atom & ON_BORDER ? "leaping over":"climbing onto"] \the [src]!"))
+	user.visible_message("<span class='warning'>[user] starts [flags_atom & ON_BORDER ? "leaping over":"climbing onto"] \the [src]!</span>")
 
 	if(!do_after(user, climb_delay, FALSE, src, BUSY_ICON_GENERIC, extra_checks = CALLBACK(src, .proc/can_climb, user)))
 		return
@@ -124,30 +124,30 @@
 		user.forceMove(get_turf(src))
 
 		if(get_turf(user) == get_turf(src))
-			user.visible_message(span_warning("[user] climbs onto \the [src]!"))
+			user.visible_message("<span class='warning'>[user] climbs onto \the [src]!</span>")
 	else //If border structure, assume complex behavior
 		var/turf/target = get_step(get_turf(src), dir)
 		if(user.loc == target)
 			user.forceMove(get_turf(src))
-			user.visible_message(span_warning("[user] leaps over \the [src]!"))
+			user.visible_message("<span class='warning'>[user] leaps over \the [src]!</span>")
 		else
 			if(target.density) //Turf is dense, not gonna work
-				to_chat(user, span_warning("You cannot leap this way."))
+				to_chat(user, "<span class='warning'>You cannot leap this way.</span>")
 				return
 			for(var/atom/movable/A in target)
 				if(A && A.density && !(A.flags_atom & ON_BORDER))
 					if(istype(A, /obj/structure))
 						var/obj/structure/S = A
 						if(!S.climbable) //Transfer onto climbable surface
-							to_chat(user, span_warning("You cannot leap this way."))
+							to_chat(user, "<span class='warning'>You cannot leap this way.</span>")
 							return
 					else
-						to_chat(user, span_warning("You cannot leap this way."))
+						to_chat(user, "<span class='warning'>You cannot leap this way.</span>")
 						return
 			user.forceMove(get_turf(target)) //One more move, we "leap" over the border structure
 
 			if(get_turf(user) == get_turf(target))
-				user.visible_message(span_warning("[user] leaps over \the [src]!"))
+				user.visible_message("<span class='warning'>[user] leaps over \the [src]!</span>")
 
 /obj/structure/proc/structure_shaken()
 
@@ -157,13 +157,13 @@
 			return //No spamming this on people.
 
 		M.Paralyze(10 SECONDS)
-		to_chat(M, span_warning("You topple as \the [src] moves under you!"))
+		to_chat(M, "<span class='warning'>You topple as \the [src] moves under you!</span>")
 
 		if(prob(25))
 
 			var/damage = rand(15,30)
 			if(!ishuman(M))
-				to_chat(M, span_danger("You land heavily!"))
+				to_chat(M, "<span class='danger'>You land heavily!</span>")
 				M.apply_damage(damage, BRUTE)
 				UPDATEHEALTH(M)
 				return
@@ -184,10 +184,10 @@
 					affecting = H.get_limb("head")
 
 			if(affecting)
-				to_chat(M, span_danger("You land heavily on your [affecting.display_name]!"))
+				to_chat(M, "<span class='danger'>You land heavily on your [affecting.display_name]!</span>")
 				affecting.take_damage_limb(damage)
 			else
-				to_chat(H, span_danger("You land heavily!"))
+				to_chat(H, "<span class='danger'>You land heavily!</span>")
 				H.apply_damage(damage, BRUTE)
 
 			UPDATEHEALTH(H)

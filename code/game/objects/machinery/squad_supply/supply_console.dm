@@ -94,23 +94,23 @@
 				return
 
 			if(!supply_beacon)
-				to_chat(usr, "[icon2html(src, usr)] [span_warning("There was an issue with that beacon. Check it's still active.")]")
+				to_chat(usr, "[icon2html(src, usr)] <span class='warning'>There was an issue with that beacon. Check it's still active.</span>")
 				return
 
 			if(!length(supplies))
-				to_chat(usr, "[icon2html(src, usr)] [span_warning("There wasn't any supplies found on the squads supply pad. Double check the pad.")]")
+				to_chat(usr, "[icon2html(src, usr)] <span class='warning'>There wasn't any supplies found on the squads supply pad. Double check the pad.</span>")
 				return
 
 			var/area/A = get_area(supply_beacon.drop_location)
 			if(A && A.ceiling >= CEILING_DEEP_UNDERGROUND)
-				to_chat(usr, "[icon2html(src, usr)] [span_warning("The [supply_beacon.name]'s signal is too weak. It is probably deep underground.")]")
+				to_chat(usr, "[icon2html(src, usr)] <span class='warning'>The [supply_beacon.name]'s signal is too weak. It is probably deep underground.</span>")
 				return
 
 			if(!istype(supply_beacon.drop_location))
-				to_chat(usr, "[icon2html(src, usr)] [span_warning("The [supply_beacon.name] was not detected on the ground.")]")
+				to_chat(usr, "[icon2html(src, usr)] <span class='warning'>The [supply_beacon.name] was not detected on the ground.</span>")
 				return
 			if(isspaceturf(supply_beacon.drop_location) || supply_beacon.drop_location.density)
-				to_chat(usr, "[icon2html(src, usr)] [span_warning("The [supply_beacon.name]'s landing zone appears to be obstructed or out of bounds.")]")
+				to_chat(usr, "[icon2html(src, usr)] <span class='warning'>The [supply_beacon.name]'s landing zone appears to be obstructed or out of bounds.</span>")
 				return
 
 			COOLDOWN_START(src, next_fire, launch_cooldown)
@@ -142,18 +142,18 @@
 	x_offset = clamp(round(x_offset), -5, 5)
 	y_offset = clamp(round(y_offset), -5, 5)
 
-	supply_pad.visible_message(span_boldnotice("The supply drop is now loading into the launch tube! Stand by!"))
-	supply_pad.visible_message(span_warning("\The [supply_pad] whirrs as it beings to load the supply drop into a launch tube. Stand clear!"))
+	supply_pad.visible_message("<span class='boldnotice'>The supply drop is now loading into the launch tube! Stand by!</span>")
+	supply_pad.visible_message("<span class='warning'>\The [supply_pad] whirrs as it beings to load the supply drop into a launch tube. Stand clear!</span>")
 	for(var/obj/C in supplies)
 		C.anchored = TRUE //to avoid accidental pushes
-	playsound(supply_pad.loc, 'sound/effects/bamf.ogg', 50, TRUE)
-	visible_message("[icon2html(supply_beacon, viewers(supply_beacon))] [span_boldnotice("The [supply_pad.name] begins to beep!")]")
+	playsound(supply_pad.loc, 'sound/effects/bamf.ogg', 50, TRUE) 
+	visible_message("[icon2html(supply_beacon, viewers(supply_beacon))] <span class='boldnotice'>The [supply_pad.name] begins to beep!</span>")
 	addtimer(CALLBACK(src, .proc/fire_supplydrop, supplies, x_offset, y_offset), 10 SECONDS)
 
 ///Make the supplies teleport
 /obj/machinery/computer/supplydrop_console/proc/fire_supplydrop(list/supplies, x_offset, y_offset)
 	if(QDELETED(supply_beacon))
-		visible_message("[icon2html(supply_pad, usr)] [span_warning("Launch aborted! Supply beacon signal lost.")]")
+		visible_message("[icon2html(supply_pad, usr)] <span class='warning'>Launch aborted! Supply beacon signal lost.</span>")
 		return
 
 	for(var/obj/C in supplies)
@@ -165,10 +165,10 @@
 			C.anchored = FALSE
 
 	if(!supplies.len)
-		visible_message("[icon2html(supply_pad, usr)] [span_warning("Launch aborted! No deployable object detected on the drop pad.")]")
+		visible_message("[icon2html(supply_pad, usr)] <span class='warning'>Launch aborted! No deployable object detected on the drop pad.</span>")
 		return
 
-	supply_beacon.drop_location.visible_message(span_boldnotice("A supply drop falls from the sky!"))
+	supply_beacon.drop_location.visible_message("<span class='boldnotice'>A supply drop falls from the sky!</span>")
 	playsound(supply_beacon.drop_location,'sound/effects/bamf.ogg', 50, TRUE)  //Ehhhhhhhhh.
 	playsound(supply_pad.loc,'sound/effects/bamf.ogg', 50, TRUE)  //Ehh
 	for(var/obj/C in supplies)
@@ -176,4 +176,4 @@
 		var/turf/TC = locate(supply_beacon.drop_location.x + x_offset, supply_beacon.drop_location.y + y_offset, supply_beacon.drop_location.z)
 		C.forceMove(TC)
 		TC.ceiling_debris_check(2)
-	supply_pad.visible_message("[icon2html(supply_pad, viewers(src))] [span_boldnotice("Supply drop launched! Another launch will be available in one minute.")]")
+	supply_pad.visible_message("[icon2html(supply_pad, viewers(src))] <span class='boldnotice'>Supply drop launched! Another launch will be available in one minute.</span>")

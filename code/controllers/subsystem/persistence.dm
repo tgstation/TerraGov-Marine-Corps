@@ -94,9 +94,9 @@ SUBSYSTEM_DEF(persistence)
 		var/season_name_first_letter = uppertext(copytext(season_name, 1, 2))
 		var/season_name_remainder = copytext(season_name, 2, length(season_name) + 1)
 		season_name = season_name_first_letter + season_name_remainder
-		message += span_seasons_announce("<b>[season_name]</b> - season [season_progress[season_entry][CURRENT_SEASON_NUMBER]]<br>")
-		message += span_season_additional_info("<b>Title:</b> [season_progress[season_entry][CURRENT_SEASON_NAME]]<br>")
-		message += span_season_additional_info("<b>Description:</b> [season_progress[season_entry][CURRENT_SEASON_DESC]]<br>")
+		message += "<span class='seasons_announce'><b>[season_name]</b> - season [season_progress[season_entry][CURRENT_SEASON_NUMBER]]<br></span>"
+		message += "<span class='season_additional_info'><b>Title:</b> [season_progress[season_entry][CURRENT_SEASON_NAME]]<br></span>"
+		message += "<span class='season_additional_info'><b>Description:</b> [season_progress[season_entry][CURRENT_SEASON_DESC]]<br></span>"
 
 	return message
 

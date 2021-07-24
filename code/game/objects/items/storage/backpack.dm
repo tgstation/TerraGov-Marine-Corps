@@ -54,9 +54,9 @@
 	if (prob(reliability))
 		return TRUE //No failure
 	if (prob(reliability))
-		to_chat(user, span_warning("The Bluespace portal resists your attempt to add another item."))
+		to_chat(user, "<span class='warning'>The Bluespace portal resists your attempt to add another item.</span>")
 	else
-		to_chat(user, span_warning("The Bluespace generator malfunctions!"))
+		to_chat(user, "<span class='warning'>The Bluespace generator malfunctions!</span>")
 		for (var/obj/O in src.contents) //it broke, delete what was in it
 			qdel(O)
 		crit_fail = 1
@@ -64,10 +64,10 @@
 
 /obj/item/storage/backpack/holding/attackby(obj/item/I, mob/user, params)
 	if(crit_fail)
-		to_chat(user, span_warning("The Bluespace generator isn't working."))
+		to_chat(user, "<span class='warning'>The Bluespace generator isn't working.</span>")
 
 	else if(istype(I, /obj/item/storage/backpack/holding) && !I.crit_fail)
-		to_chat(user, span_warning("The Bluespace interfaces of the two devices conflict and malfunction."))
+		to_chat(user, "<span class='warning'>The Bluespace interfaces of the two devices conflict and malfunction.</span>")
 		qdel(I)
 
 	else
@@ -277,15 +277,15 @@
 		warning = "<span class='notice'>[src]'s defibrillator recharge unit cheerfully pings as it successfully recharges the defibrillator. "
 	cell.charge -= min(cell.charge, amount)
 	if(mention_charge)
-		to_chat(user, span_notice("[warning]<b>Charge Remaining: [cell.charge]/[cell.maxcharge]</b>"))
+		to_chat(user, "<span class='notice'>[warning]<b>Charge Remaining: [cell.charge]/[cell.maxcharge]</b></span>")
 	update_icon()
 
 /obj/item/storage/backpack/marine/corpsman/examine(mob/user)
 	. = ..()
 	if(cell)
-		to_chat(user, span_notice("Its defibrillator recharge unit has a loaded power cell and its readout counter is active. <b>Charge Remaining: [cell.charge]/[cell.maxcharge]</b>"))
+		to_chat(user, "<span class='notice'>Its defibrillator recharge unit has a loaded power cell and its readout counter is active. <b>Charge Remaining: [cell.charge]/[cell.maxcharge]</b></span>")
 	else
-		to_chat(user, span_warning("Its defibrillator recharge unit does not have a power cell installed!"))
+		to_chat(user, "<span class='warning'>Its defibrillator recharge unit does not have a power cell installed!</span>")
 
 /obj/item/storage/backpack/marine/corpsman/update_icon_state()
 	icon_state = icon_skin
@@ -311,9 +311,9 @@
 				use_charge(user, charge_difference) //consume an appropriate amount of charge
 				D.dcell.charge += min(charge_difference, cell.charge) //Recharge the defibrillator battery with the lower of the difference between its present and max cap, or the remaining charge
 			else
-				to_chat(user, span_warning("This defibrillator is already at maximum charge!"))
+				to_chat(user, "<span class='warning'>This defibrillator is already at maximum charge!</span>")
 		else
-			to_chat(user, span_warning("[src]'s defibrillator recharge unit does not have a power cell installed!"))
+			to_chat(user, "<span class='warning'>[src]'s defibrillator recharge unit does not have a power cell installed!</span>")
 	else if(istype(W, /obj/item/cell))
 		if(user.drop_held_item())
 			W.loc = src
@@ -324,7 +324,7 @@
 				cell.update_icon()
 				user.put_in_hands(cell)
 			cell = W
-			to_chat(user, span_notice("[replace_install] <b>Charge Remaining: [cell.charge]/[cell.maxcharge]</b>"))
+			to_chat(user, "<span class='notice'>[replace_install] <b>Charge Remaining: [cell.charge]/[cell.maxcharge]</b></span>")
 			playsound(user, 'sound/weapons/guns/interact/rifle_reload.ogg', 25, 1, 5)
 			update_icon()
 	return ..()
@@ -455,7 +455,7 @@
 		return
 
 	if(SEND_SIGNAL(M, COMSIG_MOB_ENABLE_STEALTH) & STEALTH_ALREADY_ACTIVE)
-		to_chat(M, span_warning("You are already cloaked!"))
+		to_chat(M, "<span class='warning'>You are already cloaked!</span>")
 		return FALSE
 
 	if (camo_cooldown_timer)
@@ -467,7 +467,7 @@
 	wearer = M
 
 	RegisterSignal(wearer, COMSIG_MOB_ENABLE_STEALTH, .proc/on_other_activate)
-	M.visible_message("[M] fades into thin air!", span_notice("You activate your cloak's camouflage."))
+	M.visible_message("[M] fades into thin air!", "<span class='notice'>You activate your cloak's camouflage.</span>")
 	playsound(M.loc,'sound/effects/cloak_scout_on.ogg', 15, 1)
 
 	stealth_delay = world.time - SCOUT_CLOAK_STEALTH_DELAY
@@ -527,7 +527,7 @@
 
 	camo_active = FALSE
 
-	user.visible_message(span_warning("[user.name] shimmers into existence!"), span_danger("Your cloak's camouflage has deactivated!"))
+	user.visible_message("<span class='warning'>[user.name] shimmers into existence!</span>", "<span class='danger'>Your cloak's camouflage has deactivated!</span>")
 	playsound(user.loc,'sound/effects/cloak_scout_off.ogg', 15, 1)
 	user.alpha = initial(user.alpha)
 
@@ -566,7 +566,7 @@
 	camo_energy = initial(camo_energy)
 	playsound(loc,'sound/effects/EMPulse.ogg', 25, 0, 1)
 	if(wearer)
-		to_chat(wearer, span_danger("Your thermal cloak has recalibrated and is ready to cloak again."))
+		to_chat(wearer, "<span class='danger'>Your thermal cloak has recalibrated and is ready to cloak again.</span>")
 
 /obj/item/storage/backpack/marine/satchel/scout_cloak/examine(mob/user)
 	. = ..()
@@ -581,7 +581,7 @@
 	if(camo_active)
 		details +=("It's currently active.</br>")
 
-	to_chat(user, span_warning("[details.Join(" ")]"))
+	to_chat(user, "<span class='warning'>[details.Join(" ")]</span>")
 
 /obj/item/storage/backpack/marine/satchel/scout_cloak/item_action_slot_check(mob/user, slot)
 	if(!ishuman(user))
@@ -599,19 +599,19 @@
 	camo_energy = clamp(camo_energy - drain,0,initial(camo_energy))
 
 	if(!camo_energy) //Turn off the camo if we run out of energy.
-		to_chat(user, span_danger("Your thermal cloak lacks sufficient energy to remain active."))
+		to_chat(user, "<span class='danger'>Your thermal cloak lacks sufficient energy to remain active.</span>")
 		camo_off(user)
 
 /obj/item/storage/backpack/marine/satchel/scout_cloak/proc/damage_taken(datum/source, damage)
 	SIGNAL_HANDLER
 	var/mob/living/carbon/human/wearer = source
 	if(damage >= 15)
-		to_chat(wearer, span_danger("Your cloak shimmers from the damage!"))
+		to_chat(wearer, "<span class='danger'>Your cloak shimmers from the damage!</span>")
 		apply_shimmer()
 
 /obj/item/storage/backpack/marine/satchel/scout_cloak/proc/action_taken() //This is used by multiple signals passing different parameters.
 	SIGNAL_HANDLER
-	to_chat(wearer, span_danger("Your cloak shimmers from your actions!"))
+	to_chat(wearer, "<span class='danger'>Your cloak shimmers from your actions!</span>")
 	apply_shimmer()
 
 /obj/item/storage/backpack/marine/satchel/scout_cloak/proc/apply_shimmer()
@@ -686,13 +686,13 @@
 	if(iswelder(I))
 		var/obj/item/tool/weldingtool/T = I
 		if(T.welding)
-			to_chat(user, span_warning("That was close! However you realized you had the welder on and prevented disaster."))
+			to_chat(user, "<span class='warning'>That was close! However you realized you had the welder on and prevented disaster.</span>")
 			return
 		if(T.get_fuel() == T.max_fuel || !reagents.total_volume)
 			return ..()
 
 		reagents.trans_to(I, T.max_fuel)
-		to_chat(user, span_notice("Welder refilled!"))
+		to_chat(user, "<span class='notice'>Welder refilled!</span>")
 		playsound(loc, 'sound/effects/refill.ogg', 25, 1, 3)
 
 	else if(istype(I, /obj/item/ammo_magazine/flamer_tank))
@@ -706,7 +706,7 @@
 		FT.current_rounds += fuel_transfer_amount
 		playsound(loc, 'sound/effects/refill.ogg', 25, 1, 3)
 		FT.caliber = CALIBER_FUEL
-		to_chat(user, span_notice("You refill [FT] with [lowertext(FT.caliber)]."))
+		to_chat(user, "<span class='notice'>You refill [FT] with [lowertext(FT.caliber)].</span>")
 		FT.update_icon()
 
 	else if(istype(I, /obj/item/attachable/attached_gun/flamer))
@@ -718,7 +718,7 @@
 		reagents.remove_reagent(/datum/reagent/fuel, fuel_transfer_amount)
 		FT.current_rounds += fuel_transfer_amount
 		playsound(loc, 'sound/effects/refill.ogg', 25, TRUE, 3)
-		to_chat(user, span_notice("You refill [FT] with fuel."))
+		to_chat(user, "<span class='notice'>You refill [FT] with fuel.</span>")
 		FT.update_icon()
 
 	else
@@ -729,11 +729,11 @@
 		return
 	if (istype(O, /obj/structure/reagent_dispensers/fueltank) && src.reagents.total_volume < max_fuel)
 		O.reagents.trans_to(src, max_fuel)
-		to_chat(user, span_notice("You crack the cap off the top of the pack and fill it back up again from the tank."))
+		to_chat(user, "<span class='notice'>You crack the cap off the top of the pack and fill it back up again from the tank.</span>")
 		playsound(src.loc, 'sound/effects/refill.ogg', 25, 1, 3)
 		return
 	else if (istype(O, /obj/structure/reagent_dispensers/fueltank) && src.reagents.total_volume == max_fuel)
-		to_chat(user, span_notice("The pack is already full!"))
+		to_chat(user, "<span class='notice'>The pack is already full!</span>")
 		return
 	..()
 

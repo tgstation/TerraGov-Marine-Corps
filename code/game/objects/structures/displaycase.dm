@@ -33,12 +33,12 @@
 		return
 
 	if(destroyed && occupied)
-		to_chat(user, span_notice("You deactivate the hover field built into the case."))
+		to_chat(user, "<span class='notice'>You deactivate the hover field built into the case.</span>")
 		occupied = FALSE
 		update_icon()
 		return
 
-	visible_message(span_warning("[user] kicks the display case."), span_notice("You kick the display case."))
+	visible_message("<span class='warning'>[user] kicks the display case.</span>", "<span class='notice'>You kick the display case.</span>")
 	take_damage(2)
 
 //Quick destroyed case.

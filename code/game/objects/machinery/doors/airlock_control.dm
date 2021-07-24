@@ -245,7 +245,7 @@ obj/machinery/access_button/attack_hand(mob/living/user)
 	if(.)
 		return
 	if(!allowed(user))
-		to_chat(user, span_warning("Access Denied"))
+		to_chat(user, "<span class='warning'>Access Denied</span>")
 
 	else if(radio_connection)
 		var/datum/signal/signal = new

@@ -16,23 +16,23 @@
 	if(!on)
 		return
 	if(!label)
-		to_chat(user, span_notice("No label set."))
+		to_chat(user, "<span class='notice'>No label set.</span>")
 		return
 	if(length(A.name) + length(label) > 64)
-		to_chat(user, span_notice("Label too big."))
+		to_chat(user, "<span class='notice'>Label too big.</span>")
 		return
 	if(!labels_left)
-		to_chat(user, span_notice("You've run out of labelling paper, feed some paper into it."))
+		to_chat(user, "<span class='notice'>You've run out of labelling paper, feed some paper into it.</span>")
 		return
 	if(isturf(A) || ismob(A))
-		to_chat(user, span_notice("The label won't stick to that."))
+		to_chat(user, "<span class='notice'>The label won't stick to that.</span>")
 		return
 	if(A.name == "[initial(A.name)] ([label])")
-		to_chat(user, span_notice("It already has the same label."))
+		to_chat(user, "<span class='notice'>It already has the same label.</span>")
 		return
 
-	user.visible_message(span_notice("[user] labels [A] as \"[label]\"."), \
-						span_notice("You label [A] as \"[label]\"."))
+	user.visible_message("<span class='notice'>[user] labels [A] as \"[label]\".</span>", \
+						"<span class='notice'>You label [A] as \"[label]\".</span>")
 	A.name = "[initial(A.name)] ([label])"
 	labels_left--
 
@@ -41,21 +41,21 @@
 	on = !on
 	icon_state = "labeler[on]"
 	if(on)
-		to_chat(user, span_notice("You turn on \the [src]."))
+		to_chat(user, "<span class='notice'>You turn on \the [src].</span>")
 		var/str = reject_bad_text(stripped_input(user, "Label text?", "Set label","", MAX_NAME_LEN))
 		if(!str)
-			to_chat(user, span_notice("Invalid label."))
+			to_chat(user, "<span class='notice'>Invalid label.</span>")
 			return
 		label = str
-		to_chat(user, span_notice("You set the label text to '[str]'."))
+		to_chat(user, "<span class='notice'>You set the label text to '[str]'.</span>")
 	else
-		to_chat(user, span_notice("You turn off \the [src]."))
+		to_chat(user, "<span class='notice'>You turn off \the [src].</span>")
 
 
 /obj/item/tool/hand_labeler/attackby(obj/item/I, mob/user, params)
 	. = ..()
 	if(istype(I, /obj/item/paper))
-		to_chat(user, span_notice("You insert [I] into [src]."))
+		to_chat(user, "<span class='notice'>You insert [I] into [src].</span>")
 		qdel(I)
 		labels_left = min(labels_left + 5, initial(labels_left))
 
@@ -102,8 +102,8 @@
 /obj/item/tool/pen/attack(mob/M as mob, mob/user as mob)
 	if(!ismob(M))
 		return
-	to_chat(user, span_warning("You stab [M] with the pen."))
-//	to_chat(M, span_warning("You feel a tiny prick!"))
+	to_chat(user, "<span class='warning'>You stab [M] with the pen.</span>")
+//	to_chat(M, "<span class='warning'>You feel a tiny prick!</span>")
 	log_combat(user, M, "stabbed", src)
 
 

@@ -19,7 +19,7 @@
 	 * 	)
 	 *
 	 * Any inserted objects will decrement the allowed count of every listed type which matches or is a parent of that object.
-	 * With entries for both /obj/A and /obj/A/B, inserting a B requires non-zero allowed count remaining for, and reduces, both.
+	 * With entries for both /obj/A and /obj/A/B, inserting a B requires non-zero allowed count remaining for, and reduces, both. 
 	 */
 	var/list/storage_type_limits
 	var/list/click_border_start = list() //In slotless storage, stores areas where clicking will refer to the associated item
@@ -352,23 +352,23 @@
 		return FALSE //Means the item is already in the storage item
 	if(storage_slots != null && contents.len >= storage_slots)
 		if(warning)
-			to_chat(usr, span_notice("[src] is full, make some space."))
+			to_chat(usr, "<span class='notice'>[src] is full, make some space.</span>")
 		return FALSE //Storage item is full
 
 	if(length(can_hold))
 		if(!is_type_in_typecache(W, can_hold))
 			if(warning)
-				to_chat(usr, span_notice("[src] cannot hold [W]."))
+				to_chat(usr, "<span class='notice'>[src] cannot hold [W].</span>")
 			return FALSE
 
 	if(is_type_in_typecache(W, cant_hold)) //Check for specific items which this container can't hold.
 		if(warning)
-			to_chat(usr, span_notice("[src] cannot hold [W]."))
+			to_chat(usr, "<span class='notice'>[src] cannot hold [W].</span>")
 		return FALSE
 
 	if(!is_type_in_typecache(W, bypass_w_limit) && W.w_class > max_w_class)
 		if(warning)
-			to_chat(usr, span_notice("[W] is too long for this [src]."))
+			to_chat(usr, "<span class='notice'>[W] is too long for this [src].</span>")
 		return FALSE
 
 	var/sum_storage_cost = W.w_class
@@ -377,13 +377,13 @@
 
 	if(sum_storage_cost > max_storage_space)
 		if(warning)
-			to_chat(usr, span_notice("[src] is full, make some space."))
+			to_chat(usr, "<span class='notice'>[src] is full, make some space.</span>")
 		return FALSE
 
 	if(W.w_class >= w_class && istype(W, /obj/item/storage) && !is_type_in_typecache(W.type, bypass_w_limit))
 		if(!istype(src, /obj/item/storage/backpack/holding))	//bohs should be able to hold backpacks again. The override for putting a boh in a boh is in backpack.dm.
 			if(warning)
-				to_chat(usr, span_notice("[src] cannot hold [W] as it's a storage item of the same size."))
+				to_chat(usr, "<span class='notice'>[src] cannot hold [W] as it's a storage item of the same size.</span>")
 			return FALSE //To prevent the stacking of same sized storage items.
 
 	for(var/limited_type in storage_type_limits)
@@ -391,7 +391,7 @@
 			continue
 		if(storage_type_limits[limited_type] == 0)
 			if(warning)
-				to_chat(usr, span_warning("[src] can't fit any more of those.") )
+				to_chat(usr, "<span class='warning'>[src] can't fit any more of those.</span>")
 			return FALSE
 
 	if(istype(W, /obj/item/tool/hand_labeler))
@@ -413,7 +413,7 @@
 		return TRUE
 
 	if(LAZYLEN(user.do_actions))
-		to_chat(user, span_warning("You are busy doing something else!"))
+		to_chat(user, "<span class='warning'>You are busy doing something else!</span>")
 		return FALSE
 
 	if(!alert_user)
@@ -421,7 +421,7 @@
 
 	to_chat(user, "<span class='notice'>You begin to [taking_out ? "take" : "put"] [accessed] [taking_out ? "out of" : "into"] [src]")
 	if(!do_after(user, access_delay, TRUE, src, ignore_turf_checks=TRUE))
-		to_chat(user, span_warning("You fumble [accessed]!"))
+		to_chat(user, "<span class='warning'>You fumble [accessed]!</span>")
 		return FALSE
 	return TRUE
 
@@ -456,8 +456,8 @@
 			user.client?.screen -= item
 		if(!prevent_warning)
 			var/visidist = item.w_class >= 3 ? 3 : 1
-			user.visible_message(span_notice("[user] puts [item] into [src]."),\
-								span_notice("You put \the [item] into [src]."),\
+			user.visible_message("<span class='notice'>[user] puts [item] into [src].</span>",\
+								"<span class='notice'>You put \the [item] into [src].</span>",\
 								null, visidist)
 	orient2hud()
 	for(var/mob/M in can_see_content())
@@ -700,7 +700,7 @@
 		close(M)
 
 	// Now make the cardboard
-	to_chat(user, span_notice("You fold [src] flat."))
+	to_chat(user, "<span class='notice'>You fold [src] flat.</span>")
 	new foldable(get_turf(src))
 	qdel(src)
 //BubbleWrap END

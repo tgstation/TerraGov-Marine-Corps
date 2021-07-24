@@ -60,8 +60,8 @@
 		return
 	playsound(loc, 'sound/effects/grillehit.ogg', 25, 1)
 
-	user.visible_message(span_warning("[user] kicks [src]."), \
-						span_warning("You kick [src]."), \
+	user.visible_message("<span class='warning'>[user] kicks [src].</span>", \
+						"<span class='warning'>You kick [src].</span>", \
 						"You hear twisting metal.")
 
 /obj/structure/grille/CanAllowThrough(atom/movable/mover, turf/target)
@@ -84,8 +84,8 @@
 	else if(isscrewdriver(I) && isopenturf(loc))
 		playsound(loc, 'sound/items/screwdriver.ogg', 25, 1)
 		anchored = !anchored
-		user.visible_message(span_notice("[user] [anchored ? "fastens" : "unfastens"] the grille."), \
-							span_notice("You have [anchored ? "fastened the grille to" : "unfastened the grill from"] the floor."))
+		user.visible_message("<span class='notice'>[user] [anchored ? "fastens" : "unfastens"] the grille.</span>", \
+							"<span class='notice'>You have [anchored ? "fastened the grille to" : "unfastened the grill from"] the floor.</span>")
 
 	else if(istype(I, /obj/item/stack/sheet/glass))
 		var/obj/item/stack/sheet/glass/ST = I
@@ -96,7 +96,7 @@
 
 		else
 			if(x != user.x  && y != user.y) //Only supposed to work for cardinal directions.
-				to_chat(user, span_notice("You can't reach."))
+				to_chat(user, "<span class='notice'>You can't reach.</span>")
 				return
 
 			else if(x == user.x)
@@ -113,17 +113,17 @@
 
 		for(var/obj/structure/window/W in loc)
 			if(W.dir == dir_to_set)
-				to_chat(user, span_notice("There is already a window facing this way there."))
+				to_chat(user, "<span class='notice'>There is already a window facing this way there.</span>")
 				return
 
-		to_chat(user, span_notice("You start placing the window."))
+		to_chat(user, "<span class='notice'>You start placing the window.</span>")
 
 		if(!do_after(user, 20, TRUE, src, BUSY_ICON_BUILD))
 			return
 
 		for(var/obj/structure/window/W in loc)
 			if(W.dir == dir_to_set)//checking this for a 2nd time to check if a window was made while we were waiting.
-				to_chat(user, span_notice("There is already a window facing this way there."))
+				to_chat(user, "<span class='notice'>There is already a window facing this way there.</span>")
 				return
 
 		var/wtype = ST.created_window
@@ -131,7 +131,7 @@
 			return
 
 		var/obj/structure/window/WD = new wtype(loc, dir_to_set, 1)
-		to_chat(user, span_notice("You place the [WD] on [src]."))
+		to_chat(user, "<span class='notice'>You place the [WD] on [src].</span>")
 		WD.update_icon()
 
 /obj/structure/grille/fire_act(exposed_temperature, exposed_volume)

@@ -202,28 +202,28 @@ GLOBAL_PROTECT(exp_to_update)
 	if(holder && !holder.deadmined)
 		play_records[EXP_TYPE_ADMIN] += minutes
 		if(announce_changes)
-			to_chat(src,span_notice("You got: [minutes] Admin EXP!"))
+			to_chat(src,"<span class='notice'>You got: [minutes] Admin EXP!</span>")
 
 	if(isliving(mob))
 		var/mob/living/living_mob = mob
 		if(mob.stat != DEAD)
 			play_records[EXP_TYPE_LIVING] += minutes
 			if(announce_changes)
-				to_chat(src,span_notice("You got: [minutes] Living EXP!"))
+				to_chat(src,"<span class='notice'>You got: [minutes] Living EXP!</span>")
 			if(living_mob.job)
 				play_records[living_mob.job.title] += minutes
 				if(announce_changes)
-					to_chat(src,span_notice("You got: [minutes] [living_mob.job] EXP!"))
+					to_chat(src,"<span class='notice'>You got: [minutes] [living_mob.job] EXP!</span>")
 			else
 				play_records["Unknown"] += minutes
 		else
 			play_records[EXP_TYPE_GHOST] += minutes
 			if(announce_changes)
-				to_chat(src,span_notice("You got: [minutes] Ghost EXP!"))
+				to_chat(src,"<span class='notice'>You got: [minutes] Ghost EXP!</span>")
 	else if(isobserver(mob))
 		play_records[EXP_TYPE_GHOST] += minutes
 		if(announce_changes)
-			to_chat(src,span_notice("You got: [minutes] Ghost EXP!"))
+			to_chat(src,"<span class='notice'>You got: [minutes] Ghost EXP!</span>")
 	else if(minutes)	//Let "refresh" checks go through
 		return
 

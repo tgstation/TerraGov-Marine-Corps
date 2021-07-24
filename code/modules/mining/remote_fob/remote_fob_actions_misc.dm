@@ -46,7 +46,7 @@
 		return
 
 	if(console.metal_remaining < 4)
-		to_chat(owner, span_warning("Out of material."))
+		to_chat(owner, "<span class='warning'>Out of material.</span>")
 		return
 
 	var/turf/buildplace = get_turf(fobdrone)
@@ -55,11 +55,11 @@
 		if(!thing.density) //not dense, move on
 			continue
 		if(!(thing.flags_atom & ON_BORDER)) //dense and non-directional, end
-			to_chat(owner, span_warning("No space here for a barricade."))
+			to_chat(owner, "<span class='warning'>No space here for a barricade.</span>")
 			return
 		if(thing.dir != fobdrone.dir)
 			continue
-		to_chat(owner, span_warning("No space here for a barricade."))
+		to_chat(owner, "<span class='warning'>No space here for a barricade.</span>")
 		return
 	if(!do_after(fobdrone, 1.5 SECONDS, FALSE, buildplace, BUSY_ICON_BUILD))
 		return
@@ -68,14 +68,14 @@
 	cade.setDir(fobdrone.dir)
 	if(console.do_wiring)
 		if(console.metal_remaining <= 1)
-			to_chat(owner, span_warning("Not enough material for razor-wiring."))
+			to_chat(owner, "<span class='warning'>Not enough material for razor-wiring.</span>")
 			return
 
 		console.metal_remaining -=2
 		cade.wire()
-		to_chat(owner, span_notice("Barricade placed with wiring. [console.metal_remaining] metal sheets remaining."))
+		to_chat(owner, "<span class='notice'>Barricade placed with wiring. [console.metal_remaining] metal sheets remaining.</span>")
 		return
-	to_chat(owner, span_notice("Barricade placed. [console.metal_remaining] metal sheets remaining."))
+	to_chat(owner, "<span class='notice'>Barricade placed. [console.metal_remaining] metal sheets remaining.</span>")
 
 /datum/action/innate/remote_fob/plast_cade
 	name = "Place Plasteel Barricade"
@@ -87,7 +87,7 @@
 		return
 
 	if(console.plasteel_remaining < 5)
-		to_chat(owner, span_warning("Out of material."))
+		to_chat(owner, "<span class='warning'>Out of material.</span>")
 		return
 
 	var/turf/buildplace = get_turf(fobdrone)
@@ -96,11 +96,11 @@
 		if(!thing.density) //not dense, move on
 			continue
 		if(!(thing.flags_atom & ON_BORDER)) //dense and non-directional, end
-			to_chat(owner, span_warning("No space here for a barricade."))
+			to_chat(owner, "<span class='warning'>No space here for a barricade.</span>")
 			return
 		if(thing.dir != fobdrone.dir)
 			continue
-		to_chat(owner, span_warning("No space here for a barricade."))
+		to_chat(owner, "<span class='warning'>No space here for a barricade.</span>")
 		return
 	if(!do_after(fobdrone, 1.5 SECONDS, FALSE, buildplace, BUSY_ICON_BUILD))
 		return
@@ -112,14 +112,14 @@
 	cade.update_icon()
 	if(console.do_wiring)
 		if(console.metal_remaining <= 1)
-			to_chat(owner, span_warning("Not enough material for razor-wiring."))
+			to_chat(owner, "<span class='warning'>Not enough material for razor-wiring.</span>")
 			return
 
 		console.metal_remaining -=2
 		cade.wire()
-		to_chat(owner, span_notice("Barricade placed with wiring. [console.plasteel_remaining] plasteel sheets, [console.metal_remaining] metal sheets remaining.remaining."))
+		to_chat(owner, "<span class='notice'>Barricade placed with wiring. [console.plasteel_remaining] plasteel sheets, [console.metal_remaining] metal sheets remaining.remaining.</span>")
 		return
-	to_chat(owner, span_notice("Barricade placed. [console.plasteel_remaining] plasteel sheets remaining."))
+	to_chat(owner, "<span class='notice'>Barricade placed. [console.plasteel_remaining] plasteel sheets remaining.</span>")
 
 /datum/action/innate/remote_fob/toggle_wiring
 	name = "Toggle Razorwire"
@@ -130,7 +130,7 @@
 	if(.)
 		return
 	console.do_wiring = !console.do_wiring
-	to_chat(owner, span_notice("Will now [console.do_wiring ? "do wiring" : "stop wiring"]."))
+	to_chat(owner, "<span class='notice'>Will now [console.do_wiring ? "do wiring" : "stop wiring"].</span>")
 
 /datum/action/innate/remote_fob/sentry
 	name = "Place Sentry"
@@ -144,14 +144,14 @@
 	var/turf/buildplace = get_turf(fobdrone)
 	var/obj/structure/barricade/cade = /obj/structure/barricade
 	if(console.sentry_remaining < 1)
-		to_chat(owner, span_warning("You need to redeem a Sentry voucher to place one."))
+		to_chat(owner, "<span class='warning'>You need to redeem a Sentry voucher to place one.</span>")
 		return
 	if(is_blocked_turf(buildplace))
 		for(var/obj/thing in buildplace)
 			if(istype(thing, cade))
 				break
 			else
-				to_chat(owner, span_warning("No space here for a sentry."))
+				to_chat(owner, "<span class='warning'>No space here for a sentry.</span>")
 				return
 	if(!do_after(fobdrone, 3 SECONDS, FALSE, buildplace, BUSY_ICON_BUILD))
 		return
@@ -168,11 +168,11 @@
 	if(.)
 		return
 	if(console.metal_remaining <= 0)
-		to_chat(owner, span_warning("Nothing to eject."))
+		to_chat(owner, "<span class='warning'>Nothing to eject.</span>")
 		return
 	console.eject_mat(EJECT_METAL)
-	to_chat(owner, span_notice("Metal sheets ejected."))
-
+	to_chat(owner, "<span class='notice'>Metal sheets ejected.</span>")
+	
 
 /datum/action/innate/remote_fob/eject_plasteel_action
 	name = "Eject All Plasteel"
@@ -183,10 +183,10 @@
 	if(.)
 		return
 	if(console.plasteel_remaining <= 0)
-		to_chat(owner, span_warning("Nothing to eject."))
+		to_chat(owner, "<span class='warning'>Nothing to eject.</span>")
 		return
 	console.eject_mat(EJECT_PLASTEEL)
-	to_chat(owner, span_notice("Plasteel sheets ejected."))
+	to_chat(owner, "<span class='notice'>Plasteel sheets ejected.</span>")
 
 
 /obj/item/stack/voucher/sentry

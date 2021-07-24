@@ -53,12 +53,12 @@
 	deactivate_all_hardpoints()
 
 	if(driver)
-		to_chat(driver, span_danger("You dismount to as the smoke and flames start to choke you!"))
+		to_chat(driver, "<span class='danger'>You dismount to as the smoke and flames start to choke you!</span>")
 		driver.Move(entrance.loc)
 		driver.unset_interaction()
 		driver = null
 	else if(gunner)
-		to_chat(gunner, span_danger("You dismount to as the smoke and flames start to choke you!"))
+		to_chat(gunner, "<span class='danger'>You dismount to as the smoke and flames start to choke you!</span>")
 		gunner.Move(entrance.loc)
 		gunner.unset_interaction()
 		gunner = null
@@ -85,10 +85,10 @@
 	var/wannabe_trucker = (usr == gunner) ? TRUE : FALSE
 	var/neighbour = wannabe_trucker ? driver : gunner
 	if(neighbour)
-		to_chat(usr, span_notice("There's already someone in the other seat."))
+		to_chat(usr, "<span class='notice'>There's already someone in the other seat.</span>")
 		return
 
-	to_chat(usr, span_notice("You start getting into the other seat."))
+	to_chat(usr, "<span class='notice'>You start getting into the other seat.</span>")
 	addtimer(CALLBACK(src, .proc/seat_switched, wannabe_trucker, usr), 3 SECONDS)
 
 /obj/vehicle/multitile/root/cm_armored/tank/proc/seat_switched(wannabe_trucker, mob/living/user)
@@ -99,10 +99,10 @@
 		return
 
 	if(challenger)
-		to_chat(usr, span_notice("Someone beat you to the other seat!"))
+		to_chat(usr, "<span class='notice'>Someone beat you to the other seat!</span>")
 		return
 
-	to_chat(usr, span_notice("You man up the [wannabe_trucker ? "driver" : "gunner"]'s seat."))
+	to_chat(usr, "<span class='notice'>You man up the [wannabe_trucker ? "driver" : "gunner"]'s seat.</span>")
 
 	if(wannabe_trucker)
 		deactivate_all_hardpoints()
@@ -113,7 +113,7 @@
 	if(!M || M != gunner)
 		return FALSE
 	if(!M.dextrous)
-		to_chat(M, span_warning("You don't have the dexterity to do this!"))
+		to_chat(M, "<span class='warning'>You don't have the dexterity to do this!</span>")
 		return FALSE
 	return !M.incapacitated()
 
@@ -122,16 +122,16 @@
 	if(!.)
 		return
 	if(!occupant)
-		to_chat(M, span_warning("There is no one on that seat."))
+		to_chat(M, "<span class='warning'>There is no one on that seat.</span>")
 		return
-	M.visible_message(span_warning("[M] starts pulling [occupant] out of \the [src]."),
-	span_warning("You start pulling [occupant] out of \the [src]. (this will take a while...)"), null, 6)
+	M.visible_message("<span class='warning'>[M] starts pulling [occupant] out of \the [src].</span>",
+	"<span class='warning'>You start pulling [occupant] out of \the [src]. (this will take a while...)</span>", null, 6)
 	var/fumbling_time = 20 SECONDS - 2 SECONDS * M.skills.getRating("police") - 2 SECONDS * M.skills.getRating("large_vehicle")
 	if(!do_after(M, fumbling_time, TRUE, src, BUSY_ICON_HOSTILE))
 		return
 	exit_tank(occupant, TRUE, TRUE)
-	M.visible_message(span_warning("[M] forcibly pulls [occupant] out of [src]."),
-					span_notice("you forcibly pull [occupant] out of [src]."), null, 6)
+	M.visible_message("<span class='warning'>[M] forcibly pulls [occupant] out of [src].</span>",
+					"<span class='notice'>you forcibly pull [occupant] out of [src].</span>", null, 6)
 	if(!isliving(occupant))
 		return
 	var/mob/living/L = occupant
@@ -154,31 +154,31 @@
 		return
 
 	if(!M.dextrous)
-		to_chat(M, span_warning("You don't have the dexterity to drive [src]!"))
+		to_chat(M, "<span class='warning'>You don't have the dexterity to drive [src]!</span>")
 		return
 	if(!allowed(M))
-		to_chat(M, span_warning("Access denied."))
+		to_chat(M, "<span class='warning'>Access denied.</span>")
 		return
 	if(occupant)
-		to_chat(M, span_warning("That seat is already taken."))
+		to_chat(M, "<span class='warning'>That seat is already taken.</span>")
 		return
 	var/obj/item/offhand = M.get_inactive_held_item()
 	if(offhand && !(offhand.flags_item & (NODROP|DELONDROP|ITEM_ABSTRACT)))
-		to_chat(M, span_warning("You need your hands free to climb on [src]."))
+		to_chat(M, "<span class='warning'>You need your hands free to climb on [src].</span>")
 		return
 
 	if(M.skills.getRating("large_vehicle") < SKILL_LARGE_VEHICLE_TRAINED)
-		M.visible_message(span_notice("[M] fumbles around figuring out how to get into the [src]."),
-		span_notice("You fumble around figuring out how to get into [src]."))
+		M.visible_message("<span class='notice'>[M] fumbles around figuring out how to get into the [src].</span>",
+		"<span class='notice'>You fumble around figuring out how to get into [src].</span>")
 		var/fumbling_time = 10 SECONDS - 2 SECONDS * M.skills.getRating("large_vehicle")
 		if(!do_after(M, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED) || (offhand && !(offhand.flags_item & (NODROP|DELONDROP))))
 			return
 
-	to_chat(M, span_notice("You start climbing into [src]."))
+	to_chat(M, "<span class='notice'>You start climbing into [src].</span>")
 	if(!do_after(M, 10 SECONDS, TRUE, src, BUSY_ICON_GENERIC) || (offhand && !(offhand.flags_item & (NODROP|DELONDROP))))
 		return
 	if(occupant)
-		to_chat(M, span_warning("Someone got into the [lowertext(slot)]'s seat before you could."))
+		to_chat(M, "<span class='warning'>Someone got into the [lowertext(slot)]'s seat before you could.</span>")
 		return
 
 	if(slot == "Driver")
@@ -186,7 +186,7 @@
 	else
 		gunner = M
 	M.forceMove(src)
-	to_chat(M, span_notice("You enter into the [lowertext(slot)]'s seat."))
+	to_chat(M, "<span class='notice'>You enter into the [lowertext(slot)]'s seat.</span>")
 	M.set_interaction(src)
 
 //Deposits you onto the exit marker
@@ -198,11 +198,11 @@
 
 	if(!M.do_actions)
 		if(occupant_exiting)
-			to_chat(M, span_notice("Someone is already getting out of [src]."))
+			to_chat(M, "<span class='notice'>Someone is already getting out of [src].</span>")
 			return
 		occupant_exiting = M
 
-	to_chat(M, span_notice("You start climbing out of [src]."))
+	to_chat(M, "<span class='notice'>You start climbing out of [src].</span>")
 
 	addtimer(CALLBACK(src, .proc/exit_tank, M), 5 SECONDS)
 
@@ -217,13 +217,13 @@
 	if(!forced)
 		if(!T.CanPass(M, T))
 			if(!silent)
-				to_chat(M, span_notice("Something is blocking you from exiting."))
+				to_chat(M, "<span class='notice'>Something is blocking you from exiting.</span>")
 			return
 		for(var/atom/A in T)
 			if(A.CanPass(M, T))
 				continue
 			if(!silent)
-				to_chat(M, span_notice("Something is blocking you from exiting."))
+				to_chat(M, "<span class='notice'>Something is blocking you from exiting.</span>")
 			return
 	M.forceMove(T)
 
@@ -234,7 +234,7 @@
 		driver = null
 	M.unset_interaction()
 	if(!silent)
-		to_chat(M, span_notice("You climb out of [src]."))
+		to_chat(M, "<span class='notice'>You climb out of [src].</span>")
 
 //No one but the driver can drive
 /obj/vehicle/multitile/root/cm_armored/tank/relaymove(mob/user, direction)
@@ -290,7 +290,7 @@
 		return TRUE
 
 	if(!hardpoints.Find(active_hp))
-		to_chat(user, span_warning("Please select an active hardpoint first."))
+		to_chat(user, "<span class='warning'>Please select an active hardpoint first.</span>")
 		return TRUE
 
 	var/obj/item/hardpoint/HP = hardpoints[active_hp]
@@ -299,7 +299,7 @@
 		return TRUE
 
 	if(!HP.firing_arc(A))
-		to_chat(user, span_warning("The target is not within your firing arc."))
+		to_chat(user, "<span class='warning'>The target is not within your firing arc.</span>")
 		return TRUE
 
 	HP.active_effect(A)

@@ -38,7 +38,7 @@
 		user.drop_held_item()
 		contents += I
 		has_extinguisher = I
-		to_chat(user, span_notice("You place [I] in [src]."))
+		to_chat(user, "<span class='notice'>You place [I] in [src].</span>")
 
 	opened = !opened
 
@@ -51,7 +51,7 @@
 		return
 	if(has_extinguisher)
 		user.put_in_hands(has_extinguisher)
-		to_chat(user, span_notice("You take [has_extinguisher] from [src]."))
+		to_chat(user, "<span class='notice'>You take [has_extinguisher] from [src].</span>")
 		has_extinguisher = null
 		opened = 1
 	else

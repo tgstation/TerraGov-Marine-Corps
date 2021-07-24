@@ -64,11 +64,11 @@
 
 	if(istype(I, /obj/item/reagent_containers))
 		if(beaker)
-			to_chat(user, span_warning("There is already a reagent container loaded!"))
+			to_chat(user, "<span class='warning'>There is already a reagent container loaded!</span>")
 			return
 
 		if((!istype(I, /obj/item/reagent_containers/blood) && !istype(I, /obj/item/reagent_containers/glass)) || istype(I, /obj/item/reagent_containers/glass/bucket))
-			to_chat(user, span_warning("That won't fit!"))
+			to_chat(user, "<span class='warning'>That won't fit!</span>")
 			return
 
 		if(!user.transferItemToLoc(I, src))
@@ -167,10 +167,10 @@
 
 	if(beaker)
 		if(beaker.reagents && beaker.reagents.reagent_list.len)
-			to_chat(user, span_notice("Attached is \a [beaker] with [beaker.reagents.total_volume] units of liquid."))
+			to_chat(user, "<span class='notice'>Attached is \a [beaker] with [beaker.reagents.total_volume] units of liquid.</span>")
 		else
-			to_chat(user, span_notice("Attached is an empty [beaker]."))
+			to_chat(user, "<span class='notice'>Attached is an empty [beaker].</span>")
 	else
-		to_chat(user, span_notice("No chemicals are attached."))
+		to_chat(user, "<span class='notice'>No chemicals are attached.</span>")
 
-	to_chat(user, span_notice("[attached ? attached : "No one"] is attached."))
+	to_chat(user, "<span class='notice'>[attached ? attached : "No one"] is attached.</span>")

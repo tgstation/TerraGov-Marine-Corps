@@ -200,19 +200,19 @@
 /mob/living/simple_animal/hostile/poison/giant_spider/nurse/proc/cocoon()
 	if(stat != DEAD && cocoon_target && !cocoon_target.anchored)
 		if(cocoon_target == src)
-			to_chat(src, span_warning("You can't wrap yourself!"))
+			to_chat(src, "<span class='warning'>You can't wrap yourself!</span>")
 			return
 		if(istype(cocoon_target, /mob/living/simple_animal/hostile/poison/giant_spider))
-			to_chat(src, span_warning("You can't wrap other spiders!"))
+			to_chat(src, "<span class='warning'>You can't wrap other spiders!</span>")
 			return
 		if(!Adjacent(cocoon_target))
-			to_chat(src, span_warning("You can't reach [cocoon_target]!"))
+			to_chat(src, "<span class='warning'>You can't reach [cocoon_target]!</span>")
 			return
 		if(busy == SPINNING_COCOON)
-			to_chat(src, span_warning("You're already spinning a cocoon!"))
+			to_chat(src, "<span class='warning'>You're already spinning a cocoon!</span>")
 			return //we're already doing this, don't cancel out or anything
 		busy = SPINNING_COCOON
-		visible_message(span_notice("[src] begins to secrete a sticky substance around [cocoon_target]."),span_notice("You begin wrapping [cocoon_target] into a cocoon."))
+		visible_message("<span class='notice'>[src] begins to secrete a sticky substance around [cocoon_target].</span>","<span class='notice'>You begin wrapping [cocoon_target] into a cocoon.</span>")
 		stop_automated_movement = TRUE
 		walk(src, 0)
 		if(do_after(src, 50, target = cocoon_target))
@@ -223,10 +223,10 @@
 					if(L.blood_volume && (L.stat != DEAD || !consumed_mobs[L.tag])) //if they're not dead, you can consume them anyway
 						consumed_mobs[L.tag] = TRUE
 						fed++
-						visible_message(span_danger("[src] sticks a proboscis into [L] and sucks a viscous substance out."),span_notice("You suck the nutriment out of [L], feeding you enough to lay a cluster of eggs."))
+						visible_message("<span class='danger'>[src] sticks a proboscis into [L] and sucks a viscous substance out.</span>","<span class='notice'>You suck the nutriment out of [L], feeding you enough to lay a cluster of eggs.</span>")
 						L.death() //you just ate them, they're dead.
 					else
-						to_chat(src, span_warning("[L] cannot sate your hunger!"))
+						to_chat(src, "<span class='warning'>[L] cannot sate your hunger!</span>")
 				cocoon_target.forceMove(C)
 
 				if(cocoon_target.density || ismob(cocoon_target))

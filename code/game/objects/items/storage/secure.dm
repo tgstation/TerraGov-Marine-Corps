@@ -92,22 +92,22 @@
 			return
 
 		open = !open
-		user.show_message(span_notice(" You [open ? "open" : "close"] the service panel."))
+		user.show_message("<span class='notice'> You [open ? "open" : "close"] the service panel.</span>")
 
 	else if(ismultitool(I) && open && !l_hacking)
-		user.show_message(span_warning(" Now attempting to reset internal memory, please hold."))
+		user.show_message("<span class='warning'> Now attempting to reset internal memory, please hold.</span>")
 		l_hacking = TRUE
 		if(!do_after(user, 100, TRUE, src, BUSY_ICON_BUILD))
 			return
 
 		if(!prob(40))
-			user.show_message(span_warning(" Unable to reset internal memory."), 1)
+			user.show_message(text("<span class='warning'> Unable to reset internal memory.</span>"), 1)
 			l_hacking = FALSE
 			return
 
 		l_setshort = TRUE
 		l_set = FALSE
-		user.show_message(span_warning(" Internal memory reset.  Please give it a few seconds to reinitialize."))
+		user.show_message("<span class='warning'> Internal memory reset.  Please give it a few seconds to reinitialize.</span>")
 		sleep(80)
 		l_setshort = FALSE
 		l_hacking = FALSE
@@ -136,7 +136,7 @@
 
 /obj/item/storage/secure/briefcase/attack_hand(mob/user)
 	if(loc == user && locked)
-		to_chat(user, span_warning("[src] is locked and cannot be opened!"))
+		to_chat(user, "<span class='warning'>[src] is locked and cannot be opened!</span>")
 		return
 
 	if(loc == user && !locked)

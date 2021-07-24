@@ -13,14 +13,14 @@
 
 /obj/item/pinpointer/proc/set_target(mob/living/user)
 	if(!length(tracked_list))
-		to_chat(user, span_warning("No traceable signals found!"))
+		to_chat(user, "<span class='warning'>No traceable signals found!</span>")
 		return
 	target = tgui_input_list(user, "Select the item you wish to track.", "Pinpointer", tracked_list)
 	if(QDELETED(target))
 		return
 	var/turf/pinpointer_loc = get_turf(src)
 	if(target.z != pinpointer_loc.z)
-		to_chat(user, span_warning("Chosen target signal too weak. Choose another."))
+		to_chat(user, "<span class='warning'>Chosen target signal too weak. Choose another.</span>")
 		target = null
 		return
 
@@ -38,7 +38,7 @@
 		return
 	active = TRUE
 	START_PROCESSING(SSobj, src)
-	to_chat(user, span_notice("You activate the pinpointer"))
+	to_chat(user, "<span class='notice'>You activate the pinpointer</span>")
 
 
 /obj/item/pinpointer/proc/deactivate(mob/living/user)
@@ -46,7 +46,7 @@
 	target = null
 	STOP_PROCESSING(SSobj, src)
 	icon_state = "pinoff"
-	to_chat(user, span_notice("You deactivate the pinpointer"))
+	to_chat(user, "<span class='notice'>You deactivate the pinpointer</span>")
 
 
 /obj/item/pinpointer/process()

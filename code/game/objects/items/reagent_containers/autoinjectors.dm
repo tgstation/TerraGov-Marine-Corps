@@ -24,9 +24,9 @@
 /obj/item/reagent_containers/hypospray/autoinjector/examine(mob/user)
 	..()
 	if(reagents && reagents.reagent_list.len)
-		to_chat(user, span_notice("It is currently loaded."))
+		to_chat(user, "<span class='notice'>It is currently loaded.</span>")
 	else
-		to_chat(user, span_notice("It is spent."))
+		to_chat(user, "<span class='notice'>It is spent.</span>")
 
 /obj/item/reagent_containers/hypospray/autoinjector/fillable
 	desc = "An autoinjector loaded with... something, consult the doctor who gave this to you."

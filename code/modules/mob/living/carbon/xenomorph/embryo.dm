@@ -91,12 +91,12 @@
 	switch(stage)
 		if(2)
 			if(prob(2))
-				to_chat(affected_mob, span_warning("[pick("Your chest hurts a little bit", "Your stomach hurts")]."))
+				to_chat(affected_mob, "<span class='warning'>[pick("Your chest hurts a little bit", "Your stomach hurts")].</span>")
 		if(3)
 			if(prob(2))
-				to_chat(affected_mob, span_warning("[pick("Your throat feels sore", "Mucous runs down the back of your throat")]."))
+				to_chat(affected_mob, "<span class='warning'>[pick("Your throat feels sore", "Mucous runs down the back of your throat")].</span>")
 			else if(prob(1))
-				to_chat(affected_mob, span_warning("Your muscles ache."))
+				to_chat(affected_mob, "<span class='warning'>Your muscles ache.</span>")
 				if(prob(20))
 					affected_mob.take_limb_damage(1)
 			else if(prob(2))
@@ -104,13 +104,13 @@
 		if(4)
 			if(prob(1))
 				if(!affected_mob.IsUnconscious())
-					affected_mob.visible_message(span_danger("\The [affected_mob] starts shaking uncontrollably!"), \
-												span_danger("You start shaking uncontrollably!"))
+					affected_mob.visible_message("<span class='danger'>\The [affected_mob] starts shaking uncontrollably!</span>", \
+												"<span class='danger'>You start shaking uncontrollably!</span>")
 					affected_mob.Unconscious(20 SECONDS)
 					affected_mob.jitter(105)
 					affected_mob.take_limb_damage(1)
 			if(prob(2))
-				to_chat(affected_mob, span_warning("[pick("Your chest hurts badly", "It becomes difficult to breathe", "Your heart starts beating rapidly, and each beat is painful")]."))
+				to_chat(affected_mob, "<span class='warning'>[pick("Your chest hurts badly", "It becomes difficult to breathe", "Your heart starts beating rapidly, and each beat is painful")].</span>")
 		if(5)
 			become_larva()
 		if(6)
@@ -148,7 +148,7 @@
 	//If we have a candidate, transfer it over.
 	if(picked)
 		picked.mind.transfer_to(new_xeno, TRUE)
-		to_chat(new_xeno, span_xenoannounce("We are a xenomorph larva inside a host! Move to burst out of it!"))
+		to_chat(new_xeno, "<span class='xenoannounce'>We are a xenomorph larva inside a host! Move to burst out of it!</span>")
 		new_xeno << sound('sound/effects/xeno_newlarva.ogg')
 
 	stage = 6
@@ -160,11 +160,11 @@
 
 	victim.chestburst = 1
 	ADD_TRAIT(victim, TRAIT_PSY_DRAINED, TRAIT_PSY_DRAINED)
-	to_chat(src, span_danger("We start bursting out of [victim]'s chest!"))
+	to_chat(src, "<span class='danger'>We start bursting out of [victim]'s chest!</span>")
 
 	victim.Unconscious(40 SECONDS)
-	victim.visible_message(span_danger("\The [victim] starts shaking uncontrollably!"), \
-								span_danger("You feel something ripping up your insides!"))
+	victim.visible_message("<span class='danger'>\The [victim] starts shaking uncontrollably!</span>", \
+								"<span class='danger'>You feel something ripping up your insides!</span>")
 	victim.jitter(300)
 
 	victim.emote_burstscream()

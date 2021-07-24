@@ -121,7 +121,7 @@ text("<A href='?src=\ref[src];operation=oddbutton'>[oddbutton ? "Yes" : "No"]</A
 			updateUsrDialog()
 		if("oddbutton")
 			oddbutton = !oddbutton
-			to_chat(usr, span_notice("You press the weird button."))
+			to_chat(usr, "<span class='notice'>You press the weird button.</span>")
 
 	updateUsrDialog()
 
@@ -131,11 +131,11 @@ text("<A href='?src=\ref[src];operation=oddbutton'>[oddbutton ? "Yes" : "No"]</A
 	if(istype(I, /obj/item/card/id))
 		if(allowed(user) && !open)
 			locked = !locked
-			to_chat(user, span_notice("You [locked ? "lock" : "unlock"] \the [src] behaviour controls."))
+			to_chat(user, "<span class='notice'>You [locked ? "lock" : "unlock"] \the [src] behaviour controls.</span>")
 		else if(open)
-			to_chat(user, span_warning("Please close the access panel before locking it."))
+			to_chat(user, "<span class='warning'>Please close the access panel before locking it.</span>")
 		else
-			to_chat(user, span_notice("This [src] doesn't seem to respect your authority."))
+			to_chat(user, "<span class='notice'>This [src] doesn't seem to respect your authority.</span>")
 
 
 /obj/machinery/bot/cleanbot/process()
@@ -275,7 +275,7 @@ text("<A href='?src=\ref[src];operation=oddbutton'>[oddbutton ? "Yes" : "No"]</A
 /obj/machinery/bot/cleanbot/proc/clean(obj/effect/decal/cleanable/target)
 	anchored = TRUE
 	icon_state = "cleanbot-c"
-	visible_message(span_warning(" [src] begins to clean up the [target]"))
+	visible_message("<span class='warning'> [src] begins to clean up the [target]</span>")
 	cleaning = 1
 	var/cleantime = 50
 	if(istype(target,/obj/effect/decal/cleanable/dirt))		// Clean Dirt much faster

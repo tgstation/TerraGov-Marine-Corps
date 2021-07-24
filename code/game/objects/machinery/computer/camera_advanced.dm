@@ -175,12 +175,12 @@
 		return
 
 	if(!target.can_track(current_user))
-		to_chat(current_user, span_warning("Target is not near any active cameras."))
+		to_chat(current_user, "<span class='warning'>Target is not near any active cameras.</span>")
 		tracking_target = null
 		return
 
 	tracking_target = target
-	to_chat(current_user, span_notice("Now tracking [target.get_visible_name()] on camera."))
+	to_chat(current_user, "<span class='notice'>Now tracking [target.get_visible_name()] on camera.</span>")
 	start_processing()
 
 
@@ -190,11 +190,11 @@
 
 	if(!tracking_target.can_track(current_user))
 		if(!cameraticks)
-			to_chat(current_user, span_warning("Target is not near any active cameras. Attempting to reacquire..."))
+			to_chat(current_user, "<span class='warning'>Target is not near any active cameras. Attempting to reacquire...</span>")
 		cameraticks++
 		if(cameraticks > 9)
 			tracking_target = null
-			to_chat(current_user, span_warning("Unable to reacquire, cancelling track..."))
+			to_chat(current_user, "<span class='warning'>Unable to reacquire, cancelling track...</span>")
 			return PROCESS_KILL
 	else
 		cameraticks = 0

@@ -112,7 +112,7 @@
 	if(href_list["chemical"] && connected && connected.occupant)
 		var/datum/reagent/R = text2path(href_list["chemical"])
 		if (connected.occupant.stat == DEAD)
-			to_chat(usr, span_warning("This person has no life for to preserve anymore."))
+			to_chat(usr, "<span class='warning'>This person has no life for to preserve anymore.</span>")
 		else if(!(R in connected.available_chemicals))
 			message_admins("[ADMIN_TPMONTY(usr)] has tried to inject an invalid chem with the sleeper. Looks like an exploit attempt, or a bug.")
 		else
@@ -200,7 +200,7 @@
 	if(filtering)
 		feedback += " Dialysis is active."
 	if(!hasHUD(user,"medical"))
-		to_chat(user, span_notice("It contains: [occupant].[feedback]"))
+		to_chat(user, "<span class='notice'>It contains: [occupant].[feedback]</span>")
 		return
 	var/mob/living/carbon/human/H = occupant
 	for(var/datum/data/record/R in GLOB.datacore.medical)
@@ -221,7 +221,7 @@
 	if(!hasHUD(usr,"medical"))
 		return
 	if(get_dist(usr, src) > 7)
-		to_chat(usr, span_warning("[src] is too far away."))
+		to_chat(usr, "<span class='warning'>[src] is too far away.</span>")
 		return
 	if(!ishuman(occupant))
 		return
@@ -267,7 +267,7 @@
 
 	if(istype(I, /obj/item/reagent_containers/glass))
 		if(beaker)
-			to_chat(user, span_warning("The sleeper has a beaker already."))
+			to_chat(user, "<span class='warning'>The sleeper has a beaker already.</span>")
 			return
 
 		if(!user.transferItemToLoc(I, src))
@@ -287,7 +287,7 @@
 		return
 
 	if(occupant)
-		to_chat(user, span_notice("The sleeper is already occupied!"))
+		to_chat(user, "<span class='notice'>The sleeper is already occupied!</span>")
 		return
 
 
@@ -381,14 +381,14 @@
 	if(occupant && occupant.reagents)
 		if(occupant.reagents.get_reagent_amount(chemical) + amount <= 20)
 			occupant.reagents.add_reagent(chemical, amount)
-			to_chat(user, span_notice("Occupant now has [occupant.reagents.get_reagent_amount(chemical)] units of [available_chemicals[chemical]] in his/her bloodstream."))
+			to_chat(user, "<span class='notice'>Occupant now has [occupant.reagents.get_reagent_amount(chemical)] units of [available_chemicals[chemical]] in his/her bloodstream.</span>")
 			return
-	to_chat(user, span_warning("There's no occupant in the sleeper or the subject has too many chemicals!"))
+	to_chat(user, "<span class='warning'>There's no occupant in the sleeper or the subject has too many chemicals!</span>")
 
 
 /obj/machinery/sleeper/proc/check(mob/living/user)
 	if(occupant)
-		to_chat(user, span_boldnotice("Occupant ([occupant]) Statistics:"))
+		to_chat(user, text("<span class='boldnotice'>Occupant ([]) Statistics:</span>", occupant))
 		var/t1
 		switch(occupant.stat)
 			if(0)
@@ -404,14 +404,14 @@
 		to_chat(user, text("[]\t -Respiratory Damage %: []</font>", (occupant.getOxyLoss() < 60 ? "<span color='#487553'> " : "<font color='#b54646'> "), occupant.getOxyLoss()))
 		to_chat(user, text("[]\t -Toxin Content %: []</font>", (occupant.getToxLoss() < 60 ? "<font color='#487553'> " : "<font color='#b54646'> "), occupant.getToxLoss()))
 		to_chat(user, text("[]\t -Burn Severity %: []</font>", (occupant.getFireLoss() < 60 ? "<font color='#487553'> " : "<font color='#b54646'> "), occupant.getFireLoss()))
-		to_chat(user, span_notice("Expected time till occupant can safely awake: (note: If health is below 20% these times are inaccurate)"))
-		to_chat(user, span_notice("\t [occupant.AmountUnconscious() * 0.1] second\s (if around 1 or 2 the sleeper is keeping them asleep.)"))
+		to_chat(user, "<span class='notice'>Expected time till occupant can safely awake: (note: If health is below 20% these times are inaccurate)</span>")
+		to_chat(user, "<span class='notice'>\t [occupant.AmountUnconscious() * 0.1] second\s (if around 1 or 2 the sleeper is keeping them asleep.)</span>")
 		if(beaker)
-			to_chat(user, span_notice("\t Dialysis Output Beaker has [beaker.reagents.maximum_volume - beaker.reagents.total_volume] of free space remaining."))
+			to_chat(user, "<span class='notice'>\t Dialysis Output Beaker has [beaker.reagents.maximum_volume - beaker.reagents.total_volume] of free space remaining.</span>")
 		else
-			to_chat(user, span_notice("No Dialysis Output Beaker loaded."))
+			to_chat(user, "<span class='notice'>No Dialysis Output Beaker loaded.</span>")
 	else
-		to_chat(user, span_notice("There is no one inside!"))
+		to_chat(user, "<span class='notice'>There is no one inside!</span>")
 
 
 /obj/machinery/sleeper/verb/eject()
@@ -446,7 +446,7 @@
 		return
 
 	if(occupant)
-		to_chat(user, span_notice("The sleeper is already occupied!"))
+		to_chat(user, "<span class='notice'>The sleeper is already occupied!</span>")
 		return
 
 	if(ismob(M.pulledby))

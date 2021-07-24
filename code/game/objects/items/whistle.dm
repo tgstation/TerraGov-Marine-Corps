@@ -34,7 +34,7 @@
 	if (spamcheck)
 		return
 
-	user.visible_message(span_warning("[user] blows into [src]!"))
+	user.visible_message("<span class='warning'>[user] blows into [src]!</span>")
 	playsound(get_turf(src), 'sound/items/whistle.ogg', volume, 1)
 
 	spamcheck = TRUE
@@ -56,7 +56,7 @@
 		return
 
 	playsound(get_turf(src), 'sound/voice/halt.ogg', 25, 1)
-	user.audible_message(span_warning("[user]'s [name] rasps, \"Halt! Security!\""))
+	user.audible_message("<span class='warning'>[user]'s [name] rasps, \"Halt! Security!\"</span>")
 
 	spamcheck = TRUE
 	addtimer(VARSET_CALLBACK(src, spamcheck, FALSE), 2 SECONDS)

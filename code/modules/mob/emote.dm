@@ -10,10 +10,10 @@
 	var/datum/emote/E
 	E = E.emote_list[act]
 	if(!E)
-		to_chat(src, span_notice("Unusable emote '[act]'. Say *help for a list."))
+		to_chat(src, "<span class='notice'>Unusable emote '[act]'. Say *help for a list.</span>")
 		return
 	if(!E.check_cooldown(src, intentional))
-		to_chat(src, span_notice("You used that emote too recently."))
+		to_chat(src, "<span class='notice'>You used that emote too recently.</span>")
 		return
 	E.run_emote(src, param, m_type, intentional)
 

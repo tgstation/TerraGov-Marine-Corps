@@ -33,18 +33,18 @@
 
 	if(istype(I, /obj/item/tool/mop))
 		if(reagents.total_volume <= 1)
-			to_chat(user, span_notice("This [callme] is out of water!"))
+			to_chat(user, "<span class='notice'>This [callme] is out of water!</span>")
 			return
 
 		reagents.trans_to(I, 2)
-		to_chat(user, span_notice("You wet [I] in the [callme]."))
+		to_chat(user, "<span class='notice'>You wet [I] in the [callme].</span>")
 		playsound(loc, 'sound/effects/slosh.ogg', 25, 1)
 
 	else if(istype(I, /obj/item/key))
 		to_chat(user, "Hold [I] in one of your hands while you drive this [callme].")
 
 	else if(istype(I, /obj/item/storage/bag/trash))
-		to_chat(user, span_notice("You hook the trashbag onto the [callme]."))
+		to_chat(user, "<span class='notice'>You hook the trashbag onto the [callme].</span>")
 		user.drop_held_item()
 		I.forceMove(src)
 		mybag = I
@@ -67,14 +67,14 @@
 	if(istype(user.l_hand, /obj/item/key) || istype(user.r_hand, /obj/item/key))
 		step(src, direction)
 	else
-		to_chat(user, span_notice("You'll need the keys in one of your hands to drive this [callme]."))
+		to_chat(user, "<span class='notice'>You'll need the keys in one of your hands to drive this [callme].</span>")
 
 
 /obj/structure/bed/chair/janicart/bullet_act(obj/projectile/Proj)
 	if(LAZYLEN(buckled_mobs))
 		if(prob(85))
 			return buckled_mobs[1].bullet_act(Proj)
-	visible_message(span_warning("[Proj] ricochets off the [callme]!"))
+	visible_message("<span class='warning'>[Proj] ricochets off the [callme]!</span>")
 	return 1
 
 /obj/item/key

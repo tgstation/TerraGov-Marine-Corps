@@ -21,7 +21,7 @@
 
 	var/mob/living/carbon/human/H = M
 	if(!H.w_uniform)
-		to_chat(H, span_warning("You need to be wearing somethng under this to be able to equip it."))
+		to_chat(H, "<span class='warning'>You need to be wearing somethng under this to be able to equip it.</span>")
 		return FALSE
 
 
@@ -322,26 +322,26 @@
 
 	if(!holstered)
 		if(!istype(usr.get_active_held_item(), /obj/item/weapon/gun))
-			to_chat(usr, span_notice("You need your gun equiped to holster it."))
+			to_chat(usr, "<span class='notice'>You need your gun equiped to holster it.</span>")
 			return
 		var/obj/item/weapon/gun/W = usr.get_active_held_item()
 		if (W.w_class > 3)
-			to_chat(usr, span_warning("This gun won't fit in \the belt!"))
+			to_chat(usr, "<span class='warning'>This gun won't fit in \the belt!</span>")
 			return
 		holstered = usr.get_active_held_item()
 		usr.drop_held_item()
 		holstered.loc = src
-		usr.visible_message(span_notice(" \The [usr] holsters \the [holstered]."), "You holster \the [holstered].")
+		usr.visible_message("<span class='notice'> \The [usr] holsters \the [holstered].</span>", "You holster \the [holstered].")
 	else
 		if(istype(usr.get_active_held_item(),/obj) && istype(usr.get_inactive_held_item(),/obj))
-			to_chat(usr, span_warning("You need an empty hand to draw the gun!"))
+			to_chat(usr, "<span class='warning'>You need an empty hand to draw the gun!</span>")
 		else
 			if(usr.a_intent == INTENT_HARM)
-				usr.visible_message(span_warning(" \The [usr] draws \the [holstered], ready to shoot!"), \
-				span_warning(" You draw \the [holstered], ready to shoot!"))
+				usr.visible_message("<span class='warning'> \The [usr] draws \the [holstered], ready to shoot!</span>", \
+				"<span class='warning'> You draw \the [holstered], ready to shoot!</span>")
 			else
-				usr.visible_message(span_notice(" \The [usr] draws \the [holstered], pointing it at the ground."), \
-				span_notice(" You draw \the [holstered], pointing it at the ground."))
+				usr.visible_message("<span class='notice'> \The [usr] draws \the [holstered], pointing it at the ground.</span>", \
+				"<span class='notice'> You draw \the [holstered], pointing it at the ground.</span>")
 			usr.put_in_hands(holstered)
 		holstered = null
 

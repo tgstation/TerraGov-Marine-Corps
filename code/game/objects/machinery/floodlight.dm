@@ -27,12 +27,12 @@
 		return
 	if(toggle_on)
 		if(user)
-			to_chat(user, span_notice("You turn on the light."))
+			to_chat(user, "<span class='notice'>You turn on the light.</span>")
 		set_light(brightness_on)
 		DISABLE_BITFIELD(resistance_flags, UNACIDABLE)
 		return
 	if(user)
-		to_chat(user, span_notice("You turn off the light."))
+		to_chat(user, "<span class='notice'>You turn off the light.</span>")
 	set_light(0)
 	ENABLE_BITFIELD(resistance_flags, UNACIDABLE)
 
@@ -383,10 +383,10 @@
 	if(.)
 		return
 	if(!ishuman(user))
-		to_chat(user, span_notice("Nice try."))
+		to_chat(user, "<span class='notice'>Nice try.</span>")
 		return FALSE
 	if(machine_stat & NOPOWER)
-		to_chat(user, span_notice("Nothing happens."))
+		to_chat(user, "<span class='notice'>Nothing happens.</span>")
 		return FALSE
 	playsound(src,'sound/machines/click.ogg', 15, 1)
 	toggle_lights(turned_on ? FALSE : TRUE)

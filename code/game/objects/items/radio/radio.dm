@@ -269,11 +269,11 @@
 /obj/item/radio/examine(mob/user)
 	. = ..()
 	if(frequency && in_range(src, user))
-		to_chat(user, span_notice("It is set to broadcast over the [frequency / 10] frequency."))
+		to_chat(user, "<span class='notice'>It is set to broadcast over the [frequency / 10] frequency.</span>")
 	if(unscrewed)
-		to_chat(user, span_notice("It can be attached and modified."))
+		to_chat(user, "<span class='notice'>It can be attached and modified.</span>")
 	else
-		to_chat(user, span_notice("It cannot be modified or attached."))
+		to_chat(user, "<span class='notice'>It cannot be modified or attached.</span>")
 
 
 /obj/item/radio/attackby(obj/item/I, mob/user, params)
@@ -281,9 +281,9 @@
 	if(isscrewdriver(I) && !subspace_transmission)
 		unscrewed = !unscrewed
 		if(unscrewed)
-			to_chat(user, span_notice("The radio can now be attached and modified!"))
+			to_chat(user, "<span class='notice'>The radio can now be attached and modified!</span>")
 		else
-			to_chat(user, span_notice("The radio can no longer be modified or attached!"))
+			to_chat(user, "<span class='notice'>The radio can no longer be modified or attached!</span>")
 
 /obj/item/radio/proc/recalculateChannels()
 	channels = list()

@@ -25,12 +25,12 @@
 	var/obj/machinery/bot/mulebot/M = holder
 	switch(wire)
 		if(WIRE_POWER1, WIRE_POWER2)
-			holder.visible_message(span_notice("[icon2html(M, viewers(holder))] The charge light flickers."))
+			holder.visible_message("<span class='notice'>[icon2html(M, viewers(holder))] The charge light flickers.</span>")
 		if(WIRE_AVOIDANCE)
-			holder.visible_message(span_notice("[icon2html(M, viewers(holder))] The external warning lights flash briefly."))
+			holder.visible_message("<span class='notice'>[icon2html(M, viewers(holder))] The external warning lights flash briefly.</span>")
 		if(WIRE_LOADCHECK)
-			holder.visible_message(span_notice("[icon2html(M, viewers(holder))] The load platform clunks."))
+			holder.visible_message("<span class='notice'>[icon2html(M, viewers(holder))] The load platform clunks.</span>")
 		if(WIRE_MOTOR1, WIRE_MOTOR2)
-			holder.visible_message(span_notice("[icon2html(M, viewers(holder))] The drive motor whines briefly."))
+			holder.visible_message("<span class='notice'>[icon2html(M, viewers(holder))] The drive motor whines briefly.</span>")
 		else
-			holder.visible_message(span_notice("[icon2html(M, viewers(holder))] You hear a radio crackle."))
+			holder.visible_message("<span class='notice'>[icon2html(M, viewers(holder))] You hear a radio crackle.</span>")

@@ -58,17 +58,17 @@
 	if(affecting == "head" && istype(target, /mob/living/carbon/) && !isxeno(target))
 
 		if(target != user)
-			user.visible_message(span_danger("[target] has been hit over the head with a bottle of [name], by [user]!"))
+			user.visible_message("<span class='danger'>[target] has been hit over the head with a bottle of [name], by [user]!</span>")
 		else
-			user.visible_message(span_danger("[user] has hit [user.p_them()]self with the bottle of [name] on the head!"))
+			user.visible_message("<span class='danger'>[user] has hit [user.p_them()]self with the bottle of [name] on the head!</span>")
 		if(armor_duration)
 			target.apply_effect(min(armor_duration, 10) , WEAKEN, armor_block) // Never weaken more than a flash!
 
 	else
 		if(target != user)
-			user.visible_message(span_danger("[target] has been attacked with a bottle of [name], by [user]!"))
+			user.visible_message("<span class='danger'>[target] has been attacked with a bottle of [name], by [user]!</span>")
 		else
-			user.visible_message(span_danger("[user] has attacked [user.p_them()]self with the bottle of [name]!"))
+			user.visible_message("<span class='danger'>[user] has attacked [user.p_them()]self with the bottle of [name]!</span>")
 
 	UPDATEHEALTH(target)
 
@@ -77,7 +77,7 @@
 
 	//The reagents in the bottle splash all over the target, thanks for the idea Nodrak
 	if(reagents)
-		visible_message(span_boldnotice("The contents of the [src] splashes all over [target]!"))
+		visible_message("<span class='boldnotice'>The contents of the [src] splashes all over [target]!</span>")
 		reagents.reaction(target, TOUCH)
 
 	//Finally, smash the bottle. This kills (del) the bottle.

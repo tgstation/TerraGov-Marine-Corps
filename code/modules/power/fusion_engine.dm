@@ -78,13 +78,13 @@
 
 		switch(power_gen_percent) //Flavor text!
 			if(10)
-				visible_message("[icon2html(src, viewers(src))] [span_notice("<b>[src]</b> begins to whirr as it powers up.")]")
+				visible_message("[icon2html(src, viewers(src))] <span class='notice'><b>[src]</b> begins to whirr as it powers up.</span>")
 				fuel_rate = FUSION_ENGINE_FULL_STRENGTH_FULL_RATE * 0.1
 			if(50)
-				visible_message("[icon2html(src, viewers(src))] [span_notice("<b>[src]</b> begins to hum loudly as it reaches half capacity.")]")
+				visible_message("[icon2html(src, viewers(src))] <span class='notice'><b>[src]</b> begins to hum loudly as it reaches half capacity.</span>")
 				fuel_rate = FUSION_ENGINE_FULL_STRENGTH_FULL_RATE * 0.5
 			if(100)
-				visible_message("[icon2html(src, viewers(src))] [span_notice("<b>[src]</b> rumbles loudly as the combustion and thermal chambers reach full strength.")]")
+				visible_message("[icon2html(src, viewers(src))] <span class='notice'><b>[src]</b> rumbles loudly as the combustion and thermal chambers reach full strength.</span>")
 				fuel_rate = FUSION_ENGINE_FULL_STRENGTH_FULL_RATE
 
 
@@ -97,7 +97,7 @@
 	if(.)
 		return
 	if(!ishuman(user))
-		to_chat(user, span_warning("You have no idea how to use that."))
+		to_chat(user, "<span class='warning'>You have no idea how to use that.</span>")
 		return FALSE
 	interact_hand(user)
 
@@ -108,16 +108,16 @@
 /obj/machinery/power/fusion_engine/proc/interact_hand(mob/living/user)
 	switch(buildstate)
 		if(FUSION_ENGINE_HEAVY_DAMAGE)
-			to_chat(user, span_info("Use a blowtorch, then wirecutters, then wrench to repair it."))
+			to_chat(user, "<span class='info'>Use a blowtorch, then wirecutters, then wrench to repair it.</span>")
 			return FALSE
 		if(FUSION_ENGINE_MEDIUM_DAMAGE)
-			to_chat(user, span_notice("Use a wirecutters, then wrench to repair it."))
+			to_chat(user, "<span class='notice'>Use a wirecutters, then wrench to repair it.</span>")
 			return FALSE
 		if(FUSION_ENGINE_LIGHT_DAMAGE)
-			to_chat(user, span_notice("Use a wrench to repair it."))
+			to_chat(user, "<span class='notice'>Use a wrench to repair it.</span>")
 			return FALSE
 	if(is_on)
-		visible_message("[icon2html(src, viewers(src))] [span_warning("<b>[src]</b> beeps softly and the humming stops as [usr] shuts off the generator.")]")
+		visible_message("[icon2html(src, viewers(src))] <span class='warning'><b>[src]</b> beeps softly and the humming stops as [usr] shuts off the generator.</span>")
 		is_on = FALSE
 		power_gen_percent = 0
 		cur_tick = 0
@@ -126,15 +126,15 @@
 		return TRUE
 
 	if(!fusion_cell)
-		to_chat(user, span_notice("The reactor requires a fuel cell before you can turn it on."))
+		to_chat(user, "<span class='notice'>The reactor requires a fuel cell before you can turn it on.</span>")
 		return FALSE
 	if(fusion_cell.fuel_amount == 0)
-		to_chat(user, span_warning("The reactor flashes that the fuel cell is empty."))
+		to_chat(user, "<span class='warning'>The reactor flashes that the fuel cell is empty.</span>")
 		return FALSE
 
 	if(fusion_cell.fuel_amount <= 10)
-		to_chat(user, "[icon2html(src, user)] [span_warning("<b>[src]</b>: Fuel levels critically low.")]")
-	visible_message("[icon2html(src, viewers(src))] [span_warning("<b>[src]</b> beeps loudly as [user] turns the generator on and begins the process of fusion...")]")
+		to_chat(user, "[icon2html(src, user)] <span class='warning'><b>[src]</b>: Fuel levels critically low.</span>")
+	visible_message("[icon2html(src, viewers(src))] <span class='warning'><b>[src]</b> beeps loudly as [user] turns the generator on and begins the process of fusion...</span>")
 	fuel_rate = FUSION_ENGINE_FULL_STRENGTH_FULL_RATE * 0.1
 
 	is_on = TRUE
@@ -147,15 +147,15 @@
 	. = ..()
 	if(istype(I, /obj/item/fuelCell))
 		if(is_on)
-			to_chat(user, span_warning("The [src] needs to be turned off first."))
+			to_chat(user, "<span class='warning'>The [src] needs to be turned off first.</span>")
 			return
 		if(fusion_cell)
-			to_chat(user, span_warning("You need to remove the fuel cell from [src] first."))
+			to_chat(user, "<span class='warning'>You need to remove the fuel cell from [src] first.</span>")
 			return
 		if(user.transferItemToLoc(I, src))
 			fusion_cell = I
 			update_icon()
-			to_chat(user, span_notice("You load the [src] with the [I]."))
+			to_chat(user, "<span class='notice'>You load the [src] with the [I].</span>")
 		return TRUE
 	else
 		return ..()
@@ -165,88 +165,88 @@
 		var/obj/item/tool/weldingtool/WT = O
 		if(WT.remove_fuel(1, user))
 			if(user.skills.getRating("engineer") < SKILL_ENGINEER_ENGI)
-				user.visible_message(span_notice("[user] fumbles around figuring out [src]'s internals."),
-				span_notice("You fumble around figuring out [src]'s internals."))
+				user.visible_message("<span class='notice'>[user] fumbles around figuring out [src]'s internals.</span>",
+				"<span class='notice'>You fumble around figuring out [src]'s internals.</span>")
 				var/fumbling_time = 10 SECONDS - 2 SECONDS * user.skills.getRating("engineer")
 				if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED, extra_checks = CALLBACK(WT, /obj/item/tool/weldingtool/proc/isOn)))
 					return FALSE
 			playsound(loc, 'sound/items/weldingtool_weld.ogg', 25)
-			user.visible_message(span_notice("[user] starts welding [src]'s internal damage."),
-			span_notice("You start welding [src]'s internal damage."))
+			user.visible_message("<span class='notice'>[user] starts welding [src]'s internal damage.</span>",
+			"<span class='notice'>You start welding [src]'s internal damage.</span>")
 			if(do_after(user, 200, TRUE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(WT, /obj/item/tool/weldingtool/proc/isOn)))
 				if(buildstate != FUSION_ENGINE_HEAVY_DAMAGE || is_on)
 					return FALSE
 				playsound(loc, 'sound/items/welder2.ogg', 25, 1)
 				buildstate = FUSION_ENGINE_MEDIUM_DAMAGE
-				user.visible_message(span_notice("[user] welds [src]'s internal damage."),
-				span_notice("You weld [src]'s internal damage."))
+				user.visible_message("<span class='notice'>[user] welds [src]'s internal damage.</span>",
+				"<span class='notice'>You weld [src]'s internal damage.</span>")
 				update_icon()
 				return TRUE
 		else
-			to_chat(user, span_warning("You need more welding fuel to complete this task."))
+			to_chat(user, "<span class='warning'>You need more welding fuel to complete this task.</span>")
 			return FALSE
 
 /obj/machinery/power/fusion_engine/wirecutter_act(mob/living/user, obj/item/O)
 	if(buildstate == FUSION_ENGINE_MEDIUM_DAMAGE && !is_on)
 		if(user.skills.getRating("engineer") < SKILL_ENGINEER_ENGI)
-			user.visible_message(span_notice("[user] fumbles around figuring out [src]'s wiring."),
-			span_notice("You fumble around figuring out [src]'s wiring."))
+			user.visible_message("<span class='notice'>[user] fumbles around figuring out [src]'s wiring.</span>",
+			"<span class='notice'>You fumble around figuring out [src]'s wiring.</span>")
 			var/fumbling_time = 10 SECONDS - 2 SECONDS * user.skills.getRating("engineer")
 			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 				return FALSE
 		playsound(loc, 'sound/items/wirecutter.ogg', 25, 1)
-		user.visible_message(span_notice("[user] starts securing [src]'s wiring."),
-		span_notice("You start securing [src]'s wiring."))
+		user.visible_message("<span class='notice'>[user] starts securing [src]'s wiring.</span>",
+		"<span class='notice'>You start securing [src]'s wiring.</span>")
 		if(!do_after(user, 120, TRUE, src, BUSY_ICON_BUILD) || buildstate != FUSION_ENGINE_MEDIUM_DAMAGE || is_on)
 			return FALSE
 		playsound(loc, 'sound/items/wirecutter.ogg', 25, 1)
 		buildstate = FUSION_ENGINE_LIGHT_DAMAGE
-		user.visible_message(span_notice("[user] secures [src]'s wiring."),
-		span_notice("You secure [src]'s wiring."))
+		user.visible_message("<span class='notice'>[user] secures [src]'s wiring.</span>",
+		"<span class='notice'>You secure [src]'s wiring.</span>")
 		update_icon()
 		return TRUE
 
 /obj/machinery/power/fusion_engine/wrench_act(mob/living/user, obj/item/O)
 	if(buildstate == FUSION_ENGINE_LIGHT_DAMAGE && !is_on)
 		if(user.skills.getRating("engineer") < SKILL_ENGINEER_ENGI)
-			user.visible_message(span_notice("[user] fumbles around figuring out [src]'s tubing and plating."),
-			span_notice("You fumble around figuring out [src]'s tubing and plating."))
+			user.visible_message("<span class='notice'>[user] fumbles around figuring out [src]'s tubing and plating.</span>",
+			"<span class='notice'>You fumble around figuring out [src]'s tubing and plating.</span>")
 			var/fumbling_time = 10 SECONDS - 2 SECONDS * user.skills.getRating("engineer")
 			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 				return FALSE
 		playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
-		user.visible_message(span_notice("[user] starts repairing [src]'s tubing and plating."),
-		span_notice("You start repairing [src]'s tubing and plating."))
+		user.visible_message("<span class='notice'>[user] starts repairing [src]'s tubing and plating.</span>",
+		"<span class='notice'>You start repairing [src]'s tubing and plating.</span>")
 		if(do_after(user, 150, TRUE, src, BUSY_ICON_BUILD) && buildstate == FUSION_ENGINE_LIGHT_DAMAGE && !is_on)
 			playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
 			buildstate = FUSION_ENGINE_NO_DAMAGE
-			user.visible_message(span_notice("[user] repairs [src]'s tubing and plating."),
-			span_notice("You repair [src]'s tubing and plating."))
+			user.visible_message("<span class='notice'>[user] repairs [src]'s tubing and plating.</span>",
+			"<span class='notice'>You repair [src]'s tubing and plating.</span>")
 			update_icon()
 			return TRUE
 
 /obj/machinery/power/fusion_engine/crowbar_act(mob/living/user, obj/item/O)
 	if(buildstate != FUSION_ENGINE_NO_DAMAGE)
-		to_chat(user, span_warning("You must repair the generator before working with its fuel cell."))
+		to_chat(user, "<span class='warning'>You must repair the generator before working with its fuel cell.</span>")
 		return
 	if(is_on)
-		to_chat(user, span_warning("You must turn off the generator before working with its fuel cell."))
+		to_chat(user, "<span class='warning'>You must turn off the generator before working with its fuel cell.</span>")
 		return
 	if(!fusion_cell)
-		to_chat(user, span_warning("There is no cell to remove."))
+		to_chat(user, "<span class='warning'>There is no cell to remove.</span>")
 	else
 		if(user.skills.getRating("engineer") < SKILL_ENGINEER_ENGI)
-			user.visible_message(span_warning("[user] fumbles around figuring out [src]'s fuel receptacle."),
-			span_warning("You fumble around figuring out [src]'s fuel receptacle."))
+			user.visible_message("<span class='warning'>[user] fumbles around figuring out [src]'s fuel receptacle.</span>",
+			"<span class='warning'>You fumble around figuring out [src]'s fuel receptacle.</span>")
 			var/fumbling_time = 10 SECONDS - 2 SECONDS * user.skills.getRating("engineer")
 			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 				return FALSE
 		playsound(loc, 'sound/items/crowbar.ogg', 25, 1)
-		user.visible_message(span_notice("[user] starts prying [src]'s fuel receptacle open."),
-		span_notice("You start prying [src]'s fuel receptacle open."))
+		user.visible_message("<span class='notice'>[user] starts prying [src]'s fuel receptacle open.</span>",
+		"<span class='notice'>You start prying [src]'s fuel receptacle open.</span>")
 		if(do_after(user, 100, TRUE, src, BUSY_ICON_BUILD) && buildstate == FUSION_ENGINE_NO_DAMAGE && !is_on && fusion_cell)
-			user.visible_message(span_notice("[user] pries [src]'s fuel receptacle open and removes the cell."),
-			span_notice("You pry [src]'s fuel receptacle open and remove the cell.."))
+			user.visible_message("<span class='notice'>[user] pries [src]'s fuel receptacle open and removes the cell.</span>",
+			"<span class='notice'>You pry [src]'s fuel receptacle open and remove the cell..</span>")
 			fusion_cell.update_icon()
 			user.put_in_hands(fusion_cell)
 			fusion_cell = null
@@ -258,38 +258,38 @@
 	..()
 	if(ishuman(user))
 		if(buildstate != FUSION_ENGINE_NO_DAMAGE)
-			to_chat(user, span_info("It's broken."))
+			to_chat(user, "<span class='info'>It's broken.</span>")
 			switch(buildstate)
 				if(FUSION_ENGINE_HEAVY_DAMAGE)
-					to_chat(user, span_info("Use a blowtorch, then wirecutters, then wrench to repair it."))
+					to_chat(user, "<span class='info'>Use a blowtorch, then wirecutters, then wrench to repair it.</span>")
 				if(FUSION_ENGINE_MEDIUM_DAMAGE)
-					to_chat(user, span_info("Use a wirecutters, then wrench to repair it."))
+					to_chat(user, "<span class='info'>Use a wirecutters, then wrench to repair it.</span>")
 				if(FUSION_ENGINE_LIGHT_DAMAGE)
-					to_chat(user, span_info("Use a wrench to repair it."))
+					to_chat(user, "<span class='info'>Use a wrench to repair it.</span>")
 			return FALSE
 
 		if(!is_on)
-			to_chat(user, span_info("It looks offline."))
+			to_chat(user, "<span class='info'>It looks offline.</span>")
 		else
-			to_chat(user, span_info("The power gauge reads: [power_gen_percent]%"))
+			to_chat(user, "<span class='info'>The power gauge reads: [power_gen_percent]%</span>")
 		if(fusion_cell)
-			to_chat(user, span_info("You can see a fuel cell in the receptacle."))
+			to_chat(user, "<span class='info'>You can see a fuel cell in the receptacle.</span>")
 			if(user.skills.getRating("engineer") >= SKILL_ENGINEER_MASTER)
 				switch(fusion_cell.fuel_amount)
 					if(0 to 10)
-						to_chat(user, span_danger("The fuel cell is critically low."))
+						to_chat(user, "<span class='danger'>The fuel cell is critically low.</span>")
 					if(11 to 25)
-						to_chat(user, span_warning("The fuel cell is running low."))
+						to_chat(user, "<span class='warning'>The fuel cell is running low.</span>")
 					if(26 to 50)
-						to_chat(user, span_info("The fuel cell is a little under halfway."))
+						to_chat(user, "<span class='info'>The fuel cell is a little under halfway.</span>")
 					if(51 to 75)
-						to_chat(user, span_info("The fuel cell is a little above halfway."))
+						to_chat(user, "<span class='info'>The fuel cell is a little above halfway.</span>")
 					if(76 to 99)
-						to_chat(user, span_info("The fuel cell is nearly full."))
+						to_chat(user, "<span class='info'>The fuel cell is nearly full.</span>")
 					if(100)
-						to_chat(user, span_info("The fuel cell is full."))
+						to_chat(user, "<span class='info'>The fuel cell is full.</span>")
 		else
-			to_chat(user, span_info("There is no fuel cell in the receptacle."))
+			to_chat(user, "<span class='info'>There is no fuel cell in the receptacle.</span>")
 
 /obj/machinery/power/fusion_engine/update_icon()
 	switch(buildstate)

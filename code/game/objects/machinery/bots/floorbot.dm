@@ -80,17 +80,17 @@
 		var/loaded = min(50 - amount, T.get_amount())
 		T.use(loaded)
 		amount += loaded
-		to_chat(user, span_notice("You load [loaded] tiles into the floorbot. He now contains [amount] tiles."))
+		to_chat(user, "<span class='notice'>You load [loaded] tiles into the floorbot. He now contains [amount] tiles.</span>")
 		updateicon()
 
 	else if(istype(W, /obj/item/card/id))
 		if(allowed(user) && !open)
 			locked = !locked
-			to_chat(user, span_notice("You [locked ? "lock" : "unlock"] \the [src] behaviour controls."))
+			to_chat(user, "<span class='notice'>You [locked ? "lock" : "unlock"] \the [src] behaviour controls.</span>")
 		else if(open)
-			to_chat(user, span_warning("Please close the access panel before locking it."))
+			to_chat(user, "<span class='warning'>Please close the access panel before locking it.</span>")
 		else
-			to_chat(user, span_warning("Access denied."))
+			to_chat(user, "<span class='warning'>Access denied.</span>")
 		updateUsrDialog()
 
 
@@ -248,7 +248,7 @@
 	src.anchored = TRUE
 	src.icon_state = "floorbot-c"
 	if(isspaceturf(target))
-		visible_message(span_warning(" [src] begins to repair the hole"))
+		visible_message("<span class='warning'> [src] begins to repair the hole</span>")
 		var/obj/item/stack/tile/plasteel/T = new /obj/item/stack/tile/plasteel
 		src.repairing = 1
 		spawn(50)
@@ -259,7 +259,7 @@
 			src.anchored = FALSE
 			src.target = null
 	else
-		visible_message(span_warning(" [src] begins to improve the floor."))
+		visible_message("<span class='warning'> [src] begins to improve the floor.</span>")
 		src.repairing = 1
 		spawn(50)
 			src.loc.icon_state = "floor"
@@ -272,7 +272,7 @@
 /obj/machinery/bot/floorbot/proc/eattile(obj/item/stack/tile/plasteel/T)
 	if(!istype(T, /obj/item/stack/tile/plasteel))
 		return
-	visible_message(span_warning(" [src] begins to collect tiles."))
+	visible_message("<span class='warning'> [src] begins to collect tiles.</span>")
 	src.repairing = 1
 	spawn(20)
 		if(isnull(T))
@@ -295,7 +295,7 @@
 		return
 	if(M.get_amount() > 1)
 		return
-	visible_message(span_warning(" [src] begins to create tiles."))
+	visible_message("<span class='warning'> [src] begins to create tiles.</span>")
 	src.repairing = 1
 	spawn(20)
 		if(isnull(M))
@@ -337,18 +337,18 @@
 	var/obj/item/stack/tile/plasteel/PS = I
 
 	if(length(contents) >= 1)
-		to_chat(user, span_notice("They wont fit in as there is already stuff inside."))
+		to_chat(user, "<span class='notice'>They wont fit in as there is already stuff inside.</span>")
 		return
 
 	if(user.s_active)
 		user.s_active.close(user)
 
 	if(!PS.use(10))
-		to_chat(user, span_warning("You need 10 floortiles for a floorbot."))
+		to_chat(user, "<span class='warning'>You need 10 floortiles for a floorbot.</span>")
 		return
 
 	var/obj/item/frame/toolbox_tiles/B = new
 	user.put_in_hands(B)
-	to_chat(user, span_notice("You add the tiles into the empty toolbox. They protrude from the top."))
+	to_chat(user, "<span class='notice'>You add the tiles into the empty toolbox. They protrude from the top.</span>")
 	user.temporarilyRemoveItemFromInventory(src)
 	qdel(src)

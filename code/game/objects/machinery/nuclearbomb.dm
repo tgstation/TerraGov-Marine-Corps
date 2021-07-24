@@ -117,7 +117,7 @@
 		return FALSE
 
 	if(!timer_enabled)
-		to_chat(X, span_warning("\The [src] is soundly asleep. We better not disturb it."))
+		to_chat(X, "<span class='warning'>\The [src] is soundly asleep. We better not disturb it.</span>")
 		return
 
 	X.visible_message("[X] begins to slash delicately at the nuke",
@@ -160,12 +160,12 @@
 
 	if(removal_stage < NUKE_STAGE_BOLTS_REMOVED)
 		if(anchored)
-			visible_message(span_warning("With a loud beep, lights flicker on the [src]'s display panel. It's working!"))
+			visible_message("<span class='warning'>With a loud beep, lights flicker on the [src]'s display panel. It's working!</span>")
 		else
 			anchored = TRUE
-			visible_message(span_warning("With a steely snap, bolts slide out of [src] and anchor it to the flooring!"))
+			visible_message("<span class='warning'>With a steely snap, bolts slide out of [src] and anchor it to the flooring!</span>")
 	else
-		visible_message(span_warning("\The [src] makes a highly unpleasant crunching noise. It looks like the anchoring bolts have been cut."))
+		visible_message("<span class='warning'>\The [src] makes a highly unpleasant crunching noise. It looks like the anchoring bolts have been cut.</span>")
 	if(!lighthack)
 		flick("nuclearbombc", src)
 		icon_state = "nuclearbomb1"
@@ -272,10 +272,10 @@
 			if(exploded)
 				return
 			if(safety)
-				to_chat(usr, span_warning("The safety is still on."))
+				to_chat(usr, "<span class='warning'>The safety is still on.</span>")
 				return
 			if(!anchored)
-				to_chat(usr, span_warning("The anchors are not set."))
+				to_chat(usr, "<span class='warning'>The anchors are not set.</span>")
 				return
 			timer_enabled = !timer_enabled
 			if(timer_enabled)
@@ -293,17 +293,17 @@
 		if(href_list["anchor"])
 			if(removal_stage == NUKE_STAGE_BOLTS_REMOVED)
 				anchored = FALSE
-				visible_message(span_warning("\The [src] makes a highly unpleasant crunching noise. It looks like the anchoring bolts have been cut."))
+				visible_message("<span class='warning'>\The [src] makes a highly unpleasant crunching noise. It looks like the anchoring bolts have been cut.</span>")
 				return
 			if(istype(get_area(loc), /area/shuttle))
-				to_chat(usr, span_warning("This doesn't look like a good spot to anchor the nuke."))
+				to_chat(usr, "<span class='warning'>This doesn't look like a good spot to anchor the nuke.</span>")
 				return
 
 			anchored = !anchored
 			if(anchored)
-				visible_message(span_warning("With a steely snap, bolts slide out of [src] and anchor it to the flooring."))
+				visible_message("<span class='warning'>With a steely snap, bolts slide out of [src] and anchor it to the flooring.</span>")
 			else
-				visible_message(span_warning("The anchoring bolts slide back into the depths of [src]."))
+				visible_message("<span class='warning'>The anchoring bolts slide back into the depths of [src].</span>")
 				timer_enabled = FALSE
 				stop_processing()
 

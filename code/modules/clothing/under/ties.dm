@@ -30,7 +30,7 @@
 	has_suit.overlays += inv_overlay
 
 	if(user)
-		to_chat(user, span_notice("You attach [src] to [has_suit]."))
+		to_chat(user, "<span class='notice'>You attach [src] to [has_suit].</span>")
 
 /obj/item/clothing/tie/proc/on_removed()
 	if(!has_suit)
@@ -110,14 +110,14 @@
 
 /obj/item/clothing/tie/medal/tie_check(obj/item/clothing/under/U, mob/user)
 	if(!ishuman(U.loc))
-		to_chat(user, span_warning("[U] must be worn to apply [src]."))
+		to_chat(user, "<span class='warning'>[U] must be worn to apply [src].</span>")
 	else
 		var/mob/living/carbon/human/H = U.loc
 		if(H.w_uniform != U)
-			to_chat(user, span_warning("[U] must be worn to apply [src]."))
+			to_chat(user, "<span class='warning'>[U] must be worn to apply [src].</span>")
 		else
 			if(recipient_name != H.real_name)
-				to_chat(user, span_warning("[src] isn't awarded to [H]."))
+				to_chat(user, "<span class='warning'>[src] isn't awarded to [H].</span>")
 			else
 				return TRUE
 
@@ -126,15 +126,15 @@
 		if(H.w_uniform)
 			var/obj/item/clothing/under/U = H.w_uniform
 			if(U.hastie)
-				to_chat(user, span_warning("There's already something attached to [H]'s [U.name]."))
+				to_chat(user, "<span class='warning'>There's already something attached to [H]'s [U.name].</span>")
 				return
 			else
 				if(recipient_name != H.real_name)
-					to_chat(user, span_warning("[src] isn't awarded to [H]."))
+					to_chat(user, "<span class='warning'>[src] isn't awarded to [H].</span>")
 					return
 				if(user != H)
 					user.visible_message("[user] starts pinning [src] on [H]'s [U.name].", \
-					span_notice("You start pinning [src] on [H]'s [U.name]."))
+					"<span class='notice'>You start pinning [src] on [H]'s [U.name].</span>")
 					if(user.do_actions)
 						return
 					if(!do_mob(user, H, 20, BUSY_ICON_FRIENDLY))
@@ -144,13 +144,13 @@
 				on_attached(U, user)
 				H.update_inv_w_uniform()
 				if(user == H)
-					user.visible_message(span_notice("[user] pins [src] to [user.p_their()] [U.name]."),
-					span_notice("You pin [src] to your [U.name]."))
+					user.visible_message("<span class='notice'>[user] pins [src] to [user.p_their()] [U.name].</span>",
+					"<span class='notice'>You pin [src] to your [U.name].</span>")
 				else
 					user.visible_message("[user] pins [src] on [H]'s [U.name].", \
-					span_notice("You pin [src] on [H]'s [U.name]."))
+					"<span class='notice'>You pin [src] on [H]'s [U.name].</span>")
 		else
-			to_chat(user, span_warning("[src] needs a uniform to be pinned to."))
+			to_chat(user, "<span class='warning'>[src] needs a uniform to be pinned to.</span>")
 	else
 		return ..()
 
@@ -321,7 +321,7 @@
 	..()
 
 /obj/item/clothing/tie/storage/attack_self(mob/user as mob)
-	to_chat(user, span_notice("You empty [src]."))
+	to_chat(user, "<span class='notice'>You empty [src].</span>")
 	var/turf/T = get_turf(src)
 	hold.hide_from(usr)
 	for(var/obj/item/I in hold.contents)
@@ -515,7 +515,7 @@
 		to_chat(user, "Waving around a badge before swiping an ID would be pretty pointless.")
 		return
 	if(isliving(user))
-		user.visible_message(span_warning(" [user] displays their TGMC Internal Security Legal Authorization Badge.\nIt reads: [stored_name], TGMC Security."),span_warning(" You display your TGMC Internal Security Legal Authorization Badge.\nIt reads: [stored_name], TGMC Security."))
+		user.visible_message("<span class='warning'> [user] displays their TGMC Internal Security Legal Authorization Badge.\nIt reads: [stored_name], TGMC Security.</span>","<span class='warning'> You display your TGMC Internal Security Legal Authorization Badge.\nIt reads: [stored_name], TGMC Security.</span>")
 
 /obj/item/clothing/tie/holobadge/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -535,7 +535,7 @@
 
 /obj/item/clothing/tie/holobadge/attack(mob/living/carbon/human/M, mob/living/user)
 	if(isliving(user))
-		user.visible_message(span_warning(" [user] invades [M]'s personal space, thrusting [src] into their face insistently."),span_warning(" You invade [M]'s personal space, thrusting [src] into their face insistently. You are the law."))
+		user.visible_message("<span class='warning'> [user] invades [M]'s personal space, thrusting [src] into their face insistently.</span>","<span class='warning'> You invade [M]'s personal space, thrusting [src] into their face insistently. You are the law.</span>")
 
 /obj/item/storage/box/holobadge
 	name = "holobadge box"

@@ -200,12 +200,12 @@
 		if(usr.client.holder?.rank && (usr.client.holder.rank.rights & rights_required))
 			return TRUE
 		else if(show_msg)
-			to_chat(usr, span_warning("You do not have sufficient rights to do that. You require one of the following flags:[rights2text(rights_required," ")]."))
+			to_chat(usr, "<span class='warning'>You do not have sufficient rights to do that. You require one of the following flags:[rights2text(rights_required," ")].</span>")
 	else
 		if(usr.client.holder)
 			return TRUE
 		else if(show_msg)
-			to_chat(usr, span_warning("You are not a holder."))
+			to_chat(usr, "<span class='warning'>You are not a holder.</span>")
 	return FALSE
 
 
@@ -216,12 +216,12 @@
 		if(rights_required & other.holder.rank.rights)
 			return TRUE
 		else if(show_msg)
-			to_chat(usr, span_warning("You do not have sufficient rights to do that. You require one of the following flags:[rights2text(rights_required," ")]."))
+			to_chat(usr, "<span class='warning'>You do not have sufficient rights to do that. You require one of the following flags:[rights2text(rights_required," ")].</span>")
 	else
 		if(other.holder)
 			return TRUE
 		else if(show_msg)
-			to_chat(usr, span_warning("You are not a holder."))
+			to_chat(usr, "<span class='warning'>You are not a holder.</span>")
 	return FALSE
 
 
@@ -237,7 +237,7 @@
 			return TRUE
 		if(usr.client.holder.rank.rights != other.holder.rank.rights && ((usr.client.holder.rank.rights & other.holder.rank.rights) == other.holder.rank.rights))
 			return TRUE
-	to_chat(usr, span_warning("They have more or equal rights than you."))
+	to_chat(usr, "<span class='warning'>They have more or equal rights than you.</span>")
 	return FALSE
 
 
@@ -566,7 +566,7 @@ GLOBAL_PROTECT(admin_verbs_spawn)
 				html = msg)
 
 /proc/msg_admin_ff(msg)
-	msg = span_admin("[span_prefix("ATTACK:")] <span class='green linkify'>[msg]</span>")
+	msg = "<span class='admin'><span class='prefix'>ATTACK:</span> <span class='green linkify'>[msg]</span></span>"
 	for(var/client/C in GLOB.admins)
 		if(!check_other_rights(C, R_ADMIN, FALSE))
 			continue
@@ -613,10 +613,10 @@ GLOBAL_PROTECT(admin_verbs_spawn)
 
 	if(current_caller && current_caller != ckey)
 		if(!GLOB.AdminProcCallSpamPrevention[ckey])
-			to_chat(usr, span_adminnotice("Another set of admin called procs are still running, your proc will be run after theirs finish."))
+			to_chat(usr, "<span class='adminnotice'>Another set of admin called procs are still running, your proc will be run after theirs finish.</span>")
 			GLOB.AdminProcCallSpamPrevention[ckey] = TRUE
 			UNTIL(!GLOB.AdminProcCaller)
-			to_chat(usr, span_adminnotice("Running your proc"))
+			to_chat(usr, "<span class='adminnotice'>Running your proc</span>")
 			GLOB.AdminProcCallSpamPrevention -= ckey
 		else
 			UNTIL(!GLOB.AdminProcCaller)

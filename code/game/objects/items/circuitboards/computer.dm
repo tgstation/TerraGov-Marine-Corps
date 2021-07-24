@@ -170,15 +170,15 @@
 
 	if(istype(I, /obj/item/card/id))
 		if(!check_access(I))
-			to_chat(user, span_warning("Access denied."))
+			to_chat(user, "<span class='warning'>Access denied.</span>")
 			return
 
 		locked = !locked
-		to_chat(user, span_notice("You [locked ? "" : "un"]lock the circuit controls."))
+		to_chat(user, "<span class='notice'>You [locked ? "" : "un"]lock the circuit controls.</span>")
 
 	else if(ismultitool(I))
 		if(locked)
-			to_chat(user, span_warning("Circuit controls are locked."))
+			to_chat(user, "<span class='warning'>Circuit controls are locked.</span>")
 			return
 
 		var/existing_networks = jointext(network, ",")
@@ -199,13 +199,13 @@
 	. = ..()
 
 	if(isscrewdriver(I))
-		user.visible_message(span_notice(" \the [user] adjusts the jumper on the [src]'s access protocol pins."), span_notice(" You adjust the jumper on the access protocol pins."))
+		user.visible_message("<span class='notice'> \the [user] adjusts the jumper on the [src]'s access protocol pins.</span>", "<span class='notice'> You adjust the jumper on the access protocol pins.</span>")
 
 		if(build_path == /obj/machinery/computer/rdconsole/core)
 			name = "Circuit Board (RD Console - Robotics)"
 			build_path = /obj/machinery/computer/rdconsole/robotics
-			to_chat(user, span_notice("Access protocols set to robotics."))
+			to_chat(user, "<span class='notice'>Access protocols set to robotics.</span>")
 		else
 			name = "Circuit Board (RD Console)"
 			build_path = /obj/machinery/computer/rdconsole/core
-			to_chat(user, span_notice("Access protocols set to default."))
+			to_chat(user, "<span class='notice'>Access protocols set to default.</span>")

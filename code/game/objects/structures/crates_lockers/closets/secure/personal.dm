@@ -60,7 +60,7 @@
 		if (W) W.loc = src.loc
 	else if(istype(W, /obj/item/card/id))
 		if(src.broken)
-			to_chat(user, span_warning("It appears to be broken."))
+			to_chat(user, "<span class='warning'>It appears to be broken.</span>")
 			return
 		var/obj/item/card/id/I = W
 		if(!I || !I.registered_name)	return
@@ -74,9 +74,9 @@
 				src.registered_name = I.registered_name
 				src.desc = "Owned by [I.registered_name]."
 		else
-			to_chat(user, span_warning("Access Denied"))
+			to_chat(user, "<span class='warning'>Access Denied</span>")
 		return
-	to_chat(user, span_warning("Access Denied"))
+	to_chat(user, "<span class='warning'>Access Denied</span>")
 
 
 /obj/structure/closet/secure_closet/personal/verb/reset()
@@ -88,9 +88,9 @@
 	if(!ishuman(usr))
 		return
 	if (src.locked || !src.registered_name)
-		to_chat(usr, span_warning("You need to unlock it first."))
+		to_chat(usr, "<span class='warning'>You need to unlock it first.</span>")
 	else if (src.broken)
-		to_chat(usr, span_warning("It appears to be broken."))
+		to_chat(usr, "<span class='warning'>It appears to be broken.</span>")
 	else
 		if (src.opened)
 			if(!src.close())

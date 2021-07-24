@@ -92,7 +92,7 @@
 
 	else if(isscrewdriver(I))
 		open = !open
-		to_chat(user, span_notice("You [open ? "open" : "close"] the maintenance panel."))
+		to_chat(user, "<span class='notice'>You [open ? "open" : "close"] the maintenance panel.</span>")
 
 	else if(iscrowbar(I) && open)
 		deconstruct()

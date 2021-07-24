@@ -352,11 +352,11 @@
 	if(iscrowbar(I) && dir_needed)
 		var/turf/next_turf = get_step(src, dir_needed)
 		if(next_turf.density)
-			to_chat(user, span_warning("You can't open the crate here, there's not enough room!"))
+			to_chat(user, "<span class='warning'>You can't open the crate here, there's not enough room!</span>")
 			return
 		for(var/atom/movable/AM in next_turf.contents)
 			if(AM.density)
-				to_chat(user, span_warning("You can't open the crate here, [AM] blocks the way."))
+				to_chat(user, "<span class='warning'>You can't open the crate here, [AM] blocks the way.</span>")
 				return
 		return TRUE
 	return ..()

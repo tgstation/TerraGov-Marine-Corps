@@ -196,7 +196,7 @@
 /turf/open/shuttle/check_alien_construction(mob/living/builder, silent = FALSE, planned_building)
 	if(ispath(planned_building, /turf/closed/wall/)) // Shuttles move and will leave holes in the floor during transit
 		if(!silent)
-			to_chat(builder, span_warning("This place seems unable to support a wall."))
+			to_chat(builder, "<span class='warning'>This place seems unable to support a wall.</span>")
 		return FALSE
 	return ..()
 
@@ -356,17 +356,17 @@
 		var/obj/item/stack/rods/R = C
 		var/turf/open/lavaland/catwalk/H = locate(/turf/open/lavaland/catwalk, src)
 		if(H)
-			to_chat(user, span_warning("There is already a catwalk here!"))
+			to_chat(user, "<span class='warning'>There is already a catwalk here!</span>")
 			return
 		if(!do_after(user, 5 SECONDS, FALSE))
-			to_chat(user, span_warning("It takes time to construct a catwalk!"))
+			to_chat(user, "<span class='warning'>It takes time to construct a catwalk!</span>")
 			return
 		if(R.use(4))
-			to_chat(user, span_notice("You construct a heatproof catwalk."))
+			to_chat(user, "<span class='notice'>You construct a heatproof catwalk.</span>")
 			playsound(src, 'sound/weapons/genhit.ogg', 50, TRUE)
 			ChangeTurf(/turf/open/lavaland/catwalk/built)
 		else
-			to_chat(user, span_warning("You need four rods to build a heatproof catwalk."))
+			to_chat(user, "<span class='warning'>You need four rods to build a heatproof catwalk.</span>")
 		return
 
 /turf/open/lavaland/basalt

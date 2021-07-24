@@ -40,7 +40,7 @@
 
 /obj/item/assembly/infra/examine(mob/user)
 	. = ..()
-	to_chat(user, span_notice("The infrared trigger is [on?"on":"off"]."))
+	to_chat(user, "<span class='notice'>The infrared trigger is [on?"on":"off"].</span>")
 
 
 /obj/item/assembly/infra/activate()

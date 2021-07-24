@@ -19,11 +19,11 @@
 		if(filled)
 
 			if(target.reagents.total_volume >= target.reagents.maximum_volume)
-				to_chat(user, span_warning("[target] is full."))
+				to_chat(user, "<span class='warning'>[target] is full.</span>")
 				return
 
 			if(!target.is_injectable() && !ismob(target)) //You can inject humans and food but you cant remove the shit.
-				to_chat(user, span_warning("You cannot directly fill this object."))
+				to_chat(user, "<span class='warning'>You cannot directly fill this object.</span>")
 				return
 
 			var/trans = 0
@@ -31,7 +31,7 @@
 			if(ismob(target))
 
 				var/time = 20 //2/3rds the time of a syringe
-				visible_message(span_danger("[user] is trying to squirt something into [target]'s eyes!"))
+				visible_message("<span class='danger'>[user] is trying to squirt something into [target]'s eyes!</span>")
 
 				if(!do_mob(user, target, time, BUSY_ICON_HOSTILE))
 					return
@@ -55,16 +55,16 @@
 							safe_thing.create_reagents(100)
 						trans = src.reagents.trans_to(safe_thing, amount_per_transfer_from_this)
 
-						visible_message(span_danger("[user] tries to squirt something into [target]s eyes, but fails!"))
+						visible_message("<span class='danger'>[user] tries to squirt something into [target]s eyes, but fails!</span>")
 						addtimer(CALLBACK(reagents, /datum/reagents.proc/reaction, safe_thing, TOUCH), 5)
 
-						to_chat(user, span_notice("You transfer [trans] units of the solution."))
+						to_chat(user, "<span class='notice'>You transfer [trans] units of the solution.</span>")
 						if (src.reagents.total_volume<=0)
 							filled = 0
 							icon_state = "dropper[filled]"
 						return
 
-				visible_message(span_danger("[user] squirts something into [target]'s eyes!"))
+				visible_message("<span class='danger'>[user] squirts something into [target]'s eyes!</span>")
 				src.reagents.reaction(target, TOUCH)
 
 				var/mob/living/M = target
@@ -76,7 +76,7 @@
 				log_combat(user, M, "squirted", src, "Reagents: [contained]")
 
 			trans = src.reagents.trans_to(target, amount_per_transfer_from_this)
-			to_chat(user, span_notice("You transfer [trans] units of the solution."))
+			to_chat(user, "<span class='notice'>You transfer [trans] units of the solution.</span>")
 			if (src.reagents.total_volume<=0)
 				filled = 0
 				icon_state = "dropper[filled]"
@@ -84,16 +84,16 @@
 		else
 
 			if(!target.is_open_container() && !istype(target,/obj/structure/reagent_dispensers))
-				to_chat(user, span_warning("You cannot directly remove reagents from [target]."))
+				to_chat(user, "<span class='warning'>You cannot directly remove reagents from [target].</span>")
 				return
 
 			if(!target.reagents.total_volume)
-				to_chat(user, span_warning("[target] is empty."))
+				to_chat(user, "<span class='warning'>[target] is empty.</span>")
 				return
 
 			var/trans = target.reagents.trans_to(src, amount_per_transfer_from_this)
 
-			to_chat(user, span_notice("You fill the dropper with [trans] units of the solution."))
+			to_chat(user, "<span class='notice'>You fill the dropper with [trans] units of the solution.</span>")
 
 			filled = 1
 			icon_state = "dropper[filled]"

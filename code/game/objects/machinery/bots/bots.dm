@@ -27,9 +27,9 @@
 	. = ..()
 	if(obj_integrity < max_integrity)
 		if(obj_integrity > max_integrity/3)
-			to_chat(user, span_warning("[src]'s parts look loose."))
+			to_chat(user, "<span class='warning'>[src]'s parts look loose.</span>")
 		else
-			to_chat(user, span_danger("[src]'s parts look very loose!"))
+			to_chat(user, "<span class='danger'>[src]'s parts look very loose!</span>")
 
 /obj/machinery/bot/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -38,19 +38,19 @@
 		if(locked)
 			return
 		open = !open
-		to_chat(user, span_notice("Maintenance panel is now [src.open ? "opened" : "closed"]."))
+		to_chat(user, "<span class='notice'>Maintenance panel is now [src.open ? "opened" : "closed"].</span>")
 
 	else if(iswelder(I))
 		if(obj_integrity >= max_integrity)
-			to_chat(user, span_notice("[src] does not need a repair."))
+			to_chat(user, "<span class='notice'>[src] does not need a repair.</span>")
 			return
 
 		if(!open)
-			to_chat(user, span_notice("Unable to repair with the maintenance panel closed."))
+			to_chat(user, "<span class='notice'>Unable to repair with the maintenance panel closed.</span>")
 			return
 
 		repair_damage(10)
-		user.visible_message(span_warning(" [user] repairs [src]!"),span_notice(" You repair [src]!"))
+		user.visible_message("<span class='warning'> [user] repairs [src]!</span>","<span class='notice'> You repair [src]!</span>")
 
 
 /obj/machinery/bot/emp_act(severity)

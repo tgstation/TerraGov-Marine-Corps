@@ -352,13 +352,13 @@
 
 	// Usual checks
 	if(!fuel)
-		to_chat(user, span_notice("It's out of fuel."))
+		to_chat(user, "<span class='notice'>It's out of fuel.</span>")
 		return
 	if(active)
 		return
 
 	// All good, turn it on.
-	user.visible_message(span_notice("[user] activates the flare."), span_notice("You depress the ignition button, activating it!"))
+	user.visible_message("<span class='notice'>[user] activates the flare.</span>", "<span class='notice'>You depress the ignition button, activating it!</span>")
 	turn_on(user)
 	if(iscarbon(user))
 		var/mob/living/carbon/C = usr

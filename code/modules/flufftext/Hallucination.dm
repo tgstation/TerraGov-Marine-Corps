@@ -144,7 +144,7 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 /obj/effect/hallucination/simple/xeno/throw_impact(atom/hit_atom, speed)
 	if(hit_atom == target && target.stat != DEAD)
 		target.Paralyze(3 SECONDS, TRUE, TRUE)
-		target.visible_message(span_danger("[target] flails around wildly."),span_xenowarning("\The [src] pounces at [target]!"))
+		target.visible_message("<span class='danger'>[target] flails around wildly.</span>","<span class='xenowarning'>\The [src] pounces at [target]!</span>")
 
 /datum/hallucination/xeno_attack
 	//Xeno crawls from nearby vent,jumps at you, and goes back in
@@ -166,9 +166,9 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 		sleep(1 SECONDS)
 		xeno.throw_at(pump.loc, 7, 1, xeno, FALSE, TRUE)
 		sleep(1 SECONDS)
-		to_chat(target, span_notice("[xeno.name] begins climbing into the ventilation system..."))
+		to_chat(target, "<span class='notice'>[xeno.name] begins climbing into the ventilation system...</span>")
 		sleep(1.5 SECONDS)
-		to_chat(target, span_notice("[xeno.name] scrambles into the ventilation ducts!"))
+		to_chat(target, "<span class='notice'>[xeno.name] scrambles into the ventilation ducts!</span>")
 		playsound(src, get_sfx("alien_ventpass"), 35, 1)
 		qdel(xeno)
 	qdel(src)
@@ -318,7 +318,7 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 			fakemob = target //ever been so lonely you had to haunt yourself?
 		if(fakemob)
 			sleep(rand(20, 50))
-			to_chat(target, span_deadsay("<b>DEAD: [fakemob.name]</b> says, \"[pick("rip","why did i just drop dead?","hey [target.real_name]","git gud","you too?","did we get the [pick("nuke", "blue disk", "red disk", "green disk", "yellow disk")]?","i[prob(50)?" fucking":""] hate [pick("runners", "queens", "shrikes", "xenos", "this", "myself", "admins", "you")]")]\""))
+			to_chat(target, "<span class='deadsay'><b>DEAD: [fakemob.name]</b> says, \"[pick("rip","why did i just drop dead?","hey [target.real_name]","git gud","you too?","did we get the [pick("nuke", "blue disk", "red disk", "green disk", "yellow disk")]?","i[prob(50)?" fucking":""] hate [pick("runners", "queens", "shrikes", "xenos", "this", "myself", "admins", "you")]")]\"</span>")
 	sleep(rand(7 SECONDS, 9 SECONDS))
 	target.set_screwyhud(SCREWYHUD_NONE)
 	target.SetSleeping(0)

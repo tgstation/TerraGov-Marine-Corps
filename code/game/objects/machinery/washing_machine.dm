@@ -128,11 +128,11 @@
 			return
 
 		if(length(contents) >= 5)
-			to_chat(user, span_notice("The washing machine is full."))
+			to_chat(user, "<span class='notice'>The washing machine is full.</span>")
 			return
 
 		if(!(state in list(1, 3)))
-			to_chat(user, span_notice("You can't put the item in right now."))
+			to_chat(user, "<span class='notice'>You can't put the item in right now.</span>")
 			return
 
 		if(!user.transferItemToLoc(I, src))
@@ -162,7 +162,7 @@
 			crayon = null
 			state = 1
 		if(5)
-			to_chat(user, span_warning("The [src] is busy."))
+			to_chat(user, "<span class='warning'>The [src] is busy.</span>")
 		if(6)
 			state = 7
 		if(7)

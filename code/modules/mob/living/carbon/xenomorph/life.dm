@@ -134,7 +134,7 @@
 		if(plasma_stored < 5)
 			use_plasma(plasma_stored)
 			current_aura = null
-			to_chat(src, span_warning("We have run out of plasma and stopped emitting pheromones."))
+			to_chat(src, "<span class='warning'>We have run out of plasma and stopped emitting pheromones.</span>")
 		else
 			use_plasma(5)
 
@@ -281,7 +281,7 @@
 			if(hud_used && hud_used.fire_icon)
 				hud_used.fire_icon.icon_state = "fire2"
 			if(prob(20))
-				to_chat(src, span_warning("We feel a searing heat!"))
+				to_chat(src, "<span class='warning'>We feel a searing heat!</span>")
 		else
 			if(hud_used && hud_used.fire_icon)
 				hud_used.fire_icon.icon_state = "fire0"
@@ -299,11 +299,11 @@
 /mob/living/carbon/xenomorph/handle_slowdown()
 	if(slowdown)
 		#if DEBUG_XENO_LIFE
-		world << span_debuginfo("Regen: Initial slowdown is: <b>[slowdown]</b>")
+		world << "<span class='debuginfo'>Regen: Initial slowdown is: <b>[slowdown]</b></span>"
 		#endif
 		adjust_slowdown(-XENO_SLOWDOWN_REGEN)
 		#if DEBUG_XENO_LIFE
-		world << span_debuginfo("Regen: Final slowdown is: <b>[slowdown]</b>")
+		world << "<span class='debuginfo'>Regen: Final slowdown is: <b>[slowdown]</b></span>"
 		#endif
 	return slowdown
 

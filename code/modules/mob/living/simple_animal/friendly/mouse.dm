@@ -37,7 +37,7 @@
 	. = ..()
 	if(ishuman(AM) && stat == CONSCIOUS)
 		var/mob/living/carbon/human/H = AM
-		to_chat(H, span_notice("[icon2html(src, H)] Squeak!"))
+		to_chat(H, "<span class='notice'>[icon2html(src, H)] Squeak!</span>")
 	return ..()
 
 
@@ -48,13 +48,13 @@
 			var/obj/structure/cable/C = locate() in F
 			if(C && prob(15))
 				if(C.avail())
-					visible_message(span_warning("[src] chews through the [C]. It's toast!"))
+					visible_message("<span class='warning'>[src] chews through the [C]. It's toast!</span>")
 					playsound(src, 'sound/effects/sparks2.ogg', 100, 1)
 					C.deconstruct()
 					death()
 				else
 					C.deconstruct()
-					visible_message(span_warning("[src] chews through the [C]."))
+					visible_message("<span class='warning'>[src] chews through the [C].</span>")
 
 
 /mob/living/simple_animal/mouse/white
