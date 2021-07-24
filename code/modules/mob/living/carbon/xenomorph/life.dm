@@ -161,7 +161,7 @@
 	if(lying_angle || resting)
 		plasma_gain *= 2  // Doubled for resting
 
-	plasma_gain *= weed ? weed.resting_buff : 1
+	plasma_gain *= weeds ? weeds.resting_buff : 1
 
 	gain_plasma(plasma_gain * plasma_gain_multiplier)
 	hud_set_plasma() //update plasma amount on the plasma mob_hud
