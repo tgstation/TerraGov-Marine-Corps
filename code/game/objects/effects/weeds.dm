@@ -20,6 +20,8 @@
 	var/obj/effect/alien/weeds/node/parent_node
 	///The color variant of the sprite
 	var/color_variant = SPEED_COLOR
+	///The healing buff when resting on this weed
+	var/resting_buff = 1
 
 /obj/effect/alien/weeds/deconstruct(disassembled = TRUE)
 	GLOB.round_statistics.weeds_destroyed++
@@ -122,6 +124,7 @@
 	name = "resting weeds"
 	desc = "This looks almost comfortable."
 	color_variant = RESTING_COLOR
+	resting_buff = 1.2
 
 /obj/effect/alien/weeds/barbed
 	name = "barbed weeds"
@@ -144,6 +147,7 @@
 	victim.apply_damage(3, BRUTE)
 
 	if(prob(15))
+		to_chat(victim, span_warning("You hurt yourself on the barbed weeds"))
 		victim.emote("pain")
 
 // =================
@@ -197,7 +201,10 @@
 	desc = "A weird, pulsating node."
 	max_integrity = 60
 	var/node_icon = "weednode"
-	var/node_turfs = list() // list of all potential turfs that we can expand to
+	/// list of all potential turfs that we can expand to
+	var/node_turfs = list()
+	/// How far this node can spread weeds
+	var/node_range = 2
 	/// What type of weeds this node spreads
 	var/weed_type = /obj/effect/alien/weeds
 
@@ -234,7 +241,7 @@
 	update_icon()
 
 	// Generate our full graph before adding to SSweeds
-	node_turfs = filled_turfs(src, 2, "square")
+	node_turfs = filled_turfs(src, node_range, "square")
 	SSweeds.add_node(src)
 
 //Speed weed node

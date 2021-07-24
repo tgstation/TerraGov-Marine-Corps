@@ -69,9 +69,9 @@
 	var/obj/effect/alien/weeds/weed = locate() in T
 	if(weed || xeno_caste.caste_flags & CASTE_INNATE_HEALING) //We regenerate on weeds or can on our own.
 		if(lying_angle || resting || xeno_caste.caste_flags & CASTE_QUICK_HEAL_STANDING)
-			heal_wounds(XENO_RESTING_HEAL * ruler_healing_penalty * (weed?.color_variant == RESTING_COLOR ? 1.2 : 1), TRUE)
+			heal_wounds(XENO_RESTING_HEAL * ruler_healing_penalty * weed ? weed.resting_buff : 1, TRUE)
 		else
-			heal_wounds(XENO_STANDING_HEAL * ruler_healing_penalty * (weed?.color_variant == RESTING_COLOR ? 1.2 : 1), TRUE) //Major healing nerf if standing.
+			heal_wounds(XENO_STANDING_HEAL * ruler_healing_penalty, TRUE) //Major healing nerf if standing.
 	updatehealth()
 
 ///Handles sunder modification/recovery during life.dm for xenos
@@ -161,7 +161,7 @@
 	if(lying_angle || resting)
 		plasma_gain *= 2  // Doubled for resting
 
-	plasma_gain *= weeds.color_variant == RESTING_COLOR ? 1.2 : 1
+	plasma_gain *= weed ? weed.resting_buff : 1
 
 	gain_plasma(plasma_gain * plasma_gain_multiplier)
 	hud_set_plasma() //update plasma amount on the plasma mob_hud

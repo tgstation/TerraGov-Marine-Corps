@@ -8,12 +8,12 @@
 #define TOXIN_WEED "toxin weed sac"
 
 //List of weed types
-GLOBAL_LIST_INIT(weed_type_list, list(
+GLOBAL_LIST_INIT(weed_type_list, typecacheof(list(
 		/obj/effect/alien/weeds/node/speed,
 		/obj/effect/alien/weeds/node/sticky,
 		/obj/effect/alien/weeds/node/resting,
 		/obj/effect/alien/weeds/node/barbed,
-		))
+		)))
 
 //List of weeds with probability of spawning
 GLOBAL_LIST_INIT(weed_prob_list, list(
