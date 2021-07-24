@@ -1,0 +1,478 @@
+2020-11-01:
+  GameMaster85:
+  - code_imp: Added NOQUICKEQUIP flag_inventory bitflag functionality to prevent unequip
+      via quick-equip hotkey.
+  - bugfix: The belt mag harness can't be unequipped via quick-equip hotkey. You now
+      must click it manually.
+  Hathkar:
+  - bugfix: Added shutters to Icy Caves LZ2
+  Hughgent:
+  - code_imp: Travis error message has slightly better English.
+  Pariah919:
+  - rscadd: Added new pmc sprites
+  - rscdel: Removed old pmc sprites, git will remember them, nobody else will.
+  - tweak: Lore
+  - balance: shields have no drop, press alt click to toggle it.
+  - bugfix: fixed p90s spawning in mr25 closets
+  TiviPlus:
+  - admin: Logs shuttle launches
+2020-11-02:
+  2whatever2:
+  - balance: Zaps from tesla bolts now stagger for 2 seconds and slows for 0.5 seconds
+      unaffected by total amount of xenos hit
+  MacBlaze1:
+  - rscadd: Added saving previous coordinates to the mortar, and the ability to go
+      back to them
+  - rscadd: Added a new UI for the mortar
+  Pariah919:
+  - balance: survivor has survival knife and hard hat on non cold maps
+  - balance: Added M412s to LV security armory, added flechette to big red and LV,
+      gave M412/MR25 to big red armory, they've been spending money on modernization
+  - balance: shields now protect 50% soft armor from anything attacking you, but no
+      longer have 5 melee hard armor.
+  Wayland-Smithy:
+  - balance: Xenos will now disable dead marine headset cameras when slashing just
+      like they do with lights.
+  fernandos13:
+  - rscadd: BC and gyro to the medic attachment list
+  - rscdel: Removes generic pouches from the medic preparation vendor
+  - rscdel: Removes medkits from the point medic vendor
+  spookydonut:
+  - rscadd: Some xeno abilities should be easier to target mobs.
+2020-11-04:
+  Pariah919:
+  - rscadd: Added new pilot sprites, new jumpsuit/2 helmets and a new flak sprite
+  - rscdel: Removed old pilot sprites, git will remember them, nobody else will.
+  - balance: drastically reduced shield health
+  - rscadd: Added new cool FAMAS.
+  - rscdel: Removed FP-2000, git will remember it. Nobody else will
+  TiviPlus:
+  - rscadd: Metal barricades can now be upgraded with acid, ballistic, or explosive
+      armor
+  Wayland-Smithy:
+  - tweak: Big mobs will now always trample light sticks on the first crossing.
+2020-11-05:
+  TiviPlus:
+  - rscadd: New CAS airplane for POs
+  - rscadd: The CAS jet needs to be fueled using jerrycans
+  - rscadd: Click while in CAS mode to attack ground targets
+  - rscadd: Weapons can be attached to the plane like normal cas but must be selected
+      for firing
+  - imageadd: Sprites by darkplasmaray
+  - code_imp: cleaned up some UIs, dropship code and CAS weapons code
+2020-11-06:
+  Hathkar:
+  - imageadd: Mirrored the slash and red slash sprites, giving a bit more visual variety
+      when attacking.
+  - imageadd: New animated intel computer icon.
+  - imageadd: Fixed a white pixel on the panther's forward facing sprite.
+  - imageadd: Slightly changed the resin pod's animated drip, making it follow the
+      contours of the pod instead of dripping directly down.
+  Pariah919:
+  - balance: hydrocodone actually works, has a 4u overdose limit and metabolites very
+      quickly.
+  - bugfix: fixed hydrocodone not working
+  - rscadd: Added new pouch sprites.
+  - rscdel: Removed old pouch sprites, git will remember them. Nobody else will.
+  - rscadd: Added new backpack sprites
+  - rscdel: Removed old backpack sprites, git will remember them. Nobody else will.
+2020-11-08:
+  E25:
+  - tweak: Marine ranks are now 0/10/100/300/1000 hours.
+  - tweak: All Command ranks are now 0/25/125 hours.
+  - tweak: PO, RO and Ship engie ranks are now 0/25/50/100 hours.
+  - bugfix: Fixed Field Commander's max rank not extending out to infinity.
+  - tweak: Moves lore and operation text in codex of guns to the bottom, adds a header
+      for it.
+  Hathkar:
+  - rscadd: Xenomorphs have developed new efficient ways of recycling corpses into
+      resin silos to feed burrowed larva
+  - rscadd: 'New xeno ability Headbite: Removes the target''s brain after a 10 second
+      channel'
+  - rscadd: End of round stat tracking for both of the above
+  - tweak: Devour takes longer to complete
+  - tweak: Devour can be used on corpses
+  - balance: Made all corpses that spawn on maps be chestburst victims
+  - imageadd: Ability icon for headbite
+  - imageadd: Overlay for headbite on bodies
+  - imageadd: New icon for silo creation
+  - spellcheck: Fixed some spelling errors in xeno abilities
+  - bugfix: Sulaco's important things are on the bottom floor
+  - bugfix: When destroyed, resin silos drop the corpses used to create them
+  Hughgent:
+  - tweak: The pick-up macro will now fail for guns, strap a mag harness on it to
+      keep it with you.
+  - bugfix: General Purpose Storage module now actually general purpose.
+  - bugfix: Synthetics can get their blood back with nanopaste
+  - bugfix: Runtime with 0 damage thrown objects and shields.
+  - bugfix: Tactical binos cannot laze things the user cannot see.
+  - balance: vending machines with power cells no longer give free power by restocking
+      batteries
+  - bugfix: moves the viro closet to not block the door in research
+  - bugfix: T-19 ammo now available in requisitions
+  Pariah919:
+  - tweak: minimum marine age is 18
+  - balance: the autoshotgun can't be fired one handed
+  - rscadd: Added paracematol packets to medbay storage
+  - rscadd: Added disabler mode to lasgun
+  - rscdel: Removed pulse mode from lasgun.
+  - balance: removed redundant pulse mode from lasgun, made regular mode fire and
+      automatic and as fast as pulse mode, gave lasgun a new fire mode and type. Disabler
+      shots that slow benos.
+  - rscadd: Added new recipe only req chem, added bottle sprite just for it
+  - balance: added lemoline a way to get advanced chems with req
+  - rscadd: Added mk1 versions of some of the jaeger modules.
+  - balance: Modules have been rebalanced minorly, added lesser versions of some of
+      the current modules.
+  - soundadd: added new m412 sounds
+  - sounddel: removed old m41a sounds
+  SplinterGP:
+  - balance: bulls use 80% more plasma when charging.
+  - balance: bulls regen plasma a bit slower on advanced ages.
+  - balance: bulls only starts with basic charge, the headbutt is unlocked at mature
+      and gore at ancient.
+  - balance: bull now has -0.7 slowdown on all ages except -0.8 on ancient, before
+      was -0.7 ramping up to -1.0 on ancient
+  - balance: bulls now deals less damage than it used to on charging.
+  - balance: bulls now needs 6 steps to charge instead of 5.
+2020-11-09:
+  TiviPlus:
+  - balance: To start bodydragging is now a 2 Second timer on nonburst humans for
+      xenos
+2020-11-10:
+  Hathkar:
+  - imageadd: Adds a missing sprite for the intel computer when it has no power.
+  - bugfix: Fixed a few areas in Prison Station being underground when they should
+      not have been
+  Hughgent:
+  - bugfix: Hyronalin will now function normally
+  Isy232:
+  - bugfix: Removes a light in a wall on prison
+  Slotbot:
+  - refactor: changed acidic salve/psychic cure's range code
+  - tweak: increased hivelord's acidic salve range by 1
+  Wayland-Smithy:
+  - bugfix: Fixed Shrike fling bullying of nested infected hosts.
+  - bugfix: Fixed bug with Bull gaining and losing the wrong abilities when aging.
+2020-11-11:
+  Hathkar:
+  - balance: Lowered lava's brightness
+2020-11-13:
+  Hathkar:
+  - tweak: Distress shutters open automatically at 30 minutes, down from 40 minutes
+  Isy232:
+  - rscdel: Removes LZ 2 phoron miner on Prison.
+  Pariah919:
+  - bugfix: fixed cl not getting their briefcase on sulaco/pos
+  lovegreenstuff:
+  - balance: Removed two lines of code that made carrier MOB_SIZE_BIG and slower to
+      drag. That last one is mostly just because every other MOB_SIZE_BIG xeno has
+      that bit, and it's just for precedent's sake.
+2020-11-14:
+  Hathkar:
+  - rscadd: The Sulaco now has a functioning cloning pod in medbay
+  - rscadd: Added a captain's locker to the Sulaco
+  - rscadd: Ladder connecting the morgue and the emergency medbay in the hangar of
+      the Sulaco
+  - tweak: Moved engi and tool vendors in the main Sulaco hallway
+  - tweak: Moved PACMAN gen and fuel closer to Alamo on the Sulaco
+  - bugfix: Sulaco's powernet on the top floor had a missing wire fixed
+  - bugfix: Moved the OB/Rail to the bottom floor, as powerloaders can't move up ladders
+  Hughgent:
+  - tweak: Marines can now create requests regardless of available points.
+  - bugfix: defender fortify on ancient now just as good as elder.
+  - rscadd: Back by popular demand, the harness is available again in the surplus
+      equipment vendor.
+  Pariah919:
+  - balance: neuraline injector increased by 1 to 14 in medic vendor
+  - balance: Sentry HP and damage reduced across the board, sundering increased
+  spookydonut:
+  - tweak: Hivemind is now unable to move to turfs that previously caused it to be
+      moved back to it's core, it now has an action button to manually move back to
+      the core.
+  - bugfix: Hivemind now is moved back to the core when it loses weeds nearby or is
+      hit by flamer fire
+2020-11-15:
+  ma44:
+  - tweak: The admins can now only spawn so many things with AI attached overall
+2020-11-16:
+  Pariah919:
+  - tweak: NT pmcs are no longer part of NT, and are only hired by them.
+  - balance: pmc sgs get the smartmachinegun
+  TiviPlus:
+  - balance: Selfdestruct can only be triggered by marines (looking at you ERT rushing
+      Selfdestruct)
+  Wayland-Smithy:
+  - bugfix: Fixed miniflamer flames going through solid walls.
+  - balance: Greatly increased the independent cooldown between miniflamer uses.
+2020-11-17:
+  Pariah919:
+  - rscadd: Added new red beret del:normal tgmc beret no longer has map variation
+  - tweak: tweaked beret sprites
+2020-11-18:
+  BeloneX:
+  - rscadd: '*warcry'
+2020-11-19:
+  Hathkar:
+  - tweak: Resin Silos generate less xeno job points per corpse
+  - rscdel: Removed Command Headsets from Lockers. No more greytiding.
+  - rscadd: Expands the secondary hangar for the Condor.
+  - rscadd: Adds landing pad lights to Alamo and Condor
+  - rscadd: Adds a starboard landing pad on the top floor.
+  - rscadd: Adds fueltanks/fuelcans to Condor area
+  - tweak: Moves the guns/ammo for ship weapons to Condor's area
+  - tweak: Moves a RIPLEY to Condor area
+  - bugfix: Fixes some more medbay things like the sleeper/bodyscanner
+  Hughgent:
+  - bugfix: Hivemind always has their return to core ability.
+  - rscadd: RUSH B! to the new modular EORG arena.
+  Pariah919:
+  - rscadd: Added new clothing vendor tweak:added clothing vendor and separated the
+      surplus equipment vendor into a clothing/armor vendor.
+  - rscadd: Added new straw hat to tgmc, clf gets it and you can order it in the supplypacks
+  - bugfix: fixed cls briefcase having gamer gear like ultrazine/neurostim
+  - balance: Warrior fling time halved
+2020-11-20:
+  Hathkar:
+  - balance: Marine respawn timer is back to 30 minutes
+  Pariah919:
+  - rscdel: Removed old unused gun sprites
+  - rscadd: Added new belt sprites by kuro
+  - rscdel: Removed old belt sprites, git will remember them. Nobody else will
+  - rscdel: Removed catgirl ears
+  Slotbot:
+  - rscadd: Added reagent slash and select reagent abilities
+  - rscadd: Added hemodile and transvitox toxins
+  - rscadd: Added hud indicators over marines showing said toxins for xenos
+  - rscadd: Added smoke versions of new reagents, emitted by having the reagent selected
+      and activating neurogas
+  - rscdel: Removed neutoroxin sting from Defiler
+  - imageadd: added reagent hud icons
+  Surrealaser:
+  - bugfix: Acid wells no longer spawn acid gas when destroyed on a closed turf or
+      on a no-build tile such as a dropship.
+  XSlayer300:
+  - rscadd: Gave an icon when emoting a *warcry, ala CM
+  - rscadd: Added an unique warcry to the skeletons, the spooky bois are coming!
+  - tweak: Allowed species-specific *warcry, like *scream or *pain.
+2020-11-21:
+  Dolth:
+  - tweak: tweaked T71 attachies list.
+  Hathkar:
+  - balance: Headbite is only usable on the dead
+  - balance: Headbite can't be used while on fire
+  - balance: Headbite will cancel if damage is taken
+  Hughgent:
+  - bugfix: Funny characters shouldn't crash the server anymore.
+  Pariah919:
+  - balance: gives sentinel the ability to spit light acid
+  - bugfix: fixed marines not having armor vendor in bigbury and sulaco
+  SplinterGP:
+  - code_imp: makes a new proc that applies damage to all limbs evenly and uses the
+      limb armor.
+  - code_imp: Acid spray damage scales according to caste_datum and not with an aging
+      macro.
+  - code_imp: crusher stomp damage scales according to caste_datum and not with an
+      aging macro.
+  - balance: acid spray now always causes the same damage according to your xeno,
+      instead of random damage.
+  - balance: razorwire now always causes same damage instead of random damage.
+  - balance: crusher stomp now causes increased damage with aging, instead of random
+      damage.
+  - balance: crest toss now always throws the marine on the same amount, instead of
+      random distance.
+  - balance: crest toss now don't has a random offset on where will throw, it always
+      throws on a straight path.
+  - balance: crest toss random damage variation removed.
+  - balance: now objects armor works on crusher charge.
+  - balance: acid sprays causes half damage on each feet instead of full damage on
+      both feets, which caused double damage.
+  - bugfix: crusher and bull charge now correctly gets damage reduced by armor.
+  - bugfix: stomp now applies damage evenly on mob limbs correctly, with proper armor
+      reduction.
+  Surrealaser:
+  - tweak: Xenos no longer auto-open camo tarps by moving over them.
+  - tweak: Acid spray and gas, bullets (including spits) and phosphorous gas now all
+      force camo tarp occupants out and affect them. Projectiles must specifically
+      target the tarp.
+  - tweak: Camo tarps now stun their former occupant for 0.5 upon leaving.
+  - refactor: Minor refactors of camo tarps.
+  TiviPlus:
+  - bugfix: Fixes a surgery callback
+  Tiviplus, Mapping by Hathkar:
+  - rscadd: Zeus orbital Droppods
+2020-11-23:
+  Pariah919:
+  - rscdel: Removed bad warcry screams
+  - balance: Shrikes stuns have been nerfed, psychic fling effectively no longer stuns
+      other than basically disarming. Screech only stuns for half the time, slightly
+      better ancient pheros
+  - balance: queen screech now deals stamina damage, she has gained healing in return
+  - balance: tanglefoot gas amounts reduced substantially, reduced to 5+5+25, and
+      nerfed detonation time to 6 seconds rather than 2 hand thrown
+  Surrealaser:
+  - rscadd: Hive Status now displays the current and maximum hit points and exact
+      coordinates of each hive member, as well as max number of T2s and T3s the hive
+      can support.
+  - tweak: The Stagger debuff now halves all projectile damage.
+  - bugfix: Chairs, stools and most non-nest beds no longer block xeno buildables.
+  - tweak: Integrity of most non-marine buildables/barricades significantly reduced.
+  - tweak: Shields now reduce incoming damage by hard armor before applying soft armor
+      reduction.
+  - tweak: Shield cover ratings are now modified by statuses; KO/Sleep/Paralysis disables
+      shield benefits entirely as they should. Stun/Knockdown reduces cover by 50%.
+      Stagger reduces cover by 25%.
+  - tweak: Shields regain their 5 hard armor vs melee in light of these changes.
+  - bugfix: Fixed Shields sticking to the back due to NODROP. You can no longer equip
+      NODROP items to non-hand locations.
+  - bugfix: Barricades can no longer be anchored on the dropship or other no construction
+      turfs.
+  - bugfix: Quickcades and Barbed Wire can no longer be built on the dropship and
+      other no construction turfs.
+  - bugfix: Razorfoam will not produce barbed wire on no construction turfs.
+  XSlayer300:
+  - tweak: Completely OVERHAULS almost all of the useable weapons, adding new ones...
+  - rscdel: '... and removing unused sounds or sounds from the leaked CM codebase.'
+  - tweak: All sounds now have consistent volume. Not all weapon sounds are changed.
+  - tweak: The gunship's weapons now use a unique sound when firing
+  - tweak: Changed the empty reloading sound.
+  - tweak: Changed the *salute emote.
+  - tweak: If you like/love the sounds, great. But if you don't like it, I respect
+      your opinion.
+  - tweak: All sounds use the CC-BY-NC-SA 3.0/Creative Commons Attribution-NonCommercial-ShareAlike
+      3.0 United States license. See PR for list of sounds used.
+  - tweak: Fixed minor typos.
+2020-11-24:
+  Hughgent:
+  - rscadd: The Ship moves
+  Pariah919:
+  - rscdel: Removed panther from the game, same with the sprites
+  - balance: lz2 on big red rebalanced, added south entrance and removed miner nearby
+  - rscdel: Removed marine vest sprite
+  TiviPlus:
+  - bugfix: Fixes xeno health overlays layering strange
+  - tweak: Removes warriors default ctrlclick override, this can still be enabled
+      using keybinds in the preferemces menu
+  - code_imp: 0 length timer linting
+  - bugfix: Invisimins can no longer be orbited
+  - code_imp: Linting annotation
+  - code_imp: Should not sleep initialize and destroy and should call parent initialize
+  - code_imp: Init sanity unit test
+2020-11-25:
+  Surrealaser:
+  - bugfix: Fixes 100% shield block rate for fully disabled targets.
+2020-11-26:
+  Eskjjlj:
+  - bugfix: fixed bugged cade wrenching
+  Pariah919:
+  - rscadd: Added new gun sprites, RT-3 by bimmer and 88M4/M1911 by Ocelot/Przyjaciel
+  - rscdel: Removed old gun sprites, git will remember them, nobody else will. M4A3
+      pistol is gone
+  - tweak: m276 belt made into m4a3 belt
+  - bugfix: fixed tx-15 being fireable one handed
+  SplinterGP:
+  - bugfix: fixes if can put stronger acid check.
+  - bugfix: fixed acid melting things too fast.
+  - bugfix: fixed acid check for stronger acid on turfs.
+  Surrealaser:
+  - bugfix: Can no longer crowbar anchored barricades for infinite metal. Thanks to
+      Elsa for bringing it to my attention.
+  TiviPlus:
+  - bugfix: Midround Stickybans will now be applied correctly
+  - refactor: The database now uses Rustg instead of BSQL, meaning the server will
+      crash less
+  - config: Added missing config entries to config, as well as an option for players
+      with enough living time to bypass Bunkers
+  - admin: Admins will now be alerted to new players connecting
+  - admin: Improved database voting system
+  - server: Updated SQL schema
+  Wayland-Smithy:
+  - tweak: Hive Status health text is now only red when below a third of max health.
+  XSlayer300:
+  - tweak: Replaced (or filled out) the M37A2 sprite with the old T-35 sprite and
+      made into a V10 shotgun.
+  - rscdel: '"git will remember them. Nobody else will"'
+2020-11-27:
+  Eskjjlj:
+  - rscadd: 'High Command has outfitted the Sulaco with a new drop shuttle : the Tadpole.
+      It can land anywhere in the area of operations!'
+  Hathkar:
+  - rscdel: Capture gameplay is gone, dead, kaput.
+  - rscdel: Disarm intent as xenomorph does slashes instead of throttling/tackling
+  - rscdel: Being nested no longer speeds up embryo growth
+  - tweak: Resisting out of a nest takes 2.5 seconds instead of 60
+  - tweak: Hunter's sneak attacks stun on harm intent to make up for the versatility
+      of stamina damage, stun time reduced from 1.5 seconds to 1
+  - tweak: Larva chestburst takes 15 minutes up from 10
+  - tweak: Larval accelerant speed on embryo reduced by 50%
+  - tweak: Larval accelerant no longer heals the target
+  Hughgent:
+  - bugfix: scopes now actually apply their accuracy modifier when zoomed in.
+  Pariah919:
+  - balance: runner pounce delay made 13 rather than 6, and runner hp buffed up to
+      capping at 240.
+  - balance: eviscerating charge nerfed to 20 seconds, ravage stun nerfed, can use
+      2 of the three abilities at any time before running out of plasma at any level,
+      ignore pain reduced to 40 seconds
+  - tweak: renamed the ballistic armor upgrade for cades to reinforced
+  - balance: nerfed plasteel cade hp by 100, nerfed reinforced armor upgrade for metal
+      cades to 30 melee, nerfed acid by 10 to 20
+  TiviPlus:
+  - code_imp: Improves sound procs
+  - bugfix: Fixes player polls runtime
+  - bugfix: Fixes undeleted query
+  Tiviplus:
+  - bugfix: apparently barefeet were causing runtimes with every step. Fixed it
+  Wayland-Smithy:
+  - bugfix: Fixed a timer error with 0 length cooldown xeno actions.
+2020-11-28:
+  Pariah919:
+  - rscdel: Removed kronos,zx,custom shotgun, kt42, mp5 from the game
+2020-11-29:
+  Hughgent:
+  - tweak: Spaceship orbit level now adjusts the rate of passive req point generation,
+      closer is slower.
+  Pariah919:
+  - rscdel: Removed halloss as a system. Nobody will remember it
+  Slotbot:
+  - rscadd: neurotoxin in select reagent description
+  - tweak: gas prompts wording
+  SplinterGP:
+  - bugfix: acid spray now stays for the correct duration all times.
+  - code_imp: acid spray duration is easier to modify on code.
+  - bugfix: fixes runtime errors caused by 0 lenght timers.
+  Surrealaser:
+  - rscadd: Tunnel List window that features existing hive tunnels in the Xeno tab.
+  - tweak: Hivelord Tunnels are now auto-announced to the Hive upon creation and destruction
+      along with their location.
+  - bugfix: Minor wording fixes in light of network based tunnel mechanics that replaced
+      the old paired tunnels.
+  - refactor: Minor refactors; provides infrastructure for object based HUD elements.
+  - rscadd: Added the Drone ability Salvage Biomass.
+  - bugfix: Fixes residual effect spawning for heavy acid and sticky acid spit so
+      they work more intuitively (and properly).
+  - balance: Sticky Spit now applies 2 stagger stacks to improve its combat support
+      capabilities.
+  - bugfix: Camo tarp occupants can no longer be forced out by any smoke type; only
+      Acid and WP smoke types can force occupants out of camo tarps now.
+  - tweak: Camo tarp serial number generation improved to better thwart autopoint
+      macros.
+  - refactor: Minor refactoring.
+  TiviPlus:
+  - code_imp: Add filter helpers
+  - code_imp: Fixes bad code in tarps
+  - code_imp: Removes buggy timer batching system
+  XSlayer300:
+  - rscdel: Removed the northern shutters in LZ1 of Ice Colony
+  - tweak: Activating flare grenades now put you into throw mode.
+2020-11-30:
+  Pariah919:
+  - balance: defender sweep nerfed to stun for far less, charge cd decreased to 10
+      rather than 12, made slightly faster.
+  - balance: tyr mark 1 now has 0.4 slow rather than 0.3
+  - bugfix: fixed mimir mark one giving you 100+ bio resist
+  - rscadd: Added new freelancer sprites.
+  - rscdel: Removed freelancer sprites, git will remember them. Nobody else will.
+  - bugfix: Freelancers no longer use the upp belt. They use the normal medical belt.
+  TiviPlus:
+  - bugfix: Fixed hive watch

@@ -37,15 +37,13 @@ map icy_caves
 	maxplayers 50
 endmap
 
-map desert
-endmap
-
 map research_outpost
 	maxplayers 40
 endmap
 
-map lava_outpost
-	maxplayers 40
+map barrenquilla_mining
+	minplayers 30
+	maxplayers 80
 endmap
 
 map whiskey_outpost_v2

@@ -12,9 +12,6 @@
 	// *** Melee Attacks *** //
 	melee_damage = 20
 
-	// *** Tackle *** //
-	tackle_damage = 25
-
 	// *** Speed *** //
 	speed = 0
 
@@ -29,7 +26,7 @@
 	upgrade_threshold = 350
 
 	// *** Flags *** //
-	caste_flags = CASTE_IS_INTELLIGENT|CASTE_CAN_HOLD_FACEHUGGERS|CASTE_HIDE_IN_STATUS|CASTE_CAN_HOLD_JELLY
+	caste_flags = CASTE_IS_INTELLIGENT|CASTE_CAN_HOLD_FACEHUGGERS|CASTE_CAN_HOLD_JELLY|CASTE_CAN_CORRUPT_GENERATOR|CASTE_IS_BUILDER|CASTE_CAN_BE_GIVEN_PLASMA
 
 	can_hold_eggs = CAN_HOLD_TWO_HANDS
 
@@ -47,23 +44,28 @@
 	// *** Queen Abilities *** //
 	queen_leader_limit = 2 //Amount of leaders allowed
 
+	minimap_icon = "xenoqueen"
+
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
-		/datum/action/xeno_action/regurgitate,
+		/datum/action/xeno_action/activable/psydrain,
 		/datum/action/xeno_action/activable/headbite,
+		/datum/action/xeno_action/activable/devour,
+		/datum/action/xeno_action/activable/cocoon,
 		/datum/action/xeno_action/plant_weeds,
-		/datum/action/xeno_action/choose_resin,
 		/datum/action/xeno_action/activable/secrete_resin,
 		/datum/action/xeno_action/activable/build_silo,
+		/datum/action/xeno_action/activable/build_hunt_den,
+		/datum/action/xeno_action/activable/build_turret,
+		/datum/action/xeno_action/summon_king,
 		/datum/action/xeno_action/place_acidwell,
-		/datum/action/xeno_action/lay_egg,
 		/datum/action/xeno_action/activable/larval_growth_sting,
 		/datum/action/xeno_action/call_of_the_burrowed,
 		/datum/action/xeno_action/activable/screech,
 		/datum/action/xeno_action/activable/corrosive_acid/strong,
 		/datum/action/xeno_action/psychic_whisper,
-		/datum/action/xeno_action/shift_spits,
 		/datum/action/xeno_action/activable/xeno_spit,
+		/datum/action/xeno_action/activable/psychic_cure/acidic_salve/queen,
 		/datum/action/xeno_action/toggle_pheromones,
 		/datum/action/xeno_action/toggle_queen_zoom,
 		/datum/action/xeno_action/watch_xeno,
@@ -71,6 +73,7 @@
 		/datum/action/xeno_action/activable/queen_give_plasma,
 		/datum/action/xeno_action/queen_order,
 		/datum/action/xeno_action/deevolve,
+		/datum/action/xeno_action/activable/rally_hive,
 	)
 
 
@@ -81,9 +84,6 @@
 	caste_desc = "The biggest and baddest xeno. The Queen controls the hive and plants eggs."
 
 	upgrade = XENO_UPGRADE_ONE
-
-	// *** Tackle *** //
-	tackle_damage = 25
 
 	// *** Speed *** //
 	speed = -0.1
@@ -96,7 +96,7 @@
 	max_health = 450
 
 	// *** Evolution *** //
-	upgrade_threshold = 500
+	upgrade_threshold = 850
 
 	// *** Defense *** //
 	soft_armor = list("melee" = 55, "bullet" = 55, "laser" = 55, "energy" = 55, "bomb" = XENO_BOMB_RESIST_3, "bio" = 50, "rad" = 50, "fire" = 100, "acid" = 50)
@@ -118,9 +118,6 @@
 	// *** Melee Attacks *** //
 	melee_damage = 23
 
-	// *** Tackle *** //
-	tackle_damage = 28
-
 	// *** Speed *** //
 	speed = -0.2
 
@@ -132,7 +129,7 @@
 	max_health = 475
 
 	// *** Evolution *** //
-	upgrade_threshold = 1000
+	upgrade_threshold = 1850
 
 	// *** Defense *** //
 	soft_armor = list("melee" = 60, "bullet" = 60, "laser" = 60, "energy" = 60, "bomb" = XENO_BOMB_RESIST_3, "bio" = 55, "rad" = 55, "fire" = 100, "acid" = 55)
@@ -154,9 +151,6 @@
 	// *** Melee Attacks *** //
 	melee_damage = 23
 
-	// *** Tackle *** //
-	tackle_damage = 28
-
 	// *** Speed *** //
 	speed = -0.3
 
@@ -168,7 +162,7 @@
 	max_health = 500
 
 	// *** Evolution *** //
-	upgrade_threshold = 1000
+	upgrade_threshold = 2850
 
 	// *** Defense *** //
 	soft_armor = list("melee" = 65, "bullet" = 65, "laser" = 65, "energy" = 65, "bomb" = XENO_BOMB_RESIST_3, "bio" = 60, "rad" = 60, "fire" = 100, "acid" = 60)

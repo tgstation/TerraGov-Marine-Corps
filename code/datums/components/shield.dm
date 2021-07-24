@@ -135,9 +135,22 @@
 		return
 	shield_affect_user(user)
 
+	var/obj/item/parent_item = parent //Apply in-hand slowdowns.
+	if(!ishuman(user))
+		return
+	var/mob/living/carbon/human/human_user = user
+	if(parent_item.slowdown)
+		human_user.add_movespeed_modifier(parent_item.type, TRUE, 0, ((parent_item.flags_item & IMPEDE_JETPACK) ? SLOWDOWN_IMPEDE_JETPACK : NONE), TRUE, parent_item.slowdown)
 /datum/component/shield/proc/shield_dropped(datum/source, mob/user)
 	SIGNAL_HANDLER
 	shield_detatch_from_user()
+
+	var/obj/item/parent_item = parent //Apply in-hand slowdowns.
+	if(!ishuman(user))
+		return
+	var/mob/living/carbon/human/human_user = user
+	if(parent_item.slowdown)
+		human_user.remove_movespeed_modifier(parent.type)
 
 /datum/component/shield/proc/shield_affect_user(mob/living/user)
 	if(affected)
@@ -157,6 +170,7 @@
 /datum/component/shield/proc/shield_detatch_from_user()
 	if(!affected)
 		return
+	SEND_SIGNAL(affected, COMSIG_MOB_SHIELD_DETATCH)
 	deactivate_with_user()
 	affected = null
 
@@ -168,23 +182,39 @@
 
 /datum/component/shield/proc/item_intercept_attack(attack_type, incoming_damage, damage_type, silent)
 	var/obj/item/parent_item = parent
+	var/status_cover_modifier = 1
+
+	if(parent_item.obj_integrity <= parent_item.integrity_failure)
+		return incoming_damage
+
+	if(affected.IsSleeping() || affected.IsUnconscious() || affected.IsAdminSleeping()) //We don't do jack if we're literally KOed/sleeping/paralyzed.
+		return incoming_damage
+
+	if(affected.IsStun() || affected.IsKnockdown() || affected.IsParalyzed()) //Halve shield cover if we're paralyzed or stunned
+		status_cover_modifier *= 0.5
+
+	if(iscarbon(affected))
+		var/mob/living/carbon/C = affected
+		if(C.stagger) //Lesser penalty to shield cover for being staggered.
+			status_cover_modifier *= 0.75
+
 	switch(attack_type)
 		if(COMBAT_TOUCH_ATTACK)
-			if(!prob(cover.getRating(damage_type)))
+			if(!prob(cover.getRating(damage_type) * status_cover_modifier))
 				return FALSE //Bypassed the shield.
 			incoming_damage = max(0, incoming_damage - hard_armor.getRating(damage_type))
 			incoming_damage *= (100 - soft_armor.getRating(damage_type)) * 0.01
 			return prob(50 - round(incoming_damage / 3))
 		if(COMBAT_MELEE_ATTACK, COMBAT_PROJ_ATTACK)
-			var/absorbing_damage = incoming_damage * cover.getRating(damage_type) * 0.01
+			var/absorbing_damage = incoming_damage * cover.getRating(damage_type) * 0.01 * status_cover_modifier  //Determine cover ratio; this is the % of damage we actually intercept.
+			absorbing_damage = max(0, absorbing_damage - hard_armor.getRating(damage_type)) //We apply hard armor *first* _not_ *after* soft armor
 			if(!absorbing_damage)
 				return incoming_damage //We are transparent to this kind of damage.
 			. = incoming_damage - absorbing_damage
-			absorbing_damage = max(0, absorbing_damage - hard_armor.getRating(damage_type))
-			absorbing_damage *= (100 - soft_armor.getRating(damage_type)) * 0.01
+			absorbing_damage *= (100 - soft_armor.getRating(damage_type)) * 0.01 //Now apply soft armor
 			if(absorbing_damage <= 0)
 				if(!silent)
-					to_chat(affected, "<span class='avoidharm'>\The [parent_item.name] [. ? "softens" : "soaks"] the damage!</span>")
+					to_chat(affected, span_avoidharm("\The [parent_item.name] [. ? "softens" : "soaks"] the damage!"))
 				return
 			if(transfer_damage_cb)
 				return transfer_damage_cb.Invoke(absorbing_damage, ., silent)
@@ -210,7 +240,7 @@
 		parent_item.take_damage(incoming_damage, armour_penetration = 100) //Armor has already been accounted for, this should destroy the parent and thus the component.
 		return
 	if(!silent)
-		to_chat(affected, "<span class='avoidharm'>\The [parent_item.name] [. ? "softens" : "soaks"] the damage!</span>")
+		to_chat(affected, span_avoidharm("\The [parent_item.name] [. ? "softens" : "soaks"] the damage!"))
 	parent_item.take_damage(incoming_damage, armour_penetration = 100)
 
 
@@ -265,12 +295,12 @@
 	if(absorbing_damage <= 0)
 		if(!.)
 			if(!silent)
-				to_chat(affected, "<span class='avoidharm'>\The [parent_item.name] soaks the damage!</span>")
+				to_chat(affected, span_avoidharm("\The [parent_item.name] soaks the damage!"))
 			return
 	if(transfer_damage_cb)
 		return transfer_damage_cb.Invoke(absorbing_damage, ., silent)
 	else if(!silent)
-		to_chat(affected, "<span class='avoidharm'>\The [parent_item.name] softens the damage!</span>")
+		to_chat(affected, span_avoidharm("\The [parent_item.name] softens the damage!"))
 
 
 /datum/component/shield/overhealth/proc/transfer_damage_to_overhealth(absorbing_damage, unabsorbed_damage, silent)
@@ -279,7 +309,7 @@
 	if(absorbing_damage >= shield_integrity)
 		. += absorbing_damage - shield_integrity
 	if(!silent)
-		to_chat(affected, "<span class='avoidharm'>\The [parent_item.name] [. ? "softens" : "soaks"] the damage!</span>")
+		to_chat(affected, span_avoidharm("\The [parent_item.name] [. ? "softens" : "soaks"] the damage!"))
 	damage_overhealth(absorbing_damage)
 
 

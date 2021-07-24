@@ -4,7 +4,7 @@
 	icon_state = "breath"
 	item_state = "breath"
 	flags_inventory = COVERMOUTH|ALLOWINTERNALS
-	flags_armor_protection = 0
+	flags_armor_protection = NONE
 	w_class = WEIGHT_CLASS_SMALL
 	gas_transfer_coefficient = 0.10
 	permeability_coefficient = 0.50
@@ -53,7 +53,7 @@
 	icon_state = "rebreather"
 	item_state = "rebreather"
 	w_class = WEIGHT_CLASS_SMALL
-	flags_armor_protection = 0
+	flags_armor_protection = NONE
 	flags_inventory = COVERMOUTH|ALLOWREBREATH
 	flags_inv_hide = HIDELOWHAIR
 
@@ -65,6 +65,9 @@
 	flags_inv_hide = HIDEALLHAIR|HIDEEARS
 	flags_cold_protection = HEAD
 	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
+
+/obj/item/clothing/mask/rebreather/scarf/freelancer
+	item_state = "coif_fl"
 
 /obj/item/clothing/mask/bandanna
 	name = "tan bandanna"

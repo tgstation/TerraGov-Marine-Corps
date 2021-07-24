@@ -68,6 +68,7 @@
 
 
 /turf/Initialize(mapload)
+	SHOULD_CALL_PARENT(FALSE) // anti laggies
 	if(flags_atom & INITIALIZED)
 		stack_trace("Warning: [src]([type]) initialized multiple times!")
 	ENABLE_BITFIELD(flags_atom, INITIALIZED)
@@ -153,6 +154,8 @@
 		if(i == mover || i == mover.loc) // Multi tile objects and moving out of other objects
 			continue
 		var/atom/movable/thing = i
+		if(CHECK_MULTIPLE_BITFIELDS(thing.flags_pass, HOVERING))
+			continue
 		if(thing.Cross(mover))
 			continue
 		var/signalreturn = SEND_SIGNAL(mover, COMSIG_MOVABLE_PREBUMP_MOVABLE, thing)
@@ -444,7 +447,7 @@
 			playsound(src, "sound/effects/glassbr1.ogg", 60, 1)
 			spawn(8)
 				if(amount >1)
-					visible_message("<span class='boldnotice'>Shards of glass rain down from above!</span>")
+					visible_message(span_boldnotice("Shards of glass rain down from above!"))
 				for(var/i=1, i<=amount, i++)
 					new /obj/item/shard(pick(turfs))
 					new /obj/item/shard(pick(turfs))
@@ -452,14 +455,14 @@
 			playsound(src, "sound/effects/metal_crash.ogg", 60, 1)
 			spawn(8)
 				if(amount >1)
-					visible_message("<span class='boldnotice'>Pieces of metal crash down from above!</span>")
+					visible_message(span_boldnotice("Pieces of metal crash down from above!"))
 				for(var/i=1, i<=amount, i++)
 					new /obj/item/stack/sheet/metal(pick(turfs))
 		if(CEILING_UNDERGROUND, CEILING_DEEP_UNDERGROUND)
 			playsound(src, "sound/effects/meteorimpact.ogg", 60, 1)
 			spawn(8)
 				if(amount >1)
-					visible_message("<span class='boldnotice'>Chunks of rock crash down from above!</span>")
+					visible_message(span_boldnotice("Chunks of rock crash down from above!"))
 				for(var/i=1, i<=amount, i++)
 					new /obj/item/ore(pick(turfs))
 					new /obj/item/ore(pick(turfs))
@@ -519,21 +522,38 @@
 	return !slayer && ..()
 
 
+/**
+ * Checks for whether we can build advanced xeno structures here
+ * Returns TRUE if present, FALSE otherwise
+ */
+/turf/proc/check_disallow_alien_fortification(mob/living/builder, silent = FALSE)
+	var/area/ourarea = loc
+	if(ourarea.flags_area & DISALLOW_WEEDING)
+		if(!silent)
+			to_chat(builder, span_warning("We cannot build in this area before the talls are out!"))
+		return FALSE
+	return TRUE
 
+/**
+ * Check if alien abilities can construct structure on the turf
+ * Return TRUE if allowed, FALSE otherwise
+ */
 /turf/proc/check_alien_construction(mob/living/builder, silent = FALSE, planned_building)
 	var/has_obstacle
 	for(var/obj/O in contents)
 		if(istype(O, /obj/item/clothing/mask/facehugger))
-			if(!silent)
-				to_chat(builder, "<span class='warning'>There is a little one here already. Best move it.</span>")
-			return FALSE
+			var/obj/item/clothing/mask/facehugger/hugger_check = O
+			if(hugger_check.stat != DEAD) //We don't care about dead huggers.
+				if(!silent)
+					to_chat(builder, span_warning("There is a little one here already. Best move it."))
+				return FALSE
 		if(istype(O, /obj/effect/alien/egg))
 			if(!silent)
-				to_chat(builder, "<span class='warning'>There's already an egg.</span>")
+				to_chat(builder, span_warning("There's already an egg here."))
 			return FALSE
-		if(istype(O, /obj/effect/alien/resin/trap))
+		if(istype(O, /obj/structure/xeno))
 			if(!silent)
-				to_chat(builder, "<span class='warning'>There is already a trap here!</span>")
+				to_chat(builder, span_warning("There's already a resin structure here!"))
 			return FALSE
 		if(istype(O, /obj/structure/mineral_door) || istype(O, /obj/effect/alien/resin))
 			has_obstacle = TRUE
@@ -547,10 +567,14 @@
 				if(P.chair_state != DROPSHIP_CHAIR_BROKEN)
 					has_obstacle = TRUE
 					break
-			else
+			else if(istype(O, /obj/structure/bed/nest)) //We don't care about other beds/chairs/whatever the fuck.
 				has_obstacle = TRUE
 				break
 		if(istype(O, /obj/effect/alien/hivemindcore))
+			has_obstacle = TRUE
+			break
+
+		if(istype(O, /obj/structure/cocoon))
 			has_obstacle = TRUE
 			break
 
@@ -560,13 +584,13 @@
 
 	if(density || has_obstacle)
 		if(!silent)
-			to_chat(builder, "<span class='warning'>There's something built here already.</span>")
+			to_chat(builder, span_warning("There's something built here already."))
 		return FALSE
 	return TRUE
 
 /turf/closed/check_alien_construction(mob/living/builder, silent = FALSE, planned_building)
 	if(!silent)
-		to_chat(builder, "<span class='warning'>There's something built here already.</span>")
+		to_chat(builder, span_warning("There's something built here already."))
 	return FALSE
 
 /turf/proc/can_dig_xeno_tunnel()
@@ -627,17 +651,13 @@
 /turf/open/floor/plating/ground/snow/get_dirt_type()
 	return DIRT_TYPE_SNOW
 
+/turf/open/lavaland/basalt/get_dirt_type()
+	return DIRT_TYPE_LAVALAND
 
-
-
-
-
-
-/turf/CanPass(atom/movable/mover, turf/target)
-	if(!target) return 0
-
-	if(istype(mover)) // turf/Enter(...) will perform more advanced checks
-		return !density
+/turf/CanAllowThrough(atom/movable/mover, turf/target)
+	. = ..()
+	if(!target)
+		return FALSE
 
 GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 	/turf/open/space,

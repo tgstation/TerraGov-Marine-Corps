@@ -6,22 +6,29 @@
 	icon = 'icons/effects/landmarks_static.dmi'
 	icon_state = "x6" //Pure white 'X' with black borders
 	anchored = TRUE //No pulling those nodes yo
-	invisibility = INVISIBILITY_OBSERVER //Not visible at all
-	var/list/adjacent_nodes = list() // list of adjacent landmark nodes
-	var/list/weights = list(ENEMY_PRESENCE = 0, DANGER_SCALE = 0) //List of weights for the overall things happening at this node
+	invisibility = INVISIBILITY_OBSERVER //Visible towards ghosts
+	///list of adjacent landmark nodes
+	var/list/adjacent_nodes
 
-/obj/effect/ai_node/LateInitialize()
-	MakeAdjacents()
+	///List of weights for scoring stuff happening here; ultilizes "identifiers" to differentiate different kinds of AI types looking at the same node.
+	var/list/weights = list(
+		IDENTIFIER_XENO = list(NODE_LAST_VISITED = 0),
+		)
 
-/obj/effect/ai_node/proc/increment_weight(name, amount)
-	weights[name] = max(0, weights[name] + amount)
-
-/obj/effect/ai_node/proc/set_weight(name, amount)
-	weights[name] = amount
-
-/obj/effect/ai_node/Initialize() //Add ourselve to the global list of nodes
+/obj/effect/ai_node/Initialize()
 	. = ..()
 	GLOB.allnodes += src
+
+/obj/effect/ai_node/LateInitialize()
+	make_adjacents()
+
+///Adds to the specific weight of a specific identifier of this node
+/obj/effect/ai_node/proc/increment_weight(identifier, name, amount)
+	weights[identifier][name] += amount
+
+///Sets the specific weight of a specific identifier of this node
+/obj/effect/ai_node/proc/set_weight(identifier, name, amount)
+	weights[identifier][name] = amount
 
 /obj/effect/ai_node/Destroy()
 	GLOB.allnodes -= src
@@ -29,11 +36,10 @@
 	for(var/nodes in adjacent_nodes)
 		var/obj/effect/ai_node/node = nodes
 		node.adjacent_nodes -= src
-	. = ..()
+	return ..()
 
-//Returns a node that is in the direction of this node; must be in the src's adjacent node list
-/obj/effect/ai_node/proc/GetNodeInDirInAdj(dir)
-
+///Returns a node that is in the direction of this node; must be in the src's adjacent node list
+/obj/effect/ai_node/proc/get_node_in_dir_in_adj(dir)
 	if(!length(adjacent_nodes))
 		return
 
@@ -43,35 +49,41 @@
 			continue
 		return node
 
-/*
-Current weights are nothing, wait for more ai updates
-Parameter call example
-GetBestAdjNode(list(ENEMY_PRESENCE = -100, DANGER_SCALE = -1)) if these were defined
-This means that the proc will pick out the *best* node
-*/
-
-/obj/effect/ai_node/proc/GetBestAdjNode(list/weight_modifiers)
-	//No weight modifier, return a adjacent random node
-	if(!weight_modifiers)
+/**
+ * A proc that gets the "best" adjacent node in src based on score
+ * The score is calculated by what weights are inside of the list/weight_modifiers
+ * The highest number after multiplying each list/weight by the ones in the above parameter will be the node that's chosen; any nodes that have the same score won't override that node
+ * Generally the number that the weight has before being multiplied by weight modifiers is the "user friendly" edition; NODE_LAST_VISITED represents in deciseconds the time before
+ * the node has been visited by a particular thing, while something like NODE_ENEMY_COUNT represents the amount of enemies
+ * Parameter call example
+ * GetBestAdjNode(list(NODE_LAST_VISITED = -1), IDENTIFIER_XENO)
+ * Returns an adjacent node that was last visited; when a AI visits a node, it will set NODE_LAST_VISITED to world.time
+ */
+/obj/effect/ai_node/proc/get_best_adj_node(list/weight_modifiers, identifier)
+	//No weight modifiers, return a adjacent random node
+	if(!length(weight_modifiers) || !identifier)
 		return pick(adjacent_nodes)
 
-	var/obj/effect/ai_node/node_to_return = adjacent_nodes[1]
-	var/current_best_node = 0
-	for(var/n in shuffle(adjacent_nodes)) //We keep a score for the nodes and see which one is best
-		var/obj/effect/ai_node/node = n
-		var/current_score = 0
-		for(var/i in 1 to length(weight_modifiers))
-			current_score += GET_WEIGHT(src, i)
-
-		if(current_score >= current_best_node)
-			current_best_node = current_score
-			node_to_return = node
+	var/obj/effect/ai_node/node_to_return
+	var/current_best_node_score = -INFINITY
+	var/current_score
+	for(var/thing in shuffle_inplace(adjacent_nodes)) //We keep a score for the nodes and see which one is best
+		var/obj/effect/ai_node/node = thing
 		current_score = 0
+		for(var/weight in weight_modifiers)
+			current_score += NODE_GET_VALUE_OF_WEIGHT(identifier, node, weight) * weight_modifiers[weight]
+
+		if(current_score >= current_best_node_score)
+			current_best_node_score = current_score
+			node_to_return = node
 
 	if(node_to_return)
 		return node_to_return
+	else //Just in case no applicable scores are located
+		return pick(adjacent_nodes)
 
-/obj/effect/ai_node/proc/MakeAdjacents()
+///Clears the adjacencies of src and repopulates it, it will consider nodes "adjacent" to src should it be less 15 turfs away and get_dir(src, potential_adjacent_node) returns a cardinal direction
+/obj/effect/ai_node/proc/make_adjacents()
 	adjacent_nodes = list()
 	for(var/atom/node in GLOB.allnodes)
 		if(node == src)
@@ -84,10 +96,9 @@ This means that the proc will pick out the *best* node
 
 	//If there's no adjacent nodes then let's throw a runtime (for mappers) and at admins (if they by any chance were spawning these in)
 	if(!length(adjacent_nodes))
-		message_admins("[ADMIN_VERBOSEJMP(src.loc)] was unable to connect to any considered-adjacent nodes; place them correctly if you were spawning these in otherwise report this.")
-		stack_trace("An ai node was initialized but no considered-adjacent nodes were nearby; this can be because of a mapping/admin spawning issue.")
-
+		message_admins("[ADMIN_VERBOSEJMP(loc)] was unable to connect to any considered-adjacent nodes; place them correctly if you were spawning these in, otherwise report this.")
+		CRASH("An ai node was repopulating it's node adjacencies but there were no considered-adjacent nodes nearby; this can be because of a mapping/admin spawning issue. Location: AREACOORD(src)")
 /obj/effect/ai_node/debug //A debug version of the AINode; makes it visible to allow for easy var editing
 	icon_state = "x6" //Pure white 'X' with black borders
 	color = "#ffffff"
-	invisibility = 0 //Visible for easy var editing and noticing
+	invisibility = 0

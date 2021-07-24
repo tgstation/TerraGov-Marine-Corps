@@ -136,7 +136,7 @@ Code:
 	SSradio.remove_object(src, frequency)
 	frequency = new_frequency
 	radio_connection = SSradio.add_object(src, frequency, RADIO_SIGNALER)
-	return
+
 
 
 // Embedded signaller used in grenade construction.
@@ -156,7 +156,7 @@ Code:
 
 /obj/item/assembly/signaler/receiver/examine(mob/user)
 	. = ..()
-	to_chat(user, "<span class='notice'>The radio receiver is [on?"on":"off"].</span>")
+	to_chat(user, span_notice("The radio receiver is [on?"on":"off"]."))
 
 
 /obj/item/assembly/signaler/receiver/receive_signal(datum/signal/signal)

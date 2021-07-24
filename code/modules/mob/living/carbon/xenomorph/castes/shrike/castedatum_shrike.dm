@@ -6,15 +6,12 @@
 	job_type = /datum/job/xenomorph/queen
 	caste_type_path = /mob/living/carbon/xenomorph/shrike
 
-	tier = XENO_TIER_THREE
+	tier = XENO_TIER_FOUR
 	upgrade = XENO_UPGRADE_BASETYPE
 	wound_type = "shrike" //used to match appropriate wound overlays
 
 	// *** Melee Attacks *** //
 	melee_damage = 20
-
-	// *** Tackle *** //
-	tackle_damage = 25
 
 	// *** Speed *** //
 	speed = -0.3
@@ -34,7 +31,7 @@
 	deevolves_to = /mob/living/carbon/xenomorph/drone
 
 	// *** Flags *** //
-	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_EVOLUTION_ALLOWED|CASTE_IS_INTELLIGENT|CASTE_CAN_HOLD_FACEHUGGERS|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER
+	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_EVOLUTION_ALLOWED|CASTE_IS_INTELLIGENT|CASTE_CAN_HOLD_FACEHUGGERS|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER|CASTE_CAN_CORRUPT_GENERATOR
 
 	can_hold_eggs = CAN_HOLD_TWO_HANDS
 
@@ -45,18 +42,23 @@
 	aura_strength = 2 //The Shrike's aura is decent.
 	aura_allowed = list("frenzy", "warding", "recovery")
 
+	minimap_icon = "xenoshrike"
+
 	// *** Abilities *** //
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
-		/datum/action/xeno_action/regurgitate,
+		/datum/action/xeno_action/activable/psydrain,
 		/datum/action/xeno_action/activable/headbite,
+		/datum/action/xeno_action/activable/devour,
+		/datum/action/xeno_action/activable/cocoon,
 		/datum/action/xeno_action/plant_weeds,
 		/datum/action/xeno_action/lay_egg,
 		/datum/action/xeno_action/activable/larval_growth_sting,
 		/datum/action/xeno_action/call_of_the_burrowed,
-		/datum/action/xeno_action/choose_resin,
 		/datum/action/xeno_action/activable/secrete_resin,
 		/datum/action/xeno_action/activable/build_silo,
+		/datum/action/xeno_action/activable/build_hunt_den,
+		/datum/action/xeno_action/activable/build_turret,
 		/datum/action/xeno_action/place_acidwell,
 		/datum/action/xeno_action/activable/corrosive_acid,
 		/datum/action/xeno_action/activable/psychic_cure,
@@ -64,6 +66,7 @@
 		/datum/action/xeno_action/activable/psychic_fling,
 		/datum/action/xeno_action/activable/unrelenting_force,
 		/datum/action/xeno_action/toggle_pheromones,
+		/datum/action/xeno_action/activable/rally_hive,
 	)
 
 /datum/xeno_caste/shrike/young
@@ -77,9 +80,6 @@
 
 	upgrade = XENO_UPGRADE_ONE
 
-	// *** Tackle *** //
-	tackle_damage = 25
-
 	// *** Speed *** //
 	speed = -0.4
 
@@ -91,7 +91,7 @@
 	max_health = 350
 
 	// *** Evolution *** //
-	upgrade_threshold = 240
+	upgrade_threshold = 360
 
 	// *** Defense *** //
 	soft_armor = list("melee" = 35, "bullet" = 35, "laser" = 35, "energy" = 35, "bomb" = XENO_BOMB_RESIST_2, "bio" = 15, "rad" = 15, "fire" = 35, "acid" = 15)
@@ -108,9 +108,6 @@
 	// *** Melee Attacks *** //
 	melee_damage = 23
 
-	// *** Tackle *** //
-	tackle_damage = 28
-
 	// *** Speed *** //
 	speed = -0.5
 
@@ -122,7 +119,7 @@
 	max_health = 375
 
 	// *** Evolution *** //
-	upgrade_threshold = 480
+	upgrade_threshold = 840
 
 	// *** Defense *** //
 	soft_armor = list("melee" = 40, "bullet" = 40, "laser" = 40, "energy" = 40, "bomb" = XENO_BOMB_RESIST_2, "bio" = 18, "rad" = 18, "fire" = 40, "acid" = 18)
@@ -139,9 +136,6 @@
 	// *** Melee Attacks *** //
 	melee_damage = 23
 
-	// *** Tackle *** //
-	tackle_damage = 28
-
 	// *** Speed *** //
 	speed = -0.6
 
@@ -153,7 +147,7 @@
 	max_health = 400
 
 	// *** Evolution *** //
-	upgrade_threshold = 480
+	upgrade_threshold = 1320
 
 	// *** Defense *** //
 	soft_armor = list("melee" = 45, "bullet" = 45, "laser" = 45, "energy" = 45, "bomb" = XENO_BOMB_RESIST_2, "bio" = 23, "rad" = 23, "fire" = 45, "acid" = 20)

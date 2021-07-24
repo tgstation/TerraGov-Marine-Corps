@@ -1,5 +1,4 @@
 import { multiline } from 'common/string';
-import { Fragment } from 'inferno';
 import { useBackend } from '../backend';
 import { Button, LabeledList, NoticeBox, Section } from '../components';
 import { Window } from '../layouts';
@@ -9,7 +8,11 @@ import { Window } from '../layouts';
 export const CentcomPodLauncher = (props, context) => {
   const { act, data } = useBackend(context);
   return (
-    <Window>
+    <Window
+      title="Config/Launch Supplypod"
+      width={700}
+      height={700}
+    >
       <Window.Content>
         <NoticeBox>
           To use this, simply spawn the atoms you want in one of the five
@@ -334,7 +337,7 @@ export const CentcomPodLauncher = (props, context) => {
             <LabeledList.Item
               label={data.numObjects + ' turfs in ' + data.bay}
               buttons={(
-                <Fragment>
+                <>
                   <Button
                     content="undo Pody Bay"
                     tooltip={multiline`
@@ -355,7 +358,7 @@ export const CentcomPodLauncher = (props, context) => {
                     `}
                     tooltipPosition="left"
                     onClick={() => act('clearBay')} />
-                </Fragment>
+                </>
               )} />
           </LabeledList>
         </Section>

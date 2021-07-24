@@ -93,14 +93,14 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 		var/datum/admin_help/AH = I
 		if(AH.tier == TICKET_MENTOR && check_rights(R_ADMINTICKET|R_MENTOR, FALSE))
 			if(AH.initiator)
-				dat += "<span class='adminnotice'><span class='adminhelp'>\[[AH.marked ? "X" : "  "]\] #[AH.id] Mentor Ticket</span>: <A href='?_src_=holder;[HrefToken()];ahelp=[REF(AH)];ahelp_action=ticket'>[AH.initiator_key_name]: [AH.name]</A></span><br>"
+				dat += "[span_adminnotice("<span class='adminhelp'>\[[AH.marked ? "X" : "  "]\] #[AH.id] Mentor Ticket")]: <A href='?_src_=holder;[HrefToken()];ahelp=[REF(AH)];ahelp_action=ticket'>[AH.initiator_key_name]: [AH.name]</A></span><br>"
 			else
-				dat += "<span class='adminnotice'><span class='adminhelp'>\[D\] #[AH.id] Mentor Ticket</span>: <A href='?_src_=holder;[HrefToken()];ahelp=[REF(AH)];ahelp_action=ticket'>[AH.initiator_key_name]: [AH.name]</A></span><br>"
+				dat += "[span_adminnotice("<span class='adminhelp'>\[D\] #[AH.id] Mentor Ticket")]: <A href='?_src_=holder;[HrefToken()];ahelp=[REF(AH)];ahelp_action=ticket'>[AH.initiator_key_name]: [AH.name]</A></span><br>"
 		else if(AH.tier == TICKET_ADMIN && check_rights(R_ADMINTICKET, FALSE))
 			if(AH.initiator)
-				dat += "<span class='adminnotice'><span class='adminhelp'>\[[AH.marked ? "X" : "  "]\] #[AH.id] Admin Ticket</span>: <A href='?_src_=holder;[HrefToken()];ahelp=[REF(AH)];ahelp_action=ticket'>[AH.initiator_key_name]: [AH.name]</A></span><br>"
+				dat += "[span_adminnotice("<span class='adminhelp'>\[[AH.marked ? "X" : "  "]\] #[AH.id] Admin Ticket")]: <A href='?_src_=holder;[HrefToken()];ahelp=[REF(AH)];ahelp_action=ticket'>[AH.initiator_key_name]: [AH.name]</A></span><br>"
 			else
-				dat += "<span class='adminnotice'><span class='adminhelp'>\[D\] #[AH.id] Admin Ticket</span>: <A href='?_src_=holder;[HrefToken()];ahelp=[REF(AH)];ahelp_action=ticket'>[AH.initiator_key_name]: [AH.name]</A></span><br>"
+				dat += "[span_adminnotice("<span class='adminhelp'>\[D\] #[AH.id] Admin Ticket")]: <A href='?_src_=holder;[HrefToken()];ahelp=[REF(AH)];ahelp_action=ticket'>[AH.initiator_key_name]: [AH.name]</A></span><br>"
 
 	var/datum/browser/browser = new(usr, "ahelp_list[state]", "<div align='center'>[title]</div>", 600, 480)
 	browser.set_content(dat)
@@ -261,9 +261,6 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 		initiator.current_ticket.Close(TRUE, TRUE)
 	initiator.current_ticket = src
 
-	if(tier == TICKET_ADMIN)
-		TimeoutVerb()
-
 	statclick = new(null, src)
 	_interactions = list()
 
@@ -282,7 +279,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 		var/admin_number_present = send2tgs_adminless_only(initiator_ckey, "[ticket_type] Ticket #[id]: [sanitizediscord(name)]")
 		log_admin_private("Ticket #[id]: [key_name(initiator)]: [name] - heard by [admin_number_present] non-AFK staff.")
 		if(admin_number_present <= 0)
-			to_chat(C, "<span class='notice'>No active admins are online, your adminhelp was sent through TGS to admins who are available. This may use IRC or Discord.</span>")
+			to_chat(C, span_notice("No active admins are online, your adminhelp was sent through TGS to admins who are available. This may use IRC or Discord."))
 			heard_by_no_admins = TRUE
 
 	GLOB.ahelp_tickets.active_tickets += src
@@ -300,12 +297,6 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 		heard_by_no_admins = FALSE
 		send2adminchat(initiator_ckey, "Ticket #[id]: Answered by [key_name(usr)]")
 	_interactions += "[stationTimestamp()]: [formatted_message]"
-
-//Removes the ahelp verb and returns it after 2 minutes
-/datum/admin_help/proc/TimeoutVerb()
-	initiator.verbs -= /client/verb/adminhelp
-	initiator.adminhelptimerid = addtimer(CALLBACK(initiator, /client/proc/giveadminhelpverb), 1200, TIMER_STOPPABLE) //2 minute cooldown of admin helps
-
 
 //private
 /datum/admin_help/proc/FullMonty(ref_src)
@@ -362,32 +353,42 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 /datum/admin_help/proc/MessageNoRecipient(msg)
 	msg = sanitize(copytext_char(msg, 1, MAX_MESSAGE_LEN))
 	var/ref_src = "[REF(src)]"
+	//message to be sent to all admins
+
 
 	AddInteraction("<font color='#ff8c8c'>[LinkedReplyName(ref_src)]: [msg]</font>")
+	log_admin_private("Ticket #[id]: [key_name(initiator)]: [msg]")
 
 	//Send this to the relevant people
 	for(var/client/X in GLOB.admins)
+		var/admin_msg = span_adminnotice("[span_adminhelp("Admin Ticket [TicketHref("#[id]", ref_src)]")]<b>: [LinkedReplyName(ref_src)] [FullMonty(ref_src)]:</b> [span_linkify("[keywords_lookup(msg)]")]")
+		var/mentor_msg = span_adminnotice("[span_adminhelp("Mentor Ticket [TicketHref("#[id]", ref_src)]")]<b>: [LinkedReplyName(ref_src)] [check_other_rights(X, R_ADMINTICKET, FALSE) ? FullMonty(ref_src) : HalfMonty(ref_src)] [check_other_rights(X, R_ADMINTICKET, FALSE) ? ClosureLinks(ref_src) : ClosureLinksMentor(ref_src)]:</b> [span_linkify("[keywords_lookup(msg)]")]")
 		if(tier == TICKET_MENTOR && check_other_rights(X, R_ADMINTICKET|R_MENTOR, FALSE))
 			if(X.prefs.toggles_sound & SOUND_ADMINHELP)
 				SEND_SOUND(X, sound('sound/effects/mentorhelp.ogg', channel = CHANNEL_ADMIN))
 			window_flash(X)
-			to_chat(X, "<span class='adminnotice'><span class='adminhelp'>Mentor Ticket [TicketHref("#[id]", ref_src)]</span><b>: [LinkedReplyName(ref_src)] [check_other_rights(X, R_ADMINTICKET, FALSE) ? FullMonty(ref_src) : HalfMonty(ref_src)] [check_other_rights(X, R_ADMINTICKET, FALSE) ? ClosureLinks(ref_src) : ClosureLinksMentor(ref_src)]:</b> <span class='linkify'>[keywords_lookup(msg)]</span></span>")
+			to_chat(X,
+				type = MESSAGE_TYPE_ADMINPM,
+				html = mentor_msg)
 		if(tier == TICKET_ADMIN && check_other_rights(X, R_ADMINTICKET, FALSE))
 			if(X.prefs.toggles_sound & SOUND_ADMINHELP)
 				SEND_SOUND(X, sound('sound/effects/adminhelp.ogg', channel = CHANNEL_ADMIN))
 			window_flash(X)
-			to_chat(X, "<span class='adminnotice'><span class='adminhelp'>Admin Ticket [TicketHref("#[id]", ref_src)]</span><b>: [LinkedReplyName(ref_src)] [FullMonty(ref_src)] [ClosureLinks(ref_src)]:</b> <span class='linkify'>[keywords_lookup(msg)]</span></span>")
+			to_chat(X,
+				type = MESSAGE_TYPE_ADMINPM,
+				html = admin_msg)
 
 	//show it to the person adminhelping too
-	to_chat(initiator, "<span class='adminnotice'>PM to-<b>[tier == TICKET_ADMIN ? "Admins" : "Mentors"]</b>: <span class='linkify'>[msg]</span></span>")
-
+	to_chat(initiator,
+		type = MESSAGE_TYPE_ADMINPM,
+		html = span_adminnotice("PM to-<b>[tier == TICKET_ADMIN ? "Admins" : "Mentors"]</b>: [span_linkify("[msg]")]"))
 
 //Reopen a closed ticket
 /datum/admin_help/proc/Reopen(irc)
 	if(!irc && tier == TICKET_ADMIN && !check_rights(R_ADMINTICKET, FALSE))
 		return
 	if(state == AHELP_ACTIVE)
-		to_chat(usr, "<span class='warning'>This ticket is already open.</span>")
+		to_chat(usr, span_warning("This ticket is already open."))
 		return
 	var/ref
 	if(irc)
@@ -396,7 +397,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 		ref = ADMIN_TPMONTY(usr)
 
 	if(GLOB.ahelp_tickets.CKey2ActiveTicket(initiator_ckey))
-		to_chat(usr, "<span class='warning'>This user already has an active ticket, cannot reopen this one.</span>")
+		to_chat(usr, span_warning("This user already has an active ticket, cannot reopen this one."))
 		return
 
 	statclick = new(null, src)
@@ -421,7 +422,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 //Change the tier
 /datum/admin_help/proc/Tier(irc)
 	if(tier_cooldown > world.time)
-		to_chat(usr, "<span class='warning'>Please wait a moment before changing the tier.</span>")
+		to_chat(usr, span_warning("Please wait a moment before changing the tier."))
 		return
 	if(!irc && tier == TICKET_ADMIN && !check_rights(R_ADMINTICKET, FALSE))
 		return
@@ -539,10 +540,10 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 
 	AddInteraction("<font color='#9adb92'>Resolved by [key_name_admin(usr)].</font>")
 	if(tier == TICKET_MENTOR)
-		to_chat(initiator, "<span class='adminhelp'>Your mentor ticket has been resolved, if you need to ask something again, feel free to send another one.</span>")
+		to_chat(initiator, span_adminhelp("Your mentor ticket has been resolved, if you need to ask something again, feel free to send another one."))
 	else if(tier == TICKET_ADMIN)
-		to_chat(initiator, "<span class='adminhelp'>Your ticket has been resolved by an admin. The Adminhelp verb will be returned to you shortly.</span>")
-		addtimer(CALLBACK(initiator, /client/proc/giveadminhelpverb), 50)
+		to_chat(initiator, span_adminhelp("Your ticket has been resolved by an admin. The Adminhelp verb will be returned to you shortly."))
+		addtimer(CALLBACK(initiator, /client.proc/giveadminhelpverb), 50)
 	if(!silent)
 		log_admin_private("Ticket (#[id]) resolved by [key_name(usr)].")
 		if(tier == TICKET_MENTOR)
@@ -569,12 +570,22 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 
 		SEND_SOUND(initiator, sound('sound/effects/adminhelp.ogg', channel = CHANNEL_ADMIN))
 		if(tier == TICKET_MENTOR)
-			to_chat(initiator, "<font color='red' size='2'><b>- Mentorhelp Rejected! -</b></font>")
-			to_chat(initiator, "Your issue may have been non-sensical. Please try describing it more in detail.")
+			to_chat(initiator,
+				type = MESSAGE_TYPE_ADMINPM,
+				html = "<font color='red' size='2'><b>- Mentorhelp Rejected! -</b></font>")
+			to_chat(initiator,
+				type = MESSAGE_TYPE_ADMINPM,
+				html = "Your issue may have been non-sensical. Please try describing it more in detail.")
 		else if(tier == TICKET_ADMIN)
-			to_chat(initiator, "<font color='red' size='4'><b>- Adminhelp Rejected! -</b></font>")
-			to_chat(initiator, "<font color='red'><b>Your admin help was rejected.</b> The adminhelp verb has been returned to you so that you may try again.</font>")
-			to_chat(initiator, "Please try to be calm, clear, and descriptive in admin helps, do not assume the admin has seen any related events, and clearly state the names of anybody you are reporting.")
+			to_chat(initiator,
+				type = MESSAGE_TYPE_ADMINPM,
+				html = "<font color='red' size='4'><b>- Adminhelp Rejected! -</b></font>")
+			to_chat(initiator,
+				type = MESSAGE_TYPE_ADMINPM,
+				html = "<font color='red'><b>Your admin help was rejected.</b> The adminhelp verb has been returned to you so that you may try again.</font>")
+			to_chat(initiator,
+				type = MESSAGE_TYPE_ADMINPM,
+				html = "Please try to be calm, clear, and descriptive in admin helps, do not assume the admin has seen any related events, and clearly state the names of anybody you are reporting.")
 
 	message_admins("Ticket [TicketHref("#[id]")] rejected by [ref].")
 	log_admin_private("Ticket (#[id]) rejected by [key_name(usr)].")
@@ -598,13 +609,25 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 
 	if(initiator)
 		if(tier == TICKET_MENTOR)
-			to_chat(initiator, "<font color='red' size='4'><b>- Mentorhelp marked as IC! -</b></font><br>")
-			to_chat(initiator, "<font color='red'>You most likely asked about important in-game information the staff cannot reveal.</font>")
-			to_chat(initiator, "<font color='red'>Feel free to ask again, but remember that information critical to the round won't be revealed.</font>")
+			to_chat(initiator,
+				type = MESSAGE_TYPE_ADMINPM,
+				html = "<font color='red' size='4'><b>- Mentorhelp marked as IC! -</b></font><br>")
+			to_chat(initiator,
+				type = MESSAGE_TYPE_ADMINPM,
+				html = "<font color='red'>You most likely asked about important in-game information the staff cannot reveal.</font>")
+			to_chat(initiator,
+				type = MESSAGE_TYPE_ADMINPM,
+				html = "<font color='red'>Feel free to ask again, but remember that information critical to the round won't be revealed.</font>")
 		else if(tier == TICKET_ADMIN)
-			to_chat(initiator, "<font color='red' size='4'><b>- Adminhelp marked as IC! -</b></font><br>")
-			to_chat(initiator, "<font color='red'>Whatever your query was, you will have to find out using IC mean, the staff won't reveal anything relevant.</font>")
-			to_chat(initiator, "<font color='red'>Your issue has been determined by an administrator to be in-character and does not require their intervention at this time, nor may they solve it without out-of-character intrusion into the round. You should find out a solution to the problem in the game, according to the rules.</font>")
+			to_chat(initiator,
+				type = MESSAGE_TYPE_ADMINPM,
+				html = "<font color='red' size='4'><b>- Adminhelp marked as IC! -</b></font><br>")
+			to_chat(initiator,
+				type = MESSAGE_TYPE_ADMINPM,
+				html = "<font color='red'>Whatever your query was, you will have to find out using IC mean, the staff won't reveal anything relevant.</font>")
+			to_chat(initiator,
+				type = MESSAGE_TYPE_ADMINPM,
+				html = "<font color='red'>Your issue has been determined by an administrator to be in-character and does not require their intervention at this time, nor may they solve it without out-of-character intrusion into the round. You should find out a solution to the problem in the game, according to the rules.</font>")
 
 	message_admins("Ticket [TicketHref("#[id]")] marked as IC by [ref].")
 	log_admin_private("Ticket (#[id]) marked as IC by [key_name(usr)].")
@@ -649,9 +672,9 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	dat += "<br><br>"
 	if(initiator)
 		if(check_rights(R_ADMINTICKET, FALSE))
-			dat += "<b>Actions:</b> [FullMonty(ref_src)]<br>[ClosureLinks(ref_src)]<br>"
+			dat += "<b>Actions:</b> [FullMonty(ref_src)] [ADMIN_IF(initiator.mob)]<br>[ClosureLinks(ref_src)]<br>"
 		else if(check_rights(R_MENTOR, FALSE))
-			dat += "<b>Actions:</b> [HalfMonty(ref_src)]<br>[ClosureLinksMentor(ref_src)]<br>"
+			dat += "<b>Actions:</b> [HalfMonty(ref_src)] [ADMIN_IF(initiator.mob)]<br>[ClosureLinksMentor(ref_src)]<br>"
 	else
 		if(check_rights(R_ADMINTICKET, FALSE))
 			dat += "<b>DISCONNECTED</b>\t[ClosureLinks(ref_src)]<br>"
@@ -737,8 +760,6 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 //
 
 /client/proc/giveadminhelpverb()
-	if(!src)
-		return
 	verbs |= /client/verb/adminhelp
 	deltimer(adminhelptimerid)
 	adminhelptimerid = 0
@@ -756,7 +777,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 
 	//handle muting and automuting
 	if(prefs.muted & MUTE_ADMINHELP)
-		to_chat(src, "<span class='warning'>Error: You cannot send adminhelps (Muted).</span>")
+		to_chat(src, span_warning("Error: You cannot send adminhelps (Muted)."))
 		return
 
 	if(handle_spam_prevention(msg, MUTE_ADMINHELP))
@@ -771,10 +792,9 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 		if(alert(usr, "You already have a ticket open. Is this for the same issue?",,"Yes","No") != "No")
 			if(current_ticket)
 				current_ticket.MessageNoRecipient(msg)
-				current_ticket.TimeoutVerb()
 				return
 			else
-				to_chat(usr, "<span class='warning'>Ticket not found, creating new one...</span>")
+				to_chat(usr, span_warning("Ticket not found, creating new one..."))
 		else
 			current_ticket.AddInteraction("[key_name_admin(usr)] opened a new ticket.")
 			current_ticket.Close(TRUE, TRUE)
@@ -788,7 +808,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 
 	//handle muting and automuting
 	if(prefs.muted & MUTE_ADMINHELP)
-		to_chat(src, "<span class='warning'>Error: You cannot send mentorhelps (Muted).</span>")
+		to_chat(src, span_warning("Error: You cannot send mentorhelps (Muted)."))
 		return
 
 	if(handle_spam_prevention(msg, MUTE_ADMINHELP))
@@ -805,7 +825,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 				current_ticket.MessageNoRecipient(msg)
 				return
 			else
-				to_chat(usr, "<span class='warning'>Ticket not found, creating new one...</span>")
+				to_chat(usr, span_warning("Ticket not found, creating new one..."))
 		else
 			current_ticket.AddInteraction("[key_name_admin(usr)] opened a new ticket.")
 			current_ticket.Close(TRUE, TRUE)

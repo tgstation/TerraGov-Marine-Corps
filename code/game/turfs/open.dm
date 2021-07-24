@@ -33,7 +33,7 @@
 
 				if (bloodDNA && !locate(/obj/structure) in contents)
 					src.AddTracks(/obj/effect/decal/cleanable/blood/tracks/footprints,bloodDNA,H.dir,0,bloodcolor) // Coming
-					var/turf/from = get_step(H,reverse_direction(H.dir))
+					var/turf/from = get_step(H,REVERSE_DIR(H.dir))
 					if(istype(from) && from)
 						from.AddTracks(/obj/effect/decal/cleanable/blood/tracks/footprints,bloodDNA,0,H.dir,bloodcolor) // Going
 
@@ -79,7 +79,6 @@
 	shoefootstep = FOOTSTEP_SAND
 	barefootstep = FOOTSTEP_SAND
 	mediumxenofootstep = FOOTSTEP_SAND
-
 
 /turf/open/beach/sand
 	name = "sand"
@@ -168,7 +167,6 @@
 	mediumxenofootstep = FOOTSTEP_WATER
 	heavyxenofootstep = FOOTSTEP_WATER
 
-
 //Nostromo turfs
 
 /turf/open/nostromowater
@@ -191,14 +189,14 @@
 	icon = 'icons/turf/shuttle.dmi'
 	allow_construction = FALSE
 	shoefootstep = FOOTSTEP_PLATING
-	barefootstep = FOOTSTEP_PLATING
+	barefootstep = FOOTSTEP_HARD
 	mediumxenofootstep = FOOTSTEP_PLATING
 
 
 /turf/open/shuttle/check_alien_construction(mob/living/builder, silent = FALSE, planned_building)
 	if(ispath(planned_building, /turf/closed/wall/)) // Shuttles move and will leave holes in the floor during transit
 		if(!silent)
-			to_chat(builder, "<span class='warning'>This place seems unable to support a wall.</span>")
+			to_chat(builder, span_warning("This place seems unable to support a wall."))
 		return FALSE
 	return ..()
 
@@ -220,6 +218,10 @@
 
 /turf/open/shuttle/dropship/eight
 	icon_state = "rasputin8"
+
+/turf/open/shuttle/dropship/grating
+	icon = 'icons/turf/elevator.dmi'
+	icon_state = "floor_grating"
 
 //not really plating, just the look
 /turf/open/shuttle/plating
@@ -337,13 +339,15 @@
 
 		else if (isliving(thing))
 			var/mob/living/L = thing
+
 			if(L.stat == DEAD)
 				continue
 
 			if(!L.on_fire || L.getFireLoss() <= 200)
 				L.take_overall_damage(null, 20, clamp(L.getarmor(null, "fire"), 0, 80))
-				L.adjust_fire_stacks(20)
-				L.IgniteMob()
+				if(!CHECK_BITFIELD(L.flags_pass, PASSFIRE))//Pass fire allow to cross lava without igniting
+					L.adjust_fire_stacks(20)
+					L.IgniteMob()
 				. = 1
 
 /turf/open/lavaland/lava/attackby(obj/item/C, mob/user, params)
@@ -352,17 +356,17 @@
 		var/obj/item/stack/rods/R = C
 		var/turf/open/lavaland/catwalk/H = locate(/turf/open/lavaland/catwalk, src)
 		if(H)
-			to_chat(user, "<span class='warning'>There is already a catwalk here!</span>")
+			to_chat(user, span_warning("There is already a catwalk here!"))
 			return
 		if(!do_after(user, 5 SECONDS, FALSE))
-			to_chat(user, "<span class='warning'>It takes time to construct a catwalk!</span>")
+			to_chat(user, span_warning("It takes time to construct a catwalk!"))
 			return
 		if(R.use(4))
-			to_chat(user, "<span class='notice'>You construct a heatproof catwalk.</span>")
+			to_chat(user, span_notice("You construct a heatproof catwalk."))
 			playsound(src, 'sound/weapons/genhit.ogg', 50, TRUE)
 			ChangeTurf(/turf/open/lavaland/catwalk/built)
 		else
-			to_chat(user, "<span class='warning'>You need four rods to build a heatproof catwalk.</span>")
+			to_chat(user, span_warning("You need four rods to build a heatproof catwalk."))
 		return
 
 /turf/open/lavaland/basalt
@@ -407,13 +411,15 @@
 /turf/open/lavaland/catwalk/built
 	var/deconstructing = FALSE
 
-/turf/open/lavaland/catwalk/built/attack_alien(mob/living/carbon/xenomorph/M)
-	if(M.a_intent != INTENT_HARM)
+/turf/open/lavaland/catwalk/built/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
+	if(X.status_flags & INCORPOREAL)
+		return
+	if(X.a_intent != INTENT_HARM)
 		return
 	if(deconstructing)
 		return
 	deconstructing = TRUE
-	if(!do_after(M, 10 SECONDS, TRUE, src, BUSY_ICON_BUILD))
+	if(!do_after(X, 10 SECONDS, TRUE, src, BUSY_ICON_BUILD))
 		deconstructing = FALSE
 		return
 	deconstructing = FALSE

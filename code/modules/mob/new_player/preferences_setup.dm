@@ -1,16 +1,19 @@
 /datum/preferences/proc/randomize_appearance_for(mob/living/carbon/human/H)
-	if(H)
-		if(H.gender == MALE)
-			gender = MALE
-		else
-			gender = FEMALE
-
+	gender = pick(MALE, FEMALE)
+	species = pick(get_playable_species())
+	synthetic_type = pick(SYNTH_TYPES)
 	ethnicity = random_ethnicity()
 	body_type = random_body_type()
 
 	h_style = random_hair_style(gender, species)
 	f_style = random_facial_hair_style(gender, species)
+	grad_style = pick(GLOB.hair_gradients_list)
+	good_eyesight = pick(list(FALSE, TRUE))
+	citizenship = pick(CITIZENSHIP_CHOICES)
+	religion = pick(RELIGION_CHOICES)
+	nanotrasen_relation = pick(CORP_RELATIONS)
 	randomize_hair_color("hair")
+	randomize_hair_color("grad")
 	randomize_hair_color("facial")
 	randomize_eyes_color()
 	randomize_species_specific()
@@ -76,6 +79,10 @@
 			r_facial = red
 			g_facial = green
 			b_facial = blue
+		if("grad")
+			r_grad = red
+			g_grad = green
+			b_grad = blue
 
 /datum/preferences/proc/randomize_eyes_color()
 	var/red
@@ -187,11 +194,16 @@
 	character.g_hair = g_hair
 	character.b_hair = b_hair
 
+	character.r_grad	= r_grad
+	character.g_grad	= g_grad
+	character.b_grad	= b_grad
+
 	character.r_facial = r_facial
 	character.g_facial = g_facial
 	character.b_facial = b_facial
 
 	character.h_style = h_style
+	character.grad_style= grad_style
 	character.f_style = f_style
 
 	character.citizenship = citizenship
@@ -208,7 +220,9 @@
 
 /datum/preferences/proc/random_character()
 	gender = pick(MALE, FEMALE)
-	var/datum/species/S = GLOB.all_species[DEFAULT_SPECIES]
+	var/speciestype = pick(GLOB.roundstart_species)
+	var/datum/species/S = GLOB.roundstart_species[speciestype]
+	species = S.name
 	real_name = S.random_name(gender)
 	age = rand(AGE_MIN, AGE_MAX)
 	h_style = pick("Crewcut", "Bald", "Short Hair")

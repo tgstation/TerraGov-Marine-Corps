@@ -78,8 +78,8 @@
 //-------------------------------------------
 
 //Xeno interaction with the Cargo Tug Train
-/obj/vehicle/train/attack_alien(mob/living/carbon/xenomorph/M)
-	attack_hand(M)
+/obj/vehicle/train/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
+	attack_hand(X)
 
 //attempts to attach src as a follower of the train T
 /obj/vehicle/train/proc/attach_to(obj/vehicle/train/T, mob/user, silent=FALSE)
@@ -87,17 +87,17 @@
 		silent = TRUE
 	if (get_dist(src, T) > 1)
 		if(!silent)
-			to_chat(user, "<span class='warning'>[src] is too far away from [T] to hitch them together.</span>")
+			to_chat(user, span_warning("[src] is too far away from [T] to hitch them together."))
 		return
 
 	if (lead)
 		if(!silent)
-			to_chat(user, "<span class='warning'>[src] is already hitched to something.</span>")
+			to_chat(user, span_warning("[src] is already hitched to something."))
 		return
 
 	if (T.tow)
 		if(!silent)
-			to_chat(user, "<span class='warning'>[T] is already towing something.</span>")
+			to_chat(user, span_warning("[T] is already towing something."))
 		return
 
 	//check for cycles.
@@ -105,7 +105,7 @@
 	while (next_car)
 		if (next_car == src)
 			if(!silent)
-				to_chat(user, "<span class='warning'>That seems very silly.</span>")
+				to_chat(user, span_warning("That seems very silly."))
 			return
 		next_car = next_car.lead
 
@@ -115,7 +115,7 @@
 	setDir(lead.dir)
 
 	if(user && !silent)
-		to_chat(user, "<span class='notice'>You hitch [src] to [T].</span>")
+		to_chat(user, span_notice("You hitch [src] to [T]."))
 
 	update_stats()
 
@@ -126,14 +126,14 @@
 		silent = TRUE
 	if (!lead)
 		if(!silent)
-			to_chat(user, "<span class='warning'>[src] is not hitched to anything.</span>")
+			to_chat(user, span_warning("[src] is not hitched to anything."))
 		return
 
 	lead.tow = null
 	lead.update_stats()
 
 	if(!silent)
-		to_chat(user, "<span class='notice'>You unhitch [src] from [lead].</span>")
+		to_chat(user, span_notice("You unhitch [src] from [lead]."))
 	lead = null
 
 	update_stats()
@@ -146,7 +146,7 @@
 
 	if(dir == T_dir) 	//if car is ahead
 		src.attach_to(T, user, silent)
-	else if(reverse_direction(dir) == T_dir)	//else if car is behind
+	else if(REVERSE_DIR(dir) == T_dir)	//else if car is behind
 		T.attach_to(src, user, silent)
 
 //returns true if this is the lead car of the train

@@ -20,7 +20,7 @@
 	if(!istype(C))
 		return ..()
 	if (!ishuman(user))
-		to_chat(user, "<span class='warning'>You don't have the dexterity to do this!</span>")
+		to_chat(user, span_warning("You don't have the dexterity to do this!"))
 		return
 	if(!C.handcuffed)
 		place_handcuffs(C, user)
@@ -28,30 +28,24 @@
 /obj/item/restraints/handcuffs/proc/place_handcuffs(mob/living/carbon/target, mob/user)
 	playsound(src.loc, cuff_sound, 25, 1, 4)
 
-	if(user.action_busy)
+	if(user.do_actions)
 		return
 
-	if (ishuman(target))
-		var/mob/living/carbon/human/H = target
+	if(!ishuman(target))
+		return
+	var/mob/living/carbon/human/H = target
 
-		if (!H.has_limb_for_slot(SLOT_HANDCUFFED))
-			to_chat(user, "<span class='warning'>\The [H] needs at least two wrists before you can cuff them together!</span>")
-			return
+	if (!H.has_limb_for_slot(SLOT_HANDCUFFED))
+		to_chat(user, span_warning("\The [H] needs at least two wrists before you can cuff them together!"))
+		return
 
-		log_combat(user, H, "handcuffed", src, addition="(attempt)")
+	log_combat(user, H, "handcuffed", src, addition="(attempt)")
 
-		user.visible_message("<span class='notice'>[user] tries to put [src] on [H].</span>")
-		if(do_mob(user, H, cuff_delay, BUSY_ICON_HOSTILE, BUSY_ICON_HOSTILE, extra_checks = CALLBACK(user, /datum/.proc/Adjacent, H)) && !H.handcuffed)
-			if(H.has_limb_for_slot(SLOT_HANDCUFFED))
-				user.dropItemToGround(src)
-				H.equip_to_slot_if_possible(src, SLOT_HANDCUFFED, 1, 0, 1, 1)
-				return TRUE
-
-	else if (ismonkey(target))
-		user.visible_message("<span class='notice'>[user] tries to put [src] on [target].</span>")
-		if(do_mob(user, target, 30, BUSY_ICON_HOSTILE, BUSY_ICON_HOSTILE, extra_checks = CALLBACK(user, /datum/.proc/Adjacent, target)) && !target.handcuffed)
+	user.visible_message(span_notice("[user] tries to put [src] on [H]."))
+	if(do_mob(user, H, cuff_delay, BUSY_ICON_HOSTILE, BUSY_ICON_HOSTILE, extra_checks = CALLBACK(user, /datum/.proc/Adjacent, H)) && !H.handcuffed)
+		if(H.has_limb_for_slot(SLOT_HANDCUFFED))
 			user.dropItemToGround(src)
-			target.equip_to_slot_if_possible(src, SLOT_HANDCUFFED, 1, 0, 1, 1)
+			H.equip_to_slot_if_possible(src, SLOT_HANDCUFFED, 1, 0, 1, 1)
 			return TRUE
 
 
@@ -114,7 +108,7 @@
 
 		var/obj/item/weapon/wirerod/W = new
 		user.put_in_hands(W)
-		to_chat(user, "<span class='notice'>You wrap the cable restraint around the top of the rod.</span>")
+		to_chat(user, span_notice("You wrap the cable restraint around the top of the rod."))
 		qdel(src)
 		update_icon(user)
 
@@ -127,12 +121,12 @@
 		var/turf/p_loc = user.loc
 		var/turf/p_loc_m = C.loc
 		playsound(src.loc, cuff_sound, 25, 1, 4)
-		user.visible_message("<span class='danger'>[user] is trying to put handcuffs on [C]!</span>")
+		user.visible_message(span_danger("[user] is trying to put handcuffs on [C]!"))
 
 		if (ishuman(C))
 			var/mob/living/carbon/human/H = C
 			if (!H.has_limb_for_slot(SLOT_HANDCUFFED))
-				to_chat(user, "<span class='warning'>\The [H] needs at least two wrists before you can cuff them together!</span>")
+				to_chat(user, span_warning("\The [H] needs at least two wrists before you can cuff them together!"))
 				return
 
 		spawn(30)

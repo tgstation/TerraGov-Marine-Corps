@@ -91,6 +91,9 @@
 	if(burst_amount > 1)
 		traits += "Shots fired on burst mode: [burst_amount]"
 		traits += "Time between burst-fire: [(min((burst_delay * 2), (fire_delay * 3))) / 10] seconds"
+	if(/datum/action/item_action/aim_mode in actions_types)
+		traits += "Can be aimed with to shoot past allies."
+		traits += "Time between aimed shots: [(fire_delay + aim_fire_delay) / 10] seconds"
 
 	traits += "<br>"
 	var/list/entries = SScodex.retrieve_entries_for_string(general_codex_key)
@@ -178,7 +181,7 @@
 		It should be noted that the user will need to be aware and at the ready before discharging them."
 
 /datum/codex_entry/sniper_rifle
-	associated_paths = list(/obj/item/weapon/gun/rifle/sniper/M42A)
+	associated_paths = list(/obj/item/weapon/gun/rifle/sniper/antimaterial)
 	lore_text = "A rather strange gun in the TGMC's arsenal. The M42A \"Express\" originally was born out of it's younger brother the M42. Made by the same \
 	company who eventually went on to design the M56 smartgun system. Which the M42As specialized scope eventually adopted a modified IFF system similar to it's cousin the smartgun. <br><br>\
 	It was at first marketed to PMCs and civilians as an expensive accurate long range rifle but it failed due to the lack of need for such a thing for PMCs and the wide variety of options \
@@ -188,7 +191,7 @@
 	Though high unit cost didn't allow it to be more widely adopted it was eventually decided that it would meet limited adoption for Marksmen and be designated the T-26."
 
 /datum/codex_entry/battle_rifle
-	associated_paths = list(/obj/item/weapon/gun/rifle/m4ra)
+	associated_paths = list(/obj/item/weapon/gun/rifle/tx8)
 	lore_text = "The M45A was born from a commission order from the TGMC to the company which made the M42A and M56 smartgun systems. <br><br>\
 	The reason for this commission order resulted from complaints from light infantry and scout units about the poor accuracy of the new T-26 \
 	carbine at longer ranges and the large size of the T-29 making close combat uncomfortable eventually reached the higher ups, who kept getting \
@@ -215,15 +218,6 @@
 	It's a rather rare sight due to the current doctrine adopted by the TGMC not using heavy explosives often, so it's a rather \
 	rare sight outside of specialized users. and the rising prevalence of shipside combat making it dangerous to fire inside those \
 	spaces makes it even used less. Not that it makes it any less dangerous on an open field."
-
-/datum/codex_entry/smartgun
-	associated_paths = list(/obj/item/weapon/gun/smartgun)
-	lore_text = "The T-90A's design is the one used by most forces under the world who use the M56 4-kit smartgun system, \
-	it has several different other names depending on the user but the one used by the TGMC is defined as T-90A. <br><br>\
-	The M56 4-piece system was adopted when the technology eventually developed a practical point as older systems required \
-	a much heavier powerpack or assistant to carry ammunition due to the lack of an autoloading system. After these problems \
-	were solved with the powerpacks autoloading system and eventual size reductions to allow for more practical use of the gun \
-	inside combat, the M56 system was offered to the TGMC and was eventually met with adoption after combat tests showed good results."
 
 /datum/codex_entry/standard_shotgun
 	associated_paths = list(/obj/item/weapon/gun/shotgun/pump/t35)

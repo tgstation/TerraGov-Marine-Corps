@@ -1,6 +1,5 @@
 //SUPPLY PACKS
 //NOTE: only secure crate types use the access var (and are lockable)
-//NOTE: Contraband is obtainable through modified supplycomp circuitboards.
 //NOTE: Don't add living things to crates, that's bad, it will break the shuttle.
 //NOTE: Do NOT set the price of any crates below 7 points. Doing so allows infinite points.
 
@@ -13,10 +12,11 @@ GLOBAL_LIST_INIT(all_supply_groups, list("Operations", "Weapons", "Attachments",
 	var/cost
 	var/obj/containertype
 	var/access
-	var/hidden = FALSE
-	var/contraband = FALSE
 	var/group
-	var/randomised_num_contained = 0 //Randomly picks X of items out of the contains list instead of using all.
+	///Randomly picks X of items out of the contains list instead of using all.
+	var/randomised_num_contained = 0
+	///If this supply pack should be buyable in HvH gamemode
+	var/available_against_xeno_only = FALSE
 
 /datum/supply_packs/proc/generate(atom/movable/location)
 	for(var/i in contains)
@@ -33,13 +33,14 @@ OPERATIONS
 
 /datum/supply_packs/operations/beacons_supply
 	name = "supply beacon"
-	contains = list(/obj/item/squad_beacon)
+	contains = list(/obj/item/beacon/supply_beacon)
 	cost = 10
 
 /datum/supply_packs/operations/beacons_orbital
 	name = "orbital beacon"
-	contains = list(/obj/item/squad_beacon/bomb)
+	contains = list(/obj/item/beacon/orbital_bombardment_beacon)
 	cost = 30
+	available_against_xeno_only = TRUE
 
 /datum/supply_packs/operations/fulton_extraction_pack
 	name = "fulton extraction pack"
@@ -49,7 +50,8 @@ OPERATIONS
 /datum/supply_packs/operations/cas_flares
 	name = "CAS flare pack"
 	contains = list(/obj/item/storage/box/m94/cas)
-	cost = 10
+	available_against_xeno_only = TRUE
+	cost = 5
 
 /datum/supply_packs/operations/binoculars_regular
 	name = "binoculars"
@@ -60,34 +62,33 @@ OPERATIONS
 	name = "tactical binoculars crate"
 	contains = list(/obj/item/binoculars/tactical)
 	cost = 30
+	available_against_xeno_only = TRUE
 
 /datum/supply_packs/operations/motion_detector
 	name = "motion detector crate"
 	contains = list(/obj/item/motiondetector/scout)
 	cost = 20
 
-/datum/supply_packs/operations/flares
-	name = "2 flare packs"
-	notes = "Contains 14 flares"
-	contains = list(
-		/obj/item/storage/box/m94,
-		/obj/item/storage/box/m94,
-	)
-	cost = 2
+/datum/supply_packs/operations/pinpointer
+	name = "pool tracker crate"
+	contains = list(/obj/item/pinpointer/pool)
+	cost = 20
+	available_against_xeno_only = TRUE
 
+/datum/supply_packs/operations/flares
+	name = "flare packs"
+	contains = list(/obj/item/storage/box/m94)
+	cost = 1
 /datum/supply_packs/operations/tarps
 	name = "V1 thermal-dampening tarp"
 	contains = list(/obj/item/bodybag/tarp)
 	cost = 6
+	available_against_xeno_only = TRUE
 
 /datum/supply_packs/operations/deployablecams
 	name = "3 Deployable Cameras"
-	contains = list(
-		/obj/item/deployable_camera,
-		/obj/item/deployable_camera,
-		/obj/item/deployable_camera,
-	)
-	cost = 6
+	contains = list(/obj/item/deployable_camera)
+	cost = 2
 
 /datum/supply_packs/operations/exportpad
 	name = "ASRS Bluespace Export Point"
@@ -121,32 +122,55 @@ OPERATIONS
 /datum/supply_packs/operations/warhead_cluster
 	name = "Cluster orbital warhead"
 	contains = list(/obj/structure/ob_ammo/warhead/cluster)
-	cost = 40
-	containertype = null
+	cost = 20
+	access = ACCESS_MARINE_ENGINEERING
+	containertype = /obj/structure/closet/crate/secure/explosives
+	available_against_xeno_only = TRUE
 
 /datum/supply_packs/operations/warhead_explosive
 	name = "HE orbital warhead"
 	contains = list(/obj/structure/ob_ammo/warhead/explosive)
-	cost = 40
-	containertype = null
+	cost = 30
+	access = ACCESS_MARINE_ENGINEERING
+	containertype = /obj/structure/closet/crate/secure/explosives
+	available_against_xeno_only = TRUE
 
 /datum/supply_packs/operations/warhead_incendiary
 	name = "Incendiary orbital warhead"
 	contains = list(/obj/structure/ob_ammo/warhead/incendiary)
-	cost = 40
-	containertype = null
+	cost = 20
+	access = ACCESS_MARINE_ENGINEERING
+	containertype = /obj/structure/closet/crate/secure/explosives
+	available_against_xeno_only = TRUE
 
 /datum/supply_packs/operations/warhead_plasmaloss
 	name = "Plasma draining orbital warhead"
 	contains = list(/obj/structure/ob_ammo/warhead/plasmaloss)
-	cost = 25
-	containertype = null
+	cost = 15
+	access = ACCESS_MARINE_ENGINEERING
+	containertype = /obj/structure/closet/crate/secure/explosives
+	available_against_xeno_only = TRUE
 
 /datum/supply_packs/operations/ob_fuel
 	name = "Solid fuel"
 	contains = list(/obj/structure/ob_ammo/ob_fuel)
-	cost = 10
+	cost = 5
+	access = ACCESS_MARINE_ENGINEERING
+	containertype = /obj/structure/closet/crate/secure/explosives
+	available_against_xeno_only = TRUE
+
+/datum/supply_packs/operations/cas_voucher
+	name = "100 dropship fabricator points"
+	contains = list(/obj/item/dropship_points_voucher)
+	cost = 40
 	containertype = null
+	available_against_xeno_only = TRUE
+
+/datum/supply_packs/operations/autominer
+	name = "Autominer upgrade"
+	contains = list(/obj/item/minerupgrade/automatic)
+	cost = 15
+
 /*******************************************************************************
 WEAPONS
 *******************************************************************************/
@@ -158,22 +182,17 @@ WEAPONS
 /datum/supply_packs/weapons/sentry
 	name = "UA 571-C Base Defense Sentry"
 	contains = list(/obj/item/storage/box/sentry)
-	cost = 120
+	cost = 60
 
 /datum/supply_packs/weapons/minisentry
 	name = "UA-580 Portable Sentry"
 	contains = list(/obj/item/storage/box/minisentry)
-	cost = 60
+	cost = 30
 
 /datum/supply_packs/weapons/m56d_emplacement
 	name = "TL-102 Mounted Heavy Smartgun"
-	contains = list(/obj/item/storage/box/standard_hmg)
+	contains = list(/obj/item/storage/box/tl102)
 	cost = 80
-
-/datum/supply_packs/weapons/quadlauncher
-	name = "M57A4 Quad Thermobaric Launcher"
-	contains = list(/obj/item/weapon/gun/launcher/rocket/m57a4)
-	cost = 250
 
 /datum/supply_packs/weapons/tesla
 	name = "Energy Ball Rifle"
@@ -188,45 +207,58 @@ WEAPONS
 	name = "Recoilless rifle kit"
 	contains = list(/obj/item/storage/box/recoilless_system)
 	cost = 40
+	available_against_xeno_only = TRUE
 
 
-/datum/supply_packs/weapons/specgrenadier
-	name = "Grenadier Specialist kit"
-	contains = list(/obj/item/weapon/gun/launcher/m92)
-	cost = 80
+/datum/supply_packs/weapons/railgun
+	name = "TX-220 Railgun"
+	contains = list(/obj/item/weapon/gun/rifle/railgun)
+	cost = 40
 
-/datum/supply_packs/weapons/specscoutm4ra
-	name = "Scout Specialist kit (M4RA)"
-	contains = list(/obj/item/weapon/gun/rifle/m4ra)
-	cost = 80
+/datum/supply_packs/weapons/tx8
+	name = "TX-8 Scout Rifle"
+	contains = list(/obj/item/weapon/gun/rifle/tx8)
+	cost = 50
+	available_against_xeno_only = TRUE
 
-/datum/supply_packs/weapons/specscoutmbx
-	name = "Scout Specialist kit (MBR-900)"
-	contains = list(/obj/item/weapon/gun/shotgun/pump/lever/mbx900)
-	cost = 80
+/datum/supply_packs/weapons/thermobaric
+	name = "T-57 Thermobaric"
+	contains = list(/obj/item/weapon/gun/launcher/rocket/m57a4/t57)
+	cost = 50
+	available_against_xeno_only = TRUE
 
 /datum/supply_packs/weapons/specdemo
 	name = "Demolitionist Specialist kit"
 	contains = list(/obj/item/weapon/gun/launcher/rocket/sadar)
-	cost = 90
+	cost = SADAR_PRICE
+	available_against_xeno_only = TRUE
 
 /datum/supply_packs/weapons/autosniper
 	name = "IFF Auto Sniper kit"
-	contains = list(
-		/obj/item/weapon/gun/rifle/standard_autosniper,
-		/obj/item/ammo_magazine/rifle/autosniper,
-		/obj/item/ammo_magazine/rifle/autosniper,
-	)
-	cost = 70
+	contains = list(/obj/item/weapon/gun/rifle/standard_autosniper)
+	cost = 30
+	available_against_xeno_only = TRUE
+
+/datum/supply_packs/weapons/antimaterial
+	name = "T-26 Antimaterial rifle kit"
+	contains = list(/obj/item/weapon/gun/rifle/sniper/antimaterial)
+	cost = 75
+	available_against_xeno_only = TRUE
 
 /datum/supply_packs/weapons/specminigun
 	name = "MIC-A7 Vindicator Minigun"
 	contains = list(/obj/item/weapon/gun/minigun)
-	cost = 80
+	cost = MINIGUN_PRICE
+	available_against_xeno_only = TRUE
 
 /datum/supply_packs/weapons/smartgun
 	name = "T-29 Smart Machinegun"
 	contains = list(/obj/item/weapon/gun/rifle/standard_smartmachinegun)
+	cost = 40
+
+/datum/supply_packs/weapons/smartrifle
+	name = "T-26 Smart Rifle"
+	contains = list(/obj/item/weapon/gun/rifle/standard_smartrifle)
 	cost = 40
 
 /datum/supply_packs/weapons/flamethrower
@@ -234,11 +266,18 @@ WEAPONS
 	contains = list(/obj/item/weapon/gun/flamer/marinestandard)
 	cost = 15
 
+/datum/supply_packs/weapons/rpgoneuse
+	name = "T-72 RPG"
+	contains = list(/obj/item/weapon/gun/launcher/rocket/oneuse)
+	cost = 5
+	available_against_xeno_only = TRUE
+
 /datum/supply_packs/weapons/mateba
 	name = "Mateba Autorevolver belt"
 	contains = list(/obj/item/storage/belt/gun/mateba/full)
 	notes = "Contains 6 speedloaders"
 	cost = 15
+	available_against_xeno_only = TRUE
 
 /datum/supply_packs/weapons/explosives_mines
 	name = "claymore mines"
@@ -246,29 +285,42 @@ WEAPONS
 	contains = list(/obj/item/storage/box/explosive_mines)
 	cost = 15
 
+/datum/supply_packs/weapons/explosives_razor
+	name = "RB grenade box crate"
+	notes = "Containers 20 razor burns"
+	contains = list(/obj/item/storage/box/visual/grenade/razorburn)
+	cost = 50
+
 /datum/supply_packs/weapons/explosives_hedp
 	name = "M40 HEDP high explosive grenade box crate"
 	notes = "Contains 25 grenades"
-	contains = list(/obj/item/storage/box/nade_box)
+	contains = list(/obj/item/storage/box/visual/grenade/frag)
 	cost = 50
 
 /datum/supply_packs/weapons/explosives_hidp
 	name = "M40 HIDP incendiary explosive grenade box crate"
 	notes = "Contains 25 grenades"
-	contains = list(/obj/item/storage/box/nade_box/HIDP)
+	contains = list(/obj/item/storage/box/visual/grenade/incendiary)
 	cost = 50
 
 /datum/supply_packs/weapons/explosives_m15
 	name = "M15 fragmentation grenade box crate"
 	notes = "Contains 15 grenades"
-	contains = list(/obj/item/storage/box/nade_box/M15)
+	contains = list(/obj/item/storage/box/visual/grenade/M15)
 	cost = 50
 
 /datum/supply_packs/weapons/explosives_hsdp
 	name = "M40 HSDP white phosphorous grenade box crate"
 	notes = "Contains 15 grenades"
-	contains = list(/obj/item/storage/box/nade_box/phos)
+	contains = list(/obj/item/storage/box/visual/grenade/phosphorus)
 	cost = 70
+
+/datum/supply_packs/weapons/explosives_plasmadrain
+	name = "M40-T gas grenade box crate"
+	notes = "Contains 25 grenades"
+	contains = list(/obj/item/storage/box/visual/grenade/drain)
+	cost = 70
+	available_against_xeno_only = TRUE
 
 /datum/supply_packs/weapons/plastique
 	name = "C4 plastic explosive"
@@ -279,6 +331,7 @@ WEAPONS
 	name = "M402 mortar crate"
 	contains = list(/obj/item/mortar_kit)
 	cost = 40
+	available_against_xeno_only = TRUE
 
 /datum/supply_packs/weapons/detpack
 	name = "detpack explosives"
@@ -305,11 +358,13 @@ ATTACHMENTS
 	name = "railscope attachment"
 	contains = list(/obj/item/attachable/scope)
 	cost = 1
+	available_against_xeno_only = TRUE
 
 /datum/supply_packs/attachments/rail_miniscope
 	name = "mini railscope attachment"
 	contains = list(/obj/item/attachable/scope/mini)
 	cost = 1
+	available_against_xeno_only = TRUE
 
 /datum/supply_packs/attachments/rail_magneticharness
 	name = "magnetic harness attachment"
@@ -405,142 +460,125 @@ AMMO
 		/obj/item/cell/lasgun/tesla,
 		/obj/item/cell/lasgun/tesla,
 	)
-	cost = 30
+	cost = 10
 
-/datum/supply_packs/ammo/boxslug
-	name = "Slug Ammo Box"
-	contains = list(/obj/item/shotgunbox)
-	cost = 20
-
-/datum/supply_packs/ammo/boxbuckshot
-	name = "Buckshot Ammo Box"
-	contains = list(/obj/item/shotgunbox/buckshot)
-	cost = 20
-
-/datum/supply_packs/ammo/boxflechette
-	name = "Flechette Ammo Box"
-	contains = list(/obj/item/shotgunbox/flechette)
-	cost = 20
-
-/datum/supply_packs/ammo/boxcarbine
-	name = "T-18 Carbine Ammo Box"
-	contains = list(/obj/item/ammobox)
-	cost = 20
-
-/datum/supply_packs/ammo/boxrifle
-	name = "T-12 Assault Rifle Ammo Box"
-	contains = list(/obj/item/ammobox/standard_rifle)
-	cost = 20
-
-/datum/supply_packs/ammo/boxsmg
-	name = "T-90 SMG Ammo Box"
-	contains = list(/obj/item/ammobox/standard_smg)
-	cost = 20
-
-/datum/supply_packs/ammo/boxmachpistol
-	name = "T-19 Machine Pistol Ammo Box"
-	contains = list(/obj/item/ammobox/standard_machinepistol)
-	cost = 20
-
-/datum/supply_packs/ammo/boxlmg
-	name = "T-42 LMG Ammo Box"
-	contains = list(/obj/item/ammobox/standard_lmg)
-	cost = 20
-
-/datum/supply_packs/ammo/boxdmr
-	name = "T-64 DMR Ammo Box"
-	contains = list(/obj/item/ammobox/standard_dmr)
-	cost = 20
-
-/datum/supply_packs/ammo/boxpistol
-	name = "TP-14 Pistol Ammo Box"
-	contains = list(/obj/item/ammobox/standard_pistol)
+/datum/supply_packs/ammo/standard_ammo
+	name = "Surplus Standard Ammo Crate"
+	notes = "Contains 22 ammo boxes of a wide variety which come prefilled. You lazy bum."
+	contains = list(/obj/structure/largecrate/supply/ammo/standard_ammo)
+	containertype = null
 	cost = 20
 
 /datum/supply_packs/ammo/mateba
 	name = "Mateba magazine"
 	contains = list(/obj/item/ammo_magazine/revolver/mateba)
 	cost = 3
+	available_against_xeno_only = TRUE
+
+/datum/supply_packs/ammo/mateba_packet
+	name = "Mateba packet"
+	contains = list(/obj/item/ammo_magazine/packet/mateba)
+	cost = 12
+	available_against_xeno_only = TRUE
 
 /datum/supply_packs/ammo/incendiaryslugs
 	name = "Box of Incendiary Slugs"
 	contains = list(/obj/item/ammo_magazine/shotgun/incendiary)
 	cost = 10
-
-/datum/supply_packs/ammo/quadlauncher
-	name = "M57A4 thermobaric rocket array"
-	contains = list(/obj/item/ammo_magazine/rocket/m57a4)
-	cost = 50
+	available_against_xeno_only = TRUE
 
 /datum/supply_packs/ammo/scout_regular
-	name = "M4RA scout magazine"
-	contains = list(/obj/item/ammo_magazine/rifle/m4ra)
+	name = "TX-8 scout magazine"
+	contains = list(/obj/item/ammo_magazine/rifle/tx8)
 	cost = 5
+	available_against_xeno_only = TRUE
 
 /datum/supply_packs/ammo/scout_impact
-	name = "M4RA scout impact magazine"
-	contains = list(/obj/item/ammo_magazine/rifle/m4ra/impact)
+	name = "TX-8 scout impact magazine"
+	contains = list(/obj/item/ammo_magazine/rifle/tx8/impact)
 	cost = 7
+	available_against_xeno_only = TRUE
 
 /datum/supply_packs/ammo/scout_incendiary
-	name = "M4RA scout incendiary magazine"
-	contains = list(/obj/item/ammo_magazine/rifle/m4ra/incendiary)
+	name = "TX-8 scout incendiary magazine"
+	contains = list(/obj/item/ammo_magazine/rifle/tx8/incendiary)
 	cost = 7
-
-/datum/supply_packs/ammo/scout_smart
-	name = "M4RA scout smart magazine"
-	contains = list(/obj/item/ammo_magazine/rifle/m4ra/smart)
-	cost = 7
+	available_against_xeno_only = TRUE
 
 /datum/supply_packs/ammo/autosniper_regular
 	name = "T-81 IFF sniper magazine"
 	contains = list(/obj/item/ammo_magazine/rifle/autosniper)
 	cost = 3
+	available_against_xeno_only = TRUE
 
-/datum/supply_packs/ammo/mbx900
-	name = "MBX-900 Sabot Shells"
-	contains = list(/obj/item/ammo_magazine/shotgun/mbx900)
+/datum/supply_packs/ammo/antimaterial
+	name = "T-26 magazine"
+	contains = list(/obj/item/ammo_magazine/sniper)
 	cost = 5
+	available_against_xeno_only = TRUE
 
-/datum/supply_packs/ammo/mbx900/buckshot
-	name = "MBX-900 Buckshot Shells"
-	contains = list(/obj/item/ammo_magazine/shotgun/mbx900/buckshot)
-	cost = 5
+/datum/supply_packs/ammo/railgun
+	name = "Railgun round"
+	contains = list(/obj/item/ammo_magazine/railgun)
+	cost = 3
 
-/datum/supply_packs/ammo/mbx900/tracker
-	name = "MBX-900 Tracker Shells"
-	contains = list(/obj/item/ammo_magazine/shotgun/mbx900/tracking)
+/datum/supply_packs/ammo/shotguntracker
+	name = "12 Gauge Tracker Shells"
+	contains = list(/obj/item/ammo_magazine/shotgun/tracker)
 	cost = 5
+	available_against_xeno_only = TRUE
 
 /datum/supply_packs/ammo/rpg_regular
 	name = "T-152 RPG HE rocket"
 	contains = list(/obj/item/ammo_magazine/rocket/sadar)
-	cost = 7
+	cost = 6
+	available_against_xeno_only = TRUE
 
 /datum/supply_packs/ammo/rpg_ap
 	name = "T-152 RPG AP rocket"
 	contains = list(/obj/item/ammo_magazine/rocket/sadar/ap)
 	cost = 7
+	available_against_xeno_only = TRUE
 
 /datum/supply_packs/ammo/rpg_wp
 	name = "T-152 RPG WP rocket"
 	contains = list(/obj/item/ammo_magazine/rocket/sadar/wp)
-	cost = 7
+	cost = 5
+	available_against_xeno_only = TRUE
+
+/datum/supply_packs/ammo/thermobaric
+	name = "T-57 WP rocket array"
+	contains = list(/obj/item/ammo_magazine/rocket/m57a4)
+	cost = 5
+	available_against_xeno_only = TRUE
 
 /datum/supply_packs/ammo/shell_regular
 	name = "T-160 RR HE shell"
 	contains = list(/obj/item/ammo_magazine/rocket/recoilless)
 	cost = 3
+	available_against_xeno_only = TRUE
 
 /datum/supply_packs/ammo/shell_le
 	name = "T-160 RR LE shell"
 	contains = list(/obj/item/ammo_magazine/rocket/recoilless/light)
 	cost = 3
+	available_against_xeno_only = TRUE
 
 /datum/supply_packs/ammo/smartmachinegun
 	name = "T-29 smartmachinegun ammo"
 	contains = list(/obj/item/ammo_magazine/standard_smartmachinegun)
-	cost = 10
+	cost = 5
+
+/datum/supply_packs/ammo/smartrifle
+	name = "T-25 smartrifle magazine"
+	contains = list(/obj/item/ammo_magazine/rifle/standard_smartrifle)
+	cost = 2
+
+/datum/supply_packs/ammo/smartrifle_pack
+	name = "T-25 smartrifle ammo box"
+	notes = "Contains a box with 200 rounds for a T-25 (MAGAZINES SOLD SEPERATELY)"
+	contains = list(/obj/item/ammo_magazine/packet/t25)
+	cost = 4
 
 /datum/supply_packs/ammo/sentry
 	name = "UA 571-C sentry ammunition"
@@ -556,36 +594,46 @@ AMMO
 	name = "M402 mortar HE shell"
 	contains = list(/obj/item/mortal_shell/he)
 	cost = 2
+	available_against_xeno_only = TRUE
 
 /datum/supply_packs/ammo/mortar_ammo_incend
 	name = "M402 mortar incendiary shell"
 	contains = list(/obj/item/mortal_shell/incendiary)
 	cost = 2
+	available_against_xeno_only = TRUE
 
 /datum/supply_packs/ammo/mortar_ammo_flare
 	name = "M402 mortar flare shell"
 	contains = list(/obj/item/mortal_shell/flare)
 	cost = 1
+	available_against_xeno_only = TRUE
 
 /datum/supply_packs/ammo/mortar_ammo_smoke
 	name = "M402 mortar smoke shell"
 	contains = list(/obj/item/mortal_shell/smoke)
 	cost = 1
+	available_against_xeno_only = TRUE
 
 /datum/supply_packs/ammo/mortar_ammo_plasmaloss
 	name = "M402 mortar tanglefoot shell"
 	contains = list(/obj/item/mortal_shell/plasmaloss)
 	cost = 2
+	available_against_xeno_only = TRUE
 
 /datum/supply_packs/ammo/minisentry
 	name = "UA-580 point defense sentry ammo"
 	contains = list(/obj/item/ammo_magazine/minisentry)
-	cost = 10
+	cost = 5
 
 /datum/supply_packs/ammo/m56d
 	name = "TL-102 mounted heavy smartgun ammo"
-	contains = list(/obj/item/ammo_magazine/standard_hmg)
+	contains = list(/obj/item/ammo_magazine/tl102)
 	cost = 10
+
+/datum/supply_packs/ammo/hmg
+	name = "MG-08/495 heavy machinegun ammo"
+	contains = list(/obj/item/ammo_magazine/heavymachinegun)
+	cost = 7
 
 /datum/supply_packs/ammo/lasguncharger
 	name = "ColMarTech Lasrifle Field Charger"
@@ -594,19 +642,25 @@ AMMO
 	containertype = null
 
 /datum/supply_packs/ammo/lasgun
-	name = "TX-73 lasrifle battery"
-	contains = list(/obj/item/cell/lasgun/lasrifle)
+	name = "Terra Experimental standard battery"
+	contains = list(/obj/item/cell/lasgun/lasrifle/marine)
 	cost = 2
 
-/datum/supply_packs/ammo/lasgun_highcap
-	name = "TX-73 lasrifle highcap battery"
-	contains = list(/obj/item/cell/lasgun/lasrifle/highcap)
-	cost = 4
-
 /datum/supply_packs/ammo/minigun
-	name = "Vindicator Minigun Ammo Drum"
-	contains = list(/obj/item/ammo_magazine/minigun)
+	name = "Minigun Powerpack"
+	contains = list(/obj/item/minigun_powerpack)
 	cost = 5
+	available_against_xeno_only = TRUE
+
+/datum/supply_packs/ammo/back_fuel_tank
+	name = "Standard back fuel tank"
+	contains = list(/obj/item/ammo_magazine/flamer_tank/backtank)
+	cost = 20
+
+/datum/supply_packs/ammo/back_fuel_tank_x
+	name = "Type X back fuel tank"
+	contains = list(/obj/item/ammo_magazine/flamer_tank/backtank/X)
+	cost = 60
 
 
 /*******************************************************************************
@@ -619,6 +673,11 @@ ARMOR
 /datum/supply_packs/armor/masks
 	name = "SWAT protective mask"
 	contains = list(/obj/item/clothing/mask/gas/swat)
+	cost = 5
+
+/datum/supply_packs/armor/imager_goggle
+	name = "Optical Imager Goggles"
+	contains = list(/obj/item/clothing/glasses/night/imager_goggles)
 	cost = 5
 
 /datum/supply_packs/armor/riot
@@ -639,8 +698,9 @@ ARMOR
 	contains = list(
 		/obj/item/clothing/suit/storage/marine/specialist,
 		/obj/item/clothing/head/helmet/marine/specialist,
+		/obj/item/clothing/gloves/marine/specialist,
 	)
-	cost = 100
+	cost = B18_PRICE
 
 /datum/supply_packs/armor/b17
 	name = "B17 Armor Set"
@@ -648,22 +708,25 @@ ARMOR
 		/obj/item/clothing/suit/storage/marine/B17,
 		/obj/item/clothing/head/helmet/marine/grenadier,
 	)
-	cost = 60
+	cost = B17_PRICE
 
 /datum/supply_packs/armor/scout_cloak
 	name = "Scout Cloak"
 	contains = list(/obj/item/storage/backpack/marine/satchel/scout_cloak/scout)
 	cost = 50
+	available_against_xeno_only = TRUE
 
 /datum/supply_packs/armor/sniper_cloak
 	name = "Sniper Cloak"
 	contains = list(/obj/item/storage/backpack/marine/satchel/scout_cloak/sniper)
 	cost = 50
+	available_against_xeno_only = TRUE
 
 /datum/supply_packs/armor/grenade_belt
 	name = "High Capacity Grenade Belt"
 	contains = list(/obj/item/storage/belt/grenade/b17)
 	cost = 20
+	available_against_xeno_only = TRUE
 
 // Modular armor + Attachments
 /datum/supply_packs/armor/modular/exosuit
@@ -802,7 +865,7 @@ CLOTHING
 /datum/supply_packs/clothing/combat_pack
 	name = "Combat Backpack"
 	contains = list(/obj/item/storage/backpack/lightpack)
-	cost = 20
+	cost = 15
 
 /datum/supply_packs/clothing/welding_pack
 	name = "Engineering Welding Pack"
@@ -913,6 +976,10 @@ CLOTHING
 	)
 	cost = 5
 
+/datum/supply_packs/clothing/jetpack
+	name = "Jetpack"
+	contains = list(/obj/item/jetpack_marine)
+	cost = 12
 
 /*******************************************************************************
 MEDICAL
@@ -951,6 +1018,12 @@ MEDICAL
 	)
 	cost = 15
 
+/datum/supply_packs/medical/Medical_hud
+	name = "Medical Hud Crate"
+	contains = list(
+		/obj/item/clothing/glasses/hud/health,
+	)
+	cost = 2
 
 /datum/supply_packs/medical/medical
 	name = "Pills and Chemicals"
@@ -997,7 +1070,6 @@ MEDICAL
 	name = "surgical equipment"
 	contains = list(
 		/obj/item/storage/surgical_tray,
-		/obj/item/clothing/tie/storage/white_vest,
 		/obj/item/clothing/mask/breath/medical,
 		/obj/item/tank/anesthetic,
 		/obj/item/reagent_containers/hypospray/autoinjector/sleeptoxin,
@@ -1011,6 +1083,13 @@ MEDICAL
 	name = "advanced hypospray"
 	contains = list(/obj/item/reagent_containers/hypospray/advanced)
 	cost = 5
+	containertype = /obj/structure/closet/crate/secure/surgery
+	access = ACCESS_MARINE_MEDBAY
+
+/datum/supply_packs/medical/hypospray
+	name = "advanced big hypospray"
+	contains = list(/obj/item/reagent_containers/hypospray/advanced/big)
+	cost = 12 //just a little over the regular hypo.
 	containertype = /obj/structure/closet/crate/secure/surgery
 	access = ACCESS_MARINE_MEDBAY
 
@@ -1028,7 +1107,39 @@ MEDICAL
 	name = "lemoline"
 	notes = "Contains 1 bottle of lemoline with 10 units."
 	contains = list(/obj/item/reagent_containers/glass/bottle/lemoline)
-	cost = 50
+	cost = 25
+
+/datum/supply_packs/medical/advancedKits
+	name = "Advanced medical packs"
+	notes = "Contains 5 advanced packs of each type and 5 splints."
+	contains = list(
+		/obj/item/stack/medical/advanced/bruise_pack,
+		/obj/item/stack/medical/advanced/bruise_pack,
+		/obj/item/stack/medical/advanced/bruise_pack,
+		/obj/item/stack/medical/advanced/bruise_pack,
+		/obj/item/stack/medical/advanced/bruise_pack,
+		/obj/item/stack/medical/advanced/ointment,
+		/obj/item/stack/medical/advanced/ointment,
+		/obj/item/stack/medical/advanced/ointment,
+		/obj/item/stack/medical/advanced/ointment,
+		/obj/item/stack/medical/advanced/ointment,
+		/obj/item/stack/medical/splint,
+		/obj/item/stack/medical/splint,
+		/obj/item/stack/medical/splint,
+		/obj/item/stack/medical/splint,
+		/obj/item/stack/medical/splint,
+	)
+	cost = 10 //you have ALMOST infinite ones in medbay if you need this crate you fucked up. but no reason to make the price too high either
+	containertype = /obj/structure/closet/crate/secure/surgery
+	access = ACCESS_MARINE_MEDBAY
+
+/datum/supply_packs/medical/tweezers
+	name = "tweezers"
+	notes = "contains a pair of tweezers."
+	contains = list(/obj/item/tweezers)
+	cost = 20  //shouldn't be easy to get
+	containertype = /obj/structure/closet/crate/secure/surgery
+	access = ACCESS_MARINE_MEDBAY
 
 /*******************************************************************************
 ENGINEERING
@@ -1069,12 +1180,9 @@ ENGINEERING
 	cost = 10
 
 /datum/supply_packs/engineering/quikdeploycade
-	name = "quikdeploy barricade (x2)"
-	contains = list(
-		/obj/item/quikdeploy/cade,
-		/obj/item/quikdeploy/cade,
-	)
-	cost = 6
+	name = "quikdeploy barricade"
+	contains = list(/obj/item/quikdeploy/cade)
+	cost = 3
 
 /datum/supply_packs/engineering/pacman
 	name = "P.A.C.M.A.N. Portable Generator"
@@ -1120,7 +1228,7 @@ ENGINEERING
 
 /datum/supply_packs/engineering/watertank
 	name = "Water Tank"
-	contains = list(/obj/structure/reagent_dispensers)
+	contains = list(/obj/structure/reagent_dispensers/watertank)
 	cost = 5
 	containertype = null
 
@@ -1140,6 +1248,16 @@ ENGINEERING
 	name = "Foam Grenade"
 	contains = list(/obj/item/explosive/grenade/chem_grenade/metalfoam)
 	cost = 3
+
+/datum/supply_packs/engineering/floodlight
+	name = "Combat Grade Floodlight"
+	contains = list(/obj/machinery/floodlightcombat)
+	cost = 5
+
+/datum/supply_packs/engineering/advanced_generator
+	name = "Wireless power generator"
+	contains = list(/obj/machinery/power/port_gen/pacman/mobile_power)
+	cost = 20
 
 /*******************************************************************************
 SUPPLIES
@@ -1227,16 +1345,6 @@ Imports
 	contains = list(/obj/item/ammo_magazine/rifle/type71)
 	cost = 5
 
-/datum/supply_packs/imports/mp5
-	name = "MP5 SMG"
-	contains = list(/obj/item/weapon/gun/smg/mp5)
-	cost = 15
-
-/datum/supply_packs/imports/mp5/ammo
-	name = "MP5 SMG Ammo"
-	contains = list(/obj/item/ammo_magazine/smg/mp5)
-	cost = 5
-
 /datum/supply_packs/imports/mp7
 	name = "MP7 SMG"
 	contains = list(/obj/item/weapon/gun/smg/mp7)
@@ -1291,26 +1399,37 @@ Imports
 	name = "Sawn Off Shotgun"
 	contains = list(/obj/item/weapon/gun/shotgun/double/sawn)
 	cost = 15
-
-/datum/supply_packs/imports/kronos
-	name = "Kronos Shotgun"
-	contains = list(/obj/item/weapon/gun/shotgun/pump/ksg)
-	cost = 15
+	available_against_xeno_only = TRUE
 
 /datum/supply_packs/imports/leveraction
 	name = "Lever Action Rifle"
 	contains = list(/obj/item/weapon/gun/shotgun/pump/lever)
 	cost = 15
+	available_against_xeno_only = TRUE
 
 /datum/supply_packs/imports/leveraction/ammo
 	name = "Lever Action Rifle Ammo"
-	contains = list(/obj/item/ammo_magazine/magnum)
+	contains = list(/obj/item/ammo_magazine/packet/magnum)
 	cost = 5
+	available_against_xeno_only = TRUE
+
+/datum/supply_packs/imports/mbx900
+	name = "MBX 900"
+	contains = list(/obj/item/weapon/gun/shotgun/pump/lever/mbx900)
+	cost = 15
+	available_against_xeno_only = TRUE
+
+/datum/supply_packs/imports/mbx900/buckshot
+	name = "MBX-900 Buckshot Shells"
+	contains = list(/obj/item/ammo_magazine/shotgun/mbx900/buckshot)
+	cost = 5
+	available_against_xeno_only = TRUE
 
 /datum/supply_packs/imports/mosin
 	name = "Mosin Nagant Sniper"
 	contains = list(/obj/item/weapon/gun/shotgun/pump/bolt)
 	cost = 15
+	available_against_xeno_only = TRUE
 
 /datum/supply_packs/imports/mosin/ammo
 	name = "Mosin Nagant Sniper Ammo (x2)"
@@ -1319,16 +1438,19 @@ Imports
 		/obj/item/ammo_magazine/rifle/bolt,
 	)
 	cost = 5
+	available_against_xeno_only = TRUE
 
 /datum/supply_packs/imports/dragunov
 	name = "SVD Dragunov Sniper"
 	contains = list(/obj/item/weapon/gun/rifle/sniper/svd)
 	cost = 15
+	available_against_xeno_only = TRUE
 
 /datum/supply_packs/imports/dragunov/ammo
 	name = "SVD Dragunov Sniper Ammo"
 	contains = list(/obj/item/ammo_magazine/sniper/svd)
 	cost = 5
+	available_against_xeno_only = TRUE
 
 /datum/supply_packs/imports/ak47
 	name = "AK-47 Assault Rifle"
@@ -1337,16 +1459,6 @@ Imports
 
 /datum/supply_packs/imports/ak47/ammo
 	name = "AK-47 Assault Rifle Ammo"
-	contains = list(/obj/item/ammo_magazine/rifle/ak47)
-	cost = 5
-
-/datum/supply_packs/imports/ak47u
-	name = "AK-47U Battle Carbine"
-	contains = list(/obj/item/weapon/gun/rifle/ak47/carbine)
-	cost = 15
-
-/datum/supply_packs/imports/ak47u/ammo
-	name = "AK-47U Battle Carbine Ammo"
 	contains = list(/obj/item/ammo_magazine/rifle/ak47)
 	cost = 5
 
@@ -1365,7 +1477,7 @@ Imports
 	contains = list(/obj/item/weapon/gun/rifle/famas)
 	cost = 15
 
-/datum/supply_packs/imports/m16/ammo
+/datum/supply_packs/imports/famas/ammo
 	name = "FAMAS Assault Rifle Ammo"
 	contains = list(/obj/item/ammo_magazine/rifle/famas)
 	cost = 5
@@ -1390,24 +1502,14 @@ Imports
 	contains = list(/obj/item/ammo_magazine/revolver)
 	cost = 3
 
-/datum/supply_packs/imports/beretta92fs
-	name = "Beretta 92FS Handgun"
-	contains = list(/obj/item/weapon/gun/pistol/b92fs)
+/datum/supply_packs/imports/g22
+	name = "G-22 Handgun"
+	contains = list(/obj/item/weapon/gun/pistol/g22)
 	cost = 7
 
 /datum/supply_packs/imports/beretta92fs/ammo
-	name = "Beretta 92FS Handgun Ammo"
-	contains = list(/obj/item/ammo_magazine/pistol/b92fs)
-	cost = 3
-
-/datum/supply_packs/imports/beretta93r
-	name = "Beretta 93R Handgun"
-	contains = list(/obj/item/weapon/gun/pistol/b92fs/raffica)
-	cost = 7
-
-/datum/supply_packs/imports/beretta93r/ammo
-	name = "Beretta 93R Handgun Ammo"
-	contains = list(/obj/item/ammo_magazine/pistol/b93r)
+	name = "G-22 Handgun Ammo"
+	contains = list(/obj/item/ammo_magazine/pistol/g22)
 	cost = 3
 
 /datum/supply_packs/imports/deagle
@@ -1418,16 +1520,6 @@ Imports
 /datum/supply_packs/imports/deagle/ammo
 	name = "Desert Eagle Handgun Ammo"
 	contains = list(/obj/item/ammo_magazine/pistol/heavy)
-	cost = 3
-
-/datum/supply_packs/imports/kt42
-	name = "KT-42 Automag"
-	contains = list(/obj/item/weapon/gun/pistol/kt42)
-	cost = 7
-
-/datum/supply_packs/imports/kt42/ammo
-	name = "KT-42 Automag Ammo"
-	contains = list(/obj/item/ammo_magazine/pistol/automatic)
 	cost = 3
 
 /datum/supply_packs/imports/vp78

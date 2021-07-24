@@ -1,12 +1,17 @@
+/**
+ * @file
+ * @copyright 2020 Aleksej Komarov
+ * @license MIT
+ */
+
+import { KEY_ENTER, KEY_ESCAPE, KEY_SPACE } from 'common/keycodes';
 import { classes, pureComponentHooks } from 'common/react';
 import { Component, createRef } from 'inferno';
-import { IS_IE8 } from '../byond';
-import { KEY_ENTER, KEY_ESCAPE, KEY_SPACE } from '../hotkeys';
-import { refocusLayout } from '../layouts';
 import { createLogger } from '../logging';
 import { Box } from './Box';
 import { Icon } from './Icon';
 import { Tooltip } from './Tooltip';
+import { globalEvents } from '../events.js';
 
 const logger = createLogger('Button');
 
@@ -15,15 +20,19 @@ export const Button = props => {
     className,
     fluid,
     icon,
+    iconRotation,
+    iconSpin,
+    iconColor,
+    iconPosition,
     color,
     disabled,
     selected,
     tooltip,
     tooltipPosition,
     ellipsis,
+    compact,
+    circular,
     content,
-    iconRotation,
-    iconSpin,
     children,
     onclick,
     onClick,
@@ -40,7 +49,7 @@ export const Button = props => {
   }
   // IE8: Use a lowercase "onclick" because synthetic events are fucked.
   // IE8: Use an "unselectable" prop because "user-select" doesn't work.
-  return (
+  let buttonContent = (
     <Box
       className={classes([
         'Button',
@@ -49,15 +58,17 @@ export const Button = props => {
         selected && 'Button--selected',
         hasContent && 'Button--hasContent',
         ellipsis && 'Button--ellipsis',
+        circular && 'Button--circular',
+        compact && 'Button--compact',
+        iconPosition && 'Button--iconPosition--' + iconPosition,
         (color && typeof color === 'string')
           ? 'Button--color--' + color
           : 'Button--color--default',
         className,
       ])}
       tabIndex={!disabled && '0'}
-      unselectable={IS_IE8}
-      onclick={e => {
-        refocusLayout();
+      unselectable={Byond.IS_LTE_IE8}
+      onClick={e => {
         if (!disabled && onClick) {
           onClick(e);
         }
@@ -75,23 +86,37 @@ export const Button = props => {
         // Refocus layout on pressing escape.
         if (keyCode === KEY_ESCAPE) {
           e.preventDefault();
-          refocusLayout();
           return;
         }
       }}
       {...rest}>
-      {icon && (
-        <Icon name={icon} rotation={iconRotation} spin={iconSpin} />
+      {(icon && iconPosition !== 'right') && (
+        <Icon
+          name={icon}
+          color={iconColor}
+          rotation={iconRotation}
+          spin={iconSpin} />
       )}
       {content}
       {children}
-      {tooltip && (
-        <Tooltip
-          content={tooltip}
-          position={tooltipPosition} />
+      {(icon && iconPosition === 'right') && (
+        <Icon
+          name={icon}
+          color={iconColor}
+          rotation={iconRotation}
+          spin={iconSpin} />
       )}
     </Box>
   );
+  if (tooltip) {
+    buttonContent = (
+      <Tooltip content={tooltip} position={tooltipPosition}>
+        {buttonContent}
+      </Tooltip>
+    );
+  }
+
+  return buttonContent;
 };
 
 Button.defaultHooks = pureComponentHooks;
@@ -218,7 +243,7 @@ export class ButtonInput extends Component {
       ...rest
     } = this.props;
 
-    return (
+    let buttonInput = (
       <Box
         className={classes([
           'Button',
@@ -258,15 +283,124 @@ export class ButtonInput extends Component {
             }
           }}
         />
-        {tooltip && (
-          <Tooltip
-            content={tooltip}
-            position={tooltipPosition}
-          />
-        )}
       </Box>
     );
+    if (tooltip) {
+      buttonContent = (
+        <Tooltip
+          content={tooltip}
+          position={tooltipPosition}
+        >
+          {buttonContent}
+        </Tooltip>
+      );
+    }
+
+    return buttonContent;
   }
 }
 
 Button.Input = ButtonInput;
+
+export class ButtonKeybind extends Component {
+  constructor() {
+    super();
+    this.state = {
+      focused: false,
+      keysDown: {},
+    };
+  }
+
+  preventPassthrough(key) {
+    key.event.preventDefault();
+  }
+
+  doFinish() {
+    const { onFinish } = this.props;
+    const { keysDown } = this.state;
+
+    const listOfKeys
+    = Object.keys(keysDown)
+      .filter(isTrue => keysDown[isTrue]);
+
+    onFinish(listOfKeys);
+    document.activeElement.blur();
+    clearInterval(this.timer);
+  }
+
+  handleKeyPress(e) {
+    const { keysDown } = this.state;
+
+    e.preventDefault();
+
+    let pressedKey = e.key.toUpperCase();
+
+    this.finishTimerStart(200);
+
+    // Prevents repeating
+    if (keysDown[pressedKey] && e.type === "keydown") {
+      return;
+    }
+
+    if (e.keyCode >= 96 && e.keyCode <= 105) {
+      pressedKey = "Numpad" + pressedKey;
+    }
+
+    keysDown[pressedKey] = e.type === "keydown";
+    this.setState({
+      keysDown: keysDown,
+    });
+  }
+
+  finishTimerStart(time) {
+    clearInterval(this.timer);
+    this.timer = setInterval(() => this.doFinish(), time);
+  }
+
+  doFocus() {
+    this.setState({
+      focused: true,
+      keysDown: {},
+    });
+    this.finishTimerStart(2000);
+    globalEvents.on('keydown', this.preventPassthrough);
+  }
+
+  doBlur() {
+    this.setState({
+      focused: false,
+      keysDown: {},
+    });
+    globalEvents.off('keydown', this.preventPassthrough);
+  }
+
+  render() {
+    const { focused, keysDown } = this.state;
+    const {
+      content,
+      ...rest
+    } = this.props;
+
+    return (
+      <Button
+        {...rest}
+        content={focused
+          ? Object.keys(keysDown)
+            .filter(isTrue => keysDown[isTrue])
+            .join("+") || content
+          : content}
+        selected={focused}
+        inline
+        onClick={e => {
+          if (focused && Object.keys(keysDown).length) {
+            this.doFinish();
+            e.preventDefault();
+          }
+        }}
+        onFocus={() => this.doFocus()}
+        onBlur={() => this.doBlur()}
+        onKeyDown={e => this.handleKeyPress(e)}
+      />
+    );
+  }
+}

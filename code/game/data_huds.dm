@@ -19,12 +19,6 @@
 		hud.add_to_hud(src)
 
 
-/mob/living/carbon/monkey/add_to_all_mob_huds()
-	for(var/h in GLOB.huds)
-		var/datum/atom_hud/hud = h
-		hud.add_to_hud(src)
-
-
 /mob/living/carbon/xenomorph/add_to_all_mob_huds()
 	for(var/h in GLOB.huds)
 		if(!istype(h, /datum/atom_hud/xeno))
@@ -43,13 +37,6 @@
 			continue
 		var/datum/atom_hud/hud = h
 		hud.remove_from_hud(src)
-
-
-/mob/living/carbon/monkey/remove_from_all_mob_huds()
-	for(var/h in GLOB.huds)
-		var/datum/atom_hud/hud = h
-		hud.add_to_hud(src)
-
 
 /mob/living/carbon/xenomorph/remove_from_all_mob_huds()
 	for(var/h in GLOB.huds)
@@ -109,7 +96,7 @@
 
 //medical hud used by ghosts
 /datum/atom_hud/medical/observer
-	hud_icons = list(HEALTH_HUD, XENO_EMBRYO_HUD, STATUS_HUD)
+	hud_icons = list(HEALTH_HUD, XENO_EMBRYO_HUD, XENO_REAGENT_HUD, STATUS_HUD, MACHINE_HEALTH_HUD, SENTRY_AMMO_HUD)
 
 
 /datum/atom_hud/medical/pain
@@ -191,24 +178,41 @@
 	hud_set_pheromone()
 
 
-/mob/living/carbon/monkey/med_hud_set_status()
-	var/image/holder = hud_list[XENO_EMBRYO_HUD]
-	if(status_flags & XENO_HOST)
-		var/obj/item/alien_embryo/E = locate(/obj/item/alien_embryo) in src
-		if(E)
-			holder.icon_state = "infected[E.stage]"
-		else if(locate(/mob/living/carbon/xenomorph/larva) in src)
-			holder.icon_state = "infected5"
-	else if(stat == DEAD)
-		holder.icon_state = "huddead"
-	else
-		holder.icon_state = ""
-
-
 /mob/living/carbon/human/med_hud_set_status()
 	var/image/status_hud = hud_list[STATUS_HUD] //Status for med-hud.
 	var/image/infection_hud = hud_list[XENO_EMBRYO_HUD] //State of the xeno embryo.
 	var/image/simple_status_hud = hud_list[STATUS_HUD_SIMPLE] //Status for the naked eye.
+	var/image/xeno_reagent = hud_list[XENO_REAGENT_HUD] // Displays active xeno reagents
+	var/static/image/neurotox_image = image('icons/mob/hud.dmi', icon_state = "neurotoxin")
+	var/static/image/hemodile_image = image('icons/mob/hud.dmi', icon_state = "hemodile")
+	var/static/image/transvitox_image = image('icons/mob/hud.dmi', icon_state = "transvitox")
+	var/static/image/neurotox_high_image = image('icons/mob/hud.dmi', icon_state = "neurotoxin_high")
+	var/static/image/hemodile_high_image = image('icons/mob/hud.dmi', icon_state = "hemodile_high")
+	var/static/image/transvitox_high_image = image('icons/mob/hud.dmi', icon_state = "transvitox_high")
+
+	xeno_reagent.overlays.Cut()
+	xeno_reagent.icon_state = ""
+	if(stat != DEAD)
+		var/neurotox_amount = reagents.get_reagent_amount(/datum/reagent/toxin/xeno_neurotoxin) + reagents.get_reagent_amount(/datum/reagent/toxin/xeno_neurotoxin/light)
+		var/hemodile_amount = reagents.get_reagent_amount(/datum/reagent/toxin/xeno_hemodile)
+		var/transvitox_amount = reagents.get_reagent_amount(/datum/reagent/toxin/xeno_transvitox)
+
+		if(neurotox_amount > 10) //Blinking image for particularly high concentrations
+			xeno_reagent.overlays += neurotox_high_image
+		else if(neurotox_amount > 0)
+			xeno_reagent.overlays += neurotox_image
+
+		if(hemodile_amount > 10)
+			xeno_reagent.overlays += hemodile_high_image
+		else if(hemodile_amount > 0)
+			xeno_reagent.overlays += hemodile_image
+
+		if(transvitox_amount > 10)
+			xeno_reagent.overlays += transvitox_high_image
+		else if(transvitox_amount > 0)
+			xeno_reagent.overlays += transvitox_image
+
+	hud_list[XENO_REAGENT_HUD] = xeno_reagent
 
 	if(species.species_flags & IS_SYNTHETIC)
 		simple_status_hud.icon_state = ""
@@ -230,25 +234,25 @@
 	switch(stat)
 		if(DEAD)
 			simple_status_hud.icon_state = ""
-			infection_hud.icon_state = "huddead" //Xenos sense dead hosts, and no longer their larvas inside, which fall into stasis and no longer grow.
-			if(undefibbable)
+			infection_hud.icon_state = "huddead"
+			if(!HAS_TRAIT(src, TRAIT_PSY_DRAINED))
+				infection_hud.icon_state = "psy_drain"
+			if(HAS_TRAIT(src, TRAIT_UNDEFIBBABLE ))
 				status_hud.icon_state = "huddead"
 				return TRUE
 			if(!client)
 				var/mob/dead/observer/ghost = get_ghost()
-				if(ghost)
-					if(!ghost.can_reenter_corpse)
-						status_hud.icon_state = "huddead"
-						return TRUE
-				else
+				if(!ghost?.can_reenter_corpse)
 					status_hud.icon_state = "huddead"
 					return TRUE
-			var/stage = 1
-			var/death_decay_time = world.time - timeofdeath - revive_grace_time
-			if(death_decay_time > (CONFIG_GET(number/revive_grace_period) * 0.8))
-				stage = 3
-			else if(death_decay_time > (CONFIG_GET(number/revive_grace_period) * 0.4))
-				stage = 2
+			var/stage
+			switch(dead_ticks)
+				if(0 to 0.4 * TIME_BEFORE_DNR)
+					stage = 1
+				if(0.4 * TIME_BEFORE_DNR to 0.8 * TIME_BEFORE_DNR)
+					stage = 2
+				if(0.8 * TIME_BEFORE_DNR to INFINITY)
+					stage = 3
 			status_hud.icon_state = "huddeaddefib[stage]"
 			return TRUE
 		if(UNCONSCIOUS)
@@ -285,6 +289,10 @@
 				status_hud.icon_state = "hudhealthy"
 				return TRUE
 
+#define HEALTH_RATIO_PAIN_HUD 1
+#define PAIN_RATIO_PAIN_HUD 0.25
+#define STAMINA_RATIO_PAIN_HUD 0.5
+
 
 /mob/proc/med_pain_set_perceived_health()
 	return
@@ -301,9 +309,9 @@
 
 	var/perceived_health = health
 	if(!(species.species_flags & NO_PAIN))
-		perceived_health -= traumatic_shock
+		perceived_health -= PAIN_RATIO_PAIN_HUD * traumatic_shock
 	if(!(species.species_flags & NO_STAMINA) && staminaloss > 0)
-		perceived_health -= staminaloss
+		perceived_health -= STAMINA_RATIO_PAIN_HUD * staminaloss
 
 	switch(perceived_health)
 		if(100 to INFINITY)
@@ -322,6 +330,13 @@
 /datum/atom_hud/xeno_infection
 	hud_icons = list(XENO_EMBRYO_HUD)
 
+//active reagent hud that apppears only for xenos
+/datum/atom_hud/xeno_reagents
+	hud_icons = list(XENO_REAGENT_HUD)
+
+///hud component for revealing tactical elements to xenos
+/datum/atom_hud/xeno_tactical
+	hud_icons = list(XENO_TACTICAL_HUD)
 
 //Xeno status hud, for xenos
 /datum/atom_hud/xeno
@@ -349,10 +364,10 @@
 	if(!holder)
 		return
 	if(stat == DEAD)
-		holder.icon_state = "plasma0"
+		holder.icon_state = "[xeno_caste.plasma_icon_state]0"
 	else
 		var/amount = round(plasma_stored * 100 / xeno_caste.plasma_max, 10)
-		holder.icon_state = "plasma[amount]"
+		holder.icon_state = "[xeno_caste.plasma_icon_state][amount]"
 
 
 /mob/living/carbon/xenomorph/proc/hud_set_pheromone()
@@ -409,7 +424,7 @@
 
 
 /datum/atom_hud/security
-	hud_icons = list(IMPTRACK_HUD, IMPLOYAL_HUD, IMPCHEM_HUD, WANTED_HUD)
+	hud_icons = list(WANTED_HUD)
 
 
 /mob/living/carbon/human/proc/sec_hud_set_security_status()
@@ -435,15 +450,19 @@
 
 
 /datum/atom_hud/squad
-	hud_icons = list(SQUAD_HUD)
+	hud_icons = list(SQUAD_HUD_TERRAGOV, MACHINE_HEALTH_HUD, SENTRY_AMMO_HUD)
+
+/datum/atom_hud/squad_rebel
+	hud_icons = list(SQUAD_HUD_REBEL, MACHINE_HEALTH_HUD, SENTRY_AMMO_HUD)
 
 
-/mob/proc/hud_set_squad()
+/mob/proc/hud_set_job(faction = FACTION_TERRAGOV)
 	return
 
 
-/mob/living/carbon/human/hud_set_squad()
-	var/image/holder = hud_list[SQUAD_HUD]
+/mob/living/carbon/human/hud_set_job(faction = FACTION_TERRAGOV)
+	var/hud_type = faction == FACTION_TERRAGOV ? SQUAD_HUD_TERRAGOV : SQUAD_HUD_REBEL
+	var/image/holder = hud_list[hud_type]
 	holder.icon_state = ""
 	holder.overlays.Cut()
 
@@ -464,9 +483,9 @@
 			holder.overlays += IMG2
 
 	else if(job.job_flags & JOB_FLAG_PROVIDES_SQUAD_HUD)
-		holder.icon_state = "hudmarine [job.title]"
+		holder.overlays += image('icons/mob/hud.dmi', src, "hudmarine [job.title]")
 
-	hud_list[SQUAD_HUD] = holder
+	hud_list[hud_type] = holder
 
 
 /datum/atom_hud/order
@@ -498,14 +517,45 @@
 
 	hud_list[ORDER_HUD] = holder
 
+///Makes sentry health visible
+/obj/machinery/proc/hud_set_machine_health()
+	var/image/holder = hud_list[MACHINE_HEALTH_HUD]
 
-/datum/atom_hud/ai_detector
-	hud_icons = list(AI_DETECT_HUD)
+	if(!holder)
+		return
 
+	if(obj_integrity < 1)
+		holder.icon_state = "xenohealth0"
+		return
 
-/datum/atom_hud/ai_detector/add_hud_to(mob/M)
-	. = ..()
-	if(M && (length(hudusers) == 1))
-		for(var/V in GLOB.aiEyes)
-			var/mob/camera/aiEye/E = V
-			E.update_ai_detect_hud()
+	var/amount = round(obj_integrity * 100 / max_integrity, 10)
+	if(!amount)
+		amount = 1 //don't want the 'zero health' icon when we still have 4% of our health
+	holder.icon_state = "xenohealth[amount]"
+
+///Makes sentry ammo visible
+/obj/machinery/marine_turret/proc/hud_set_sentry_ammo()
+	var/image/holder = hud_list[SENTRY_AMMO_HUD]
+
+	if(!holder)
+		return
+
+	if(!rounds)
+		holder.icon_state = "plasma0"
+		return
+
+	var/amount = round(rounds * 100 / rounds_max, 10)
+	holder.icon_state = "plasma[amount]"
+
+///Makes mounted guns ammo visible
+/obj/machinery/deployable/mounted/proc/hud_set_gun_ammo()
+	var/image/holder = hud_list[SENTRY_AMMO_HUD]
+
+	if(!holder)
+		return
+	var/obj/item/weapon/gun/gun = internal_item
+	if(!gun.current_mag)
+		holder.icon_state = "plasma0"
+		return
+	var/amount = round(gun.current_mag.current_rounds * 100 / gun.current_mag.max_rounds, 10)
+	holder.icon_state = "plasma[amount]"

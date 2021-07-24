@@ -48,7 +48,7 @@
 	component_parts += new /obj/item/cell/high
 	component_parts += new /obj/item/cell/high
 	component_parts += new /obj/item/cell/high
-	return
+
 
 
 /obj/machinery/power/smes/batteryrack/RefreshParts()
@@ -70,7 +70,8 @@
 
 /obj/machinery/power/smes/batteryrack/update_icon()
 	overlays.Cut()
-	if(machine_stat & BROKEN)	return
+	if(machine_stat & BROKEN)
+		return
 
 	if (outputting)
 		overlays += image('icons/obj/power.dmi', "gsmes_outputting")
@@ -80,7 +81,7 @@
 	var/clevel = chargedisplay()
 	if(clevel>0)
 		overlays += image('icons/obj/power.dmi', "gsmes_og[clevel]")
-	return
+
 
 
 /obj/machinery/power/smes/batteryrack/chargedisplay()
@@ -95,11 +96,11 @@
 
 	if(iscrowbar(I))
 		if(charge >= (capacity / 100))
-			to_chat(user, "<span class='warning'>Better let [src] discharge before dismantling it.</span>")
+			to_chat(user, span_warning("Better let [src] discharge before dismantling it."))
 			return
 
 		if(outputting || input_attempt)
-			to_chat(user, "<span class='warning'>Turn off the [src] before dismantling it.</span>")
+			to_chat(user, span_warning("Turn off the [src] before dismantling it."))
 			return
 
 		playsound(get_turf(src), 'sound/items/crowbar.ogg', 25, 1)
@@ -114,11 +115,11 @@
 
 	else if((istype(I, /obj/item/stock_parts/capacitor) && (capacitors_amount < 5)) || (istype(I, /obj/item/cell) && (cells_amount < 5)))
 		if(charge >= (capacity / 100))
-			to_chat(user, "<span class='warning'>Better let [src] discharge before putting your hand inside it.</span>")
+			to_chat(user, span_warning("Better let [src] discharge before putting your hand inside it."))
 			return
 
 		if(outputting || input_attempt)
-			to_chat(user, "<span class='warning'>Turn off the [src] before dismantling it.</span>")
+			to_chat(user, span_warning("Turn off the [src] before dismantling it."))
 			return
 
 		if(!user.transferItemToLoc(I, src))
@@ -126,7 +127,7 @@
 
 		component_parts += I
 		RefreshParts()
-		to_chat(user, "<span class='notice'>You upgrade the [src] with [I].</span>")
+		to_chat(user, span_notice("You upgrade the [src] with [I]."))
 
 
 //The shitty one that will blow up.

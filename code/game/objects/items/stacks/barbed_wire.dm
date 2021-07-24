@@ -4,6 +4,7 @@
 	desc = "A spiky length of wire."
 	icon = 'icons/Marine/marine-items.dmi'
 	icon_state = "barbed_wire"
+	flags_item = NOBLUDGEON
 	singular_name = "length"
 	w_class = WEIGHT_CLASS_SMALL
 	force = 0
@@ -34,14 +35,14 @@
 
 	var/obj/item/stack/rods/R = I
 	if(R.amount < 4)
-		to_chat(user, "<span class='warning'>You need [4 - R.amount] more [R] to make a razor wire obstacle!</span>")
+		to_chat(user, span_warning("You need [4 - R.amount] more [R] to make a razor wire obstacle!"))
 		return
 
 	R.use(4)
 	use(1)
 
 	var/obj/structure/razorwire/M = new /obj/item/stack/razorwire(user.loc, 1)
-	to_chat(user, "<span class='notice'>You combine the rods and barbed wire into [M]!</span>")
+	to_chat(user, span_notice("You combine the rods and barbed wire into [M]!"))
 
 /obj/item/stack/razorwire
 	name = "razor wire assembly"
@@ -72,16 +73,24 @@
 /obj/item/stack/razorwire/attack_self(mob/user) //use barbed wire to deploy it
 	if(!ishuman(usr))
 		return
-	var/turf/target = get_step(user.loc,user.dir)
-	if(!target)
+
+	var/turf/mystery_turf = get_step(user.loc,user.dir)
+	if(!isopenturf(mystery_turf))
+		to_chat(user, span_warning("We can't build here!"))
 		return
+
+	var/turf/open/target = mystery_turf
 
 	if(check_blocked_turf(target)) //check if blocked
-		to_chat(user, "<span class='warning'>There is insufficient room to deploy [src]!</span>")
+		to_chat(user, span_warning("There is insufficient room to deploy [src]!"))
 		return
 
-	user.visible_message("<span class='notice'>[user] starts assembling [src].</span>",
-	"<span class='notice'>You start assembling [src].</span>")
+	if(!target.allow_construction) //We shouldn't be building here.
+		to_chat(user, span_warning("We can't build here!"))
+		return
+
+	user.visible_message(span_notice("[user] starts assembling [src]."),
+	span_notice("You start assembling [src]."))
 	var/delay_assembly = SKILL_TASK_EASY
 	if(user.skills.getRating("engineer")) //Higher skill lowers the delay.
 		delay_assembly -= 0.5 SECONDS + user.skills.getRating("engineer") * 2
@@ -89,8 +98,8 @@
 	if(do_after(user, delay_assembly, TRUE, src, BUSY_ICON_BUILD))
 		var/obj/structure/razorwire/M = new /obj/structure/razorwire(target)
 		M.setDir(user.dir)
-		user.visible_message("<span class='notice'>[user] assembles a [M].</span>",
-		"<span class='notice'>You assemble a [M].</span>")
+		user.visible_message(span_notice("[user] assembles a [M]."),
+		span_notice("You assemble a [M]."))
 		playsound(src, 'sound/effects/barbed_wire_movement.ogg', 25, 1)
 		M.update_icon()
 		use(1)

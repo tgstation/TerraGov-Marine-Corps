@@ -265,40 +265,6 @@
 	icon_state = "neocoat"
 	item_state = "neocoat"
 
-//stripper
-/obj/item/clothing/under/stripper
-	flags_armor_protection = 0
-
-/obj/item/clothing/under/stripper/stripper_pink
-	name = "pink swimsuit"
-	desc = "A rather skimpy pink swimsuit."
-	icon_state = "stripper_p_under"
-	siemens_coefficient = 1
-
-/obj/item/clothing/under/stripper/stripper_green
-	name = "green swimsuit"
-	desc = "A rather skimpy green swimsuit."
-	icon_state = "stripper_g_under"
-	siemens_coefficient = 1
-
-/obj/item/clothing/suit/stripper/stripper_pink
-	name = "pink skimpy dress"
-	desc = "A rather skimpy pink dress."
-	icon_state = "stripper_p_over"
-	siemens_coefficient = 1
-
-/obj/item/clothing/suit/stripper/stripper_green
-	name = "green skimpy dress"
-	desc = "A rather skimpy green dress."
-	icon_state = "stripper_g_over"
-	siemens_coefficient = 1
-
-/obj/item/clothing/under/stripper/mankini
-	name = "the mankini"
-	desc = "No honest man would wear this abomination"
-	icon_state = "mankini"
-	siemens_coefficient = 1
-
 /obj/item/clothing/suit/xenos
 	name = "xenos suit"
 	desc = "A suit made out of chitinous alien hide."
@@ -310,7 +276,7 @@
 //swimsuit
 /obj/item/clothing/under/swimsuit/
 	siemens_coefficient = 1
-	flags_armor_protection = 0
+	flags_armor_protection = NONE
 
 /obj/item/clothing/under/swimsuit/black
 	name = "black swimsuit"
@@ -377,7 +343,10 @@
 	name = "replica armor"
 	desc = "A replica of the armour of choice for colonial militia."
 	icon = 'icons/obj/clothing/cm_suits.dmi'
-	sprite_sheet_id = 1
+	item_icons = list(
+		slot_wear_suit_str = 'icons/mob/suit_1.dmi',
+		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
+		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi')
 	icon_state = "rebel_armor"
 	item_state = "rebel_armor"
 	flags_armor_protection = CHEST|GROIN|LEGS

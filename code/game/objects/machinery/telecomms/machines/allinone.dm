@@ -23,8 +23,9 @@
 
 	signal.data["compression"] = 0
 	signal.mark_done()
-	if(signal.data["slow"] > 0)
-		sleep(signal.data["slow"]) // simulate the network lag if necessary
+	if(signal.data["slow"])
+		addtimer(CALLBACK(signal, /datum/signal/subspace.proc/broadcast), signal.data["slow"])
+		return
 	signal.broadcast()
 
 

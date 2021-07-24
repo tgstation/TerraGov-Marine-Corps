@@ -21,6 +21,13 @@
 	if(!possible_transfer_amounts)
 		verbs -= /obj/item/reagent_containers/verb/set_APTFT
 
+/obj/item/reagent_containers/attack_hand_alternate(mob/living/user)
+	. = ..()
+	if(!possible_transfer_amounts)
+		return
+	var/result = tgui_input_list(user, "Amount per transfer from this:","[src]", possible_transfer_amounts)
+	if(result)
+		amount_per_transfer_from_this = result
 
 /obj/item/reagent_containers/interact(mob/user)
 	. = ..()
@@ -30,7 +37,7 @@
 	if(!length(possible_transfer_amounts))
 		return
 
-	var/N = input("Amount per transfer from this:", "[src]") as null|anything in possible_transfer_amounts
+	var/N = tgui_input_list(user, "Amount per transfer from this:", "[src]", possible_transfer_amounts)
 	if(!N)
 		return
 
@@ -42,7 +49,7 @@
 	set category = "Object"
 	set src in view(1)
 
-	var/N = input("Amount per transfer from this:", "[src]") as null|anything in possible_transfer_amounts
+	var/N = tgui_input_list(usr, "Amount per transfer from this:", "[src]", possible_transfer_amounts)
 	if(!N)
 		return
 

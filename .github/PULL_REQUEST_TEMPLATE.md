@@ -13,10 +13,11 @@
 
 ## Changelog
 :cl:
-add: Added new things
-add: Added more things
+add: Added new mechanics or gameplay changes
+add: Added more mechanics or gameplay changes
+expansion: Expands content of an existing thing
 del: Removed old things
-tweak: tweaked a few things
+qol: made something easier to use
 balance: rebalanced something
 fix: fixed a few things
 soundadd: added a new sound thingy

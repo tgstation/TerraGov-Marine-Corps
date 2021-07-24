@@ -37,7 +37,7 @@
 	spawn (0)
 		attack_self(user)
 
-/obj/item/radio/intercom/attack_paw(mob/living/carbon/monkey/user)
+/obj/item/radio/intercom/attack_paw(mob/living/carbon/human/user)
 	return src.attack_hand(user)
 
 
@@ -103,4 +103,8 @@
 
 /obj/item/radio/intercom/dropship/normandy
 	name = "\improper Normandy dropship intercom"
+	frequency = FREQ_DROPSHIP_2
+
+/obj/item/radio/intercom/dropship/triumph
+	name = "\improper Triumph dropship intercom"
 	frequency = FREQ_DROPSHIP_2

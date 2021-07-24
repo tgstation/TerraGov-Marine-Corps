@@ -7,7 +7,7 @@
 
 /** Storage modules */
 /obj/item/armor_module/storage
-	icon = 'icons/mob/modular/modular_armor.dmi'
+	icon = 'icons/mob/modular/modular_armor_modules.dmi'
 	icon_state = "mod_is_bag"
 
 	/// Internal storage type
@@ -19,7 +19,7 @@
 		return
 	if(parent.installed_storage)
 		if(!silent)
-			to_chat(user,"<span class='warning'>There is already an installed storage module.</span>")
+			to_chat(user,span_warning("There is already an installed storage module."))
 		return FALSE
 
 /obj/item/armor_module/storage/can_detach(mob/living/user, obj/item/clothing/suit/modular/parent, silent = FALSE)
@@ -71,15 +71,24 @@
 /** General storage */
 /obj/item/armor_module/storage/general
 	name = "General Purpose Storage module"
-	desc = "Designed for mounting on the Jaeger Combat Exoskeleton. Certainly not as specialised as any other storage modules, but definitely able to hold some larger things, like binoculars, maps, and motion detectors."
+	desc = "Designed for mounting on the Jaeger Combat Exoskeleton. Certainly not as specialised as any other storage modules, but definitely able to hold some larger things, like binoculars, maps, and motion detectors. Looks like it might slow you down a bit."
 	icon_state = "mod_general_bag"
 	storage_type =  /obj/item/storage/internal/modular/general
-	slowdown = 0.1
 
 /obj/item/storage/internal/modular/general
 	max_storage_space = 6
 	storage_slots = 2
 	max_w_class = WEIGHT_CLASS_NORMAL
+
+	bypass_w_limit = list(
+		/obj/item/ammo_magazine/rifle,
+		/obj/item/cell/lasgun,
+		/obj/item/ammo_magazine/smg,
+		/obj/item/ammo_magazine/pistol,
+		/obj/item/ammo_magazine/revolver,
+		/obj/item/ammo_magazine/sniper,
+		/obj/item/ammo_magazine/handful,
+	)
 
 /obj/item/armor_module/storage/ammo_mag
 	name = "Magazine Storage module"
@@ -111,10 +120,9 @@
 
 /obj/item/armor_module/storage/engineering
 	name = "Engineering Storage module"
-	desc = "Designed for mounting on the Jaeger Combat Exoskeleton. Can hold about as much as a tool belt, and sometimes small spools of things like barbed wire, or an entrenching tool. Looks like it might slow you down a bit."
+	desc = "Designed for mounting on the Jaeger Combat Exoskeleton. Can hold about as much as a tool pouch, and sometimes small spools of things like barbed wire, or an entrenching tool. Looks like it might slow you down a bit."
 	icon_state = "mod_engineer_bag"
 	storage_type =  /obj/item/storage/internal/modular/engineering
-	slowdown = 0.1
 
 /obj/item/storage/internal/modular/engineering
 	max_storage_space = 15
@@ -147,10 +155,9 @@
 
 /obj/item/armor_module/storage/medical
 	name = "Medical Storage module"
-	desc = "Designed for mounting on the Jaeger Combat Exoskeleton. Can hold a substantial variety of medical supplies and apparatus, but cannot hold much more than a medkit could. Looks like it might slow you down a bit."
+	desc = "Designed for mounting on the Jaeger Combat Exoskeleton. Can hold a substantial variety of medical supplies and apparatus, but cannot hold as much as a medkit could. Looks like it might slow you down a bit."
 	icon_state = "mod_medic_bag"
 	storage_type =  /obj/item/storage/internal/modular/medical
-	slowdown = 0.1
 
 /obj/item/storage/internal/modular/medical
 	max_storage_space = 30
@@ -164,7 +171,10 @@
 		/obj/item/storage/pill_bottle,
 		/obj/item/clothing/gloves/latex,
 		/obj/item/reagent_containers/hypospray/autoinjector,
+		/obj/item/reagent_containers/hypospray/advanced,
+		/obj/item/reagent_containers/hypospray,
 		/obj/item/stack/medical,
+		/obj/item/tweezers,
 	)
 
 /obj/item/armor_module/storage/integrated

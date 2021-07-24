@@ -13,7 +13,7 @@
 	. = ..()
 	if(ismultitool(I) && is_general_board == TRUE)
 		var/obj/item/circuitboard/new_board
-		var/modepick = input("Select a mode for this circuit.") as null|anything in list("APC", "Airlock", "Fire Alarm", "Air Alarm")
+		var/modepick = tgui_input_list(user, "Select a mode for this circuit.", null,list("APC", "Airlock", "Fire Alarm", "Air Alarm"))
 		switch(modepick)
 			if("APC")
 				new_board = new /obj/item/circuitboard/apc(user.loc)
@@ -25,7 +25,7 @@
 				new_board = new /obj/item/circuitboard/airalarm(user.loc)
 		if(new_board)
 			qdel(src)
-			to_chat(user, "<span class='notice'>You set the general circuit to act as [new_board].</span>")
+			to_chat(user, span_notice("You set the general circuit to act as [new_board]."))
 			new_board.set_general()
 			user.put_in_hands(new_board)
 

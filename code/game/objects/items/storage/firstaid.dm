@@ -72,7 +72,7 @@
 	new /obj/item/reagent_containers/hypospray/autoinjector/tricordrazine(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/tramadol(src)
 	new /obj/item/stack/medical/splint(src)
-	new /obj/item/storage/syringe_case/regular(src)
+	new /obj/item/storage/pill_bottle/packet/russian_red(src)
 
 
 /obj/item/storage/firstaid/toxin
@@ -86,7 +86,7 @@
 	new /obj/item/healthanalyzer(src)
 	new /obj/item/storage/pill_bottle/dylovene(src)
 	new /obj/item/storage/pill_bottle/peridaxon(src)
-	new /obj/item/reagent_containers/hypospray/autoinjector/hypervene(src)
+	new /obj/item/storage/pill_bottle/packet/ryetalyn(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/hypervene(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/hypervene(src)
 	new /obj/item/storage/syringe_case/tox(src)
@@ -132,7 +132,7 @@
 
 /obj/item/storage/firstaid/rad/fill_firstaid_kit()
 	new /obj/item/healthanalyzer(src)
-	new /obj/item/storage/pill_bottle/russianRed(src)
+	new /obj/item/storage/pill_bottle/russian_red(src)
 	new /obj/item/storage/pill_bottle/dylovene(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/tricordrazine(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/tricordrazine(src)
@@ -231,15 +231,25 @@
 	new /obj/item/reagent_containers/glass/bottle/meraderm(src)
 	new /obj/item/reagent_containers/glass/bottle/meraderm(src)
 
-/obj/item/storage/syringe_case/ironsugar
-	name = "syringe case (ironsugar)"
-	desc = "It's a medical case for storing syringes and bottles. This one contains Ironsugar."
+/obj/item/storage/syringe_case/nanoblood
+	name = "syringe case (nanoblood)"
+	desc = "It's a medical case for storing syringes and bottles. This one contains nanoblood."
 
-/obj/item/storage/syringe_case/ironsugar/PopulateContents()
+/obj/item/storage/syringe_case/nanoblood/PopulateContents()
 	. = ..()
 	new /obj/item/reagent_containers/syringe(src)
-	new /obj/item/reagent_containers/glass/bottle/ironsugar(src)
-	new /obj/item/reagent_containers/glass/bottle/ironsugar(src)
+	new /obj/item/reagent_containers/glass/bottle/nanoblood(src)
+	new /obj/item/reagent_containers/glass/bottle/nanoblood(src)
+
+/obj/item/storage/syringe_case/tricordrazine
+	name = "syringe case (tricordrazine)"
+	desc = "It's a medical case for storing syringes and bottles. This one contains Tricordrazine."
+
+/obj/item/storage/syringe_case/tricordrazine/PopulateContents()
+	. = ..()
+	new /obj/item/reagent_containers/syringe(src)
+	new /obj/item/reagent_containers/glass/bottle/tricordrazine(src)
+	new /obj/item/reagent_containers/glass/bottle/tricordrazine(src)
 
 /obj/item/storage/syringe_case/combat
 	name = "syringe case (combat)"
@@ -284,24 +294,24 @@
 
 /obj/item/storage/pill_bottle/attack_self(mob/living/user)
 	if(user.get_inactive_held_item())
-		to_chat(user, "<span class='warning'>You need an empty hand to take out a pill.</span>")
+		to_chat(user, span_warning("You need an empty hand to take out a pill."))
 		return
 	if(contents.len)
 		var/obj/item/I = contents[1]
-		if(!remove_from_storage(I,user))
+		if(!remove_from_storage(I,user,user))
 			return
 		if(user.put_in_inactive_hand(I))
-			to_chat(user, "<span class='notice'>You take a pill out of \the [src].</span>")
+			to_chat(user, span_notice("You take a pill out of \the [src]."))
 			playsound(user, 'sound/items/pills.ogg', 15, 1)
 			if(iscarbon(user))
 				var/mob/living/carbon/C = user
 				C.swap_hand()
 		else
 			user.dropItemToGround(I)
-			to_chat(user, "<span class='notice'>You fumble around with \the [src] and drop a pill on the floor.</span>")
+			to_chat(user, span_notice("You fumble around with \the [src] and drop a pill on the floor."))
 		return
 	else
-		to_chat(user, "<span class='warning'>\The [src] is empty.</span>")
+		to_chat(user, span_warning("\The [src] is empty."))
 		return
 
 
@@ -311,6 +321,12 @@
 	icon_state = "pill_canister2"
 	pill_type_to_fill = /obj/item/reagent_containers/pill/kelotane
 
+/obj/item/storage/pill_bottle/dermaline
+	name = "dermaline pill bottle"
+	desc = "Contains pills that heal burns, but cause slight pain. Take two to heal faster, but have slightly more pain."
+	icon_state = "pill_canister2"
+	pill_type_to_fill = /obj/item/reagent_containers/pill/dermaline
+
 /obj/item/storage/pill_bottle/dylovene
 	name = "dylovene pill bottle"
 	desc = "Contains pills that heal toxic damage and purge toxins and neurotoxins of all kinds."
@@ -319,6 +335,7 @@
 
 /obj/item/storage/pill_bottle/inaprovaline
 	name = "inaprovaline pill bottle"
+	desc = "Contains pills that prevent wounds from getting worse on their own."
 	icon_state = "pill_canister3"
 	pill_type_to_fill = /obj/item/reagent_containers/pill/inaprovaline
 
@@ -336,6 +353,7 @@
 
 /obj/item/storage/pill_bottle/spaceacillin
 	name = "spaceacillin pill bottle"
+	desc = "Contains pills that handle low-level viral and bacterial infections. Effect increases with dosage."
 	icon_state = "pill_canister4"
 	pill_type_to_fill = /obj/item/reagent_containers/pill/spaceacillin
 
@@ -345,8 +363,15 @@
 	icon_state = "pill_canister11"
 	pill_type_to_fill = /obj/item/reagent_containers/pill/bicaridine
 
+/obj/item/storage/pill_bottle/meralyne
+	name = "meralyne pill bottle"
+	desc = "Contains pills that heal cuts and bruises, but cause slight pain. Take two to heal faster, but have slightly more pain."
+	icon_state = "pill_canister11"
+	pill_type_to_fill = /obj/item/reagent_containers/pill/meralyne
+
 /obj/item/storage/pill_bottle/dexalin
 	name = "dexalin pill bottle"
+	desc = "Contains pills that heal oxygen damage. They can suppress bloodloss symptoms as well."
 	icon_state = "pill_canister12"
 	pill_type_to_fill = /obj/item/reagent_containers/pill/dexalin
 
@@ -364,16 +389,19 @@
 
 /obj/item/storage/pill_bottle/peridaxon
 	name = "peridaxon pill bottle"
+	desc = "Contains pills that suppress organ damage while waiting for a full treatment."
 	icon_state = "pill_canister10"
 	pill_type_to_fill = /obj/item/reagent_containers/pill/peridaxon
 
-/obj/item/storage/pill_bottle/russianRed
+/obj/item/storage/pill_bottle/russian_red
 	name = "\improper Russian Red pill bottle"
+	desc = "Contains pills that heal all damage rapidly at the cost of small amounts of unhealable damage."
 	icon_state = "pill_canister1"
-	pill_type_to_fill = /obj/item/reagent_containers/pill/russianRed
+	pill_type_to_fill = /obj/item/reagent_containers/pill/russian_red
 
 /obj/item/storage/pill_bottle/quickclot
 	name = "quick-clot pill bottle"
+	desc = "Contains pills that suppress internal bleeding while waiting for full treatment."
 	icon_state = "pill_canister8"
 	pill_type_to_fill = /obj/item/reagent_containers/pill/quickclot
 
@@ -385,6 +413,7 @@
 
 /obj/item/storage/pill_bottle/tricordrazine
 	name = "tricordrazine pill bottle"
+	desc = "Contains pills commonly used by untrained Squad Marines to avoid seeing their Squad Medic."
 	icon_state = "pill_canister9"
 	pill_type_to_fill = /obj/item/reagent_containers/pill/tricordrazine
 
@@ -413,25 +442,25 @@
 		return TRUE
 
 	if(!allowed(L))
-		to_chat(L, "<span class='notice'>It seems to have some kind of ID lock...</span>")
+		to_chat(L, span_notice("It seems to have some kind of ID lock..."))
 		return FALSE
 
 	if(req_id_role || scan_name)
 		var/obj/item/card/id/I = L.get_idcard()
 		if(!I)
-			to_chat(L, "<span class='notice'>It seems to have some kind of ID lock...</span>")
+			to_chat(L, span_notice("It seems to have some kind of ID lock..."))
 			return FALSE
 
 		if(scan_name && (I.registered_name != L.real_name))
-			to_chat(L, "<span class='warning'>it seems to have some kind of ID lock...</span>")
+			to_chat(L, span_warning("it seems to have some kind of ID lock..."))
 			return FALSE
 
 		if(req_id_role && (I.rank != req_id_role))
-			to_chat(L, "<span class='notice'>It must have some kind of ID lock...</span>")
+			to_chat(L, span_notice("It must have some kind of ID lock..."))
 			return FALSE
 
 	if(req_role && (!L.job || L.job.title != req_role))
-		to_chat(L, "<span class='notice'>It must have some kind of special lock...</span>")
+		to_chat(L, span_notice("It must have some kind of special lock..."))
 		return FALSE
 
 	return TRUE

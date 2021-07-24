@@ -32,11 +32,10 @@
 	var/tacklemin = 1
 	///The maximum amount of random paralyze applied to a human upon being 'pulled' multiplied by 20 ticks
 	var/tacklemax = 1
-	///How much STAMINA damage a xeno deals when tackling
-	var/tackle_damage = 20
 
 	// *** Speed *** //
 	var/speed = 1
+	var/weeds_speed_mod = -0.4
 
 	// *** Regeneration Delay ***//
 	///Time after you take damage before a xenomorph can regen.
@@ -49,6 +48,8 @@
 	var/plasma_max = 10
 	///How much plasma a caste gains every life tick.
 	var/plasma_gain = 5
+	///up to how % much plasma regens in decimals, generally used if you have a special way of regeninng plasma.
+	var/plasma_regen_limit = 1
 
 	// *** Health *** //
 	///Maximum health a caste has.
@@ -106,14 +107,26 @@
 	///amount of time between pounce ability uses
 	var/pounce_delay = 4 SECONDS
 
+	// *** Acid spray *** //
 	///Number of tiles of the acid spray cone extends outward to. Not recommended to go beyond 4.
 	var/acid_spray_range = 0
+	///How long the acid spray stays on floor before it deletes itself, should be higher than 0 to avoid runtimes with timers.
+	var/acid_spray_duration = 1
+	///The damage acid spray causes on hit.
+	var/acid_spray_damage_on_hit = 0
+	///The damage acid spray causes over time.
+	var/acid_spray_damage = 0
+	///The damage acid spray causes to structure.
+	var/acid_spray_structure_damage = 0
 
 	// *** Pheromones *** //
 	///The strength of our aura. Zero means we can't emit one
 	var/aura_strength = 0
 	///The 'types' of pheremones a xenomorph caste can emit.
 	var/aura_allowed = list("frenzy", "warding", "recovery") //"Evolving" removed for the time being
+
+	// *** Defiler Abilities *** //
+	var/list/available_reagents_define = list() //reagents available for select reagent
 
 	// *** Warrior Abilities *** //
 	///speed increase afforded to the warrior caste when in 'agiility' mode. negative number means faster movement.
@@ -145,12 +158,38 @@
 	///amount of slowdown to apply when the crest defense is active. trading defense for speed. Positive numbers makes it slower.
 	var/crest_defense_slowdown = 0
 
+	// *** Crusher Abilities *** //
+	///The damage the stomp causes, counts armor
+	var/stomp_damage = 0
+	///How many tiles the Crest toss ability throws the victim.
+	var/crest_toss_distance = 0
+
 	// *** Queen Abilities *** //
 	///Amount of leaders allowed
 	var/queen_leader_limit = 0
 
+	// *** Wraith Abilities *** //
+	//Banish - Values for the Wraith's Banish ability
+	///Base duration of Banish before modifiers
+	var/wraith_banish_base_duration = WRAITH_BANISH_BASE_DURATION
+	///Base range of Banish
+	var/wraith_banish_range = WRAITH_BANISH_RANGE
+
+	//Blink - Values for the Wraith's Blink ability
+	///Cooldown multiplier of Blink when used on non-friendlies
+	var/wraith_blink_drag_nonfriendly_living_multiplier = WRAITH_BLINK_DRAG_NONFRIENDLY_MULTIPLIER
+	///Cooldown multiplier of Blink when used on friendlies
+	var/wraith_blink_drag_friendly_multiplier = WRAITH_BLINK_DRAG_FRIENDLY_MULTIPLIER
+	///Base range of Blink
+	var/wraith_blink_range = WRAITH_BLINK_RANGE
+
 	///the 'abilities' available to a caste.
 	var/list/actions
+
+	///The iconstate for the xeno on the minimap
+	var/minimap_icon = "xeno"
+	///The iconstate of the plasma bar, format used is "[plasma_icon_state][amount]"
+	var/plasma_icon_state = "plasma"
 
 /mob/living/carbon/xenomorph
 	name = "Drone"
@@ -171,6 +210,7 @@
 	see_in_dark = 8
 	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
 	sight = SEE_SELF|SEE_OBJS|SEE_TURFS|SEE_MOBS
+	appearance_flags = TILE_BOUND|PIXEL_SCALE|KEEP_TOGETHER
 	see_infrared = TRUE
 	hud_type = /datum/hud/alien
 	hud_possible = list(HEALTH_HUD_XENO, PLASMA_HUD, PHEROMONE_HUD, QUEEN_OVERWATCH_HUD, ARMOR_SUNDER_HUD)
@@ -178,6 +218,7 @@
 	faction = FACTION_XENO
 	initial_language_holder = /datum/language_holder/xeno
 	gib_chance = 5
+	light_system = MOVABLE_LIGHT
 
 	var/hivenumber = XENO_HIVE_NORMAL
 
@@ -198,7 +239,6 @@
 	var/time_of_birth
 
 	var/list/stomach_contents
-	var/devour_timer = 0
 
 	var/evolution_stored = 0 //How much evolution they have stored
 
@@ -208,7 +248,7 @@
 	var/sunder = 0 // sunder affects armour values and does a % removal before dmg is applied. 50 sunder == 50% effective armour values
 	var/fire_resist_modifier = 0
 
-	var/obj/structure/tunnel/start_dig = null
+	var/obj/structure/xeno/tunnel/start_dig = null
 	var/datum/ammo/xeno/ammo = null //The ammo datum for our spit projectiles. We're born with this, it changes sometimes.
 	var/pslash_delay = 0
 
@@ -234,7 +274,8 @@
 
 	var/list/datum/action/xeno_abilities = list()
 	var/datum/action/xeno_action/activable/selected_ability
-	var/selected_resin = /obj/structure/bed/nest //which resin structure to build when we secrete resin
+	var/selected_resin = /turf/closed/wall/resin/regenerating //which resin structure to build when we secrete resin
+	var/selected_reagent = /datum/reagent/toxin/xeno_hemodile //which reagent to slash with using reagent slash
 
 	//Naming variables
 	var/nicknumber = 0 //The number/name after the xeno type. Saved right here so it transfers between castes.
@@ -249,6 +290,9 @@
 	var/frenzy_new = 0
 	var/warding_new = 0
 	var/recovery_new = 0
+
+	///Multiplicative melee damage modifier; referenced by attack_alien.dm, most notably attack_alien_harm
+	var/xeno_melee_damage_modifier = 1
 
 	var/xeno_mobhud = FALSE //whether the xeno mobhud is activated or not.
 
@@ -276,11 +320,19 @@
 	var/savage_used = FALSE
 
 	// *** Ravager vars *** //
-	var/ignore_pain = FALSE // when true the rav will not go into crit or take crit damage.
-	var/ignore_pain_state = 0 // how far "dead" the rav has got while ignoring pain.
+	/// when true the rav will not go into crit or take crit damage.
+	var/endure = FALSE
+
+	// *** Carrier vars *** //
+	var/selected_hugger_type = /obj/item/clothing/mask/facehugger
 
 	//Notification spam controls
 	var/recent_notice = 0
 	var/notice_delay = 20 //2 second between notices
 
 	var/fire_luminosity = 0 //Luminosity of the current fire while burning
+
+	///The xenos/silo/nuke currently tracked by the xeno_tracker arrow
+	var/atom/tracked
+
+	COOLDOWN_DECLARE(xeno_health_alert_cooldown)

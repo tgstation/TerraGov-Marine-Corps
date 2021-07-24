@@ -11,52 +11,54 @@
 /obj/item/implanter/Initialize(mapload, ...)
 	. = ..()
 	if(imp)
-		imp = new imp()
-		update()
+		imp = new imp(src)
+		update_icon()
 
-/obj/item/implanter/proc/update()
-	if (src.imp)
-		src.icon_state = "implanter1"
-	else
-		src.icon_state = "implanter0"
-	return
+/obj/item/implanter/Destroy()
+	QDEL_NULL(imp)
+	return ..()
 
+/obj/item/implanter/update_icon_state()
+	. = ..()
+	icon_state = "implanter[imp?"1":"0"]"
 
-/obj/item/implanter/attack(mob/M as mob, mob/user as mob)
-	if (!ishuman(M) && !ismonkey(M))
+/obj/item/implanter/examine(mob/user, distance, infix, suffix)
+	. = ..()
+	to_chat(user, "it contains [imp ? "a [imp.name]" : "no implant"]!")
+
+/obj/item/implanter/attack(mob/target, mob/user)
+	. = ..()
+	if(!ishuman(target))
+		return FALSE
+	if(!imp)
+		to_chat(user, span_warning(" There is no implant in the [src]!"))
+		return FALSE
+	user.visible_message(span_warning("[user] is attemping to implant [target]."), span_notice("You're attemping to implant [target]."))
+
+	if(!do_after(user, 5 SECONDS, TRUE, target, BUSY_ICON_GENERIC) || !imp)
+		to_chat(user, span_notice(" You failed to implant [target]."))
 		return
-	if (user && src.imp)
-		user.visible_message("<span class='warning'>[user] is attemping to implant [M].</span>", "<span class='notice'>You're attemping to implant [M].</span>")
 
-		if ((M == user || do_after(user, 50, TRUE, M, BUSY_ICON_GENERIC)) && imp)
-			if(imp.implanted(M, user))
-				M.visible_message("<span class='warning'>[M] has been implanted by [user].</span>")
-
-				log_combat(user, M, "implanted", src)
-				message_admins("[ADMIN_TPMONTY(usr)] implanted [ADMIN_TPMONTY(M)] with [src.name].")
-
-				imp.loc = M
-				imp.imp_in = M
-				imp.implanted = 1
-				if (ishuman(M))
-					var/mob/living/carbon/human/H = M
-					var/datum/limb/affected = H.get_limb(user.zone_selected)
-					affected.implants += imp
-					imp.part = affected
-
-				imp = null
-				update()
-			else
-				to_chat(user, "<span class='notice'> You failed to implant [M].</span>")
-
-	return
-
-
-/obj/item/implanter/codex
-	name = "implanter (codex)"
-	imp = /obj/item/implant/codex
-
+	if(imp.try_implant(target, user))
+		target.visible_message(span_warning("[target] has been implanted by [user]."))
+		log_game(user, target, "implanted", src)
+		imp = null
+		update_icon()
+		return
+	to_chat(user, span_notice(" You fail to implant [target]."))
 
 /obj/item/implanter/neurostim
-	name = "implanter"
+	name = "neurostim implanter"
 	imp = /obj/item/implant/neurostim
+
+/obj/item/implanter/chem
+	name = "chem implant implanter"
+	imp = /obj/item/implant/chem
+
+/obj/item/implanter/cloak
+	name = "cloak implant implanter"
+	imp = /obj/item/implant/cloak
+
+/obj/item/implanter/blade
+	name = "blade implant implanter"
+	imp = /obj/item/implant/deployitem/blade

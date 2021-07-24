@@ -8,7 +8,7 @@
 	unset_interaction()
 	cameraFollow = null
 
-	var/new_network = input(src, "Which network would you like to view?", "Jump To Network") as null|anything in available_networks
+	var/new_network = tgui_input_list(src, "Which network would you like to view?", "Jump To Network", available_networks)
 	if(!new_network)
 		return
 
@@ -26,7 +26,7 @@
 			eyeobj.setLoc(get_turf(C))
 			break
 
-	to_chat(src, "<span class='notice'>Switched to the \"[uppertext(new_network)]\" camera network.</span>")
+	to_chat(src, span_notice("Switched to the \"[uppertext(new_network)]\" camera network."))
 
 
 
@@ -37,8 +37,8 @@
 	if(incapacitated())
 		return
 
-	var/list/ai_emotions = list("Very Happy", "Happy", "Neutral", "Unsure", "Confused", "Sad", "BSOD", "Blank", "Problems?", "Awesome", "Facepalm", "Thinking", "Friend Computer", "Dorfy", "Blue Glow", "Red Glow")
-	var/emote = input("Please, select a status!", "AI Status") as null|anything in ai_emotions
+	var/list/ai_emotions = list("Very Happy", "Happy", "Neutral", "Unsure", "Confused", "Sad", "BSOD", "Blank", "Problems?", "Awesome", "Facepalm", "Thinking", "Friend Computer", "Dorfy", "Blue Glow", "Red Glow", "Fish Tank", "Triumvirate", "Triumvirate Glitchy")
+	var/emote = tgui_input_list(usr, "Please, select a status!", "AI Status", ai_emotions)
 	if(!emote)
 		return
 
@@ -56,7 +56,7 @@
 		var/datum/signal/status_signal = new(list("command" = "friendcomputer"))
 		frequency.post_signal(src, status_signal)
 
-	to_chat(src, "<span class='notice'>Changed display status to: [emote]</span>")
+	to_chat(src, span_notice("Changed display status to: [emote]"))
 
 
 /mob/living/silicon/ai/verb/change_hologram()
@@ -66,7 +66,7 @@
 	if(incapacitated())
 		return
 
-	var/hologram = input(src, "Would you like to select a hologram based on a crew member, an animal, or switch to a unique avatar?", "Hologram") as null|anything in list("Crew Member", "Unique", "Animal")
+	var/hologram = tgui_alert(src, "Would you like to select a hologram based on a crew member, an animal, or switch to a unique avatar?", "Hologram", list("Crew Member", "Unique", "Animal"))
 	switch(hologram)
 		if("Crew Member")
 			var/list/personnel_list = list()
@@ -75,10 +75,10 @@
 				personnel_list["[t.fields["name"]]: [t.fields["rank"]]"] = t.fields["photo_front"]
 
 			if(!length(personnel_list))
-				to_chat(src, "<span class='warning'>No suitable records found. Aborting.</span>")
+				to_chat(src, span_warning("No suitable records found. Aborting."))
 				return
 
-			hologram = input("Select a crew member:") as null|anything in personnel_list
+			hologram = tgui_input_list(src, "Select a crew member:", null,personnel_list)
 			var/icon/character_icon = personnel_list[hologram]
 			if(!character_icon)
 				return
@@ -98,11 +98,10 @@
 			"cat" = 'icons/mob/pets.dmi',
 			"cat2" = 'icons/mob/pets.dmi',
 			"parrot_fly" = 'icons/mob/animal.dmi',
-			"pug" = 'icons/mob/pets.dmi',
-			"guard" = 'icons/mob/animal.dmi'
+			"pug" = 'icons/mob/pets.dmi'
 			)
 
-			hologram = input("Please select a hologram:") as null|anything in icon_list
+			hologram = tgui_input_list(src, "Please select a hologram:", null, icon_list)
 			if(!hologram)
 				return
 
@@ -112,11 +111,11 @@
 			var/list/icon_list = list(
 				"default" = 'icons/mob/ai.dmi',
 				"floating face" = 'icons/mob/ai.dmi',
-				"alienq" = 'icons/mob/alien.dmi',
-				"horror" = 'icons/mob/ai.dmi'
+				"xeno_queen" = 'icons/mob/ai.dmi',
+				"void_horror" = 'icons/mob/ai.dmi'
 				)
 
-			hologram = input("Please select a hologram:") as null|anything in icon_list
+			hologram = tgui_input_list(src, "Please select a hologram:", null, icon_list)
 			if(!hologram)
 				return
 
@@ -125,7 +124,7 @@
 		else
 			return
 
-	to_chat(src, "<span class='notice'>Changed hologram to: [hologram]</span>")
+	to_chat(src, span_notice("Changed hologram to: [hologram]"))
 
 
 /mob/living/silicon/ai/verb/toggle_sensors()
@@ -146,7 +145,7 @@
 		return
 
 	if(last_announcement + 60 SECONDS > world.time)
-		to_chat(src, "<span class='warning'>You must wait before announcing again.</span>")
+		to_chat(src, span_warning("You must wait before announcing again."))
 		return
 
 	var/input = stripped_input(usr, "Please write a message to announce to the station crew.", "Announcement")
@@ -173,7 +172,7 @@
 
 	view_core()
 
-	var/ai_core_icon = input(src, "Choose your AI core display icon.", "AI Core Display", iconstates) as null|anything in iconstates
+	var/ai_core_icon = tgui_input_list(src, "Choose your AI core display icon.", "AI Core Display", iconstates)
 	if(!ai_core_icon || incapacitated())
 		return
 
@@ -196,7 +195,7 @@
 
 	acceleration = !acceleration
 
-	to_chat(src, "<span class='notice'>Camera acceleration has been [acceleration ? "enabled" : "disabled"].</span>")
+	to_chat(src, span_notice("Camera acceleration has been [acceleration ? "enabled" : "disabled"]."))
 
 
 /mob/living/silicon/ai/verb/radio_settings()
@@ -207,10 +206,10 @@
 		return
 
 	if(!radio)
-		to_chat(src, "<span class='warning'>No internal radio detected.</span>")
+		to_chat(src, span_warning("No internal radio detected."))
 		return
 
-	to_chat(src, "<span class='notice'>Accessing internal radio settings.</span>")
+	to_chat(src, span_notice("Accessing internal radio settings."))
 	radio.interact(src)
 
 
@@ -227,6 +226,21 @@
 	popup.set_content(dat)
 	popup.open(FALSE)
 
+/mob/living/silicon/ai/verb/toggle_anchor()
+	set category = "Silicon"
+	set name = "Toggle Floor Bolts"
+
+	if(!isturf(loc)) // if their location isn't a turf
+		return // stop
+	if(stat == DEAD)
+		return
+
+	src.anchored = !anchored
+	playsound(loc,'sound/mecha/mechanical_toggle.ogg', 20)
+
+
+	to_chat(src, "<b>You are now [anchored ? "" : "un"]anchored.</b>")
+
 
 /mob/living/silicon/ai/verb/show_laws()
 	set category = "Silicon"
@@ -235,9 +249,9 @@
 	if(incapacitated())
 		return
 
-	to_chat(src, "<span class='notice'><b>Obey these laws:</b></span>")
+	to_chat(src, span_notice("<b>Obey these laws:</b>"))
 	for(var/i in laws)
-		to_chat(src, "<span class='notice'>[i]</span>")
+		to_chat(src, span_notice("[i]"))
 
 
 /mob/living/silicon/ai/verb/state_laws()
@@ -247,7 +261,7 @@
 	if(incapacitated())
 		return
 
-	if(input(src, "Are you sure you want to announce your laws[radiomod ? " over the [radiomod] channel" : ""]?", "State Laws", "Yes", "No") != "Yes")
+	if(tgui_alert(src, "Are you sure you want to announce your laws[radiomod ? " over the [radiomod] channel" : ""]?", "State Laws", list("Yes", "No")) != "Yes")
 		return
 
 	say("[radiomod] Current Active Lawset:")
@@ -284,7 +298,7 @@
 				radiomod = ":" + key
 				break
 
-	to_chat(src, "<span class='notice'>Automatic announcements [chan == "None" ? "will not use the radio." : "set to [chan]."]</span>")
+	to_chat(src, span_notice("Automatic announcements [chan == "None" ? "will not use the radio." : "set to [chan]."]"))
 
 
 /mob/living/silicon/ai/verb/shutdown_systems()
@@ -292,10 +306,10 @@
 	set name = "Shutdown Systems"
 
 
-	if(alert(src, "Do you want to shutdown your systems? WARNING: This will permanently put you out of your mob.", "Shutdown Systems", "Yes", "No") != "Yes")
+	if(tgui_alert(src, "Do you want to shutdown your systems? WARNING: This will permanently put you out of your mob.", "Shutdown Systems", list("Yes", "No")) != "Yes")
 		return
 
-	to_chat(src, "<span class='notice'>Systems shutting down...</span>")
+	to_chat(src, span_notice("Systems shutting down..."))
 
 	ghostize(FALSE)
 	offer_mob()

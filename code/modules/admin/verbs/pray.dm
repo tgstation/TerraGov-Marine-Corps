@@ -8,7 +8,7 @@
 		return
 
 	if(usr.client.prefs.muted & MUTE_PRAY)
-		to_chat(usr, "<span class='warning'>You cannot pray (muted).</span>")
+		to_chat(usr, span_warning("You cannot pray (muted)."))
 		return
 
 	if(client.handle_spam_prevention(msg, MUTE_PRAY))
@@ -26,9 +26,13 @@
 
 	for(var/client/C in GLOB.admins)
 		if(check_other_rights(C, R_ADMIN, FALSE) && (C.prefs.toggles_chat & CHAT_PRAYER))
-			to_chat(C, msg)
+			to_chat(C,
+				type = MESSAGE_TYPE_STAFFLOG,
+				html = msg)
 		else if(C.mob.stat == DEAD && (C.prefs.toggles_chat & CHAT_PRAYER))
-			to_chat(C, mentor_msg)
+			to_chat(C,
+				type = MESSAGE_TYPE_STAFFLOG,
+				html = mentor_msg)
 
 	if(liaison)
 		to_chat(usr, "Your corporate overlords at Nanotrasen have received your message.")
@@ -43,5 +47,5 @@
 	var/sound/S = sound('sound/effects/sos-morse-code.ogg', channel = CHANNEL_ADMIN)
 	for(var/client/C in GLOB.admins)
 		if(check_other_rights(C, R_ADMIN, FALSE))
-			to_chat(C, "<span class='notice'><b><font color='purple'>TGMC:</font>[ADMIN_FULLMONTY(usr)] (<a HREF='?src=[REF(C.holder)];[HrefToken(TRUE)];reply=[REF(sender)]'>REPLY</a>): [text]</b></span>")
+			to_chat(C, span_notice("<b><font color='purple'>TGMC:</font>[ADMIN_FULLMONTY(usr)] (<a HREF='?src=[REF(C.holder)];[HrefToken(TRUE)];reply=[REF(sender)]'>REPLY</a>): [text]</b>"))
 			SEND_SOUND(C, S)

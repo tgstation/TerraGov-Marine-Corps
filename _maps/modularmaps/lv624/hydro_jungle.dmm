@@ -6,7 +6,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle7)
 "aW" = (
-/obj/machinery/colony_floodlight,
+/obj/machinery/floodlight/colony,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle7)
 "bH" = (
@@ -38,7 +38,7 @@
 /area/lv624/ground/compound/ne)
 "eg" = (
 /obj/structure/flora/ausbushes/fullgrass,
-/obj/machinery/colony_floodlight{
+/obj/machinery/floodlight/colony{
 	dir = 8
 	},
 /turf/closed/gm/dense,
@@ -122,7 +122,7 @@
 	},
 /area/lv624/ground/jungle7)
 "lx" = (
-/obj/machinery/colony_floodlight{
+/obj/machinery/floodlight/colony{
 	dir = 8
 	},
 /turf/open/floor/plating/ground/dirt,
@@ -381,7 +381,7 @@
 /area/lv624/ground/jungle9)
 "Oz" = (
 /obj/structure/flora/ausbushes/fullgrass,
-/obj/machinery/colony_floodlight{
+/obj/machinery/floodlight/colony{
 	dir = 4
 	},
 /turf/open/ground/grass,
@@ -421,7 +421,7 @@
 /area/lv624/ground/jungle9)
 "Tr" = (
 /obj/structure/flora/ausbushes/fullgrass,
-/obj/machinery/colony_floodlight{
+/obj/machinery/floodlight/colony{
 	dir = 1
 	},
 /turf/open/floor/plating/ground/dirt,

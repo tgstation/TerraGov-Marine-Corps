@@ -27,15 +27,15 @@
 	for(var/i in 1 to startswith)
 		new /obj/item/reagent_containers/food/snacks/donut/normal(src)
 	update_icon()
-	return
+
 
 /obj/item/storage/donut_box/attack_self(mob/user as mob)
 	to_chat(user, "You [open ? "close [src]. Another time, then." : "open [src]. Mmmmm... donuts."]")
 	open = !open
 	update_icon()
 	if(!contents.len)
-		..()
-	return
+		return ..()
+
 
 /obj/item/storage/donut_box/update_icon()
 	overlays.Cut()

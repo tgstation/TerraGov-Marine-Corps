@@ -1,7 +1,6 @@
 SUBSYSTEM_DEF(blackbox)
 	name = "Blackbox"
 	wait = 10 MINUTES
-	flags = SS_NO_TICK_CHECK
 	runlevels = RUNLEVEL_GAME|RUNLEVEL_POSTGAME
 
 	var/list/feedback = list()
@@ -61,19 +60,26 @@ SUBSYSTEM_DEF(blackbox)
 /datum/controller/subsystem/blackbox/Shutdown()
 	sealed = FALSE
 
-	if(!SSdbcore.Connect())
+	if (!SSdbcore.Connect())
 		return
 
+	var/list/special_columns = list(
+		"datetime" = "NOW()"
+	)
 	var/list/sqlrowlist = list()
+	for (var/datum/feedback_variable/FV in feedback)
+		sqlrowlist += list(list(
+			"round_id" = GLOB.round_id,
+			"key_name" = FV.key,
+			"key_type" = FV.key_type,
+			"version" = FV.version,
+			"json" = json_encode(FV.json)
+		))
 
-	for(var/i in feedback)
-		var/datum/feedback_variable/FV = i
-		sqlrowlist += list(list("datetime" = "Now()", "round_id" = GLOB.round_id, "key_name" =  "'[sanitizeSQL(FV.key)]'", "key_type" = "'[FV.key_type]'", "version" = "[FV.version]", "json" = "'[sanitizeSQL(json_encode(FV.json))]'"))
-
-	if(!length(sqlrowlist))
+	if (!length(sqlrowlist))
 		return
 
-	SSdbcore.MassInsert(format_table_name("feedback"), sqlrowlist, ignore_errors = TRUE, delayed = TRUE)
+	SSdbcore.MassInsert(format_table_name("feedback"), sqlrowlist, ignore_errors = TRUE, delayed = TRUE, special_columns = special_columns)
 
 
 /datum/controller/subsystem/blackbox/proc/Seal()
@@ -86,11 +92,11 @@ SUBSYSTEM_DEF(blackbox)
 	return TRUE
 
 
-#define FEEDBACK_TEXT			"text"
-#define FEEDBACK_AMOUNT			"amount"
-#define FEEDBACK_TALLY			"tally"
-#define FEEDBACK_NESTED_TALLY	"nested_tally"
-#define FEEDBACK_ASSOCIATIVE	"associative"
+#define FEEDBACK_TEXT "text"
+#define FEEDBACK_AMOUNT "amount"
+#define FEEDBACK_TALLY "tally"
+#define FEEDBACK_NESTED_TALLY "nested_tally"
+#define FEEDBACK_ASSOCIATIVE "associative"
 
 /datum/controller/subsystem/blackbox/proc/record_feedback(key_type, key, increment, data, overwrite, version = 1)
 	if(sealed || !key_type || !istext(key) || !isnum(increment || !data))
@@ -183,28 +189,37 @@ SUBSYSTEM_DEF(blackbox)
 	if(!SSdbcore.Connect())
 		return
 
-	var/sqlname = sanitizeSQL(L.real_name)
-	var/sqlkey = sanitizeSQL(L.ckey)
-	var/sqljob = sanitizeSQL(L.job ? L.job.title : "Unassigned")
-	var/sqlspecial = sanitizeSQL("unused")
-	var/sqlpod = sanitizeSQL(get_area_name(L, TRUE))
-	var/laname = sanitizeSQL("unused")
-	var/lakey = sanitizeSQL("unused")
-	var/sqlbrute = sanitizeSQL(L.getBruteLoss())
-	var/sqlfire = sanitizeSQL(L.getFireLoss())
-	var/sqlbrain = sanitizeSQL(-1)
-	var/sqloxy = sanitizeSQL(L.getOxyLoss())
-	var/sqltox = sanitizeSQL(L.getToxLoss())
-	var/sqlclone = sanitizeSQL(L.getCloneLoss())
-	var/sqlstamina = sanitizeSQL(L.getStaminaLoss())
-	var/x_coord = sanitizeSQL(L.x)
-	var/y_coord = sanitizeSQL(L.y)
-	var/z_coord = sanitizeSQL(L.z)
-	var/last_words = sanitizeSQL("no last words")
-	var/suicide = sanitizeSQL(L.suiciding)
-	var/map = sanitizeSQL(SSmapping.configs[GROUND_MAP].map_name)
-	
-	var/datum/DBQuery/query_report_death = SSdbcore.NewQuery("INSERT INTO [format_table_name("death")] (pod, x_coord, y_coord, z_coord, mapname, server_ip, server_port, round_id, tod, job, special, name, byondkey, laname, lakey, bruteloss, fireloss, brainloss, oxyloss, toxloss, cloneloss, staminaloss, last_words, suicide) VALUES ('[sqlpod]', '[x_coord]', '[y_coord]', '[z_coord]', '[map]', INET_ATON(IF('[world.internet_address]' LIKE '', '0', '[world.internet_address]')), '[world.port]', [GLOB.round_id], '[SQLtime()]', '[sqljob]', '[sqlspecial]', '[sqlname]', '[sqlkey]', '[laname]', '[lakey]', [sqlbrute], [sqlfire], [sqlbrain], [sqloxy], [sqltox], [sqlclone], [sqlstamina], '[last_words]', [suicide])")
+	var/datum/db_query/query_report_death = SSdbcore.NewQuery({"
+		INSERT INTO [format_table_name("death")] (pod, x_coord, y_coord, z_coord, mapname, server_ip, server_port, round_id, tod, job, special, name, byondkey, laname, lakey, bruteloss, fireloss, brainloss, oxyloss, toxloss, cloneloss, staminaloss, last_words, suicide)
+		VALUES (:pod, :x_coord, :y_coord, :z_coord, :map, INET_ATON(:internet_address), :port, :round_id, :time, :job, :special, :name, :key, :laname, :lakey, :brute, :fire, :brain, :oxy, :tox, :clone, :stamina, :last_words, :suicide)
+		"}, list(
+			"name" = L.real_name,
+			"key" = L.ckey,
+			"job" = L.job ? L.job.title : "Unassigned",
+			"special" = "unused",
+			"pod" = get_area_name(L, TRUE),
+			"laname" = L.real_name,
+			"lakey" = L.ckey,
+			"brute" = L.getBruteLoss(),
+			"fire" = L.getFireLoss(),
+			"brain" = -1, //L.GetBrainLoss(), Byond errors that the proc isnt defined and I have no idea why and the person before me either :/
+			"oxy" = L.getOxyLoss(),
+			"tox" = L.getToxLoss(),
+			"clone" = L.getCloneLoss(),
+			"stamina" = L.getStaminaLoss(),
+			"x_coord" = L.x,
+			"y_coord" = L.y,
+			"z_coord" = L.z,
+			"last_words" = "no last words",
+			"suicide" = L.suiciding,
+			"map" = SSmapping.configs[GROUND_MAP].map_name,
+			"internet_address" = world.internet_address || "0",
+			"port" = "[world.port]",
+			"round_id" = GLOB.round_id,
+			"time" = SQLtime(),
+		)
+	)
+
 	if(query_report_death)
 		query_report_death.Execute(async = TRUE)
 		qdel(query_report_death)

@@ -1,5 +1,5 @@
-import { useBackend } from '../backend';
 import { Component, Fragment } from 'inferno';
+import { useBackend } from '../backend';
 import { Box, Button, NoticeBox, ProgressBar, Section } from '../components';
 import { Window } from '../layouts';
 
@@ -84,8 +84,9 @@ const Uploadprogress = props => (
 export const IntelComputer = (props, context) => {
   return (
     <Window
-      theme="syndicate"
-      resizable>
+      width={400}
+      height={500}
+      theme="syndicate">
       <Window.Content scrollable>
         <IntelComputercontent />
       </Window.Content>

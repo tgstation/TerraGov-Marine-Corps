@@ -47,6 +47,8 @@
 		M.remove_from_all_mob_huds()
 		M.name = null
 
+	M.client.holder.invisimined = !M.client.holder.invisimined
+
 	log_admin("[key_name(M)] has [(M.invisibility == INVISIBILITY_MAXIMUM) ? "enabled" : "disabled"] invisimin.")
 	message_admins("[ADMIN_TPMONTY(M)] has [(M.invisibility == INVISIBILITY_MAXIMUM) ? "enabled" : "disabled"] invisimin.")
 
@@ -75,6 +77,25 @@
 	log_admin("[key_name(M)] has turned stealth mode [M.client.holder.fakekey ? "on - [M.client.holder.fakekey]" : "off"].")
 	message_admins("[ADMIN_TPMONTY(M)] has turned stealth mode [M.client.holder.fakekey ? "on - [M.client.holder.fakekey]" : "off"].")
 
+/// Will apply on every xeno a multiplicative buff on health, regen and damage.
+/datum/admins/proc/set_xeno_stat_buffs()
+	set category = "Debug"
+	set name = "Set Xeno Buffs"
+	set desc = "Allows you to change stats on all xeno. It is a multiplicator buff, so input 1 to put back everything to normal"
+
+	if(!check_rights(R_DEBUG))
+		return
+
+	var/multiplicator_buff_wanted = input("Input the factor that will multiply xeno stat", "1 is normal stat, 2 is doubling health, regen and melee attack") as num
+	if(!multiplicator_buff_wanted)
+		return
+	GLOB.xeno_stat_multiplicator_buff = multiplicator_buff_wanted
+	SSmonitor.apply_balance_changes()
+
+	var/logging = "[usr.ckey] has multiplied all health, melee damage and regen of xeno by [multiplicator_buff_wanted * 100]%"
+	log_admin(logging)
+	message_admins(logging)
+
 
 /datum/admins/proc/give_mob(mob/living/given_living in GLOB.mob_living_list)
 	set category = null
@@ -94,7 +115,7 @@
 			mob_received.ghostize()
 
 	if(!istype(given_living))
-		to_chat(usr, "<span class='warning'>Target is no longer valid.</span>")
+		to_chat(usr, span_warning("Target is no longer valid."))
 		return
 
 	log_admin("[key_name(usr)] gave [key_name(given_living)] to [key_name(mob_received)].")
@@ -122,7 +143,7 @@
 		return
 
 	if(!istype(given_living))
-		to_chat(usr, "<span class='warning'>Target is no longer valid.</span>")
+		to_chat(usr, span_warning("Target is no longer valid."))
 		return
 
 	log_admin("[key_name(usr)] gave [key_name(given_living)] to [key_name(mob_received)].")
@@ -142,7 +163,7 @@
 		return
 
 	if(!istype(L))
-		to_chat(usr, "<span class='warning'>Target is no longer valid.</span>")
+		to_chat(usr, span_warning("Target is no longer valid."))
 		return
 
 	L.revive()
@@ -166,7 +187,7 @@
 		return
 
 	if(!istype(L))
-		to_chat(usr, "<span class='warning'>Target is no longer valid.</span>")
+		to_chat(usr, span_warning("Target is no longer valid."))
 		return
 
 	L.revive()
@@ -187,7 +208,7 @@
 	else if(alert("Are you sure you want to sleep [key_name(L)]?", "Toggle Sleeping", "Yes", "No") != "Yes")
 		return
 	else if(!istype(L))
-		to_chat(usr, "<span class='warning'>Target is no longer valid.</span>")
+		to_chat(usr, span_warning("Target is no longer valid."))
 		return
 	else
 		L.ToggleAdminSleep()
@@ -473,10 +494,12 @@
 	if(check_other_rights(src, R_DBRANKS, FALSE))
 		color = "headminasay"
 
-	msg = "<span class='[color]'><span class='prefix'>ADMIN:</span> [ADMIN_TPMONTY(mob)]: <span class='message linkify'>[msg]</span></span>"
+	msg = "<span class='[color]'>[span_prefix("ADMIN:")] [ADMIN_TPMONTY(mob)]: <span class='message linkify'>[msg]</span></span>"
 	for(var/client/C in GLOB.admins)
 		if(check_other_rights(C, R_ASAY, FALSE))
-			to_chat(C, msg)
+			to_chat(C,
+				type = MESSAGE_TYPE_ADMINCHAT,
+				html = msg)
 
 
 /client/proc/get_msay()
@@ -507,11 +530,17 @@
 
 	for(var/client/C in GLOB.admins)
 		if(check_other_rights(C, R_ADMIN, FALSE))
-			to_chat(C, "<span class='[color]'><span class='prefix'>[holder.rank.name]:</span> [ADMIN_TPMONTY(mob)]: <span class='message linkify'>[msg]</span></span>")
+			to_chat(C,
+				type = MESSAGE_TYPE_MENTORCHAT,
+				html = "<span class='[color]'>[span_prefix("[holder.rank.name]:")] [ADMIN_TPMONTY(mob)]: <span class='message linkify'>[msg]</span></span>")
 		else if(is_mentor(C) && mob.stat == DEAD)
-			to_chat(C, "<span class='[color]'><span class='prefix'>[holder.rank.name]:</span> [key_name_admin(src, TRUE, TRUE, FALSE)] [ADMIN_JMP(mob)] [ADMIN_FLW(mob)]: <span class='message linkify'>[msg]</span></span>")
+			to_chat(C,
+				type = MESSAGE_TYPE_MENTORCHAT,
+				html = "<span class='[color]'>[span_prefix("[holder.rank.name]:")] [key_name_admin(src, TRUE, TRUE, FALSE)] [ADMIN_JMP(mob)] [ADMIN_FLW(mob)]: <span class='message linkify'>[msg]</span></span>")
 		else if(is_mentor(C))
-			to_chat(C, "<span class='[color]'><span class='prefix'>[holder.rank.name]:</span> [key_name_admin(src, TRUE, FALSE, FALSE)] [ADMIN_JMP(mob)] [ADMIN_FLW(mob)]: <span class='message linkify'>[msg]</span></span>")
+			to_chat(C,
+				type = MESSAGE_TYPE_MENTORCHAT,
+				html = "<span class='[color]'>[span_prefix("[holder.rank.name]:")] [key_name_admin(src, TRUE, FALSE, FALSE)] [ADMIN_JMP(mob)] [ADMIN_FLW(mob)]: <span class='message linkify'>[msg]</span></span>")
 
 
 /client/proc/get_dsay()
@@ -527,20 +556,20 @@
 	if(!check_rights(R_ADMIN|R_MENTOR))
 		return
 
-	if(is_mentor(src) && mob.stat != DEAD)
-		to_chat(src, "<span class='warning'>You must be an observer to use dsay.</span>")
-		return
-
-	if(!(prefs.toggles_chat & CHAT_DEAD))
-		to_chat(src, "<span class='warning'>You have deadchat muted.</span>")
-		return
-
-	if(handle_spam_prevention(msg, MUTE_DEADCHAT))
-		return
-
 	msg = copytext_char(sanitize(msg), 1, MAX_MESSAGE_LEN)
 
 	if(!msg)
+		return
+
+	if(is_mentor(src) && mob.stat != DEAD)
+		to_chat(src, span_warning("You must be an observer to use dsay."))
+		return
+
+	if(!(prefs.toggles_chat & CHAT_DEAD))
+		to_chat(src, span_warning("You have deadchat muted."))
+		return
+
+	if(handle_spam_prevention(msg, MUTE_DEADCHAT))
 		return
 
 	log_dsay("[key_name(src)]: [msg]")
@@ -693,6 +722,7 @@
 	var/turf/T = get_turf(M)
 
 	N.forceMove(T)
+	N.update_parallax_contents()
 
 	log_admin("[key_name(N)] jumped to [key_name(M)]'s mob [AREACOORD(T)]")
 	if(!isobserver(N))
@@ -747,7 +777,9 @@
 
 /client/proc/ticket_reply(whom)
 	if(prefs.muted & MUTE_ADMINHELP)
-		to_chat(src, "<span class='warning'>Error: You are unable to use admin PMs (muted).</span>")
+		to_chat(src,
+			type = MESSAGE_TYPE_ADMINPM,
+			html = span_warning("Error: You are unable to use admin PMs (muted)."))
 		return
 
 	var/client/C
@@ -760,7 +792,7 @@
 
 	if(!C)
 		if(holder)
-			to_chat(src, "<span class='warning'>Error: Client not found.</span>")
+			to_chat(src, span_warning("Error: Client not found."))
 		return
 
 	var/datum/admin_help/AH = C.current_ticket
@@ -777,7 +809,7 @@
 			message_admins("[key_name_admin(src)] has marked and started replying to [key_name_admin(C, FALSE, FALSE)]'s ticket.")
 
 	else if(AH && AH.marked != usr.client.key)
-		to_chat(usr, "<span class='warning'>This ticket has already been marked by [AH.marked], click the mark button to replace them.</span>")
+		to_chat(usr, span_warning("This ticket has already been marked by [AH.marked], click the mark button to replace them."))
 		return
 	var/msg = input("Message:", "Private message to [key_name(C, FALSE, FALSE)]") as message|null
 	if(!msg)
@@ -794,13 +826,19 @@
 
 /client/proc/private_message(whom, msg)
 	if(prefs.muted & MUTE_ADMINHELP)
-		to_chat(src, "<span class='warning'>You are unable to use admin PMs (muted).</span>")
+		to_chat(src,
+			type = MESSAGE_TYPE_ADMINPM,
+			html = span_warning("You are unable to use admin PMs (muted)."))
 		return
 
 	if(!holder && !current_ticket)
-		to_chat(src, "<span class='warning'>You can no longer reply to this ticket, please open another one by using the Adminhelp verb if need be.</span>")
+		to_chat(src,
+			type = MESSAGE_TYPE_ADMINPM,
+			html = span_warning("You can no longer reply to this ticket, please open another one by using the Adminhelp verb if need be."))
 		if(msg)
-			to_chat(src, "<span class='notice'>Message: [msg]</span>")
+			to_chat(src,
+				type = MESSAGE_TYPE_ADMINPM,
+				html = span_notice("Message: [msg]"))
 		return
 
 	var/client/recipient
@@ -829,15 +867,21 @@
 			return
 
 		if(holder)
-			to_chat(src, "<span class='danger'>Error: Use the admin IRC/Discord channel.</span>")
+			to_chat(src,
+				type = MESSAGE_TYPE_ADMINPM,
+				html = span_danger("Error: Use the admin IRC/Discord channel."))
 			return
 
 	else
 		if(!recipient)
 			if(holder)
-				to_chat(src, "<span class='warning'>Error: Client not found.</span>")
+				to_chat(src,
+					type = MESSAGE_TYPE_ADMINPM,
+					html = span_warning("Error: Client not found."))
 				if(msg)
-					to_chat(src, msg)
+					to_chat(src,
+						type = MESSAGE_TYPE_ADMINPM,
+						html = msg)
 				return
 			else if(msg) // you want to continue if there's no message instead of returning now
 				current_ticket.MessageNoRecipient(msg)
@@ -851,13 +895,19 @@
 				return
 
 			if(prefs.muted & MUTE_ADMINHELP)
-				to_chat(src, "<span class='warning'>You are unable to use admin PMs (muted).</span>")
+				to_chat(src,
+					type = MESSAGE_TYPE_ADMINPM,
+					html = span_warning("You are unable to use admin PMs (muted)."))
 				return
 
 			if(!recipient && !external)
 				if(holder)
-					to_chat(src, "<br><span class='boldnotice'>Client not found. Here's your message, copy-paste it if needed:</span>")
-					to_chat(src, "<span class='notice'>[msg]</span><br>")
+					to_chat(src,
+						type = MESSAGE_TYPE_ADMINPM,
+						html = "<br>[span_boldnotice("Client not found. Here's your message, copy-paste it if needed:")]")
+					to_chat(src,
+						type = MESSAGE_TYPE_ADMINPM,
+						html = "[span_notice("[msg]")]<br>")
 				else
 					current_ticket.MessageNoRecipient(msg)
 				return
@@ -876,7 +926,9 @@
 	var/keywordparsedmsg = keywords_lookup(msg)
 
 	if(external)
-		to_chat(src, "<span class='notice'>PM to-<b>Staff</b>: <span class='linkify'>[rawmsg]</span></font>")
+		to_chat(src,
+			type = MESSAGE_TYPE_ADMINPM,
+			html = "[span_notice("PM to-<b>Staff</b>: <span class='linkify'>[rawmsg]")]</font>")
 		var/datum/admin_help/AH = admin_ticket_log(src, "<font color='#ff8c8c'>Reply PM from-<b>[key_name(src, TRUE, TRUE)] to <i>External</i>: [keywordparsedmsg]</font>")
 		externalreplyamount--
 		send2adminchat("[AH ? "#[AH.id] " : ""]Reply: [ckey]", sanitizediscord(rawmsg))
@@ -888,8 +940,13 @@
 						new /datum/admin_help(msg, recipient, TRUE, TICKET_ADMIN)
 					else
 						new /datum/admin_help(msg, recipient, TRUE, TICKET_MENTOR)
-				to_chat(recipient, "<font size='3' span class='staffpmin'>Staff PM from-<b>[key_name(src, recipient, TRUE)]</b>: <span class='linkify'>[keywordparsedmsg]</span></span>")
-				to_chat(src, "<font size='3' span class='staffpmout'>Staff PM to-<b>[key_name(recipient, src, TRUE)]</b>: <span class='linkify'>[keywordparsedmsg]</span></span>")
+
+				to_chat(recipient,
+					type = MESSAGE_TYPE_ADMINPM,
+					html = "<font size='3' span class='staffpmin'>Staff PM from-<b>[key_name(src, recipient, TRUE)]</b>: [span_linkify("[keywordparsedmsg]")]</span>")
+				to_chat(src,
+					type = MESSAGE_TYPE_ADMINPM,
+					html = "<font size='3' span class='staffpmout'>Staff PM to-<b>[key_name(recipient, src, TRUE)]</b>: [span_linkify("[keywordparsedmsg]")]</span>")
 
 				window_flash(recipient, TRUE)
 				window_flash(src, TRUE)
@@ -900,10 +957,14 @@
 					admin_ticket_log(recipient, interaction_message)
 
 			else //Recipient is a staff member, sender is not.
-				admin_ticket_log(src, "<font color='#ff8c8c'>Reply PM from-<b>[key_name(src, recipient, TRUE)]</b>: <span class='linkify'>[keywordparsedmsg]</span></font>")
-				to_chat(recipient, "<font size='3' color='red'>Reply PM from-<b>[key_name(src, recipient, TRUE)]</b>: <span class='linkify'>[keywordparsedmsg]</span></font>")
+				admin_ticket_log(src, "<font color='#ff8c8c'>Reply PM from-<b>[key_name(src, recipient, TRUE)]</b>: [span_linkify("[keywordparsedmsg]")]</font>")
+				to_chat(recipient,
+					type = MESSAGE_TYPE_ADMINPM,
+					html = "<font size='3' span class='staffpmin'>Staff PM from-<b>[key_name(src, recipient, TRUE)]</b>: [span_linkify("[keywordparsedmsg]")]</span>")
+				to_chat(src,
+					type = MESSAGE_TYPE_ADMINPM,
+					html = span_notice("PM to-<b>Staff</b>: [span_linkify("[msg]")]"))
 				window_flash(recipient, TRUE)
-				to_chat(src, "<span class='notice'>PM to-<b>Staff</b>: <span class='linkify'>[msg]</span></span>")
 
 			//Play the bwoink if enabled.
 			if(recipient.prefs.toggles_sound & SOUND_ADMINHELP)
@@ -918,17 +979,33 @@
 						new /datum/admin_help(msg, recipient, TRUE, TICKET_MENTOR)
 
 				if(check_rights(R_ADMINTICKET, FALSE))
-					to_chat(recipient, "<font color='red' size='4'><b>-- Private Message --</b></font>")
-					to_chat(recipient, "<font color='red'>[holder.fakekey ? "Administrator" : holder.rank.name] PM from-<b>[key_name(src, recipient, FALSE)]</b>: <span class='linkify'>[msg]</span></font>")
-					to_chat(recipient, "<font color='red'><i>Click on the staff member's name to reply.</i></font>")
-					to_chat(src, "<span class='notice'><b>[holder.fakekey ? "Administrator" : holder.rank.name] PM</b> to-<b>[key_name(recipient, src, TRUE)]</b>: <span class='linkify'>[msg]</span></span>")
+					to_chat(recipient,
+						type = MESSAGE_TYPE_ADMINPM,
+						html = "<font color='red' size='4'><b>-- Private Message --</b></font>")
+					to_chat(recipient,
+						type = MESSAGE_TYPE_ADMINPM,
+						html = "<font color='red'>[holder.fakekey ? "Administrator" : holder.rank.name] PM from-<b>[key_name(src, recipient, FALSE)]</b>: [span_linkify("[msg]")]</font>")
+					to_chat(recipient,
+						type = MESSAGE_TYPE_ADMINPM,
+						html = "<font color='red'><i>Click on the staff member's name to reply.</i></font>")
+					to_chat(src,
+						type = MESSAGE_TYPE_ADMINPM,
+						html = span_notice("<b>[holder.fakekey ? "Administrator" : holder.rank.name] PM</b> to-<b>[key_name(recipient, src, TRUE)]</b>: [span_linkify("[msg]")]"))
 					SEND_SOUND(recipient, sound('sound/effects/adminhelp.ogg', channel = CHANNEL_ADMIN))
 					window_flash(recipient, TRUE)
 				else if(is_mentor(src))
-					to_chat(recipient, "<font color='blue' size='2'><b>-- Mentor Message --</b></font>")
-					to_chat(recipient, "<span class='notice'>[holder.rank.name] PM from-<b>[key_name(src, recipient, FALSE)]</b>: <span class='linkify'>[msg]</span></span>")
-					to_chat(recipient, "<span class='notice'><i>Click on the mentor's name to reply.</i></span>")
-					to_chat(src, "<span class='notice'><b>[holder.rank.name] PM</b> to-<b>[key_name(recipient, src, TRUE)]</b>: <span class='linkify'>[msg]</span></span>")
+					to_chat(recipient,
+						type = MESSAGE_TYPE_ADMINPM,
+						html = "<font color='blue' size='2'><b>-- Mentor Message --</b></font>")
+					to_chat(recipient,
+						type = MESSAGE_TYPE_ADMINPM,
+						html = span_notice("[holder.rank.name] PM from-<b>[key_name(src, recipient, FALSE)]</b>: [span_linkify("[msg]")]"))
+					to_chat(recipient,
+						type = MESSAGE_TYPE_ADMINPM,
+						html = span_notice("<i>Click on the mentor's name to reply.</i>"))
+					to_chat(src,
+						type = MESSAGE_TYPE_ADMINPM,
+						html = span_notice("<b>[holder.rank.name] PM</b> to-<b>[key_name(recipient, src, TRUE)]</b>: [span_linkify("[msg]")]"))
 					SEND_SOUND(recipient, sound('sound/effects/mentorhelp.ogg', channel = CHANNEL_ADMIN))
 					window_flash(recipient)
 
@@ -936,14 +1013,18 @@
 
 
 			else		//neither are admins
-				to_chat(src, "<span class='warning'>Error: Non-staff to non-staff communication is disabled.</span>")
+				to_chat(src,
+					type = MESSAGE_TYPE_ADMINPM,
+					html = span_warning("Error: Non-staff to non-staff communication is disabled."))
 				return
 
 	if(external)
 		log_admin_private("PM: [key_name(src)]->External: [rawmsg]")
 		for(var/client/X in GLOB.admins)
 			if(check_other_rights(X, R_ADMINTICKET, FALSE))
-				to_chat(X, "<span class='notice'><B>PM: [key_name(src, X, FALSE)]-&gt;External:</B> [keywordparsedmsg]</span>")
+				to_chat(X,
+					type = MESSAGE_TYPE_ADMINPM,
+					html = span_notice("<B>PM: [key_name(src, X, FALSE)]-&gt;External:</B> [keywordparsedmsg]"))
 	else
 		log_admin_private("PM: [key_name(src)]->[key_name(recipient)]: [rawmsg]")
 		//Admins PMs go to admins, mentor PMs go to mentors and admins
@@ -952,26 +1033,34 @@
 				if(X.key == key || X.key == recipient.key)
 					continue
 				if(check_other_rights(X, R_ADMINTICKET, FALSE))
-					to_chat(X, "<span class='notice'><B>Admin PM: [key_name(src, X, FALSE)]-&gt;[key_name(recipient, X, FALSE)]:</B> [keywordparsedmsg]</span>")
+					to_chat(X,
+						type = MESSAGE_TYPE_ADMINPM,
+						html = span_notice("<B>Admin PM: [key_name(src, X, FALSE)]-&gt;[key_name(recipient, X, FALSE)]:</B> [keywordparsedmsg]"))
 		else if(is_mentor(src))
 			for(var/client/X in GLOB.admins)
 				if(X.key == key || X.key == recipient.key)
 					continue
 				if(check_other_rights(X, R_ADMINTICKET, FALSE) || is_mentor(X))
-					to_chat(X, "<span class='notice'><B>Mentor PM: [key_name(src, X, FALSE)]-&gt;[key_name(recipient, X, FALSE)]:</B> [keywordparsedmsg]</span>")
+					to_chat(X,
+					type = MESSAGE_TYPE_ADMINPM,
+					html = span_notice("<B>Mentor PM: [key_name(src, X, FALSE)]-&gt;[key_name(recipient, X, FALSE)]:</B> [keywordparsedmsg]"))
 		else //Admins get all messages, mentors only mentor responses
 			var/datum/admin_help/AH = src.current_ticket
 			for(var/client/X in GLOB.admins)
 				if(X.key == key || X.key == recipient.key)
 					continue
 				if(check_other_rights(X, R_ADMINTICKET, FALSE))
-					to_chat(X, "<span class='notice'><B>PM: [key_name(src, X, FALSE)]-&gt;[key_name(recipient, X, FALSE)]:</B> [keywordparsedmsg]</span>")
+					to_chat(X,
+						type = MESSAGE_TYPE_ADMINPM,
+						html = span_notice("<B>PM: [key_name(src, X, FALSE)]-&gt;[key_name(recipient, X, FALSE)]:</B> [keywordparsedmsg]"))
 			if(AH?.tier == TICKET_MENTOR)
 				for(var/client/X in GLOB.admins)
 					if(X.key == key || X.key == recipient.key)
 						continue
 					if(is_mentor(X))
-						to_chat(X, "<span class='notice'><B>PM: [key_name(src, X, FALSE)]-&gt;[key_name(recipient, X, FALSE)]:</B> [keywordparsedmsg]</span>")
+						to_chat(X,
+						type = MESSAGE_TYPE_ADMINPM,
+						html = span_notice("<B>PM: [key_name(src, X, FALSE)]-&gt;[key_name(recipient, X, FALSE)]:</B> [keywordparsedmsg]"))
 
 
 /proc/TgsPm(target, msg, sender)
@@ -1067,9 +1156,15 @@
 	log_admin_private("External PM: [tgs_tagged] -> [key_name(C)] : [msg]")
 	message_admins("External PM: [tgs_tagged] -> [key_name_admin(C, FALSE, FALSE)] : [msg]")
 
-	to_chat(C, "<font color='red' size='4'><b>-- Administrator private message --</b></font>")
-	to_chat(C, "<font color='red'>Admin PM from-<b><a href='?priv_msg=[stealthkey]'>[adminname]</A></b>: [msg]</font>")
-	to_chat(C, "<font color='red'><i>Click on the administrator's name to reply.</i></font>")
+	to_chat(C,
+		type = MESSAGE_TYPE_ADMINPM,
+		html = "<font color='red' size='4'><b>-- Administrator private message --</b></font>")
+	to_chat(C,
+		type = MESSAGE_TYPE_ADMINPM,
+		html = "<font color='red'>Admin PM from-<b><a href='?priv_msg=[stealthkey]'>[adminname]</A></b>: [msg]</font>")
+	to_chat(C,
+		type = MESSAGE_TYPE_ADMINPM,
+		html = "<font color='red'><i>Click on the administrator's name to reply.</i></font>")
 
 	admin_ticket_log(C, "<font color='#a7f2ef'>PM From [tgs_tagged]: [msg]</font>")
 
@@ -1147,7 +1242,7 @@
 	set name = "Open MCDB"
 
 	if(!CONFIG_GET(string/dburl))
-		to_chat(usr, "<span class='warning'>Database URL not set.</span>")
+		to_chat(usr, span_warning("Database URL not set."))
 		return
 
 	if(alert("This will open the MCDB in your browser. Are you sure?", "MCDB", "Yes", "No") != "Yes")
@@ -1214,7 +1309,7 @@
 			if(tomob.mind == ghost.mind)
 				ghost.mind = null
 
-	message_admins("<span class='adminnotice'>[key_name_admin(usr)] has put [frommob.key] in control of [tomob.name].</span>")
+	message_admins(span_adminnotice("[key_name_admin(usr)] has put [frommob.key] in control of [tomob.name]."))
 	log_admin("[key_name(usr)] stuffed [frommob.key] into [tomob.name].")
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Ghost Drag Control")
 
@@ -1222,3 +1317,40 @@
 	qdel(frommob)
 
 	return TRUE
+
+/client/proc/mass_replace()
+	set name = "Mass replace atom"
+	set category = "Fun"
+	if(!check_rights(R_SPAWN))
+		return
+	var/to_replace = pick_closest_path(input("Pick a movable atom path to be replaced", "Enter path as text") as text)
+	var/to_place = pick_closest_path(input("Pick atom path to replace with", "Enter path as text") as text)
+	var/current_caller = GLOB.AdminProcCaller
+	var/ckey = usr ? usr.client.ckey : GLOB.AdminProcCaller
+	if(!ckey)
+		CRASH("mass replace with no ckey")
+
+	if(current_caller && current_caller != ckey)
+		if(!GLOB.AdminProcCallSpamPrevention[ckey])
+			to_chat(usr, span_adminnotice("Another set of admin called procs are still running, your proc will be run after theirs finish."))
+			GLOB.AdminProcCallSpamPrevention[ckey] = TRUE
+			UNTIL(!GLOB.AdminProcCaller)
+			to_chat(usr, span_adminnotice("Running your proc"))
+			GLOB.AdminProcCallSpamPrevention -= ckey
+		else
+			UNTIL(!GLOB.AdminProcCaller)
+
+	var/logging = "[ckey] is replacing all [to_replace] in world with [to_place]"
+	log_admin(logging)
+	message_admins(logging)
+	GLOB.AdminProcCaller = ckey	//if this runtimes, too bad for you
+	var/replaced = 0
+	for(var/atom/movable/thing in world)
+		if(istype(thing, to_replace))
+			new to_place (thing.loc)
+			qdel(thing)
+			replaced++
+	GLOB.AdminProcCaller = null
+	var/afterlogging = "[replaced] amounts of atoms replaced"
+	log_admin(afterlogging)
+	message_admins(afterlogging)

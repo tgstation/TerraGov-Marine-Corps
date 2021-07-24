@@ -13,9 +13,6 @@
 	// *** Melee Attacks *** //
 	melee_damage = 17
 
-	// *** Tackle *** //
-	tackle_damage = 21
-
 	// *** Speed *** //
 	speed = 0.3
 
@@ -35,7 +32,7 @@
 	conscious_see_in_dark = 20
 
 	// *** Flags *** //
-	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER|CASTE_ACID_BLOOD
+	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER|CASTE_ACID_BLOOD|CAN_BECOME_KING
 
 	// *** Defense *** //
 	soft_armor = list("melee" = 40, "bullet" = 40, "laser" = 40, "energy" = 40, "bomb" = XENO_BOMB_RESIST_0, "bio" = 30, "rad" = 30, "fire" = 40, "acid" = 30)
@@ -45,14 +42,19 @@
 
 	// *** Boiler Abilities *** //
 	max_ammo = 4
-	bomb_strength = 1
-
+	bomb_strength = 1 //Multiplier to the effectiveness of the boiler glob.
 	bomb_delay = 30 SECONDS
+
+	acid_spray_duration = 10 SECONDS
+	acid_spray_damage = 16
+	acid_spray_damage_on_hit = 35
+	acid_spray_structure_damage = 45
 
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
-		/datum/action/xeno_action/regurgitate,
+		/datum/action/xeno_action/activable/psydrain,
 		/datum/action/xeno_action/activable/headbite,
+		/datum/action/xeno_action/activable/devour,
 		/datum/action/xeno_action/place_acidwell,
 		/datum/action/xeno_action/activable/corrosive_acid/strong,
 		/datum/action/xeno_action/create_boiler_bomb,
@@ -72,9 +74,6 @@
 	caste_desc = "Some sort of abomination. It looks a little more dangerous."
 	upgrade = XENO_UPGRADE_ONE
 
-	// *** Tackle *** //
-	tackle_damage = 21
-
 	// *** Speed *** //
 	speed = 0.2
 
@@ -86,13 +85,16 @@
 	max_health = 270
 
 	// *** Evolution *** //
-	upgrade_threshold = 500
+	upgrade_threshold = 750
 
 	// *** Defense *** //
 	soft_armor = list("melee" = 45, "bullet" = 45, "laser" = 45, "energy" = 45, "bomb" = XENO_BOMB_RESIST_0, "bio" = 33, "rad" = 33, "fire" = 45, "acid" = 33)
 
 	// *** Ranged Attack *** //
 	spit_delay = 3 SECONDS
+
+	acid_spray_damage_on_hit = 39
+	acid_spray_structure_damage = 53
 
 	// *** Boiler Abilities *** //
 	max_ammo = 5
@@ -108,9 +110,6 @@
 	// *** Melee Attacks *** //
 	melee_damage = 20
 
-	// *** Tackle *** //
-	tackle_damage = 25
-
 	// *** Speed *** //
 	speed = 0.1
 
@@ -122,13 +121,16 @@
 	max_health = 290
 
 	// *** Evolution *** //
-	upgrade_threshold = 1000
+	upgrade_threshold = 1750
 
 	// *** Defense *** //
 	soft_armor = list("melee" = 45, "bullet" = 45, "laser" = 45 , "energy" = 45, "bomb" = XENO_BOMB_RESIST_0, "bio" = 35, "rad" = 35, "fire" = 45, "acid" = 35)
 
 	// *** Ranged Attack *** //
 	spit_delay = 2 SECONDS
+
+	acid_spray_damage_on_hit = 43
+	acid_spray_structure_damage = 61
 
 	// *** Boiler Abilities *** //
 	max_ammo = 6
@@ -145,9 +147,6 @@
 	// *** Melee Attacks *** //
 	melee_damage = 20
 
-	// *** Tackle *** //
-	tackle_damage = 25
-
 	// *** Speed *** //
 	speed = 0.1
 
@@ -158,11 +157,17 @@
 	// *** Health *** //
 	max_health = 325
 
+	// *** Evolution *** //
+	upgrade_threshold = 2750
+
 	// *** Defense *** //
 	soft_armor = list("melee" = 45, "bullet" = 45, "laser" = 45, "energy" = 45, "bomb" = XENO_BOMB_RESIST_0, "bio" = 37, "rad" = 37, "fire" = 45, "acid" = 37)
 
 	// *** Ranged Attack *** //
 	spit_delay = 1 SECONDS
+
+	acid_spray_damage_on_hit = 47
+	acid_spray_structure_damage = 69
 
 	// *** Boiler Abilities *** //
 	max_ammo = 7

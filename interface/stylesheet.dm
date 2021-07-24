@@ -115,7 +115,7 @@ a.popt {text-decoration: none;}
 .centradio				{color: #5C5C8A;}
 .airadio				{color: #FF00FF;}
 
-.secradio				{color: #A30000;}
+.casradio				{color: #A30000;}
 .engradio				{color: #A66300;}
 .medradio				{color: #008160;}
 .sciradio				{color: #993399;}
@@ -155,6 +155,7 @@ h1.alert, h2.alert		{color: #000000;}
 .boldnotice				{color: #000099;	font-weight: bold;}
 .warning				{color: #ff0000;	font-style: italic;}
 .xenowarning			{color: #2a623d;	font-style: italic;}
+.userdanger				{color: #ff0000;	font-weight: bold;	font-size: 3em;}
 .danger					{color: #ff0000;	font-weight: bold;}
 .xenodanger				{color: #2a623d;	font-weight: bold;}
 .avoidharm				{color:	#72a0e5;	font-weight: bold;}

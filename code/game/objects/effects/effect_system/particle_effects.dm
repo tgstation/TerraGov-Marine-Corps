@@ -54,15 +54,11 @@
 	mouse_opacity = 0
 
 /obj/effect/particle_effect/water/Move(turf/newloc)
-	//var/turf/T = src.loc
-	//if (istype(T, /turf))
-	//	T.firelevel = 0 //TODO: FIX
-	if (--src.life < 1)
-		//SN src = null
+	if (--life < 1)
 		qdel(src)
 	if(newloc.density)
-		return 0
-	.=..()
+		return FALSE
+	return ..()
 
 /obj/effect/particle_effect/water/Bump(atom/A)
 	if(reagents)

@@ -51,7 +51,7 @@
 	. = ..()
 
 	if(isscrewdriver(I) && isturf(user.loc))
-		var/direction = input("In which direction?", "Select direction.") as null|anything in list("North", "East", "South", "West")
+		var/direction = tgui_input_list(user, "In which direction?", "Select direction.", list("North", "East", "South", "West"))
 		if(!direction)
 			return
 		var/obj/structure/sign/S = new(user.loc)

@@ -33,7 +33,7 @@ SUBSYSTEM_DEF(weeds)
 			pending -= T
 			continue
 
-		if (!T.is_weedable() || istype(T.loc, /area/arrival))
+		if (!T.is_weedable())
 			pending -= T
 			continue
 
@@ -57,7 +57,7 @@ SUBSYSTEM_DEF(weeds)
 
 		var/obj/effect/alien/weeds/node/N = creating[T]
 		// Adds a bit of jitter to the spawning weeds.
-		addtimer(CALLBACK(src, .proc/create_weed, T, N), rand(0, 3 SECONDS))
+		addtimer(CALLBACK(src, .proc/create_weed, T, N), rand(1, 3 SECONDS))
 		pending -= T
 
 

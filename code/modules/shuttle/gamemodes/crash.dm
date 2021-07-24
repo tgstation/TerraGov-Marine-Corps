@@ -7,6 +7,7 @@
 	height = 31
 	dwidth = 9
 	dheight = 15
+	hidden = TRUE  //To make them not block landings during distress
 
 // Big explosions
 

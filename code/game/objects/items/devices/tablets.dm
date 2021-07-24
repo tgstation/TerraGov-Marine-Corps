@@ -7,8 +7,6 @@
 	flags_equip_slot = ITEM_SLOT_POCKET
 	w_class = WEIGHT_CLASS_SMALL
 
-	var/ui_x = 870
-	var/ui_y = 708
 	interaction_flags = INTERACT_MACHINE_TGUI
 
 
@@ -91,6 +89,12 @@
 	cam_background.assigned_map = map_name
 	cam_background.del_on_map_removal = FALSE
 
+/obj/item/hud_tablet/Destroy()
+	qdel(cam_screen)
+	QDEL_LIST(cam_plane_masters)
+	qdel(cam_background)
+	return ..()
+
 /obj/item/hud_tablet/proc/get_available_cameras()
 	var/list/L = list()
 	for(var/i in GLOB.cameranet.cameras)
@@ -118,18 +122,17 @@
 
 /obj/item/hud_tablet/interact(mob/user)
 	if(!allowed(user))
-		to_chat(user, "<span class='warning'>Access denied, unauthorized user.</span>")
+		to_chat(user, span_warning("Access denied, unauthorized user."))
 		return TRUE
 	return ..()
 
-/obj/item/hud_tablet/ui_interact(\
-		mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
-		datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
+/obj/item/hud_tablet/ui_interact(mob/user, datum/tgui/ui)
 	// Update UI
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
-	// Show static if can't use the camera
-	if(!active_camera?.can_use())
-		show_camera_static()
+	ui = SStgui.try_update_ui(user, src, ui)
+
+	// Update the camera, showing static if necessary and updating data if the location has moved.
+	update_active_camera_screen()
+
 	if(!ui)
 		// Register map objects
 		user.client.register_map_obj(cam_screen)
@@ -137,7 +140,7 @@
 			user.client.register_map_obj(plane)
 		user.client.register_map_obj(cam_background)
 		// Open UI
-		ui = new(user, src, ui_key, "CameraConsole", name, ui_x, ui_y, master_ui, state)
+		ui = new(user, src, "CameraConsole", name)
 		ui.open()
 
 /obj/item/hud_tablet/ui_data()
@@ -149,23 +152,6 @@
 			name = active_camera.c_tag,
 			status = active_camera.status,
 		)
-
-		var/turf/current_turf = get_turf(active_camera)
-		if(last_turf == current_turf)
-			return
-		last_turf = current_turf
-
-		var/list/visible_turfs = list()
-		for(var/turf/T in view(min(max_view_dist, active_camera.view_range), current_turf))
-			visible_turfs += T
-
-		var/list/bbox = get_bbox_of_atoms(visible_turfs)
-		var/size_x = bbox[3] - bbox[1] + 1
-		var/size_y = bbox[4] - bbox[2] + 1
-
-		cam_screen.vis_contents = visible_turfs
-		cam_background.icon_state = "clear"
-		cam_background.fill_rect(1, 1, size_x, size_y)
 
 /obj/item/hud_tablet/ui_static_data()
 	var/list/data = list()
@@ -187,17 +173,48 @@
 	if(action == "switch_camera")
 		var/c_tag = params["name"]
 		var/list/cameras = get_available_cameras()
-		var/obj/machinery/camera/C = cameras[c_tag]
-		active_camera = C
+		var/obj/machinery/camera/selected_camera = cameras[c_tag]
+		active_camera = selected_camera
 		playsound(src, get_sfx("terminal_type"), 25, FALSE)
 
-		// Show static if can't use the camera
-		if(!active_camera?.can_use())
-			show_camera_static()
+		if(!selected_camera)
 			return TRUE
+
+		update_active_camera_screen()
 
 		return TRUE
 
+/obj/item/hud_tablet/proc/update_active_camera_screen()
+	// Show static if can't use the camera
+	if(!active_camera?.can_use())
+		show_camera_static()
+		return
+
+	var/list/visible_turfs = list()
+
+	// Is this camera located in or attached to a living thing? If so, assume the camera's loc is the living thing.
+	var/cam_location = isliving(active_camera.loc) ? active_camera.loc : active_camera
+
+	// If we're not forcing an update for some reason and the cameras are in the same location,
+	// we don't need to update anything.
+	// Most security cameras will end here as they're not moving.
+	var/newturf = get_turf(cam_location)
+	if(last_turf == newturf)
+		return
+
+	// Cameras that get here are moving, and are likely attached to some moving atom such as cyborgs.
+	last_turf = get_turf(cam_location)
+
+	for(var/turf/visible_turf in view(min(max_view_dist, active_camera.view_range), last_turf))
+		visible_turfs += visible_turf
+
+	var/list/bbox = get_bbox_of_atoms(visible_turfs)
+	var/size_x = bbox[3] - bbox[1] + 1
+	var/size_y = bbox[4] - bbox[2] + 1
+
+	cam_screen.vis_contents = visible_turfs
+	cam_background.icon_state = "clear"
+	cam_background.fill_rect(1, 1, size_x, size_y)
 
 /obj/item/hud_tablet/alpha
 	name = "alpha hud tablet"

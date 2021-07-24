@@ -1,8 +1,8 @@
 /**
-  * Resin walls
-  *
-  * Used mostly be xenomorphs
-  */
+ * Resin walls
+ *
+ * Used mostly be xenomorphs
+ */
 /turf/closed/wall/resin
 	name = "resin wall"
 	desc = "Weird slime solidified into a wall."
@@ -77,27 +77,32 @@
 /turf/closed/wall/resin/ex_act(severity)
 	switch(severity)
 		if(EXPLODE_DEVASTATE)
-			take_damage(500)
+			take_damage(600)
 		if(EXPLODE_HEAVY)
 			take_damage(rand(140, 300))
 		if(EXPLODE_LIGHT)
 			take_damage(rand(50, 100))
 
 
-/turf/closed/wall/resin/attack_alien(mob/living/carbon/xenomorph/M)
-	M.visible_message("<span class='xenonotice'>\The [M] starts tearing down \the [src]!</span>", \
-	"<span class='xenonotice'>We start to tear down \the [src].</span>")
-	if(!do_after(M, 4 SECONDS, TRUE, M, BUSY_ICON_GENERIC))
+/turf/closed/wall/resin/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
+	if(X.status_flags & INCORPOREAL)
 		return
-	M.do_attack_animation(src, ATTACK_EFFECT_CLAW)
-	M.visible_message("<span class='xenonotice'>\The [M] tears down \the [src]!</span>", \
-	"<span class='xenonotice'>We tear down \the [src].</span>")
+
+	X.visible_message(span_xenonotice("\The [X] starts tearing down \the [src]!"), \
+	span_xenonotice("We start to tear down \the [src]."))
+	if(!do_after(X, 4 SECONDS, TRUE, X, BUSY_ICON_GENERIC))
+		return
+	if(!istype(src)) // Prevent jumping to other turfs if do_after completes with the wall already gone
+		return
+	X.do_attack_animation(src, ATTACK_EFFECT_CLAW)
+	X.visible_message(span_xenonotice("\The [X] tears down \the [src]!"), \
+	span_xenonotice("We tear down \the [src]."))
 	playsound(src, "alien_resin_break", 25)
 	take_damage(max_integrity) // Ensure its destroyed
 
 
 /turf/closed/wall/resin/attack_hand(mob/living/user)
-	to_chat(user, "<span class='warning'>You scrape ineffectively at \the [src].</span>")
+	to_chat(user, span_warning("You scrape ineffectively at \the [src]."))
 	return TRUE
 
 
@@ -113,7 +118,7 @@
 	if(I.damtype == "fire") //Burn damage deals extra vs resin structures (mostly welders).
 		multiplier += 1
 
-	if(istype(I, /obj/item/tool/pickaxe/plasmacutter) && !user.action_busy)
+	if(istype(I, /obj/item/tool/pickaxe/plasmacutter) && !user.do_actions)
 		var/obj/item/tool/pickaxe/plasmacutter/P = I
 		if(P.start_cut(user, name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD))
 			multiplier += PLASMACUTTER_RESIN_MULTIPLIER
@@ -124,11 +129,10 @@
 	playsound(src, "alien_resin_break", 25)
 
 
-/turf/closed/wall/resin/CanPass(atom/movable/mover, turf/target)
+/turf/closed/wall/resin/CanAllowThrough(atom/movable/mover, turf/target)
+	. = ..()
 	if(istype(mover) && CHECK_BITFIELD(mover.flags_pass, PASSGLASS))
 		return !opacity
-	return !density
-
 
 /turf/closed/wall/resin/dismantle_wall(devastated = 0, explode = 0)
 	ScrapeAway()
@@ -150,8 +154,8 @@
 	return FALSE
 
 /**
-  * Regenerating walls that start with lower health, but grow to a much higher hp over time
-  */
+ * Regenerating walls that start with lower health, but grow to a much higher hp over time
+ */
 /turf/closed/wall/resin/regenerating
 	max_integrity = 100
 
@@ -171,9 +175,9 @@
 	START_PROCESSING(SSslowprocess, src)
 
 /**
-  * Try to start processing on the wall.
-  * Will return early if the wall is already at max upgradable health.
-  */
+ * Try to start processing on the wall.
+ * Will return early if the wall is already at max upgradable health.
+ */
 /turf/closed/wall/resin/regenerating/proc/start_healing()
 	if(wall_integrity == max_upgradable_health)
 		return

@@ -318,7 +318,7 @@
 		dat += "<tr><td>[(M.key ? "[M.key]" : "No Key")]</td>"
 		dat += "<td><a href='?priv_msg=[M.ckey]'>[M.name]</a></td>"
 		if(isAI(M))
-			dat += "<td>aI</td>"
+			dat += "<td>AI</td>"
 		else if(ishuman(M))
 			dat += "<td>[M.real_name]</td>"
 		else if(istype(M, /mob/new_player))
@@ -454,7 +454,6 @@
 		<a href='?src=[ref];transform=larva;mob=[REF(M)]'>Larva</a>
 		<br> Alien Tier 1:
 		<a href='?src=[ref];transform=runner;mob=[REF(M)]'>Runner</a> |
-		<a href='?src=[ref];transform=panther;mob=[REF(M)]'>Panther</a> |
 		<a href='?src=[ref];transform=drone;mob=[REF(M)]'>Drone</a> |
 		<a href='?src=[ref];transform=sentinel;mob=[REF(M)]'>Sentinel</a> |
 		<a href='?src=[ref];transform=defender;mob=[REF(M)]'>Defender</a>
@@ -464,16 +463,19 @@
 		<a href='?src=[ref];transform=warrior;mob=[REF(M)]'>Warrior</a> |
 		<a href='?src=[ref];transform=spitter;mob=[REF(M)]'>Spitter</a> |
 		<a href='?src=[ref];transform=hivelord;mob=[REF(M)]'>Hivelord</a> |
-		<a href='?src=[ref];transform=carrier;mob=[REF(M)]'>Carrier</a>
+		<a href='?src=[ref];transform=carrier;mob=[REF(M)]'>Carrier</a> |
+		<a href='?src=[ref];transform=wraith;mob=[REF(M)]'>Wraith</a>
 		<br> Alien Tier 3:
 		<a href='?src=[ref];transform=ravager;mob=[REF(M)]'>Ravager</a> |
 		<a href='?src=[ref];transform=praetorian;mob=[REF(M)]'>Praetorian</a> |
 		<a href='?src=[ref];transform=boiler;mob=[REF(M)]'>Boiler</a> |
 		<a href='?src=[ref];transform=defiler;mob=[REF(M)]'>Defiler</a> |
-		<a href='?src=[ref];transform=crusher;mob=[REF(M)]'>Crusher</a> |
-		<a href='?src=[ref];transform=shrike;mob=[REF(M)]'>Shrike</a>
+		<a href='?src=[ref];transform=crusher;mob=[REF(M)]'>Crusher</a>
 		<br> Alien Tier 4:
-		<a href='?src=[ref];transform=queen;mob=[REF(M)]'>Queen</a>
+		<a href='?src=[ref];transform=queen;mob=[REF(M)]'>Queen</a> |
+		<a href='?src=[ref];transform=shrike;mob=[REF(M)]'>Shrike</a> |
+		<a href='?src=[ref];transform=hivemind;mob=[REF(M)]'>Hivemind</a> |
+		<a href='?src=[ref];transform=king;mob=[REF(M)]'>King</a>
 		<br>
 	"}
 

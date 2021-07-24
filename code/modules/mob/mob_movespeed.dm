@@ -172,3 +172,11 @@ Key procs
 			assembled[our_id] = our_data
 	movespeed_modification = assembled
 	UNSETEMPTY(movespeed_modification)
+
+///Give the sum of all slowdown that have inputted flag
+/mob/proc/additive_flagged_slowdown(flag)
+	. = 0
+	for(var/id in movespeed_modification)
+		var/list/data = movespeed_modification[id]
+		if(CHECK_BITFIELD(data[MOVESPEED_DATA_INDEX_FLAGS], flag))
+			. += data[MOVESPEED_DATA_INDEX_MULTIPLICATIVE_SLOWDOWN]

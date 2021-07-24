@@ -10,6 +10,7 @@
 	flags_atom = CONDUCT
 	flags_equip_slot = ITEM_SLOT_BELT
 	hitsound = 'sound/weapons/smash.ogg'
+	icon_state_mini = "grenade"
 	var/launched = FALSE //if launched from a UGL/grenade launcher
 	var/launchforce = 10 //bonus impact damage if launched from a UGL/grenade launcher
 	var/det_time = 50
@@ -29,17 +30,17 @@
 		return
 
 	if(!user.dextrous)
-		to_chat(user, "<span class='warning'>You don't have the dexterity to do this!</span>")
+		to_chat(user, span_warning("You don't have the dexterity to do this!"))
 		return
 
 	if(issynth(user) && dangerous && !CONFIG_GET(flag/allow_synthetic_gun_use))
-		to_chat(user, "<span class='warning'>Your programming prevents you from operating this device!</span>")
+		to_chat(user, span_warning("Your programming prevents you from operating this device!"))
 		return
 
 	activate(user)
 
-	user.visible_message("<span class='warning'>[user] primes \a [name]!</span>", \
-	"<span class='warning'>You prime \a [name]!</span>")
+	user.visible_message(span_warning("[user] primes \a [name]!"), \
+	span_warning("You prime \a [name]!"))
 	if(initial(dangerous) && ishumanbasic(user))
 		var/nade_sound = user.gender == FEMALE ? get_sfx("female_fragout") : get_sfx("male_fragout")
 
@@ -54,7 +55,7 @@
 		C.throw_mode_on()
 
 
-/obj/item/explosive/grenade/proc/activate(mob/user as mob)
+/obj/item/explosive/grenade/proc/activate(mob/user)
 	if(active)
 		return
 
@@ -75,7 +76,6 @@
 	if(dangerous)
 		overlays+=new/obj/effect/overlay/danger
 		dangerous = 0
-	return
 
 
 /obj/item/explosive/grenade/proc/prime()
@@ -88,16 +88,16 @@
 		switch(det_time)
 			if(1)
 				det_time = 10
-				to_chat(user, "<span class='notice'>You set the [name] for 1 second detonation time.</span>")
+				to_chat(user, span_notice("You set the [name] for 1 second detonation time."))
 			if(10)
 				det_time = 30
-				to_chat(user, "<span class='notice'>You set the [name] for 3 second detonation time.</span>")
+				to_chat(user, span_notice("You set the [name] for 3 second detonation time."))
 			if(30)
 				det_time = 50
-				to_chat(user, "<span class='notice'>You set the [name] for 5 second detonation time.</span>")
+				to_chat(user, span_notice("You set the [name] for 5 second detonation time."))
 			if(50)
 				det_time = 1
-				to_chat(user, "<span class='notice'>You set the [name] for instant detonation.</span>")
+				to_chat(user, span_notice("You set the [name] for instant detonation."))
 
 /obj/item/explosive/grenade/attack_hand(mob/living/user)
 	. = ..()
@@ -106,5 +106,5 @@
 	walk(src, null, null)
 	return
 
-/obj/item/explosive/grenade/attack_paw(mob/living/carbon/monkey/user)
+/obj/item/explosive/grenade/attack_paw(mob/living/carbon/human/user)
 	return attack_hand(user)

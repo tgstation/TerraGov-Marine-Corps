@@ -139,10 +139,10 @@
 	},
 /area/shuttle/ert)
 "C" = (
-/obj/machinery/door/airlock/mainship/generic{
+/obj/machinery/door/poddoor/shutters/transit/open{
 	dir = 2
 	},
-/obj/machinery/door/poddoor/shutters/transit/open{
+/obj/machinery/door/airlock/mainship/generic/ert{
 	dir = 2
 	},
 /turf/open/shuttle/dropship/floor,

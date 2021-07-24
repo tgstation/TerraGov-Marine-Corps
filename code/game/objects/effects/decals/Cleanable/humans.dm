@@ -53,6 +53,8 @@
 		return
 	if(amount < 1)
 		return
+	if(CHECK_MULTIPLE_BITFIELDS(perp.flags_pass, HOVERING))
+		return
 
 	var/datum/limb/foot/l_foot = perp.get_limb("l_foot")
 	var/datum/limb/foot/r_foot = perp.get_limb("r_foot")
@@ -95,7 +97,7 @@
 
 	var/taken = rand(1,amount)
 	amount -= taken
-	to_chat(H, "<span class='notice'>You get some of \the [src] on your hands.</span>")
+	to_chat(H, span_notice("You get some of \the [src] on your hands."))
 
 	H.add_blood(basecolor)
 	H.bloody_hands += taken

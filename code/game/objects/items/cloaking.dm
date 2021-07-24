@@ -23,10 +23,8 @@
 	spark_system.attach(src)
 
 /obj/item/chameleon/Destroy()
-	if(spark_system)
-		qdel(spark_system)
-		spark_system = null
-	. = ..()
+	QDEL_NULL(spark_system)
+	return ..()
 
 /obj/item/chameleon/dropped(mob/user)
 	disrupt(user)
@@ -38,54 +36,34 @@
 /obj/item/chameleon/attack_self(mob/user)
 	toggle(user)
 
-/obj/item/chameleon/proc/toggle(mob/user)
-	if(chameleon_cooldown >= world.time) return
-	if(!ishuman(user)) return
+/obj/item/chameleon/proc/toggle(mob/user, forced = FALSE)
+	if(chameleon_cooldown >= world.time)
+		return
+	if(!ishuman(user))
+		return
+	if(chameleon_on)
+		if(SEND_SIGNAL(user, COMSIG_MOB_ENABLE_STEALTH) & STEALTH_ALREADY_ACTIVE)
+			to_chat(user, span_warning("You are already cloaked!"))
+			return
+		RegisterSignal(user, COMSIG_MOB_ENABLE_STEALTH, .proc/on_other_activate)
+		user.alpha = 25
+		to_chat(user, span_notice("You activate the [src]."))
+		spark_system.start()
+	else
+		UnregisterSignal(user, COMSIG_MOB_ENABLE_STEALTH)
+		user.alpha = initial(user.alpha)
+		to_chat(user, span_notice("You deactivate the [src]."))
+		spark_system.start()
 	playsound(get_turf(src), 'sound/effects/pop.ogg', 25, 1, 3)
 	chameleon_on = !chameleon_on
+	if(forced)
+		chameleon_cooldown = world.time + 50
+		return
 	chameleon_cooldown = world.time + 20
-	if(chameleon_on)
-		user.alpha = 25
-		to_chat(user, "<span class='notice'>You activate the [src].</span>")
-		spark_system.start()
-	else
-		user.alpha = initial(user.alpha)
-		to_chat(user, "<span class='notice'>You deactivate the [src].</span>")
-		spark_system.start()
 
 /obj/item/chameleon/proc/disrupt(mob/user)
-	if(chameleon_on)
-		spark_system.start()
-		user.alpha = initial(user.alpha)
-		chameleon_cooldown = world.time + 50
-		chameleon_on = FALSE
+	toggle(user, TRUE)
 
-
-
-
-/obj/item/cloaking_device
-	name = "cloaking device"
-	desc = "Use this to become invisible to the human eyesocket."
-	icon_state = "shield0"
-	flags_atom = CONDUCT
-	item_state = "electronic"
-	throwforce = 10.0
-	throw_speed = 2
-	throw_range = 10
-	w_class = WEIGHT_CLASS_SMALL
-
-
-/obj/item/cloaking_device/attack_self(mob/user as mob)
-	src.active = !( src.active )
-	if (src.active)
-		to_chat(user, "<span class='notice'>The cloaking device is now active.</span>")
-		src.icon_state = "shield1"
-	else
-		to_chat(user, "<span class='notice'>The cloaking device is now inactive.</span>")
-		src.icon_state = "shield0"
-	return
-
-/obj/item/cloaking_device/emp_act(severity)
-	active = 0
-	icon_state = "shield0"
-	..()
+/obj/item/chameleon/proc/on_other_activate()
+	SIGNAL_HANDLER
+	return STEALTH_ALREADY_ACTIVE

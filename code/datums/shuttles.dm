@@ -112,9 +112,17 @@
 	shuttle_id = "normandy"
 	name = "Normandy"
 
+/datum/map_template/shuttle/dropship_three
+	shuttle_id = "triumph"
+	name = "Triumph"
+
 /datum/map_template/shuttle/cas
 	shuttle_id = "casplane"
 	name = "Condor Jet"
+
+/datum/map_template/shuttle/minidropship
+	shuttle_id = "minidropship"
+	name = "Tadpole Drop Shuttle"
 
 /datum/map_template/shuttle/escape_pod
 	shuttle_id = "escape_pod"

@@ -7,6 +7,7 @@
 	plane = BLACKNESS_PLANE
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	invisibility = INVISIBILITY_LIGHTING
+	minimap_color = MINIMAP_AREA
 
 	var/flags_alarm_state = NONE
 
@@ -35,6 +36,8 @@
 	var/pressure = ONE_ATMOSPHERE
 	var/temperature = T20C
 
+	var/parallax_movedir = 0
+
 	///the material the ceiling is made of. Used for debris from airstrikes and orbital beacons in ceiling_debris()
 	var/ceiling = CEILING_NONE
 	///Used in designating the "level" of maps pretending to be multi-z one Z
@@ -42,6 +45,7 @@
 	///Is this area considered inside or outside
 	var/outside = TRUE
 
+	var/flags_area = NONE
 	///Cameras in this area
 	var/list/cameras
 	///Keeps a lit of adjacent firelocks, used for alarms/ZAS
@@ -51,6 +55,11 @@
 		'sound/ambience/ambigen5.ogg', 'sound/ambience/ambigen6.ogg', 'sound/ambience/ambigen7.ogg', 'sound/ambience/ambigen8.ogg',\
 		'sound/ambience/ambigen9.ogg', 'sound/ambience/ambigen10.ogg', 'sound/ambience/ambigen11.ogg', 'sound/ambience/ambigen12.ogg',\
 		'sound/ambience/ambigen14.ogg', 'sound/ambience/ambiatmos.ogg', 'sound/ambience/ambiatmos2.ogg')
+	///Used to decide what the minimum time between ambience is
+	var/min_ambience_cooldown = 40 SECONDS
+	///Used to decide what the maximum time between ambience is
+	var/max_ambience_cooldown = 120 SECONDS
+
 
 
 
@@ -108,30 +117,6 @@
 	set waitfor = FALSE
 	SEND_SIGNAL(src, COMSIG_AREA_ENTERED, AM)
 	SEND_SIGNAL(AM, COMSIG_ENTER_AREA, src) //The atom that enters the area
-	if(!isliving(AM))
-		return
-
-	var/mob/living/L = AM
-	if(!L.ckey)
-		return
-
-	if(!L.client || !(L.client.prefs.toggles_sound & SOUND_AMBIENCE))
-		return
-
-	if(!prob(35))
-		return
-
-	var/sound = pick(ambience)
-
-	if(!L.client.played)
-		SEND_SOUND(L, sound(sound, repeat = 0, wait = 0, volume = 25, channel = CHANNEL_AMBIENT))
-		L.client.played = TRUE
-		addtimer(CALLBACK(L.client, /client/proc/ResetAmbiencePlayed), 600)
-
-
-/client/proc/ResetAmbiencePlayed()
-	played = FALSE
-
 
 
 /area/Exited(atom/movable/M)
@@ -211,7 +196,7 @@
 		if(E.operating)
 			E.nextstate = OPEN
 		else if(!E.density)
-			INVOKE_ASYNC(E, /obj/machinery/door.proc/close)
+			E.close()
 
 
 /area/proc/air_doors_open()
@@ -222,7 +207,7 @@
 		if(E.operating)
 			E.nextstate = OPEN
 		else if(E.density)
-			INVOKE_ASYNC(E, /obj/machinery/door.proc/open)
+			E.open()
 
 
 /area/proc/firealert()
@@ -237,7 +222,7 @@
 				if(D.operating)
 					D.nextstate = FIREDOOR_CLOSED
 				else if(!D.density)
-					INVOKE_ASYNC(D, /obj/machinery/door.proc/close)
+					D.close()
 		var/list/cameras = list()
 		for (var/obj/machinery/computer/station_alert/a in GLOB.machines)
 			a.triggerAlarm("Fire", src, cameras, src)
@@ -254,7 +239,7 @@
 				if(D.operating)
 					D.nextstate = OPEN
 				else if(D.density)
-					INVOKE_ASYNC(D, /obj/machinery/door.proc/open)
+					D.open()
 
 		for(var/obj/machinery/computer/station_alert/a in GLOB.machines)
 			a.cancelAlarm("Fire", src, src)

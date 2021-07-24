@@ -1,4 +1,3 @@
-import { Fragment } from 'inferno';
 import { useBackend } from '../backend';
 import { Button, LabeledList, Box } from '../components';
 import { Window } from '../layouts';
@@ -6,7 +5,9 @@ import { Window } from '../layouts';
 export const SelfDestruct = (props, context) => {
   const { act, data } = useBackend(context);
   return (
-    <Window>
+    <Window
+      width={470}
+      height={290}>
       <Window.Content>
         <LabeledList>
           <LabeledList.Item label="STATUS:">
@@ -29,7 +30,7 @@ export const SelfDestruct = (props, context) => {
               color="yellow"
               onClick={() => act("dest_start")} />
           ) || data.dest_status === 2 && (
-            <Fragment>
+            <>
               <Button
                 icon="exclamation-triangle"
                 content="INITIATE"
@@ -40,7 +41,7 @@ export const SelfDestruct = (props, context) => {
                 content="CANCEL"
                 color="yellow"
                 onClick={() => act("dest_cancel")} />
-            </Fragment>
+            </>
           ) || (
             <span className="bad">ERROR</span>
           )}

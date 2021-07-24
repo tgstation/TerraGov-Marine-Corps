@@ -12,7 +12,7 @@
 	icon_state = "drone_fab_idle"
 	var/busy = FALSE
 
-/obj/machinery/dropship_part_fabricator/update_icon()
+/obj/machinery/dropship_part_fabricator/update_icon_state()
 	if(machine_stat & NOPOWER)
 		icon_state = "drone_fab_nopower"
 		return
@@ -51,9 +51,9 @@
 /obj/machinery/dropship_part_fabricator/proc/build_dropship_part(part_type, cost, mob/user)
 	if(machine_stat & NOPOWER) return
 	if(SSpoints.dropship_points < cost)
-		to_chat(user, "<span class='warning'>You don't have enough points to build that.</span>")
+		to_chat(user, span_warning("You don't have enough points to build that."))
 		return
-	visible_message("<span class='notice'>[src] starts printing something.</span>")
+	visible_message(span_notice("[src] starts printing something."))
 	SSpoints.dropship_points -= cost
 	update_icon()
 	busy = TRUE
@@ -72,7 +72,7 @@
 		return
 
 	if(busy)
-		to_chat(usr, "<span class='warning'>The autolathe is busy. Please wait for completion of previous operation.</span>")
+		to_chat(usr, span_warning("The autolathe is busy. Please wait for completion of previous operation."))
 		return
 
 	if(href_list["produce"])
@@ -96,3 +96,12 @@
 
 		build_dropship_part(build_type, cost, usr)
 		return
+
+/obj/machinery/dropship_part_fabricator/attackby(obj/item/H, mob/user, params)
+	. = ..()
+	if(!istype(H, /obj/item/dropship_points_voucher))
+		return
+	var/obj/item/dropship_points_voucher/voucher = H
+	to_chat(user, span_notice("You add [voucher.extra_points] dropship points to \the [src]."))
+	SSpoints.dropship_points += voucher.extra_points
+	qdel(H)

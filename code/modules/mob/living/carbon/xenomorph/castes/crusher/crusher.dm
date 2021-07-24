@@ -24,8 +24,7 @@
 	flash_act()
 
 	if(severity == EXPLODE_DEVASTATE)
-		adjustBruteLoss(rand(200, 300))
-		UPDATEHEALTH(src)
+		adjustBruteLoss(rand(200, 300), updating_health = TRUE)
 
 
 /mob/living/carbon/xenomorph/crusher/handle_special_state()

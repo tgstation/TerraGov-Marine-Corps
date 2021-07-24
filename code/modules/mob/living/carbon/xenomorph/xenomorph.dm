@@ -11,6 +11,8 @@
 	set_datum()
 	time_of_birth = world.time
 	add_inherent_verbs()
+	var/datum/action/minimap/xeno/mini = new
+	mini.give_action(src)
 	add_abilities()
 
 	create_reagents(1000)
@@ -56,13 +58,13 @@
 	if(!job) //It might be setup on spawn.
 		setup_job()
 
-	RegisterSignal(src, COMSIG_GRAB_SELF_ATTACK, .proc/devour_grabbed) //Devour ability.
-
 	AddComponent(/datum/component/bump_attack)
 
 	ADD_TRAIT(src, TRAIT_BATONIMMUNE, TRAIT_XENO)
 	ADD_TRAIT(src, TRAIT_FLASHBANGIMMUNE, TRAIT_XENO)
-
+	hive.update_tier_limits()
+	if(z) //Larva are initiated in null space
+		SSminimaps.add_marker(src, z, hud_flags = MINIMAP_FLAG_XENO, iconstate = xeno_caste.minimap_icon)
 
 /mob/living/carbon/xenomorph/proc/set_datum()
 	if(!caste_base_type)
@@ -77,12 +79,17 @@
 	xeno_caste = X
 
 	plasma_stored = xeno_caste.plasma_max
-	maxHealth = xeno_caste.max_health
+	maxHealth = xeno_caste.max_health * GLOB.xeno_stat_multiplicator_buff
 	health = maxHealth
 	setXenoCasteSpeed(xeno_caste.speed)
 	soft_armor = getArmor(arglist(xeno_caste.soft_armor))
 	hard_armor = getArmor(arglist(xeno_caste.hard_armor))
 	warding_aura = 0 //Resets aura for reapplying armor
+
+///Will multiply the base max health of this xeno by GLOB.xeno_stat_multiplicator_buff
+/mob/living/carbon/xenomorph/proc/apply_health_stat_buff()
+	maxHealth = max(xeno_caste.max_health * GLOB.xeno_stat_multiplicator_buff, 10)
+	health = min(health, maxHealth)
 
 /mob/living/carbon/xenomorph/set_armor_datum()
 	return //Handled in set_datum()
@@ -202,7 +209,9 @@
 	GLOB.xeno_mob_list -= src
 	GLOB.dead_xeno_list -= src
 
+	var/datum/hive_status/hive_placeholder = hive
 	remove_from_hive()
+	hive_placeholder.update_tier_limits() //Update our tier limits.
 
 	vis_contents -= wound_overlay
 	QDEL_NULL(wound_overlay)
@@ -212,17 +221,21 @@
 /mob/living/carbon/xenomorph/slip(slip_source_name, stun_level, weaken_level, run_only, override_noslip, slide_steps)
 	return FALSE
 
-/mob/living/carbon/xenomorph/start_pulling(atom/movable/AM, suppress_message = TRUE)
+/mob/living/carbon/xenomorph/start_pulling(atom/movable/AM, suppress_message = TRUE, bypass_crit_delay = FALSE)
 	if(!isliving(AM))
+		return FALSE
+	if(!Adjacent(AM)) //Logic!
+		return FALSE
+	if(status_flags & INCORPOREAL || AM.status_flags & INCORPOREAL) //Incorporeal things can't grab or be grabbed.
 		return FALSE
 	var/mob/living/L = AM
 	if(L.buckled)
 		return FALSE //to stop xeno from pulling marines on roller beds.
 	if(ishuman(L))
-		if(!chestburst)
-			do_attack_animation(L, ATTACK_EFFECT_GRAB)
-			if(!do_mob(src, L , XENO_PULL_CHARGE_TIME, BUSY_ICON_HOSTILE))
-				return FALSE
+		if(L.stat == DEAD && (SSticker.mode?.flags_round_type & MODE_DEAD_GRAB_FORBIDDEN)) //Can't drag dead human bodies in distress
+			to_chat(usr,span_xenowarning("This looks gross, better not touch it"))
+			return FALSE
+		do_attack_animation(L, ATTACK_EFFECT_GRAB)
 		pull_speed += XENO_DEADHUMAN_DRAG_SLOWDOWN
 	SEND_SIGNAL(src, COMSIG_XENOMORPH_GRAB)
 	return ..()
@@ -233,18 +246,20 @@
 	return ..()
 
 /mob/living/carbon/xenomorph/pull_response(mob/puller)
+	if(stat != CONSCIOUS) // If the Xeno is unconscious, don't fight back against a grab/pull
+		return TRUE
+	if(!ishuman(puller))
+		return TRUE
 	var/mob/living/carbon/human/H = puller
-	if(stat == CONSCIOUS && H.species?.count_human) // If the Xeno is conscious, fight back against a grab/pull
-		H.Paralyze(rand(xeno_caste.tacklemin,xeno_caste.tacklemax) * 20)
-		playsound(H.loc, 'sound/weapons/pierce.ogg', 25, 1)
-		H.visible_message("<span class='warning'>[H] tried to pull [src] but instead gets a tail swipe to the head!</span>")
-		H.stop_pulling()
-		return FALSE
-	return TRUE
+	H.Paralyze(rand(xeno_caste.tacklemin,xeno_caste.tacklemax) * 20)
+	playsound(H.loc, 'sound/weapons/pierce.ogg', 25, 1)
+	H.visible_message(span_warning("[H] tried to pull [src] but instead gets a tail swipe to the head!"))
+	H.stop_pulling()
+	return FALSE
 
 /mob/living/carbon/xenomorph/resist_grab()
 	if(pulledby.grab_state)
-		visible_message("<span class='danger'>[src] has broken free of [pulledby]'s grip!</span>", null, null, 5)
+		visible_message(span_danger("[src] has broken free of [pulledby]'s grip!"), null, null, 5)
 	pulledby.stop_pulling()
 	. = 1
 
@@ -265,6 +280,12 @@
 	hud_to_add = GLOB.huds[DATA_HUD_BASIC]
 	hud_to_add.add_hud_to(src)
 
+	hud_to_add = GLOB.huds[DATA_HUD_XENO_REAGENTS]
+	hud_to_add.add_hud_to(src)
+	hud_to_add = GLOB.huds[DATA_HUD_XENO_TACTICAL] //Allows us to see xeno tactical elements clearly via HUD elements
+	hud_to_add.add_hud_to(src)
+	hud_to_add = GLOB.huds[DATA_HUD_MEDICAL_PAIN]
+	hud_to_add.add_hud_to(src)
 
 
 /mob/living/carbon/xenomorph/point_to_atom(atom/A, turf/T)
@@ -293,25 +314,33 @@
 /mob/living/carbon/xenomorph/reagent_check(datum/reagent/R) //For the time being they can't metabolize chemicals.
 	return TRUE
 
-/mob/living/carbon/xenomorph/update_leader_tracking(mob/living/carbon/xenomorph/X)
+/mob/living/carbon/xenomorph/update_tracking(mob/living/carbon/xenomorph/X) //X is unused, but we keep that function so it can be called with marines one
 	if(!hud_used?.locate_leader)
 		return
-
 	var/obj/screen/LL_dir = hud_used.locate_leader
-	if(hive.living_xeno_ruler == src || src == X) // No need to track ourselves, especially if we are the hive leader.
+	if(!tracked)
+		if(hive.living_xeno_ruler)
+			tracked = hive.living_xeno_ruler
+		else
+			LL_dir.icon_state = "trackoff"
+			return
+
+	if(tracked == src) // No need to track ourselves
 		LL_dir.icon_state = "trackoff"
 		return
-
-	if(X.z != src.z || get_dist(src,X) < 1 || src == X)
+	if(tracked.z != z || get_dist(src, tracked) < 1)
 		LL_dir.icon_state = "trackondirect"
-	else
-		var/area/A = get_area(src.loc)
-		var/area/QA = get_area(X.loc)
-		if(A.fake_zlevel == QA.fake_zlevel)
-			LL_dir.icon_state = "trackon"
-			LL_dir.setDir(get_dir(src, X))
-		else
-			LL_dir.icon_state = "trackondirect"
+		return
+	var/area/A = get_area(loc)
+	var/area/QA = get_area(tracked.loc)
+	if(A.fake_zlevel == QA.fake_zlevel)
+		LL_dir.icon_state = "trackon"
+		LL_dir.setDir(get_dir(src, tracked))
+		return
+
+	LL_dir.icon_state = "trackondirect"
+	return
+
 
 /mob/living/carbon/xenomorph/clear_leader_tracking()
 	if(!hud_used?.locate_leader)

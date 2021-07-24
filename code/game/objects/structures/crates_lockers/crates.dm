@@ -18,16 +18,16 @@
 		return 0
 	return 1
 
-/obj/structure/closet/crate/CanPass(atom/movable/mover, turf/target)
+/obj/structure/closet/crate/CanAllowThrough(atom/movable/mover, turf/target)
+	. = ..()
 	if(istype(mover) && CHECK_BITFIELD(mover.flags_pass, PASSTABLE))
 		return 1
+
 	var/obj/structure/S = locate(/obj/structure) in get_turf(mover)
 	if(S && S.climbable && !(S.flags_atom & ON_BORDER) && climbable && isliving(mover)) //Climbable non-border objects allow you to universally climb over others
 		return 1
 	if(opened) //Open crate, you can cross over it
 		return 1
-	else
-		return 0
 
 /obj/structure/closet/crate/open()
 	if(opened)
@@ -88,19 +88,19 @@
 	if(iscablecoil(I))
 		var/obj/item/stack/cable_coil/C = I
 		if(rigged)
-			to_chat(user, "<span class='notice'>[src] is already rigged!</span>")
+			to_chat(user, span_notice("[src] is already rigged!"))
 			return
 		if(!C.use(1))
 			return
 
-		to_chat(user, "<span class='notice'>You rig [src].</span>")
+		to_chat(user, span_notice("You rig [src]."))
 		rigged = TRUE
 
 	else if(istype(I, /obj/item/electropack))
 		if(!rigged)
 			return
 
-		to_chat(user, "<span class='notice'>You attach [I] to [src].</span>")
+		to_chat(user, span_notice("You attach [I] to [src]."))
 		user.drop_held_item()
 		I.forceMove(src)
 
@@ -108,7 +108,7 @@
 		if(!rigged)
 			return
 
-		to_chat(user, "<span class='notice'>You cut away the wiring.</span>")
+		to_chat(user, span_notice("You cut away the wiring."))
 		playsound(loc, 'sound/items/wirecutter.ogg', 25, 1)
 		rigged = FALSE
 

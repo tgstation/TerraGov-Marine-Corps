@@ -19,13 +19,13 @@
 	if(general_entry && general_entry.mechanics_text)
 		attach_strings += general_entry.mechanics_text
 
-	if(slot == "muzzle")
+	if(slot == ATTACHMENT_SLOT_MUZZLE)
 		attach_strings += "This attaches to the muzzle slot on most weapons.<br>"
-	if(slot == "rail")
+	if(slot == ATTACHMENT_SLOT_RAIL)
 		attach_strings += "This attaches to the rail slot on most weapons.<br>"
-	if(slot == "stock")
+	if(slot == ATTACHMENT_SLOT_STOCK)
 		attach_strings += "This attaches to the stock slot on most weapons.<br>"
-	if(slot == "under")
+	if(slot == ATTACHMENT_SLOT_UNDER)
 		attach_strings += "This attaches to the underbarrel slot on most weapons.<br>"
 
 	if(flags_attach_features & ATTACH_REMOVABLE)
@@ -46,7 +46,7 @@
 	if(damage_falloff_mod)
 		attach_strings += "Damage falloff: [damage_falloff_mod * 100]%"
 	if(burst_scatter_mod)
-		attach_strings += "Scatter chance: [burst_scatter_mod * 100]%"
+		attach_strings += "Burst scatter multiplier: [burst_scatter_mod]"
 	if(silence_mod)
 		attach_strings += "This can silence the weapon if it is attached."
 	if(light_mod)
@@ -63,6 +63,8 @@
 		attach_strings += "Wield delay: [wield_delay_mod / 10] seconds."
 	if(attach_shell_speed_mod)
 		attach_strings += "Bullet speed: [attach_shell_speed_mod * 100]%"
+	if(aim_mode_movement_mult)
+		attach_strings += "Aim Mode slowdow modifier: [aim_mode_movement_mult*100]%"
 	if(movement_acc_penalty_mod)
 		attach_strings += "Running accuracy penalty: [movement_acc_penalty_mod * 100]%"
 	if(max_rounds)

@@ -64,11 +64,11 @@
 
 	if(istype(I, /obj/item/tool/mop))
 		if(reagents.total_volume < 1)
-			to_chat(user, "<span class='warning'>[src] is out of water!</span>")
+			to_chat(user, span_warning("[src] is out of water!"))
 			return
 
 		reagents.trans_to(I, 5)
-		to_chat(user, "<span class='notice'>You wet [I] in [src].</span>")
+		to_chat(user, span_notice("You wet [I] in [src]."))
 		playsound(loc, 'sound/effects/slosh.ogg', 25, 1)
 
 /obj/structure/shipmast
@@ -173,7 +173,8 @@ obj/item/alienjar
 	layer = MOB_LAYER
 	resistance_flags = XENO_DAMAGEABLE
 
-/obj/structure/plasticflaps/CanPass(atom/A, turf/T)
+/obj/structure/plasticflaps/CanAllowThrough(atom/A, turf/T)
+	. = ..()
 	if(istype(A) && CHECK_BITFIELD(A.flags_pass, PASSGLASS))
 		return prob(60)
 
@@ -182,13 +183,12 @@ obj/item/alienjar
 		return FALSE
 
 	if(istype(A, /obj/vehicle))	//no vehicles
-		return 0
+		return FALSE
 
 	if(isliving(A)) // You Shall Not Pass!
 		var/mob/living/M = A
-		if(!M.lying_angle && !ismonkey(M) && !istype(M, /mob/living/simple_animal/mouse) && !istype(M, /mob/living/carbon/xenomorph/larva) && !istype(M, /mob/living/carbon/xenomorph/runner) && !istype(M, /mob/living/carbon/xenomorph/panther))  //If your not laying down, or a small creature, no pass.
-			return 0
-	return ..()
+		if(!M.lying_angle && !istype(M, /mob/living/simple_animal/mouse) && !istype(M, /mob/living/carbon/xenomorph/larva) && !istype(M, /mob/living/carbon/xenomorph/runner) && !istype(M, /mob/living/carbon/xenomorph/roony))  //If your not laying down, or a small creature, no pass. //todo kill shitcode
+			return FALSE
 
 /obj/structure/plasticflaps/ex_act(severity)
 	switch(severity)

@@ -14,7 +14,7 @@
 
 /datum/reagent/toxin/on_mob_life(mob/living/L, metabolism)
 	if(toxpwr)
-		L.adjustToxLoss(toxpwr*REM)
+		L.adjustToxLoss(toxpwr*0.5*effect_str)
 	return ..()
 
 /datum/reagent/toxin/hptoxin
@@ -32,7 +32,7 @@
 	taste_description = "alchemy"
 
 /datum/reagent/toxin/sdtoxin/on_mob_life(mob/living/L, metabolism)
-	L.adjustOxyLoss(2*REM)
+	L.adjustOxyLoss(effect_str)
 	return ..()
 
 
@@ -62,7 +62,7 @@
 	toxpwr = 3
 
 /datum/reagent/toxin/phoron/on_mob_life(mob/living/L, metabolism)
-	holder.remove_reagent(/datum/reagent/medicine/inaprovaline, 2*REM)
+	holder.remove_reagent(/datum/reagent/medicine/inaprovaline, effect_str)
 	return ..()
 
 /datum/reagent/toxin/lexorin
@@ -76,7 +76,7 @@
 
 /datum/reagent/toxin/lexorin/on_mob_life(mob/living/L, metabolism)
 	if(prob(33))
-		L.take_limb_damage(REM, 0)
+		L.take_limb_damage(0.5*effect_str, 0)
 	L.adjustOxyLoss(3)
 	if(prob(20))
 		L.emote("gasp")
@@ -96,7 +96,7 @@
 	custom_metabolism = REAGENTS_METABOLISM * 2
 
 /datum/reagent/toxin/cyanide/on_mob_life(mob/living/L, metabolism)
-	L.adjustOxyLoss(4*REM)
+	L.adjustOxyLoss(2*effect_str)
 	if(current_cycle > 10)
 		L.Sleeping(40)
 	return ..()
@@ -128,7 +128,7 @@
 	return ..()
 
 /datum/reagent/toxin/zombiepowder/on_mob_life(mob/living/L, metabolism)
-	L.adjustOxyLoss(0.5*REM)
+	L.adjustOxyLoss(0.25*effect_str)
 	L.Paralyze(20 SECONDS)
 	return ..()
 
@@ -228,18 +228,19 @@
 
 /datum/reagent/toxin/sleeptoxin/on_mob_life(mob/living/L, metabolism)
 	switch(current_cycle)
-		if(1 to 12)
+		if(1 to 6)
 			if(prob(5))
 				L.emote("yawn")
-		if(13 to 15)
 			L.blur_eyes(10)
-		if(16 to 40)
+		if(7 to 10)
 			if(prob(10))
-				L.Sleeping(20 SECONDS)
+				L.Sleeping(10 SECONDS)
 			L.drowsyness  = max(L.drowsyness, 20)
-		if(41 to INFINITY)
-			L.Sleeping(40 SECONDS) //previously knockdown, no good for a soporific.
+		if(11 to 80)
+			L.Sleeping(10 SECONDS) //previously knockdown, no good for a soporific.
 			L.drowsyness  = max(L.drowsyness, 30)
+		if(81 to INFINITY)
+			L.adjustDrowsyness(2)
 	L.reagent_pain_modifier += PAIN_REDUCTION_HEAVY
 	return ..()
 
@@ -261,14 +262,11 @@
 
 /datum/reagent/toxin/chloralhydrate/on_mob_life(mob/living/L, metabolism)
 	switch(current_cycle)
-		if(1 to 20)
-			L.AdjustConfused(40)
-			L.adjustDrowsyness(2)
-		if(21 to 60)
+		if(1 to 60)
 			L.Sleeping(10 SECONDS)
 		if(61 to INFINITY)
-			L.Sleeping(10 SECONDS)
-			L.adjustToxLoss((current_cycle/2 - 50)*REM)
+			L.adjustDrowsyness(2)
+			L.adjustToxLoss((current_cycle/4 - 25)*effect_str)
 	return ..()
 
 /datum/reagent/toxin/chloralhydrate/overdose_process(mob/living/L, metabolism)
@@ -332,7 +330,7 @@
 			L.Sleeping(10 SECONDS)
 		if(51 to INFINITY)
 			L.Sleeping(10 SECONDS)
-			L.adjustToxLoss((current_cycle - 50)*REM)
+			L.adjustToxLoss((current_cycle/2 - 25)*effect_str)
 	return ..()
 
 /datum/reagent/toxin/plasticide
@@ -355,7 +353,7 @@
 	taste_description = "acid"
 
 /datum/reagent/toxin/acid/on_mob_life(mob/living/L, metabolism)
-	L.take_limb_damage(0, REM)
+	L.take_limb_damage(0, 0.5*effect_str)
 	return ..()
 
 /datum/reagent/toxin/acid/reaction_mob(mob/living/L, method = TOUCH, volume, metabolism, show_message = TRUE, touch_protection = 0)
@@ -368,43 +366,31 @@
 		if(H.head)
 			if(prob(meltprob) && !CHECK_BITFIELD(H.head.resistance_flags, UNACIDABLE|INDESTRUCTIBLE))
 				if(show_message)
-					to_chat(H, "<span class='danger'>Your headgear melts away but protects you from the acid!</span>")
+					to_chat(H, span_danger("Your headgear melts away but protects you from the acid!"))
 				qdel(H.head)
 				H.update_inv_head(0)
 				H.update_hair(0)
 			else if(show_message)
-				to_chat(H, "<span class='warning'>Your headgear protects you from the acid.</span>")
+				to_chat(H, span_warning("Your headgear protects you from the acid."))
 			return
 
 		if(H.wear_mask)
 			if(prob(meltprob) && !CHECK_BITFIELD(H.wear_mask.resistance_flags, UNACIDABLE|INDESTRUCTIBLE))
 				if(show_message)
-					to_chat(H, "<span class='danger'>Your mask melts away but protects you from the acid!</span>")
+					to_chat(H, span_danger("Your mask melts away but protects you from the acid!"))
 				qdel(H.wear_mask)
 				H.update_inv_wear_mask(0)
 				H.update_hair(0)
 			else if(show_message)
-				to_chat(H, "<span class='warning'>Your mask protects you from the acid.</span>")
+				to_chat(H, span_warning("Your mask protects you from the acid."))
 			return
 
 		if(H.glasses) //Doesn't protect you from the acid but can melt anyways!
 			if(prob(meltprob) && !CHECK_BITFIELD(H.glasses.resistance_flags, UNACIDABLE|INDESTRUCTIBLE))
 				if(show_message)
-					to_chat(H, "<span class='danger'>Your glasses melts away!</span>")
+					to_chat(H, span_danger("Your glasses melts away!"))
 				qdel(H.glasses)
 				H.update_inv_glasses(0)
-
-	else if(ismonkey(L))
-		var/mob/living/carbon/monkey/MK = L
-		if(MK.wear_mask)
-			if(!CHECK_BITFIELD(MK.wear_mask.resistance_flags, UNACIDABLE|INDESTRUCTIBLE))
-				if(show_message)
-					to_chat(MK, "<span class='danger'>Your mask melts away but protects you from the acid!</span>")
-				qdel(MK.wear_mask)
-				MK.update_inv_wear_mask(0)
-			else if(show_message)
-				to_chat(MK, "<span class='warning'>Your mask protects you from the acid.</span>")
-			return
 
 	if(!isxeno(L))
 		if(ishuman(L) && volume >= 10)
@@ -426,7 +412,7 @@
 		if(!CHECK_BITFIELD(O.resistance_flags, UNACIDABLE|INDESTRUCTIBLE))
 			var/obj/effect/decal/cleanable/molten_item/I = new/obj/effect/decal/cleanable/molten_item(O.loc)
 			I.desc = "Looks like this was \an [O] some time ago."
-			O.visible_message("<span class='warning'>\the [O] melts.</span>", null, 5)
+			O.visible_message(span_warning("\the [O] melts."), null, 5)
 			qdel(O)
 
 /datum/reagent/toxin/acid/polyacid
@@ -445,7 +431,7 @@
 	color = "#535E66" // rgb: 83, 94, 102
 
 /datum/reagent/toxin/nanites/on_mob_life(mob/living/L, metabolism)
-	L.apply_damages(10*REM, 6*REM, 6*REM) //DO NOT DRINK THIS. Seriously!
+	L.apply_damages(5*effect_str, 3*effect_str, 3*effect_str) //DO NOT DRINK THIS. Seriously!
 	L.blood_volume -= 10
 	return ..()
 
@@ -457,43 +443,62 @@
 	custom_metabolism = REAGENTS_METABOLISM * 2
 	purge_list = list(/datum/reagent/medicine)
 	purge_rate = 1
-	overdose_threshold = REAGENTS_OVERDOSE
-	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL * 1.2 //make this a little more forgiving in light of the lethality
+	overdose_threshold = 10000 //Overdosing for neuro is what happens when you run out of stamina to avoid its oxy and toxin damage
 	scannable = TRUE
 	toxpwr = 0
 
+/datum/reagent/toxin/xeno_neurotoxin/light
+	name = "Light Neurotoxin"
+	description = "A debilitating nerve toxin. Impedes motor control in high doses. Causes progressive loss of mobility over time. This one seems to be weaker enough to not remove other chemicals."
+	purge_list = null
+	purge_rate = 0
+
 
 /datum/reagent/toxin/xeno_neurotoxin/on_mob_life(mob/living/L, metabolism)
+	var/power
 	switch(current_cycle)
 		if(1 to 20)
-			L.adjustStaminaLoss(4*REM) //While stamina loss is going, stamina regen apparently doesn't happen, so I can keep this smaller.
+			power = (2*effect_str) //While stamina loss is going, stamina regen apparently doesn't happen, so I can keep this smaller.
 			L.reagent_pain_modifier -= PAIN_REDUCTION_LIGHT
 		if(21 to 45)
-			L.adjustStaminaLoss(12*REM)
+			power = (6*effect_str)
 			L.reagent_pain_modifier -= PAIN_REDUCTION_HEAVY
+			L.jitter(4) //Shows that things are bad
 		if(46 to INFINITY)
-			L.adjustStaminaLoss(30*REM)
+			power = (15*effect_str)
 			L.reagent_pain_modifier -= PAIN_REDUCTION_VERY_HEAVY
-	L.adjust_drugginess(1.1)
+			L.jitter(8) //Shows that things are *really* bad
+
+	//Apply stamina damage, then apply any 'excess' stamina damage beyond our maximum as tox and oxy damage
+	var/stamina_loss_limit = L.maxHealth * 2
+	L.adjustStaminaLoss(min(power, max(0, stamina_loss_limit - L.staminaloss))) //If we're under our stamina_loss limit, apply the difference between our limit and current stamina damage or power, whichever's less
+
+	var/stamina_excess_damage = (L.staminaloss + power) - stamina_loss_limit
+	if(stamina_excess_damage > 0) //If we exceed maxHealth * 2 stamina damage, apply any excess as toxloss and oxyloss
+		L.adjustToxLoss(stamina_excess_damage * 0.5)
+		L.adjustOxyLoss(stamina_excess_damage * 0.5)
+		L.Losebreath(2) //So the oxy loss actually means something.
+
 	L.stuttering = max(L.stuttering, 1)
+
+	if(current_cycle < 21) //Additional effects at higher cycles
+		return ..()
+
+	L.adjust_drugginess(1.1) //Move this to stage 2 and 3 so it's not so obnoxious
+
+	if(L.eye_blurry < 30) //So we don't have the visual acuity of Mister Magoo forever
+		L.adjust_blurriness(1.3)
+
+
 	return ..()
 
-
-/datum/reagent/toxin/xeno_neurotoxin/overdose_process(mob/living/L, metabolism)
-	L.adjustToxLoss(REM) //Overdose starts applying toxin and oxygen damage. Long-term overdose will kill the host.
-	L.adjustOxyLoss(REM)
-	L.jitter(4) //Lets Xenos know they're ODing and should probably stop.
-
-
-/datum/reagent/toxin/xeno_neurotoxin/overdose_crit_process(mob/living/L, metabolism)
-	L.Losebreath(1) //Can't breathe; for punishing the bullies
 
 /datum/reagent/toxin/xeno_growthtoxin
 	name = "Larval Accelerant"
 	description = "A metabolic accelerant that dramatically increases the rate of larval growth in a host."
 	reagent_state = LIQUID
 	color = "#CF3600" // rgb: 207, 54, 0
-	purge_list = list(/datum/reagent/toxin/xeno_neurotoxin, /datum/reagent/medicine)
+	purge_list = list(/datum/reagent/medicine)
 	purge_rate = 3
 	overdose_threshold = REAGENTS_OVERDOSE
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
@@ -501,14 +506,6 @@
 	scannable = TRUE
 
 /datum/reagent/toxin/xeno_growthtoxin/on_mob_life(mob/living/L)
-	var/target_temp = L.get_standard_bodytemperature()
-	if(L.getBruteLoss() || L.getFireLoss())
-		L.heal_limb_damage(REM, REM)
-	if(L.getToxLoss())
-		L.adjustToxLoss(-REM)
-	if(L.bodytemperature > target_temp)
-		L.adjust_bodytemperature(-20 * TEMPERATURE_DAMAGE_COEFFICIENT, target_temp)
-	L.reagent_pain_modifier += PAIN_REDUCTION_VERY_HEAVY
 	L.jitter(1) //So unga know to get treated
 	return ..()
 
@@ -518,3 +515,99 @@
 
 /datum/reagent/toxin/xeno_growthtoxin/overdose_crit_process(mob/living/L, metabolism)
 	L.Losebreath(2)
+
+/datum/reagent/toxin/xeno_hemodile //Slows its victim. The slow becomes twice as strong with each other xeno toxin in the victim's system.
+	name = "Hemodile"
+	description = "Impedes motor functions and muscle response, causing slower movement."
+	reagent_state = LIQUID
+	color = "#602CFF"
+	custom_metabolism = 0.4
+	overdose_threshold = 10000
+	scannable = TRUE
+	toxpwr = 0
+
+/datum/reagent/toxin/xeno_hemodile/on_mob_life(mob/living/L, metabolism)
+
+	var/slowdown_multiplier = 1
+
+	if(L.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_transvitox)) //Each other Defiler toxin increases the multiplier by 2x; 2x if we have 1 combo chem, 4x if we have 2
+		slowdown_multiplier *= 2
+
+	if(L.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_neurotoxin))
+		slowdown_multiplier *= 2
+
+	switch(slowdown_multiplier) //Description varies in severity and probability with the multiplier
+		if(0 to 1 && prob(10))
+			to_chat(L, span_warning("You feel your legs tense up.") )
+		if(2 to 3.9 && prob(20))
+			to_chat(L, span_warning("You feel your legs go numb.") )
+		if(4 to INFINITY && prob(30))
+			to_chat(L, span_danger("You can barely feel your legs!") )
+
+	L.add_movespeed_modifier(MOVESPEED_ID_XENO_HEMODILE, TRUE, 0, NONE, TRUE, 1.5 * slowdown_multiplier)
+
+	return ..()
+
+/datum/reagent/toxin/xeno_hemodile/on_mob_delete(mob/living/L, metabolism)
+	L.remove_movespeed_modifier(MOVESPEED_ID_XENO_HEMODILE)
+
+
+/datum/reagent/toxin/xeno_transvitox //when damage is received, converts brute/burn equal to 50% of damage received to tox damage
+	name = "Transvitox"
+	description = "Converts burn damage to toxin damage over time, and causes brute damage received to inflict extra toxin damage."
+	reagent_state = LIQUID
+	color = "#94FF00"
+	custom_metabolism = 0.4
+	overdose_threshold = 10000
+	scannable = TRUE
+	toxpwr = 0
+
+/datum/reagent/toxin/xeno_transvitox/on_mob_add(mob/living/L, metabolism, affecting)
+	RegisterSignal(L, COMSIG_HUMAN_DAMAGE_TAKEN, .proc/transvitox_human_damage_taken)
+
+/datum/reagent/toxin/xeno_transvitox/on_mob_life(mob/living/L, metabolism)
+	var/fire_loss = L.getFireLoss()
+	if(!fire_loss) //If we have no burn damage, cancel out
+		return ..()
+
+	if(prob(10))
+		to_chat(L, span_warning("You notice your wounds crusting over with disgusting green ichor.") )
+
+	var/tox_cap_multiplier = 1
+
+	if(L.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_hemodile)) //Each other Defiler toxin doubles the multiplier
+		tox_cap_multiplier *= 2
+
+	if(L.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_neurotoxin))
+		tox_cap_multiplier *= 2
+
+	var/tox_loss = L.getToxLoss()
+	if(tox_loss > DEFILER_TRANSVITOX_CAP) //If toxin levels are already at their cap, cancel out
+		return ..()
+
+	var/dam = (current_cycle * 0.25 * tox_cap_multiplier) //Converts burn damage at this rate to toxin damage
+
+	if(fire_loss < dam) //If burn damage is less than damage to be converted, have the conversion value be equal to the burn damage
+		dam = fire_loss
+
+	L.heal_limb_damage(burn = dam, updating_health = TRUE) //Heal damage equal to toxin damage dealt; heal before applying toxin damage so we don't flash kill the target
+	L.adjustToxLoss(dam)
+
+	return ..()
+
+/datum/reagent/toxin/xeno_transvitox/proc/transvitox_human_damage_taken(mob/living/L, damage)
+	SIGNAL_HANDLER
+
+	var/tox_cap_multiplier = 1
+
+	if(L.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_hemodile)) //Each other Defiler toxin doubles the multiplier
+		tox_cap_multiplier *= 2
+
+	if(L.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_neurotoxin))
+		tox_cap_multiplier *= 2
+
+	var/tox_loss = L.getToxLoss()
+	if(tox_loss > DEFILER_TRANSVITOX_CAP) //If toxin levels are already at their cap, cancel out
+		return
+
+	L.setToxLoss(clamp(tox_loss + min(L.getBruteLoss() * 0.1 * tox_cap_multiplier, damage * 0.1 * tox_cap_multiplier), tox_loss, DEFILER_TRANSVITOX_CAP)) //Deal bonus tox damage equal to a % of the lesser of the damage taken or the target's brute damage; capped at DEFILER_TRANSVITOX_CAP.

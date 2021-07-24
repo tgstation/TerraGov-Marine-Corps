@@ -92,6 +92,13 @@
 		fs_view = client_view
 		transform = matrix(actualview[1]/FULLSCREEN_OVERLAY_RESOLUTION_X, 0, 0, 0, actualview[2]/FULLSCREEN_OVERLAY_RESOLUTION_Y, 0)
 
+/obj/screen/fullscreen/black
+	icon_state = "black" //just a black square, you can change this if you get better ideas
+	layer = FULLSCREEN_INTRO_LAYER
+
+/obj/screen/fullscreen/spawning_in
+	icon_state = "blackimageoverlay" //mostly just a black square, you can change this if you get better ideas
+	layer = FULLSCREEN_INTRO_LAYER
 
 /obj/screen/fullscreen/brute
 	icon_state = "brutedamageoverlay"
@@ -138,6 +145,21 @@
 /obj/screen/fullscreen/pain
 	icon_state = "painoverlay"
 	layer = FULLSCREEN_PAIN_LAYER
+
+/obj/screen/fullscreen/infection
+	icon_state = "curseoverlay"
+	layer = FULLSCREEN_INFECTION_LAYER
+
+/obj/screen/fullscreen/machine
+	icon_state = "machine"
+	alpha = 120
+	layer = FULLSCREEN_DRUGGY_LAYER
+	blend_mode = BLEND_MULTIPLY
+
+/obj/screen/fullscreen/machine/update_for_view(client_view)
+	. = ..()
+	animate(src, alpha = initial(alpha)-30, time = 50, loop = -1)
+	animate(alpha = initial(alpha), time = 20, loop = -1)
 
 
 /obj/screen/fullscreen/lighting_backdrop

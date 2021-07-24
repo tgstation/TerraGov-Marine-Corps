@@ -4,7 +4,6 @@
 	var/unwieldsound
 	flags_item = TWOHANDED
 
-
 /obj/item/weapon/twohanded/update_icon()
 	return
 
@@ -34,7 +33,7 @@
 		else if(offhand == user.l_hand)
 			user.drop_l_hand()
 		if(user.get_inactive_held_item()) //Failsafe; if there's somehow still something in the off-hand (undroppable), bail.
-			to_chat(user, "<span class='warning'>You need your other hand to be empty!</span>")
+			to_chat(user, span_warning("You need your other hand to be empty!"))
 			return FALSE
 
 	if(ishuman(user))
@@ -42,10 +41,11 @@
 		var/mob/living/carbon/human/wielder = user
 		var/datum/limb/hand = wielder.get_limb(check_hand)
 		if(!istype(hand) || !hand.is_usable())
-			to_chat(user, "<span class='warning'>Your other hand can't hold [src]!</span>")
+			to_chat(user, span_warning("Your other hand can't hold [src]!"))
 			return FALSE
 
 	toggle_wielded(user, TRUE)
+	SEND_SIGNAL(src, COMSIG_ITEM_WIELD, user)
 	name = "[name] (Wielded)"
 	update_item_state(user)
 	place_offhand(user, name)
@@ -57,14 +57,19 @@
 		return FALSE
 
 	toggle_wielded(user, FALSE)
-	name = initial(name)
+	SEND_SIGNAL(src, COMSIG_ITEM_UNWIELD, user)
+	var/sf = findtext(name, " (Wielded)", -10) // 10 == length(" (Wielded)")
+	if(sf)
+		name = copytext(name, 1, sf)
+	else
+		name = "[initial(name)]"
 	update_item_state(user)
 	remove_offhand(user)
 	return TRUE
 
 
 /obj/item/proc/place_offhand(mob/user, item_name)
-	to_chat(user, "<span class='notice'>You grab [item_name] with both hands.</span>")
+	to_chat(user, span_notice("You grab [item_name] with both hands."))
 	var/obj/item/weapon/twohanded/offhand/offhand = new /obj/item/weapon/twohanded/offhand(user)
 	offhand.name = "[item_name] - offhand"
 	offhand.desc = "Your second grip on the [item_name]."
@@ -74,7 +79,7 @@
 
 
 /obj/item/proc/remove_offhand(mob/user)
-	to_chat(user, "<span class='notice'>You are now carrying [name] with one hand.</span>")
+	to_chat(user, span_notice("You are now carrying [name] with one hand."))
 	var/obj/item/weapon/twohanded/offhand/offhand = user.get_inactive_held_item()
 	if(istype(offhand) && !QDELETED(offhand))
 		qdel(offhand)
@@ -116,8 +121,8 @@
 
 /obj/item/weapon/twohanded/attack_self(mob/user)
 	. = ..()
-	if(ismonkey(user))
-		to_chat(user, "<span class='warning'>It's too heavy for you to wield fully!</span>")
+	if(ismonkey(user)) //TODO MAKE THIS A SPECIES FLAG
+		to_chat(user, span_warning("It's too heavy for you to wield fully!"))
 		return
 
 	if(flags_item & WIELDED)
@@ -171,10 +176,10 @@
 	sharp = IS_SHARP_ITEM_BIG
 	edge = 1
 	w_class = WEIGHT_CLASS_BULKY
-	flags_equip_slot = ITEM_SLOT_BACK
+	flags_equip_slot = ITEM_SLOT_BELT|ITEM_SLOT_BACK
 	flags_atom = CONDUCT
 	flags_item = TWOHANDED
-	force_wielded = 45
+	force_wielded = 75
 	attack_verb = list("attacked", "chopped", "cleaved", "torn", "cut")
 
 
@@ -205,7 +210,7 @@
 	throw_speed = 1
 	throw_range = 5
 	w_class = WEIGHT_CLASS_SMALL
-	force_wielded = 70
+	force_wielded = 150
 	wieldsound = 'sound/weapons/saberon.ogg'
 	unwieldsound = 'sound/weapons/saberoff.ogg'
 	flags_atom = NOBLOODY
@@ -236,17 +241,23 @@
 	desc = "A haphazardly-constructed yet still deadly weapon of ancient design."
 	icon_state = "spearglass"
 	item_state = "spearglass"
-	force = 14
+	force = 40
 	w_class = WEIGHT_CLASS_BULKY
 	flags_equip_slot = ITEM_SLOT_BACK
-	force_wielded = 24
-	throwforce = 30
+	force_wielded = 75
+	throwforce = 75
 	throw_speed = 3
+	reach = 2
 	edge = 1
 	sharp = IS_SHARP_ITEM_SIMPLE
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	attack_verb = list("attacked", "stabbed", "jabbed", "torn", "gored")
 
+/obj/item/weapon/twohanded/spear/tactical
+	name = "M-23 spear"
+	desc = "A tactical spear. Used for 'tactical' combat."
+	icon_state = "spear"
+	item_state = "spear"
 
 /obj/item/weapon/twohanded/glaive
 	name = "war glaive"
@@ -256,8 +267,8 @@
 	force = 28
 	w_class = WEIGHT_CLASS_BULKY
 	flags_equip_slot = ITEM_SLOT_BACK
-	force_wielded = 60
-	throwforce = 50
+	force_wielded = 90
+	throwforce = 65
 	throw_speed = 3
 	edge = 1
 	sharp = IS_SHARP_ITEM_BIG

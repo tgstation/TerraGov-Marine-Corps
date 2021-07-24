@@ -32,8 +32,14 @@
 /area/shuttle/dropship/normandy
 	name = "Dropship Normandy"
 
+/area/shuttle/dropship/triumph
+	name = "Dropship Triumph"
+
 /area/shuttle/cas
 	name = "Condor Jet"
+
+/area/shuttle/minidropship
+	name = "Tadpole Drop Shuttle"
 
 /area/shuttle/ert
 	name = "Emergency Response Team"

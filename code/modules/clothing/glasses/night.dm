@@ -10,9 +10,9 @@
 	lighting_alpha = LIGHTING_PLANE_ALPHA_INVISIBLE
 
 
-/obj/item/clothing/glasses/night/M4RA
-	name = "\improper M4RA Battle sight"
-	desc = "A headset and night vision goggles system for the M4RA Battle Rifle. Allows highlighted imaging of surroundings. Click it to toggle."
+/obj/item/clothing/glasses/night/tx8
+	name = "\improper TX-8 battle sight"
+	desc = "A headset and night vision goggles system for the TX-8 Battle Rifle. Allows highlighted imaging of surroundings. Click it to toggle."
 	icon = 'icons/obj/clothing/glasses.dmi'
 	icon_state = "m56_goggles"
 	deactive_state = "m56_goggles_0"
@@ -60,3 +60,13 @@
 	darkness_view = 7
 	lighting_alpha = LIGHTING_PLANE_ALPHA_INVISIBLE
 	flags_item = NODROP|DELONDROP
+
+/obj/item/clothing/glasses/night/imager_goggles
+	name = "optical imager goggles"
+	desc = "Uses image scanning to increase visibility of even the most dimly lit surroundings except total darkness"
+	icon_state = "securityhud"
+	deactive_state = "degoggles_sec"
+	actions_types = list(/datum/action/item_action/toggle)
+	toggleable = TRUE
+	darkness_view = 2
+	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE

@@ -1,11 +1,11 @@
 //Some debug variables. Toggle them to 1 in order to see the related debug messages. Helpful when testing out formulas.
-#define DEBUG_HIT_CHANCE	0
-#define DEBUG_HUMAN_DEFENSE	0
-#define DEBUG_XENO_DEFENSE	0
-#define DEBUG_CREST_DEFENSE	0
+#define DEBUG_HIT_CHANCE 0
+#define DEBUG_HUMAN_DEFENSE 0
+#define DEBUG_XENO_DEFENSE 0
+#define DEBUG_CREST_DEFENSE 0
 
 #if DEBUG_HIT_CHANCE
-#define BULLET_DEBUG(msg) to_chat(world, "<span class='debuginfo'>[msg]</span>")
+#define BULLET_DEBUG(msg) to_chat(world, span_debuginfo("[msg]"))
 #else
 #define BULLET_DEBUG(msg)
 #endif
@@ -37,7 +37,6 @@
 	light_range = 2
 	light_power = 2
 	light_color = COLOR_VERY_SOFT_YELLOW
-	light_on = FALSE
 
 	var/hitsound = null
 	var/datum/ammo/ammo //The ammo data which holds most of the actual info.
@@ -61,9 +60,15 @@
 	var/damage = 0
 	var/accuracy = 85 //Base projectile accuracy. Can maybe be later taken from the mob if desired.
 
-	var/damage_falloff = 0 //how many damage point the projectile loses per tiles travelled
+	///how many damage points the projectile loses per tiles travelled
+	var/damage_falloff = 0
+	///Modifies projectile damage by a % when a marine gets passed, but not hit
+	var/damage_marine_falloff = 0
 
 	var/scatter = 0 //Chance of scattering, also maximum amount scattered. High variance.
+
+	/// The iff signal that will be compared to the target's one, to apply iff if needed
+	var/iff_signal = NONE
 
 	var/distance_travelled = 0
 
@@ -84,6 +89,8 @@
 	var/y_offset
 
 	var/proj_max_range = 30
+	///A damage multiplier applied when a mob from the same faction as the projectile firer is hit
+	var/friendly_fire_multiplier = 0.5
 
 
 /obj/projectile/Destroy()
@@ -104,6 +111,7 @@
 		return
 	if(AM.projectile_hit(src))
 		AM.do_projectile_hit(src)
+		qdel(src)
 		return
 	permutated[AM] = TRUE //Don't want to hit them again.
 
@@ -127,7 +135,7 @@
 	armor_type = ammo.armor_type
 
 //Target, firer, shot from. Ie the gun
-/obj/projectile/proc/fire_at(atom/target, atom/shooter, atom/source, range, speed, angle, recursivity)
+/obj/projectile/proc/fire_at(atom/target, atom/shooter, atom/source, range, speed, angle, recursivity, suppress_light = FALSE)
 	if(!isnull(speed))
 		projectile_speed = speed
 
@@ -277,8 +285,9 @@
 		qdel(src)
 		return
 
-	set_light_color(ammo.bullet_color)
-	set_light_on(TRUE)
+	if(!suppress_light)
+		set_light_color(ammo.bullet_color)
+		set_light_on(TRUE)
 
 	START_PROCESSING(SSprojectiles, src) //If no hits on the first moves, enter the processing queue for next.
 
@@ -574,7 +583,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 		return TRUE
 	if(!throwpass)
 		return TRUE
-	if(proj.ammo.flags_ammo_behavior & AMMO_SNIPER || proj.ammo.flags_ammo_behavior & AMMO_SKIPS_HUMANS || proj.ammo.flags_ammo_behavior & AMMO_ROCKET) //sniper, rockets and IFF rounds bypass cover
+	if(proj.ammo.flags_ammo_behavior & AMMO_SNIPER || proj.iff_signal || proj.ammo.flags_ammo_behavior & AMMO_ROCKET) //sniper, rockets and IFF rounds bypass cover
 		return FALSE
 	if(proj.distance_travelled <= proj.ammo.barricade_clear_distance)
 		return FALSE
@@ -610,13 +619,23 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 		return FALSE
 	return TRUE
 
+/obj/machinery/marine_turret/projectile_hit(obj/projectile/proj, cardinal_move, uncrossing)
+	if(iff_signal & proj.iff_signal)
+		return FALSE
+	return src == proj.original_target
+
+/obj/machinery/deployable/mounted/projectile_hit(obj/projectile/proj, cardinal_move, uncrossing)
+	if(operator?.wear_id.iff_signal & proj.iff_signal)
+		return FALSE
+	return src == proj.original_target
+
 /obj/machinery/door/poddoor/railing/projectile_hit(obj/projectile/proj, cardinal_move, uncrossing)
 	return src == proj.original_target
 
 /obj/effect/alien/egg/projectile_hit(obj/projectile/proj, cardinal_move, uncrossing)
 	return src == proj.original_target
 
-/obj/effect/alien/resin/trap/projectile_hit(obj/projectile/proj, cardinal_move, uncrossing)
+/obj/structure/xeno/trap/projectile_hit(obj/projectile/proj, cardinal_move, uncrossing)
 	return src == proj.original_target
 
 /obj/item/clothing/mask/facehugger/projectile_hit(obj/projectile/proj, cardinal_move, uncrossing)
@@ -663,9 +682,6 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 			var/mob/living/carbon/human/shooter_human = shooter_living
 			BULLET_DEBUG("Traumatic shock (-[round(min(30, shooter_human.traumatic_shock * 0.2))]).")
 			. -= round(min(30, shooter_human.traumatic_shock * 0.2)) //Chance to hit declines with pain, being reduced by 0.2% per point of pain.
-			if(shooter_human.stagger)
-				BULLET_DEBUG("Stagged (-30).")
-				. -= 30 //Being staggered fucks your aim.
 			if(shooter_human.marksman_aura) //Accuracy bonus from active focus order: flat bonus + bonus per tile traveled
 				BULLET_DEBUG("marksman_aura (+[shooter_human.marksman_aura * 3] + [proj.distance_travelled * shooter_human.marksman_aura * 0.35]).")
 				. += shooter_human.marksman_aura * 3
@@ -701,17 +717,18 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 
 
 /mob/living/proc/on_dodged_bullet(obj/projectile/proj)
-		visible_message("<span class='avoidharm'>[proj] misses [src]!</span>",
-		"<span class='avoidharm'>[proj] narrowly misses you!</span>", null, 4)
+		visible_message(span_avoidharm("[proj] misses [src]!"),
+		span_avoidharm("[proj] narrowly misses you!"), null, 4)
 
 /mob/living/carbon/xenomorph/on_dodged_bullet(obj/projectile/proj)
-		visible_message("<span class='avoidharm'>[proj] misses [src]!</span>",
-		"<span class='avoidharm'>[proj] narrowly misses us!</span>", null, 4)
+		visible_message(span_avoidharm("[proj] misses [src]!"),
+		span_avoidharm("[proj] narrowly misses us!"), null, 4)
 
 
 /mob/living/do_projectile_hit(obj/projectile/proj)
 	proj.ammo.on_hit_mob(src, proj)
 	bullet_act(proj)
+
 /mob/living/carbon/do_projectile_hit(obj/projectile/proj)
 	. = ..()
 	if(!(species?.species_flags & NO_BLOOD) && proj.ammo.flags_ammo_behavior & AMMO_BALLISTIC)
@@ -719,7 +736,8 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 
 
 /mob/living/carbon/human/projectile_hit(obj/projectile/proj, cardinal_move, uncrossing)
-	if(proj.ammo.flags_ammo_behavior & AMMO_SKIPS_HUMANS && get_target_lock(proj.ammo.iff_signal))
+	if(wear_id?.iff_signal & proj.iff_signal)
+		proj.damage += proj.damage*proj.damage_marine_falloff
 		return FALSE
 	if(mobility_aura)
 		. -= mobility_aura * 5
@@ -727,10 +745,16 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 		var/mob/living/carbon/human/shooter_human = proj.firer
 		if(shooter_human.faction == faction || m_intent == MOVE_INTENT_WALK)
 			. -= 15
+		//Friendly fire does less damage
+		if(shooter_human.faction == faction)
+			proj.damage *= proj.friendly_fire_multiplier
 	return ..()
 
 
 /mob/living/carbon/xenomorph/projectile_hit(obj/projectile/proj, cardinal_move, uncrossing)
+	if(SEND_SIGNAL(src, COMSIG_XENO_PROJECTILE_HIT, proj, cardinal_move, uncrossing) & COMPONENT_PROJECTILE_DODGE)
+		return FALSE
+
 	if(proj.ammo.flags_ammo_behavior & AMMO_SKIPS_ALIENS)
 		return FALSE
 	if(mob_size == MOB_SIZE_BIG)
@@ -767,7 +791,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 
 	damage = check_shields(COMBAT_PROJ_ATTACK, damage, proj.ammo.armor_type)
 	if(!damage)
-		proj.ammo.on_shield_block(src)
+		proj.ammo.on_shield_block(src, proj)
 		bullet_ping(proj)
 		return
 
@@ -791,6 +815,11 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 				living_hard_armor = max(0, living_hard_armor - (living_hard_armor * penetration * 0.01)) //AP reduces a % of hard armor.
 			if(living_soft_armor)
 				living_soft_armor = max(0, living_soft_armor - penetration) //Flat removal.
+
+		if(iscarbon(proj.firer))
+			var/mob/living/carbon/shooter_carbon = proj.firer
+			if(shooter_carbon.stagger)
+				damage *= STAGGER_DAMAGE_MULTIPLIER //Since we hate RNG, stagger reduces damage by a % instead of reducing accuracy; consider it a 'glancing' hit due to being disoriented.
 
 		if(!living_hard_armor && !living_soft_armor) //Armor fully penetrated.
 			feedback_flags |= BULLET_FEEDBACK_PEN
@@ -827,8 +856,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 			feedback_flags |= BULLET_FEEDBACK_SCREAM
 		bullet_message(proj, feedback_flags, damage)
 		proj.play_damage_effect(src)
-		if(apply_damage(damage, proj.ammo.damage_type, proj.def_zone)) //This could potentially delete the source.
-			UPDATEHEALTH(src)
+		apply_damage(damage, proj.ammo.damage_type, proj.def_zone, updating_health = TRUE) //This could potentially delete the source.
 		if(shrapnel_roll)
 			embed_projectile_shrapnel(proj)
 	else
@@ -956,7 +984,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 		current_bulletholes++
 
 	if(prob(30))
-		visible_message("<span class='warning'>[src] is damaged by [proj]!</span>", visible_message_flags = COMBAT_MESSAGE)
+		visible_message(span_warning("[src] is damaged by [proj]!"), visible_message_flags = COMBAT_MESSAGE)
 	take_damage(damage)
 	return TRUE
 
@@ -1027,8 +1055,8 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 		victim_feedback += "You burst into <b>flames!!</b> Stop drop and roll!"
 		onlooker_feedback += "[p_they(TRUE)] burst into flames!"
 
-	visible_message("<span class='danger'>[onlooker_feedback.Join(" ")]</span>",
-	"<span class='highdanger'>[victim_feedback.Join(" ")]</span>", null, 4, visible_message_flags = COMBAT_MESSAGE)
+	visible_message(span_danger("[onlooker_feedback.Join(" ")]"),
+	span_highdanger("[victim_feedback.Join(" ")]"), null, 4, visible_message_flags = COMBAT_MESSAGE)
 
 	if(feedback_flags & BULLET_FEEDBACK_SCREAM && stat == CONSCIOUS && !(species.species_flags & NO_PAIN))
 		emote("scream")
@@ -1036,7 +1064,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 	if(. != BULLET_MESSAGE_HUMAN_SHOOTER)
 		return
 	var/mob/living/carbon/human/firingMob = proj.firer
-	if(!firingMob.mind?.bypass_ff && !mind?.bypass_ff && firingMob.faction == faction)
+	if(!firingMob.mind?.bypass_ff && !mind?.bypass_ff && firingMob.faction == faction && proj.ammo.damage_type != STAMINA)
 		var/turf/T = get_turf(firingMob)
 		firingMob.ff_check(damage, src)
 		log_ffattack("[key_name(firingMob)] shot [key_name(src)] with [proj] in [AREACOORD(T)].")
@@ -1071,7 +1099,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 	if(feedback_flags & BULLET_FEEDBACK_SCREAM && stat == CONSCIOUS)
 		emote(prob(70) ? "hiss" : "roar")
 
-	visible_message("<span class='danger'>[onlooker_feedback.Join(" ")]</span>",
+	visible_message(span_danger("[onlooker_feedback.Join(" ")]"),
 	"<span class='xenodanger'>[victim_feedback.Join(" ")]", null, 4, visible_message_flags = COMBAT_MESSAGE)
 
 // Sundering procs

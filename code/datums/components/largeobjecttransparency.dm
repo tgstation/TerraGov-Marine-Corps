@@ -80,7 +80,7 @@
 
 /datum/component/largetransparency/proc/OnTurfChange()
 	SIGNAL_HANDLER
-	addtimer(CALLBACK(src, .proc/OnMove), 0, TIMER_UNIQUE|TIMER_OVERRIDE) //*pain
+	addtimer(CALLBACK(src, .proc/OnMove), 1, TIMER_UNIQUE|TIMER_OVERRIDE) //*pain
 
 /datum/component/largetransparency/proc/objectEnter(datum/source, atom/enterer)
 	SIGNAL_HANDLER

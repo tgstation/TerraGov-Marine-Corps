@@ -27,28 +27,8 @@ RUN /bin/bash -c "source dependencies.sh \
     && git checkout FETCH_HEAD \
     && ~/.cargo/bin/cargo build --release
 
-FROM build_base as bsql
-
-WORKDIR /bsql
-
-RUN apt-get install -y --no-install-recommends software-properties-common \
-    && add-apt-repository ppa:ubuntu-toolchain-r/test \
-    && apt-get update \
-    && apt-get install -y --no-install-recommends \
-    cmake \
-    make \
-    g++-7 \
-    libmariadb-client-lgpl-dev \
-    && git init \
-    && git remote add origin https://github.com/tgstation/BSQL
 
 COPY dependencies.sh .
-
-RUN /bin/bash -c "source dependencies.sh \
-    && git fetch --depth 1 origin \$BSQL_VERSION" \
-    && git checkout FETCH_HEAD
-
-WORKDIR /bsql/artifacts
 
 ENV CC=gcc-7 CXX=g++-7
 
@@ -83,13 +63,6 @@ RUN apt-get update \
     libssl1.0.0 \
     && rm -rf /var/lib/apt/lists/* \
     && mkdir -p /root/.byond/bin
-
-COPY --from=rust_g /rust_g/target/release/librust_g.so /root/.byond/bin/rust_g
-COPY --from=bsql /bsql/artifacts/src/BSQL/libBSQL.so ./
-COPY --from=build /deploy ./
-
-#bsql fexists memes
-RUN ln -s /tgstation/libBSQL.so /root/.byond/bin/libBSQL.so
 
 VOLUME [ "/tgmc/config", "/tgmc/data" ]
 

@@ -63,7 +63,6 @@
 	var/cameraFollow
 
 	var/melee_damage = 0
-	var/melee_accuracy = 100
 	var/attacktext = "attacks"
 	var/attack_sound
 	var/friendly = "nuzzles"
@@ -119,3 +118,12 @@
 
 	/// How much friendly fire damage has this mob done in the last 30 seconds.
 	var/list/friendly_fire = list()
+
+	///Stagger and slow vars; Stagger penalizes projectile damage for non-Xenos and disables ability use for Xenos. Slowdown is obvious.
+	///Temporary penalty on movement. Regenerates each tick.
+	var/slowdown = 0
+	///Temporary inability to use special actions; hurts projectile damage. Regenerates each tick.
+	var/stagger = 0
+
+	/// This is the cooldown on suffering additional effects for when we exhaust all stamina
+	COOLDOWN_DECLARE(last_stamina_exhaustion)

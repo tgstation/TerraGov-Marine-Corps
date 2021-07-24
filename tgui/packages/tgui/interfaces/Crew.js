@@ -1,4 +1,3 @@
-import { Fragment } from 'inferno';
 import { useBackend } from '../backend';
 import { Button, Section, Box, Table } from '../components';
 import { Window } from '../layouts';
@@ -42,7 +41,9 @@ export const Crew = (props, context) => {
     },
   ];
   return (
-    <Window>
+    <Window
+      width={900}
+      height={800}>
       <Window.Content scrollable>
         <Section title="Location to scan">
           {locations.map(location => (
@@ -84,12 +85,12 @@ export const Crew = (props, context) => {
                 <Table.Cell>
                   {crewmember.sensor_type === 1 && ("Not Available")}
                   {crewmember.sensor_type === 2 && (
-                    <Fragment>
+                    <>
                       <Box inline color="cyan">{crewmember.oxy}</Box>
                       <Box inline color="green">{crewmember.tox}</Box>
                       <Box inline color="orange">{crewmember.fire}</Box>
                       <Box inline color="red">{crewmember.brute}</Box>
-                    </Fragment>
+                    </>
                   )}
                 </Table.Cell>
                 <Table.Cell>

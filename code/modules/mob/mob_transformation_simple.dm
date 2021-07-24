@@ -3,7 +3,7 @@
 		return
 
 	if(new_type == /mob/new_player)
-		to_chat(usr, "<span class='warning'>Cannot convert into a new_player.</span>")
+		to_chat(usr, span_warning("Cannot convert into a new_player."))
 		return
 
 	var/mob/M
@@ -13,7 +13,7 @@
 		M = new new_type(loc)
 
 	if(!istype(M))
-		to_chat(usr, "<span class='warning'>Invalid typepath.</span>")
+		to_chat(usr, span_warning("Invalid typepath."))
 		qdel(M)
 		return
 
@@ -54,6 +54,10 @@
 		r_hair = client.prefs.r_hair
 		g_hair = client.prefs.g_hair
 		b_hair = client.prefs.b_hair
+		grad_style = client.prefs.grad_style
+		r_grad = client.prefs.r_grad
+		g_grad = client.prefs.g_grad
+		b_grad = client.prefs.b_grad
 		r_facial = client.prefs.r_facial
 		g_facial = client.prefs.g_facial
 		b_facial = client.prefs.b_facial
