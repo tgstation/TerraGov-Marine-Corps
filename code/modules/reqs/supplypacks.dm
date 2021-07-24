@@ -45,7 +45,7 @@ OPERATIONS
 /datum/supply_packs/operations/fulton_extraction_pack
 	name = "fulton extraction pack"
 	contains = list(/obj/item/fulton_extraction_pack)
-	cost = 5
+	cost = 12
 
 /datum/supply_packs/operations/cas_flares
 	name = "CAS flare pack"
@@ -93,7 +93,7 @@ OPERATIONS
 /datum/supply_packs/operations/exportpad
 	name = "ASRS Bluespace Export Point"
 	contains = list(/obj/machinery/exportpad)
-	cost = 50
+	cost = 36
 
 /datum/supply_packs/operations/alpha
 	name = "Alpha Supply Crate"
