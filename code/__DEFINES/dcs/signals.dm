@@ -38,7 +38,11 @@
 ///Sent when nightfall is casted
 #define COMSIG_GLOB_LIGHT_OFF "item_light_off"
 ///Sent when the floodlight switch is powered
-#define COMSIG_GLOB_FLOODLIGHT_SWITCH "floodlight_switch_power_change"
+#define COMSIG_GLOB_FLOODLIGHT_SWITCH "!floodlight_switch_power_change"
+
+//Signals for fire support
+#define COMSIG_GLOB_OB_LASER_CREATED "!ob_laser_sent"
+#define COMSIG_GLOB_CAS_LASER_CREATED "!cas_laser_sent"
 
 //////////////////////////////////////////////////////////////////
 
