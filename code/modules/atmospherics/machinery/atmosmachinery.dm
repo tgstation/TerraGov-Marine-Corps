@@ -257,14 +257,14 @@
 		vent_crawl_exit_time = X.xeno_caste.vent_exit_speed
 	TIMER_COOLDOWN_START(user, COOLDOWN_VENTCRAWL, vent_crawl_exit_time)
 	if(!silent_crawl) //Xenos with silent crawl can silently enter/exit/move through vents.
-		visible_message("<span class='warning'>You hear something squeezing through the ducts.</span>")
-	to_chat(user, "<span class='notice'>You begin to climb out of [src]</span>")
+		visible_message(span_warning("You hear something squeezing through the ducts."))
+	to_chat(user, span_notice("You begin to climb out of [src]"))
 	if(!do_after(user, vent_crawl_exit_time, FALSE, src))
 		return FALSE
 	user.remove_ventcrawl()
 	user.forceMove(T)
-	user.visible_message("<span class='warning'>[user] climbs out of [src].</span>", \
-	"<span class='notice'>You climb out of [src].</span>")
+	user.visible_message(span_warning("[user] climbs out of [src].</span>"), \
+	span_notice("You climb out of [src].</span>"))
 	if(!silent_crawl)
 		playsound(src, get_sfx("alien_ventpass"), 35, TRUE)
 
