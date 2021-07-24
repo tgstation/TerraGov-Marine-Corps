@@ -15,16 +15,16 @@
 	. = ..()
 
 	if (!anchored)
-		to_chat(user, "<span class='warning'>Nothing happens. The [src] must be bolted to the ground first.</span>")
+		to_chat(user, span_warning("Nothing happens. The [src] must be bolted to the ground first."))
 		return
 
 	if (!powered())
-		to_chat(user, "<span class='warning'>A red light flashes on the [src]. It seems it doesn't have enough power.</span>")
+		to_chat(user, span_warning("A red light flashes on the [src]. It seems it doesn't have enough power."))
 		playsound(loc,'sound/machines/buzz-two.ogg', 25, FALSE)
 		return
 
 	if(!COOLDOWN_CHECK(src, selling_cooldown))
-		to_chat(user, "<span class='warning'>The [src] is still recharging! It will be ready in [round(COOLDOWN_TIMELEFT(src, selling_cooldown) / 10)] seconds.</span>")
+		to_chat(user, span_warning("The [src] is still recharging! It will be ready in [round(COOLDOWN_TIMELEFT(src, selling_cooldown) / 10)] seconds."))
 		return
 	var/can_sell = FALSE
 	for(var/i in get_turf(src))
@@ -33,16 +33,16 @@
 		if(isxeno(onpad))
 			var/mob/living/carbon/xenomorph/sellxeno = onpad
 			if(sellxeno.stat != DEAD)
-				to_chat(user, "<span class='warning'>[src] buzzes: Live animals cannot be sold.</span>")
+				to_chat(user, span_warning("[src] buzzes: Live animals cannot be sold."))
 				continue
 			can_sell = TRUE
 		if(ishuman(onpad))
 			var/mob/living/carbon/human/sellhuman = onpad
 			if(!can_sell_human_body(sellhuman, user.faction))
-				to_chat(user, "<span class='warning'>[src] buzzes: High command is not interested in that bounty.</span>")
+				to_chat(user, span_warning("[src] buzzes: High command is not interested in that bounty."))
 				continue
 			if(sellhuman.stat != DEAD)
-				to_chat(user, "<span class='warning'>[src] buzzes: This bounty is not dead and cannot be sold.</span>")
+				to_chat(user, span_warning("[src] buzzes: This bounty is not dead and cannot be sold."))
 				continue
 			can_sell = TRUE
 		if(!can_sell)
@@ -50,7 +50,7 @@
 		var/datum/export_report/export_report = onpad.supply_export(user.faction)
 		if(export_report)
 			SSpoints.export_history += export_report
-		visible_message("<span class='notice'>[src] buzzes: The [onpad] has been sold for [export_report.points ? export_report.points : "no"] point[export_report.points == 1 ? "" : "s"].</span>")
+		visible_message(span_notice("[src] buzzes: The [onpad] has been sold for [export_report.points ? export_report.points : "no"] point[export_report.points == 1 ? "" : "s"]."))
 		qdel(onpad)
 
 	do_sparks(5, TRUE, src)

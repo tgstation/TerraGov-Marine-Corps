@@ -43,7 +43,7 @@
 								ammo_count += transf_amt
 								SA.ammo_count -= transf_amt
 								playsound(loc, 'sound/machines/hydraulics_1.ogg', 40, 1)
-								to_chat(user, "<span class='notice'>You transfer [transf_amt] [ammo_name] to [src].</span>")
+								to_chat(user, span_notice("You transfer [transf_amt] [ammo_name] to [src]."))
 								if(!SA.ammo_count)
 									PC.loaded = null
 									PC.update_icon()
@@ -53,7 +53,7 @@
 					PC.loaded = src
 					playsound(loc, 'sound/machines/hydraulics_2.ogg', 40, 1)
 					PC.update_icon()
-					to_chat(user, "<span class='notice'>You grab [PC.loaded] with [PC].</span>")
+					to_chat(user, span_notice("You grab [PC.loaded] with [PC]."))
 					update_icon()
 			return TRUE
 		return ..()
@@ -362,7 +362,7 @@
 
 /obj/structure/ship_ammo/minirocket/smoke
 	name = "smoke mini rocket stack"
-	desc = "A pack of laser guided smoke mini rockets."
+	desc = "A pack of laser guided screening smoke mini rockets."
 	icon_state = "minirocket_smoke"
 	point_cost = 25
 
@@ -372,8 +372,8 @@
 	var/datum/effect_system/expl_particles/P = new
 	P.set_up(4, 0, impact)
 	P.start()
-	var/datum/effect_system/smoke_spread/S = new
-	S.set_up(3, impact)
+	var/datum/effect_system/smoke_spread/tactical/S = new
+	S.set_up(7, impact)// Large radius, but dissipates quickly
 	S.start()
 
 /obj/structure/ship_ammo/minirocket/illumination
@@ -384,7 +384,7 @@
 
 /obj/structure/ship_ammo/minirocket/illumination/detonate_on(turf/impact, attackdir = NORTH)
 	impact.ceiling_debris_check(2)
-	var/turf/offset_impact = pick(range(5, impact))
+	var/turf/offset_impact = pick(range(3, impact))
 	explosion(offset_impact, 0, 0, 2, 2, throw_range = 0)// Smaller explosion to prevent this becoming the PO meta
 	var/datum/effect_system/expl_particles/P = new/datum/effect_system/expl_particles()
 	P.set_up(4, 0, offset_impact)
@@ -410,6 +410,6 @@
 	. = ..()
 	var/turf/T = get_turf(src)
 	set_light(light_power)
-	T.visible_message("<span class='warning'>You see a tiny flash, and then a blindingly bright light from a flare as it lights off in the sky!</span>")
+	T.visible_message(span_warning("You see a tiny flash, and then a blindingly bright light from a flare as it lights off in the sky!"))
 	playsound(T, 'sound/weapons/guns/fire/flare.ogg', 50, 1, 4) // stolen from the mortar i'm not even sorry
 	QDEL_IN(src, rand(70 SECONDS, 90 SECONDS)) // About the same burn time as a flare, considering it requires it's own CAS run.

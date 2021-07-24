@@ -16,7 +16,7 @@
 #define JOB_DISPLAY_ORDER_REQUISITIONS_OFFICER 15
 #define JOB_DISPLAY_ORDER_CHIEF_MEDICAL_OFFICER 16
 #define JOB_DISPLAY_ORDER_DOCTOR 17
-#define JOB_DISPLAY_ORDER_MEDIAL_RESEARCHER 18
+#define JOB_DISPLAY_ORDER_MEDICAL_RESEARCHER 18
 #define JOB_DISPLAY_ORDER_SQUAD_LEADER 19
 #define JOB_DISPLAY_ORDER_SQUAD_SMARTGUNNER 20
 #define JOB_DISPLAY_ORDER_SQUAD_CORPSMAN 21
@@ -61,6 +61,27 @@
 #define SQUAD_MARINE "Squad Marine"
 #define SQUAD_VATGROWN "Squad VatGrown"
 #define SILICON_AI "AI"
+
+#define REBEL_CAPTAIN "Rebel Captain"
+#define REBEL_EXECUTIVE_OFFICER "Rebel Executive Officer" //Currently disabled.
+#define REBEL_FIELD_COMMANDER "Rebel Field Commander"
+#define REBEL_STAFF_OFFICER "Rebel Staff Officer"
+#define REBEL_PILOT_OFFICER "Rebel Pilot Officer"
+#define REBEL_REQUISITIONS_OFFICER "Rebel Requisitions Officer"
+#define REBEL_CHIEF_SHIP_ENGINEER "Rebel Chief Ship Engineer"
+#define REBEL_CHIEF_MEDICAL_OFFICER "Rebel Chief Medical Officer"
+#define REBEL_SYNTHETIC "Rebel Synthetic"
+#define REBEL_SHIP_TECH "Rebel Ship Technician"
+#define REBEL_MEDICAL_DOCTOR "Rebel Medical Doctor"
+#define REBEL_MEDICAL_RESEARCHER "Rebel Medical Researcher"
+#define REBEL_SQUAD_LEADER "Rebel Squad Leader"
+#define REBEL_SQUAD_SPECIALIST "Rebel Squad Specialist"
+#define REBEL_SQUAD_SMARTGUNNER "Rebel Squad Smartgunner"
+#define REBEL_SQUAD_CORPSMAN "Rebel Squad Corpsman"
+#define REBEL_SQUAD_ENGINEER "Rebel Squad Engineer"
+#define REBEL_SQUAD_MARINE "Rebel Squad Marine"
+#define REBEL_SQUAD_VATGROWN "Rebel Squad VatGrown"
+#define REBEL_SILICON_AI "Rebel AI"
 
 #define JOB_CAT_COMMAND "Command"
 #define JOB_CAT_SILICON "Silicon"

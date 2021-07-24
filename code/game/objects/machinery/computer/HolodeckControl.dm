@@ -29,12 +29,12 @@
 
 		var/mob/living/L = G.grabbed_thing
 		if(user.grab_state < GRAB_AGGRESSIVE)
-			to_chat(user, "<span class='warning'>You need a better grip to do that!</span>")
+			to_chat(user, span_warning("You need a better grip to do that!"))
 			return
 
 		L.forceMove(loc)
 		L.Paralyze(10 SECONDS)
-		user.visible_message("<span class='danger'>[user] puts [L] on the table.</span>")
+		user.visible_message(span_danger("[user] puts [L] on the table."))
 
 	else
 		return ..()
@@ -99,7 +99,7 @@
 
 		var/mob/living/L = G.grabbed_thing
 		if(user.grab_state < GRAB_AGGRESSIVE)
-			to_chat(user, "<span class='warning'>You need a better grip to do that!</span>")
+			to_chat(user, span_warning("You need a better grip to do that!"))
 			return
 		L.forceMove(loc)
 		L.Paralyze(10 SECONDS)
@@ -107,14 +107,14 @@
 			if(X.id == id)
 				X.score(side, 3)// 3 points for dunking a mob
 				// no break, to update multiple scoreboards
-		visible_message("<span class='danger'>[user] dunks [L] into the [src]!</span>")
+		visible_message(span_danger("[user] dunks [L] into the [src]!"))
 
 	else if(get_dist(src, user) < 2)
 		user.transferItemToLoc(I, loc)
 		for(var/obj/machinery/scoreboard/X in GLOB.machines)
 			if(X.id == id)
 				X.score(side)
-		visible_message("<span class='notice'>[user] dunks [I] into the [src]!</span>")
+		visible_message(span_notice("[user] dunks [I] into the [src]!"))
 
 /obj/structure/holohoop/CanAllowThrough(atom/movable/mover, turf/target)
 	. = ..()
@@ -126,9 +126,9 @@
 				if(X.id == id)
 					X.score(side)
 					// no break, to update multiple scoreboards
-			visible_message("<span class='notice'> Swish! \the [I] lands in \the [src].</span>", 3)
+			visible_message(span_notice(" Swish! \the [I] lands in \the [src]."), 3)
 		else
-			visible_message("<span class='warning'> \the [I] bounces off of \the [src]'s rim!</span>", 3)
+			visible_message(span_warning(" \the [I] bounces off of \the [src]'s rim!"), 3)
 		return 0
 	else
 		return ..()

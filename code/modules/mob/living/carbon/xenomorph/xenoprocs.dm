@@ -168,7 +168,7 @@
 			else
 				if(X.nicknumber != xeno_name)
 					continue
-			to_chat(usr,"<span class='notice'> You will now track [X.name]</span>")
+			to_chat(usr,span_notice(" You will now track [X.name]"))
 			tracked = X
 			break
 
@@ -177,7 +177,7 @@
 		for(var/obj/structure/xeno/resin/silo/resin_silo AS in GLOB.xeno_resin_silos)
 			if(resin_silo.associated_hive == hive && num2text(resin_silo.number_silo) == silo_number)
 				tracked = resin_silo
-				to_chat(usr,"<span class='notice'> You will now track [resin_silo.name]</span>")
+				to_chat(usr,span_notice(" You will now track [resin_silo.name]"))
 				break
 
 ///Send a message to all xenos. Force forces the message whether or not the hivemind is intact. Target is an atom that is pointed out to the hive. Filter list is a list of xenos we don't message.
@@ -284,14 +284,14 @@
 //A simple handler for checking your state. Used in pretty much all the procs.
 /mob/living/carbon/xenomorph/proc/check_state()
 	if(incapacitated() || lying_angle || buckled)
-		to_chat(src, "<span class='warning'>We cannot do this in our current state.</span>")
+		to_chat(src, span_warning("We cannot do this in our current state."))
 		return 0
 	return 1
 
 ///A simple handler for checking your state. Will ignore if the xeno is lying down
 /mob/living/carbon/xenomorph/proc/check_concious_state()
 	if(incapacitated() || buckled)
-		to_chat(src, "<span class='warning'>We cannot do this in our current state.</span>")
+		to_chat(src, span_warning("We cannot do this in our current state."))
 		return FALSE
 	return TRUE
 
@@ -299,13 +299,13 @@
 /mob/living/carbon/xenomorph/proc/check_plasma(value, silent = FALSE)
 	if(stat)
 		if(!silent)
-			to_chat(src, "<span class='warning'>We cannot do this in our current state.</span>")
+			to_chat(src, span_warning("We cannot do this in our current state."))
 		return FALSE
 
 	if(value)
 		if(plasma_stored < value)
 			if(!silent)
-				to_chat(src, "<span class='warning'>We do not have enough plasma to do this. We require [value] plasma but have only [plasma_stored] stored.</span>")
+				to_chat(src, span_warning("We do not have enough plasma to do this. We require [value] plasma but have only [plasma_stored] stored."))
 			return FALSE
 	return TRUE
 
@@ -374,7 +374,7 @@
 	evolution_stored = min(evolution_stored + evolution_points, xeno_caste.evolution_threshold)
 
 	if(evolution_stored == xeno_caste.evolution_threshold)
-		to_chat(src, "<span class='xenodanger'>Our carapace crackles and our tendons strengthen. We are ready to evolve!</span>")
+		to_chat(src, span_xenodanger("Our carapace crackles and our tendons strengthen. We are ready to evolve!"))
 		SEND_SOUND(src, sound('sound/effects/xeno_evolveready.ogg'))
 
 
@@ -481,7 +481,7 @@
 	var/obj/item/clothing/mask/facehugger/F = get_active_held_item()
 	if(istype(F))
 		if(locate(/turf/closed/wall/resin) in loc)
-			to_chat(src, "<span class='warning'>We decide not to drop [F] after all.</span>")
+			to_chat(src, span_warning("We decide not to drop [F] after all."))
 			return
 
 	. = ..()
@@ -492,11 +492,11 @@
 	if(QDELETED(Q) || !queen_chosen_lead || !Q.current_aura || Q.loc.z != loc.z) //We are no longer a leader, or the Queen attached to us has dropped from her ovi, disabled her pheromones or even died
 		leader_aura_strength = 0
 		leader_current_aura = ""
-		to_chat(src, "<span class='xenowarning'>Our pheromones wane. The Queen is no longer granting us her pheromones.</span>")
+		to_chat(src, span_xenowarning("Our pheromones wane. The Queen is no longer granting us her pheromones."))
 	else
 		leader_aura_strength = Q.xeno_caste.aura_strength
 		leader_current_aura = Q.current_aura
-		to_chat(src, "<span class='xenowarning'>Our pheromones have changed. The Queen has new plans for the Hive.</span>")
+		to_chat(src, span_xenowarning("Our pheromones have changed. The Queen has new plans for the Hive."))
 
 
 /mob/living/carbon/xenomorph/proc/update_spits()
@@ -553,7 +553,7 @@
 	var/armor_block = run_armor_check(BODY_ZONE_CHEST, "acid")
 	var/damage = X.xeno_caste.acid_spray_damage_on_hit
 	INVOKE_ASYNC(src, .proc/apply_acid_spray_damage, damage, armor_block)
-	to_chat(src, "<span class='xenodanger'>\The [X] showers you in corrosive acid!</span>")
+	to_chat(src, span_xenodanger("\The [X] showers you in corrosive acid!"))
 
 /mob/living/carbon/proc/apply_acid_spray_damage(damage, armor_block)
 	apply_damage(damage, BURN, null, armor_block, updating_health = TRUE)
@@ -592,7 +592,7 @@
 		H.add_hud_to(src)
 	else
 		H.remove_hud_from(src)
-	to_chat(src, "<span class='notice'>You have [xeno_mobhud ? "enabled" : "disabled"] the Xeno Status HUD.</span>")
+	to_chat(src, span_notice("You have [xeno_mobhud ? "enabled" : "disabled"] the Xeno Status HUD."))
 
 
 /mob/living/carbon/xenomorph/proc/recurring_injection(mob/living/carbon/C, toxin = /datum/reagent/toxin/xeno_neurotoxin, channel_time = XENO_NEURO_CHANNEL_TIME, transfer_amount = XENO_NEURO_AMOUNT_RECURRING, count = 3)
@@ -606,7 +606,7 @@
 			return FALSE
 		body_tox = C.reagents.get_reagent(toxin)
 		if(CHECK_BITFIELD(C.status_flags, XENO_HOST) && body_tox && body_tox.volume > body_tox.overdose_threshold)
-			to_chat(src, "<span class='warning'>We sense the infected host is saturated with [body_tox.name] and cease our attempt to inoculate it further to preserve the little one inside.</span>")
+			to_chat(src, span_warning("We sense the infected host is saturated with [body_tox.name] and cease our attempt to inoculate it further to preserve the little one inside."))
 			return FALSE
 		do_attack_animation(C)
 		playsound(C, 'sound/effects/spray3.ogg', 15, TRUE)
@@ -614,10 +614,10 @@
 		C.reagents.add_reagent(toxin, transfer_amount)
 		if(!body_tox) //Let's check this each time because depending on the metabolization rate it can disappear between stings.
 			body_tox = C.reagents.get_reagent(toxin)
-		to_chat(C, "<span class='danger'>You feel a tiny prick.</span>")
-		to_chat(src, "<span class='xenowarning'>Our stinger injects our victim with [body_tox.name]!</span>")
+		to_chat(C, span_danger("You feel a tiny prick."))
+		to_chat(src, span_xenowarning("Our stinger injects our victim with [body_tox.name]!"))
 		if(body_tox.volume > body_tox.overdose_threshold)
-			to_chat(src, "<span class='danger'>We sense the host is saturated with [body_tox.name].</span>")
+			to_chat(src, span_danger("We sense the host is saturated with [body_tox.name]."))
 	return TRUE
 
 

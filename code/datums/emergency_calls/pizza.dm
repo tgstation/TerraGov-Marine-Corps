@@ -26,4 +26,4 @@
 
 	var/datum/job/J = SSjob.GetJobType(/datum/job/pizza)
 	H.apply_assigned_role_to_spawn(J)
-	to_chat(H, "<p style='font-size:1.5em'><span class='notice'>You are a Zippy Pizza delivery person and are assigned by your employers to... deliver pizza on the ship via distress signal!</span></p>")
+	to_chat(H, "<p style='font-size:1.5em'>[span_notice("You are a Zippy Pizza delivery person and are assigned by your employers to... deliver pizza on the ship via distress signal!")]</p>")

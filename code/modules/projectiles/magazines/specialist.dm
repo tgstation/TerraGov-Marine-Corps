@@ -108,9 +108,9 @@
 
 	attack_self(mob/user)
 		if(current_rounds <= 0)
-			to_chat(user, "<span class='notice'>You begin taking apart the empty tube frame...</span>")
+			to_chat(user, span_notice("You begin taking apart the empty tube frame..."))
 			if(do_after(user, 10, TRUE, src))
-				user.visible_message("[user] deconstructs the rocket tube frame.","<span class='notice'>You take apart the empty frame.</span>")
+				user.visible_message("[user] deconstructs the rocket tube frame.",span_notice("You take apart the empty frame."))
 				var/obj/item/stack/sheet/metal/M = new(get_turf(user))
 				M.amount = 2
 				user.drop_held_item()
