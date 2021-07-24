@@ -6,6 +6,10 @@
 	///reference to the unmanned vehicle that we're connected to or remote control
 	var/obj/vehicle/unmanned/vehicle
 
+/obj/item/unmanned_vehicle_remote/Destroy()
+	. = ..()
+	clear_vehicle()
+
 /obj/item/unmanned_vehicle_remote/afterattack(atom/target, mob/user, flag)
 	if(!istype(target, /obj/vehicle/unmanned))
 		return ..()
