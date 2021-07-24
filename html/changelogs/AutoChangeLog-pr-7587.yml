@@ -1,0 +1,5 @@
+author: "Hekzder"
+delete-after: True
+changes: 
+  - rscdel: "Removed the useless squad supply crates from the req vendor."
+  - spellcheck: "Changed a variety of item names in the req menu to more accurately reflect their contents and items"
