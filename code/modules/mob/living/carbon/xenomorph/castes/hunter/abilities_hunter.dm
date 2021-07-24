@@ -13,8 +13,6 @@
 	var/stealth = FALSE
 	var/can_sneak_attack = FALSE
 	var/stealth_alpha_multiplier = 1
-	///Minimum damage to take at once to knock the xeno out of stealth
-	var/damage_break_threshold = 15
 
 /datum/action/xeno_action/stealth/give_action(mob/living/L)
 	. = ..()
@@ -193,7 +191,8 @@
 	SIGNAL_HANDLER
 	if(!stealth)
 		return
-	if(damage_taken > damage_break_threshold)
+	var/mob/living/carbon/xenomorph/xenoowner = owner
+	if(damage_taken > xenoowner.xeno_caste.stealth_break_threshold)
 		cancel_stealth()
 
 /datum/action/xeno_action/stealth/proc/plasma_regen(datum/source, list/plasma_mod)
