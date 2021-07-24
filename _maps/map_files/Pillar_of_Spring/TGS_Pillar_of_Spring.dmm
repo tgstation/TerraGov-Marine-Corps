@@ -2350,6 +2350,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 10
 	},
+/obj/machinery/vending/uniform_supply,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/squads/req)
 "iq" = (
@@ -4265,6 +4266,10 @@
 	dir = 1
 	},
 /turf/open/floor/mainship/cargo,
+/area/mainship/squads/req)
+"oj" = (
+/obj/machinery/vending/armor_supply,
+/turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
 "ok" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -6973,7 +6978,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/lower_hull)
 "wW" = (
-/obj/structure/closet/secure_closet/guncabinet/mp_armory,
+/obj/structure/closet/secure_closet/guncabinet/mp_armory/engineering,
 /turf/open/floor/mainship/red/full,
 /area/mainship/engineering/upper_engineering)
 "wX" = (
@@ -8408,8 +8413,10 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/port_hallway)
 "Bv" = (
-/obj/structure/sign/prop1,
-/turf/closed/wall/mainship,
+/obj/structure/sign/prop1{
+	dir = 1
+	},
+/turf/open/floor/mainship,
 /area/mainship/squads/general)
 "Bx" = (
 /obj/effect/decal/warning_stripes/thin{
@@ -11061,6 +11068,10 @@
 "JN" = (
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
+/area/mainship/squads/req)
+"JO" = (
+/obj/machinery/vending/MarineMed,
+/turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
 "JQ" = (
 /obj/structure/cable,
@@ -14880,6 +14891,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
+/obj/machinery/vending/marine/shared,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
 "Wd" = (
@@ -48764,8 +48776,8 @@ on
 SR
 wk
 Wc
-kM
-kM
+JO
+oj
 ip
 Xn
 yZ
@@ -51366,7 +51378,7 @@ qC
 sx
 Nn
 sx
-Bv
+qC
 xr
 wf
 wf
@@ -51624,7 +51636,7 @@ qC
 Ah
 PR
 qC
-jl
+Bv
 CN
 CN
 ob

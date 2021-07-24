@@ -287,6 +287,9 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define FACIAL_CAUTERISE_MIN_DURATION 60
 #define FACIAL_CAUTERISE_MAX_DURATION 80
 
+#define SUTURE_MIN_DURATION 80
+#define SUTURE_MAX_DURATION 90
+
 #define LIMB_PRINTING_TIME 550
 #define LIMB_METAL_AMOUNT 125
 
@@ -484,6 +487,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define CASTE_IS_STRONG (1<<16)//can tear open acided walls without being big
 #define CASTE_CAN_CORRUPT_GENERATOR (1<<17) //Can corrupt a generator
 #define CASTE_IS_BUILDER (1<<18) //whether we are classified as a builder caste
+#define CAN_BECOME_KING (1<<19) //Can be choose to become a king
 
 //Charge-Crush
 #define CHARGE_OFF 0

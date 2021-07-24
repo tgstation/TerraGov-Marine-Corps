@@ -86,7 +86,7 @@
 
 /mob/living/carbon/xenomorph/hivemind/receive_hivemind_message(mob/living/carbon/xenomorph/speaker, message)
 	var/track =  "<a href='?src=[REF(src)];hivemind_jump=[REF(speaker)]'>(F)</a>"
-	show_message("[track] [speaker.hivemind_start()] <span class='message'>hisses, '[message]'</span>[speaker.hivemind_end()]", 2)
+	show_message("[track] [speaker.hivemind_start()] [span_message("hisses, '[message]'")][speaker.hivemind_end()]", 2)
 
 /mob/living/carbon/xenomorph/hivemind/Topic(href, href_list)
 	. = ..()
@@ -97,7 +97,7 @@
 		if(!istype(xeno))
 			return
 		if(!check_weeds(get_turf(xeno)))
-			to_chat(src, "<span class='warning'>They are not near any weeds we can jump to.</span>")
+			to_chat(src, span_warning("They are not near any weeds we can jump to."))
 			return
 		forceMove(get_turf(xeno))
 
@@ -167,7 +167,7 @@
 	if(isnull(parent))
 		return ..()
 	parent.playsound_local(parent, get_sfx("alien_help"), 30, TRUE)
-	to_chat(parent, "<span class='xenohighdanger'>Your core has been destroyed!</span>")
+	to_chat(parent, span_xenohighdanger("Your core has been destroyed!"))
 	xeno_message("A sudden tremor ripples through the hive... \the [parent] has been slain!", "xenoannounce", 5, parent.hivenumber)
 	parent.timeofdeath = world.time
 	parent.ghostize()
@@ -186,8 +186,8 @@
 			deconstruct(FALSE)
 			return
 
-	X.visible_message("<span class='danger'>[X] nudges its head against [src].</span>", \
-	"<span class='danger'>You nudge your head against [src].</span>")
+	X.visible_message(span_danger("[X] nudges its head against [src]."), \
+	span_danger("You nudge your head against [src]."))
 
 /obj/effect/alien/hivemindcore/take_damage(damage_amount, damage_type, damage_flag, sound_effect, attack_dir, armour_penetration)
 	. = ..()
@@ -196,8 +196,8 @@
 	var/health_percent = round((max_integrity / obj_integrity) * 100)
 	switch(health_percent)
 		if(-INFINITY to 25)
-			to_chat(parent, "<span class='xenohighdanger'>Your core is under attack, and dangerous low on health!</span>")
+			to_chat(parent, span_xenohighdanger("Your core is under attack, and dangerous low on health!"))
 		if(26 to 75)
-			to_chat(parent, "<span class='xenodanger'>Your core is under attack, and low on health!</span>")
+			to_chat(parent, span_xenodanger("Your core is under attack, and low on health!"))
 		if(76 to INFINITY)
-			to_chat(parent, "<span class='xenodanger'>Your core is under attack!</span>")
+			to_chat(parent, span_xenodanger("Your core is under attack!"))

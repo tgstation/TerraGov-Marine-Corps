@@ -35,7 +35,7 @@
 	else if(istype(I, /obj/item/stack/rods))
 		var/obj/item/stack/rods/V  = I
 		if(V.get_amount() < 1 || get_amount() < 1)
-			to_chat(user, "<span class='warning'>You need one rod and one sheet of glass to make reinforced glass.</span>")
+			to_chat(user, span_warning("You need one rod and one sheet of glass to make reinforced glass."))
 			return
 
 		var/obj/item/stack/sheet/glass/RG = new reinforced_type(user.loc)

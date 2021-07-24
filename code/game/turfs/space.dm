@@ -62,14 +62,14 @@
 		if(!R.use(1))
 			return
 
-		to_chat(user, "<span class='notice'>Constructing support lattice ...</span>")
+		to_chat(user, span_notice("Constructing support lattice ..."))
 		playsound(src, 'sound/weapons/genhit.ogg', 25, 1)
 		ReplaceWithLattice()
 
 	else if(istype(I, /obj/item/stack/tile/plasteel))
 		var/obj/structure/lattice/L = locate(/obj/structure/lattice) in src
 		if(!L)
-			to_chat(user, "<span class='warning'>The plating is going to need some support.</span>")
+			to_chat(user, span_warning("The plating is going to need some support."))
 			return
 
 		var/obj/item/stack/tile/plasteel/S = I
@@ -84,7 +84,7 @@
 /turf/open/space/Entered(atom/movable/AM, atom/oldloc)
 	. = ..()
 	if(isliving(AM))
-		to_chat(AM, "<span class='danger'>The cold vacuum instantly freezes you, maybe this was a bad idea?</span>")
+		to_chat(AM, span_danger("The cold vacuum instantly freezes you, maybe this was a bad idea?"))
 		var/mob/living/spaceman = AM
 		spaceman.adjustFireLoss(600) //Death. Space shouldn't be entered.
 
@@ -93,6 +93,7 @@
 	icon = 'icons/misc/beach.dmi'
 	name = "sea"
 	icon_state = "seadeep"
+	plane = FLOOR_PLANE
 
 /turf/open/space/sea/update_icon_state()
 	return

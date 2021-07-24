@@ -70,7 +70,7 @@ GLOBAL_LIST_INIT(freqtospan, list(
 	var/endspanpart = "</span>"
 
 	//Message
-	var/messagepart = " <span class='message'>[say_emphasis(lang_treat(speaker, message_language, raw_message, spans, message_mode))]</span></span>"
+	var/messagepart = " [span_message("[say_emphasis(lang_treat(speaker, message_language, raw_message, spans, message_mode))]")]</span>"
 
 	var/languageicon = ""
 	var/datum/language/D = GLOB.language_datum_instances[message_language]

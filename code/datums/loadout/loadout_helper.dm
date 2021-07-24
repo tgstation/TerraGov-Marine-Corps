@@ -102,6 +102,8 @@
 		return /datum/item_representation/handful_representation
 	if(ispath(item_type, /obj/item/stack))
 		return /datum/item_representation/stack
+	if(ispath(item_type, /obj/item/card/id))
+		return /datum/item_representation/id
 	return /datum/item_representation
 
 /// Return TRUE if this handful should be buyable, aka if it's corresponding aka box is in a linked vendor
@@ -174,3 +176,12 @@
 		return
 	var/datum/loadout/loadout = jatum_deserialize(loadout_json)
 	return loadout
+
+/proc/convert_loadouts_list(list/loadouts_data)
+	var/list/new_loadouts_data = list()
+	for(var/i = 1 to length(loadouts_data) step 2)
+		var/next_loadout_data = list()
+		next_loadout_data += loadouts_data[i]
+		next_loadout_data += loadouts_data[++i]
+		new_loadouts_data += list(next_loadout_data)
+	return new_loadouts_data

@@ -1,0 +1,4 @@
+author: "KornFlaks"
+delete-after: True
+changes: 
+  - rscdel: "Removed the following two buttons from queen: Larval Accelerant Injection and Psychic Whisper."

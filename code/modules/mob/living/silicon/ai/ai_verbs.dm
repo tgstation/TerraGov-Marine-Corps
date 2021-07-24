@@ -26,7 +26,7 @@
 			eyeobj.setLoc(get_turf(C))
 			break
 
-	to_chat(src, "<span class='notice'>Switched to the \"[uppertext(new_network)]\" camera network.</span>")
+	to_chat(src, span_notice("Switched to the \"[uppertext(new_network)]\" camera network."))
 
 
 
@@ -56,7 +56,7 @@
 		var/datum/signal/status_signal = new(list("command" = "friendcomputer"))
 		frequency.post_signal(src, status_signal)
 
-	to_chat(src, "<span class='notice'>Changed display status to: [emote]</span>")
+	to_chat(src, span_notice("Changed display status to: [emote]"))
 
 
 /mob/living/silicon/ai/verb/change_hologram()
@@ -75,7 +75,7 @@
 				personnel_list["[t.fields["name"]]: [t.fields["rank"]]"] = t.fields["photo_front"]
 
 			if(!length(personnel_list))
-				to_chat(src, "<span class='warning'>No suitable records found. Aborting.</span>")
+				to_chat(src, span_warning("No suitable records found. Aborting."))
 				return
 
 			hologram = tgui_input_list(src, "Select a crew member:", null,personnel_list)
@@ -124,7 +124,7 @@
 		else
 			return
 
-	to_chat(src, "<span class='notice'>Changed hologram to: [hologram]</span>")
+	to_chat(src, span_notice("Changed hologram to: [hologram]"))
 
 
 /mob/living/silicon/ai/verb/toggle_sensors()
@@ -145,7 +145,7 @@
 		return
 
 	if(last_announcement + 60 SECONDS > world.time)
-		to_chat(src, "<span class='warning'>You must wait before announcing again.</span>")
+		to_chat(src, span_warning("You must wait before announcing again."))
 		return
 
 	var/input = stripped_input(usr, "Please write a message to announce to the station crew.", "Announcement")
@@ -195,7 +195,7 @@
 
 	acceleration = !acceleration
 
-	to_chat(src, "<span class='notice'>Camera acceleration has been [acceleration ? "enabled" : "disabled"].</span>")
+	to_chat(src, span_notice("Camera acceleration has been [acceleration ? "enabled" : "disabled"]."))
 
 
 /mob/living/silicon/ai/verb/radio_settings()
@@ -206,10 +206,10 @@
 		return
 
 	if(!radio)
-		to_chat(src, "<span class='warning'>No internal radio detected.</span>")
+		to_chat(src, span_warning("No internal radio detected."))
 		return
 
-	to_chat(src, "<span class='notice'>Accessing internal radio settings.</span>")
+	to_chat(src, span_notice("Accessing internal radio settings."))
 	radio.interact(src)
 
 
@@ -226,6 +226,21 @@
 	popup.set_content(dat)
 	popup.open(FALSE)
 
+/mob/living/silicon/ai/verb/toggle_anchor()
+	set category = "Silicon"
+	set name = "Toggle Floor Bolts"
+
+	if(!isturf(loc)) // if their location isn't a turf
+		return // stop
+	if(stat == DEAD)
+		return
+
+	src.anchored = !anchored
+	playsound(loc,'sound/mecha/mechanical_toggle.ogg', 20)
+
+
+	to_chat(src, "<b>You are now [anchored ? "" : "un"]anchored.</b>")
+
 
 /mob/living/silicon/ai/verb/show_laws()
 	set category = "Silicon"
@@ -234,9 +249,9 @@
 	if(incapacitated())
 		return
 
-	to_chat(src, "<span class='notice'><b>Obey these laws:</b></span>")
+	to_chat(src, span_notice("<b>Obey these laws:</b>"))
 	for(var/i in laws)
-		to_chat(src, "<span class='notice'>[i]</span>")
+		to_chat(src, span_notice("[i]"))
 
 
 /mob/living/silicon/ai/verb/state_laws()
@@ -283,7 +298,7 @@
 				radiomod = ":" + key
 				break
 
-	to_chat(src, "<span class='notice'>Automatic announcements [chan == "None" ? "will not use the radio." : "set to [chan]."]</span>")
+	to_chat(src, span_notice("Automatic announcements [chan == "None" ? "will not use the radio." : "set to [chan]."]"))
 
 
 /mob/living/silicon/ai/verb/shutdown_systems()
@@ -294,7 +309,7 @@
 	if(tgui_alert(src, "Do you want to shutdown your systems? WARNING: This will permanently put you out of your mob.", "Shutdown Systems", list("Yes", "No")) != "Yes")
 		return
 
-	to_chat(src, "<span class='notice'>Systems shutting down...</span>")
+	to_chat(src, span_notice("Systems shutting down..."))
 
 	ghostize(FALSE)
 	offer_mob()

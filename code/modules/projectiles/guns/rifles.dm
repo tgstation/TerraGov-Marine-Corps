@@ -255,6 +255,7 @@
 		/obj/item/attachable/compensator,
 		/obj/item/attachable/reddot,
 		/obj/item/attachable/verticalgrip,
+		/obj/item/attachable/angledgrip,
 		/obj/item/attachable/lasersight,
 		/obj/item/attachable/flashlight,
 		/obj/item/attachable/bipod,
@@ -990,7 +991,7 @@
 		return FALSE
 	var/mob/living/carbon/human/H = user
 	if(!(H.species.species_flags & USES_ALIEN_WEAPONS))
-		to_chat(user, "<span class='warning'>There's no trigger on this gun, you have no idea how to fire it!</span>")
+		to_chat(user, span_warning("There's no trigger on this gun, you have no idea how to fire it!"))
 		return FALSE
 	return TRUE
 
@@ -1025,6 +1026,9 @@
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO)
 	attachable_offset = list("muzzle_x" = 41, "muzzle_y" = 19,"rail_x" = 8, "rail_y" = 21, "under_x" = 37, "under_y" = 16, "stock_x" = 9, "stock_y" = 12)
+	actions_types = list(/datum/action/item_action/aim_mode)
+	aim_fire_delay = 1 SECONDS
+
 	starting_attachment_types = list(
 		/obj/item/attachable/scope/unremovable/tl127,
 		/obj/item/attachable/stock/tl127stock,
@@ -1051,16 +1055,16 @@
 	if(!.)
 		return
 	if(!racked_bolt)
-		to_chat(user, "<span class='warning'>[src] does not have a round chambered!</span>")
+		to_chat(user, span_warning("[src] does not have a round chambered!"))
 		return FALSE
 
 /obj/item/weapon/gun/rifle/chambered/cock(mob/user)
 	if(racked_bolt)
-		to_chat(user, "<span class='warning'>[src] already has a round chambered!</span>")
+		to_chat(user, span_warning("[src] already has a round chambered!"))
 		return
 	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_RACK_BOLT))
 		return
-	to_chat(user, "<span class='notice'>You cycle the bolt of the [src], loading in a new round!</span>")
+	to_chat(user, span_notice("You cycle the bolt of the [src], loading in a new round!"))
 	TIMER_COOLDOWN_START(src, COOLDOWN_RACK_BOLT, rack_delay)
 	racked_bolt = TRUE
 	playsound(loc, rack_sound, 25, 1, 4)
@@ -1156,3 +1160,6 @@
 	scatter = -10
 	scatter_unwielded = 30
 	aim_slowdown = 0.45
+
+/obj/item/weapon/gun/rifle/tx11/scopeless
+	starting_attachment_types = list(/obj/item/attachable/stock/irremoveable/tx11)

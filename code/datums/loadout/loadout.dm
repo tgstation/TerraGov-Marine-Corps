@@ -105,6 +105,14 @@
 			continue
 		item2representation_type = item2representation_type(item_in_slot.type)
 		item_list[slot_key] = new item2representation_type(item_in_slot, src)
+	if(!admin_loadout)
+		return
+	for(var/slot_key in GLOB.additional_admin_item_slot_list)
+		item_in_slot = user.get_item_by_slot(GLOB.slot_str_to_slot[slot_key])
+		if(!item_in_slot)
+			continue
+		item2representation_type = item2representation_type(item_in_slot.type)
+		item_list[slot_key] = new item2representation_type(item_in_slot, src)
 
 /datum/loadout/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
@@ -134,7 +142,7 @@
 	switch(action)
 		if("equipLoadout")
 			if(TIMER_COOLDOWN_CHECK(ui.user, COOLDOWN_LOADOUT_EQUIPPED))
-				to_chat(ui.user, "<span class='warning'>The vendor is still reloading</span>")
+				to_chat(ui.user, span_warning("The vendor is still reloading"))
 				return
 			var/datum/loadout_seller/seller = new
 			if(seller.try_to_equip_loadout(src, ui.user))

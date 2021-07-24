@@ -59,7 +59,7 @@
 	if(!input || !customname)
 		return
 
-	var/msg = "<br><h2 class='alert'>[customname]</h2><br><span class='warning'>[input]</span><br><br>"
+	var/msg = "<br><h2 class='alert'>[customname]</h2><br>[span_warning("[input]")]<br><br>"
 
 	for(var/i in (GLOB.xeno_mob_list + GLOB.observer_list))
 		var/mob/M = i
@@ -272,7 +272,7 @@
 	GLOB.custom_info = new_info
 
 	to_chat(world, "<h1 class='alert'>Custom Information</h1>")
-	to_chat(world, "<span class='alert'>[GLOB.custom_info]</span>")
+	to_chat(world, span_alert("[GLOB.custom_info]"))
 
 	log_admin("[key_name(usr)] has changed the custom event text: [GLOB.custom_info]")
 	message_admins("[ADMIN_TPMONTY(usr)] has changed the custom event text.")
@@ -283,11 +283,11 @@
 	set name = "Custom Info"
 
 	if(!GLOB.custom_info)
-		to_chat(src, "<span class='notice'>There currently is no custom information set.</span>")
+		to_chat(src, span_notice("There currently is no custom information set."))
 		return
 
 	to_chat(src, "<h1 class='alert'>Custom Information</h1>")
-	to_chat(src, "<span class='alert'>[GLOB.custom_info]</span>")
+	to_chat(src, span_alert("[GLOB.custom_info]"))
 
 
 /datum/admins/proc/sound_file(S as sound)
@@ -331,7 +331,7 @@
 
 	var/ytdl = CONFIG_GET(string/invoke_youtubedl)
 	if(!ytdl)
-		to_chat(usr, "<span class='warning'>Youtube-dl was not configured, action unavailable.</span>")
+		to_chat(usr, span_warning("Youtube-dl was not configured, action unavailable."))
 		return
 
 	var/web_sound_input = input("Enter content URL (supported sites only)", "Play Internet Sound via youtube-dl") as text|null
@@ -341,8 +341,8 @@
 	web_sound_input = trim(web_sound_input)
 
 	if(findtext(web_sound_input, ":") && !findtext(web_sound_input, GLOB.is_http_protocol))
-		to_chat(usr, "<span class='warning'>Non-http(s) URIs are not allowed.</span>")
-		to_chat(usr, "<span class='warning'>For youtube-dl shortcuts like ytsearch: please use the appropriate full url from the website.</span>")
+		to_chat(usr, span_warning("Non-http(s) URIs are not allowed."))
+		to_chat(usr, span_warning("For youtube-dl shortcuts like ytsearch: please use the appropriate full url from the website."))
 		return
 
 	var/web_sound_url = ""
@@ -356,14 +356,14 @@
 	var/stderr = output[SHELLEO_STDERR]
 
 	if(errorlevel)
-		to_chat(usr, "<span class='warning'>Youtube-dl URL retrieval FAILED: [stderr]</span>")
+		to_chat(usr, span_warning("Youtube-dl URL retrieval FAILED: [stderr]"))
 		return
 
 	var/list/data = list()
 	try
 		data = json_decode(stdout)
 	catch(var/exception/e)
-		to_chat(usr, "<span class='warning'>Youtube-dl JSON parsing FAILED: [e]: [stdout]</span>")
+		to_chat(usr, span_warning("Youtube-dl JSON parsing FAILED: [e]: [stdout]"))
 		return
 
 	if(data["url"])
@@ -382,8 +382,8 @@
 				return
 
 	if(web_sound_url && !findtext(web_sound_url, GLOB.is_http_protocol))
-		to_chat(usr, "<span class='warning'>BLOCKED: Content URL not using http(s) protocol</span>")
-		to_chat(usr, "<span class='warning'>The media provider returned a content URL that isn't using the HTTP or HTTPS protocol</span>")
+		to_chat(usr, span_warning("BLOCKED: Content URL not using http(s) protocol"))
+		to_chat(usr, span_warning("The media provider returned a content URL that isn't using the HTTP or HTTPS protocol"))
 		return
 
 	var/list/targets
@@ -408,7 +408,7 @@
 		if(C.prefs.toggles_sound & SOUND_MIDI)
 			C.tgui_panel?.play_music(web_sound_url, music_extra_data)
 			if(show)
-				to_chat(C, "<span class='boldnotice'>An admin played: <a href='[data["webpage_url"]]'>[title]</a></span>")
+				to_chat(C, span_boldnotice("An admin played: <a href='[data["webpage_url"]]'>[title]</a>"))
 
 	log_admin("[key_name(usr)] played web sound: [web_sound_input] - [title] - [style]")
 	message_admins("[ADMIN_TPMONTY(usr)] played web sound: [web_sound_input] - [title] - [style]")
@@ -461,7 +461,7 @@
 
 	log_admin("Announce: [key_name(usr)] : [message]")
 	message_admins("[ADMIN_TPMONTY(usr)] Announces:")
-	to_chat(world, "<span class='event_announcement'><b>[usr.client.holder.fakekey ? "Administrator" : "[usr.client.key] ([usr.client.holder.rank])"] Announces:</b>\n [message]</span>")
+	to_chat(world, span_event_announcement("<b>[usr.client.holder.fakekey ? "Administrator" : "[usr.client.key] ([usr.client.holder.rank])"] Announces:</b>\n [message]"))
 
 
 /datum/admins/proc/force_distress()
@@ -473,10 +473,10 @@
 		return
 
 	if(!SSticker?.mode)
-		to_chat(src, "<span class='warning'>Please wait for the round to begin first.</span>")
+		to_chat(src, span_warning("Please wait for the round to begin first."))
 
 	if(SSticker.mode.waiting_for_candidates)
-		to_chat(src, "<span class='warning'>Please wait for the current beacon to be finalized.</span>")
+		to_chat(src, span_warning("Please wait for the current beacon to be finalized."))
 		return
 
 	if(SSticker.mode.picked_call)
@@ -778,7 +778,7 @@
 		return
 
 	if(!istype(L))
-		to_chat(usr, "<span class='warning'>Target is no longer valid.</span>")
+		to_chat(usr, span_warning("Target is no longer valid."))
 		return
 
 	L.offer_mob()
@@ -894,7 +894,7 @@
 	if(!check_rights(R_FUN|R_MENTOR))
 		return
 	if(!istype(friend_owner)) // living only
-		to_chat(usr, "<span class='warning'>That creature can not have Imaginary Friends</span>")
+		to_chat(usr, span_warning("That creature can not have Imaginary Friends") )
 		return
 	if(seek_confirm && tgui_alert(usr, "Become Imaginary Friend of [friend_owner]?", "Confirm", list("Yes", "No")) != "Yes")
 		return
@@ -938,7 +938,7 @@
 			D = M
 
 	if(!D)
-		to_chat(usr, "<span class='warning'>Unable to find shuttle</span>")
+		to_chat(usr, span_warning("Unable to find shuttle"))
 		return
 
 	if(D.mode != SHUTTLE_IDLE && tgui_alert(usr, "[D.name] is not idle, move anyway?", "Force Dropship", list("Yes", "No")) != "Yes")
@@ -954,7 +954,7 @@
 		valid_docks["[S.name] ([i++])"] = S
 
 	if(!length(valid_docks))
-		to_chat(usr, "<span class='warning'>No valid destinations found!</span>")
+		to_chat(usr, span_warning("No valid destinations found!"))
 		return
 
 	var/dock = tgui_input_list(usr, "Choose the destination.", "Force Dropship", valid_docks)
@@ -963,7 +963,7 @@
 
 	var/obj/docking_port/stationary/target = valid_docks[dock]
 	if(!target)
-		to_chat(usr, "<span class='warning'>No valid dock found!</span>")
+		to_chat(usr, span_warning("No valid dock found!"))
 		return
 
 	var/instant = FALSE

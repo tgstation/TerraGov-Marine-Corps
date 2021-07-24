@@ -5,7 +5,7 @@
 #define DEBUG_CREST_DEFENSE 0
 
 #if DEBUG_HIT_CHANCE
-#define BULLET_DEBUG(msg) to_chat(world, "<span class='debuginfo'>[msg]</span>")
+#define BULLET_DEBUG(msg) to_chat(world, span_debuginfo("[msg]"))
 #else
 #define BULLET_DEBUG(msg)
 #endif
@@ -717,12 +717,12 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 
 
 /mob/living/proc/on_dodged_bullet(obj/projectile/proj)
-		visible_message("<span class='avoidharm'>[proj] misses [src]!</span>",
-		"<span class='avoidharm'>[proj] narrowly misses you!</span>", null, 4)
+		visible_message(span_avoidharm("[proj] misses [src]!"),
+		span_avoidharm("[proj] narrowly misses you!"), null, 4)
 
 /mob/living/carbon/xenomorph/on_dodged_bullet(obj/projectile/proj)
-		visible_message("<span class='avoidharm'>[proj] misses [src]!</span>",
-		"<span class='avoidharm'>[proj] narrowly misses us!</span>", null, 4)
+		visible_message(span_avoidharm("[proj] misses [src]!"),
+		span_avoidharm("[proj] narrowly misses us!"), null, 4)
 
 
 /mob/living/do_projectile_hit(obj/projectile/proj)
@@ -984,7 +984,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 		current_bulletholes++
 
 	if(prob(30))
-		visible_message("<span class='warning'>[src] is damaged by [proj]!</span>", visible_message_flags = COMBAT_MESSAGE)
+		visible_message(span_warning("[src] is damaged by [proj]!"), visible_message_flags = COMBAT_MESSAGE)
 	take_damage(damage)
 	return TRUE
 
@@ -1055,8 +1055,8 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 		victim_feedback += "You burst into <b>flames!!</b> Stop drop and roll!"
 		onlooker_feedback += "[p_they(TRUE)] burst into flames!"
 
-	visible_message("<span class='danger'>[onlooker_feedback.Join(" ")]</span>",
-	"<span class='highdanger'>[victim_feedback.Join(" ")]</span>", null, 4, visible_message_flags = COMBAT_MESSAGE)
+	visible_message(span_danger("[onlooker_feedback.Join(" ")]"),
+	span_highdanger("[victim_feedback.Join(" ")]"), null, 4, visible_message_flags = COMBAT_MESSAGE)
 
 	if(feedback_flags & BULLET_FEEDBACK_SCREAM && stat == CONSCIOUS && !(species.species_flags & NO_PAIN))
 		emote("scream")
@@ -1099,7 +1099,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 	if(feedback_flags & BULLET_FEEDBACK_SCREAM && stat == CONSCIOUS)
 		emote(prob(70) ? "hiss" : "roar")
 
-	visible_message("<span class='danger'>[onlooker_feedback.Join(" ")]</span>",
+	visible_message(span_danger("[onlooker_feedback.Join(" ")]"),
 	"<span class='xenodanger'>[victim_feedback.Join(" ")]", null, 4, visible_message_flags = COMBAT_MESSAGE)
 
 // Sundering procs
