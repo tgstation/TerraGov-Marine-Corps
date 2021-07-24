@@ -20,7 +20,7 @@ GLOBAL_LIST_INIT(defile_purge_list, typecacheof(list(
 
 /datum/action/xeno_action/activable/defile/on_cooldown_finish()
 	playsound(owner.loc, 'sound/voice/alien_drool1.ogg', 50, 1)
-	to_chat(owner, "<span class='xenodanger'>You feel your accelerant glands refill. You can use Defile again.</span>")
+	to_chat(owner, span_xenodanger("You feel your toxin accelerant glands refill. You can use Defile again."))
 	return ..()
 
 /datum/action/xeno_action/activable/defile/can_use_ability(atom/A, silent = FALSE, override_flags)
@@ -30,20 +30,20 @@ GLOBAL_LIST_INIT(defile_purge_list, typecacheof(list(
 
 	if(!iscarbon(A))
 		if(!silent)
-			to_chat(owner, "<span class='xenodanger'>Our sting won't affect this target!</span>")
+			to_chat(owner, span_xenodanger("Our sting won't affect this target!"))
 		return FALSE
 
 	var/mob/living/carbon/victim = A
 
 	if(!victim?.can_sting())
 		if(!silent)
-			to_chat(owner, "<span class='xenodanger'>Our sting won't affect this target!</span>")
+			to_chat(owner, span_xenodanger("Our sting won't affect this target!"))
 		return FALSE
 
 	if(!owner.Adjacent(victim))
 		var/mob/living/carbon/xenomorph/X = owner
 		if(!silent)
-			to_chat(X, "<span class='warning'>We can't reach this target!</span>")
+			to_chat(X, span_warning("We can't reach this target!"))
 		return FALSE
 
 /datum/action/xeno_action/activable/defile/use_ability(atom/A)
@@ -60,8 +60,8 @@ GLOBAL_LIST_INIT(defile_purge_list, typecacheof(list(
 	X.do_attack_animation(living_target)
 	playsound(living_target, 'sound/effects/spray3.ogg', 15, TRUE)
 	playsound(living_target, pick('sound/voice/alien_drool1.ogg', 'sound/voice/alien_drool2.ogg'), 15, 1)
-	to_chat(X, "<span class='xenodanger'>Our stinger successfully discharges accelerant into our victim.</span>")
-	to_chat(living_target, "<span class='danger'>You feel horrible pain as something sharp forcibly pierces your thorax.</span>")
+	to_chat(X, span_xenodanger("Our stinger successfully discharges accelerant into our victim."))
+	to_chat(living_target, span_danger("You feel horrible pain as something sharp forcibly pierces your thorax."))
 	living_target.apply_damage(50, STAMINA)
 	living_target.apply_damage(5, BRUTE, "chest", updating_health = TRUE)
 	living_target.emote("scream")
@@ -88,11 +88,11 @@ GLOBAL_LIST_INIT(defile_purge_list, typecacheof(list(
 
 	switch(defile_power) //Description varies in severity and probability with the multiplier
 		if(1 to 49)
-			to_chat(living_target, "<span class='warning'>Your body aches.</span>")
+			to_chat(living_target, span_warning("Your body aches."))
 		if(50 to 99)
-			to_chat(living_target, "<span class='danger'>Your insides are in agony!</span>")
+			to_chat(living_target, span_danger("Your insides are in agony!"))
 		if(100 to INFINITY)
-			to_chat(living_target, "<span class='highdanger'>YOUR INSIDES FEEL LIKE THEY'RE ON FIRE!!</span>")
+			to_chat(living_target, span_highdanger("YOUR INSIDES FEEL LIKE THEY'RE ON FIRE!!"))
 
 	GLOB.round_statistics.defiler_defiler_stings++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "defiler_defiler_stings")
