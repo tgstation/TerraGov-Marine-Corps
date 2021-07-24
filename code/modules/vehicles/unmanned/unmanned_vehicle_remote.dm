@@ -15,10 +15,11 @@
 		return ..()
 	if(vehicle)
 		SEND_SIGNAL(src, COMSIG_REMOTECONTROL_UNLINK)
-		clear_vehicle()
 		if(vehicle == target)
 			to_chat(user, span_notice("You unlink [target] from [src]."))
+			clear_vehicle()
 			return
+		clear_vehicle()
 	vehicle = target
 	if(vehicle.controlled)
 		to_chat(user, "<span class='warning'>Something is already controlling this vehicle</span>")
