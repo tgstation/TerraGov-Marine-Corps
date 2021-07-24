@@ -16,7 +16,7 @@
 	flags_atom = BUMP_ATTACKABLE
 	soft_armor = list("melee" = 25, "bullet" = 50, "laser" = 50, "energy" = 100, "bomb" = 50, "bio" = 100, "rad" = 100, "fire" = 25, "acid" = 25)
 	/// Path of "turret" attached
-	var/obj/item/uav_turret/turret_path = /obj/item/uav_turret
+	var/obj/item/uav_turret/turret_path
 	/// Type of the turret attached
 	var/turret_type
 	///Turret types we're allowed to attach

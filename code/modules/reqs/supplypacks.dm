@@ -1243,6 +1243,11 @@ ENGINEERING
 	contains = list(/obj/vehicle/unmanned/droid)
 	cost = 40
 
+/datum/supply_packs/engineering/droid_scout
+	name = "Scout droid"
+	contains = list(/obj/vehicle/unmanned/droid/scout)
+	cost = 30
+
 /datum/supply_packs/engineering/droid_weapon
 	name = "Droid weapon"
 	contains = list(/obj/item/uav_turret/droid)
