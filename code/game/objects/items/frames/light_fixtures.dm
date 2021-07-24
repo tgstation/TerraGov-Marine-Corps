@@ -13,7 +13,7 @@
 /obj/item/frame/light_fixture/Destroy()
 	QDEL_NULL(newlight)
 	return ..()
-	
+
 
 /obj/item/frame/light_fixture/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -30,7 +30,7 @@
 		return
 	var/turf/loc = get_turf(usr)
 	if (!isfloorturf(loc))
-		to_chat(usr, "<span class='warning'>[src.name] cannot be placed on this spot.</span>")
+		to_chat(usr, span_warning("[src.name] cannot be placed on this spot."))
 		return
 	to_chat(usr, "Attaching [src] to the wall.")
 	playsound(src.loc, 'sound/machines/click.ogg', 15, 1)

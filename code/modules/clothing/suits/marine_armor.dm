@@ -87,7 +87,7 @@
 
 /obj/item/clothing/suit/storage/marine/attack_self(mob/user)
 	if(!isturf(user.loc))
-		to_chat(user, "<span class='warning'>You cannot turn the light on while in [user.loc].</span>")
+		to_chat(user, span_warning("You cannot turn the light on while in [user.loc]."))
 		return
 	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_ARMOR_LIGHT))
 		return
@@ -245,7 +245,6 @@
 		/obj/item/explosive/mine,
 		/obj/item/weapon/combat_knife,
 		/obj/item/attachable/bayonetknife,
-		/obj/item/weapon/gun/smartgun,
 		/obj/item/weapon/gun/rifle/standard_smartmachinegun,
 		/obj/item/storage/belt/sparepouch,
 	)
@@ -569,7 +568,7 @@
 
 /obj/item/clothing/suit/storage/faction/attack_self(mob/user)
 	if(!isturf(user.loc))
-		to_chat(user, "<span class='warning'>You cannot turn the light on while in [user.loc].</span>")
+		to_chat(user, span_warning("You cannot turn the light on while in [user.loc]."))
 		return
 
 	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_ARMOR_LIGHT))

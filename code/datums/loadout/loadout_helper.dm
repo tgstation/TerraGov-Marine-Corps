@@ -11,23 +11,25 @@
 	//Some items are allowed to bypass the buy checks
 	if(is_type_in_typecache(item_to_buy_type, GLOB.bypass_loadout_check_item))
 		return TRUE
-	
+
 	//If we can find it for in a shared vendor, we buy it
 	for(var/type in GLOB.loadout_linked_vendor)
 		for(var/datum/vending_product/item_datum AS in GLOB.vending_records[type])
 			if(item_datum.product_path == item_to_buy_type && item_datum.amount != 0)
 				item_datum.amount--
 				return TRUE
-	
+
 	var/list/job_specific_list = GLOB.loadout_role_essential_set[user.job.title]
 
 	//If we still have our essential kit, and the item is in there, we take one from it
 	if(seller.buying_bitfield & MARINE_CAN_BUY_ESSENTIALS && islist(job_specific_list) && job_specific_list[item_to_buy_type] > seller.unique_items_list[item_to_buy_type])
 		seller.unique_items_list[item_to_buy_type]++
 		return TRUE
-	
+
 	//If it's in a clothes vendor that uses buying bitfield, we check if we still have that field and we use it
 	job_specific_list = GLOB.job_specific_clothes_vendor[user.job.title]
+	if(!islist(job_specific_list))
+		return FALSE
 	var/list/item_info = job_specific_list[item_to_buy_type]
 	if(item_info && buy_category(item_info[1], seller))
 		return TRUE
@@ -76,7 +78,7 @@
 				continue
 			if(item_datum.amount >= 0)
 				item_datum.amount++
-			return 
+			return
 
 ///Return wich type of item_representation should representate any item_type
 /proc/item2representation_type(item_type)
@@ -100,6 +102,8 @@
 		return /datum/item_representation/handful_representation
 	if(ispath(item_type, /obj/item/stack))
 		return /datum/item_representation/stack
+	if(ispath(item_type, /obj/item/card/id))
+		return /datum/item_representation/id
 	return /datum/item_representation
 
 /// Return TRUE if this handful should be buyable, aka if it's corresponding aka box is in a linked vendor
@@ -172,4 +176,12 @@
 		return
 	var/datum/loadout/loadout = jatum_deserialize(loadout_json)
 	return loadout
-	
+
+/proc/convert_loadouts_list(list/loadouts_data)
+	var/list/new_loadouts_data = list()
+	for(var/i = 1 to length(loadouts_data) step 2)
+		var/next_loadout_data = list()
+		next_loadout_data += loadouts_data[i]
+		next_loadout_data += loadouts_data[++i]
+		new_loadouts_data += list(next_loadout_data)
+	return new_loadouts_data

@@ -82,6 +82,20 @@
 	///custom movement keys for this client
 	var/list/movement_keys = list()
 
+	var/list/parallax_layers
+	var/list/parallax_layers_cached
+	var/atom/movable/movingmob
+	var/turf/previous_turf
+	///world.time of when we can state animate()ing parallax again
+	var/dont_animate_parallax
+	///world.time of last parallax update
+	var/last_parallax_shift
+	///ds between parallax updates
+	var/parallax_throttle = 0
+	var/parallax_movedir = 0
+	var/parallax_layers_max = 4
+	var/parallax_animate_timer
+
 	/**
 	 * Assoc list with all the active maps - when a screen obj is added to
 	 * a map, it's put in here as well.

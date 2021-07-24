@@ -38,7 +38,7 @@
 /obj/structure/cocoon/examine(mob/user, distance, infix, suffix)
 	. = ..()
 	if(anchored && victim && ishuman(user))
-		to_chat(user, "<span class='notice'>There seems to be someone inside it. You think you can open it with a sharp object.</span>")
+		to_chat(user, span_notice("There seems to be someone inside it. You think you can open it with a sharp object."))
 
 /obj/structure/cocoon/process()
 	SSpoints.add_psy_points(hivenumber, psych_points_output)
@@ -72,7 +72,7 @@
 		release_victim()
 	return ..()
 
-///Open the cocoon and move the victim out 
+///Open the cocoon and move the victim out
 /obj/structure/cocoon/proc/release_victim()
 	REMOVE_TRAIT(victim, TRAIT_STASIS, TRAIT_STASIS)
 	playsound(loc, "alien_resin_move", 35)
@@ -112,7 +112,7 @@
 /obj/structure/cocoon/opened_cocoon
 	icon_state = "xeno_cocoon_open"
 	anchored = FALSE
-	
+
 /obj/structure/cocoon/opened_cocoon/Initialize()
 	. = ..()
 	new /obj/structure/bed/nest(loc)

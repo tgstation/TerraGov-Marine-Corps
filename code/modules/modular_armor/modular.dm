@@ -96,7 +96,7 @@
 		var/mob/living/carbon/human/H = user
 		var/obj/item/clothing/under/marine/undersuit = H.w_uniform
 		if(!istype(undersuit))
-			to_chat(user, "<span class='warning'>You must be wearing a marine jumpsuit to equip this.</span>")
+			to_chat(user, span_warning("You must be wearing a marine jumpsuit to equip this."))
 			return FALSE
 	return ..()
 
@@ -105,7 +105,7 @@
 	if(.)
 		return
 	if(!isturf(user.loc))
-		to_chat(user, "<span class='warning'>You cannot turn the light on while in [user.loc].</span>")
+		to_chat(user, span_warning("You cannot turn the light on while in [user.loc]."))
 		return
 	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_ARMOR_LIGHT) || !ishuman(user))
 		return
@@ -174,7 +174,7 @@
 
 	if(ismob(loc) && (user.r_hand != src && user.l_hand != src))
 		if(!silent)
-			to_chat(user, "<span class='warning'>You need to remove the armor first.</span>")
+			to_chat(user, span_warning("You need to remove the armor first."))
 		return FALSE
 
 	if(!do_after(user, equip_delay, TRUE, user, BUSY_ICON_GENERIC))
@@ -196,11 +196,11 @@
 		return FALSE
 
 	if(!LAZYLEN(installed_modules))
-		to_chat(user, "<span class='notice'>There is nothing to remove</span>")
+		to_chat(user, span_notice("There is nothing to remove"))
 		return TRUE
 
 	if(ismob(loc) && (user.r_hand != src && user.l_hand != src))
-		to_chat(user, "<span class='warning'>You need to remove the armor first.</span>")
+		to_chat(user, span_warning("You need to remove the armor first."))
 		return TRUE
 
 	var/obj/item/armor_module/attachable/attachment
@@ -228,7 +228,7 @@
 		return FALSE
 
 	if(ismob(loc) && (user.r_hand != src && user.l_hand != src))
-		to_chat(user, "<span class='warning'>You need to remove the armor first.</span>")
+		to_chat(user, span_warning("You need to remove the armor first."))
 		return TRUE
 
 	var/list/obj/item/armor_module/armor/armor_slots = list()
@@ -240,7 +240,7 @@
 		armor_slots += slot_legs
 
 	if(!length(armor_slots))
-		to_chat(user, "<span class='notice'>There is nothing to remove</span>")
+		to_chat(user, span_notice("There is nothing to remove"))
 		return TRUE
 
 	var/obj/item/armor_module/armor/armor_slot
@@ -267,11 +267,11 @@
 		return FALSE
 
 	if(!installed_storage)
-		to_chat(user, "<span class='notice'>There is nothing to remove</span>")
+		to_chat(user, span_notice("There is nothing to remove"))
 		return TRUE
 
 	if(ismob(loc) && (user.r_hand != src && user.l_hand != src))
-		to_chat(user, "<span class='warning'>You need to remove the armor first.</span>")
+		to_chat(user, span_warning("You need to remove the armor first."))
 		return TRUE
 
 	if(!can_detach(user, installed_storage))
@@ -362,7 +362,7 @@
 	var/visor_greyscale_config = /datum/greyscale_config/modular_helmet_visor_emissive
 
 	///Assoc list of color-hex for colors we're allowed to color this armor
-	var/static/list/colorable_colors = list(
+	var/list/colorable_colors = list(
 		"black" = "#474A50",
 		"snow" = "#D5CCC3",
 		"desert" = "#A57F7C",
@@ -396,6 +396,30 @@
 	if(length(colors) >= 2) //for only single color helmets with no visor
 		visor_color_hex = colors[2]
 
+///Will force faction colors on this helmet
+/obj/item/clothing/head/modular/proc/limit_colorable_colors(faction)
+	switch(faction)
+		if(FACTION_TERRAGOV)
+			var/split_colors = list("#2A4FB7")
+			if(visor_color_hex)
+				split_colors += visor_color_hex
+			set_greyscale_colors(split_colors)
+			colorable_colors = list(
+				"blue" = "#2A4FB7",
+				"aqua" = "#2098A0",
+				"purple" = "#871F8F",
+			)
+		if(FACTION_TERRAGOV_REBEL)
+			var/split_colors = list("#CC2C32")
+			if(visor_color_hex)
+				split_colors += visor_color_hex
+			set_greyscale_colors(split_colors)
+			colorable_colors = list(
+				"red" = "#CC2C32",
+				"orange" = "#BC4D25",
+				"yellow" = "#B7B21F",
+			)
+
 /obj/item/clothing/head/modular/examine(mob/user, distance, infix, suffix)
 	. = ..()
 	if(visor_greyscale_config)
@@ -411,7 +435,7 @@
 
 	var/obj/item/facepaint/paint = I
 	if(paint.uses < 1)
-		to_chat(user, "<span class='warning'>\the [paint] is out of color!</span>")
+		to_chat(user, span_warning("\the [paint] is out of color!"))
 		return TRUE
 	paint.uses--
 
@@ -456,7 +480,7 @@
 	if(.)
 		return
 	if(!isturf(user.loc))
-		to_chat(user, "<span class='warning'>You cannot turn the module on while in [user.loc].</span>")
+		to_chat(user, span_warning("You cannot turn the module on while in [user.loc]."))
 		return
 	if(TIMER_COOLDOWN_CHECK(user, COOLDOWN_ARMOR_ACTION) || !ishuman(user))
 		return
@@ -477,7 +501,7 @@
 		return FALSE
 
 	if(!installed_module)
-		to_chat(user, "<span class='notice'>There is nothing to remove</span>")
+		to_chat(user, span_notice("There is nothing to remove"))
 		return TRUE
 
 	var/obj/item/armor_module/attachable/attachment = installed_module
@@ -512,12 +536,12 @@
 
 	if(ismob(loc) && (user.r_hand != src && user.l_hand != src))
 		if(!silent)
-			to_chat(user, "<span class='warning'>You need to remove the armor first.</span>")
+			to_chat(user, span_warning("You need to remove the armor first."))
 		return FALSE
 
 	if(installed_module)
 		if(!silent)
-			to_chat(user,"<span class='warning'>There is already an installed module.</span>")
+			to_chat(user,span_warning("There is already an installed module."))
 		return FALSE
 
 	if(user.do_actions)

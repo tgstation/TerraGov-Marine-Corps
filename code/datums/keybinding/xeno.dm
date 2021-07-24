@@ -280,9 +280,9 @@
 	keybind_signal = COMSIG_XENOABILITY_TOGGLE_STEALTH
 
 /datum/keybinding/xeno/haunt
-	name = "haunt"
-	full_name = "Hunter: Haunt"
-	description = "Haunt the target, causing minor hallucinations"
+	name = "impair senses"
+	full_name = "Hunter: Silence"
+	description = "Impairs the ability of hostile living creatures we can see in a 5x5 area. Targets will be unable to speak and hear for 10 seconds."
 	keybind_signal = COMSIG_XENOABILITY_HAUNT
 
 /datum/keybinding/xeno/psychic_whisper
@@ -363,11 +363,11 @@
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_QUEEN_GIVE_PLASMA
 
-/datum/keybinding/xeno/queen_give_order
-	name = "queen_give_order"
-	full_name = "Queen: Give Order"
-	description = ""
-	keybind_signal = COMSIG_XENOABILITY_QUEEN_GIVE_ORDER
+/datum/keybinding/xeno/queen_hive_message
+	name = "queen_hive_message"
+	full_name = "Queen: Hive Message"
+	description = "Instantly displays a bolded announcement to all xenos in the hive."
+	keybind_signal = COMSIG_XENOABILITY_QUEEN_HIVE_MESSAGE
 
 /datum/keybinding/xeno/deevolve
 	name = "deevolve"

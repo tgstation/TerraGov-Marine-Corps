@@ -12,6 +12,16 @@
 	var/list/can_hold = list() //List of objects which this item can store (if set, it can't store anything else)
 	var/list/cant_hold = list() //List of objects which this item can't store (in effect only if can_hold isn't set)
 	var/list/bypass_w_limit = list() //a list of objects which this item can store despite not passing the w_class limit
+	/**
+	 * Associated list of types and their max count, formatted as
+	 * 	storage_type_limits = list(
+	 * 		/obj/A = 3,
+	 * 	)
+	 *
+	 * Any inserted objects will decrement the allowed count of every listed type which matches or is a parent of that object.
+	 * With entries for both /obj/A and /obj/A/B, inserting a B requires non-zero allowed count remaining for, and reduces, both.
+	 */
+	var/list/storage_type_limits
 	var/list/click_border_start = list() //In slotless storage, stores areas where clicking will refer to the associated item
 	var/list/click_border_end = list()
 	var/max_w_class = 2 //Max size of objects that this object can store (in effect only if can_hold isn't set)
@@ -342,23 +352,23 @@
 		return FALSE //Means the item is already in the storage item
 	if(storage_slots != null && contents.len >= storage_slots)
 		if(warning)
-			to_chat(usr, "<span class='notice'>[src] is full, make some space.</span>")
+			to_chat(usr, span_notice("[src] is full, make some space."))
 		return FALSE //Storage item is full
 
 	if(length(can_hold))
 		if(!is_type_in_typecache(W, can_hold))
 			if(warning)
-				to_chat(usr, "<span class='notice'>[src] cannot hold [W].</span>")
+				to_chat(usr, span_notice("[src] cannot hold [W]."))
 			return FALSE
 
 	if(is_type_in_typecache(W, cant_hold)) //Check for specific items which this container can't hold.
 		if(warning)
-			to_chat(usr, "<span class='notice'>[src] cannot hold [W].</span>")
+			to_chat(usr, span_notice("[src] cannot hold [W]."))
 		return FALSE
 
 	if(!is_type_in_typecache(W, bypass_w_limit) && W.w_class > max_w_class)
 		if(warning)
-			to_chat(usr, "<span class='notice'>[W] is too long for this [src].</span>")
+			to_chat(usr, span_notice("[W] is too long for this [src]."))
 		return FALSE
 
 	var/sum_storage_cost = W.w_class
@@ -367,14 +377,22 @@
 
 	if(sum_storage_cost > max_storage_space)
 		if(warning)
-			to_chat(usr, "<span class='notice'>[src] is full, make some space.</span>")
+			to_chat(usr, span_notice("[src] is full, make some space."))
 		return FALSE
 
 	if(W.w_class >= w_class && istype(W, /obj/item/storage) && !is_type_in_typecache(W.type, bypass_w_limit))
 		if(!istype(src, /obj/item/storage/backpack/holding))	//bohs should be able to hold backpacks again. The override for putting a boh in a boh is in backpack.dm.
 			if(warning)
-				to_chat(usr, "<span class='notice'>[src] cannot hold [W] as it's a storage item of the same size.</span>")
+				to_chat(usr, span_notice("[src] cannot hold [W] as it's a storage item of the same size."))
 			return FALSE //To prevent the stacking of same sized storage items.
+
+	for(var/limited_type in storage_type_limits)
+		if(!istype(W, limited_type))
+			continue
+		if(storage_type_limits[limited_type] == 0)
+			if(warning)
+				to_chat(usr, span_warning("[src] can't fit any more of those.") )
+			return FALSE
 
 	if(istype(W, /obj/item/tool/hand_labeler))
 		var/obj/item/tool/hand_labeler/L = W
@@ -395,7 +413,7 @@
 		return TRUE
 
 	if(LAZYLEN(user.do_actions))
-		to_chat(user, "<span class='warning'>You are busy doing something else!</span>")
+		to_chat(user, span_warning("You are busy doing something else!"))
 		return FALSE
 
 	if(!alert_user)
@@ -403,7 +421,7 @@
 
 	to_chat(user, "<span class='notice'>You begin to [taking_out ? "take" : "put"] [accessed] [taking_out ? "out of" : "into"] [src]")
 	if(!do_after(user, access_delay, TRUE, src, ignore_turf_checks=TRUE))
-		to_chat(user, "<span class='warning'>You fumble [accessed]!</span>")
+		to_chat(user, span_warning("You fumble [accessed]!"))
 		return FALSE
 	return TRUE
 
@@ -438,8 +456,8 @@
 			user.client?.screen -= item
 		if(!prevent_warning)
 			var/visidist = item.w_class >= 3 ? 3 : 1
-			user.visible_message("<span class='notice'>[user] puts [item] into [src].</span>",\
-								"<span class='notice'>You put \the [item] into [src].</span>",\
+			user.visible_message(span_notice("[user] puts [item] into [src]."),\
+								span_notice("You put \the [item] into [src]."),\
 								null, visidist)
 	orient2hud()
 	for(var/mob/M in can_see_content())
@@ -447,6 +465,9 @@
 	if (storage_slots)
 		item.mouse_opacity = 2 //not having to click the item's tiny sprite to take it out of the storage.
 	update_icon()
+	for(var/limited_type in storage_type_limits)
+		if(istype(item, limited_type))
+			storage_type_limits[limited_type] -= 1
 	return 1
 
 //Call this proc to handle the removal of an item from the storage item. The item will be moved to the atom sent as new_target
@@ -485,6 +506,10 @@
 		item.mouse_opacity = initial(item.mouse_opacity)
 
 	update_icon()
+
+	for(var/limited_type in storage_type_limits)
+		if(istype(item, limited_type))
+			storage_type_limits[limited_type] += 1
 
 	return TRUE
 
@@ -675,7 +700,7 @@
 		close(M)
 
 	// Now make the cardboard
-	to_chat(user, "<span class='notice'>You fold [src] flat.</span>")
+	to_chat(user, span_notice("You fold [src] flat."))
 	new foldable(get_turf(src))
 	qdel(src)
 //BubbleWrap END

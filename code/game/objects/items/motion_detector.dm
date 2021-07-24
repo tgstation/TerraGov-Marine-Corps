@@ -51,7 +51,8 @@
 	w_class = WEIGHT_CLASS_SMALL
 	var/recycletime = 120
 	var/long_range_cooldown = 2
-	var/list/iff_signal = list(ACCESS_IFF_MARINE)
+	/// Iff signal to distinguish friendlies from foes
+	var/iff_signal = NONE
 	var/detect_friendlies = TRUE
 	var/detect_revivable = TRUE
 	var/detect_fubar = TRUE
@@ -143,7 +144,7 @@
 		status = MOTION_DETECTOR_HOSTILE //Reset the status to default
 		if(ishuman(M))
 			var/mob/living/carbon/human/H = M
-			if(H.get_target_lock(iff_signal)) //device checks for IFF data and status
+			if(!(H.wear_id?.iff_signal & iff_signal)) //device checks for IFF data and status
 				if(M.stat == DEAD)
 					if(H.has_working_organs() && H.get_ghost())
 						if(detect_revivable)
@@ -270,13 +271,6 @@
 	update_icon()
 	screen_loc = "[screen_pos_x],[screen_pos_y]"
 
-
-/obj/item/motiondetector/pmc
-	name = "motion detector (PMC)"
-	desc = "A device that detects hostile movement. Hostiles appear as red blips. Friendlies with the correct IFF signature appear as green, and their bodies as blue, unrevivable bodies as dark blue. It has a mode selection interface. This one has been modified for use by the NT PMC forces."
-	iff_signal = list(ACCESS_IFF_PMC)
-
-
 /obj/item/motiondetector/Topic(href, href_list)
 	. = ..()
 	if(.)
@@ -285,21 +279,23 @@
 	if(href_list["power"])
 		active = !active
 		if(active)
-			to_chat(usr, "<span class='notice'>You activate [src].</span>")
+			to_chat(usr, span_notice("You activate [src]."))
 			operator = usr
+			var/obj/item/card/id/id = operator.get_idcard()
+			iff_signal = id?.iff_signal
 			START_PROCESSING(SSobj, src)
 		else
-			to_chat(usr, "<span class='notice'>You deactivate [src].</span>")
+			to_chat(usr, span_notice("You deactivate [src]."))
 			STOP_PROCESSING(SSobj, src)
 		update_icon()
 
 	else if(href_list["detector_mode"])
 		detector_mode = !detector_mode
 		if(detector_mode)
-			to_chat(usr, "<span class='notice'>You switch [src] to short range mode.</span>")
+			to_chat(usr, span_notice("You switch [src] to short range mode."))
 			detector_range = 7
 		else
-			to_chat(usr, "<span class='notice'>You switch [src] to long range mode.</span>")
+			to_chat(usr, span_notice("You switch [src] to long range mode."))
 			detector_range = 14
 
 	else if(href_list["detect_friendlies"])

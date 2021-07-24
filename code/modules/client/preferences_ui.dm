@@ -34,6 +34,8 @@
 			continue
 		.["save_slot_names"]["[i]"] = name
 
+	.["unique_action_use_active_hand"] = unique_action_use_active_hand
+
 	switch(tab_index)
 		if(CHARACTER_CUSTOMIZATION)
 			.["r_hair"] = r_hair
@@ -114,6 +116,7 @@
 			.["widescreenpref"] = widescreenpref
 			.["scaling_method"] = scaling_method
 			.["pixel_size"] = pixel_size
+			.["parallax"] = parallax
 			.["fullscreen_mode"] = fullscreen_mode
 		if(KEYBIND_SETTINGS)
 			.["is_admin"] = user.client?.holder ? TRUE : FALSE
@@ -355,9 +358,9 @@
 				if(!islist(gear))
 					gear = list()
 				gear += choice
-				to_chat(user, "<span class='notice'>Added '[choice]' for [C.cost] points ([MAX_GEAR_COST - total_cost] points remaining).</span>")
+				to_chat(user, span_notice("Added '[choice]' for [C.cost] points ([MAX_GEAR_COST - total_cost] points remaining)."))
 			else
-				to_chat(user, "<span class='warning'>Adding '[choice]' will exceed the maximum loadout cost of [MAX_GEAR_COST] points.</span>")
+				to_chat(user, span_warning("Adding '[choice]' will exceed the maximum loadout cost of [MAX_GEAR_COST] points."))
 
 		if("loadoutremove")
 			gear.Remove(params["gear"])
@@ -578,7 +581,6 @@
 		if("fullscreen_mode")
 			fullscreen_mode = !fullscreen_mode
 			user.client?.set_fullscreen(fullscreen_mode)
-			return
 
 		if("set_keybind")
 			var/kb_name = params["keybind_name"]
@@ -669,7 +671,7 @@
 			var/expires = "This is a permanent ban."
 			if(ban_details["expiration_time"])
 				expires = " The ban is for [DisplayTimeText(text2num(ban_details["duration"]) MINUTES)] and expires on [ban_details["expiration_time"]] (server time)."
-			to_chat(user, "<span class='danger'>You, or another user of this computer or connection ([ban_details["key"]]) is banned from playing [params["role"]].<br>The ban reason is: [ban_details["reason"]]<br>This ban (BanID #[ban_details["id"]]) was applied by [ban_details["admin_key"]] on [ban_details["bantime"]] during round ID [ban_details["round_id"]].<br>[expires]</span>")
+			to_chat(user, span_danger("You, or another user of this computer or connection ([ban_details["key"]]) is banned from playing [params["role"]].<br>The ban reason is: [ban_details["reason"]]<br>This ban (BanID #[ban_details["id"]]) was applied by [ban_details["admin_key"]] on [ban_details["bantime"]] during round ID [ban_details["round_id"]].<br>[expires]"))
 
 		if("update-character-preview")
 			update_preview_icon()
@@ -692,6 +694,11 @@
 					pixel_size = PIXEL_SCALING_AUTO
 			user.client.view_size.apply() //Let's winset() it so it actually works
 
+		if("parallax")
+			parallax = WRAP(parallax + 1, PARALLAX_INSANE, PARALLAX_DISABLE + 1)
+			if(parent && parent.mob && parent.mob.hud_used)
+				parent.mob.hud_used.update_parallax_pref(parent.mob)
+
 		if("scaling_method")
 			switch(scaling_method)
 				if(SCALING_METHOD_NORMAL)
@@ -701,6 +708,9 @@
 				if(SCALING_METHOD_BLUR)
 					scaling_method = SCALING_METHOD_NORMAL
 			user.client.view_size.update_zoom_mode()
+
+		if("unique_action_use_active_hand")
+			unique_action_use_active_hand = !unique_action_use_active_hand
 
 		else //  Handle the unhandled cases
 			return

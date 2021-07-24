@@ -1,7 +1,7 @@
 {{if data.printing}}
   <h5 class='average'>The computer is currently busy.</h5>
   <div class='notice'>
-    <center><span class='bad'>Printing...</span></center>
+    <center>[span_bad("Printing...")]</center>
   </div>
   <p>
     Thank you for your patience!
@@ -24,7 +24,7 @@
     </div>
 
     {{if !data.authenticated}}
-      <span class='alert'><i>Please insert the IDs into the terminal to proceed.</i></span><br>
+      [span_alert("<i>Please insert the IDs into the terminal to proceed.</i>")]<br>
     {{/if}}
 
     <div class='item'>

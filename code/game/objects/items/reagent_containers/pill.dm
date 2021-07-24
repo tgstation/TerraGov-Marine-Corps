@@ -29,10 +29,10 @@
 		if(ishuman(M))
 			var/mob/living/carbon/human/H = M
 			if(H.species.species_flags & IS_SYNTHETIC)
-				to_chat(H, "<span class='warning'>You can't eat pills.</span>")
+				to_chat(H, span_warning("You can't eat pills."))
 				return
 
-		to_chat(M, "<span class='notice'>You swallow [src].</span>")
+		to_chat(M, span_notice("You swallow [src]."))
 		M.dropItemToGround(src) //icon update
 		if(reagents.total_volume)
 			reagents.trans_to(M, reagents.total_volume)
@@ -44,10 +44,10 @@
 
 		var/mob/living/carbon/human/H = M
 		if(H.species.species_flags & IS_SYNTHETIC)
-			to_chat(user, "<span class='warning'>They have a monitor for a head, where do you think you're going to put that?</span>")
+			to_chat(user, span_warning("They have a monitor for a head, where do you think you're going to put that?"))
 			return
 
-		user.visible_message("<span class='warning'>[user] attempts to force [M] to swallow [src].</span>")
+		user.visible_message(span_warning("[user] attempts to force [M] to swallow [src]."))
 
 		var/ingestion_time = max(1 SECONDS, 3 SECONDS - 1 SECONDS * user.skills.getRating("medical"))
 
@@ -78,7 +78,7 @@
 
 	if(target.is_refillable())
 		if(target.reagents.holder_full())
-			to_chat(user, "<span class='warning'>[target] is full.</span>")
+			to_chat(user, span_warning("[target] is full."))
 			return
 
 		var/obj/item/reagent_containers/R = null
@@ -90,12 +90,12 @@
 
 		if(target.is_drainable() && !target.reagents.total_volume)
 			if(!R || !liquidate)
-				to_chat(user, "<span class='warning'>[target] is empty! There's nothing to dissolve [src] in.</span>")
+				to_chat(user, span_warning("[target] is empty! There's nothing to dissolve [src] in."))
 				return
-			to_chat(user, "<span class='notice'>[target]'s liquifier instantly reprocesses [src] upon insertion.</span>")
+			to_chat(user, span_notice("[target]'s liquifier instantly reprocesses [src] upon insertion."))
 
 		if(!R || !liquidate)
-			to_chat(user, "<span class='notice'>You dissolve the pill in [target].</span>")
+			to_chat(user, span_notice("You dissolve the pill in [target]."))
 
 		var/rgt_list_text = get_reagent_list_text()
 

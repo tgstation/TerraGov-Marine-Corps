@@ -1,5 +1,0 @@
-author: "QualityVan"
-delete-after: True
-changes: 
-  - rscadd: "Hivelord tunnels show up on the minimap"
-  - bugfix: "Xeno's Tunnel List verb should work now"
