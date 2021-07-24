@@ -1,4 +1,0 @@
-author: "BraveMole"
-delete-after: True
-changes: 
-  - bugfix: "Should prevent HSG to keep firing after you released mouse button"
