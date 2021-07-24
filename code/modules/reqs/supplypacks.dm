@@ -1290,7 +1290,7 @@ ENGINEERING
 
 /datum/supply_packs/engineering/vehicle_remote
 	name = "Vehicle remote"
-	contains = list(/obj/item/ammo_magazine/box11x35mm)
+	contains = list(/obj/item/unmanned_vehicle_remote)
 	cost = 10
 	containertype = /obj/structure/closet/crate
 
