@@ -38,7 +38,7 @@
 	to_chat(owner, "<span class='xenodanger'>We vanish into the shadows...</span>")
 	last_stealth = world.time
 	stealth = TRUE
-  
+
 	RegisterSignal(owner, COMSIG_MOVABLE_MOVED, .proc/handle_stealth)
 	RegisterSignal(owner, COMSIG_XENOMORPH_POUNCE_END, .proc/sneak_attack_pounce)
 	RegisterSignal(owner, COMSIG_XENO_LIVING_THROW_HIT, .proc/mob_hit)
@@ -68,9 +68,9 @@
 	RegisterSignal(owner, list(SIGNAL_ADDTRAIT(TRAIT_KNOCKEDOUT), SIGNAL_ADDTRAIT(TRAIT_FLOORED)), .proc/cancel_stealth)
 
 	RegisterSignal(owner, COMSIG_XENOMORPH_TAKING_DAMAGE, .proc/damage_taken)
-  
+
 	ADD_TRAIT(owner, TRAIT_TURRET_HIDDEN, STEALTH_TRAIT)
-  
+
 	handle_stealth()
 	addtimer(CALLBACK(src, .proc/sneak_attack_cooldown), HUNTER_POUNCE_SNEAKATTACK_DELAY) //Short delay before we can sneak attack.
 
@@ -80,7 +80,7 @@
 		return
 	add_cooldown()
 	to_chat(owner, "<span class='xenodanger'>We emerge from the shadows.</span>")
-  
+
 	UnregisterSignal(owner, list(
 		COMSIG_MOVABLE_MOVED,
 		COMSIG_XENOMORPH_POUNCE_END,
