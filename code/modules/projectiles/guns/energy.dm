@@ -115,7 +115,7 @@
 	. = ..()
 	if (.) //Let's check all that other stuff first.
 		if(user.skills.getRating("police") < SKILL_POLICE_MP)
-			to_chat(user, "<span class='warning'>You don't seem to know how to use [src]...</span>")
+			to_chat(user, span_warning("You don't seem to know how to use [src]..."))
 			return FALSE
 
 
@@ -232,11 +232,11 @@
 	if(overcharge == FALSE)
 		if(!cell)
 			playsound(user, 'sound/machines/buzz-two.ogg', 15, 0, 2)
-			to_chat(user, "<span class='warning'>You attempt to toggle on [src]'s overcharge mode but you have no battery loaded.</span>")
+			to_chat(user, span_warning("You attempt to toggle on [src]'s overcharge mode but you have no battery loaded."))
 			return
 		if(cell.charge < ENERGY_OVERCHARGE_AMMO_COST)
 			playsound(user, 'sound/machines/buzz-two.ogg', 15, 0, 2)
-			to_chat(user, "<span class='warning'>You attempt to toggle on [src]'s overcharge mode but your battery pack lacks adequate charge to do so.</span>")
+			to_chat(user, span_warning("You attempt to toggle on [src]'s overcharge mode but your battery pack lacks adequate charge to do so."))
 			return
 		//While overcharge is active, double ammo consumption, and
 		playsound(user, 'sound/weapons/emitter.ogg', 5, 0, 2)
@@ -270,8 +270,8 @@
 			active_attachable.current_rounds--
 			return create_bullet(active_attachable.ammo)
 		else
-			to_chat(user, "<span class='warning'>[active_attachable] is empty!</span>")
-			to_chat(user, "<span class='notice'>You disable [active_attachable].</span>")
+			to_chat(user, span_warning("[active_attachable] is empty!"))
+			to_chat(user, span_notice("You disable [active_attachable]."))
 			playsound(user, active_attachable.activation_sound, 15, 1)
 			active_attachable.activate_attachment(null, TRUE)
 
@@ -327,28 +327,28 @@
 		return
 
 	if(!new_cell || !istype(new_cell))
-		to_chat(user, "<span class='warning'>That's not a power cell!</span>")
+		to_chat(user, span_warning("That's not a power cell!"))
 		return
 
 	if(new_cell.charge <= 0)
-		to_chat(user, "<span class='warning'>[cell] is depleted!</span>")
+		to_chat(user, span_warning("[cell] is depleted!"))
 		return
 
 	if(!istype(src, new_cell.gun_type))
-		to_chat(user, "<span class='warning'>That power cell doesn't fit in there!</span>")
+		to_chat(user, span_warning("That power cell doesn't fit in there!"))
 		return
 
 	if(cell)
-		to_chat(user, "<span class='warning'>It's still got something loaded.</span>")
+		to_chat(user, span_warning("It's still got something loaded."))
 		return
 
 	if(user)
 		if(new_cell.reload_delay > 1)
-			to_chat(user, "<span class='notice'>You begin reloading [src]. Hold still...</span>")
+			to_chat(user, span_notice("You begin reloading [src]. Hold still..."))
 			if(do_after(user,new_cell.reload_delay, TRUE, src, BUSY_ICON_GENERIC))
 				replace_magazine(user, new_cell)
 			else
-				to_chat(user, "<span class='warning'>Your reload was interrupted!</span>")
+				to_chat(user, span_warning("Your reload was interrupted!"))
 				return
 		else
 			replace_magazine(user, new_cell)
@@ -360,8 +360,8 @@
 	cell = new_cell
 	if(user)
 		user.transferItemToLoc(new_cell, src) //Click!
-		user.visible_message("<span class='notice'>[user] loads [new_cell] into [src]!</span>",
-		"<span class='notice'>You load [new_cell] into [src]!</span>", null, 3)
+		user.visible_message(span_notice("[user] loads [new_cell] into [src]!"),
+		span_notice("You load [new_cell] into [src]!"), null, 3)
 		if(reload_sound)
 			playsound(user, reload_sound, 25, 1, 5)
 		update_icon(user)
@@ -384,8 +384,8 @@
 		user.put_in_hands(cell)
 
 	playsound(user, unload_sound, 25, 1, 5)
-	user.visible_message("<span class='notice'>[user] unloads [cell] from [src].</span>",
-	"<span class='notice'>You unload [cell] from [src].</span>", null, 4)
+	user.visible_message(span_notice("[user] unloads [cell] from [src]."),
+	span_notice("You unload [cell] from [src]."), null, 4)
 	cell.update_icon()
 	cell = null
 

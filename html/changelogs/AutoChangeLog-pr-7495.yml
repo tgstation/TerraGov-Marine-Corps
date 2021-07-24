@@ -1,0 +1,4 @@
+author: "SplinterGP"
+delete-after: True
+changes: 
+  - balance: "hivelord gets their plasma pool doubled but they can only regen to half of it, they can however be given plasma functionally working like a extra plasma battery."

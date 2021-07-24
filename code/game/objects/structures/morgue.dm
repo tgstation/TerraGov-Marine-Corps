@@ -154,7 +154,7 @@
 		return
 	O.forceMove(loc)
 	if (user != O)
-		visible_message("<span class='warning'>[user] stuffs [O] into [src]!</span>", null, null, 3)
+		visible_message(span_warning("[user] stuffs [O] into [src]!"), null, null, 3)
 
 
 
@@ -175,7 +175,7 @@
 
 /obj/structure/morgue/crematorium/toggle_morgue(mob/user)
 	if (cremating)
-		to_chat(user, "<span class='warning'>It's locked.</span>")
+		to_chat(user, span_warning("It's locked."))
 		return
 	..()
 
@@ -198,9 +198,9 @@
 		return
 
 	if(contents.len <= 1) //1 because the tray is inside.
-		visible_message("<span class='warning'> You hear a hollow crackle.</span>")
+		visible_message(span_warning(" You hear a hollow crackle."))
 	else
-		visible_message("<span class='warning'> You hear a roar as the crematorium activates.</span>")
+		visible_message(span_warning(" You hear a roar as the crematorium activates."))
 
 		cremating = 1
 
@@ -253,7 +253,7 @@
 				if(!C.cremating)
 					C.cremate(user)
 	else
-		to_chat(user, "<span class='warning'>Access denied.</span>")
+		to_chat(user, span_warning("Access denied."))
 
 
 

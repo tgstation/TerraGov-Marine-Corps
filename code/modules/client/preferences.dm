@@ -184,9 +184,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 	if(!IsGuestKey(C.key))
 		load_path(C.ckey)
-		if(!load_loadout_manager() || loadout_manager.version != CURRENT_LOADOUT_VERSION)
-			loadout_manager = new
-			reset_loadouts_file()
+		loadout_manager = new
+		loadout_manager.loadouts_data = load_loadout_list()
 		if(load_preferences() && load_character())
 			C.set_fullscreen(fullscreen_mode)
 			return

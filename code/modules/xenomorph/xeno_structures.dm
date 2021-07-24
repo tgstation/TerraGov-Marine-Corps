@@ -88,8 +88,8 @@
 	if(!C.can_be_facehugged(hugger))
 		return
 	playsound(src, "alien_resin_break", 25)
-	C.visible_message("<span class='warning'>[C] trips on [src]!</span>",\
-						"<span class='danger'>You trip on [src]!</span>")
+	C.visible_message(span_warning("[C] trips on [src]!") ,\
+						span_danger("You trip on [src]!") )
 	C.Paralyze(4 SECONDS)
 	xeno_message("A facehugger trap at [AREACOORD_NO_Z(src)] has been triggered!", "xenoannounce", 5, hugger.hivenumber,  FALSE, get_turf(src), 'sound/voice/alien_talk2.ogg', FALSE, null, /obj/screen/arrow/attack_order_arrow, COLOR_ORANGE, TRUE) //Follow the trend of hive wide alerts for important events
 	drop_hugger()
@@ -99,7 +99,7 @@
 	hugger.forceMove(loc)
 	hugger.go_active(TRUE, TRUE) //Removes stasis
 	icon_state = "trap0"
-	visible_message("<span class='warning'>[hugger] gets out of [src]!</span>")
+	visible_message(span_warning("[hugger] gets out of [src]!") )
 	hugger = null
 
 /obj/structure/xeno/trap/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
@@ -111,13 +111,13 @@
 	if(!(X.xeno_caste.caste_flags & CASTE_CAN_HOLD_FACEHUGGERS))
 		return
 	if(!hugger)
-		to_chat(X, "<span class='warning'>[src] is empty.</span>")
+		to_chat(X, span_warning("[src] is empty.") )
 		return
 	icon_state = "trap0"
 	X.put_in_active_hand(hugger)
 	hugger.go_active(TRUE)
 	hugger = null
-	to_chat(X, "<span class='xenonotice'>We remove the facehugger from [src].</span>")
+	to_chat(X, span_xenonotice("We remove the facehugger from [src].") )
 
 /obj/structure/xeno/trap/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -126,18 +126,18 @@
 		return
 	var/obj/item/clothing/mask/facehugger/FH = I
 	if(hugger)
-		to_chat(user, "<span class='warning'>There is already a facehugger in [src].</span>")
+		to_chat(user, span_warning("There is already a facehugger in [src].") )
 		return
 
 	if(FH.stat == DEAD)
-		to_chat(user, "<span class='warning'>You can't put a dead facehugger in [src].</span>")
+		to_chat(user, span_warning("You can't put a dead facehugger in [src].") )
 		return
 
 	user.transferItemToLoc(FH, src)
 	FH.go_idle(TRUE)
 	hugger = FH
 	icon_state = "trap1"
-	to_chat(user, "<span class='xenonotice'>You place a facehugger in [src].</span>")
+	to_chat(user, span_xenonotice("You place a facehugger in [src].") )
 
 /*
 TUNNEL
@@ -180,7 +180,7 @@ TUNNEL
 		thing.forceMove(drop_loc)
 
 	if(!QDELETED(creator))
-		to_chat(creator, "<span class='xenoannounce'>You sense your [name] at [tunnel_desc] has been destroyed!</span>") //Alert creator
+		to_chat(creator, span_xenoannounce("You sense your [name] at [tunnel_desc] has been destroyed!") ) //Alert creator
 
 	xeno_message("Hive tunnel [name] at [tunnel_desc] has been destroyed!", "xenoannounce", 5, hivenumber) //Also alert hive because tunnels matter.
 
@@ -204,10 +204,10 @@ TUNNEL
 	if(!isxeno(user) && !isobserver(user))
 		return
 	if(tunnel_desc)
-		to_chat(user, "<span class='info'>The Hivelord scent reads: \'[tunnel_desc]\'</span>")
+		to_chat(user, span_info("The Hivelord scent reads: \'[tunnel_desc]\'") )
 
 /obj/structure/xeno/tunnel/deconstruct(disassembled = TRUE)
-	visible_message("<span class='danger'>[src] suddenly collapses!</span>")
+	visible_message(span_danger("[src] suddenly collapses!") )
 	return ..()
 
 /obj/structure/xeno/tunnel/ex_act(severity)
@@ -229,7 +229,7 @@ TUNNEL
 		return
 
 	if(X.a_intent == INTENT_HARM && X == creator)
-		to_chat(X, "<span class='xenowarning'>We begin filling in our tunnel...</span>")
+		to_chat(X, span_xenowarning("We begin filling in our tunnel...") )
 		if(do_after(X, HIVELORD_TUNNEL_DISMANTLE_TIME, FALSE, src, BUSY_ICON_BUILD))
 			deconstruct(FALSE)
 		return
@@ -237,18 +237,18 @@ TUNNEL
 	//Prevents using tunnels by the queen to bypass the fog.
 	if(SSticker?.mode && SSticker.mode.flags_round_type & MODE_FOG_ACTIVATED)
 		if(!X.hive.living_xeno_ruler)
-			to_chat(X, "<span class='xenowarning'>There is no ruler. We must choose one first.</span>")
+			to_chat(X, span_xenowarning("There is no ruler. We must choose one first.") )
 			return FALSE
 		else if(isxenoqueen(X))
-			to_chat(X, "<span class='xenowarning'>There is no reason to leave the safety of the caves yet.</span>")
+			to_chat(X, span_xenowarning("There is no reason to leave the safety of the caves yet.") )
 			return FALSE
 
 	if(X.anchored)
-		to_chat(X, "<span class='xenowarning'>We can't climb through a tunnel while immobile.</span>")
+		to_chat(X, span_xenowarning("We can't climb through a tunnel while immobile.") )
 		return FALSE
 
 	if(length(GLOB.xeno_tunnels) < 2)
-		to_chat(X, "<span class='warning'>There are no other tunnels in the network!</span>")
+		to_chat(X, span_warning("There are no other tunnels in the network!") )
 		return FALSE
 
 	pick_a_tunnel(X)
@@ -264,17 +264,17 @@ TUNNEL
 	if(!M.Adjacent(src) && M.loc != src) //Make sure we're close enough to our tunnel; either adjacent to or in one
 		return
 	if(QDELETED(targettunnel)) //Make sure our target destination still exists in the event the player keeps the interface open
-		to_chat(M, "<span class='warning'>That tunnel no longer exists!</span>")
+		to_chat(M, span_warning("That tunnel no longer exists!") )
 		if(M.loc == src) //If we're in the tunnel and cancelling out, spit us out.
 			M.forceMove(loc)
 		return
 	if(targettunnel == src)
-		to_chat(M, "<span class='warning'>We're already here!</span>")
+		to_chat(M, span_warning("We're already here!") )
 		if(M.loc == src) //If we're in the tunnel and cancelling out, spit us out.
 			M.forceMove(loc)
 		return
 	if(targettunnel.z != z)
-		to_chat(M, "<span class='warning'>That tunnel isn't connected to this one!</span>")
+		to_chat(M, span_warning("That tunnel isn't connected to this one!") )
 		if(M.loc == src) //If we're in the tunnel and cancelling out, spit us out.
 			M.forceMove(loc)
 		return
@@ -283,20 +283,20 @@ TUNNEL
 
 	if(M.mob_size == MOB_SIZE_BIG) //Big xenos take longer
 		tunnel_time = clamp(distance * 1.5, HIVELORD_TUNNEL_MIN_TRAVEL_TIME, HIVELORD_TUNNEL_LARGE_MAX_TRAVEL_TIME)
-		M.visible_message("<span class='xenonotice'>[M] begins heaving their huge bulk down into \the [src].</span>", \
-		"<span class='xenonotice'>We begin heaving our monstrous bulk into \the [src] to <b>[targettunnel.tunnel_desc]</b>.</span>")
+		M.visible_message(span_xenonotice("[M] begins heaving their huge bulk down into \the [src].") , \
+		span_xenonotice("We begin heaving our monstrous bulk into \the [src] to <b>[targettunnel.tunnel_desc]</b>.") )
 	else
-		M.visible_message("<span class='xenonotice'>\The [M] begins crawling down into \the [src].</span>", \
-		"<span class='xenonotice'>We begin crawling down into \the [src] to <b>[targettunnel.tunnel_desc]</b>.</span>")
+		M.visible_message(span_xenonotice("\The [M] begins crawling down into \the [src].") , \
+		span_xenonotice("We begin crawling down into \the [src] to <b>[targettunnel.tunnel_desc]</b>.") )
 
 	if(isxenolarva(M)) //Larva can zip through near-instantly, they are wormlike after all
 		tunnel_time = 5
 
 	if(!do_after(M, tunnel_time, FALSE, src, BUSY_ICON_GENERIC))
-		to_chat(M, "<span class='warning'>Our crawling was interrupted!</span>")
+		to_chat(M, span_warning("Our crawling was interrupted!") )
 		return
 	if(!targettunnel || !isturf(targettunnel.loc)) //Make sure the end tunnel is still there
-		to_chat(M, "<span class='warning'>\The [src] ended unexpectedly, so we return back up.</span>")
+		to_chat(M, span_warning("\The [src] ended unexpectedly, so we return back up.") )
 		return
 	M.forceMove(targettunnel)
 	var/double_check = tgui_alert(M, "Emerge here?", "Tunnel: [targettunnel]", list("Yes","Pick another tunnel"))
@@ -305,8 +305,8 @@ TUNNEL
 	if(double_check == "Pick another tunnel")
 		return targettunnel.pick_a_tunnel(M)
 	M.forceMove(targettunnel.loc)
-	M.visible_message("<span class='xenonotice'>\The [M] pops out of \the [src].</span>", \
-	"<span class='xenonotice'>We pop out through the other side!</span>")
+	M.visible_message(span_xenonotice("\The [M] pops out of \the [src].") , \
+	span_xenonotice("We pop out through the other side!") )
 
 ///Makes sure the tunnel is visible to other xenos even through obscuration.
 /obj/structure/xeno/tunnel/proc/hud_set_xeno_tunnel()
@@ -356,7 +356,7 @@ TUNNEL
 	if(!QDELETED(creator) && creator.stat == CONSCIOUS && creator.z == z)
 		var/area/A = get_area(src)
 		if(A)
-			to_chat(creator, "<span class='xenoannounce'>You sense your acid well at [A.name] has been destroyed!</span>")
+			to_chat(creator, span_xenoannounce("You sense your acid well at [A.name] has been destroyed!") )
 
 	if(damage_amount || damage_flag) //Spawn the gas only if we actually get destroyed by damage
 		var/datum/effect_system/smoke_spread/xeno/acid/A = new(get_turf(src))
@@ -368,10 +368,10 @@ TUNNEL
 	..()
 	if(!isxeno(user) && !isobserver(user))
 		return
-	to_chat(user, "<span class='xenonotice'>An acid well made by [creator]. It currently has <b>[charges]/[XENO_ACID_WELL_MAX_CHARGES] charges</b>.</span>")
+	to_chat(user, span_xenonotice("An acid well made by [creator]. It currently has <b>[charges]/[XENO_ACID_WELL_MAX_CHARGES] charges</b>.") )
 
 /obj/structure/xeno/acidwell/deconstruct(disassembled = TRUE)
-	visible_message("<span class='danger'>[src] suddenly collapses!</span>")
+	visible_message(span_danger("[src] suddenly collapses!") )
 	return ..()
 
 /obj/structure/xeno/acidwell/update_icon()
@@ -417,42 +417,42 @@ TUNNEL
 
 /obj/structure/xeno/acidwell/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
 	if(X.a_intent == INTENT_HARM && (CHECK_BITFIELD(X.xeno_caste.caste_flags, CASTE_IS_BUILDER) || X == creator) ) //If we're a builder caste or the creator and we're on harm intent, deconstruct it.
-		to_chat(X, "<span class='xenodanger'>We begin removing \the [src]...</span>")
+		to_chat(X, span_xenodanger("We begin removing \the [src]...") )
 		if(!do_after(X, XENO_ACID_WELL_FILL_TIME, FALSE, src, BUSY_ICON_HOSTILE))
-			to_chat(X, "<span class='xenodanger'>We stop removing \the [src]...</span>")
+			to_chat(X, span_xenodanger("We stop removing \the [src]...") )
 			return
 		playsound(src, "alien_resin_break", 25)
 		deconstruct(TRUE, X)
 		return
 
 	if(charges >= 5)
-		to_chat(X, "<span class='xenodanger'>[src] is already full!</span>")
+		to_chat(X, span_xenodanger("[src] is already full!") )
 		return
 	if(charging)
-		to_chat(X, "<span class='xenodanger'>[src] is already being filled!</span>")
+		to_chat(X, span_xenodanger("[src] is already being filled!") )
 		return
 
 	if(X.plasma_stored < XENO_ACID_WELL_FILL_COST) //You need to have enough plasma to attempt to fill the well
-		to_chat(X, "<span class='xenodanger'>We don't have enough plasma to fill [src]! We need <b>[XENO_ACID_WELL_FILL_COST - X.plasma_stored]</b> more plasma!</span>")
+		to_chat(X, span_xenodanger("We don't have enough plasma to fill [src]! We need <b>[XENO_ACID_WELL_FILL_COST - X.plasma_stored]</b> more plasma!") )
 		return
 
 	charging = TRUE
-	to_chat(X, "<span class='xenodanger'>We begin refilling [src]...</span>")
+	to_chat(X, span_xenodanger("We begin refilling [src]...") )
 	if(!do_after(X, XENO_ACID_WELL_FILL_TIME, FALSE, src, BUSY_ICON_BUILD))
 		charging = FALSE
-		to_chat(X, "<span class='xenodanger'>We abort refilling [src]!</span>")
+		to_chat(X, span_xenodanger("We abort refilling [src]!") )
 		return
 
 	if(X.plasma_stored < XENO_ACID_WELL_FILL_COST)
 		charging = FALSE
-		to_chat(X, "<span class='xenodanger'>We don't have enough plasma to fill [src]! We need <b>[XENO_ACID_WELL_FILL_COST - X.plasma_stored]</b> more plasma!</span>")
+		to_chat(X, span_xenodanger("We don't have enough plasma to fill [src]! We need <b>[XENO_ACID_WELL_FILL_COST - X.plasma_stored]</b> more plasma!") )
 		return
 
 	X.plasma_stored -= XENO_ACID_WELL_FILL_COST
 	charges++
 	charging = FALSE
 	update_icon()
-	to_chat(X,"<span class='xenonotice'>We add acid to [src]. It is currently has <b>[charges] / [XENO_ACID_WELL_MAX_CHARGES] charges</b>.</span>")
+	to_chat(X,span_xenonotice("We add acid to [src]. It is currently has <b>[charges] / [XENO_ACID_WELL_MAX_CHARGES] charges</b>.") )
 
 /obj/structure/xeno/acidwell/Crossed(atom/A)
 	. = ..()
@@ -486,8 +486,8 @@ TUNNEL
 	stepper.next_move_slowdown += charges * 2 //Acid spray has slow down so this should too; scales with charges, Min 2 slowdown, Max 10
 	stepper.apply_damage(charges * 10, BURN, BODY_ZONE_PRECISE_L_FOOT, stepper.run_armor_check(BODY_ZONE_PRECISE_L_FOOT, "acid") * 0.66) //33% armor pen
 	stepper.apply_damage(charges * 10, BURN, BODY_ZONE_PRECISE_R_FOOT, stepper.run_armor_check(BODY_ZONE_PRECISE_R_FOOT, "acid") * 0.66) //33% armor pen
-	stepper.visible_message("<span class='danger'>[stepper] is immersed in [src]'s acid!</span>", \
-	"<span class='danger'>We are immersed in [src]'s acid!</span>", null, 5)
+	stepper.visible_message(span_danger("[stepper] is immersed in [src]'s acid!") , \
+	span_danger("We are immersed in [src]'s acid!") , null, 5)
 	playsound(stepper, "sound/bullets/acid_impact1.ogg", 10 * charges)
 	new /obj/effect/temp_visual/acid_bath(get_turf(stepper))
 	acid_smoke = new(get_turf(stepper)) //spawn acid smoke when charges are actually used
@@ -558,15 +558,15 @@ TUNNEL
 		return FALSE
 
 	if(X.a_intent == INTENT_HARM && isxenohivelord(X))
-		to_chat(X, "<span class='xenowarning'>We begin tearing at the [src]...</span>")
+		to_chat(X, span_xenowarning("We begin tearing at the [src]...") )
 		if(do_after(X, HIVELORD_TUNNEL_DISMANTLE_TIME, FALSE, src, BUSY_ICON_BUILD))
 			deconstruct(FALSE)
 		return
 
 	if(!chargesleft)
-		to_chat(X, "<span class='xenonotice'>We reach into \the [src], but only find dregs of resin. We should wait some more.</span>")
+		to_chat(X, span_xenonotice("We reach into \the [src], but only find dregs of resin. We should wait some more.") )
 		return
-	to_chat(X, "<span class='xenonotice'>We retrieve a resin jelly from \the [src].</span>")
+	to_chat(X, span_xenonotice("We retrieve a resin jelly from \the [src].") )
 	new /obj/item/resin_jelly(loc)
 	chargesleft--
 	if(!(datum_flags & DF_ISPROCESSING) && (chargesleft < maxcharges))
@@ -588,7 +588,7 @@ TUNNEL
 			take_damage(70)
 
 /obj/structure/xeno/resin/attack_hand(mob/living/user)
-	to_chat(user, "<span class='warning'>You scrape ineffectively at \the [src].</span>")
+	to_chat(user, span_warning("You scrape ineffectively at \the [src]."))
 	return TRUE
 
 /obj/structure/xeno/resin/flamer_fire_act()
@@ -682,15 +682,15 @@ TUNNEL
 	var/current_integrity = (obj_integrity / max_integrity) * 100
 	switch(current_integrity)
 		if(0 to 20)
-			to_chat(user, "<span class='warning'>It's barely holding, there's leaking oozes all around, and most eggs are broken. Yet it is not inert.</span>")
+			to_chat(user, span_warning("It's barely holding, there's leaking oozes all around, and most eggs are broken. Yet it is not inert."))
 		if(20 to 40)
-			to_chat(user, "<span class='warning'>It looks severely damaged, its movements slow.</span>")
+			to_chat(user, span_warning("It looks severely damaged, its movements slow."))
 		if(40 to 60)
-			to_chat(user, "<span class='warning'>It's quite beat up, but it seems alive.</span>")
+			to_chat(user, span_warning("It's quite beat up, but it seems alive."))
 		if(60 to 80)
-			to_chat(user, "<span class='warning'>It's slightly damaged, but still seems healthy.</span>")
+			to_chat(user, span_warning("It's slightly damaged, but still seems healthy."))
 		if(80 to 100)
-			to_chat(user, "<span class='info'>It appears in good shape, pulsating healthily.</span>")
+			to_chat(user, span_info("It appears in good shape, pulsating healthily."))
 
 
 /obj/structure/xeno/resin/silo/take_damage(damage_amount, damage_type, damage_flag, sound_effect, attack_dir, armour_penetration)
@@ -760,19 +760,19 @@ TUNNEL
 		return
 	var/mob/living/carbon/victim = G.grabbed_thing
 	if(!(ishuman(victim) || ismonkey(victim))) //humans and monkeys only for now
-		to_chat(user, "<span class='notice'>[src] can only process humanoid anatomies!</span>")
+		to_chat(user, span_notice("[src] can only process humanoid anatomies!"))
 		return
 
 	if(victim.stat != DEAD)
-		to_chat(user, "<span class='notice'>[victim] is not dead!</span>")
+		to_chat(user, span_notice("[victim] is not dead!"))
 		return
 
 	if(victim.chestburst)
-		to_chat(user, "<span class='notice'>[victim] has already been exhausted to incubate a sister!</span>")
+		to_chat(user, span_notice("[victim] has already been exhausted to incubate a sister!"))
 		return
 
 	if(issynth(victim))
-		to_chat(user, "<span class='notice'>[victim] has no useful biomass for us.</span>")
+		to_chat(user, span_notice("[victim] has no useful biomass for us."))
 		return
 
 	visible_message("[user] starts putting [victim] into [src].", 3)
@@ -975,6 +975,8 @@ TUNNEL
 	var/list/turf/path = list()
 	for (var/mob/living/nearby_hostile AS in potential_hostiles)
 		if(nearby_hostile.stat == DEAD)
+			continue
+		if(HAS_TRAIT(nearby_hostile, TRAIT_TURRET_HIDDEN))
 			continue
 		buffer_distance = get_dist(nearby_hostile, src)
 		if (distance <= buffer_distance) //If we already found a target that's closer

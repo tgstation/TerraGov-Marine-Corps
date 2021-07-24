@@ -18,7 +18,7 @@
 	name = "Core Power Monitoring"
 
 /obj/machinery/power/monitor/grid
-	name = "Main Power Grid Monitoring"		
+	name = "Main Power Grid Monitoring"
 
 /obj/machinery/power/monitor/Initialize()
 	. = ..()
@@ -40,7 +40,7 @@
 	t += "<BR><HR><A href='?src=\ref[src];close=1'>Close</A>"
 
 	if(!powernet)
-		t += "<span class='warning'> No connection</span>"
+		t += span_warning(" No connection")
 	else
 
 		var/list/L = list()
@@ -101,12 +101,12 @@
 		for(var/obj/C in src)
 			C.forceMove(loc)
 		if(machine_stat & BROKEN)
-			to_chat(user, "<span class='notice'>The broken glass falls out.</span>")
+			to_chat(user, span_notice("The broken glass falls out."))
 			new /obj/item/shard(loc)
 			A.state = 3
 			A.icon_state = "3"
 		else
-			to_chat(user, "<span class='notice'>You disconnect the monitor.</span>")
+			to_chat(user, span_notice("You disconnect the monitor."))
 			A.state = 4
 			A.icon_state = "4"
 		M.deconstruct(src)

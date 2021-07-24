@@ -430,3 +430,85 @@
   QualityVan:
   - bugfix: Vali should have fewer typos and more accurately express the current power
       level.
+2021-07-21:
+  BraveMole:
+  - bugfix: Fix mines not blowing up xeno
+  Hekzder:
+  - bugfix: Fixes NTOS crash on job prefs, round start text for MD and CMO, and missing
+      hud icon for MD.
+  InterroLouis:
+  - bugfix: Fixed doubled job slots, now rebel jobs have their own job slots that
+      can be altered separately from regular job slots.
+  - spellcheck: Fixed medical researcher job display order.
+  Surrealaser:
+  - bugfix: Fixes issue where light neurotoxin wasn't being reported by Xeno Toxin
+      HUD.
+  - qol: HUD elements for high concentrations of xeno toxins (more than 10U) now blink.
+2021-07-22:
+  InterroLouis:
+  - bugfix: Triumph shuttle has appropriate intercoms.
+2021-07-23:
+  BraveMole:
+  - qol: Ai can manipuate shuttle doors even groundside, but won't be able to lock
+      them (unless it uses the console)
+  - qol: Keybind for minimap
+  - bugfix: Fix rebel squadies not having all their comm channels
+  - qol: Add some vendors in req
+  - bugfix: Smartrifle are available in loadout vendors
+  - bugfix: Fix prison being in space instead of the ocean
+  - bugfix: Fix minigun safety
+  Hekzder:
+  - rscadd: Added O-3 to SO as starting rank. SO now gets O-4 at 25 hours and O-5
+      at 50 hours.
+  - balance: Hlin no longer gives explosive immunity, instead results in about 90
+      bomb armor.
+  InterroLouis:
+  - rscadd: Mateba ammo packets now available in req.
+  - balance: Revolver ammo packets have one less bullet.
+  - balance: Antimaterial rifle has an NV scope now.
+  - spellcheck: Fixed a typo in the T-72 disposable rocket launcher description.
+  Pariah919:
+  - bugfix: mp belt no longer holds pistols
+  - balance: tl has aim mode
+  QualityVan:
+  - rscadd: Humans can use a hugger in-hand to crush it.
+  - bugfix: Huggers don't break storage containers and will leap out now.
+  - bugfix: Catching huggers works now instead of causing quantum huggers.
+  lbnesquik:
+  - balance: Very slight reduction in price of HE and WP sadar rockets, with the aim
+      of varying ammo usages.
+  - expansion: Allow the AI to access cryo cells.
+  - bugfix: fixed engineering staff on POS not having access to their gun cabinet.
+  - admin: Added dropship equipement to the quick create menu
+  - rscadd: Brought back the CLF ERT to life.
+  - bugfix: fixed a misplaced poster.
+  - expansion: Allow the AI to unbolt their core
+  - qol: You can now use Z to activate your mortar. Simple QOL.
+2021-07-24:
+  BraveMole:
+  - bugfix: Loadouts list won't wipe anymore (hopefully).
+  - code_imp: Replaced all span class by span macros
+  - bugfix: King can use minimap
+  - qol: King get a new minimap icon
+  - bugfix: Kings can no longer be chosen to become kings
+  - bugfix: Should prevent HSG to keep firing after you released mouse button
+  Hekzder:
+  - balance: T-26 AMR now costs 75 points, up from 60.
+  Losenis:
+  - balance: T-25 Smartrifle damage per hit from 15 to 25
+  Pariah919:
+  - expansion: Marines get one HMG, it is harder to lug around than a TL-102, has
+      no IFF, but it fires faster, and deploys slower. Better not lose it.
+  - balance: 'TL-102 HSG fires slower (0.25 fire delay from 0.2), added one cool HMG
+      gun to the marine vendor. Better not lose it. spriteadd: sprites for the MG08/495
+      and TL-102 while in your hand.'
+  - bugfix: tl-102 and mg08 can no longer take any attachments.
+  - qol: minor reorganization of specialized tab in marine vendors
+  Surrealaser:
+  - balance: If Rage is used while at less than 0 HP, the Ravager will regain HP whenever
+      it slashes a living target equal to 50% to 100% of the damage dealt depending
+      on Rage Power (how low the Ravager's HP was when Rage was used).
+  spookydonut:
+  - bugfix: Warrior punch no longer allows you to destroy many machines that can not
+      otherwise be damaged
+  - bugfix: Crushers can no longer destroy SMESes

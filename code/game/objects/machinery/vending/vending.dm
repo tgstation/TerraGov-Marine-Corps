@@ -270,25 +270,25 @@
 		return FALSE
 
 	if(tipped_level)
-		to_chat(X, "<span class='warning'>There's no reason to bother with that old piece of trash.</span>")
+		to_chat(X, span_warning("There's no reason to bother with that old piece of trash."))
 		return FALSE
 
 	if(X.a_intent == INTENT_HARM)
 		X.do_attack_animation(src, ATTACK_EFFECT_SMASH)
 		if(prob(X.xeno_caste.melee_damage))
 			playsound(loc, 'sound/effects/metalhit.ogg', 25, 1)
-			X.visible_message("<span class='danger'>\The [X] smashes \the [src] beyond recognition!</span>", \
-			"<span class='danger'>We enter a frenzy and smash \the [src] apart!</span>", null, 5)
+			X.visible_message(span_danger("\The [X] smashes \the [src] beyond recognition!"), \
+			span_danger("We enter a frenzy and smash \the [src] apart!"), null, 5)
 			malfunction()
 			return TRUE
 		else
-			X.visible_message("<span class='danger'>[X] slashes \the [src]!</span>", \
-			"<span class='danger'>We slash \the [src]!</span>", null, 5)
+			X.visible_message(span_danger("[X] slashes \the [src]!"), \
+			span_danger("We slash \the [src]!"), null, 5)
 			playsound(loc, 'sound/effects/metalhit.ogg', 25, 1)
 		return TRUE
 
-	X.visible_message("<span class='warning'>\The [X] begins to lean against \the [src].</span>", \
-	"<span class='warning'>You begin to lean against \the [src].</span>", null, 5)
+	X.visible_message(span_warning("\The [X] begins to lean against \the [src]."), \
+	span_warning("You begin to lean against \the [src]."), null, 5)
 	tipped_level = 1
 	var/shove_time = 1 SECONDS
 	if(X.mob_size == MOB_SIZE_BIG)
@@ -296,8 +296,8 @@
 	if(istype(X,/mob/living/carbon/xenomorph/crusher))
 		shove_time = 1.5 SECONDS
 	if(do_after(X, shove_time, FALSE, src, BUSY_ICON_HOSTILE))
-		X.visible_message("<span class='danger'>\The [X] knocks \the [src] down!</span>", \
-		"<span class='danger'>You knock \the [src] down!</span>", null, 5)
+		X.visible_message(span_danger("\The [X] knocks \the [src] down!"), \
+		span_danger("You knock \the [src] down!"), null, 5)
 		tip_over()
 	else
 		tipped_level = 0
@@ -340,20 +340,20 @@
 		var/obj/item/coin/C = I
 
 		if(coin)
-			to_chat(user, "<span class='warning'>[src] already has [coin] inserted</span>")
+			to_chat(user, span_warning("[src] already has [coin] inserted"))
 
 		else if(!length(premium) && !isshared)
-			to_chat(user, "<span class='warning'>[src] doesn't have a coin slot.</span>")
+			to_chat(user, span_warning("[src] doesn't have a coin slot."))
 
 		else if(C.flags_token & tokensupport)
 			if(!user.transferItemToLoc(C, src))
 				return
 
 			coin = C
-			to_chat(user, "<span class='notice'>You insert \the [C] into \the [src]</span>")
+			to_chat(user, span_notice("You insert \the [C] into \the [src]"))
 
 		else
-			to_chat(user, "<span class='warning'>\The [src] rejects \the [C].</span>")
+			to_chat(user, span_warning("\The [src] rejects \the [C]."))
 
 	else if(istype(I, /obj/item/card))
 		var/obj/item/card/C = I
@@ -364,7 +364,7 @@
 			return
 
 		ewallet = I
-		to_chat(user, "<span class='notice'>You insert the [I] into the [src]</span>")
+		to_chat(user, span_notice("You insert the [I] into the [src]"))
 
 	else if(iswrench(I))
 		if(!wrenchable)
@@ -389,7 +389,7 @@
 		return
 	if (istype(I, /obj/item/card/id))
 		var/obj/item/card/id/C = I
-		visible_message("<span class='info'>[usr] swipes a card through [src].</span>")
+		visible_message(span_info("[usr] swipes a card through [src]."))
 		var/datum/money_account/CH = get_account(C.associated_account_number)
 		if(CH) // Only proceed if card contains proper account number.
 			if(!CH.suspended)
@@ -401,18 +401,18 @@
 					//Just Vend it.
 					transfer_and_vend(CH)
 			else
-				to_chat(usr, "[icon2html(src, usr)]<span class='warning'>Connected account has been suspended.</span>")
+				to_chat(usr, "[icon2html(src, usr)][span_warning("Connected account has been suspended.")]")
 		else
-			to_chat(usr, "[icon2html(src, usr)]<span class='warning'>Error: Unable to access your account. Please contact technical support if problem persists.</span>")
+			to_chat(usr, "[icon2html(src, usr)][span_warning("Error: Unable to access your account. Please contact technical support if problem persists.")]")
 
 /obj/machinery/vending/proc/transfer_and_vend(datum/money_account/acc)
 	if(!acc)
-		to_chat(usr, "[icon2html(src, usr)]<span class='warning'>Error: Unable to access your account. Please contact technical support if problem persists.</span>")
+		to_chat(usr, "[icon2html(src, usr)][span_warning("Error: Unable to access your account. Please contact technical support if problem persists.")]")
 		return
 
 	var/transaction_amount = currently_vending.price
 	if(transaction_amount > acc.money)
-		to_chat(usr, "[icon2html(src, usr)]<span class='warning'>You don't have that much money!</span>")
+		to_chat(usr, "[icon2html(src, usr)][span_warning("You don't have that much money!")]")
 		return
 
 	//transfer the money
@@ -440,11 +440,11 @@
 		return FALSE
 
 	if(tipped_level == 2)
-		user.visible_message("<span class='notice'> [user] begins to heave the vending machine back into place!</span>","<span class='notice'> You start heaving the vending machine back into place..</span>")
+		user.visible_message(span_notice(" [user] begins to heave the vending machine back into place!"),span_notice(" You start heaving the vending machine back into place.."))
 		if(!do_after(user,80, FALSE, src, BUSY_ICON_FRIENDLY))
 			return FALSE
 
-		user.visible_message("<span class='notice'> [user] rights the [src]!</span>","<span class='notice'> You right the [src]!</span>")
+		user.visible_message(span_notice(" [user] rights the [src]!"),span_notice(" You right the [src]!"))
 		flip_back()
 		return TRUE
 
@@ -463,10 +463,10 @@
 
 	if(!iscarbon(user)) // AI can't heave remotely
 		return
-	user.visible_message("<span class='notice'> [user] begins to heave the vending machine back into place!</span>","<span class='notice'> You start heaving the vending machine back into place..</span>")
+	user.visible_message(span_notice(" [user] begins to heave the vending machine back into place!"),span_notice(" You start heaving the vending machine back into place.."))
 	if(!do_after(user, 80, FALSE, src, BUSY_ICON_FRIENDLY))
 		return FALSE
-	user.visible_message("<span class='notice'> [user] rights the [src]!</span>","<span class='notice'> You right the [src]!</span>")
+	user.visible_message(span_notice(" [user] rights the [src]!"),span_notice(" You right the [src]!"))
 	flip_back()
 	return TRUE
 
@@ -529,12 +529,12 @@
 			coin.forceMove(loc)
 			coin = null
 			usr.put_in_hands(coin)
-			to_chat(usr, "<span class='notice'>You remove the [coin] from the [src]</span>")
+			to_chat(usr, span_notice("You remove the [coin] from the [src]"))
 			. = TRUE
 
 		if("vend")
 			if(!allowed(usr) && (!wires.is_cut(WIRE_IDSCAN) || hacking_safety))
-				to_chat(usr, "<span class='warning'>Access denied.</span>")
+				to_chat(usr, span_warning("Access denied."))
 				flick(icon_deny, src)
 				return
 
@@ -565,12 +565,12 @@
 
 /obj/machinery/vending/proc/vend(datum/vending_product/R, mob/user)
 	if(!allowed(user) && (!wires.is_cut(WIRE_IDSCAN) || hacking_safety)) //For SECURE VENDING MACHINES YEAH
-		to_chat(user, "<span class='warning'>Access denied.</span>")
+		to_chat(user, span_warning("Access denied."))
 		flick(icon_deny, src)
 		return
 
 	if(SSticker.mode?.flags_round_type & MODE_HUMAN_ONLY && is_type_in_typecache(R.product_path, GLOB.hvh_restricted_items_list))
-		to_chat(user, "<span class='warning'>This item is banned by the Space Geneva Convention.</span>")
+		to_chat(user, span_warning("This item is banned by the Space Geneva Convention."))
 		flick(icon_deny, src)
 		return
 
@@ -579,13 +579,13 @@
 
 	if(R.category == CAT_COIN)
 		if(!coin)
-			to_chat(user, "<span class='notice'>You need to insert a coin to get this item.</span>")
+			to_chat(user, span_notice("You need to insert a coin to get this item."))
 			return
 		if(coin.string_attached)
 			if(prob(50))
-				to_chat(user, "<span class='notice'>You successfully pull the coin out before the [src] could swallow it.</span>")
+				to_chat(user, span_notice("You successfully pull the coin out before the [src] could swallow it."))
 			else
-				to_chat(user, "<span class='notice'>You weren't able to pull the coin out fast enough, the machine ate it, string and all.</span>")
+				to_chat(user, span_notice("You weren't able to pull the coin out fast enough, the machine ate it, string and all."))
 				qdel(coin)
 				coin = null
 		else
@@ -622,7 +622,7 @@
 			sleep(delay_vending)
 		else if(machine_current_charge > active_power_usage) //if no power, use the machine's battery.
 			machine_current_charge -= min(machine_current_charge, active_power_usage) //Sterilize with min; no negatives allowed.
-			//to_chat(world, "<span class='warning'>DEBUG: Machine Auto_Use_Power: Vend Power Usage: [active_power_usage] Machine Current Charge: [machine_current_charge].</span>")
+			//to_chat(world, span_warning("DEBUG: Machine Auto_Use_Power: Vend Power Usage: [active_power_usage] Machine Current Charge: [machine_current_charge]."))
 			if (icon_vend)
 				flick(icon_vend,src) //Show the vending animation if needed
 			sleep(delay_vending)
@@ -658,30 +658,30 @@
 		if(istype(item_to_stock, /obj/item/weapon/gun))
 			var/obj/item/weapon/gun/G = item_to_stock
 			if(G.in_chamber || (G.current_mag && !istype(G.current_mag, /obj/item/ammo_magazine/internal)) || (istype(G.current_mag, /obj/item/ammo_magazine/internal) && G.current_mag.current_rounds > 0) )
-				to_chat(user, "<span class='warning'>[G] is still loaded. Unload it before you can restock it.</span>")
+				to_chat(user, span_warning("[G] is still loaded. Unload it before you can restock it."))
 				return
 			for(var/obj/item/attachable/A in G.contents) //Search for attachments on the gun. This is the easier method
 				if((A.flags_attach_features & ATTACH_REMOVABLE) && !(is_type_in_list(A, G.starting_attachment_types))) //There are attachments that are default and others that can't be removed
-					to_chat(user, "<span class='warning'>[G] has non-standard attachments equipped. Detach them before you can restock it.</span>")
+					to_chat(user, span_warning("[G] has non-standard attachments equipped. Detach them before you can restock it."))
 					return
 
 		else if(istype(item_to_stock, /obj/item/ammo_magazine))
 			var/obj/item/ammo_magazine/A = item_to_stock
 			if(A.current_rounds < A.max_rounds)
-				to_chat(user, "<span class='warning'>[A] isn't full. Fill it before you can restock it.</span>")
+				to_chat(user, span_warning("[A] isn't full. Fill it before you can restock it."))
 				return
 		else if(istype(item_to_stock, /obj/item/minigun_powerpack))
 			var/obj/item/minigun_powerpack/P = item_to_stock
 			if(!P.pcell)
-				to_chat(user, "<span class='warning'>The [P] doesn't have a cell. You must put one in before you can restock it.</span>")
+				to_chat(user, span_warning("The [P] doesn't have a cell. You must put one in before you can restock it."))
 				return
 			if(P.pcell.charge < P.pcell.maxcharge)
-				to_chat(user, "<span class='warning'>The [P] cell isn't full. You must recharge it before you can restock it.</span>")
+				to_chat(user, span_warning("The [P] cell isn't full. You must recharge it before you can restock it."))
 				return
 		else if(istype(item_to_stock, /obj/item/cell))
 			var/obj/item/cell/cell = item_to_stock
 			if(cell.charge < cell.maxcharge)
-				to_chat(user, "<span class='warning'>\The [cell] isn't full. You must recharge it before you can restock it.</span>")
+				to_chat(user, span_warning("\The [cell] isn't full. You must recharge it before you can restock it."))
 				return
 		if(item_to_stock.loc == user) //Inside the mob's inventory
 			if(item_to_stock.flags_item & WIELDED)
@@ -694,8 +694,8 @@
 
 		qdel(item_to_stock)
 		if(!recharge)
-			user.visible_message("<span class='notice'>[user] stocks [src] with \a [R.product_name].</span>",
-			"<span class='notice'>You stock [src] with \a [R.product_name].</span>")
+			user.visible_message(span_notice("[user] stocks [src] with \a [R.product_name]."),
+			span_notice("You stock [src] with \a [R.product_name]."))
 		if(R.amount >= 0) //R negative means infinite item, no need to restock
 			R.amount++
 		updateUsrDialog()
@@ -775,7 +775,7 @@
 		return FALSE
 	spawn(0)
 		throw_item.throw_at(target, 16, 3, src)
-	src.visible_message("<span class='warning'>[src] launches [throw_item.name] at [target]!</span>")
+	src.visible_message(span_warning("[src] launches [throw_item.name] at [target]!"))
 	. = TRUE
 
 
