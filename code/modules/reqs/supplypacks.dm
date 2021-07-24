@@ -47,6 +47,11 @@ OPERATIONS
 	contains = list(/obj/item/fulton_extraction_pack)
 	cost = 5
 
+/datum/supply_packs/operations/exportpad
+	name = "ASRS Bluespace Export Point"
+	contains = list(/obj/machinery/exportpad)
+	cost = 50
+
 /datum/supply_packs/operations/cas_flares
 	name = "CAS flare pack"
 	contains = list(/obj/item/storage/box/m94/cas)
