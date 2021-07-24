@@ -47,11 +47,6 @@ OPERATIONS
 	contains = list(/obj/item/fulton_extraction_pack)
 	cost = 5
 
-/datum/supply_packs/operations/exportpad
-	name = "ASRS Bluespace Export Point"
-	contains = list(/obj/machinery/exportpad)
-	cost = 50
-
 /datum/supply_packs/operations/cas_flares
 	name = "CAS flare pack"
 	contains = list(/obj/item/storage/box/m94/cas)
@@ -95,6 +90,11 @@ OPERATIONS
 	name = "3 Deployable Cameras"
 	contains = list(/obj/item/deployable_camera)
 	cost = 2
+
+/datum/supply_packs/operations/exportpad
+	name = "ASRS Bluespace Export Point"
+	contains = list(/obj/machinery/exportpad)
+	cost = 50
 
 /datum/supply_packs/operations/warhead_cluster
 	name = "Cluster orbital warhead"
