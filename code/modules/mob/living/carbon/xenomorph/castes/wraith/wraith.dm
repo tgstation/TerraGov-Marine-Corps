@@ -31,9 +31,6 @@ GLOBAL_LIST_INIT(wraith_no_incorporeal_pass_shutters, typecacheof(list(
 	old_x = -16
 	tier = XENO_TIER_TWO
 	upgrade = XENO_UPGRADE_ZERO
-	inherent_verbs = list(
-		/mob/living/carbon/xenomorph/proc/vent_crawl,
-	)
 
 /// Returns true or false to allow src to move through the blocker, mover has final say
 /mob/living/carbon/xenomorph/wraith/CanPassThrough(atom/blocker, turf/target, blocker_opinion)
