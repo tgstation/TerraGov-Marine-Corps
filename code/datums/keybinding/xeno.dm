@@ -363,11 +363,11 @@
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_QUEEN_GIVE_PLASMA
 
-/datum/keybinding/xeno/queen_give_order
-	name = "queen_give_order"
-	full_name = "Queen: Give Order"
-	description = ""
-	keybind_signal = COMSIG_XENOABILITY_QUEEN_GIVE_ORDER
+/datum/keybinding/xeno/queen_hive_message
+	name = "queen_hive_message"
+	full_name = "Queen: Hive Message"
+	description = "Instantly displays a bolded announcement to all xenos in the hive."
+	keybind_signal = COMSIG_XENOABILITY_QUEEN_HIVE_MESSAGE
 
 /datum/keybinding/xeno/deevolve
 	name = "deevolve"
