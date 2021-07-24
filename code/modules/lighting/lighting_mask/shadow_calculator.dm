@@ -208,14 +208,17 @@
 
 			shadow.icon = LIGHTING_ICON_BIG
 			shadow.icon_state = "triangle"
-			shadow.color = "#000"
+			shadow.color = "#000000c2"
 			shadow.transform = triangle_matrix
+			shadow.plane = 16
+			//shadow.blend_mode = BLEND_ADD
+			//shadow.color = list(0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,1, 1,1,1,0)
 
 			DO_SOMETHING_IF_DEBUGGING_SHADOWS(MA_vars_time += TICK_USAGE_TO_MS(temp_timer))
 			DO_SOMETHING_IF_DEBUGGING_SHADOWS(temp_timer = TICK_USAGE)
 
 			LAZYADD(shadows, shadow)
-			overlays_to_add += shadow
+			overlays += shadow
 
 			DO_SOMETHING_IF_DEBUGGING_SHADOWS(overlays_add_time += TICK_USAGE_TO_MS(temp_timer))
 			DO_SOMETHING_IF_DEBUGGING_SHADOWS(temp_timer = TICK_USAGE)
@@ -227,7 +230,7 @@
 	dud.overlays += overlays_to_add
 	var/static/mutable_appearance/overlay_merger = new()
 	overlay_merger.appearance = dud.appearance
-	overlays += overlay_merger
+	//overlays += overlay_merger
 	dud.overlays.Cut()
 	DO_SOMETHING_IF_DEBUGGING_SHADOWS(var/mergetimereal = TICK_USAGE_TO_MS(mergetime))
 
@@ -243,6 +246,13 @@
 	DO_SOMETHING_IF_DEBUGGING_SHADOWS(log_game("overlays_add_time: [overlays_add_time]"))
 	DO_SOMETHING_IF_DEBUGGING_SHADOWS(log_game("merge_overlays_time: [mergetimereal]ms"))
 	DO_SOMETHING_IF_DEBUGGING_SHADOWS(log_game("[TICK_USAGE_TO_MS(timer)]ms to process total."))
+
+/obj/screen/plane_master/shadows
+	plane = 16
+	render_target = "test"
+	blend_mode = BLEND_OVERLAY
+
+
 
 /**
  * Converts a triangle into a matrix that can be applied to a standardized triangle
