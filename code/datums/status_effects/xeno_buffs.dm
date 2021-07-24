@@ -17,7 +17,7 @@
 	var/mob/living/carbon/xenomorph/X = owner
 	X.fire_resist_modifier += 20
 	X.remove_filter("resin_jelly_outline")
-	to_chat(owner, "<span class='xenonotice'>We feel more vulnerable again.</span>")
+	to_chat(owner, span_xenonotice("We feel more vulnerable again."))
 	return ..()
 
 /datum/status_effect/resin_jelly_coating/tick()

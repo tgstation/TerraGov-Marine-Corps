@@ -32,20 +32,20 @@
 	var/turf/loc = get_turf(usr)
 	var/area/A = get_area(loc)
 	if (!isfloorturf(loc))
-		to_chat(usr, "<span class='warning'>APC cannot be placed on this spot.</span>")
+		to_chat(usr, span_warning("APC cannot be placed on this spot."))
 		return
 	if (A.requires_power == 0 || istype(A, /area/space))
-		to_chat(usr, "<span class='warning'>APC cannot be placed in this area.</span>")
+		to_chat(usr, span_warning("APC cannot be placed in this area."))
 		return
 	if (A.get_apc())
-		to_chat(usr, "<span class='warning'>This area already has APC.</span>")
+		to_chat(usr, span_warning("This area already has APC."))
 		return //only one APC per area
 	if (A.always_unpowered)
-		to_chat(usr, "<span class='warning'>This area is unsuitable for an APC.</span>")
+		to_chat(usr, span_warning("This area is unsuitable for an APC."))
 		return
 	for(var/obj/machinery/power/terminal/T in loc)
 		if (T.master)
-			to_chat(usr, "<span class='warning'>There is another network terminal here.</span>")
+			to_chat(usr, span_warning("There is another network terminal here."))
 			return
 		else
 			var/obj/item/stack/cable_coil/C = new /obj/item/stack/cable_coil(loc)

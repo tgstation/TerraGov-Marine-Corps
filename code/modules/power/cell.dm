@@ -74,21 +74,21 @@
 	else
 		to_chat(user, "This power cell has an exciting chrome finish, as it is an uber-capacity cell type! It has a power rating of [maxcharge]!\nThe charge meter reads [round(src.percent() )]%.")
 	if(crit_fail)
-		to_chat(user, "<span class='warning'>This power cell seems to be faulty.</span>")
+		to_chat(user, span_warning("This power cell seems to be faulty."))
 	if(rigged)
 		if(get_dist(user,src) < 3) //Have to be close to make out the *DANGEROUS* details
-			to_chat(user, "<span class='danger'>This power cell looks jury rigged to explode!</span>")
+			to_chat(user, span_danger("This power cell looks jury rigged to explode!"))
 
 
 /obj/item/cell/attack_self(mob/user as mob)
 	if(rigged)
 		if(issynth(user) && !CONFIG_GET(flag/allow_synthetic_gun_use))
-			to_chat(user, "<span class='warning'>Your programming restricts using rigged power cells.</span>")
+			to_chat(user, span_warning("Your programming restricts using rigged power cells."))
 			return
 		log_explosion("[key_name(user)] primed a rigged [src] at [AREACOORD(user.loc)].")
 		log_combat(user, src, "primed a rigged")
-		user.visible_message("<span class='danger'>[user] destabilizes [src]; it will detonate shortly!</span>",
-		"<span class='danger'>You destabilize [src]; it will detonate shortly!</span>")
+		user.visible_message(span_danger("[user] destabilizes [src]; it will detonate shortly!"),
+		span_danger("You destabilize [src]; it will detonate shortly!"))
 		var/datum/effect_system/spark_spread/spark_system = new /datum/effect_system/spark_spread()
 		spark_system.set_up(5, 0, src)
 		spark_system.attach(src)
@@ -111,7 +111,7 @@
 		var/obj/item/reagent_containers/syringe/S = I
 
 		if(issynth(user) && !CONFIG_GET(flag/allow_synthetic_gun_use))
-			to_chat(user, "<span class='warning'>Your programming restricts rigging of power cells.</span>")
+			to_chat(user, span_warning("Your programming restricts rigging of power cells."))
 			return
 
 		to_chat(user, "You inject the solution into the power cell.")
@@ -122,7 +122,7 @@
 
 	else if(ismultitool(I))
 		if(issynth(user) && !CONFIG_GET(flag/allow_synthetic_gun_use))
-			to_chat(user, "<span class='warning'>Your programming restricts rigging of power cells.</span>")
+			to_chat(user, span_warning("Your programming restricts rigging of power cells."))
 			return
 		var/skill = user.skills.getRating("engineer")
 		var/delay = SKILL_TASK_EASY - (5 + skill * 1.25)
@@ -133,23 +133,23 @@
 
 		if(!rigged)
 			if(skill < SKILL_ENGINEER_ENGI) //Field engi skill or better or ya fumble.
-				user.visible_message("<span class='notice'>[user] fumbles around figuring out how to manipulate [src].</span>",
-				"<span class='notice'>You fumble around, trying to figure out how to rig [src] to explode.</span>")
+				user.visible_message(span_notice("[user] fumbles around figuring out how to manipulate [src]."),
+				span_notice("You fumble around, trying to figure out how to rig [src] to explode."))
 				if(!do_after(user, delay, TRUE, src, BUSY_ICON_UNSKILLED))
 					return
 
-			user.visible_message("<span class='notice'>[user] begins manipulating [src] with [I].</span>",
-			"<span class='notice'>You begin rigging [src] to detonate with [I].</span>")
+			user.visible_message(span_notice("[user] begins manipulating [src] with [I]."),
+			span_notice("You begin rigging [src] to detonate with [I]."))
 			if(!do_after(user, delay, TRUE, src, BUSY_ICON_BUILD))
 				return
 			rigged = TRUE
 			overlays += spark_overlay
-			user.visible_message("<span class='notice'>[user] finishes manipulating [src] with [I].</span>",
-			"<span class='notice'>You rig [src] to explode on use with [I].</span>")
+			user.visible_message(span_notice("[user] finishes manipulating [src] with [I]."),
+			span_notice("You rig [src] to explode on use with [I]."))
 		else
 			if(skill < SKILL_ENGINEER_ENGI)
-				user.visible_message("<span class='notice'>[user] fumbles around figuring out how to manipulate [src].</span>",
-				"<span class='notice'>You fumble around, trying to figure out how to stabilize [src].</span>")
+				user.visible_message(span_notice("[user] fumbles around figuring out how to manipulate [src]."),
+				span_notice("You fumble around, trying to figure out how to stabilize [src]."))
 				var/fumbling_time = SKILL_TASK_EASY
 				if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 					return
@@ -157,16 +157,16 @@
 					to_chat(user, "<font color='danger'>After several seconds of your clumsy meddling [src] buzzes angrily as if offended. You have a <b>very</b> bad feeling about this.</font>")
 					rigged = TRUE
 					explode() //Oops. Now you fucked up (or succeeded only too well). Immediate detonation.
-			user.visible_message("<span class='notice'>[user] begins manipulating [src] with [I].</span>",
-			"<span class='notice'>You begin stabilizing [src] with [I] so it won't detonate on use.</span>")
+			user.visible_message(span_notice("[user] begins manipulating [src] with [I]."),
+			span_notice("You begin stabilizing [src] with [I] so it won't detonate on use."))
 			if(skill > SKILL_ENGINEER_ENGI)
 				delay = max(delay - 10, 0)
 			if(!do_after(user, delay, TRUE, src, BUSY_ICON_BUILD))
 				return
 			rigged = FALSE
 			overlays -= spark_overlay
-			user.visible_message("<span class='notice'>[user] finishes manipulating [src] with [I].</span>",
-			"<span class='notice'>You stabilize the [src] with [I]; it will no longer detonate on use.</span>")
+			user.visible_message(span_notice("[user] finishes manipulating [src] with [I]."),
+			span_notice("You stabilize the [src] with [I]; it will no longer detonate on use."))
 
 
 /obj/item/cell/proc/explode()
