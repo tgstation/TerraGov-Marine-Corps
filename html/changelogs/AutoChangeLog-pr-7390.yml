@@ -1,0 +1,4 @@
+author: "lbnesquik"
+delete-after: True
+changes: 
+  - expansion: "The AI is now notified when a CAS or OB laser is created or goes out."
