@@ -28,23 +28,19 @@ GLOBAL_LIST_INIT(defile_purge_list, typecacheof(list(
 	if(!.)
 		return
 
-	if(!iscarbon(A))
+//	var/mob/living/carbon/victim = A
+
+	if(!A.can_sting())
 		if(!silent)
 			to_chat(owner, span_xenodanger("Our sting won't affect this target!"))
 		return FALSE
 
-	var/mob/living/carbon/victim = A
-
-	if(!victim?.can_sting())
-		if(!silent)
-			to_chat(owner, span_xenodanger("Our sting won't affect this target!"))
-		return FALSE
-
-	if(!owner.Adjacent(victim))
+	if(!owner.Adjacent(A))
 		var/mob/living/carbon/xenomorph/X = owner
 		if(!silent)
-			to_chat(X, span_warning("We can't reach this target!"))
+			to_chat(X, span_warning("We can't reach this target! We need to be adjacent!"))
 		return FALSE
+
 
 /datum/action/xeno_action/activable/defile/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/Defiler/X = owner
