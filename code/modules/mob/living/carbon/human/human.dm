@@ -107,6 +107,11 @@
 			stat(null, "You are affected by a HOLD order.")
 		if(marksman_aura)
 			stat(null, "You are affected by a FOCUS order.")
+		if(istype(SSticker.mode, /datum/game_mode/civil_war))
+			var/datum/game_mode/civil_war/civil_war = SSticker.mode
+			stat("Points needed to win:", civil_war.points_needed)
+			stat("Loyalists team points:", LAZYACCESS(SSmonitor.points_per_faction, FACTION_TERRAGOV) ? LAZYACCESS(SSmonitor.points_per_faction, FACTION_TERRAGOV) : 0)
+			stat("Rebels team points:", LAZYACCESS(SSmonitor.points_per_faction, FACTION_TERRAGOV_REBEL) ? LAZYACCESS(SSmonitor.points_per_faction, FACTION_TERRAGOV) : 0)
 
 /mob/living/carbon/human/ex_act(severity)
 	if(status_flags & GODMODE)

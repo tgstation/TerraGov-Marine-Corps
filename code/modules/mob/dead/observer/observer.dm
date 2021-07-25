@@ -346,6 +346,11 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 				var/datum/hive_status/normal/normal_hive = GLOB.hive_datums[XENO_HIVE_NORMAL]
 				if(LAZYLEN(normal_hive.ssd_xenos))
 					stat("SSD xenos:", normal_hive.ssd_xenos.Join(", "))
+		if(istype(SSticker.mode, /datum/game_mode/civil_war))
+			var/datum/game_mode/civil_war/civil_war = SSticker.mode
+			stat("Points needed to win:", civil_war.points_needed)
+			stat("Loyalists team points:", LAZYACCESS(SSmonitor.points_per_faction, FACTION_TERRAGOV))
+			stat("Rebels team points:", LAZYACCESS(SSmonitor.points_per_faction, FACTION_TERRAGOV_REBEL))
 
 
 /mob/dead/observer/verb/reenter_corpse()
