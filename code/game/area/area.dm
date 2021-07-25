@@ -59,8 +59,8 @@
 	var/min_ambience_cooldown = 40 SECONDS
 	///Used to decide what the maximum time between ambience is
 	var/max_ambience_cooldown = 120 SECONDS
-
-
+	///Assoc list of faction members in this area; only used in civil war to determine who controls this zone
+	var/list/alive_faction_member_in_area
 
 
 /area/New()
@@ -326,3 +326,36 @@
 
 /area/return_gas()
 	return gas_type
+
+///Set this area as a contested zone, that will monitors which faction controls it.
+/area/proc/set_to_contested()
+	RegisterSignal(src, COMSIG_AREA_ENTERED, .proc/add_faction_member)
+	RegisterSignal(src, COMSIG_AREA_EXITED, .proc/left_area)
+
+///Signal handler when something enters the disputed area.
+/area/proc/add_faction_member(datum/source, atom/movable/entered)
+	SIGNAL_HANDLER
+	if(!isliving(entered))
+		return
+	var/mob/living/living_entered = entered
+	if(living_entered.stat == DEAD)
+		RegisterSignal(living_entered, COMSIG_MOB_REVIVE, .proc/add_faction_member)
+		return
+	LAZYADDASSOC(alive_faction_member_in_area, living_entered.faction, living_entered)
+	RegisterSignal(living_entered, COMSIG_MOB_DEATH, .proc/remove_faction_member)
+
+///Signal handler when something leave the contested area. If it's a mob, we stop listening for his death/revive.
+/area/proc/left_area(datum/source, atom/movable/left)
+	SIGNAL_HANDLER
+	if(!isliving(left))
+		return
+	var/mob/living/living_left = left
+	LAZYREMOVEASSOC(alive_faction_member_in_area, living_left.faction, living_left)
+	UnregisterSignal(living_left, list(COMSIG_MOB_DEATH, COMSIG_MOB_REVIVE))
+
+///Signal handler when a mob die in the disputed area. We are waiting for him to revive to count him again.
+/area/proc/remove_faction_member(datum/source, mob/living/died)
+	SIGNAL_HANDLER
+	LAZYREMOVEASSOC(alive_faction_member_in_area, died.faction, died)
+	UnregisterSignal(died, COMSIG_MOB_DEATH)
+	RegisterSignal(died, COMSIG_MOB_REVIVE, .proc/add_faction_member)

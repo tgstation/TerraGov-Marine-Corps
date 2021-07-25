@@ -183,6 +183,17 @@
 	. = ..()
 	return INITIALIZE_HINT_QDEL
 
+/obj/effect/landmark/zone_to_control
+	name = "Zone to control landmark"
+	icon_state = "holding_facility"
+
+/obj/effect/landmark/zone_to_control/Initialize()
+	var/area/area_to_control = get_area(src)
+	area_to_control.set_to_contested()
+	GLOB.zone_to_control += area_to_control
+	. = ..()
+	return INITIALIZE_HINT_QDEL
+
 /obj/effect/landmark/dropship_start_location
 	name = "dropship_start_location"
 
