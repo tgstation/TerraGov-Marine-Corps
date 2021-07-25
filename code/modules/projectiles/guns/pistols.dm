@@ -458,6 +458,7 @@
 		/obj/item/attachable/lasersight,
 		/obj/item/attachable/extended_barrel,
 		/obj/item/attachable/heavy_barrel,
+		/obj/item/attachable/stock/vp70,
 		/obj/item/attachable/burstfire_assembly,
 		/obj/item/attachable/lace,
 	)
@@ -471,6 +472,7 @@
 	accuracy_mult = 1.2
 	accuracy_mult_unwielded = 0.95
 	recoil = 0
+	damage_falloff_mult = 0.5
 	aim_slowdown = 0.2
 	scatter = 5
 	scatter_unwielded = 15
