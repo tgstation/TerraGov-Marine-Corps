@@ -672,6 +672,10 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 		to_chat(src, span_warning("You cannot give an order in your current state."))
 		return
 
+	if(IsMute())
+		to_chat(src, span_warning("You cannot give an order while muted."))
+		return
+
 	if(command_aura_cooldown > 0)
 		to_chat(src, span_warning("You have recently given an order. Calm down."))
 		return

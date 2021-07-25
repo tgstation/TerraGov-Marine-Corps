@@ -20,7 +20,7 @@
 		if(command_aura_tick < 1)
 			command_aura = null
 
-		if(stat == CONSCIOUS)
+		if(stat == CONSCIOUS && !isdeaf()) //Must be conscious and not deaf.
 			command_aura_strength = skills.getRating("leadership") - 1
 			var/command_aura_range = round(4 + command_aura_strength * 1)
 			for(var/mob/living/carbon/human/H in range(command_aura_range, src))
