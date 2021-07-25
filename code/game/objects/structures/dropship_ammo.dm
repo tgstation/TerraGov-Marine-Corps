@@ -539,6 +539,19 @@
 
 //Welder barrel bomb
 
+/obj/structure/ship_ammo/cas_bomb/welder_tank
+	name = "\improper Makeshift Welder bomb"
+	desc = "Is this...A welder tank? By god, that is the ugliest example of makeshift engineering you have ever seen. The 'aerodynamic cage' looks closer to obese chicken wire than anything else, and the fins are somehow worse than a child drawing. Still, you could probably anchor it SOMEHOW to the condor. And it has a little cart. Can't forget that."
+	icon_state = "welder_bomb"
+	ammo_id = "welder_tank"
+	point_cost = 175
+	anchored = FALSE
+
+/obj/structure/ship_ammo/cas_bomb/welder_tank/detonate_on(turf/impact, attackdir = NORTH)
+	impact.ceiling_debris_check(3)
+	explosion(loc, light_impact_range = 4, flame_range = 7, small_animation = TRUE)
+	qdel(src)
+
 //Nail bomb
 
 //toilet-sink

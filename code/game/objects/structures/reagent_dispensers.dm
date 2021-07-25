@@ -75,6 +75,8 @@
 	var/obj/item/assembly_holder/rig
 	//Whether the tank is already exploding to prevent chain explosions
 	var/exploding = FALSE
+	///Are we in the process of making this into a bomb
+	var/bombening = FALSE
 
 /obj/structure/reagent_dispensers/fueltank/Destroy()
 	. = ..()
@@ -135,6 +137,49 @@
 /obj/structure/reagent_dispensers/fueltank/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
+	//if((!istype(I, /obj/item/stack/rods)) || (!istype(I, /obj/item/assembly_holder)) || (!istype(I, /obj/item/stack/sheet/metal)))
+	//	return
+	if(istype(I, /obj/item/stack/rods))
+
+		if(rig)
+			to_chat(user, "<span class='warning'>There is some sort of device in the way, better remove that.</span>")
+			return
+		if(modded)
+			to_chat(user, "<span class='warning'>This fuel tank is leaking! No good for our plans!</span>")
+			return
+		user.visible_message("[user] begins making some sort of framework for \the [src] [I].",
+			"You begin making a framework on \the [src]")
+
+		if(do_after(user, 15, TRUE, src, BUSY_ICON_BUILD))
+			bombening = TRUE
+			I.use(4)
+			user.visible_message("<span class='notice'>[user] finishes making a frame around \the [src].</span>",
+				"<span class='notice'>You make a frame around \the [src].</span>")
+			playsound(loc, 'sound/weapons/mine_armed.ogg', 25)
+			icon_state = "weldtank_bomb"
+
+			return
+
+	if(istype(I, /obj/item/stack/sheet/metal))
+		if(rig)
+			to_chat(user, "<span class='warning'>There is some sort of device in the way, better remove that.</span>")
+			return
+		if(modded)
+			to_chat(user, "<span class='warning'>This fuel tank is leaking! No good for our plans!</span>")
+			return
+		user.visible_message("[user] begins adding some rough fins to the metal cage around \the [src] [I].",
+			"You begin adding some makeshift fins around \the [src]")
+		if(do_after(user, 15, TRUE, src, BUSY_ICON_BUILD))
+			I.use(3)
+			user.visible_message("[user] finishes their work on la creatura, an horrible mess of rods, metal and an innocent fuel tank, ready to be dropped onto some poor fool.",
+				"You begin adding some makeshift fins around \the [src]")
+			var/obj/structure/ship_ammo/cas_bomb/welder_tank/S = new /obj/structure/ship_ammo/cas_bomb/welder_tank/(loc)
+			S.update_icon()
+			qdel(src)
+			return
+
+/*
+
 	if(!istype(I, /obj/item/assembly_holder))
 		return
 	if(rig)
@@ -154,7 +199,7 @@
 	overlay.pixel_x = 1
 	overlay.pixel_y = 6
 	add_overlay(overlay)
-
+*/
 
 /obj/structure/reagent_dispensers/fueltank/bullet_act(obj/projectile/Proj)
 	if(exploding)
