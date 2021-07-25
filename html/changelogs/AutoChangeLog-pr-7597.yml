@@ -1,4 +1,0 @@
-author: "Hekzder"
-delete-after: True
-changes: 
-  - spellcheck: "Description of Jaeger storage modules updated to reflect the fact that they no longer slow you down."
