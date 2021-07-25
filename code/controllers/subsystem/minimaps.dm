@@ -338,6 +338,7 @@ SUBSYSTEM_DEF(minimaps)
 /datum/action/minimap/give_action(mob/M)
 	. = ..()
 	RegisterSignal(M, COMSIG_MOVABLE_Z_CHANGED, .proc/on_owner_z_change)
+	RegisterSignal(M, COMSIG_KB_TOGGLE_MINIMAP, .proc/action_activate)
 	if(!SSminimaps.minimaps_by_z["[M.z]"] || !SSminimaps.minimaps_by_z["[M.z]"].hud_image)
 		return
 	map = SSminimaps.fetch_minimap_object(M.z, minimap_flags)
@@ -347,7 +348,7 @@ SUBSYSTEM_DEF(minimaps)
 	if(minimap_displayed)
 		owner.client.screen -= map
 		minimap_displayed = FALSE
-	UnregisterSignal(M, COMSIG_MOVABLE_Z_CHANGED)
+	UnregisterSignal(M, list(COMSIG_MOVABLE_Z_CHANGED, COMSIG_KB_TOGGLE_MINIMAP))
 
 /**
  * Updates the map when the owner changes zlevel

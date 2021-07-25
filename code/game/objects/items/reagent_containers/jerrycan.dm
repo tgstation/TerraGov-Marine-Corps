@@ -18,22 +18,22 @@
 	if(A.density)
 		return
 	if(!reagents.total_volume)
-		to_chat(user, "<span class='warning'>Theres no fuel left in [src]!</span>")
+		to_chat(user, span_warning("Theres no fuel left in [src]!"))
 		return
 	new /obj/effect/decal/cleanable/liquid_fuel(A, fuel_usage/2)
 	reagents.remove_reagent(/datum/reagent/fuel, fuel_usage)
-	user.visible_message("<span class='notice'>[user] splashes some fuel on \the [A]</span>", "<span class='notice'>You splash some fuel on [A]</span>")
+	user.visible_message(span_notice("[user] splashes some fuel on \the [A]"), span_notice("You splash some fuel on [A]"))
 	log_attack("[key_name(user)] has splashed fuel on  [A] in [AREACOORD(user)]")
 	A.add_fingerprint(user, "attack_turf", "doused with fuel from [src]")
 
 /obj/item/reagent_containers/jerrycan/attack(mob/living/M, mob/living/user)
 	. = ..()
 	if(!reagents.total_volume)
-		to_chat(user, "<span class='warning'>Theres no fuel left in [src]!</span>")
+		to_chat(user, span_warning("Theres no fuel left in [src]!"))
 		return
 	M.adjust_fire_stacks(10)
 	reagents.remove_reagent(/datum/reagent/fuel, fuel_usage)
-	user.visible_message("<span class='notice'>[user] splashes some fuel on [M]</span>", "<span class='notice'>You splash some fuel on [M]</span>", ignored_mob = M)
+	user.visible_message(span_notice("[user] splashes some fuel on [M]"), span_notice("You splash some fuel on [M]"), ignored_mob = M)
 	to_chat(M, "<span class='warning'>[user] drenches you in fuel from [src]!<span>")
 	log_attack("[key_name(user)] has doused [M] in fuel in [AREACOORD(user)]")
 
@@ -44,13 +44,13 @@
 		return ..()
 	var/obj/structure/reagent_dispensers/fueltank/FT = O
 	if(FT.reagents.total_volume == 0)
-		to_chat(user, "<span class='warning'>Out of fuel!</span>")
+		to_chat(user, span_warning("Out of fuel!"))
 		return
 
 	var/fuel_transfer_amount = min(FT.reagents.total_volume, (reagents.total_volume - volume)*-1)
 	FT.reagents.trans_to(src, fuel_transfer_amount)
 	playsound(loc, 'sound/effects/refill.ogg', 25, 1, 3)
-	to_chat(user, "<span class='notice'>You refill [src] with [fuel_transfer_amount] units of fuel.</span>")
+	to_chat(user, span_notice("You refill [src] with [fuel_transfer_amount] units of fuel."))
 	return ..()
 
 /obj/item/reagent_containers/jerrycan/attack_obj(obj/O, mob/living/user)

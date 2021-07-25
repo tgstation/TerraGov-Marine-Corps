@@ -28,8 +28,8 @@
 	succeed_activate()
 
 	playsound(X.loc, 'sound/effects/refill.ogg', 25, 1)
-	X.visible_message("<span class='xenowarning'>\The [X] spews forth a wide cone of acid!</span>", \
-	"<span class='xenowarning'>We spew forth a cone of acid!</span>", null, 5)
+	X.visible_message(span_xenowarning("\The [X] spews forth a wide cone of acid!"), \
+	span_xenowarning("We spew forth a cone of acid!"), null, 5)
 
 	X.add_movespeed_modifier(type, TRUE, 0, NONE, TRUE, 2)
 	start_acid_spray_cone(target, X.xeno_caste.acid_spray_range)

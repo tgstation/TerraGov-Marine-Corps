@@ -46,8 +46,10 @@ Make your way to the cafeteria for some post-cryosleep chow, and then get equipp
 	minimap_icon = "private"
 
 /datum/job/terragov/squad/standard/rebel
+	title = REBEL_SQUAD_MARINE
 	faction = FACTION_TERRAGOV_REBEL
 	access = list(ACCESS_MARINE_PREP_REBEL)
+	outfit = /datum/outfit/job/marine/standard/rebel
 	jobworth = list(
 		/datum/job/xenomorph = LARVA_POINTS_REGULAR,
 		/datum/job/terragov/squad/smartgunner/rebel = SMARTIE_POINTS_REGULAR,
@@ -86,6 +88,9 @@ What you lack alone, you gain standing shoulder to shoulder with the men and wom
 
 	id = /obj/item/card/id/dogtag
 	back = /obj/item/storage/backpack/marine/satchel
+
+/datum/outfit/job/marine/standard/rebel
+	jobtype = /datum/job/terragov/squad/standard/rebel
 
 /datum/outfit/job/marine/standard/equipped
 	name = "Squad Marine (Equipped)"
@@ -134,6 +139,7 @@ What you lack alone, you gain standing shoulder to shoulder with the men and wom
 	minimap_icon = "engi"
 
 /datum/job/terragov/squad/engineer/rebel
+	title = REBEL_SQUAD_ENGINEER
 	faction = FACTION_TERRAGOV_REBEL
 	outfit = /datum/outfit/job/marine/engineer/rebel
 	access = list(ACCESS_MARINE_PREP_REBEL, ACCESS_MARINE_ENGPREP_REBEL, ACCESS_CIVILIAN_ENGINEERING, ACCESS_MARINE_REMOTEBUILD_REBEL, ACCESS_MARINE_ENGINEERING_REBEL)
@@ -223,6 +229,7 @@ Your squaddies will look to you when it comes to construction in the field of ba
 	minimap_icon = "medic"
 
 /datum/job/terragov/squad/corpsman/rebel
+	title = REBEL_SQUAD_CORPSMAN
 	faction = FACTION_TERRAGOV_REBEL
 	outfit = /datum/outfit/job/marine/corpsman/rebel
 	access = list(ACCESS_MARINE_PREP_REBEL, ACCESS_MARINE_MEDPREP_REBEL, ACCESS_MARINE_MEDBAY_REBEL)
@@ -322,6 +329,7 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 	minimap_icon = "smartgunner"
 
 /datum/job/terragov/squad/smartgunner/rebel
+	title = REBEL_SQUAD_SMARTGUNNER
 	faction = FACTION_TERRAGOV_REBEL
 	outfit = /datum/outfit/job/marine/smartgunner/rebel
 	access = list(ACCESS_MARINE_PREP_REBEL, ACCESS_MARINE_SMARTPREP_REBEL)
@@ -454,6 +462,7 @@ You can serve a variety of roles, so choose carefully."})
 	minimap_icon = "leader"
 
 /datum/job/terragov/squad/leader/rebel
+	title = REBEL_SQUAD_LEADER
 	faction = FACTION_TERRAGOV_REBEL
 	outfit = /datum/outfit/job/marine/leader/rebel
 	access = list(ACCESS_MARINE_PREP_REBEL, ACCESS_MARINE_LEADER_REBEL, ACCESS_MARINE_DROPSHIP_REBEL)

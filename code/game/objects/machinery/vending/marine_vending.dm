@@ -155,14 +155,16 @@
 		"Specialized" = list(
 			/obj/item/weapon/gun/launcher/m92/standardmarine = -1,
 			/obj/item/weapon/gun/launcher/m81 = -1,
+			/obj/item/weapon/gun/heavymachinegun = 1,
+			/obj/item/ammo_magazine/heavymachinegun = 4,
 			/obj/item/weapon/gun/rifle/pepperball = 4,
+			/obj/item/ammo_magazine/rifle/pepperball = 40,
 			/obj/item/storage/box/recoilless_system = 2,
 			/obj/item/weapon/gun/flamer/marinestandard = 4,
 			/obj/item/ammo_magazine/flamer_tank/backtank = 4,
 			/obj/item/ammo_magazine/flamer_tank/large = 20,
 			/obj/item/ammo_magazine/flamer_tank = 20,
 			/obj/item/weapon/shield/riot/marine = 6,
-			/obj/item/ammo_magazine/rifle/pepperball = 40,
 			/obj/item/weapon/powerfist = -1,
 			/obj/item/weapon/throwing_knife = -1,
 			/obj/item/weapon/combat_knife = -1,
@@ -233,7 +235,7 @@
 			/obj/item/ammo_magazine/rifle/standard_assaultrifle = -1,
 			/obj/item/weapon/gun/rifle/standard_carbine = -1,
 			/obj/item/ammo_magazine/rifle/standard_carbine = -1,
-			/obj/item/weapon/gun/rifle/tx11 = -1,
+			/obj/item/weapon/gun/rifle/tx11/scopeless = -1,
 			/obj/item/ammo_magazine/rifle/tx11 = -1,
 		),
 		"Energy Weapons" = list(
@@ -505,8 +507,8 @@
 
 			qdel(item_to_stock)
 			if(!recharge)
-				user.visible_message("<span class='notice'>[user] stocks [src] with \a [R.product_name].</span>",
-				"<span class='notice'>You stock [src] with \a [R.product_name].</span>")
+				user.visible_message(span_notice("[user] stocks [src] with \a [R.product_name]."),
+				span_notice("You stock [src] with \a [R.product_name]."))
 			R.amount++
 			updateUsrDialog()
 			break //We found our item, no reason to go on.
@@ -514,15 +516,15 @@
 /obj/machinery/vending/lasgun/proc/recharge_lasguncell(obj/item/cell/lasgun/A, mob/user)
 	var/recharge_cost = (A.maxcharge - A.charge)
 	if(recharge_cost > machine_current_charge)
-		to_chat(user, "<span class='warning'>[A] cannot be recharged; [src] has inadequate charge remaining: [machine_current_charge] of [machine_max_charge].</span>")
+		to_chat(user, span_warning("[A] cannot be recharged; [src] has inadequate charge remaining: [machine_current_charge] of [machine_max_charge]."))
 		return FALSE
 	else
-		to_chat(user, "<span class='warning'>You insert [A] into [src] to be recharged.</span>")
+		to_chat(user, span_warning("You insert [A] into [src] to be recharged."))
 		if(icon_vend)
 			flick(icon_vend,src)
 		playsound(loc, 'sound/machines/hydraulics_1.ogg', 25, 0, 1)
 		machine_current_charge -= min(machine_current_charge, recharge_cost)
-		to_chat(user, "<span class='notice'>This dispenser has [machine_current_charge] of [machine_max_charge] remaining.</span>")
+		to_chat(user, span_notice("This dispenser has [machine_current_charge] of [machine_max_charge] remaining."))
 		update_icon()
 		return TRUE
 

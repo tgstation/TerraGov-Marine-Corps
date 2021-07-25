@@ -45,10 +45,10 @@
 		reagents.reaction(M, INGEST)
 		reagents.trans_to(M, reagents.total_volume)
 		if(M == user)
-			visible_message("<span class='notice'>[user] eats some [loaded] from \the [src].</span>")
+			visible_message(span_notice("[user] eats some [loaded] from \the [src]."))
 			M.reagents.add_reagent(/datum/reagent/consumable/nutriment, 1)
 		else
-			visible_message("<span class='notice'>[user] feeds [M] some [loaded] from \the [src]</span>")
+			visible_message(span_notice("[user] feeds [M] some [loaded] from \the [src]"))
 			M.reagents.add_reagent(/datum/reagent/consumable/nutriment, 1)
 		playsound(M.loc,'sound/items/eatfood.ogg', 15, 1)
 		overlays.Cut()
@@ -91,9 +91,9 @@
 	edge = 1
 
 /obj/item/tool/kitchen/utensil/knife/suicide_act(mob/user)
-	user.visible_message(pick("<span class='danger'>[user] is slitting [user.p_their()] wrists with the [name]! It looks like [user.p_theyre()] trying to commit suicide.</span>", \
-							"<span class='danger'>[user] is slitting [user.p_their()] throat with the [name]! It looks like [user.p_theyre()] trying to commit suicide.</span>", \
-							"<span class='danger'>[user] is slitting [user.p_their()] stomach open with the [name]! It looks like [user.p_theyre()] trying to commit seppuku.</span>"))
+	user.visible_message(pick(span_danger("[user] is slitting [user.p_their()] wrists with the [name]! It looks like [user.p_theyre()] trying to commit suicide."), \
+							span_danger("[user] is slitting [user.p_their()] throat with the [name]! It looks like [user.p_theyre()] trying to commit suicide."), \
+							span_danger("[user] is slitting [user.p_their()] stomach open with the [name]! It looks like [user.p_theyre()] trying to commit seppuku.")))
 	return (BRUTELOSS)
 
 /obj/item/tool/kitchen/utensil/knife/attack(target as mob, mob/living/user as mob)
@@ -129,9 +129,9 @@
 	attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 
 /obj/item/tool/kitchen/knife/suicide_act(mob/user)
-	user.visible_message(pick("<span class='danger'>[user] is slitting [user.p_their()] wrists with the [name]! It looks like [user.p_theyre()] trying to commit suicide.</span>", \
-							"<span class='danger'>[user] is slitting [user.p_their()] throat with the [name]! It looks like [user.p_theyre()] trying to commit suicide.</span>", \
-							"<span class='danger'>[user] is slitting [user.p_their()] stomach open with the [name]! It looks like [user.p_theyre()] trying to commit seppuku.</span>"))
+	user.visible_message(pick(span_danger("[user] is slitting [user.p_their()] wrists with the [name]! It looks like [user.p_theyre()] trying to commit suicide."), \
+							span_danger("[user] is slitting [user.p_their()] throat with the [name]! It looks like [user.p_theyre()] trying to commit suicide."), \
+							span_danger("[user] is slitting [user.p_their()] stomach open with the [name]! It looks like [user.p_theyre()] trying to commit seppuku.")))
 	return (BRUTELOSS)
 
 /obj/item/tool/kitchen/knife/ritual
@@ -245,18 +245,18 @@
 			M.take_limb_damage(5)
 		if(prob(50))
 			playsound(M, 'sound/items/trayhit1.ogg', 25, 1)
-			visible_message("<span class='danger'>[user] slams [M] with the tray!</span>")
+			visible_message(span_danger("[user] slams [M] with the tray!"))
 			return
 		else
 			playsound(M, 'sound/items/trayhit2.ogg', 25, 1)  //we applied the damage, we played the sound, we showed the appropriate messages. Time to return and stop the proc
-			visible_message("<span class='danger'>[user] slams [M] with the tray!</span>")
+			visible_message(span_danger("[user] slams [M] with the tray!"))
 			return
 
 
 
 
 	if(ishuman(M) && ((H.head && (H.head.flags_inventory & COVEREYES) ) || (H.wear_mask && (H.wear_mask.flags_inventory & COVEREYES) ) || (H.glasses && (H.glasses.flags_inventory & COVEREYES) )))
-		to_chat(M, "<span class='warning'>You get slammed in the face with the tray, against your mask!</span>")
+		to_chat(M, span_warning("You get slammed in the face with the tray, against your mask!"))
 		if(prob(33))
 			src.add_mob_blood(H)
 			if (H.wear_mask)
@@ -271,10 +271,10 @@
 
 		if(prob(50))
 			playsound(M, 'sound/items/trayhit1.ogg', 25, 1)
-			visible_message("<span class='danger'>[user] slams [M] with the tray!</span>")
+			visible_message(span_danger("[user] slams [M] with the tray!"))
 		else
 			playsound(M, 'sound/items/trayhit2.ogg', 25, 1)  //sound playin'
-			visible_message("<span class='danger'>[user] slams [M] with the tray!</span>")
+			visible_message(span_danger("[user] slams [M] with the tray!"))
 		if(prob(10))
 			M.Stun(rand(20,60))
 			M.take_limb_damage(3)
@@ -284,7 +284,7 @@
 			return
 
 	else //No eye or head protection, tough luck!
-		to_chat(M, "<span class='warning'>You get slammed in the face with the tray!</span>")
+		to_chat(M, span_warning("You get slammed in the face with the tray!"))
 		if(prob(33))
 			src.add_mob_blood(M)
 			var/turf/location = H.loc
@@ -293,10 +293,10 @@
 
 		if(prob(50))
 			playsound(M, 'sound/items/trayhit1.ogg', 25, 1)
-			visible_message("<span class='danger'>[user] slams [M] in the face with the tray!</span>")
+			visible_message(span_danger("[user] slams [M] in the face with the tray!"))
 		else
 			playsound(M, 'sound/items/trayhit2.ogg', 25, 1)  //sound playin' again
-			visible_message("<span class='danger'>[user] slams [M] in the face with the tray!</span>")
+			visible_message(span_danger("[user] slams [M] in the face with the tray!"))
 		if(prob(30))
 			M.Stun(rand(40,80))
 			M.take_limb_damage(4)
@@ -315,7 +315,7 @@
 
 	if(istype(I, /obj/item/tool/kitchen/rollingpin))
 		if(cooldown < world.time - 25)
-			user.visible_message("<span class='warning'>[user] bashes [src] with [I]!</span>")
+			user.visible_message(span_warning("[user] bashes [src] with [I]!"))
 			playsound(user.loc, 'sound/effects/shieldbash.ogg', 25, 1)
 			cooldown = world.time
 

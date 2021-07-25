@@ -103,16 +103,16 @@
 
 	switch(fancy_type)
 		if(1)
-			gift_message = "<span class='notice'>It's a brand new, un-restricted, THERMOBARIC ROCKET LAUNCHER!  What are the chances?</span>"
+			gift_message = span_notice("It's a brand new, un-restricted, THERMOBARIC ROCKET LAUNCHER!  What are the chances?")
 			gift_type = /obj/item/weapon/gun/launcher/rocket/m57a4/xmas
 		if(10)
-			gift_message = "<span class='notice'>It's a brand new, un-restricted, ANTI-MATERIAL SNIPER RIFLE!  What are the chances?</span>"
+			gift_message = span_notice("It's a brand new, un-restricted, ANTI-MATERIAL SNIPER RIFLE!  What are the chances?")
 			gift_type = /obj/item/weapon/gun/rifle/sniper/elite/xmas
 		if(20)
-			gift_message = "<span class='notice'>Just what the fuck is it?</span>"
+			gift_message = span_notice("Just what the fuck is it?")
 			gift_type = /obj/item/clothing/mask/facehugger/lamarr
 		else
-			gift_message = "<span class='notice'>It's a REAL gift!</span>"
+			gift_message = span_notice("It's a REAL gift!")
 			gift_type = pick(
 			/obj/item/weapon/gun/revolver/mateba,
 			/obj/item/weapon/gun/pistol/heavy,
@@ -138,7 +138,7 @@
 	var/turf/current_turf = get_turf(user)
 	if(is_mainship_level(current_turf.z))
 		click_empty(user)
-		to_chat(user, "<span class='warning'>You can't fire that here!</span>")
+		to_chat(user, span_warning("You can't fire that here!"))
 		return FALSE
 	return TRUE
 
@@ -154,17 +154,17 @@
 /obj/effect/spresent/relaymove(mob/user)
 	if(user.stat != CONSCIOUS)
 		return
-	to_chat(user, "<span class='notice'>You can't move.</span>")
+	to_chat(user, span_notice("You can't move."))
 
 
 /obj/effect/spresent/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
 	if(!iswirecutter(I))
-		to_chat(user, "<span class='notice'>You need wirecutters for that.</span>")
+		to_chat(user, span_notice("You need wirecutters for that."))
 		return
 
-	to_chat(user, "<span class='notice'>You cut open the present.</span>")
+	to_chat(user, span_notice("You cut open the present."))
 
 	for(var/mob/M in src) //Should only be one but whatever.
 		M.forceMove(loc)
@@ -190,20 +190,20 @@
 	var/a_used = 2 ** (w_class - 1)
 
 	if(!(locate(/obj/structure/table) in loc))
-		to_chat(user, "<span class='notice'>You must put the paper on a table!</span>")
+		to_chat(user, span_notice("You must put the paper on a table!"))
 		return
 
 	if(I.w_class >= WEIGHT_CLASS_BULKY)
-		to_chat(user, "<span class='notice'>The object is far too large!</span>")
+		to_chat(user, span_notice("The object is far too large!"))
 		return
 
 
 	if(!iswirecutter(user.l_hand) && !iswirecutter(user.r_hand))
-		to_chat(user, "<span class='notice'>You need scissors!</span>")
+		to_chat(user, span_notice("You need scissors!"))
 		return
 
 	if(amount < a_used)
-		to_chat(user, "<span class='notice'>You need more paper!</span>")
+		to_chat(user, span_notice("You need more paper!"))
 		return
 
 	if(istype(I, /obj/item/smallDelivery) || istype(I, /obj/item/gift)) //No gift wrapping gifts!
@@ -241,7 +241,7 @@
 		return
 
 	if(amount <= 2)
-		to_chat(user, "<span class='notice'>You need more paper.</span>")
+		to_chat(user, span_notice("You need more paper."))
 		return
 
 	var/obj/effect/spresent/present = new(H.loc)

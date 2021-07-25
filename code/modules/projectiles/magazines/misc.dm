@@ -71,11 +71,19 @@
 	icon_state = "box_44mag" //Maybe change this
 	default_ammo = /datum/ammo/bullet/revolver/tp44
 	caliber = CALIBER_44
-	current_rounds = 50
-	max_rounds = 50
+	current_rounds = 49
+	max_rounds = 49
 	w_class = WEIGHT_CLASS_SMALL
 	gun_type = /obj/item/weapon/gun/revolver/standard_revolver
 
+/obj/item/ammo_magazine/packet/mateba
+	name = "packet of .454 casull"
+	icon_state = "box_454"
+	default_ammo = /datum/ammo/bullet/revolver/highimpact
+	caliber = CALIBER_454
+	current_rounds = 42
+	max_rounds = 42
+	gun_type = /obj/item/weapon/gun/revolver/mateba
 
 /obj/item/ammo_magazine/packet/acp
 	name = "packet of .45 ACP"
