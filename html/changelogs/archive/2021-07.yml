@@ -512,3 +512,34 @@
   - bugfix: Warrior punch no longer allows you to destroy many machines that can not
       otherwise be damaged
   - bugfix: Crushers can no longer destroy SMESes
+2021-07-25:
+  AseFantome:
+  - balance: It's now easier to hit what you targeting with illumination minirockets.
+  - balance: Never used smoke minirockets receives cloaking smoke.
+  BraveMole:
+  - bugfix: Chat html should be back to normal
+  Hekzder:
+  - spellcheck: Description of Jaeger storage modules updated to reflect the fact
+      that they no longer slow you down.
+  - rscdel: Removed the useless squad supply crates from the req vendor.
+  - spellcheck: Changed a variety of item names in the req menu to more accurately
+      reflect their contents and items
+  InterroLouis:
+  - balance: Prison Station cell windows are now destructible and acidable but still
+      not deconstructible.
+  KornFlaks:
+  - rscadd: Replaces the button for Hive Order with Hive Message, also known as Word
+      of Queen.
+  - rscdel: 'Removed the following two buttons from queen: Larval Accelerant Injection
+      and Psychic Whisper.'
+  Pariah919:
+  - balance: vgrpi helps you move moderately faster in aim mode, not as much as a
+      gyro, however.
+  QualityVan:
+  - balance: Turrets won't target you when you're stealthed via hunter ability.
+  SplinterGP:
+  - balance: hivelord gets their plasma pool doubled but they can only regen to half
+      of it, they can however be given plasma functionally working like a extra plasma
+      battery.
+  lbnesquik:
+  - expansion: The AI is now notified when a CAS or OB laser is created or goes out.
