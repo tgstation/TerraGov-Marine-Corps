@@ -546,10 +546,18 @@
 	ammo_id = "welder_tank"
 	point_cost = 175
 	anchored = FALSE
+	var/fuel_level = 3
 
 /obj/structure/ship_ammo/cas_bomb/welder_tank/detonate_on(turf/impact, attackdir = NORTH)
 	impact.ceiling_debris_check(3)
-	explosion(loc, light_impact_range = 4, flame_range = 7, small_animation = TRUE)
+	switch(fuel_level)
+		if(3)
+			explosion(loc, light_impact_range = 6, flame_range = 8, small_animation = TRUE)
+		if(2)
+			explosion(loc, light_impact_range = 4, flame_range = 6, small_animation = TRUE)
+		if(1)
+			explosion(loc, light_impact_range = 2, flame_range = 4, small_animation = TRUE)
+
 	qdel(src)
 
 //Nail bomb

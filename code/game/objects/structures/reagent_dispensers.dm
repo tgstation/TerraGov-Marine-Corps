@@ -140,24 +140,24 @@
 	//if((!istype(I, /obj/item/stack/rods)) || (!istype(I, /obj/item/assembly_holder)) || (!istype(I, /obj/item/stack/sheet/metal)))
 	//	return
 	if(istype(I, /obj/item/stack/rods))
-
 		if(rig)
 			to_chat(user, "<span class='warning'>There is some sort of device in the way, better remove that.</span>")
 			return
 		if(modded)
 			to_chat(user, "<span class='warning'>This fuel tank is leaking! No good for our plans!</span>")
 			return
+
 		user.visible_message("[user] begins making some sort of framework for \the [src] [I].",
 			"You begin making a framework on \the [src]")
 
-		if(do_after(user, 15, TRUE, src, BUSY_ICON_BUILD))
+		if(do_after(user, 30, TRUE, src, BUSY_ICON_BUILD))
 			bombening = TRUE
 			I.use(4)
 			user.visible_message("<span class='notice'>[user] finishes making a frame around \the [src].</span>",
 				"<span class='notice'>You make a frame around \the [src].</span>")
 			playsound(loc, 'sound/weapons/mine_armed.ogg', 25)
 			icon_state = "weldtank_bomb"
-
+			desc = "A fueltank. This one is prisonner within a cage of makeshift rods. It still can be used, if only much more annoyingly."
 			return
 
 	if(istype(I, /obj/item/stack/sheet/metal))
@@ -167,39 +167,47 @@
 		if(modded)
 			to_chat(user, "<span class='warning'>This fuel tank is leaking! No good for our plans!</span>")
 			return
+		if(!bombening)
+			to_chat(user, "<span class='warning'>If you were possibly, hypothetically making a bomb out of this thing, you'd need a frame first.</span>")
+			return
 		user.visible_message("[user] begins adding some rough fins to the metal cage around \the [src] [I].",
 			"You begin adding some makeshift fins around \the [src]")
-		if(do_after(user, 15, TRUE, src, BUSY_ICON_BUILD))
+		if(do_after(user, 30, TRUE, src, BUSY_ICON_BUILD))
 			I.use(3)
 			user.visible_message("[user] finishes their work on la creatura, an horrible mess of rods, metal and an innocent fuel tank, ready to be dropped onto some poor fool.",
 				"You begin adding some makeshift fins around \the [src]")
 			var/obj/structure/ship_ammo/cas_bomb/welder_tank/S = new /obj/structure/ship_ammo/cas_bomb/welder_tank/(loc)
 			S.update_icon()
+			if (reagents.total_volume > 500)
+				S.fuel_level = 3
+			else if (reagents.total_volume > 100)
+				S.fuel_level = 2
+			else
+				S.fuel_level = 1
 			qdel(src)
 			return
 
-/*
 
-	if(!istype(I, /obj/item/assembly_holder))
+	if(istype(I, /obj/item/assembly_holder))
+		if(rig)
+			to_chat(user, "<span class='warning'>There is another device in the way.</span>")
+			return
+
+		user.visible_message("[user] begins rigging [I] to \the [src].", "You begin rigging [I] to \the [src]")
+		if(!do_after(user, 20, TRUE, src, BUSY_ICON_HOSTILE) || rig)
+			return
+
+		user.visible_message("<span class='notice'>[user] rigs [I] to \the [src].</span>", "<span class='notice'>You rig [I] to \the [src].</span>")
+		rig = I
+		user.transferItemToLoc(I, src)
+
+		var/mutable_appearance/overlay = new()
+		overlay.appearance = I.appearance
+		overlay.pixel_x = 1
+		overlay.pixel_y = 6
+		add_overlay(overlay)
 		return
-	if(rig)
-		to_chat(user, "<span class='warning'>There is another device in the way.</span>")
-		return
 
-	user.visible_message("[user] begins rigging [I] to \the [src].", "You begin rigging [I] to \the [src]")
-	if(!do_after(user, 20, TRUE, src, BUSY_ICON_HOSTILE) || rig)
-		return
-
-	user.visible_message("<span class='notice'>[user] rigs [I] to \the [src].</span>", "<span class='notice'>You rig [I] to \the [src].</span>")
-	rig = I
-	user.transferItemToLoc(I, src)
-
-	var/mutable_appearance/overlay = new()
-	overlay.appearance = I.appearance
-	overlay.pixel_x = 1
-	overlay.pixel_y = 6
-	add_overlay(overlay)
-*/
 
 /obj/structure/reagent_dispensers/fueltank/bullet_act(obj/projectile/Proj)
 	if(exploding)
