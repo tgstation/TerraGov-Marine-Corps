@@ -48,7 +48,7 @@
 	name = "tactical sensor"
 	desc = "A device that detects hostile movement. Hostiles appear as red blips. Friendlies with the correct IFF signature appear as green, and their bodies as blue, unrevivable bodies as dark blue. It has a mode selection interface."
 	icon_state = "minidetector"
-	attach_icon = "sniperscope_a"
+	attach_icon = "motion_detector"
 	slot = ATTACHMENT_SLOT_RAIL
 	attachment_action_type = /datum/action/item_action/toggle/motion_detector
 	/// Who's using this item
