@@ -17,7 +17,7 @@
 	if(command_aura)
 		command_aura_tick--
 
-		if(command_aura_tick < 1)
+		if(command_aura_tick < 1 || IsMute()) //Null the command aura if we're muted or its duration is over
 			command_aura = null
 
 		if(stat == CONSCIOUS && !isdeaf()) //Must be conscious and not deaf.
