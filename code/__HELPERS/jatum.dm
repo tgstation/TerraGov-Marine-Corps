@@ -129,6 +129,9 @@
 			continue
 
 		var/d_value = D.vars[var_name]
+		//0 or null value are not saved, to save memory
+		if(!d_value)
+			continue
 		json_structure[var_name] = _jatum_serialize_value(d_value, seen_references)
 
 	return json_structure
@@ -141,8 +144,12 @@
 /proc/jatum_deserialize(json)
 	if(!istext(json))
 		CRASH("Non-text passed!")
-
-	var/list/structure = json_decode(json)
+	var/list/structure
+	try 
+		structure = json_decode(json)
+	catch
+		log_debug("Jatum failed to deserialize, the json in question was : [json]")
+		return
 	if(!structure)
 		CRASH("Invalid JSON!")
 

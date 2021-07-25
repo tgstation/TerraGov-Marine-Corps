@@ -45,6 +45,10 @@ can cause issues with ammo types getting mixed up during the burst.
 /obj/item/weapon/gun/shotgun/update_icon() //Shotguns do not currently have empty states, as they look exactly the same. Other than double barrel.
 	return
 
+/obj/item/weapon/gun/shotgun/unique_action(mob/user)
+	. = ..()
+	return cock(user)
+
 /obj/item/weapon/gun/shotgun/proc/replace_tube(number_to_replace)
 	current_mag.chamber_contents = list()
 	current_mag.chamber_contents.len = current_mag.max_rounds
@@ -71,7 +75,7 @@ can cause issues with ammo types getting mixed up during the burst.
 			update_icon()
 		return TRUE
 	if(!in_chamber)
-		to_chat(user, "<span class='warning'>[src] is already empty.</span>")
+		to_chat(user, span_warning("[src] is already empty."))
 		return TRUE
 	QDEL_NULL(in_chamber)
 	var/obj/item/ammo_magazine/handful/new_handful = retrieve_shell(ammo.type)
@@ -130,11 +134,11 @@ can cause issues with ammo types getting mixed up during the burst.
 		return FALSE
 
 	if(!istype(magazine)) //Can only reload with handfuls.
-		to_chat(user, "<span class='warning'>You can't use that to reload!</span>")
+		to_chat(user, span_warning("You can't use that to reload!"))
 		return FALSE
 
 	if(!check_chamber_position()) //For the double barrel.
-		to_chat(user, "<span class='warning'>[src] has to be open!</span>")
+		to_chat(user, span_warning("[src] has to be open!"))
 		return FALSE
 
 	//From here we know they are using shotgun type ammo and reloading via handful.
@@ -243,7 +247,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	icon_state = "t39"
 	item_state = "t39"
 	fire_sound = 'sound/weapons/guns/fire/shotgun_automatic.ogg'
-	flags_gun_features = GUN_CAN_POINTBLANK|GUN_INTERNAL_MAG|GUN_SHOTGUN_CHAMBER|GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_INTERNAL_MAG|GUN_SHOTGUN_CHAMBER|GUN_AMMO_COUNTER
 	current_mag = /obj/item/ammo_magazine/internal/shotgun/combat
 	attachable_allowed = list(
 		/obj/item/attachable/bayonet,
@@ -315,9 +319,6 @@ can cause issues with ammo types getting mixed up during the burst.
 	else
 		to_chat(user, "It's open with [current_mag.current_rounds] shell\s loaded.")
 
-/obj/item/weapon/gun/shotgun/double/unique_action(mob/user)
-	return empty_chamber(user)
-
 //Turns out it has some attachments.
 /obj/item/weapon/gun/shotgun/double/update_icon()
 	icon_state = "[initial(icon_state)][current_mag.chamber_closed ? "" : "_o"]"
@@ -326,6 +327,11 @@ can cause issues with ammo types getting mixed up during the burst.
 	if(current_mag.chamber_closed)
 		return
 	return TRUE
+
+/obj/item/weapon/gun/shotgun/double/unload(mob/user)
+	if(flags_gun_features & GUN_BURST_FIRING)
+		return FALSE
+	return cock(user)
 
 /obj/item/weapon/gun/shotgun/double/add_to_tube(mob/user,selection) //Load it on the go, nothing chambered.
 	current_mag.chamber_position++
@@ -337,10 +343,10 @@ can cause issues with ammo types getting mixed up during the burst.
 	. = ..()
 	if(. && istype(user))
 		if(!current_mag.chamber_closed)
-			to_chat(user, "<span class='warning'>Close the chamber!</span>")
+			to_chat(user, span_warning("Close the chamber!"))
 			return 0
 
-/obj/item/weapon/gun/shotgun/double/empty_chamber(mob/user)
+/obj/item/weapon/gun/shotgun/double/cock(mob/user)
 	if(current_mag.chamber_closed) //Has to be closed.
 		if(current_mag.current_rounds) //We want to empty out the bullets.
 			var/i
@@ -487,10 +493,6 @@ can cause issues with ammo types getting mixed up during the burst.
 	recoil_unwielded = 4
 	pump_delay = 14
 
-
-/obj/item/weapon/gun/shotgun/pump/unique_action(mob/user)
-	return pump_shotgun(user)
-
 /obj/item/weapon/gun/shotgun/pump/ready_in_chamber() //If there wasn't a shell loaded through pump, this returns null.
 	return
 
@@ -507,7 +509,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	*/
 
 //More or less chambers the round instead of load_into_chamber(). Also ejects used casings.
-/obj/item/weapon/gun/shotgun/pump/proc/pump_shotgun(mob/user)	//We can't fire bursts with pumps.
+/obj/item/weapon/gun/shotgun/pump/cock(mob/user)	//We can't fire bursts with pumps.
 	if(world.time < (recent_pump + pump_delay) ) //Don't spam it.
 		return FALSE
 	if(pump_lock)
@@ -541,11 +543,11 @@ can cause issues with ammo types getting mixed up during the burst.
 
 /obj/item/weapon/gun/shotgun/pump/proc/pump_fail_notice(mob/user)
 	playsound(user,'sound/weapons/throwtap.ogg', 25, 1)
-	to_chat(user,"<span class='warning'><b>[src] has already been pumped, locking the pump mechanism; fire or unload a shell to unlock it.</b></span>")
+	to_chat(user,span_warning("<b>[src] has already been pumped, locking the pump mechanism; fire or unload a shell to unlock it.</b>"))
 	recent_notice = world.time
 
 /obj/item/weapon/gun/shotgun/pump/proc/pump_notice(mob/user)
-	to_chat(user, "<span class='notice'><b>You pump [src].</b></span>")
+	to_chat(user, span_notice("<b>You pump [src].</b>"))
 
 /obj/item/weapon/gun/shotgun/pump/reload_into_chamber(mob/user)
 	if(active_attachable && active_attachable.flags_attach_features & ATTACH_PROJECTILE)
@@ -563,7 +565,7 @@ can cause issues with ammo types getting mixed up during the burst.
 
 /obj/item/weapon/gun/shotgun/pump/unload(mob/user)
 	if(pump_lock)
-		to_chat(user, "<span class='notice'><b>You disengage [src]'s pump lock with the slide release.</b></span>")
+		to_chat(user, span_notice("<b>You disengage [src]'s pump lock with the slide release.</b>"))
 		pump_lock = FALSE //we're operating the slide release to unload, thus unlocking the pump
 	return ..()
 
@@ -651,20 +653,17 @@ can cause issues with ammo types getting mixed up during the burst.
 	aim_slowdown = 1
 	wield_delay = 1 SECONDS
 
-/obj/item/weapon/gun/shotgun/pump/bolt/unique_action(mob/user)
-	return pump_shotgun(user)
-
 /obj/item/weapon/gun/shotgun/pump/bolt/pump_fail_notice(mob/user)
 	playsound(user,'sound/weapons/throwtap.ogg', 25, 1)
-	to_chat(user,"<span class='warning'><b>[src] bolt has already been worked, locking the bolt; fire or unload a round to unlock it.</b></span>")
+	to_chat(user,span_warning("<b>[src] bolt has already been worked, locking the bolt; fire or unload a round to unlock it.</b>"))
 	recent_notice = world.time
 
 /obj/item/weapon/gun/shotgun/pump/bolt/pump_notice(mob/user)
-	to_chat(user, "<span class='notice'><b>You work [src] bolt.</b></span>")
+	to_chat(user, span_notice("<b>You work [src] bolt.</b>"))
 
 /obj/item/weapon/gun/shotgun/pump/bolt/unload(mob/user)
 	if(pump_lock)
-		to_chat(user, "<span class='notice'><b>You open [src]'s breechloader, ejecting the cartridge.</b></span>")
+		to_chat(user, span_notice("<b>You open [src]'s breechloader, ejecting the cartridge.</b>"))
 		pump_lock = FALSE //we're operating the slide release to unload, thus unlocking the pump
 	return ..()
 
@@ -752,20 +751,17 @@ can cause issues with ammo types getting mixed up during the burst.
 	recoil_unwielded = 4
 	pump_delay = 6
 
-/obj/item/weapon/gun/shotgun/pump/lever/unique_action(mob/user)
-	return pump_shotgun(user)
-
 /obj/item/weapon/gun/shotgun/pump/lever/pump_fail_notice(mob/user)
 	playsound(user,'sound/weapons/throwtap.ogg', 25, 1)
-	to_chat(user,"<span class='warning'><b>[src] lever has already been worked, locking the lever; fire or unload a round to unlock it.</b></span>")
+	to_chat(user,span_warning("<b>[src] lever has already been worked, locking the lever; fire or unload a round to unlock it.</b>"))
 	recent_notice = world.time
 
 /obj/item/weapon/gun/shotgun/pump/lever/pump_notice(mob/user)
-	to_chat(user, "<span class='notice'><b>You work [src] lever.</b></span>")
+	to_chat(user, span_notice("<b>You work [src] lever.</b>"))
 
 /obj/item/weapon/gun/shotgun/pump/lever/unload(mob/user)
 	if(pump_lock)
-		to_chat(user, "<span class='notice'><b>You pull [src]'s lever downward, ejecting the cartridge.</b></span>")
+		to_chat(user, span_notice("<b>You pull [src]'s lever downward, ejecting the cartridge.</b>"))
 		pump_lock = FALSE //we're operating the slide release to unload, thus unlocking the pump
 	return ..()
 

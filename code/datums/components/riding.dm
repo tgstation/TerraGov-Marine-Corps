@@ -72,8 +72,8 @@
 	var/atom/movable/AM = parent
 	var/mob/AMM = AM
 	if((ride_check_rider_restrained && M.restrained(RESTRAINED_NECKGRAB)) || (ride_check_rider_incapacitated && M.incapacitated(restrained_flags = RESTRAINED_NECKGRAB)) || (ride_check_ridden_incapacitated && istype(AMM) && AMM.incapacitated(restrained_flags = RESTRAINED_NECKGRAB)))
-		M.visible_message("<span class='warning'>[M] falls off of [AM]!</span>",
-			"<span class='warning'>You fall off of [AM]!</span>")
+		M.visible_message(span_warning("[M] falls off of [AM]!"),
+			span_warning("You fall off of [AM]!"))
 		AM.unbuckle_mob(M)
 	return TRUE
 
@@ -146,7 +146,7 @@
 		buckled_mob.pixel_x = 0
 		buckled_mob.pixel_y = 0
 		if(buckled_mob.client)
-			buckled_mob.client.change_view(CONFIG_GET(string/default_view))
+			buckled_mob.client.view_size.reset_to_default()
 
 //MOVEMENT
 /datum/component/riding/proc/turf_check(turf/next, turf/current)
@@ -172,7 +172,7 @@
 		if(!istype(next) || !istype(current))
 			return	//not happening.
 		if(!turf_check(next, current))
-			to_chat(user, "<span class='warning'>Your \the [AM] can not go onto [next]!</span>")
+			to_chat(user, span_warning("Your \the [AM] can not go onto [next]!"))
 			return
 		if(!isturf(AM.loc))
 			return
@@ -186,7 +186,7 @@
 		handle_vehicle_layer()
 		handle_vehicle_offsets()
 	else
-		to_chat(user, "<span class='warning'>You'll need the keys in one of your hands to [drive_verb] [AM].</span>")
+		to_chat(user, span_warning("You'll need the keys in one of your hands to [drive_verb] [AM]."))
 
 /datum/component/riding/proc/Unbuckle(atom/movable/buckled_thing)
 	INVOKE_ASYNC(parent, /atom/movable/.proc/unbuckle_mob, buckled_thing)
@@ -213,19 +213,19 @@
 	var/mob/living/carbon/human/human_carrier = parent
 
 	if(!is_type_in_typecache(buckling_mob, human_carrier.can_ride_typecache))
-		buckling_mob.visible_message("<span class='warning'>[buckling_mob] really can't seem to mount [human_carrier]...</span>")
+		buckling_mob.visible_message(span_warning("[buckling_mob] really can't seem to mount [human_carrier]..."))
 		return COMPONENT_MOVABLE_BUCKLE_STOPPED
 	if(human_carrier.buckled || (buckling_mob in human_carrier.buckled_mobs) || (LAZYLEN(human_carrier.buckled_mobs) >= human_carrier.max_buckled_mobs))
 		return COMPONENT_MOVABLE_BUCKLE_STOPPED
 	if(hands_needed && !equip_buckle_inhands(human_carrier, hands_needed, buckling_mob))
 		if(!silent)
-			human_carrier.visible_message("<span class='warning'>[human_carrier] can't get a grip on [buckling_mob] because their hands are full!</span>",
-				"<span class='warning'>You can't get a grip on [buckling_mob] because your hands are full!</span>")
+			human_carrier.visible_message(span_warning("[human_carrier] can't get a grip on [buckling_mob] because their hands are full!"),
+				span_warning("You can't get a grip on [buckling_mob] because your hands are full!"))
 		return COMPONENT_MOVABLE_BUCKLE_STOPPED
 	if(target_hands_needed && !equip_buckle_inhands(buckling_mob, target_hands_needed))
 		if(!silent)
-			buckling_mob.visible_message("<span class='warning'>[buckling_mob] can't get a grip on [human_carrier] because their hands are full!</span>",
-				"<span class='warning'>You can't get a grip on [human_carrier] because your hands are full!</span>")
+			buckling_mob.visible_message(span_warning("[buckling_mob] can't get a grip on [human_carrier] because their hands are full!"),
+				span_warning("You can't get a grip on [human_carrier] because your hands are full!"))
 		return COMPONENT_MOVABLE_BUCKLE_STOPPED
 
 	if(target_hands_needed)
@@ -287,8 +287,8 @@
 	AM.unbuckle_mob(user)
 	user.Paralyze(2 SECONDS)
 	if(!silent)
-		user.visible_message("<span class='warning'>[AM] pushes [user] off of [AM.p_them()]!</span>",
-			"<span class='warning'>[AM] pushes you off of [AM.p_them()]!</span>")
+		user.visible_message(span_warning("[AM] pushes [user] off of [AM.p_them()]!"),
+			span_warning("[AM] pushes you off of [AM.p_them()]!"))
 
 
 /datum/component/riding/human/proc/equip_buckle_inhands(mob/living/carbon/human/user, amount_required = 1, riding_target_override)

@@ -23,15 +23,14 @@ Make your way to the cafeteria for some post-cryosleep chow, and then get equipp
 	title = SQUAD_MARINE
 	paygrade = "E1"
 	comm_title = "Mar"
-	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_PREP)
-	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_PREP, ACCESS_MARINE_DROPSHIP)
+	access = list(ACCESS_MARINE_PREP)
+	minimal_access = list(ACCESS_MARINE_PREP, ACCESS_MARINE_DROPSHIP)
 	display_order = JOB_DISPLAY_ORDER_SQUAD_MARINE
 	outfit = /datum/outfit/job/marine/standard
 	total_positions = -1
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
 	jobworth = list(
 		/datum/job/xenomorph = LARVA_POINTS_REGULAR,
-		/datum/job/terragov/squad/specialist = SPEC_POINTS_REGULAR,
 		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
 		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR,
 	)
@@ -46,9 +45,11 @@ Make your way to the cafeteria for some post-cryosleep chow, and then get equipp
 	"}
 	minimap_icon = "private"
 
-/datum/job/terragov/squad/standard/rebel 
+/datum/job/terragov/squad/standard/rebel
+	title = REBEL_SQUAD_MARINE
 	faction = FACTION_TERRAGOV_REBEL
-	access = list(ACCESS_IFF_MARINE_REBEL, ACCESS_MARINE_PREP_REBEL)
+	access = list(ACCESS_MARINE_PREP_REBEL)
+	outfit = /datum/outfit/job/marine/standard/rebel
 	jobworth = list(
 		/datum/job/xenomorph = LARVA_POINTS_REGULAR,
 		/datum/job/terragov/squad/smartgunner/rebel = SMARTIE_POINTS_REGULAR,
@@ -88,6 +89,9 @@ What you lack alone, you gain standing shoulder to shoulder with the men and wom
 	id = /obj/item/card/id/dogtag
 	back = /obj/item/storage/backpack/marine/satchel
 
+/datum/outfit/job/marine/standard/rebel
+	jobtype = /datum/job/terragov/squad/standard/rebel
+
 /datum/outfit/job/marine/standard/equipped
 	name = "Squad Marine (Equipped)"
 
@@ -116,13 +120,13 @@ What you lack alone, you gain standing shoulder to shoulder with the men and wom
 	paygrade = "E3"
 	comm_title = "Eng"
 	total_positions = 12
-	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_PREP, ACCESS_MARINE_ENGPREP, ACCESS_CIVILIAN_ENGINEERING, ACCESS_MARINE_REMOTEBUILD, ACCESS_MARINE_ENGINEERING)
-	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_PREP, ACCESS_MARINE_ENGPREP, ACCESS_CIVILIAN_ENGINEERING, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_REMOTEBUILD, ACCESS_MARINE_ENGINEERING)
+	access = list(ACCESS_MARINE_PREP, ACCESS_MARINE_ENGPREP, ACCESS_CIVILIAN_ENGINEERING, ACCESS_MARINE_REMOTEBUILD, ACCESS_MARINE_ENGINEERING)
+	minimal_access = list(ACCESS_MARINE_PREP, ACCESS_MARINE_ENGPREP, ACCESS_CIVILIAN_ENGINEERING, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_REMOTEBUILD, ACCESS_MARINE_ENGINEERING)
 	skills_type = /datum/skills/combat_engineer
 	display_order = JOB_DISPLAY_ORDER_SUQAD_ENGINEER
 	outfit = /datum/outfit/job/marine/engineer
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
-	jobworth = list(/datum/job/xenomorph = LARVA_POINTS_REGULAR, /datum/job/terragov/squad/specialist = SPEC_POINTS_MEDIUM, /datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_MEDIUM, /datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR)
+	jobworth = list(/datum/job/xenomorph = LARVA_POINTS_REGULAR, /datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_MEDIUM, /datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR)
 	html_description = {"
 		<b>Difficulty</b>: Medium<br /><br />
 		<b>You answer to the</b> acting Squad Leader<br /><br />
@@ -134,12 +138,13 @@ What you lack alone, you gain standing shoulder to shoulder with the men and wom
 	"}
 	minimap_icon = "engi"
 
-/datum/job/terragov/squad/engineer/rebel 
+/datum/job/terragov/squad/engineer/rebel
+	title = REBEL_SQUAD_ENGINEER
 	faction = FACTION_TERRAGOV_REBEL
 	outfit = /datum/outfit/job/marine/engineer/rebel
-	access = list(ACCESS_IFF_MARINE_REBEL, ACCESS_MARINE_PREP_REBEL, ACCESS_MARINE_ENGPREP_REBEL, ACCESS_CIVILIAN_ENGINEERING, ACCESS_MARINE_REMOTEBUILD_REBEL, ACCESS_MARINE_ENGINEERING_REBEL)
-	minimal_access = list(ACCESS_IFF_MARINE_REBEL, ACCESS_MARINE_PREP_REBEL, ACCESS_MARINE_ENGPREP_REBEL, ACCESS_CIVILIAN_ENGINEERING, ACCESS_MARINE_DROPSHIP_REBEL, ACCESS_MARINE_REMOTEBUILD_REBEL, ACCESS_MARINE_ENGINEERING_REBEL)
-	jobworth = list(/datum/job/xenomorph = LARVA_POINTS_REGULAR, /datum/job/terragov/squad/specialist = SPEC_POINTS_MEDIUM, /datum/job/terragov/squad/smartgunner/rebel = SMARTIE_POINTS_MEDIUM, /datum/job/terragov/silicon/synthetic/rebel = SYNTH_POINTS_REGULAR)
+	access = list(ACCESS_MARINE_PREP_REBEL, ACCESS_MARINE_ENGPREP_REBEL, ACCESS_CIVILIAN_ENGINEERING, ACCESS_MARINE_REMOTEBUILD_REBEL, ACCESS_MARINE_ENGINEERING_REBEL)
+	minimal_access = list(ACCESS_MARINE_PREP_REBEL, ACCESS_MARINE_ENGPREP_REBEL, ACCESS_CIVILIAN_ENGINEERING, ACCESS_MARINE_DROPSHIP_REBEL, ACCESS_MARINE_REMOTEBUILD_REBEL, ACCESS_MARINE_ENGINEERING_REBEL)
+	jobworth = list(/datum/job/xenomorph = LARVA_POINTS_REGULAR, /datum/job/terragov/squad/smartgunner/rebel = SMARTIE_POINTS_MEDIUM, /datum/job/terragov/silicon/synthetic/rebel = SYNTH_POINTS_REGULAR)
 
 /datum/job/terragov/squad/engineer/radio_help_message(mob/M)
 	. = ..()
@@ -151,7 +156,7 @@ Your squaddies will look to you when it comes to construction in the field of ba
 	name = SQUAD_ENGINEER
 	jobtype = /datum/job/terragov/squad/engineer
 
-	id = /obj/item/card/id/dogtag
+	id = /obj/item/card/id/dogtag/engineer
 	back = /obj/item/storage/backpack/marine/satchel
 
 /datum/outfit/job/marine/engineer/rebel
@@ -205,13 +210,13 @@ Your squaddies will look to you when it comes to construction in the field of ba
 	paygrade = "E3"
 	comm_title = "Med"
 	total_positions = 16
-	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_PREP, ACCESS_MARINE_MEDPREP, ACCESS_MARINE_MEDBAY)
-	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_PREP, ACCESS_MARINE_MEDPREP, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_DROPSHIP)
+	access = list(ACCESS_MARINE_PREP, ACCESS_MARINE_MEDPREP, ACCESS_MARINE_MEDBAY)
+	minimal_access = list(ACCESS_MARINE_PREP, ACCESS_MARINE_MEDPREP, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_DROPSHIP)
 	skills_type = /datum/skills/combat_medic
 	display_order = JOB_DISPLAY_ORDER_SQUAD_CORPSMAN
 	outfit = /datum/outfit/job/marine/corpsman
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
-	jobworth = list(/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR, /datum/job/xenomorph = LARVA_POINTS_REGULAR, /datum/job/terragov/squad/specialist = SPEC_POINTS_MEDIUM, /datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_MEDIUM)
+	jobworth = list(/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR, /datum/job/xenomorph = LARVA_POINTS_REGULAR, /datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_MEDIUM)
 	html_description = {"
 		<b>Difficulty</b>: Hard<br /><br />
 		<b>You answer to the</b> acting Squad Leader<br /><br />
@@ -223,12 +228,13 @@ Your squaddies will look to you when it comes to construction in the field of ba
 	"}
 	minimap_icon = "medic"
 
-/datum/job/terragov/squad/corpsman/rebel 
+/datum/job/terragov/squad/corpsman/rebel
+	title = REBEL_SQUAD_CORPSMAN
 	faction = FACTION_TERRAGOV_REBEL
 	outfit = /datum/outfit/job/marine/corpsman/rebel
-	access = list(ACCESS_IFF_MARINE_REBEL, ACCESS_MARINE_PREP_REBEL, ACCESS_MARINE_MEDPREP_REBEL, ACCESS_MARINE_MEDBAY_REBEL)
-	minimal_access = list(ACCESS_IFF_MARINE_REBEL, ACCESS_MARINE_PREP_REBEL, ACCESS_MARINE_MEDPREP_REBEL, ACCESS_MARINE_MEDBAY_REBEL, ACCESS_MARINE_DROPSHIP_REBEL)
-	jobworth = list(/datum/job/terragov/silicon/synthetic/rebel = SYNTH_POINTS_REGULAR, /datum/job/xenomorph = LARVA_POINTS_REGULAR, /datum/job/terragov/squad/specialist = SPEC_POINTS_MEDIUM, /datum/job/terragov/squad/smartgunner/rebel = SMARTIE_POINTS_MEDIUM)
+	access = list(ACCESS_MARINE_PREP_REBEL, ACCESS_MARINE_MEDPREP_REBEL, ACCESS_MARINE_MEDBAY_REBEL)
+	minimal_access = list(ACCESS_MARINE_PREP_REBEL, ACCESS_MARINE_MEDPREP_REBEL, ACCESS_MARINE_MEDBAY_REBEL, ACCESS_MARINE_DROPSHIP_REBEL)
+	jobworth = list(/datum/job/terragov/silicon/synthetic/rebel = SYNTH_POINTS_REGULAR, /datum/job/xenomorph = LARVA_POINTS_REGULAR, /datum/job/terragov/squad/smartgunner/rebel = SMARTIE_POINTS_MEDIUM)
 
 /datum/job/terragov/squad/corpsman/radio_help_message(mob/M)
 	. = ..()
@@ -303,8 +309,8 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 	paygrade = "E3"
 	comm_title = "SGnr"
 	total_positions = 4
-	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_PREP, ACCESS_MARINE_SMARTPREP)
-	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_PREP, ACCESS_MARINE_SMARTPREP, ACCESS_MARINE_DROPSHIP)
+	access = list(ACCESS_MARINE_PREP, ACCESS_MARINE_SMARTPREP)
+	minimal_access = list(ACCESS_MARINE_PREP, ACCESS_MARINE_SMARTPREP, ACCESS_MARINE_DROPSHIP)
 	skills_type = /datum/skills/smartgunner
 	display_order = JOB_DISPLAY_ORDER_SQUAD_SMARTGUNNER
 	outfit = /datum/outfit/job/marine/smartgunner
@@ -322,11 +328,12 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 	"}
 	minimap_icon = "smartgunner"
 
-/datum/job/terragov/squad/smartgunner/rebel 
+/datum/job/terragov/squad/smartgunner/rebel
+	title = REBEL_SQUAD_SMARTGUNNER
 	faction = FACTION_TERRAGOV_REBEL
 	outfit = /datum/outfit/job/marine/smartgunner/rebel
-	access = list(ACCESS_IFF_MARINE_REBEL, ACCESS_MARINE_PREP_REBEL, ACCESS_MARINE_SMARTPREP_REBEL)
-	minimal_access = list(ACCESS_IFF_MARINE_REBEL, ACCESS_MARINE_PREP_REBEL, ACCESS_MARINE_SMARTPREP_REBEL, ACCESS_MARINE_DROPSHIP_REBEL)
+	access = list(ACCESS_MARINE_PREP_REBEL, ACCESS_MARINE_SMARTPREP_REBEL)
+	minimal_access = list(ACCESS_MARINE_PREP_REBEL, ACCESS_MARINE_SMARTPREP_REBEL, ACCESS_MARINE_DROPSHIP_REBEL)
 
 /datum/job/terragov/squad/smartgunner/radio_help_message(mob/M)
 	. = ..()
@@ -397,10 +404,9 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 	comm_title = "Spec"
 	total_positions = 0
 	max_positions = 0
-	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_PREP, ACCESS_MARINE_SPECPREP)
-	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_PREP, ACCESS_MARINE_SPECPREP, ACCESS_MARINE_DROPSHIP)
+	access = list(ACCESS_MARINE_PREP)
+	minimal_access = list(ACCESS_MARINE_PREP, ACCESS_MARINE_DROPSHIP)
 	skills_type = /datum/skills/specialist
-	display_order = JOB_DISPLAY_ORDER_SQUAD_SPECIALIST
 	outfit = /datum/outfit/job/marine/specialist
 	exp_requirements = XP_REQ_UNSEASONED
 	exp_type = EXP_TYPE_REGULAR_ALL
@@ -431,8 +437,8 @@ You can serve a variety of roles, so choose carefully."})
 	comm_title = "SL"
 	total_positions = 4
 	supervisors = "the acting field commander"
-	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_PREP, ACCESS_MARINE_LEADER, ACCESS_MARINE_DROPSHIP)
-	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_PREP, ACCESS_MARINE_LEADER, ACCESS_MARINE_DROPSHIP)
+	access = list(ACCESS_MARINE_PREP, ACCESS_MARINE_LEADER, ACCESS_MARINE_DROPSHIP)
+	minimal_access = list(ACCESS_MARINE_PREP, ACCESS_MARINE_LEADER, ACCESS_MARINE_DROPSHIP)
 	skills_type = /datum/skills/SL
 	display_order = JOB_DISPLAY_ORDER_SQUAD_LEADER
 	outfit = /datum/outfit/job/marine/leader
@@ -456,10 +462,11 @@ You can serve a variety of roles, so choose carefully."})
 	minimap_icon = "leader"
 
 /datum/job/terragov/squad/leader/rebel
+	title = REBEL_SQUAD_LEADER
 	faction = FACTION_TERRAGOV_REBEL
 	outfit = /datum/outfit/job/marine/leader/rebel
-	access = list(ACCESS_IFF_MARINE_REBEL, ACCESS_MARINE_PREP_REBEL, ACCESS_MARINE_LEADER_REBEL, ACCESS_MARINE_DROPSHIP_REBEL)
-	minimal_access = list(ACCESS_IFF_MARINE_REBEL, ACCESS_MARINE_PREP_REBEL, ACCESS_MARINE_LEADER_REBEL, ACCESS_MARINE_DROPSHIP_REBEL)
+	access = list(ACCESS_MARINE_PREP_REBEL, ACCESS_MARINE_LEADER_REBEL, ACCESS_MARINE_DROPSHIP_REBEL)
+	minimal_access = list(ACCESS_MARINE_PREP_REBEL, ACCESS_MARINE_LEADER_REBEL, ACCESS_MARINE_DROPSHIP_REBEL)
 	jobworth = list(
 		/datum/job/terragov/squad/smartgunner/rebel = SMARTIE_POINTS_HIGH,
 		/datum/job/terragov/silicon/synthetic/rebel = SYNTH_POINTS_REGULAR,
@@ -545,8 +552,8 @@ You are also in charge of communicating with command and letting them know about
 	title = SQUAD_MARINE
 	paygrade = "VM"
 	comm_title = "Mar"
-	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_PREP)
-	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_PREP, ACCESS_MARINE_DROPSHIP)
+	access = list(ACCESS_MARINE_PREP)
+	minimal_access = list(ACCESS_MARINE_PREP, ACCESS_MARINE_DROPSHIP)
 	display_order = JOB_DISPLAY_ORDER_SQUAD_MARINE
 	outfit = /datum/outfit/job/marine/vatgrown
 	total_positions = 0
@@ -554,11 +561,11 @@ You are also in charge of communicating with command and letting them know about
 	jobworth = list(/datum/job/xenomorph = LARVA_POINTS_REGULAR, /datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR)
 	minimap_icon = "private"
 
-/datum/job/terragov/squad/vatgrown/rebel 
+/datum/job/terragov/squad/vatgrown/rebel
 	faction = FACTION_TERRAGOV_REBEL
 	outfit = /datum/outfit/job/marine/vatgrown/rebel
-	access = list(ACCESS_IFF_MARINE_REBEL, ACCESS_MARINE_PREP_REBEL)
-	minimal_access = list(ACCESS_IFF_MARINE_REBEL, ACCESS_MARINE_PREP_REBEL, ACCESS_MARINE_DROPSHIP_REBEL)
+	access = list(ACCESS_MARINE_PREP_REBEL)
+	minimal_access = list(ACCESS_MARINE_PREP_REBEL, ACCESS_MARINE_DROPSHIP_REBEL)
 	jobworth = list(/datum/job/xenomorph = LARVA_POINTS_REGULAR, /datum/job/terragov/silicon/synthetic/rebel = SYNTH_POINTS_REGULAR)
 
 /datum/job/terragov/squad/vatgrown/return_spawn_type(datum/preferences/prefs)

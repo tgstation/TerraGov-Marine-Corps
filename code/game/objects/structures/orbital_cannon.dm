@@ -59,15 +59,15 @@
 
 	if(!tray.warhead)
 		if(user)
-			to_chat(user, "<span class='warning'>No warhead in the tray, loading operation cancelled.</span>")
+			to_chat(user, span_warning("No warhead in the tray, loading operation cancelled."))
 		return
 
 	if(tray.fuel_amt < 1)
-		to_chat(user, "<span class='warning'>No solid fuel in the tray, loading operation cancelled.</span>")
+		to_chat(user, span_warning("No solid fuel in the tray, loading operation cancelled."))
 		return
 
 	if(loaded_tray)
-		to_chat(user, "<span class='warning'>The tray is already loaded.</span>")
+		to_chat(user, span_warning("The tray is already loaded."))
 		return
 
 	tray.forceMove(src)
@@ -96,11 +96,11 @@
 		return
 
 	if(chambered_tray)
-		to_chat(user, "<span class='warning'>The tray cannot be unloaded after its chambered, fire the gun first.</span>")
+		to_chat(user, span_warning("The tray cannot be unloaded after its chambered, fire the gun first."))
 		return
 
 	if(!loaded_tray)
-		to_chat(user, "<span class='warning'>The tray is not loaded.</span>")
+		to_chat(user, span_warning("The tray is not loaded."))
 		return
 
 	flick("OBC_unloading",src)
@@ -128,7 +128,7 @@
 	set waitfor = 0
 
 	if(!loaded_tray)
-		to_chat(user, "<span class='warning'>You need to load the tray before chambering it.</span>")
+		to_chat(user, span_warning("You need to load the tray before chambering it."))
 		return
 
 	if(ob_cannon_busy)
@@ -140,12 +140,12 @@
 		return
 	if(!tray.warhead)
 		if(user)
-			to_chat(user, "<span class='warning'>No warhead in the tray, cancelling chambering operation.</span>")
+			to_chat(user, span_warning("No warhead in the tray, cancelling chambering operation."))
 		return
 
 	if(tray.fuel_amt < 1)
 		if(user)
-			to_chat(user, "<span class='warning'>No solid fuel in the tray, cancelling chambering operation.</span>")
+			to_chat(user, span_warning("No solid fuel in the tray, cancelling chambering operation."))
 		return
 
 	flick("OBC_chambering",src)
@@ -271,14 +271,14 @@
 			var/obj/structure/ob_ammo/OA = PC.loaded
 			if(OA.is_solid_fuel)
 				if(fuel_amt >= 6)
-					to_chat(user, "<span class='warning'>[src] can't accept more solid fuel.</span>")
+					to_chat(user, span_warning("[src] can't accept more solid fuel."))
 					return
 
 				if(!warhead)
-					to_chat(user, "<span class='warning'>A warhead must be placed in [src] first.</span>")
+					to_chat(user, span_warning("A warhead must be placed in [src] first."))
 					return
 
-				to_chat(user, "<span class='notice'>You load [OA] into [src].</span>")
+				to_chat(user, span_notice("You load [OA] into [src]."))
 				playsound(src, 'sound/machines/hydraulics_1.ogg', 40, 1)
 				fuel_amt++
 				PC.loaded = null
@@ -287,10 +287,10 @@
 				update_icon()
 			else
 				if(warhead)
-					to_chat(user, "<span class='warning'>[src] already has a warhead.</span>")
+					to_chat(user, span_warning("[src] already has a warhead."))
 					return
 
-				to_chat(user, "<span class='notice'>You load [OA] into [src].</span>")
+				to_chat(user, span_notice("You load [OA] into [src]."))
 				playsound(src, 'sound/machines/hydraulics_1.ogg', 40, 1)
 				warhead = OA
 				OA.forceMove(src)
@@ -310,7 +310,7 @@
 				return TRUE
 			PC.update_icon()
 			playsound(loc, 'sound/machines/hydraulics_2.ogg', 40, 1)
-			to_chat(user, "<span class='notice'>You grab [PC.loaded] with [PC].</span>")
+			to_chat(user, span_notice("You grab [PC.loaded] with [PC]."))
 			update_icon()
 
 		return TRUE
@@ -342,7 +342,7 @@
 		PC.loaded = src
 		playsound(loc, 'sound/machines/hydraulics_2.ogg', 40, 1)
 		PC.update_icon()
-		to_chat(user, "<span class='notice'>You grab [PC.loaded] with [PC].</span>")
+		to_chat(user, span_notice("You grab [PC.loaded] with [PC]."))
 		update_icon()
 		return TRUE
 
@@ -461,8 +461,8 @@
 		return
 
 	if(!isobserver(user) && user.skills.getRating("engineer") < SKILL_ENGINEER_ENGI)
-		user.visible_message("<span class='notice'>[user] fumbles around figuring out how to use the console.</span>",
-		"<span class='notice'>You fumble around figuring out how to use the console.</span>")
+		user.visible_message(span_notice("[user] fumbles around figuring out how to use the console."),
+		span_notice("You fumble around figuring out how to use the console."))
 		var/fumbling_time = 5 SECONDS * ( SKILL_ENGINEER_ENGI - user.skills.getRating("engineer") )
 		if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 			return
@@ -558,7 +558,7 @@
 	if(cannon_busy)
 		return
 	if(!rail_gun_ammo?.ammo_count)
-		to_chat(user, "<span class='warning'>[src] has ran out of ammo.</span>")
+		to_chat(user, span_warning("[src] has ran out of ammo."))
 		return
 	flick("Railgun_firing",src)
 	cannon_busy = TRUE
@@ -566,6 +566,8 @@
 	playsound(loc, 'sound/weapons/guns/fire/tank_smokelauncher.ogg', 70, 1)
 	playsound(loc, 'sound/weapons/guns/fire/pred_plasma_shot.ogg', 70, 1)
 	var/turf/target = locate(T.x + pick(-2,2), T.y + pick(-2,2), T.z)
+	for(var/mob/living/silicon/ai/AI in GLOB.silicon_mobs)
+		to_chat(AI, span_notice("NOTICE - \The [src] has fired."))
 	rail_gun_ammo.ammo_count = max(0, rail_gun_ammo.ammo_count - rail_gun_ammo.ammo_used_per_firing)
 	addtimer(CALLBACK(src, /obj/structure/ship_rail_gun/proc/impact_rail_gun, target), 2 SECONDS + (RG_FLY_TIME * (GLOB.current_orbit/3)))
 

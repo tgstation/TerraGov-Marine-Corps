@@ -1,7 +1,8 @@
 //Colonial Liberation Front
 /datum/emergency_call/clf
 	name = "CLF Cell"
-	base_probability = 0
+	base_probability = 20
+	alignement_factor = 0
 
 
 /datum/emergency_call/clf/print_backstory(mob/living/carbon/human/H)
@@ -30,16 +31,16 @@
 		leader = H
 		var/datum/job/J = SSjob.GetJobType(/datum/job/clf/leader)
 		H.apply_assigned_role_to_spawn(J)
-		to_chat(H, "<span class='notice'>You are a leader of the local resistance group, the Colonial Liberation Front.</span>")
+		to_chat(H, span_notice("You are a leader of the local resistance group, the Colonial Liberation Front."))
 		return
 
 	if(medics < max_medics)
 		var/datum/job/J = SSjob.GetJobType(/datum/job/clf/medic)
 		H.apply_assigned_role_to_spawn(J)
-		to_chat(H, "<span class='notice'>You are a medic of the local resistance group, the Colonial Liberation Front.</span>")
+		to_chat(H, span_notice("You are a medic of the local resistance group, the Colonial Liberation Front."))
 		medics++
 		return
 
 	var/datum/job/J = SSjob.GetJobType(/datum/job/clf/standard)
 	H.apply_assigned_role_to_spawn(J)
-	to_chat(H, "<span class='notice'>You are a member of the local resistance group, the Colonial Liberation Front.</span>")
+	to_chat(H, span_notice("You are a member of the local resistance group, the Colonial Liberation Front."))

@@ -19,14 +19,14 @@
  * First, it tries to find that object in a vendor with enough supplies.
  * If it finds one vendor with that item in reserve, it sells it and instantiate that item.
  * If it fails to find a vendor, it will add that item to a list on seller to warns him that it failed
+ * Seller: The datum in charge of checking for points and buying_flags
+ * Master: used for modules, when the item need to be installed on master. Can be null
+ * User: The human trying to equip this item
  * Return the instantatiated item if it was successfully sold, and return null otherwise
  */
-/datum/item_representation/proc/instantiate_object(datum/loadout_seller/seller, master = null)
-	if(seller && !bypass_vendor_check)
-		if(!buy_item_in_vendor(item_type))
-			seller.unavailable_items ++
-			return
-		seller.bought_items += item_type
+/datum/item_representation/proc/instantiate_object(datum/loadout_seller/seller, master = null, mob/living/user)
+	if(seller && !bypass_vendor_check && !buy_item_in_vendor(item_type, seller, user))
+		return
 	var/obj/item/item = new item_type(master)
 	return item
 
@@ -66,19 +66,84 @@
 	for(var/atom/thing_in_content AS in item_to_copy.contents)
 		if(!isitem(thing_in_content))
 			continue
-		if(!is_savable_in_loadout(thing_in_content))
-			continue
 		item_representation_type = item2representation_type(thing_in_content.type)
 		contents += new item_representation_type(thing_in_content)
 
-/datum/item_representation/storage/instantiate_object(datum/loadout_seller/seller, master = null)
+/datum/item_representation/storage/instantiate_object(datum/loadout_seller/seller, master = null, mob/living/user)
 	. = ..()
 	if(!.)
 		return
+	//Some storage cannot handle custom contents
+	if(is_type_in_typecache(item_type, GLOB.bypass_storage_content_save))
+		return
 	var/obj/item/storage/storage = .
+	var/list/obj/item/starting_items = list()
+	for(var/obj/item/I AS in storage.contents)
+		starting_items[I.type] = starting_items[I.type] + 1
+	storage.delete_contents()
 	for(var/datum/item_representation/item_representation AS in contents)
-		var/obj/item/item_to_insert = item_representation.instantiate_object(seller)
+		if(!item_representation.bypass_vendor_check && starting_items[item_representation.item_type] > 0)
+			starting_items[item_representation.type] = starting_items[item_representation.item_type] - 1
+			item_representation.bypass_vendor_check = TRUE
+		var/obj/item/item_to_insert = item_representation.instantiate_object(seller, null, user)
 		if(!item_to_insert)
 			continue
 		if(storage.can_be_inserted(item_to_insert))
 			storage.handle_item_insertion(item_to_insert)
+			continue
+		item_to_insert.forceMove(get_turf(user))
+
+
+/**
+ * Allow to representate stacks of item of type /obj/item/stack
+ */
+/datum/item_representation/stack
+	///Amount of items in the stack
+	var/amount = 0
+
+/datum/item_representation/stack/New(obj/item/item_to_copy)
+	if(!item_to_copy)
+		return
+	if(!isitemstack(item_to_copy))
+		CRASH("/datum/item_representation/stack created from an item that is not a stack of items")
+	..()
+	var/obj/item/stack/stack_to_copy = item_to_copy
+	amount = stack_to_copy.amount
+
+/datum/item_representation/stack/instantiate_object(datum/loadout_seller/seller, master = null, mob/living/user)
+	if(seller && !bypass_vendor_check && !buy_stack(item_type, seller, user, amount) && !buy_item_in_vendor(item_type, seller, user))
+		return
+	var/obj/item/stack/stack = new item_type(master)
+	stack.amount = amount
+	stack.update_weight()
+	stack.update_icon()
+	return stack
+
+/**
+ * Allow to representate an id card (/obj/item/card/id)
+ */
+/datum/item_representation/id
+	/// the access of the id
+	var/list/access = list()
+	/// the iff signal registered on the id
+	var/iff_signal = NONE
+
+/datum/item_representation/id/New(obj/item/item_to_copy)
+	if(!item_to_copy)
+		return
+	if(!isidcard(item_to_copy))
+		CRASH("/datum/item_representation/id created from an item that is not an id card")
+	..()
+	var/obj/item/card/id/id_to_copy = item_to_copy
+	access = id_to_copy.access
+	iff_signal = id_to_copy.iff_signal
+
+/datum/item_representation/id/instantiate_object(datum/loadout_seller/seller, master = null, mob/living/user)
+	. = ..()
+	if(!.)
+		return
+	var/obj/item/card/id/id = .
+	id.access = access
+	id.iff_signal = iff_signal
+	return id
+

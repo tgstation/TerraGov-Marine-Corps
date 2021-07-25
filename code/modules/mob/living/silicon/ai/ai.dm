@@ -1,3 +1,4 @@
+///This elevator serves me alone. I have complete control over this entire level. With cameras as my eyes and nodes as my hands, I rule here, insect.
 /mob/living/silicon/ai
 	name = "ARES v3.2"
 	real_name = "ARES v3.2"
@@ -34,7 +35,7 @@
 	var/icon/holo_icon //Default is assigned when AI is created.
 	var/list/datum/AI_Module/current_modules = list()
 
-	var/level_locked = TRUE
+	var/level_locked = FALSE	//Can the AI use things on other Z levels?
 	var/control_disabled = FALSE
 	var/radiomod = ";"
 	var/list/laws
@@ -54,7 +55,7 @@
 	builtInCamera = new(src)
 	builtInCamera.network = list("marinemainship")
 
-	holo_icon = getHologramIcon(icon('icons/mob/AI.dmi', "holo1"))
+	holo_icon = getHologramIcon(icon('icons/mob/AI.dmi', "default"))
 
 	laws = list()
 	laws += "Safeguard: Protect your assigned vessel from damage to the best of your abilities."
@@ -76,6 +77,10 @@
 
 	RegisterSignal(src, COMSIG_MOB_CLICK_ALT, .proc/send_order)
 	RegisterSignal(src, COMSIG_ORDER_SELECTED, .proc/set_order)
+	RegisterSignal(SSdcs, COMSIG_GLOB_OB_LASER_CREATED, .proc/receive_laser_ob)
+	RegisterSignal(SSdcs, COMSIG_GLOB_CAS_LASER_CREATED, .proc/receive_laser_cas)
+
+
 
 	var/datum/action/innate/order/attack_order/send_attack_order = new
 	var/datum/action/innate/order/defend_order/send_defend_order = new
@@ -93,13 +98,15 @@
 	QDEL_NULL(track)
 	UnregisterSignal(src, COMSIG_ORDER_SELECTED)
 	UnregisterSignal(src, COMSIG_MOB_CLICK_ALT)
+	UnregisterSignal(SSdcs, COMSIG_GLOB_OB_LASER_CREATED)
+	UnregisterSignal(SSdcs, COMSIG_GLOB_CAS_LASER_CREATED)
 	return ..()
 
 ///Print order visual to all marines squad hud and give them an arrow to follow the waypoint
 /mob/living/silicon/ai/proc/send_order(datum/source, atom/target)
 	SIGNAL_HANDLER
 	if(!current_order)
-		to_chat(src, "<span class='warning'>Your have no order selected.</span>")
+		to_chat(src, span_warning("Your have no order selected."))
 		return
 	current_order.send_order(target)
 
@@ -107,6 +114,18 @@
 /mob/living/silicon/ai/proc/set_order(datum/source, datum/action/innate/order/order)
 	SIGNAL_HANDLER
 	current_order = order
+
+
+///Receive fire support laser notifications
+/mob/living/silicon/ai/proc/receive_laser_ob(datum/source, obj/effect/overlay/temp/laser_target/OB/incoming_laser)
+	SIGNAL_HANDLER
+	to_chat(src, "<span class='notice'>Orbital Bombardment laser detected. Target: [AREACOORD_NO_Z(incoming_laser)] </span>")
+	playsound_local(src, 'sound/effects/binoctarget.ogg', 15)
+
+/mob/living/silicon/ai/proc/receive_laser_cas(datum/source, obj/effect/overlay/temp/laser_target/cas/incoming_laser)
+	SIGNAL_HANDLER
+	to_chat(src, "<span class='notice'>CAS laser detected. Target: [AREACOORD_NO_Z(src)]</span>")
+	playsound_local(src, 'sound/effects/binoctarget.ogg', 15)
 
 /mob/living/silicon/ai/restrained(ignore_checks)
 	return FALSE
@@ -153,7 +172,7 @@
 		if(name == string)
 			target += src
 		if(!length(target))
-			to_chat(src, "<span class='warning'>Target is not on or near any active cameras on the station.</span>")
+			to_chat(src, span_warning("Target is not on or near any active cameras on the station."))
 			return
 
 		ai_actual_track(pick(target))
@@ -179,10 +198,10 @@
 		for(var/obj/machinery/camera/C in lit_cameras)
 			C.set_light(0)
 			lit_cameras = list()
-		to_chat(src, "<span class='notice'>Camera lights deactivated.</span>")
+		to_chat(src, span_notice("Camera lights deactivated."))
 	else
 		light_cameras()
-		to_chat(src, "<span class='notice'>Camera lights activated.</span>")
+		to_chat(src, span_notice("Camera lights activated."))
 	camera_light_on = !camera_light_on
 
 
@@ -232,7 +251,7 @@
 	else
 		jobpart = "Unknown"
 
-	var/rendered = "<i><span class='game say'>[start]<span class='name'>[hrefpart][namepart] ([jobpart])</a> </span><span class='message'>[raw_message]</span></span></i>"
+	var/rendered = "<i><span class='game say'>[start][span_name("[hrefpart][namepart] ([jobpart])</a> ")][span_message("[raw_message]")]</span></i>"
 
 	show_message(rendered, 2)
 
@@ -278,6 +297,18 @@
 			return
 
 		stat("System integrity:", "[(health + 100) / 2]%")
+		stat("<BR>- Operation information - <BR>")
+		stat("Current orbit:", "[GLOB.current_orbit]")
+
+		if(!GLOB.marine_main_ship?.orbital_cannon?.chambered_tray)
+			stat("<b>Orbital bombardment status:</b>", "<font color='red'>No ammo chambered in the cannon.</font><br>")
+		else
+			stat("Orbital bombardment warhead:", "[GLOB.marine_main_ship.orbital_cannon.tray.warhead.name] Detected<BR>")
+
+		stat("Current supply points:", "[round(SSpoints.supply_points[FACTION_TERRAGOV])]")
+
+		stat("Current alert level:", "[GLOB.marine_main_ship.get_security_level()]")
+
 
 
 /mob/living/silicon/ai/fully_replace_character_name(oldname, newname)

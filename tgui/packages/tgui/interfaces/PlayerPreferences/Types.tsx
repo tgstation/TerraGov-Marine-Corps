@@ -1,84 +1,92 @@
 type PlayerPreferencesData = {
-  is_admin: number,
   slot: number,
-  real_name: string,
+  save_slot_names: AssocStringString,
+  tabIndex: number,
+}
+
+type CharacterCustomizationData = {
   random_name: number,
-  synthetic_name: string,
-  synthetic_type: string,
-  xeno_name: string,
-  ai_name: string,
-  age: number,
-  gender: string,
-  ethnicity: string,
-  species: string,
-  body_type: string,
-  good_eyesight: number,
   h_style: string,
   r_hair: number,
   g_hair: number,
   b_hair: number,
-  grad_style: string,
   r_grad: number,
   g_grad: number,
   b_grad: number,
-  f_style: string,
 	r_facial: number,
 	g_facial: number,
 	b_facial: number,
   r_eyes: number,
   g_eyes: number,
   b_eyes: number,
-  citizenship: string,
-  religion: string,
-  nanotrasen_relation: string,
+
+}
+
+type BackgroundInformationData = {
+  slot: number,
   flavor_text: string,
   med_record: string,
   gen_record: string,
   sec_record: string,
   exploit_record: string,
+}
+
+type GameSettingData = {
+  ui_style_color: string,
+  scaling_method: string,
+  pixel_size: number,
+  parallax: number,
+}
+
+type GearCustomizationData = {
+  gearsets: PreferencesGearSets,
+  gear: string[],
+  clothing: PreferencesClothingTypeList,
   underwear: number,
   undershirt: number,
   backpack: number,
-  gear: string[],
-  job_preferences: AssocStringNumber,
-  preferred_squad: string,
-  alternate_option: number,
-  special_occupation: number,
-  ui_style: number,
-  ui_style_color: string,
-  ui_style_alpha: number,
-  windowflashing: number,
-  auto_fit_viewport: number,
-  focus_chat: number,
-  mute_xeno_health_alert_messages: number,
-  clientfps: number,
-  chat_on_map: number,
-  max_chat_length: number,
-  see_chat_non_mob: number,
-  see_rc_emotes: number,
-  mute_others_combat_messages: number,
-  mute_self_combat_messages: number,
-  show_typing: number,
-  tooltips: number,
+  gender: string,
+}
+
+type KeybindSettingData = {
+  all_keybindings: AllKeybindingsList,
+  is_admin: number,
+}
+
+type KeybindPreferenceData = {
   key_bindings: AssocStringStringArray,
   custom_emotes: AssocStringEmoteArray,
-  save_slot_names: AssocStringString,
-  synth_types: string[],
-  bodytypes: string[],
-  ethnicities: string[],
-  citizenships: string[],
-  religions: string[],
-  corporate_relations: string[],
-  squads: string[]
-  clothing: PreferencesClothingTypeList,
-  genders: string[],
-  overflow_job: string[],
-  ui_styles: string[],
-  gearsets: PreferencesGearSets,
-  jobs: PreferencesJobsList,
-  special_occupations: PreferencesSpecialOccupations,
-  all_keybindings: AllKeybindingsList,
+}
+
+type KeybindSentenceCapture = {
+  name: string,
+}
+
+type ProfilePictureData = {
   mapRef: string,
+}
+
+type TextInputModalData = {
+	label : string,
+	button_text : string,
+	onSubmit : Function,
+	onBack : Function,
+	areaHeigh : string,
+	areaWidth : string,
+}
+
+type JobPreferencesData = {
+  alternate_option: number,
+  squads: string[],
+  preferred_squad: string,
+  overflow_job: string[],
+  special_occupation: number,
+  special_occupations: PreferencesSpecialOccupations,
+}
+
+type JobPreferenceData = {
+  jobs: PreferencesJobsList,
+  job_preferences: AssocStringNumber,
 }
 
 type AssocStringNumber = {

@@ -129,7 +129,7 @@
 		current += S.amount
 	if(capacity == current)//If it's full, you're done
 		if(!stop_messages)
-			to_chat(usr, "<span class='warning'>The snatcher is full.</span>")
+			to_chat(usr, span_warning("The snatcher is full."))
 		return 0
 	return 1
 
@@ -215,7 +215,7 @@
 // Instead of removing
 /obj/item/storage/bag/sheetsnatcher/remove_from_storage(obj/item/W, atom/new_location, mob/user)
 	var/obj/item/stack/sheet/S = W
-	if(!istype(S)) 
+	if(!istype(S))
 		return FALSE
 
 	//I would prefer to drop a new stack, but the item/attack_hand(mob/living/user)

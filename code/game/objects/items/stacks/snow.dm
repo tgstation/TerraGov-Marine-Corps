@@ -30,7 +30,7 @@
 			ET.update_icon()
 			return
 
-		to_chat(user, "<span class='notice'>You start taking snow from [src].</span>")
+		to_chat(user, span_notice("You start taking snow from [src]."))
 		playsound(user.loc, 'sound/effects/thud.ogg', 40, 1, 6)
 
 		if(!do_after(user, ET.shovelspeed, TRUE, src, BUSY_ICON_BUILD))
@@ -42,7 +42,7 @@
 
 		ET.dirt_amt = transf_amt
 		ET.dirt_type = DIRT_TYPE_SNOW
-		to_chat(user, "<span class='notice'>You take snow from [src].</span>")
+		to_chat(user, span_notice("You take snow from [src]."))
 		ET.update_icon()
 		use(transf_amt)
 		return TRUE
@@ -72,14 +72,14 @@
 /obj/item/stack/snow/attack_self(mob/user)
 	var/turf/T = get_turf(user)
 	if(T.get_dirt_type() != DIRT_TYPE_SNOW)
-		to_chat(user, "<span class='warning'>You can't build a snow barricade at this location!</span>")
+		to_chat(user, span_warning("You can't build a snow barricade at this location!"))
 		return
 
 	if(user.do_actions)
 		return
 
 	if(amount < 3)
-		to_chat(user, "<span class='warning'>You need 3 layers of snow to build a barricade.</span>")
+		to_chat(user, span_warning("You need 3 layers of snow to build a barricade."))
 		return
 
 	//Using same safeties as other constructions
@@ -87,14 +87,14 @@
 		if(O.density)
 			if(O.flags_atom & ON_BORDER)
 				if(O.dir == user.dir)
-					to_chat(user, "<span class='warning'>There is already \a [O.name] in this direction!</span>")
+					to_chat(user, span_warning("There is already \a [O.name] in this direction!"))
 					return
 			else
-				to_chat(user, "<span class='warning'>You need a clear, open area to build the sandbag barricade!</span>")
+				to_chat(user, span_warning("You need a clear, open area to build the sandbag barricade!"))
 				return
 
-	user.visible_message("<span class='notice'>[user] starts assembling a snow barricade.</span>",
-	"<span class='notice'>You start assembling a snow barricade.</span>")
+	user.visible_message(span_notice("[user] starts assembling a snow barricade."),
+	span_notice("You start assembling a snow barricade."))
 	if(!do_after(user, 20, TRUE, src, BUSY_ICON_BUILD))
 		return
 	if(amount < 3)
@@ -104,7 +104,7 @@
 			if(!(O.flags_atom & ON_BORDER) || O.dir == user.dir)
 				return
 	var/obj/structure/barricade/snow/SB = new(user.loc, user.dir)
-	user.visible_message("<span class='notice'>[user] assembles a snow barricade.</span>",
-	"<span class='notice'>You assemble a snow barricade.</span>")
+	user.visible_message(span_notice("[user] assembles a snow barricade."),
+	span_notice("You assemble a snow barricade."))
 	SB.setDir(user.dir)
 	use(3)

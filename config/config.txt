@@ -197,3 +197,24 @@ MAXIMUM_CLIENTS_FOR_GAMEMODE_VOTE 40
 ## Uncomment these to set a custom respawn timer; the delay is in ticks.
 #MARINE_RESPAWN 18000
 #XENO_RESPAWN 1200
+
+## Automatic balance system
+IS_AUTOMATIC_BALANCE_ON
+
+##Default view size, in tiles.
+##	By default, this is 15x15, which gets simplified to 7 by byond
+##  15x15 would be the standard square view. 21x15 is what goonstation uses for widescreen.
+##  Setting this to something different from DEFAULT_VIEW_SQUARE will enable widescreen toggles
+##	Do note that changing this value will affect the title screen. The title screen will have to be updated manually if this is changed.
+DEFAULT_VIEW 19x15
+
+##Default view size, in tiles. Should *always* be square.
+## The alternative square viewport size if you're using a widescreen view size
+## You probably shouldn't ever be changing this, but it's here if you want to.
+DEFAULT_VIEW_SQUARE 15x15
+
+## How long in seconds after which a hard delete is treated as causing lag. This can be a float and supports a precision as low as nanoseconds.
+#HARD_DELETES_OVERRUN_THRESHOLD 0.5
+
+## Once a typepath causes overrun from hard deletes this many times, stop hard deleting it on garbage collection failures. (set to 0 to disable)
+#HARD_DELETES_OVERRUN_LIMIT 0

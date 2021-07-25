@@ -1,11 +1,8 @@
 //The Marine mortar, the M402 Mortar
 //Works like a contemporary crew weapon mortar
 
-/obj/structure/mortar
-	name = "\improper M402 mortar"
-	desc = "A manual, crew-operated mortar system intended to rain down 80mm goodness on anything it's aimed at. Uses manual targetting dials. Insert round to fire."
-	icon = 'icons/Marine/mortar.dmi'
-	icon_state = "mortar_m402"
+/obj/machinery/deployable/mortar
+
 	anchored = TRUE
 	density = TRUE
 	layer = ABOVE_MOB_LAYER //So you can't hide it under corpses
@@ -23,30 +20,31 @@
 	var/travel_time = 45 //Constant, assuming perfect parabolic trajectory. ONLY THE DELAY BEFORE INCOMING WARNING WHICH ADDS 45 TICKS
 	var/busy = 0
 	var/firing = 0 //Used for deconstruction and aiming sanity
-	var/fixed = 0 //If set to 1, can't unanchor and move the mortar, used for map spawns and WO
 
-/obj/structure/mortar/attack_hand(mob/living/user)
+	use_power = NO_POWER_USE
+
+/obj/machinery/deployable/mortar/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return
 
 	if(busy)
-		to_chat(user, "<span class='warning'>Someone else is currently using [src].</span>")
+		to_chat(user, span_warning("Someone else is currently using [src]."))
 		return
 	if(firing)
-		to_chat(user, "<span class='warning'>[src]'s barrel is still steaming hot. Wait a few seconds and stop firing it.</span>")
+		to_chat(user, span_warning("[src]'s barrel is still steaming hot. Wait a few seconds and stop firing it."))
 		return
 
 	ui_interact(user)
 
 
-/obj/structure/mortar/ui_interact(mob/user, datum/tgui/ui)
+/obj/machinery/deployable/mortar/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "Mortar", name)
 		ui.open()
 
-/obj/structure/mortar/ui_data(mob/user)
+/obj/machinery/deployable/mortar/ui_data(mob/user)
 	. = list()
 	.["X"] = coords["targ_x"]
 	.["Y"] = coords["targ_y"]
@@ -54,7 +52,7 @@
 	.["DY"] = coords["dial_y"]
 	.["last_three_inputs"] = last_three_inputs
 
-/obj/structure/mortar/ui_act(action, list/params)
+/obj/machinery/deployable/mortar/ui_act(action, list/params)
 	. = ..()
 	if(.)
 		return
@@ -97,8 +95,8 @@
 			new_name = params["name"]
 			last_three_inputs["coords_three"]["name"] = new_name
 	if((coords["targ_x"] != 0 && coords["targ_y"] != 0))
-		usr.visible_message("<span class='notice'>[usr] adjusts [src]'s firing angle and distance.</span>",
-		"<span class='notice'>You adjust [src]'s firing angle and distance to match the new coordinates.</span>")
+		usr.visible_message(span_notice("[usr] adjusts [src]'s firing angle and distance."),
+		span_notice("You adjust [src]'s firing angle and distance to match the new coordinates."))
 		playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
 		// allows for offsetting using the dial, I had accidentally misplaced this.
 		var/offset_x_max = round(abs((coords["targ_x"] + coords["dial_x"]) - x)/offset_per_turfs) //Offset of mortar shot, grows by 1 every 10 tiles travelled
@@ -110,7 +108,7 @@
  * this proc is used because pointers suck and references would break the saving of coordinates.
  *
  */
-/obj/structure/mortar/proc/get_new_list(str)
+/obj/machinery/deployable/mortar/proc/get_new_list(str)
 	. = list()
 	switch(str)
 		if("coords_three")
@@ -126,52 +124,52 @@
  * checks if we are entering in the exact same coordinates,
  * and does not save them again.
  */
-/obj/structure/mortar/proc/check_bombard_spam()
+/obj/machinery/deployable/mortar/proc/check_bombard_spam()
 	var/list/temp = get_new_list("coords")
 	for(var/i in temp)
 		if(!(last_three_inputs["coords_one"][i] == temp[i]) && !(last_three_inputs["coords_two"][i] == temp[i]) && !(last_three_inputs["coords_three"][i] == temp[i]))
 			return FALSE
 	return TRUE
 
-/obj/structure/mortar/attackby(obj/item/I, mob/user, params)
+/obj/machinery/deployable/mortar/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
 	if(istype(I, /obj/item/mortal_shell))
 		var/obj/item/mortal_shell/mortar_shell = I
 
 		if(issynth(user) && !CONFIG_GET(flag/allow_synthetic_gun_use))
-			to_chat(user, "<span class='warning'>Your programming restricts operating heavy weaponry.</span>")
+			to_chat(user, span_warning("Your programming restricts operating heavy weaponry."))
 			return
 
 		if(busy)
-			to_chat(user, "<span class='warning'>Someone else is currently using [src].</span>")
+			to_chat(user, span_warning("Someone else is currently using [src]."))
 			return
 
 		if(!is_ground_level(z))
-			to_chat(user, "<span class='warning'>You cannot fire [src] here.</span>")
+			to_chat(user, span_warning("You cannot fire [src] here."))
 			return
 
 		if(coords["targ_x"] == 0 && coords["targ_y"] == 0) //Mortar wasn't set
-			to_chat(user, "<span class='warning'>[src] needs to be aimed first.</span>")
+			to_chat(user, span_warning("[src] needs to be aimed first."))
 			return
 
 		var/turf/selfown = locate((coords["targ_x"] + coords["dial_x"]), (coords["targ_y"] + coords["dial_y"]), z)
 		if(get_dist(loc, selfown) < 7)
-			to_chat(usr, "<span class='warning'>You cannot target this coordinate, it is too close to your mortar.</span>")
+			to_chat(usr, span_warning("You cannot target this coordinate, it is too close to your mortar."))
 			return
 
 		var/turf/T = locate(coords["targ_x"] + coords["dial_x"] + offset_x, coords["targ_y"]  + coords["dial_x"] + offset_y, z)
 		if(!isturf(T))
-			to_chat(user, "<span class='warning'>You cannot fire [src] to this target.</span>")
+			to_chat(user, span_warning("You cannot fire [src] to this target."))
 			return
 
 		var/area/A = get_area(T)
 		if(istype(A) && A.ceiling >= CEILING_UNDERGROUND)
-			to_chat(user, "<span class='warning'>You cannot hit the target. It is probably underground.</span>")
+			to_chat(user, span_warning("You cannot hit the target. It is probably underground."))
 			return
 
-		user.visible_message("<span class='notice'>[user] starts loading \a [mortar_shell.name] into [src].</span>",
-		"<span class='notice'>You start loading \a [mortar_shell.name] into [src].</span>")
+		user.visible_message(span_notice("[user] starts loading \a [mortar_shell.name] into [src]."),
+		span_notice("You start loading \a [mortar_shell.name] into [src]."))
 		playsound(loc, 'sound/weapons/guns/interact/mortar_reload.ogg', 50, 1)
 		busy = TRUE
 		if(!do_after(user, 15, TRUE, src, BUSY_ICON_HOSTILE))
@@ -180,9 +178,9 @@
 
 		busy = FALSE
 
-		user.visible_message("<span class='notice'>[user] loads \a [mortar_shell.name] into [src].</span>",
-		"<span class='notice'>You load \a [mortar_shell.name] into [src].</span>")
-		visible_message("[icon2html(src, viewers(src))] <span class='danger'>The [name] fires!</span>")
+		user.visible_message(span_notice("[user] loads \a [mortar_shell.name] into [src]."),
+		span_notice("You load \a [mortar_shell.name] into [src]."))
+		visible_message("[icon2html(src, viewers(src))] [span_danger("The [name] fires!")]")
 		user.transferItemToLoc(mortar_shell, src)
 		playsound(loc, 'sound/weapons/guns/fire/mortar_fire.ogg', 50, 1)
 		firing = TRUE
@@ -203,82 +201,61 @@
 	var/obj/item/binoculars/tactical/binocs = I
 	playsound(src, 'sound/effects/binoctarget.ogg', 35)
 	if(binocs.set_mortar(src))
-		to_chat(user, "<span class='notice'>You link the mortar to the [binocs] allowing for remote targeting.</span>")
+		to_chat(user, span_notice("You link the mortar to the [binocs] allowing for remote targeting."))
 		return
 	to_chat(user, "<span class='notice'>You disconnect the [binocs] from their linked mortar.")
 
 ///Proc called by tactical binoculars to send targeting information.
-/obj/structure/mortar/proc/recieve_target(turf/T, binocs, mob/user)
+/obj/machinery/deployable/mortar/proc/recieve_target(turf/T, binocs, mob/user)
 	coords["targ_x"] = T.x
 	coords["targ_y"] = T.y
 	say("Remote targeting set by [user]. COORDINATES: X:[coords["targ_x"]] Y:[coords["targ_y"]] OFFSET: X:[coords["dial_x"]] Y:[coords["dial_y"]]")
 	playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
 
-/obj/structure/mortar/proc/detonate_shell(turf/target, obj/item/mortal_shell/mortar_shell)
+/obj/machinery/deployable/mortar/proc/detonate_shell(turf/target, obj/item/mortal_shell/mortar_shell)
 	target.ceiling_debris_check(2)
 	mortar_shell.detonate(target)
 	qdel(mortar_shell)
 	firing = FALSE
 
-/obj/structure/mortar/wrench_act(mob/living/user, obj/item/I)
-
-	if(fixed)
-		to_chat(user, "<span class='warning'>[src]'s supports are bolted and welded into the floor. It looks like it's going to be staying there.</span>")
-		return
+/obj/machinery/deployable/mortar/wrench_act(mob/living/user, obj/item/I)
 
 	if(busy)
-		to_chat(user, "<span class='warning'>Someone else is currently using [src].</span>")
+		to_chat(user, span_warning("Someone else is currently using [src]."))
 		return
 
 	if(firing)
-		to_chat(user, "<span class='warning'>[src]'s barrel is still steaming hot. Wait a few seconds and stop firing it.</span>")
+		to_chat(user, span_warning("[src]'s barrel is still steaming hot. Wait a few seconds and stop firing it."))
 		return
 
-	playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
-	user.visible_message("<span class='notice'>[user] starts undeploying [src].",
-	"<span class='notice'>You start undeploying [src].")
-	if(!do_after(user, 40, TRUE, src, BUSY_ICON_BUILD))
-		return
-
-	user.visible_message("<span class='notice'>[user] undeploys [src].",
-	"<span class='notice'>You undeploy [src].")
-	playsound(loc, 'sound/items/deconstruct.ogg', 25, 1)
-	new /obj/item/mortar_kit(loc)
-	qdel(src)
-
-/obj/structure/mortar/fixed
-	desc = "A manual, crew-operated mortar system intended to rain down 80mm goodness on anything it's aimed at. Uses manual targetting dials. Insert round to fire. This one is bolted and welded into the ground."
-	fixed = TRUE
+	return ..()
 
 //The portable mortar item
 /obj/item/mortar_kit
-	name = "\improper M402 mortar portable kit"
-	desc = "A manual, crew-operated mortar system intended to rain down 80mm goodness on anything it's aimed at. Needs to be set down first"
+	name = "\improper M402 mortar"
+	desc = "A manual, crew-operated mortar system intended to rain down 80mm goodness on anything it's aimed at. Needs to be set down first to fire. Use 'Unique Action' to deploy."
 	icon = 'icons/Marine/mortar.dmi'
-	icon_state = "mortar_m402_carry"
+	icon_state = "mortar"
+
+	max_integrity = 200
+	flags_item = IS_DEPLOYABLE|DEPLOYED_WRENCH_DISASSEMBLE
+
 	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
 	w_class = WEIGHT_CLASS_BULKY //No dumping this in most backpacks. Carry it, fatso
 
+/obj/item/mortar_kit/Initialize()
+	. = ..()
+	AddElement(/datum/element/deployable_item, /obj/machinery/deployable/mortar, 5 SECONDS)
 
 /obj/item/mortar_kit/attack_self(mob/user)
-	if(!is_ground_level(user.z))
-		to_chat(user, "<span class='warning'>You cannot deploy [src] here.</span>")
+	unique_action(user)
+
+/obj/item/mortar_kit/unique_action(mob/user)
+	var/area/current_area = get_area(src)
+	if(current_area.ceiling >= CEILING_METAL)
+		to_chat(user, span_warning("You probably shouldn't deploy [src] indoors."))
 		return
-	var/area/A = get_area(src)
-	if(A.ceiling >= CEILING_METAL)
-		to_chat(user, "<span class='warning'>You probably shouldn't deploy [src] indoors.</span>")
-		return
-	user.visible_message("<span class='notice'>[user] starts deploying [src].",
-	"<span class='notice'>You start deploying [src].")
-	playsound(loc, 'sound/items/deconstruct.ogg', 25, 1)
-	if(!do_after(user, 40, TRUE, src, BUSY_ICON_BUILD))
-		return
-	user.visible_message("<span class='notice'>[user] deploys [src].",
-	"<span class='notice'>You deploy [src].")
-	playsound(loc, 'sound/weapons/guns/interact/mortar_unpack.ogg', 25, 1)
-	var/obj/structure/mortar/M = new /obj/structure/mortar(get_turf(user))
-	M.setDir(user.dir)
-	qdel(src)
+	return ..()
 
 /obj/item/mortal_shell
 	name = "\improper 80mm mortar shell"

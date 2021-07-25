@@ -11,6 +11,6 @@
 		eyeobj.setLoc(get_turf(src))
 		set_eyeobj_visible(FALSE)
 
-	to_chat(src,"<b><span class='deadsay'><p style='font-size:1.5em'><big>You have been shut down.</big></p></span></b>")
+	to_chat(src,"<b>[span_deadsay("<p style='font-size:1.5em'><big>You have been shut down.</big></p>")]</b>")
 
 	return ..()

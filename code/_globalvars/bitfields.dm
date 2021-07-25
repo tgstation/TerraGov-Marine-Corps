@@ -362,7 +362,6 @@ GLOBAL_LIST_INIT(bitfields, list(
 		),
 	"disabilities" = list(
 		"BLIND" = BLIND,
-		"MUTE" = MUTE,
 		"DEAF" = DEAF,
 		"NEARSIGHTED" = NEARSIGHTED,
 		),
@@ -408,6 +407,7 @@ GLOBAL_LIST_INIT(bitfields, list(
 		"SYNTH_RESTRICTED" = SYNTH_RESTRICTED,
 		"DRAINS_XENO" = DRAINS_XENO,
 		"CAN_BUMP_ATTACK" = CAN_BUMP_ATTACK,
+		"NO_VACUUM" = NO_VACUUM,
 		),
 	"ghost_hud" = list(
 		"GHOST_HUD_MED" = GHOST_HUD_MED,

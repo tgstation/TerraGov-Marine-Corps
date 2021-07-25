@@ -120,7 +120,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 	return ..()
 
 /obj/docking_port/mobile/supply/proc/buy()
-	if(!length(SSpoints.shoppinglist))
+	if(!length(SSpoints.shoppinglist[faction]))
 		return
 
 	var/list/empty_turfs = list()
@@ -131,10 +131,10 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 				continue
 			empty_turfs += T
 
-	for(var/i in SSpoints.shoppinglist)
+	for(var/i in SSpoints.shoppinglist[faction])
 		if(!empty_turfs.len)
 			break
-		var/datum/supply_order/SO = SSpoints.shoppinglist[i]
+		var/datum/supply_order/SO = LAZYACCESSASSOC(SSpoints.shoppinglist, faction, i)
 
 		var/datum/supply_packs/firstpack = SO.pack[1]
 
@@ -181,7 +181,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 		slip.info += "</ul><br>"
 		slip.info += "CHECK CONTENTS AND STAMP BELOW THE LINE TO CONFIRM RECEIPT OF GOODS<hr>"
 
-		SSpoints.shoppinglist -= "[SO.id]"
+		SSpoints.shoppinglist[faction] -= "[SO.id]"
 		SSpoints.shopping_history += SO
 
 
@@ -222,11 +222,14 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 	var/shuttle_id = "supply"
 	/// Id of the home docking port
 	var/home_id = "supply_home"
+	/// Faction of the tablet
+	var/faction = FACTION_TERRAGOV
 
 /obj/item/supplytablet/rebel
 	req_access = list(ACCESS_MARINE_CARGO_REBEL)
 	shuttle_id = "supply_rebel"
 	home_id = "supply_home_rebel"
+	faction = FACTION_TERRAGOV_REBEL
 
 /obj/item/supplytablet/interact(mob/user)
 	. = ..()
@@ -238,6 +241,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 		SU = new(src)
 		SU.shuttle_id = shuttle_id
 		SU.home_id = home_id
+		SU.faction = faction
 	return SU.interact(user)
 
 /obj/machinery/computer/supplycomp
@@ -252,11 +256,14 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 	var/shuttle_id = "supply"
 	/// Id of the home docking port
 	var/home_id = "supply_home"
+	/// Faction of the computer
+	var/faction = FACTION_TERRAGOV
 
 /obj/machinery/computer/supplycomp/rebel
 	req_access = list(ACCESS_MARINE_CARGO_REBEL)
 	shuttle_id = "supply_rebel"
 	home_id = "supply_home_rebel"
+	faction = FACTION_TERRAGOV_REBEL
 
 /obj/machinery/computer/supplycomp/interact(mob/user)
 	. = ..()
@@ -268,6 +275,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 		SU = new(src)
 		SU.shuttle_id = shuttle_id
 		SU.home_id = home_id
+		SU.faction = faction
 	return SU.interact(user)
 
 /datum/supply_ui
@@ -358,10 +366,8 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 		.["approvedrequests"] += list(list("id" = SO.id, "orderer" = SO.orderer, "orderer_rank" = SO.orderer_rank, "reason" = SO.reason, "cost" = cost, "packs" = packs, "authed_by" = SO.authorised_by))
 	.["awaiting_delivery"] = list()
 	.["awaiting_delivery_orders"] = 0
-	for(var/key in SSpoints.shoppinglist)
-		var/datum/supply_order/SO = SSpoints.shoppinglist[key]
-		if(SO.faction != user.faction)
-			continue
+	for(var/key in SSpoints.shoppinglist[faction])
+		var/datum/supply_order/SO = LAZYACCESSASSOC(SSpoints.shoppinglist, faction, key)
 		.["awaiting_delivery_orders"]++
 		var/list/packs = list()
 		for(var/datum/supply_packs/SP AS in SO.pack)
@@ -584,10 +590,6 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 	icon_state = "request"
 	circuit = null
 	var/datum/supply_ui/requests/SU
-	req_access = list(ACCESS_IFF_MARINE)
-
-/obj/machinery/computer/ordercomp/rebel
-	req_access = list(ACCESS_IFF_MARINE_REBEL)
 
 /obj/machinery/computer/ordercomp/interact(mob/user)
 	. = ..()

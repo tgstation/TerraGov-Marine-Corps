@@ -40,7 +40,7 @@ SUBSYSTEM_DEF(job)
 	var/list/all_jobs = subtypesof(/datum/job)
 	var/list/all_squads = subtypesof(/datum/squad)
 	if(!length(all_jobs))
-		to_chat(world, "<span class='boldnotice'>Error setting up jobs, no job datums found</span>")
+		to_chat(world, span_boldnotice("Error setting up jobs, no job datums found"))
 		return FALSE
 
 	for(var/J in all_jobs)
@@ -338,9 +338,6 @@ SUBSYSTEM_DEF(job)
 
 
 /datum/controller/subsystem/job/proc/SendToLateJoin(mob/M, datum/job/assigned_role)
-	if(isxenosjob(assigned_role) && length(GLOB.xeno_resin_silos))
-		SendToAtom(M, pick(GLOB.xeno_resin_silos))
-		return
 	if(assigned_role && length(GLOB.jobspawn_overrides[assigned_role])) //We're doing something special today.
 		SendToAtom(M, pick(GLOB.jobspawn_overrides[assigned_role]))
 		return

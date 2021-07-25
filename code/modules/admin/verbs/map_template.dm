@@ -53,7 +53,7 @@
 		return
 
 	if(copytext("[map]", -4) != ".dmm")//4 == length(".dmm")
-		to_chat(usr, "<span class='warning'>Filename must end in '.dmm': [map]</span>")
+		to_chat(usr, span_warning("Filename must end in '.dmm': [map]"))
 		return
 
 	var/datum/map_template/M
@@ -61,13 +61,13 @@
 		if("Normal")
 			M = new /datum/map_template(map, "[map]", TRUE)
 		if("Shuttle")
-			to_chat(usr, "<span class='warning'>Not implemented yet.</span>")
+			to_chat(usr, span_warning("Not implemented yet."))
 			return
 			//M = new /datum/map_template/shuttle(map, "[map]", TRUE)
 		else
 			return
 	if(!M.cached_map)
-		to_chat(usr, "<span class='warning'>Map template '[map]' failed to parse properly.</span>")
+		to_chat(usr, span_warning("Map template '[map]' failed to parse properly."))
 		return
 
 	var/datum/map_report/report = M.cached_map.check_for_errors()
@@ -75,13 +75,13 @@
 	if(report)
 		report.show_to(usr)
 		report_link = " - <a href='?src=[REF(report)];[HrefToken(TRUE)];show=1'>validation report</a>"
-		to_chat(usr, "<span class='warning'>Map template '[map]' <a href='?src=[REF(report)];[HrefToken()];show=1'>failed validation</a>.</span>")
+		to_chat(usr, span_warning("Map template '[map]' <a href='?src=[REF(report)];[HrefToken()];show=1'>failed validation</a>."))
 		if(report.loadable)
 			var/response = alert(usr, "The map failed validation, would you like to load it anyways?", "Map Errors", "Cancel", "Upload Anyways")
 			if(response != "Upload Anyways")
 				return
 		else
-			to_chat(usr, "<span class='warning'>The map failed validation and cannot be loaded.</span>")
+			to_chat(usr, span_warning("The map failed validation and cannot be loaded."))
 			return
 
 	SSmapping.map_templates[M.name] = M

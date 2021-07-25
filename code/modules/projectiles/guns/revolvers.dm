@@ -59,7 +59,7 @@
 	if(!current_mag.chamber_closed) //We're not spinning while it's open. Could screw up reloading.
 		return FALSE
 	current_mag.chamber_position = rand(1,current_mag.max_rounds)
-	to_chat(user, "<span class='notice'>You spin the cylinder.</span>")
+	to_chat(user, span_notice("You spin the cylinder."))
 	playsound(user, cocked_sound, 25, 1)
 	russian_roulette = !russian_roulette //Sets to play RR. Resets when the gun is emptied.
 	return TRUE
@@ -99,34 +99,23 @@
 		return
 
 	if(!magazine || !istype(magazine))
-		to_chat(user, "<span class='warning'>That's not gonna work!</span>")
+		to_chat(user, span_warning("That's not gonna work!"))
 		return
 
 	if(magazine.current_rounds <= 0)
-		to_chat(user, "<span class='warning'>That [magazine.name] is empty!</span>")
+		to_chat(user, span_warning("That [magazine.name] is empty!"))
 		return
 
 	if(current_mag.chamber_closed)
-		to_chat(user, "<span class='warning'>You can't load anything when the cylinder is closed!</span>")
+		to_chat(user, span_warning("You can't load anything when the cylinder is closed!"))
 		return
 
 	if(current_mag.current_rounds == current_mag.max_rounds)
-		to_chat(user, "<span class='warning'>It's already full!</span>")
+		to_chat(user, span_warning("It's already full!"))
 		return
 
-	if(istype(magazine, /obj/item/ammo_magazine/handful)) //Looks like we're loading via handful.
-		if( !current_mag.current_rounds && current_mag.caliber == magazine.caliber) //Make sure nothing's loaded and the calibers match.
-			replace_ammo(user, magazine) //We are going to replace the ammo just in case.
-			current_mag.match_ammo(magazine)
-			current_mag.transfer_ammo(magazine,user,1) //Handful can get deleted, so we can't check through it.
-			add_to_cylinder(user)
-		//If bullets still remain in the gun, we want to check if the actual ammo matches.
-		else if(magazine.default_ammo == current_mag.default_ammo) //Ammo datums match, let's see if they are compatible.
-			if(current_mag.transfer_ammo(magazine,user,1))
-				add_to_cylinder(user)//If the magazine is deleted, we're still fine.
-		else
-			to_chat(user, "[current_mag] is [current_mag.current_rounds ? "already loaded with some other ammo. Better not mix them up." : "not compatible with that ammo."]")
-	else //So if it's not a handful, it's an actual speedloader.
+	// speedloaders go fast
+	if(istype(magazine, /obj/item/ammo_magazine/revolver))
 		if(!current_mag.current_rounds) //We can't have rounds in the gun if it's a speeloader.
 			if(current_mag.gun_type == magazine.gun_type) //Has to be the same gun type.
 				if(current_mag.transfer_ammo(magazine,user,magazine.current_rounds))//Make sure we're successful.
@@ -135,16 +124,32 @@
 					replace_cylinder(current_mag.current_rounds)
 					playsound(user, reload_sound, 25, 1) // Reloading via speedloader.
 			else
-				to_chat(user, "<span class='warning'>\The [magazine] doesn't fit!</span>")
+				to_chat(user, span_warning("\The [magazine] doesn't fit!"))
 		else
-			to_chat(user, "<span class='warning'>You can't load a speedloader when there's something in the cylinder!</span>")
+			to_chat(user, span_warning("You can't load a speedloader when there's something in the cylinder!"))
+		return
+
+	// the rest go slow: handfuls, boxes, etc..
+	if(!current_mag.current_rounds && current_mag.caliber == magazine.caliber) //Make sure nothing's loaded and the calibers match.
+		replace_ammo(user, magazine) //We are going to replace the ammo just in case.
+		current_mag.match_ammo(magazine)
+		current_mag.transfer_ammo(magazine,user,1) //Handful can get deleted, so we can't check through it.
+		add_to_cylinder(user)
+		return
+	//If bullets still remain in the gun, we want to check if the actual ammo matches.
+	if(magazine.default_ammo == current_mag.default_ammo) //Ammo datums match, let's see if they are compatible.
+		if(current_mag.transfer_ammo(magazine,user,1))
+			add_to_cylinder(user)//If the magazine is deleted, we're still fine.
+		return
+	to_chat(user, "[current_mag] is [current_mag.current_rounds ? "already loaded with some other ammo. Better not mix them up." : "not compatible with that ammo."]")
+
 
 /obj/item/weapon/gun/revolver/unload(mob/user)
 	if(flags_gun_features & GUN_BURST_FIRING)
 		return FALSE
 
 	if(current_mag.chamber_closed) //If it's actually closed.
-		to_chat(user, "<span class='notice'>You clear the cylinder of [src].</span>")
+		to_chat(user, span_notice("You clear the cylinder of [src]."))
 		make_casing(type_of_casings)
 		empty_cylinder()
 		current_mag.create_handful(user)
@@ -167,7 +172,7 @@
 	. = ..()
 	if(. && istype(user))
 		if(!current_mag.chamber_closed)
-			to_chat(user, "<span class='warning'>Close the cylinder!</span>")
+			to_chat(user, span_warning("Close the cylinder!"))
 			return FALSE
 
 /obj/item/weapon/gun/revolver/ready_in_chamber()
@@ -194,6 +199,7 @@
 	return TRUE
 
 /obj/item/weapon/gun/revolver/unique_action(mob/user)
+	. = ..()
 	if(catchworking)
 		return unload(user)
 	else
@@ -203,9 +209,9 @@
 	set waitfor = 0
 	playsound(user, spin_sound, 25, 1)
 	if(double)
-		user.visible_message("[user] deftly flicks and spins [src] and [double]!","<span class='notice'> You flick and spin [src] and [double]!</span>")
+		user.visible_message("[user] deftly flicks and spins [src] and [double]!",span_notice(" You flick and spin [src] and [double]!"))
 		animation_wrist_flick(double, 1)
-	else user.visible_message("[user] deftly flicks and spins [src]!","<span class='notice'> You flick and spin [src]!</span>")
+	else user.visible_message("[user] deftly flicks and spins [src]!",span_notice(" You flick and spin [src]!"))
 
 	animation_wrist_flick(src, direction)
 	sleep(3)
@@ -229,14 +235,14 @@
 		return
 
 	if(zoom)
-		to_chat(usr, "<span class='warning'>You cannot conceviably do that while looking down \the [src]'s scope!</span>")
+		to_chat(usr, span_warning("You cannot conceviably do that while looking down \the [src]'s scope!"))
 		return
 
 	revolver_trick(usr)
 
 /obj/item/weapon/gun/revolver/proc/revolver_throw_catch(mob/living/carbon/human/user)
 	set waitfor = 0
-	user.visible_message("[user] deftly flicks [src] and tosses it into the air!","<span class='notice'> You flick and toss [src] into the air!</span>")
+	user.visible_message("[user] deftly flicks [src] and tosses it into the air!",span_notice(" You flick and toss [src] into the air!"))
 	var/img_layer = MOB_LAYER+0.1
 	var/image/trick = image(icon,user,icon_state,img_layer)
 	switch(pick(1,2))
@@ -252,9 +258,9 @@
 		invisibility = 0
 		playsound(user, thud_sound, 25, 1)
 		if(user.get_inactive_held_item())
-			user.visible_message("[user] catches [src] with the same hand!","<span class='notice'> You catch [src] as it spins in to your hand!</span>")
+			user.visible_message("[user] catches [src] with the same hand!",span_notice(" You catch [src] as it spins in to your hand!"))
 		else
-			user.visible_message("[user] catches [src] with his other hand!","<span class='notice'> You snatch [src] with your other hand! Awesome!</span>")
+			user.visible_message("[user] catches [src] with his other hand!",span_notice(" You snatch [src] with your other hand! Awesome!"))
 			user.temporarilyRemoveItemFromInventory(src)
 			user.put_in_inactive_hand(src)
 			user.swap_hand()
@@ -298,9 +304,9 @@
 					revolver_throw_catch(user)
 	else
 		if(prob(10))
-			to_chat(user, "<span class='warning'>You fumble with [src] like an idiot... Uncool.</span>")
+			to_chat(user, span_warning("You fumble with [src] like an idiot... Uncool."))
 		else
-			user.visible_message("<span class='info'><b>[user]</b> fumbles with [src] like a huge idiot!</span>")
+			user.visible_message(span_info("<b>[user]</b> fumbles with [src] like a huge idiot!"))
 
 	recent_trick = world.time //Turn on the delay for the next trick.
 
@@ -523,8 +529,8 @@
 	)
 	attachable_offset = list("muzzle_x" = 29, "muzzle_y" = 22,"rail_x" = 11, "rail_y" = 25, "under_x" = 20, "under_y" = 18, "stock_x" = 20, "stock_y" = 18)
 
-	fire_delay = 1.2 SECONDS
+	fire_delay = 0.15 SECONDS
 	burst_amount = 3
-	burst_delay = 0.5 SECONDS
+	burst_delay = 0.1 SECONDS
 	scatter_unwielded = 20
 	damage_mult = 1.05

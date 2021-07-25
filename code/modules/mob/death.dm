@@ -43,10 +43,10 @@
 	SEND_SIGNAL(src, COMSIG_MOB_DEATH, gibbing)
 	log_combat(src, src, "[deathmessage]")
 
+	set_stat(DEAD)
+
 	if(deathmessage && !silent && !gibbing)
 		visible_message("<b>\The [name]</b> [deathmessage]")
-
-	set_stat(DEAD)
 
 	if(!QDELETED(src) && gibbing)
 		qdel(src)
@@ -54,7 +54,7 @@
 
 /mob/proc/on_death()
 	SHOULD_CALL_PARENT(TRUE) // no exceptions
-	client?.change_view(WORLD_VIEW) //just so we never get stuck with a large view somehow
+	client?.view_size.reset_to_default()//just so we never get stuck with a large view somehow
 
 	hide_fullscreens()
 

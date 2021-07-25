@@ -54,6 +54,7 @@
 #define AMMO_CHAINING (1<<13)
 #define AMMO_SENTRY (1<<14) //Used to identify ammo from sentry guns and other automated sources
 #define AMMO_FLAME (1<<15) //Used to identify flamethrower projectiles and similar projectiles
+#define AMMO_IFF (1<<16) //Used to identify ammo that have intrinsec IFF properties
 
 //Gun defines for gun related thing. More in the projectile folder.
 //flags_gun_features
@@ -76,6 +77,8 @@
 #define GUN_IS_AIMING (1<<16)
 #define AUTO_AIM_MODE (1<<17)
 #define GUN_WIELDED_STABLE_FIRING_ONLY (1<<18)
+#define GUN_IFF (1<<19)
+#define GUN_DEPLOYED_FIRE_ONLY (1<<20)
 
 #define GUN_FIREMODE_SEMIAUTO "semi-auto fire mode"
 #define GUN_FIREMODE_BURSTFIRE "burst-fire mode"

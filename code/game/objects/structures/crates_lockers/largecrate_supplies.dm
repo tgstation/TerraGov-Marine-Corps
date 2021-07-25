@@ -139,7 +139,7 @@
 /obj/structure/largecrate/supply/weapons/standard_hmg
 	name = "\improper TL-102 mounted heavy smartgun chest (x2)"
 	desc = "A supply crate containing two boxed TL-102 mounted heavy smartguns."
-	supplies = list(/obj/item/storage/box/standard_hmg = 2)
+	supplies = list(/obj/item/storage/box/tl102 = 2)
 
 
 
@@ -178,9 +178,9 @@
 	supplies = list(/obj/item/ammo_magazine/sentry = 6)
 
 /obj/structure/largecrate/supply/ammo/standard_hmg
-	name = "\improper M56D ammunition drum case (x6)"
-	desc = "An ammunition case containing six M56D ammunition drums."
-	supplies = list(/obj/item/ammo_magazine/standard_hmg = 6)
+	name = "\improper TL-102 ammunition box case (x6)"
+	desc = "An ammunition case containing six TL-102 ammunition boxes."
+	supplies = list(/obj/item/ammo_magazine/tl102 = 6)
 
 /obj/structure/largecrate/supply/ammo/standard_ammo
 	name = "large surplus ammuniton crate"
@@ -352,11 +352,11 @@
 	if(iscrowbar(I) && dir_needed)
 		var/turf/next_turf = get_step(src, dir_needed)
 		if(next_turf.density)
-			to_chat(user, "<span class='warning'>You can't open the crate here, there's not enough room!</span>")
+			to_chat(user, span_warning("You can't open the crate here, there's not enough room!"))
 			return
 		for(var/atom/movable/AM in next_turf.contents)
 			if(AM.density)
-				to_chat(user, "<span class='warning'>You can't open the crate here, [AM] blocks the way.</span>")
+				to_chat(user, span_warning("You can't open the crate here, [AM] blocks the way."))
 				return
 		return TRUE
 	return ..()

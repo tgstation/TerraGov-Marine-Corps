@@ -115,7 +115,7 @@
 	. = ..()
 	if (.) //Let's check all that other stuff first.
 		if(user.skills.getRating("police") < SKILL_POLICE_MP)
-			to_chat(user, "<span class='warning'>You don't seem to know how to use [src]...</span>")
+			to_chat(user, span_warning("You don't seem to know how to use [src]..."))
 			return FALSE
 
 
@@ -147,6 +147,10 @@
 	damage_falloff_mult = 0.5
 	upper_akimbo_accuracy = 5
 	lower_akimbo_accuracy = 3
+
+/obj/item/weapon/gun/energy/lasgun/unique_action(mob/user)
+	. = ..()
+	return cock(user)
 
 /obj/item/weapon/gun/energy/lasgun/tesla
 	name = "\improper M43-T tesla shock rifle"
@@ -213,16 +217,13 @@
 /obj/item/weapon/gun/energy/lasgun/M43/stripped
 	starting_attachment_types = list()
 
-/obj/item/weapon/gun/energy/lasgun/M43/unique_action(mob/user)
-	return toggle_chargemode(user)
-
 /obj/item/weapon/gun/energy/lasgun/Initialize(mapload, ...)
 	. = ..()
 	update_icon()
 
 
 //Toggles Overcharge mode. Overcharge mode significantly increases damage and AP in exchange for doubled ammo usage and increased fire delay.
-/obj/item/weapon/gun/energy/lasgun/proc/toggle_chargemode(mob/user)
+/obj/item/weapon/gun/energy/lasgun/cock(mob/user)
 	//if(in_chamber)
 	//	delete_bullet(in_chamber, TRUE)
 	if(ammo_diff == null)
@@ -231,11 +232,11 @@
 	if(overcharge == FALSE)
 		if(!cell)
 			playsound(user, 'sound/machines/buzz-two.ogg', 15, 0, 2)
-			to_chat(user, "<span class='warning'>You attempt to toggle on [src]'s overcharge mode but you have no battery loaded.</span>")
+			to_chat(user, span_warning("You attempt to toggle on [src]'s overcharge mode but you have no battery loaded."))
 			return
 		if(cell.charge < ENERGY_OVERCHARGE_AMMO_COST)
 			playsound(user, 'sound/machines/buzz-two.ogg', 15, 0, 2)
-			to_chat(user, "<span class='warning'>You attempt to toggle on [src]'s overcharge mode but your battery pack lacks adequate charge to do so.</span>")
+			to_chat(user, span_warning("You attempt to toggle on [src]'s overcharge mode but your battery pack lacks adequate charge to do so."))
 			return
 		//While overcharge is active, double ammo consumption, and
 		playsound(user, 'sound/weapons/emitter.ogg', 5, 0, 2)
@@ -269,8 +270,8 @@
 			active_attachable.current_rounds--
 			return create_bullet(active_attachable.ammo)
 		else
-			to_chat(user, "<span class='warning'>[active_attachable] is empty!</span>")
-			to_chat(user, "<span class='notice'>You disable [active_attachable].</span>")
+			to_chat(user, span_warning("[active_attachable] is empty!"))
+			to_chat(user, span_notice("You disable [active_attachable]."))
 			playsound(user, active_attachable.activation_sound, 15, 1)
 			active_attachable.activate_attachment(null, TRUE)
 
@@ -292,7 +293,7 @@
 	if(!active_attachable && cell) //We don't need to check for the mag if an attachment was used to shoot.
 		if(cell) //If there is no mag, we can't reload.
 			if(overcharge && cell.charge < ENERGY_OVERCHARGE_AMMO_COST && cell.charge >= ENERGY_STANDARD_AMMO_COST) //Revert to standard shot if we don't have enough juice for overcharge, but enough for the standard mode
-				toggle_chargemode(user)
+				cock(user)
 				return
 			if(cell.charge <= 0 && flags_gun_features & GUN_AUTO_EJECTOR) // This is where the magazine is auto-ejected.
 				unload(user,1,1) // We want to quickly autoeject the magazine. This proc does the rest based on magazine type. User can be passed as null.
@@ -326,28 +327,28 @@
 		return
 
 	if(!new_cell || !istype(new_cell))
-		to_chat(user, "<span class='warning'>That's not a power cell!</span>")
+		to_chat(user, span_warning("That's not a power cell!"))
 		return
 
 	if(new_cell.charge <= 0)
-		to_chat(user, "<span class='warning'>[cell] is depleted!</span>")
+		to_chat(user, span_warning("[cell] is depleted!"))
 		return
 
 	if(!istype(src, new_cell.gun_type))
-		to_chat(user, "<span class='warning'>That power cell doesn't fit in there!</span>")
+		to_chat(user, span_warning("That power cell doesn't fit in there!"))
 		return
 
 	if(cell)
-		to_chat(user, "<span class='warning'>It's still got something loaded.</span>")
+		to_chat(user, span_warning("It's still got something loaded."))
 		return
 
 	if(user)
 		if(new_cell.reload_delay > 1)
-			to_chat(user, "<span class='notice'>You begin reloading [src]. Hold still...</span>")
+			to_chat(user, span_notice("You begin reloading [src]. Hold still..."))
 			if(do_after(user,new_cell.reload_delay, TRUE, src, BUSY_ICON_GENERIC))
 				replace_magazine(user, new_cell)
 			else
-				to_chat(user, "<span class='warning'>Your reload was interrupted!</span>")
+				to_chat(user, span_warning("Your reload was interrupted!"))
 				return
 		else
 			replace_magazine(user, new_cell)
@@ -359,8 +360,8 @@
 	cell = new_cell
 	if(user)
 		user.transferItemToLoc(new_cell, src) //Click!
-		user.visible_message("<span class='notice'>[user] loads [new_cell] into [src]!</span>",
-		"<span class='notice'>You load [new_cell] into [src]!</span>", null, 3)
+		user.visible_message(span_notice("[user] loads [new_cell] into [src]!"),
+		span_notice("You load [new_cell] into [src]!"), null, 3)
 		if(reload_sound)
 			playsound(user, reload_sound, 25, 1, 5)
 		update_icon(user)
@@ -383,8 +384,8 @@
 		user.put_in_hands(cell)
 
 	playsound(user, unload_sound, 25, 1, 5)
-	user.visible_message("<span class='notice'>[user] unloads [cell] from [src].</span>",
-	"<span class='notice'>You unload [cell] from [src].</span>", null, 4)
+	user.visible_message(span_notice("[user] unloads [cell] from [src]."),
+	span_notice("You unload [cell] from [src]."), null, 4)
 	cell.update_icon()
 	cell = null
 
@@ -439,7 +440,7 @@
 	fire_delay = 0.33 SECONDS
 	aim_slowdown = 0.35
 
-/obj/item/weapon/gun/energy/lasgun/M43/practice/unique_action(mob/user)
+/obj/item/weapon/gun/energy/lasgun/M43/practice/cock(mob/user)
 	return
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle
@@ -509,10 +510,7 @@
 	///The icon state the radial menu will use.
 	var/radial_icon_state = "laser"
 
-/obj/item/weapon/gun/energy/lasgun/lasrifle/unique_action(mob/user)
-	return switch_modes(user)
-
-/obj/item/weapon/gun/energy/lasgun/lasrifle/proc/switch_modes(mob/user)
+/obj/item/weapon/gun/energy/lasgun/lasrifle/cock(mob/user)
 	if(!user)
 		CRASH("switch_modes called with no user.")
 

@@ -9,6 +9,7 @@
 	soft_armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 100, "bomb" = 0, "bio" = 100, "rad" = 100, "fire" = 30, "acid" = 30)
 	layer = ABOVE_WINDOW_LAYER
 	pipe_flags = PIPING_ONE_PER_TURF|PIPING_DEFAULT_LAYER_ONLY
+	interaction_flags = INTERACT_MACHINE_TGUI
 
 	var/autoeject = FALSE
 	var/release_notice = FALSE
@@ -192,7 +193,7 @@
 /obj/machinery/atmospherics/components/unary/cryo_cell/relaymove(mob/user)
 	if(message_cooldown <= world.time)
 		message_cooldown = world.time + 50
-		to_chat(user, "<span class='warning'>[src]'s door won't budge!</span>")
+		to_chat(user, span_warning("[src]'s door won't budge!"))
 
 
 /obj/machinery/atmospherics/components/unary/cryo_cell/verb/move_eject()
@@ -202,7 +203,7 @@
 	if(usr == occupant) //If the user is inside the tube...
 		if (usr.stat == DEAD) //and he's not dead....
 			return
-		to_chat(usr, "<span class='notice'>Auto release sequence activated. You will be released when you have recovered.</span>")
+		to_chat(usr, span_notice("Auto release sequence activated. You will be released when you have recovered."))
 		autoeject = TRUE
 		return
 	if (usr.stat != CONSCIOUS)
@@ -224,11 +225,11 @@
 
 	if(istype(I, /obj/item/reagent_containers/glass))
 		if(beaker)
-			to_chat(user, "<span class='warning'>A beaker is already loaded into the machine.</span>")
+			to_chat(user, span_warning("A beaker is already loaded into the machine."))
 			return
 
 		if(istype(I, /obj/item/reagent_containers/glass/bucket))
-			to_chat(user, "<span class='warning'>That's too big to fit!</span>")
+			to_chat(user, span_warning("That's too big to fit!"))
 			return
 
 		beaker =  I
@@ -250,11 +251,11 @@
 		return
 
 	if(machine_stat & (NOPOWER|BROKEN))
-		to_chat(user, "<span class='notice'>\ [src] is non-functional!</span>")
+		to_chat(user, span_notice("\ [src] is non-functional!"))
 		return
 
 	if(occupant)
-		to_chat(user, "<span class='notice'>\ [src] is already occupied!</span>")
+		to_chat(user, span_notice("\ [src] is already occupied!"))
 		return
 
 	var/obj/item/grab/G = I
@@ -266,7 +267,7 @@
 	else if(istype(G.grabbed_thing,/obj/structure/closet/bodybag/cryobag))
 		var/obj/structure/closet/bodybag/cryobag/C = G.grabbed_thing
 		if(!C.bodybag_occupant)
-			to_chat(user, "<span class='warning'>The stasis bag is empty!</span>")
+			to_chat(user, span_warning("The stasis bag is empty!"))
 			return
 		M = C.bodybag_occupant
 		C.open()
@@ -276,11 +277,11 @@
 		return
 
 	if(!ishuman(M))
-		to_chat(user, "<span class='notice'>\ [src] is compatible with humanoid anatomies only!</span>")
+		to_chat(user, span_notice("\ [src] is compatible with humanoid anatomies only!"))
 		return
 
 	if(M.abiotic())
-		to_chat(user, "<span class='warning'>Subject cannot have abiotic items on.</span>")
+		to_chat(user, span_warning("Subject cannot have abiotic items on."))
 		return
 
 	put_mob(M, TRUE)
@@ -289,24 +290,24 @@
 
 /obj/machinery/atmospherics/components/unary/cryo_cell/proc/put_mob(mob/living/carbon/M as mob, put_in = null)
 	if (machine_stat & (NOPOWER|BROKEN))
-		to_chat(usr, "<span class='warning'>The cryo cell is not functioning.</span>")
+		to_chat(usr, span_warning("The cryo cell is not functioning."))
 		return
 	if(!ishuman(M))
-		to_chat(usr, "<span class='notice'>\ [src] is compatible with humanoid anatomies only!</span>")
+		to_chat(usr, span_notice("\ [src] is compatible with humanoid anatomies only!"))
 		return
 	if (occupant)
-		to_chat(usr, "<span class='danger'>The cryo cell is already occupied!</span>")
+		to_chat(usr, span_danger("The cryo cell is already occupied!"))
 		return
 	if (M.abiotic())
-		to_chat(usr, "<span class='warning'>Subject may not have abiotic items on.</span>")
+		to_chat(usr, span_warning("Subject may not have abiotic items on."))
 		return
 	if(put_in) //Select an appropriate message
-		visible_message("<span class='notice'>[usr] puts [M] in [src].</span>", 3)
+		visible_message(span_notice("[usr] puts [M] in [src]."), 3)
 	else
-		visible_message("<span class='notice'>[usr] climbs into [src].</span>", 3)
+		visible_message(span_notice("[usr] climbs into [src]."), 3)
 	M.forceMove(src)
 	if(M.health > -100 && (M.health < 0 || M.IsSleeping()))
-		to_chat(M, "<span class='boldnotice'>You feel a cold liquid surround you. Your skin starts to freeze up.</span>")
+		to_chat(M, span_boldnotice("You feel a cold liquid surround you. Your skin starts to freeze up."))
 	occupant = M
 //	M.metabslow = 1
 	update_icon()
@@ -321,7 +322,7 @@
 	if(!hasHUD(usr,"medical"))
 		return
 	if(get_dist(usr, src) > 7)
-		to_chat(usr, "<span class='warning'>[src] is too far away.</span>")
+		to_chat(usr, span_warning("[src] is too far away."))
 		return
 	if(!ishuman(occupant))
 		return
@@ -425,7 +426,7 @@
 
 /obj/machinery/atmospherics/components/unary/cryo_cell/proc/turn_on()
 	if (machine_stat & (NOPOWER|BROKEN))
-		to_chat(usr, "<span class='warning'>The cryo cell is not functioning.</span>")
+		to_chat(usr, span_warning("The cryo cell is not functioning."))
 		return
 	on = TRUE
 	start_processing()

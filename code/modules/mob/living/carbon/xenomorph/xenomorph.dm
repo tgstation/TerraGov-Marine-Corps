@@ -79,12 +79,17 @@
 	xeno_caste = X
 
 	plasma_stored = xeno_caste.plasma_max
-	maxHealth = xeno_caste.max_health
+	maxHealth = xeno_caste.max_health * GLOB.xeno_stat_multiplicator_buff
 	health = maxHealth
 	setXenoCasteSpeed(xeno_caste.speed)
 	soft_armor = getArmor(arglist(xeno_caste.soft_armor))
 	hard_armor = getArmor(arglist(xeno_caste.hard_armor))
 	warding_aura = 0 //Resets aura for reapplying armor
+
+///Will multiply the base max health of this xeno by GLOB.xeno_stat_multiplicator_buff
+/mob/living/carbon/xenomorph/proc/apply_health_stat_buff()
+	maxHealth = max(xeno_caste.max_health * GLOB.xeno_stat_multiplicator_buff, 10)
+	health = min(health, maxHealth)
 
 /mob/living/carbon/xenomorph/set_armor_datum()
 	return //Handled in set_datum()
@@ -228,7 +233,7 @@
 		return FALSE //to stop xeno from pulling marines on roller beds.
 	if(ishuman(L))
 		if(L.stat == DEAD && (SSticker.mode?.flags_round_type & MODE_DEAD_GRAB_FORBIDDEN)) //Can't drag dead human bodies in distress
-			to_chat(usr,"<span class='xenowarning'>This looks gross, better not touch it</span>")
+			to_chat(usr,span_xenowarning("This looks gross, better not touch it"))
 			return FALSE
 		do_attack_animation(L, ATTACK_EFFECT_GRAB)
 		pull_speed += XENO_DEADHUMAN_DRAG_SLOWDOWN
@@ -248,13 +253,13 @@
 	var/mob/living/carbon/human/H = puller
 	H.Paralyze(rand(xeno_caste.tacklemin,xeno_caste.tacklemax) * 20)
 	playsound(H.loc, 'sound/weapons/pierce.ogg', 25, 1)
-	H.visible_message("<span class='warning'>[H] tried to pull [src] but instead gets a tail swipe to the head!</span>")
+	H.visible_message(span_warning("[H] tried to pull [src] but instead gets a tail swipe to the head!"))
 	H.stop_pulling()
 	return FALSE
 
 /mob/living/carbon/xenomorph/resist_grab()
 	if(pulledby.grab_state)
-		visible_message("<span class='danger'>[src] has broken free of [pulledby]'s grip!</span>", null, null, 5)
+		visible_message(span_danger("[src] has broken free of [pulledby]'s grip!"), null, null, 5)
 	pulledby.stop_pulling()
 	. = 1
 

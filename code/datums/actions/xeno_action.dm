@@ -66,57 +66,57 @@
 
 	if(!(flags_to_check & XACT_IGNORE_COOLDOWN) && !action_cooldown_check())
 		if(!silent)
-			to_chat(owner, "<span class='warning'>We can't use [ability_name] yet, we must wait [cooldown_remaining()] seconds!</span>")
+			to_chat(owner, span_warning("We can't use [ability_name] yet, we must wait [cooldown_remaining()] seconds!"))
 		return FALSE
 
 	if(!(flags_to_check & XACT_USE_INCAP) && X.incapacitated())
 		if(!silent)
-			to_chat(owner, "<span class='warning'>We can't do this while incapacitated!</span>")
+			to_chat(owner, span_warning("We can't do this while incapacitated!"))
 		return FALSE
 
 	if(!(flags_to_check & XACT_USE_LYING) && X.lying_angle)
 		if(!silent)
-			to_chat(owner, "<span class='warning'>We can't do this while lying down!</span>")
+			to_chat(owner, span_warning("We can't do this while lying down!"))
 		return FALSE
 
 	if(!(flags_to_check & XACT_USE_BUCKLED) && X.buckled)
 		if(!silent)
-			to_chat(owner, "<span class='warning'>We can't do this while buckled!</span>")
+			to_chat(owner, span_warning("We can't do this while buckled!"))
 		return FALSE
 
 	if(!(flags_to_check & XACT_USE_STAGGERED) && X.stagger)
 		if(!silent)
-			to_chat(owner, "<span class='warning'>We can't do this while staggered!</span>")
+			to_chat(owner, span_warning("We can't do this while staggered!"))
 		return FALSE
 
 	if(!(flags_to_check & XACT_USE_FORTIFIED) && X.fortify)
 		if(!silent)
-			to_chat(owner, "<span class='warning'>We can't do this while fortified!</span>")
+			to_chat(owner, span_warning("We can't do this while fortified!"))
 		return FALSE
 
 	if(!(flags_to_check & XACT_USE_CRESTED) && X.crest_defense)
 		if(!silent)
-			to_chat(owner, "<span class='warning'>We can't do this while in crest defense!</span>")
+			to_chat(owner, span_warning("We can't do this while in crest defense!"))
 		return FALSE
 
 	if(!(flags_to_check & XACT_USE_NOTTURF) && !isturf(X.loc))
 		if(!silent)
-			to_chat(owner, "<span class='warning'>We can't do this here!</span>")
+			to_chat(owner, span_warning("We can't do this here!"))
 		return FALSE
 
 	if(!(flags_to_check & XACT_USE_BUSY) && X.do_actions)
 		if(!silent)
-			to_chat(owner, "<span class='warning'>We're busy doing something right now!</span>")
+			to_chat(owner, span_warning("We're busy doing something right now!"))
 		return FALSE
 
 	if(!(flags_to_check & XACT_USE_AGILITY) && X.agility)
 		if(!silent)
-			to_chat(owner, "<span class='warning'>We can't do this in agility mode!</span>")
+			to_chat(owner, span_warning("We can't do this in agility mode!"))
 		return FALSE
 
 	if(!(flags_to_check & XACT_IGNORE_PLASMA) && X.plasma_stored < plasma_cost)
 		if(!silent)
-			to_chat(owner, "<span class='warning'>We don't have enough plasma, we need [plasma_cost - X.plasma_stored] more.</span>")
+			to_chat(owner, span_warning("We don't have enough plasma, we need [plasma_cost - X.plasma_stored] more."))
 		return FALSE
 
 	return TRUE
@@ -124,9 +124,15 @@
 /datum/action/xeno_action/fail_activate()
 	update_button_icon()
 
-/datum/action/xeno_action/proc/succeed_activate()
+///Plasma cost override allows for actions/abilities to override the normal plasma costs
+/datum/action/xeno_action/proc/succeed_activate(plasma_cost_override)
+	if(QDELETED(owner))
+		return
 	var/mob/living/carbon/xenomorph/X = owner
-	if(plasma_cost && !QDELETED(owner))
+	if(plasma_cost_override)
+		X.use_plasma(plasma_cost_override)
+		return
+	if(plasma_cost)
 		X.use_plasma(plasma_cost)
 
 //checks if the linked ability is on some cooldown.

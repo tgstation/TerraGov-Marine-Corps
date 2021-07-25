@@ -1296,7 +1296,7 @@
 /area/outpost/cargo)
 "hb" = (
 /obj/structure/table/reinforced,
-/obj/machinery/door/window/secure/eastleft,
+/obj/machinery/door/window/secure,
 /obj/item/weapon/shield/riot,
 /turf/open/floor/tile/dark,
 /area/outpost/brig/armoury)
@@ -2576,7 +2576,9 @@
 /area/outpost/medbay)
 "ny" = (
 /obj/structure/table/reinforced,
-/obj/machinery/door/window/secure/southright,
+/obj/machinery/door/window/secure/right{
+	dir = 2
+	},
 /turf/open/floor/tile/dark,
 /area/outpost/brig/wardens_office)
 "nB" = (

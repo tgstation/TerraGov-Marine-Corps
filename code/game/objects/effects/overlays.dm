@@ -6,7 +6,6 @@
 	name="beam"
 	icon='icons/effects/beam.dmi'
 	icon_state="b_beam"
-	var/tmp/atom/BeamSource
 
 /obj/effect/overlay/beam/Initialize()
 	. = ..()
@@ -132,7 +131,7 @@
 /obj/effect/overlay/temp/laser_target/examine(user)
 	. = ..()
 	if(ishuman(user))
-		to_chat(usr, "<span class='danger'>It's a laser to designate artillery targets, get away from it!</span>")
+		to_chat(usr, span_danger("It's a laser to designate artillery targets, get away from it!"))
 
 /obj/effect/overlay/temp/laser_target/cas
 	icon_state = "laser_target_coordinate"
@@ -141,6 +140,7 @@
 	. = ..()
 	linked_cam = new(loc, name)
 	GLOB.active_cas_targets += src
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_CAS_LASER_CREATED, src)
 
 /obj/effect/overlay/temp/laser_target/cas/Destroy()
 	. = ..()
@@ -149,13 +149,14 @@
 /obj/effect/overlay/temp/laser_target/cas/examine(user)
 	. = ..()
 	if(ishuman(user))
-		to_chat(usr, "<span class='danger'>It's a laser to designate cas targets, get away from it!</span>")
+		to_chat(usr, span_danger("It's a laser to designate cas targets, get away from it!"))
 
 /obj/effect/overlay/temp/laser_target/OB
 	icon_state = "laser_target2"
 
 /obj/effect/overlay/temp/laser_target/OB/Initialize(mapload, named, assigned_squad)
 	. = ..()
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_OB_LASER_CREATED, src)
 	GLOB.active_laser_targets += src
 
 /obj/effect/overlay/temp/laser_target/OB/Destroy()

@@ -26,16 +26,16 @@
 /obj/item/clothing/suit/storage/marine/harness/boomvest/attack_self(mob/user)
 	var/mob/living/carbon/human/activator = user
 	if(issynth(activator) && !CONFIG_GET(flag/allow_synthetic_gun_use))
-		to_chat(user, "<span class='warning'>Your programming restricts operating explosive devices.</span>")
+		to_chat(user, span_warning("Your programming restricts operating explosive devices."))
 		return TRUE
 	if(activator.wear_suit != src)
 		to_chat(activator, "Due to the rigging of this device, it can only be detonated while worn.") //If you are going to use this, you have to accept death. No armor allowed.
 		return FALSE
 	if(istype(activator.l_hand, /obj/item/weapon/shield/riot) || istype(activator.r_hand, /obj/item/weapon/shield/riot) || istype(activator.back, /obj/item/weapon/shield/riot))
-		to_chat(activator, "<span class='warning'>Your bulky shield prevents you from reaching the detonator!</span>")
+		to_chat(activator, span_warning("Your bulky shield prevents you from reaching the detonator!"))
 		return FALSE
 	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_BOMBVEST_SHIELD_DROP))
-		to_chat(activator, "<span class='warning'>You dropped a shield too recently to detonate, wait a few seconds!</span>")
+		to_chat(activator, span_warning("You dropped a shield too recently to detonate, wait a few seconds!"))
 		return FALSE
 	if(bomb_message)
 		activator.say("[bomb_message]!!")

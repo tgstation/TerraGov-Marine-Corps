@@ -6,7 +6,7 @@
 	icon = 'icons/Marine/marine-weapons.dmi'
 	icon_state = "smartgun_case"
 	w_class = WEIGHT_CLASS_HUGE
-	storage_slots = 4
+	storage_slots = 5
 	slowdown = 1
 	can_hold = list() //Nada. Once you take the stuff out it doesn't fit back in.
 	foldable = null
@@ -17,10 +17,29 @@
 	new /obj/item/weapon/gun/rifle/standard_smartmachinegun(src)
 	new /obj/item/ammo_magazine/standard_smartmachinegun(src)
 	new /obj/item/ammo_magazine/standard_smartmachinegun(src)
+	new /obj/item/ammo_magazine/standard_smartmachinegun(src)
 
-/obj/item/smartgun_powerpack
-	name = "\improper M56 powerpack"
-	desc = "A heavy reinforced backpack with support equipment, power cells, and spare rounds for the M56 Smartgun System.\nClick the icon in the top left to reload your M56."
+/obj/item/storage/box/t25_system
+	name = "\improper T25 smart rifle system"
+	desc = "A large case containing the full T-26 Rifle System. Drag this sprite into you to open it up!\nNOTE: You cannot put items back inside this case."
+	icon = 'icons/Marine/marine-weapons.dmi'
+	icon_state = "smartgun_case"
+	w_class = WEIGHT_CLASS_HUGE
+	storage_slots = 5
+	slowdown = 1
+	can_hold = list() //Nada. Once you take the stuff out it doesn't fit back in.
+	foldable = null
+
+/obj/item/storage/box/t25_system/Initialize(mapload, ...)
+	. = ..()
+	new /obj/item/clothing/glasses/night/m56_goggles(src)
+	new /obj/item/weapon/gun/rifle/standard_smartrifle(src)
+	new /obj/item/storage/belt/marine/t25(src)
+	new /obj/item/ammo_magazine/rifle/standard_smartrifle(src)
+
+/obj/item/minigun_powerpack
+	name = "\improper T-100 powerpack"
+	desc = "A heavy reinforced backpack with support equipment, power cells, and spare rounds for the T-100 Minigun System.\nClick the icon in the top left to reload your M56."
 	icon = 'icons/obj/items/storage/storage.dmi'
 	icon_state = "powerpack"
 	flags_atom = CONDUCT
@@ -33,18 +52,18 @@
 	var/reloading = FALSE
 	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_PRISON_VARIANT)
 
-/obj/item/smartgun_powerpack/Initialize()
+/obj/item/minigun_powerpack/Initialize()
 	. = ..()
 	pcell = new /obj/item/cell(src)
 
-/obj/item/smartgun_powerpack/attack_self(mob/living/carbon/human/user, automatic = FALSE)
+/obj/item/minigun_powerpack/attack_self(mob/living/carbon/human/user, automatic = FALSE)
 	if(!istype(user) || user.incapacitated())
 		return FALSE
 
-	var/obj/item/weapon/gun/smartgun/mygun = user.get_active_held_item()
+	var/obj/item/weapon/gun/minigun/mygun = user.get_active_held_item()
 
 	if(!istype(mygun))
-		to_chat(user, "You must be holding an M56 Smartgun to begin the reload process.")
+		to_chat(user, "You must be holding an T-100 Minigun to begin the reload process.")
 		return TRUE
 	if(rounds_remaining < 1)
 		to_chat(user, "Your powerpack is completely devoid of spare ammo belts! Looks like you're up shit creek, maggot!")
@@ -63,9 +82,9 @@
 
 	reloading = TRUE
 	if(!automatic)
-		user.visible_message("[user.name] begins feeding an ammo belt into the M56 Smartgun.","You begin feeding a fresh ammo belt into the M56 Smartgun. Don't move or you'll be interrupted.")
+		user.visible_message("[user.name] begins feeding an ammo belt into the T-100 Minigun.","You begin feeding a fresh ammo belt into the T-100 Minigun. Don't move or you'll be interrupted.")
 	else
-		user.visible_message("[user.name]'s powerpack servos begin automatically feeding an ammo belt into the M56 Smartgun.","The powerpack servos begin automatically feeding a fresh ammo belt into the M56 Smartgun.")
+		user.visible_message("[user.name]'s powerpack servos begin automatically feeding an ammo belt into the T-100 Minigun.","The powerpack servos begin automatically feeding a fresh ammo belt into the T-100 Minigun.")
 	var/reload_duration = 5 SECONDS
 	var/obj/screen/ammo/A = user.hud_used.ammo
 	if(automatic)
@@ -77,8 +96,8 @@
 		reload(user, mygun, TRUE)
 		A.update_hud(user)
 		return TRUE
-	if(user.skills.getRating("smartgun") > 0)
-		reload_duration = max(reload_duration - 1 SECONDS * user.skills.getRating("smartgun"), 3 SECONDS)
+	if(user.skills.getRating("firearms") > 0)
+		reload_duration = max(reload_duration - 1 SECONDS * user.skills.getRating("firearms"), 3 SECONDS)
 	if(!do_after(user, reload_duration, TRUE, src, BUSY_ICON_GENERIC) || !pcell)
 		to_chat(user, "Your reloading was interrupted!")
 		playsound(src,'sound/machines/buzz-two.ogg', 25, TRUE)
@@ -88,7 +107,7 @@
 	A.update_hud(user)
 	return TRUE
 
-/obj/item/smartgun_powerpack/attack_hand(mob/living/user)
+/obj/item/minigun_powerpack/attack_hand(mob/living/user)
 	if(user.get_inactive_held_item() != src)
 		return ..()
 	if(QDELETED(pcell))
@@ -99,7 +118,7 @@
 	to_chat(user, "You take out the [pcell] out of the [src].")
 	pcell = null
 
-/obj/item/smartgun_powerpack/attackby(obj/item/I, mob/user, params)
+/obj/item/minigun_powerpack/attackby(obj/item/I, mob/user, params)
 	. = ..()
 	if(istype(I, /obj/item/cell))
 		var/obj/item/cell/C = I
@@ -115,15 +134,15 @@
 		user.visible_message("[user] puts a new power cell in the [src].", "You put a new power cell in the [src] containing [pcell.charge] charge.")
 		playsound(src,'sound/machines/click.ogg', 25, 1)
 
-/obj/item/smartgun_powerpack/examine(mob/user)
+/obj/item/minigun_powerpack/examine(mob/user)
 	. = ..()
 	if(get_dist(user, src) <= 1)
 		to_chat(user, "A small gauge in the corner reads: Ammo: [rounds_remaining] / [rounds_max]. [pcell ? "Charge: [pcell.charge] / [pcell.maxcharge].":""]")
 
-/obj/item/smartgun_powerpack/proc/reload(mob/user, obj/item/weapon/gun/smartgun/mygun, automatic = FALSE)
+/obj/item/minigun_powerpack/proc/reload(mob/user, obj/item/weapon/gun/minigun/mygun, automatic = FALSE)
 	pcell.charge -= 50
 	if(!mygun.current_mag)
-		var/obj/item/ammo_magazine/internal/smartgun/A = new(mygun)
+		var/obj/item/ammo_magazine/internal/minigun/A = new(mygun)
 		mygun.current_mag = A
 
 	var/rounds_to_reload = min(rounds_remaining, (mygun.current_mag.max_rounds - mygun.current_mag.current_rounds)) //Get the smaller value.
@@ -132,15 +151,15 @@
 	rounds_remaining -= rounds_to_reload
 
 	if(!automatic)
-		to_chat(user, "You finish loading [rounds_to_reload] shells into the M56 Smartgun. Ready to rumble!")
+		to_chat(user, "You finish loading [rounds_to_reload] shells into the T-100 Minigun. Ready to rumble!")
 	else
-		to_chat(user, "The powerpack servos finish loading [rounds_to_reload] shells into the M56 Smartgun. Ready to rumble!")
-	playsound(user, 'sound/weapons/guns/interact/smartgun_unload.ogg', 25, 1)
+		to_chat(user, "The powerpack servos finish loading [rounds_to_reload] shells into the T-100 Minigun. Ready to rumble!")
+	playsound(user, 'sound/weapons/guns/interact/minigun_unload.ogg', 25, 1)
 
 	reloading = FALSE
 	return TRUE
 
-/obj/item/smartgun_powerpack/proc/autoload_check(mob/user, delay, obj/item/weapon/gun/smartgun/mygun, obj/item/smartgun_powerpack/powerpack, numticks = 5)
+/obj/item/minigun_powerpack/proc/autoload_check(mob/user, delay, obj/item/weapon/gun/minigun/mygun, obj/item/minigun_powerpack/powerpack, numticks = 5)
 	if(!istype(user) || delay <= 0) return FALSE
 
 	var/mob/living/carbon/human/L
@@ -157,13 +176,13 @@
 			. = FALSE
 			break
 
-/obj/item/smartgun_powerpack/snow
+/obj/item/minigun_powerpack/snow
 	icon_state = "s_powerpack"
 
-/obj/item/smartgun_powerpack/fancy
+/obj/item/minigun_powerpack/fancy
 	icon_state = "powerpackw"
 
-/obj/item/smartgun_powerpack/merc
+/obj/item/minigun_powerpack/merc
 	icon_state = "powerpackp"
 
 /obj/item/storage/box/heavy_armor
@@ -555,9 +574,8 @@
 	new /obj/item/clothing/head/helmet/marine/specialist(src)
 	new /obj/item/weapon/gun/minigun(src)
 	new /obj/item/belt_harness/marine(src)
-	new /obj/item/ammo_magazine/minigun(src)
-	new /obj/item/ammo_magazine/minigun(src)
-	new /obj/item/ammo_magazine/minigun(src)
+	new /obj/item/minigun_powerpack(src)
+
 
 /obj/item/spec_kit //For events/WO, allowing the user to choose a specalist kit
 	name = "specialist kit"
@@ -1085,9 +1103,9 @@
 	new /obj/item/reagent_containers/food/snacks/enrg_bar(src)
 	new /obj/item/weapon/gun/minigun(src)
 	new /obj/item/belt_harness/marine(src)
-	new /obj/item/ammo_magazine/minigun(src)
-	new /obj/item/ammo_magazine/minigun(src)
-	new /obj/item/ammo_magazine/minigun(src)
+	new /obj/item/minigun_powerpack(src)
+	new /obj/item/minigun_powerpack(src)
+	new /obj/item/minigun_powerpack(src)
 	new /obj/item/attachable/flashlight(src)
 	new /obj/item/storage/pouch/pistol/rt3(src)
 	new /obj/item/clothing/tie/storage/brown_vest(src)

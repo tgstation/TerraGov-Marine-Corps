@@ -6760,10 +6760,10 @@
 /area/magmoor/cave/central)
 "fcs" = (
 /obj/structure/table/reinforced,
-/obj/machinery/door/window/westright,
-/obj/machinery/door/window/westright{
-	dir = 4
+/obj/machinery/door/window/right{
+	dir = 8
 	},
+/obj/machinery/door/window/right,
 /turf/open/floor/mainship/mono,
 /area/magmoor/research/rnd)
 "fcG" = (
@@ -9344,10 +9344,8 @@
 /area/magmoor/medical/chemistry)
 "gVb" = (
 /obj/structure/table/reinforced,
-/obj/machinery/door/window/secure/westleft{
-	dir = 4
-	},
-/obj/machinery/door/window/eastright{
+/obj/machinery/door/window/secure,
+/obj/machinery/door/window/right{
 	dir = 8
 	},
 /turf/open/floor/mainship/mono,
@@ -10673,9 +10671,7 @@
 /area/magmoor/cave/mining/fossil)
 "hXG" = (
 /obj/structure/table/reinforced,
-/obj/machinery/door/window/westright{
-	dir = 4
-	},
+/obj/machinery/door/window/right,
 /turf/open/floor/mainship/sterile/dark,
 /area/magmoor/medical/chemistry)
 "hXQ" = (
@@ -12837,11 +12833,11 @@
 /area/magmoor/mining/refinery)
 "jFA" = (
 /obj/structure/rack,
-/obj/item/tool/warning_cone,
-/obj/item/tool/warning_cone,
-/obj/item/tool/warning_cone,
-/obj/item/tool/warning_cone,
-/obj/item/tool/warning_cone,
+/obj/item/clothing/head/warning_cone,
+/obj/item/clothing/head/warning_cone,
+/obj/item/clothing/head/warning_cone,
+/obj/item/clothing/head/warning_cone,
+/obj/item/clothing/head/warning_cone,
 /turf/open/floor/mainship/mono,
 /area/magmoor/cargo/storage/south)
 "jFK" = (
@@ -17797,10 +17793,11 @@
 /area/magmoor/compound/west)
 "nzs" = (
 /obj/structure/table/reinforced,
-/obj/machinery/door/window/eastright{
+/obj/machinery/door/window/right{
 	name = "Security Desk"
 	},
-/obj/machinery/door/window/secure/westleft{
+/obj/machinery/door/window/secure{
+	dir = 8;
 	name = "Security Desk"
 	},
 /obj/item/storage/donut_box,
@@ -20091,7 +20088,7 @@
 /area/magmoor/cave/southwest)
 "pcE" = (
 /obj/structure/table/reinforced,
-/obj/machinery/door/window/eastright{
+/obj/machinery/door/window/right{
 	dir = 2
 	},
 /obj/item/shard,
@@ -23199,7 +23196,8 @@
 /turf/open/floor/plating/mainship,
 /area/magmoor/engi/storage)
 "rpO" = (
-/obj/machinery/door/window/northright{
+/obj/machinery/door/window/right{
+	dir = 1;
 	name = "Canteen"
 	},
 /obj/machinery/alarm{
@@ -23578,8 +23576,7 @@
 	},
 /area/magmoor/cargo/processing)
 "rAE" = (
-/obj/machinery/door/window/northright{
-	dir = 4;
+/obj/machinery/door/window/right{
 	name = "Bar"
 	},
 /turf/open/floor/wood,
@@ -24234,7 +24231,8 @@
 /turf/open/floor/mainship/cargo,
 /area/magmoor/engi/storage)
 "rVz" = (
-/obj/machinery/door/window/secure/southleft{
+/obj/machinery/door/window/secure{
+	dir = 2;
 	name = "Requesitions Desk"
 	},
 /obj/structure/table/mainship,
@@ -27656,8 +27654,10 @@
 /area/magmoor/hydroponics)
 "upZ" = (
 /obj/structure/table/reinforced,
-/obj/machinery/door/window/secure/westleft,
-/obj/machinery/door/window/eastleft,
+/obj/machinery/door/window/secure{
+	dir = 8
+	},
+/obj/machinery/door/window,
 /turf/open/floor/plating,
 /area/magmoor/security/infocenter)
 "uqk" = (
@@ -30429,9 +30429,7 @@
 /area/magmoor/civilian/cook)
 "wbX" = (
 /obj/structure/table/mainship,
-/obj/machinery/door/window/secure/southleft{
-	dir = 4
-	},
+/obj/machinery/door/window/secure,
 /turf/open/floor/mainship/mono,
 /area/magmoor/cargo/processing/south)
 "wcF" = (
@@ -30591,7 +30589,7 @@
 /area/magmoor/civilian/bar)
 "whi" = (
 /obj/structure/table/reinforced,
-/obj/machinery/door/window/secure/westleft{
+/obj/machinery/door/window/secure{
 	dir = 1;
 	id = "brg"
 	},
