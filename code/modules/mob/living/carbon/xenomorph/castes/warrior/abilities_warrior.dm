@@ -325,7 +325,7 @@
 	if(!.)
 		return
 
-	if(A.resistance_flags & (UNACIDABLE|INDESTRUCTIBLE)) //no bolting down indestructible airlocks
+	if(A.resistance_flags & (INDESTRUCTIBLE|CRUSHER_IMMUNE)) //no bolting down indestructible airlocks
 		if(!silent)
 			to_chat(owner, span_xenodanger("We cannot damage this target!"))
 		return FALSE
@@ -376,7 +376,8 @@
 /obj/machinery/punch_act(mob/living/carbon/xenomorph/X, damage, target_zone) //Break open the machine
 	X.do_attack_animation(src, ATTACK_EFFECT_YELLOWPUNCH)
 	X.do_attack_animation(src, ATTACK_EFFECT_DISARM2)
-	attack_generic(X, damage * 4, BRUTE, "", FALSE) //Deals 4 times regular damage to machines
+	if(!CHECK_BITFIELD(resistance_flags, UNACIDABLE)) //If we can't acid it, we can't damage it
+		attack_generic(X, damage * 4, BRUTE, "", FALSE) //Deals 4 times regular damage to machines
 	X.visible_message(span_xenodanger("\The [X] smashes [src] with a devastating punch!"), \
 		span_xenodanger("We smash [src] with a devastating punch!"), visible_message_flags = COMBAT_MESSAGE)
 	playsound(src, pick('sound/effects/bang.ogg','sound/effects/metal_crash.ogg','sound/effects/meteorimpact.ogg'), 50, 1)
@@ -399,6 +400,10 @@
 	return ..()
 
 /obj/machinery/light/punch_act(mob/living/carbon/xenomorph/X)
+	. = ..()
+	attack_alien(X) //Smash it
+
+/obj/machinery/camera/punch_act(mob/living/carbon/xenomorph/X)
 	. = ..()
 	attack_alien(X) //Smash it
 
