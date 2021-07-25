@@ -151,4 +151,7 @@
 	if(!.)
 		return
 	var/obj/item/armor_module/armor/armor = .
-	armor.set_greyscale_colors(greyscale_colors)
+	if(seller.faction == FACTION_NEUTRAL)
+		armor.set_greyscale_colors(greyscale_colors)
+		return
+	armor.limit_colorable_colors(seller.faction)

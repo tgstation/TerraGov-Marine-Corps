@@ -10,7 +10,7 @@
 	 */
 	var/list/item_list
 	///The host of the loadout_manager, aka from which loadout vendor are you managing loadouts
-	var/loadout_vendor
+	var/obj/machinery/loadout_vendor/loadout_vendor
 	///The version of this loadout
 	var/version = CURRENT_LOADOUT_VERSION
 
@@ -144,7 +144,7 @@
 			if(TIMER_COOLDOWN_CHECK(ui.user, COOLDOWN_LOADOUT_EQUIPPED))
 				to_chat(ui.user, span_warning("The vendor is still reloading"))
 				return
-			var/datum/loadout_seller/seller = new
+			var/datum/loadout_seller/seller = new (loadout_vendor.faction)
 			if(seller.try_to_equip_loadout(src, ui.user))
 				TIMER_COOLDOWN_START(ui.user, COOLDOWN_LOADOUT_EQUIPPED, 30 SECONDS)
 			ui.close()

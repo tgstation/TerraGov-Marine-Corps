@@ -187,13 +187,29 @@ GLOBAL_LIST_INIT(additional_admin_item_slot_list, list(
 	slot_ear_str,
 ))
 
-///All the vendor types which the automated loadout vendor can take items from
+///All the vendor types which the automated loadout vendor can take items from.
 GLOBAL_LIST_INIT(loadout_linked_vendor, list(
-	/obj/machinery/vending/marine/shared,
-	/obj/machinery/vending/uniform_supply,
-	/obj/machinery/vending/armor_supply,
-	/obj/machinery/vending/marineFood,
-	/obj/machinery/vending/MarineMed,
+	FACTION_NEUTRAL = list(
+		/obj/machinery/vending/marine/shared,
+		/obj/machinery/vending/uniform_supply,
+		/obj/machinery/vending/armor_supply,
+		/obj/machinery/vending/marineFood,
+		/obj/machinery/vending/MarineMed,
+	),
+	FACTION_TERRAGOV = list(
+		/obj/machinery/vending/marine/shared/hvh/team_one,
+		/obj/machinery/vending/uniform_supply,
+		/obj/machinery/vending/armor_supply/loyalist,
+		/obj/machinery/vending/marineFood,
+		/obj/machinery/vending/MarineMed,
+	),
+	FACTION_TERRAGOV_REBEL = list(
+		/obj/machinery/vending/marine/shared/hvh,
+		/obj/machinery/vending/uniform_supply,
+		/obj/machinery/vending/armor_supply/rebel,
+		/obj/machinery/vending/marineFood,
+		/obj/machinery/vending/MarineMed/rebel,
+	),
 ))
 
 GLOBAL_LIST_INIT(marine_clothes_listed_products, list(
