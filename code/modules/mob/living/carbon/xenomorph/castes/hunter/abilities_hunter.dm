@@ -213,51 +213,6 @@
 	range = 7
 
 // ***************************************
-// *********** Haunt
-// ***************************************
-/datum/action/xeno_action/activable/haunt
-	name = "Haunt"
-	action_icon_state = "haunt"
-	mechanics_text = "Haunts the target, causing hallucinations and minor paranoia."
-	ability_name = "haunt"
-	plasma_cost = 25
-	keybind_signal = COMSIG_XENOABILITY_HAUNT
-	cooldown_timer = 30 SECONDS
-
-/datum/action/xeno_action/activable/haunt/can_use_action(silent = FALSE, override_flags)
-	. = ..()
-	if(!.)
-		return FALSE
-	var/mob/living/carbon/xenomorph/haunter = owner
-	if(haunter.on_fire)
-		to_chat(haunter, span_warning("We're too busy being on fire to haunt them!"))
-		return FALSE
-	return TRUE
-
-
-/datum/action/xeno_action/activable/haunt/use_ability(atom/A)
-	var/mob/living/carbon/xenomorph/X = owner
-	var/mob/living/carbon/victim = A
-
-	if(!istype(victim))
-		return
-
-	if(victim.stat == DEAD)
-		return
-
-	if(!can_use_ability(A, TRUE, override_flags = XACT_IGNORE_SELECTED_ABILITY))
-		return fail_activate()
-
-	if(get_dist(X, victim) > 5)
-		to_chat(X, "<span class='warning'>They are too far for us to reach their minds!</spam>")
-
-	succeed_activate()
-	X.playsound_local(X.loc, 'sound/voice/4_xeno_roars.ogg', 30, TRUE)
-	to_chat(X, span_notice("We reach out into mind of the creature, infecting their thoughts..."))
-	victim.hallucination += 100
-	add_cooldown()
-
-// ***************************************
 // *********** Hunter's Mark
 // ***************************************
 /datum/action/xeno_action/activable/hunter_mark
@@ -426,9 +381,9 @@
 	action_icon_state = "silence"
 	mechanics_text = "Impairs the ability of hostile living creatures we can see in a 5x5 area. Targets will be unable to speak and hear for 10 seconds, or 15 seconds if they're your Hunter Mark target."
 	ability_name = "silence"
-	plasma_cost = 75
+	plasma_cost = 50
 	keybind_signal = COMSIG_XENOABILITY_HAUNT
-	cooldown_timer = 40 SECONDS
+	cooldown_timer = HUNTER_SILENCE_COOLDOWN
 
 /datum/action/xeno_action/activable/silence/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
