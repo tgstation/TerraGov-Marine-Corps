@@ -456,12 +456,8 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 
 	check_distance = min(fully_legal_turfs.len, check_distance) //Cap the check distance to the number of fully legal turfs
 	T = X.loc //Reset T to be our initial position
-
-	for (var/y = 1 to check_distance) //Cycle through the fully legal turfs now
-		temp_turf = fully_legal_turfs[y]
-		if(!temp_turf) //if the Turf doesn't exist, cancel out
-			break
-		T = temp_turf
+	if(check_distance)
+		T = fully_legal_turfs[check_distance]
 
 	X.face_atom(T) //Face the target so we don't look like an ass
 
