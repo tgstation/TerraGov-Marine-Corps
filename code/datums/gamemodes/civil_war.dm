@@ -43,7 +43,7 @@
 
 /datum/game_mode/civil_war/announce()
 	to_chat(world, "<b>The current game mode is - Civil War!</b>")
-	to_chat(world, "<b>Capture and defend the constested zones to win. They are in blue on the minimap. Every 5 minutes (starting at 12:35), every controlled zone gives one point to your faction. The first to 30 wins!</b>")
+	to_chat(world, "<b>Capture and defend the constested zones to win. They are in blue on the minimap. Every 5 minutes (starting at 12:35), every controlled zone gives one point to your faction. The first to [points_needed] wins!</b>")
 	to_chat(world, "<b>WIP, report bugs on the github!</b>")
 
 /datum/game_mode/civil_war/set_valid_squads()
