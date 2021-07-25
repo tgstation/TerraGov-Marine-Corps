@@ -73,11 +73,8 @@ SUBSYSTEM_DEF(monitor)
 			if(gamestate != GROUNDSIDE)
 				return
 			for(var/area/disputed_zone AS in GLOB.zone_to_control)
-				if(length(LAZYACCESS(disputed_zone.alive_faction_member_in_area, FACTION_TERRAGOV)) > length(LAZYACCESS(disputed_zone.alive_faction_member_in_area, FACTION_TERRAGOV_REBEL)))
-					LAZYINCREMENT(points_per_faction, FACTION_TERRAGOV)
-					continue
-				if(length(LAZYACCESS(disputed_zone.alive_faction_member_in_area, FACTION_TERRAGOV)) < length(LAZYACCESS(disputed_zone.alive_faction_member_in_area, FACTION_TERRAGOV_REBEL)))
-					LAZYINCREMENT(points_per_faction, FACTION_TERRAGOV_REBEL)
+				if(disputed_zone.faction_controlling)
+					LAZYINCREMENT(points_per_faction, disputed_zone.faction_controlling)
 		else
 			can_fire = FALSE
 

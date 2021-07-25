@@ -61,6 +61,10 @@
 	var/max_ambience_cooldown = 120 SECONDS
 	///Assoc list of faction members in this area; only used in civil war to determine who controls this zone
 	var/list/alive_faction_member_in_area
+	///Who controls this area
+	var/faction_controlling = ""
+	///The center turf of this area, must be manually set by a landmark. Null in almost every case, used only for minimaps in civil war
+	var/turf/center_turf
 
 
 /area/New()
@@ -331,6 +335,7 @@
 /area/proc/set_to_contested()
 	RegisterSignal(src, COMSIG_AREA_ENTERED, .proc/add_faction_member)
 	RegisterSignal(src, COMSIG_AREA_EXITED, .proc/left_area)
+	minimap_color = MINIMAP_AREA_CONTESTED_ZONE
 
 ///Signal handler when something enters the disputed area.
 /area/proc/add_faction_member(datum/source, atom/movable/entered)
@@ -343,6 +348,7 @@
 		return
 	LAZYADDASSOC(alive_faction_member_in_area, living_entered.faction, living_entered)
 	RegisterSignal(living_entered, COMSIG_MOB_DEATH, .proc/remove_faction_member)
+	update_control_minimap_icon()
 
 ///Signal handler when something leave the contested area. If it's a mob, we stop listening for his death/revive.
 /area/proc/left_area(datum/source, atom/movable/left)
@@ -352,6 +358,7 @@
 	var/mob/living/living_left = left
 	LAZYREMOVEASSOC(alive_faction_member_in_area, living_left.faction, living_left)
 	UnregisterSignal(living_left, list(COMSIG_MOB_DEATH, COMSIG_MOB_REVIVE))
+	update_control_minimap_icon()
 
 ///Signal handler when a mob die in the disputed area. We are waiting for him to revive to count him again.
 /area/proc/remove_faction_member(datum/source, mob/living/died)
@@ -359,3 +366,20 @@
 	LAZYREMOVEASSOC(alive_faction_member_in_area, died.faction, died)
 	UnregisterSignal(died, COMSIG_MOB_DEATH)
 	RegisterSignal(died, COMSIG_MOB_REVIVE, .proc/add_faction_member)
+	update_control_minimap_icon()
+
+///Update the minimap blips to show who is controlling this area
+/area/proc/update_control_minimap_icon()
+	if(faction_controlling != FACTION_TERRAGOV && length(LAZYACCESS(alive_faction_member_in_area, FACTION_TERRAGOV)) > length(LAZYACCESS(alive_faction_member_in_area, FACTION_TERRAGOV_REBEL)))
+		faction_controlling = FACTION_TERRAGOV
+		SSminimaps.remove_marker(center_turf)
+		SSminimaps.add_marker(center_turf, center_turf.z, MINIMAP_FLAG_ALL, "loyalist_zone")
+		return
+	if(faction_controlling != FACTION_TERRAGOV_REBEL && length(LAZYACCESS(alive_faction_member_in_area, FACTION_TERRAGOV)) < length(LAZYACCESS(alive_faction_member_in_area, FACTION_TERRAGOV_REBEL)))
+		faction_controlling = FACTION_TERRAGOV_REBEL
+		SSminimaps.remove_marker(center_turf)
+		SSminimaps.add_marker(center_turf, center_turf.z, MINIMAP_FLAG_ALL, "rebel_zone")
+		return
+	if(faction_controlling)
+		faction_controlling = ""
+		SSminimaps.remove_marker(center_turf)

@@ -1405,7 +1405,6 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/obj/effect/landmark/zone_to_control,
 /turf/open/floor/tile/dark/yellow2{
 	dir = 4
 	},
@@ -8327,6 +8326,7 @@
 "aDS" = (
 /obj/item/weapon/gun/revolver/cmb,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/landmark/zone_to_control,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/command/control/office)
 "aDT" = (
@@ -31307,9 +31307,10 @@
 	},
 /area/ice_colony/underground/hallway/north_west)
 "dhJ" = (
+/obj/structure/cable,
 /obj/effect/landmark/zone_to_control,
-/turf/open/floor/tile/dark2,
-/area/ice_colony/surface/command/control/office)
+/turf/open/floor/podhatch/floor,
+/area/ice_colony/surface/engineering/generator)
 "dlO" = (
 /obj/machinery/miner/damaged,
 /turf/open/floor/plating/ground/snow/layer0,
@@ -56463,7 +56464,7 @@ arN
 aBj
 aBc
 aCA
-dhJ
+aCa
 aCB
 aCa
 aCa
@@ -72091,7 +72092,7 @@ aeP
 aej
 aej
 afU
-aej
+dhJ
 aeP
 aej
 adC
