@@ -39,7 +39,7 @@
 		/datum/job/terragov/squad/standard/rebel = -1
 	)
 	///How many points do you need to win
-	var/points_needed = 30
+	var/points_needed = 25
 
 /datum/game_mode/civil_war/announce()
 	to_chat(world, "<b>The current game mode is - Civil War!</b>")
