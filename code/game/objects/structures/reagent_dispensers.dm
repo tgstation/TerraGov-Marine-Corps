@@ -137,23 +137,15 @@
 /obj/structure/reagent_dispensers/fueltank/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-<<<<<<< HEAD
 	//if((!istype(I, /obj/item/stack/rods)) || (!istype(I, /obj/item/assembly_holder)) || (!istype(I, /obj/item/stack/sheet/metal)))
 	//	return
 	if(istype(I, /obj/item/stack/rods))
 		if(rig)
-			to_chat(user, "<span class='warning'>There is some sort of device in the way, better remove that.</span>")
+			to_chat(user, span_warning("There is some sort of device in the way, better remove that."))
 			return
 		if(modded)
-			to_chat(user, "<span class='warning'>This fuel tank is leaking! No good for our plans!</span>")
+			to_chat(user, span_warning("This fuel tank is leaking! No good for our plans!"))
 			return
-=======
-	if(!istype(I, /obj/item/assembly_holder))
-		return
-	if(rig)
-		to_chat(user, span_warning("There is another device in the way."))
-		return
->>>>>>> 931e6b995acba5e765c292076217dfc133345d55
 
 		user.visible_message("[user] begins making some sort of framework for \the [src] [I].",
 			"You begin making a framework on \the [src]")
@@ -161,26 +153,23 @@
 		if(do_after(user, 30, TRUE, src, BUSY_ICON_BUILD))
 			bombening = TRUE
 			I.use(4)
-			user.visible_message("<span class='notice'>[user] finishes making a frame around \the [src].</span>",
-				"<span class='notice'>You make a frame around \the [src].</span>")
+			user.visible_message(span_notice("[user] finishes making a frame around \the [src]."), span_notice("You make a frame around \the [src]."))
 			playsound(loc, 'sound/weapons/mine_armed.ogg', 25)
 			icon_state = "weldtank_bomb"
 			desc = "A fueltank. This one is prisonner within a cage of makeshift rods. It still can be used, if only much more annoyingly."
 			return
 
-<<<<<<< HEAD
 	if(istype(I, /obj/item/stack/sheet/metal))
 		if(rig)
-			to_chat(user, "<span class='warning'>There is some sort of device in the way, better remove that.</span>")
+			to_chat(user, span_warning("There is some sort of device in the way, better remove that."))
 			return
 		if(modded)
-			to_chat(user, "<span class='warning'>This fuel tank is leaking! No good for our plans!</span>")
+			to_chat(user, span_warning("This fuel tank is leaking! No good for our plans!"))
 			return
 		if(!bombening)
-			to_chat(user, "<span class='warning'>If you were possibly, hypothetically making a bomb out of this thing, you'd need a frame first.</span>")
+			to_chat(user, span_warning("If you were possibly, hypothetically making a bomb out of this thing, you'd need a frame first."))
 			return
-		user.visible_message("[user] begins adding some rough fins to the metal cage around \the [src] [I].",
-			"You begin adding some makeshift fins around \the [src]")
+		user.visible_message("[user] begins adding some rough fins to the metal cage around \the [src] [I].", "You begin adding some makeshift fins around \the [src]")
 		if(do_after(user, 30, TRUE, src, BUSY_ICON_BUILD))
 			I.use(3)
 			user.visible_message("[user] finishes their work on la creatura, an horrible mess of rods, metal and an innocent fuel tank, ready to be dropped onto some poor fool.",
@@ -199,19 +188,14 @@
 
 	if(istype(I, /obj/item/assembly_holder))
 		if(rig)
-			to_chat(user, "<span class='warning'>There is another device in the way.</span>")
+			to_chat(user, span_warning("There is another device in the way."))
 			return
-=======
-	user.visible_message(span_notice("[user] rigs [I] to \the [src]."), span_notice("You rig [I] to \the [src]."))
-	rig = I
-	user.transferItemToLoc(I, src)
->>>>>>> 931e6b995acba5e765c292076217dfc133345d55
 
 		user.visible_message("[user] begins rigging [I] to \the [src].", "You begin rigging [I] to \the [src]")
 		if(!do_after(user, 20, TRUE, src, BUSY_ICON_HOSTILE) || rig)
 			return
 
-		user.visible_message("<span class='notice'>[user] rigs [I] to \the [src].</span>", "<span class='notice'>You rig [I] to \the [src].</span>")
+		user.visible_message(span_notice("[user] rigs [I] to \the [src]."), span_notice("You rig [I] to \the [src]."))
 		rig = I
 		user.transferItemToLoc(I, src)
 
