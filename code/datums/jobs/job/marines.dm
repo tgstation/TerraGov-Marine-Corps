@@ -65,16 +65,18 @@ Make your way to the cafeteria for some post-cryosleep chow, and then get equipp
 	if(!playtime_mins || playtime_mins < 1 )
 		return
 	switch(playtime_mins)
-		if(0 to 600) // starting
+		if(0 to 900) // Starting rank - 0 hours
 			new_human.wear_id.paygrade = "E1"
-		if(601 to 6000) // 10hrs
+		if(901 to 4500) // Standard rank - 15 hours
 			new_human.wear_id.paygrade = "E2"
-		if(6001 to 18000) // 100 hrs
+		if(4501 to 9000) // Veteran rank - 75 hours
 			new_human.wear_id.paygrade = "E3"
-		if(18001 to 60000) // 300 hrs
-			new_human.wear_id.paygrade = "E3E"
-		if(60001 to INFINITY) // 1000 hrs
-			new_human.wear_id.paygrade = "E8" //If you play way too much TGMC. 1000 hours.
+		if(9001 to 18000) // Master rank - 150 hours
+			new_human.wear_id.paygrade = "E4"
+		if(18001 to 60000) // For those who grinded to SCPL so they aren't robbed - 300 hours
+			new_human.wear_id.paygrade = "E4E"
+		if(60001 to INFINITY) // Meme rank - 1000 hours
+			new_human.wear_id.paygrade = "E9" //If you play way too much TGMC. 1000 hours.
 
 /datum/job/terragov/squad/standard/radio_help_message(mob/M)
 	. = ..()
@@ -117,7 +119,7 @@ What you lack alone, you gain standing shoulder to shoulder with the men and wom
 //Squad Engineer
 /datum/job/terragov/squad/engineer
 	title = SQUAD_ENGINEER
-	paygrade = "E3"
+	paygrade = "E2"
 	comm_title = "Eng"
 	total_positions = 12
 	access = list(ACCESS_MARINE_PREP, ACCESS_MARINE_ENGPREP, ACCESS_CIVILIAN_ENGINEERING, ACCESS_MARINE_REMOTEBUILD, ACCESS_MARINE_ENGINEERING)
@@ -197,17 +199,19 @@ Your squaddies will look to you when it comes to construction in the field of ba
 	if(!playtime_mins || playtime_mins < 1 )
 		return
 	switch(playtime_mins)
-		if(0 to 1500) // starting
+		if(0 to 900) // Starting rank - 0 hours
+			new_human.wear_id.paygrade = "E2"
+		if(901 to 4500) // Standard rank - 15 hours
 			new_human.wear_id.paygrade = "E3"
-		if(1501 to 6000) // 25 hrs
+		if(4501 to 9000) // Veteran rank - 75 hours
 			new_human.wear_id.paygrade = "E4"
-		if(6001 to INFINITY) // 100 hrs
+		if(9001 to INFINITY) // Master rank - 150 hours
 			new_human.wear_id.paygrade = "E5"
 
 //Squad Corpsman
 /datum/job/terragov/squad/corpsman
 	title = SQUAD_CORPSMAN
-	paygrade = "E3"
+	paygrade = "E2"
 	comm_title = "Med"
 	total_positions = 16
 	access = list(ACCESS_MARINE_PREP, ACCESS_MARINE_MEDPREP, ACCESS_MARINE_MEDBAY)
@@ -296,17 +300,19 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 	if(!playtime_mins || playtime_mins < 1 )
 		return
 	switch(playtime_mins)
-		if(0 to 1500) // starting
+		if(0 to 900) // Starting rank - 0 hours
+			new_human.wear_id.paygrade = "E2"
+		if(901 to 4500) // Standard rank - 15 hours
 			new_human.wear_id.paygrade = "E3"
-		if(1501 to 6000) // 25 hrs
+		if(4501 to 9000) // Veteran rank - 75 hours
 			new_human.wear_id.paygrade = "E4"
-		if(6001 to INFINITY) // 100 hrs
+		if(9001 to INFINITY) // Master rank - 150 hours
 			new_human.wear_id.paygrade = "E5"
 
 //Squad Smartgunner
 /datum/job/terragov/squad/smartgunner
 	title = SQUAD_SMARTGUNNER
-	paygrade = "E3"
+	paygrade = "E2"
 	comm_title = "SGnr"
 	total_positions = 4
 	access = list(ACCESS_MARINE_PREP, ACCESS_MARINE_SMARTPREP)
@@ -348,11 +354,13 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 	if(!playtime_mins || playtime_mins < 1 )
 		return
 	switch(playtime_mins)
-		if(0 to 1500) // starting
+		if(0 to 900) // Starting rank - 0 hours
+			new_human.wear_id.paygrade = "E2"
+		if(901 to 4500) // Standard rank - 15 hours
 			new_human.wear_id.paygrade = "E3"
-		if(1501 to 6000) // 25 hrs
+		if(4501 to 9000) // Veteran rank - 75 hours
 			new_human.wear_id.paygrade = "E4"
-		if(6001 to INFINITY) // 100 hrs
+		if(9001 to INFINITY) // Master rank - 150 hours
 			new_human.wear_id.paygrade = "E5"
 
 /datum/outfit/job/marine/smartgunner
@@ -531,12 +539,14 @@ You are also in charge of communicating with command and letting them know about
 	var/mob/living/carbon/human/new_human = C
 	var/playtime_mins = user?.client?.get_exp(title)
 	switch(playtime_mins)
-		if(0 to 1500) // starting
+		if(0 to 900) // Starting rank - 0 hours
 			new_human.wear_id.paygrade = "E5"
-		if(1501 to 7500) // 25 hrs
+		if(901 to 4500) // Standard rank - 15 hours
 			new_human.wear_id.paygrade = "E6"
-		if(7501 to INFINITY) // 125 hrs
+		if(4501 to 9000) // Veteran rank - 75 hours
 			new_human.wear_id.paygrade = "E7"
+		if(9001 to INFINITY) // Master rank - 150 hours
+			new_human.wear_id.paygrade = "E8"
 	if(!latejoin)
 		return
 	if(!new_human.assigned_squad)
