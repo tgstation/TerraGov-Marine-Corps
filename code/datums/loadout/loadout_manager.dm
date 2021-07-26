@@ -14,9 +14,11 @@
 
 ///Remove the data of a loadout from the loadouts list
 /datum/loadout_manager/proc/delete_loadout(mob/user, loadout_name, loadout_job)
-	for(var/loadout_data in loadouts_data)
+	for(var/i in 1 to length(loadouts_data))
+		var/list/loadout_data = loadouts_data[i]
 		if(loadout_data[1] == loadout_job && loadout_data[2] == loadout_name)
-			loadouts_data -= loadout_data
+			loadouts_data[i] = null
+			user.client?.prefs.save_loadout_list(loadouts_data, CURRENT_LOADOUT_VERSION)
 			return
 
 
