@@ -103,26 +103,26 @@
 
 /obj/machinery/deployable/mounted/sentry/on_set_interaction(mob/user)
 	. = ..()
-	to_chat(user, "<span class='notice'>You disable the [src]'s automatic to operate it manually.</span>")
+	to_chat(user, span_notice("You disable the [src]'s automatic to operate it manually."))
 	set_on(FALSE)
 
 /obj/machinery/deployable/mounted/sentry/on_unset_interaction(mob/user)
 	. = ..()
-	to_chat(user, "<span class='notice'>You stop using the [src] and its automatic functions re-activate</span>")
+	to_chat(user, span_notice("You stop using the [src] and its automatic functions re-activate"))
 	set_on(TRUE)
 
 /obj/machinery/deployable/mounted/sentry/attack_hand(mob/living/user)
 	. = ..()
 	if(!. || !CHECK_BITFIELD(machine_stat, KNOCKED_DOWN))
 		return
-	user.visible_message("<span class='notice'>[user] begins to set [src] upright.</span>",
-	"<span class='notice'>You begin to set [src] upright.</span>")
+	user.visible_message(span_notice("[user] begins to set [src] upright."),
+		span_notice("You begin to set [src] upright.</span>"))
 
 	if(!do_after(user, 2 SECONDS, TRUE, src, BUSY_ICON_BUILD))
 		return
 
-	user.visible_message("<span class='notice'>[user] sets [src] upright.</span>",
-	"<span class='notice'>You set [src] upright.</span>")
+	user.visible_message(span_notice("[user] sets [src] upright."),
+		span_notice("You set [src] upright."))
 
 	DISABLE_BITFIELD(machine_stat, KNOCKED_DOWN)
 	density = TRUE
@@ -141,7 +141,7 @@
 		return TRUE
 	
 	if(CHECK_BITFIELD(gun.turret_flags, TURRET_IMMOBILE))
-		to_chat(user, "<span class='warning'>[src]'s panel is completely locked, you can't do anything.</span>")
+		to_chat(user, span_warning("[src]'s panel is completely locked, you can't do anything."))
 		return TRUE
 
 	ui_interact(user)
@@ -192,9 +192,9 @@
 		if("safety")
 			TOGGLE_BITFIELD(gun.turret_flags, TURRET_SAFETY)
 			var/safe = CHECK_BITFIELD(gun.turret_flags, TURRET_SAFETY)
-			user.visible_message("<span class='warning'>[user] [safe ? "" : "de"]activates [src]'s safety lock.</span>",
-			"<span class='warning'>You [safe ? "" : "de"]activate [src]'s safety lock.</span>")
-			visible_message("<span class='warning'>A red light on [src] blinks brightly!")
+			user.visible_message(span_warning("[user] [safe ? "" : "de"]activates [src]'s safety lock."),
+				span_warning("You [safe ? "" : "de"]activate [src]'s safety lock.</span>"))
+			visible_message(span_warning("A red light on [src] blinks brightly!"))
 			update_static_data(user)
 			. = TRUE
 
@@ -214,8 +214,8 @@
 		if("toggle_alert")
 			TOGGLE_BITFIELD(gun.turret_flags, TURRET_ALERTS)
 			var/alert = CHECK_BITFIELD(gun.turret_flags, TURRET_ALERTS)
-			user.visible_message("<span class='notice'>[user] [alert ? "" : "de"]activates [src]'s alert notifications.</span>",
-			"<span class='notice'>You [alert ? "" : "de"]activate [src]'s alert notifications.</span>")
+			user.visible_message(span_notice("[user] [alert ? "" : "de"]activates [src]'s alert notifications."),
+				span_notice("You [alert ? "" : "de"]activate [src]'s alert notifications."))
 			say("Alert notification system [alert ? "initiated" : "deactivated"]")
 			update_static_data(user)
 			. = TRUE
@@ -223,7 +223,7 @@
 		if("toggle_radial")
 			TOGGLE_BITFIELD(gun.turret_flags, TURRET_RADIAL)
 			var/rad_msg = CHECK_BITFIELD(gun.turret_flags, TURRET_RADIAL) ? "activate" : "deactivate"
-			user.visible_message("<span class='notice'>[user] [rad_msg]s [src]'s radial mode.</span>", "<span class='notice'>You [rad_msg] [src]'s radial mode.</span>")
+			user.visible_message(span_notice("[user] [rad_msg]s [src]'s radial mode."), span_notice("You [rad_msg] [src]'s radial mode."))
 			say("Radial mode [rad_msg]d.")
 			update_static_data(user)
 			. = TRUE
@@ -234,7 +234,7 @@
 /obj/machinery/deployable/mounted/sentry/proc/set_on(new_state)
 	var/obj/item/weapon/gun/gun = internal_item
 	if(!new_state)
-		visible_message("<span class='notice'>The [name] powers down and goes silent.</span>")
+		visible_message(span_notice("The [name] powers down and goes silent."))
 		DISABLE_BITFIELD(gun.turret_flags, TURRET_ON)
 		gun.set_target(null)
 		set_light(0)
@@ -244,7 +244,7 @@
 		return
 
 	ENABLE_BITFIELD(gun.turret_flags, TURRET_ON)
-	visible_message("<span class='notice'>The [name] powers up with a warm hum.</span>")
+	visible_message(span_notice("The [name] powers up with a warm hum."))
 	set_light_range(initial(light_power))
 	set_light_color(initial(light_color))
 	set_light(SENTRY_LIGHT_POWER)
@@ -256,7 +256,7 @@
 /obj/machinery/deployable/mounted/sentry/proc/knock_down()
 	if(CHECK_BITFIELD(machine_stat, KNOCKED_DOWN))
 		return
-	visible_message("<span class='danger'>The [name] is knocked over!</span>")
+	visible_message(span_highdanger("The [name] is knocked over!"))
 	sentry_alert(SENTRY_ALERT_FALLEN)
 	ENABLE_BITFIELD(machine_stat, KNOCKED_DOWN)
 	density = FALSE
