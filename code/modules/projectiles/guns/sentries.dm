@@ -9,11 +9,12 @@
 	max_integrity = 200
 
 	fire_delay = 0.75 SECONDS
-	burst_delay = 0.3 SECONDS
-	scatter = 0
+	extra_delay = 0.3 SECONDS
+	burst_delay = 0.25 SECONDS
+	scatter = 20
 	scatter_unwielded = 0
 	burst_scatter_mult = 0
-	burst_amount = 4
+	burst_amount = 6
 
 	turret_flags = TURRET_HAS_CAMERA|TURRET_SAFETY|TURRET_ALERTS
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER|GUN_DEPLOYED_FIRE_ONLY|GUN_WIELDED_FIRING_ONLY|GUN_IS_SENTRY|GUN_IFF
@@ -52,17 +53,16 @@
 /obj/item/storage/box/sentry/Initialize()
 	. = ..()
 	new /obj/item/weapon/gun/sentry/big_sentry(src)
+	new /obj/item/ammo_magazine/sentry(src)
 	new /obj/item/cell/lasgun/lasrifle/marine(src)
 	new /obj/item/cell/lasgun/lasrifle/marine(src)
-	new /obj/item/ammo_magazine/sentry(src)
-	new /obj/item/ammo_magazine/sentry(src)
 
 /obj/item/weapon/gun/sentry/big_sentry
 	name = "\improper UA 571-C sentry gun"
 	desc = "A deployable, semi-automated turret with AI targeting capabilities. Armed with a M30 autocannon and a 25-round box magazine."
 	icon_state = "sentry"
 
-	turret_range = 9
+	turret_range = 8
 	deploy_time = 12 SECONDS
 	max_shells = 50
 
@@ -95,7 +95,6 @@
 	. = ..()
 	new /obj/item/weapon/gun/sentry/mini(src)
 	new /obj/item/ammo_magazine/minisentry(src)
-	new /obj/item/ammo_magazine/minisentry(src)
 	new /obj/item/cell/lasgun/lasrifle/marine(src)
 	new /obj/item/cell/lasgun/lasrifle/marine(src)
 
@@ -104,7 +103,7 @@
 	desc = "A deployable, automated turret with AI targeting capabilities. This is a lightweight portable model meant for rapid deployment and point defense. Armed with an light, high velocity machine gun and a 100-round drum magazine."
 	icon_state = "minisentry"
 
-	max_shells = 150
+	max_shells = 100
 	knockdown_threshold = 80
 
 	ammo = /datum/ammo/bullet/turret/mini
@@ -120,11 +119,13 @@
 	name = "UA-577 Gauss Turret"
 	desc = "A deployable, semi-automated turret with AI targeting capabilities. Armed with an armor penetrating MIC Gauss Cannon and a high-capacity drum magazine."
 	icon_state = "sentry"
-	turret_flags = TURRET_HAS_CAMERA|TURRET_ON|TURRET_BURSTFIRE|TURRET_IMMOBILE|TURRET_SAFETY|TURRET_RADIAL
-	max_shells = 50000
+	turret_flags = TURRET_HAS_CAMERA|TURRET_ON|TURRET_IMMOBILE|TURRET_SAFETY|TURRET_RADIAL
+	max_shells = 100
 
 	ammo = /datum/ammo/bullet/turret/gauss
-	current_mag = /obj/item/ammo_magazine/sentry_premade
+	current_mag = /obj/item/ammo_magazine/sentry
+
+	gun_firemode_list = list(GUN_FIREMODE_BURSTFIRE)
 	flags_item = IS_DEPLOYABLE|TWOHANDED|DEPLOYED_NO_PICKUP|DEPLOY_ON_INITIALIZE
 
 /obj/item/weapon/gun/sentry/premade/dumb
@@ -134,21 +135,21 @@
 	ammo = /datum/ammo/bullet/turret/dumb
 	current_mag = /obj/item/ammo_magazine/sentry_premade/dumb
 	max_shells = 500
-	turret_flags = TURRET_ON|TURRET_BURSTFIRE|TURRET_IMMOBILE|TURRET_SAFETY|TURRET_RADIAL
+	turret_flags = TURRET_ON|TURRET_IMMOBILE|TURRET_SAFETY|TURRET_RADIAL
 
 /obj/item/weapon/gun/sentry/premade/dumb/hostile
 	name = "malfunctioning UA 571-C sentry gun"
 	desc = "Oh god oh fuck."
-	turret_flags = TURRET_LOCKED|TURRET_ON|TURRET_BURSTFIRE|TURRET_IMMOBILE|TURRET_RADIAL
+	turret_flags = TURRET_LOCKED|TURRET_ON|TURRET_IMMOBILE|TURRET_RADIAL
 	sentry_iff_signal = NONE
 
 
 /obj/item/weapon/gun/sentry/premade/dropship
 	name = "UA-577 Gauss Dropship Turret"
 	density = FALSE
-	turret_flags = TURRET_HAS_CAMERA|TURRET_BURSTFIRE|TURRET_IMMOBILE
+	turret_flags = TURRET_HAS_CAMERA|TURRET_IMMOBILE
 	var/obj/structure/dropship_equipment/sentry_holder/deployment_system
-	current_mag = /obj/item/ammo_magazine/sentry_premade/dropship
+	current_mag = /obj/item/ammo_magazine/sentry
 	sentry_iff_signal = TGMC_LOYALIST_IFF
 
 /obj/item/weapon/gun/sentry/premade/canterbury

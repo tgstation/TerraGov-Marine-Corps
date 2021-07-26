@@ -1040,11 +1040,12 @@ datum/ammo/bullet/revolver/tp44
 	name = "heavy gauss turret slug"
 	damage = 60
 	accurate_range = 5
+
 /datum/ammo/bullet/turret/mini
 	name = "small caliber autocannon bullet"
 	damage = 25
 	penetration = 5
-	sundering = 5
+	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SENTRY
 
 
 /datum/ammo/bullet/machinegun //Adding this for the MG Nests (~Art)

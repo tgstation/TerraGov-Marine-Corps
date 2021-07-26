@@ -717,7 +717,7 @@ and you're good to go.
 	//The gun should return the bullet that it already loaded from the end cycle of the last Fire().
 	var/obj/projectile/projectile_to_fire = load_into_chamber(gun_user) //Load a bullet in or check for existing one.
 	in_chamber = null //Projectiles live and die fast. It's better to null the reference early so the GC can handle it immediately.
-	if(!projectile_to_fire && !CHECK_BITFIELD(flags_gun_features, GUN_DEPLOYED_FIRE_ONLY)) //If there is nothing to fire, click.
+	if(!projectile_to_fire) //If there is nothing to fire, click.
 		click_empty(gun_user)
 		return
 
@@ -937,12 +937,16 @@ and you're good to go.
 				if(GUN_SKILL_SMARTGUN)
 					if(user.skills.getRating(gun_skill_category) < 0)
 						added_delay -= 2 * user.skills.getRating(gun_skill_category)
+	var/delay = last_fired + added_delay
+	if(gun_firemode == GUN_FIREMODE_BURSTFIRE)
+		delay += extra_delay
 
-	if(world.time >= last_fired + added_delay + extra_delay) //check the last time it was fired.
+	if(world.time >= delay)
 		return FALSE
 
 	if(world.time % 3 && !user?.client?.prefs.mute_self_combat_messages)
 		to_chat(user, "<span class='warning'>[src] is not ready to fire again!</span>")
+
 	return TRUE
 
 
