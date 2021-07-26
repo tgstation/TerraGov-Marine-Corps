@@ -199,18 +199,26 @@
 	switch(paygrade)
 		if("C")
 			. = size ? "" : "Civilian"
+		if("MI")
+			. = size ? "MI " : "Medical Intern"
 		if("CD")
 			. = size ? "Dr. " : "Doctor"
 		if("PROF")
 			. = size ? "Prof. " : "Professor"
+		if("RDIR")
+			. = size ? "RDIR " : "Research Director"
 		if("RES")
 			. = size ? "RES " : "Medical Resident"
 		if("MD")
 			. = size ? "MD " : "Medical Doctor"
-		if("CHO")
-			. = size ? "CHO " : "Chief Health Officer"
+		if("SRMD")
+			. = size ? "SRMD " : "Senior Medical Doctor"
+		if("MDIR")
+			. = size ? "MDIR " : "Medical Director"
 		if("CMO")
 			. = size ? "CMO " : "Chief Medical Officer"
+		if("HOM")
+			. = size ? "HOM " : "Head of Medicine"
 		if("CMN")
 			. = size ? "CMN" : "Crewman"
 		if("PMC1")
@@ -233,10 +241,10 @@
 			. = size ? "PFC " : "Private First Class"
 		if("E3")
 			. = size ? "LCPL " : "Lance Corporal"
-		if("E3E")
-			. = size ? "SCPL " : "Section Corporal" //Anachronistic if we're going by common US ranks, above E3 but below E4.
 		if("E4")
 			. = size ? "CPL " : "Corporal"
+		if("E4E")
+			. = size ? "SCPL " : "Section Corporal" //Anachronistic if we're going by common US ranks, above E4 but below E5. Basically like Specialist vs Corporal in the Army
 		if("E5")
 			. = size ? "SGT " : "Sergeant"
 		if("E6")
@@ -262,7 +270,7 @@
 		if("O5")
 			. = size ? "CDR " : "Commander"
 		if("O6")
-			. = size ? "CPT " : "Captain"
+			. = size ? "CAPT " : "Captain"
 		if("O7")
 			. = size ? "COMM " : "Commodore"
 		if("O8")
@@ -289,6 +297,8 @@
 			. = size ? "MAJ " : "Major"
 		if("MO5")
 			. = size ? "LtCol " : "Lieutenant Colonel"
+		if("MO6")
+			. = size ? "Col " : "Colonel"
 		if("UPP1")
 			. = size ? "UGNR " : "USL Gunner"
 		if("UPP2")
@@ -345,6 +355,8 @@
 			. = size ? "MERC " : "MERC Engineer"
 		if("VM")
 			. = size ? "VAT " : "VatGrown Marine"
+		if("Mk.IV")
+			. = size ? "Mk.IV " : "Mark IV"
 		if("Mk.III")
 			. = size ? "Mk.III " : "Mark III"
 		if("Mk.II")
