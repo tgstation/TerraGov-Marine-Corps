@@ -148,10 +148,10 @@ GLOBAL_PROTECT(exp_specialmap)
 
 /datum/job/proc/radio_help_message(mob/M)
 	to_chat(M, {"
-<span class='role_body'>|______________________|</span>
-<span class='role_header'>You are \an [title]!</span>
-<span class='role_body'>As \an <b>[title]</b> you answer to [supervisors]. Special circumstances may change this.</span>
-<span class='role_body'>|______________________|</span>
+[span_role_body("|______________________|")]
+[span_role_header("You are \an [title]!")]
+[span_role_body("As \an <b>[title]</b> you answer to [supervisors]. Special circumstances may change this.")]
+[span_role_body("|______________________|")]
 "})
 	if(!(job_flags & JOB_FLAG_NOHEADSET))
 		to_chat(M, "<b>Prefix your message with ; to speak on the default radio channel. To see other prefixes, look closely at your headset.</b>")

@@ -230,11 +230,11 @@
 			success = TRUE
 			S.handle_item_insertion(IM, TRUE, user)	//The 1 stops the "You put the [src] into [S]" insertion message from being displayed.
 		if(success && !failure)
-			to_chat(user, "<span class='notice'>You put everything in [S].</span>")
+			to_chat(user, span_notice("You put everything in [S]."))
 		else if(success)
-			to_chat(user, "<span class='notice'>You put some things in [S].</span>")
+			to_chat(user, span_notice("You put some things in [S]."))
 		else
-			to_chat(user, "<span class='notice'>You fail to pick anything up with [S].</span>")
+			to_chat(user, span_notice("You fail to pick anything up with [S]."))
 
 	else if(S.can_be_inserted(src))
 		S.handle_item_insertion(src, FALSE, user)
@@ -260,8 +260,8 @@
 	if(current_acid) //handle acid removal
 		if(!ishuman(user)) //gotta have limbs Morty
 			return
-		user.visible_message("<span class='danger'>Corrosive substances seethe all over [user] as it retrieves the acid-soaked [src]!</span>",
-		"<span class='danger'>Corrosive substances burn and seethe all over you upon retrieving the acid-soaked [src]!</span>")
+		user.visible_message(span_danger("Corrosive substances seethe all over [user] as it retrieves the acid-soaked [src]!"),
+		span_danger("Corrosive substances burn and seethe all over you upon retrieving the acid-soaked [src]!"))
 		playsound(user, "acid_hit", 25)
 		var/mob/living/carbon/human/H = user
 		var/armor_block
@@ -385,7 +385,7 @@
 
 	if(CHECK_BITFIELD(flags_item, NODROP) && slot != SLOT_L_HAND && slot != SLOT_R_HAND && !override_nodrop) //No drops can only be equipped to a hand slot
 		if(slot == SLOT_L_HAND || slot == SLOT_R_HAND)
-			to_chat(M, "<span class='notice'>[src] is stuck to our hand!</span>")
+			to_chat(M, span_notice("[src] is stuck to our hand!"))
 		return FALSE
 
 	if(!ishuman(M))
@@ -400,7 +400,7 @@
 		return FALSE
 
 	if(issynth(H) && CHECK_BITFIELD(flags_item, SYNTH_RESTRICTED) && !CONFIG_GET(flag/allow_synthetic_gun_use))
-		to_chat(H, "<span class='warning'>Your programming prevents you from wearing this.</span>")
+		to_chat(H, span_warning("Your programming prevents you from wearing this."))
 		return FALSE
 
 	switch(slot)
@@ -447,7 +447,7 @@
 				return FALSE
 			if(!H.w_uniform && (SLOT_W_UNIFORM in mob_equip))
 				if(warning)
-					to_chat(H, "<span class='warning'>You need a jumpsuit before you can attach this [name].</span>")
+					to_chat(H, span_warning("You need a jumpsuit before you can attach this [name]."))
 				return FALSE
 			if(!(flags_equip_slot & ITEM_SLOT_BELT))
 				return FALSE
@@ -487,7 +487,7 @@
 				return FALSE
 			if(!H.w_uniform && (SLOT_W_UNIFORM in mob_equip))
 				if(warning)
-					to_chat(H, "<span class='warning'>You need a jumpsuit before you can attach this [name].</span>")
+					to_chat(H, span_warning("You need a jumpsuit before you can attach this [name]."))
 				return FALSE
 			if(flags_equip_slot & ITEM_SLOT_DENYPOCKET)
 				return FALSE
@@ -498,7 +498,7 @@
 				return FALSE
 			if(!H.w_uniform && (SLOT_W_UNIFORM in mob_equip))
 				if(warning)
-					to_chat(H, "<span class='warning'>You need a jumpsuit before you can attach this [name].</span>")
+					to_chat(H, span_warning("You need a jumpsuit before you can attach this [name]."))
 				return FALSE
 			if(flags_equip_slot & ITEM_SLOT_DENYPOCKET)
 				return FALSE
@@ -510,7 +510,7 @@
 				return FALSE
 			if(!H.wear_suit && (SLOT_WEAR_SUIT in mob_equip))
 				if(warning)
-					to_chat(H, "<span class='warning'>You need a suit before you can attach this [name].</span>")
+					to_chat(H, span_warning("You need a suit before you can attach this [name]."))
 				return FALSE
 			if(!H.wear_suit.allowed)
 				if(warning)
@@ -675,24 +675,25 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 
 
 	if(is_blind(user))
-		to_chat(user, "<span class='warning'>You are too blind to see anything.</span>")
+		to_chat(user, span_warning("You are too blind to see anything."))
 		return
 
 	if(!user.dextrous)
-		to_chat(user, "<span class='warning'>You do not have the dexterity to use \the [zoom_device].</span>")
+		to_chat(user, span_warning("You do not have the dexterity to use \the [zoom_device]."))
 		return
 
 	if(!zoom && user.tinttotal >= TINT_5)
-		to_chat(user, "<span class='warning'>Your vision is too obscured for you to look through \the [zoom_device].</span>")
+		to_chat(user, span_warning("Your vision is too obscured for you to look through \the [zoom_device]."))
 		return
 
 	if(zoom) //If we are zoomed out, reset that parameter.
-		user.visible_message("<span class='notice'>[user] looks up from [zoom_device].</span>",
-		"<span class='notice'>You look up from [zoom_device].</span>")
+		user.visible_message(span_notice("[user] looks up from [zoom_device]."),
+		span_notice("You look up from [zoom_device]."))
 		zoom = FALSE
 		UnregisterSignal(user, COMSIG_ITEM_ZOOM)
 		onunzoom(user)
 		TIMER_COOLDOWN_START(user, COOLDOWN_ZOOM, 2 SECONDS)
+		SEND_SIGNAL(user, COMSIG_ITEM_UNZOOM)
 
 		if(user.interactee == src)
 			user.unset_interaction()
@@ -709,7 +710,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 	TIMER_COOLDOWN_START(user, COOLDOWN_ZOOM, 2 SECONDS)
 
 	if(SEND_SIGNAL(user, COMSIG_ITEM_ZOOM) &  COMSIG_ITEM_ALREADY_ZOOMED)
-		to_chat(user, "<span class='warning'>You are already looking through another zoom device..</span>")
+		to_chat(user, span_warning("You are already looking through another zoom device.."))
 		return
 
 	if(user.client)
@@ -732,8 +733,8 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 				user.client.pixel_x = -viewoffset
 				user.client.pixel_y = 0
 
-	user.visible_message("<span class='notice'>[user] peers through \the [zoom_device].</span>",
-	"<span class='notice'>You peer through \the [zoom_device].</span>")
+	user.visible_message(span_notice("[user] peers through \the [zoom_device]."),
+	span_notice("You peer through \the [zoom_device]."))
 	zoom = TRUE
 	RegisterSignal(user, COMSIG_ITEM_ZOOM, .proc/zoom_check_return)
 	onzoom(user)
@@ -775,19 +776,19 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 			E.take_damage(rand(12, 16), TRUE)
 	if(safety<2)
 		if(E.damage >= E.min_broken_damage)
-			to_chat(H, "<span class='danger'>You can't see anything!</span>")
+			to_chat(H, span_danger("You can't see anything!"))
 			H.blind_eyes(1)
 		else if (E.damage >= E.min_bruised_damage)
-			to_chat(H, "<span class='warning'>Your eyes are really starting to hurt. This can't be good for you!</span>")
+			to_chat(H, span_warning("Your eyes are really starting to hurt. This can't be good for you!"))
 			H.blind_eyes(5)
 		else
 			switch(safety)
 				if(1)
-					to_chat(user, "<span class='warning'>Your eyes sting a little.</span>")
+					to_chat(user, span_warning("Your eyes sting a little."))
 				if(0)
-					to_chat(user, "<span class='warning'>Your eyes burn.</span>")
+					to_chat(user, span_warning("Your eyes burn."))
 				if(-1)
-					to_chat(user, "<span class='danger'>Your eyes itch and burn severely.</span>")
+					to_chat(user, span_danger("Your eyes itch and burn severely."))
 
 
 
@@ -807,11 +808,11 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 
 /obj/item/proc/extinguish(atom/target, mob/user)
 	if (reagents.total_volume < 1)
-		to_chat(user, "<span class='warning'>\The [src]'s water reserves are empty.</span>")
+		to_chat(user, span_warning("\The [src]'s water reserves are empty."))
 		return
 
-	user.visible_message("<span class='danger'>[user] sprays water from [src]!</span>", \
-	"<span class='warning'>You spray water from [src].</span>",)
+	user.visible_message(span_danger("[user] sprays water from [src]!"), \
+	span_warning("You spray water from [src]."),)
 
 	playsound(user.loc, 'sound/effects/extinguish.ogg', 52, 1, 7)
 

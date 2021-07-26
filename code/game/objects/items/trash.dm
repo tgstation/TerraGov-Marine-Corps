@@ -95,7 +95,7 @@
 
 /obj/item/trash/fortunecookie/Initialize(mapload, ...)
 	. = ..()
-	desc = "The fortune reads. <br><span class='tip'>[pick(SSstrings.get_list_from_file("tips/marine"))]</span>"
+	desc = "The fortune reads. <br>[span_tip("[pick(SSstrings.get_list_from_file("tips/marine"))]")]"
 
 /obj/item/trash/c_tube
 	name = "cardboard tube"

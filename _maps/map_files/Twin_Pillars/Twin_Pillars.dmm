@@ -103,6 +103,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 10
 	},
+/obj/machinery/vending/armor_supply/rebel,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/squads/req/rebel)
 "agj" = (
@@ -2549,6 +2550,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
+/obj/machinery/vending/MarineMed/rebel,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req/rebel)
 "cqK" = (
@@ -4706,6 +4708,10 @@
 "erm" = (
 /turf/closed/wall/mainship,
 /area/mainship/squads/general)
+"erF" = (
+/obj/machinery/vending/MarineMed,
+/turf/open/floor/mainship/mono,
+/area/mainship/squads/req)
 "erM" = (
 /obj/machinery/disposal,
 /obj/structure/disposalpipe/trunk{
@@ -6403,6 +6409,10 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/starboard_hallway/rebel)
+"fNj" = (
+/obj/machinery/vending/uniform_supply,
+/turf/open/floor/mainship/mono,
+/area/mainship/squads/req/rebel)
 "fNt" = (
 /obj/structure/prop/mainship/name_stencil{
 	icon_state = "TGMC2"
@@ -18487,6 +18497,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 10
 	},
+/obj/machinery/vending/uniform_supply,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/squads/req)
 "qux" = (
@@ -24941,6 +24952,10 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/lower_medical/rebel)
+"vYM" = (
+/obj/machinery/vending/armor_supply/loyalist,
+/turf/open/floor/mainship/mono,
+/area/mainship/squads/req)
 "vZj" = (
 /obj/structure/closet/firecloset,
 /obj/item/reagent_containers/food/drinks/bottle/vodka,
@@ -24962,6 +24977,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
+/obj/machinery/vending/marine/shared/hvh/team_one,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
 "vZZ" = (
@@ -24995,6 +25011,10 @@
 /obj/item/bedsheet/medical,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/lower_medical)
+"wbE" = (
+/obj/machinery/vending/marine/shared/hvh,
+/turf/open/floor/mainship/mono,
+/area/mainship/squads/req/rebel)
 "wbQ" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 4
@@ -43229,8 +43249,8 @@ lHn
 veI
 bTF
 cqo
-xxw
-xxw
+wbE
+fNj
 afO
 mpD
 oJL
@@ -83968,8 +83988,8 @@ wtU
 sDy
 ugo
 vZN
-cAG
-cAG
+erF
+vYM
 qtU
 elA
 aSM

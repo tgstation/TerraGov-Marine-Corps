@@ -88,9 +88,9 @@
 
 		return
 	if(modded)
-		to_chat(user, "<span class='warning'> Fuel faucet is wrenched open, leaking the fuel!</span>")
+		to_chat(user, span_warning(" Fuel faucet is wrenched open, leaking the fuel!"))
 	if(rig)
-		to_chat(user, "<span class='notice'>There is some kind of device rigged to the tank.</span>")
+		to_chat(user, span_notice("There is some kind of device rigged to the tank."))
 
 /obj/structure/reagent_dispensers/fueltank/attack_hand(mob/living/user)
 	. = ..()
@@ -101,7 +101,7 @@
 	user.visible_message("[user] begins to detach [rig] from \the [src].", "You begin to detach [rig] from \the [src]...")
 	if(!do_after(user, 2 SECONDS, TRUE, src, BUSY_ICON_GENERIC))
 		return
-	user.visible_message("<span class='notice'>[user] detaches [rig] from \the [src].</span>", "<span class='notice'>You detach [rig] from \the [src].</span>")
+	user.visible_message(span_notice("[user] detaches [rig] from \the [src]."), span_notice("You detach [rig] from \the [src]."))
 	rig.forceMove(get_turf(user))
 	rig = null
 	cut_overlays()
@@ -120,16 +120,16 @@
 	var/obj/item/tool/weldingtool/W = I
 	if(!W.welding)
 		if(W.reagents.has_reagent(/datum/reagent/fuel, W.max_fuel))
-			to_chat(user, "<span class='warning'>Your [W.name] is already full!</span>")
+			to_chat(user, span_warning("Your [W.name] is already full!"))
 			return
 		reagents.trans_to(W, W.max_fuel)
 		W.weld_tick = 0
-		user.visible_message("<span class='notice'>[user] refills [W].</span>", "<span class='notice'>You refill [W].</span>")
+		user.visible_message(span_notice("[user] refills [W]."), span_notice("You refill [W]."))
 		playsound(loc, 'sound/effects/refill.ogg', 25, 1, 3)
 		return
 	log_explosion("[key_name(user)] triggered a fueltank explosion with a blowtorch at [AREACOORD(user.loc)].")
-	var/self_message = user.a_intent != INTENT_HARM ? "<span class='danger'>You begin welding on the fueltank, and in a last moment of lucidity realize this might not have been the smartest thing you've ever done.</span>" : "<span class='danger'>[src] catastrophically explodes in a wave of flames as you begin to weld it.</span>"
-	user.visible_message("<span class='warning'>[user] catastrophically fails at refilling \his [W.name]!</span>", self_message)
+	var/self_message = user.a_intent != INTENT_HARM ? span_danger("You begin welding on the fueltank, and in a last moment of lucidity realize this might not have been the smartest thing you've ever done.") : span_danger("[src] catastrophically explodes in a wave of flames as you begin to weld it.")
+	user.visible_message(span_warning("[user] catastrophically fails at refilling \his [W.name]!"), self_message)
 	explode()
 	return TRUE
 
@@ -137,6 +137,7 @@
 /obj/structure/reagent_dispensers/fueltank/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
+<<<<<<< HEAD
 	//if((!istype(I, /obj/item/stack/rods)) || (!istype(I, /obj/item/assembly_holder)) || (!istype(I, /obj/item/stack/sheet/metal)))
 	//	return
 	if(istype(I, /obj/item/stack/rods))
@@ -146,6 +147,13 @@
 		if(modded)
 			to_chat(user, "<span class='warning'>This fuel tank is leaking! No good for our plans!</span>")
 			return
+=======
+	if(!istype(I, /obj/item/assembly_holder))
+		return
+	if(rig)
+		to_chat(user, span_warning("There is another device in the way."))
+		return
+>>>>>>> 931e6b995acba5e765c292076217dfc133345d55
 
 		user.visible_message("[user] begins making some sort of framework for \the [src] [I].",
 			"You begin making a framework on \the [src]")
@@ -160,6 +168,7 @@
 			desc = "A fueltank. This one is prisonner within a cage of makeshift rods. It still can be used, if only much more annoyingly."
 			return
 
+<<<<<<< HEAD
 	if(istype(I, /obj/item/stack/sheet/metal))
 		if(rig)
 			to_chat(user, "<span class='warning'>There is some sort of device in the way, better remove that.</span>")
@@ -192,6 +201,11 @@
 		if(rig)
 			to_chat(user, "<span class='warning'>There is another device in the way.</span>")
 			return
+=======
+	user.visible_message(span_notice("[user] rigs [I] to \the [src]."), span_notice("You rig [I] to \the [src]."))
+	rig = I
+	user.transferItemToLoc(I, src)
+>>>>>>> 931e6b995acba5e765c292076217dfc133345d55
 
 		user.visible_message("[user] begins rigging [I] to \the [src].", "You begin rigging [I] to \the [src]")
 		if(!do_after(user, 20, TRUE, src, BUSY_ICON_HOSTILE) || rig)
