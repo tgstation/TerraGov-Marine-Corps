@@ -791,8 +791,8 @@
 			icon_state = "laser_beam"
 
 /obj/structure/dropship_equipment/weapon/railgun
-	name = "railgun"
-	icon_state = "laser_beam"
+	name = "Railgun"
+	icon_state = "railgun"
 	desc = "The pinnacle of technological development of TGMC, airborne railgun, it drives shells to insane speed by power stored in capacitor unit. Moving this will require some sort of lifter."
 	icon = 'icons/Marine/mainship_props64.dmi'
 	firing_sound = 'sound/effects/obfire.ogg'
@@ -803,12 +803,12 @@
 
 /obj/structure/dropship_equipment/weapon/railgun/update_icon()
 	if(ammo_equipped && ammo_equipped.ammo_count)
-		icon_state = "laser_beam_loaded"
+		icon_state = "railgun_loaded"
 	else
 		if(ship_base)
-			icon_state = "laser_beam_installed"
+			icon_state = "railgun_installed"
 		else
-			icon_state = "laser_beam"
+			icon_state = "railgun"
 
 /obj/structure/dropship_equipment/weapon/launch_bay
 	name = "launch bay"

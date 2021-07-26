@@ -213,8 +213,8 @@
 //railgun
 
 /obj/structure/ship_ammo/energy/railgun
-	name = "railgun ammunition unit"
-	icon_state = "laser_battery"
+	name = "Railgun ammunition"
+	icon_state = "railgun_ammo"
 	desc = "Changeable capacitors and projectiles clip in single unit, complexity of the design does not allow transfer of ammo. Used to fire railgun."
 	travelling_time = 2 SECONDS
 	equipment_type = /obj/structure/dropship_equipment/weapon/railgun
@@ -235,10 +235,22 @@
 	else
 		to_chat(user, "[name] is empty.")
 
+///Defining projectlie for versatile damage config and enabling bullet_act()
+/datum/ammo/bullet/cas_railgun
+
+/datum/ammo/bullet/cas_railgun/on_hit_mob()
+
 ///Rail ammo acts on the turf passed in
 /obj/structure/ship_ammo/energy/railgun/projectile_impact(turf/T)
 	playsound(T, 'sound/effects/explosion6.ogg', 4, 1)
-	T.ex_act(EXPLODE_DEVASTATE)
+	for (var/mob/living/carbon/xenomorph/X in T)
+		X.
+	for (var/obj/O in T)
+		O.ex_act(EXPLODE_DEVASTATE)
+	for (var/turf/closed/wall/W in T)
+		W.ex_act(EXPLODE_DEVASTATE)
+	for (var/mob/living/carbon/human/H in T)
+		H.ex_act(EXPLODE_DEVASTATE)
 	new /obj/effect/particle_effect/expl_particles(T)
 	new /obj/effect/temp_visual/heavyimpact(T)
 	T.ignite(2, 10) //very short
@@ -269,7 +281,7 @@
 /obj/structure/ship_ammo/rocket/widowmaker
 	name = "\improper AIM-224 'Widowmaker'"
 	desc = "The AIM-224 is the latest in air to air missile technology. Earning the nickname of 'Widowmaker' from various dropship pilots after improvements to its guidence warhead prevents it from being jammed leading to its high kill rate. Not well suited for ground bombardment, but its high velocity makes it reach its target quickly."
-	icon_state = "widowmaker"
+	icon_state = "single"
 	travelling_time = 3 SECONDS //not powerful, but reaches target fast
 	ammo_id = ""
 	point_cost = 75
