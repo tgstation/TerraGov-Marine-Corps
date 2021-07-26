@@ -976,6 +976,8 @@ TUNNEL
 	for (var/mob/living/nearby_hostile AS in potential_hostiles)
 		if(nearby_hostile.stat == DEAD)
 			continue
+		if(HAS_TRAIT(nearby_hostile, TRAIT_TURRET_HIDDEN))
+			continue
 		buffer_distance = get_dist(nearby_hostile, src)
 		if (distance <= buffer_distance) //If we already found a target that's closer
 			continue

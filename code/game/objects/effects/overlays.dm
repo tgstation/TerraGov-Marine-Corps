@@ -140,6 +140,7 @@
 	. = ..()
 	linked_cam = new(loc, name)
 	GLOB.active_cas_targets += src
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_CAS_LASER_CREATED, src)
 
 /obj/effect/overlay/temp/laser_target/cas/Destroy()
 	. = ..()
@@ -155,6 +156,7 @@
 
 /obj/effect/overlay/temp/laser_target/OB/Initialize(mapload, named, assigned_squad)
 	. = ..()
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_OB_LASER_CREATED, src)
 	GLOB.active_laser_targets += src
 
 /obj/effect/overlay/temp/laser_target/OB/Destroy()
