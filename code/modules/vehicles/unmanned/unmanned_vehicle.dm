@@ -255,11 +255,11 @@
 	icon_state = "medium_uv"
 	move_delay = 3
 	max_rounds = 200
-	max_integrity = 500
+	max_integrity = 400
 
 /obj/vehicle/unmanned/heavy
 	name = "heavy unmanned vehicle"
 	icon_state = "heavy_uv"
 	move_delay = 3.5
 	max_rounds = 200
-	max_integrity = 700
+	max_integrity = 600

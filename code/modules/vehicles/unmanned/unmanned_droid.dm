@@ -3,7 +3,7 @@
 	desc = "A prototype combat droid, first deployed as a prototype to fight the xeno menace in the frontier sytems."
 	icon_state = "droidcombat"
 	move_delay = 2.8
-	max_integrity = 300
+	max_integrity = 200
 	turret_pattern = PATTERN_DROID
 	gunnoise = 'sound/weapons/guns/fire/laser.ogg'
 	spawn_equipped_type = /obj/item/uav_turret/droid
