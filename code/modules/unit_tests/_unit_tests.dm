@@ -40,10 +40,9 @@
 #define TEST_DEFAULT 1
 #define TEST_DEL_WORLD -INFINITY
 
-#include "bespoke_id.dm"
+/* #include "bespoke_id.dm"
 #include "binary_insert.dm"
 #include "component_tests.dm"
-#include "del_test.dm"
 #include "initialize_sanity.dm"
 #include "keybinding_init.dm"
 #include "spawn_humans.dm"
@@ -51,10 +50,12 @@
 #include "subsystem_init.dm"
 #include "tgui_create_message.dm"
 #include "timer_sanity.dm"
-#include "unit_test.dm"
+
 #include "weed_ability.dm"
 #include "weed_spread.dm"
-#include "xeno_logical_scaling.dm"
+#include "xeno_logical_scaling.dm" */
+#include "del_test.dm"
+#include "unit_test.dm"
 
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL
