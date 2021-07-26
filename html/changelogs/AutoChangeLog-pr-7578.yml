@@ -1,4 +1,0 @@
-author: "QualityVan"
-delete-after: True
-changes: 
-  - balance: "Turrets won't target you when you're stealthed via hunter ability."

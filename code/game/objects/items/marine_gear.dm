@@ -220,3 +220,14 @@
 	. = ..()
 	if(slot == SLOT_BELT)
 		playsound(src,'sound/machines/click.ogg', 15, FALSE, 1)
+
+/obj/item/compass
+	name = "compass"
+	desc = "A small compass that can tell you your coordinates on use."
+	icon_state = "compass"
+	w_class = WEIGHT_CLASS_TINY
+
+/obj/item/compass/attack_self(mob/living/user)
+	. = ..()
+	var/turf/location = get_turf(src)
+	to_chat(user, span_notice("After looking at the [src] you can tell your general coordinates.") + span_bold(" LONGITUDE [location.x]. LATITUDE [location.y]."))
