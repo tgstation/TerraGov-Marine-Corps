@@ -43,7 +43,7 @@
 #include "bespoke_id.dm"
 #include "binary_insert.dm"
 #include "component_tests.dm"
-//#include "del_test.dm"
+#include "del_test.dm"
 #include "initialize_sanity.dm"
 #include "keybinding_init.dm"
 #include "spawn_humans.dm"
