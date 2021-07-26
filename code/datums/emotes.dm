@@ -181,9 +181,10 @@
 
 		if(flags_emote & EMOTE_ARMS_CHECK)
 			if(ishuman(user))
-				var/mob/living/carbon/human/driver = user
-				var/datum/limb/left_hand = driver.get_limb("l_hand")
-				var/datum/limb/right_hand = driver.get_limb("r_hand")
+				///okay snapper
+				var/mob/living/carbon/snapper = user
+				var/datum/limb/left_hand = snapper.get_limb("l_hand")
+				var/datum/limb/right_hand = snapper.get_limb("r_hand")
 				if((left_hand.limb_status & LIMB_DESTROYED) && (right_hand.limb_status & LIMB_DESTROYED))
 					to_chat(user, span_notice("You cannot [key] without an arm."))
 					return FALSE
