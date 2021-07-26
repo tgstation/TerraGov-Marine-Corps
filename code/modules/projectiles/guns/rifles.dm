@@ -911,7 +911,7 @@
 	item_state = "t25"
 	caliber = CALIBER_10x26_CASELESS //codex
 	max_shells = 50 //codex
-	force = 35
+	force = 25
 	aim_slowdown = 0.55
 	wield_delay = 0.6 SECONDS
 	fire_sound = "gun_smartgun"
