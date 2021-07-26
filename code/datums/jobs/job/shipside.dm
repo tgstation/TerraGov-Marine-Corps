@@ -9,8 +9,8 @@
 /datum/job/terragov/command/captain
 	title = CAPTAIN
 	req_admin_notify = TRUE
-	paygrade = "O6"
-	comm_title = "CPT"
+	paygrade = "O5"
+	comm_title = "CAPT"
 	supervisors = "TGMC high command"
 	selection_color = "#ccccff"
 	total_positions = 1
@@ -88,11 +88,13 @@ Godspeed, captain! And remember, you are not above the law."})
 	if(!playtime_mins || playtime_mins < 1 )
 		return
 	switch(playtime_mins)
-		if(0 to 1500) // starting
+		if(0 to 900) // Starting rank - 0 hours
+			new_human.wear_id.paygrade = "O5"
+		if(901 to 4500) // Standard rank - 15 hours
 			new_human.wear_id.paygrade = "O6"
-		if(1501 to 7500) // 25hrs
+		if(4501 to 9000) // Veteran rank - 75 hours
 			new_human.wear_id.paygrade = "O7"
-		if(7501 to INFINITY) //125 hrs
+		if(9001 to INFINITY) // Master rank - 150 hours
 			new_human.wear_id.paygrade = "O8"
 
 //Field Commander
@@ -157,12 +159,14 @@ Make the TGMC proud!"})
 	if(!playtime_mins || playtime_mins < 1 )
 		return
 	switch(playtime_mins)
-		if(0 to 1500) //starting
+		if(0 to 900) // Starting rank - 0 hours
 			new_human.wear_id.paygrade = "O3"
-		if(1500 to 7500) // 25 hrs
+		if(901 to 4500) // Standard rank - 15 hours
 			new_human.wear_id.paygrade = "MO4"
-		if(7501 to INFINITY) // 125 hrs
+		if(4501 to 9000) // Veteran rank - 75 hours
 			new_human.wear_id.paygrade = "MO5"
+		if(9001 to INFINITY) // Master rank - 150 hours
+			new_human.wear_id.paygrade = "MO6"
 
 
 /datum/outfit/job/command/fieldcommander
@@ -190,7 +194,7 @@ Make the TGMC proud!"})
 //Staff Officer
 /datum/job/terragov/command/staffofficer
 	title = STAFF_OFFICER
-	paygrade = "O3"
+	paygrade = "O1"
 	comm_title = "SO"
 	total_positions = 4
 	access = list(ACCESS_MARINE_BRIDGE, ACCESS_MARINE_BRIG, ACCESS_MARINE_CARGO, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_ALPHA, ACCESS_MARINE_BRAVO, ACCESS_MARINE_CHARLIE, ACCESS_MARINE_DELTA)
@@ -242,12 +246,14 @@ You are in charge of logistics and the overwatch system. You are also in line to
 	if(!playtime_mins || playtime_mins < 1 )
 		return
 	switch(playtime_mins)
-		if(0 to 1500) // starting
+		if(0 to 900) // Starting rank - 0 hours
+			new_human.wear_id.paygrade = "O1"
+		if(901 to 4500) // Standard rank - 15 hours
+			new_human.wear_id.paygrade = "O2"
+		if(4501 to 9000) // Veteran rank - 75 hours
 			new_human.wear_id.paygrade = "O3"
-		if(1501 to 3000) // 25 hrs
+		if(9001 to INFINITY) // Master rank - 150 hours
 			new_human.wear_id.paygrade = "O4"
-		if(3001 to INFINITY) // 50 hrs
-			new_human.wear_id.paygrade = "O5"
 
 /datum/outfit/job/command/staffofficer
 	name = STAFF_OFFICER
@@ -314,13 +320,13 @@ You are in charge of logistics and the overwatch system. You are also in line to
 	if(!playtime_mins || playtime_mins < 1 )
 		return
 	switch(playtime_mins)
-		if(0 to 600) // starting
+		if(0 to 900) // Starting rank - 0 hours
 			new_human.wear_id.paygrade = "WO"
-		if(601 to 3000) // 10 hrs
+		if(901 to 4500) // Standard rank - 15 hours
 			new_human.wear_id.paygrade = "CWO"
-		if(3001 to 6000) // 50 hrs
+		if(4501 to 9000) // Veteran rank - 75 hours
 			new_human.wear_id.paygrade = "O1"
-		if(6001 to INFINITY) // 100 hrs
+		if(9001 to INFINITY) // Master rank - 150 hours
 			new_human.wear_id.paygrade = "O2"
 
 /datum/job/terragov/command/pilot/radio_help_message(mob/M)
@@ -409,12 +415,14 @@ If you are not piloting, there is an autopilot fallback for command, but don't l
 	if(!playtime_mins || playtime_mins < 1 )
 		return
 	switch(playtime_mins)
-		if(0 to 1500) // starting
+		if(0 to 900) // Starting rank - 0 hours
 			new_human.wear_id.paygrade = "O2"
-		if(1501 to 6000) // 25 hrs
+		if(901 to 4500) // Standard rank - 15 hours
 			new_human.wear_id.paygrade = "O3"
-		if(6001 to INFINITY) // 100 hrs
+		if(4501 to 9000) // Veteran rank - 75 hours
 			new_human.wear_id.paygrade = "O4"
+		if(9001 to INFINITY) // Master rank - 150 hours
+			new_human.wear_id.paygrade = "O5"
 
 /datum/job/terragov/engineering/chief/radio_help_message(mob/M)
 	. = ..()
@@ -490,13 +498,13 @@ You are also next in the chain of command, should the bridge crew fall in the li
 	if(!playtime_mins || playtime_mins < 1 )
 		return
 	switch(playtime_mins)
-		if(0 to 600) // starting
+		if(0 to 900) // Starting rank - 0 hours
 			new_human.wear_id.paygrade = "PO3"
-		if(601 to 3000) // 10 hrs
+		if(901 to 4500) // Standard rank - 15 hours
 			new_human.wear_id.paygrade = "PO2"
-		if(3001 to 6000) // 50 hrs
+		if(4501 to 9000) // Veteran rank - 75 hours
 			new_human.wear_id.paygrade = "PO1"
-		if(6001 to INFINITY) // 100 hrs
+		if(9001 to INFINITY) // Master rank - 150 hours
 			new_human.wear_id.paygrade = "CPO"
 
 /datum/job/terragov/engineering/tech/radio_help_message(mob/M)
@@ -536,7 +544,7 @@ requisitions line and later on to be ready to send supplies for marines who are 
 /datum/job/terragov/requisitions/officer
 	title = REQUISITIONS_OFFICER
 	req_admin_notify = TRUE
-	paygrade = "CPO"
+	paygrade = "WO"
 	comm_title = "RO"
 	selection_color = "#9990B2"
 	total_positions = 1
@@ -582,14 +590,14 @@ requisitions line and later on to be ready to send supplies for marines who are 
 	if(!playtime_mins || playtime_mins < 1 )
 		return
 	switch(playtime_mins)
-		if(0 to 600) // starting
-			new_human.wear_id.paygrade = "CPO"
-		if(601 to 1500) // 10 hrs
+		if(0 to 900) // Starting rank - 0 hours
 			new_human.wear_id.paygrade = "WO"
-		if(1501 to 6000) // 50 hrs
+		if(901 to 4500) // Standard rank - 15 hours
 			new_human.wear_id.paygrade = "CWO"
-		if(6001 to INFINITY) // 100 hrs
+		if(4501 to 9000) // Veteran rank - 75 hours
 			new_human.wear_id.paygrade = "O1"
+		if(9001 to INFINITY) // Master rank - 150 hours
+			new_human.wear_id.paygrade = "O2"
 
 /datum/job/terragov/requisitions/officer/radio_help_message(mob/M)
 	. = ..()
@@ -628,7 +636,7 @@ A happy ship is a well-functioning ship."})
 	title = CHIEF_MEDICAL_OFFICER
 	req_admin_notify = TRUE
 	comm_title = "CMO"
-	paygrade = "CHO"
+	paygrade = "SRMD"
 	total_positions = 1
 	supervisors = "the acting captain"
 	selection_color = "#99FF99"
@@ -681,10 +689,14 @@ Make sure that the doctors and nurses are doing their jobs and keeping the marin
 	if(!playtime_mins || playtime_mins < 1 )
 		return
 	switch(playtime_mins)
-		if(0 to 3000) // starting
-			new_human.wear_id.paygrade = "CHO"
-		if(3001 to INFINITY) // 50 hrs
+		if(0 to 900) // Starting rank - 0 hours
+			new_human.wear_id.paygrade = "SRMD"
+		if(901 to 4500) // Standard rank - 15 hours
+			new_human.wear_id.paygrade = "MDIR"
+		if(4501 to 9000) // Veteran rank - 75 hours
 			new_human.wear_id.paygrade = "CMO"
+		if(9001 to INFINITY) // Master rank - 150 hours
+			new_human.wear_id.paygrade = "HOM"
 
 /datum/outfit/job/medical/professor
 	name = CHIEF_MEDICAL_OFFICER
@@ -760,10 +772,14 @@ Make sure that the doctors and nurses are doing their jobs and keeping the marin
 	if(!playtime_mins || playtime_mins < 1 )
 		return
 	switch(playtime_mins)
-		if(0 to 3000) // starting
+		if(0 to 900) // Starting rank - 0 hours
+			new_human.wear_id.paygrade = "MI"
+		if(901 to 4500) // Standard rank - 15 hours
 			new_human.wear_id.paygrade = "RES"
-		if(3001 to INFINITY) // 50 hrs
+		if(4501 to 9000) // Veteran rank - 75 hours
 			new_human.wear_id.paygrade = "MD"
+		if(9001 to INFINITY) // Master rank - 150 hours
+			new_human.wear_id.paygrade = "SRMD"
 
 /datum/job/terragov/medical/medicalofficer/radio_help_message(mob/M)
 	. = ..()
@@ -802,7 +818,7 @@ You are also an expert when it comes to medication and treatment. If you do not 
 /datum/job/terragov/medical/researcher
 	title = MEDICAL_RESEARCHER
 	comm_title = "Rsr"
-	paygrade = "CD"
+	paygrade = "MI"
 	total_positions = 2
 	supervisors = "the NT corporate office"
 	access = list(ACCESS_MARINE_MEDBAY, ACCESS_MARINE_RESEARCH, ACCESS_MARINE_CHEMISTRY)
@@ -853,10 +869,14 @@ While the Corporate Liaison is not your boss, it would be wise to consult them o
 	if(!playtime_mins || playtime_mins < 1 )
 		return
 	switch(playtime_mins)
-		if(0 to 3000) // starting
+		if(0 to 900) // Starting rank - 0 hours
+			new_human.wear_id.paygrade = "MI"
+		if(901 to 4500) // Standard rank - 15 hours
 			new_human.wear_id.paygrade = "CD"
-		if(3001 to INFINITY) // 50 hrs
+		if(4501 to 9000) // Veteran rank - 75 hours
 			new_human.wear_id.paygrade = "PROF"
+		if(9001 to INFINITY) // Master rank - 150 hours
+			new_human.wear_id.paygrade = "RDIR"
 
 
 /datum/outfit/job/medical/researcher
@@ -997,12 +1017,14 @@ Use your office fax machine to communicate with corporate headquarters or to acq
 	if(!playtime_mins || playtime_mins < 1 )
 		return
 	switch(playtime_mins)
-		if(0 to 600) //up to 10 hours
+		if(0 to 900) // Starting rank - 0 hours
 			new_human.wear_id.paygrade = "Mk.I"
-		if(601 to 3000) // 10 to 50 hrs
+		if(901 to 4500) // Standard rank - 15 hours
 			new_human.wear_id.paygrade = "Mk.II"
-		if(3001 to INFINITY) // more than 50 hrs
+		if(4501 to 9000) // Veteran rank - 75 hours
 			new_human.wear_id.paygrade = "Mk.III"
+		if(9001 to INFINITY) // Master rank - 150 hours
+			new_human.wear_id.paygrade = "Mk.IV"
 
 /datum/job/terragov/silicon/synthetic/radio_help_message(mob/M)
 	. = ..()
