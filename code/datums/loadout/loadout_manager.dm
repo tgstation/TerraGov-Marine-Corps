@@ -6,7 +6,7 @@
 	/**
 	 * List of all loadouts. Format is list(list(loadout_job, loadout_name))
 	 */
-	var/list/loadouts_data = list()
+	var/loadouts_data = list()
 	/// The host of the loadout_manager, aka from which loadout vendor are you managing loadouts
 	var/loadout_vendor
 	/// The version of the loadout manager
@@ -14,12 +14,12 @@
 
 ///Remove the data of a loadout from the loadouts list
 /datum/loadout_manager/proc/delete_loadout(mob/user, loadout_name, loadout_job)
-	var/list/new_loadouts_data = list()
-	for(var/loadout_data in loadouts_data)
-		if(loadout_data[1] != loadout_job || loadout_data[2] != loadout_name)
-			new_loadouts_data += list(loadout_data)
-	loadouts_data = new_loadouts_data
-	user.client?.prefs.save_loadout_list(loadouts_data, CURRENT_LOADOUT_VERSION)
+	for(var/i in 1 to length(loadouts_data))
+		var/list/loadout_data = loadouts_data[i]
+		if(loadout_data[1] == loadout_job && loadout_data[2] == loadout_name)
+			loadouts_data[i] = null
+			user.client?.prefs.save_loadout_list(loadouts_data, CURRENT_LOADOUT_VERSION)
+			return
 
 
 ///Add the name and the job of a datum/loadout into the list of all loadout data

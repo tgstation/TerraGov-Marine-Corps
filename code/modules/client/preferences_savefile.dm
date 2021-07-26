@@ -87,7 +87,6 @@
 
 
 	savefile_version = SAVEFILE_VERSION_MAX
-	save_preferences()
 	return TRUE
 
 
