@@ -52,6 +52,7 @@
 		/obj/item/cell/lasgun,
 	)
 	max_storage_space = 6
+	max_w_class = WEIGHT_CLASS_NORMAL
 
 /obj/item/clothing/suit/storage/marine/Initialize()
 	. = ..()
@@ -271,7 +272,7 @@
 	desc = "A somewhat outdated but robust armored vest, still in use despite the rise of exoskeleton armor due to ease of use and manufacturing. Tougher than it looks. Use it to toggle the built-in flashlight."
 	icon_state = "2"
 	soft_armor = list("melee" = 40, "bullet" = 60, "laser" = 60, "energy" = 45, "bomb" = 45, "bio" = 45, "rad" = 45, "fire" = 45, "acid" = 50)
-	slowdown = 0.5 //a bit less
+	slowdown = 0.4 //a bit less
 	light_range = 6
 
 
