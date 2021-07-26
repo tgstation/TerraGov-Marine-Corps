@@ -46,11 +46,17 @@ GLOBAL_VAR(test_log)
 	if (isnull(turf_reservation))
 		turf_reservation = SSmapping.RequestBlockReservation(5, 5)
 
+	for (var/turf/reserved_turf in turf_reservation.reserved_turfs)
+		reserved_turf.ChangeTurf(test_turf_type)
+
 	allocated = new
 	run_loc_bottom_left = locate(turf_reservation.bottom_left_coords[1], turf_reservation.bottom_left_coords[2], turf_reservation.bottom_left_coords[3])
 	run_loc_top_right = locate(turf_reservation.top_right_coords[1], turf_reservation.top_right_coords[2], turf_reservation.top_right_coords[3])
 
 /datum/unit_test/Destroy()
+	//clear the test area
+	for(var/atom/movable/AM in block(run_loc_bottom_left, run_loc_top_right))
+		qdel(AM)
 	QDEL_LIST(allocated)
 	return ..()
 
