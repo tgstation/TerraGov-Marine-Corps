@@ -422,6 +422,12 @@ This way we'll be able to draw the explosion's expansion path without having to 
 				if(thing_to_throw.anchored || thing_to_throw.move_resist == INFINITY)
 					continue
 
+				// Prevents big fat xenos from being thrown around like rag dolls.
+				if(isxeno(am))
+					var/mob/living/carbon/xenomorph/xeno = am
+					if(xeno.mob_size == MOB_SIZE_BIG)
+						continue
+
 				for(var/throw_source in throw_turf[affected_turf])
 					thing_to_throw.throw_at(
 						get_ranged_target_turf(
