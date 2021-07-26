@@ -65,7 +65,7 @@
 	plasma_gain = 45 // This is 3 weed every 10 secs.
 
 	// *** Evolution *** //
-	upgrade_threshold = 800
+	upgrade_threshold = 700
 
 	// *** Abilities *** //
 	actions = list(
@@ -82,14 +82,14 @@
 	upgrade = XENO_UPGRADE_TWO
 
 	// *** Plasma *** //
-	plasma_max = 250
+	plasma_max = 300
 	plasma_gain = 60 // This is 4 weed every 10 secs.
 
 	// *** Health *** //
 	max_health = 1000
 
 	// *** Evolution *** //
-	upgrade_threshold = 1500
+	upgrade_threshold = 1200
 
 	// *** Abilities *** //
 	actions = list(
@@ -107,14 +107,14 @@
 	upgrade = XENO_UPGRADE_THREE
 
 	// *** Plasma *** //
-	plasma_max = 300
+	plasma_max = 400
 	plasma_gain = 75 // This is 5 weed every 10 secs.
 
 	// *** Health *** //
 	max_health = 1000
 
 	// *** Evolution *** //
-	upgrade_threshold = 2500
+	upgrade_threshold = 1500
 
 	// *** Abilities *** //
 	actions = list(

@@ -156,7 +156,7 @@
 	return TRUE
 
 /datum/action/xeno_action/plant_weeds/slow
-	cooldown_timer = 12 SECONDS
+	cooldown_timer = 10 SECONDS
 
 /datum/action/xeno_action/plant_weeds/slow/action_activate()
 	if(locate(/obj/effect/alien/weeds) in range(1, owner.loc))
