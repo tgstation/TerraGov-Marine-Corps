@@ -208,33 +208,21 @@
 
 			shadow.icon = LIGHTING_ICON_BIG
 			shadow.icon_state = "triangle"
-			shadow.color = "#000000c2"
+			shadow.color = "#000"
 			shadow.transform = triangle_matrix
 			shadow.plane = 16
-			//shadow.blend_mode = BLEND_ADD
-			//shadow.color = list(0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,1, 1,1,1,0)
+			shadow.blend_mode = BLEND_OVERLAY
 
 			DO_SOMETHING_IF_DEBUGGING_SHADOWS(MA_vars_time += TICK_USAGE_TO_MS(temp_timer))
 			DO_SOMETHING_IF_DEBUGGING_SHADOWS(temp_timer = TICK_USAGE)
 
 			LAZYADD(shadows, shadow)
-			overlays += shadow
+			overlays_to_add += shadow
 
 			DO_SOMETHING_IF_DEBUGGING_SHADOWS(overlays_add_time += TICK_USAGE_TO_MS(temp_timer))
 			DO_SOMETHING_IF_DEBUGGING_SHADOWS(temp_timer = TICK_USAGE)
 
-	//Put the overlays onto a dud object and copy the appearance to merge them
-	//Doesnt impact maptick, AND means faster render times
-	DO_SOMETHING_IF_DEBUGGING_SHADOWS(var/mergetime = TICK_USAGE)
-	var/static/atom/movable/lighting_mask/template/dud = new
-	dud.overlays += overlays_to_add
-	var/static/mutable_appearance/overlay_merger = new()
-	overlay_merger.appearance = dud.appearance
-	//overlays += overlay_merger
-	dud.overlays.Cut()
-	DO_SOMETHING_IF_DEBUGGING_SHADOWS(var/mergetimereal = TICK_USAGE_TO_MS(mergetime))
-
-
+	overlays = overlays_to_add //batch appearance generation for free lag(tm)
 	DO_SOMETHING_IF_DEBUGGING_SHADOWS(log_game("total_coordgroup_time: [total_coordgroup_time]ms"))
 	DO_SOMETHING_IF_DEBUGGING_SHADOWS(log_game("total_cornergroup_time: [total_cornergroup_time]ms"))
 	DO_SOMETHING_IF_DEBUGGING_SHADOWS(log_game("triangle_time calculation: [triangle_time]ms"))
@@ -248,11 +236,24 @@
 	DO_SOMETHING_IF_DEBUGGING_SHADOWS(log_game("[TICK_USAGE_TO_MS(timer)]ms to process total."))
 
 /obj/screen/plane_master/shadows
+	name = "Please save my sanity"
 	plane = 16
-	render_target = "test"
-	blend_mode = BLEND_OVERLAY
+	render_target = "shadow_target"
+	blend_mode = BLEND_ADD
 
+/mob/verb/remove_all_planes()
+	set category = "Shadowdebug"
 
+	var/list/junk = list()
+	junk += locate(/obj/screen/plane_master/parallax) in client.screen
+	junk += locate(/obj/screen/plane_master/parallax_white) in client.screen
+	junk += locate(/obj/screen/plane_master/openspace) in client.screen
+	junk += locate(/obj/screen/plane_master/floor) in client.screen
+	junk += locate(/obj/screen/plane_master/floor) in client.screen
+	junk += locate(/obj/screen/plane_master/game_world) in client.screen
+	junk += locate(/obj/screen/plane_master/lighting) in client.screen
+	junk += locate(/obj/screen/plane_master/o_light_visual) in client.screen
+	client.screen -= junk
 
 /**
  * Converts a triangle into a matrix that can be applied to a standardized triangle

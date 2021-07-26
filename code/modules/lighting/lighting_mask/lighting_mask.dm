@@ -36,7 +36,7 @@
 
 /atom/movable/lighting_mask/Initialize(mapload, ...)
 	. = ..()
-	add_filter("shadows", 4, alpha_mask_filter(render_source = "test", flags = MASK_INVERSE))
+	add_filter("shadows", 4, alpha_mask_filter(render_source = "shadow_target", flags = MASK_INVERSE))
 
 /atom/movable/lighting_mask/Destroy()
 	mask_holder = null
@@ -99,14 +99,7 @@
 		shadow.transform /= rotated_matrix
 	//Apply our matrix
 	transform = rotated_matrix
-
-	//Readd the shadow overlays using overlay merging to update them.
-	var/static/atom/movable/lighting_mask/template/dud = new
-	dud.overlays += shadows
-	var/static/mutable_appearance/overlay_merger = new()
-	overlay_merger.appearance = dud.appearance
-	overlays += overlay_merger
-	dud.overlays.Cut()
+	overlays += shadows
 
 	//Now we are facing this direction
 	current_angle = angle
@@ -128,11 +121,6 @@
 /atom/movable/lighting_mask/proc/rotate_mask_on_holder_turn(new_direction)
 	SIGNAL_HANDLER
 	rotate(dir2angle(new_direction) - 180)
-
-///This is the template mask used for overlay merging, DO NOT TOUCH THIS FOR NO REASON
-/atom/movable/lighting_mask/template
-	icon_state = null
-	blend_mode = BLEND_DEFAULT
 
 ///Flickering lighting mask
 /atom/movable/lighting_mask/flicker
