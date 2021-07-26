@@ -125,4 +125,4 @@ GLOBAL_VAR(test_log)
 
 	SSticker.force_ending = TRUE
 	//We have to call this manually because del_text can preceed us, and SSticker doesn't fire in the post game
-	SSticker.standard_reboot()
+	SSticker.Reboot()
