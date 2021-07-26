@@ -37,9 +37,13 @@
 #define UNIT_TEST_FAILED 1
 #define UNIT_TEST_SKIPPED 2
 
+#define TEST_DEFAULT 1
+#define TEST_DEL_WORLD -INFINITY
+
 #include "bespoke_id.dm"
 #include "binary_insert.dm"
 #include "component_tests.dm"
+//#include "del_test.dm"
 #include "initialize_sanity.dm"
 #include "keybinding_init.dm"
 #include "spawn_humans.dm"
