@@ -1650,6 +1650,7 @@
 #include "code\modules\tgui_panel\telemetry.dm"
 #include "code\modules\tgui_panel\tgui_panel.dm"
 #include "code\modules\tooltip\tooltip.dm"
+#include "code\modules\unit_tests\_unit_tests.dm"
 #include "code\modules\vehicles\cargo_train.dm"
 #include "code\modules\vehicles\powerloader.dm"
 #include "code\modules\vehicles\train.dm"
