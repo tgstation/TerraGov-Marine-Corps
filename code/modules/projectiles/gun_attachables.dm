@@ -91,6 +91,14 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	var/aim_mode_movement_mult = 0
 	///Modifies projectile damage by a % when a marine gets passed, but not hit
 	var/shot_marine_damage_falloff = 0
+	///How much of the aim mode fire rate debuff is removed %-wise
+	var/aim_mode_fire_rate_debuff_reduction = 0
+	/*
+	 * Contains the removed amount from the aim mode fire rate debuff
+	 * so that the same amount that was removed is returned
+	 * in the case of multiple things modifying the gun's var by a %
+	 */
+	var/cached_aim_mode_debuff_fire_rate = 0
 
 	///the delay between shots, for attachments that fire stuff
 	var/attachment_firing_delay = 0
@@ -184,6 +192,8 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	master_gun.scatter_unwielded			+= scatter_unwielded_mod
 	master_gun.aim_speed_modifier			+= initial(master_gun.aim_speed_modifier)*aim_mode_movement_mult
 	master_gun.iff_marine_damage_falloff	+= shot_marine_damage_falloff
+	cached_aim_mode_debuff_fire_rate = master_gun.aim_fire_delay * aim_mode_fire_rate_debuff_reduction
+	master_gun.aim_fire_delay 				-= cached_aim_mode_debuff_fire_rate
 	if(delay_mod)
 		master_gun.modify_fire_delay(delay_mod)
 	if(burst_delay_mod)
@@ -250,6 +260,8 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	master_gun.scatter_unwielded			-= scatter_unwielded_mod
 	master_gun.aim_speed_modifier			-= initial(master_gun.aim_speed_modifier)*aim_mode_movement_mult
 	master_gun.iff_marine_damage_falloff	-= shot_marine_damage_falloff
+	master_gun.aim_fire_delay 				+= cached_aim_mode_debuff_fire_rate
+	cached_aim_mode_debuff_fire_rate = 0
 	if(delay_mod)
 		master_gun.modify_fire_delay(-delay_mod)
 	if(burst_delay_mod)
@@ -588,18 +600,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	slot = ATTACHMENT_SLOT_RAIL
 	accuracy_mod = 0.15
 	accuracy_unwielded_mod = 0.1
-	var/aim_mode_fire_rate_debuff_reduction = 0.5
-	var/cached_fire_rate
-
-/obj/item/attachable/reddot/attach_to_gun(obj/item/weapon/gun/gun_to_attach, mob/user)
-	. = ..()
-	cached_fire_rate = master_gun.aim_fire_delay * aim_mode_fire_rate_debuff_reduction
-	master_gun.aim_fire_delay -= cached_fire_rate
-
-/obj/item/attachable/reddot/detach_from_master_gun(mob/user)
-	master_gun.aim_fire_delay += cached_fire_rate
-	cached_fire_rate = 0
-	return ..()
+	aim_mode_fire_rate_debuff_reduction = 0.5
 
 /obj/item/attachable/m16sight
 	name = "M16 iron sights"
