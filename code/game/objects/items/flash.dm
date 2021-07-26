@@ -31,11 +31,11 @@
 	log_combat(user, M, "attempted to flash", src)
 
 	if(user.skills.getRating("police") < SKILL_POLICE_FLASH)
-		to_chat(user, "<span class='warning'>You don't seem to know how to use [src]...</span>")
+		to_chat(user, span_warning("You don't seem to know how to use [src]..."))
 		return
 
 	if(broken)
-		to_chat(user, "<span class='warning'>\The [src] is broken.</span>")
+		to_chat(user, span_warning("\The [src] is broken."))
 		return
 
 	flash_recharge()
@@ -50,12 +50,12 @@
 			last_used = world.time
 			if(prob(times_used))	//if you use it 5 times in a minute it has a 10% chance to break!
 				broken = 1
-				to_chat(user, "<span class='warning'>The bulb has burnt out!</span>")
+				to_chat(user, span_warning("The bulb has burnt out!"))
 				icon_state = "flashburnt"
 				return
 			times_used++
 		else	//can only use it  5 times a minute
-			to_chat(user, "<span class='warning'>*click* *click*</span>")
+			to_chat(user, span_warning("*click* *click*"))
 			return
 	playsound(src.loc, 'sound/weapons/flash.ogg', 25, 1)
 	var/flashfail = 0
@@ -74,13 +74,13 @@
 	//	flick("flash2", src)
 		if(!issilicon(M))
 
-			user.visible_message("<span class='disarm'>[user] blinds [M] with the flash!</span>")
+			user.visible_message(span_disarm("[user] blinds [M] with the flash!"))
 		else
 
-			user.visible_message("<span class='notice'>[user] overloads [M]'s sensors with the flash!</span>")
+			user.visible_message(span_notice("[user] overloads [M]'s sensors with the flash!"))
 	else
 
-		user.visible_message("<span class='notice'>[user] fails to blind [M] with the flash!</span>")
+		user.visible_message(span_notice("[user] fails to blind [M] with the flash!"))
 
 
 
@@ -90,11 +90,11 @@
 		return
 
 	if(user.skills.getRating("police") < SKILL_POLICE_FLASH)
-		to_chat(user, "<span class='warning'>You don't seem to know how to use [src]...</span>")
+		to_chat(user, span_warning("You don't seem to know how to use [src]..."))
 		return
 
 	if(broken)
-		user.show_message("<span class='warning'>The [src.name] is broken</span>", 2)
+		user.show_message(span_warning("The [src.name] is broken"), 2)
 		return
 
 	flash_recharge()
@@ -105,12 +105,12 @@
 		if(0 to 5)
 			if(prob(2*times_used))	//if you use it 5 times in a minute it has a 10% chance to break!
 				broken = 1
-				to_chat(user, "<span class='warning'>The bulb has burnt out!</span>")
+				to_chat(user, span_warning("The bulb has burnt out!"))
 				icon_state = "flashburnt"
 				return
 			times_used++
 		else	//can only use it  5 times a minute
-			user.show_message("<span class='warning'>*click* *click*</span>", 2)
+			user.show_message(span_warning("*click* *click*"), 2)
 			return
 	playsound(src.loc, 'sound/weapons/flash.ogg', 25, 1)
 	user.log_message("flashed an area with [key_name(src)]", LOG_ATTACK)
@@ -135,7 +135,7 @@
 				var/mob/living/carbon/M = loc
 				if(M.flash_act())
 					M.Paralyze(20 SECONDS)
-					M.visible_message("<span class='disarm'>[M] is blinded by the flash!</span>")
+					M.visible_message(span_disarm("[M] is blinded by the flash!"))
 	..()
 
 /obj/item/flash/synthetic
@@ -147,12 +147,12 @@
 	..()
 	if(!broken)
 		broken = 1
-		to_chat(user, "<span class='warning'>The bulb has burnt out!</span>")
+		to_chat(user, span_warning("The bulb has burnt out!"))
 		icon_state = "flashburnt"
 
 /obj/item/flash/synthetic/attack_self(mob/living/carbon/user as mob, flag = 0, emp = 0)
 	..()
 	if(!broken)
 		broken = 1
-		to_chat(user, "<span class='warning'>The bulb has burnt out!</span>")
+		to_chat(user, span_warning("The bulb has burnt out!"))
 		icon_state = "flashburnt"

@@ -89,16 +89,16 @@
 
 					switch_alert_level(tmp_alertlevel)
 				else
-					to_chat(usr, "<span class='warning'>You are not authorized to do this.</span>")
+					to_chat(usr, span_warning("You are not authorized to do this."))
 				tmp_alertlevel = SEC_LEVEL_GREEN //Reset to green.
 				state = STATE_DEFAULT
 			else
-				to_chat(usr, "<span class='warning'>You need to swipe your ID.</span>")
+				to_chat(usr, span_warning("You need to swipe your ID."))
 
 		if("announce")
 			if(authenticated == 2)
 				if(world.time < cooldown_message + COOLDOWN_COMM_MESSAGE)
-					to_chat(usr, "<span class='warning'>Please allow at least [COOLDOWN_COMM_MESSAGE*0.1] second\s to pass between announcements.</span>")
+					to_chat(usr, span_warning("Please allow at least [COOLDOWN_COMM_MESSAGE*0.1] second\s to pass between announcements."))
 					return FALSE
 
 				var/input = input(usr, "Please write a message to announce to the station crew.", "Priority Announcement", "") as message|null
@@ -106,12 +106,12 @@
 					return FALSE
 
 				if(CHAT_FILTER_CHECK(input))
-					to_chat(usr, "<span class='warning'>That announcement contained a word prohibited in IC chat! Consider reviewing the server rules.\n<span replaceRegex='show_filtered_ic_chat'>\"[input]\"</span></span>")
+					to_chat(usr, span_warning("That announcement contained a word prohibited in IC chat! Consider reviewing the server rules.\n<span replaceRegex='show_filtered_ic_chat'>\"[input]\"</span>"))
 					SSblackbox.record_feedback(FEEDBACK_TALLY, "ic_blocked_words", 1, lowertext(config.ic_filter_regex.match))
 					return FALSE
 
 				if(NON_ASCII_CHECK(input))
-					to_chat(usr, "<span class='warning'>That announcement contained charachters prohibited in IC chat! Consider reviewing the server rules.</span>")
+					to_chat(usr, span_warning("That announcement contained charachters prohibited in IC chat! Consider reviewing the server rules."))
 					return FALSE
 
 				priority_announce(input, type = ANNOUNCEMENT_COMMAND)
@@ -121,40 +121,40 @@
 
 		if("award")
 			if(!isliving(usr))
-				to_chat(usr, "<span class='warning'>Only the Captain can award medals.</span>")
+				to_chat(usr, span_warning("Only the Captain can award medals."))
 				return
 			var/mob/living/user = usr
 			if(!ismarinecaptainjob(user.job))
-				to_chat(usr, "<span class='warning'>Only the Captain can award medals.</span>")
+				to_chat(usr, span_warning("Only the Captain can award medals."))
 				return
 
 			if(give_medal_award(loc))
-				visible_message("<span class='notice'>[src] prints a medal.</span>")
+				visible_message(span_notice("[src] prints a medal."))
 
 		if("evacuation_start")
 			if(state == STATE_EVACUATION)
 				if(world.time < EVACUATION_TIME_LOCK) //Cannot call it early in the round.
-					to_chat(usr, "<span class='warning'>TGMC protocol does not allow immediate evacuation. Please wait another [round((EVACUATION_TIME_LOCK-world.time)/600)] minutes before trying again.</span>")
+					to_chat(usr, span_warning("TGMC protocol does not allow immediate evacuation. Please wait another [round((EVACUATION_TIME_LOCK-world.time)/600)] minutes before trying again."))
 					return FALSE
 
 				if(!SSticker?.mode)
-					to_chat(usr, "<span class='warning'>The [SSmapping.configs[SHIP_MAP].map_name]'s distress beacon must be activated prior to evacuation taking place.</span>")
+					to_chat(usr, span_warning("The [SSmapping.configs[SHIP_MAP].map_name]'s distress beacon must be activated prior to evacuation taking place."))
 					return FALSE
 
 				if(GLOB.marine_main_ship.security_level < SEC_LEVEL_RED)
-					to_chat(usr, "<span class='warning'>The ship must be under red alert in order to enact evacuation procedures.</span>")
+					to_chat(usr, span_warning("The ship must be under red alert in order to enact evacuation procedures."))
 					return FALSE
 
 				if(SSevacuation.flags_scuttle & FLAGS_SDEVAC_TIMELOCK)
-					to_chat(usr, "<span class='warning'>The sensors do not detect a sufficient threat present.</span>")
+					to_chat(usr, span_warning("The sensors do not detect a sufficient threat present."))
 					return FALSE
 
 				if(SSevacuation.flags_scuttle & FLAGS_EVACUATION_DENY)
-					to_chat(usr, "<span class='warning'>The TGMC has placed a lock on deploying the evacuation pods.</span>")
+					to_chat(usr, span_warning("The TGMC has placed a lock on deploying the evacuation pods."))
 					return FALSE
 
 				if(!SSevacuation.initiate_evacuation())
-					to_chat(usr, "<span class='warning'>You are unable to initiate an evacuation procedure right now!</span>")
+					to_chat(usr, span_warning("You are unable to initiate an evacuation procedure right now!"))
 					return FALSE
 
 				if(!SSevacuation.dest_master)
@@ -171,7 +171,7 @@
 		if("evacuation_cancel")
 			if(state == STATE_EVACUATION_CANCEL)
 				if(!SSevacuation.cancel_evacuation())
-					to_chat(usr, "<span class='warning'>You are unable to cancel the evacuation right now!</span>")
+					to_chat(usr, span_warning("You are unable to cancel the evacuation right now!"))
 					return FALSE
 
 				spawn(35)//some time between AI announcements for evac cancel and SD cancel.
@@ -195,18 +195,18 @@
 					return FALSE
 
 				if(world.time < DISTRESS_TIME_LOCK)
-					to_chat(usr, "<span class='warning'>The distress beacon cannot be launched this early in the operation. Please wait another [round((DISTRESS_TIME_LOCK-world.time)/600)] minutes before trying again.</span>")
+					to_chat(usr, span_warning("The distress beacon cannot be launched this early in the operation. Please wait another [round((DISTRESS_TIME_LOCK-world.time)/600)] minutes before trying again."))
 					return FALSE
 
 				if(!SSticker?.mode)
 					return FALSE //Not a game mode?
 
 				if(just_called || SSticker.mode.waiting_for_candidates)
-					to_chat(usr, "<span class='warning'>The distress beacon has been just launched.</span>")
+					to_chat(usr, span_warning("The distress beacon has been just launched."))
 					return FALSE
 
 				if(SSticker.mode.on_distress_cooldown)
-					to_chat(usr, "<span class='warning'>The distress beacon is currently recalibrating.</span>")
+					to_chat(usr, span_warning("The distress beacon is currently recalibrating."))
 					return FALSE
 
 				var/Ship[] = SSticker.mode.count_humans_and_xenos(SSmapping.levels_by_trait(ZTRAIT_MARINE_MAIN_SHIP))
@@ -216,7 +216,7 @@
 				var/AllMarines[] = All[1]
 				var/AllXenos[] = All[2]
 				if((AllXenos < round(AllMarines * 0.8)) && (ShipXenos < round(ShipMarines * 0.5))) //If there's less humans (weighted) than xenos, humans get home-turf advantage
-					to_chat(usr, "<span class='warning'>The sensors aren't picking up enough of a threat to warrant a distress beacon.</span>")
+					to_chat(usr, span_warning("The sensors aren't picking up enough of a threat to warrant a distress beacon."))
 					return FALSE
 
 				SSticker.mode.distress_cancelled = FALSE
@@ -225,7 +225,7 @@
 				var/datum/emergency_call/E = SSticker.mode.get_random_call()
 
 				var/admin_response = admin_approval("<span color='prefix'>DISTRESS:</span> [ADMIN_TPMONTY(usr)] has called a Distress Beacon that was received by [E.name]. Humans: [AllMarines], Xenos: [AllXenos].",
-					user_message = "<span class='boldnotice'>A distress beacon will launch in 60 seconds unless High Command responds otherwise.</span>",
+					user_message = span_boldnotice("A distress beacon will launch in 60 seconds unless High Command responds otherwise."),
 					options = list("approve" = "approve", "deny" = "deny", "deny without annoncing" = "deny without annoncing"),
 					user = usr, admin_sound = sound('sound/effects/sos-morse-code.ogg', channel = CHANNEL_ADMIN))
 				just_called = FALSE
@@ -296,7 +296,7 @@
 		if("messageTGMC")
 			if(authenticated == 2)
 				if(world.time < cooldown_central + COOLDOWN_COMM_CENTRAL)
-					to_chat(usr, "<span class='warning'>Arrays recycling.  Please stand by.</span>")
+					to_chat(usr, span_warning("Arrays recycling.  Please stand by."))
 					return FALSE
 
 				var/msg = input(usr, "Please choose a message to transmit to the TGMC High Command.  Please be aware that this process is very expensive, and abuse will lead to termination.  Transmission does not guarantee a response. There is a small delay before you may send another message. Be clear and concise.", "To abort, send an empty message.", "")
@@ -305,7 +305,7 @@
 
 
 				tgmc_message(msg, usr)
-				to_chat(usr, "<span class='notice'>Message transmitted.</span>")
+				to_chat(usr, span_notice("Message transmitted."))
 				usr.log_talk(msg, LOG_SAY, tag = "TGMC announcement")
 				cooldown_central = world.time
 

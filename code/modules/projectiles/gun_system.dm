@@ -239,7 +239,7 @@
 	if(user == gun_user)
 		return
 	if(gun_user)
-		UnregisterSignal(gun_user, list(COMSIG_MOB_MOUSEDOWN, COMSIG_MOB_MOUSEUP, COMSIG_MOB_MOUSEDRAG, COMSIG_KB_RAILATTACHMENT, COMSIG_KB_UNDERRAILATTACHMENT, COMSIG_KB_UNLOADGUN, COMSIG_KB_FIREMODE, COMSIG_KB_GUN_SAFETY, COMSIG_PARENT_QDELETING))
+		UnregisterSignal(gun_user, list(COMSIG_MOB_MOUSEDOWN, COMSIG_MOB_MOUSEUP, COMSIG_ITEM_ZOOM, COMSIG_MOB_MOUSEDRAG, COMSIG_KB_RAILATTACHMENT, COMSIG_KB_UNDERRAILATTACHMENT, COMSIG_KB_UNLOADGUN, COMSIG_KB_FIREMODE, COMSIG_KB_GUN_SAFETY, COMSIG_PARENT_QDELETING))
 		gun_user.client.mouse_pointer_icon = initial(gun_user.client.mouse_pointer_icon)
 		gun_user = null
 	if(!user)
@@ -249,12 +249,13 @@
 		RegisterSignal(gun_user, COMSIG_MOB_MOUSEDOWN, .proc/start_fire)
 		RegisterSignal(gun_user, COMSIG_MOB_MOUSEDRAG, .proc/change_target)
 	RegisterSignal(gun_user, COMSIG_PARENT_QDELETING, .proc/clean_gun_user)
-	RegisterSignal(gun_user, COMSIG_MOB_MOUSEUP, .proc/stop_fire)
+	RegisterSignal(gun_user, list(COMSIG_MOB_MOUSEUP, COMSIG_ITEM_ZOOM, COMSIG_ITEM_UNZOOM), .proc/stop_fire)
 	RegisterSignal(gun_user, COMSIG_KB_RAILATTACHMENT, .proc/activate_rail_attachment)
 	RegisterSignal(gun_user, COMSIG_KB_UNDERRAILATTACHMENT, .proc/activate_underrail_attachment)
 	RegisterSignal(gun_user, COMSIG_KB_UNLOADGUN, .proc/unload_gun)
 	RegisterSignal(gun_user, COMSIG_KB_FIREMODE, .proc/do_toggle_firemode)
 	RegisterSignal(gun_user, COMSIG_KB_GUN_SAFETY, .proc/toggle_gun_safety_keybind)
+
 
 ///Null out gun user to prevent hard del
 /obj/item/weapon/gun/proc/clean_gun_user()
@@ -311,7 +312,7 @@
 
 /obj/item/weapon/gun/wield(mob/user)
 	if(CHECK_BITFIELD(flags_gun_features, GUN_DEPLOYED_FIRE_ONLY))
-		to_chat(user, "<span class='notice'>[src] cannot be fired by hand and must be deployed.</span>")
+		to_chat(user, span_notice("[src] cannot be fired by hand and must be deployed."))
 		return
 
 	. = ..()
@@ -391,34 +392,34 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 		return
 
 	if(!magazine || !istype(magazine))
-		to_chat(user, "<span class='warning'>That's not a magazine!</span>")
+		to_chat(user, span_warning("That's not a magazine!"))
 		return
 
 	if(magazine.flags_magazine & AMMUNITION_HANDFUL)
-		to_chat(user, "<span class='warning'>[src] needs an actual magazine.</span>")
+		to_chat(user, span_warning("[src] needs an actual magazine."))
 		return
 
 	if(magazine.current_rounds <= 0)
-		to_chat(user, "<span class='warning'>[magazine] is empty!</span>")
+		to_chat(user, span_warning("[magazine] is empty!"))
 		return
 
 	if(!istype(src, magazine.gun_type))
-		to_chat(user, "<span class='warning'>That magazine doesn't fit in there!</span>")
+		to_chat(user, span_warning("That magazine doesn't fit in there!"))
 		return
 
 	if(current_mag)
-		to_chat(user, "<span class='warning'>It's still got something loaded.</span>")
+		to_chat(user, span_warning("It's still got something loaded."))
 		return
 
 
 
 	if(user)
 		if(magazine.reload_delay > 1)
-			to_chat(user, "<span class='notice'>You begin reloading [src]. Hold still...</span>")
+			to_chat(user, span_notice("You begin reloading [src]. Hold still..."))
 			if(do_after(user,magazine.reload_delay, TRUE, src, BUSY_ICON_GENERIC))
 				replace_magazine(user, magazine)
 			else
-				to_chat(user, "<span class='warning'>Your reload was interrupted!</span>")
+				to_chat(user, span_warning("Your reload was interrupted!"))
 				return
 		else
 			replace_magazine(user, magazine)
@@ -442,8 +443,8 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 		ready_in_chamber(user)
 		if(!(flags_gun_features & GUN_ENERGY))
 			cock_gun(user)
-	user.visible_message("<span class='notice'>[user] loads [magazine] into [src]!</span>",
-	"<span class='notice'>You load [magazine] into [src]!</span>", null, 3)
+	user.visible_message(span_notice("[user] loads [magazine] into [src]!"),
+	span_notice("You load [magazine] into [src]!"), null, 3)
 	if(reload_sound)
 		playsound(user, reload_sound, 25, 1, 5)
 	update_icon()
@@ -464,8 +465,8 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 		user.put_in_hands(current_mag)
 
 	playsound(loc, unload_sound, 25, 1, 5)
-	user?.visible_message("<span class='notice'>[user] unloads [current_mag] from [src].</span>",
-	"<span class='notice'>You unload [current_mag] from [src].</span>", null, 4)
+	user?.visible_message(span_notice("[user] unloads [current_mag] from [src]."),
+	span_notice("You unload [current_mag] from [src]."), null, 4)
 	current_mag.update_icon()
 	current_mag = null
 
@@ -485,8 +486,8 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 	cock_cooldown = world.time + cock_delay
 	cock_gun(user)
 	if(in_chamber)
-		user?.visible_message("<span class='notice'>[user] cocks [src], clearing a [in_chamber.name] from its chamber.</span>",
-		"<span class='notice'>You cock [src], clearing a [in_chamber.name] from its chamber.</span>", null, 4)
+		user?.visible_message(span_notice("[user] cocks [src], clearing a [in_chamber.name] from its chamber."),
+		span_notice("You cock [src], clearing a [in_chamber.name] from its chamber."), null, 4)
 
 		// Get gun information from the current mag if its equipped otherwise the default ammo & caliber
 		var/bullet_ammo_type = in_chamber.ammo.type
@@ -524,8 +525,8 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 		H.update_icon()
 		QDEL_NULL(in_chamber)
 	else
-		user?.visible_message("<span class='notice'>[user] cocks [src].</span>",
-		"<span class='notice'>You cock [src].</span>", null, 4)
+		user?.visible_message(span_notice("[user] cocks [src]."),
+		span_notice("You cock [src]."), null, 4)
 	ready_in_chamber() //This will already check for everything else, loading the next bullet.
 
 	return TRUE
@@ -635,7 +636,7 @@ and you're good to go.
 */
 /obj/item/weapon/gun/proc/load_into_chamber(mob/user)
 	if(CHECK_BITFIELD(flags_gun_features, GUN_DEPLOYED_FIRE_ONLY) && !CHECK_BITFIELD(flags_item, IS_DEPLOYED))
-		to_chat(user, "<span class='notice'>You cannot fire [src] while it is not deployed.</span>")
+		to_chat(user, span_notice("You cannot fire [src] while it is not deployed."))
 		return
 	//The workhorse of the bullet procs.
 
@@ -644,8 +645,8 @@ and you're good to go.
 		if(active_attachable.current_rounds > 0) //If it's still got ammo and stuff.
 			active_attachable.current_rounds--
 			return create_bullet(active_attachable.ammo)
-		to_chat(user, "<span class='warning'>[active_attachable] is empty!</span>")
-		to_chat(user, "<span class='notice'>You disable [active_attachable].</span>")
+		to_chat(user, span_warning("[active_attachable] is empty!"))
+		to_chat(user, span_notice("You disable [active_attachable]."))
 		playsound(loc, active_attachable.activation_sound, 15, 1)
 		active_attachable.activate_attachment(null, TRUE)
 		return
@@ -795,7 +796,7 @@ and you're good to go.
 		if(!projectile_to_fire) //We actually have a projectile, let's move on. We're going to simulate the fire cycle.
 			return // no ..(), already invoked above
 
-		user.visible_message("<span class='danger'>[user] fires [src] point blank at [M]!</span>")
+		user.visible_message(span_danger("[user] fires [src] point blank at [M]!"))
 		apply_gun_modifiers(projectile_to_fire, M, user)
 		setup_bullet_accuracy(projectile_to_fire, user) //We add any damage effects that we need.
 		projectile_to_fire.setDir(get_dir(user, M))
@@ -832,11 +833,11 @@ and you're good to go.
 
 	DISABLE_BITFIELD(flags_gun_features, GUN_CAN_POINTBLANK) //If they try to click again, they're going to hit themselves.
 
-	user.visible_message("<span class='warning'>[user] sticks their gun in their mouth, ready to pull the trigger.</span>")
+	user.visible_message(span_warning("[user] sticks their gun in their mouth, ready to pull the trigger."))
 	log_combat(user, null, "is trying to commit suicide")
 
 	if(!do_after(user, 40, TRUE, src, BUSY_ICON_DANGER))
-		M.visible_message("<span class='notice'>[user] decided life was worth living.</span>")
+		M.visible_message(span_notice("[user] decided life was worth living."))
 		ENABLE_BITFIELD(flags_gun_features, GUN_CAN_POINTBLANK)
 		return
 
@@ -862,7 +863,7 @@ and you're good to go.
 		user.apply_damage(projectile_to_fire.damage * 3, projectile_to_fire.ammo.damage_type, "head", 0, TRUE)
 		user.apply_damage(200, OXY) //In case someone tried to defib them. Won't work.
 		user.death()
-		to_chat(user, "<span class='highdanger'>Your life flashes before you as your spirit is torn from your body!</span>")
+		to_chat(user, span_highdanger("Your life flashes before you as your spirit is torn from your body!"))
 		user.ghostize(0) //No return.
 		ENABLE_BITFIELD(flags_gun_features, GUN_CAN_POINTBLANK)
 		return
@@ -901,13 +902,13 @@ and you're good to go.
 		return
 
 	if(!user.dextrous)
-		to_chat(user, "<span class='warning'>You don't have the dexterity to do this!</span>")
+		to_chat(user, span_warning("You don't have the dexterity to do this!"))
 		return FALSE
 	if(!(flags_gun_features & GUN_ALLOW_SYNTHETIC) && !CONFIG_GET(flag/allow_synthetic_gun_use) && issynth(user))
-		to_chat(user, "<span class='warning'>Your program does not allow you to use this firearm.</span>")
+		to_chat(user, span_warning("Your program does not allow you to use this firearm."))
 		return FALSE
 	if(flags_gun_features & GUN_TRIGGER_SAFETY)
-		to_chat(user, "<span class='warning'>The safety is on!</span>")
+		to_chat(user, span_warning("The safety is on!"))
 		return FALSE
 	if((flags_gun_features & GUN_WIELDED_FIRING_ONLY) && !(flags_item & WIELDED)) //If we're not holding the weapon with both hands when we should.
 		to_chat(user, "<span class='warning'>You need a more secure grip to fire this weapon!")
@@ -945,8 +946,7 @@ and you're good to go.
 		return FALSE
 
 	if(world.time % 3 && !user?.client?.prefs.mute_self_combat_messages)
-		to_chat(user, "<span class='warning'>[src] is not ready to fire again!</span>")
-
+		to_chat(user, span_warning("[src] is not ready to fire again!"))
 	return TRUE
 
 
@@ -954,9 +954,8 @@ and you're good to go.
 	if(user)
 		var/obj/screen/ammo/A = user.hud_used.ammo //The ammo HUD
 		A.update_hud(user, src)
-		to_chat(user, "<span class='warning'><b>*click*</b></span>")
+		to_chat(user, span_warning("<b>*click*</b>"))
 	playsound(src, dry_fire_sound, 25, 1, 5)
-
 
 /obj/item/weapon/gun/proc/play_fire_sound(mob/user)
 	//Guns with low ammo have their firing sound
@@ -1209,17 +1208,17 @@ and you're good to go.
 
 /obj/item/weapon/gun/proc/do_fire_attachment()
 	if(!CHECK_BITFIELD(flags_item, WIELDED))
-		to_chat(gun_user, "<span class='warning'>[active_attachable] must be wielded to fire!</span>")
+		to_chat(gun_user, span_warning("[active_attachable] must be wielded to fire!"))
 		return
 	if(active_attachable.current_rounds <= 0)
 		click_empty(gun_user) //If it's empty, let them know.
-		to_chat(gun_user, "<span class='warning'>[active_attachable] is empty!</span>")
+		to_chat(gun_user, span_warning("[active_attachable] is empty!"))
 		return
 	if(!wielded_stable())
-		to_chat(gun_user, "<span class='warning'>[active_attachable] is not ready to fire!</span>")
+		to_chat(gun_user, span_warning("[active_attachable] is not ready to fire!"))
 		return
 	if(!(flags_gun_features & GUN_ALLOW_SYNTHETIC) && !CONFIG_GET(flag/allow_synthetic_gun_use) && issynth(gun_user))
-		to_chat(gun_user, "<span class='warning'>Your program does not allow you to use this firearm.</span>")
+		to_chat(gun_user, span_warning("Your program does not allow you to use this firearm."))
 		return
 	active_attachable.fire_attachment(target, src, gun_user) //Fire it.
 	last_fired = world.time
@@ -1231,4 +1230,4 @@ and you're good to go.
 	attachments[ATTACHMENT_SLOT_RAIL].turn_light(null, FALSE)
 	playsound(loc, "alien_claw_metal", 25, 1)
 	X.do_attack_animation(src, ATTACK_EFFECT_CLAW)
-	to_chat(X, "<span class='warning'>We disable the metal thing's lights.</span>")
+	to_chat(X, span_warning("We disable the metal thing's lights.") )

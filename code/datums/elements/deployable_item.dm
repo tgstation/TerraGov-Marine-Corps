@@ -40,10 +40,10 @@
 
 		deploy_location = get_step(user, user.dir)
 		if(attached_item.check_blocked_turf(deploy_location))
-			to_chat(user, "<span class='warning'>There is insufficient room to deploy [attached_item]!</span>")
+			to_chat(user, span_warning("There is insufficient room to deploy [attached_item]!"))
 			return
 		new_direction = user.dir
-		to_chat(user, "<span class='notice'>You start deploying the [attached_item].</span>")
+		to_chat(user, span_notice("You start deploying the [attached_item]."))
 		if(!do_after(user, deploy_time, TRUE, attached_item, BUSY_ICON_BUILD))
 			return
 
@@ -86,7 +86,7 @@
 	if(istype(deployed_machine, /obj/machinery/deployable/mounted/sentry))
 		sentry = deployed_machine
 	sentry?.set_on(FALSE)
-	to_chat(user, "<span class='notice'>You start disassembling the [attached_item]</span>")
+	to_chat(user, span_notice("You start disassembling the [attached_item]"))
 	if(!do_after(user, deploy_time, TRUE, deployed_machine, BUSY_ICON_BUILD))
 		sentry?.set_on(TRUE)
 		return

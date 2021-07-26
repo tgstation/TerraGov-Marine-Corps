@@ -16,7 +16,7 @@
 	var/duration = 10 SECONDS
 
 /datum/action/xeno_action/activable/nightfall/on_cooldown_finish()
-	to_chat(owner, "<span class='notice'>We gather enough mental strength to shut down lights again.</span>")
+	to_chat(owner, span_notice("We gather enough mental strength to shut down lights again."))
 	return ..()
 
 /datum/action/xeno_action/activable/nightfall/use_ability()
@@ -48,7 +48,7 @@
 	var/list/filters_applied = list()
 
 /datum/action/xeno_action/activable/gravity_crush/on_cooldown_finish()
-	to_chat(owner, "<span class='warning'>Our psychic aura restores itself. We are ready to gravity crush again.</span>")
+	to_chat(owner, span_warning("Our psychic aura restores itself. We are ready to gravity crush again."))
 	return ..()
 
 /datum/action/xeno_action/activable/gravity_crush/can_use_ability(atom/A, silent, override_flags)
@@ -57,7 +57,7 @@
 		return
 	if(!owner.line_of_sight(A, king_crush_dist))
 		if(!silent)
-			to_chat(owner, "<span class='warning'>We must get closer to crush, our mind cannot reach this far.</span>")
+			to_chat(owner, span_warning("We must get closer to crush, our mind cannot reach this far."))
 		return FALSE
 
 /datum/action/xeno_action/activable/gravity_crush/use_ability(atom/A)
@@ -74,7 +74,7 @@
 	remove_all_filters()
 	succeed_activate()
 	add_cooldown()
-	A.visible_message("<span class='warning'>[A] collapses inward as its gravity suddenly increases!</span>")
+	A.visible_message(span_warning("[A] collapses inward as its gravity suddenly increases!"))
 
 ///Remove all filters of items in filters_applied
 /datum/action/xeno_action/activable/gravity_crush/proc/remove_all_filters()
@@ -133,7 +133,7 @@
 	keybind_signal = COMSIG_XENOABILITY_HIVE_SUMMON
 
 /datum/action/xeno_action/activable/psychic_summon/on_cooldown_finish()
-	to_chat(owner, "<span class='warning'>The hives power swells. We may summon our sisters again.</span>")
+	to_chat(owner, span_warning("The hives power swells. We may summon our sisters again."))
 	return ..()
 
 /datum/action/xeno_action/psychic_summon/can_use_action(silent, override_flags)
@@ -141,7 +141,7 @@
 	var/mob/living/carbon/xenomorph/X = owner
 	if(length(X.hive.get_all_xenos()) <= 1)
 		if(!silent)
-			to_chat(owner, "<span class='notice'>We have no hive to call. We are alone on our throne of nothing.</span>")
+			to_chat(owner, span_notice("We have no hive to call. We are alone on our throne of nothing."))
 		return FALSE
 
 /datum/action/xeno_action/psychic_summon/action_activate()
