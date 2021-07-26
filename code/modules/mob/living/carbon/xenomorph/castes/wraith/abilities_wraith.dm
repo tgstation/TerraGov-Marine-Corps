@@ -389,9 +389,6 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	cooldown_timer = 0.5 SECONDS
 	keybind_signal = COMSIG_XENOABILITY_BLINK
 
-/datum/action/xeno_action/activable/blink/can_use_ability(atom/A, silent = FALSE, override_flags)
-	. = ..()
-
 ///Check Blink tile for suitability
 /datum/action/xeno_action/activable/blink/proc/check_blink_tile(turf/T, ignore_blocker = FALSE, silent = FALSE)
 	if(isclosedturf(T) || isspaceturf(T))
