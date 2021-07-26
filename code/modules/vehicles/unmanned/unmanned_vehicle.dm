@@ -9,7 +9,7 @@
 	light_range = 6
 	light_power = 3
 	light_system = MOVABLE_LIGHT
-	move_delay = 2	//set this to limit the speed of the vehicle
+	move_delay = 2.5	//set this to limit the speed of the vehicle
 	max_integrity = 300
 	hud_possible = list(MACHINE_HEALTH_HUD, MACHINE_AMMO_HUD)
 	resistance_flags = XENO_DAMAGEABLE
@@ -253,7 +253,7 @@
 /obj/vehicle/unmanned/medium
 	name = "medium unmanned vehicle"
 	icon_state = "medium_uv"
-	move_delay = 2.6
+	move_delay = 3
 	max_rounds = 200
 	max_integrity = 500
 
