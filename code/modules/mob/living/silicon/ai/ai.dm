@@ -132,11 +132,11 @@
 
 /mob/living/silicon/ai/proc/notify_tadpole_movement_take_off(datum/source, obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/tad)
 	SIGNAL_HANDLER
-	to_chat(src, span_notice("Mini dropship taking off from [tad.locs]"))
+	to_chat(src, span_notice("Mini dropship taking off from."))
 
-/mob/living/silicon/ai/proc/notify_tadpole_movement_landing(datum/source, obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/tad)
+mob/living/silicon/ai/proc/notify_tadpole_movement_landing(datum/source, obj/machinery/computer/camera_advanced/shuttle_docker/tad)
 	SIGNAL_HANDLER
-	to_chat(src, span_notice("Mini dropship landing at THE PLACE"))
+	to_chat(src, span_notice("Mini dropship landing at [tad.loc]" ))
 
 
 
