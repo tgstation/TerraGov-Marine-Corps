@@ -41,7 +41,7 @@
 		/datum/job/terragov/squad/standard/rebel = -1
 	)
 	///How many points do you need to win
-	var/win_points_needed = 25
+	var/win_points_needed = 5000
 	///The points per faction, assoc list
 	var/list/points_per_faction
 
@@ -75,15 +75,15 @@
 		if(disputed_zone.faction_controlling)
 			LAZYINCREMENT(points_per_faction, disputed_zone.faction_controlling)
 
-	if(LAZYACCESS(SSmonitor.points_per_faction, FACTION_TERRAGOV) >= win_points_needed)
-		if(LAZYACCESS(SSmonitor.points_per_faction, FACTION_TERRAGOV_REBEL) >= win_points_needed)
+	if(LAZYACCESS(points_per_faction, FACTION_TERRAGOV) >= win_points_needed)
+		if(LAZYACCESS(points_per_faction, FACTION_TERRAGOV_REBEL) >= win_points_needed)
 			message_admins("Round finished: [MODE_CIVIL_WAR_DRAW]") //everyone got enough points at the same time, no one wins
 			round_finished = MODE_CIVIL_WAR_DRAW
 			return TRUE
 		message_admins("Round finished: [MODE_CIVIL_WAR_LOYALIST_MAJOR]")
 		round_finished = MODE_CIVIL_WAR_LOYALIST_MAJOR
 		return TRUE
-	if(LAZYACCESS(SSmonitor.points_per_faction, FACTION_TERRAGOV_REBEL) >= win_points_needed)
+	if(LAZYACCESS(points_per_faction, FACTION_TERRAGOV_REBEL) >= win_points_needed)
 		message_admins("Round finished: [MODE_CIVIL_WAR_REBEL_MAJOR]")
 		round_finished = MODE_CIVIL_WAR_REBEL_MAJOR
 		return TRUE
