@@ -76,6 +76,7 @@
 	)
 
 /obj/item/weapon/gun/sentry/big_sentry/premade
+	sentry_iff_signal = TGMC_LOYALIST_IFF
 	flags_item = IS_DEPLOYABLE|TWOHANDED|DEPLOY_ON_INITIALIZE
 
 /obj/item/storage/box/minisentry
