@@ -548,7 +548,7 @@
 		/obj/item/reagent_containers/food/snacks/mre_pack/meal6 = -1,
 		/obj/item/storage/box/MRE = -1,
 		/obj/item/reagent_containers/food/drinks/flask = -1,
-		/obj/item/reagent_containers/food/drink/birthdaycake = -1
+		/obj/item/reagent_containers/food/snacks/sliceable/birthdaycake = -1
 	)
 //Christmas inventory
 /*
