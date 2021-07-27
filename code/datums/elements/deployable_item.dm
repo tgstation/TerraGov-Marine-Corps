@@ -40,10 +40,10 @@
 
 		deploy_location = get_step(user, user.dir)
 		if(attached_item.check_blocked_turf(deploy_location))
-			to_chat(user, span_warning("There is insufficient room to deploy [attached_item]!"))
+			user.balloon_alert(user, "There is insufficient room to deploy [attached_item]!")
 			return
 		new_direction = user.dir
-		to_chat(user, span_notice("You start deploying the [attached_item]."))
+		user.balloon_alert(user, "You start deploying...")
 		if(!do_after(user, deploy_time, TRUE, attached_item, BUSY_ICON_BUILD))
 			return
 
@@ -64,6 +64,7 @@
 	deployed_machine.update_icon_state()
 
 	attached_item.forceMove(deployed_machine) //Moves the Item into the machine or structure
+	attached_item.balloon_alert(user, "Deployed!")
 
 	ENABLE_BITFIELD(attached_item.flags_item, IS_DEPLOYED)
 
@@ -83,7 +84,7 @@
 		CRASH("[source] has sent the signal COMSIG_ITEM_UNDEPLOY to [attached_item] without the arg 'user'")
 	if(!ishuman(user))
 		return
-	to_chat(user, span_notice("You start disassembling the [attached_item]"))
+	user.balloon_alert(user, "You start disassembling [attached_item]")
 	if(!do_after(user, deploy_time, TRUE, deployed_machine, BUSY_ICON_BUILD))
 		return
 	user.unset_interaction()
