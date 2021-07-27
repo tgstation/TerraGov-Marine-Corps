@@ -41,11 +41,13 @@
 		/datum/job/terragov/squad/standard/rebel = -1
 	)
 	///How many points do you need to win
-	var/points_needed = 25
+	var/win_points_needed = 25
+	///The points per faction, assoc list
+	var/list/points_per_faction
 
 /datum/game_mode/civil_war/announce()
 	to_chat(world, "<b>The current game mode is - Civil War!</b>")
-	to_chat(world, "<b>Capture and defend the constested zones to win. They are in blue on the minimap. Every 5 minutes (starting at 12:35), every controlled zone gives one point to your faction. The first to [points_needed] wins!</b>")
+	to_chat(world, "<b>Capture and defend the constested zones to win. They are in blue on the minimap. Every 5 minutes (starting at 12:35), every controlled zone gives one point to your faction. The first to [win_points_needed] wins!</b>")
 	to_chat(world, "<b>WIP, report bugs on the github!</b>")
 
 /datum/game_mode/civil_war/set_valid_squads()
@@ -67,15 +69,21 @@
 	if(round_finished)
 		return TRUE
 
-	if(LAZYACCESS(SSmonitor.points_per_faction, FACTION_TERRAGOV) >= points_needed)
-		if(LAZYACCESS(SSmonitor.points_per_faction, FACTION_TERRAGOV_REBEL) >= points_needed)
+	if(SSmonitor.gamestate != GROUNDSIDE)
+		return
+	for(var/area/disputed_zone AS in GLOB.zones_to_control)
+		if(disputed_zone.faction_controlling)
+			LAZYINCREMENT(points_per_faction, disputed_zone.faction_controlling)
+
+	if(LAZYACCESS(SSmonitor.points_per_faction, FACTION_TERRAGOV) >= win_points_needed)
+		if(LAZYACCESS(SSmonitor.points_per_faction, FACTION_TERRAGOV_REBEL) >= win_points_needed)
 			message_admins("Round finished: [MODE_CIVIL_WAR_DRAW]") //everyone got enough points at the same time, no one wins
 			round_finished = MODE_CIVIL_WAR_DRAW
 			return TRUE
 		message_admins("Round finished: [MODE_CIVIL_WAR_LOYALIST_MAJOR]")
 		round_finished = MODE_CIVIL_WAR_LOYALIST_MAJOR
 		return TRUE
-	if(LAZYACCESS(SSmonitor.points_per_faction, FACTION_TERRAGOV_REBEL) >= points_needed)
+	if(LAZYACCESS(SSmonitor.points_per_faction, FACTION_TERRAGOV_REBEL) >= win_points_needed)
 		message_admins("Round finished: [MODE_CIVIL_WAR_REBEL_MAJOR]")
 		round_finished = MODE_CIVIL_WAR_REBEL_MAJOR
 		return TRUE

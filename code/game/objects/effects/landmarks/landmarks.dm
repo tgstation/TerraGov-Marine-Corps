@@ -191,7 +191,7 @@
 	var/area/area_to_control = get_area(src)
 	area_to_control.set_to_contested()
 	area_to_control.center_turf = get_turf(src)
-	GLOB.zone_to_control += area_to_control
+	GLOB.zones_to_control += area_to_control
 	. = ..()
 	return INITIALIZE_HINT_QDEL
 

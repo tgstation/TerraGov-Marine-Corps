@@ -32,8 +32,6 @@ SUBSYSTEM_DEF(monitor)
 	var/gamestate = SHUTTERS_CLOSED
 	///If the automatic balance system is online
 	var/is_automatic_balance_on = TRUE
-	///The points per faction, assoc list
-	var/list/points_per_faction
 
 /datum/monitor_statistics
 	var/ancient_queen = 0
@@ -55,28 +53,18 @@ SUBSYSTEM_DEF(monitor)
 	is_automatic_balance_on = CONFIG_GET(flag/is_automatic_balance_on)
 
 /datum/controller/subsystem/monitor/fire(resumed = 0)
-	switch(SSticker.mode?.type)
-		if(/datum/game_mode/infestation/distress, /datum/game_mode/infestation/hunt)
-			current_points = calculate_state_points() / max(GLOB.alive_human_list.len + GLOB.alive_xeno_list.len, 10)//having less than 10 players gives bad results
-			if(gamestate == GROUNDSIDE)
-				process_human_positions()
-				FOB_hugging_check()
-			set_state(current_points)
-			var/proposed_balance_buff = 1
-			var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
-			if(is_automatic_balance_on && current_state < STATE_BALANCED && ((xeno_job.total_positions - xeno_job.current_positions) > (length(GLOB.alive_xeno_list) * TOO_MUCH_BURROWED_PROPORTION)) && gamestate == GROUNDSIDE)
-				proposed_balance_buff = balance_xeno_team()
-			if(abs(proposed_balance_buff - GLOB.xeno_stat_multiplicator_buff) >= 0.05 || (proposed_balance_buff == 1 && GLOB.xeno_stat_multiplicator_buff != 1))
-				GLOB.xeno_stat_multiplicator_buff = proposed_balance_buff
-				apply_balance_changes()
-		if(/datum/game_mode/civil_war)
-			if(gamestate != GROUNDSIDE)
-				return
-			for(var/area/disputed_zone AS in GLOB.zone_to_control)
-				if(disputed_zone.faction_controlling)
-					LAZYINCREMENT(points_per_faction, disputed_zone.faction_controlling)
-		else
-			can_fire = FALSE
+	current_points = calculate_state_points() / max(GLOB.alive_human_list.len + GLOB.alive_xeno_list.len, 10)//having less than 10 players gives bad results
+	if(gamestate == GROUNDSIDE)
+		process_human_positions()
+		FOB_hugging_check()
+	set_state(current_points)
+	var/proposed_balance_buff = 1
+	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
+	if(is_automatic_balance_on && current_state < STATE_BALANCED && ((xeno_job.total_positions - xeno_job.current_positions) > (length(GLOB.alive_xeno_list) * TOO_MUCH_BURROWED_PROPORTION)) && gamestate == GROUNDSIDE)
+		proposed_balance_buff = balance_xeno_team()
+	if(abs(proposed_balance_buff - GLOB.xeno_stat_multiplicator_buff) >= 0.05 || (proposed_balance_buff == 1 && GLOB.xeno_stat_multiplicator_buff != 1))
+		GLOB.xeno_stat_multiplicator_buff = proposed_balance_buff
+		apply_balance_changes()
 
 /datum/controller/subsystem/monitor/proc/set_groundside_calculation()
 	SIGNAL_HANDLER
