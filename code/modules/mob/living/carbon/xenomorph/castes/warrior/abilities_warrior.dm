@@ -405,7 +405,13 @@
 
 /obj/machinery/camera/punch_act(mob/living/carbon/xenomorph/X)
 	. = ..()
-	attack_alien(X) //Smash it
+	var/datum/effect_system/spark_spread/sparks = new //Avoid the slash text, go direct to sparks
+	sparks.set_up(2, 0, src)
+	sparks.attach(src)
+	sparks.start()
+
+	deactivate()
+	visible_message(span_danger("\The [src]'s wires snap apart in a rain of sparks!")) //Smash it
 
 /obj/machinery/power/apc/punch_act(mob/living/carbon/xenomorph/X)
 	. = ..()
