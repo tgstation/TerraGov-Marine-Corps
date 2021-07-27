@@ -236,9 +236,9 @@
 	DO_SOMETHING_IF_DEBUGGING_SHADOWS(log_game("[TICK_USAGE_TO_MS(timer)]ms to process total."))
 
 /obj/screen/plane_master/shadows
-	name = "Please save my sanity"
+	name = "Shadow alpha mask plane master"
 	plane = 16
-	render_target = "shadow_target"
+	render_target = "*shadow_target"
 	blend_mode = BLEND_ADD
 
 /mob/verb/remove_all_planes()
