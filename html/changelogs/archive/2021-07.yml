@@ -543,3 +543,18 @@
       battery.
   lbnesquik:
   - expansion: The AI is now notified when a CAS or OB laser is created or goes out.
+2021-07-27:
+  Alterist:
+  - balance: Swaps around Aft Escape Pods and ERT Docks on the Theseus.
+  - rscadd: Redesigned Theseus Hanger to allow for better workflow for POs.
+  BraveMole:
+  - balance: Respawn time of 10 minutes for Civil War
+  Pariah919:
+  - balance: added a utility tap to marine weapon vendors, has flashlights, c4, and
+      some other utility stuff
+  QualityVan:
+  - spellcheck: Medical scanners no longer tell you a subject with cloneloss has been
+      incorrectly cloned, since that's not what it comes from.
+  Surrealaser:
+  - balance: Defender can now charge from its Fortify stance when both Charge and
+      Fortify are off cooldown.
