@@ -333,6 +333,8 @@
 
 ///Set this area as a contested zone, that will monitors which faction controls it.
 /area/proc/set_to_contested()
+	if(SSminimaps.initialized)
+		stack_trace("An area was set as contested after SSminimap was initiliazed, it won't be colored")
 	RegisterSignal(src, COMSIG_AREA_ENTERED, .proc/add_faction_member)
 	RegisterSignal(src, COMSIG_AREA_EXITED, .proc/left_area)
 	minimap_color = MINIMAP_AREA_CONTESTED_ZONE
