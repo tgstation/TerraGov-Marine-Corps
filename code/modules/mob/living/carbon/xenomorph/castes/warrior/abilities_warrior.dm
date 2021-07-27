@@ -376,7 +376,7 @@
 /obj/machinery/punch_act(mob/living/carbon/xenomorph/X, damage, target_zone) //Break open the machine
 	X.do_attack_animation(src, ATTACK_EFFECT_YELLOWPUNCH)
 	X.do_attack_animation(src, ATTACK_EFFECT_DISARM2)
-	if(!CHECK_BITFIELD(resistance_flags, UNACIDABLE)) //If we can't acid it, we can't damage it
+	if(!CHECK_BITFIELD(resistance_flags, UNACIDABLE) || resistance_flags == (UNACIDABLE|XENO_DAMAGEABLE)) //If it's acidable or we can't acid it but it has the xeno damagable flag, we can damage it
 		attack_generic(X, damage * 4, BRUTE, "", FALSE) //Deals 4 times regular damage to machines
 	X.visible_message(span_xenodanger("\The [X] smashes [src] with a devastating punch!"), \
 		span_xenodanger("We smash [src] with a devastating punch!"), visible_message_flags = COMBAT_MESSAGE)
