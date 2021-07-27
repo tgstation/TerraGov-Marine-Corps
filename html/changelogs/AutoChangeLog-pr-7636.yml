@@ -1,0 +1,4 @@
+author: "Alterist"
+delete-after: True
+changes: 
+  - bugfix: "Theseus Aft Escape Pods have been properly installed, the engineers that installed escape shuttles have been fired."

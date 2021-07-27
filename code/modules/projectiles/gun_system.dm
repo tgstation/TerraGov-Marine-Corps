@@ -239,8 +239,8 @@
 	if(user == gun_user)
 		return
 	if(gun_user)
-		UnregisterSignal(gun_user, list(COMSIG_MOB_MOUSEDOWN, COMSIG_MOB_MOUSEUP, COMSIG_ITEM_ZOOM, COMSIG_MOB_MOUSEDRAG, COMSIG_KB_RAILATTACHMENT, COMSIG_KB_UNDERRAILATTACHMENT, COMSIG_KB_UNLOADGUN, COMSIG_KB_FIREMODE, COMSIG_KB_GUN_SAFETY, COMSIG_PARENT_QDELETING))
-		gun_user.client.mouse_pointer_icon = initial(gun_user.client.mouse_pointer_icon)
+		UnregisterSignal(gun_user, list(COMSIG_MOB_MOUSEDOWN, COMSIG_MOB_MOUSEUP, COMSIG_ITEM_ZOOM, COMSIG_ITEM_UNZOOM, COMSIG_MOB_MOUSEDRAG, COMSIG_KB_RAILATTACHMENT, COMSIG_KB_UNDERRAILATTACHMENT, COMSIG_KB_UNLOADGUN, COMSIG_KB_FIREMODE, COMSIG_KB_GUN_SAFETY, COMSIG_PARENT_QDELETING))
+		gun_user.client?.mouse_pointer_icon = initial(gun_user.client.mouse_pointer_icon)
 		gun_user = null
 	if(!user)
 		return
