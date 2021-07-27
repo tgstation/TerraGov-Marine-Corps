@@ -40,7 +40,7 @@ GLOBAL_LIST_INIT(ventcrawl_machinery, typecacheof(list(
 
 
 //VENTCRAWLING
-/mob/living/proc/handle_ventcrawl(atom/A)
+/mob/living/proc/handle_ventcrawl(atom/A, crawl_time = 4.5 SECONDS, stealthy = FALSE)
 	if(!can_ventcrawl() || !Adjacent(A) || !canmove)
 		return
 	if(stat)
@@ -71,9 +71,9 @@ GLOBAL_LIST_INIT(ventcrawl_machinery, typecacheof(list(
 	if(vent_found)
 		var/datum/pipeline/vent_found_parent = vent_found.parents[1]
 		if(vent_found_parent && (vent_found_parent.members.len || vent_found_parent.other_atmosmch))
-			visible_message(span_notice("[src] begins climbing into the ventilation system...") ,span_notice("You begin climbing into the ventilation system..."))
+			visible_message(span_notice("[stealthy ? "[src] begins climbing into the ventilation system..." : ""]"),span_notice("You begin climbing into the ventilation system..."))
 
-			if(!do_after(src, 4.5 SECONDS, FALSE, vent_found, BUSY_ICON_GENERIC) || !client || !canmove)
+			if(!do_after(src, crawl_time, FALSE, vent_found, BUSY_ICON_GENERIC) || !client || !canmove)
 				return
 
 			if(iscarbon(src) && can_ventcrawl())//It must have atleast been 1 to get this far
@@ -90,6 +90,8 @@ GLOBAL_LIST_INIT(ventcrawl_machinery, typecacheof(list(
 
 			visible_message(span_notice("[src] scrambles into the ventilation ducts!"),span_notice("You climb into the ventilation ducts."))
 			if(!isxenohunter(src)) //Hunters silently enter/exit vents.
+			visible_message("<span class='notice'>[src] scrambles into the ventilation ducts!</span>","<span class='notice'>You climb into the ventilation ducts.</span>")
+			if(!stealthy) //Xenos with stealth vent crawling can silently enter/exit vents.
 				playsound(src, get_sfx("alien_ventpass"), 35, TRUE)
 
 			forceMove(vent_found)

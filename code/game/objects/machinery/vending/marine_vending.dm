@@ -219,6 +219,12 @@
 		/obj/item/storage/box/visual/magazine = 30,
 		/obj/item/storage/box/visual/grenade = 10,
 		),
+		"Utility" = list(
+		/obj/item/flashlight/combat = -1,
+		/obj/item/binoculars = -1,
+		/obj/item/compass = -1,
+		/obj/item/assembly/signaler = -1,
+		),
 	)
 
 	seasonal_items = list(
@@ -857,7 +863,6 @@
 			/obj/item/clothing/head/slouch = -1,
 			/obj/item/clothing/glasses/mgoggles = -1,
 			/obj/item/clothing/glasses/mgoggles/prescription = -1,
-			/obj/item/flashlight/combat = -1,
 			/obj/item/clothing/under/whites = -1,
 			/obj/item/clothing/head/white_dress = -1,
 			/obj/item/clothing/shoes/white = -1,

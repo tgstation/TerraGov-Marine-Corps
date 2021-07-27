@@ -1,0 +1,6 @@
+author: "Surrealaser"
+delete-after: True
+changes: 
+  - code_imp: "Partial refactor of vent crawling. Snowflaking removed. Infrastructure added for unique ventcrawl interactions, and custom ventcrawl parameters at the caste level."
+  - balance: "Hunters can now crawl into vents in 1 second down from 4.5 seconds."
+  - balance: "Larva can now crawl into vents in 1 second down from 4.5 seconds."
