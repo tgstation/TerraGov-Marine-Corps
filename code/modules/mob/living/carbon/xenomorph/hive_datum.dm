@@ -1142,7 +1142,7 @@ to_chat will check for valid clients itself already so no need to double check f
 /datum/hive_status/ui_data(mob/living/carbon/xenomorph/xeno)
 	. = list()
 
-	.["can_evolve"] = !xeno.is_ventcrawling && !xeno.incapacitated(TRUE) && xeno.health >= xeno.maxHealth && xeno.plasma_stored >= (xeno.xeno_caste.plasma_max * plasma_regen_limit) 
+	.["can_evolve"] = !xeno.is_ventcrawling && !xeno.incapacitated(TRUE) && xeno.health >= xeno.maxHealth && xeno.plasma_stored >= (xeno.xeno_caste.plasma_max * xeno.xeno_caste.plasma_regen_limit) 
 
 	if(isxenolarva(xeno))
 		.["evolution"] = list(
