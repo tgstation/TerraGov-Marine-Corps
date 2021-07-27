@@ -64,7 +64,8 @@
 	deployed_machine.update_icon_state()
 
 	attached_item.forceMove(deployed_machine) //Moves the Item into the machine or structure
-	attached_item.balloon_alert(user, "Deployed!")
+	if(user)
+		attached_item.balloon_alert(user, "Deployed!")
 
 	ENABLE_BITFIELD(attached_item.flags_item, IS_DEPLOYED)
 
