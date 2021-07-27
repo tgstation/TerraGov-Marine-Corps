@@ -467,12 +467,12 @@
 	if(I.flags_item & ITEM_ABSTRACT)
 		return
 	if(I.flags_item & NODROP)
-		to_chat(src, "<span class='warning'>You can't remove \the [I.name], it appears to be stuck!</span>")
+		to_chat(src, span_warning("You can't remove \the [I.name], it appears to be stuck!"))
 		return
 	log_combat(src, M, "attempted to remove [key_name(I)] ([slot_to_process])")
 
-	M.visible_message("<span class='danger'>[src] tries to remove [M]'s [I.name].</span>", \
-					"<span class='userdanger'>[src] tries to remove [M]'s [I.name].</span>", null, 5)
+	M.visible_message(span_danger("[src] tries to remove [M]'s [I.name]."), \
+					span_userdanger("[src] tries to remove [M]'s [I.name]."), null, 5)
 	if(do_mob(src, M, HUMAN_STRIP_DELAY, BUSY_ICON_HOSTILE))
 		if(Adjacent(M) && I && I == M.get_item_by_slot(slot_to_process))
 			M.dropItemToGround(I)
@@ -488,12 +488,12 @@
 /mob/living/carbon/human/stripPanelEquip(obj/item/I, mob/M, slot_to_process)
 	if(I && !(I.flags_item & ITEM_ABSTRACT))
 		if(I.flags_item & NODROP)
-			to_chat(src, "<span class='warning'>You can't put \the [I.name] on [M], it's stuck to your hand!</span>")
+			to_chat(src, span_warning("You can't put \the [I.name] on [M], it's stuck to your hand!"))
 			return
 		if(!I.mob_can_equip(M, slot_to_process, TRUE))
-			to_chat(src, "<span class='warning'>You can't put \the [I.name] on [M]!</span>")
+			to_chat(src, span_warning("You can't put \the [I.name] on [M]!"))
 			return
-		visible_message("<span class='notice'>[src] tries to put [I] on [M].</span>", null , null, 5)
+		visible_message(span_notice("[src] tries to put [I] on [M]."), null , null, 5)
 		if(do_mob(src, M, HUMAN_STRIP_DELAY, BUSY_ICON_GENERIC))
 			if(!M.get_item_by_slot(slot_to_process))
 				if(I.mob_can_equip(M, slot_to_process, TRUE))//Placing an item on the mob
@@ -530,7 +530,7 @@
  * Return [TRUE]|[FALSE] if item_searched is equipped or in the hands of the human
  * item_searched the item you want to check
  */
-/mob/living/carbon/human/proc/is_item_in_slots(item_searched) 
+/mob/living/carbon/human/proc/is_item_in_slots(item_searched)
 	for (var/slot in SLOT_ALL)
 		if (get_item_by_slot(slot) == item_searched)
 			return TRUE
@@ -544,7 +544,7 @@
 	for (var/slot in SLOT_ALL)
 		if (istype(get_item_by_slot(slot),type_searched))
 			return get_item_by_slot(slot)
-	
+
 
 /**
  * Return [TRUE]|[FALSE] if item_searched is in the hands of the human

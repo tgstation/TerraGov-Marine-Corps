@@ -46,7 +46,7 @@
 		return
 
 	if(!allowed(user))
-		to_chat(user, "<span class='danger'>Access Denied</span>")
+		to_chat(user, span_danger("Access Denied"))
 		flick("[initial(icon_state)]-denied", src)
 		return
 
@@ -191,7 +191,7 @@
 	if(!istype(user))
 		return
 	if(machine_stat & (NOPOWER|BROKEN))
-		to_chat(user, "<span class='warning'>[src] doesn't seem to be working.</span>")
+		to_chat(user, span_warning("[src] doesn't seem to be working."))
 		return
 	if(active)
 		return

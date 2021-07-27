@@ -166,11 +166,11 @@
 			building_time -= clamp(R.time * ( usr.skills.getRating("construction") - R.skill_req ) * 0.40, 0 , 0.85 * building_time) // -40% time each extra skill point
 		if(building_time)
 			if(building_time > R.time)
-				usr.visible_message("<span class='notice'>[usr] fumbles around figuring out how to build \a [R.title].</span>",
-				"<span class='notice'>You fumble around figuring out how to build \a [R.title].</span>")
+				usr.visible_message(span_notice("[usr] fumbles around figuring out how to build \a [R.title]."),
+				span_notice("You fumble around figuring out how to build \a [R.title]."))
 			else
-				usr.visible_message("<span class='notice'>[usr] starts building \a [R.title].</span>",
-				"<span class='notice'>You start building \a [R.title]...</span>")
+				usr.visible_message(span_notice("[usr] starts building \a [R.title]."),
+				span_notice("You start building \a [R.title]..."))
 			if(!do_after(usr, building_time, TRUE, src, BUSY_ICON_BUILD))
 				return
 			if(!building_checks(R, multiplier))
@@ -206,16 +206,16 @@
 /obj/item/stack/proc/building_checks(datum/stack_recipe/R, multiplier)
 	if (get_amount() < R.req_amount*multiplier)
 		if (R.req_amount*multiplier>1)
-			to_chat(usr, "<span class='warning'>You haven't got enough [src] to build \the [R.req_amount*multiplier] [R.title]\s!</span>")
+			to_chat(usr, span_warning("You haven't got enough [src] to build \the [R.req_amount*multiplier] [R.title]\s!"))
 		else
-			to_chat(usr, "<span class='warning'>You haven't got enough [src] to build \the [R.title]!</span>")
+			to_chat(usr, span_warning("You haven't got enough [src] to build \the [R.title]!"))
 		return FALSE
 	var/turf/T = get_turf(usr)
 
 	switch(R.max_per_turf)
 		if(STACK_RECIPE_ONE_PER_TILE)
 			if(locate(R.result_type) in T)
-				to_chat(usr, "<span class='warning'>There is another [R.title] here!</span>")
+				to_chat(usr, span_warning("There is another [R.title] here!"))
 				return FALSE
 		if(STACK_RECIPE_ONE_DIRECTIONAL_PER_TILE)
 			for(var/obj/thing in T)
@@ -223,11 +223,11 @@
 					continue
 				if(thing.dir != usr.dir)
 					continue
-				to_chat(usr, "<span class='warning'>You can't build \the [R.title] on top of another!</span>")
+				to_chat(usr, span_warning("You can't build \the [R.title] on top of another!"))
 				return FALSE
 	if(R.on_floor)
 		if(!isfloorturf(T) && !isbasalt(T) && !islavacatwalk(T) && !isopengroundturf(T))
-			to_chat(usr, "<span class='warning'>\The [R.title] must be constructed on the floor!</span>")
+			to_chat(usr, span_warning("\The [R.title] must be constructed on the floor!"))
 			return FALSE
 		for(var/obj/AM in T)
 			if(istype(AM,/obj/structure/grille))
@@ -243,7 +243,7 @@
 						continue
 				else
 					continue
-			to_chat(usr, "<span class='warning'>There is a [AM.name] right where you want to place \the [R.title], blocking the construction.</span>")
+			to_chat(usr, span_warning("There is a [AM.name] right where you want to place \the [R.title], blocking the construction."))
 			return FALSE
 	return TRUE
 
@@ -322,7 +322,7 @@
 	if(stackmaterial < 1 || !can_interact(user)) //In case we were transformed or moved away since the input started.
 		return
 	change_stack(user, stackmaterial)
-	to_chat(user, "<span class='notice'>You take [stackmaterial] sheets out of the stack</span>")
+	to_chat(user, span_notice("You take [stackmaterial] sheets out of the stack"))
 
 
 /obj/item/stack/proc/change_stack(mob/user, new_amount)
@@ -338,7 +338,7 @@
 	if(istype(I, merge_type))
 		var/obj/item/stack/S = I
 		if(merge(S))
-			to_chat(user, "<span class='notice'>Your [S.name] stack now contains [S.get_amount()] [S.singular_name]\s.</span>")
+			to_chat(user, span_notice("Your [S.name] stack now contains [S.get_amount()] [S.singular_name]\s."))
 		return
 	return ..()
 

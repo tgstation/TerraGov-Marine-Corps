@@ -51,7 +51,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	if(istype(A, /obj/item/clothing/mask/facehugger))
 		if(isturf(get_turf(A)) && X.Adjacent(A))
 			if(!X.issamexenohive(A))
-				to_chat(X, "<span class='warning'>That facehugger is tainted!</span>")
+				to_chat(X, span_warning("That facehugger is tainted!"))
 				X.dropItemToGround(A)
 				return fail_activate()
 			X.store_hugger(A)
@@ -61,17 +61,17 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	if(!F) //empty active hand
 		//if no hugger in active hand, we take one from our storage
 		if(!X.huggers)
-			to_chat(X, "<span class='warning'>We don't have any facehuggers to use!</span>")
+			to_chat(X, span_warning("We don't have any facehuggers to use!"))
 			return fail_activate()
 
 		F = new X.selected_hugger_type(get_turf(X), X.hivenumber, X)
 		X.huggers--
 
 		X.put_in_active_hand(F)
-		to_chat(X, "<span class='xenonotice'>We grab one of the facehuggers in our storage. Now sheltering: [X.huggers] / [X.xeno_caste.huggers_max].</span>")
+		to_chat(X, span_xenonotice("We grab one of the facehuggers in our storage. Now sheltering: [X.huggers] / [X.xeno_caste.huggers_max]."))
 
 	if(!istype(F)) //something else in our hand
-		to_chat(X, "<span class='warning'>We need a facehugger in our hand to throw one!</span>")
+		to_chat(X, span_warning("We need a facehugger in our hand to throw one!"))
 		return fail_activate()
 
 	if(!cooldown_id)
@@ -81,23 +81,23 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 		F.stat = CONSCIOUS //Hugger is conscious
 		F.leaping = FALSE //Hugger is not leaping
 		F.facehugger_register_source(X) //Set us as the source
-		X.visible_message("<span class='xenowarning'>\The [X] throws something towards \the [A]!</span>", \
-		"<span class='xenowarning'>We throw a facehugger towards \the [A]!</span>")
+		X.visible_message(span_xenowarning("\The [X] throws something towards \the [A]!"), \
+		span_xenowarning("We throw a facehugger towards \the [A]!"))
 		add_cooldown()
 		return succeed_activate()
 
 /mob/living/carbon/xenomorph/carrier/proc/store_hugger(obj/item/clothing/mask/facehugger/F, message = TRUE, forced = FALSE)
 	if(huggers < xeno_caste.huggers_max)
 		if(F.stat == DEAD && !forced)
-			to_chat(src, "<span class='notice'>This young one has already expired, we cannot salvage it.</span>")
+			to_chat(src, span_notice("This young one has already expired, we cannot salvage it."))
 			return
 		F.kill_hugger()
 		huggers++
 		if(message)
 			playsound(src, 'sound/voice/alien_drool2.ogg', 50, 0, 1)
-			to_chat(src, "<span class='notice'>We salvage this young one's biomass to produce another. Now sheltering: [huggers] / [xeno_caste.huggers_max].</span>")
+			to_chat(src, span_notice("We salvage this young one's biomass to produce another. Now sheltering: [huggers] / [xeno_caste.huggers_max]."))
 	else if(message)
-		to_chat(src, "<span class='warning'>We can't carry any more facehuggers!</span>")
+		to_chat(src, span_warning("We can't carry any more facehuggers!"))
 
 // ***************************************
 // *********** Retrieve egg
@@ -131,28 +131,28 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	if(!E) //empty active hand
 		//if no hugger in active hand, we take one from our storage
 		if(eggs_cur <= 0)
-			to_chat(src, "<span class='warning'>We don't have any eggs to use!</span>")
+			to_chat(src, span_warning("We don't have any eggs to use!"))
 			return
 		E = new()
 		E.hivenumber = hivenumber
 		eggs_cur--
 		put_in_active_hand(E)
-		to_chat(src, "<span class='xenonotice'>We grab one of the eggs in our storage. Now sheltering: [eggs_cur] / [xeno_caste.eggs_max].</span>")
+		to_chat(src, span_xenonotice("We grab one of the eggs in our storage. Now sheltering: [eggs_cur] / [xeno_caste.eggs_max]."))
 		return
 
 	if(!istype(E)) //something else in our hand
-		to_chat(src, "<span class='warning'>We need an empty hand to grab one of our stored eggs!</span>")
+		to_chat(src, span_warning("We need an empty hand to grab one of our stored eggs!"))
 		return
 
 /mob/living/carbon/xenomorph/carrier/proc/store_egg(obj/item/xeno_egg/E)
 	if(!issamexenohive(E))
-		to_chat(src, "<span class='warning'>That egg is tainted!</span>")
+		to_chat(src, span_warning("That egg is tainted!"))
 		return
 	if(eggs_cur >= xeno_caste.eggs_max)
-		to_chat(src, "<span class='warning'>We can't carry more eggs on ourselves.</span>")
+		to_chat(src, span_warning("We can't carry more eggs on ourselves."))
 		return
 	eggs_cur++
-	to_chat(src, "<span class='notice'>We store the egg and carry it for safekeeping. Now sheltering: [eggs_cur] / [xeno_caste.eggs_max].</span>")
+	to_chat(src, span_notice("We store the egg and carry it for safekeeping. Now sheltering: [eggs_cur] / [xeno_caste.eggs_max]."))
 	qdel(E)
 
 // ***************************************
@@ -170,12 +170,12 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	var/turf/T = get_turf(owner)
 	if(!T || !T.is_weedable() || T.density)
 		if(!silent)
-			to_chat(owner, "<span class='warning'>We can't do that here.</span>")
+			to_chat(owner, span_warning("We can't do that here."))
 		return FALSE
 
 	if(!(locate(/obj/effect/alien/weeds) in T))
 		if(!silent)
-			to_chat(owner, "<span class='warning'>We can only shape on weeds. We must find some resin before we start building!</span>")
+			to_chat(owner, span_warning("We can only shape on weeds. We must find some resin before we start building!"))
 		return FALSE
 
 	if(!T.check_alien_construction(owner, silent) || !T.check_disallow_alien_fortification(owner, silent))
@@ -190,7 +190,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	GLOB.round_statistics.carrier_traps++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "carrier_traps")
 	new /obj/structure/xeno/trap(T)
-	to_chat(owner, "<span class='xenonotice'>We place a hugger trap on the weeds, it still needs a facehugger.</span>")
+	to_chat(owner, span_xenonotice("We place a hugger trap on the weeds, it still needs a facehugger."))
 
 // ***************************************
 // *********** Spawn hugger
@@ -204,7 +204,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	keybind_signal = COMSIG_XENOABILITY_SPAWN_HUGGER
 
 /datum/action/xeno_action/spawn_hugger/on_cooldown_finish()
-	to_chat(owner, "<span class='xenodanger'>We can now spawn another young one.</span>")
+	to_chat(owner, span_xenodanger("We can now spawn another young one."))
 	owner.playsound_local(owner, 'sound/effects/xeno_newlarva.ogg', 25, 0, 1)
 	return ..()
 
@@ -215,14 +215,14 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	var/mob/living/carbon/xenomorph/carrier/X = owner
 	if(X.huggers >= X.xeno_caste.huggers_max)
 		if(!silent)
-			to_chat(X, "<span class='xenowarning'>We can't host any more young ones!</span>")
+			to_chat(X, span_xenowarning("We can't host any more young ones!"))
 		return FALSE
 
 /datum/action/xeno_action/spawn_hugger/action_activate()
 	var/mob/living/carbon/xenomorph/carrier/X = owner
 
 	X.huggers++
-	to_chat(X, "<span class='xenowarning'>We spawn a young one via the miracle of asexual internal reproduction, adding it to our stores. Now sheltering: [X.huggers] / [X.xeno_caste.huggers_max].</span>")
+	to_chat(X, span_xenowarning("We spawn a young one via the miracle of asexual internal reproduction, adding it to our stores. Now sheltering: [X.huggers] / [X.xeno_caste.huggers_max]."))
 	playsound(X, 'sound/voice/alien_drool2.ogg', 50, 0, 1)
 	succeed_activate()
 	add_cooldown()
@@ -261,7 +261,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 		X.selected_hugger_type = GLOB.hugger_type_list[i+1]
 
 	var/atom/A = X.selected_hugger_type
-	to_chat(X, "<span class='notice'>We will now spawn <b>[initial(A.name)]\s</b> when using the Spawn Hugger ability.</span>")
+	to_chat(X, span_notice("We will now spawn <b>[initial(A.name)]\s</b> when using the Spawn Hugger ability."))
 	update_button_icon()
 	return succeed_activate()
 
@@ -274,6 +274,6 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 		if(initial(hugger_type.name) == hugger_choice)
 			X.selected_hugger_type = hugger_type
 			break
-	to_chat(X, "<span class='notice'>We will now spawn <b>[hugger_choice]\s</b> when using the spawn hugger ability.</span>")
+	to_chat(X, span_notice("We will now spawn <b>[hugger_choice]\s</b> when using the spawn hugger ability."))
 	update_button_icon()
 	return succeed_activate()

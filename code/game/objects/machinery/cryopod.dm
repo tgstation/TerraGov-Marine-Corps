@@ -116,11 +116,11 @@
 	else if(href_list["allitems"])
 
 		if(!length(GLOB.cryoed_item_list[category]))
-			to_chat(usr, "<span class='warning'>There is nothing to recover from [category] storage.</span>")
+			to_chat(usr, span_warning("There is nothing to recover from [category] storage."))
 			updateUsrDialog()
 			return
 
-		visible_message("<span class='notice'>[src] beeps happily as it disgorges the desired objects.</span>")
+		visible_message(span_notice("[src] beeps happily as it disgorges the desired objects."))
 
 		for(var/A in GLOB.cryoed_item_list[category])
 			var/obj/item/I = A
@@ -135,10 +135,10 @@
 		CRASH("Deleted or erroneous variable ([I]) called for hypersleep inventory retrivial.")
 	if(!(I in GLOB.cryoed_item_list[category]))
 		if(message)
-			to_chat(user, "<span class='warning'>[I] is no longer in storage.</span>")
+			to_chat(user, span_warning("[I] is no longer in storage."))
 		return
 	if(message)
-		visible_message("<span class='notice'>[src] beeps happily as it disgorges [I].</span>")
+		visible_message(span_notice("[src] beeps happily as it disgorges [I]."))
 	I.forceMove(get_turf(src))
 	GLOB.cryoed_item_list[category] -= I
 
@@ -253,7 +253,7 @@
 	GLOB.cryoed_mob_list[data] = list(real_name, job ? job.title : "Unassigned", gameTimestamp())
 
 	if(pod)
-		pod.visible_message("<span class='notice'>[pod] hums and hisses as it moves [real_name] into hypersleep storage.</span>")
+		pod.visible_message(span_notice("[pod] hums and hisses as it moves [real_name] into hypersleep storage."))
 		pod.occupant = null
 		pod.update_icon()
 		pod.radio.talk_into(pod, "[real_name] has entered long-term hypersleep storage. Belongings moved to hypersleep inventory.", pod.frequency)
@@ -337,17 +337,17 @@
 		return
 
 	if(!QDELETED(occupant))
-		to_chat(user, "<span class='warning'>[src] is occupied.</span>")
+		to_chat(user, span_warning("[src] is occupied."))
 		return
 
 	var/mob/living/M = G.grabbed_thing
 
 	if(M.stat == DEAD) //This mob is dead
-		to_chat(user, "<span class='warning'>[src] immediately rejects [M]. [M.p_they(TRUE)] passed away!</span>")
+		to_chat(user, span_warning("[src] immediately rejects [M]. [M.p_they(TRUE)] passed away!"))
 		return
 
 	if(!ishuman(M))
-		to_chat(user, "<span class='warning'>There is no way [src] will accept [M]!</span>")
+		to_chat(user, span_warning("There is no way [src] will accept [M]!"))
 		return
 
 	if(M.client)
@@ -379,7 +379,7 @@
 		return
 
 	if(!QDELETED(occupant))
-		to_chat(user, "<span class='warning'>[src] is occupied.</span>")
+		to_chat(user, span_warning("[src] is occupied."))
 		return
 
 	climb_in(M, user)
@@ -399,18 +399,18 @@
 /obj/machinery/cryopod/proc/climb_in(mob/living/carbon/user, mob/helper)
 	if(helper && user != helper)
 		if(user.stat == DEAD)
-			to_chat(helper, "<span class='notice'>[user] is dead!</span>")
+			to_chat(helper, span_notice("[user] is dead!"))
 			return
 
 		if(!user.client && user.afk_status == MOB_RECENTLY_DISCONNECTED)
-			to_chat(helper, "<span class='notice'>You should wait another [round((timeleft(user.afk_timer_id) * 0.1) / 60, 2)] minutes before they are ready to enter cryosleep.</span>")
+			to_chat(helper, span_notice("You should wait another [round((timeleft(user.afk_timer_id) * 0.1) / 60, 2)] minutes before they are ready to enter cryosleep."))
 			return
 
-		helper.visible_message("<span class='notice'>[helper] starts putting [user] into [src].</span>",
-		"<span class='notice'>You start putting [user] into [src].</span>")
+		helper.visible_message(span_notice("[helper] starts putting [user] into [src]."),
+		span_notice("You start putting [user] into [src]."))
 	else
-		user.visible_message("<span class='notice'>[user] starts climbing into [src].</span>",
-		"<span class='notice'>You start climbing into [src].</span>")
+		user.visible_message(span_notice("[user] starts climbing into [src]."),
+		span_notice("You start climbing into [src]."))
 
 
 	var/mob/initiator = helper ? helper : user
@@ -418,7 +418,7 @@
 		return
 
 	if(!QDELETED(occupant))
-		to_chat(initiator, "<span class='warning'>[src] is occupied.</span>")
+		to_chat(initiator, span_warning("[src] is occupied."))
 		return
 
 	user.forceMove(src)
@@ -434,8 +434,8 @@
 		addtimer(CALLBACK(src, .proc/despawn_mob, user), 5 SECONDS)
 		return
 
-	to_chat(user, "<span class='notice'>You feel cool air surround you. You go numb as your senses turn inward.</span>")
-	to_chat(user, "<span class='boldnotice'>If you ghost, log out or close your client now, your character will shortly be permanently removed from the round.</span>")
+	to_chat(user, span_notice("You feel cool air surround you. You go numb as your senses turn inward."))
+	to_chat(user, span_boldnotice("If you ghost, log out or close your client now, your character will shortly be permanently removed from the round."))
 
 	RegisterSignal(user, COMSIG_CARBON_SETAFKSTATUS, .proc/on_user_afk_change)
 

@@ -447,7 +447,7 @@
 			playsound(src, "sound/effects/glassbr1.ogg", 60, 1)
 			spawn(8)
 				if(amount >1)
-					visible_message("<span class='boldnotice'>Shards of glass rain down from above!</span>")
+					visible_message(span_boldnotice("Shards of glass rain down from above!"))
 				for(var/i=1, i<=amount, i++)
 					new /obj/item/shard(pick(turfs))
 					new /obj/item/shard(pick(turfs))
@@ -455,14 +455,14 @@
 			playsound(src, "sound/effects/metal_crash.ogg", 60, 1)
 			spawn(8)
 				if(amount >1)
-					visible_message("<span class='boldnotice'>Pieces of metal crash down from above!</span>")
+					visible_message(span_boldnotice("Pieces of metal crash down from above!"))
 				for(var/i=1, i<=amount, i++)
 					new /obj/item/stack/sheet/metal(pick(turfs))
 		if(CEILING_UNDERGROUND, CEILING_DEEP_UNDERGROUND)
 			playsound(src, "sound/effects/meteorimpact.ogg", 60, 1)
 			spawn(8)
 				if(amount >1)
-					visible_message("<span class='boldnotice'>Chunks of rock crash down from above!</span>")
+					visible_message(span_boldnotice("Chunks of rock crash down from above!"))
 				for(var/i=1, i<=amount, i++)
 					new /obj/item/ore(pick(turfs))
 					new /obj/item/ore(pick(turfs))
@@ -530,7 +530,7 @@
 	var/area/ourarea = loc
 	if(ourarea.flags_area & DISALLOW_WEEDING)
 		if(!silent)
-			to_chat(builder, "<span class='warning'>We cannot build in this area before the talls are out!</span>")
+			to_chat(builder, span_warning("We cannot build in this area before the talls are out!"))
 		return FALSE
 	return TRUE
 
@@ -545,15 +545,15 @@
 			var/obj/item/clothing/mask/facehugger/hugger_check = O
 			if(hugger_check.stat != DEAD) //We don't care about dead huggers.
 				if(!silent)
-					to_chat(builder, "<span class='warning'>There is a little one here already. Best move it.</span>")
+					to_chat(builder, span_warning("There is a little one here already. Best move it."))
 				return FALSE
 		if(istype(O, /obj/effect/alien/egg))
 			if(!silent)
-				to_chat(builder, "<span class='warning'>There's already an egg here.</span>")
+				to_chat(builder, span_warning("There's already an egg here."))
 			return FALSE
 		if(istype(O, /obj/structure/xeno))
 			if(!silent)
-				to_chat(builder, "<span class='warning'>There's already a resin structure here!</span>")
+				to_chat(builder, span_warning("There's already a resin structure here!"))
 			return FALSE
 		if(istype(O, /obj/structure/mineral_door) || istype(O, /obj/effect/alien/resin))
 			has_obstacle = TRUE
@@ -584,13 +584,13 @@
 
 	if(density || has_obstacle)
 		if(!silent)
-			to_chat(builder, "<span class='warning'>There's something built here already.</span>")
+			to_chat(builder, span_warning("There's something built here already."))
 		return FALSE
 	return TRUE
 
 /turf/closed/check_alien_construction(mob/living/builder, silent = FALSE, planned_building)
 	if(!silent)
-		to_chat(builder, "<span class='warning'>There's something built here already.</span>")
+		to_chat(builder, span_warning("There's something built here already."))
 	return FALSE
 
 /turf/proc/can_dig_xeno_tunnel()

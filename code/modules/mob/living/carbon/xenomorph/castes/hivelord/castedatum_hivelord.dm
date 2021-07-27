@@ -15,8 +15,10 @@
 	speed = 0.4
 
 	// *** Plasma *** //
-	plasma_max = 800
+	plasma_max = 1600
 	plasma_gain = 50
+	plasma_regen_limit = 0.5
+	plasma_icon_state = "hivelord_plasma"
 
 	// *** Health *** //
 	max_health = 300
@@ -30,7 +32,7 @@
 	evolves_to = list(/mob/living/carbon/xenomorph/Defiler)
 
 	// *** Flags *** //
-	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_EVOLUTION_ALLOWED|CASTE_CAN_HOLD_FACEHUGGERS|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER|CASTE_CAN_HOLD_JELLY|CASTE_IS_BUILDER
+	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_EVOLUTION_ALLOWED|CASTE_CAN_HOLD_FACEHUGGERS|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER|CASTE_CAN_HOLD_JELLY|CASTE_IS_BUILDER|CAN_BECOME_KING
 
 	can_hold_eggs = CAN_HOLD_TWO_HANDS
 
@@ -83,7 +85,7 @@
 	speed = 0.3
 
 	// *** Plasma *** //
-	plasma_max = 900
+	plasma_max = 1800
 	plasma_gain = 60
 
 	// *** Health *** //
@@ -114,7 +116,7 @@
 	speed = 0.2
 
 	// *** Plasma *** //
-	plasma_max = 1000
+	plasma_max = 2000
 	plasma_gain = 63
 
 	// *** Health *** //
@@ -146,7 +148,7 @@
 	speed = 0.1
 
 	// *** Plasma *** //
-	plasma_max = 1200
+	plasma_max = 2400
 	plasma_gain = 65
 
 	// *** Health *** //
