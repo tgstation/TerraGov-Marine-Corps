@@ -6377,11 +6377,6 @@
 /obj/structure/bookcase,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/numbertwobunks)
-"vk" = (
-/obj/structure/table/mainship,
-/obj/item/toy/deck/kotahi,
-/turf/open/floor/freezer,
-/area/mainship/living/cafeteria_starboard)
 "vl" = (
 /obj/structure/closet/boxinggloves,
 /turf/open/floor/plating/mainship,
@@ -6656,11 +6651,6 @@
 /obj/machinery/door/firedoor/mainship,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/pilotbunks)
-"wc" = (
-/obj/structure/bed/chair/wood,
-/obj/item/trash/cigbutt/cigarbutt,
-/turf/open/floor/freezer,
-/area/mainship/living/cafeteria_starboard)
 "wd" = (
 /obj/structure/rack,
 /obj/machinery/light/small,
@@ -7499,11 +7489,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/engineering_workshop)
-"yB" = (
-/obj/structure/table/mainship,
-/obj/item/reagent_containers/food/snacks/chocolatebar,
-/turf/open/floor/freezer,
-/area/mainship/living/cafeteria_starboard)
 "yC" = (
 /obj/structure/table/mainship,
 /obj/machinery/microwave{
@@ -9634,10 +9619,6 @@
 /obj/machinery/telecomms/receiver/preset_right,
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/telecomms)
-"Ft" = (
-/obj/structure/table/mainship,
-/turf/open/floor/freezer,
-/area/mainship/living/cafeteria_starboard)
 "Fx" = (
 /obj/machinery/light{
 	dir = 8
@@ -12776,11 +12757,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/lower_hull)
-"Pk" = (
-/obj/structure/table/mainship,
-/obj/item/storage/bible,
-/turf/open/floor/freezer,
-/area/mainship/living/cafeteria_starboard)
 "Pl" = (
 /obj/structure/window/reinforced{
 	dir = 8
@@ -14925,6 +14901,10 @@
 "Wl" = (
 /turf/open/floor/mainship/black/full,
 /area/mainship/squads/general)
+"Wm" = (
+/obj/structure/flora/tree/xmas/presents,
+/turf/open/floor/freezer,
+/area/mainship/living/cafeteria_starboard)
 "Wn" = (
 /obj/structure/cable,
 /turf/open/floor/mainship/black{
@@ -15041,12 +15021,6 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/starboard_umbilical)
-"WI" = (
-/obj/structure/bed/chair/wood{
-	dir = 4
-	},
-/turf/open/floor/freezer,
-/area/mainship/living/cafeteria_starboard)
 "WJ" = (
 /obj/structure/disposalpipe/segment/corner,
 /obj/structure/cable,
@@ -15136,11 +15110,6 @@
 /obj/machinery/vending/nanomed,
 /turf/closed/wall/mainship,
 /area/mainship/command/corporateliaison)
-"Xf" = (
-/obj/structure/table/mainship,
-/obj/item/pizzabox,
-/turf/open/floor/freezer,
-/area/mainship/living/cafeteria_starboard)
 "Xg" = (
 /turf/open/floor/mainship/black{
 	dir = 8
@@ -15898,12 +15867,6 @@
 	dir = 4
 	},
 /area/mainship/shipboard/firing_range)
-"ZG" = (
-/obj/structure/table/mainship,
-/obj/item/tool/kitchen/utensil/fork,
-/obj/item/tool/lighter/random,
-/turf/open/floor/freezer,
-/area/mainship/living/cafeteria_starboard)
 "ZH" = (
 /turf/open/floor/mainship/cargo,
 /area/mainship/shipboard/starboard_missiles)
@@ -52922,8 +52885,8 @@ jl
 xn
 Sk
 DY
-WI
-WI
+DY
+DY
 Ye
 Ee
 Fm
@@ -53178,9 +53141,9 @@ Oj
 jl
 jl
 Zl
-Fb
-Pk
-PA
+DY
+DY
+DY
 eS
 Ee
 Th
@@ -53435,9 +53398,9 @@ Ta
 jl
 jl
 Ru
-Fb
-Hq
-Xf
+DY
+Wm
+DY
 Pd
 Ee
 On
@@ -53692,9 +53655,9 @@ AZ
 WV
 WV
 fJ
-wc
-ZG
-vk
+DY
+DY
+DY
 Pd
 Ee
 Th
@@ -53949,9 +53912,9 @@ QR
 nE
 nE
 Eh
-Fb
-yB
-Ft
+DY
+DY
+DY
 Pd
 Ee
 Th

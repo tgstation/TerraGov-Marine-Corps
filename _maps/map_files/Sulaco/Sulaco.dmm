@@ -2632,25 +2632,7 @@
 	},
 /turf/open/floor/prison/red,
 /area/sulaco/hallway/central_hall)
-"anJ" = (
-/obj/structure/table/mainship,
-/obj/item/tool/crowbar,
-/obj/item/tool/crowbar,
-/obj/item/tool/crowbar,
-/obj/item/tool/screwdriver,
-/obj/item/tool/screwdriver,
-/obj/item/tool/screwdriver,
-/turf/open/floor/prison,
-/area/sulaco/cargo/prep)
 "anK" = (
-/obj/structure/cable,
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/manifold/cyan/hidden/layer1{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/manifold/yellow/hidden{
-	dir = 8
-	},
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/sulaco/cargo/prep)
 "anO" = (
@@ -11511,7 +11493,6 @@
 /area/sulaco/bridge/quarters)
 "edg" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/structure/closet/crate/ammo,
 /turf/open/floor/prison,
 /area/sulaco/cargo/prep)
 "edm" = (
@@ -14483,10 +14464,6 @@
 /obj/machinery/camera/autoname,
 /turf/open/floor/plating,
 /area/sulaco/maintenance/lower_maint3)
-"kbH" = (
-/obj/structure/closet/crate/weapon,
-/turf/open/floor/prison,
-/area/sulaco/cargo/prep)
 "kcn" = (
 /obj/machinery/computer3/server/rack,
 /obj/machinery/light/small{
@@ -16846,9 +16823,7 @@
 /turf/open/floor/plating/platebotc,
 /area/mainship/living/starboard_garden)
 "otR" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
-/obj/machinery/atmospherics/pipe/simple/yellow/hidden,
+/obj/structure/flora/tree/xmas/presents,
 /turf/open/floor/prison,
 /area/sulaco/cargo/prep)
 "oub" = (
@@ -19329,12 +19304,6 @@
 /obj/machinery/alarm,
 /turf/open/floor/prison,
 /area/sulaco/hallway/lower_foreship)
-"sId" = (
-/obj/structure/table/mainship,
-/obj/item/tool/hand_labeler,
-/obj/item/tool/hand_labeler,
-/turf/open/floor/prison,
-/area/sulaco/cargo/prep)
 "sIs" = (
 /obj/item/radio/intercom/general,
 /obj/structure/filingcabinet/security,
@@ -47071,9 +47040,9 @@ ajb
 txO
 vSd
 edg
-anJ
-sId
-kbH
+vSd
+vSd
+vSd
 vSd
 hFf
 aWG

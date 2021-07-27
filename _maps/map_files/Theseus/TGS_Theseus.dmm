@@ -10048,9 +10048,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/starboard_hull)
 "fpW" = (
-/obj/structure/shipmast{
-	pixel_y = 2
-	},
+/obj/structure/flora/tree/xmas/presents,
 /turf/open/floor/mainship/green/full,
 /area/mainship/squads/req)
 "fqH" = (
@@ -10661,10 +10659,10 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/command/cic)
 "gxk" = (
-/mob/living/simple_animal/corgi/pug,
 /obj/machinery/camera/autoname/mainship{
 	dir = 1
 	},
+/mob/living/simple_animal/corgi/pug,
 /turf/open/floor/carpet{
 	icon_state = "carpetside"
 	},
