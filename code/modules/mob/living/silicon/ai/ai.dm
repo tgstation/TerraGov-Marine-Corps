@@ -79,7 +79,8 @@
 	RegisterSignal(src, COMSIG_ORDER_SELECTED, .proc/set_order)
 	RegisterSignal(SSdcs, COMSIG_GLOB_OB_LASER_CREATED, .proc/receive_laser_ob)
 	RegisterSignal(SSdcs, COMSIG_GLOB_CAS_LASER_CREATED, .proc/receive_laser_cas)
-
+	RegisterSignal(SSdcs, COMSIG_GLOB_TADPOLE_LAUNCHED, .proc/notify_tadpole_movement_take_off)
+	RegisterSignal(SSdcs, COMSIG_GLOB_TADPOLE_LANDED, .proc/notify_tadpole_movement_landing)
 
 
 	var/datum/action/innate/order/attack_order/send_attack_order = new
@@ -100,6 +101,8 @@
 	UnregisterSignal(src, COMSIG_MOB_CLICK_ALT)
 	UnregisterSignal(SSdcs, COMSIG_GLOB_OB_LASER_CREATED)
 	UnregisterSignal(SSdcs, COMSIG_GLOB_CAS_LASER_CREATED)
+	UnregisterSignal(SSdcs, COMSIG_GLOB_TADPOLE_LAUNCHED)
+	UnregisterSignal(SSdcs, COMSIG_GLOB_TADPOLE_LANDED)
 	return ..()
 
 ///Print order visual to all marines squad hud and give them an arrow to follow the waypoint
@@ -119,13 +122,23 @@
 ///Receive fire support laser notifications
 /mob/living/silicon/ai/proc/receive_laser_ob(datum/source, obj/effect/overlay/temp/laser_target/OB/incoming_laser)
 	SIGNAL_HANDLER
-	to_chat(src, "<span class='notice'>Orbital Bombardment laser detected. Target: [AREACOORD_NO_Z(incoming_laser)] </span>")
+	to_chat(src, span_notice("Orbital Bombardment laser detected. Target: [AREACOORD_NO_Z(incoming_laser)]"))
 	playsound_local(src, 'sound/effects/binoctarget.ogg', 15)
 
 /mob/living/silicon/ai/proc/receive_laser_cas(datum/source, obj/effect/overlay/temp/laser_target/cas/incoming_laser)
 	SIGNAL_HANDLER
-	to_chat(src, "<span class='notice'>CAS laser detected. Target: [AREACOORD_NO_Z(src)]</span>")
+	to_chat(src, span_notice("CAS laser detected. Target: [AREACOORD_NO_Z(incoming_laser)]"))
 	playsound_local(src, 'sound/effects/binoctarget.ogg', 15)
+
+/mob/living/silicon/ai/proc/notify_tadpole_movement_take_off(datum/source, obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/tad)
+	SIGNAL_HANDLER
+	to_chat(src, span_notice("Mini dropship taking off from [tad.locs]"))
+
+/mob/living/silicon/ai/proc/notify_tadpole_movement_landing(datum/source, obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/tad)
+	SIGNAL_HANDLER
+	to_chat(src, span_notice("Mini dropship landing at THE PLACE"))
+
+
 
 /mob/living/silicon/ai/restrained(ignore_checks)
 	return FALSE
