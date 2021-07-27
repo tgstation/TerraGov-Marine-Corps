@@ -59,8 +59,9 @@
 	else
 		mob.control_object.forceMove(get_step(mob.control_object, direct))
 
-#define MOVEMENT_DELAY_BUFFER 0.75
+#define MOVEMENT_DELAY_BUFFER 0.75 
 #define MOVEMENT_DELAY_BUFFER_DELTA 1.25
+#define DIAGONAL_MOVEMENT_DELAY 1.414 //sqrt(2)
 
 /client/Move(n, direct)
 	if(world.time < move_delay) //do not move anything ahead of this check please
@@ -141,11 +142,12 @@
 	. = ..()
 
 	if((direct & (direct - 1)) && mob.loc == n) //moved diagonally successfully
-		add_delay *= 1.414214 // sqrt(2)
+		add_delay *= DIAGONAL_MOVEMENT_DELAY
 	move_delay += add_delay
 
 #undef MOVEMENT_DELAY_BUFFER
 #undef MOVEMENT_DELAY_BUFFER_DELTA
+#undef DIAGONAL_MOVEMENT_DELAY
 
 ///Process_Spacemove
 ///Called by /client/Move()
