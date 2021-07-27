@@ -1464,7 +1464,7 @@
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/telecomms)
 "alj" = (
-/obj/docking_port/stationary/escape_pod/escape_shuttle,
+/obj/docking_port/stationary/escape_pod,
 /turf/open/floor/plating,
 /area/mainship/hull/port_hull)
 "alw" = (
@@ -13616,7 +13616,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/starboard_hull)
 "mrT" = (
-/obj/docking_port/stationary/escape_pod/escape_shuttle,
+/obj/docking_port/stationary/escape_pod,
 /turf/open/floor/plating,
 /area/mainship/hull/starboard_hull)
 "msT" = (
@@ -40580,12 +40580,12 @@ bkQ
 blA
 blA
 blA
+blA
 qNu
 blA
 blA
 blA
 htp
-blA
 blA
 blA
 blA
@@ -40837,12 +40837,12 @@ bjZ
 blA
 blA
 blA
+blA
 qNu
 blA
 blA
 blA
 hjB
-cjW
 cjW
 cjW
 cjW
@@ -41094,8 +41094,8 @@ bkS
 blA
 blA
 blA
-qNu
 blA
+qNu
 blA
 blA
 blA
@@ -41351,8 +41351,8 @@ bYG
 bSh
 cjW
 cjW
+cjW
 cMO
-blA
 blA
 blA
 blA
@@ -42379,8 +42379,8 @@ bYG
 bTE
 cjV
 cjV
+cjV
 cRY
-blA
 blA
 blA
 blA
@@ -42636,8 +42636,8 @@ bkQ
 blA
 blA
 blA
-qNu
 blA
+qNu
 blA
 blA
 blA
@@ -42893,12 +42893,12 @@ bjZ
 blA
 blA
 blA
+blA
 qNu
 blA
 blA
 blA
 hvu
-cjV
 cjV
 cjV
 cjV
@@ -43150,12 +43150,12 @@ bkS
 blA
 blA
 blA
+blA
 qNu
 blA
 blA
 blA
 htp
-blA
 blA
 blA
 blA
