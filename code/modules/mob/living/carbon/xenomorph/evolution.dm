@@ -97,7 +97,7 @@
 		to_chat(src, span_warning("We must be at full health to evolve."))
 		return
 
-	if(plasma_stored < xeno_caste.plasma_max)
+	if(plasma_stored < (xeno_caste.plasma_max * plasma_regen_limit))
 		to_chat(src, span_warning("We must be at full plasma to evolve."))
 		return
 
