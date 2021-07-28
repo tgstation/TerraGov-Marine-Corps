@@ -1,7 +1,7 @@
 #define UPLOAD_LIMIT 1000000	//Restricts client uploads to the server to 1MB
 #define UPLOAD_LIMIT_ADMIN 10000000	//Restricts admin uploads to the server to 10MB
 
-#define MAX_RECOMMENDED_CLIENT 1557
+#define MAX_RECOMMENDED_CLIENT 1561
 #define MIN_RECOMMENDED_CLIENT 1526
 #define REQUIRED_CLIENT_MAJOR 513
 #define REQUIRED_CLIENT_MINOR 1493
@@ -229,7 +229,7 @@
 		to_chat(src, span_danger("Please download a new version of byond. If [byond_build] is the latest, you can go to <a href=\"https://secure.byond.com/download/build\">BYOND's website</a> to download other versions."))
 
 	if(byond_build < 1555)
-		to_chat(src, "<span class='userdanger'>Your version of byond has rendering lag issues, it is highly recommended you update your version.</span>")
+		to_chat(src, "<span class='userdanger'>Your version of byond has rendering lag issues, it is highly recommended you update your version to above Byond version 1555.</span>")
 		to_chat(src, "<span class='danger'>You can go to <a href=\"https://secure.byond.com/download/build\">BYOND's website</a> to download other versions.</span>")
 
 	if(byond_build > MAX_RECOMMENDED_CLIENT)
