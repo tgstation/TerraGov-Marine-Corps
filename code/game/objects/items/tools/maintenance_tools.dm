@@ -463,3 +463,64 @@
 	icon_state = "marine_flamerpack"
 	w_class = WEIGHT_CLASS_BULKY
 	max_fuel = 500 //Because the marine backpack can carry 260, and still allows you to take items, there should be a reason to still use this one.
+
+/obj/item/tool/handheld_charger
+	name = "Handheld charger"
+	desc = "A hand-held, lightweight cell charger. It isn't going to give you tons of power, but it can help in a pinch."
+	icon = 'icons/obj/items/items.dmi'
+	icon_state = "handheldcharger"
+	item_state = "handheldcharger"
+	w_class = WEIGHT_CLASS_SMALL
+	flags_atom = CONDUCT
+	force = 6.0
+	throw_speed = 2
+	throw_range = 9
+
+	flags_equip_slot = ITEM_SLOT_BELT
+	materials = list(/datum/material/metal = 50, /datum/material/glass = 20)
+	var/obj/item/cell/cell
+
+/obj/item/tool/handheld_charger/attack_self(mob/user as mob)
+	if(!cell)
+		to_chat(src, "You need some cell to be useful, idiot")
+		return
+	if(!do_after(user, 5, TRUE, src, BUSY_ICON_CLOCK))
+		return
+
+		to_chat(src, "You squeeze the handle a few time, putting in a few volts of charge.")
+		cell.charge += 100
+		playsound(user, 'sound/weapons/guns/interact/rifle_reload.ogg', 20, 1, 5)
+		return
+
+/obj/item/tool/handheld_charger/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+	if(istype(I, /obj/item/cell))
+		if(!user.drop_held_item())
+			return
+
+		I.forceMove(src)
+		var/replace_install = "You replace the cell in [src]"
+		if(!cell)
+			replace_install = "You install a cell in [src]"
+		else
+			cell.update_icon()
+			user.put_in_hands(cell)
+		cell = I
+		to_chat(user, span_notice("[replace_install] <b>Charge Remaining: [cell.charge]/[cell.maxcharge]</b>"))
+		playsound(user, 'sound/weapons/guns/interact/rifle_reload.ogg', 20, 1, 5)
+		icon_state = "handheldcharger"
+		return
+
+/obj/item/tool/handheld_charger/attack_hand(mob/living/user)
+	if(user.get_inactive_held_item() != src)
+		return ..()
+	if(!cell)
+		return ..()
+	cell.update_icon()
+	user.put_in_active_hand(cell)
+	cell = null
+	playsound(user, 'sound/machines/click.ogg', 20, 1, 5)
+	to_chat(user, span_notice("You remove the cell from [src]."))
+	icon_state = "handheldcharger_empty"
+	return
