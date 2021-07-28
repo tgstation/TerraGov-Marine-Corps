@@ -1,6 +1,0 @@
-author: "RipGrayson"
-delete-after: True
-changes: 
-  - balance: "LV624: LZ2 has been rebalanced and moved."
-  - balance: "LV624: Western cargo storage has been moved to LZ2's old spot."
-  - bugfix: "LV624: Fixed a disconnected engineering sign near hydro bridge."

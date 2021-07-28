@@ -1,5 +1,0 @@
-author: "Hekzder"
-delete-after: True
-changes: 
-  - rscadd: "Adds a bundle to req for both Mimir Mark 2 modules that replaces the previously separate Mimir Mark 2 modules."
-  - balance: "Full Mimir Mark 2 set now costs 15 points, down from 17."
