@@ -60,6 +60,8 @@
 
 /// This is here to allow easier pathing and more consistent storage.
 /obj/item/storage/large_holster/blade
+	name = "\improper default holster"
+	desc = "You shouldn't see this."
 
 /obj/item/storage/large_holster/blade/machete
 	name = "\improper H5 pattern M2132 machete scabbard"
