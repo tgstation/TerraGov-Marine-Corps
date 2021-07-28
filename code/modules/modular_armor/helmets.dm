@@ -93,6 +93,7 @@
 	item_state = "binocular_head_[active ? "" : "in"]active"
 	parent.update_overlays()
 	user.update_inv_head()
+	return COMSIG_MOB_CLICK_CANCELED
 
 /obj/item/helmet_module/binoculars/zoom_item_turnoff(datum/source, mob/living/user)
 	toggle_module(user)
