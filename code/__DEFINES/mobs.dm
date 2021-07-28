@@ -642,8 +642,6 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 //Larva defines
 #define LARVA_VENT_CRAWL_TIME 1 SECONDS //Larva can crawl into vents fast
 
-#define DEFILER_TRANSVITOX_CAP 180 //Max toxin damage transvitox will allow
-
 //misc
 
 #define STANDARD_SLOWDOWN_REGEN 0.3
