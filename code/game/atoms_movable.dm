@@ -427,7 +427,7 @@
 			continue
 		if(isliving(A))
 			var/mob/living/L = A
-			if(!L.density || L.throwpass)
+			if((!L.density || L.throwpass) && SEND_SIGNAL(A, COMSIG_MOVABLE_LIVING_IMPACT_THROW, src) & COMPONENT_LIVING_THROW_HIT)
 				continue
 			throw_impact(A, speed)
 		if(isobj(A) && A.density && !(A.flags_atom & ON_BORDER) && (!A.throwpass || iscarbon(src)) && !flying)
