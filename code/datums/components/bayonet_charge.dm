@@ -36,6 +36,7 @@
 	. = ..()
 	updatevalues()
 
+///this updates the critical vars of this component. Called on initalize and when the action is applied to a player
 /datum/component/bayonetcharge/proc/updatevalues()
 	weaponinhand = src.parent
 	charger = weaponinhand.gun_user
@@ -51,9 +52,6 @@
 
 	var/datum/component/bayonetcharge/parent
 
-/datum/action/bayonetcharge/give_action(mob/M)
-	. = ..()
-
 /datum/action/bayonetcharge/remove_action(mob/M)
 
 
@@ -68,7 +66,7 @@
 		return
 
 	parent.charge_on()
-
+///Called when the charge action is initiated. Adds the essencial Signals and does some misc work on the action frame and vars
 /datum/component/bayonetcharge/proc/charge_on()
 	if(TIMER_COOLDOWN_CHECK(charger, COOLDOWN_HUMAN_CHARGE))
 		to_chat(charger, "<span class='warning'>Charge is still on cooldown!</span>")
@@ -80,6 +78,7 @@
 	RegisterSignal(charger, COMSIG_MOVABLE_MOVED, .proc/update_charging)
 	RegisterSignal(charger, COMSIG_ATOM_DIR_CHANGE, .proc/on_dir_change)
 
+///called when the charge action is deactivated.  Unregisters signals and manipulates the action frame. Also calls stop_charge
 /datum/component/bayonetcharge/proc/charge_off()
 	action_toggle_state = FALSE
 
@@ -91,12 +90,13 @@
 	child.remove_selected_frame()
 	stop_charge()
 
-
+///called the direction of the mob changes.
 /datum/component/bayonetcharge/proc/on_dir_change(datum/source, old_dir, new_dir)
 	SIGNAL_HANDLER
 	if(old_dir == new_dir)
 		return
 	stop_charge()
+
 //called when the marine moves
 /datum/component/bayonetcharge/proc/update_charging(datum/source, atom/oldloc, direction, Forced)
 	SIGNAL_HANDLER_DOES_SLEEP
@@ -112,6 +112,7 @@
 
 	handle_charge()
 
+///this handles the charging checks and the charge itself. Checks for the needed states and if those states are satified, adds the movespeed mod and stam loss. Called on move.
 /datum/component/bayonetcharge/proc/handle_charge()
 
 	//actual charging is under here
@@ -137,14 +138,16 @@
 	charger.adjustStaminaLoss(stam_loss_mult_per_step * chargespeed)
 
 
-
+///called when the code wants the player to stop charging. IE, when you hit a solid thing or run out of stamina
 /datum/component/bayonetcharge/proc/stop_charge()
 	am_charging = FALSE
 	if(charger)
 		charger.remove_movespeed_modifier(MOVESPEED_ID_MARINE_CHARGE)
 	steps_taken = 0
 
+///called when the player hits anything dense. Handles the damage application and always calls  charge_off
 /datum/component/bayonetcharge/proc/on_contact_with_enemy(datum/source, atom/crushed)
+	SIGNAL_HANDLER
 	if(isliving(crushed) && am_charging == TRUE)
 		var/mob/living/crushedliving = crushed
 		if(istype(weaponinhand, /obj/item/weapon/gun))

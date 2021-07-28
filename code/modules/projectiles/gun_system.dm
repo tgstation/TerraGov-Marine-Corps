@@ -307,15 +307,14 @@
 	var/obj/screen/ammo/A = user.hud_used.ammo
 	A.add_hud(user, src)
 	A.update_hud(user, src)
-	if(src.attachments["muzzle"] != null)
-		if(istype(src.attachments["muzzle"],  /obj/item/attachable/bayonet) || istype(src.attachments["muzzle"],  /obj/item/attachable/bayonetknife))
-			if(CHECK_BITFIELD(flags_gun_features, GUN_CAN_POINTBLANK))
-				//add the bayonetcharge component
-				var/datum/component/bayonetcharge/comp = GetComponent(/datum/component/bayonetcharge)
-				if(!comp)
-					AddComponent(/datum/component/bayonetcharge)
-				else
-					comp.updatevalues()
+	if(attachments["muzzle"] != null)
+		if(istype(attachments["muzzle"],  /obj/item/attachable/bayonet) || istype(attachments["muzzle"],  /obj/item/attachable/bayonetknife))
+			//add the bayonetcharge component
+			var/datum/component/bayonetcharge/comp = GetComponent(/datum/component/bayonetcharge)
+			if(!comp)
+				AddComponent(/datum/component/bayonetcharge)
+			else
+				comp.updatevalues()
 
 
 
