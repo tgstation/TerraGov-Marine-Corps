@@ -889,6 +889,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
+/obj/machinery/roomba,
 /turf/open/floor/mainship/purple{
 	dir = 1
 	},
@@ -8820,6 +8821,10 @@
 /obj/machinery/light,
 /turf/open/floor/wood,
 /area/mainship/command/corporateliaison)
+"cKV" = (
+/obj/machinery/roomba,
+/turf/open/floor/mainship/floor,
+/area/mainship/squads/req)
 "cLn" = (
 /obj/machinery/door/airlock/mainship/evacuation,
 /turf/open/floor/mainship/mono,
@@ -10538,6 +10543,10 @@
 	dir = 8
 	},
 /area/mainship/engineering/ce_room)
+"gbG" = (
+/obj/machinery/roomba,
+/turf/open/floor/mainship/orange,
+/area/mainship/squads/alpha)
 "gbU" = (
 /obj/machinery/vending/cigarette,
 /turf/open/floor/mainship/silver{
@@ -15368,6 +15377,12 @@
 	},
 /turf/open/floor/plating,
 /area/mainship/command/cic)
+"pCr" = (
+/obj/machinery/roomba,
+/turf/open/floor/mainship/sterile/side{
+	dir = 4
+	},
+/area/mainship/medical/lower_medical)
 "pDE" = (
 /obj/machinery/camera/autoname/mainship{
 	dir = 4
@@ -51233,7 +51248,7 @@ bkd
 exI
 lyK
 bAv
-bxw
+pCr
 bDd
 yeW
 exI
@@ -62009,7 +62024,7 @@ iJv
 bfJ
 iJv
 fEX
-kMY
+gbG
 brj
 acG
 ahU
@@ -62026,7 +62041,7 @@ brb
 brb
 bJB
 brb
-brb
+cKV
 vda
 brb
 brb
