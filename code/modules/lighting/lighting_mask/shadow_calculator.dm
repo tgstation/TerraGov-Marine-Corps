@@ -210,7 +210,7 @@
 			shadow.icon_state = "triangle"
 			shadow.color = "#000"
 			shadow.transform = triangle_matrix
-			shadow.plane = 16
+			shadow.render_target = SHADOW_RENDER_TARGET
 			shadow.blend_mode = BLEND_OVERLAY
 
 			DO_SOMETHING_IF_DEBUGGING_SHADOWS(MA_vars_time += TICK_USAGE_TO_MS(temp_timer))
@@ -222,7 +222,7 @@
 			DO_SOMETHING_IF_DEBUGGING_SHADOWS(overlays_add_time += TICK_USAGE_TO_MS(temp_timer))
 			DO_SOMETHING_IF_DEBUGGING_SHADOWS(temp_timer = TICK_USAGE)
 
-	overlays = overlays_to_add //batch appearance generation for free lag(tm)
+	overlays += overlays_to_add //batch appearance generation for free lag(tm)
 	DO_SOMETHING_IF_DEBUGGING_SHADOWS(log_game("total_coordgroup_time: [total_coordgroup_time]ms"))
 	DO_SOMETHING_IF_DEBUGGING_SHADOWS(log_game("total_cornergroup_time: [total_cornergroup_time]ms"))
 	DO_SOMETHING_IF_DEBUGGING_SHADOWS(log_game("triangle_time calculation: [triangle_time]ms"))
@@ -235,25 +235,6 @@
 	DO_SOMETHING_IF_DEBUGGING_SHADOWS(log_game("merge_overlays_time: [mergetimereal]ms"))
 	DO_SOMETHING_IF_DEBUGGING_SHADOWS(log_game("[TICK_USAGE_TO_MS(timer)]ms to process total."))
 
-/obj/screen/plane_master/shadows
-	name = "Shadow alpha mask plane master"
-	plane = 16
-	render_target = "*shadow_target"
-	blend_mode = BLEND_ADD
-
-/mob/verb/remove_all_planes()
-	set category = "Shadowdebug"
-
-	var/list/junk = list()
-	junk += locate(/obj/screen/plane_master/parallax) in client.screen
-	junk += locate(/obj/screen/plane_master/parallax_white) in client.screen
-	junk += locate(/obj/screen/plane_master/openspace) in client.screen
-	junk += locate(/obj/screen/plane_master/floor) in client.screen
-	junk += locate(/obj/screen/plane_master/floor) in client.screen
-	junk += locate(/obj/screen/plane_master/game_world) in client.screen
-	junk += locate(/obj/screen/plane_master/lighting) in client.screen
-	junk += locate(/obj/screen/plane_master/o_light_visual) in client.screen
-	client.screen -= junk
 
 /**
  * Converts a triangle into a matrix that can be applied to a standardized triangle

@@ -36,7 +36,7 @@
 
 /atom/movable/lighting_mask/Initialize(mapload, ...)
 	. = ..()
-	add_filter("shadows", 4, alpha_mask_filter(render_source = "*shadow_target", flags = MASK_INVERSE))
+	add_filter("shadow_alpha_masking", 4, alpha_mask_filter(render_source = SHADOW_RENDER_TARGET, flags = MASK_INVERSE))
 
 /atom/movable/lighting_mask/Destroy()
 	mask_holder = null

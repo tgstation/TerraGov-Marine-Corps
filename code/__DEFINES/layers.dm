@@ -162,6 +162,8 @@
 #define LIGHTING_PLANE 15
 #define LIGHTING_RENDER_TARGET "LIGHT_PLANE"
 
+#define SHADOW_RENDER_TARGET "SHADOW_RENDER_TARGET"
+
 /// Plane for balloon text (text that fades up)
 #define BALLOON_CHAT_PLANE 17
 
