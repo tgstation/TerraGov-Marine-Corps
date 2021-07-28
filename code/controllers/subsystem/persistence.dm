@@ -32,6 +32,7 @@ SUBSYSTEM_DEF(persistence)
 		/datum/season_datum/weapons/guns/rifle_seasonal_two,
 		/datum/season_datum/weapons/guns/pistol_seasonal_three,
 		/datum/season_datum/weapons/guns/copsandrobbers_seasonal,
+		/datum/season_datum/weapons/guns/smg_seasonal,
 		)
 	)
 	///The saved list of custom outfits names
@@ -176,11 +177,13 @@ SUBSYSTEM_DEF(persistence)
 		)
 
 /datum/season_datum/weapons/guns/rifle_seasonal_two
-	name = "UZI"
-	description = "Uzi guns at vendors, get your uzi today!"
+	name = "Pulse Rifles"
+	description = "A failed classic and it's eventual successor."
 	item_list = list(
-		/obj/item/weapon/gun/smg/uzi = -1,
-		/obj/item/ammo_magazine/smg/uzi = -1,
+		/obj/item/weapon/gun/rifle/m412 = -1,
+		/obj/item/ammo_magazine/rifle = -1,
+		/obj/item/weapon/gun/rifle/m41a = -1,
+		/obj/item/ammo_magazine/rifle/m41a = -1,
 		)
 
 /datum/season_datum/weapons/guns/pistol_seasonal_one
@@ -221,5 +224,15 @@ SUBSYSTEM_DEF(persistence)
 		/obj/item/ammo_magazine/smg/uzi = -1,
 		/obj/item/weapon/gun/revolver/cmb = -1,
 		/obj/item/ammo_magazine/revolver/cmb = -1,
+		)
+
+/datum/season_datum/weapons/guns/smg_seasonal
+	name = "SMGs"
+	description = "Two different SMGs. A classic and a new guy."
+	item_list = list(
+		/obj/item/weapon/gun/smg/m25 = -1,
+		/obj/item/ammo_magazine/smg/m25 = -1,
+		/obj/item/weapon/gun/smg/mp7 = -1,
+		/obj/item/ammo_magazine/smg/mp7 = -1,
 		)
 
