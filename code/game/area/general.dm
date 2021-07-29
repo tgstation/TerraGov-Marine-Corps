@@ -43,6 +43,7 @@
 	requires_power = 0
 	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
 	outside = FALSE
+	flags_area = OB_CAS_IMMUNE
 
 /area/shuttle/arrival
 	name = "Abandoned Arrival Shuttle"
