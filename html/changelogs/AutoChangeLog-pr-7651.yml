@@ -1,0 +1,4 @@
+author: "lbnesquik"
+delete-after: True
+changes: 
+  - qol: "Made sword and machete holsters all follow the space logic regarding storage. You can use machetes holsters as officers, and soldiers can use sword holsters"
