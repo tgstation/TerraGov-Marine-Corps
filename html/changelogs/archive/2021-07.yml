@@ -585,3 +585,10 @@
       the caste level.
   - balance: Hunters can now crawl into vents in 1 second down from 4.5 seconds.
   - balance: Larva can now crawl into vents in 1 second down from 4.5 seconds.
+2021-07-29:
+  KornFlaks:
+  - bugfix: Fixed English in seasonal weapon rotation titles (Hiph to High and cops
+      to Cops).
+  lbnesquik:
+  - bugfix: fixed a missing camera on the alamo
+  - rscadd: Added finger snapping as an emote.
