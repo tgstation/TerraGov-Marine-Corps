@@ -475,22 +475,21 @@
 	force = 6.0
 	throw_speed = 2
 	throw_range = 9
-
 	flags_equip_slot = ITEM_SLOT_BELT
 	materials = list(/datum/material/metal = 50, /datum/material/glass = 20)
+	/// This is the cell we ar charging
 	var/obj/item/cell/cell
 
-/obj/item/tool/handheld_charger/attack_self(mob/user as mob)
+/obj/item/tool/handheld_charger/attack_self(mob/user)
 	if(!cell)
 		to_chat(src, "You need some cell to be useful, idiot")
 		return
 	if(!do_after(user, 5, TRUE, src, BUSY_ICON_CLOCK))
 		return
 
-		to_chat(src, "You squeeze the handle a few time, putting in a few volts of charge.")
-		cell.charge += 100
-		playsound(user, 'sound/weapons/guns/interact/rifle_reload.ogg', 20, 1, 5)
-		return
+	cell.charge += 100
+	to_chat(src, "You squeeze the handle a few time, putting in a few volts of charge.")
+	playsound(user, 'sound/weapons/guns/interact/rifle_reload.ogg', 20, 1, 5)
 
 /obj/item/tool/handheld_charger/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -524,3 +523,7 @@
 	to_chat(user, span_notice("You remove the cell from [src]."))
 	icon_state = "handheldcharger_empty"
 	return
+
+/obj/item/tool/handheld_charger/Destroy()
+	qdel(cell)
+	return ..()
