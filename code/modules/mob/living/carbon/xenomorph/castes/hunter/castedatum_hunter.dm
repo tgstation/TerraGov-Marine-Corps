@@ -2,7 +2,7 @@
 	caste_name = "Hunter"
 	display_name = "Hunter"
 	upgrade_name = ""
-	caste_desc = "A fast, powerful Creature."
+	caste_desc = "A fast, powerful creature."
 
 	caste_type_path = /mob/living/carbon/xenomorph/hunter
 
@@ -62,7 +62,7 @@
 
 /datum/xeno_caste/hunter/mature
 	upgrade_name = "Mature"
-	caste_desc = "A fast, powerful Ambusher. It looks a little more dangerous."
+	caste_desc = "A fast, powerful ambusher. It looks a little more dangerous."
 	upgrade = XENO_UPGRADE_ONE
 
 	// *** Speed *** //
@@ -114,7 +114,7 @@
 	upgrade_name = "Ancient"
 	caste_desc = "A fast, powerful front line combatant. It looks extremely deadly."
 	upgrade = XENO_UPGRADE_THREE
-	ancient_message = "We are An Apex predator, Our enemies fear us when alone."
+	ancient_message = "We are an apex predator, our enemies fear us when alone."
 
 	// *** Melee Attacks *** //
 	melee_damage = 27
