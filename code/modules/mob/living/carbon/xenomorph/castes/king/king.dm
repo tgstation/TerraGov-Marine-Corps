@@ -53,9 +53,11 @@
 	. = ..()
 	ownerhive = hivenumber
 	addtimer(CALLBACK(src, .proc/choose_king), KING_SUMMON_TIMER_DURATION)
+	SSmonitor.stats.king++
 
 /obj/structure/resin/king_pod/Destroy()
 	. = ..()
+	SSmonitor.stats.king--
 	future_king?.tracked = null
 	future_king = null
 

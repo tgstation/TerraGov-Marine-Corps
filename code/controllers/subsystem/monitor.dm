@@ -34,8 +34,9 @@ SUBSYSTEM_DEF(monitor)
 	var/is_automatic_balance_on = TRUE
 
 /datum/monitor_statistics
-	var/ancient_queen = 0
-	var/elder_queen = 0
+	var/king = 0
+	var/ancient_T4 = 0
+	var/elder_T4 = 0
 	var/ancient_T3 = 0
 	var/elder_T3 = 0
 	var/ancient_T2 = 0
@@ -44,7 +45,6 @@ SUBSYSTEM_DEF(monitor)
 	var/list/sadar_in_use = list()
 	var/list/b18_in_use = list()
 	var/list/b17_in_use = list()
-	var/OB_available = 0
 
 /datum/controller/subsystem/monitor/Initialize(start_timeofday)
 	. = ..()
@@ -83,8 +83,9 @@ SUBSYSTEM_DEF(monitor)
 			. += stats.ancient_T3 * ANCIENT_T3_WEIGHT
 			. += stats.elder_T2 * ELDER_T2_WEIGHT
 			. += stats.elder_T3 * ELDER_T3_WEIGHT
-			. += stats.ancient_queen * ANCIENT_QUEEN_WEIGHT
-			. += stats.elder_queen * ELDER_QUEEN_WEIGHT
+			. += stats.ancient_T4 * ANCIENT_T4_WEIGHT
+			. += stats.elder_T4 * ELDER_T4_WEIGHT
+			. += stats.king * KING_WEIGHT
 			. += human_on_ground * HUMAN_LIFE_ON_GROUND_WEIGHT
 			. += (GLOB.alive_human_list.len - human_on_ground) * HUMAN_LIFE_ON_SHIP_WEIGHT
 			. += GLOB.alive_xeno_list.len * XENOS_LIFE_WEIGHT
@@ -94,7 +95,6 @@ SUBSYSTEM_DEF(monitor)
 			. += stats.b17_in_use.len * B17_PRICE * REQ_POINTS_WEIGHT
 			. += stats.b18_in_use.len * B18_PRICE * REQ_POINTS_WEIGHT
 			. += SSpoints.supply_points[FACTION_TERRAGOV] * REQ_POINTS_WEIGHT
-			. += stats.OB_available * OB_AVAILABLE_WEIGHT
 			. += GLOB.xeno_resin_silos.len * SPAWNING_POOL_WEIGHT
 		if(SHUTTERS_CLOSED)
 			. += GLOB.alive_human_list.len * HUMAN_LIFE_WEIGHT_PREGAME
