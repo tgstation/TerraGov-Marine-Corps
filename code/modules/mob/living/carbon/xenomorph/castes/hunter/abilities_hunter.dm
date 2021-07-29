@@ -98,7 +98,6 @@
 	stealth = TRUE
 	RegisterSignal(owner, COMSIG_MOVABLE_MOVED, .proc/handle_stealth)
 	handle_stealth()
-	ADD_TRAIT(owner, TRAIT_TURRET_HIDDEN, STEALTH_TRAIT)
 	addtimer(CALLBACK(src, .proc/sneak_attack_cooldown), HUNTER_POUNCE_SNEAKATTACK_DELAY) //Short delay before we can sneak attack.
 
 /datum/action/xeno_action/stealth/proc/cancel_stealth() //This happens if we take damage, attack, pounce, toggle stealth off, and do other such exciting stealth breaking activities.
@@ -110,7 +109,6 @@
 	UnregisterSignal(owner, COMSIG_MOVABLE_MOVED) //This should be handled on the ability datum or a component.
 	stealth = FALSE
 	can_sneak_attack = FALSE
-	REMOVE_TRAIT(owner, TRAIT_TURRET_HIDDEN, STEALTH_TRAIT)
 	owner.alpha = 255 //no transparency/translucency
 
 /datum/action/xeno_action/stealth/proc/sneak_attack_cooldown()
@@ -163,8 +161,8 @@
 	if(M.stat || isxeno(M))
 		return
 	if(can_sneak_attack)
-		M.adjust_stagger(3)
-		M.add_slowdown(1)
+		M.adjust_stagger(4)
+		M.add_slowdown(2)
 		to_chat(owner, span_xenodanger("Pouncing from the shadows, we stagger our victim."))
 
 /datum/action/xeno_action/stealth/proc/sneak_attack_slash(datum/source, mob/living/target, damage, list/damage_mod, list/armor_mod)
@@ -212,7 +210,7 @@
 // *********** Pounce/sneak attack
 // ***************************************
 /datum/action/xeno_action/activable/pounce/hunter
-	plasma_cost = 20
+	plasma_cost = 50
 	range = 7
 
 // ***************************************
