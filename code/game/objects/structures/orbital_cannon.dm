@@ -360,6 +360,9 @@
 	name = "theoretical orbital ammo"
 	var/warhead_kind
 
+///Explode the warhead
+/obj/structure/ob_ammo/warhead/proc/warhead_impact()
+	return
 
 /obj/structure/ob_ammo/warhead/explosive
 	name = "\improper HE orbital warhead"
