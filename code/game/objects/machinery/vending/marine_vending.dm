@@ -548,6 +548,7 @@
 		/obj/item/reagent_containers/food/snacks/mre_pack/meal6 = -1,
 		/obj/item/storage/box/MRE = -1,
 		/obj/item/reagent_containers/food/drinks/flask = -1,
+		/obj/item/reagent_containers/food/snacks/sliceable/birthdaycake = -1
 	)
 //Christmas inventory
 /*
@@ -866,6 +867,8 @@
 			/obj/item/clothing/head/white_dress = -1,
 			/obj/item/clothing/shoes/white = -1,
 			/obj/item/clothing/gloves/white = -1,
+			/obj/item/clothing/head/cakehat = -1,
+			/obj/item/clothing/head/energyhat = -1,
 		),
 		"Webbings" = list(
 			/obj/item/clothing/tie/storage/black_vest = -1,

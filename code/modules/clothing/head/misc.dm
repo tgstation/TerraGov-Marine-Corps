@@ -252,3 +252,21 @@
 	item_state = "tp_hood"
 	flags_inv_hide = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|HIDEALLHAIR
 	flags_armor_protection = HEAD|FACE|EYES
+
+/obj/item/clothing/head/energyhat
+	name = "Energy Cake Hat"
+	desc = "A Glowing birthday!"
+	icon_state = "hardhat0energycake"
+	item_state = "hardhat1_energycake"
+
+/obj/item/clothing/head/crown
+	name = "The Glorious Crown"
+	desc= "A crown made with glory, you can feel it."
+	icon_state = "crown"
+	item_state = "crown1"
+
+/obj/item/clothing/head/fancycrown
+	name = "The Fancy Crown"
+	desc= "The Fanciest Crown in world!"
+	icon_state = "fancycrown"
+	item_state = "fancycrown1"

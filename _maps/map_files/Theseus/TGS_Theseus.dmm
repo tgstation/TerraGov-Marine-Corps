@@ -1464,7 +1464,7 @@
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/telecomms)
 "alj" = (
-/obj/docking_port/stationary/escape_pod,
+/obj/docking_port/stationary/escape_pod/escape_shuttle,
 /turf/open/floor/plating,
 /area/mainship/hull/port_hull)
 "alw" = (
@@ -10048,9 +10048,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/starboard_hull)
 "fpW" = (
-/obj/structure/shipmast{
-	pixel_y = 2
-	},
+/obj/structure/flora/tree/xmas/presents,
 /turf/open/floor/mainship/green/full,
 /area/mainship/squads/req)
 "fqH" = (
@@ -10661,10 +10659,10 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/command/cic)
 "gxk" = (
-/mob/living/simple_animal/corgi/pug,
 /obj/machinery/camera/autoname/mainship{
 	dir = 1
 	},
+/mob/living/simple_animal/corgi/pug,
 /turf/open/floor/carpet{
 	icon_state = "carpetside"
 	},
@@ -13616,7 +13614,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/starboard_hull)
 "mrT" = (
-/obj/docking_port/stationary/escape_pod,
+/obj/docking_port/stationary/escape_pod/escape_shuttle,
 /turf/open/floor/plating,
 /area/mainship/hull/starboard_hull)
 "msT" = (
@@ -40580,12 +40578,12 @@ bkQ
 blA
 blA
 blA
-blA
 qNu
 blA
 blA
 blA
 htp
+blA
 blA
 blA
 blA
@@ -40837,12 +40835,12 @@ bjZ
 blA
 blA
 blA
-blA
 qNu
 blA
 blA
 blA
 hjB
+cjW
 cjW
 cjW
 cjW
@@ -41094,8 +41092,8 @@ bkS
 blA
 blA
 blA
-blA
 qNu
+blA
 blA
 blA
 blA
@@ -41351,8 +41349,8 @@ bYG
 bSh
 cjW
 cjW
-cjW
 cMO
+blA
 blA
 blA
 blA
@@ -42379,8 +42377,8 @@ bYG
 bTE
 cjV
 cjV
-cjV
 cRY
+blA
 blA
 blA
 blA
@@ -42636,8 +42634,8 @@ bkQ
 blA
 blA
 blA
-blA
 qNu
+blA
 blA
 blA
 blA
@@ -42893,12 +42891,12 @@ bjZ
 blA
 blA
 blA
-blA
 qNu
 blA
 blA
 blA
 hvu
+cjV
 cjV
 cjV
 cjV
@@ -43150,12 +43148,12 @@ bkS
 blA
 blA
 blA
-blA
 qNu
 blA
 blA
 blA
 htp
+blA
 blA
 blA
 blA
