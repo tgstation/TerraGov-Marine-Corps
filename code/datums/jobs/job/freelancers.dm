@@ -108,7 +108,7 @@
 /datum/job/freelancer/leader
 	title = "Freelancer Leader"
 	paygrade = "FRE3"
-	skills_type = /datum/skills/SL
+	skills_type = /datum/skills/sl
 	outfit = /datum/outfit/job/freelancer/leader
 
 

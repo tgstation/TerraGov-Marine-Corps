@@ -197,7 +197,7 @@
 	job_category = JOB_CAT_COMMAND
 	title = "USL Captain"
 	paygrade = "UPP4"
-	skills_type = /datum/skills/SL/upp
+	skills_type = /datum/skills/sl/upp
 	outfit = /datum/outfit/job/upp/leader
 
 /datum/job/upp/leader/hvh
