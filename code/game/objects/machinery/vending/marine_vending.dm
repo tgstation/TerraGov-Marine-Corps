@@ -722,7 +722,7 @@
 
 	products = list(
 		/obj/item/clothing/tie/storage/webbing = 1,
-		/obj/item/storage/box/t26_system = 1,
+		/obj/item/storage/box/t29_system = 1,
 		/obj/item/minigun_powerpack = 1,
 		/obj/item/storage/pouch/magazine/large = 1,
 		/obj/item/clothing/mask/gas = 1,
