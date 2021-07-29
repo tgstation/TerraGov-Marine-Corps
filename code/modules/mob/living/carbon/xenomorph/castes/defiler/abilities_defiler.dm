@@ -229,6 +229,7 @@
 
 /datum/action/xeno_action/select_reagent/alternate_keybind_action()
 	INVOKE_ASYNC(src, .proc/select_reagent_radial)
+	return COMSIG_KB_ACTIVATED
 
 /datum/action/xeno_action/select_reagent/proc/select_reagent_radial()
 	//List of toxin images

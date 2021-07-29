@@ -147,7 +147,9 @@
 
 /datum/action/xeno_action/plant_weeds/alternate_keybind_action()
 	INVOKE_ASYNC(src, .proc/choose_weed)
+	return COMSIG_KB_ACTIVATED
 
+///Chose which weed will be planted by the xeno owner
 /datum/action/xeno_action/plant_weeds/proc/choose_weed()
 	var/weed_choice = show_radial_menu(owner, owner, GLOB.weed_images_list, radius = 48)
 	if(!weed_choice)
@@ -156,7 +158,7 @@
 		if(initial(weed_type_possible.name) == weed_choice)
 			weed_type = weed_type_possible
 			break
-	to_chat(owner, "<span class='notice'>We will now spawn <b>[weed_choice]\s</b> when using the spawn hugger ability.</span>")
+	to_chat(owner, "<span class='notice'>We will now spawn <b>[weed_choice]\s</b> when using the plant weeds ability.</span>")
 	update_button_icon()
 
 /datum/action/xeno_action/plant_weeds/update_button_icon()
