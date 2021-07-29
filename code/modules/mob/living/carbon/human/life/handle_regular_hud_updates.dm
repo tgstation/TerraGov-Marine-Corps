@@ -73,9 +73,9 @@
 					severity = 5
 				if(85 to INFINITY)
 					severity = 6
-			overlay_fullscreen(BRUTE, /obj/screen/fullscreen/brute, severity)
+			overlay_fullscreen("brute", /obj/screen/fullscreen/brute, severity)
 		else
-			clear_fullscreen(BRUTE)
+			clear_fullscreen("brute")
 
 	interactee?.check_eye(src)
 
