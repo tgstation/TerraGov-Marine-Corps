@@ -1153,7 +1153,7 @@
 			N = create_medical_record(connected.occupant)
 
 		var/needed = 0 // this is to stop someone just choosing everything
-		if(href_list["brut"])
+		if(href_list["brute"])
 			N.fields["autodoc_manual"] += create_autodoc_surgery(null,EXTERNAL_SURGERY,ADSURGERY_BRUTE)
 
 		if(href_list["burn"])

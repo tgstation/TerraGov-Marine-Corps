@@ -527,7 +527,7 @@
 	desc = "A foul, viscous resin jelly that doesnt seem to burn easily."
 	icon = 'icons/unused/Marine_Research.dmi'
 	icon_state = "biomass"
-	soft_armor = list(BURN = 200)
+	soft_armor = list("fire" = 200)
 	var/immune_time = 15 SECONDS
 
 /obj/item/resin_jelly/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)

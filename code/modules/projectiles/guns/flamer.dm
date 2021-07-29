@@ -605,7 +605,7 @@
 //Time to redo part of abby's code.
 //Create a flame sprite object. Doesn't work like regular fire, ie. does not affect atmos or heat
 /obj/flamer_fire
-	name = BURN
+	name = "fire"
 	desc = "Ouch!"
 	anchored = TRUE
 	mouse_opacity = 0
@@ -672,7 +672,7 @@
 
 /mob/living/carbon/human/flamer_fire_crossed(burnlevel, firelevel, fire_mod = 1)
 	if(hard_armor.getRating("fire") >= 100)
-		take_overall_damage_armored(round(burnlevel * 0.2) * fire_mod, BURN, BURN, updating_health = TRUE)
+		take_overall_damage_armored(round(burnlevel * 0.2) * fire_mod, BURN, "fire", updating_health = TRUE)
 		return
 	. = ..()
 	if(isxeno(pulledby))
