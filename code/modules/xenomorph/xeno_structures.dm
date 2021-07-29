@@ -710,7 +710,7 @@ TUNNEL
 	COOLDOWN_START(src, silo_damage_alert_cooldown, XENO_SILO_HEALTH_ALERT_COOLDOWN) //set the cooldown.
 
 ///Alerts the Hive when hostiles get too close to their resin silo
-/obj/structure/xeno/resin/silo/proc/resin_silo_proxy_alert(datum/source, atom/hostile)
+/obj/structure/xeno/resin/silo/proc/resin_silo_proxy_alert(datum/source, atom/movable/hostile, direction)
 	SIGNAL_HANDLER
 
 	if(!COOLDOWN_CHECK(src, silo_proxy_alert_cooldown)) //Proxy alert triggered too recently; abort
