@@ -34,6 +34,18 @@
 		qdel(other)
 	fuel_spread()
 
+/obj/effect/decal/cleanable/liquid_fuel/Crossed(atom/movable/AM)
+	. = ..()
+	if(isitem(AM))
+		var/obj/item/igniter = AM
+		if(igniter.damtype != "fire")
+			return
+		addtimer(CALLBACK(src, .proc/crossed_ignite, igniter), 1) //Just to make sure it wasn't thrown over
+	if(isliving(AM))
+		var/mob/living/burner_mob = AM
+		if(!burner_mob.on_fire)
+			return
+		addtimer(CALLBACK(src, .proc/crossed_ignite, burner_mob), 1)
 
 /obj/effect/decal/cleanable/liquid_fuel/proc/fuel_spread()
 	//Allows liquid fuels to sometimes flow into other tiles.
@@ -72,7 +84,7 @@
 
 /obj/effect/decal/cleanable/liquid_fuel/attackby(obj/item/I, mob/user, params)
 	. = ..()
-	if(istype(I, /obj/item/tool/lighter))
+	if(I.damtype == "fire")
 		ignite_fuel()
 		user.visible_message(span_notice("[user] ignites \the [src]"), span_notice("You ignite some fuel on [src]"))
 		log_attack("[key_name(user)] ignites [src] in fuel in [AREACOORD(user)]")
@@ -89,6 +101,12 @@
 		for(var/obj/effect/decal/cleanable/liquid_fuel/other in T)
 			INVOKE_NEXT_TICK(other, .proc/ignite_fuel)	//Spread effect
 	qdel(src)
+
+///Ignites when something hot enters our loc, but only if it doesn't immediately leave
+/obj/effect/decal/cleanable/liquid_fuel/proc/crossed_ignite(atom/movable/igniter)
+	if(igniter.loc == loc)
+		visible_message(span_warning("The spilled fuel catches fire!"))
+		ignite_fuel()
 
 /obj/effect/decal/cleanable/liquid_fuel/flamethrower_fuel
 	icon_state = "mustard"
