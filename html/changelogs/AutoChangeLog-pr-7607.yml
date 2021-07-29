@@ -1,4 +1,0 @@
-author: "QualityVan"
-delete-after: True
-changes: 
-  - spellcheck: "Medical scanners no longer tell you a subject with cloneloss has been incorrectly cloned, since that's not what it comes from."

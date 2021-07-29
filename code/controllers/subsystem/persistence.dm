@@ -204,7 +204,7 @@ SUBSYSTEM_DEF(persistence)
 		)
 
 /datum/season_datum/weapons/guns/pistol_seasonal_three
-	name = "Hiph-power pistols"
+	name = "High-power pistols"
 	description = "More pistols in the vendors, why not?"
 	item_list = list(
 		/obj/item/weapon/gun/pistol/vp78 = -1,
@@ -214,7 +214,7 @@ SUBSYSTEM_DEF(persistence)
 		)
 
 /datum/season_datum/weapons/guns/copsandrobbers_seasonal
-	name = "cops and robbers"
+	name = "Cops and robbers"
 	description = "A Revolver and a classic SMG. Truly cops and robbers."
 	item_list = list(
 		/obj/item/weapon/gun/smg/uzi = -1,
