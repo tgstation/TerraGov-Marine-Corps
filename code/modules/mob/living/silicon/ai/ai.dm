@@ -81,6 +81,7 @@
 	RegisterSignal(SSdcs, COMSIG_GLOB_CAS_LASER_CREATED, .proc/receive_laser_cas)
 	RegisterSignal(SSdcs, COMSIG_GLOB_TADPOLE_LAUNCHED, .proc/notify_tadpole_movement_take_off)
 	RegisterSignal(SSdcs, COMSIG_GLOB_TADPOLE_LANDED, .proc/notify_tadpole_movement_landing)
+	RegisterSignal(SSdcs, COMSIG_GLOB_TADPOLE_RETURNING, .proc/notify_tadpole_movement_returning)
 
 
 	var/datum/action/innate/order/attack_order/send_attack_order = new
@@ -102,6 +103,7 @@
 	UnregisterSignal(SSdcs, COMSIG_GLOB_OB_LASER_CREATED)
 	UnregisterSignal(SSdcs, COMSIG_GLOB_CAS_LASER_CREATED)
 	UnregisterSignal(SSdcs, COMSIG_GLOB_TADPOLE_LAUNCHED)
+	UnregisterSignal(SSdcs, COMSIG_GLOB_TADPOLE_LANDED)
 	UnregisterSignal(SSdcs, COMSIG_GLOB_TADPOLE_LANDED)
 	return ..()
 
@@ -130,13 +132,18 @@
 	to_chat(src, span_notice("CAS laser detected. Target: [AREACOORD_NO_Z(incoming_laser)]"))
 	playsound_local(src, 'sound/effects/binoctarget.ogg', 15)
 
-/mob/living/silicon/ai/proc/notify_tadpole_movement_take_off(datum/source, obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/tad)
+///Receive tadpole movement notifications
+/mob/living/silicon/ai/proc/notify_tadpole_movement_take_off(datum/source, dest)
 	SIGNAL_HANDLER
-	to_chat(src, span_notice("Mini dropship taking off from."))
+	to_chat(src, span_notice("Notice - Mini dropship taking off from \the [get_area(dest)]."))
 
-mob/living/silicon/ai/proc/notify_tadpole_movement_landing(datum/source, obj/machinery/computer/camera_advanced/shuttle_docker/tad)
+mob/living/silicon/ai/proc/notify_tadpole_movement_landing(datum/source, dest)
 	SIGNAL_HANDLER
-	to_chat(src, span_notice("Mini dropship landing at [tad.loc]" ))
+	to_chat(src, span_notice("Notice - Mini dropship landing at \the [get_area(dest)]."))
+
+mob/living/silicon/ai/proc/notify_tadpole_movement_returning(datum/source)
+	SIGNAL_HANDLER
+	to_chat(src, span_notice("Notice - Mini dropship returning to the mothership."))
 
 
 

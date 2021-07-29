@@ -14,6 +14,7 @@
 #define COMSIG_GLOB_OPEN_SHUTTERS_EARLY "!open_shutters_early"
 #define COMSIG_GLOB_TADPOLE_LAUNCHED "!tadpole_launched"
 #define COMSIG_GLOB_TADPOLE_LANDED "!tadpole_landed"
+#define COMSIG_GLOB_TADPOLE_RETURNING "!tadpole_returning"
 
 #define COMSIG_GLOB_REMOVE_VOTE_BUTTON "!remove_vote_button"
 #define COMSIG_GLOB_NUKE_START "!nuke_start"
