@@ -1162,7 +1162,7 @@ datum/ammo/bullet/revolver/tp44
 	name = "white phosphorous rocket"
 	hud_state = "rocket_fire"
 	flags_ammo_behavior = AMMO_ROCKET|AMMO_INCENDIARY|AMMO_EXPLOSIVE|AMMO_SUNDERING
-	armor_type = "fire"
+	armor_type = BURN
 	damage_type = BURN
 	accuracy_var_low = 7
 	accurate_range = 15
@@ -2030,7 +2030,7 @@ datum/ammo/bullet/revolver/tp44
 	hud_state_empty = "flame_empty"
 	damage_type = BURN
 	flags_ammo_behavior = AMMO_INCENDIARY|AMMO_IGNORE_ARMOR|AMMO_FLAME
-	armor_type = "fire"
+	armor_type = BURN
 	max_range = 6
 	damage = 50
 	bullet_color = LIGHT_COLOR_FIRE

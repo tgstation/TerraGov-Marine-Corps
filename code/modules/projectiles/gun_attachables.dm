@@ -1491,7 +1491,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 				else
 					log_combat(user, H, "flamed", src)
 
-			if(H.hard_armor.getRating("fire") >= 100)
+			if(H.hard_armor.getRating(BURN) >= 100)
 				continue
 
 		M.adjust_fire_stacks(rand(3,5))

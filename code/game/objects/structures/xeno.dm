@@ -41,7 +41,7 @@
 		tank_collision(O)
 
 /obj/effect/alien/flamer_fire_act()
-	take_damage(50, BURN, "fire")
+	take_damage(50, BURN, BURN)
 
 /obj/effect/alien/ex_act(severity)
 	switch(severity)
@@ -187,10 +187,10 @@
 		qdel(src)
 
 /obj/structure/mineral_door/resin/flamer_fire_act()
-	take_damage(50, BURN, "fire")
+	take_damage(50, BURN, BURN)
 
 /turf/closed/wall/resin/fire_act()
-	take_damage(50, BURN, "fire")
+	take_damage(50, BURN, BURN)
 
 /obj/structure/mineral_door/resin/TryToSwitchState(atom/user)
 	if(isxeno(user))
@@ -527,7 +527,7 @@
 	desc = "A foul, viscous resin jelly that doesnt seem to burn easily."
 	icon = 'icons/unused/Marine_Research.dmi'
 	icon_state = "biomass"
-	soft_armor = list("fire" = 200)
+	soft_armor = list(BURN = 200)
 	var/immune_time = 15 SECONDS
 
 /obj/item/resin_jelly/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)

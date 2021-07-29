@@ -9,7 +9,7 @@
 	flags_atom = CONDUCT
 	layer = OBJ_LAYER
 	resistance_flags = XENO_DAMAGEABLE
-	soft_armor = list("melee" = 50, "bullet" = 70, "laser" = 70, "energy" = 100, "bomb" = 10, "bio" = 100, "rad" = 100, "fire" = 0, "acid" = 0)
+	soft_armor = list("melee" = 50, "bullet" = 70, "laser" = 70, "energy" = 100, "bomb" = 10, "bio" = 100, "rad" = 100, BURN = 0, "acid" = 0)
 	max_integrity = 10
 
 /obj/structure/grille/Initialize()
@@ -136,7 +136,7 @@
 
 /obj/structure/grille/fire_act(exposed_temperature, exposed_volume)
 	if(obj_integrity > integrity_failure && exposed_temperature > T0C + 1500)
-		take_damage(1, BURN, "fire")
+		take_damage(1, BURN, BURN)
 	return ..()
 
 

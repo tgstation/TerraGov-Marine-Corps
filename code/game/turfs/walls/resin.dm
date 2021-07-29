@@ -12,7 +12,7 @@
 	max_integrity = 200
 	layer = RESIN_STRUCTURE_LAYER
 	tiles_with = list(/turf/closed/wall/resin, /turf/closed/wall/resin/membrane, /obj/structure/mineral_door/resin)
-	soft_armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
+	soft_armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, BURN = 0, "acid" = 0)
 
 
 /turf/closed/wall/resin/Initialize()
@@ -31,7 +31,7 @@
 
 
 /turf/closed/wall/resin/flamer_fire_act()
-	take_damage(50, BURN, "fire")
+	take_damage(50, BURN, BURN)
 
 
 /turf/closed/wall/resin/proc/thicken()
@@ -115,7 +115,7 @@
 
 	var/damage = I.force
 	var/multiplier = 1
-	if(I.damtype == "fire") //Burn damage deals extra vs resin structures (mostly welders).
+	if(I.damtype == BURN) //Burn damage deals extra vs resin structures (mostly welders).
 		multiplier += 1
 
 	if(istype(I, /obj/item/tool/pickaxe/plasmacutter) && !user.do_actions)

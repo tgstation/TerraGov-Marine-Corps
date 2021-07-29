@@ -165,5 +165,5 @@
 
 /obj/structure/fence/fire_act(exposed_temperature, exposed_volume)
 	if(exposed_temperature > T0C + 800)
-		take_damage(round(exposed_volume / 100), BURN, "fire")
+		take_damage(round(exposed_volume / 100), BURN, BURN)
 	return ..()

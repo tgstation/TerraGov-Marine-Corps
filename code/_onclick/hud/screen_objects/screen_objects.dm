@@ -647,7 +647,7 @@
 
 
 /obj/screen/fire
-	name = "fire"
+	name = BURN
 	icon_state = "fire0"
 	screen_loc = ui_fire
 

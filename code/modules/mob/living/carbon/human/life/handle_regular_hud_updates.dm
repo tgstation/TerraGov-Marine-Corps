@@ -73,9 +73,9 @@
 					severity = 5
 				if(85 to INFINITY)
 					severity = 6
-			overlay_fullscreen("brute", /obj/screen/fullscreen/brute, severity)
+			overlay_fullscreen(BRUTE, /obj/screen/fullscreen/brute, severity)
 		else
-			clear_fullscreen("brute")
+			clear_fullscreen(BRUTE)
 
 	interactee?.check_eye(src)
 
@@ -183,7 +183,7 @@
 		if(2)
 			hud_used.healths.icon_state = "health7"
 			return
-	
+
 	if(health < get_crit_threshold())
 		hud_used.healths.icon_state = "health6"
 		return

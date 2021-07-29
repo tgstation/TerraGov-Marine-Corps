@@ -31,7 +31,7 @@
 	icon_state = "surgical"
 	item_state = "surgical"
 	flags_armor_protection = CHEST
-	soft_armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 10, "rad" = 0, "fire" = 0, "acid" = 0)
+	soft_armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 10, "rad" = 0, BURN = 0, "acid" = 0)
 	sprite_sheets = list("Vox" = 'icons/mob/species/vox/suit.dmi')
 
 
@@ -138,7 +138,7 @@
 		/obj/item/attachable/bayonetknife,
 		/obj/item/storage/large_holster/machete,
 	)
-	soft_armor = list("melee" = 10, "bullet" = 10, "laser" = 25, "energy" = 10, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 10, "acid" = 10)
+	soft_armor = list("melee" = 10, "bullet" = 10, "laser" = 25, "energy" = 10, "bomb" = 0, "bio" = 0, "rad" = 0, BURN = 10, "acid" = 10)
 	sprite_sheets = list("Vox" = 'icons/mob/species/vox/suit.dmi')
 
 /obj/item/clothing/suit/storage/det_suit/black
@@ -161,7 +161,7 @@
 		/obj/item/detective_scanner,
 		/obj/item/taperecorder,
 	)
-	soft_armor = list("melee" = 10, "bullet" = 10, "laser" = 15, "energy" = 10, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 10, "acid" = 10)
+	soft_armor = list("melee" = 10, "bullet" = 10, "laser" = 15, "energy" = 10, "bomb" = 0, "bio" = 0, "rad" = 0, BURN = 10, "acid" = 10)
 
 /obj/item/clothing/suit/storage/forensics/red
 	name = "red jacket"

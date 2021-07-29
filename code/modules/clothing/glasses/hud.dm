@@ -78,7 +78,7 @@
 	toggleable = TRUE
 	hud_type = DATA_HUD_MEDICAL_ADVANCED
 	actions_types = list(/datum/action/item_action/toggle)
-	soft_armor = list("melee" = 40, "bullet" = 40, "laser" = 0, "energy" = 15, "bomb" = 35, "bio" = 10, "rad" = 10, "fire" = 30, "acid" = 30)
+	soft_armor = list("melee" = 40, "bullet" = 40, "laser" = 0, "energy" = 15, "bomb" = 35, "bio" = 10, "rad" = 10, BURN = 30, "acid" = 30)
 	flags_equip_slot = ITEM_SLOT_EYES
 	goggles = TRUE
 

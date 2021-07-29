@@ -1032,7 +1032,7 @@
 					if(EXTERNAL_SURGERY)
 						switch(A.surgery_procedure)
 							if(ADSURGERY_BRUTE)
-								surgeryqueue["brute"] = 1
+								surgeryqueue[BRUTE] = 1
 								dat += "Surgical Brute Damage Treatment"
 							if(ADSURGERY_BURN)
 								surgeryqueue["burn"] = 1
@@ -1095,7 +1095,7 @@
 			dat += "<hr>Manual Surgery Interface Unavaliable, Automatic Mode Engaged."
 		else
 			dat += "<hr>Manual Surgery Interface<hr>"
-			if(isnull(surgeryqueue["brute"]))
+			if(isnull(surgeryqueue[BRUTE]))
 				dat += "<a href='?src=\ref[src];brute=1'>Surgical Brute Damage Treatment</a><br>"
 			if(isnull(surgeryqueue["burn"]))
 				dat += "<a href='?src=\ref[src];burn=1'>Surgical Burn Damage Treatment</a><br>"
@@ -1153,7 +1153,7 @@
 			N = create_medical_record(connected.occupant)
 
 		var/needed = 0 // this is to stop someone just choosing everything
-		if(href_list["brute"])
+		if(href_list[BRUTE])
 			N.fields["autodoc_manual"] += create_autodoc_surgery(null,EXTERNAL_SURGERY,ADSURGERY_BRUTE)
 
 		if(href_list["burn"])

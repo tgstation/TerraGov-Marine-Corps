@@ -103,7 +103,7 @@ Override makes it so the alert is not replaced until cleared by a clear_alert wi
 /obj/screen/alert/fire
 	name = "On Fire"
 	desc = "You're on fire. Stop, drop and roll to put the fire out or move to a vacuum area."
-	icon_state = "fire"
+	icon_state = BURN
 
 /obj/screen/alert/fire/Click()
 	var/mob/living/L = usr

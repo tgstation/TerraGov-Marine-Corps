@@ -174,7 +174,7 @@
 	max_integrity = 200
 
 /obj/structure/foamedmetal/fire_act() //flamerwallhacks go BRRR
-	take_damage(10, BURN, "fire")
+	take_damage(10, BURN, BURN)
 
 #undef METAL_FOAM
 #undef RAZOR_FOAM

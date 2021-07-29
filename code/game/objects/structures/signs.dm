@@ -141,7 +141,7 @@
 /obj/structure/sign/fire
 	name = "\improper DANGER: FIRE"
 	desc = "A warning sign which reads 'DANGER: FIRE'."
-	icon_state = "fire"
+	icon_state = BURN
 
 /obj/structure/sign/nosmoking_1
 	name = "\improper NO SMOKING"

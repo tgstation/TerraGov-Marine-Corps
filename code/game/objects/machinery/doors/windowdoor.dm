@@ -7,7 +7,7 @@
 	resistance_flags = XENO_DAMAGEABLE
 	var/base_state = "left"
 	max_integrity = 50
-	soft_armor = list("melee" = 20, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = 10, "bio" = 100, "rad" = 100, "fire" = 70, "acid" = 100)
+	soft_armor = list("melee" = 20, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = 10, "bio" = 100, "rad" = 100, BURN = 70, "acid" = 100)
 	visible = FALSE
 	use_power = FALSE
 	flags_atom = ON_BORDER
