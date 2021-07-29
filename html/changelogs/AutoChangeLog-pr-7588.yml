@@ -1,0 +1,4 @@
+author: "Passe2142"
+delete-after: True
+changes: 
+  - balance: "Drone weed speed: from -0.1 to  -0.4 and damages from : 16/16/20/20 to 16/16/18/18"
