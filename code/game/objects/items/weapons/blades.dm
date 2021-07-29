@@ -156,7 +156,7 @@
 				var/turf/T = X
 				for(var/mob/living/victim in T)
 					victim.flamer_fire_act(10)
-					victim.apply_damage(max(0, 20 - 20*victim.hard_armor.getRating(BURN)), BURN, user.zone_selected, victim.get_soft_armor(BURN, user.zone_selected))
+					victim.apply_damage(max(0, 20 - 20*victim.hard_armor.getRating("fire")), BURN, user.zone_selected, victim.get_soft_armor("fire", user.zone_selected))
 					//TODO BRAVEMOLE
 
 		if(/datum/reagent/medicine/bicaridine)

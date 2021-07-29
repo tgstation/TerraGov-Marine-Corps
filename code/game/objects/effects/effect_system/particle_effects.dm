@@ -10,7 +10,7 @@
 
 	//Fire
 /obj/effect/particle_effect/fire  //Fire that ignites mobs and deletes itself after some time, but doesn't mess with atmos. Good fire flamethrowers and incendiary stuff.
-	name = BURN
+	name = "fire"
 	icon = 'icons/effects/fire.dmi'
 	icon_state = "3"
 	var/life = 0.5 //In seconds
