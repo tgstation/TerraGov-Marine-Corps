@@ -117,7 +117,7 @@
 	ancient_message = "We are an apex predator, our enemies fear us when alone."
 
 	// *** Melee Attacks *** //
-	melee_damage = 27
+	melee_damage = 26
 
 	// *** Speed *** //
 	speed = -1.5
@@ -133,7 +133,7 @@
 	upgrade_threshold = 1500
 
 	// *** Defense *** //
-	soft_armor = list("melee" = 50, "bullet" = 30, "laser" = 30, "energy" = 30, "bomb" = XENO_BOMB_RESIST_0, "bio" = 35, "rad" = 35, "fire" = 30, "acid" = 18)
+	soft_armor = list("melee" = 50, "bullet" = 30, "laser" = 30, "energy" = 30, "bomb" = XENO_BOMB_RESIST_0, "bio" = 18, "rad" = 18, "fire" = 30, "acid" = 18)
 
 	// *** Ranged Attack *** //
 	pounce_delay = 8 SECONDS
