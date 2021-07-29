@@ -308,7 +308,7 @@
 /area/outpost/cargo)
 "bG" = (
 /obj/docking_port/stationary/crashmode,
-/turf/open/floor/plating/asteroidwarning,
+/turf/open/floor/plating/ground/mars/random/sand,
 /area/outpost/yard/central)
 "bI" = (
 /obj/effect/landmark/corpsespawner/scientist{
@@ -1331,7 +1331,6 @@
 /turf/open/floor/tile/dark,
 /area/outpost/brig/wardens_office)
 "he" = (
-/obj/effect/landmark/xeno_resin_door,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating/ground/mars/cavetodirt{
 	dir = 6
@@ -3599,12 +3598,11 @@
 /turf/open/floor/tile/dark/brown2/corner,
 /area/outpost/dormitories)
 "sC" = (
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
-	dir = 2
+/obj/effect/landmark/xeno_resin_door,
+/turf/open/floor/plating/ground/mars/dirttosand{
+	dir = 4
 	},
-/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/closed/mineral/bigred,
-/area/outpost/lz2)
+/area/outpost/caves/south)
 "sI" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -3633,6 +3631,9 @@
 /area/outpost/hallway/east)
 "sP" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/obj/effect/landmark/xeno_resin_door,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating/ground/mars/cavetodirt{
 	dir = 1
@@ -4445,8 +4446,8 @@
 /area/outpost/arrivals)
 "xv" = (
 /obj/effect/landmark/xeno_resin_door,
-/turf/open/floor/plating/ground/mars/cavetodirt{
-	dir = 4
+/turf/open/floor/plating/ground/mars/dirttosand{
+	dir = 5
 	},
 /area/outpost/caves/south)
 "xw" = (
@@ -4664,10 +4665,6 @@
 /obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/plating/dmg1,
 /area/outpost/medbay)
-"yJ" = (
-/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/closed/mineral/bigred,
-/area/outpost/lz2)
 "yK" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 1
@@ -5631,6 +5628,7 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
 	dir = 2
 	},
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/mineral/bigred,
 /area/outpost/caves/south_east)
 "Em" = (
@@ -8341,6 +8339,8 @@
 /area/outpost/brig/armoury)
 "RU" = (
 /obj/effect/landmark/xeno_resin_door,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating/ground/mars/cavetodirt{
 	dir = 1
@@ -26660,7 +26660,7 @@ Jb
 Jb
 Jb
 Jb
-iu
+Jb
 Jb
 FH
 sY
@@ -27176,7 +27176,7 @@ SH
 SH
 cc
 na
-Jb
+iu
 Jb
 FH
 sY
@@ -31033,10 +31033,10 @@ aN
 ey
 VB
 aN
-EA
+bG
 EA
 oM
-bG
+CY
 EA
 fG
 VJ
@@ -32875,8 +32875,8 @@ Zc
 Zc
 hK
 Bn
-Bn
-Bn
+hK
+hK
 hK
 hK
 Bn
@@ -33132,9 +33132,9 @@ Zc
 Zc
 Zc
 hK
-hK
-hK
 Bn
+Bn
+hK
 wy
 bA
 xD
@@ -33389,9 +33389,9 @@ Zc
 Zc
 Zc
 Zc
-Zc
-Zc
-xv
+hK
+hK
+xD
 he
 cU
 cU
@@ -33648,8 +33648,8 @@ Vd
 Zc
 Zc
 Zc
-eK
-eK
+sC
+sC
 PR
 gS
 gS
@@ -33908,7 +33908,7 @@ Cy
 Cy
 Cy
 Cy
-EX
+xv
 Zc
 Zc
 gS
@@ -40095,8 +40095,8 @@ hY
 hY
 KR
 LU
-LU
-tN
+Yb
+np
 np
 TD
 Hm
@@ -40105,7 +40105,7 @@ YO
 Hm
 Hm
 Hm
-LU
+Yb
 Yb
 LU
 LU
@@ -40353,18 +40353,18 @@ hY
 hY
 KR
 LU
-LU
 Yb
-LU
+Yb
+Yb
 El
-LU
+Yb
 Vi
 Hm
 Hm
 Yb
 Yb
 Yb
-Yb
+LU
 LU
 LU
 LU
@@ -40612,10 +40612,10 @@ hY
 KR
 KR
 KR
-yJ
+KR
 KR
 eF
-LU
+Yb
 Hm
 Hm
 Yb
@@ -40870,9 +40870,9 @@ hY
 hY
 hY
 hY
-yJ
-yJ
-sC
+KR
+KR
+eF
 Yb
 Yb
 Yb
