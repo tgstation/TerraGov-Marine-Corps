@@ -247,12 +247,6 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	melee_weapons = SKILL_MELEE_DEFAULT
 	pistols = SKILL_PISTOLS_DEFAULT
 
-/datum/skills/civilian/survivor/clown
-	name = "Survivor Clown"
-	cqc = SKILL_CQC_MP
-	melee_weapons = SKILL_MELEE_SUPER
-	firearms = SKILL_FIREARMS_UNTRAINED
-
 /datum/skills/combat_engineer
 	name = "Combat Engineer"
 	engineer = SKILL_ENGINEER_ENGI
