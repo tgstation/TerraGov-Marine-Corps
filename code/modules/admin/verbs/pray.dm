@@ -17,10 +17,12 @@
 	var/mentor_msg = msg
 	var/liaison = FALSE
 
-	for(var/i in GLOB.human_mob_list)
-		var/mob/living/carbon/human/H = i
-		if(iscorporateliaisonjob(H.job))
-			liaison = TRUE
+	if(ismob(usr))
+		if(ishuman(usr))
+			for(var/i in GLOB.human_mob_list)
+				var/mob/living/carbon/human/H = i
+				if(iscorporateliaisonjob(H.job))
+					liaison = TRUE
 
 	msg = "<b><font color=purple>[liaison ? "LIAISON " : ""]PRAY:</font> <span class='notice linkify'>[ADMIN_FULLMONTY(usr)] [ADMIN_SC(usr)] [ADMIN_SFC(usr)]: [msg]</b></span>"
 	mentor_msg = "<b><font color=purple>[liaison ? "LIAISON " : ""]PRAY:</font> <span class='notice linkify'>[ADMIN_TPMONTY(usr)]:</b> [mentor_msg]</span>"
