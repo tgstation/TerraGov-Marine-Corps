@@ -16,10 +16,10 @@
 
 
 /obj/structure/flora/flamer_fire_act()
-	take_damage(25, BURN, BURN)
+	take_damage(25, BURN, "fire")
 
 /obj/structure/flora/fire_act()
-	take_damage(25, BURN, BURN)
+	take_damage(25, BURN, "fire")
 
 
 //TREES
@@ -85,13 +85,13 @@
 	qdel(src)
 
 /obj/structure/flora/tree/flamer_fire_act()
-	take_damage(5, BURN, BURN)
+	take_damage(5, BURN, "fire")
 
 
 /obj/structure/flora/tree/update_overlays()
 	. = ..()
 	if(on_fire)
-		. += image(icon, BURN)
+		. += image(icon, "fire")
 
 /obj/structure/flora/stump
 	name = "stump"

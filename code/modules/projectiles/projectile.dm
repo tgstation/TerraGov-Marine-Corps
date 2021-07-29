@@ -839,7 +839,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 	if(proj.ammo.flags_ammo_behavior & AMMO_INCENDIARY)
 		//We are checking the total distributed mob's armor now, not just the limb.
 		//Fire hard armor represents flammability and how much fuel sticks to the armor.
-		living_hard_armor = hard_armor.getRating(BURN)
+		living_hard_armor = hard_armor.getRating("fire")
 		if(living_hard_armor < 100) //If armor is 100% then the mob is fireproof.
 			adjust_fire_stacks(CEILING(10 - (living_hard_armor * 0.1), 1)) //We could add an ammo fire strength in time, as a variable.
 			IgniteMob()
@@ -971,7 +971,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 	var/damage
 
 	switch(proj.ammo.damage_type)
-		if(BRUTE, BURN)
+		if(BRUTE, "fire")
 			damage = max(0, proj.damage - round(proj.distance_travelled * proj.damage_falloff) - hard_armor.getRating(proj.armor_type)) //Bullet damage falloff and hard armor.
 			damage -= round(damage * soft_armor.getRating(proj.armor_type) * 0.01, 1) //Wall armor soak.
 		else

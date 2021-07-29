@@ -89,7 +89,7 @@
 
 
 /obj/structure/bush/flamer_fire_act(heat)
-	take_damage(30, BURN, BURN)
+	take_damage(30, BURN, "fire")
 
 //*******************************//
 // Strange, fruit-bearing plants //

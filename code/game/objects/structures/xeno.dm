@@ -41,7 +41,7 @@
 		tank_collision(O)
 
 /obj/effect/alien/flamer_fire_act()
-	take_damage(50, BURN, BURN)
+	take_damage(50, BURN, "fire")
 
 /obj/effect/alien/ex_act(severity)
 	switch(severity)
@@ -187,10 +187,10 @@
 		qdel(src)
 
 /obj/structure/mineral_door/resin/flamer_fire_act()
-	take_damage(50, BURN, BURN)
+	take_damage(50, BURN, "fire")
 
 /turf/closed/wall/resin/fire_act()
-	take_damage(50, BURN, BURN)
+	take_damage(50, BURN, "fire")
 
 /obj/structure/mineral_door/resin/TryToSwitchState(atom/user)
 	if(isxeno(user))

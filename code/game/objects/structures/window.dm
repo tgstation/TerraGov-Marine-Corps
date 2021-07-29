@@ -257,7 +257,7 @@
 
 /obj/structure/window/fire_act(exposed_temperature, exposed_volume)
 	if(exposed_temperature > T0C + 800)
-		take_damage(round(exposed_volume / 100), BURN, BURN)
+		take_damage(round(exposed_volume / 100), BURN, "fire")
 	return ..()
 
 /obj/structure/window/GetExplosionBlock(explosion_dir)
@@ -275,7 +275,7 @@
 
 /obj/structure/window/phoronbasic/fire_act(exposed_temperature, exposed_volume)
 	if(exposed_temperature > T0C + 32000)
-		take_damage(round(exposed_volume / 1000), BURN, BURN)
+		take_damage(round(exposed_volume / 1000), BURN, "fire")
 	return ..()
 
 /obj/structure/window/phoronreinforced

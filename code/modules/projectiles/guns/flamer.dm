@@ -331,7 +331,7 @@
 				else
 					log_combat(user, H, "flamed", src)
 
-			if(H.hard_armor.getRating(BURN) >= 100)
+			if(H.hard_armor.getRating("fire") >= 100)
 				continue
 
 		M.take_overall_damage_armored(rand(burn,(burn*2))* fire_mod, BURN, BURN, updating_health = TRUE) // Make it so its the amount of heat or twice it for the initial blast.

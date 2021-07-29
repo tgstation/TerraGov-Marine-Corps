@@ -1,5 +1,5 @@
 /obj/effect/particle_effect/expl_particles
-	name = BURN
+	name = "fire"
 	icon_state = "explosion_particle"
 	opacity = TRUE
 	anchored = TRUE
@@ -27,7 +27,7 @@
 		new /obj/effect/particle_effect/expl_particles(location)
 
 /obj/effect/explosion
-	name = BURN
+	name = "fire"
 	icon = 'icons/effects/96x96.dmi'
 	icon_state = "explosion"
 	opacity = TRUE

@@ -9,7 +9,7 @@ GLOBAL_LIST_INIT(dream_topics, list(
 	"a knife","a distress beacon","a pistol","a spider","empty space","claws","a drop pod","a squad","a platoon","outgunned", \
 	"acid","jaws","a meeting","welding","the vents","being trapped","a survivor","an alien","a moth","being cornered","outnumbered", \
 	"a power loader","cyrostasis","a meeting room","an engineer","a severed head","a motion scanner","a dropship","a uniform", \
-	"a ruined station",BURN,"a smokey room","a voice","the cold","dimness","an operating table","teeth","flowers","graves", \
+	"a ruined station","fire","a smokey room","a voice","the cold","dimness","an operating table","teeth","flowers","graves", \
 	"a synthetic person","meat","a planet","the USL","Nanotrasen","tools","a mercenary","a promise","betrayal","acid","unbearable pain" \
 ))
 

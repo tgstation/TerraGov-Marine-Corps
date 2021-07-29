@@ -397,7 +397,7 @@ TUNNEL
 ///Handles fire based interactions with the acid well. Depletes 1 charge if there are any to extinguish all fires in the turf while producing acid smoke.
 /obj/structure/xeno/acidwell/proc/acid_well_fire_interaction()
 	if(!charges)
-		take_damage(50, BURN, BURN)
+		take_damage(50, BURN, "fire")
 		return
 
 	charges--
@@ -592,10 +592,10 @@ TUNNEL
 	return TRUE
 
 /obj/structure/xeno/resin/flamer_fire_act()
-	take_damage(10, BURN, BURN)
+	take_damage(10, BURN, "fire")
 
 /obj/structure/xeno/resin/fire_act()
-	take_damage(10, BURN, BURN)
+	take_damage(10, BURN, "fire")
 
 
 /obj/structure/xeno/resin/silo
@@ -887,11 +887,11 @@ TUNNEL
 			take_damage(300)
 
 /obj/structure/xeno/resin/xeno_turret/flamer_fire_act()
-	take_damage(60, BURN, BURN)
+	take_damage(60, BURN, "fire")
 	ENABLE_BITFIELD(resistance_flags, ON_FIRE)
 
 /obj/structure/xeno/resin/xeno_turret/fire_act()
-	take_damage(60, BURN, BURN)
+	take_damage(60, BURN, "fire")
 	ENABLE_BITFIELD(resistance_flags, ON_FIRE)
 
 /obj/structure/xeno/resin/xeno_turret/update_overlays()

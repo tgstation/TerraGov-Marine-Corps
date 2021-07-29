@@ -86,7 +86,7 @@
 	desc = "Designed for mounting on the Jaeger Combat Exoskeleton. Providing a near immunity to being bathed in flames, and amazing flame retardant qualities, this is every pyromaniacs' first stop to survival. Will impact mobility somewhat."
 	icon_state = "mod_fire_icon"
 	item_state = "mod_fire"
-	hard_armor = list(BURN = 200)
+	hard_armor = list("fire" = 200)
 	slowdown = 0.4
 	/// How much the suit light is modified by
 	var/light_mod = -2
@@ -110,7 +110,7 @@
 	desc = "Designed for mounting on the Jaeger Combat Exoskeleton. A substantial amount of additional armor plating designed to fit inside some of the vulnerable portions of the Jaeger Combat Exoskeleton conventional armor patterns. Will definitely impact mobility."
 	icon_state = "mod_armor_icon"
 	item_state = "mod_armor"
-	soft_armor = list("melee" = 15, "bullet" = 15, "laser" = 15, "energy" = 15, "bomb" = 15, "bio" = 15, "rad" = 15, BURN = 15, "acid" = 15)
+	soft_armor = list("melee" = 15, "bullet" = 15, "laser" = 15, "energy" = 15, "bomb" = 15, "bio" = 15, "rad" = 15, "fire" = 15, "acid" = 15)
 	slowdown = 0.3
 
 /obj/item/armor_module/attachable/tyr_extra_armor/do_attach(mob/living/user, obj/item/clothing/suit/modular/parent)
@@ -126,7 +126,7 @@
 /obj/item/armor_module/attachable/tyr_extra_armor/mark1
 	name = "\improper Mark 1 Tyr Armor Reinforcement"
 	desc = "Designed for mounting on the Jaeger Combat Exoskeleton. A substantial amount of additional armor plating designed to fit inside some of the vulnerable portions of the Jaeger Combat Exoskeleton conventional armor patterns. This older version has worse protection. Will definitely impact mobility."
-	soft_armor = list("melee" = 10, "bullet" = 10, "laser" = 10, "energy" = 10, "bomb" = 10, "bio" = 10, "rad" = 10, BURN = 10, "acid" = 10)
+	soft_armor = list("melee" = 10, "bullet" = 10, "laser" = 10, "energy" = 10, "bomb" = 10, "bio" = 10, "rad" = 10, "fire" = 10, "acid" = 10)
 	slowdown = 0.4
 
 
@@ -193,7 +193,7 @@
 	desc = "Designed for mounting on the Jaeger Combat Exoskeleton. A substantial amount of additional armor plating designed to fit inside some of the vulnerable portions of the Jaeger Combat Exoskeleton conventional armor patterns against bullets and nothing else. Will definitely impact mobility."
 	icon_state = "mod_ff_icon"
 	item_state = "mod_ff"
-	soft_armor = list("melee" = 0, "bullet" = 40, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, BURN = 0, "acid" = 0)
+	soft_armor = list("melee" = 0, "bullet" = 40, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
 	slowdown = 0.2
 
 /obj/item/armor_module/attachable/ballistic_armor/do_attach(mob/living/user, obj/item/clothing/suit/modular/parent)
