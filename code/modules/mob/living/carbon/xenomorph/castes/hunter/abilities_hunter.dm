@@ -210,7 +210,7 @@
 // *********** Pounce/sneak attack
 // ***************************************
 /datum/action/xeno_action/activable/pounce/hunter
-	plasma_cost = 50
+	plasma_cost = 80
 	range = 7
 
 // ***************************************
