@@ -11,7 +11,7 @@
 	wound_type = "hunter" //used to match appropriate wound overlays
 
 	// *** Melee Attacks *** //
-	melee_damage = 24
+	melee_damage = 22
 	attack_delay = 6
 
 	// *** Speed *** //
@@ -20,10 +20,10 @@
 
 	// *** Plasma *** //
 	plasma_max = 110
-	plasma_gain = 10
+	plasma_gain = 12
 
 	// *** Health *** //
-	max_health = 250
+	max_health = 230
 
 	// *** Evolution *** //
 	evolution_threshold = 180
@@ -68,14 +68,14 @@
 	// *** Speed *** //
 	speed = -1.3
 	// *** Plasma *** //
-	plasma_max = 150
-	plasma_gain = 15
+	plasma_max = 130
+	plasma_gain = 13
 
 	// *** Health *** //
-	max_health = 270
+	max_health = 250
 
 	// *** Evolution *** //
-	upgrade_threshold = 380
+	upgrade_threshold = 400
 
 	// *** Defense *** //
 	soft_armor = list("melee" = 45, "bullet" = 23, "laser" = 23, "energy" = 23, "bomb" = XENO_BOMB_RESIST_0, "bio" = 15, "rad" = 15, "fire" = 20, "acid" = 15)
@@ -89,20 +89,20 @@
 	upgrade = XENO_UPGRADE_TWO
 
 	// *** Melee Attacks *** //
-	melee_damage = 27
+	melee_damage = 24
 
 	// *** Speed *** //
 	speed = -1.4
 
 	// *** Plasma *** //
-	plasma_max = 180
-	plasma_gain = 18
+	plasma_max = 160
+	plasma_gain = 15
 
 	// *** Health *** //
-	max_health = 290
+	max_health = 270
 
 	// *** Evolution *** //
-	upgrade_threshold = 880
+	upgrade_threshold = 900
 
 	// *** Defense *** //
 	soft_armor = list("melee" = 50, "bullet" = 26, "laser" = 26, "energy" = 26, "bomb" = XENO_BOMB_RESIST_0, "bio" = 18, "rad" = 18, "fire" = 25, "acid" = 18)
@@ -117,7 +117,7 @@
 	ancient_message = "We are An Apex predator, Our enemies fear us when alone."
 
 	// *** Melee Attacks *** //
-	melee_damage = 30
+	melee_damage = 27
 
 	// *** Speed *** //
 	speed = -1.5
