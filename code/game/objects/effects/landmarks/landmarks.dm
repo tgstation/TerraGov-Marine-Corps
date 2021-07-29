@@ -192,7 +192,7 @@
 	area_to_control.set_to_contested()
 	area_to_control.center_turf = get_turf(src)
 	GLOB.zones_to_control += area_to_control
-	. = ..()
+	..()
 	return INITIALIZE_HINT_QDEL
 
 /obj/effect/landmark/dropship_start_location
@@ -424,4 +424,3 @@
 	. =	..()
 	GLOB.lz2_shuttle_console_turfs_list += loc
 	return INITIALIZE_HINT_QDEL
-
