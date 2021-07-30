@@ -63,8 +63,6 @@
 	var/list/alive_faction_member_in_area
 	///Who controls this area
 	var/faction_controlling = ""
-	///The center turf of this area, must be manually set by a landmark. Null in almost every case, used only for minimaps in civil war
-	var/turf/center_turf
 
 
 /area/New()
@@ -374,14 +372,14 @@
 /area/proc/update_control_minimap_icon()
 	if(faction_controlling != FACTION_TERRAGOV && length(LAZYACCESS(alive_faction_member_in_area, FACTION_TERRAGOV)) > length(LAZYACCESS(alive_faction_member_in_area, FACTION_TERRAGOV_REBEL)))
 		faction_controlling = FACTION_TERRAGOV
-		SSminimaps.remove_marker(center_turf)
-		SSminimaps.add_marker(center_turf, center_turf.z, MINIMAP_FLAG_ALL, "loyalist_zone")
+		SSminimaps.remove_marker(GLOB.zones_to_control[src])
+		SSminimaps.add_marker(GLOB.zones_to_control[src], z, MINIMAP_FLAG_ALL, "loyalist_zone")
 		return
 	if(faction_controlling != FACTION_TERRAGOV_REBEL && length(LAZYACCESS(alive_faction_member_in_area, FACTION_TERRAGOV)) < length(LAZYACCESS(alive_faction_member_in_area, FACTION_TERRAGOV_REBEL)))
 		faction_controlling = FACTION_TERRAGOV_REBEL
-		SSminimaps.remove_marker(center_turf)
-		SSminimaps.add_marker(center_turf, center_turf.z, MINIMAP_FLAG_ALL, "rebel_zone")
+		SSminimaps.remove_marker(GLOB.zones_to_control[src])
+		SSminimaps.add_marker(GLOB.zones_to_control[src], z, MINIMAP_FLAG_ALL, "rebel_zone")
 		return
 	if(faction_controlling)
 		faction_controlling = ""
-		SSminimaps.remove_marker(center_turf)
+		SSminimaps.remove_marker(GLOB.zones_to_control[src])

@@ -22,6 +22,10 @@
 	var/deploy_time_lock = 15 MINUTES
 	///The respawn time for marines
 	var/respawn_time = 30 MINUTES
+	///How many points do you need to win in a point gamemode
+	var/win_points_needed = 0
+	///The points per faction, assoc list
+	var/list/points_per_faction
 
 //Distress call variables.
 	var/list/datum/emergency_call/all_calls = list() //initialized at round start and stores the datums.

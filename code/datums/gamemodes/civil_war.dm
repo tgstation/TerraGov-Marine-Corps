@@ -1,7 +1,7 @@
 /datum/game_mode/civil_war
 	name = "Civil War"
 	config_tag = "Civil War"
-	flags_round_type = MODE_LZ_SHUTTERS|MODE_TWO_HUMAN_FACTIONS|MODE_HUMAN_ONLY
+	flags_round_type = MODE_LZ_SHUTTERS|MODE_TWO_HUMAN_FACTIONS|MODE_HUMAN_ONLY|MODE_WIN_POINTS
 	flags_landmarks = MODE_LANDMARK_SPAWN_SPECIFIC_SHUTTLE_CONSOLE
 	respawn_time = 10 MINUTES
 
@@ -40,10 +40,8 @@
 		/datum/job/terragov/squad/leader/rebel = 4,
 		/datum/job/terragov/squad/standard/rebel = -1
 	)
-	///How many points do you need to win
-	var/win_points_needed = 5000
-	///The points per faction, assoc list
-	var/list/points_per_faction
+
+	win_points_needed = 5000
 
 /datum/game_mode/civil_war/announce()
 	to_chat(world, "<b>The current game mode is - Civil War!</b>")
