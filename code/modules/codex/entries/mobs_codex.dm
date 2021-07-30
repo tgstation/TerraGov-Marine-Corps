@@ -21,8 +21,7 @@
 
 	xeno_strings += "Name: '[xeno_caste.caste_name]'"
 	xeno_strings += "Tier: [tier_as_number()]"
-	xeno_strings += "Melee slash damage: [xeno_caste.melee_damage]"
-	xeno_strings += "Tackle damage: [xeno_caste.tackle_damage]"
+	xeno_strings += "Melee slash damage: [xeno_caste.melee_damage * xeno_melee_damage_modifier]"
 	switch(mob_size)
 		if(MOB_SIZE_BIG)
 			xeno_strings += "Can smash walls: Yes"

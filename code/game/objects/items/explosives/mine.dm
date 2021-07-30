@@ -17,7 +17,7 @@ Stepping directly on the mine will also blow it up
 	flags_atom = CONDUCT
 
 	/// IFF signal - used to determine friendly units
-	var/list/iff_signal = list(ACCESS_IFF_MARINE)
+	var/iff_signal = NONE
 	/// If the mine has been triggered
 	var/triggered = FALSE
 	/// State of the mine. Will the mine explode or not
@@ -52,24 +52,26 @@ Stepping directly on the mine will also blow it up
 /// attack_self is used to arm the mine
 /obj/item/explosive/mine/attack_self(mob/living/user)
 	if(!user.loc || user.loc.density)
-		to_chat(user, "<span class='warning'>You can't plant a mine here.</span>")
+		to_chat(user, span_warning("You can't plant a mine here."))
 		return
 
 	if(locate(/obj/item/explosive/mine) in get_turf(src))
-		to_chat(user, "<span class='warning'>There already is a mine at this position!</span>")
+		to_chat(user, span_warning("There already is a mine at this position!"))
 		return
 
 	if(armed)
 		return
 
-	user.visible_message("<span class='notice'>[user] starts deploying [src].</span>", \
-	"<span class='notice'>You start deploying [src].</span>")
+	user.visible_message(span_notice("[user] starts deploying [src]."), \
+	span_notice("You start deploying [src]."))
 	if(!do_after(user, 40, TRUE, src, BUSY_ICON_HOSTILE))
-		user.visible_message("<span class='notice'>[user] stops deploying [src].</span>", \
-	"<span class='notice'>You stop deploying \the [src].</span>")
+		user.visible_message(span_notice("[user] stops deploying [src]."), \
+	span_notice("You stop deploying \the [src]."))
 		return
-	user.visible_message("<span class='notice'>[user] finishes deploying [src].</span>", \
-	"<span class='notice'>You finish deploying [src].</span>")
+	user.visible_message(span_notice("[user] finishes deploying [src]."), \
+	span_notice("You finish deploying [src]."))
+	var/obj/item/card/id/id = user.get_idcard()
+	iff_signal = id?.iff_signal
 	anchored = TRUE
 	armed = TRUE
 	playsound(src.loc, 'sound/weapons/mine_armed.ogg', 25, 1)
@@ -86,8 +88,8 @@ Stepping directly on the mine will also blow it up
 	if(!ismultitool(I) || !anchored)
 		return
 
-	user.visible_message("<span class='notice'>[user] starts disarming [src].</span>", \
-	"<span class='notice'>You start disarming [src].</span>")
+	user.visible_message(span_notice("[user] starts disarming [src]."), \
+	span_notice("You start disarming [src]."))
 
 	if(!do_after(user, 8 SECONDS, TRUE, src, BUSY_ICON_FRIENDLY))
 		user.visible_message("<span class='warning'>[user] stops disarming [src].", \
@@ -118,14 +120,13 @@ Stepping directly on the mine will also blow it up
 		return FALSE
 	if((L.status_flags & INCORPOREAL))
 		return FALSE
-	if(ishuman(L))
-		var/mob/living/carbon/human/H = L
-		if(H.get_target_lock(iff_signal))
-			return FALSE
+	var/obj/item/card/id/id = L.get_idcard()
+	if(id?.iff_signal & iff_signal)
+		return FALSE
 
-	L.visible_message("<span class='danger'>[icon2html(src, viewers(L))] \The [src] clicks as [L] moves in front of it.</span>", \
-	"<span class='danger'>[icon2html(src, viewers(L))] \The [src] clicks as you move in front of it.</span>", \
-	"<span class='danger'>You hear a click.</span>")
+	L.visible_message(span_danger("[icon2html(src, viewers(L))] \The [src] clicks as [L] moves in front of it."), \
+	span_danger("[icon2html(src, viewers(L))] \The [src] clicks as you move in front of it."), \
+	span_danger("You hear a click."))
 
 	playsound(loc, 'sound/weapons/mine_tripped.ogg', 25, 1)
 	INVOKE_ASYNC(src, .proc/trigger_explosion)
@@ -140,8 +141,8 @@ Stepping directly on the mine will also blow it up
 
 	if(X.a_intent == INTENT_HELP)
 		return
-	X.visible_message("<span class='danger'>[X] has slashed [src]!</span>", \
-	"<span class='danger'>We slash [src]!</span>")
+	X.visible_message(span_danger("[X] has slashed [src]!"), \
+	span_danger("We slash [src]!"))
 	playsound(loc, 'sound/weapons/slice.ogg', 25, 1)
 	INVOKE_ASYNC(src, .proc/trigger_explosion)
 
@@ -173,7 +174,7 @@ Stepping directly on the mine will also blow it up
 	if(!linked_mine)
 		qdel(src)
 		return
-	
+
 	if(CHECK_MULTIPLE_BITFIELDS(A.flags_pass, HOVERING))
 		return
 
@@ -188,4 +189,3 @@ Stepping directly on the mine will also blow it up
 	name = "\improper M20P Claymore anti-personnel mine"
 	desc = "The M20P Claymore is a directional proximity triggered anti-personnel mine designed by Armat Systems for use by the TerraGov Marine Corps. It has been modified for use by the NT PMC forces."
 	icon_state = "m20p"
-	iff_signal = list(ACCESS_IFF_PMC)

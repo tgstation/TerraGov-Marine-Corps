@@ -46,6 +46,8 @@
 	///Internal holder for emissive blocker object, do not use directly use blocks_emissive
 	var/atom/movable/emissive_blocker/em_block
 
+	var/list/client_mobs_in_contents // This contains all the client mobs within this container
+
 	///Lazylist to keep track on the sources of illumination.
 	var/list/affected_dynamic_lights
 	///Highest-intensity light affecting us, which determines our visibility.
@@ -92,9 +94,10 @@
 
 	loc?.handle_atom_del(src)
 
-	for(var/i in contents)
-		var/atom/movable/AM = i
-		qdel(AM)
+	for(var/movable_content in contents)
+		qdel(movable_content)
+
+	LAZYCLEARLIST(client_mobs_in_contents)
 
 	moveToNullspace()
 	invisibility = INVISIBILITY_ABSTRACT
@@ -319,6 +322,8 @@
 
 /atom/movable/proc/Moved(atom/oldloc, direction, Forced = FALSE)
 	SEND_SIGNAL(src, COMSIG_MOVABLE_MOVED, oldloc, direction, Forced)
+	if(length(client_mobs_in_contents))
+		update_parallax_contents()
 	if(pulledby)
 		SEND_SIGNAL(src, COMSIG_MOVABLE_PULL_MOVED, oldloc, direction, Forced)
 	for(var/thing in light_sources) // Cycle through the light sources on this atom and tell them to update.
@@ -341,10 +346,10 @@
 
 /atom/movable/proc/doMove(atom/destination)
 	. = FALSE
+	var/atom/oldloc = loc
 	if(destination)
 		if(pulledby)
 			pulledby.stop_pulling()
-		var/atom/oldloc = loc
 		var/same_loc = oldloc == destination
 		var/area/old_area = get_area(oldloc)
 		var/area/destarea = get_area(destination)
@@ -373,19 +378,19 @@
 					continue
 				AM.Crossed(src, oldloc)
 
-		Moved(oldloc, NONE, TRUE)
 		. = TRUE
 
 	//If no destination, move the atom into nullspace (don't do this unless you know what you're doing)
 	else
 		. = TRUE
 		if (loc)
-			var/atom/oldloc = loc
 			var/area/old_area = get_area(oldloc)
 			oldloc.Exited(src, null)
 			if(old_area)
 				old_area.Exited(src, null)
 		loc = null
+
+	Moved(oldloc, NONE, TRUE)
 
 
 //called when src is thrown into hit_atom
@@ -523,10 +528,14 @@
 	if(isobj(src) && throwing)
 		throw_impact(get_turf(src), speed)
 	if(loc)
-		set_throwing(FALSE)
-		thrower = null
-		throw_source = null
+		stop_throw()
 	SEND_SIGNAL(src, COMSIG_MOVABLE_POST_THROW)
+
+/// Annul all throw var to ensure a clean exit out of throw state
+/atom/movable/proc/stop_throw()
+	set_throwing(FALSE)
+	thrower = null
+	throw_source = null
 
 /atom/movable/proc/handle_buckled_mob_movement(NewLoc, direct)
 	for(var/m in buckled_mobs)
@@ -783,7 +792,7 @@
 			M.set_glide_size(glide_size)
 		log_combat(src, M, "grabbed", addition = "passive grab")
 		if(!suppress_message)
-			visible_message("<span class='warning'>[src] has grabbed [M] passively!</span>")
+			visible_message(span_warning("[src] has grabbed [M] passively!"))
 	else
 		pulling.set_glide_size(glide_size)
 	return TRUE

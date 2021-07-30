@@ -14,6 +14,7 @@
 	gun_type = /obj/item/weapon/gun/flamer
 	caliber = CALIBER_FUEL_THICK //Ultra Thick Napthal Fuel, from the lore book.
 	flags_magazine = NONE
+	icon_state_mini = "tank"
 
 
 /obj/item/ammo_magazine/flamer_tank/afterattack(obj/target, mob/user , flag) //refuel at fueltanks when we run out of ammo.
@@ -21,7 +22,7 @@
 	if(istype(target, /obj/structure/reagent_dispensers/fueltank) && get_dist(user,target) <= 1)
 		var/obj/structure/reagent_dispensers/fueltank/FT = target
 		if(FT.reagents.total_volume == 0)
-			to_chat(user, "<span class='warning'>Out of fuel!</span>")
+			to_chat(user, span_warning("Out of fuel!"))
 			return..()
 
 		//Reworked and much simpler equation; fuel capacity minus the current amount, with a check for insufficient fuel
@@ -30,7 +31,7 @@
 		current_rounds += fuel_transfer_amount
 		playsound(loc, 'sound/effects/refill.ogg', 25, 1, 3)
 		caliber = CALIBER_FUEL
-		to_chat(user, "<span class='notice'>You refill [src] with [lowertext(caliber)].</span>")
+		to_chat(user, span_notice("You refill [src] with [lowertext(caliber)]."))
 		update_icon()
 
 	else
@@ -47,6 +48,7 @@
 	current_rounds = 75
 	reload_delay = 3 SECONDS
 	gun_type = /obj/item/weapon/gun/flamer/marinestandard
+	icon_state_mini = "tank_orange"
 
 /obj/item/ammo_magazine/flamer_tank/backtank
 	name = "back fuel tank"
@@ -73,7 +75,7 @@
 	var/mob/living/carbon/human/humanuser = user
 
 	if (!humanuser.is_item_in_slots(src))
-		to_chat(user, "<span class='warning'>You must equip or hold this fuel tank to be able to link it to a flamer</span>")
+		to_chat(user, span_warning("You must equip or hold this fuel tank to be able to link it to a flamer"))
 		return
 
 	if(FLT.current_mag == src)
@@ -81,7 +83,7 @@
 		return
 
 	if (attached_flamer)
-		to_chat(user, "<span class='warning'>This fuel tank is already attached to something</span>")
+		to_chat(user, span_warning("This fuel tank is already attached to something"))
 		return
 
 	FLT.attach_fueltank(user,src)
@@ -107,9 +109,11 @@
 	desc = "A large fuel tank of ultra thick napthal type B, a wide-spreading sticky combustable liquid chemical, for use in the TL-84 flamethrower. Handle with care."
 	icon_state = "flametank_large_green"
 	default_ammo = /datum/ammo/flamethrower/green
+	icon_state_mini = "tank_green"
 
 /obj/item/ammo_magazine/flamer_tank/large/X
 	name = "large flamethrower tank (X)"
 	desc = "A large fuel tank of ultra thick napthal Fuel type X, a sticky combustable liquid chemical that burns extremely hot, for use in the TL-84 flamethrower. Handle with care."
 	icon_state = "flametank_large_blue"
 	default_ammo = /datum/ammo/flamethrower/blue
+	icon_state_mini = "tank_blue"

@@ -11,9 +11,6 @@
 	// *** Melee Attacks *** //
 	melee_damage = 19
 
-	// *** Tackle *** //
-	tackle_damage = 23
-
 	// *** Speed *** //
 	speed = -0.7
 
@@ -32,7 +29,7 @@
 	deevolves_to = /mob/living/carbon/xenomorph/runner
 
 	// *** Flags *** //
-	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_EVOLUTION_ALLOWED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER
+	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_EVOLUTION_ALLOWED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER|CAN_BECOME_KING
 
 	// *** Defense *** //
 	soft_armor = list("melee" = 25, "bullet" = 35, "laser" = 25, "energy" = 25, "bomb" = XENO_BOMB_RESIST_0, "bio" = 25, "rad" = 25, "fire" = 35, "acid" = 25)
@@ -56,9 +53,6 @@
 	caste_desc = "A bright red alien with a matching temper. It looks a little more dangerous."
 
 	upgrade = XENO_UPGRADE_ONE
-
-	// *** Tackle *** //
-	tackle_damage = 23
 
 	// *** Speed *** //
 	speed = -0.7
@@ -95,9 +89,6 @@
 	// *** Melee Attacks *** //
 	melee_damage = 21
 
-	// *** Tackle *** //
-	tackle_damage = 26
-
 	// *** Speed *** //
 	speed = -0.7
 
@@ -132,9 +123,6 @@
 
 	// *** Melee Attacks *** //
 	melee_damage = 21
-
-	// *** Tackle *** //
-	tackle_damage = 26
 
 	// *** Speed *** //
 	speed = -0.8

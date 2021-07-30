@@ -19,7 +19,7 @@
 
 /obj/structure/largecrate/examine(mob/user)
 	. = ..()
-	to_chat(user, "<span class='notice'>You need a crowbar to pry this open!</span>")
+	to_chat(user, span_notice("You need a crowbar to pry this open!"))
 
 
 /obj/structure/largecrate/attackby(obj/item/I, mob/user, params)
@@ -35,9 +35,9 @@
 
 /obj/structure/largecrate/crowbar_act(mob/living/user, obj/item/I)
 	. = ..()
-	user.visible_message("<span class='notice'>[user] pries \the [src] open.</span>",
-		"<span class='notice'>You pry open \the [src].</span>",
-		"<span class='notice'>You hear splitting wood.</span>")
+	user.visible_message(span_notice("[user] pries \the [src] open."),
+		span_notice("You pry open \the [src]."),
+		span_notice("You hear splitting wood."))
 	new /obj/item/stack/sheet/wood(loc)
 	deconstruct(TRUE)
 	return TRUE
@@ -151,9 +151,9 @@
 		return TRUE
 	if(!welder.remove_fuel(1, user))
 		return TRUE
-	user.visible_message("<span class='notice'>[user] welds \the [src] open.</span>",
-		"<span class='notice'>You weld open \the [src].</span>",
-		"<span class='notice'>You hear loud hissing and the sound of metal falling over.</span>")
+	user.visible_message(span_notice("[user] welds \the [src] open."),
+		span_notice("You weld open \the [src]."),
+		span_notice("You hear loud hissing and the sound of metal falling over."))
 	playsound(loc, 'sound/items/welder2.ogg', 25, TRUE)
 	deconstruct(TRUE)
 	return TRUE
@@ -161,7 +161,7 @@
 
 /obj/structure/largecrate/random/barrel/examine(mob/user)
 	. = ..()
-	to_chat(user, "<span class='notice'>You need a blowtorch to weld this open!</span>")
+	to_chat(user, span_notice("You need a blowtorch to weld this open!"))
 
 
 /obj/structure/largecrate/random/barrel
@@ -210,11 +210,11 @@
 
 /obj/structure/largecrate/random/secure/wirecutter_act(mob/living/user, obj/item/I)
 	. = ..()
-	to_chat(user, "<span class='notice'>You begin to cut the straps off \the [src]...</span>")
+	to_chat(user, span_notice("You begin to cut the straps off \the [src]..."))
 	if(!do_after(user, 1.5 SECONDS, TRUE, src, BUSY_ICON_GENERIC))
 		return TRUE
 	playsound(loc, 'sound/items/wirecutter.ogg', 25, 1)
-	to_chat(user, "<span class='notice'>You cut the straps away.</span>")
+	to_chat(user, span_notice("You cut the straps away."))
 	icon_state = "secure_crate"
 	strapped = FALSE
 	return TRUE
@@ -222,7 +222,7 @@
 
 /obj/structure/largecrate/random/barrel/examine(mob/user)
 	. = ..()
-	to_chat(user, "<span class='notice'>You need something sharp to cut off the straps.</span>")
+	to_chat(user, span_notice("You need something sharp to cut off the straps."))
 
 /obj/structure/largecrate/guns
 	name = "\improper TGMC firearms crate (x3)"

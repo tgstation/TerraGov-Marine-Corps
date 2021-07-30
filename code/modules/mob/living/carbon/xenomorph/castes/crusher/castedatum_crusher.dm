@@ -13,9 +13,6 @@
 	melee_damage = 21
 	attack_delay = 8
 
-	// *** Tackle *** //
-	tackle_damage = 26
-
 	// *** Speed *** //
 	speed = 0.1
 
@@ -32,14 +29,14 @@
 	deevolves_to = /mob/living/carbon/xenomorph/bull
 
 	// *** Flags *** //
-	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER
+	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER|CAN_BECOME_KING
 
 	// *** Defense *** //
 	soft_armor = list("melee" = 70, "bullet" = 60, "laser" = 60, "energy" = 60, "bomb" = XENO_BOMB_RESIST_3, "bio" = 80, "rad" = 80, "fire" = 60, "acid" = 80)
 
 	// *** Crusher Abilities *** //
 	stomp_damage = 45
-	crest_toss_distance = 4
+	crest_toss_distance = 3
 
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
@@ -62,9 +59,6 @@
 
 	upgrade = XENO_UPGRADE_ONE
 
-	// *** Tackle *** //
-	tackle_damage = 26
-
 	// *** Speed *** //
 	speed = 0.1
 
@@ -83,6 +77,7 @@
 
 	// *** Abilities *** //
 	stomp_damage = 50
+	crest_toss_distance = 4
 
 /datum/xeno_caste/crusher/elder
 	upgrade_name = "Elder"
@@ -92,9 +87,6 @@
 
 	// *** Melee Attacks *** //
 	melee_damage = 24
-
-	// *** Tackle *** //
-	tackle_damage = 30
 
 	// *** Speed *** //
 	speed = 0.1
@@ -114,6 +106,7 @@
 
 	// *** Abilities *** //
 	stomp_damage = 55
+	crest_toss_distance = 5
 
 /datum/xeno_caste/crusher/ancient
 	upgrade_name = "Ancient"
@@ -123,9 +116,6 @@
 
 	// *** Melee Attacks *** //
 	melee_damage = 24
-
-	// *** Tackle *** //
-	tackle_damage = 30
 
 	// *** Speed *** //
 	speed = 0.1
@@ -144,3 +134,4 @@
 	soft_armor = list("melee" = 90, "bullet" = 75, "laser" = 75, "energy" = 75, "bomb" = XENO_BOMB_RESIST_3, "bio" = 100, "rad" = 100, "fire" = 75, "acid" = 100)
 	// *** Abilities *** //
 	stomp_damage = 60
+	crest_toss_distance = 6

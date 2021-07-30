@@ -567,7 +567,6 @@
 	},
 /area/bigredv2/outside/admin_building)
 "AX" = (
-/obj/machinery/deployable/barrier,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/machinery/door/airlock/multi_tile/mainship/comdoor/free_access{
@@ -627,7 +626,6 @@
 	},
 /area/bigredv2/outside/admin_building)
 "CQ" = (
-/obj/machinery/deployable/barrier,
 /turf/open/floor,
 /area/bigredv2/outside/admin_building)
 "CU" = (

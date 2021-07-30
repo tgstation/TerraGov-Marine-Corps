@@ -1,14 +1,9 @@
 /datum/game_mode/infestation/crash
 	name = "Crash"
 	config_tag = "Crash"
-	required_players = 2
 	flags_round_type = MODE_INFESTATION|MODE_XENO_SPAWN_PROTECT
 	flags_landmarks = MODE_LANDMARK_SPAWN_XENO_TUNNELS|MODE_LANDMARK_SPAWN_MAP_ITEM
 	flags_xeno_abilities = ABILITY_CRASH
-
-	deploy_time_lock = 45 MINUTES
-
-	squads_max_number = 1
 
 	valid_job_types = list(
 		/datum/job/terragov/squad/standard = -1,
@@ -19,7 +14,7 @@
 		/datum/job/terragov/medical/professor = 1,
 		/datum/job/terragov/silicon/synthetic = 1,
 		/datum/job/terragov/command/fieldcommander = 1,
-		/datum/job/xenomorph = 1
+		/datum/job/xenomorph = FREE_XENO_AT_START
 	)
 
 	// Round end conditions
@@ -43,7 +38,7 @@
 	if(!.)
 		return
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
-	xeno_job.job_points_needed  = CONFIG_GET(number/crash_larvapoints_required)
+	xeno_job.job_points_needed  = CRASH_LARVA_POINTS_NEEDED
 
 
 /datum/game_mode/infestation/crash/pre_setup()
@@ -86,7 +81,10 @@
 /datum/game_mode/infestation/crash/post_setup()
 	. = ..()
 	for(var/i in GLOB.xeno_resin_silo_turfs)
-		new /obj/structure/resin/silo(i)
+		new /obj/structure/xeno/resin/silo(i)
+
+	for(var/obj/effect/landmark/corpsespawner/corpse AS in GLOB.corpse_landmarks_list)
+		corpse.create_mob(HEADBITE_DEATH)
 
 	for(var/i in GLOB.nuke_spawn_locs)
 		new /obj/machinery/nuclearbomb(i)
@@ -116,7 +114,7 @@
 
 
 /datum/game_mode/infestation/crash/announce()
-	to_chat(world, "<span class='round_header'>The current map is - [SSmapping.configs[GROUND_MAP].map_name]!</span>")
+	to_chat(world, span_round_header("The current map is - [SSmapping.configs[GROUND_MAP].map_name]!"))
 	priority_announce("Scheduled for landing in T-10 Minutes. Prepare for landing. Known hostiles near LZ. Detonation Protocol Active, planet disposable. Marines disposable.", type = ANNOUNCEMENT_PRIORITY)
 	playsound(shuttle, 'sound/machines/warning-buzzer.ogg', 75, 0, 30)
 
@@ -147,7 +145,7 @@
 
 	if(num_humans && planet_nuked == CRASH_NUKE_NONE && marines_evac == CRASH_EVAC_NONE && !force_end)
 		return FALSE
-	
+
 	if(planet_nuked == CRASH_NUKE_NONE)
 		if(!num_humans)
 			message_admins("Round finished: [MODE_INFESTATION_X_MAJOR]") //xenos wiped out ALL the marines
@@ -157,13 +155,13 @@
 			message_admins("Round finished: [MODE_INFESTATION_X_MINOR]") //marines evaced without a nuke
 			round_finished = MODE_INFESTATION_X_MINOR
 			return TRUE
-	
+
 	if(planet_nuked == CRASH_NUKE_COMPLETED)
 		if(marines_evac == CRASH_EVAC_NONE)
 			message_admins("Round finished: [MODE_INFESTATION_M_MINOR]") //marines nuked the planet but didn't evac
 			round_finished = MODE_INFESTATION_M_MINOR
 			return TRUE
-		message_admins("Round finished: [MODE_INFESTATION_M_MAJOR]") //marines nuked the planet and managed to evac 
+		message_admins("Round finished: [MODE_INFESTATION_M_MAJOR]") //marines nuked the planet and managed to evac
 		round_finished = MODE_INFESTATION_M_MAJOR
 		return TRUE
 	return FALSE
@@ -183,11 +181,12 @@
 	planet_nuked = CRASH_NUKE_INPROGRESS
 	INVOKE_ASYNC(src, .proc/play_cinematic, z_level)
 
-/datum/game_mode/infestation/crash/proc/on_nuke_started(obj/machinery/nuclearbomb/nuke)
+/datum/game_mode/infestation/crash/proc/on_nuke_started(datum/source, obj/machinery/nuclearbomb/nuke)
 	SIGNAL_HANDLER
 	var/datum/hive_status/normal/HS = GLOB.hive_datums[XENO_HIVE_NORMAL]
 	var/area_name = get_area_name(nuke)
 	HS.xeno_message("An overwhelming wave of dread ripples throughout the hive... A nuke has been activated[area_name ? " in [area_name]":""]!")
+	HS.set_all_xeno_trackers(nuke)
 
 /datum/game_mode/infestation/crash/proc/play_cinematic(z_level)
 	GLOB.enter_allowed = FALSE
@@ -230,7 +229,7 @@
 			new_xeno.upgrade_xeno(XENO_UPGRADE_ONE)
 
 /datum/game_mode/infestation/crash/can_summon_dropship(mob/user)
-	to_chat(src, "<span class='warning'>This power doesn't work in this gamemode.</span>")
+	to_chat(src, span_warning("This power doesn't work in this gamemode."))
 	return FALSE
 
 /datum/game_mode/infestation/crash/proc/balance_scales()

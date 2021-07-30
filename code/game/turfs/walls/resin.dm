@@ -77,7 +77,7 @@
 /turf/closed/wall/resin/ex_act(severity)
 	switch(severity)
 		if(EXPLODE_DEVASTATE)
-			take_damage(500)
+			take_damage(600)
 		if(EXPLODE_HEAVY)
 			take_damage(rand(140, 300))
 		if(EXPLODE_LIGHT)
@@ -88,21 +88,21 @@
 	if(X.status_flags & INCORPOREAL)
 		return
 
-	X.visible_message("<span class='xenonotice'>\The [X] starts tearing down \the [src]!</span>", \
-	"<span class='xenonotice'>We start to tear down \the [src].</span>")
+	X.visible_message(span_xenonotice("\The [X] starts tearing down \the [src]!"), \
+	span_xenonotice("We start to tear down \the [src]."))
 	if(!do_after(X, 4 SECONDS, TRUE, X, BUSY_ICON_GENERIC))
 		return
 	if(!istype(src)) // Prevent jumping to other turfs if do_after completes with the wall already gone
 		return
 	X.do_attack_animation(src, ATTACK_EFFECT_CLAW)
-	X.visible_message("<span class='xenonotice'>\The [X] tears down \the [src]!</span>", \
-	"<span class='xenonotice'>We tear down \the [src].</span>")
+	X.visible_message(span_xenonotice("\The [X] tears down \the [src]!"), \
+	span_xenonotice("We tear down \the [src]."))
 	playsound(src, "alien_resin_break", 25)
 	take_damage(max_integrity) // Ensure its destroyed
 
 
 /turf/closed/wall/resin/attack_hand(mob/living/user)
-	to_chat(user, "<span class='warning'>You scrape ineffectively at \the [src].</span>")
+	to_chat(user, span_warning("You scrape ineffectively at \the [src]."))
 	return TRUE
 
 

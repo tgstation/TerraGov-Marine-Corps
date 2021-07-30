@@ -13,9 +13,6 @@
 	// *** Melee Attacks *** //
 	melee_damage = 23
 
-	// *** Tackle *** //
-	tackle_damage = 28
-
 	// *** Speed *** //
 	speed = -0.7
 
@@ -32,7 +29,7 @@
 	deevolves_to = /mob/living/carbon/xenomorph/carrier
 
 	// *** Flags *** //
-	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_EVOLUTION_ALLOWED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER|CASTE_CAN_VENT_CRAWL
+	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_EVOLUTION_ALLOWED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER|CASTE_CAN_VENT_CRAWL|CAN_BECOME_KING
 
 	can_hold_eggs = CAN_HOLD_ONE_HAND
 	// *** Defense *** //
@@ -48,7 +45,7 @@
 		/datum/action/xeno_action/activable/larval_growth_sting/defiler,
 		/datum/action/xeno_action/lay_egg,
 		/datum/action/xeno_action/activable/inject_egg_neurogas,
-		/datum/action/xeno_action/activable/emit_neurogas,
+		/datum/action/xeno_action/emit_neurogas,
 		/datum/action/xeno_action/select_reagent,
 		/datum/action/xeno_action/reagent_slash,
 		/datum/action/xeno_action/toggle_pheromones,
@@ -74,9 +71,6 @@
 	caste_desc = "A frightening looking, bulky xeno that drips with suspect green fluids. It looks a little more dangerous."
 
 	upgrade = XENO_UPGRADE_ONE
-
-	// *** Tackle *** //
-	tackle_damage = 28
 
 	// *** Speed *** //
 	speed = -0.8
@@ -106,9 +100,6 @@
 	// *** Melee Attacks *** //
 	melee_damage = 26
 
-	// *** Tackle *** //
-	tackle_damage = 32
-
 	// *** Speed *** //
 	speed = -0.9
 
@@ -136,9 +127,6 @@
 
 	// *** Melee Attacks *** //
 	melee_damage = 26
-
-	// *** Tackle *** //
-	tackle_damage = 32
 
 	// *** Speed *** //
 	speed = -1

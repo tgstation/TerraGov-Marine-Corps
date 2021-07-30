@@ -176,6 +176,8 @@
 /obj/machinery/light/Initialize(mapload, ...)
 	. = ..()
 
+	GLOB.nightfall_toggleable_lights += src
+
 	switch(fitting)
 		if("tube")
 			brightness = 8
@@ -203,6 +205,10 @@
 	var/area/A = get_area(src)
 	turn_light(null, (A.lightswitch && A.power_light))
 
+/obj/machinery/light/Destroy()
+	. = ..()
+	GLOB.nightfall_toggleable_lights -= src
+
 /obj/machinery/light/proc/is_broken()
 	if(status == LIGHT_BROKEN)
 		return TRUE
@@ -210,7 +216,7 @@
 
 /obj/machinery/light/update_icon()
 	switch(status)		// set icon_states
-		if(LIGHT_OK, LIGHT_DISABLED)
+		if(LIGHT_OK)
 			icon_state = "[base_state][light_on]"
 		if(LIGHT_EMPTY)
 			icon_state = "[base_state]-empty"
@@ -221,8 +227,8 @@
 	return
 
 // update the icon_state and luminosity of the light depending on its state
-/obj/machinery/light/proc/update(trigger = TRUE)
-	if(status == LIGHT_OK)
+/obj/machinery/light/proc/update(trigger = TRUE, toggle_on = TRUE)
+	if(status == LIGHT_OK && toggle_on)
 		var/BR = brightness
 		var/PO = bulb_power
 		var/CO = bulb_colour
@@ -250,12 +256,11 @@
 // attempt to set the light's on/off status
 // will not switch on if broken/burned/empty
 /obj/machinery/light/turn_light(mob/user, toggle_on)
-	if ((status != LIGHT_DISABLED) & (status != LIGHT_OK)) //Can't turn a broken light
+	if (status != LIGHT_OK) //Can't turn a broken light
 		return
 	. = ..()
-	if(!toggle_on)
-		status = LIGHT_DISABLED
-	update()
+	light_on = toggle_on
+	update(TRUE, toggle_on)
 
 // examine verb
 /obj/machinery/light/examine(mob/user)
@@ -380,8 +385,8 @@
 	if(status == 2) //Ignore if broken.
 		return FALSE
 	X.do_attack_animation(src, ATTACK_EFFECT_SMASH)
-	X.visible_message("<span class='danger'>\The [X] smashes [src]!</span>", \
-	"<span class='danger'>We smash [src]!</span>", null, 5)
+	X.visible_message(span_danger("\The [X] smashes [src]!"), \
+	span_danger("We smash [src]!"), null, 5)
 	broken() //Smashola!
 
 // attack with hand - remove tube/bulb
@@ -398,7 +403,7 @@
 	if(istype(user,/mob/living/carbon/human))
 		var/mob/living/carbon/human/H = user
 		if(H.species.can_shred(H))
-			visible_message("<span class='warning'>[user] smashed the light!</span>", null, "You hear a tinkle of breaking glass")
+			visible_message(span_warning("[user] smashed the light!"), null, "You hear a tinkle of breaking glass")
 			broken()
 			return
 
@@ -617,7 +622,7 @@
 
 /obj/item/light_bulb/proc/shatter()
 	if(status == LIGHT_OK || status == LIGHT_BURNED)
-		src.visible_message("<span class='warning'> [name] shatters.</span>","<span class='warning'> You hear a small glass object shatter.</span>")
+		src.visible_message(span_warning(" [name] shatters."),span_warning(" You hear a small glass object shatter."))
 		status = LIGHT_BROKEN
 		force = 5
 		sharp = IS_SHARP_ITEM_SIMPLE
@@ -627,7 +632,7 @@
 /obj/machinery/landinglight
 	name = "landing light"
 	icon = 'icons/obj/landinglights.dmi'
-	icon_state = "landingstripetop"
+	icon_state = "landingstripe"
 	desc = "A landing light, if it's flashing stay clear!"
 	var/id = "" // ID for landing zone
 	anchored = TRUE

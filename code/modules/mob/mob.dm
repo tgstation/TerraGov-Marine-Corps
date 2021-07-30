@@ -9,6 +9,7 @@
 		for(var/i in observers)
 			var/mob/dead/D = i
 			D.reset_perspective(null)
+	clear_client_in_contents() //Gotta do this here as well as Logout, since client will be null by the time it gets there, cause of that ghostize
 	ghostize()
 	clear_fullscreens()
 	if(mind)
@@ -276,7 +277,7 @@
 			qdel(W)
 			return FALSE
 		if(warning)
-			to_chat(src, "<span class='warning'>You are unable to equip that.</span>")
+			to_chat(src, span_warning("You are unable to equip that."))
 		return FALSE
 	if(W.time_to_equip && !ignore_delay)
 		if(!do_after(src, W.time_to_equip, TRUE, W, BUSY_ICON_FRIENDLY))
@@ -333,7 +334,7 @@
 		if(!B.current_gun)
 			return FALSE
 		var/obj/item/W = B.current_gun
-		B.remove_from_storage(W)
+		B.remove_from_storage(W, user = src)
 		put_in_hands(W)
 		return TRUE
 	else if(istype(I, /obj/item/clothing/under))
@@ -347,7 +348,7 @@
 		if(!length(S.contents))
 			return FALSE
 		var/obj/item/W = S.contents[length(S.contents)]
-		S.remove_from_storage(W)
+		S.remove_from_storage(W, user = src)
 		put_in_hands(W)
 		return TRUE
 	else if(istype(I, /obj/item/clothing/suit/storage))
@@ -358,7 +359,7 @@
 		if(!length(P.contents))
 			return FALSE
 		var/obj/item/W = P.contents[length(P.contents)]
-		P.remove_from_storage(W)
+		P.remove_from_storage(W, user = src)
 		put_in_hands(W)
 		return TRUE
 	else if(istype(I, /obj/item/storage))
@@ -366,7 +367,7 @@
 		if(!length(S.contents))
 			return FALSE
 		var/obj/item/W = S.contents[length(S.contents)]
-		S.remove_from_storage(W)
+		S.remove_from_storage(W, user = src)
 		put_in_hands(W)
 		return TRUE
 	else
@@ -400,9 +401,10 @@
 /client/verb/changes()
 	set name = "Changelog"
 	set category = "OOC"
-	var/datum/asset/simple/namespaced/changelog = get_asset_datum(/datum/asset/simple/namespaced/changelog)
-	changelog.send(src)
-	src << browse(changelog.get_htmlloader("changelog.html"), "window=changes;size=675x650")
+	if(!GLOB.changelog_tgui)
+		GLOB.changelog_tgui = new /datum/changelog()
+
+	GLOB.changelog_tgui.ui_interact(mob)
 	if(prefs.lastchangelog != GLOB.changelog_hash)
 		prefs.lastchangelog = GLOB.changelog_hash
 		prefs.save_preferences()
@@ -465,7 +467,7 @@
 			return FALSE
 	else if(l_hand && r_hand)
 		if(!suppress_message)
-			to_chat(src, "<span class='warning'>Cannot grab, lacking free hands to do so!</span>")
+			to_chat(src, span_warning("Cannot grab, lacking free hands to do so!"))
 		return FALSE
 
 	AM.add_fingerprint(src, "pull")
@@ -474,9 +476,9 @@
 
 	if(AM.pulledby)
 		if(!suppress_message)
-			AM.visible_message("<span class='danger'>[src] has pulled [AM] from [AM.pulledby]'s grip.</span>",
-				"<span class='danger'>[src] has pulled you from [AM.pulledby]'s grip.</span>", null, null, src)
-			to_chat(src, "<span class='notice'>You pull [AM] from [AM.pulledby]'s grip!</span>")
+			AM.visible_message(span_danger("[src] has pulled [AM] from [AM.pulledby]'s grip."),
+				span_danger("[src] has pulled you from [AM.pulledby]'s grip."), null, null, src)
+			to_chat(src, span_notice("You pull [AM] from [AM.pulledby]'s grip!"))
 		log_combat(AM, AM.pulledby, "pulled from", src)
 		AM.pulledby.stop_pulling() //an object can't be pulled by two mobs at once.
 
@@ -509,7 +511,7 @@
 		do_attack_animation(pulled_mob, ATTACK_EFFECT_GRAB)
 
 		if(!suppress_message)
-			visible_message("<span class='warning'>[src] has grabbed [pulled_mob] passively!</span>", null, null, 5)
+			visible_message(span_warning("[src] has grabbed [pulled_mob] passively!"), null, null, 5)
 
 		if(pulled_mob.mob_size > MOB_SIZE_HUMAN || !(pulled_mob.status_flags & CANPUSH))
 			grab_item.icon_state = "!reinforce"
@@ -879,3 +881,10 @@
 		return
 	. = stat //old stat
 	stat = new_stat
+
+///Clears the client in contents list of our current "eye". Prevents hard deletes
+/mob/proc/clear_client_in_contents()
+	if(client?.movingmob) //In the case the client was transferred to another mob and not deleted.
+		client.movingmob.client_mobs_in_contents -= src
+		UNSETEMPTY(client.movingmob.client_mobs_in_contents)
+		client.movingmob = null

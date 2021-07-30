@@ -12,16 +12,6 @@
 	default_ammo = /datum/ammo/bullet/pistol
 	gun_type = /obj/item/weapon/gun/pistol/standard_pistol
 
-/obj/item/ammo_magazine/box9mm
-	name = "packet of 9mm"
-	desc = "A packet containing 70 rounds of 9mm."
-	caliber = CALIBER_9X19
-	icon_state = "box_9mm"
-	current_rounds = 70
-	max_rounds = 70
-	w_class = WEIGHT_CLASS_SMALL
-	default_ammo = /datum/ammo/bullet/pistol
-
 //-------------------------------------------------------
 //TX-7 Plasma Pistol
 /obj/item/ammo_magazine/pistol/plasma_pistol
@@ -34,6 +24,7 @@
 	default_ammo = /datum/ammo/energy/plasma_pistol
 	gun_type = /obj/item/weapon/gun/pistol/plasma_pistol
 	flags_magazine = NONE
+	icon_state_mini = "mag_tx7"
 
 //-------------------------------------------------------
 //RT-3 PISTOL
@@ -47,26 +38,31 @@
 	w_class = WEIGHT_CLASS_SMALL
 	default_ammo = /datum/ammo/bullet/pistol
 	gun_type = /obj/item/weapon/gun/pistol/rt3
+	icon_state_mini = "mag_pistol"
 
 /obj/item/ammo_magazine/pistol/hp
 	name = "\improper M4A3 hollowpoint magazine (9mm)"
 	icon_state = "m4a3_hp"
 	default_ammo = /datum/ammo/bullet/pistol/hollow
+	icon_state_mini = "mag_pistol_blue"
 
 /obj/item/ammo_magazine/pistol/ap
 	name = "\improper M4A3 AP magazine (9mm)"
 	icon_state = "m4a3_ap"
 	default_ammo = /datum/ammo/bullet/pistol/ap
+	icon_state_mini = "mag_pistol_green"
 
 /obj/item/ammo_magazine/pistol/incendiary
 	name = "\improper M4A3 incendiary magazine (9mm)"
 	icon_state = "m4a3_incendiary"
 	default_ammo = /datum/ammo/bullet/pistol/incendiary
+	icon_state_mini = "mag_pistol_red"
 
 /obj/item/ammo_magazine/pistol/extended
 	name = "\improper M4A3 extended magazine (9mm)"
 	max_rounds = 24
 	icon_state = "m4a3_ext"
+	icon_state_mini = "mag_pistol_yellow"
 
 //-------------------------------------------------------
 //M1911
@@ -79,13 +75,6 @@
 	max_rounds = 10
 	gun_type = /obj/item/weapon/gun/pistol/m1911
 
-/obj/item/ammo_magazine/acp
-	name = "packet of .45 ACP"
-	icon_state = "box_45acp"
-	default_ammo = /datum/ammo/bullet/pistol/heavy
-	caliber = CALIBER_45ACP
-	current_rounds = 50
-	max_rounds = 50
 
 
 //-------------------------------------------------------
@@ -125,7 +114,7 @@
 
 /obj/item/ammo_magazine/pistol/heavy
 	name = "\improper Desert Eagle magazine (.50)"
-	default_ammo = /datum/ammo/bullet/pistol/heavy
+	default_ammo = /datum/ammo/bullet/pistol/superheavy
 	caliber = CALIBER_50AE
 	icon_state = "50ae"
 	max_rounds = 7
@@ -180,12 +169,12 @@
 
 
 //-------------------------------------------------------
-//.45 MARSHALS PISTOL //Inspired by the Browning Hipower
+//Automag. .50.
 
 /obj/item/ammo_magazine/pistol/highpower
-	name = "\improper Highpower magazine (9mm)"
-	default_ammo = /datum/ammo/bullet/pistol/ap
-	caliber = CALIBER_9X19
+	name = "\improper Highpower magazine (.50 AE)"
+	default_ammo = /datum/ammo/bullet/pistol/superheavy
+	caliber = CALIBER_50AE
 	icon_state = "m4a3" //PLACEHOLDER
 	max_rounds = 13
 	gun_type = /obj/item/weapon/gun/pistol/highpower
@@ -216,16 +205,15 @@
 
 
 //-------------------------------------------------------
-/*
-Auto 9 The gun RoboCop uses. A better version of the VP78, with more rounds per magazine. Probably the best pistol around, but takes no attachments.
-It is a modified Beretta 93R, and can fire three round burst or single fire. Whether or not anyone else aside RoboCop can use it is not established.
-*/
+
+//A better version of the VP78, with more rounds per magazine. Probably the best pistol around, but takes no attachments.
+
 
 /obj/item/ammo_magazine/pistol/auto9
 	name = "\improper Auto-9 magazine (9mm)"
 	default_ammo = /datum/ammo/bullet/pistol/squash
 	caliber = CALIBER_9X19
-	icon_state = "beretta"
+	icon_state = "tp17"
 	max_rounds = 50
 	gun_type = /obj/item/weapon/gun/pistol/auto9
 

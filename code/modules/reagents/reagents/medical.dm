@@ -124,15 +124,18 @@
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL * 0.5
 	scannable = TRUE
 
+/datum/reagent/medicine/oxycodone/on_mob_add(mob/living/L, metabolism)
+	L.adjustStaminaLoss(-20*effect_str)
+	to_chat(L, span_userdanger("You feel a burst of energy revitalize you all of a sudden! You can do anything!"))
+
 /datum/reagent/medicine/oxycodone/on_mob_life(mob/living/L, metabolism)
 	L.reagent_pain_modifier += PAIN_REDUCTION_FULL
-	L.adjustStaminaLoss(0.5*effect_str)
+	L.apply_damage(0.2*effect_str, TOX)
 	return ..()
 
 /datum/reagent/medicine/oxycodone/overdose_process(mob/living/L, metabolism)
 	L.hallucination = max(L.hallucination, 3)
 	L.set_drugginess(10)
-	L.apply_damage(effect_str, TOX)
 	L.jitter(3)
 
 /datum/reagent/medicine/oxycodone/overdose_crit_process(mob/living/L, metabolism)
@@ -143,6 +146,10 @@
 		var/datum/internal_organ/heart/E = H.internal_organs_by_name["heart"]
 		if(E)
 			E.take_damage(3*effect_str, TRUE)
+
+/datum/reagent/medicine/oxycodone/on_mob_delete(mob/living/L, metabolism)
+	to_chat(L, span_userdanger("The room spins slightly as you start to come down off your painkillers!"))
+	addtimer(CALLBACK(L, /mob/living.proc/Paralyze, 3), 10 SECONDS)
 
 /datum/reagent/medicine/hydrocodone
 	name = "Hydrocodone"
@@ -387,8 +394,13 @@
 	overdose_threshold = REAGENTS_OVERDOSE/5
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL/5
 	scannable = TRUE
+	custom_metabolism = REAGENTS_METABOLISM * 0.5
 	purge_list = list(/datum/reagent/toxin/mindbreaker)
 	purge_rate = 5
+
+/datum/reagent/medicine/synaptizine/on_mob_add(mob/living/L, metabolism)
+	L.adjustStaminaLoss(-30*effect_str)
+	to_chat(L, span_userdanger("You feel a burst of energy as the stimulants course through you! Time to go!"))
 
 /datum/reagent/medicine/synaptizine/on_mob_life(mob/living/L, metabolism)
 	L.reagent_shock_modifier += PAIN_REDUCTION_MEDIUM
@@ -396,14 +408,14 @@
 	L.AdjustUnconscious(-20)
 	L.AdjustStun(-20)
 	L.AdjustParalyzed(-20)
-	L.adjustToxLoss(2*effect_str)
+	L.adjustToxLoss(effect_str)
 	L.hallucination = max(0, L.hallucination - 10)
 	switch(current_cycle)
-		if(1 to 5)
+		if(1 to 10)
 			L.adjustStaminaLoss(-7.5*effect_str)
-		if(6 to 20)
-			L.adjustStaminaLoss((current_cycle*1.5 - 14)*effect_str)
-		if(20 to INFINITY)
+		if(11 to 40)
+			L.adjustStaminaLoss((current_cycle*0.75 - 14)*effect_str)
+		if(41 to INFINITY)
 			L.adjustStaminaLoss(15*effect_str)
 	return ..()
 
@@ -412,6 +424,10 @@
 
 /datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/L, metabolism)
 	L.apply_damages(effect_str, effect_str, effect_str)
+
+/datum/reagent/medicine/synaptizine/on_mob_delete(mob/living/L, metabolism)
+	to_chat(L, span_userdanger("The room spins as you start to come down off your stimulants!"))
+	addtimer(CALLBACK(L, /mob/living.proc/Paralyze, 15), 10 SECONDS)
 
 /datum/reagent/medicine/neuraline //injected by neurostimulator implant and medic-only injector
 	name = "Neuraline"
@@ -497,18 +513,17 @@
 	scannable = TRUE
 
 /datum/reagent/medicine/russian_red/on_mob_life(mob/living/L, metabolism)
-	L.heal_limb_damage(5*effect_str, 5*effect_str)
+	L.heal_limb_damage(10*effect_str, 10*effect_str)
 	L.adjustToxLoss(-2.5*effect_str)
-	L.adjustCloneLoss(2*effect_str)
+	L.adjustCloneLoss(effect_str)
 	return ..()
 
 /datum/reagent/medicine/russian_red/overdose_process(mob/living/L, metabolism)
 	L.apply_damages(effect_str, 0, 0)
-	L.adjustBrainLoss(effect_str, TRUE)
 
 /datum/reagent/medicine/russian_red/overdose_crit_process(mob/living/L, metabolism)
 	L.apply_damages(effect_str, 2*effect_str, effect_str)
-	L.adjustBrainLoss(effect_str, TRUE)
+	L.adjustBrainLoss(2*effect_str, TRUE)
 
 /datum/reagent/medicine/alkysine
 	name = "Alkysine"
@@ -592,6 +607,7 @@
 
 /datum/reagent/medicine/peridaxon_plus/on_mob_life(mob/living/L, metabolism)
 	L.reagents.add_reagent(/datum/reagent/toxin,5)
+	L.adjustStaminaLoss(10*effect_str)
 	if(!ishuman(L))
 		return ..()
 	var/mob/living/carbon/human/H = L
@@ -668,6 +684,7 @@
 	custom_metabolism = REAGENTS_METABOLISM * 0.25
 
 /datum/reagent/medicine/quickclot/on_mob_life(mob/living/L, metabolism)
+	L.blood_volume += 0.2
 	if(!ishuman(L) || L.bodytemperature > 169) //only heals IB at cryogenic temperatures.
 		return ..()
 	var/mob/living/carbon/human/H = L
@@ -719,6 +736,31 @@
 /datum/reagent/medicine/quickclotplus/overdose_crit_process(mob/living/L, metabolism)
 	L.blood_volume -= 20
 
+/datum/reagent/medicine/nanoblood
+	name = "Nanoblood"
+	description = "A chemical designed to massively boost the body's natural blood restoration rate. Causes fatigue and minor toxic effects."
+	color = "#CC00FF"
+	overdose_threshold = REAGENTS_OVERDOSE/5 //6u
+	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL/5 //10u
+	scannable = TRUE
+
+/datum/reagent/medicine/nanoblood/on_mob_life(mob/living/L, metabolism)
+	L.blood_volume += 2.4
+	L.adjustToxLoss(effect_str)
+	L.adjustStaminaLoss(6*effect_str)
+	if(L.blood_volume < BLOOD_VOLUME_OKAY)
+		L.blood_volume += 2.4
+	if(L.blood_volume < BLOOD_VOLUME_BAD)
+		L.blood_volume = (BLOOD_VOLUME_BAD+1)
+		L.reagents.add_reagent(/datum/reagent/toxin,25)
+		L.AdjustSleeping(100)
+	return ..()
+
+/datum/reagent/medicine/nanoblood/overdose_process(mob/living/L, metabolism)
+	L.apply_damage(1.5*effect_str, TOX)
+
+/datum/reagent/medicine/nanoblood/overdose_crit_process(mob/living/L, metabolism)
+	L.apply_damage(3*effect_str, TOX)
 
 /datum/reagent/medicine/hyperzine
 	name = "Hyperzine"
@@ -741,23 +783,23 @@
 	L.adjustOxyLoss(amount)
 	L.adjustStaminaLoss(amount * 1.5)
 	if(L.stat == DEAD)
-		var/death_message = "<span class='danger'>Your body is unable to bear the strain. The last thing you feel, aside from crippling exhaustion, is an explosive pain in your chest as you drop dead. It's a sad thing your adventures have ended here!</span>"
+		var/death_message = span_danger("Your body is unable to bear the strain. The last thing you feel, aside from crippling exhaustion, is an explosive pain in your chest as you drop dead. It's a sad thing your adventures have ended here!")
 		if(iscarbon(L))
 			var/mob/living/carbon/C = L
 			if(C.species.species_flags & NO_PAIN)
-				death_message = "<span class='danger'>Your body is unable to bear the strain. The last thing you feel as you drop dead is utterly crippling exhaustion. It's a sad thing your adventures have ended here!</span>"
+				death_message = span_danger("Your body is unable to bear the strain. The last thing you feel as you drop dead is utterly crippling exhaustion. It's a sad thing your adventures have ended here!")
 
 		to_chat(L, "[death_message]")
 	else
 		switch(amount)
 			if(4 to 20)
-				to_chat(L, "<span class='warning'>You feel a bit tired.</span>")
+				to_chat(L, span_warning("You feel a bit tired."))
 			if(21 to 50)
 				L.Paralyze(amount * 2)
-				to_chat(L, "<span class='danger'>You collapse as a sudden wave of fatigue washes over you.</span>")
+				to_chat(L, span_danger("You collapse as a sudden wave of fatigue washes over you."))
 			if(50 to INFINITY)
 				L.Unconscious(amount * 2)
-				to_chat(L, "<span class='danger'>Your world convulses as a wave of extreme fatigue washes over you!</span>") //when hyperzine is removed from the body, there's a backlash as it struggles to transition and operate without the drug
+				to_chat(L, span_danger("Your world convulses as a wave of extreme fatigue washes over you!")) //when hyperzine is removed from the body, there's a backlash as it struggles to transition and operate without the drug
 
 	return ..()
 
@@ -822,7 +864,7 @@
 
 /datum/reagent/medicine/ultrazine/addiction_act_stage1(mob/living/L, metabolism)
 	if(prob(10))
-		to_chat(L, "<span class='notice'>[pick("You could use another hit.", "More of that would be nice.", "Another dose would help.", "One more dose wouldn't hurt", "Why not take one more?")]</span>")
+		to_chat(L, span_notice("[pick("You could use another hit.", "More of that would be nice.", "Another dose would help.", "One more dose wouldn't hurt", "Why not take one more?")]"))
 	if(prob(5))
 		L.emote(pick("twitch","blink_r","shiver"))
 		L.adjustStaminaLoss(20)
@@ -831,7 +873,7 @@
 
 /datum/reagent/medicine/ultrazine/addiction_act_stage2(mob/living/L, metabolism)
 	if(prob(10))
-		to_chat(L, "<span class='warning'>[pick("It's just not the same without it.", "You could use another hit.", "You should take another.", "Just one more.", "Looks like you need another one.")]</span>")
+		to_chat(L, span_warning("[pick("It's just not the same without it.", "You could use another hit.", "You should take another.", "Just one more.", "Looks like you need another one.")]"))
 	if(prob(5))
 		L.emote("me", EMOTE_VISIBLE, pick("winces slightly.", "grimaces."))
 		L.adjustStaminaLoss(35)
@@ -843,7 +885,7 @@
 
 /datum/reagent/medicine/ultrazine/addiction_act_stage3(mob/living/L, metabolism)
 	if(prob(10))
-		to_chat(L, "<span class='warning'>[pick("You need more.", "It's hard to go on like this.", "You want more. You need more.", "Just take another hit. Now.", "One more.")]</span>")
+		to_chat(L, span_warning("[pick("You need more.", "It's hard to go on like this.", "You want more. You need more.", "Just take another hit. Now.", "One more.")]"))
 	if(prob(5))
 		L.emote("me", EMOTE_VISIBLE, pick("winces.", "grimaces.", "groans!"))
 		L.Stun(30)
@@ -856,7 +898,7 @@
 
 /datum/reagent/medicine/ultrazine/addiction_act_stage4(mob/living/L, metabolism)
 	if(prob(10))
-		to_chat(L, "<span class='danger'>[pick("You need another dose, now. NOW.", "You can't stand it. You have to go back. You have to go back.", "You need more. YOU NEED MORE.", "MORE", "TAKE MORE.")]</span>")
+		to_chat(L, span_danger("[pick("You need another dose, now. NOW.", "You can't stand it. You have to go back. You have to go back.", "You need more. YOU NEED MORE.", "MORE", "TAKE MORE.")]"))
 	if(prob(5))
 		L.emote("me", EMOTE_VISIBLE, pick("groans painfully!", "contorts with pain!"))
 		L.Stun(80)
@@ -1111,3 +1153,33 @@
 	color = "#66801e"
 	taste_description = "piss"
 
+/datum/reagent/medicine/bihexajuline
+	name = "Bihexajuline"
+	description = "Accelerates natural bone repair in a low temperature environment. Causes severe pain."
+	color = "#DFDFDF"
+	taste_description = "skim milk"
+	scannable = TRUE
+	overdose_threshold = REAGENTS_OVERDOSE
+
+/datum/reagent/medicine/bihexajuline/on_mob_life(mob/living/L, metabolism)
+	. = ..()
+	if(!ishuman(L))
+		return
+	var/mob/living/carbon/human/host = L
+	host.reagent_shock_modifier -= PAIN_REDUCTION_VERY_HEAVY //oof ow ouch
+	if(host.bodytemperature < 170)
+		for(var/datum/limb/limb_to_fix AS in host.limbs)
+			if(limb_to_fix.limb_status & (LIMB_BROKEN | LIMB_SPLINTED | LIMB_STABILIZED))
+				limb_to_fix.remove_limb_flags(LIMB_BROKEN | LIMB_SPLINTED | LIMB_STABILIZED)
+				limb_to_fix.add_limb_flags(LIMB_REPAIRED)
+				break
+
+/datum/reagent/medicine/bihexajuline/overdose_process(mob/living/L, metabolism)
+	if(!ishuman(L))
+		return
+	var/mob/living/carbon/human/host = L
+	for(var/datum/limb/limb_to_unfix AS in host.limbs)
+		if(limb_to_unfix.limb_status & (LIMB_BROKEN | LIMB_SPLINTED | LIMB_STABILIZED | LIMB_DESTROYED | LIMB_AMPUTATED))
+			continue
+		limb_to_unfix.fracture()
+		break

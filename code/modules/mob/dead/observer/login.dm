@@ -15,7 +15,9 @@
 		H = GLOB.huds[DATA_HUD_SECURITY_ADVANCED]
 		H.add_hud_to(src)
 	if(ghost_squadhud)
-		H = GLOB.huds[DATA_HUD_SQUAD]
+		H = GLOB.huds[DATA_HUD_SQUAD_TERRAGOV]
+		H.add_hud_to(src)
+		H = GLOB.huds[DATA_HUD_SQUAD_REBEL]
 		H.add_hud_to(src)
 	if(ghost_xenohud)
 		H = GLOB.huds[DATA_HUD_XENO_STATUS]
@@ -41,4 +43,4 @@
 		mini.give_action(src)
 
 	if(length(GLOB.offered_mob_list))
-		to_chat(src, "<span class='boldnotice'>There's mobs available for taking! Ghost > Take Offered Mob</span>")
+		to_chat(src, span_boldnotice("There's mobs available for taking! Ghost > Take Offered Mob"))

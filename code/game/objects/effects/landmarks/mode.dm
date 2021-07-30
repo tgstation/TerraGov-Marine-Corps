@@ -20,17 +20,3 @@
 
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn/store_location()
 	GLOB.xeno_spawn_protection_locations += loc
-
-/obj/effect/landmark/xeno_tunnel
-	name = "xeno tunnel"
-	icon_state = "tunnel_spawn"
-
-
-/obj/effect/landmark/xeno_tunnel/Initialize()
-	. = ..()
-	GLOB.xeno_tunnel_landmarks += src
-
-
-/obj/effect/landmark/xeno_tunnel/Destroy()
-	GLOB.xeno_tunnel_landmarks -= src
-	return ..()

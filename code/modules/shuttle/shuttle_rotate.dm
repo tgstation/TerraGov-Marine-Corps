@@ -55,9 +55,9 @@ If ever any of these procs are useful for non-shuttles, rename it to proc/rotate
 			new_dpdir = new_dpdir | angle2dir(rotation+dir2angle(D))
 	dpdir = new_dpdir
 
-///obj/structure/table/wood/bar/shuttleRotate(rotation, params)
-//	. = ..()
-//	boot_dir = angle2dir(rotation + dir2angle(boot_dir))
+/obj/structure/window/framed/shuttleRotate(rotation, params)
+	. = ..()
+	update_icon()
 
 /obj/structure/alien/weeds/shuttleRotate(rotation, params)
 	params &= ~ROTATE_OFFSET
@@ -79,25 +79,3 @@ If ever any of these procs are useful for non-shuttles, rename it to proc/rotate
 		var/new_pos = supposed_node_connect.Find(real_node_connect[i])
 		nodes[new_pos] = nodes_copy[i]
 
-//prevents shuttles attempting to rotate this since it messes up sprites
-///obj/machinery/gateway/shuttleRotate(rotation, params)
-//	params = NONE
-//	return ..()
-
-//prevents shuttles attempting to rotate this since it messes up sprites
-///obj/machinery/gravity_generator/shuttleRotate(rotation, params)
-//	params = NONE
-//	return ..()
-
-///obj/machinery/door/airlock/shuttleRotate(rotation, params)
-//	. = ..()
-//	if(cyclelinkeddir && (params & ROTATE_DIR))
-//		cyclelinkeddir = angle2dir(rotation+dir2angle(cyclelinkeddir))
-		// If we update the linked airlock here, the partner airlock might
-		// not be present yet, so don't do that. Just assume we're still
-		// partnered with the same airlock as before.
-
-///obj/machinery/porta_turret/shuttleRotate(rotation, params)
-//	. = ..()
-//	if(wall_turret_direction && (params & ROTATE_DIR))
-//		wall_turret_direction = turn(wall_turret_direction,rotation)

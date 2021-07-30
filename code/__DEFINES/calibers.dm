@@ -46,6 +46,7 @@
 #define CALIBER_86X70 "8.6x70mm"
 #define CALIBER_10X99 "10x99mm"
 #define CALIBER_762X54 "7.62x54mm Rimmed" //SVD and mosin
+#define CALIBER_557 ".557/440" //Martini Henry
 #define CALIBER_RAILGUN "rail projectile"
 
 // --- Explosives ---
@@ -61,6 +62,7 @@
 #define CALIBER_FUEL_THICK "UT-Napthal Fuel"
 #define CALIBER_10X28 "10x28mm" //Sentry, OG Smartgun and T-26 Sniper?
 #define CALIBER_86 "86mm" //MBT Main Cannon
+#define CALIBER_PEPPERBALL "SAN Ball " //Pepperball gun
 
 //Sentries/ HMGs
 #define CALIBER_12X40 "12x40mm Gauss" //Gauss Sentries

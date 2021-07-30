@@ -1,4 +1,5 @@
 /datum/job/freelancer
+	job_category = JOB_CAT_MARINE
 	access = ALL_ANTAGONIST_ACCESS
 	minimal_access = ALL_ANTAGONIST_ACCESS
 	skills_type = /datum/skills/crafty
@@ -107,7 +108,7 @@
 /datum/job/freelancer/leader
 	title = "Freelancer Leader"
 	paygrade = "FRE3"
-	skills_type = /datum/skills/SL
+	skills_type = /datum/skills/sl
 	outfit = /datum/outfit/job/freelancer/leader
 
 

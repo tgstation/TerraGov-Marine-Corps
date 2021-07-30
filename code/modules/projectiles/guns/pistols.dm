@@ -37,6 +37,7 @@
 
 
 /obj/item/weapon/gun/pistol/unique_action(mob/user)
+	. = ..()
 	return cock(user)
 
 /obj/item/weapon/gun/pistol/get_ammo_type()
@@ -98,7 +99,6 @@
 		/obj/item/attachable/lasersight,
 		/obj/item/attachable/gyro,
 		/obj/item/attachable/lace,
-		/obj/item/attachable/scope/marine,
 	)
 
 	muzzleflash_iconstate = "muzzle_flash_laser"
@@ -292,7 +292,6 @@
 
 	fire_delay = 0.7 SECONDS
 	scatter_unwielded = 25
-	damage_mult = 1.2
 	recoil = 1
 	recoil_unwielded = 2
 	scatter = 5
@@ -412,10 +411,10 @@
 
 /obj/item/weapon/gun/pistol/highpower
 	name = "\improper Highpower automag"
-	desc = "A Colonial Marshals issued, powerful semi-automatic pistol chambered in armor piercing 9mm caliber rounds. Used for centuries by law enforcement and criminals alike, recently recreated with this new model."
+	desc = "A powerful semi-automatic pistol chambered in the devastating .50 AE caliber rounds. Used for centuries by law enforcement and criminals alike, recently recreated with this new model."
 	icon_state = "highpower"
 	item_state = "highpower"
-	caliber = CALIBER_9X19 //codex
+	caliber = CALIBER_50AE //codex
 	max_shells = 13 //codex
 	fire_sound = 'sound/weapons/guns/fire/hp.ogg'
 	unload_sound = 'sound/weapons/guns/interact/hp_unload.ogg'
@@ -427,7 +426,7 @@
 	attachable_offset = list("muzzle_x" = 27, "muzzle_y" = 20,"rail_x" = 8, "rail_y" = 22, "under_x" = 18, "under_y" = 15, "stock_x" = 16, "stock_y" = 15)
 
 	fire_delay = 1 SECONDS
-	damage_mult = 1.5
+	damage_mult = 1.2
 	recoil = 1
 	recoil_unwielded = 2
 	accuracy_mult = 1.5

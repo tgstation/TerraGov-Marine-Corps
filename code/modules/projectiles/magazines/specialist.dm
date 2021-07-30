@@ -12,17 +12,20 @@
 	default_ammo = /datum/ammo/bullet/sniper
 	gun_type = /obj/item/weapon/gun/rifle/sniper/antimaterial
 	reload_delay = 3
+	icon_state_mini = "mag_sniper"
 
 
 /obj/item/ammo_magazine/sniper/incendiary
 	name = "\improper T-26 incendiary magazine (10x28mm)"
 	default_ammo = /datum/ammo/bullet/sniper/incendiary
 	icon_state = "t26_inc"
+	icon_state_mini = "mag_sniper_red"
 
 /obj/item/ammo_magazine/sniper/flak
 	name = "\improper T-26 flak magazine (10x28mm)"
 	default_ammo = /datum/ammo/bullet/sniper/flak
 	icon_state = "t26_flak"
+	icon_state_mini = "mag_sniper_blue"
 
 
 //M42C magazine
@@ -46,6 +49,7 @@
 	default_ammo = /datum/ammo/bullet/sniper/svd
 	max_rounds = 10
 	gun_type = /obj/item/weapon/gun/rifle/sniper/svd
+	icon_state_mini = "mag_rifle"
 
 
 
@@ -59,6 +63,7 @@
 	default_ammo = /datum/ammo/bullet/rifle/tx8
 	max_rounds = 25
 	gun_type = /obj/item/weapon/gun/rifle/tx8
+	icon_state_mini = "mag_rifle_big"
 
 /obj/item/ammo_magazine/rifle/tx8/incendiary
 	name = "\improper high velocity incendiary magazine (10x28mm)"
@@ -67,6 +72,7 @@
 	icon_state = "tx8_incend"
 	default_ammo = /datum/ammo/bullet/rifle/tx8/incendiary
 	gun_type = /obj/item/weapon/gun/rifle/tx8
+	icon_state_mini = "mag_rifle_big_red"
 
 /obj/item/ammo_magazine/rifle/tx8/impact
 	name = "\improper high velocity impact magazine (10x28mm)"
@@ -74,20 +80,16 @@
 	icon_state = "tx8_impact"
 	default_ammo = /datum/ammo/bullet/rifle/tx8/impact
 	gun_type = /obj/item/weapon/gun/rifle/tx8
+	icon_state_mini = "mag_rifle_big_blue"
 
 //-------------------------------------------------------
-//SMARTGUN
-/obj/item/ammo_magazine/internal/smartgun
-	name = "integrated smartgun belt"
-	caliber = CALIBER_10X28
+//MINIGUN-Powerpack edition
+/obj/item/ammo_magazine/internal/minigun
+	name = "integrated minigun belt"
+	icon_state = "minigun"
+	caliber = CALIBER_762X51
 	max_rounds = 100
-	default_ammo = /datum/ammo/bullet/smartgun
-
-
-/obj/item/ammo_magazine/internal/smartgun/dirty
-	default_ammo = /datum/ammo/bullet/smartgun/dirty
-	gun_type = /obj/item/weapon/gun/smartgun/dirty
-
+	default_ammo = /datum/ammo/bullet/minigun
 
 //-------------------------------------------------------
 //M5 RPG
@@ -106,9 +108,9 @@
 
 	attack_self(mob/user)
 		if(current_rounds <= 0)
-			to_chat(user, "<span class='notice'>You begin taking apart the empty tube frame...</span>")
+			to_chat(user, span_notice("You begin taking apart the empty tube frame..."))
 			if(do_after(user, 10, TRUE, src))
-				user.visible_message("[user] deconstructs the rocket tube frame.","<span class='notice'>You take apart the empty frame.</span>")
+				user.visible_message("[user] deconstructs the rocket tube frame.",span_notice("You take apart the empty frame."))
 				var/obj/item/stack/sheet/metal/M = new(get_turf(user))
 				M.amount = 2
 				user.drop_held_item()
@@ -239,7 +241,7 @@
 
 /obj/item/ammo_magazine/rocket/m57a4
 	name = "\improper 84mm thermobaric rocket array"
-	desc = "A thermobaric rocket tube for a M57A4 quad launcher. Activate in hand to receive some metal when it's used up."
+	desc = "A thermobaric rocket tube for a T-57 quad launcher. Activate in hand to receive some metal when it's used up. The Rockets don't do much damage on a direct hit, but the fire effect is strong.."
 	caliber = CALIBER_ROCKETARRAY
 	icon_state = "quad_rocket"
 	max_rounds = 4
@@ -247,25 +249,22 @@
 	gun_type = /obj/item/weapon/gun/launcher/rocket/m57a4
 	reload_delay = 200
 
+/obj/item/ammo_magazine/rocket/m57a4/ds
+	name = "\improper 84mm thermobaric rocket array"
+	desc = "A thermobaric rocket tube for a M57A4 quad launcher. Activate in hand to receive some metal when it's used up. Has huge red markings..."
+	caliber = CALIBER_ROCKETARRAY
+	icon_state = "quad_rocket"
+	max_rounds = 4
+	default_ammo = /datum/ammo/rocket/wp/quad/ds
+
 /obj/item/ammo_magazine/internal/launcher/rocket/m57a4
 	desc = "The internal tube of an M57A4 thermobaric launcher."
 	caliber = CALIBER_ROCKETARRAY
 	default_ammo = /datum/ammo/rocket/wp/quad
 	max_rounds = 4
 
-//-------------------------------------------------------
-//Minigun
-
-/obj/item/ammo_magazine/minigun
-	name = "rotating ammo drum (7.62x51mm)"
-	desc = "A huge ammo drum for a huge gun."
-	caliber = CALIBER_762X51
-	icon_state = "minigun"
-	default_ammo = /datum/ammo/bullet/minigun
-	max_rounds = 300
-	reload_delay = 50 //Hard to reload.
-	w_class = WEIGHT_CLASS_NORMAL
-	gun_type = /obj/item/weapon/gun/minigun
+/obj/item/ammo_magazine/internal/launcher/rocket/m57a4/ds
+	default_ammo = /datum/ammo/rocket/wp/quad/ds
 
 // railgun
 
@@ -279,3 +278,17 @@
 	reload_delay = 20 //Hard to reload.
 	w_class = WEIGHT_CLASS_NORMAL
 	gun_type = /obj/item/weapon/gun/rifle/railgun
+	icon_state_mini = "mag_railgun"
+
+// pepperball
+
+/obj/item/ammo_magazine/rifle/pepperball
+	name = "pepperball canister (SAN balls)"
+	desc = "A canister holding a projectile to be used inside a pepperball gun."
+	caliber = CALIBER_PEPPERBALL
+	icon_state = "pepperball"
+	default_ammo = /datum/ammo/bullet/pepperball
+	max_rounds = 70
+	w_class = WEIGHT_CLASS_NORMAL
+	gun_type = /obj/item/weapon/gun/rifle/pepperball
+	icon_state_mini = "mag_rifle"

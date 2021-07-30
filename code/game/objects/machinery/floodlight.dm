@@ -7,6 +7,14 @@
 	///The brightness of the floodlight
 	var/brightness_on = 7
 
+/obj/machinery/floodlight/Initialize()
+	. = ..()
+	GLOB.nightfall_toggleable_lights += src
+
+/obj/machinery/floodlight/Destroy()
+	. = ..()
+	GLOB.nightfall_toggleable_lights -= src
+
 /obj/machinery/floodlight/attack_hand(mob/living/user)
 	return
 
@@ -19,12 +27,12 @@
 		return
 	if(toggle_on)
 		if(user)
-			to_chat(user, "<span class='notice'>You turn on the light.</span>")
+			to_chat(user, span_notice("You turn on the light."))
 		set_light(brightness_on)
 		DISABLE_BITFIELD(resistance_flags, UNACIDABLE)
 		return
 	if(user)
-		to_chat(user, "<span class='notice'>You turn off the light.</span>")
+		to_chat(user, span_notice("You turn off the light."))
 	set_light(0)
 	ENABLE_BITFIELD(resistance_flags, UNACIDABLE)
 
@@ -343,7 +351,7 @@
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 5
 	active_power_usage = 0
-	resistance_flags = UNACIDABLE|XENO_DAMAGEABLE
+	resistance_flags = RESIST_ALL
 	var/turned_on = FALSE //has to be toggled in engineering
 
 /obj/machinery/colony_floodlight_switch/update_icon()
@@ -375,10 +383,10 @@
 	if(.)
 		return
 	if(!ishuman(user))
-		to_chat(user, "<span class='notice'>Nice try.</span>")
+		to_chat(user, span_notice("Nice try."))
 		return FALSE
 	if(machine_stat & NOPOWER)
-		to_chat(user, "<span class='notice'>Nothing happens.</span>")
+		to_chat(user, span_notice("Nothing happens."))
 		return FALSE
 	playsound(src,'sound/machines/click.ogg', 15, 1)
 	toggle_lights(turned_on ? FALSE : TRUE)

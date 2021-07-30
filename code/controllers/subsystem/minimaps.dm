@@ -338,6 +338,7 @@ SUBSYSTEM_DEF(minimaps)
 /datum/action/minimap/give_action(mob/M)
 	. = ..()
 	RegisterSignal(M, COMSIG_MOVABLE_Z_CHANGED, .proc/on_owner_z_change)
+	RegisterSignal(M, COMSIG_KB_TOGGLE_MINIMAP, .proc/action_activate)
 	if(!SSminimaps.minimaps_by_z["[M.z]"] || !SSminimaps.minimaps_by_z["[M.z]"].hud_image)
 		return
 	map = SSminimaps.fetch_minimap_object(M.z, minimap_flags)
@@ -347,7 +348,7 @@ SUBSYSTEM_DEF(minimaps)
 	if(minimap_displayed)
 		owner.client.screen -= map
 		minimap_displayed = FALSE
-	UnregisterSignal(M, COMSIG_MOVABLE_Z_CHANGED)
+	UnregisterSignal(M, list(COMSIG_MOVABLE_Z_CHANGED, COMSIG_KB_TOGGLE_MINIMAP))
 
 /**
  * Updates the map when the owner changes zlevel
@@ -385,6 +386,26 @@ SUBSYSTEM_DEF(minimaps)
 	minimap_flags = MINIMAP_FLAG_DELTA
 	marker_flags = MINIMAP_FLAG_DELTA|MINIMAP_FLAG_MARINE
 
+/datum/action/minimap/marine/rebel
+	minimap_flags = MINIMAP_FLAG_MARINE_REBEL
+	marker_flags = MINIMAP_FLAG_MARINE_REBEL
+
+/datum/action/minimap/alpha/rebel
+	minimap_flags = MINIMAP_FLAG_ALPHA_REBEL
+	marker_flags = MINIMAP_FLAG_ALPHA_REBEL|MINIMAP_FLAG_MARINE_REBEL
+
+/datum/action/minimap/bravo/rebel
+	minimap_flags = MINIMAP_FLAG_BRAVO_REBEL
+	marker_flags = MINIMAP_FLAG_BRAVO_REBEL|MINIMAP_FLAG_MARINE_REBEL
+
+/datum/action/minimap/charlie/rebel
+	minimap_flags = MINIMAP_FLAG_CHARLIE_REBEL
+	marker_flags = MINIMAP_FLAG_CHARLIE_REBEL|MINIMAP_FLAG_MARINE_REBEL
+
+/datum/action/minimap/delta/rebel
+	minimap_flags = MINIMAP_FLAG_DELTA_REBEL
+	marker_flags = MINIMAP_FLAG_DELTA_REBEL|MINIMAP_FLAG_MARINE_REBEL
+
 /datum/action/minimap/observer
-	minimap_flags = MINIMAP_FLAG_XENO|MINIMAP_FLAG_MARINE
+	minimap_flags = MINIMAP_FLAG_XENO|MINIMAP_FLAG_MARINE|MINIMAP_FLAG_MARINE_REBEL
 	marker_flags = NONE

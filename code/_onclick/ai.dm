@@ -9,6 +9,7 @@
 
 	Note that AI have no need for the adjacency proc, and so this proc is a lot cleaner.
 */
+
 /mob/living/silicon/ai/DblClickOn(atom/A, params)
 	if(control_disabled || incapacitated())
 		return
@@ -123,37 +124,32 @@
 
 /* Airlocks */
 /obj/machinery/door/airlock/AICtrlClick(mob/living/silicon/ai/user) // Bolts doors
-	if(z != user.z)
-		return
-
 	if(locked)
-		bolt_raise(usr)
+		bolt_raise(user)
 	else if(hasPower())
-		bolt_drop(usr)
+		bolt_drop(user)
+
+/obj/machinery/door/airlock/dropship_hatch/AICtrlClick(mob/living/silicon/ai/user)
+	return
+
+/obj/machinery/door/airlock/hatch/cockpit/AICtrlClick(mob/living/silicon/ai/user)
+	return
 
 /obj/machinery/door/airlock/AIShiftClick(mob/living/silicon/ai/user)  // Opens and closes doors!
-	if(z != user.z)
-		return
-
-	user_toggle_open(usr)
+	user_toggle_open(user)
 
 
 /* APC */
 /obj/machinery/power/apc/AICtrlClick(mob/living/silicon/ai/user) // turns off/on APCs.
-	if(z != user.z)
-		return
-	toggle_breaker(usr)
+	toggle_breaker(user)
 
 /* Firealarm */
-/obj/machinery/firealarm/AICtrlClick(mob/living/silicon/ai/user) // turn on the fire alarm
-	if(z != user.z)
-		return
-	alarm()
-
-/obj/machinery/firealarm/AICtrlShiftClick(mob/living/silicon/ai/user) // turn off the fire alarm
-	if(z != user.z)
-		return
-	reset()
+/obj/machinery/firealarm/AICtrlClick(mob/living/silicon/ai/user) // toggle the fire alarm
+	var/area/A = get_area(src)
+	if(A.flags_alarm_state & ALARM_WARNING_FIRE)
+		reset()
+	else
+		alarm()
 
 
 //

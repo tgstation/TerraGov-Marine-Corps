@@ -80,6 +80,11 @@
 
 	var/blood_type = "\[UNSET\]"
 
+	///How many points you can use to buy items
+	var/marine_points = MARINE_TOTAL_BUY_POINTS
+	///What category of items can you buy
+	var/marine_buy_flags = MARINE_CAN_BUY_ALL
+
 	//alt titles are handled a bit weirdly in order to unobtrusively integrate into existing ID system
 	var/assignment = null	//can be alt title or the actual job
 	var/rank = null			//actual job
@@ -87,6 +92,8 @@
 	var/paygrade = null  // Marine's paygrade
 
 	var/assigned_fireteam = "" //which fire team this ID belongs to, only used by squad marines.
+	/// Iff bitfield to determines hit and misses
+	var/iff_signal = NONE
 
 
 /obj/item/card/id/Initialize()
@@ -169,7 +176,7 @@
 			return
 		src.assignment = newjob
 		src.name = "[src.registered_name]'s ID Card ([src.assignment])"
-		to_chat(user, "<span class='notice'>You successfully forge the ID card.</span>")
+		to_chat(user, span_notice("You successfully forge the ID card."))
 		registered_user = user
 	else if(!registered_user || registered_user == user)
 
@@ -189,7 +196,7 @@
 					return
 				src.assignment = newjob
 				src.name = "[src.registered_name]'s ID Card ([src.assignment])"
-				to_chat(user, "<span class='notice'>You successfully forge the ID card.</span>")
+				to_chat(user, span_notice("You successfully forge the ID card."))
 				return
 			if("Show")
 				..()
@@ -236,20 +243,24 @@
 	desc = "A marine dog tag."
 	icon_state = "dogtag"
 	item_state = "dogtag"
+	iff_signal = TGMC_LOYALIST_IFF
 	var/dogtag_taken = FALSE
 
+/obj/item/card/id/dogtag/engineer
+	marine_points = ENGINEER_TOTAL_BUY_POINTS
 
 /obj/item/card/id/dogtag/som
 	name = "\improper Sons of Mars dogtag"
 	desc = "Used by the Sons of Mars."
 	icon_state = "dogtag_som"
 	item_state = "dogtag_som"
+	iff_signal = SON_OF_MARS_IFF
 
 
 /obj/item/card/id/dogtag/examine(mob/user)
 	..()
 	if(ishuman(user))
-		to_chat(user, "<span class='notice'>It reads \"[registered_name] - [assignment] - [blood_type]\"</span>")
+		to_chat(user, span_notice("It reads \"[registered_name] - [assignment] - [blood_type]\""))
 
 
 /obj/item/dogtag
@@ -266,7 +277,7 @@
 
 	if(istype(I, /obj/item/dogtag))
 		var/obj/item/dogtag/D = I
-		to_chat(user, "<span class='notice'>You join the two tags together.</span>")
+		to_chat(user, span_notice("You join the two tags together."))
 		name = "information dog tags"
 		if(D.fallen_names)
 			fallen_names += D.fallen_names
@@ -279,7 +290,7 @@
 	. = ..()
 	if(ishuman(user) && fallen_names && fallen_names.len)
 		if(fallen_names.len == 1)
-			to_chat(user, "<span class='notice'>It reads: \"[fallen_names[1]] - [fallen_assignements[1]]\".</span>")
+			to_chat(user, span_notice("It reads: \"[fallen_names[1]] - [fallen_assignements[1]]\"."))
 		else
 			var/msg = "<span class='notice'> It reads: "
 			for(var/x = 1 to length(fallen_names))

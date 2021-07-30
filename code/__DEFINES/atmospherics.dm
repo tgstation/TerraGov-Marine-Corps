@@ -15,22 +15,22 @@
 #define BODYTEMP_COOLING_MAX -30 //The maximum number of degrees that your body can cool in 1 tick, when in a cold area.
 #define BODYTEMP_HEATING_MAX 30 //The maximum number of degrees that your body can heat up in 1 tick, when in a hot area.
 
-#define BODYTEMP_HEAT_DAMAGE_LIMIT_ONE		360.15 // The limit the human body can take before it starts taking damage from heat.
-#define BODYTEMP_HEAT_DAMAGE_LIMIT_TWO		400.15
-#define BODYTEMP_HEAT_DAMAGE_LIMIT_THREE	1000
+#define BODYTEMP_HEAT_DAMAGE_LIMIT_ONE 360.15 // The limit the human body can take before it starts taking damage from heat.
+#define BODYTEMP_HEAT_DAMAGE_LIMIT_TWO 400.15
+#define BODYTEMP_HEAT_DAMAGE_LIMIT_THREE 1000
 
-#define BODYTEMP_COLD_DAMAGE_LIMIT_ONE		260.15 // The limit the human body can take before it starts taking damage from coldness.
-#define BODYTEMP_COLD_DAMAGE_LIMIT_TWO		240.15
-#define BODYTEMP_COLD_DAMAGE_LIMIT_THREE	120.15
+#define BODYTEMP_COLD_DAMAGE_LIMIT_ONE 260.15 // The limit the human body can take before it starts taking damage from coldness.
+#define BODYTEMP_COLD_DAMAGE_LIMIT_TWO 240.15
+#define BODYTEMP_COLD_DAMAGE_LIMIT_THREE 120.15
 
 #define PRESSURE_DAMAGE_COEFFICIENT 4 ///The amount of pressure damage someone takes is equal to (pressure / HAZARD_HIGH_PRESSURE)*PRESSURE_DAMAGE_COEFFICIENT, with the maximum of MAX_PRESSURE_DAMAGE
 #define MAX_HIGH_PRESSURE_DAMAGE 4	///Maximum amount of damage someone can take from being in a too-high pressure area
 #define LOW_PRESSURE_DAMAGE 2 	///The amounb of damage someone takes when in a low pressure area (The pressure threshold is so low that it doesn't make sense to do any calculations, so it just applies this flat value).
 
 
-#define R_IDEAL_GAS_EQUATION	8.31 //kPa*L/(K*mol)
-#define ONE_ATMOSPHERE		101.325	//kPa
-#define IDEAL_GAS_ENTROPY_CONSTANT 	1164	//(mol^3 * s^3) / (kg^3 * L). Equal to (4*pi/(avrogadro's number * planck's constant)^2)^(3/2) / (avrogadro's number * 1000 Liters per m^3).
+#define R_IDEAL_GAS_EQUATION 8.31 //kPa*L/(K*mol)
+#define ONE_ATMOSPHERE 101.325	//kPa
+#define IDEAL_GAS_ENTROPY_CONSTANT 1164	//(mol^3 * s^3) / (kg^3 * L). Equal to (4*pi/(avrogadro's number * planck's constant)^2)^(3/2) / (avrogadro's number * 1000 Liters per m^3).
 
 
 #define CELL_VOLUME 2500	//liters in a cell
@@ -51,35 +51,35 @@
 #define T0C 273.15					// 0degC
 #define T20C 293.15					// 20degC
 #define TCMB 2.7					// -270.3degC
-#define ICE_COLONY_TEMPERATURE	255.15	//-18degC
+#define ICE_COLONY_TEMPERATURE 255.15	//-18degC
 
-#define GAS_TYPE_AIR		"air"
-#define GAS_TYPE_OXYGEN		"oxygen"
-#define GAS_TYPE_NITROGEN	"nitrogen"
-#define GAS_TYPE_N2O		"anesthetic"
-#define GAS_TYPE_PHORON		"phoron"
-#define GAS_TYPE_CO2		"carbon dioxyde"
+#define GAS_TYPE_AIR "air"
+#define GAS_TYPE_OXYGEN "oxygen"
+#define GAS_TYPE_NITROGEN "nitrogen"
+#define GAS_TYPE_N2O "anesthetic"
+#define GAS_TYPE_PHORON "phoron"
+#define GAS_TYPE_CO2 "carbon dioxyde"
 
 #define RADIATION_SPEED_COEFFICIENT 0.1
 
 //PIPES
 //Atmos pipe limits
-#define MAX_OUTPUT_PRESSURE					4500 // (kPa) What pressure pumps and powered equipment max out at.
-#define MAX_TRANSFER_RATE					200 // (L/s) Maximum speed powered equipment can work at.
+#define MAX_OUTPUT_PRESSURE 4500 // (kPa) What pressure pumps and powered equipment max out at.
+#define MAX_TRANSFER_RATE 200 // (L/s) Maximum speed powered equipment can work at.
 
 //used for device_type vars
-#define UNARY		1
-#define BINARY 		2
-#define TRINARY		3
-#define QUATERNARY	4
+#define UNARY 1
+#define BINARY 2
+#define TRINARY 3
+#define QUATERNARY 4
 
 
 //HEAT TRANSFER COEFFICIENTS
 //Must be between 0 and 1. Values closer to 1 equalize temperature faster
 //Should not exceed 0.4 else strange heat flow occur
-#define WALL_HEAT_TRANSFER_COEFFICIENT		0.0
-#define OPEN_HEAT_TRANSFER_COEFFICIENT		0.4
-#define WINDOW_HEAT_TRANSFER_COEFFICIENT	0.1		//a hack for now
+#define WALL_HEAT_TRANSFER_COEFFICIENT 0.0
+#define OPEN_HEAT_TRANSFER_COEFFICIENT 0.4
+#define WINDOW_HEAT_TRANSFER_COEFFICIENT 0.1		//a hack for now
 
 //MULTIPIPES
 //IF YOU EVER CHANGE THESE CHANGE SPRITES TO MATCH.
@@ -90,10 +90,10 @@
 #define PIPING_LAYER_P_Y 5
 #define PIPING_LAYER_LCHANGE 0.05
 
-#define PIPING_ALL_LAYER				(1<<0)	//intended to connect with all layers, check for all instead of just one.
-#define PIPING_ONE_PER_TURF				(1<<1) 	//can only be built if nothing else with this flag is on the tile already.
-#define PIPING_DEFAULT_LAYER_ONLY		(1<<2)	//can only exist at PIPING_LAYER_DEFAULT
-#define PIPING_CARDINAL_AUTONORMALIZE	(1<<3)	//north/south east/west doesn't matter, auto normalize on build.
+#define PIPING_ALL_LAYER (1<<0)	//intended to connect with all layers, check for all instead of just one.
+#define PIPING_ONE_PER_TURF (1<<1) 	//can only be built if nothing else with this flag is on the tile already.
+#define PIPING_DEFAULT_LAYER_ONLY (1<<2)	//can only exist at PIPING_LAYER_DEFAULT
+#define PIPING_CARDINAL_AUTONORMALIZE (1<<3)	//north/south east/west doesn't matter, auto normalize on build.
 
 //HELPERS
 #define PIPING_LAYER_SHIFT(T, PipingLayer) \

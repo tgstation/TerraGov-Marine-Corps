@@ -13,9 +13,6 @@
 	// *** Melee Attacks *** //
 	melee_damage = 17
 
-	// *** Tackle *** //
-	tackle_damage = 21
-
 	// *** Speed *** //
 	speed = -0.3
 
@@ -33,7 +30,7 @@
 	evolves_to = list(/mob/living/carbon/xenomorph/warrior)
 
 	// *** Flags *** //
-	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_EVOLUTION_ALLOWED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER
+	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_EVOLUTION_ALLOWED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER|CAN_BECOME_KING
 
 	// *** Defense *** //
 	soft_armor = list("melee" = 30, "bullet" = 30, "laser" = 25, "energy" = 20, "bomb" = XENO_BOMB_RESIST_2, "bio" = 20, "rad" = 20, "fire" = 30, "acid" = 20)
@@ -54,7 +51,7 @@
 		/datum/action/xeno_action/toggle_crest_defense,
 		/datum/action/xeno_action/fortify,
 		/datum/action/xeno_action/activable/forward_charge,
-		/datum/action/xeno_action/activable/tail_sweep,
+		/datum/action/xeno_action/tail_sweep,
 		/datum/action/xeno_action/activable/regenerate_skin,
 	)
 
@@ -67,9 +64,6 @@
 	upgrade_name = "Mature"
 	caste_desc = "An alien with an armored crest. It looks pretty durable."
 	upgrade = XENO_UPGRADE_ONE
-
-	// *** Tackle *** //
-	tackle_damage = 21
 
 	// *** Speed *** //
 	speed = -0.4
@@ -100,9 +94,6 @@
 	// *** Melee Attacks *** //
 	melee_damage = 21
 
-	// *** Tackle *** //
-	tackle_damage = 26
-
 	// *** Speed *** //
 	speed = -0.5
 
@@ -132,9 +123,6 @@
 
 	// *** Melee Attacks *** //
 	melee_damage = 21
-
-	// *** Tackle *** //
-	tackle_damage = 26
 
 	// *** Speed *** //
 	speed = -0.6

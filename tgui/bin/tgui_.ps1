@@ -119,7 +119,7 @@ if ($Args.Length -gt 0) {
     exit 0
   }
 
-    if ($Args[0] -eq "--test") {
+  if ($Args[0] -eq "--test") {
     $Rest = $Args | Select-Object -Skip 1
     task-install
     task-test @Rest
