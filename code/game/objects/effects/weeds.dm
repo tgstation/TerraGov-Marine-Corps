@@ -35,7 +35,10 @@
 		if(!istype(node))
 			CRASH("Weed created with non-weed node. Type: [node.type]")
 		parent_node = node
-		color_variant = node.color_variant
+		color_variant = initial(node.weed_type.color_variant)
+		name = initial(node.weed_type.name)
+		resting_buff = initial(node.weed_type.resting_buff)
+		desc = initial(node.weed_type.desc)
 	update_icon()
 	update_neighbours()
 
@@ -206,7 +209,7 @@
 	/// How far this node can spread weeds
 	var/node_range = 2
 	/// What type of weeds this node spreads
-	var/weed_type = /obj/effect/alien/weeds
+	var/obj/effect/alien/weeds/weed_type
 
 /obj/effect/alien/weeds/node/Destroy()
 	. = ..()
