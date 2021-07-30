@@ -318,7 +318,7 @@
 	point_cost = 500
 	var/deployment_cooldown
 	var/obj/machinery/deployable/mounted/sentry/deployed_turret
-	var/sentry_type = /obj/item/weapon/gun/sentry/premade/dropship
+	var/sentry_type = /obj/item/weapon/gun/sentry/big_sentry/dropship
 
 /obj/structure/dropship_equipment/sentry_holder/Initialize()
 	. = ..()
@@ -419,7 +419,7 @@
 	icon_state = "sentry_system_installed"
 
 /obj/structure/dropship_equipment/sentry_holder/rebel
-	sentry_type = /obj/item/weapon/gun/sentry/premade/dropship/rebel
+	sentry_type = /obj/item/weapon/gun/sentry/big_sentry/dropship/rebel
 
 
 /obj/structure/dropship_equipment/mg_holder

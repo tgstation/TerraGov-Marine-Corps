@@ -17,7 +17,6 @@
 	var/obj/item/attached_item = target
 	if(CHECK_BITFIELD(attached_item.flags_item, DEPLOY_ON_INITIALIZE))
 		finish_deploy(attached_item, null, attached_item.loc, attached_item.dir)
-		return
 
 	RegisterSignal(attached_item, COMSIG_ITEM_UNIQUE_ACTION, .proc/deploy)
 

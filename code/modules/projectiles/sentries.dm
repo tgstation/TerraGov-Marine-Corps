@@ -40,7 +40,7 @@
 	var/obj/item/weapon/gun/gun = internal_item
 
 	iff_signal = gun.sentry_iff_signal
-	if(!iff_signal && deployer)
+	if(deployer)
 		var/mob/living/carbon/human/_deployer = deployer
 		var/obj/item/card/id/id = _deployer.get_idcard(TRUE)
 		iff_signal = id?.iff_signal

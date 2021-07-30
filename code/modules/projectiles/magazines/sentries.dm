@@ -5,7 +5,7 @@
 	icon_state = "ua571c"
 	flags_magazine = NONE //can't be refilled or emptied by hand
 	caliber = CALIBER_10X28
-	max_rounds = 50
+	max_rounds = 75
 	default_ammo = /datum/ammo/bullet/turret
 	gun_type = /obj/item/weapon/gun/sentry/big_sentry
 

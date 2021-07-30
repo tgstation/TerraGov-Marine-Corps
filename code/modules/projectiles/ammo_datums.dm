@@ -1041,7 +1041,6 @@ datum/ammo/bullet/revolver/tp44
 /datum/ammo/bullet/turret/gauss
 	name = "heavy gauss turret slug"
 	damage = 60
-	accurate_range = 5
 
 /datum/ammo/bullet/turret/mini
 	name = "small caliber autocannon bullet"
