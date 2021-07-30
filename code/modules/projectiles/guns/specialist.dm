@@ -344,7 +344,8 @@
 
 /obj/item/weapon/gun/minigun
 	name = "\improper T-100 Minigun"
-	desc = "A six barreled rotary machine gun, The ultimate in man-portable firepower, capable of laying down high velocity armor piercing rounds this thing will no doubt pack a punch."
+	desc = "A six barreled rotary machine gun, The ultimate in man-portable firepower, capable of laying down high velocity armor piercing rounds this thing will no doubt pack a punch.. If you don't kill all your friends with it, you can use the stablizing system of the Powerpack to fire aimed fire, but you'll move incredibly slowly."
+	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "minigun"
 	item_state = "minigun"
 	max_shells = 500 //codex
@@ -368,8 +369,11 @@
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
 	attachable_allowed = list(/obj/item/attachable/flashlight, /obj/item/attachable/magnetic_harness)
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 19,"rail_x" = 10, "rail_y" = 21, "under_x" = 24, "under_y" = 14, "stock_x" = 24, "stock_y" = 12)
+	actions_types = list(/datum/action/item_action/aim_mode)
+	aim_fire_delay = 0.1 SECONDS
+	aim_speed_modifier = 12
 
-	fire_delay = 0.175 SECONDS
+	fire_delay = 0.15 SECONDS
 	scatter = 10
 	recoil = 2
 	recoil_unwielded = 4

@@ -578,8 +578,7 @@
 		return
 	var/pipe = start_ventcrawl()
 	if(pipe)
-		handle_ventcrawl(pipe)
-
+		handle_ventcrawl(pipe, xeno_caste.vent_enter_speed, xeno_caste.silent_vent_crawl)
 
 /mob/living/carbon/xenomorph/verb/toggle_xeno_mobhud()
 	set name = "Toggle Xeno Status HUD"

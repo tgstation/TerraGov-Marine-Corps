@@ -187,13 +187,29 @@ GLOBAL_LIST_INIT(additional_admin_item_slot_list, list(
 	slot_ear_str,
 ))
 
-///All the vendor types which the automated loadout vendor can take items from
+///All the vendor types which the automated loadout vendor can take items from.
 GLOBAL_LIST_INIT(loadout_linked_vendor, list(
-	/obj/machinery/vending/marine/shared,
-	/obj/machinery/vending/uniform_supply,
-	/obj/machinery/vending/armor_supply,
-	/obj/machinery/vending/marineFood,
-	/obj/machinery/vending/MarineMed,
+	FACTION_NEUTRAL = list(
+		/obj/machinery/vending/marine/shared,
+		/obj/machinery/vending/uniform_supply,
+		/obj/machinery/vending/armor_supply,
+		/obj/machinery/vending/marineFood,
+		/obj/machinery/vending/MarineMed,
+	),
+	FACTION_TERRAGOV = list(
+		/obj/machinery/vending/marine/shared/hvh/team_one,
+		/obj/machinery/vending/uniform_supply,
+		/obj/machinery/vending/armor_supply/loyalist,
+		/obj/machinery/vending/marineFood,
+		/obj/machinery/vending/MarineMed,
+	),
+	FACTION_TERRAGOV_REBEL = list(
+		/obj/machinery/vending/marine/shared/hvh,
+		/obj/machinery/vending/uniform_supply,
+		/obj/machinery/vending/armor_supply/rebel,
+		/obj/machinery/vending/marineFood,
+		/obj/machinery/vending/MarineMed/rebel,
+	),
 ))
 
 GLOBAL_LIST_INIT(marine_clothes_listed_products, list(
@@ -275,7 +291,7 @@ GLOBAL_LIST_INIT(engineer_clothes_listed_products, list(
 		/obj/item/clothing/suit/storage/marine/pasvest = list(CAT_AMR, "Regular armor", 0, "orange"),
 		/obj/item/storage/backpack/marine/satchel/tech = list(CAT_BAK, "Satchel", 0, "orange"),
 		/obj/item/storage/backpack/marine/tech = list(CAT_BAK, "Backpack", 0, "black"),
-		/obj/item/storage/large_holster/machete/full = list(CAT_BAK, "Machete scabbard", 0, "black"),
+		/obj/item/storage/large_holster/blade/machete/full = list(CAT_BAK, "Machete scabbard", 0, "black"),
 		/obj/item/storage/backpack/marine/engineerpack = list(CAT_BAK, "Welderpack", 0, "black"),
 		/obj/item/clothing/tie/storage/brown_vest = list(CAT_WEB, "Tactical brown vest", 0, "orange"),
 		/obj/item/clothing/tie/storage/webbing = list(CAT_WEB, "Tactical webbing", 0, "black"),
@@ -415,7 +431,7 @@ GLOBAL_LIST_INIT(leader_clothes_listed_products, list(
 		/obj/item/clothing/suit/storage/marine/pasvest = list(CAT_AMR, "Regular armor", 0, "orange"),
 		/obj/item/storage/backpack/marine/satchel = list(CAT_BAK, "Satchel", 0, "black"),
 		/obj/item/storage/backpack/marine/standard = list(CAT_BAK, "Backpack", 0, "black"),
-		/obj/item/storage/large_holster/machete/full = list(CAT_BAK, "Machete scabbard", 0, "black"),
+		/obj/item/storage/large_holster/blade/machete/full = list(CAT_BAK, "Machete scabbard", 0, "black"),
 		/obj/item/clothing/tie/storage/black_vest = list(CAT_WEB, "Tactical black vest", 0, "black"),
 		/obj/item/clothing/tie/storage/webbing = list(CAT_WEB, "Tactical webbing", 0, "black"),
 		/obj/item/clothing/tie/storage/holster = list(CAT_WEB, "Shoulder handgun holster", 0, "black"),
