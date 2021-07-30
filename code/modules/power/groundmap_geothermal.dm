@@ -161,7 +161,7 @@
 		return FALSE
 	if(user.incapacitated())
 		return FALSE
-	if(!ishuman(user))
+	if(!ishuman(user) && !issilicon(user))
 		to_chat(user, span_warning("You have no idea how to use that."))
 		return FALSE
 	if(corrupted)
@@ -191,6 +191,9 @@
 	cur_tick = 0
 	start_processing()
 	return TRUE
+
+/obj/machinery/power/geothermal/attack_ai(mob/living/silicon/ai/user)
+	attack_hand(user)
 
 /obj/machinery/power/geothermal/welder_act(mob/living/user, obj/item/I)
 	var/obj/item/tool/weldingtool/WT = I
@@ -308,6 +311,11 @@
 /obj/machinery/power/geothermal/reinforced
 	name = "\improper Reinforced Reactor Turbine"
 	is_corruptible = FALSE
+
+///This one spawns intact
+/obj/machinery/power/geothermal/intact
+	corrupted = 0
+	buildstate = GEOTHERMAL_NO_DAMAGE
 
 #undef GEOTHERMAL_NO_DAMAGE
 #undef GEOTHERMAL_LIGHT_DAMAGE
