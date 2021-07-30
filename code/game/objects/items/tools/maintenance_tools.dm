@@ -494,22 +494,23 @@
 /obj/item/tool/handheld_charger/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(istype(I, /obj/item/cell))
-		if(!user.drop_held_item())
-			return
-
-		I.forceMove(src)
-		var/replace_install = "You replace the cell in [src]"
-		if(!cell)
-			replace_install = "You install a cell in [src]"
-		else
-			cell.update_icon()
-			user.put_in_hands(cell)
-		cell = I
-		to_chat(user, span_notice("[replace_install] <b>Charge Remaining: [cell.charge]/[cell.maxcharge]</b>"))
-		playsound(user, 'sound/weapons/guns/interact/rifle_reload.ogg', 20, 1, 5)
-		icon_state = "handheldcharger"
+	if(!istype(I, /obj/item/cell))
 		return
+	if(!user.drop_held_item())
+		return
+
+	I.forceMove(src)
+	var/replace_install = "You replace the cell in [src]"
+	if(!cell)
+		replace_install = "You install a cell in [src]"
+	else
+		cell.update_icon()
+		user.put_in_hands(cell)
+	cell = I
+	to_chat(user, span_notice("[replace_install] <b>Charge Remaining: [cell.charge]/[cell.maxcharge]</b>"))
+	playsound(user, 'sound/weapons/guns/interact/rifle_reload.ogg', 20, 1, 5)
+	icon_state = "handheldcharger"
+	return
 
 /obj/item/tool/handheld_charger/attack_hand(mob/living/user)
 	if(user.get_inactive_held_item() != src)
