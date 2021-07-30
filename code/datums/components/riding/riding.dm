@@ -44,17 +44,24 @@
 	COOLDOWN_DECLARE(vehicle_move_cooldown)
 
 
-/datum/component/riding/Initialize(mob/living/riding_mob, force = FALSE, buckle_mob_flags= NONE, potion_boost = FALSE)
+/datum/component/riding/Initialize(mob/living/riding_mob, force = FALSE, check_loc, lying_buckle, hands_needed, target_hands_needed, silent)
 	if(!ismovable(parent))
 		return COMPONENT_INCOMPATIBLE
 
 	handle_specials()
 	riding_mob.updating_glide_size = FALSE
-	ride_check_flags |= buckle_mob_flags
+	ride_check_flags |= args_to_flags(check_loc, lying_buckle, hands_needed, target_hands_needed)//buckle_mob_flags
 
-	if(potion_boost)
-		vehicle_move_delay = round(CONFIG_GET(number/movedelay/run_delay) * 0.85, 0.01)
-
+///converts buckle args to their flags. We use this proc since I dont want to add a buckle refactor to this riding refactor port
+/datum/component/riding/proc/args_to_flags(check_loc, lying_buckle, hands_needed, target_hands_needed)
+	if(!lying_buckle)
+		. = UNBUCKLE_DISABLED_RIDER
+	if(hands_needed == 1)
+		. |= RIDER_NEEDS_ARM
+	if(hands_needed == 2)
+		. |= RIDER_NEEDS_ARMS
+	if(target_hands_needed == 1)
+		. |= CARRIER_NEEDS_ARM
 
 /datum/component/riding/RegisterWithParent()
 	. = ..()
@@ -81,7 +88,7 @@
 	restore_position(rider)
 	unequip_buckle_inhands(rider)
 	rider.updating_glide_size = TRUE
-	if(!movable_parent.has_buckled_mobs())
+	if(!LAZYLEN(movable_parent.buckled_mobs))
 		qdel(src)
 
 /// Some ridable atoms may want to only show on top of the rider in certain directions, like wheelchairs
@@ -105,7 +112,6 @@
 	var/atom/movable/movable_parent = parent
 	if (isnull(dir))
 		dir = movable_parent.dir
-	movable_parent.set_glide_size(DELAY_TO_GLIDE_SIZE(vehicle_move_delay))
 	for (var/m in movable_parent.buckled_mobs)
 		var/mob/buckled_mob = m
 		ride_check(buckled_mob)
@@ -128,7 +134,7 @@
 	var/atom/movable/AM = parent
 	var/AM_dir = "[dir]"
 	var/passindex = 0
-	if(!AM.has_buckled_mobs())
+	if(!LAZYLEN(AM.buckled_mobs))
 		return
 
 	for(var/m in AM.buckled_mobs)
@@ -184,19 +190,19 @@
 	if(!keytype)
 		return TRUE
 
-	if(isvehicle(parent))
-		var/obj/vehicle/vehicle_parent = parent
-		return istype(vehicle_parent.inserted_key, keytype)
+	//if(isvehicle(parent))
+	//	var/obj/vehicle/vehicle_parent = parent
+	//	return istype(vehicle_parent.inserted_key, keytype)
 
 	return user.is_holding_item_of_type(keytype)
 
 //BUCKLE HOOKS
 /datum/component/riding/proc/restore_position(mob/living/buckled_mob)
 	if(buckled_mob)
-		buckled_mob.pixel_x = buckled_mob.base_pixel_x
-		buckled_mob.pixel_y = buckled_mob.base_pixel_y
+		buckled_mob.pixel_x = initial(buckled_mob.pixel_x)//buckled_mob.base_pixel_x
+		buckled_mob.pixel_y = initial(buckled_mob.pixel_y)//buckled_mob.base_pixel_y
 		if(buckled_mob.client)
-			buckled_mob.client.view_size.resetToDefault()
+			buckled_mob.client.view_size.reset_to_default()
 
 //MOVEMENT
 /datum/component/riding/proc/turf_check(turf/next, turf/current)

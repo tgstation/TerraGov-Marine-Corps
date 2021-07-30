@@ -44,7 +44,7 @@
 			COOLDOWN_START(src, message_cooldown, 5 SECONDS)
 		return COMPONENT_DRIVER_BLOCK_MOVE
 
-	if(ride_check_flags & RIDER_NEEDS_ARMS && HAS_TRAIT(user, TRAIT_HANDS_BLOCKED))
+	if(ride_check_flags & RIDER_NEEDS_ARMS && user.restrained())
 		if(ride_check_flags & UNBUCKLE_DISABLED_RIDER)
 			vehicle_parent.unbuckle_mob(user, TRUE)
 			user.visible_message("<span class='danger'>[user] falls off \the [vehicle_parent].</span>",\
@@ -82,19 +82,6 @@
 	handle_vehicle_offsets(movable_parent.dir)
 	return TRUE
 
-/datum/component/riding/vehicle/atv
-	keytype = /obj/item/key/atv
-	ride_check_flags = RIDER_NEEDS_LEGS | RIDER_NEEDS_ARMS | UNBUCKLE_DISABLED_RIDER
-	vehicle_move_delay = 1.5
-
-/datum/component/riding/vehicle/atv/handle_specials()
-	. = ..()
-	set_riding_offsets(RIDING_OFFSET_ALL, list(TEXT_NORTH = list(0, 4), TEXT_SOUTH = list(0, 4), TEXT_EAST = list(0, 4), TEXT_WEST = list( 0, 4)))
-	set_vehicle_dir_layer(SOUTH, ABOVE_MOB_LAYER)
-	set_vehicle_dir_layer(NORTH, OBJ_LAYER)
-	set_vehicle_dir_layer(EAST, OBJ_LAYER)
-	set_vehicle_dir_layer(WEST, OBJ_LAYER)
-
 /datum/component/riding/vehicle/bicycle
 	ride_check_flags = RIDER_NEEDS_LEGS | RIDER_NEEDS_ARMS | UNBUCKLE_DISABLED_RIDER
 	vehicle_move_delay = 0
@@ -102,14 +89,6 @@
 /datum/component/riding/vehicle/bicycle/handle_specials()
 	. = ..()
 	set_riding_offsets(RIDING_OFFSET_ALL, list(TEXT_NORTH = list(0, 4), TEXT_SOUTH = list(0, 4), TEXT_EAST = list(0, 4), TEXT_WEST = list( 0, 4)))
-
-
-/datum/component/riding/vehicle/janicart
-	keytype = /obj/item/key/janitor
-
-/datum/component/riding/vehicle/janicart/handle_specials()
-	. = ..()
-	set_riding_offsets(RIDING_OFFSET_ALL, list(TEXT_NORTH = list(0, 4), TEXT_SOUTH = list(0, 7), TEXT_EAST = list(-12, 7), TEXT_WEST = list( 12, 7)))
 
 /datum/component/riding/vehicle/scooter
 	ride_check_flags = RIDER_NEEDS_LEGS | RIDER_NEEDS_ARMS | UNBUCKLE_DISABLED_RIDER
@@ -141,9 +120,4 @@
 	set_vehicle_dir_layer(EAST, OBJ_LAYER)
 	set_vehicle_dir_layer(WEST, OBJ_LAYER)
 
-// special messaging for those without arms
-/datum/component/riding/vehicle/wheelchair/hand/driver_move(obj/vehicle/vehicle_parent, mob/living/user, direction)
-	var/delay_multiplier = 6.7 // magic number from wheelchair code
-	vehicle_move_delay = round(CONFIG_GET(number/movedelay/run_delay) * delay_multiplier) / clamp(user.usable_hands, 1, 2)
-	return ..()
 

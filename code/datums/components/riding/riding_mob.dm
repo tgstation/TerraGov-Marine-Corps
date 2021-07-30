@@ -4,7 +4,7 @@
 	/// If TRUE, this creature's movements can be controlled by the rider while mounted (as opposed to riding cyborgs and humans, which is passive)
 	var/can_be_driven = TRUE
 
-/datum/component/riding/creature/Initialize(mob/living/riding_mob, force = FALSE, ride_check_flags = NONE, potion_boost = FALSE)
+/datum/component/riding/creature/Initialize(mob/living/riding_mob, force = FALSE, check_loc, lying_buckle, hands_needed, target_hands_needed, silent)
 	if(!isliving(parent))
 		return COMPONENT_INCOMPATIBLE
 
@@ -47,10 +47,10 @@
 	if(living_parent.lying_angle) // if we move while on the ground, the rider falls off
 		kick_us_off = TRUE
 	// for piggybacks and (redundant?) borg riding, check if the rider is stunned/restrained
-	else if((ride_check_flags & RIDER_NEEDS_ARMS) && (HAS_TRAIT(rider, TRAIT_RESTRAINED) || rider.incapacitated(TRUE, TRUE)))
+	else if((ride_check_flags & RIDER_NEEDS_ARMS) && (rider.restrained(RESTRAINED_NECKGRAB) || rider.incapacitated(TRUE, TRUE)))
 		kick_us_off = TRUE
 	// for fireman carries, check if the ridden is stunned/restrained
-	else if((ride_check_flags & CARRIER_NEEDS_ARM) && (HAS_TRAIT(living_parent, TRAIT_RESTRAINED) || living_parent.incapacitated(TRUE, TRUE)))
+	else if((ride_check_flags & CARRIER_NEEDS_ARM) && (rider.restrained(RESTRAINED_NECKGRAB) || living_parent.incapacitated(TRUE, TRUE)))
 		kick_us_off = TRUE
 
 	if(!kick_us_off)
@@ -108,10 +108,10 @@
 /datum/component/riding/creature/human
 	can_be_driven = FALSE
 
-/datum/component/riding/creature/human/Initialize(mob/living/riding_mob, force = FALSE, ride_check_flags = NONE, potion_boost = FALSE)
+/datum/component/riding/creature/human/Initialize(mob/living/riding_mob, force = FALSE, check_loc, lying_buckle, hands_needed, target_hands_needed, silent)
 	. = ..()
 	var/mob/living/carbon/human/human_parent = parent
-	human_parent.add_movespeed_modifier(/datum/movespeed_modifier/human_carry)
+	human_parent.add_movespeed_modifier(MOVESPEED_ID_HUMAN_CARRYING, TRUE, 0, NONE, TRUE, HUMAN_CARRY_SLOWDOWN)
 
 	if(ride_check_flags & RIDER_NEEDS_ARMS) // piggyback
 		human_parent.buckle_lying = 0
@@ -138,8 +138,8 @@
 
 /datum/component/riding/creature/human/vehicle_mob_unbuckle(datum/source, mob/living/former_rider, force = FALSE)
 	unequip_buckle_inhands(parent)
-	var/mob/living/carbon/human/H = parent
-	H.remove_movespeed_modifier(/datum/movespeed_modifier/human_carry)
+	var/mob/living/carbon/human/human_carrier = parent
+	human_carrier.remove_movespeed_modifier(MOVESPEED_ID_HUMAN_CARRYING)
 	former_rider.density = TRUE
 	return ..()
 
@@ -223,13 +223,3 @@
 	set_vehicle_dir_layer(WEST, OBJ_LAYER)
 
 
-/datum/component/riding/creature/goliath
-	keytype = /obj/item/key/lasso
-
-/datum/component/riding/creature/goliath/handle_specials()
-	. = ..()
-	set_riding_offsets(RIDING_OFFSET_ALL, list(TEXT_NORTH = list(0, 8), TEXT_SOUTH = list(0, 8), TEXT_EAST = list(-2, 8), TEXT_WEST = list(2, 8)))
-	set_vehicle_dir_layer(SOUTH, ABOVE_MOB_LAYER)
-	set_vehicle_dir_layer(NORTH, OBJ_LAYER)
-	set_vehicle_dir_layer(EAST, OBJ_LAYER)
-	set_vehicle_dir_layer(WEST, OBJ_LAYER)
