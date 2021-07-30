@@ -7,8 +7,7 @@
 /obj/effect/edge_blip/Initialize(mapload, identifier, mob/operator, screen_pos_x, screen_pos_y, direction = SOUTH)
 	. = ..()
 	if(!operator?.client)
-		qdel(src)
-		return
+		return INITIALIZE_HINT_QDEL
 	screen_loc = "[screen_pos_x],[screen_pos_y]"
 	operator.client.screen += src
 	src.identifier = identifier
@@ -31,8 +30,7 @@
 /obj/effect/close_blip/Initialize(mapload, identifier, mob/operator)
 	. = ..()
 	if(!operator?.client)
-		qdel(src)
-		return
+		return INITIALIZE_HINT_QDEL
 	blip_image = image('icons/Marine/marine-items.dmi', src, "close_blip_[identifier]")
 	blip_image.layer = BELOW_FULLSCREEN_LAYER
 	operator.client.images |= blip_image
