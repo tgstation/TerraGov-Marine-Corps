@@ -12,6 +12,7 @@
 	var/obj/machinery/keycard_auth/event_source
 	var/mob/event_triggered_by
 	var/mob/event_confirmed_by
+	/// Has this event been authorized by a silicon. Most of the time, this means the AI.
 	var/synth_activation = 0
 	//1 = select event
 	//2 = authenticate
