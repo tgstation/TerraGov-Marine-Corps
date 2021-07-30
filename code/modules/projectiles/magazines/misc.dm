@@ -40,7 +40,7 @@
 /obj/item/ammo_magazine/packet/p10x25mm
 	name = "box of 10x25mm"
 	desc = "A box containing 125 rounds of 10x25mm caseless.."
-	caliber = CALIBER_10x25_CASELESS
+	caliber = CALIBER_10X25_CASELESS
 	icon_state = "box_10x25mm"
 	default_ammo = /datum/ammo/bullet/rifle/heavy
 	current_rounds = 125
