@@ -330,3 +330,15 @@
 	max_rounds = 70
 	gun_type = /obj/item/weapon/gun/rifle/tx11
 	icon_state_mini = "mag_tx11"
+
+//-------------------------------------------------------
+//T-21
+/obj/item/ammo_magazine/rifle/standard_skirmishrifle
+	name = "\improper T-21 skirmish rifle magazine"
+	desc = "A magazine filled with 10x25mm rifle rounds for the T-21."
+	caliber = CALIBER_10X25_CASELESS
+	icon_state = "t21"
+	default_ammo = /datum/ammo/bullet/rifle/heavy
+	max_rounds = 25
+	gun_type = /obj/item/weapon/gun/rifle/standard_skirmishrifle
+	icon_state_mini = "mag_rifle"

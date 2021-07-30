@@ -1163,3 +1163,60 @@
 
 /obj/item/weapon/gun/rifle/tx11/scopeless
 	starting_attachment_types = list(/obj/item/attachable/stock/irremoveable/tx11)
+
+//-------------------------------------------------------
+//T-21 Assault Rifle
+
+/obj/item/weapon/gun/rifle/standard_skirmishrifle
+	name = "\improper T-21 skirmish rifle"
+	desc = "The T-21 assault rifle used to be the TerraGov Marine Corps standard issue rifle before the T-18 carbine replaced it. It is, however, still used widely despite that. The gun itself is very good at being used in most situations however it suffers in engagements at close quarters and is relatively hard to shoulder than some others. It uses 10x24mm caseless ammunition."
+	icon = 'icons/Marine/gun64.dmi'
+	icon_state = "t21"
+	item_state = "t21"
+	fire_sound = 'sound/weapons/guns/fire/t21.ogg'
+	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
+	unload_sound = 'sound/weapons/guns/interact/t21_unload.ogg'
+	reload_sound = 'sound/weapons/guns/interact/t21_reload.ogg'
+	caliber = CALIBER_10X25_CASELESS //codex
+	max_shells = 25 //codex
+	force = 20
+	current_mag = /obj/item/ammo_magazine/rifle/standard_skirmishrifle
+	attachable_allowed = list(
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/verticalgrip,
+		/obj/item/attachable/lasersight,
+		/obj/item/attachable/gyro,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/bipod,
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/extended_barrel,
+		/obj/item/attachable/heavy_barrel,
+		/obj/item/attachable/suppressor,
+		/obj/item/attachable/bayonet,
+		/obj/item/attachable/bayonetknife,
+		/obj/item/attachable/compensator,
+		/obj/item/attachable/scope,
+		/obj/item/attachable/scope/mini,
+		/obj/item/attachable/scope/marine,
+		/obj/item/attachable/attached_gun/grenade,
+		/obj/item/attachable/attached_gun/flamer,
+		/obj/item/attachable/angledgrip,
+		/obj/item/attachable/attached_gun/shotgun,
+	)
+
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER
+	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_AUTOMATIC)
+//	starting_attachment_types = list(/obj/item/attachable/stock/t12stock)
+	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 17,"rail_x" = 4, "rail_y" = 23, "under_x" = 20, "under_y" = 11, "stock_x" = 0, "stock_y" = 13)
+	actions_types = list(/datum/action/item_action/aim_mode)
+	aim_fire_delay = 0.15 SECONDS
+	aim_speed_modifier = 2.5
+
+	fire_delay = 0.2 SECONDS
+	burst_amount = 1
+	burst_delay = 0.15 SECONDS
+	accuracy_mult = 1.15
+	scatter = -10
+	wield_delay = 0.6 SECONDS
+	aim_slowdown = 0.5
+	damage_falloff_mult = 0.5
