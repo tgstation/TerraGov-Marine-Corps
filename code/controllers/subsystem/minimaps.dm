@@ -367,7 +367,7 @@ SUBSYSTEM_DEF(minimaps)
 	map = null
 	if(!SSminimaps.minimaps_by_z["[newz]"] || !SSminimaps.minimaps_by_z["[newz]"].hud_image)
 		return
-	if(default_overwatch_level)	//For da AI
+	if(default_overwatch_level)
 		map = SSminimaps.fetch_minimap_object(default_overwatch_level, minimap_flags)
 		return
 	map = SSminimaps.fetch_minimap_object(newz, minimap_flags)
