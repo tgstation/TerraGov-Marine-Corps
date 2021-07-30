@@ -256,7 +256,7 @@
 /obj/item/clothing/head/energyhat
 	name = "Energy Cake Hat"
 	desc = "A Glowing birthday!"
-	icon_state = "hardhat0energycake"
+	icon_state = "hardhat1_energycake"
 	item_state = "hardhat1_energycake"
 
 /obj/item/clothing/head/crown
