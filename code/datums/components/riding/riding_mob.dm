@@ -222,4 +222,45 @@
 	set_vehicle_dir_layer(EAST, OBJ_LAYER)
 	set_vehicle_dir_layer(WEST, OBJ_LAYER)
 
+/datum/component/riding/creature/crusher
+	can_be_driven = FALSE
 
+/datum/component/riding/creature/crusher/handle_specials()
+	. = ..()
+	set_riding_offsets(RIDING_OFFSET_ALL, list(TEXT_NORTH = list(0, 12), TEXT_SOUTH = list(0, 20), TEXT_EAST = list(-5, 10), TEXT_WEST = list(10, 10)))
+	set_vehicle_dir_layer(SOUTH, ABOVE_MOB_LAYER)
+	set_vehicle_dir_layer(NORTH, ABOVE_LYING_MOB_LAYER)
+	set_vehicle_dir_layer(EAST, ABOVE_LYING_MOB_LAYER)
+	set_vehicle_dir_layer(WEST, ABOVE_LYING_MOB_LAYER)
+
+/datum/component/riding/creature/crusher/Initialize(mob/living/riding_mob, force = FALSE, check_loc, lying_buckle, hands_needed, target_hands_needed, silent)
+	. = ..()
+	riding_mob.density = FALSE
+
+/datum/component/riding/creature/crusher/RegisterWithParent()
+	. = ..()
+	RegisterSignal(parent, COMSIG_LIVING_SET_LYING_ANGLE, .proc/check_carrier_fall_over)
+
+/datum/component/riding/creature/crusher/log_riding(mob/living/living_parent, mob/living/rider)
+	if(!istype(living_parent) || !istype(rider))
+		return
+
+	living_parent.log_message("started carrying [rider] on their back", LOG_ATTACK, color="pink")
+	rider.log_message("started being carried on [living_parent]'s back", LOG_ATTACK, color="pink")
+
+/datum/component/riding/creature/crusher/vehicle_mob_unbuckle(datum/source, mob/living/former_rider, force = FALSE)
+	unequip_buckle_inhands(parent)
+	former_rider.density = TRUE
+	return ..()
+
+
+/// If the crusher gets knocked over, force the riding rounys off and see if someone got hurt
+/datum/component/riding/creature/crusher/proc/check_carrier_fall_over(mob/living/carbon/xenomorph/crusher/carrying_crusher)
+	SIGNAL_HANDLER
+
+	for(var/mob/living/rider AS in carrying_crusher.buckled_mobs)
+		carrying_crusher.unbuckle_mob(rider)
+		rider.Knockdown(1 SECONDS)
+		carrying_crusher.visible_message("<span class='danger'>[rider] topples off of [carrying_crusher] as they both fall to the ground!</span>", \
+					"<span class='warning'>You fall to the ground, bringing [rider] with you!</span>", "<span class='hear'>You hear two consecutive thuds.</span>")
+		to_chat(rider, "<span class='danger'>[carrying_crusher] falls to the ground, bringing you with [carrying_crusher.p_them()]!</span>")

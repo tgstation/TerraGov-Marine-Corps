@@ -70,21 +70,16 @@
 		else
 			inhand.rider = riding_target_override
 		inhand.parent = AM
-		message_admins("threw")
 
 		if(user.put_in_hands(inhand))
 			amount_equipped++
-			message_admins("one")
 		else
 			qdel(inhand)
-			message_admins("two")
 			break
 
 	if(amount_equipped >= amount_required)
-		message_admins("586")
 		return TRUE
 	else
-		message_admins("hdif")
 		unequip_buckle_inhands(user, target_movable)
 		return FALSE
 
