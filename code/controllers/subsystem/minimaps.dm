@@ -345,9 +345,9 @@ SUBSYSTEM_DEF(minimaps)
 	else
 		RegisterSignal(M, COMSIG_MOVABLE_Z_CHANGED, .proc/on_owner_z_change)
 		RegisterSignal(M, COMSIG_KB_TOGGLE_MINIMAP, .proc/action_activate)
-		map = SSminimaps.fetch_minimap_object(M.z, minimap_flags)
 	if(!SSminimaps.minimaps_by_z["[M.z]"] || !SSminimaps.minimaps_by_z["[M.z]"].hud_image)
 		return
+	map = SSminimaps.fetch_minimap_object(M.z, minimap_flags)
 
 /datum/action/minimap/remove_action(mob/M)
 	. = ..()
