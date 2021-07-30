@@ -116,7 +116,7 @@
 	alternate_keybind_signal = COMSIG_XENOABILITY_CHOOSE_WEEDS
 	use_state_flags = XACT_USE_LYING
 	///The seleted type of weeds
-	var/obj/effect/alien/weeds/node/weed_type = /obj/effect/alien/weeds/node
+	var/obj/effect/alien/weeds/node/weed_type = /obj/effect/alien/weeds/node/speed
 
 /datum/action/xeno_action/plant_weeds/action_activate()
 	var/turf/T = get_turf(owner)

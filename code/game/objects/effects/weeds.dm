@@ -35,10 +35,6 @@
 		if(!istype(node))
 			CRASH("Weed created with non-weed node. Type: [node.type]")
 		parent_node = node
-		color_variant = initial(node.weed_type.color_variant)
-		name = initial(node.weed_type.name)
-		resting_buff = initial(node.weed_type.resting_buff)
-		desc = initial(node.weed_type.desc)
 	update_icon()
 	update_neighbours()
 
@@ -134,7 +130,7 @@
 	desc = "This looks pointy"
 	color_variant = BARBED_COLOR
 
-/obj/effect/alien/weeds/barbeds/Crossed(atom/movable/AM)
+/obj/effect/alien/weeds/barbed/Crossed(atom/movable/AM)
 	. = ..()
 	if(!ishuman(AM))
 		return
@@ -147,7 +143,7 @@
 	if(victim.lying_angle)
 		return
 
-	victim.apply_damage(3, BRUTE)
+	victim.apply_damage(1.5, BRUTE)
 
 	if(prob(15))
 		to_chat(victim, span_warning("You hurt yourself on the barbed weeds"))
