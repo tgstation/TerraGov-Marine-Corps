@@ -1,0 +1,4 @@
+author: "BraveMole"
+delete-after: True
+changes: 
+  - code_imp: "Replace damage strings by their defines where needed"
