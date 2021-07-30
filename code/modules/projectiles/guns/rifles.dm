@@ -1174,7 +1174,7 @@
 	icon_state = "t21"
 	item_state = "t21"
 	fire_sound = 'sound/weapons/guns/fire/t21.ogg'
-	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
+	dry_fire_sound = 'sound/weapons/guns/fire/t21_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/t21_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/t21_reload.ogg'
 	caliber = CALIBER_10X25_CASELESS //codex
