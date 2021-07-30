@@ -1,4 +1,0 @@
-author: "lbnesquik"
-delete-after: True
-changes: 
-  - bugfix: "fixed a number of missing firelocks, firelocks and other machinery stuck on the wall, shift the req map table towards the wall on the POS."
