@@ -362,6 +362,11 @@
 	message = "moans!"
 	emote_type = EMOTE_AUDIBLE
 
+/datum/emote/living/carbon/human/moan/get_sound(mob/living/user)
+	if(user.gender == FEMALE)
+		return 'sound/voice/human_female_moan.ogg'
+	else 
+		return 'sound/voice/human_male_moan.ogg'
 
 /datum/emote/living/carbon/human/laugh
 	key = "laugh"
