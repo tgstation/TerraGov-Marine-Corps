@@ -806,16 +806,12 @@ ARMOR
 	cost = 12
 
 /datum/supply_packs/armor/modular/attachments/mimir_environment_protection
-	name = "Jaeger Mimir mark 2 module"
+	name = "Jaeger Mimir Mark 2 module set"
 	contains = list(
 		/obj/item/armor_module/attachable/mimir_environment_protection,
+		/obj/item/helmet_module/attachable/mimir_environment_protection,
 	)
-	cost = 12
-
-/datum/supply_packs/armor/modular/attachments/mimir_helmet_protection
-	name = "Jaeger helmet mimir mark 2 module"
-	contains = list(/obj/item/helmet_module/attachable/mimir_environment_protection)
-	cost = 5
+	cost = 15
 
 /datum/supply_packs/armor/modular/attachments/generic_helmet_modules
 	name = "Generic Jaeger helmet modules"

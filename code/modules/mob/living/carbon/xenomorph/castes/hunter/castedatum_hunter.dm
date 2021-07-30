@@ -55,6 +55,11 @@
 		/datum/action/xeno_action/psychic_trace,
 	)
 
+	// *** Vent Crawl Parameters *** //
+	vent_enter_speed = HUNTER_VENT_CRAWL_TIME
+	vent_exit_speed = HUNTER_VENT_CRAWL_TIME
+	silent_vent_crawl = TRUE
+
 /datum/xeno_caste/hunter/young
 	upgrade_name = "Young"
 
