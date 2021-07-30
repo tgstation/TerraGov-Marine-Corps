@@ -13,7 +13,7 @@
 
 	// *** Speed *** //
 	speed = -0.8
-	weeds_speed_mod = -0.1
+	weeds_speed_mod = -0.4
 
 	// *** Plasma *** //
 	plasma_max = 750
@@ -99,7 +99,7 @@
 	upgrade = XENO_UPGRADE_TWO
 
 	// *** Melee Attacks *** //
-	melee_damage = 20
+	melee_damage = 18
 
 	// *** Speed *** //
 	speed = -1.0
@@ -127,7 +127,7 @@
 	upgrade = XENO_UPGRADE_THREE
 
 	// *** Melee Attacks *** //
-	melee_damage = 20
+	melee_damage = 18
 
 	// *** Speed *** //
 	speed = -1.2

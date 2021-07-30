@@ -168,6 +168,11 @@
 	icon_state = "red"
 	outside = FALSE
 
+/area/lv624/ground/southcargo
+	name = "\improper South Cargo Storage"
+	icon_state = "storage"
+	outside = FALSE
+
 /area/lv624/ground/caves //Does not actually exist
 	name ="Caves"
 	icon_state = "cave"

@@ -88,7 +88,7 @@
 	ability_name = "charge"
 	cooldown_timer = 10 SECONDS
 	plasma_cost = 80
-	use_state_flags = XACT_USE_CRESTED
+	use_state_flags = XACT_USE_CRESTED|XACT_USE_FORTIFIED
 	keybind_signal = COMSIG_XENOABILITY_FORWARD_CHARGE
 
 /datum/action/xeno_action/activable/forward_charge/proc/charge_complete()
@@ -134,6 +134,17 @@
 
 	if(!do_after(X, 0.5 SECONDS, FALSE, X, BUSY_ICON_GENERIC, extra_checks = CALLBACK(src, .proc/can_use_ability, A, FALSE, XACT_USE_BUSY)))
 		return fail_activate()
+
+	var/mob/living/carbon/xenomorph/defender/defender = X
+	if(defender.fortify)
+		var/datum/action/xeno_action/fortify/fortify_action = X.actions_by_path[/datum/action/xeno_action/fortify]
+		if(fortify_action.cooldown_id)
+			to_chat(X, span_xenowarning("We cannot yet untuck ourselves from our fortified stance!"))
+			return fail_activate()
+
+		fortify_action.set_fortify(FALSE, TRUE)
+		fortify_action.add_cooldown()
+		to_chat(X, span_xenowarning("We rapidly untuck ourselves, preparing to surge forward."))
 
 	X.visible_message(span_danger("[X] charges towards \the [A]!"), \
 	span_danger("We charge towards \the [A]!") )

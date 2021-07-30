@@ -8,6 +8,8 @@
 	layer = BELOW_OBJ_LAYER
 	req_access = null
 	req_one_access = null
+	///The faction of this loadout vendor
+	var/faction = FACTION_NEUTRAL
 
 /obj/machinery/loadout_vendor/can_interact(mob/user)
 	. = ..()
@@ -16,14 +18,14 @@
 
 	if(!ishuman(user))
 		return FALSE
-	
+
 	var/mob/living/carbon/human/H = user
 	if(!allowed(H))
 		return FALSE
 
 	if(!isidcard(H.get_idcard())) //not wearing an ID
 		return FALSE
-	
+
 	var/obj/item/card/id/I = H.get_idcard()
 	if(I.registered_name != H.real_name)
 		return FALSE
@@ -34,3 +36,9 @@
 	. = ..()
 	user.client.prefs.loadout_manager.loadout_vendor = src
 	user.client.prefs.loadout_manager.ui_interact(user)
+
+/obj/machinery/loadout_vendor/loyalist
+	faction = FACTION_TERRAGOV
+
+/obj/machinery/loadout_vendor/rebel
+	faction = FACTION_TERRAGOV_REBEL
