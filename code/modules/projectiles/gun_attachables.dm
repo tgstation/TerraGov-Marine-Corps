@@ -841,6 +841,13 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	icon_state = "t37"
 	attach_icon = "t37_a"
 
+/obj/item/attachable/scope/mini/flaregun
+	name = "long range ironsights"
+	desc = "An unremovable set of long range ironsights for a flaregun."
+	flags_attach_features = ATTACH_ACTIVATION
+	attach_icon = "none"
+	aim_speed_mod = 0
+	wield_delay_mod = 0
 
 //////////// Stock attachments ////////////////////////////
 

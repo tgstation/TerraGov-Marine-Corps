@@ -2084,7 +2084,7 @@ datum/ammo/bullet/revolver/tp44
 	name = "flare"
 	ping = null //no bounce off.
 	damage_type = BURN
-	flags_ammo_behavior = AMMO_INCENDIARY
+	flags_ammo_behavior = AMMO_EXPLOSIVE|AMMO_INCENDIARY
 	damage = 15
 	accuracy = 15
 	max_range = 15
