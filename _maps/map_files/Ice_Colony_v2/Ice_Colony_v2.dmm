@@ -31306,11 +31306,6 @@
 	dir = 4
 	},
 /area/ice_colony/underground/hallway/north_west)
-"dhJ" = (
-/obj/structure/cable,
-/obj/effect/landmark/zone_to_control,
-/turf/open/floor/podhatch/floor,
-/area/ice_colony/surface/engineering/generator)
 "dlO" = (
 /obj/machinery/miner/damaged,
 /turf/open/floor/plating/ground/snow/layer0,
@@ -31944,11 +31939,6 @@
 	dir = 1
 	},
 /area/ice_colony/surface/engineering/generator)
-"iSR" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/effect/landmark/zone_to_control,
-/turf/open/floor/tile/dark2,
-/area/ice_colony/underground/command/center)
 "iTM" = (
 /obj/effect/turf_overlay/icerock{
 	dir = 8
@@ -48865,7 +48855,7 @@ bAb
 bAB
 bAX
 bAB
-iSR
+bAB
 bAB
 bCQ
 bDs
@@ -72092,7 +72082,7 @@ aeP
 aej
 aej
 afU
-dhJ
+aej
 aeP
 aej
 adC

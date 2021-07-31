@@ -1686,7 +1686,7 @@
 /area/icy_caves/caves/west)
 "jE" = (
 /obj/structure/table/reinforced,
-/obj/machinery/computer/shuttle/shuttle_control/dropship,
+/obj/effect/landmark/dropship_console_spawn_lz1,
 /turf/open/floor/plating/ground/snow,
 /area/lv624/lazarus/console)
 "jH" = (
@@ -2670,6 +2670,10 @@
 /obj/item/ammo_casing,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/refinery)
+"pR" = (
+/obj/effect/landmark/zone_to_control,
+/turf/open/floor/tile/dark,
+/area/icy_caves/outpost/medbay)
 "pU" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 6
@@ -4799,9 +4803,9 @@
 /area/icy_caves/outpost/medbay)
 "El" = (
 /obj/structure/table/reinforced,
-/obj/machinery/computer/shuttle/shuttle_control/dropship/two,
+/obj/effect/landmark/dropship_console_spawn_lz2,
 /turf/open/floor/tile/dark,
-/area/icy_caves/outpost/LZ2)
+/area/lv624/lazarus/console)
 "En" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
 	dir = 2
@@ -16743,7 +16747,7 @@ ss
 sg
 uR
 Kp
-Kp
+pR
 rW
 Kp
 Ai

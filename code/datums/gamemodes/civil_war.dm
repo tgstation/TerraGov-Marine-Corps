@@ -4,6 +4,7 @@
 	flags_round_type = MODE_LZ_SHUTTERS|MODE_TWO_HUMAN_FACTIONS|MODE_HUMAN_ONLY|MODE_WIN_POINTS
 	flags_landmarks = MODE_LANDMARK_SPAWN_SPECIFIC_SHUTTLE_CONSOLE
 	respawn_time = 10 MINUTES
+	shutters_drop_time = 15 MINUTES
 
 	valid_job_types = list(
 		/datum/job/terragov/command/captain = 1,
@@ -41,7 +42,7 @@
 		/datum/job/terragov/squad/standard/rebel = -1
 	)
 
-	win_points_needed = 5000
+	win_points_needed = 2000
 
 /datum/game_mode/civil_war/announce()
 	to_chat(world, "<b>The current game mode is - Civil War!</b>")
