@@ -617,3 +617,29 @@
       You can use machetes holsters as officers, and soldiers can use sword holsters
   - qol: The AI can toggle the fire alarms with ctrl click only now.
   - bugfix: fixed some typos regarding the T 29 crate
+2021-07-31:
+  BraveMole:
+  - code_imp: Replace damage strings by their defines where needed
+  QualityVan:
+  - bugfix: Trying to pull someone buckled to a rollerbed will now make you start
+      pulling the bed.
+  TiviPlus:
+  - refactor: Movable Lighting will perform better now
+  lbnesquik:
+  - expansion: Add some AI holopads in some hot spots on theseus
+  - expansion: Change some cameras spot so they are not floating or fixed on windows
+      on theseus
+  - expansion: Add some fire alarms to areas missing them on theseus
+  - expansion: Add two cluster warheads, bringing the total to three on theseus
+  - expansion: Move the cryo cells to the side, which looks better in my opinion on
+      theseus
+  - expansion: Few tables added to medical lobby on theseus
+  - expansion: Fire shutters added to a number of place lacking them on theseus
+  - expansion: Delete a big handful of duplicate cameras on theseus
+  - expansion: Change some power monitoring consoles to the actually 'useful' type
+      on theseus
+  - expansion: Add a console for the alamo in the hangar, so people do not NEED to
+      go the CIC on theseus
+  - expansion: Fix a missing cable for disposal APC on theseus
+  - expansion: Add a biomass beaker on theseus
+  - qol: Allow everyone to pray!

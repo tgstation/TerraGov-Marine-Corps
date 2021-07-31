@@ -1,4 +1,0 @@
-author: "QualityVan"
-delete-after: True
-changes: 
-  - bugfix: "Trying to pull someone buckled to a rollerbed will now make you start pulling the bed."
