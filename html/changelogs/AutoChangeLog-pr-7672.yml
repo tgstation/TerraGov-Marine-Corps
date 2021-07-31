@@ -1,0 +1,7 @@
+author: "vilereaver41"
+delete-after: True
+changes: 
+  - balance: "no more crash locations for canterbury that block the sides in a way that makes it impossible for Xenos to access."
+  - balance: "made fogs for silos in crash that could be destroyed via glitching wider so now it will be impossible as marines should not be able to destroy them."
+  - expansion: "3 new canterbury crash locations"
+  - balance: "removes some rock walls to make new & old crash locations a bit more accessible."

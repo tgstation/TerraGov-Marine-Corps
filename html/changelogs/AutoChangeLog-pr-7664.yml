@@ -1,0 +1,4 @@
+author: "QualityVan"
+delete-after: True
+changes: 
+  - bugfix: "Medevac beacons reliably relay linked bed coordinates instead of sometimes saying they're at 0/0."

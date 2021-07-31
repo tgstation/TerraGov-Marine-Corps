@@ -124,7 +124,7 @@
 	..()
 	return QDEL_HINT_IWILLGC
 
-/turf/Enter(atom/movable/mover, atom/oldloc)
+/turf/Enter(atom/movable/mover, direction)
 	// Do not call ..()
 	// Byond's default turf/Enter() doesn't have the behaviour we want with Bump()
 	// By default byond will call Bump() on the first dense object in contents
@@ -168,7 +168,7 @@
 	return TRUE
 
 
-/turf/Exit(atom/movable/mover, atom/newloc)
+/turf/Exit(atom/movable/mover, direction)
 	. = ..()
 	if(!. || QDELETED(mover))
 		return FALSE
@@ -176,7 +176,7 @@
 		if(i == mover)
 			continue
 		var/atom/movable/thing = i
-		if(!thing.Uncross(mover, newloc))
+		if(!thing.Uncross(mover, direction))
 			if(thing.flags_atom & ON_BORDER)
 				var/signalreturn = SEND_SIGNAL(mover, COMSIG_MOVABLE_PREBUMP_EXIT_MOVABLE, thing)
 				if(signalreturn & COMPONENT_MOVABLE_PREBUMP_STOPPED)
@@ -189,13 +189,9 @@
 			return FALSE		//We were deleted.
 
 
-/turf/Entered(atom/movable/A)
-
-	if(!istype(A))
-		return
-
-	if(ismob(A))
-		var/mob/M = A
+/turf/Entered(atom/movable/arrived, atom/old_loc, list/atom/old_locs)
+	if(ismob(arrived))
+		var/mob/M = arrived
 		if(!M.lastarea)
 			M.lastarea = get_area(M.loc)
 
