@@ -93,6 +93,7 @@
 	else
 		X.neuro_ammo++
 		to_chat(X, span_notice("We prepare a neurotoxic gas globule."))
+	X.updated_delay -= 50
 	X.update_boiler_glow()
 	update_button_icon()
 
@@ -116,7 +117,9 @@
 
 /datum/action/xeno_action/activable/bombard/get_cooldown()
 	var/mob/living/carbon/xenomorph/boiler/X = owner
-	return X.xeno_caste.bomb_delay
+	var/fire_delayyyyyyy = 0
+	fire_delayyyyyyy = (X.updated_delay)
+	return fire_delayyyyyyy
 
 /datum/action/xeno_action/activable/bombard/on_cooldown_finish()
 	to_chat(owner, span_notice("We feel your toxin glands swell. We are able to bombard an area again."))
@@ -233,6 +236,7 @@
 		GLOB.round_statistics.boiler_neuro_smokes++
 		SSblackbox.record_feedback("tally", "round_statistics", 1, "boiler_neuro_smokes")
 		X.neuro_ammo--
+	X.updated_delay += 50
 
 	X.update_boiler_glow()
 	update_button_icon()
