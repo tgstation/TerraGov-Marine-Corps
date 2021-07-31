@@ -222,7 +222,6 @@
 	if(oldarea != newarea)
 		newarea.Entered(src, oldarea)
 
-	Moved(oldloc, direction, FALSE, old_locs)
 
 ////////////////////////////////////////
 
