@@ -329,7 +329,7 @@
 		return TRUE
 
 
-/obj/machinery/door/firedoor/border_only/CheckExit(atom/movable/mover, turf/target)
+/obj/machinery/door/firedoor/border_only/CheckExit(atom/movable/mover, direction)
 	. = ..()
 	if(istype(mover) && CHECK_BITFIELD(mover.flags_pass, PASSGLASS))
 		return TRUE
