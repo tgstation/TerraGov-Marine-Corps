@@ -199,11 +199,13 @@
 				X.do_attack_animation(src, ATTACK_EFFECT_CLAW)
 				to_chat(X, span_warning("We disable the creatures hivemind sight apparatus."))
 				return FALSE
-
-		if(length(light_sources) || locate(/obj/effect/overlay/light_visible) in vis_contents)
+		var/lights_found = FALSE
+		for(var/atom/light AS in GLOB.nightfall_toggleable_lights)
+			if(light.loc == src && light.light_on && light.turn_light(null, FALSE, 0, TRUE))
+				lights_found = TRUE
+		if(lights_found)
 			playsound(loc, "alien_claw_metal", 25, 1)
 			X.do_attack_animation(src, ATTACK_EFFECT_CLAW)
-			disable_lights(sparks = TRUE)
 			to_chat(X, span_warning("We disable whatever annoying lights the dead creature possesses."))
 		else
 			to_chat(X, span_warning("[src] is dead, why would we want to touch it?"))
