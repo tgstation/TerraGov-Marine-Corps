@@ -38,7 +38,7 @@
 	. = ..()
 	if(isitem(AM))
 		var/obj/item/igniter = AM
-		if(igniter.damtype != "fire")
+		if(igniter.damtype != BURN)
 			return
 		addtimer(CALLBACK(src, .proc/crossed_ignite, igniter), 1) //Just to make sure it wasn't thrown over
 	if(isliving(AM))
