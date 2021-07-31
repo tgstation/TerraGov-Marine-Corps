@@ -19,7 +19,7 @@
 	maxHealth = 1000
 	plasma_stored = 5
 	tier = XENO_TIER_ZERO
-	upgrade = XENO_UPGRADE_ZERO
+	upgrade = XENO_UPGRADE_BASETYPE
 
 	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
 	see_invisible = SEE_INVISIBLE_LIVING
@@ -29,8 +29,8 @@
 	move_on_shuttle = TRUE
 
 	hud_type = /datum/hud/hivemind
-	hud_possible = list(PLASMA_HUD, PHEROMONE_HUD, QUEEN_OVERWATCH_HUD)
-
+	hud_possible = list(PLASMA_HUD, HEALTH_HUD_XENO, PHEROMONE_HUD, QUEEN_OVERWATCH_HUD)
+	///The core of our hivemind
 	var/obj/effect/alien/hivemindcore/core
 
 /mob/living/carbon/xenomorph/hivemind/Initialize(mapload)
@@ -39,6 +39,7 @@
 	core.parent = src
 	RegisterSignal(src, COMSIG_LIVING_WEEDS_ADJACENT_REMOVED, .proc/check_weeds_and_move)
 	RegisterSignal(src, COMSIG_XENOMORPH_CORE_RETURN, .proc/return_to_core)
+	RegisterSignal(src, COMSIG_XENOMORPH_HIVEMIND_CHANGE_FORM, .proc/change_form)
 
 /mob/living/carbon/xenomorph/hivemind/Destroy()
 	if(!QDELETED(core))
@@ -46,6 +47,29 @@
 	else
 		core = null
 	return ..()
+
+/mob/living/carbon/xenomorph/hivemind/proc/change_form()
+	SIGNAL_HANDLER
+	if(status_flags & INCORPOREAL)
+		invisibility = 0
+		status_flags = NONE
+		upgrade = XENO_UPGRADE_ZERO
+		resistance_flags = NONE
+		flags_pass = NONE
+		density = TRUE
+		throwpass = FALSE
+		set_datum()
+		update_icon()
+		return
+	invisibility = initial(invisibility)
+	status_flags =initial(status_flags)
+	upgrade = initial(upgrade)
+	resistance_flags = initial(resistance_flags)
+	flags_pass = initial(flags_pass)
+	density = initial(flags_pass)
+	throwpass = initial(throwpass)
+	set_datum()
+	update_icon()
 
 /mob/living/carbon/xenomorph/hivemind/flamer_fire_act()
 	forceMove(get_turf(core))
@@ -73,6 +97,8 @@
 	forceMove(get_turf(core))
 
 /mob/living/carbon/xenomorph/hivemind/Move(NewLoc, Dir = 0)
+	if(!(status_flags & INCORPOREAL))
+		return ..()
 	if(!check_weeds(NewLoc))
 		return FALSE
 
@@ -85,12 +111,17 @@
 	forceMove(NewLoc)
 
 /mob/living/carbon/xenomorph/hivemind/receive_hivemind_message(mob/living/carbon/xenomorph/speaker, message)
+	if(!(status_flags & INCORPOREAL))
+		return ..()
 	var/track =  "<a href='?src=[REF(src)];hivemind_jump=[REF(speaker)]'>(F)</a>"
 	show_message("[track] [speaker.hivemind_start()] [span_message("hisses, '[message]'")][speaker.hivemind_end()]", 2)
 
 /mob/living/carbon/xenomorph/hivemind/Topic(href, href_list)
 	. = ..()
 	if(.)
+		return
+	if(!(status_flags & INCORPOREAL))
+		to_chat(src, span_warning("We cannot jump in this form."))
 		return
 	if(href_list["hivemind_jump"])
 		var/mob/living/carbon/xenomorph/xeno = locate(href_list["hivemind_jump"])
@@ -102,45 +133,56 @@
 		forceMove(get_turf(xeno))
 
 /// Hivemind just doesn't have any icons to update, disabled for now
-/mob/living/carbon/xenomorph/hivemind/update_icons()
-	return FALSE
+/mob/living/carbon/xenomorph/hivemind/update_icon()
+	if(status_flags & INCORPOREAL)
+		icon_state = "hivemind_marker"
+		icon = 'icons/mob/cameramob.dmi'
+		return
+	icon = 'icons/Xeno/48x48_Xenos.dmi'
+	icon_state = "Hivemind"
 
-/mob/living/carbon/xenomorph/hivemind/set_lying_angle()
-	CRASH("Something caused a hivemind to change its lying angle. Add checks to prevent that.")
+/mob/living/carbon/xenomorph/hivemind/update_icons()
+	return
+
+/mob/living/carbon/xenomorph/hivemind/med_hud_set_health()
+	var/image/holder = hud_list[HEALTH_HUD_XENO]
+	if(!holder)
+		return
+
+	if(status_flags & INCORPOREAL)
+		holder.icon_state = ""
+
+	var/amount = round(health * 100 / maxHealth, 10)
+	if(!amount)
+		amount = 1 //don't want the 'zero health' icon when we still have 4% of our health
+	holder.icon_state = "xenohealth[amount]"
 
 /mob/living/carbon/xenomorph/hivemind/DblClickOn(atom/A, params)
+	if(!(status_flags & INCORPOREAL))
+		return
 	if(!istype(A, /obj/effect/alien/weeds))
 		return
 
 	forceMove(get_turf(A))
 
 /mob/living/carbon/xenomorph/hivemind/CtrlClick(mob/user)
+	if(!(status_flags & INCORPOREAL))
+		return ..()
 	return FALSE
 
 /mob/living/carbon/xenomorph/hivemind/CtrlShiftClickOn(atom/A)
-	return FALSE
-
-/mob/living/carbon/xenomorph/hivemind/CtrlClickOn(atom/A)
-	if(istype(A, /obj/structure/mineral_door/resin))
-		var/obj/structure/mineral_door/resin/door = A
-		door.TryToSwitchState(src)
-	return FALSE
-
-/mob/living/carbon/xenomorph/hivemind/AltClickOn(atom/A)
-	if(istype(A, /obj/structure/mineral_door/resin))
-		var/obj/structure/mineral_door/resin/door = A
-		door.TryToSwitchState(src)
+	if(!(status_flags & INCORPOREAL))
+		return ..()
 	return FALSE
 
 /mob/living/carbon/xenomorph/hivemind/a_intent_change()
 	return //Unable to change intent, forced help intent
 
-/// Hiveminds specifically have no health hud element
-/mob/living/carbon/xenomorph/hivemind/med_hud_set_health()
-	return
-
 /// Hiveminds specifically have no status hud element
 /mob/living/carbon/xenomorph/hivemind/med_hud_set_status()
+	return
+
+/mob/living/carbon/xenomorph/hivemind/update_progression()
 	return
 
 /obj/flamer_fire/CanAllowThrough(atom/movable/mover, turf/target)

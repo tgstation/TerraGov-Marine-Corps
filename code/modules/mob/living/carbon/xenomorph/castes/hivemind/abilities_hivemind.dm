@@ -5,3 +5,10 @@
 
 /datum/action/xeno_action/return_to_core/action_activate()
 	SEND_SIGNAL(owner, COMSIG_XENOMORPH_CORE_RETURN)
+
+/datum/action/xeno_action/change_form
+	name = "Change form"
+	mechanics_text = "Change from your incorporal form to your physical on and vice-versa."
+
+/datum/action/xeno_action/change_form/action_activate()
+	SEND_SIGNAL(owner, COMSIG_XENOMORPH_HIVEMIND_CHANGE_FORM)
