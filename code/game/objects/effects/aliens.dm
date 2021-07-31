@@ -65,7 +65,7 @@
 	return ..()
 
 /// Signal handler to check if an human is entering the acid spray turf
-/obj/effect/xenomorph/spray/proc/atom_enter_turf(datum/source, atom/movable/moved_in)
+/obj/effect/xenomorph/spray/proc/atom_enter_turf(datum/source, atom/movable/moved_in, direction)
 	SIGNAL_HANDLER
 	if(!ishuman(moved_in))
 		return
