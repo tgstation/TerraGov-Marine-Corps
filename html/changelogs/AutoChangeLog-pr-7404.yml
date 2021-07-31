@@ -1,0 +1,15 @@
+author: "hyper2snyper"
+delete-after: True
+changes: 
+  - rscadd: "Sentry Rework"
+  - balance: "Default Sentries now have a range of 9"
+  - balance: "Default Sentries magazines only hold a max of 25 rounds."
+  - balance: "Default Sentries firerate is now 1 seconds."
+  - balance: "Greatly Increases Default Sentries Damage."
+  - balance: "Radial mode no longer decreases range, and is now dependent on the sentries battery."
+  - balance: "PD Sentries magazines now only hold a max of 100 rounds."
+  - balance: "PD Sentries firerate greatly increased."
+  - balance: "Smoke now blocks Sentry Line of Sight"
+  - bugfix: "Fixes Sentries Manual Mode"
+  - code_imp: "Rewrites Sentries"
+  - refactor: "Sentries now fall under the subtype gun/mounted"
