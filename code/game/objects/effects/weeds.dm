@@ -146,7 +146,7 @@
 	victim.apply_damage(1.5, BRUTE)
 
 	if(prob(15))
-		to_chat(victim, span_warning("You hurt yourself on the barbed weeds"))
+		to_chat(victim, span_warning("You are cut from the barbed weeds."))
 		victim.emote("pain")
 
 // =================
