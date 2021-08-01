@@ -5,7 +5,7 @@ GLOBAL_LIST_INIT(name2reagent, build_name2reagent())
 	for (var/t in subtypesof(/datum/reagent))
 		var/datum/reagent/R = t
 		if (length(initial(R.name)))
-			.[ckey(initial(R.name))] = t
+			LAZYADD(.[ckey(initial(R.name))], t)
 
 /// A single reagent
 /datum/reagent

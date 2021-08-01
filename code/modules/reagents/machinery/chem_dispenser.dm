@@ -111,10 +111,10 @@
 	// I dont care about the type of tool, if it triggers multitool act its good enough.
 	hackedcheck = !hackedcheck
 	if(hackedcheck)
-		to_chat(user, emagged_message[0])
+		to_chat(user, emagged_message[1])
 		dispensable_reagents += emagged_reagents
 	else
-		to_chat(user, emagged_message[1])
+		to_chat(user, emagged_message[2])
 		dispensable_reagents -= emagged_reagents
 
 
@@ -178,10 +178,14 @@
 		if("dispense")
 			if(!is_operational() || QDELETED(cell))
 				return
+			if(!beaker)
+				return
 			var/reagent_name = params["reagent"]
 			if(!recording_recipe)
-				var/reagent = GLOB.name2reagent[reagent_name]
-				if(beaker && dispensable_reagents.Find(reagent))
+				var/list/reagents = GLOB.name2reagent[reagent_name]
+				for(var/reagent in reagents)
+					if(!dispensable_reagents.Find(reagent))
+						continue
 					var/datum/reagents/R = beaker.reagents
 					var/free = R.maximum_volume - R.total_volume
 					var/actual = min(amount, (cell.charge * powerefficiency)*10, free)
@@ -192,6 +196,7 @@
 					R.add_reagent(reagent, actual)
 
 					work_animation()
+					break
 			else
 				recording_recipe[reagent_name] += amount
 			. = TRUE
