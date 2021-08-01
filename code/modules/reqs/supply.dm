@@ -108,7 +108,11 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 						continue
 				if(ishuman(a))
 					var/mob/living/carbon/human/human_to_sell = a
-					if(human_to_sell.stat == DEAD && can_sell_human_body(human_to_sell, faction))
+					if(human_to_sell.stat != DEAD)
+						return FALSE
+					if(istype(human_to_sell.loc, /obj/structure/closet/coffin))
+						continue
+					if(can_sell_human_body(human_to_sell, faction))
 						continue
 				if(is_type_in_typecache(a, GLOB.blacklisted_cargo_types))
 					return FALSE
@@ -195,7 +199,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 
 /datum/export_report/New(_points, _export_name, _faction)
 	points = _points
-	export_name = _export_name 
+	export_name = _export_name
 	faction = _faction
 
 /obj/docking_port/mobile/supply/proc/sell()
@@ -466,7 +470,8 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 		if("send")
 			if(supply_shuttle.mode == SHUTTLE_IDLE && is_mainship_level(supply_shuttle.z))
 				if (!supply_shuttle.check_blacklist())
-					to_chat(usr, "For safety reasons, the Automated Storage and Retrieval System cannot store live, friendlies, classified nuclear weaponry or homing beacons.")
+					to_chat(usr, "For safety reasons, the Automated Storage and Retrieval System cannot store live animals, classified nuclear weaponry, or homing beacons. " \
+					+ "Additionally, any marines sent for funeral proceedings must be stored in a coffin.")
 					playsound(supply_shuttle.return_center_turf(), 'sound/machines/buzz-two.ogg', 50, 0)
 				else
 					playsound(supply_shuttle.return_center_turf(), 'sound/machines/elevator_move.ogg', 50, 0)
