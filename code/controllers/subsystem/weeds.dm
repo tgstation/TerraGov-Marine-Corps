@@ -26,7 +26,7 @@ SUBSYSTEM_DEF(weeds)
 		var/obj/effect/alien/weeds/node/node = currentrun[T]
 		currentrun -= T
 
-		if(QDELETED(node) || QDELETED(T) || locate(/obj/effect/alien/weeds/node) in T || !T.is_weedable())
+		if(QDELETED(node) || QDELETED(T) || !T.is_weedable() || locate(/obj/effect/alien/weeds/node) in T)
 			pending -= T
 			spawn_attempts_by_node -= T
 			continue
