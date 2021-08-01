@@ -432,6 +432,7 @@
 			var/mob/living/carbon/xenomorph/xeno_victim = target
 			if(X.issamexenohive(xeno_victim))
 				continue
+
 		var/silence_multiplier = 1
 		if(mark_target == target) //Double debuff stacks for the marked target
 			silence_multiplier = HUNTER_SILENCE_MULTIPLIER
@@ -439,8 +440,8 @@
 		target.playsound_local(target, 'sound/effects/ghost.ogg', 25, 0, 1)
 		target.adjust_stagger(HUNTER_SILENCE_STAGGER_STACKS * silence_multiplier)
 		target.adjust_blurriness(HUNTER_SILENCE_SENSORY_STACKS * silence_multiplier)
-		target.adjust_ear_damage(deaf = HUNTER_SILENCE_SENSORY_STACKS * silence_multiplier)
-		target.apply_status_effect(/datum/status_effect/mute, HUNTER_SILENCE_DURATION * silence_multiplier)
+		target.adjust_ear_damage(HUNTER_SILENCE_SENSORY_STACKS * silence_multiplier, HUNTER_SILENCE_SENSORY_STACKS * silence_multiplier) //Ear damage + temp deafness
+		target.apply_status_effect(/datum/status_effect/mute, HUNTER_SILENCE_MUTE_DURATION * silence_multiplier)
 		victim_count++
 
 	if(!victim_count)

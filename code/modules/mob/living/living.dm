@@ -500,6 +500,8 @@
 	XI.remove_from_hud(src)
 	var/datum/atom_hud/xeno_reagents/RE = GLOB.huds[DATA_HUD_XENO_REAGENTS]
 	RE.remove_from_hud(src)
+	var/datum/atom_hud/xeno_debuff/xeno_debuff_visuals = GLOB.huds[DATA_HUD_XENO_DEBUFF]
+	xeno_debuff_visuals.remove_from_hud(src)
 
 	smokecloaked = TRUE
 
@@ -516,6 +518,8 @@
 	XI.add_to_hud(src)
 	var/datum/atom_hud/xeno_reagents/RE = GLOB.huds[DATA_HUD_XENO_REAGENTS]
 	RE.add_to_hud(src)
+	var/datum/atom_hud/xeno_debuff/xeno_debuff_visuals = GLOB.huds[DATA_HUD_XENO_DEBUFF]
+	xeno_debuff_visuals.add_to_hud(src)
 
 	smokecloaked = FALSE
 

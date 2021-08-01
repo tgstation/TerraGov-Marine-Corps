@@ -183,12 +183,14 @@
 	var/image/infection_hud = hud_list[XENO_EMBRYO_HUD] //State of the xeno embryo.
 	var/image/simple_status_hud = hud_list[STATUS_HUD_SIMPLE] //Status for the naked eye.
 	var/image/xeno_reagent = hud_list[XENO_REAGENT_HUD] // Displays active xeno reagents
+	var/image/xeno_debuff = hud_list[XENO_DEBUFF_HUD] //Displays active xeno specific debuffs
 	var/static/image/neurotox_image = image('icons/mob/hud.dmi', icon_state = "neurotoxin")
 	var/static/image/hemodile_image = image('icons/mob/hud.dmi', icon_state = "hemodile")
 	var/static/image/transvitox_image = image('icons/mob/hud.dmi', icon_state = "transvitox")
 	var/static/image/neurotox_high_image = image('icons/mob/hud.dmi', icon_state = "neurotoxin_high")
 	var/static/image/hemodile_high_image = image('icons/mob/hud.dmi', icon_state = "hemodile_high")
 	var/static/image/transvitox_high_image = image('icons/mob/hud.dmi', icon_state = "transvitox_high")
+	var/static/image/hunter_silence_image = image('icons/mob/hud.dmi', icon_state = "silence_debuff")
 
 	xeno_reagent.overlays.Cut()
 	xeno_reagent.icon_state = ""
@@ -213,6 +215,15 @@
 			xeno_reagent.overlays += transvitox_image
 
 	hud_list[XENO_REAGENT_HUD] = xeno_reagent
+
+	//Xeno debuff section start
+	xeno_debuff.overlays.Cut()
+	xeno_debuff.icon_state = ""
+	if(stat != DEAD)
+		if(IsMute() && isdeaf(src)) //Apply Silence debuff image
+			xeno_debuff.overlays += hunter_silence_image
+
+	hud_list[XENO_DEBUFF_HUD] = xeno_debuff
 
 	if(species.species_flags & IS_SYNTHETIC)
 		simple_status_hud.icon_state = ""
@@ -337,6 +348,10 @@
 ///hud component for revealing tactical elements to xenos
 /datum/atom_hud/xeno_tactical
 	hud_icons = list(XENO_TACTICAL_HUD)
+
+///hud component for revealing xeno specific status effect debuffs to xenos
+/datum/atom_hud/xeno_debuff
+	hud_icons = list(XENO_DEBUFF_HUD)
 
 //Xeno status hud, for xenos
 /datum/atom_hud/xeno

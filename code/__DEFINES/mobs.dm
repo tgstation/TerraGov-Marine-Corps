@@ -526,8 +526,8 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define HUNTER_MARK_WINDUP 1 SECONDS //Windup of the Hunter's Mark
 #define HUNTER_PSYCHIC_TRACE_COOLDOWN 5 SECONDS //Cooldown of the Hunter's Psychic Trace, and duration of its arrow
 #define HUNTER_SILENCE_STAGGER_STACKS 1 //Silence imposes this many stagger stacks
-#define HUNTER_SILENCE_SENSORY_STACKS 6 //Silence imposes this many eyeblur, mute and deafen stacks.
-#define HUNTER_SILENCE_DURATION 10 SECONDS //Removes mute from the Hunter's Silence after this delay.
+#define HUNTER_SILENCE_SENSORY_STACKS 7 //Silence imposes this many eyeblur and deafen stacks.
+#define HUNTER_SILENCE_MUTE_DURATION 10 SECONDS //Silence imposes this many seconds of the mute status effect.
 #define HUNTER_SILENCE_RANGE 5 //Range in tiles of the Hunter's Silence.
 #define HUNTER_SILENCE_AOE 2 //AoE size of Silence in tiles
 #define HUNTER_SILENCE_WINDUP 0.5 SECONDS //Windup of the Hunter's Silence
