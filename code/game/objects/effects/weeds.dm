@@ -143,7 +143,7 @@
 	if(victim.lying_angle)
 		return
 
-	victim.apply_damage(1.5, BRUTE)
+	victim.apply_damage(2.5, BRUTE)
 
 	if(prob(15))
 		to_chat(victim, span_warning("You hurt yourself on the barbed weeds"))
@@ -209,7 +209,7 @@
 
 /obj/effect/alien/weeds/node/Destroy()
 	. = ..()
-	SSweeds_decay.decay_weeds(node_turfs)
+	SSweeds_decay.decay_weeds(src)
 
 /obj/effect/alien/weeds/node/attack_alien(mob/living/carbon/xenomorph/X, damage_amount, damage_type, damage_flag, effects, armor_penetration, isrightclick)
 	. = ..()

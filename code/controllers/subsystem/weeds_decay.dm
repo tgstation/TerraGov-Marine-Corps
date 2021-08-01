@@ -37,13 +37,13 @@ SUBSYSTEM_DEF(weeds_decay)
 			addtimer(CALLBACK(GLOBAL_PROC, .proc/qdel, W), rand(1, 3 SECONDS))
 			decaying -= T
 
-/datum/controller/subsystem/weeds_decay/proc/decay_weeds(list/obj/effect/alien/weeds/node_turfs)
-	for(var/X in node_turfs)
+/datum/controller/subsystem/weeds_decay/proc/decay_weeds(obj/effect/alien/weeds/node/node)
+	for(var/X in node.node_turfs)
 		var/turf/T = X
 
 		// Skip if there is not a weed there
 		var/obj/effect/alien/weeds/W = locate() in T
-		if(!W || istype(W, /obj/effect/alien/weeds/node))
+		if(!W || W.parent_node != node)
 			continue
 
 		W.parent_node = null // mark this null otherwise the weed regrows
