@@ -6,7 +6,6 @@
 	density = TRUE
 	layer = ABOVE_MOB_LAYER
 	use_power = FALSE
-	max_integrity = 100
 	soft_armor = list("melee" = 0, "bullet" = 50, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 100, "rad" = 0, "fire" = 0, "acid" = 0)
 	hud_possible = list(MACHINE_HEALTH_HUD, SENTRY_AMMO_HUD)
 
@@ -20,7 +19,7 @@
 		icon_state = default_icon_state
 	hud_set_gun_ammo()
 
-/obj/machinery/deployable/mounted/Initialize(mapload, _internal_item)
+/obj/machinery/deployable/mounted/Initialize(mapload, _internal_item, deployer)
 	. = ..()
 	if(!istype(internal_item, /obj/item/weapon/gun))
 		CRASH("[internal_item] was attempted to be deployed within the type /obj/machinery/deployable/mounted without being a gun]")
@@ -29,6 +28,44 @@
 
 	if(istype(new_gun.current_mag, /obj/item/ammo_magazine/internal) || istype(new_gun, /obj/item/weapon/gun/launcher))
 		CRASH("[new_gun] has been deployed, however it is incompatible because of either an internal magazine, or it is a launcher.")
+
+	new_gun.set_gun_user(null)
+
+/obj/machinery/deployable/mounted/attackby(obj/item/I, mob/user, params) //This handles reloading the gun, if its in acid cant touch it.
+	. = ..()
+
+	if(!ishuman(user))
+		return
+
+	for(var/obj/effect/xenomorph/acid/A in loc)
+		if(A.acid_t == src)
+			to_chat(user, "You can't get near that, it's melting!")
+			return
+
+	reload(user, I)
+
+/obj/machinery/deployable/mounted/proc/reload(mob/user, ammo_magazine)
+	if(!istype(ammo_magazine, /obj/item/ammo_magazine))
+		return
+
+	var/obj/item/ammo_magazine/ammo = ammo_magazine
+	var/obj/item/weapon/gun/gun = internal_item
+	if(!istype(gun, ammo.gun_type))
+		return
+	if(ammo.current_rounds <= 0)
+		to_chat(user, span_warning("[ammo] is empty!"))
+		return
+
+	if(gun.current_mag)
+		gun.unload(user,0,1)
+		update_icon_state()
+
+	var/tac_reload_time = max(0.5 SECONDS, 1.5 SECONDS - user.skills.getRating("firearms") * 5)
+	if(!do_after(user, tac_reload_time, TRUE, src, BUSY_ICON_FRIENDLY))
+		return
+
+	gun.reload(user, ammo_magazine)
+	update_icon_state()
 
 
 ///This is called when a user tries to operate the gun
@@ -56,45 +93,6 @@
 		span_notice("You man the gun!"))
 
 	return ..()
-
-
-/obj/machinery/deployable/mounted/attackby(obj/item/I, mob/user, params) //This handles reloading the gun, if its in acid cant touch it.
-	. = ..()
-
-	if(!ishuman(user))
-		return
-
-	for(var/obj/effect/xenomorph/acid/A in loc)
-		if(A.acid_t == src)
-			to_chat(user, "You can't get near that, it's melting!")
-			return
-
-	reload(user, I)
-
-
-///Reloads gun
-/obj/machinery/deployable/mounted/proc/reload(mob/user, ammo_magazine)
-	if(!istype(ammo_magazine, /obj/item/ammo_magazine))
-		return
-
-	var/obj/item/ammo_magazine/ammo = ammo_magazine
-	var/obj/item/weapon/gun/gun = internal_item
-	if(!istype(gun, ammo.gun_type))
-		return
-	if(ammo.current_rounds <= 0)
-		to_chat(user, span_warning("[ammo] is empty!"))
-		return
-
-	if(gun.current_mag)
-		gun.unload(user,0,1)
-		update_icon_state()
-
-	var/tac_reload_time = max(0.5 SECONDS, 1.5 SECONDS - user.skills.getRating("firearms") * 5)
-	if(!do_after(user, tac_reload_time, TRUE, src, BUSY_ICON_FRIENDLY))
-		return
-
-	gun.reload(user, ammo_magazine)
-	update_icon_state()
 
 ///Sets the user as manning the internal gun
 /obj/machinery/deployable/mounted/on_set_interaction(mob/user)

@@ -724,7 +724,7 @@
 
 	products = list(
 		/obj/item/clothing/tie/storage/webbing = 1,
-		/obj/item/storage/box/t26_system = 1,
+		/obj/item/storage/box/t29_system = 1,
 		/obj/item/minigun_powerpack = 1,
 		/obj/item/storage/pouch/magazine/large = 1,
 		/obj/item/clothing/mask/gas = 1,
@@ -885,8 +885,8 @@
 			/obj/item/storage/belt/sparepouch = -1,
 			/obj/item/storage/belt/gun/pistol/standard_pistol = -1,
 			/obj/item/storage/belt/gun/revolver/standard_revolver = -1,
-			/obj/item/storage/large_holster/machete/full = -1,
-			/obj/item/storage/large_holster/machete/full_harvester = -1,
+			/obj/item/storage/large_holster/blade/machete/full = -1,
+			/obj/item/storage/large_holster/blade/machete/full_harvester = -1,
 		),
 		"Pouches" = list(
 			/obj/item/storage/pouch/pistol = -1,

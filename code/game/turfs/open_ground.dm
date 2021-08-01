@@ -44,16 +44,16 @@
 		R.overlays += image("icon"='icons/turf/ground_map.dmi',"icon_state"="riverwater","layer"=RIVER_OVERLAY_LAYER)
 
 
-/turf/open/ground/river/Entered(atom/movable/AM)
+/turf/open/ground/river/Entered(atom/movable/arrived, atom/old_loc, list/atom/old_locs)
 	. = ..()
 	if(has_catwalk)
 		return
-	if(iscarbon(AM))
-		var/mob/living/carbon/C = AM
+	if(iscarbon(arrived))
+		var/mob/living/carbon/C = arrived
 		var/river_slowdown = 1.75
 
 		if(ishuman(C))
-			var/mob/living/carbon/human/H = AM
+			var/mob/living/carbon/human/H = C
 			cleanup(H)
 
 		else if(isxeno(C))
@@ -90,10 +90,11 @@
 	R.overlays += image("icon"='icons/effects/effects.dmi',"icon_state"="greenglow","layer"=RIVER_OVERLAY_LAYER)
 
 
-/turf/open/ground/river/poison/Entered(mob/living/L)
+/turf/open/ground/river/poison/Entered(atom/movable/arrived, atom/old_loc, list/atom/old_locs)
 	. = ..()
-	if(!istype(L))
+	if(!isliving(arrived))
 		return
+	var/mob/living/L = arrived
 	L.apply_damage(55, TOX)
 	UPDATEHEALTH(L)
 
@@ -356,11 +357,11 @@
 		qdel(B)
 
 
-/turf/open/ground/jungle/water/Entered(atom/movable/AM)
+/turf/open/ground/jungle/water/Entered(atom/movable/arrived, direction)
 	. = ..()
-	if(!istype(AM, /mob/living))
+	if(!istype(arrived, /mob/living))
 		return
-	var/mob/living/L = AM
+	var/mob/living/L = arrived
 	//slip in the murky water if we try to run through it
 	if(prob(10 + (L.m_intent == MOVE_INTENT_RUN ? 40 : 0)))
 		to_chat(L, pick(span_notice(" You slip on something slimy."), span_notice("You fall over into the murk.")))
