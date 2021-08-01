@@ -19340,9 +19340,6 @@
 	dir = 8
 	},
 /obj/item/ammo_casing/bullet,
-/obj/machinery/marine_turret/premade{
-	dir = 8
-	},
 /obj/structure/cable,
 /turf/open/floor/tile/dark2,
 /area/bigredv2/caves/south)
@@ -20278,7 +20275,7 @@
 /turf/open/shuttle/escapepod,
 /area/bigredv2/caves/south)
 "gfg" = (
-/obj/structure/xeno/resin/xeno_turret,
+/obj/effect/landmark/xeno_turret_spawn,
 /turf/open/floor/tile/dark2,
 /area/bigredv2/caves/south)
 "ggp" = (
@@ -20519,9 +20516,6 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/machinery/marine_turret/premade{
-	dir = 8
-	},
 /turf/open/floor/tile/blue/taupeblue{
 	dir = 1
 	},
@@ -20732,6 +20726,14 @@
 	},
 /turf/open/shuttle/escapepod,
 /area/bigredv2/caves/north)
+"ifQ" = (
+/obj/effect/decal/warning_stripes/nscenter,
+/obj/machinery/light/built{
+	dir = 8
+	},
+/obj/effect/landmark/xeno_turret_spawn,
+/turf/open/shuttle/escapepod,
+/area/bigredv2/caves/northeast)
 "igD" = (
 /turf/open/shuttle/elevator/grating,
 /area/bigredv2/caves/south)
@@ -64067,7 +64069,7 @@ aJH
 adZ
 dnl
 vCh
-vCh
+vyZ
 ahw
 vCh
 kKe
@@ -64409,8 +64411,8 @@ aab
 jeY
 jeY
 bHv
-gfg
 utr
+gfg
 tfr
 utr
 qdE
@@ -64505,7 +64507,7 @@ fYE
 sbj
 fYE
 fYE
-hyP
+ifQ
 fYE
 sbj
 fYE
