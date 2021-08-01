@@ -127,8 +127,10 @@
 	///determines lower accuracy modifier in akimbo
 	var/lower_akimbo_accuracy = 1
 
-	///If the gun is deployable, the time it takes for the weapon to deploy and undeploy.
+	///If the gun is deployable, the time it takes for the weapon to deploy.
 	var/deploy_time = 0
+	///If the gun is deployable, the time it takes for the weapon to undeploy.
+	var/undeploy_time = 0
 	///Flags that the deployed sentry uses upon deployment.
 	var/turret_flags = NONE
 	///Damage threshold for whether a turret will be knocked down.
@@ -176,10 +178,10 @@
 
 	if(flags_item & IS_DEPLOYABLE)
 		if(flags_gun_features & GUN_IS_SENTRY)
-			AddElement(/datum/element/deployable_item, /obj/machinery/deployable/mounted/sentry, deploy_time)
+			AddElement(/datum/element/deployable_item, /obj/machinery/deployable/mounted/sentry, deploy_time, undeploy_time)
 			sentry_battery = new sentry_battery_type(src)
 			return
-		AddElement(/datum/element/deployable_item, /obj/machinery/deployable/mounted, deploy_time)
+		AddElement(/datum/element/deployable_item, /obj/machinery/deployable/mounted, deploy_time, undeploy_time)
 
 	GLOB.nightfall_toggleable_lights += src
 

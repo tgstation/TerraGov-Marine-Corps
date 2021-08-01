@@ -2,17 +2,20 @@
 	element_flags = ELEMENT_BESPOKE
 	id_arg_index = 2
 
-	///Time it takes for the parent to be deployed/undeployed
+	///Time it takes for the parent to be deployed.
 	var/deploy_time = 0
+	///Time it takes for the parent to be undeployed.
+	var/undeploy_time = 0
 	///Typath that the item deploys into. Can be anything but an item so far. The preffered type is /obj/machinery/deployable since it was built for this.
 	var/obj/deploy_type
 
-/datum/element/deployable_item/Attach(datum/target, _deploy_type, _deploy_time)
+/datum/element/deployable_item/Attach(datum/target, _deploy_type, _deploy_time, _undeploy_time)
 	. = ..()
 	if(!isitem(target))
 		return ELEMENT_INCOMPATIBLE
 	deploy_type = _deploy_type
 	deploy_time = _deploy_time
+	undeploy_time = _undeploy_time
 
 	var/obj/item/attached_item = target
 	if(CHECK_BITFIELD(attached_item.flags_item, DEPLOY_ON_INITIALIZE))
@@ -86,7 +89,7 @@
 		sentry = deployed_machine
 	sentry?.set_on(FALSE)
 	to_chat(user, span_notice("You start disassembling the [attached_item]"))
-	if(!do_after(user, deploy_time, TRUE, deployed_machine, BUSY_ICON_BUILD))
+	if(!do_after(user, undeploy_time, TRUE, deployed_machine, BUSY_ICON_BUILD))
 		sentry?.set_on(TRUE)
 		return
 
