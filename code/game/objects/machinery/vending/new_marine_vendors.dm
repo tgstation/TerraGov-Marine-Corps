@@ -903,7 +903,7 @@
 	desc = "A set of specialized gear for improved close-quarters combat longevitiy."
 	spawned_gear_list = list(
 		/obj/item/helmet_module/attachable/tyr_head,
-		/obj/effect/essentials_set/tyr,
+		/obj/item/armor_module/attachable/tyr_extra_armor/mark1,
 	)
 
 #undef MARINE_CAN_BUY_UNIFORM
