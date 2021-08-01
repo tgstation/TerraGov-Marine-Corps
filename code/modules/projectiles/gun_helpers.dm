@@ -974,10 +974,10 @@ should be alright.
 		return
 	to_chat(user, span_notice("You steady your breathing...</b>"))
 
-	if(user.do_actions)
+	if(user.do_actions && !CHECK_BITFIELD(flags_item, IS_DEPLOYED))
 		return
 	if(!user.marksman_aura)
-		if(!do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_BAR, ignore_turf_checks = TRUE))
+		if(!do_after(user, 1 SECONDS, TRUE, CHECK_BITFIELD(flags_item, IS_DEPLOYED) ? loc : src, BUSY_ICON_BAR, ignore_turf_checks = TRUE))
 			to_chat(user, span_warning("Your concentration is interrupted!</b>"))
 			return
 	user.overlays += aim_mode_visual
