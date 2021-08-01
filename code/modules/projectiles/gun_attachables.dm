@@ -852,6 +852,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	icon_state = "t37"
 	attach_icon = "t37_a"
 
+
 //////////// Stock attachments ////////////////////////////
 
 
