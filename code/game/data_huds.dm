@@ -545,3 +545,17 @@
 		return
 	var/amount = round(gun.current_mag.current_rounds * 100 / gun.current_mag.max_rounds, 10)
 	holder.icon_state = "plasma[amount]"
+
+///Makes unmanned vehicle ammo visible
+/obj/vehicle/unmanned/proc/hud_set_uav_ammo()
+	var/image/holder = hud_list[MACHINE_AMMO_HUD]
+
+	if(!holder)
+		return
+
+	if(!current_rounds)
+		holder.icon_state = "plasma0"
+		return
+
+	var/amount = round(current_rounds * 100 / max_rounds, 10)
+	holder.icon_state = "plasma[amount]"
