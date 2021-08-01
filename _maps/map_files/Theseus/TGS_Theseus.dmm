@@ -7157,6 +7157,9 @@
 	},
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment,
+/obj/machinery/door/firedoor/mainship{
+	dir = 2
+	},
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/ce_room)
 "bRl" = (
@@ -7165,6 +7168,9 @@
 	dir = 1;
 	id = "cl_shutters";
 	name = "\improper Privacy Shutters"
+	},
+/obj/machinery/door/firedoor/mainship{
+	dir = 2
 	},
 /turf/open/floor/plating,
 /area/mainship/engineering/ce_room)
@@ -8138,6 +8144,9 @@
 /area/mainship/living/bridgebunks)
 "cbZ" = (
 /obj/machinery/door/airlock/mainship/maint{
+	dir = 2
+	},
+/obj/machinery/door/firedoor/mainship{
 	dir = 2
 	},
 /turf/open/floor/mainship/mono,
@@ -9877,6 +9886,9 @@
 /obj/machinery/door/airlock/mainship/maint{
 	dir = 2
 	},
+/obj/machinery/door/firedoor/mainship{
+	dir = 2
+	},
 /turf/open/floor/mainship/mono,
 /area/mainship/living/grunt_rnr)
 "eWQ" = (
@@ -10698,6 +10710,9 @@
 /area/mainship/engineering/engine_core)
 "gyu" = (
 /obj/structure/window/framed/mainship,
+/obj/machinery/door/firedoor/mainship{
+	dir = 2
+	},
 /turf/open/floor/plating,
 /area/mainship/living/officer_rnr)
 "gyz" = (
@@ -12316,6 +12331,7 @@
 "jMg" = (
 /obj/machinery/door/airlock/mainship/medical/glass/CMO,
 /obj/structure/cable,
+/obj/machinery/door/firedoor/mainship,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/upper_medical)
 "jMY" = (
@@ -13240,10 +13256,6 @@
 /obj/structure/window/framed/mainship/requisitions,
 /turf/open/floor/plating,
 /area/mainship/command/bridge)
-"lyK" = (
-/obj/machinery/door/firedoor/mainship,
-/turf/open/floor/mainship/sterile/dark,
-/area/mainship/medical/lower_medical)
 "lza" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -16368,6 +16380,9 @@
 /area/mainship/living/numbertwobunks)
 "rkD" = (
 /obj/structure/window/framed/mainship,
+/obj/machinery/door/firedoor/mainship{
+	dir = 2
+	},
 /turf/open/floor/plating,
 /area/mainship/living/officer_study)
 "rnS" = (
@@ -51505,7 +51520,7 @@ lMe
 exI
 bkd
 exI
-lyK
+exI
 bAv
 pCr
 bDd
@@ -51516,7 +51531,7 @@ exI
 lMe
 exI
 bsB
-bNM
+nga
 rbP
 rMd
 eeo
@@ -52287,7 +52302,7 @@ nSl
 xAX
 bDc
 bDd
-bNM
+nga
 bGq
 bQh
 bGq
@@ -52543,7 +52558,7 @@ bHm
 nSl
 uXw
 hSb
-bNM
+xLb
 nSl
 nsv
 bQh
