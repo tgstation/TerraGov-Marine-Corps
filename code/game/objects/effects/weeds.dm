@@ -140,10 +140,14 @@
 
 	var/mob/living/carbon/human/victim = AM
 
-	if(victim.lying_angle)
-		return
+	var/def_zone = victim.lying_angle ? pick (
+			GLOB.organ_rel_size["l_leg"]; "l_leg",
+			GLOB.organ_rel_size["r_leg"]; "r_leg",
+			GLOB.organ_rel_size["l_foot"]; "l_foot",
+			GLOB.organ_rel_size["r_foot"]; "r_foot",
+		) : ran_zone()
 
-	victim.apply_damage(1.5, BRUTE)
+	victim.apply_damage(1.5, BRUTE, def_zone)
 
 	if(prob(15))
 		to_chat(victim, span_warning("You are cut from the barbed weeds."))
