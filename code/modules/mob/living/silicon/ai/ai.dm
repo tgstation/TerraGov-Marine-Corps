@@ -102,9 +102,7 @@
 	UnregisterSignal(src, COMSIG_MOB_CLICK_ALT)
 	UnregisterSignal(SSdcs, COMSIG_GLOB_OB_LASER_CREATED)
 	UnregisterSignal(SSdcs, COMSIG_GLOB_CAS_LASER_CREATED)
-	UnregisterSignal(SSdcs, COMSIG_GLOB_TADPOLE_LAUNCHED)
-	UnregisterSignal(SSdcs, COMSIG_GLOB_TADPOLE_LANDED)
-	UnregisterSignal(SSdcs, COMSIG_GLOB_TADPOLE_LANDED)
+	UnregisterSignal(SSdcs, list(COMSIG_GLOB_TADPOLE_LAUNCHED, COMSIG_GLOB_TADPOLE_LANDED, COMSIG_GLOB_TADPOLE_RETURNING))
 	return ..()
 
 ///Print order visual to all marines squad hud and give them an arrow to follow the waypoint
@@ -137,11 +135,11 @@
 	SIGNAL_HANDLER
 	to_chat(src, span_notice("Notice - Mini dropship taking off from \the [get_area(dest)]."))
 
-mob/living/silicon/ai/proc/notify_tadpole_movement_landing(datum/source, dest)
+/mob/living/silicon/ai/proc/notify_tadpole_movement_landing(datum/source, dest)
 	SIGNAL_HANDLER
 	to_chat(src, span_notice("Notice - Mini dropship landing at \the [get_area(dest)]."))
 
-mob/living/silicon/ai/proc/notify_tadpole_movement_returning(datum/source)
+/mob/living/silicon/ai/proc/notify_tadpole_movement_returning(datum/source)
 	SIGNAL_HANDLER
 	to_chat(src, span_notice("Notice - Mini dropship returning to the mothership."))
 

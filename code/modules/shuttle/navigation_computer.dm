@@ -41,7 +41,6 @@
 	var/jammed = FALSE
 	/// If the user wants to see with night vision on
 	var/nvg_vision_mode = FALSE
-	///Where the thing is landing
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/Initialize(mapload)
 	. = ..()
