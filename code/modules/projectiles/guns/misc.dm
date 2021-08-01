@@ -16,7 +16,6 @@
 	flags_gun_features = GUN_UNUSUAL_DESIGN
 	gun_skill_category = GUN_SKILL_PISTOLS
 	fire_delay = 0.5 SECONDS
-
 	starting_attachment_types = list(/obj/item/attachable/scope/unremovable/flaregun)
 
 
