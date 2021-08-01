@@ -205,7 +205,6 @@
 		current_user.client.images -= the_eye.placed_images
 
 	QDEL_LIST(the_eye.placed_images)
-	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_TADPOLE_LANDED, my_port)
 
 	for(var/V in the_eye.placement_images)
 		var/image/I = V

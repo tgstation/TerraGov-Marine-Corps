@@ -79,9 +79,6 @@
 	RegisterSignal(src, COMSIG_ORDER_SELECTED, .proc/set_order)
 	RegisterSignal(SSdcs, COMSIG_GLOB_OB_LASER_CREATED, .proc/receive_laser_ob)
 	RegisterSignal(SSdcs, COMSIG_GLOB_CAS_LASER_CREATED, .proc/receive_laser_cas)
-	RegisterSignal(SSdcs, COMSIG_GLOB_TADPOLE_LAUNCHED, .proc/notify_tadpole_movement_take_off)
-	RegisterSignal(SSdcs, COMSIG_GLOB_TADPOLE_LANDED, .proc/notify_tadpole_movement_landing)
-	RegisterSignal(SSdcs, COMSIG_GLOB_TADPOLE_RETURNING, .proc/notify_tadpole_movement_returning)
 
 
 	var/datum/action/innate/order/attack_order/send_attack_order = new
@@ -102,14 +99,13 @@
 	UnregisterSignal(src, COMSIG_MOB_CLICK_ALT)
 	UnregisterSignal(SSdcs, COMSIG_GLOB_OB_LASER_CREATED)
 	UnregisterSignal(SSdcs, COMSIG_GLOB_CAS_LASER_CREATED)
-	UnregisterSignal(SSdcs, list(COMSIG_GLOB_TADPOLE_LAUNCHED, COMSIG_GLOB_TADPOLE_LANDED, COMSIG_GLOB_TADPOLE_RETURNING))
 	return ..()
 
 ///Print order visual to all marines squad hud and give them an arrow to follow the waypoint
 /mob/living/silicon/ai/proc/send_order(datum/source, atom/target)
 	SIGNAL_HANDLER
 	if(!current_order)
-		to_chat(src, span_warning("Your have no order selected."))
+		to_chat(src, span_warning("You have no order selected."))
 		return
 	current_order.send_order(target)
 
@@ -129,20 +125,6 @@
 	SIGNAL_HANDLER
 	to_chat(src, span_notice("CAS laser detected. Target: [AREACOORD_NO_Z(incoming_laser)]"))
 	playsound_local(src, 'sound/effects/binoctarget.ogg', 15)
-
-///Receive tadpole movement notifications
-/mob/living/silicon/ai/proc/notify_tadpole_movement_take_off(datum/source, dest)
-	SIGNAL_HANDLER
-	to_chat(src, span_notice("Notice - Mini dropship taking off from \the [get_area(dest)]."))
-
-/mob/living/silicon/ai/proc/notify_tadpole_movement_landing(datum/source, dest)
-	SIGNAL_HANDLER
-	to_chat(src, span_notice("Notice - Mini dropship landing at \the [get_area(dest)]."))
-
-/mob/living/silicon/ai/proc/notify_tadpole_movement_returning(datum/source)
-	SIGNAL_HANDLER
-	to_chat(src, span_notice("Notice - Mini dropship returning to the mothership."))
-
 
 
 /mob/living/silicon/ai/restrained(ignore_checks)

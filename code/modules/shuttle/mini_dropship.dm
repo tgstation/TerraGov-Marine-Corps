@@ -115,7 +115,7 @@
 		to_chat(ui_user, span_warning("The dropship's engines are not ready yet"))
 		return
 	shuttle_port.shuttle_computer = src
-	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_TADPOLE_LAUNCHED, loc)
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_TADPOLE_LAUNCHED)
 	if(fly_state == SHUTTLE_ON_GROUND)
 		next_fly_state = SHUTTLE_IN_ATMOSPHERE
 		shuttle_port.callTime = SHUTTLE_TAKEOFF_GROUND_CALLTIME
@@ -136,7 +136,6 @@
 	if(!origin_port_id)
 		return
 	open_prompt = FALSE
-	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_TADPOLE_RETURNING)
 	clean_ui_user()
 	SSshuttle.moveShuttle(shuttleId, origin_port_id, TRUE)
 
@@ -178,7 +177,6 @@
 		next_fly_state = SHUTTLE_ON_GROUND
 		shuttle_port.set_mode(SHUTTLE_CALL)
 		SSshuttle.moveShuttleToDock(shuttleId, last_valid_ground_port, TRUE)
-		SEND_GLOBAL_SIGNAL(COMSIG_GLOB_TADPOLE_LANDED, last_valid_ground_port)
 		return
 
 	if(next_fly_state == SHUTTLE_IN_ATMOSPHERE)
