@@ -2,7 +2,7 @@
 /datum/smite/bloodless
 	name = "Bloodloss"
 
-var/bloodlossamount
+	var/bloodlossamount
 
 /datum/smite/bloodless/configure(client/user)
 	var/static/list/how_fucked_is_this_dude = list("A little", "A lot", "So fucking much", "FUCK THIS DUDE")
