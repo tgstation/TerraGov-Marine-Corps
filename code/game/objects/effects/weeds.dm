@@ -101,7 +101,7 @@
 
 /obj/effect/alien/weeds/sticky
 	name = "sticky weeds"
-	desc = "A layer of disgusting sticky slime."
+	desc = "A layer of disgusting sticky slime, it feels like it's going to slow your movement down."
 	color_variant = STICKY_COLOR
 
 /obj/effect/alien/weeds/sticky/Crossed(atom/movable/AM)
