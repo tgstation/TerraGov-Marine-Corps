@@ -143,7 +143,7 @@
 	if(victim.lying_angle)
 		return
 
-	victim.apply_damage(2.5, BRUTE)
+	victim.apply_damage(1.5, BRUTE)
 
 	if(prob(15))
 		to_chat(victim, span_warning("You are cut from the barbed weeds."))
