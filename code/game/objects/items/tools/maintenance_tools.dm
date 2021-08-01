@@ -281,7 +281,7 @@
 			set_light(LIGHTER_LUMINOSITY)
 			weld_tick += 8 //turning the tool on does not consume fuel directly, but it advances the process that regularly consumes fuel.
 			force = 15
-			damtype = "fire"
+			damtype = BURN
 			icon_state = "welder1"
 			w_class = WEIGHT_CLASS_BULKY
 			heat = 3800
@@ -293,7 +293,7 @@
 	else
 		playsound(loc, 'sound/items/weldingtool_off.ogg', 25)
 		force = 3
-		damtype = "brute"
+		damtype = BRUTE
 		icon_state = "welder"
 		welding = 0
 		w_class = initial(w_class)

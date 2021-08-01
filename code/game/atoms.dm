@@ -706,18 +706,18 @@ Proc for attack log creation, because really why not
 	.["Modify Filters"] = "?_src_=vars;[HrefToken()];filteredit=[REF(src)]"
 	.["Modify Greyscale Colors"] = "?_src_=vars;[HrefToken()];modify_greyscale=[REF(src)]"
 
-/atom/Entered(atom/movable/AM, atom/oldloc)
-	SEND_SIGNAL(src, COMSIG_ATOM_ENTERED, AM, oldloc)
+/atom/Entered(atom/movable/arrived, atom/old_loc, list/atom/old_locs) //TODO add should_call_parent(TRUE)
+	SEND_SIGNAL(src, COMSIG_ATOM_ENTERED, arrived, old_loc, old_locs)
 
 
-/atom/Exit(atom/movable/AM, atom/newloc)
+/atom/Exit(atom/movable/AM, direction) //TODO add should_call_parent(TRUE)
 	. = ..()
-	if(SEND_SIGNAL(src, COMSIG_ATOM_EXIT, AM, newloc) & COMPONENT_ATOM_BLOCK_EXIT)
+	if(SEND_SIGNAL(src, COMSIG_ATOM_EXIT, AM, direction) & COMPONENT_ATOM_BLOCK_EXIT)
 		return FALSE
 
 
-/atom/Exited(atom/movable/AM, atom/newloc)
-	SEND_SIGNAL(src, COMSIG_ATOM_EXITED, AM, newloc)
+/atom/Exited(atom/movable/AM, direction)
+	SEND_SIGNAL(src, COMSIG_ATOM_EXITED, AM, direction)
 
 
 // Stacks and storage redefined procs.

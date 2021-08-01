@@ -619,15 +619,12 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 		return FALSE
 	return TRUE
 
-/obj/machinery/marine_turret/projectile_hit(obj/projectile/proj, cardinal_move, uncrossing)
-	if(iff_signal & proj.iff_signal)
-		return FALSE
-	return src == proj.original_target
-
 /obj/machinery/deployable/mounted/projectile_hit(obj/projectile/proj, cardinal_move, uncrossing)
 	if(operator?.wear_id.iff_signal & proj.iff_signal)
 		return FALSE
-	return src == proj.original_target
+	if(isxeno(proj.firer))
+		return TRUE
+	return	src == proj.original_target
 
 /obj/machinery/door/poddoor/railing/projectile_hit(obj/projectile/proj, cardinal_move, uncrossing)
 	return src == proj.original_target

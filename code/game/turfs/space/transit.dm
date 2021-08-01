@@ -35,10 +35,10 @@
 /turf/open/space/transit/east
 	dir = EAST
 
-/turf/open/space/transit/Entered(atom/movable/AM, atom/OldLoc)
+/turf/open/space/transit/Entered(atom/movable/arrived, atom/old_loc, list/atom/old_locs)
 	..()
-	if(!locate(/obj/structure/lattice) in src)
-		throw_atom(AM)
+	if(!locate(/obj/structure/lattice) in src) //todo wtf is this even
+		throw_atom(arrived)
 
 /turf/open/space/transit/proc/throw_atom(atom/movable/AM)
 	set waitfor = FALSE
