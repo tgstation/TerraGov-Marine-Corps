@@ -1,4 +1,4 @@
 author: "TiviPlus"
 delete-after: True
 changes: 
-  - refactor: "Backend movement changes"
+  - bugfix: "Fixed crusher charging"

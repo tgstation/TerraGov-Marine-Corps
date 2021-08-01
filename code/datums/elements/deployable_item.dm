@@ -17,7 +17,6 @@
 	var/obj/item/attached_item = target
 	if(CHECK_BITFIELD(attached_item.flags_item, DEPLOY_ON_INITIALIZE))
 		finish_deploy(attached_item, null, attached_item.loc, attached_item.dir)
-		return
 
 	RegisterSignal(attached_item, COMSIG_ITEM_UNIQUE_ACTION, .proc/deploy)
 
@@ -50,12 +49,11 @@
 		user.temporarilyRemoveItemFromInventory(attached_item)
 
 		attached_item.UnregisterSignal(user, list(COMSIG_MOB_MOUSEDOWN, COMSIG_MOB_MOUSEUP, COMSIG_MOB_MOUSEDRAG, COMSIG_KB_RAILATTACHMENT, COMSIG_KB_UNDERRAILATTACHMENT, COMSIG_KB_UNLOADGUN, COMSIG_KB_FIREMODE)) //This unregisters Signals related to guns, its for safety
-
 	else
 		deploy_location = location
 		new_direction = direction
 
-	deployed_machine = new deploy_type(deploy_location, attached_item) //Creates new structure or machine at 'deploy' location and passes on 'attached_item'
+	deployed_machine = new deploy_type(deploy_location, attached_item, user) //Creates new structure or machine at 'deploy' location and passes on 'attached_item'
 	deployed_machine.setDir(new_direction)
 
 	deployed_machine.max_integrity = attached_item.max_integrity //Syncs new machine or structure integrity with that of the item.
@@ -83,9 +81,15 @@
 		CRASH("[source] has sent the signal COMSIG_ITEM_UNDEPLOY to [attached_item] without the arg 'user'")
 	if(!ishuman(user))
 		return
+	var/obj/machinery/deployable/mounted/sentry/sentry
+	if(istype(deployed_machine, /obj/machinery/deployable/mounted/sentry))
+		sentry = deployed_machine
+	sentry?.set_on(FALSE)
 	to_chat(user, span_notice("You start disassembling the [attached_item]"))
 	if(!do_after(user, deploy_time, TRUE, deployed_machine, BUSY_ICON_BUILD))
+		sentry?.set_on(TRUE)
 		return
+
 	user.unset_interaction()
 	user.put_in_hands(attached_item)
 
