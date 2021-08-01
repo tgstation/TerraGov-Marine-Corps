@@ -60,6 +60,7 @@
 	)
 
 	deploy_time = 5 SECONDS
+	undeploy_time = 5 SECONDS
 
 	max_integrity = 125
 
@@ -143,6 +144,7 @@
 	)
 
 	deploy_time = 8.5 SECONDS
+	undeploy_time = 8.5 SECONDS
 
 	max_integrity = 150
 
