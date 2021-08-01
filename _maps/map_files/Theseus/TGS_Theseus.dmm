@@ -1348,10 +1348,8 @@
 /turf/closed/wall/mainship,
 /area/mainship/living/officer_study)
 "aeK" = (
+/obj/machinery/door/firedoor/multi_tile,
 /obj/machinery/door/airlock/multi_tile/mainship/medidoor/medbay/free_access,
-/obj/machinery/door/firedoor/mainship{
-	dir = 2
-	},
 /turf/open/floor/mainship/sterile/side{
 	dir = 8
 	},
@@ -1371,6 +1369,9 @@
 /area/mainship/command/corporateliaison)
 "ahD" = (
 /obj/structure/window/framed/mainship,
+/obj/machinery/door/firedoor/mainship{
+	dir = 2
+	},
 /turf/open/floor/plating,
 /area/mainship/living/starboard_garden)
 "ahO" = (
@@ -1977,12 +1978,10 @@
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/self_destruct)
 "aCh" = (
-/obj/machinery/door/firedoor/mainship{
-	dir = 2
-	},
 /obj/machinery/door/airlock/multi_tile/mainship/comdoor{
 	name = "\improper Officer's Study"
 	},
+/obj/machinery/door/firedoor/multi_tile,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/officer_study)
 "aCq" = (
@@ -2202,7 +2201,6 @@
 	},
 /area/mainship/medical/lower_medical)
 "aKc" = (
-/obj/machinery/door/firedoor/mainship,
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
@@ -3490,7 +3488,7 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 10
+	dir = 5
 	},
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/operating_room_one)
@@ -3712,11 +3710,14 @@
 	},
 /area/mainship/command/cic)
 "bkp" = (
-/obj/machinery/door/firedoor/mainship,
-/obj/machinery/door/firedoor/mainship,
-/turf/open/floor/mainship/sterile/side{
+/obj/machinery/door/firedoor/multi_tile{
 	dir = 1
 	},
+/obj/machinery/door/airlock/multi_tile/mainship/medidoor{
+	dir = 2;
+	name = "\improper Medical Bay"
+	},
+/turf/open/floor/mainship/sterile/side,
 /area/mainship/medical/lower_medical)
 "bkq" = (
 /turf/open/floor/mainship/terragov/west{
@@ -4101,16 +4102,11 @@
 /turf/closed/wall/mainship,
 /area/mainship/living/cryo_cells)
 "bma" = (
-/obj/machinery/door/firedoor/mainship{
-	dir = 2
-	},
 /obj/machinery/door/airlock/multi_tile/mainship/generic/cryo,
+/obj/machinery/door/firedoor/multi_tile,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/cryo_cells)
 "bmd" = (
-/obj/machinery/door/firedoor/mainship{
-	dir = 2
-	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/cryo_cells)
@@ -4187,9 +4183,7 @@
 /area/mainship/living/officer_rnr)
 "bnx" = (
 /obj/machinery/door/airlock/multi_tile/mainship/medidoor/medbay/free_access,
-/obj/machinery/door/firedoor/mainship{
-	dir = 2
-	},
+/obj/machinery/door/firedoor/multi_tile,
 /turf/open/floor/mainship/sterile/side{
 	dir = 8
 	},
@@ -5860,11 +5854,12 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/bow_hallway)
 "bEA" = (
-/obj/machinery/door/firedoor/mainship,
 /obj/machinery/door/airlock/multi_tile/mainship/medidoor/medbay/free_access{
 	dir = 2
 	},
-/obj/machinery/door/firedoor/mainship,
+/obj/machinery/door/firedoor/multi_tile{
+	dir = 1
+	},
 /turf/open/floor/mainship/sterile/side,
 /area/mainship/medical/lower_medical)
 "bED" = (
@@ -6094,9 +6089,7 @@
 /obj/machinery/door/airlock/multi_tile/mainship/research{
 	name = "Research Wing"
 	},
-/obj/machinery/door/firedoor/mainship{
-	dir = 2
-	},
+/obj/machinery/door/firedoor/multi_tile,
 /turf/open/floor/mainship/sterile/side{
 	dir = 8
 	},
@@ -6411,6 +6404,9 @@
 "bKP" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 2
+	},
+/obj/machinery/door/firedoor/multi_tile{
+	dir = 1
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
@@ -6882,6 +6878,7 @@
 /area/mainship/hallways/hangar)
 "bPt" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic/garden,
+/obj/machinery/door/firedoor/multi_tile,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/starboard_garden)
 "bPw" = (
@@ -6899,9 +6896,6 @@
 "bPC" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/machinery/door/firedoor/mainship{
-	dir = 2
-	},
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/mainship/mono,
@@ -7175,16 +7169,13 @@
 /turf/open/floor/plating,
 /area/mainship/engineering/ce_room)
 "bRm" = (
-/obj/machinery/door/firedoor/mainship{
-	dir = 2
-	},
+/obj/machinery/door/firedoor/multi_tile,
 /obj/machinery/door/airlock/multi_tile/mainship/generic/canteen,
-/turf/open/floor/mainship/mono,
+/turf/open/floor/mainship/purple{
+	dir = 8
+	},
 /area/mainship/living/cafeteria_port)
 "bRn" = (
-/obj/machinery/door/firedoor/mainship{
-	dir = 2
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/structure/cable,
@@ -7270,10 +7261,8 @@
 	},
 /area/mainship/living/cafeteria_starboard)
 "bSf" = (
-/obj/machinery/door/firedoor/mainship{
-	dir = 2
-	},
 /obj/machinery/door/airlock/multi_tile/mainship/generic,
+/obj/machinery/door/firedoor/multi_tile,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/repair_bay)
 "bSh" = (
@@ -7668,7 +7657,6 @@
 	},
 /area/mainship/living/port_emb)
 "bWd" = (
-/obj/machinery/door/firedoor/mainship,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/cafeteria_port)
 "bWq" = (
@@ -7747,7 +7735,9 @@
 /turf/open/floor/mainship/blue/corner,
 /area/mainship/hallways/port_hallway)
 "bXb" = (
-/obj/machinery/door/firedoor/mainship,
+/obj/machinery/door/firedoor/multi_tile{
+	dir = 1
+	},
 /obj/machinery/door/airlock/multi_tile/mainship/generic/canteen{
 	dir = 2
 	},
@@ -8842,7 +8832,6 @@
 	},
 /area/mainship/hallways/repair_bay)
 "cSq" = (
-/obj/machinery/door/firedoor/mainship,
 /obj/machinery/door/poddoor/shutters/mainship/open/indestructible{
 	id = "researchlockdownext";
 	name = "\improper Research Lockdown"
@@ -9220,7 +9209,6 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/command/corporateliaison)
 "dEs" = (
-/obj/machinery/door/firedoor/mainship,
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
@@ -11434,7 +11422,9 @@
 	dir = 2;
 	name = "\improper Medical Bay"
 	},
-/obj/machinery/door/firedoor/mainship,
+/obj/machinery/door/firedoor/multi_tile{
+	dir = 1
+	},
 /turf/open/floor/mainship/sterile/side,
 /area/mainship/medical/lower_medical)
 "hSf" = (
@@ -12167,7 +12157,9 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/port_hallway)
 "jsv" = (
-/obj/machinery/door/firedoor/mainship,
+/obj/machinery/door/firedoor/multi_tile{
+	dir = 1
+	},
 /obj/machinery/door/airlock/multi_tile/mainship/generic/prep{
 	dir = 2
 	},
@@ -13256,6 +13248,13 @@
 /obj/structure/window/framed/mainship/requisitions,
 /turf/open/floor/plating,
 /area/mainship/command/bridge)
+"lyK" = (
+/obj/machinery/door/airlock/multi_tile/mainship/medidoor/medbay/free_access,
+/obj/machinery/door/firedoor/multi_tile,
+/turf/open/floor/mainship/sterile/side{
+	dir = 8
+	},
+/area/mainship/medical/lower_medical)
 "lza" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -13356,9 +13355,6 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/engineering/ce_room)
 "lEP" = (
-/obj/machinery/door/firedoor/mainship{
-	dir = 2
-	},
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/mainship/mono,
@@ -13452,18 +13448,6 @@
 	},
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/lower_medical)
-"lMz" = (
-/obj/structure/cable,
-/obj/structure/disposalpipe/segment,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/machinery/door/firedoor/mainship{
-	dir = 2
-	},
-/turf/open/floor/mainship/sterile/side{
-	dir = 4
-	},
-/area/mainship/medical/medical_science)
 "lMY" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -15245,10 +15229,12 @@
 /turf/open/floor/mainship/tcomms,
 /area/mainship/engineering/lower_engine_monitoring)
 "piG" = (
-/obj/machinery/door/firedoor/mainship,
 /obj/machinery/door/poddoor/shutters/mainship/open/indestructible{
 	id = "researchlockdownext";
 	name = "\improper Research Lockdown"
+	},
+/obj/machinery/door/firedoor/multi_tile{
+	dir = 1
 	},
 /obj/machinery/door/airlock/multi_tile/mainship/research{
 	dir = 2;
@@ -16618,22 +16604,6 @@
 	},
 /turf/open/floor/mainship/purple/full,
 /area/mainship/hallways/hangar)
-"rPA" = (
-/obj/structure/cable,
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/mainship,
-/turf/open/floor/mainship/sterile/side{
-	dir = 1
-	},
-/area/mainship/medical/lower_medical)
 "rQa" = (
 /obj/machinery/vending/cola,
 /turf/open/floor/mainship/mono,
@@ -17621,6 +17591,9 @@
 /obj/machinery/door/airlock/mainship/maint{
 	dir = 2
 	},
+/obj/machinery/door/firedoor/mainship{
+	dir = 2
+	},
 /turf/open/floor/mainship/mono,
 /area/mainship/living/pilotbunks)
 "tHR" = (
@@ -17897,6 +17870,7 @@
 /area/mainship/medical/operating_room_three)
 "ult" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic,
+/obj/machinery/door/firedoor/multi_tile,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
 "umS" = (
@@ -18271,7 +18245,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/obj/machinery/door/firedoor/mainship,
 /turf/open/floor/mainship/sterile/side{
 	dir = 1
 	},
@@ -18610,16 +18583,6 @@
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/squads/delta)
-"vKd" = (
-/obj/structure/cable,
-/obj/structure/disposalpipe/segment,
-/obj/machinery/door/firedoor/mainship{
-	dir = 2
-	},
-/turf/open/floor/mainship/sterile/side{
-	dir = 4
-	},
-/area/mainship/medical/medical_science)
 "vKs" = (
 /obj/machinery/cryopod,
 /obj/machinery/light,
@@ -18921,10 +18884,8 @@
 	},
 /area/mainship/hallways/hangar)
 "wou" = (
-/obj/machinery/door/firedoor/mainship{
-	dir = 2
-	},
 /obj/machinery/door/airlock/multi_tile/mainship/generic/canteen,
+/obj/machinery/door/firedoor/multi_tile,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/cafeteria_starboard)
 "woA" = (
@@ -18958,9 +18919,6 @@
 /turf/open/floor/plating,
 /area/mainship/medical/operating_room_three)
 "wrc" = (
-/obj/machinery/door/firedoor/mainship{
-	dir = 2
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/repair_bay)
@@ -19020,9 +18978,6 @@
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/machinery/door/firedoor/mainship{
-	dir = 2
-	},
 /turf/open/floor/mainship/sterile/side{
 	dir = 4
 	},
@@ -19062,13 +19017,11 @@
 	},
 /area/mainship/medical/operating_room_three)
 "wFs" = (
-/obj/machinery/door/firedoor/mainship{
-	dir = 2
-	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/door/airlock/multi_tile/mainship/generic,
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable,
+/obj/machinery/door/firedoor/multi_tile,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/repair_bay)
 "wGZ" = (
@@ -19208,9 +19161,6 @@
 	},
 /area/space)
 "wVm" = (
-/obj/machinery/door/firedoor/mainship{
-	dir = 2
-	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/repair_bay)
 "wVv" = (
@@ -19450,17 +19400,6 @@
 	icon_state = "carpetside"
 	},
 /area/mainship/living/numbertwobunks)
-"xrx" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/machinery/door/firedoor/mainship{
-	dir = 2
-	},
-/turf/open/floor/mainship/sterile/side{
-	dir = 4
-	},
-/area/mainship/medical/medical_science)
 "xsH" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 9
@@ -19585,9 +19524,6 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/aft_hallway)
 "xGI" = (
-/obj/machinery/door/firedoor/mainship{
-	dir = 2
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -49721,10 +49657,10 @@ blQ
 blQ
 blQ
 nSl
-bkp
+bze
 bEA
 nSl
-bkp
+bze
 bEA
 nSl
 bsC
@@ -51788,7 +51724,7 @@ gEJ
 uEy
 exI
 bDb
-aeK
+lyK
 bGq
 bQj
 btW
@@ -52543,7 +52479,7 @@ bjV
 blj
 nSl
 bNM
-rPA
+aJS
 hSb
 nSl
 bvU
@@ -52557,7 +52493,7 @@ bGb
 bHm
 nSl
 uXw
-hSb
+bkp
 xLb
 nSl
 nsv
@@ -54342,7 +54278,7 @@ bjV
 biu
 nSl
 nSl
-rPA
+aJS
 hSb
 nSl
 fjk
@@ -54613,7 +54549,7 @@ mWM
 blP
 nSl
 uXw
-hSb
+bkp
 nSl
 nSl
 qhN
@@ -56915,7 +56851,7 @@ bpg
 awE
 ttM
 nNB
-lMz
+nNB
 cOw
 bIz
 krB
@@ -56923,12 +56859,12 @@ qMJ
 krB
 lUU
 krB
-vKd
+krB
 krB
 wVN
 bqV
 hqy
-xrx
+hqy
 caY
 wYG
 hgZ
