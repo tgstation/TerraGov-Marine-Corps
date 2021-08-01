@@ -91,7 +91,7 @@
 
 /obj/effect/alien/weeds/speed
 	name = "speed weeds"
-	desc = "A layer of oozy slime"
+	desc = "A layer of oozy slime, it feels slick, but not as slick for you to slip."
 
 /obj/effect/alien/weeds/speed/Crossed(atom/movable/AM)
 	. = ..()
