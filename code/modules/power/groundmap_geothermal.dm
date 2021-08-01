@@ -153,7 +153,14 @@
 		span_danger("We start slashing at \the [src], tearing at it's components!"))
 	fail_rate += 5 // 5% fail rate every attack
 
-/obj/machinery/power/geothermal/attack_hand(mob/living/user)
+/obj/machinery/power/geothermal/attack_hand(mob/living/carbon/user)
+	interact_hand(user)
+
+/obj/machinery/power/geothermal/attack_ai(mob/living/silicon/ai/user)
+	interact_hand(user)
+
+
+/obj/machinery/power/geothermal/proc/interact_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return
@@ -191,9 +198,6 @@
 	cur_tick = 0
 	start_processing()
 	return TRUE
-
-/obj/machinery/power/geothermal/attack_ai(mob/living/silicon/ai/user)
-	attack_hand(user)
 
 /obj/machinery/power/geothermal/welder_act(mob/living/user, obj/item/I)
 	var/obj/item/tool/weldingtool/WT = I
