@@ -17,7 +17,7 @@
 	gun_skill_category = GUN_SKILL_PISTOLS
 	fire_delay = 0.5 SECONDS
 
-	starting_attachment_types = list(/obj/item/attachable/scope/mini/flaregun)
+	starting_attachment_types = list(/obj/item/attachable/scope/unremovable/flaregun)
 
 
 /obj/item/weapon/gun/flare/examine_ammo_count(mob/user)
