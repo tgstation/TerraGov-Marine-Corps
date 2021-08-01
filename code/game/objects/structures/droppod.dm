@@ -48,9 +48,9 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 	UnregisterSignal(SSdcs, list(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_XENO_HIVEMIND, COMSIG_GLOB_OPEN_SHUTTERS_EARLY, COMSIG_GLOB_TADPOLE_LAUNCHED))
 
 /obj/structure/droppod/Destroy()
-	. = ..()
 	if(occupant)
 		exitpod(occupant, TRUE)
+	. = ..()
 	userimg = null
 	QDEL_NULL(reserved_area)
 	GLOB.droppod_list -= src
