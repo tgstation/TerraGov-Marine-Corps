@@ -418,7 +418,7 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 	if(user)
 		if(magazine.reload_delay > 1)
 			to_chat(user, span_notice("You begin reloading [src]. Hold still..."))
-			if(do_after(user,magazine.reload_delay, TRUE, src, BUSY_ICON_GENERIC))
+			if(do_after(user, magazine.reload_delay, TRUE, CHECK_BITFIELD(flags_item, IS_DEPLOYED) ? loc : src, BUSY_ICON_GENERIC))
 				replace_magazine(user, magazine)
 			else
 				to_chat(user, span_warning("Your reload was interrupted!"))
