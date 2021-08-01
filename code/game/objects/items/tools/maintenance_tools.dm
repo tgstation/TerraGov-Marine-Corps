@@ -465,11 +465,11 @@
 	max_fuel = 500 //Because the marine backpack can carry 260, and still allows you to take items, there should be a reason to still use this one.
 
 /obj/item/tool/handheld_charger
-	name = "Handheld charger"
+	name = "handheld charger"
 	desc = "A hand-held, lightweight cell charger. It isn't going to give you tons of power, but it can help in a pinch."
 	icon = 'icons/obj/items/items.dmi'
-	icon_state = "handheldcharger"
-	item_state = "handheldcharger"
+	icon_state = "handheldcharger_empty"
+	item_state = "handheldcharger_empty"
 	w_class = WEIGHT_CLASS_SMALL
 	flags_atom = CONDUCT
 	force = 6.0
@@ -479,17 +479,28 @@
 	materials = list(/datum/material/metal = 50, /datum/material/glass = 20)
 	/// This is the cell we ar charging
 	var/obj/item/cell/cell
+	var/recharging = 0
+
+/obj/item/tool/handheld_charger/Initialize()
+	. = ..()
+	cell = null
 
 /obj/item/tool/handheld_charger/attack_self(mob/user)
 	if(!cell)
 		to_chat(src, "You need some cell to be useful, idiot")
 		return
-	if(!do_after(user, 5, TRUE, src, BUSY_ICON_CLOCK))
-		return
 
-	cell.charge += 100
-	to_chat(src, "You squeeze the handle a few time, putting in a few volts of charge.")
-	playsound(user, 'sound/weapons/guns/interact/rifle_reload.ogg', 20, 1, 5)
+	if(!recharging)
+		recharging = 1
+		while(recharging)
+			if(!do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_GENERIC))
+				return
+			cell.charge += 200
+			to_chat(user, "You squeeze the handle a few times, putting in a few volts of charge.")
+			playsound(user, 'sound/weapons/guns/interact/rifle_reload.ogg', 15, 1, 5)
+			flick("[icon_state]_pumping", src)
+	else
+		recharging = 0
 
 /obj/item/tool/handheld_charger/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -500,14 +511,14 @@
 		return
 
 	I.forceMove(src)
-	var/replace_install = "You replace the cell in [src]"
+	var/replace_install = "You replace the cell in \the [src]"
 	if(!cell)
-		replace_install = "You install a cell in [src]"
+		replace_install = "You install a cell in \the [src]"
 	else
 		cell.update_icon()
 		user.put_in_hands(cell)
 	cell = I
-	to_chat(user, span_notice("[replace_install] <b>Charge Remaining: [cell.charge]/[cell.maxcharge]</b>"))
+	to_chat(user, span_notice("[replace_install]. <b>Charge Remaining: [cell.charge]/[cell.maxcharge]</b>"))
 	playsound(user, 'sound/weapons/guns/interact/rifle_reload.ogg', 20, 1, 5)
 	icon_state = "handheldcharger"
 	return
@@ -526,5 +537,5 @@
 	return
 
 /obj/item/tool/handheld_charger/Destroy()
-	qdel(cell)
+	QDEL_NULL(cell)
 	return ..()
