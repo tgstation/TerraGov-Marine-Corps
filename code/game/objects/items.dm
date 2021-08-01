@@ -183,11 +183,12 @@
 		to_chat(user, "[src] is anchored to the ground.")
 		return
 
+	set_throwing(FALSE)
+
 	if(istype(loc, /obj/item/storage))
 		var/obj/item/storage/S = loc
-		S.remove_from_storage(src, user.loc, user)
-
-	set_throwing(FALSE)
+		if(!S.remove_from_storage(src, user.loc, user))
+			return
 
 	if(loc == user && !user.temporarilyRemoveItemFromInventory(src))
 		return
