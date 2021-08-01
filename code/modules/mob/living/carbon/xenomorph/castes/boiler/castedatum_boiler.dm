@@ -44,6 +44,7 @@
 	max_ammo = 4
 	bomb_strength = 1 //Multiplier to the effectiveness of the boiler glob.
 	bomb_delay = 32 SECONDS
+	ammo_multiplier = 2 SECONDS
 
 	acid_spray_duration = 10 SECONDS
 	acid_spray_damage = 16
