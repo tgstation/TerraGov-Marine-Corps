@@ -14,4 +14,4 @@
 		if(limb_to_break.limb_status & (LIMB_BROKEN | LIMB_DESTROYED | LIMB_AMPUTATED))
 			continue
 		limb_to_break.fracture()
-	
+		
