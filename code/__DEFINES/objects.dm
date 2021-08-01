@@ -31,6 +31,7 @@
 #define PANEL_OPEN (1<<5)
 #define DISABLED (1<<6)		// can be fixed with a welder; removes density. Used primary to stop otherwise indestructible computers from obstructing pathing.
 #define MACHINE_DO_NOT_PROCESS 32768 //Do not added these to processing queue.
+#define KNOCKED_DOWN (1<<7) //Is knocked over, does not affect operational capacity.
 
 #define ENGINE_EJECT_Z 3
 

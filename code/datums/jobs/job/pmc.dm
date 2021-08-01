@@ -148,7 +148,7 @@
 	job_category = JOB_CAT_COMMAND
 	title = "PMC Leader"
 	paygrade = "PMC4"
-	skills_type = /datum/skills/SL/pmc
+	skills_type = /datum/skills/sl/pmc
 	outfit = /datum/outfit/job/pmc/leader
 
 

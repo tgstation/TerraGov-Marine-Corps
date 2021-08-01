@@ -8,7 +8,7 @@
 	health_threshold_crit = -50
 	melee_damage = 5
 	m_intent = MOVE_INTENT_WALK
-	buckle_flags = CAN_BE_BUCKLED|BUCKLE_PREVENTS_PULL|CAN_BUCKLE
+	buckle_flags = CAN_BE_BUCKLED|CAN_BUCKLE
 
 	hud_type = /datum/hud/human
 

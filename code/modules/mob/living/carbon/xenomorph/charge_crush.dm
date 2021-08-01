@@ -87,7 +87,7 @@
 	do_stop_momentum()
 
 
-/datum/action/xeno_action/ready_charge/proc/update_charging(datum/source, atom/oldloc, direction, Forced)
+/datum/action/xeno_action/ready_charge/proc/update_charging(datum/source, atom/oldloc, direction, Forced, old_locs)
 	SIGNAL_HANDLER_DOES_SLEEP
 	if(Forced)
 		return

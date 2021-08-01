@@ -343,7 +343,7 @@
 	ENABLE_BITFIELD(resistance_flags, ON_FIRE)
 	item_fire_stacks = 5
 	heat = 1500
-	damtype = "fire"
+	damtype = BURN
 	update_brightness()
 	playsound(src,'sound/items/flare.ogg', 15, 1)
 	START_PROCESSING(SSobj, src)
@@ -377,7 +377,7 @@
 	throwforce = 10
 	ENABLE_BITFIELD(resistance_flags, ON_FIRE)
 	item_fire_stacks = 5
-	damtype = "fire"
+	damtype = BURN
 	START_PROCESSING(SSobj, src)
 
 /obj/item/explosive/grenade/flare/proc/update_brightness()

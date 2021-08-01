@@ -218,6 +218,12 @@
 		/obj/item/storage/box/visual/magazine = 30,
 		/obj/item/storage/box/visual/grenade = 10,
 		),
+		"Utility" = list(
+		/obj/item/flashlight/combat = -1,
+		/obj/item/binoculars = -1,
+		/obj/item/compass = -1,
+		/obj/item/assembly/signaler = -1,
+		),
 	)
 
 	seasonal_items = list(
@@ -716,7 +722,7 @@
 
 	products = list(
 		/obj/item/clothing/tie/storage/webbing = 1,
-		/obj/item/storage/box/t26_system = 1,
+		/obj/item/storage/box/t29_system = 1,
 		/obj/item/minigun_powerpack = 1,
 		/obj/item/storage/pouch/magazine/large = 1,
 		/obj/item/clothing/mask/gas = 1,
@@ -856,7 +862,6 @@
 			/obj/item/clothing/head/slouch = -1,
 			/obj/item/clothing/glasses/mgoggles = -1,
 			/obj/item/clothing/glasses/mgoggles/prescription = -1,
-			/obj/item/flashlight/combat = -1,
 			/obj/item/clothing/under/whites = -1,
 			/obj/item/clothing/head/white_dress = -1,
 			/obj/item/clothing/shoes/white = -1,
@@ -879,8 +884,8 @@
 			/obj/item/storage/belt/sparepouch = -1,
 			/obj/item/storage/belt/gun/pistol/standard_pistol = -1,
 			/obj/item/storage/belt/gun/revolver/standard_revolver = -1,
-			/obj/item/storage/large_holster/machete/full = -1,
-			/obj/item/storage/large_holster/machete/full_harvester = -1,
+			/obj/item/storage/large_holster/blade/machete/full = -1,
+			/obj/item/storage/large_holster/blade/machete/full_harvester = -1,
 		),
 		"Pouches" = list(
 			/obj/item/storage/pouch/pistol = -1,
