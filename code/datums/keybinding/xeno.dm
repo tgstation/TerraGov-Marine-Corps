@@ -22,6 +22,7 @@
 	keybind_signal = COMSIG_XENOABILITY_DROP_WEEDS
 
 /datum/keybinding/xeno/choose_weeds
+	hotkey_keys = list("Space")
 	name = "choose_weeds"
 	full_name = "Choose Weed"
 	description = "Choose what weed you will drop."

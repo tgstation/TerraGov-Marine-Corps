@@ -132,7 +132,7 @@
 		to_chat(owner, span_warning("Bad place for a garden!"))
 		return fail_activate()
 
-	if(locate(/obj/effect/alien/weeds/node) in T)
+	if(locate(weed_type) in T)
 		to_chat(owner, span_warning("There's a pod here already!"))
 		return fail_activate()
 
