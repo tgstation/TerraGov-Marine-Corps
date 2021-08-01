@@ -127,7 +127,7 @@
 
 /obj/effect/alien/weeds/barbed
 	name = "barbed weeds"
-	desc = "This looks pointy"
+	desc = "This looks very sharp and pointy, as if thorns poke you from all sides. Best not to step on it with your human limbs, it can still be safely destroyed with force, though."
 	color_variant = BARBED_COLOR
 
 /obj/effect/alien/weeds/barbed/Crossed(atom/movable/AM)
@@ -146,7 +146,7 @@
 	victim.apply_damage(2.5, BRUTE)
 
 	if(prob(15))
-		to_chat(victim, span_warning("You hurt yourself on the barbed weeds"))
+		to_chat(victim, span_warning("You are cut from the barbed weeds."))
 		victim.emote("pain")
 
 // =================
