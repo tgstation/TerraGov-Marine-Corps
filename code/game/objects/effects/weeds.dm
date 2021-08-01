@@ -117,7 +117,7 @@
 	if(victim.lying_angle)
 		return
 
-	victim.next_move_slowdown += 1.5
+	victim.next_move_slowdown += 2.5
 
 /obj/effect/alien/weeds/resting
 	name = "resting weeds"
@@ -147,7 +147,7 @@
 			GLOB.organ_rel_size["r_foot"]; "r_foot",
 		) : ran_zone()
 
-	victim.apply_damage(1.5, BRUTE, def_zone)
+	victim.apply_damage(2.5, BRUTE, def_zone)
 
 	if(prob(15))
 		to_chat(victim, span_warning("You are cut from the barbed weeds."))
