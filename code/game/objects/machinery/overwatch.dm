@@ -915,7 +915,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	SIGNAL_HANDLER
 	if(!current_order)
 		var/mob/user = source
-		to_chat(user, span_warning("Your have no order selected."))
+		to_chat(user, span_warning("You have no order selected."))
 	current_order.send_order(target, faction = faction)
 
 ///Setter for the current order
