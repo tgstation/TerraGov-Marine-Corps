@@ -38,6 +38,9 @@
 	user.visible_message(span_notice("[user] finishes attaching [src] to [spirited_away] and activates it."),\
 	span_notice("You attach the pack to [spirited_away] and activate it. This looks like it will yield [export_report.points ? export_report.points : "no"] point[export_report.points == 1 ? "" : "s"]."), null, 5)
 	uses --
+	if(uses < 1)
+		usr.temporarilyRemoveItemFromInventory(src)
+		moveToNullspace()
 
 	qdel(spirited_away)
 
@@ -98,6 +101,8 @@
 	holder_obj.pixel_z = initial(pixel_z)
 	holder_obj.vis_contents -= baloon
 	baloon.icon_state = initial(baloon.icon_state)
+	if(uses < 1)
+		qdel(src)
 	active = FALSE
 
 
