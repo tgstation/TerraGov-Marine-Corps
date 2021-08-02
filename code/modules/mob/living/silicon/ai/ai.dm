@@ -80,6 +80,7 @@
 	RegisterSignal(SSdcs, COMSIG_GLOB_OB_LASER_CREATED, .proc/receive_laser_ob)
 	RegisterSignal(SSdcs, COMSIG_GLOB_CAS_LASER_CREATED, .proc/receive_laser_cas)
 
+	RegisterSignal(SSdcs, COMSIG_GLOB_SHUTTLE_TAKEOFF, .proc/shuttle_takeoff_notification)
 
 
 	var/datum/action/innate/order/attack_order/send_attack_order = new
@@ -128,6 +129,10 @@
 	SIGNAL_HANDLER
 	to_chat(src, "<span class='notice'>CAS laser detected. Target: [AREACOORD_NO_Z(src)]</span>")
 	playsound_local(src, 'sound/effects/binoctarget.ogg', 15)
+
+/mob/living/silicon/ai/proc/shuttle_takeoff_notification(datum/source, shuttleId, D)
+	SIGNAL_HANDLER
+	to_chat(src, span_notice("[shuttleId] taking off towards \the [D]"))
 
 /mob/living/silicon/ai/restrained(ignore_checks)
 	return FALSE
