@@ -33,19 +33,17 @@
 		amount += other.amount
 		qdel(other)
 	fuel_spread()
+	RegisterSignal(loc, COMSIG_TURF_LANDED, .proc/ignite_check_wrapper)
+
+/obj/effect/decal/cleanable/liquid_fuel/Destroy()
+	UnregisterSignal(loc, COMSIG_TURF_LANDED)
+	return ..()
 
 /obj/effect/decal/cleanable/liquid_fuel/Crossed(atom/movable/AM)
 	. = ..()
-	if(isitem(AM))
-		var/obj/item/igniter = AM
-		if(igniter.damtype != BURN)
-			return
-		addtimer(CALLBACK(src, .proc/crossed_ignite, igniter), 1) //Just to make sure it wasn't thrown over
-	if(isliving(AM))
-		var/mob/living/burner_mob = AM
-		if(!burner_mob.on_fire)
-			return
-		addtimer(CALLBACK(src, .proc/crossed_ignite, burner_mob), 1)
+	if(AM.throwing)
+		return	//If something lands on our turf, it's caught via signal instead
+	check_ignite(AM)
 
 /obj/effect/decal/cleanable/liquid_fuel/proc/fuel_spread()
 	//Allows liquid fuels to sometimes flow into other tiles.
@@ -102,11 +100,24 @@
 			INVOKE_NEXT_TICK(other, .proc/ignite_fuel)	//Spread effect
 	qdel(src)
 
-///Ignites when something hot enters our loc, but only if it doesn't immediately leave
-/obj/effect/decal/cleanable/liquid_fuel/proc/crossed_ignite(atom/movable/igniter)
-	if(igniter.loc == loc)
-		visible_message(span_warning("The spilled fuel catches fire!"))
-		ignite_fuel()
+///Ignites when something hot enters our loc, either via crossed or signal wrapper
+/obj/effect/decal/cleanable/liquid_fuel/proc/check_ignite(atom/movable/igniter)
+	if(isitem(igniter))
+		var/obj/item/ignitem = igniter
+		if(ignitem.damtype != BURN)
+			return
+	else if(isliving(igniter))
+		var/mob/living/burner_mob = igniter
+		if(!burner_mob.on_fire)
+			return
+	else return
+	visible_message(span_warning("The spilled fuel catches fire!"))
+	ignite_fuel()
+
+///Wrapper for ignition via signals rather than from crossed
+/obj/effect/decal/cleanable/liquid_fuel/proc/ignite_check_wrapper(signal_source, atom/movable/igniter)
+	SIGNAL_HANDLER
+	check_ignite(igniter)
 
 /obj/effect/decal/cleanable/liquid_fuel/flamethrower_fuel
 	icon_state = "mustard"

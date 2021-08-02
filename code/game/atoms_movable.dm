@@ -529,6 +529,7 @@
 		throw_impact(get_turf(src), speed)
 	if(loc)
 		stop_throw()
+		SEND_SIGNAL(loc, COMSIG_TURF_LANDED, src)
 	SEND_SIGNAL(src, COMSIG_MOVABLE_POST_THROW)
 
 /// Annul all throw var to ensure a clean exit out of throw state
