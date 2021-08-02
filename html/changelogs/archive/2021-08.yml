@@ -34,3 +34,23 @@
   - expansion: 3 new canterbury crash locations
   - balance: removes some rock walls to make new & old crash locations a bit more
       accessible.
+2021-08-02:
+  Pariah919:
+  - rscadd: Added new marine flaregun, it can look out to miniscope distance. Fits
+      in your flare pouches too.
+  - qol: flaregun fired flares now stop where you click.
+  - balance: flareguns now have miniscope level range of zoom on them, when you zoom
+      on them.
+  - rscadd: Added new tyr helmet attachie. +10 To all armor stats. 15 to melee.
+  Pill-U:
+  - balance: Shrike can destroy walls with holes
+  SpaceLove:
+  - bugfix: fixed bug with lolipop pouches
+  SplinterGP:
+  - bugfix: fixed evolving/regressing not working with xenos with different plasma
+      mechanics, now they account for their plasma regen limit.
+  TiviPlus:
+  - bugfix: Fixed crusher charging
+  lbnesquik:
+  - qol: sound for the firelocks welding
+  - bugfix: fixed typos in snaps and hugging emotes
