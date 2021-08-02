@@ -392,7 +392,6 @@
 			to_chat(user, span_warning("The bird has left meanwhile, try again."))
 			return FALSE
 		D.unlock_all()
-		D.prevent_silicon_intervention()
 		D.set_hijack_state(HIJACK_STATE_UNLOCKED)
 		D.do_start_hijack_timer(GROUND_LOCKDOWN_TIME)
 		to_chat(user, span_warning("We have overriden the shuttle lockdown!"))
@@ -677,6 +676,7 @@
 	to_chat(user, span_danger("A loud alarm erupts from [src]! The fleshy hosts must know that you can access it!"))
 	user.hive.on_shuttle_hijack(crashing_dropship)
 	playsound(src, 'sound/misc/queen_alarm.ogg')
+	crashing_dropship.prevent_silicon_intervention()
 	SSevacuation.flags_scuttle &= ~FLAGS_SDEVAC_TIMELOCK
 	switch(SSshuttle.moveShuttleToDock(shuttleId, crash_target, TRUE))
 		if(0)
