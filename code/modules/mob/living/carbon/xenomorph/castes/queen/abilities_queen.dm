@@ -75,6 +75,32 @@
 	message_admins("[ADMIN_TPMONTY(src)] has created a Hive Message.")
 
 // ***************************************
+// *********** Silo and turret permissions
+// ***************************************
+/mob/living/carbon/xenomorph/proc/points_toggle()
+	set name = "Permit/Disallow Psy Points Usage"
+	set desc = "Allows you to permit the hive to use psy points in building silos and/or turrets."
+	set category = "Alien"
+
+	if(stat)
+		to_chat(src, span_warning("We can't do that now."))
+		return
+
+	if(ppoints_delay)
+		to_chat(src, span_warning("We must wait a bit before we can toggle this again."))
+		return
+
+	addtimer(VARSET_CALLBACK(src, ppoints_delay, FALSE), 30 SECONDS)
+
+	ppoints_delay = TRUE
+
+	var/choice = tgui_input_list(src, "Choose what to allow the hive to build.","Building", list("Unrestricted", "Silos", "Turrets", "Forbidden"))
+
+	if(choice == "Unrestricted")
+		to_chat(src, span_xenonotice("We have allowed the unrestricted expediture of psy points for building silos and turrets by others."))
+		xeno_message()
+
+// ***************************************
 // *********** Slashing permissions
 // ***************************************
 /mob/living/carbon/xenomorph/proc/claw_toggle()
