@@ -157,9 +157,9 @@ directive is properly returned.
 	return !density
 
 /// Returns true or false to allow the mover to move out of the atom
-/atom/proc/CheckExit(atom/movable/mover, turf/target)
+/atom/proc/CheckExit(atom/movable/mover, direction)
 	SHOULD_CALL_PARENT(TRUE)
-	if(!density || !(flags_atom & ON_BORDER) || !(get_dir(mover.loc, target) & dir) || (mover.status_flags & INCORPOREAL))
+	if(!density || !(flags_atom & ON_BORDER) || !(direction & dir) || (mover.status_flags & INCORPOREAL))
 		return TRUE
 	return FALSE
 
