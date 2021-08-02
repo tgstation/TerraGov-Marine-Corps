@@ -9,7 +9,7 @@
 	///Reference to the balloon vis obj effect
 	var/atom/movable/vis_obj/fulton_baloon/baloon
 	var/obj/effect/fulton_extraction_holder/holder_obj
-	var/uses = 3
+	var/uses = 3 //How many times you can use the fulton before it goes poof
 
 /obj/item/fulton_extraction_pack/examine(mob/user)
 	..()
@@ -37,9 +37,7 @@
 		SSpoints.export_history += export_report
 	user.visible_message(span_notice("[user] finishes attaching [src] to [spirited_away] and activates it."),\
 	span_notice("You attach the pack to [spirited_away] and activate it. This looks like it will yield [export_report.points ? export_report.points : "no"] point[export_report.points == 1 ? "" : "s"]."), null, 5)
-	uses -= 1
-	if(zero_uses())
-		return TRUE
+	uses --
 
 	qdel(spirited_away)
 
@@ -101,12 +99,6 @@
 	holder_obj.vis_contents -= baloon
 	baloon.icon_state = initial(baloon.icon_state)
 	active = FALSE
-
-/obj/item/fulton_extraction_pack/proc/zero_uses()
-	if(uses < 1)
-		qdel(src)
-		return TRUE
-	return FALSE
 
 
 /obj/effect/fulton_extraction_holder
