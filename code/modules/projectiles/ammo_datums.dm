@@ -1621,19 +1621,19 @@ datum/ammo/bullet/revolver/tp44
 /datum/ammo/xeno/toxin
 	name = "neurotoxic spit"
 	flags_ammo_behavior = AMMO_XENO|AMMO_EXPLOSIVE|AMMO_SKIPS_ALIENS
-	spit_cost = 50
+	spit_cost = 70
 	added_spit_delay = 5
 	damage_type = STAMINA
 	accurate_range = 5
 	max_range = 10
 	accuracy_var_low = 3
 	accuracy_var_high = 3
-	damage = 30
+	damage = 40
 	stagger_stacks = 1
 	slowdown_stacks = 1
 	smoke_strength = 0.5
 	smoke_range = 0
-	reagent_transfer_amount = 6.5
+	reagent_transfer_amount = 7
 
 ///Set up the list of reagents the spit transfers upon impact
 /datum/ammo/xeno/toxin/proc/set_reagents()
@@ -1695,58 +1695,57 @@ datum/ammo/bullet/revolver/tp44
 	smoke_system.start()
 
 /datum/ammo/xeno/toxin/upgrade1
-	smoke_strength = 0.55
-	reagent_transfer_amount = 7
-
-/datum/ammo/xeno/toxin/upgrade2
 	smoke_strength = 0.6
-	reagent_transfer_amount = 7.5
-
-/datum/ammo/xeno/toxin/upgrade3
-	smoke_strength = 0.65
 	reagent_transfer_amount = 8
 
+/datum/ammo/xeno/toxin/upgrade2
+	smoke_strength = 0.7
+	reagent_transfer_amount = 8.5
+
+/datum/ammo/xeno/toxin/upgrade3
+	smoke_strength = 0.8
+	reagent_transfer_amount = 9
 
 /datum/ammo/xeno/toxin/medium //Queen
 	name = "neurotoxic spatter"
 	added_spit_delay = 10
-	spit_cost = 75
-	damage = 35
-	smoke_strength = 0.6
-	reagent_transfer_amount = 7.5
-
-/datum/ammo/xeno/toxin/medium/upgrade1
-	smoke_strength = 0.65
+	spit_cost = 85
+	damage = 45
+	smoke_strength = 0.7
 	reagent_transfer_amount = 8
 
-/datum/ammo/xeno/toxin/medium/upgrade2
-	smoke_strength = 0.7
+/datum/ammo/xeno/toxin/medium/upgrade1
+	smoke_strength = 0.75
 	reagent_transfer_amount = 8.5
 
-/datum/ammo/xeno/toxin/medium/upgrade3
-	smoke_strength = 0.75
+/datum/ammo/xeno/toxin/medium/upgrade2
+	smoke_strength = 0.8
 	reagent_transfer_amount = 9
+
+/datum/ammo/xeno/toxin/medium/upgrade3
+	smoke_strength = 0.85
+	reagent_transfer_amount = 9.5
 
 
 /datum/ammo/xeno/toxin/heavy //Praetorian
 	name = "neurotoxic splash"
-	added_spit_delay = 15
-	spit_cost = 100
-	damage = 40
-	smoke_strength = 0.65
-	reagent_transfer_amount = 8.5
-
-/datum/ammo/xeno/toxin/heavy/upgrade1
-	smoke_strength = 0.7
+	added_spit_delay = 13
+	spit_cost = 120
+	damage = 50
+	smoke_strength = 0.75
 	reagent_transfer_amount = 9
 
-/datum/ammo/xeno/toxin/heavy/upgrade2
-	smoke_strength = 0.75
-	reagent_transfer_amount = 9.5
-
-/datum/ammo/xeno/toxin/heavy/upgrade3
+/datum/ammo/xeno/toxin/heavy/upgrade1
 	smoke_strength = 0.8
 	reagent_transfer_amount = 10
+
+/datum/ammo/xeno/toxin/heavy/upgrade2
+	smoke_strength = 0.9
+	reagent_transfer_amount = 10.5
+
+/datum/ammo/xeno/toxin/heavy/upgrade3
+	smoke_strength = 0.10
+	reagent_transfer_amount = 11
 
 
 /datum/ammo/xeno/sticky
@@ -2079,7 +2078,7 @@ datum/ammo/bullet/revolver/tp44
 	name = "flare"
 	ping = null //no bounce off.
 	damage_type = BURN
-	flags_ammo_behavior = AMMO_INCENDIARY
+	flags_ammo_behavior = AMMO_EXPLOSIVE|AMMO_INCENDIARY
 	damage = 15
 	accuracy = 15
 	max_range = 15
