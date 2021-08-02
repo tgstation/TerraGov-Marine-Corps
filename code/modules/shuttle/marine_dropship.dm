@@ -197,6 +197,23 @@
 				var/obj/machinery/door/airlock/multi_tile/mainship/dropshiprear/D = i
 				D.release()
 
+/obj/docking_port/mobile/marine_dropship/proc/prevent_silicon_intervention()
+	silicon_lock_airlocks("rear")
+	silicon_lock_airlocks("left")
+	silicon_lock_airlocks("right")
+
+/obj/docking_port/mobile/marine_dropship/proc/silicon_lock_airlocks(side)
+	switch(side)
+		if("left")
+			for(var/obj/machinery/door/airlock/dropship_hatch/D AS in left_airlocks)
+				D.aiControlDisabled =! 1
+		if("right")
+			for(var/obj/machinery/door/airlock/dropship_hatch/D AS in right_airlocks)
+				D.aiControlDisabled =! 1
+		if("rear")
+			for(var/obj/machinery/door/airlock/multi_tile/mainship/dropshiprear/D AS in rear_airlocks)
+				D.aiControlDisabled =! 1
+
 /obj/docking_port/mobile/marine_dropship/Destroy(force)
 	. = ..()
 	if(force)
@@ -240,6 +257,7 @@
 /obj/docking_port/mobile/marine_dropship/proc/reset_hijack()
 	if(hijack_state == HIJACK_STATE_CALLED_DOWN || hijack_state == HIJACK_STATE_UNLOCKED)
 		set_hijack_state(HIJACK_STATE_NORMAL)
+		prevent_silicon_intervention()
 
 /obj/docking_port/mobile/marine_dropship/proc/summon_dropship_to(obj/docking_port/stationary/S)
 	if(hijack_state != HIJACK_STATE_NORMAL)
@@ -340,20 +358,17 @@
 			D = M
 	if(is_ground_level(D.z))
 		var/locked_sides = 0
-		for(var/i in D.left_airlocks)
-			var/obj/machinery/door/airlock/dropship_hatch/DH = i
+		for(var/obj/machinery/door/airlock/dropship_hatch/DH AS in D.left_airlocks)
 			if(!DH.locked)
 				continue
 			locked_sides++
 			break
-		for(var/i in D.right_airlocks)
-			var/obj/machinery/door/airlock/dropship_hatch/DH = i
+		for(var/obj/machinery/door/airlock/dropship_hatch/DH AS in D.right_airlocks)
 			if(!DH.locked)
 				continue
 			locked_sides++
 			break
-		for(var/i in D.rear_airlocks)
-			var/obj/machinery/door/airlock/multi_tile/mainship/dropshiprear/DH = i
+		for(var/obj/machinery/door/airlock/dropship_hatch/DH AS in D.rear_airlocks)
 			if(!DH.locked)
 				continue
 			locked_sides++
@@ -377,6 +392,7 @@
 			to_chat(user, span_warning("The bird has left meanwhile, try again."))
 			return FALSE
 		D.unlock_all()
+		D.prevent_silicon_intervention()
 		D.set_hijack_state(HIJACK_STATE_UNLOCKED)
 		D.do_start_hijack_timer(GROUND_LOCKDOWN_TIME)
 		to_chat(user, span_warning("We have overriden the shuttle lockdown!"))
