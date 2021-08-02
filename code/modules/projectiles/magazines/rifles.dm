@@ -339,6 +339,6 @@
 	caliber = CALIBER_10X25_CASELESS
 	icon_state = "t21"
 	default_ammo = /datum/ammo/bullet/rifle/heavy
-	max_rounds = 25
+	max_rounds = 30
 	gun_type = /obj/item/weapon/gun/rifle/standard_skirmishrifle
 	icon_state_mini = "mag_rifle"

@@ -1178,7 +1178,7 @@
 	unload_sound = 'sound/weapons/guns/interact/t21_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/t21_reload.ogg'
 	caliber = CALIBER_10X25_CASELESS //codex
-	max_shells = 25 //codex
+	max_shells = 30 //codex
 	force = 20
 	current_mag = /obj/item/ammo_magazine/rifle/standard_skirmishrifle
 	attachable_allowed = list(
@@ -1212,7 +1212,7 @@
 	aim_fire_delay = 0.15 SECONDS
 	aim_speed_modifier = 2.5
 
-	fire_delay = 0.2 SECONDS
+	fire_delay = 0.25 SECONDS
 	burst_amount = 1
 	burst_delay = 0.15 SECONDS
 	accuracy_mult = 1.15
