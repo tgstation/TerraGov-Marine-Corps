@@ -1,0 +1,5 @@
+author: "TiviPlus"
+delete-after: True
+changes: 
+  - bugfix: "fixed barricades being passable too often"
+  - refactor: "refactored more movement code"
