@@ -93,7 +93,6 @@
 	else
 		X.neuro_ammo++
 		to_chat(X, span_notice("We prepare a neurotoxic gas globule."))
-	X.updated_delay -= 10
 	X.update_boiler_glow()
 	update_button_icon()
 
@@ -234,7 +233,6 @@
 		GLOB.round_statistics.boiler_neuro_smokes++
 		SSblackbox.record_feedback("tally", "round_statistics", 1, "boiler_neuro_smokes")
 		X.neuro_ammo--
-	X.updated_delay += 10
 
 	X.update_boiler_glow()
 	update_button_icon()
