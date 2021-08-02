@@ -68,6 +68,7 @@
 
 	ENABLE_BITFIELD(attached_item.flags_item, IS_DEPLOYED)
 
+	UnregisterSignal(attached_item, COMSIG_ITEM_UNIQUE_ACTION)
 	RegisterSignal(deployed_machine, COMSIG_ITEM_UNDEPLOY, .proc/undeploy)
 
 ///Wrapper for proc/finish_undeploy
@@ -106,3 +107,4 @@
 
 	QDEL_NULL(deployed_machine)
 	attached_item.update_icon_state()
+	RegisterSignal(attached_item, COMSIG_ITEM_UNIQUE_ACTION, .proc/deploy)
