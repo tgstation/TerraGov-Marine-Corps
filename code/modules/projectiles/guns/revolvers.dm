@@ -425,12 +425,12 @@
 
 
 //-------------------------------------------------------
-//357 REVOLVER //Based on the generic S&W 357.
+//A generic 357 revolver. With a twist.
 
 /obj/item/weapon/gun/revolver/small
-	name = "\improper S&W .357 revolver"
-	desc = "A lean .357 made by Smith & Wesson. A timeless classic, from antiquity to the future."
-	icon_state = "sw357"
+	name = "\improper FFA 'Rebota' revolver"
+	desc = "A lean .357 made by Falffearmeria. A timeless design, from antiquity to the future. This one is well known for it's strange ammo, which ricochets off walls constantly. Which went from being a defect to a feature."
+	icon_state = "rebota"
 	item_state = "sw357"
 	caliber = CALIBER_357 //codex
 	max_shells = 6 //codex
