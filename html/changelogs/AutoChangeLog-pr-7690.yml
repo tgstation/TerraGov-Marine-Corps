@@ -1,0 +1,5 @@
+author: "TiviPlus"
+delete-after: True
+changes: 
+  - rscadd: "Runners can now ride crushers when the crusher grabs the runner then clicks on themselves"
+  - refactor: "refactored riding code"
