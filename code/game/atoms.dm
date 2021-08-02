@@ -359,6 +359,21 @@ directive is properly returned.
 /atom/proc/relaymove()
 	return
 
+/**
+ * A special case of relaymove() in which the person relaying the move may be "driving" this atom
+ *
+ * This is a special case for vehicles and ridden animals where the relayed movement may be handled
+ * by the riding component attached to this atom. Returns TRUE as long as there's nothing blocking
+ * the movement, or FALSE if the signal gets a reply that specifically blocks the movement
+ */
+/atom/proc/relaydrive(mob/living/user, direction)
+	return !(SEND_SIGNAL(src, COMSIG_RIDDEN_DRIVER_MOVE, user, direction) & COMPONENT_DRIVER_BLOCK_MOVE)
+
+/**
+ * React to being hit by an explosion
+ *
+ * Default behaviour is to call [contents_explosion][/atom/proc/contents_explosion] and send the [COMSIG_ATOM_EX_ACT] signal
+ */
 /atom/proc/ex_act(severity, epicenter_dist, impact_range)
 	if(!(flags_atom & PREVENT_CONTENTS_EXPLOSION))
 		contents_explosion(severity, epicenter_dist, impact_range)
