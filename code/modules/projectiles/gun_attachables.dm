@@ -261,6 +261,8 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	master_gun.aim_speed_modifier			-= initial(master_gun.aim_speed_modifier)*aim_mode_movement_mult
 	master_gun.iff_marine_damage_falloff	-= shot_marine_damage_falloff
 	master_gun.aim_fire_delay 				+= cached_aim_mode_debuff_fire_rate
+	if(CHECK_BITFIELD(master_gun.flags_gun_features, GUN_IS_AIMING))
+		master_gun.modify_fire_delay(cached_aim_mode_debuff_fire_rate)
 	cached_aim_mode_debuff_fire_rate = 0
 	if(delay_mod)
 		master_gun.modify_fire_delay(-delay_mod)
