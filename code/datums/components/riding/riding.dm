@@ -8,7 +8,7 @@
 
 /datum/component/riding
 	dupe_mode = COMPONENT_DUPE_UNIQUE
-
+	/// whether our last owners move was diagonally done to update move speeds, bool
 	var/last_move_diagonal = FALSE
 	///tick delay between movements, lower = faster, higher = slower
 	var/vehicle_move_delay = 2
