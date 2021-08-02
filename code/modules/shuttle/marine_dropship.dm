@@ -206,13 +206,13 @@
 	switch(side)
 		if("left")
 			for(var/obj/machinery/door/airlock/dropship_hatch/D AS in left_airlocks)
-				D.aiControlDisabled =! 1
+				D.aiControlDisabled =! D.aiControlDisabled
 		if("right")
 			for(var/obj/machinery/door/airlock/dropship_hatch/D AS in right_airlocks)
-				D.aiControlDisabled =! 1
+				D.aiControlDisabled =! D.aiControlDisabled
 		if("rear")
 			for(var/obj/machinery/door/airlock/multi_tile/mainship/dropshiprear/D AS in rear_airlocks)
-				D.aiControlDisabled =! 1
+				D.aiControlDisabled =! D.aiControlDisabled
 
 /obj/docking_port/mobile/marine_dropship/Destroy(force)
 	. = ..()
