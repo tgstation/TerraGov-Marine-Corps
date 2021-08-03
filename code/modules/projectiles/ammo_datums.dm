@@ -497,8 +497,8 @@ datum/ammo/bullet/revolver/tp44
 	name = "high-velocity rifle bullet"
 	hud_state = "hivelo"
 	damage = 20
-	penetration = 10
-	sundering = 1
+	penetration = 20
+	sundering = 1.25
 
 /datum/ammo/bullet/rifle/incendiary
 	name = "incendiary rifle bullet"
