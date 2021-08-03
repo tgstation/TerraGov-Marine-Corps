@@ -39,13 +39,6 @@
 	hive.RegisterSignal(src, COMSIG_HIVE_XENO_DEATH, /datum/hive_status.proc/on_queen_death)
 	playsound(loc, 'sound/voice/alien_queen_command.ogg', 75, 0)
 
-	if(!isdistressgamemode(SSticker.mode))
-		return;
-
-	// Upon ascension to queen, hive construction permissions default to forbidden.
-	hive.building_allowed = NONE
-	xeno_message("The new Queen has forbidden the rest of the hive from wasting psy points.")
-
 // ***************************************
 // *********** Life overrides
 // ***************************************
