@@ -197,22 +197,13 @@
 				var/obj/machinery/door/airlock/multi_tile/mainship/dropshiprear/D = i
 				D.release()
 
-/obj/docking_port/mobile/marine_dropship/proc/prevent_silicon_intervention()
-	silicon_lock_airlocks("rear")
-	silicon_lock_airlocks("left")
-	silicon_lock_airlocks("right")
-
-/obj/docking_port/mobile/marine_dropship/proc/silicon_lock_airlocks(side)
-	switch(side)
-		if("left")
-			for(var/obj/machinery/door/airlock/dropship_hatch/D AS in left_airlocks)
-				D.aiControlDisabled =! D.aiControlDisabled
-		if("right")
-			for(var/obj/machinery/door/airlock/dropship_hatch/D AS in right_airlocks)
-				D.aiControlDisabled =! D.aiControlDisabled
-		if("rear")
-			for(var/obj/machinery/door/airlock/multi_tile/mainship/dropshiprear/D AS in rear_airlocks)
-				D.aiControlDisabled =! D.aiControlDisabled
+/obj/docking_port/mobile/marine_dropship/proc/silicon_lock_airlocks(should_lock = TRUE)
+	for(var/obj/machinery/door/airlock/dropship_hatch/D AS in left_airlocks)
+		D.aiControlDisabled =! D.aiControlDisabled
+	for(var/obj/machinery/door/airlock/dropship_hatch/D AS in right_airlocks)
+		D.aiControlDisabled =! D.aiControlDisabled
+	for(var/obj/machinery/door/airlock/multi_tile/mainship/dropshiprear/D AS in rear_airlocks)
+		D.aiControlDisabled =! D.aiControlDisabled
 
 /obj/docking_port/mobile/marine_dropship/Destroy(force)
 	. = ..()
@@ -257,7 +248,7 @@
 /obj/docking_port/mobile/marine_dropship/proc/reset_hijack()
 	if(hijack_state == HIJACK_STATE_CALLED_DOWN || hijack_state == HIJACK_STATE_UNLOCKED)
 		set_hijack_state(HIJACK_STATE_NORMAL)
-		prevent_silicon_intervention()
+		silicon_lock_airlocks(FALSE)
 
 /obj/docking_port/mobile/marine_dropship/proc/summon_dropship_to(obj/docking_port/stationary/S)
 	if(hijack_state != HIJACK_STATE_NORMAL)
@@ -345,9 +336,9 @@
 #define ALIVE_HUMANS_FOR_CALLDOWN 0.1
 
 /datum/game_mode/proc/can_summon_dropship(mob/user)
-	if(SSticker.round_start_time + SHUTTLE_HIJACK_LOCK > world.time)
-		to_chat(user, span_warning("It's too early to call it. We must wait [DisplayTimeText(SSticker.round_start_time + SHUTTLE_HIJACK_LOCK - world.time, 1)]."))
-		return FALSE
+	//if(SSticker.round_start_time + SHUTTLE_HIJACK_LOCK > world.time)
+	//	to_chat(user, span_warning("It's too early to call it. We must wait [DisplayTimeText(SSticker.round_start_time + SHUTTLE_HIJACK_LOCK - world.time, 1)]."))
+	//	return FALSE
 	if(!is_ground_level(user.z))
 		to_chat(user, span_warning("We can't call the bird from here!"))
 		return FALSE
@@ -394,6 +385,7 @@
 		D.unlock_all()
 		D.set_hijack_state(HIJACK_STATE_UNLOCKED)
 		D.do_start_hijack_timer(GROUND_LOCKDOWN_TIME)
+		D.silicon_lock_airlocks(TRUE)
 		to_chat(user, span_warning("We have overriden the shuttle lockdown!"))
 		playsound(user, "alien_roar", 50)
 		priority_announce("Alamo lockdown protocol compromised. Interference preventing remote control", "Dropship Lock Alert")
@@ -457,9 +449,9 @@
 /obj/machinery/computer/shuttle/marine_dropship/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
 	if(!(X.xeno_caste.caste_flags & CASTE_IS_INTELLIGENT))
 		return
-	if(SSticker.round_start_time + SHUTTLE_HIJACK_LOCK > world.time)
-		to_chat(X, span_xenowarning("It's too early to do this!"))
-		return
+	//if(SSticker.round_start_time + SHUTTLE_HIJACK_LOCK > world.time)
+	//	to_chat(X, span_xenowarning("It's too early to do this!"))
+	//	return
 	var/obj/docking_port/mobile/marine_dropship/M = SSshuttle.getShuttle(shuttleId)
 	var/dat = "Status: [M ? M.getStatusText() : "*Missing*"]<br><br>"
 	if(M)
@@ -676,7 +668,7 @@
 	to_chat(user, span_danger("A loud alarm erupts from [src]! The fleshy hosts must know that you can access it!"))
 	user.hive.on_shuttle_hijack(crashing_dropship)
 	playsound(src, 'sound/misc/queen_alarm.ogg')
-	crashing_dropship.prevent_silicon_intervention()
+	crashing_dropship.silicon_lock_airlocks(TRUE)
 	SSevacuation.flags_scuttle &= ~FLAGS_SDEVAC_TIMELOCK
 	switch(SSshuttle.moveShuttleToDock(shuttleId, crash_target, TRUE))
 		if(0)
