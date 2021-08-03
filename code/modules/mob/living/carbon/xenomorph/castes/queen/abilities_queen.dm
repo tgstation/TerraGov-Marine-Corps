@@ -78,27 +78,44 @@
 // *********** Silo and turret permissions
 // ***************************************
 /mob/living/carbon/xenomorph/proc/points_toggle()
-	set name = "Permit/Disallow Psy Points Usage"
+	set name = "Permit/Disallow psy points Usage"
 	set desc = "Allows you to permit the hive to use psy points in building silos and/or turrets."
 	set category = "Alien"
 
 	if(stat)
-		to_chat(src, span_warning("We can't do that now."))
+		to_chat(src, span_xenowarning("We can't do that now."))
+		return
+
+	if(!isdistressgamemode(SSticker.mode)) // This does not apply during Hunt/Crash where there are no psy points.
+		to_chat(src, span_xenowarning("We do not use psy points currently."))
 		return
 
 	if(ppoints_delay)
-		to_chat(src, span_warning("We must wait a bit before we can toggle this again."))
+		to_chat(src, span_xenowarning("We must wait a bit before we can toggle this again."))
 		return
 
 	addtimer(VARSET_CALLBACK(src, ppoints_delay, FALSE), 30 SECONDS)
 
 	ppoints_delay = TRUE
 
-	var/choice = tgui_input_list(src, "Choose what to allow the hive to build.","Building", list("Unrestricted", "Silos", "Turrets", "Forbidden"))
+	var/choice = tgui_input_list(src, "Choose what to allow the hive to build.","Building", list("Unrestricted", "Only Silos", "Only Turrets", "Forbidden"))
 
 	if(choice == "Unrestricted")
-		to_chat(src, span_xenonotice("We have allowed the unrestricted expediture of psy points for building silos and turrets by others."))
-		xeno_message()
+		to_chat(src, span_xenonotice("We have allowed the unrestricted expenditure of psy points for building silos and turrets by others."))
+		xeno_message("The Queen has permitted the unrestricted construction of <b>both silos and turrets</b>.")
+		hive.building_allowed = XENO_BUILDING_UNRESTRICTED
+	else if(choice == "Only Silos")
+		to_chat(src, span_xenonotice("We have allowed the expenditure of psy points for building silos by others."))
+		xeno_message("The Queen has permitted the construction of <b>only silos</b>.")
+		hive.building_allowed = XENO_BUILDING_SILO
+	else if(choice == "Only Turrets")
+		to_chat(src, span_xenonotice("We have allowed the expenditure of psy points for building turrets by others."))
+		xeno_message("The Queen has permitted the construction of <b>only turrets</b>.")
+		hive.building_allowed = XENO_BUILDING_TURRET
+	else if(choice == "Forbidden")
+		to_chat(src, span_xenonotice("We have forbidden the expenditure of psy points by others."))
+		xeno_message("The Queen has <b>forbidden</b> the construction of silos and turrets.")
+		hive.building_allowed = XENO_BUILDING_FORBIDDEN
 
 // ***************************************
 // *********** Slashing permissions

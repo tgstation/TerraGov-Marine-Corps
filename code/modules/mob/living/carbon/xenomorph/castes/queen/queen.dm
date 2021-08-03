@@ -27,6 +27,7 @@
 		/mob/living/carbon/xenomorph/proc/claw_toggle,
 		/mob/living/carbon/xenomorph/queen/proc/set_orders,
 		/mob/living/carbon/xenomorph/proc/hijack,
+		/mob/living/carbon/xenomorph/proc/points_toggle,
 	)
 
 // ***************************************
@@ -38,6 +39,9 @@
 	hive.RegisterSignal(src, COMSIG_HIVE_XENO_DEATH, /datum/hive_status.proc/on_queen_death)
 	playsound(loc, 'sound/voice/alien_queen_command.ogg', 75, 0)
 
+	// Upon ascension to queen, hive construction permissions default to forbidden.
+	hive.building_allowed = XENO_BUILDING_FORBIDDEN
+	xeno_message("The new Queen has forbidden the rest of the hive from wasting psy points.")
 
 // ***************************************
 // *********** Life overrides
@@ -100,6 +104,9 @@
 	playsound(loc, 'sound/voice/alien_queen_died.ogg', 75, 0)
 
 /mob/living/carbon/xenomorph/queen/xeno_death_alert()
+	// Resets building permissions to unrestricted upon queen death.
+	hive.building_allowed = XENO_BUILDING_UNRESTRICTED
+	xeno_message("With the death of the Queen, we are free from any restrictions on building silos or turrets.")
 	return
 
 

@@ -225,6 +225,15 @@
 		else
 			stat("Slashing of hosts status:","FORBIDDEN")
 
+	if(hive.building_allowed == XENO_BUILDING_FORBIDDEN)
+		stat("Expenditure of psy points status:", "FORBIDDEN")
+	else if(hive.building_allowed == XENO_BUILDING_SILO)
+		stat("Expenditure of psy points status:", "ONLY SILOS")
+	else if(hive.building_allowed == XENO_BUILDING_TURRET)
+		stat("Expenditure of psy points status:", "ONLY TURRETS")
+	else
+		stat("Expenditure of psy points status:", "UNRESTRICTED")
+
 	//Very weak <= 1.0, weak <= 2.0, no modifier 2-3, strong <= 3.5, very strong <= 4.5
 	var/msg_holder = ""
 	if(frenzy_aura)

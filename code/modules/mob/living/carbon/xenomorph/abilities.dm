@@ -1082,6 +1082,11 @@
 		return FALSE
 
 	var/mob/living/carbon/xenomorph/X = owner
+
+	if(!isxenoqueen(X) && !(X.hive.building_allowed & XENO_BUILDING_SILO))
+		to_chat(owner, span_xenowarning("The Queen has forbidden the construction of silos!"))
+		return FALSE
+
 	if(SSpoints.xeno_points_by_hive[X.hivenumber] < psych_cost)
 		to_chat(owner, span_xenowarning("The hive doesn't have the necessary psychic points for you to do that!"))
 		return FALSE
@@ -1137,6 +1142,11 @@
 		return FALSE
 	var/turf/T = get_turf(A)
 	var/mob/living/carbon/xenomorph/X = owner
+
+	if(!isxenoqueen(X) && !(X.hive.building_allowed & XENO_BUILDING_TURRET))
+		to_chat(owner, span_xenowarning("The Queen has forbidden the construction of turrets!"))
+		return FALSE
+
 	var/mob/living/carbon/xenomorph/blocker = locate() in T
 	if(blocker && blocker != X && blocker.stat != DEAD)
 		to_chat(X, span_warning("Can't do that with [blocker] in the way!"))
