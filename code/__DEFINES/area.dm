@@ -12,3 +12,5 @@
 #define NEAR_FOB (1<<1)
 ///When present, this will prevent the drop pod to land there (usually kill zones)
 #define NO_DROPPOD (1<<2)
+///Make this area immune to cas/ob laser. Explosions can still go through if the ob is called in a nearby area
+#define OB_CAS_IMMUNE (1<<3)

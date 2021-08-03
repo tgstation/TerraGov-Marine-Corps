@@ -20,6 +20,8 @@
 	var/distress_cancelled = FALSE
 
 	var/deploy_time_lock = 15 MINUTES
+	///The respawn time for marines
+	var/respawn_time = 30 MINUTES
 
 //Distress call variables.
 	var/list/datum/emergency_call/all_calls = list() //initialized at round start and stores the datums.

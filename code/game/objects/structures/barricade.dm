@@ -53,7 +53,7 @@
 			to_chat(user, span_warning("It's crumbling apart, just a few more blows will tear it apart."))
 
 
-/obj/structure/barricade/CheckExit(atom/movable/O, turf/target)
+/obj/structure/barricade/CheckExit(atom/movable/O, direction)
 	. = ..()
 	if(closed)
 		return TRUE
@@ -63,10 +63,10 @@
 
 	if(O.throwing)
 		if(is_wired && iscarbon(O)) //Leaping mob against barbed wire fails
-			if(get_dir(loc, target) & dir)
+			if(direction & dir)
 				return FALSE
 		if(!allow_thrown_objs && !istype(O, /obj/projectile))
-			if(get_dir(loc, target) & dir)
+			if(direction & dir)
 				return FALSE
 		return TRUE
 

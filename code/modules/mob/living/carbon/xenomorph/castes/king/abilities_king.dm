@@ -63,7 +63,7 @@
 /datum/action/xeno_action/activable/gravity_crush/use_ability(atom/A)
 	owner.face_atom(A) //Face towards the target so we don't look silly
 	var/list/turfs = RANGE_TURFS(1, A)
-	playsound(A, 'sound/effects/bomb_fall.ogg', 75, FALSE)
+	playsound(A, 'sound/effects/bomb_fall.ogg', 50, FALSE)
 	apply_filters(turfs)
 	if(!do_after(owner, WINDUP_GRAV, FALSE, owner, BUSY_ICON_DANGER))
 		remove_all_filters()

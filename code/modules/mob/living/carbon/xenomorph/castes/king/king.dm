@@ -20,6 +20,10 @@
 	tier = XENO_TIER_FOUR //King, like queen, doesn't count towards population limit.
 	upgrade = XENO_UPGRADE_ZERO
 
+/mob/living/carbon/xenomorph/king/Initialize(mapload)
+	. = ..()
+	SSmonitor.stats.king++
+
 /mob/living/carbon/xenomorph/king/generate_name()
 	switch(upgrade)
 		if(XENO_UPGRADE_ZERO)
@@ -35,6 +39,9 @@
 	if(mind)
 		mind.name = name
 
+/mob/living/carbon/xenomorph/king/on_death()
+	. = ..()
+	SSmonitor.stats.king--
 
 ///resin pod that creates the king xeno after a delay
 /obj/structure/resin/king_pod

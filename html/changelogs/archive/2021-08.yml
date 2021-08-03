@@ -1,0 +1,72 @@
+2021-08-01:
+  BraveMole:
+  - bugfix: Fix resin holes not dying off weed
+  InterroLouis:
+  - bugfix: Dragunov unloaded sprite is no longer offset from the loaded sprite by
+      one pixel.
+  QualityVan:
+  - bugfix: Medevac beacons reliably relay linked bed coordinates instead of sometimes
+      saying they're at 0/0.
+  TiviPlus:
+  - refactor: Backend movement changes
+  hyper2snyper:
+  - rscadd: Sentry Rework
+  - balance: Default Sentries now have a range of 9
+  - balance: Default Sentries magazines only hold a max of 25 rounds.
+  - balance: Default Sentries firerate is now 1 seconds.
+  - balance: Greatly Increases Default Sentries Damage.
+  - balance: Radial mode no longer decreases range, and is now dependent on the sentries
+      battery.
+  - balance: PD Sentries magazines now only hold a max of 100 rounds.
+  - balance: PD Sentries firerate greatly increased.
+  - balance: Smoke now blocks Sentry Line of Sight
+  - bugfix: Fixes Sentries Manual Mode
+  - code_imp: Rewrites Sentries
+  - refactor: Sentries now fall under the subtype gun/mounted
+  lbnesquik:
+  - rscadd: Give the AI a minimap. Rejoice.
+  - balance: gave the Special force ERT NVG's and combat injectors
+  vilereaver41:
+  - balance: no more crash locations for canterbury that block the sides in a way
+      that makes it impossible for Xenos to access.
+  - balance: made fogs for silos in crash that could be destroyed via glitching wider
+      so now it will be impossible as marines should not be able to destroy them.
+  - expansion: 3 new canterbury crash locations
+  - balance: removes some rock walls to make new & old crash locations a bit more
+      accessible.
+2021-08-02:
+  Pariah919:
+  - rscadd: Added new marine flaregun, it can look out to miniscope distance. Fits
+      in your flare pouches too.
+  - qol: flaregun fired flares now stop where you click.
+  - balance: flareguns now have miniscope level range of zoom on them, when you zoom
+      on them.
+  - rscadd: Added new tyr helmet attachie. +10 To all armor stats. 15 to melee.
+  Pill-U:
+  - balance: Shrike can destroy walls with holes
+  SpaceLove:
+  - bugfix: fixed bug with lolipop pouches
+  SplinterGP:
+  - bugfix: fixed evolving/regressing not working with xenos with different plasma
+      mechanics, now they account for their plasma regen limit.
+  TiviPlus:
+  - bugfix: Fixed crusher charging
+  lbnesquik:
+  - qol: sound for the firelocks welding
+  - bugfix: fixed typos in snaps and hugging emotes
+2021-08-03:
+  Alterist:
+  - soundadd: Grav Crush volume has been quieted by around 10dB
+  BraveMole:
+  - bugfix: Fix doube clicking items in backpack dropping them
+  - code_imp: Update monitor balance calculation
+  Pariah919:
+  - bugfix: marines got their tyr helmet attachment shipment in
+  - bugfix: the TGMC finally sent out it's new edition of flareguns, the E2, you no
+      longer only have one exactly flaregun as marine. But many.
+  TiviPlus:
+  - rscadd: Runners can now ride crushers when the crusher grabs the runner then clicks
+      on themselves
+  - refactor: refactored riding code
+  - bugfix: fixed barricades being passable too often
+  - refactor: refactored more movement code
