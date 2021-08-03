@@ -78,7 +78,7 @@
 // *********** Silo and turret permissions
 // ***************************************
 /mob/living/carbon/xenomorph/proc/points_toggle()
-	set name = "Permit/Disallow psy points Usage"
+	set name = "Permit/Disallow Psy Points"
 	set desc = "Allows you to permit the hive to use psy points in building silos and/or turrets."
 	set category = "Alien"
 
