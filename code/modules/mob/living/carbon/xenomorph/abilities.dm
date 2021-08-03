@@ -1083,7 +1083,8 @@
 
 	var/mob/living/carbon/xenomorph/X = owner
 
-	if(!isxenoqueen(X) && !(X.hive.building_allowed & XENO_BUILDING_SILO))
+	// Shrike and Queen ignore queen building restriction. Resulting in only hivelords being restricted.
+	if(!CHECK_BITFIELD(X.caste_flags, CASTE_IS_INTELLIGENT) && !CHECK_BITFIELD(X.hive.building_allowed, XENO_BUILDING_SILO))
 		to_chat(owner, span_xenowarning("The Queen has forbidden the construction of silos!"))
 		return FALSE
 
@@ -1143,7 +1144,8 @@
 	var/turf/T = get_turf(A)
 	var/mob/living/carbon/xenomorph/X = owner
 
-	if(!isxenoqueen(X) && !(X.hive.building_allowed & XENO_BUILDING_TURRET))
+	// Shrike and Queen ignore queen building restriction. Resulting in only hivelords being restricted.
+	if(!CHECK_BITFIELD(X.caste_flags, CASTE_IS_INTELLIGENT) && !CHECK_BITFIELD(X.hive.building_allowed, XENO_BUILDING_TURRET))
 		to_chat(owner, span_xenowarning("The Queen has forbidden the construction of turrets!"))
 		return FALSE
 
