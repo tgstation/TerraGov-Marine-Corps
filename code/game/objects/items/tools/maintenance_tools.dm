@@ -529,7 +529,6 @@
 	to_chat(user, span_notice("[replace_install]. <b>Charge Remaining: [cell.charge]/[cell.maxcharge]</b>"))
 	playsound(user, 'sound/weapons/guns/interact/rifle_reload.ogg', 20, 1, 5)
 	icon_state = "handheldcharger"
-	return
 
 /obj/item/tool/handheld_charger/attack_hand(mob/living/user)
 	if(user.get_inactive_held_item() != src)
