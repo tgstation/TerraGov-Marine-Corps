@@ -1,0 +1,15 @@
+author: "TiviPlus"
+delete-after: True
+changes: 
+  - qol: "A number of things now use balloon alerts for their messages notably"
+  - qol: "Internal tanks/masks"
+  - qol: "Stamina status messages"
+  - qol: "Telekenisis"
+  - qol: "Vent crawl"
+  - qol: "Bump attack"
+  - qol: "Vali"
+  - qol: "Valk and B18"
+  - qol: "Emotes"
+  - qol: "Deployable weapons"
+  - qol: "Resin Jelly and accelerated healing"
+  - qol: "Wires"
