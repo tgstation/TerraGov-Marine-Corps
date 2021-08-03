@@ -318,7 +318,7 @@
 
 ///This one spawns intact
 /obj/machinery/power/geothermal/intact
-	corrupted = 0
+	corrupted = ""
 	buildstate = GEOTHERMAL_NO_DAMAGE
 
 #undef GEOTHERMAL_NO_DAMAGE
