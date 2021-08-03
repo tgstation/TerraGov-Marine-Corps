@@ -168,9 +168,8 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 
 // =============================
 // xeno building
-#define XENO_BUILDING_FORBIDDEN (1<<0)
-#define XENO_BUILDING_SILO (1<<1)
-#define XENO_BUILDING_TURRET (1<<2)
+#define XENO_BUILDING_SILO (1<<0)
+#define XENO_BUILDING_TURRET (1<<1)
 #define XENO_BUILDING_UNRESTRICTED (XENO_BUILDING_SILO | XENO_BUILDING_TURRET)
 
 //=================================================

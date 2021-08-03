@@ -115,7 +115,7 @@
 	else if(choice == "Forbidden")
 		to_chat(src, span_xenonotice("We have forbidden the expenditure of psy points by others."))
 		xeno_message("The Queen has <b>forbidden</b> the construction of silos and turrets.")
-		hive.building_allowed = XENO_BUILDING_FORBIDDEN
+		hive.building_allowed = NONE
 
 // ***************************************
 // *********** Slashing permissions

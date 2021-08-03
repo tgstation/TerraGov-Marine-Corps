@@ -258,7 +258,7 @@
 	var/obj/structure/xeno/tunnel/start_dig = null
 	var/datum/ammo/xeno/ammo = null //The ammo datum for our spit projectiles. We're born with this, it changes sometimes.
 	var/pslash_delay = 0
-	var/ppoints_delay = 0
+	var/ppoints_delay = 0 //The toggle that stays true during the cooldown of queen psy points permissions settings.
 
 	var/evo_points = 0 //Current # of evolution points. Max is 1000.
 	var/list/upgrades_bought = list()
