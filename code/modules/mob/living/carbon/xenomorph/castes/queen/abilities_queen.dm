@@ -415,7 +415,7 @@
 	name = "Choose/Follow Xenomorph Leaders"
 	action_icon_state = "xeno_lead"
 	mechanics_text = "Make a target Xenomorph a leader."
-	plasma_cost = 0
+	plasma_cost = 200
 	keybind_signal = COMSIG_XENOABILITY_XENO_LEADERS
 	use_state_flags = XACT_USE_LYING
 
