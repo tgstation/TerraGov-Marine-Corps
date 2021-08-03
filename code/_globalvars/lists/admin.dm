@@ -2,7 +2,7 @@ GLOBAL_LIST_EMPTY(stickybanadminexemptions)	//stores a list of ckeys exempted fr
 GLOBAL_LIST_EMPTY(stickybanadmintexts) //stores the entire stickyban list temporarily
 GLOBAL_VAR(stickbanadminexemptiontimerid) //stores the timerid of the callback that restores all stickybans after an admin joins
 
-/proc/init_smites()
+/proc/init_smites() //initializes, creates and populates a global list of smites
 	var/list/smites = list()
 	for (var/_smite_path in subtypesof(/datum/smite))
 		var/datum/smite/smite_path = _smite_path

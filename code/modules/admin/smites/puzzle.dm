@@ -14,13 +14,13 @@
 	icon_state = "waterballoon-e"
 	invisibility = INVISIBILITY_ABSTRACT
 	anchored = TRUE
-	var/list/elements
-	var/floor_type = /turf/open/floor/vault
-	var/finished = FALSE
-	var/reward_type = /obj/item/reagent_containers/food/snacks/cookie
-	var/element_type = /obj/structure/puzzle_element
-	var/auto_setup = TRUE
-	var/empty_tile_id
+	var/list/elements //list to contain our puzzle pieces
+	var/floor_type = /turf/open/floor/vault //default floor underneath our slide puzzle
+	var/finished = FALSE  //if true we're done and puzzle is solved
+	var/reward_type = /obj/item/reagent_containers/food/snacks/cookie //what object is released after solving
+	var/element_type = /obj/structure/puzzle_element //base structure for our puzzle
+	var/auto_setup = TRUE //if false don't initialize cube prison
+	var/empty_tile_id //blank puzzle tile for swapping pieces around
 
 //Gets the turf where the tile with given id should be
 /obj/effect/sliding_puzzle/proc/get_turf_for_id(id)
@@ -83,7 +83,7 @@
 
 /obj/effect/sliding_puzzle/Destroy()
 	if(LAZYLEN(elements))
-		for(var/obj/structure/puzzle_element/E in elements)
+		for(var/obj/structure/puzzle_element/E AS in elements)
 			E.source = null
 		elements.Cut()
 	return ..()
@@ -94,17 +94,17 @@
 	finished = TRUE
 	for(var/mob/M in range(7,src))
 		shake_camera(M, COLLAPSE_DURATION , 1)
-	for(var/obj/structure/puzzle_element/E in elements)
+	for(var/obj/structure/puzzle_element/E AS in elements)
 		E.collapse()
 
 	dispense_reward()
 
-/obj/effect/sliding_puzzle/proc/dispense_reward()
+/obj/effect/sliding_puzzle/proc/dispense_reward() //spawns reward in the middle of solved puzzle
 	new reward_type(get_turf(src))
 
 /obj/effect/sliding_puzzle/proc/is_solvable()
 	var/list/current_ordering = list()
-	for(var/obj/structure/puzzle_element/E in elements_in_order())
+	for(var/obj/structure/puzzle_element/E AS in elements_in_order())
 		current_ordering += E.id
 
 	var/swap_tally = 0
@@ -133,7 +133,7 @@
 	E1.forceMove(T2)
 	E2.forceMove(T1)
 
-/proc/cmp_xy_desc(atom/movable/A,atom/movable/B)
+/proc/cmp_xy_desc(atom/movable/A,atom/movable/B) 
 	if(A.y > B.y)
 		return -1
 	if(A.y < B.y)
@@ -154,7 +154,7 @@
 	var/icon/P = new('icons/obj/puzzle.dmi',puzzle_state)
 	return P
 
-/obj/effect/sliding_puzzle/proc/setup()
+/obj/effect/sliding_puzzle/proc/setup() //setup the puzzle
 	//First we slice the 96x96 icon into 32x32 pieces
 	var/list/puzzle_pieces = list() //id -> icon list
 
@@ -223,15 +223,18 @@
 
 /obj/structure/puzzle_element/proc/set_puzzle_icon()
 	cut_overlays()
-	if(puzzle_icon)
-		//Need to scale it down a bit to fit the static border
-		var/icon/C = new(puzzle_icon)
-		C.Scale(19,19)
-		var/mutable_appearance/puzzle_small = new(C)
-		puzzle_small.layer = layer + 0.1
-		puzzle_small.pixel_x = 7
-		puzzle_small.pixel_y = 7
-		add_overlay(puzzle_small)
+	
+	if(!puzzle_icon)
+		return
+	
+	//Need to scale it down a bit to fit the static border
+	var/icon/C = new(puzzle_icon)
+	C.Scale(19,19)
+	var/mutable_appearance/puzzle_small = new(C)
+	puzzle_small.layer = layer + 0.1
+	puzzle_small.pixel_x = 7
+	puzzle_small.pixel_y = 7
+	add_overlay(puzzle_small)
 
 /obj/structure/puzzle_element/Destroy()
 	if(source)
@@ -256,7 +259,7 @@
 
 //Admin abuse version so you can pick the icon before it sets up
 /obj/effect/sliding_puzzle/admin
-	auto_setup = FALSE
+	auto_setup = FALSE //false so we can set it up ourselves
 	var/icon/puzzle_icon
 	var/puzzle_state
 
