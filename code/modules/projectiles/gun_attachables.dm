@@ -1270,12 +1270,12 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	current_rounds = 0
 	max_rounds = 2
 	max_range = 7
+	attachment_firing_delay = 10
 	slot = ATTACHMENT_SLOT_UNDER
 	fire_sound = 'sound/weapons/guns/fire/underbarrel_grenadelauncher.ogg'
 	flags_attach_features = ATTACH_REMOVABLE|ATTACH_ACTIVATION|ATTACH_RELOADABLE|ATTACH_WEAPON
 	///list of grenade types loaded in the UGL
 	var/list/loaded_grenades = list()
-	attachment_firing_delay = 10
 	COOLDOWN_DECLARE(last_fired)
 
 /obj/item/attachable/attached_gun/grenade/unremovable
@@ -1331,8 +1331,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	set waitfor = FALSE
 	var/nade_type = loaded_grenades[1]
 	var/obj/item/explosive/grenade/frag/G = new nade_type (get_turf(gun))
-	var/fire_delay = attachment_firing_delay
-	COOLDOWN_START(src, last_fired, fire_delay)
+	COOLDOWN_START(src, last_fired, attachment_firing_delay)
 	playsound(user.loc, fire_sound, 50, 1)
 	log_explosion("[key_name(user)] fired a grenade [G] from [src] at [AREACOORD(user.loc)].")
 	log_combat(user, src, "fired a grenade [G] from")
@@ -1356,10 +1355,10 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	current_rounds = 20
 	max_rounds = 20
 	max_range = 4
+	attachment_firing_delay = 25
 	slot = ATTACHMENT_SLOT_UNDER
 	fire_sound = 'sound/weapons/guns/fire/flamethrower3.ogg'
 	flags_attach_features = ATTACH_REMOVABLE|ATTACH_ACTIVATION|ATTACH_RELOADABLE|ATTACH_WEAPON
-	attachment_firing_delay = 25
 	COOLDOWN_DECLARE(last_fired)
 
 
@@ -1453,10 +1452,9 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	var/distance = 0
 	var/turf/prev_T
 	playsound(user, 'sound/weapons/guns/fire/flamethrower2.ogg', 50, 1)
-	var/fire_delay = attachment_firing_delay
 	if(!user.skills.getRating("firearms")) //no training in any firearms
-		fire_delay += 0.3 SECONDS //untrained humans fire more slowly.
-	COOLDOWN_START(src, last_fired, fire_delay)
+		attachment_firing_delay += 0.3 SECONDS //untrained humans fire more slowly.
+	COOLDOWN_START(src, last_fired, attachment_firing_delay)
 	for(var/turf/T in turfs)
 		if(T == user.loc)
 			prev_T = T
