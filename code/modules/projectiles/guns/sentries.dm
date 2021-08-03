@@ -59,7 +59,7 @@
 
 /obj/item/weapon/gun/sentry/big_sentry
 	name = "\improper UA 571-C sentry gun"
-	desc = "A deployable, semi-automated turret with AI targeting capabilities. Armed with a M30 autocannon and a 25-round box magazine."
+	desc = "A deployable, semi-automated turret with AI targeting capabilities. Armed with a M30 autocannon and a 25-round box magazine. Use Alt-Click to remove its battery."
 	icon_state = "sentry"
 
 	turret_range = 8
@@ -115,7 +115,7 @@
 
 /obj/item/weapon/gun/sentry/mini
 	name = "\improper UA-580 point defense sentry"
-	desc = "A deployable, automated turret with AI targeting capabilities. This is a lightweight portable model meant for rapid deployment and point defense. Armed with an light, high velocity machine gun and a 100-round drum magazine."
+	desc = "A deployable, automated turret with AI targeting capabilities. This is a lightweight portable model meant for rapid deployment and point defense. Armed with an light, high velocity machine gun and a 100-round drum magazine. Use Alt-Click to remove its battery."
 	icon_state = "minisentry"
 
 	max_shells = 100
