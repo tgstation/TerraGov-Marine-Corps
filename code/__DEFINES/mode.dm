@@ -116,9 +116,6 @@
 #define DEATHTIME_CHECK(M) ((world.time - M.timeofdeath) < SSticker.mode?.respawn_time)
 #define DEATHTIME_MESSAGE(M) to_chat(M, span_warning("You have been dead for [(world.time - M.timeofdeath) * 0.1] second\s.</span><br><span class='warning'>You must wait [SSticker.mode?.respawn_time * 0.1] seconds before rejoining the game!"))
 
-#define XENODEATHTIME_CHECK(M) ((world.time - M.timeofdeath) < GLOB.xenorespawntime)
-#define XENODEATHTIME_MESSAGE(M) to_chat(M, span_warning("You have been dead for [(world.time - M.timeofdeath) * 0.1] second\s.</span><br><span class='warning'>You must wait [GLOB.xenorespawntime * 0.1] seconds before rejoining the game as a xenomorph!"))
-
 #define COUNT_IGNORE_HUMAN_SSD (1<<0)
 #define COUNT_IGNORE_XENO_SSD (1<<1)
 #define COUNT_IGNORE_XENO_SPECIAL_AREA (1<<2)
