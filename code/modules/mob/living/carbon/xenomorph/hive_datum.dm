@@ -4,7 +4,7 @@
 	var/mob/living/carbon/xenomorph/queen/living_xeno_queen
 	var/mob/living/carbon/xenomorph/living_xeno_ruler
 	var/slashing_allowed = XENO_SLASHING_ALLOWED //This initial var allows the queen to turn on or off slashing. Slashing off means harm intent does much less damage.
-	var/building_allowed = XENO_BUILDING_UNRESTRICTED //Initially allows hivelords to build silos and turrets as there is no queen.
+	var/building_allowed = XENO_BUILDING_UNRESTRICTED //Initially allows hivelords and shrikes to build silos and turrets as there is no queen.
 	var/xeno_queen_timer
 	var/xenos_per_queen = 8 //Minimum number of xenos to support a queen.
 	var/hive_orders = "" //What orders should the hive have
