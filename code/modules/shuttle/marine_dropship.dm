@@ -197,13 +197,14 @@
 				var/obj/machinery/door/airlock/multi_tile/mainship/dropshiprear/D = i
 				D.release()
 
+///This proc locks and unlocks the AI control over the dropship doors.
 /obj/docking_port/mobile/marine_dropship/proc/silicon_lock_airlocks(should_lock = TRUE)
 	for(var/obj/machinery/door/airlock/dropship_hatch/D AS in left_airlocks)
-		D.aiControlDisabled =! D.aiControlDisabled
+		D.aiControlDisabled = should_lock
 	for(var/obj/machinery/door/airlock/dropship_hatch/D AS in right_airlocks)
-		D.aiControlDisabled =! D.aiControlDisabled
+		D.aiControlDisabled = should_lock
 	for(var/obj/machinery/door/airlock/multi_tile/mainship/dropshiprear/D AS in rear_airlocks)
-		D.aiControlDisabled =! D.aiControlDisabled
+		D.aiControlDisabled = should_lock
 
 /obj/docking_port/mobile/marine_dropship/Destroy(force)
 	. = ..()
@@ -336,9 +337,9 @@
 #define ALIVE_HUMANS_FOR_CALLDOWN 0.1
 
 /datum/game_mode/proc/can_summon_dropship(mob/user)
-	//if(SSticker.round_start_time + SHUTTLE_HIJACK_LOCK > world.time)
-	//	to_chat(user, span_warning("It's too early to call it. We must wait [DisplayTimeText(SSticker.round_start_time + SHUTTLE_HIJACK_LOCK - world.time, 1)]."))
-	//	return FALSE
+	if(SSticker.round_start_time + SHUTTLE_HIJACK_LOCK > world.time)
+		to_chat(user, span_warning("It's too early to call it. We must wait [DisplayTimeText(SSticker.round_start_time + SHUTTLE_HIJACK_LOCK - world.time, 1)]."))
+		return FALSE
 	if(!is_ground_level(user.z))
 		to_chat(user, span_warning("We can't call the bird from here!"))
 		return FALSE
@@ -449,9 +450,9 @@
 /obj/machinery/computer/shuttle/marine_dropship/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
 	if(!(X.xeno_caste.caste_flags & CASTE_IS_INTELLIGENT))
 		return
-	//if(SSticker.round_start_time + SHUTTLE_HIJACK_LOCK > world.time)
-	//	to_chat(X, span_xenowarning("It's too early to do this!"))
-	//	return
+	if(SSticker.round_start_time + SHUTTLE_HIJACK_LOCK > world.time)
+		to_chat(X, span_xenowarning("It's too early to do this!"))
+		return
 	var/obj/docking_port/mobile/marine_dropship/M = SSshuttle.getShuttle(shuttleId)
 	var/dat = "Status: [M ? M.getStatusText() : "*Missing*"]<br><br>"
 	if(M)
