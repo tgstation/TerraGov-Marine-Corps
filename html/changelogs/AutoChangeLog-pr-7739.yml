@@ -1,0 +1,4 @@
+author: "KornFlaks"
+delete-after: True
+changes: 
+  - bugfix: "Increased the size of microscopic king pod creation and king hive summoning announcements."
