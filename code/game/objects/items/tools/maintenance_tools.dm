@@ -487,21 +487,27 @@
 
 /obj/item/tool/handheld_charger/attack_self(mob/user)
 	if(!cell)
-		to_chat(src, "You need some cell to be useful, idiot")
+		to_chat(user, span_notice("You need some cell to be useful, idiot"))
 		return
 
 	if(recharging)///Already using it.
 		recharging = FALSE
-		to_chat(user, "You stop using the recharger.")
+		to_chat(user, span_notice("You stop using the recharger."))
 		return
 
-	else
-		recharging = TRUE
-		while(do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_GENERIC))
-			cell.charge += 200
-			to_chat(user, span_notice("squeezes the handle a few times, putting in a few volts of charge."))
-			playsound(user, 'sound/weapons/guns/interact/rifle_reload.ogg', 15, 1, 5)
-			flick("[icon_state]_pumping", src)
+	if(cell.charge >= cell.maxcharge)
+		to_chat(user, span_notice("\The [cell] is already fully charged."))
+		return
+	recharging = TRUE
+	while(do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_GENERIC))
+		cell.charge += 200
+		to_chat(user, span_notice("You squeeze the handle a few times, putting in a few volts of charge."))
+		playsound(user, 'sound/weapons/guns/interact/rifle_reload.ogg', 15, 1, 5)
+		flick("[icon_state]_pumping", src)
+		if(cell.charge >= cell.maxcharge)
+			to_chat(user, span_notice("\The [cell] is fully charged."))
+			recharging = FALSE
+			return
 
 
 /obj/item/tool/handheld_charger/attackby(obj/item/I, mob/user, params)
