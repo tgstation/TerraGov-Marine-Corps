@@ -1,0 +1,4 @@
+author: "lbnesquik"
+delete-after: True
+changes: 
+  - balance: "made the boiler bombard cooldown when it has more acid stored"
