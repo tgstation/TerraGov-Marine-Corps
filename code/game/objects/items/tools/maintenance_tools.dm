@@ -479,7 +479,7 @@
 	materials = list(/datum/material/metal = 50, /datum/material/glass = 20)
 	/// This is the cell we ar charging
 	var/obj/item/cell/cell
-	var/recharging = 0
+	var/recharging = FALSE
 
 /obj/item/tool/handheld_charger/Initialize()
 	. = ..()
@@ -490,17 +490,28 @@
 		to_chat(src, "You need some cell to be useful, idiot")
 		return
 
-	if(!recharging)
-		recharging = 1
-		while(recharging)
-			if(!do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_GENERIC))
-				return
+	if(recharging)///Already using it.
+		recharging = FALSE
+		to_chat(user, "You stop using the recharger.")
+		return
+
+	else
+		recharging = TRUE
+
+
+		while(do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_GENERIC))
 			cell.charge += 200
-			to_chat(user, "You squeeze the handle a few times, putting in a few volts of charge.")
+			to_chat(user, span_notice("squeezes the handle a few times, putting in a few volts of charge."))
 			playsound(user, 'sound/weapons/guns/interact/rifle_reload.ogg', 15, 1, 5)
 			flick("[icon_state]_pumping", src)
-	else
-		recharging = 0
+
+	//	while(recharging)
+	//		if(!do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_GENERIC))
+	//			return
+	//		cell.charge += 200
+	//		to_chat(user, span_notice("squeezes the handle a few times, putting in a few volts of charge.")
+	//		playsound(user, 'sound/weapons/guns/interact/rifle_reload.ogg', 15, 1, 5)
+	//		flick("[icon_state]_pumping", src)
 
 /obj/item/tool/handheld_charger/attackby(obj/item/I, mob/user, params)
 	. = ..()
