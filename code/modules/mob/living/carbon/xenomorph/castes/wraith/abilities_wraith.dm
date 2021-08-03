@@ -20,17 +20,11 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 
 	var/turf/T = get_turf(owner)
 
-	if(isclosedturf(T) || isspaceturf(T))
+	if(turf_block_check(owner, T, TRUE, TRUE, FALSE, FALSE, FALSE, TRUE)) //Check if there's anything non-mob that blocks us
 		if(!silent)
-			to_chat(owner, span_xenowarning("We cannot create a warp shadow here!"))
+			to_chat(owner, span_xenowarning("We cannot create our warp shadow in a solid object!"))
 		return FALSE
 
-
-	for(var/obj/blocker in T) //
-		if(blocker.density && !(blocker.flags_atom & ON_BORDER)) //If we find a dense, non-border obj it's time to stop
-			if(!silent)
-				to_chat(owner, span_xenowarning("We cannot create a warp shadow here!"))
-			return FALSE
 
 
 /datum/action/xeno_action/place_warp_shadow/action_activate()
@@ -126,10 +120,9 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 			to_chat(owner, span_xenodanger("Our warp shadow is beyond our ability to teleport to!"))
 		return FALSE
 
-	var/turf/T = get_turf(shadow)
-	if(isclosedturf(T) || isspaceturf(T))
+	if(turf_block_check(owner, shadow, FALSE, TRUE, TRUE, TRUE, TRUE, TRUE)) //Check if there's anything that blocks us; we only care about Canpass here
 		if(!silent)
-			to_chat(owner, span_xenodanger("We can't teleport to our warp shadow while it's in space or a wall!"))
+			to_chat(owner, span_xenowarning("We can't teleport to our warp shadow while it's somewhere we can't occupy!"))
 		return FALSE
 
 
@@ -176,8 +169,13 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	owner.forceMove(beacon_turf) //Move to where the beacon was
 	teleport_debuff_aoe(owner) //Apply tele debuff
 
+	var/warp_shadow_dissipate
+	if(turf_block_check(owner, get_turf(shadow), TRUE, TRUE, FALSE, FALSE, FALSE, TRUE)) //Check if there's anything that blocks the warp shadow; we only care about solid walls/objects
+		warp_shadow_dissipate = TRUE
+		warp_shadow_check.clean_warp_shadow() //Remove the warp shadow
+
 	owner.visible_message(span_warning("\ [owner] suddenly vanishes in a vortex of warped space!"), \
-	span_xenodanger("We teleport, swapping positions with our warp shadow. Our warp shadow has moved to  [AREACOORD_NO_Z(shadow)]."), null, 5) //Let user know the new location
+	span_xenodanger("We teleport, swapping positions with our warp shadow. [warp_shadow_dissipate ? "Our warp shadow dissipates as it is teleported into a solid object." : "Our warp shadow has moved to [AREACOORD_NO_Z(shadow)]."]"), null, 5) //Let user know the new location
 
 	GLOB.round_statistics.wraith_hyperpositions++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "wraith_hyperpositions") //Statistics
@@ -209,7 +207,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 /datum/action/xeno_action/phase_shift/can_use_action(silent = FALSE, override_flags)
 	. = ..()
 	var/turf/T = get_turf(owner)
-	for(var/obj/machinery/door/poddoor/timed_late/containment/shutter_check AS in GLOB.wraith_no_incorporeal_pass_shutters)
+	for(var/obj/machinery/door/poddoor/shutter_check AS in GLOB.wraith_no_incorporeal_pass_shutters)
 		if(locate(shutter_check) in T)
 			if(!silent)
 				to_chat(owner, span_xenowarning("We can't Phase Shift while in the space of warp protected shutters!"))
@@ -310,7 +308,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	var/current_turf = get_turf(ghost)
 	var/block_check //Are we trying to rematerialize in a solid object? Check.
 
-	if(isspaceturf(current_turf) || owner.turf_block_check(current_turf)) //So we rematerialized in a solid wall/space or invincible dense object
+	if(isspaceturf(current_turf) || turf_block_check(owner, current_turf, TRUE, TRUE, FALSE, FALSE, FALSE, TRUE)) //So we rematerialized in a solid wall/space or invincible dense object
 		block_check = TRUE
 
 	if(block_check) //We tried to rematerialize in a solid object/wall of some kind; return to sender
@@ -329,7 +327,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	else
 		ghost.use_plasma(phase_shift_plasma_cost) //Pay the extra cost if we didn't resync
 		ghost.visible_message(span_warning("[ghost] form wavers and becomes opaque."), \
-		"<span class='xenodanger'>We phase back into reality[phase_shift_plasma_cost > 0 ? ", expending [phase_shift_plasma_cost] additional plasma for [distance] tiles travelled." : "."]")
+		span_xenodanger("We phase back into reality[phase_shift_plasma_cost > 0 ? " expending [phase_shift_plasma_cost] additional plasma for [distance] tiles travelled." : "."]"))
 		if(plasma_deficit < 0) //If we don't have enough plasma, we pay in blood and sunder instead.
 			plasma_deficit *= -1 //Normalize to a positive value
 			to_chat(owner, span_highdanger("We haven't enough plasma to safely move back into phase, suffering [plasma_deficit] damage and sunder as our body is torn apart!"))
@@ -396,6 +394,9 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	cooldown_timer = 0.5 SECONDS
 	keybind_signal = COMSIG_XENOABILITY_BLINK
 
+/datum/action/xeno_action/activable/blink/can_use_ability(atom/A, silent = FALSE, override_flags)
+	. = ..()
+	var/turf/T = get_turf(A)
 ///Check target Blink turf to see if it can be blinked to
 /datum/action/xeno_action/activable/blink/proc/check_blink_tile(turf/T, ignore_blocker = FALSE, silent = FALSE)
 	if(isclosedturf(T) || isspaceturf(T))
@@ -424,7 +425,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 
 	if(owner.turf_block_check(A, FALSE, TRUE, TRUE, TRUE, TRUE)) //Check if there's anything that blocks us; we only care about Canpass here
 		if(!silent)
-			to_chat(owner, span_xenowarning("We can't blink into a solid object!"))
+			to_chat(owner, span_xenowarning("We can't blink here!"))
 		return FALSE
 
 	return TRUE
@@ -737,12 +738,14 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	add_cooldown()
 
 ///Return TRUE if we have a block, return FALSE otherwise
-/atom/proc/turf_block_check(atom/target, ignore_can_pass = FALSE, ignore_density = FALSE, ignore_closed_turf = FALSE, ignore_invulnerable = FALSE, ignore_objects = FALSE)
+proc/turf_block_check(atom/subject, atom/target, ignore_can_pass = FALSE, ignore_density = FALSE, ignore_closed_turf = FALSE, ignore_invulnerable = FALSE, ignore_objects = FALSE, ignore_mobs = FALSE, ignore_space = FALSE)
 	var/turf/T = get_turf(target)
+	if(isspaceturf(T) && !ignore_space)
+		return TRUE
 	for(var/atom/blocker AS in T)
-		if((blocker.flags_atom & ON_BORDER) || blocker == src) //If they're a border entity or ourselves, we don't care
+		if((blocker.flags_atom & ON_BORDER) || blocker == subject) //If they're a border entity or our subject, we don't care
 			continue
-		if(!blocker.CanPass(src, T) && !ignore_can_pass) //If the target atom can't pass and we care about that, we have a block
+		if(!blocker.CanPass(subject, T) && !ignore_can_pass) //If the subject atom can't pass and we care about that, we have a block
 			return TRUE
 		if(!blocker.density) //Check if we're dense
 			continue
@@ -752,13 +755,14 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 			return TRUE
 		if((blocker.resistance_flags & INDESTRUCTIBLE) && !ignore_invulnerable) //If we care about dense invulnerable objects
 			return TRUE
-		if(!isobj(blocker) || ignore_objects) //If we care about dense objects
-			continue
-		var/obj/obj_blocker = blocker
-		if(!isstructure(obj_blocker)) //If it's not a structure and we care about objects, we have a block
-			return TRUE
-		var/obj/structure/blocker_structure = obj_blocker
-		if(!blocker_structure.climbable) //If it's a structure and can't be climbed, we have a block
+		if(isobj(blocker) && !ignore_objects) //If we care about dense objects
+			var/obj/obj_blocker = blocker
+			if(!isstructure(obj_blocker)) //If it's not a structure and we care about objects, we have a block
+				return TRUE
+			var/obj/structure/blocker_structure = obj_blocker
+			if(!blocker_structure.climbable) //If it's a structure and can't be climbed, we have a block
+				return TRUE
+		if(ismob(blocker) && !ignore_mobs) //If we care about mobs
 			return TRUE
 
 	return FALSE
