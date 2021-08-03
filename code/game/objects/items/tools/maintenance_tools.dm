@@ -497,21 +497,12 @@
 
 	else
 		recharging = TRUE
-
-
 		while(do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_GENERIC))
 			cell.charge += 200
 			to_chat(user, span_notice("squeezes the handle a few times, putting in a few volts of charge."))
 			playsound(user, 'sound/weapons/guns/interact/rifle_reload.ogg', 15, 1, 5)
 			flick("[icon_state]_pumping", src)
 
-	//	while(recharging)
-	//		if(!do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_GENERIC))
-	//			return
-	//		cell.charge += 200
-	//		to_chat(user, span_notice("squeezes the handle a few times, putting in a few volts of charge.")
-	//		playsound(user, 'sound/weapons/guns/interact/rifle_reload.ogg', 15, 1, 5)
-	//		flick("[icon_state]_pumping", src)
 
 /obj/item/tool/handheld_charger/attackby(obj/item/I, mob/user, params)
 	. = ..()
