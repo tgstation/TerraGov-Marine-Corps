@@ -3732,7 +3732,7 @@
 /turf/open/floor/mainship/terragov/west{
 	dir = 8
 	},
-/area/space)
+/area/mainship/command/cic)
 "bkv" = (
 /turf/open/floor/mainship/terragov/west{
 	dir = 4
