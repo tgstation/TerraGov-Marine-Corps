@@ -54,3 +54,19 @@
   lbnesquik:
   - qol: sound for the firelocks welding
   - bugfix: fixed typos in snaps and hugging emotes
+2021-08-03:
+  Alterist:
+  - soundadd: Grav Crush volume has been quieted by around 10dB
+  BraveMole:
+  - bugfix: Fix doube clicking items in backpack dropping them
+  - code_imp: Update monitor balance calculation
+  Pariah919:
+  - bugfix: marines got their tyr helmet attachment shipment in
+  - bugfix: the TGMC finally sent out it's new edition of flareguns, the E2, you no
+      longer only have one exactly flaregun as marine. But many.
+  TiviPlus:
+  - rscadd: Runners can now ride crushers when the crusher grabs the runner then clicks
+      on themselves
+  - refactor: refactored riding code
+  - bugfix: fixed barricades being passable too often
+  - refactor: refactored more movement code
