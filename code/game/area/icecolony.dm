@@ -75,9 +75,9 @@
 	icon_state = "container_yard"
 
 //The FRONT of the aerodromes.
-/area/ice_colony/exterior/surface/hangar_front
-	name = "Aerodrome Front"
-	icon_state = "landing_pad_front"
+/area/ice_colony/exterior/surface/taxiway
+	name = "Aerodrome Taxiway"
+	icon_state = "landing_pad_taxiway"
 
 //
 // Valleys
