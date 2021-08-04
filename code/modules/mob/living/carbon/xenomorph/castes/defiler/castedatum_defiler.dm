@@ -122,7 +122,7 @@
 /datum/xeno_caste/defiler/ancient
 	upgrade_name = "Ancient"
 	caste_desc = "Being within mere eyeshot of this hulking, dripping monstrosity fills you with a deep, unshakeable sense of unease."
-	ancient_message = "We're a bristling, living alien chemlab. Our body leaks noxious fumes that will slip through even the most powerful protections"
+	ancient_message = "We're a bristling, living alien chemlab. Our body leaks noxious fumes that will slip through even the most powerful protections."
 	upgrade = XENO_UPGRADE_THREE
 
 	// *** Melee Attacks *** //
