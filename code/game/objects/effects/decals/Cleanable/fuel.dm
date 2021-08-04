@@ -78,7 +78,7 @@
 
 /obj/effect/decal/cleanable/liquid_fuel/attackby(obj/item/I, mob/user, params)
 	. = ..()
-	if(I.damtype == "fire")
+	if(I.damtype == BURN)
 		ignite_fuel()
 		user.visible_message(span_notice("[user] ignites \the [src]"), span_notice("You ignite some fuel on [src]"))
 		log_attack("[key_name(user)] ignites [src] in fuel in [AREACOORD(user)]")
