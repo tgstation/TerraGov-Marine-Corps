@@ -479,6 +479,7 @@
 	materials = list(/datum/material/metal = 50, /datum/material/glass = 20)
 	/// This is the cell we ar charging
 	var/obj/item/cell/cell
+	///Are we currently recharging something.
 	var/recharging = FALSE
 
 /obj/item/tool/handheld_charger/Initialize()
