@@ -137,10 +137,10 @@
 
 		if(sound || get_sound(user))
 			if(HAS_TRAIT(user, TRAIT_MUTED))
-				to_chat(user, span_danger("You're muted, and can't make any sounds!") )
+				user.balloon_alert(user, "You are muted!")
 				return FALSE
 			if(TIMER_COOLDOWN_CHECK(user, COOLDOWN_EMOTE))
-				to_chat(user, span_notice("You just did an audible emote. Wait a while."))
+				user.balloon_alert(user, "You just did an audible emote")
 				return FALSE
 			else
 				TIMER_COOLDOWN_START(user, COOLDOWN_EMOTE, 8 SECONDS)
@@ -176,11 +176,20 @@
 				if(L.incapacitated())
 					if(!intentional)
 						return FALSE
-					to_chat(user, span_notice("You cannot [key] while stunned."))
+					user.balloon_alert(user, "You cannot [key] while stunned")
 					return FALSE
+
+		if(flags_emote & EMOTE_ARMS_CHECK)
+			///okay snapper
+			var/mob/living/carbon/snapper = user
+			var/datum/limb/left_hand = snapper.get_limb("l_hand")
+			var/datum/limb/right_hand = snapper.get_limb("r_hand")
+			if((left_hand.limb_status & LIMB_DESTROYED) && (right_hand.limb_status & LIMB_DESTROYED))
+				to_chat(user, span_notice("You cannot [key] without an arm."))
+				return FALSE
 
 		if((flags_emote & EMOTE_RESTRAINT_CHECK) && user.restrained())
 			if(!intentional)
 				return FALSE
-			to_chat(user, span_notice("You cannot [key] while restrained."))
+			user.balloon_alert(user, "You cannot [key] while restrained")
 			return FALSE

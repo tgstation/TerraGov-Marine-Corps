@@ -197,6 +197,15 @@
 				var/obj/machinery/door/airlock/multi_tile/mainship/dropshiprear/D = i
 				D.release()
 
+///This proc locks and unlocks the AI control over the dropship doors.
+/obj/docking_port/mobile/marine_dropship/proc/silicon_lock_airlocks(should_lock = TRUE)
+	for(var/obj/machinery/door/airlock/dropship_hatch/D AS in left_airlocks)
+		D.aiControlDisabled = should_lock
+	for(var/obj/machinery/door/airlock/dropship_hatch/D AS in right_airlocks)
+		D.aiControlDisabled = should_lock
+	for(var/obj/machinery/door/airlock/multi_tile/mainship/dropshiprear/D AS in rear_airlocks)
+		D.aiControlDisabled = should_lock
+
 /obj/docking_port/mobile/marine_dropship/Destroy(force)
 	. = ..()
 	if(force)
@@ -240,6 +249,7 @@
 /obj/docking_port/mobile/marine_dropship/proc/reset_hijack()
 	if(hijack_state == HIJACK_STATE_CALLED_DOWN || hijack_state == HIJACK_STATE_UNLOCKED)
 		set_hijack_state(HIJACK_STATE_NORMAL)
+		silicon_lock_airlocks(FALSE)
 
 /obj/docking_port/mobile/marine_dropship/proc/summon_dropship_to(obj/docking_port/stationary/S)
 	if(hijack_state != HIJACK_STATE_NORMAL)
@@ -340,20 +350,17 @@
 			D = M
 	if(is_ground_level(D.z))
 		var/locked_sides = 0
-		for(var/i in D.left_airlocks)
-			var/obj/machinery/door/airlock/dropship_hatch/DH = i
+		for(var/obj/machinery/door/airlock/dropship_hatch/DH AS in D.left_airlocks)
 			if(!DH.locked)
 				continue
 			locked_sides++
 			break
-		for(var/i in D.right_airlocks)
-			var/obj/machinery/door/airlock/dropship_hatch/DH = i
+		for(var/obj/machinery/door/airlock/dropship_hatch/DH AS in D.right_airlocks)
 			if(!DH.locked)
 				continue
 			locked_sides++
 			break
-		for(var/i in D.rear_airlocks)
-			var/obj/machinery/door/airlock/multi_tile/mainship/dropshiprear/DH = i
+		for(var/obj/machinery/door/airlock/dropship_hatch/DH AS in D.rear_airlocks)
 			if(!DH.locked)
 				continue
 			locked_sides++
@@ -379,6 +386,7 @@
 		D.unlock_all()
 		D.set_hijack_state(HIJACK_STATE_UNLOCKED)
 		D.do_start_hijack_timer(GROUND_LOCKDOWN_TIME)
+		D.silicon_lock_airlocks(TRUE)
 		to_chat(user, span_warning("We have overriden the shuttle lockdown!"))
 		playsound(user, "alien_roar", 50)
 		priority_announce("Alamo lockdown protocol compromised. Interference preventing remote control", "Dropship Lock Alert")
@@ -661,6 +669,7 @@
 	to_chat(user, span_danger("A loud alarm erupts from [src]! The fleshy hosts must know that you can access it!"))
 	user.hive.on_shuttle_hijack(crashing_dropship)
 	playsound(src, 'sound/misc/queen_alarm.ogg')
+	crashing_dropship.silicon_lock_airlocks(TRUE)
 	SSevacuation.flags_scuttle &= ~FLAGS_SDEVAC_TIMELOCK
 	switch(SSshuttle.moveShuttleToDock(shuttleId, crash_target, TRUE))
 		if(0)
@@ -1181,7 +1190,7 @@
 				for(var/mob/living/silicon/ai/AI in GLOB.silicon_mobs)
 					if(!AI.client)
 						continue
-					to_chat(AI, span_info("NOTICE - [M.name] taking off towards [params["destination"]]"))
+					to_chat(AI, span_info("[src] was commanded remotely to take off."))
 			return TRUE
 		if(1)
 			to_chat(usr, span_warning("Invalid shuttle requested."))

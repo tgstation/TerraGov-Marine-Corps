@@ -252,6 +252,8 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 				operator = usr
 				var/mob/living/carbon/human/H = operator
 				var/obj/item/card/id/ID = H.get_idcard()
+				if(issilicon(usr))
+					to_chat(usr, span_boldnotice("Basic overwatch systems initialized. Welcome, [ID ? "[ID.rank] ":""][operator.name]. Please select a squad."))
 				visible_message(span_boldnotice("Basic overwatch systems initialized. Welcome, [ID ? "[ID.rank] ":""][operator.name]. Please select a squad."))
 				current_squad?.message_squad("Attention. Your Overwatch officer is now [ID ? "[ID.rank] ":""][operator.name].")
 		if("change_main_operator")
@@ -259,6 +261,8 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 				operator = usr
 				var/mob/living/carbon/human/H = operator
 				var/obj/item/card/id/ID = H.get_idcard()
+				if(issilicon(usr))
+					to_chat(usr, span_boldnotice("Main overwatch systems initialized. Welcome, [ID ? "[ID.rank] ":""][operator.name]."))
 				visible_message(span_boldnotice("Main overwatch systems initialized. Welcome, [ID ? "[ID.rank] ":""][operator.name]."))
 		if("logout")
 			if(!current_squad)
@@ -266,12 +270,16 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 			var/obj/item/card/id/ID = operator.get_idcard()
 			current_squad.overwatch_officer = null //Reset the squad's officer.
 			current_squad.message_squad("Attention. [ID ? "[ID.rank] ":""][operator ? "[operator.name]":"sysadmin"] is no longer your Overwatch officer. Overwatch functions deactivated.")
+			if(issilicon(usr))
+				to_chat(usr, span_boldnotice("Overwatch systems deactivated. Goodbye, [ID ? "[ID.rank] ":""][operator ? "[operator.name]":"sysadmin"]."))
 			visible_message(span_boldnotice("Overwatch systems deactivated. Goodbye, [ID ? "[ID.rank] ":""][operator ? "[operator.name]":"sysadmin"]."))
 			operator = null
 			current_squad = null
 			state = OW_MAIN
 		if("logout_main")
 			var/obj/item/card/id/ID = operator.get_idcard()
+			if(issilicon(usr))
+				to_chat(usr, span_boldnotice("Main overwatch systems deactivated. Goodbye, [ID ? "[ID.rank] ":""][operator ? "[operator.name]":"sysadmin"]."))
 			visible_message(span_boldnotice("Main overwatch systems deactivated. Goodbye, [ID ? "[ID.rank] ":""][operator ? "[operator.name]":"sysadmin"]."))
 			operator = null
 			current_squad = null
@@ -290,6 +298,8 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 			current_squad = selected
 			current_squad.message_squad("Attention - Your squad has been selected for Overwatch. Check your Status pane for objectives.")
 			current_squad.message_squad("Your Overwatch officer is: [operator.name].")
+			if(issilicon(usr))
+				to_chat(usr, span_boldnotice("Tactical data for squad '[current_squad]' loaded. All tactical functions initialized."))
 			visible_message(span_boldnotice("Tactical data for squad '[current_squad]' loaded. All tactical functions initialized."))
 			attack_hand(usr)
 		if("message")
@@ -297,24 +307,32 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 				var/input = stripped_input(usr, "Please write a message to announce to the squad:", "Squad Message")
 				if(input)
 					current_squad.message_squad(input, usr) //message, adds username
+					if(issilicon(usr))
+						to_chat(usr, span_boldnotice("Message sent to all Marines of squad '[current_squad]'."))
 					visible_message(span_boldnotice("Message sent to all Marines of squad '[current_squad]'."))
 		if("sl_message")
 			if(current_squad && operator == usr)
 				var/input = stripped_input(usr, "Please write a message to announce to the squad leader:", "SL Message")
 				if(input)
 					current_squad.message_leader(input, usr)
+					if(issilicon(usr))
+						to_chat(usr, span_boldnotice("Message sent to Squad Leader [current_squad.squad_leader] of squad '[current_squad]'."))
 					visible_message(span_boldnotice("Message sent to Squad Leader [current_squad.squad_leader] of squad '[current_squad]'."))
 		if("set_primary")
 			var/input = stripped_input(usr, "What will be the squad's primary objective?", "Primary Objective")
 			if(input)
 				current_squad.primary_objective = input + " ([worldtime2text()])"
 				current_squad.message_squad("Your primary objective has changed. See Status pane for details.")
+				if(issilicon(usr))
+					to_chat(usr, span_boldnotice("Primary objective of squad '[current_squad]' set."))
 				visible_message(span_boldnotice("Primary objective of squad '[current_squad]' set."))
 		if("set_secondary")
 			var/input = stripped_input(usr, "What will be the squad's secondary objective?", "Secondary Objective")
 			if(input)
 				current_squad.secondary_objective = input + " ([worldtime2text()])"
 				current_squad.message_squad("Your secondary objective has changed. See Status pane for details.")
+				if(issilicon(usr))
+					to_chat(usr, span_boldnotice("Secondary objective of squad '[current_squad]' set."))
 				visible_message(span_boldnotice("Secondary objective of squad '[current_squad]' set."))
 		if("refresh")
 			attack_hand(usr)
@@ -525,10 +543,14 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 		return
 	if(current_squad.squad_leader)
 		current_squad.message_squad("Attention: [current_squad.squad_leader] is [current_squad.squad_leader.stat == DEAD ? "stepping down" : "demoted"]. A new Squad Leader has been set: [H.real_name].")
+		if(issilicon(usr))
+			to_chat(usr, span_boldnotice("Squad Leader [current_squad.squad_leader] of squad '[current_squad]' has been [current_squad.squad_leader.stat == DEAD ? "replaced" : "demoted and replaced"] by [H.real_name]! Logging to enlistment files."))
 		visible_message(span_boldnotice("Squad Leader [current_squad.squad_leader] of squad '[current_squad]' has been [current_squad.squad_leader.stat == DEAD ? "replaced" : "demoted and replaced"] by [H.real_name]! Logging to enlistment files."))
 		current_squad.demote_leader()
 	else
 		current_squad.message_squad("Attention: A new Squad Leader has been set: [H.real_name].")
+		if(issilicon(usr))
+			to_chat(usr, span_boldnotice("[H.real_name] is the new Squad Leader of squad '[current_squad]'! Logging to enlistment file."))
 		visible_message(span_boldnotice("[H.real_name] is the new Squad Leader of squad '[current_squad]'! Logging to enlistment file."))
 
 	to_chat(H, "[icon2html(src, H)] <font size='3' color='blue'><B>\[Overwatch\]: You've been promoted to \'[ismarineleaderjob(H.job) ? "SQUAD LEADER" : "ACTING SQUAD LEADER"]\' for [current_squad.name]. Your headset has access to the command channel (:v).</B></font>")
@@ -558,6 +580,8 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 							R.fields["ma_crim"]	= "Insubordination."
 						else
 							R.fields["ma_crim"] += "Insubordination."
+						if(issilicon(usr))
+							to_chat(usr, span_boldnotice("[wanted_marine] has been reported for insubordination. Logging to enlistment file."))
 						visible_message(span_boldnotice("[wanted_marine] has been reported for insubordination. Logging to enlistment file."))
 						to_chat(wanted_marine, "[icon2html(src, wanted_marine)] <font size='3' color='blue'><B>\[Overwatch\]:</b> You've been reported for insubordination by your overwatch officer.</font>")
 						wanted_marine.sec_hud_set_security_status()
@@ -629,6 +653,8 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 		H.set_frequency(new_squad.radio_freq)
 
 	transfer_marine.hud_set_job()
+	if(issilicon(usr))
+		to_chat(usr, span_boldnotice("[transfer_marine] has been transfered from squad '[old_squad]' to squad '[new_squad]'. Logging to enlistment file."))
 	visible_message(span_boldnotice("[transfer_marine] has been transfered from squad '[old_squad]' to squad '[new_squad]'. Logging to enlistment file."))
 	to_chat(transfer_marine, "[icon2html(src, transfer_marine)] <font size='3' color='blue'><B>\[Overwatch\]:</b> You've been transfered to [new_squad]!</font>")
 
@@ -902,7 +928,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	SIGNAL_HANDLER
 	if(!current_order)
 		var/mob/user = source
-		to_chat(user, span_warning("Your have no order selected."))
+		to_chat(user, span_warning("You have no order selected."))
 	current_order.send_order(target, faction = faction)
 
 ///Setter for the current order

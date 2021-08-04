@@ -1,0 +1,4 @@
+author: "QualityVan"
+delete-after: True
+changes: 
+  - bugfix: "Taking at least 15 damage at once in stealth as a hunter will now properly knock you out of it."
