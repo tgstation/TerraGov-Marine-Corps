@@ -100,8 +100,8 @@
 	playsound(loc, 'sound/voice/alien_queen_died.ogg', 75, 0)
 
 /mob/living/carbon/xenomorph/queen/xeno_death_alert()
-	if(!isdistressgamemode(SSticker.mode))
-		return;
+	if(!CHECK_BITFIELD(SSticker.mode.flags_round_type, MODE_PSY_POINTS))
+		return
 
 	// Resets building permissions to unrestricted upon queen death.
 	hive.building_allowed = XENO_BUILDING_UNRESTRICTED

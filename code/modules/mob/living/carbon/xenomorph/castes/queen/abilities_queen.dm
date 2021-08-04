@@ -86,7 +86,7 @@
 		to_chat(src, span_xenowarning("We can't do that now."))
 		return
 
-	if(!isdistressgamemode(SSticker.mode)) // This does not apply during Hunt/Crash where there are no psy points.
+	if(!CHECK_BITFIELD(SSticker.mode.flags_round_type, MODE_PSY_POINTS)) // This does not apply during Hunt/Crash where there are no psy points.
 		to_chat(src, span_xenowarning("We do not use psy points currently."))
 		return
 

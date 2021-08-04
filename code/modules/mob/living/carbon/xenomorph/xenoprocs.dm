@@ -226,7 +226,7 @@
 			stat("Slashing of hosts status:","FORBIDDEN")
 
 
-	if(isdistressgamemode(SSticker.mode))
+	if(CHECK_BITFIELD(SSticker.mode.flags_round_type, MODE_PSY_POINTS))
 		if(hive.building_allowed == NONE)
 			stat("Expenditure of psy points status:", "FORBIDDEN")
 		else if(hive.building_allowed == XENO_BUILDING_SILO)
