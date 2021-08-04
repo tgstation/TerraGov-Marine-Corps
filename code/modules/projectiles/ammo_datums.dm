@@ -1744,7 +1744,7 @@ datum/ammo/bullet/revolver/tp44
 	reagent_transfer_amount = 10.5
 
 /datum/ammo/xeno/toxin/heavy/upgrade3
-	smoke_strength = 0.10
+	smoke_strength = 1
 	reagent_transfer_amount = 11
 
 
