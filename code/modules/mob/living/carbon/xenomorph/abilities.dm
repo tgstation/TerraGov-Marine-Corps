@@ -145,7 +145,7 @@
 	add_cooldown()
 	return succeed_activate()
 
-/datum/action/xeno_action/plant_weeds/alternate_keybind_action()
+/datum/action/xeno_action/plant_weeds/alternate_action_activate()
 	INVOKE_ASYNC(src, .proc/choose_weed)
 	return COMSIG_KB_ACTIVATED
 

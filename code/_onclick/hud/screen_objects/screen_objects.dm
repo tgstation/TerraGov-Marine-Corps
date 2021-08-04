@@ -515,12 +515,15 @@
 	icon_state = "template"
 	var/datum/action/source_action
 
-/obj/screen/action_button/Click()
+/obj/screen/action_button/Click(location, control, params)
 	if(!usr || !source_action)
 		return TRUE
 	if(usr.next_move >= world.time)
 		return TRUE
-
+	var/list/modifiers = params2list(params)
+	if(modifiers["right"])
+		source_action.alternate_action_activate()
+		return
 	if(source_action.can_use_action(FALSE, NONE, TRUE))
 		source_action.action_activate()
 	else

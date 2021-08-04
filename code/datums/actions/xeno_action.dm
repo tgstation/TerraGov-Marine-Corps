@@ -31,7 +31,7 @@
 	if(keybind_signal)
 		RegisterSignal(L, keybind_signal, .proc/keybind_activation)
 	if(alternate_keybind_signal)
-		RegisterSignal(L, alternate_keybind_signal, .proc/alternate_keybind_action)
+		RegisterSignal(L, alternate_keybind_signal, .proc/alternate_action_activate)
 	RegisterSignal(L, COMSIG_XENOMORPH_ABILITY_ON_UPGRADE, .proc/on_xeno_upgrade)
 
 /datum/action/xeno_action/remove_action(mob/living/L)
@@ -50,10 +50,6 @@
 	if(can_use_action())
 		INVOKE_ASYNC(src, .proc/action_activate)
 	return COMSIG_KB_ACTIVATED
-
-///Signal Handler for alternate keybind actions
-/datum/action/xeno_action/proc/alternate_keybind_action()
-	SIGNAL_HANDLER
 
 /datum/action/xeno_action/proc/on_xeno_upgrade()
 	return
@@ -192,7 +188,7 @@
 		deselect()
 	return ..()
 
-/datum/action/xeno_action/activable/alternate_keybind_action()
+/datum/action/xeno_action/activable/alternate_action_activate()
 	INVOKE_ASYNC(src, .proc/action_activate)
 
 /datum/action/xeno_action/activable/action_activate()
