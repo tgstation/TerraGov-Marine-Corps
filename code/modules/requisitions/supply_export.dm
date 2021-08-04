@@ -48,6 +48,8 @@
  **Eye damage or disfigurement
  **Shrapnel
  **Full dress uniform: torso, hat, gloves, boots
+ **Suicide
+ **Dogtag in memorial, if they've got one
  */
 /mob/living/carbon/human/proc/burial_export(faction_selling)
 	var/report_name = name
@@ -120,6 +122,16 @@
 		bad_fashion = TRUE
 	if(bad_fashion)
 		problems += "improper dress"
+
+	if(istype(wear_id, /obj/item/card/id/dogtag))
+		var/obj/item/card/id/dogtag/our_tag = wear_id
+		if((!our_tag.dogtag_taken) || (!GLOB.fallen_list.Find(our_tag.registered_name)))
+			payout = 0
+			problems += "marine not memorialized"
+
+	if(suiciding)
+		payout = 0
+		problems += "non-combat death"
 
 	if(problems.len)
 		report_name += " \[DISCREPANCIES: "
