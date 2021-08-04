@@ -500,7 +500,7 @@
 		return
 	recharging = TRUE
 	while(do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_GENERIC))
-		cell.charge += 200
+		cell.charge = min(cell.charge + 200, cell.maxcharge)
 		to_chat(user, span_notice("You squeeze the handle a few times, putting in a few volts of charge."))
 		playsound(user, 'sound/weapons/guns/interact/rifle_reload.ogg', 15, 1, 5)
 		flick("[icon_state]_pumping", src)
@@ -541,7 +541,7 @@
 	playsound(user, 'sound/machines/click.ogg', 20, 1, 5)
 	to_chat(user, span_notice("You remove the cell from [src]."))
 	icon_state = "handheldcharger_empty"
-	return
+
 
 /obj/item/tool/handheld_charger/Destroy()
 	QDEL_NULL(cell)
