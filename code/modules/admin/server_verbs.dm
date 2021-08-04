@@ -303,10 +303,10 @@
 	if(time < 0)
 		return
 
-	GLOB.respawntime = time
+	SSticker.mode?.respawn_time = time
 
-	log_admin("[key_name(usr)] set the respawn time to [GLOB.respawntime * 0.1] seconds.")
-	message_admins("[ADMIN_TPMONTY(usr)] set the respawn time to [GLOB.respawntime * 0.1] seconds.")
+	log_admin("[key_name(usr)] set the respawn time to [SSticker.mode?.respawn_time * 0.1] seconds.")
+	message_admins("[ADMIN_TPMONTY(usr)] set the respawn time to [SSticker.mode?.respawn_time * 0.1] seconds.")
 
 
 /datum/admins/proc/set_xenorespawn_time(time as num)

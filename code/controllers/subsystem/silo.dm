@@ -5,6 +5,8 @@ SUBSYSTEM_DEF(silo)
 	init_order = INIT_ORDER_SPAWNING_POOL
 	///How many larva points are added every minutes in total
 	var/current_larva_spawn_rate = 0
+	///A temporary buff for larva generation, that comes from the monitor system detecting a stalemate
+	var/larva_spawn_rate_temporary_buff = 0
 
 /datum/controller/subsystem/silo/Initialize(timeofday)
 	RegisterSignal(SSdcs, list(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_XENO_HIVEMIND, COMSIG_GLOB_OPEN_SHUTTERS_EARLY, COMSIG_GLOB_TADPOLE_LAUNCHED), .proc/start_spawning)
@@ -20,6 +22,7 @@ SUBSYSTEM_DEF(silo)
 	current_larva_spawn_rate /=  (1 + SILO_OUTPUT_PONDERATION)
 	//We are processing wether we hijacked or not (hijacking gives a bonus)
 	current_larva_spawn_rate *= SSmonitor.gamestate == SHIPSIDE ? 3 : 1
+	current_larva_spawn_rate += larva_spawn_rate_temporary_buff
 	xeno_job.add_job_points(current_larva_spawn_rate, SILO_ORIGIN)
 
 ///Activate the subsystem when shutters open and remove the free spawning when marines are joining

@@ -54,7 +54,7 @@
 #define span_round_header(str) ("<span class='round_header'>" + str + "</span>")
 #define span_runtime_line(str) ("<span class='span_runtime_line'>" + str + "</span>")
 #define span_scanner(str) ("<span class='scanner'>" + str + "</span>")
-#define span_scannerb(str) ("<span class='scannerb>" + str + "</span>")
+#define span_scannerb(str) ("<span class='scannerb'>" + str + "</span>")
 #define span_scannerburn(str) ("<span class='scannerburn'>" + str + "</span>")
 #define span_scannerburnb(str) ("<span class='scannerburnb'>" + str + "</span>")
 #define span_season_additional_info(str) ("<span class='season_additional_info'>" + str + "</span>")

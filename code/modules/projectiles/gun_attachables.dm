@@ -720,6 +720,17 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 /obj/item/attachable/scope/unremovable
 	flags_attach_features = ATTACH_ACTIVATION
 
+
+/obj/item/attachable/scope/unremovable/flaregun
+	name = "long range ironsights"
+	desc = "An unremovable set of long range ironsights for a flaregun."
+	attach_icon = "none"
+	aim_speed_mod = 0
+	wield_delay_mod = 0
+	zoom_offset = 5
+	zoom_viewsize = 7
+	scoped_accuracy_mod = SCOPE_RAIL_MINI
+
 /obj/item/attachable/scope/unremovable/tl127
 	name = "T-45 rail scope"
 	aim_speed_mod = 0
@@ -1271,6 +1282,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 
 /obj/item/attachable/attached_gun/grenade/unremovable/invisible
 	icon_state = "invisible"
+	attach_icon = "invisible"
 
 /obj/item/attachable/attached_gun/grenade/examine(mob/user)
 	..()

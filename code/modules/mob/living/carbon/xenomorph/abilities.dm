@@ -221,7 +221,7 @@
 		if(/obj/effect/alien/resin/sticky)
 			build_resin_modifier = 0.5
 		if(/obj/structure/mineral_door/resin)
-			build_resin_modifier = 3
+			build_resin_modifier = 2
 
 	return (base_wait + scaling_wait - max(0, (scaling_wait * X.health / X.maxHealth))) * build_resin_modifier
 
