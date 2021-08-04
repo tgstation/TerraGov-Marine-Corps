@@ -2,7 +2,7 @@
 	if(lying_angle)
 		return FALSE
 
-	if(!isopenturf(A)) //We don't care about open turfs; they don't trigger our melee click cooldown
+	if(!(isopenturf(A) || istype(A, /obj/effect/alien/weeds))) //We don't care about open turfs; they don't trigger our melee click cooldown
 		changeNext_move(xeno_caste ? xeno_caste.attack_delay : CLICK_CD_MELEE)
 
 	var/atom/S = A.handle_barriers(src)

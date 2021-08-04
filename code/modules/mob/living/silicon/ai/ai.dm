@@ -82,7 +82,6 @@
 
 	RegisterSignal(SSdcs, COMSIG_GLOB_SHUTTLE_TAKEOFF, .proc/shuttle_takeoff_notification)
 
-
 	var/datum/action/innate/order/attack_order/send_attack_order = new
 	var/datum/action/innate/order/defend_order/send_defend_order = new
 	var/datum/action/innate/order/retreat_order/send_retreat_order = new
@@ -109,7 +108,7 @@
 /mob/living/silicon/ai/proc/send_order(datum/source, atom/target)
 	SIGNAL_HANDLER
 	if(!current_order)
-		to_chat(src, span_warning("Your have no order selected."))
+		to_chat(src, span_warning("You have no order selected."))
 		return
 	current_order.send_order(target)
 
@@ -122,12 +121,12 @@
 ///Receive fire support laser notifications
 /mob/living/silicon/ai/proc/receive_laser_ob(datum/source, obj/effect/overlay/temp/laser_target/OB/incoming_laser)
 	SIGNAL_HANDLER
-	to_chat(src, "<span class='notice'>Orbital Bombardment laser detected. Target: [AREACOORD_NO_Z(incoming_laser)] </span>")
+	to_chat(src, span_notice("Orbital Bombardment laser detected. Target: [AREACOORD_NO_Z(incoming_laser)]"))
 	playsound_local(src, 'sound/effects/binoctarget.ogg', 15)
 
 /mob/living/silicon/ai/proc/receive_laser_cas(datum/source, obj/effect/overlay/temp/laser_target/cas/incoming_laser)
 	SIGNAL_HANDLER
-	to_chat(src, "<span class='notice'>CAS laser detected. Target: [AREACOORD_NO_Z(src)]</span>")
+	to_chat(src, span_notice("CAS laser detected. Target: [AREACOORD_NO_Z(incoming_laser)]"))
 	playsound_local(src, 'sound/effects/binoctarget.ogg', 15)
 
 ///This gives the stupid computer a notification whenever the dropship takes off. Crutch for a supercomputer.

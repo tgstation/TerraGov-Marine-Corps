@@ -789,7 +789,7 @@ below 100 is not dizzy
 	lying_angle = new_lying
 	update_transform()
 	lying_prev = lying_angle
-
+	SEND_SIGNAL(src, COMSIG_LIVING_SET_LYING_ANGLE)
 	if(lying_angle)
 		density = FALSE
 		drop_all_held_items()
