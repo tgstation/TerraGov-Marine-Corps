@@ -9,7 +9,7 @@
 	wound_type = "ravager" //used to match appropriate wound overlays
 
 	// *** Melee Attacks *** //
-	melee_damage = 26
+	melee_damage = 25
 	attack_delay = 7
 
 	// *** Speed *** //
