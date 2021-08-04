@@ -984,6 +984,7 @@
 #include "code\modules\admin\smites\fake_bwoink.dm"
 #include "code\modules\admin\smites\fat.dm"
 #include "code\modules\admin\smites\gib.dm"
+#include "code\modules\admin\smites\lightning.dm"
 #include "code\modules\admin\smites\nugget.dm"
 #include "code\modules\admin\smites\puzzle.dm"
 #include "code\modules\admin\smites\smite.dm"
