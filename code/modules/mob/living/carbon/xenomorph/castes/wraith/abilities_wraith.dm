@@ -394,9 +394,6 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	cooldown_timer = 0.5 SECONDS
 	keybind_signal = COMSIG_XENOABILITY_BLINK
 
-/datum/action/xeno_action/activable/blink/can_use_ability(atom/A, silent = FALSE, override_flags)
-	. = ..()
-	var/turf/T = get_turf(A)
 ///Check target Blink turf to see if it can be blinked to
 /datum/action/xeno_action/activable/blink/proc/check_blink_tile(turf/T, ignore_blocker = FALSE, silent = FALSE)
 	if(isclosedturf(T) || isspaceturf(T))
@@ -423,7 +420,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	if(ignore_blocker) //If we don't care about objects occupying the target square, return TRUE; used for checking pathing through transparents
 		return TRUE
 
-	if(owner.turf_block_check(A, FALSE, TRUE, TRUE, TRUE, TRUE)) //Check if there's anything that blocks us; we only care about Canpass here
+	if(turf_block_check(owner, T, FALSE, TRUE, TRUE, TRUE, TRUE)) //Check if there's anything that blocks us; we only care about Canpass here
 		if(!silent)
 			to_chat(owner, span_xenowarning("We can't blink here!"))
 		return FALSE
