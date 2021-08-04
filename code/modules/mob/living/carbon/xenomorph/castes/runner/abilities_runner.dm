@@ -243,7 +243,7 @@
 	RegisterSignal(R, COMSIG_XENO_PROJECTILE_HIT, .proc/evasion_dodge) //This is where we actually check to see if we dodge the projectile.
 	RegisterSignal(R, COMSIG_XENOMORPH_FIRE_BURNING, .proc/evasion_burn_check) //Register status effects and fire which impact evasion.
 	RegisterSignal(R, COMSIG_ATOM_BULLET_ACT, .proc/evasion_flamer_hit) //Register status effects and fire which impact evasion.
-	RegisterSignal(R, COMSIG_MOVABLE_LIVING_IMPACT_THROW, .proc/evasion_throw_dodge) //Register status effects and fire which impact evasion.
+	RegisterSignal(R, COMSIG_MOVABLE_LIVING_THROW_IMPACT_CHECK, .proc/evasion_throw_dodge) //Register status effects and fire which impact evasion.
 
 	evade_active = TRUE //evasion is currently active
 
@@ -298,7 +298,7 @@
 		COMSIG_LIVING_STATUS_STAGGER,
 		COMSIG_XENO_PROJECTILE_HIT,
 		COMSIG_XENOMORPH_FIRE_BURNING,
-		COMSIG_MOVABLE_LIVING_IMPACT_THROW,
+		COMSIG_MOVABLE_LIVING_THROW_IMPACT_CHECK,
 		COMSIG_ATOM_BULLET_ACT
 		))
 
@@ -336,9 +336,9 @@
 		var/obj/O = proj
 		evasion_stacks += O.throwforce //Add to evasion stacks for the purposes of determining whether or not our cooldown refreshes equal to the thrown force
 
-	evasion_dodge_SFX(proj)
+	evasion_dodge_sfx(proj)
 
-	return COMPONENT_LIVING_THROW_HIT
+	return COMPONENT_LIVING_THROW_HIT_CHECK
 
 ///This is where the dodgy magic happens
 /datum/action/xeno_action/evasion/proc/evasion_dodge(datum/source, obj/projectile/proj, cardinal_move, uncrossing)
@@ -360,12 +360,12 @@
 	if(!(proj.ammo.flags_ammo_behavior & AMMO_SENTRY) && !R.fire_stacks) //We ignore projectiles from automated sources/sentries for the purpose of contributions towards our cooldown refresh; also fire prevents accumulation of evasion stacks
 		evasion_stacks += proj.damage //Add to evasion stacks for the purposes of determining whether or not our cooldown refreshes
 
-	evasion_dodge_SFX(proj)
+	evasion_dodge_sfx(proj)
 
 	return COMPONENT_PROJECTILE_DODGE
 
 ///Dodge SFX
-/datum/action/xeno_action/evasion/proc/evasion_dodge_SFX(atom/movable/proj)
+/datum/action/xeno_action/evasion/proc/evasion_dodge_sfx(atom/movable/proj)
 	evasion_stack_target = RUNNER_EVASION_COOLDOWN_REFRESH_THRESHOLD * (1 + evasion_streak) //Each streak increases the amount we have to dodge by the initial value
 
 	var/mob/living/carbon/xenomorph/X = owner
@@ -387,10 +387,9 @@
 
 	var/turf/T = get_turf(X) //location of after image SFX
 	playsound(T, pick('sound/effects/throw.ogg','sound/effects/alien_tail_swipe1.ogg', 'sound/effects/alien_tail_swipe2.ogg'), 25, 1) //sound effects
-	var/i = 0
 	var/obj/effect/temp_visual/xenomorph/runner_afterimage/A
-	while(i < 2) //number after images
+	for(var/i=0 to 2) //number of after images
 		A = new /obj/effect/temp_visual/xenomorph/runner_afterimage(T) //Create the after image.
 		A.pixel_x = pick(rand(X.pixel_x * 3, X.pixel_x * 1.5), rand(0, X.pixel_x * -1)) //Variation on the X position
 		A.dir = X.dir //match the direction of the runner
-		i++
+
