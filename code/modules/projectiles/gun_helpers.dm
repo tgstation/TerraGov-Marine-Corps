@@ -226,20 +226,20 @@ should be alright.
 
 	if(istype(I, /obj/item/cell) && CHECK_BITFIELD(flags_gun_features, GUN_IS_SENTRY))
 		if(sentry_battery)
-			to_chat(user, "<span class='warning'>[src] already has a battery installed!</span>")
+			to_chat(user, span_warning("[src] already has a battery installed!"))
 			return
 		if(!istype(I, sentry_battery_type))
-			to_chat(user, "<span class='warning'>[I] wont fit there!</span>")
+			to_chat(user, span_warning("[I] wont fit there!"))
 			return
 		var/obj/item/cell/new_cell = I
 		if(!new_cell.charge)
-			to_chat(user, "<span class='warning'>[new_cell] is out of charge!</span>")
+			to_chat(user, span_warning("[new_cell] is out of charge!"))
 			return
 		playsound(src, 'sound/weapons/guns/interact/standard_laser_rifle_reload.ogg', 20)
 		sentry_battery = new_cell
 		user.temporarilyRemoveItemFromInventory(new_cell)
 		new_cell.forceMove(src)
-		to_chat(user, "<span class='notice'>You install the [new_cell] into the [src].</span>")
+		to_chat(user, span_notice("You install the [new_cell] into the [src]."))
 		return
 
 	if((istype(I, /obj/item/ammo_magazine) || istype(I, /obj/item/cell/lasgun)) && check_inactive_hand(user))

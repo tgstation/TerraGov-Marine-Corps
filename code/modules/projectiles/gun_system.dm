@@ -171,7 +171,7 @@
 
 	setup_firemodes()
 	AddComponent(/datum/component/automatedfire/autofire, fire_delay, burst_delay, burst_amount, gun_firemode, CALLBACK(src, .proc/set_bursting), CALLBACK(src, .proc/reset_fire), CALLBACK(src, .proc/Fire)) //This should go after handle_starting_attachment() and setup_firemodes() to get the proper values set.
-	
+
 	muzzle_flash = new(src, muzzleflash_iconstate)
 
 	if(flags_item & IS_DEPLOYABLE)
@@ -604,7 +604,7 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 /obj/item/weapon/gun/proc/stop_fire()
 	SIGNAL_HANDLER
 	gun_user?.client?.mouse_pointer_icon = initial(gun_user.client.mouse_pointer_icon)
-	if(windup_checked != WEAPON_WINDUP_CHECKING && !CHECK_BITFIELD(flags_gun_features, GUN_BURST_FIRING))
+	if(!CHECK_BITFIELD(flags_gun_features, GUN_BURST_FIRING))
 		reset_fire()
 	SEND_SIGNAL(src, COMSIG_GUN_STOP_FIRE)
 

@@ -45,7 +45,8 @@
 
 
 /obj/item/ammo_magazine/revolver/small
-	name = "\improper S&W speed loader (.357)"
+	name = "\improper 'Bote' .357 speed loader (.357)"
+	desc = "A revolver speed loader loaded with special 357 rounds that bounce on impact. Be careful around friends and family!"
 	default_ammo = /datum/ammo/bullet/revolver/ricochet/four
 	caliber = CALIBER_357
 	icon_state = "sw357"
