@@ -95,11 +95,12 @@
 		payout -= round(tissue_damage/10)
 		problems += "tissue damage"
 
-
-	if(internal_organs_by_name["eyes"]?.damage)
+	var/datum/internal_organ/eyes/peepers = internal_organs_by_name["eyes"]
+	if(peepers.damage)
 		payout -= 3
 		problems |= "ocular damage"
-	if(get_limb("head")?.disfigured)
+	var/datum/limb/head/skullcase = get_limb("head")
+	if(skullcase.disfigured)
 		payout -= 10
 		problems += "disfigurement"
 	if(LAZYLEN(embedded_objects))
