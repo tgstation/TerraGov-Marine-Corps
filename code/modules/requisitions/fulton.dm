@@ -9,10 +9,11 @@
 	///Reference to the balloon vis obj effect
 	var/atom/movable/vis_obj/fulton_baloon/baloon
 	var/obj/effect/fulton_extraction_holder/holder_obj
-	var/uses = 3 //How many times you can use the fulton before it goes poof
+	/// How many times you can use the fulton before it goes poof
+	var/uses = 3
 
 /obj/item/fulton_extraction_pack/examine(mob/user)
-	..()
+	. = ..()
 	to_chat(user, "It has [uses] uses remaining.")
 
 
