@@ -415,7 +415,7 @@
 	name = "Choose/Follow Xenomorph Leaders"
 	action_icon_state = "xeno_lead"
 	mechanics_text = "Make a target Xenomorph a leader."
-	plasma_cost = 0
+	plasma_cost = 200
 	keybind_signal = COMSIG_XENOABILITY_XENO_LEADERS
 	use_state_flags = XACT_USE_LYING
 
@@ -441,17 +441,10 @@
 		unset_xeno_leader(selected_xeno, feedback)
 		return
 
-	if(xeno_ruler.queen_ability_cooldown > world.time)
-		if(feedback)
-			to_chat(xeno_ruler, span_xenowarning("We're still recovering from our last hive managment ability. We must wait [round((xeno_ruler.queen_ability_cooldown-world.time)*0.1)] seconds."))
-		return
-
 	if(xeno_ruler.xeno_caste.queen_leader_limit <= length(xeno_ruler.hive.xeno_leader_list))
 		if(feedback)
 			to_chat(xeno_ruler, span_xenowarning("We currently have [length(xeno_ruler.hive.xeno_leader_list)] promoted leaders. We may not maintain additional leaders until our power grows."))
 		return
-
-	xeno_ruler.queen_ability_cooldown = world.time + 15 SECONDS
 
 	set_xeno_leader(selected_xeno, feedback)
 

@@ -21,7 +21,6 @@
 	upgrade = XENO_UPGRADE_ZERO
 
 	var/breathing_counter = 0
-	var/queen_ability_cooldown = 0
 	var/mob/living/carbon/xenomorph/observed_xeno //the Xenomorph the queen is currently overwatching
 	inherent_verbs = list(
 		/mob/living/carbon/xenomorph/proc/claw_toggle,
