@@ -153,15 +153,21 @@
 		span_danger("We start slashing at \the [src], tearing at it's components!"))
 	fail_rate += 5 // 5% fail rate every attack
 
-/obj/machinery/power/geothermal/attack_hand(mob/living/user)
-	. = ..()
+/obj/machinery/power/geothermal/attack_hand(mob/living/carbon/user)
+	interact_hand(user)
+
+/obj/machinery/power/geothermal/attack_ai(mob/living/silicon/ai/user)
+	interact_hand(user)
+
+
+/obj/machinery/power/geothermal/proc/interact_hand(mob/living/user)
 	if(.)
 		return
 	if(!anchored) //Shouldn't actually be possible
 		return FALSE
 	if(user.incapacitated())
 		return FALSE
-	if(!ishuman(user))
+	if(!ishuman(user) && !issilicon(user))
 		to_chat(user, span_warning("You have no idea how to use that."))
 		return FALSE
 	if(corrupted)
