@@ -1452,9 +1452,10 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	var/distance = 0
 	var/turf/prev_T
 	playsound(user, 'sound/weapons/guns/fire/flamethrower2.ogg', 50, 1)
+	var/fire_delay = attachment_firing_delay
 	if(!user.skills.getRating("firearms")) //no training in any firearms
-		attachment_firing_delay += 0.3 SECONDS //untrained humans fire more slowly.
-	COOLDOWN_START(src, last_fired, attachment_firing_delay)
+		fire_delay += 0.3 SECONDS //untrained humans fire more slowly.
+	COOLDOWN_START(src, last_fired, fire_delay)
 	for(var/turf/T in turfs)
 		if(T == user.loc)
 			prev_T = T
