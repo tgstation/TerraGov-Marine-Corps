@@ -468,8 +468,8 @@
 	name = "handheld charger"
 	desc = "A hand-held, lightweight cell charger. It isn't going to give you tons of power, but it can help in a pinch."
 	icon = 'icons/obj/items/items.dmi'
-	icon_state = "handheldcharger_empty"
-	item_state = "handheldcharger_empty"
+	icon_state = "handheldcharger_black_empty"
+	item_state = "handheldcharger_black_empty"
 	w_class = WEIGHT_CLASS_SMALL
 	flags_atom = CONDUCT
 	force = 6.0
@@ -503,7 +503,7 @@
 		cell.charge = min(cell.charge + 200, cell.maxcharge)
 		to_chat(user, span_notice("You squeeze the handle a few times, putting in a few volts of charge."))
 		playsound(user, 'sound/weapons/guns/interact/rifle_reload.ogg', 15, 1, 5)
-		flick("[icon_state]_pumping", src)
+		flick("handheldcharger_black_pumping", src)
 		if(cell.charge >= cell.maxcharge)
 			to_chat(user, span_notice("\The [cell] is fully charged."))
 			recharging = FALSE
@@ -528,7 +528,7 @@
 	cell = I
 	to_chat(user, span_notice("[replace_install]. <b>Charge Remaining: [cell.charge]/[cell.maxcharge]</b>"))
 	playsound(user, 'sound/weapons/guns/interact/rifle_reload.ogg', 20, 1, 5)
-	icon_state = "handheldcharger"
+	icon_state = "handheldcharger_black"
 
 /obj/item/tool/handheld_charger/attack_hand(mob/living/user)
 	if(user.get_inactive_held_item() != src)
@@ -540,7 +540,7 @@
 	cell = null
 	playsound(user, 'sound/machines/click.ogg', 20, 1, 5)
 	to_chat(user, span_notice("You remove the cell from [src]."))
-	icon_state = "handheldcharger_empty"
+	icon_state = "handheldcharger_black_empty"
 
 
 /obj/item/tool/handheld_charger/Destroy()
