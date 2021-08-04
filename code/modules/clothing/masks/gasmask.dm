@@ -15,6 +15,14 @@
 	siemens_coefficient = 0.9
 	var/gas_filter_strength = 1			//For gas mask filters
 	var/list/filtered_gases = list(/datum/reagent/toxin/phoron, "sleeping_agent", "carbon_dioxide")
+	var/breathy = 1		///Whether or not this plays a sound on equip
+
+/obj/item/clothing/mask/gas/equipped(mob/living/carbon/human/user, slot)
+	. = ..()
+	if(!breathy)
+		return
+	if(slot == SLOT_WEAR_MASK)
+		playsound(user, "gasbreath", 25, 1)
 
 /obj/item/clothing/mask/gas/tactical
 	name = "Tactical gas mask"
@@ -35,6 +43,7 @@
 	soft_armor = list("melee" = 10, "bullet" = 10, "laser" = 5, "energy" = 5, "bomb" = 10, "bio" = 1, "rad" = 1, "fire" = 5, "acid" = 5)
 	flags_inventory = COVERMOUTH|ALLOWINTERNALS|BLOCKGASEFFECT|ALLOWREBREATH
 	flags_inv_hide = HIDEEARS|HIDEFACE|HIDEALLHAIR
+	breathy = 0
 
 /obj/item/clothing/mask/gas/PMC/damaged
 	name = "damaged M8 pattern armored balaclava"
@@ -54,6 +63,7 @@
 	desc = "A superior balaclava worn by the Steel Wolves."
 	icon_state = "wolf_mask"
 	anti_hug = 2
+	breathy = 0
 
 //Plague Dr suit can be found in clothing/suits/bio.dm
 /obj/item/clothing/mask/gas/plaguedoctor
@@ -99,18 +109,21 @@
 	desc = "A true prankster's facial attire. A clown is incomplete without his wig and mask."
 	icon_state = "clown"
 	item_state = "clown_hat"
+	breathy = 0
 
 /obj/item/clothing/mask/gas/sexyclown
 	name = "sexy-clown wig and mask"
 	desc = "A feminine clown mask for the dabbling crossdressers or female entertainers."
 	icon_state = "sexyclown"
 	item_state = "sexyclown"
+	breathy = 0
 
 /obj/item/clothing/mask/gas/mime
 	name = "mime mask"
 	desc = "The traditional mime's mask. It has an eerie facial posture."
 	icon_state = "mime"
 	item_state = "mime"
+	breathy = 0
 
 /obj/item/clothing/mask/gas/monkeymask
 	name = "monkey mask"
@@ -118,12 +131,14 @@
 	icon_state = "monkeymask"
 	item_state = "monkeymask"
 	flags_armor_protection = HEAD|FACE|EYES
+	breathy = 0
 
 /obj/item/clothing/mask/gas/sexymime
 	name = "sexy mime mask"
 	desc = "A traditional female mime's mask."
 	icon_state = "sexymime"
 	item_state = "sexymime"
+	breathy = 0
 
 /obj/item/clothing/mask/gas/death_commando
 	name = "Death Commando Mask"
@@ -135,6 +150,7 @@
 	name = "cyborg visor"
 	desc = "Beep boop"
 	icon_state = "death"
+	breathy = 0
 
 /obj/item/clothing/mask/gas/owl_mask
 	name = "owl mask"
