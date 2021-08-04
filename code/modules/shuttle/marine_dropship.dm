@@ -1190,7 +1190,7 @@
 				for(var/mob/living/silicon/ai/AI in GLOB.silicon_mobs)
 					if(!AI.client)
 						continue
-					to_chat(AI, span_info("NOTICE - [M.name] taking off towards [params["destination"]]"))
+					to_chat(AI, span_info("[src] was commanded remotely to take off."))
 			return TRUE
 		if(1)
 			to_chat(usr, span_warning("Invalid shuttle requested."))
