@@ -150,6 +150,8 @@
 
 /obj/item/weapon/gun/energy/lasgun/unique_action(mob/user)
 	. = ..()
+	if(!.)
+		return
 	return cock(user)
 
 /obj/item/weapon/gun/energy/lasgun/tesla
