@@ -1,0 +1,6 @@
+author: "Hekzder"
+delete-after: True
+changes: 
+  - balance: "The UGL now has a fire delay of 1 second"
+  - bugfix: "Fixed the UGL not having a fire delay at all"
+  - spellcheck: "Fixed the UGL description listing it as a single shot launcher"

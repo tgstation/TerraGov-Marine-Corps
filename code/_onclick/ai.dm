@@ -124,10 +124,19 @@
 
 /* Airlocks */
 /obj/machinery/door/airlock/AICtrlClick(mob/living/silicon/ai/user) // Bolts doors
+	if(aiControlDisabled)
+		to_chat(user, span_notice("[src] AI remote control has been disabled."))
+		return
 	if(locked)
 		bolt_raise(user)
 	else if(hasPower())
 		bolt_drop(user)
+
+/obj/machinery/door/airlock/AIShiftClick(mob/living/silicon/ai/user)  // Opens and closes doors!
+	if(aiControlDisabled)
+		to_chat(user, span_notice("[src] AI remote control has been disabled."))
+		return
+	user_toggle_open(user)
 
 /obj/machinery/door/airlock/dropship_hatch/AICtrlClick(mob/living/silicon/ai/user)
 	return
@@ -135,8 +144,6 @@
 /obj/machinery/door/airlock/hatch/cockpit/AICtrlClick(mob/living/silicon/ai/user)
 	return
 
-/obj/machinery/door/airlock/AIShiftClick(mob/living/silicon/ai/user)  // Opens and closes doors!
-	user_toggle_open(user)
 
 
 /* APC */

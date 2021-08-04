@@ -1263,19 +1263,20 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 //The requirement for an attachable being alt fire is AMMO CAPACITY > 0.
 /obj/item/attachable/attached_gun/grenade
 	name = "underslung grenade launcher"
-	desc = "A weapon-mounted, reloadable, one-shot grenade launcher."
+	desc = "A weapon-mounted, reloadable, two-shot grenade launcher."
 	icon_state = "grenade"
 	attach_icon = "grenade_a"
 	w_class = WEIGHT_CLASS_BULKY
 	current_rounds = 0
 	max_rounds = 2
 	max_range = 7
+	attachment_firing_delay = 10
 	slot = ATTACHMENT_SLOT_UNDER
 	fire_sound = 'sound/weapons/guns/fire/underbarrel_grenadelauncher.ogg'
 	flags_attach_features = ATTACH_REMOVABLE|ATTACH_ACTIVATION|ATTACH_RELOADABLE|ATTACH_WEAPON
 	///list of grenade types loaded in the UGL
 	var/list/loaded_grenades = list()
-	attachment_firing_delay = 21
+	COOLDOWN_DECLARE(last_fired)
 
 /obj/item/attachable/attached_gun/grenade/unremovable
 	flags_attach_features = ATTACH_ACTIVATION|ATTACH_RELOADABLE|ATTACH_WEAPON
@@ -1322,7 +1323,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	if(get_dist(user,target) > max_range)
 		to_chat(user, span_warning("Too far to fire the attachment!"))
 		return
-	if(current_rounds > 0)
+	if(current_rounds > 0 && COOLDOWN_CHECK(src, last_fired))
 		prime_grenade(target,gun,user)
 
 
@@ -1330,6 +1331,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	set waitfor = FALSE
 	var/nade_type = loaded_grenades[1]
 	var/obj/item/explosive/grenade/frag/G = new nade_type (get_turf(gun))
+	COOLDOWN_START(src, last_fired, attachment_firing_delay)
 	playsound(user.loc, fire_sound, 50, 1)
 	log_explosion("[key_name(user)] fired a grenade [G] from [src] at [AREACOORD(user.loc)].")
 	log_combat(user, src, "fired a grenade [G] from")
@@ -1353,10 +1355,10 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	current_rounds = 20
 	max_rounds = 20
 	max_range = 4
+	attachment_firing_delay = 25
 	slot = ATTACHMENT_SLOT_UNDER
 	fire_sound = 'sound/weapons/guns/fire/flamethrower3.ogg'
 	flags_attach_features = ATTACH_REMOVABLE|ATTACH_ACTIVATION|ATTACH_RELOADABLE|ATTACH_WEAPON
-	attachment_firing_delay = 25
 	COOLDOWN_DECLARE(last_fired)
 
 

@@ -354,11 +354,11 @@
 	SEND_SIGNAL(mover, COMSIG_MOVABLE_CROSSED, src, oldloc)
 
 
-/atom/movable/Uncross(atom/movable/AM, atom/newloc)
+/atom/movable/Uncross(atom/movable/AM, direction)
 	. = ..()
 	if(SEND_SIGNAL(src, COMSIG_MOVABLE_UNCROSS, AM) & COMPONENT_MOVABLE_BLOCK_UNCROSS)
 		return FALSE
-	if(isturf(newloc) && !CheckExit(AM, newloc))
+	if(direction && !CheckExit(AM, direction))
 		return FALSE
 
 

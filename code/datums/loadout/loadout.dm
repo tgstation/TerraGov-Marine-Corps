@@ -142,7 +142,7 @@
 	switch(action)
 		if("equipLoadout")
 			if(TIMER_COOLDOWN_CHECK(ui.user, COOLDOWN_LOADOUT_EQUIPPED))
-				to_chat(ui.user, span_warning("The vendor is still reloading"))
+				ui.user.balloon_alert(ui.user, "The vendor is still reloading")
 				return
 			var/datum/loadout_seller/seller = new (loadout_vendor.faction)
 			if(seller.try_to_equip_loadout(src, ui.user))

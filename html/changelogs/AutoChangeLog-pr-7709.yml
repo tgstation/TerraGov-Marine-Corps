@@ -1,6 +1,0 @@
-author: "Pariah919"
-delete-after: True
-changes: 
-  - rscadd: "Added new marine flaregun, it can look out to miniscope distance. Fits in your flare pouches too."
-  - qol: "flaregun fired flares now stop where you click."
-  - balance: "flareguns now have miniscope level range of zoom on them, when you zoom on them."
