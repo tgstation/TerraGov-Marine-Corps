@@ -76,8 +76,6 @@
 
 /datum/action/xeno_action/stealth/proc/cancel_stealth() //This happens if we take damage, attack, pounce, toggle stealth off, and do other such exciting stealth breaking activities.
 	SIGNAL_HANDLER
-	if(!stealth)//sanity check/safeguard
-		return
 	add_cooldown()
 	to_chat(owner, "<span class='xenodanger'>We emerge from the shadows.</span>")
 
@@ -122,8 +120,6 @@
 
 /datum/action/xeno_action/stealth/proc/handle_stealth()
 	SIGNAL_HANDLER
-	if(!stealth)
-		return
 
 	var/mob/living/carbon/xenomorph/xenoowner = owner
 	//Initial stealth
@@ -169,7 +165,7 @@
 
 /datum/action/xeno_action/stealth/proc/sneak_attack_slash(datum/source, mob/living/target, damage, list/damage_mod, list/armor_mod)
 	SIGNAL_HANDLER
-	if(!stealth || !can_sneak_attack)
+	if(!can_sneak_attack)
 		return
 
 	var/staggerslow_stacks = 2
@@ -198,14 +194,14 @@
 	SIGNAL_HANDLER
 	handle_stealth()
 
-	if(stealth && owner.last_move_intent > world.time - 20) //Stealth halves the rate of plasma recovery on weeds, and eliminates it entirely while moving
+	if(owner.last_move_intent > world.time - 20) //Stealth halves the rate of plasma recovery on weeds, and eliminates it entirely while moving
 		plasma_mod += 0.0
 	else
 		plasma_mod += 0.5
 
 /datum/action/xeno_action/stealth/proc/sneak_attack_zone()
 	SIGNAL_HANDLER
-	if(!stealth || !can_sneak_attack)
+	if(!can_sneak_attack)
 		return
 	return COMSIG_ACCURATE_ZONE
 
