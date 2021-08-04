@@ -161,7 +161,6 @@
 
 
 /obj/machinery/power/geothermal/proc/interact_hand(mob/living/user)
-	. = ..()
 	if(.)
 		return
 	if(!anchored) //Shouldn't actually be possible
@@ -315,11 +314,6 @@
 /obj/machinery/power/geothermal/reinforced
 	name = "\improper Reinforced Reactor Turbine"
 	is_corruptible = FALSE
-
-///This one spawns intact
-/obj/machinery/power/geothermal/intact
-	corrupted = ""
-	buildstate = GEOTHERMAL_NO_DAMAGE
 
 #undef GEOTHERMAL_NO_DAMAGE
 #undef GEOTHERMAL_LIGHT_DAMAGE
