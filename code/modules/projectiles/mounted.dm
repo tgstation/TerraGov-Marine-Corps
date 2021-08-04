@@ -50,7 +50,7 @@
 
 	if(istype(ammo_magazine, /obj/item/ammo_magazine/handful))
 		gun.reload(user, ammo)
-		update_icon_state()
+		update_icon()
 		return
 	
 	if(!istype(gun, ammo.gun_type))
