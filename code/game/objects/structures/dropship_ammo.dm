@@ -404,7 +404,8 @@
 	invisibility = INVISIBILITY_MAXIMUM
 	resistance_flags = RESIST_ALL
 	light_color = COLOR_VERY_SOFT_YELLOW
-	light_power = 7 //Magnesium/sodium fires (White star) really are bright
+	light_system = HYBRID_LIGHT
+	light_power = 8 //Magnesium/sodium fires (White star) really are bright
 
 /obj/effect/cas_flare/Initialize()
 	. = ..()

@@ -133,11 +133,10 @@
 	idle_power_usage = 2
 	active_power_usage = 20
 	power_channel = LIGHT //Lights are calc'd via area so they dont need to be in the machine list
-	light_system = HYBRID_LIGHT
-	var/brightness = 10			// power usage and light range when on
-	var/bulb_power = 10			// basically the light_power of the emitted light source
+	light_system = STATIC_LIGHT //do not change this, byond and potato pcs no like
+	var/brightness = 8			// power usage and light range when on
+	var/bulb_power = 1			// basically the light_power of the emitted light source
 	var/bulb_colour = COLOR_WHITE
-
 	var/status = LIGHT_OK		// LIGHT_OK, _EMPTY, _BURNED or _BROKEN
 	var/flickering = FALSE
 	var/light_type = /obj/item/light_bulb/tube		// the type of light item
@@ -154,7 +153,6 @@
 	base_state = "bulb"
 	fitting = "bulb"
 	brightness = 4
-	light_power = 3
 	desc = "A small lighting fixture."
 	light_type = /obj/item/light_bulb/bulb
 
@@ -162,9 +160,7 @@
 	name = "spotlight"
 	fitting = "large tube"
 	light_type = /obj/item/light_bulb/tube/large
-	light_power = 9
-	light_range = 12
-	brightness = 6
+	brightness = 12
 
 /obj/machinery/light/built/Initialize()
 	. = ..()
@@ -194,7 +190,7 @@
 
 	switch(fitting)
 		if("tube")
-			brightness = 7
+			brightness = 8
 			if(prob(2))
 				broken(TRUE)
 		if("bulb")
@@ -555,12 +551,12 @@
 	base_state = "ltube"
 	item_state = "c_tube"
 	materials = list(/datum/material/glass = 100)
-	brightness = 10
+	brightness = 8
 
 /obj/item/light_bulb/tube/large
 	w_class = WEIGHT_CLASS_SMALL
 	name = "large light tube"
-	brightness = 8
+	brightness = 15
 
 /obj/item/light_bulb/bulb
 	name = "light bulb"
@@ -598,9 +594,9 @@
 	. = ..()
 	switch(name)
 		if("light tube")
-			brightness = rand(9,12)
+			brightness = rand(6,9)
 		if("light bulb")
-			brightness = rand(7,9)
+			brightness = rand(4,6)
 	update()
 
 

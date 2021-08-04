@@ -331,7 +331,6 @@
 	icon_state = "mortar_ammo_flr"
 
 /obj/item/mortal_shell/flare/detonate(turf/T)
-
 	new /obj/item/flashlight/flare/on/illumination(T)
 	playsound(T, 'sound/weapons/guns/fire/flare.ogg', 50, 1, 4)
 
@@ -344,14 +343,15 @@
 	invisibility = INVISIBILITY_MAXIMUM //Can't be seen or found, it's "up in the sky"
 	resistance_flags = RESIST_ALL
 	mouse_opacity = 0
-	light_range = 7 //Way brighter than most lights
+	light_system = HYBRID_LIGHT
+	light_mask_type = /atom/movable/lighting_mask/flicker
+	light_range = 9 //Way brighter than most lights
 
 /obj/item/flashlight/flare/on/illumination/Initialize()
 	. = ..()
 	fuel = rand(400, 500) // Half the duration of a flare, but justified since it's invincible
 
 /obj/item/flashlight/flare/on/illumination/turn_off()
-
 	..()
 	qdel(src)
 
