@@ -1,4 +1,4 @@
-/mob/living/verb/pray(msg as text)
+/client/verb/pray(msg as text)
 	set category = "IC"
 	set name = "Pray"
 
@@ -11,14 +11,15 @@
 		to_chat(usr, span_warning("You cannot pray (muted)."))
 		return
 
-	if(client.handle_spam_prevention(msg, MUTE_PRAY))
+	if(handle_spam_prevention(msg, MUTE_PRAY))
 		return
 
 	var/mentor_msg = msg
 	var/liaison = FALSE
 
-	if(iscorporateliaisonjob(job))
-		liaison = TRUE
+	if(ishuman(usr))
+		var/mob/living/carbon/human/H = usr
+		liaison = iscorporateliaisonjob(H.job)
 
 	msg = "<b><font color=purple>[liaison ? "LIAISON " : ""]PRAY:</font> <span class='notice linkify'>[ADMIN_FULLMONTY(usr)] [ADMIN_SC(usr)] [ADMIN_SFC(usr)]: [msg]</b></span>"
 	mentor_msg = "<b><font color=purple>[liaison ? "LIAISON " : ""]PRAY:</font> <span class='notice linkify'>[ADMIN_TPMONTY(usr)]:</b> [mentor_msg]</span>"

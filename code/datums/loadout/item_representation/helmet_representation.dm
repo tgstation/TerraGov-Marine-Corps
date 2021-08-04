@@ -25,7 +25,10 @@
 		return
 	var/obj/item/clothing/head/modular/helmet = .
 	module?.install_on_helmet(seller, helmet, user)
-	helmet.set_greyscale_colors(greyscale_colors)
+	if(seller.faction == FACTION_NEUTRAL)
+		helmet.set_greyscale_colors(greyscale_colors)
+		return
+	helmet.limit_colorable_colors(seller.faction)
 
 /datum/item_representation/modular_helmet/get_tgui_data()
 	var/list/tgui_data = list()

@@ -602,16 +602,18 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 		details +=("<b>It's currently unpowered.</b></br>")
 	else
 		details +=("<b>It's currently powered.</b></br>")
+	var/turf/bed_location
+	var/teleport_time
 	if(linked_bed_deployed)
-		details +=("It's linked to a medvac bed located at: [get_area(linked_bed_deployed)]. Coordinates: (X: [linked_bed_deployed.x], Y: [linked_bed_deployed.y]).</br>")
-		var/teleport_time = linked_bed_deployed.last_teleport
-		if(world.time < teleport_time)
-			details +=("The linked bed's bluespace engine is currently recharging. <b>The interface displays: [round(teleport_time - world.time) * 0.1] seconds until it has recharged.</b></br>")
+		bed_location = get_turf(linked_bed_deployed)
+		teleport_time = linked_bed_deployed.last_teleport
 	else if(linked_bed)
-		details +=("It's linked to a medvac bed located at: [get_area(linked_bed)]. Coordinates: (X: [linked_bed.x], Y: [linked_bed.y]).</br>")
-		var/teleport_time = linked_bed.last_teleport
+		bed_location = get_turf(linked_bed)
+		teleport_time = linked_bed.last_teleport
+	if(bed_location)
+		details += "It's linked to a medvac bed located at: [get_area(bed_location)]. Coordinates: (X: [bed_location.x], Y: [bed_location.y]).</br>"
 		if(world.time < teleport_time)
-			details +=("The linked bed's bluespace engine is currently recharging. <b>The interface displays: [round(teleport_time - world.time) * 0.1] seconds until it has recharged.</b></br>")
+			details += "The linked bed's bluespace engine is currently recharging. <b>The interface displays: [round(teleport_time - world.time) * 0.1] seconds until it has recharged.</b></br>"
 	else
 		details +=("It's not currently linked to a medvac bed.</br>")
 

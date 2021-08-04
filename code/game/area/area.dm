@@ -113,15 +113,15 @@
 	return ..()
 
 
-/area/Entered(atom/movable/AM)
+/area/Entered(atom/movable/arrived, atom/old_loc)
 	set waitfor = FALSE
-	SEND_SIGNAL(src, COMSIG_AREA_ENTERED, AM)
-	SEND_SIGNAL(AM, COMSIG_ENTER_AREA, src) //The atom that enters the area
+	SEND_SIGNAL(src, COMSIG_AREA_ENTERED, arrived, old_loc)
+	SEND_SIGNAL(arrived, COMSIG_ENTER_AREA, src, old_loc,) //The atom that enters the area
 
 
-/area/Exited(atom/movable/M)
-	SEND_SIGNAL(src, COMSIG_AREA_EXITED, M)
-	SEND_SIGNAL(M, COMSIG_EXIT_AREA, src) //The atom that exits the area
+/area/Exited(atom/movable/leaver, direction)
+	SEND_SIGNAL(src, COMSIG_AREA_EXITED, leaver, direction)
+	SEND_SIGNAL(leaver, COMSIG_EXIT_AREA, src, direction) //The atom that exits the area
 
 
 /area/proc/reg_in_areas_in_z()

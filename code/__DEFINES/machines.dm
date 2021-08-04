@@ -119,11 +119,7 @@
 #define TURRET_HAS_CAMERA (1<<3)
 #define TURRET_ALERTS (1<<4)
 #define TURRET_RADIAL (1<<5)
-#define TURRET_BURSTFIRE (1<<6)
-#define TURRET_BURSTFIRING (1<<7)
-#define TURRET_MANUAL (1<<8)
-#define TURRET_IMMOBILE (1<<9)
-#define TURRET_COOLDOWN (1<<10)
+#define TURRET_IMMOBILE (1<<6)
 
 #define SQUAD_LOCK (1<<0)
 #define JOB_LOCK (1<<1)

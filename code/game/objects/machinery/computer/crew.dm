@@ -63,10 +63,10 @@
 
 				crewmemberData["sensor_type"] = C.sensor_mode
 				crewmemberData["status"] = H.stat
-				crewmemberData["oxy"] = round(H.getOxyLoss(), 1)
-				crewmemberData["tox"] = round(H.getToxLoss(), 1)
-				crewmemberData["fire"] = round(H.getFireLoss(), 1)
-				crewmemberData["brute"] = round(H.getBruteLoss(), 1)
+				crewmemberData[OXY] = round(H.getOxyLoss(), 1)
+				crewmemberData[TOX] = round(H.getToxLoss(), 1)
+				crewmemberData[BURN] = round(H.getFireLoss(), 1)
+				crewmemberData[BRUTE] = round(H.getBruteLoss(), 1)
 
 				crewmemberData["name"] = "Unknown"
 				crewmemberData["rank"] = "Unknown"

@@ -5,16 +5,18 @@
 
 /obj/item/weapon/gun/flare
 	name = "flare gun"
-	desc = "A gun that fires flares. Replace with flares. Simple!"
+	desc = "A gun that fires flares. Replace with flares. Simple! Equipped with long range irons."
 	icon_state = "flaregun" //REPLACE THIS
 	item_state = "gun" //YUCK
 	fire_sound = 'sound/weapons/guns/fire/flare.ogg'
 	ammo = /datum/ammo/flare
+	w_class = WEIGHT_CLASS_TINY
 	var/num_flares = 1
 	var/max_flares = 1
 	flags_gun_features = GUN_UNUSUAL_DESIGN
 	gun_skill_category = GUN_SKILL_PISTOLS
-	fire_delay = 9
+	fire_delay = 0.5 SECONDS
+	starting_attachment_types = list(/obj/item/attachable/scope/unremovable/flaregun)
 
 
 /obj/item/weapon/gun/flare/examine_ammo_count(mob/user)
@@ -72,6 +74,11 @@
 		to_chat(user, span_warning("It's empty!"))
 	return TRUE
 
+/obj/item/weapon/gun/flare/marine
+	name = "M30E2 flare gun"
+	desc = "A very tiny flaregun that fires flares equipped with long range irons, the mass amounts of markings on the back and barrel denote it as owned by the TGMC."
+	icon_state = "marine_flaregun"
+	ammo = /datum/ammo/flare
 
 //-------------------------------------------------------
 //Toy rocket launcher.

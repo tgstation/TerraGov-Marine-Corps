@@ -44,7 +44,7 @@
 		switch(X.health/X.maxHealth)
 			if(0.33 to 0.66)
 				hp_color = "orange"
-			if(0 to 0.33)
+			if(-1 to 0.33)
 				hp_color = "red"
 
 		var/distance = get_dist(user, X)
@@ -578,8 +578,7 @@
 		return
 	var/pipe = start_ventcrawl()
 	if(pipe)
-		handle_ventcrawl(pipe)
-
+		handle_ventcrawl(pipe, xeno_caste.vent_enter_speed, xeno_caste.silent_vent_crawl)
 
 /mob/living/carbon/xenomorph/verb/toggle_xeno_mobhud()
 	set name = "Toggle Xeno Status HUD"
