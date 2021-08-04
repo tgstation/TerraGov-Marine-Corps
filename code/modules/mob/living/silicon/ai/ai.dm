@@ -130,6 +130,7 @@
 	to_chat(src, "<span class='notice'>CAS laser detected. Target: [AREACOORD_NO_Z(src)]</span>")
 	playsound_local(src, 'sound/effects/binoctarget.ogg', 15)
 
+///This gives the stupid computer a notification whenever the dropship takes off. Crutch for a supercomputer.
 /mob/living/silicon/ai/proc/shuttle_takeoff_notification(datum/source, shuttleId, D)
 	SIGNAL_HANDLER
 	to_chat(src, span_notice("[shuttleId] taking off towards \the [D]"))
