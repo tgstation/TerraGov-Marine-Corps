@@ -51,7 +51,7 @@
 	melee_damage = 0
 
 	// *** Speed *** //
-	speed = 0.5
+	speed = 2.5
 
 	// *** Plasma *** //
 	plasma_max = 150 //  75 is the cost of plant_weeds

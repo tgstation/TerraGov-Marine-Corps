@@ -5,8 +5,7 @@
 	desc = "A glorious singular entity."
 
 	icon_state = "hivemind_marker"
-	icon = 'icons/mob/cameramob.dmi'
-
+	icon = 'icons/Xeno/48x48_Xenos.dmi'
 	status_flags = GODMODE | INCORPOREAL
 	resistance_flags = RESIST_ALL
 	flags_pass = PASSFIRE //to prevent hivemind eye to catch fire when crossing lava
@@ -49,9 +48,13 @@
 	return ..()
 
 /mob/living/carbon/xenomorph/hivemind/proc/change_form()
-	SIGNAL_HANDLER
+	Paralyze(1.6 SECONDS)
+	invisibility = 0
+	flick(status_flags & INCORPOREAL ? "Hivemind_materialisation" : "Hivemind_materialisation_reverse", src)
+	addtimer(CALLBACK(src, .proc/do_change_form), 1.6 SECONDS)
+
+/mob/living/carbon/xenomorph/hivemind/proc/do_change_form()
 	if(status_flags & INCORPOREAL)
-		invisibility = 0
 		status_flags = NONE
 		upgrade = XENO_UPGRADE_ZERO
 		resistance_flags = NONE
@@ -136,9 +139,7 @@
 /mob/living/carbon/xenomorph/hivemind/update_icon()
 	if(status_flags & INCORPOREAL)
 		icon_state = "hivemind_marker"
-		icon = 'icons/mob/cameramob.dmi'
 		return
-	icon = 'icons/Xeno/48x48_Xenos.dmi'
 	icon_state = "Hivemind"
 
 /mob/living/carbon/xenomorph/hivemind/update_icons()
