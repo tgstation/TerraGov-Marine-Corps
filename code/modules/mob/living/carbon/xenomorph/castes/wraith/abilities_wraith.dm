@@ -389,9 +389,8 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	cooldown_timer = 0.5 SECONDS
 	keybind_signal = COMSIG_XENOABILITY_BLINK
 
-/datum/action/xeno_action/activable/blink/can_use_ability(atom/A, silent = FALSE, override_flags)
-	. = ..()
-	var/turf/T = get_turf(A)
+///Check target Blink turf to see if it can be blinked to
+/datum/action/xeno_action/activable/blink/proc/check_blink_tile(turf/T, ignore_blocker = FALSE, silent = FALSE)
 	if(isclosedturf(T) || isspaceturf(T))
 		if(!silent)
 			to_chat(owner, span_xenowarning("We cannot blink here!"))
@@ -413,27 +412,49 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 			to_chat(owner, span_xenowarning("We can't blink into this space without vision!"))
 		return FALSE
 
+	if(ignore_blocker) //If we don't care about objects occupying the target square, return TRUE; used for checking pathing through transparents
+		return TRUE
+
 	for(var/atom/blocker as() in T)
 		if(!blocker.CanPass(owner, T))
 			if(!silent)
 				to_chat(owner, span_xenowarning("We can't blink into a solid object!"))
 			return FALSE
 
+	return TRUE
+
+///Check for whether the target turf has dense objects inside
+/datum/action/xeno_action/activable/blink/proc/check_blink_target_turf_density(turf/T, silent = FALSE)
+	for(var/atom/blocker AS in T)
+		if(!blocker.CanPass(owner, T))
+			if(!silent)
+				to_chat(owner, span_xenowarning("We can't blink into a solid object!"))
+			return FALSE
+
+	return TRUE
 
 /datum/action/xeno_action/activable/blink/use_ability(atom/A)
 	. = ..()
 	var/mob/living/carbon/xenomorph/wraith/X = owner
 	var/turf/T = X.loc
-	var/turf/temp = X.loc
+	var/turf/temp_turf = X.loc
+	var/check_distance = min(X.xeno_caste.wraith_blink_range, get_dist(X,A))
+	var/list/fully_legal_turfs = list()
 
-	for (var/x = 1 to X.xeno_caste.wraith_blink_range)
-		temp = get_step(T, get_dir(T, A))
-		if (!temp)
+	for (var/x = 1 to check_distance)
+		temp_turf = get_step(T, get_dir(T, A))
+		if (!temp_turf)
 			break
-		T = temp
+		if(!check_blink_tile(temp_turf, TRUE, TRUE)) //Verify that the turf is legal; if not we cancel out. We ignore transparent dense objects like windows here for now
+			break
+		if(check_blink_target_turf_density(temp_turf, TRUE)) //If we could ultimately teleport to this square, it is fully legal; add it to the list
+			fully_legal_turfs += temp_turf
+		T = temp_turf
 
-	if(!can_use_ability(T)) //Since we updated the turf, check it again.
-		return fail_activate()
+	check_distance = min(fully_legal_turfs.len, check_distance) //Cap the check distance to the number of fully legal turfs
+	T = X.loc //Reset T to be our initial position
+	if(check_distance)
+		T = fully_legal_turfs[check_distance]
 
 	X.face_atom(T) //Face the target so we don't look like an ass
 

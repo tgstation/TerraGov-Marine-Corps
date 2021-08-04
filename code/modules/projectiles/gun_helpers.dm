@@ -226,7 +226,7 @@ should be alright.
 
 	if(istype(I, /obj/item/cell) && CHECK_BITFIELD(flags_gun_features, GUN_IS_SENTRY))
 		if(sentry_battery)
-			to_chat(user, span_warning("[src] already has a battery installed!"))
+			to_chat(user, span_warning("[src] already has a battery installed! Use Alt-Click to remove it!"))
 			return
 		if(!istype(I, sentry_battery_type))
 			to_chat(user, span_warning("[I] wont fit there!"))

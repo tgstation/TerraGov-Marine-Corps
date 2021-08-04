@@ -70,3 +70,33 @@
   - refactor: refactored riding code
   - bugfix: fixed barricades being passable too often
   - refactor: refactored more movement code
+2021-08-04:
+  BraveMole:
+  - bugfix: Fix minigun able to shoot without holding the mouse button down
+  - bugfix: Fix slashing dead human lights
+  KornFlaks:
+  - bugfix: Increased the size of microscopic king pod creation and king hive summoning
+      announcements.
+  Pariah919:
+  - spellcheck: the SW357 has been relored into something different, called the FFA
+      'Rebotar'. Also the 357/M44 seasonal now clairify that the SW357 has bouncy
+      bullets.
+  QualityVan:
+  - rscadd: Autodocs set to automatic can now start on their own
+  TiviPlus:
+  - qol: A number of things now use balloon alerts for their messages notably
+  - qol: Internal tanks/masks
+  - qol: Stamina status messages
+  - qol: Telekenisis
+  - qol: Vent crawl
+  - qol: Bump attack
+  - qol: Vali
+  - qol: Valk and B18
+  - qol: Emotes
+  - qol: Deployable weapons
+  - qol: Resin Jelly and accelerated healing
+  - qol: Wires
+  Wayland-Smithy:
+  - bugfix: Fixed hive status xeno health color when negative, like when in crit.
+  lbnesquik:
+  - balance: made the boiler bombard cooldown when it has more acid stored

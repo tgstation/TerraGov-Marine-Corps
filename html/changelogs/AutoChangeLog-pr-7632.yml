@@ -1,4 +1,4 @@
 author: "BraveMole"
 delete-after: True
 changes: 
-  - bugfix: "Fix slashing dead human lights"
+  - bugfix: "You can delete loadouts"
