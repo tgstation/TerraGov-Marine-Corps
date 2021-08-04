@@ -126,6 +126,7 @@
 	bound_height = 96
 	resistance_flags = UNACIDABLE
 
+GLOBAL_LIST_EMPTY(fallen_list)
 
 /obj/structure/prop/mainship/ship_memorial
 	name = "slab of victory"
@@ -135,16 +136,13 @@
 	bound_width = 64
 	bound_height = 32
 	resistance_flags = UNACIDABLE
-	var/list/fallen_list
 
 /obj/structure/prop/mainship/ship_memorial/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/dogtag))
 		var/obj/item/dogtag/D = I
 		if(D.fallen_names)
 			to_chat(user, span_notice("You add [D] to [src]."))
-			if(!fallen_list)
-				fallen_list = list()
-			fallen_list += D.fallen_names
+			GLOB.fallen_list += D.fallen_names
 			qdel(D)
 		return TRUE
 	else
@@ -152,13 +150,13 @@
 
 /obj/structure/prop/mainship/ship_memorial/examine(mob/user)
 	. = ..()
-	if((isobserver(user) || ishuman(user)) && fallen_list)
+	if((isobserver(user) || ishuman(user)) && GLOB.fallen_list.len)
 		var/faltext = ""
-		for(var/i = 1 to fallen_list.len)
-			if(i != fallen_list.len)
-				faltext += "[fallen_list[i]], "
+		for(var/i = 1 to GLOB.fallen_list.len)
+			if(i != GLOB.fallen_list.len)
+				faltext += "[GLOB.fallen_list[i]], "
 			else
-				faltext += fallen_list[i]
+				faltext += GLOB.fallen_list[i]
 		to_chat(user, "[span_notice("To our fallen soldiers:")] <b>[faltext]</b>.")
 
 
