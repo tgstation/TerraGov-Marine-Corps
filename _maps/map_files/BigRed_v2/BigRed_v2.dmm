@@ -3989,6 +3989,15 @@
 /obj/structure/rack,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/general_offices)
+"aoD" = (
+/obj/machinery/door/airlock/mainship/maint{
+	dir = 2
+	},
+/turf/open/shuttle/escapepod,
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "aoE" = (
 /obj/item/stool,
 /obj/structure/cable,
@@ -11070,7 +11079,10 @@
 "aPo" = (
 /obj/structure/cable,
 /turf/closed/wall/r_wall/unmeltable,
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "aPq" = (
 /obj/machinery/door/airlock/mainship/research/glass/free_access{
 	dir = 1;
@@ -13801,6 +13813,15 @@
 	dir = 8
 	},
 /area/bigredv2/outside/cargo)
+"bey" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "bez" = (
 /obj/machinery/autolathe,
 /turf/open/floor,
@@ -17134,6 +17155,14 @@
 	dir = 1
 	},
 /area/bigredv2/outside/sw)
+"buT" = (
+/obj/effect/landmark/weed_node,
+/obj/structure/cable,
+/turf/open/floor/prison/darkred/full,
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "buV" = (
 /obj/machinery/light,
 /turf/open/floor/plating,
@@ -19305,11 +19334,13 @@
 "bHv" = (
 /turf/closed/wall/r_wall/unmeltable,
 /area/space)
-"bKh" = (
-/obj/structure/cable,
-/obj/effect/landmark/corpsespawner/engineer,
-/turf/open/floor/tile/dark,
-/area/bigredv2/caves/south)
+"bIZ" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/mainship/sterile/dark,
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "bLJ" = (
 /obj/machinery/miner/damaged/platinum,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -19324,6 +19355,15 @@
 	},
 /turf/open/floor/prison/darkred/full,
 /area/bigredv2/caves/south)
+"bOy" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 10
+	},
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "bQc" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
@@ -19342,7 +19382,10 @@
 /obj/item/ammo_casing/bullet,
 /obj/structure/cable,
 /turf/open/floor/tile/dark2,
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "bSC" = (
 /obj/machinery/light{
 	dir = 8
@@ -19351,10 +19394,6 @@
 	dir = 1
 	},
 /area/bigredv2/outside/nw)
-"bTi" = (
-/obj/structure/largecrate/supply/ammo/m41a,
-/turf/open/floor/tile/dark,
-/area/bigredv2/caves/south)
 "bTs" = (
 /obj/machinery/miner/damaged,
 /turf/open/floor/plating/ground/mars/random/sand,
@@ -19375,11 +19414,13 @@
 	dir = 1
 	},
 /obj/structure/cable,
-/obj/effect/landmark/corpsespawner/security,
 /obj/effect/decal/cleanable/blood/gibs,
 /obj/item/ammo_casing/bullet,
 /turf/open/floor/tile/dark,
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "ccP" = (
 /obj/docking_port/stationary/crashmode,
 /turf/closed/wall,
@@ -19391,7 +19432,10 @@
 /obj/structure/largecrate/supply/ammo/m41a,
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "cfH" = (
 /obj/machinery/miner/damaged/platinum,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
@@ -19411,35 +19455,60 @@
 /area/bigredv2/outside/bar)
 "cin" = (
 /obj/structure/largecrate/supply/ammo/m41a_box,
+/obj/structure/cable,
 /turf/open/floor/tile/dark,
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "ckJ" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/se)
+"clx" = (
+/obj/structure/cable,
+/obj/structure/cable,
+/turf/closed/wall/r_wall/unmeltable,
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "coa" = (
 /obj/structure/rack,
 /obj/item/weapon/gun/shotgun/pump/cmb,
 /obj/item/ammo_magazine/shotgun/flechette,
 /obj/item/ammo_magazine/shotgun/flechette,
+/obj/structure/cable,
 /turf/open/floor/tile/dark,
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "cov" = (
 /obj/effect/landmark/weed_node,
 /obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/south)
+"coI" = (
+/obj/structure/cable,
+/obj/structure/cable,
+/turf/closed/wall/r_wall,
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "csO" = (
-/obj/machinery/door/airlock/mainship/research/glass/free_access,
-/turf/open/floor/tile/dark2,
-/area/bigredv2/caves/south)
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/prison/darkred/full,
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "ctE" = (
 /turf/open/shuttle/escapepod/five,
 /area/bigredv2/caves/north)
-"cur" = (
-/obj/structure/window/framed/colony/reinforced,
-/turf/open/floor/tile/dark2,
-/area/bigredv2/caves/south)
 "cuW" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -19479,7 +19548,10 @@
 /obj/effect/decal/cleanable/cobweb,
 /obj/structure/filingcabinet,
 /turf/open/floor/tile/dark,
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "cBD" = (
 /turf/open/floor/plating/ground/mars/dirttosand,
 /area/bigredv2/outside/sw)
@@ -19500,7 +19572,10 @@
 /obj/structure/table/mainship,
 /obj/machinery/computer/emails,
 /turf/open/floor/tile/dark,
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "cLe" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/marking/asteroidwarning{
@@ -19514,12 +19589,18 @@
 /obj/structure/table/mainship,
 /obj/machinery/computer/security/marinemainship_network,
 /turf/open/floor/tile/dark,
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "cMC" = (
 /obj/structure/table/mainship,
 /obj/machinery/computer/communications,
 /turf/open/floor/tile/dark,
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "cMZ" = (
 /obj/structure/cable,
 /obj/structure/cable,
@@ -19531,11 +19612,21 @@
 	},
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/northwest)
+"cSH" = (
+/obj/machinery/light,
+/turf/open/floor/mainship/sterile/dark,
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "cTg" = (
 /obj/effect/decal/cleanable/cobweb2,
 /obj/structure/bookcase/manuals,
 /turf/open/floor/tile/dark,
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "cTr" = (
 /obj/docking_port/stationary/crashmode,
 /turf/closed/wall/r_wall,
@@ -19555,6 +19646,14 @@
 "cXu" = (
 /turf/closed/wall/r_wall/unmeltable,
 /area/bigredv2/outside/se)
+"cYb" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/landmark/xeno_resin_door,
+/turf/open/floor/prison/darkred/full,
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "cZm" = (
 /obj/structure/cable,
 /turf/open/space/basic,
@@ -19564,11 +19663,21 @@
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/mineral/bigred,
 /area/bigredv2/caves/east)
+"daq" = (
+/obj/effect/landmark/xeno_resin_door,
+/turf/open/shuttle/escapepod,
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "dbi" = (
 /turf/open/floor/tile/blue/taupeblue{
 	dir = 8
 	},
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "dcO" = (
 /obj/machinery/door/airlock/mainship/research/free_access{
 	name = "\improper Virology Lab Administration"
@@ -19580,19 +19689,15 @@
 /obj/structure/cable,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
-"ddi" = (
-/turf/closed/wall/r_wall,
-/area/bigredv2/caves/southeast)
 "deb" = (
 /obj/structure/cable,
 /obj/structure/cable,
 /obj/effect/decal/cleanable/cobweb,
 /turf/open/floor/tile/dark,
-/area/bigredv2/caves/south)
-"det" = (
-/obj/structure/cable,
-/turf/open/floor/tile/dark,
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "dhn" = (
 /obj/structure/cable,
 /obj/effect/decal/cleanable/cobweb,
@@ -19600,7 +19705,10 @@
 	dir = 1
 	},
 /turf/open/floor/tile/dark,
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "dhB" = (
 /obj/structure/bed/chair{
 	dir = 1
@@ -19638,6 +19746,13 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/closed/mineral/bigred,
 /area/bigredv2/caves/southwest)
+"dpu" = (
+/obj/structure/window/framed/colony/reinforced,
+/turf/open/floor/mainship/sterile/dark,
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "dqo" = (
 /obj/structure/cable,
 /turf/open/floor/tile/darkish,
@@ -19669,17 +19784,24 @@
 /obj/structure/cable,
 /obj/effect/decal/cleanable/cobweb2,
 /turf/open/floor/tile/dark,
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "dzS" = (
 /obj/docking_port/stationary/crashmode,
 /turf/open/floor,
 /area/bigredv2/outside/general_store)
 "dzW" = (
-/obj/structure/ladder{
-	id = "ladder1"
+/obj/machinery/power/apc/high{
+	name = "Theta main area power controller"
 	},
+/obj/structure/cable,
 /turf/open/shuttle/escapepod,
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "dCr" = (
 /obj/effect/landmark/weed_node,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
@@ -19700,11 +19822,20 @@
 /obj/structure/cable,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/dark,
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "dFO" = (
-/obj/structure/closet/crate/trashcart,
+/obj/machinery/power/geothermal{
+	name = "Theta G-11 geothermal generator"
+	},
+/obj/structure/cable,
 /turf/open/shuttle/escapepod,
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "dGd" = (
 /obj/effect/decal/cleanable/blood/gibs/limb,
 /turf/open/floor/plating/ground/mars/random/sand,
@@ -19728,9 +19859,13 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/southwest)
 "dLF" = (
-/obj/structure/closet/crate/secure/weapon,
+/obj/machinery/power/smes,
+/obj/structure/cable,
 /turf/open/shuttle/escapepod,
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "dLO" = (
 /turf/open/floor/plating/ground/mars/dirttosand{
 	dir = 9
@@ -19740,8 +19875,12 @@
 /obj/structure/rack,
 /obj/item/explosive/grenade/flashbang,
 /obj/item/explosive/grenade/flashbang,
+/obj/structure/cable,
 /turf/open/floor/tile/dark,
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "dPu" = (
 /turf/closed/wall/r_wall,
 /area/bigredv2/outside/e)
@@ -19757,6 +19896,16 @@
 /obj/effect/landmark/start/job/survivor,
 /turf/open/floor/grimy,
 /area/bigredv2/outside/marshal_office)
+"dTY" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/machinery/computer3/server/rack,
+/turf/open/shuttle/escapepod,
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "dWa" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
 	dir = 2
@@ -19778,7 +19927,10 @@
 	dir = 4
 	},
 /turf/open/floor/tile/dark,
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "dZi" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/dark/yellow2/corner{
@@ -19794,6 +19946,13 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
+"ecc" = (
+/obj/structure/bed/chair/dropship,
+/turf/open/floor/prison/darkred/full,
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "edO" = (
 /turf/open/floor/carpet,
 /area/bigredv2/outside/bar)
@@ -19823,12 +19982,18 @@
 "ekC" = (
 /obj/effect/decal/cleanable/blood/gibs,
 /turf/open/floor/tile/dark,
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "ekE" = (
 /turf/open/floor/tile/blue/taupeblue{
 	dir = 4
 	},
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "eli" = (
 /obj/structure/cable,
 /turf/closed/wall/r_wall,
@@ -19839,18 +20004,38 @@
 	dir = 1
 	},
 /area/bigredv2/outside/w)
+"elV" = (
+/obj/effect/landmark/corpsespawner,
+/turf/open/shuttle/escapepod,
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "emA" = (
 /obj/effect/decal/cleanable/blood/gibs,
 /obj/structure/cable,
 /turf/open/shuttle/elevator/grating,
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "eoX" = (
 /obj/structure/cable,
 /obj/machinery/light{
 	dir = 8
 	},
 /turf/open/floor/tile/dark,
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
+"eqs" = (
+/obj/structure/largecrate/guns,
+/turf/open/shuttle/escapepod,
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "eqy" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/closed/wall,
@@ -19861,7 +20046,10 @@
 "euF" = (
 /obj/effect/spawner/gibspawner/human,
 /turf/open/floor/tile/dark,
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "eve" = (
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/southeast)
@@ -19882,7 +20070,10 @@
 /obj/structure/closet/secure_closet/security,
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "exJ" = (
 /turf/open/floor/plating/ground/mars/dirttosand{
 	dir = 8
@@ -19893,7 +20084,10 @@
 /area/bigredv2/caves/south)
 "eCh" = (
 /turf/open/shuttle/escapepod/five,
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "eCN" = (
 /obj/structure/cable,
 /turf/open/floor/tile/dark/red2/corner{
@@ -19924,9 +20118,6 @@
 /obj/machinery/computer/nuke_disk_generator/blue,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/nanotrasen_lab/inside)
-"eKa" = (
-/turf/open/shuttle/escapepod,
-/area/bigredv2/caves/south)
 "eKb" = (
 /obj/structure/cable,
 /turf/open/floor/plating,
@@ -19937,19 +20128,23 @@
 /obj/item/ammo_magazine/rifle/famas,
 /obj/item/ammo_magazine/rifle/famas,
 /turf/open/floor/tile/dark,
-/area/bigredv2/caves/south)
-"eMX" = (
-/obj/structure/cable,
-/obj/machinery/power/apc/hyper{
-	dir = 4
-	},
-/turf/open/floor/tile/dark,
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "eOu" = (
 /obj/structure/table,
 /obj/structure/cable,
 /turf/open/floor/wood,
 /area/bigredv2/outside/nanotrasen_lab/inside)
+"eOZ" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/landmark/weed_node,
+/turf/open/shuttle/escapepod,
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "ePu" = (
 /obj/effect/decal/warning_stripes/thick{
 	dir = 1
@@ -19957,11 +20152,17 @@
 /obj/structure/cable,
 /obj/item/ammo_casing/shell,
 /turf/open/floor/tile/dark,
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "ePv" = (
 /obj/structure/window/framed/colony/reinforced,
 /turf/open/floor/tile/dark,
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "ePH" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -19988,13 +20189,25 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/dark,
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "eRJ" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/marking/asteroidwarning{
 	dir = 1
 	},
 /area/shuttle/drop2/lz2)
+"eTn" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/shuttle/escapepod,
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "eTT" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
@@ -20014,14 +20227,20 @@
 	},
 /turf/open/floor/tile/whiteyellow/full,
 /area/bigredv2/outside/office_complex)
+"eXq" = (
+/obj/machinery/light,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/prison/darkred/full,
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "eXF" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/cave/rock,
 /area/bigredv2/caves/southeast)
-"eYb" = (
-/obj/machinery/light,
-/turf/open/floor/tile/dark2,
-/area/bigredv2/caves/south)
 "eZF" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
@@ -20038,10 +20257,14 @@
 	dir = 1
 	},
 /area/shuttle/drop2/lz2)
-"fcT" = (
-/obj/structure/sign/safety/ladder,
-/turf/closed/wall/r_wall,
-/area/bigredv2/caves/south)
+"fdu" = (
+/obj/machinery/door/airlock/multi_tile/mainship/generic,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/prison/darkred/full,
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "feK" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/components/unary/vent_pump{
@@ -20064,6 +20287,16 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/closed/wall/r_wall,
 /area/bigredv2/outside/cargo)
+"fhb" = (
+/obj/structure/cable,
+/obj/machinery/door/airlock/multi_tile/mainship/generic{
+	dir = 2
+	},
+/turf/open/shuttle/escapepod,
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "flV" = (
 /obj/effect/landmark/corpsespawner/colonist,
 /turf/open/floor/plating,
@@ -20084,7 +20317,10 @@
 /obj/machinery/door/airlock/external,
 /obj/item/tape/engineering,
 /turf/open/floor/tile/dark,
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "fph" = (
 /obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -20112,12 +20348,18 @@
 	pixel_x = 16
 	},
 /turf/closed/wall/r_wall,
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "fuB" = (
 /obj/structure/cable,
 /obj/effect/landmark/corpsespawner/security,
 /turf/open/floor/tile/dark,
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "fwQ" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -20134,6 +20376,13 @@
 	},
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/space_port)
+"fzQ" = (
+/obj/structure/girder,
+/turf/open/shuttle/escapepod,
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "fAx" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
 	dir = 2
@@ -20144,7 +20393,10 @@
 /obj/structure/window/framed/colony/reinforced,
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "fDs" = (
 /obj/structure/closet/crate/secure/weapon,
 /obj/structure/cable,
@@ -20171,7 +20423,10 @@
 /obj/machinery/door/airlock,
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "fIW" = (
 /obj/effect/landmark/dropship_start_location,
 /turf/open/floor/plating/ground/mars/dirttosand{
@@ -20182,6 +20437,14 @@
 /obj/item/clothing/head/warning_cone,
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/se)
+"fKy" = (
+/obj/structure/cable,
+/obj/structure/largecrate/random/barrel/blue,
+/turf/open/floor/prison/darkyellow/full,
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "fLz" = (
 /obj/docking_port/stationary/crashmode,
 /turf/open/floor/plating,
@@ -20219,7 +20482,10 @@
 	dir = 1
 	},
 /turf/open/shuttle/escapepod,
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "fVb" = (
 /obj/machinery/light,
 /obj/effect/decal/cleanable/dirt,
@@ -20273,11 +20539,20 @@
 "gfc" = (
 /obj/structure/largecrate,
 /turf/open/shuttle/escapepod,
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "gfg" = (
 /obj/effect/landmark/xeno_turret_spawn,
-/turf/open/floor/tile/dark2,
-/area/bigredv2/caves/south)
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/prison/darkred/full,
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "ggp" = (
 /obj/structure/window/reinforced,
 /obj/structure/window/reinforced{
@@ -20315,10 +20590,23 @@
 "glf" = (
 /obj/structure/largecrate/supply/explosives/mines,
 /turf/open/floor/tile/dark,
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "glC" = (
 /turf/open/floor/tile/dark/yellow2/corner,
 /area/bigredv2/caves/south)
+"gmF" = (
+/obj/machinery/door/airlock/mainship/maint,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/shuttle/escapepod,
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "gnu" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
@@ -20334,7 +20622,10 @@
 /turf/open/floor/tile/blue/taupeblue{
 	dir = 1
 	},
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "gqM" = (
 /obj/structure/window/framed/colony/reinforced,
 /turf/open/floor,
@@ -20352,14 +20643,20 @@
 /turf/open/floor/tile/blue/taupeblue{
 	dir = 1
 	},
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "gva" = (
 /turf/closed/wall/r_wall,
 /area/shuttle/drop2/lz2)
 "gvo" = (
 /obj/effect/decal/cleanable/blood/gibs,
-/turf/open/floor/tile/dark2,
-/area/bigredv2/caves/south)
+/turf/open/floor/prison/darkred/full,
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "gwV" = (
 /obj/structure/cable,
 /obj/structure/cable,
@@ -20368,7 +20665,10 @@
 /turf/open/floor/tile/blue/taupeblue{
 	dir = 1
 	},
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "gxC" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/open/floor/plating/ground/mars/random/cave/rock,
@@ -20383,7 +20683,10 @@
 /turf/open/floor/tile/blue/taupeblue{
 	dir = 8
 	},
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "gBm" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/window/framed/colony/reinforced,
@@ -20401,7 +20704,10 @@
 	welded = 1
 	},
 /turf/open/floor/tile/dark,
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "gEU" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/closed/mineral/bigred,
@@ -20418,7 +20724,17 @@
 /turf/open/floor/tile/blue/taupeblue{
 	dir = 4
 	},
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
+"gMF" = (
+/obj/structure/largecrate/random/case/double,
+/turf/open/shuttle/escapepod,
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "gMM" = (
 /obj/structure/cable,
 /turf/open/floor/marking/asteroidwarning{
@@ -20472,7 +20788,10 @@
 /obj/structure/cable,
 /obj/item/weapon/gun/rifle/m16,
 /turf/open/floor/tile/dark,
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "gYG" = (
 /obj/effect/landmark/weed_node,
 /turf/closed/mineral/bigred,
@@ -20481,7 +20800,10 @@
 /turf/open/floor/tile/blue/taupeblue{
 	dir = 1
 	},
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "hbe" = (
 /obj/machinery/telecomms/relay/preset/telecomms,
 /turf/open/floor/asteroidfloor,
@@ -20510,7 +20832,10 @@
 /obj/structure/cable,
 /obj/machinery/light,
 /turf/open/floor/tile/dark,
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "hgL" = (
 /obj/structure/cable,
 /obj/machinery/light{
@@ -20519,7 +20844,10 @@
 /turf/open/floor/tile/blue/taupeblue{
 	dir = 1
 	},
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "hhh" = (
 /obj/structure/cable,
 /turf/open/floor/asteroidfloor,
@@ -20530,17 +20858,33 @@
 	name = "Maintenance Hatch"
 	},
 /turf/open/shuttle/elevator/grating,
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
+"hiC" = (
+/obj/machinery/atmospherics/pipe/manifold4w/green,
+/turf/open/floor/prison/darkred/full,
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "hjc" = (
 /obj/effect/landmark/weed_node,
-/turf/open/shuttle/escapepod,
-/area/bigredv2/caves/south)
+/turf/open/floor/prison/darkred/full,
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "hjE" = (
 /obj/machinery/door/airlock,
 /obj/structure/cable,
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "hkk" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -20550,6 +20894,24 @@
 	dir = 5
 	},
 /area/bigredv2/outside/c)
+"hog" = (
+/obj/structure/bed/chair{
+	dir = 1
+	},
+/turf/open/shuttle/escapepod,
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
+"hoI" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/mainship/sterile/dark,
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "hqP" = (
 /turf/closed/mineral/bigred,
 /area/bigredv2/caves/south)
@@ -20566,7 +20928,10 @@
 /obj/item/ammo_magazine/rifle/m16,
 /obj/item/ammo_magazine/rifle/m16,
 /turf/open/floor/tile/dark,
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "hvV" = (
 /obj/docking_port/stationary/crashmode,
 /turf/closed/wall,
@@ -20574,7 +20939,10 @@
 "hwc" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark,
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "hwL" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 2
@@ -20650,6 +21018,16 @@
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating/ground/mars/random/cave/rock,
 /area/bigredv2/caves/north)
+"hKM" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+	dir = 4;
+	on = 1
+	},
+/turf/open/shuttle/escapepod,
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "hLo" = (
 /obj/structure/cable,
 /turf/open/floor/tile/dark/blue2{
@@ -20670,12 +21048,33 @@
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/east)
+"hOG" = (
+/obj/effect/landmark/xeno_resin_door,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/prison/darkred/full,
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "hRb" = (
 /obj/structure/cable,
 /turf/open/floor/tile/blue/taupeblue{
 	dir = 4
 	},
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
+"hRM" = (
+/obj/effect/landmark/weed_node,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/prison/darkred/full,
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "hSh" = (
 /obj/machinery/door/airlock,
 /obj/structure/cable,
@@ -20683,7 +21082,10 @@
 /obj/structure/cable,
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "hTy" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -20693,7 +21095,10 @@
 /obj/structure/cable,
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "hUm" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -20711,7 +21116,10 @@
 /obj/structure/cable,
 /obj/structure/cable,
 /turf/closed/wall/r_wall,
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "hXl" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 2
@@ -20736,15 +21144,17 @@
 /area/bigredv2/caves/northeast)
 "igD" = (
 /turf/open/shuttle/elevator/grating,
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "igK" = (
 /obj/machinery/power/apc/weak,
 /turf/open/shuttle/elevator/grating,
-/area/bigredv2/caves/south)
-"ihM" = (
-/obj/effect/landmark/corpsespawner/engineer,
-/turf/open/floor/tile/dark2,
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "iiY" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 1;
@@ -20759,14 +21169,33 @@
 	},
 /obj/structure/cable,
 /turf/open/shuttle/elevator/grating,
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "ilD" = (
 /obj/effect/landmark/corpsespawner/scientist,
 /turf/open/floor/wood,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "ipY" = (
+/obj/machinery/power/monitor,
+/obj/structure/cable,
+/obj/structure/table/mainship,
 /turf/open/floor/tile/dark,
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
+"iqL" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+	dir = 8;
+	welded = 1
+	},
+/turf/open/floor/mainship/sterile/dark,
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "iug" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/closed/mineral/bigred,
@@ -20797,7 +21226,10 @@
 	dir = 1
 	},
 /turf/open/floor/tile/dark,
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "iCt" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/docking_port/stationary/crashmode,
@@ -20820,14 +21252,20 @@
 "iJf" = (
 /obj/structure/largecrate/supply/weapons/hpr,
 /turf/open/floor/tile/dark,
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "iKB" = (
 /turf/closed/wall/r_wall/unmeltable,
 /area/bigredv2/caves/northwest)
 "iKL" = (
 /obj/structure/largecrate/machine,
 /turf/open/floor/tile/dark,
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "iMZ" = (
 /obj/effect/landmark/corpsespawner/engineer,
 /turf/open/floor/tile/red/redtaupecorner,
@@ -20854,13 +21292,26 @@
 	},
 /area/bigredv2/outside/s)
 "iXG" = (
-/obj/machinery/vending/medical,
-/turf/open/shuttle/elevator/grating,
-/area/bigredv2/caves/northwest)
+/obj/docking_port/stationary/crashmode,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/southeast)
+"iXU" = (
+/obj/effect/landmark/xeno_resin_door,
+/turf/open/floor/mainship/sterile/dark,
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "iYa" = (
 /obj/item/paper,
-/turf/open/floor/tile/dark2,
-/area/bigredv2/caves/south)
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 9
+	},
+/turf/open/floor/prison/darkred/full,
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "jcs" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -20886,7 +21337,10 @@
 "jkn" = (
 /obj/structure/largecrate/random/barrel/red,
 /turf/open/floor/tile/dark,
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "jlx" = (
 /obj/effect/landmark/xeno_silo_spawn,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -20899,7 +21353,10 @@
 /obj/structure/largecrate/random/barrel/blue,
 /obj/effect/decal/cleanable/cobweb2,
 /turf/open/floor/tile/dark,
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "jsp" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/open/floor/plating/ground/mars/random/sand,
@@ -20910,11 +21367,17 @@
 "juh" = (
 /obj/effect/spawner/gibspawner/human,
 /turf/open/shuttle/elevator/grating,
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "juu" = (
 /obj/effect/decal/cleanable/blood/gibs,
 /turf/open/shuttle/elevator/grating,
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "juA" = (
 /obj/machinery/power/monitor,
 /turf/open/floor/plating,
@@ -20922,7 +21385,10 @@
 "juU" = (
 /obj/effect/decal/cleanable/blood/gibs/body,
 /turf/open/shuttle/elevator/grating,
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "jwU" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 2
@@ -20934,7 +21400,10 @@
 "jAz" = (
 /obj/effect/decal/cleanable/blood/gibs/xeno,
 /turf/open/shuttle/elevator/grating,
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "jAB" = (
 /obj/effect/landmark/weed_node,
 /obj/effect/landmark/weed_node,
@@ -20954,8 +21423,11 @@
 /area/bigredv2/outside/sw)
 "jFi" = (
 /obj/item/analyzer/plant_analyzer,
-/turf/open/floor/tile/dark2,
-/area/bigredv2/caves/south)
+/turf/open/floor/prison/darkred/full,
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "jFz" = (
 /obj/effect/decal/warning_stripes/nscenter,
 /obj/machinery/light/built{
@@ -20966,7 +21438,20 @@
 "jGP" = (
 /obj/structure/largecrate/supply/weapons/sentries,
 /turf/open/floor/tile/dark,
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
+"jHx" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/effect/landmark/corpsespawner,
+/turf/open/floor/prison/darkred/full,
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "jKb" = (
 /obj/structure/sign/safety/blast_door,
 /obj/structure/cable,
@@ -20981,7 +21466,10 @@
 /turf/open/floor/tile/blue/taupeblue{
 	dir = 8
 	},
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "jKs" = (
 /obj/effect/spawner/gibspawner/human,
 /turf/open/floor/tile/dark/red2/corner,
@@ -21000,7 +21488,10 @@
 	dir = 4
 	},
 /turf/open/floor/tile/dark,
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "jMC" = (
 /turf/open/floor/plating/ground/mars/random/cave/rock,
 /area/bigredv2/caves/west)
@@ -21095,7 +21586,14 @@
 "kbu" = (
 /obj/structure/cable,
 /turf/open/shuttle/elevator/grating,
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
+"kcY" = (
+/obj/structure/girder/displaced,
+/turf/open/floor/tile/damaged/five,
+/area/bigredv2/caves/southeast)
 "kel" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/open/floor,
@@ -21133,10 +21631,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/wood,
 /area/bigredv2/caves/lambda_lab)
-"kpD" = (
-/obj/item/paper/janitor,
-/turf/open/floor/tile/dark2,
-/area/bigredv2/caves/south)
 "kpV" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/open/floor/plating/ground/mars/random/cave/rock,
@@ -21164,7 +21658,10 @@
 /obj/effect/decal/cleanable/blood/gibs/limb,
 /obj/structure/cable,
 /turf/open/shuttle/elevator/grating,
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "kAp" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -21186,7 +21683,10 @@
 "kHY" = (
 /obj/structure/ship_ammo/rocket/napalm,
 /turf/open/floor/tile/dark,
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "kIY" = (
 /turf/open/floor/marking/asteroidwarning{
 	dir = 1
@@ -21215,13 +21715,23 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/east)
 "kOh" = (
-/turf/closed/wall/indestructible/mineral,
-/area/bigredv2/caves/southeast)
+/turf/open/shuttle/escapepod,
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "kOq" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/item/lightreplacer,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
+"kOG" = (
+/obj/machinery/door/airlock/mainship/maint,
+/turf/open/shuttle/escapepod,
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "kPf" = (
 /obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -21238,10 +21748,21 @@
 	},
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
+"kTu" = (
+/obj/effect/landmark/xeno_resin_door,
+/obj/structure/cable,
+/turf/open/floor/tile/dark2,
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "kXR" = (
 /obj/structure/ship_ammo/rocket/widowmaker,
 /turf/open/floor/tile/dark,
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "ldk" = (
 /obj/structure/cable,
 /turf/open/shuttle/escapepod,
@@ -21259,19 +21780,35 @@
 "lgf" = (
 /obj/structure/closet/crate/secure/gear,
 /turf/open/floor/tile/dark,
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "lgt" = (
 /obj/structure/largecrate/supply/supplies/sandbags,
 /turf/open/floor/tile/dark,
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "lgV" = (
 /obj/structure/grille/broken,
 /turf/open/floor/mainship/empty,
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "lhy" = (
 /obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/north)
+"lic" = (
+/obj/machinery/computer/rdservercontrol,
+/turf/open/shuttle/escapepod,
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "liu" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/mineral/bigred,
@@ -21292,10 +21829,18 @@
 /obj/effect/landmark/corpsespawner/engineer,
 /turf/open/floor/plating,
 /area/bigredv2/outside/engineering)
+"lmq" = (
+/obj/effect/decal/cleanable/blood/gibs/body,
+/obj/structure/cable,
+/turf/open/floor/prison/darkred/full,
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "lmC" = (
 /obj/machinery/light,
-/obj/structure/largecrate/supply/supplies/mre,
 /obj/structure/cable,
+/obj/item/storage/box/sentry,
 /turf/open/shuttle/elevator/grating,
 /area/bigredv2/caves/northwest)
 "loj" = (
@@ -21313,7 +21858,10 @@
 "lpn" = (
 /obj/machinery/light,
 /turf/open/shuttle/elevator/grating,
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "lqu" = (
 /obj/structure/cable,
 /obj/machinery/door/poddoor/four_tile_ver{
@@ -21321,7 +21869,10 @@
 	name = "Underground Hangar"
 	},
 /turf/open/floor/tile/dark,
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "lqJ" = (
 /obj/machinery/camera{
 	dir = 5
@@ -21331,7 +21882,10 @@
 "lrg" = (
 /obj/structure/ship_ammo/rocket/fatty,
 /turf/open/floor/tile/dark,
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "lsj" = (
 /obj/structure/closet/l3closet/virology,
 /turf/open/shuttle/escapepod,
@@ -21344,7 +21898,10 @@
 /obj/structure/cable,
 /obj/structure/dropship_equipment/weapon/rocket_pod,
 /turf/open/floor/tile/dark,
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "lvJ" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 8
@@ -21375,7 +21932,10 @@
 "lAi" = (
 /obj/structure/ship_ammo/rocket/banshee,
 /turf/open/floor/tile/dark,
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "lAq" = (
 /obj/structure/sign/safety/maintenance{
 	dir = 1
@@ -21392,16 +21952,22 @@
 	},
 /obj/item/ammo_magazine/rifle/m16,
 /turf/open/floor/tile/dark,
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "lCt" = (
 /turf/open/floor/marking/asteroidwarning{
 	dir = 9
 	},
 /area/shuttle/drop2/lz2)
-"lFK" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/floor/mainship/sterile/dark,
-/area/bigredv2/caves/south)
+"lCu" = (
+/obj/structure/largecrate/random/case,
+/turf/open/shuttle/escapepod,
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "lFT" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable,
@@ -21412,7 +21978,10 @@
 "lHD" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/dark,
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "lHZ" = (
 /obj/structure/bed/chair{
 	dir = 1
@@ -21421,6 +21990,25 @@
 /obj/structure/sign/prop1,
 /turf/open/floor,
 /area/bigredv2/outside/office_complex)
+"lIZ" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/shuttle/escapepod,
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
+"lKe" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 5
+	},
+/turf/open/floor/mainship/sterile/dark,
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "lKZ" = (
 /turf/open/shuttle/escapepod,
 /area/bigredv2/caves/north)
@@ -21445,11 +22033,17 @@
 "lNk" = (
 /obj/structure/largecrate/supply/supplies/flares,
 /turf/open/floor/tile/dark,
-/area/bigredv2/caves/southeast)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "lPS" = (
 /obj/structure/largecrate/random/barrel/green,
 /turf/open/floor/tile/dark,
-/area/bigredv2/caves/southeast)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "lPV" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 2
@@ -21461,10 +22055,6 @@
 "lQx" = (
 /obj/machinery/door/airlock/mainship/security/glass/free_access{
 	dir = 2
-	},
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone{
-	dir = 2;
-	id = "Secure_1"
 	},
 /obj/structure/cable,
 /turf/open/shuttle/elevator/grating,
@@ -21493,11 +22083,24 @@
 /obj/structure/cable,
 /obj/machinery/light,
 /turf/open/floor/tile/dark,
-/area/bigredv2/caves/southeast)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "mbT" = (
 /obj/item/trash/sosjerky,
 /turf/open/floor/plating,
 /area/bigredv2/outside/engineering)
+"mcd" = (
+/obj/structure/cable,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/mainship/sterile/dark,
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "mcP" = (
 /obj/docking_port/stationary/crashmode,
 /turf/closed/mineral/bigred,
@@ -21514,6 +22117,9 @@
 "mlt" = (
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/caves/north)
+"mly" = (
+/turf/closed/wall/r_wall,
+/area/bigredv2/caves/southeast)
 "mpz" = (
 /turf/open/floor/plating/ground/mars/dirttosand,
 /area/bigredv2/outside/se)
@@ -21524,7 +22130,10 @@
 "mrL" = (
 /obj/structure/largecrate/supply/supplies/metal,
 /turf/open/floor/tile/dark,
-/area/bigredv2/caves/southeast)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "msI" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 4
@@ -21536,16 +22145,30 @@
 /obj/structure/largecrate/supply/supplies/plasteel,
 /obj/effect/decal/cleanable/cobweb2,
 /turf/open/floor/tile/dark,
-/area/bigredv2/caves/southeast)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
+"mwU" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/shuttle/escapepod,
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "mxH" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/effect/landmark/corpsespawner/security,
 /turf/open/floor/carpet,
 /area/bigredv2/outside/library)
 "mxP" = (
-/obj/structure/largecrate/random/barrel/blue,
-/turf/open/floor/tile/dark2,
-/area/bigredv2/caves/south)
+/turf/closed/wall/r_wall,
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "myA" = (
 /obj/effect/decal/cleanable/cobweb,
 /obj/effect/decal/cleanable/blood/gibs,
@@ -21558,7 +22181,10 @@
 	welded = 1
 	},
 /turf/open/floor/tile/dark2,
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "mAi" = (
 /turf/open/floor/plating/ground/mars/random/cave/rock,
 /area/bigredv2/caves/northwest)
@@ -21570,8 +22196,11 @@
 	dir = 4;
 	pixel_x = -16
 	},
-/turf/closed/wall/r_wall/unmeltable,
-/area/space)
+/turf/closed/wall/r_wall,
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "mEk" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/open/floor/marking/asteroidwarning,
@@ -21624,9 +22253,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/cave/rock,
 /area/bigredv2/caves/northwest)
-"mPE" = (
-/turf/open/floor/mainship/sterile/dark,
-/area/bigredv2/caves/southeast)
 "mQb" = (
 /obj/structure/rack,
 /obj/item/ammo_magazine/shotgun/incendiary,
@@ -21654,9 +22280,8 @@
 /turf/open/shuttle/escapepod,
 /area/bigredv2/caves/lambda_lab)
 "nag" = (
-/obj/structure/rack,
-/obj/item/stack/sheet/metal/large_stack,
 /obj/structure/cable,
+/obj/structure/largecrate/supply/supplies/mre,
 /turf/open/shuttle/elevator/grating,
 /area/bigredv2/caves/northwest)
 "nbV" = (
@@ -21668,7 +22293,10 @@
 "ncd" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/mainship/sterile/dark,
-/area/bigredv2/caves/southeast)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "ndz" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable,
@@ -21683,6 +22311,23 @@
 /obj/structure/ore_box,
 /turf/open/shuttle/escapepod,
 /area/bigredv2/caves/lambda_lab)
+"nqq" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/prison/darkred/full,
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
+"nru" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/effect/landmark/weed_node,
+/turf/open/floor/prison/darkred/full,
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "nrI" = (
 /obj/structure/cable,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
@@ -21707,7 +22352,10 @@
 /obj/structure/cable,
 /obj/item/ammo_casing/bullet,
 /turf/open/floor/tile/dark,
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "nvs" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
@@ -21756,9 +22404,11 @@
 /area/bigredv2/caves/lambda_lab)
 "nBy" = (
 /obj/structure/cable,
-/obj/effect/decal/cleanable/blood/gibs,
 /turf/open/floor/tile/dark,
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "nCe" = (
 /obj/structure/bookcase/manuals/research_and_development,
 /obj/structure/cable,
@@ -21803,8 +22453,14 @@
 "nMb" = (
 /obj/effect/decal/cleanable/blood/gibs/xeno/body,
 /obj/structure/cable,
-/turf/open/floor/tile/dark2,
-/area/bigredv2/caves/south)
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/prison/darkred/full,
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "nOk" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/open/floor,
@@ -21818,14 +22474,18 @@
 /area/bigredv2/caves/northwest)
 "nPl" = (
 /obj/item/paper/clockresearch1,
-/turf/open/floor/tile/dark2,
-/area/bigredv2/caves/south)
+/turf/closed/wall/r_wall,
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "nQE" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 5
-	},
+/obj/machinery/atmospherics/pipe/manifold/green,
 /turf/open/floor/tile/dark2,
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "nQS" = (
 /obj/effect/decal/warning_stripes/thick{
 	dir = 1
@@ -21833,7 +22493,10 @@
 /obj/structure/cable,
 /obj/effect/decal/cleanable/blood/gibs/xeno/limb,
 /turf/open/floor/tile/dark,
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "nRT" = (
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/west)
@@ -21846,9 +22509,20 @@
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "nVP" = (
-/obj/item/tool/pickaxe,
+/obj/structure/cable,
+/obj/machinery/computer/emails,
+/obj/structure/table/mainship,
 /turf/open/floor/tile/dark,
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
+"nWE" = (
+/turf/open/lavaland/catwalk,
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "oaD" = (
 /turf/open/floor/marking/asteroidwarning{
 	dir = 8
@@ -21867,7 +22541,10 @@
 	dir = 4
 	},
 /turf/open/floor/tile/dark2,
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "ojx" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
@@ -21875,6 +22552,15 @@
 	},
 /turf/open/floor/wood,
 /area/bigredv2/outside/bar)
+"okr" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/shuttle/escapepod,
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "olJ" = (
 /obj/docking_port/stationary/crashmode,
 /turf/closed/mineral/bigred,
@@ -21905,7 +22591,10 @@
 /obj/item/explosive/grenade/drainbomb,
 /obj/item/explosive/grenade/drainbomb,
 /turf/open/floor/tile/dark,
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "oto" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -21952,11 +22641,38 @@
 /obj/machinery/miner/damaged,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/e)
+"oCu" = (
+/obj/machinery/light,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 9
+	},
+/turf/open/shuttle/escapepod,
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "oDD" = (
 /turf/open/floor/marking/asteroidwarning{
 	dir = 6
 	},
 /area/bigredv2/outside/space_port)
+"oEm" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/prison/darkred/full,
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
+"oEr" = (
+/obj/machinery/atmospherics/pipe/manifold/green,
+/turf/open/floor/prison/darkred/full,
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "oEN" = (
 /obj/machinery/vending/coffee,
 /turf/open/floor/tile/white,
@@ -22017,6 +22733,29 @@
 	},
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/nanotrasen_lab/inside)
+"oUf" = (
+/obj/effect/landmark/corpsespawner,
+/turf/open/floor/prison/darkred/full,
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
+"oUj" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 5
+	},
+/turf/open/floor/prison/darkred/full,
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
+"oVG" = (
+/obj/machinery/r_n_d/server,
+/turf/open/shuttle/escapepod,
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "oVQ" = (
 /obj/effect/decal/warning_stripes/thick,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -22024,7 +22763,10 @@
 	},
 /obj/item/weapon/gun/shotgun/pump/cmb,
 /turf/open/floor/tile/dark2,
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "oWn" = (
 /turf/open/floor/tile/green/whitegreenfull,
 /area/bigredv2/caves/lambda_lab)
@@ -22041,7 +22783,10 @@
 	dir = 1
 	},
 /turf/open/floor/tile/dark2,
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "pbv" = (
 /obj/structure/window/framed/colony/reinforced,
 /obj/machinery/door/poddoor/shutters/mainship{
@@ -22081,14 +22826,26 @@
 /obj/effect/landmark/corpsespawner/scientist,
 /turf/open/floor/tile/dark,
 /area/bigredv2/caves/lambda_lab)
-"pgV" = (
-/obj/effect/decal/warning_stripes/thick,
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
-/obj/structure/cable,
+"pgW" = (
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
+"phD" = (
+/obj/machinery/door/airlock/multi_tile/mainship/generic,
+/turf/open/floor/prison/darkred/full,
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
+"piE" = (
+/obj/effect/landmark/corpsespawner/security,
 /turf/open/floor/tile/dark2,
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "pjz" = (
 /obj/structure/cable,
 /turf/open/floor/marking/asteroidwarning{
@@ -22103,7 +22860,10 @@
 /obj/structure/cable,
 /obj/item/limb/r_foot,
 /turf/open/floor/tile/dark2,
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "pmf" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/effect/landmark/corpsespawner/security,
@@ -22131,7 +22891,10 @@
 /obj/structure/cable,
 /obj/item/weapon/gun/rifle/famas,
 /turf/open/floor/tile/dark2,
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "psH" = (
 /obj/structure/rack,
 /obj/item/storage/belt/gun/revolver,
@@ -22160,6 +22923,16 @@
 	},
 /turf/open/floor/plating,
 /area/bigredv2/outside/dorms)
+"pzS" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/mainship/sterile/dark,
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "pzX" = (
 /obj/structure/largecrate,
 /obj/structure/cable,
@@ -22175,7 +22948,10 @@
 	dir = 8
 	},
 /turf/open/floor/tile/dark2,
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "pEd" = (
 /obj/effect/decal/warning_stripes/thick,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -22184,17 +22960,14 @@
 /obj/structure/cable,
 /obj/item/weapon/gun/rifle/m16,
 /turf/open/floor/tile/dark2,
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "pEh" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/closed/wall/r_wall,
 /area/bigredv2/caves/south)
-"pFP" = (
-/obj/structure/rack,
-/obj/item/weapon/gun/launcher/rocket/m57a4/t57,
-/obj/item/ammo_magazine/rocket/m57a4,
-/turf/open/floor/plating/plating_catwalk,
-/area/bigredv2/caves/northwest)
 "pHZ" = (
 /obj/effect/decal/warning_stripes/thick,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -22203,7 +22976,10 @@
 /obj/structure/cable,
 /obj/item/ammo_casing/bullet,
 /turf/open/floor/tile/dark2,
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "pJO" = (
 /obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -22214,12 +22990,32 @@
 	pixel_x = 16
 	},
 /obj/structure/cable,
-/turf/closed/wall/r_wall/unmeltable,
-/area/space)
+/turf/closed/wall/r_wall,
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "pOZ" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/closed/mineral/bigred,
 /area/bigredv2/caves/northwest)
+"pPX" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+	dir = 1;
+	on = 1
+	},
+/turf/open/floor/mainship/sterile/dark,
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
+"pQo" = (
+/obj/effect/landmark/xeno_resin_door,
+/turf/open/floor/tile/dark,
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "pQK" = (
 /turf/open/floor/marking/asteroidwarning{
 	dir = 8
@@ -22258,14 +23054,20 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/tile/dark2,
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "pVB" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
 /obj/structure/cable,
 /turf/open/floor/mainship/sterile/dark,
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "pXc" = (
 /obj/structure/cable,
 /obj/structure/window/framed/mainship/gray/toughened/hull{
@@ -22291,14 +23093,19 @@
 	pixel_x = -16
 	},
 /obj/structure/cable,
-/turf/closed/wall/r_wall/unmeltable,
-/area/bigredv2/caves/south)
+/turf/open/floor/prison/darkred/full,
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "qbh" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
 /obj/structure/cable,
-/obj/effect/landmark/corpsespawner/commander,
 /turf/open/floor/mainship/sterile/dark,
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "qcp" = (
 /obj/structure/cable,
 /turf/open/floor/tile/chapel{
@@ -22312,11 +23119,25 @@
 /obj/structure/cable,
 /obj/item/ammo_casing/shell,
 /turf/open/floor/mainship/sterile/dark,
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
+"qcY" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/closed/wall/r_wall/unmeltable,
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "qdE" = (
 /obj/item/analyzer,
-/turf/open/floor/tile/dark2,
-/area/bigredv2/caves/south)
+/turf/open/floor/prison/darkred/full,
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "qeE" = (
 /obj/structure/bed/chair{
 	dir = 8
@@ -22346,7 +23167,10 @@
 	},
 /obj/item/ammo_casing/shell,
 /turf/open/floor/tile/dark2,
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "qgg" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 1
@@ -22360,9 +23184,11 @@
 	dir = 4
 	},
 /obj/structure/cable,
-/obj/effect/landmark/corpsespawner/security,
 /turf/open/floor/tile/dark2,
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "qnf" = (
 /obj/effect/decal/warning_stripes/thick,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -22373,7 +23199,10 @@
 	dir = 1
 	},
 /turf/open/floor/tile/dark2,
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "qnu" = (
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/tile/darkgreen/darkgreen2/corner,
@@ -22393,6 +23222,30 @@
 /obj/effect/landmark/xeno_turret_spawn,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/southwest)
+"qsC" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/mainship/sterile/dark,
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
+"qsG" = (
+/obj/structure/window/framed/colony/reinforced,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/mainship/sterile/dark,
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
+"qtr" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/closed/wall/r_wall,
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "qtI" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	on = 1
@@ -22405,9 +23258,11 @@
 	},
 /obj/structure/cable,
 /obj/effect/decal/cleanable/blood/writing,
-/obj/machinery/power/apc/high,
 /turf/open/floor/tile/dark,
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "quI" = (
 /turf/closed/wall/r_wall/unmeltable,
 /area/bigredv2/outside/telecomm)
@@ -22423,6 +23278,13 @@
 /obj/effect/landmark/xeno_silo_spawn,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/north)
+"qwT" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/tile/dark2,
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "qxt" = (
 /obj/item/trash/candy,
 /turf/open/floor,
@@ -22460,14 +23322,23 @@
 /obj/docking_port/stationary/crashmode,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/south)
-"qDZ" = (
-/obj/effect/landmark/corpsespawner/security,
-/turf/open/floor/tile/dark2,
-/area/bigredv2/caves/south)
 "qEg" = (
 /obj/structure/sign/safety/high_radiation,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
+"qEi" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+	dir = 8;
+	on = 1
+	},
+/turf/open/floor/mainship/sterile/dark,
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "qFg" = (
 /obj/machinery/door/poddoor/shutters/mainship{
 	dir = 2;
@@ -22516,7 +23387,10 @@
 	welded = 1
 	},
 /turf/open/floor/tile/dark,
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "qKE" = (
 /obj/docking_port/stationary/crashmode,
 /turf/open/floor/plating/ground/mars/random/sand,
@@ -22577,11 +23451,18 @@
 "qVr" = (
 /turf/closed/mineral/bigred,
 /area/bigredv2/caves/north)
+"qVN" = (
+/obj/structure/girder/reinforced,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/southeast)
 "qXP" = (
 /obj/effect/decal/cleanable/blood/gibs,
 /obj/structure/cable,
-/turf/open/floor/tile/dark2,
-/area/bigredv2/caves/south)
+/turf/open/floor/prison/darkred/full,
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "qYD" = (
 /obj/structure/cable,
 /turf/open/floor/asteroidfloor,
@@ -22613,23 +23494,34 @@
 /turf/open/floor/tile/yellow/full,
 /area/bigredv2/outside/hydroponics)
 "rde" = (
-/obj/effect/landmark/corpsespawner/commander,
 /turf/open/floor/tile/dark2,
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "rdw" = (
 /turf/open/floor/prison/darkred/full,
 /area/bigredv2/caves/south)
+"rel" = (
+/obj/machinery/atmospherics/pipe/manifold/green{
+	dir = 1
+	},
+/turf/open/floor/prison/darkred/full,
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "rfg" = (
 /obj/effect/landmark/corpsespawner/colonist,
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
-"rhf" = (
-/turf/open/floor/mainship/sterile/dark,
-/area/bigredv2/caves/south)
 "riu" = (
 /obj/effect/decal/cleanable/blood/gibs/xeno/limb,
 /turf/open/floor/mainship/sterile/dark,
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "riz" = (
 /turf/open/floor/plating/ground/mars/dirttosand{
 	dir = 8
@@ -22637,8 +23529,11 @@
 /area/bigredv2/outside/virology)
 "rjr" = (
 /obj/item/paper/prison_station/warden_note,
-/turf/open/floor/tile/dark2,
-/area/bigredv2/caves/south)
+/turf/open/floor/prison/darkred/full,
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "rkk" = (
 /obj/machinery/light,
 /turf/open/floor/plating,
@@ -22648,20 +23543,18 @@
 /turf/open/floor/tile/dark/yellow2/corner,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "rpq" = (
-/obj/effect/landmark/corpsespawner/security,
 /obj/effect/decal/cleanable/blood/gibs,
 /obj/item/ammo_casing/bullet,
 /turf/open/floor/tile/dark2,
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "rpV" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/northeast)
-"rqU" = (
-/obj/effect/landmark/corpsespawner/scientist,
-/turf/open/floor/tile/dark,
-/area/bigredv2/caves/south)
 "rvh" = (
 /turf/closed/mineral/bigred,
 /area/bigredv2/caves/lambda_lab)
@@ -22688,11 +23581,21 @@
 	},
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/general_offices)
+"ryO" = (
+/obj/structure/cable,
+/turf/open/shuttle/escapepod,
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "rAe" = (
 /obj/item/ammo_casing/bullet,
 /obj/item/ammo_casing/bullet,
 /turf/open/floor/tile/dark2,
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "rBN" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 2
@@ -22715,7 +23618,10 @@
 	dir = 8
 	},
 /turf/open/floor/tile/dark2,
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "rLF" = (
 /obj/docking_port/stationary/crashmode,
 /turf/open/floor/plating/ground/mars/dirttosand{
@@ -22777,7 +23683,10 @@
 /obj/effect/decal/cleanable/blood/gibs/xeno,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/prison/darkred/full,
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "rZP" = (
 /obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/plating/ground/mars/random/cave/rock,
@@ -22799,7 +23708,10 @@
 /turf/open/floor/tile/blue/taupeblue{
 	dir = 1
 	},
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "sfy" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -22812,7 +23724,17 @@
 	pixel_y = 9
 	},
 /turf/open/floor/mainship/sterile/dark,
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
+"sjC" = (
+/obj/effect/landmark/xeno_resin_door,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "skG" = (
 /obj/machinery/computer/shuttle/shuttle_control/dropship,
 /obj/structure/table,
@@ -22834,7 +23756,10 @@
 /obj/item/limb/head,
 /obj/machinery/light,
 /turf/open/floor/tile/dark,
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "soj" = (
 /obj/machinery/power/apc/drained{
 	dir = 8
@@ -22844,6 +23769,15 @@
 	dir = 4
 	},
 /area/shuttle/drop2/lz2)
+"ssh" = (
+/obj/machinery/door/airlock/mainship/maint{
+	dir = 2
+	},
+/turf/open/floor/prison/darkyellow/full,
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "svV" = (
 /obj/machinery/atmospherics/components/unary/vent_pump,
 /turf/open/floor/wood,
@@ -22854,6 +23788,15 @@
 	},
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/space_port)
+"szr" = (
+/obj/structure/cable,
+/obj/machinery/computer/communications/bee,
+/obj/structure/table/mainship,
+/turf/open/floor/tile/dark,
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "sAq" = (
 /obj/structure/cable,
 /turf/closed/mineral/bigred,
@@ -22861,17 +23804,32 @@
 "sBJ" = (
 /obj/effect/decal/cleanable/blood/gibs/xeno,
 /turf/open/floor/tile/dark2,
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "sBV" = (
 /turf/open/floor/plating/ground/mars/dirttosand{
 	dir = 1
 	},
 /area/bigredv2/outside/w)
+"sBX" = (
+/obj/structure/bed/chair/dropship{
+	dir = 4
+	},
+/turf/open/floor/prison/darkred/full,
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "sCz" = (
 /obj/item/limb/r_foot,
 /obj/item/ammo_casing/shell,
 /turf/open/floor/tile/dark2,
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "sEN" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 4;
@@ -22900,7 +23858,10 @@
 "sLI" = (
 /obj/item/ammo_casing/shell,
 /turf/open/floor/prison/darkred/full,
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "sQi" = (
 /obj/effect/landmark/xeno_turret_spawn,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -22919,13 +23880,19 @@
 /turf/open/floor/tile/dark/red2,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "sTd" = (
-/turf/closed/wall/indestructible/mineral,
-/area/bigredv2/caves/south)
+/turf/closed/wall/r_wall/unmeltable,
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "sTE" = (
 /obj/item/ammo_casing/shell,
 /obj/item/weapon/gun/shotgun/pump/cmb,
 /turf/open/floor/mainship/sterile/dark,
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "sUd" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -22937,11 +23904,17 @@
 /obj/effect/decal/cleanable/blood/gibs,
 /obj/item/ammo_casing/bullet,
 /turf/open/floor/prison/darkred/full,
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "sWk" = (
 /obj/item/ammo_casing/bullet,
 /turf/open/floor/tile/dark2,
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "sWC" = (
 /obj/machinery/miner/damaged,
 /turf/open/floor/plating/ground/mars/random/sand,
@@ -22965,21 +23938,36 @@
 "tco" = (
 /turf/closed/wall/r_wall,
 /area/bigredv2/outside/s)
+"tdv" = (
+/obj/structure/cable,
+/turf/closed/wall/r_wall,
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "tfr" = (
 /obj/effect/decal/cleanable/blood/gibs/body,
-/turf/open/floor/tile/dark2,
-/area/bigredv2/caves/south)
+/turf/open/floor/prison/darkred/full,
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "tfF" = (
 /turf/open/shuttle/elevator/grating,
 /area/bigredv2/caves/northwest)
 "tjb" = (
 /turf/open/floor/tile/damaged/five,
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "tjQ" = (
-/obj/effect/landmark/corpsespawner/security,
 /obj/effect/decal/cleanable/blood/gibs/up,
 /turf/open/floor/tile/dark2,
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "tku" = (
 /turf/closed/wall/indestructible/mineral,
 /area/storage/testroom)
@@ -23008,6 +23996,16 @@
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/north)
+"tny" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/structure/largecrate/random/case/double,
+/turf/open/shuttle/escapepod,
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "toO" = (
 /obj/effect/landmark/weed_node,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
@@ -23015,6 +24013,12 @@
 	},
 /turf/open/floor/freezer,
 /area/bigredv2/outside/virology)
+"tqK" = (
+/turf/open/floor/tile/damaged/panel,
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "tsZ" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/marking/asteroidwarning{
@@ -23064,25 +24068,46 @@
 /obj/effect/landmark/start/job/survivor,
 /turf/open/floor/grimy,
 /area/bigredv2/outside/dorms)
+"tyh" = (
+/obj/machinery/atmospherics/pipe/manifold/green{
+	dir = 8
+	},
+/turf/open/floor/prison/darkred/full,
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "tyD" = (
-/obj/effect/landmark/corpsespawner/scientist,
 /obj/item/ammo_casing/bullet,
 /turf/open/floor/mainship/sterile/dark,
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "tzo" = (
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/east)
 "tzW" = (
-/obj/structure/ladder{
-	height = 1;
-	id = "Lambdashaft"
-	},
-/turf/open/shuttle/escapepod,
-/area/bigredv2/caves/south)
+/turf/open/floor/prison/darkyellow/full,
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "tAB" = (
 /obj/item/ammo_casing/shell,
 /turf/open/floor/mainship/sterile/dark,
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
+"tCw" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/prison/darkred/full,
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "tCQ" = (
 /obj/structure/barricade/metal{
 	dir = 8
@@ -23090,11 +24115,17 @@
 /obj/item/ammo_casing/shell,
 /obj/item/ammo_casing/bullet,
 /turf/open/floor/prison/darkred/full,
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "tDh" = (
 /obj/effect/landmark/weed_node,
-/turf/open/floor/tile/dark2,
-/area/bigredv2/caves/south)
+/turf/open/floor/prison/darkyellow/full,
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "tDX" = (
 /turf/open/floor/marking/asteroidwarning{
 	dir = 6
@@ -23108,7 +24139,19 @@
 "tHW" = (
 /obj/effect/decal/cleanable/blood/gibs/xeno/limb,
 /turf/open/floor/tile/dark2,
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
+"tHZ" = (
+/obj/structure/cable,
+/obj/machinery/door/airlock/multi_tile/mainship/generic,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/shuttle/escapepod,
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "tJA" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 4;
@@ -23124,11 +24167,21 @@
 /obj/effect/decal/cleanable/blood/gibs/xeno/limb,
 /obj/item/ammo_casing/shell,
 /turf/open/floor/tile/dark2,
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "tNb" = (
 /obj/effect/landmark/corpsespawner/scientist,
 /turf/open/floor/plating,
 /area/bigredv2/caves/lambda_lab)
+"tSF" = (
+/obj/effect/landmark/xeno_resin_door,
+/turf/open/floor/prison/darkred/full,
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "tUS" = (
 /obj/machinery/door/airlock/mainship/security/glass/free_access,
 /turf/open/floor,
@@ -23149,7 +24202,10 @@
 /obj/item/ammo_casing/bullet,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/dark2,
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "tZR" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /obj/effect/landmark/xeno_resin_wall,
@@ -23161,7 +24217,10 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "uan" = (
 /obj/effect/decal/cleanable/blood/xeno,
 /turf/open/floor/marking/asteroidwarning{
@@ -23173,7 +24232,10 @@
 /obj/item/ammo_casing/shell,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/dark2,
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "udd" = (
 /obj/machinery/power/apc/drained{
 	dir = 4
@@ -23187,6 +24249,13 @@
 	dir = 1
 	},
 /area/bigredv2/caves/east)
+"udL" = (
+/obj/structure/prop/mainship/mission_planning_system,
+/turf/open/shuttle/escapepod,
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "uec" = (
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/caves/southwest)
@@ -23262,7 +24331,19 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
+"upD" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/prison/darkred/full,
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "uqm" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/landmark/corpsespawner/doctor,
@@ -23272,16 +24353,16 @@
 /obj/structure/cable,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/dark,
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "utl" = (
 /obj/machinery/floodlight/landing,
 /turf/open/floor/marking/asteroidwarning{
 	dir = 5
 	},
 /area/shuttle/drop2/lz2)
-"utr" = (
-/turf/open/floor/tile/dark2,
-/area/bigredv2/caves/south)
 "utH" = (
 /obj/structure/table,
 /obj/effect/spawner/random/technology_scanner,
@@ -23296,8 +24377,11 @@
 /area/bigredv2/outside/nw)
 "uwD" = (
 /obj/effect/landmark/corpsespawner/engineer,
-/turf/open/shuttle/escapepod,
-/area/bigredv2/caves/south)
+/turf/open/floor/prison/darkyellow/full,
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "uxP" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/closed/wall/r_wall,
@@ -23305,8 +24389,11 @@
 "uyC" = (
 /obj/effect/decal/cleanable/blood/gibs/xeno,
 /obj/structure/cable,
-/turf/open/floor/tile/dark2,
-/area/bigredv2/caves/south)
+/turf/open/floor/prison/darkred/full,
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "uyQ" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -23314,7 +24401,18 @@
 "uCk" = (
 /obj/effect/spawner/gibspawner/human,
 /turf/open/floor/tile/dark2,
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
+"uHf" = (
+/obj/structure/cable,
+/obj/machinery/door/airlock/multi_tile/mainship/generic,
+/turf/open/shuttle/escapepod,
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "uHG" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 2
@@ -23326,6 +24424,15 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor,
 /area/bigredv2/outside/hydroponics)
+"uIf" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/shuttle/escapepod,
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "uJV" = (
 /obj/machinery/door/poddoor/shutters/mainship{
 	id = "Cargonia";
@@ -23338,7 +24445,13 @@
 /obj/item/ammo_casing/shell,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/mainship/sterile/dark,
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
+"uKS" = (
+/turf/open/floor/tile/damaged/five,
+/area/bigredv2/caves/southeast)
 "uLz" = (
 /obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -23346,11 +24459,23 @@
 "uLC" = (
 /obj/item/ammo_casing/shell,
 /turf/open/floor/tile/dark2,
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "uLR" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/northeast)
+"uMk" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 6
+	},
+/turf/open/floor/mainship/sterile/dark,
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "uMP" = (
 /turf/open/floor/plating/ground/mars/random/cave/rock,
 /area/bigredv2/caves/east)
@@ -23360,6 +24485,15 @@
 	},
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
+"uTK" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/mainship/sterile/dark,
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "uUn" = (
 /obj/docking_port/stationary/crashmode,
 /turf/open/floor/plating/ground/mars/random/sand,
@@ -23384,7 +24518,20 @@
 "vbQ" = (
 /obj/item/limb/l_arm,
 /turf/open/floor/tile/dark2,
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
+"vcC" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+	on = 1;
+	welded = 1
+	},
+/turf/open/floor/prison/darkred/full,
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "veE" = (
 /obj/structure/table,
 /obj/effect/spawner/random/toolbox,
@@ -23395,9 +24542,11 @@
 /turf/open/shuttle/elevator/grating,
 /area/bigredv2/caves/northwest)
 "vlA" = (
-/obj/effect/landmark/corpsespawner/security,
 /turf/open/floor/tile/dark,
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "vlT" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/closed/wall/r_wall,
@@ -23407,7 +24556,10 @@
 	dir = 8
 	},
 /turf/open/floor/tile/damaged/five,
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "vpv" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
 	dir = 2
@@ -23422,23 +24574,23 @@
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "vry" = (
 /obj/machinery/light,
-/turf/open/shuttle/escapepod,
-/area/bigredv2/caves/south)
+/obj/structure/cable,
+/turf/open/floor/prison/darkred/full,
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "vsq" = (
 /obj/docking_port/stationary/crashmode,
 /turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/outside/c)
-"vtS" = (
-/obj/machinery/camera/autoname/mainship/dropship_one{
-	dir = 8;
-	pixel_x = 16
-	},
-/turf/closed/wall/r_wall/unmeltable,
-/area/space)
 "vuE" = (
 /obj/effect/spawner/gibspawner/human,
 /turf/open/floor/prison/darkred/full,
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "vvM" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
 	dir = 2
@@ -23448,6 +24600,16 @@
 "vwf" = (
 /turf/closed/mineral/bigred,
 /area/bigredv2/outside/space_port)
+"vwv" = (
+/obj/docking_port/stationary/crashmode,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/mainship/sterile/dark,
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "vwP" = (
 /obj/structure/cable,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
@@ -23463,7 +24625,10 @@
 	pixel_y = 9
 	},
 /turf/open/floor/mainship/sterile/dark,
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "vyZ" = (
 /obj/effect/landmark/xeno_turret_spawn,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -23472,7 +24637,10 @@
 /obj/effect/decal/cleanable/blood/gibs/xeno/limb,
 /obj/item/ammo_casing/bullet,
 /turf/open/floor/mainship/sterile/dark,
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "vAP" = (
 /obj/docking_port/stationary/crashmode,
 /obj/structure/cable,
@@ -23498,7 +24666,20 @@
 /obj/item/weapon/gun/rifle/famas,
 /obj/item/ammo_casing/bullet,
 /turf/open/floor/prison/darkred/full,
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
+"vFT" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+	dir = 4;
+	on = 1
+	},
+/turf/open/floor/tile/dark,
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "vIl" = (
 /obj/structure/sign/poster{
 	dir = 1
@@ -23511,12 +24692,9 @@
 	},
 /area/bigredv2/caves/northeast)
 "vKc" = (
-/obj/structure/ladder{
-	height = 1;
-	id = "ladder1"
-	},
-/turf/open/shuttle/escapepod,
-/area/bigredv2/caves/north)
+/obj/structure/girder,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/southeast)
 "vKO" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/closed/mineral/bigred,
@@ -23532,12 +24710,22 @@
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/east)
-"vQS" = (
+"vNo" = (
+/obj/structure/largecrate/random/barrel/blue,
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/open/floor/tile/dark2,
-/area/bigredv2/caves/south)
+/turf/open/floor/prison/darkyellow/full,
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
+"vQS" = (
+/turf/open/floor/prison/darkred/full,
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "vRM" = (
 /obj/effect/decal/warning_stripes/nscenter,
 /obj/machinery/light/built{
@@ -23576,7 +24764,10 @@
 /obj/item/ammo_casing/shell,
 /obj/item/ammo_casing/bullet,
 /turf/open/floor/tile/dark2,
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "vXv" = (
 /turf/open/floor/marking/asteroidwarning{
 	dir = 4
@@ -23587,29 +24778,47 @@
 /obj/item/ammo_casing/shell,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/dark2,
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "wbU" = (
 /obj/effect/decal/cleanable/blood/gibs/xeno/body,
 /obj/item/ammo_casing/bullet,
 /turf/open/floor/mainship/sterile/dark,
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "wdk" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /obj/structure/cable,
 /turf/closed/mineral/bigred,
 /area/bigredv2/caves/south)
 "wdL" = (
-/obj/item/storage/box/sentry,
 /turf/open/floor/plating/plating_catwalk,
 /area/bigredv2/caves/northwest)
+"wel" = (
+/obj/structure/cable,
+/turf/open/floor/prison/darkyellow/full,
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "weF" = (
 /obj/effect/decal/cleanable/blood/xeno,
 /turf/open/floor/tile/dark2,
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "wff" = (
 /obj/effect/decal/cleanable/blood/tracks/footprints,
 /turf/open/floor/tile/dark2,
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "wfD" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/darkish,
@@ -23623,6 +24832,17 @@
 /obj/effect/landmark/xeno_turret_spawn,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/east)
+"wjl" = (
+/obj/effect/landmark/xeno_resin_door,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/prison/darkred/full,
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "wmv" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -23639,24 +24859,45 @@
 "wnO" = (
 /obj/item/limb/l_hand,
 /turf/open/floor/prison/darkred/full,
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "wpF" = (
 /obj/item/limb/l_arm,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/mainship/sterile/dark,
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "wpO" = (
 /obj/effect/decal/cleanable/blood/tracks/footprints,
 /turf/open/floor/mainship/sterile/dark,
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "wrk" = (
-/obj/effect/landmark/corpsespawner/scientist,
 /turf/open/floor/mainship/sterile/dark,
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "wsS" = (
 /obj/machinery/miner/damaged/platinum,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/east)
+"wtd" = (
+/obj/machinery/atmospherics/pipe/manifold/green{
+	dir = 1
+	},
+/obj/effect/landmark/corpsespawner,
+/turf/open/floor/prison/darkred/full,
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "wxA" = (
 /obj/effect/decal/cleanable/blood/gibs/xeno/down,
 /turf/open/floor/plating/ground/mars/random/sand,
@@ -23673,10 +24914,22 @@
 	dir = 1
 	},
 /area/bigredv2/outside/c)
+"wAY" = (
+/obj/structure/bed/chair/dropship{
+	dir = 8
+	},
+/turf/open/floor/prison/darkred/full,
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "wBY" = (
 /obj/item/ammo_casing/bullet,
 /turf/open/floor/tile/damaged/four,
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "wCi" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -23698,7 +24951,10 @@
 /obj/effect/decal/cleanable/blood/gibs/limb,
 /obj/item/ammo_casing/bullet,
 /turf/open/floor/tile/dark2,
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "wQg" = (
 /obj/structure/cable,
 /obj/machinery/light,
@@ -23776,12 +25032,18 @@
 	},
 /obj/structure/cable,
 /turf/open/shuttle/elevator/grating,
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "xiz" = (
 /obj/effect/landmark/corpsespawner/security,
 /obj/item/ammo_casing/bullet,
 /turf/open/floor/tile/dark2,
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "xiT" = (
 /obj/effect/landmark/start/job/survivor,
 /turf/open/floor,
@@ -23798,7 +25060,18 @@
 "xjA" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark2,
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
+"xjJ" = (
+/obj/structure/cable,
+/obj/structure/window/framed/colony/reinforced,
+/turf/open/shuttle/escapepod,
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "xlj" = (
 /obj/effect/decal/warning_stripes/thick{
 	dir = 8
@@ -23809,7 +25082,18 @@
 	pixel_x = 16
 	},
 /turf/open/floor/tile/dark,
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
+"xmO" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/structure/bed/chair/dropship,
+/turf/open/floor/prison/darkred/full,
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "xnf" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/spawner/random/tool,
@@ -23817,8 +25101,31 @@
 /area/bigredv2/outside/cargo)
 "xni" = (
 /obj/machinery/miner/damaged/platinum,
-/turf/open/floor/tile/dark2,
-/area/bigredv2/caves/south)
+/turf/open/floor/prison/darkred/full,
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
+"xnp" = (
+/obj/effect/landmark/weed_node,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/prison/darkred/full,
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
+"xnv" = (
+/obj/structure/cable,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/mainship/sterile/dark,
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "xnD" = (
 /obj/docking_port/stationary/crashmode,
 /turf/closed/wall,
@@ -23829,9 +25136,6 @@
 /area/bigredv2/outside/telecomm)
 "xpu" = (
 /obj/machinery/door/airlock/mainship/security/glass/free_access,
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone{
-	id = "Secure_1"
-	},
 /obj/structure/cable,
 /turf/open/floor,
 /area/bigredv2/caves/north)
@@ -23848,8 +25152,11 @@
 /area/bigredv2/outside/hydroponics)
 "xqW" = (
 /obj/structure/cable,
-/turf/open/floor/tile/dark2,
-/area/bigredv2/caves/south)
+/turf/open/floor/prison/darkred/full,
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "xrJ" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	on = 1
@@ -23860,6 +25167,14 @@
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating/ground/mars/random/cave/rock,
 /area/bigredv2/caves/east)
+"xtF" = (
+/obj/machinery/light,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/shuttle/escapepod,
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "xtN" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 8;
@@ -23871,7 +25186,10 @@
 /obj/effect/landmark/corpsespawner/scientist,
 /obj/machinery/light,
 /turf/open/floor/tile/dark2,
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "xvL" = (
 /turf/open/floor/plating/ground/mars/random/cave/rock,
 /area/bigredv2/caves/southeast)
@@ -23900,7 +25218,10 @@
 	dir = 1
 	},
 /turf/open/floor/tile/dark,
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "xAO" = (
 /obj/effect/landmark/corpsespawner/security,
 /turf/open/floor,
@@ -23951,7 +25272,10 @@
 	},
 /obj/effect/decal/cleanable/blood/gibs/xeno,
 /turf/open/floor/tile/dark,
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "xNf" = (
 /obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -23960,6 +25284,14 @@
 /obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/south)
+"xPH" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/landmark/corpsespawner,
+/turf/open/floor/prison/darkred/full,
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "xPT" = (
 /obj/structure/cable,
 /turf/open/floor/wood,
@@ -23971,6 +25303,13 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/space_port)
+"xRc" = (
+/obj/structure/reagent_dispensers/fueltank,
+/turf/open/shuttle/escapepod,
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "xRF" = (
 /obj/effect/decal/warning_stripes/thick{
 	dir = 1
@@ -23978,7 +25317,10 @@
 /obj/structure/cable,
 /obj/machinery/light,
 /turf/open/floor/tile/dark,
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "xRR" = (
 /obj/machinery/light{
 	dir = 1
@@ -23992,7 +25334,10 @@
 /obj/structure/cable,
 /obj/effect/decal/cleanable/blood/gibs/xeno/body,
 /turf/open/floor/tile/dark,
-/area/bigredv2/caves/south)
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "xSR" = (
 /turf/open/floor/marking/asteroidwarning{
 	dir = 6
@@ -24023,6 +25368,13 @@
 /obj/effect/landmark/xeno_silo_spawn,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/south)
+"ycc" = (
+/obj/effect/landmark/weed_node,
+/turf/open/shuttle/escapepod,
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "ydN" = (
 /turf/open/floor/mainship/orange,
 /area/bigredv2/caves/northeast)
@@ -24053,6 +25405,16 @@
 /obj/structure/cable,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
+"yjY" = (
+/obj/machinery/door/airlock/mainship/generic,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/prison/darkred/full,
+/area/bigredv2/caves/lambda_lab{
+	icon_state = "anospectro";
+	name = "Theta Lab"
+	})
 "ykI" = (
 /obj/structure/cable,
 /turf/open/floor/plating/warning{
@@ -24076,167 +25438,167 @@ aaa
 aaa
 aaa
 aaa
-aaa
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
+aab
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
 cZm
 cZm
 cZm
@@ -24401,59 +25763,59 @@ aab
 aab
 aab
 aab
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+aab
+aab
+aab
+aab
+aab
+aab
+aab
+aab
+aab
+aab
+aab
+aab
+aab
+aab
+aab
+aab
+aab
+aab
+aab
+aab
+aab
+aab
+aab
+aab
+aab
+aab
+aab
+aab
+aab
+aab
+aab
+aab
+aab
+aab
+aab
+aab
+aab
+aab
+aab
+aab
+aab
+aab
+aab
+aab
+aab
+aab
+aab
+aab
+aab
+aab
+aab
+aab
+aab
 aaa
 aaa
 aaa
@@ -24618,59 +25980,59 @@ yhx
 tvk
 tvk
 aab
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+aab
+aab
+aab
+aab
+aab
+aab
+aab
+aab
+aab
+aab
+aab
+aab
+aab
+aab
+aab
+aab
+aab
+aab
+aab
+aab
+aab
+aab
+aab
+aab
+aab
+aab
+aab
+aab
+aab
+aab
+aab
+aab
+aab
+aab
+aab
+aab
+aab
+aab
+aab
+aab
+aab
+aab
+aab
+aab
+aab
+aab
+aab
+aab
+aab
+aab
+aab
+aab
+aab
 aaa
 aaa
 aaa
@@ -26031,7 +27393,7 @@ aac
 ktH
 abQ
 huI
-iXG
+tfF
 tfF
 tfF
 wdL
@@ -26682,7 +28044,7 @@ vWE
 vWE
 aac
 huI
-pFP
+wdL
 tfF
 tfF
 gSk
@@ -28179,9 +29541,9 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-cZm
+aab
+aab
+qOl
 "}
 (20,1,1) = {"
 aaa
@@ -28396,9 +29758,9 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-cZm
+aab
+aab
+qOl
 "}
 (21,1,1) = {"
 aaa
@@ -28613,9 +29975,9 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-cZm
+aab
+aab
+qOl
 "}
 (22,1,1) = {"
 aaa
@@ -28830,9 +30192,9 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-cZm
+aab
+aab
+qOl
 "}
 (23,1,1) = {"
 aaa
@@ -29047,9 +30409,9 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-cZm
+aab
+aab
+qOl
 "}
 (24,1,1) = {"
 aaa
@@ -29264,9 +30626,9 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-cZm
+aab
+aab
+qOl
 "}
 (25,1,1) = {"
 aaa
@@ -29481,9 +30843,9 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-cZm
+aab
+aab
+qOl
 "}
 (26,1,1) = {"
 aaa
@@ -29698,9 +31060,9 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-cZm
+aab
+aab
+qOl
 "}
 (27,1,1) = {"
 aaa
@@ -29915,9 +31277,9 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-cZm
+aab
+aab
+qOl
 "}
 (28,1,1) = {"
 aaa
@@ -30132,9 +31494,9 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-cZm
+aab
+aab
+qOl
 "}
 (29,1,1) = {"
 aaa
@@ -30349,9 +31711,9 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-cZm
+aab
+aab
+qOl
 "}
 (30,1,1) = {"
 aaa
@@ -30566,9 +31928,9 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-cZm
+aab
+aab
+qOl
 "}
 (31,1,1) = {"
 aaa
@@ -30783,9 +32145,9 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-cZm
+aab
+aab
+qOl
 "}
 (32,1,1) = {"
 aaa
@@ -31000,9 +32362,9 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-cZm
+aab
+aab
+qOl
 "}
 (33,1,1) = {"
 aaa
@@ -31217,9 +32579,9 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-cZm
+aab
+aab
+qOl
 "}
 (34,1,1) = {"
 aaa
@@ -31434,9 +32796,9 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-cZm
+aab
+aab
+qOl
 "}
 (35,1,1) = {"
 aaa
@@ -31651,9 +33013,9 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-cZm
+aab
+aab
+qOl
 "}
 (36,1,1) = {"
 aaa
@@ -31868,9 +33230,9 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-cZm
+aab
+aab
+qOl
 "}
 (37,1,1) = {"
 aaa
@@ -32085,9 +33447,9 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-cZm
+aab
+aab
+qOl
 "}
 (38,1,1) = {"
 aaa
@@ -32302,9 +33664,9 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-cZm
+aab
+aab
+qOl
 "}
 (39,1,1) = {"
 aaa
@@ -32519,9 +33881,9 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-cZm
+aab
+aab
+qOl
 "}
 (40,1,1) = {"
 aaa
@@ -32736,9 +34098,9 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-cZm
+aab
+aab
+qOl
 "}
 (41,1,1) = {"
 aaa
@@ -32953,9 +34315,9 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-cZm
+aab
+aab
+qOl
 "}
 (42,1,1) = {"
 aaa
@@ -33170,9 +34532,9 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-cZm
+aab
+aab
+qOl
 "}
 (43,1,1) = {"
 aaa
@@ -33387,9 +34749,9 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-cZm
+aab
+aab
+qOl
 "}
 (44,1,1) = {"
 aaa
@@ -33604,9 +34966,9 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-cZm
+aab
+aab
+qOl
 "}
 (45,1,1) = {"
 aaa
@@ -33821,9 +35183,9 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-cZm
+aab
+aab
+qOl
 "}
 (46,1,1) = {"
 aaa
@@ -34038,9 +35400,9 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-cZm
+aab
+aab
+qOl
 "}
 (47,1,1) = {"
 aaa
@@ -34255,9 +35617,9 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-cZm
+aab
+aab
+qOl
 "}
 (48,1,1) = {"
 aaa
@@ -34472,9 +35834,9 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-cZm
+aab
+aab
+qOl
 "}
 (49,1,1) = {"
 aaa
@@ -34689,9 +36051,9 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-cZm
+aab
+aab
+qOl
 "}
 (50,1,1) = {"
 aaa
@@ -34906,9 +36268,9 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-cZm
+aab
+aab
+qOl
 "}
 (51,1,1) = {"
 aaa
@@ -35123,9 +36485,9 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-cZm
+aab
+aab
+qOl
 "}
 (52,1,1) = {"
 aaa
@@ -35340,9 +36702,9 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-cZm
+aab
+aab
+qOl
 "}
 (53,1,1) = {"
 aaa
@@ -35557,9 +36919,9 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-cZm
+aab
+aab
+qOl
 "}
 (54,1,1) = {"
 aaa
@@ -35774,9 +37136,9 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-cZm
+aab
+aab
+qOl
 "}
 (55,1,1) = {"
 aaa
@@ -35991,9 +37353,9 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-cZm
+aab
+aab
+qOl
 "}
 (56,1,1) = {"
 aaa
@@ -36208,9 +37570,9 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-cZm
+aab
+aab
+qOl
 "}
 (57,1,1) = {"
 aaa
@@ -36425,9 +37787,9 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-cZm
+aab
+aab
+qOl
 "}
 (58,1,1) = {"
 aaa
@@ -36642,9 +38004,9 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-cZm
+aab
+aab
+qOl
 "}
 (59,1,1) = {"
 aaa
@@ -36859,9 +38221,9 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-cZm
+aab
+aab
+qOl
 "}
 (60,1,1) = {"
 aaa
@@ -37076,9 +38438,9 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-cZm
+aab
+aab
+qOl
 "}
 (61,1,1) = {"
 aaa
@@ -37293,9 +38655,9 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-cZm
+aab
+aab
+qOl
 "}
 (62,1,1) = {"
 aaa
@@ -37510,9 +38872,9 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-cZm
+aab
+aab
+qOl
 "}
 (63,1,1) = {"
 aaa
@@ -37727,9 +39089,9 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-cZm
+aab
+aab
+qOl
 "}
 (64,1,1) = {"
 aaa
@@ -37944,9 +39306,9 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-cZm
+aab
+aab
+qOl
 "}
 (65,1,1) = {"
 aaa
@@ -38161,9 +39523,9 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-cZm
+aab
+aab
+qOl
 "}
 (66,1,1) = {"
 aaa
@@ -38378,9 +39740,9 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-cZm
+aab
+aab
+qOl
 "}
 (67,1,1) = {"
 aaa
@@ -38595,9 +39957,9 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-cZm
+aab
+aab
+qOl
 "}
 (68,1,1) = {"
 aaa
@@ -38812,9 +40174,9 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-cZm
+aab
+aab
+qOl
 "}
 (69,1,1) = {"
 aaa
@@ -39029,9 +40391,9 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-cZm
+aab
+aab
+qOl
 "}
 (70,1,1) = {"
 aaa
@@ -39246,9 +40608,9 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-cZm
+aab
+aab
+qOl
 "}
 (71,1,1) = {"
 aaa
@@ -39463,9 +40825,9 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-cZm
+aab
+aab
+qOl
 "}
 (72,1,1) = {"
 aaa
@@ -39680,9 +41042,9 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-cZm
+aab
+aab
+qOl
 "}
 (73,1,1) = {"
 aaa
@@ -39898,8 +41260,8 @@ aab
 aab
 aab
 aab
-aaa
-cZm
+aab
+qOl
 "}
 (74,1,1) = {"
 aaa
@@ -40115,8 +41477,8 @@ hqP
 hqP
 hqP
 aab
-aaa
-cZm
+aab
+qOl
 "}
 (75,1,1) = {"
 aaa
@@ -40332,8 +41694,8 @@ hqP
 hqP
 hqP
 aab
-aaa
-cZm
+aab
+qOl
 "}
 (76,1,1) = {"
 aaa
@@ -40549,8 +41911,8 @@ hqP
 hqP
 hqP
 aab
-aaa
-cZm
+aab
+qOl
 "}
 (77,1,1) = {"
 aaa
@@ -40766,8 +42128,8 @@ hqP
 hqP
 hqP
 aab
-aaa
-cZm
+aab
+qOl
 "}
 (78,1,1) = {"
 aaa
@@ -40983,8 +42345,8 @@ hqP
 hqP
 hqP
 aab
-aaa
-cZm
+aab
+qOl
 "}
 (79,1,1) = {"
 aaa
@@ -41200,8 +42562,8 @@ hqP
 hqP
 hqP
 aab
-aaa
-cZm
+aab
+qOl
 "}
 (80,1,1) = {"
 aaa
@@ -41417,8 +42779,8 @@ hqP
 hqP
 hqP
 aab
-aaa
-cZm
+aab
+qOl
 "}
 (81,1,1) = {"
 aaa
@@ -41634,8 +42996,8 @@ hqP
 hqP
 hqP
 aab
-aaa
-cZm
+aab
+qOl
 "}
 (82,1,1) = {"
 aaa
@@ -41851,8 +43213,8 @@ hqP
 hqP
 hqP
 aab
-aaa
-cZm
+aab
+qOl
 "}
 (83,1,1) = {"
 aaa
@@ -42068,8 +43430,8 @@ hqP
 hqP
 hqP
 aab
-aaa
-cZm
+aab
+qOl
 "}
 (84,1,1) = {"
 aaa
@@ -42285,8 +43647,8 @@ hqP
 hqP
 hqP
 aab
-aaa
-cZm
+aab
+qOl
 "}
 (85,1,1) = {"
 aaa
@@ -42502,8 +43864,8 @@ hqP
 hqP
 hqP
 aab
-aaa
-cZm
+aab
+qOl
 "}
 (86,1,1) = {"
 aaa
@@ -42719,8 +44081,8 @@ hqP
 hqP
 hqP
 aab
-aaa
-cZm
+aab
+qOl
 "}
 (87,1,1) = {"
 aaa
@@ -42936,8 +44298,8 @@ hqP
 hqP
 hqP
 aab
-aaa
-cZm
+aab
+qOl
 "}
 (88,1,1) = {"
 aaa
@@ -43153,8 +44515,8 @@ hqP
 hqP
 hqP
 aab
-aaa
-cZm
+aab
+qOl
 "}
 (89,1,1) = {"
 aaa
@@ -43370,8 +44732,8 @@ hqP
 hqP
 hqP
 aab
-aaa
-cZm
+aab
+qOl
 "}
 (90,1,1) = {"
 aaa
@@ -43587,8 +44949,8 @@ hqP
 hqP
 hqP
 aab
-aaa
-cZm
+aab
+qOl
 "}
 (91,1,1) = {"
 aaa
@@ -43804,8 +45166,8 @@ hqP
 hqP
 hqP
 aab
-aaa
-cZm
+aab
+qOl
 "}
 (92,1,1) = {"
 aaa
@@ -44021,8 +45383,8 @@ hqP
 hqP
 hqP
 aab
-aaa
-cZm
+aab
+qOl
 "}
 (93,1,1) = {"
 aaa
@@ -44238,8 +45600,8 @@ hqP
 hqP
 hqP
 aab
-aaa
-cZm
+aab
+qOl
 "}
 (94,1,1) = {"
 aaa
@@ -44455,8 +45817,8 @@ hqP
 hqP
 hqP
 aab
-aaa
-cZm
+aab
+qOl
 "}
 (95,1,1) = {"
 aaa
@@ -44672,8 +46034,8 @@ hqP
 hqP
 hqP
 aab
-aaa
-cZm
+aab
+qOl
 "}
 (96,1,1) = {"
 aaa
@@ -44889,8 +46251,8 @@ hqP
 hqP
 hqP
 aab
-aaa
-cZm
+aab
+qOl
 "}
 (97,1,1) = {"
 aaa
@@ -45106,8 +46468,8 @@ hqP
 hqP
 hqP
 aab
-aaa
-cZm
+aab
+qOl
 "}
 (98,1,1) = {"
 aaa
@@ -45323,8 +46685,8 @@ hqP
 hqP
 hqP
 aab
-aaa
-cZm
+aab
+qOl
 "}
 (99,1,1) = {"
 aaa
@@ -45540,8 +46902,8 @@ hqP
 hqP
 hqP
 aab
-aaa
-cZm
+aab
+qOl
 "}
 (100,1,1) = {"
 aaa
@@ -45757,8 +47119,8 @@ hqP
 hqP
 hqP
 aab
-aaa
-cZm
+aab
+qOl
 "}
 (101,1,1) = {"
 aaa
@@ -45974,8 +47336,8 @@ hqP
 hqP
 hqP
 aab
-aaa
-cZm
+aab
+qOl
 "}
 (102,1,1) = {"
 aaa
@@ -46191,8 +47553,8 @@ xEN
 hqP
 hqP
 aab
-aaa
-cZm
+aab
+qOl
 "}
 (103,1,1) = {"
 aaa
@@ -46408,8 +47770,8 @@ xEN
 hqP
 hqP
 aab
-aaa
-cZm
+aab
+qOl
 "}
 (104,1,1) = {"
 aaa
@@ -46625,8 +47987,8 @@ xEN
 hqP
 hqP
 aab
-aaa
-cZm
+aab
+qOl
 "}
 (105,1,1) = {"
 aaa
@@ -46842,8 +48204,8 @@ wYu
 hqP
 hqP
 aab
-aaa
-cZm
+aab
+qOl
 "}
 (106,1,1) = {"
 aaa
@@ -47059,8 +48421,8 @@ vlT
 rWh
 hqP
 aab
-aaa
-cZm
+aab
+qOl
 "}
 (107,1,1) = {"
 aaa
@@ -47276,8 +48638,8 @@ eCN
 nhk
 fqj
 qOl
-cZm
-cZm
+qOl
+qOl
 "}
 (108,1,1) = {"
 aaa
@@ -47493,8 +48855,8 @@ unB
 rWh
 hqP
 aab
-aaa
-cZm
+aab
+qOl
 "}
 (109,1,1) = {"
 aaa
@@ -47710,8 +49072,8 @@ eyz
 rWh
 hqP
 aab
-aaa
-cZm
+aab
+qOl
 "}
 (110,1,1) = {"
 aaa
@@ -47927,8 +49289,8 @@ egQ
 rWh
 hqP
 aab
-aaa
-cZm
+aab
+qOl
 "}
 (111,1,1) = {"
 aaa
@@ -48144,8 +49506,8 @@ psH
 xJp
 hqP
 aab
-aaa
-cZm
+aab
+qOl
 "}
 (112,1,1) = {"
 aaa
@@ -48361,8 +49723,8 @@ eyz
 xJp
 hqP
 aab
-aaa
-cZm
+aab
+qOl
 "}
 (113,1,1) = {"
 aaa
@@ -48578,8 +49940,8 @@ hDY
 xJp
 hqP
 aab
-aaa
-cZm
+aab
+qOl
 "}
 (114,1,1) = {"
 aaa
@@ -48795,8 +50157,8 @@ eyz
 xJp
 hqP
 aab
-aaa
-cZm
+aab
+qOl
 "}
 (115,1,1) = {"
 aaa
@@ -49012,8 +50374,8 @@ lqJ
 rdw
 hqP
 aab
-aaa
-cZm
+aab
+qOl
 "}
 (116,1,1) = {"
 aaa
@@ -49229,8 +50591,8 @@ xEN
 cFp
 hqP
 aab
-aaa
-cZm
+aab
+qOl
 "}
 (117,1,1) = {"
 aaa
@@ -49446,8 +50808,8 @@ jWg
 xEN
 hqP
 aab
-aaa
-cZm
+aab
+qOl
 "}
 (118,1,1) = {"
 aaa
@@ -49488,7 +50850,7 @@ qVr
 gEU
 qVr
 bHv
-vKc
+lKZ
 ctE
 ctE
 ctE
@@ -49663,8 +51025,8 @@ xEN
 xEN
 hqP
 aab
-aaa
-cZm
+aab
+qOl
 "}
 (119,1,1) = {"
 aaa
@@ -49880,8 +51242,8 @@ xEN
 xEN
 hqP
 aab
-aaa
-cZm
+aab
+qOl
 "}
 (120,1,1) = {"
 aaa
@@ -50097,8 +51459,8 @@ xEN
 jWg
 hqP
 aab
-aaa
-cZm
+aab
+qOl
 "}
 (121,1,1) = {"
 aaa
@@ -50314,8 +51676,8 @@ xEN
 xEN
 hqP
 aab
-aaa
-cZm
+aab
+qOl
 "}
 (122,1,1) = {"
 aaa
@@ -50531,8 +51893,8 @@ xEN
 xEN
 hqP
 aab
-aaa
-cZm
+aab
+qOl
 "}
 (123,1,1) = {"
 aaa
@@ -50748,8 +52110,8 @@ xEN
 xEN
 hqP
 aab
-aaa
-cZm
+aab
+qOl
 "}
 (124,1,1) = {"
 aaa
@@ -50965,8 +52327,8 @@ xEN
 xEN
 hqP
 aab
-aaa
-cZm
+aab
+qOl
 "}
 (125,1,1) = {"
 aaa
@@ -51182,8 +52544,8 @@ xEN
 xEN
 hqP
 aab
-aaa
-cZm
+aab
+qOl
 "}
 (126,1,1) = {"
 aaa
@@ -51399,8 +52761,8 @@ xEN
 hqP
 hqP
 aab
-aaa
-cZm
+aab
+qOl
 "}
 (127,1,1) = {"
 aaa
@@ -51616,8 +52978,8 @@ xEN
 hqP
 hqP
 aab
-aaa
-cZm
+aab
+qOl
 "}
 (128,1,1) = {"
 aaa
@@ -51833,8 +53195,8 @@ xEN
 hqP
 hqP
 aab
-aaa
-cZm
+aab
+qOl
 "}
 (129,1,1) = {"
 aaa
@@ -52050,8 +53412,8 @@ xEN
 hqP
 hqP
 aab
-aaa
-cZm
+aab
+qOl
 "}
 (130,1,1) = {"
 aaa
@@ -52267,8 +53629,8 @@ xEN
 hqP
 hqP
 aab
-aaa
-cZm
+aab
+qOl
 "}
 (131,1,1) = {"
 aaa
@@ -52484,8 +53846,8 @@ xEN
 xEN
 hqP
 aab
-aaa
-cZm
+aab
+qOl
 "}
 (132,1,1) = {"
 aaa
@@ -52701,8 +54063,8 @@ xEN
 xEN
 hqP
 aab
-aaa
-cZm
+aab
+qOl
 "}
 (133,1,1) = {"
 aaa
@@ -52918,8 +54280,8 @@ xEN
 xEN
 hqP
 aab
-aaa
-cZm
+aab
+qOl
 "}
 (134,1,1) = {"
 aaa
@@ -53135,8 +54497,8 @@ xEN
 xEN
 hqP
 aab
-aaa
-cZm
+aab
+qOl
 "}
 (135,1,1) = {"
 aaa
@@ -53352,8 +54714,8 @@ xEN
 xEN
 hqP
 aab
-aaa
-cZm
+aab
+qOl
 "}
 (136,1,1) = {"
 aaa
@@ -53569,8 +54931,8 @@ xEN
 xEN
 hqP
 aab
-aaa
-cZm
+aab
+qOl
 "}
 (137,1,1) = {"
 aaa
@@ -53592,8 +54954,8 @@ aaa
 aaa
 aaa
 aaa
-cZm
-aaa
+qOl
+aab
 aab
 dnl
 dnl
@@ -53786,8 +55148,8 @@ xEN
 xEN
 hqP
 aab
-aaa
-cZm
+aab
+qOl
 "}
 (138,1,1) = {"
 aaa
@@ -53809,8 +55171,8 @@ aaa
 aaa
 aaa
 aaa
-cZm
-aaa
+qOl
+aab
 aab
 dnl
 dnl
@@ -54003,8 +55365,8 @@ xEN
 xEN
 hqP
 aab
-aaa
-cZm
+aab
+qOl
 "}
 (139,1,1) = {"
 aaa
@@ -54026,8 +55388,8 @@ aaa
 aaa
 aaa
 aaa
-cZm
-aaa
+qOl
+aab
 aab
 dnl
 dnl
@@ -54220,8 +55582,8 @@ jWg
 xEN
 hqP
 aab
-aaa
-cZm
+aab
+qOl
 "}
 (140,1,1) = {"
 aaa
@@ -54243,8 +55605,8 @@ aaa
 aaa
 aaa
 aaa
-cZm
-aaa
+qOl
+aab
 aab
 dnl
 dnl
@@ -54437,8 +55799,8 @@ xEN
 xEN
 hqP
 aab
-aaa
-cZm
+aab
+qOl
 "}
 (141,1,1) = {"
 aaa
@@ -54460,8 +55822,8 @@ aaa
 aaa
 aaa
 aaa
-cZm
-aaa
+qOl
+aab
 aab
 dnl
 dnl
@@ -54654,8 +56016,8 @@ xEN
 hqP
 hqP
 aab
-aaa
-cZm
+aab
+qOl
 "}
 (142,1,1) = {"
 aaa
@@ -54677,8 +56039,8 @@ aaa
 aaa
 aaa
 aaa
-cZm
-aaa
+qOl
+aab
 aab
 dnl
 dnl
@@ -54871,8 +56233,8 @@ xEN
 hqP
 hqP
 aab
-aaa
-cZm
+aab
+qOl
 "}
 (143,1,1) = {"
 aaa
@@ -54894,8 +56256,8 @@ aaa
 aaa
 aaa
 aaa
-cZm
-aaa
+qOl
+aab
 aab
 dnl
 dnl
@@ -55088,8 +56450,8 @@ hqP
 hqP
 hqP
 aab
-aaa
-cZm
+aab
+qOl
 "}
 (144,1,1) = {"
 aaa
@@ -55111,8 +56473,8 @@ aaa
 aaa
 aaa
 aaa
-cZm
-aaa
+qOl
+aab
 aab
 dnl
 dnl
@@ -55305,8 +56667,8 @@ hqP
 hqP
 hqP
 aab
-aaa
-cZm
+aab
+qOl
 "}
 (145,1,1) = {"
 aaa
@@ -55328,8 +56690,8 @@ aaa
 aaa
 aaa
 aaa
-cZm
-aaa
+qOl
+aab
 aab
 dnl
 dnl
@@ -55522,8 +56884,8 @@ hqP
 hqP
 hqP
 aab
-aaa
-cZm
+aab
+qOl
 "}
 (146,1,1) = {"
 aaa
@@ -55545,8 +56907,8 @@ aaa
 aaa
 aaa
 aaa
-cZm
-aaa
+qOl
+aab
 aab
 dnl
 dnl
@@ -55739,8 +57101,8 @@ hqP
 hqP
 hqP
 aab
-aaa
-cZm
+aab
+qOl
 "}
 (147,1,1) = {"
 aaa
@@ -55762,8 +57124,8 @@ aaa
 aaa
 aaa
 aaa
-cZm
-aaa
+qOl
+aab
 aab
 dnl
 dnl
@@ -55956,8 +57318,8 @@ hqP
 hqP
 hqP
 aab
-aaa
-cZm
+aab
+qOl
 "}
 (148,1,1) = {"
 aaa
@@ -55979,8 +57341,8 @@ aaa
 aaa
 aaa
 aaa
-cZm
-aaa
+qOl
+aab
 aab
 dnl
 dnl
@@ -56173,8 +57535,8 @@ hqP
 hqP
 hqP
 aab
-aaa
-cZm
+aab
+qOl
 "}
 (149,1,1) = {"
 aaa
@@ -56196,8 +57558,8 @@ aaa
 aaa
 aaa
 aaa
-cZm
-aaa
+qOl
+aab
 aab
 dnl
 dnl
@@ -56390,8 +57752,8 @@ jeY
 jeY
 jeY
 aab
-aaa
-cZm
+aab
+qOl
 "}
 (150,1,1) = {"
 aaa
@@ -56413,8 +57775,8 @@ aaa
 aaa
 aaa
 aaa
-cZm
-aaa
+qOl
+aab
 aab
 dnl
 dnl
@@ -56578,7 +57940,7 @@ eve
 eve
 fwQ
 eve
-eve
+jeY
 jeY
 jeY
 jeY
@@ -56607,8 +57969,8 @@ jeY
 jeY
 jeY
 aab
-aaa
-cZm
+aab
+qOl
 "}
 (151,1,1) = {"
 aaa
@@ -56630,8 +57992,8 @@ aaa
 aaa
 aaa
 aaa
-cZm
-aaa
+qOl
+aab
 aab
 dnl
 dnl
@@ -56793,9 +58155,9 @@ jeY
 eve
 eve
 fwQ
-eve
-eve
-fwQ
+jeY
+jeY
+jeY
 jeY
 jeY
 jeY
@@ -56824,8 +58186,8 @@ jeY
 jeY
 jeY
 aab
-aaa
-cZm
+aab
+qOl
 "}
 (152,1,1) = {"
 aaa
@@ -56847,8 +58209,8 @@ aaa
 aaa
 aaa
 aaa
-cZm
-aaa
+qOl
+aab
 aab
 dnl
 dnl
@@ -57010,9 +58372,9 @@ jeY
 eve
 eve
 eve
-eve
-eve
-eve
+jeY
+jeY
+jeY
 jeY
 jeY
 jeY
@@ -57041,8 +58403,8 @@ jeY
 jeY
 jeY
 aab
-aaa
-cZm
+aab
+qOl
 "}
 (153,1,1) = {"
 aaa
@@ -57064,8 +58426,8 @@ aaa
 aaa
 aaa
 aaa
-cZm
-aaa
+qOl
+aab
 aab
 dnl
 dnl
@@ -57228,25 +58590,25 @@ fwQ
 eve
 eve
 eve
+jeY
+jeY
+jeY
+jeY
+jeY
+jeY
+jeY
+jeY
+jeY
+jeY
+jeY
+jeY
+jeY
+jeY
 eve
 eve
-jeY
-jeY
-jeY
-jeY
-jeY
-jeY
-jeY
-jeY
-jeY
-jeY
-jeY
-jeY
+uKS
 eve
-eve
-eve
-eve
-eve
+qVN
 jeY
 jeY
 jeY
@@ -57258,8 +58620,8 @@ jeY
 jeY
 jeY
 aab
-aaa
-cZm
+aab
+qOl
 "}
 (154,1,1) = {"
 aaa
@@ -57281,8 +58643,8 @@ aaa
 aaa
 aaa
 aaa
-cZm
-aaa
+qOl
+aab
 aab
 dnl
 dnl
@@ -57445,8 +58807,8 @@ eve
 eve
 eve
 eve
-eve
-eve
+sTd
+sTd
 jeY
 jeY
 jeY
@@ -57460,10 +58822,10 @@ jeY
 jeY
 jeY
 jeY
-pJO
-pJO
-pJO
-pJO
+sjC
+sjC
+sjC
+sjC
 jeY
 jeY
 jeY
@@ -57475,8 +58837,8 @@ jeY
 jeY
 jeY
 aab
-aaa
-cZm
+aab
+qOl
 "}
 (155,1,1) = {"
 aaa
@@ -57498,8 +58860,8 @@ aaa
 aaa
 aaa
 aaa
-cZm
-aaa
+qOl
+aab
 aab
 dnl
 dnl
@@ -57658,42 +59020,42 @@ jeY
 jeY
 jeY
 jeY
-pJO
-pJO
-pJO
-pJO
-pJO
-jeY
-jeY
-jeY
-jeY
-jeY
-jeY
-jeY
-jeY
-jeY
-jeY
-jeY
-jeY
-jeY
-jeY
-eve
-fwQ
 eve
 eve
-jeY
-jeY
-jeY
-jeY
-jeY
-jeY
-jeY
-jeY
-jeY
-jeY
+eve
+eve
+sTd
+aPo
+aPo
+aPo
+aPo
+aPo
+aPo
+aPo
+aPo
+aPo
+aPo
+aPo
+aPo
+aPo
+aPo
+aPo
+fzQ
+tqK
+pgW
+aPo
+aPo
+aPo
+aPo
+aPo
+aPo
+aPo
+aPo
+aPo
+aPo
+aPo
 aab
-aaa
-cZm
+qOl
 "}
 (156,1,1) = {"
 aaa
@@ -57715,8 +59077,8 @@ aaa
 aaa
 aaa
 aaa
-cZm
-aaa
+qOl
+aab
 aab
 dnl
 dnl
@@ -57877,40 +59239,40 @@ jeY
 jeY
 eve
 eve
+fwQ
 eve
 eve
-eve
-jeY
-jeY
-jeY
-jeY
-jeY
-jeY
-jeY
-jeY
-jeY
-jeY
-jeY
-jeY
-jeY
-jeY
-eve
-eve
-eve
-eve
-jeY
-jeY
-jeY
-jeY
-jeY
-jeY
-jeY
-jeY
-jeY
-jeY
+iXU
+wrk
+hoI
+wrk
+wrk
+wrk
+wrk
+uMk
+ncd
+pzS
+ncd
+qsG
+ncd
+ncd
+pzS
+ncd
+ncd
+ncd
+ncd
+lKe
+dpu
+wrk
+wrk
+wrk
+hoI
+wrk
+wrk
+wrk
+aPo
 aab
-aaa
-cZm
+qOl
 "}
 (157,1,1) = {"
 aaa
@@ -57932,8 +59294,8 @@ aaa
 aaa
 aaa
 aaa
-cZm
-aaa
+qOl
+aab
 aab
 dnl
 dnl
@@ -58097,37 +59459,37 @@ eve
 onX
 eve
 eve
-jeY
-jeY
-jeY
-jeY
-jeY
-jeY
-jeY
-jeY
-jeY
-jeY
-jeY
-jeY
-jeY
-jeY
-eve
-eve
-eve
-eve
-jeY
-jeY
-jeY
-jeY
-jeY
-jeY
-jeY
-jeY
-jeY
-jeY
+daq
+vQS
+vQS
+oUf
+vQS
+vQS
+vQS
+csO
+vQS
+vQS
+vQS
+phD
+vQS
+vQS
+vQS
+vQS
+oUf
+vQS
+vQS
+rel
+fdu
+nqq
+hRM
+nqq
+xPH
+nqq
+nqq
+oUj
+aPo
 aab
-aaa
-cZm
+qOl
 "}
 (158,1,1) = {"
 aaa
@@ -58149,8 +59511,8 @@ aaa
 aaa
 aaa
 aaa
-cZm
-aaa
+qOl
+aab
 aab
 dnl
 dnl
@@ -58314,37 +59676,37 @@ eve
 eve
 eve
 eve
-jeY
-jeY
-jeY
-jeY
-jeY
-jeY
-jeY
-jeY
-jeY
-jeY
-jeY
-jeY
-jeY
-jeY
-eve
-eve
-eve
-fwQ
-jeY
-jeY
-jeY
-jeY
-jeY
-jeY
-jeY
-jeY
-jeY
-jeY
+daq
+vQS
+hjc
+vQS
+hjc
+vQS
+vQS
+jHx
+vQS
+vQS
+hjc
+vQS
+vQS
+vQS
+vQS
+vQS
+hjc
+vQS
+vQS
+csO
+vQS
+vQS
+vQS
+vQS
+vQS
+vQS
+vQS
+csO
+aPo
 aab
-aaa
-cZm
+qOl
 "}
 (159,1,1) = {"
 aaa
@@ -58366,8 +59728,8 @@ aaa
 aaa
 aaa
 aaa
-cZm
-aaa
+qOl
+aab
 aab
 dnl
 dnl
@@ -58531,37 +59893,37 @@ eve
 eve
 eve
 eve
-jeY
-jeY
-olJ
-jeY
-jeY
-jeY
-jeY
-jeY
-jeY
-jeY
-jeY
-jeY
-jeY
-jeY
-eve
-fwQ
-eve
-eve
-jeY
-jeY
-jeY
-jeY
-jeY
-jeY
-jeY
-jeY
-jeY
-jeY
+iXU
+wrk
+vwv
+wrk
+wrk
+wrk
+wrk
+csO
+wrk
+qsC
+wrk
+dpu
+wrk
+wrk
+qsC
+wrk
+wrk
+wrk
+wrk
+qEi
+dpu
+wrk
+wrk
+wrk
+qsC
+wrk
+hjc
+csO
+aPo
 aab
-aaa
-cZm
+qOl
 "}
 (160,1,1) = {"
 aaa
@@ -58583,8 +59945,8 @@ aaa
 aaa
 aaa
 aaa
-cZm
-aaa
+qOl
+aab
 aab
 dnl
 dnl
@@ -58747,38 +60109,38 @@ eve
 eve
 fwQ
 eve
-eve
-jeY
-jeY
-jeY
-jeY
-jeY
-jeY
-jeY
-jeY
-jeY
-jeY
-jeY
-jeY
-jeY
-jeY
-eve
-eve
-eve
-eve
-jeY
-jeY
-jeY
+sTd
+aPo
+aPo
+aPo
+aPo
+aPo
+aPo
+iXU
+hOG
+iXU
+tdv
+aPo
+aPo
+aPo
+aPo
+xjJ
+ryO
+fhb
+tdv
+aPo
+aPo
+aPo
+aPo
+aPo
+aPo
+aPo
+clx
+vQS
+csO
+aPo
 aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aaa
-cZm
+qOl
 "}
 (161,1,1) = {"
 aaa
@@ -58800,8 +60162,8 @@ aaa
 aaa
 aaa
 aaa
-cZm
-aaa
+qOl
+aab
 aab
 dnl
 dnl
@@ -58964,7 +60326,25 @@ eve
 eve
 eve
 eve
-eve
+sTd
+jeY
+jeY
+jeY
+jeY
+jeY
+aPo
+wrk
+csO
+wrk
+tdv
+jeY
+jeY
+jeY
+aPo
+kOh
+kOh
+kOh
+mxP
 jeY
 jeY
 jeY
@@ -58972,30 +60352,12 @@ jeY
 jeY
 jeY
 jeY
-jeY
-jeY
-jeY
-jeY
-jeY
-jeY
-jeY
-eve
-eve
-eve
-eve
-jeY
-jeY
-jeY
+aPo
+vQS
+csO
+aPo
 aab
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-cZm
+qOl
 "}
 (162,1,1) = {"
 aaa
@@ -59017,8 +60379,8 @@ aaa
 aaa
 aaa
 aaa
-cZm
-aaa
+qOl
+aab
 aab
 dnl
 dnl
@@ -59187,6 +60549,19 @@ jeY
 jeY
 jeY
 jeY
+aPo
+uTK
+csO
+cSH
+tdv
+jeY
+jeY
+jeY
+aPo
+kOh
+elV
+kOh
+mxP
 jeY
 jeY
 jeY
@@ -59194,25 +60569,12 @@ jeY
 jeY
 jeY
 jeY
-jeY
-jeY
-eve
-eve
-eve
-eve
-jeY
-jeY
-jeY
+aPo
+vQS
+eXq
+aPo
 aab
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-cZm
+qOl
 "}
 (163,1,1) = {"
 aaa
@@ -59234,8 +60596,8 @@ aaa
 aaa
 aaa
 aaa
-cZm
-aaa
+qOl
+aab
 aab
 dnl
 dnl
@@ -59404,6 +60766,19 @@ jeY
 jeY
 jeY
 jeY
+aPo
+mxP
+yjY
+mxP
+tdv
+jeY
+jeY
+jeY
+aPo
+uIf
+ycc
+kOh
+mxP
 jeY
 jeY
 jeY
@@ -59411,25 +60786,12 @@ jeY
 jeY
 jeY
 jeY
-jeY
-jeY
-eve
-eve
-fwQ
-eve
-jeY
-jeY
-jeY
+aPo
+vQS
+csO
+aPo
 aab
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-cZm
+qOl
 "}
 (164,1,1) = {"
 aaa
@@ -59451,8 +60813,8 @@ aaa
 aaa
 aaa
 aaa
-cZm
-aaa
+qOl
+aab
 aab
 dnl
 dnl
@@ -59616,7 +60978,24 @@ eve
 eve
 eve
 eve
-eve
+jeY
+jeY
+jeY
+jeY
+jeY
+aPo
+wrk
+xnp
+wrk
+tdv
+jeY
+jeY
+jeY
+aPo
+gfc
+kOh
+xRc
+mxP
 jeY
 jeY
 jeY
@@ -59624,29 +61003,12 @@ jeY
 jeY
 jeY
 jeY
-jeY
-jeY
-jeY
-jeY
-jeY
-jeY
-eve
-eve
-eve
-eve
-jeY
-jeY
-jeY
+aPo
+vQS
+csO
+aPo
 aab
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-cZm
+qOl
 "}
 (165,1,1) = {"
 aaa
@@ -59668,8 +61030,8 @@ aaa
 aaa
 aaa
 aaa
-cZm
-aaa
+qOl
+aab
 aab
 dnl
 dnl
@@ -59833,7 +61195,24 @@ eve
 eve
 eve
 eve
-eve
+jeY
+jeY
+jeY
+jeY
+jeY
+aPo
+wrk
+csO
+wrk
+tdv
+jeY
+jeY
+jeY
+aPo
+gMF
+kOh
+kOh
+mxP
 jeY
 jeY
 jeY
@@ -59841,29 +61220,12 @@ jeY
 jeY
 jeY
 jeY
-jeY
-jeY
-jeY
-jeY
-jeY
-jeY
-eve
-fwQ
-eve
-jeY
-jeY
-jeY
-jeY
+aPo
+vcC
+oEr
+aPo
 aab
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-cZm
+qOl
 "}
 (166,1,1) = {"
 aaa
@@ -59885,8 +61247,8 @@ aaa
 aaa
 aaa
 aaa
-cZm
-aaa
+qOl
+aab
 aab
 dnl
 dnl
@@ -60050,7 +61412,24 @@ fwQ
 eve
 eve
 eve
-eve
+jeY
+jeY
+jeY
+jeY
+jeY
+aPo
+wrk
+rel
+pPX
+tdv
+jeY
+jeY
+jeY
+aPo
+gfc
+kOh
+kOh
+mxP
 jeY
 jeY
 jeY
@@ -60058,29 +61437,12 @@ jeY
 jeY
 jeY
 jeY
-jeY
-jeY
-jeY
-jeY
-jeY
-eve
-eve
-eve
-eve
-jeY
-jeY
-jeY
-jeY
+aPo
+upD
+csO
+aPo
 aab
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-cZm
+qOl
 "}
 (167,1,1) = {"
 aaa
@@ -60102,8 +61464,8 @@ aaa
 aaa
 aaa
 aaa
-cZm
-aaa
+qOl
+aab
 aab
 dnl
 dnl
@@ -60267,37 +61629,37 @@ eve
 eve
 eve
 eve
-eve
-eve
-eve
 jeY
 jeY
 jeY
 jeY
 jeY
+aPo
+uTK
+csO
+cSH
+tdv
 jeY
 jeY
 jeY
-jeY
-jeY
-eve
-eve
-eve
-eve
-jeY
-jeY
-jeY
-jeY
+aPo
+mxP
+kOG
+mxP
+mxP
+sTd
+sTd
+sTd
+sTd
+sTd
+sTd
+sTd
+tdv
+vQS
+csO
+aPo
 aab
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-cZm
+qOl
 "}
 (168,1,1) = {"
 aaa
@@ -60319,8 +61681,8 @@ aaa
 aaa
 aaa
 aaa
-cZm
-aaa
+qOl
+aab
 aab
 dnl
 dnl
@@ -60484,37 +61846,37 @@ eve
 eve
 eve
 eve
-fwQ
-eve
-eve
-eve
-eve
 jeY
 jeY
 jeY
 jeY
 jeY
-jeY
-jeY
-eve
-eve
-eve
-eve
-eve
-jeY
+aPo
+wrk
+csO
+wrk
+tdv
 jeY
 jeY
 jeY
+aPo
+udL
+kOh
+kOh
+mxP
+mwU
+kOh
+kOh
+kOh
+kOh
+kOh
+xRc
+uHf
+vQS
+nru
+aPo
 aab
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-cZm
+qOl
 "}
 (169,1,1) = {"
 aaa
@@ -60536,8 +61898,8 @@ aaa
 aaa
 aaa
 aaa
-cZm
-aaa
+qOl
+aab
 aab
 dnl
 dnl
@@ -60701,37 +62063,37 @@ eve
 eve
 eve
 eve
-eve
-eve
-eve
-eve
-eve
-eve
-eve
-eve
-eve
-jeY
-jeY
-jeY
-eve
-eve
-eve
-eve
-eve
 jeY
 jeY
 jeY
 jeY
+jeY
+aPo
+wrk
+csO
+wrk
+tdv
+jeY
+jeY
+jeY
+aPo
+dTY
+ycc
+kOh
+aoD
+kOh
+kOh
+ycc
+kOh
+elV
+kOh
+kOh
+ryO
+vQS
+csO
+aPo
 aab
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-cZm
+qOl
 "}
 (170,1,1) = {"
 aaa
@@ -60753,8 +62115,8 @@ aaa
 aaa
 aaa
 aaa
-cZm
-aaa
+qOl
+aab
 aab
 dnl
 dnl
@@ -60918,37 +62280,37 @@ eve
 eve
 eve
 eve
-eve
-eve
-eve
-eve
-eve
-eve
-eve
-eve
-eve
-eve
-eve
-eve
-eve
-fwQ
-eve
-eve
-eve
 jeY
 jeY
 jeY
 jeY
+jeY
+aPo
+mxP
+yjY
+mxP
+tdv
+jeY
+jeY
+jeY
+aPo
+lic
+hog
+hKM
+sTd
+kOh
+kOh
+eqs
+eqs
+okr
+ycc
+kOh
+tdv
+vQS
+eXq
+aPo
 aab
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-cZm
+qOl
 "}
 (171,1,1) = {"
 aaa
@@ -60970,8 +62332,8 @@ aaa
 aaa
 aaa
 aaa
-cZm
-aaa
+qOl
+aab
 aab
 dnl
 dnl
@@ -61110,7 +62472,7 @@ xvL
 eve
 xvL
 eve
-eve
+iXG
 eve
 jeY
 jeY
@@ -61135,37 +62497,37 @@ eve
 eve
 eve
 eve
-eve
-eve
-eve
-eve
-eve
-fwQ
-eve
-fwQ
-eve
-eve
-eve
-eve
-eve
-eve
-eve
-eve
 jeY
 jeY
 jeY
 jeY
+jeY
+aPo
+bIZ
+csO
+wrk
+tdv
+jeY
+jeY
+jeY
+aPo
+oVG
+kOh
+eTn
+aPo
+aPo
+aPo
+aPo
+aPo
+aPo
+aPo
+aPo
+tdv
+vQS
+csO
+aPo
 aab
-aab
-aaa
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-cZm
+qOl
 "}
 (172,1,1) = {"
 aaa
@@ -61187,8 +62549,8 @@ aaa
 aaa
 aaa
 aaa
-cZm
-aaa
+qOl
+aab
 aab
 dnl
 dnl
@@ -61352,37 +62714,37 @@ eve
 eve
 eve
 eve
-eve
-eve
-eve
-eve
-eve
+jeY
+jeY
+jeY
+jeY
+jeY
+aPo
+uTK
+csO
+cSH
+tdv
+sTd
+sTd
+sTd
+aPo
+sTd
+sTd
+gmF
+aPo
 jeY
 jeY
 jeY
 jeY
 jeY
 jeY
-jeY
-jeY
-jeY
-jeY
-jeY
-jeY
-jeY
-jeY
-jeY
-aab
-aaa
-aaa
-aab
-bHv
-bHv
-bHv
-bHv
-bHv
-bHv
-cZm
+aPo
+tdv
+xqW
+oEm
+aPo
+sTd
+qOl
 "}
 (173,1,1) = {"
 aaa
@@ -61404,8 +62766,8 @@ aaa
 aaa
 aaa
 aaa
-cZm
-aaa
+qOl
+aab
 aab
 dnl
 dnl
@@ -61569,37 +62931,37 @@ eve
 eve
 eve
 eve
-eve
-eve
-eve
-eve
-eve
+jeY
+jeY
+jeY
+jeY
+jeY
+aPo
+wrk
+csO
+wrk
+tdv
+kOh
+kOh
+kOh
+aoD
+kOh
+kOh
+eTn
+aPo
 jeY
 jeY
 jeY
 jeY
 jeY
 jeY
-jeY
-jeY
-jeY
-jeY
-jeY
-aab
-aab
-aab
-aab
-aab
-aaa
-aaa
-aab
-bHv
+aPo
 tzW
-eCh
-eCh
-eCh
-bHv
-cZm
+vQS
+csO
+xqW
+sTd
+qOl
 "}
 (174,1,1) = {"
 aaa
@@ -61621,8 +62983,8 @@ aaa
 aaa
 aaa
 aaa
-cZm
-aaa
+qOl
+aab
 aab
 dnl
 dnl
@@ -61787,36 +63149,36 @@ eve
 eve
 eve
 jeY
-eve
-eve
-eve
-eve
+jeY
+jeY
+jeY
+jeY
+aPo
+wrk
+wtd
+ncd
+tHZ
+lIZ
+eOZ
+xtF
+qcY
+lIZ
+eOZ
+oCu
+aPo
 jeY
 jeY
 jeY
 jeY
 jeY
 jeY
-jeY
-jeY
-jeY
-jeY
-jeY
-aab
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aab
-bHv
-eKa
+aPo
+tzW
 hjc
-eKa
+csO
 vry
-bHv
-cZm
+sTd
+qOl
 "}
 (175,1,1) = {"
 aaa
@@ -61838,8 +63200,8 @@ aaa
 aaa
 aaa
 aaa
-cZm
-aaa
+qOl
+aab
 aab
 dnl
 dnl
@@ -62008,32 +63370,32 @@ jeY
 jeY
 jeY
 jeY
-jeY
-jeY
-jeY
-jeY
-jeY
-jeY
-jeY
-jeY
-jeY
-jeY
+aPo
+wrk
+csO
+wrk
+ryO
 kOh
-aab
-aaa
-aaa
-aaa
-aab
-aab
-aab
-aab
-bHv
+kOh
+kOh
+aPo
+kOh
+kOh
+kOh
+aPo
+jeY
+jeY
+jeY
+jeY
+jeY
+jeY
+aPo
 uwD
-eKa
-eKa
-eKa
-bHv
-cZm
+vQS
+csO
+xqW
+sTd
+qOl
 "}
 (176,1,1) = {"
 aaa
@@ -62055,8 +63417,8 @@ aaa
 aaa
 aaa
 aaa
-cZm
-aaa
+qOl
+aab
 aab
 dnl
 dnl
@@ -62225,32 +63587,32 @@ jeY
 jeY
 jeY
 jeY
-jeY
-jeY
-jeY
-jeY
-jeY
-aab
-aab
-aab
-aab
-aab
-aab
-aaa
-aaa
-aaa
-aaa
-aab
-bHv
-bHv
-bHv
-bHv
-bHv
-cur
+aPo
+wrk
 csO
-cur
-bHv
-cZm
+wrk
+tdv
+mxP
+mxP
+mxP
+tdv
+mxP
+kOh
+elV
+aPo
+jeY
+jeY
+mly
+tdv
+tdv
+tdv
+tdv
+tzW
+vQS
+csO
+xqW
+sTd
+qOl
 "}
 (177,1,1) = {"
 aaa
@@ -62272,8 +63634,8 @@ aaa
 aaa
 aaa
 aaa
-cZm
-aaa
+qOl
+aab
 aab
 dnl
 dnl
@@ -62436,38 +63798,38 @@ eve
 eve
 eve
 eve
-eve
+sTd
 jeY
 jeY
 jeY
 jeY
 jeY
+aPo
+uTK
+xnp
+cSH
+aPo
 jeY
 jeY
 jeY
+tdv
+sTd
+kOh
+kOh
+aPo
 jeY
 jeY
-aab
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aab
-aab
-aab
-aab
-bHv
-utr
-utr
-utr
-utr
-utr
-tDh
-utr
-bHv
-cZm
+mly
+fKy
+tzW
+uwD
+ssh
+tzW
+vQS
+xnp
+xqW
+sTd
+qOl
 "}
 (178,1,1) = {"
 aaa
@@ -62489,8 +63851,8 @@ aaa
 aaa
 aaa
 aaa
-cZm
-aaa
+qOl
+aab
 aab
 dnl
 dnl
@@ -62652,39 +64014,39 @@ eve
 eve
 eve
 eve
-eve
-eve
+sTd
+sTd
 jeY
 jeY
 jeY
 jeY
 jeY
-jeY
-jeY
-jeY
-jeY
-jeY
-aab
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aab
-jeY
-jeY
-bHv
-bHv
+aPo
 mxP
+yjY
+mxP
+aPo
+jeY
+jeY
+jeY
+tdv
+tny
+kOh
+kOh
+aPo
+jeY
+jeY
+mxP
+wel
+vNo
 tDh
-kpD
-utr
-utr
-utr
-utr
-bHv
-cZm
+mxP
+tzW
+vQS
+csO
+xqW
+sTd
+qOl
 "}
 (179,1,1) = {"
 aaa
@@ -62706,8 +64068,8 @@ aaa
 aaa
 aaa
 aaa
-cZm
-aaa
+qOl
+aab
 aab
 dnl
 dnl
@@ -62869,39 +64231,39 @@ eve
 fwQ
 eve
 eve
-eve
-eve
+sTd
+sTd
 jeY
 jeY
 jeY
 jeY
 jeY
+aPo
+wrk
+csO
+wrk
+aPo
 jeY
 jeY
 jeY
+tdv
+lCu
+kOh
+kOh
+aPo
 jeY
 jeY
-aab
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aab
-jeY
-jeY
-bHv
 mxP
-utr
-utr
-utr
-utr
-utr
-utr
-utr
-bHv
-cZm
+mxP
+mxP
+mxP
+mxP
+vQS
+vQS
+csO
+xqW
+sTd
+qOl
 "}
 (180,1,1) = {"
 aaa
@@ -62923,8 +64285,8 @@ aaa
 aaa
 aaa
 aaa
-cZm
-aaa
+qOl
+aab
 aab
 dnl
 dnl
@@ -63086,39 +64448,39 @@ eve
 eve
 eve
 eve
-eve
-eve
-jeY
-jeY
-jeY
-jeY
-jeY
-jeY
-jeY
-jeY
-jeY
-jeY
-aab
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aab
-jeY
-jeY
-bHv
-utr
-utr
-utr
-ihM
-utr
-utr
-utr
-tDh
-bHv
-cZm
+vFT
+aPo
+aPo
+aPo
+aPo
+aPo
+aPo
+aPo
+kTu
+wjl
+kTu
+tdv
+tdv
+tdv
+tdv
+coI
+tdv
+ryO
+fhb
+clx
+aPo
+aPo
+tdv
+vQS
+vQS
+vQS
+vQS
+vQS
+vQS
+csO
+buT
+sTd
+qOl
 "}
 (181,1,1) = {"
 aaa
@@ -63140,8 +64502,8 @@ aaa
 aaa
 aaa
 aaa
-cZm
-aaa
+qOl
+aab
 aab
 dnl
 dnl
@@ -63303,39 +64665,39 @@ eve
 eve
 eve
 eve
-eve
-eve
-jeY
-jeY
-jeY
-jeY
-jeY
-aab
-aab
-aab
-aab
-aab
-aab
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aab
-jeY
-jeY
-bHv
+bey
+pQo
+wrk
+wrk
+wrk
+hoI
+wrk
+wrk
+wrk
+csO
+wrk
+hoI
+wrk
+wrk
+wrk
+mcd
+wrk
+wrk
+wrk
+wrk
+hoI
+wrk
+wrk
 vQS
-utr
+vQS
 jFi
-utr
-utr
-utr
-utr
-eYb
-bHv
-cZm
+wAY
+wAY
+vQS
+csO
+vry
+sTd
+qOl
 "}
 (182,1,1) = {"
 aaa
@@ -63357,8 +64719,8 @@ aaa
 aaa
 aaa
 aaa
-cZm
-aaa
+qOl
+aab
 aab
 dnl
 dnl
@@ -63520,39 +64882,39 @@ eve
 eve
 eve
 eve
-eve
-eve
-jeY
-jeY
-jeY
-jeY
-jeY
-aab
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aab
-jeY
-jeY
-bHv
-utr
-utr
-utr
-utr
-utr
-utr
+bOy
+cYb
+nqq
+nqq
+nqq
+hRM
+nqq
+nqq
+nqq
+hiC
+nqq
+hRM
+nqq
+nqq
+nqq
+tCw
+nqq
+nqq
+xPH
+nqq
+nqq
+nqq
+nqq
+nqq
+tyh
+nqq
+qtr
+qtr
+xmO
 iYa
-tfr
-bHv
-cZm
+lmq
+sTd
+qOl
 "}
 (183,1,1) = {"
 aaa
@@ -63574,8 +64936,8 @@ aaa
 aaa
 aaa
 aaa
-cZm
-aaa
+qOl
+aab
 aab
 dnl
 dnl
@@ -63735,41 +65097,41 @@ eve
 eve
 eve
 eve
-jeY
-jeY
-jeY
-jeY
-jeY
-jeY
-jeY
-jeY
-aab
-aab
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aab
-jeY
-jeY
-vtS
+eve
+eve
+eve
+tSF
+vQS
+vQS
+vQS
+vQS
+vQS
+vQS
+vQS
+csO
+vQS
+vQS
+vQS
+vQS
+vQS
+buT
+vQS
+vQS
+vQS
+hjc
+vQS
+vQS
+vQS
 gvo
-utr
-tDh
+csO
+hjc
 nPl
-utr
-utr
-utr
-utr
-bHv
-cZm
+mxP
+ecc
+vQS
+xqW
+sTd
+qOl
 "}
 (184,1,1) = {"
 aaa
@@ -63791,8 +65153,8 @@ aaa
 aaa
 aaa
 aaa
-cZm
-aaa
+qOl
+aab
 aab
 dnl
 dnl
@@ -63950,43 +65312,43 @@ eve
 fwQ
 eve
 eve
-jeY
-jeY
-jeY
-jeY
-jeY
-jeY
-jeY
-jeY
-jeY
-jeY
-aab
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aab
-jeY
-jeY
-bHv
-utr
-utr
-utr
-utr
-utr
-utr
-utr
-utr
-bHv
-cZm
+eve
+eve
+eve
+eve
+eve
+tSF
+vQS
+vQS
+oUf
+vQS
+vQS
+vQS
+vQS
+csO
+vQS
+vQS
+vQS
+vQS
+vQS
+xqW
+vQS
+vQS
+vQS
+vQS
+vQS
+vQS
+vQS
+vQS
+csO
+vQS
+sBX
+sBX
+vQS
+vQS
+xqW
+sTd
+qOl
 "}
 (185,1,1) = {"
 aaa
@@ -64008,8 +65370,8 @@ aaa
 aaa
 aaa
 aaa
-cZm
-aaa
+qOl
+aab
 aab
 dnl
 dnl
@@ -64169,41 +65531,41 @@ fwQ
 eve
 jeY
 jeY
-jeY
-jeY
-jeY
-jeY
-jeY
-jeY
-jeY
-aab
-aab
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aab
-jeY
-jeY
-bHv
-utr
-utr
-utr
-utr
-utr
-utr
-utr
-utr
-bHv
-cZm
+eve
+eve
+eve
+pQo
+wrk
+wrk
+wrk
+qsC
+wrk
+wrk
+wrk
+iqL
+wrk
+qsC
+wrk
+wrk
+wrk
+xnv
+wrk
+wrk
+wrk
+wrk
+qsC
+wrk
+wrk
+vQS
+csO
+vQS
+vQS
+vQS
+vQS
+vQS
+xqW
+sTd
+qOl
 "}
 (186,1,1) = {"
 aaa
@@ -64225,8 +65587,8 @@ aaa
 aaa
 aaa
 aaa
-cZm
-aaa
+qOl
+aab
 aab
 dnl
 dnl
@@ -64386,41 +65748,41 @@ eve
 eve
 jeY
 jeY
-jeY
-jeY
-jeY
-jeY
-jeY
-jeY
-jeY
-aab
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aab
-jeY
-jeY
-bHv
-utr
+eve
+eve
+eve
+tdv
+tdv
+tdv
+aPo
+tdv
+tdv
+aPo
+aPo
+coI
+tdv
+tdv
+tdv
+tdv
+tdv
+tdv
+tdv
+tdv
+tdv
+tdv
+tdv
+tdv
+aPo
+vQS
 gfg
 tfr
-utr
+vQS
 qdE
-utr
-utr
-utr
-bHv
-cZm
+vQS
+vQS
+xqW
+sTd
+qOl
 "}
 (187,1,1) = {"
 aaa
@@ -64442,8 +65804,8 @@ aaa
 aaa
 aaa
 aaa
-cZm
-aaa
+qOl
+aab
 aab
 dnl
 dnl
@@ -64604,40 +65966,40 @@ eve
 jeY
 jeY
 jeY
+eve
+sTd
+sTd
 jeY
 jeY
 jeY
 jeY
 jeY
 jeY
-aab
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aab
 jeY
 jeY
-bHv
-vQS
-utr
+jeY
+jeY
+jeY
+jeY
+eve
+eve
+jeY
+jeY
+jeY
+xEp
+jeY
+jeY
+sTd
+upD
+csO
 rjr
-tDh
+hjc
 xni
-utr
-tDh
-eYb
-bHv
-cZm
+vQS
+hjc
+vry
+sTd
+qOl
 "}
 (188,1,1) = {"
 aaa
@@ -64659,8 +66021,8 @@ aaa
 aaa
 aaa
 aaa
-cZm
-aaa
+qOl
+aab
 aab
 dnl
 dnl
@@ -64822,39 +66184,39 @@ jeY
 jeY
 jeY
 jeY
+sTd
+sTd
 jeY
 jeY
 jeY
 jeY
 jeY
-aab
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aab
 jeY
 jeY
-bHv
-utr
-utr
-qDZ
-utr
-utr
-utr
-utr
-utr
-bHv
-cZm
+jeY
+eve
+eve
+eve
+eve
+eve
+eve
+jeY
+jeY
+jeY
+xEp
+jeY
+jeY
+sTd
+vQS
+csO
+vQS
+vQS
+vQS
+vQS
+vQS
+vQS
+sTd
+qOl
 "}
 (189,1,1) = {"
 aaa
@@ -64876,8 +66238,8 @@ aaa
 aaa
 aaa
 aaa
-cZm
-aaa
+qOl
+aab
 aab
 dnl
 dnl
@@ -65040,29 +66402,29 @@ jeY
 jeY
 jeY
 jeY
+sTd
 jeY
 jeY
 jeY
 jeY
-aab
-aaa
-aaa
-aaa
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-qOl
+jeY
+jeY
+jeY
+jeY
+eve
+eve
+eve
+eve
+fwQ
+eve
+jeY
+jeY
+jeY
 xEp
 xEp
-mFd
+xEp
 aPo
+xqW
 nMb
 qXP
 uyC
@@ -65070,8 +66432,8 @@ xqW
 qbd
 xqW
 xqW
-mFd
-cZm
+aPo
+qOl
 "}
 (190,1,1) = {"
 aaa
@@ -65093,8 +66455,8 @@ aaa
 aaa
 aaa
 aaa
-cZm
-aaa
+qOl
+aab
 aab
 dnl
 dnl
@@ -65261,34 +66623,34 @@ jeY
 jeY
 jeY
 jeY
-aab
-aaa
-aaa
-aaa
-cZm
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aab
+jeY
+jeY
+jeY
+jeY
+jeY
+fwQ
+eve
+eve
+eve
+eve
+jeY
+jeY
+jeY
+jeY
+jeY
 jeY
 xEp
-bHv
+sTd
 myA
 nQE
 rde
 uCk
 xuX
-bHv
-bHv
-bHv
-bHv
-aaa
+sTd
+sTd
+sTd
+sTd
+aab
 "}
 (191,1,1) = {"
 aaa
@@ -65310,8 +66672,8 @@ aaa
 aaa
 aaa
 aaa
-cZm
-aaa
+qOl
+aab
 aab
 dnl
 dnl
@@ -65478,34 +66840,34 @@ jeY
 jeY
 jeY
 jeY
-aab
-aaa
-aaa
-aaa
-cZm
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aab
+jeY
+jeY
+jeY
+jeY
+eve
+eve
+eve
+jeY
+jeY
+jeY
+jeY
+jeY
+jeY
+jeY
+jeY
 jeY
 xEp
-bHv
-bHv
+sTd
+sTd
 oiH
-rdw
-rdw
+vQS
+vQS
 xyY
-bHv
+sTd
 aab
 aab
 aab
-aaa
+aab
 "}
 (192,1,1) = {"
 aaa
@@ -65527,8 +66889,8 @@ aaa
 aaa
 aaa
 aaa
-cZm
-aaa
+qOl
+aab
 aab
 dnl
 dnl
@@ -65695,30 +67057,30 @@ jeY
 jeY
 jeY
 jeY
-aab
-aaa
-aaa
-aaa
-cZm
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aab
+jeY
+jeY
+jeY
+eve
+eve
+eve
+eve
+jeY
+jeY
+jeY
+jeY
+jeY
+jeY
+jeY
+jeY
 jeY
 xEp
 jeY
-bHv
+sTd
 oiH
-rhf
-rhf
+wrk
+wrk
 xyY
-bHv
+sTd
 aab
 aaa
 aaa
@@ -65744,8 +67106,8 @@ aaa
 aaa
 aaa
 aaa
-cZm
-aaa
+qOl
+aab
 aab
 dnl
 dnl
@@ -65912,30 +67274,30 @@ jeY
 jeY
 jeY
 jeY
-aab
-aaa
-aaa
-aaa
-cZm
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aab
+jeY
+jeY
+jeY
+eve
+eve
+jeY
+jeY
+jeY
+jeY
+jeY
+jeY
+jeY
+jeY
+jeY
+jeY
 jeY
 xEp
 jeY
-bHv
+sTd
 oVQ
 riu
 uKa
 xJu
-bHv
+sTd
 aab
 aaa
 aaa
@@ -65961,8 +67323,8 @@ aaa
 aaa
 aaa
 aaa
-cZm
-aaa
+qOl
+aab
 aab
 dnl
 dnl
@@ -66129,30 +67491,30 @@ jeY
 jeY
 jeY
 jeY
-aab
-aaa
-aaa
-aaa
-cZm
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aab
+jeY
+jeY
+jeY
+fwQ
+eve
+eve
+jeY
+jeY
+jeY
+jeY
+jeY
+jeY
+jeY
+jeY
+jeY
 jeY
 xEp
 jeY
-bHv
+sTd
 oZb
-rdw
-rdw
+vQS
+vQS
 xRF
-bHv
+sTd
 aab
 aaa
 aaa
@@ -66178,8 +67540,8 @@ aaa
 aaa
 aaa
 aaa
-cZm
-aaa
+qOl
+aab
 aab
 dnl
 dnl
@@ -66346,30 +67708,30 @@ jeY
 jeY
 jeY
 jeY
-aab
-aaa
-aaa
-aaa
-cZm
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aab
+jeY
+jeY
+eve
+eve
+eve
+jeY
+jeY
+jeY
+jeY
+jeY
+jeY
+jeY
+jeY
+jeY
+jeY
 jeY
 xEp
 jeY
-bHv
-pgV
+sTd
+qgz
 rpq
 uLC
 xSt
-bHv
+sTd
 aab
 aaa
 aaa
@@ -66395,8 +67757,8 @@ aaa
 aaa
 aaa
 aaa
-cZm
-aaa
+qOl
+aab
 aab
 dnl
 dnl
@@ -66563,30 +67925,30 @@ jeY
 jeY
 jeY
 jeY
-aab
-aaa
-aaa
-aaa
-cZm
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aab
+jeY
+jeY
+eve
+eve
+eve
+jeY
+jeY
+jeY
+jeY
+jeY
+jeY
+jeY
+jeY
+jeY
+jeY
 jeY
 xEp
 jeY
-bHv
-pgV
+sTd
+qgz
 rAe
 vbQ
 uad
-bHv
+sTd
 aab
 aaa
 aaa
@@ -66612,8 +67974,8 @@ aaa
 aaa
 aaa
 aaa
-cZm
-aaa
+qOl
+aab
 aab
 dnl
 dnl
@@ -66780,30 +68142,30 @@ jeY
 jeY
 jeY
 jeY
-aab
-aaa
-aaa
-aab
-qOl
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-hqP
-fqj
-hqP
-bHv
+jeY
+jeY
+eve
+eve
+eve
+jeY
+jeY
+jeY
+jeY
+jeY
+jeY
+jeY
+jeY
+jeY
+jeY
+jeY
+xEp
+jeY
+sTd
 pkI
 rKr
 voK
 dFp
-bHv
+sTd
 aab
 aaa
 aaa
@@ -66829,8 +68191,8 @@ aaa
 aaa
 aaa
 aaa
-cZm
-aaa
+qOl
+aab
 aab
 dnl
 dnl
@@ -66986,7 +68348,7 @@ fwQ
 eve
 eve
 fwQ
-eve
+vKc
 loN
 jeY
 jeY
@@ -66997,30 +68359,30 @@ jeY
 jeY
 jeY
 jeY
-aab
-aaa
-aaa
-aab
-fqj
-hqP
-hqP
-hqP
-hqP
-hqP
-hqP
-hqP
-hqP
-hqP
-hqP
-hqP
-fqj
-hqP
-bHv
-pgV
+jeY
+jeY
+eve
+eve
+eve
+eve
+jeY
+jeY
+jeY
+jeY
+jeY
+jeY
+jeY
+jeY
+jeY
+jeY
+xEp
+jeY
+sTd
+qgz
 rYD
 vuE
 gXn
-bHv
+sTd
 aab
 aaa
 aaa
@@ -67046,8 +68408,8 @@ aaa
 aaa
 aaa
 aaa
-cZm
-aaa
+qOl
+aab
 aab
 dnl
 dnl
@@ -67214,30 +68576,30 @@ jeY
 jeY
 jeY
 jeY
-aab
-aaa
-aaa
-aab
-fqj
-hqP
-hqP
-hqP
-hqP
-hqP
-hqP
-hqP
-hqP
-hqP
-hqP
-hqP
-fqj
-hqP
-bHv
+jeY
+jeY
+eve
+eve
+eve
+jeY
+jeY
+jeY
+jeY
+jeY
+jeY
+jeY
+jeY
+jeY
+jeY
+jeY
+xEp
+jeY
+sTd
 pst
-rhf
+wrk
 vxE
 uad
-bHv
+sTd
 aab
 aaa
 aaa
@@ -67263,8 +68625,8 @@ aaa
 aaa
 aaa
 aaa
-cZm
-aaa
+qOl
+aab
 aab
 dnl
 dnl
@@ -67419,8 +68781,8 @@ eve
 fwQ
 eve
 eve
-eve
-jeY
+vKc
+kcY
 loN
 jeY
 jeY
@@ -67431,30 +68793,30 @@ jeY
 jeY
 jeY
 jeY
-aab
-aaa
-aaa
-aab
-fqj
-hqP
-hqP
-hqP
-hqP
-hqP
-hqP
-hqP
-hqP
-hqP
-hqP
-hqP
-fqj
-hqP
-bHv
+jeY
+jeY
+eve
+eve
+jeY
+jeY
+jeY
+jeY
+jeY
+jeY
+jeY
+jeY
+jeY
+jeY
+jeY
+jeY
+xEp
+jeY
+sTd
 pAs
 shI
 vzg
 uad
-bHv
+sTd
 aab
 aaa
 aaa
@@ -67480,8 +68842,8 @@ aaa
 aaa
 aaa
 aaa
-cZm
-aaa
+qOl
+aab
 aab
 dnl
 dnl
@@ -67635,43 +68997,43 @@ tZR
 eve
 eve
 eve
+jeY
+jeY
+eve
+mGX
+jeY
+jeY
+jeY
+jeY
+jeY
+jeY
+jeY
+jeY
+jeY
+jeY
+jeY
+eve
 eve
 jeY
 jeY
-loN
 jeY
 jeY
-jeY
-jeY
-jeY
-jeY
-jeY
-jeY
-jeY
-aab
-aaa
-aaa
-aab
-fqj
-hqP
-hqP
-hqP
-bHv
-bHv
-bHv
-bHv
-bHv
-bHv
-xJp
-xJp
+sTd
+sTd
+sTd
+sTd
+sTd
+sTd
+sTd
+sTd
 aPo
-xJp
-bHv
+sTd
+mxP
 oZb
-rdw
+vQS
 vFE
 xRF
-bHv
+sTd
 aab
 aaa
 aaa
@@ -67697,8 +69059,8 @@ aaa
 aaa
 aaa
 aaa
-cZm
-aaa
+qOl
+aab
 aab
 dnl
 dnl
@@ -67853,27 +69215,27 @@ eve
 eve
 jeY
 jeY
-jeY
-jeY
-loN
-jeY
-jeY
-jeY
+eve
+eve
+mGX
 jeY
 jeY
 jeY
 jeY
 jeY
 jeY
-aab
-aaa
-aaa
-aab
-fqj
-hqP
-hqP
-hqP
-bHv
+jeY
+jeY
+jeY
+jeY
+eve
+fwQ
+eve
+jeY
+jeY
+jeY
+jeY
+sTd
 dzW
 eCh
 eCh
@@ -67883,12 +69245,12 @@ igD
 juh
 kbu
 igD
-bHv
-pgV
+mxP
+qgz
 sBJ
 vWM
 uad
-bHv
+sTd
 aab
 aaa
 aaa
@@ -67914,8 +69276,8 @@ aaa
 aaa
 aaa
 aaa
-cZm
-aaa
+qOl
+aab
 aab
 ptp
 ptp
@@ -68069,43 +69431,43 @@ tZR
 jeY
 jeY
 jeY
-jeY
-jeY
-jeY
-loN
-jeY
-jeY
-jeY
-jeY
+eve
+eve
+fwQ
+mGX
 jeY
 jeY
 jeY
 jeY
 jeY
-aab
-aaa
-aaa
-aab
-fqj
-hqP
-hqP
-hqP
-bHv
+jeY
+jeY
+jeY
+jeY
+jeY
+eve
+eve
+eve
+jeY
+jeY
+jeY
+jeY
+nWE
 dFO
-eKa
-eKa
+kOh
+kOh
 fQH
-bHv
+mxP
 igK
 juu
 emA
 lgV
-bHv
-pgV
+mxP
+qgz
 sCz
 vYr
 ccx
-bHv
+sTd
 aab
 aaa
 aaa
@@ -68131,8 +69493,8 @@ aaa
 aaa
 aaa
 aaa
-cZm
-aaa
+qOl
+aab
 aab
 dnl
 dnl
@@ -68285,44 +69647,44 @@ jeY
 loN
 loN
 loN
-loN
-loN
-loN
-loN
-loN
+mGX
+mGX
+mGX
+mGX
+mGX
 jeY
 jeY
 jeY
 jeY
+eve
+eve
+eve
+eve
+jeY
+jeY
+eve
+eve
+eve
 jeY
 jeY
 jeY
 jeY
-jeY
-aab
-aaa
-aaa
-aab
-fqj
-hqP
-hqP
-hqP
-bHv
+sTd
 dLF
-eKa
-eKa
+kOh
+xRc
 gfc
 pNt
 ijF
 juU
 kbu
 lpn
-bHv
+mxP
 pEd
-qDZ
-utr
+piE
+rde
 uad
-bHv
+sTd
 aab
 aaa
 aaa
@@ -68348,8 +69710,8 @@ aaa
 aaa
 aaa
 aaa
-cZm
-aaa
+qOl
+aab
 aab
 dnl
 dnl
@@ -68501,45 +69863,45 @@ jeY
 jeY
 jeY
 jeY
+eve
+eve
+eve
+eve
+eve
+eve
+eve
 jeY
 jeY
 jeY
+eve
+eve
+eve
 jeY
 jeY
+eve
+eve
+eve
+eve
 jeY
 jeY
-jeY
-jeY
-jeY
-jeY
-jeY
-jeY
-jeY
-jeY
-aab
-aaa
-aaa
-aab
-fqj
-hqP
-xJp
-xJp
-bHv
-bHv
-bHv
-bHv
-bHv
-mFd
+sTd
+sTd
+mxP
+tdv
+mxP
+mxP
+mxP
+aPo
 xiw
 jAz
 kzI
 igD
 mDZ
-pgV
+qgz
 sLI
-rdw
+vQS
 nuE
-bHv
+sTd
 aab
 aaa
 aaa
@@ -68565,8 +69927,8 @@ aaa
 aaa
 aaa
 aaa
-cZm
-aaa
+qOl
+aab
 aab
 dnl
 dnl
@@ -68721,42 +70083,42 @@ jeY
 jeY
 jeY
 jeY
+eve
+eve
+eve
+eve
 jeY
 jeY
 jeY
+eve
+eve
+eve
+eve
+eve
+eve
+eve
+eve
 jeY
 jeY
 jeY
-jeY
-jeY
-jeY
-jeY
-jeY
-jeY
-aab
-aaa
-aaa
-aab
-fqj
-hqP
-xJp
+sTd
 osi
 hvr
 dPa
 eLI
-xJp
-xJp
-mFd
-det
-det
-det
+sTd
+sTd
+aPo
+nBy
+nBy
+nBy
 lqu
-bHv
-pgV
+mxP
+qgz
 riu
 wbU
 nQS
-bHv
+sTd
 aab
 aaa
 aaa
@@ -68782,8 +70144,8 @@ aaa
 aaa
 aaa
 aaa
-cZm
-aaa
+qOl
+aab
 aab
 dnl
 dnl
@@ -68938,42 +70300,42 @@ jeY
 jeY
 jeY
 jeY
+eve
+eve
+eve
+eve
 jeY
 jeY
 jeY
 jeY
+eve
+eve
+eve
+eve
+eve
+eve
+eve
 jeY
 jeY
 jeY
-jeY
-jeY
-jeY
-jeY
-jeY
-aab
-aaa
-aaa
-aab
-fqj
-hqP
-xJp
+sTd
 glf
-ipY
-ipY
-ipY
-eyz
+vlA
+nBy
+vlA
+mxP
 gok
-eyz
+mxP
 iAa
-ipY
+vlA
 kHY
 lrg
-bHv
-pgV
+mxP
+qgz
 sTE
 wpF
 uad
-bHv
+sTd
 aab
 aaa
 aaa
@@ -68999,8 +70361,8 @@ aaa
 aaa
 aaa
 aaa
-cZm
-aaa
+qOl
+aab
 aab
 dnl
 dnl
@@ -69155,42 +70517,42 @@ jeY
 jeY
 jeY
 jeY
-jeY
-jeY
-jeY
-jeY
-jeY
-jeY
-jeY
-jeY
-jeY
-jeY
-jeY
-jeY
-aab
-aaa
-aaa
-aab
-fqj
-hqP
-xJp
-bTi
-rqU
-ipY
-ipY
+eve
+eve
+eve
+eve
+eve
+fwQ
+eve
+eve
+eve
+eve
+eve
+eve
+eve
+eve
+eve
+eve
+eve
+eve
+mxP
+vlA
+vlA
+nBy
+vlA
 ePv
 gsZ
 ePv
-ipY
-ipY
-ipY
-ipY
-mFd
+vlA
+vlA
+vlA
+vlA
+tdv
 oZb
 sVq
 sLI
 xRF
-bHv
+sTd
 aab
 aaa
 aaa
@@ -69216,8 +70578,8 @@ aaa
 aaa
 aaa
 aaa
-cZm
-aaa
+qOl
+aab
 aab
 dnl
 dnl
@@ -69372,42 +70734,42 @@ jeY
 jeY
 jeY
 jeY
-jeY
-jeY
-jeY
-jeY
-jeY
-jeY
-jeY
-jeY
-jeY
-jeY
-jeY
-jeY
-aab
-aaa
-aaa
-aab
-fqj
-hqP
+eve
+eve
+eve
+eve
+eve
+eve
+eve
+eve
+fwQ
+eve
+eve
+eve
+eve
+eve
+fwQ
+eve
+xEp
+xEp
 aPo
 ceT
-det
+nBy
 uqs
-det
+nBy
 fIi
 gwV
 hjE
 nBy
-bKh
-det
+nBy
+nBy
 luM
-mFd
+tdv
 pHZ
 sWk
-qDZ
+rde
 uad
-bHv
+sTd
 aab
 aaa
 aaa
@@ -69433,8 +70795,8 @@ aaa
 aaa
 aaa
 aaa
-cZm
-aaa
+qOl
+aab
 aab
 dnl
 dnl
@@ -69589,42 +70951,42 @@ jeY
 jeY
 jeY
 jeY
+eve
 jeY
 jeY
 jeY
 jeY
 jeY
+eve
+eve
+eve
 jeY
 jeY
 jeY
 jeY
 jeY
+eve
+eve
+xEp
 jeY
-jeY
-aab
-aaa
-aaa
-aab
-fqj
-hqP
-xJp
+sTd
 cin
-ipY
-ipY
-ipY
+vlA
+vlA
+vlA
 ePv
 gsZ
 ePv
-ipY
-ipY
+vlA
+vlA
 kXR
 lAi
-bHv
+mxP
 pHZ
 tjb
 weF
 uad
-bHv
+sTd
 aab
 aaa
 aaa
@@ -69650,8 +71012,8 @@ aaa
 aaa
 aaa
 aaa
-cZm
-aaa
+qOl
+aab
 aab
 dnl
 dnl
@@ -69818,30 +71180,30 @@ jeY
 jeY
 jeY
 jeY
-aab
-aaa
-aaa
-aab
-fqj
-hqP
-xJp
+jeY
+jeY
+eve
+jeY
+xEp
+jeY
+sTd
 coa
-ipY
+vlA
 dYK
-ipY
-eyz
+vlA
+mxP
 gsZ
-eyz
+mxP
 iJf
 jGP
 dYK
-ipY
-bHv
+vlA
+mxP
 tXf
 tjQ
 wff
 uad
-bHv
+sTd
 aab
 aaa
 aaa
@@ -69867,8 +71229,8 @@ aaa
 aaa
 aaa
 aaa
-cZm
-aaa
+qOl
+aab
 aab
 dnl
 dnl
@@ -70035,30 +71397,30 @@ jeY
 jeY
 jeY
 jeY
-aab
-aaa
-aaa
-aab
-fqj
-hqP
-xJp
-xJp
-eyz
-eyz
-eyz
-eyz
+jeY
+jeY
+jeY
+jeY
+xEp
+jeY
+sTd
+aPo
+mxP
+mxP
+mxP
+mxP
 gsZ
-eyz
-eyz
-eyz
-eyz
-eyz
+mxP
+mxP
+mxP
+mxP
+mxP
 mDZ
 pVl
-rdw
+vQS
 wnO
 ePu
-bHv
+sTd
 aab
 aaa
 aaa
@@ -70084,8 +71446,8 @@ aaa
 aaa
 aaa
 aaa
-cZm
-aaa
+qOl
+aab
 aab
 dnl
 dnl
@@ -70252,30 +71614,30 @@ jeY
 jeY
 jeY
 jeY
-aab
-aaa
-aaa
-aab
-fqj
-hqP
+jeY
+jeY
+jeY
+jeY
+xEp
+jeY
 sTd
 ipY
 dbi
 dbi
 dbi
-fcT
+mxP
 gAX
 dbi
 dbi
 jKd
 dbi
-rhf
-mPE
+wrk
+wrk
 pVB
 tyD
 wpF
 uad
-bHv
+sTd
 aab
 aaa
 aaa
@@ -70301,8 +71663,8 @@ aaa
 aaa
 aaa
 aaa
-cZm
-aaa
+qOl
+aab
 aab
 dnl
 dnl
@@ -70469,30 +71831,30 @@ jeY
 jeY
 jeY
 jeY
-aab
-aaa
-aaa
-aab
-fqj
-hqP
+jeY
+jeY
+jeY
+jeY
+xEp
+jeY
 sTd
 nVP
 lHD
-ipY
-ipY
+vlA
+vlA
 fnW
 gCH
 hwc
 hwc
 hwc
 eRD
-lFK
+ncd
 ncd
 qbh
-rhf
+wrk
 wpO
 smb
-bHv
+sTd
 aab
 aaa
 aaa
@@ -70518,8 +71880,8 @@ aaa
 aaa
 aaa
 aaa
-cZm
-aaa
+qOl
+aab
 aab
 dnl
 dnl
@@ -70686,14 +72048,14 @@ jeY
 jeY
 jeY
 jeY
-aab
-aaa
-aaa
-aab
-fqj
-hqP
+jeY
+jeY
+jeY
+jeY
+xEp
+jeY
 sTd
-ipY
+szr
 ekE
 ekE
 ekE
@@ -70703,13 +72065,13 @@ hRb
 hRb
 ekE
 ekE
-rhf
-mPE
+wrk
+wrk
 qcC
 tAB
 wrk
 uad
-bHv
+sTd
 aab
 aaa
 aaa
@@ -70735,8 +72097,8 @@ aaa
 aaa
 aaa
 aaa
-cZm
-aaa
+qOl
+aab
 aab
 dnl
 dnl
@@ -70904,29 +72266,29 @@ aab
 aab
 aab
 aab
-aaa
-aaa
+aab
+aab
 aab
 qOl
 aab
-xJp
-xJp
-eyz
-eli
-eyz
-eyz
+sTd
+sTd
+mxP
+tdv
+mxP
+mxP
 gZX
-eli
-eli
-eyz
-eyz
-ddi
-bHv
+tdv
+tdv
+mxP
+mxP
+mxP
+mxP
 qfQ
 tCQ
 vuE
 uad
-bHv
+sTd
 aab
 aaa
 aaa
@@ -70952,8 +72314,8 @@ aaa
 aaa
 aaa
 aaa
-cZm
-aaa
+qOl
+aab
 aab
 dnl
 dnl
@@ -71124,26 +72486,26 @@ aaa
 aaa
 aaa
 aaa
-cZm
+qOl
 aab
-xJp
+sTd
 cBo
 deb
 eoX
-eMX
-eli
+nBy
+tdv
 gZX
-eli
+tdv
 iKL
-ipY
+vlA
 lgf
 lNk
-bHv
+mxP
 qgz
-tDh
+qwT
 wBY
 uad
-bHv
+sTd
 aab
 aaa
 aaa
@@ -71169,8 +72531,8 @@ aaa
 aaa
 aaa
 aaa
-cZm
-aaa
+qOl
+aab
 aab
 dnl
 dnl
@@ -71341,26 +72703,26 @@ aaa
 aaa
 aaa
 aaa
-cZm
+qOl
 aab
-xJp
+sTd
 cHL
-det
+nBy
 euF
 vlA
 fAC
 gZX
 fAC
-ipY
-ipY
-rqU
+vlA
+vlA
+vlA
 lPS
-bHv
-pgV
+mxP
+qgz
 vbQ
 bRs
 lBJ
-bHv
+sTd
 aab
 aaa
 aaa
@@ -71386,8 +72748,8 @@ aaa
 aaa
 aaa
 aaa
-cZm
-aaa
+qOl
+aab
 aab
 dnl
 dnl
@@ -71558,26 +72920,26 @@ aaa
 aaa
 aaa
 aaa
-cZm
+qOl
 aab
-xJp
+sTd
 cLi
 dhn
-ipY
-ipY
+vlA
+vlA
 fIi
 scd
 hSh
-det
+nBy
 uqs
-det
+nBy
 lZp
-mFd
-pgV
+tdv
+qgz
 tHW
 wKg
 uad
-bHv
+sTd
 aab
 aaa
 aaa
@@ -71603,8 +72965,8 @@ aaa
 aaa
 aaa
 aaa
-cZm
-aaa
+qOl
+aab
 aab
 dnl
 dnl
@@ -71775,26 +73137,26 @@ aaa
 aaa
 aaa
 aaa
-cZm
+qOl
 aab
-xJp
+sTd
 cMC
 fuB
 lHD
-ipY
+vlA
 fAC
 gZX
 hTI
-rqU
+vlA
 ekC
-ipY
+vlA
 mrL
-bHv
-pgV
+mxP
+qgz
 tLL
 xiz
 nuE
-bHv
+sTd
 aab
 aaa
 aaa
@@ -71820,8 +73182,8 @@ aaa
 aaa
 aaa
 aaa
-cZm
-aaa
+qOl
+aab
 aab
 dnl
 dnl
@@ -71992,26 +73354,26 @@ aaa
 aaa
 aaa
 aaa
-cZm
+qOl
 aab
-xJp
+sTd
 cTg
 dyQ
 exf
 exf
-eli
+tdv
 hgL
 hVy
 jkn
-ipY
+vlA
 lgt
 mrL
-bHv
+mxP
 qnf
 ucI
 xjA
 hgw
-bHv
+sTd
 aab
 aaa
 aaa
@@ -72037,8 +73399,8 @@ aaa
 aaa
 aaa
 aaa
-cZm
-aaa
+qOl
+aab
 aab
 dnl
 dnl
@@ -72209,26 +73571,26 @@ aaa
 aaa
 aaa
 aaa
-cZm
+qOl
 aab
-xJp
-xJp
-xJp
-xJp
-xJp
-xJp
-xJp
-xJp
+sTd
+sTd
+sTd
+sTd
+sTd
+sTd
+sTd
+sTd
 jpN
 jMk
 lgt
 mwK
-bHv
+mxP
 quA
 upn
 xlj
 qJF
-bHv
+sTd
 aab
 aaa
 aaa
@@ -72254,8 +73616,8 @@ aaa
 aaa
 aaa
 aaa
-cZm
-aaa
+qOl
+aab
 aab
 dnl
 dnl
@@ -72426,26 +73788,26 @@ aaa
 aaa
 aaa
 aaa
-cZm
+qOl
 aab
-bHv
-bHv
-bHv
-bHv
-bHv
-bHv
-bHv
-bHv
-bHv
-bHv
-bHv
-bHv
-bHv
-bHv
-bHv
-bHv
-bHv
-bHv
+sTd
+sTd
+sTd
+sTd
+sTd
+sTd
+sTd
+sTd
+sTd
+sTd
+sTd
+sTd
+sTd
+sTd
+sTd
+sTd
+sTd
+sTd
 aab
 aaa
 aaa
@@ -72471,8 +73833,8 @@ aaa
 aaa
 aaa
 aaa
-cZm
-aaa
+qOl
+aab
 aab
 aab
 aab
@@ -72643,7 +74005,7 @@ aaa
 aaa
 aaa
 aaa
-cZm
+qOl
 aab
 aab
 aab
@@ -72688,6 +74050,113 @@ aaa
 aaa
 aaa
 aaa
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
+qOl
 cZm
 cZm
 cZm
@@ -72753,114 +74222,7 @@ cZm
 cZm
 cZm
 cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
-cZm
+qOl
 aaa
 aaa
 aaa
