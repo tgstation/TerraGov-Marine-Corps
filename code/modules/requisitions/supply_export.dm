@@ -53,7 +53,7 @@
  */
 /mob/living/carbon/human/proc/burial_export(faction_selling)
 	var/report_name = name
-	var/list/problems = new()
+	var/list/problems = list()
 	var/payout = 0
 
 	switch(job.job_category)
