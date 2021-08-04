@@ -110,7 +110,8 @@
 		var/mob/living/burner_mob = igniter
 		if(!burner_mob.on_fire)
 			return
-	else return
+	else
+		return
 	visible_message(span_warning("The spilled fuel catches fire!"))
 	ignite_fuel()
 
