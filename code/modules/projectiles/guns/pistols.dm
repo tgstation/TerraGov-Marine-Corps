@@ -378,11 +378,13 @@
 /obj/item/weapon/gun/pistol/standard_pocketpistol
 	name = "\improper TP-17 pocket pistol"
 	desc = "A tiny pistol used by the TGMC as an emergency handgun meant to be stored about anywhere. Fits in boots. Uses .380 ACP stored in an eight round magazine."
+	icon = 'icons/Marine/gun64.dmi' // This is here here for the empty sprite.
 	icon_state = "tp17"
 	item_state = "tp17"
+	fire_animation = "tp17_fire"
 	caliber = CALIBER_380ACP //codex
 	max_shells = 8 //codex
-	fire_sound = 'sound/weapons/guns/fire/pistol_holdout.ogg'
+	fire_sound = 'sound/weapons/guns/fire/tp17.ogg'
 	current_mag = /obj/item/ammo_magazine/pistol/standard_pocketpistol
 	w_class = WEIGHT_CLASS_TINY
 	force = 5
@@ -394,7 +396,7 @@
 	)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
-	attachable_offset = list("muzzle_x" = 28, "muzzle_y" = 20,"rail_x" = 21, "rail_y" = 13, "under_x" = 17, "under_y" = 15, "stock_x" = 22, "stock_y" = 17)
+	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 20,"rail_x" = 21, "rail_y" = 15, "under_x" = 17, "under_y" = 15, "stock_x" = 22, "stock_y" = 17)
 
 	fire_delay = 0.125 SECONDS
 	recoil = -2
