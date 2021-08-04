@@ -46,6 +46,7 @@
  **Any brute or burn damage, including internal bleeding
  **Any limbs requiring repair, bearing an open surgical incision, or carrying high germs
  **Eye damage or disfigurement
+ **Missing synth head, on top of the normal missing limb penalty
  **Shrapnel
  **Full dress uniform: torso, hat, gloves, boots
  **Suicide
@@ -103,6 +104,12 @@
 	if(skullcase.disfigured)
 		payout -= 10
 		problems += "disfigurement"
+
+	//No refunds on broken synths
+	if((species.species_flags & DETACHABLE_HEAD) && (skullcase.limb_status & LIMB_DESTROYED))
+		payout = 0
+		problems += "positronic brain absent"
+
 	if(LAZYLEN(embedded_objects))
 		payout -= 5
 		problems += "embedded shrapnel"
