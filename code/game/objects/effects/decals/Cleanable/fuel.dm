@@ -35,10 +35,6 @@
 	fuel_spread()
 	RegisterSignal(loc, COMSIG_TURF_LANDED, .proc/ignite_check_wrapper)
 
-/obj/effect/decal/cleanable/liquid_fuel/Destroy()
-	UnregisterSignal(loc, COMSIG_TURF_LANDED)
-	return ..()
-
 /obj/effect/decal/cleanable/liquid_fuel/Crossed(atom/movable/AM)
 	. = ..()
 	if(AM.throwing)
