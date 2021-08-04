@@ -587,6 +587,7 @@
 /mob/proc/facedir(ndir)
 	if(!canface())
 		return FALSE
+	SEND_SIGNAL(src, COMSIG_MOB_FACE_DIR, ndir)
 	setDir(ndir)
 	if(buckled && !buckled.anchored)
 		buckled.setDir(ndir)

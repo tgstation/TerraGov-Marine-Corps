@@ -10,10 +10,12 @@
 	throwforce = 5.0
 	throw_range = 15
 	throw_speed = 3
+	zoom_tile_offset = 11
+	zoom_viewsize = 12
 
 
 /obj/item/binoculars/attack_self(mob/user)
-	zoom(user, 11, 12)
+	zoom(user)
 
 #define MODE_CAS 0
 #define MODE_RAILGUN 1
