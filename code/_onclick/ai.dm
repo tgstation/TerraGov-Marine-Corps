@@ -151,6 +151,24 @@
 	else
 		alarm()
 
+/* Cryo cell */
+/obj/machinery/atmospherics/components/unary/cryo_cell/AICtrlClick(mob/living/silicon/ai/user) // Toggles the cryo cell
+	if(on)
+		turn_off()
+	else
+		turn_on()
+
+/* Helms Computer */
+/obj/machinery/computer/navigation/AICtrlClick(mob/living/silicon/ai/user)
+	message_admins("[ADMIN_TPMONTY(user)] has attempted to send the ship Upward in orbit")///raises the orbit
+	do_orbit_checks("UP")
+	TIMER_COOLDOWN_START(src, COOLDOWN_ORBIT_CHANGE, 1 MINUTES)
+
+/obj/machinery/computer/navigation/AIShiftClick(mob/living/silicon/ai/user)
+	message_admins("[ADMIN_TPMONTY(user)] has attempted to send the ship Downward in orbit")///lowers the orbit
+	do_orbit_checks("DOWN")
+	TIMER_COOLDOWN_START(src, COOLDOWN_ORBIT_CHANGE, 1 MINUTES)
+
 
 //
 // Override TurfAdjacent for AltClicking
