@@ -119,7 +119,6 @@
 		if(XENO_HIVE_ADMEME)
 			new_caste_type = /mob/living/carbon/xenomorph/king/admeme
 	var/mob/living/carbon/xenomorph/king/kong = new new_caste_type()
-	SSminimaps.add_marker(kong, kong.z, hud_flags = MINIMAP_FLAG_XENO, iconstate = kong.xeno_caste.minimap_icon)
 	RegisterSignal(kong, COMSIG_MOB_LOGIN , .proc/on_king_occupied)
 	if(future_king)
 		future_king.mind.transfer_to(kong)
@@ -135,6 +134,10 @@
 	priority_announce("Warning: Psychic anomaly signature in [myarea] has spiked and begun to move.", "TGMC Intel Division")
 	xeno_message(span_xenoannounce("[occupied] has awakened at [myarea]. Praise the Queen Mother!"), 3, ownerhive)
 	future_king?.offer_mob()
+
+	var/mob/living/carbon/xenomorph/king/kong = occupied
+	SSminimaps.add_marker(kong, kong.z, MINIMAP_FLAG_XENO, kong.xeno_caste.minimap_icon)
+
 	qdel(src)
 
 /obj/structure/resin/king_pod/obj_destruction(damage_flag)
