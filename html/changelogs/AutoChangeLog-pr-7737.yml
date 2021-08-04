@@ -1,0 +1,4 @@
+author: "lbnesquik"
+delete-after: True
+changes: 
+  - balance: "Made the AI unable to use the dropship doors while it is hijacked."
