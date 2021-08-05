@@ -14,8 +14,8 @@
 	set desc = "Evolve into a higher form."
 	set category = "Alien"
 
-	var/mob/living/carbon/xenomorph/X = src
-	X.ui_interact(src)
+	var/mob/living/carbon/xenomorph/xeno = src
+	xeno.ui_interact(src)
 
 /mob/living/carbon/xenomorph/ui_state(mob/user)
 	return GLOB.xeno_state
