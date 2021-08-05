@@ -51,17 +51,17 @@
 
 /mob/living/carbon/xenomorph/crusher/proc/grabbed_self_attack()
 	SIGNAL_HANDLER
-	var/mob/living/grabbed = pulling
+	var/mob/living/carbon/xenomorph/grabbed = pulling
 	if(!istype(grabbed))
 		return NONE
-	if(stat == CONSCIOUS && isxenorunner(grabbed))
+	if(stat == CONSCIOUS && grabbed.xeno_caste.caste_flags & CAN_RIDE_CRUSHER)
 		//If you dragged them to you and you're aggressively grabbing try to fireman carry them
-		INVOKE_ASYNC(src, .proc/carry_runner, grabbed)
+		INVOKE_ASYNC(src, .proc/carry_xeno, grabbed)
 		return COMSIG_GRAB_SUCCESSFUL_SELF_ATTACK
 	return NONE
 
-/mob/living/carbon/xenomorph/crusher/proc/carry_runner(mob/living/carbon/target)
-	if(!isxenorunner(target) || incapacitated(restrained_flags = RESTRAINED_NECKGRAB))
+/mob/living/carbon/xenomorph/crusher/proc/carry_xeno(mob/living/carbon/target)
+	if(incapacitated(restrained_flags = RESTRAINED_NECKGRAB))
 		to_chat(src, span_warning("You can't fireman carry [target]!"))
 		return
 	visible_message(span_notice("[src] starts hoisting [target] onto [p_their()] back..."),
