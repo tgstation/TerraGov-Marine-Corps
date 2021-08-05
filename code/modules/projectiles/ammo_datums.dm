@@ -1731,7 +1731,7 @@ datum/ammo/bullet/revolver/tp44
 	name = "neurotoxic splash"
 	added_spit_delay = 0
 	spit_cost = 200
-	damage = 45
+	damage = 40
 	smoke_strength = 0.8
 	reagent_transfer_amount = 9
 
