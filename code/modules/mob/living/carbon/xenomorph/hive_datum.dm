@@ -1202,6 +1202,9 @@ to_chat will check for valid clients itself already so no need to double check f
 	xeno_message("We don't have any silos! The hive will collapse if nothing is done", "xenoannounce", 6, TRUE)
 	D.siloless_hive_timer = addtimer(CALLBACK(D, /datum/game_mode.proc/siloless_hive_collapse), 5 MINUTES, TIMER_STOPPABLE)
 
+	// If hive permissions previously restricted building of silos, enable it to prevent collapse.
+	building_allowed |= XENO_BUILDING_SILO
+
 /**
  * Add a mob to the candidate queue, the first mobs of the queue will have priority on new larva spots
  * return TRUE if the observer was added, FALSE if it was removed

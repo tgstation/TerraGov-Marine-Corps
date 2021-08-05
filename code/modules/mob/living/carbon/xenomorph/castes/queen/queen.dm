@@ -27,7 +27,6 @@
 		/mob/living/carbon/xenomorph/proc/claw_toggle,
 		/mob/living/carbon/xenomorph/queen/proc/set_orders,
 		/mob/living/carbon/xenomorph/proc/hijack,
-		/mob/living/carbon/xenomorph/proc/points_toggle,
 	)
 
 // ***************************************

@@ -96,23 +96,24 @@
 
 	var/choice = tgui_input_list(src, "Choose what to allow the hive to build.", "Building", permissions)
 
+	var/mob/living/carbon/xenomorph/xeno = owner
 	switch(choice)
 		if("Unrestricted")
 			to_chat(src, span_xenonotice("We have allowed the unrestricted expenditure of psy points for building silos and turrets by others."))
 			xeno_message("The Queen has permitted the unrestricted construction of <b>both silos and turrets</b>.")
-			hive.building_allowed = XENO_BUILDING_UNRESTRICTED
+			xeno.hive.building_allowed = XENO_BUILDING_UNRESTRICTED
 		if("Only Silos")
 			to_chat(src, span_xenonotice("We have allowed the expenditure of psy points for building silos by others."))
 			xeno_message("The Queen has permitted the construction of <b>only silos</b>.")
-			hive.building_allowed = XENO_BUILDING_SILO
+			xeno.hive.building_allowed = XENO_BUILDING_SILO
 		if("Only Turrets")
 			to_chat(src, span_xenonotice("We have allowed the expenditure of psy points for building turrets by others."))
 			xeno_message("The Queen has permitted the construction of <b>only turrets</b>.")
-			hive.building_allowed = XENO_BUILDING_TURRET
+			xeno.hive.building_allowed = XENO_BUILDING_TURRET
 		if("Forbidden")
 			to_chat(src, span_xenonotice("We have forbidden the expenditure of psy points by others."))
 			xeno_message("The Queen has <b>forbidden</b> the construction of silos and turrets.")
-			hive.building_allowed = NONE
+			xeno.hive.building_allowed = NONE
 
 // ***************************************
 // *********** Slashing permissions
