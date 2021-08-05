@@ -101,15 +101,15 @@
 			to_chat(src, span_xenonotice("We have allowed the unrestricted expenditure of psy points for building silos and turrets by others."))
 			xeno_message("The Queen has permitted the unrestricted construction of <b>both silos and turrets</b>.")
 			hive.building_allowed = XENO_BUILDING_UNRESTRICTED
-		else if("Only Silos")
+		if("Only Silos")
 			to_chat(src, span_xenonotice("We have allowed the expenditure of psy points for building silos by others."))
 			xeno_message("The Queen has permitted the construction of <b>only silos</b>.")
 			hive.building_allowed = XENO_BUILDING_SILO
-		else if("Only Turrets")
+		if("Only Turrets")
 			to_chat(src, span_xenonotice("We have allowed the expenditure of psy points for building turrets by others."))
 			xeno_message("The Queen has permitted the construction of <b>only turrets</b>.")
 			hive.building_allowed = XENO_BUILDING_TURRET
-		else if("Forbidden")
+		if("Forbidden")
 			to_chat(src, span_xenonotice("We have forbidden the expenditure of psy points by others."))
 			xeno_message("The Queen has <b>forbidden</b> the construction of silos and turrets.")
 			hive.building_allowed = NONE
