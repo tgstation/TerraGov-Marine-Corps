@@ -75,7 +75,7 @@ SUBSYSTEM_DEF(weeds)
 	if(iswallturf(T))
 		new /obj/effect/alien/weeds/weedwall(T, node)
 		return
-
+	var/swapped = FALSE
 	for (var/obj/O in T)
 		if(istype(O, /obj/structure/window/framed))
 			new /obj/effect/alien/weeds/weedwall/window(T, node)
@@ -94,5 +94,7 @@ SUBSYSTEM_DEF(weeds)
 			if(weed.type == node.weed_type)
 				weed.parent_node = node
 				return
+			weed.swapped = TRUE
+			swapped = TRUE
 			qdel(O)
-	new node.weed_type(T, node)
+	new node.weed_type(T, node, swapped)

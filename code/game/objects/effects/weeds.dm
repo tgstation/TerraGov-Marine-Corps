@@ -25,13 +25,15 @@
 	var/color_variant = SPEED_COLOR
 	///The healing buff when resting on this weed
 	var/resting_buff = 1
+	///If these weeds are not destroyed but just swapped
+	var/swapped = FALSE
 
 /obj/effect/alien/weeds/deconstruct(disassembled = TRUE)
 	GLOB.round_statistics.weeds_destroyed++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "weeds_destroyed")
 	return ..()
 
-/obj/effect/alien/weeds/Initialize(mapload, obj/effect/alien/weeds/node/node)
+/obj/effect/alien/weeds/Initialize(mapload, obj/effect/alien/weeds/node/node, swapped = FALSE)
 	. = ..()
 
 	if(!isnull(node))
@@ -39,16 +41,18 @@
 			CRASH("Weed created with non-weed node. Type: [node.type]")
 		parent_node = node
 	update_icon()
-	update_neighbours()
+	if(!swapped)
+		update_neighbours()
 
 /obj/effect/alien/weeds/Destroy()
+	parent_node = null
+	if(swapped)
+		return ..()
 	for(var/mob/living/L in range(1, src))
 		SEND_SIGNAL(L, COMSIG_LIVING_WEEDS_ADJACENT_REMOVED)
 	SEND_SIGNAL(loc, COMSIG_TURF_WEED_REMOVED)
-	var/oldloc = loc
-	parent_node = null
-	. = ..()
-	update_neighbours(oldloc)
+	INVOKE_NEXT_TICK(src, .proc/update_neighbours, loc)
+	return ..()
 
 /obj/effect/alien/weeds/examine(mob/user)
 	..()
@@ -172,9 +176,26 @@
 	/// What type of weeds this node spreads
 	var/obj/effect/alien/weeds/weed_type
 
+/obj/effect/alien/weeds/node/Initialize(mapload, obj/effect/alien/weeds/node/node)
+	var/swapped = FALSE
+	for(var/obj/effect/alien/weeds/W in loc)
+		W.swapped = TRUE
+		swapped = TRUE
+		if(W != src)
+			qdel(W) //replaces the previous weed
+			break
+	. = ..(mapload, node, swapped)
+
+	update_icon()
+
+	// Generate our full graph before adding to SSweeds
+	node_turfs = filled_turfs(src, node_range, "square")
+	SSweeds.add_node(src)
+
 /obj/effect/alien/weeds/node/Destroy()
 	. = ..()
-	SSweeds_decay.decay_weeds(src)
+	if(!swapped)
+		SSweeds_decay.decay_weeds(src)
 
 /obj/effect/alien/weeds/node/attack_alien(mob/living/carbon/xenomorph/X, damage_amount, damage_type, damage_flag, effects, armor_penetration, isrightclick)
 	. = ..()
@@ -193,19 +214,6 @@
 	. = ..()
 	overlays.Cut()
 	overlays += node_icon
-
-/obj/effect/alien/weeds/node/Initialize(mapload, obj/effect/alien/weeds/node/node)
-	for(var/obj/effect/alien/weeds/W in loc)
-		if(W != src)
-			qdel(W) //replaces the previous weed
-			break
-	. = ..()
-
-	update_icon()
-
-	// Generate our full graph before adding to SSweeds
-	node_turfs = filled_turfs(src, node_range, "square")
-	SSweeds.add_node(src)
 
 //Speed weed node
 /obj/effect/alien/weeds/node/speed
