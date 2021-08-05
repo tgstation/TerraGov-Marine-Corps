@@ -21,8 +21,11 @@
 	. = ..()
 	if(!breathy)
 		return
+	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_GAS_BREATH))
+		return
 	if(slot == SLOT_WEAR_MASK)
-		playsound(user, "gasbreath", 25, 1)
+		playsound(user, "gasbreath", 20, 1)
+		TIMER_COOLDOWN_START(src, COOLDOWN_GAS_BREATH, 10 SECONDS)
 
 /obj/item/clothing/mask/gas/tactical
 	name = "Tactical gas mask"
