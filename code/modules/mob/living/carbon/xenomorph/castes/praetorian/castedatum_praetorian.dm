@@ -70,27 +70,28 @@
 	upgrade = XENO_UPGRADE_ONE
 
 	// *** Speed *** //
-	speed = -0.3
+	speed = -0.4
 
 	// *** Plasma *** //
-	plasma_max = 900
+	plasma_max = 1000
 	plasma_gain = 60
 
 	// *** Health *** //
-	max_health = 320
+	max_health = 345
 
 	// *** Evolution *** //
 	upgrade_threshold = 750
 
 	// *** Defense *** //
-	soft_armor = list("melee" = 35, "bullet" = 40, "laser" = 40, "energy" = 40, "bomb" = XENO_BOMB_RESIST_0, "bio" = 33, "rad" = 33, "fire" = 40, "acid" = 33)
+	soft_armor = list("melee" = 37, "bullet" = 43, "laser" = 43, "energy" = 43, "bomb" = XENO_BOMB_RESIST_0, "bio" = 33, "rad" = 33, "fire" = 43, "acid" = 33)
 
 	// *** Ranged Attack *** //
 	spit_delay = 1.2 SECONDS
 	spit_types = list(/datum/ammo/xeno/toxin/heavy/upgrade1, /datum/ammo/xeno/acid/heavy)
 
-	acid_spray_damage_on_hit = 39
-	acid_spray_structure_damage = 53
+	acid_spray_damage_on_hit = 45
+	acid_spray_damage = 15
+	acid_spray_structure_damage = 45
 
 	// *** Pheromones *** //
 	aura_strength = 3.5
@@ -104,27 +105,28 @@
 	melee_damage = 23
 
 	// *** Speed *** //
-	speed = -0.4
+	speed = -0.5
 
 	// *** Plasma *** //
-	plasma_max = 1000
-	plasma_gain = 70
+	plasma_max = 1100
+	plasma_gain = 65
 
 	// *** Health *** //
-	max_health = 340
+	max_health = 365
 
 	// *** Evolution *** //
 	upgrade_threshold = 1750
 
 	// *** Defense *** //
-	soft_armor = list("melee" = 40, "bullet" = 45, "laser" = 45, "energy" = 45, "bomb" = XENO_BOMB_RESIST_0, "bio" = 35, "rad" = 35, "fire" = 45, "acid" = 35)
+	soft_armor = list("melee" = 43, "bullet" = 47, "laser" = 47, "energy" = 47, "bomb" = XENO_BOMB_RESIST_0, "bio" = 35, "rad" = 35, "fire" = 47, "acid" = 35)
 
 	// *** Ranged Attack *** //
 	spit_delay = 1.1 SECONDS
 	spit_types = list(/datum/ammo/xeno/toxin/heavy/upgrade2, /datum/ammo/xeno/acid/heavy)
 
-	acid_spray_damage_on_hit = 43
-	acid_spray_structure_damage = 61
+	acid_spray_damage_on_hit = 50
+	acid_spray_damage = 20
+	acid_spray_structure_damage = 55
 
 	// *** Pheromones *** //
 	aura_strength = 4
@@ -139,27 +141,28 @@
 	melee_damage = 23
 
 	// *** Speed *** //
-	speed = -0.5
+	speed = -0.6
 
 	// *** Plasma *** //
-	plasma_max = 1000
-	plasma_gain = 80
+	plasma_max = 1200
+	plasma_gain = 70
 
 	// *** Health *** //
-	max_health = 360
+	max_health = 390
 
 	// *** Evolution *** //
 	upgrade_threshold = 2750
 
 	// *** Defense *** //
-	soft_armor = list("melee" = 45, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = XENO_BOMB_RESIST_0, "bio" = 38, "rad" = 38, "fire" = 50, "acid" = 38)
+	soft_armor = list("melee" = 50, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = XENO_BOMB_RESIST_0, "bio" = 38, "rad" = 38, "fire" = 50, "acid" = 38)
 
 	// *** Ranged Attack *** //
 	spit_delay = 1 SECONDS
 	spit_types = list(/datum/ammo/xeno/toxin/heavy/upgrade3, /datum/ammo/xeno/acid/heavy)
 
-	acid_spray_damage_on_hit = 47
-	acid_spray_structure_damage = 69
+	acid_spray_damage_on_hit = 56
+	acid_spray_damage = 25
+	acid_spray_structure_damage = 60
 
 	// *** Pheromones *** //
 	aura_strength = 4.5
