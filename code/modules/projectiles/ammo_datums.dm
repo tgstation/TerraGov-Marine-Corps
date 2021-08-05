@@ -1731,21 +1731,21 @@ datum/ammo/bullet/revolver/tp44
 	name = "neurotoxic splash"
 	added_spit_delay = 0
 	spit_cost = 200
-	damage = 50
+	damage = 45
 	smoke_strength = 0.8
-	reagent_transfer_amount = 15
+	reagent_transfer_amount = 9
 
 /datum/ammo/xeno/toxin/heavy/upgrade1
 	smoke_strength = 0.85
-	reagent_transfer_amount = 10.5
+	reagent_transfer_amount = 10
 
 /datum/ammo/xeno/toxin/heavy/upgrade2
 	smoke_strength = 0.95
-	reagent_transfer_amount = 11
+	reagent_transfer_amount = 10.5
 
 /datum/ammo/xeno/toxin/heavy/upgrade3
 	smoke_strength = 1.5
-	reagent_transfer_amount = 11.5
+	reagent_transfer_amount = 11
 
 
 /datum/ammo/xeno/sticky
