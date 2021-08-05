@@ -16,7 +16,7 @@
 
 	for(var/xenopath in by_xeno)
 		var/list/mob/living/carbon/xenomorph/mob_data = by_xeno[xenopath]
-		log_world([mob_data])
+		log_world(mob_data)
 		// Each of these values should get larger or stay the same each evolution
 		var/list/greater_test_vars = list(
 			"max_health" = 0,
