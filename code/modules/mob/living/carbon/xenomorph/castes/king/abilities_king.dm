@@ -106,7 +106,7 @@
 					var/mob/living/carbon/xenomorph/xeno = mob_crushed
 					if(xeno.hive == xeno_owner.hive)
 						continue
-				mob_crushed.ex_act(EXPLODE_DEVASTATE)
+				mob_crushed.ex_act(EXPLODE_LIGHT)
 				continue
 			item.ex_act(EXPLODE_HEAVY)	//crushing without damaging the nearby area
 
