@@ -3,7 +3,6 @@
 	var/hivenumber = XENO_HIVE_NORMAL
 	var/mob/living/carbon/xenomorph/queen/living_xeno_queen
 	var/mob/living/carbon/xenomorph/living_xeno_ruler
-	var/slashing_allowed = XENO_SLASHING_ALLOWED //This initial var allows the queen to turn on or off slashing. Slashing off means harm intent does much less damage.
 	var/xeno_queen_timer
 	var/xenos_per_queen = 8 //Minimum number of xenos to support a queen.
 	var/hive_orders = "" //What orders should the hive have
@@ -381,10 +380,6 @@
 		announce = FALSE
 	if(announce)
 		xeno_message("A sudden tremor ripples through the hive... \the [ruler] has been slain! Vengeance!", "xenoannounce", 6, TRUE)
-	if(slashing_allowed != XENO_SLASHING_ALLOWED)
-		if(announce)
-			xeno_message("The slashing of hosts is now permitted.", "xenoannounce", 5, TRUE)
-		slashing_allowed = XENO_SLASHING_ALLOWED
 	notify_ghosts("\The <b>[ruler]</b> has been slain!", source = ruler, action = NOTIFY_JUMP)
 	update_ruler()
 	return TRUE

@@ -74,45 +74,6 @@
 	log_game("[key_name(src)] has created a Hive Message: [queensWord]")
 	message_admins("[ADMIN_TPMONTY(src)] has created a Hive Message.")
 
-// ***************************************
-// *********** Slashing permissions
-// ***************************************
-/mob/living/carbon/xenomorph/proc/claw_toggle()
-	set name = "Permit/Disallow Slashing"
-	set desc = "Allows you to permit the hive to harm."
-	set category = "Alien"
-
-	if(hivenumber == XENO_HIVE_CORRUPTED)
-		to_chat(src, span_warning("Only our masters can decide this!"))
-		return
-
-	if(stat)
-		to_chat(src, span_warning("We can't do that now."))
-		return
-
-	if(pslash_delay)
-		to_chat(src, span_warning("We must wait a bit before we can toggle this again."))
-		return
-
-	addtimer(VARSET_CALLBACK(src, pslash_delay, FALSE), 30 SECONDS)
-
-	pslash_delay = TRUE
-
-	var/choice = tgui_input_list(src, "Choose which level of slashing hosts to permit to your hive.","Harming", list("Allowed", "Restricted - Less Damage", "Forbidden"))
-
-	if(choice == "Allowed")
-		to_chat(src, span_xenonotice("We allow slashing."))
-		xeno_message("The Queen has <b>permitted</b> the harming of hosts! Go hog wild!")
-		hive.slashing_allowed = XENO_SLASHING_ALLOWED
-	else if(choice == "Restricted - Less Damage")
-		to_chat(src, span_xenonotice("We restrict slashing."))
-		xeno_message("The Queen has <b>restricted</b> the harming of hosts. We will only slash when hurt.")
-		hive.slashing_allowed = XENO_SLASHING_RESTRICTED
-	else if(choice == "Forbidden")
-		to_chat(src, span_xenonotice("We forbid slashing entirely."))
-		xeno_message("The Queen has <b>forbidden</b> the harming of hosts. We can no longer slash your enemies.")
-		hive.slashing_allowed = XENO_SLASHING_FORBIDDEN
-
 
 // ***************************************
 // *********** Screech
