@@ -3,6 +3,10 @@
 #define RESTING_COLOR "white"
 #define STICKY_COLOR "green"
 
+//Stat defines
+#define RESTING_BUFF 1.2
+#define WEED_SLOWDOWN 2
+
 // base weed type
 /obj/effect/alien/weeds
 	name = "weeds"
@@ -92,37 +96,24 @@
 	name = "speed weeds"
 	desc = "A layer of oozy slime, it feels slick, but not as slick for you to slip."
 
-/obj/effect/alien/weeds/speed/Crossed(atom/movable/AM)
+/obj/effect/alien/weeds/speed/Initialize(mapload, obj/effect/alien/weeds/node/node)
 	. = ..()
-	if(isxeno(AM))
-		var/mob/living/carbon/xenomorph/X = AM
-		X.next_move_slowdown += X.xeno_caste.weeds_speed_mod
+	AddElement(/datum/element/accelerate_on_crossed)
 
 /obj/effect/alien/weeds/sticky
 	name = "sticky weeds"
 	desc = "A layer of disgusting sticky slime, it feels like it's going to slow your movement down."
 	color_variant = STICKY_COLOR
 
-/obj/effect/alien/weeds/sticky/Crossed(atom/movable/AM)
+/obj/effect/alien/weeds/sticky/Initialize(mapload, obj/effect/alien/weeds/node/node)
 	. = ..()
-	if(!ishuman(AM))
-		return
-
-	if(CHECK_MULTIPLE_BITFIELDS(AM.flags_pass, HOVERING))
-		return
-
-	var/mob/living/carbon/human/victim = AM
-
-	if(victim.lying_angle)
-		return
-
-	victim.next_move_slowdown += 2.5
+	AddElement(/datum/element/slowing_on_crossed, WEED_SLOWDOWN)
 
 /obj/effect/alien/weeds/resting
 	name = "resting weeds"
 	desc = "This looks almost comfortable."
 	color_variant = RESTING_COLOR
-	resting_buff = 1.2
+	resting_buff = RESTING_BUFF
 
 // =================
 // weed wall
@@ -135,7 +126,6 @@
 	var/turf/closed/wall/W = loc
 	icon_state = W.junctiontype ? "weedwall[W.junctiontype]" : initial(icon_state)
 	icon_state += color_variant
-
 
 // =================
 // windowed weed wall
@@ -223,6 +213,10 @@
 	desc = "A weird, pulsating purple node."
 	weed_type = /obj/effect/alien/weeds/speed
 
+/obj/effect/alien/weeds/node/speed/Initialize(mapload, obj/effect/alien/weeds/node/node)
+	. = ..()
+	AddElement(/datum/element/accelerate_on_crossed)
+
 //Sticky weed node
 /obj/effect/alien/weeds/node/sticky
 	name = "sticky weed sac"
@@ -231,6 +225,10 @@
 	color_variant = STICKY_COLOR
 	node_icon = "weednodegreen"
 
+/obj/effect/alien/weeds/node/sticky/Initialize(mapload, obj/effect/alien/weeds/node/node)
+	. = ..()
+	AddElement(/datum/element/slowing_on_crossed, WEED_SLOWDOWN)
+
 //Resting weed node
 /obj/effect/alien/weeds/node/resting
 	name = "resting weed sac"
@@ -238,3 +236,39 @@
 	weed_type = /obj/effect/alien/weeds/resting
 	color_variant = RESTING_COLOR
 	node_icon = "weednodewhite"
+	resting_buff = RESTING_BUFF
+
+/datum/element/slowing_on_crossed
+	element_flags = ELEMENT_BESPOKE
+	///How much it slow down on crossed
+	var/slow_amount = 0
+
+/datum/element/slowing_on_crossed/Attach(datum/target, slow_amount)
+	. = ..()
+	src.slow_amount = slow_amount
+	RegisterSignal(target, COMSIG_MOVABLE_CROSSED_BY, .proc/slow_down_crosser)
+
+///Slows down human on cross
+/datum/element/slowing_on_crossed/proc/slow_down_crosser(datum/source, atom/movable/crosser)
+	if(!ishuman(crosser))
+		return
+
+	if(CHECK_MULTIPLE_BITFIELDS(crosser.flags_pass, HOVERING))
+		return
+
+	var/mob/living/carbon/human/victim = crosser
+
+	if(victim.lying_angle)
+		return
+
+	victim.next_move_slowdown += slow_amount
+
+/datum/element/accelerate_on_crossed/Attach(datum/target)
+	. = ..()
+	RegisterSignal(target, COMSIG_MOVABLE_CROSSED_BY, .proc/accelerate_crosser)
+
+///Speeds up xeno on crossed
+/datum/element/accelerate_on_crossed/proc/accelerate_crosser(datum/source, atom/movable/crosser)
+	if(isxeno(crosser))
+		var/mob/living/carbon/xenomorph/X = crosser
+		X.next_move_slowdown += X.xeno_caste.weeds_speed_mod
