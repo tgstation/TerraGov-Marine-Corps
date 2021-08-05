@@ -528,7 +528,7 @@
 
 /obj/screen/action_button/Destroy()
 	source_action = null
-	. = ..()
+	return ..()
 
 /obj/screen/action_button/proc/get_button_screen_loc(button_number)
 	var/row = round((button_number-1)/13) //13 is max amount of buttons per row

@@ -62,9 +62,9 @@
 	addtimer(CALLBACK(src, .proc/choose_king), KING_SUMMON_TIMER_DURATION)
 
 /obj/structure/resin/king_pod/Destroy()
-	. = ..()
 	future_king?.tracked = null
 	future_king = null
+	return ..()
 
 /obj/structure/resin/king_pod/attack_alien(mob/living/carbon/xenomorph/X, damage_amount, damage_type, damage_flag, effects, armor_penetration, isrightclick)
 	if(X != future_king)

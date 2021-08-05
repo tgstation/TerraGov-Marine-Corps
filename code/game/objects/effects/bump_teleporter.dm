@@ -12,12 +12,12 @@ GLOBAL_LIST_EMPTY(bump_teleporters)
 	opacity = FALSE
 
 /obj/effect/bump_teleporter/Initialize()
-	. = ..()
+	..()
 	GLOB.bump_teleporters += src
 
 /obj/effect/bump_teleporter/Destroy()
 	GLOB.bump_teleporters -= src
-	. = ..()
+	return ..()
 
 /obj/effect/bump_teleporter/Bumped(atom/user)
 	if(!ismob(user))
