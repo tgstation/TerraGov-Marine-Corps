@@ -227,14 +227,15 @@
 
 
 	if(CHECK_BITFIELD(SSticker.mode.flags_round_type, MODE_PSY_POINTS))
-		if(hive.building_allowed == NONE)
-			stat("Expenditure of psy points status:", "FORBIDDEN")
-		else if(hive.building_allowed == XENO_BUILDING_SILO)
-			stat("Expenditure of psy points status:", "ONLY SILOS")
-		else if(hive.building_allowed == XENO_BUILDING_TURRET)
-			stat("Expenditure of psy points status:", "ONLY TURRETS")
-		else
-			stat("Expenditure of psy points status:", "UNRESTRICTED")
+		switch(hive.building_allowed)
+			if(NONE)
+				stat("Expenditure of psy points status:", "FORBIDDEN")
+			if(XENO_BUILDING_SILO)
+				stat("Expenditure of psy points status:", "ONLY SILOS")
+			if(XENO_BUILDING_TURRET)
+				stat("Expenditure of psy points status:", "ONLY TURRETS")
+			if(XENO_BUILDING_UNRESTRICTED)
+				stat("Expenditure of psy points status:", "UNRESTRICTED")
 
 	//Very weak <= 1.0, weak <= 2.0, no modifier 2-3, strong <= 3.5, very strong <= 4.5
 	var/msg_holder = ""
