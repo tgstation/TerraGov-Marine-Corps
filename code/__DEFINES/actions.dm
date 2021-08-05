@@ -18,8 +18,6 @@
 
 #define XACT_KEYBIND_USE_ABILITY (1 << 0) // immediately activate even if selectable
 
-#define XACT_BUTTON_HIDDEN (1 << 0) // button is not shown in main screen
-
 #define ABILITY_CRASH (1<<0)
 #define ABILITY_DISTRESS (1<<1)
 #define ABILITY_HUNT (1<<2)

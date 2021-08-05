@@ -79,13 +79,13 @@
 // ***************************************
 /datum/action/xeno_action/points_toggle
 	name = "Psy Points Permissions"
-	// No icon. Button is intended to be hidden from the main screen and instead used in the Hive Management Panel.
+	// Placeholder. Button is intended to be hidden from the main screen and instead used in the Hive Management Panel.
+	action_icon_state = "psychic_whisper"
 	mechanics_text = "Allows you to permit the hive to use psy points in building silos and/or turrets."
 	plasma_cost = 0
 	use_state_flags = XACT_USE_LYING
 	gamemode_flags = ABILITY_DISTRESS
 	cooldown_timer = 30 SECONDS
-	hive_flags = XACT_BUTTON_HIDDEN
 
 /datum/action/xeno_action/points_toggle/action_activate()
 	var/permissions = list("Unrestricted", "Only Silos", "Only Turrets", "Forbidden")

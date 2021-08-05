@@ -14,8 +14,6 @@
 	var/gamemode_flags = ABILITY_ALL_GAMEMODE
 	///Alternative keybind signal, to use the action differently
 	var/alternate_keybind_signal
-	/// Flags for abilities that are located in Hive Management Panel.
-	var/hive_flags
 
 /datum/action/xeno_action/New(Target)
 	. = ..()
@@ -45,11 +43,6 @@
 	var/mob/living/carbon/xenomorph/X = L
 	X.xeno_abilities -= src
 	return ..()
-
-/datum/action/xeno_action/should_show()
-	. = ..()
-	if(CHECK_BITFIELD(hive_flags, XACT_BUTTON_HIDDEN))
-		return FALSE
 
 /datum/action/xeno_action/proc/keybind_activation()
 	SIGNAL_HANDLER
