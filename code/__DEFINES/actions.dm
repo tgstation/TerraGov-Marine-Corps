@@ -19,7 +19,6 @@
 #define XACT_KEYBIND_USE_ABILITY (1 << 0) // immediately activate even if selectable
 
 #define XACT_BUTTON_HIDDEN (1 << 0) // button is not shown in main screen
-#define XACT_HIVE_PANEL (1 << 1) // action intended to be used in hive management panel
 
 #define ABILITY_CRASH (1<<0)
 #define ABILITY_DISTRESS (1<<1)

@@ -85,7 +85,7 @@
 	use_state_flags = XACT_USE_LYING
 	gamemode_flags = ABILITY_DISTRESS
 	cooldown_timer = 30 SECONDS
-	//hive_flags = XACT_BUTTON_HIDDEN | XACT_HIVE_PANEL
+	hive_flags = XACT_BUTTON_HIDDEN
 
 /datum/action/xeno_action/points_toggle/action_activate()
 	var/permissions = list("Unrestricted", "Only Silos", "Only Turrets", "Forbidden")
