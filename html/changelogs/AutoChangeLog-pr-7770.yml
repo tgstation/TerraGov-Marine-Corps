@@ -1,0 +1,4 @@
+author: "QualityVan"
+delete-after: True
+changes: 
+  - bugfix: "Beheaded synths need their head actually reattached before they can be revived"
