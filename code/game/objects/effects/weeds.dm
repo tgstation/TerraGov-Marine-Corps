@@ -1,7 +1,7 @@
 //Color variant defines
 #define SPEED_COLOR ""
 #define RESTING_COLOR "white"
-#define BARBED_COLOR "red"
+#define STICKY_COLOR "green"
 
 // base weed type
 /obj/effect/alien/weeds
@@ -98,18 +98,12 @@
 		var/mob/living/carbon/xenomorph/X = AM
 		X.next_move_slowdown += X.xeno_caste.weeds_speed_mod
 
-/obj/effect/alien/weeds/resting
-	name = "resting weeds"
-	desc = "This looks almost comfortable."
-	color_variant = RESTING_COLOR
-	resting_buff = 1.2
+/obj/effect/alien/weeds/sticky
+	name = "sticky weeds"
+	desc = "A layer of disgusting sticky slime, it feels like it's going to slow your movement down."
+	color_variant = STICKY_COLOR
 
-/obj/effect/alien/weeds/barbed
-	name = "barbed weeds"
-	desc = "This looks very sharp and pointy, as if thorns poke you from all sides. Best not to step on it with your human limbs, it can still be safely destroyed with force, though."
-	color_variant = BARBED_COLOR
-
-/obj/effect/alien/weeds/barbed/Crossed(atom/movable/AM)
+/obj/effect/alien/weeds/sticky/Crossed(atom/movable/AM)
 	. = ..()
 	if(!ishuman(AM))
 		return
@@ -119,19 +113,16 @@
 
 	var/mob/living/carbon/human/victim = AM
 
-	var/def_zone = victim.lying_angle ? pick (
-			GLOB.organ_rel_size["l_leg"]; "l_leg",
-			GLOB.organ_rel_size["r_leg"]; "r_leg",
-			GLOB.organ_rel_size["l_foot"]; "l_foot",
-			GLOB.organ_rel_size["r_foot"]; "r_foot",
-		) : ran_zone()
+	if(victim.lying_angle)
+		return
 
-	victim.apply_damage(1.5, BRUTE, def_zone)
-	victim.next_move_slowdown += 2
+	victim.next_move_slowdown += 2.5
 
-	if(prob(15))
-		to_chat(victim, span_warning("You are cut from the barbed weeds."))
-		victim.emote("pain")
+/obj/effect/alien/weeds/resting
+	name = "resting weeds"
+	desc = "This looks almost comfortable."
+	color_variant = RESTING_COLOR
+	resting_buff = 1.2
 
 // =================
 // weed wall
@@ -232,6 +223,14 @@
 	desc = "A weird, pulsating purple node."
 	weed_type = /obj/effect/alien/weeds/speed
 
+//Sticky weed node
+/obj/effect/alien/weeds/node/sticky
+	name = "sticky weed sac"
+	desc = "A weird, pulsating red node."
+	weed_type = /obj/effect/alien/weeds/sticky
+	color_variant = STICKY_COLOR
+	node_icon = "weednodegreen"
+
 //Resting weed node
 /obj/effect/alien/weeds/node/resting
 	name = "resting weed sac"
@@ -239,11 +238,3 @@
 	weed_type = /obj/effect/alien/weeds/resting
 	color_variant = RESTING_COLOR
 	node_icon = "weednodewhite"
-
-//Toxin weed node
-/obj/effect/alien/weeds/node/barbed
-	name = "barbed weed sac"
-	desc = "A weird, pulsating green node."
-	weed_type = /obj/effect/alien/weeds/barbed
-	color_variant = BARBED_COLOR
-	node_icon = "weednodered"
