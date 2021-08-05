@@ -32,6 +32,7 @@
 	span_xenowarning("We spew forth a cone of acid!"), null, 5)
 	
 	start_acid_spray_cone(target, X.xeno_caste.acid_spray_range)
+	add_cooldown()
 
 /datum/action/xeno_action/activable/spray_acid/cone/proc/reset_speed()
 	var/mob/living/carbon/xenomorph/spraying_xeno = owner
