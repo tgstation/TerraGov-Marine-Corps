@@ -447,8 +447,8 @@
 	recoil = 1
 	recoil_unwielded = 2
 	accuracy_mult = 1.5
-	scatter = 0
-	scatter_unwielded = 15
+	scatter = 5
+	scatter_unwielded = 20
 
 //-------------------------------------------------------
 //VP70
