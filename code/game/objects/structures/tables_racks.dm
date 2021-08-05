@@ -38,7 +38,7 @@
 		var/obj/structure/table/table = locate(/obj/structure/table, get_step(location,direction))
 		if(!table)
 			continue
-		INVOKE_NEXT_TICK(table, .proc/update_icon)
+		INVOKE_NEXT_TICK(table, /atom/proc.update_icon)
 
 
 /obj/structure/table/Initialize()
