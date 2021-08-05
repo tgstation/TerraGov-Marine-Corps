@@ -99,7 +99,7 @@
 	upgrade = XENO_UPGRADE_TWO
 
 	// *** Melee Attacks *** //
-	melee_damage = 18
+	melee_damage = 1
 
 	// *** Speed *** //
 	speed = -1.0
