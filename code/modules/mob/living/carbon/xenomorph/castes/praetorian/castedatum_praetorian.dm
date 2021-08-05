@@ -9,7 +9,7 @@
 	wound_type = "praetorian" //used to match appropriate wound overlays
 
 	// *** Melee Attacks *** //
-	melee_damage = 20
+	melee_damage = 18
 
 	// *** Speed *** //
 	speed = -0.2
@@ -73,11 +73,11 @@
 	speed = -0.4
 
 	// *** Plasma *** //
-	plasma_max = 1000
+	plasma_max = 850
 	plasma_gain = 60
 
 	// *** Health *** //
-	max_health = 345
+	max_health = 340
 
 	// *** Evolution *** //
 	upgrade_threshold = 750
@@ -102,17 +102,17 @@
 	upgrade = XENO_UPGRADE_TWO
 
 	// *** Melee Attacks *** //
-	melee_damage = 23
+	melee_damage = 19
 
 	// *** Speed *** //
 	speed = -0.5
 
 	// *** Plasma *** //
-	plasma_max = 1100
+	plasma_max = 900
 	plasma_gain = 65
 
 	// *** Health *** //
-	max_health = 365
+	max_health = 345
 
 	// *** Evolution *** //
 	upgrade_threshold = 1750
@@ -138,17 +138,17 @@
 	ancient_message = "We are the strongest ranged fighter around. Our spit is devastating and we can fire nearly a constant stream."
 
 	// *** Melee Attacks *** //
-	melee_damage = 23
+	melee_damage = 20
 
 	// *** Speed *** //
 	speed = -0.6
 
 	// *** Plasma *** //
-	plasma_max = 1200
+	plasma_max = 100
 	plasma_gain = 70
 
 	// *** Health *** //
-	max_health = 390
+	max_health = 350
 
 	// *** Evolution *** //
 	upgrade_threshold = 2750
