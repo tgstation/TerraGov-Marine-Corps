@@ -7,7 +7,7 @@
 	mechanics_text = "Spray a cone of dangerous acid at your target."
 	ability_name = "spray acid"
 	plasma_cost = 400
-	cooldown_timer = 20 SECONDS
+	cooldown_timer = 30 SECONDS
 
 /datum/action/xeno_action/activable/spray_acid/cone/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/X = owner
@@ -31,10 +31,10 @@
 	X.visible_message(span_xenowarning("\The [X] spews forth a wide cone of acid!"), \
 	span_xenowarning("We spew forth a cone of acid!"), null, 5)
 
-	X.add_movespeed_modifier(type, TRUE, 0, NONE, TRUE, 1)
+	X.add_movespeed_modifier(type, TRUE, 0, NONE, TRUE, 0)
 	start_acid_spray_cone(target, X.xeno_caste.acid_spray_range)
 	add_cooldown()
-	addtimer(CALLBACK(src, .proc/reset_speed), rand(1 SECONDS, 1 SECONDS))
+	addtimer(CALLBACK(src, .proc/reset_speed), rand(0 SECONDS, 0 SECONDS))
 
 /datum/action/xeno_action/activable/spray_acid/cone/proc/reset_speed()
 	var/mob/living/carbon/xenomorph/spraying_xeno = owner
