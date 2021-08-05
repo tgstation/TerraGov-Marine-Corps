@@ -35,6 +35,8 @@
 			var/current_value = greater_test_vars[stat]
 			log_world(mob_data[XENO_UPGRADE_ZERO])
 			var/new_value = initial(mob_data[XENO_UPGRADE_ZERO].vars[stat])
+			log_world(new_value)
+			log_world(mob_data[XENO_UPGRADE_ZERO].vars["speed"])
 			if(new_value < current_value)
 				Fail("Invalid stats on [xenopath]. It's [stat]@[XENO_UPGRADE_ZERO] has [new_value] compared to base value of [current_value] (expected greater)")
 			current_value = new_value
