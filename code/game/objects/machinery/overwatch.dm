@@ -5,6 +5,9 @@
 #define HIDE_ON_GROUND 1
 #define HIDE_ON_SHIP 2
 
+#define SPOTLIGHT_COOLDOWN_DURATION 6 MINUTES
+#define SPOTLIGHT_DURATION 2 MINUTES
+
 GLOBAL_LIST_EMPTY(active_orbital_beacons)
 GLOBAL_LIST_EMPTY(active_laser_targets)
 GLOBAL_LIST_EMPTY(active_cas_targets)
@@ -64,6 +67,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 		send_retreat_order.target = user
 		send_retreat_order.give_action(user)
 		actions += send_retreat_order
+	RegisterSignal(user, COMSIG_MOB_CLICKON, .proc/attempt_spotlight)
 
 /obj/machinery/computer/camera_advanced/overwatch/main
 	icon_state = "overwatch_main"
@@ -123,6 +127,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	. = ..()
 	UnregisterSignal(user, COMSIG_MOB_CLICK_SHIFT)
 	UnregisterSignal(user, COMSIG_ORDER_SELECTED)
+	UnregisterSignal(user, COMSIG_MOB_CLICKON)
 
 /obj/machinery/computer/camera_advanced/overwatch/can_interact(mob/user)
 	. = ..()
@@ -658,6 +663,18 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	visible_message(span_boldnotice("[transfer_marine] has been transfered from squad '[old_squad]' to squad '[new_squad]'. Logging to enlistment file."))
 	to_chat(transfer_marine, "[icon2html(src, transfer_marine)] <font size='3' color='blue'><B>\[Overwatch\]:</b> You've been transfered to [new_squad]!</font>")
 
+///Big light :)
+/obj/machinery/computer/camera_advanced/overwatch/proc/attempt_spotlight(datum/source, atom/A, params)
+	SIGNAL_HANDLER
+	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_ORBITAL_SPOTLIGHT))
+		to_chat(source, span_notice("The Orbital spotlight is still recharging."))
+		return
+	var/turf/target = get_turf(A)
+	target.set_light(11, l_color = COLOR_TESLA_BLUE)
+	playsound(target,'sound/mecha/heavylightswitch.ogg', 25, 1, 20)
+	to_chat(target, span_warning("You see a twinkle in the sky before your surroundings are hit with a beam of light!"))
+	to_chat(source, span_notice("Orbital spotlight activated. Duration : [SPOTLIGHT_DURATION]"))
+	addtimer(CALLBACK(target, /atom.proc/set_light, 0, 0), SPOTLIGHT_DURATION)
 
 //This is perhaps one of the weirdest places imaginable to put it, but it's a leadership skill, so
 
