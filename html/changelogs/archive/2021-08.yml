@@ -100,3 +100,43 @@
   - bugfix: Fixed hive status xeno health color when negative, like when in crit.
   lbnesquik:
   - balance: made the boiler bombard cooldown when it has more acid stored
+2021-08-05:
+  BraveMole:
+  - bugfix: You can delete loadouts
+  - bugfix: Loadouts vendor works again
+  - code_imp: Sanitise item paths in loadouts
+  Grandpa:
+  - expansion: Expands content of an existing thing
+  Hekzder:
+  - balance: The UGL now has a fire delay of 1 second
+  - bugfix: Fixed the UGL not having a fire delay at all
+  - spellcheck: Fixed the UGL description listing it as a single shot launcher
+  KornFlaks:
+  - balance: Removes Queen Set Leaders cooldown. Instead makes it cost 200 plasma.
+  - rscadd: Adds text blurb on a sentry for an engineer to alt-click to remove battery
+      to replace.
+  Pariah919:
+  - bugfix: automag has a belt sprite now
+  QualityVan:
+  - bugfix: Xenos don't have an attack delay after clicking on weeds, the same way
+      they don't after clicking normal floors.
+  - bugfix: Taking at least 15 damage at once in stealth as a hunter will now properly
+      knock you out of it.
+  Sebbe9123:
+  - balance: Gives Defiler faster plasma gain.
+  Surrealaser:
+  - qol: When the Wraith uses its Blink ability, it will always attempt to teleport
+      as far as possible now, up to the tile you click.
+  hyper2snyper:
+  - code_imp: Various infrastructure changes for /mounted
+  lbnesquik:
+  - balance: Made the AI unable to use the dropship doors while it is hijacked.
+  - qol: Added a notification noise to the AI, whenever it gets called.
+  - bugfix: fixes the outside of LZ2 hangars not actually being outside
+  - qol: the AI can interact with colony generators :)
+  - expansion: Expands  AI shuttle notifications
+  - expansion: Shifted a couple areas of theseus around to make more sense. Added
+      some floor plates to the hangar to make it prettier./
+  - expansion: Expand the ai notifications for the alamo to include informations as
+      to who commands it
+  - bugfix: fixed a typo and the AI CAS laser being targeted at the AI core

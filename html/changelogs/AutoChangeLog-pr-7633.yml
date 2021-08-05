@@ -1,4 +1,0 @@
-author: "BraveMole"
-delete-after: True
-changes: 
-  - code_imp: "Sanitise item paths in loadouts"

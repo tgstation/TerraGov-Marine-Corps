@@ -1,4 +1,0 @@
-author: "lbnesquik"
-delete-after: True
-changes: 
-  - qol: "Added a notification noise to the AI, whenever it gets called."
