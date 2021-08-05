@@ -1730,8 +1730,8 @@ datum/ammo/bullet/revolver/tp44
 /datum/ammo/xeno/toxin/heavy //Praetorian
 	name = "neurotoxic splash"
 	added_spit_delay = 0
-	spit_cost = 200
-	damage = 40
+	spit_cost = 150
+	damage = 50
 	smoke_strength = 0.8
 	reagent_transfer_amount = 9
 
