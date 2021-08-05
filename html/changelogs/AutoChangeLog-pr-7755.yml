@@ -1,0 +1,4 @@
+author: "lbnesquik"
+delete-after: True
+changes: 
+  - bugfix: "Fix the special force leader incorrectly spawning with a Med hud"
