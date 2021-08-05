@@ -100,14 +100,17 @@
 	playsound(loc, 'sound/voice/alien_queen_died.ogg', 75, 0)
 
 /mob/living/carbon/xenomorph/queen/xeno_death_alert()
+	// This should only happen during modes with Psy Points, aka Distress.
 	if(!CHECK_BITFIELD(SSticker.mode.flags_round_type, MODE_PSY_POINTS))
 		return
 
+	// Checks if there are any building restrictions so there is no redundant declaration to the hive.
+	if(hive.building_allowed == XENO_BUILDING_UNRESTRICTED)
+		return
+	
 	// Resets building permissions to unrestricted upon queen death.
 	hive.building_allowed = XENO_BUILDING_UNRESTRICTED
 	xeno_message("With the death of the Queen, we are free from any restrictions on building silos or turrets.")
-	return
-
 
 // ***************************************
 // *********** Larva Mother

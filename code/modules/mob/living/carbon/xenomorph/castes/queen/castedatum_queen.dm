@@ -72,6 +72,7 @@
 		/datum/action/xeno_action/hive_message,
 		/datum/action/xeno_action/deevolve,
 		/datum/action/xeno_action/activable/rally_hive,
+		/datum/action/xeno_action/points_toggle
 	)
 
 
