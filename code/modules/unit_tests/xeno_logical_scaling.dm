@@ -16,6 +16,7 @@
 
 	for(var/xenopath in by_xeno)
 		var/list/mob/living/carbon/xenomorph/mob_data = by_xeno[xenopath]
+		log_world([mob_data])
 		// Each of these values should get larger or stay the same each evolution
 		var/list/greater_test_vars = list(
 			"max_health" = 0,
@@ -32,6 +33,7 @@
 		// Check for values that are should grow with each level
 		for(var/stat in greater_test_vars)
 			var/current_value = greater_test_vars[stat]
+			log_world(mob_data[XENO_UPGRADE_ZERO])
 			var/new_value = initial(mob_data[XENO_UPGRADE_ZERO].vars[stat])
 			if(new_value < current_value)
 				Fail("Invalid stats on [xenopath]. It's [stat]@[XENO_UPGRADE_ZERO] has [new_value] compared to base value of [current_value] (expected greater)")
