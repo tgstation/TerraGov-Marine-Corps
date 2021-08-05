@@ -14,17 +14,41 @@
 	var/can_sneak_attack = FALSE
 	var/stealth_alpha_multiplier = 1
 
-/datum/action/xeno_action/stealth/give_action(mob/living/L)
+/datum/action/xeno_action/stealth/can_use_action(silent = FALSE, override_flags)
 	. = ..()
-	RegisterSignal(L, COMSIG_XENOMORPH_POUNCE_END, .proc/sneak_attack_pounce)
-	RegisterSignal(L, COMSIG_XENO_LIVING_THROW_HIT, .proc/mob_hit)
-	RegisterSignal(L, COMSIG_XENOMORPH_ATTACK_LIVING, .proc/sneak_attack_slash)
-	RegisterSignal(L, COMSIG_XENOMORPH_DISARM_HUMAN, .proc/sneak_attack_slash)
-	RegisterSignal(L, COMSIG_XENOMORPH_ZONE_SELECT, .proc/sneak_attack_zone)
-	RegisterSignal(L, COMSIG_XENOMORPH_PLASMA_REGEN, .proc/plasma_regen)
+	if(!.)
+		return FALSE
+	var/mob/living/carbon/xenomorph/stealthy_beno = owner
+	if(stealthy_beno.on_fire)
+		to_chat(stealthy_beno, "<span class='warning'>We're too busy being on fire to enter Stealth!</span>")
+		return FALSE
+	return TRUE
+
+/datum/action/xeno_action/stealth/on_cooldown_finish()
+	to_chat(owner, "<span class='xenodanger'><b>We're ready to use Stealth again.</b></span>")
+	playsound(owner, "sound/effects/xeno_newlarva.ogg", 25, 0, 1)
+	return ..()
+
+/datum/action/xeno_action/stealth/action_activate()
+	if(stealth)
+		cancel_stealth()
+		return TRUE
+
+	succeed_activate()
+	to_chat(owner, "<span class='xenodanger'>We vanish into the shadows...</span>")
+	last_stealth = world.time
+	stealth = TRUE
+
+	RegisterSignal(owner, COMSIG_MOVABLE_MOVED, .proc/handle_stealth)
+	RegisterSignal(owner, COMSIG_XENOMORPH_POUNCE_END, .proc/sneak_attack_pounce)
+	RegisterSignal(owner, COMSIG_XENO_LIVING_THROW_HIT, .proc/mob_hit)
+	RegisterSignal(owner, COMSIG_XENOMORPH_ATTACK_LIVING, .proc/sneak_attack_slash)
+	RegisterSignal(owner, COMSIG_XENOMORPH_DISARM_HUMAN, .proc/sneak_attack_slash)
+	RegisterSignal(owner, COMSIG_XENOMORPH_ZONE_SELECT, .proc/sneak_attack_zone)
+	RegisterSignal(owner, COMSIG_XENOMORPH_PLASMA_REGEN, .proc/plasma_regen)
 
 	// TODO: attack_alien() overrides are a mess and need a lot of work to make them require parentcalling
-	RegisterSignal(L, list(
+	RegisterSignal(owner, list(
 		COMSIG_XENOMORPH_GRAB,
 		COMSIG_XENOMORPH_ATTACK_BARRICADE,
 		COMSIG_XENOMORPH_ATTACK_CLOSET,
@@ -41,12 +65,22 @@
 		COMSIG_XENOMORPH_FIRE_BURNING,
 		COMSIG_LIVING_ADD_VENTCRAWL), .proc/cancel_stealth)
 
-	RegisterSignal(L, list(SIGNAL_ADDTRAIT(TRAIT_KNOCKEDOUT), SIGNAL_ADDTRAIT(TRAIT_FLOORED)), .proc/cancel_stealth)
+	RegisterSignal(owner, list(SIGNAL_ADDTRAIT(TRAIT_KNOCKEDOUT), SIGNAL_ADDTRAIT(TRAIT_FLOORED)), .proc/cancel_stealth)
 
-	RegisterSignal(src, COMSIG_XENOMORPH_TAKING_DAMAGE, .proc/damage_taken)
+	RegisterSignal(owner, COMSIG_XENOMORPH_TAKING_DAMAGE, .proc/damage_taken)
 
-/datum/action/xeno_action/stealth/remove_action(mob/living/L)
-	UnregisterSignal(L, list(
+	ADD_TRAIT(owner, TRAIT_TURRET_HIDDEN, STEALTH_TRAIT)
+
+	handle_stealth()
+	addtimer(CALLBACK(src, .proc/sneak_attack_cooldown), HUNTER_POUNCE_SNEAKATTACK_DELAY) //Short delay before we can sneak attack.
+
+/datum/action/xeno_action/stealth/proc/cancel_stealth() //This happens if we take damage, attack, pounce, toggle stealth off, and do other such exciting stealth breaking activities.
+	SIGNAL_HANDLER
+	add_cooldown()
+	to_chat(owner, "<span class='xenodanger'>We emerge from the shadows.</span>")
+
+	UnregisterSignal(owner, list(
+		COMSIG_MOVABLE_MOVED,
 		COMSIG_XENOMORPH_POUNCE_END,
 		COMSIG_XENO_LIVING_THROW_HIT,
 		COMSIG_XENOMORPH_ATTACK_LIVING,
@@ -69,45 +103,9 @@
 		SIGNAL_ADDTRAIT(TRAIT_KNOCKEDOUT),
 		SIGNAL_ADDTRAIT(TRAIT_FLOORED),
 		COMSIG_XENOMORPH_ZONE_SELECT,
-		COMSIG_XENOMORPH_PLASMA_REGEN))
-	return ..()
+		COMSIG_XENOMORPH_PLASMA_REGEN,
+		COMSIG_XENOMORPH_TAKING_DAMAGE,))
 
-/datum/action/xeno_action/stealth/can_use_action(silent = FALSE, override_flags)
-	. = ..()
-	if(!.)
-		return FALSE
-	var/mob/living/carbon/xenomorph/stealthy_beno = owner
-	if(stealthy_beno.on_fire)
-		to_chat(stealthy_beno, span_warning("We're too busy being on fire to enter Stealth!"))
-		return FALSE
-	return TRUE
-
-/datum/action/xeno_action/stealth/on_cooldown_finish()
-	to_chat(owner, span_xenodanger("<b>We're ready to use Stealth again.</b>"))
-	playsound(owner, "sound/effects/xeno_newlarva.ogg", 25, 0, 1)
-	return ..()
-
-/datum/action/xeno_action/stealth/action_activate()
-	if(stealth)
-		cancel_stealth()
-		return TRUE
-
-	succeed_activate()
-	to_chat(owner, span_xenodanger("We vanish into the shadows..."))
-	last_stealth = world.time
-	stealth = TRUE
-	RegisterSignal(owner, COMSIG_MOVABLE_MOVED, .proc/handle_stealth)
-	handle_stealth()
-	ADD_TRAIT(owner, TRAIT_TURRET_HIDDEN, STEALTH_TRAIT)
-	addtimer(CALLBACK(src, .proc/sneak_attack_cooldown), HUNTER_POUNCE_SNEAKATTACK_DELAY) //Short delay before we can sneak attack.
-
-/datum/action/xeno_action/stealth/proc/cancel_stealth() //This happens if we take damage, attack, pounce, toggle stealth off, and do other such exciting stealth breaking activities.
-	SIGNAL_HANDLER
-	if(!stealth)//sanity check/safeguard
-		return
-	add_cooldown()
-	to_chat(owner, span_xenodanger("We emerge from the shadows."))
-	UnregisterSignal(owner, COMSIG_MOVABLE_MOVED) //This should be handled on the ability datum or a component.
 	stealth = FALSE
 	can_sneak_attack = FALSE
 	REMOVE_TRAIT(owner, TRAIT_TURRET_HIDDEN, STEALTH_TRAIT)
@@ -122,8 +120,6 @@
 
 /datum/action/xeno_action/stealth/proc/handle_stealth()
 	SIGNAL_HANDLER
-	if(!stealth)
-		return
 
 	var/mob/living/carbon/xenomorph/xenoowner = owner
 	//Initial stealth
@@ -169,7 +165,7 @@
 
 /datum/action/xeno_action/stealth/proc/sneak_attack_slash(datum/source, mob/living/target, damage, list/damage_mod, list/armor_mod)
 	SIGNAL_HANDLER
-	if(!stealth || !can_sneak_attack)
+	if(!can_sneak_attack)
 		return
 
 	var/staggerslow_stacks = 2
@@ -190,21 +186,22 @@
 
 /datum/action/xeno_action/stealth/proc/damage_taken(mob/living/carbon/xenomorph/X, damage_taken)
 	SIGNAL_HANDLER
-	if(damage_taken > 15)
+	var/mob/living/carbon/xenomorph/xenoowner = owner
+	if(damage_taken > xenoowner.xeno_caste.stealth_break_threshold)
 		cancel_stealth()
 
 /datum/action/xeno_action/stealth/proc/plasma_regen(datum/source, list/plasma_mod)
 	SIGNAL_HANDLER
 	handle_stealth()
 
-	if(stealth && owner.last_move_intent > world.time - 20) //Stealth halves the rate of plasma recovery on weeds, and eliminates it entirely while moving
+	if(owner.last_move_intent > world.time - 20) //Stealth halves the rate of plasma recovery on weeds, and eliminates it entirely while moving
 		plasma_mod += 0.0
 	else
 		plasma_mod += 0.5
 
 /datum/action/xeno_action/stealth/proc/sneak_attack_zone()
 	SIGNAL_HANDLER
-	if(!stealth || !can_sneak_attack)
+	if(!can_sneak_attack)
 		return
 	return COMSIG_ACCURATE_ZONE
 

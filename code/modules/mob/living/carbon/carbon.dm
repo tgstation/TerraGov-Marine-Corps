@@ -198,7 +198,7 @@
 
 /mob/living/carbon/throw_item(atom/target)
 	. = ..()
-	src.throw_mode_off()
+	throw_mode_off()
 	if(is_ventcrawling) //NOPE
 		return
 	if(usr.stat || !target)
@@ -213,6 +213,7 @@
 
 	var/spin_throw = TRUE
 
+	//todo port tg's on_thrown
 	if (istype(I, /obj/item/grab))
 		var/obj/item/grab/G = I
 		if(ismob(G.grabbed_thing))
@@ -233,6 +234,7 @@
 		var/obj/item/riding_offhand/riding_item = I
 		spin_throw = FALSE
 		thrown_thing = riding_item.rider
+		unbuckle_mob(riding_item.rider)
 		var/turf/start_T = get_turf(loc) //Get the start and target tile for the descriptors
 		var/turf/end_T = get_turf(target)
 		if(start_T && end_T)

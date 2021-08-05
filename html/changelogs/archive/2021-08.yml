@@ -1,0 +1,142 @@
+2021-08-01:
+  BraveMole:
+  - bugfix: Fix resin holes not dying off weed
+  InterroLouis:
+  - bugfix: Dragunov unloaded sprite is no longer offset from the loaded sprite by
+      one pixel.
+  QualityVan:
+  - bugfix: Medevac beacons reliably relay linked bed coordinates instead of sometimes
+      saying they're at 0/0.
+  TiviPlus:
+  - refactor: Backend movement changes
+  hyper2snyper:
+  - rscadd: Sentry Rework
+  - balance: Default Sentries now have a range of 9
+  - balance: Default Sentries magazines only hold a max of 25 rounds.
+  - balance: Default Sentries firerate is now 1 seconds.
+  - balance: Greatly Increases Default Sentries Damage.
+  - balance: Radial mode no longer decreases range, and is now dependent on the sentries
+      battery.
+  - balance: PD Sentries magazines now only hold a max of 100 rounds.
+  - balance: PD Sentries firerate greatly increased.
+  - balance: Smoke now blocks Sentry Line of Sight
+  - bugfix: Fixes Sentries Manual Mode
+  - code_imp: Rewrites Sentries
+  - refactor: Sentries now fall under the subtype gun/mounted
+  lbnesquik:
+  - rscadd: Give the AI a minimap. Rejoice.
+  - balance: gave the Special force ERT NVG's and combat injectors
+  vilereaver41:
+  - balance: no more crash locations for canterbury that block the sides in a way
+      that makes it impossible for Xenos to access.
+  - balance: made fogs for silos in crash that could be destroyed via glitching wider
+      so now it will be impossible as marines should not be able to destroy them.
+  - expansion: 3 new canterbury crash locations
+  - balance: removes some rock walls to make new & old crash locations a bit more
+      accessible.
+2021-08-02:
+  Pariah919:
+  - rscadd: Added new marine flaregun, it can look out to miniscope distance. Fits
+      in your flare pouches too.
+  - qol: flaregun fired flares now stop where you click.
+  - balance: flareguns now have miniscope level range of zoom on them, when you zoom
+      on them.
+  - rscadd: Added new tyr helmet attachie. +10 To all armor stats. 15 to melee.
+  Pill-U:
+  - balance: Shrike can destroy walls with holes
+  SpaceLove:
+  - bugfix: fixed bug with lolipop pouches
+  SplinterGP:
+  - bugfix: fixed evolving/regressing not working with xenos with different plasma
+      mechanics, now they account for their plasma regen limit.
+  TiviPlus:
+  - bugfix: Fixed crusher charging
+  lbnesquik:
+  - qol: sound for the firelocks welding
+  - bugfix: fixed typos in snaps and hugging emotes
+2021-08-03:
+  Alterist:
+  - soundadd: Grav Crush volume has been quieted by around 10dB
+  BraveMole:
+  - bugfix: Fix doube clicking items in backpack dropping them
+  - code_imp: Update monitor balance calculation
+  Pariah919:
+  - bugfix: marines got their tyr helmet attachment shipment in
+  - bugfix: the TGMC finally sent out it's new edition of flareguns, the E2, you no
+      longer only have one exactly flaregun as marine. But many.
+  TiviPlus:
+  - rscadd: Runners can now ride crushers when the crusher grabs the runner then clicks
+      on themselves
+  - refactor: refactored riding code
+  - bugfix: fixed barricades being passable too often
+  - refactor: refactored more movement code
+2021-08-04:
+  BraveMole:
+  - bugfix: Fix minigun able to shoot without holding the mouse button down
+  - bugfix: Fix slashing dead human lights
+  KornFlaks:
+  - bugfix: Increased the size of microscopic king pod creation and king hive summoning
+      announcements.
+  Pariah919:
+  - spellcheck: the SW357 has been relored into something different, called the FFA
+      'Rebotar'. Also the 357/M44 seasonal now clairify that the SW357 has bouncy
+      bullets.
+  QualityVan:
+  - rscadd: Autodocs set to automatic can now start on their own
+  TiviPlus:
+  - qol: A number of things now use balloon alerts for their messages notably
+  - qol: Internal tanks/masks
+  - qol: Stamina status messages
+  - qol: Telekenisis
+  - qol: Vent crawl
+  - qol: Bump attack
+  - qol: Vali
+  - qol: Valk and B18
+  - qol: Emotes
+  - qol: Deployable weapons
+  - qol: Resin Jelly and accelerated healing
+  - qol: Wires
+  Wayland-Smithy:
+  - bugfix: Fixed hive status xeno health color when negative, like when in crit.
+  lbnesquik:
+  - balance: made the boiler bombard cooldown when it has more acid stored
+2021-08-05:
+  BraveMole:
+  - bugfix: You can delete loadouts
+  - bugfix: Loadouts vendor works again
+  - code_imp: Sanitise item paths in loadouts
+  Grandpa:
+  - expansion: Expands content of an existing thing
+  Hekzder:
+  - balance: The UGL now has a fire delay of 1 second
+  - bugfix: Fixed the UGL not having a fire delay at all
+  - spellcheck: Fixed the UGL description listing it as a single shot launcher
+  KornFlaks:
+  - balance: Removes Queen Set Leaders cooldown. Instead makes it cost 200 plasma.
+  - rscadd: Adds text blurb on a sentry for an engineer to alt-click to remove battery
+      to replace.
+  Pariah919:
+  - bugfix: automag has a belt sprite now
+  QualityVan:
+  - bugfix: Xenos don't have an attack delay after clicking on weeds, the same way
+      they don't after clicking normal floors.
+  - bugfix: Taking at least 15 damage at once in stealth as a hunter will now properly
+      knock you out of it.
+  Sebbe9123:
+  - balance: Gives Defiler faster plasma gain.
+  Surrealaser:
+  - qol: When the Wraith uses its Blink ability, it will always attempt to teleport
+      as far as possible now, up to the tile you click.
+  hyper2snyper:
+  - code_imp: Various infrastructure changes for /mounted
+  lbnesquik:
+  - balance: Made the AI unable to use the dropship doors while it is hijacked.
+  - qol: Added a notification noise to the AI, whenever it gets called.
+  - bugfix: fixes the outside of LZ2 hangars not actually being outside
+  - qol: the AI can interact with colony generators :)
+  - expansion: Expands  AI shuttle notifications
+  - expansion: Shifted a couple areas of theseus around to make more sense. Added
+      some floor plates to the hangar to make it prettier./
+  - expansion: Expand the ai notifications for the alamo to include informations as
+      to who commands it
+  - bugfix: fixed a typo and the AI CAS laser being targeted at the AI core

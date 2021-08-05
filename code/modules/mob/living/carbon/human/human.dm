@@ -43,6 +43,7 @@
 	RegisterSignal(src, COMSIG_KB_GIVE, .proc/give_signal_handler)
 	AddComponent(/datum/component/footstep, FOOTSTEP_MOB_HUMAN)
 	AddComponent(/datum/component/bump_attack, FALSE, FALSE)
+	AddElement(/datum/element/ridable, /datum/component/riding/creature/human)
 
 /mob/living/carbon/human/proc/human_z_changed(datum/source, old_z, new_z)
 	SIGNAL_HANDLER
@@ -798,7 +799,6 @@
 /mob/living/carbon/human/buckle_mob(mob/living/buckling_mob, force = FALSE, check_loc = TRUE, lying_buckle = FALSE, hands_needed = 0, target_hands_needed = 0, silent)
 	if(!force)//humans are only meant to be ridden through piggybacking and special cases
 		return FALSE
-	LoadComponent(/datum/component/riding/human)
 	return ..()
 
 

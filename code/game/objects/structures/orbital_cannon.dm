@@ -360,14 +360,9 @@
 	name = "theoretical orbital ammo"
 	var/warhead_kind
 
-
-/obj/structure/ob_ammo/warhead/proc/warhead_impact(turf/target, inaccuracy_amt = 0)
-	SHOULD_CALL_PARENT(TRUE)
-	SSmonitor.stats.OB_available--
-
-/obj/structure/ob_ammo/warhead/Initialize()
-	. = ..()
-	SSmonitor.stats.OB_available++
+///Explode the warhead
+/obj/structure/ob_ammo/warhead/proc/warhead_impact()
+	return
 
 /obj/structure/ob_ammo/warhead/explosive
 	name = "\improper HE orbital warhead"

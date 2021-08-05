@@ -1,5 +1,0 @@
-author: "Alterist"
-delete-after: True
-changes: 
-  - balance: "Swaps around Aft Escape Pods and ERT Docks on the Theseus."
-  - rscadd: "Redesigned Theseus Hanger to allow for better workflow for POs."

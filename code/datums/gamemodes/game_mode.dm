@@ -578,16 +578,6 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 		to_chat(xeno_candidate, span_warning("That xenomorph has been occupied."))
 		return FALSE
 
-	if(XENODEATHTIME_CHECK(xeno_candidate))
-		if(check_other_rights(xeno_candidate.client, R_ADMIN, FALSE))
-			if(tgui_alert(xeno_candidate, "You wouldn't normally qualify for this respawn. Are you sure you want to bypass it with your admin powers?", "Bypass Respawn", list("Yes", "No")) != "Yes")
-				log_admin("[key_name(xeno_candidate)] used his admin power to bypass respawn before his timer was over")
-				XENODEATHTIME_MESSAGE(xeno_candidate)
-				return FALSE
-		else
-			XENODEATHTIME_MESSAGE(xeno_candidate)
-			return FALSE
-
 	if(new_xeno.afk_status == MOB_RECENTLY_DISCONNECTED) //We do not want to occupy them if they've only been gone for a little bit.
 		to_chat(xeno_candidate, span_warning("That player hasn't been away long enough. Please wait [round(timeleft(new_xeno.afk_timer_id) * 0.1)] second\s longer."))
 		return FALSE

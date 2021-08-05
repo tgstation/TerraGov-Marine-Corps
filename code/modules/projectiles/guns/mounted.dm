@@ -60,8 +60,9 @@
 	)
 
 	deploy_time = 5 SECONDS
+	undeploy_time = 5 SECONDS
 
-	max_integrity = 300
+	max_integrity = 125
 
 ///This and get_ammo_count is to make sure the ammo counter functions.
 /obj/item/weapon/gun/tl102/get_ammo_type()
@@ -143,6 +144,7 @@
 	)
 
 	deploy_time = 8.5 SECONDS
+	undeploy_time = 8.5 SECONDS
 
-	max_integrity = 500
+	max_integrity = 150
 

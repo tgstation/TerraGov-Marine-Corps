@@ -141,6 +141,8 @@
 	var/bomb_strength = 0
 	///Delay between firing the bombard ability for boilers
 	var/bomb_delay = 0
+	///Used to reduce cooldown for the boiler
+	var/ammo_multiplier = 0
 
 	// *** Carrier Abilities *** //
 	///maximum amount of huggers a carrier can carry at one time.
@@ -183,13 +185,26 @@
 	///Base range of Blink
 	var/wraith_blink_range = WRAITH_BLINK_RANGE
 
+	// *** Hunter Abilities ***
+	///Damage breakpoint to knock out of stealth
+	var/stealth_break_threshold = 0
+
 	///the 'abilities' available to a caste.
 	var/list/actions
 
 	///The iconstate for the xeno on the minimap
 	var/minimap_icon = "xeno"
+	///The iconstate for leadered xenos on the minimap
+	var/minimap_leadered_icon = "xenoleader"
 	///The iconstate of the plasma bar, format used is "[plasma_icon_state][amount]"
 	var/plasma_icon_state = "plasma"
+
+	///How quickly the caste enters vents
+	var/vent_enter_speed = XENO_DEFAULT_VENT_ENTER_TIME
+	///How quickly the caste enters vents
+	var/vent_exit_speed = XENO_DEFAULT_VENT_EXIT_TIME
+	///Whether the caste enters and crawls through vents silently
+	var/silent_vent_crawl = FALSE
 
 /mob/living/carbon/xenomorph
 	name = "Drone"

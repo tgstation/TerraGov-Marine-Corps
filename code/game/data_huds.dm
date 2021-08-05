@@ -533,20 +533,6 @@
 		amount = 1 //don't want the 'zero health' icon when we still have 4% of our health
 	holder.icon_state = "xenohealth[amount]"
 
-///Makes sentry ammo visible
-/obj/machinery/marine_turret/proc/hud_set_sentry_ammo()
-	var/image/holder = hud_list[SENTRY_AMMO_HUD]
-
-	if(!holder)
-		return
-
-	if(!rounds)
-		holder.icon_state = "plasma0"
-		return
-
-	var/amount = round(rounds * 100 / rounds_max, 10)
-	holder.icon_state = "plasma[amount]"
-
 ///Makes mounted guns ammo visible
 /obj/machinery/deployable/mounted/proc/hud_set_gun_ammo()
 	var/image/holder = hud_list[SENTRY_AMMO_HUD]

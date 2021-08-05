@@ -415,7 +415,7 @@
 	name = "Choose/Follow Xenomorph Leaders"
 	action_icon_state = "xeno_lead"
 	mechanics_text = "Make a target Xenomorph a leader."
-	plasma_cost = 0
+	plasma_cost = 200
 	keybind_signal = COMSIG_XENOABILITY_XENO_LEADERS
 	use_state_flags = XACT_USE_LYING
 
@@ -441,17 +441,10 @@
 		unset_xeno_leader(selected_xeno, feedback)
 		return
 
-	if(xeno_ruler.queen_ability_cooldown > world.time)
-		if(feedback)
-			to_chat(xeno_ruler, span_xenowarning("We're still recovering from our last hive managment ability. We must wait [round((xeno_ruler.queen_ability_cooldown-world.time)*0.1)] seconds."))
-		return
-
 	if(xeno_ruler.xeno_caste.queen_leader_limit <= length(xeno_ruler.hive.xeno_leader_list))
 		if(feedback)
 			to_chat(xeno_ruler, span_xenowarning("We currently have [length(xeno_ruler.hive.xeno_leader_list)] promoted leaders. We may not maintain additional leaders until our power grows."))
 		return
-
-	xeno_ruler.queen_ability_cooldown = world.time + 15 SECONDS
 
 	set_xeno_leader(selected_xeno, feedback)
 
@@ -464,6 +457,14 @@
 	selected_xeno.hive.remove_leader(selected_xeno)
 	selected_xeno.hud_set_queen_overwatch()
 	selected_xeno.handle_xeno_leader_pheromones(xeno_ruler)
+
+	var/datum/xeno_caste/original = /datum/xeno_caste
+	// Xenos with specialized icons (Queen, King, Shrike) do not need to have their icon returned to normal
+	if(selected_xeno.xeno_caste.minimap_icon != initial(original.minimap_icon))
+		return
+
+	SSminimaps.remove_marker(selected_xeno)
+	SSminimaps.add_marker(selected_xeno, selected_xeno.z, MINIMAP_FLAG_XENO, selected_xeno.xeno_caste.minimap_icon)
 
 
 /datum/action/xeno_action/set_xeno_lead/proc/set_xeno_leader(mob/living/carbon/xenomorph/selected_xeno, feedback = TRUE)
@@ -480,6 +481,14 @@
 	selected_xeno.hud_set_queen_overwatch()
 	selected_xeno.handle_xeno_leader_pheromones(xeno_ruler)
 	notify_ghosts("\ [xeno_ruler] has designated [selected_xeno] as a Hive Leader", source = selected_xeno, action = NOTIFY_ORBIT)
+
+	var/datum/xeno_caste/original = /datum/xeno_caste
+	// Xenos with specialized icons (Queen, King, Shrike) do not get their icon changed
+	if(selected_xeno.xeno_caste.minimap_icon != initial(original.minimap_icon))
+		return
+
+	SSminimaps.remove_marker(selected_xeno)
+	SSminimaps.add_marker(selected_xeno, selected_xeno.z, MINIMAP_FLAG_XENO, selected_xeno.xeno_caste.minimap_leadered_icon)
 
 // ***************************************
 // *********** Queen heal
@@ -754,5 +763,5 @@
 	SSpoints.xeno_points_by_hive[X.hivenumber] -= psych_cost
 	var/obj/structure/resin/king_pod = new /obj/structure/resin/king_pod(X.loc, X.hivenumber)
 	log_game("[key_name(X)] has created a pod in [AREACOORD(X)]")
-	xeno_message("<B>[X] has created a king pod at [get_area(X)]. Defend it until the Queen Mother summons a king!</B>", size = 3, hivenumber = X.hivenumber, target = king_pod, arrow_type = /obj/screen/arrow/leader_tracker_arrow)
+	xeno_message("<B>[X] has created a king pod at [get_area(X)]. Defend it until the Queen Mother summons a king!</B>", hivenumber = X.hivenumber, target = king_pod, arrow_type = /obj/screen/arrow/leader_tracker_arrow)
 	priority_announce("WARNING: Psychic anomaly detected at [get_area(X)]. Assault of the area reccomended.", "TGMC Intel Division")
