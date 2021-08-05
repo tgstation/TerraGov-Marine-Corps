@@ -224,7 +224,7 @@
 						/obj/item/clothing/glasses/hud/medgoggles/prescription = "goggles")
 
 /obj/item/storage/internal/marinehelmet
-	storage_slots = 3
+	storage_slots = 2
 	max_w_class = 1
 	bypass_w_limit = list(
 		/obj/item/clothing/glasses,
