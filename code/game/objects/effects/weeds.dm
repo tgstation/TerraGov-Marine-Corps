@@ -248,6 +248,7 @@
 
 /datum/element/slowing_on_crossed
 	element_flags = ELEMENT_BESPOKE
+	id_arg_index = 2
 	///How much it slow down on crossed
 	var/slow_amount = 0
 
