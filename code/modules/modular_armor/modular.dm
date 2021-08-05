@@ -361,6 +361,9 @@
 	///Greyscale config color we use for the visor
 	var/visor_greyscale_config = /datum/greyscale_config/modular_helmet_visor_emissive
 
+	/// The storage the helmet uses.
+	var/obj/item/storage/internal/pockets = /obj/item/storage/internal/marinehelmet // this uses the storage defiend in helmet/marine
+
 	///Assoc list of color-hex for colors we're allowed to color this armor
 	var/list/colorable_colors = list(
 		"black" = "#474A50",
@@ -380,10 +383,25 @@
 
 /obj/item/clothing/head/modular/Initialize(mapload)
 	. = ..()
+	pockets = new pockets(src)
 	if(!visor_emissive_on || !visor_greyscale_config)
 		return
 	AddElement(/datum/element/special_clothing_overlay/modular_helmet_visor, HEAD_LAYER, visor_greyscale_config, visor_color_hex)
 	update_icon()
+
+/obj/item/clothing/head/modular/attack_hand(mob/living/user)
+	if(pockets.handle_attack_hand(user))
+		return ..()
+
+/obj/item/clothing/head/modular/MouseDrop(over_object, src_location, over_location)
+	if(!pockets)
+		return ..()
+	if(pockets.handle_mousedrop(usr, over_object))
+		return ..()
+
+/obj/item/clothing/head/modular/emp_act(severity)
+	pockets?.emp_act(severity)
+	return ..()
 
 /obj/item/clothing/head/modular/Destroy()
 	QDEL_NULL(installed_module)
@@ -452,6 +470,11 @@
 		split_colors += visor_color_hex
 	set_greyscale_colors(split_colors)
 	return TRUE
+
+	if(!pockets)
+		return
+
+	return pockets.attackby(I, user, params)
 
 /obj/item/clothing/head/modular/attack_hand_alternate(mob/living/carbon/human/user)
 	if(user.head == src)
