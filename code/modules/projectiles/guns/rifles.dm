@@ -247,7 +247,7 @@
 	aim_slowdown = 0.55
 	wield_delay = 0.7 SECONDS
 	force = 20
-	max_shells = 10 //codex
+	max_shells = 40 //codex
 	current_mag = /obj/item/ammo_magazine/rifle/standard_br
 	attachable_allowed = list(
 		/obj/item/attachable/suppressor,
@@ -282,10 +282,11 @@
 	aim_speed_modifier = 3
 
 	fire_delay = 0.35 SECONDS
-	damage_mult = 0.6 //uses the marksman bullet, like the DMR. This equals to 39 damage per shot
+	damage_mult = 0.54 //uses the marksman bullet, like the DMR. This equals to about 35 damage per shot
 	accuracy_mult = 1.25
 	scatter = -10
 	burst_amount = 1
+	damage_falloff_mult = 0.6
 
 //-------------------------------------------------------
 //M412 Pulse Rifle
