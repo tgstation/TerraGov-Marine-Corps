@@ -243,7 +243,7 @@
 	RegisterSignal(R, COMSIG_XENO_PROJECTILE_HIT, .proc/evasion_dodge) //This is where we actually check to see if we dodge the projectile.
 	RegisterSignal(R, COMSIG_XENOMORPH_FIRE_BURNING, .proc/evasion_burn_check) //Register status effects and fire which impact evasion.
 	RegisterSignal(R, COMSIG_ATOM_BULLET_ACT, .proc/evasion_flamer_hit) //Register status effects and fire which impact evasion.
-	RegisterSignal(R, COMSIG_MOVABLE_LIVING_THROW_IMPACT_CHECK, .proc/evasion_throw_dodge) //Register status effects and fire which impact evasion.
+	RegisterSignal(R, COMSIG_LIVING_PRE_THROW_IMPACT, .proc/evasion_throw_dodge) //Register status effects and fire which impact evasion.
 
 	evade_active = TRUE //evasion is currently active
 
@@ -298,7 +298,7 @@
 		COMSIG_LIVING_STATUS_STAGGER,
 		COMSIG_XENO_PROJECTILE_HIT,
 		COMSIG_XENOMORPH_FIRE_BURNING,
-		COMSIG_MOVABLE_LIVING_THROW_IMPACT_CHECK,
+		COMSIG_LIVING_PRE_THROW_IMPACT,
 		COMSIG_ATOM_BULLET_ACT
 		))
 
@@ -321,24 +321,24 @@
 
 	return ..()
 
-///Dodging thrown projectiles
+///Determines whether or not a thrown projectile is dodged while the Evasion ability is active
 /datum/action/xeno_action/evasion/proc/evasion_throw_dodge(datum/source, atom/movable/proj)
 	SIGNAL_HANDLER
 
-	var/mob/living/carbon/xenomorph/runner/R = owner
+	var/mob/living/carbon/xenomorph/X = owner
 	if(!evade_active) //If evasion is not active we don't dodge
-		return FALSE
+		return NONE
 
-	if((R.last_move_time < (world.time - RUNNER_EVASION_RUN_DELAY))) //Gotta keep moving to benefit from evasion!
-		return FALSE
+	if((X.last_move_time < (world.time - RUNNER_EVASION_RUN_DELAY))) //Gotta keep moving to benefit from evasion!
+		return NONE
 
-	if(isobj(proj))
-		var/obj/O = proj
-		evasion_stacks += O.throwforce //Add to evasion stacks for the purposes of determining whether or not our cooldown refreshes equal to the thrown force
+	if(isitem(proj))
+		var/obj/item/I = proj
+		evasion_stacks += I.throwforce //Add to evasion stacks for the purposes of determining whether or not our cooldown refreshes equal to the thrown force
 
 	evasion_dodge_sfx(proj)
 
-	return COMPONENT_LIVING_THROW_HIT_CHECK
+	return COMPONENT_PRE_THROW_IMPACT_HIT
 
 ///This is where the dodgy magic happens
 /datum/action/xeno_action/evasion/proc/evasion_dodge(datum/source, obj/projectile/proj, cardinal_move, uncrossing)
@@ -364,18 +364,18 @@
 
 	return COMPONENT_PROJECTILE_DODGE
 
-///Dodge SFX
+///Handles dodge effects and visuals for the Evasion ability.
 /datum/action/xeno_action/evasion/proc/evasion_dodge_sfx(atom/movable/proj)
-	evasion_stack_target = RUNNER_EVASION_COOLDOWN_REFRESH_THRESHOLD * (1 + evasion_streak) //Each streak increases the amount we have to dodge by the initial value
+	evasion_stack_target = RUNNER_EVASION_COOLDOWN_REFRESH_THRESHOLD * (1 + evasion_streak)
 
 	var/mob/living/carbon/xenomorph/X = owner
 
 	X.visible_message(span_warning("[X] effortlessly dodges the [proj.name]!"), \
 	span_xenodanger("We effortlessly dodge the [proj.name]![(evasion_stack_target - evasion_stacks) > 0 && evasion_stacks > 0 ? " We must dodge [evasion_stack_target - evasion_stacks] more projectile damage before [src]'s cooldown refreshes." : ""]"))
 
-	X.add_filter("runner_evasion", 2, gauss_blur_filter(5)) //Cool SFX
+	X.add_filter("runner_evasion", 2, gauss_blur_filter(5))
 	addtimer(CALLBACK(X, /atom.proc/remove_filter, "runner_evasion"), 0.5 SECONDS)
-	X.do_jitter_animation(4000) //Dodgy animation!
+	X.do_jitter_animation(4000)
 
 	if(evasion_stacks >= evasion_stack_target && cooldown_remaining()) //We have more evasion stacks than needed to refresh our cooldown, while being on cooldown.
 		to_chat(X, span_highdanger("Our success spurs us to continue our evasive maneuvers!"))
