@@ -15,7 +15,10 @@
 	siemens_coefficient = 0.9
 	var/gas_filter_strength = 1			//For gas mask filters
 	var/list/filtered_gases = list(/datum/reagent/toxin/phoron, "sleeping_agent", "carbon_dioxide")
-	var/breathy = 1		///Whether or not this plays a sound on equip
+	///Does this particular mask have breath noises
+	var/breathy = 1
+	///This covers most of the screen
+	var/hearing_range = 5
 
 /obj/item/clothing/mask/gas/equipped(mob/living/carbon/human/user, slot)
 	. = ..()
@@ -23,9 +26,15 @@
 		return
 	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_GAS_BREATH))
 		return
-	if(slot == SLOT_WEAR_MASK)
-		playsound(user, "gasbreath", 20, 1)
-		TIMER_COOLDOWN_START(src, COOLDOWN_GAS_BREATH, 10 SECONDS)
+	if(slot != SLOT_WEAR_MASK)
+		return
+	for(var/M in get_hearers_in_view(hearing_range, src))
+		if(ismob(M))
+			var/mob/HM = M
+			if(HM?.client?.prefs?.toggles_sound & SOUND_GAS_MASK)
+				continue
+			HM.playsound_local(user, "gasbreath", 20, 1)
+			TIMER_COOLDOWN_START(src, COOLDOWN_GAS_BREATH, 10 SECONDS)
 
 /obj/item/clothing/mask/gas/tactical
 	name = "Tactical gas mask"
