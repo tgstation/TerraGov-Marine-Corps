@@ -74,7 +74,6 @@
 	log_game("[key_name(src)] has created a Hive Message: [queensWord]")
 	message_admins("[ADMIN_TPMONTY(src)] has created a Hive Message.")
 
-			xeno_message("The Queen has <b>forbidden</b> the construction of silos and turrets.")
 // ***************************************
 // *********** Silo and turret permissions
 // ***************************************
