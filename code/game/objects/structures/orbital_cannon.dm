@@ -237,13 +237,11 @@
 
 
 /obj/structure/orbital_tray/Destroy()
-	if(warhead)
-		qdel(warhead)
-		warhead = null
+	QDEL_NULL(warhead)
 	if(linked_ob)
 		linked_ob.tray = null
 		linked_ob = null
-	. = ..()
+	return ..()
 
 
 /obj/structure/orbital_tray/update_overlays()

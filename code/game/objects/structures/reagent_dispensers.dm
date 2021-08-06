@@ -77,8 +77,8 @@
 	var/exploding = FALSE
 
 /obj/structure/reagent_dispensers/fueltank/Destroy()
-	. = ..()
 	QDEL_NULL(rig)
+	return ..()
 
 /obj/structure/reagent_dispensers/fueltank/examine(mob/user)
 	. = ..()

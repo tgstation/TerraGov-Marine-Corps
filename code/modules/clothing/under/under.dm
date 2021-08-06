@@ -30,7 +30,7 @@
 	if(hastie)
 		qdel(hastie)
 		hastie = null
-	. = ..()
+	return ..()
 
 
 
