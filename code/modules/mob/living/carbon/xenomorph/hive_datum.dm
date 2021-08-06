@@ -1113,7 +1113,7 @@ to_chat will check for valid clients itself already so no need to double check f
 /datum/hive_status/ui_data(mob/living/carbon/xenomorph/xeno)
 	. = list()
 
-	.["can_evolve"] = !xeno.is_ventcrawling && !xeno.incapacitated(TRUE) && xeno.health >= xeno.maxHealth && xeno.plasma_stored >= (xeno.xeno_caste.plasma_max * xeno.xeno_caste.plasma_regen_limit) 
+	.["can_evolve"] = !xeno.is_ventcrawling && !xeno.incapacitated(TRUE) && xeno.health >= xeno.maxHealth && xeno.plasma_stored >= (xeno.xeno_caste.plasma_max * xeno.xeno_caste.plasma_regen_limit)
 
 	if(isxenolarva(xeno))
 		.["evolution"] = list(
@@ -1181,7 +1181,7 @@ to_chat will check for valid clients itself already so no need to double check f
 	var/list/possible_mothers = list()
 	var/list/possible_silos = list()
 	SEND_SIGNAL(src, COMSIG_HIVE_XENO_MOTHER_PRE_CHECK, possible_mothers, possible_silos)
-	if(stored_larva > 0 && !LAZYLEN(candidate) && (length(possible_mothers) || length(possible_silos) || (SSticker.mode?.flags_round_type & MODE_SILO_RESPAWN && !SSsilo.can_fire)))
+	if(stored_larva > 0 && !LAZYLEN(candidate) && (length(possible_mothers) || length(possible_silos) || (SSticker.mode?.flags_round_type & MODE_SILO_RESPAWN && SSmonitor.gamestate == SHUTTERS_CLOSED)))
 		attempt_to_spawn_larva(observer)
 		return
 	if(LAZYFIND(candidate, observer))
