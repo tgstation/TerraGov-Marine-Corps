@@ -3,7 +3,7 @@ GLOBAL_DATUM_INIT(evo_panel, /datum/evolution_panel, new)
 
 /// Empty datum parent for use as evolution panel entrance.
 /datum/evolution_panel
-    // Empty
+	// Empty
 
 /// Controls the evolution UI
 /datum/evolution_panel/ui_interact(mob/user, datum/tgui/ui)
