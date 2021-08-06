@@ -38,19 +38,6 @@
 /mob/living/proc/can_xeno_slash(mob/living/carbon/xenomorph/X)
 	if(CHECK_BITFIELD(X.xeno_caste.caste_flags, CASTE_IS_INTELLIGENT)) // intelligent ignore restrictions
 		return TRUE
-
-	if(X.hive.slashing_allowed == XENO_SLASHING_RESTRICTED)
-		if(status_flags & XENO_HOST)
-			for(var/obj/item/alien_embryo/embryo in src)
-				if(!embryo.issamexenohive(X))
-					continue
-				to_chat(X, span_warning("We try to slash [src], but find we <B>cannot</B>. There is a host inside!"))
-				return FALSE
-
-		if(X.health > round(2 * X.maxHealth / 3)) //Note : Under 66 % health
-			to_chat(X, span_warning("We try to slash [src], but find we <B>cannot</B>. We are not yet injured enough to overcome the Queen's orders."))
-			return FALSE
-
 	else if(isnestedhost(src))
 		for(var/obj/item/alien_embryo/embryo in src)
 			if(!embryo.issamexenohive(X))
@@ -62,9 +49,6 @@
 /mob/living/carbon/human/can_xeno_slash(mob/living/carbon/xenomorph/X)
 	. = ..()
 	if(!.)
-		return FALSE
-	if(!X.hive.slashing_allowed && !(X.xeno_caste.caste_flags & CASTE_IS_INTELLIGENT))
-		to_chat(X, span_warning("Slashing is currently <b>forbidden</b> by the Queen. We refuse to slash [src]."))
 		return FALSE
 
 /mob/living/proc/get_xeno_slash_zone(mob/living/carbon/xenomorph/X, set_location = FALSE, random_location = FALSE, no_head = FALSE)
