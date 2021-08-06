@@ -37,7 +37,7 @@
 #define UNIT_TEST_FAILED 1
 #define UNIT_TEST_SKIPPED 2
 
-#include "bespoke_id.dm"
+/*#include "bespoke_id.dm"
 #include "binary_insert.dm"
 #include "component_tests.dm"
 #include "initialize_sanity.dm"
@@ -47,9 +47,9 @@
 #include "subsystem_init.dm"
 #include "tgui_create_message.dm"
 #include "timer_sanity.dm"
-#include "unit_test.dm"
 #include "weed_ability.dm"
-#include "weed_spread.dm"
+#include "weed_spread.dm"*/
+#include "unit_test.dm"
 #include "xeno_logical_scaling.dm"
 
 #undef TEST_ASSERT
