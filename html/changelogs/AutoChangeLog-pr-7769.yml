@@ -1,0 +1,5 @@
+author: "QualityVan"
+delete-after: True
+changes: 
+  - bugfix: "Trying to give cpr to someone who's gone cold will fail properly now"
+  - bugfix: "Suiciding gives more oxy damage, just so the body meets damage thresholds for cpr checks"
