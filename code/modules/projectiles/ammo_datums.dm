@@ -1628,7 +1628,7 @@ datum/ammo/bullet/revolver/tp44
 	max_range = 10
 	accuracy_var_low = 3
 	accuracy_var_high = 3
-	damage = 450
+	damage = 45
 	stagger_stacks = 1.5
 	slowdown_stacks = 1.5
 	smoke_strength = 0.5
@@ -1731,21 +1731,21 @@ datum/ammo/bullet/revolver/tp44
 	name = "neurotoxic splash"
 	added_spit_delay = 0
 	spit_cost = 150
-	damage = 50
+	damage = 40
 	smoke_strength = 0.8
 	reagent_transfer_amount = 9
 
 /datum/ammo/xeno/toxin/heavy/upgrade1
 	smoke_strength = 0.85
-	reagent_transfer_amount = 10
+	reagent_transfer_amount = 9.5
 
 /datum/ammo/xeno/toxin/heavy/upgrade2
 	smoke_strength = 0.95
-	reagent_transfer_amount = 10.5
+	reagent_transfer_amount = 10
 
 /datum/ammo/xeno/toxin/heavy/upgrade3
-	smoke_strength = 1.5
-	reagent_transfer_amount = 11
+	smoke_strength = 1
+	reagent_transfer_amount = 10.5  
 
 
 /datum/ammo/xeno/sticky
