@@ -32,6 +32,10 @@
 		// Check for values that are should grow with each level
 		for(var/stat in greater_test_vars)
 			var/current_value = greater_test_vars[stat]
+			var/the_ref = ref(mob_data[XENO_UPGRADE_ZERO])
+			the_ref = copytext(the_ref, 4, -7)
+			var/num = text2num(the_ref, 16)
+			log_world("internal type : [num]")
 			if(ispath(mob_data[XENO_UPGRADE_ZERO]))
 				log_world("it's indeed a path")
 			else
