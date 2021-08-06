@@ -117,7 +117,7 @@
 /obj/item/weapon/gun/rifle/sniper/antimaterial/Destroy()
 	laser_off()
 	QDEL_NULL(integrated_laze)
-	. = ..()
+	return ..()
 
 /obj/item/weapon/gun/rifle/sniper/antimaterial/dropped()
 	laser_off()
@@ -388,8 +388,8 @@
 	SSmonitor.stats.miniguns_in_use += src
 
 /obj/item/weapon/gun/minigun/Destroy()
-	. = ..()
 	SSmonitor.stats.miniguns_in_use -= src
+	return ..()
 
 
 /obj/item/weapon/gun/minigun/examine_ammo_count(mob/user)
@@ -1014,8 +1014,8 @@
 	SSmonitor.stats.sadar_in_use += src
 
 /obj/item/weapon/gun/launcher/rocket/sadar/Destroy()
-	. = ..()
 	SSmonitor.stats.sadar_in_use -= src
+	return ..()
 
 //-------------------------------------------------------
 //M5 RPG'S MEAN FUCKING COUSIN

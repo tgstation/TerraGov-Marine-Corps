@@ -56,7 +56,7 @@
 		if(meter.target == src)
 			new /obj/item/pipe_meter (T)
 			qdel(meter)
-	. = ..()
+	return ..()
 
 /obj/machinery/atmospherics/pipe/update_icon()
 	. = ..()

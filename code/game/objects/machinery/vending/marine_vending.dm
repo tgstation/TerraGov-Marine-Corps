@@ -69,8 +69,8 @@
 	GLOB.marine_vendors.Add(src)
 
 /obj/machinery/vending/marine/Destroy()
-	. = ..()
 	GLOB.marine_vendors.Remove(src)
+	return ..()
 
 //What do grenade do against candy machine?
 /obj/machinery/vending/marine/ex_act(severity)

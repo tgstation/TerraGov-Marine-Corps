@@ -1,0 +1,4 @@
+author: "KornFlaks"
+delete-after: True
+changes: 
+  - rscdel: "Removes remaining references to xeno respawn timers missed earlier."

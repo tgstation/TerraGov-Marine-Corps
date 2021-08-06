@@ -206,8 +206,8 @@
 	turn_light(null, (A.lightswitch && A.power_light))
 
 /obj/machinery/light/Destroy()
-	. = ..()
 	GLOB.nightfall_toggleable_lights -= src
+	return ..()
 
 /obj/machinery/light/proc/is_broken()
 	if(status == LIGHT_BROKEN)
