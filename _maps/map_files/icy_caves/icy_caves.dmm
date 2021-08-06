@@ -987,7 +987,6 @@
 /obj/item/storage/box/lightstick/red,
 /obj/item/storage/box/lightstick,
 /obj/item/storage/box/lightstick,
-/obj/item/tool/pickaxe/plasmacutter,
 /obj/effect/spawner/random/powercell,
 /obj/item/clothing/glasses/welding,
 /obj/item/explosive/plastique,
@@ -1085,7 +1084,6 @@
 /obj/item/storage/box/lightstick/red,
 /obj/item/storage/box/lightstick,
 /obj/item/storage/box/lightstick,
-/obj/item/tool/pickaxe/plasmacutter,
 /obj/effect/spawner/random/powercell,
 /obj/item/explosive/plastique,
 /turf/open/floor/tile/dark,
@@ -1883,12 +1881,6 @@
 /obj/machinery/light,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/outside)
-"kw" = (
-/obj/structure/table/reinforced,
-/obj/item/weapon/gun/flamer,
-/obj/item/ammo_magazine/flamer_tank/backtank,
-/turf/open/floor/tile/dark,
-/area/icy_caves/outpost/outside)
 "kx" = (
 /obj/structure/table/reinforced,
 /turf/open/floor/tile/dark,
@@ -2640,7 +2632,6 @@
 /area/icy_caves/outpost/outside)
 "pF" = (
 /obj/structure/rack,
-/obj/item/weapon/gun/smg/m25,
 /obj/item/weapon/gun/smg/m25,
 /obj/item/ammo_magazine/smg/m25,
 /obj/item/ammo_magazine/smg/m25,
@@ -4537,8 +4528,6 @@
 	},
 /area/icy_caves/caves/east)
 "Bl" = (
-/obj/item/ammo_magazine/rocket/sadar/ap,
-/obj/item/ammo_magazine/rocket/sadar/wp,
 /obj/structure/rack,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/outside)
@@ -7759,8 +7748,12 @@
 /turf/open/floor/prison/kitchen,
 /area/icy_caves/outpost/kitchen)
 "YN" = (
-/obj/item/weapon/gun/launcher/rocket/sadar,
 /obj/structure/rack,
+/obj/item/weapon/gun/smg/m25,
+/obj/item/ammo_magazine/smg/m25,
+/obj/item/ammo_magazine/smg/m25,
+/obj/item/ammo_magazine/smg/m25,
+/obj/item/ammo_magazine/smg/m25,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/outside)
 "YO" = (
@@ -14590,7 +14583,7 @@ VI
 Om
 nL
 kp
-kw
+kx
 HS
 HS
 HS
