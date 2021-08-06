@@ -200,7 +200,7 @@
 	if(length(impacttargets))
 		INVOKE_NEXT_TICK(src, .proc/process_impact, impacttargets)
 
-///Projectile ammo acts on the turf passed in
+///Ammo acts on the turf passed in
 /obj/structure/ship_ammo/energy/proc/projectile_impact(turf/T)
 	playsound(T, 'sound/effects/pred_vision.ogg', 30, 1)
 	for(var/mob/living/L in T)
@@ -215,7 +215,7 @@
 /obj/structure/ship_ammo/energy/railgun
 	name = "Railgun ammunition"
 	icon_state = "railgun_ammo"
-	desc = "Changeable capacitors and projectiles clip in single unit, complexity of the design does not allow transfer of ammo. Used to fire railgun."
+	desc = "Capacitors and projectiles in single unit. Complexity of the design disallows transfer of ammo. Used to fire railgun."
 	travelling_time = 2 SECONDS
 	equipment_type = /obj/structure/dropship_equipment/weapon/railgun
 	transferable_ammo = FALSE
@@ -235,16 +235,12 @@
 	else
 		to_chat(user, "[name] is empty.")
 
-///Defining projectlie for versatile damage config and enabling bullet_act()
-/datum/ammo/bullet/cas_railgun
-
-/datum/ammo/bullet/cas_railgun/on_hit_mob()
-
 ///Rail ammo acts on the turf passed in
 /obj/structure/ship_ammo/energy/railgun/projectile_impact(turf/T)
 	playsound(T, 'sound/effects/explosion6.ogg', 4, 1)
 	for (var/mob/living/carbon/xenomorph/X in T)
-		X.
+		X.adjust_sunder(90)
+		X.adjustBruteLoss(rand(290, 310))
 	for (var/obj/O in T)
 		O.ex_act(EXPLODE_DEVASTATE)
 	for (var/turf/closed/wall/W in T)

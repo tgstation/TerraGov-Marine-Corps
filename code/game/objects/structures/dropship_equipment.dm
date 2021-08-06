@@ -793,7 +793,7 @@
 /obj/structure/dropship_equipment/weapon/railgun
 	name = "Railgun"
 	icon_state = "railgun"
-	desc = "The pinnacle of technological development of TGMC, airborne railgun, it drives shells to insane speed by power stored in capacitor unit. Moving this will require some sort of lifter."
+	desc = "T-HSPD No. 3, pinnacle of TGMC technological development, airborne railgun. It drives shells to insane speed by power stored in capacitors. Moving this will require some sort of lifter."
 	icon = 'icons/Marine/mainship_props64.dmi'
 	firing_sound = 'sound/effects/obfire.ogg'
 	firing_delay = 300 //30 seconds
