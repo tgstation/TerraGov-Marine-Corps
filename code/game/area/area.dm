@@ -380,6 +380,3 @@
 		SSminimaps.remove_marker(GLOB.zones_to_control[src])
 		SSminimaps.add_marker(GLOB.zones_to_control[src], z, MINIMAP_FLAG_ALL, "rebel_zone")
 		return
-	if(faction_controlling)
-		faction_controlling = ""
-		SSminimaps.remove_marker(GLOB.zones_to_control[src])

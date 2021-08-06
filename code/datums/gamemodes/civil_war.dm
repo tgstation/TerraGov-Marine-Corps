@@ -42,7 +42,7 @@
 		/datum/job/terragov/squad/standard/rebel = -1
 	)
 
-	win_points_needed = 2000
+	win_points_needed = 1000
 
 /datum/game_mode/civil_war/announce()
 	to_chat(world, "<b>The current game mode is - Civil War!</b>")
