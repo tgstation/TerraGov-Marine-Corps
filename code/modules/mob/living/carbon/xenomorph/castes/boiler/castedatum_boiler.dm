@@ -146,7 +146,7 @@
 	ancient_message = "We are the master of ranged artillery. Let's bring death from above."
 
 	// *** Melee Attacks *** //
-	melee_damage = 12
+	melee_damage = 20
 
 	// *** Speed *** //
 	speed = 0.1
