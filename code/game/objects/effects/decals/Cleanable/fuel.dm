@@ -33,7 +33,7 @@
 		amount += other.amount
 		qdel(other)
 	fuel_spread()
-	RegisterSignal(loc, COMSIG_TURF_LANDED, .proc/ignite_check_wrapper)
+	RegisterSignal(loc, COMSIG_TURF_THROW_ENDED_HERE, .proc/ignite_check_wrapper)
 
 /obj/effect/decal/cleanable/liquid_fuel/Crossed(atom/movable/AM)
 	. = ..()
