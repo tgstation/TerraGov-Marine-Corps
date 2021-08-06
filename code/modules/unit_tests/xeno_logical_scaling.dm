@@ -15,7 +15,7 @@
 		if(!("[typepath]" in by_xeno))
 			by_xeno["[typepath]"] = list()
 		by_xeno["[typepath]"] += list("[upgrade]" = caste)
-
+	var/datum/xeno_caste/caste
 	for(var/xenopath in by_xeno)
 		var/list/mob_data = by_xeno[xenopath]
 		// Each of these values should get larger or stay the same each evolution
@@ -31,7 +31,7 @@
 			"speed" = 99,
 		)
 		for(var/upgradepath in mob_data)
-			var/datum/xeno_caste/caste = new mob_data[upgradepath]
+			caste = new mob_data[upgradepath]
 			// Check for values that are should grow with each level
 			for(var/stat in greater_test_vars)
 				if(castevars[stat] < greater_test_vars[stat])
