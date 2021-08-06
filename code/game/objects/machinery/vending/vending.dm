@@ -683,6 +683,16 @@
 			if(cell.charge < cell.maxcharge)
 				to_chat(user, span_warning("\The [cell] isn't full. You must recharge it before you can restock it."))
 				return
+		else if(istype(item_to_stock, /obj/item/stack))
+			var/obj/item/stack/stack = item_to_stock
+			if(stack.amount != initial(stack.amount))
+				to_chat(user, span_warning("\The [stack] doesn't have the same count as it started with, [initial(stack.amount)]. You must fix this before you can restock it."))
+				return
+		else if(istype(item_to_stock, /obj/item/reagent_containers))
+			var/obj/item/reagent_containers/holder = item_to_stock
+			if(!holder.has_initial_reagents())
+				to_chat(user, span_warning("\The [holder] doesn't have the medicine it came with in it. You must refill it before you can restock it."))
+				return
 		if(item_to_stock.loc == user) //Inside the mob's inventory
 			if(item_to_stock.flags_item & WIELDED)
 				item_to_stock.unwield(user)

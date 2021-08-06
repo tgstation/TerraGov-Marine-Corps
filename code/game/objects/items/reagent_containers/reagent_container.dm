@@ -68,3 +68,10 @@
 			. += "; [R.name]([R.volume]u)"
 	else
 		. = "No reagents"
+
+///Returns TRUE if the current reagents contain at least everything in the list_reagents, FALSE otherwise
+/obj/item/reagent_containers/proc/has_initial_reagents()
+	for(var/reagent_to_check in list_reagents)
+		if(reagents.get_reagent_amount(reagent_to_check) != list_reagents[reagent_to_check])
+			return FALSE
+	return TRUE
