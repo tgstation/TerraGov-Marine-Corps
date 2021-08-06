@@ -34,7 +34,7 @@
 			caste = new mob_data[upgradepath]
 			// Check for values that are should grow with each level
 			for(var/stat in greater_test_vars)
-				if(castevars[stat] < greater_test_vars[stat])
+				if(caste.vars[stat] < greater_test_vars[stat])
 					Fail("Invalid stats on [xenopath]. It's [stat]@[upgradepath] has [caste.vars[stat]] compared to base value of [greater_test_vars[stat]] (expected greater)")
 				greater_test_vars[stat] = caste.vars[stat]
 			// Test for values that are should shrink with each level
