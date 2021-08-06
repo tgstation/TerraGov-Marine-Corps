@@ -31,17 +31,14 @@
 			"speed" = 99,
 		)
 		for(var/upgradepath in mob_data)
-			var/fullxenopath = mob_data[upgradepath]
-			log_world(ispath(fullxenopath))
-			log_world("[fullxenopath]")
-			var/mob/living/carbon/xenomorph/xeno_mob = allocate(fullxenopath)
+			var/datum/xeno_caste/caste = new mob_data[upgradepath]
 			// Check for values that are should grow with each level
 			for(var/stat in greater_test_vars)
-				if(xeno_mob.vars[stat] < greater_test_vars[stat])
-					Fail("Invalid stats on [xenopath]. It's [stat]@[upgradepath] has [xeno_mob.vars[stat]] compared to base value of [greater_test_vars[stat]] (expected greater)")
-				greater_test_vars[stat] = xeno_mob.vars[stat]
+				if(castevars[stat] < greater_test_vars[stat])
+					Fail("Invalid stats on [xenopath]. It's [stat]@[upgradepath] has [caste.vars[stat]] compared to base value of [greater_test_vars[stat]] (expected greater)")
+				greater_test_vars[stat] = caste.vars[stat]
 			// Test for values that are should shrink with each level
 			for(var/stat in lesser_test_vars)
-				if(xeno_mob.vars[stat] > lesser_test_vars[stat])
-					Fail("Invalid stats on [xenopath]. It's [stat]@[XENO_UPGRADE_ZERO] has [xeno_mob.vars[stat]] compared to base value of [lesser_test_vars[stat]] (expected lower)")
-				lesser_test_vars[stat] = xeno_mob.vars[stat]
+				if(caste.vars[stat] > lesser_test_vars[stat])
+					Fail("Invalid stats on [xenopath]. It's [stat]@[XENO_UPGRADE_ZERO] has [caste.vars[stat]] compared to base value of [lesser_test_vars[stat]] (expected lower)")
+				lesser_test_vars[stat] = caste.vars[stat]
