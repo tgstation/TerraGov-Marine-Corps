@@ -31,7 +31,8 @@
 			"speed" = 99,
 		)
 		for(var/upgradepath in mob_data)
-			caste = new mob_data[upgradepath]
+			var/typepath = mob_data[upgradepath]
+			caste = new typepath
 			// Check for values that are should grow with each level
 			for(var/stat in greater_test_vars)
 				if(caste.vars[stat] < greater_test_vars[stat])
