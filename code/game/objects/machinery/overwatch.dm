@@ -67,7 +67,6 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 		send_retreat_order.target = user
 		send_retreat_order.give_action(user)
 		actions += send_retreat_order
-	RegisterSignal(user, COMSIG_MOB_CLICKON, .proc/attempt_spotlight)
 
 /obj/machinery/computer/camera_advanced/overwatch/main
 	icon_state = "overwatch_main"
@@ -122,12 +121,13 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	. = ..()
 	RegisterSignal(user, COMSIG_MOB_CLICK_SHIFT, .proc/send_order)
 	RegisterSignal(user, COMSIG_ORDER_SELECTED, .proc/set_order)
+	RegisterSignal(user, COMSIG_MOB_MIDDLE_CLICK, .proc/attempt_spotlight)
 
 /obj/machinery/computer/camera_advanced/overwatch/remove_eye_control(mob/living/user)
 	. = ..()
 	UnregisterSignal(user, COMSIG_MOB_CLICK_SHIFT)
 	UnregisterSignal(user, COMSIG_ORDER_SELECTED)
-	UnregisterSignal(user, COMSIG_MOB_CLICKON)
+	UnregisterSignal(user, COMSIG_MOB_MIDDLE_CLICK)
 
 /obj/machinery/computer/camera_advanced/overwatch/can_interact(mob/user)
 	. = ..()
