@@ -1,0 +1,4 @@
+author: "glassyduke"
+delete-after: True
+changes: 
+  - imageadd: "added some icons and images for sentinel"
