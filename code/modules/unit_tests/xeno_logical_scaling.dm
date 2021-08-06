@@ -32,6 +32,8 @@
 		)
 		for(var/upgradepath in mob_data)
 			var/fullxenopath = mob_data[upgradepath]
+			log_world(ispath(fullxenopath))
+			log_world("[fullxenopath]")
 			var/mob/living/carbon/xenomorph/xeno_mob = allocate(fullxenopath)
 			// Check for values that are should grow with each level
 			for(var/stat in greater_test_vars)
