@@ -32,6 +32,12 @@
 		// Check for values that are should grow with each level
 		for(var/stat in greater_test_vars)
 			var/current_value = greater_test_vars[stat]
+			if(ispath(mob_data[XENO_UPGRADE_ZERO]))
+				log_world("it's indeed a path")
+			else
+				log_world("it is not a path")
+			var/a_test_value = initial(mob_data[XENO_UPGRADE_ZERO].vars["name"]
+			log_world(a_test_value)
 			var/new_value = initial(mob_data[XENO_UPGRADE_ZERO].vars[stat])
 			if(new_value < current_value)
 				Fail("Invalid stats on [xenopath]. It's [stat]@[XENO_UPGRADE_ZERO] has [new_value] compared to base value of [current_value] (expected greater)")
