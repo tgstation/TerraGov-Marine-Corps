@@ -180,6 +180,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	if(slot == SLOT_EARS)
 		if(GLOB.faction_to_freq[user.faction] != frequency)
 			user.ex_act(EXPLODE_LIGHT)
+			playsound(user, 'sound/effects/bang.ogg', 50, 1)
 			qdel(src)
 			return
 		wearer = user
