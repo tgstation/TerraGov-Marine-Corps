@@ -32,15 +32,16 @@
 		// Check for values that are should grow with each level
 		for(var/stat in greater_test_vars)
 			var/current_value = greater_test_vars[stat]
-			var/the_ref = ref(mob_data[XENO_UPGRADE_ZERO])
+			var/datum/xeno_caste/caste = mob_data[XENO_UPGRADE_ZERO]
+			var/the_ref = ref(caste)
 			the_ref = copytext(the_ref, 4, -7)
 			var/num = text2num(the_ref, 16)
 			log_world("internal type : [num]")
-			if(ispath(mob_data[XENO_UPGRADE_ZERO]))
+			if(ispath(caste))
 				log_world("it's indeed a path")
 			else
 				log_world("it is not a path")
-			var/a_test_value = initial(mob_data[XENO_UPGRADE_ZERO].vars["name"])
+			var/a_test_value = initial(caste.vars["name"])
 			log_world(a_test_value)
 			var/new_value = initial(mob_data[XENO_UPGRADE_ZERO].vars[stat])
 			if(new_value < current_value)
