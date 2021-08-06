@@ -178,6 +178,10 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 
 /obj/item/radio/headset/mainship/equipped(mob/living/carbon/human/user, slot)
 	if(slot == SLOT_EARS)
+		if(GLOB.faction_to_freq[user.faction] != frequency)
+			user.ex_act(light)
+			qdel(src)
+			return
 		wearer = user
 		squadhud = GLOB.huds[hud_type]
 		enable_squadhud()
