@@ -330,7 +330,7 @@
 	desc = "For stabilizing broken limbs. Easy to use, but falls off in a stiff breeze and wears out on its own."
 	singular_name = "medical tape"
 	applied_splint_health = 0
-	splint_duration = 2 MINUTES
+	splint_duration = 5 MINUTES
 	required_skill = SKILL_MEDICAL_UNTRAINED
 	amount = 10
 	max_amount = 10
