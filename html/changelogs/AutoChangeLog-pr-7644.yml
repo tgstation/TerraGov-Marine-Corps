@@ -1,5 +1,0 @@
-author: "lbnesquik"
-delete-after: True
-changes: 
-  - expansion: "Expand the ai notifications for the alamo to include informations as to who commands it"
-  - bugfix: "fixed a typo and the AI CAS laser being targeted at the AI core"

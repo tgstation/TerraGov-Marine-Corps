@@ -799,6 +799,7 @@
 		/obj/item/stack/sheet/metal/large_stack,
 		/obj/item/lightreplacer,
 		/obj/item/healthanalyzer,
+		/obj/item/tool/handheld_charger,
 		/obj/item/defibrillator,
 		/obj/item/medevac_beacon,
 		/obj/item/roller/medevac,

@@ -127,8 +127,10 @@
 	///determines lower accuracy modifier in akimbo
 	var/lower_akimbo_accuracy = 1
 
-	///If the gun is deployable, the time it takes for the weapon to deploy and undeploy.
+	///If the gun is deployable, the time it takes for the weapon to deploy.
 	var/deploy_time = 0
+	///If the gun is deployable, the time it takes for the weapon to undeploy.
+	var/undeploy_time = 0
 	///Flags that the deployed sentry uses upon deployment.
 	var/turret_flags = NONE
 	///Damage threshold for whether a turret will be knocked down.
@@ -176,10 +178,10 @@
 
 	if(flags_item & IS_DEPLOYABLE)
 		if(flags_gun_features & GUN_IS_SENTRY)
-			AddElement(/datum/element/deployable_item, /obj/machinery/deployable/mounted/sentry, deploy_time)
+			AddElement(/datum/element/deployable_item, /obj/machinery/deployable/mounted/sentry, deploy_time, undeploy_time)
 			sentry_battery = new sentry_battery_type(src)
 			return
-		AddElement(/datum/element/deployable_item, /obj/machinery/deployable/mounted, deploy_time)
+		AddElement(/datum/element/deployable_item, /obj/machinery/deployable/mounted, deploy_time, undeploy_time)
 
 	GLOB.nightfall_toggleable_lights += src
 
@@ -239,7 +241,7 @@
 	if(user == gun_user)
 		return
 	if(gun_user)
-		UnregisterSignal(gun_user, list(COMSIG_MOB_MOUSEDOWN, COMSIG_MOB_MOUSEUP, COMSIG_ITEM_ZOOM, COMSIG_ITEM_UNZOOM, COMSIG_MOB_MOUSEDRAG, COMSIG_KB_RAILATTACHMENT, COMSIG_KB_UNDERRAILATTACHMENT, COMSIG_KB_UNLOADGUN, COMSIG_KB_FIREMODE, COMSIG_KB_GUN_SAFETY, COMSIG_PARENT_QDELETING))
+		UnregisterSignal(gun_user, list(COMSIG_MOB_MOUSEDOWN, COMSIG_MOB_MOUSEUP, COMSIG_ITEM_ZOOM, COMSIG_ITEM_UNZOOM, COMSIG_MOB_MOUSEDRAG, COMSIG_KB_RAILATTACHMENT, COMSIG_KB_UNDERRAILATTACHMENT, COMSIG_KB_UNLOADGUN, COMSIG_KB_FIREMODE, COMSIG_KB_GUN_SAFETY, COMSIG_KB_UNIQUEACTION, COMSIG_PARENT_QDELETING))
 		gun_user.client?.mouse_pointer_icon = initial(gun_user.client.mouse_pointer_icon)
 		gun_user = null
 	if(!user)
@@ -248,6 +250,8 @@
 	if(!CHECK_BITFIELD(flags_item, IS_DEPLOYED))
 		RegisterSignal(gun_user, COMSIG_MOB_MOUSEDOWN, .proc/start_fire)
 		RegisterSignal(gun_user, COMSIG_MOB_MOUSEDRAG, .proc/change_target)
+	else
+		RegisterSignal(gun_user, COMSIG_KB_UNIQUEACTION, .proc/unique_action)
 	RegisterSignal(gun_user, COMSIG_PARENT_QDELETING, .proc/clean_gun_user)
 	RegisterSignal(gun_user, list(COMSIG_MOB_MOUSEUP, COMSIG_ITEM_ZOOM, COMSIG_ITEM_UNZOOM), .proc/stop_fire)
 	RegisterSignal(gun_user, COMSIG_KB_RAILATTACHMENT, .proc/activate_rail_attachment)
@@ -359,8 +363,8 @@
 
 /obj/item/weapon/gun/unique_action(mob/user)
 	. = ..()
-	if(flags_item & IS_DEPLOYABLE) //If the gun can be deployed, it deploys when unique_action is called.
-		return TRUE
+	if(CHECK_BITFIELD(flags_item, IS_DEPLOYABLE) && !CHECK_BITFIELD(flags_item, IS_DEPLOYED)) //If the gun can be deployed, it deploys when unique_action is called.
+		return FALSE
 
 //----------------------------------------------------------
 			//							        \\
@@ -416,7 +420,7 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 	if(user)
 		if(magazine.reload_delay > 1)
 			to_chat(user, span_notice("You begin reloading [src]. Hold still..."))
-			if(do_after(user,magazine.reload_delay, TRUE, src, BUSY_ICON_GENERIC))
+			if(do_after(user, magazine.reload_delay, TRUE, CHECK_BITFIELD(flags_item, IS_DEPLOYED) ? loc : src, BUSY_ICON_GENERIC))
 				replace_magazine(user, magazine)
 			else
 				to_chat(user, span_warning("Your reload was interrupted!"))

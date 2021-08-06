@@ -81,7 +81,6 @@
 	wear_suit = /obj/item/clothing/suit/armor/bulletproof
 	gloves = /obj/item/clothing/gloves/marine/veteran/PMC
 	head = /obj/item/clothing/head/beret/sec
-	glasses = /obj/item/clothing/glasses/hud/health
 	suit_store = /obj/item/weapon/gun/rifle/famas/freelancermedic
 	r_store = /obj/item/storage/pouch/general/large
 	l_store = /obj/item/storage/pouch/pistol

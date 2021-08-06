@@ -1,4 +1,0 @@
-author: "KornFlaks"
-delete-after: True
-changes: 
-  - rscadd: "Adds text blurb on a sentry for an engineer to alt-click to remove battery to replace."

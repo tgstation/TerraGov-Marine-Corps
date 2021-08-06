@@ -160,12 +160,6 @@ GLOBAL_LIST_INIT(xenotiers, list(XENO_TIER_ZERO, XENO_TIER_ONE, XENO_TIER_TWO, X
 
 GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVALID, XENO_UPGRADE_ZERO, XENO_UPGRADE_ONE, XENO_UPGRADE_TWO, XENO_UPGRADE_THREE))
 
-// =============================
-// xeno slashing
-#define XENO_SLASHING_FORBIDDEN 0
-#define XENO_SLASHING_ALLOWED 1
-#define XENO_SLASHING_RESTRICTED 2
-
 //=================================================
 
 ///////////////////HUMAN BLOODTYPES///////////////////
