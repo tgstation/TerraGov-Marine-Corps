@@ -901,47 +901,47 @@ and you're good to go.
 				//						   	\\
 //----------------------------------------------------------
 
-/obj/item/weapon/gun/proc/able_to_fire()
-	if(!gun_user || gun_user.stat != CONSCIOUS || gun_user.lying_angle)
+/obj/item/weapon/gun/proc/able_to_fire(mob/user)
+	if(!user || user.stat != CONSCIOUS || user.lying_angle)
 		return
 
-	if(!gun_user.dextrous)
-		to_chat(gun_user, span_warning("You don't have the dexterity to do this!"))
+	if(!user.dextrous)
+		to_chat(user, span_warning("You don't have the dexterity to do this!"))
 		return FALSE
-	if(!(flags_gun_features & GUN_ALLOW_SYNTHETIC) && !CONFIG_GET(flag/allow_synthetic_gun_use) && issynth(gun_user))
-		to_chat(gun_user, span_warning("Your program does not allow you to use this firearm."))
+	if(!(flags_gun_features & GUN_ALLOW_SYNTHETIC) && !CONFIG_GET(flag/allow_synthetic_gun_use) && issynth(user))
+		to_chat(user, span_warning("Your program does not allow you to use this firearm."))
 		return FALSE
 	if(flags_gun_features & GUN_TRIGGER_SAFETY)
-		to_chat(gun_user, span_warning("The safety is on!"))
+		to_chat(user, span_warning("The safety is on!"))
 		return FALSE
 	if((flags_gun_features & GUN_WIELDED_FIRING_ONLY) && !(flags_item & WIELDED)) //If we're not holding the weapon with both hands when we should.
-		to_chat(gun_user, "<span class='warning'>You need a more secure grip to fire this weapon!")
+		to_chat(user, "<span class='warning'>You need a more secure grip to fire this weapon!")
 		return FALSE
-	if(LAZYACCESS(gun_user.do_actions, src))
-		to_chat(gun_user, "<span class='warning'>You are doing something else currently.")
+	if(LAZYACCESS(user.do_actions, src))
+		to_chat(user, "<span class='warning'>You are doing something else currently.")
 		return FALSE
-	if((flags_gun_features & GUN_POLICE) && !police_allowed_check(gun_user))
+	if((flags_gun_features & GUN_POLICE) && !police_allowed_check(user))
 		return FALSE
 	if((flags_gun_features & GUN_WIELDED_STABLE_FIRING_ONLY) && !wielded_stable())//If we must wait to finish wielding before shooting.
-		to_chat(gun_user, "<span class='warning'>You need a more secure grip to fire this weapon!")
+		to_chat(user, "<span class='warning'>You need a more secure grip to fire this weapon!")
 		return FALSE
 	return TRUE
 
-/obj/item/weapon/gun/proc/gun_on_cooldown()
+/obj/item/weapon/gun/proc/gun_on_cooldown(mob/user)
 	var/added_delay = fire_delay
 	if(active_attachable?.attachment_firing_delay && active_attachable.flags_attach_features & ATTACH_PROJECTILE)
 		added_delay = active_attachable.attachment_firing_delay
-	else if(gun_user)
-		if(!gun_user.skills.getRating("firearms")) //no training in any firearms
+	else if(user)
+		if(!user.skills.getRating("firearms")) //no training in any firearms
 			added_delay += 3 //untrained humans fire more slowly.
 		else
 			switch(gun_skill_category)
 				if(GUN_SKILL_HEAVY_WEAPONS)
 					if(fire_delay > 1 SECONDS) //long delay to fire
-						added_delay = max(fire_delay - 3 * gun_user.skills.getRating(gun_skill_category), 6)
+						added_delay = max(fire_delay - 3 * user.skills.getRating(gun_skill_category), 6)
 				if(GUN_SKILL_SMARTGUN)
-					if(gun_user.skills.getRating(gun_skill_category) < 0)
-						added_delay -= 2 * gun_user.skills.getRating(gun_skill_category)
+					if(user.skills.getRating(gun_skill_category) < 0)
+						added_delay -= 2 * user.skills.getRating(gun_skill_category)
 	var/delay = last_fired + added_delay
 	if(gun_firemode == GUN_FIREMODE_BURSTFIRE)
 		delay += extra_delay
@@ -949,31 +949,32 @@ and you're good to go.
 	if(world.time >= delay)
 		return FALSE
 
-	if(world.time % 3 && !gun_user?.client?.prefs.mute_self_combat_messages)
-		to_chat(gun_user, span_warning("[src] is not ready to fire again!"))
+	if(world.time % 3 && !user?.client?.prefs.mute_self_combat_messages)
+		to_chat(user, span_warning("[src] is not ready to fire again!"))
 	return TRUE
 
 
-/obj/item/weapon/gun/proc/click_empty()
-	var/obj/screen/ammo/A = gun_user.hud_used.ammo //The ammo HUD
-	A.update_hud(gun_user, src)
-	to_chat(gun_user, span_warning("<b>*click*</b>"))
+/obj/item/weapon/gun/proc/click_empty(mob/user)
+	if(user)
+		var/obj/screen/ammo/A = user.hud_used.ammo //The ammo HUD
+		A.update_hud(user, src)
+		to_chat(user, span_warning("<b>*click*</b>"))
 	playsound(src, dry_fire_sound, 25, 1, 5)
 
-/obj/item/weapon/gun/proc/play_fire_sound()
+/obj/item/weapon/gun/proc/play_fire_sound(mob/user)
 	//Guns with low ammo have their firing sound
 	var/firing_sndfreq = ((current_mag?.current_rounds / current_mag?.max_rounds) > 0.25) ? FALSE : 55000
 	if(active_attachable && active_attachable.flags_attach_features & ATTACH_PROJECTILE)
 		if(active_attachable.fire_sound) //If we're firing from an attachment, use that noise instead.
-			playsound(gun_user, active_attachable.fire_sound, 50)
+			playsound(user, active_attachable.fire_sound, 50)
 		return
 	if(flags_gun_features & GUN_SILENCED)
-		playsound(gun_user, fire_sound, 25, firing_sndfreq ? TRUE : FALSE, frequency = firing_sndfreq)
+		playsound(user, fire_sound, 25, firing_sndfreq ? TRUE : FALSE, frequency = firing_sndfreq)
 		return
 	if(firing_sndfreq && fire_rattle)
-		playsound(gun_user, fire_rattle, 60, FALSE)
+		playsound(user, fire_rattle, 60, FALSE)
 		return
-	playsound(gun_user, fire_sound, 60, firing_sndfreq ? TRUE : FALSE, frequency = firing_sndfreq)
+	playsound(user, fire_sound, 60, firing_sndfreq ? TRUE : FALSE, frequency = firing_sndfreq)
 
 
 /obj/item/weapon/gun/proc/apply_gun_modifiers(obj/projectile/projectile_to_fire, atom/target, firer)
@@ -994,7 +995,7 @@ and you're good to go.
 	projectile_to_fire.damage_marine_falloff = iff_marine_damage_falloff
 
 
-/obj/item/weapon/gun/proc/setup_bullet_accuracy(obj/projectile/projectile_to_fire, bullets_fired = 1, dual_wield = FALSE)
+/obj/item/weapon/gun/proc/setup_bullet_accuracy(obj/projectile/projectile_to_fire, mob/user, bullets_fired = 1, dual_wield = FALSE)
 	var/gun_accuracy_mult = accuracy_mult_unwielded
 	var/gun_accuracy_mod = 0
 	var/gun_scatter = scatter_unwielded
@@ -1003,7 +1004,7 @@ and you're good to go.
 		gun_accuracy_mult = accuracy_mult
 		gun_scatter = scatter
 
-	else if(world.time - gun_user.last_move_time < 5) //moved during the last half second
+	else if(user && world.time - user.last_move_time < 5) //moved during the last half second
 		//accuracy and scatter penalty if the user fires unwielded right after moving
 		gun_accuracy_mult = max(0.1, gun_accuracy_mult - max(0,movement_acc_penalty_mult * 0.15))
 		gun_scatter += max(0, movement_acc_penalty_mult * 5)
@@ -1014,38 +1015,39 @@ and you're good to go.
 	if(dual_wield) //akimbo firing gives terrible accuracy
 		gun_scatter += 10*rand(upper_akimbo_accuracy, lower_akimbo_accuracy)
 
-	// Apply any skill-based bonuses to accuracy
-	var/skill_accuracy = 0
-	if(!gun_user.skills.getRating("firearms")) //no training in any firearms
-		skill_accuracy = -1
-	else
-		skill_accuracy = gun_user.skills.getRating(gun_skill_category)
-	if(skill_accuracy)
-		gun_accuracy_mult += skill_accuracy * 0.15 // Accuracy mult increase/decrease per level is equal to attaching/removing a red dot sight
+	if(user)
+		// Apply any skill-based bonuses to accuracy
+		var/skill_accuracy = 0
+		if(!user.skills.getRating("firearms")) //no training in any firearms
+			skill_accuracy = -1
+		else
+			skill_accuracy = user.skills.getRating(gun_skill_category)
+		if(skill_accuracy)
+			gun_accuracy_mult += skill_accuracy * 0.15 // Accuracy mult increase/decrease per level is equal to attaching/removing a red dot sight
 
-	projectile_to_fire.firer = gun_user
-	if(isliving(gun_user))
-		var/mob/living/living_user = gun_user
-		gun_accuracy_mod += living_user.ranged_accuracy_mod
-		if(iscarbon(gun_user))
-			var/mob/living/carbon/carbon_user = gun_user
-			projectile_to_fire.def_zone = gun_user.zone_selected
-			if(carbon_user.stagger)
-				gun_scatter += 30
+		projectile_to_fire.firer = user
+		if(isliving(user))
+			var/mob/living/living_user = user
+			gun_accuracy_mod += living_user.ranged_accuracy_mod
+			if(iscarbon(user))
+				var/mob/living/carbon/carbon_user = user
+				projectile_to_fire.def_zone = user.zone_selected
+				if(carbon_user.stagger)
+					gun_scatter += 30
 
-		// Status effect changes
-		if(living_user.has_status_effect(STATUS_EFFECT_GUN_SKILL_ACCURACY_BUFF))
-			var/datum/status_effect/stacking/gun_skill/buff = living_user.has_status_effect(STATUS_EFFECT_GUN_SKILL_ACCURACY_BUFF)
-			gun_accuracy_mod += buff.stacks
-		if(living_user.has_status_effect(STATUS_EFFECT_GUN_SKILL_ACCURACY_DEBUFF))
-			var/datum/status_effect/stacking/gun_skill/debuff = living_user.has_status_effect(STATUS_EFFECT_GUN_SKILL_ACCURACY_DEBUFF)
-			gun_accuracy_mod -= debuff.stacks
-		if(living_user.has_status_effect(STATUS_EFFECT_GUN_SKILL_SCATTER_BUFF))
-			var/datum/status_effect/stacking/gun_skill/buff = living_user.has_status_effect(STATUS_EFFECT_GUN_SKILL_SCATTER_BUFF)
-			gun_scatter -= buff.stacks
-		if(living_user.has_status_effect(STATUS_EFFECT_GUN_SKILL_SCATTER_DEBUFF))
-			var/datum/status_effect/stacking/gun_skill/debuff = living_user.has_status_effect(STATUS_EFFECT_GUN_SKILL_SCATTER_DEBUFF)
-			gun_scatter += debuff.stacks
+			// Status effect changes
+			if(living_user.has_status_effect(STATUS_EFFECT_GUN_SKILL_ACCURACY_BUFF))
+				var/datum/status_effect/stacking/gun_skill/buff = living_user.has_status_effect(STATUS_EFFECT_GUN_SKILL_ACCURACY_BUFF)
+				gun_accuracy_mod += buff.stacks
+			if(living_user.has_status_effect(STATUS_EFFECT_GUN_SKILL_ACCURACY_DEBUFF))
+				var/datum/status_effect/stacking/gun_skill/debuff = living_user.has_status_effect(STATUS_EFFECT_GUN_SKILL_ACCURACY_DEBUFF)
+				gun_accuracy_mod -= debuff.stacks
+			if(living_user.has_status_effect(STATUS_EFFECT_GUN_SKILL_SCATTER_BUFF))
+				var/datum/status_effect/stacking/gun_skill/buff = living_user.has_status_effect(STATUS_EFFECT_GUN_SKILL_SCATTER_BUFF)
+				gun_scatter -= buff.stacks
+			if(living_user.has_status_effect(STATUS_EFFECT_GUN_SKILL_SCATTER_DEBUFF))
+				var/datum/status_effect/stacking/gun_skill/debuff = living_user.has_status_effect(STATUS_EFFECT_GUN_SKILL_SCATTER_DEBUFF)
+				gun_scatter += debuff.stacks
 
 	projectile_to_fire.accuracy = round((projectile_to_fire.accuracy * gun_accuracy_mult) + gun_accuracy_mod) // Apply gun accuracy multiplier to projectile accuracy
 	projectile_to_fire.scatter += gun_scatter					//Add gun scatter value to projectile's scatter value
@@ -1054,7 +1056,7 @@ and you're good to go.
 
 
 
-/obj/item/weapon/gun/proc/get_scatter(starting_scatter)
+/obj/item/weapon/gun/proc/get_scatter(starting_scatter, mob/user)
 	. = starting_scatter //projectile_to_fire.scatter
 
 	if(. <= 0) //Not if the gun doesn't scatter at all, or negative scatter.
@@ -1067,10 +1069,10 @@ and you're good to go.
 			else
 				. += burst_amount * burst_scatter_mult * 5
 
-	if(!gun_user?.skills.getRating("firearms")) //no training in any firearms
+	if(!user?.skills.getRating("firearms")) //no training in any firearms
 		. += 15
 	else
-		var/scatter_tweak = gun_user.skills.getRating(gun_skill_category)
+		var/scatter_tweak = user.skills.getRating(gun_skill_category)
 		if(scatter_tweak)
 			. -= scatter_tweak * 15
 
@@ -1078,8 +1080,8 @@ and you're good to go.
 		return 0
 
 
-/obj/item/weapon/gun/proc/simulate_recoil(recoil_bonus = 0)
-	if(CHECK_BITFIELD(flags_item, IS_DEPLOYED))
+/obj/item/weapon/gun/proc/simulate_recoil(recoil_bonus = 0, mob/user)
+	if(CHECK_BITFIELD(flags_item, IS_DEPLOYED) || !user)
 		return TRUE
 	var/total_recoil = recoil_bonus
 	if(flags_item & WIELDED && wielded_stable())
@@ -1088,14 +1090,14 @@ and you're good to go.
 		total_recoil += recoil_unwielded
 		if(flags_gun_features & GUN_BURST_FIRING)
 			total_recoil += 1
-	if(!gun_user.skills.getRating("firearms")) //no training in any firearms
+	if(!user.skills.getRating("firearms")) //no training in any firearms
 		total_recoil += 2
 	else
-		var/recoil_tweak = gun_user.skills.getRating(gun_skill_category)
+		var/recoil_tweak = user.skills.getRating(gun_skill_category)
 		if(recoil_tweak)
 			total_recoil -= recoil_tweak * 2
-	if(total_recoil > 0 && ishuman(gun_user))
-		shake_camera(gun_user, total_recoil + 1, total_recoil)
+	if(total_recoil > 0 && ishuman(user))
+		shake_camera(user, total_recoil + 1, total_recoil)
 		return TRUE
 
 
