@@ -36,7 +36,7 @@
 				return FALSE
 
 			if((head && (head.flags_inventory & COVERMOUTH)) || (wear_mask && (wear_mask.flags_inventory & COVERMOUTH)))
-				to_chat(H, span_boldnotice("Remove his mask!"))
+				to_chat(H, span_boldnotice("Remove [p_their()] mask!"))
 				return FALSE
 
 			if((H.head && (H.head.flags_inventory & COVERMOUTH)) || (H.wear_mask && (H.wear_mask.flags_inventory & COVERMOUTH)))
