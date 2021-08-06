@@ -1356,6 +1356,7 @@
 #include "code\modules\mob\living\carbon\xenomorph\egg_item.dm"
 #include "code\modules\mob\living\carbon\xenomorph\embryo.dm"
 #include "code\modules\mob\living\carbon\xenomorph\emote.dm"
+#include "code\modules\mob\living\carbon\xenomorph\evo_datum.dm"
 #include "code\modules\mob\living\carbon\xenomorph\evolution.dm"
 #include "code\modules\mob\living\carbon\xenomorph\facehuggers.dm"
 #include "code\modules\mob\living\carbon\xenomorph\hive_datum.dm"
