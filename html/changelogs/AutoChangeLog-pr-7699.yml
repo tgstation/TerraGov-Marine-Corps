@@ -1,4 +1,0 @@
-author: "QualityVan"
-delete-after: True
-changes: 
-  - bugfix: "Xenos don't have an attack delay after clicking on weeds, the same way they don't after clicking normal floors."

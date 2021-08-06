@@ -2,17 +2,20 @@
 	element_flags = ELEMENT_BESPOKE
 	id_arg_index = 2
 
-	///Time it takes for the parent to be deployed/undeployed
+	///Time it takes for the parent to be deployed.
 	var/deploy_time = 0
+	///Time it takes for the parent to be undeployed.
+	var/undeploy_time = 0
 	///Typath that the item deploys into. Can be anything but an item so far. The preffered type is /obj/machinery/deployable since it was built for this.
 	var/obj/deploy_type
 
-/datum/element/deployable_item/Attach(datum/target, _deploy_type, _deploy_time)
+/datum/element/deployable_item/Attach(datum/target, _deploy_type, _deploy_time, _undeploy_time)
 	. = ..()
 	if(!isitem(target))
 		return ELEMENT_INCOMPATIBLE
 	deploy_type = _deploy_type
 	deploy_time = _deploy_time
+	undeploy_time = _undeploy_time
 
 	var/obj/item/attached_item = target
 	if(CHECK_BITFIELD(attached_item.flags_item, DEPLOY_ON_INITIALIZE))
@@ -67,6 +70,7 @@
 
 	ENABLE_BITFIELD(attached_item.flags_item, IS_DEPLOYED)
 
+	UnregisterSignal(attached_item, COMSIG_ITEM_UNIQUE_ACTION)
 	RegisterSignal(deployed_machine, COMSIG_ITEM_UNDEPLOY, .proc/undeploy)
 
 ///Wrapper for proc/finish_undeploy
@@ -105,3 +109,4 @@
 
 	QDEL_NULL(deployed_machine)
 	attached_item.update_icon_state()
+	RegisterSignal(attached_item, COMSIG_ITEM_UNIQUE_ACTION, .proc/deploy)
