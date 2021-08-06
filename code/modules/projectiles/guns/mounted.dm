@@ -60,7 +60,7 @@
 	)
 
 	deploy_time = 5 SECONDS
-	undeploy_time = 5 SECONDS
+	undeploy_time = 3 SECONDS
 
 	max_integrity = 125
 
@@ -143,8 +143,8 @@
 		/obj/item/attachable/scope/unremovable/heavymachinegun,
 	)
 
-	deploy_time = 8.5 SECONDS
-	undeploy_time = 8.5 SECONDS
+	deploy_time = 8 SECONDS
+	undeploy_time = 3 SECONDS
 
 	max_integrity = 150
 
