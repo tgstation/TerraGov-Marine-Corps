@@ -59,6 +59,8 @@
 	///how often wounds should be updated, a higher number means less often
 	var/wound_update_accuracy = 1
 	var/limb_status = NONE //limb status flags
+	///Timer for the limb's splint to fall off if it's temporary
+	var/splint_timer
 
 	///Human owner mob of this limb
 	var/mob/living/carbon/human/owner = null
@@ -340,8 +342,7 @@
 
 	if(limb_status & LIMB_SPLINTED) //If they have it splinted and no splint health, the splint won't hold.
 		if(splint_health <= 0)
-			remove_limb_flags(LIMB_SPLINTED)
-			to_chat(owner, span_userdanger("The splint on your [display_name] comes apart!"))
+			unsplint()
 		else
 			splint_health = max(splint_health - damage, 0)
 
@@ -1055,7 +1056,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 			new /datum/effect_system/spark_spread(owner, owner, 5, 0, TRUE, 1 SECONDS)
 
 
-/datum/limb/proc/apply_splints(obj/item/stack/medical/splint/S, applied_health, mob/living/user, mob/living/carbon/human/target)
+/datum/limb/proc/apply_splints(obj/item/stack/medical/splint/S, applied_health, mob/living/user, mob/living/carbon/human/target, duration = 0)
 
 	if(!istype(user))
 		return
@@ -1064,7 +1065,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 		to_chat(user, span_warning("There's nothing there to splint!"))
 		return FALSE
 
-	if(limb_status & LIMB_SPLINTED && applied_health <= splint_health)
+	if(limb_status & LIMB_SPLINTED && applied_health <= splint_health && !splint_timer)
 		to_chat(user, span_warning("This limb is already splinted!"))
 		return FALSE
 
@@ -1086,8 +1087,17 @@ Note that amputating the affected organ does in fact remove the infection from t
 		"[text2]")
 		add_limb_flags(LIMB_SPLINTED)
 		splint_health = applied_health
+		if(splint_timer)
+			deltimer(splint_timer)
+			splint_timer = null
+		if(duration)
+			splint_timer = addtimer(CALLBACK(src, .proc/unsplint), duration)
 		return TRUE
 
+///Called when a splint is removed, either through taking damage or duration expiring. Clears splinted flag and informs limb owner.
+/datum/limb/proc/unsplint()
+	remove_limb_flags(LIMB_SPLINTED)
+	to_chat(owner, span_userdanger("The splint on your [display_name] comes apart!"))
 
 //called when limb is removed or robotized, any ongoing surgery and related vars are reset
 /datum/limb/proc/reset_limb_surgeries()

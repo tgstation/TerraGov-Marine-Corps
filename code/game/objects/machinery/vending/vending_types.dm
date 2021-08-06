@@ -225,6 +225,7 @@
 			/obj/item/stack/medical/ointment = 10,
 			/obj/item/stack/medical/bruise_pack = 10,
 			/obj/item/stack/medical/splint = 5,
+			/obj/item/stack/medical/splint/tape = 5,
 		),
 		"Misc" = list(
 			/obj/item/healthanalyzer = 5,

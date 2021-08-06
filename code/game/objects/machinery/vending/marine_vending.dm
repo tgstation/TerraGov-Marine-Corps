@@ -601,6 +601,7 @@
 			/obj/item/stack/medical/advanced/ointment = 32,
 			/obj/item/stack/medical/ointment = 32,
 			/obj/item/stack/medical/splint = 16,
+			/obj/item/stack/medical/splint/tape = 16,
 		),
 		"Misc" = list(
 			/obj/item/healthanalyzer = 12,

@@ -276,10 +276,15 @@
 	name = "medical splints"
 	singular_name = "medical splint"
 	icon_state = "splint"
+	desc = "For stabilizing broken limbs. Can withstand a beating, depending on the user's medical training."
 	amount = 5
 	max_amount = 5
 	///How much splint health per medical skill is applied
 	var/applied_splint_health = 15
+	///How long the splint will last, if greater than 0. Only used by child. Doubles if user has medical skill.
+	var/splint_duration
+	///Required skill level, below this you'll get a fumble delay
+	var/required_skill = SKILL_MEDICAL_PRACTICED
 
 
 /obj/item/stack/medical/splint/attack(mob/living/carbon/M, mob/user)
@@ -298,13 +303,11 @@
 			to_chat(user, span_warning("You can't apply a splint there!"))
 			return
 
-		if(affecting.limb_status & LIMB_DESTROYED)
-			to_chat(user, span_warning("[user == M ? "You don't" : "[M] doesn't"] have \a [limb]!"))
-			return
-
-		if(affecting.limb_status & LIMB_SPLINTED)
-			to_chat(user, span_warning("[user == M ? "Your" : "[M]'s"] [limb] is already splinted!"))
-			return
+		var/medskill = user.skills.getRating("medical")
+		if(medskill < required_skill)
+			to_chat(user, span_warning("You start fumbling with [src]."))
+			if(!do_mob(user, M, SKILL_TASK_AVERAGE, BUSY_ICON_UNSKILLED, BUSY_ICON_MEDICAL))
+				return
 
 		if(M != user)
 			user.visible_message(span_warning("[user] starts to apply [src] to [M]'s [limb]."),
@@ -316,5 +319,18 @@
 			user.visible_message(span_warning("[user] starts to apply [src] to their [limb]."),
 			span_notice("You start to apply [src] to your [limb], hold still."))
 
-		if(affecting.apply_splints(src, user == M ? (applied_splint_health*max(user.skills.getRating("medical") - 1, 0)) : applied_splint_health*user.skills.getRating("medical"), user, M)) // Referenced in external organ helpers.
+		var/this_splint_health = (user == M) ? (applied_splint_health*max(medskill - 1, 0)) : applied_splint_health*medskill
+		this_splint_health = max(this_splint_health, applied_splint_health)
+		if(affecting.apply_splints(src, this_splint_health, user, M, splint_duration * (medskill ? 2 : 1))) // Referenced in external organ helpers.
 			use(1)
+
+/obj/item/stack/medical/splint/tape
+	name = "medical tape"
+	icon_state = "tape"
+	desc = "For stabilizing broken limbs. Easy to use, but falls off in a stiff breeze and wears out on its own."
+	singular_name = "medical tape"
+	applied_splint_health = 0
+	splint_duration = 2 MINUTES
+	required_skill = SKILL_MEDICAL_UNTRAINED
+	amount = 10
+	max_amount = 10
