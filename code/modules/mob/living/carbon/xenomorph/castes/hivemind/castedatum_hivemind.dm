@@ -6,7 +6,7 @@
 	caste_type_path = /mob/living/carbon/xenomorph/hivemind
 	tier = XENO_TIER_ZERO
 	upgrade = XENO_UPGRADE_BASETYPE
-	wound_type = "hivemind" //used to match appropriate wound overlays
+	wound_type = ""
 	// *** Melee Attacks *** //
 	melee_damage = 0
 
@@ -45,6 +45,7 @@
 	upgrade_name = ""
 	caste_desc = "The manifestation of the hivemind"
 	caste_type_path = /mob/living/carbon/xenomorph/hivemind
+	wound_type = "hivemind"
 	tier = XENO_TIER_ZERO
 	upgrade = XENO_UPGRADE_ZERO
 	// *** Melee Attacks *** //
