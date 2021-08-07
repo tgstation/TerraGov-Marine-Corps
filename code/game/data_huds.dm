@@ -468,9 +468,9 @@
 
 	if(assigned_squad)
 		var/squad_color = assigned_squad.color
-		var/rank = job.title
+		var/rank = job.comm_title
 		if(assigned_squad.squad_leader == src)
-			rank = SQUAD_LEADER
+			rank = "SL"
 		if(job.job_flags & JOB_FLAG_PROVIDES_SQUAD_HUD)
 			var/image/IMG = image('icons/mob/hud.dmi', src, "hudmarine")
 			IMG.color = squad_color
@@ -483,7 +483,7 @@
 			holder.overlays += IMG2
 
 	else if(job.job_flags & JOB_FLAG_PROVIDES_SQUAD_HUD)
-		holder.overlays += image('icons/mob/hud.dmi', src, "hudmarine [job.title]")
+		holder.overlays += image('icons/mob/hud.dmi', src, "hudmarine [job.comm_title]")
 
 	hud_list[hud_type] = holder
 
