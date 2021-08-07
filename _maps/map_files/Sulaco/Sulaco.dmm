@@ -10363,6 +10363,10 @@
 "bYM" = (
 /turf/closed/wall/mainship/gray,
 /area/sulaco/hangar/storage)
+"bZD" = (
+/obj/structure/largecrate/random,
+/turf/open/floor/plating,
+/area/sulaco/maintenance/lower_maint2)
 "caP" = (
 /obj/structure/largecrate/supply/supplies/water,
 /obj/machinery/light{
@@ -12483,6 +12487,10 @@
 	},
 /turf/open/floor/prison/plate,
 /area/shuttle/distress/arrive_1)
+"giO" = (
+/obj/structure/table/mainship,
+/turf/open/floor/plating,
+/area/sulaco/maintenance/lower_maint2)
 "gje" = (
 /turf/open/floor/prison/plate,
 /area/sulaco/maintenance/upperdeck_AIcore_maint)
@@ -13903,6 +13911,11 @@
 	dir = 4
 	},
 /area/mainship/living/basketball)
+"iTU" = (
+/obj/structure/bed/fancy,
+/obj/item/bedsheet/captain,
+/turf/open/floor/plating,
+/area/sulaco/maintenance/lower_maint2)
 "iUQ" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1,
 /obj/structure/cable,
@@ -14881,6 +14894,10 @@
 	},
 /turf/open/floor/prison,
 /area/sulaco/marine)
+"kNy" = (
+/obj/structure/table/gamblingtable,
+/turf/open/floor/plating,
+/area/sulaco/maintenance/lower_maint2)
 "kOr" = (
 /turf/closed/wall/mainship/gray/outer,
 /area/sulaco/hangar/storage)
@@ -16383,9 +16400,12 @@
 	},
 /area/sulaco/hangar/one)
 "nGN" = (
-/obj/structure/window/framed/mainship/gray/toughened/hull,
-/turf/open/floor/plating/platebotc,
-/area/sulaco/hydro)
+/obj/structure/bed/chair/sofa/right,
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/sulaco/maintenance/lower_maint2)
 "nHk" = (
 /obj/structure/window/framed/mainship/gray/toughened,
 /obj/machinery/door/poddoor/shutters/opened{
@@ -21419,6 +21439,10 @@
 	},
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/sulaco/engineering/engine)
+"wol" = (
+/obj/structure/bed/chair/sofa/left,
+/turf/open/floor/plating,
+/area/sulaco/maintenance/lower_maint2)
 "wos" = (
 /obj/machinery/firealarm{
 	dir = 8
@@ -21963,6 +21987,10 @@
 	},
 /turf/open/floor/prison/bright_clean,
 /area/sulaco/hangar)
+"xmu" = (
+/obj/machinery/vending/boozeomat,
+/turf/open/floor/plating,
+/area/sulaco/maintenance/lower_maint2)
 "xmG" = (
 /obj/machinery/light,
 /obj/structure/mirror{
@@ -40982,9 +41010,9 @@ rtA
 dty
 mAk
 euR
-mDu
-mDu
-mDu
+nGN
+aQw
+giO
 vgl
 xHk
 iTj
@@ -41239,9 +41267,9 @@ cSb
 dty
 xHY
 euR
-mDu
-mDu
-mDu
+wol
+aQw
+giO
 vgl
 bvV
 dIn
@@ -41496,9 +41524,9 @@ wYX
 dty
 mAk
 euR
-mDu
-mDu
-mDu
+iTU
+aQw
+kNy
 sLY
 mvV
 iTj
@@ -41753,9 +41781,9 @@ oJO
 dty
 mAk
 euR
-mDu
-mDu
-mDu
+bZD
+aQw
+xmu
 vgl
 gpO
 iyh
@@ -42011,7 +42039,7 @@ dty
 lGX
 euR
 aFa
-nGN
+aFa
 aFa
 vgl
 cvB
