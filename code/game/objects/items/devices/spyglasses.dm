@@ -82,7 +82,7 @@
 	qdel(cam_screen)
 	QDEL_LIST(cam_plane_masters)
 	qdel(tracker)
-	. = ..()
+	return ..()
 
 /obj/item/spy_bug/proc/update_view()//this doesn't do anything too crazy, just updates the vis_contents of its screen obj
 	cam_screen.vis_contents.Cut()

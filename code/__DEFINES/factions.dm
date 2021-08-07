@@ -63,3 +63,9 @@ GLOBAL_LIST_INIT(faction_to_iff, list(
 	FACTION_DEATHSQUAD = DEATHSQUAD_IFF,
 	FACTION_SOM = SON_OF_MARS_IFF,
 ))
+
+//List of correspond factions to freq
+GLOBAL_LIST_INIT(faction_to_freq, list(
+	FACTION_TERRAGOV = FREQ_COMMON,
+	FACTION_TERRAGOV_REBEL = FREQ_COMMON_REBEL,
+))

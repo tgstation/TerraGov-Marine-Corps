@@ -31,7 +31,7 @@
 	victim = _victim
 	victim.forceMove(src)
 	START_PROCESSING(SSslowprocess, src)
-	addtimer(CALLBACK(src, .proc/life_draining_over, TRUE), cocoon_life_time)
+	addtimer(CALLBACK(src, .proc/life_draining_over, TRUE), null, cocoon_life_time)
 	RegisterSignal(SSdcs, COMSIG_GLOB_DROPSHIP_HIJACKED, .proc/life_draining_over)
 	new /obj/effect/alien/weeds/node(loc)
 
@@ -56,7 +56,7 @@
 	playsound(loc, "alien_resin_move", 35)
 
 ///Stop producing points and release the victim if needed
-/obj/structure/cocoon/proc/life_draining_over(must_release_victim = FALSE)
+/obj/structure/cocoon/proc/life_draining_over(datum/source, must_release_victim = FALSE)
 	SIGNAL_HANDLER
 	STOP_PROCESSING(SSslowprocess, src)
 	if(anchored)

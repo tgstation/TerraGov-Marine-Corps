@@ -69,8 +69,8 @@
 	GLOB.marine_vendors.Add(src)
 
 /obj/machinery/vending/marine/Destroy()
-	. = ..()
 	GLOB.marine_vendors.Remove(src)
+	return ..()
 
 //What do grenade do against candy machine?
 /obj/machinery/vending/marine/ex_act(severity)
@@ -710,6 +710,19 @@
 
 	prices = list()
 
+/obj/machinery/vending/shared_vending/marine_engi/rebel
+	products = list(
+		/obj/structure/closet/crate/mortar_ammo/mortar_kit = 1,
+		/obj/item/storage/box/sentry = 5,
+		/obj/item/storage/box/tl102 = 1,
+	)
+
+/obj/machinery/vending/shared_vending/marine_engi/loyalist
+	products = list(
+		/obj/structure/closet/crate/mortar_ammo/mortar_kit = 1,
+		/obj/item/storage/box/sentry = 5,
+		/obj/item/storage/box/tl102 = 1,
+	)
 
 /obj/machinery/vending/marine_smartgun
 	name = "\improper TerraGovTech Smartgun Vendor"
