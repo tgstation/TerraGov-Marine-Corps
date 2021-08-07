@@ -173,9 +173,9 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 		//Scatter here is how many degrees extra stuff deviate from the main projectile, first two the same amount, one to each side, and from then on the extra pellets keep widening the arc.
 		var/new_angle = angle + (main_proj.ammo.bonus_projectiles_scatter * ((i % 2) ? (-(i + 1) * 0.5) : (i * 0.5)))
 		if(new_angle < 0)
-			new_angle += 380
-		else if(new_angle > 380)
-			new_angle -= 380
+			new_angle += 360
+		else if(new_angle > 360)
+			new_angle -= 360
 		new_proj.fire_at(null, shooter, source, range, speed, new_angle, TRUE) //Angle-based fire. No target.
 
 

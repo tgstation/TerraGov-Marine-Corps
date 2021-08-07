@@ -43,10 +43,9 @@
 		handle_multidoor()
 
 /obj/machinery/door/Destroy()
-	. = ..()
 	for(var/o in fillers)
 		qdel(o)
-	density = FALSE
+	return ..()
 
 /obj/machinery/door/proc/handle_multidoor()
 	fillers = list()

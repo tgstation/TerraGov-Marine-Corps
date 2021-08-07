@@ -47,6 +47,8 @@ can cause issues with ammo types getting mixed up during the burst.
 
 /obj/item/weapon/gun/shotgun/unique_action(mob/user)
 	. = ..()
+	if(!.)
+		return
 	return cock(user)
 
 /obj/item/weapon/gun/shotgun/proc/replace_tube(number_to_replace)
@@ -313,6 +315,9 @@ can cause issues with ammo types getting mixed up during the burst.
 	recoil = 2
 	recoil_unwielded = 4
 
+	///Animation that plays when you eject SPENT shells
+	var/shell_eject_animation = null
+
 /obj/item/weapon/gun/shotgun/double/examine_ammo_count(mob/user)
 	if(current_mag.chamber_closed)
 		to_chat(user, "It's closed.")
@@ -375,6 +380,8 @@ can cause issues with ammo types getting mixed up during the burst.
 	if(current_mag.used_casings)
 		. = ..()
 		current_mag.used_casings = 0
+		if(shell_eject_animation)
+			flick("[shell_eject_animation]", src)
 
 /obj/item/weapon/gun/shotgun/double/delete_bullet(obj/projectile/projectile_to_fire, refund = 0)
 	qdel(projectile_to_fire)
@@ -680,6 +687,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "martini"
 	item_state = "martini"
+	shell_eject_animation = "martini_flick"
 	caliber = CALIBER_557 //codex
 	muzzle_flash_lum = 7
 	max_shells = 1 //codex

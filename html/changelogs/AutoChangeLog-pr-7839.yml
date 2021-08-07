@@ -1,0 +1,4 @@
+author: "lbnesquik"
+delete-after: True
+changes: 
+  - bugfix: "removed the tiny space window south of sulaco preps to stop beans from dying there like IDIOTS"

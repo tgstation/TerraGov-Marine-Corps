@@ -26,9 +26,6 @@
 
 	var/obj/item/weapon/gun/new_gun = internal_item
 
-	if(istype(new_gun.current_mag, /obj/item/ammo_magazine/internal) || istype(new_gun, /obj/item/weapon/gun/launcher))
-		CRASH("[new_gun] has been deployed, however it is incompatible because of either an internal magazine, or it is a launcher.")
-
 	new_gun.set_gun_user(null)
 
 /obj/machinery/deployable/mounted/attackby(obj/item/I, mob/user, params) //This handles reloading the gun, if its in acid cant touch it.
@@ -50,8 +47,15 @@
 
 	var/obj/item/ammo_magazine/ammo = ammo_magazine
 	var/obj/item/weapon/gun/gun = internal_item
+
+	if(istype(ammo_magazine, /obj/item/ammo_magazine/handful))
+		gun.reload(user, ammo)
+		update_icon()
+		return
+	
 	if(!istype(gun, ammo.gun_type))
 		return
+
 	if(ammo.current_rounds <= 0)
 		to_chat(user, span_warning("[ammo] is empty!"))
 		return
@@ -60,11 +64,7 @@
 		gun.unload(user,0,1)
 		update_icon_state()
 
-	var/tac_reload_time = max(0.5 SECONDS, 1.5 SECONDS - user.skills.getRating("firearms") * 5)
-	if(!do_after(user, tac_reload_time, TRUE, src, BUSY_ICON_FRIENDLY))
-		return
-
-	gun.reload(user, ammo_magazine)
+	gun.reload(user, ammo)
 	update_icon_state()
 
 
@@ -206,6 +206,8 @@
 
 	UnregisterSignal(operator, list(COMSIG_MOB_MOUSEDOWN, COMSIG_MOB_MOUSEDRAG))
 	var/obj/item/weapon/gun/gun = internal_item
+	if(CHECK_BITFIELD(gun.flags_gun_features, GUN_IS_AIMING))
+		gun.toggle_aim_mode(operator)
 	gun.UnregisterSignal(operator, COMSIG_MOB_MOUSEUP)
 
 	for(var/datum/action/action AS in gun.actions)

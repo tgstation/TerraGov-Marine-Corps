@@ -30,7 +30,7 @@
 
 /obj/item/radio/intercom/Destroy()
 	STOP_PROCESSING(SSobj, src)
-	. = ..()
+	return ..()
 
 
 /obj/item/radio/intercom/attack_ai(mob/user as mob)

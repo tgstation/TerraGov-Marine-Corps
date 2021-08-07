@@ -929,6 +929,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	if(!current_order)
 		var/mob/user = source
 		to_chat(user, span_warning("You have no order selected."))
+		return
 	current_order.send_order(target, faction = faction)
 
 ///Setter for the current order

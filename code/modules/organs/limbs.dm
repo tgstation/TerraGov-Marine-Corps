@@ -109,17 +109,17 @@
 	if (!germ_level || (spaceacillin + polyhexanide) < MIN_ANTIBIOTICS)
 		return
 
-	var/infection_level = 0
+	var/infection_level = 1
 	switch(germ_level)
 		if(-INFINITY to 10)
 			germ_level = 0
 			return // cure instantly
 		if(11 to INFECTION_LEVEL_ONE)
-			infection_level = 1
-		if(INFECTION_LEVEL_ONE - 1 to INFECTION_LEVEL_TWO)
 			infection_level = 2
-		if(INFECTION_LEVEL_TWO - 1 to INFINITY)
+		if(INFECTION_LEVEL_ONE - 1 to INFECTION_LEVEL_TWO)
 			infection_level = 3
+		if(INFECTION_LEVEL_TWO - 1 to INFINITY)
+			infection_level = 4
 
 	if (spaceacillin >= MIN_ANTIBIOTICS)
 		germ_level -= spaceacillin_curve[infection_level]

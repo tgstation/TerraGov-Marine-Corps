@@ -1,4 +1,0 @@
-author: "Surrealaser"
-delete-after: True
-changes: 
-  - qol: "When the Wraith uses its Blink ability, it will always attempt to teleport as far as possible now, up to the tile you click."

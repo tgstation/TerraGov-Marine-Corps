@@ -1,0 +1,4 @@
+author: "BraveMole"
+delete-after: True
+changes: 
+  - expansion: "You can no longer still enemy radios, they explode when trying to equip"

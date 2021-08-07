@@ -1,4 +1,4 @@
 author: "BraveMole"
 delete-after: True
 changes: 
-  - bugfix: "Loadouts vendor works again"
+  - balance: "Sticky resin slows down vehicles"

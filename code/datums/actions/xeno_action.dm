@@ -14,6 +14,8 @@
 	var/gamemode_flags = ABILITY_ALL_GAMEMODE
 	///Alternative keybind signal, to use the action differently
 	var/alternate_keybind_signal
+	/// Psy points cost of using ability, if any.
+	var/psych_cost = 0
 
 /datum/action/xeno_action/New(Target)
 	. = ..()
@@ -228,10 +230,8 @@
 /datum/action/xeno_action/activable/action_activate()
 	var/mob/living/carbon/xenomorph/X = owner
 	if(X.selected_ability == src)
-		to_chat(X, "You will no longer use [ability_name] with [(X.client.prefs.toggles_gameplay & MIDDLESHIFTCLICKING) ? "middle-click" :"shift-click"].")
 		deselect()
 	else
-		to_chat(X, "You will now use [ability_name] with [(X.client.prefs.toggles_gameplay & MIDDLESHIFTCLICKING) ? "middle-click" :"shift-click"].")
 		if(X.selected_ability)
 			X.selected_ability.deselect()
 		select()

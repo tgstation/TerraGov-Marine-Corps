@@ -77,8 +77,8 @@
 	var/exploding = FALSE
 
 /obj/structure/reagent_dispensers/fueltank/Destroy()
-	. = ..()
 	QDEL_NULL(rig)
+	return ..()
 
 /obj/structure/reagent_dispensers/fueltank/examine(mob/user)
 	. = ..()
@@ -110,6 +110,7 @@
 	"You wrench [src]'s faucet [modded ? "closed" : "open"]")
 	modded = !modded
 	log_attack("[key_name(user)] has wrenched [src] [modded ? "closed" : "open"] in [AREACOORD(user)]")
+	playsound(src, 'sound/items/ratchet.ogg', 25, 1)
 	if(modded)
 		leak_fuel(amount_per_transfer_from_this)
 	return TRUE
@@ -200,6 +201,8 @@
 	amount = min(amount, reagents.total_volume)
 	reagents.remove_reagent(/datum/reagent/fuel,amount)
 	new /obj/effect/decal/cleanable/liquid_fuel(loc, amount, FALSE)
+	playsound(src, 'sound/effects/glob.ogg', 25, 1)
+
 
 /obj/structure/reagent_dispensers/fueltank/flamer_fire_act()
 	explode()
