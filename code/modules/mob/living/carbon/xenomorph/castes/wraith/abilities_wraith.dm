@@ -169,7 +169,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	owner.forceMove(beacon_turf) //Move to where the beacon was
 	teleport_debuff_aoe(owner) //Apply tele debuff
 
-	var/warp_shadow_dissipate
+	var/warp_shadow_dissipate = FALSE
 	if(turf_block_check(owner, get_turf(shadow), TRUE, TRUE, FALSE, FALSE, FALSE, TRUE)) //Check if there's anything that blocks the warp shadow; we only care about solid walls/objects
 		warp_shadow_dissipate = TRUE
 		warp_shadow_check.clean_warp_shadow() //Remove the warp shadow
@@ -202,12 +202,13 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	var/turf/starting_turf = null
 	var/phase_shift_active = FALSE
 	var/phase_shift_duration_timer_id
+	///Timer for the phase shift duration alerts
 	var/phase_shift_duration_alert_id
 
 /datum/action/xeno_action/phase_shift/can_use_action(silent = FALSE, override_flags)
 	. = ..()
 	var/turf/T = get_turf(owner)
-	for(var/obj/machinery/door/poddoor/shutter_check AS in GLOB.wraith_no_incorporeal_pass_shutters)
+	for(var/shutter_check in GLOB.wraith_no_incorporeal_pass_shutters)
 		if(locate(shutter_check) in T)
 			if(!silent)
 				to_chat(owner, span_xenowarning("We can't Phase Shift while in the space of warp protected shutters!"))
@@ -735,7 +736,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	add_cooldown()
 
 ///Return TRUE if we have a block, return FALSE otherwise
-proc/turf_block_check(atom/subject, atom/target, ignore_can_pass = FALSE, ignore_density = FALSE, ignore_closed_turf = FALSE, ignore_invulnerable = FALSE, ignore_objects = FALSE, ignore_mobs = FALSE, ignore_space = FALSE)
+/proc/turf_block_check(atom/subject, atom/target, ignore_can_pass = FALSE, ignore_density = FALSE, ignore_closed_turf = FALSE, ignore_invulnerable = FALSE, ignore_objects = FALSE, ignore_mobs = FALSE, ignore_space = FALSE)
 	var/turf/T = get_turf(target)
 	if(isspaceturf(T) && !ignore_space)
 		return TRUE

@@ -15,10 +15,7 @@ GLOBAL_LIST_INIT(wraith_no_incorporeal_pass_areas, typecacheof(list(
 	/area/ice_colony/surface/tcomms,
 	/area/ice_colony/surface/requesitions,
 	/area/prison/hangar/civilian,
-	/area/prison/hangar/main,
-	/area/shuttle/dropship/alamo,
-	/area/shuttle/dropship/normandy,
-	/area/shuttle/dropship/triumph)))
+	/area/prison/hangar/main)))
 
 GLOBAL_LIST_INIT(wraith_no_incorporeal_pass_areas_dropship, typecacheof(list(
 	/area/shuttle/dropship/alamo,
@@ -62,7 +59,7 @@ GLOBAL_LIST_INIT(wraith_no_incorporeal_pass_shutters, typecacheof(list(
 	var/area/current_area = get_area(src)
 	if(is_type_in_typecache(target_area, GLOB.wraith_strictly_forbidden_areas)) //We can't enter these period.
 		return FALSE
-	if(is_type_in_typecache(target_area, GLOB.wraith_no_incorporeal_pass_areas) && !is_type_in_typecache(current_area, GLOB.wraith_no_incorporeal_pass_areas)) //If we're incorporeal via Phase Shift and we enter an off-limits area while not in one, it's time to stop
+	if(is_type_in_typecache(target_area, GLOB.wraith_no_incorporeal_pass_areas) && !(is_type_in_typecache(current_area, GLOB.wraith_no_incorporeal_pass_areas) || is_type_in_typecache(current_area, GLOB.wraith_no_incorporeal_pass_areas_dropship))) //If we're incorporeal via Phase Shift and we try to enter a general off-limits area while not in one, it's time to stop
 		return FALSE
 	if(is_type_in_typecache(target_area, GLOB.wraith_no_incorporeal_pass_areas_dropship) && !is_type_in_typecache(current_area, GLOB.wraith_no_incorporeal_pass_areas_dropship) && (SSmonitor.gamestate == GROUNDSIDE)) //If we're incorporeal via Phase Shift and we try to enter an off-limits dropship area while not in one without the dropship being crashed, it's time to stop
 		return FALSE
