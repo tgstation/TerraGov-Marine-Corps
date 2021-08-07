@@ -45,7 +45,7 @@
 	if(CHECK_BITFIELD(O.flags_pass, PASSSMALLSTRUCT))
 		return
 	var/mob/living/M = O
-	if(isxenohivemind(M))
+	if(M.status_flags & INCORPOREAL)
 		return
 	if(CHECK_BITFIELD(M.restrained_flags, RESTRAINED_RAZORWIRE))
 		return
