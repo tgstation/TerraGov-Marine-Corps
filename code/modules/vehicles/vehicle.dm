@@ -223,10 +223,6 @@
 /obj/vehicle/proc/RunOver(mob/living/carbon/human/H)
 	return		//write specifics for different vehicles
 
-/obj/vehicle/proc/add_slowdown(slowdown_type, slowdown_value)
-
-
-
 /obj/vehicle/post_buckle_mob(mob/buckling_mob)
 	. = ..()
 	buckling_mob.pixel_y = buckling_y
