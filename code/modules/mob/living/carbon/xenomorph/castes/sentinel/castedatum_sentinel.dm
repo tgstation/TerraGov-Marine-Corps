@@ -75,7 +75,7 @@
 	soft_armor = list("melee" = 20, "bullet" = 20, "laser" = 20, "energy" = 20, "bomb" = XENO_BOMB_RESIST_0, "bio" = 20, "rad" = 20, "fire" = 20, "acid" = 20)
 
 	// *** Ranged Attack *** //
-	spit_delay = 1.3 SECONDS
+	spit_delay = 1.2 SECONDS
 	spit_types = list(/datum/ammo/xeno/toxin/upgrade1, /datum/ammo/xeno/acid)
 
 /datum/xeno_caste/sentinel/elder
@@ -88,7 +88,7 @@
 	melee_damage = 17
 
 	// *** Speed *** //
-	speed = -0.8
+	speed = -0.9
 
 	// *** Plasma *** //
 	plasma_max = 550
@@ -104,7 +104,7 @@
 	soft_armor = list("melee" = 23, "bullet" = 23, "laser" = 23, "energy" = 23, "bomb" = XENO_BOMB_RESIST_0, "bio" = 23, "rad" = 23, "fire" = 23, "acid" = 23)
 
 	// *** Ranged Attack *** //
-	spit_delay = 1.3 SECONDS
+	spit_delay = 1.1 SECONDS
 	spit_types = list(/datum/ammo/xeno/toxin/upgrade2, /datum/ammo/xeno/acid)
 
 /datum/xeno_caste/sentinel/ancient
@@ -117,7 +117,7 @@
 	melee_damage = 17
 
 	// *** Speed *** //
-	speed = -0.8
+	speed = -1
 
 	// *** Plasma *** //
 	plasma_max = 600
@@ -133,6 +133,6 @@
 	soft_armor = list("melee" = 26, "bullet" = 26, "laser" = 26, "energy" = 26, "bomb" = XENO_BOMB_RESIST_0, "bio" = 25, "rad" = 25, "fire" = 26, "acid" = 25)
 
 	// *** Ranged Attack *** //
-	spit_delay = 1.3 SECONDS
+	spit_delay = 1 SECONDS
 	spit_types = list(/datum/ammo/xeno/toxin/upgrade3, /datum/ammo/xeno/acid)
 
