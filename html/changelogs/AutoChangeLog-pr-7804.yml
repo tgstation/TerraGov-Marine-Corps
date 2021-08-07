@@ -1,0 +1,4 @@
+author: "lovegreenstuff"
+delete-after: True
+changes: 
+  - balance: "Increased automag burst delay and scatter."
