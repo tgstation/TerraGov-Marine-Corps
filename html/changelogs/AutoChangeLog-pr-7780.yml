@@ -1,0 +1,4 @@
+author: "lbnesquik"
+delete-after: True
+changes: 
+  - soundadd: "added a breathy noise whenever you equip a gas mask."
