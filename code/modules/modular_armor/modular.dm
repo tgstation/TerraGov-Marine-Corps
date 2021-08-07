@@ -428,7 +428,7 @@
 	paint.uses--
 	var/new_color
 	if(colorable_colors)
-		new_color = tgui_input_list(user, "Pick a color", "Pick color", colorable_colors)
+		new_color = colorable_colors[tgui_input_list(user, "Pick a color", "Pick color", colorable_colors)]
 	else
 		new_color = input(user, "Pick a color", "Pick color") as null|color
 
