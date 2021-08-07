@@ -1,3 +1,5 @@
+#define TIME_TO_TRANSFORM 1.6 SECONDS
+
 /mob/living/carbon/xenomorph/hivemind
 	caste_base_type = /mob/living/carbon/xenomorph/hivemind
 	name = "Hivemind"
@@ -40,6 +42,32 @@
 	RegisterSignal(src, COMSIG_XENOMORPH_CORE_RETURN, .proc/return_to_core)
 	RegisterSignal(src, COMSIG_XENOMORPH_HIVEMIND_CHANGE_FORM, .proc/change_form)
 
+/mob/living/carbon/xenomorph/hivemind/updatehealth()
+	health = maxHealth - getFireLoss() - getBruteLoss() //Xenos can only take brute and fire damage.
+	if(health <= 0)
+		setBruteLoss(0)
+		setFireLoss(maxHealth - 1)
+		change_form()
+	med_hud_set_health()
+	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_HIVEMIND_MANIFESTATION))//Don't show wounds if you are transforming
+		return
+	update_wounds()
+
+/mob/living/carbon/xenomorph/hivemind/handle_living_health_updates()
+	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_HIVEMIND_MANIFESTATION))//No damage while changing form
+		return
+	var/turf/T = loc
+	if(!T || !istype(T))
+		return
+	if(status_flags & INCORPOREAL || locate(/obj/effect/alien/weeds) in T)
+		if((health >= maxHealth) || on_fire) //can't regenerate.
+			updatehealth() //Update health-related stats, like health itself (using brute and fireloss), health HUD and status.
+			return
+		heal_wounds(XENO_RESTING_HEAL)
+		updatehealth()
+		return
+	adjustBruteLoss(20 * XENO_RESTING_HEAL, TRUE)
+
 /mob/living/carbon/xenomorph/hivemind/Destroy()
 	if(!QDELETED(core))
 		QDEL_NULL(core)
@@ -47,12 +75,20 @@
 		core = null
 	return ..()
 
+///Initiate the form changing of the hivemind
 /mob/living/carbon/xenomorph/hivemind/proc/change_form()
-	Paralyze(1.6 SECONDS)
+	if(status_flags & INCORPOREAL && health != maxHealth)
+		to_chat(src, span_xenowarning("You do not have the strength to manifest yet!"))
+		return
+	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_HIVEMIND_MANIFESTATION))
+		return
+	wound_overlay.icon_state = "none"
+	TIMER_COOLDOWN_START(src, COOLDOWN_HIVEMIND_MANIFESTATION, TIME_TO_TRANSFORM)
 	invisibility = 0
 	flick(status_flags & INCORPOREAL ? "Hivemind_materialisation" : "Hivemind_materialisation_reverse", src)
-	addtimer(CALLBACK(src, .proc/do_change_form), 1.6 SECONDS)
+	addtimer(CALLBACK(src, .proc/do_change_form), TIME_TO_TRANSFORM)
 
+///Finish the form changing of the hivemind and give the needed stats
 /mob/living/carbon/xenomorph/hivemind/proc/do_change_form()
 	if(status_flags & INCORPOREAL)
 		status_flags = NONE
@@ -61,7 +97,11 @@
 		flags_pass = NONE
 		density = TRUE
 		throwpass = FALSE
-		set_datum()
+		upgrade = XENO_UPGRADE_MANIFESTATION
+		set_datum(FALSE)
+		remove_abilities()
+		add_abilities()
+		update_wounds()
 		update_icon()
 		return
 	invisibility = initial(invisibility)
@@ -71,8 +111,14 @@
 	flags_pass = initial(flags_pass)
 	density = initial(flags_pass)
 	throwpass = initial(throwpass)
-	set_datum()
+	upgrade = XENO_UPGRADE_BASETYPE
+	set_datum(FALSE)
+	remove_abilities()
+	add_abilities()
+	update_wounds()
 	update_icon()
+	if(!check_weeds(get_turf(src)))
+		return_to_core()
 
 /mob/living/carbon/xenomorph/hivemind/flamer_fire_act()
 	forceMove(get_turf(core))
@@ -100,6 +146,8 @@
 	forceMove(get_turf(core))
 
 /mob/living/carbon/xenomorph/hivemind/Move(NewLoc, Dir = 0)
+	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_HIVEMIND_MANIFESTATION))//Do not move while transorming
+		return
 	if(!(status_flags & INCORPOREAL))
 		return ..()
 	if(!check_weeds(NewLoc))

@@ -58,7 +58,8 @@
 	if(!job) //It might be setup on spawn.
 		setup_job()
 
-	AddComponent(/datum/component/bump_attack)
+	if(!(status_flags & INCORPOREAL))
+		AddComponent(/datum/component/bump_attack)
 
 	ADD_TRAIT(src, TRAIT_BATONIMMUNE, TRAIT_XENO)
 	ADD_TRAIT(src, TRAIT_FLASHBANGIMMUNE, TRAIT_XENO)
@@ -66,7 +67,7 @@
 	if(z) //Larva are initiated in null space
 		SSminimaps.add_marker(src, z, hud_flags = MINIMAP_FLAG_XENO, iconstate = xeno_caste.minimap_icon)
 
-/mob/living/carbon/xenomorph/proc/set_datum()
+/mob/living/carbon/xenomorph/proc/set_datum(restore_health = TRUE)
 	if(!caste_base_type)
 		CRASH("xeno spawned without a caste_base_type set")
 	if(!GLOB.xeno_caste_datums[caste_base_type])
@@ -80,7 +81,8 @@
 
 	plasma_stored = xeno_caste.plasma_max
 	maxHealth = xeno_caste.max_health * GLOB.xeno_stat_multiplicator_buff
-	health = maxHealth
+	if(restore_health)
+		health = maxHealth
 	setXenoCasteSpeed(xeno_caste.speed)
 	soft_armor = getArmor(arglist(xeno_caste.soft_armor))
 	hard_armor = getArmor(arglist(xeno_caste.hard_armor))
