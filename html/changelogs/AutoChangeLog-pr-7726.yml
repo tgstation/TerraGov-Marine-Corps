@@ -1,0 +1,6 @@
+author: "RipGrayson"
+delete-after: True
+changes: 
+  - rscadd: "Adds some TG smites."
+  - code_imp: "Altered some smite code to function correctly on TGMC."
+  - admin: "Ported underlying TG admin smite system."

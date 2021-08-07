@@ -44,7 +44,7 @@
 		item = item_list[slot_key]
 		if(!user.equip_to_slot_if_possible(item, GLOB.slot_str_to_slot[slot_key], warning = FALSE))
 			item.forceMove(user.loc)
-	give_free_headset(user)
+	give_free_headset(user, faction)
 
 /**
  * Buy all items of the loadout from vendors. If some items could not be bought, we warned the user and ask him if he wants to continue.

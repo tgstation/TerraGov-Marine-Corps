@@ -1,0 +1,4 @@
+author: "BraveMole"
+delete-after: True
+changes: 
+  - balance: "Respawn is set to 5 minutes in HvH"

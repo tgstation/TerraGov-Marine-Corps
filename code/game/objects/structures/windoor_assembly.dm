@@ -36,11 +36,6 @@ obj/structure/windoor_assembly/New(Loc, start_dir=NORTH, constructed=0)
 		else //If the user is facing northeast. northwest, southeast, southwest or north, default to north
 			setDir(NORTH)
 
-
-obj/structure/windoor_assembly/Destroy()
-	density = FALSE
-	. = ..()
-
 /obj/structure/windoor_assembly/setDir(newdir)
 	. = ..()
 	update_icon()
