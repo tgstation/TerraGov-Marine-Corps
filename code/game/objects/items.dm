@@ -736,6 +736,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 	RegisterSignal(user, COMSIG_ITEM_ZOOM, .proc/zoom_check_return)
 	onzoom(user)
 
+///applies the offset of the zooming, using animate for smoothing.
 /obj/item/proc/change_zoom_offset(mob/user, newdir, zoom_offset)
 	SIGNAL_HANDLER
 	if(!istype(user))
