@@ -104,9 +104,9 @@ export class AlertModal extends Component {
                           const keyCode = window.event ? e.which : e.keyCode;
 
                           /**
-                            * Simulate a click when pressing space or enter,
-                            * allow keyboard navigation, override tab behavior
-                            */
+                           * Simulate a click when pressing space or enter,
+                           * allow keyboard navigation, override tab behavior
+                           */
                           if (keyCode === KEY_SPACE || keyCode === KEY_ENTER) {
                             act("choose", { choice: button });
                           } else if (
