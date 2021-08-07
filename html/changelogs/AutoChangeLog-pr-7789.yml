@@ -1,5 +1,0 @@
-author: "BraveMole"
-delete-after: True
-changes: 
-  - code_imp: "Fix some of destroy code not abiding to contrib guidelines"
-  - bugfix: "Droppods no longer qdels the occupant on Destroy()"

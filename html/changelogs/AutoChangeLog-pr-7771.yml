@@ -1,4 +1,0 @@
-author: "SplinterGP"
-delete-after: True
-changes: 
-  - qol: "Removes the \"You will now activate this ability with shift click/middle click.\" annoying message that made no sense on xenos selectable message."
