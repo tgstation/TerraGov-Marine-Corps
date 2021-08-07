@@ -119,6 +119,12 @@
 		return
 
 	msg = copytext_char(msg, 1, MAX_MESSAGE_LEN)
+	var/avoid_highlight
+	if(istype(speaker, /atom/movable/virtualspeaker))
+		var/atom/movable/virtualspeaker/virt = speaker
+		avoid_highlight = src == virt.source
+	else
+		avoid_highlight = src == speaker
 
 	if(type)
 		if(type == EMOTE_VISIBLE && eye_blind) //Vision related
@@ -139,8 +145,8 @@
 
 	if(stat == UNCONSCIOUS && type == EMOTE_AUDIBLE)
 		to_chat(src, "<i>... You can almost hear something ...</i>")
-	else
-		to_chat(src, msg)
+		return
+	to_chat(src, msg, avoid_highlighting = avoid_highlighting)
 
 // Show a message to all player mobs who sees this atom
 // Show a message to the src mob (if the src is a mob)
