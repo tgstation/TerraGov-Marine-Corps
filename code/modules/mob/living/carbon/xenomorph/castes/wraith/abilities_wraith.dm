@@ -388,6 +388,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	plasma_cost = 50
 	cooldown_timer = 0.5 SECONDS
 	keybind_signal = COMSIG_XENOABILITY_BLINK
+	var/blink_timer
 
 ///Check target Blink turf to see if it can be blinked to
 /datum/action/xeno_action/activable/blink/proc/check_blink_tile(turf/T, ignore_blocker = FALSE, silent = FALSE)
@@ -483,11 +484,22 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	X.forceMove(T) //Teleport to our target turf
 	teleport_debuff_aoe(X) //Debuff when we reappear
 
+	ADD_TRAIT(X, TRAIT_STAGGERIMMUNE, BLINK_TRAIT) //Provides immunity to stagger for a short duration after blinking
+	ADD_TRAIT(X, TRAIT_SLOWDOWNIMMUNE, BLINK_TRAIT) //Provides immunity to slowdown for a short duration after blinking
+	apply_wibbly_filters(X)
+	blink_timer = addtimer(CALLBACK(src, .proc/blink_effect_expiration), 2 SECONDS, TIMER_UNIQUE|TIMER_STOPPABLE|TIMER_OVERRIDE)
+
 	succeed_activate()
 	add_cooldown(cooldown_timer * cooldown_mod)
 
 	GLOB.round_statistics.wraith_blinks++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "wraith_blinks") //Statistics
+
+///Removes the lingering effects of Blink
+/datum/action/xeno_action/activable/blink/proc/blink_effect_expiration()
+	REMOVE_TRAIT(owner, TRAIT_STAGGERIMMUNE, BLINK_TRAIT)
+	REMOVE_TRAIT(owner, TRAIT_SLOWDOWNIMMUNE, BLINK_TRAIT)
+	remove_wibbly_filters(owner)
 
 ///Called by many of the Wraith's teleportation effects
 /datum/action/xeno_action/proc/teleport_debuff_aoe(atom/movable/teleporter, silent = FALSE)

@@ -90,6 +90,7 @@
 #define ENDURE_TRAIT "endure" //Ravager Endure ability.
 #define RAGE_TRAIT "rage" //Ravager Rage ability.
 #define STEALTH_TRAIT "stealth" //From hunter stealth
+#define BLINK_TRAIT "blink" //From Wraith Blink ability
 
 //mob traits
 #define TRAIT_KNOCKEDOUT "knockedout" //Forces the user to stay unconscious.
