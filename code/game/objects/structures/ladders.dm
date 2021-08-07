@@ -50,7 +50,7 @@
 		qdel(cam)
 		cam = null
 	GLOB.ladder_list -= src
-	. = ..()
+	return ..()
 
 /obj/structure/ladder/update_icon_state()
 	if(up && down)

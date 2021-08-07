@@ -11,11 +11,11 @@
 	pressure = 0
 	flags_area = NO_DROPPOD
 
-/area/space/Entered(atom/movable/AM, atom/oldloc)
+/area/space/Entered(atom/movable/arrived, atom/old_loc, list/atom/old_locs)
 	. = ..()
-	if(isliving(AM))
-		to_chat(AM, span_danger("The cold vacuum instantly freezes you, maybe this was a bad idea?"))
-		var/mob/living/spaceman = AM
+	if(isliving(arrived))
+		to_chat(arrived, span_danger("The cold vacuum instantly freezes you, maybe this was a bad idea?"))
+		var/mob/living/spaceman = arrived
 		spaceman.adjustFireLoss(600) //Bad idea, spessman.
 
 /area/engine/
@@ -43,6 +43,7 @@
 	requires_power = 0
 	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
 	outside = FALSE
+	flags_area = OB_CAS_IMMUNE
 
 /area/shuttle/arrival
 	name = "Abandoned Arrival Shuttle"

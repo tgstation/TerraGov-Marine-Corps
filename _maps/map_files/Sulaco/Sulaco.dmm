@@ -15718,6 +15718,10 @@
 /obj/machinery/door/firedoor,
 /turf/open/floor/plating,
 /area/sulaco/maintenance/lower_maint2)
+"mqC" = (
+/obj/structure/dropship_equipment/sentry_holder,
+/turf/open/floor/prison,
+/area/sulaco/hangar)
 "mrg" = (
 /obj/structure/rack,
 /obj/item/circuitboard/computer/arcade,
@@ -62492,7 +62496,7 @@ aPF
 aSN
 gKw
 yfI
-cdy
+mqC
 aUL
 sgS
 mRR

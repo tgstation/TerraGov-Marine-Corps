@@ -140,7 +140,6 @@
 	. = ..()
 	if(. || !check_spot())
 		return
-	var/obj/machinery/marine_turret/turret = /obj/machinery/marine_turret
 	var/turf/buildplace = get_turf(fobdrone)
 	var/obj/structure/barricade/cade = /obj/structure/barricade
 	if(console.sentry_remaining < 1)
@@ -156,8 +155,8 @@
 	if(!do_after(fobdrone, 3 SECONDS, FALSE, buildplace, BUSY_ICON_BUILD))
 		return
 	console.sentry_remaining -= 1
-	turret = new /obj/machinery/marine_turret(buildplace)
-	turret.setDir(fobdrone.dir)
+	var/obj/item/weapon/gun/sentry/big_sentry/premade/new_gun = new(buildplace)
+	new_gun.loc.setDir(fobdrone.dir)
 
 /datum/action/innate/remote_fob/eject_metal_action
 	name = "Eject All Metal"

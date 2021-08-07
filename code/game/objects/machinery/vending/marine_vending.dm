@@ -69,8 +69,8 @@
 	GLOB.marine_vendors.Add(src)
 
 /obj/machinery/vending/marine/Destroy()
-	. = ..()
 	GLOB.marine_vendors.Remove(src)
+	return ..()
 
 //What do grenade do against candy machine?
 /obj/machinery/vending/marine/ex_act(severity)
@@ -155,14 +155,16 @@
 		"Specialized" = list(
 			/obj/item/weapon/gun/launcher/m92/standardmarine = -1,
 			/obj/item/weapon/gun/launcher/m81 = -1,
+			/obj/item/weapon/gun/heavymachinegun = 1,
+			/obj/item/ammo_magazine/heavymachinegun = 4,
 			/obj/item/weapon/gun/rifle/pepperball = 4,
+			/obj/item/ammo_magazine/rifle/pepperball = 40,
 			/obj/item/storage/box/recoilless_system = 2,
 			/obj/item/weapon/gun/flamer/marinestandard = 4,
 			/obj/item/ammo_magazine/flamer_tank/backtank = 4,
 			/obj/item/ammo_magazine/flamer_tank/large = 20,
 			/obj/item/ammo_magazine/flamer_tank = 20,
 			/obj/item/weapon/shield/riot/marine = 6,
-			/obj/item/ammo_magazine/rifle/pepperball = 40,
 			/obj/item/weapon/powerfist = -1,
 			/obj/item/weapon/throwing_knife = -1,
 			/obj/item/weapon/combat_knife = -1,
@@ -215,6 +217,13 @@
 		/obj/item/ammo_magazine/packet/p492x34mm = 100,
 		/obj/item/storage/box/visual/magazine = 30,
 		/obj/item/storage/box/visual/grenade = 10,
+		),
+		"Utility" = list(
+		/obj/item/flashlight/combat = -1,
+		/obj/item/binoculars = -1,
+		/obj/item/compass = -1,
+		/obj/item/assembly/signaler = -1,
+		/obj/item/weapon/gun/flare/marine = -1,
 		),
 	)
 
@@ -714,7 +723,7 @@
 
 	products = list(
 		/obj/item/clothing/tie/storage/webbing = 1,
-		/obj/item/storage/box/t26_system = 1,
+		/obj/item/storage/box/t29_system = 1,
 		/obj/item/minigun_powerpack = 1,
 		/obj/item/storage/pouch/magazine/large = 1,
 		/obj/item/clothing/mask/gas = 1,
@@ -816,6 +825,7 @@
 			/obj/item/armor_module/storage/medical = -1,
 			/obj/item/helmet_module/welding = -1,
 			/obj/item/helmet_module/binoculars = -1,
+			/obj/item/helmet_module/attachable/tyr_head = 1,
 			/obj/item/helmet_module/antenna = -1,
 			/obj/item/helmet_module/attachable/mimir_environment_protection/mark1 = -1,
 			/obj/item/armor_module/attachable/mimir_environment_protection/mark1 = -1,
@@ -854,7 +864,6 @@
 			/obj/item/clothing/head/slouch = -1,
 			/obj/item/clothing/glasses/mgoggles = -1,
 			/obj/item/clothing/glasses/mgoggles/prescription = -1,
-			/obj/item/flashlight/combat = -1,
 			/obj/item/clothing/under/whites = -1,
 			/obj/item/clothing/head/white_dress = -1,
 			/obj/item/clothing/shoes/white = -1,
@@ -877,8 +886,8 @@
 			/obj/item/storage/belt/sparepouch = -1,
 			/obj/item/storage/belt/gun/pistol/standard_pistol = -1,
 			/obj/item/storage/belt/gun/revolver/standard_revolver = -1,
-			/obj/item/storage/large_holster/machete/full = -1,
-			/obj/item/storage/large_holster/machete/full_harvester = -1,
+			/obj/item/storage/large_holster/blade/machete/full = -1,
+			/obj/item/storage/large_holster/blade/machete/full_harvester = -1,
 		),
 		"Pouches" = list(
 			/obj/item/storage/pouch/pistol = -1,
