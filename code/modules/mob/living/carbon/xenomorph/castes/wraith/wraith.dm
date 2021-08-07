@@ -8,7 +8,17 @@ GLOBAL_LIST_INIT(wraith_no_incorporeal_pass_areas, typecacheof(list(
 	/area/shuttle/drop1/lz1,
 	/area/shuttle/drop2/lz2,
 	/area/outpost/lz1,
-	/area/outpost/lz2)))
+	/area/outpost/lz2,
+	/area/bigredv2/outside/space_port,
+	/area/ice_colony/exterior/surface/landing_pad,
+	/area/ice_colony/exterior/surface/landing_pad2,
+	/area/ice_colony/surface/tcomms,
+	/area/ice_colony/surface/requesitions,
+	/area/prison/hangar/civilian,
+	/area/prison/hangar/main,
+	/area/shuttle/dropship/alamo,
+	/area/shuttle/dropship/normandy,
+	/area/shuttle/dropship/triumph)))
 
 GLOBAL_LIST_INIT(wraith_no_incorporeal_pass_areas_dropship, typecacheof(list(
 	/area/shuttle/dropship/alamo,
