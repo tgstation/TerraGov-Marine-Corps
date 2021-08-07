@@ -1,0 +1,4 @@
+author: "BraveMole"
+delete-after: True
+changes: 
+  - balance: "Unmanned vehicles take some damage in acid boiler smoke"
