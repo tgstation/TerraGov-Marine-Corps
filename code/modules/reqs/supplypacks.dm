@@ -225,6 +225,7 @@ WEAPONS
 /datum/supply_packs/weapons/specminigun
 	name = "MIC-A7 Vindicator Minigun"
 	contains = list(/obj/item/weapon/gun/minigun)
+	cost = MINIGUN_PRICE
 
 /datum/supply_packs/weapons/smartgun
 	name = "T-29 Smart Machinegun"
