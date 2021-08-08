@@ -203,7 +203,7 @@
 	name = "Evasion"
 	action_icon_state = "evasion"
 	mechanics_text = "Take evasive action, forcing non-friendly projectiles that would hit you to miss for a short duration so long as you keep moving."
-	plasma_cost = 10
+	plasma_cost = 75
 	cooldown_timer = 10 SECONDS
 	keybind_signal = COMSIG_XENOABILITY_EVASION
 	///Whether evasion is currently active

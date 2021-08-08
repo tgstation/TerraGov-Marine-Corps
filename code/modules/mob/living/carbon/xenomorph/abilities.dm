@@ -1081,8 +1081,7 @@
 	gamemode_flags = ABILITY_DISTRESS
 	/// How long does it take to build
 	var/build_time = 10 SECONDS
-	/// Pyschic point cost
-	var/psych_cost = SILO_PRICE
+	psych_cost = SILO_PRICE
 
 /datum/action/xeno_action/activable/build_silo/can_use_ability(atom/A, silent, override_flags)
 	. = ..()
@@ -1146,9 +1145,7 @@
 	gamemode_flags = ABILITY_DISTRESS
 	/// How long does it take to build
 	var/build_time = 15 SECONDS
-	/// Pyschic point cost
-	var/psych_cost = XENO_TURRET_PRICE
-
+	psych_cost = XENO_TURRET_PRICE
 
 /datum/action/xeno_action/activable/build_turret/can_use_ability(atom/A, silent, override_flags)
 	. = ..()

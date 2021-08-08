@@ -591,7 +591,7 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 
 ///Set the target and take care of hard delete
 /obj/item/weapon/gun/proc/set_target(atom/object)
-	if(object == target)
+	if(object == target || target == gun_user)
 		return
 	if(target)
 		UnregisterSignal(target, COMSIG_PARENT_QDELETING)
@@ -902,7 +902,7 @@ and you're good to go.
 //----------------------------------------------------------
 
 /obj/item/weapon/gun/proc/able_to_fire(mob/user)
-	if(user.stat != CONSCIOUS || user.lying_angle)
+	if(!user || user.stat != CONSCIOUS || user.lying_angle)
 		return
 
 	if(!user.dextrous)
