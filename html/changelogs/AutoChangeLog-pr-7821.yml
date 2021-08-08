@@ -1,0 +1,6 @@
+author: "QualityVan"
+delete-after: True
+changes: 
+  - qol: "Everyone can use the medbay smartfridges."
+  - balance: "Corpsmen have chemistry access now."
+  - balance: "Trying to use the chem dispenser/chem master without at least basic medical training will incur delays."
