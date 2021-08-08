@@ -9,12 +9,19 @@
 	cocked_sound = 'sound/weapons/guns/interact/revolver_spun.ogg'
 	unload_sound = 'sound/weapons/guns/interact/revolver_unload.ogg'
 	muzzleflash_iconstate = "muzzle_flash_medium"
+	///Sound played when reloading by hand.
 	var/hand_reload_sound = 'sound/weapons/guns/interact/revolver_load.ogg'
+	///Sound played when revolvers chamber is spun.
 	var/spin_sound = 'sound/effects/spin.ogg'
+	///Sound played when thud?
 	var/thud_sound = 'sound/effects/thud.ogg'
+	///Delay between gun tricks
 	var/trick_delay = 6
+	///Time of last truck
 	var/recent_trick //So they're not spamming tricks.
+	///If the gun is able to play Russian Roulette
 	var/russian_roulette = 0 //God help you if you do this.
+	///Whether the chamber can be spun for Russian Roulette.
 	var/catchworking = TRUE
 	load_method = SINGLE_CASING|SPEEDLOADER //codex
 	type_of_casings = "bullet"
@@ -54,16 +61,6 @@
 
 /obj/item/weapon/gun/revolver/proc/rotate_cylinder(mob/user) //Cylinder moves backward.
 	current_mag.chamber_position = current_mag.chamber_position == 1 ? current_mag.max_rounds : current_mag.chamber_position - 1
-
-/obj/item/weapon/gun/revolver/proc/spin_cylinder(mob/user)
-	if(!current_mag.chamber_closed) //We're not spinning while it's open. Could screw up reloading.
-		return FALSE
-	current_mag.chamber_position = rand(1,current_mag.max_rounds)
-	to_chat(user, span_notice("You spin the cylinder."))
-	playsound(user, cocked_sound, 25, 1)
-	russian_roulette = !russian_roulette //Sets to play RR. Resets when the gun is emptied.
-	return TRUE
-
 
 /obj/item/weapon/gun/revolver/proc/replace_cylinder(number_to_replace)
 	current_mag.chamber_contents = list()
@@ -198,14 +195,15 @@
 	if(refund) current_mag.current_rounds++
 	return TRUE
 
-/obj/item/weapon/gun/revolver/unique_action(mob/user)
-	. = ..()
-	if(!.)
-		return
+/obj/item/weapon/gun/revolver/cock(mob/user)
 	if(catchworking)
 		return unload(user)
-	else
-		return spin_cylinder(user)
+	if(!current_mag.chamber_closed) //We're not spinning while it's open. Could screw up reloading.
+		return
+	current_mag.chamber_position = rand(1,current_mag.max_rounds)
+	to_chat(user, span_notice("You spin the cylinder."))
+	playsound(user, cocked_sound, 25, 1)
+	russian_roulette = !russian_roulette //Sets to play RR. Resets when the gun is emptied.
 
 /obj/item/weapon/gun/revolver/proc/revolver_basic_spin(mob/living/carbon/human/user, direction = 1, obj/item/weapon/gun/revolver/double)
 	set waitfor = 0
@@ -536,3 +534,48 @@
 	burst_delay = 0.1 SECONDS
 	scatter_unwielded = 20
 	damage_mult = 1.05
+
+/obj/item/weapon/gun/revolver/single_action //This town aint big enuf fer the two of us
+	name = "single action revolver"
+	desc = "you should not be seeing this."
+	current_mag = /obj/item/ammo_magazine/internal/revolver/m44
+	///Whether or not the revolvers hammer is ready to fire.
+	var/primed = FALSE
+
+/obj/item/weapon/gun/revolver/single_action/update_icon_state()
+	. = ..()
+	if(primed)
+		return
+	icon_state = initial(icon_state) + "unprimed"
+
+/obj/item/weapon/gun/revolver/single_action/examine(mob/user)
+	. = ..()
+	to_chat(user, "[primed ? "It's primed and ready to fire." : "It is not primed."]")
+
+/obj/item/weapon/gun/revolver/single_action/able_to_fire(mob/user)
+	. = ..()
+	if(. && !primed) //If the chamber is open theres no need to give the unprimed message.
+		to_chat(user, span_warning("You need to prime the revolver first!"))
+		return FALSE
+
+/obj/item/weapon/gun/revolver/single_action/Fire()
+	. = ..()
+	primed = FALSE
+	update_icon_state()
+
+/obj/item/weapon/gun/revolver/single_action/cock(mob/user)
+	if(!primed && current_mag.current_rounds && current_mag.chamber_closed)
+		primed = TRUE
+		to_chat(user, span_notice("You prime the [src]"))
+		playsound(user, reload_sound, 25, 1)
+		update_icon_state()
+		return
+	if(catchworking)
+		primed = FALSE
+		return unload(user)
+	if(!current_mag.chamber_closed)
+		return
+	current_mag.chamber_position = rand(1,current_mag.max_rounds)
+	to_chat(user, span_notice("You spin the cylinder."))
+	playsound(user, cocked_sound, 25, 1)
+	russian_roulette = !russian_roulette //Sets to play RR. Resets when the gun is emptied.

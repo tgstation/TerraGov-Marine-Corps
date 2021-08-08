@@ -364,7 +364,8 @@
 /obj/item/weapon/gun/unique_action(mob/user)
 	. = ..()
 	if(CHECK_BITFIELD(flags_item, IS_DEPLOYABLE) && !CHECK_BITFIELD(flags_item, IS_DEPLOYED)) //If the gun can be deployed, it deploys when unique_action is called.
-		return FALSE
+		return
+	return cock(user)
 
 //----------------------------------------------------------
 			//							        \\
