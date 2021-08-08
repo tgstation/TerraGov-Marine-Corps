@@ -259,9 +259,9 @@
 
 ///Slows down human and vehicle on cross
 /datum/element/slowing_on_crossed/proc/slow_down_crosser(datum/source, atom/movable/crosser)
-	if(isvehicle(AM))
-		var/obj/vehicle/vehicle = AM
-		vehicle.next_move_slowdown += slow_amt
+	if(isvehicle(crosser))
+		var/obj/vehicle/vehicle = crosser
+		vehicle.next_move_slowdown += slow_amount
 		return
 
 	if(!ishuman(crosser))
