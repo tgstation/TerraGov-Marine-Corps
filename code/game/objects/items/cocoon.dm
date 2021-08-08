@@ -31,7 +31,7 @@
 	victim = _victim
 	victim.forceMove(src)
 	START_PROCESSING(SSslowprocess, src)
-	addtimer(CALLBACK(src, .proc/life_draining_over, TRUE), null, cocoon_life_time)
+	addtimer(CALLBACK(src, .proc/life_draining_over, null, TRUE), cocoon_life_time)
 	RegisterSignal(SSdcs, COMSIG_GLOB_DROPSHIP_HIJACKED, .proc/life_draining_over)
 	new /obj/effect/alien/weeds/node(loc)
 
