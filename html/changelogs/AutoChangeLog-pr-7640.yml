@@ -1,4 +1,0 @@
-author: "SplinterGP"
-delete-after: True
-changes: 
-  - bugfix: "fixed evolving/regressing not working with xenos with different plasma mechanics, now they account for their plasma regen limit."

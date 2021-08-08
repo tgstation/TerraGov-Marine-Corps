@@ -250,6 +250,11 @@
 /obj/vehicle/unmanned/fire_act()
 	take_damage(20, BURN, "fire")
 
+/obj/vehicle/unmanned/effect_smoke(obj/effect/particle_effect/smoke/S)
+	. = ..()
+	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_XENO_ACID))
+		take_damage(20 * S.strength)
+
 /obj/vehicle/unmanned/medium
 	name = "medium unmanned vehicle"
 	icon_state = "medium_uv"

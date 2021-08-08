@@ -33,7 +33,7 @@
 	if(should_enable == active)
 		return
 	var/mob/living/bumper = parent
-	to_chat(bumper, span_notice("You will now [should_enable ? "attack" : "push"] enemies who are in your way."))
+	bumper.balloon_alert(bumper, "Will now [should_enable ? "attack" : "push"] enemies in your way.")
 	toggle_action?.update_button_icon(should_enable)
 	if(should_enable)
 		active = TRUE

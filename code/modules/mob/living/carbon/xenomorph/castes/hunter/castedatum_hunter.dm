@@ -42,6 +42,9 @@
 	charge_type = CHARGE_TYPE_MEDIUM
 	pounce_delay = 15 SECONDS
 
+	// *** Stealth ***
+	stealth_break_threshold = 15
+
 	// *** Abilities *** //
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,

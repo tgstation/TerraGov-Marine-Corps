@@ -91,6 +91,14 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	var/aim_mode_movement_mult = 0
 	///Modifies projectile damage by a % when a marine gets passed, but not hit
 	var/shot_marine_damage_falloff = 0
+	///How much of the aim mode fire rate debuff is removed %-wise
+	var/aim_mode_fire_rate_debuff_reduction = 0
+	/*
+	 * Contains the removed amount from the aim mode fire rate debuff
+	 * so that the same amount that was removed is returned
+	 * in the case of multiple things modifying the gun's var by a %
+	 */
+	var/cached_aim_mode_debuff_fire_rate = 0
 
 	///the delay between shots, for attachments that fire stuff
 	var/attachment_firing_delay = 0
@@ -184,6 +192,8 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	master_gun.scatter_unwielded			+= scatter_unwielded_mod
 	master_gun.aim_speed_modifier			+= initial(master_gun.aim_speed_modifier)*aim_mode_movement_mult
 	master_gun.iff_marine_damage_falloff	+= shot_marine_damage_falloff
+	cached_aim_mode_debuff_fire_rate = master_gun.aim_fire_delay * aim_mode_fire_rate_debuff_reduction
+	master_gun.aim_fire_delay 				-= cached_aim_mode_debuff_fire_rate
 	if(delay_mod)
 		master_gun.modify_fire_delay(delay_mod)
 	if(burst_delay_mod)
@@ -250,6 +260,10 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	master_gun.scatter_unwielded			-= scatter_unwielded_mod
 	master_gun.aim_speed_modifier			-= initial(master_gun.aim_speed_modifier)*aim_mode_movement_mult
 	master_gun.iff_marine_damage_falloff	-= shot_marine_damage_falloff
+	master_gun.aim_fire_delay 				+= cached_aim_mode_debuff_fire_rate
+	if(CHECK_BITFIELD(master_gun.flags_gun_features, GUN_IS_AIMING))
+		master_gun.modify_fire_delay(cached_aim_mode_debuff_fire_rate)
+	cached_aim_mode_debuff_fire_rate = 0
 	if(delay_mod)
 		master_gun.modify_fire_delay(-delay_mod)
 	if(burst_delay_mod)
@@ -569,13 +583,13 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 
 /obj/item/attachable/reddot
 	name = "red-dot sight"
-	desc = "A red-dot sight for short to medium range. Does not have a zoom feature, but does increase weapon accuracy by a good amount. \nNo drawbacks."
+	desc = "A red-dot sight for short to medium range. Does not have a zoom feature, but does increase weapon accuracy and fire rate while aiming by a good amount. \nNo drawbacks."
 	icon_state = "reddot"
 	attach_icon = "reddot_a"
 	slot = ATTACHMENT_SLOT_RAIL
 	accuracy_mod = 0.15
 	accuracy_unwielded_mod = 0.1
-
+	aim_mode_fire_rate_debuff_reduction = 0.5
 
 /obj/item/attachable/m16sight
 	name = "M16 iron sights"
@@ -719,6 +733,17 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 
 /obj/item/attachable/scope/unremovable
 	flags_attach_features = ATTACH_ACTIVATION
+
+
+/obj/item/attachable/scope/unremovable/flaregun
+	name = "long range ironsights"
+	desc = "An unremovable set of long range ironsights for a flaregun."
+	attach_icon = "none"
+	aim_speed_mod = 0
+	wield_delay_mod = 0
+	zoom_offset = 5
+	zoom_viewsize = 7
+	scoped_accuracy_mod = SCOPE_RAIL_MINI
 
 /obj/item/attachable/scope/unremovable/tl127
 	name = "T-45 rail scope"
@@ -1252,19 +1277,20 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 //The requirement for an attachable being alt fire is AMMO CAPACITY > 0.
 /obj/item/attachable/attached_gun/grenade
 	name = "underslung grenade launcher"
-	desc = "A weapon-mounted, reloadable, one-shot grenade launcher."
+	desc = "A weapon-mounted, reloadable, two-shot grenade launcher."
 	icon_state = "grenade"
 	attach_icon = "grenade_a"
 	w_class = WEIGHT_CLASS_BULKY
 	current_rounds = 0
 	max_rounds = 2
 	max_range = 7
+	attachment_firing_delay = 10
 	slot = ATTACHMENT_SLOT_UNDER
 	fire_sound = 'sound/weapons/guns/fire/underbarrel_grenadelauncher.ogg'
 	flags_attach_features = ATTACH_REMOVABLE|ATTACH_ACTIVATION|ATTACH_RELOADABLE|ATTACH_WEAPON
 	///list of grenade types loaded in the UGL
 	var/list/loaded_grenades = list()
-	attachment_firing_delay = 21
+	COOLDOWN_DECLARE(last_fired)
 
 /obj/item/attachable/attached_gun/grenade/unremovable
 	flags_attach_features = ATTACH_ACTIVATION|ATTACH_RELOADABLE|ATTACH_WEAPON
@@ -1311,7 +1337,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	if(get_dist(user,target) > max_range)
 		to_chat(user, span_warning("Too far to fire the attachment!"))
 		return
-	if(current_rounds > 0)
+	if(current_rounds > 0 && COOLDOWN_CHECK(src, last_fired))
 		prime_grenade(target,gun,user)
 
 
@@ -1319,6 +1345,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	set waitfor = FALSE
 	var/nade_type = loaded_grenades[1]
 	var/obj/item/explosive/grenade/frag/G = new nade_type (get_turf(gun))
+	COOLDOWN_START(src, last_fired, attachment_firing_delay)
 	playsound(user.loc, fire_sound, 50, 1)
 	log_explosion("[key_name(user)] fired a grenade [G] from [src] at [AREACOORD(user.loc)].")
 	log_combat(user, src, "fired a grenade [G] from")
@@ -1342,10 +1369,10 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	current_rounds = 20
 	max_rounds = 20
 	max_range = 4
+	attachment_firing_delay = 25
 	slot = ATTACHMENT_SLOT_UNDER
 	fire_sound = 'sound/weapons/guns/fire/flamethrower3.ogg'
 	flags_attach_features = ATTACH_REMOVABLE|ATTACH_ACTIVATION|ATTACH_RELOADABLE|ATTACH_WEAPON
-	attachment_firing_delay = 25
 	COOLDOWN_DECLARE(last_fired)
 
 

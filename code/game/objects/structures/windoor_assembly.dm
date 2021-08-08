@@ -36,11 +36,6 @@ obj/structure/windoor_assembly/New(Loc, start_dir=NORTH, constructed=0)
 		else //If the user is facing northeast. northwest, southeast, southwest or north, default to north
 			setDir(NORTH)
 
-
-obj/structure/windoor_assembly/Destroy()
-	density = FALSE
-	. = ..()
-
 /obj/structure/windoor_assembly/setDir(newdir)
 	. = ..()
 	update_icon()
@@ -56,7 +51,7 @@ obj/structure/windoor_assembly/Destroy()
 	if(get_dir(loc, target) == dir) //Make sure looking at appropriate border
 		return FALSE
 
-/obj/structure/windoor_assembly/CheckExit(atom/movable/mover as mob|obj, turf/target as turf)
+/obj/structure/windoor_assembly/CheckExit(atom/movable/mover, direction)
 	. = ..()
 	if(istype(mover) && CHECK_BITFIELD(mover.flags_pass, PASSGLASS))
 		return TRUE

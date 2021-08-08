@@ -545,13 +545,16 @@
 
 /obj/item/storage/pouch/flare
 	name = "flare pouch"
-	desc = "A pouch designed to hold flares. Refillable with a M94 flare pack."
+	desc = "A pouch designed to hold flares and a single flaregun. Refillable with a M94 flare pack."
 	max_w_class = 2
 	storage_slots = 7
 	draw_mode = 1
 	icon_state = "flare"
+	storage_type_limits = list(/obj/item/weapon/gun/flare = 1)
+
 	can_hold = list(
 		/obj/item/flashlight/flare,
+		/obj/item/weapon/gun/flare,
 		/obj/item/explosive/grenade/flare,
 	)
 

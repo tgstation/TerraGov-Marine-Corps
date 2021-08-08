@@ -97,7 +97,7 @@
 ///Turns the remote control on
 /datum/component/remote_control/proc/remote_control_on(mob/living/newuser)
 	if(QDELETED(controlled))
-		to_chat(newuser, span_warning("The linked device is destroyed!"))
+		newuser.balloon_alert(newuser, "The linked device is destroyed!")
 		controlled = null
 		return
 	SEND_SIGNAL(controlled, COMSIG_REMOTECONTROL_CHANGED, TRUE, newuser)

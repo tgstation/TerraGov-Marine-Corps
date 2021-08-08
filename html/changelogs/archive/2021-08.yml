@@ -34,3 +34,188 @@
   - expansion: 3 new canterbury crash locations
   - balance: removes some rock walls to make new & old crash locations a bit more
       accessible.
+2021-08-02:
+  Pariah919:
+  - rscadd: Added new marine flaregun, it can look out to miniscope distance. Fits
+      in your flare pouches too.
+  - qol: flaregun fired flares now stop where you click.
+  - balance: flareguns now have miniscope level range of zoom on them, when you zoom
+      on them.
+  - rscadd: Added new tyr helmet attachie. +10 To all armor stats. 15 to melee.
+  Pill-U:
+  - balance: Shrike can destroy walls with holes
+  SpaceLove:
+  - bugfix: fixed bug with lolipop pouches
+  SplinterGP:
+  - bugfix: fixed evolving/regressing not working with xenos with different plasma
+      mechanics, now they account for their plasma regen limit.
+  TiviPlus:
+  - bugfix: Fixed crusher charging
+  lbnesquik:
+  - qol: sound for the firelocks welding
+  - bugfix: fixed typos in snaps and hugging emotes
+2021-08-03:
+  Alterist:
+  - soundadd: Grav Crush volume has been quieted by around 10dB
+  BraveMole:
+  - bugfix: Fix doube clicking items in backpack dropping them
+  - code_imp: Update monitor balance calculation
+  Pariah919:
+  - bugfix: marines got their tyr helmet attachment shipment in
+  - bugfix: the TGMC finally sent out it's new edition of flareguns, the E2, you no
+      longer only have one exactly flaregun as marine. But many.
+  TiviPlus:
+  - rscadd: Runners can now ride crushers when the crusher grabs the runner then clicks
+      on themselves
+  - refactor: refactored riding code
+  - bugfix: fixed barricades being passable too often
+  - refactor: refactored more movement code
+2021-08-04:
+  BraveMole:
+  - bugfix: Fix minigun able to shoot without holding the mouse button down
+  - bugfix: Fix slashing dead human lights
+  KornFlaks:
+  - bugfix: Increased the size of microscopic king pod creation and king hive summoning
+      announcements.
+  Pariah919:
+  - spellcheck: the SW357 has been relored into something different, called the FFA
+      'Rebotar'. Also the 357/M44 seasonal now clairify that the SW357 has bouncy
+      bullets.
+  QualityVan:
+  - rscadd: Autodocs set to automatic can now start on their own
+  TiviPlus:
+  - qol: A number of things now use balloon alerts for their messages notably
+  - qol: Internal tanks/masks
+  - qol: Stamina status messages
+  - qol: Telekenisis
+  - qol: Vent crawl
+  - qol: Bump attack
+  - qol: Vali
+  - qol: Valk and B18
+  - qol: Emotes
+  - qol: Deployable weapons
+  - qol: Resin Jelly and accelerated healing
+  - qol: Wires
+  Wayland-Smithy:
+  - bugfix: Fixed hive status xeno health color when negative, like when in crit.
+  lbnesquik:
+  - balance: made the boiler bombard cooldown when it has more acid stored
+2021-08-05:
+  BraveMole:
+  - bugfix: You can delete loadouts
+  - bugfix: Loadouts vendor works again
+  - code_imp: Sanitise item paths in loadouts
+  Grandpa:
+  - expansion: Expands content of an existing thing
+  Hekzder:
+  - balance: The UGL now has a fire delay of 1 second
+  - bugfix: Fixed the UGL not having a fire delay at all
+  - spellcheck: Fixed the UGL description listing it as a single shot launcher
+  KornFlaks:
+  - balance: Removes Queen Set Leaders cooldown. Instead makes it cost 200 plasma.
+  - rscadd: Adds text blurb on a sentry for an engineer to alt-click to remove battery
+      to replace.
+  Pariah919:
+  - bugfix: automag has a belt sprite now
+  QualityVan:
+  - bugfix: Xenos don't have an attack delay after clicking on weeds, the same way
+      they don't after clicking normal floors.
+  - bugfix: Taking at least 15 damage at once in stealth as a hunter will now properly
+      knock you out of it.
+  Sebbe9123:
+  - balance: Gives Defiler faster plasma gain.
+  Surrealaser:
+  - qol: When the Wraith uses its Blink ability, it will always attempt to teleport
+      as far as possible now, up to the tile you click.
+  hyper2snyper:
+  - code_imp: Various infrastructure changes for /mounted
+  lbnesquik:
+  - balance: Made the AI unable to use the dropship doors while it is hijacked.
+  - qol: Added a notification noise to the AI, whenever it gets called.
+  - bugfix: fixes the outside of LZ2 hangars not actually being outside
+  - qol: the AI can interact with colony generators :)
+  - expansion: Expands  AI shuttle notifications
+  - expansion: Shifted a couple areas of theseus around to make more sense. Added
+      some floor plates to the hangar to make it prettier./
+  - expansion: Expand the ai notifications for the alamo to include informations as
+      to who commands it
+  - bugfix: fixed a typo and the AI CAS laser being targeted at the AI core
+2021-08-06:
+  KornFlaks:
+  - rscadd: Granted leadered xenos a special blue crowned icon on the map.
+  Lewdcifer:
+  - qol: Changed Dark Mode colors to more eye-friendly alternatives.
+  QualityVan:
+  - bugfix: Beheaded synths need their head actually reattached before they can be
+      revived
+  Sebbe9123:
+  - bugfix: Changes anchient lore blurb about defiler to fit more with gameplay.
+  TiviPlus:
+  - code_imp: TGUI has been optimized
+  lbnesquik:
+  - bugfix: fixes supply beacons not working in every LZ's
+  - qol: Added some LZ numbers to barrenquilla
+  - qol: made light replacers smaller
+  - rscadd: Added a wrenching noise to fueltanks, and another when spilling fuel
+  - qol: Increased antenna beacon duration from one minute to four minutes.
+  - bugfix: Fix the special force leader incorrectly spawning with a Med hud
+2021-08-07:
+  BraveMole:
+  - bugfix: Fix larva spawning groundside while the hive is hijacking
+  - code_imp: Fix some of destroy code not abiding to contrib guidelines
+  - bugfix: Droppods no longer qdels the occupant on Destroy()
+  KornFlaks:
+  - rscdel: Removed Queen slashing permissions.
+  - rscdel: Removes remaining references to xeno respawn timers missed earlier.
+  Pariah919:
+  - balance: HMG deploys ~500ms faster, and HSG/HMG undeploy far faster. (3 seconds
+      as opposed to 5 and 8.5 respectively)
+  QualityVan:
+  - bugfix: Trying to give cpr to someone who's gone cold will fail properly now
+  - bugfix: Suiciding gives more oxy damage, just so the body meets damage thresholds
+      for cpr checks
+  - bugfix: You can once again make light fixtures.
+  SplinterGP:
+  - qol: Removes the "You will now activate this ability with shift click/middle click."
+      annoying message that made no sense on xenos selectable message.
+  Walarks:
+  - balance: red dot reduces fire delay from aim mode by 50%
+  glassyduke:
+  - imageadd: added some icons and images for sentinel
+  lbnesquik:
+  - rscadd: Added a handheld cell charger. It isn't going to fix all of your needs,
+      but it might just save you in a pinch.
+  lovegreenstuff:
+  - balance: Increased automag burst delay and scatter.
+  - bugfix: bonus projectile math when shooting directly up.
+2021-08-08:
+  BraveMole:
+  - balance: Add mortars, sentries, and drop pods to civil war
+  - balance: Grav crush does less damage to mobs
+  - balance: Sticky resin slows down vehicles
+  - expansion: You can no longer still enemy radios, they explode when trying to equip
+  - bugfix: Fix wrong headset being given to rebels from loadout vendor
+  - balance: Respawn is set to 5 minutes in HvH
+  - balance: Unmanned vehicles take some damage in acid boiler smoke
+  KornFlaks:
+  - refactor: Relocated variable declaration of psy point costs of certain xeno actions
+      from individual actions to parent xeno_action.
+  Pariah919:
+  - balance: evade now costs 75 plasma to use, runner has higher plasma reserves at
+      lower tiers of maturity and regen overall, same plasma at ancient.
+  QualityVan:
+  - bugfix: Fixed an error with antibiotic germ clear amounts, polyhexanide should
+      work now.
+  RipGrayson:
+  - rscadd: Adds some TG smites.
+  - code_imp: Altered some smite code to function correctly on TGMC.
+  - admin: Ported underlying TG admin smite system.
+  Surrealaser:
+  - bugfix: Warrior Punch can target unacidable objects, but won't damage them.
+  - bugfix: Warrior Punch can now break cameras appropriately.
+  lbnesquik:
+  - rscadd: Added a pump animation to the martini
+  - soundadd: added a breathy noise whenever you equip a gas mask.
+  - bugfix: removed the tiny space window south of sulaco preps to stop beans from
+      dying there like IDIOTS
+  - expansion: Added a backdoor to LV LZ1, which can be used to drop pod in.

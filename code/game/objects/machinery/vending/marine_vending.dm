@@ -69,8 +69,8 @@
 	GLOB.marine_vendors.Add(src)
 
 /obj/machinery/vending/marine/Destroy()
-	. = ..()
 	GLOB.marine_vendors.Remove(src)
+	return ..()
 
 //What do grenade do against candy machine?
 /obj/machinery/vending/marine/ex_act(severity)
@@ -223,6 +223,7 @@
 		/obj/item/binoculars = -1,
 		/obj/item/compass = -1,
 		/obj/item/assembly/signaler = -1,
+		/obj/item/weapon/gun/flare/marine = -1,
 		),
 	)
 
@@ -709,6 +710,19 @@
 
 	prices = list()
 
+/obj/machinery/vending/shared_vending/marine_engi/rebel
+	products = list(
+		/obj/structure/closet/crate/mortar_ammo/mortar_kit = 1,
+		/obj/item/storage/box/sentry = 5,
+		/obj/item/storage/box/tl102 = 1,
+	)
+
+/obj/machinery/vending/shared_vending/marine_engi/loyalist
+	products = list(
+		/obj/structure/closet/crate/mortar_ammo/mortar_kit = 1,
+		/obj/item/storage/box/sentry = 5,
+		/obj/item/storage/box/tl102 = 1,
+	)
 
 /obj/machinery/vending/marine_smartgun
 	name = "\improper TerraGovTech Smartgun Vendor"
@@ -824,6 +838,7 @@
 			/obj/item/armor_module/storage/medical = -1,
 			/obj/item/helmet_module/welding = -1,
 			/obj/item/helmet_module/binoculars = -1,
+			/obj/item/helmet_module/attachable/tyr_head = 1,
 			/obj/item/helmet_module/antenna = -1,
 			/obj/item/helmet_module/attachable/mimir_environment_protection/mark1 = -1,
 			/obj/item/armor_module/attachable/mimir_environment_protection/mark1 = -1,

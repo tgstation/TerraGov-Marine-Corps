@@ -2,17 +2,20 @@
 	element_flags = ELEMENT_BESPOKE
 	id_arg_index = 2
 
-	///Time it takes for the parent to be deployed/undeployed
+	///Time it takes for the parent to be deployed.
 	var/deploy_time = 0
+	///Time it takes for the parent to be undeployed.
+	var/undeploy_time = 0
 	///Typath that the item deploys into. Can be anything but an item so far. The preffered type is /obj/machinery/deployable since it was built for this.
 	var/obj/deploy_type
 
-/datum/element/deployable_item/Attach(datum/target, _deploy_type, _deploy_time)
+/datum/element/deployable_item/Attach(datum/target, _deploy_type, _deploy_time, _undeploy_time)
 	. = ..()
 	if(!isitem(target))
 		return ELEMENT_INCOMPATIBLE
 	deploy_type = _deploy_type
 	deploy_time = _deploy_time
+	undeploy_time = _undeploy_time
 
 	var/obj/item/attached_item = target
 	if(CHECK_BITFIELD(attached_item.flags_item, DEPLOY_ON_INITIALIZE))
@@ -39,10 +42,10 @@
 
 		deploy_location = get_step(user, user.dir)
 		if(attached_item.check_blocked_turf(deploy_location))
-			to_chat(user, span_warning("There is insufficient room to deploy [attached_item]!"))
+			user.balloon_alert(user, "There is insufficient room to deploy [attached_item]!")
 			return
 		new_direction = user.dir
-		to_chat(user, span_notice("You start deploying the [attached_item]."))
+		user.balloon_alert(user, "You start deploying...")
 		if(!do_after(user, deploy_time, TRUE, attached_item, BUSY_ICON_BUILD))
 			return
 
@@ -62,9 +65,12 @@
 	deployed_machine.update_icon_state()
 
 	attached_item.forceMove(deployed_machine) //Moves the Item into the machine or structure
+	if(user)
+		attached_item.balloon_alert(user, "Deployed!")
 
 	ENABLE_BITFIELD(attached_item.flags_item, IS_DEPLOYED)
 
+	UnregisterSignal(attached_item, COMSIG_ITEM_UNIQUE_ACTION)
 	RegisterSignal(deployed_machine, COMSIG_ITEM_UNDEPLOY, .proc/undeploy)
 
 ///Wrapper for proc/finish_undeploy
@@ -85,7 +91,7 @@
 	if(istype(deployed_machine, /obj/machinery/deployable/mounted/sentry))
 		sentry = deployed_machine
 	sentry?.set_on(FALSE)
-	to_chat(user, span_notice("You start disassembling the [attached_item]"))
+	user.balloon_alert(user, "You start disassembling [attached_item]")
 	if(!do_after(user, deploy_time, TRUE, deployed_machine, BUSY_ICON_BUILD))
 		sentry?.set_on(TRUE)
 		return
@@ -103,3 +109,4 @@
 
 	QDEL_NULL(deployed_machine)
 	attached_item.update_icon_state()
+	RegisterSignal(attached_item, COMSIG_ITEM_UNIQUE_ACTION, .proc/deploy)
