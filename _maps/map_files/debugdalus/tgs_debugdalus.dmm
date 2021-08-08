@@ -2408,10 +2408,6 @@
 	},
 /turf/open/floor/mainship/plate,
 /area/mainship/hallways/hangar)
-"fck" = (
-/obj/machinery/light,
-/turf/open/floor/plating,
-/area/mainship/hallways/hangar)
 "fAT" = (
 /obj/structure/cable,
 /obj/machinery/camera/autoname/mainship,
@@ -2564,15 +2560,6 @@
 	},
 /turf/open/floor/mainship,
 /area/mainship/medical/medical_science)
-"lgV" = (
-/obj/machinery/landinglight/ds1/delaytwo{
-	dir = 8
-	},
-/obj/machinery/camera/autoname/mainship{
-	dir = 8
-	},
-/turf/open/floor/mainship,
-/area/mainship/hallways/hangar)
 "ljx" = (
 /obj/structure/dropship_equipment/weapon/minirocket_pod,
 /obj/machinery/light,
@@ -2670,18 +2657,6 @@
 	dir = 1
 	},
 /turf/open/floor/mainship/plate,
-/area/mainship/hallways/hangar)
-"ouS" = (
-/obj/machinery/camera/autoname/mainship{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/mainship/hallways/hangar)
-"oxc" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/open/floor/plating,
 /area/mainship/hallways/hangar)
 "oNT" = (
 /obj/machinery/light{
@@ -4919,7 +4894,7 @@ afe
 afe
 afe
 afe
-lgV
+afe
 afe
 afe
 afe
@@ -4978,9 +4953,9 @@ bOu
 bOu
 bOu
 afC
-fck
-bgb
-oxc
+bOu
+bOu
+bOu
 bOu
 bOu
 bOu
@@ -5039,7 +5014,7 @@ bOu
 bOu
 bOu
 bOu
-ouS
+bOu
 bOu
 bOu
 bOu
