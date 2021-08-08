@@ -1,10 +1,14 @@
-/obj/effect/edge_blip
+///Remove the blip from the operator screen
+/obj/effect/blip/proc/remove_blip(mob/operator)
+	return
+
+/obj/effect/blip/edge_blip
 	icon = 'icons/Marine/marine-items.dmi'
 	plane = ABOVE_HUD_PLANE
 	/// A friendly/hostile identifier
 	var/identifier = MOTION_DETECTOR_HOSTILE
 
-/obj/effect/edge_blip/Initialize(mapload, identifier, mob/operator, screen_pos_x, screen_pos_y, direction = SOUTH)
+/obj/effect/blip/edge_blip/Initialize(mapload, identifier, mob/operator, screen_pos_x, screen_pos_y, direction = SOUTH)
 	. = ..()
 	if(!operator?.client)
 		return INITIALIZE_HINT_QDEL
@@ -13,34 +17,35 @@
 	src.identifier = identifier
 	setDir(direction)
 	update_icon()
-	addtimer(CALLBACK(src, .proc/remove_blip, operator), 1 SECONDS)
 
 /// Remove the blip from the operator screen
-/obj/effect/edge_blip/proc/remove_blip(mob/operator)
+/obj/effect/blip/edge_blip/remove_blip(mob/operator)
 	operator.client.screen -= src
 	qdel(src)
 
-/obj/effect/edge_blip/update_icon_state()
+/obj/effect/blip/edge_blip/update_icon_state()
 	icon_state = "edge_blip_[identifier]"
 
-/obj/effect/close_blip
+/obj/effect/blip/close_blip
 	plane = ABOVE_HUD_PLANE
 	var/image/blip_image
 
-/obj/effect/close_blip/Initialize(mapload, identifier, mob/operator)
+/obj/effect/blip/close_blip/Initialize(mapload, identifier, mob/operator)
 	. = ..()
 	if(!operator?.client)
 		return INITIALIZE_HINT_QDEL
 	blip_image = image('icons/Marine/marine-items.dmi', src, "close_blip_[identifier]")
 	blip_image.layer = BELOW_FULLSCREEN_LAYER
-	operator.client.images |= blip_image
-	addtimer(CALLBACK(src, .proc/remove_blip, operator), 1 SECONDS)
+	operator.client.images += blip_image
 
 /// Remove the blip from the operator images
-/obj/effect/close_blip/proc/remove_blip(mob/operator)
+/obj/effect/blip/close_blip/remove_blip(mob/operator)
 	operator.client?.images -= blip_image
 	qdel(src)
-	qdel(blip_image)
+
+/obj/effect/blip/close_blip/Destroy()
+	blip_image = null
+	return ..()
 
 /obj/item/attachable/motiondetector
 	name = "tactical sensor"
@@ -57,24 +62,34 @@
 	var/move_sensitivity = 1 SECONDS
 	///The range of this motion detector
 	var/range = 16
+	///The list of all the blips
+	var/list/obj/effect/blip/blips_list = list()
 
 /obj/item/attachable/motiondetector/Destroy()
-	clean_user()
+	clean_operator()
 	return ..()
 
 /obj/item/attachable/motiondetector/activate_attachment(mob/user, turn_off)
 	if(operator)
-		clean_user()
+		clean_operator()
 		return
 	operator = user
-	RegisterSignal(operator, list(COMSIG_PARENT_QDELETING, COMSIG_GUN_USER_UNSET), .proc/clean_user)
-	RegisterSignal(src, list(COMSIG_ITEM_EQUIPPED_TO_SLOT, COMSIG_ITEM_REMOVED_INVENTORY), .proc/clean_user)
+	RegisterSignal(operator, list(COMSIG_PARENT_QDELETING, COMSIG_GUN_USER_UNSET), .proc/clean_operator)
+	RegisterSignal(src, list(COMSIG_ITEM_EQUIPPED_TO_SLOT, COMSIG_ITEM_REMOVED_INVENTORY), .proc/clean_operator)
+	UnregisterSignal(operator, COMSIG_GUN_USER_SET)
 	START_PROCESSING(SSobj, src)
 	update_icon()
 
+///Activate the attachement when your are putting the gun out of your suit slot
+/obj/item/attachable/motiondetector/proc/start_processing_again(datum/source, obj/item/weapon/gun/equipping)
+	SIGNAL_HANDLER
+	if(equipping != master_gun)
+		return
+	activate_attachment(source)
+
 /obj/item/attachable/motiondetector/detach_from_master_gun()
 	. = ..()
-	clean_user()
+	clean_operator()
 
 /obj/item/attachable/motiondetector/attack_self(mob/user)
 	activate_attachment(user)
@@ -88,10 +103,13 @@
 	icon_state = initial(icon_state) + (isnull(operator) ? "" : "_on")
 
 /// Signal handler to clean out user vars
-/obj/item/attachable/motiondetector/proc/clean_user()
+/obj/item/attachable/motiondetector/proc/clean_operator()
 	SIGNAL_HANDLER
 	STOP_PROCESSING(SSobj, src)
+	clean_blips()
 	if(operator)
+		if(!QDELETED(operator))
+			RegisterSignal(operator, COMSIG_GUN_USER_SET, .proc/start_processing_again)
 		UnregisterSignal(operator, list(COMSIG_PARENT_QDELETING, COMSIG_GUN_USER_UNSET))
 		UnregisterSignal(src, list(COMSIG_ITEM_EQUIPPED_TO_SLOT, COMSIG_ITEM_REMOVED_INVENTORY))
 		operator = null
@@ -99,7 +117,7 @@
 
 /obj/item/attachable/motiondetector/process()
 	if(!operator?.client || operator.stat != CONSCIOUS)
-		clean_user()
+		clean_operator()
 		return
 	hostile_detected = FALSE
 	for (var/mob/living/carbon/human/nearby_human AS in cheap_get_humans_near(operator, range))
@@ -114,6 +132,15 @@
 		prepare_blip(nearby_xeno, MOTION_DETECTOR_HOSTILE)
 	if(hostile_detected)
 		operator.playsound_local(loc, 'sound/items/tick.ogg', 100, 0, 7, 2)
+	addtimer(CALLBACK(src, .proc/clean_blips), 1 SECONDS)
+
+///Clean all blips from operator screen
+/obj/item/attachable/motiondetector/proc/clean_blips()
+	if(!operator)//We already cleaned
+		return
+	for(var/obj/effect/blip/blip AS in blips_list)
+		blip.remove_blip(operator)
+	blips_list.Cut()
 
 ///Prepare the blip to be print on the operator screen
 /obj/item/attachable/motiondetector/proc/prepare_blip(mob/target, status)
@@ -142,6 +169,6 @@
 		dir = (dir ? dir == SOUTH ? SOUTHEAST : NORTHEAST : EAST)
 		screen_pos_x = viewX
 	if(dir)
-		new /obj/effect/edge_blip(null, status, operator, screen_pos_x, screen_pos_y, dir)
+		blips_list += new /obj/effect/blip/edge_blip(null, status, operator, screen_pos_x, screen_pos_y, dir)
 		return
-	new /obj/effect/close_blip(get_turf(target), status, operator)
+	blips_list += new /obj/effect/blip/close_blip(get_turf(target), status, operator)
