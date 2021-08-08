@@ -219,12 +219,12 @@
 
 /obj/docking_port/mobile/marine_dropship/one
 	name = "Alamo"
-	id = "alamo"
+	id = "Alamo"
 	control_flags = SHUTTLE_MARINE_PRIMARY_DROPSHIP
 
 /obj/docking_port/mobile/marine_dropship/two
 	name = "Normandy"
-	id = "normandy"
+	id = "Normandy"
 	control_flags = SHUTTLE_MARINE_PRIMARY_DROPSHIP
 	callTime = 28 SECONDS //smaller shuttle go whoosh
 	rechargeTime = 1.5 MINUTES
@@ -1262,7 +1262,7 @@
 	icon_state = "shuttle"
 	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
 	req_one_access = list(ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LEADER) // TLs can only operate the remote console
-	shuttleId = "alamo"
+	shuttleId = "Alamo"
 	possible_destinations = "lz1;lz2;alamo"
 	compatible_control_flags = SHUTTLE_MARINE_PRIMARY_DROPSHIP
 
@@ -1270,20 +1270,20 @@
 /obj/machinery/computer/shuttle/shuttle_control/dropship/two
 	name = "\improper 'Normandy' dropship console"
 	desc = "The remote controls for the 'Normandy' Dropship. Named after a department in France, noteworthy for the famous naval invasion of Normandy on the 6th of June 1944, a bloody but decisive victory in World War II and the campaign for the Liberation of France."
-	shuttleId = "normandy"
+	shuttleId = "Normandy"
 	possible_destinations = "lz1;lz2;alamo;normandy"
 
 /obj/machinery/computer/shuttle/shuttle_control/dropship/rebel
 	name = "\improper 'Triumph' dropship console"
 	desc = "The remote controls for the 'Triumph' Dropship."
-	shuttleId = "triumph"
+	shuttleId = "Triumph"
 	possible_destinations = "lz1;triumph"
 	compatible_control_flags = SHUTTLE_REBEL_PRIMARY_DROPSHIP
 
 /obj/machinery/computer/shuttle/shuttle_control/dropship/loyalist
 	name = "\improper 'Alamo' dropship console"
 	desc = "The remote controls for the 'Alamo' Dropship."
-	shuttleId = "alamo"
+	shuttleId = "Alamo"
 	possible_destinations = "lz2;alamo"
 
 /obj/machinery/computer/shuttle/shuttle_control/canterbury
@@ -1330,9 +1330,9 @@
 	message_admins("[ADMIN_TPMONTY(usr)] is launching the canterbury[!length(GLOB.active_nuke_list)? " early" : ""].")
 
 	var/obj/docking_port/mobile/M = SSshuttle.getShuttle(shuttleId)
-	if(!(M.shuttle_flags & GAMEMODE_IMMUNE) && world.time < SSticker.round_start_time + SSticker.mode.deploy_time_lock)
-		to_chat(usr, span_warning("The engines are still refueling."))
-		return TRUE
+	//if(!(M.shuttle_flags & GAMEMODE_IMMUNE) && world.time < SSticker.round_start_time + SSticker.mode.deploy_time_lock)
+	//	to_chat(usr, span_warning("The engines are still refueling."))
+	//	return TRUE
 	if(!M.can_move_topic(usr))
 		return TRUE
 
