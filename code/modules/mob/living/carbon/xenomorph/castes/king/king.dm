@@ -126,7 +126,7 @@
 	kong.offer_mob()
 
 ///When the king mob is offered and then accepted this proc ejects the king and does announcements
-/obj/structure/resin/king_pod/proc/on_king_occupied(mob/occupied)
+/obj/structure/resin/king_pod/proc/on_king_occupied(mob/living/carbon/xenomorph/king/occupied)
 	SIGNAL_HANDLER
 	UnregisterSignal(occupied, COMSIG_MOB_LOGIN)
 	occupied.forceMove(get_turf(src))
@@ -135,8 +135,7 @@
 	xeno_message(span_xenoannounce("[occupied] has awakened at [myarea]. Praise the Queen Mother!"), 3, ownerhive)
 	future_king?.offer_mob()
 
-	var/mob/living/carbon/xenomorph/king/kong = occupied
-	SSminimaps.add_marker(kong, kong.z, MINIMAP_FLAG_XENO, kong.xeno_caste.minimap_icon)
+	SSminimaps.add_marker(occupied, occupied.z, MINIMAP_FLAG_XENO, occupied.xeno_caste.minimap_icon)
 
 	qdel(src)
 
