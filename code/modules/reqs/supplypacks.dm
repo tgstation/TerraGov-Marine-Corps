@@ -225,8 +225,6 @@ WEAPONS
 /datum/supply_packs/weapons/specminigun
 	name = "MIC-A7 Vindicator Minigun"
 	contains = list(/obj/item/weapon/gun/minigun)
-	cost = MINIGUN_PRICE
-	available_against_xeno_only = TRUE
 
 /datum/supply_packs/weapons/smartgun
 	name = "T-29 Smart Machinegun"
@@ -308,7 +306,6 @@ WEAPONS
 	name = "M402 mortar crate"
 	contains = list(/obj/item/mortar_kit)
 	cost = 40
-	available_against_xeno_only = TRUE
 
 /datum/supply_packs/weapons/detpack
 	name = "detpack explosives"
@@ -571,25 +568,21 @@ AMMO
 	name = "M402 mortar HE shell"
 	contains = list(/obj/item/mortal_shell/he)
 	cost = 2
-	available_against_xeno_only = TRUE
 
 /datum/supply_packs/ammo/mortar_ammo_incend
 	name = "M402 mortar incendiary shell"
 	contains = list(/obj/item/mortal_shell/incendiary)
 	cost = 2
-	available_against_xeno_only = TRUE
 
 /datum/supply_packs/ammo/mortar_ammo_flare
 	name = "M402 mortar flare shell"
 	contains = list(/obj/item/mortal_shell/flare)
 	cost = 1
-	available_against_xeno_only = TRUE
 
 /datum/supply_packs/ammo/mortar_ammo_smoke
 	name = "M402 mortar smoke shell"
 	contains = list(/obj/item/mortal_shell/smoke)
 	cost = 1
-	available_against_xeno_only = TRUE
 
 /datum/supply_packs/ammo/mortar_ammo_plasmaloss
 	name = "M402 mortar tanglefoot shell"
@@ -627,7 +620,6 @@ AMMO
 	name = "Minigun Powerpack"
 	contains = list(/obj/item/minigun_powerpack)
 	cost = 5
-	available_against_xeno_only = TRUE
 
 /datum/supply_packs/ammo/back_fuel_tank
 	name = "Standard back fuel tank"
@@ -691,13 +683,11 @@ ARMOR
 	name = "Scout Cloak"
 	contains = list(/obj/item/storage/backpack/marine/satchel/scout_cloak/scout)
 	cost = 50
-	available_against_xeno_only = TRUE
 
 /datum/supply_packs/armor/sniper_cloak
 	name = "Sniper Cloak"
 	contains = list(/obj/item/storage/backpack/marine/satchel/scout_cloak/sniper)
 	cost = 50
-	available_against_xeno_only = TRUE
 
 /datum/supply_packs/armor/grenade_belt
 	name = "High Capacity Grenade Belt"
