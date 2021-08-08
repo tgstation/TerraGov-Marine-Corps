@@ -22,8 +22,8 @@
 	GLOB.nightfall_toggleable_lights += src
 
 /obj/item/flashlight/Destroy()
-	. = ..()
 	GLOB.nightfall_toggleable_lights -= src
+	return ..()
 
 /obj/item/flashlight/turn_light(mob/user, toggle_on, cooldown = 1 SECONDS, sparks = FALSE, forced = FALSE)
 	if(forced && nightfall_immune)

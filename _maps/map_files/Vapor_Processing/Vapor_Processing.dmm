@@ -2889,7 +2889,6 @@
 	},
 /area/vapor_processing/cargo2)
 "ly" = (
-/obj/effect/landmark/corpsespawner/clown,
 /turf/open/floor/tile/green/whitegreen,
 /area/lv624/lazarus/medbay)
 "lA" = (

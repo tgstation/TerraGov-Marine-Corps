@@ -1,0 +1,4 @@
+author: "lbnesquik"
+delete-after: True
+changes: 
+  - bugfix: "fixed hivemind eyes getting caught onto razorwires by adding a check"
