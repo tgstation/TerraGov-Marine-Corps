@@ -188,3 +188,34 @@
   lovegreenstuff:
   - balance: Increased automag burst delay and scatter.
   - bugfix: bonus projectile math when shooting directly up.
+2021-08-08:
+  BraveMole:
+  - balance: Add mortars, sentries, and drop pods to civil war
+  - balance: Grav crush does less damage to mobs
+  - balance: Sticky resin slows down vehicles
+  - expansion: You can no longer still enemy radios, they explode when trying to equip
+  - bugfix: Fix wrong headset being given to rebels from loadout vendor
+  - balance: Respawn is set to 5 minutes in HvH
+  - balance: Unmanned vehicles take some damage in acid boiler smoke
+  KornFlaks:
+  - refactor: Relocated variable declaration of psy point costs of certain xeno actions
+      from individual actions to parent xeno_action.
+  Pariah919:
+  - balance: evade now costs 75 plasma to use, runner has higher plasma reserves at
+      lower tiers of maturity and regen overall, same plasma at ancient.
+  QualityVan:
+  - bugfix: Fixed an error with antibiotic germ clear amounts, polyhexanide should
+      work now.
+  RipGrayson:
+  - rscadd: Adds some TG smites.
+  - code_imp: Altered some smite code to function correctly on TGMC.
+  - admin: Ported underlying TG admin smite system.
+  Surrealaser:
+  - bugfix: Warrior Punch can target unacidable objects, but won't damage them.
+  - bugfix: Warrior Punch can now break cameras appropriately.
+  lbnesquik:
+  - rscadd: Added a pump animation to the martini
+  - soundadd: added a breathy noise whenever you equip a gas mask.
+  - bugfix: removed the tiny space window south of sulaco preps to stop beans from
+      dying there like IDIOTS
+  - expansion: Added a backdoor to LV LZ1, which can be used to drop pod in.
