@@ -819,8 +819,8 @@ TUNNEL
 	desc = "A menacing looking construct of resin, it seems to be alive. It fires acid against intruders."
 	bound_width = 32
 	bound_height = 32
-	obj_integrity = 600
-	max_integrity = 1500
+	obj_integrity = 500
+	max_integrity = 1400
 	layer =  ABOVE_MOB_LAYER
 	density = TRUE
 	resistance_flags = UNACIDABLE | DROPSHIP_IMMUNE
@@ -881,7 +881,7 @@ TUNNEL
 		if(EXPLODE_DEVASTATE)
 			take_damage(1500)
 		if(EXPLODE_HEAVY)
-			take_damage(750)
+			take_damage(1200)
 		if(EXPLODE_LIGHT)
 			take_damage(300)
 
