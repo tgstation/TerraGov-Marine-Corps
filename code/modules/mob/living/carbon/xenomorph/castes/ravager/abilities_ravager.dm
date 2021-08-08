@@ -145,8 +145,8 @@
 	action_icon_state = "ignore_pain"
 	mechanics_text = "For the next few moments you will not go into crit and become resistant to explosives and immune to stagger and slowdown, but you still die if you take damage exceeding your crit health."
 	ability_name = "Endure"
-	plasma_cost = 200
-	cooldown_timer = 60 SECONDS
+	plasma_cost = 175
+	cooldown_timer = 45 SECONDS
 	keybind_signal = COMSIG_XENOABILITY_ENDURE
 	use_state_flags = XACT_USE_STAGGERED //Can use this while staggered
 
