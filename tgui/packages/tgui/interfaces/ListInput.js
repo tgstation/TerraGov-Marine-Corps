@@ -176,7 +176,6 @@ export const ListInput = (props, context) => {
                   content="Confirm"
                   disabled={selectedButton === null}
                   onClick={() => act("choose", { choice: selectedButton })}
-
                 />
               </Stack.Item>
               <Stack.Item grow basis={0}>

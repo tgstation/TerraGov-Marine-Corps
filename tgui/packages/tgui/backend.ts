@@ -211,8 +211,8 @@ export const backendMiddleware = store => {
 };
 
 /**
-  * Sends a message to /datum/tgui_window.
-  */
+ * Sends a message to /datum/tgui_window.
+ */
 export const sendMessage = (message: any = {}) => {
   const { payload, ...rest } = message;
   const data: any = {
@@ -230,9 +230,9 @@ export const sendMessage = (message: any = {}) => {
 };
 
 /**
-  * Sends an action to `ui_act` on `src_object` that this tgui window
-  * is associated with.
-  */
+ * Sends an action to `ui_act` on `src_object` that this tgui window
+ * is associated with.
+ */
 export const sendAct = (action: string, payload: object = {}) => {
   // Validate that payload is an object
   const isObject = typeof payload === 'object'
@@ -276,20 +276,20 @@ type BackendState<TData> = {
 }
 
 /**
-  * Selects a backend-related slice of Redux state
-  */
+ * Selects a backend-related slice of Redux state
+ */
 export const selectBackend = <TData>(state: any): BackendState<TData> => (
   state.backend || {}
 );
 
 /**
-  * A React hook (sort of) for getting tgui state and related functions.
-  *
-  * This is supposed to be replaced with a real React Hook, which can only
-  * be used in functional components.
-  *
-  * You can make
-  */
+ * A React hook (sort of) for getting tgui state and related functions.
+ *
+ * This is supposed to be replaced with a real React Hook, which can only
+ * be used in functional components.
+ *
+ * You can make
+ */
 export const useBackend = <TData>(context: any) => {
   const { store } = context;
   const state = selectBackend<TData>(store.getState());
@@ -300,23 +300,23 @@ export const useBackend = <TData>(context: any) => {
 };
 
 /**
-  * A tuple that contains the state and a setter function for it.
-  */
+ * A tuple that contains the state and a setter function for it.
+ */
 type StateWithSetter<T> = [T, (nextState: T) => void];
 
 /**
-  * Allocates state on Redux store without sharing it with other clients.
-  *
-  * Use it when you want to have a stateful variable in your component
-  * that persists between renders, but will be forgotten after you close
-  * the UI.
-  *
-  * It is a lot more performant than `setSharedState`.
-  *
-  * @param context React context.
-  * @param key Key which uniquely identifies this state in Redux store.
-  * @param initialState Initializes your global variable with this value.
-  */
+ * Allocates state on Redux store without sharing it with other clients.
+ *
+ * Use it when you want to have a stateful variable in your component
+ * that persists between renders, but will be forgotten after you close
+ * the UI.
+ *
+ * It is a lot more performant than `setSharedState`.
+ *
+ * @param context React context.
+ * @param key Key which uniquely identifies this state in Redux store.
+ * @param initialState Initializes your global variable with this value.
+ */
 export const useLocalState = <T>(
   context: any,
   key: string,
@@ -344,19 +344,19 @@ export const useLocalState = <T>(
 };
 
 /**
-  * Allocates state on Redux store, and **shares** it with other clients
-  * in the game.
-  *
-  * Use it when you want to have a stateful variable in your component
-  * that persists not only between renders, but also gets pushed to other
-  * clients that observe this UI.
-  *
-  * This makes creation of observable s
-  *
-  * @param context React context.
-  * @param key Key which uniquely identifies this state in Redux store.
-  * @param initialState Initializes your global variable with this value.
-  */
+ * Allocates state on Redux store, and **shares** it with other clients
+ * in the game.
+ *
+ * Use it when you want to have a stateful variable in your component
+ * that persists not only between renders, but also gets pushed to other
+ * clients that observe this UI.
+ *
+ * This makes creation of observable s
+ *
+ * @param context React context.
+ * @param key Key which uniquely identifies this state in Redux store.
+ * @param initialState Initializes your global variable with this value.
+ */
 export const useSharedState = <T>(
   context: any,
   key: string,
