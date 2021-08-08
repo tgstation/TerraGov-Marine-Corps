@@ -471,11 +471,6 @@
 	set_greyscale_colors(split_colors)
 	return TRUE
 
-	if(!pockets)
-		return
-
-	return pockets.attackby(I, user, params)
-
 /obj/item/clothing/head/modular/attack_hand_alternate(mob/living/carbon/human/user)
 	if(user.head == src)
 		return //must NOT be worn to toggle
