@@ -29,3 +29,7 @@
 	max_rounds = 50
 	default_ammo = /datum/ammo/bullet/turret/dumb
 	gun_type = /obj/item/weapon/gun/sentry/premade/dumb
+
+/obj/item/ammo_magazine/sentry/fob_sentry
+	max_rounds = INFINITY
+	gun_type = /obj/item/weapon/gun/sentry/big_sentry/fob_sentry

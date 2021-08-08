@@ -102,3 +102,6 @@
 	icon_state_mini = "mag_cell_te"
 	maxcharge = 600
 	gun_type = /obj/item/weapon/gun/energy/lasgun
+
+/obj/item/cell/lasgun/fob_sentry/cell
+	maxcharge = INFINITY
