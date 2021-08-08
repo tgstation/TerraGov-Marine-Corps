@@ -104,29 +104,6 @@
 
 	return ..()
 
-
-/obj/effect/alien/resin/sticky/Crossed(atom/movable/AM)
-	. = ..()
-
-	if(isvehicle(AM))
-		var/obj/vehicle/vehicle = AM
-		vehicle.next_move_slowdown += slow_amt
-		return
-
-	if(!ishuman(AM))
-		return
-
-	if(CHECK_MULTIPLE_BITFIELDS(AM.flags_pass, HOVERING))
-		return
-
-	var/mob/living/carbon/human/H = AM
-
-	if(H.lying_angle)
-		return
-
-	H.next_move_slowdown += slow_amt
-
-
 // Praetorian Sticky Resin spit uses this.
 /obj/effect/alien/resin/sticky/thin
 	name = "thin sticky resin"

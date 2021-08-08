@@ -257,8 +257,13 @@
 	src.slow_amount = slow_amount
 	RegisterSignal(target, COMSIG_MOVABLE_CROSSED_BY, .proc/slow_down_crosser)
 
-///Slows down human on cross
+///Slows down human and vehicle on cross
 /datum/element/slowing_on_crossed/proc/slow_down_crosser(datum/source, atom/movable/crosser)
+	if(isvehicle(AM))
+		var/obj/vehicle/vehicle = AM
+		vehicle.next_move_slowdown += slow_amt
+		return
+
 	if(!ishuman(crosser))
 		return
 
