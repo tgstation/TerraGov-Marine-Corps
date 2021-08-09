@@ -37,7 +37,7 @@
 	set_light(owner.light_range, owner.light_power, owner.light_color)
 
 	//Calculate shadows
-	our_mask.calculate_lighting_shadows()
+	our_mask.queue_mask_update()
 
 	//Set direction
 	our_mask.rotate_mask_on_holder_turn(contained_atom.dir)

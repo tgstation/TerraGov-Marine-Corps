@@ -24,7 +24,7 @@
 
 	//consider dynamic lights
 	for(var/atom/movable/lighting_mask/mask AS in hybrid_lights_affecting)
-		mask.calculate_lighting_shadows()
+		mask.queue_mask_update()
 
 // Used to get a scaled lumcount.
 /turf/proc/get_lumcount(minlum = 0, maxlum = 1)

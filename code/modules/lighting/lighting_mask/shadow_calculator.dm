@@ -67,6 +67,11 @@
 	LAZYREMOVE(affecting_turfs, T)
 	LAZYREMOVE(T.hybrid_lights_affecting, src)
 
+///Enqueues the mask in the queue properly
+/atom/movable/lighting_mask/proc/queue_mask_update()
+	SSlighting.mask_queue += src
+	awaiting_update = TRUE
+
 /**
  * Returns a list of matrices corresponding to the matrices that should be applied to triangles of
  * coordinates (0,0),(1,0),(0,1) to create a triangcalculate_shadows_matricesle that respresents the shadows
@@ -79,9 +84,9 @@
 		if(awaiting_update)
 			SSlighting.duplicate_shadow_updates_in_init++
 			return
-		SSlighting.mask_queue += src
-		awaiting_update = TRUE
+		queue_mask_update()
 		return
+	awaiting_update = FALSE
 	//we moved to nullspace meanwhile dont bother
 	if(!attached_atom.loc)
 		return
@@ -222,17 +227,21 @@
 			DO_SOMETHING_IF_DEBUGGING_SHADOWS(overlays_add_time += TICK_USAGE_TO_MS(temp_timer))
 			DO_SOMETHING_IF_DEBUGGING_SHADOWS(temp_timer = TICK_USAGE)
 
+	DO_SOMETHING_IF_DEBUGGING_SHADOWS(var/overlay_apply_time = TICK_USAGE)
+
 	overlays += overlays_to_add //batch appearance generation for free lag(tm)
+
+	DO_SOMETHING_IF_DEBUGGING_SHADOWS(overlay_apply_time = TICK_USAGE_TO_MS(overlay_apply_time))
 	DO_SOMETHING_IF_DEBUGGING_SHADOWS(log_game("total_coordgroup_time: [total_coordgroup_time]ms"))
 	DO_SOMETHING_IF_DEBUGGING_SHADOWS(log_game("total_cornergroup_time: [total_cornergroup_time]ms"))
 	DO_SOMETHING_IF_DEBUGGING_SHADOWS(log_game("triangle_time calculation: [triangle_time]ms"))
-	DO_SOMETHING_IF_DEBUGGING_SHADOWS(log_game("triangle_to_matrix_time: [triangle_to_matrix_time]"))
+	DO_SOMETHING_IF_DEBUGGING_SHADOWS(log_game("triangle_to_matrix_time: [triangle_to_matrix_time]ms"))
 	DO_SOMETHING_IF_DEBUGGING_SHADOWS(log_game("Culling Time: [culling_time]ms"))
-	DO_SOMETHING_IF_DEBUGGING_SHADOWS(log_game("matrix_division_time: [matrix_division_time]"))
-	DO_SOMETHING_IF_DEBUGGING_SHADOWS(log_game("MA_new_time: [MA_new_time]"))
-	DO_SOMETHING_IF_DEBUGGING_SHADOWS(log_game("MA_vars_time: [MA_vars_time]"))
-	DO_SOMETHING_IF_DEBUGGING_SHADOWS(log_game("overlays_add_time: [overlays_add_time]"))
-	DO_SOMETHING_IF_DEBUGGING_SHADOWS(log_game("merge_overlays_time: [mergetimereal]ms"))
+	DO_SOMETHING_IF_DEBUGGING_SHADOWS(log_game("matrix_division_time: [matrix_division_time]ms"))
+	DO_SOMETHING_IF_DEBUGGING_SHADOWS(log_game("MA_new_time: [MA_new_time]ms"))
+	DO_SOMETHING_IF_DEBUGGING_SHADOWS(log_game("MA_vars_time: [MA_vars_time]ms"))
+	DO_SOMETHING_IF_DEBUGGING_SHADOWS(log_game("overlays_add_time: [overlays_add_time]ms"))
+	DO_SOMETHING_IF_DEBUGGING_SHADOWS(log_game("overlay_apply_time: [overlay_apply_time]ms"))
 	DO_SOMETHING_IF_DEBUGGING_SHADOWS(log_game("[TICK_USAGE_TO_MS(timer)]ms to process total."))
 
 

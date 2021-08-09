@@ -50,7 +50,7 @@
 	apply_matrix(new_size_matrix, transform_time)
 	radius = new_radius
 	//then recalculate and redraw
-	calculate_lighting_shadows()
+	queue_mask_update()
 
 ///if you want the matrix to grow or shrink, you can do that using this proc when applyng it
 /atom/movable/lighting_mask/proc/apply_matrix(matrix/to_apply, transform_time = 0)
