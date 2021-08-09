@@ -19,11 +19,6 @@
 /obj/item/coin/marine/attackby(obj/item/I, mob/user, params) //To remove attaching a string functionality
 	return
 
-/obj/item/coin/marine/specialist
-	name = "marine specialist weapon token"
-	desc = "Insert this into a specialist vendor in order to access a single highly dangerous weapon."
-	flags_token = TOKEN_SPEC
-
 /obj/structure/broken_apc
 	name = "\improper M577 armored personnel carrier"
 	desc = "A large, armored behemoth capable of ferrying marines around. \nThis one is sitting nonfunctional."
@@ -225,3 +220,14 @@
 	. = ..()
 	if(slot == SLOT_BELT)
 		playsound(src,'sound/machines/click.ogg', 15, FALSE, 1)
+
+/obj/item/compass
+	name = "compass"
+	desc = "A small compass that can tell you your coordinates on use."
+	icon_state = "compass"
+	w_class = WEIGHT_CLASS_TINY
+
+/obj/item/compass/attack_self(mob/living/user)
+	. = ..()
+	var/turf/location = get_turf(src)
+	to_chat(user, span_notice("After looking at the [src] you can tell your general coordinates.") + span_bold(" LONGITUDE [location.x]. LATITUDE [location.y]."))

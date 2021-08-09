@@ -553,6 +553,10 @@ h1.alert, h2.alert{
   color: #ff0000;
   font-weight: bold;
 }
+.userdanger{color: #ff0000;
+	font-weight: bold;
+  font-size: 3em;
+}
 .xenodanger{
   color: #2a623d;
   font-weight: bold;
@@ -640,6 +644,13 @@ h1.alert, h2.alert{
   font-family: arial-narrow;
   font-weight: bold;
   font-size: 1.5em;
+}
+.seasons_announce		{
+  color: #1ABC9C;
+  font-size: 1em;
+}
+.season_additional_info	{
+  color: #283747;
 }
 
 .centerbold{

@@ -183,7 +183,7 @@
 		if(2)
 			hud_used.healths.icon_state = "health7"
 			return
-	
+
 	if(health < get_crit_threshold())
 		hud_used.healths.icon_state = "health6"
 		return

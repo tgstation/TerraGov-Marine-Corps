@@ -45,10 +45,10 @@
 				hud_used.healths.icon_state = "health6"
 
 ///gives humans oxy when dragged by a xeno, called on COMSIG_MOVABLE_PULL_MOVED
-/mob/living/carbon/human/proc/oncritdrag() 
+/mob/living/carbon/human/proc/oncritdrag()
 	SIGNAL_HANDLER
 	if(isxeno(pulledby))
-		adjustOxyLoss(3) //take oxy damage per tile dragged
+		adjustOxyLoss(HUMAN_CRITDRAG_OXYLOSS) //take oxy damage per tile dragged
 
 /mob/living/carbon/update_stat()
 	. = ..()
@@ -149,13 +149,13 @@
 		if(drunkenness >= 81)
 			adjustToxLoss(0.2)
 			if(prob(10) && !stat)
-				to_chat(src, "<span class='warning'>Maybe you should lie down for a bit...</span>")
+				to_chat(src, span_warning("Maybe you should lie down for a bit..."))
 				adjustDrowsyness(5)
 
 		if(drunkenness >= 91)
 			adjustBrainLoss(0.2, TRUE)
 			if(prob(15 && !stat))
-				to_chat(src, "<span class='warning'>Just a quick nap...</span>")
+				to_chat(src, span_warning("Just a quick nap..."))
 				Sleeping(80 SECONDS)
 
 		if(drunkenness >=101) //Let's be honest, you should be dead by now

@@ -22,7 +22,7 @@
 	attachable_allowed = list( //give it some flexibility.
 						/obj/item/attachable/flashlight,
 						/obj/item/attachable/magnetic_harness)
-	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
+	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY|GUN_WIELDED_STABLE_FIRING_ONLY
 	gun_skill_category = GUN_SKILL_HEAVY_WEAPONS
 	attachable_offset = list("rail_x" = 12, "rail_y" = 23)
 	fire_delay = 4
@@ -102,31 +102,31 @@
 
 /obj/item/weapon/gun/flamer/reload(mob/user, obj/item/ammo_magazine/magazine)
 	if(!magazine || !istype(magazine))
-		to_chat(user, "<span class='warning'>That's not a magazine!</span>")
+		to_chat(user, span_warning("That's not a magazine!"))
 		return
 
 	if(magazine.current_rounds <= 0)
-		to_chat(user, "<span class='warning'>That [magazine.name] is empty!</span>")
+		to_chat(user, span_warning("That [magazine.name] is empty!"))
 		return
 
 	if(!istype(src, magazine.gun_type) || istype(magazine, /obj/item/ammo_magazine/flamer_tank/backtank))
-		to_chat(user, "<span class='warning'>That magazine doesn't fit in there!</span>")
+		to_chat(user, span_warning("That magazine doesn't fit in there!"))
 		return
 
 	if(istype(magazine, /obj/item/ammo_magazine/flamer_tank/large))
-		to_chat(user, "<span class='warning'>That tank is too large for this model!</span>")
+		to_chat(user, span_warning("That tank is too large for this model!"))
 		return
 
 	if(!isnull(current_mag) && current_mag.loc == src)
-		to_chat(user, "<span class='warning'>It's still got something loaded!</span>")
+		to_chat(user, span_warning("It's still got something loaded!"))
 		return
 
 
 	if(user)
 		if(magazine.reload_delay > 1)
-			to_chat(user, "<span class='notice'>You begin reloading [src]. Hold still...</span>")
+			to_chat(user, span_notice("You begin reloading [src]. Hold still..."))
 			if(!do_after(user,magazine.reload_delay, TRUE, src, BUSY_ICON_GENERIC))
-				to_chat(user, "<span class='warning'>Your reload was interrupted!</span>")
+				to_chat(user, span_warning("Your reload was interrupted!"))
 				return
 		replace_magazine(user, magazine)
 		light_pilot(user,TRUE)
@@ -153,8 +153,8 @@
 
 	playsound(user, unload_sound, 25, 1)
 	light_pilot(user,FALSE)
-	user.visible_message("<span class='notice'>[user] unloads [current_mag] from [src].</span>",
-	"<span class='notice'>You unload [current_mag] from [src].</span>")
+	user.visible_message(span_notice("[user] unloads [current_mag] from [src]."),
+	span_notice("You unload [current_mag] from [src]."))
 	current_mag.update_icon()
 	current_mag = null
 	update_icon()
@@ -166,16 +166,16 @@
  */
 /obj/item/weapon/gun/flamer/proc/attach_fueltank(mob/user, obj/item/ammo_magazine/flamer_tank/backtank/fueltank)
 	if (!istype(fueltank))
-		to_chat(user, "<span class='warning'>That's not an attachable fuel tank!</span>")
+		to_chat(user, span_warning("That's not an attachable fuel tank!"))
 		return
 
 	if(fueltank.current_rounds <= 0)
-		to_chat(user, "<span class='warning'>That [fueltank.name] is empty!</span>")
+		to_chat(user, span_warning("That [fueltank.name] is empty!"))
 		return
 
-	to_chat(user, "<span class='notice'>You begin linking [src] with the [fueltank.name]. Hold still...</span>")
+	to_chat(user, span_notice("You begin linking [src] with the [fueltank.name]. Hold still..."))
 	if(!do_after(user,fueltank.reload_delay, TRUE, src, BUSY_ICON_GENERIC))
-		to_chat(user, "<span class='warning'>Your action was interrupted!</span>")
+		to_chat(user, span_warning("Your action was interrupted!"))
 		return
 	if (current_mag)
 		if(istype(current_mag,/obj/item/ammo_magazine/flamer_tank/backtank))
@@ -201,7 +201,7 @@
 	current_mag = null
 	fueltank?.attached_flamer = null
 	if (voluntary)
-		to_chat(user, "<span class='notic'>You detach the fuel tank</span>")
+		to_chat(user, span_notice("You detach the fuel tank"))
 	playsound(user, unload_sound, 25, 1)
 	light_pilot(user,FALSE)
 	update_icon(user)
@@ -259,7 +259,7 @@
 
 		var/blocked = FALSE
 		for(var/obj/O in T)
-			if(O.density && !O.throwpass && !(O.flags_atom & ON_BORDER))
+			if(O.density && !O.throwpass && !(O.flags_atom & ON_BORDER) && !istype(O, /obj/structure/mineral_door/resin))
 				blocked = TRUE
 				break
 
@@ -318,7 +318,7 @@
 			var/mob/living/carbon/xenomorph/X = M
 			if(X.xeno_caste.caste_flags & CASTE_FIRE_IMMUNE)
 				continue
-			fire_mod = clamp(X.xeno_caste.fire_resist + X.fire_resist_modifier, 0, 1)
+			fire_mod = X.get_fire_resist()
 		else if(ishuman(M))
 			var/mob/living/carbon/human/H = M //fixed :s
 
@@ -426,7 +426,7 @@
 	current_mag = /obj/item/ammo_magazine/flamer_tank/large
 	icon_state = "tl84"
 	item_state = "tl84"
-	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
+	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER|GUN_WIELDED_STABLE_FIRING_ONLY
 	attachable_offset = list("rail_x" = 10, "rail_y" = 23, "stock_x" = 16, "stock_y" = 13)
 	starting_attachment_types = list(
 		/obj/item/attachable/stock/t84stock,
@@ -447,26 +447,26 @@
 
 /obj/item/weapon/gun/flamer/marinestandard/reload(mob/user, obj/item/ammo_magazine/magazine)
 	if(!magazine || !istype(magazine))
-		to_chat(user, "<span class='warning'>That's not a magazine!</span>")
+		to_chat(user, span_warning("That's not a magazine!"))
 		return
 
 	if(magazine.current_rounds <= 0)
-		to_chat(user, "<span class='warning'>That [magazine.name] is empty!</span>")
+		to_chat(user, span_warning("That [magazine.name] is empty!"))
 		return
 
 	if(!istype(src, magazine.gun_type) || istype(magazine, /obj/item/ammo_magazine/flamer_tank/backtank))
-		to_chat(user, "<span class='warning'>That magazine doesn't fit in there!</span>")
+		to_chat(user, span_warning("That magazine doesn't fit in there!"))
 		return
 
 	if(!isnull(current_mag) && current_mag.loc == src)
-		to_chat(user, "<span class='warning'>It's still got something loaded!</span>")
+		to_chat(user, span_warning("It's still got something loaded!"))
 		return
 
 	if(user)
 		if(magazine.reload_delay > 1)
-			to_chat(user, "<span class='notice'>You begin reloading [src]. Hold still...</span>")
+			to_chat(user, span_notice("You begin reloading [src]. Hold still..."))
 			if(!do_after(user,magazine.reload_delay, TRUE, src, BUSY_ICON_GENERIC))
-				to_chat(user, "<span class='warning'>Your reload was interrupted!</span>")
+				to_chat(user, span_warning("Your reload was interrupted!"))
 				return
 		replace_magazine(user, magazine)
 		light_pilot(user,TRUE)
@@ -495,13 +495,16 @@
 
 /obj/item/weapon/gun/flamer/marinestandard/examine(mob/user)
 	. = ..()
-	to_chat(user, "<span class='notice'>Its hydro cannon contains [reagents.get_reagent_amount(/datum/reagent/water)]/[reagents.maximum_volume] units of water!</span>")
+	to_chat(user, span_notice("Its hydro cannon contains [reagents.get_reagent_amount(/datum/reagent/water)]/[reagents.maximum_volume] units of water!"))
 
 
 /obj/item/weapon/gun/flamer/marinestandard/unique_action(mob/user)
-	var/obj/item/attachable/hydro_cannon/hydro = under
-	if(!istype(hydro))
+	. = ..()
+	if(!.)
 		return
+	var/obj/item/attachable/hydro_cannon/hydro = LAZYACCESS(attachments, ATTACHMENT_SLOT_UNDER)
+	if(!istype(hydro))
+		return FALSE
 	playsound(user, hydro.activation_sound, 15, 1)
 	if (hydro.activate_attachment(user))
 		hydro_active = TRUE
@@ -513,19 +516,20 @@
 	var/obj/screen/ammo/A = user.hud_used.ammo
 	A.update_hud(user)
 	SEND_SIGNAL(src, COMSIG_ITEM_HYDRO_CANNON_TOGGLED)
+	return TRUE
 
 /obj/item/weapon/gun/flamer/marinestandard/attach_fueltank(mob/user, obj/item/ammo_magazine/flamer_tank/backtank/fueltank)
 	if (!istype(fueltank))
-		to_chat(user, "<span class='warning'>That's not an attachable fuel tank!</span>")
+		to_chat(user, span_warning("That's not an attachable fuel tank!"))
 		return
 
 	if(fueltank.current_rounds <= 0)
-		to_chat(user, "<span class='warning'>That [fueltank.name] is empty!</span>")
+		to_chat(user, span_warning("That [fueltank.name] is empty!"))
 		return
 
-	to_chat(user, "<span class='notice'>You begin linking [src] with the [fueltank.name]. Hold still...</span>")
+	to_chat(user, span_notice("You begin linking [src] with the [fueltank.name]. Hold still..."))
 	if(!do_after(user,fueltank.reload_delay, TRUE, src, BUSY_ICON_GENERIC))
-		to_chat(user, "<span class='warning'>Your action was interrupted!</span>")
+		to_chat(user, span_warning("Your action was interrupted!"))
 		return
 	if (current_mag)
 		if(istype(current_mag,/obj/item/ammo_magazine/flamer_tank/backtank))
@@ -567,7 +571,7 @@
 		windup_checked = WEAPON_WINDUP_NOT_CHECKED
 		return
 	windup_checked = WEAPON_WINDUP_CHECKED
-	Fire()	
+	Fire()
 
 /obj/item/weapon/gun/flamer/marinestandard/afterattack(atom/target, mob/user)
 	. = ..()
@@ -575,7 +579,7 @@
 		var/obj/o = target
 		o.reagents.trans_to(src, reagents.maximum_volume)
 		water_count = reagents.maximum_volume
-		to_chat(user, "<span class='notice'>\The [src]'s hydro cannon is refilled with water.</span>")
+		to_chat(user, span_notice("\The [src]'s hydro cannon is refilled with water."))
 		playsound(src.loc, 'sound/effects/refill.ogg', 25, 1, 3)
 		var/obj/screen/ammo/A = user.hud_used.ammo
 		A.update_hud(user)
@@ -635,7 +639,7 @@
 
 			C.take_overall_damage_armored(fire_damage, BURN, "fire", updating_health = TRUE)
 			if(C.IgniteMob())
-				C.visible_message("<span class='danger'>[C] bursts into flames!</span>","[isxeno(C)?"<span class='xenodanger'>":"<span class='highdanger'>"]You burst into flames!</span>")
+				C.visible_message(span_danger("[C] bursts into flames!"), isxeno(C) ? span_xenodanger("You burst into flames!") : span_highdanger("You burst into flames!"))
 
 	START_PROCESSING(SSobj, src)
 
@@ -656,7 +660,7 @@
 		adjust_fire_stacks(burnlevel) //Make it possible to light them on fire later.
 		IgniteMob()
 	take_overall_damage_armored(round(burnlevel*0.5)* fire_mod, BURN, "fire", updating_health = TRUE)
-	to_chat(src, "<span class='danger'>You are burned!</span>")
+	to_chat(src, span_danger("You are burned!"))
 
 /obj/flamer_fire/effect_smoke(obj/effect/particle_effect/smoke/S)
 	. = ..()
@@ -680,7 +684,7 @@
 /mob/living/carbon/xenomorph/flamer_fire_crossed(burnlevel, firelevel, fire_mod = 1)
 	if(xeno_caste.caste_flags & CASTE_FIRE_IMMUNE)
 		return
-	fire_mod = clamp(xeno_caste.fire_resist + fire_resist_modifier, 0, 1)
+	fire_mod = get_fire_resist()
 	return ..()
 
 
@@ -740,24 +744,24 @@
 	if(status_flags & (INCORPOREAL|GODMODE)) //Ignore incorporeal/invul targets
 		return
 	if(hard_armor.getRating("fire") >= 100)
-		to_chat(src, "<span class='warning'>Your suit protects you from most of the flames.</span>")
+		to_chat(src, span_warning("Your suit protects you from most of the flames."))
 		adjustFireLoss(rand(0, burnlevel * 0.25)) //Does small burn damage to a person wearing one of the suits.
 		return
 	adjust_fire_stacks(burnlevel) //If i stand in the fire i deserve all of this. Also Napalm stacks quickly.
 	IgniteMob()
 	adjustFireLoss(rand(10 , burnlevel)) //Including the fire should be way stronger.
-	to_chat(src, "<span class='warning'>You are burned!</span>")
+	to_chat(src, span_warning("You are burned!"))
 
 
 /mob/living/carbon/xenomorph/flamer_fire_act(burnlevel, firelevel)
 	if(xeno_caste.caste_flags & CASTE_FIRE_IMMUNE)
 		return
-	burnlevel *= clamp(xeno_caste.fire_resist + fire_resist_modifier, 0, 1)
+	burnlevel *= get_fire_resist()
 	. = ..()
 	updatehealth()
 
 /mob/living/carbon/xenomorph/queen/flamer_fire_act(burnlevel, firelevel)
-	to_chat(src, "<span class='xenowarning'>Our extra-thick exoskeleton protects us from the flames.</span>")
+	to_chat(src, span_xenowarning("Our extra-thick exoskeleton protects us from the flames."))
 
 /mob/living/carbon/xenomorph/ravager/flamer_fire_act(burnlevel, firelevel)
 	if(stat)
@@ -766,7 +770,7 @@
 	var/datum/action/xeno_action/charge = actions_by_path[/datum/action/xeno_action/activable/charge]
 	if(charge)
 		charge.clear_cooldown() //Reset charge cooldown
-	to_chat(src, "<span class='xenodanger'>The heat of the fire roars in our veins! KILL! CHARGE! DESTROY!</span>")
+	to_chat(src, span_xenodanger("The heat of the fire roars in our veins! KILL! CHARGE! DESTROY!"))
 	if(prob(70))
 		emote("roar")
 

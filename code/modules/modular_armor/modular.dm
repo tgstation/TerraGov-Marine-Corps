@@ -24,7 +24,7 @@
 	allowed = list(
 		/obj/item/weapon/gun,
 		/obj/item/storage/belt/sparepouch,
-		/obj/item/storage/large_holster/machete,
+		/obj/item/storage/large_holster/blade,
 		/obj/item/weapon/claymore,
 		/obj/item/storage/belt/gun,
 		/obj/item/storage/belt/knifepouch,
@@ -96,7 +96,7 @@
 		var/mob/living/carbon/human/H = user
 		var/obj/item/clothing/under/marine/undersuit = H.w_uniform
 		if(!istype(undersuit))
-			to_chat(user, "<span class='warning'>You must be wearing a marine jumpsuit to equip this.</span>")
+			to_chat(user, span_warning("You must be wearing a marine jumpsuit to equip this."))
 			return FALSE
 	return ..()
 
@@ -105,7 +105,7 @@
 	if(.)
 		return
 	if(!isturf(user.loc))
-		to_chat(user, "<span class='warning'>You cannot turn the light on while in [user.loc].</span>")
+		to_chat(user, span_warning("You cannot turn the light on while in [user.loc]."))
 		return
 	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_ARMOR_LIGHT) || !ishuman(user))
 		return
@@ -174,7 +174,7 @@
 
 	if(ismob(loc) && (user.r_hand != src && user.l_hand != src))
 		if(!silent)
-			to_chat(user, "<span class='warning'>You need to remove the armor first.</span>")
+			to_chat(user, span_warning("You need to remove the armor first."))
 		return FALSE
 
 	if(!do_after(user, equip_delay, TRUE, user, BUSY_ICON_GENERIC))
@@ -196,11 +196,11 @@
 		return FALSE
 
 	if(!LAZYLEN(installed_modules))
-		to_chat(user, "<span class='notice'>There is nothing to remove</span>")
+		to_chat(user, span_notice("There is nothing to remove"))
 		return TRUE
 
 	if(ismob(loc) && (user.r_hand != src && user.l_hand != src))
-		to_chat(user, "<span class='warning'>You need to remove the armor first.</span>")
+		to_chat(user, span_warning("You need to remove the armor first."))
 		return TRUE
 
 	var/obj/item/armor_module/attachable/attachment
@@ -228,7 +228,7 @@
 		return FALSE
 
 	if(ismob(loc) && (user.r_hand != src && user.l_hand != src))
-		to_chat(user, "<span class='warning'>You need to remove the armor first.</span>")
+		to_chat(user, span_warning("You need to remove the armor first."))
 		return TRUE
 
 	var/list/obj/item/armor_module/armor/armor_slots = list()
@@ -240,7 +240,7 @@
 		armor_slots += slot_legs
 
 	if(!length(armor_slots))
-		to_chat(user, "<span class='notice'>There is nothing to remove</span>")
+		to_chat(user, span_notice("There is nothing to remove"))
 		return TRUE
 
 	var/obj/item/armor_module/armor/armor_slot
@@ -267,11 +267,11 @@
 		return FALSE
 
 	if(!installed_storage)
-		to_chat(user, "<span class='notice'>There is nothing to remove</span>")
+		to_chat(user, span_notice("There is nothing to remove"))
 		return TRUE
 
 	if(ismob(loc) && (user.r_hand != src && user.l_hand != src))
-		to_chat(user, "<span class='warning'>You need to remove the armor first.</span>")
+		to_chat(user, span_warning("You need to remove the armor first."))
 		return TRUE
 
 	if(!can_detach(user, installed_storage))
@@ -326,9 +326,7 @@
 /obj/item/clothing/head/modular
 	name = "Jaeger Pattern Helmet"
 	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points."
-	icon = 'icons/mob/modular/modular_helmet_icon.dmi'
 	icon_state = "medium_helmet"
-	item_icons = list(slot_head_str = 'icons/mob/modular/modular_helmet.dmi')
 	flags_armor_protection = HEAD
 	flags_armor_features = ARMOR_NO_DECAP
 	flags_inventory = BLOCKSHARPOBJ
@@ -340,6 +338,15 @@
 	soft_armor = list("melee" = 15, "bullet" = 15, "laser" = 15, "energy" = 15, "bomb" = 15, "bio" = 15, "rad" = 15, "fire" = 15, "acid" = 15)
 
 	actions_types = list(/datum/action/item_action/toggle)
+	item_state = list(
+		slot_head_str = ""
+	)
+	greyscale_config = /datum/greyscale_config/modularhelmet_infantry
+	greyscale_colors = "#5B6036#f7fb58"
+	//head icon is generated so null this
+	item_state_slots = list(
+		slot_head_str = null,
+	)
 
 	/// Reference to the installed module
 	var/obj/item/helmet_module/installed_module
@@ -347,6 +354,64 @@
 	/// How long it takes to attach or detach to this item
 	var/equip_delay = 3 SECONDS
 
+	///whether this helmet should be using its emissive overlay or not
+	var/visor_emissive_on = TRUE
+	///Initial hex color we use when applying the visor color
+	var/visor_color_hex = "#f7fb58"
+	///Initial hex color we use when applying the main helmet color
+	var/main_color_hex = "#5B6036"
+	///Greyscale config color we use for the visor
+	var/visor_greyscale_config = /datum/greyscale_config/modular_helmet_visor_emissive
+	///optional assoc list of colors we can color this armor
+	var/list/colorable_colors
+
+/obj/item/clothing/head/modular/Initialize(mapload)
+	. = ..()
+	if(!visor_emissive_on || !visor_greyscale_config)
+		return
+	AddElement(/datum/element/special_clothing_overlay/modular_helmet_visor, HEAD_LAYER, visor_greyscale_config, visor_color_hex)
+	update_icon()
+
+/obj/item/clothing/head/modular/Destroy()
+	QDEL_NULL(installed_module)
+	return ..()
+
+/obj/item/clothing/head/modular/update_greyscale(list/colors, update)
+	. = ..()
+	item_icons = list(slot_head_str = icon)
+	item_state = list(slot_head_str = "")
+	if(length(colors) >= 2) //for only single color helmets with no visor
+		visor_color_hex = colors[2]
+
+///Will force faction colors on this helmet
+/obj/item/clothing/head/modular/proc/limit_colorable_colors(faction)
+	switch(faction)
+		if(FACTION_TERRAGOV)
+			var/split_colors = list("#2A4FB7")
+			if(visor_color_hex)
+				split_colors += visor_color_hex
+			set_greyscale_colors(split_colors)
+			colorable_colors = list(
+				"blue" = "#2A4FB7",
+				"aqua" = "#2098A0",
+				"purple" = "#871F8F",
+			)
+		if(FACTION_TERRAGOV_REBEL)
+			var/split_colors = list("#CC2C32")
+			if(visor_color_hex)
+				split_colors += visor_color_hex
+			set_greyscale_colors(split_colors)
+			colorable_colors = list(
+				"red" = "#CC2C32",
+				"orange" = "#BC4D25",
+				"yellow" = "#B7B21F",
+			)
+
+/obj/item/clothing/head/modular/examine(mob/user, distance, infix, suffix)
+	. = ..()
+	if(visor_greyscale_config)
+		to_chat(user, "Right click the helmet to toggle the visor internal lighting.")
+		to_chat(user, "Right click the helmet with paint to color the visor internal lighting.")
 
 /obj/item/clothing/head/modular/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -358,25 +423,66 @@
 
 	var/obj/item/facepaint/paint = I
 	if(paint.uses < 1)
-		to_chat(user, "<span class='warning'>\the [paint] is out of color!</span>")
+		to_chat(user, span_warning("\the [paint] is out of color!"))
 		return TRUE
 	paint.uses--
+	var/new_color
+	if(colorable_colors)
+		new_color = colorable_colors[tgui_input_list(user, "Pick a color", "Pick color", colorable_colors)]
+	else
+		new_color = input(user, "Pick a color", "Pick color") as null|color
 
-	var/new_color = tgui_input_list(user, "Pick a color", "Pick color", list(
-		"black", "snow", "desert", "gray", "brown", "red", "blue", "yellow", "green", "aqua", "purple", "orange"
-	))
+	if(!new_color)
+		return
 
 	if(!do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_GENERIC))
 		return TRUE
 
-	icon_state = "[initial(icon_state)]_[new_color]"
-
+	main_color_hex = new_color
+	var/list/split_colors = list(new_color)
+	if(visor_color_hex)
+		split_colors += visor_color_hex
+	set_greyscale_colors(split_colors)
 	return TRUE
 
+/obj/item/clothing/head/modular/attackby_alternate(obj/item/I, mob/user, params)
+	. = ..()
+	if(.)
+		return
 
-/obj/item/clothing/head/modular/Destroy()
-	QDEL_NULL(installed_module)
-	return ..()
+	if(!visor_color_hex)
+		return
+
+	if(!istype(I, /obj/item/facepaint))
+		return FALSE
+
+	var/obj/item/facepaint/paint = I
+	if(paint.uses < 1)
+		to_chat(user, "<span class='warning'>\the [paint] is out of color!</span>")
+		return TRUE
+	paint.uses--
+
+	var/new_color = input(user, "Pick a color", "Pick color") as null|color
+	if(!new_color)
+		return
+
+	if(!do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_GENERIC))
+		return TRUE
+
+	visor_color_hex = new_color
+	set_greyscale_colors(list(main_color_hex, new_color))
+
+/obj/item/clothing/head/modular/attack_hand_alternate(mob/living/carbon/human/user)
+	if(user.head == src)
+		return //must NOT be worn to toggle
+	if(!visor_greyscale_config)
+		return
+	visor_emissive_on = !visor_emissive_on
+	if(visor_emissive_on)
+		AddElement(/datum/element/special_clothing_overlay/modular_helmet_visor, HEAD_LAYER, visor_greyscale_config, visor_color_hex)
+	else
+		RemoveElement(/datum/element/special_clothing_overlay/modular_helmet_visor, HEAD_LAYER, visor_greyscale_config, visor_color_hex)
+	update_icon()
 
 /obj/item/clothing/head/modular/item_action_slot_check(mob/user, slot)
 	if(!ishuman(user))
@@ -393,7 +499,7 @@
 	if(.)
 		return
 	if(!isturf(user.loc))
-		to_chat(user, "<span class='warning'>You cannot turn the module on while in [user.loc].</span>")
+		to_chat(user, span_warning("You cannot turn the module on while in [user.loc]."))
 		return
 	if(TIMER_COOLDOWN_CHECK(user, COOLDOWN_ARMOR_ACTION) || !ishuman(user))
 		return
@@ -414,7 +520,7 @@
 		return FALSE
 
 	if(!installed_module)
-		to_chat(user, "<span class='notice'>There is nothing to remove</span>")
+		to_chat(user, span_notice("There is nothing to remove"))
 		return TRUE
 
 	var/obj/item/armor_module/attachable/attachment = installed_module
@@ -430,11 +536,12 @@
 	. = ..()
 	if(installed_module)
 		. += image(installed_module.icon, installed_module.item_state)
+	if(visor_emissive_on)
+		. += emissive_appearance('icons/mob/modular/infantry.dmi', "visor")
 
 /obj/item/clothing/head/modular/apply_custom(image/standing)
 	if(installed_module)
 		standing.overlays += image(installed_module.icon, ITEM_STATE_IF_SET(installed_module))
-
 
 /obj/item/clothing/head/modular/get_mechanics_info()
 	. = ..()
@@ -448,12 +555,12 @@
 
 	if(ismob(loc) && (user.r_hand != src && user.l_hand != src))
 		if(!silent)
-			to_chat(user, "<span class='warning'>You need to remove the armor first.</span>")
+			to_chat(user, span_warning("You need to remove the armor first."))
 		return FALSE
 
 	if(installed_module)
 		if(!silent)
-			to_chat(user,"<span class='warning'>There is already an installed module.</span>")
+			to_chat(user,span_warning("There is already an installed module."))
 		return FALSE
 
 	if(user.do_actions)
@@ -476,38 +583,56 @@
 	icon_state = "infantry_helmet"
 	soft_armor = list("melee" = 50, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = 50, "bio" = 50, "rad" = 50, "fire" = 50, "acid" = 50)
 	accuracy_mod = 0
+	greyscale_config = /datum/greyscale_config/modularhelmet_infantry
+	visor_greyscale_config = /datum/greyscale_config/modular_helmet_visor_emissive
 
 /obj/item/clothing/head/modular/marine/skirmisher
 	name = "Jaeger Pattern Skirmisher Helmet"
 	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has Skirmisher markings."
 	icon_state = "skirmisher_helmet"
+	greyscale_config = /datum/greyscale_config/modularhelmet_skirmisher
+	visor_greyscale_config = /datum/greyscale_config/modular_helmet_visor_emissive/skirmisher
 
 /obj/item/clothing/head/modular/marine/assault
 	name = "Jaeger Pattern Assault Helmet"
 	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has Assault markings."
 	icon_state = "assault_helmet"
+	greyscale_config = /datum/greyscale_config/modularhelmet_assault
+	visor_greyscale_config = /datum/greyscale_config/modular_helmet_visor_emissive/assault
 
 /obj/item/clothing/head/modular/marine/eva
 	name = "Jaeger Pattern EVA Helmet"
 	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has EVA markings."
 	icon_state = "eva_helmet"
+	greyscale_config = /datum/greyscale_config/modularhelmet_eva
+	visor_greyscale_config = /datum/greyscale_config/modular_helmet_visor_emissive/eva
 
 /obj/item/clothing/head/modular/marine/eva/skull
 	name = "Jaeger Pattern EVA Skull Helmet"
 	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has EVA markings and a skull on the visor."
 	icon_state = "eva_skull_helmet"
+	greyscale_config = /datum/greyscale_config/modularhelmet_eva_skull
+	visor_greyscale_config = /datum/greyscale_config/modular_helmet_visor_emissive_skull
 
 /obj/item/clothing/head/modular/marine/eod
 	name = "Jaeger Pattern EOD Helmet"
 	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has EOD markings"
 	icon_state = "eod_helmet"
+	greyscale_config = /datum/greyscale_config/modularhelmet_eod
+	visor_greyscale_config = /datum/greyscale_config/modular_helmet_visor_emissive/eod
 
 /obj/item/clothing/head/modular/marine/scout
 	name = "Jaeger Pattern Scout Helmet"
 	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has Scout markings"
 	icon_state = "scout_helmet"
+	greyscale_config = /datum/greyscale_config/modularhelmet_scout
+	visor_greyscale_config = /datum/greyscale_config/modular_helmet_visor_emissive/scout
 
 /obj/item/clothing/head/modular/marine/infantry
 	name = "Jaeger Pattern Infantry-Open Helmet"
 	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has Infantry markings and no visor."
 	icon_state = "infantryopen_helmet"
+	greyscale_colors = "#5B6036"
+	greyscale_config = /datum/greyscale_config/modularhelmet_infantry_open
+	visor_color_hex = null //no visor, no color
+	visor_greyscale_config = null

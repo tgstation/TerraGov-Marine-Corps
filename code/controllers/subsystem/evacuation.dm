@@ -139,7 +139,7 @@ SUBSYSTEM_DEF(evacuation)
 	for(i in SSevacuation.dest_rods)
 		I = i
 		if(I.active_state == SELF_DESTRUCT_MACHINE_ARMED && !override)
-			dest_master.visible_message("<span class='warning'>WARNING: Unable to cancel detonation. Please disarm all control rods.</span>")
+			dest_master.visible_message(span_warning("WARNING: Unable to cancel detonation. Please disarm all control rods."))
 			return FALSE
 
 	dest_status = NUKE_EXPLOSION_INACTIVE
@@ -163,7 +163,7 @@ SUBSYSTEM_DEF(evacuation)
 	for(var/i in dest_rods)
 		I = i
 		if(I.active_state != SELF_DESTRUCT_MACHINE_ARMED && !override)
-			dest_master.visible_message("<span class='warning'>WARNING: Unable to trigger detonation. Please arm all control rods.</span>")
+			dest_master.visible_message(span_warning("WARNING: Unable to trigger detonation. Please arm all control rods."))
 			return FALSE
 
 	priority_announce("DANGER. DANGER. Self destruct system activated. DANGER. DANGER. Self destruct in progress. DANGER. DANGER.", "Priority Alert")

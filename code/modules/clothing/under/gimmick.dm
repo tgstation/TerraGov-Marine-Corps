@@ -77,7 +77,7 @@
 		/obj/item/weapon/combat_knife,
 		/obj/item/attachable/bayonetknife,
 		/obj/item/storage/belt/sparepouch,
-		/obj/item/storage/large_holster/machete,
+		/obj/item/storage/large_holster/blade,
 	)
 
 //ROBOCOP

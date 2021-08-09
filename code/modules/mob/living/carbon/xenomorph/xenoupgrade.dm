@@ -5,8 +5,8 @@
 	hive.upgrade_xeno(src, upgrade, newlevel)
 	upgrade = newlevel
 	if(!silent)
-		visible_message("<span class='xenonotice'>\The [src] begins to twist and contort.</span>", \
-		"<span class='xenonotice'>We begin to twist and contort.</span>")
+		visible_message(span_xenonotice("\The [src] begins to twist and contort."), \
+		span_xenonotice("We begin to twist and contort."))
 		do_jitter_animation(1000)
 	set_datum()
 	var/selected_ability_type = selected_ability?.type
@@ -19,8 +19,10 @@
 	for(var/check_new_actions in xeno_caste.actions) //Give the xenos actions we don't currently have
 		var/datum/action/xeno_action/new_action_path = check_new_actions
 		if(!locate(new_action_path) in xeno_abilities)
-			var/datum/action/xeno_action/A = new new_action_path()
-			A.give_action(src)
+			var/datum/action/xeno_action/action = new new_action_path()
+			if(SSticker.mode.flags_xeno_abilities & action.gamemode_flags)
+				action.give_action(src)
+
 
 	SEND_SIGNAL(src, COMSIG_XENOMORPH_ABILITY_ON_UPGRADE)
 	if(selected_ability_type)
@@ -37,31 +39,31 @@
 		//FIRST UPGRADE
 		if(XENO_UPGRADE_ONE)
 			if(!silent)
-				to_chat(src, "<span class='xenodanger'>We feel a bit stronger.</span>")
+				to_chat(src, span_xenodanger("We feel a bit stronger."))
 
 		//SECOND UPGRADE
 		if(XENO_UPGRADE_TWO)
 			if(!silent)
-				to_chat(src, "<span class='xenodanger'>We feel a whole lot stronger.</span>")
+				to_chat(src, span_xenodanger("We feel a whole lot stronger."))
 			switch(tier)
 				if(XENO_TIER_TWO)
 					SSmonitor.stats.elder_T2++
 				if(XENO_TIER_THREE)
 					SSmonitor.stats.elder_T3++
 				if(XENO_TIER_FOUR)
-					SSmonitor.stats.elder_queen++
+					SSmonitor.stats.elder_T4++
 
 		//FINAL UPGRADE
 		if(XENO_UPGRADE_THREE)
 			if(!silent)
-				to_chat(src, "<span class='xenoannounce'>[xeno_caste.ancient_message]</span>")
+				to_chat(src, span_xenoannounce("[xeno_caste.ancient_message]"))
 			switch(tier)
 				if(XENO_TIER_TWO)
 					SSmonitor.stats.ancient_T2++
 				if(XENO_TIER_THREE)
 					SSmonitor.stats.ancient_T3++
 				if(XENO_TIER_FOUR)
-					SSmonitor.stats.ancient_queen++
+					SSmonitor.stats.ancient_T4++
 
 	generate_name() //Give them a new name now
 

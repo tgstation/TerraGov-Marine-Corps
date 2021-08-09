@@ -124,11 +124,6 @@ GLOBAL_LIST_EMPTY(autolathe_categories)
 	path = /obj/item/minerupgrade/overclock
 	category = "Engineering"
 
-/datum/autolathe/recipe/miningwellautomation
-	name = "Mining well automation upgrade"
-	path = /obj/item/minerupgrade/automatic
-	category = "Engineering"
-
 /datum/autolathe/recipe/airalarm
 	name = "air alarm electronics"
 	path = /obj/item/circuitboard/airalarm
@@ -192,6 +187,11 @@ GLOBAL_LIST_EMPTY(autolathe_categories)
 /datum/autolathe/recipe/hemostat
 	name = "hemostat"
 	path = /obj/item/tool/surgery/hemostat
+	category = "Medical"
+
+/datum/autolathe/recipe/suture
+	name = "suture"
+	path = /obj/item/tool/surgery/suture
 	category = "Medical"
 
 /datum/autolathe/recipe/beaker

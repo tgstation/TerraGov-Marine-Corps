@@ -163,17 +163,17 @@
 
 /datum/species/proc/hug(mob/living/carbon/human/H,mob/living/target)
 	if(H.zone_selected == "head")
-		H.visible_message("<span class='notice'>[H] pats [target] on the head.</span>", \
-					"<span class='notice'>You pat [target] on the head.</span>", null, 4)
+		H.visible_message(span_notice("[H] pats [target] on the head."), \
+					span_notice("You pat [target] on the head."), null, 4)
 	else if(H.zone_selected == "l_hand" && CONFIG_GET(flag/fun_allowed))
-		H.visible_message("<span class='notice'>[H] holds [target] 's left hand.</span>", \
-					"<span class='notice'>You hold [target]'s left hand.</span>", null, 4)
+		H.visible_message(span_notice("[H] holds [target] 's left hand."), \
+					span_notice("You hold [target]'s left hand."), null, 4)
 	else if (H.zone_selected == "r_hand" && CONFIG_GET(flag/fun_allowed))
-		H.visible_message("<span class='notice'>[H] holds [target] 's right hand.</span>", \
-					"<span class='notice'>You hold [target]'s right hand.</span>", null, 4)
+		H.visible_message(span_notice("[H] holds [target] 's right hand."), \
+					span_notice("You hold [target]'s right hand."), null, 4)
 	else
-		H.visible_message("<span class='notice'>[H] hugs [target] to make [target.p_them()] feel better!</span>", \
-					"<span class='notice'>You hug [target] to make [target.p_them()] feel better!</span>", null, 4)
+		H.visible_message(span_notice("[H] hugs [target] to make [target.p_them()] feel better!"), \
+					span_notice("You hug [target] to make [target.p_them()] feel better!"), null, 4)
 
 /datum/species/proc/random_name(gender)
 	return GLOB.namepool[namepool].get_random_name(gender)
@@ -203,7 +203,7 @@
 				. = "Anna"
 			else
 				. = "Jeri"
-		to_chat(prefs.parent, "<span class='warning'>You forgot to set your synthetic name in your preferences. Please do so next time.</span>")
+		to_chat(prefs.parent, span_warning("You forgot to set your synthetic name in your preferences. Please do so next time."))
 
 /datum/species/early_synthetic/prefs_name(datum/preferences/prefs)
 	. = prefs.synthetic_name
@@ -215,7 +215,7 @@
 				. = "Anna"
 			else
 				. = "Jeri"
-		to_chat(prefs.parent, "<span class='warning'>You forgot to set your synthetic name in your preferences. Please do so next time.</span>")
+		to_chat(prefs.parent, span_warning("You forgot to set your synthetic name in your preferences. Please do so next time."))
 
 /datum/species/proc/on_species_gain(mob/living/carbon/human/H, /datum/species/old_species)
 	return
@@ -423,14 +423,14 @@
 		return TRUE
 	var/mob/living/carbon/victim = target
 	if(prob(25))
-		victim.visible_message("<span class='danger'>[user]'s bite misses [victim]!</span>",
-			"<span class='danger'>You avoid [user]'s bite!</span>", "<span class='hear'>You hear jaws snapping shut!</span>")
-		to_chat(user, "<span class='danger'>Your bite misses [victim]!</span>")
+		victim.visible_message(span_danger("[user]'s bite misses [victim]!"),
+			span_danger("You avoid [user]'s bite!"), span_hear("You hear jaws snapping shut!"))
+		to_chat(user, span_danger("Your bite misses [victim]!"))
 		return TRUE
 	victim.take_overall_damage(rand(10, 20), updating_health = TRUE)
-	victim.visible_message("<span class='danger'>[name] bites [victim]!</span>",
-		"<span class='userdanger'>[name] bites you!</span>", "<span class='hear'>You hear a chomp!</span>")
-	to_chat(user, "<span class='danger'>You bite [victim]!</span>")
+	victim.visible_message(span_danger("[name] bites [victim]!"),
+		span_userdanger("[name] bites you!"), span_hear("You hear a chomp!"))
+	to_chat(user, span_danger("You bite [victim]!"))
 	target.attack_paw(user)
 	return TRUE
 
@@ -599,7 +599,7 @@
 
 /datum/species/moth/handle_fire(mob/living/carbon/human/H)
 	if(H.moth_wings != "Burnt Off" && H.bodytemperature >= 400 && H.fire_stacks > 0)
-		to_chat(H, "<span class='danger'>Your precious wings burn to a crisp!</span>")
+		to_chat(H, span_danger("Your precious wings burn to a crisp!"))
 		H.moth_wings = "Burnt Off"
 		H.update_body()
 

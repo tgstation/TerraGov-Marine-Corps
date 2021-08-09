@@ -1,8 +1,9 @@
 /datum/job/upp
+	job_category = JOB_CAT_MARINE
 	access = ALL_ANTAGONIST_ACCESS
 	minimal_access = ALL_ANTAGONIST_ACCESS
 	skills_type = /datum/skills/crafty
-	faction = "United Space Lepidoptera"
+	faction = FACTION_USL
 
 //USL Gunner
 /datum/job/upp/standard
@@ -193,9 +194,10 @@
 
 //USL Captain
 /datum/job/upp/leader
+	job_category = JOB_CAT_COMMAND
 	title = "USL Captain"
 	paygrade = "UPP4"
-	skills_type = /datum/skills/SL/upp
+	skills_type = /datum/skills/sl/upp
 	outfit = /datum/outfit/job/upp/leader
 
 /datum/job/upp/leader/hvh

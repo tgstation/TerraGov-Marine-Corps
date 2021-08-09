@@ -32,8 +32,6 @@
 	var/tacklemin = 1
 	///The maximum amount of random paralyze applied to a human upon being 'pulled' multiplied by 20 ticks
 	var/tacklemax = 1
-	///How much STAMINA damage a xeno deals when tackling
-	var/tackle_damage = 20
 
 	// *** Speed *** //
 	var/speed = 1
@@ -50,6 +48,8 @@
 	var/plasma_max = 10
 	///How much plasma a caste gains every life tick.
 	var/plasma_gain = 5
+	///up to how % much plasma regens in decimals, generally used if you have a special way of regeninng plasma.
+	var/plasma_regen_limit = 1
 
 	// *** Health *** //
 	///Maximum health a caste has.
@@ -141,6 +141,8 @@
 	var/bomb_strength = 0
 	///Delay between firing the bombard ability for boilers
 	var/bomb_delay = 0
+	///Used to reduce cooldown for the boiler
+	var/ammo_multiplier = 0
 
 	// *** Carrier Abilities *** //
 	///maximum amount of huggers a carrier can carry at one time.
@@ -183,8 +185,26 @@
 	///Base range of Blink
 	var/wraith_blink_range = WRAITH_BLINK_RANGE
 
+	// *** Hunter Abilities ***
+	///Damage breakpoint to knock out of stealth
+	var/stealth_break_threshold = 0
+
 	///the 'abilities' available to a caste.
 	var/list/actions
+
+	///The iconstate for the xeno on the minimap
+	var/minimap_icon = "xeno"
+	///The iconstate for leadered xenos on the minimap
+	var/minimap_leadered_icon = "xenoleader"
+	///The iconstate of the plasma bar, format used is "[plasma_icon_state][amount]"
+	var/plasma_icon_state = "plasma"
+
+	///How quickly the caste enters vents
+	var/vent_enter_speed = XENO_DEFAULT_VENT_ENTER_TIME
+	///How quickly the caste enters vents
+	var/vent_exit_speed = XENO_DEFAULT_VENT_EXIT_TIME
+	///Whether the caste enters and crawls through vents silently
+	var/silent_vent_crawl = FALSE
 
 /mob/living/carbon/xenomorph
 	name = "Drone"
@@ -243,9 +263,8 @@
 	var/sunder = 0 // sunder affects armour values and does a % removal before dmg is applied. 50 sunder == 50% effective armour values
 	var/fire_resist_modifier = 0
 
-	var/obj/structure/tunnel/start_dig = null
+	var/obj/structure/xeno/tunnel/start_dig = null
 	var/datum/ammo/xeno/ammo = null //The ammo datum for our spit projectiles. We're born with this, it changes sometimes.
-	var/pslash_delay = 0
 
 	var/evo_points = 0 //Current # of evolution points. Max is 1000.
 	var/list/upgrades_bought = list()
@@ -286,6 +305,9 @@
 	var/warding_new = 0
 	var/recovery_new = 0
 
+	///Multiplicative melee damage modifier; referenced by attack_alien.dm, most notably attack_alien_harm
+	var/xeno_melee_damage_modifier = 1
+
 	var/xeno_mobhud = FALSE //whether the xeno mobhud is activated or not.
 
 	var/queen_chosen_lead //whether the xeno has been selected by the queen as a leader.
@@ -312,8 +334,8 @@
 	var/savage_used = FALSE
 
 	// *** Ravager vars *** //
-	var/ignore_pain = FALSE // when true the rav will not go into crit or take crit damage.
-	var/ignore_pain_state = 0 // how far "dead" the rav has got while ignoring pain.
+	/// when true the rav will not go into crit or take crit damage.
+	var/endure = FALSE
 
 	// *** Carrier vars *** //
 	var/selected_hugger_type = /obj/item/clothing/mask/facehugger
@@ -324,7 +346,7 @@
 
 	var/fire_luminosity = 0 //Luminosity of the current fire while burning
 
-	///The xenos/silo currently tracked by the xeno_tracker arrow
-	var/tracked
+	///The xenos/silo/nuke currently tracked by the xeno_tracker arrow
+	var/atom/tracked
 
 	COOLDOWN_DECLARE(xeno_health_alert_cooldown)

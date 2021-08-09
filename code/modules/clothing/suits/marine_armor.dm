@@ -27,7 +27,7 @@
 		/obj/item/tank/emergency_oxygen,
 		/obj/item/storage/bible,
 		/obj/item/storage/belt/sparepouch,
-		/obj/item/storage/large_holster/machete,
+		/obj/item/storage/large_holster/blade,
 		/obj/item/weapon/claymore,
 		/obj/item/storage/belt/gun,
 		/obj/item/storage/belt/knifepouch,
@@ -87,7 +87,7 @@
 
 /obj/item/clothing/suit/storage/marine/attack_self(mob/user)
 	if(!isturf(user.loc))
-		to_chat(user, "<span class='warning'>You cannot turn the light on while in [user.loc].</span>")
+		to_chat(user, span_warning("You cannot turn the light on while in [user.loc]."))
 		return
 	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_ARMOR_LIGHT))
 		return
@@ -208,7 +208,7 @@
 		/obj/item/attachable/bayonetknife,
 		/obj/item/storage/belt/sparepouch,
 		/obj/item/hailer,
-		/obj/item/storage/large_holster/machete,
+		/obj/item/storage/large_holster/blade,
 		/obj/item/storage/belt/gun,
 	)
 
@@ -245,7 +245,6 @@
 		/obj/item/explosive/mine,
 		/obj/item/weapon/combat_knife,
 		/obj/item/attachable/bayonetknife,
-		/obj/item/weapon/gun/smartgun,
 		/obj/item/weapon/gun/rifle/standard_smartmachinegun,
 		/obj/item/storage/belt/sparepouch,
 	)
@@ -298,8 +297,8 @@
 	SSmonitor.stats.b18_in_use += src
 
 /obj/item/clothing/suit/storage/marine/specialist/Destroy()
-	. = ..()
 	SSmonitor.stats.b18_in_use -= src
+	return ..()
 
 /obj/item/clothing/suit/storage/marine/B17
 	name = "\improper B17 defensive armor"
@@ -317,8 +316,8 @@
 	SSmonitor.stats.b17_in_use += src
 
 /obj/item/clothing/suit/storage/marine/B17/Destroy()
-	. = ..()
 	SSmonitor.stats.b17_in_use -= src
+	return ..()
 
 /obj/item/clothing/suit/storage/marine/M3T
 	name = "\improper M3-T light armor"
@@ -417,7 +416,16 @@
 	icon_state = "commando_armor"
 	slowdown = SLOWDOWN_ARMOR_VERY_HEAVY
 	soft_armor = list("melee" = 90, "bullet" = 120, "laser" = 200, "energy" = 90, "bomb" = 90, "bio" = 100, "rad" = 100, "fire" = 90, "acid" = 90)
+	flags_armor_protection = CHEST|GROIN|ARMS|LEGS|FEET|HANDS
+	flags_cold_protection = CHEST|GROIN|ARMS|LEGS|FEET|HANDS
+	flags_heat_protection = CHEST|GROIN|ARMS|LEGS|FEET|HANDS
+	supporting_limbs = CHEST | GROIN | ARM_LEFT | ARM_RIGHT | HAND_LEFT | HAND_RIGHT | LEG_LEFT | LEG_RIGHT | FOOT_LEFT | FOOT_RIGHT | HEAD //B18 effectively stabilizes these.
 	resistance_flags = UNACIDABLE
+
+/obj/item/clothing/suit/storage/marine/veteran/PMC/commando/Initialize(mapload, ...)
+	. = ..()
+	AddComponent(/datum/component/suit_autodoc)
+	AddElement(/datum/element/limb_support, supporting_limbs)
 
 /*===========================DISTRESS================================*/
 
@@ -528,7 +536,7 @@
 		/obj/item/weapon/combat_knife,
 		/obj/item/attachable/bayonetknife,
 		/obj/item/storage/belt/sparepouch,
-		/obj/item/storage/large_holster/machete,
+		/obj/item/storage/large_holster/blade,
 		/obj/item/weapon/twohanded,
 	)
 	flags_armor_features = ARMOR_LAMP_OVERLAY
@@ -557,7 +565,7 @@
 
 /obj/item/clothing/suit/storage/faction/attack_self(mob/user)
 	if(!isturf(user.loc))
-		to_chat(user, "<span class='warning'>You cannot turn the light on while in [user.loc].</span>")
+		to_chat(user, span_warning("You cannot turn the light on while in [user.loc]."))
 		return
 
 	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_ARMOR_LIGHT))
@@ -659,7 +667,7 @@
 		/obj/item/weapon/combat_knife,
 		/obj/item/attachable/bayonetknife,
 		/obj/item/storage/belt/sparepouch,
-		/obj/item/storage/large_holster/machete,
+		/obj/item/storage/large_holster/blade,
 		/obj/item/weapon/baseballbat,
 	)
 	min_cold_protection_temperature = SPACE_SUIT_MIN_COLD_PROTECTION_TEMPERATURE
@@ -674,7 +682,7 @@
 		/obj/item/weapon/gun/,
 		/obj/item/tank/emergency_oxygen,
 		/obj/item/storage/belt/sparepouch,
-		/obj/item/storage/large_holster/machete,
+		/obj/item/storage/large_holster/blade,
 		/obj/item/storage/belt/gun,
 	)
 

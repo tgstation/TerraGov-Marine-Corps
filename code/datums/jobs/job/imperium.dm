@@ -1,4 +1,5 @@
 /datum/job/imperial
+	job_category = JOB_CAT_MARINE
 	comm_title = "IMP"
 	faction = FACTION_IMP
 	skills_type = /datum/skills/imperial
@@ -71,7 +72,7 @@
 /datum/job/imperial/guardsman/sergeant
 	title = "Guardsman Sergeant"
 	comm_title = "Sergeant"
-	skills_type = /datum/skills/imperial/SL
+	skills_type = /datum/skills/imperial/sl
 	paygrade = "Sergeant"
 	outfit = /datum/outfit/job/imperial/sergeant
 
@@ -157,7 +158,7 @@
 /datum/job/imperial/commissar
 	title = "Imperial Commissar"
 	comm_title = "Commissar"
-	skills_type = /datum/skills/imperial/SL
+	skills_type = /datum/skills/imperial/sl
 	paygrade = "Commissar"
 	outfit = /datum/outfit/job/imperial/commissar
 

@@ -7,14 +7,14 @@
 
 #define MOVABLE_MAX_RANGE 7
 //Bay lighting engine shit, not in /code/modules/lighting because BYOND is being shit about it	//thats how defines work, hello?
-#define LIGHTING_INTERVAL       5 // frequency, in 1/10ths of a second, of the lighting process
+#define LIGHTING_INTERVAL 5 // frequency, in 1/10ths of a second, of the lighting process
 
 #define MINIMUM_USEFUL_LIGHT_RANGE 1.4
 
-#define LIGHTING_FALLOFF        1 // type of falloff to use for lighting; 1 for circular, 2 for square
-#define LIGHTING_LAMBERTIAN     0 // use lambertian shading for light sources
-#define LIGHTING_HEIGHT         1 // height off the ground of light sources on the pseudo-z-axis, you should probably leave this alone
-#define LIGHTING_ROUND_VALUE    (1 / 64) //Value used to round lumcounts, values smaller than 1/129 don't matter (if they do, thanks sinking points), greater values will make lighting less precise, but in turn increase performance, VERY SLIGHTLY.
+#define LIGHTING_FALLOFF 1 // type of falloff to use for lighting; 1 for circular, 2 for square
+#define LIGHTING_LAMBERTIAN 0 // use lambertian shading for light sources
+#define LIGHTING_HEIGHT 1 // height off the ground of light sources on the pseudo-z-axis, you should probably leave this alone
+#define LIGHTING_ROUND_VALUE (1 / 64) //Value used to round lumcounts, values smaller than 1/129 don't matter (if they do, thanks sinking points), greater values will make lighting less precise, but in turn increase performance, VERY SLIGHTLY.
 
 #define LIGHTING_ICON 'icons/effects/lighting_object.dmi' // icon used for lighting shading effects
 
@@ -33,7 +33,7 @@
 		0, 0, 0, 1           \
 	)                        \
 
-#define LIGHT_RANGE_FIRE		3 //How many tiles standard fires glow.
+#define LIGHT_RANGE_FIRE 3 //How many tiles standard fires glow.
 
 #define LIGHTING_PLANE_ALPHA_VISIBLE 255
 #define LIGHTING_PLANE_ALPHA_NV_TRAIT 245
@@ -57,6 +57,25 @@
 #define FLASH_LIGHT_DURATION 2
 #define FLASH_LIGHT_POWER 3
 #define FLASH_LIGHT_RANGE 3.8
+
+// Emissive blocking.
+/// Uses vis_overlays to leverage caching so that very few new items need to be made for the overlay. For anything that doesn't change outline or opaque area much or at all.
+#define EMISSIVE_BLOCK_GENERIC 1
+/// Uses a dedicated render_target object to copy the entire appearance in real time to the blocking layer. For things that can change in appearance a lot from the base state, like humans.
+#define EMISSIVE_BLOCK_UNIQUE 2
+
+/// The color matrix applied to all emissive overlays. Should be solely dependent on alpha and not have RGB overlap with [EM_BLOCK_COLOR].
+#define EMISSIVE_COLOR list(0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,1, 1,1,1,0)
+/// A globaly cached version of [EMISSIVE_COLOR] for quick access.
+GLOBAL_LIST_INIT(emissive_color, EMISSIVE_COLOR)
+/// The color matrix applied to all emissive blockers. Should be solely dependent on alpha and not have RGB overlap with [EMISSIVE_COLOR].
+#define EM_BLOCK_COLOR list(0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,1, 0,0,0,0)
+/// A globaly cached version of [EM_BLOCK_COLOR] for quick access.
+GLOBAL_LIST_INIT(em_block_color, EM_BLOCK_COLOR)
+/// The color matrix used to mask out emissive blockers on the emissive plane. Alpha should default to zero, be solely dependent on the RGB value of [EMISSIVE_COLOR], and be independant of the RGB value of [EM_BLOCK_COLOR].
+#define EM_MASK_MATRIX list(0,0,0,1/3, 0,0,0,1/3, 0,0,0,1/3, 0,0,0,0, 1,1,1,0)
+/// A globaly cached version of [EM_MASK_MATRIX] for quick access.
+GLOBAL_LIST_INIT(em_mask_matrix, EM_MASK_MATRIX)
 
 /// Returns the red part of a #RRGGBB hex sequence as number
 #define GETREDPART(hexa) hex2num(copytext(hexa, 2, 4))

@@ -34,7 +34,7 @@
 /obj/machinery/door/window/Destroy()
 	density = FALSE
 	playsound(src, "shatter", 50, 1)
-	. = ..()
+	return ..()
 
 
 /obj/machinery/door/window/update_icon()
@@ -88,7 +88,7 @@
 		return ..()
 	return TRUE
 
-/obj/machinery/door/window/CheckExit(atom/movable/mover, turf/target)
+/obj/machinery/door/window/CheckExit(atom/movable/mover, direction)
 	if(istype(mover) && CHECK_BITFIELD(mover.flags_pass, PASSGLASS))
 		return TRUE
 	return ..()
@@ -154,7 +154,7 @@
 		if(!do_after(user, 40, TRUE, src, BUSY_ICON_BUILD))
 			return TRUE
 
-		to_chat(user, "<span class='notice'>You removed the windoor electronics!</span>")
+		to_chat(user, span_notice("You removed the windoor electronics!"))
 
 		var/obj/structure/windoor_assembly/WA = new(loc)
 
@@ -200,83 +200,16 @@
 		if("deny")
 			flick("[base_state]deny", src)
 
-/obj/machinery/door/window/northleft
-	dir = NORTH
 
-/obj/machinery/door/window/eastleft
-	dir = EAST
 
-/obj/machinery/door/window/westleft
-	dir = WEST
-
-/obj/machinery/door/window/southleft
-	dir = SOUTH
-
-/obj/machinery/door/window/southleft
-	dir = SOUTH
-
-/obj/machinery/door/window/southleft
-	dir = SOUTH
-
-/obj/machinery/door/window/northright
-	dir = NORTH
-	icon_state = "right"
-	base_state = "right"
-
-/obj/machinery/door/window/eastright
-	dir = EAST
-	icon_state = "right"
-	base_state = "right"
-
-/obj/machinery/door/window/westright
-	dir = WEST
-	icon_state = "right"
-	base_state = "right"
-
-/obj/machinery/door/window/southright
-	dir = SOUTH
+/obj/machinery/door/window/right
 	icon_state = "right"
 	base_state = "right"
 
 // Secure Doors
-/obj/machinery/door/window/secure/northleft
-	dir = NORTH
-
-/obj/machinery/door/window/secure/eastleft
-	dir = EAST
-
-/obj/machinery/door/window/secure/westleft
-	dir = WEST
-
-/obj/machinery/door/window/secure/southleft
-	dir = SOUTH
-
-/obj/machinery/door/window/secure/southleft
-	dir = SOUTH
-
-/obj/machinery/door/window/secure/southleft
-	dir = SOUTH
-
-/obj/machinery/door/window/secure/northright
-	dir = NORTH
-	icon_state = "right"
-	base_state = "right"
-
-/obj/machinery/door/window/secure/eastright
-	dir = EAST
-	icon_state = "right"
-	base_state = "right"
-
-/obj/machinery/door/window/secure/westright
-	dir = WEST
-	icon_state = "right"
-	base_state = "right"
-
-/obj/machinery/door/window/secure/southright
-	dir = SOUTH
-	icon_state = "right"
-	base_state = "right"
-
+/obj/machinery/door/window/secure/right
+	icon_state = "rightsecure"
+	base_state = "rightsecure"
 
 // Main ship brig doors
 /obj/machinery/door/window/secure/brig
@@ -308,150 +241,48 @@
 	name = "Cell 6"
 	id = "Cell 6"
 
-
 // Bridge Doors
-/obj/machinery/door/window/secure/northleft/bridge
+/obj/machinery/door/window/secure/bridge
 	req_access = list(ACCESS_MARINE_BRIDGE)
-	dir = NORTH
 
-/obj/machinery/door/window/secure/eastleft/bridge
-	req_access = list(ACCESS_MARINE_BRIDGE)
-	dir = EAST
+/obj/machinery/door/window/secure/bridge/right
+	icon_state = "rightsecure"
+	base_state = "rightsecure"
 
-/obj/machinery/door/window/secure/westleft/bridge
-	req_access = list(ACCESS_MARINE_BRIDGE)
-	dir = WEST
+/obj/machinery/door/window/secure/bridge/rebel
+	req_access = list(ACCESS_MARINE_BRIDGE_REBEL)
 
-/obj/machinery/door/window/secure/southleft/bridge
-	req_access = list(ACCESS_MARINE_BRIDGE)
-	dir = SOUTH
+/obj/machinery/door/window/secure/bridge/rebel/right
+	icon_state = "rightsecure"
+	base_state = "rightsecure"
 
-/obj/machinery/door/window/secure/southleft/bridge
-	req_access = list(ACCESS_MARINE_BRIDGE)
-	dir = SOUTH
-
-/obj/machinery/door/window/secure/southleft/bridge
-	req_access = list(ACCESS_MARINE_BRIDGE)
-	dir = SOUTH
-
-/obj/machinery/door/window/secure/northright/bridge
-	req_access = list(ACCESS_MARINE_BRIDGE)
-	dir = NORTH
-	icon_state = "right"
-	base_state = "right"
-
-/obj/machinery/door/window/secure/eastright/bridge
-	req_access = list(ACCESS_MARINE_BRIDGE)
-	dir = EAST
-	icon_state = "right"
-	base_state = "right"
-
-/obj/machinery/door/window/secure/westright/bridge
-	req_access = list(ACCESS_MARINE_BRIDGE)
-	dir = WEST
-	icon_state = "right"
-	base_state = "right"
-
-/obj/machinery/door/window/secure/southright/bridge
-	req_access = list(ACCESS_MARINE_BRIDGE)
-	dir = SOUTH
-	icon_state = "right"
-	base_state = "right"
 
 // Req Doors
-/obj/machinery/door/window/secure/northleft/req
+/obj/machinery/door/window/secure/req
 	req_one_access = list(ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_CARGO)
-	dir = NORTH
 
-/obj/machinery/door/window/secure/eastleft/req
-	req_one_access = list(ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_CARGO)
-	dir = EAST
+/obj/machinery/door/window/secure/req/right
+	icon_state = "rightsecure"
+	base_state = "rightsecure"
 
-/obj/machinery/door/window/secure/westleft/req
-	req_one_access = list(ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_CARGO)
-	dir = WEST
+/obj/machinery/door/window/secure/req/rebel
+	req_one_access = list(ACCESS_MARINE_LOGISTICS_REBEL, ACCESS_MARINE_CARGO_REBEL)
 
-/obj/machinery/door/window/secure/southleft/req
-	req_one_access = list(ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_CARGO)
-	dir = SOUTH
-
-/obj/machinery/door/window/secure/southleft/req
-	req_one_access = list(ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_CARGO)
-	dir = SOUTH
-
-/obj/machinery/door/window/secure/southleft/req
-	req_one_access = list(ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_CARGO)
-	dir = SOUTH
-
-/obj/machinery/door/window/secure/northright/req
-	req_one_access = list(ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_CARGO)
-	dir = NORTH
-	icon_state = "right"
-	base_state = "right"
-
-/obj/machinery/door/window/secure/eastright/req
-	req_one_access = list(ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_CARGO)
-	dir = EAST
-	icon_state = "right"
-	base_state = "right"
-
-/obj/machinery/door/window/secure/westright/req
-	req_one_access = list(ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_CARGO)
-	dir = WEST
-	icon_state = "right"
-	base_state = "right"
-
-/obj/machinery/door/window/secure/southright/req
-	req_one_access = list(ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_CARGO)
-	dir = SOUTH
-	icon_state = "right"
-	base_state = "right"
+/obj/machinery/door/window/secure/req/rebel/right
+	icon_state = "rightsecure"
+	base_state = "rightsecure"
 
 // Engi Doors
-/obj/machinery/door/window/northleft/engineering
+/obj/machinery/door/window/secure/engineering
 	req_access = list(ACCESS_MARINE_ENGINEERING)
-	dir = NORTH
 
-/obj/machinery/door/window/eastleft/engineering
-	req_access = list(ACCESS_MARINE_ENGINEERING)
-	dir = EAST
+/obj/machinery/door/window/secure/engineering/right
+	icon_state = "rightsecure"
+	base_state = "rightsecure"
 
-/obj/machinery/door/window/westleft/engineering
-	req_access = list(ACCESS_MARINE_ENGINEERING)
-	dir = WEST
+/obj/machinery/door/window/secure/engineering/rebel
+	req_access = list(ACCESS_MARINE_ENGINEERING_REBEL)
 
-/obj/machinery/door/window/southleft/engineering
-	req_access = list(ACCESS_MARINE_ENGINEERING)
-	dir = SOUTH
-
-/obj/machinery/door/window/southleft/engineering
-	req_access = list(ACCESS_MARINE_ENGINEERING)
-	dir = SOUTH
-
-/obj/machinery/door/window/southleft/engineering
-	req_access = list(ACCESS_MARINE_ENGINEERING)
-	dir = SOUTH
-
-/obj/machinery/door/window/northright/engineering
-	req_access = list(ACCESS_MARINE_ENGINEERING)
-	dir = NORTH
-	icon_state = "right"
-	base_state = "right"
-
-/obj/machinery/door/window/eastright/engineering
-	req_access = list(ACCESS_MARINE_ENGINEERING)
-	dir = EAST
-	icon_state = "right"
-	base_state = "right"
-
-/obj/machinery/door/window/westright/engineering
-	req_access = list(ACCESS_MARINE_ENGINEERING)
-	dir = WEST
-	icon_state = "right"
-	base_state = "right"
-
-/obj/machinery/door/window/southright/engineering
-	req_access = list(ACCESS_MARINE_ENGINEERING)
-	dir = SOUTH
-	icon_state = "right"
-	base_state = "right"
+/obj/machinery/door/window/secure/engineering/rebel/right
+	icon_state = "rightsecure"
+	base_state = "rightsecure"

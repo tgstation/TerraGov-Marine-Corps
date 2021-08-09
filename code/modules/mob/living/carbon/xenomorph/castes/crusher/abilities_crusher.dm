@@ -12,7 +12,7 @@
 	keybind_signal = COMSIG_XENOABILITY_STOMP
 
 /datum/action/xeno_action/activable/stomp/use_ability(atom/A)
-	var/mob/living/carbon/xenomorph/crusher/X = owner
+	var/mob/living/carbon/xenomorph/X = owner
 	succeed_activate()
 	add_cooldown()
 
@@ -20,31 +20,28 @@
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "crusher_stomps")
 
 	playsound(X.loc, 'sound/effects/bang.ogg', 25, 0)
-	X.visible_message("<span class='xenodanger'>[X] smashes into the ground!</span>", \
-	"<span class='xenodanger'>We smash into the ground!</span>")
+	X.visible_message(span_xenodanger("[X] smashes into the ground!"), \
+	span_xenodanger("We smash into the ground!"))
 	X.create_stomp() //Adds the visual effect. Wom wom wom
 
-	for(var/mob/living/M in range(0,X.loc))
-		if(isxeno(M) || M.stat == DEAD || isnestedhost(M))
+	for(var/mob/living/M in range(1, get_turf(X)))
+		if(X.issamexenohive(M) || M.stat == DEAD || isnestedhost(M))
 			continue
 		var/distance = get_dist(M, X)
 		var/damage = X.xeno_caste.stomp_damage/max(1, distance + 1)
 		if(distance == 0) //If we're on top of our victim, give him the full impact
 			GLOB.round_statistics.crusher_stomp_victims++
 			SSblackbox.record_feedback("tally", "round_statistics", 1, "crusher_stomp_victims")
-			M.take_overall_damage_armored(damage, BRUTE, "melee", FALSE, FALSE)
-			M.Paralyze(20)
-			to_chat(M, "<span class='highdanger'>You are stomped on by [X]!</span>")
+			M.take_overall_damage_armored(damage, BRUTE, "melee", FALSE, FALSE, TRUE)
+			M.Paralyze(3 SECONDS)
+			to_chat(M, span_highdanger("You are stomped on by [X]!"))
 			shake_camera(M, 3, 3)
 		else
 			step_away(M, X, 1) //Knock away
 			shake_camera(M, 2, 2)
-			to_chat(M, "<span class='highdanger'>You reel from the shockwave of [X]'s stomp!</span>")
-		if(distance < 2) //If we're beside or adjacent to the Crusher, we get knocked down.
-			M.Paralyze(20)
-		else
-			M.Stun(20) //Otherwise we just get stunned.
-		M.apply_damage(damage, STAMINA, updating_health = TRUE) //Armour ignoring Stamina
+			to_chat(M, span_highdanger("You reel from the shockwave of [X]'s stomp!"))
+			M.take_overall_damage_armored(damage, BRUTE, "melee", FALSE, FALSE, TRUE)
+			M.Paralyze(0.5 SECONDS)
 
 /datum/action/xeno_action/activable/stomp/ai_should_start_consider()
 	return TRUE
@@ -66,14 +63,14 @@
 	action_icon_state = "cresttoss"
 	mechanics_text = "Fling an adjacent target over and behind you. Also works over barricades."
 	ability_name = "crest toss"
-	plasma_cost = 100
-	cooldown_timer = 18 SECONDS
+	plasma_cost = 75
+	cooldown_timer = 12 SECONDS
 	keybind_signal = COMSIG_XENOABILITY_CRESTTOSS
 	target_flags = XABB_MOB_TARGET
 
 /datum/action/xeno_action/activable/cresttoss/on_cooldown_finish()
 	var/mob/living/carbon/xenomorph/X = owner
-	to_chat(X, "<span class='xenowarning'><b>We can now crest toss again.</b></span>")
+	to_chat(X, span_xenowarning("<b>We can now crest toss again.</b>"))
 	playsound(X, 'sound/effects/xeno_newlarva.ogg', 50, 0, 1)
 	return ..()
 
@@ -86,10 +83,6 @@
 	var/mob/living/L = A
 	if(L.stat == DEAD || isnestedhost(L)) //no bully
 		return FALSE
-	if(L.mob_size >= MOB_SIZE_BIG)
-		if(!silent)
-			to_chat(owner, "<span class='xenowarning'>[L] is too large to fling!</span>")
-		return FALSE
 
 /datum/action/xeno_action/activable/cresttoss/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/X = owner
@@ -100,6 +93,12 @@
 	var/toss_distance = X.xeno_caste.crest_toss_distance
 	var/turf/T = X.loc
 	var/turf/temp = X.loc
+	var/big_mob_message
+
+	if(L.mob_size >= MOB_SIZE_BIG) //Penalize toss distance for big creatures
+		toss_distance = FLOOR(toss_distance * 0.5, 1)
+		big_mob_message = ", struggling mightily to heft its bulk"
+
 	if(X.a_intent == INTENT_HARM) //If we use the ability on hurt intent, we throw them in front; otherwise we throw them behind.
 		for(var/x in 1 to toss_distance)
 			temp = get_step(T, facing)
@@ -110,11 +109,11 @@
 		facing = get_dir(L, X)
 		var/turf/throw_origin = get_step(T, facing)
 		if(isclosedturf(throw_origin)) //Make sure the victim can actually go to the target turf
-			to_chat(X, "<span class='xenowarning'>We try to fling [L] behind us, but there's no room!</span>")
+			to_chat(X, span_xenowarning("We try to fling [L] behind us, but there's no room!"))
 			return fail_activate()
 		for(var/obj/O in throw_origin)
 			if(!O.CanPass(L, get_turf(X)) && !istype(O, /obj/structure/barricade)) //Ignore barricades because they will once thrown anyway
-				to_chat(X, "<span class='xenowarning'>We try to fling [L] behind us, but there's no room!</span>")
+				to_chat(X, span_xenowarning("We try to fling [L] behind us, but there's no room!"))
 				return fail_activate()
 
 		L.forceMove(throw_origin) //Move the victim behind us before flinging
@@ -134,8 +133,8 @@
 
 	X.icon_state = "Crusher Charging"  //Momentarily lower the crest for visual effect
 
-	X.visible_message("<span class='xenowarning'>\The [X] flings [L] away with its crest!</span>", \
-	"<span class='xenowarning'>We fling [L] away with our crest!</span>")
+	X.visible_message(span_xenowarning("\The [X] flings [L] away with its crest[big_mob_message]!"), \
+	span_xenowarning("We fling [L] away with our crest[big_mob_message]!"))
 
 	succeed_activate()
 
@@ -143,10 +142,9 @@
 
 	//Handle the damage
 	if(!X.issamexenohive(L)) //Friendly xenos don't take damage.
-		var/damage = toss_distance * 5
+		var/damage = toss_distance * 6
 
-		L.take_overall_damage_armored(damage, BRUTE, "melee")
-		L.apply_damage(damage, STAMINA, updating_health = TRUE) //...But decent armour ignoring Stamina
+		L.take_overall_damage_armored(damage, BRUTE, "melee", updating_health = TRUE)
 		shake_camera(L, 2, 2)
 		playsound(L,pick('sound/weapons/alien_claw_block.ogg','sound/weapons/alien_bite2.ogg'), 50, 1)
 

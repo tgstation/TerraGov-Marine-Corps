@@ -6,15 +6,12 @@
 	job_type = /datum/job/xenomorph/queen
 	caste_type_path = /mob/living/carbon/xenomorph/shrike
 
-	tier = XENO_TIER_THREE
+	tier = XENO_TIER_FOUR
 	upgrade = XENO_UPGRADE_BASETYPE
 	wound_type = "shrike" //used to match appropriate wound overlays
 
 	// *** Melee Attacks *** //
 	melee_damage = 20
-
-	// *** Tackle *** //
-	tackle_damage = 25
 
 	// *** Speed *** //
 	speed = -0.3
@@ -34,7 +31,7 @@
 	deevolves_to = /mob/living/carbon/xenomorph/drone
 
 	// *** Flags *** //
-	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_EVOLUTION_ALLOWED|CASTE_IS_INTELLIGENT|CASTE_CAN_HOLD_FACEHUGGERS|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER|CASTE_CAN_CORRUPT_GENERATOR
+	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_EVOLUTION_ALLOWED|CASTE_IS_INTELLIGENT|CASTE_CAN_HOLD_FACEHUGGERS|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER|CASTE_CAN_CORRUPT_GENERATOR|CASTE_IS_STRONG
 
 	can_hold_eggs = CAN_HOLD_TWO_HANDS
 
@@ -45,17 +42,22 @@
 	aura_strength = 2 //The Shrike's aura is decent.
 	aura_allowed = list("frenzy", "warding", "recovery")
 
+	minimap_icon = "xenoshrike"
+
 	// *** Abilities *** //
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/activable/psydrain,
+		/datum/action/xeno_action/activable/headbite,
 		/datum/action/xeno_action/activable/devour,
+		/datum/action/xeno_action/activable/cocoon,
 		/datum/action/xeno_action/plant_weeds,
 		/datum/action/xeno_action/lay_egg,
 		/datum/action/xeno_action/activable/larval_growth_sting,
 		/datum/action/xeno_action/call_of_the_burrowed,
 		/datum/action/xeno_action/activable/secrete_resin,
 		/datum/action/xeno_action/activable/build_silo,
+		/datum/action/xeno_action/activable/build_hunt_den,
 		/datum/action/xeno_action/activable/build_turret,
 		/datum/action/xeno_action/place_acidwell,
 		/datum/action/xeno_action/activable/corrosive_acid,
@@ -77,9 +79,6 @@
 	caste_desc = "The psychic xeno. It looks a little more dangerous."
 
 	upgrade = XENO_UPGRADE_ONE
-
-	// *** Tackle *** //
-	tackle_damage = 25
 
 	// *** Speed *** //
 	speed = -0.4
@@ -109,9 +108,6 @@
 	// *** Melee Attacks *** //
 	melee_damage = 23
 
-	// *** Tackle *** //
-	tackle_damage = 28
-
 	// *** Speed *** //
 	speed = -0.5
 
@@ -139,9 +135,6 @@
 
 	// *** Melee Attacks *** //
 	melee_damage = 23
-
-	// *** Tackle *** //
-	tackle_damage = 28
 
 	// *** Speed *** //
 	speed = -0.6

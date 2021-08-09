@@ -17,7 +17,7 @@
 	var/shardsize
 
 /obj/item/shard/suicide_act(mob/user)
-	user.visible_message("<span class='danger'>[user] is slitting [user.p_their()] [pick("wrists", "throat")] with [src]! It looks like [user.p_theyre()] trying to commit suicide.</span>")
+	user.visible_message(span_danger("[user] is slitting [user.p_their()] [pick("wrists", "throat")] with [src]! It looks like [user.p_theyre()] trying to commit suicide."))
 	return (BRUTELOSS)
 
 /obj/item/shard/attack(mob/living/carbon/M, mob/living/carbon/user)
@@ -74,19 +74,19 @@
 		return ..()
 
 	var/mob/living/M = AM
-	if(M.status_flags & INCORPOREAL)  //Flying over shards doesn't break them 
+	if(M.status_flags & INCORPOREAL)  //Flying over shards doesn't break them
 		return ..()
 	if (CHECK_MULTIPLE_BITFIELDS(M.flags_pass, HOVERING))
 		return ..()
 
 	playsound(loc, 'sound/effects/glass_step.ogg', 25, TRUE)
 	if(prob(20))
-		to_chat(M, "<span class='danger'>[isxeno(M) ? "We" : "You"] step on \the [src], shattering it!</span>")
+		to_chat(M, span_danger("[isxeno(M) ? "We" : "You"] step on \the [src], shattering it!"))
 		qdel(src)
 		return
 
 	if(!M.buckled)
-		to_chat(M, "<span class='danger'>[isxeno(M) ? "We" : "You"] step on \the [src]!</span>")
+		to_chat(M, span_danger("[isxeno(M) ? "We" : "You"] step on \the [src]!"))
 		if(ishuman(M))
 			var/mob/living/carbon/human/H = M
 
@@ -111,7 +111,7 @@
 	desc = "A bunch of tiny bits of shattered metal."
 	materials = list(/datum/material/metal = 50)
 	source_sheet_type = null
-	embedding = list("embedded_flags" = EMBEDDEED_DEL_ON_HOLDER_DEL, "embed_chance" = 0, "embedded_fall_chance" = 0)
+	embedding = list("embedded_flags" = EMBEDDED_DEL_ON_HOLDER_DEL, "embed_chance" = 0, "embedded_fall_chance" = 0)
 
 
 /obj/item/shard/shrapnel/Initialize(mapload, new_name, new_desc)

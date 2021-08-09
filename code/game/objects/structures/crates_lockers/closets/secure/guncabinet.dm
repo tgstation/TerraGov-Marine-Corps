@@ -78,9 +78,9 @@
 
 
 /obj/structure/closet/secure_closet/guncabinet/explosives/PopulateContents()
-	new /obj/item/storage/box/nade_box/HIDP(src)
-	new /obj/item/storage/box/nade_box/M15(src)
-	new /obj/item/storage/box/nade_box/impact(src)
+	new /obj/item/storage/box/visual/grenade/incendiary(src)
+	new /obj/item/storage/box/visual/grenade/M15(src)
+	new /obj/item/storage/box/visual/grenade/impact(src)
 	new /obj/item/storage/box/explosive_mines(src)
 
 
@@ -129,7 +129,8 @@
 	new /obj/item/ammo_magazine/shotgun/buckshot(src)
 	new /obj/item/ammo_magazine/shotgun/buckshot(src)
 
-
+/obj/structure/closet/secure_closet/guncabinet/mp_armory/engineering
+	req_access = list(ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_BRIDGE)
 
 /obj/structure/closet/secure_closet/guncabinet/riot_control
 	name = "riot control equipment closet"
@@ -149,7 +150,7 @@
 	new /obj/item/ammo_magazine/shotgun/beanbag(src)
 	new /obj/item/ammo_magazine/shotgun/beanbag(src)
 	new /obj/item/weapon/gun/launcher/m81/riot(src, TRUE)
-	new /obj/item/storage/box/nade_box/tear_gas(src)
+	new /obj/item/storage/box/visual/grenade/teargas(src)
 	new /obj/item/clothing/mask/gas(src)
 	new /obj/item/clothing/mask/gas(src)
 	new /obj/item/clothing/mask/gas(src)

@@ -56,40 +56,48 @@
 	acid_damage = damage
 	xeno_owner = _xeno_owner
 	RegisterSignal(xeno_owner, COMSIG_PARENT_QDELETING, .proc/clean_mob_owner)
-	TIMER_COOLDOWN_START(src, COOLDOWN_PARALYSE_ACID, 1 SECONDS)
+	RegisterSignal(loc, COMSIG_ATOM_ENTERED, .proc/atom_enter_turf)
+	TIMER_COOLDOWN_START(src, COOLDOWN_PARALYSE_ACID, 5)
 
 /obj/effect/xenomorph/spray/Destroy()
 	STOP_PROCESSING(SSprocessing, src)
 	xeno_owner = null
 	return ..()
 
-/obj/effect/xenomorph/spray/Crossed(atom/movable/AM)
-	. = ..()
-	SEND_SIGNAL(AM, COMSIG_ATOM_ACIDSPRAY_ACT, src, acid_damage, slow_amt)
+/// Signal handler to check if an human is entering the acid spray turf
+/obj/effect/xenomorph/spray/proc/atom_enter_turf(datum/source, atom/movable/moved_in, direction)
+	SIGNAL_HANDLER
+	if(!ishuman(moved_in))
+		return
+	var/mob/living/carbon/human/victim = moved_in
+	if(victim.flags_pass & HOVERING)
+		return
+	victim.acid_spray_entered(null, src, acid_damage, slow_amt)
 
 /// Set xeno_owner to null to avoid hard del
 /obj/effect/xenomorph/spray/proc/clean_mob_owner()
 	UnregisterSignal(xeno_owner, COMSIG_PARENT_QDELETING)
 	xeno_owner = null
 
-/mob/living/carbon/human/proc/acid_spray_crossed(datum/source, obj/effect/xenomorph/spray/acid_spray, acid_damage, slow_amt)
+/// Signal handler to burn and maybe stun the human entering the acid spray
+/mob/living/carbon/human/proc/acid_spray_entered(datum/source, obj/effect/xenomorph/spray/acid_spray, acid_damage, slow_amt)
 	SIGNAL_HANDLER
 	if(CHECK_MULTIPLE_BITFIELDS(flags_pass, HOVERING))
 		return
-	
-	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_ACID))
-		return
-	
-	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_PARALYSE_ACID)) //To prevent being able to walk "over" acid sprays
+
+	if(acid_spray.xeno_owner && TIMER_COOLDOWN_CHECK(acid_spray, COOLDOWN_PARALYSE_ACID)) //To prevent being able to walk "over" acid sprays
 		acid_spray_act(acid_spray.xeno_owner)
+		return
+
+	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_ACID))
 		return
 
 	TIMER_COOLDOWN_START(src, COOLDOWN_ACID, 1 SECONDS)
 	if(HAS_TRAIT(src, TRAIT_FLOORED))
 		INVOKE_ASYNC(src, .proc/take_overall_damage_armored, acid_damage, BURN, "acid", FALSE, FALSE, TRUE)
-		to_chat(src, "<span class='danger'>You are scalded by the burning acid!</span>")
+		to_chat(src, span_danger("You are scalded by the burning acid!"))
 		return
-	to_chat(src, "<span class='danger'>Your feet scald and burn! Argh!</span>")
+	to_chat(src, span_danger("Your feet scald and burn! Argh!"))
 	if(!(species.species_flags & NO_PAIN))
 		INVOKE_ASYNC(src, .proc/emote, "pain")
 
@@ -125,21 +133,21 @@
 	anchored = TRUE
 	var/atom/acid_t
 	var/ticks = 0
-	var/acid_strength = 1 //100% speed, normal
+	var/acid_strength = 0.004 //base speed, normal
 	var/acid_damage = 125 //acid damage on pick up, subject to armor
 	var/strength_t
 
 //Sentinel weakest acid
 /obj/effect/xenomorph/acid/weak
 	name = "weak acid"
-	acid_strength = 0.4 //250% normal speed
+	acid_strength = 0.0016 //40% of base speed
 	acid_damage = 75
 	icon_state = "acid_weak"
 
 //Superacid
 /obj/effect/xenomorph/acid/strong
 	name = "strong acid"
-	acid_strength = 2.5 //20% normal speed
+	acid_strength = 0.01 //250% normal speed
 	acid_damage = 175
 	icon_state = "acid_strong"
 
@@ -152,7 +160,7 @@
 /obj/effect/xenomorph/acid/Destroy()
 	STOP_PROCESSING(SSslowprocess, src)
 	acid_t = null
-	. = ..()
+	return ..()
 
 /obj/effect/xenomorph/acid/process(delta_time)
 	if(!acid_t || !acid_t.loc)
@@ -160,9 +168,9 @@
 		return
 	if(loc != acid_t.loc && !isturf(acid_t))
 		loc = acid_t.loc
-	ticks += ((delta_time*0.1) * (rand(2,3)*0.1) * (acid_strength)) * 0.1
+	ticks += delta_time * acid_strength
 	if(ticks >= strength_t)
-		visible_message("<span class='xenodanger'>[acid_t] collapses under its own weight into a puddle of goop and undigested debris!</span>")
+		visible_message(span_xenodanger("[acid_t] collapses under its own weight into a puddle of goop and undigested debris!"))
 		playsound(src, "acid_hit", 25)
 
 		if(istype(acid_t, /turf))
@@ -190,10 +198,10 @@
 		return
 
 	switch(strength_t - ticks)
-		if(6) visible_message("<span class='xenowarning'>\The [acid_t] is barely holding up against the acid!</span>")
-		if(4) visible_message("<span class='xenowarning'>\The [acid_t]\s structure is being melted by the acid!</span>")
-		if(2) visible_message("<span class='xenowarning'>\The [acid_t] is struggling to withstand the acid!</span>")
-		if(0 to 1) visible_message("<span class='xenowarning'>\The [acid_t] begins to crumble under the acid!</span>")
+		if(6) visible_message(span_xenowarning("\The [acid_t] is barely holding up against the acid!"))
+		if(4) visible_message(span_xenowarning("\The [acid_t]\s structure is being melted by the acid!"))
+		if(2) visible_message(span_xenowarning("\The [acid_t] is struggling to withstand the acid!"))
+		if(0 to 1) visible_message(span_xenowarning("\The [acid_t] begins to crumble under the acid!"))
 
 /obj/effect/xenomorph/warp_shadow
 	name = "warp shadow"

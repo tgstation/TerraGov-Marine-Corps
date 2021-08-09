@@ -38,7 +38,7 @@
 	return 1
 
 //Call this proc to handle the removal of an item from the storage item. The item will be moved to the atom sent as new_target
-/obj/item/storage/large_holster/remove_from_storage(obj/item/W, atom/new_location)
+/obj/item/storage/large_holster/remove_from_storage(obj/item/W, atom/new_location, mob/user)
 	. = ..()
 	if(. && drawSound)
 		playsound(src,drawSound, 15, 1)
@@ -58,7 +58,12 @@
 	new /obj/item/weapon/gun/shotgun/pump(src)
 	base_icon = icon_state
 
-/obj/item/storage/large_holster/machete
+/// This is here to allow easier pathing and more consistent storage.
+/obj/item/storage/large_holster/blade
+	name = "\improper default holster"
+	desc = "You shouldn't see this."
+
+/obj/item/storage/large_holster/blade/machete
 	name = "\improper H5 pattern M2132 machete scabbard"
 	desc = "A large leather scabbard used to carry a M2132 machete. It can be strapped to the back, waist or armor."
 	base_icon = "machete_holster"
@@ -66,17 +71,20 @@
 	flags_equip_slot = ITEM_SLOT_BELT|ITEM_SLOT_BACK
 	can_hold = list(/obj/item/weapon/claymore/mercsword/machete, /obj/item/weapon/claymore/harvester)
 
-/obj/item/storage/large_holster/machete/full/Initialize()
+/obj/item/storage/large_holster/blade/machete/full/Initialize()
 	. = ..()
 	icon_state = "machete_holster_full"
 	new /obj/item/weapon/claymore/mercsword/machete(src)
 
-/obj/item/storage/large_holster/machete/full_harvester/Initialize()
+/obj/item/storage/large_holster/blade/machete/full_harvester
+	name = "H5 Pattern M2132 harvester scabbard"
+
+/obj/item/storage/large_holster/blade/machete/full_harvester/Initialize()
 	. = ..()
 	icon_state = "machete_holster_full"
 	new /obj/item/weapon/claymore/harvester(src)
 
-/obj/item/storage/large_holster/katana
+/obj/item/storage/large_holster/blade/katana
 	name = "\improper katana scabbard"
 	desc = "A large, vibrantly colored katana scabbard used to carry a japanese sword. It can be strapped to the back, waist or armor. Because of the sturdy wood casing of the scabbard, it makes an okay defensive weapon in a pinch."
 	base_icon = "katana_holster"
@@ -86,12 +94,12 @@
 	flags_equip_slot = ITEM_SLOT_BELT|ITEM_SLOT_BACK
 	can_hold = list(/obj/item/weapon/katana)
 
-/obj/item/storage/large_holster/katana/full/Initialize()
+/obj/item/storage/large_holster/blade/katana/full/Initialize()
 	. = ..()
 	icon_state = "katana_holster_full"
 	new /obj/item/weapon/katana(src)
 
-/obj/item/storage/large_holster/officer
+/obj/item/storage/large_holster/blade/officer
 	name = "\improper officer sword scabbard"
 	desc = "A large leather scabbard used to carry a sword. Appears to be a reproduction, rather than original. It can be strapped to the waist or armor."
 	base_icon = "officer_sheath"
@@ -99,7 +107,7 @@
 	flags_equip_slot = ITEM_SLOT_BELT
 	can_hold = list(/obj/item/weapon/claymore/mercsword/officersword)
 
-/obj/item/storage/large_holster/officer/full/Initialize()
+/obj/item/storage/large_holster/blade/officer/full/Initialize()
 	. = ..()
 	icon_state = "officer_sheath_full"
 	new /obj/item/weapon/claymore/mercsword/officersword(src)
@@ -127,8 +135,7 @@
 	flags_equip_slot = ITEM_SLOT_BELT
 	can_hold = list(/obj/item/weapon/gun/smg/m25)
 
-/obj/item/storage/large_holster/m25/update_icon()
-	var/mob/user = loc
+/obj/item/storage/large_holster/m25/update_icon_state()
 	if(contents.len)
 		var/obj/I = contents[1]
 		icon_state = "[base_icon]_full_[I.icon_state]"
@@ -136,7 +143,9 @@
 	else
 		icon_state = base_icon
 		item_state = base_icon
-	if(istype(user)) user.update_inv_belt()
+	if(ismob(loc))
+		var/mob/user = loc
+		user.update_inv_belt()
 
 /obj/item/storage/large_holster/m25/full/Initialize()
 	. = ..()

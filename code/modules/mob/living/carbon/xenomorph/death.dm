@@ -19,6 +19,7 @@
 	if(is_zoomed)
 		zoom_out()
 
+	SSminimaps.remove_marker(src)
 	set_light_on(FALSE)
 
 	if(hud_used)
@@ -47,7 +48,7 @@
 				if(XENO_TIER_THREE)
 					SSmonitor.stats.elder_T3--
 				if(XENO_TIER_FOUR)
-					SSmonitor.stats.elder_queen--
+					SSmonitor.stats.elder_T4--
 		if(XENO_UPGRADE_THREE)
 			switch(tier)
 				if(XENO_TIER_TWO)
@@ -55,14 +56,14 @@
 				if(XENO_TIER_THREE)
 					SSmonitor.stats.ancient_T3--
 				if(XENO_TIER_FOUR)
-					SSmonitor.stats.ancient_queen--
+					SSmonitor.stats.ancient_T4--
 
 	if(GetComponent(/datum/component/ai_controller))
 		gib()
 
 	eject_victim()
 
-	to_chat(src,"<b><span class='deadsay'><p style='font-size:1.5em'><big>We have perished.</big><br><small>But it is not the end of us yet... wait until a newborn can rise in this world...</small></p></span></b>")
+	to_chat(src,"<b>[span_deadsay("<p style='font-size:1.5em'><big>We have perished.</big><br><small>But it is not the end of us yet... wait until a newborn can rise in this world...</small></p>")]</b>")
 
 	return ..()
 

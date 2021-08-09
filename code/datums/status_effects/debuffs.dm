@@ -227,7 +227,7 @@
 	return ..()
 
 /datum/status_effect/noplasmaregen/tick()
-	to_chat(owner, "<span class='warning'>You feel too weak to summon new plasma...</span>")
+	to_chat(owner, span_warning("You feel too weak to summon new plasma..."))
 
 /datum/status_effect/incapacitating/harvester_slowdown
 	id = "harvest_slow"
@@ -278,13 +278,13 @@
 
 /datum/status_effect/healing_infusion/on_remove()
 	REMOVE_TRAIT(owner, TRAIT_HEALING_INFUSION, TRAIT_STATUS_EFFECT(id))
-	owner.remove_filter("hivelord_healing_infusion_outline") //Remove the aura
-	UnregisterSignal(owner, list(COMSIG_XENOMORPH_HEALTH_REGEN, COMSIG_XENOMORPH_SUNDER_REGEN)) //unregister the signals; party's over
+	owner.remove_filter("hivelord_healing_infusion_outline")
+	UnregisterSignal(owner, list(COMSIG_XENOMORPH_HEALTH_REGEN, COMSIG_XENOMORPH_SUNDER_REGEN))
 
-	new /obj/effect/temp_visual/telekinesis(get_turf(owner)) //Wearing off SFX
-	new /obj/effect/temp_visual/healing(get_turf(owner)) //Wearing off SFX
+	new /obj/effect/temp_visual/telekinesis(get_turf(owner)) //Wearing off VFX
+	new /obj/effect/temp_visual/healing(get_turf(owner))
 
-	to_chat(owner, "<span class='xenodanger'>Our regeneration is no longer accelerated.</span>") //Let the target know
+	owner.balloon_alert(owner, "Regeneration is no longer accelerated")
 	owner.playsound_local(owner, 'sound/voice/hiss5.ogg', 25)
 
 	return ..()
@@ -341,3 +341,30 @@
 	name = "Healing Infusion"
 	desc = "You have accelerated natural healing."
 	icon_state = "healing_infusion"
+
+//MUTE
+/datum/status_effect/mute
+	id = "mute"
+	alert_type = /obj/screen/alert/status_effect/mute
+
+/obj/screen/alert/status_effect/mute
+	name = "Muted"
+	desc = "You can't speak!"
+	icon_state = "mute"
+
+/datum/status_effect/mute/on_creation(mob/living/new_owner, set_duration)
+	owner = new_owner
+	if(set_duration) //If the duration is limited, set it
+		duration = set_duration
+	return ..()
+
+/datum/status_effect/mute/on_apply()
+	. = ..()
+	if(!.)
+		return
+	ADD_TRAIT(owner, TRAIT_MUTED, TRAIT_STATUS_EFFECT(id))
+
+/datum/status_effect/mute/on_remove()
+	REMOVE_TRAIT(owner, TRAIT_MUTED, TRAIT_STATUS_EFFECT(id))
+	return ..()
+
