@@ -314,7 +314,7 @@
 
 	if(istype(I, /obj/item/cell))
 		if(!CHECK_BITFIELD(machine_stat, PANEL_OPEN))
-			to_chat(user, span_notice("[src] panel is closed!"))
+			to_chat(user, span_notice("[src]'s battery panel is closed!"))
 			return
 		if(cell)
 			to_chat(user, span_notice("[src] already has a battery installed!"))
