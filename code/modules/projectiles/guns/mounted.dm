@@ -194,5 +194,6 @@
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
 
 	deploy_time = 1 SECONDS
+	undeploy_time = 0.5 SECONDS
 
 	max_integrity = 125
