@@ -1,0 +1,5 @@
+author: "lbnesquik"
+delete-after: True
+changes: 
+  - qol: "Made it possible to drop pod north of LV LZ1"
+  - bugfix: "fixed a few issues with the LZ"

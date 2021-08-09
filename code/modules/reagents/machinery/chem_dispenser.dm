@@ -166,6 +166,14 @@
 	. = ..()
 	if(.)
 		return
+
+	if(ishuman(usr))
+		var/mob/living/carbon/human/user = usr
+		if(!user.skills.getRating("medical"))
+			to_chat(user, span_notice("You start fiddling with \the [src]..."))
+			if(!do_after(user, SKILL_TASK_EASY, TRUE, src, BUSY_ICON_UNSKILLED))
+				return
+
 	switch(action)
 		if("amount")
 			if(!is_operational() || QDELETED(beaker))

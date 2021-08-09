@@ -1,0 +1,5 @@
+author: "lbnesquik"
+delete-after: True
+changes: 
+  - rscadd: "Added a map table to the sulaco req"
+  - expansion: "Tweaks the sulaco hangar areas to be a little more segmented."

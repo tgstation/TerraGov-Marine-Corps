@@ -68,7 +68,7 @@
 			victim.headbitten = TRUE
 			victim.update_headbite()
 	qdel(src)
-			
+
 
 
 /obj/effect/landmark/corpsespawner/proc/equip_items_to_mob(mob/living/carbon/human/corpse)
@@ -240,17 +240,6 @@
 	corpsesuit = /obj/item/clothing/suit/space/rig/engineering
 	corpsemask = /obj/item/clothing/mask/breath
 	corpsehelmet = /obj/item/clothing/head/helmet/space/rig/engineering
-
-/obj/effect/landmark/corpsespawner/clown
-	name = "Clown"
-	corpseuniform = /obj/item/clothing/under/rank/clown
-	corpseshoes = /obj/item/clothing/shoes/clown_shoes
-	corpsemask = /obj/item/clothing/mask/gas/clown_hat
-	corpsepocket1 = /obj/item/toy/bikehorn
-	corpseback = /obj/item/storage/backpack/clown
-	corpseid = 1
-	corpseidjob = "Clown"
-//	corpseidaccess = "Clown"
 
 /obj/effect/landmark/corpsespawner/scientist
 	name = "Scientist"
