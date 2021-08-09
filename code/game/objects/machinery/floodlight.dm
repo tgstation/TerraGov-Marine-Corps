@@ -14,8 +14,8 @@
 	GLOB.nightfall_toggleable_lights += src
 
 /obj/machinery/floodlight/Destroy()
-	. = ..()
 	GLOB.nightfall_toggleable_lights -= src
+	return ..()
 
 /obj/machinery/floodlight/attack_hand(mob/living/user)
 	return

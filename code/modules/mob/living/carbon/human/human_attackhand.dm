@@ -31,12 +31,12 @@
 				help_shake_act(H)
 				return 1
 
-			if((head && (head.flags_inventory & COVERMOUTH)) || (wear_mask && (wear_mask.flags_inventory & COVERMOUTH)))
-				to_chat(H, span_boldnotice("Remove his mask!"))
+			if(HAS_TRAIT(src, TRAIT_UNDEFIBBABLE ))
+				to_chat(H, span_boldnotice("Can't help this one. Body has gone cold."))
 				return FALSE
 
-			if(HAS_TRAIT(H, TRAIT_UNDEFIBBABLE ))
-				to_chat(H, span_boldnotice("Can't help this one. Body has gone cold."))
+			if((head && (head.flags_inventory & COVERMOUTH)) || (wear_mask && (wear_mask.flags_inventory & COVERMOUTH)))
+				to_chat(H, span_boldnotice("Remove [p_their()] mask!"))
 				return FALSE
 
 			if((H.head && (H.head.flags_inventory & COVERMOUTH)) || (H.wear_mask && (H.wear_mask.flags_inventory & COVERMOUTH)))

@@ -591,7 +591,7 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 
 ///Set the target and take care of hard delete
 /obj/item/weapon/gun/proc/set_target(atom/object)
-	if(object == target)
+	if(object == target || object == gun_user)
 		return
 	if(target)
 		UnregisterSignal(target, COMSIG_PARENT_QDELETING)
@@ -878,7 +878,7 @@ and you're good to go.
 			user.apply_damage(200, STAMINA)
 		else
 			user.apply_damage(projectile_to_fire.damage * 2.5, projectile_to_fire.ammo.damage_type, "head", 0, TRUE)
-			user.apply_damage(100, OXY)
+			user.apply_damage(200, OXY)
 			if(ishuman(user) && user == M)
 				var/mob/living/carbon/human/HM = user
 				HM.set_undefibbable() //can't be defibbed back from self inflicted gunshot to head
@@ -902,7 +902,7 @@ and you're good to go.
 //----------------------------------------------------------
 
 /obj/item/weapon/gun/proc/able_to_fire(mob/user)
-	if(user.stat != CONSCIOUS || user.lying_angle)
+	if(!user || user.stat != CONSCIOUS || user.lying_angle)
 		return
 
 	if(!user.dextrous)

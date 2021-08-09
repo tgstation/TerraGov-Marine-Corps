@@ -159,3 +159,98 @@
   - rscadd: Added a wrenching noise to fueltanks, and another when spilling fuel
   - qol: Increased antenna beacon duration from one minute to four minutes.
   - bugfix: Fix the special force leader incorrectly spawning with a Med hud
+2021-08-07:
+  BraveMole:
+  - bugfix: Fix larva spawning groundside while the hive is hijacking
+  - code_imp: Fix some of destroy code not abiding to contrib guidelines
+  - bugfix: Droppods no longer qdels the occupant on Destroy()
+  KornFlaks:
+  - rscdel: Removed Queen slashing permissions.
+  - rscdel: Removes remaining references to xeno respawn timers missed earlier.
+  Pariah919:
+  - balance: HMG deploys ~500ms faster, and HSG/HMG undeploy far faster. (3 seconds
+      as opposed to 5 and 8.5 respectively)
+  QualityVan:
+  - bugfix: Trying to give cpr to someone who's gone cold will fail properly now
+  - bugfix: Suiciding gives more oxy damage, just so the body meets damage thresholds
+      for cpr checks
+  - bugfix: You can once again make light fixtures.
+  SplinterGP:
+  - qol: Removes the "You will now activate this ability with shift click/middle click."
+      annoying message that made no sense on xenos selectable message.
+  Walarks:
+  - balance: red dot reduces fire delay from aim mode by 50%
+  glassyduke:
+  - imageadd: added some icons and images for sentinel
+  lbnesquik:
+  - rscadd: Added a handheld cell charger. It isn't going to fix all of your needs,
+      but it might just save you in a pinch.
+  lovegreenstuff:
+  - balance: Increased automag burst delay and scatter.
+  - bugfix: bonus projectile math when shooting directly up.
+2021-08-08:
+  BraveMole:
+  - balance: Add mortars, sentries, and drop pods to civil war
+  - balance: Grav crush does less damage to mobs
+  - balance: Sticky resin slows down vehicles
+  - expansion: You can no longer still enemy radios, they explode when trying to equip
+  - bugfix: Fix wrong headset being given to rebels from loadout vendor
+  - balance: Respawn is set to 5 minutes in HvH
+  - balance: Unmanned vehicles take some damage in acid boiler smoke
+  KornFlaks:
+  - refactor: Relocated variable declaration of psy point costs of certain xeno actions
+      from individual actions to parent xeno_action.
+  Pariah919:
+  - balance: evade now costs 75 plasma to use, runner has higher plasma reserves at
+      lower tiers of maturity and regen overall, same plasma at ancient.
+  QualityVan:
+  - bugfix: Fixed an error with antibiotic germ clear amounts, polyhexanide should
+      work now.
+  RipGrayson:
+  - rscadd: Adds some TG smites.
+  - code_imp: Altered some smite code to function correctly on TGMC.
+  - admin: Ported underlying TG admin smite system.
+  Surrealaser:
+  - bugfix: Warrior Punch can target unacidable objects, but won't damage them.
+  - bugfix: Warrior Punch can now break cameras appropriately.
+  lbnesquik:
+  - rscadd: Added a pump animation to the martini
+  - soundadd: added a breathy noise whenever you equip a gas mask.
+  - bugfix: removed the tiny space window south of sulaco preps to stop beans from
+      dying there like IDIOTS
+  - expansion: Added a backdoor to LV LZ1, which can be used to drop pod in.
+2021-08-09:
+  BraveMole:
+  - bugfix: Headsets will no longer blow up in your face for no reason
+  - bugfix: Fix squad preferences for rebels
+  - bugfix: Fix able to buy forbidden items in civil war
+  - bugfix: fix gun jamming
+  Hekzder:
+  - balance: TX-11 has 10 more armor penetration and 0.25 more sunder.
+  Pariah919:
+  - bugfix: uniforms are bulky now
+  QualityVan:
+  - bugfix: Cocoons don't open instantly
+  - qol: Everyone can use the medbay smartfridges.
+  - balance: Corpsmen have chemistry access now.
+  - balance: Trying to use the chem dispenser/chem master without at least basic medical
+      training will incur delays.
+  Sebbe9123:
+  - rscdel: Removes larvae injection from reagent slash.
+  - balance: makes reagent slash inject 7 of chosen chems.
+  SplinterGP:
+  - code_imp: Added an autofocus argument to tgui_alert, defaults on, that can be
+      used to prevent accidental inputs from surprise alerts when used.
+  - bugfix: Hover effect on tgui Tabs made less visually laggy.
+  - qol: Chat Highlighting now works with more symbols and can be case sensitive and/or
+      match whole words only.
+  - bugfix: Fixed Chat Highlighting only working for the first comma separated entry.
+  - bugfix: Your own messages sent over a radio and dchat now properly avoid_highlighting.
+  - bugfix: Fixed Chat Highlighting working on your own OOC messages.
+  TiviPlus:
+  - rscdel: Delete clown paraphernalia from maps
+  lbnesquik:
+  - expansion: Added some flares and smoke shells to the mortar kit.
+  - bugfix: fixed the mortar flare shell not working by just using the code for flare
+      rockets
+  - bugfix: fixed hivemind eyes getting caught onto razorwires by adding a check

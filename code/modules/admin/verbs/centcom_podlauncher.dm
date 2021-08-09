@@ -555,9 +555,9 @@
 
 /datum/centcom_podlauncher/Destroy() //The Destroy() proc. This is called by ui_close proc, or whenever the user leaves the game
 	updateCursor(FALSE) //Make sure our moues cursor resets to default. False means we are not in launch mode
-	qdel(temp_pod) //Delete the temp_pod
-	qdel(selector) //Delete the selector effect
-	. = ..()
+	QDEL_NULL(temp_pod) //Delete the temp_pod
+	QDEL_NULL(selector) //Delete the selector effect
+	return ..()
 
 /datum/centcom_podlauncher/proc/supplypod_punish_log(list/whoDyin)
 	var/podString = effectBurst ? "5 pods" : "a pod"

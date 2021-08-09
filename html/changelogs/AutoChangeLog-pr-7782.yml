@@ -1,4 +1,0 @@
-author: "Pariah919"
-delete-after: True
-changes: 
-  - balance: "HMG deploys ~500ms faster, and HSG/HMG undeploy far faster. (3 seconds as opposed to 5 and 8.5 respectively)"

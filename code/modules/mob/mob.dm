@@ -105,7 +105,7 @@
 					continue
 				statpanel(listed_turf.name, null, A)
 
-/mob/proc/show_message(msg, type, alt_msg, alt_type)
+/mob/proc/show_message(msg, type, alt_msg, alt_type, avoid_highlight)
 	if(!client)
 		return
 
@@ -114,7 +114,7 @@
 	to_chat(src, msg)
 
 
-/mob/living/show_message(msg, type, alt_msg, alt_type)
+/mob/living/show_message(msg, type, alt_msg, alt_type, avoid_highlight)
 	if(!client)
 		return
 
@@ -139,8 +139,8 @@
 
 	if(stat == UNCONSCIOUS && type == EMOTE_AUDIBLE)
 		to_chat(src, "<i>... You can almost hear something ...</i>")
-	else
-		to_chat(src, msg)
+		return
+	to_chat(src, msg, avoid_highlighting = avoid_highlight)
 
 // Show a message to all player mobs who sees this atom
 // Show a message to the src mob (if the src is a mob)

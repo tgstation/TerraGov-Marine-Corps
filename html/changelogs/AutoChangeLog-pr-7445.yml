@@ -1,0 +1,6 @@
+author: "TiviPlus"
+delete-after: True
+changes: 
+  - expansion: "Jaeger can now be painted any color you want"
+  - expansion: "Jaeger visors can now be colored by right clicking the helmet with paint"
+  - expansion: "Remember to save your jaeger in the loadouts vendor!"
