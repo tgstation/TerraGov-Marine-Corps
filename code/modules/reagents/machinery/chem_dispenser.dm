@@ -312,7 +312,7 @@
 		to_chat(user, "The machine can't dispense into that.")
 		return
 
-	else if(istype(I, /obj/item/cell))
+	if(istype(I, /obj/item/cell))
 		if(!CHECK_BITFIELD(machine_stat, PANEL_OPEN))
 			to_chat(user, span_notice("[src] panel is closed!"))
 			return
