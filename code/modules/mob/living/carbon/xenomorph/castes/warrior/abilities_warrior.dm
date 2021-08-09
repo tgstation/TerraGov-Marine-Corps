@@ -210,7 +210,7 @@
 		if(X.issamexenohive(x_victim)) //We don't fuck up friendlies
 			return
 
-	victim.ParalyzeNoChain(0.5 SECONDS)
+	victim.ParalyzeNoChain(1 SECONDS)
 
 
 /datum/action/xeno_action/activable/fling/ai_should_start_consider()
@@ -258,7 +258,7 @@
 	var/atom/movable/target = owner.pulling
 	var/fling_distance = 3
 	var/stagger_slow_stacks = 3
-	var/stun_duration = 1 SECONDS
+	var/stun_duration = 0.5 SECONDS
 	var/big_mob_message
 
 	X.face_atom(A)
