@@ -444,7 +444,7 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 	current_mag = magazine
 	replace_ammo(user,magazine)
 	if(!in_chamber)
-		ready_in_chamber(user)
+		load_into_chamber()
 		if(!(flags_gun_features & GUN_ENERGY))
 			cock_gun(user)
 	user.visible_message(span_notice("[user] loads [magazine] into [src]!"),
