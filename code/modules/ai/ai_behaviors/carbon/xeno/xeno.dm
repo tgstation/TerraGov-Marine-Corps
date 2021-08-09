@@ -3,34 +3,33 @@
 /datum/ai_behavior/carbon/xeno
 	sidestep_prob = 25
 	identifier = IDENTIFIER_XENO
+	///If this xeno is a real one
+	var/real_xeno = TRUE
 
 /datum/ai_behavior/carbon/xeno/New(loc, parent_to_assign)
 	..()
 	mob_parent.a_intent = INTENT_HARM //Killing time
 
-//Returns a list of things we can walk to and attack to death
+///Returns a list of things we can walk to and attack to death
 /datum/ai_behavior/carbon/xeno/get_targets()
 	var/list/return_result = list()
-	for(var/h in cheap_get_humans_near(mob_parent, 8))
-		var/mob/nearby_human = h
+	for(var/mob/nearby_human AS in cheap_get_humans_near(mob_parent, 8))
 		if(nearby_human.stat == DEAD)
 			continue
-		return_result += h
+		return_result += nearby_human
 	var/mob/living/carbon/xenomorph/xeno_parent = mob_parent
-	for(var/x in cheap_get_xenos_near(mob_parent, 8))
-		if(xeno_parent.issamexenohive(x)) //Xenomorphs not in our hive will be attacked as well!
+	for(var/mob/nearby_xeno AS in cheap_get_xenos_near(mob_parent, 8))
+		if(xeno_parent.issamexenohive(nearby_xeno)) //Xenomorphs not in our hive will be attacked as well!
 			continue
-		var/mob/nearby_xeno = x
 		if(nearby_xeno.stat == DEAD)
 			continue
 		if((nearby_xeno.status_flags & GODMODE) || (nearby_xeno.status_flags & INCORPOREAL)) //No attacking invulnerable/ai's eye!
 			continue
-		return_result += x
-	for(var/turret in GLOB.marine_turrets)
-		var/atom/atom_turret = turret
-		if(!(get_dist(mob_parent, atom_turret) <= 8))
+		return_result += nearby_xeno
+	for(var/atom/turret AS in GLOB.marine_turrets)
+		if(!(get_dist(mob_parent, turret) <= 8))
 			continue
-		if(mob_parent.z != atom_turret.z)
+		if(mob_parent.z != turret.z)
 			continue
 		return_result += turret
 	return return_result
@@ -52,10 +51,18 @@
 	for(var/obj/structure/obstacle in things_nearby)
 		if(obstacle.resistance_flags & XENO_DAMAGEABLE)
 			var/mob/living/carbon/xenomorph/xeno = mob_parent
-			INVOKE_ASYNC(obstacle, /atom.proc/attack_alien, xeno)
+			INVOKE_ASYNC(obstacle, /atom.proc/attack_alien, xeno, real_xeno ? xeno.xeno_caste.melee_damage : 0)
 			mob_parent.face_atom(obstacle)
 			xeno.changeNext_move(xeno.xeno_caste.attack_delay)
 			return
+
+	//Teleport onto those window frames, we also can't attempt to attack said window frames so this isn't in the obstacles loop
+	for(var/obj/structure/window_frame/frame in things_nearby)
+		mob_parent.loc = frame.loc
+		return
+
+	if(!real_xeno)
+		return
 
 	//Cheat mode: insta open airlocks
 	for(var/obj/machinery/door/airlock/lock in things_nearby)
@@ -68,11 +75,6 @@
 		lock.open(TRUE)
 		return //Don't try going on window frames after opening up airlocks dammit
 
-	//Teleport onto those window frames, we also can't attempt to attack said window frames so this isn't in the obstacles loop
-	for(var/obj/structure/window_frame/frame in things_nearby)
-		mob_parent.loc = frame.loc
-		return
-
 /datum/ai_behavior/carbon/xeno/attack_target()
 	if(world.time < mob_parent.next_move)
 		return
@@ -81,12 +83,12 @@
 	var/mob/living/carbon/xenomorph/xeno = mob_parent
 	mob_parent.face_atom(atom_to_walk_to)
 	if(ismob(atom_to_walk_to))
-		atom_to_walk_to.attack_alien(xeno)
+		real_xeno ? atom_to_walk_to.attack_alien(xeno) : atom_to_walk_to.attack_alien(xeno, 0)
 	else if(ismachinery(atom_to_walk_to))
 		var/obj/machinery/thing = atom_to_walk_to
 		if(!(thing.resistance_flags & XENO_DAMAGEABLE))
 			stack_trace("A xenomorph tried to attack a [atom_to_walk_to.name] that isn't considered XENO_DAMAGABLE according to resistance flags.")
-		thing.attack_alien(xeno, xeno.xeno_caste.melee_damage * xeno.xeno_melee_damage_modifier)
+		thing.attack_alien(xeno, real_xeno ? xeno.xeno_caste.melee_damage * xeno.xeno_melee_damage_modifier : 0)
 	xeno.changeNext_move(xeno.xeno_caste.attack_delay)
 
 /datum/ai_behavior/carbon/xeno/change_state(reasoning_for)
@@ -143,3 +145,6 @@
 				return
 
 	return ..()
+
+/datum/ai_behavior/carbon/xeno/illusion
+	real_xeno = FALSE
