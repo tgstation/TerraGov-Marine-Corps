@@ -344,12 +344,13 @@
 		return
 
 /obj/machinery/chem_dispenser/update_icon()
+	overlays.Cut()
 	if(!CHECK_BITFIELD(machine_stat, PANEL_OPEN))
-		icon_state = initial(icon_state)
+		return
 	else if(cell)
-		icon_state = initial(icon_state) + "_open"
+		overlays += image(icon, "[initial(icon_state)]_open")
 	else
-		icon_state = initial(icon_state) + "_nobat"
+		overlays += image(icon, "[initial(icon_state)]_nobat")
 
 /obj/machinery/chem_dispenser/soda
 	icon_state = "soda_dispenser"
