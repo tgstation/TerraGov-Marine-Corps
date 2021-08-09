@@ -135,8 +135,8 @@
 /obj/machinery/chem_dispenser/ui_data(mob/user)
 	. = list()
 	.["amount"] = amount
-	.["energy"] = cell?.charge ? cell.charge * powerefficiency : "0" //To prevent NaN in the UI.
-	.["maxEnergy"] = cell?.maxcharge ? cell.maxcharge * powerefficiency : "0"
+	.["energy"] = cell ? cell.charge * powerefficiency : "0" //To prevent NaN in the UI.
+	.["maxEnergy"] = cell ? cell.maxcharge * powerefficiency : "0"
 	.["isBeakerLoaded"] = beaker ? 1 : 0
 
 	var/list/beakerContents = list()
@@ -308,9 +308,8 @@
 			to_chat(user, "Take the lid off [I] first.")
 			return
 
-		else
-			to_chat(user, "The machine can't dispense into that.")
-			return
+		to_chat(user, "The machine can't dispense into that.")
+		return
 
 	else if(isscrewdriver(I))
 		TOGGLE_BITFIELD(machine_stat, PANEL_OPEN)
