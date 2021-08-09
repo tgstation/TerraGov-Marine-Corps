@@ -135,8 +135,8 @@
 /obj/machinery/chem_dispenser/ui_data(mob/user)
 	. = list()
 	.["amount"] = amount
-	.["energy"] = cell ? cell.charge * powerefficiency : "0" //To prevent NaN in the UI.
-	.["maxEnergy"] = cell ? cell.maxcharge * powerefficiency : "0"
+	.["energy"] = cell?.charge * powerefficiency
+	.["maxEnergy"] = cell?.maxcharge * powerefficiency
 	.["isBeakerLoaded"] = beaker ? 1 : 0
 
 	var/list/beakerContents = list()
