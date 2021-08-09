@@ -262,7 +262,7 @@
 	throwforce = 20
 	throw_speed = 3
 	throw_range = 6
-	attack_speed = 7
+	attack_speed = 8
 	hitsound = 'sound/weapons/slash.ogg'
 	attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 
