@@ -21,7 +21,7 @@
 	var/recent_trick //So they're not spamming tricks.
 	///If the gun is able to play Russian Roulette
 	var/russian_roulette = 0 //God help you if you do this.
-	///Whether the chamber can be spun for Russian Roulette.
+	///Whether the chamber can be spun for Russian Roulette. If False the chamber can be spun.
 	var/catchworking = TRUE
 	load_method = SINGLE_CASING|SPEEDLOADER //codex
 	type_of_casings = "bullet"
@@ -539,39 +539,30 @@
 	name = "single action revolver"
 	desc = "you should not be seeing this."
 	current_mag = /obj/item/ammo_magazine/internal/revolver/m44
-	///Whether or not the revolvers hammer is ready to fire.
-	var/primed = FALSE
 
-/obj/item/weapon/gun/revolver/single_action/update_icon_state()
+/obj/item/weapon/gun/revolver/single_action/update_icon()
 	. = ..()
-	if(primed)
+	if(in_chamber)
 		return
-	icon_state = initial(icon_state) + "unprimed"
+	icon_state = icon_state + "_unprimed"
 
 /obj/item/weapon/gun/revolver/single_action/examine(mob/user)
 	. = ..()
-	to_chat(user, "[primed ? "It's primed and ready to fire." : "It is not primed."]")
-
-/obj/item/weapon/gun/revolver/single_action/able_to_fire(mob/user)
-	. = ..()
-	if(. && !primed) //If the chamber is open theres no need to give the unprimed message.
-		to_chat(user, span_warning("You need to prime the revolver first!"))
-		return FALSE
+	to_chat(user, "[in_chamber ? "It's primed and ready to fire." : "It is not primed."]")
 
 /obj/item/weapon/gun/revolver/single_action/Fire()
 	. = ..()
-	primed = FALSE
-	update_icon_state()
+	update_icon()
 
 /obj/item/weapon/gun/revolver/single_action/cock(mob/user)
-	if(!primed && current_mag.current_rounds && current_mag.chamber_closed)
-		primed = TRUE
+	if(!in_chamber && current_mag.current_rounds && current_mag.chamber_closed)
+		rotate_cylinder(user)
+		ready_in_chamber(user)
 		to_chat(user, span_notice("You prime the [src]"))
 		playsound(user, reload_sound, 25, 1)
-		update_icon_state()
+		update_icon()
 		return
 	if(catchworking)
-		primed = FALSE
 		return unload(user)
 	if(!current_mag.chamber_closed)
 		return
@@ -579,3 +570,19 @@
 	to_chat(user, span_notice("You spin the cylinder."))
 	playsound(user, cocked_sound, 25, 1)
 	russian_roulette = !russian_roulette //Sets to play RR. Resets when the gun is emptied.
+
+/obj/item/weapon/gun/revolver/single_action/ready_in_chamber()
+	if(current_mag.current_rounds <= 0 || current_mag.chamber_contents[current_mag.chamber_position] != "bullet")
+		return
+	current_mag.current_rounds-- //Subtract the round from the mag.
+	in_chamber = create_bullet(ammo)
+	update_icon()
+	return in_chamber
+
+/obj/item/weapon/gun/revolver/single_action/load_into_chamber(mob/user)
+	return in_chamber
+
+/obj/item/weapon/gun/revolver/single_action/reload_into_chamber(mob/user)
+	current_mag.chamber_contents[current_mag.chamber_position] = "blank" //We shot the bullet.
+	current_mag.used_casings++ //We add this only if we actually fired the bullet.
+	return TRUE
