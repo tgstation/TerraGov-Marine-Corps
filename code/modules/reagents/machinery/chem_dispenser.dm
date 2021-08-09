@@ -311,22 +311,6 @@
 		to_chat(user, "The machine can't dispense into that.")
 		return
 
-	else if(isscrewdriver(I))
-		TOGGLE_BITFIELD(machine_stat, PANEL_OPEN)
-		to_chat(user, span_notice("You [CHECK_BITFIELD(machine_stat, PANEL_OPEN) ? "open" : "close"] the battery compartment."))
-		update_icon()
-		return
-
-	else if(iscrowbar(I))
-		if(!cell || !CHECK_BITFIELD(machine_stat, PANEL_OPEN))
-			return
-		cell.forceMove(loc)
-		cell = null
-		to_chat(user, span_notice("You pry out the dispenser's battery."))
-		stop_processing()
-		update_icon()
-		return
-
 	else if(istype(I, /obj/item/cell))
 		if(!CHECK_BITFIELD(machine_stat, PANEL_OPEN))
 			to_chat(user, span_notice("[src] panel is closed!"))
@@ -341,6 +325,22 @@
 		start_processing()
 		update_icon()
 		return
+
+/obj/machinery/chem_dispenser/screwdriver_act(mob/living/user, obj/item/I)
+	TOGGLE_BITFIELD(machine_stat, PANEL_OPEN)
+	to_chat(user, span_notice("You [CHECK_BITFIELD(machine_stat, PANEL_OPEN) ? "open" : "close"] the battery compartment."))
+	update_icon()
+	return TRUE
+
+/obj/machinery/chem_dispenser/crowbar_act(mob/living/user, obj/item/I)
+	if(!cell || !CHECK_BITFIELD(machine_stat, PANEL_OPEN))
+		return FALSE
+	cell.forceMove(loc)
+	cell = null
+	to_chat(user, span_notice("You pry out the dispenser's battery."))
+	stop_processing()
+	update_icon()
+	return TRUE
 
 /obj/machinery/chem_dispenser/update_icon()
 	overlays.Cut()
