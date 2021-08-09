@@ -1,5 +1,0 @@
-author: "Sebbe9123"
-delete-after: True
-changes: 
-  - rscdel: "Removes larvae injection from reagent slash."
-  - balance: "makes reagent slash inject 7 of chosen chems."
