@@ -37,7 +37,7 @@
 		/obj/item/attachable/lasersight,
 	)
 
-	flags_gun_features = GUN_AUTO_EJECTOR|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_AMMO_COUNTER
 	starting_attachment_types = list(/obj/item/attachable/scope/antimaterial, /obj/item/attachable/sniperbarrel)
 	gun_iff_signal = list(ACCESS_IFF_MARINE)
 
