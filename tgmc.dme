@@ -1009,6 +1009,7 @@
 #include "code\modules\admin\view_variables\mark_datum.dm"
 #include "code\modules\admin\view_variables\reference_tracking.dm"
 #include "code\modules\ai\effect_node.dm"
+#include "code\modules\ai\xeno_illusion.dm"
 #include "code\modules\ai\ai_behaviors\ai_behavior.dm"
 #include "code\modules\ai\ai_behaviors\carbon\carbon.dm"
 #include "code\modules\ai\ai_behaviors\carbon\xeno\xeno.dm"

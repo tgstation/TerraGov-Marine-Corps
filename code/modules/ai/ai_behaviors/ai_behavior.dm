@@ -6,14 +6,22 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 */
 
 /datum/ai_behavior
-
-	var/atom/atom_to_walk_to //An atom for the overall AI to walk to; this is a cache
-	var/distance_to_maintain = 1 //Default distance to maintain from a target while in combat usually
-	var/sidestep_prob = 0 //Prob chance of sidestepping (left or right) when distance maintained with target
-	var/obj/effect/ai_node/current_node //Current node to use for calculating action states: this is the mob's node
-	var/cur_action //Contains a defined term that tells us what we're doing; useful for switch() statements
-	var/mob/mob_parent //Ref to the parent associated with this mind
-	var/identifier //An identifier associated with this behavior, used for accessing specific values of a node's weights
+	///An atom for the overall AI to walk to; this is a cache
+	var/atom/atom_to_walk_to
+	///Default distance to maintain from a target while in combat usually
+	var/distance_to_maintain = 1
+	///Prob chance of sidestepping (left or right) when distance maintained with target
+	var/sidestep_prob = 0
+	///Current node to use for calculating action states: this is the mob's node
+	var/obj/effect/ai_node/current_node
+ 	///Contains a defined term that tells us what we're doing; useful for switch() statements
+	var/cur_action
+	///Ref to the parent associated with this mind
+	var/mob/mob_parent
+	///An identifier associated with this behavior, used for accessing specific values of a node's weights
+	var/identifier
+	///The node following and spawning behaviour, can be null
+	var/node_following = SPAWN_AT_NODE
 
 /datum/ai_behavior/New(loc, parent_to_assign)
 	..()

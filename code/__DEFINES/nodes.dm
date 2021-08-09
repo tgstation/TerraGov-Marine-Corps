@@ -25,3 +25,6 @@
  * This is mainly used for deciding what weights are to be looked at when determing a node waypoint of going towards
  */
 #define IDENTIFIER_XENO "identifies_xeno"
+#define IDENTIFIER_ILLUSION "identifies_illusion"
+
+#define SPAWN_AT_NODE "spawn_at_node"

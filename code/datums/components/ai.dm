@@ -29,19 +29,21 @@ The main purpose of this is to handle cleanup and setting up the initial ai beha
 	if(isnull(behavior_type))
 		stack_trace("An AI controller was initialized without a mind to initialize parameter; component removed")
 		return COMPONENT_INCOMPATIBLE
-	var/atom/movable/movable_parent = parent
-	var/node_to_spawn_at //Temp storage holder for the node we will want to spawn at
-	for(var/obj/effect/ai_node/node in range(7))
-		node_to_spawn_at = node
-		movable_parent.forceMove(node.loc)
-		break
-	if(isnull(node_to_spawn_at))
-		stack_trace("An AI controller was being attached to a parent however it was unable to locate a node nearby to attach itself to; component removed.")
-		message_admins("Notice: An AI controller was initialized but wasn't close enough to a node; if you were spawning AI component users, then do it closer to a node.")
-		return COMPONENT_INCOMPATIBLE
-	//This is here so we only make a mind if there's a node nearby for the parent to go onto
 	ai_behavior = new behavior_type(src, parent)
-	ai_behavior.current_node = node_to_spawn_at
+	if(ai_behavior.node_following == SPAWN_AT_NODE)
+		var/atom/movable/movable_parent = parent
+		var/node_to_spawn_at //Temp storage holder for the node we will want to spawn at
+		for(var/obj/effect/ai_node/node in range(7))
+			node_to_spawn_at = node
+			movable_parent.forceMove(node.loc)
+			break
+		if(isnull(node_to_spawn_at))
+			stack_trace("An AI controller was being attached to a parent however it was unable to locate a node nearby to attach itself to; component removed.")
+			message_admins("Notice: An AI controller was initialized but wasn't close enough to a node; if you were spawning AI component users, then do it closer to a node.")
+			QDEL_NULL(ai_behavior)
+			return COMPONENT_INCOMPATIBLE
+		ai_behavior.current_node = node_to_spawn_at
+	//This is here so we only make a mind if there's a node nearby for the parent to go onto
 	ai_behavior.late_initialize() //We gotta give the ai behavior things like what node to spawn at before it wants to start an action
 	RegisterSignal(parent, list(COMSIG_PARENT_PREQDELETED, COMSIG_MOB_DEATH), .proc/clean_up)
 	RegisterSignal(parent, COMSIG_COMBAT_LOG, .proc/handle_combat_log)

@@ -145,6 +145,3 @@
 				return
 
 	return ..()
-
-/datum/ai_behavior/carbon/xeno/illusion
-	real_xeno = FALSE

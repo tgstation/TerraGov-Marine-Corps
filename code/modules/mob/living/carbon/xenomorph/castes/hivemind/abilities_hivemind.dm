@@ -10,6 +10,10 @@
 	name = "Mirage"
 	action_icon_state = ""
 	mechanics_text = "Create mirror images of the targeted xeno."
+	///How long will the illusions live
+	var/illusion_life_time = 15 SECONDS
+	///How many illusions are created
+	var/illusion_count = 3
 
 /datum/action/xeno_action/activable/mirage/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
@@ -20,26 +24,5 @@
 	return TRUE
 
 /datum/action/xeno_action/activable/mirage/use_ability(atom/A)
-	new /mob/living/carbon/xenomorph/illusion(A.loc, A)
-
-/mob/living/carbon/xenomorph/illusion
-	density = FALSE
-	status_flags = GODMODE
-	wall_smash = FALSE
-	tier = XENO_TIER_ZERO
-	caste_base_type = /mob/living/carbon/xenomorph/illusion
-	upgrade = XENO_UPGRADE_ZERO
-	///The parent xenomorph the illusion is a copy of
-	var/mob/living/carbon/xenomorph/original_xeno
-
-/mob/living/carbon/xenomorph/illusion/Initialize(mapload, mob/living/carbon/xenomorph/original_xeno)
-	. = ..()
-	src.original_xeno = original_xeno
-	appearance = original_xeno.appearance
-	desc = original_xeno.desc
-	name = original_xeno.name
-	AddComponent(/datum/component/ai_controller, /datum/ai_behavior/carbon/xeno/illusion)
-	a_intent = INTENT_HARM
-
-/datum/xeno_caste/illusion
-	caste_type_path = /mob/living/carbon/xenomorph/illusion
+	for(var/i in 1 to illusion_count)
+		new /mob/living/carbon/xenomorph/illusion(A.loc, A, illusion_life_time)
