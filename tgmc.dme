@@ -331,6 +331,8 @@
 #include "code\datums\components\stamina_behavior.dm"
 #include "code\datums\components\suit_autodoc.dm"
 #include "code\datums\components\udder.dm"
+#include "code\datums\components\attachable\attachment.dm"
+#include "code\datums\components\attachable\attachment_handler.dm"
 #include "code\datums\components\riding\riding.dm"
 #include "code\datums\components\riding\riding_mob.dm"
 #include "code\datums\components\riding\riding_vehicle.dm"
