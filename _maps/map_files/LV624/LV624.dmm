@@ -9933,12 +9933,6 @@
 	dir = 9
 	},
 /area/shuttle/drop1/lz1)
-"bef" = (
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone{
-	dir = 2
-	},
-/turf/open/space/basic,
-/area/lv624/ground/jungle1)
 "beh" = (
 /obj/structure/jungle/vines/heavy,
 /turf/open/ground/grass,
@@ -44141,7 +44135,7 @@ aWs
 tiO
 bjv
 axZ
-bef
+mPv
 bdh
 bdi
 bhQ
@@ -44320,7 +44314,7 @@ usw
 sMv
 yhd
 axZ
-bef
+mPv
 oCY
 bmp
 bdk
