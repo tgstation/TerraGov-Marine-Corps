@@ -220,7 +220,7 @@
 	xeno_debuff.overlays.Cut()
 	xeno_debuff.icon_state = ""
 	if(stat != DEAD)
-		if(IsMute() && isdeaf(src)) //Apply Silence debuff image
+		if(IsMute())
 			xeno_debuff.overlays += hunter_silence_image
 
 	hud_list[XENO_DEBUFF_HUD] = xeno_debuff
