@@ -330,7 +330,7 @@
 /obj/machinery/chem_dispenser/screwdriver_act(mob/living/user, obj/item/I)
 	TOGGLE_BITFIELD(machine_stat, PANEL_OPEN)
 	to_chat(user, span_notice("You [CHECK_BITFIELD(machine_stat, PANEL_OPEN) ? "open" : "close"] the battery compartment."))
-	update_overlays()
+	update_icon()
 	return TRUE
 
 /obj/machinery/chem_dispenser/crowbar_act(mob/living/user, obj/item/I)
@@ -340,17 +340,17 @@
 	cell = null
 	to_chat(user, span_notice("You pry out the dispenser's battery."))
 	stop_processing()
-	update_overlays()
+	update_icon()
 	return TRUE
 
 /obj/machinery/chem_dispenser/update_overlays()
-	overlays.Cut()
+	. = ..()
 	if(!CHECK_BITFIELD(machine_stat, PANEL_OPEN))
 		return
-	else if(cell)
-		overlays += image(icon, "[initial(icon_state)]_open")
+	if(cell)
+		. += image(icon, "[initial(icon_state)]_open")
 	else
-		overlays += image(icon, "[initial(icon_state)]_nobat")
+		. += image(icon, "[initial(icon_state)]_nobat")
 
 /obj/machinery/chem_dispenser/soda
 	icon_state = "soda_dispenser"
