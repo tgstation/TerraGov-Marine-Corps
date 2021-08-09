@@ -20,7 +20,7 @@
 			return FALSE
 		set_resting(TRUE, FALSE)
 	else if(do_actions)
-		to_chat(src, "<span class='warning'>You are still in the process of standing up.</span>")
+		to_chat(src, span_warning("You are still in the process of standing up."))
 		return
 	else if(do_mob(src, src, 2 SECONDS, ignore_flags = (IGNORE_LOC_CHANGE|IGNORE_HAND)))
 		get_up()
@@ -29,7 +29,7 @@
 	if(!incapacitated(TRUE))
 		set_resting(FALSE, FALSE)
 	else
-		to_chat(src, "<span class='notice'>You fail to get up.</span>")
+		to_chat(src, span_notice("You fail to get up."))
 
 /mob/living/proc/set_resting(rest, silent = TRUE)
 	if(status_flags & INCORPOREAL)
@@ -41,11 +41,11 @@
 	if(resting)
 		ADD_TRAIT(src, TRAIT_FLOORED, RESTING_TRAIT)
 		if(!silent)
-			to_chat(src, "<span class='notice'>You are now resting.</span>")
+			to_chat(src, span_notice("You are now resting."))
 	else
 		REMOVE_TRAIT(src, TRAIT_FLOORED, RESTING_TRAIT)
 		if(!silent)
-			to_chat(src, "<span class='notice'>You get up.</span>")
+			to_chat(src, span_notice("You get up."))
 	update_resting()
 
 

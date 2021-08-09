@@ -94,7 +94,7 @@
 	new /obj/effect/decal/cleanable/crayon(target, colour, shadeColour, drawtype)
 	uses--
 	if(uses <= 0)
-		to_chat(user, "<span class='warning'>You used up your crayon!</span>")
+		to_chat(user, span_warning("You used up your crayon!"))
 		qdel(src)
 
 /obj/item/toy/crayon/attack(mob/living/M, mob/living/user)
@@ -105,10 +105,9 @@
 	"You took a bit of \the [src] and swallowed it.")
 	uses -= 5
 	if(uses <= 0)
-		to_chat(user, "<span class='warning'>You ate the whole crayon!</span>")
+		to_chat(user, span_warning("You ate the whole crayon!"))
 		qdel(src)
 
 	M.adjustToxLoss(1) // add a little bit of toxic damage
 	if(istype(src, /obj/item/toy/crayon/mime))
-		M.disabilities |= MUTE
-		addtimer(VARSET_CALLBACK(M, disabilities, M.disabilities & ~MUTE), 30 SECONDS)
+		M.apply_status_effect(/datum/status_effect/mute, 30 SECONDS)

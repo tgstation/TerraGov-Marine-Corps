@@ -10,7 +10,7 @@
 	 */
 	var/list/item_list
 	///The host of the loadout_manager, aka from which loadout vendor are you managing loadouts
-	var/loadout_vendor
+	var/obj/machinery/loadout_vendor/loadout_vendor
 	///The version of this loadout
 	var/version = CURRENT_LOADOUT_VERSION
 
@@ -105,6 +105,14 @@
 			continue
 		item2representation_type = item2representation_type(item_in_slot.type)
 		item_list[slot_key] = new item2representation_type(item_in_slot, src)
+	if(!admin_loadout)
+		return
+	for(var/slot_key in GLOB.additional_admin_item_slot_list)
+		item_in_slot = user.get_item_by_slot(GLOB.slot_str_to_slot[slot_key])
+		if(!item_in_slot)
+			continue
+		item2representation_type = item2representation_type(item_in_slot.type)
+		item_list[slot_key] = new item2representation_type(item_in_slot, src)
 
 /datum/loadout/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
@@ -134,9 +142,9 @@
 	switch(action)
 		if("equipLoadout")
 			if(TIMER_COOLDOWN_CHECK(ui.user, COOLDOWN_LOADOUT_EQUIPPED))
-				to_chat(ui.user, "<span class='warning'>The vendor is still reloading</span>")
+				ui.user.balloon_alert(ui.user, "The vendor is still reloading")
 				return
-			var/datum/loadout_seller/seller = new
+			var/datum/loadout_seller/seller = new (loadout_vendor.faction)
 			if(seller.try_to_equip_loadout(src, ui.user))
 				TIMER_COOLDOWN_START(ui.user, COOLDOWN_LOADOUT_EQUIPPED, 30 SECONDS)
 			ui.close()

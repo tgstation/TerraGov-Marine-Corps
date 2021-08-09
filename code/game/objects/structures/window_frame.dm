@@ -68,17 +68,17 @@
 	if(istype(I, sheet_type))
 		var/obj/item/stack/sheet/sheet = I
 		if(sheet.get_amount() < 2)
-			to_chat(user, "<span class='warning'>You need more [I] to install a new window.</span>")
+			to_chat(user, span_warning("You need more [I] to install a new window."))
 			return
-		user.visible_message("<span class='notice'>[user] starts installing a new glass window on the frame.</span>", \
-		"<span class='notice'>You start installing a new window on the frame.</span>")
+		user.visible_message(span_notice("[user] starts installing a new glass window on the frame."), \
+		span_notice("You start installing a new window on the frame."))
 		playsound(src, 'sound/items/deconstruct.ogg', 25, 1)
 
 		if(!do_after(user, 20, TRUE, src, BUSY_ICON_BUILD))
 			return
 
-		user.visible_message("<span class='notice'>[user] installs a new glass window on the frame.</span>", \
-		"<span class='notice'>You install a new window on the frame.</span>")
+		user.visible_message(span_notice("[user] installs a new glass window on the frame."), \
+		span_notice("You install a new window on the frame."))
 		sheet.use(2)
 		new window_type(loc) //This only works on Theseus windows!
 		qdel(src)
@@ -93,24 +93,24 @@
 
 		var/mob/living/M = G.grabbed_thing
 		if(user.grab_state < GRAB_AGGRESSIVE)
-			to_chat(user, "<span class='warning'>You need a better grip to do that!</span>")
+			to_chat(user, span_warning("You need a better grip to do that!"))
 			return
 
 		if(get_dist(src, M) > 1)
-			to_chat(user, "<span class='warning'>[M] needs to be next to [src].</span>")
+			to_chat(user, span_warning("[M] needs to be next to [src]."))
 			return
 
 		if(user.do_actions)
 			return
 
-		user.visible_message("<span class='notice'>[user] starts pulling [M] onto [src].</span>",
-		"<span class='notice'>You start pulling [M] onto [src]!</span>")
+		user.visible_message(span_notice("[user] starts pulling [M] onto [src]."),
+		span_notice("You start pulling [M] onto [src]!"))
 		var/oldloc = loc
 		if(!do_mob(user, M, 20, BUSY_ICON_GENERIC) || loc != oldloc)
 			return
 		M.Paralyze(40)
-		user.visible_message("<span class='warning'>[user] pulls [M] onto [src].</span>",
-		"<span class='notice'>You pull [M] onto [src].</span>")
+		user.visible_message(span_warning("[user] pulls [M] onto [src]."),
+		span_notice("You pull [M] onto [src]."))
 		M.forceMove(loc)
 
 

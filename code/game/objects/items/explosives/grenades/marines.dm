@@ -215,10 +215,9 @@
 /obj/item/explosive/grenade/drainbomb
 	name = "\improper M40-T smoke grenade"
 	desc = "The M40-T is a small, but powerful Tanglefoot grenade, designed to remove plasma with minimal side effects. Based off the same platform as the M40 HEDP. It is set to detonate in 6 seconds."
-	icon_state = "grenade_smoke"
+	icon_state = "grenade_pgas"
 	det_time = 60
-	item_state = "grenade_smoke"
-	hud_state = "grenade_smoke"
+	item_state = "grenade_pgas"
 	underslug_launchable = TRUE
 	var/datum/effect_system/smoke_spread/plasmaloss/smoke
 	icon_state_mini = "grenade_blue"
@@ -344,7 +343,7 @@
 	ENABLE_BITFIELD(resistance_flags, ON_FIRE)
 	item_fire_stacks = 5
 	heat = 1500
-	damtype = "fire"
+	damtype = BURN
 	update_brightness()
 	playsound(src,'sound/items/flare.ogg', 15, 1)
 	START_PROCESSING(SSobj, src)
@@ -353,13 +352,13 @@
 
 	// Usual checks
 	if(!fuel)
-		to_chat(user, "<span class='notice'>It's out of fuel.</span>")
+		to_chat(user, span_notice("It's out of fuel."))
 		return
 	if(active)
 		return
 
 	// All good, turn it on.
-	user.visible_message("<span class='notice'>[user] activates the flare.</span>", "<span class='notice'>You depress the ignition button, activating it!</span>")
+	user.visible_message(span_notice("[user] activates the flare."), span_notice("You depress the ignition button, activating it!"))
 	turn_on(user)
 	if(iscarbon(user))
 		var/mob/living/carbon/C = usr
@@ -378,7 +377,7 @@
 	throwforce = 10
 	ENABLE_BITFIELD(resistance_flags, ON_FIRE)
 	item_fire_stacks = 5
-	damtype = "fire"
+	damtype = BURN
 	START_PROCESSING(SSobj, src)
 
 /obj/item/explosive/grenade/flare/proc/update_brightness()

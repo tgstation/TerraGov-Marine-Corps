@@ -24,29 +24,29 @@
 	msg = emoji_parse(msg)
 
 	if(!(prefs.toggles_chat & CHAT_OOC))
-		to_chat(src, "<span class='warning'>You have OOC muted.</span>")
+		to_chat(src, span_warning("You have OOC muted."))
 		return
 
 	if(!check_rights(R_ADMIN, FALSE))
 		if(!GLOB.ooc_allowed)
-			to_chat(src, "<span class='warning'>OOC is globally muted</span>")
+			to_chat(src, span_warning("OOC is globally muted"))
 			return
 		if(!GLOB.dooc_allowed && (mob.stat == DEAD))
-			to_chat(usr, "<span class='warning'>OOC for dead mobs has been turned off.</span>")
+			to_chat(usr, span_warning("OOC for dead mobs has been turned off."))
 			return
 		if(prefs.muted & MUTE_OOC)
-			to_chat(src, "<span class='warning'>You cannot use OOC (muted).</span>")
+			to_chat(src, span_warning("You cannot use OOC (muted)."))
 			return
 		if(handle_spam_prevention(msg, MUTE_OOC))
 			return
 		if(findtext(msg, "byond://"))
-			to_chat(src, "<span class='danger'>Advertising other servers is not allowed.</span>")
+			to_chat(src, span_danger("Advertising other servers is not allowed."))
 			log_admin_private("[key_name(usr)] has attempted to advertise in OOC: [msg]")
 			message_admins("[ADMIN_TPMONTY(usr)] has attempted to advertise in OOC: [msg]")
 			return
 
 	if(is_banned_from(ckey, "OOC"))
-		to_chat(src, "<span class='warning'>You have been banned from OOC.</span>")
+		to_chat(src, span_warning("You have been banned from OOC."))
 		return
 
 	mob.log_talk(msg, LOG_OOC)
@@ -98,11 +98,11 @@
 		// Admins open straight to player panel
 		if(check_other_rights(C, R_ADMIN, FALSE))
 			display_name = "<a class='hidelink' href='?_src_=holder;[HrefToken(TRUE)];playerpanel=[REF(usr)]'>[display_name]</a>"
-
+		var/avoid_highlight = C == src
 		if(display_colour)
-			to_chat(C, "<font color='[display_colour]'><span class='ooc'><span class='prefix'>OOC: [display_name]</span>: <span class='message linkify'>[msg]</span></span></font>")
+			to_chat(C, "<font color='[display_colour]'>[span_ooc("<span class='prefix'>OOC: [display_name]")]: <span class='message linkify'>[msg]</span></span></font>", avoid_highlighting = avoid_highlight)
 		else
-			to_chat(C, "<span class='[display_class]'><span class='prefix'>OOC: [display_name]</span>: <span class='message linkify'>[msg]</span></span>")
+			to_chat(C, "<span class='[display_class]'>[span_prefix("OOC: [display_name]")]: <span class='message linkify'>[msg]</span></span>", avoid_highlighting = avoid_highlight)
 
 
 /client/verb/looc_wrapper()
@@ -121,7 +121,7 @@
 		return
 
 	if(mob.stat == DEAD && !admin)
-		to_chat(src, "<span class='warning'>You must be alive to use LOOC.</span>")
+		to_chat(src, span_warning("You must be alive to use LOOC."))
 		return
 
 	if(IsGuestKey(key))
@@ -134,15 +134,15 @@
 		return
 
 	if(!(prefs.toggles_chat & CHAT_LOOC))
-		to_chat(src, "<span class='warning'>You have LOOC muted.</span>")
+		to_chat(src, span_warning("You have LOOC muted."))
 		return
 
 	if(!admin)
 		if(!CONFIG_GET(flag/looc_enabled))
-			to_chat(src, "<span class='warning'>LOOC is globally muted</span>")
+			to_chat(src, span_warning("LOOC is globally muted"))
 			return
 		if(prefs.muted & MUTE_LOOC)
-			to_chat(src, "<span class='warning'>You cannot use LOOC (muted).</span>")
+			to_chat(src, span_warning("You cannot use LOOC (muted)."))
 			return
 		if(handle_spam_prevention(msg, MUTE_LOOC))
 			return
@@ -153,7 +153,7 @@
 			return
 
 	if(is_banned_from(ckey, "LOOC"))
-		to_chat(src, "<span class='warning'>You have been banned from LOOC.</span>")
+		to_chat(src, span_warning("You have been banned from LOOC."))
 		return
 
 	mob.log_talk(msg, LOG_LOOC)
@@ -161,11 +161,11 @@
 	var/message
 
 	if(admin && isobserver(mob))
-		message = "<span class='looc'><span class='prefix'>LOOC:</span> [usr.client.holder.fakekey ? "Administrator" : usr.client.key]: <span class='message'>[msg]</span></span>"
+		message = span_looc("[span_prefix("LOOC:")] [usr.client.holder.fakekey ? "Administrator" : usr.client.key]: [span_message("[msg]")]")
 		for(var/mob/M in range(mob))
 			to_chat(M, message)
 	else
-		message = "<span class='looc'><span class='prefix'>LOOC:</span> [mob.name]: <span class='message'>[msg]</span></span>"
+		message = span_looc("[span_prefix("LOOC:")] [mob.name]: [span_message("[msg]")]")
 		for(var/mob/M in range(mob))
 			to_chat(M, message)
 
@@ -173,7 +173,7 @@
 		if(!check_other_rights(C, R_ADMIN, FALSE) || C.mob == mob)
 			continue
 		if(C.prefs.toggles_chat & CHAT_LOOC)
-			to_chat(C, "<font color='#6699CC'><span class='ooc'><span class='prefix'>LOOC: [ADMIN_TPMONTY(mob)]</span>: <span class='message'>[msg]</span></span></font>")
+			to_chat(C, "<font color='#6699CC'>[span_ooc("<span class='prefix'>LOOC: [ADMIN_TPMONTY(mob)]")]: [span_message("[msg]")]</span></font>")
 
 
 /client/verb/motd()
@@ -182,9 +182,9 @@
 	set desc ="Check the Message of the Day"
 
 	if(GLOB.motd)
-		to_chat(src, "<span class='motd'>[GLOB.motd]</span>")
+		to_chat(src, span_motd("[GLOB.motd]"))
 	else
-		to_chat(src, "<span class='warning'>The motd is not set in the server configuration.</span>")
+		to_chat(src, span_warning("The motd is not set in the server configuration."))
 
 
 /client/verb/stop_sounds()
@@ -202,7 +202,7 @@
 	set desc = "View the amount of playtime for roles the server has tracked."
 
 	if(!CONFIG_GET(flag/use_exp_tracking))
-		to_chat(usr, "<span class='notice'>Sorry, tracking is currently disabled.</span>")
+		to_chat(usr, span_notice("Sorry, tracking is currently disabled."))
 		return
 
 	var/list/body = list()
@@ -218,7 +218,7 @@
 	set name = "View Admin Remarks"
 
 	if(!CONFIG_GET(flag/see_own_notes))
-		to_chat(usr, "<span class='notice'>Sorry, that function is not enabled on this server.</span>")
+		to_chat(usr, span_notice("Sorry, that function is not enabled on this server."))
 		return
 
 	browse_messages(null, ckey, null, TRUE)
@@ -312,7 +312,7 @@
 /client/verb/display_ping(time as num)
 	set instant = TRUE
 	set name = ".display_ping"
-	to_chat(src, "<span class='notice'>Round trip ping took [round(pingfromtime(time), 1)]ms</span>")
+	to_chat(src, span_notice("Round trip ping took [round(pingfromtime(time), 1)]ms"))
 
 
 /client/verb/ping()

@@ -66,24 +66,68 @@
 	access = list(ACCESS_MARINE_ALPHA_REBEL)
 	radio_freq = FREQ_ALPHA_REBEL
 	faction = FACTION_TERRAGOV_REBEL
+	current_positions = list(
+		REBEL_SQUAD_MARINE = 0,
+		REBEL_SQUAD_ENGINEER = 0,
+		REBEL_SQUAD_CORPSMAN = 0,
+		REBEL_SQUAD_SMARTGUNNER = 0,
+		REBEL_SQUAD_LEADER = 0,
+)
+	max_positions = list(
+		REBEL_SQUAD_MARINE = -1,
+		REBEL_SQUAD_LEADER = 1,
+)
 
 /datum/squad/bravo/rebel
 	id = BRAVO_SQUAD_REBEL
 	access = list(ACCESS_MARINE_BRAVO_REBEL)
 	radio_freq = FREQ_BRAVO_REBEL
 	faction = FACTION_TERRAGOV_REBEL
+	current_positions = list(
+		REBEL_SQUAD_MARINE = 0,
+		REBEL_SQUAD_ENGINEER = 0,
+		REBEL_SQUAD_CORPSMAN = 0,
+		REBEL_SQUAD_SMARTGUNNER = 0,
+		REBEL_SQUAD_LEADER = 0,
+)
+	max_positions = list(
+		REBEL_SQUAD_MARINE = -1,
+		REBEL_SQUAD_LEADER = 1,
+)
 
 /datum/squad/charlie/rebel
 	id = CHARLIE_SQUAD_REBEL
 	access = list(ACCESS_MARINE_CHARLIE_REBEL)
 	radio_freq = FREQ_CHARLIE_REBEL
 	faction = FACTION_TERRAGOV_REBEL
+	current_positions = list(
+		REBEL_SQUAD_MARINE = 0,
+		REBEL_SQUAD_ENGINEER = 0,
+		REBEL_SQUAD_CORPSMAN = 0,
+		REBEL_SQUAD_SMARTGUNNER = 0,
+		REBEL_SQUAD_LEADER = 0,
+)
+	max_positions = list(
+		REBEL_SQUAD_MARINE = -1,
+		REBEL_SQUAD_LEADER = 1,
+)
 
 /datum/squad/delta/rebel
 	id = DELTA_SQUAD_REBEL
 	access = list(ACCESS_MARINE_DELTA_REBEL)
 	radio_freq = FREQ_DELTA_REBEL
 	faction = FACTION_TERRAGOV_REBEL
+	current_positions = list(
+		REBEL_SQUAD_MARINE = 0,
+		REBEL_SQUAD_ENGINEER = 0,
+		REBEL_SQUAD_CORPSMAN = 0,
+		REBEL_SQUAD_SMARTGUNNER = 0,
+		REBEL_SQUAD_LEADER = 0,
+)
+	max_positions = list(
+		REBEL_SQUAD_MARINE = -1,
+		REBEL_SQUAD_LEADER = 1,
+)
 
 GLOBAL_LIST_EMPTY(glovemarkings)
 GLOBAL_LIST_EMPTY(armormarkings)
@@ -290,7 +334,7 @@ GLOBAL_LIST_EMPTY(helmetmarkings_sl)
 
 
 /datum/squad/proc/message_squad(message, mob/living/carbon/human/sender)
-	var/text = "<span class='notice'><B>\[Overwatch\]:</b> [format_message(message, sender)]</span>"
+	var/text = span_notice("<B>\[Overwatch\]:</b> [format_message(message, sender)]")
 	for(var/i in marines_list)
 		var/mob/living/L = i
 		message_member(L, text, sender)
@@ -299,7 +343,7 @@ GLOBAL_LIST_EMPTY(helmetmarkings_sl)
 /datum/squad/proc/message_leader(message, mob/living/carbon/human/sender)
 	if(!squad_leader || squad_leader.stat != CONSCIOUS || !squad_leader.client)
 		return FALSE
-	return message_member(squad_leader, "<span class='notice'><B>\[SL Overwatch\]:</b> [format_message(message, sender)]</span>", sender)
+	return message_member(squad_leader, span_notice("<B>\[SL Overwatch\]:</b> [format_message(message, sender)]"), sender)
 
 
 /datum/squad/proc/message_member(mob/living/target, message, mob/living/carbon/human/sender)
@@ -341,11 +385,11 @@ GLOBAL_LIST_EMPTY(helmetmarkings_sl)
 	var/strict = player.client.prefs.be_special && (player.client.prefs.be_special & BE_SQUAD_STRICT)
 	//List of all the faction accessible squads
 	var/list/available_squads = SSjob.active_squads[faction]
-	var/datum/squad/preferred_squad = SSjob.squads_by_name[player.client.prefs.preferred_squad]
+	var/datum/squad/preferred_squad = LAZYACCESSASSOC(SSjob.squads_by_name, faction, player.client.prefs.preferred_squad)
 	if(available_squads.Find(preferred_squad) && preferred_squad?.assign_initial(player, job, latejoin))
 		return TRUE
 	if(strict)
-		to_chat(player, "<span class='warning'>That squad is full!</span>")
+		to_chat(player, span_warning("That squad is full!"))
 		return FALSE
 	//If our preferred squad is not available, we try every other squad
 	for(var/datum/squad/squad AS in shuffle(available_squads))

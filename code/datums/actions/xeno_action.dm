@@ -14,6 +14,8 @@
 	var/gamemode_flags = ABILITY_ALL_GAMEMODE
 	///Alternative keybind signal, to use the action differently
 	var/alternate_keybind_signal
+	/// Psy points cost of using ability, if any.
+	var/psych_cost = 0
 
 /datum/action/xeno_action/New(Target)
 	. = ..()
@@ -66,57 +68,57 @@
 
 	if(!(flags_to_check & XACT_IGNORE_COOLDOWN) && !action_cooldown_check())
 		if(!silent)
-			to_chat(owner, "<span class='warning'>We can't use [ability_name] yet, we must wait [cooldown_remaining()] seconds!</span>")
+			to_chat(owner, span_warning("We can't use [ability_name] yet, we must wait [cooldown_remaining()] seconds!"))
 		return FALSE
 
 	if(!(flags_to_check & XACT_USE_INCAP) && X.incapacitated())
 		if(!silent)
-			to_chat(owner, "<span class='warning'>We can't do this while incapacitated!</span>")
+			to_chat(owner, span_warning("We can't do this while incapacitated!"))
 		return FALSE
 
 	if(!(flags_to_check & XACT_USE_LYING) && X.lying_angle)
 		if(!silent)
-			to_chat(owner, "<span class='warning'>We can't do this while lying down!</span>")
+			to_chat(owner, span_warning("We can't do this while lying down!"))
 		return FALSE
 
 	if(!(flags_to_check & XACT_USE_BUCKLED) && X.buckled)
 		if(!silent)
-			to_chat(owner, "<span class='warning'>We can't do this while buckled!</span>")
+			to_chat(owner, span_warning("We can't do this while buckled!"))
 		return FALSE
 
 	if(!(flags_to_check & XACT_USE_STAGGERED) && X.stagger)
 		if(!silent)
-			to_chat(owner, "<span class='warning'>We can't do this while staggered!</span>")
+			to_chat(owner, span_warning("We can't do this while staggered!"))
 		return FALSE
 
 	if(!(flags_to_check & XACT_USE_FORTIFIED) && X.fortify)
 		if(!silent)
-			to_chat(owner, "<span class='warning'>We can't do this while fortified!</span>")
+			to_chat(owner, span_warning("We can't do this while fortified!"))
 		return FALSE
 
 	if(!(flags_to_check & XACT_USE_CRESTED) && X.crest_defense)
 		if(!silent)
-			to_chat(owner, "<span class='warning'>We can't do this while in crest defense!</span>")
+			to_chat(owner, span_warning("We can't do this while in crest defense!"))
 		return FALSE
 
 	if(!(flags_to_check & XACT_USE_NOTTURF) && !isturf(X.loc))
 		if(!silent)
-			to_chat(owner, "<span class='warning'>We can't do this here!</span>")
+			to_chat(owner, span_warning("We can't do this here!"))
 		return FALSE
 
 	if(!(flags_to_check & XACT_USE_BUSY) && X.do_actions)
 		if(!silent)
-			to_chat(owner, "<span class='warning'>We're busy doing something right now!</span>")
+			to_chat(owner, span_warning("We're busy doing something right now!"))
 		return FALSE
 
 	if(!(flags_to_check & XACT_USE_AGILITY) && X.agility)
 		if(!silent)
-			to_chat(owner, "<span class='warning'>We can't do this in agility mode!</span>")
+			to_chat(owner, span_warning("We can't do this in agility mode!"))
 		return FALSE
 
 	if(!(flags_to_check & XACT_IGNORE_PLASMA) && X.plasma_stored < plasma_cost)
 		if(!silent)
-			to_chat(owner, "<span class='warning'>We don't have enough plasma, we need [plasma_cost - X.plasma_stored] more.</span>")
+			to_chat(owner, span_warning("We don't have enough plasma, we need [plasma_cost - X.plasma_stored] more."))
 		return FALSE
 
 	return TRUE
@@ -228,10 +230,8 @@
 /datum/action/xeno_action/activable/action_activate()
 	var/mob/living/carbon/xenomorph/X = owner
 	if(X.selected_ability == src)
-		to_chat(X, "You will no longer use [ability_name] with [(X.client.prefs.toggles_gameplay & MIDDLESHIFTCLICKING) ? "middle-click" :"shift-click"].")
 		deselect()
 	else
-		to_chat(X, "You will now use [ability_name] with [(X.client.prefs.toggles_gameplay & MIDDLESHIFTCLICKING) ? "middle-click" :"shift-click"].")
 		if(X.selected_ability)
 			X.selected_ability.deselect()
 		select()

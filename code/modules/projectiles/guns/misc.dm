@@ -5,21 +5,23 @@
 
 /obj/item/weapon/gun/flare
 	name = "flare gun"
-	desc = "A gun that fires flares. Replace with flares. Simple!"
+	desc = "A gun that fires flares. Replace with flares. Simple! Equipped with long range irons."
 	icon_state = "flaregun" //REPLACE THIS
 	item_state = "gun" //YUCK
 	fire_sound = 'sound/weapons/guns/fire/flare.ogg'
 	ammo = /datum/ammo/flare
+	w_class = WEIGHT_CLASS_TINY
 	var/num_flares = 1
 	var/max_flares = 1
 	flags_gun_features = GUN_UNUSUAL_DESIGN
 	gun_skill_category = GUN_SKILL_PISTOLS
-	fire_delay = 9
+	fire_delay = 0.5 SECONDS
+	starting_attachment_types = list(/obj/item/attachable/scope/unremovable/flaregun)
 
 
 /obj/item/weapon/gun/flare/examine_ammo_count(mob/user)
 	if(num_flares)
-		to_chat(user, "<span class='warning'>It has [num2text(num_flares)] flare[num_flares > 1 ? "s" : ""] loaded!</span>")
+		to_chat(user, span_warning("It has [num2text(num_flares)] flare[num_flares > 1 ? "s" : ""] loaded!"))
 
 /obj/item/weapon/gun/flare/update_icon()
 	if(num_flares)
@@ -53,7 +55,7 @@
 		num_flares++
 		user.temporarilyRemoveItemFromInventory(flare)
 		qdel(flare)
-		to_chat(user, "<span class='notice'>You insert the flare.</span>")
+		to_chat(user, span_notice("You insert the flare."))
 		update_icon()
 	else
 		return ..()
@@ -66,12 +68,17 @@
 		else
 			new_flare.loc = get_turf(src)
 		num_flares--
-		to_chat(user, "<span class='notice'>You unload a flare from [src].</span>")
+		to_chat(user, span_notice("You unload a flare from [src]."))
 		update_icon()
 	else
-		to_chat(user, "<span class='warning'>It's empty!</span>")
+		to_chat(user, span_warning("It's empty!"))
 	return TRUE
 
+/obj/item/weapon/gun/flare/marine
+	name = "M30E2 flare gun"
+	desc = "A very tiny flaregun that fires flares equipped with long range irons, the mass amounts of markings on the back and barrel denote it as owned by the TGMC."
+	icon_state = "marine_flaregun"
+	ammo = /datum/ammo/flare
 
 //-------------------------------------------------------
 //Toy rocket launcher.
@@ -100,24 +107,24 @@
 
 /obj/item/weapon/gun/syringe/examine_ammo_count(mob/user)
 	if(user == loc)
-		to_chat(user, "<span class='notice'>[syringes.len] / [max_syringes] syringes.</span>")
+		to_chat(user, span_notice("[syringes.len] / [max_syringes] syringes."))
 
 /obj/item/weapon/gun/syringe/attackby(obj/item/I, mob/user, params)
 	if(istype(I, /obj/item/reagent_containers/syringe))
 		var/obj/item/reagent_containers/syringe/S = I
 		if(S.mode == 2)
-			to_chat(user, "<span class='warning'>This syringe is broken!</span>")
+			to_chat(user, span_warning("This syringe is broken!"))
 			return
 
 		if(length(syringes) >= max_syringes)
-			to_chat(user, "<span class='warning'>[src] cannot hold more syringes.</span>")
+			to_chat(user, span_warning("[src] cannot hold more syringes."))
 			return
 
 		user.transferItemToLoc(I, src)
 		syringes += I
 		update_icon()
-		to_chat(user, "<span class='notice'>You put the syringe in [src].</span>")
-		to_chat(user, "<span class='notice'>[length(syringes)] / [max_syringes] syringes.</span>")
+		to_chat(user, span_notice("You put the syringe in [src]."))
+		to_chat(user, span_notice("[length(syringes)] / [max_syringes] syringes."))
 
 
 /obj/item/weapon/gun/syringe/afterattack(obj/target, mob/user , flag)
@@ -135,7 +142,7 @@
 	if(syringes.len)
 		INVOKE_ASYNC(src, .proc/fire_syringe, target, gun_user)
 	else
-		to_chat(gun_user, "<span class='warning'>[src] is empty.</span>")
+		to_chat(gun_user, span_warning("[src] is empty."))
 
 /obj/item/weapon/gun/syringe/proc/fire_syringe(atom/target, mob/user)
 	if (locate (/obj/structure/table, src.loc))
@@ -174,14 +181,14 @@
 					else
 						M.log_message("<b>UNKNOWN SUBJECT (No longer exists)</b> shot <b>[key_name(M)]</b> with a <b>[src]</b> Reagents: ([R])", LOG_ATTACK)
 
-					M.visible_message("<span class='danger'>[M] is hit by the syringe!</span>")
+					M.visible_message(span_danger("[M] is hit by the syringe!"))
 
 					if(M.can_inject())
 						if(D.reagents)
 							D.reagents.reaction(M, INJECT)
 							D.reagents.trans_to(M, 15)
 					else
-						M.visible_message("<span class='danger'>The syringe bounces off [M]!</span>")
+						M.visible_message(span_danger("The syringe bounces off [M]!"))
 
 					qdel(D)
 					break

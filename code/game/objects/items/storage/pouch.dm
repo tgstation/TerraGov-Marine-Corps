@@ -321,7 +321,6 @@
 	storage_slots = 1
 	can_hold = list(
 		/obj/item/ammo_magazine/standard_smartmachinegun,
-		/obj/item/ammo_magazine/minigun,
 	)
 
 
@@ -428,6 +427,20 @@
 	new /obj/item/reagent_containers/hypospray/autoinjector/polyhexanide(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/sleeptoxin(src)
 
+/obj/item/storage/pouch/med_lolipops
+	name = "medical pouch"
+	desc = "It's able to contain boxes of lolipops, nothing else."
+	icon_state = "medical"
+	storage_slots = 3
+
+	can_hold = list(/obj/item/storage/box/combat_lolipop,)
+
+/obj/item/storage/pouch/med_lolipops/full/Initialize()
+	. = ..()
+	new /obj/item/storage/box/combat_lolipop(src)
+	new /obj/item/storage/box/combat_lolipop/tricord(src)
+	new /obj/item/storage/box/combat_lolipop/tramadol(src)
+
 /obj/item/storage/pouch/autoinjector/advanced
 	name = "auto-injector pouch"
 	desc = "A pouch specifically for auto-injectors. This one comes pre-loaded with goodies!"
@@ -532,13 +545,16 @@
 
 /obj/item/storage/pouch/flare
 	name = "flare pouch"
-	desc = "A pouch designed to hold flares. Refillable with a M94 flare pack."
+	desc = "A pouch designed to hold flares and a single flaregun. Refillable with a M94 flare pack."
 	max_w_class = 2
 	storage_slots = 7
 	draw_mode = 1
 	icon_state = "flare"
+	storage_type_limits = list(/obj/item/weapon/gun/flare = 1)
+
 	can_hold = list(
 		/obj/item/flashlight/flare,
+		/obj/item/weapon/gun/flare,
 		/obj/item/explosive/grenade/flare,
 	)
 
@@ -547,14 +563,14 @@
 	if(istype(I, /obj/item/storage/box/m94))
 		var/obj/item/storage/box/m94/M = I
 		if(!length(M.contents))
-			to_chat(user, "<span class='warning'>[M] is empty.</span>")
+			to_chat(user, span_warning("[M] is empty."))
 			return
 
 		if(length(contents) >= storage_slots)
-			to_chat(user, "<span class='warning'>[src] is full.</span>")
+			to_chat(user, span_warning("[src] is full."))
 			return
 
-		to_chat(user, "<span class='notice'>You start refilling [src] with [M].</span>")
+		to_chat(user, span_notice("You start refilling [src] with [M]."))
 
 		if(!do_after(user, 15, TRUE, src, BUSY_ICON_GENERIC))
 			return
@@ -696,15 +712,15 @@
 
 		if(M.flags_magazine & AMMUNITION_REFILLABLE)
 			if(!M.current_rounds)
-				to_chat(user, "<span class='warning'>[M] is empty.</span>")
+				to_chat(user, span_warning("[M] is empty."))
 				return
 
 			if(length(contents) >= storage_slots)
-				to_chat(user, "<span class='warning'>[src] is full.</span>")
+				to_chat(user, span_warning("[src] is full."))
 				return
 
 
-			to_chat(user, "<span class='notice'>You start refilling [src] with [M].</span>")
+			to_chat(user, span_notice("You start refilling [src] with [M]."))
 			if(!do_after(user, 1.5 SECONDS, TRUE, src, BUSY_ICON_GENERIC))
 				return
 
@@ -714,7 +730,7 @@
 					break
 
 			playsound(user.loc, "rustle", 15, TRUE, 6)
-			to_chat(user, "<span class='notice'>You refill [src] with [M].</span>")
+			to_chat(user, span_notice("You refill [src] with [M]."))
 			return TRUE
 
 	return ..()

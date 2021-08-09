@@ -21,20 +21,20 @@
 
 /datum/element/shrapnel_removal/proc/attempt_remove(obj/item/removaltool, mob/living/M, mob/living/user)
 	if(!ishuman(M))
-		to_chat(user, "<span class='warning'>You only know how to remove shrapnel from humans!</span>")
+		M.balloon_alert(user, "You only know how to remove shrapnel from humans!")
 		return
 	var/mob/living/carbon/human/target = M
 	var/datum/limb/targetlimb = target.get_limb(user.zone_selected)
 	if(!length(targetlimb.implants))
-		to_chat(user, "<span class='warning'>There is nothing in this limb!</span>")
+		M.balloon_alert(user, "There is nothing in limb!")
 		return
 	var/skill = user.skills.getRating("medical")
 	if(skill < SKILL_MEDICAL_PRACTICED)
-		user.visible_message("<span class='notice'>[user] fumbles around with the [removaltool].</span>",
-		"<span class='notice'>You fumble around figuring out how to use [removaltool].</span>")
+		user.visible_message(span_notice("[user] fumbles around with the [removaltool]."),
+		span_notice("You fumble around figuring out how to use [removaltool]."))
 		if(!do_after(user, do_after_time * (SKILL_MEDICAL_PRACTICED - skill), TRUE, target, BUSY_ICON_UNSKILLED))
 			return
-	user.visible_message("<span class='notice'>[user] starts searching for shrapnel in [target] with the [removaltool].</span>", "<span class='notice'>You start searching for shrapnel in [target] with the [removaltool].</span>")
+	user.visible_message(span_notice("[user] starts searching for shrapnel in [target] with the [removaltool]."), span_notice("You start searching for shrapnel in [target] with the [removaltool]."))
 	if(!do_after(user, do_after_time, TRUE, target, BUSY_ICON_MEDICAL))
 		return
 	for(var/obj/item/I AS in targetlimb.implants)
@@ -42,9 +42,9 @@
 			continue
 		I.unembed_ourself(FALSE)
 		if(skill < SKILL_MEDICAL_PRACTICED)
-			user.visible_message("<span class='notice'>[user] violently rips out [I] from [target]!</span>", "<span class='notice'>You violently rip out [I] from [target]!</span>")
+			user.visible_message(span_notice("[user] violently rips out [I] from [target]!"), span_notice("You violently rip out [I] from [target]!"))
 			target.apply_damage(30 * (SKILL_MEDICAL_PRACTICED - skill), def_zone = user.zone_selected)
 		else
-			user.visible_message("<span class='notice'>[user] pulls out [I] from [target]!</span>", "<span class='notice'>You pull out [I] from [target]!</span>")
+			user.visible_message(span_notice("[user] pulls out [I] from [target]!"), span_notice("You pull out [I] from [target]!"))
 			target.apply_damage(15, def_zone = user.zone_selected)
 		break

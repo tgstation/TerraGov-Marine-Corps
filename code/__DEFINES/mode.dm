@@ -113,11 +113,8 @@
 
 #define XENO_AFK_TIMER 5 MINUTES
 
-#define DEATHTIME_CHECK(M) ((world.time - M.timeofdeath) < GLOB.respawntime)
-#define DEATHTIME_MESSAGE(M) to_chat(M, "<span class='warning'>You have been dead for [(world.time - M.timeofdeath) * 0.1] second\s.</span><br><span class='warning'>You must wait [GLOB.respawntime * 0.1] seconds before rejoining the game!</span>")
-
-#define XENODEATHTIME_CHECK(M) ((world.time - M.timeofdeath) < GLOB.xenorespawntime)
-#define XENODEATHTIME_MESSAGE(M) to_chat(M, "<span class='warning'>You have been dead for [(world.time - M.timeofdeath) * 0.1] second\s.</span><br><span class='warning'>You must wait [GLOB.xenorespawntime * 0.1] seconds before rejoining the game as a xenomorph!</span>")
+#define DEATHTIME_CHECK(M) ((world.time - M.timeofdeath) < SSticker.mode?.respawn_time)
+#define DEATHTIME_MESSAGE(M) to_chat(M, span_warning("You have been dead for [(world.time - M.timeofdeath) * 0.1] second\s.</span><br><span class='warning'>You must wait [SSticker.mode?.respawn_time * 0.1] seconds before rejoining the game!"))
 
 #define COUNT_IGNORE_HUMAN_SSD (1<<0)
 #define COUNT_IGNORE_XENO_SSD (1<<1)
@@ -138,11 +135,11 @@
 #define INVOKE_KING_TIME_LOCK 1 HOURS
 
 /// How each alive marine contributes to burrower larva output per minute. So with one pool, 15 marines are giving 0.375 points per minute, so it's a new xeno every 22 minutes
-#define SILO_BASE_OUTPUT_PER_MARINE 0.03
+#define SILO_BASE_OUTPUT_PER_MARINE 0.035
 /// This is used to ponderate the number of silo, so to reduces the diminishing returns of having more and more silos
-#define SILO_OUTPUT_PONDERATION 2
+#define SILO_OUTPUT_PONDERATION 1.75
 //Time (after round start) before siloless timer can start
-#define MINIMUM_TIME_SILO_LESS_COLLAPSE 1 HOURS
+#define MINIMUM_TIME_SILO_LESS_COLLAPSE 45 MINUTES
 
 #define INFESTATION_MARINE_DEPLOYMENT 0
 #define INFESTATION_MARINE_CRASHING 1
@@ -154,6 +151,8 @@
 
 #define DISTRESS_LARVA_POINTS_NEEDED 8
 #define HUNT_LARVA_POINTS_NEEDED 8
-#define CRASH_LARVA_POINTS_NEEDED 7
+#define CRASH_LARVA_POINTS_NEEDED 10
+
+#define FREE_XENO_AT_START 2
 
 #define MAX_UNBALANCED_RATIO_TWO_HUMAN_FACTIONS 1.2

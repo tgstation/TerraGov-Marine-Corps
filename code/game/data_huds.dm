@@ -183,21 +183,33 @@
 	var/image/infection_hud = hud_list[XENO_EMBRYO_HUD] //State of the xeno embryo.
 	var/image/simple_status_hud = hud_list[STATUS_HUD_SIMPLE] //Status for the naked eye.
 	var/image/xeno_reagent = hud_list[XENO_REAGENT_HUD] // Displays active xeno reagents
-	var/static/image/neurotox_image = image('icons/mob/hud.dmi', src, "neurotoxin")
-	var/static/image/hemodile_image = image('icons/mob/hud.dmi', src, "hemodile")
-	var/static/image/transvitox_image = image('icons/mob/hud.dmi', src, "transvitox")
+	var/static/image/neurotox_image = image('icons/mob/hud.dmi', icon_state = "neurotoxin")
+	var/static/image/hemodile_image = image('icons/mob/hud.dmi', icon_state = "hemodile")
+	var/static/image/transvitox_image = image('icons/mob/hud.dmi', icon_state = "transvitox")
+	var/static/image/neurotox_high_image = image('icons/mob/hud.dmi', icon_state = "neurotoxin_high")
+	var/static/image/hemodile_high_image = image('icons/mob/hud.dmi', icon_state = "hemodile_high")
+	var/static/image/transvitox_high_image = image('icons/mob/hud.dmi', icon_state = "transvitox_high")
 
 	xeno_reagent.overlays.Cut()
 	xeno_reagent.icon_state = ""
 	if(stat != DEAD)
+		var/neurotox_amount = reagents.get_reagent_amount(/datum/reagent/toxin/xeno_neurotoxin) + reagents.get_reagent_amount(/datum/reagent/toxin/xeno_neurotoxin/light)
+		var/hemodile_amount = reagents.get_reagent_amount(/datum/reagent/toxin/xeno_hemodile)
+		var/transvitox_amount = reagents.get_reagent_amount(/datum/reagent/toxin/xeno_transvitox)
 
-		if(reagents.get_reagent_amount(/datum/reagent/toxin/xeno_neurotoxin))
+		if(neurotox_amount > 10) //Blinking image for particularly high concentrations
+			xeno_reagent.overlays += neurotox_high_image
+		else if(neurotox_amount > 0)
 			xeno_reagent.overlays += neurotox_image
 
-		if(reagents.get_reagent_amount(/datum/reagent/toxin/xeno_hemodile))
+		if(hemodile_amount > 10)
+			xeno_reagent.overlays += hemodile_high_image
+		else if(hemodile_amount > 0)
 			xeno_reagent.overlays += hemodile_image
 
-		if(reagents.get_reagent_amount(/datum/reagent/toxin/xeno_transvitox))
+		if(transvitox_amount > 10)
+			xeno_reagent.overlays += transvitox_high_image
+		else if(transvitox_amount > 0)
 			xeno_reagent.overlays += transvitox_image
 
 	hud_list[XENO_REAGENT_HUD] = xeno_reagent
@@ -230,11 +242,7 @@
 				return TRUE
 			if(!client)
 				var/mob/dead/observer/ghost = get_ghost()
-				if(ghost)
-					if(!ghost.can_reenter_corpse)
-						status_hud.icon_state = "huddead"
-						return TRUE
-				else
+				if(!ghost?.can_reenter_corpse)
 					status_hud.icon_state = "huddead"
 					return TRUE
 			var/stage
@@ -524,20 +532,6 @@
 	if(!amount)
 		amount = 1 //don't want the 'zero health' icon when we still have 4% of our health
 	holder.icon_state = "xenohealth[amount]"
-
-///Makes sentry ammo visible
-/obj/machinery/marine_turret/proc/hud_set_sentry_ammo()
-	var/image/holder = hud_list[SENTRY_AMMO_HUD]
-
-	if(!holder)
-		return
-
-	if(!rounds)
-		holder.icon_state = "plasma0"
-		return
-
-	var/amount = round(rounds * 100 / rounds_max, 10)
-	holder.icon_state = "plasma[amount]"
 
 ///Makes mounted guns ammo visible
 /obj/machinery/deployable/mounted/proc/hud_set_gun_ammo()

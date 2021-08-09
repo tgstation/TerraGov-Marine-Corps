@@ -35,10 +35,10 @@
 
 /obj/structure/table/proc/update_adjacent(location = loc)
 	for(var/direction in CARDINAL_ALL_DIRS)
-		var/obj/structure/table/T = locate(/obj/structure/table, get_step(location,direction))
-		if(!T)
+		var/obj/structure/table/table = locate(/obj/structure/table, get_step(location,direction))
+		if(!table)
 			continue
-		T.update_icon()
+		INVOKE_NEXT_TICK(table, /atom/proc.update_icon)
 
 
 /obj/structure/table/Initialize()
@@ -57,13 +57,13 @@
 	if(istype(O,/mob/living/carbon/xenomorph/ravager))
 		var/mob/living/carbon/xenomorph/M = O
 		if(!M.stat) //No dead xenos jumpin on the bed~
-			visible_message("<span class='danger'>[O] plows straight through [src]!</span>")
+			visible_message(span_danger("[O] plows straight through [src]!"))
 			deconstruct(FALSE)
 
 /obj/structure/table/Destroy()
 	var/tableloc = loc
-	. = ..()
 	update_adjacent(tableloc) //so neighbouring tables get updated correctly
+	return ..()
 
 /obj/structure/table/update_icon()
 	if(flipped)
@@ -219,7 +219,7 @@
 			return TRUE
 
 
-/obj/structure/table/CheckExit(atom/movable/mover, turf/target)
+/obj/structure/table/CheckExit(atom/movable/mover, direction)
 	. = ..()
 	if(istype(mover) && CHECK_BITFIELD(mover.flags_pass, PASSTABLE))
 		return TRUE
@@ -252,15 +252,15 @@
 	if(reinforced && table_status != TABLE_STATUS_WEAKENED)
 		return FALSE
 
-	user.visible_message("<span class='notice'>[user] starts disassembling [src].</span>",
-		"<span class='notice'>You start disassembling [src].</span>")
+	user.visible_message(span_notice("[user] starts disassembling [src]."),
+		span_notice("You start disassembling [src]."))
 
 	playsound(loc, 'sound/items/ratchet.ogg', 25, TRUE)
 	if(!do_after(user, 5 SECONDS, TRUE, src, BUSY_ICON_BUILD))
 		return TRUE
 
-	user.visible_message("<span class='notice'>[user] disassembles [src].</span>",
-		"<span class='notice'>You disassemble [src].</span>")
+	user.visible_message(span_notice("[user] disassembles [src]."),
+		span_notice("You disassemble [src]."))
 	deconstruct(TRUE)
 	return TRUE
 
@@ -279,22 +279,22 @@
 		var/mob/living/M = G.grabbed_thing
 		if(user.a_intent == INTENT_HARM)
 			if(user.grab_state <= GRAB_AGGRESSIVE)
-				to_chat(user, "<span class='warning'>You need a better grip to do that!</span>")
+				to_chat(user, span_warning("You need a better grip to do that!"))
 				return
 
 			if(prob(15))
 				M.Paralyze(10 SECONDS)
 			M.apply_damage(8, BRUTE, "head", updating_health = TRUE)
-			user.visible_message("<span class='danger'>[user] slams [M]'s face against [src]!</span>",
-			"<span class='danger'>You slam [M]'s face against [src]!</span>")
+			user.visible_message(span_danger("[user] slams [M]'s face against [src]!"),
+			span_danger("You slam [M]'s face against [src]!"))
 			log_combat(user, M, "slammed", "", "against \the [src]")
 			playsound(loc, 'sound/weapons/tablehit1.ogg', 25, 1)
 
 		else if(user.grab_state >= GRAB_AGGRESSIVE)
 			M.forceMove(loc)
 			M.Paralyze(10 SECONDS)
-			user.visible_message("<span class='danger'>[user] throws [M] on [src].</span>",
-			"<span class='danger'>You throw [M] on [src].</span>")
+			user.visible_message(span_danger("[user] throws [M] on [src]."),
+			span_danger("You throw [M] on [src]."))
 		return
 
 	if(user.a_intent != INTENT_HARM)
@@ -335,11 +335,11 @@
 		return
 
 	if(!flip(get_cardinal_dir(usr, src)))
-		to_chat(usr, "<span class='warning'>[src] won't budge.</span>")
+		to_chat(usr, span_warning("[src] won't budge."))
 		return
 
-	usr.visible_message("<span class='warning'>[usr] flips [src]!</span>",
-	"<span class='warning'>You flip [src]!</span>")
+	usr.visible_message(span_warning("[usr] flips [src]!"),
+	span_warning("You flip [src]!"))
 
 	if(climbable)
 		structure_shaken()
@@ -380,7 +380,7 @@
 		return
 
 	if(!unflipping_check())
-		to_chat(usr, "<span class='warning'>[src] won't budge.</span>")
+		to_chat(usr, span_warning("[src] won't budge."))
 		return
 
 	unflip()
@@ -524,25 +524,25 @@
 		return FALSE
 
 	if(table_status == TABLE_STATUS_FIRM)
-		user.visible_message("<span class='notice'>[user] starts weakening [src].</span>",
-		"<span class='notice'>You start weakening [src]</span>")
+		user.visible_message(span_notice("[user] starts weakening [src]."),
+		span_notice("You start weakening [src]"))
 		playsound(loc, 'sound/items/welder.ogg', 25, TRUE)
 		if(!do_after(user, 5 SECONDS, TRUE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(WT, /obj/item/tool/weldingtool/proc/isOn)) || !WT.remove_fuel(1, user))
 			return TRUE
 
-		user.visible_message("<span class='notice'>[user] weakens [src].</span>",
-			"<span class='notice'>You weaken [src]</span>")
+		user.visible_message(span_notice("[user] weakens [src]."),
+			span_notice("You weaken [src]"))
 		table_status = TABLE_STATUS_WEAKENED
 		return TRUE
 
-	user.visible_message("<span class='notice'>[user] starts welding [src] back together.</span>",
-		"<span class='notice'>You start welding [src] back together.</span>")
+	user.visible_message(span_notice("[user] starts welding [src] back together."),
+		span_notice("You start welding [src] back together."))
 	playsound(loc, 'sound/items/welder.ogg', 25, TRUE)
 	if(!do_after(user, 5 SECONDS, TRUE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(WT, /obj/item/tool/weldingtool/proc/isOn)) || !WT.remove_fuel(1, user))
 		return TRUE
 
-	user.visible_message("<span class='notice'>[user] welds [src] back together.</span>",
-		"<span class='notice'>You weld [src] back together.</span>")
+	user.visible_message(span_notice("[user] welds [src] back together."),
+		span_notice("You weld [src] back together."))
 	table_status = TABLE_STATUS_FIRM
 	return TRUE
 
@@ -610,7 +610,7 @@
 	if(istype(O,/mob/living/carbon/xenomorph/ravager))
 		var/mob/living/carbon/xenomorph/M = O
 		if(!M.stat) //No dead xenos jumpin on the bed~
-			visible_message("<span class='danger'>[O] plows straight through [src]!</span>")
+			visible_message(span_danger("[O] plows straight through [src]!"))
 			deconstruct(FALSE)
 
 /obj/structure/rack/deconstruct(disassembled = TRUE)

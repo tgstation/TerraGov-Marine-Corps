@@ -159,6 +159,9 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/obj/screen/map_view/screen_main
 	var/obj/screen/background/screen_bg
 
+	/// If unique action will only act on the item in the active hand. If false, it will try to act on the item on the inactive hand as well in certain conditions.
+	var/unique_action_use_active_hand = TRUE
+
 
 /datum/preferences/New(client/C)
 	if(!istype(C))
@@ -181,9 +184,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 	if(!IsGuestKey(C.key))
 		load_path(C.ckey)
-		if(!load_loadout_manager() || loadout_manager.version != CURRENT_LOADOUT_VERSION)
-			loadout_manager = new
-			reset_loadouts_file()
+		loadout_manager = new
+		loadout_manager.loadouts_data = load_loadout_list()
 		if(load_preferences() && load_character())
 			C.set_fullscreen(fullscreen_mode)
 			return

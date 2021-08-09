@@ -320,6 +320,8 @@ SUBSYSTEM_DEF(minimaps)
 	var/minimap_displayed = FALSE
 	///Minimap object we'll be displaying
 	var/obj/screen/minimap/map
+	///This is mostly for the AI & other things which do not move groundside.
+	var/default_overwatch_level = 0
 
 /datum/action/minimap/Destroy()
 	map = null
@@ -337,7 +339,12 @@ SUBSYSTEM_DEF(minimaps)
 
 /datum/action/minimap/give_action(mob/M)
 	. = ..()
-	RegisterSignal(M, COMSIG_MOVABLE_Z_CHANGED, .proc/on_owner_z_change)
+
+	if(default_overwatch_level)
+		map = SSminimaps.fetch_minimap_object(default_overwatch_level, minimap_flags)
+	else
+		RegisterSignal(M, COMSIG_MOVABLE_Z_CHANGED, .proc/on_owner_z_change)
+	RegisterSignal(M, COMSIG_KB_TOGGLE_MINIMAP, .proc/action_activate)
 	if(!SSminimaps.minimaps_by_z["[M.z]"] || !SSminimaps.minimaps_by_z["[M.z]"].hud_image)
 		return
 	map = SSminimaps.fetch_minimap_object(M.z, minimap_flags)
@@ -347,7 +354,7 @@ SUBSYSTEM_DEF(minimaps)
 	if(minimap_displayed)
 		owner.client.screen -= map
 		minimap_displayed = FALSE
-	UnregisterSignal(M, COMSIG_MOVABLE_Z_CHANGED)
+	UnregisterSignal(M, list(COMSIG_MOVABLE_Z_CHANGED, COMSIG_KB_TOGGLE_MINIMAP))
 
 /**
  * Updates the map when the owner changes zlevel
@@ -359,6 +366,9 @@ SUBSYSTEM_DEF(minimaps)
 		minimap_displayed = FALSE
 	map = null
 	if(!SSminimaps.minimaps_by_z["[newz]"] || !SSminimaps.minimaps_by_z["[newz]"].hud_image)
+		return
+	if(default_overwatch_level)
+		map = SSminimaps.fetch_minimap_object(default_overwatch_level, minimap_flags)
 		return
 	map = SSminimaps.fetch_minimap_object(newz, minimap_flags)
 
@@ -384,6 +394,11 @@ SUBSYSTEM_DEF(minimaps)
 /datum/action/minimap/delta
 	minimap_flags = MINIMAP_FLAG_DELTA
 	marker_flags = MINIMAP_FLAG_DELTA|MINIMAP_FLAG_MARINE
+
+/datum/action/minimap/ai
+	minimap_flags = MINIMAP_FLAG_MARINE
+	marker_flags = MINIMAP_FLAG_MARINE
+	default_overwatch_level = 2
 
 /datum/action/minimap/marine/rebel
 	minimap_flags = MINIMAP_FLAG_MARINE_REBEL

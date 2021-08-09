@@ -8,7 +8,7 @@
 
 /obj/item/explosive/grenade/flashbang/attack_self(mob/user)
 	if(user.skills.getRating("police") < SKILL_POLICE_MP)
-		to_chat(user, "<span class='warning'>You don't seem to know how to use [src]...</span>")
+		to_chat(user, span_warning("You don't seem to know how to use [src]..."))
 		return
 	..()
 
@@ -32,7 +32,7 @@
 	qdel(src)
 
 /obj/item/explosive/grenade/flashbang/proc/bang(turf/T , mob/living/carbon/M)						// Added a new proc called 'bang' that takes a location and a person to be banged.
-	to_chat(M, "<span class='danger'>BANG</span>")
+	to_chat(M, span_danger("BANG"))
 	playsound(src.loc, 'sound/effects/bang.ogg', 50, 1)
 
 //Checking for protections
@@ -79,19 +79,19 @@
 		var/mob/living/carbon/human/H = M
 		var/datum/internal_organ/eyes/E = H.internal_organs_by_name["eyes"]
 		if (E && E.damage >= E.min_bruised_damage)
-			to_chat(M, "<span class='warning'>Your eyes start to burn badly!</span>")
+			to_chat(M, span_warning("Your eyes start to burn badly!"))
 			if(!banglet && !(istype(src , /obj/item/explosive/grenade/flashbang/clusterbang)))
 				if (E.damage >= E.min_broken_damage)
-					to_chat(M, "<span class='warning'>You can't see anything!</span>")
+					to_chat(M, span_warning("You can't see anything!"))
 	if (M.ear_damage >= 15)
-		to_chat(M, "<span class='warning'>Your ears start to ring badly!</span>")
+		to_chat(M, span_warning("Your ears start to ring badly!"))
 		if(!banglet && !(istype(src , /obj/item/explosive/grenade/flashbang/clusterbang)))
 			if (prob(M.ear_damage - 10 + 5))
-				to_chat(M, "<span class='warning'>You can't hear anything!</span>")
+				to_chat(M, span_warning("You can't hear anything!"))
 				M.disabilities |= DEAF
 	else
 		if (M.ear_damage >= 5)
-			to_chat(M, "<span class='warning'>Your ears start to ring!</span>")
+			to_chat(M, span_warning("Your ears start to ring!"))
 
 
 /obj/item/explosive/grenade/flashbang/clusterbang//Created by Polymorph, fixed by Sieve

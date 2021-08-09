@@ -105,7 +105,7 @@
 					continue
 				statpanel(listed_turf.name, null, A)
 
-/mob/proc/show_message(msg, type, alt_msg, alt_type)
+/mob/proc/show_message(msg, type, alt_msg, alt_type, avoid_highlight)
 	if(!client)
 		return
 
@@ -114,7 +114,7 @@
 	to_chat(src, msg)
 
 
-/mob/living/show_message(msg, type, alt_msg, alt_type)
+/mob/living/show_message(msg, type, alt_msg, alt_type, avoid_highlight)
 	if(!client)
 		return
 
@@ -139,8 +139,8 @@
 
 	if(stat == UNCONSCIOUS && type == EMOTE_AUDIBLE)
 		to_chat(src, "<i>... You can almost hear something ...</i>")
-	else
-		to_chat(src, msg)
+		return
+	to_chat(src, msg, avoid_highlighting = avoid_highlight)
 
 // Show a message to all player mobs who sees this atom
 // Show a message to the src mob (if the src is a mob)
@@ -277,7 +277,7 @@
 			qdel(W)
 			return FALSE
 		if(warning)
-			to_chat(src, "<span class='warning'>You are unable to equip that.</span>")
+			to_chat(src, span_warning("You are unable to equip that."))
 		return FALSE
 	if(W.time_to_equip && !ignore_delay)
 		if(!do_after(src, W.time_to_equip, TRUE, W, BUSY_ICON_FRIENDLY))
@@ -467,7 +467,7 @@
 			return FALSE
 	else if(l_hand && r_hand)
 		if(!suppress_message)
-			to_chat(src, "<span class='warning'>Cannot grab, lacking free hands to do so!</span>")
+			to_chat(src, span_warning("Cannot grab, lacking free hands to do so!"))
 		return FALSE
 
 	AM.add_fingerprint(src, "pull")
@@ -476,9 +476,9 @@
 
 	if(AM.pulledby)
 		if(!suppress_message)
-			AM.visible_message("<span class='danger'>[src] has pulled [AM] from [AM.pulledby]'s grip.</span>",
-				"<span class='danger'>[src] has pulled you from [AM.pulledby]'s grip.</span>", null, null, src)
-			to_chat(src, "<span class='notice'>You pull [AM] from [AM.pulledby]'s grip!</span>")
+			AM.visible_message(span_danger("[src] has pulled [AM] from [AM.pulledby]'s grip."),
+				span_danger("[src] has pulled you from [AM.pulledby]'s grip."), null, null, src)
+			to_chat(src, span_notice("You pull [AM] from [AM.pulledby]'s grip!"))
 		log_combat(AM, AM.pulledby, "pulled from", src)
 		AM.pulledby.stop_pulling() //an object can't be pulled by two mobs at once.
 
@@ -511,7 +511,7 @@
 		do_attack_animation(pulled_mob, ATTACK_EFFECT_GRAB)
 
 		if(!suppress_message)
-			visible_message("<span class='warning'>[src] has grabbed [pulled_mob] passively!</span>", null, null, 5)
+			visible_message(span_warning("[src] has grabbed [pulled_mob] passively!"), null, null, 5)
 
 		if(pulled_mob.mob_size > MOB_SIZE_HUMAN || !(pulled_mob.status_flags & CANPUSH))
 			grab_item.icon_state = "!reinforce"
@@ -680,23 +680,24 @@
 			end_of_conga = TRUE //Only mobs can continue the cycle.
 	var/area/new_area = get_area(destination)
 	for(var/atom/movable/AM in conga_line)
+		var/move_dir = get_dir(AM, destination)
 		var/oldLoc
 		if(AM.loc)
 			oldLoc = AM.loc
-			AM.loc.Exited(AM,destination)
+			AM.loc.Exited(AM, move_dir)
 		AM.loc = destination
-		AM.loc.Entered(AM,oldLoc)
+		AM.loc.Entered(AM, oldLoc)
 		var/area/old_area
 		if(oldLoc)
 			old_area = get_area(oldLoc)
 		if(new_area && old_area != new_area)
-			new_area.Entered(AM,oldLoc)
+			new_area.Entered(AM, oldLoc)
 		for(var/atom/movable/CR in destination)
 			if(CR in conga_line)
 				continue
 			CR.Crossed(AM)
 		if(oldLoc)
-			AM.Moved(oldLoc)
+			AM.Moved(oldLoc, move_dir)
 		var/mob/M = AM
 		if(istype(M))
 			M.reset_perspective(destination)

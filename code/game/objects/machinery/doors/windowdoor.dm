@@ -34,7 +34,7 @@
 /obj/machinery/door/window/Destroy()
 	density = FALSE
 	playsound(src, "shatter", 50, 1)
-	. = ..()
+	return ..()
 
 
 /obj/machinery/door/window/update_icon()
@@ -88,7 +88,7 @@
 		return ..()
 	return TRUE
 
-/obj/machinery/door/window/CheckExit(atom/movable/mover, turf/target)
+/obj/machinery/door/window/CheckExit(atom/movable/mover, direction)
 	if(istype(mover) && CHECK_BITFIELD(mover.flags_pass, PASSGLASS))
 		return TRUE
 	return ..()
@@ -154,7 +154,7 @@
 		if(!do_after(user, 40, TRUE, src, BUSY_ICON_BUILD))
 			return TRUE
 
-		to_chat(user, "<span class='notice'>You removed the windoor electronics!</span>")
+		to_chat(user, span_notice("You removed the windoor electronics!"))
 
 		var/obj/structure/windoor_assembly/WA = new(loc)
 

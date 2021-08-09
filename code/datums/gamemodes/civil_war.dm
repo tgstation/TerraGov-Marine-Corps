@@ -3,6 +3,7 @@
 	config_tag = "Civil War"
 	flags_round_type = MODE_LZ_SHUTTERS|MODE_TWO_HUMAN_FACTIONS|MODE_HUMAN_ONLY
 	flags_landmarks = MODE_LANDMARK_SPAWN_SPECIFIC_SHUTTLE_CONSOLE
+	respawn_time = 5 MINUTES
 
 	valid_job_types = list(
 		/datum/job/terragov/command/captain = 1,
@@ -19,6 +20,7 @@
 		/datum/job/terragov/silicon/synthetic = 1,
 		/datum/job/terragov/squad/engineer = 8,
 		/datum/job/terragov/squad/corpsman = 8,
+		/datum/job/terragov/squad/smartgunner = 1,
 		/datum/job/terragov/squad/leader = 4,
 		/datum/job/terragov/squad/standard = -1,
 		/datum/job/terragov/command/captain/rebel = 1,
@@ -34,6 +36,7 @@
 		/datum/job/terragov/silicon/synthetic/rebel = 1,
 		/datum/job/terragov/squad/engineer/rebel = 8,
 		/datum/job/terragov/squad/corpsman/rebel = 8,
+		/datum/job/terragov/squad/smartgunner/rebel = 1,
 		/datum/job/terragov/squad/leader/rebel = 4,
 		/datum/job/terragov/squad/standard/rebel = -1
 	)

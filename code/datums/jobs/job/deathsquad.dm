@@ -1,7 +1,7 @@
 /datum/job/deathsquad
 	access = ALL_ANTAGONIST_ACCESS
 	minimal_access = ALL_ANTAGONIST_ACCESS
-	skills_type = /datum/skills/SL/pmc
+	skills_type = /datum/skills/sl/pmc
 	faction = FACTION_DEATHSQUAD
 
 
@@ -187,7 +187,7 @@
 	mask = /obj/item/clothing/mask/gas/PMC
 	head = /obj/item/clothing/head/helmet/marine/veteran/PMC/commando
 	glasses = /obj/item/clothing/glasses/night/m56_goggles
-	suit_store = /obj/item/weapon/gun/rifle/standard_smartmachinegun/ds
+	suit_store = /obj/item/weapon/gun/rifle/standard_smartmachinegun
 	r_store = /obj/item/storage/pouch/magazine/drum
 	l_store = /obj/item/storage/pouch/medkit
 	back = /obj/item/storage/backpack/commando

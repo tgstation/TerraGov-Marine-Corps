@@ -21,7 +21,7 @@
 
 	var/mob/living/carbon/human/H = M
 	if(!H.w_uniform)
-		to_chat(H, "<span class='warning'>You need to be wearing somethng under this to be able to equip it.</span>")
+		to_chat(H, span_warning("You need to be wearing somethng under this to be able to equip it."))
 		return FALSE
 
 
@@ -42,7 +42,7 @@
 		/obj/item/binoculars,
 		/obj/item/weapon/combat_knife,
 		/obj/item/attachable/bayonetknife,
-		/obj/item/storage/large_holster/machete
+		/obj/item/storage/large_holster/blade
 	)
 
 
@@ -75,7 +75,7 @@
 		/obj/item/weapon/combat_knife,
 		/obj/item/attachable/bayonetknife,
 		/obj/item/storage/belt/sparepouch,
-		/obj/item/storage/large_holster/machete,
+		/obj/item/storage/large_holster/blade,
 		/obj/item/storage/belt/gun,
 	)
 
@@ -133,7 +133,7 @@
 	allowed = list(
 		/obj/item/weapon/gun/,
 		/obj/item/flashlight,
-		/obj/item/storage/large_holster/machete,
+		/obj/item/storage/large_holster/blade,
 		/obj/item/storage/belt/gun/pistol/m4a3,
 		/obj/item/storage/belt/gun/m44,
 	)
@@ -322,26 +322,26 @@
 
 	if(!holstered)
 		if(!istype(usr.get_active_held_item(), /obj/item/weapon/gun))
-			to_chat(usr, "<span class='notice'>You need your gun equiped to holster it.</span>")
+			to_chat(usr, span_notice("You need your gun equiped to holster it."))
 			return
 		var/obj/item/weapon/gun/W = usr.get_active_held_item()
 		if (W.w_class > 3)
-			to_chat(usr, "<span class='warning'>This gun won't fit in \the belt!</span>")
+			to_chat(usr, span_warning("This gun won't fit in \the belt!"))
 			return
 		holstered = usr.get_active_held_item()
 		usr.drop_held_item()
 		holstered.loc = src
-		usr.visible_message("<span class='notice'> \The [usr] holsters \the [holstered].</span>", "You holster \the [holstered].")
+		usr.visible_message(span_notice(" \The [usr] holsters \the [holstered]."), "You holster \the [holstered].")
 	else
 		if(istype(usr.get_active_held_item(),/obj) && istype(usr.get_inactive_held_item(),/obj))
-			to_chat(usr, "<span class='warning'>You need an empty hand to draw the gun!</span>")
+			to_chat(usr, span_warning("You need an empty hand to draw the gun!"))
 		else
 			if(usr.a_intent == INTENT_HARM)
-				usr.visible_message("<span class='warning'> \The [usr] draws \the [holstered], ready to shoot!</span>", \
-				"<span class='warning'> You draw \the [holstered], ready to shoot!</span>")
+				usr.visible_message(span_warning(" \The [usr] draws \the [holstered], ready to shoot!"), \
+				span_warning(" You draw \the [holstered], ready to shoot!"))
 			else
-				usr.visible_message("<span class='notice'> \The [usr] draws \the [holstered], pointing it at the ground.</span>", \
-				"<span class='notice'> You draw \the [holstered], pointing it at the ground.</span>")
+				usr.visible_message(span_notice(" \The [usr] draws \the [holstered], pointing it at the ground."), \
+				span_notice(" You draw \the [holstered], pointing it at the ground."))
 			usr.put_in_hands(holstered)
 		holstered = null
 

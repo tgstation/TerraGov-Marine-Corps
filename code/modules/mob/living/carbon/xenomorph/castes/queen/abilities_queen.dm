@@ -7,7 +7,7 @@
 	set desc = "Give some specific orders to the hive. They can see this on the status pane."
 
 	if(hivenumber == XENO_HIVE_CORRUPTED)
-		to_chat(src, "<span class='warning'>Only our masters can decide this!</span>")
+		to_chat(src, span_warning("Only our masters can decide this!"))
 		return
 
 	if(!check_state())
@@ -30,32 +30,36 @@
 // ***************************************
 // *********** Hive message
 // ***************************************
-/mob/living/carbon/xenomorph/queen/proc/hive_Message()
-	set category = "Alien"
-	set name = "Word of the Queen (50)"
-	set desc = "Send a message to all aliens in the hive that is big and visible"
-	if(!check_plasma(50))
+/datum/action/xeno_action/hive_message
+	name = "Hive Message" // Also known as Word of Queen.
+	action_icon_state = "queen_order"
+	mechanics_text = "Announces a message to the hive."
+	plasma_cost = 50
+	keybind_signal = COMSIG_XENOABILITY_QUEEN_HIVE_MESSAGE
+	use_state_flags = XACT_USE_LYING
+
+/datum/action/xeno_action/hive_message/action_activate()
+	var/mob/living/carbon/xenomorph/queen/xeno = owner
+	if(!xeno.check_concious_state())
+		to_chat(xeno, span_warning("We can't do that while unconcious."))
 		return
-	plasma_stored -= 50
-	if(health <= 0)
-		to_chat(src, "<span class='warning'>We can't do that while unconcious.</span>")
-		return 0
-	var/input = stripped_multiline_input(src, "This message will be broadcast throughout the hive.", "Word of the Queen", "")
+
+	var/input = stripped_multiline_input(xeno, "This message will be broadcast throughout the hive.", "Hive Message", "")
 	if(!input)
 		return
 
 	if(CHAT_FILTER_CHECK(input))
-		to_chat(src, "<span class='warning'>That announcement contained a word prohibited in IC chat! Consider reviewing the server rules.\n<span replaceRegex='show_filtered_ic_chat'>\"[input]\"</span></span>")
+		to_chat(xeno, span_warning("That announcement contained a word prohibited in IC chat! Consider reviewing the server rules.\n<span replaceRegex='show_filtered_ic_chat'>\"[input]\"</span>"))
 		SSblackbox.record_feedback(FEEDBACK_TALLY, "ic_blocked_words", 1, lowertext(config.ic_filter_regex.match))
 		return FALSE
 
 	var/queensWord = "<br><h2 class='alert'>The words of the queen reverberate in your head...</h2>"
-	queensWord += "<br><span class='alert'>[input]</span><br>"
+	queensWord += "<br>[span_alert("[input]")]<br><br>"
 
-	INVOKE_ASYNC(src, .proc/do_hive_message, queensWord)
+	INVOKE_ASYNC(xeno, /mob/living/carbon/xenomorph/queen/proc/do_hive_message, queensWord)
 
 /mob/living/carbon/xenomorph/queen/proc/do_hive_message(queensWord)
-	var/sound/queen_sound = sound(get_sfx("queen"), wait = 0,volume = 50, channel = CHANNEL_ANNOUNCEMENTS)
+	var/sound/queen_sound = sound(get_sfx("queen"), channel = CHANNEL_ANNOUNCEMENTS)
 	if(SSticker?.mode)
 		hive.xeno_message("[queensWord]")
 		for(var/i in hive.get_watchable_xenos())
@@ -67,47 +71,8 @@
 		SEND_SOUND(G, queen_sound)
 		to_chat(G, "[queensWord]")
 
-	log_game("[key_name(src)] has created a Word of the Queen report: [queensWord]")
-	message_admins("[ADMIN_TPMONTY(src)] has created a Word of the Queen report.")
-
-// ***************************************
-// *********** Slashing permissions
-// ***************************************
-/mob/living/carbon/xenomorph/proc/claw_toggle()
-	set name = "Permit/Disallow Slashing"
-	set desc = "Allows you to permit the hive to harm."
-	set category = "Alien"
-
-	if(hivenumber == XENO_HIVE_CORRUPTED)
-		to_chat(src, "<span class='warning'>Only our masters can decide this!</span>")
-		return
-
-	if(stat)
-		to_chat(src, "<span class='warning'>We can't do that now.</span>")
-		return
-
-	if(pslash_delay)
-		to_chat(src, "<span class='warning'>We must wait a bit before we can toggle this again.</span>")
-		return
-
-	addtimer(VARSET_CALLBACK(src, pslash_delay, FALSE), 30 SECONDS)
-
-	pslash_delay = TRUE
-
-	var/choice = tgui_input_list(src, "Choose which level of slashing hosts to permit to your hive.","Harming", list("Allowed", "Restricted - Less Damage", "Forbidden"))
-
-	if(choice == "Allowed")
-		to_chat(src, "<span class='xenonotice'>We allow slashing.</span>")
-		xeno_message("The Queen has <b>permitted</b> the harming of hosts! Go hog wild!")
-		hive.slashing_allowed = XENO_SLASHING_ALLOWED
-	else if(choice == "Restricted - Less Damage")
-		to_chat(src, "<span class='xenonotice'>We restrict slashing.</span>")
-		xeno_message("The Queen has <b>restricted</b> the harming of hosts. We will only slash when hurt.")
-		hive.slashing_allowed = XENO_SLASHING_RESTRICTED
-	else if(choice == "Forbidden")
-		to_chat(src, "<span class='xenonotice'>We forbid slashing entirely.</span>")
-		xeno_message("The Queen has <b>forbidden</b> the harming of hosts. We can no longer slash your enemies.")
-		hive.slashing_allowed = XENO_SLASHING_FORBIDDEN
+	log_game("[key_name(src)] has created a Hive Message: [queensWord]")
+	message_admins("[ADMIN_TPMONTY(src)] has created a Hive Message.")
 
 
 // ***************************************
@@ -124,7 +89,7 @@
 	keybind_signal = COMSIG_XENOABILITY_SCREECH
 
 /datum/action/xeno_action/activable/screech/on_cooldown_finish()
-	to_chat(owner, "<span class='warning'>We feel our throat muscles vibrate. We are ready to screech again.</span>")
+	to_chat(owner, span_warning("We feel our throat muscles vibrate. We are ready to screech again."))
 	return ..()
 
 /datum/action/xeno_action/activable/screech/use_ability(atom/A)
@@ -145,7 +110,7 @@
 	add_cooldown()
 
 	playsound(X.loc, 'sound/voice/alien_queen_screech.ogg', 75, 0)
-	X.visible_message("<span class='xenohighdanger'>\The [X] emits an ear-splitting guttural roar!</span>")
+	X.visible_message(span_xenohighdanger("\The [X] emits an ear-splitting guttural roar!"))
 	GLOB.round_statistics.queen_screech++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "queen_screech")
 	X.create_shriekwave() //Adds the visual effect. Wom wom wom
@@ -203,15 +168,15 @@
 		if(CHECK_BITFIELD(H.status_flags, XENO_HOST))
 			if(victim.stat != DEAD) //Not dead yet.
 				if(!silent)
-					to_chat(owner, "<span class='xenowarning'>The host and child are still alive!</span>")
+					to_chat(owner, span_xenowarning("The host and child are still alive!"))
 				return FALSE
 			else if(istype(H) && !HAS_TRAIT(H, TRAIT_UNDEFIBBABLE )) //Dead code
 				if(!silent)
-					to_chat(owner, "<span class='xenowarning'>The child may still hatch! Not yet!</span>")
+					to_chat(owner, span_xenowarning("The child may still hatch! Not yet!"))
 				return FALSE
 	if(owner.issamexenohive(victim))
 		if(!silent)
-			to_chat(owner, "<span class='warning'>We can't bring ourselves to harm a fellow sister to this magnitude.</span>")
+			to_chat(owner, span_warning("We can't bring ourselves to harm a fellow sister to this magnitude."))
 		return FALSE
 
 /datum/action/xeno_action/activable/gut/use_ability(atom/A)
@@ -222,16 +187,16 @@
 
 	TIMER_COOLDOWN_START(X, COOLDOWN_GUT, 5 SECONDS)
 
-	X.visible_message("<span class='xenowarning'>\The [X] begins slowly lifting \the [victim] into the air.</span>", \
-	"<span class='xenowarning'>We begin focusing our anger as we slowly lift \the [victim] into the air.</span>")
+	X.visible_message(span_xenowarning("\The [X] begins slowly lifting \the [victim] into the air."), \
+	span_xenowarning("We begin focusing our anger as we slowly lift \the [victim] into the air."))
 	if(!do_mob(X, victim, 80, BUSY_ICON_DANGER, BUSY_ICON_DANGER))
 		return fail_activate()
 	if(!can_use_ability(victim,TRUE,XACT_IGNORE_PLASMA))
 		return fail_activate()
 	if(victim.loc != X.loc)
 		return fail_activate()
-	X.visible_message("<span class='xenodanger'>\The [X] viciously smashes and wrenches \the [victim] apart!</span>", \
-	"<span class='xenodanger'>We suddenly unleash pure anger on \the [victim], instantly wrenching [victim.p_them()] apart!</span>")
+	X.visible_message(span_xenodanger("\The [X] viciously smashes and wrenches \the [victim] apart!"), \
+	span_xenodanger("We suddenly unleash pure anger on \the [victim], instantly wrenching [victim.p_them()] apart!"))
 	X.emote("roar")
 	log_combat(victim, X, "gibbed")
 	victim.gib() //Splut
@@ -304,7 +269,7 @@
 	RegisterSignal(target, list(COMSIG_XENOMORPH_EVOLVED, COMSIG_XENOMORPH_DEEVOLVED), .proc/on_xeno_evolution)
 	RegisterSignal(watcher, COMSIG_MOVABLE_MOVED, .proc/on_movement)
 	overwatch_active = TRUE
-	to_chat(owner, "<span class='notice'>Click again on overwatch ability button to stop overwatching</span>")
+	to_chat(owner, span_notice("Click again on overwatch ability button to stop overwatching"))
 
 
 /datum/action/xeno_action/watch_xeno/proc/stop_overwatch(do_reset_perspective = TRUE)
@@ -386,8 +351,8 @@
 	var/mob/living/carbon/xenomorph/xeno = owner
 	RegisterSignal(xeno, COMSIG_MOVABLE_MOVED, .proc/on_movement)
 	if(message)
-		xeno.visible_message("<span class='notice'>[xeno] emits a broad and weak psychic aura.</span>",
-		"<span class='notice'>We start focusing our psychic energy to expand the reach of our senses.</span>", null, 5)
+		xeno.visible_message(span_notice("[xeno] emits a broad and weak psychic aura."),
+		span_notice("We start focusing our psychic energy to expand the reach of our senses."), null, 5)
 	xeno.zoom_in(0, 12)
 
 
@@ -395,8 +360,8 @@
 	var/mob/living/carbon/xenomorph/xeno = owner
 	UnregisterSignal(xeno, COMSIG_MOVABLE_MOVED)
 	if(message)
-		xeno.visible_message("<span class='notice'>[xeno] stops emitting its broad and weak psychic aura.</span>",
-		"<span class='notice'>We stop the effort of expanding our senses.</span>", null, 5)
+		xeno.visible_message(span_notice("[xeno] stops emitting its broad and weak psychic aura."),
+		span_notice("We stop the effort of expanding our senses."), null, 5)
 	xeno.zoom_out()
 
 
@@ -411,7 +376,7 @@
 	name = "Choose/Follow Xenomorph Leaders"
 	action_icon_state = "xeno_lead"
 	mechanics_text = "Make a target Xenomorph a leader."
-	plasma_cost = 0
+	plasma_cost = 200
 	keybind_signal = COMSIG_XENOABILITY_XENO_LEADERS
 	use_state_flags = XACT_USE_LYING
 
@@ -437,17 +402,10 @@
 		unset_xeno_leader(selected_xeno, feedback)
 		return
 
-	if(xeno_ruler.queen_ability_cooldown > world.time)
-		if(feedback)
-			to_chat(xeno_ruler, "<span class='xenowarning'>We're still recovering from our last hive managment ability. We must wait [round((xeno_ruler.queen_ability_cooldown-world.time)*0.1)] seconds.</span>")
-		return
-
 	if(xeno_ruler.xeno_caste.queen_leader_limit <= length(xeno_ruler.hive.xeno_leader_list))
 		if(feedback)
-			to_chat(xeno_ruler, "<span class='xenowarning'>We currently have [length(xeno_ruler.hive.xeno_leader_list)] promoted leaders. We may not maintain additional leaders until our power grows.</span>")
+			to_chat(xeno_ruler, span_xenowarning("We currently have [length(xeno_ruler.hive.xeno_leader_list)] promoted leaders. We may not maintain additional leaders until our power grows."))
 		return
-
-	xeno_ruler.queen_ability_cooldown = world.time + 15 SECONDS
 
 	set_xeno_leader(selected_xeno, feedback)
 
@@ -455,27 +413,43 @@
 /datum/action/xeno_action/set_xeno_lead/proc/unset_xeno_leader(mob/living/carbon/xenomorph/selected_xeno, feedback = TRUE)
 	var/mob/living/carbon/xenomorph/xeno_ruler = owner
 	if(feedback)
-		to_chat(xeno_ruler, "<span class='xenonotice'>We've demoted [selected_xeno] from Lead.</span>")
-		to_chat(selected_xeno, "<span class='xenoannounce'>[xeno_ruler] has demoted us from Hive Leader. Our leadership rights and abilities have waned.</span>")
+		to_chat(xeno_ruler, span_xenonotice("We've demoted [selected_xeno] from Lead."))
+		to_chat(selected_xeno, span_xenoannounce("[xeno_ruler] has demoted us from Hive Leader. Our leadership rights and abilities have waned."))
 	selected_xeno.hive.remove_leader(selected_xeno)
 	selected_xeno.hud_set_queen_overwatch()
 	selected_xeno.handle_xeno_leader_pheromones(xeno_ruler)
+
+	var/datum/xeno_caste/original = /datum/xeno_caste
+	// Xenos with specialized icons (Queen, King, Shrike) do not need to have their icon returned to normal
+	if(selected_xeno.xeno_caste.minimap_icon != initial(original.minimap_icon))
+		return
+
+	SSminimaps.remove_marker(selected_xeno)
+	SSminimaps.add_marker(selected_xeno, selected_xeno.z, MINIMAP_FLAG_XENO, selected_xeno.xeno_caste.minimap_icon)
 
 
 /datum/action/xeno_action/set_xeno_lead/proc/set_xeno_leader(mob/living/carbon/xenomorph/selected_xeno, feedback = TRUE)
 	var/mob/living/carbon/xenomorph/xeno_ruler = owner
 	if(!(selected_xeno.xeno_caste.caste_flags & CASTE_CAN_BE_LEADER))
 		if(feedback)
-			to_chat(xeno_ruler, "<span class='xenowarning'>This caste is unfit to lead.</span>")
+			to_chat(xeno_ruler, span_xenowarning("This caste is unfit to lead."))
 		return
 	if(feedback)
-		to_chat(xeno_ruler, "<span class='xenonotice'>We've selected [selected_xeno] as a Hive Leader.</span>")
-		to_chat(selected_xeno, "<span class='xenoannounce'>[xeno_ruler] has selected us as a Hive Leader. The other Xenomorphs must listen to us. We will also act as a beacon for the Queen's pheromones.</span>")
+		to_chat(xeno_ruler, span_xenonotice("We've selected [selected_xeno] as a Hive Leader."))
+		to_chat(selected_xeno, span_xenoannounce("[xeno_ruler] has selected us as a Hive Leader. The other Xenomorphs must listen to us. We will also act as a beacon for the Queen's pheromones."))
 
 	xeno_ruler.hive.add_leader(selected_xeno)
 	selected_xeno.hud_set_queen_overwatch()
 	selected_xeno.handle_xeno_leader_pheromones(xeno_ruler)
 	notify_ghosts("\ [xeno_ruler] has designated [selected_xeno] as a Hive Leader", source = selected_xeno, action = NOTIFY_ORBIT)
+
+	var/datum/xeno_caste/original = /datum/xeno_caste
+	// Xenos with specialized icons (Queen, King, Shrike) do not get their icon changed
+	if(selected_xeno.xeno_caste.minimap_icon != initial(original.minimap_icon))
+		return
+
+	SSminimaps.remove_marker(selected_xeno)
+	SSminimaps.add_marker(selected_xeno, selected_xeno.z, MINIMAP_FLAG_XENO, selected_xeno.xeno_caste.minimap_leadered_icon)
 
 // ***************************************
 // *********** Queen heal
@@ -498,20 +472,20 @@
 	var/mob/living/carbon/xenomorph/patient = target
 	if(!CHECK_BITFIELD(use_state_flags|override_flags, XACT_IGNORE_DEAD_TARGET) && patient.stat == DEAD)
 		if(!silent)
-			to_chat(owner, "<span class='warning'>It's too late. This sister won't be coming back.</span>")
+			to_chat(owner, span_warning("It's too late. This sister won't be coming back."))
 		return FALSE
 	if(!(patient.xeno_caste.caste_flags & CASTE_CAN_BE_QUEEN_HEALED))
 		if(!silent)
-			to_chat(owner, "<span class='xenowarning'>We can't heal that caste.</span>")
+			to_chat(owner, span_xenowarning("We can't heal that caste."))
 			return FALSE
 	var/mob/living/carbon/xenomorph/healer = owner
 	if(healer.z != patient.z)
 		if(!silent)
-			to_chat(healer, "<span class='xenowarning'>They are too far away to do this.</span>")
+			to_chat(healer, span_xenowarning("They are too far away to do this."))
 		return FALSE
 	if(patient.health >= patient.maxHealth)
 		if(!silent)
-			to_chat(healer, "<span class='warning'>[patient] is at full health.</span>")
+			to_chat(healer, span_warning("[patient] is at full health."))
 		return FALSE
 
 
@@ -522,8 +496,8 @@
 	patient.adjustFireLoss(-100)
 	patient.adjust_sunder(-10)
 	succeed_activate()
-	to_chat(owner, "<span class='xenonotice'>We channel our plasma to heal [target]'s wounds.</span>")
-	to_chat(patient, "<span class='xenonotice'>We feel our wounds heal. Bless the Queen!</span>")
+	to_chat(owner, span_xenonotice("We channel our plasma to heal [target]'s wounds."))
+	to_chat(patient, span_xenonotice("We feel our wounds heal. Bless the Queen!"))
 
 
 // ***************************************
@@ -549,20 +523,20 @@
 	var/mob/living/carbon/xenomorph/receiver = target
 	if(!CHECK_BITFIELD(use_state_flags|override_flags, XACT_IGNORE_DEAD_TARGET) && receiver.stat == DEAD)
 		if(!silent)
-			to_chat(owner, "<span class='warning'>It's too late, this one has already kicked the bucket.</span>")
+			to_chat(owner, span_warning("It's too late, this one has already kicked the bucket."))
 		return FALSE
 	if(!(receiver.xeno_caste.caste_flags & CASTE_CAN_BE_GIVEN_PLASMA))
 		if(!silent)
-			to_chat(owner, "<span class='warning'>We can't give that caste plasma.</span>")
+			to_chat(owner, span_warning("We can't give that caste plasma."))
 			return FALSE
 	var/mob/living/carbon/xenomorph/giver = owner
 	if(giver.z != receiver.z)
 		if(!silent)
-			to_chat(giver, "<span class='warning'>They are too far away to do this.</span>")
+			to_chat(giver, span_warning("They are too far away to do this."))
 		return FALSE
 	if(receiver.plasma_stored >= receiver.xeno_caste.plasma_max)
 		if(!silent)
-			to_chat(giver, "<span class='warning'>[receiver] is at full plasma.</span>")
+			to_chat(giver, span_warning("[receiver] is at full plasma."))
 		return FALSE
 
 
@@ -571,8 +545,8 @@
 	add_cooldown()
 	receiver.gain_plasma(300)
 	succeed_activate()
-	to_chat(owner, "<span class='xenonotice'>We transfer some plasma to [target].</span>")
-	to_chat(receiver, "<span class='xenonotice'>We feel our plasma reserves increase. Bless the Queen!</span>")
+	to_chat(owner, span_xenonotice("We transfer some plasma to [target]."))
+	to_chat(receiver, span_xenonotice("We feel our plasma reserves increase. Bless the Queen!"))
 
 
 // ***************************************
@@ -582,7 +556,6 @@
 	name = "Give Order"
 	action_icon_state = "queen_order"
 	plasma_cost = 100
-	keybind_signal = COMSIG_XENOABILITY_QUEEN_GIVE_ORDER
 	use_state_flags = XACT_USE_LYING
 
 /datum/action/xeno_action/queen_order/action_activate()
@@ -596,7 +569,7 @@
 				var/input = stripped_input(X, "This message will be sent to the overwatched xeno.", "Queen Order", "")
 				if(!input)
 					return
-				var/queen_order = "<span class='xenoannounce'><b>[X]</b> reaches you:\"[input]\"</span>"
+				var/queen_order = span_xenoannounce("<b>[X]</b> reaches you:\"[input]\"")
 				if(!X.check_state() || !X.check_plasma(100) || X.observed_xeno != target || target.stat == DEAD)
 					return
 				if(target.client)
@@ -606,7 +579,7 @@
 					message_admins("[ADMIN_TPMONTY(X)] has given the following Queen order to [ADMIN_TPMONTY(target)]: [input]")
 
 	else
-		to_chat(X, "<span class='warning'>We must overwatch the Xenomorph we want to give orders to.</span>")
+		to_chat(X, span_warning("We must overwatch the Xenomorph we want to give orders to."))
 
 // ***************************************
 // *********** Queen deevolve
@@ -622,7 +595,7 @@
 /datum/action/xeno_action/deevolve/action_activate()
 	var/mob/living/carbon/xenomorph/queen/X = owner
 	if(!X.observed_xeno)
-		to_chat(X, "<span class='warning'>We must overwatch the xeno we want to de-evolve.</span>")
+		to_chat(X, span_warning("We must overwatch the xeno we want to de-evolve."))
 		return
 
 	var/mob/living/carbon/xenomorph/T = X.observed_xeno
@@ -630,19 +603,19 @@
 		return
 
 	if(T.is_ventcrawling)
-		to_chat(X, "<span class='warning'>[T] can't be deevolved here.</span>")
+		to_chat(X, span_warning("[T] can't be deevolved here."))
 		return
 
 	if(!isturf(T.loc))
-		to_chat(X, "<span class='warning'>[T] can't be deevolved here.</span>")
+		to_chat(X, span_warning("[T] can't be deevolved here."))
 		return
 
 	if(T.health <= 0)
-		to_chat(X, "<span class='warning'>[T] is too weak to be deevolved.</span>")
+		to_chat(X, span_warning("[T] is too weak to be deevolved."))
 		return
 
 	if(!T.xeno_caste.deevolves_to)
-		to_chat(X, "<span class='xenowarning'>[T] can't be deevolved.</span>")
+		to_chat(X, span_xenowarning("[T] can't be deevolved."))
 		return
 
 	var/datum/xeno_caste/new_caste = GLOB.xeno_caste_datums[T.xeno_caste.deevolves_to][XENO_UPGRADE_ZERO]
@@ -653,7 +626,7 @@
 
 	var/reason = stripped_input(X, "Provide a reason for deevolving this xenomorph, [T]")
 	if(isnull(reason))
-		to_chat(X, "<span class='xenowarning'>You must provide a reason for deevolving [T].</span>")
+		to_chat(X, span_xenowarning("You must provide a reason for deevolving [T]."))
 		return
 
 	if(!X.check_concious_state() || !X.check_plasma(600) || X.observed_xeno != T)
@@ -668,7 +641,7 @@
 	if(T.health <= 0)
 		return
 
-	to_chat(T, "<span class='xenowarning'>The queen is deevolving us for the following reason: [reason]</span>")
+	to_chat(T, span_xenowarning("The queen is deevolving us for the following reason: [reason]"))
 
 	var/xeno_type = new_caste.caste_type_path
 
@@ -699,8 +672,8 @@
 		H.add_hud_to(new_xeno) //keep our mobhud choice
 		new_xeno.xeno_mobhud = TRUE
 
-	new_xeno.visible_message("<span class='xenodanger'>A [new_xeno.xeno_caste.caste_name] emerges from the husk of \the [T].</span>", \
-	"<span class='xenodanger'>[X] makes us regress into our previous form.</span>")
+	new_xeno.visible_message(span_xenodanger("A [new_xeno.xeno_caste.caste_name] emerges from the husk of \the [T]."), \
+	span_xenodanger("[X] makes us regress into our previous form."))
 
 	if(T.queen_chosen_lead)
 		new_xeno.queen_chosen_lead = TRUE
@@ -726,8 +699,7 @@
 	plasma_cost = 0 //hive points cost
 	keybind_signal = COMSIG_XENOABILITY_SUMMON_KING_POD
 	gamemode_flags = ABILITY_DISTRESS
-	/// Pyschic point cost
-	var/psych_cost = XENO_KING_PRICE
+	psych_cost = XENO_KING_PRICE
 
 /datum/action/xeno_action/summon_king/can_use_action(silent, override_flags)
 	. = ..()
@@ -736,20 +708,20 @@
 	var/mob/living/carbon/xenomorph/X = owner
 	if(SSticker.round_start_time + INVOKE_KING_TIME_LOCK > world.time)
 		if(!silent)
-			to_chat(owner, "<span class='warning'>It is too soon to summon a king!</span>")
+			to_chat(owner, span_warning("It is too soon to summon a king!"))
 		return FALSE
 	if(SSpoints.xeno_points_by_hive[X.hivenumber] <= psych_cost)
 		if(!silent)
-			to_chat(owner, "<span class='warning'>Our hive does not have enough psychic energy to summon a King, we need [psych_cost] points!</span>")
+			to_chat(owner, span_warning("Our hive does not have enough psychic energy to summon a King, we need [psych_cost] points!"))
 		return FALSE
 
 /datum/action/xeno_action/summon_king/action_activate()
 	var/mob/living/carbon/xenomorph/X = owner
-	to_chat(X, "<span class='xenonotice'>We begin constructing a psychic echo chamber for the Queen Mother...</span>")
+	to_chat(X, span_xenonotice("We begin constructing a psychic echo chamber for the Queen Mother..."))
 	if(!do_after(X, 15 SECONDS, FALSE, X, BUSY_ICON_HOSTILE))
 		return fail_activate()
 	SSpoints.xeno_points_by_hive[X.hivenumber] -= psych_cost
 	var/obj/structure/resin/king_pod = new /obj/structure/resin/king_pod(X.loc, X.hivenumber)
 	log_game("[key_name(X)] has created a pod in [AREACOORD(X)]")
-	xeno_message("<B>[X] has created a king pod at [get_area(X)]. Defend it until the Queen Mother summons a king!</B>", size = 3, hivenumber = X.hivenumber, target = king_pod, arrow_type = /obj/screen/arrow/leader_tracker_arrow)
+	xeno_message("<B>[X] has created a king pod at [get_area(X)]. Defend it until the Queen Mother summons a king!</B>", hivenumber = X.hivenumber, target = king_pod, arrow_type = /obj/screen/arrow/leader_tracker_arrow)
 	priority_announce("WARNING: Psychic anomaly detected at [get_area(X)]. Assault of the area reccomended.", "TGMC Intel Division")
