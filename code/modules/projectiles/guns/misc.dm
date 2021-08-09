@@ -19,7 +19,7 @@
 /obj/item/weapon/gun/launcher/m81/flare/examine_ammo_count(mob/user)
 	if(!grenade || (get_dist(user, src) > 2 && user != loc))
 		return
-	to_chat(user, span_notice(" It is loaded with a flare."))
+	to_chat(user, span_notice("It is loaded with a flare."))
 
 /obj/item/weapon/gun/launcher/m81/flare/marine
 	name = "M30E2 flare gun"
