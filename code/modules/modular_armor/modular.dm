@@ -358,25 +358,12 @@
 	var/visor_emissive_on = TRUE
 	///Initial hex color we use when applying the visor color
 	var/visor_color_hex = "#f7fb58"
+	///Initial hex color we use when applying the main helmet color
+	var/main_color_hex = "#5B6036"
 	///Greyscale config color we use for the visor
 	var/visor_greyscale_config = /datum/greyscale_config/modular_helmet_visor_emissive
-
-	///Assoc list of color-hex for colors we're allowed to color this armor
-	var/list/colorable_colors = list(
-		"black" = "#474A50",
-		"snow" = "#D5CCC3",
-		"desert" = "#A57F7C",
-		"gray" = "#828282",
-		"brown" = "#60452B",
-		"red" = "#CC2C32",
-		"blue" = "#2A4FB7",
-		"yellow" = "#B7B21F",
-		"green" = "#2B7F1E",
-		"aqua" = "#2098A0",
-		"purple" = "#871F8F",
-		"orange" = "#BC4D25",
-		"pink" = "#D354BA",
-	)
+	///optional assoc list of colors we can color this armor
+	var/list/colorable_colors
 
 /obj/item/clothing/head/modular/Initialize(mapload)
 	. = ..()
@@ -424,6 +411,7 @@
 	. = ..()
 	if(visor_greyscale_config)
 		to_chat(user, "Right click the helmet to toggle the visor internal lighting.")
+		to_chat(user, "Right click the helmet with paint to color the visor internal lighting.")
 
 /obj/item/clothing/head/modular/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -438,20 +426,51 @@
 		to_chat(user, span_warning("\the [paint] is out of color!"))
 		return TRUE
 	paint.uses--
+	var/new_color
+	if(colorable_colors)
+		new_color = tgui_input_list(user, "Pick a color", "Pick color", colorable_colors)
+	else
+		new_color = input(user, "Pick a color", "Pick color") as null|color
 
-	var/new_color = tgui_input_list(user, "Pick a color", "Pick color", colorable_colors)
 	if(!new_color)
 		return
-	new_color = colorable_colors[new_color]
 
 	if(!do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_GENERIC))
 		return TRUE
 
+	main_color_hex = new_color
 	var/list/split_colors = list(new_color)
 	if(visor_color_hex)
 		split_colors += visor_color_hex
 	set_greyscale_colors(split_colors)
 	return TRUE
+
+/obj/item/clothing/head/modular/attackby_alternate(obj/item/I, mob/user, params)
+	. = ..()
+	if(.)
+		return
+
+	if(!visor_color_hex)
+		return
+
+	if(!istype(I, /obj/item/facepaint))
+		return FALSE
+
+	var/obj/item/facepaint/paint = I
+	if(paint.uses < 1)
+		to_chat(user, "<span class='warning'>\the [paint] is out of color!</span>")
+		return TRUE
+	paint.uses--
+
+	var/new_color = input(user, "Pick a color", "Pick color") as null|color
+	if(!new_color)
+		return
+
+	if(!do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_GENERIC))
+		return TRUE
+
+	visor_color_hex = new_color
+	set_greyscale_colors(list(main_color_hex, new_color))
 
 /obj/item/clothing/head/modular/attack_hand_alternate(mob/living/carbon/human/user)
 	if(user.head == src)
