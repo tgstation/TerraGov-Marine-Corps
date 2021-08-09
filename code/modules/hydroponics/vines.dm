@@ -27,7 +27,7 @@
 	if(master)
 		master.vines -= src
 		master.growth_queue -= src
-	. = ..()
+	return ..()
 
 /obj/effect/plantsegment/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -80,23 +80,23 @@
 	if(!prob(seed ? min(max(0,100 - seed.potency),100) : 50))
 		var/text = pick("rips","tears","pulls")
 		user.visible_message(
-			"<span class='notice'>[user.name] [text] at [src].</span>",
-			"<span class='notice'>You [text] at [src].</span>",
-			"<span class='warning'>You hear shredding and ripping.</span>")
+			span_notice("[user.name] [text] at [src]."),
+			span_notice("You [text] at [src]."),
+			span_warning("You hear shredding and ripping."))
 		return FALSE
 	var/mob/living/prisoner = buckled_mobs[1]
 	if(prisoner.buckled != src)
 		CRASH("[user] attempted to free [prisoner] by attacking [src], but it was buckled to [prisoner.buckled].")
 	if(prisoner != user)
 		prisoner.visible_message(
-			"<span class='notice'>[user.name] frees [prisoner.name] from [src].</span>",
-			"<span class='notice'>[user.name] frees you from [src].</span>",
-			"<span class='warning'>You hear shredding and ripping.</span>")
+			span_notice("[user.name] frees [prisoner.name] from [src]."),
+			span_notice("[user.name] frees you from [src]."),
+			span_warning("You hear shredding and ripping."))
 	else
 		prisoner.visible_message(
-			"<span class='notice'>[prisoner.name] struggles free of [src].</span>",
-			"<span class='notice'>You untangle [src] from around yourself.</span>",
-			"<span class='warning'>You hear shredding and ripping.</span>")
+			span_notice("[prisoner.name] struggles free of [src]."),
+			span_notice("You untangle [src] from around yourself."),
+			span_warning("You hear shredding and ripping."))
 	unbuckle_mob(prisoner)
 	return TRUE
 
@@ -126,7 +126,7 @@
 	var/mob/living/carbon/victim = locate() in loc
 	if(!QDELETED(victim) && victim.stat != DEAD && victim.buckled != src) // If mob exists and is not dead or captured.
 		buckle_mob(victim, silent = TRUE)
-		to_chat(victim, "<span class='danger'>The vines [pick("wind", "tangle", "tighten")] around you!</span>")
+		to_chat(victim, span_danger("The vines [pick("wind", "tangle", "tighten")] around you!"))
 
 	// FEED ME, SEYMOUR.
 	if(seed)
@@ -137,7 +137,7 @@
 
 			// Drink some blood/cause some brute.
 			if(seed.carnivorous == 2)
-				to_chat(victim, "<span class='danger'>\The [src] pierces your flesh greedily!</span>")
+				to_chat(victim, span_danger("\The [src] pierces your flesh greedily!"))
 
 				var/damage = rand(round(seed.potency/2),seed.potency)
 				if(!ishuman(victim))
@@ -155,7 +155,7 @@
 
 			// Inject some chems.
 			if(length(seed.chems) && ishuman(victim))
-				to_chat(victim, "<span class='danger'>You feel something seeping into your skin!</span>")
+				to_chat(victim, span_danger("You feel something seeping into your skin!"))
 				for(var/rid in seed.chems)
 					var/injecting = clamp(seed.potency * 0.2, 1, 5)
 					victim.reagents.add_reagent(rid, injecting)
@@ -284,7 +284,7 @@
 
 /obj/effect/plant_controller/Destroy()
 	STOP_PROCESSING(SSobj, src)
-	. = ..()
+	return ..()
 
 /obj/effect/plant_controller/proc/spawn_piece(turf/location)
 	var/obj/effect/plantsegment/SV = new(location)

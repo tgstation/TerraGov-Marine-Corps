@@ -160,12 +160,6 @@ GLOBAL_LIST_INIT(xenotiers, list(XENO_TIER_ZERO, XENO_TIER_ONE, XENO_TIER_TWO, X
 
 GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVALID, XENO_UPGRADE_ZERO, XENO_UPGRADE_ONE, XENO_UPGRADE_TWO, XENO_UPGRADE_THREE))
 
-// =============================
-// xeno slashing
-#define XENO_SLASHING_FORBIDDEN 0
-#define XENO_SLASHING_ALLOWED 1
-#define XENO_SLASHING_RESTRICTED 2
-
 //=================================================
 
 ///////////////////HUMAN BLOODTYPES///////////////////
@@ -201,6 +195,11 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define ORGAN_BRAIN 5
 #define ORGAN_EYES 6
 #define ORGAN_APPENDIX 7
+
+//Brain Damage defines
+#define BRAIN_DAMAGE_MILD 20
+#define BRAIN_DAMAGE_SEVERE 100
+#define BRAIN_DAMAGE_DEATH 200
 
 ///////////////SURGERY DEFINES///////////////
 #define SPECIAL_SURGERY_INVALID "special_surgery_invalid"
@@ -426,6 +425,8 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 
 //Xeno Defines
 
+#define XENO_DEFAULT_VENT_ENTER_TIME 4.5 SECONDS //Standard time for a xeno to enter a vent.
+#define XENO_DEFAULT_VENT_EXIT_TIME 2 SECONDS //Standard time for a xeno to exit a vent.
 #define XENO_DEFAULT_ACID_PUDDLE_DAMAGE 14 //Standard damage dealt by acid puddles
 #define XENO_ACID_WELL_FILL_TIME 2 SECONDS //How long it takes to add a charge to an acid pool
 #define XENO_ACID_WELL_FILL_COST 200 //Cost in plasma to apply a charge to an acid pool
@@ -487,6 +488,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define CASTE_IS_STRONG (1<<16)//can tear open acided walls without being big
 #define CASTE_CAN_CORRUPT_GENERATOR (1<<17) //Can corrupt a generator
 #define CASTE_IS_BUILDER (1<<18) //whether we are classified as a builder caste
+#define CAN_BECOME_KING (1<<19) //Can be choose to become a king
 
 //Charge-Crush
 #define CHARGE_OFF 0
@@ -528,7 +530,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define HUNTER_SILENCE_WINDUP 0.5 SECONDS //Windup of the Hunter's Silence
 #define HUNTER_SILENCE_MULTIPLIER 1.5 //Multiplier of stacks vs Hunter's Mark targets
 #define HUNTER_SILENCE_WHIFF_COOLDOWN 3 SECONDS //If we fail to target anyone with Silence, partial cooldown to prevent spam.
-
+#define HUNTER_VENT_CRAWL_TIME 2 SECONDS //Hunters can enter vents fast
 
 //Ravager defines:
 #define RAV_CHARGESPEED 2
@@ -567,7 +569,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define DEFILER_CLAW_AMOUNT 6.5
 #define DEFILER_STING_AMOUNT_RECURRING 10
 #define DEFILER_REAGENT_SLASH_COUNT 3
-#define DEFILER_REAGENT_SLASH_INJECT_AMOUNT 4
+#define DEFILER_REAGENT_SLASH_INJECT_AMOUNT 7
 #define DEFILER_REAGENT_SLASH_DURATION 4 SECONDS
 
 //Drone defines
@@ -631,6 +633,9 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 
 #define WRAITH_TELEPORT_DEBUFF_STAGGER_STACKS 2 //Stagger and slow stacks applied to adjacent living hostiles before/after a teleport
 #define WRAITH_TELEPORT_DEBUFF_SLOWDOWN_STACKS 3 //Stagger and slow stacks applied to adjacent living hostiles before/after a teleport
+
+//Larva defines
+#define LARVA_VENT_CRAWL_TIME 1 SECONDS //Larva can crawl into vents fast
 
 #define DEFILER_TRANSVITOX_CAP 180 //Max toxin damage transvitox will allow
 

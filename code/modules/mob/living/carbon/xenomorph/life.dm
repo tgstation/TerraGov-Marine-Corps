@@ -98,9 +98,9 @@
 /mob/living/carbon/xenomorph/proc/handle_critical_health_updates()
 	var/turf/T = loc
 	if((istype(T) && locate(/obj/effect/alien/weeds) in T))
-		heal_wounds(XENO_RESTING_HEAL + (warding_aura * 0.5) * 0.5) //Warding pheromones provides 0.125 HP per second per step, up to 1.25 HP per tick.
+		heal_wounds(XENO_RESTING_HEAL)
 	else if(!endure) //If we're not Enduring we bleed out
-		adjustBruteLoss(XENO_CRIT_DAMAGE - (warding_aura * 0.5)) //Warding can heavily lower the impact of bleedout. Halved at 5.
+		adjustBruteLoss(XENO_CRIT_DAMAGE)
 
 /mob/living/carbon/xenomorph/proc/heal_wounds(multiplier = XENO_RESTING_HEAL, scaling = FALSE)
 	var/amount = 1 + (maxHealth * 0.0375) // 1 damage + 3.75% max health, with scaling power.
@@ -134,7 +134,7 @@
 		if(plasma_stored < 5)
 			use_plasma(plasma_stored)
 			current_aura = null
-			to_chat(src, "<span class='warning'>We have run out of plasma and stopped emitting pheromones.</span>")
+			to_chat(src, span_warning("We have run out of plasma and stopped emitting pheromones."))
 		else
 			use_plasma(5)
 
@@ -281,7 +281,7 @@
 			if(hud_used && hud_used.fire_icon)
 				hud_used.fire_icon.icon_state = "fire2"
 			if(prob(20))
-				to_chat(src, "<span class='warning'>We feel a searing heat!</span>")
+				to_chat(src, span_warning("We feel a searing heat!"))
 		else
 			if(hud_used && hud_used.fire_icon)
 				hud_used.fire_icon.icon_state = "fire0"
@@ -299,11 +299,11 @@
 /mob/living/carbon/xenomorph/handle_slowdown()
 	if(slowdown)
 		#if DEBUG_XENO_LIFE
-		world << "<span class='debuginfo'>Regen: Initial slowdown is: <b>[slowdown]</b></span>"
+		world << span_debuginfo("Regen: Initial slowdown is: <b>[slowdown]</b>")
 		#endif
 		adjust_slowdown(-XENO_SLOWDOWN_REGEN)
 		#if DEBUG_XENO_LIFE
-		world << "<span class='debuginfo'>Regen: Final slowdown is: <b>[slowdown]</b></span>"
+		world << span_debuginfo("Regen: Final slowdown is: <b>[slowdown]</b>")
 		#endif
 	return slowdown
 

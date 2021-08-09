@@ -14,11 +14,11 @@
 		return
 	if(LAZYLEN(parent.installed_modules) >= parent.max_modules)
 		if(!silent)
-			to_chat(user,"<span class='warning'>There are too many pieces installed already.</span>")
+			to_chat(user,span_warning("There are too many pieces installed already."))
 		return FALSE
 	if(LAZYFIND(parent.installed_modules, src))
 		if(!silent)
-			to_chat(user,"<span class='warning'>That module is already installed.</span>")
+			to_chat(user,span_warning("That module is already installed."))
 		return FALSE
 
 /obj/item/armor_module/attachable/do_attach(mob/living/user, obj/item/clothing/suit/modular/parent)

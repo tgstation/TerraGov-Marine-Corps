@@ -33,7 +33,7 @@
 	deevolves_to = /mob/living/carbon/xenomorph/runner
 
 	// *** Flags *** //
-	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_EVOLUTION_ALLOWED|CASTE_CAN_VENT_CRAWL|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER
+	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_EVOLUTION_ALLOWED|CASTE_CAN_VENT_CRAWL|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER|CAN_BECOME_KING
 
 	// *** Defense *** //
 	soft_armor = list("melee" = 40, "bullet" = 15, "laser" = 15, "energy" = 15, "bomb" = XENO_BOMB_RESIST_0, "bio" = 10, "rad" = 10, "fire" = 15, "acid" = 10)
@@ -41,6 +41,9 @@
 	// *** Ranged Attack *** //
 	charge_type = CHARGE_TYPE_MEDIUM
 	pounce_delay = 15 SECONDS
+
+	// *** Stealth ***
+	stealth_break_threshold = 15
 
 	// *** Abilities *** //
 	actions = list(
@@ -54,6 +57,11 @@
 		/datum/action/xeno_action/activable/hunter_mark,
 		/datum/action/xeno_action/psychic_trace,
 	)
+
+	// *** Vent Crawl Parameters *** //
+	vent_enter_speed = HUNTER_VENT_CRAWL_TIME
+	vent_exit_speed = HUNTER_VENT_CRAWL_TIME
+	silent_vent_crawl = TRUE
 
 /datum/xeno_caste/hunter/young
 	upgrade_name = "Young"

@@ -33,7 +33,7 @@
 	// *** Pheromones *** //
 	aura_strength = 4
 
-
+	minimap_icon = "xenoking"
 
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,

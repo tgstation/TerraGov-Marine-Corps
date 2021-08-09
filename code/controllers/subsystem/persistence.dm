@@ -32,6 +32,7 @@ SUBSYSTEM_DEF(persistence)
 		/datum/season_datum/weapons/guns/rifle_seasonal_two,
 		/datum/season_datum/weapons/guns/pistol_seasonal_three,
 		/datum/season_datum/weapons/guns/copsandrobbers_seasonal,
+		/datum/season_datum/weapons/guns/smg_seasonal,
 		)
 	)
 	///The saved list of custom outfits names
@@ -94,9 +95,9 @@ SUBSYSTEM_DEF(persistence)
 		var/season_name_first_letter = uppertext(copytext(season_name, 1, 2))
 		var/season_name_remainder = copytext(season_name, 2, length(season_name) + 1)
 		season_name = season_name_first_letter + season_name_remainder
-		message += "<span class='seasons_announce'><b>[season_name]</b> - season [season_progress[season_entry][CURRENT_SEASON_NUMBER]]<br></span>"
-		message += "<span class='season_additional_info'><b>Title:</b> [season_progress[season_entry][CURRENT_SEASON_NAME]]<br></span>"
-		message += "<span class='season_additional_info'><b>Description:</b> [season_progress[season_entry][CURRENT_SEASON_DESC]]<br></span>"
+		message += span_seasons_announce("<b>[season_name]</b> - season [season_progress[season_entry][CURRENT_SEASON_NUMBER]]<br>")
+		message += span_season_additional_info("<b>Title:</b> [season_progress[season_entry][CURRENT_SEASON_NAME]]<br>")
+		message += span_season_additional_info("<b>Description:</b> [season_progress[season_entry][CURRENT_SEASON_DESC]]<br>")
 
 	return message
 
@@ -176,16 +177,18 @@ SUBSYSTEM_DEF(persistence)
 		)
 
 /datum/season_datum/weapons/guns/rifle_seasonal_two
-	name = "UZI"
-	description = "Uzi guns at vendors, get your uzi today!"
+	name = "Pulse Rifles"
+	description = "A failed classic and it's eventual successor."
 	item_list = list(
-		/obj/item/weapon/gun/smg/uzi = -1,
-		/obj/item/ammo_magazine/smg/uzi = -1,
+		/obj/item/weapon/gun/rifle/m412 = -1,
+		/obj/item/ammo_magazine/rifle = -1,
+		/obj/item/weapon/gun/rifle/m41a = -1,
+		/obj/item/ammo_magazine/rifle/m41a = -1,
 		)
 
 /datum/season_datum/weapons/guns/pistol_seasonal_one
-	name = "Small revolver and average revolver"
-	description = "Additional revolvers available at vendors."
+	name = "Bouncy revolver and average revolver"
+	description = "A rather average revolver and it's far bouncier smaller cousin."
 	item_list = list(
 		/obj/item/weapon/gun/revolver/small = -1,
 		/obj/item/ammo_magazine/revolver/small = -1,
@@ -204,7 +207,7 @@ SUBSYSTEM_DEF(persistence)
 		)
 
 /datum/season_datum/weapons/guns/pistol_seasonal_three
-	name = "Hiph-power pistols"
+	name = "High-power pistols"
 	description = "More pistols in the vendors, why not?"
 	item_list = list(
 		/obj/item/weapon/gun/pistol/vp78 = -1,
@@ -214,12 +217,22 @@ SUBSYSTEM_DEF(persistence)
 		)
 
 /datum/season_datum/weapons/guns/copsandrobbers_seasonal
-	name = "cops and robbers"
+	name = "Cops and robbers"
 	description = "A Revolver and a classic SMG. Truly cops and robbers."
 	item_list = list(
 		/obj/item/weapon/gun/smg/uzi = -1,
 		/obj/item/ammo_magazine/smg/uzi = -1,
 		/obj/item/weapon/gun/revolver/cmb = -1,
 		/obj/item/ammo_magazine/revolver/cmb = -1,
+		)
+
+/datum/season_datum/weapons/guns/smg_seasonal
+	name = "SMGs"
+	description = "Two different SMGs. A classic and a new guy."
+	item_list = list(
+		/obj/item/weapon/gun/smg/m25 = -1,
+		/obj/item/ammo_magazine/smg/m25 = -1,
+		/obj/item/weapon/gun/smg/mp7 = -1,
+		/obj/item/ammo_magazine/smg/mp7 = -1,
 		)
 

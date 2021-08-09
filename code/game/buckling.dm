@@ -9,7 +9,7 @@
 	if(. && user_buckle_mob(., user))
 		return TRUE
 
-//procs that handle the actual buckling and unbuckling
+//procs that handle the actual buckling and unbuckling //TODO replace the args in this proc with flags
 /atom/movable/proc/buckle_mob(mob/living/buckling_mob, force = FALSE, check_loc = TRUE, lying_buckle = FALSE, hands_needed = 0, target_hands_needed = 0, silent)
 	if(!isliving(buckling_mob))
 		return FALSE
@@ -23,13 +23,18 @@
 	if(!(buckling_mob.buckle_flags & CAN_BE_BUCKLED) && !force)
 		if(!silent)
 			if(buckling_mob == usr)
-				to_chat(buckling_mob, "<span class='warning'>You are unable to buckle yourself to [src]!</span>")
+				to_chat(buckling_mob, span_warning("You are unable to buckle yourself to [src]!"))
 			else
-				to_chat(usr, "<span class='warning'>You are unable to buckle [buckling_mob] to [src]!</span>")
+				to_chat(usr, span_warning("You are unable to buckle [buckling_mob] to [src]!"))
 		return FALSE
 
-	if(SEND_SIGNAL(src, COMSIG_MOVABLE_BUCKLE, buckling_mob, force, check_loc, lying_buckle, hands_needed, target_hands_needed, silent) & COMPONENT_MOVABLE_BUCKLE_STOPPED)
+	// This signal will check if the mob is mounting this atom to ride it. There are 3 possibilities for how this goes
+	// 1. This movable doesn't have a ridable element and can't be ridden, so nothing gets returned, so continue on
+	// 2. There's a ridable element but we failed to mount it for whatever reason (maybe it has no seats left, for example), so we cancel the buckling
+	// 3. There's a ridable element and we were successfully able to mount, so keep it going and continue on with buckling
+	if(SEND_SIGNAL(src, COMSIG_MOVABLE_PREBUCKLE, buckling_mob, force, check_loc, lying_buckle , hands_needed, target_hands_needed, silent) & COMPONENT_BLOCK_BUCKLE)
 		return FALSE
+
 
 	if(buckling_mob.pulledby)
 		if(buckle_flags & BUCKLE_PREVENTS_PULL)
@@ -58,6 +63,7 @@
 	post_buckle_mob(buckling_mob, silent)
 
 	RegisterSignal(buckling_mob, COMSIG_LIVING_DO_RESIST, .proc/resisted_against)
+	SEND_SIGNAL(src, COMSIG_MOVABLE_BUCKLE, buckling_mob, force, check_loc, lying_buckle, hands_needed, target_hands_needed, silent)
 	return TRUE
 
 /obj/buckle_mob(mob/living/buckling_mob, force = FALSE, check_loc = TRUE, lying_buckle = FALSE, hands_needed = 0, target_hands_needed = 0, silent)
@@ -114,13 +120,13 @@
 		return FALSE
 	if(!silent)
 		if(buckling_mob == user)
-			buckling_mob.visible_message("<span class='notice'>[buckling_mob] buckles [buckling_mob.p_them()]self to [src].</span>",
-				"<span class='notice'>You buckle yourself to [src].</span>",
-				"<span class='hear'>You hear metal clanking.</span>")
+			buckling_mob.visible_message(span_notice("[buckling_mob] buckles [buckling_mob.p_them()]self to [src]."),
+				span_notice("You buckle yourself to [src]."),
+				span_hear("You hear metal clanking."))
 		else
-			buckling_mob.visible_message("<span class='warning'>[user] buckles [buckling_mob] to [src]!</span>",
-				"<span class='warning'>[user] buckles you to [src]!</span>",
-				"<span class='hear'>You hear metal clanking.</span>")
+			buckling_mob.visible_message(span_warning("[user] buckles [buckling_mob] to [src]!"),
+				span_warning("[user] buckles you to [src]!"),
+				span_hear("You hear metal clanking."))
 	return TRUE
 
 
@@ -131,15 +137,15 @@
 	if(!silent)
 		if(buckled_mob == user)
 			buckled_mob.visible_message(
-				"<span class='notice'>[buckled_mob] unbuckled [buckled_mob.p_them()]self from [src].</span>",
-				"<span class='notice'>You unbuckle yourself from [src].</span>",
-				"<span class='notice'>You hear metal clanking</span>")
+				span_notice("[buckled_mob] unbuckled [buckled_mob.p_them()]self from [src]."),
+				span_notice("You unbuckle yourself from [src]."),
+				span_notice("You hear metal clanking"))
 		else
 			var/by_user = user ? " by [user]" : ""
 			buckled_mob.visible_message(
-				"<span class='notice'>[buckled_mob] was unbuckled[by_user]!</span>",
-				"<span class='notice'>You were unbuckled from [src][by_user]].</span>",
-				"<span class='notice'>You hear metal clanking.</span>")
+				span_notice("[buckled_mob] was unbuckled[by_user]!"),
+				span_notice("You were unbuckled from [src][by_user]]."),
+				span_notice("You hear metal clanking."))
 	add_fingerprint(user, "unbuckle")
 	if(isliving(unbuckling_living.pulledby))
 		var/mob/living/pulling_living = unbuckling_living.pulledby

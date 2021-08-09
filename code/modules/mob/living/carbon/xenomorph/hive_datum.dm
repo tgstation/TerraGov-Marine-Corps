@@ -3,7 +3,6 @@
 	var/hivenumber = XENO_HIVE_NORMAL
 	var/mob/living/carbon/xenomorph/queen/living_xeno_queen
 	var/mob/living/carbon/xenomorph/living_xeno_ruler
-	var/slashing_allowed = XENO_SLASHING_ALLOWED //This initial var allows the queen to turn on or off slashing. Slashing off means harm intent does much less damage.
 	var/xeno_queen_timer
 	var/xenos_per_queen = 8 //Minimum number of xenos to support a queen.
 	var/hive_orders = "" //What orders should the hive have
@@ -381,10 +380,6 @@
 		announce = FALSE
 	if(announce)
 		xeno_message("A sudden tremor ripples through the hive... \the [ruler] has been slain! Vengeance!", "xenoannounce", 6, TRUE)
-	if(slashing_allowed != XENO_SLASHING_ALLOWED)
-		if(announce)
-			xeno_message("The slashing of hosts is now permitted.", "xenoannounce", 5, TRUE)
-		slashing_allowed = XENO_SLASHING_ALLOWED
 	notify_ghosts("\The <b>[ruler]</b> has been slain!", source = ruler, action = NOTIFY_JUMP)
 	update_ruler()
 	return TRUE
@@ -539,7 +534,7 @@ to_chat will check for valid clients itself already so no need to double check f
 /datum/hive_status/proc/set_all_xeno_trackers(atom/target)
 	for(var/mob/living/carbon/xenomorph/X AS in get_all_xenos())
 		X.tracked = target
-		to_chat(X, "<span class='notice'> Now tracking [target.name]</span>")
+		to_chat(X, span_notice(" Now tracking [target.name]"))
 
 // ***************************************
 // *********** Normal Xenos
@@ -576,7 +571,7 @@ to_chat will check for valid clients itself already so no need to double check f
 /datum/hive_status/normal/burrow_larva(mob/living/carbon/xenomorph/larva/L)
 	if(!is_ground_level(L.z))
 		return
-	L.visible_message("<span class='xenodanger'>[L] quickly burrows into the ground.</span>")
+	L.visible_message(span_xenodanger("[L] quickly burrows into the ground."))
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
 	xeno_job.add_job_positions(1)
 	GLOB.round_statistics.total_xenos_created-- // keep stats sane
@@ -600,17 +595,8 @@ to_chat will check for valid clients itself already so no need to double check f
 		if(length(possible_silos))
 			return attempt_to_spawn_larva_in_silo(xeno_candidate, possible_silos, larva_already_reserved)
 		if(SSticker.mode?.flags_round_type & MODE_SILO_RESPAWN && !SSsilo.can_fire) // Distress mode & prior to shutters opening, so let the queue bypass silos if needed
-			if(!isnewplayer(xeno_candidate) && XENODEATHTIME_CHECK(xeno_candidate))
-				if(check_other_rights(xeno_candidate.client, R_ADMIN, FALSE))
-					if(tgui_alert(xeno_candidate, "You wouldn't normally qualify for this respawn. Are you sure you want to bypass it with your admin powers?", "Bypass Respawn", list("Yes", "No")) != "Yes")
-						log_admin("[key_name(xeno_candidate)] used their admin power to bypass respawn before their timer was over")
-						XENODEATHTIME_MESSAGE(xeno_candidate)
-						return FALSE
-				else
-					XENODEATHTIME_MESSAGE(xeno_candidate)
-					return FALSE
 			return do_spawn_larva(xeno_candidate, pick(GLOB.spawns_by_job[/datum/job/xenomorph]), larva_already_reserved)
-		to_chat(xeno_candidate, "<span class='warning'>There are no places currently available to receive new larvas.</span>")
+		to_chat(xeno_candidate, span_warning("There are no places currently available to receive new larvas."))
 		return FALSE
 
 	var/mob/living/carbon/xenomorph/chosen_mother
@@ -621,16 +607,6 @@ to_chat will check for valid clients itself already so no need to double check f
 
 	if(QDELETED(chosen_mother) || !xeno_candidate?.client)
 		return FALSE
-
-	if(!isnewplayer(xeno_candidate) && XENODEATHTIME_CHECK(xeno_candidate))
-		if(check_other_rights(xeno_candidate.client, R_ADMIN, FALSE))
-			if(tgui_alert(xeno_candidate, "You wouldn't normally qualify for this respawn. Are you sure you want to bypass it with your admin powers?", "Bypass Respawn", list("Yes", "No")) != "Yes")
-				log_admin("[key_name(xeno_candidate)] used his admin power to bypass respawn before his timer was over")
-				XENODEATHTIME_MESSAGE(xeno_candidate)
-				return FALSE
-		else
-			XENODEATHTIME_MESSAGE(xeno_candidate)
-			return FALSE
 
 	return spawn_larva(xeno_candidate, chosen_mother, larva_already_reserved)
 
@@ -653,16 +629,6 @@ to_chat will check for valid clients itself already so no need to double check f
 	if(QDELETED(chosen_silo) || !xeno_candidate?.client)
 		return FALSE
 
-	if(!isnewplayer(xeno_candidate) && XENODEATHTIME_CHECK(xeno_candidate))
-		if(check_other_rights(xeno_candidate.client, R_ADMIN, FALSE))
-			if(tgui_alert(xeno_candidate, "You wouldn't normally qualify for this respawn. Are you sure you want to bypass it with your admin powers?", "Bypass Respawn", list("Yes", "No")) != "Yes")
-				log_admin("[key_name(xeno_candidate)] used his admin power to bypass respawn before his timer was over")
-				XENODEATHTIME_MESSAGE(xeno_candidate)
-				return FALSE
-		else
-			XENODEATHTIME_MESSAGE(xeno_candidate)
-			return FALSE
-
 	return do_spawn_larva(xeno_candidate, chosen_silo.loc, larva_already_reserved)
 
 
@@ -671,40 +637,40 @@ to_chat will check for valid clients itself already so no need to double check f
 		return FALSE
 
 	if(QDELETED(mother) || !istype(mother))
-		to_chat(xeno_candidate, "<span class='warning'>Something went awry with mom. Can't spawn at the moment.</span>")
+		to_chat(xeno_candidate, span_warning("Something went awry with mom. Can't spawn at the moment."))
 		return FALSE
 
 	if(!larva_already_reserved)
 		var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
 		var/stored_larva = xeno_job.total_positions - xeno_job.current_positions
 		if(!stored_larva)
-			to_chat(xeno_candidate, "<span class='warning'>There are no longer burrowed larvas available.</span>")
+			to_chat(xeno_candidate, span_warning("There are no longer burrowed larvas available."))
 			return FALSE
 
 	var/list/possible_mothers = list()
 	SEND_SIGNAL(src, COMSIG_HIVE_XENO_MOTHER_CHECK, possible_mothers) //List variable passed by reference, and hopefully populated.
 
 	if(!(mother in possible_mothers))
-		to_chat(xeno_candidate, "<span class='warning'>This mother is not in a state to receive us.</span>")
+		to_chat(xeno_candidate, span_warning("This mother is not in a state to receive us."))
 		return FALSE
 	return do_spawn_larva(xeno_candidate, get_turf(mother), larva_already_reserved)
 
 
 /datum/hive_status/proc/do_spawn_larva(mob/xeno_candidate, turf/spawn_point, larva_already_reserved = FALSE)
 	if(is_banned_from(xeno_candidate.ckey, ROLE_XENOMORPH))
-		to_chat(xeno_candidate, "<span class='warning'>You are jobbaned from the [ROLE_XENOMORPH] role.</span>")
+		to_chat(xeno_candidate, span_warning("You are jobbaned from the [ROLE_XENOMORPH] role."))
 		return FALSE
 
 	var/mob/living/carbon/xenomorph/larva/new_xeno = new /mob/living/carbon/xenomorph/larva(spawn_point)
-	new_xeno.visible_message("<span class='xenodanger'>A larva suddenly burrows out of the ground!</span>",
-	"<span class='xenodanger'>We burrow out of the ground and awaken from our slumber. For the Hive!</span>")
+	new_xeno.visible_message(span_xenodanger("A larva suddenly burrows out of the ground!"),
+	span_xenodanger("We burrow out of the ground and awaken from our slumber. For the Hive!"))
 
 	log_game("[key_name(xeno_candidate)] has joined as [new_xeno] at [AREACOORD(new_xeno.loc)].")
 	message_admins("[key_name(xeno_candidate)] has joined as [ADMIN_TPMONTY(new_xeno)].")
 
 	xeno_candidate.mind.transfer_to(new_xeno, TRUE)
 	new_xeno.playsound_local(new_xeno, 'sound/effects/xeno_newlarva.ogg')
-	to_chat(new_xeno, "<span class='xenoannounce'>We are a xenomorph larva awakened from slumber!</span>")
+	to_chat(new_xeno, span_xenoannounce("We are a xenomorph larva awakened from slumber!"))
 	if(!larva_already_reserved)
 		var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
 		xeno_job.occupy_job_positions(1)
@@ -1142,10 +1108,7 @@ to_chat will check for valid clients itself already so no need to double check f
 /datum/hive_status/ui_data(mob/living/carbon/xenomorph/xeno)
 	. = list()
 
-	.["can_evolve"] = !xeno.is_ventcrawling && \
-		!xeno.incapacitated(TRUE) && \
-		xeno.health >= xeno.maxHealth && \
-		xeno.plasma_stored >= xeno.xeno_caste.plasma_max
+	.["can_evolve"] = !xeno.is_ventcrawling && !xeno.incapacitated(TRUE) && xeno.health >= xeno.maxHealth && xeno.plasma_stored >= (xeno.xeno_caste.plasma_max * xeno.xeno_caste.plasma_regen_limit)
 
 	if(isxenolarva(xeno))
 		.["evolution"] = list(
@@ -1213,7 +1176,7 @@ to_chat will check for valid clients itself already so no need to double check f
 	var/list/possible_mothers = list()
 	var/list/possible_silos = list()
 	SEND_SIGNAL(src, COMSIG_HIVE_XENO_MOTHER_PRE_CHECK, possible_mothers, possible_silos)
-	if(stored_larva > 0 && !LAZYLEN(candidate) && (length(possible_mothers) || length(possible_silos) || (SSticker.mode?.flags_round_type & MODE_SILO_RESPAWN && !SSsilo.can_fire)))
+	if(stored_larva > 0 && !LAZYLEN(candidate) && (length(possible_mothers) || length(possible_silos) || (SSticker.mode?.flags_round_type & MODE_SILO_RESPAWN && SSmonitor.gamestate == SHUTTERS_CLOSED)))
 		attempt_to_spawn_larva(observer)
 		return
 	if(LAZYFIND(candidate, observer))
@@ -1222,14 +1185,14 @@ to_chat will check for valid clients itself already so no need to double check f
 	LAZYADD(candidate, observer)
 	RegisterSignal(observer, COMSIG_PARENT_QDELETING, .proc/clean_observer)
 	observer.larva_position =  LAZYLEN(candidate)
-	to_chat(observer, "<span class='warning'>There are no burrowed Larvae or no silos. You are in position [observer.larva_position] to become a Xenomorph.</span>")
+	to_chat(observer, span_warning("There are no burrowed Larvae or no silos. You are in position [observer.larva_position] to become a Xenomorph."))
 	return TRUE
 
 /// Remove an observer from the larva candidate queue
 /datum/hive_status/proc/remove_from_larva_candidate_queue(mob/dead/observer/observer)
 	LAZYREMOVE(candidate, observer)
 	UnregisterSignal(observer, COMSIG_PARENT_QDELETING)
-	to_chat(observer, "<span class='warning'>You left the Larva queue.</span>")
+	to_chat(observer, span_warning("You left the Larva queue."))
 	var/mob/dead/observer/observer_in_queue
 	for(var/i in 1 to LAZYLEN(candidate))
 		observer_in_queue = candidate[i]
@@ -1273,6 +1236,6 @@ to_chat will check for valid clients itself already so no need to double check f
 /datum/hive_status/proc/try_to_give_larva(mob/dead/observer/next_in_line)
 	next_in_line.larva_position = 0
 	if(!attempt_to_spawn_larva(next_in_line, TRUE))
-		to_chat(next_in_line, "<span class='warning'>You failed to qualify to become a larva, you must join the queue again.</span>")
+		to_chat(next_in_line, span_warning("You failed to qualify to become a larva, you must join the queue again."))
 		return FALSE
 	return TRUE

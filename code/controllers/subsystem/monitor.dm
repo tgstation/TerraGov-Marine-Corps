@@ -4,10 +4,6 @@ SUBSYSTEM_DEF(monitor)
 	runlevels = RUNLEVEL_GAME
 	wait = 5 MINUTES
 	can_fire = TRUE
-
-
-	///The next world.time for wich the monitor subsystem refresh the state
-	var/scheduled = 0
 	///The current state
 	var/current_state = STATE_BALANCED
 	///The last state
@@ -32,10 +28,11 @@ SUBSYSTEM_DEF(monitor)
 	var/gamestate = SHUTTERS_CLOSED
 	///If the automatic balance system is online
 	var/is_automatic_balance_on = TRUE
-	
+
 /datum/monitor_statistics
-	var/ancient_queen = 0
-	var/elder_queen = 0
+	var/king = 0
+	var/ancient_T4 = 0
+	var/elder_T4 = 0
 	var/ancient_T3 = 0
 	var/elder_T3 = 0
 	var/ancient_T2 = 0
@@ -44,7 +41,6 @@ SUBSYSTEM_DEF(monitor)
 	var/list/sadar_in_use = list()
 	var/list/b18_in_use = list()
 	var/list/b17_in_use = list()
-	var/OB_available = 0
 
 /datum/controller/subsystem/monitor/Initialize(start_timeofday)
 	. = ..()
@@ -53,11 +49,14 @@ SUBSYSTEM_DEF(monitor)
 	is_automatic_balance_on = CONFIG_GET(flag/is_automatic_balance_on)
 
 /datum/controller/subsystem/monitor/fire(resumed = 0)
-	current_points = calculate_state_points() / max(GLOB.alive_human_list.len + GLOB.alive_xeno_list.len, 10)//having less than 10 players gives bad results
+	var/total_living_players = GLOB.alive_human_list.len + GLOB.alive_xeno_list.len
+	current_points = calculate_state_points() / max(total_living_players, 10)//having less than 10 players gives bad results
 	if(gamestate == GROUNDSIDE)
 		process_human_positions()
 		FOB_hugging_check()
 	set_state(current_points)
+
+	//Automatic buff system for the xeno, if they have too much burrowed yet are still losing
 	var/proposed_balance_buff = 1
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
 	if(is_automatic_balance_on && current_state < STATE_BALANCED && ((xeno_job.total_positions - xeno_job.current_positions) > (length(GLOB.alive_xeno_list) * TOO_MUCH_BURROWED_PROPORTION)) && gamestate == GROUNDSIDE)
@@ -66,6 +65,19 @@ SUBSYSTEM_DEF(monitor)
 		GLOB.xeno_stat_multiplicator_buff = proposed_balance_buff
 		apply_balance_changes()
 
+	//Automatic respawn buff, if a stalemate is detected and a lot of ghosts are waiting to play
+	if(state != STATE_BALANCED || !stalemate || GLOB.observer_list <= 0.5 * total_living_players)
+		SSsilo.larva_spawn_rate_temporary_buff = 0
+		return
+	for(var/mob/dead/observer/observer AS in GLOB.observer_list)
+		observer.timeofdeath -= 5 MINUTES //If we are in a constant stalemate, every 5 minutes we remove 5 minutes of respawn time to become a marine
+	message_admins("Stalemate detected, respawn buff system in action : 5 minutes were removed from the respawn time of everyone, xeno won : [length(GLOB.observer_list) * 0.75 * 5] larvas")
+	log_game("5 minutes were removed from the respawn time of everyone, xeno won : [length(GLOB.observer_list) * 0.75 * 5] larvas")
+	//This will be in effect for 5 SSsilo runs. For 30 ghosts that makes 1 new larva every 2.5 minutes
+	SSsilo.larva_spawn_rate_temporary_buff = length(GLOB.observer_list) * 0.75
+
+
+
 /datum/controller/subsystem/monitor/proc/set_groundside_calculation()
 	SIGNAL_HANDLER
 	gamestate = GROUNDSIDE
@@ -73,8 +85,8 @@ SUBSYSTEM_DEF(monitor)
 /datum/controller/subsystem/monitor/proc/set_shipside_calculation()
 	SIGNAL_HANDLER
 	gamestate = SHIPSIDE
-	
-///Calculate the points supposedly representating of the situation	
+
+///Calculate the points supposedly representating of the situation
 /datum/controller/subsystem/monitor/proc/calculate_state_points()
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
 	switch(gamestate)
@@ -83,8 +95,9 @@ SUBSYSTEM_DEF(monitor)
 			. += stats.ancient_T3 * ANCIENT_T3_WEIGHT
 			. += stats.elder_T2 * ELDER_T2_WEIGHT
 			. += stats.elder_T3 * ELDER_T3_WEIGHT
-			. += stats.ancient_queen * ANCIENT_QUEEN_WEIGHT
-			. += stats.elder_queen * ELDER_QUEEN_WEIGHT
+			. += stats.ancient_T4 * ANCIENT_T4_WEIGHT
+			. += stats.elder_T4 * ELDER_T4_WEIGHT
+			. += stats.king * KING_WEIGHT
 			. += human_on_ground * HUMAN_LIFE_ON_GROUND_WEIGHT
 			. += (GLOB.alive_human_list.len - human_on_ground) * HUMAN_LIFE_ON_SHIP_WEIGHT
 			. += GLOB.alive_xeno_list.len * XENOS_LIFE_WEIGHT
@@ -94,12 +107,11 @@ SUBSYSTEM_DEF(monitor)
 			. += stats.b17_in_use.len * B17_PRICE * REQ_POINTS_WEIGHT
 			. += stats.b18_in_use.len * B18_PRICE * REQ_POINTS_WEIGHT
 			. += SSpoints.supply_points[FACTION_TERRAGOV] * REQ_POINTS_WEIGHT
-			. += stats.OB_available * OB_AVAILABLE_WEIGHT
 			. += GLOB.xeno_resin_silos.len * SPAWNING_POOL_WEIGHT
-		if(SHUTTERS_CLOSED)	
+		if(SHUTTERS_CLOSED)
 			. += GLOB.alive_human_list.len * HUMAN_LIFE_WEIGHT_PREGAME
 			. += GLOB.alive_xeno_list.len * XENOS_LIFE_WEIGHT_PREGAME
-		if(SHIPSIDE)	
+		if(SHIPSIDE)
 			. += GLOB.alive_human_list.len * HUMAN_LIFE_WEIGHT_SHIPSIDE
 			. += GLOB.alive_xeno_list.len * XENOS_LIFE_WEIGHT_SHIPSIDE
 
@@ -139,8 +151,9 @@ SUBSYSTEM_DEF(monitor)
 		current_state = MARINES_LOSING
 	else
 		current_state = MARINES_DELAYING
-	
-	if(!gamestate == GROUNDSIDE)
+
+	if(gamestate != GROUNDSIDE)
+		stalemate = FALSE
 		return
 	//We check for possible stalemate
 	if (current_state == last_state)
@@ -160,7 +173,7 @@ SUBSYSTEM_DEF(monitor)
 	// No need to ask admins every time
 	if(GLOB.xeno_stat_multiplicator_buff != 1)
 		return buff_needed_estimation
-	var/admin_response = admin_approval("<span color='prefix'>AUTO BALANCE SYSTEM:</span> An excessive amount of burrowed was detected, while the balance system consider that marines are winning. <span class='boldnotice'>Considering the amount of burrowed larvas, a stat buff of [buff_needed_estimation * 100]% will be applied to health, health recovery, and melee damages.</span>",
+	var/admin_response = admin_approval("<span color='prefix'>AUTO BALANCE SYSTEM:</span> An excessive amount of burrowed was detected, while the balance system consider that marines are winning. [span_boldnotice("Considering the amount of burrowed larvas, a stat buff of [buff_needed_estimation * 100]% will be applied to health, health recovery, and melee damages.")]",
 		options = list("approve" = "approve", "deny" = "deny", "shutdown balance system" = "shutdown balance system"),
 		admin_sound = sound('sound/effects/sos-morse-code.ogg', channel = CHANNEL_ADMIN))
 	if(admin_response != "approve")
@@ -168,7 +181,7 @@ SUBSYSTEM_DEF(monitor)
 			is_automatic_balance_on = FALSE
 		return 1
 	return buff_needed_estimation
-	
+
 
 /**
  * Will multiply every base health, regen and melee damage stat on all xeno by GLOB.xeno_stat_multiplicator_buff

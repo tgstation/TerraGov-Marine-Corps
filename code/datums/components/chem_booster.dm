@@ -147,7 +147,7 @@
 ///Adds additional text for the component when examining the item it is attached to
 /datum/component/chem_booster/proc/examine(datum/source, mob/user)
 	SIGNAL_HANDLER
-	to_chat(user, "<span class='notice'>The chemical system currently holds [resource_storage_current]u of green blood. Its enhancement level is set to [boost_amount].</span>")
+	to_chat(user, span_notice("The chemical system currently holds [resource_storage_current]u of green blood. Its' enhancement level is set to [boost_amount]."))
 	show_meds_beaker_contents(user)
 
 ///Disables active functions and cleans up actions when the suit is unequipped
@@ -183,7 +183,7 @@
 
 /datum/component/chem_booster/process()
 	if(resource_storage_current < resource_drain_amount)
-		to_chat(wearer, "<span class='warning'>Insufficient resources to maintain operation.</span>")
+		to_chat(wearer, span_warning("Insufficient resources to maintain operation."))
 		on_off()
 	update_resource(-resource_drain_amount)
 
@@ -193,7 +193,7 @@
 		wearer.adjustStaminaLoss(-7*stamina_regen_amp*((20 - (world.time - processing_start)/10)/20)) //stamina gain scales inversely with passed time, up to 20 seconds
 	if(world.time - processing_start > 12 SECONDS && world.time - processing_start < 15 SECONDS)
 		wearer.overlay_fullscreen("degeneration", /obj/screen/fullscreen/infection, 1)
-		to_chat(wearer, "<span class='highdanger'>WARNING: You have [(200 - (world.time - processing_start))/10] seconds before necrotic tissue forms on your limbs.</span>")
+		to_chat(wearer, span_highdanger("WARNING: You have [(200 - (world.time - processing_start))/10] seconds before necrotic tissue forms on your limbs."))
 
 /**
  *	Opens the radial menu with everything
@@ -232,7 +232,7 @@
 			load_up()
 
 		if(VALI_INFO)
-			to_chat(wearer, "<span class='notice'>[reagent_info]</span>")
+			to_chat(wearer, span_notice("[reagent_info]"))
 
 ///Handles turning on/off the processing part of the component, along with the negative effects related to this
 /datum/component/chem_booster/proc/on_off(datum/source)
@@ -246,7 +246,7 @@
 				var/datum/limb/L = X
 				if(L.germ_level > 700)
 					continue
-				to_chat(wearer, "<span class='warning'>You can feel the life force in your [L.display_name] draining away...</span>")
+				wearer.balloon_alert(wearer, "You feel the life in your [L.display_name] draining away...")
 				L.germ_level += max(INFECTION_LEVEL_THREE + 50 - L.germ_level, 200)
 				necrotized_counter -= 1
 				if(necrotized_counter < 1)
@@ -256,17 +256,17 @@
 		power_action.action_icon_state = "cboost_off"
 		power_action.update_button_icon()
 		boost_on = FALSE
-		to_chat(wearer, "<span class='warning'>Halting reagent injection.</span>")
+		wearer.balloon_alert(wearer, "Halting reagent injection")
 		COOLDOWN_START(src, chemboost_activation_cooldown, 10 SECONDS)
 		setup_bonus_effects()
 		return
 
 	if(!COOLDOWN_CHECK(src, chemboost_activation_cooldown))
-		to_chat(wearer, "<span class='warning'>Your body is still strained after the last exposure. You need to wait a bit... unless you want to burst from excessive use.</span>")
+		wearer.balloon_alert(wearer, "You need to wait!")
 		return
 
 	if(resource_storage_current < resource_drain_amount)
-		to_chat(wearer, "<span class='warning'>Not enough resource to sustain operation.</span>")
+		wearer.balloon_alert(wearer, "Not enough resource!")
 		return
 
 	boost_on = TRUE
@@ -276,7 +276,7 @@
 	power_action.action_icon_state = "cboost_on"
 	power_action.update_button_icon()
 	playsound(get_turf(wearer), 'sound/effects/bubbles.ogg', 30, 1)
-	to_chat(wearer, "<span class='notice'>Commensing reagent injection.<b>[(automatic_meds_use && meds_beaker.reagents.total_volume) ? " Adding additional reagents." : ""]</b></span>")
+	to_chat(wearer, span_notice("Commensing reagent injection.<b>[(automatic_meds_use && meds_beaker.reagents.total_volume) ? " Adding additional reagents." : ""]</b>"))
 	if(automatic_meds_use)
 		show_meds_beaker_contents(wearer)
 		meds_beaker.reagents.trans_to(wearer, 30)
@@ -285,7 +285,7 @@
 ///Updates the boost amount of the suit and effect_str of reagents if component is on. "amount" is the final level you want to set the boost to.
 /datum/component/chem_booster/proc/update_boost(amount)
 	boost_amount = amount
-	to_chat(wearer, "<span class='notice'>Power set to [boost_amount].</span>")
+	wearer?.balloon_alert(wearer, "Power set to [boost_amount]")
 	resource_drain_amount = boost_amount*(3 + boost_amount)
 
 ///Handles Vali stat boosts and any other potential buffs on activation/deactivation
@@ -325,33 +325,33 @@
 		return
 
 	if(wearer.do_actions)
-		to_chat(wearer, "<span class='warning'>You are already occupied with something.</span>")
+		wearer.balloon_alert(wearer, "You are already occupied with something")
 		return
 
 	var/obj/item/held_item = wearer.get_held_item()
 	if(!held_item)
-		to_chat(wearer, "<span class='warning'>You need to be holding an item compatible with the system.</span>")
+		wearer.balloon_alert(wearer, "You need to be holding an item compatible with the system")
 		return
 
 	if(!CHECK_BITFIELD(held_item.flags_item, DRAINS_XENO))
-		to_chat(wearer, "<span class='warning'>You need to be holding an item compatible with the system.</span>")
+		wearer.balloon_alert(wearer, "You need to be holding an item compatible with the system")
 		return
 
 	wearer.add_movespeed_modifier(MOVESPEED_ID_CHEM_CONNECT, TRUE, 0, NONE, TRUE, 4)
-	to_chat(wearer, "<span class='notice'>You begin connecting the [held_item] to the storage tank.</span>")
+	wearer.balloon_alert(wearer, "You begin connecting [held_item]")
 	if(!do_after(wearer, 1 SECONDS, TRUE, held_item, BUSY_ICON_FRIENDLY, null, PROGRESS_BRASS, ignore_turf_checks = TRUE))
 		wearer.remove_movespeed_modifier(MOVESPEED_ID_CHEM_CONNECT)
-		to_chat(wearer, "<span class='warning'>You are interrupted.</span>")
+		wearer.balloon_alert(wearer, "You are interrupted")
 		return
 
-	to_chat(wearer, "<span class='notice'>You finish connecting the [held_item].</span>")
+	wearer.balloon_alert(wearer, "finished connecting [held_item]")
 	wearer.remove_movespeed_modifier(MOVESPEED_ID_CHEM_CONNECT)
 	manage_weapon_connection(held_item)
 
 ///Handles the setting up and removal of signals and vars related to connecting an item to the suit
 /datum/component/chem_booster/proc/manage_weapon_connection(obj/item/weapon_to_connect)
 	if(connected_weapon)
-		to_chat(wearer, "<span class='warning'>You disconnect the [connected_weapon].</span>")
+		wearer.balloon_alert(wearer, "Disconnected [connected_weapon]")
 		DISABLE_BITFIELD(connected_weapon.flags_item, NODROP)
 		UnregisterSignal(connected_weapon, COMSIG_ITEM_ATTACK)
 		UnregisterSignal(connected_weapon, list(COMSIG_ITEM_EQUIPPED_NOT_IN_SLOT, COMSIG_ITEM_DROPPED))
@@ -392,28 +392,28 @@
 		return
 
 	if(resource_storage_current < volume)
-		to_chat(wearer, "<span class='warning'>Not enough resource to extract.</span>")
+		wearer.balloon_alert(wearer, "Not enough resource to extract")
 		return
 
 	var/obj/item/held_item = wearer.get_held_item()
 	if(!held_item)
-		to_chat(wearer, "<span class='warning'>You need to be holding a chemical liquid container.</span>")
+		wearer.balloon_alert(wearer, "You need to be holding a chemical liquid container")
 		return
 
 	if(!istype(held_item, /obj/item/reagent_containers/glass))
-		to_chat(wearer, "<span class='warning'>You need to be holding a specialized chemical liquid container.</span>")
+		wearer.balloon_alert(wearer, "You need to be holding a specialized chemical liquid container")
 		return
 
 	if((held_item.reagents.maximum_volume-held_item.reagents.total_volume) < volume)
-		to_chat(wearer, "<span class='warning'>External container lacks sufficient space..</span>")
+		wearer.balloon_alert(wearer, "External container lacks sufficient space")
 		return
 
-	to_chat(wearer, "<span class='notice'>You begin filling [held_item].</span>")
+	wearer.balloon_alert(wearer, "You begin filling [held_item]")
 	if(!do_after(wearer, 1 SECONDS, TRUE, held_item, BUSY_ICON_FRIENDLY, null, PROGRESS_BRASS))
 		return
 
 	if(resource_storage_current < volume)
-		to_chat(wearer, "<span class='warning'>Not enough resource to extract.</span>")
+		wearer.balloon_alert(wearer, "Not enough resource to extract")
 		return
 
 	update_resource(-volume)
@@ -427,7 +427,7 @@
 
 	var/obj/item/held_item = wearer.get_held_item()
 	if((!istype(held_item, /obj/item/reagent_containers) && !meds_beaker.reagents.total_volume) || istype(held_item, /obj/item/reagent_containers/pill))
-		to_chat(wearer, "<span class='warning'>You need to be holding a liquid container to fill up the system's reagent storage.</span>")
+		wearer.balloon_alert(wearer, "You need to be holding a liquid container")
 		return
 
 	if(!istype(held_item, /obj/item/reagent_containers) && meds_beaker.reagents.total_volume)
@@ -436,12 +436,12 @@
 			automatic_meds_use = TRUE
 		else if(pick == "No")
 			automatic_meds_use = FALSE
-		to_chat(wearer, "<span class='notice'>The chemical system will <b>[automatic_meds_use ? "inject" : "not inject"]</b> loaded reagents on activation.</span>")
+		wearer.balloon_alert(wearer, "The chemical system will [automatic_meds_use ? "" : "not"] inject loaded reagents on activation")
 		return
 
 	var/obj/item/reagent_containers/held_beaker = held_item
 	if(!held_beaker.reagents.total_volume && !meds_beaker.reagents.total_volume)
-		to_chat(wearer, "<span class='notice'>Both the held reagent container and the system's reagent storage are empty.</span>")
+		wearer.balloon_alert(wearer, "Both the held reagent container and the system's reagent storage are empty")
 		return
 
 	if(!held_beaker.reagents.total_volume && meds_beaker.reagents.total_volume)
@@ -454,24 +454,24 @@
 		return
 
 	if(meds_beaker.reagents.total_volume >= meds_beaker.volume)
-		to_chat(wearer, "<span class='notice'>The system's reagent storage is full. You may consider unloading it if you want to load a different mix.</span>")
+		wearer.balloon_alert(wearer, "The system's reagent storage is full")
 		return
 
 	if(!do_after(wearer, 0.5 SECONDS, TRUE, held_item, BUSY_ICON_FRIENDLY, null, PROGRESS_BRASS, ignore_turf_checks = TRUE))
 		return
 
 	var/trans = held_beaker.reagents.trans_to(meds_beaker, held_beaker.amount_per_transfer_from_this)
-	to_chat(wearer, "<span class='notice'>You load [trans] units into the system's reagent storage.</span>")
+	wearer.balloon_alert(wearer, "Loaded [trans] units")
 	show_meds_beaker_contents(wearer)
 
 ///Shows the loaded reagents to the person examining the parent/wearer
 /datum/component/chem_booster/proc/show_meds_beaker_contents(mob/user)
 	if(!meds_beaker.reagents.total_volume)
-		to_chat(user, "<span class='notice'>The system's reagent storage is empty.</span>")
+		to_chat(user, span_notice("The system's reagent storage is empty."))
 		return
-	to_chat(user, "<span class='notice'>The system's reagent storage contains:</span>")
+	to_chat(user, span_notice("The system's reagent storage contains:"))
 	for(var/datum/reagent/R AS in meds_beaker.reagents.reagent_list)
-		to_chat(user, "<span class='rose'>[R.name] - [R.volume]u</span>")
+		to_chat(user, span_rose("[R.name] - [R.volume]u"))
 
 /datum/action/chem_booster/configure
 	name = "Configure Vali Chemical Enhancement"

@@ -895,7 +895,7 @@
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "IZ" = (
-/obj/machinery/marine_turret,
+/obj/item/weapon/gun/sentry/big_sentry/premade,
 /turf/open/floor/plating/plating_catwalk,
 /area/shuttle/canterbury)
 "JM" = (
@@ -1064,9 +1064,7 @@
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "Vy" = (
-/obj/machinery/marine_turret{
-	dir = 8
-	},
+/obj/item/weapon/gun/sentry/big_sentry/premade,
 /turf/open/floor/plating/plating_catwalk,
 /area/shuttle/canterbury)
 "Wb" = (
@@ -1089,9 +1087,7 @@
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "WY" = (
-/obj/machinery/marine_turret{
-	dir = 4
-	},
+/obj/item/weapon/gun/sentry/big_sentry/premade,
 /turf/open/floor/plating/plating_catwalk,
 /area/shuttle/canterbury)
 "Xb" = (

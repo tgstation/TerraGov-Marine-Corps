@@ -57,7 +57,7 @@
 
 	var/obj/item/facepaint/paint = I
 	if(paint.uses < 1)
-		to_chat(user, "<span class='warning'>\the [paint] is out of color!</span>")
+		to_chat(user, span_warning("\the [paint] is out of color!"))
 		return TRUE
 
 	var/new_color
@@ -103,7 +103,7 @@
 		return
 	if(parent.slot_chest)
 		if(!silent)
-			to_chat(user, "<span class='notice'>There is already an armor piece installed in that slot.</span>")
+			to_chat(user, span_notice("There is already an armor piece installed in that slot."))
 		return FALSE
 
 /obj/item/armor_module/armor/chest/do_attach(mob/living/user, obj/item/clothing/suit/modular/parent)
@@ -170,7 +170,7 @@
 		return
 	if(parent.slot_legs)
 		if(!silent)
-			to_chat(user, "<span class='notice'>There is already an armor piece installed in that slot.</span>")
+			to_chat(user, span_notice("There is already an armor piece installed in that slot."))
 		return FALSE
 
 /obj/item/armor_module/armor/legs/do_attach(mob/living/user, obj/item/clothing/suit/modular/parent)
@@ -232,7 +232,7 @@
 		return
 	if(parent.slot_arms)
 		if(!silent)
-			to_chat(user, "<span class='notice'>There is already an armor piece installed in that slot.</span>")
+			to_chat(user, span_notice("There is already an armor piece installed in that slot."))
 		return FALSE
 
 /obj/item/armor_module/armor/arms/do_attach(mob/living/user, obj/item/clothing/suit/modular/parent)

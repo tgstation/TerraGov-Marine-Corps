@@ -28,9 +28,9 @@
 
 	if(carved)
 		if(!store)
-			visible_message("<span class='notice'>The pages of [title] have been cut out!</span>")
+			visible_message(span_notice("The pages of [title] have been cut out!"))
 		else
-			visible_message("<span class='notice'>[store] falls out of [title]!</span>")
+			visible_message(span_notice("[store] falls out of [title]!"))
 			store.forceMove(get_turf(loc))
 			store = null
 		return
@@ -80,34 +80,34 @@
 
 	else if(carved)
 		if(store)
-			to_chat(user, "<span class='notice'>There's already something in [title]!</span>")
+			to_chat(user, span_notice("There's already something in [title]!"))
 			return
 
 		if(I.w_class >= 3)
-			to_chat(user, "<span class='notice'>[I] won't fit in [title].</span>")
+			to_chat(user, span_notice("[I] won't fit in [title]."))
 			return
 
 		user.drop_held_item()
 		I.forceMove(src)
 		store = I
-		to_chat(user, "<span class='notice'>You put [I] in [title].</span>")
+		to_chat(user, span_notice("You put [I] in [title]."))
 
 	else if(istype(I, /obj/item/tool/kitchen/knife) || iswirecutter(I))
 		if(carved)
 			return
 
-		to_chat(user, "<span class='notice'>You begin to carve out [title].</span>")
+		to_chat(user, span_notice("You begin to carve out [title]."))
 
 		if(!do_after(user, 30, TRUE, src))
 			return
 
-		to_chat(user, "<span class='notice'>You carve out the pages from [title]! You didn't want to read it anyway.</span>")
+		to_chat(user, span_notice("You carve out the pages from [title]! You didn't want to read it anyway."))
 		carved = TRUE
 
 /obj/item/book/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
 	if(user.zone_selected == "eyes")
-		user.visible_message("<span class='notice'>You open up the book and show it to [M]. </span>", \
-			"<span class='notice'> [user] opens up a book and shows it to [M]. </span>")
+		user.visible_message(span_notice("You open up the book and show it to [M]. "), \
+			span_notice(" [user] opens up a book and shows it to [M]. "))
 		M << browse("<TT><I>Penned by [author].</I></TT> <BR>" + "[dat]", "window=book")
 
 
