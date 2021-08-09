@@ -246,7 +246,11 @@
 #define COMSIG_ITEM_UNZOOM "item_unzoom"
 #define COMSIG_ITEM_ZOOM "item_zoom"                            //from base of /obj/item/zoom(), used for telling when a scope zooms and for checking if another zoom is already on mob.
 	#define COMSIG_ITEM_ALREADY_ZOOMED (1<<0)                         //bitshift that tells to a item when zoom checking that there already soemthing zooming user.
-#define COMSIG_ITEM_UNIQUE_ACTION "item_unique_action"			//from base of /obj/item/unique_action(): (atom/target, mob/user)
+#define COMSIG_ITEM_UNIQUE_ACTION "item_unique_action"
+			//from base of /obj/item/unique_action(): (atom/target, mob/user)
+#define COMSIG_ITEM_IS_ATTACHMENT "item_is_attachment"
+#define COMSIG_ITEM_GET_ATTACHMENT_DATA "item_get_data"
+
 
 #define COMSIG_ITEM_TOGGLE_ACTION "item_toggle_action"			//from base of obj/item/ui_interact(): (/mob/user)
 #define COMSIG_ITEM_TOGGLE_ACTIVE "item_toggle_active"			//from base of /obj/item/toggle_active(): (new_state)
