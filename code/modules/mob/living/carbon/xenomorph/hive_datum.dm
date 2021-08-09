@@ -1176,7 +1176,7 @@ to_chat will check for valid clients itself already so no need to double check f
 	var/list/possible_mothers = list()
 	var/list/possible_silos = list()
 	SEND_SIGNAL(src, COMSIG_HIVE_XENO_MOTHER_PRE_CHECK, possible_mothers, possible_silos)
-	if(stored_larva > 0 && !LAZYLEN(candidate) && (length(possible_mothers) || length(possible_silos) || (SSticker.mode?.flags_round_type & MODE_SILO_RESPAWN && SSmonitor.gamestate == SHUTTERS_CLOSED)))
+	if(stored_larva > 0 && !LAZYLEN(candidate) && (length(possible_mothers) || length(possible_silos) || (SSticker.mode?.flags_round_type & MODE_SILO_RESPAWN && !SSsilo.can_fire)))
 		attempt_to_spawn_larva(observer)
 		return
 	if(LAZYFIND(candidate, observer))
@@ -1216,11 +1216,12 @@ to_chat will check for valid clients itself already so no need to double check f
 	var/mob/dead/observer/observer_in_queue
 	while(stored_larva > 0 && LAZYLEN(candidate))
 		observer_in_queue = LAZYACCESS(candidate, 1)
+		if(!try_to_give_larva(observer_in_queue))//Something failed, stop everything
+			return
 		LAZYREMOVE(candidate, observer_in_queue)
 		UnregisterSignal(observer_in_queue, COMSIG_PARENT_QDELETING)
-		if(try_to_give_larva(observer_in_queue))
-			stored_larva--
-			slot_really_taken++
+		stored_larva--
+		slot_really_taken++
 	if(slot_occupied - slot_really_taken > 0)
 		xeno_job.free_job_positions(slot_occupied - slot_really_taken)
 	for(var/i in 1 to LAZYLEN(candidate))
@@ -1236,6 +1237,5 @@ to_chat will check for valid clients itself already so no need to double check f
 /datum/hive_status/proc/try_to_give_larva(mob/dead/observer/next_in_line)
 	next_in_line.larva_position = 0
 	if(!attempt_to_spawn_larva(next_in_line, TRUE))
-		to_chat(next_in_line, span_warning("You failed to qualify to become a larva, you must join the queue again."))
 		return FALSE
 	return TRUE
