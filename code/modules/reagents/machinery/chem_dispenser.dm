@@ -296,15 +296,16 @@
 			to_chat(user, "Something is already loaded into the machine.")
 			return
 
-		else if(I.is_open_container())
+		if(I.is_open_container())
 			if(!user.transferItemToLoc(I, src))
 				return
 
 			beaker =  I
 			to_chat(user, "You set [I] on the machine.")
 			updateUsrDialog()
+			return
 
-		else if(istype(I, /obj/item/reagent_containers/glass))
+		if(istype(I, /obj/item/reagent_containers/glass))
 			to_chat(user, "Take the lid off [I] first.")
 			return
 
@@ -329,7 +330,7 @@
 /obj/machinery/chem_dispenser/screwdriver_act(mob/living/user, obj/item/I)
 	TOGGLE_BITFIELD(machine_stat, PANEL_OPEN)
 	to_chat(user, span_notice("You [CHECK_BITFIELD(machine_stat, PANEL_OPEN) ? "open" : "close"] the battery compartment."))
-	update_icon()
+	update_overlays()
 	return TRUE
 
 /obj/machinery/chem_dispenser/crowbar_act(mob/living/user, obj/item/I)
@@ -339,10 +340,10 @@
 	cell = null
 	to_chat(user, span_notice("You pry out the dispenser's battery."))
 	stop_processing()
-	update_icon()
+	update_overlays()
 	return TRUE
 
-/obj/machinery/chem_dispenser/update_icon()
+/obj/machinery/chem_dispenser/update_overlays()
 	overlays.Cut()
 	if(!CHECK_BITFIELD(machine_stat, PANEL_OPEN))
 		return
