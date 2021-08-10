@@ -149,6 +149,12 @@
 	cooldown_timer = 60 SECONDS
 	keybind_signal = COMSIG_XENOABILITY_ENDURE
 	use_state_flags = XACT_USE_STAGGERED //Can use this while staggered
+	///How low the Ravager's health can go while under the effects of Endure before it dies
+	var/endure_threshold = RAVAGER_ENDURE_HP_LIMIT
+	///Timer for Endure's duration
+	var/endure_duration
+	///Timer for Endure's warning
+	var/endure_warning_duration
 
 /datum/action/xeno_action/endure/on_cooldown_finish()
 	to_chat(owner, span_xenodanger("We feel able to imbue ourselves with plasma to Endure once again!"))
@@ -166,8 +172,8 @@
 
 	X.add_filter("ravager_endure_outline", 4, outline_filter(1, COLOR_PURPLE)) //Set our cool aura; also confirmation we have the buff
 
-	addtimer(CALLBACK(src, .proc/endure_warning), RAVAGER_ENDURE_DURATION * RAVAGER_ENDURE_DURATION_WARNING) //Warn the runner when the duration is about to expire.
-	addtimer(CALLBACK(src, .proc/endure_deactivate), RAVAGER_ENDURE_DURATION)
+	endure_duration = addtimer(CALLBACK(src, .proc/endure_warning), RAVAGER_ENDURE_DURATION * RAVAGER_ENDURE_DURATION_WARNING, TIMER_UNIQUE|TIMER_STOPPABLE|TIMER_OVERRIDE) //Warn the ravager when the duration is about to expire.
+	endure_warning_duration = addtimer(CALLBACK(src, .proc/endure_deactivate), RAVAGER_ENDURE_DURATION, TIMER_UNIQUE|TIMER_STOPPABLE|TIMER_OVERRIDE)
 
 	X.stagger = 0 //Remove stagger
 	X.set_slowdown(0) //Remove slowdown
@@ -207,6 +213,9 @@
 	X.soft_armor = X.soft_armor.setRating(bomb = XENO_BOMB_RESIST_1) //Remove resistances/immunities
 	REMOVE_TRAIT(X, TRAIT_STAGGERIMMUNE, ENDURE_TRAIT)
 	REMOVE_TRAIT(X, TRAIT_SLOWDOWNIMMUNE, ENDURE_TRAIT)
+	endure_threshold = initial(endure_threshold) //Reset the endure vars to their initial states
+	endure_duration = initial(endure_duration)
+	endure_warning_duration = initial(endure_warning_duration)
 
 	to_chat(owner,span_highdanger("The last of the plasma drains from our body... We can no longer endure beyond our normal limits!"))
 	owner.playsound_local(owner, 'sound/voice/hiss4.ogg', 50, 0, 1)
@@ -294,6 +303,13 @@
 	if(rage_power > RAVAGER_RAGE_SUPER_RAGE_THRESHOLD) //If we're super pissed it's time to get crazy
 		var/datum/action/xeno_action/charge = X.actions_by_path[/datum/action/xeno_action/activable/charge]
 		var/datum/action/xeno_action/ravage = X.actions_by_path[/datum/action/xeno_action/activable/ravage]
+		var/datum/action/xeno_action/endure/endure_ability = X.actions_by_path[/datum/action/xeno_action/endure]
+
+		if(endure_ability.endure_duration) //Check if Endure is active
+			endure_ability.endure_threshold = RAVAGER_ENDURE_HP_LIMIT * (1 + rage_power) //Endure crit threshold scales with Rage Power; min -100, max -200
+			endure_ability.endure_duration = addtimer(CALLBACK(endure_ability, /datum/action/xeno_action/endure.proc/endure_warning), RAVAGER_ENDURE_DURATION * RAVAGER_ENDURE_DURATION_WARNING, TIMER_UNIQUE|TIMER_STOPPABLE|TIMER_OVERRIDE) //Reset Endure timers if active
+			endure_ability.endure_warning_duration = addtimer(CALLBACK(endure_ability, /datum/action/xeno_action/endure.proc/endure_deactivate), RAVAGER_ENDURE_DURATION, TIMER_UNIQUE|TIMER_STOPPABLE|TIMER_OVERRIDE) //Reset Endure timers if active
+
 		if(charge)
 			charge.clear_cooldown() //Reset charge cooldown
 		if(ravage)
