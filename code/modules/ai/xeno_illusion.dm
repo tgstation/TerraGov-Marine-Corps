@@ -43,4 +43,4 @@
 /datum/ai_behavior/carbon/xeno/illusion
 	real_xeno = FALSE
 	target_distance = 3 //We attack only near
-	cur_action = ESCORTING_ATOM
+	base_behavior = ESCORTING_ATOM

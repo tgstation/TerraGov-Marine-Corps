@@ -26,6 +26,8 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 	var/target_distance = 8
 	///What we will escort
 	var/atom/escorted_atom
+	///anti-stuck timer
+	var/anti_stuck_timer
 
 /datum/ai_behavior/New(loc, parent_to_assign, escorted_atom)
 	..()
@@ -36,6 +38,14 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 	src.escorted_atom = escorted_atom ? escorted_atom : parent_to_assign //If null, we will escort... ourselves
 	mob_parent = parent_to_assign
 	START_PROCESSING(SSprocessing, src)
+
+/datum/ai_behavior/Destroy(force, ...)
+	. = ..()
+	deltimer(anti_stuck_timer)
+	anti_stuck_timer = null
+	escorted_atom = null
+	mob_parent = null
+	atom_to_walk_to = null
 
 ///Initiate our base behavior
 /datum/ai_behavior/proc/late_initialize()
@@ -96,8 +106,10 @@ These are parameter based so the ai behavior can choose to (un)register the sign
 	switch(action_type)
 		if(MOVING_TO_NODE)
 			RegisterSignal(mob_parent, COMSIG_STATE_MAINTAINED_DISTANCE, .proc/finished_node_move)
+			anti_stuck_timer = addtimer(CALLBACK(src, .proc/look_for_nodes), 45 SECONDS)
 
 /datum/ai_behavior/proc/unregister_action_signals(action_type)
 	switch(action_type)
 		if(MOVING_TO_NODE)
 			UnregisterSignal(mob_parent, COMSIG_STATE_MAINTAINED_DISTANCE)
+			deltimer(anti_stuck_timer)

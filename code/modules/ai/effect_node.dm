@@ -85,14 +85,13 @@
 
 ///Clears the adjacencies of src and repopulates it, it will consider nodes "adjacent" to src should it be less 15 turfs away and get_dir(src, potential_adjacent_node) returns a cardinal direction
 /obj/effect/ai_node/proc/make_adjacents()
-	adjacent_nodes = list()
 	for(var/obj/effect/ai_node/node AS in GLOB.allnodes)
 		if(node == src)
 			continue
-		if(!(get_dist(src, node) < 16))
+		if(!(get_dist(src, node) < 11))
 			continue
-		adjacent_nodes += node
-		node.adjacent_nodes |= src
+		LAZYDISTINCTADD(adjacent_nodes ,node)
+		LAZYDISTINCTADD(node.adjacent_nodes, src)
 
 /obj/effect/ai_node/debug //A debug version of the AINode; makes it visible to allow for easy var editing
 	icon_state = "x6" //Pure white 'X' with black borders

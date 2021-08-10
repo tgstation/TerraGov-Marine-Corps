@@ -48,3 +48,4 @@
 			xeno_action.use_ability(atom_to_walk_to)
 		else
 			action.action_activate()
+	return ..()
