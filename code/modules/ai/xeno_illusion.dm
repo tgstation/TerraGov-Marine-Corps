@@ -6,14 +6,14 @@
 	///The parent xenomorph the illusion is a copy of
 	var/mob/living/carbon/xenomorph/original_xeno
 
-/mob/illusion/Initialize(mapload, mob/living/carbon/xenomorph/original_xeno, life_time)
+/mob/illusion/Initialize(mapload, mob/living/carbon/xenomorph/original_xeno, atom/escorted_atom, life_time)
 	. = ..()
 	src.original_xeno = original_xeno
 	add_movespeed_modifier(MOVESPEED_ID_XENO_CASTE_SPEED, TRUE, 0, NONE, TRUE, original_xeno.xeno_caste.speed * 1.3)
 	appearance = original_xeno.appearance
 	desc = original_xeno.desc
 	name = original_xeno.name
-	AddComponent(/datum/component/ai_controller, /datum/ai_behavior/carbon/xeno/illusion, original_xeno)
+	AddComponent(/datum/component/ai_controller, /datum/ai_behavior/carbon/xeno/illusion, escorted_atom)
 	RegisterSignal(original_xeno, list(COMSIG_PARENT_QDELETING, COMSIG_MOB_DEATH), .proc/destroy_illusion)
 	START_PROCESSING(SSprocessing, src)
 	QDEL_IN(src, life_time)
@@ -36,7 +36,7 @@
 	base_behavior = ESCORTING_ATOM
 
 /datum/ai_behavior/carbon/xeno/illusion/attack_atom(atom/attacked)
-	var/mob/living/carbon/xenomorph/xeno = escorted_atom
+	var/mob/illusion/illusion_parent = mob_parent
 	mob_parent.do_attack_animation(attacked, ismob(attacked) ? ATTACK_EFFECT_REDSLASH : ATTACK_EFFECT_CLAW)
 	playsound(mob_parent.loc, "alien_claw_flesh", 25, 1)
-	mob_parent.changeNext_move(xeno.xeno_caste.attack_delay)
+	mob_parent.changeNext_move(illusion_parent.original_xeno.xeno_caste.attack_delay)

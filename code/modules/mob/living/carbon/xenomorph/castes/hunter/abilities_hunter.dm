@@ -521,5 +521,7 @@
 	var/illusion_count = 3
 
 /datum/action/xeno_action/mirage/action_activate()
-	for(var/i in 1 to illusion_count)
-		new /mob/illusion(owner.loc, owner, illusion_life_time)
+	var/mob/illusion/center_illusion = new /mob/illusion(owner.loc, owner, owner, illusion_life_time)
+	for(var/i in 1 to (illusion_count - 1))
+		new /mob/illusion(owner.loc, owner, center_illusion, illusion_life_time)
+	return succeed_activate()
