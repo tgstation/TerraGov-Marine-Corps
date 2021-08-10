@@ -1,5 +1,0 @@
-author: "QualityVan"
-delete-after: True
-changes: 
-  - bugfix: "T-ray scanners show cables"
-  - bugfix: "The atmos/disposals pipes that show up on t-ray will now actually be there when you crowbar up the floor tile."

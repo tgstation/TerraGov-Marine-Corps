@@ -254,3 +254,37 @@
   - bugfix: fixed the mortar flare shell not working by just using the code for flare
       rockets
   - bugfix: fixed hivemind eyes getting caught onto razorwires by adding a check
+2021-08-10:
+  BraveMole:
+  - bugfix: Fix jaeger coloring in hvh
+  KornFlaks:
+  - code_imp: Relocated xeno evolution panel backend from hive_datum.dm to new Evolution_Panel.
+  - refactor: Reparented evolution backend from hive_status to datum.
+  - bugfix: Fixed King minimap icon to proper red crown.
+  Pariah919:
+  - balance: after the initital rush of effects are over, water still has an effect
+      on you. Heals minor stamina loss and health damage.
+  QualityVan:
+  - bugfix: T-ray scanners show cables
+  - bugfix: The atmos/disposals pipes that show up on t-ray will now actually be there
+      when you crowbar up the floor tile.
+  Surrealaser:
+  - bugfix: Wraiths can no longer use Phase Shift while in the space of a phase blocking
+      shutter, even if it's open.
+  - bugfix: Materializing in a solid object with Phase Shift no longer deducts plasma;
+      it counts as if you had Resynced instead.
+  - balance: While the fight is Groundside Wraiths cannot phase shift into dropship
+      area tiles from non-dropship area tiles.
+  - refactor: General minor improvements to Wraith code.
+  - balance: Evasion now will dodge thrown objects.
+  TiviPlus:
+  - expansion: Jaeger can now be painted any color you want
+  - expansion: Jaeger visors can now be colored by right clicking the helmet with
+      paint
+  - expansion: Remember to save your jaeger in the loadouts vendor!
+  lbnesquik:
+  - rscadd: Added a map table to the sulaco req
+  - expansion: Tweaks the sulaco hangar areas to be a little more segmented.
+  - qol: Made it possible to drop pod north of LV LZ1
+  - bugfix: fixed a few issues with the LZ
+  - qol: Added an holopad to the alamo.
