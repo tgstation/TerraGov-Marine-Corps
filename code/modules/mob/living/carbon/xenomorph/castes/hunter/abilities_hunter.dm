@@ -510,12 +510,15 @@
 /datum/action/xeno_action/mirage
 	name = "Mirage"
 	action_icon_state = ""
-	mechanics_text = "Create mirror images of the targeted xeno."
+	mechanics_text = "Create mirror images of ourselves."
+	ability_name = "mirage"
+	plasma_cost = 100
+	keybind_signal = COMSIG_XENOABILITY_MIRAGE
+	cooldown_timer = 40 SECONDS
 	///How long will the illusions live
 	var/illusion_life_time = 10 SECONDS
 	///How many illusions are created
 	var/illusion_count = 3
-
 
 /datum/action/xeno_action/mirage/action_activate()
 	for(var/i in 1 to illusion_count)

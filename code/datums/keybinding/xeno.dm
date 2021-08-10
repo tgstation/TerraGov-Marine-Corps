@@ -285,6 +285,12 @@
 	description = "Impairs the ability of hostile living creatures we can see in a 5x5 area. Targets will be unable to speak and hear for 10 seconds."
 	keybind_signal = COMSIG_XENOABILITY_HAUNT
 
+/datum/keybinding/xeno/haunt
+	name = "mirage"
+	full_name = "Hunter: Mirage"
+	description = "Creates multiple mirror images of the xeno."
+	keybind_signal = COMSIG_XENOABILITY_MIRAGE
+
 /datum/keybinding/xeno/psychic_whisper
 	name = "psychic_whisper"
 	full_name = "Psychic Whisper"
@@ -512,7 +518,7 @@
 	description = "Recall a target from netherspace, ending Banish's effect."
 	keybind_signal = COMSIG_XENOABILITY_RECALL
 
-/datum/keybinding/xeno/nightfall 
+/datum/keybinding/xeno/nightfall
 	name = "nightfall"
 	full_name = "King: Nightfall"
 	description = "Shut down all nearby electric lights for 10 seconds"

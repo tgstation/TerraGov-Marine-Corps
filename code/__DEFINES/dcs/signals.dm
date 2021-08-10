@@ -615,6 +615,7 @@
 #define COMSIG_XENOABILITY_EVASION "xenoability_evasion"
 
 #define COMSIG_XENOABILITY_HAUNT "xenoability_haunt"
+#define COMSIG_XENOABILITY_MIRAGE "xenoability_mirage"
 
 #define COMSIG_XENOABILITY_VENTCRAWL "xenoability_vent_crawl"
 
