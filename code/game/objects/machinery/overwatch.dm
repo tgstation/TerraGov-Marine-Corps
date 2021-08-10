@@ -663,18 +663,39 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	visible_message(span_boldnotice("[transfer_marine] has been transfered from squad '[old_squad]' to squad '[new_squad]'. Logging to enlistment file."))
 	to_chat(transfer_marine, "[icon2html(src, transfer_marine)] <font size='3' color='blue'><B>\[Overwatch\]:</b> You've been transfered to [new_squad]!</font>")
 
-///Big light :)
+///This is an orbital light. Basically, huge thing which
 /obj/machinery/computer/camera_advanced/overwatch/proc/attempt_spotlight(datum/source, atom/A, params)
 	SIGNAL_HANDLER
 	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_ORBITAL_SPOTLIGHT))
 		to_chat(source, span_notice("The Orbital spotlight is still recharging."))
 		return
+	var/area/place = get_area(A)
+	if(istype(place) && place.ceiling >= CEILING_UNDERGROUND)
+		to_chat(source, span_warning("You cannot illuminate this place. It is probably underground."))
+		return
 	var/turf/target = get_turf(A)
-	target.set_light(11, l_color = COLOR_TESLA_BLUE)
-	playsound(target,'sound/mecha/heavylightswitch.ogg', 25, 1, 20)
-	to_chat(target, span_warning("You see a twinkle in the sky before your surroundings are hit with a beam of light!"))
+	new /obj/effect/overwatch_light(target)
+	use_power(10000)	//Huge light needs big power. Still less than autodocs.
+	TIMER_COOLDOWN_START(src, COOLDOWN_ORBITAL_SPOTLIGHT, SPOTLIGHT_COOLDOWN_DURATION)
 	to_chat(source, span_notice("Orbital spotlight activated. Duration : [SPOTLIGHT_DURATION]"))
-	addtimer(CALLBACK(target, /atom.proc/set_light, 0, 0), SPOTLIGHT_DURATION)
+
+//This is an effect to be sure it is properly deleted and it does not interfer with existing lights too much.
+/obj/effect/overwatch_light
+	name = "overwatch beam of light"
+	desc = "You are not supposed to see this. Please report it."
+	icon_state = "" //No sprite
+	invisibility = INVISIBILITY_MAXIMUM
+	resistance_flags = RESIST_ALL
+	light_system = STATIC_LIGHT
+	light_color = COLOR_TESLA_BLUE
+	light_power = 11	//This is a HUGE light.
+
+/obj/effect/overwatch_light/Initialize()
+	. = ..()
+	set_light(light_power)
+	playsound(src,'sound/mecha/heavylightswitch.ogg', 25, 1, 20)
+	to_chat(src, span_warning("You see a twinkle in the sky before your surroundings are hit with a beam of light!"))
+	QDEL_IN(src, SPOTLIGHT_DURATION)
 
 //This is perhaps one of the weirdest places imaginable to put it, but it's a leadership skill, so
 
