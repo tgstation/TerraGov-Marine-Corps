@@ -1,4 +1,0 @@
-author: "KornFlaks"
-delete-after: True
-changes: 
-  - refactor: "Relocated variable declaration of psy point costs of certain xeno actions from individual actions to parent xeno_action."

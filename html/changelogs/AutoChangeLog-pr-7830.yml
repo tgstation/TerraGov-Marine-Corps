@@ -1,4 +1,0 @@
-author: "QualityVan"
-delete-after: True
-changes: 
-  - bugfix: "Fixed an error with antibiotic germ clear amounts, polyhexanide should work now."

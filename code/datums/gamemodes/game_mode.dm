@@ -644,7 +644,7 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 	preferred_squads.len = max_squad_num
 	SSjob.active_squads[FACTION_TERRAGOV] = list()
 	for(var/name in preferred_squads) //Back from weight to instantiate var
-		SSjob.active_squads[FACTION_TERRAGOV] += SSjob.squads_by_name[name]
+		SSjob.active_squads[FACTION_TERRAGOV] += LAZYACCESSASSOC(SSjob.squads_by_name, FACTION_TERRAGOV, name)
 	return TRUE
 
 

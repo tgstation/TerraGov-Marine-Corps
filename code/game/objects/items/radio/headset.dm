@@ -178,9 +178,9 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 
 /obj/item/radio/headset/mainship/equipped(mob/living/carbon/human/user, slot)
 	if(slot == SLOT_EARS)
-		if(GLOB.faction_to_freq[user.faction] != frequency)
+		if(GLOB.faction_to_data_hud[user.faction] != hud_type)
 			to_chat(user, span_warning("[src] violently buzzes and explodes in your face as its tampering mechanisms are triggered!"))
-			playsound(user, 'sound/effects/bang.ogg', 50, 1)
+			playsound(user, 'sound/effects/explosion_small1.ogg', 50, 1)
 			user.ex_act(EXPLODE_LIGHT)
 			qdel(src)
 			return

@@ -188,3 +188,103 @@
   lovegreenstuff:
   - balance: Increased automag burst delay and scatter.
   - bugfix: bonus projectile math when shooting directly up.
+2021-08-08:
+  BraveMole:
+  - balance: Add mortars, sentries, and drop pods to civil war
+  - balance: Grav crush does less damage to mobs
+  - balance: Sticky resin slows down vehicles
+  - expansion: You can no longer still enemy radios, they explode when trying to equip
+  - bugfix: Fix wrong headset being given to rebels from loadout vendor
+  - balance: Respawn is set to 5 minutes in HvH
+  - balance: Unmanned vehicles take some damage in acid boiler smoke
+  KornFlaks:
+  - refactor: Relocated variable declaration of psy point costs of certain xeno actions
+      from individual actions to parent xeno_action.
+  Pariah919:
+  - balance: evade now costs 75 plasma to use, runner has higher plasma reserves at
+      lower tiers of maturity and regen overall, same plasma at ancient.
+  QualityVan:
+  - bugfix: Fixed an error with antibiotic germ clear amounts, polyhexanide should
+      work now.
+  RipGrayson:
+  - rscadd: Adds some TG smites.
+  - code_imp: Altered some smite code to function correctly on TGMC.
+  - admin: Ported underlying TG admin smite system.
+  Surrealaser:
+  - bugfix: Warrior Punch can target unacidable objects, but won't damage them.
+  - bugfix: Warrior Punch can now break cameras appropriately.
+  lbnesquik:
+  - rscadd: Added a pump animation to the martini
+  - soundadd: added a breathy noise whenever you equip a gas mask.
+  - bugfix: removed the tiny space window south of sulaco preps to stop beans from
+      dying there like IDIOTS
+  - expansion: Added a backdoor to LV LZ1, which can be used to drop pod in.
+2021-08-09:
+  BraveMole:
+  - bugfix: Headsets will no longer blow up in your face for no reason
+  - bugfix: Fix squad preferences for rebels
+  - bugfix: Fix able to buy forbidden items in civil war
+  - bugfix: fix gun jamming
+  Hekzder:
+  - balance: TX-11 has 10 more armor penetration and 0.25 more sunder.
+  Pariah919:
+  - bugfix: uniforms are bulky now
+  QualityVan:
+  - bugfix: Cocoons don't open instantly
+  - qol: Everyone can use the medbay smartfridges.
+  - balance: Corpsmen have chemistry access now.
+  - balance: Trying to use the chem dispenser/chem master without at least basic medical
+      training will incur delays.
+  Sebbe9123:
+  - rscdel: Removes larvae injection from reagent slash.
+  - balance: makes reagent slash inject 7 of chosen chems.
+  SplinterGP:
+  - code_imp: Added an autofocus argument to tgui_alert, defaults on, that can be
+      used to prevent accidental inputs from surprise alerts when used.
+  - bugfix: Hover effect on tgui Tabs made less visually laggy.
+  - qol: Chat Highlighting now works with more symbols and can be case sensitive and/or
+      match whole words only.
+  - bugfix: Fixed Chat Highlighting only working for the first comma separated entry.
+  - bugfix: Your own messages sent over a radio and dchat now properly avoid_highlighting.
+  - bugfix: Fixed Chat Highlighting working on your own OOC messages.
+  TiviPlus:
+  - rscdel: Delete clown paraphernalia from maps
+  lbnesquik:
+  - expansion: Added some flares and smoke shells to the mortar kit.
+  - bugfix: fixed the mortar flare shell not working by just using the code for flare
+      rockets
+  - bugfix: fixed hivemind eyes getting caught onto razorwires by adding a check
+2021-08-10:
+  BraveMole:
+  - bugfix: Fix jaeger coloring in hvh
+  KornFlaks:
+  - code_imp: Relocated xeno evolution panel backend from hive_datum.dm to new Evolution_Panel.
+  - refactor: Reparented evolution backend from hive_status to datum.
+  - bugfix: Fixed King minimap icon to proper red crown.
+  Pariah919:
+  - balance: after the initital rush of effects are over, water still has an effect
+      on you. Heals minor stamina loss and health damage.
+  QualityVan:
+  - bugfix: T-ray scanners show cables
+  - bugfix: The atmos/disposals pipes that show up on t-ray will now actually be there
+      when you crowbar up the floor tile.
+  Surrealaser:
+  - bugfix: Wraiths can no longer use Phase Shift while in the space of a phase blocking
+      shutter, even if it's open.
+  - bugfix: Materializing in a solid object with Phase Shift no longer deducts plasma;
+      it counts as if you had Resynced instead.
+  - balance: While the fight is Groundside Wraiths cannot phase shift into dropship
+      area tiles from non-dropship area tiles.
+  - refactor: General minor improvements to Wraith code.
+  - balance: Evasion now will dodge thrown objects.
+  TiviPlus:
+  - expansion: Jaeger can now be painted any color you want
+  - expansion: Jaeger visors can now be colored by right clicking the helmet with
+      paint
+  - expansion: Remember to save your jaeger in the loadouts vendor!
+  lbnesquik:
+  - rscadd: Added a map table to the sulaco req
+  - expansion: Tweaks the sulaco hangar areas to be a little more segmented.
+  - qol: Made it possible to drop pod north of LV LZ1
+  - bugfix: fixed a few issues with the LZ
+  - qol: Added an holopad to the alamo.

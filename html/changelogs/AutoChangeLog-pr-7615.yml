@@ -1,5 +1,0 @@
-author: "Surrealaser"
-delete-after: True
-changes: 
-  - bugfix: "Warrior Punch can target unacidable objects, but won't damage them."
-  - bugfix: "Warrior Punch can now break cameras appropriately."
