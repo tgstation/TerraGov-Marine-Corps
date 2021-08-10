@@ -1,0 +1,4 @@
+author: "TiviPlus"
+delete-after: True
+changes: 
+  - expansion: "RO, PO and Synth now have working minimap icons"
