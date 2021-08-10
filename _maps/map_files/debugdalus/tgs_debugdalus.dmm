@@ -2455,13 +2455,6 @@
 	},
 /turf/open/floor/mainship/plate,
 /area/mainship/hallways/hangar)
-"hwL" = (
-/obj/structure/cable,
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/floor/mainship,
-/area/mainship/hallways/hangar)
 "hCx" = (
 /obj/machinery/camera/autoname/mainship{
 	dir = 8
@@ -2637,11 +2630,6 @@
 /obj/machinery/cic_maptable,
 /turf/open/floor/mainship,
 /area/mainship/command/cic)
-"nvg" = (
-/obj/structure/cable,
-/obj/machinery/light,
-/turf/open/floor/mainship,
-/area/mainship/hallways/hangar)
 "nHZ" = (
 /obj/item/dropship_points_voucher,
 /obj/item/dropship_points_voucher,
@@ -2774,16 +2762,6 @@
 /area/mainship/shipboard/weapon_room)
 "vrS" = (
 /obj/machinery/landinglight/ds2,
-/turf/open/floor/mainship,
-/area/mainship/hallways/hangar)
-"vtZ" = (
-/obj/machinery/landinglight/ds1/delaytwo{
-	dir = 4
-	},
-/obj/structure/cable,
-/obj/machinery/light{
-	dir = 8
-	},
 /turf/open/floor/mainship,
 /area/mainship/hallways/hangar)
 "vGl" = (
@@ -4169,7 +4147,7 @@ aeN
 aeN
 aeN
 aeN
-vtZ
+aeN
 aeN
 aeN
 aeN
@@ -5140,7 +5118,7 @@ bOu
 bOu
 bOu
 bOu
-nvg
+amH
 ahq
 ahG
 ahY
@@ -5605,7 +5583,7 @@ amH
 adR
 amH
 amH
-hwL
+amH
 hCx
 adR
 amH
@@ -5620,7 +5598,7 @@ amH
 adR
 amH
 ual
-hwL
+amH
 bgb
 aaa
 ahq
