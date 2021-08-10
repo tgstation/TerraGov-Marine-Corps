@@ -1,0 +1,4 @@
+author: "lbnesquik"
+delete-after: True
+changes: 
+  - expansion: "Allows the AI to use keycard devices using ctrl click"
