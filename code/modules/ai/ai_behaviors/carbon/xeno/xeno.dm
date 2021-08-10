@@ -3,7 +3,6 @@
 /datum/ai_behavior/carbon/xeno
 	sidestep_prob = 25
 	identifier = IDENTIFIER_XENO
-	var/real_xeno = TRUE
 
 /datum/ai_behavior/carbon/xeno/New(loc, parent_to_assign, escorted_atom)
 	..()
@@ -16,18 +15,21 @@
 			if(!next_target)
 				return
 			atom_to_walk_to = next_target
-			cur_action = MOVING_TO_ATOM
-			change_state()
+			change_action(MOVING_TO_ATOM)
 		if(MOVING_TO_ATOM)
 			var/atom/next_target = get_nearest_target(escorted_atom, target_distance, TARGET_ALL, null, mob_parent.get_xeno_hivenumber())
 			if(!next_target)//We didn't find a target
-				cur_action = base_behavior
-				change_state()
+				change_action(base_behavior)
 				return
 			if(next_target == atom_to_walk_to)//We didn't find a better target
 				return
 			atom_to_walk_to = next_target
-			change_state()//We found a better target, change course!
+			change_action()//We found a better target, change course!
+
+/datum/ai_behavior/carbon/xeno/proc/attack_atom(atom/attacked)
+	var/mob/living/carbon/xenomorph/xeno = mob_parent
+	attacked.attack_alien(xeno, xeno.xeno_caste.melee_damage * xeno.xeno_melee_damage_modifier)
+	xeno.changeNext_move(xeno.xeno_caste.attack_delay)
 
 /datum/ai_behavior/carbon/xeno/deal_with_obstacle()
 	if(world.time < mob_parent.next_move)
@@ -36,19 +38,9 @@
 	var/list/things_nearby = range(mob_parent, 1) //Rather than doing multiple range() checks we can just archive it here for just this deal_with_obstacle
 	for(var/obj/structure/obstacle in things_nearby)
 		if(obstacle.resistance_flags & XENO_DAMAGEABLE)
-			var/mob/living/carbon/xenomorph/xeno = mob_parent
-			INVOKE_ASYNC(obstacle, /atom.proc/attack_alien, xeno, real_xeno ? xeno.xeno_caste.melee_damage : 0)
 			mob_parent.face_atom(obstacle)
-			xeno.changeNext_move(xeno.xeno_caste.attack_delay)
+			INVOKE_ASYNC(src, .proc/attack_atom, obstacle)
 			return
-
-	//Teleport onto those window frames, we also can't attempt to attack said window frames so this isn't in the obstacles loop
-	for(var/obj/structure/window_frame/frame in things_nearby)
-		mob_parent.loc = frame.loc
-		return
-
-	if(!real_xeno)
-		return
 
 	//Cheat mode: insta open airlocks
 	for(var/obj/machinery/door/airlock/lock in things_nearby)
@@ -61,21 +53,24 @@
 		lock.open(TRUE)
 		return //Don't try going on window frames after opening up airlocks dammit
 
+	//Teleport onto those window frames, we also can't attempt to attack said window frames so this isn't in the obstacles loop
+	for(var/obj/structure/window_frame/frame in things_nearby)
+		mob_parent.loc = frame.loc
+		return
+
 /datum/ai_behavior/carbon/xeno/attack_target()
 	if(world.time < mob_parent.next_move)
 		return
 	if(get_dist(atom_to_walk_to, mob_parent) > attack_range)
 		return
-	var/mob/living/carbon/xenomorph/xeno = mob_parent
 	mob_parent.face_atom(atom_to_walk_to)
 	if(ismob(atom_to_walk_to))
-		real_xeno ? atom_to_walk_to.attack_alien(xeno) : atom_to_walk_to.attack_alien(xeno, 0)
+		attack_atom(atom_to_walk_to)
 	else if(ismachinery(atom_to_walk_to))
 		var/obj/machinery/thing = atom_to_walk_to
 		if(!(thing.resistance_flags & XENO_DAMAGEABLE))
 			stack_trace("A xenomorph tried to attack a [atom_to_walk_to.name] that isn't considered XENO_DAMAGABLE according to resistance flags.")
-		thing.attack_alien(xeno, real_xeno ? xeno.xeno_caste.melee_damage * xeno.xeno_melee_damage_modifier : 0)
-	xeno.changeNext_move(xeno.xeno_caste.attack_delay)
+		attack_atom(atom_to_walk_to)
 
 /datum/ai_behavior/carbon/xeno/register_action_signals(action_type)
 	switch(action_type)
@@ -109,6 +104,5 @@
 
 /datum/ai_behavior/carbon/xeno/proc/check_for_secondary_objective_distance()
 	if(get_dist(escorted_atom, mob_parent) > target_distance)
-		cur_action = ESCORTING_ATOM
 		atom_to_walk_to = escorted_atom
-		change_state()
+		change_action(ESCORTING_ATOM)

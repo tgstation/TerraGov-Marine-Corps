@@ -506,3 +506,17 @@
 	owner.playsound_local(owner, 'sound/effects/xeno_newlarva.ogg', 25, 0, 1)
 	cooldown_timer = initial(cooldown_timer) //Reset the cooldown timer to its initial state in the event of a whiffed Silence.
 	return ..()
+
+/datum/action/xeno_action/mirage
+	name = "Mirage"
+	action_icon_state = ""
+	mechanics_text = "Create mirror images of the targeted xeno."
+	///How long will the illusions live
+	var/illusion_life_time = 1 MINUTES
+	///How many illusions are created
+	var/illusion_count = 3
+
+
+/datum/action/xeno_action/mirage/action_activate()
+	for(var/i in 1 to illusion_count)
+		new /mob/illusion(owner.loc, owner, illusion_life_time)

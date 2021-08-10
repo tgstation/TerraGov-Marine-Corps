@@ -55,7 +55,7 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 			look_for_nodes()
 		if(ESCORTING_ATOM)
 			atom_to_walk_to = escorted_atom
-			change_state()
+			change_action()
 
 //We finished moving to a node, let's pick a random nearby one to travel to
 /datum/ai_behavior/proc/finished_node_move()
@@ -68,8 +68,10 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 	RemoveElement(/datum/element/pathfinder)
 
 ///Cleanup old state vars, start the movement towards our new target
-/datum/ai_behavior/proc/change_state()
+/datum/ai_behavior/proc/change_action(next_action)
 	cleanup_current_action()
+	if(next_action)
+		cur_action = next_action
 	mob_parent.AddElement(/datum/element/pathfinder, atom_to_walk_to, distance_to_maintain, sidestep_prob)
 	register_action_signals(cur_action)
 
@@ -85,7 +87,7 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 	else
 		atom_to_walk_to = pick(current_node.adjacent_nodes)
 	cur_action = MOVING_TO_NODE
-	change_state()
+	change_action()
 
 //Generic process(), this is used for mainly looking at the world around the AI and determining if a new action must be considered and executed
 /datum/ai_behavior/process()
