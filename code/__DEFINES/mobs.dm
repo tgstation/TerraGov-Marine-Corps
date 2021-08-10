@@ -1,6 +1,9 @@
 //Some mob defines below
 #define AI_CAMERA_LUMINOSITY 6
 
+//Mob movement define
+#define DIAG_MOVEMENT_ADDED_DELAY 1.6
+
 
 //Pain or shock reduction for different reagents
 #define PAIN_REDUCTION_VERY_LIGHT -10 //alkysine
