@@ -470,7 +470,7 @@
 		var/squad_color = assigned_squad.color
 		var/rank = job.comm_title
 		if(assigned_squad.squad_leader == src)
-			rank = "SL"
+			rank = JOB_COMM_TITLE_SQUAD_LEADER
 		if(job.job_flags & JOB_FLAG_PROVIDES_SQUAD_HUD)
 			var/image/IMG = image('icons/mob/hud.dmi', src, "hudmarine")
 			IMG.color = squad_color
