@@ -191,7 +191,7 @@
 
 ///Warns the player when Endure is about to end
 /datum/action/xeno_action/endure/proc/endure_warning()
-	to_chat(owner,span_highdanger("We feel the plasma draining from our veins... [ability_name] will last for only [RAVAGER_ENDURE_DURATION * (1-RAVAGER_ENDURE_DURATION_WARNING) * 0.1] more seconds!"))
+	to_chat(owner,span_highdanger("We feel the plasma draining from our veins... [ability_name] will last for only [timeleft(endure_duration) * 0.1] more seconds!"))
 	owner.playsound_local(owner, 'sound/voice/hiss4.ogg', 50, 0, 1)
 
 ///Turns off the Endure buff
@@ -307,8 +307,6 @@
 
 		if(endure_ability.endure_duration) //Check if Endure is active
 			endure_ability.endure_threshold = RAVAGER_ENDURE_HP_LIMIT * (1 + rage_power) //Endure crit threshold scales with Rage Power; min -100, max -200
-			endure_ability.endure_duration = addtimer(CALLBACK(endure_ability, /datum/action/xeno_action/endure.proc/endure_warning), RAVAGER_ENDURE_DURATION * RAVAGER_ENDURE_DURATION_WARNING, TIMER_UNIQUE|TIMER_STOPPABLE|TIMER_OVERRIDE) //Reset Endure timers if active
-			endure_ability.endure_warning_duration = addtimer(CALLBACK(endure_ability, /datum/action/xeno_action/endure.proc/endure_deactivate), RAVAGER_ENDURE_DURATION, TIMER_UNIQUE|TIMER_STOPPABLE|TIMER_OVERRIDE) //Reset Endure timers if active
 
 		if(charge)
 			charge.clear_cooldown() //Reset charge cooldown
@@ -387,6 +385,14 @@
 		health_modifier = min(burn_damage, health_recovery)*-1
 		rager.adjustFireLoss(health_modifier)
 
+	var/datum/action/xeno_action/endure/endure_ability = rager.actions_by_path[/datum/action/xeno_action/endure]
+	if(endure_ability.endure_duration) //Check if Endure is active
+		var/new_duration = min(RAVAGER_ENDURE_DURATION, (timeleft(endure_ability.endure_duration) + RAVAGER_RAGE_ENDURE_INCREASE_PER_SLASH)) //Increment Endure duration by 2 seconds per slash
+		deltimer(endure_ability.endure_duration) //Reset timers
+		deltimer(endure_ability.endure_warning_duration)
+		endure_ability.endure_duration = addtimer(CALLBACK(endure_ability, /datum/action/xeno_action/endure.proc/endure_deactivate), new_duration, TIMER_UNIQUE|TIMER_STOPPABLE|TIMER_OVERRIDE) //Reset Endure timers if active
+		if(new_duration > 3 SECONDS) //Check timing
+			endure_ability.endure_warning_duration = addtimer(CALLBACK(endure_ability, /datum/action/xeno_action/endure.proc/endure_warning), new_duration - 3 SECONDS, TIMER_UNIQUE|TIMER_STOPPABLE|TIMER_OVERRIDE) //Reset Endure timers if active
 
 ///Called when we want to end the Rage effect
 /datum/action/xeno_action/rage/proc/rage_deactivate()
