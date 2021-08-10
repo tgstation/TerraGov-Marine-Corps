@@ -50,7 +50,7 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 //We finished moving to a node, let's pick a random nearby one to travel to
 /datum/ai_behavior/proc/finished_node_move()
 	SIGNAL_HANDLER
-	look_for_new_state()
+	look_for_nodes()
 
 //Cleans up signals related to the action and element(s)
 /datum/ai_behavior/proc/cleanup_current_action()

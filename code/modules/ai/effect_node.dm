@@ -86,19 +86,13 @@
 ///Clears the adjacencies of src and repopulates it, it will consider nodes "adjacent" to src should it be less 15 turfs away and get_dir(src, potential_adjacent_node) returns a cardinal direction
 /obj/effect/ai_node/proc/make_adjacents()
 	adjacent_nodes = list()
-	for(var/atom/node in GLOB.allnodes)
+	for(var/obj/effect/ai_node/node AS in GLOB.allnodes)
 		if(node == src)
 			continue
 		if(!(get_dist(src, node) < 16))
 			continue
-		if(ISDIAGONALDIR(get_dir(src, node)))
-			continue
 		adjacent_nodes += node
-
-	//If there's no adjacent nodes then let's throw a runtime (for mappers) and at admins (if they by any chance were spawning these in)
-	if(!length(adjacent_nodes))
-		message_admins("[ADMIN_VERBOSEJMP(loc)] was unable to connect to any considered-adjacent nodes; place them correctly if you were spawning these in, otherwise report this.")
-		stack_trace("An ai node was repopulating it's node adjacencies but there were no considered-adjacent nodes nearby; this can be because of a mapping/admin spawning issue. Location: AREACOORD(src)")
+		node.adjacent_nodes |= src
 
 /obj/effect/ai_node/debug //A debug version of the AINode; makes it visible to allow for easy var editing
 	icon_state = "x6" //Pure white 'X' with black borders
