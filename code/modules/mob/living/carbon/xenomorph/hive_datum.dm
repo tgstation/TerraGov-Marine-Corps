@@ -1217,6 +1217,7 @@ to_chat will check for valid clients itself already so no need to double check f
 	while(stored_larva > 0 && LAZYLEN(candidate))
 		observer_in_queue = LAZYACCESS(candidate, 1)
 		if(!try_to_give_larva(observer_in_queue))//Something failed, stop everything
+			xeno_job.free_job_positions(slot_occupied - slot_really_taken)
 			return
 		LAZYREMOVE(candidate, observer_in_queue)
 		UnregisterSignal(observer_in_queue, COMSIG_PARENT_QDELETING)
