@@ -3,45 +3,31 @@
 /datum/ai_behavior/carbon/xeno
 	sidestep_prob = 25
 	identifier = IDENTIFIER_XENO
-	///If this xeno is a real one
 	var/real_xeno = TRUE
 
-/datum/ai_behavior/carbon/xeno/New(loc, parent_to_assign)
+/datum/ai_behavior/carbon/xeno/New(loc, parent_to_assign, escorted_atom)
 	..()
 	mob_parent.a_intent = INTENT_HARM //Killing time
 
-///Returns a list of things we can walk to and attack to death
-/datum/ai_behavior/carbon/xeno/get_targets()
-	var/list/return_result = list()
-	for(var/mob/nearby_human AS in cheap_get_humans_near(mob_parent, 8))
-		if(nearby_human.stat == DEAD)
-			continue
-		return_result += nearby_human
-	var/mob/living/carbon/xenomorph/xeno_parent = mob_parent
-	for(var/mob/nearby_xeno AS in cheap_get_xenos_near(mob_parent, 8))
-		if(xeno_parent.issamexenohive(nearby_xeno)) //Xenomorphs not in our hive will be attacked as well!
-			continue
-		if(nearby_xeno.stat == DEAD)
-			continue
-		if((nearby_xeno.status_flags & GODMODE) || (nearby_xeno.status_flags & INCORPOREAL)) //No attacking invulnerable/ai's eye!
-			continue
-		return_result += nearby_xeno
-	for(var/atom/turret AS in GLOB.marine_turrets)
-		if(!(get_dist(mob_parent, turret) <= 8))
-			continue
-		if(mob_parent.z != turret.z)
-			continue
-		return_result += turret
-	return return_result
-
-/datum/ai_behavior/carbon/xeno/process()
+/datum/ai_behavior/carbon/xeno/look_for_new_state()
 	switch(cur_action)
-		if(MOVING_TO_NODE)
-			if(length(get_targets()))
-				change_state(REASON_TARGET_SPOTTED)
+		if(ESCORTING_ATOM, MOVING_TO_NODE)
+			var/atom/next_target = get_nearest_target(escorted_atom, target_distance, TARGET_ALL, null, mob_parent.get_xeno_hivenumber())
+			if(!next_target)
+				return
+			atom_to_walk_to = next_target
+			cur_action = MOVING_TO_ATOM
+			change_state()
 		if(MOVING_TO_ATOM)
-			change_state(REASON_REFRESH_TARGET) //We'll repick our targets as there could be more better targets to attack
-	return ..()
+			var/atom/next_target = get_nearest_target(escorted_atom, target_distance, TARGET_ALL, null, mob_parent.get_xeno_hivenumber())
+			if(!next_target)//We didn't find a target
+				cur_action = base_behavior
+				change_state()
+				return
+			if(next_target == atom_to_walk_to)//We didn't find a better target
+				return
+			atom_to_walk_to = next_target
+			change_state()//We found a better target, change course!
 
 /datum/ai_behavior/carbon/xeno/deal_with_obstacle()
 	if(world.time < mob_parent.next_move)
@@ -91,44 +77,17 @@
 		thing.attack_alien(xeno, real_xeno ? xeno.xeno_caste.melee_damage * xeno.xeno_melee_damage_modifier : 0)
 	xeno.changeNext_move(xeno.xeno_caste.attack_delay)
 
-/datum/ai_behavior/carbon/xeno/change_state(reasoning_for)
-
-	switch(reasoning_for)
-		//At time of writing this, these are all the reasons currently implemented, although that will change once I feature bloat the AI again in the future
-		if(REASON_FINISHED_NODE_MOVE, REASON_TARGET_KILLED, REASON_TARGET_SPOTTED, REASON_REFRESH_TARGET)
-			//We wanna look for targets to kill nearby before considering randomly moving through nearby nodes again
-			var/list/potential_targets = get_targets() //Archive results
-			if(!length(potential_targets)) //No targets, let's just randomly move to nodes
-				reasoning_for = REASON_FINISHED_NODE_MOVE
-				return ..()
-			//There's targets nearby, kill the closest thing
-			var/closest_dist = 999
-			var/atom/favorable_target
-			for(var/a in potential_targets)
-				var/atom/target = a
-				if(!(get_dist(mob_parent, target) <= closest_dist))
-					continue
-				closest_dist = get_dist(mob_parent, target)
-				favorable_target = target
-
-			cleanup_current_action()
-			atom_to_walk_to = favorable_target
-			cur_action = MOVING_TO_ATOM
-			mob_parent.AddElement(/datum/element/pathfinder, atom_to_walk_to, distance_to_maintain, sidestep_prob)
-			register_action_signals(cur_action)
-
-
-	return ..() //Random node moving
-
 /datum/ai_behavior/carbon/xeno/register_action_signals(action_type)
 	switch(action_type)
 		if(MOVING_TO_ATOM)
 			RegisterSignal(mob_parent, COMSIG_STATE_MAINTAINED_DISTANCE, .proc/attack_target)
+			if(escorted_atom)
+				RegisterSignal(mob_parent, COMSIG_MOVABLE_MOVED, .proc/check_for_secondary_objective_distance)
 			if(ishuman(atom_to_walk_to))
-				RegisterSignal(atom_to_walk_to, COMSIG_MOB_DEATH, .proc/reason_target_killed)
+				RegisterSignal(atom_to_walk_to, COMSIG_MOB_DEATH, /datum/ai_behavior.proc/look_for_new_state)
 				return
 			if(ismachinery(atom_to_walk_to))
-				RegisterSignal(atom_to_walk_to, COMSIG_PARENT_PREQDELETED, .proc/reason_target_killed)
+				RegisterSignal(atom_to_walk_to, COMSIG_PARENT_PREQDELETED, /datum/ai_behavior.proc/look_for_new_state)
 				return
 
 	return ..()
@@ -137,6 +96,8 @@
 	switch(action_type)
 		if(MOVING_TO_ATOM)
 			UnregisterSignal(mob_parent, COMSIG_STATE_MAINTAINED_DISTANCE)
+			if(escorted_atom)
+				UnregisterSignal(mob_parent, COMSIG_MOVABLE_MOVED)
 			if(ishuman(atom_to_walk_to))
 				UnregisterSignal(atom_to_walk_to, COMSIG_MOB_DEATH)
 				return
@@ -145,3 +106,9 @@
 				return
 
 	return ..()
+
+/datum/ai_behavior/carbon/xeno/proc/check_for_secondary_objective_distance()
+	if(get_dist(escorted_atom, mob_parent) > target_distance)
+		cur_action = ESCORTING_ATOM
+		atom_to_walk_to = escorted_atom
+		change_state()

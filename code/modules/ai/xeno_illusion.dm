@@ -14,14 +14,19 @@
 /mob/living/carbon/xenomorph/illusion/Initialize(mapload, mob/living/carbon/xenomorph/original_xeno, life_time)
 	src.original_xeno = original_xeno
 	. = ..()
-	setXenoCasteSpeed(original_xeno.xeno_caste.speed * 1.1) //10% increase in speed so they can follow up
+	setXenoCasteSpeed(original_xeno.xeno_caste.speed * 1.3) //30% increase in speed so they can follow up
 	appearance = original_xeno.appearance
 	desc = original_xeno.desc
 	name = original_xeno.name
-	AddComponent(/datum/component/ai_controller, /datum/ai_behavior/carbon/xeno/illusion)
+	AddComponent(/datum/component/ai_controller, /datum/ai_behavior/carbon/xeno/illusion, original_xeno)
 	RegisterSignal(original_xeno, list(COMSIG_PARENT_QDELETING, COMSIG_MOB_DEATH), .proc/destroy_illusion)
 	QDEL_IN(src, life_time)
 
+/mob/living/carbon/xenomorph/illusion/Destroy()
+	original_xeno = null
+	return ..()
+
+///Delete this illusion when the original xeno is dead
 /mob/living/carbon/xenomorph/illusion/proc/destroy_illusion()
 	SIGNAL_HANDLER
 	qdel(src)
@@ -29,13 +34,13 @@
 /mob/living/carbon/xenomorph/illusion/update_icons()
 	appearance = original_xeno.appearance
 
+/mob/living/carbon/xenomorph/illusion/update_progression()
+	return
+
 /datum/xeno_caste/illusion
 	caste_type_path = /mob/living/carbon/xenomorph/illusion
 
 /datum/ai_behavior/carbon/xeno/illusion
 	real_xeno = FALSE
-	node_following = null //We don't care about nodes
-
-/datum/ai_behavior/carbon/xeno/illusion/late_initialize()
-	var/mob/living/carbon/xenomorph/illusion/illusion_parent = mob_parent
-	mob_parent.AddElement(/datum/element/pathfinder, illusion_parent.original_xeno, distance_to_maintain , sidestep_prob)
+	target_distance = 3 //We attack only near
+	cur_action = ESCORTING_ATOM

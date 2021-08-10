@@ -20,55 +20,71 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 	var/mob/mob_parent
 	///An identifier associated with this behavior, used for accessing specific values of a node's weights
 	var/identifier
-	///The node following and spawning behaviour, can be null
-	var/node_following = SPAWN_AT_NODE
+	///Our standard behavior
+	var/base_behavior = MOVING_TO_NODE
+	///How far will we look for targets
+	var/target_distance = 8
+	///What we will escort
+	var/atom/escorted_atom
 
-/datum/ai_behavior/New(loc, parent_to_assign)
+/datum/ai_behavior/New(loc, parent_to_assign, escorted_atom)
 	..()
 	if(isnull(parent_to_assign))
 		stack_trace("An ai behavior was initialized without a parent to assign it to; destroying mind. Mind type: [type]")
 		qdel(src)
 		return
+	src.escorted_atom = escorted_atom ? escorted_atom : parent_to_assign //If null, we will escort... ourselves
 	mob_parent = parent_to_assign
 	START_PROCESSING(SSprocessing, src)
 
-//Register any signals we want when this is called and setup some starting actions
+///Initiate our base behavior
 /datum/ai_behavior/proc/late_initialize()
-	atom_to_walk_to = pick(current_node.adjacent_nodes)
-	mob_parent.AddElement(/datum/element/pathfinder, atom_to_walk_to, distance_to_maintain, sidestep_prob)
-	cur_action = MOVING_TO_NODE
-	register_action_signals(cur_action)
+	cur_action = base_behavior
+	switch(cur_action)
+		if(MOVING_TO_NODE)
+			look_for_nodes()
+		if(ESCORTING_ATOM)
+			atom_to_walk_to = escorted_atom
+			change_state()
 
 //We finished moving to a node, let's pick a random nearby one to travel to
 /datum/ai_behavior/proc/finished_node_move()
 	SIGNAL_HANDLER
-	change_state(REASON_FINISHED_NODE_MOVE)
+	look_for_new_state()
 
 //Cleans up signals related to the action and element(s)
 /datum/ai_behavior/proc/cleanup_current_action()
 	unregister_action_signals(cur_action)
 	RemoveElement(/datum/element/pathfinder)
 
-//Cleanups variables related to current state then attempts to transition to a new state based on reasoning for interrupting the current action
-/datum/ai_behavior/proc/change_state(reasoning_for)
-	switch(reasoning_for)
-		if(REASON_FINISHED_NODE_MOVE)
-			cleanup_current_action()
-			if(isainode(atom_to_walk_to)) //Cases where the atom we're walking to can be a mob to kill or turfs
-				current_node = atom_to_walk_to
-				if(identifier)
-					current_node.set_weight(identifier, NODE_LAST_VISITED, world.time) //We recently visited this node, update the time
+///Cleanup old state vars, start the movement towards our new target
+/datum/ai_behavior/proc/change_state()
+	cleanup_current_action()
+	mob_parent.AddElement(/datum/element/pathfinder, atom_to_walk_to, distance_to_maintain, sidestep_prob)
+	register_action_signals(cur_action)
 
-			if(identifier)
-				atom_to_walk_to = current_node.get_best_adj_node(list(NODE_LAST_VISITED = -1), identifier)
-			else
-				atom_to_walk_to = pick(current_node.adjacent_nodes)
-			mob_parent.AddElement(/datum/element/pathfinder, atom_to_walk_to, distance_to_maintain, sidestep_prob)
-			cur_action = MOVING_TO_NODE
-			register_action_signals(cur_action)
+///Try to find a node to go to
+/datum/ai_behavior/proc/look_for_nodes()
+	if(isainode(atom_to_walk_to)) //Cases where the atom we're walking to can be a mob to kill or turfs
+		current_node = atom_to_walk_to
+		if(identifier)
+			current_node.set_weight(identifier, NODE_LAST_VISITED, world.time) //We recently visited this node, update the time
+
+	if(identifier)
+		atom_to_walk_to = current_node.get_best_adj_node(list(NODE_LAST_VISITED = -1), identifier)
+	else
+		atom_to_walk_to = pick(current_node.adjacent_nodes)
+	cur_action = MOVING_TO_NODE
+	change_state()
 
 //Generic process(), this is used for mainly looking at the world around the AI and determining if a new action must be considered and executed
 /datum/ai_behavior/process()
+	look_for_new_state()
+	return
+
+///Check if we need to adopt a new state
+/datum/ai_behavior/proc/look_for_new_state()
+	SIGNAL_HANDLER
 	return
 
 /*

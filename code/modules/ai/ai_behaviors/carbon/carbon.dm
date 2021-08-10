@@ -8,7 +8,7 @@
 	RegisterSignal(mob_parent, COMSIG_OBSTRUCTED_MOVE, .proc/deal_with_obstacle)
 	RegisterSignal(mob_parent, list(ACTION_GIVEN, ACTION_REMOVED), .proc/refresh_abilities)
 	refresh_abilities()
-	..() //Start random node movement
+	..()
 
 //Refresh abilities-to-consider list
 /datum/ai_behavior/carbon/proc/refresh_abilities()
@@ -32,7 +32,7 @@
 
 /datum/ai_behavior/carbon/proc/reason_target_killed(mob/source, gibbing)
 	SIGNAL_HANDLER
-	change_state(REASON_TARGET_KILLED)
+	look_for_new_state()
 
 //Processing; this is for abilities so we don't need to make endless xeno types to code specifically for what abilities they spawn with
 /datum/ai_behavior/carbon/process()
