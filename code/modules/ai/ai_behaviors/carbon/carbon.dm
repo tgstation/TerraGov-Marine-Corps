@@ -4,11 +4,11 @@
 	var/attack_range = 1 //How far away we gotta be before considering an attack
 	var/list/ability_list = list() //List of abilities to consider doing every Process()
 
-/datum/ai_behavior/carbon/late_initialize()
+/datum/ai_behavior/carbon/New(loc, parent_to_assign, escorted_atom)
+	..()
 	RegisterSignal(mob_parent, COMSIG_OBSTRUCTED_MOVE, .proc/deal_with_obstacle)
 	RegisterSignal(mob_parent, list(ACTION_GIVEN, ACTION_REMOVED), .proc/refresh_abilities)
 	refresh_abilities()
-	..()
 
 //Refresh abilities-to-consider list
 /datum/ai_behavior/carbon/proc/refresh_abilities()

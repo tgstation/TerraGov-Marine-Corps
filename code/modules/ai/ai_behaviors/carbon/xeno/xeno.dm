@@ -14,17 +14,19 @@
 			var/atom/next_target = get_nearest_target(escorted_atom, target_distance, TARGET_ALL, null, mob_parent.get_xeno_hivenumber())
 			if(!next_target)
 				return
-			atom_to_walk_to = next_target
-			change_action(MOVING_TO_ATOM)
+			change_action(MOVING_TO_ATOM, next_target)
 		if(MOVING_TO_ATOM)
+			if(escorted_atom && get_dist(escorted_atom, mob_parent) > target_distance)
+				change_action(ESCORTING_ATOM, escorted_atom)
+				return
 			var/atom/next_target = get_nearest_target(escorted_atom, target_distance, TARGET_ALL, null, mob_parent.get_xeno_hivenumber())
 			if(!next_target)//We didn't find a target
-				change_action(base_behavior)
+				cleanup_current_action()
+				late_initialize()
 				return
 			if(next_target == atom_to_walk_to)//We didn't find a better target
 				return
-			atom_to_walk_to = next_target
-			change_action()//We found a better target, change course!
+			change_action(null, next_target)//We found a better target, change course!
 
 /datum/ai_behavior/carbon/xeno/proc/attack_atom(atom/attacked)
 	var/mob/living/carbon/xenomorph/xeno = mob_parent
@@ -76,8 +78,6 @@
 	switch(action_type)
 		if(MOVING_TO_ATOM)
 			RegisterSignal(mob_parent, COMSIG_STATE_MAINTAINED_DISTANCE, .proc/attack_target)
-			if(escorted_atom)
-				RegisterSignal(mob_parent, COMSIG_MOVABLE_MOVED, .proc/check_for_secondary_objective_distance)
 			if(ishuman(atom_to_walk_to))
 				RegisterSignal(atom_to_walk_to, COMSIG_MOB_DEATH, /datum/ai_behavior.proc/look_for_new_state)
 				return
@@ -91,8 +91,6 @@
 	switch(action_type)
 		if(MOVING_TO_ATOM)
 			UnregisterSignal(mob_parent, COMSIG_STATE_MAINTAINED_DISTANCE)
-			if(escorted_atom)
-				UnregisterSignal(mob_parent, COMSIG_MOVABLE_MOVED)
 			if(ishuman(atom_to_walk_to))
 				UnregisterSignal(atom_to_walk_to, COMSIG_MOB_DEATH)
 				return
@@ -101,8 +99,3 @@
 				return
 
 	return ..()
-
-/datum/ai_behavior/carbon/xeno/proc/check_for_secondary_objective_distance()
-	if(get_dist(escorted_atom, mob_parent) > target_distance)
-		atom_to_walk_to = escorted_atom
-		change_action(ESCORTING_ATOM)

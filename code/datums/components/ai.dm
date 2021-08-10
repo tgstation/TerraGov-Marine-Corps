@@ -33,7 +33,7 @@ The main purpose of this is to handle cleanup and setting up the initial ai beha
 	for(var/obj/effect/ai_node/node in range(7))
 		ai_behavior.current_node = node
 		break
-	//This is here so we only make a mind if there's a node nearby for the parent to go onto
+	//Iniatialise the behavior of the ai
 	ai_behavior.late_initialize()
 	RegisterSignal(parent, list(COMSIG_PARENT_PREQDELETED, COMSIG_MOB_DEATH), .proc/clean_up)
 	RegisterSignal(parent, COMSIG_COMBAT_LOG, .proc/handle_combat_log)

@@ -37,5 +37,6 @@
 
 /datum/ai_behavior/carbon/xeno/illusion/attack_atom(atom/attacked)
 	var/mob/living/carbon/xenomorph/xeno = escorted_atom
-	mob_parent.do_attack_animation(attacked, ATTACK_EFFECT_BITE)
+	mob_parent.do_attack_animation(attacked, ismob(attacked) ? ATTACK_EFFECT_REDSLASH : ATTACK_EFFECT_CLAW)
+	playsound(mob_parent.loc, "alien_claw_flesh", 25, 1)
 	mob_parent.changeNext_move(xeno.xeno_caste.attack_delay)

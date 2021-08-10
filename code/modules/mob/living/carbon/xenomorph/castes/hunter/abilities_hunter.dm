@@ -512,7 +512,7 @@
 	action_icon_state = ""
 	mechanics_text = "Create mirror images of the targeted xeno."
 	///How long will the illusions live
-	var/illusion_life_time = 1 MINUTES
+	var/illusion_life_time = 10 SECONDS
 	///How many illusions are created
 	var/illusion_count = 3
 
