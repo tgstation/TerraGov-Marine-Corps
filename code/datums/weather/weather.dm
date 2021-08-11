@@ -152,7 +152,7 @@
 	update_areas()
 	addtimer(CALLBACK(src, .proc/end), end_duration)
 	for(var/num in impacted_z_levels)
-		for(var/mob/M in GLOB.humans_by_zlevel["[num]"])
+		for(var/mob/M AS in GLOB.humans_by_zlevel["[num]"])
 			if(end_message)
 				to_chat(M, end_message)
 			if(M?.client?.prefs?.toggles_sound & SOUND_WEATHER)
