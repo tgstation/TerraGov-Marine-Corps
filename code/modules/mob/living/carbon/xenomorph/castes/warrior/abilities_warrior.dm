@@ -56,7 +56,7 @@
 	action_icon_state = "lunge"
 	mechanics_text = "Pounce up to 5 tiles and grab a target, knocking them down and putting them in your grasp."
 	ability_name = "lunge"
-	plasma_cost = 25
+	plasma_cost = 30
 	cooldown_timer = 20 SECONDS
 	keybind_signal = COMSIG_XENOABILITY_LUNGE
 	target_flags = XABB_MOB_TARGET
@@ -141,7 +141,7 @@
 	action_icon_state = "fling"
 	mechanics_text = "Knock a target flying up to 5 tiles away."
 	ability_name = "fling"
-	plasma_cost = 18
+	plasma_cost = 25
 	cooldown_timer = 20 SECONDS //Shared cooldown with Grapple Toss
 	keybind_signal = COMSIG_XENOABILITY_FLING
 	target_flags = XABB_MOB_TARGET
@@ -233,7 +233,7 @@
 	action_icon_state = "grapple_toss"
 	mechanics_text = "Throw a creature you're grappling up to 3 tiles away."
 	ability_name = "grapple toss"
-	plasma_cost = 18
+	plasma_cost = 30
 	cooldown_timer = 20 SECONDS //Shared cooldown with Fling
 	keybind_signal = COMSIG_XENOABILITY_GRAPPLE_TOSS
 	target_flags = XABB_TURF_TARGET
@@ -309,7 +309,7 @@
 	action_icon_state = "punch"
 	mechanics_text = "Strike a target up to 1 tile away, inflicting stamina damage, stagger and slowdown. Deals double damage, stagger and slowdown to grappled targets. Deals quadruple damage to structures and machinery."
 	ability_name = "punch"
-	plasma_cost = 12
+	plasma_cost = 20
 	cooldown_timer = 10 SECONDS
 	keybind_signal = COMSIG_XENOABILITY_PUNCH
 	target_flags = XABB_MOB_TARGET
