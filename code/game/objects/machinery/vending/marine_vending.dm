@@ -167,7 +167,6 @@
 			/obj/item/weapon/shield/riot/marine = 6,
 			/obj/item/weapon/powerfist = -1,
 			/obj/item/weapon/throwing_knife = -1,
-			/obj/item/weapon/combat_knife = -1,
 			/obj/item/weapon/twohanded/spear/tactical = -1,
 			/obj/item/ammo_magazine/standard_smartmachinegun = 4,
 		),
@@ -220,6 +219,8 @@
 		),
 		"Utility" = list(
 		/obj/item/flashlight/combat = -1,
+		/obj/item/attachable/bayonetknife = -1,
+		/obj/item/weapon/combat_knife = -1,
 		/obj/item/binoculars = -1,
 		/obj/item/compass = -1,
 		/obj/item/assembly/signaler = -1,
