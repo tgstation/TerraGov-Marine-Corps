@@ -15,6 +15,7 @@
 
 	// *** Speed *** //
 	speed = 0.1
+	weeds_speed_mod = -0.15 // Slightly more than halved weed speed up, if you're of position this bad, bad times.
 
 	// *** Plasma *** //
 	plasma_max = 200
@@ -22,6 +23,7 @@
 
 	// *** Health *** //
 	max_health = 325
+	sunder_recover = 0.1 // Crusher recovers sunder FAR slower than normal castes
 
 	// *** Evolution *** //
 	upgrade_threshold = 250
