@@ -155,7 +155,7 @@
 		for(var/mob/M AS in GLOB.humans_by_zlevel["[num]"])
 			if(end_message)
 				to_chat(M, end_message)
-			if(M?.client?.prefs?.toggles_sound & SOUND_WEATHER)
+			if(M.client?.prefs.toggles_sound & SOUND_WEATHER)
 				return
 			if(end_sound)
 				SEND_SOUND(M, sound(end_sound))
