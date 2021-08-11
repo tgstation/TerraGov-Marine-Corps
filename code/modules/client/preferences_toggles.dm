@@ -337,7 +337,7 @@ GLOBAL_LIST_INIT(ghost_others_options, list(GHOST_OTHERS_SIMPLE, GHOST_OTHERS_DE
 	set name = "Toggle Weather Sound"
 
 	usr.client.prefs.toggles_sound ^= SOUND_WEATHER
-	usr.client.prefs.save_preferences()
+	prefs.save_preferences()
 
 	to_chat(usr, span_notice("You will [(usr.client.prefs.toggles_sound & SOUND_WEATHER) ? "no longer" : "now"] hear weather."))
 
