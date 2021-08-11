@@ -81,7 +81,7 @@
 	///For how long will we stun the victim
 	var/victim_paralyze_time = 1 SECONDS
 	///For how long will we freeze upon hitting our target
-	var/freeze_on_hit_time = 0.5 SECONDS
+	var/freeze_on_hit_time = 0.25 SECONDS
 
 // TODO: merge defender/ravager pounces into this typepath since they are essentially the same thing
 /datum/action/xeno_action/activable/pounce/proc/pounce_complete()
