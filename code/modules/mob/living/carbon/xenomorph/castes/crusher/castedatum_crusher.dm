@@ -23,7 +23,7 @@
 
 	// *** Health *** //
 	max_health = 325
-	sunder_recover = 0.1 // Crusher recovers sunder FAR slower than normal castes
+	sunder_recover = 0.15 // Crusher recovers sunder FAR slower than normal castes
 
 	// *** Evolution *** //
 	upgrade_threshold = 250
