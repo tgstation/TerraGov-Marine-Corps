@@ -211,6 +211,8 @@
 /datum/action/xeno_action/activable/pounce/hunter
 	plasma_cost = 20
 	range = 7
+	victim_paralyze_time = 2 SECONDS
+	freeze_on_hit_time = 0.5 SECONDS
 
 // ***************************************
 // *********** Haunt
