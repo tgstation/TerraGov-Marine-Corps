@@ -387,6 +387,14 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 		knife.forceMove(loc)
 	qdel(src) //Delete da old bayonet
 
+/obj/item/attachable/bayonet/attach_to_gun(obj/item/weapon/gun/gun_to_attach, mob/user)
+	. = ..()
+	ADD_TRAIT(gun_to_attach, TRAIT_CHARGE_ENABLED, TRAIT_GENERIC)
+
+/obj/item/attachable/bayonet/detach_from_master_gun(mob/user)
+	REMOVE_TRAIT(master_gun, TRAIT_CHARGE_ENABLED, TRAIT_GENERIC)
+	return ..()
+
 /obj/item/attachable/bayonetknife
 	name = "M-22 bayonet"
 	desc = "A sharp knife that is the standard issue combat knife of the TerraGov Marine Corps can be attached to a variety of weapons at will or used as a standard knife."
@@ -409,6 +417,17 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	accuracy_unwielded_mod = -0.1
 	size_mod = 1
 	sharp = IS_SHARP_ITEM_ACCURATE
+
+/obj/item/attachable/bayonetknife/attach_to_gun(obj/item/weapon/gun/gun_to_attach, mob/user)
+	. = ..()
+	ADD_TRAIT(gun_to_attach, TRAIT_CHARGE_ENABLED, TRAIT_GENERIC)
+
+/obj/item/attachable/bayonetknife/detach_from_master_gun(mob/user)
+	REMOVE_TRAIT(master_gun, TRAIT_CHARGE_ENABLED, TRAIT_GENERIC)
+	var/datum/component/bayonetcharge/comp
+	comp = user.GetComponent(/datum/component/bayonetcharge)
+	comp.child.remove_action(comp.charger)
+	return ..()
 
 /obj/item/attachable/bayonetknife/Initialize()
 	. = ..()

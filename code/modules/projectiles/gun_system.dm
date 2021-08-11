@@ -307,15 +307,10 @@
 	var/obj/screen/ammo/A = user.hud_used.ammo
 	A.add_hud(user, src)
 	A.update_hud(user, src)
-	if(attachments["muzzle"] != null)
-		if(istype(attachments["muzzle"],  /obj/item/attachable/bayonet) || istype(attachments["muzzle"],  /obj/item/attachable/bayonetknife))
-			//add the bayonetcharge component
-			var/datum/component/bayonetcharge/comp = GetComponent(/datum/component/bayonetcharge)
-			if(!comp)
-				AddComponent(/datum/component/bayonetcharge)
-			else
-				comp.updatevalues()
-
+	if(HAS_TRAIT(src, TRAIT_CHARGE_ENABLED))
+		var/datum/component/bayonetcharge/comp = user.GetComponent(/datum/component/bayonetcharge)
+		comp.updatevalues()
+		comp.weaponinhand = src
 
 
 	do_wield(user, wdelay)
@@ -337,10 +332,10 @@
 	if(CHECK_BITFIELD(flags_gun_features, GUN_IS_AIMING))
 		toggle_aim_mode(user)
 
-	if(istype(attachments["muzzle"],  /obj/item/attachable/bayonet) || istype(attachments["muzzle"],  /obj/item/attachable/bayonetknife))
+	if(HAS_TRAIT(src, TRAIT_CHARGE_ENABLED))
 		//remove the bayonetcharge component
 		var/datum/component/bayonetcharge/comp
-		comp = GetComponent(/datum/component/bayonetcharge)
+		comp = user.GetComponent(/datum/component/bayonetcharge)
 		comp.child.remove_action(comp.charger)
 
 	return TRUE

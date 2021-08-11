@@ -32,14 +32,10 @@
 	///the child action of this component
 	var/datum/action/bayonetcharge/child
 
-/datum/component/bayonetcharge/Initialize(...)
-	. = ..()
-	updatevalues()
 
 ///this updates the critical vars of this component. Called on initalize and when the action is applied to a player
 /datum/component/bayonetcharge/proc/updatevalues()
-	weaponinhand = src.parent
-	charger = weaponinhand.gun_user
+	charger = src.parent
 	child = new
 	child.give_action(src.charger)
 	child.parent = src

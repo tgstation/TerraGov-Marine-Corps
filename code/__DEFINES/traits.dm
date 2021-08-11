@@ -112,3 +112,4 @@
 
 // item traits
 #define TRAIT_T_RAY_VISIBLE "t-ray-visible" // Visible on t-ray scanners if the atom/var/level == 1
+#define TRAIT_CHARGE_ENABLED "charge_enabled" // Used when a weapon can now enable its user to charge
