@@ -5974,7 +5974,6 @@
 "Nl" = (
 /obj/effect/decal/cleanable/blood/gibs,
 /obj/structure/closet/cabinet,
-/obj/item/clothing/shoes/clown_shoes,
 /obj/item/clothing/under/lawyer/blue,
 /turf/open/floor/wood,
 /area/icy_caves/outpost/dorms)

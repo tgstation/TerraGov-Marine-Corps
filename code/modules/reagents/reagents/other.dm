@@ -64,6 +64,9 @@
 		if(6 to 10) //sip 2
 			L.adjustStaminaLoss(-0.5*effect_str)
 			L.heal_limb_damage(0.1*effect_str, 0.1*effect_str)
+		if(11 to INFINITY) //anything after
+			L.adjustStaminaLoss(-0.15*effect_str)
+			L.heal_limb_damage(0.1*effect_str, 0.1*effect_str)
 	return ..()
 
 /datum/reagent/water/overdose_process(mob/living/L, metabolism)
