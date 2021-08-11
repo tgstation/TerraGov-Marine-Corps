@@ -1,6 +1,0 @@
-author: "Hekzder"
-delete-after: True
-changes: 
-  - rscadd: "Fultons can now be purchased from the SL vendor for 20 points and two fultons are in the req operational vendor at round start"
-  - balance: "Fultons now cost 10 points from req and have only three uses"
-  - balance: "The ASRS now costs 30 points from req"

@@ -288,3 +288,14 @@
   - qol: Made it possible to drop pod north of LV LZ1
   - bugfix: fixed a few issues with the LZ
   - qol: Added an holopad to the alamo.
+2021-08-11:
+  Hekzder:
+  - rscadd: Fultons can now be purchased from the SL vendor for 20 points and two
+      fultons are in the req operational vendor at round start
+  - balance: Fultons now cost 10 points from req and have only three uses
+  - balance: The ASRS now costs 30 points from req
+  TiviPlus:
+  - rscdel: Removed monkey cubes from shipside
+  - expansion: RO, PO and Synth now have working minimap icons
+  lbnesquik:
+  - expansion: Allows the AI to use keycard devices using ctrl click
