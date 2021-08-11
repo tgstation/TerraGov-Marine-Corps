@@ -14,8 +14,7 @@
 	if (sick_kicks.tied == SHOES_TIED) //if tied knot the shoes of our victim
 		sick_kicks.adjust_laces(SHOES_KNOTTED) 
 	else //If we're already knotted, revert them back to being tied. Marines aren't smart enough to unknot their own shoes without divine intervention.
-		var/confirm = tgui_alert(usr, "Unknot the shoes of [target]?", "Continue?", list("Yes", "No"))
-		if(confirm == "No")
+		if (tgui_alert(usr, "Unknot the shoes of [target]?", "Continue?", list("Yes", "No")) != "Yes")
 			return
 		sick_kicks.adjust_laces(SHOES_TIED)
 		to_chat(target, span_warning("Your knotted shoelaces unravel again as a divine force washes over them."), confidential = TRUE)

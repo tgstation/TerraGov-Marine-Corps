@@ -13,8 +13,7 @@
 		return
 
 	var/datum/limb/L = target.get_limb("head")
-	var/confirm = tgui_alert(usr, "Blow [target]'s head off with the explosion?", "Explosion Strength", list("Yes", "No"))
-	if(confirm == "Yes")
+	if(tgui_alert(usr, "Blow [target]'s head off with the explosion?", "Explosion Strength", list("Yes", "No")) != "No")
 		L.take_damage_limb(100) //extra damage makes subsequent explosion always decap
 
 	to_chat(target, span_userdanger("Your headset buzzes and violently explodes in your face!"))
