@@ -840,7 +840,7 @@
 			/obj/item/armor_module/storage/medical = -1,
 			/obj/item/helmet_module/welding = -1,
 			/obj/item/helmet_module/binoculars = -1,
-			/obj/item/helmet_module/attachable/tyr_head = 1,
+			/obj/item/helmet_module/attachable/tyr_head = -1,
 			/obj/item/helmet_module/antenna = -1,
 			/obj/item/helmet_module/attachable/mimir_environment_protection/mark1 = -1,
 			/obj/item/armor_module/attachable/mimir_environment_protection/mark1 = -1,
