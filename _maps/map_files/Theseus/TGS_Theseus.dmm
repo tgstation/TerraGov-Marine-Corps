@@ -19431,7 +19431,7 @@
 	},
 /area/mainship/hull/port_hull)
 "xvC" = (
-/obj/machinery/marine_selector/clothes/leader/alpha,
+/obj/machinery/marine_selector/clothes/leader,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/alpha)
 "xwJ" = (
