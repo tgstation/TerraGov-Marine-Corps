@@ -21,7 +21,7 @@
 	var/steps_taken = 0
 
 	///represents if the charger is charging
-	var/am_charging = FALSE
+	var/is_player_charging = FALSE
 	var/action_toggle_state = FALSE
 	var/obj/item/weapon/gun/weaponinhand
 
@@ -59,7 +59,7 @@
 	. = ..()
 
 /datum/action/bayonetcharge/action_activate()
-	if(parent.am_charging)
+	if(parent.is_player_charging)
 		return
 	if(parent.action_toggle_state == TRUE)
 		parent.charge_off()
@@ -101,8 +101,8 @@
 /datum/component/bayonetcharge/proc/update_charging(datum/source, atom/oldloc, direction, Forced)
 	SIGNAL_HANDLER_DOES_SLEEP
 	if(next_move_restriction_timer && world.time > next_move_restriction_timer) //if you have stopped moving, it resetss the steps taken counter
-		if(am_charging)
-			am_charging = FALSE
+		if(is_player_charging)
+			is_player_charging = FALSE
 			TIMER_COOLDOWN_START(charger, COOLDOWN_HUMAN_CHARGE, cooldown_duration)
 		stop_charge()
 		next_move_restriction_timer = null
@@ -129,10 +129,10 @@
 		return
 
 	//stuff in this if only happens once the charger starts charging, and not anytime else.
-	if(!am_charging)
+	if(!is_player_charging)
 		charger.emote("warcry")
 		RegisterSignal(charger, list(COMSIG_MOVABLE_PREBUMP_TURF, COMSIG_MOVABLE_PREBUMP_MOVABLE, COMSIG_MOVABLE_PREBUMP_EXIT_MOVABLE), .proc/on_contact_with_enemy, TRUE)
-	am_charging = TRUE
+	is_player_charging = TRUE
 	charger.add_movespeed_modifier(MOVESPEED_ID_MARINE_CHARGE, TRUE, 100, NONE, TRUE, -chargespeed)
 	charger.toggle_move_intent(MOVE_INTENT_WALK) //if this aint here, the sprint compounds with the speed increase of the modifier, making you faster than a fucking charger
 	charger.adjustStaminaLoss(stam_loss_mult_per_step * chargespeed)
@@ -140,7 +140,7 @@
 
 ///called when the code wants the player to stop charging. IE, when you hit a solid thing or run out of stamina
 /datum/component/bayonetcharge/proc/stop_charge()
-	am_charging = FALSE
+	is_player_charging = FALSE
 	if(charger)
 		charger.remove_movespeed_modifier(MOVESPEED_ID_MARINE_CHARGE)
 	steps_taken = 0
@@ -148,7 +148,7 @@
 ///called when the player hits anything dense. Handles the damage application and always calls  charge_off
 /datum/component/bayonetcharge/proc/on_contact_with_enemy(datum/source, atom/crushed)
 	SIGNAL_HANDLER
-	if(isliving(crushed) && am_charging == TRUE)
+	if(isliving(crushed) && is_player_charging == TRUE)
 		var/mob/living/crushedliving = crushed
 		if(istype(weaponinhand, /obj/item/weapon/gun))
 			//handles the damage for guns'
