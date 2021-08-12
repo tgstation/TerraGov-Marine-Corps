@@ -36,7 +36,7 @@
 	return ..()
 
 ///this updates the critical vars of this component. Called on initalize and when the action is applied to a player
-/datum/component/bayonetcharge/proc/updatevalues()
+/datum/component/bayonetcharge/proc/update_values()
 	var/mob/living/carbon/human/charger = src.parent
 	child = new
 	child.give_action(charger)

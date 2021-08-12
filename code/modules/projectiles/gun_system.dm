@@ -310,7 +310,7 @@
 	if(HAS_TRAIT(src, TRAIT_CHARGE_ENABLED))
 		var/mob/living/carbon/human/user_human = user
 		var/datum/component/bayonetcharge/comp = user_human.bayonet_charge_component
-		comp.updatevalues()
+		comp.update_values()
 		comp.weaponinhand = src
 
 
