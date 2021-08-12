@@ -22,7 +22,7 @@
 	SSpoints.supply_points[faction_selling] += 50
 	SSpoints.export_history += new /datum/export_report(50, name, faction_selling)
 
-
+///Only handles sale for humans not belonging to the supplied faction, otherwise delegates to burial_export()
 /mob/living/carbon/human/supply_export(faction_selling)
 	if(faction == faction_selling)
 		burial_export(faction_selling)
@@ -39,7 +39,7 @@
 	SSpoints.supply_points[faction_selling] += .
 	SSpoints.export_history += new /datum/export_report(., name, faction_selling)
 
-/**Calculates return value of properly prepared corpses, returns a number
+/**Calculates return value of properly prepared corpses, handles point payout and export logging.
  *
  * Checks for:
  **Five minute defib timer
@@ -49,7 +49,7 @@
  **Missing synth head, on top of the normal missing limb penalty
  **Shrapnel
  **Full dress uniform: torso, hat, gloves, boots
- **Suicide
+ **Suicide/export before shutters open
  **Dogtag in memorial, if they've got one
  */
 /mob/living/carbon/human/proc/burial_export(faction_selling)
@@ -137,7 +137,7 @@
 			payout = 0
 			problems += "marine not memorialized"
 
-	if(suiciding)
+	if(suiciding || SSmonitor.gamestate == SHUTTERS_CLOSED)
 		payout = 0
 		problems += "non-combat death"
 

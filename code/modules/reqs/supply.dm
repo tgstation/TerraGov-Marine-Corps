@@ -110,7 +110,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 					var/mob/living/carbon/human/human_to_sell = a
 					if(human_to_sell.stat != DEAD)
 						return FALSE
-					if(istype(human_to_sell.loc, /obj/structure/closet/coffin))
+					if(istype(human_to_sell.loc, /obj/structure/closet/coffin) && human_to_sell.faction == faction)
 						continue
 					if(can_sell_human_body(human_to_sell, faction))
 						continue
@@ -208,9 +208,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 		for(var/atom/movable/AM in shuttle_area)
 			if(AM.anchored)
 				continue
-			var/datum/export_report = AM.supply_export(faction)
-			if(export_report)
-				SSpoints.export_history += export_report
+			AM.supply_export(faction)
 			qdel(AM)
 
 /obj/item/supplytablet
