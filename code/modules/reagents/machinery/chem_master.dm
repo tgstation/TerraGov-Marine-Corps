@@ -300,7 +300,7 @@
 			return
 
 		else if(href_list["change_autoinjector"])
-			#define MAX_AUTOINJECTOR_SPRITE 11 //max icon state of the autoinjector sprites
+			#define MAX_AUTOINJECTOR_SPRITE 12 //max icon state of the autoinjector sprites
 			var/dat = "<table>"
 			for(var/i = 1 to MAX_AUTOINJECTOR_SPRITE)
 				dat += "<tr><td><a href=\"?src=\ref[src]&autoinjector_sprite=[i]\">Select</a><img src=\"autoinjector-[i].png\" /><br></td></tr>"
