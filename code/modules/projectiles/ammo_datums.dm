@@ -2074,33 +2074,6 @@ datum/ammo/bullet/revolver/tp44
 /datum/ammo/water
 	name = "water"
 	hud_state = "water"
-
-/datum/ammo/flare
-	name = "flare"
-	ping = null //no bounce off.
-	damage_type = BURN
-	flags_ammo_behavior = AMMO_EXPLOSIVE|AMMO_INCENDIARY
-	damage = 15
-	accuracy = 15
-	max_range = 15
-
-/datum/ammo/flare/on_hit_mob(mob/M,obj/projectile/P)
-	drop_nade(get_turf(P))
-
-/datum/ammo/flare/on_hit_obj(obj/O,obj/projectile/P)
-	drop_nade(get_turf(P))
-
-/datum/ammo/flare/on_hit_turf(turf/T,obj/projectile/P)
-	drop_nade(T)
-
-/datum/ammo/flare/do_at_max_range(obj/projectile/P)
-	drop_nade(get_turf(P))
-
-/datum/ammo/flare/drop_nade(turf/T)
-	var/obj/item/explosive/grenade/flare/G = new (T)
-	G.visible_message(span_warning("\A [G] bursts into brilliant light nearby!"))
-	G.turn_on()
-
 /datum/ammo/rocket/toy
 	name = "\improper toy rocket"
 	damage = 1
