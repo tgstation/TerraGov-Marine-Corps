@@ -1,3 +1,4 @@
+#define IS_ATTACHMENT (1<<0)
 //gun attachment slot defines
 #define ATTACHMENT_SLOT_RAIL "rail"
 #define ATTACHMENT_SLOT_UNDER "under"

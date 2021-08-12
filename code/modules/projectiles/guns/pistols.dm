@@ -35,6 +35,9 @@
 	scatter = 0
 	scatter_unwielded = 0
 
+/obj/item/weapon/gun/pistol/Initialize(mapload, spawn_empty)
+	. = ..()
+	AddComponent(/datum/component/attachment_handler)
 
 /obj/item/weapon/gun/pistol/unique_action(mob/user)
 	. = ..()

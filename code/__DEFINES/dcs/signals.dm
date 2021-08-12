@@ -249,7 +249,7 @@
 #define COMSIG_ITEM_UNIQUE_ACTION "item_unique_action"
 			//from base of /obj/item/unique_action(): (atom/target, mob/user)
 #define COMSIG_ITEM_IS_ATTACHMENT "item_is_attachment"
-#define COMSIG_ITEM_GET_ATTACHMENT_DATA "item_get_data"
+#define COMSIG_ITEM_GET_ATTACHMENT_DATA "item_get_attachment_data"
 
 
 #define COMSIG_ITEM_TOGGLE_ACTION "item_toggle_action"			//from base of obj/item/ui_interact(): (/mob/user)

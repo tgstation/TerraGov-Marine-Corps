@@ -401,6 +401,9 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 		knife.forceMove(loc)
 	qdel(src) //Delete da old bayonet
 
+/obj/item/attachable/bayonet/Initialize()
+	. = ..()
+	AddElement(/datum/element/attachment, slot, icon, attach_icon, null, null, null, pixel_shift_x, pixel_shift_y)
 /obj/item/attachable/bayonetknife
 	name = "M-22 bayonet"
 	desc = "A sharp knife that is the standard issue combat knife of the TerraGov Marine Corps can be attached to a variety of weapons at will or used as a standard knife."

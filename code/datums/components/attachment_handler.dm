@@ -7,6 +7,7 @@
     var/list/attachments = list()
     var/list/attachment_offsets = list()
     var/list/attachable_overlays = list()
+    var/list/extra_vars = list()
 
 /datum/component/attachment_handler/Initialize(_slots, list/_attachables_allowed, list/_attachables_not_allowed, datum/callback/_on_attach, datum/callback/_on_unattach, list/_attachment_offsets)
     . = ..()
@@ -55,8 +56,8 @@
         attachable_overlays[slot] = overlay
         attachment.overlays += overlay
 
-/datum/component/attachment_handler/proc/is_attachment(obj/item/attachment)
+/datum/component/attachment_handler/proc/is_attachment(/obj/item/attachment)
     return SEND_SIGNAL(attachment, COMSIG_ITEM_IS_ATTACHMENT) & IS_ATTACHMENT
 
-/datum/component/attachment_handler/proc/get_attachment_data(obj/item/attachment)
+/datum/component/attachment_handler/proc/get_attachment_data(/obj/item/attachment)
     return SEND_SIGNAL(attachment, COMSIG_ITEM_GET_ATTACHMENT_DATA)
