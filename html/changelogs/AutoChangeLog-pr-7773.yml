@@ -1,0 +1,4 @@
+author: "lbnesquik"
+delete-after: True
+changes: 
+  - balance: "Reduces ravager damage tiers from 26 - 32 to 26 - 29."
