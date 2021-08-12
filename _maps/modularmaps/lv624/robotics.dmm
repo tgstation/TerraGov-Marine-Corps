@@ -356,6 +356,7 @@
 "Yr" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold4w/supply/hidden/layer1,
+/obj/effect/ai_node,
 /turf/open/floor/tile/vault{
 	dir = 8
 	},

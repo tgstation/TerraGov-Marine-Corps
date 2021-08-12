@@ -521,7 +521,11 @@
 	var/illusion_count = 3
 
 /datum/action/xeno_action/mirage/action_activate()
-	var/mob/illusion/center_illusion = new /mob/illusion(owner.loc, owner, owner, illusion_life_time)
-	for(var/i in 1 to (illusion_count - 1))
-		new /mob/illusion(owner.loc, owner, center_illusion, illusion_life_time)
-	return succeed_activate()
+	succeed_activate()
+	switch(owner.a_intent)
+		if(INTENT_HARM) //Escort us and attack nearby enemy
+			var/mob/illusion/center_illusion = new /mob/illusion(owner.loc, owner, owner, illusion_life_time)
+			for(var/i in 1 to (illusion_count - 1))
+				new /mob/illusion(owner.loc, owner, center_illusion, illusion_life_time)
+		if(INTENT_HELP)
+

@@ -445,6 +445,14 @@
 /obj/item/storage/belt/utility/full,
 /turf/open/floor/plating,
 /area/lv624/lazarus/quartstorage)
+"ZF" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/effect/ai_node,
+/turf/open/floor/tile/dark,
+/area/lv624/lazarus/quartstorage)
 
 (1,1,1) = {"
 Iu
@@ -556,7 +564,7 @@ zv
 kx
 kx
 kx
-kx
+ZF
 kx
 kx
 kx

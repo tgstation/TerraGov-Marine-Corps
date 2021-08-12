@@ -42,7 +42,7 @@
 		if(obstacle.resistance_flags & XENO_DAMAGEABLE)
 			mob_parent.face_atom(obstacle)
 			INVOKE_ASYNC(src, .proc/attack_target, obstacle)
-			return
+			return COMSIG_OBSTACLE_DEALT_WITH
 
 	//Cheat mode: insta open airlocks
 	for(var/obj/machinery/door/airlock/lock in things_nearby)
@@ -53,12 +53,12 @@
 		if(lock.welded) //It's welded, can't force that open
 			continue
 		lock.open(TRUE)
-		return //Don't try going on window frames after opening up airlocks dammit
+		return COMSIG_OBSTACLE_DEALT_WITH
 
 	//Teleport onto those window frames, we also can't attempt to attack said window frames so this isn't in the obstacles loop
 	for(var/obj/structure/window_frame/frame in things_nearby)
 		mob_parent.loc = frame.loc
-		return
+		return COMSIG_OBSTACLE_DEALT_WITH
 
 /datum/ai_behavior/carbon/xeno/try_to_attack()
 	if(world.time < mob_parent.next_move)

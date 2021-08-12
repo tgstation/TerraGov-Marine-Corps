@@ -2,6 +2,11 @@
 	target_distance = 3 //We attack only near
 	base_action = ESCORTING_ATOM
 
+/datum/ai_behavior/carbon/xeno/illusion/New(loc, parent_to_assign, escorted_atom)
+	if(!escorted_atom)
+		base_action = MOVING_TO_NODE
+	..()
+
 /datum/ai_behavior/carbon/xeno/illusion/attack_target(atom/attacked)
 	var/mob/illusion/illusion_parent = mob_parent
 	var/mob/living/carbon/xenomorph/original_xeno = illusion_parent.original_mob

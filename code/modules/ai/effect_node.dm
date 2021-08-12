@@ -6,13 +6,13 @@
 	icon = 'icons/effects/landmarks_static.dmi'
 	icon_state = "x6" //Pure white 'X' with black borders
 	anchored = TRUE //No pulling those nodes yo
-	invisibility = INVISIBILITY_OBSERVER //Visible towards ghosts
+	invisibility = INVISIBILITY_ABSTRACT //Visible towards ghosts
 	///list of adjacent landmark nodes
 	var/list/adjacent_nodes
 
 	///List of weights for scoring stuff happening here; ultilizes "identifiers" to differentiate different kinds of AI types looking at the same node.
 	var/list/weights = list(
-		IDENTIFIER_XENO = list(NODE_LAST_VISITED = 0),
+		IDENTIFIER_XENO = list(NODE_LAST_CHOSE_TO_VISIT = 0),
 		)
 
 /obj/effect/ai_node/Initialize()
@@ -54,22 +54,27 @@
  * A proc that gets the "best" adjacent node in src based on score
  * The score is calculated by what weights are inside of the list/weight_modifiers
  * The highest number after multiplying each list/weight by the ones in the above parameter will be the node that's chosen; any nodes that have the same score won't override that node
- * Generally the number that the weight has before being multiplied by weight modifiers is the "user friendly" edition; NODE_LAST_VISITED represents in deciseconds the time before
+ * Generally the number that the weight has before being multiplied by weight modifiers is the "user friendly" edition; NODE_LAST_CHOSE_TO_VISIT represents in deciseconds the time before
  * the node has been visited by a particular thing, while something like NODE_ENEMY_COUNT represents the amount of enemies
  * Parameter call example
- * GetBestAdjNode(list(NODE_LAST_VISITED = -1), IDENTIFIER_XENO)
- * Returns an adjacent node that was last visited; when a AI visits a node, it will set NODE_LAST_VISITED to world.time
+ * GetBestAdjNode(list(NODE_LAST_CHOSE_TO_VISIT = -1), IDENTIFIER_XENO)
+ * if should_consider_itself is TRUE, if none of the adjacent node has a better score than src's one, then the proc will return src
+ * Returns an adjacent node that was last visited; when a AI chose to visit a node, it will set NODE_LAST_CHOSE_TO_VISIT to world.time
  */
-/obj/effect/ai_node/proc/get_best_adj_node(list/weight_modifiers, identifier)
+/obj/effect/ai_node/proc/get_best_adj_node(list/weight_modifiers, identifier, should_consider_itself = FALSE)
 	//No weight modifiers, return a adjacent random node
 	if(!length(weight_modifiers) || !identifier)
 		return pick(adjacent_nodes)
 
 	var/obj/effect/ai_node/node_to_return
 	var/current_best_node_score = -INFINITY
-	var/current_score
-	for(var/thing in shuffle_inplace(adjacent_nodes)) //We keep a score for the nodes and see which one is best
-		var/obj/effect/ai_node/node = thing
+	var/current_score = 0
+	if(should_consider_itself)
+		current_best_node_score = 0
+		node_to_return = src
+		for(var/weight in weight_modifiers)
+			current_best_node_score += NODE_GET_VALUE_OF_WEIGHT(identifier, src, weight) * weight_modifiers[weight]
+	for(var/obj/effect/ai_node/node AS in adjacent_nodes) //We keep a score for the nodes and see which one is best
 		current_score = 0
 		for(var/weight in weight_modifiers)
 			current_score += NODE_GET_VALUE_OF_WEIGHT(identifier, node, weight) * weight_modifiers[weight]
@@ -80,15 +85,14 @@
 
 	if(node_to_return)
 		return node_to_return
-	else //Just in case no applicable scores are located
-		return pick(adjacent_nodes)
+	return pick(adjacent_nodes)
 
-///Clears the adjacencies of src and repopulates it, it will consider nodes "adjacent" to src should it be less 15 turfs away and get_dir(src, potential_adjacent_node) returns a cardinal direction
+///Clears the adjacencies of src and repopulates it, it will consider nodes "adjacent" to src should it be less 15 turfs away
 /obj/effect/ai_node/proc/make_adjacents()
 	for(var/obj/effect/ai_node/node AS in GLOB.allnodes)
 		if(node == src)
 			continue
-		if(!(get_dist(src, node) < 11))
+		if(!(get_dist(src, node) < MAX_NODE_RANGE))
 			continue
 		LAZYDISTINCTADD(adjacent_nodes ,node)
 		LAZYDISTINCTADD(node.adjacent_nodes, src)

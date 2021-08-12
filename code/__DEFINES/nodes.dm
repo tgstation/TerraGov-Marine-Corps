@@ -16,8 +16,8 @@
 ///AI component state where we're escorting something and looking for a target nearby
 #define ESCORTING_ATOM "escorting_atom"
 
-///A define for a node variable which is the last world.time that a AI visited it
-#define NODE_LAST_VISITED "node_last_visited"
+///A define for a node variable which is the last world.time that a AI chose to visit it
+#define NODE_LAST_CHOSE_TO_VISIT "node_last_chose_to_visit"
 
 /**
  * Identifier tags

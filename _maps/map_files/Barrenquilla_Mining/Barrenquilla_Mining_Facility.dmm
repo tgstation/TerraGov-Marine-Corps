@@ -460,6 +460,10 @@
 	dir = 1
 	},
 /area/barren)
+"cq" = (
+/obj/effect/ai_node,
+/turf/open/lavaland/basalt,
+/area/barren/cave/north)
 "cr" = (
 /obj/structure/largecrate/random,
 /turf/open/floor,
@@ -578,6 +582,10 @@
 	dir = 1
 	},
 /area/barren)
+"cV" = (
+/obj/effect/ai_node,
+/turf/open/lavaland/basalt,
+/area/barren/cave/central)
 "cW" = (
 /obj/machinery/iv_drip,
 /turf/open/floor/tile/blue/whiteblue{
@@ -3279,6 +3287,11 @@
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor,
 /area/bigredv2/outside/general_offices)
+"py" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/ai_node,
+/turf/open/floor,
+/area/bigredv2/outside/general_offices)
 "pA" = (
 /turf/closed/wall/mainship,
 /area/storage/testroom)
@@ -3597,6 +3610,10 @@
 /obj/effect/landmark/corpsespawner/miner,
 /turf/open/lavaland/basalt,
 /area/barren/cave/southwest)
+"rk" = (
+/obj/effect/ai_node,
+/turf/open/floor,
+/area/barren/cave/lz1)
 "rm" = (
 /obj/structure/closet/secure_closet/medical1/colony,
 /obj/effect/decal/cleanable/cobweb{
@@ -3752,6 +3769,12 @@
 	dir = 5
 	},
 /area/barren/security)
+"rZ" = (
+/obj/effect/ai_node,
+/turf/open/floor/tile/bar{
+	name = "medical"
+	},
+/area/barren/medical)
 "sa" = (
 /turf/closed/brock,
 /area/barren/cave/northeast)
@@ -4305,6 +4328,10 @@
 	dir = 8
 	},
 /area/barren/medical)
+"uV" = (
+/obj/effect/ai_node,
+/turf/open/floor/tile/dark,
+/area/barren/cave/lz2)
 "uW" = (
 /obj/machinery/door/airlock/mainship/generic{
 	dir = 2
@@ -4426,6 +4453,10 @@
 /obj/effect/landmark/xeno_silo_spawn,
 /turf/open/lavaland/basalt,
 /area/barren/cave/southwest)
+"vx" = (
+/obj/effect/ai_node,
+/turf/open/floor/prison/sterilewhite,
+/area/barren/medical/research)
 "vy" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
@@ -4453,6 +4484,10 @@
 /obj/structure/xenoautopsy/jar_shelf,
 /turf/open/floor/freezer,
 /area/barren/medical/research)
+"vH" = (
+/obj/effect/ai_node,
+/turf/open/lavaland/basalt,
+/area/barren/cave/south)
 "vJ" = (
 /obj/structure/table/reinforced/prison,
 /obj/item/storage/box/flashbangs,
@@ -4491,6 +4526,10 @@
 /obj/structure/cable,
 /turf/open/floor/tile/red,
 /area/barren/security)
+"vR" = (
+/obj/effect/ai_node,
+/turf/open/floor,
+/area/barren/civilian)
 "vS" = (
 /obj/machinery/landinglight/ds2/delayone,
 /obj/effect/decal/warning_stripes/thin,
@@ -4940,6 +4979,7 @@
 "yk" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/blood/writing,
+/obj/effect/ai_node,
 /turf/open/floor/prison/bright_clean/two,
 /area/barren/security)
 "ym" = (
@@ -5160,6 +5200,10 @@
 	},
 /turf/open/floor/grimy,
 /area/barren/civilian)
+"zD" = (
+/obj/effect/ai_node,
+/turf/open/floor/tile/dark2,
+/area/barren/engie/engine)
 "zE" = (
 /obj/structure/filingcabinet,
 /obj/effect/decal/cleanable/dirt,
@@ -5720,6 +5764,10 @@
 	},
 /turf/open/floor/wood,
 /area/barren/cave/lz1)
+"Cw" = (
+/obj/effect/ai_node,
+/turf/open/lavaland/basalt,
+/area/barren/cave/west)
 "Cx" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/cobweb{
@@ -6641,6 +6689,10 @@
 "Hv" = (
 /turf/open/floor/mainship/black/full,
 /area/barren/security)
+"Hx" = (
+/obj/effect/ai_node,
+/turf/open/lavaland/basalt,
+/area/barren/cave/east)
 "Hz" = (
 /turf/open/floor/prison,
 /area/ai_monitored/storage/secure)
@@ -7030,6 +7082,10 @@
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/lavaland/basalt,
 /area/barren/cave/southeast)
+"JA" = (
+/obj/effect/ai_node,
+/turf/open/floor/marking,
+/area/barren/cave/central)
 "JB" = (
 /obj/structure/closet/cabinet,
 /obj/machinery/light{
@@ -7384,6 +7440,10 @@
 /obj/structure/sign/poster,
 /turf/closed/wall,
 /area/barren/medical/research)
+"Ly" = (
+/obj/effect/ai_node,
+/turf/open/lavaland/basalt,
+/area/barren/cave/southeast)
 "Lz" = (
 /obj/structure/fence,
 /turf/open/lavaland/basalt,
@@ -7596,6 +7656,15 @@
 	dir = 6
 	},
 /area/barren/medical)
+"MQ" = (
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/marking,
+/area/barren/cave/central)
+"MR" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating,
+/area/barren/cave/central)
 "MS" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable,
@@ -7667,6 +7736,10 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/prison,
 /area/ai_monitored/storage/secure)
+"Nl" = (
+/obj/effect/ai_node,
+/turf/open/lavaland/basalt,
+/area/barren/cave/northwest)
 "Nm" = (
 /obj/structure/barricade/guardrail{
 	dir = 8
@@ -8209,6 +8282,11 @@
 "Qt" = (
 /turf/open/floor/plating,
 /area/barren/cave/west)
+"Qu" = (
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/tile/red,
+/area/barren/security)
 "Qv" = (
 /obj/effect/decal/cleanable/blood/writing{
 	dir = 4
@@ -8402,6 +8480,11 @@
 "Ru" = (
 /obj/structure/fence,
 /turf/open/lavaland/basalt,
+/area/barren/cave/south)
+"Rw" = (
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/plating,
 /area/barren/cave/south)
 "Rx" = (
 /obj/structure/barricade/guardrail,
@@ -8607,6 +8690,10 @@
 	},
 /turf/open/floor/grimy,
 /area/barren/civilian/workdorm)
+"SJ" = (
+/obj/effect/ai_node,
+/turf/open/lavaland/basalt,
+/area/barren/cave/northeast)
 "SL" = (
 /obj/item/ore/phoron,
 /turf/open/lavaland/basalt,
@@ -8799,6 +8886,10 @@
 	},
 /turf/open/lavaland/lava/lpiece,
 /area/barren)
+"TU" = (
+/obj/effect/ai_node,
+/turf/open/floor,
+/area/barren/misc/genstorage)
 "TV" = (
 /obj/item/tool/pickaxe,
 /obj/effect/decal/cleanable/blood,
@@ -8899,6 +8990,10 @@
 /obj/effect/landmark/weed_node,
 /turf/closed/wall/indestructible/mineral,
 /area/barren/cave/northwest)
+"Uz" = (
+/obj/effect/ai_node,
+/turf/open/lavaland/catwalk,
+/area/barren/cave/south)
 "UC" = (
 /obj/effect/decal/woodsiding{
 	dir = 1
@@ -8993,6 +9088,10 @@
 /obj/structure/rack,
 /turf/open/floor/marking/delivery,
 /area/barren/misc/genstorage)
+"UZ" = (
+/obj/effect/ai_node,
+/turf/open/floor/wood,
+/area/barren/civilian/cook)
 "Va" = (
 /turf/open/lavaland/lava/side{
 	dir = 8
@@ -9237,6 +9336,14 @@
 	dir = 4
 	},
 /area/barren/medical/chemistry)
+"Wo" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating,
+/area/barren/cave/east)
+"Wp" = (
+/obj/effect/ai_node,
+/turf/open/lavaland/basalt,
+/area/barren/cave/southwest)
 "Wt" = (
 /obj/machinery/conveyor{
 	id = "lower_garbage"
@@ -14566,7 +14673,7 @@ mP
 mP
 mP
 mP
-mP
+uV
 mP
 Io
 CI
@@ -15362,7 +15469,7 @@ RF
 CI
 CI
 ZY
-mP
+uV
 mP
 mP
 mP
@@ -16087,7 +16194,7 @@ QR
 QR
 QR
 QR
-QR
+Nl
 QR
 QR
 QR
@@ -16711,7 +16818,7 @@ Vz
 ym
 Vz
 Vz
-Vz
+Wp
 Vz
 Vz
 Vz
@@ -16917,7 +17024,7 @@ kS
 ZN
 ZN
 ZN
-ZN
+Cw
 ZN
 ZN
 ZN
@@ -17193,7 +17300,7 @@ ZW
 ZW
 ZN
 ZN
-ZN
+Cw
 ZN
 ZN
 ZN
@@ -18176,7 +18283,7 @@ jt
 mP
 mP
 mP
-mP
+uV
 mP
 mP
 mP
@@ -18235,7 +18342,7 @@ HQ
 HQ
 HQ
 Vz
-Vz
+Wp
 Vz
 Vz
 Vz
@@ -18653,7 +18760,7 @@ rK
 rK
 QR
 QR
-QR
+Nl
 QR
 QR
 rK
@@ -19182,7 +19289,7 @@ rK
 rK
 nu
 QR
-QR
+Nl
 QR
 QR
 QR
@@ -19242,7 +19349,7 @@ ZN
 ZN
 ZN
 ZN
-ZN
+Cw
 ZN
 ZN
 ZN
@@ -19959,7 +20066,7 @@ rK
 QR
 AB
 QR
-QR
+Nl
 QR
 QR
 QR
@@ -20304,7 +20411,7 @@ Vz
 Vz
 Vz
 Vz
-Vz
+Wp
 Vz
 ym
 Vz
@@ -20576,7 +20683,7 @@ Vz
 Vz
 Vz
 Vz
-Vz
+Wp
 Vz
 Vz
 HQ
@@ -20743,7 +20850,7 @@ QR
 QR
 QR
 QR
-ZN
+Cw
 ZN
 ZN
 ZN
@@ -20766,7 +20873,7 @@ Xt
 ZN
 ZN
 ZN
-ZN
+Cw
 ZN
 ZN
 ZN
@@ -21564,7 +21671,7 @@ ZN
 ZN
 ZN
 ZN
-ZN
+Cw
 ZN
 Vz
 Vz
@@ -22001,7 +22108,7 @@ Dm
 Dm
 GW
 EP
-vQ
+Qu
 vQ
 Qs
 hk
@@ -22091,7 +22198,7 @@ Vz
 Vz
 eT
 Vz
-Vz
+Wp
 Vz
 Rx
 eE
@@ -22810,7 +22917,7 @@ ZN
 ZN
 ZN
 ZN
-ZN
+Cw
 ZN
 ZN
 ZN
@@ -22841,7 +22948,7 @@ ZN
 ZN
 ZN
 ZN
-ZN
+Cw
 ZN
 ZN
 ZW
@@ -23017,7 +23124,7 @@ mG
 rK
 QR
 QR
-QR
+Nl
 rK
 rK
 GW
@@ -23883,7 +23990,7 @@ ub
 Vz
 Vz
 Vz
-Vz
+Wp
 Vz
 Vz
 HQ
@@ -24180,7 +24287,7 @@ HQ
 HQ
 HQ
 Vz
-Vz
+Wp
 Vz
 Vz
 HQ
@@ -24859,7 +24966,7 @@ ZN
 ZN
 ZN
 ZN
-ZN
+Cw
 ZN
 ZN
 ZN
@@ -25183,7 +25290,7 @@ Vz
 Vz
 Vz
 Vz
-Vz
+Wp
 Vz
 Vz
 Vz
@@ -25877,7 +25984,7 @@ al
 al
 aZ
 aZ
-aZ
+cq
 aZ
 aZ
 aZ
@@ -25969,7 +26076,7 @@ Vz
 Vz
 Vz
 Vz
-Vz
+Wp
 Vz
 HQ
 HQ
@@ -26363,7 +26470,7 @@ aZ
 aZ
 aZ
 aZ
-aZ
+cq
 aZ
 aZ
 aZ
@@ -26635,7 +26742,7 @@ aZ
 aZ
 CY
 aZ
-aZ
+cq
 aZ
 aZ
 al
@@ -26959,7 +27066,7 @@ ZN
 ZN
 ZN
 ZN
-ZN
+Cw
 ZN
 ZN
 ZN
@@ -27245,7 +27352,7 @@ Vz
 Vz
 Vz
 Vz
-Vz
+Wp
 Vz
 Vz
 da
@@ -27779,7 +27886,7 @@ Yy
 Yy
 Yy
 Yy
-Yy
+vH
 Yy
 Yy
 Yy
@@ -27997,7 +28104,7 @@ Yy
 Yy
 Yy
 Yy
-Yy
+vH
 Yy
 Yy
 ZK
@@ -28232,7 +28339,7 @@ ZN
 ZN
 ZN
 ZN
-ZN
+Cw
 ZN
 ZN
 ZN
@@ -28451,7 +28558,7 @@ aZ
 aZ
 aZ
 aZ
-aZ
+cq
 aZ
 ZN
 ZN
@@ -28930,7 +29037,7 @@ al
 aZ
 aZ
 aZ
-aZ
+cq
 aZ
 aZ
 aZ
@@ -29238,7 +29345,7 @@ DY
 wc
 IM
 IM
-DY
+py
 Zx
 Aa
 Aa
@@ -30063,7 +30170,7 @@ dK
 dK
 WB
 Qy
-dK
+vx
 dK
 Jn
 YZ
@@ -30518,7 +30625,7 @@ ZN
 ZN
 ZN
 ZN
-ZN
+Cw
 ZN
 Ix
 Ix
@@ -30584,7 +30691,7 @@ YZ
 DH
 OR
 OR
-OR
+Uz
 DH
 DH
 DH
@@ -30788,7 +30895,7 @@ ZW
 ZW
 ZW
 ZN
-ZN
+Cw
 ZN
 ZN
 Mw
@@ -31851,7 +31958,7 @@ ZK
 Yy
 Yy
 Yy
-Yy
+vH
 Yy
 Yy
 Yy
@@ -31886,7 +31993,7 @@ ZK
 ZK
 Yy
 Yy
-Yy
+vH
 Yy
 Yy
 ZK
@@ -32051,7 +32158,7 @@ al
 aZ
 aZ
 aZ
-ZN
+Cw
 ZN
 ZN
 ZW
@@ -32273,7 +32380,7 @@ al
 al
 aZ
 aZ
-aZ
+cq
 aZ
 aZ
 al
@@ -32552,7 +32659,7 @@ Ux
 zP
 Aj
 Aj
-Aj
+UZ
 Ww
 Aj
 CJ
@@ -32603,7 +32710,7 @@ nK
 AO
 fw
 kA
-qo
+JA
 qo
 iK
 bC
@@ -33622,7 +33729,7 @@ fB
 aY
 aY
 UG
-aY
+zD
 aY
 ks
 aY
@@ -34406,7 +34513,7 @@ qo
 qo
 Ra
 Qb
-Qb
+cV
 Qb
 Qb
 Qb
@@ -34633,7 +34740,7 @@ ZN
 ZN
 ZN
 Ix
-ZN
+Cw
 Nj
 ZN
 ZN
@@ -34857,7 +34964,7 @@ MZ
 Vs
 aZ
 aZ
-aZ
+cq
 aZ
 aZ
 Pj
@@ -36232,7 +36339,7 @@ Yy
 Yy
 Yy
 Yy
-Yy
+vH
 Yy
 Yy
 Yy
@@ -36469,7 +36576,7 @@ Qb
 Qb
 Qb
 Qb
-Qb
+cV
 Qb
 Qb
 Yy
@@ -36479,7 +36586,7 @@ Yy
 OR
 OR
 OR
-Yy
+vH
 Yy
 Yy
 Yy
@@ -36646,7 +36753,7 @@ al
 aZ
 aZ
 aZ
-aZ
+cq
 al
 al
 al
@@ -37232,7 +37339,7 @@ lm
 qo
 qo
 NT
-NT
+MQ
 NT
 NT
 NT
@@ -37449,7 +37556,7 @@ gC
 al
 aZ
 Qb
-Qb
+cV
 Eu
 Qb
 YL
@@ -37540,7 +37647,7 @@ TO
 TO
 Bb
 Yy
-Yy
+vH
 Yy
 fb
 QO
@@ -37950,7 +38057,7 @@ yw
 eX
 Gr
 Dj
-eX
+vR
 eX
 Dj
 my
@@ -38545,7 +38652,7 @@ xb
 Yy
 Yy
 Yy
-Yy
+vH
 Yy
 Rq
 Yy
@@ -38704,7 +38811,7 @@ al
 al
 aZ
 aZ
-aZ
+cq
 aZ
 aZ
 aZ
@@ -38764,7 +38871,7 @@ FK
 FK
 Qb
 Qb
-Qb
+cV
 Qb
 Eu
 Qb
@@ -39776,7 +39883,7 @@ FF
 FF
 FF
 ZT
-DF
+rZ
 EG
 Dr
 qv
@@ -40840,7 +40947,7 @@ Qb
 Qb
 Qb
 Qb
-Qb
+cV
 Yy
 Yy
 Jj
@@ -41142,7 +41249,7 @@ Lb
 Lb
 Yy
 Yy
-Yy
+vH
 Yy
 Yy
 ZK
@@ -41299,7 +41406,7 @@ aZ
 aZ
 aZ
 aZ
-aZ
+cq
 CY
 CY
 CY
@@ -41602,7 +41709,7 @@ Dt
 Tq
 mS
 bC
-Qb
+cV
 Qb
 Qb
 Qb
@@ -41628,7 +41735,7 @@ Yy
 Yy
 Yy
 Yy
-Yy
+vH
 Yy
 Rq
 Yy
@@ -41636,7 +41743,7 @@ Yy
 Yy
 Yy
 Yy
-Yy
+vH
 Yy
 Yy
 Ru
@@ -41784,7 +41891,7 @@ al
 al
 aZ
 aZ
-aZ
+cq
 aZ
 aZ
 aZ
@@ -42421,7 +42528,7 @@ Yy
 Yy
 Yy
 Yy
-Yy
+vH
 Yy
 Yy
 Yy
@@ -42574,7 +42681,7 @@ OD
 OD
 OD
 OD
-OD
+SJ
 OD
 OD
 OD
@@ -43363,7 +43470,7 @@ Qb
 Qb
 Qb
 Qb
-Qb
+cV
 Qb
 YL
 YL
@@ -44364,7 +44471,7 @@ OD
 OD
 OD
 OD
-OD
+SJ
 OD
 OD
 OD
@@ -44675,7 +44782,7 @@ YL
 YL
 Qb
 Eu
-Qb
+cV
 Qb
 YL
 QO
@@ -44734,7 +44841,7 @@ ZK
 ZK
 Yy
 Yy
-Yy
+vH
 Yy
 ZK
 ZK
@@ -44915,7 +45022,7 @@ qs
 TO
 xS
 Qb
-Qb
+cV
 Qb
 dZ
 He
@@ -44981,7 +45088,7 @@ TO
 Bb
 Yy
 Yy
-Yy
+vH
 Yy
 ZK
 ZK
@@ -45202,7 +45309,7 @@ Qb
 Qb
 RA
 XU
-RA
+MR
 RA
 RA
 RA
@@ -45220,7 +45327,7 @@ OR
 OR
 OR
 OR
-OR
+Uz
 OR
 OR
 OR
@@ -45727,7 +45834,7 @@ EF
 Yy
 ZK
 OR
-OR
+Uz
 HN
 TO
 TO
@@ -45742,7 +45849,7 @@ As
 TO
 Bb
 xb
-xX
+Rw
 xb
 xb
 xb
@@ -46705,7 +46812,7 @@ EB
 EF
 Pd
 Hp
-Hp
+Wo
 fW
 xj
 mw
@@ -46982,7 +47089,7 @@ ji
 ji
 ji
 Vj
-Vj
+TU
 Vj
 Xh
 Vc
@@ -47299,7 +47406,7 @@ ZK
 ZK
 Fp
 Yy
-Yy
+vH
 Fp
 Yy
 ZK
@@ -48234,7 +48341,7 @@ sa
 sa
 sa
 OD
-OD
+SJ
 OD
 OD
 OD
@@ -48808,7 +48915,7 @@ EF
 EF
 wj
 wj
-wj
+Ly
 wj
 wj
 wj
@@ -49249,7 +49356,7 @@ Sd
 Pw
 Pw
 Pw
-Pw
+rk
 Pw
 Pw
 Pw
@@ -49332,7 +49439,7 @@ Op
 ZS
 wj
 wj
-wj
+Ly
 wj
 wj
 wj
@@ -49353,7 +49460,7 @@ ZS
 wj
 wj
 wj
-wj
+Ly
 wj
 wj
 ZS
@@ -49812,7 +49919,7 @@ EF
 EF
 EF
 EF
-EF
+Hx
 EF
 EF
 EB
@@ -49826,7 +49933,7 @@ EF
 EF
 EF
 EF
-EF
+Hx
 EF
 EF
 EF
@@ -50113,7 +50220,7 @@ ZS
 wj
 wj
 wj
-wj
+Ly
 wj
 wj
 wj
@@ -50559,7 +50666,7 @@ EF
 EF
 EF
 EF
-EF
+Hx
 EF
 Hp
 EF
@@ -50802,7 +50909,7 @@ ag
 OD
 OD
 OD
-OD
+SJ
 OD
 OD
 OD
@@ -50833,7 +50940,7 @@ EF
 EF
 EF
 EF
-EF
+Hx
 EF
 EF
 EF
@@ -51594,7 +51701,7 @@ EF
 EF
 EF
 EF
-EF
+Hx
 Xd
 EF
 EF
@@ -51647,7 +51754,7 @@ Op
 ZS
 wj
 wj
-wj
+Ly
 wj
 wj
 ZS
@@ -52076,7 +52183,7 @@ Pw
 Pw
 Pw
 Pw
-Pw
+rk
 Pw
 Pw
 Pw
@@ -52429,7 +52536,7 @@ ZS
 ZS
 wj
 wj
-wj
+Ly
 wj
 wj
 wj
@@ -52903,7 +53010,7 @@ EB
 EB
 EB
 EF
-EF
+Hx
 EF
 EB
 Cr
@@ -53370,7 +53477,7 @@ HR
 xl
 Pw
 Pw
-Pw
+rk
 Pw
 iq
 AK
@@ -53385,7 +53492,7 @@ OD
 EF
 EF
 EF
-EF
+Hx
 EF
 EF
 EF
@@ -54465,10 +54572,11 @@ EF
 wj
 wj
 wj
+Ly
 wj
 wj
 wj
-wj
+ZS
 ZS
 ZS
 ZS
@@ -54476,7 +54584,6 @@ ZS
 ZS
 ZS
 ZS
-ZS
 wj
 wj
 wj
@@ -54488,7 +54595,7 @@ wj
 wj
 wj
 wj
-wj
+Ly
 wj
 Vh
 iR
@@ -56173,7 +56280,7 @@ vg
 vg
 Pw
 Pw
-Pw
+rk
 Pw
 Pw
 Pw
@@ -56442,7 +56549,7 @@ Pw
 Pw
 It
 Pw
-Pw
+rk
 Pw
 Pw
 Pw
@@ -57030,7 +57137,7 @@ EF
 EF
 EF
 EF
-EF
+Hx
 EF
 ZS
 ZS
@@ -57302,7 +57409,7 @@ wj
 wj
 wj
 wj
-wj
+Ly
 wj
 wj
 wj
@@ -58085,7 +58192,7 @@ wj
 wj
 wj
 wj
-wj
+Ly
 wj
 wj
 wj

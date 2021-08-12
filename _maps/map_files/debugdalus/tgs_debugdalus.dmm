@@ -2371,6 +2371,11 @@
 	},
 /turf/open/floor/mainship,
 /area/mainship/squads/general)
+"cJV" = (
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/mainship,
+/area/mainship/squads/general)
 "eBB" = (
 /obj/machinery/camera/autoname/mainship{
 	dir = 8
@@ -2395,6 +2400,10 @@
 	},
 /turf/open/floor/mainship,
 /area/mainship/command/cic)
+"eRm" = (
+/obj/effect/ai_node,
+/turf/open/floor/mainship,
+/area/mainship/command/self_destruct)
 "eVW" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 10
@@ -2457,6 +2466,10 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/mainship,
+/area/mainship/hallways/hangar)
+"hME" = (
+/obj/effect/ai_node,
+/turf/open/floor/mainship/plate,
 /area/mainship/hallways/hangar)
 "ivf" = (
 /turf/open/floor/mainship/plate,
@@ -2596,6 +2609,10 @@
 	},
 /turf/open/floor/mainship/plate,
 /area/mainship/hallways/hangar)
+"nYU" = (
+/obj/effect/ai_node,
+/turf/open/floor/mainship,
+/area/mainship/engineering/engineering_workshop)
 "oQb" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4
@@ -2622,6 +2639,14 @@
 	},
 /turf/open/floor/mainship,
 /area/mainship/command/cic)
+"qtd" = (
+/obj/effect/ai_node,
+/turf/open/floor/mainship,
+/area/mainship/hallways/hangar)
+"qvf" = (
+/obj/effect/ai_node,
+/turf/open/floor/mainship,
+/area/mainship/shipboard/weapon_room)
 "qCi" = (
 /obj/structure/rack,
 /obj/effect/spawner/random/toolbox,
@@ -2654,6 +2679,13 @@
 /obj/structure/cable,
 /turf/open/floor/mainship,
 /area/mainship/engineering/engineering_workshop)
+"rGR" = (
+/obj/machinery/landinglight/ds1/delaytwo{
+	dir = 8
+	},
+/obj/effect/ai_node,
+/turf/open/floor/mainship,
+/area/mainship/hallways/hangar)
 "rSb" = (
 /obj/structure/table/mainship,
 /obj/machinery/computer/shuttle/shuttle_control/dropship,
@@ -2678,6 +2710,14 @@
 	},
 /turf/open/floor/mainship,
 /area/mainship/hallways/hangar)
+"sAC" = (
+/obj/effect/ai_node,
+/turf/open/floor/mainship,
+/area/mainship/medical/medical_science)
+"tnI" = (
+/obj/effect/ai_node,
+/turf/open/floor/mainship,
+/area/mainship/command/cic)
 "tQD" = (
 /obj/machinery/light,
 /turf/open/floor/mainship,
@@ -2689,6 +2729,10 @@
 	},
 /turf/open/floor/mainship,
 /area/mainship/hallways/hangar)
+"ueS" = (
+/obj/effect/ai_node,
+/turf/open/floor/mainship,
+/area/mainship/hallways/exoarmor)
 "umn" = (
 /obj/structure/cable,
 /obj/structure/closet/secure_closet/medical3,
@@ -2719,6 +2763,10 @@
 /obj/machinery/camera/autoname/mainship,
 /turf/open/floor/mainship,
 /area/mainship/hallways/hangar)
+"wmt" = (
+/obj/effect/ai_node,
+/turf/open/floor/mainship,
+/area/mainship/squads/req)
 "wpk" = (
 /obj/structure/ship_ammo/minirocket,
 /obj/machinery/light{
@@ -2751,6 +2799,10 @@
 	},
 /turf/open/floor/mainship,
 /area/mainship/hallways/hangar)
+"xrw" = (
+/obj/effect/ai_node,
+/turf/open/floor/mainship,
+/area/mainship/medical/lower_medical)
 "xsM" = (
 /obj/machinery/light{
 	dir = 1
@@ -3718,7 +3770,7 @@ agd
 agt
 agJ
 aho
-ais
+tnI
 ais
 nak
 ais
@@ -3889,7 +3941,7 @@ aob
 aob
 aob
 aob
-aob
+qtd
 aob
 acw
 acE
@@ -4051,7 +4103,7 @@ bgb
 aob
 ivf
 aob
-ivf
+hME
 aob
 ivf
 aob
@@ -4151,7 +4203,7 @@ agB
 agB
 agB
 agB
-agB
+qvf
 ahd
 ahu
 ahR
@@ -4537,7 +4589,7 @@ afY
 aay
 acI
 acI
-acI
+eRm
 acI
 acI
 abC
@@ -4631,7 +4683,7 @@ ahz
 ahy
 aie
 ahy
-ahy
+xrw
 ahh
 aie
 ahy
@@ -4792,7 +4844,7 @@ afe
 afe
 afe
 afe
-afe
+rGR
 afe
 afe
 afe
@@ -5019,7 +5071,7 @@ ade
 ade
 ade
 ade
-ade
+cJV
 ade
 abP
 aaC
@@ -5352,7 +5404,7 @@ eBB
 ain
 leh
 ahY
-ahY
+sAC
 ahY
 ybc
 ajO
@@ -5870,7 +5922,7 @@ acM
 ach
 adt
 adA
-afO
+nYU
 adO
 adS
 xsM
@@ -5919,7 +5971,7 @@ aaa
 aaa
 aea
 abp
-adG
+ueS
 adG
 ksL
 aea
@@ -5935,7 +5987,7 @@ ach
 adS
 xJD
 aek
-aek
+wmt
 afk
 aek
 aek
