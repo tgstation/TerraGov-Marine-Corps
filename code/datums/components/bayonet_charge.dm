@@ -99,7 +99,7 @@
 
 //called when the marine moves
 /datum/component/bayonetcharge/proc/update_charging(datum/source, atom/oldloc, direction, Forced)
-	SIGNAL_HANDLER_DOES_SLEEP
+	SIGNAL_HANDLER
 	if(next_move_restriction_timer && world.time > next_move_restriction_timer) //if you have stopped moving, it resetss the steps taken counter
 		if(is_player_charging)
 			is_player_charging = FALSE
@@ -148,22 +148,21 @@
 ///called when the player hits anything dense. Handles the damage application and always calls  charge_off
 /datum/component/bayonetcharge/proc/on_contact_with_enemy(datum/source, atom/crushed)
 	SIGNAL_HANDLER
-	if(isliving(crushed) && is_player_charging == TRUE)
+	if(isliving(crushed) && is_player_charging == TRUE && istype(weaponinhand, /obj/item/weapon/gun))
 		var/mob/living/crushedliving = crushed
-		if(istype(weaponinhand, /obj/item/weapon/gun))
-			//handles the damage for guns'
-			var/obj/item/weapon/gun/gun_weapon = weaponinhand
-			var/originalbayodamage = weaponinhand.force * damage_multiplier
-			var/preserved_name = crushed.name
-			crushedliving.apply_damage(originalbayodamage, BRUTE, BODY_ZONE_CHEST, crushedliving.get_soft_armor("melee", BODY_ZONE_CHEST), updating_health = TRUE)
+		//handles the damage for guns'
+		var/obj/item/weapon/gun/gun_weapon = weaponinhand
+		var/originalbayodamage = weaponinhand.force * damage_multiplier
+		var/preserved_name = crushed.name
+		crushedliving.apply_damage(originalbayodamage, BRUTE, BODY_ZONE_CHEST, crushedliving.get_soft_armor("melee", BODY_ZONE_CHEST), updating_health = TRUE)
 
-			crushedliving.do_item_attack_animation(crushedliving, used_item = gun_weapon )
-			playsound(crushed.loc, 'sound/weapons/slice.ogg',35, 1)
-			charger.visible_message("<span class='danger'>[charger] stabs [preserved_name]!</span>")
-			crushedliving.Stun(stun_length)
-			log_combat(charger, crushedliving, "human charged")
+		crushedliving.do_item_attack_animation(crushedliving, used_item = gun_weapon )
+		playsound(crushed.loc, 'sound/weapons/slice.ogg',35, 1)
+		charger.visible_message("<span class='danger'>[charger] stabs [preserved_name]!</span>")
+		crushedliving.Stun(stun_length)
+		log_combat(charger, crushedliving, "human charged")
 
-			charger.setStaminaLoss(-charger.max_stamina_buffer)
+		charger.setStaminaLoss(-charger.max_stamina_buffer)
 
 	TIMER_COOLDOWN_START(charger, COOLDOWN_HUMAN_CHARGE, cooldown_duration)
 	charge_off()
