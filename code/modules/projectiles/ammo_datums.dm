@@ -500,6 +500,13 @@ datum/ammo/bullet/revolver/tp44
 	penetration = 20
 	sundering = 1.25
 
+/datum/ammo/bullet/rifle/heavy
+	name = "heavy rifle bullet"
+	hud_state = "hivelo"
+	damage = 30
+	penetration = 10
+	sundering = 1.5
+
 /datum/ammo/bullet/rifle/incendiary
 	name = "incendiary rifle bullet"
 	hud_state = "rifle_fire"
