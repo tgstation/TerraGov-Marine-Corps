@@ -337,7 +337,7 @@
 		//remove the bayonetcharge component
 		var/mob/living/carbon/human/user_human = user
 		var/datum/component/bayonetcharge/comp = user_human.bayonet_charge_component
-		comp.child.remove_action(comp.charger)
+		comp.child.remove_action(comp.parent)
 
 	return TRUE
 

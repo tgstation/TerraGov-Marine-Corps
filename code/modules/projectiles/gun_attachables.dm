@@ -396,7 +396,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	var/mob/living/carbon/human/user_human = user
 	var/datum/component/bayonetcharge/comp = user_human.bayonet_charge_component
 	comp = user.GetComponent(/datum/component/bayonetcharge)
-	comp.child.remove_action(comp.charger)
+	comp.child.remove_action(comp.parent)
 	return ..()
 
 /obj/item/attachable/bayonetknife
@@ -431,7 +431,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	var/mob/living/carbon/human/user_human = user
 	var/datum/component/bayonetcharge/comp = user_human.bayonet_charge_component
 	comp = user.GetComponent(/datum/component/bayonetcharge)
-	comp.child.remove_action(comp.charger)
+	comp.child.remove_action(comp.parent)
 	return ..()
 
 /obj/item/attachable/bayonetknife/Initialize()

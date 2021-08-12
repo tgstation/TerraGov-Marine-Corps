@@ -27,8 +27,6 @@
 
 	///represents the time (in world.time) when the steps_taken var resets
 	var/next_move_restriction_timer
-	///the guy that is charging
-	var/mob/living/carbon/human/charger
 	///the child action of this component
 	var/datum/action/bayonetcharge/child
 
@@ -39,9 +37,9 @@
 
 ///this updates the critical vars of this component. Called on initalize and when the action is applied to a player
 /datum/component/bayonetcharge/proc/updatevalues()
-	charger = src.parent
+	var/mob/living/carbon/human/charger = src.parent
 	child = new
-	child.give_action(src.charger)
+	child.give_action(charger)
 	child.parent = src
 
 
@@ -68,6 +66,7 @@
 	parent.charge_on()
 ///Called when the charge action is initiated. Adds the essencial Signals and does some misc work on the action frame and vars
 /datum/component/bayonetcharge/proc/charge_on()
+	var/mob/living/carbon/human/charger = src.parent
 	if(TIMER_COOLDOWN_CHECK(charger, COOLDOWN_HUMAN_CHARGE))
 		to_chat(charger, "<span class='warning'>Charge is still on cooldown!</span>")
 		return
@@ -81,7 +80,7 @@
 ///called when the charge action is deactivated.  Unregisters signals and manipulates the action frame. Also calls stop_charge
 /datum/component/bayonetcharge/proc/charge_off()
 	action_toggle_state = FALSE
-
+	var/mob/living/carbon/human/charger = src.parent
 	to_chat(charger, "<span class='warning'>You no longer stand ready to charge</span>")
 	if(charger) //locks up if you dont check if charger is existant
 		UnregisterSignal(charger, COMSIG_MOVABLE_MOVED)
@@ -100,6 +99,7 @@
 //called when the marine moves
 /datum/component/bayonetcharge/proc/update_charging(datum/source, atom/oldloc, direction, Forced)
 	SIGNAL_HANDLER
+	var/mob/living/carbon/human/charger = src.parent
 	if(next_move_restriction_timer && world.time > next_move_restriction_timer) //if you have stopped moving, it resetss the steps taken counter
 		if(is_player_charging)
 			is_player_charging = FALSE
@@ -114,7 +114,7 @@
 
 ///this handles the charging checks and the charge itself. Checks for the needed states and if those states are satified, adds the movespeed mod and stam loss. Called on move.
 /datum/component/bayonetcharge/proc/handle_charge()
-
+	var/mob/living/carbon/human/charger = src.parent
 	//actual charging is under here
 	var/chargespeed = clamp(steps_taken * speed_addition_per_step, 0, max_speed)
 	if(charger.incapacitated())
@@ -141,6 +141,7 @@
 ///called when the code wants the player to stop charging. IE, when you hit a solid thing or run out of stamina
 /datum/component/bayonetcharge/proc/stop_charge()
 	is_player_charging = FALSE
+	var/mob/living/carbon/human/charger = src.parent
 	if(charger)
 		charger.remove_movespeed_modifier(MOVESPEED_ID_MARINE_CHARGE)
 	steps_taken = 0
@@ -148,6 +149,7 @@
 ///called when the player hits anything dense. Handles the damage application and always calls  charge_off
 /datum/component/bayonetcharge/proc/on_contact_with_enemy(datum/source, atom/crushed)
 	SIGNAL_HANDLER
+	var/mob/living/carbon/human/charger = src.parent
 	if(isliving(crushed) && is_player_charging == TRUE && istype(weaponinhand, /obj/item/weapon/gun))
 		var/mob/living/crushedliving = crushed
 		//handles the damage for guns'
