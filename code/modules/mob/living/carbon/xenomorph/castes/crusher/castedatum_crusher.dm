@@ -15,6 +15,7 @@
 
 	// *** Speed *** //
 	speed = 0.1
+	weeds_speed_mod = -0.15 // Slightly more than halved weed speed up, if you're of position this bad, bad times.
 
 	// *** Plasma *** //
 	plasma_max = 200
