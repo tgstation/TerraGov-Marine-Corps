@@ -27,7 +27,7 @@
 	if(faction == faction_selling)
 		burial_export(faction_selling)
 		return
-	else switch(job.job_category)
+	switch(job.job_category)
 		if(JOB_CAT_ENGINEERING || JOB_CAT_MEDICAL || JOB_CAT_REQUISITIONS)
 			. = 20
 		if(JOB_CAT_MARINE)
