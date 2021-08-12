@@ -79,15 +79,16 @@
 /obj/effect/decal/cleanable/liquid_fuel/attackby(obj/item/I, mob/user, params)
 	. = ..()
 	if(I.damtype == BURN)
-		ignite_fuel()
-		user.visible_message(span_notice("[user] ignites \the [src]"), span_notice("You ignite some fuel on [src]"))
+		ignite_fuel(I)
 		log_attack("[key_name(user)] ignites [src] in fuel in [AREACOORD(user)]")
 
 /obj/effect/decal/cleanable/liquid_fuel/flamer_fire_act()
 	. = ..()
 	ignite_fuel()
 
-/obj/effect/decal/cleanable/liquid_fuel/proc/ignite_fuel()
+/obj/effect/decal/cleanable/liquid_fuel/proc/ignite_fuel(igniter)
+	if(igniter)
+		visible_message(span_warning("[igniter] ignites the spilled fuel!"))
 	new /obj/flamer_fire(loc, fire_lvl, burn_lvl, f_color)
 	var/turf/S = get_turf(src)
 	for(var/D in CARDINAL_DIRS)
@@ -108,8 +109,7 @@
 			return
 	else
 		return
-	visible_message(span_warning("The spilled fuel catches fire!"))
-	ignite_fuel()
+	ignite_fuel(igniter)
 
 ///Wrapper for ignition via signals rather than from crossed
 /obj/effect/decal/cleanable/liquid_fuel/proc/ignite_check_wrapper(signal_source, atom/movable/igniter)
