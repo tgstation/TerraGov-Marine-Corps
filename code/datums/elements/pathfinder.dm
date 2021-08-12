@@ -45,24 +45,32 @@ stutter_step: a prob() chance to go left or right of the mob's direction towards
 		//Okay it can actually physically move, but has it moved too recently?
 		if(world.time <= mob_to_process.last_move_time + mob_to_process.cached_multiplicative_slowdown || mob_to_process.do_actions)
 			continue
-
+		var/step_dir
 		if(get_dist(mob_to_process, atoms_to_walk_to[mob_to_process]) == distances_to_maintain[mob_to_process])
 			SEND_SIGNAL(mob_to_process, COMSIG_STATE_MAINTAINED_DISTANCE)
-			if(!(get_dir(mob_to_process, atoms_to_walk_to[mob_to_process]))) //We're right on top, move out of it
-				if(!step(mob_to_process, pick(CARDINAL_ALL_DIRS)))
-					SEND_SIGNAL(mob_to_process, COMSIG_OBSTRUCTED_MOVE)
+			step_dir = get_dir(mob_to_process, atoms_to_walk_to[mob_to_process])
+			if(!(step_dir)) //We're right on top, move out of it
+				step_dir = pick(CARDINAL_ALL_DIRS)
+				if(!step(mob_to_process, step_dir))
+					SEND_SIGNAL(mob_to_process, COMSIG_OBSTRUCTED_MOVE, step_dir)
 			if(prob(stutter_step_prob[mob_to_process]))
-				if(!step(mob_to_process, pick(LeftAndRightOfDir(get_dir(mob_to_process, atoms_to_walk_to[mob_to_process]), diagonal_check = TRUE)))) //Couldn't move, something in the way
-					SEND_SIGNAL(mob_to_process, COMSIG_OBSTRUCTED_MOVE)
+				step_dir = pick(LeftAndRightOfDir(get_dir(mob_to_process, atoms_to_walk_to[mob_to_process])))
+				if(!step(mob_to_process, step_dir))
+					SEND_SIGNAL(mob_to_process, COMSIG_OBSTRUCTED_MOVE, step_dir)
 			continue
 
 		if(get_dist(mob_to_process, atoms_to_walk_to[mob_to_process]) < distances_to_maintain[mob_to_process]) //We're too close, back it up
-			if(!step_away(mob_to_process, atoms_to_walk_to[mob_to_process]))
-				SEND_SIGNAL(mob_to_process, COMSIG_OBSTRUCTED_MOVE)
+			step_dir = get_dir(atoms_to_walk_to[mob_to_process], mob_to_process)
+			if(!step(mob_to_process, step_dir))
+				if(!(SEND_SIGNAL(mob_to_process, COMSIG_OBSTRUCTED_MOVE, step_dir) & COMSIG_OBSTACLE_DEALT_WITH))
+					step(mob_to_process, pick(LeftAndRightOfDir(step_dir)))
 			mob_to_process.last_move_time = world.time
 			continue
-		if(!step_to(mob_to_process, atoms_to_walk_to[mob_to_process]))
-			SEND_SIGNAL(mob_to_process, COMSIG_OBSTRUCTED_MOVE)
+		step_dir = get_dir(mob_to_process, atoms_to_walk_to[mob_to_process])
+		if(!step(mob_to_process, step_dir))
+			if(!(SEND_SIGNAL(mob_to_process, COMSIG_OBSTRUCTED_MOVE, step_dir) & COMSIG_OBSTACLE_DEALT_WITH))
+				testing("AI DEBUG: cannot deal with obstacle, random dir is taken")
+				step(mob_to_process, pick(LeftAndRightOfDir(step_dir)))
 		mob_to_process.last_move_time = world.time
 
 /datum/element/pathfinder/Detach(datum/source)

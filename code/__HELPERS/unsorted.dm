@@ -1068,8 +1068,7 @@ will handle it, but:
 	return pois
 
 ///Returns the left and right dir of the input dir, used for AI stutter step while attacking
-/proc/LeftAndRightOfDir(direction, diagonal_check = FALSE)
-
+/proc/LeftAndRightOfDir(direction)
 	return list(turn(direction, 90), turn(direction, 45), turn(direction, -45), turn(direction, -90))
 
 /proc/CallAsync(datum/source, proctype, list/arguments)

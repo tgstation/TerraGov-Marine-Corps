@@ -33,32 +33,31 @@
 	attacked.attack_alien(xeno, xeno.xeno_caste.melee_damage * xeno.xeno_melee_damage_modifier)
 	xeno.changeNext_move(xeno.xeno_caste.attack_delay)
 
-/datum/ai_behavior/carbon/xeno/deal_with_obstacle()
-	if(world.time < mob_parent.next_move)
-		return
-
-	var/list/things_nearby = range(mob_parent, 1) //Rather than doing multiple range() checks we can just archive it here for just this deal_with_obstacle
-	for(var/obj/structure/obstacle in things_nearby)
-		if(obstacle.resistance_flags & XENO_DAMAGEABLE)
-			mob_parent.face_atom(obstacle)
-			INVOKE_ASYNC(src, .proc/attack_target, obstacle)
+/datum/ai_behavior/carbon/xeno/deal_with_obstacle(datum/source, direction)
+	var/turf/obstacle_turf = get_step(mob_parent, direction)
+	for(var/thing in obstacle_turf.contents)
+		if(isstructure(thing))
+			if(istype(thing, /obj/structure/window_frame))
+				mob_parent.loc = obstacle_turf
+				testing("AI DEBUG: window obstacle dealt with")
+				return COMSIG_OBSTACLE_DEALT_WITH
+			var/obj/structure/obstacle = thing
+			if(obstacle.resistance_flags & XENO_DAMAGEABLE)
+				mob_parent.face_atom(obstacle)
+				INVOKE_ASYNC(src, .proc/attack_target, obstacle)
+				testing("AI DEBUG: damageable structure obstacle dealt with")
+				return COMSIG_OBSTACLE_DEALT_WITH
+		if(istype(thing, /obj/machinery/door/airlock))
+			var/obj/machinery/door/airlock/lock = thing
+			if(!lock.density) //Airlock is already open no need to force it open again
+			continue
+			if(lock.operating) //Airlock already doing something
+				continue
+			if(lock.welded) //It's welded, can't force that open
+				continue
+			lock.open(TRUE)
+			testing("AI DEBUG: closed door dealt with")
 			return COMSIG_OBSTACLE_DEALT_WITH
-
-	//Cheat mode: insta open airlocks
-	for(var/obj/machinery/door/airlock/lock in things_nearby)
-		if(!lock.density) //Airlock is already open no need to force it open again
-			continue
-		if(lock.operating) //Airlock already doing something
-			continue
-		if(lock.welded) //It's welded, can't force that open
-			continue
-		lock.open(TRUE)
-		return COMSIG_OBSTACLE_DEALT_WITH
-
-	//Teleport onto those window frames, we also can't attempt to attack said window frames so this isn't in the obstacles loop
-	for(var/obj/structure/window_frame/frame in things_nearby)
-		mob_parent.loc = frame.loc
-		return COMSIG_OBSTACLE_DEALT_WITH
 
 /datum/ai_behavior/carbon/xeno/try_to_attack()
 	if(world.time < mob_parent.next_move)

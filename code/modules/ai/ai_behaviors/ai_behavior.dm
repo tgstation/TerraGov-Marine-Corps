@@ -60,6 +60,7 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 //We finished moving to a node, let's pick a random nearby one to travel to
 /datum/ai_behavior/proc/finished_node_move()
 	SIGNAL_HANDLER
+	testing("AI DEBUG: reached the targeted node")
 	look_for_next_node()
 
 //Cleans up signals related to the action and element(s)
@@ -71,6 +72,7 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 
 ///Cleanup old state vars, start the movement towards our new target
 /datum/ai_behavior/proc/change_action(next_action, atom/next_target)
+	testing("AI DEBUG: next action : [next_action] next target : [next_target]")
 	cleanup_current_action()
 	if(next_action)
 		current_action = next_action
@@ -97,6 +99,7 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 	else
 		current_node = pick(current_node.adjacent_nodes)
 	current_node.set_weight(identifier, NODE_LAST_CHOSE_TO_VISIT, world.time)
+	testing("AI DEBUG: new node found")
 	change_action(MOVING_TO_NODE, current_node)
 
 //Generic process(), this is used for mainly looking at the world around the AI and determining if a new action must be considered and executed
