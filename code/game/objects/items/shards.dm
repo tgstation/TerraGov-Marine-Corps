@@ -79,7 +79,7 @@
 	if (CHECK_MULTIPLE_BITFIELDS(M.flags_pass, HOVERING))
 		return ..()
 
-	playsound(loc, 'sound/effects/glass_step.ogg', 25, TRUE)
+	pick(playsound(loc, 'sound/effects/shard1.ogg', 35, TRUE), playsound(loc, 'sound/effects/shard2.ogg', 35, TRUE), playsound(loc, 'sound/effects/shard3.ogg', 35, TRUE), playsound(loc, 'sound/effects/shard4.ogg', 35, TRUE), playsound(loc, 'sound/effects/shard5.ogg', 35, TRUE))
 	if(prob(20))
 		to_chat(M, span_danger("[isxeno(M) ? "We" : "You"] step on \the [src], shattering it!"))
 		qdel(src)
