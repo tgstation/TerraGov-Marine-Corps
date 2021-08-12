@@ -42,7 +42,6 @@
 /**Calculates return value of properly prepared corpses, handles point payout and export logging.
  *
  * Checks for:
- **Five minute defib timer
  **Any brute or burn damage, including internal bleeding
  **Any limbs requiring repair, bearing an open surgical incision, or carrying high germs
  **Eye damage or disfigurement
@@ -66,10 +65,6 @@
 			payout = 50	//Silicons can get recycled so they're worth extra
 		if(JOB_CAT_COMMAND)
 			payout = 30
-
-	if(!HAS_TRAIT(src, TRAIT_UNDEFIBBABLE))
-		problems += "lingering vitals"
-		payout = 0
 
 	var/damaged_limbs = 0
 	var/surgery_limbs = 0
