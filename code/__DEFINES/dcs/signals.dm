@@ -285,8 +285,6 @@
 #define COMSIG_GUN_AUTOFIREDELAY_MODIFIED "gun_firedelay_modified"
 #define COMSIG_GUN_BURST_SHOTS_TO_FIRE_MODIFIED "gun_burstamount_modified"
 #define COMSIG_GUN_BURST_SHOT_DELAY_MODIFIED "gun_burstdelay_modified"
-#define COMSIG_REVOLVER_AMMO_HIT_MOB "gun_revolver_ammo_hit"
-	#define COMSIG_REVOLVER_AMMO_SNUBNOSE_BARREL (1<<0)
 
 // /obj/item/clothing signals
 #define COMSIG_SHOES_STEP_ACTION "shoes_step_action"			//from base of obj/item/clothing/shoes/proc/step_action(): ()
