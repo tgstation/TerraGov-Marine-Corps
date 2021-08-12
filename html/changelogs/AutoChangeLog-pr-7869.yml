@@ -1,0 +1,5 @@
+author: "BraveMole"
+delete-after: True
+changes: 
+  - expansion: "Flare gun can fire cas flares"
+  - bugfix: "fixed the sprite for the single hand grenade launcher"
