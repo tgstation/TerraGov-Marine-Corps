@@ -32,6 +32,10 @@
 	///the child action of this component
 	var/datum/action/bayonetcharge/child
 
+/datum/component/bayonetcharge/Initialize(...)
+	var/mob/living/carbon/human/human_parent = parent
+	human_parent.bayonet_charge_component = src
+	return ..()
 
 ///this updates the critical vars of this component. Called on initalize and when the action is applied to a player
 /datum/component/bayonetcharge/proc/updatevalues()

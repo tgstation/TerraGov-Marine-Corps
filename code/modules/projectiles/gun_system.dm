@@ -308,7 +308,8 @@
 	A.add_hud(user, src)
 	A.update_hud(user, src)
 	if(HAS_TRAIT(src, TRAIT_CHARGE_ENABLED))
-		var/datum/component/bayonetcharge/comp = user.GetComponent(/datum/component/bayonetcharge)
+		var/mob/living/carbon/human/user_human = user
+		var/datum/component/bayonetcharge/comp = user_human.bayonet_charge_component
 		comp.updatevalues()
 		comp.weaponinhand = src
 
@@ -334,8 +335,8 @@
 
 	if(HAS_TRAIT(src, TRAIT_CHARGE_ENABLED))
 		//remove the bayonetcharge component
-		var/datum/component/bayonetcharge/comp
-		comp = user.GetComponent(/datum/component/bayonetcharge)
+		var/mob/living/carbon/human/user_human = user
+		var/datum/component/bayonetcharge/comp = user_human.bayonet_charge_component
 		comp.child.remove_action(comp.charger)
 
 	return TRUE

@@ -131,6 +131,8 @@
 
 	///Amount of deciseconds gained from the braindeath timer, usually by CPR.
 	var/revive_grace_time = 0
+	///The bayonet charge component native to every human. This var identifies the component that belongs to this human
+	var/datum/component/bayonetcharge/bayonet_charge_component
 
 	COOLDOWN_DECLARE(xeno_push_delay)
 

@@ -393,6 +393,10 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 
 /obj/item/attachable/bayonet/detach_from_master_gun(mob/user)
 	REMOVE_TRAIT(master_gun, TRAIT_CHARGE_ENABLED, TRAIT_GENERIC)
+	var/mob/living/carbon/human/user_human = user
+	var/datum/component/bayonetcharge/comp = user_human.bayonet_charge_component
+	comp = user.GetComponent(/datum/component/bayonetcharge)
+	comp.child.remove_action(comp.charger)
 	return ..()
 
 /obj/item/attachable/bayonetknife
@@ -424,7 +428,8 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 
 /obj/item/attachable/bayonetknife/detach_from_master_gun(mob/user)
 	REMOVE_TRAIT(master_gun, TRAIT_CHARGE_ENABLED, TRAIT_GENERIC)
-	var/datum/component/bayonetcharge/comp
+	var/mob/living/carbon/human/user_human = user
+	var/datum/component/bayonetcharge/comp = user_human.bayonet_charge_component
 	comp = user.GetComponent(/datum/component/bayonetcharge)
 	comp.child.remove_action(comp.charger)
 	return ..()
