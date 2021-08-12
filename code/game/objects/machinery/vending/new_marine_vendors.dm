@@ -53,7 +53,7 @@
 			return FALSE
 
 		if(lock_flags & JOB_LOCK && vendor_role && !istype(H.job, vendor_role))
-			to_chat(user, span_warning("Access denied. This vendor is heavily restricted.."))
+			to_chat(user, span_warning("Access denied. This vendor is heavily restricted."))
 			return FALSE
 
 		if(lock_flags & SQUAD_LOCK && (!H.assigned_squad || (squad_tag && H.assigned_squad.name != squad_tag)))
