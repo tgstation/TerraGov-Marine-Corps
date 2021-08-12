@@ -299,3 +299,11 @@
   - expansion: RO, PO and Synth now have working minimap icons
   lbnesquik:
   - expansion: Allows the AI to use keycard devices using ctrl click
+2021-08-12:
+  Pariah919:
+  - bugfix: tyr head attachie is infintie
+  - balance: laser pistol and it's mags fit in your belt
+  - bugfix: bayonet knives show up in marine vendors now
+  - qol: knives moved to utility to represent their spot in the game
+  - balance: 'combat knife has 5 more force, in exchange for slightly higher attack
+      delay spriteadd: new combat knife sprite, thanks spooky on discord (not donut)'

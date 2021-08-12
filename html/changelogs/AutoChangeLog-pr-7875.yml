@@ -1,7 +1,0 @@
-author: "Pariah919"
-delete-after: True
-changes: 
-  - bugfix: "bayonet knives show up in marine vendors now"
-  - qol: "knives moved to utility to represent their spot in the game"
-  - balance: "combat knife has 5 more force, in exchange for slightly higher attack delay
-spriteadd: new combat knife sprite, thanks spooky on discord (not donut)"
