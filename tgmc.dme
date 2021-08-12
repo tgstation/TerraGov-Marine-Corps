@@ -1014,6 +1014,7 @@
 #include "code\modules\ai\ai_behaviors\ai_behavior.dm"
 #include "code\modules\ai\ai_behaviors\carbon\carbon.dm"
 #include "code\modules\ai\ai_behaviors\carbon\xeno\xeno.dm"
+#include "code\modules\ai\ai_behaviors\carbon\xeno\xeno_illusion.dm"
 #include "code\modules\ai\presets\basic_ai.dm"
 #include "code\modules\ai\presets\carbon\xeno\xeno_presets.dm"
 #include "code\modules\ai\spawners\human.dm"

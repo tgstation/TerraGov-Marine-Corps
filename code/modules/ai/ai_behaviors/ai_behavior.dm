@@ -6,27 +6,27 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 */
 
 /datum/ai_behavior
-	///An atom for the overall AI to walk to; this is a cache
+	///What atom is the ai moving to
 	var/atom/atom_to_walk_to
-	///Default distance to maintain from a target while in combat usually
+	///How far should we stay away from atom_to_walk_to
 	var/distance_to_maintain = 1
 	///Prob chance of sidestepping (left or right) when distance maintained with target
 	var/sidestep_prob = 0
 	///Current node to use for calculating action states: this is the mob's node
 	var/obj/effect/ai_node/current_node
- 	///Contains a defined term that tells us what we're doing; useful for switch() statements
-	var/cur_action
+	///What the ai is doing right now
+	var/current_action
+	///The standard ation of the AI, aka what it should do at the init or when going back to "normal" behavior
+	var/base_action = MOVING_TO_NODE
 	///Ref to the parent associated with this mind
 	var/mob/mob_parent
 	///An identifier associated with this behavior, used for accessing specific values of a node's weights
 	var/identifier
-	///Our standard behavior
-	var/base_behavior = MOVING_TO_NODE
 	///How far will we look for targets
 	var/target_distance = 8
 	///What we will escort
 	var/atom/escorted_atom
-	///anti-stuck timer
+	///When this timer is up, we force a change of node to ensure that the ai will never stay stuck trying to go to a specific node
 	var/anti_stuck_timer
 
 /datum/ai_behavior/New(loc, parent_to_assign, escorted_atom)
@@ -49,8 +49,8 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 
 ///Initiate our base behavior
 /datum/ai_behavior/proc/late_initialize()
-	cur_action = base_behavior
-	switch(cur_action)
+	current_action = base_action
+	switch(current_action)
 		if(MOVING_TO_NODE)
 			look_for_nodes()
 		if(ESCORTING_ATOM)
@@ -63,18 +63,18 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 
 //Cleans up signals related to the action and element(s)
 /datum/ai_behavior/proc/cleanup_current_action()
-	unregister_action_signals(cur_action)
+	unregister_action_signals(current_action)
 	RemoveElement(/datum/element/pathfinder)
 
 ///Cleanup old state vars, start the movement towards our new target
 /datum/ai_behavior/proc/change_action(next_action, atom/next_target)
 	cleanup_current_action()
 	if(next_action)
-		cur_action = next_action
+		current_action = next_action
 	if(next_target)
 		atom_to_walk_to = next_target
 		mob_parent.AddElement(/datum/element/pathfinder, atom_to_walk_to, distance_to_maintain, sidestep_prob)
-	register_action_signals(cur_action)
+	register_action_signals(current_action)
 
 ///Try to find a node to go to
 /datum/ai_behavior/proc/look_for_nodes()
@@ -100,10 +100,9 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 	return
 
 /*
-Registering and unregistering signals related to a particular cur_action
-These are parameter based so the ai behavior can choose to (un)register the signals it wants to rather than based off of cur_action
+Registering and unregistering signals related to a particular current_action
+These are parameter based so the ai behavior can choose to (un)register the signals it wants to rather than based off of current_action
 */
-
 /datum/ai_behavior/proc/register_action_signals(action_type)
 	switch(action_type)
 		if(MOVING_TO_NODE)

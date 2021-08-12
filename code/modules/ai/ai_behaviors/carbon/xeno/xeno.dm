@@ -9,7 +9,7 @@
 	mob_parent.a_intent = INTENT_HARM //Killing time
 
 /datum/ai_behavior/carbon/xeno/look_for_new_state()
-	switch(cur_action)
+	switch(current_action)
 		if(ESCORTING_ATOM, MOVING_TO_NODE)
 			var/atom/next_target = get_nearest_target(escorted_atom, target_distance, TARGET_ALL, null, mob_parent.get_xeno_hivenumber())
 			if(!next_target)
@@ -28,7 +28,7 @@
 				return
 			change_action(null, next_target)//We found a better target, change course!
 
-/datum/ai_behavior/carbon/xeno/proc/attack_atom(atom/attacked)
+/datum/ai_behavior/carbon/xeno/proc/attack_target(atom/attacked)
 	var/mob/living/carbon/xenomorph/xeno = mob_parent
 	attacked.attack_alien(xeno, xeno.xeno_caste.melee_damage * xeno.xeno_melee_damage_modifier)
 	xeno.changeNext_move(xeno.xeno_caste.attack_delay)
@@ -41,7 +41,7 @@
 	for(var/obj/structure/obstacle in things_nearby)
 		if(obstacle.resistance_flags & XENO_DAMAGEABLE)
 			mob_parent.face_atom(obstacle)
-			INVOKE_ASYNC(src, .proc/attack_atom, obstacle)
+			INVOKE_ASYNC(src, .proc/attack_target, obstacle)
 			return
 
 	//Cheat mode: insta open airlocks
@@ -60,19 +60,16 @@
 		mob_parent.loc = frame.loc
 		return
 
-/datum/ai_behavior/carbon/xeno/attack_target()
+/datum/ai_behavior/carbon/xeno/try_to_attack()
 	if(world.time < mob_parent.next_move)
 		return
-	if(get_dist(atom_to_walk_to, mob_parent) > attack_range)
+	if(!mob_parent.Adjacent(atom_to_walk_to))
 		return
 	mob_parent.face_atom(atom_to_walk_to)
-	if(ismob(atom_to_walk_to))
-		attack_atom(atom_to_walk_to)
-	else if(ismachinery(atom_to_walk_to))
-		var/obj/machinery/thing = atom_to_walk_to
-		if(!(thing.resistance_flags & XENO_DAMAGEABLE))
-			stack_trace("A xenomorph tried to attack a [atom_to_walk_to.name] that isn't considered XENO_DAMAGABLE according to resistance flags.")
-		attack_atom(atom_to_walk_to)
+	if(isobj(atom_to_walk_to) && !(atom_to_walk_to.resistance_flags & XENO_DAMAGEABLE))
+		stack_trace("A xenomorph tried to attack a [atom_to_walk_to.name] that isn't considered XENO_DAMAGABLE according to resistance flags.")
+		return
+	attack_target(atom_to_walk_to)
 
 /datum/ai_behavior/carbon/xeno/register_action_signals(action_type)
 	switch(action_type)
