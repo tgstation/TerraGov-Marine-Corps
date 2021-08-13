@@ -36,7 +36,7 @@
 	scatter_unwielded = 0
 
 	var/list/slots = list(
-		ATTACHMENT_SLOT_MUZZLE = list()
+		ATTACHMENT_SLOT_MUZZLE
 	)
 
 /obj/item/weapon/gun/pistol/Initialize(mapload, spawn_empty)

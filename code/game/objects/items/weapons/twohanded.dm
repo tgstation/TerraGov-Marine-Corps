@@ -259,6 +259,10 @@
 	icon_state = "spear"
 	item_state = "spear"
 
+/obj/item/weapon/twohanded/spear/tactical/Initialize()
+	. = ..()
+	AddComponent(/datum/component/attachment_handler, list(ATTACHMENT_SLOT_MUZZLE), list(/obj/item/attachable/bayonet), _attachment_offsets = list("muzzle_x" = 29, "muzzle_y" = 20,"rail_x" = 13, "rail_y" = 23, "under_x" = 19, "under_y" = 13, "stock_x" = 21, "stock_y" = 17))
+
 /obj/item/weapon/twohanded/glaive
 	name = "war glaive"
 	icon_state = "glaive"
