@@ -53,7 +53,7 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 	current_action = base_action
 	switch(current_action)
 		if(MOVING_TO_NODE)
-			look_for_next_node()
+			look_for_next_node(FALSE)
 		if(ESCORTING_ATOM)
 			change_action(ESCORTING_ATOM, escorted_atom)
 
@@ -61,7 +61,7 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 /datum/ai_behavior/proc/finished_node_move()
 	SIGNAL_HANDLER
 	testing("AI DEBUG: reached the targeted node")
-	look_for_next_node()
+	look_for_next_node(FALSE)
 
 //Cleans up signals related to the action and element(s)
 /datum/ai_behavior/proc/cleanup_current_action()
@@ -81,21 +81,28 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 		mob_parent.AddElement(/datum/element/pathfinder, atom_to_walk_to, distance_to_maintain, sidestep_prob)
 	register_action_signals(current_action)
 
-///Try to find a node to go to
-/datum/ai_behavior/proc/look_for_next_node()
-	var/should_consider_closest_node = FALSE
-	if(!current_node) //We don't have a current node, let's find the closest
-		var/closest_distance = MAX_NODE_RANGE * MAX_NODE_RANGE //squared because we are using the cheap get dist
+///Try to find a node to go to. If ignore_current_node is true, we will just find the closest current_node, and not the current_node best adjacent node
+/datum/ai_behavior/proc/look_for_next_node(ignore_current_node = TRUE)
+	if(ignore_current_node || !current_node) //We don't have a current node, let's find the closest in our LOS
+		var/closest_distance = MAX_NODE_RANGE_SQUARED //squared because we are using the cheap get dist
+		var/avoid_node = current_node
+		current_node = null
 		for(var/obj/effect/ai_node/ai_node AS in GLOB.allnodes)
-			if(get_dist_euclide_square(ai_node, mob_parent) < closest_distance)
-				current_node = ai_node
-				closest_distance = get_dist_euclide_square(ai_node, mob_parent) //Probably not needed to cache the get_dist
-	if(!current_node)
-		//We annoy the admins because either : they made some ais but forgot to put nodes/enough nodes OR the map has premade nodes and some places do not have enough of them
-		message_admins("An ai tried to find a node, but no nodes were nearby ([AREACOORD(mob_parent)])")
-		CRASH("An ai tried to find a node, but no nodes were nearby ([AREACOORD(mob_parent)])")
+			if(ai_node == avoid_node)
+				continue
+			if(get_dist_euclide_square(ai_node, mob_parent) >= closest_distance)
+				continue
+			if(!ai_node.is_in_LOS(get_turf(mob_parent)))
+				continue
+			current_node = ai_node
+			closest_distance = get_dist_euclide_square(ai_node, mob_parent) //Probably not needed to cache the get_dist
+		if(!current_node)
+			//We annoy the admins because either : they made some ais but forgot to put nodes/enough nodes OR the map has premade nodes and some places do not have enough of them
+			message_admins("An ai tried to find a node, but no nodes were nearby ([AREACOORD(mob_parent)])")
+			CRASH("An ai tried to find a node, but no nodes were nearby ([AREACOORD(mob_parent)])")
+		return
 	if(identifier)
-		current_node = current_node.get_best_adj_node(list(NODE_LAST_CHOSE_TO_VISIT = -1), identifier, should_consider_closest_node)
+		current_node = current_node.get_best_adj_node(list(NODE_LAST_CHOSE_TO_VISIT = -1))
 	else
 		current_node = pick(current_node.adjacent_nodes)
 	current_node.set_weight(identifier, NODE_LAST_CHOSE_TO_VISIT, world.time)

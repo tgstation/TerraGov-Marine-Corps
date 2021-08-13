@@ -35,7 +35,7 @@
 		return
 	if(!attacked)
 		attacked = atom_to_walk_to
-	if(!mob_parent.Adjacent(attacked))
+	if(get_dist(attacked, mob_parent) > 1)
 		return
 	mob_parent.face_atom(attacked)
 	if(isobj(attacked) && !(attacked.resistance_flags & XENO_DAMAGEABLE))
@@ -53,6 +53,11 @@
 				mob_parent.loc = obstacle_turf
 				testing("AI DEBUG: window obstacle dealt with")
 				return COMSIG_OBSTACLE_DEALT_WITH
+			if(istype(thing, /obj/structure/closet))
+				var/obj/structure/closet/closet = thing
+				if(closet.open(mob_parent))
+					return COMSIG_OBSTACLE_DEALT_WITH
+				return
 			var/obj/structure/obstacle = thing
 			if(obstacle.resistance_flags & XENO_DAMAGEABLE)
 				mob_parent.face_atom(obstacle)

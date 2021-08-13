@@ -52,10 +52,9 @@
  * the node has been visited by a particular thing, while something like NODE_ENEMY_COUNT represents the amount of enemies
  * Parameter call example
  * GetBestAdjNode(list(NODE_LAST_CHOSE_TO_VISIT = -1), IDENTIFIER_XENO)
- * if should_consider_itself is TRUE, if none of the adjacent node has a better score than src's one, then the proc will return src
  * Returns an adjacent node that was last visited; when a AI chose to visit a node, it will set NODE_LAST_CHOSE_TO_VISIT to world.time
  */
-/obj/effect/ai_node/proc/get_best_adj_node(list/weight_modifiers, identifier, should_consider_itself = FALSE)
+/obj/effect/ai_node/proc/get_best_adj_node(list/weight_modifiers, identifier)
 	//No weight modifiers, return a adjacent random node
 	if(!length(weight_modifiers) || !identifier)
 		return pick(adjacent_nodes)
@@ -63,11 +62,6 @@
 	var/obj/effect/ai_node/node_to_return
 	var/current_best_node_score = -INFINITY
 	var/current_score = 0
-	if(should_consider_itself)
-		current_best_node_score = 0
-		node_to_return = src
-		for(var/weight in weight_modifiers)
-			current_best_node_score += NODE_GET_VALUE_OF_WEIGHT(identifier, src, weight) * weight_modifiers[weight]
 	for(var/obj/effect/ai_node/node AS in adjacent_nodes) //We keep a score for the nodes and see which one is best
 		current_score = 0
 		for(var/weight in weight_modifiers)
@@ -86,26 +80,24 @@
 ///Clears the adjacencies of src and repopulates it, it will consider nodes "adjacent" to src should it be less 15 turfs away
 /obj/effect/ai_node/proc/make_adjacents()
 	for(var/obj/effect/ai_node/node AS in GLOB.allnodes)
-		if(node == src)
+		if(node == src || get_dist_euclide_square(src, node) > MAX_NODE_RANGE_SQUARED)
 			continue
-		if(!(get_dist(src, node) < MAX_NODE_RANGE))
-			continue
-		var/has_LOS = TRUE
-		var/total_distance = get_dist(src, node)
-		var/turf/turf_to_check = get_turf(src)
-		var/turf/target_turf = get_turf(node)
-
-		for(var/i in 1 to total_distance - 1)
-			turf_to_check = get_step(turf_to_check, get_dir(turf_to_check, target_turf))
-			if(turf_to_check.density || (islava(turf_to_check) && !locate(/turf/open/lavaland/catwalk) in turf_to_check))
-				has_LOS = FALSE
-				break
-
-		if(!has_LOS)
+		if(!is_in_LOS(get_turf(loc)))
 			continue
 
 		LAZYDISTINCTADD(adjacent_nodes ,node)
 		LAZYDISTINCTADD(node.adjacent_nodes, src)
+
+///Returns true if the turf in argument is in line of sight
+/obj/effect/ai_node/proc/is_in_LOS(turf/target_loc)
+	var/turf/turf_to_check = get_turf(src)
+
+	while(turf_to_check != target_loc)
+		if(turf_to_check.density || (islava(turf_to_check) && !locate(/turf/open/lavaland/catwalk) in turf_to_check))
+			return FALSE
+		turf_to_check = get_step(turf_to_check, get_dir(turf_to_check, target_loc))
+
+	return TRUE
 
 /obj/effect/ai_node/debug //A debug version of the AINode; makes it visible to allow for easy var editing
 	icon_state = "x6" //Pure white 'X' with black borders
