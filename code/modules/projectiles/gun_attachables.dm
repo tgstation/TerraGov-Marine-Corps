@@ -403,7 +403,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 
 /obj/item/attachable/bayonet/Initialize()
 	. = ..()
-	AddElement(/datum/element/attachment, slot, icon, attach_icon, null, null, null, pixel_shift_x, pixel_shift_y)
+	AddElement(/datum/element/attachment, slot, icon, attach_icon, null, null, null, pixel_shift_x, pixel_shift_y, attach_delay, detach_delay, "firearms", SKILL_FIREARMS_DEFAULT, 'sound/machines/click.ogg')
 /obj/item/attachable/bayonetknife
 	name = "M-22 bayonet"
 	desc = "A sharp knife that is the standard issue combat knife of the TerraGov Marine Corps can be attached to a variety of weapons at will or used as a standard knife."

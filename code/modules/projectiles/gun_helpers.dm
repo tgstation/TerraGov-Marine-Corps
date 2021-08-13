@@ -388,19 +388,6 @@ should be alright.
 
 /obj/item/weapon/gun/update_overlays(obj/item/attachable/attachie, slot)
 	. = ..()
-	var/image/overlay = attachable_overlays[slot]
-	overlays -= overlay
-	if(!attachie) //Only updates if the attachment exists for that slot.
-		attachable_overlays[slot] = null
-		return
-	var/item_icon = attachie.icon_state
-	if(attachie.attach_icon)
-		item_icon = attachie.attach_icon
-	overlay = image(attachie.icon, src, item_icon)
-	overlay.pixel_x = attachable_offset["[slot]_x"] - attachie.pixel_shift_x
-	overlay.pixel_y = attachable_offset["[slot]_y"] - attachie.pixel_shift_y
-	attachable_overlays[slot] = overlay
-	overlays += overlay
 
 ///updates the magazine overlay if it needs to be updated
 /obj/item/weapon/gun/proc/update_mag_overlay(mob/user)

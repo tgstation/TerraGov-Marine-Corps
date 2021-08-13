@@ -35,9 +35,13 @@
 	scatter = 0
 	scatter_unwielded = 0
 
+	var/list/slots = list(
+		ATTACHMENT_SLOT_MUZZLE = list()
+	)
+
 /obj/item/weapon/gun/pistol/Initialize(mapload, spawn_empty)
 	. = ..()
-	AddComponent(/datum/component/attachment_handler)
+	AddComponent(/datum/component/attachment_handler, slots, _attachment_offsets = attachable_offset, _attachable_overlays = attachable_overlays)
 
 /obj/item/weapon/gun/pistol/unique_action(mob/user)
 	. = ..()
