@@ -120,7 +120,7 @@ These are parameter based so the ai behavior can choose to (un)register the sign
 	switch(action_type)
 		if(MOVING_TO_NODE)
 			RegisterSignal(mob_parent, COMSIG_STATE_MAINTAINED_DISTANCE, .proc/finished_node_move)
-			anti_stuck_timer = addtimer(CALLBACK(src, .proc/look_for_next_node), 15 SECONDS, TIMER_STOPPABLE)
+			anti_stuck_timer = addtimer(CALLBACK(src, .proc/look_for_next_node), 8 SECONDS, TIMER_STOPPABLE)
 
 /datum/ai_behavior/proc/unregister_action_signals(action_type)
 	switch(action_type)

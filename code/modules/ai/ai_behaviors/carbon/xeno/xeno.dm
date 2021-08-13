@@ -28,7 +28,19 @@
 				return
 			change_action(null, next_target)//We found a better target, change course!
 
-/datum/ai_behavior/carbon/xeno/proc/attack_target(atom/attacked)
+///Signal handler to try to attack our target
+/datum/ai_behavior/carbon/xeno/proc/attack_target(datum/soure, atom/attacked)
+	SIGNAL_HANDLER
+	if(world.time < mob_parent.next_move)
+		return
+	if(!attacked)
+		attacked = atom_to_walk_to
+	if(!mob_parent.Adjacent(attacked))
+		return
+	mob_parent.face_atom(attacked)
+	if(isobj(attacked) && !(attacked.resistance_flags & XENO_DAMAGEABLE))
+		stack_trace("A xenomorph tried to attack a [attacked.name] that isn't considered XENO_DAMAGABLE according to resistance flags.")
+		return
 	var/mob/living/carbon/xenomorph/xeno = mob_parent
 	attacked.attack_alien(xeno, xeno.xeno_caste.melee_damage * xeno.xeno_melee_damage_modifier)
 	xeno.changeNext_move(xeno.xeno_caste.attack_delay)
@@ -44,7 +56,7 @@
 			var/obj/structure/obstacle = thing
 			if(obstacle.resistance_flags & XENO_DAMAGEABLE)
 				mob_parent.face_atom(obstacle)
-				INVOKE_ASYNC(src, .proc/attack_target, obstacle)
+				INVOKE_ASYNC(src, .proc/attack_target, null, obstacle)
 				testing("AI DEBUG: damageable structure obstacle dealt with")
 				return COMSIG_OBSTACLE_DEALT_WITH
 		if(istype(thing, /obj/machinery/door/airlock))
@@ -60,17 +72,6 @@
 			return COMSIG_OBSTACLE_DEALT_WITH
 	if(ISDIAGONALDIR(direction))
 		return deal_with_obstacle(null, turn(direction, -45)) | deal_with_obstacle(null, turn(direction, 45))
-
-/datum/ai_behavior/carbon/xeno/try_to_attack()
-	if(world.time < mob_parent.next_move)
-		return
-	if(!mob_parent.Adjacent(atom_to_walk_to))
-		return
-	mob_parent.face_atom(atom_to_walk_to)
-	if(isobj(atom_to_walk_to) && !(atom_to_walk_to.resistance_flags & XENO_DAMAGEABLE))
-		stack_trace("A xenomorph tried to attack a [atom_to_walk_to.name] that isn't considered XENO_DAMAGABLE according to resistance flags.")
-		return
-	attack_target(atom_to_walk_to)
 
 /datum/ai_behavior/carbon/xeno/register_action_signals(action_type)
 	switch(action_type)

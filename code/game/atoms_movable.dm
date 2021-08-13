@@ -292,12 +292,11 @@
 						moving_diagonally = SECOND_DIAG_STEP
 						. = step(src, SOUTH)
 			if(moving_diagonally == SECOND_DIAG_STEP)
-				if(!. && !(flags_atom & DIRLOCK))
-					setDir(first_step_dir)
-				moving_diagonally = 0
-				return TRUE
+				if(!.)
+					direct = first_step_dir
+				. = TRUE //We moved a little
+
 			moving_diagonally = 0
-			return
 
 	if(!loc || (loc == oldloc && oldloc != newloc))
 		last_move = 0

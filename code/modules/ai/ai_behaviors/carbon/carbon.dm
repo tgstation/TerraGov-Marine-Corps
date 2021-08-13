@@ -17,9 +17,6 @@
 		if(action.ai_should_start_consider())
 			ability_list += action
 
-//Generic attack proc, unique procs to call for xenos, humans and other species as they all have different ways of executing an attack
-/datum/ai_behavior/carbon/proc/try_to_attack()
-
 ///Deal with the obstacle that stopped our movement
 /datum/ai_behavior/carbon/proc/deal_with_obstacle(datum/source, direction)
 	SIGNAL_HANDLER
