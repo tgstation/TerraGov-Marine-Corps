@@ -6,7 +6,11 @@
 	icon = 'icons/effects/landmarks_static.dmi'
 	icon_state = "x6" //Pure white 'X' with black borders
 	anchored = TRUE //No pulling those nodes yo
-	invisibility = INVISIBILITY_ABSTRACT //Visible towards ghosts
+	#ifdef TESTING
+	invisibility = 0
+	#else
+	invisibility = INVISIBILITY_ABSTRACT
+	#endif
 	///list of adjacent landmark nodes
 	var/list/adjacent_nodes
 
@@ -37,18 +41,8 @@
 	for(var/nodes in adjacent_nodes)
 		var/obj/effect/ai_node/node = nodes
 		node.adjacent_nodes -= src
+	adjacent_nodes.Cut()
 	return ..()
-
-///Returns a node that is in the direction of this node; must be in the src's adjacent node list
-/obj/effect/ai_node/proc/get_node_in_dir_in_adj(dir)
-	if(!length(adjacent_nodes))
-		return
-
-	for(var/i in adjacent_nodes)
-		var/obj/effect/ai_node/node = i
-		if(get_dir(src, node) != dir)
-			continue
-		return node
 
 /**
  * A proc that gets the "best" adjacent node in src based on score
@@ -79,6 +73,8 @@
 		for(var/weight in weight_modifiers)
 			current_score += NODE_GET_VALUE_OF_WEIGHT(identifier, node, weight) * weight_modifiers[weight]
 
+		current_score -= 100 * rand(0, 1)
+
 		if(current_score >= current_best_node_score)
 			current_best_node_score = current_score
 			node_to_return = node
@@ -94,6 +90,19 @@
 			continue
 		if(!(get_dist(src, node) < MAX_NODE_RANGE))
 			continue
+		var/has_LOS = TRUE
+		var/total_distance = get_dist(src, node)
+		var/turf/turf_to_check = get_turf(src)
+		var/turf/target_turf = get_turf(node)
+
+		for(var/i in 1 to total_distance - 1)
+			turf_to_check = get_step(turf_to_check, get_dir(turf_to_check, target_turf))
+			if(turf_to_check.density)
+				has_LOS = FALSE
+
+		if(!has_LOS)
+			continue
+
 		LAZYDISTINCTADD(adjacent_nodes ,node)
 		LAZYDISTINCTADD(node.adjacent_nodes, src)
 

@@ -50,7 +50,7 @@
 		if(istype(thing, /obj/machinery/door/airlock))
 			var/obj/machinery/door/airlock/lock = thing
 			if(!lock.density) //Airlock is already open no need to force it open again
-			continue
+				continue
 			if(lock.operating) //Airlock already doing something
 				continue
 			if(lock.welded) //It's welded, can't force that open
@@ -58,6 +58,8 @@
 			lock.open(TRUE)
 			testing("AI DEBUG: closed door dealt with")
 			return COMSIG_OBSTACLE_DEALT_WITH
+	if(ISDIAGONALDIR(direction))
+		return deal_with_obstacle(null, turn(direction, -45)) | deal_with_obstacle(null, turn(direction, 45))
 
 /datum/ai_behavior/carbon/xeno/try_to_attack()
 	if(world.time < mob_parent.next_move)
