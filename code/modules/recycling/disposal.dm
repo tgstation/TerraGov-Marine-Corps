@@ -564,6 +564,7 @@
 	. = ..()
 	base_icon_state = icon_state
 	GLOB.disposal_list += src
+	AddElement(/datum/element/undertile, TRAIT_T_RAY_VISIBLE)
 
 
 //Pipe is deleted

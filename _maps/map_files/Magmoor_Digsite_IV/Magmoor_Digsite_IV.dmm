@@ -27849,7 +27849,6 @@
 "ugZ" = (
 /obj/structure/bed,
 /obj/item/bedsheet/ce,
-/obj/effect/landmark/corpsespawner/clown,
 /obj/effect/decal/cleanable/blood/splatter,
 /turf/open/floor/wood,
 /area/magmoor/civilian/dorms)

@@ -3988,7 +3988,6 @@
 /area/outpost/medbay)
 "vd" = (
 /obj/structure/closet/cabinet,
-/obj/item/clothing/shoes/clown_shoes,
 /turf/open/floor/wood,
 /area/outpost/dormitories)
 "vf" = (

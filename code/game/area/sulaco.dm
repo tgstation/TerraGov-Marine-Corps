@@ -248,6 +248,15 @@
 	name = "Sulaco Drop pod bay"
 	icon_state = "storage"
 
+/area/sulaco/hangar/storage
+	name = "Sulaco Hangar Workshop"
+	icon_state = "hangar_storage"
+
+/area/sulaco/hangar/cas
+	name = "Sulaco Hangar CAS Plane"
+	icon_state = "hangar_cas"
+
+
 /area/sulaco/command/eva
 	name = "Sulaco EVA Storage"
 	icon_state = "storage"

@@ -45,7 +45,7 @@ OPERATIONS
 /datum/supply_packs/operations/fulton_extraction_pack
 	name = "fulton extraction pack"
 	contains = list(/obj/item/fulton_extraction_pack)
-	cost = 5
+	cost = 10
 
 /datum/supply_packs/operations/cas_flares
 	name = "CAS flare pack"
@@ -94,7 +94,7 @@ OPERATIONS
 /datum/supply_packs/operations/exportpad
 	name = "ASRS Bluespace Export Point"
 	contains = list(/obj/machinery/exportpad)
-	cost = 50
+	cost = 30
 
 /datum/supply_packs/operations/warhead_cluster
 	name = "Cluster orbital warhead"
@@ -1154,6 +1154,11 @@ ENGINEERING
 	name = "50 wooden planks"
 	contains = list(/obj/item/stack/sheet/wood/large_stack)
 	cost = 10
+
+/datum/supply_packs/engineering/plasmacutter
+	name = "plasma cutter"
+	contains = list(/obj/item/tool/pickaxe/plasmacutter/)
+	cost = 30
 
 /datum/supply_packs/engineering/quikdeploycade
 	name = "quikdeploy barricade"

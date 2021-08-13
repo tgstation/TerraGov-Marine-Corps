@@ -4844,11 +4844,11 @@
 /turf/open/floor/plating/ground/dirtgrassborder{
 	dir = 8
 	},
-/area/lv624/lazarus/quartstorage/outdoors)
+/area/lv624/ground/compound/ne)
 "aAo" = (
 /obj/structure/fence,
 /turf/open/ground/grass,
-/area/lv624/lazarus/quartstorage/outdoors)
+/area/lv624/ground/compound/n)
 "aAq" = (
 /obj/structure/jungle/vines,
 /turf/open/floor/plating/ground/dirtgrassborder/corner,
@@ -5484,7 +5484,7 @@
 /area/lv624/ground/jungle9)
 "aEA" = (
 /turf/open/floor/plating/ground/dirtgrassborder,
-/area/lv624/lazarus/quartstorage/outdoors)
+/area/lv624/ground/compound/ne)
 "aED" = (
 /obj/structure/jungle/planttop1,
 /obj/structure/jungle/vines,
@@ -5761,7 +5761,7 @@
 "aGq" = (
 /obj/machinery/floodlight/colony,
 /turf/open/floor/plating/ground/dirt,
-/area/lv624/lazarus/quartstorage/outdoors)
+/area/lv624/ground/compound/ne)
 "aGu" = (
 /obj/structure/jungle/plantbot1,
 /obj/structure/flora/ausbushes/fullgrass,
@@ -6232,10 +6232,10 @@
 "aJH" = (
 /obj/structure/jungle/vines,
 /turf/open/ground/grass,
-/area/lv624/lazarus/quartstorage/outdoors)
+/area/lv624/ground/compound/n)
 "aJI" = (
-/turf/open/ground/grass,
-/area/lv624/lazarus/quartstorage/outdoors)
+/turf/closed/gm/dense,
+/area/lv624/ground/compound/n)
 "aJM" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /turf/open/floor/plating/ground/dirtgrassborder,
@@ -6622,7 +6622,7 @@
 /area/lv624/lazarus/quartstorage)
 "aLU" = (
 /turf/open/floor/plating/ground/dirtgrassborder/corner,
-/area/lv624/lazarus/quartstorage/outdoors)
+/area/lv624/ground/compound/ne)
 "aLV" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /turf/open/floor/plating/ground/dirtgrassborder{
@@ -6814,7 +6814,7 @@
 /turf/open/floor/plating/ground/dirtgrassborder{
 	dir = 4
 	},
-/area/lv624/lazarus/quartstorage/outdoors)
+/area/lv624/ground/compound/ne)
 "aMS" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /turf/open/floor/plating/ground/dirtgrassborder{
@@ -6962,17 +6962,17 @@
 /turf/open/floor/plating/ground/dirtgrassborder/corner{
 	dir = 8
 	},
-/area/lv624/lazarus/quartstorage/outdoors)
+/area/lv624/ground/compound/ne)
 "aNL" = (
 /turf/open/floor/plating/ground/dirtgrassborder{
 	dir = 1
 	},
-/area/lv624/lazarus/quartstorage/outdoors)
+/area/lv624/ground/compound/ne)
 "aNM" = (
 /turf/open/floor/plating/ground/dirtgrassborder/corner{
 	dir = 4
 	},
-/area/lv624/lazarus/quartstorage/outdoors)
+/area/lv624/ground/compound/ne)
 "aNN" = (
 /obj/structure/fence,
 /turf/open/floor/plating/ground/dirtgrassborder{
@@ -8510,18 +8510,11 @@
 	},
 /area/shuttle/drop1/lz1)
 "aVO" = (
-/obj/machinery/button/door/open_only/landing_zone,
-/obj/structure/window/reinforced,
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/obj/structure/window/reinforced{
+/obj/structure/fence,
+/turf/open/floor/plating/ground/dirtgrassborder{
 	dir = 4
 	},
-/turf/open/floor/marking/warning{
-	dir = 4
-	},
-/area/shuttle/drop1/lz1)
+/area/lv624/ground/compound/ne)
 "aVQ" = (
 /obj/structure/cargo_container/horizontal{
 	dir = 4
@@ -9947,12 +9940,6 @@
 	dir = 9
 	},
 /area/shuttle/drop1/lz1)
-"bef" = (
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone{
-	dir = 2
-	},
-/turf/open/space/basic,
-/area/lv624/ground/jungle1)
 "beh" = (
 /obj/structure/jungle/vines/heavy,
 /turf/open/ground/grass,
@@ -11228,7 +11215,7 @@
 /turf/open/floor/plating/ground/dirtgrassborder/corner2{
 	dir = 1
 	},
-/area/lv624/lazarus/quartstorage/outdoors)
+/area/lv624/ground/compound/ne)
 "blP" = (
 /obj/machinery/power/geothermal,
 /obj/structure/lattice,
@@ -13297,7 +13284,7 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/plating/ground/dirt,
-/area/lv624/lazarus/quartstorage/outdoors)
+/area/lv624/ground/compound/ne)
 "eHE" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/open/floor/plating/ground/dirt,
@@ -13647,7 +13634,7 @@
 "fQW" = (
 /obj/docking_port/stationary/crashmode,
 /turf/open/floor/plating/ground/dirt,
-/area/lv624/lazarus/quartstorage/outdoors)
+/area/lv624/ground/compound/n)
 "fRf" = (
 /obj/structure/fence,
 /turf/open/floor/plating/ground/dirtgrassborder{
@@ -14497,7 +14484,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
 /turf/open/floor/plating/ground/dirt,
-/area/lv624/lazarus/quartstorage/outdoors)
+/area/lv624/ground/compound/ne)
 "iWp" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/open/floor/plating/ground/dirtgrassborder{
@@ -16789,7 +16776,7 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/plating/ground/dirt,
-/area/lv624/lazarus/quartstorage/outdoors)
+/area/lv624/ground/compound/ne)
 "rRg" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -17404,6 +17391,12 @@
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/sand7)
+"udd" = (
+/obj/structure/fence,
+/turf/open/floor/plating/ground/dirtgrassborder{
+	dir = 8
+	},
+/area/lv624/ground/compound/ne)
 "udq" = (
 /turf/closed/wall/indestructible/mineral,
 /area/lv624/ground/caves/west1)
@@ -17775,6 +17768,19 @@
 	dir = 1
 	},
 /area/lv624/ground/jungle4)
+"vGN" = (
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/machinery/button/door/open_only/landing_zone,
+/obj/structure/window/reinforced,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/turf/open/floor/marking/warning{
+	dir = 1
+	},
+/area/shuttle/drop1/lz1)
 "vGS" = (
 /obj/structure/cargo_container/red{
 	dir = 1
@@ -17803,6 +17809,10 @@
 /obj/structure/flora/ausbushes/fullgrass,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle6)
+"vJH" = (
+/obj/machinery/camera/autoname/lz_camera,
+/turf/open/floor,
+/area/shuttle/drop1/lz1)
 "vKb" = (
 /obj/structure/fence,
 /turf/open/floor/plating/ground/dirtgrassborder/corner2{
@@ -17831,7 +17841,7 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/plating/ground/dirt,
-/area/lv624/lazarus/quartstorage/outdoors)
+/area/lv624/ground/compound/ne)
 "vNz" = (
 /turf/open/floor,
 /area/storage/testroom)
@@ -17961,6 +17971,14 @@
 /obj/structure/flora/ausbushes/fullgrass,
 /turf/open/ground/grass,
 /area/lv624/ground/southcargo)
+"wuL" = (
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/open/floor/plating/ground/dirtgrassborder{
+	dir = 4
+	},
+/area/lv624/ground/jungle5)
 "wvF" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /obj/structure/jungle/vines,
@@ -18066,6 +18084,10 @@
 	},
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/engineering)
+"wQQ" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/compound/ne)
 "wTm" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/dirt,
@@ -43574,7 +43596,7 @@ aTm
 dva
 kZW
 kZW
-aSB
+vGN
 aWs
 aWs
 aWs
@@ -43738,7 +43760,7 @@ aEi
 aEi
 azJ
 azJ
-aJI
+aGg
 aEj
 aEk
 aEk
@@ -43760,7 +43782,7 @@ aWs
 aWs
 aWs
 aWs
-aWs
+vJH
 aWs
 aWs
 aWs
@@ -43916,7 +43938,7 @@ aEi
 aEi
 azJ
 azJ
-aJG
+aJI
 aJH
 aEj
 aEk
@@ -43932,7 +43954,7 @@ aEk
 aTP
 cSo
 aVj
-aVO
+aWV
 aWV
 aWV
 biG
@@ -44094,7 +44116,7 @@ aCG
 azJ
 azJ
 azJ
-aHs
+aFs
 aJH
 aJH
 aEj
@@ -44271,10 +44293,10 @@ aCd
 aCG
 aCd
 azJ
-aAk
-aAk
-aHs
-aJG
+aAb
+aAb
+aFs
+aJI
 aJH
 aDL
 aEj
@@ -44445,17 +44467,17 @@ arW
 asW
 arW
 aAo
-aEA
-aAk
-aAk
+aCA
+aAb
+aAb
 fQW
-tvf
-aAk
-aAk
-aHs
-aJI
-aJI
-aJI
+aAb
+aAb
+aAb
+aFs
+aGg
+aGg
+aHZ
 aLU
 aMO
 aNK
@@ -44490,7 +44512,7 @@ aWs
 tiO
 bjv
 axZ
-bef
+mPv
 bdh
 bdi
 bhQ
@@ -44624,21 +44646,21 @@ arW
 arW
 arW
 aAo
-aEA
-aAk
-aAk
+aCA
+aAb
+aAb
 puV
 puV
 puV
 puV
 puV
-aJI
-aJI
-aJI
+aGg
+aGg
+aHZ
 aEA
 aGq
 aNL
-azK
+aFa
 vMA
 rOB
 gHn
@@ -44669,7 +44691,7 @@ usw
 sMv
 yhd
 axZ
-bef
+mPv
 oCY
 bmp
 bdk
@@ -44817,9 +44839,9 @@ puV
 puV
 aAn
 aNM
-azK
+aFa
 eHq
-aAk
+aDc
 gHn
 lYR
 aSz
@@ -44994,11 +45016,11 @@ puV
 puV
 puV
 puV
-aJI
-aJI
-azJ
+aHZ
+aHZ
+aEZ
 eHq
-dWQ
+wQQ
 gHn
 lYR
 aSB
@@ -45173,11 +45195,11 @@ puV
 puV
 puV
 puV
-aJI
-aJI
-azK
+aHZ
+aHZ
+aFa
 eHq
-aAk
+aDc
 gHn
 lYR
 aSB
@@ -45352,11 +45374,11 @@ puV
 puV
 puV
 puV
-aJI
-aJI
-azK
+aHZ
+aHZ
+aFa
 eHq
-aAk
+aDc
 gHn
 lYR
 aSB
@@ -45532,10 +45554,10 @@ puV
 puV
 puV
 puV
-aAj
-azJ
-vTy
-aAk
+aVO
+aEZ
+eHq
+aDc
 jMR
 lYR
 aSB
@@ -45711,10 +45733,10 @@ puV
 puV
 puV
 puV
-aAk
-aAk
+aDc
+aDc
 eHq
-dWQ
+wQQ
 xnH
 lYR
 aUA
@@ -46069,9 +46091,9 @@ puV
 puV
 puV
 puV
-aAk
-aAk
-aAk
+aDc
+aDc
+aDc
 aNL
 wPI
 aJG
@@ -46248,9 +46270,9 @@ puV
 puV
 puV
 puV
-aNN
-aNN
-azJ
+udd
+udd
+aEZ
 aNM
 wPI
 aJG
@@ -47327,7 +47349,7 @@ aAV
 aAV
 aAV
 fCU
-mBe
+aAV
 aVj
 aWV
 aWV
@@ -47505,7 +47527,7 @@ aAV
 aAV
 aAV
 aAV
-aAV
+fCU
 aAV
 qzs
 qzs
@@ -47684,8 +47706,8 @@ aAV
 aAV
 aAV
 aAV
-aAV
-aAV
+fCU
+mBe
 mBe
 mBe
 mBe
@@ -48235,7 +48257,7 @@ aAV
 aAV
 aAV
 ayh
-aAS
+wuL
 vve
 lFY
 azN

@@ -1,5 +1,0 @@
-author: "lbnesquik"
-delete-after: True
-changes: 
-  - expansion: "Added some flares and smoke shells to the mortar kit."
-  - bugfix: "fixed the mortar flare shell not working by just using the code for flare rockets"
