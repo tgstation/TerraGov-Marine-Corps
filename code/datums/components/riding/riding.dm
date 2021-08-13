@@ -68,8 +68,7 @@
 	RegisterSignal(parent, COMSIG_ATOM_DIR_CHANGE, .proc/vehicle_turned)
 	RegisterSignal(parent, COMSIG_MOVABLE_UNBUCKLE, .proc/vehicle_mob_unbuckle)
 	RegisterSignal(parent, COMSIG_MOVABLE_MOVED, .proc/vehicle_moved)
-	if(!isxeno(parent))
-		RegisterSignal(parent, COMSIG_MOVABLE_BUMP, .proc/vehicle_bump)
+	RegisterSignal(parent, COMSIG_MOVABLE_BUMP, .proc/vehicle_bump)
 
 /**
  * This proc handles all of the proc calls to things like set_vehicle_dir_layer() that a type of riding datum needs to call on creation
@@ -224,7 +223,7 @@
 	if(!istype(possible_bumped_door))
 		return
 	for(var/occupant in movable_parent.buckled_mobs)
-		INVOKE_ASYNC(possible_bumped_door, /obj/machinery/door/.proc/bumpopen, occupant)
+		INVOKE_ASYNC(possible_bumped_door, /atom.proc/Bumped, occupant)
 
 /datum/component/riding/proc/Unbuckle(atom/movable/M)
 	addtimer(CALLBACK(parent, /atom/movable/.proc/unbuckle_mob, M), 0, TIMER_UNIQUE)
