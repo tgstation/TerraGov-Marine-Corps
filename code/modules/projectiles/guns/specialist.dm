@@ -37,7 +37,7 @@
 		/obj/item/attachable/lasersight,
 	)
 
-	flags_gun_features = GUN_AUTO_EJECTOR|GUN_AMMO_COUNTER|GUN_IFF
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_AMMO_COUNTER|GUN_IFF|GUN_WIELDED_FIRING_ONLY
 
 	starting_attachment_types = list(/obj/item/attachable/scope/antimaterial, /obj/item/attachable/sniperbarrel)
 
@@ -368,7 +368,7 @@
 
 	gun_skill_category = GUN_SKILL_FIREARMS
 	aim_slowdown = 0.8
-	flags_gun_features = GUN_INTERNAL_MAG|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
+	flags_gun_features = GUN_INTERNAL_MAG|GUN_AMMO_COUNTER
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
 	attachable_allowed = list(/obj/item/attachable/flashlight, /obj/item/attachable/magnetic_harness)
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 19,"rail_x" = 10, "rail_y" = 21, "under_x" = 24, "under_y" = 14, "stock_x" = 24, "stock_y" = 12)
