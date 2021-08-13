@@ -2399,10 +2399,6 @@
 /obj/machinery/light,
 /turf/open/floor/mainship,
 /area/mainship/command/cic)
-"eRm" = (
-/obj/effect/ai_node,
-/turf/open/floor/mainship,
-/area/mainship/command/self_destruct)
 "eVW" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 10
@@ -2680,14 +2676,6 @@
 	},
 /turf/open/floor/mainship,
 /area/mainship/command/cic)
-"qtd" = (
-/obj/effect/ai_node,
-/turf/open/floor/mainship,
-/area/mainship/hallways/hangar)
-"qvf" = (
-/obj/effect/ai_node,
-/turf/open/floor/mainship,
-/area/mainship/shipboard/weapon_room)
 "qCi" = (
 /obj/structure/rack,
 /obj/effect/spawner/random/toolbox,
@@ -2717,13 +2705,6 @@
 /obj/structure/cable,
 /turf/open/floor/mainship,
 /area/mainship/engineering/engineering_workshop)
-"rGR" = (
-/obj/machinery/landinglight/ds1/delaytwo{
-	dir = 8
-	},
-/obj/effect/ai_node,
-/turf/open/floor/mainship,
-/area/mainship/hallways/hangar)
 "rSb" = (
 /obj/structure/table/mainship,
 /obj/machinery/computer/shuttle/shuttle_control/dropship,
@@ -2769,10 +2750,6 @@
 	},
 /turf/open/floor/mainship,
 /area/mainship/hallways/hangar)
-"ueS" = (
-/obj/effect/ai_node,
-/turf/open/floor/mainship,
-/area/mainship/hallways/exoarmor)
 "umn" = (
 /obj/structure/cable,
 /obj/structure/closet/secure_closet/medical3,
@@ -2809,10 +2786,6 @@
 /obj/machinery/camera/autoname/mainship,
 /turf/open/floor/mainship,
 /area/mainship/hallways/hangar)
-"wmt" = (
-/obj/effect/ai_node,
-/turf/open/floor/mainship,
-/area/mainship/squads/req)
 "wpk" = (
 /obj/structure/ship_ammo/minirocket,
 /obj/machinery/light{
@@ -2851,10 +2824,6 @@
 	},
 /turf/open/floor/mainship,
 /area/mainship/hallways/hangar)
-"xrw" = (
-/obj/effect/ai_node,
-/turf/open/floor/mainship,
-/area/mainship/medical/lower_medical)
 "xsM" = (
 /obj/machinery/light{
 	dir = 1
@@ -3822,7 +3791,7 @@ agd
 agt
 iSK
 aho
-tnI
+ais
 ais
 nak
 ais
@@ -3993,7 +3962,7 @@ aob
 aob
 nHZ
 aob
-qtd
+aob
 aob
 acw
 acE
@@ -4155,7 +4124,7 @@ bgb
 aob
 ivf
 aob
-hME
+ivf
 aob
 ivf
 aob
@@ -4255,7 +4224,7 @@ agB
 agB
 agB
 agB
-qvf
+agB
 ahd
 ahu
 ahR
@@ -4641,7 +4610,7 @@ afY
 aay
 acI
 acI
-eRm
+acI
 acI
 acI
 abC
@@ -4735,7 +4704,7 @@ ahz
 ahy
 ahz
 ahy
-xrw
+ahy
 ahh
 aie
 ahy
@@ -4896,7 +4865,7 @@ afe
 afe
 afe
 afe
-rGR
+afe
 afe
 afe
 afe
@@ -5123,7 +5092,7 @@ ade
 ade
 ade
 ade
-cJV
+ade
 ade
 abP
 aaC
@@ -5456,7 +5425,7 @@ eBB
 ain
 leh
 ahY
-sAC
+ahY
 ahY
 ybc
 ajO
@@ -5974,7 +5943,7 @@ acM
 ach
 adt
 adA
-nYU
+afO
 adO
 adS
 xsM
@@ -6023,7 +5992,7 @@ aaa
 aaa
 aea
 abp
-ueS
+adG
 adG
 ksL
 aea
@@ -6039,7 +6008,7 @@ ach
 adS
 xJD
 aek
-wmt
+aek
 afk
 aek
 aek

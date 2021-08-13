@@ -141,11 +141,6 @@
 /obj/structure/jungle/vines,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle9)
-"qx" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/effect/ai_node,
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/jungle9)
 "sZ" = (
 /obj/structure/jungle/vines,
 /turf/open/floor/plating/ground/dirtgrassborder/corner{
@@ -314,10 +309,6 @@
 	dir = 1
 	},
 /area/lv624/ground/jungle9)
-"Ib" = (
-/obj/effect/ai_node,
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/jungle9)
 "Is" = (
 /turf/open/floor/plating/ground/dirtgrassborder/corner2,
 /area/lv624/ground/jungle7)
@@ -473,10 +464,6 @@
 	dir = 4
 	},
 /area/lv624/ground/jungle9)
-"VY" = (
-/obj/effect/ai_node,
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/compound/ne)
 "Wz" = (
 /obj/structure/jungle/vines,
 /turf/open/floor/plating/ground/dirtgrassborder{
@@ -649,7 +636,7 @@ Vq
 Vq
 da
 ly
-Ib
+Ix
 eo
 jf
 Xl
@@ -790,7 +777,7 @@ Js
 JU
 Bz
 Js
-qx
+Js
 Js
 Js
 Vg
@@ -961,7 +948,7 @@ CE
 xR
 Vy
 Mk
-VY
+Mk
 Mk
 vT
 Sx

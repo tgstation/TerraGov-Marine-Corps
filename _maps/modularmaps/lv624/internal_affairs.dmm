@@ -232,7 +232,6 @@
 "yr" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
 /obj/structure/cable,
-/obj/effect/ai_node,
 /turf/open/floor/tile/blue/whiteblue{
 	dir = 1
 	},

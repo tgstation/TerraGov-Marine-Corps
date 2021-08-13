@@ -38,10 +38,6 @@
 	},
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle7)
-"ic" = (
-/obj/effect/ai_node,
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/compound/ne)
 "iQ" = (
 /obj/structure/jungle/vines,
 /turf/open/floor/plating/ground/dirtgrassborder{
@@ -504,7 +500,7 @@ zh
 bA
 lF
 HZ
-ic
+HZ
 qj
 HZ
 Ss
@@ -752,7 +748,7 @@ HZ
 HZ
 HZ
 HZ
-ic
+HZ
 HZ
 HZ
 HZ

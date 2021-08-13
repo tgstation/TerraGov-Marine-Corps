@@ -19,12 +19,6 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor,
 /area/bigredv2/outside/admin_building)
-"bi" = (
-/obj/effect/ai_node,
-/turf/open/floor/tile/dark/red2{
-	dir = 1
-	},
-/area/bigredv2/outside/admin_building)
 "bK" = (
 /obj/machinery/vending/cola,
 /turf/open/floor,
@@ -404,10 +398,6 @@
 	},
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/admin_building)
-"vj" = (
-/obj/effect/ai_node,
-/turf/open/floor/carpet/edge2,
-/area/bigredv2/outside/admin_building)
 "vo" = (
 /obj/machinery/vending/coffee,
 /turf/open/floor,
@@ -636,10 +626,7 @@
 	},
 /area/bigredv2/outside/admin_building)
 "CQ" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/structure/cable,
-/obj/effect/ai_node,
-/turf/open/floor/tile/white,
+/turf/open/floor,
 /area/bigredv2/outside/admin_building)
 "CU" = (
 /obj/structure/window/framed/colony,
@@ -725,10 +712,6 @@
 /turf/open/floor/tile/dark/red2{
 	dir = 1
 	},
-/area/bigredv2/outside/admin_building)
-"HK" = (
-/obj/effect/ai_node,
-/turf/open/floor/tile/dark,
 /area/bigredv2/outside/admin_building)
 "HS" = (
 /obj/machinery/constructable_frame/state_2,
@@ -944,7 +927,6 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 10
 	},
-/obj/effect/ai_node,
 /turf/open/floor/plating,
 /area/bigredv2/outside/admin_building)
 "Rk" = (
@@ -994,13 +976,6 @@
 	dir = 8
 	},
 /turf/open/floor/carpet/edge2,
-/area/bigredv2/outside/admin_building)
-"TB" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
-/obj/effect/ai_node,
-/turf/open/floor/tile/dark,
 /area/bigredv2/outside/admin_building)
 "TO" = (
 /obj/structure/table,
@@ -1093,7 +1068,6 @@
 	},
 /area/bigredv2/outside/admin_building)
 "Wy" = (
-/obj/effect/ai_node,
 /turf/open/floor/tile/dark/red2/corner,
 /area/bigredv2/outside/admin_building)
 "Wz" = (
@@ -1291,7 +1265,7 @@ BN
 yN
 Mm
 ai
-CQ
+ai
 gU
 Pq
 sT
@@ -1299,7 +1273,7 @@ lg
 fO
 CX
 sT
-bi
+YO
 vW
 CU
 ZJ
@@ -1333,7 +1307,7 @@ ZJ
 ZJ
 ZJ
 ZJ
-vj
+ZJ
 ZJ
 OA
 GT
@@ -1438,7 +1412,7 @@ ng
 fO
 fO
 fO
-TB
+rX
 fO
 vW
 BN
@@ -1707,7 +1681,7 @@ BN
 BN
 Hd
 fO
-TB
+rX
 Gt
 sT
 eq
@@ -1744,7 +1718,7 @@ sT
 sT
 YO
 fO
-HK
+fO
 fO
 ng
 fU
@@ -1909,7 +1883,7 @@ GT
 GT
 eq
 GT
-GT
+CQ
 "}
 (29,1,1) = {"
 BN

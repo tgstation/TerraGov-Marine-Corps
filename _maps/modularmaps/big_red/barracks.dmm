@@ -223,12 +223,6 @@
 	dir = 4
 	},
 /area/bigredv2/outside/admin_building)
-"no" = (
-/obj/effect/ai_node,
-/turf/open/floor/tile/dark/blue2{
-	dir = 4
-	},
-/area/bigredv2/outside/admin_building)
 "nt" = (
 /obj/machinery/computer/station_alert,
 /obj/structure/table,
@@ -290,14 +284,6 @@
 	dir = 4
 	},
 /area/bigredv2/outside/admin_building)
-"pC" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
-/obj/effect/ai_node,
-/turf/open/floor/grimy,
-/area/bigredv2/outside/admin_building)
 "qw" = (
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/c)
@@ -338,16 +324,6 @@
 /area/bigredv2/outside/admin_building)
 "st" = (
 /turf/open/floor/tile/dark/blue2,
-/area/bigredv2/outside/admin_building)
-"sy" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
-/obj/effect/ai_node,
-/turf/open/floor/tile/dark/blue2{
-	dir = 1
-	},
 /area/bigredv2/outside/admin_building)
 "sA" = (
 /obj/structure/cable,
@@ -617,20 +593,6 @@
 	name = "\improper Operations Shutters"
 	},
 /turf/open/floor/plating,
-/area/bigredv2/outside/admin_building)
-"FX" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 9
-	},
-/obj/effect/ai_node,
-/turf/open/floor/tile/dark/blue2/corner{
-	dir = 1
-	},
-/area/bigredv2/outside/admin_building)
-"Gc" = (
-/obj/effect/ai_node,
-/turf/open/floor/tile/dark/blue2,
 /area/bigredv2/outside/admin_building)
 "Gd" = (
 /obj/structure/table,
@@ -1269,7 +1231,7 @@ Yi
 nH
 AM
 CU
-pC
+Bu
 on
 CU
 rM
@@ -1306,7 +1268,7 @@ JK
 nB
 nB
 MG
-FX
+ER
 st
 ep
 VK
@@ -1365,7 +1327,7 @@ ep
 ep
 ep
 ep
-sy
+Dq
 st
 nH
 "}
@@ -1534,7 +1496,7 @@ ee
 rV
 ep
 TE
-Gc
+st
 ep
 fP
 Ne
@@ -1825,7 +1787,7 @@ Pr
 Pr
 cK
 Pr
-no
+Pr
 Pr
 Pr
 Pr

@@ -17,6 +17,8 @@
 /area/whiskey_outpost)
 "ag" = (
 /obj/item/clothing/suit/storage/marine/smartgunner/fancy,
+/obj/item/weapon/gun/smartgun,
+/obj/item/smartgun_powerpack/fancy,
 /obj/structure/table,
 /turf/open/floor/wood,
 /area/whiskey_outpost)
@@ -1983,9 +1985,9 @@
 /turf/open/floor/plating/ground/dirt,
 /area/whiskey_outpost/outside/east)
 "ij" = (
-/obj/effect/ai_node,
-/turf/open/ground/river,
-/area/whiskey_outpost/outside/north)
+/obj/item/weapon/gun/sentry/premade,
+/turf/open/floor/plating/platebot,
+/area/whiskey_outpost/outside/east)
 "ik" = (
 /turf/open/ground/grass/beach{
 	dir = 4
@@ -2002,10 +2004,9 @@
 	},
 /area/whiskey_outpost/outside/east)
 "in" = (
-/obj/structure/flora/ausbushes/grassybush,
-/obj/effect/ai_node,
-/turf/open/floor/plating/asteroidfloor,
-/area/whiskey_outpost/outside/north)
+/obj/item/weapon/gun/sentry/premade,
+/turf/open/floor/plating/platebot,
+/area/whiskey_outpost/outside/east)
 "io" = (
 /obj/item/weapon/gun/sentry/premade,
 /turf/open/floor/plating/platebot,
@@ -2051,9 +2052,9 @@
 	},
 /area/whiskey_outpost/outside/west)
 "iy" = (
-/obj/effect/ai_node,
-/turf/closed/mineral,
-/area/whiskey_outpost/outside/north)
+/obj/item/weapon/gun/sentry/premade,
+/turf/open/floor/plating/platebot,
+/area/whiskey_outpost/outside/west)
 "iz" = (
 /obj/structure/flora/ausbushes/leafybush,
 /turf/open/ground/grass,
@@ -2088,9 +2089,9 @@
 /turf/open/floor/plating/ground/dirt,
 /area/whiskey_outpost/outside/east)
 "iH" = (
-/obj/effect/ai_node,
-/turf/open/floor/asteroidfloor,
-/area/whiskey_outpost/outside/east)
+/obj/item/weapon/gun/sentry/premade,
+/turf/open/floor/plating/platebot,
+/area/whiskey_outpost/outside/west)
 "iI" = (
 /obj/item/weapon/gun/sentry/premade,
 /turf/open/floor/plating/platebot,
@@ -3963,6 +3964,10 @@
 /area/whiskey_outpost)
 "rb" = (
 /obj/structure/rack,
+/obj/item/smartgun_powerpack,
+/obj/item/smartgun_powerpack,
+/obj/item/smartgun_powerpack,
+/obj/item/smartgun_powerpack,
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost)
 "rc" = (
@@ -4208,6 +4213,7 @@
 /turf/open/floor/plating,
 /area/whiskey_outpost)
 "sB" = (
+/obj/machinery/marine_selector/gear/spec,
 /obj/structure/window/reinforced{
 	dir = 1
 	},
@@ -4249,9 +4255,9 @@
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost)
 "th" = (
-/obj/effect/ai_node,
-/turf/open/floor/plating/asteroidfloor,
-/area/whiskey_outpost/outside/east)
+/obj/structure/mortar/fixed,
+/turf/open/floor/plating/asteroidplating,
+/area/whiskey_outpost)
 "ti" = (
 /turf/open/ground/coast/corner2{
 	dir = 4
@@ -4841,6 +4847,7 @@
 	},
 /area/whiskey_outpost)
 "Ch" = (
+/obj/machinery/marine_selector/gear/spec,
 /obj/structure/window/reinforced{
 	dir = 1
 	},
@@ -4945,6 +4952,7 @@
 	},
 /area/whiskey_outpost/outside/east)
 "DO" = (
+/obj/machinery/marine_selector/clothes/specialist,
 /obj/structure/window/reinforced,
 /turf/open/floor/mainship/blue{
 	dir = 4
@@ -4980,11 +4988,6 @@
 /obj/structure/dropship_piece/one/rearwing/leftbottom,
 /turf/open/ground/jungle,
 /area/whiskey_outpost/outside/south)
-"Ep" = (
-/obj/structure/barricade/metal,
-/obj/effect/ai_node,
-/turf/open/floor/plating/warning,
-/area/whiskey_outpost/outside/west)
 "Er" = (
 /obj/structure/barricade/sandbags,
 /obj/structure/barricade/sandbags{
@@ -5197,11 +5200,6 @@
 /obj/structure/jungle/plantbot1/alien,
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost/outside/west)
-"Hx" = (
-/obj/structure/barricade/plasteel,
-/obj/effect/ai_node,
-/turf/open/floor/plating/warning,
-/area/whiskey_outpost/outside/east)
 "HF" = (
 /obj/structure/bed,
 /obj/machinery/light{
@@ -5311,13 +5309,6 @@
 	dir = 1
 	},
 /area/whiskey_outpost/outside/south)
-"Jg" = (
-/obj/structure/bed/chair/dropship/passenger{
-	dir = 8
-	},
-/obj/effect/ai_node,
-/turf/open/shuttle/dropship/floor,
-/area/whiskey_outpost/outside/east)
 "Ji" = (
 /obj/structure/support,
 /turf/open/floor/plating/asteroidfloor,
@@ -5594,10 +5585,6 @@
 	},
 /turf/open/ground/river,
 /area/whiskey_outpost/outside/west)
-"NK" = (
-/obj/effect/ai_node,
-/turf/open/floor/plating,
-/area/whiskey_outpost/outside/east)
 "NL" = (
 /obj/machinery/light{
 	dir = 1
@@ -5799,6 +5786,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/whiskey_outpost/outside/north)
 "Rm" = (
+/obj/machinery/marine_selector/clothes/specialist,
 /obj/structure/window/reinforced,
 /turf/open/floor/mainship/orange{
 	dir = 4
@@ -8345,7 +8333,7 @@ hw
 hw
 hB
 hB
-iI
+iH
 hB
 hJ
 hq
@@ -9575,7 +9563,7 @@ hX
 hX
 Hu
 hX
-zi
+hX
 hX
 yQ
 gF
@@ -9713,7 +9701,7 @@ dm
 hk
 hk
 hk
-JX
+hw
 hw
 hw
 hw
@@ -9896,7 +9884,7 @@ PW
 PW
 Cq
 hw
-JX
+hw
 hw
 hw
 hw
@@ -9909,7 +9897,7 @@ lk
 lM
 lf
 lf
-Hq
+lf
 lf
 lf
 lT
@@ -10382,7 +10370,7 @@ lf
 lf
 lf
 lf
-Hq
+lf
 lf
 lf
 lf
@@ -10923,7 +10911,7 @@ cX
 cx
 nB
 VG
-TK
+fs
 fs
 SR
 nJ
@@ -11987,7 +11975,7 @@ bW
 bW
 bW
 bW
-Xr
+bW
 bW
 bW
 bW
@@ -12763,7 +12751,7 @@ Aq
 bW
 bW
 aS
-iy
+aS
 aS
 aS
 aS
@@ -12905,7 +12893,7 @@ bW
 bW
 ec
 bW
-Xr
+bW
 bW
 bW
 bW
@@ -13987,7 +13975,7 @@ rk
 pz
 nk
 bW
-Xr
+bW
 bW
 cK
 bW
@@ -14361,7 +14349,7 @@ lf
 lf
 lf
 lf
-Hq
+lf
 lf
 lf
 lf
@@ -14652,7 +14640,7 @@ lf
 lf
 lf
 lf
-Hq
+lf
 lf
 lf
 lf
@@ -15073,7 +15061,7 @@ hm
 hm
 hz
 hx
-iI
+iy
 hk
 hw
 PW
@@ -15237,7 +15225,7 @@ hX
 hX
 hw
 hw
-JX
+hw
 hw
 hX
 hX
@@ -15250,7 +15238,7 @@ hw
 hw
 hw
 PW
-Ep
+iN
 hw
 lf
 lf
@@ -15823,7 +15811,7 @@ rk
 pD
 nk
 bW
-TK
+fs
 fS
 gc
 Mz
@@ -16266,7 +16254,7 @@ rk
 DR
 rk
 rk
-yw
+rk
 rk
 RQ
 rk
@@ -16721,7 +16709,7 @@ bu
 bk
 cS
 rk
-yw
+rk
 rk
 rk
 rk
@@ -17018,7 +17006,7 @@ az
 az
 bl
 bk
-Mo
+bk
 bk
 bk
 bk
@@ -17222,7 +17210,7 @@ gZ
 gZ
 Ji
 Lj
-iH
+Lj
 gZ
 hc
 hc
@@ -17392,7 +17380,7 @@ gZ
 gZ
 ww
 gZ
-Hx
+yq
 gZ
 lf
 Om
@@ -17407,7 +17395,7 @@ lf
 lf
 hd
 Om
-Yi
+Om
 Om
 Om
 lf
@@ -17419,7 +17407,7 @@ Om
 Om
 Om
 Ft
-Yi
+Om
 lf
 Om
 lf
@@ -18119,7 +18107,7 @@ bs
 dw
 nl
 bW
-TK
+fs
 fT
 do
 zo
@@ -18443,7 +18431,7 @@ is
 iz
 gZ
 iB
-io
+in
 Pv
 hc
 hc
@@ -19329,7 +19317,7 @@ fQ
 rk
 rk
 rk
-yw
+rk
 rk
 rk
 bX
@@ -19359,7 +19347,7 @@ hg
 hg
 im
 is
-io
+ij
 iB
 gZ
 Pv
@@ -19517,7 +19505,7 @@ vB
 is
 Pv
 yq
-th
+gZ
 iB
 gZ
 Mp
@@ -19534,7 +19522,7 @@ iB
 iB
 iB
 iB
-NK
+Pv
 DC
 lf
 lf
@@ -19549,7 +19537,7 @@ lf
 lf
 lf
 lf
-Hq
+lf
 lf
 lf
 lf
@@ -19562,7 +19550,7 @@ lf
 lf
 lf
 lf
-Hq
+lf
 lf
 lf
 lf
@@ -19647,7 +19635,7 @@ nl
 bW
 bW
 bW
-TK
+fs
 bW
 of
 bd
@@ -20544,7 +20532,7 @@ pZ
 rk
 gG
 OI
-OI
+th
 OI
 Ta
 yw
@@ -20554,7 +20542,7 @@ pK
 bW
 fs
 fs
-in
+xR
 fs
 fs
 fs
@@ -20594,7 +20582,7 @@ iB
 iB
 hc
 iB
-FL
+iB
 iB
 iB
 iB
@@ -21156,7 +21144,7 @@ hI
 ak
 zP
 OI
-OI
+th
 OI
 Ta
 rk
@@ -21630,7 +21618,7 @@ cx
 nB
 VG
 fs
-TK
+fs
 fs
 SR
 nJ
@@ -21804,7 +21792,7 @@ gU
 gU
 hP
 hc
-io
+in
 hc
 hc
 gU
@@ -22083,7 +22071,7 @@ dj
 cx
 cx
 cx
-ij
+cx
 cx
 cx
 nE
@@ -22566,7 +22554,7 @@ gY
 gY
 gY
 gY
-zI
+gY
 gY
 gY
 gY
@@ -22858,7 +22846,6 @@ fs
 fs
 fs
 fs
-TK
 fs
 fs
 fs
@@ -22868,17 +22855,12 @@ fs
 fs
 fs
 fs
+fs
 gZ
 gZ
 gZ
 gZ
-io
-gZ
-gZ
-gZ
-gZ
-gZ
-gZ
+ij
 gZ
 gZ
 gZ
@@ -22887,7 +22869,13 @@ gZ
 gZ
 gZ
 gZ
-th
+gZ
+gZ
+gZ
+gZ
+gZ
+gZ
+gZ
 gZ
 hg
 hg
@@ -23969,7 +23957,7 @@ hg
 hg
 hg
 aa
-Jg
+jm
 jm
 wu
 ku
@@ -24137,7 +24125,7 @@ lf
 lf
 lf
 lf
-Hq
+lf
 lf
 lf
 lf
