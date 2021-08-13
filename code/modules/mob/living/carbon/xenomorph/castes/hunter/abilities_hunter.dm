@@ -509,7 +509,7 @@
 
 /datum/action/xeno_action/mirage
 	name = "Mirage"
-	action_icon_state = ""
+	action_icon_state = "mirror_image"
 	mechanics_text = "Create mirror images of ourselves."
 	ability_name = "mirage"
 	plasma_cost = 100
@@ -527,5 +527,7 @@
 			var/mob/illusion/center_illusion = new /mob/illusion(owner.loc, owner, owner, illusion_life_time)
 			for(var/i in 1 to (illusion_count - 1))
 				new /mob/illusion(owner.loc, owner, center_illusion, illusion_life_time)
-		if(INTENT_HELP)
+		if(INTENT_HELP, INTENT_GRAB, INTENT_DISARM) //Disperse
+			for(var/i in 1 to illusion_count)
+				new /mob/illusion(owner.loc, owner, null, illusion_life_time)
 

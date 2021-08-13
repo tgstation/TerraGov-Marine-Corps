@@ -53,7 +53,7 @@ SUBSYSTEM_DEF(spawning)
 ///Essentially a wrapper for accessing a dying/delting mobs callback to remove it
 /datum/controller/subsystem/spawning/proc/remove_mob(mob/source)
 	SIGNAL_HANDLER
-	callbacks_by_mob[source].Invoke()
+	callbacks_by_mob[source]?.Invoke()
 
 /**
  * Removes a mob from a spawners mobs spawned list

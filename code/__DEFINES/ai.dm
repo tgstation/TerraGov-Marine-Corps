@@ -7,3 +7,12 @@
 #define TARGET_ALL (TARGET_HUMAN_TURRETS|TARGET_XENO_TURRETS|TARGET_HUMAN|TARGET_XENO)
 
 #define MAX_NODE_RANGE 16
+
+GLOBAL_LIST_EMPTY(allnodes)
+
+///A GLOB of all /datum/component/ai_controller that currently exist
+GLOBAL_LIST_EMPTY(ai_instances_active)
+
+//To be implemented in later updates
+GLOBAL_LIST_EMPTY(nodes_with_enemies)
+GLOBAL_LIST_EMPTY(nodes_with_construction)
