@@ -1155,6 +1155,11 @@ ENGINEERING
 	contains = list(/obj/item/stack/sheet/wood/large_stack)
 	cost = 10
 
+/datum/supply_packs/engineering/plasmacutter
+	name = "plasma cutter"
+	contains = list(/obj/item/tool/pickaxe/plasmacutter/)
+	cost = 30
+
 /datum/supply_packs/engineering/quikdeploycade
 	name = "quikdeploy barricade"
 	contains = list(/obj/item/quikdeploy/cade)
