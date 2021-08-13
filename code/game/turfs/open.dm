@@ -343,6 +343,9 @@
 			if(L.stat == DEAD)
 				continue
 
+			if(L.moving_diagonally == FIRST_DIAG_STEP)
+				continue
+
 			if(!L.on_fire || L.getFireLoss() <= 200)
 				L.take_overall_damage(null, 20, clamp(L.getarmor(null, "fire"), 0, 80))
 				if(!CHECK_BITFIELD(L.flags_pass, PASSFIRE))//Pass fire allow to cross lava without igniting

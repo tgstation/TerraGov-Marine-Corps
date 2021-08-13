@@ -8,6 +8,8 @@
 
 #define MAX_NODE_RANGE_SQUARED 256
 
+#define can_cross_lava_turf(turf_to_check) (!islava(turf_to_check) || locate(/turf/open/lavaland/catwalk) in turf_to_check)
+
 GLOBAL_LIST_EMPTY(allnodes)
 
 ///A GLOB of all /datum/component/ai_controller that currently exist

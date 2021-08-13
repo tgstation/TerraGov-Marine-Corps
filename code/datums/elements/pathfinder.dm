@@ -61,8 +61,12 @@ stutter_step: a prob() chance to go left or right of the mob's direction towards
 			step_dir = get_dir(atoms_to_walk_to[mob_to_process], mob_to_process)
 		else
 			step_dir = get_dir(mob_to_process, atoms_to_walk_to[mob_to_process])
-		if(!mob_to_process.Move(get_step(mob_to_process, step_dir), step_dir) && !(SEND_SIGNAL(mob_to_process, COMSIG_OBSTRUCTED_MOVE, step_dir) & COMSIG_OBSTACLE_DEALT_WITH))
+		var/turf/next_turf = get_step(mob_to_process, step_dir)
+		if(!can_cross_lava_turf(next_turf) || (!mob_to_process.Move(next_turf, step_dir) && !(SEND_SIGNAL(mob_to_process, COMSIG_OBSTRUCTED_MOVE, step_dir) & COMSIG_OBSTACLE_DEALT_WITH)))
 			step_dir = pick(LeftAndRightOfDir(step_dir))
+			next_turf = get_step(mob_to_process, step_dir)
+			if(!can_cross_lava_turf(next_turf))
+				continue
 			mob_to_process.Move(get_step(mob_to_process, step_dir), step_dir)
 
 /datum/element/pathfinder/Detach(datum/source)
