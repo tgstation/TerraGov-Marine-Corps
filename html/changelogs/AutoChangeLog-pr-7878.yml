@@ -1,6 +1,0 @@
-author: "QualityVan"
-delete-after: True
-changes: 
-  - rscadd: "You can take the battery out of chem dispensers with a screwdriver and a crowbar."
-  - balance: "Chem dispensers recharge faster"
-  - bugfix: "Orange vending machines will show their panel when screwdrivered"

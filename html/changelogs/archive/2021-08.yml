@@ -307,3 +307,26 @@
   - qol: knives moved to utility to represent their spot in the game
   - balance: 'combat knife has 5 more force, in exchange for slightly higher attack
       delay spriteadd: new combat knife sprite, thanks spooky on discord (not donut)'
+2021-08-13:
+  BraveMole:
+  - bugfix: Fix rebel huds
+  - expansion: Flare gun can fire cas flares
+  - bugfix: fixed the sprite for the single hand grenade launcher
+  Pariah919:
+  - qol: hypervene autoinjectors have their own sprite now
+  - balance: you can fire the sawn off shotgun in one hand.
+  - rscadd: Added new Skirmish Rifle (T-21) to marines, it bridges the gap between
+      a Battle rifle and a Assault rifle. It is 0.2- 30/10/1.5. Aim mode stats are
+      +0.15 and 2.5.
+  - balance: crusher is far slower on weeds (-0.15 instead of 0.4)
+  - balance: king is locked for 90 minutes rather than an hour
+  QualityVan:
+  - rscadd: You can take the battery out of chem dispensers with a screwdriver and
+      a crowbar.
+  - balance: Chem dispensers recharge faster
+  - bugfix: Orange vending machines will show their panel when screwdrivered
+  - bugfix: Flamer ammo hud won't disappear when firing
+  lbnesquik:
+  - admin: Improved the testing environment of the debug ship by adding more lights,
+      making look better & adding dropship vouchers
+  - balance: Reduces ravager damage tiers from 26 - 32 to 26 - 29.
