@@ -97,7 +97,7 @@
 
 		for(var/i in 1 to total_distance - 1)
 			turf_to_check = get_step(turf_to_check, get_dir(turf_to_check, target_turf))
-			if(turf_to_check.density || (islava(turf_to_check) && !locate(/turf/open/lavaland/catwalk, turf_to_check)))
+			if(turf_to_check.density || (islava(turf_to_check) && !locate(/turf/open/lavaland/catwalk) in turf_to_check))
 				has_LOS = FALSE
 				break
 
