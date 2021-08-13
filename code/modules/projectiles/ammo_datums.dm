@@ -701,12 +701,15 @@ datum/ammo/bullet/revolver/tp44
 	name = "additional buckshot"
 	icon_state = "buckshot"
 
+/datum/ammo/bullet/shotgun/buckshot/spread/on_hit_mob(mob/M,obj/projectile/P)
+	staggerstun(M, P, shake = 0)
+
 //buckshot variant only used by the masterkey shotgun attachment.
 /datum/ammo/bullet/shotgun/buckshot/masterkey
-	bonus_projectiles_type = /datum/ammo/bullet/shotgun/spread/masterkey
+	bonus_projectiles_type = /datum/ammo/bullet/shotgun/buckshot/spread/masterkey
 	damage = 25
 
-/datum/ammo/bullet/shotgun/spread/masterkey
+/datum/ammo/bullet/shotgun/buckshot/spread/masterkey
 	damage = 25
 
 /datum/ammo/bullet/shotgun/sx16_buckshot
