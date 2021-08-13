@@ -1183,15 +1183,16 @@ to_chat will check for valid clients itself already so no need to double check f
 		remove_from_larva_candidate_queue(observer)
 		return FALSE
 	LAZYADD(candidate, observer)
-	RegisterSignal(observer, COMSIG_PARENT_QDELETING, .proc/clean_observer)
+	RegisterSignal(observer, list(COMSIG_PARENT_QDELETING, COMSIG_MOB_LOGOUT), .proc/remove_from_larva_candidate_queue)
 	observer.larva_position =  LAZYLEN(candidate)
 	to_chat(observer, span_warning("There are no burrowed Larvae or no silos. You are in position [observer.larva_position] to become a Xenomorph."))
 	return TRUE
 
 /// Remove an observer from the larva candidate queue
 /datum/hive_status/proc/remove_from_larva_candidate_queue(mob/dead/observer/observer)
+	SIGNAL_HANDLER
 	LAZYREMOVE(candidate, observer)
-	UnregisterSignal(observer, COMSIG_PARENT_QDELETING)
+	UnregisterSignal(observer, list(COMSIG_PARENT_QDELETING, COMSIG_MOB_LOGOUT))
 	to_chat(observer, span_warning("You left the Larva queue."))
 	var/mob/dead/observer/observer_in_queue
 	for(var/i in 1 to LAZYLEN(candidate))
@@ -1228,11 +1229,6 @@ to_chat will check for valid clients itself already so no need to double check f
 	for(var/i in 1 to LAZYLEN(candidate))
 		observer_in_queue = LAZYACCESS(candidate, i)
 		observer_in_queue.larva_position = i
-
-/// Remove ref to avoid hard del and null error
-/datum/hive_status/proc/clean_observer(datum/source)
-	SIGNAL_HANDLER
-	LAZYREMOVE(candidate, source)
 
 ///Attempt to give a larva to the next in line, if not possible, free the xeno position and propose it to another candidate
 /datum/hive_status/proc/try_to_give_larva(mob/dead/observer/next_in_line)
