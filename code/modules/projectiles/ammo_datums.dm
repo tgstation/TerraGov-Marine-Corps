@@ -658,10 +658,10 @@ datum/ammo/bullet/revolver/tp44
 	bonus_projectiles_scatter = 3
 	accuracy_var_low = 8
 	accuracy_var_high = 8
-	max_range = 35
+	max_range = 15
 	damage = 50
 	damage_falloff = 0.5
-	penetration = 15
+	penetration = 35
 	sundering = 3
 
 /datum/ammo/bullet/shotgun/flechette_spread
