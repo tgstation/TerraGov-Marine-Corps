@@ -20935,6 +20935,7 @@
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
 /obj/structure/cable,
+/obj/effect/ai_node,
 /turf/open/floor/plating/ground/concrete,
 /area/magmoor/cave/southeast)
 "pky" = (
@@ -62886,7 +62887,7 @@ rfG
 uBa
 tit
 rfG
-riZ
+uSx
 ucI
 rfG
 hkW
@@ -63107,7 +63108,7 @@ suP
 sIN
 suP
 suP
-suP
+sWH
 suP
 suP
 suP
@@ -63321,7 +63322,7 @@ ooe
 qXj
 orv
 pks
-pgM
+tlp
 kPM
 kPM
 pxu
@@ -63787,7 +63788,7 @@ nNF
 voz
 kPM
 fsX
-tlp
+pgM
 kPM
 kPM
 kPM
@@ -63796,7 +63797,7 @@ kPM
 kPM
 kPM
 kPM
-kPM
+prn
 kPM
 kPM
 kPM
@@ -66369,7 +66370,7 @@ ydi
 hCv
 hCv
 hCv
-hCv
+lcx
 oqY
 hCv
 xhL
