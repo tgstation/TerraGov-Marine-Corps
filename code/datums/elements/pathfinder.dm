@@ -62,7 +62,6 @@ stutter_step: a prob() chance to go left or right of the mob's direction towards
 		else
 			step_dir = get_dir(mob_to_process, atoms_to_walk_to[mob_to_process])
 		if(!mob_to_process.Move(get_step(mob_to_process, step_dir), step_dir) && !(SEND_SIGNAL(mob_to_process, COMSIG_OBSTRUCTED_MOVE, step_dir) & COMSIG_OBSTACLE_DEALT_WITH))
-			testing("AI DEBUG: cannot deal with obstacle, random dir is taken")
 			step_dir = pick(LeftAndRightOfDir(step_dir))
 			mob_to_process.Move(get_step(mob_to_process, step_dir), step_dir)
 

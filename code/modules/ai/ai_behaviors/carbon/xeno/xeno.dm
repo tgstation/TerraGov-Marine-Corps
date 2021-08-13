@@ -51,7 +51,6 @@
 		if(isstructure(thing))
 			if(istype(thing, /obj/structure/window_frame))
 				mob_parent.loc = obstacle_turf
-				testing("AI DEBUG: window obstacle dealt with")
 				return COMSIG_OBSTACLE_DEALT_WITH
 			if(istype(thing, /obj/structure/closet))
 				var/obj/structure/closet/closet = thing
@@ -62,7 +61,6 @@
 			if(obstacle.resistance_flags & XENO_DAMAGEABLE)
 				mob_parent.face_atom(obstacle)
 				INVOKE_ASYNC(src, .proc/attack_target, null, obstacle)
-				testing("AI DEBUG: damageable structure obstacle dealt with")
 				return COMSIG_OBSTACLE_DEALT_WITH
 		if(istype(thing, /obj/machinery/door/airlock))
 			var/obj/machinery/door/airlock/lock = thing
@@ -73,7 +71,6 @@
 			if(lock.welded) //It's welded, can't force that open
 				continue
 			lock.open(TRUE)
-			testing("AI DEBUG: closed door dealt with")
 			return COMSIG_OBSTACLE_DEALT_WITH
 	if(ISDIAGONALDIR(direction))
 		return deal_with_obstacle(null, turn(direction, -45)) | deal_with_obstacle(null, turn(direction, 45))

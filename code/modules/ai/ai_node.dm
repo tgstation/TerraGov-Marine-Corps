@@ -82,7 +82,7 @@
 	for(var/obj/effect/ai_node/node AS in GLOB.allnodes)
 		if(node == src || get_dist_euclide_square(src, node) > MAX_NODE_RANGE_SQUARED)
 			continue
-		if(!is_in_LOS(get_turf(loc)))
+		if(!is_in_LOS(get_turf(node)))
 			continue
 
 		LAZYDISTINCTADD(adjacent_nodes ,node)

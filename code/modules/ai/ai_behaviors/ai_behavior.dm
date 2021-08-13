@@ -50,30 +50,27 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 
 ///Initiate our base behavior
 /datum/ai_behavior/proc/late_initialize()
-	current_action = base_action
-	switch(current_action)
+	switch(base_action)
 		if(MOVING_TO_NODE)
-			look_for_next_node(FALSE)
+			look_for_next_node()
 		if(ESCORTING_ATOM)
 			change_action(ESCORTING_ATOM, escorted_atom)
 
 //We finished moving to a node, let's pick a random nearby one to travel to
 /datum/ai_behavior/proc/finished_node_move()
 	SIGNAL_HANDLER
-	testing("AI DEBUG: reached the targeted node")
 	look_for_next_node(FALSE)
 
 //Cleans up signals related to the action and element(s)
-/datum/ai_behavior/proc/cleanup_current_action()
-	if(current_action == MOVING_TO_NODE)
+/datum/ai_behavior/proc/cleanup_current_action(next_action)
+	if(current_action == MOVING_TO_NODE && next_action != MOVING_TO_NODE)
 		current_node = null
 	unregister_action_signals(current_action)
 	RemoveElement(/datum/element/pathfinder)
 
 ///Cleanup old state vars, start the movement towards our new target
 /datum/ai_behavior/proc/change_action(next_action, atom/next_target)
-	testing("AI DEBUG: next action : [next_action] next target : [next_target]")
-	cleanup_current_action()
+	cleanup_current_action(next_action)
 	if(next_action)
 		current_action = next_action
 	if(next_target)
@@ -96,17 +93,14 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 				continue
 			current_node = ai_node
 			closest_distance = get_dist_euclide_square(ai_node, mob_parent) //Probably not needed to cache the get_dist
-		if(!current_node)
-			//We annoy the admins because either : they made some ais but forgot to put nodes/enough nodes OR the map has premade nodes and some places do not have enough of them
-			message_admins("An ai tried to find a node, but no nodes were nearby ([AREACOORD(mob_parent)])")
-			CRASH("An ai tried to find a node, but no nodes were nearby ([AREACOORD(mob_parent)])")
+		if(current_node)
+			change_action(MOVING_TO_NODE, current_node)
 		return
 	if(identifier)
 		current_node = current_node.get_best_adj_node(list(NODE_LAST_CHOSE_TO_VISIT = -1))
 	else
 		current_node = pick(current_node.adjacent_nodes)
 	current_node.set_weight(identifier, NODE_LAST_CHOSE_TO_VISIT, world.time)
-	testing("AI DEBUG: new node found")
 	change_action(MOVING_TO_NODE, current_node)
 
 //Generic process(), this is used for mainly looking at the world around the AI and determining if a new action must be considered and executed
