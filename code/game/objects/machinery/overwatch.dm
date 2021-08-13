@@ -694,7 +694,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	. = ..()
 	set_light(light_power)
 	playsound(src,'sound/mecha/heavylightswitch.ogg', 25, 1, 20)
-	to_chat(src, span_warning("You see a twinkle in the sky before your surroundings are hit with a beam of light!"))
+	visible_message(span_warning("You see a twinkle in the sky before your surroundings are hit with a beam of light!"))
 	QDEL_IN(src, SPOTLIGHT_DURATION)
 
 //This is perhaps one of the weirdest places imaginable to put it, but it's a leadership skill, so
