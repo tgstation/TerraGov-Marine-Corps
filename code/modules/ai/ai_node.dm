@@ -97,8 +97,9 @@
 
 		for(var/i in 1 to total_distance - 1)
 			turf_to_check = get_step(turf_to_check, get_dir(turf_to_check, target_turf))
-			if(turf_to_check.density)
+			if(turf_to_check.density || islava(turf_to_check))
 				has_LOS = FALSE
+				break
 
 		if(!has_LOS)
 			continue
