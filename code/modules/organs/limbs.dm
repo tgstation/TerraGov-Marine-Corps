@@ -1058,7 +1058,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 
 /datum/limb/proc/apply_splints(applied_health, duration = 0)
 
-	if(limb_status & ( LIMB_DESTROYED | LIMB_SPLINTED))
+	if(limb_status & (LIMB_DESTROYED | LIMB_SPLINTED))
 		return FALSE
 	add_limb_flags(LIMB_SPLINTED)
 	splint_health = applied_health
@@ -1076,6 +1076,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 /datum/limb/proc/unsplint()
 	remove_limb_flags(LIMB_SPLINTED)
 	to_chat(owner, span_userdanger("The splint on your [display_name] comes apart!"))
+	splint_timer = null
 
 ///Called two minutes before a splint wears off, to give a warning to the mob to seek another treatment
 /datum/limb/proc/unsplint_warning()
