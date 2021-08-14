@@ -157,7 +157,7 @@
 	density = FALSE
 	opacity = FALSE
 	anchored = TRUE
-	resistance_flags = UNACIDABLE | INDESTRUCTIBLE
+	resistance_flags = RESIST_ALL
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
 /obj/effect/opacifier/Initialize(mapload, initial_opacity)

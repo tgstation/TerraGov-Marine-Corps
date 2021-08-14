@@ -240,7 +240,7 @@
 	max_integrity = 200
 	flags_item = IS_DEPLOYABLE|DEPLOYED_WRENCH_DISASSEMBLE
 
-	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
+	resistance_flags = RESIST_ALL
 	w_class = WEIGHT_CLASS_BULKY //No dumping this in most backpacks. Carry it, fatso
 
 /obj/item/mortar_kit/Initialize()

@@ -848,7 +848,7 @@
 	icon = 'icons/obj/doors/mainship/dropship1_side.dmi' //Tiles with is here FOR SAFETY PURPOSES
 	id = "sh_dropship1"
 	openspeed = 4 //shorter open animation.
-	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
+	resistance_flags = RESIST_ALL
 	no_panel = TRUE
 	not_weldable = TRUE
 
@@ -895,7 +895,7 @@
 	icon = 'icons/obj/doors/mainship/dropship1_pilot.dmi'
 	name = "\improper Cockpit"
 	req_access = list(ACCESS_MARINE_DROPSHIP)
-	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
+	resistance_flags = RESIST_ALL
 	no_panel = TRUE
 	not_weldable = TRUE
 

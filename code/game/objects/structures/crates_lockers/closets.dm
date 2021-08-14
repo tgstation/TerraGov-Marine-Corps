@@ -189,7 +189,7 @@
 	if(X.status_flags & INCORPOREAL)
 		return FALSE
 
-	if(X.a_intent == INTENT_HARM && !CHECK_BITFIELD(resistance_flags, UNACIDABLE|INDESTRUCTIBLE))
+	if(X.a_intent == INTENT_HARM && !CHECK_BITFIELD(resistance_flags, RESIST_ALL))
 		X.do_attack_animation(src, ATTACK_EFFECT_SMASH)
 		if(!opened && prob(70))
 			break_open()
