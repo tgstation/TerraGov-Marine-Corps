@@ -330,3 +330,12 @@
   - admin: Improved the testing environment of the debug ship by adding more lights,
       making look better & adding dropship vouchers
   - balance: Reduces ravager damage tiers from 26 - 32 to 26 - 29.
+2021-08-14:
+  Joniroq:
+  - rscadd: Added new Lobby Art
+  RipGrayson:
+  - rscadd: You can buy plasma cutters from requisitions now
+  SpaceLoveSs13:
+  - admin: Display playtime and Round ID on note panel{For Admins}.
+  lbnesquik:
+  - qol: made it clear when you do not have access to a vendor.
