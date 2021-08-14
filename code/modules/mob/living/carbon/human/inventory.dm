@@ -112,13 +112,13 @@
 
 /mob/living/carbon/human/put_in_l_hand(obj/item/W)
 	var/datum/limb/O = get_limb("l_hand")
-	if(!O || !O.is_usable())
+	if(!O?.is_usable())
 		return FALSE
 	. = ..()
 
 /mob/living/carbon/human/put_in_r_hand(obj/item/W)
 	var/datum/limb/O = get_limb("r_hand")
-	if(!O || !O.is_usable())
+	if(!O?.is_usable())
 		return FALSE
 	. = ..()
 
