@@ -1045,7 +1045,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 
 	if(!is_usable())
 		owner.dropItemToGround(c_hand)
-		owner.emote("me", 1, "drop[owner.p_s] what [owner.p_they()] [owner.p_were()] holding in [owner.p_their()] [hand_name], [owner.p_their()] [display_name] unresponsive!")
+		owner.emote("me", 1, "drop[owner.p_s()] what [owner.p_they()] [owner.p_were()] holding in [owner.p_their()] [hand_name], [owner.p_their()] [display_name] unresponsive!")
 		return
 	if(is_broken())
 		if(prob(15))
