@@ -1056,48 +1056,31 @@ Note that amputating the affected organ does in fact remove the infection from t
 			new /datum/effect_system/spark_spread(owner, owner, 5, 0, TRUE, 1 SECONDS)
 
 
-/datum/limb/proc/apply_splints(obj/item/stack/medical/splint/S, applied_health, mob/living/user, mob/living/carbon/human/target, duration = 0)
+/datum/limb/proc/apply_splints(applied_health, duration = 0)
 
-	if(!istype(user))
-		return
-
-	if(limb_status & LIMB_DESTROYED)
-		to_chat(user, span_warning("There's nothing there to splint!"))
+	if(limb_status & ( LIMB_DESTROYED | LIMB_SPLINTED))
 		return FALSE
-
-	if(limb_status & LIMB_SPLINTED && applied_health <= splint_health && !splint_timer)
-		to_chat(user, span_warning("This limb is already splinted!"))
-		return FALSE
-
-	var/delay = SKILL_TASK_AVERAGE - (1 SECONDS + user.skills.getRating("medical") * 5)
-	var/text1 = span_warning("[user] finishes applying [S] to [target]'s [display_name].")
-	var/text2 = span_notice("You finish applying [S] to [target]'s [display_name].")
-
-	if(target == user) //If self splinting, multiply delay by 4
-		delay *= 4
-		text1 = span_warning("[user] successfully applies [S] to their [display_name].")
-		text2 = span_notice("You successfully apply [S] to your [display_name].")
-
-	if(!do_mob(user, target, delay, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
-		return FALSE
-
-	if(!(limb_status & LIMB_DESTROYED) && !(limb_status & LIMB_SPLINTED))
-		user.visible_message(
-		"[text1]",
-		"[text2]")
-		add_limb_flags(LIMB_SPLINTED)
-		splint_health = applied_health
-		if(splint_timer)
-			deltimer(splint_timer)
-			splint_timer = null
-		if(duration)
+	add_limb_flags(LIMB_SPLINTED)
+	splint_health = applied_health
+	if(splint_timer)
+		deltimer(splint_timer)
+		splint_timer = null
+	if(duration)
+		if(duration > 2 MINUTES)
+			splint_timer = addtimer(CALLBACK(src, .proc/unsplint_warning), duration - 2 MINUTES)
+		else
 			splint_timer = addtimer(CALLBACK(src, .proc/unsplint), duration)
-		return TRUE
+	return TRUE
 
 ///Called when a splint is removed, either through taking damage or duration expiring. Clears splinted flag and informs limb owner.
 /datum/limb/proc/unsplint()
 	remove_limb_flags(LIMB_SPLINTED)
 	to_chat(owner, span_userdanger("The splint on your [display_name] comes apart!"))
+
+///Called two minutes before a splint wears off, to give a warning to the mob to seek another treatment
+/datum/limb/proc/unsplint_warning()
+	to_chat(owner, span_warning("The splint on your [display_name] is starting to loosen, it won't last more than another couple minutes."))
+	splint_timer = addtimer(CALLBACK(src, .proc/unsplint), 2 MINUTES)
 
 //called when limb is removed or robotized, any ongoing surgery and related vars are reset
 /datum/limb/proc/reset_limb_surgeries()

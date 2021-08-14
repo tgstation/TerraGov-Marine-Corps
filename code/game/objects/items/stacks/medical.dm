@@ -281,10 +281,12 @@
 	max_amount = 5
 	///How much splint health per medical skill is applied
 	var/applied_splint_health = 15
-	///How long the splint will last, if greater than 0. Only used by child. Doubles if user has medical skill.
-	var/splint_duration
+	///How long the splint will last, if greater than 0
+	var/splint_duration = 0
 	///Required skill level, below this you'll get a fumble delay
 	var/required_skill = SKILL_MEDICAL_PRACTICED
+	///Time it takes to apply the splint, reduced by medical skill and increased if self-treating.
+	var/use_delay = 4 SECONDS
 
 
 /obj/item/stack/medical/splint/attack(mob/living/carbon/M, mob/user)
@@ -295,34 +297,56 @@
 	if(user.do_actions)
 		return
 
-	if(ishuman(M))
-		var/datum/limb/affecting = .
-		var/limb = affecting.display_name
+	if(!ishuman(M))
+		return
 
-		if(!(affecting.name in list("l_arm", "r_arm", "l_leg", "r_leg", "r_hand", "l_hand", "r_foot", "l_foot", "chest", "groin", "head")))
-			to_chat(user, span_warning("You can't apply a splint there!"))
+	var/datum/limb/affecting = .
+	var/limb = affecting.display_name
+
+	if(!(affecting.name in list("l_arm", "r_arm", "l_leg", "r_leg", "r_hand", "l_hand", "r_foot", "l_foot", "chest", "groin", "head")))
+		to_chat(user, span_warning("You can't apply a splint there!"))
+		return
+
+	var/medskill = user.skills.getRating("medical")
+	if(medskill < required_skill)
+		to_chat(user, span_warning("You start fumbling with [src]."))
+		if(!do_mob(user, M, SKILL_TASK_AVERAGE, BUSY_ICON_UNSKILLED, BUSY_ICON_MEDICAL))
 			return
 
-		var/medskill = user.skills.getRating("medical")
-		if(medskill < required_skill)
-			to_chat(user, span_warning("You start fumbling with [src]."))
-			if(!do_mob(user, M, SKILL_TASK_AVERAGE, BUSY_ICON_UNSKILLED, BUSY_ICON_MEDICAL))
-				return
+	if(affecting.limb_status & LIMB_DESTROYED)
+		to_chat(user, span_warning("There's nothing there to splint!"))
+		return FALSE
 
+	var/this_splint_health = applied_splint_health * max(medskill - (user == M), 1)
+
+	if(affecting.limb_status & LIMB_SPLINTED && this_splint_health <= affecting.splint_health && !affecting.splint_timer)
+		to_chat(user, span_warning("This limb is already splinted!"))
+		return FALSE
+
+	var/delay_mult = 1
+	if(M != user)
+		user.visible_message(span_warning("[user] starts to apply [src] to [M]'s [limb]."),
+		span_notice("You start to apply [src] to [M]'s [limb], hold still."))
+	else
+		if((!user.hand && affecting.body_part == ARM_RIGHT) || (user.hand && affecting.body_part == ARM_LEFT))
+			to_chat(user, span_warning("You can't apply a splint to the arm you're using!"))
+			return
+		user.visible_message(span_warning("[user] starts to apply [src] to their [limb]."),
+		span_notice("You start to apply [src] to your [limb], hold still."))
+		delay_mult = 4
+
+	var/base_delay = use_delay - medskill * 5 //Cut half a second for each skill level
+	if(!do_mob(user, M, base_delay * delay_mult, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
+		return
+
+	if(affecting.apply_splints(this_splint_health, splint_duration)) // Referenced in external organ helpers.
+		use(1)
 		if(M != user)
-			user.visible_message(span_warning("[user] starts to apply [src] to [M]'s [limb]."),
-			span_notice("You start to apply [src] to [M]'s [limb], hold still."))
+			user.visible_message(span_warning("[user] finishes applying [src] to [M]'s [affecting.display_name]."),
+			span_notice("You finish applying [src] to [M]'s [affecting.display_name]."))
 		else
-			if((!user.hand && affecting.body_part == ARM_RIGHT) || (user.hand && affecting.body_part == ARM_LEFT))
-				to_chat(user, span_warning("You can't apply a splint to the arm you're using!"))
-				return
-			user.visible_message(span_warning("[user] starts to apply [src] to their [limb]."),
-			span_notice("You start to apply [src] to your [limb], hold still."))
-
-		var/this_splint_health = (user == M) ? (applied_splint_health*max(medskill - 1, 0)) : applied_splint_health*medskill
-		this_splint_health = max(this_splint_health, applied_splint_health)
-		if(affecting.apply_splints(src, this_splint_health, user, M, splint_duration * (medskill ? 2 : 1))) // Referenced in external organ helpers.
-			use(1)
+			user.visible_message(span_warning("[user] successfully applies [src] to [user.p_their()] [affecting.display_name]."),
+			span_notice("You successfully apply [src] to your [affecting.display_name]."))
 
 /obj/item/stack/medical/splint/tape
 	name = "medical tape"
@@ -334,3 +358,4 @@
 	required_skill = SKILL_MEDICAL_UNTRAINED
 	amount = 10
 	max_amount = 10
+	use_delay = 2 SECONDS

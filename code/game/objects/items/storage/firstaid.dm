@@ -71,7 +71,7 @@
 	new /obj/item/stack/medical/ointment(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/tricordrazine(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/tramadol(src)
-	new /obj/item/stack/medical/splint(src)
+	new /obj/item/stack/medical/splint/tape(src)
 	new /obj/item/storage/pill_bottle/packet/russian_red(src)
 
 
