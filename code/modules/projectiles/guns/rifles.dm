@@ -1224,3 +1224,45 @@
 	wield_delay = 0.6 SECONDS
 	aim_slowdown = 0.5
 	damage_falloff_mult = 0.5
+
+//-------------------------------------------------------
+//T-18B MACHINEcarbine
+
+/obj/item/weapon/gun/rifle/t18b
+	name = "\improper T-18B machinecarbine"
+	desc = "The T-18B is an unoffical modification of a T-18 carbine, modified to SMG length of barrel, rechambered for a stronger round, and belt based. Truly the peak of CQC. Useless past that. Aiming is impossible. Uses 10x25mm caseless ammunition."
+	icon_state = "t18b"
+	item_state = "t18"
+	fire_animation = "t18b_fire"
+	fire_sound = 'sound/weapons/guns/fire/t18b.ogg'
+	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
+	unload_sound = 'sound/weapons/guns/interact/t18_unload.ogg'
+	reload_sound = 'sound/weapons/guns/interact/t18_reload.ogg'
+	caliber = CALIBER_10X25_CASELESS //codex
+	max_shells = 100 //codex
+	force = 20
+	current_mag = /obj/item/ammo_magazine/t18b
+	attachable_allowed = list(
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/bipod,
+		/obj/item/attachable/verticalgrip,
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/heavy_barrel,
+		/obj/item/attachable/suppressor,
+		/obj/item/attachable/bayonet,
+		/obj/item/attachable/bayonetknife,
+	)
+
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER
+	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
+	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 16,"rail_x" = 10, "rail_y" = 19, "under_x" = 18, "under_y" = 13, "stock_x" = 0, "stock_y" = 13)
+
+	fire_delay = 0.2 SECONDS
+	burst_delay = 0.1 SECONDS
+	extra_delay = 0.5 SECONDS
+	accuracy_mult = 1
+	scatter = 20
+	burst_amount = 4
+	aim_slowdown = 0.3
+	wield_delay = 0.4 SECONDS
+	damage_falloff_mult = 3

@@ -342,3 +342,17 @@
 	max_rounds = 30
 	gun_type = /obj/item/weapon/gun/rifle/standard_skirmishrifle
 	icon_state_mini = "mag_rifle"
+
+//T-18B
+
+/obj/item/ammo_magazine/t18b
+	name = "\improper T-18B box magazine (10x25mm)"
+	desc = "A box magazine for the T-18B machinecarbine."
+	icon_state = "t42"
+	caliber = CALIBER_10X25_CASELESS
+	default_ammo = /datum/ammo/bullet/rifle/heavy
+	w_class = WEIGHT_CLASS_NORMAL
+	max_rounds = 100
+	reload_delay = 1 SECONDS
+	gun_type = /obj/item/weapon/gun/rifle/t18b
+	icon_state_mini = "mag_t42"
