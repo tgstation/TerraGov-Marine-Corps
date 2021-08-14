@@ -338,5 +338,5 @@
 		return TRUE
 
 	cut_apart(user, O.name, O)
-	qdel(O)
+	O.ex_act(EXPLODE_DEVASTATE)
 	return TRUE
