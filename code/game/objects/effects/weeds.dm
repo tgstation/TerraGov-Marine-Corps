@@ -145,8 +145,8 @@
 	var/node_turfs = list() // list of all potential turfs that we can expand to
 
 /obj/effect/alien/weeds/node/Destroy()
-	. = ..()
 	SSweeds_decay.decay_weeds(node_turfs)
+	return ..()
 
 
 /obj/effect/alien/weeds/node/update_icon()

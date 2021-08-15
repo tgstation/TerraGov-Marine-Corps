@@ -21,8 +21,8 @@
 	speed = -1.3
 
 	// *** Plasma *** //
-	plasma_max = 100
-	plasma_gain = 2
+	plasma_max = 150
+	plasma_gain = 5
 
 	// *** Health *** //
 	max_health = 175
@@ -38,7 +38,7 @@
 	)
 
 	// *** Flags *** //
-	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_EVOLUTION_ALLOWED|CASTE_CAN_VENT_CRAWL|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER
+	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_EVOLUTION_ALLOWED|CASTE_CAN_VENT_CRAWL|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER|CAN_BECOME_KING
 
 	// *** Defense *** //
 	soft_armor = list("melee" = 14, "bullet" = 5, "laser" = 5, "energy" = 0, "bomb" = XENO_BOMB_RESIST_0, "bio" = 0, "rad" = 0, "fire" = 5, "acid" = 0)
@@ -76,8 +76,8 @@
 	speed = -1.3
 
 	// *** Plasma *** //
-	plasma_max = 150
-	plasma_gain = 3
+	plasma_max = 175
+	plasma_gain = 7
 
 	// *** Health *** //
 	max_health = 200
@@ -107,7 +107,7 @@
 
 	// *** Plasma *** //
 	plasma_max = 200
-	plasma_gain = 3
+	plasma_gain = 9
 
 	// *** Health *** //
 	max_health = 225
@@ -138,7 +138,7 @@
 
 	// *** Plasma *** //
 	plasma_max = 200
-	plasma_gain = 3
+	plasma_gain = 11
 
 	// *** Health *** //
 	max_health = 240

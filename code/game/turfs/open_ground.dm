@@ -44,16 +44,16 @@
 		R.overlays += image("icon"='icons/turf/ground_map.dmi',"icon_state"="riverwater","layer"=RIVER_OVERLAY_LAYER)
 
 
-/turf/open/ground/river/Entered(atom/movable/AM)
+/turf/open/ground/river/Entered(atom/movable/arrived, atom/old_loc, list/atom/old_locs)
 	. = ..()
 	if(has_catwalk)
 		return
-	if(iscarbon(AM))
-		var/mob/living/carbon/C = AM
+	if(iscarbon(arrived))
+		var/mob/living/carbon/C = arrived
 		var/river_slowdown = 1.75
 
 		if(ishuman(C))
-			var/mob/living/carbon/human/H = AM
+			var/mob/living/carbon/human/H = C
 			cleanup(H)
 
 		else if(isxeno(C))
@@ -90,10 +90,11 @@
 	R.overlays += image("icon"='icons/effects/effects.dmi',"icon_state"="greenglow","layer"=RIVER_OVERLAY_LAYER)
 
 
-/turf/open/ground/river/poison/Entered(mob/living/L)
+/turf/open/ground/river/poison/Entered(atom/movable/arrived, atom/old_loc, list/atom/old_locs)
 	. = ..()
-	if(!istype(L))
+	if(!isliving(arrived))
 		return
+	var/mob/living/L = arrived
 	L.apply_damage(55, TOX)
 	UPDATEHEALTH(L)
 
@@ -285,7 +286,7 @@
 	if(probability <= 0)
 		return
 
-	//to_chat(world, "<span class='notice'>Spread([probability])</span>")
+	//to_chat(world, span_notice("Spread([probability])"))
 	for(var/turf/open/ground/jungle/J in orange(1, src))
 		if(!J.bushes_spawn)
 			continue
@@ -356,20 +357,20 @@
 		qdel(B)
 
 
-/turf/open/ground/jungle/water/Entered(atom/movable/AM)
+/turf/open/ground/jungle/water/Entered(atom/movable/arrived, direction)
 	. = ..()
-	if(!istype(AM, /mob/living))
+	if(!istype(arrived, /mob/living))
 		return
-	var/mob/living/L = AM
+	var/mob/living/L = arrived
 	//slip in the murky water if we try to run through it
 	if(prob(10 + (L.m_intent == MOVE_INTENT_RUN ? 40 : 0)))
-		to_chat(L, pick("<span class='notice'> You slip on something slimy.</span>", "<span class='notice'>You fall over into the murk.</span>"))
+		to_chat(L, pick(span_notice(" You slip on something slimy."), span_notice("You fall over into the murk.")))
 		L.Stun(40)
 		L.Paralyze(20)
 
 	//piranhas
 	if(prob(25))
-		to_chat(L, pick("<span class='warning'> Something sharp bites you!</span>","<span class='warning'> Sharp teeth grab hold of you!</span>","<span class='warning'> You feel something take a chunk out of your leg!</span>"))
+		to_chat(L, pick(span_warning(" Something sharp bites you!"),span_warning(" Sharp teeth grab hold of you!"),span_warning(" You feel something take a chunk out of your leg!")))
 		L.apply_damage(1, BRUTE, sharp = TRUE)
 
 

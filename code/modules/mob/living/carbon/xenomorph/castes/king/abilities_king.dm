@@ -16,7 +16,7 @@
 	var/duration = 10 SECONDS
 
 /datum/action/xeno_action/activable/nightfall/on_cooldown_finish()
-	to_chat(owner, "<span class='notice'>We gather enough mental strength to shut down lights again.</span>")
+	to_chat(owner, span_notice("We gather enough mental strength to shut down lights again."))
 	return ..()
 
 /datum/action/xeno_action/activable/nightfall/use_ability()
@@ -48,7 +48,7 @@
 	var/list/filters_applied = list()
 
 /datum/action/xeno_action/activable/gravity_crush/on_cooldown_finish()
-	to_chat(owner, "<span class='warning'>Our psychic aura restores itself. We are ready to gravity crush again.</span>")
+	to_chat(owner, span_warning("Our psychic aura restores itself. We are ready to gravity crush again."))
 	return ..()
 
 /datum/action/xeno_action/activable/gravity_crush/can_use_ability(atom/A, silent, override_flags)
@@ -57,13 +57,13 @@
 		return
 	if(!owner.line_of_sight(A, king_crush_dist))
 		if(!silent)
-			to_chat(owner, "<span class='warning'>We must get closer to crush, our mind cannot reach this far.</span>")
+			to_chat(owner, span_warning("We must get closer to crush, our mind cannot reach this far."))
 		return FALSE
 
 /datum/action/xeno_action/activable/gravity_crush/use_ability(atom/A)
 	owner.face_atom(A) //Face towards the target so we don't look silly
 	var/list/turfs = RANGE_TURFS(1, A)
-	playsound(A, 'sound/effects/bomb_fall.ogg', 75, FALSE)
+	playsound(A, 'sound/effects/bomb_fall.ogg', 50, FALSE)
 	apply_filters(turfs)
 	if(!do_after(owner, WINDUP_GRAV, FALSE, owner, BUSY_ICON_DANGER))
 		remove_all_filters()
@@ -74,7 +74,7 @@
 	remove_all_filters()
 	succeed_activate()
 	add_cooldown()
-	A.visible_message("<span class='warning'>[A] collapses inward as its gravity suddenly increases!</span>")
+	A.visible_message(span_warning("[A] collapses inward as its gravity suddenly increases!"))
 
 ///Remove all filters of items in filters_applied
 /datum/action/xeno_action/activable/gravity_crush/proc/remove_all_filters()
@@ -106,6 +106,8 @@
 					var/mob/living/carbon/xenomorph/xeno = mob_crushed
 					if(xeno.hive == xeno_owner.hive)
 						continue
+				mob_crushed.ex_act(EXPLODE_LIGHT)
+				continue
 			item.ex_act(EXPLODE_HEAVY)	//crushing without damaging the nearby area
 
 /datum/action/xeno_action/activable/gravity_crush/ai_should_start_consider()
@@ -133,7 +135,7 @@
 	keybind_signal = COMSIG_XENOABILITY_HIVE_SUMMON
 
 /datum/action/xeno_action/activable/psychic_summon/on_cooldown_finish()
-	to_chat(owner, "<span class='warning'>The hives power swells. We may summon our sisters again.</span>")
+	to_chat(owner, span_warning("The hives power swells. We may summon our sisters again."))
 	return ..()
 
 /datum/action/xeno_action/psychic_summon/can_use_action(silent, override_flags)
@@ -141,14 +143,14 @@
 	var/mob/living/carbon/xenomorph/X = owner
 	if(length(X.hive.get_all_xenos()) <= 1)
 		if(!silent)
-			to_chat(owner, "<span class='notice'>We have no hive to call. We are alone on our throne of nothing.</span>")
+			to_chat(owner, span_notice("We have no hive to call. We are alone on our throne of nothing."))
 		return FALSE
 
 /datum/action/xeno_action/psychic_summon/action_activate()
 	var/mob/living/carbon/xenomorph/X = owner
 
 	log_game("[key_name(owner)] has begun summoning hive in [AREACOORD(owner)]")
-	xeno_message("King: \The [owner] has begun a psychic summon in <b>[get_area(owner)]</b>!", "xenoannounce", 3, X.hivenumber)
+	xeno_message("King: \The [owner] has begun a psychic summon in <b>[get_area(owner)]</b>!", hivenumber = X.hivenumber)
 	var/list/allxenos = X.hive.get_all_xenos()
 	for(var/mob/living/carbon/xenomorph/sister AS in allxenos)
 		sister.add_filter("summonoutline", 2, outline_filter(1, COLOR_VIOLET))

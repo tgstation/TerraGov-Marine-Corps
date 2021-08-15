@@ -79,6 +79,7 @@
 #define GUN_WIELDED_STABLE_FIRING_ONLY (1<<18)
 #define GUN_IFF (1<<19)
 #define GUN_DEPLOYED_FIRE_ONLY (1<<20)
+#define GUN_IS_SENTRY (1<<21)
 
 #define GUN_FIREMODE_SEMIAUTO "semi-auto fire mode"
 #define GUN_FIREMODE_BURSTFIRE "burst-fire mode"

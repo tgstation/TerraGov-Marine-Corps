@@ -30,7 +30,7 @@
 	deevolves_to = /mob/living/carbon/xenomorph/hunter
 
 	// *** Flags *** //
-	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_LEADER|CASTE_INNATE_PLASMA_REGEN
+	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_LEADER|CASTE_INNATE_PLASMA_REGEN|CAN_BECOME_KING
 
 	// *** Defense *** //
 	soft_armor = list("melee" = 35, "bullet" = 40, "laser" = 30, "energy" = 30, "bomb" = XENO_BOMB_RESIST_1, "bio" = 30, "rad" = 30, "fire" = 50, "acid" = 30)
@@ -84,7 +84,7 @@
 	upgrade = XENO_UPGRADE_TWO
 
 	// *** Melee Attacks *** //
-	melee_damage = 32
+	melee_damage = 28
 
 	// *** Speed *** //
 	speed = -0.9
@@ -110,7 +110,7 @@
 	upgrade = XENO_UPGRADE_THREE
 
 	// *** Melee Attacks *** //
-	melee_damage = 32
+	melee_damage = 29
 
 	// *** Speed *** //
 	speed = -1

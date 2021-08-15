@@ -4,11 +4,11 @@
 #Final authority on what's required to fully build the project
 
 # byond version
-export BYOND_MAJOR=513
-export BYOND_MINOR=1536
+export BYOND_MAJOR=514
+export BYOND_MINOR=1557
 
 #rust_g git tag
-export RUST_G_VERSION=0.4.7
+export RUST_G_VERSION=0.4.9
 
 #node version
 export NODE_VERSION=12

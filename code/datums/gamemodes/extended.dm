@@ -34,8 +34,8 @@
 
 /datum/game_mode/extended/declare_completion()
 	. = ..()
-	to_chat(world, "<span class='round_header'>|Round Complete|</span>")
-	to_chat(world, "<span class='round_body'>Thus ends the story of the brave men and women of the [SSmapping.configs[SHIP_MAP].map_name] and their struggle on [SSmapping.configs[GROUND_MAP].map_name].</span>")
+	to_chat(world, span_round_header("|Round Complete|"))
+	to_chat(world, span_round_body("Thus ends the story of the brave men and women of the [SSmapping.configs[SHIP_MAP].map_name] and their struggle on [SSmapping.configs[GROUND_MAP].map_name]."))
 	var/sound/S = sound(pick('sound/theme/neutral_hopeful1.ogg','sound/theme/neutral_hopeful2.ogg'), channel = CHANNEL_CINEMATIC)
 	SEND_SOUND(world, S)
 

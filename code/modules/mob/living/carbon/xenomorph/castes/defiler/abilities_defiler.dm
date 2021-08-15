@@ -16,7 +16,7 @@
 
 /datum/action/xeno_action/activable/larval_growth_sting/defiler/on_cooldown_finish()
 	playsound(owner.loc, 'sound/voice/alien_drool1.ogg', 50, 1)
-	to_chat(owner, "<span class='xenodanger'>You feel your toxin glands refill, another young one ready for implantation. You can use Defile again.</span>")
+	to_chat(owner, span_xenodanger("You feel your toxin glands refill, another young one ready for implantation. You can use Defile again."))
 	return ..()
 
 /datum/action/xeno_action/activable/larval_growth_sting/defiler/use_ability(atom/A)
@@ -36,8 +36,8 @@
 	embryo.hivenumber = X.hivenumber
 	GLOB.round_statistics.now_pregnant++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "now_pregnant")
-	to_chat(X, "<span class='xenodanger'>Our stinger successfully implants a larva into the host.</span>")
-	to_chat(C, "<span class='danger'>You feel horrible pain as something large is forcefully implanted in your thorax.</span>")
+	to_chat(X, span_xenodanger("Our stinger successfully implants a larva into the host."))
+	to_chat(C, span_danger("You feel horrible pain as something large is forcefully implanted in your thorax."))
 	C.apply_damage(100, STAMINA)
 	C.apply_damage(10, BRUTE, "chest", updating_health = TRUE)
 	C.emote("scream")
@@ -61,15 +61,15 @@
 
 /datum/action/xeno_action/emit_neurogas/on_cooldown_finish()
 	playsound(owner.loc, 'sound/effects/xeno_newlarva.ogg', 50, 0)
-	to_chat(owner, "<span class='xenodanger'>We feel our dorsal vents bristle with heated gas. We can use Emit Noxious Gas again.</span>")
+	to_chat(owner, span_xenodanger("We feel our dorsal vents bristle with heated gas. We can use Emit Noxious Gas again."))
 	return ..()
 
 /datum/action/xeno_action/emit_neurogas/action_activate()
 	var/mob/living/carbon/xenomorph/Defiler/X = owner
 
 	//give them fair warning
-	X.visible_message("<span class='danger'>Tufts of smoke begin to billow from [X]!</span>", \
-	"<span class='xenodanger'>Our dorsal vents widen, preparing to emit toxic smoke. We must keep still!</span>")
+	X.visible_message(span_danger("Tufts of smoke begin to billow from [X]!"), \
+	span_xenodanger("Our dorsal vents widen, preparing to emit toxic smoke. We must keep still!"))
 
 	X.emitting_gas = TRUE //We gain bump movement immunity while we're emitting gas.
 	succeed_activate()
@@ -77,7 +77,7 @@
 
 	if(!do_after(X, DEFILER_GAS_CHANNEL_TIME, TRUE, null, BUSY_ICON_HOSTILE))
 		if(!QDELETED(src))
-			to_chat(X, "<span class='xenodanger'>We abort emitting fumes, our expended plasma resulting in nothing.</span>")
+			to_chat(X, span_xenodanger("We abort emitting fumes, our expended plasma resulting in nothing."))
 			X.emitting_gas = FALSE
 			X.icon_state = "Defiler Running"
 			return fail_activate()
@@ -87,14 +87,14 @@
 	add_cooldown()
 
 	if(X.stagger) //If we got staggered, return
-		to_chat(X, "<span class='xenowarning'>We try to emit toxins but are staggered!</span>")
+		to_chat(X, span_xenowarning("We try to emit toxins but are staggered!"))
 		return fail_activate()
 
 	GLOB.round_statistics.defiler_neurogas_uses++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "defiler_neurogas_uses")
 
-	X.visible_message("<span class='xenodanger'>[X] emits a noxious gas!</span>", \
-	"<span class='xenodanger'>We emit noxious gas!</span>")
+	X.visible_message(span_xenodanger("[X] emits a noxious gas!"), \
+	span_xenodanger("We emit noxious gas!"))
 	dispense_gas()
 
 /datum/action/xeno_action/emit_neurogas/proc/dispense_gas(count = 3)
@@ -115,10 +115,10 @@
 
 	while(count)
 		if(X.stagger) //If we got staggered, return
-			to_chat(X, "<span class='xenowarning'>We try to emit toxins but are staggered!</span>")
+			to_chat(X, span_xenowarning("We try to emit toxins but are staggered!"))
 			return
 		if(X.IsStun() || X.IsParalyzed())
-			to_chat(X, "<span class='xenowarning'>We try to emit toxins but are disabled!</span>")
+			to_chat(X, span_xenowarning("We try to emit toxins but are disabled!"))
 			return
 		var/turf/T = get_turf(X)
 		playsound(T, 'sound/effects/smoke.ogg', 25)
@@ -127,7 +127,7 @@
 		else //last emission is larger
 			gas.set_up(CEILING(smoke_range*1.3,1), T)
 		gas.start()
-		T.visible_message("<span class='danger'>Noxious smoke billows from the hulking xenomorph!</span>")
+		T.visible_message(span_danger("Noxious smoke billows from the hulking xenomorph!"))
 		count = max(0,count - 1)
 		sleep(DEFILER_GAS_DELAY)
 
@@ -147,7 +147,7 @@
 
 /datum/action/xeno_action/activable/inject_egg_neurogas/on_cooldown_finish()
 	playsound(owner.loc, 'sound/effects/xeno_newlarva.ogg', 50, 0)
-	to_chat(owner, "<span class='xenodanger'>We feel our stinger fill with toxins. We can inject an egg with gas again.</span>")
+	to_chat(owner, span_xenodanger("We feel our stinger fill with toxins. We can inject an egg with gas again."))
 	return ..()
 
 /datum/action/xeno_action/activable/inject_egg_neurogas/use_ability(atom/A)
@@ -157,19 +157,19 @@
 		return fail_activate()
 
 	if(istype(A, /obj/effect/alien/egg/gas))
-		to_chat(X, "<span class='warning'>That egg has already been filled with toxic gas.</span>")
+		to_chat(X, span_warning("That egg has already been filled with toxic gas.") )
 		return fail_activate()
 
 	var/obj/effect/alien/egg/alien_egg = A
 	if(alien_egg.status != EGG_GROWN)
-		to_chat(X, "<span class='warning'>That egg isn't strong enough to hold our gases.</span>")
+		to_chat(X, span_warning("That egg isn't strong enough to hold our gases."))
 		return fail_activate()
 
-	X.visible_message("<span class='danger'>[X] starts injecting the egg with neurogas, killing the little one inside!</span>", \
-		"<span class='xenodanger'>We extend our stinger into the egg, filling it with gas, killing the little one inside!</span>")
+	X.visible_message(span_danger("[X] starts injecting the egg with neurogas, killing the little one inside!"), \
+		span_xenodanger("We extend our stinger into the egg, filling it with gas, killing the little one inside!"))
 	if(!do_after(X, 2 SECONDS, TRUE, alien_egg, BUSY_ICON_HOSTILE))
-		X.visible_message("<span class='danger'>The stinger retracts from [X], leaving the egg and little one alive.</span>", \
-			"<span class='xenodanger'>Our stinger retracts, leaving the egg and little one alive.</span>")
+		X.visible_message(span_danger("The stinger retracts from [X], leaving the egg and little one alive."), \
+			span_xenodanger("Our stinger retracts, leaving the egg and little one alive."))
 		return fail_activate()
 
 	succeed_activate()
@@ -223,7 +223,7 @@
 		X.selected_reagent = GLOB.defiler_toxin_type_list[i+1]
 
 	var/atom/A = X.selected_reagent
-	to_chat(X, "<span class='notice'>We will now use <b>[initial(A.name)]</b>.</span>")
+	to_chat(X, span_notice("We will now use <b>[initial(A.name)]</b>."))
 	update_button_icon()
 	return succeed_activate()
 
@@ -246,7 +246,7 @@
 		if(R.name == toxin_choice)
 			X.selected_reagent = R.type
 			break
-	to_chat(X, "<span class='notice'>We will now use <b>[toxin_choice]</b>.</span>")
+	to_chat(X, span_notice("We will now use <b>[toxin_choice]</b>."))
 	update_button_icon()
 	return succeed_activate()
 
@@ -278,7 +278,7 @@
 	reagent_slash_count = DEFILER_REAGENT_SLASH_COUNT //Set the number of slashes
 	reagent_slash_duration_timer_id = addtimer(CALLBACK(src, .proc/reagent_slash_deactivate, X), DEFILER_REAGENT_SLASH_DURATION, TIMER_STOPPABLE) //Initiate the timer and set the timer ID for reference
 
-	to_chat(X, "<span class='xenodanger'>Our spines fill with virulent toxins!</span>") //Let the user know
+	to_chat(X, span_xenodanger("Our spines fill with virulent toxins!")) //Let the user know
 	X.playsound_local(X, 'sound/voice/alien_drool2.ogg', 25)
 
 	succeed_activate()
@@ -292,7 +292,7 @@
 	deltimer(reagent_slash_duration_timer_id) //delete the timer so we don't have mismatch issues, and so we don't potentially try to deactivate the ability twice
 	reagent_slash_duration_timer_id = null
 
-	to_chat(X, "<span class='xenodanger'>We are no longer benefitting from [src].</span>") //Let the user know
+	to_chat(X, span_xenodanger("We are no longer benefitting from [src].")) //Let the user know
 	X.playsound_local(X, 'sound/voice/hiss5.ogg', 25)
 
 
@@ -307,9 +307,8 @@
 	var/mob/living/carbon/carbon_target = target
 
 	carbon_target.reagents.add_reagent(X.selected_reagent, DEFILER_REAGENT_SLASH_INJECT_AMOUNT)
-	carbon_target.reagents.add_reagent(/datum/reagent/toxin/xeno_growthtoxin, DEFILER_REAGENT_SLASH_INJECT_AMOUNT, no_overdose = TRUE) //Inject larval growth without ODing
 	playsound(carbon_target, 'sound/effects/spray3.ogg', 15, TRUE)
-	X.visible_message(carbon_target, "<span class='danger'>[carbon_target] is pricked by [X]'s spines!</span>")
+	X.visible_message(carbon_target, span_danger("[carbon_target] is pricked by [X]'s spines!"))
 
 	GLOB.round_statistics.defiler_reagent_slashes++ //Statistics
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "defiler_reagent_slashes")
@@ -321,7 +320,7 @@
 
 
 /datum/action/xeno_action/reagent_slash/on_cooldown_finish()
-	to_chat(owner, "<span class='xenodanger'>We are able to infuse our spines with toxins again.</span>")
+	to_chat(owner, span_xenodanger("We are able to infuse our spines with toxins again."))
 	owner.playsound_local(owner, 'sound/effects/xeno_newlarva.ogg', 25, 0, 1)
 	return ..()
 

@@ -300,8 +300,8 @@
 	winclone(player, window_name, clone_name)
 
 
-/proc/_url_encode(PlainText, format=0)
-	return url_encode(PlainText, format)
+/proc/_url_encode(PlainText)
+	return url_encode(PlainText)
 
 
 /proc/_url_decode(UrlText)

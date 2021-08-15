@@ -111,7 +111,7 @@
 
 /obj/item/weapon/gun/throw_at(atom/target, range, speed, thrower)
 	if( harness_check(thrower) )
-		to_chat(usr, "<span class='warning'>\The [src] clanks on the ground.</span>")
+		to_chat(usr, span_warning("\The [src] clanks on the ground."))
 	else
 		return ..()
 
@@ -140,7 +140,7 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 		return TRUE
 	if(user.mind && allowed(user))
 		return TRUE
-	to_chat(user, "<span class='warning'>[src] flashes a warning sign indicating unauthorized use!</span>")
+	to_chat(user, span_warning("[src] flashes a warning sign indicating unauthorized use!"))
 
 
 /obj/item/weapon/gun/proc/wielded_stable() //soft wield-delay
@@ -183,13 +183,13 @@ should be alright.
 	user.equip_to_slot_if_possible(src, SLOT_S_STORE, warning = FALSE)
 	if(user.s_store == src)
 		var/obj/item/I = user.wear_suit
-		to_chat(user, "<span class='warning'>[src] snaps into place on [I].</span>")
+		to_chat(user, span_warning("[src] snaps into place on [I]."))
 		user.update_inv_s_store()
 		return
 
 	user.equip_to_slot_if_possible(src, SLOT_BACK, warning = FALSE)
 	if(user.back == src)
-		to_chat(user, "<span class='warning'>[src] snaps into place on your back.</span>")
+		to_chat(user, span_warning("[src] snaps into place on your back."))
 	user.update_inv_back()
 
 
@@ -224,10 +224,42 @@ should be alright.
 	if(active_attachable?.flags_attach_features & ATTACH_RELOADABLE && check_inactive_hand(user) && active_attachable.reload_attachment(I, user, TRUE))
 		return
 
+	if(istype(I, /obj/item/cell) && CHECK_BITFIELD(flags_gun_features, GUN_IS_SENTRY))
+		if(sentry_battery)
+			to_chat(user, span_warning("[src] already has a battery installed! Use Alt-Click to remove it!"))
+			return
+		if(!istype(I, sentry_battery_type))
+			to_chat(user, span_warning("[I] wont fit there!"))
+			return
+		var/obj/item/cell/new_cell = I
+		if(!new_cell.charge)
+			to_chat(user, span_warning("[new_cell] is out of charge!"))
+			return
+		playsound(src, 'sound/weapons/guns/interact/standard_laser_rifle_reload.ogg', 20)
+		sentry_battery = new_cell
+		user.temporarilyRemoveItemFromInventory(new_cell)
+		new_cell.forceMove(src)
+		to_chat(user, span_notice("You install the [new_cell] into the [src]."))
+		return
+
 	if((istype(I, /obj/item/ammo_magazine) || istype(I, /obj/item/cell/lasgun)) && check_inactive_hand(user))
 		reload(user, I)
 		return
 
+/obj/item/weapon/gun/AltClick(mob/user)
+	. = ..()
+	if(!user.Adjacent(src) || !ishuman(user) || !CHECK_BITFIELD(flags_gun_features, GUN_IS_SENTRY))
+		return
+	var/mob/living/carbon/human/human = user
+	if(!sentry_battery)
+		to_chat(human, "<span class='warning'> There is no battery to remove from [src].</span>")
+		return
+	if(human.get_active_held_item() != src && human.get_inactive_held_item() != src && !CHECK_BITFIELD(flags_item, IS_DEPLOYED))
+		to_chat(human, "<span class='notice'>You have to hold [src] to take out its battery.</span>")
+		return
+	playsound(src, 'sound/weapons/flipblade.ogg', 20)
+	human.put_in_hands(sentry_battery)
+	sentry_battery = null
 
 //tactical reloads
 /obj/item/weapon/gun/MouseDrop_T(atom/dropping, mob/living/carbon/human/user)
@@ -240,20 +272,20 @@ should be alright.
 	if(!istype(user) || user.incapacitated(TRUE))
 		return
 	if(src != user.r_hand && src != user.l_hand)
-		to_chat(user, "<span class='warning'>[src] must be in your hand to do that.</span>")
+		to_chat(user, span_warning("[src] must be in your hand to do that."))
 		return
 	if(flags_gun_features & GUN_INTERNAL_MAG)
-		to_chat(user, "<span class='warning'>Can't do tactical reloads with [src].</span>")
+		to_chat(user, span_warning("Can't do tactical reloads with [src]."))
 		return
 	//no tactical reload for the untrained.
 	if(!user.skills.getRating("firearms"))
-		to_chat(user, "<span class='warning'>You don't know how to do tactical reloads.</span>")
+		to_chat(user, span_warning("You don't know how to do tactical reloads."))
 		return
 	if(!istype(src, new_magazine.gun_type))
 		return
 	if(current_mag)
 		unload(user,0,1)
-		to_chat(user, "<span class='notice'>You start a tactical reload.</span>")
+		to_chat(user, span_notice("You start a tactical reload."))
 	var/tac_reload_time = max(0.5 SECONDS, 1.5 SECONDS - user.skills.getRating("firearms") * 5)
 	if(!do_after(user,tac_reload_time, TRUE, new_magazine, ignore_turf_checks = TRUE) && loc == user)
 		return
@@ -273,7 +305,7 @@ should be alright.
 	if(user)
 		var/obj/item/weapon/gun/in_hand = user.get_inactive_held_item()
 		if( in_hand != src ) //It has to be held.
-			to_chat(user, "<span class='warning'>You have to hold [src] to do that!</span>")
+			to_chat(user, span_warning("You have to hold [src] to do that!"))
 			return
 	return TRUE
 
@@ -283,7 +315,7 @@ should be alright.
 		var/obj/item/weapon/gun/in_handL = user.l_hand
 		var/obj/item/weapon/gun/in_handR = user.r_hand
 		if( in_handL != src && in_handR != src ) //It has to be held.
-			to_chat(user, "<span class='warning'>You have to hold [src] to do that!</span>")
+			to_chat(user, span_warning("You have to hold [src] to do that!"))
 			return
 	return 1
 
@@ -303,35 +335,35 @@ should be alright.
 
 /obj/item/weapon/gun/proc/attach_to_gun(mob/user, obj/item/attachable/attachment)
 	if(attachable_allowed && !(attachment.type in attachable_allowed) )
-		to_chat(user, "<span class='warning'>[attachment] doesn't fit on [src]!</span>")
+		to_chat(user, span_warning("[attachment] doesn't fit on [src]!"))
 		return
 
 	if(overcharge == TRUE)
-		to_chat(user, "<span class='warning'>You need to disable overcharge on [src]!</span>")
+		to_chat(user, span_warning("You need to disable overcharge on [src]!"))
 		return
 
 	//Checks if there is any unremovable attachment on our slot, if true, return.
 	var/obj/item/attachable/currently_in_slot = LAZYACCESS(attachments, attachment.slot)
 	if(currently_in_slot && !(currently_in_slot.flags_attach_features & ATTACH_REMOVABLE))
-		to_chat(user, "<span class='warning'>The attachment on [src]'s [attachment.slot] cannot be removed!</span>")
+		to_chat(user, span_warning("The attachment on [src]'s [attachment.slot] cannot be removed!"))
 		return
 
 	var/final_delay = attachment.attach_delay
 	var/idisplay = BUSY_ICON_GENERIC
 	if(user.skills.getRating("firearms"))
-		user.visible_message("<span class='notice'>[user] begins attaching [attachment] to [src].</span>",
-		"<span class='notice'>You begin attaching [attachment] to [src].</span>", null, 4)
+		user.visible_message(span_notice("[user] begins attaching [attachment] to [src]."),
+		span_notice("You begin attaching [attachment] to [src]."), null, 4)
 		if(user.skills.getRating("firearms") >= SKILL_FIREARMS_DEFAULT) //See if the attacher is super skilled/panzerelite born to defeat never retreat etc
 			final_delay *= 0.5
 	else //If the user has no training, attaching takes twice as long and they fumble about.
 		final_delay *= 2
-		user.visible_message("<span class='notice'>[user] begins fumbling about, trying to attach [attachment] to [src].</span>",
-		"<span class='notice'>You begin fumbling about, trying to attach [attachment] to [src].</span>", null, 4)
+		user.visible_message(span_notice("[user] begins fumbling about, trying to attach [attachment] to [src]."),
+		span_notice("You begin fumbling about, trying to attach [attachment] to [src]."), null, 4)
 		idisplay = BUSY_ICON_UNSKILLED
 	if(!do_after(user, final_delay, TRUE, src, idisplay))
 		return
-	user.visible_message("<span class='notice'>[user] attaches [attachment] to [src].</span>",
-	"<span class='notice'>You attach [attachment] to [src].</span>", null, 4)
+	user.visible_message(span_notice("[user] attaches [attachment] to [src]."),
+	span_notice("You attach [attachment] to [src]."), null, 4)
 	user.temporarilyRemoveItemFromInventory(attachment)
 	attachment.attach_to_gun(src, user)
 	playsound(user, 'sound/machines/click.ogg', 15, 1, 4)
@@ -394,11 +426,11 @@ should be alright.
 
 /proc/get_active_firearm(mob/user)
 	if(!user.dextrous)
-		to_chat(user, "<span class='warning'>You don't have the dexterity to do this.</span>")
+		to_chat(user, span_warning("You don't have the dexterity to do this."))
 		return
 
 	if(user.incapacitated() || !isturf(user.loc))
-		to_chat(user, "<span class='warning'>You can't do this right now.</span>")
+		to_chat(user, span_warning("You can't do this right now."))
 		return
 
 	var/obj/item/weapon/gun/G = user.get_active_held_item()
@@ -406,7 +438,7 @@ should be alright.
 		G = user.get_inactive_held_item()
 
 	if(!istype(G))
-		to_chat(user, "<span class='warning'>You need a gun in your hands to do that!</span>")
+		to_chat(user, span_warning("You need a gun in your hands to do that!"))
 		return
 
 	if(G.flags_gun_features & GUN_BURST_FIRING)
@@ -450,7 +482,7 @@ should be alright.
 		return
 
 	if(zoom)
-		to_chat(usr, "<span class='warning'>You cannot conceviably do that while looking down \the [src]'s scope!</span>")
+		to_chat(usr, span_warning("You cannot conceviably do that while looking down \the [src]'s scope!"))
 		return
 
 	if(overcharge)
@@ -458,7 +490,7 @@ should be alright.
 		return
 
 	if(!attachments)
-		to_chat(usr, "<span class='warning'>This weapon has no attachables. You can only field strip enhanced weapons!</span>")
+		to_chat(usr, span_warning("This weapon has no attachables. You can only field strip enhanced weapons!"))
 		return
 
 	var/list/possible_attachments = list()
@@ -470,7 +502,7 @@ should be alright.
 		possible_attachments += possible_attachment
 
 	if(!length(possible_attachments))
-		to_chat(usr, "<span class='warning'>[src] has no removable attachments.</span>")
+		to_chat(usr, span_warning("[src] has no removable attachments."))
 		return
 
 	var/obj/item/attachable/A
@@ -499,14 +531,14 @@ should be alright.
 	var/final_delay = A.detach_delay
 	var/idisplay = BUSY_ICON_GENERIC
 	if(usr.skills.getRating("firearms"))
-		usr.visible_message("<span class='notice'>[usr] begins stripping [A] from [src].</span>",
-		"<span class='notice'>You begin stripping [A] from [src].</span>", null, 4)
+		usr.visible_message(span_notice("[usr] begins stripping [A] from [src]."),
+		span_notice("You begin stripping [A] from [src]."), null, 4)
 		if(usr.skills.getRating("firearms") > SKILL_FIREARMS_DEFAULT) //See if the attacher is super skilled/panzerelite born to defeat never retreat etc
 			final_delay *= 0.5 //Half normal time
 	else //If the user has no training, attaching takes twice as long and they fumble about.
 		final_delay *= 2
-		usr.visible_message("<span class='notice'>[usr] begins fumbling about, trying to strip [A] from [src].</span>",
-		"<span class='notice'>You begin fumbling about, trying to strip [A] from [src].</span>", null, 4)
+		usr.visible_message(span_notice("[usr] begins fumbling about, trying to strip [A] from [src]."),
+		span_notice("You begin fumbling about, trying to strip [A] from [src]."), null, 4)
 		idisplay = BUSY_ICON_UNSKILLED
 	if(!do_after(usr,final_delay, TRUE, src, idisplay))
 		return
@@ -520,8 +552,8 @@ should be alright.
 	if(zoom)
 		return
 
-	usr.visible_message("<span class='notice'>[usr] strips [A] from [src].</span>",
-	"<span class='notice'>You strip [A] from [src].</span>", null, 4)
+	usr.visible_message(span_notice("[usr] strips [A] from [src]."),
+	span_notice("You strip [A] from [src]."), null, 4)
 	A.detach_from_master_gun(usr)
 
 	playsound(src, 'sound/machines/click.ogg', 15, 1, 4)
@@ -564,7 +596,7 @@ should be alright.
 		if(GUN_FIREMODE_AUTOBURST)
 			new_firemode = GUN_FIREMODE_BURSTFIRE
 	if(!(new_firemode in gun_firemode_list))
-		to_chat(usr, "<span class='warning'>[src] lacks a [new_firemode]!</span>")
+		to_chat(usr, span_warning("[src] lacks a [new_firemode]!"))
 		return
 	do_toggle_firemode(new_firemode = new_firemode)
 
@@ -596,7 +628,7 @@ should be alright.
 		if(GUN_FIREMODE_AUTOBURST)
 			new_firemode = GUN_FIREMODE_AUTOMATIC
 	if(!(new_firemode in gun_firemode_list))
-		to_chat(usr, "<span class='warning'>[src] lacks a [new_firemode]!</span>")
+		to_chat(usr, span_warning("[src] lacks a [new_firemode]!"))
 		return
 	do_toggle_firemode(new_firemode = new_firemode)
 
@@ -642,11 +674,11 @@ should be alright.
 		else
 			gun_firemode = gun_firemode_list[1]
 
-	if(gun_user)
-		playsound(src, 'sound/weapons/guns/interact/selector.ogg', 15, 1)
-		to_chat(gun_user, "<span class='notice'>[icon2html(src, gun_user)] You switch to <b>[gun_firemode]</b>.</span>")
-		gun_user.update_action_buttons()
-
+	if(ishuman(source))
+		to_chat(source, span_notice("[icon2html(src, source)] You switch to <b>[gun_firemode]</b>."))
+		if(source == gun_user)
+			gun_user.update_action_buttons()
+	playsound(src, 'sound/weapons/guns/interact/selector.ogg', 15, 1)
 	SEND_SIGNAL(src, COMSIG_GUN_FIRE_MODE_TOGGLE, gun_firemode)
 
 
@@ -774,7 +806,7 @@ should be alright.
 	set name = "Toggle Gun Safety (Weapon)"
 	set desc = "Toggle the safety of the held gun."
 
-	to_chat(usr, "<span class='notice'>You toggle the safety [flags_gun_features & GUN_TRIGGER_SAFETY ? "<b>off</b>" : "<b>on</b>"].</span>")
+	to_chat(usr, span_notice("You toggle the safety [flags_gun_features & GUN_TRIGGER_SAFETY ? "<b>off</b>" : "<b>on</b>"]."))
 	playsound(usr, 'sound/weapons/guns/interact/selector.ogg', 15, 1)
 	flags_gun_features ^= GUN_TRIGGER_SAFETY
 
@@ -800,7 +832,7 @@ should be alright.
 	//	if(rail && (rail.flags_attach_features & ATTACH_ACTIVATION) )
 	//		usable_attachments += rail
 	if(!attachments)
-		to_chat(usr, "<span class='warning'>[src] does not have any usable attachment!</span>")
+		to_chat(usr, span_warning("[src] does not have any usable attachment!"))
 		return
 
 	for(var/slot in attachments)
@@ -809,7 +841,7 @@ should be alright.
 			usable_attachments += attachment
 
 	if(!length(usable_attachments)) //No usable attachments.
-		to_chat(usr, "<span class='warning'>[src] does not have any usable attachment!</span>")
+		to_chat(usr, span_warning("[src] does not have any usable attachment!"))
 		return
 	var/obj/item/attachable/usable_attachment
 	if(length(usable_attachments) == 1)
@@ -839,7 +871,7 @@ should be alright.
 
 	var/obj/item/attachable/rail_attachment = LAZYACCESS(attachments, ATTACHMENT_SLOT_RAIL)
 	if(!rail_attachment)
-		to_chat(usr, "<span class='warning'>[src] does not have any usable rail attachment!</span>")
+		to_chat(usr, span_warning("[src] does not have any usable rail attachment!"))
 		return
 	rail_attachment.activate_attachment(usr)
 
@@ -850,7 +882,7 @@ should be alright.
 
 	var/obj/item/attachable/underrail_attachment = LAZYACCESS(attachments, ATTACHMENT_SLOT_UNDER)
 	if(!underrail_attachment)
-		to_chat(usr, "<span class='warning'>[src] does not have any usable rail attachment!</span>")
+		to_chat(usr, span_warning("[src] does not have any usable rail attachment!"))
 		return
 	underrail_attachment.activate_attachment(usr)
 
@@ -874,7 +906,7 @@ should be alright.
 	var/obj/screen/ammo/A = usr.hud_used.ammo
 	hud_enabled ? A.add_hud(usr, src) : A.remove_hud(usr, src)
 	A.update_hud(usr)
-	to_chat(usr, "<span class='notice'>[hud_enabled ? "You enable the Ammo HUD for this weapon." : "You disable the Ammo HUD for this weapon."]</span>")
+	to_chat(usr, span_notice("[hud_enabled ? "You enable the Ammo HUD for this weapon." : "You disable the Ammo HUD for this weapon."]"))
 
 
 /obj/item/weapon/gun/item_action_slot_check(mob/user, slot)
@@ -919,10 +951,10 @@ should be alright.
 		return
 
 	if(!CHECK_BITFIELD(flags_gun_features, AUTO_AIM_MODE))
-		to_chat(user, "<span class='notice'>You will immediately aim upon wielding your weapon.</b></span>")
+		to_chat(user, span_notice("You will immediately aim upon wielding your weapon.</b>"))
 		ENABLE_BITFIELD(flags_gun_features, AUTO_AIM_MODE)
 	else
-		to_chat(user, "<span class='notice'>You will wield your weapon without aiming with precision.</b></span>")
+		to_chat(user, span_notice("You will wield your weapon without aiming with precision.</b>"))
 		DISABLE_BITFIELD(flags_gun_features, AUTO_AIM_MODE)
 
 /obj/item/weapon/gun/proc/toggle_aim_mode(mob/living/carbon/human/user)
@@ -932,27 +964,27 @@ should be alright.
 		DISABLE_BITFIELD(flags_gun_features, GUN_IS_AIMING)
 		user.remove_movespeed_modifier(MOVESPEED_ID_AIM_MODE_SLOWDOWN)
 		modify_fire_delay(-aim_fire_delay)
-		to_chat(user, "<span class='notice'>You cease aiming.</b></span>")
+		to_chat(user, span_notice("You cease aiming.</b>"))
 		return
 	if(!CHECK_BITFIELD(flags_item, WIELDED) && !CHECK_BITFIELD(flags_item, IS_DEPLOYED))
-		to_chat(user, "<span class='notice'>You need to wield your gun before aiming.</b></span>")
+		to_chat(user, span_notice("You need to wield your gun before aiming.</b>"))
 		return
 	if(!user.wear_id)
-		to_chat(user, "<span class='notice'>You don't have distinguished allies you want to avoid shooting.</b></span>")
+		to_chat(user, span_notice("You don't have distinguished allies you want to avoid shooting.</b>"))
 		return
-	to_chat(user, "<span class='notice'>You steady your breathing...</b></span>")
+	to_chat(user, span_notice("You steady your breathing...</b>"))
 
-	if(user.do_actions)
+	if(user.do_actions && !CHECK_BITFIELD(flags_item, IS_DEPLOYED))
 		return
 	if(!user.marksman_aura)
-		if(!do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_BAR, ignore_turf_checks = TRUE))
-			to_chat(user, "<span class='warning'>Your concentration is interrupted!</b></span>")
+		if(!do_after(user, 1 SECONDS, TRUE, CHECK_BITFIELD(flags_item, IS_DEPLOYED) ? loc : src, BUSY_ICON_BAR, ignore_turf_checks = TRUE))
+			to_chat(user, span_warning("Your concentration is interrupted!</b>"))
 			return
 	user.overlays += aim_mode_visual
 	ENABLE_BITFIELD(flags_gun_features, GUN_IS_AIMING)
 	user.add_movespeed_modifier(MOVESPEED_ID_AIM_MODE_SLOWDOWN, TRUE, 0, NONE, TRUE, aim_speed_modifier)
 	modify_fire_delay(aim_fire_delay)
-	to_chat(user, "<span class='notice'>You line up your aim, allowing you to shoot past allies.</b></span>")
+	to_chat(user, span_notice("You line up your aim, allowing you to shoot past allies.</b>"))
 
 /// Signal handler to activate the rail attachement of that gun if it's in our active hand
 /obj/item/weapon/gun/proc/activate_rail_attachment()

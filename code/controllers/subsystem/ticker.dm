@@ -41,9 +41,6 @@ SUBSYSTEM_DEF(ticker)
 
 /datum/controller/subsystem/ticker/Initialize(timeofday)
 	load_mode()
-	
-	GLOB.respawntime = CONFIG_GET(number/marine_respawn)
-	GLOB.xenorespawntime = CONFIG_GET(number/xeno_respawn)
 
 	var/all_music = CONFIG_GET(keyed_list/lobby_music)
 	var/key = SAFEPICK(all_music)
@@ -63,8 +60,8 @@ SUBSYSTEM_DEF(ticker)
 				start_at = time_left || world.time + (CONFIG_GET(number/lobby_countdown) * 10)
 			for(var/client/C in GLOB.clients)
 				window_flash(C)
-			to_chat(world, "<span class='round_body'>Welcome to the pre-game lobby of [CONFIG_GET(string/server_name)]!</span>")
-			to_chat(world, "<span class='role_body'>Please, setup your character and select ready. Game will start in [round(time_left / 10) || CONFIG_GET(number/lobby_countdown)] seconds.</span>")
+			to_chat(world, span_round_body("Welcome to the pre-game lobby of [CONFIG_GET(string/server_name)]!"))
+			to_chat(world, span_role_body("Please, setup your character and select ready. Game will start in [round(time_left / 10) || CONFIG_GET(number/lobby_countdown)] seconds."))
 			current_state = GAME_STATE_PREGAME
 			to_chat(world, SSpersistence.seasons_info_message())
 			fire()
@@ -114,7 +111,7 @@ SUBSYSTEM_DEF(ticker)
 
 
 /datum/controller/subsystem/ticker/proc/setup()
-	to_chat(world, "<span class='boldnotice'><b>Enjoy the game!</b></span>")
+	to_chat(world, span_boldnotice("<b>Enjoy the game!</b>"))
 	var/init_start = world.timeofday
 	//Create and announce mode
 	mode = config.pick_mode(GLOB.master_mode)
@@ -282,7 +279,7 @@ SUBSYSTEM_DEF(ticker)
 			graceful = TRUE
 
 	if(graceful)
-		to_chat_immediate(world, "<h3><span class='boldnotice'>Shutting down...</span></h3>")
+		to_chat_immediate(world, "<h3>[span_boldnotice("Shutting down...")]</h3>")
 		world.Reboot(FALSE)
 		return
 
@@ -291,20 +288,20 @@ SUBSYSTEM_DEF(ticker)
 
 	var/skip_delay = check_rights()
 	if(delay_end && !skip_delay)
-		to_chat(world, "<span class='boldnotice'>An admin has delayed the round end.</span>")
+		to_chat(world, span_boldnotice("An admin has delayed the round end."))
 		return
 
-	to_chat(world, "<span class='boldnotice'>Rebooting World in [DisplayTimeText(delay)]. [reason]</span>")
+	to_chat(world, span_boldnotice("Rebooting World in [DisplayTimeText(delay)]. [reason]"))
 
 	var/start_wait = world.time
 	sleep(delay - (world.time - start_wait))
 
 	if(delay_end && !skip_delay)
-		to_chat(world, "<span class='boldnotice'>Reboot was cancelled by an admin.</span>")
+		to_chat(world, span_boldnotice("Reboot was cancelled by an admin."))
 		return
 
 	log_game("Rebooting World. [reason]")
-	to_chat_immediate(world, "<h3><span class='boldnotice'>Rebooting...</span></h3>")
+	to_chat_immediate(world, "<h3>[span_boldnotice("Rebooting...")]</h3>")
 
 	world.Reboot(TRUE)
 
@@ -320,7 +317,7 @@ SUBSYSTEM_DEF(ticker)
 		tip = pick(SSstrings.get_list_from_file("tips/meme"))
 
 	if(tip)
-		to_chat(world, "<br><span class='tip'>[html_encode(tip)]</span><br>")
+		to_chat(world, "<br>[span_tip("[html_encode(tip)]")]<br>")
 
 
 /datum/controller/subsystem/ticker/proc/check_queue()
@@ -330,7 +327,7 @@ SUBSYSTEM_DEF(ticker)
 	if(!hpc)
 		listclearnulls(queued_players)
 		for(var/mob/new_player/NP in queued_players)
-			to_chat(NP, "<span class='userdanger'>The alive players limit has been released!<br><a href='?src=[REF(NP)];lobby_choice=late_join;override=1'>[html_encode(">>Join Game<<")]</a></span>")
+			to_chat(NP, span_userdanger("The alive players limit has been released!<br><a href='?src=[REF(NP)];lobby_choice=late_join;override=1'>[html_encode(">>Join Game<<")]</a>"))
 			SEND_SOUND(NP, sound('sound/misc/notice1.ogg', channel = CHANNEL_NOTIFY))
 			NP.late_choices()
 		queued_players.Cut()
@@ -345,13 +342,13 @@ SUBSYSTEM_DEF(ticker)
 			listclearnulls(queued_players)
 			if(living_player_count() < hpc)
 				if(next_in_line?.client)
-					to_chat(next_in_line, "<span class='userdanger'>A slot has opened! You have approximately 20 seconds to join. <a href='?src=[REF(next_in_line)];lobby_choice=latejoin;override=1'>\>\>Join Game\<\<</a></span>")
+					to_chat(next_in_line, span_userdanger("A slot has opened! You have approximately 20 seconds to join. <a href='?src=[REF(next_in_line)];lobby_choice=latejoin;override=1'>\>\>Join Game\<\<</a>"))
 					SEND_SOUND(next_in_line, sound('sound/misc/notice1.ogg', channel = CHANNEL_NOTIFY))
 					next_in_line.late_choices()
 					return
 				queued_players -= next_in_line //Client disconnected, remove he
 			queue_delay = 0 //No vacancy: restart timer
 		if(25 to INFINITY)  //No response from the next in line when a vacancy exists, remove he
-			to_chat(next_in_line, "<span class='danger'>No response received. You have been removed from the line.</span>")
+			to_chat(next_in_line, span_danger("No response received. You have been removed from the line."))
 			queued_players -= next_in_line
 			queue_delay = 0

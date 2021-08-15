@@ -1,77 +1,30 @@
 
-
-
-//-------------------------------------------------------
-
-/obj/item/weapon/gun/flare
+/obj/item/weapon/gun/launcher/m81/flare
 	name = "flare gun"
-	desc = "A gun that fires flares. Replace with flares. Simple!"
-	icon_state = "flaregun" //REPLACE THIS
-	item_state = "gun" //YUCK
+	desc = "A gun that fires flares. Replace with flares. Simple! Equipped with long range irons."
+	icon_state = "flaregun"
+	item_state = "gun"
 	fire_sound = 'sound/weapons/guns/fire/flare.ogg'
-	ammo = /datum/ammo/flare
-	var/num_flares = 1
-	var/max_flares = 1
+	w_class = WEIGHT_CLASS_TINY
+	fire_sound = 'sound/weapons/guns/fire/flare.ogg'
 	flags_gun_features = GUN_UNUSUAL_DESIGN
 	gun_skill_category = GUN_SKILL_PISTOLS
-	fire_delay = 9
+	grenade_type_allowed = /obj/item/explosive/grenade/flare
+	general_codex_key = "explosive weapons"
+	starting_attachment_types = list(/obj/item/attachable/scope/unremovable/flaregun)
+	fire_delay = 0.5 SECONDS
 
+//-----------	--------------------------------------------
 
-/obj/item/weapon/gun/flare/examine_ammo_count(mob/user)
-	if(num_flares)
-		to_chat(user, "<span class='warning'>It has [num2text(num_flares)] flare[num_flares > 1 ? "s" : ""] loaded!</span>")
+/obj/item/weapon/gun/launcher/m81/flare/examine_ammo_count(mob/user)
+	if(!grenade || (get_dist(user, src) > 2 && user != loc))
+		return
+	to_chat(user, span_notice("It is loaded with a flare."))
 
-/obj/item/weapon/gun/flare/update_icon()
-	if(num_flares)
-		icon_state = base_gun_icon
-	else
-		icon_state = base_gun_icon + "_e"
-
-/obj/item/weapon/gun/flare/load_into_chamber()
-	if(num_flares)
-		in_chamber = create_bullet(ammo)
-		in_chamber.set_light(4)
-		num_flares--
-		return in_chamber
-
-/obj/item/weapon/gun/flare/reload_into_chamber()
-	update_icon()
-	return TRUE
-
-/obj/item/weapon/gun/flare/delete_bullet(obj/projectile/projectile_to_fire, refund = 0)
-	qdel(projectile_to_fire)
-	if(refund)
-		num_flares++
-	return TRUE
-
-/obj/item/weapon/gun/flare/attackby(obj/item/I, mob/user, params)
-	if(istype(I, /obj/item/explosive/grenade/flare))
-		var/obj/item/explosive/grenade/flare = I
-		if(num_flares >= max_flares)
-			to_chat(user, "It's already full.")
-			return
-		num_flares++
-		user.temporarilyRemoveItemFromInventory(flare)
-		qdel(flare)
-		to_chat(user, "<span class='notice'>You insert the flare.</span>")
-		update_icon()
-	else
-		return ..()
-
-/obj/item/weapon/gun/flare/unload(mob/user)
-	if(num_flares)
-		var/obj/item/explosive/grenade/flare/new_flare = new()
-		if(user)
-			user.put_in_hands(new_flare)
-		else
-			new_flare.loc = get_turf(src)
-		num_flares--
-		to_chat(user, "<span class='notice'>You unload a flare from [src].</span>")
-		update_icon()
-	else
-		to_chat(user, "<span class='warning'>It's empty!</span>")
-	return TRUE
-
+/obj/item/weapon/gun/launcher/m81/flare/marine
+	name = "M30E2 flare gun"
+	desc = "A very tiny flaregun that fires flares equipped with long range irons, the mass amounts of markings on the back and barrel denote it as owned by the TGMC."
+	icon_state = "marine_flaregun"
 
 //-------------------------------------------------------
 //Toy rocket launcher.
@@ -100,24 +53,24 @@
 
 /obj/item/weapon/gun/syringe/examine_ammo_count(mob/user)
 	if(user == loc)
-		to_chat(user, "<span class='notice'>[syringes.len] / [max_syringes] syringes.</span>")
+		to_chat(user, span_notice("[syringes.len] / [max_syringes] syringes."))
 
 /obj/item/weapon/gun/syringe/attackby(obj/item/I, mob/user, params)
 	if(istype(I, /obj/item/reagent_containers/syringe))
 		var/obj/item/reagent_containers/syringe/S = I
 		if(S.mode == 2)
-			to_chat(user, "<span class='warning'>This syringe is broken!</span>")
+			to_chat(user, span_warning("This syringe is broken!"))
 			return
 
 		if(length(syringes) >= max_syringes)
-			to_chat(user, "<span class='warning'>[src] cannot hold more syringes.</span>")
+			to_chat(user, span_warning("[src] cannot hold more syringes."))
 			return
 
 		user.transferItemToLoc(I, src)
 		syringes += I
 		update_icon()
-		to_chat(user, "<span class='notice'>You put the syringe in [src].</span>")
-		to_chat(user, "<span class='notice'>[length(syringes)] / [max_syringes] syringes.</span>")
+		to_chat(user, span_notice("You put the syringe in [src]."))
+		to_chat(user, span_notice("[length(syringes)] / [max_syringes] syringes."))
 
 
 /obj/item/weapon/gun/syringe/afterattack(obj/target, mob/user , flag)
@@ -135,7 +88,7 @@
 	if(syringes.len)
 		INVOKE_ASYNC(src, .proc/fire_syringe, target, gun_user)
 	else
-		to_chat(gun_user, "<span class='warning'>[src] is empty.</span>")
+		to_chat(gun_user, span_warning("[src] is empty."))
 
 /obj/item/weapon/gun/syringe/proc/fire_syringe(atom/target, mob/user)
 	if (locate (/obj/structure/table, src.loc))
@@ -174,14 +127,14 @@
 					else
 						M.log_message("<b>UNKNOWN SUBJECT (No longer exists)</b> shot <b>[key_name(M)]</b> with a <b>[src]</b> Reagents: ([R])", LOG_ATTACK)
 
-					M.visible_message("<span class='danger'>[M] is hit by the syringe!</span>")
+					M.visible_message(span_danger("[M] is hit by the syringe!"))
 
 					if(M.can_inject())
 						if(D.reagents)
 							D.reagents.reaction(M, INJECT)
 							D.reagents.trans_to(M, 15)
 					else
-						M.visible_message("<span class='danger'>The syringe bounces off [M]!</span>")
+						M.visible_message(span_danger("The syringe bounces off [M]!"))
 
 					qdel(D)
 					break

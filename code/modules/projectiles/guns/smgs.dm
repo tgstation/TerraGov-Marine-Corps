@@ -28,6 +28,8 @@
 
 /obj/item/weapon/gun/smg/unique_action(mob/user)
 	. = ..()
+	if(!.)
+		return
 	return cock(user)
 
 /obj/item/weapon/gun/smg/get_ammo_type()
@@ -208,6 +210,10 @@
 /obj/item/weapon/gun/smg/m25/elite/pmc
 	starting_attachment_types = list(/obj/item/attachable/magnetic_harness)
 
+/obj/item/weapon/gun/smg/m25/elite/suppressed
+	icon_state = "m25"
+	item_state = "m25"
+	starting_attachment_types = list(/obj/item/attachable/suppressor) //Tacticool
 
 //-------------------------------------------------------
 //MP27, based on the grease gun

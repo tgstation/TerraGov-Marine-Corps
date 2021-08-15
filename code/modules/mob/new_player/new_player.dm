@@ -138,7 +138,7 @@
 			if(!SSticker)
 				return
 			if(!GLOB.enter_allowed)
-				to_chat(usr, "<span class='warning'>Spawning currently disabled, please observe.</span>")
+				to_chat(usr, span_warning("Spawning currently disabled, please observe."))
 				return
 			var/datum/job/job_datum = locate(href_list["job_selected"])
 			if(!isxenosjob(job_datum) && (SSmonitor.gamestate == SHUTTERS_CLOSED || (SSmonitor.gamestate == GROUNDSIDE && SSmonitor.current_state <= XENOS_LOSING)))
@@ -177,7 +177,7 @@
 	return "\nYou might have to wait a certain time to respawn or be unable to, depending on the game mode!"
 
 /datum/game_mode/infestation/observe_respawn_message()
-	return "\nYou will have to wait at least [GLOB.respawntime * 0.1] or [GLOB.xenorespawntime * 0.1] seconds before being able to respawn as a marine or alien, respectively!"
+	return "\nYou will have to wait at least [SSticker.mode?.respawn_time * 0.1 / 60] minutes before being able to respawn as a marine!"
 
 /mob/new_player/proc/late_choices()
 	var/list/dat = list("<div class='notice'>Round Duration: [DisplayTimeText(world.time - SSticker.round_start_time)]</div>")
@@ -211,7 +211,7 @@
 				position_amount = job_datum.current_positions
 			dept_dat += "<a class='job[command_bold]' href='byond://?src=[REF(src)];lobby_choice=SelectedJob;job_selected=[REF(job_datum)]'>[job_datum.title] ([position_amount])</a>"
 		if(!length(dept_dat))
-			dept_dat += "<span class='nopositions'>No positions open.</span>"
+			dept_dat += span_nopositions("No positions open.")
 		dat += jointext(dept_dat, "")
 		dat += "</fieldset><br>"
 	dat += "</div>"
@@ -350,7 +350,7 @@
 
 /mob/new_player/proc/try_to_observe()
 	if(!SSticker || SSticker.current_state == GAME_STATE_STARTUP)
-		to_chat(src, "<span class='warning'>The game is still setting up, please try again later.</span>")
+		to_chat(src, span_warning("The game is still setting up, please try again later."))
 		return
 	if(tgui_alert(src, "Are you sure you wish to observe?[SSticker.mode?.observe_respawn_message()]", "Observe", list("Yes", "No")) != "Yes")
 		return
@@ -371,13 +371,13 @@
 		if(!T)
 			CRASH("Invalid latejoin spawn location type")
 
-		to_chat(src, "<span class='notice'>Now teleporting.</span>")
+		to_chat(src, span_notice("Now teleporting."))
 		observer.forceMove(T)
 	else
 		failed = TRUE
 
 	if(failed)
-		to_chat(src, "<span class='danger'>Could not locate an observer spawn point. Use the Teleport verb to jump.</span>")
+		to_chat(src, span_danger("Could not locate an observer spawn point. Use the Teleport verb to jump."))
 
 	observer.timeofdeath = world.time
 
@@ -402,23 +402,23 @@
 ///Toggles the new players ready state
 /mob/new_player/proc/toggle_ready()
 	if(SSticker?.current_state > GAME_STATE_PREGAME)
-		to_chat(src, "<span class='warning'>The round has already started.</span>")
+		to_chat(src, span_warning("The round has already started."))
 		return
 	ready = !ready
 	if(ready)
 		GLOB.ready_players += src
 	else
 		GLOB.ready_players -= src
-	to_chat(src, "<span class='warning'>You are now [ready? "" : "not "]ready.</span>")
+	to_chat(src, span_warning("You are now [ready? "" : "not "]ready."))
 
 ///Attempts to latejoin the player
 /mob/new_player/proc/attempt_late_join(queue_override = FALSE)
 	if(!SSticker?.mode || SSticker.current_state != GAME_STATE_PLAYING)
-		to_chat(src, "<span class='warning'>The round is either not ready, or has already finished.</span>")
+		to_chat(src, span_warning("The round is either not ready, or has already finished."))
 		return
 
 	if(SSticker.mode.flags_round_type & MODE_NO_LATEJOIN)
-		to_chat(src, "<span class='warning'>Sorry, you cannot late join during [SSticker.mode.name]. You have to start at the beginning of the round. You may observe or try to join as an alien, if possible.</span>")
+		to_chat(src, span_warning("Sorry, you cannot late join during [SSticker.mode.name]. You have to start at the beginning of the round. You may observe or try to join as an alien, if possible."))
 		return
 
 	if(queue_override)
@@ -433,15 +433,15 @@
 		relevant_cap = max(hpc, epc)
 
 	if(length(SSticker.queued_players) || (relevant_cap && living_player_count() >= relevant_cap && !(check_rights(R_ADMIN, FALSE) || GLOB.deadmins[ckey])))
-		to_chat(usr, "<span class='danger'>[CONFIG_GET(string/hard_popcap_message)]</span>")
+		to_chat(usr, span_danger("[CONFIG_GET(string/hard_popcap_message)]"))
 
 		var/queue_position = SSticker.queued_players.Find(usr)
 		if(queue_position == 1)
-			to_chat(usr, "<span class='notice'>You are next in line to join the game. You will be notified when a slot opens up.</span>")
+			to_chat(usr, span_notice("You are next in line to join the game. You will be notified when a slot opens up."))
 		else if(queue_position)
-			to_chat(usr, "<span class='notice'>There are [queue_position - 1] players in front of you in the queue to join the game.</span>")
+			to_chat(usr, span_notice("There are [queue_position - 1] players in front of you in the queue to join the game."))
 		else
 			SSticker.queued_players += usr
-			to_chat(usr, "<span class='notice'>You have been added to the queue to join the game. Your position in queue is [length(SSticker.queued_players)].</span>")
+			to_chat(usr, span_notice("You have been added to the queue to join the game. Your position in queue is [length(SSticker.queued_players)]."))
 		return
 	late_choices()

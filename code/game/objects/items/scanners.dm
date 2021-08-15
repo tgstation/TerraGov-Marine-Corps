@@ -42,7 +42,7 @@ REAGENT SCANNER
 
 		for(var/obj/O in T.contents)
 
-			if(O.level != 1)
+			if(!HAS_TRAIT(O, TRAIT_T_RAY_VISIBLE))
 				continue
 
 			if(O.invisibility == INVISIBILITY_MAXIMUM)
@@ -74,32 +74,32 @@ REAGENT SCANNER
 /obj/item/healthanalyzer/attack(mob/living/carbon/M, mob/living/user) //Integrated analyzers don't need special training to be used quickly.
 	var/dat = ""
 	if((user.getBrainLoss() >= 60) && prob(50))
-		to_chat(user, "<span class='warning'>You try to analyze the floor's vitals!</span>")
-		visible_message("<span class='warning'>[user] has analyzed the floor's vitals!</span>")
-		user.show_message("<span class='notice'>Health Analyzer results for The floor:\n\t Overall Status: Healthy</span>", 1)
-		user.show_message("<span class='notice'>\t Damage Specifics: [0]-[0]-[0]-[0]</span>", 1)
-		user.show_message("<span class='notice'>Key: Suffocation/Toxin/Burns/Brute</span>", 1)
-		user.show_message("<span class='notice'>Body Temperature: ???</span>", 1)
+		to_chat(user, span_warning("You try to analyze the floor's vitals!"))
+		visible_message(span_warning("[user] has analyzed the floor's vitals!"))
+		user.show_message(span_notice("Health Analyzer results for The floor:\n\t Overall Status: Healthy"), 1)
+		user.show_message(span_notice("\t Damage Specifics: [0]-[0]-[0]-[0]"), 1)
+		user.show_message(span_notice("Key: Suffocation/Toxin/Burns/Brute"), 1)
+		user.show_message(span_notice("Body Temperature: ???"), 1)
 		return
 	if(user.skills.getRating("medical") < skill_threshold)
-		to_chat(user, "<span class='warning'>You start fumbling around with [src]...</span>")
+		to_chat(user, span_warning("You start fumbling around with [src]..."))
 		var/fduration = max(SKILL_TASK_AVERAGE - (1 SECONDS * user.skills.getRating("medical")), 0)
 		if(!do_mob(user, M, fduration, BUSY_ICON_UNSKILLED))
 			return
 	if(isxeno(M))
-		to_chat(user, "<span class='warning'>[src] can't make sense of this creature.</span>")
+		to_chat(user, span_warning("[src] can't make sense of this creature."))
 		return
 	to_chat(user, "<span class='notice'>[user] has analyzed [M]'s vitals.")
 	playsound(src.loc, 'sound/items/healthanalyzer.ogg', 50)
 
 	// Doesn't work on non-humans and synthetics
 	if(!iscarbon(M) || issynth(M))
-		user.show_message("\n<span class='notice'> Health Analyzer results for ERROR:\n\t Overall Status: ERROR</span>")
-		user.show_message("\tType: <span class='notice'>Oxygen</font>-<font color='green'>Toxin</font>-<font color='#FFA500'>Burns</font>-<font color='red'>Brute</span>", 1)
-		user.show_message("\tDamage: <span class='notice'>?</font> - <font color='green'>?</font> - <font color='#FFA500'>?</font> - <font color='red'>?</span>")
-		user.show_message("<span class='notice'> Body Temperature: [M.bodytemperature-T0C]&deg;C ([M.bodytemperature*1.8-459.67]&deg;F)</span>", 1)
-		user.show_message("<span class='warning'> <b>Warning: Blood Level ERROR: --% --cl.<span class='notice'> Type: ERROR</span>")
-		user.show_message("<span class='notice'> Subject's pulse: <font color='red'>-- bpm.</font></span>")
+		user.show_message("\n[span_notice(" Health Analyzer results for ERROR:\n\t Overall Status: ERROR")]")
+		user.show_message("\tType: [span_notice("Oxygen</font>-<font color='green'>Toxin</font>-<font color='#FFA500'>Burns</font>-<font color='red'>Brute")]", 1)
+		user.show_message("\tDamage: [span_notice("?</font> - <font color='green'>?</font> - <font color='#FFA500'>?</font> - <font color='red'>?")]")
+		user.show_message(span_notice(" Body Temperature: [M.bodytemperature-T0C]&deg;C ([M.bodytemperature*1.8-459.67]&deg;F)"), 1)
+		user.show_message(span_warning(" <b>Warning: Blood Level ERROR: --% --cl.<span class='notice'> Type: ERROR"))
+		user.show_message(span_notice(" Subject's pulse: <font color='red'>-- bpm.</font>"))
 		return
 
 	// Calculate damage amounts
@@ -112,11 +112,11 @@ REAGENT SCANNER
 	// Show overall
 	if(HAS_TRAIT(M, TRAIT_FAKEDEATH))
 		OX = fake_oxy > 50 			? 	"<b>[fake_oxy]</b>" 			: fake_oxy
-		dat += "\n<span class='notice'> Health Analyzer for [M]:\n\tOverall Status: <b>DEAD</b>\n</span>"
+		dat += "\n[span_notice(" Health Analyzer for [M]:\n\tOverall Status: <b>DEAD</b>\n")]"
 	else
 		dat += "\nHealth Analyzer results for [M]:\n\tOverall Status: [M.stat > 1 ? "<b>DEAD</b>" : "<b>[M.health]% healthy"]</b>\n"
-	dat += "\tType:    <span class='notice'>Oxygen</font>-<font color='green'>Toxin</font>-<font color='#FFA500'>Burns</font>-<font color='red'>Brute</span>\n"
-	dat += "\tDamage: \t<span class='notice'>[OX]</font> - <font color='green'>[TX]</font> - <font color='#FFA500'>[BU]</font> - <font color='red'>[BR]</span>\n"
+	dat += "\tType:    [span_notice("Oxygen</font>-<font color='green'>Toxin</font>-<font color='#FFA500'>Burns</font>-<font color='red'>Brute")]\n"
+	dat += "\tDamage: \t[span_notice("[OX]</font> - <font color='green'>[TX]</font> - <font color='#FFA500'>[BU]</font> - <font color='red'>[BR]")]\n"
 	dat += "\tUntreated: {B}=Burns,{T}=Trauma,{F}=Fracture,{I}=Infection\n"
 
 	var/infection_present = 0
@@ -139,14 +139,14 @@ REAGENT SCANNER
 				burn_treated = 1
 
 			if(org.limb_status & LIMB_DESTROYED)
-				dat += "\t\t [capitalize(org.display_name)]: <span class='scannerb'>Missing!</span>\n"
+				dat += "\t\t [capitalize(org.display_name)]: [span_scannerb("Missing!")]\n"
 				continue
 
 			var/show_limb = (org.burn_dam > 0 || org.brute_dam > 0 || (org.limb_status & (LIMB_BLEEDING | LIMB_NECROTIZED | LIMB_SPLINTED | LIMB_STABILIZED)) || open_incision)
 			var/org_name = "[capitalize(org.display_name)][org.limb_status & LIMB_ROBOT ? " (Cybernetic)" : ""]"
-			var/burn_info = org.burn_dam > 0 ? "<span class='scannerburnb'> [round(org.burn_dam)]</span>" : "<span class='scannerburn'>0</span>"
+			var/burn_info = org.burn_dam > 0 ? span_scannerburnb(" [round(org.burn_dam)]") : span_scannerburn("0")
 			burn_info += "[((burn_treated)?"":"{B}")]"
-			var/brute_info =  org.brute_dam > 0 ? "<span class='scannerb'> [round(org.brute_dam)]</span>" : "<span class='scanner'>0</span>"
+			var/brute_info =  org.brute_dam > 0 ? span_scannerb(" [round(org.brute_dam)]") : span_scanner("0")
 			brute_info += "[(brute_treated && org.brute_dam >= 1?"":"{T}")]"
 			var/fracture_info = ""
 			if((org.limb_status & LIMB_BROKEN) && !(org.limb_status & LIMB_SPLINTED) && !(org.limb_status & LIMB_STABILIZED))
@@ -156,12 +156,12 @@ REAGENT SCANNER
 			if(org.has_infected_wound())
 				infection_info = "{I}"
 				show_limb = 1
-			var/org_bleed = (org.limb_status & LIMB_BLEEDING) ? "<span class='scannerb'>(Bleeding)</span>" : ""
+			var/org_bleed = (org.limb_status & LIMB_BLEEDING) ? span_scannerb("(Bleeding)") : ""
 			var/org_necro = ""
 			if(org.limb_status & LIMB_NECROTIZED)
-				org_necro = "<span class='scannerb'>(Necrotizing)</span>"
+				org_necro = span_scannerb("(Necrotizing)")
 				infection_present = 10
-			var/org_incision = (open_incision?" <span class='scanner'>Open surgical incision</span>":"")
+			var/org_incision = (open_incision?" [span_scanner("Open surgical incision")]":"")
 			var/org_advice = ""
 			switch(org.body_part)
 				if(HEAD)
@@ -189,19 +189,19 @@ REAGENT SCANNER
 
 	// Show red messages - broken bokes, infection, etc
 	if (M.getCloneLoss())
-		dat += "\t<span class='scanner'> *Subject appears to have been imperfectly cloned.</span>\n"
+		dat += "\t[span_scanner(" *Cellular damage detected. Recommend cryogenic treatment")].\n"
 	if (M.getBrainLoss() >= 100 || !M.has_brain())
-		dat += "\t<span class='scanner'> *Subject is <b>brain dead</b></span>.\n"
+		dat += "\t[span_scanner(" *Subject is <b>brain dead</b>")].\n"
 	else if (M.getBrainLoss() >= 60)
-		dat += "\t<span class='scanner'> *<b>Severe brain damage</b> detected. Subject likely to have intellectual disabilities.</span>\n"
+		dat += "\t[span_scanner(" *<b>Severe brain damage</b> detected. Subject likely to have intellectual disabilities.")]\n"
 	else if (M.getBrainLoss() >= 10)
-		dat += "\t<span class='scanner'> *<b>Significant brain damage</b> detected. Subject may have had a concussion.</span>\n"
+		dat += "\t[span_scanner(" *<b>Significant brain damage</b> detected. Subject may have had a concussion.")]\n"
 
 	if(M.has_brain() && M.stat != DEAD && ishuman(M))
 		if(!M.key)
-			dat += "<span class='warning'>\tNo soul detected.</span>\n" // they ghosted
+			dat += "[span_warning("\tNo soul detected.")]\n" // they ghosted
 		else if(!M.client)
-			dat += "<span class='warning'>\tSSD detected.</span>\n" // SSD
+			dat += "[span_warning("\tSSD detected.")]\n" // SSD
 
 	var/internal_bleed_detected = FALSE
 	var/fracture_detected = FALSE
@@ -223,20 +223,20 @@ REAGENT SCANNER
 				if((e.limb_status & LIMB_BROKEN) && !(e.limb_status & LIMB_SPLINTED) && !(e.limb_status & LIMB_STABILIZED))
 					if(!fracture_detected)
 						fracture_detected = TRUE
-					dat += "\t<span class='scanner'> *<b>Bone Fracture:</b> Unsecured fracture in subject's <b>[limb]</b>. Splinting recommended.</span>\n"
+					dat += "\t[span_scanner(" *<b>Bone Fracture:</b> Unsecured fracture in subject's <b>[limb]</b>. Splinting recommended.")]\n"
 			else
 				if((e.limb_status & LIMB_BROKEN) && !(e.limb_status & LIMB_SPLINTED) && !(e.limb_status & LIMB_STABILIZED))
 					if(!fracture_detected)
 						fracture_detected = TRUE
 					core_fracture = TRUE
 			if(e.germ_level >= INFECTION_LEVEL_THREE)
-				dat += "\t<span class='scanner'> *Subject's <b>[limb]</b> is in the last stage of infection. < 30u of antibiotics [can_amputate] recommended.</span>\n"
+				dat += "\t[span_scanner(" *Subject's <b>[limb]</b> is in the last stage of infection. < 30u of antibiotics [can_amputate] recommended.")]\n"
 				infection_present = 25
 			if(e.germ_level >= INFECTION_LEVEL_ONE && e.germ_level < INFECTION_LEVEL_THREE)
-				dat += "\t<span class='scanner'> *Subject's <b>[limb]</b> has an infection. Antibiotics recommended.</span>\n"
+				dat += "\t[span_scanner(" *Subject's <b>[limb]</b> has an infection. Antibiotics recommended.")]\n"
 				infection_present = 5
 			if(e.has_infected_wound())
-				dat += "\t<span class='scanner'> *Infected wound detected in subject's <b>[limb]</b>. Disinfection recommended.</span>\n"
+				dat += "\t[span_scanner(" *Infected wound detected in subject's <b>[limb]</b>. Disinfection recommended.")]\n"
 			if (e.implants.len)
 				for(var/I in e.implants)
 					if(!is_type_in_list(I, GLOB.known_implants))
@@ -249,13 +249,13 @@ REAGENT SCANNER
 
 		if(unknown_body)
 			if(unknown_body > 1)
-				dat += "\t<span class='scanner'> *<b>Foreign objects</b> detected in body. Advanced scanner required for location.</span>\n"
+				dat += "\t[span_scanner(" *<b>Foreign objects</b> detected in body. Advanced scanner required for location.")]\n"
 			else
-				dat += "\t<span class='scanner'> *<b>Foreign object</b> detected in body. Advanced scanner required for location.</span>\n"
+				dat += "\t[span_scanner(" *<b>Foreign object</b> detected in body. Advanced scanner required for location.")]\n"
 		if(core_fracture)
-			dat += "\t<span class='scanner'> *<b>Bone fractures</b> detected. Advanced scanner required for location.</span>\n"
+			dat += "\t[span_scanner(" *<b>Bone fractures</b> detected. Advanced scanner required for location.")]\n"
 		if(internal_bleed_detected)
-			dat += "\t<span class='scanner'> *<b>Internal bleeding</b> detected. Advanced scanner required for location.</span>\n"
+			dat += "\t[span_scanner(" *<b>Internal bleeding</b> detected. Advanced scanner required for location.")]\n"
 
 	var/reagents_in_body[0] // yes i know -spookydonut
 	if(iscarbon(M))
@@ -268,7 +268,7 @@ REAGENT SCANNER
 				reagents_in_body["[R.type]"] = R.volume
 				if(R.scannable)
 					if(R.overdosed)
-						reagentdata["[R.type]"] = "<span class='warning'><b>OD: </b></span> <font color='#9773C4'><b>[round(R.volume, 0.01)]u [R.name]</b></font>"
+						reagentdata["[R.type]"] = "[span_warning("<b>OD: </b>")] <font color='#9773C4'><b>[round(R.volume, 0.01)]u [R.name]</b></font>"
 						overdosed++
 					else
 						reagentdata["[R.type]"] =	"<font color='#9773C4'><b>[round(R.volume, 0.01)]u [R.name]</b></font>"
@@ -279,7 +279,7 @@ REAGENT SCANNER
 				for(var/d in reagentdata)
 					dat += "\t\t [reagentdata[d]]\n"
 			if(unknown)
-				dat += "\t<span class='scanner'> Warning: Unknown substance[(unknown>1)?"s":""] detected in subject's blood.</span>\n"
+				dat += "\t[span_scanner(" Warning: Unknown substance[(unknown>1)?"s":""] detected in subject's blood.")]\n"
 
 	// Show body temp
 	dat += "\n\tBody Temperature: [M.bodytemperature-T0C]&deg;C ([M.bodytemperature*1.8-459.67]&deg;F)\n"
@@ -294,9 +294,9 @@ REAGENT SCANNER
 			var/blood_type = H.blood_type
 			blood_percent *= 100
 			if(blood_volume <= 500 && blood_volume > 336)
-				dat += "\t<span class='scanner'> <b>Warning: Blood Level LOW: [blood_percent]% [blood_volume]cl.</span><font color='blue;'> Type: [blood_type]</font>\n"
+				dat += "\t[span_scanner(" <b>Warning: Blood Level LOW: [blood_percent]% [blood_volume]cl.")]<font color='blue;'> Type: [blood_type]</font>\n"
 			else if(blood_volume <= 336)
-				dat += "\t<span class='scanner'> <b>Warning: Blood Level CRITICAL: [blood_percent]% [blood_volume]cl.</span><font color='blue;'> Type: [blood_type]</font>\n"
+				dat += "\t[span_scanner(" <b>Warning: Blood Level CRITICAL: [blood_percent]% [blood_volume]cl.")]<font color='blue;'> Type: [blood_type]</font>\n"
 			else
 				dat += "\tBlood Level normal: [blood_percent]% [blood_volume]cl. Type: [blood_type]\n"
 		// Show pulse
@@ -330,27 +330,27 @@ REAGENT SCANNER
 						death_message = "Brain death will occur if patient is left untreated. Reduce total injury value to sub-200 and administer defibrillator to unarmoured chest to revive."
 				else //No soul? Change the death message.
 					death_message = "No soul detected. Cannot revive."
-				advice += "<span class='scanner'><b>Patient Dead:</b> [death_message]</span>\n"
+				advice += "[span_scanner("<b>Patient Dead:</b> [death_message]")]\n"
 			if(M.on_fire)
-				advice += "<span class='scanner'><b>Patient Combusting:</b> Administer fire extinguisher, pat out or submerge patient in water, or employ other fire suppressant.</span>\n"
+				advice += "[span_scanner("<b>Patient Combusting:</b> Administer fire extinguisher, pat out or submerge patient in water, or employ other fire suppressant.")]\n"
 			if(blood_volume <= 500 && !reagents_in_body[/datum/reagent/consumable/nutriment])
 				var/iron = "."
 				if(reagents_in_body[/datum/reagent/iron] < 5)
 					iron = " or one dose of iron."
-				advice += "<span class='scanner'><b>Low Blood:</b> Administer or recommend consumption of food[iron]</span>\n"
+				advice += "[span_scanner("<b>Low Blood:</b> Administer or recommend consumption of food[iron]")]\n"
 			if(overdosed && reagents_in_body[/datum/reagent/hypervene] < 3)
-				advice += "<span class='scanner'><b>Overdose:</b> Administer one dose of hypervene or perform dialysis on patient via sleeper.</span>\n"
+				advice += "[span_scanner("<b>Overdose:</b> Administer one dose of hypervene or perform dialysis on patient via sleeper.")]\n"
 			if(unknown_body)
-				advice += "<span class='scanner'><b>Shrapnel/Embedded Object(s):</b> Seek surgical remedy to remove embedded object(s).</span>\n"
+				advice += "[span_scanner("<b>Shrapnel/Embedded Object(s):</b> Seek surgical remedy to remove embedded object(s).")]\n"
 			//if(infected)
-			//	advice += "<span class='scanner'><b>Larval Infection:</b> !!URGENT: Place patient in cryobag and seek surgical remedy immediately!!</span>\n"
+			//	advice += "[span_scanner("<b>Larval Infection:</b> !!URGENT: Place patient in cryobag and seek surgical remedy immediately!!")]\n"
 			if(fracture_detected)
-				advice += "<span class='scanner'><b>Unsecured Fracture:</b> Administer splints to specified areas.</span>\n"
+				advice += "[span_scanner("<b>Unsecured Fracture:</b> Administer splints to specified areas.")]\n"
 			if(internal_bleed_detected)
 				var/internal_bleed_advice = "Administer one dose of quick-clot then seek surgical remedy."
 				if(reagents_in_body[/datum/reagent/medicine/quickclot] > 4)
 					internal_bleed_advice = "Quick-Clot has been administered to patient. Seek surgical remedy."
-				advice += "<span class='scanner'><b>Internal Bleeding:</b> [internal_bleed_advice]</span>\n"
+				advice += "[span_scanner("<b>Internal Bleeding:</b> [internal_bleed_advice]")]\n"
 			if(H.getToxLoss() > 10)
 				var/dylovene = ""
 				var/dylo_recommend = ""
@@ -365,16 +365,16 @@ REAGENT SCANNER
 					peridaxon = "Administer one dose of peridaxon and: "
 					if(hyperzine_amount) //Need to make sure no conflicting chems are present; if so, warn the operator
 						peridaxon = "Purge hyperzine in patient or wait for it to metabolize, then administer one dose of peridaxon and:"
-					advice += "<span class='scanner'><b>Extreme Toxin Damage/Probable or Imminent Liver Damage:</b> [peridaxon] [dylovene] | [tricordrazine]. [dylo_recommend]</span>\n"
+					advice += "[span_scanner("<b>Extreme Toxin Damage/Probable or Imminent Liver Damage:</b> [peridaxon] [dylovene] | [tricordrazine]. [dylo_recommend]")]\n"
 				else
-					advice += "<span class='scanner'><b>Toxin Damage:</b> Administer one dose of: [tricordrazine] | [dylovene].</span>\n"
+					advice += "[span_scanner("<b>Toxin Damage:</b> Administer one dose of: [tricordrazine] | [dylovene].")]\n"
 			if(((H.getOxyLoss() > 50 && blood_volume > 400) || H.getBrainLoss() >= 10) && reagents_in_body[/datum/reagent/medicine/peridaxon] < 5)
 				peridaxon = "Administer one dose of peridaxon."
 				if(hyperzine_amount) //Need to make sure no conflicting chems are present; if so, warn the operator
 					peridaxon = "Purge hyperzine in patient or wait for it to metabolize, then administer one dose of peridaxon."
-				advice += "<span class='scanner'><b>Brain Damage/Probable Organ Damage:</b> [peridaxon]</span>\n"
+				advice += "[span_scanner("<b>Brain Damage/Probable Organ Damage:</b> [peridaxon]")]\n"
 			if(infection_present && reagents_in_body[/datum/reagent/medicine/spaceacillin] < infection_present)
-				advice += "<span class='scanner'><b>Infection:</b> Administer one dose of spaceacillin.</span>\n"
+				advice += "[span_scanner("<b>Infection:</b> Administer one dose of spaceacillin.")]\n"
 			if(H.getOxyLoss() > 10)
 				var/dexalin = ""
 				var/dexplus = ""
@@ -382,7 +382,7 @@ REAGENT SCANNER
 					dexalin = "dexalin"
 				if(reagents_in_body[/datum/reagent/medicine/dexalinplus] < 1)
 					dexplus = "dexalin plus"
-				advice += "<span class='scanner'><b>Oxygen Deprivation:</b> Administer one dose of: [dexalin] | [dexplus].</span>\n"
+				advice += "[span_scanner("<b>Oxygen Deprivation:</b> Administer one dose of: [dexalin] | [dexplus].")]\n"
 			if(H.getFireLoss(1)  > 10)
 				var/kelotane = ""
 				var/dermaline = ""
@@ -392,16 +392,16 @@ REAGENT SCANNER
 					dermaline = "dermaline"
 				if(reagents_in_body[/datum/reagent/medicine/tricordrazine] < 5)
 					tricordrazine = "tricordrazine"
-				advice += "<span class='scanner'><b>Burn Damage:</b> Administer burn kit to affected areas and one dose of: [kelotane] | [dermaline] | [tricordrazine].</span>\n"
+				advice += "[span_scanner("<b>Burn Damage:</b> Administer burn kit to affected areas and one dose of: [kelotane] | [dermaline] | [tricordrazine].")]\n"
 			if(H.getBruteLoss(1) > 10)
 				var/bicaridine = ""
 				if (reagents_in_body[/datum/reagent/medicine/bicaridine] < 5)
 					bicaridine = "bicaridine"
 				if(reagents_in_body[/datum/reagent/medicine/tricordrazine] < 5)
 					tricordrazine = "tricordrazine"
-				advice += "<span class='scanner'><b>Physical Trauma:</b> Administer trauma kit to affected areas and one dose of: [bicaridine] | [tricordrazine].</span>\n"
+				advice += "[span_scanner("<b>Physical Trauma:</b> Administer trauma kit to affected areas and one dose of: [bicaridine] | [tricordrazine].")]\n"
 			if(H.health < 0 && reagents_in_body[/datum/reagent/medicine/inaprovaline] < 5)
-				advice += "<span class='scanner'><b>Patient Critical:</b> Administer one dose of inaprovaline.</span>\n"
+				advice += "[span_scanner("<b>Patient Critical:</b> Administer one dose of inaprovaline.")]\n"
 			var/shock_number = H.traumatic_shock
 			if(shock_number > 30)
 				var/painlevel = "Significant"
@@ -420,21 +420,21 @@ REAGENT SCANNER
 					painlevel = "Extreme"
 					if(oxycodone)
 						oxy_recommend = "Oxycodone recommended."
-				advice += "<span class='scanner'><b>[painlevel] Pain:</b> Administer one dose of: [tramadol] | [oxycodone]. Addendum: [oxy_recommend] | [trama_recommend].</span>\n"
+				advice += "[span_scanner("<b>[painlevel] Pain:</b> Administer one dose of: [tramadol] | [oxycodone]. Addendum: [oxy_recommend] | [trama_recommend].")]\n"
 			if(advice != "")
-				dat += "\t<span class='scanner'> <b>Medication Advice:</b></span>\n"
+				dat += "\t[span_scanner(" <b>Medication Advice:</b>")]\n"
 				dat += advice
 			advice = ""
 			if(synaptizine_amount)
-				advice += "<span class='scanner'><b>Synaptizine Detected:</b> DO NOT administer dylovene until synaptizine is purged or metabolized.</span>\n"
+				advice += "[span_scanner("<b>Synaptizine Detected:</b> DO NOT administer dylovene until synaptizine is purged or metabolized.")]\n"
 			if(paracetamol_amount)
-				advice += "<span class='scanner'><b>Paracetamol Detected:</b> DO NOT administer tramadol until paracetamol is purged or metabolized.</span>\n"
+				advice += "[span_scanner("<b>Paracetamol Detected:</b> DO NOT administer tramadol until paracetamol is purged or metabolized.")]\n"
 			if(neurotoxin_amount)
-				advice += "<span class='scanner'><b>Xenomorph Neurotoxin Detected:</b> Administer hypervene to purge.</span>\n"
+				advice += "[span_scanner("<b>Xenomorph Neurotoxin Detected:</b> Administer hypervene to purge.")]\n"
 			if(growthtoxin_amount)
-				advice += "<span class='scanner'><b>Xenomorph Growth Toxin Detected:</b> Administer hypervene to purge.</span>\n"
+				advice += "[span_scanner("<b>Xenomorph Growth Toxin Detected:</b> Administer hypervene to purge.")]\n"
 			if(advice != "")
-				dat += "\t<span class='scanner'> <b>Contraindications:</b></span>\n"
+				dat += "\t[span_scanner(" <b>Contraindications:</b>")]\n"
 				dat += advice
 
 	if(hud_mode)
@@ -498,7 +498,7 @@ REAGENT SCANNER
 	var/datum/weather/ongoing_weather = null
 
 	if(!user_area.outside)
-		to_chat(user, "<span class='warning'>[src]'s barometer function won't work indoors!</span>")
+		to_chat(user, span_warning("[src]'s barometer function won't work indoors!"))
 		return
 
 	for(var/V in SSweather.processing)
@@ -509,19 +509,19 @@ REAGENT SCANNER
 
 	if(ongoing_weather)
 		if((ongoing_weather.stage == MAIN_STAGE) || (ongoing_weather.stage == WIND_DOWN_STAGE))
-			to_chat(user, "<span class='warning'>[src]'s barometer function can't trace anything while the storm is [ongoing_weather.stage == MAIN_STAGE ? "already here!" : "winding down."]</span>")
+			to_chat(user, span_warning("[src]'s barometer function can't trace anything while the storm is [ongoing_weather.stage == MAIN_STAGE ? "already here!" : "winding down."]"))
 			return
 
-		to_chat(user, "<span class='notice'>The next [ongoing_weather] will hit in [(ongoing_weather.next_hit_time - world.time)/10] Seconds.</span>")
+		to_chat(user, span_notice("The next [ongoing_weather] will hit in [(ongoing_weather.next_hit_time - world.time)/10] Seconds."))
 		if(ongoing_weather.aesthetic)
-			to_chat(user, "<span class='warning'>[src]'s barometer function says that the next storm will breeze on by.</span>")
+			to_chat(user, span_warning("[src]'s barometer function says that the next storm will breeze on by."))
 	else
 		var/next_hit = SSweather.next_hit_by_zlevel["[T.z]"]
 		var/fixed = next_hit ? timeleft(next_hit) : -1
 		if(fixed < 0)
-			to_chat(user, "<span class='warning'>[src]'s barometer function was unable to trace any weather patterns.</span>")
+			to_chat(user, span_warning("[src]'s barometer function was unable to trace any weather patterns."))
 		else
-			to_chat(user, "<span class='warning'>[src]'s barometer function says a storm will land in approximately [fixed/10] Seconds].</span>")
+			to_chat(user, span_warning("[src]'s barometer function says a storm will land in approximately [fixed/10] Seconds]."))
 
 /obj/item/mass_spectrometer
 	desc = "A hand-held mass spectrometer which identifies trace chemicals in a blood sample."
@@ -552,14 +552,14 @@ REAGENT SCANNER
 	if (user.stat)
 		return
 	if (crit_fail)
-		to_chat(user, "<span class='warning'>This device has critically failed and is no longer functional!</span>")
+		to_chat(user, span_warning("This device has critically failed and is no longer functional!"))
 		return
 	if(reagents.total_volume)
 		var/list/blood_traces = list()
 		for(var/datum/reagent/R in reagents.reagent_list)
 			if(R.type != /datum/reagent/blood)
 				reagents.clear_reagents()
-				to_chat(user, "<span class='warning'>The sample was contaminated! Please insert another sample</span>")
+				to_chat(user, span_warning("The sample was contaminated! Please insert another sample"))
 				return
 			else
 				blood_traces = params2list(R.data["trace_chem"])
@@ -612,7 +612,7 @@ REAGENT SCANNER
 	if(!istype(O))
 		return
 	if (crit_fail)
-		to_chat(user, "<span class='warning'>This device has critically failed and is no longer functional!</span>")
+		to_chat(user, span_warning("This device has critically failed and is no longer functional!"))
 		return
 
 	if(!isnull(O.reagents))
@@ -621,7 +621,7 @@ REAGENT SCANNER
 			var/one_percent = O.reagents.total_volume / 100
 			for (var/datum/reagent/R in O.reagents.reagent_list)
 				if(prob(reliability))
-					dat += "\n \t <span class='notice'> [R][details ? ": [R.volume / one_percent]%" : ""]</span>"
+					dat += "\n \t [span_notice(" [R][details ? ": [R.volume / one_percent]%" : ""]")]"
 					recent_fail = 0
 				else if(recent_fail)
 					crit_fail = 1
@@ -630,11 +630,11 @@ REAGENT SCANNER
 				else
 					recent_fail = 1
 		if(dat)
-			to_chat(user, "<span class='notice'>Chemicals found: [dat]</span>")
+			to_chat(user, span_notice("Chemicals found: [dat]"))
 		else
-			to_chat(user, "<span class='notice'>No active chemical agents found in [O].</span>")
+			to_chat(user, span_notice("No active chemical agents found in [O]."))
 	else
-		to_chat(user, "<span class='notice'>No significant chemical agents found in [O].</span>")
+		to_chat(user, span_notice("No significant chemical agents found in [O]."))
 
 /obj/item/reagent_scanner/adv
 	name = "advanced reagent scanner"

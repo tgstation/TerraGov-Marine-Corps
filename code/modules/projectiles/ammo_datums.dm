@@ -70,11 +70,11 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 				if(target.mob_size == MOB_SIZE_BIG)
 					return //Big xenos are not affected.
 				target.apply_effects(0, 1) //Smaller ones just get shaken.
-				to_chat(target, "<span class='xenodanger'>You are shaken by the sudden impact!</span>")
+				to_chat(target, span_xenodanger("You are shaken by the sudden impact!"))
 			else
 				var/mob/living/target = victim
 				target.apply_effects(1, 2) //Humans get stunned a bit.
-				to_chat(target, "<span class='highdanger'>The blast knocks you off your feet!</span>")
+				to_chat(target, span_highdanger("The blast knocks you off your feet!"))
 		step_away(victim, proj)
 
 /datum/ammo/proc/staggerstun(mob/victim, obj/projectile/proj, max_range = 5, stun = 0, weaken = 0, stagger = 0, slowdown = 0, knockback = 0, shake = 1, soft_size_threshold = 3, hard_size_threshold = 2)
@@ -89,24 +89,24 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	if(isxeno(victim))
 		var/mob/living/carbon/xenomorph/xeno_victim = victim
 		if(xeno_victim.fortify) //If we're fortified we don't give a shit about staggerstun.
-			impact_message += "<span class='xenodanger'>Your fortified stance braces you against the impact.</span>"
+			impact_message += span_xenodanger("Your fortified stance braces you against the impact.")
 			return
 
 		if(xeno_victim.endure) //Endure allows us to ignore staggerstun.
-			impact_message += "<span class='xenodanger'>You endure the impact from [proj], shrugging off its effects.</span>"
+			impact_message += span_xenodanger("You endure the impact from [proj], shrugging off its effects.")
 			return
 
 		if(xeno_victim.crest_defense) //Crest defense halves all effects, and protects us from the stun.
-			impact_message += "<span class='xenodanger'>Your crest protects you against some of the impact.</span>"
+			impact_message += span_xenodanger("Your crest protects you against some of the impact.")
 			slowdown *= 0.5
 			stagger *= 0.5
 			stun = 0
 	if(shake)
 		shake_camera(victim, shake+2, shake+3)
 		if(isxeno(victim))
-			impact_message += "<span class='xenodanger'>We are shaken by the sudden impact!</span>"
+			impact_message += span_xenodanger("We are shaken by the sudden impact!")
 		else
-			impact_message += "<span class='warning'>You are shaken by the sudden impact!</span>"
+			impact_message += span_warning("You are shaken by the sudden impact!")
 
 	//Check for and apply hard CC.
 	if((victim.mob_size == MOB_SIZE_BIG && hard_size_threshold > 2) || (victim.mob_size == MOB_SIZE_XENO && hard_size_threshold > 1) || (ishuman(victim) && hard_size_threshold > 0))
@@ -115,9 +115,9 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 			living_victim.apply_effects(stun,weaken)
 		if(knockback)
 			if(isxeno(victim))
-				impact_message += "<span class='xenodanger'>The blast knocks you off your feet!</span>"
+				impact_message += span_xenodanger("The blast knocks you off your feet!")
 			else
-				impact_message += "<span class='highdanger'>The blast knocks you off your feet!</span>"
+				impact_message += span_highdanger("The blast knocks you off your feet!")
 			for(var/i in 1 to knockback)
 				step_away(victim, proj)
 
@@ -130,19 +130,19 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 			if(isxenoqueen(xeno_victim)) //Stagger too powerful vs the Queen, so she's immune.
 				stagger_immune = TRUE
 		#if DEBUG_STAGGER_SLOWDOWN
-		to_chat(world, "<span class='debuginfo'>Damage: Initial stagger is: <b>[target.stagger]</b></span>")
+		to_chat(world, span_debuginfo("Damage: Initial stagger is: <b>[target.stagger]</b>"))
 		#endif
 		if(!stagger_immune)
 			carbon_victim.adjust_stagger(stagger)
 		#if DEBUG_STAGGER_SLOWDOWN
-		to_chat(world, "<span class='debuginfo'>Damage: Final stagger is: <b>[target.stagger]</b></span>")
+		to_chat(world, span_debuginfo("Damage: Final stagger is: <b>[target.stagger]</b>"))
 		#endif
 		#if DEBUG_STAGGER_SLOWDOWN
-		to_chat(world, "<span class='debuginfo'>Damage: Initial slowdown is: <b>[target.slowdown]</b></span>")
+		to_chat(world, span_debuginfo("Damage: Initial slowdown is: <b>[target.slowdown]</b>"))
 		#endif
 		carbon_victim.add_slowdown(slowdown)
 		#if DEBUG_STAGGER_SLOWDOWN
-		to_chat(world, "<span class='debuginfo'>Damage: Final slowdown is: <b>[target.slowdown]</b></span>")
+		to_chat(world, span_debuginfo("Damage: Final slowdown is: <b>[target.slowdown]</b>"))
 		#endif
 	to_chat(victim, "[impact_message]") //Summarize all the bad shit that happened
 
@@ -153,8 +153,8 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	for(var/mob/living/carbon/victim in orange(1, target))
 		if(proj.firer == victim)
 			continue
-		victim.visible_message("<span class='danger'>[victim] is hit by backlash from \a [proj.name]!</span>",
-			"[isxeno(victim)?"<span class='xenodanger'>We":"<span class='highdanger'>You"] are hit by backlash from \a </b>[proj.name]</b>!</span>")
+		victim.visible_message(span_danger("[victim] is hit by backlash from \a [proj.name]!"),
+			isxeno(victim) ? span_xenodanger("We are hit by backlash from \a </b>[proj.name]</b>!") : span_highdanger("You are hit by backlash from \a </b>[proj.name]</b>!"))
 		var/armor_block = victim.run_armor_check(null, proj.ammo.armor_type)
 		victim.apply_damage(proj.damage * 0.1, proj.ammo.damage_type, null, armor_block, updating_health = TRUE)
 
@@ -173,9 +173,9 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 		//Scatter here is how many degrees extra stuff deviate from the main projectile, first two the same amount, one to each side, and from then on the extra pellets keep widening the arc.
 		var/new_angle = angle + (main_proj.ammo.bonus_projectiles_scatter * ((i % 2) ? (-(i + 1) * 0.5) : (i * 0.5)))
 		if(new_angle < 0)
-			new_angle += 380
-		else if(new_angle > 380)
-			new_angle -= 380
+			new_angle += 360
+		else if(new_angle > 360)
+			new_angle -= 360
 		new_proj.fire_at(null, shooter, source, range, speed, new_angle, TRUE) //Angle-based fire. No target.
 
 
@@ -328,7 +328,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/bullet/pistol/mankey/on_hit_mob(mob/M, obj/projectile/P)
 	if(!M.stat && !ismonkey(M))
-		P.visible_message("<span class='danger'>The [src] chimpers furiously!</span>")
+		P.visible_message(span_danger("The [src] chimpers furiously!"))
 		new /mob/living/carbon/human/species/monkey(P.loc)
 
 /*
@@ -497,8 +497,15 @@ datum/ammo/bullet/revolver/tp44
 	name = "high-velocity rifle bullet"
 	hud_state = "hivelo"
 	damage = 20
+	penetration = 20
+	sundering = 1.25
+
+/datum/ammo/bullet/rifle/heavy
+	name = "heavy rifle bullet"
+	hud_state = "hivelo"
+	damage = 30
 	penetration = 10
-	sundering = 1
+	sundering = 1.5
 
 /datum/ammo/bullet/rifle/incendiary
 	name = "incendiary rifle bullet"
@@ -1001,7 +1008,7 @@ datum/ammo/bullet/revolver/tp44
 
 /datum/ammo/bullet/smartgun/smartrifle
 	name = "smartrifle bullet"
-	damage = 15
+	damage = 25
 	penetration = 15
 	sundering = 1
 
@@ -1026,32 +1033,27 @@ datum/ammo/bullet/revolver/tp44
 
 /datum/ammo/bullet/turret
 	name = "autocannon bullet"
-	icon_state 	= "redbullet" //Red bullets to indicate friendly fire restriction
+	icon_state = "redbullet"
+	hud_state = "smartgun"
+	hud_state_empty = "smartgun_empty"
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING|AMMO_SENTRY
 	accurate_range = 10
-	accuracy_var_low = 3
-	accuracy_var_high = 3
-	damage = 20
-	penetration = 10
-	sundering = 3 //small damage big sunder
-	damage_falloff = 0.5 //forgot to add this
+	damage = 50
+	penetration = 5
+	damage_falloff = 0.5
 
 /datum/ammo/bullet/turret/dumb
-	icon_state 	= "bullet"
+	icon_state = "bullet"
 
 /datum/ammo/bullet/turret/gauss
 	name = "heavy gauss turret slug"
-	damage = 25
-	penetration = 30
-	accurate_range = 3
-	sundering = 0
-
+	damage = 60
 
 /datum/ammo/bullet/turret/mini
 	name = "small caliber autocannon bullet"
-	damage = 15
-	penetration = 10
-	sundering = 2
+	damage = 25
+	penetration = 5
+	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SENTRY
 
 
 /datum/ammo/bullet/machinegun //Adding this for the MG Nests (~Art)
@@ -1196,7 +1198,7 @@ datum/ammo/bullet/revolver/tp44
 	set_smoke()
 	smoke_system.set_up(range, T)
 	smoke_system.start()
-	T.visible_message("<span class='danger'>The rocket explodes into white gas!</span>")
+	T.visible_message(span_danger("The rocket explodes into white gas!") )
 	playsound(T, 'sound/weapons/guns/fire/flamethrower2.ogg', 50, 1, 4)
 	flame_radius(radius, T, 27, 27, 27, 17)
 
@@ -1901,7 +1903,7 @@ datum/ammo/bullet/revolver/tp44
 	icon_state = "boiler_gas2"
 	ping = "ping_x"
 	flags_ammo_behavior = AMMO_XENO|AMMO_SKIPS_ALIENS|AMMO_EXPLOSIVE
-	var/danger_message = "<span class='danger'>A glob of acid lands with a splat and explodes into noxious fumes!</span>"
+	var/danger_message = span_danger("A glob of acid lands with a splat and explodes into noxious fumes!")
 	armor_type = "bio"
 	accuracy_var_high = 10
 	max_range = 30
@@ -1967,7 +1969,7 @@ datum/ammo/bullet/revolver/tp44
 	sound_bounce	= "acid_bounce"
 	flags_ammo_behavior = AMMO_XENO|AMMO_SKIPS_ALIENS|AMMO_EXPLOSIVE
 	armor_type = "acid"
-	danger_message = "<span class='danger'>A glob of acid lands with a splat and explodes into corrosive bile!</span>"
+	danger_message = span_danger("A glob of acid lands with a splat and explodes into corrosive bile!")
 	damage = 50
 	damage_type = BURN
 	penetration = 40
@@ -2079,33 +2081,6 @@ datum/ammo/bullet/revolver/tp44
 /datum/ammo/water
 	name = "water"
 	hud_state = "water"
-
-/datum/ammo/flare
-	name = "flare"
-	ping = null //no bounce off.
-	damage_type = BURN
-	flags_ammo_behavior = AMMO_INCENDIARY
-	damage = 15
-	accuracy = 15
-	max_range = 15
-
-/datum/ammo/flare/on_hit_mob(mob/M,obj/projectile/P)
-	drop_nade(get_turf(P))
-
-/datum/ammo/flare/on_hit_obj(obj/O,obj/projectile/P)
-	drop_nade(get_turf(P))
-
-/datum/ammo/flare/on_hit_turf(turf/T,obj/projectile/P)
-	drop_nade(T)
-
-/datum/ammo/flare/do_at_max_range(obj/projectile/P)
-	drop_nade(get_turf(P))
-
-/datum/ammo/flare/drop_nade(turf/T)
-	var/obj/item/explosive/grenade/flare/G = new (T)
-	G.visible_message("<span class='warning'>\A [G] bursts into brilliant light nearby!</span>")
-	G.turn_on()
-
 /datum/ammo/rocket/toy
 	name = "\improper toy rocket"
 	damage = 1
@@ -2147,7 +2122,7 @@ datum/ammo/bullet/revolver/tp44
 
 /datum/ammo/grenade_container/drop_nade(turf/T)
 	var/obj/item/explosive/grenade/G = new nade_type(T)
-	G.visible_message("<span class='warning'>\A [G] lands on [T]!</span>")
+	G.visible_message(span_warning("\A [G] lands on [T]!"))
 	G.det_time = 10
 	G.activate()
 

@@ -69,8 +69,8 @@
 	GLOB.marine_vendors.Add(src)
 
 /obj/machinery/vending/marine/Destroy()
-	. = ..()
 	GLOB.marine_vendors.Remove(src)
+	return ..()
 
 //What do grenade do against candy machine?
 /obj/machinery/vending/marine/ex_act(severity)
@@ -88,6 +88,8 @@
 			/obj/item/ammo_magazine/rifle/standard_assaultrifle = -1,
 			/obj/item/weapon/gun/rifle/standard_carbine = -1,
 			/obj/item/ammo_magazine/rifle/standard_carbine = -1,
+			/obj/item/weapon/gun/rifle/standard_skirmishrifle = -1,
+			/obj/item/ammo_magazine/rifle/standard_skirmishrifle = -1,
 			/obj/item/weapon/gun/rifle/tx11 = -1,
 			/obj/item/ammo_magazine/rifle/tx11 = -1,
 		),
@@ -155,17 +157,18 @@
 		"Specialized" = list(
 			/obj/item/weapon/gun/launcher/m92/standardmarine = -1,
 			/obj/item/weapon/gun/launcher/m81 = -1,
+			/obj/item/weapon/gun/heavymachinegun = 1,
+			/obj/item/ammo_magazine/heavymachinegun = 4,
 			/obj/item/weapon/gun/rifle/pepperball = 4,
+			/obj/item/ammo_magazine/rifle/pepperball = 40,
 			/obj/item/storage/box/recoilless_system = 2,
 			/obj/item/weapon/gun/flamer/marinestandard = 4,
 			/obj/item/ammo_magazine/flamer_tank/backtank = 4,
 			/obj/item/ammo_magazine/flamer_tank/large = 20,
 			/obj/item/ammo_magazine/flamer_tank = 20,
 			/obj/item/weapon/shield/riot/marine = 6,
-			/obj/item/ammo_magazine/rifle/pepperball = 40,
 			/obj/item/weapon/powerfist = -1,
 			/obj/item/weapon/throwing_knife = -1,
-			/obj/item/weapon/combat_knife = -1,
 			/obj/item/weapon/twohanded/spear/tactical = -1,
 			/obj/item/ammo_magazine/standard_smartmachinegun = 4,
 		),
@@ -210,11 +213,21 @@
 		/obj/item/ammo_magazine/packet/acp = 100,
 		/obj/item/ammo_magazine/packet/magnum = 100,
 		/obj/item/ammo_magazine/packet/p10x24mm = 100,
+		/obj/item/ammo_magazine/packet/p10x25mm = 100,
 		/obj/item/ammo_magazine/packet/p10x26mm = 100,
 		/obj/item/ammo_magazine/packet/p10x27mm = 100,
 		/obj/item/ammo_magazine/packet/p492x34mm = 100,
 		/obj/item/storage/box/visual/magazine = 30,
 		/obj/item/storage/box/visual/grenade = 10,
+		),
+		"Utility" = list(
+		/obj/item/flashlight/combat = -1,
+		/obj/item/attachable/bayonetknife = -1,
+		/obj/item/weapon/combat_knife = -1,
+		/obj/item/binoculars = -1,
+		/obj/item/compass = -1,
+		/obj/item/assembly/signaler = -1,
+		/obj/item/weapon/gun/launcher/m81/flare/marine = -1,
 		),
 	)
 
@@ -340,6 +353,7 @@
 			/obj/item/bodybag/tarp = 2,
 			/obj/item/explosive/plastique = 2,
 			/obj/item/minerupgrade/automatic = 3,
+			/obj/item/fulton_extraction_pack = 2,
 			/obj/item/clothing/suit/storage/marine/harness/boomvest = 20,
 			/obj/item/radio/headset/mainship/marine/alpha = -1,
 			/obj/item/radio/headset/mainship/marine/bravo = -1,
@@ -503,8 +517,8 @@
 
 			qdel(item_to_stock)
 			if(!recharge)
-				user.visible_message("<span class='notice'>[user] stocks [src] with \a [R.product_name].</span>",
-				"<span class='notice'>You stock [src] with \a [R.product_name].</span>")
+				user.visible_message(span_notice("[user] stocks [src] with \a [R.product_name]."),
+				span_notice("You stock [src] with \a [R.product_name]."))
 			R.amount++
 			updateUsrDialog()
 			break //We found our item, no reason to go on.
@@ -512,15 +526,15 @@
 /obj/machinery/vending/lasgun/proc/recharge_lasguncell(obj/item/cell/lasgun/A, mob/user)
 	var/recharge_cost = (A.maxcharge - A.charge)
 	if(recharge_cost > machine_current_charge)
-		to_chat(user, "<span class='warning'>[A] cannot be recharged; [src] has inadequate charge remaining: [machine_current_charge] of [machine_max_charge].</span>")
+		to_chat(user, span_warning("[A] cannot be recharged; [src] has inadequate charge remaining: [machine_current_charge] of [machine_max_charge]."))
 		return FALSE
 	else
-		to_chat(user, "<span class='warning'>You insert [A] into [src] to be recharged.</span>")
+		to_chat(user, span_warning("You insert [A] into [src] to be recharged."))
 		if(icon_vend)
 			flick(icon_vend,src)
 		playsound(loc, 'sound/machines/hydraulics_1.ogg', 25, 0, 1)
 		machine_current_charge -= min(machine_current_charge, recharge_cost)
-		to_chat(user, "<span class='notice'>This dispenser has [machine_current_charge] of [machine_max_charge] remaining.</span>")
+		to_chat(user, span_notice("This dispenser has [machine_current_charge] of [machine_max_charge] remaining."))
 		update_icon()
 		return TRUE
 
@@ -701,6 +715,19 @@
 
 	prices = list()
 
+/obj/machinery/vending/shared_vending/marine_engi/rebel
+	products = list(
+		/obj/structure/closet/crate/mortar_ammo/mortar_kit = 1,
+		/obj/item/storage/box/sentry = 5,
+		/obj/item/storage/box/tl102 = 1,
+	)
+
+/obj/machinery/vending/shared_vending/marine_engi/loyalist
+	products = list(
+		/obj/structure/closet/crate/mortar_ammo/mortar_kit = 1,
+		/obj/item/storage/box/sentry = 5,
+		/obj/item/storage/box/tl102 = 1,
+	)
 
 /obj/machinery/vending/marine_smartgun
 	name = "\improper TerraGovTech Smartgun Vendor"
@@ -714,7 +741,7 @@
 
 	products = list(
 		/obj/item/clothing/tie/storage/webbing = 1,
-		/obj/item/storage/box/t26_system = 1,
+		/obj/item/storage/box/t29_system = 1,
 		/obj/item/minigun_powerpack = 1,
 		/obj/item/storage/pouch/magazine/large = 1,
 		/obj/item/clothing/mask/gas = 1,
@@ -816,6 +843,7 @@
 			/obj/item/armor_module/storage/medical = -1,
 			/obj/item/helmet_module/welding = -1,
 			/obj/item/helmet_module/binoculars = -1,
+			/obj/item/helmet_module/attachable/tyr_head = -1,
 			/obj/item/helmet_module/antenna = -1,
 			/obj/item/helmet_module/attachable/mimir_environment_protection/mark1 = -1,
 			/obj/item/armor_module/attachable/mimir_environment_protection/mark1 = -1,
@@ -854,7 +882,6 @@
 			/obj/item/clothing/head/slouch = -1,
 			/obj/item/clothing/glasses/mgoggles = -1,
 			/obj/item/clothing/glasses/mgoggles/prescription = -1,
-			/obj/item/flashlight/combat = -1,
 			/obj/item/clothing/under/whites = -1,
 			/obj/item/clothing/head/white_dress = -1,
 			/obj/item/clothing/shoes/white = -1,
@@ -877,8 +904,8 @@
 			/obj/item/storage/belt/sparepouch = -1,
 			/obj/item/storage/belt/gun/pistol/standard_pistol = -1,
 			/obj/item/storage/belt/gun/revolver/standard_revolver = -1,
-			/obj/item/storage/large_holster/machete/full = -1,
-			/obj/item/storage/large_holster/machete/full_harvester = -1,
+			/obj/item/storage/large_holster/blade/machete/full = -1,
+			/obj/item/storage/large_holster/blade/machete/full_harvester = -1,
 		),
 		"Pouches" = list(
 			/obj/item/storage/pouch/pistol = -1,

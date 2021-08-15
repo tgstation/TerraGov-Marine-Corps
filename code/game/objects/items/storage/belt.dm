@@ -441,15 +441,15 @@
 
 		if(M.flags_magazine & AMMUNITION_REFILLABLE)
 			if(!M.current_rounds)
-				to_chat(user, "<span class='warning'>[M] is empty.</span>")
+				to_chat(user, span_warning("[M] is empty."))
 				return
 
 			if(length(contents) >= storage_slots)
-				to_chat(user, "<span class='warning'>[src] is full.</span>")
+				to_chat(user, span_warning("[src] is full."))
 				return
 
 
-			to_chat(user, "<span class='notice'>You start refilling [src] with [M].</span>")
+			to_chat(user, span_notice("You start refilling [src] with [M]."))
 			if(!do_after(user, 1.5 SECONDS, TRUE, src, BUSY_ICON_GENERIC))
 				return
 
@@ -459,7 +459,7 @@
 					break
 
 			playsound(user.loc, "rustle", 15, TRUE, 6)
-			to_chat(user, "<span class='notice'>You refill [src] with [M].</span>")
+			to_chat(user, span_notice("You refill [src] with [M]."))
 			return TRUE
 
 	return ..()
@@ -492,7 +492,7 @@
 	if(istype(I, /obj/item/ammo_magazine))
 		var/obj/item/ammo_magazine/new_mag = I
 		if(new_mag.caliber != CALIBER_557)
-			to_chat(user, "<span class='notice'>[src] can only be filled with .557/440 ball rifle rounds.</span>")
+			to_chat(user, span_notice("[src] can only be filled with .557/440 ball rifle rounds."))
 			return
 	. = ..()
 	update_icon()
@@ -626,6 +626,7 @@
 	w_class = WEIGHT_CLASS_BULKY
 	storage_type_limits = list(
 		/obj/item/weapon/gun = 1,
+		/obj/item/cell/lasgun/lasrifle/marine = 2,
 	)
 	storage_slots = 7
 	max_storage_space = 15
@@ -638,6 +639,8 @@
 	can_hold = list(
 		/obj/item/weapon/gun/pistol,
 		/obj/item/ammo_magazine/pistol,
+		/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_pistol,
+		/obj/item/cell/lasgun/lasrifle/marine,
 	)
 
 /obj/item/storage/belt/gun/Destroy()
@@ -647,7 +650,7 @@
 	if(current_gun)
 		qdel(current_gun)
 		current_gun = null
-	. = ..()
+	return ..()
 
 
 /obj/item/storage/belt/gun/attack_hand(mob/living/user)
@@ -705,7 +708,7 @@
 
 /obj/item/storage/belt/gun/pistol/examine(mob/user, distance, infix, suffix)
 	. = ..()
-	to_chat(user, "<span class='notice'>To perform a reload with the amunition inside, disable right click and right click on the belt with an empty pistol.</span>")
+	to_chat(user, span_notice("To perform a reload with the amunition inside, disable right click and right click on the belt with an empty pistol."))
 
 /obj/item/storage/belt/gun/pistol/m4a3
 	name = "\improper M4A3 holster rig"
@@ -713,6 +716,8 @@
 	can_hold = list(
 		/obj/item/weapon/gun/pistol,
 		/obj/item/ammo_magazine/pistol,
+		/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_pistol,
+		/obj/item/cell/lasgun/lasrifle/marine,
 	)
 
 /obj/item/storage/belt/gun/pistol/m4a3/full/Initialize()

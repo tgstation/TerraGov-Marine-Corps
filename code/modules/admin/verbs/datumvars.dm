@@ -544,16 +544,16 @@
 
 	var/item
 	if(isnull(value))
-		item = "[VV_HTML_ENCODE(name)] = <span class='value'>null</span>"
+		item = "[VV_HTML_ENCODE(name)] = [span_value("null")]"
 
 	else if(istext(value))
-		item = "[VV_HTML_ENCODE(name)] = <span class='value'>\"[VV_HTML_ENCODE(value)]\"</span>"
+		item = "[VV_HTML_ENCODE(name)] = [span_value("\"[VV_HTML_ENCODE(value)]\"")]"
 
 	else if(isicon(value))
-		item = "[VV_HTML_ENCODE(name)] = /icon (<span class='value'>[value]</span>)"
+		item = "[VV_HTML_ENCODE(name)] = /icon ([span_value("[value]")])"
 
 	else if(isfile(value))
-		item = "[VV_HTML_ENCODE(name)] = <span class='value'>'[value]'</span>"
+		item = "[VV_HTML_ENCODE(name)] = [span_value("'[value]'")]"
 
 	else if(istype(value, /datum))
 		var/datum/D = value
@@ -591,7 +591,7 @@
 				flags += i
 			item = "[VV_HTML_ENCODE(name)] = [VV_HTML_ENCODE(jointext(flags, ", "))]"
 	else
-		item = "[VV_HTML_ENCODE(name)] = <span class='value'>[VV_HTML_ENCODE(value)]</span>"
+		item = "[VV_HTML_ENCODE(name)] = [span_value("[VV_HTML_ENCODE(value)]")]"
 
 	return "[header][item]</li>"
 
@@ -640,7 +640,7 @@
 
 		var/datum/D = locate(href_list["delete"])
 		if(!istype(D))
-			to_chat(usr, "<span class='warning'>Unable to locate item.</span>")
+			to_chat(usr, span_warning("Unable to locate item."))
 		usr.client.holder.delete_atom(D)
 		if(isturf(D))  // show the turf that took its place
 			debug_variables(D)
@@ -923,7 +923,7 @@
 							if(ID == chosen_id)
 								valid_id = TRUE
 						if(!valid_id)
-							to_chat(usr, "<span class='warning'>A reagent with that ID doesn't exist!</span>")
+							to_chat(usr, span_warning("A reagent with that ID doesn't exist!"))
 				if("Choose ID")
 					chosen_id = input(usr, "Choose a reagent to add.", "Add Reagent") as null|anything in reagent_options
 			if(chosen_id)
@@ -1018,25 +1018,25 @@
 
 		var/newamt
 		switch(Text)
-			if("brute")
+			if(BRUTE)
 				L.adjustBruteLoss(amount)
 				newamt = L.getBruteLoss()
-			if("fire")
+			if(BURN)
 				L.adjustFireLoss(amount)
 				newamt = L.getFireLoss()
-			if("toxin")
+			if(TOX)
 				L.adjustToxLoss(amount)
 				newamt = L.getToxLoss()
-			if("oxygen")
+			if(OXY)
 				L.adjustOxyLoss(amount)
 				newamt = L.getOxyLoss()
 			if("brain")
 				L.adjustBrainLoss(amount)
 				newamt = L.getBrainLoss()
-			if("clone")
+			if(CLONE)
 				L.adjustCloneLoss(amount)
 				newamt = L.getCloneLoss()
-			if("stamina")
+			if(STAMINA)
 				L.adjustStaminaLoss(amount)
 				newamt = L.getStaminaLoss()
 
@@ -1044,7 +1044,7 @@
 			return
 
 		vv_update_display(L, Text, "[newamt]")
-		admin_ticket_log(L, "<span class='notice'>[key_name(usr)] dealt [amount] amount of [Text] damage to [key_name(L)]</span>")
+		admin_ticket_log(L, span_notice("[key_name(usr)] dealt [amount] amount of [Text] damage to [key_name(L)]"))
 		log_admin("[key_name(usr)] dealt [amount] amount of [Text] damage to [key_name(L)]")
 		message_admins("[ADMIN_TPMONTY(usr)] dealt [amount] amount of [Text] damage to [ADMIN_TPMONTY(L)]")
 
@@ -1062,7 +1062,7 @@
 			return
 
 		if(!istype(L))
-			to_chat(usr, "<span class='warning'>Mob doesn't exist anymore.</span>")
+			to_chat(usr, span_warning("Mob doesn't exist anymore."))
 			return
 
 		L.grant_language(new_language)
@@ -1080,7 +1080,7 @@
 			return
 
 		if(!length(L.language_holder.languages))
-			to_chat(usr, "<span class='warning'>This mob knows no languages.</span>")
+			to_chat(usr, span_warning("This mob knows no languages."))
 			return
 
 		var/rem_language = input("Please choose a language to remove.", "Language", null) as null|anything in L.language_holder.languages
@@ -1089,7 +1089,7 @@
 			return
 
 		if(!L)
-			to_chat(usr, "<span class='warning'>Mob doesn't exist anymore.</span>")
+			to_chat(usr, span_warning("Mob doesn't exist anymore."))
 			return
 
 		L.remove_language(rem_language)
@@ -1197,7 +1197,7 @@
 
 		var/mob/M = locate(href_list["playerpanel"])
 		if(!istype(M))
-			to_chat(usr, "<span class='warning'>Target is no longer valid.</span>")
+			to_chat(usr, span_warning("Target is no longer valid."))
 			return
 
 		usr.client.holder.show_player_panel(M)

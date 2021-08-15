@@ -6,6 +6,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 // ***************************************
 /datum/action/xeno_action/place_warp_shadow
 	name = "Place Warp Shadow"
+	ability_name = "Place Warp Shadow"
 	action_icon_state = "warp_shadow"
 	mechanics_text = "Binds our psychic essence to a spot of our choosing. We can use Hyperposition to swap locations with this essence."
 	plasma_cost = 150
@@ -19,24 +20,18 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 
 	var/turf/T = get_turf(owner)
 
-	if(isclosedturf(T) || isspaceturf(T))
+	if(turf_block_check(owner, T, TRUE, TRUE, FALSE, FALSE, FALSE, TRUE)) //Check if there's anything non-mob that blocks us
 		if(!silent)
-			to_chat(owner, "<span class='xenowarning'>We cannot create a warp shadow here!</span>")
+			to_chat(owner, span_xenowarning("We cannot create our warp shadow in a solid object!"))
 		return FALSE
 
-
-	for(var/obj/blocker in T) //
-		if(blocker.density && !(blocker.flags_atom & ON_BORDER)) //If we find a dense, non-border obj it's time to stop
-			if(!silent)
-				to_chat(owner, "<span class='xenowarning'>We cannot create a warp shadow here!</span>")
-			return FALSE
 
 
 /datum/action/xeno_action/place_warp_shadow/action_activate()
 	var/mob/living/carbon/xenomorph/wraith/ghost = owner
 
-	ghost.visible_message("<span class='xenowarning'>The air starts to violently roil and shimmer around [ghost]!</span>", \
-	"<span class='xenodanger'>We begin to imprint our essence upon reality, causing the air about us to roil and shimmer...</span>") //Fluff
+	ghost.visible_message(span_xenowarning("The air starts to violently roil and shimmer around [ghost]!"), \
+	span_xenodanger("We begin to imprint our essence upon reality, causing the air about us to roil and shimmer...")) //Fluff
 
 	owner.add_filter("wraith_hyperposition_windup_filter_1", 3, motion_blur_filter()) //Cool filter appear
 	owner.add_filter("wraith_hyperposition_windup_filter_2", 3, motion_blur_filter()) //Cool filter appear
@@ -45,8 +40,8 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	animate(owner.get_filter("wraith_hyperposition_windup_filter_2"), x = 30*rand() - 15, y = 30*rand() - 15, time = 0.5 SECONDS, loop = -1, flags=ANIMATION_PARALLEL)
 
 	if(!do_after(ghost, WRAITH_PLACE_WARP_BEACON_WINDUP, TRUE, ghost, BUSY_ICON_BUILD)) //Channel time/wind up
-		ghost.visible_message("<span class='xenowarning'>The space around [ghost] abruptly stops shifting and wavering.</span>", \
-		"<span class='xenodanger'>We cease binding our essence to this place...</span>")
+		ghost.visible_message(span_xenowarning("The space around [ghost] abruptly stops shifting and wavering."), \
+		span_xenodanger("We cease binding our essence to this place..."))
 		owner.remove_filter("wraith_hyperposition_windup_filter_1")
 		owner.remove_filter("wraith_hyperposition_windup_filter_2")
 		add_cooldown(cooldown_override = WRAITH_PLACE_WARP_BEACON_FAIL_COOLDOWN_OVERRIDE)
@@ -56,8 +51,8 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	owner.remove_filter("wraith_hyperposition_windup_filter_2")
 
 	var/turf/T = get_turf(ghost)
-	ghost.visible_message("<span class='xenonotice'>A shimmering point suddenly coalesces from the warped space above [T].</span>", \
-	"<span class='xenodanger'>We complete our work, binding our essence to this point.</span>", null, 5) //Fluff
+	ghost.visible_message(span_xenonotice("A shimmering point suddenly coalesces from the warped space above [T]."), \
+	span_xenodanger("We complete our work, binding our essence to this point."), null, 5) //Fluff
 	var/obj/effect/xenomorph/warp_shadow/shadow = new(T) //Create the new warp shadow.
 	playsound(T, 'sound/weapons/emitter.ogg', 25, 1)
 	QDEL_NULL(warp_shadow) //Delete the old warp shadow
@@ -90,7 +85,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	QDEL_NULL(warp_shadow)
 
 /datum/action/xeno_action/place_warp_shadow/on_cooldown_finish()
-	to_chat(owner, "<span class='xenonotice'>We are able to place another warp shadow.</span>")
+	to_chat(owner, span_xenonotice("We are able to place another warp shadow."))
 	owner.playsound_local(owner, 'sound/effects/xeno_newlarva.ogg', 25, 0, 1)
 	return ..()
 
@@ -100,6 +95,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 // ***************************************
 /datum/action/xeno_action/hyperposition
 	name = "Hyperposition"
+	ability_name = "Hyperposition"
 	action_icon_state = "hyperposition"
 	mechanics_text = "We teleport back to our warp shadow after a delay. The delay scales with the distance teleported."
 	plasma_cost = 25
@@ -116,18 +112,17 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	var/obj/effect/xenomorph/warp_shadow/shadow = warp_shadow_check.warp_shadow
 	if(!shadow)
 		if(!silent)
-			to_chat(owner, "<span class='xenodanger'>We have no warp shadow to teleport to!</span>")
+			to_chat(owner, span_xenodanger("We have no warp shadow to teleport to!"))
 		return FALSE
 
 	if(shadow.z != owner.z) //We must be on the same Z level to teleport to the warp shadow
 		if(!silent)
-			to_chat(owner, "<span class='xenodanger'>Our warp shadow is beyond our ability to teleport to!</span>")
+			to_chat(owner, span_xenodanger("Our warp shadow is beyond our ability to teleport to!"))
 		return FALSE
 
-	var/turf/T = get_turf(shadow)
-	if(isclosedturf(T) || isspaceturf(T))
+	if(turf_block_check(owner, shadow, FALSE, TRUE, TRUE, TRUE, TRUE, TRUE)) //Check if there's anything that blocks us; we only care about Canpass here
 		if(!silent)
-			to_chat(owner, "<span class='xenodanger'>We can't teleport to our warp shadow while it's in space or a wall!</span>")
+			to_chat(owner, span_xenowarning("We can't teleport to our warp shadow while it's somewhere we can't occupy!"))
 		return FALSE
 
 
@@ -141,8 +136,8 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	var/distance = get_dist(owner, shadow) //Get the distance so we can calculate the wind up
 	var/hyperposition_windup = clamp(distance * 0.25 SECONDS - 5 SECONDS, WRAITH_HYPERPOSITION_MIN_WINDUP, WRAITH_HYPERPOSITION_MAX_WINDUP)
 
-	owner.visible_message("<span class='warning'>The air starts to violently roil and shimmer around [owner]!</span>", \
-	"<span class='xenodanger'>We begin to teleport to our warp shadow located at [A] (X: [shadow.x], Y: [shadow.y]). We estimate this will take [hyperposition_windup * 0.1] seconds.</span>")
+	owner.visible_message(span_warning("The air starts to violently roil and shimmer around [owner]!"), \
+	span_xenodanger("We begin to teleport to our warp shadow located at [A] (X: [shadow.x], Y: [shadow.y]). We estimate this will take [hyperposition_windup * 0.1] seconds."))
 
 	owner.add_filter("wraith_hyperposition_windup_filter_1", 3, list("type" = "motion_blur", 0, 0)) //Cool filter appear
 	owner.add_filter("wraith_hyperposition_windup_filter_2", 3, list("type" = "motion_blur", 0, 0)) //Cool filter appear
@@ -151,8 +146,8 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	animate(owner.get_filter("wraith_hyperposition_windup_filter_2"), x = 30*rand() - 15, y = 30*rand() - 15, time = 0.5 SECONDS, loop = -1, flags=ANIMATION_PARALLEL)
 
 	if(!do_after(owner, hyperposition_windup, TRUE, owner, BUSY_ICON_FRIENDLY)) //Channel time/wind up
-		owner.visible_message("<span class='xenowarning'>The space around [owner] abruptly stops shifting and wavering.</span>", \
-		"<span class='xenodanger'>We abort teleporting back to our warp shadow.</span>")
+		owner.visible_message(span_xenowarning("The space around [owner] abruptly stops shifting and wavering."), \
+		span_xenodanger("We abort teleporting back to our warp shadow."))
 		owner.remove_filter("wraith_hyperposition_windup_filter_1")
 		owner.remove_filter("wraith_hyperposition_windup_filter_2")
 		add_cooldown(cooldown_override = WRAITH_HYPERPOSITION_COOLDOWN_OVERRIDE)
@@ -174,8 +169,13 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	owner.forceMove(beacon_turf) //Move to where the beacon was
 	teleport_debuff_aoe(owner) //Apply tele debuff
 
-	owner.visible_message("<span class='warning'>\ [owner] suddenly vanishes in a vortex of warped space!</span>", \
-	"<span class='xenodanger'>We teleport, swapping positions with our warp shadow. Our warp shadow has moved to  [AREACOORD_NO_Z(shadow)].</span>", null, 5) //Let user know the new location
+	var/warp_shadow_dissipate = FALSE
+	if(turf_block_check(owner, get_turf(shadow), TRUE, TRUE, FALSE, FALSE, FALSE, TRUE)) //Check if there's anything that blocks the warp shadow; we only care about solid walls/objects
+		warp_shadow_dissipate = TRUE
+		warp_shadow_check.clean_warp_shadow() //Remove the warp shadow
+
+	owner.visible_message(span_warning("\ [owner] suddenly vanishes in a vortex of warped space!"), \
+	span_xenodanger("We teleport, swapping positions with our warp shadow. [warp_shadow_dissipate ? "Our warp shadow dissipates as it is teleported into a solid object." : "Our warp shadow has moved to [AREACOORD_NO_Z(shadow)]."]"), null, 5) //Let user know the new location
 
 	GLOB.round_statistics.wraith_hyperpositions++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "wraith_hyperpositions") //Statistics
@@ -184,7 +184,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 
 
 /datum/action/xeno_action/hyperposition/on_cooldown_finish()
-	to_chat(owner, "<span class='xenonotice'>We are able to swap locations with our warp shadow once again.</span>")
+	to_chat(owner, span_xenonotice("We are able to swap locations with our warp shadow once again."))
 	owner.playsound_local(owner, 'sound/effects/xeno_newlarva.ogg', 25, 0, 1)
 	return ..()
 
@@ -193,6 +193,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 // ***************************************
 /datum/action/xeno_action/phase_shift
 	name = "Phase Shift"
+	ability_name = "Phase Shift"
 	action_icon_state = "phase_shift"
 	mechanics_text = "We force ourselves temporarily out of sync with reality, allowing us to become incorporeal and move through any physical obstacles for a short duration."
 	plasma_cost = 25
@@ -201,6 +202,18 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	var/turf/starting_turf = null
 	var/phase_shift_active = FALSE
 	var/phase_shift_duration_timer_id
+	///Timer for the phase shift duration alerts
+	var/phase_shift_duration_alert_id
+
+/datum/action/xeno_action/phase_shift/can_use_action(silent = FALSE, override_flags)
+	. = ..()
+	var/turf/T = get_turf(owner)
+	for(var/shutter_check in GLOB.wraith_no_incorporeal_pass_shutters)
+		if(locate(shutter_check) in T)
+			if(!silent)
+				to_chat(owner, span_xenowarning("We can't Phase Shift while in the space of warp protected shutters!"))
+			return FALSE
+
 
 /datum/action/xeno_action/phase_shift/action_activate()
 	. = ..()
@@ -209,8 +222,8 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 		phase_shift_deactivate()
 		return
 
-	owner.visible_message("<span class='warning'>[owner.name] is becoming faint and translucent!</span>", \
-	"<span class='xenodanger'>We begin to move out of phase with reality....</span>") //Fluff
+	owner.visible_message(span_warning("[owner.name] is becoming faint and translucent!"), \
+	span_xenodanger("We begin to move out of phase with reality....")) //Fluff
 
 	owner.add_filter("wraith_phase_shift_windup_1", 3, list("type" = "wave", 0, 0, size=rand()*2.5+0.5, offset=rand())) //Cool filter appear
 	owner.add_filter("wraith_phase_shift_windup_2", 3, list("type" = "wave", 0, 0, size=rand()*2.5+0.5, offset=rand())) //Cool filter appear
@@ -218,8 +231,8 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	animate(owner.get_filter("wraith_phase_shift_windup_2"), x = 60*rand() - 30, y = 60*rand() - 30, size=rand()*2.5+0.5, offset=rand(), time = 0.25 SECONDS, loop = -1, flags=ANIMATION_PARALLEL)
 
 	if(!do_after(owner, WRAITH_PHASE_SHIFT_WINDUP, TRUE, owner, BUSY_ICON_FRIENDLY)) //Channel time/wind up
-		owner.visible_message("<span class='xenowarning'>[owner]'s form abruptly consolidates, returning to normalcy.</span>", \
-		"<span class='xenodanger'>We abort our desynchronization.</span>")
+		owner.visible_message(span_xenowarning("[owner]'s form abruptly consolidates, returning to normalcy."), \
+		span_xenodanger("We abort our desynchronization."))
 		owner.remove_filter("wraith_phase_shift_windup_1")
 		owner.remove_filter("wraith_phase_shift_windup_2")
 		return fail_activate()
@@ -229,7 +242,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 
 	playsound(owner, "sound/effects/ghost.ogg", 25, 0, 1)
 
-	addtimer(CALLBACK(src, .proc/phase_shift_warning), WRAITH_PHASE_SHIFT_DURATION * WRAITH_PHASE_SHIFT_DURATION_WARNING) //Warn them when Phase Shift is about to end
+	phase_shift_duration_alert_id = addtimer(CALLBACK(src, .proc/phase_shift_warning), WRAITH_PHASE_SHIFT_DURATION * WRAITH_PHASE_SHIFT_DURATION_WARNING, TIMER_STOPPABLE) //Warn them when Phase Shift is about to end
 	phase_shift_duration_timer_id = addtimer(CALLBACK(src, .proc/phase_shift_deactivate), WRAITH_PHASE_SHIFT_DURATION, TIMER_STOPPABLE)
 	owner.add_filter("wraith_phase_shift", 4, list("type" = "blur", 5)) //Cool filter appear
 	owner.stop_pulling() //We can't pull things while incorporeal
@@ -249,8 +262,8 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 
 	phase_shift_active = TRUE //Flag phase shift as being active
 	update_button_icon("phase_shift_off") //Set to resync icon while active
-	succeed_activate()
 	plasma_cost = 0 //Toggling is free
+	return succeed_activate()
 
 ///Warns the user when Phase Shift is about to end.
 /datum/action/xeno_action/phase_shift/proc/phase_shift_warning()
@@ -260,7 +273,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 
 	owner.alpha = WRAITH_PHASE_SHIFT_ALPHA * 1.5 //Become less translucent
 
-	to_chat(owner,"<span class='highdanger'>We begin to move back into phase with reality... We can only remain out of phase for [WRAITH_PHASE_SHIFT_DURATION * (1-WRAITH_PHASE_SHIFT_DURATION_WARNING) * 0.1] more seconds!</span>")
+	to_chat(owner,span_highdanger("We begin to move back into phase with reality... We can only remain out of phase for [WRAITH_PHASE_SHIFT_DURATION * (1-WRAITH_PHASE_SHIFT_DURATION_WARNING) * 0.1] more seconds!"))
 	owner.playsound_local(owner, 'sound/voice/hiss4.ogg', 50, 0, 1)
 
 ///Deactivates and turns off the Phase Shift ability/effects
@@ -268,6 +281,8 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	if(!phase_shift_active) //If phase shift isn't active, don't deactivate again; generally here for the timed proc.
 		return
 
+	deltimer(phase_shift_duration_timer_id) //Delete any existing timers
+	deltimer(phase_shift_duration_alert_id)
 	phase_shift_active = FALSE //Flag phase shift as being off
 	update_button_icon("phase_shift") //Revert the icon to phase shift
 
@@ -294,49 +309,38 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	var/current_turf = get_turf(ghost)
 	var/block_check //Are we trying to rematerialize in a solid object? Check.
 
-	if(isclosedturf(current_turf) || isspaceturf(current_turf)) //So we rematerialized in a solid wall/space
+	if(isspaceturf(current_turf) || turf_block_check(owner, current_turf, TRUE, TRUE, FALSE, FALSE, FALSE, TRUE)) //So we rematerialized in a solid wall/space or invincible dense object
 		block_check = TRUE
 
-	else
-		for(var/obj/blocker in current_turf) //Check for object based blockers
-			if(blocker.density && !(blocker.flags_atom & ON_BORDER)) //If we find a dense, non-border obj we can't climb it's time to stop
-				if(!isstructure(blocker))
-					block_check = TRUE
-					break
-				var/obj/structure/blocker_structure = blocker
-				if(!blocker_structure.climbable)
-					block_check = TRUE
-					break
-
 	if(block_check) //We tried to rematerialize in a solid object/wall of some kind; return to sender
-		to_chat(ghost, "<span class='highdanger'>As we rematerialize in a solid object, we revert to where we slipped out of reality.</span>")
+		to_chat(ghost, span_highdanger("As we rematerialize in a solid object, we revert to where we slipped out of reality."))
+		resync = TRUE
 		ghost.forceMove(starting_turf)
 		teleport_debuff_aoe(ghost) //Debuff when we reappear
 
 	var/distance = get_dist(current_turf, starting_turf)
 	var/phase_shift_plasma_cost = clamp(distance * 4, 0, 100) //We lose 4 additional plasma per tile travelled, up to a maximum of 100
 	var/plasma_deficit = ghost.plasma_stored - phase_shift_plasma_cost
+	var/cooldown_override
 
-	ghost.use_plasma(phase_shift_plasma_cost) //Pay the extra cost
-
-	ghost.visible_message("<span class='warning'>[ghost] form wavers and becomes opaque.</span>", \
-	"<span class='xenodanger'>We phase back into reality[phase_shift_plasma_cost > 0 ? ", expending [phase_shift_plasma_cost] additional plasma for [distance] tiles travelled." : "."]")
-
-	if(plasma_deficit < 0) //If we don't have enough plasma, we pay in blood and sunder instead.
-		plasma_deficit *= -1 //Normalize to a positive value
-		to_chat(owner, "<span class='highdanger'>We haven't enough plasma to safely move back into phase, suffering [plasma_deficit] damage and sunder as our body is torn apart!</span>")
-		ghost.apply_damages(plasma_deficit)
-		ghost.adjust_sunder(plasma_deficit)
+	if(resync) //If we were shunted back willingly or otherwise this is true
+		cooldown_override = 3 SECONDS //Partial cooldown if we cancelled out of Phase Shift with Resync
+	else
+		ghost.use_plasma(phase_shift_plasma_cost) //Pay the extra cost if we didn't resync
+		ghost.visible_message(span_warning("[ghost] form wavers and becomes opaque."), \
+		span_xenodanger("We phase back into reality[phase_shift_plasma_cost > 0 ? " expending [phase_shift_plasma_cost] additional plasma for [distance] tiles travelled." : "."]"))
+		if(plasma_deficit < 0) //If we don't have enough plasma, we pay in blood and sunder instead.
+			plasma_deficit *= -1 //Normalize to a positive value
+			to_chat(owner, span_highdanger("We haven't enough plasma to safely move back into phase, suffering [plasma_deficit] damage and sunder as our body is torn apart!"))
+			ghost.apply_damages(plasma_deficit)
+			ghost.adjust_sunder(plasma_deficit)
 
 	starting_turf = null
 	plasma_cost = initial(plasma_cost) //Revert the plasma cost to its initial amount
-	var/cooldown_override
-	if(resync)
-		cooldown_override = 3 SECONDS //Partial cooldown if we cancelled out of Phase Shift with Resync
 	add_cooldown(cooldown_override)
 
 /datum/action/xeno_action/phase_shift/on_cooldown_finish()
-	to_chat(owner, "<span class='xenodanger'>We are able to fade from reality again.</span>")
+	to_chat(owner, span_xenodanger("We are able to fade from reality again."))
 	owner.playsound_local(owner, 'sound/effects/xeno_newlarva.ogg', 25, 0, 1)
 	return ..()
 
@@ -352,6 +356,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 // ***************************************
 /datum/action/xeno_action/resync
 	name = "Resync"
+	ability_name = "Resync"
 	action_icon_state = "resync"
 	mechanics_text = "Resynchronize with realspace, ending Phase Shift's effect and returning you to where the Phase Shift began with minimal cooldown."
 	cooldown_timer = 1 SECONDS //Token for anti-spam
@@ -362,7 +367,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 
 	if(!(owner.status_flags & INCORPOREAL))
 		if(!silent)
-			to_chat(owner,"<span class='xenodanger'>We are already synchronized with realspace!</span>")
+			to_chat(owner,span_xenodanger("We are already synchronized with realspace!"))
 		return FALSE
 
 /datum/action/xeno_action/resync/action_activate()
@@ -383,57 +388,78 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 /datum/action/xeno_action/activable/blink
 	name = "Blink"
 	action_icon_state = "blink"
+	ability_name = "Blink"
 	mechanics_text = "We teleport ourselves a short distance to a location within line of sight."
 	use_state_flags = XABB_TURF_TARGET
 	plasma_cost = 50
 	cooldown_timer = 0.5 SECONDS
 	keybind_signal = COMSIG_XENOABILITY_BLINK
 
-/datum/action/xeno_action/activable/blink/can_use_ability(atom/A, silent = FALSE, override_flags)
-	. = ..()
-	var/turf/T = get_turf(A)
+///Check target Blink turf to see if it can be blinked to
+/datum/action/xeno_action/activable/blink/proc/check_blink_tile(turf/T, ignore_blocker = FALSE, silent = FALSE)
 	if(isclosedturf(T) || isspaceturf(T))
 		if(!silent)
-			to_chat(owner, "<span class='xenowarning'>We cannot blink here!</span>")
+			to_chat(owner, span_xenowarning("We cannot blink here!"))
 		return FALSE
 
 	var/area/target_area = get_area(T) //We are forced to set this; will not work otherwise
 	if(is_type_in_typecache(target_area, GLOB.wraith_strictly_forbidden_areas)) //We can't enter these period.
 		if(!silent)
-			to_chat(owner, "<span class='xenowarning'>We can't blink into this area!</span>")
+			to_chat(owner, span_xenowarning("We can't blink into this area!"))
 		return FALSE
 
 	if(!owner.line_of_sight(T)) //Needs to be in line of sight.
 		if(!silent)
-			to_chat(owner, "<span class='xenowarning'>We can't blink without line of sight to our destination!</span>")
+			to_chat(owner, span_xenowarning("We can't blink without line of sight to our destination!"))
 		return FALSE
 
 	if(IS_OPAQUE_TURF(T))
 		if(!silent)
-			to_chat(owner, "<span class='xenowarning'>We can't blink into this space without vision!</span>")
+			to_chat(owner, span_xenowarning("We can't blink into this space without vision!"))
 		return FALSE
 
-	for(var/atom/blocker as() in T)
+	if(ignore_blocker) //If we don't care about objects occupying the target square, return TRUE; used for checking pathing through transparents
+		return TRUE
+
+	if(turf_block_check(owner, T, FALSE, TRUE, TRUE, TRUE, TRUE)) //Check if there's anything that blocks us; we only care about Canpass here
+		if(!silent)
+			to_chat(owner, span_xenowarning("We can't blink here!"))
+		return FALSE
+
+	return TRUE
+
+///Check for whether the target turf has dense objects inside
+/datum/action/xeno_action/activable/blink/proc/check_blink_target_turf_density(turf/T, silent = FALSE)
+	for(var/atom/blocker AS in T)
 		if(!blocker.CanPass(owner, T))
 			if(!silent)
-				to_chat(owner, "<span class='xenowarning'>We can't blink into a solid object!</span>")
+				to_chat(owner, span_xenowarning("We can't blink into a solid object!"))
 			return FALSE
 
+	return TRUE
 
 /datum/action/xeno_action/activable/blink/use_ability(atom/A)
 	. = ..()
 	var/mob/living/carbon/xenomorph/wraith/X = owner
 	var/turf/T = X.loc
-	var/turf/temp = X.loc
+	var/turf/temp_turf = X.loc
+	var/check_distance = min(X.xeno_caste.wraith_blink_range, get_dist(X,A))
+	var/list/fully_legal_turfs = list()
 
-	for (var/x = 1 to X.xeno_caste.wraith_blink_range)
-		temp = get_step(T, get_dir(T, A))
-		if (!temp)
+	for (var/x = 1 to check_distance)
+		temp_turf = get_step(T, get_dir(T, A))
+		if (!temp_turf)
 			break
-		T = temp
+		if(!check_blink_tile(temp_turf, TRUE, TRUE)) //Verify that the turf is legal; if not we cancel out. We ignore transparent dense objects like windows here for now
+			break
+		if(check_blink_target_turf_density(temp_turf, TRUE)) //If we could ultimately teleport to this square, it is fully legal; add it to the list
+			fully_legal_turfs += temp_turf
+		T = temp_turf
 
-	if(!can_use_ability(T)) //Since we updated the turf, check it again.
-		return fail_activate()
+	check_distance = min(fully_legal_turfs.len, check_distance) //Cap the check distance to the number of fully legal turfs
+	T = X.loc //Reset T to be our initial position
+	if(check_distance)
+		T = fully_legal_turfs[check_distance]
 
 	X.face_atom(T) //Face the target so we don't look like an ass
 
@@ -452,7 +478,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 				if(H.stat == UNCONSCIOUS) //Apply critdrag damage as if they were quickly pulled the same distance
 					H.adjustOxyLoss(HUMAN_CRITDRAG_OXYLOSS * get_dist(H.loc, T))
 
-		to_chat(X, "<span class='xenodanger'>We bring [pulled_target] with us. We won't be ready to blink again for [cooldown_timer * cooldown_mod * 0.1] seconds due to the strain of doing so.</span>")
+		to_chat(X, span_xenodanger("We bring [pulled_target] with us. We won't be ready to blink again for [cooldown_timer * cooldown_mod * 0.1] seconds due to the strain of doing so."))
 
 	teleport_debuff_aoe(X) //Debuff when we vanish
 
@@ -504,10 +530,10 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 			living_target.adjust_stagger(WRAITH_TELEPORT_DEBUFF_STAGGER_STACKS)
 			living_target.add_slowdown(WRAITH_TELEPORT_DEBUFF_SLOWDOWN_STACKS)
 			living_target.adjust_blurriness(WRAITH_TELEPORT_DEBUFF_SLOWDOWN_STACKS) //minor visual distortion
-			to_chat(living_target, "<span class='warning'>You feel nauseous as reality warps around you!</span>")
+			to_chat(living_target, span_warning("You feel nauseous as reality warps around you!"))
 
 /datum/action/xeno_action/activable/blink/on_cooldown_finish()
-	to_chat(owner, "<span class='xenodanger'>We are able to blink again.</span>")
+	to_chat(owner, span_xenodanger("We are able to blink again."))
 	owner.playsound_local(owner, 'sound/effects/xeno_newlarva.ogg', 25, 0, 1)
 	return ..()
 
@@ -517,6 +543,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 /datum/action/xeno_action/activable/banish
 	name = "Banish"
 	action_icon_state = "Banish"
+	ability_name = "Banish"
 	mechanics_text = "We banish a target object or creature within line of sight to nullspace for a short duration. Can target onself and allies. Non-friendlies are banished for half as long."
 	use_state_flags = XACT_TARGET_SELF
 	plasma_cost = 100
@@ -540,12 +567,12 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 
 	if(owner.status_flags & INCORPOREAL) //We can't use this while phased out.
 		if(!silent)
-			to_chat(owner, "<span class='xenowarning'>We can't banish while incorporeal!</span>")
+			to_chat(owner, span_xenowarning("We can't banish while incorporeal!"))
 		return FALSE
 
 	if(!ismovableatom(A) || iseffect(A) || CHECK_BITFIELD(A.resistance_flags, INDESTRUCTIBLE)) //Cannot banish non-movables/things that are supposed to be invul; also we ignore effects
 		if(!silent)
-			to_chat(owner, "<span class='xenowarning'>We cannot banish this!</span>")
+			to_chat(owner, span_xenowarning("We cannot banish this!"))
 		return FALSE
 
 	var/mob/living/carbon/xenomorph/X = owner
@@ -553,12 +580,12 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	var/distance = get_dist(owner, A)
 	if(distance > X.xeno_caste.wraith_banish_range) //Needs to be in range.
 		if(!silent)
-			to_chat(owner, "<span class='xenowarning'>Our target is too far away! It must be [distance - WRAITH_BANISH_RANGE] tiles closer!</span>")
+			to_chat(owner, span_xenowarning("Our target is too far away! It must be [distance - WRAITH_BANISH_RANGE] tiles closer!"))
 		return FALSE
 
 	if(!owner.line_of_sight(A)) //Needs to be in line of sight.
 		if(!silent)
-			to_chat(owner, "<span class='xenowarning'>We can't banish without line of sight to our target!</span>")
+			to_chat(owner, span_xenowarning("We can't banish without line of sight to our target!"))
 		return FALSE
 
 
@@ -614,11 +641,11 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 		cooldown_mod = 0.6 //40% cooldown reduction if used on non-hostile, non-blacklisted targets.
 		plasma_mod = 0.4 //60% plasma cost reduction if used on non-hostile, non-blacklisted targets.
 
-	banishment_target.visible_message("<span class='warning'>Space abruptly twists and warps around [banishment_target] as it suddenly vanishes!</span>", \
-	"<span class='highdanger'>The world around you reels, reality seeming to twist and tear until you find yourself trapped in a forsaken void beyond space and time.</span>")
+	banishment_target.visible_message(span_warning("Space abruptly twists and warps around [banishment_target] as it suddenly vanishes!"), \
+	span_highdanger("The world around you reels, reality seeming to twist and tear until you find yourself trapped in a forsaken void beyond space and time."))
 	playsound(banished_turf, 'sound/weapons/emitter2.ogg', 50, 1) //this isn't quiet
 
-	to_chat(ghost,"<span class='xenodanger'>We have banished [banishment_target] to nullspace for [duration * 0.1] seconds.</span>")
+	to_chat(ghost,span_xenodanger("We have banished [banishment_target] to nullspace for [duration * 0.1] seconds."))
 	log_attack("[key_name(ghost)] has banished [key_name(banishment_target)] for [duration * 0.1] seconds at [AREACOORD(banishment_target)]")
 
 	addtimer(CALLBACK(src, .proc/banish_warning), duration * 0.7) //Warn when Banish is about to end
@@ -636,7 +663,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	if(!banishment_target)
 		return
 
-	to_chat(owner,"<span class='highdanger'>Our banishment target [banishment_target.name] is about to return to reality at [AREACOORD_NO_Z(portal)]!</span>")
+	to_chat(owner,span_highdanger("Our banishment target [banishment_target.name] is about to return to reality at [AREACOORD_NO_Z(portal)]!"))
 	owner.playsound_local(owner, 'sound/voice/hiss4.ogg', 50, 0, 1)
 
 ///Ends the effect of the Banish ability
@@ -659,10 +686,10 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 		living_target.notransform = initial(living_target.notransform)
 		living_target.clear_fullscreen("banish") //Remove the blind overlay
 
-	banishment_target.visible_message("<span class='warning'>[banishment_target.name] abruptly reappears!</span>", \
-	"<span class='warning'>You suddenly reappear back in what you believe to be reality.</span>")
+	banishment_target.visible_message(span_warning("[banishment_target.name] abruptly reappears!"), \
+	span_warning("You suddenly reappear back in what you believe to be reality."))
 
-	to_chat(owner, "<span class='highdanger'>Our target [banishment_target] has returned to reality at [AREACOORD_NO_Z(banishment_target)]</span>") //Always alert the Wraith
+	to_chat(owner, span_highdanger("Our target [banishment_target] has returned to reality at [AREACOORD_NO_Z(banishment_target)]")) //Always alert the Wraith
 	log_attack("[key_name(owner)] has unbanished [key_name(banishment_target)] at [AREACOORD(banishment_target)]")
 
 	QDEL_NULL(portal) //Eliminate the Brazil portal if we need to
@@ -672,7 +699,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	return TRUE //For the recall sub-ability
 
 /datum/action/xeno_action/activable/banish/on_cooldown_finish()
-	to_chat(owner, "<span class='xenodanger'>We are able to banish again.</span>")
+	to_chat(owner, span_xenodanger("We are able to banish again."))
 	owner.playsound_local(owner, 'sound/effects/xeno_newlarva.ogg', 25, 0, 1)
 	return ..()
 
@@ -681,6 +708,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 // ***************************************
 /datum/action/xeno_action/recall
 	name = "Recall"
+	ability_name = "Recall"
 	action_icon_state = "Recall"
 	mechanics_text = "We recall a target we've banished back from the depths of nullspace."
 	use_state_flags = XACT_USE_NOTTURF|XACT_USE_STAGGERED|XACT_USE_INCAP|XACT_USE_LYING //So we can recall ourselves from nether Brazil
@@ -696,7 +724,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 
 	if(!banish_check.banishment_target)
 		if(!silent)
-			to_chat(owner,"<span class='xenodanger'>We have no targets banished!</span>")
+			to_chat(owner,span_xenodanger("We have no targets banished!"))
 		return FALSE
 
 
@@ -706,3 +734,33 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	banish_check.banish_deactivate()
 	succeed_activate()
 	add_cooldown()
+
+///Return TRUE if we have a block, return FALSE otherwise
+/proc/turf_block_check(atom/subject, atom/target, ignore_can_pass = FALSE, ignore_density = FALSE, ignore_closed_turf = FALSE, ignore_invulnerable = FALSE, ignore_objects = FALSE, ignore_mobs = FALSE, ignore_space = FALSE)
+	var/turf/T = get_turf(target)
+	if(isspaceturf(T) && !ignore_space)
+		return TRUE
+	for(var/atom/blocker AS in T)
+		if((blocker.flags_atom & ON_BORDER) || blocker == subject) //If they're a border entity or our subject, we don't care
+			continue
+		if(!blocker.CanPass(subject, T) && !ignore_can_pass) //If the subject atom can't pass and we care about that, we have a block
+			return TRUE
+		if(!blocker.density) //Check if we're dense
+			continue
+		if(!ignore_density) //If we care about all dense atoms or only certain types of dense atoms
+			return TRUE
+		if(isclosedturf(blocker) && !ignore_closed_turf) //If we care about closed turfs
+			return TRUE
+		if((blocker.resistance_flags & INDESTRUCTIBLE) && !ignore_invulnerable) //If we care about dense invulnerable objects
+			return TRUE
+		if(isobj(blocker) && !ignore_objects) //If we care about dense objects
+			var/obj/obj_blocker = blocker
+			if(!isstructure(obj_blocker)) //If it's not a structure and we care about objects, we have a block
+				return TRUE
+			var/obj/structure/blocker_structure = obj_blocker
+			if(!blocker_structure.climbable) //If it's a structure and can't be climbed, we have a block
+				return TRUE
+		if(ismob(blocker) && !ignore_mobs) //If we care about mobs
+			return TRUE
+
+	return FALSE

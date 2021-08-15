@@ -31,7 +31,7 @@
 		if(locate(/obj/structure/lattice, get_step(src, dir)))
 			L = locate(/obj/structure/lattice, get_step(src, dir))
 			L.updateOverlays(src.loc)
-	. = ..()
+	return ..()
 
 /obj/structure/lattice/ex_act(severity)
 	switch(severity)
@@ -48,7 +48,7 @@
 	if (iswelder(C))
 		var/obj/item/tool/weldingtool/WT = C
 		if(WT.remove_fuel(0, user))
-			to_chat(user, "<span class='notice'>Slicing lattice joints ...</span>")
+			to_chat(user, span_notice("Slicing lattice joints ..."))
 		new /obj/item/stack/rods(src.loc)
 		qdel(src)
 

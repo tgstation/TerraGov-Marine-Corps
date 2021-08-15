@@ -227,7 +227,7 @@
 	return ..()
 
 /datum/status_effect/noplasmaregen/tick()
-	to_chat(owner, "<span class='warning'>You feel too weak to summon new plasma...</span>")
+	to_chat(owner, span_warning("You feel too weak to summon new plasma..."))
 
 /datum/status_effect/incapacitating/harvester_slowdown
 	id = "harvest_slow"
@@ -278,13 +278,13 @@
 
 /datum/status_effect/healing_infusion/on_remove()
 	REMOVE_TRAIT(owner, TRAIT_HEALING_INFUSION, TRAIT_STATUS_EFFECT(id))
-	owner.remove_filter("hivelord_healing_infusion_outline") //Remove the aura
-	UnregisterSignal(owner, list(COMSIG_XENOMORPH_HEALTH_REGEN, COMSIG_XENOMORPH_SUNDER_REGEN)) //unregister the signals; party's over
+	owner.remove_filter("hivelord_healing_infusion_outline")
+	UnregisterSignal(owner, list(COMSIG_XENOMORPH_HEALTH_REGEN, COMSIG_XENOMORPH_SUNDER_REGEN))
 
-	new /obj/effect/temp_visual/telekinesis(get_turf(owner)) //Wearing off SFX
-	new /obj/effect/temp_visual/healing(get_turf(owner)) //Wearing off SFX
+	new /obj/effect/temp_visual/telekinesis(get_turf(owner)) //Wearing off VFX
+	new /obj/effect/temp_visual/healing(get_turf(owner))
 
-	to_chat(owner, "<span class='xenodanger'>Our regeneration is no longer accelerated.</span>") //Let the target know
+	owner.balloon_alert(owner, "Regeneration is no longer accelerated")
 	owner.playsound_local(owner, 'sound/voice/hiss5.ogg', 25)
 
 	return ..()

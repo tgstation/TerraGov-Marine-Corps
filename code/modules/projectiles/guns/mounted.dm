@@ -39,10 +39,10 @@
 	current_mag = /obj/item/ammo_magazine/tl102
 
 	scatter = 20
-	fire_delay = 2
+	fire_delay = 0.25 SECONDS
 
 	burst_amount = 3
-	burst_delay = 1
+	burst_delay = 0.1 SECONDS
 	extra_delay = 1 SECONDS
 	burst_accuracy_mult = 2
 	burst_scatter_mult = -2
@@ -51,13 +51,18 @@
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER|GUN_DEPLOYED_FIRE_ONLY|GUN_WIELDED_FIRING_ONLY|GUN_IFF
 	gun_firemode_list = list(GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC)
 
+	attachable_allowed = list(
+		/obj/item/attachable/scope/unremovable/tl102,
+	)
+
 	starting_attachment_types = list(
 		/obj/item/attachable/scope/unremovable/tl102,
 	)
 
 	deploy_time = 5 SECONDS
+	undeploy_time = 3 SECONDS
 
-	max_integrity = 300
+	max_integrity = 125
 
 ///This and get_ammo_count is to make sure the ammo counter functions.
 /obj/item/weapon/gun/tl102/get_ammo_type()
@@ -103,11 +108,11 @@
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER|GUN_IFF
 
-// This is a deployed IFF-less mACHINEGUN, has 500 rounds, drums do not fit anywhere but your belt slot and your back slot. But it has 500 rounds. That's nice.
+// This is a deployed IFF-less MACHINEGUN, has 500 rounds, drums do not fit anywhere but your belt slot and your back slot. But it has 500 rounds. That's nice.
 
 /obj/item/weapon/gun/heavymachinegun
 	name = "\improper MG-08/495 heavy machinegun"
-	desc = "An absolute monster of a weapon, this is a watercooled heavy machinegun modernized by some crazy armorer. The pinnacle at holding a chokepoint. Holds 500 rounds of 10x30mm caseless in a box case. IS NOT IFF CAPABLE. Aiming carefully recommended. Can be repaired with a blowtorch once deployed."
+	desc = "An absolute monster of a weapon, this is a watercooled heavy machinegun modernized by some crazy armorer. The pinnacle at holding a chokepoint. Holds 500 rounds of 10x28mm caseless in a box case. IS NOT IFF CAPABLE. Aiming carefully recommended. Can be repaired with a blowtorch once deployed."
 
 	w_class = WEIGHT_CLASS_HUGE
 	flags_equip_slot = ITEM_SLOT_BACK
@@ -116,6 +121,7 @@
 
 	fire_sound = 'sound/weapons/guns/fire/mg08.ogg'
 	reload_sound = 'sound/weapons/guns/interact/minigun_cocked.ogg'
+	caliber = CALIBER_10X28
 
 	current_mag = /obj/item/ammo_magazine/heavymachinegun
 
@@ -124,18 +130,21 @@
 	fire_delay = 0.2 SECONDS
 
 	burst_amount = 1
-	burst_accuracy_mult = 2
-	burst_scatter_mult = -2
 
 	flags_item = IS_DEPLOYABLE|TWOHANDED
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER|GUN_DEPLOYED_FIRE_ONLY|GUN_WIELDED_FIRING_ONLY
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
+
+	attachable_allowed = list(
+		/obj/item/attachable/scope/unremovable/heavymachinegun,
+	)
 
 	starting_attachment_types = list(
 		/obj/item/attachable/scope/unremovable/heavymachinegun,
 	)
 
 	deploy_time = 8 SECONDS
+	undeploy_time = 3 SECONDS
 
-	max_integrity = 500
+	max_integrity = 150
 

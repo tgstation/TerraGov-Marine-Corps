@@ -71,7 +71,7 @@
 
 
 /obj/effect/alien/resin/attack_hand(mob/living/user)
-	to_chat(usr, "<span class='warning'>You scrape ineffectively at \the [src].</span>")
+	to_chat(usr, span_warning("You scrape ineffectively at \the [src]."))
 	return TRUE
 
 
@@ -103,6 +103,12 @@
 
 /obj/effect/alien/resin/sticky/Crossed(atom/movable/AM)
 	. = ..()
+
+	if(isvehicle(AM))
+		var/obj/vehicle/vehicle = AM
+		vehicle.next_move_slowdown += slow_amt
+		return
+
 	if(!ishuman(AM))
 		return
 
@@ -155,8 +161,8 @@
 
 /obj/structure/mineral_door/resin/attack_paw(mob/living/carbon/human/user)
 	if(user.a_intent == INTENT_HARM)
-		user.visible_message("<span class='xenowarning'>\The [user] claws at \the [src].</span>", \
-		"<span class='xenowarning'>You claw at \the [src].</span>")
+		user.visible_message(span_xenowarning("\The [user] claws at \the [src]."), \
+		span_xenowarning("You claw at \the [src]."))
 		playsound(loc, "alien_resin_break", 25)
 		take_damage(rand(40, 60))
 	else
@@ -178,12 +184,12 @@
 		TryToSwitchState(X)
 		return TRUE
 
-	X.visible_message("<span class='warning'>\The [X] digs into \the [src] and begins ripping it down.</span>", \
-	"<span class='warning'>We dig into \the [src] and begin ripping it down.</span>", null, 5)
+	X.visible_message(span_warning("\The [X] digs into \the [src] and begins ripping it down."), \
+	span_warning("We dig into \the [src] and begin ripping it down."), null, 5)
 	playsound(src, "alien_resin_break", 25)
 	if(do_after(X, 4 SECONDS, FALSE, src, BUSY_ICON_HOSTILE))
-		X.visible_message("<span class='danger'>[X] rips down \the [src]!</span>", \
-		"<span class='danger'>We rip down \the [src]!</span>", null, 5)
+		X.visible_message(span_danger("[X] rips down \the [src]!"), \
+		span_danger("We rip down \the [src]!"), null, 5)
 		qdel(src)
 
 /obj/structure/mineral_door/resin/flamer_fire_act()
@@ -347,15 +353,15 @@
 	switch(status)
 		if(EGG_BURST, EGG_DESTROYED)
 			if(M.xeno_caste.can_hold_eggs)
-				M.visible_message("<span class='xenonotice'>\The [M] clears the hatched egg.</span>", \
-				"<span class='xenonotice'>We clear the hatched egg.</span>")
+				M.visible_message(span_xenonotice("\The [M] clears the hatched egg."), \
+				span_xenonotice("We clear the hatched egg."))
 				playsound(src.loc, "alien_resin_break", 25)
 				M.plasma_stored++
 				qdel(src)
 		if(EGG_GROWING)
-			to_chat(M, "<span class='xenowarning'>The child is not developed yet.</span>")
+			to_chat(M, span_xenowarning("The child is not developed yet."))
 		if(EGG_GROWN)
-			to_chat(M, "<span class='xenonotice'>We retrieve the child.</span>")
+			to_chat(M, span_xenonotice("We retrieve the child."))
 			Burst(FALSE)
 
 /obj/effect/alien/egg/proc/Burst(kill = TRUE) //drops and kills the hugger if any is remaining
@@ -415,18 +421,18 @@
 	if(istype(I, /obj/item/clothing/mask/facehugger))
 		var/obj/item/clothing/mask/facehugger/F = I
 		if(F.stat == DEAD)
-			to_chat(user, "<span class='xenowarning'>This child is dead.</span>")
+			to_chat(user, span_xenowarning("This child is dead."))
 			return
 
 		if(status == EGG_DESTROYED)
-			to_chat(user, "<span class='xenowarning'>This egg is no longer usable.</span>")
+			to_chat(user, span_xenowarning("This egg is no longer usable."))
 			return
 
 		if(hugger)
-			to_chat(user, "<span class='xenowarning'>This one is occupied with a child.</span>")
+			to_chat(user, span_xenowarning("This one is occupied with a child."))
 			return
 
-		visible_message("<span class='xenowarning'>[user] slides [F] back into [src].</span>","<span class='xenonotice'>You place the child back in to [src].</span>")
+		visible_message(span_xenowarning("[user] slides [F] back into [src]."),span_xenonotice("You place the child back in to [src]."))
 		user.transferItemToLoc(F, src)
 		F.go_idle(TRUE)
 		hugger = F
@@ -520,7 +526,7 @@
 		Burst(TRUE)
 		return
 
-	to_chat(M, "<span class='warning'>That egg is filled with gas and has no child to retrieve.</span>")
+	to_chat(M, span_warning("That egg is filled with gas and has no child to retrieve.") )
 
 /obj/item/resin_jelly
 	name = "resin jelly"
@@ -538,7 +544,7 @@
 		return attack_hand(X)
 	if(X.do_actions)
 		return
-	X.visible_message("<span class='notice'>[X] starts to cover themselves in a foul substance...</span>", "<span class='xenonotice'>We begin to cover ourselves in a foul substance...</span>")
+	X.visible_message(span_notice("[X] starts to cover themselves in a foul substance..."), span_xenonotice("We begin to cover ourselves in a foul substance..."))
 	if(!do_after(X, 2 SECONDS, TRUE, X, BUSY_ICON_MEDICAL))
 		return
 	activate_jelly(X)
@@ -548,7 +554,7 @@
 		return
 	if(user.do_actions)
 		return
-	user.visible_message("<span class='notice'>[user] starts to cover themselves in a foul substance...</span>", "<span class='xenonotice'>We begin to cover ourselves in a foul substance...</span>")
+	user.visible_message(span_notice("[user] starts to cover themselves in a foul substance..."), span_xenonotice("We begin to cover ourselves in a foul substance..."))
 	if(!do_after(user, 2 SECONDS, TRUE, user, BUSY_ICON_MEDICAL))
 		return
 	activate_jelly(user)
@@ -557,19 +563,19 @@
 	if(!isxeno(user))
 		return TRUE
 	if(!isxeno(M))
-		to_chat(user, "<span class='xenonotice'>We cannot apply the [src] to this creature.</span>")
+		to_chat(user, span_xenonotice("We cannot apply the [src] to this creature."))
 		return FALSE
 	if(user.do_actions)
 		return FALSE
 	if(!do_after(user, 1 SECONDS, TRUE, M, BUSY_ICON_MEDICAL))
 		return FALSE
-	user.visible_message("<span class='notice'>[user] smears a viscous substance on [M].</span>","<span class='xenonotice'>We carefully smear [src] onto [user].</span>")
+	user.visible_message(span_notice("[user] smears a viscous substance on [M]."),span_xenonotice("We carefully smear [src] onto [user]."))
 	activate_jelly(M)
 	user.temporarilyRemoveItemFromInventory(src)
 	return FALSE
 
 /obj/item/resin_jelly/proc/activate_jelly(mob/living/carbon/xenomorph/user)
-	user.visible_message("<span class='notice'>[user]'s chitin begins to gleam with an unseemly glow...</span>", "<span class='xenonotice'>We feel powerful as we are covered in [src]!</span>")
+	user.visible_message(span_notice("[user]'s chitin begins to gleam with an unseemly glow..."), span_xenonotice("We feel powerful as we are covered in [src]!"))
 	user.emote("roar")
 	user.apply_status_effect(STATUS_EFFECT_RESIN_JELLY_COATING)
 	qdel(src)
@@ -587,5 +593,5 @@
 	var/mob/living/carbon/xenomorph/X = hit_atom
 	if(X.fire_resist_modifier <= -20)
 		return
-	X.visible_message("<span class='notice'>[X] is splattered with jelly!</span>")
+	X.visible_message(span_notice("[X] is splattered with jelly!"))
 	INVOKE_ASYNC(src, .proc/activate_jelly, X)

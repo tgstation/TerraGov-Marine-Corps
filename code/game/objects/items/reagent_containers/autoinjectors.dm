@@ -24,9 +24,9 @@
 /obj/item/reagent_containers/hypospray/autoinjector/examine(mob/user)
 	..()
 	if(reagents && reagents.reagent_list.len)
-		to_chat(user, "<span class='notice'>It is currently loaded.</span>")
+		to_chat(user, span_notice("It is currently loaded."))
 	else
-		to_chat(user, "<span class='notice'>It is spent.</span>")
+		to_chat(user, span_notice("It is spent."))
 
 /obj/item/reagent_containers/hypospray/autoinjector/fillable
 	desc = "An autoinjector loaded with... something, consult the doctor who gave this to you."
@@ -144,7 +144,7 @@
 /obj/item/reagent_containers/hypospray/autoinjector/hypervene
 	name = "hypervene autoinjector"
 	desc = "An auto-injector loaded with 3 uses of hypervene, an emergency medicine that rapidly purges chems. Causes pain and vomiting."
-	icon_state = "autoinjector-8"
+	icon_state = "autoinjector-12"
 	amount_per_transfer_from_this = 3
 	volume = 9
 	list_reagents = list(/datum/reagent/hypervene = 9)
