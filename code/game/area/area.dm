@@ -59,11 +59,6 @@
 	var/min_ambience_cooldown = 40 SECONDS
 	///Used to decide what the maximum time between ambience is
 	var/max_ambience_cooldown = 120 SECONDS
-	///Assoc list of faction members in this area; only used in civil war to determine who controls this zone
-	var/list/alive_faction_member_in_area
-	///Who controls this area
-	var/faction_controlling = ""
-
 
 /area/New()
 	// This interacts with the map loader, so it needs to be set immediately
@@ -333,50 +328,4 @@
 /area/proc/set_to_contested()
 	if(SSminimaps.initialized)
 		stack_trace("An area was set as contested after SSminimap was initiliazed, it won't be colored")
-	RegisterSignal(src, COMSIG_AREA_ENTERED, .proc/add_faction_member)
-	RegisterSignal(src, COMSIG_AREA_EXITED, .proc/left_area)
 	minimap_color = MINIMAP_AREA_CONTESTED_ZONE
-
-///Signal handler when something enters the disputed area.
-/area/proc/add_faction_member(datum/source, atom/movable/entered)
-	SIGNAL_HANDLER
-	if(!isliving(entered))
-		return
-	var/mob/living/living_entered = entered
-	if(living_entered.stat == DEAD)
-		RegisterSignal(living_entered, COMSIG_MOB_REVIVE, .proc/add_faction_member)
-		return
-	LAZYADDASSOC(alive_faction_member_in_area, living_entered.faction, living_entered)
-	RegisterSignal(living_entered, COMSIG_MOB_DEATH, .proc/remove_faction_member)
-	update_control_minimap_icon()
-
-///Signal handler when something leave the contested area. If it's a mob, we stop listening for his death/revive.
-/area/proc/left_area(datum/source, atom/movable/left)
-	SIGNAL_HANDLER
-	if(!isliving(left))
-		return
-	var/mob/living/living_left = left
-	LAZYREMOVEASSOC(alive_faction_member_in_area, living_left.faction, living_left)
-	UnregisterSignal(living_left, list(COMSIG_MOB_DEATH, COMSIG_MOB_REVIVE))
-	update_control_minimap_icon()
-
-///Signal handler when a mob die in the disputed area. We are waiting for him to revive to count him again.
-/area/proc/remove_faction_member(datum/source, mob/living/died)
-	SIGNAL_HANDLER
-	LAZYREMOVEASSOC(alive_faction_member_in_area, died.faction, died)
-	UnregisterSignal(died, COMSIG_MOB_DEATH)
-	RegisterSignal(died, COMSIG_MOB_REVIVE, .proc/add_faction_member)
-	update_control_minimap_icon()
-
-///Update the minimap blips to show who is controlling this area
-/area/proc/update_control_minimap_icon()
-	if(faction_controlling != FACTION_TERRAGOV && length(LAZYACCESS(alive_faction_member_in_area, FACTION_TERRAGOV)) > length(LAZYACCESS(alive_faction_member_in_area, FACTION_TERRAGOV_REBEL)))
-		faction_controlling = FACTION_TERRAGOV
-		SSminimaps.remove_marker(GLOB.zones_to_control[src])
-		SSminimaps.add_marker(GLOB.zones_to_control[src], z, MINIMAP_FLAG_ALL, "loyalist_zone")
-		return
-	if(faction_controlling != FACTION_TERRAGOV_REBEL && length(LAZYACCESS(alive_faction_member_in_area, FACTION_TERRAGOV)) < length(LAZYACCESS(alive_faction_member_in_area, FACTION_TERRAGOV_REBEL)))
-		faction_controlling = FACTION_TERRAGOV_REBEL
-		SSminimaps.remove_marker(GLOB.zones_to_control[src])
-		SSminimaps.add_marker(GLOB.zones_to_control[src], z, MINIMAP_FLAG_ALL, "rebel_zone")
-		return

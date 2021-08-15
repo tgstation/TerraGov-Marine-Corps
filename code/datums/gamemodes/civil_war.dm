@@ -70,9 +70,10 @@
 
 	if(SSmonitor.gamestate != GROUNDSIDE)
 		return
-	for(var/area/disputed_zone AS in GLOB.zones_to_control)
-		if(disputed_zone.faction_controlling)
-			LAZYINCREMENT(points_per_faction, disputed_zone.faction_controlling)
+
+	for(var/obj/structure/sensor_tower/sensor_tower AS in GLOB.zones_to_control)
+		if(sensor_tower.faction)
+			LAZYINCREMENT(points_per_faction, sensor_tower.faction)
 
 	if(LAZYACCESS(points_per_faction, FACTION_TERRAGOV) >= win_points_needed)
 		if(LAZYACCESS(points_per_faction, FACTION_TERRAGOV_REBEL) >= win_points_needed)
