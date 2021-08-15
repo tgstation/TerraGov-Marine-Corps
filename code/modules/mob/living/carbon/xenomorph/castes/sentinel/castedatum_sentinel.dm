@@ -63,7 +63,7 @@
 
 	// *** Plasma *** //
 	plasma_max = 450
-	plasma_gain = 15
+	plasma_gain = 17
 
 	// *** Health *** //
 	max_health = 250
@@ -88,14 +88,14 @@
 	melee_damage = 17
 
 	// *** Speed *** //
-	speed = -0.8
+	speed = -0.9
 
 	// *** Plasma *** //
 	plasma_max = 550
-	plasma_gain = 18
+	plasma_gain = 20
 
 	// *** Health *** //
-	max_health = 275
+	max_health = 260
 
 	// *** Evolution *** //
 	upgrade_threshold = 420
@@ -117,14 +117,14 @@
 	melee_damage = 17
 
 	// *** Speed *** //
-	speed = -0.9
+	speed = -1
 
 	// *** Plasma *** //
 	plasma_max = 600
-	plasma_gain = 20
+	plasma_gain = 23
 
 	// *** Health *** //
-	max_health = 300
+	max_health = 275
 
 	// *** Evolution *** //
 	upgrade_threshold = 660
@@ -133,6 +133,6 @@
 	soft_armor = list("melee" = 26, "bullet" = 26, "laser" = 26, "energy" = 26, "bomb" = XENO_BOMB_RESIST_0, "bio" = 25, "rad" = 25, "fire" = 26, "acid" = 25)
 
 	// *** Ranged Attack *** //
-	spit_delay = 1 SECONDS
+	spit_delay = 0.9 SECONDS
 	spit_types = list(/datum/ammo/xeno/toxin/upgrade3, /datum/ammo/xeno/acid)
 
