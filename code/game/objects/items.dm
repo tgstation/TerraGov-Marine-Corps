@@ -376,6 +376,13 @@
 // If you are making custom procs but would like to retain partial or complete functionality of this one, include a 'return ..()' to where you want this to happen.
 // Set disable_warning to 1 if you wish it to not give you outputs.
 // warning_text is used in the case that you want to provide a specific warning for why the item cannot be equipped.
+
+/obj/item/proc/activate_attachment(slot, mob/user)
+	return SEND_SIGNAL(src, COMSIG_ITEM_ACTIVATE_ATTACHMENT, slot, user)
+
+/obj/item/proc/attach_to(obj/item/attachment, list/input_attachment_data, mob/attacker)
+	return SEND_SIGNAL(src, COMSIG_ITEM_ATTACH_WITHOUT_USER, attachment, input_attachment_data)
+
 /obj/item/proc/mob_can_equip(mob/M, slot, warning = TRUE, override_nodrop = FALSE)
 	if(!slot)
 		return FALSE

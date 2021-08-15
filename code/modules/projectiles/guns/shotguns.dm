@@ -171,17 +171,14 @@ can cause issues with ammo types getting mixed up during the burst.
 	return ready_shotgun_tube()
 
 /obj/item/weapon/gun/shotgun/reload_into_chamber(mob/user)
-	if(active_attachable && active_attachable.flags_attach_features & ATTACH_PROJECTILE)
-		make_casing(active_attachable.type_of_casings)
-	else
-		make_casing(type_of_casings)
-		if(in_chamber)
-			QDEL_NULL(in_chamber)
+	make_casing(type_of_casings)
+	if(in_chamber)
+		QDEL_NULL(in_chamber)
 
-		//Time to move the tube position.
-		ready_in_chamber() //We're going to try and reload. If we don't get anything, icon change.
-		if(!current_mag.current_rounds && !in_chamber) //No rounds, nothing chambered.
-			update_icon()
+	//Time to move the tube position.
+	ready_in_chamber() //We're going to try and reload. If we don't get anything, icon change.
+	if(!current_mag.current_rounds && !in_chamber) //No rounds, nothing chambered.
+		update_icon()
 
 	return TRUE
 
@@ -560,16 +557,13 @@ can cause issues with ammo types getting mixed up during the burst.
 	to_chat(user, span_notice("<b>You pump [src].</b>"))
 
 /obj/item/weapon/gun/shotgun/pump/reload_into_chamber(mob/user)
-	if(active_attachable && active_attachable.flags_attach_features & ATTACH_PROJECTILE)
-		make_casing(active_attachable.type_of_casings)
-	else
-		pump_lock = FALSE //fired successfully; unlock the pump
-		current_mag.used_casings++ //The shell was fired successfully. Add it to used.
-		if(in_chamber)
-			QDEL_NULL(in_chamber)
-		//Time to move the tube position.
-		if(!current_mag.current_rounds)
-			update_icon()//No rounds, nothing chambered.
+	pump_lock = FALSE //fired successfully; unlock the pump
+	current_mag.used_casings++ //The shell was fired successfully. Add it to used.
+	if(in_chamber)
+		QDEL_NULL(in_chamber)
+	//Time to move the tube position.
+	if(!current_mag.current_rounds)
+		update_icon()//No rounds, nothing chambered.
 
 	return TRUE
 

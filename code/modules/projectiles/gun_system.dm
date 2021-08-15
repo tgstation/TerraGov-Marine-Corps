@@ -93,10 +93,11 @@
 	var/list/attachable_overlays	= list(ATTACHMENT_SLOT_MUZZLE, ATTACHMENT_SLOT_RAIL, ATTACHMENT_SLOT_UNDER, ATTACHMENT_SLOT_STOCK, ATTACHMENT_SLOT_MAGAZINE) //List of overlays so we can switch them in an out, instead of using Cut() on overlays.
 	var/list/attachable_offset 		= null		//Is a list, see examples of from the other files. Initiated on New() because lists don't initial() properly.
 	var/list/attachable_allowed		= null		//Must be the exact path to the attachment present in the list. Empty list for a default.
-	///assoc list of "slot" = ref for attachments, supports any slot, two attachments of same slot cant exist.
-	var/list/obj/item/attachable/attachments
-	var/obj/item/attachable/attached_gun/active_attachable = null //This will link to one of the above four, or remain null.
+
+	var/obj/item/weapon/gun/active_attachable = null //This will link to one of the above four, or remain null.
 	var/list/starting_attachment_types = null //What attachments this gun starts with THAT CAN BE REMOVED. Important to avoid nuking the attachments on restocking! Added on New()
+
+	var/list/slots = list()
 
 	var/flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK
 
@@ -169,8 +170,6 @@
 		ammo = GLOB.ammo_list[ammo] //If they don't have a mag, they fire off their own thing.
 	update_force_list() //This gives the gun some unique verbs for attacking.
 
-	handle_starting_attachment()
-
 	setup_firemodes()
 	AddComponent(/datum/component/automatedfire/autofire, fire_delay, burst_delay, burst_amount, gun_firemode, CALLBACK(src, .proc/set_bursting), CALLBACK(src, .proc/reset_fire), CALLBACK(src, .proc/Fire)) //This should go after handle_starting_attachment() and setup_firemodes() to get the proper values set.
 
@@ -185,25 +184,9 @@
 
 	GLOB.nightfall_toggleable_lights += src
 
-//Hotfix for attachment offsets being set AFTER the core New() proc. Causes a small graphical artifact when spawning, hopefully works even with lag
-/obj/item/weapon/gun/proc/handle_starting_attachment()
-	if(!length(starting_attachment_types))
-		return
-	for(var/path in starting_attachment_types)
-		var/obj/item/attachable/A = new path(src)
-		A.attach_to_gun(src)
-
-
 /obj/item/weapon/gun/Destroy()
 	ammo = null
 	active_attachable = null
-
-	if(attachments)
-		for(var/slot in attachments)
-			qdel(attachments[slot])
-
-	LAZYCLEARLIST(attachments)
-	UNSETEMPTY(attachments)
 
 	if(in_chamber)
 		QDEL_NULL(in_chamber)
@@ -219,7 +202,11 @@
 	. = ..()
 	if(. != CHECKS_PASSED)
 		return
-	attachments[ATTACHMENT_SLOT_RAIL]?.turn_light(user, toggle_on, cooldown, sparks, forced)
+	var/obj/item/attachable = slots[ATTACHMENT_SLOT_RAIL]
+	if(!attachable || !istype(attachable, /obj/item/attachable))
+		return
+	var/obj/item/attachable/attachable_attachment = attachable
+	attachable_attachment.turn_light(user, toggle_on, cooldown, sparks, forced)
 
 /obj/item/weapon/gun/emp_act(severity)
 	for(var/obj/O in contents)
@@ -287,14 +274,14 @@
 	else
 		dat += "The safety's off!<br>"
 
-	if(attachments)
-		for(var/slot in attachments)
-			var/obj/item/attachable/attachment = LAZYACCESS(attachments, slot)
-			if(attachment)
-				dat += "It has [icon2html(attachment, user)] [attachment.name]"
-				if(attachment.flags_attach_features & ATTACH_WEAPON)
-					dat += " ([attachment.current_rounds]/[attachment.max_rounds])"
-				dat += "mounted on the [attachment.slot] slot."
+	for(var/key in slots)
+		var/obj/item/attachable = slots[key]
+		if(!attachable)
+			continue
+		if(!istype(attachable, /obj/item/weapon/gun))
+			dat += "It has [icon2html(attachable, user)] [attachable.name]"
+		var/obj/item/weapon/gun/gun_attachable = attachable
+		dat += " ([gun_attachable.current_mag.current_rounds]/[gun_attachable.current_mag.max_rounds])"
 
 	if(dat)
 		to_chat(user, "[dat.Join(" ")]")
@@ -577,10 +564,6 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 		return
 	set_target(get_turf_on_clickcatcher(object, gun_user, params))
 	var/list/modifiers = params2list(params)
-	if(modifiers["right"] || modifiers["middle"] || modifiers["shift"])
-		if(active_attachable?.flags_attach_features & ATTACH_WEAPON)
-			do_fire_attachment()
-		return
 	if(gun_firemode == GUN_FIREMODE_SEMIAUTO)
 		if(!Fire() || windup_checked == WEAPON_WINDUP_CHECKING)
 			return
@@ -644,17 +627,6 @@ and you're good to go.
 		return
 	//The workhorse of the bullet procs.
 
-	//Let's check on the active attachable. It loads ammo on the go, so it never chambers anything
-	if(active_attachable && active_attachable.flags_attach_features & ATTACH_PROJECTILE)
-		if(active_attachable.current_rounds > 0) //If it's still got ammo and stuff.
-			active_attachable.current_rounds--
-			return create_bullet(active_attachable.ammo)
-		to_chat(user, span_warning("[active_attachable] is empty!"))
-		to_chat(user, span_notice("You disable [active_attachable]."))
-		playsound(loc, active_attachable.activation_sound, 15, 1)
-		active_attachable.activate_attachment(null, TRUE)
-		return
-
 	if(in_chamber) //If we have a round chambered and no active attachable, we're good to go.
 		return in_chamber //Already set!
 
@@ -683,9 +655,6 @@ and you're good to go.
 	This should only apply to the masterkey, since it's the only attachment that shoots through Fire()
 	instead of its own thing through fire_attachment(). If any other bullet attachments are added, they would fire here.
 	*/
-	if(active_attachable && active_attachable.flags_attach_features & ATTACH_PROJECTILE)
-		make_casing(active_attachable.type_of_casings) // Attachables can drop their own casings.
-		return in_chamber
 
 	make_casing(type_of_casings) // Drop a casing if needed.
 	if(in_chamber)
@@ -698,15 +667,6 @@ and you're good to go.
 			playsound(src, empty_sound, 25, 1)
 
 	return in_chamber //Returns the projectile if it's actually successful.
-
-
-/obj/item/weapon/gun/proc/delete_bullet(obj/projectile/projectile_to_fire, refund = FALSE)
-	if(active_attachable && active_attachable.flags_attach_features & ATTACH_PROJECTILE) //Attachables don't chamber rounds, so we want to delete it right away.
-		qdel(projectile_to_fire) //Getting rid of it. Attachables only use ammo after the cycle is over.
-		if(refund)
-			active_attachable.current_rounds += ammo_per_shot //Refund the bullet.
-		return TRUE
-
 
 //----------------------------------------------------------
 		//									   \\
@@ -824,8 +784,8 @@ and you're good to go.
 		M.bullet_act(projectile_to_fire)
 		last_fired = world.time
 
-		if(!delete_bullet(projectile_to_fire))
-			qdel(projectile_to_fire)
+		QDEL_NULL(projectile_to_fire)
+
 		reload_into_chamber(user) //Reload into the chamber if the gun supports it.
 		if(user) //Update dat HUD
 			var/obj/screen/ammo/A = user.hud_used.ammo //The ammo HUD
@@ -845,8 +805,6 @@ and you're good to go.
 		ENABLE_BITFIELD(flags_gun_features, GUN_CAN_POINTBLANK)
 		return
 
-	if(active_attachable && !CHECK_BITFIELD(active_attachable.flags_attach_features, ATTACH_PROJECTILE))
-		active_attachable.activate_attachment(null, TRUE)//We're not firing off a nade into our mouth.
 	var/obj/projectile/projectile_to_fire = load_into_chamber(user)
 	in_chamber = null //Projectiles live and die fast. It's better to null the reference early so the GC can handle it immediately.
 
@@ -888,8 +846,8 @@ and you're good to go.
 	last_fired = world.time
 
 	projectile_to_fire.play_damage_effect(user)
-	if(!delete_bullet(projectile_to_fire))
-		qdel(projectile_to_fire) //If this proc DIDN'T delete the bullet, we're going to do so here.
+
+	QDEL_NULL(projectile_to_fire) //If this proc DIDN'T delete the bullet, we're going to do so here.
 
 	reload_into_chamber(user) //Reload the sucker.
 	ENABLE_BITFIELD(flags_gun_features, GUN_CAN_POINTBLANK)
@@ -929,9 +887,7 @@ and you're good to go.
 
 /obj/item/weapon/gun/proc/gun_on_cooldown(mob/user)
 	var/added_delay = fire_delay
-	if(active_attachable?.attachment_firing_delay && active_attachable.flags_attach_features & ATTACH_PROJECTILE)
-		added_delay = active_attachable.attachment_firing_delay
-	else if(user)
+	if(user)
 		if(!user.skills.getRating("firearms")) //no training in any firearms
 			added_delay += 3 //untrained humans fire more slowly.
 		else
@@ -964,10 +920,6 @@ and you're good to go.
 /obj/item/weapon/gun/proc/play_fire_sound(mob/user)
 	//Guns with low ammo have their firing sound
 	var/firing_sndfreq = ((current_mag?.current_rounds / current_mag?.max_rounds) > 0.25) ? FALSE : 55000
-	if(active_attachable && active_attachable.flags_attach_features & ATTACH_PROJECTILE)
-		if(active_attachable.fire_sound) //If we're firing from an attachment, use that noise instead.
-			playsound(user, active_attachable.fire_sound, 50)
-		return
 	if(flags_gun_features & GUN_SILENCED)
 		playsound(user, fire_sound, 25, firing_sndfreq ? TRUE : FALSE, frequency = firing_sndfreq)
 		return
@@ -1210,28 +1162,15 @@ and you're good to go.
 			GB.current_gun = null
 			GB.update_gun_icon()
 
-/obj/item/weapon/gun/proc/do_fire_attachment()
-	if(!CHECK_BITFIELD(flags_item, WIELDED))
-		to_chat(gun_user, span_warning("[active_attachable] must be wielded to fire!"))
-		return
-	if(active_attachable.current_rounds <= 0)
-		click_empty(gun_user) //If it's empty, let them know.
-		to_chat(gun_user, span_warning("[active_attachable] is empty!"))
-		return
-	if(!wielded_stable())
-		to_chat(gun_user, span_warning("[active_attachable] is not ready to fire!"))
-		return
-	if(!(flags_gun_features & GUN_ALLOW_SYNTHETIC) && !CONFIG_GET(flag/allow_synthetic_gun_use) && issynth(gun_user))
-		to_chat(gun_user, span_warning("Your program does not allow you to use this firearm."))
-		return
-	active_attachable.fire_attachment(target, src, gun_user) //Fire it.
-	last_fired = world.time
-
 //For letting xenos turn off the flashlights on any guns left lying around.
 /obj/item/weapon/gun/attack_alien(mob/living/carbon/xenomorph/X, isrightclick = FALSE)
 	if(!CHECK_BITFIELD(flags_gun_features, GUN_FLASHLIGHT_ON))
 		return
-	attachments[ATTACHMENT_SLOT_RAIL].turn_light(null, FALSE)
+	var/obj/item/attachment = slots[ATTACHMENT_SLOT_RAIL]
+	if(!attachment || !istype(attachment, /obj/item/attachable))
+		return
+	var/obj/item/attachable/attachable = attachment
+	attachable.turn_light(null, FALSE)
 	playsound(loc, "alien_claw_metal", 25, 1)
 	X.do_attack_animation(src, ATTACK_EFFECT_CLAW)
 	to_chat(X, span_warning("We disable the metal thing's lights.") )

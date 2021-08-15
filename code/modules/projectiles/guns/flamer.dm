@@ -502,7 +502,7 @@
 	. = ..()
 	if(!.)
 		return
-	var/obj/item/attachable/hydro_cannon/hydro = LAZYACCESS(attachments, ATTACHMENT_SLOT_UNDER)
+	var/obj/item/attachable/hydro_cannon/hydro = LAZYACCESS(slots, ATTACHMENT_SLOT_UNDER)
 	if(!istype(hydro))
 		return FALSE
 	playsound(user, hydro.activation_sound, 15, 1)

@@ -2,13 +2,13 @@
 	var/list/slots = list()
 	var/list/attachables_allowed = list()
 	var/datum/callback/on_attach
-	var/datum/callback/on_unattach
+	var/datum/callback/on_detach
 	var/list/attachment_offsets = list()
 	var/list/attachable_overlays = list()
 	var/list/extra_vars = list()
 
 
-/datum/component/attachment_handler/Initialize(_slots, list/_attachables_allowed, datum/callback/_on_attach, datum/callback/_on_unattach, list/_attachment_offsets, list/_attachable_overlays, list/_extra_vars)
+/datum/component/attachment_handler/Initialize(_slots, list/_attachables_allowed, list/_attachment_offsets, list/_extra_vars, datum/callback/_on_attach, datum/callback/_on_detach, list/starting_attachmments)
 	. = ..()
 	if(!isitem(parent))
 		return COMPONENT_INCOMPATIBLE
@@ -16,15 +16,21 @@
 	slots = _slots
 	attachables_allowed = _attachables_allowed
 	on_attach = _on_attach
-	on_unattach = _on_unattach
+	on_detach = _on_detach
 	attachment_offsets = _attachment_offsets
-	attachable_overlays = _attachable_overlays
+	attachable_overlays += slots
 	extra_vars = _extra_vars
+
+	if(starting_attachmments.len)
+		for(var/starting_attachment_type in starting_attachmments)
+			finish_handle_attachment(new starting_attachment_type())
 
 	RegisterSignal(parent, COMSIG_PARENT_ATTACKBY , .proc/start_handle_attachment)
 	RegisterSignal(parent, COMSIG_ATOM_UPDATE_OVERLAYS, .proc/update_parent_overlay)
 
 	RegisterSignal(parent, COMSIG_CLICK_ALT, .proc/start_detach)
+	RegisterSignal(parent, COMSIG_ITEM_ACTIVATE_ATTACHMENT, .proc/activate_attachment)
+	RegisterSignal(parent, COMSIG_ITEM_ATTACH_WITHOUT_USER, .proc/attach_without_user)
 
 /datum/component/attachment_handler/proc/start_handle_attachment(datum/source, obj/attacking, mob/attacker)
 	if(!is_attachment(attacking))
@@ -39,17 +45,25 @@
 	var/mob/living/carbon/human/human_attacker = attacker
 	human_attacker.temporarilyRemoveItemFromInventory(attacking)
 
-/datum/component/attachment_handler/proc/finish_handle_attachment(obj/item/attachment, list/attachment_data, mob/attacker)
+/datum/component/attachment_handler/proc/finish_handle_attachment(obj/item/attachment, list/input_attachment_data, mob/attacker)
+	var/list/attachment_data = input_attachment_data
+	if(!attachment_data)
+		attachment_data = get_attachment_data(attachment)
+
 	if(slots[attachment_data["slot"]])
 		var/obj/item/current_attachment = slots[attachment_data["slot"]]
 		finish_detach(current_attachment, get_attachment_data(current_attachment), attacker)
 
 	attachment.forceMove(parent)
-	slot[attachment_data["slot"]] = attachment
+	slots[attachment_data["slot"]] = attachment
 
 	var/obj/item/parent_item = parent
 	parent_item.update_overlays()
-	on_attach?.Invoke(parent, attacker)
+	on_attach?.Invoke(attachment, attacker)
+	var/datum/callback/attachment_on_attach = attachment_data["on_attach"]
+	attachment_on_attach?.Invoke(parent, attacker)
+
+	RegisterSignal(parent, COMSIG_PARENT_QDELETING, .proc/clean_refs)
 
 /datum/component/attachment_handler/proc/do_attach(obj/item/attachment, mob/attacher, list/attachment_data)
 	if(!ishuman(attacher))
@@ -129,8 +143,11 @@
 		return
 
 	var/list/attachments_to_remove = list()
-	for(var/obj/item/current_attachment in slots)
-		var/list/current_attachment_data = get_attachment_data(current_attachments)
+	for(var/key in slots)
+		var/obj/item/current_attachment = slots[key]
+		if(!current_attachment)
+			continue
+		var/list/current_attachment_data = get_attachment_data(current_attachment)
 		if(!CHECK_BITFIELD(current_attachment_data["flags_attach_features"], ATTACH_REMOVABLE))
 			continue
 		attachments_to_remove += current_attachment
@@ -179,33 +196,64 @@
 /datum/component/attachment_handler/proc/finish_detach(obj/item/attachment, list/attachment_data, mob/living/carbon/human/user)
 	user.put_in_hands(attachment)
 	slots[attachment_data["slot"]] = null
-	on_unattach?.Invoke(parent, user)
 
+	var/obj/item/parent_item = parent
+	parent_item.update_overlays()
+
+	on_detach?.Invoke(attachment, user)
+	var/datum/callback/attachment_on_detach = attachment_data["on_detach"]
+	attachment_on_detach?.Invoke(parent, user)
+
+	UnregisterSignal(parent, COMSIG_PARENT_QDELETING)
+
+
+/datum/component/attachment_handler/proc/activate_attachment(slot, mob/user)
+	SIGNAL_HANDLER
+	var/obj/item/attachment_to_activate = slots[slot]
+	if(!attachment_to_activate)
+		return NONE
+	var/list/attachment_data = get_attachment_data(attachment_to_activate)
+	var/datum/callback/on_activate = attachment_data["on_activate"]
+	on_activate?.Invoke(parent, user)
+	return ATTACHMENT_ACTIVATED
+
+/datum/component/attachment_handler/proc/attach_without_user(obj/item/attachment, list/input_attachment_data, mob/attacker)
+	SIGNAL_HANDLER
+	return finish_handle_attachment(attachment, input_attachment_data, attacker)
 
 /datum/component/attachment_handler/proc/update_parent_overlay(datum/source)
 	SIGNAL_HANDLER
-	var/obj/item/parent_item = source
-	for(var/list/attachment_list in attachments)
-		if(!attachment_list.len)
-			continue
-		var/slot = attachment_list["slot"]
+	var/obj/item/parent_item = parent
+	for(var/slot in slots)
+		var/obj/item/attachment = slots[slot]
+
 		var/image/overlay = attachable_overlays[slot]
 		parent_item.overlays -= overlay
 
+		if(!attachment)
+			attachable_overlays[slot] = null
+			continue
 
-		overlay = image(attachment_list["overlay_icon"], parent_item, attachment_list["overlay_icon_state"])
+		var/list/attachment_data = get_attachment_data(attachment)
 
-		overlay.pixel_x = attachment_offsets["[slot]_x"] - attachment_list["pixel_shift_x"]
-		overlay.pixel_y = attachment_offsets["[slot]_y"] - attachment_list["pixel_shift_y"]    
+		overlay = image(attachment_data["overlay_icon"], parent_item, attachment_data["overlay_icon_state"])
+
+		overlay.pixel_x = attachment_offsets["[slot]_x"] - attachment_data["pixel_shift_x"]
+		overlay.pixel_y = attachment_offsets["[slot]_y"] - attachment_data["pixel_shift_y"]    
 
 		attachable_overlays[slot] = overlay
 		parent_item.overlays += overlay
 
 
+/datum/component/attachment_handler/proc/clean_refs()
+	SIGNAL_HANDLER
+	for(var/key in slots)
+		QDEL_NULL(slots[key])
+
 /datum/component/attachment_handler/proc/is_attachment(obj/item/attachment)
-    return SEND_SIGNAL(attachment, COMSIG_ITEM_IS_ATTACHMENT) & IS_ATTACHMENT
+	return SEND_SIGNAL(attachment, COMSIG_ITEM_IS_ATTACHMENT) & IS_ATTACHMENT
 
 /datum/component/attachment_handler/proc/get_attachment_data(obj/item/_attachment)
-	var/list/attachment_data = list(attachment = _attachment)
-    SEND_SIGNAL(attachment, COMSIG_ITEM_GET_ATTACHMENT_DATA, attachment_data)
+	var/list/attachment_data = list()
+	SEND_SIGNAL(_attachment, COMSIG_ITEM_GET_ATTACHMENT_DATA, attachment_data)
 	return attachment_data

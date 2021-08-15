@@ -424,18 +424,6 @@
 		to_chat(user, span_notice("You refill [FT] with [lowertext(FT.caliber)]."))
 		FT.update_icon()
 
-	else if(istype(I, /obj/item/attachable/attached_gun/flamer))
-		var/obj/item/attachable/attached_gun/flamer/FT = I
-		if(!reagents.total_volume)
-			return ..()
-
-		var/fuel_transfer_amount = min(reagents.total_volume, (FT.max_rounds - FT.current_rounds))
-		reagents.remove_reagent(/datum/reagent/fuel, fuel_transfer_amount)
-		FT.current_rounds += fuel_transfer_amount
-		playsound(loc, 'sound/effects/refill.ogg', 25, TRUE, 3)
-		to_chat(user, span_notice("You refill [FT] with fuel."))
-		FT.update_icon()
-
 	else
 		to_chat(user, span_notice("The tank scoffs at your insolence.  It only provides services to welders and flamethrowers."))
 

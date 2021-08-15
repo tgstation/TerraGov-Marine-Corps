@@ -215,7 +215,10 @@
 	var/obj/screen/ammo/hud = operator.hud_used.ammo
 	hud.remove_hud(operator)
 
-	for(var/attachable in gun.attachments)
+	for(var/key in gun.slots)
+		var/obj/item/attachable = gun.slots[key]
+		if(!attachable)
+			continue
 		if(!istype(attachable, /obj/item/attachable/scope))
 			continue
 		var/obj/item/attachable/scope/scope = attachable

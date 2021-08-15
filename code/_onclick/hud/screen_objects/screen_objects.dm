@@ -590,7 +590,7 @@
 	var/obj/item/weapon/gun/G = .
 	if(!G)
 		return
-	var/obj/item/attachable/flashlight/F = LAZYACCESS(G.attachments, ATTACHMENT_SLOT_RAIL)
+	var/obj/item/attachable/flashlight/F = LAZYACCESS(G.slots, ATTACHMENT_SLOT_RAIL)
 	if(F?.activate_attachment(usr))
 		playsound(usr, F.activation_sound, 15, 1)
 

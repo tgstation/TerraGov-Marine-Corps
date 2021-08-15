@@ -124,7 +124,7 @@
 	. = ..()
 
 /obj/item/weapon/gun/rifle/sniper/antimaterial/process()
-	var/obj/item/attachable/scope = LAZYACCESS(attachments, ATTACHMENT_SLOT_RAIL)
+	var/obj/item/attachable/scope = LAZYACCESS(slots, ATTACHMENT_SLOT_RAIL)
 	if(!scope.zoom)
 		laser_off()
 		return
@@ -143,7 +143,7 @@
 
 /obj/item/weapon/gun/rifle/sniper/antimaterial/zoom(mob/living/user, tileoffset = 11, viewsize = 12) //tileoffset is client view offset in the direction the user is facing. viewsize is how far out this thing zooms. 7 is normal view
 	. = ..()
-	var/obj/item/attachable/scope = LAZYACCESS(attachments, ATTACHMENT_SLOT_RAIL)
+	var/obj/item/attachable/scope = LAZYACCESS(slots, ATTACHMENT_SLOT_RAIL)
 	if(!scope.zoom && (targetmarker_on || targetmarker_primed) )
 		laser_off(user)
 
@@ -184,7 +184,7 @@
 
 
 /obj/item/weapon/gun/rifle/sniper/antimaterial/proc/laser_on(mob/user)
-	var/obj/item/attachable/scope = LAZYACCESS(attachments, ATTACHMENT_SLOT_RAIL)
+	var/obj/item/attachable/scope = LAZYACCESS(slots, ATTACHMENT_SLOT_RAIL)
 	if(!scope.zoom) //Can only use and prime the laser targeter when zoomed.
 		to_chat(user, span_warning("You must be zoomed in to use your target marker!"))
 		return TRUE
@@ -531,21 +531,21 @@
 
 
 /obj/item/weapon/gun/launcher/m92/attackby(obj/item/I, mob/user, params)
-	if(istype(I, /obj/item/explosive/grenade))
-		if(length(grenades) >= max_grenades)
-			to_chat(user, span_warning("The grenade launcher cannot hold more grenades!"))
-			return
+	if(!istype(I, /obj/item/explosive/grenade))
+		return
 
-		if(!user.transferItemToLoc(I, src))
-			return
+	if(length(grenades) >= max_grenades)
+		to_chat(user, span_warning("The grenade launcher cannot hold more grenades!"))
+		return
 
-		grenades += I
-		playsound(user, 'sound/weapons/guns/interact/shotgun_shell_insert.ogg', 25, 1)
-		to_chat(user, span_notice("You put [I] in the grenade launcher."))
-		to_chat(user, span_info("Now storing: [grenades.len] / [max_grenades] grenades."))
+	if(!user.transferItemToLoc(I, src))
+		return
 
-	else if(istype(I, /obj/item/attachable) && check_inactive_hand(user))
-		attach_to_gun(user, I)
+	grenades += I
+	playsound(user, 'sound/weapons/guns/interact/shotgun_shell_insert.ogg', 25, 1)
+	to_chat(user, span_notice("You put [I] in the grenade launcher."))
+	to_chat(user, span_info("Now storing: [grenades.len] / [max_grenades] grenades."))
+
 
 
 /obj/item/weapon/gun/launcher/m92/afterattack(atom/target, mob/user, flag)
@@ -709,23 +709,23 @@
 
 
 /obj/item/weapon/gun/launcher/m81/attackby(obj/item/I, mob/user, params)
-	if(istype(I, /obj/item/explosive/grenade))
-		if(!istype(I, grenade_type_allowed))
-			to_chat(user, span_warning("[src] can't use this type of grenade!"))
-			return
+	if(!istype(I, /obj/item/explosive/grenade))
+		return
 
-		if(grenade)
-			to_chat(user, span_warning("The grenade launcher cannot hold more grenades!"))
-			return
+	if(!istype(I, grenade_type_allowed))
+		to_chat(user, span_warning("[src] can't use this type of grenade!"))
+		return
 
-		if(!user.transferItemToLoc(I, src))
-			return
+	if(grenade)
+		to_chat(user, span_warning("The grenade launcher cannot hold more grenades!"))
+		return
 
-		grenade = I
-		to_chat(user, span_notice("You put [I] in the grenade launcher."))
+	if(!user.transferItemToLoc(I, src))
+		return
 
-	else if(istype(I, /obj/item/attachable) && check_inactive_hand(user))
-		attach_to_gun(user, I)
+	grenade = I
+	to_chat(user, span_notice("You put [I] in the grenade launcher."))
+
 
 
 /obj/item/weapon/gun/launcher/m81/afterattack(atom/target, mob/user, flag)

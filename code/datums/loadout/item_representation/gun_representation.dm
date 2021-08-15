@@ -14,8 +14,8 @@
 		CRASH("/datum/item_representation/gun created from an item that is not a gun")
 	..()
 	var/obj/item/weapon/gun/gun_to_copy = item_to_copy
-	for(var/key in gun_to_copy.attachments)
-		attachments += new /datum/item_representation/gun_attachement(gun_to_copy.attachments[key])
+	for(var/key in gun_to_copy.slots)
+		attachments += new /datum/item_representation/gun_attachement(gun_to_copy.slots[key])
 
 
 /datum/item_representation/gun/instantiate_object(datum/loadout_seller/seller, master = null, mob/living/user)
@@ -39,11 +39,12 @@
 
 ///Attach the instantiated attachment to the gun
 /datum/item_representation/gun_attachement/proc/install_on_gun(seller, obj/item/weapon/gun/gun_to_attach, mob/living/user)
-	var/obj/item/attachable/attachment_type = item_type
-	if(!(initial(attachment_type.flags_attach_features) & ATTACH_REMOVABLE))//Unremovable attachment are not in vendors
-		bypass_vendor_check = TRUE
-	var/obj/item/attachable/attachment = instantiate_object(seller, null, user)
-	attachment?.attach_to_gun(gun_to_attach)
+	if(istype(item_type, /obj/item/attachable))
+		var/obj/item/attachable/attachment_type = item_type
+		if(!(initial(attachment_type.flags_attach_features) & ATTACH_REMOVABLE))//Unremovable attachment are not in vendors
+			bypass_vendor_check = TRUE
+		var/obj/item/attachable/attachment = instantiate_object(seller, null, user)
+		gun_to_attach.attach_to(attachment)
 
 /**
  * Able to representate a handfull

@@ -34,13 +34,8 @@
 	if(flags_attach_features & ATTACH_ACTIVATION)
 		attach_strings += "This needs to be activated to be used."
 
-	if(flags_attach_features & ATTACH_RELOADABLE)
-		attach_strings += "This can be reloaded with the appropriate ammunition."
-
 	attach_strings += "<br><U>Always on modifications</U>:<br>"
 
-	if(max_range)
-		attach_strings += "This attachment has a max range of [max_range] tiles."
 	if(damage_mod)
 		attach_strings += "Damage: [damage_mod * 100]%"
 	if(damage_falloff_mod)
@@ -67,8 +62,6 @@
 		attach_strings += "Aim Mode slowdow modifier: [aim_mode_movement_mult*100]%"
 	if(movement_acc_penalty_mod)
 		attach_strings += "Running accuracy penalty: [movement_acc_penalty_mod * 100]%"
-	if(max_rounds)
-		attach_strings += "This attachment can hold [max_rounds] of its ammunition."
 	if(scope_zoom_mod)
 		attach_strings += "This has optical glass allowing for magnification and viewing long distances."
 	if(aim_speed_mod)
