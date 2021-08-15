@@ -286,6 +286,15 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 /datum/skills/ai
 	name = "AI"
 	engineer = SKILL_ENGINEER_MASTER
+	construction = SKILL_CONSTRUCTION_MASTER
+	firearms = SKILL_FIREARMS_UNTRAINED
+	medical = SKILL_MEDICAL_EXPERT
+	leadership = SKILL_LEAD_MASTER
+	surgery = SKILL_SURGERY_EXPERT
+	pilot = SKILL_PILOT_TRAINED
+	police = SKILL_POLICE_MP
+	powerloader = SKILL_POWERLOADER_MASTER
+	large_vehicle = SKILL_LARGE_VEHICLE_TRAINED
 
 /datum/skills/synthetic
 	name = SYNTHETIC
