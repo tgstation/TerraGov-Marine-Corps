@@ -26,8 +26,7 @@
 		for(var/starting_attachment_type in starting_attachmments)
 			finish_handle_attachment(new starting_attachment_type())
 
-	var/obj/item/parent_item = parent
-	parent_item.update_overlays()
+	update_parent_overlay()
 
 	RegisterSignal(parent, COMSIG_PARENT_ATTACKBY , .proc/start_handle_attachment)
 	RegisterSignal(parent, COMSIG_ATOM_UPDATE_OVERLAYS, .proc/update_parent_overlay)
@@ -35,6 +34,7 @@
 	RegisterSignal(parent, COMSIG_CLICK_ALT, .proc/start_detach)
 	RegisterSignal(parent, COMSIG_ITEM_ACTIVATE_ATTACHMENT, .proc/activate_attachment)
 	RegisterSignal(parent, COMSIG_ITEM_ATTACH_WITHOUT_USER, .proc/attach_without_user)
+	RegisterSignal(parent, COMSIG_ITEM_UPDATE_ATTACHMENT_ICON, .proc/overlay_icon_update)
 
 /datum/component/attachment_handler/proc/start_handle_attachment(datum/source, obj/attacking, mob/attacker)
 	if(!is_attachment(attacking))
@@ -65,8 +65,7 @@
 	var/datum/callback/attachment_on_attach = attachment_data["on_attach"]
 	attachment_on_attach?.Invoke(parent, attacker)
 
-	var/obj/item/parent_item = parent
-	parent_item.update_overlays()
+	update_parent_overlay()
 
 	RegisterSignal(parent, COMSIG_PARENT_QDELETING, .proc/clean_references)
 
@@ -202,8 +201,7 @@
 	user.put_in_hands(attachment)
 	slots[attachment_data["slot"]] = null
 
-	var/obj/item/parent_item = parent
-	parent_item.update_overlays()
+	update_parent_overlay()
 
 	on_detach?.Invoke(attachment, user)
 	var/datum/callback/attachment_on_detach = attachment_data["on_detach"]
@@ -226,11 +224,12 @@
 	SIGNAL_HANDLER
 	return finish_handle_attachment(attachment, input_attachment_data)
 
-/datum/component/attachment_handler/proc/update_parent_overlay(datum/source)
+/datum/component/attachment_handler/proc/update_parent_overlay(datum/source, attachment_to_change, new_icon_state)
 	SIGNAL_HANDLER
 	var/obj/item/parent_item = parent
 	for(var/slot in slots)
 		var/obj/item/attachment = slots[slot]
+
 
 		var/image/overlay = attachable_overlays[slot]
 		parent_item.overlays -= overlay
@@ -240,8 +239,11 @@
 			continue
 
 		var/list/attachment_data = get_attachment_data(attachment)
+		var/icon_state = attachment_data["overlay_icon_state"]
+		if(attachment_to_change && new_icon_state && attachment_to_change == attachment)
+			icon_state = new_icon_state
 
-		overlay = image(attachment_data["overlay_icon"], parent_item, attachment_data["overlay_icon_state"])
+		overlay = image(attachment_data["overlay_icon"], parent_item, icon_state)
 
 		overlay.pixel_x = attachment_offsets["[slot]_x"] - attachment_data["pixel_shift_x"]
 		overlay.pixel_y = attachment_offsets["[slot]_y"] - attachment_data["pixel_shift_y"]    
@@ -254,6 +256,10 @@
 	SIGNAL_HANDLER
 	for(var/key in slots)
 		QDEL_NULL(slots[key])
+
+/datum/component/attachment_handler/proc/overlay_icon_update(obj/item/attachment, new_icon_state)
+	SIGNAL_HANDLER
+	return update_parent_overlay(parent, attachment, new_icon_state)
 
 /datum/component/attachment_handler/proc/is_attachment(obj/item/attachment)
 	return SEND_SIGNAL(attachment, COMSIG_ITEM_IS_ATTACHMENT) & IS_ATTACHMENT

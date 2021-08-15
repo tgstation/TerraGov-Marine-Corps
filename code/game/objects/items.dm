@@ -383,6 +383,9 @@
 /obj/item/proc/attach_to(obj/item/attachment, list/input_attachment_data, mob/attacker)
 	return SEND_SIGNAL(src, COMSIG_ITEM_ATTACH_WITHOUT_USER, attachment, input_attachment_data)
 
+/obj/item/proc/update_attachment_icon_state(obj/item/attachment, new_icon_state)
+	return SEND_SIGNAL(src, COMSIG_ITEM_UPDATE_ATTACHMENT_ICON, attachment, new_icon_state)
+
 /obj/item/proc/mob_can_equip(mob/M, slot, warning = TRUE, override_nodrop = FALSE)
 	if(!slot)
 		return FALSE

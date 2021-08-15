@@ -254,6 +254,7 @@
 #define COMSIG_ITEM_GET_ATTACHMENT_DATA "item_get_attachment_data"
 #define COMSIG_ITEM_ACTIVATE_ATTACHMENT "item_activate_attachment"
 #define COMSIG_ITEM_ATTACH_WITHOUT_USER "item_attach_without_user"
+#define COMSIG_ITEM_UPDATE_ATTACHMENT_ICON "item_update_attachment_icon"
 
 
 #define COMSIG_ITEM_TOGGLE_ACTION "item_toggle_action"			//from base of obj/item/ui_interact(): (/mob/user)

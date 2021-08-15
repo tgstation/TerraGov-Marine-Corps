@@ -40,9 +40,6 @@
 ///Attach the instantiated attachment to the gun
 /datum/item_representation/gun_attachement/proc/install_on_gun(seller, obj/item/weapon/gun/gun_to_attach, mob/living/user)
 	if(ispath(item_type, /obj/item/attachable))
-		var/obj/item/attachable/attachment_type = item_type
-		if(!(initial(attachment_type.flags_attach_features) & ATTACH_REMOVABLE))//Unremovable attachment are not in vendors
-			bypass_vendor_check = TRUE
 		var/obj/item/attachable/attachment = instantiate_object(seller, null, user)
 		gun_to_attach.attach_to(attachment)
 
