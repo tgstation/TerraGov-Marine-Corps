@@ -1,0 +1,4 @@
+author: "SplinterGP"
+delete-after: True
+changes: 
+  - code_imp: "changed the TL-127 bolt action rifle code to behave more like a bolt action, it also now doenst autochamber on loading another magazine."

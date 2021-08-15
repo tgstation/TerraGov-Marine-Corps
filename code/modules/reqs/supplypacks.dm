@@ -64,11 +64,6 @@ OPERATIONS
 	cost = 30
 	available_against_xeno_only = TRUE
 
-/datum/supply_packs/operations/motion_detector
-	name = "motion detector crate"
-	contains = list(/obj/item/motiondetector/scout)
-	cost = 20
-
 /datum/supply_packs/operations/pinpointer
 	name = "pool tracker crate"
 	contains = list(/obj/item/pinpointer/pool)
@@ -1154,6 +1149,11 @@ ENGINEERING
 	name = "50 wooden planks"
 	contains = list(/obj/item/stack/sheet/wood/large_stack)
 	cost = 10
+
+/datum/supply_packs/engineering/plasmacutter
+	name = "plasma cutter"
+	contains = list(/obj/item/tool/pickaxe/plasmacutter/)
+	cost = 30
 
 /datum/supply_packs/engineering/quikdeploycade
 	name = "quikdeploy barricade"

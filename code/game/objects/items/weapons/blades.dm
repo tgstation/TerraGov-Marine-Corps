@@ -249,20 +249,20 @@
 	return ..()
 
 /obj/item/weapon/combat_knife
-	name = "\improper M5 'Night Raider' survival knife"
+	name = "\improper M5 survival knife"
 	icon = 'icons/obj/items/weapons.dmi'
 	icon_state = "combat_knife"
 	item_state = "combat_knife"
-	desc = "A standard survival knife of decent quality. You can slide this knife into your boots, and can be field-modified to attach to the end of a rifle with cable coil."
+	desc = "A standard survival knife of high quality. You can slide this knife into your boots, and can be field-modified to attach to the end of a rifle with cable coil."
 	flags_atom = CONDUCT
 	sharp = IS_SHARP_ITEM_ACCURATE
 	materials = list(/datum/material/metal = 200)
-	force = 25
+	force = 30
 	w_class = WEIGHT_CLASS_SMALL
 	throwforce = 20
 	throw_speed = 3
 	throw_range = 6
-	attack_speed = 7
+	attack_speed = 8
 	hitsound = 'sound/weapons/slash.ogg'
 	attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 
