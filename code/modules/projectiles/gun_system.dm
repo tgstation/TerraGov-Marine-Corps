@@ -90,14 +90,19 @@
 	var/ammo_diff		= null					//what ammo to use for overcharge
 
 	//Attachments.
-	var/list/attachable_overlays	= list(ATTACHMENT_SLOT_MUZZLE, ATTACHMENT_SLOT_RAIL, ATTACHMENT_SLOT_UNDER, ATTACHMENT_SLOT_STOCK, ATTACHMENT_SLOT_MAGAZINE) //List of overlays so we can switch them in an out, instead of using Cut() on overlays.
 	var/list/attachable_offset 		= null		//Is a list, see examples of from the other files. Initiated on New() because lists don't initial() properly.
 	var/list/attachable_allowed		= null		//Must be the exact path to the attachment present in the list. Empty list for a default.
 
 	var/obj/item/weapon/gun/active_attachable = null //This will link to one of the above four, or remain null.
 	var/list/starting_attachment_types = null //What attachments this gun starts with THAT CAN BE REMOVED. Important to avoid nuking the attachments on restocking! Added on New()
-
-	var/list/slots = list()
+	var/list/attachment_overlays = list()
+	var/list/slots = list(
+		ATTACHMENT_SLOT_MUZZLE,
+		ATTACHMENT_SLOT_RAIL,
+		ATTACHMENT_SLOT_STOCK,
+		ATTACHMENT_SLOT_UNDER,
+		ATTACHMENT_SLOT_MAGAZINE,
+	)
 
 	var/flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK
 
@@ -172,6 +177,7 @@
 
 	setup_firemodes()
 	AddComponent(/datum/component/automatedfire/autofire, fire_delay, burst_delay, burst_amount, gun_firemode, CALLBACK(src, .proc/set_bursting), CALLBACK(src, .proc/reset_fire), CALLBACK(src, .proc/Fire)) //This should go after handle_starting_attachment() and setup_firemodes() to get the proper values set.
+	AddComponent(/datum/component/attachment_handler, slots, attachable_allowed, attachable_offset, null, null, null, starting_attachment_types, attachment_overlays)
 
 	muzzle_flash = new(src, muzzleflash_iconstate)
 
@@ -280,6 +286,7 @@
 			continue
 		if(!istype(attachable, /obj/item/weapon/gun))
 			dat += "It has [icon2html(attachable, user)] [attachable.name]"
+			continue
 		var/obj/item/weapon/gun/gun_attachable = attachable
 		dat += " ([gun_attachable.current_mag.current_rounds]/[gun_attachable.current_mag.max_rounds])"
 
@@ -784,7 +791,8 @@ and you're good to go.
 		M.bullet_act(projectile_to_fire)
 		last_fired = world.time
 
-		QDEL_NULL(projectile_to_fire)
+		if(!delete_bullet(projectile_to_fire))
+			QDEL_NULL(projectile_to_fire)
 
 		reload_into_chamber(user) //Reload into the chamber if the gun supports it.
 		if(user) //Update dat HUD
@@ -847,10 +855,15 @@ and you're good to go.
 
 	projectile_to_fire.play_damage_effect(user)
 
-	QDEL_NULL(projectile_to_fire) //If this proc DIDN'T delete the bullet, we're going to do so here.
+	if(!delete_bullet(projectile_to_fire)) //If this proc DIDN'T delete the bullet, we're going to do so here.
+		QDEL_NULL(projectile_to_fire)
 
 	reload_into_chamber(user) //Reload the sucker.
 	ENABLE_BITFIELD(flags_gun_features, GUN_CAN_POINTBLANK)
+
+
+/obj/item/weapon/gun/proc/delete_bullet(obj/projectile/projectile_to_fire, refund = FALSE)
+	return FALSE
 
 //----------------------------------------------------------
 				//							\\

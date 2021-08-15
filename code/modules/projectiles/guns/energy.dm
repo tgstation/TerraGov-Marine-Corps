@@ -190,10 +190,7 @@
 		/obj/item/attachable/flashlight,
 		/obj/item/attachable/bipod,
 		/obj/item/attachable/magnetic_harness,
-		/obj/item/attachable/attached_gun/grenade,
 		/obj/item/attachable/scope,
-		/obj/item/attachable/attached_gun/flamer,
-		/obj/item/attachable/attached_gun/shotgun,
 		/obj/item/attachable/scope/mini,
 		/obj/item/attachable/focuslens,
 		/obj/item/attachable/widelens,
@@ -203,7 +200,7 @@
 	)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ENERGY|GUN_AMMO_COUNTER
-	starting_attachment_types = list(/obj/item/attachable/attached_gun/grenade, /obj/item/attachable/stock/lasgun)
+	starting_attachment_types = list(/obj/item/attachable/stock/lasgun)
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 23, "under_x" = 23, "under_y" = 15, "stock_x" = 22, "stock_y" = 12)
 
 	accuracy_mult_unwielded = 0.5 //Heavy and unwieldy; you don't one hand this.
@@ -448,11 +445,8 @@
 		/obj/item/attachable/flashlight,
 		/obj/item/attachable/bipod,
 		/obj/item/attachable/magnetic_harness,
-		/obj/item/attachable/attached_gun/grenade,
 		/obj/item/attachable/scope,
 		/obj/item/attachable/scope/marine,
-		/obj/item/attachable/attached_gun/flamer,
-		/obj/item/attachable/attached_gun/shotgun,
 		/obj/item/attachable/scope/mini,
 	)
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ENERGY|GUN_AMMO_COUNTER
@@ -559,10 +553,8 @@
 		/obj/item/attachable/lasersight,
 		/obj/item/attachable/flashlight,
 		/obj/item/attachable/magnetic_harness,
-		/obj/item/attachable/attached_gun/grenade,
 		/obj/item/attachable/scope/marine,
 		/obj/item/attachable/scope/mini,
-		/obj/item/attachable/attached_gun/flamer,
 	)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ENERGY|GUN_AMMO_COUNTER
@@ -708,8 +700,6 @@
 		/obj/item/attachable/lasersight,
 		/obj/item/attachable/flashlight,
 		/obj/item/attachable/magnetic_harness,
-		/obj/item/attachable/attached_gun/grenade,
-		/obj/item/attachable/attached_gun/flamer,
 	)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ENERGY|GUN_AMMO_COUNTER
@@ -785,8 +775,6 @@
 		/obj/item/attachable/bayonetknife,
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/scope/unremovable/laser_sniper_scope,
-		/obj/item/attachable/attached_gun/grenade,
-		/obj/item/attachable/attached_gun/flamer,
 	)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ENERGY|GUN_AMMO_COUNTER
@@ -854,8 +842,6 @@
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/scope/marine,
 		/obj/item/attachable/scope/mini,
-		/obj/item/attachable/attached_gun/grenade,
-		/obj/item/attachable/attached_gun/flamer,
 	)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ENERGY|GUN_AMMO_COUNTER

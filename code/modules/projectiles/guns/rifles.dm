@@ -74,12 +74,9 @@
 		/obj/item/attachable/bayonet,
 		/obj/item/attachable/bayonetknife,
 		/obj/item/attachable/compensator,
-		/obj/item/attachable/attached_gun/grenade,
-		/obj/item/attachable/attached_gun/flamer,
 		/obj/item/attachable/scope,
 		/obj/item/attachable/scope/marine,
 		/obj/item/attachable/scope/mini,
-		/obj/item/attachable/attached_gun/shotgun,
 	)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER
@@ -140,10 +137,7 @@
 		/obj/item/attachable/scope,
 		/obj/item/attachable/scope/mini,
 		/obj/item/attachable/scope/marine,
-		/obj/item/attachable/attached_gun/grenade,
-		/obj/item/attachable/attached_gun/flamer,
 		/obj/item/attachable/angledgrip,
-		/obj/item/attachable/attached_gun/shotgun,
 	)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER
@@ -164,7 +158,7 @@
 	damage_falloff_mult = 0.5
 
 /obj/item/weapon/gun/rifle/standard_assaultrifle/rifleman
-	starting_attachment_types = list(/obj/item/attachable/stock/t18stock, /obj/item/attachable/reddot, /obj/item/attachable/t12barrel, /obj/item/attachable/attached_gun/grenade)
+	starting_attachment_types = list(/obj/item/attachable/stock/t18stock, /obj/item/attachable/reddot, /obj/item/attachable/t12barrel)
 
 /obj/item/weapon/gun/rifle/standard_assaultrifle/engineer
 	starting_attachment_types = list(/obj/item/attachable/stock/t18stock, /obj/item/attachable/magnetic_harness, /obj/item/attachable/t12barrel, /obj/item/attachable/angledgrip)
@@ -205,9 +199,6 @@
 		/obj/item/attachable/extended_barrel,
 		/obj/item/attachable/heavy_barrel,
 		/obj/item/attachable/magnetic_harness,
-		/obj/item/attachable/attached_gun/grenade,
-		/obj/item/attachable/attached_gun/flamer,
-		/obj/item/attachable/attached_gun/shotgun,
 		/obj/item/attachable/scope,
 		/obj/item/attachable/scope/marine,
 		/obj/item/attachable/scope/mini/dmr,
@@ -267,9 +258,6 @@
 		/obj/item/attachable/extended_barrel,
 		/obj/item/attachable/heavy_barrel,
 		/obj/item/attachable/magnetic_harness,
-		/obj/item/attachable/attached_gun/grenade,
-		/obj/item/attachable/attached_gun/flamer,
-		/obj/item/attachable/attached_gun/shotgun,
 		/obj/item/attachable/scope,
 		/obj/item/attachable/scope/marine,
 		/obj/item/attachable/scope/mini,
@@ -322,16 +310,13 @@
 		/obj/item/attachable/heavy_barrel,
 		/obj/item/attachable/burstfire_assembly,
 		/obj/item/attachable/magnetic_harness,
-		/obj/item/attachable/attached_gun/grenade,
-		/obj/item/attachable/attached_gun/flamer,
-		/obj/item/attachable/attached_gun/shotgun,
 		/obj/item/attachable/scope,
 		/obj/item/attachable/scope/mini,
 	)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
-	starting_attachment_types = list(/obj/item/attachable/attached_gun/grenade)
+	starting_attachment_types = list() //grenade launcher, readd this too
 	attachable_offset = list("muzzle_x" = 41, "muzzle_y" = 19,"rail_x" = 17, "rail_y" = 20, "under_x" = 27, "under_y" = 14, "stock_x" = 9, "stock_y" = 15)
 
 	fire_delay = 0.2 SECONDS
@@ -367,15 +352,12 @@
 		/obj/item/attachable/bipod,
 		/obj/item/attachable/burstfire_assembly,
 		/obj/item/attachable/magnetic_harness,
-		/obj/item/attachable/attached_gun/grenade,
-		/obj/item/attachable/attached_gun/flamer,
-		/obj/item/attachable/attached_gun/shotgun,
 		/obj/item/attachable/scope,
 		/obj/item/attachable/scope/mini,
 	)
 
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 19,"rail_x" = 8, "rail_y" = 21, "under_x" = 22, "under_y" = 15, "stock_x" = 9, "stock_y" = 15)
-	starting_attachment_types = list(/obj/item/attachable/attached_gun/grenade, /obj/item/attachable/stock/irremoveable/rifle, /obj/item/attachable/magnetic_harness)
+	starting_attachment_types = list(/obj/item/attachable/stock/irremoveable/rifle, /obj/item/attachable/magnetic_harness) //Grenade
 
 
 	burst_delay = 0.2 SECONDS
@@ -417,7 +399,7 @@
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
-	starting_attachment_types = list(/obj/item/attachable/stock/irremoveable/m41a, /obj/item/attachable/attached_gun/grenade/unremovable/invisible)
+	starting_attachment_types = list(/obj/item/attachable/stock/irremoveable/m41a) //Grenade invisable
 	attachable_offset = list("muzzle_x" = 41, "muzzle_y" = 19,"rail_x" = 12, "rail_y" = 24, "under_x" = 24, "under_y" = 13, "stock_x" = 21, "stock_y" = 16)
 
 	burst_amount = 4
@@ -495,9 +477,6 @@
 		/obj/item/attachable/compensator,
 		/obj/item/attachable/burstfire_assembly,
 		/obj/item/attachable/magnetic_harness,
-		/obj/item/attachable/attached_gun/grenade,
-		/obj/item/attachable/attached_gun/flamer,
-		/obj/item/attachable/attached_gun/shotgun,
 		/obj/item/attachable/m16sight,
 		/obj/item/attachable/scope,
 		/obj/item/attachable/scope/mini,
@@ -561,9 +540,6 @@
 		/obj/item/attachable/compensator,
 		/obj/item/attachable/burstfire_assembly,
 		/obj/item/attachable/magnetic_harness,
-		/obj/item/attachable/attached_gun/grenade,
-		/obj/item/attachable/attached_gun/flamer,
-		/obj/item/attachable/attached_gun/shotgun,
 	)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
@@ -617,9 +593,6 @@
 		/obj/item/attachable/compensator,
 		/obj/item/attachable/stock/t42stock,
 		/obj/item/attachable/magnetic_harness,
-		/obj/item/attachable/attached_gun/grenade,
-		/obj/item/attachable/attached_gun/flamer,
-		/obj/item/attachable/attached_gun/shotgun,
 	)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER
@@ -783,10 +756,7 @@
 		/obj/item/attachable/scope,
 		/obj/item/attachable/scope/mini,
 		/obj/item/attachable/scope/marine,
-		/obj/item/attachable/attached_gun/grenade,
-		/obj/item/attachable/attached_gun/flamer,
 		/obj/item/attachable/angledgrip,
-		/obj/item/attachable/attached_gun/shotgun,
 	)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
@@ -806,7 +776,7 @@
 	name = "\improper Type 71 pulse rifle"
 	desc = " This appears to be a less common variant of the usual Type 71, with an undermounted flamethrower and improved iron sights."
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 23, "under_x" = 20, "under_y" = 13, "stock_x" = 24, "stock_y" = 13)
-	starting_attachment_types = list(/obj/item/attachable/attached_gun/flamer/unremovable)
+	starting_attachment_types = list() //unremovable flamer
 
 /obj/item/weapon/gun/rifle/type71/commando
 	name = "\improper Type 73 'Commando' pulse carbine"
@@ -846,8 +816,6 @@
 		/obj/item/attachable/gyro,
 		/obj/item/attachable/flashlight,
 		/obj/item/attachable/magnetic_harness,
-		/obj/item/attachable/attached_gun/flamer,
-		/obj/item/attachable/attached_gun/shotgun,
 		/obj/item/attachable/stock/tx15,
 		/obj/item/attachable/compensator,
 		/obj/item/attachable/extended_barrel,
@@ -940,9 +908,6 @@
 		/obj/item/attachable/scope,
 		/obj/item/attachable/scope/mini,
 		/obj/item/attachable/scope/marine,
-		/obj/item/attachable/attached_gun/grenade,
-		/obj/item/attachable/attached_gun/flamer,
-		/obj/item/attachable/attached_gun/shotgun,
 	)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER|GUN_WIELDED_FIRING_ONLY|GUN_IFF

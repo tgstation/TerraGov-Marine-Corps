@@ -201,10 +201,8 @@
 			/obj/item/attachable/lasersight = -1,
 			/obj/item/attachable/verticalgrip = -1,
 			/obj/item/attachable/stock/t19stock = -1,
-			/obj/item/attachable/stock/t35stock = -1,
-			/obj/item/attachable/attached_gun/flamer = -1,
-			/obj/item/attachable/attached_gun/shotgun = -1,
-			/obj/item/attachable/attached_gun/grenade = -1,
+			/obj/item/attachable/stock/t35stock = -1, 
+			//readd these dear god remember
 			/obj/item/attachable/standard_revolver_longbarrel = -1
 		),
 		"Boxes" = list(
@@ -310,9 +308,7 @@
 			/obj/item/attachable/verticalgrip = -1,
 			/obj/item/attachable/stock/t19stock = -1,
 			/obj/item/attachable/stock/t35stock = -1,
-			/obj/item/attachable/attached_gun/flamer = -1,
-			/obj/item/attachable/attached_gun/shotgun = -1,
-			/obj/item/attachable/attached_gun/grenade = -1,
+			//these too you mongoloid
 		),
 		"Boxes" = list(
 		/obj/item/ammo_magazine/packet/p9mm = 100,

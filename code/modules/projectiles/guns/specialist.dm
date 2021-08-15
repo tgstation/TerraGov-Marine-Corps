@@ -322,10 +322,7 @@
 		/obj/item/attachable/scope,
 		/obj/item/attachable/scope/mini,
 		/obj/item/attachable/scope/marine,
-		/obj/item/attachable/attached_gun/grenade,
-		/obj/item/attachable/attached_gun/flamer,
 		/obj/item/attachable/angledgrip,
-		/obj/item/attachable/attached_gun/shotgun,
 	)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER|GUN_IFF

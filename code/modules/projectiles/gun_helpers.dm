@@ -324,14 +324,14 @@ should be alright.
 
 ///updates the magazine overlay if it needs to be updated
 /obj/item/weapon/gun/proc/update_mag_overlay(mob/user)
-	var/image/overlay = attachable_overlays[ATTACHMENT_SLOT_MAGAZINE]
+	var/image/overlay = attachment_overlays[ATTACHMENT_SLOT_MAGAZINE]
 	overlays -= overlay
 	if(current_mag && current_mag.bonus_overlay)
 		overlay = image(current_mag.icon, src, current_mag.bonus_overlay)
-		attachable_overlays[ATTACHMENT_SLOT_MAGAZINE] = overlay
+		attachment_overlays[ATTACHMENT_SLOT_MAGAZINE] = overlay
 		overlays += overlay
 	else
-		attachable_overlays[ATTACHMENT_SLOT_MAGAZINE] = null
+		attachment_overlays[ATTACHMENT_SLOT_MAGAZINE] = null
 
 
 /obj/item/weapon/gun/proc/update_force_list()

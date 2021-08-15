@@ -398,16 +398,6 @@ ATTACHMENTS
 	contains = list(/obj/item/attachable/bipod)
 	cost = 1
 
-/datum/supply_packs/attachments/underbarrel_shotgun
-	name = "underbarrel shotgun attachment"
-	contains = list(/obj/item/attachable/attached_gun/shotgun)
-	cost = 1
-
-/datum/supply_packs/attachments/underbarrel_flamer
-	name = "underbarrel flamer attachment"
-	contains = list(/obj/item/attachable/attached_gun/flamer)
-	cost = 1
-
 /datum/supply_packs/attachments/underbarrel_burstfire_assembly
 	name = "burstfire assembly attachment"
 	contains = list(/obj/item/attachable/burstfire_assembly)

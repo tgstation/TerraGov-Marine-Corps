@@ -139,12 +139,12 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 
 /obj/item/attachable/Initialize()
 	. = ..()
-	AddElement(/datum/element/attachment, slot, icon, attach_icon_state, .proc/on_attach, .proc/on_detach, .proc/activate_attachment, pixel_shift_x, pixel_shift_y, flags_attach_features, attach_delay, detach_delay, attach_skill, attach_skill_upper_threshold, 'sound/machines/click.ogg')
+	AddElement(/datum/element/attachment, slot, icon, attach_icon_state, CALLBACK(src, .proc/on_attach), CALLBACK(src, .proc/on_detach), CALLBACK(src,.proc/activate), pixel_shift_x, pixel_shift_y, flags_attach_features, attach_delay, detach_delay, attach_skill, attach_skill_upper_threshold, 'sound/machines/click.ogg')
 
 
 /obj/item/attachable/proc/on_attach(attaching_item, mob/user)
 
-	if(!istype(attaching_item))
+	if(!istype(attaching_item, /obj/item/weapon/gun))
 		return //Guns only
 
 	master_gun = attaching_item
@@ -269,7 +269,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	if(activate_attachment(user)) //success
 		playsound(user, activation_sound, 15, 1)
 
-/obj/item/attachable/proc/activate_attachment(mob/user, turn_off) //This is for activating stuff like flamethrowers, or switching weapon modes.
+/obj/item/attachable/proc/activate(mob/user, turn_off) //This is for activating stuff like flamethrowers, or switching weapon modes.
 	return
 
 

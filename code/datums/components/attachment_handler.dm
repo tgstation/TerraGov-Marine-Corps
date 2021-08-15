@@ -8,7 +8,7 @@
 	var/list/extra_vars = list()
 
 
-/datum/component/attachment_handler/Initialize(_slots, list/_attachables_allowed, list/_attachment_offsets, list/_extra_vars, datum/callback/_on_attach, datum/callback/_on_detach, list/starting_attachmments)
+/datum/component/attachment_handler/Initialize(_slots, list/_attachables_allowed, list/_attachment_offsets, list/_extra_vars, datum/callback/_on_attach, datum/callback/_on_detach, list/starting_attachmments, list/overlays)
 	. = ..()
 	if(!isitem(parent))
 		return COMPONENT_INCOMPATIBLE
@@ -18,12 +18,16 @@
 	on_attach = _on_attach
 	on_detach = _on_detach
 	attachment_offsets = _attachment_offsets
+	attachable_overlays = overlays
 	attachable_overlays += slots
 	extra_vars = _extra_vars
 
-	if(starting_attachmments.len)
+	if(starting_attachmments?.len)
 		for(var/starting_attachment_type in starting_attachmments)
 			finish_handle_attachment(new starting_attachment_type())
+
+	var/obj/item/parent_item = parent
+	parent_item.update_overlays()
 
 	RegisterSignal(parent, COMSIG_PARENT_ATTACKBY , .proc/start_handle_attachment)
 	RegisterSignal(parent, COMSIG_ATOM_UPDATE_OVERLAYS, .proc/update_parent_overlay)
@@ -47,7 +51,7 @@
 
 /datum/component/attachment_handler/proc/finish_handle_attachment(obj/item/attachment, list/input_attachment_data, mob/attacker)
 	var/list/attachment_data = input_attachment_data
-	if(!attachment_data)
+	if(!input_attachment_data)
 		attachment_data = get_attachment_data(attachment)
 
 	if(slots[attachment_data["slot"]])
@@ -57,13 +61,14 @@
 	attachment.forceMove(parent)
 	slots[attachment_data["slot"]] = attachment
 
-	var/obj/item/parent_item = parent
-	parent_item.update_overlays()
 	on_attach?.Invoke(attachment, attacker)
 	var/datum/callback/attachment_on_attach = attachment_data["on_attach"]
 	attachment_on_attach?.Invoke(parent, attacker)
 
-	RegisterSignal(parent, COMSIG_PARENT_QDELETING, .proc/clean_refs)
+	var/obj/item/parent_item = parent
+	parent_item.update_overlays()
+
+	RegisterSignal(parent, COMSIG_PARENT_QDELETING, .proc/clean_references)
 
 /datum/component/attachment_handler/proc/do_attach(obj/item/attachment, mob/attacher, list/attachment_data)
 	if(!ishuman(attacher))
@@ -217,9 +222,9 @@
 	on_activate?.Invoke(parent, user)
 	return ATTACHMENT_ACTIVATED
 
-/datum/component/attachment_handler/proc/attach_without_user(obj/item/attachment, list/input_attachment_data, mob/attacker)
+/datum/component/attachment_handler/proc/attach_without_user(obj/item/attachment, list/input_attachment_data)
 	SIGNAL_HANDLER
-	return finish_handle_attachment(attachment, input_attachment_data, attacker)
+	return finish_handle_attachment(attachment, input_attachment_data)
 
 /datum/component/attachment_handler/proc/update_parent_overlay(datum/source)
 	SIGNAL_HANDLER
@@ -245,7 +250,7 @@
 		parent_item.overlays += overlay
 
 
-/datum/component/attachment_handler/proc/clean_refs()
+/datum/component/attachment_handler/proc/clean_references()
 	SIGNAL_HANDLER
 	for(var/key in slots)
 		QDEL_NULL(slots[key])

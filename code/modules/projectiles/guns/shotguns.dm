@@ -218,7 +218,7 @@ can cause issues with ammo types getting mixed up during the burst.
 		/obj/item/attachable/stock/tactical,
 	)
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 19,"rail_x" = 10, "rail_y" = 21, "under_x" = 14, "under_y" = 16, "stock_x" = 14, "stock_y" = 16)
-	starting_attachment_types = list(/obj/item/attachable/attached_gun/grenade/unremovable/invisible)
+	starting_attachment_types = list() //readd this for the love of god please dont make tivi bully you to readd it
 
 	fire_delay = 15 //one shot every 1.5 seconds.
 	accuracy_mult = 1.15
@@ -260,8 +260,6 @@ can cause issues with ammo types getting mixed up during the burst.
 		/obj/item/attachable/heavy_barrel,
 		/obj/item/attachable/compensator,
 		/obj/item/attachable/magnetic_harness,
-		/obj/item/attachable/attached_gun/flamer,
-		/obj/item/attachable/attached_gun/shotgun,
 	)
 
 	attachable_offset = list("muzzle_x" = 41, "muzzle_y" = 20,"rail_x" = 18, "rail_y" = 20, "under_x" = 23, "under_y" = 12, "stock_x" = 13, "stock_y" = 14)
@@ -484,8 +482,6 @@ can cause issues with ammo types getting mixed up during the burst.
 		/obj/item/attachable/heavy_barrel,
 		/obj/item/attachable/compensator,
 		/obj/item/attachable/magnetic_harness,
-		/obj/item/attachable/attached_gun/flamer,
-		/obj/item/attachable/attached_gun/shotgun,
 		/obj/item/attachable/stock/shotgun,
 	)
 
@@ -788,7 +784,6 @@ can cause issues with ammo types getting mixed up during the burst.
 
 	attachable_allowed = list(
 		/obj/item/attachable/angledgrip,
-		/obj/item/attachable/attached_gun/flamer,
 		/obj/item/attachable/bayonet,
 		/obj/item/attachable/bipod,
 		/obj/item/attachable/compensator,
@@ -837,8 +832,6 @@ can cause issues with ammo types getting mixed up during the burst.
 		/obj/item/attachable/heavy_barrel,
 		/obj/item/attachable/compensator,
 		/obj/item/attachable/magnetic_harness,
-		/obj/item/attachable/attached_gun/flamer,
-		/obj/item/attachable/attached_gun/shotgun,
 		/obj/item/attachable/stock/t35stock,
 	)
 
