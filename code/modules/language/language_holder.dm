@@ -113,8 +113,8 @@
 
 
 /datum/language_holder/synthetic
-	languages = list(/datum/language/common)
-	shadow_languages = list(/datum/language/machine, /datum/language/xenocommon)
+	languages = list(/datum/language/common, /datum/language/machine)
+	shadow_languages = list(/datum/language/xenocommon)
 
 
 /datum/language_holder/unathi

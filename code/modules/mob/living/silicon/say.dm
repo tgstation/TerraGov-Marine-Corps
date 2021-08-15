@@ -1,13 +1,20 @@
 /mob/living/proc/robot_talk(message)
 	log_talk(message, LOG_SAY)
+	//Capitalization
+	message = capitalize(message)
+	//checks for and apply punctuation
+	var/end = copytext(message, length(message))
+	if(!(end in list("!", ".", "?", ":", "\"", "-")))
+		message += "."
+
 	var/desig = "Silicon"
-	if(issilicon(src))
-		var/mob/living/silicon/S = src
+	if(issilicon(src) || issynth(src))
+		var/mob/living/S = src
 		desig = trim_left(S.job.title)
 	var/message_a = say_quote(message)
 	var/rendered = "Robotic Talk, [span_name("[name]")] [span_message("[message_a]")]"
 	for(var/mob/M in GLOB.player_list)
-		if(M.binarycheck())
+		if(binarycheck(M))
 			if(isAI(M))
 				var/renderedAI = span_binarysay("Robotic Talk, <a href='?src=[REF(M)];track=[html_encode(name)]'>[span_name("[name] ([desig])")]</a> [span_message("[message_a]")]")
 				to_chat(M, renderedAI)
