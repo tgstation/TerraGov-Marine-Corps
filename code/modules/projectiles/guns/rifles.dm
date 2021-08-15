@@ -1010,6 +1010,7 @@
 	item_state = "tl127"
 	fire_sound = 'sound/weapons/guns/fire/tl127.ogg'
 	fire_rattle = 'sound/weapons/guns/fire/tl127_low.ogg'
+	cocked_sound = 'sound/weapons/guns/interact/tl-127_bolt.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/sniper_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/m41a_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/m41a_reload.ogg'
@@ -1047,34 +1048,27 @@
 	recoil_unwielded = 4
 	aim_slowdown = 1
 	wield_delay = 1.3 SECONDS
-
-	var/rack_delay = 7
-	var/rack_sound = 'sound/weapons/guns/interact/tl-127_bolt.ogg'
-	var/racked_bolt = TRUE
-	var/cooldown_time
-
-/obj/item/weapon/gun/rifle/chambered/able_to_fire(mob/user)
-	. = ..()
-	if(!.)
-		return
-	if(!racked_bolt)
-		to_chat(user, span_warning("[src] does not have a round chambered!"))
-		return FALSE
+	cock_delay = 0.7 SECONDS
 
 /obj/item/weapon/gun/rifle/chambered/cock(mob/user)
-	if(racked_bolt)
+	if(cock_cooldown < world.time && in_chamber)
 		to_chat(user, span_warning("[src] already has a round chambered!"))
 		return
-	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_RACK_BOLT))
+	return ..()
+
+/obj/item/weapon/gun/rifle/chambered/load_into_chamber(mob/user)
+	if(CHECK_BITFIELD(flags_gun_features, GUN_DEPLOYED_FIRE_ONLY) && !CHECK_BITFIELD(flags_item, IS_DEPLOYED))
+		to_chat(user, span_notice("You cannot fire [src] while it is not deployed."))
 		return
-	to_chat(user, span_notice("You cycle the bolt of the [src], loading in a new round!"))
-	TIMER_COOLDOWN_START(src, COOLDOWN_RACK_BOLT, rack_delay)
-	racked_bolt = TRUE
-	playsound(loc, rack_sound, 25, 1, 4)
+	return in_chamber
 
 /obj/item/weapon/gun/rifle/chambered/reload_into_chamber(mob/user)
-	. = ..()
-	racked_bolt = FALSE
+	make_casing(type_of_casings)
+	if(in_chamber)
+		QDEL_NULL(in_chamber)
+	if(current_mag.current_rounds <= 0 && flags_gun_features & GUN_AUTO_EJECTOR)
+		unload(user, TRUE, TRUE)
+		playsound(src, empty_sound, 25, 1)
 
 //-------------------------------------------------------
 //T-81 Auto-Sniper
