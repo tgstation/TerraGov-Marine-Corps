@@ -391,7 +391,7 @@
 /area/mainship/living/commandbunks)
 "abz" = (
 /obj/structure/table/mainship,
-/obj/item/motiondetector,
+/obj/item/attachable/motiondetector,
 /turf/open/floor/mainship/green{
 	dir = 8
 	},
