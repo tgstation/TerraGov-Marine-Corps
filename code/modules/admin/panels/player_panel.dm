@@ -448,6 +448,12 @@
 		<br> Special: <a href='?src=[ref];transform=observer;mob=[REF(M)]'>Observer</a> |
 		<a href='?src=[ref];transform=ai;mob=[REF(M)]'>AI</a>
 		<br> Humanoid: <a href='?src=[ref];transform=human;mob=[REF(M)]'>Human</a> |
+		<a href='?src=[ref];transform=synthetic;mob=[REF(M)]'>Synthetic</a>
+		<a href='?src=[ref];transform=early_synth;mob=[REF(M)]'>Early_Synth</a>
+		<a href='?src=[ref];transform=sectoid;mob=[REF(M)]'>Sectoid</a>
+		<a href='?src=[ref];transform=vatborn;mob=[REF(M)]'>Vatborn</a>
+		<a href='?src=[ref];transform=vatgrown;mob=[REF(M)]'>Vatgrown</a>
+		<a href='?src=[ref];transform=SKELETON;mob=[REF(M)]'>SKELETON</a>
 		<a href='?src=[ref];transform=monkey;mob=[REF(M)]'>Monkey</a> |
 		<a href='?src=[ref];transform=moth;mob=[REF(M)]'>Moth</a>
 		<br> Alien Tier 0:
