@@ -206,7 +206,7 @@
 			. = TRUE
 
 		if("manual")
-			if(isAI)
+			if(isAI(user))
 				return
 			if(operator)
 				user.unset_interaction()
