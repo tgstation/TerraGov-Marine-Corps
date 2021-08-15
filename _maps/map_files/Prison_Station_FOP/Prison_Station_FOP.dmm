@@ -36621,7 +36621,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/obj/machinery/marine_turret/premade/dumb{
+/obj/machinery/deployable/mounted/sentry{
 	dir = 4
 	},
 /obj/structure/closet/walllocker/emerglocker/full,
@@ -37703,7 +37703,7 @@
 /turf/open/floor/plating,
 /area/prison/pirate)
 "cnH" = (
-/obj/machinery/marine_turret/premade/dumb{
+/obj/machinery/deployable/mounted/sentry{
 	dir = 1
 	},
 /turf/open/floor/plating,
@@ -38117,7 +38117,7 @@
 /turf/open/floor/plating/platebot,
 /area/prison/pirate)
 "cpb" = (
-/obj/machinery/marine_turret/premade/dumb{
+/obj/machinery/deployable/mounted/sentry{
 	dir = 1
 	},
 /turf/open/floor/plating/platebot,
