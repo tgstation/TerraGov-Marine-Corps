@@ -258,7 +258,7 @@
 	var/atom/movable/target = owner.pulling
 	var/fling_distance = 4
 	var/stagger_slow_stacks = 3
-	var/stun_duration = 0 SECONDS
+	var/stun_duration = 0.5 SECONDS
 	var/big_mob_message
 
 	X.face_atom(A)
