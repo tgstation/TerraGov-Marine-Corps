@@ -339,3 +339,8 @@
   - admin: Display playtime and Round ID on note panel{For Admins}.
   lbnesquik:
   - qol: made it clear when you do not have access to a vendor.
+2021-08-15:
+  BraveMole:
+  - qol: Clarify silo and larva generation
+  KornFlaks:
+  - bugfix: Reduced observe warning text at post round start.
