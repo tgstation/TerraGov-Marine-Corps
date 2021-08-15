@@ -550,7 +550,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 
 /obj/item/attachable/on_attach(attaching_item, mob/user)
 	. = ..()
-	update_attachment_icon_state(src, attach_icon_state)
+	master_gun?.update_attachment_icon_state(src, attach_icon_state)
 
 /obj/item/attachable/flashlight/activate_attachment(mob/living/user)
 	turn_light(user, !light_on)
@@ -580,7 +580,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	else
 		return
 	master_gun.flags_gun_features ^= GUN_FLASHLIGHT_ON
-	update_attachment_icon_state(src, attach_icon_state)
+	master_gun.update_attachment_icon_state(src, attach_icon_state)
 
 	for(var/X in master_gun.actions)
 		var/datum/action/A = X
@@ -1283,7 +1283,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 		icon_state = "bipod-on"
 		attach_icon_state = "bipod_a-on"
 
-	update_attachment_icon_state(src, attach_icon_state)
+	master_gun.update_attachment_icon_state(src, attach_icon_state)
 
 	for(var/i in master_gun.actions)
 		var/datum/action/action_to_update = i
