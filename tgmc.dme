@@ -24,7 +24,6 @@
 #include "code\__DEFINES\access.dm"
 #include "code\__DEFINES\actions.dm"
 #include "code\__DEFINES\admin.dm"
-#include "code\__DEFINES\ai.dm"
 #include "code\__DEFINES\area.dm"
 #include "code\__DEFINES\atmospherics.dm"
 #include "code\__DEFINES\atom_hud.dm"
