@@ -258,3 +258,8 @@ GLOBAL_LIST_INIT(restricted_camera_networks, list( //Those networks can only be 
 #define HAS_LIGHTS (1<<1)
 #define UNDERCARRIAGE (1<<2)
 #define GIVE_NIGHT_VISION (1<<3)
+
+//Motion detector define
+#define MOTION_DETECTOR_HOSTILE "hostile"
+#define MOTION_DETECTOR_FRIENDLY "friendly"
+#define MOTION_DETECTOR_DEAD "dead"

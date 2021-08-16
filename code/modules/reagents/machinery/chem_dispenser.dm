@@ -16,7 +16,7 @@
 	var/obj/item/cell/cell
 	var/powerefficiency = 0.1
 	var/amount = 30
-	var/recharge_amount = 10
+	var/recharge_amount = 30
 	var/recharge_counter = 0
 
 	///Reagent amounts that are dispenced
@@ -73,6 +73,11 @@
 	QDEL_NULL(cell)
 	return ..()
 
+/obj/machinery/chem_dispenser/examine(mob/user)
+	. = ..()
+	if(CHECK_BITFIELD(machine_stat, PANEL_OPEN))
+		to_chat(user, "The battery compartment is open[cell ? " and there's a cell inside" : ""].")
+
 /obj/machinery/chem_dispenser/process()
 	if (recharge_counter >= 4)
 		if(!is_operational())
@@ -117,8 +122,6 @@
 		to_chat(user, emagged_message[1])
 		dispensable_reagents -= emagged_reagents
 
-
-
 /obj/machinery/chem_dispenser/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
@@ -132,8 +135,8 @@
 /obj/machinery/chem_dispenser/ui_data(mob/user)
 	. = list()
 	.["amount"] = amount
-	.["energy"] = cell.charge ? cell.charge * powerefficiency : "0" //To prevent NaN in the UI.
-	.["maxEnergy"] = cell.maxcharge * powerefficiency
+	.["energy"] = cell?.charge * powerefficiency
+	.["maxEnergy"] = cell?.maxcharge * powerefficiency
 	.["isBeakerLoaded"] = beaker ? 1 : 0
 
 	var/list/beakerContents = list()
@@ -296,21 +299,66 @@
 /obj/machinery/chem_dispenser/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(beaker)
-		to_chat(user, "Something is already loaded into the machine.")
-		return
-
-	else if(istype(I, /obj/item/reagent_containers) && I.is_open_container())
-		if(!user.transferItemToLoc(I, src))
+	if(isreagentcontainer(I))
+		if(beaker)
+			to_chat(user, "Something is already loaded into the machine.")
 			return
 
-		beaker =  I
-		to_chat(user, "You set [I] on the machine.")
-		updateUsrDialog()
+		if(I.is_open_container())
+			if(!user.transferItemToLoc(I, src))
+				return
 
-	else if(istype(I, /obj/item/reagent_containers/glass))
-		to_chat(user, "Take the lid off [I] first.")
+			beaker =  I
+			to_chat(user, "You set [I] on the machine.")
+			updateUsrDialog()
+			return
 
+		if(istype(I, /obj/item/reagent_containers/glass))
+			to_chat(user, "Take the lid off [I] first.")
+			return
+
+		to_chat(user, "The machine can't dispense into that.")
+		return
+
+	if(istype(I, /obj/item/cell))
+		if(!CHECK_BITFIELD(machine_stat, PANEL_OPEN))
+			to_chat(user, span_notice("[src]'s battery panel is closed!"))
+			return
+		if(cell)
+			to_chat(user, span_notice("[src] already has a battery installed!"))
+			return
+		if(!user.transferItemToLoc(I, src))
+			return
+		cell = I
+		to_chat(user, span_notice("You install \the [cell]."))
+		start_processing()
+		update_icon()
+		return
+
+/obj/machinery/chem_dispenser/screwdriver_act(mob/living/user, obj/item/I)
+	TOGGLE_BITFIELD(machine_stat, PANEL_OPEN)
+	to_chat(user, span_notice("You [CHECK_BITFIELD(machine_stat, PANEL_OPEN) ? "open" : "close"] the battery compartment."))
+	update_icon()
+	return TRUE
+
+/obj/machinery/chem_dispenser/crowbar_act(mob/living/user, obj/item/I)
+	if(!cell || !CHECK_BITFIELD(machine_stat, PANEL_OPEN))
+		return FALSE
+	cell.forceMove(loc)
+	cell = null
+	to_chat(user, span_notice("You pry out the dispenser's battery."))
+	stop_processing()
+	update_icon()
+	return TRUE
+
+/obj/machinery/chem_dispenser/update_overlays()
+	. = ..()
+	if(!CHECK_BITFIELD(machine_stat, PANEL_OPEN))
+		return
+	if(cell)
+		. += image(icon, "[initial(icon_state)]_open")
+	else
+		. += image(icon, "[initial(icon_state)]_nobat")
 
 /obj/machinery/chem_dispenser/soda
 	icon_state = "soda_dispenser"

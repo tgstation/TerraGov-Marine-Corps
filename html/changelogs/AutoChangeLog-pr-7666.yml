@@ -1,7 +1,0 @@
-author: "Surrealaser"
-delete-after: True
-changes: 
-  - bugfix: "Wraiths can no longer use Phase Shift while in the space of a phase blocking shutter, even if it's open."
-  - bugfix: "Materializing in a solid object with Phase Shift no longer deducts plasma; it counts as if you had Resynced instead."
-  - balance: "While the fight is Groundside Wraiths cannot phase shift into dropship area tiles from non-dropship area tiles."
-  - refactor: "General minor improvements to Wraith code."

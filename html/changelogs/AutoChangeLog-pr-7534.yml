@@ -1,0 +1,4 @@
+author: "Surrealaser"
+delete-after: True
+changes: 
+  - balance: "Transvitox bonus damage now also applies to burn damage converted as well as brute damage dealt to a victim under its effects."

@@ -591,7 +591,7 @@
 		dam = fire_loss
 
 	L.heal_limb_damage(burn = dam, updating_health = TRUE) //Heal damage equal to toxin damage dealt; heal before applying toxin damage so we don't flash kill the target
-	L.adjustToxLoss(dam)
+	L.adjustToxLoss(dam * (1 + 0.1 * tox_cap_multiplier)) //Apply toxin damage. Deal extra toxin damage equal to 10% * the tox cap multiplier
 
 	return ..()
 
