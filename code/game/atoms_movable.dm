@@ -255,42 +255,44 @@
 					if(step(src, NORTH) && moving_diagonally)
 						first_step_dir = NORTH
 						moving_diagonally = SECOND_DIAG_STEP
-						. = step(src, EAST)
+						step(src, EAST)
 					else if(moving_diagonally && step(src, EAST))
 						first_step_dir = EAST
 						moving_diagonally = SECOND_DIAG_STEP
-						. = step(src, NORTH)
+						step(src, NORTH)
 				else if(direct & WEST)
 					if(step(src, NORTH) && moving_diagonally)
 						first_step_dir = NORTH
 						moving_diagonally = SECOND_DIAG_STEP
-						. = step(src, WEST)
+						step(src, WEST)
 					else if(moving_diagonally && step(src, WEST))
 						first_step_dir = WEST
 						moving_diagonally = SECOND_DIAG_STEP
-						. = step(src, NORTH)
+						step(src, NORTH)
 			else if(direct & SOUTH)
 				if(direct & EAST)
 					if(step(src, SOUTH) && moving_diagonally)
 						first_step_dir = SOUTH
 						moving_diagonally = SECOND_DIAG_STEP
-						. = step(src, EAST)
+						step(src, EAST)
 					else if(moving_diagonally && step(src, EAST))
 						first_step_dir = EAST
 						moving_diagonally = SECOND_DIAG_STEP
-						. = step(src, SOUTH)
+						step(src, SOUTH)
 				else if(direct & WEST)
 					if(step(src, SOUTH) && moving_diagonally)
 						first_step_dir = SOUTH
 						moving_diagonally = SECOND_DIAG_STEP
-						. = step(src, WEST)
+						step(src, WEST)
 					else if(moving_diagonally && step(src, WEST))
 						first_step_dir = WEST
 						moving_diagonally = SECOND_DIAG_STEP
-						. = step(src, SOUTH)
+						step(src, SOUTH)
 			if(moving_diagonally == SECOND_DIAG_STEP)
 				if(!. && !(flags_atom & DIRLOCK))
 					setDir(first_step_dir)
+				moving_diagonally = 0
+				return TRUE //We moved half way, so we return TRUE
 			moving_diagonally = 0
 			return
 
