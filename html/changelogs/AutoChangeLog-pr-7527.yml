@@ -1,5 +1,0 @@
-author: "BraveMole"
-delete-after: True
-changes: 
-  - balance: "You can attach motion detectors to guns, and they are free in attachments tab"
-  - balance: "Standing still mobs are not detected by the motion detector"
