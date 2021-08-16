@@ -67,8 +67,6 @@
 		for(var/weight in weight_modifiers)
 			current_score += NODE_GET_VALUE_OF_WEIGHT(identifier, node, weight) * weight_modifiers[weight]
 
-		current_score -= 100 * rand(0, 1)
-
 		if(current_score >= current_best_node_score)
 			current_best_node_score = current_score
 			node_to_return = node
