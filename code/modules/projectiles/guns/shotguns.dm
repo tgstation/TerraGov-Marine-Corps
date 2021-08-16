@@ -276,6 +276,21 @@ can cause issues with ammo types getting mixed up during the burst.
 	aim_slowdown = 0.6
 	wield_delay = 1 SECONDS
 
+/obj/item/weapon/gun/shotgun/combat/masterkey
+	name = "masterkey shotgun"
+	desc = "A weapon-mounted, three-shot shotgun. Reloadable with buckshot. The short barrel reduces the ammo's effectiveness, but allows it to be fired one handed."
+	icon = 'icons/Marine/marine-weapons.dmi'
+	icon_state = "masterkey"
+	slot = ATTACHMENT_SLOT_UNDER
+	attach_icon_state = "masterkey_a"
+	attach_delay = 3 SECONDS
+	detach_delay = 3 SECONDS
+	flags_gun_features = GUN_IS_ATTACHMENT|GUN_INTERNAL_MAG|GUN_SHOTGUN_CHAMBER|GUN_AMMO_COUNTER|GUN_ATTACHMENT_FIRE_ONLY
+	current_mag = /obj/item/ammo_magazine/internal/shotgun/masterkey
+
+
+
+
 //-------------------------------------------------------
 //DOUBLE SHOTTY
 

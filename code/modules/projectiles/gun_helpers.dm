@@ -90,6 +90,8 @@
 //----------------------------------------------------------
 
 /obj/item/weapon/gun/attack_hand_alternate(mob/user)
+	if(active_attachable)
+		return active_attachable.toggle_gun_safety()
 	return toggle_gun_safety()
 
 
@@ -104,6 +106,8 @@
 /obj/item/weapon/gun/attack_hand(mob/living/user)
 	var/obj/item/weapon/gun/in_hand = user.get_inactive_held_item()
 	if(in_hand == src && (flags_item & TWOHANDED))
+		if(active_attachable)
+			active_attachable.unload(user)
 		unload(user)//It has to be held if it's a two hander.
 	else
 		return ..()
@@ -216,6 +220,10 @@ should be alright.
 	if(flags_gun_features & GUN_BURST_FIRING)
 		return
 
+	if(active_attachable)
+		active_attachable.attackby(I, user, params)
+		return
+
 	if(istype(I, /obj/item/cell) && CHECK_BITFIELD(flags_gun_features, GUN_IS_SENTRY))
 		if(sentry_battery)
 			to_chat(user, span_warning("[src] already has a battery installed! Use Alt-Click to remove it!"))
@@ -240,7 +248,11 @@ should be alright.
 
 /obj/item/weapon/gun/AltClick(mob/user)
 	. = ..()
-	if(!user.Adjacent(src) || !ishuman(user) || !CHECK_BITFIELD(flags_gun_features, GUN_IS_SENTRY))
+	if(active_attachable)
+		active_attachable.AltClick(user)
+		return
+
+	if(!user.Adjacent(src) || !ishuman(user) || !CHECK_BITFIELD(flags_gun_features, GUN_IS_SENTRY) && !master_gun)
 		return
 	var/mob/living/carbon/human/human = user
 	if(!sentry_battery)
@@ -261,6 +273,10 @@ should be alright.
 
 ///This performs a tactical reload with src using new_magazine to load the gun.
 /obj/item/weapon/gun/proc/tactical_reload(obj/item/ammo_magazine/new_magazine, mob/living/carbon/human/user)
+	if(active_attachable)
+		active_attachable.tactical_reload(new_magazine, user)
+		return
+
 	if(!istype(user) || user.incapacitated(TRUE))
 		return
 	if(src != user.r_hand && src != user.l_hand)
@@ -296,7 +312,7 @@ should be alright.
 /obj/item/weapon/gun/proc/check_inactive_hand(mob/user)
 	if(user)
 		var/obj/item/weapon/gun/in_hand = user.get_inactive_held_item()
-		if( in_hand != src ) //It has to be held.
+		if( in_hand != src && !master_gun) //It has to be held.
 			to_chat(user, span_warning("You have to hold [src] to do that!"))
 			return
 	return TRUE
@@ -306,7 +322,7 @@ should be alright.
 	if(user)
 		var/obj/item/weapon/gun/in_handL = user.l_hand
 		var/obj/item/weapon/gun/in_handR = user.r_hand
-		if( in_handL != src && in_handR != src ) //It has to be held.
+		if( in_handL != src && in_handR != src && !master_gun) //It has to be held.
 			to_chat(user, span_warning("You have to hold [src] to do that!"))
 			return
 	return 1
@@ -387,6 +403,9 @@ should be alright.
 		return
 	var/datum/action/item_action/firemode/firemode_action = action
 	if(!istype(firemode_action))
+		if(master_gun)
+			activate(user)
+			return
 		return ..()
 	do_toggle_firemode()
 	user.update_action_buttons()
@@ -661,9 +680,6 @@ should be alright.
 	for(var/key in slots)
 		var/obj/item/attachment = slots[key]
 		if(!attachment)
-			continue
-		if(istype(attachment, /obj/item/weapon/gun))
-			usable_attachments += attachment
 			continue
 		var/obj/item/attachable/attachable = attachment
 		if(attachable.flags_attach_features & ATTACH_ACTIVATION)

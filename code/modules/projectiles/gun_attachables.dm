@@ -1451,7 +1451,27 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 		return
 	master_gun = attached_to
 
+	var/datum/action/new_action = new /datum/action/item_action/toggle(src, master_gun)
+	if(!isliving(master_gun.loc))
+		return
+	var/mob/living/living_user = master_gun.loc
+	if(master_gun == living_user.get_inactive_held_item() || master_gun == living_user.get_active_held_item())
+		new_action.give_action(living_user)
+
 /obj/item/weapon/gun/proc/on_detach(obj/item/attached_to, mob/user)
 	if(!istype(attached_to, /obj/item/weapon/gun))
 		return
+	for(var/datum/action/action_to_delete AS in master_gun.actions)
+		if(action_to_delete.target != src)
+			continue
+		QDEL_NULL(action_to_delete)
+		break
 	master_gun = null
+
+/obj/item/weapon/gun/proc/activate(mob/user)
+	if(master_gun.active_attachable)
+		master_gun.active_attachable = null
+		to_chat(user, span_notice("You stop using [src]."))
+		return
+	master_gun.active_attachable = src
+	to_chat(user, span_notice("You start using [src]."))

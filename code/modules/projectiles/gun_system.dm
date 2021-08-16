@@ -154,12 +154,13 @@
 
 
 	var/obj/item/weapon/gun/master_gun
+	var/slot
 	var/attach_icon_state
-	var/pixel_shift_x
-	var/pixel_shift_y
-	var/flags_attach_features
-	var/attach_delay
-	var/detach_delay
+	var/pixel_shift_x = 16
+	var/pixel_shift_y = 16
+	var/flags_attach_features = ATTACH_REMOVABLE
+	var/attach_delay = 0 SECONDS
+	var/detach_delay = 0 SECONDS
 
 
 
@@ -191,6 +192,8 @@
 	setup_firemodes()
 	AddComponent(/datum/component/automatedfire/autofire, fire_delay, burst_delay, burst_amount, gun_firemode, CALLBACK(src, .proc/set_bursting), CALLBACK(src, .proc/reset_fire), CALLBACK(src, .proc/Fire)) //This should go after handle_starting_attachment() and setup_firemodes() to get the proper values set.
 	AddComponent(/datum/component/attachment_handler, slots, attachable_allowed, attachable_offset, null, null, null, starting_attachment_types, attachment_overlays)
+	if(CHECK_BITFIELD(flags_gun_features, GUN_IS_ATTACHMENT))
+		AddElement(/datum/element/attachment, slot, icon, attach_icon_state, CALLBACK(src, .proc/on_attach), CALLBACK(src, .proc/on_detach), CALLBACK(src, .proc/activate), pixel_shift_x, pixel_shift_y, flags_attach_features, attach_delay, detach_delay, "firearms", SKILL_FIREARMS_DEFAULT, 'sound/machines/click.ogg')
 
 	muzzle_flash = new(src, muzzleflash_iconstate)
 
@@ -301,7 +304,7 @@
 			dat += "It has [icon2html(attachable, user)] [attachable.name]"
 			continue
 		var/obj/item/weapon/gun/gun_attachable = attachable
-		dat += " ([gun_attachable.current_mag.current_rounds + inchamber ? 1 : 0]/[gun_attachable.current_mag.max_rounds])"
+		dat += " ([gun_attachable.current_mag.current_rounds + gun_attachable.in_chamber ? 1 : 0]/[gun_attachable.current_mag.max_rounds])"
 
 	if(dat)
 		to_chat(user, "[dat.Join(" ")]")
@@ -370,7 +373,10 @@
 
 /obj/item/weapon/gun/unique_action(mob/user)
 	. = ..()
-	if(CHECK_BITFIELD(flags_item, IS_DEPLOYABLE) && !CHECK_BITFIELD(flags_item, IS_DEPLOYED)) //If the gun can be deployed, it deploys when unique_action is called.
+	if(active_attachable)
+		active_attachable.unique_action(user)
+		return FALSE
+	if(CHECK_BITFIELD(flags_item, IS_DEPLOYABLE) && !CHECK_BITFIELD(flags_item, IS_DEPLOYED) && master_gun) //If the gun can be deployed, it deploys when unique_action is called.
 		return FALSE
 
 //----------------------------------------------------------
@@ -464,6 +470,9 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 //Drop out the magazine. Keep the ammo type for next time so we don't need to replace it every time.
 //This can be passed with a null user, so we need to check for that as well.
 /obj/item/weapon/gun/proc/unload(mob/user, reload_override = 0, drop_override = 0) //Override for reloading mags after shooting, so it doesn't interrupt burst. Drop is for dropping the magazine on the ground.
+	if(active_attachable)
+		active_attachable.unload(user, reload_override, drop_override)
+		return FALSE
 	if(!reload_override && (flags_gun_features & (GUN_BURST_FIRING|GUN_UNUSUAL_DESIGN|GUN_INTERNAL_MAG)))
 		return FALSE
 
@@ -569,6 +578,9 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 ///Check if the gun can fire and add it to bucket auto_fire system if needed, or just fire the gun if not
 /obj/item/weapon/gun/proc/start_fire(datum/source, atom/object, turf/location, control, params, bypass_checks = FALSE)
 	SIGNAL_HANDLER
+	if(active_attachable)
+		active_attachable?.start_fire(source, object, location, control, params, TRUE)
+		return
 	if(gun_on_cooldown(gun_user))
 		return
 	if(!bypass_checks)
@@ -584,6 +596,9 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 		return
 	set_target(get_turf_on_clickcatcher(object, gun_user, params))
 	var/list/modifiers = params2list(params)
+	if(modifiers["right"] || modifiers["middle"] || modifiers["shift"])
+		active_attachable?.start_fire(source, object, location, control, params, TRUE)
+		return
 	if(gun_firemode == GUN_FIREMODE_SEMIAUTO)
 		if(!Fire() || windup_checked == WEAPON_WINDUP_CHECKING)
 			return
@@ -594,6 +609,9 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 
 ///Set the target and take care of hard delete
 /obj/item/weapon/gun/proc/set_target(atom/object)
+	if(active_attachable)
+		active_attachable.set_target(object)
+		return
 	if(object == target || target == gun_user)
 		return
 	if(target)
@@ -610,6 +628,7 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 ///Reset variables used in firing and remove the gun from the autofire system
 /obj/item/weapon/gun/proc/stop_fire()
 	SIGNAL_HANDLER
+	active_attachable?.stop_fire()
 	gun_user?.client?.mouse_pointer_icon = initial(gun_user.client.mouse_pointer_icon)
 	if(!CHECK_BITFIELD(flags_gun_features, GUN_BURST_FIRING))
 		reset_fire()
@@ -645,8 +664,10 @@ and you're good to go.
 	if(CHECK_BITFIELD(flags_gun_features, GUN_DEPLOYED_FIRE_ONLY) && !CHECK_BITFIELD(flags_item, IS_DEPLOYED))
 		to_chat(user, span_notice("You cannot fire [src] while it is not deployed."))
 		return
+	if(CHECK_BITFIELD(flags_gun_features, GUN_IS_ATTACHMENT) && !master_gun && CHECK_BITFIELD(flags_gun_features, GUN_ATTACHMENT_FIRE_ONLY))
+		to_chat(user, span_notice("You cannot fire [src] without it attached to a gun!"))
+		return
 	//The workhorse of the bullet procs.
-
 	if(in_chamber) //If we have a round chambered and no active attachable, we're good to go.
 		return in_chamber //Already set!
 
@@ -767,6 +788,10 @@ and you're good to go.
 	if(M != user && user.a_intent == INTENT_HARM)
 		. = ..()
 		if(!.)
+			return
+
+		if(active_attachable)
+			active_attachable.attack(M, user, def_zone)
 			return
 
 		if(!active_attachable && gun_firemode == GUN_FIREMODE_BURSTFIRE && burst_amount > 1)
