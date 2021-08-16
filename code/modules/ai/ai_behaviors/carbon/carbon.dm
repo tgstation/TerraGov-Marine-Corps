@@ -24,8 +24,8 @@
 //Generic attack proc, unique procs to call for xenos, humans and other species as they all have different ways of executing an attack
 /datum/ai_behavior/carbon/proc/attack_target()
 
-//Attempt to deal with a obstacle
-/datum/ai_behavior/carbon/proc/deal_with_obstacle()
+///Deal with the obstacle that stopped our movement
+/datum/ai_behavior/carbon/proc/deal_with_obstacle(datum/source, direction)
 	SIGNAL_HANDLER
 
 //Signal wrappers; this can apply to both humans, xenos and other carbons that attack
