@@ -72,7 +72,7 @@
 			lock.open(TRUE)
 			return COMSIG_OBSTACLE_DEALT_WITH
 	if(ISDIAGONALDIR(direction))
-		return deal_with_obstacle(null, turn(direction, -45)) | deal_with_obstacle(null, turn(direction, 45))
+		return deal_with_obstacle(null, turn(direction, -45)) || deal_with_obstacle(null, turn(direction, 45))
 
 /datum/ai_behavior/carbon/xeno/attack_target()
 	if(world.time < mob_parent.next_move)
