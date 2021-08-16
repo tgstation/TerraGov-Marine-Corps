@@ -1,3 +1,24 @@
+/* Weapons
+* Contains:
+*		Claymore
+*		Harvester
+*		mercsword
+*		Energy Shield
+*		Energy Shield
+*		Energy Shield
+*		Ceremonial Sword
+*		M2132 machete
+*		Officers sword
+*		Commissars sword
+*		Katana
+*		M5 survival knife
+*		Upp Type 30 survival knife
+*		M11 throwing knife
+*		Unathi duelling knife
+*		Chainsword
+*/
+
+
 /obj/item/weapon/claymore
 	name = "claymore"
 	desc = "What are you standing around staring at this for? Get to killing!"
@@ -243,6 +264,15 @@
 	desc = "A cheap knock-off commonly found in regular knife stores. Can still do some damage."
 	force = 27
 	throwforce = 7
+
+/obj/item/weapon/katana/samurai
+	name = "\improper tachi"
+	desc = "A genuine replica of an ancient blade. This one is in remarkably good condition. It could do some damage to everyone, including yourself."
+	icon_state = "samurai_open"
+	force = 60
+	attack_speed = 12
+	w_class = WEIGHT_CLASS_BULKY
+
 
 /obj/item/weapon/katana/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
 	playsound(loc, 'sound/weapons/bladeslice.ogg', 25, 1)
