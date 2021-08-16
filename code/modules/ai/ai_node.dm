@@ -16,7 +16,7 @@
 
 	///List of weights for scoring stuff happening here; ultilizes "identifiers" to differentiate different kinds of AI types looking at the same node.
 	var/list/weights = list(
-		IDENTIFIER_XENO = list(NODE_LAST_CHOSE_TO_VISIT = 0),
+		IDENTIFIER_XENO = list(NODE_LAST_VISITED = 0),
 		)
 
 /obj/effect/ai_node/Initialize()
@@ -48,11 +48,11 @@
  * A proc that gets the "best" adjacent node in src based on score
  * The score is calculated by what weights are inside of the list/weight_modifiers
  * The highest number after multiplying each list/weight by the ones in the above parameter will be the node that's chosen; any nodes that have the same score won't override that node
- * Generally the number that the weight has before being multiplied by weight modifiers is the "user friendly" edition; NODE_LAST_CHOSE_TO_VISIT represents in deciseconds the time before
+ * Generally the number that the weight has before being multiplied by weight modifiers is the "user friendly" edition; NODE_LAST_VISITED represents in deciseconds the time before
  * the node has been visited by a particular thing, while something like NODE_ENEMY_COUNT represents the amount of enemies
  * Parameter call example
- * GetBestAdjNode(list(NODE_LAST_CHOSE_TO_VISIT = -1), IDENTIFIER_XENO)
- * Returns an adjacent node that was last visited; when a AI chose to visit a node, it will set NODE_LAST_CHOSE_TO_VISIT to world.time
+ * GetBestAdjNode(list(NODE_LAST_VISITED = -1), IDENTIFIER_XENO)
+ * Returns an adjacent node that was last visited; when a AI chose to visit a node, it will set NODE_LAST_VISITED to world.time
  */
 /obj/effect/ai_node/proc/get_best_adj_node(list/weight_modifiers, identifier)
 	//No weight modifiers, return a adjacent random node
@@ -93,7 +93,7 @@
 	var/turf/turf_to_check = get_turf(src)
 
 	while(turf_to_check != target_loc)
-		if(turf_to_check.density || (islava(turf_to_check) && !locate(/turf/open/lavaland/catwalk) in turf_to_check))
+		if(turf_to_check.density || !can_cross_lava_turf(turf_to_check))
 			return FALSE
 		turf_to_check = get_step(turf_to_check, get_dir(turf_to_check, target_loc))
 
