@@ -5,10 +5,11 @@
 	var/datum/callback/on_detach
 	var/list/attachment_offsets = list()
 	var/list/attachable_overlays = list()
+	var/list/overlay_icon_states = list()
 	var/list/extra_vars = list()
 
 
-/datum/component/attachment_handler/Initialize(_slots, list/_attachables_allowed, list/_attachment_offsets, list/_extra_vars, datum/callback/_on_attach, datum/callback/_on_detach, list/starting_attachmments, list/overlays)
+/datum/component/attachment_handler/Initialize(_slots, list/_attachables_allowed, list/_attachment_offsets, list/_extra_vars, datum/callback/_on_attach, datum/callback/_on_detach, list/starting_attachmments, list/overlays = list())
 	. = ..()
 	if(!isitem(parent))
 		return COMPONENT_INCOMPATIBLE
@@ -20,6 +21,7 @@
 	attachment_offsets = _attachment_offsets
 	attachable_overlays = overlays
 	attachable_overlays += slots
+	overlay_icon_states += slots
 	extra_vars = _extra_vars
 
 	if(starting_attachmments?.len)
@@ -65,6 +67,8 @@
 	on_attach?.Invoke(attachment, attacker)
 	var/datum/callback/attachment_on_attach = attachment_data["on_attach"]
 	attachment_on_attach?.Invoke(parent, attacker)
+
+	update_overlay_icon_state(attachment, attachment_data["overlay_icon_state"])
 
 	update_parent_overlay()
 
@@ -225,7 +229,7 @@
 	SIGNAL_HANDLER
 	return finish_handle_attachment(attachment, input_attachment_data)
 
-/datum/component/attachment_handler/proc/update_parent_overlay(datum/source, attachment_to_change, new_icon_state)
+/datum/component/attachment_handler/proc/update_parent_overlay(datum/source)
 	SIGNAL_HANDLER
 	var/obj/item/parent_item = parent
 	for(var/slot in slots)
@@ -240,11 +244,8 @@
 			continue
 
 		var/list/attachment_data = get_attachment_data(attachment)
-		var/icon_state = attachment_data["overlay_icon_state"]
-		if(attachment_to_change && new_icon_state && attachment_to_change == attachment)
-			icon_state = new_icon_state
 
-		overlay = image(attachment_data["overlay_icon"], parent_item, icon_state)
+		overlay = image(attachment_data["overlay_icon"], parent_item, overlay_icon_states[slot])
 
 		var/slot_x = 0
 		var/slot_y = 0
@@ -270,7 +271,15 @@
 
 /datum/component/attachment_handler/proc/overlay_icon_update(datum/source, obj/item/attachment, new_icon_state)
 	SIGNAL_HANDLER
-	return update_parent_overlay(parent, attachment, new_icon_state)
+	return update_overlay_icon_state(attachment, new_icon_state)
+
+/datum/component/attachment_handler/proc/update_overlay_icon_state(obj/item/attachment, new_icon_state)
+	for(var/key in slots)
+		if(attachment != slots[key])
+			continue
+		var/list/attachment_data = get_attachment_data(attachment)
+		overlay_icon_states[attachment_data["slot"]] = new_icon_state
+		return update_parent_overlay()
 
 /datum/component/attachment_handler/proc/is_attachment(obj/item/attachment)
 	return SEND_SIGNAL(attachment, COMSIG_ITEM_IS_ATTACHMENT) & IS_ATTACHMENT

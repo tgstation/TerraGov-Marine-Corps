@@ -151,6 +151,19 @@
 	var/sentry_battery_drain = 20
 	///IFF signal for sentries. If it is set here it will be this signal forever. If null the IFF signal will be dependant on the deployer.
 	var/sentry_iff_signal = NONE
+
+
+	var/obj/item/weapon/gun/master_gun
+	var/attach_icon_state
+	var/pixel_shift_x
+	var/pixel_shift_y
+	var/flags_attach_features
+	var/attach_delay
+	var/detach_delay
+
+
+
+
 //----------------------------------------------------------
 				//				    \\
 				// NECESSARY PROCS  \\
@@ -288,7 +301,7 @@
 			dat += "It has [icon2html(attachable, user)] [attachable.name]"
 			continue
 		var/obj/item/weapon/gun/gun_attachable = attachable
-		dat += " ([gun_attachable.current_mag.current_rounds]/[gun_attachable.current_mag.max_rounds])"
+		dat += " ([gun_attachable.current_mag.current_rounds + inchamber ? 1 : 0]/[gun_attachable.current_mag.max_rounds])"
 
 	if(dat)
 		to_chat(user, "[dat.Join(" ")]")

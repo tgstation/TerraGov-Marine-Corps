@@ -1444,3 +1444,14 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	pixel_shift_x = -40
 	pixel_shift_y = 0
 	flags_attach_features = NONE
+
+
+/obj/item/weapon/gun/proc/on_attach(obj/item/attached_to, mob/user)
+	if(!istype(attached_to, /obj/item/weapon/gun))
+		return
+	master_gun = attached_to
+
+/obj/item/weapon/gun/proc/on_detach(obj/item/attached_to, mob/user)
+	if(!istype(attached_to, /obj/item/weapon/gun))
+		return
+	master_gun = null
