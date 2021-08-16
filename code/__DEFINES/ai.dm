@@ -1,0 +1,1 @@
+#define MAX_NODE_RANGE_SQUARED 256
