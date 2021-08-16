@@ -189,7 +189,7 @@
 /obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/ui_interact(mob/user, datum/tgui/ui)
 	. = ..()
 	ui = SStgui.try_update_ui(user, src, ui)
-	if(ui_user)
+	if(ui_user || isAI(ui_user))
 		return
 
 	if(!ui)
