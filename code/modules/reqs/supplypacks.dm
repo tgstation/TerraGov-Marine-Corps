@@ -64,11 +64,6 @@ OPERATIONS
 	cost = 30
 	available_against_xeno_only = TRUE
 
-/datum/supply_packs/operations/motion_detector
-	name = "motion detector crate"
-	contains = list(/obj/item/motiondetector/scout)
-	cost = 20
-
 /datum/supply_packs/operations/pinpointer
 	name = "pool tracker crate"
 	contains = list(/obj/item/pinpointer/pool)

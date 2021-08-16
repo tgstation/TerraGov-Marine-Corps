@@ -330,3 +330,26 @@
   - admin: Improved the testing environment of the debug ship by adding more lights,
       making look better & adding dropship vouchers
   - balance: Reduces ravager damage tiers from 26 - 32 to 26 - 29.
+2021-08-14:
+  Joniroq:
+  - rscadd: Added new Lobby Art
+  RipGrayson:
+  - rscadd: You can buy plasma cutters from requisitions now
+  SpaceLoveSs13:
+  - admin: Display playtime and Round ID on note panel{For Admins}.
+  lbnesquik:
+  - qol: made it clear when you do not have access to a vendor.
+2021-08-15:
+  BraveMole:
+  - qol: Clarify silo and larva generation
+  KornFlaks:
+  - bugfix: Reduced observe warning text at post round start.
+2021-08-16:
+  BraveMole:
+  - bugfix: Fix sg having infinite sg goggles with loadout vendor
+  - balance: You can attach motion detectors to guns, and they are free in attachments
+      tab
+  - balance: Standing still mobs are not detected by the motion detector
+  SplinterGP:
+  - code_imp: changed the TL-127 bolt action rifle code to behave more like a bolt
+      action, it also now doenst autochamber on loading another magazine.

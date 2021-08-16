@@ -285,6 +285,11 @@
 #define COMSIG_GUN_AUTOFIREDELAY_MODIFIED "gun_firedelay_modified"
 #define COMSIG_GUN_BURST_SHOTS_TO_FIRE_MODIFIED "gun_burstamount_modified"
 #define COMSIG_GUN_BURST_SHOT_DELAY_MODIFIED "gun_burstdelay_modified"
+#define COMSIG_GUN_USER_UNSET "gun_user_unset"
+#define COMSIG_GUN_USER_SET "gun_user_set"
+#define COMSIG_MOB_GUN_FIRED "mob_gun_fired"
+#define COMSIG_MOB_GUN_AUTOFIRED "mob_gun_autofired"
+
 #define COMSIG_REVOLVER_AMMO_HIT_MOB "gun_revolver_ammo_hit"
 	#define COMSIG_REVOLVER_AMMO_SNUBNOSE_BARREL (1<<0)
 
@@ -332,8 +337,6 @@
 	#define MOB_DEADSAY_SIGNAL_INTERCEPT (1<<0)
 #define COMSIG_MOB_LOGIN "mob_login"							//from /mob/Login(): ()
 #define COMSIG_MOB_LOGOUT "mob_logout"							//from /mob/Logout(): ()
-#define COMSIG_MOB_GUN_FIRED "mob_gun_fired"					//from gun system: (atom/target,obj/item/weapon/gun/gun, mob/living/user)
-#define COMSIG_MOB_GUN_AUTOFIRED "mob_gun_autofired"
 #define COMSIG_MOB_ATTACHMENT_FIRED "mob_attachment_fired"
 #define COMSIG_MOB_TOGGLEMOVEINTENT "mob_togglemoveintent"		//drom base of mob/toggle_move_intent(): (new_intent)
 #define COMSIG_MOB_ENABLE_STEALTH "mob_togglestealth"
