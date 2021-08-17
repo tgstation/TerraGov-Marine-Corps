@@ -145,8 +145,9 @@
 	dat += "<table cellspacing=4>"
 	dat += xenoinfo
 	dat += "</table>"
-	var/larva_generated = SSsilo.current_larva_spawn_rate/8
-	dat += "<b>Larvas generated in one minute: [larva_generated]<BR>"
+	dat += "<b>Larva points generated in one minute: [SSsilo.current_larva_spawn_rate]<BR>"
+	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
+	dat += "<b>Points needed for next larva: [xeno_job.job_points_needed - xeno_job.job_points]"
 	dat += resin_silo_status_output(user, hive)
 
 	var/datum/browser/popup = new(user, "roundstatus", "<div align='center'>Hive Status</div>", 650, 650)

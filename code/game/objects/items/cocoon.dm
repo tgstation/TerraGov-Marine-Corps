@@ -63,7 +63,8 @@
 		unanchor_from_nest()
 	if(must_release_victim)
 		var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
-		xeno_job.add_job_points(larva_point_reward, PSY_DRAIN_ORIGIN)
+		xeno_job.add_job_points(larva_point_reward)
+		GLOB.round_statistics.larva_from_cocoon += larva_point_reward / xeno_job.job_points_needed
 		release_victim()
 	update_icon()
 

@@ -1,0 +1,4 @@
+author: "KornFlaks"
+delete-after: True
+changes: 
+  - bugfix: "Marines and other unskilled mobs can now decorrupt generators that have previously been decorrupted and repaired."

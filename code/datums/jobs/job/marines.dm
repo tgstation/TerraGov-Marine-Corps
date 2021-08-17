@@ -434,7 +434,7 @@ You can serve a variety of roles, so choose carefully."})
 	title = SQUAD_LEADER
 	req_admin_notify = TRUE
 	paygrade = "E5"
-	comm_title = "SL"
+	comm_title = JOB_COMM_TITLE_SQUAD_LEADER
 	total_positions = 4
 	supervisors = "the acting field commander"
 	access = list(ACCESS_MARINE_PREP, ACCESS_MARINE_LEADER, ACCESS_MARINE_DROPSHIP)
@@ -516,7 +516,6 @@ You are also in charge of communicating with command and letting them know about
 
 	H.equip_to_slot_or_del(new /obj/item/radio, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/tool/crowbar/red, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/motiondetector, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/whistle, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/binoculars/tactical, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_BACKPACK)

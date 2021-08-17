@@ -1237,7 +1237,6 @@
 /obj/item/camera,
 /obj/item/tool/extinguisher,
 /obj/item/reagent_containers/spray/cleaner,
-/obj/item/storage/box/monkeycubes,
 /obj/machinery/vending/nanomed,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/medical_science)

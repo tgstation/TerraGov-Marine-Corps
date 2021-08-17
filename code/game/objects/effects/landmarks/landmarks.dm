@@ -208,7 +208,7 @@
 		new /obj/item/storage/box/visual/grenade/frag (get_turf(src))
 		return
 
-	if(istype(gun_to_spawn, /obj/item/weapon/gun/flare))
+	if(istype(gun_to_spawn, /obj/item/weapon/gun/launcher/m81/flare))
 		new /obj/item/storage/box/m94 (get_turf(src))
 		return
 
@@ -254,7 +254,7 @@
 	weapon_list = list(
 		/obj/item/weapon/gun/energy/lasgun/M43/practice,
 		/obj/item/weapon/gun/energy/lasgun/tesla,
-		/obj/item/weapon/gun/flare,
+		/obj/item/weapon/gun/launcher/m81/flare,
 		/obj/item/weapon/gun/pistol/standard_pistol,
 		/obj/item/weapon/gun/pistol/standard_pocketpistol,
 		/obj/item/weapon/gun/pistol/rt3,
