@@ -400,7 +400,7 @@
 	dir = 8
 	},
 /turf/open/floor/asteroidfloor,
-/area/space)
+/area/bigredv2/outside/space_port)
 "abD" = (
 /obj/effect/decal/cleanable/blood/gibs,
 /turf/open/floor/plating,
@@ -2624,9 +2624,6 @@
 	},
 /turf/open/floor,
 /area/bigredv2/outside/marshal_office)
-"ajT" = (
-/turf/closed/wall/r_wall,
-/area/bigredv2/caves/northwest)
 "ajU" = (
 /obj/machinery/light/small,
 /turf/open/floor/plating,
@@ -20590,7 +20587,7 @@
 /obj/structure/rack,
 /obj/item/stack/sheet/plasteel/medium_stack,
 /turf/open/floor/plating/plating_catwalk,
-/area/bigredv2/caves/northwest)
+/area/bigredv2/outside/space_port)
 "gSH" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/landmark/corpsespawner/doctor,
@@ -20727,7 +20724,7 @@
 "huI" = (
 /obj/structure/cable,
 /turf/closed/wall/r_wall/unmeltable,
-/area/bigredv2/caves/northwest)
+/area/bigredv2/outside/space_port)
 "hvr" = (
 /obj/structure/rack,
 /obj/item/weapon/gun/rifle/m16,
@@ -21014,7 +21011,7 @@
 /area/bigredv2/caves/southeast)
 "iKB" = (
 /turf/closed/wall/r_wall/unmeltable,
-/area/bigredv2/caves/northwest)
+/area/bigredv2/outside/space_port)
 "iKL" = (
 /obj/structure/largecrate/machine,
 /turf/open/floor/tile/dark,
@@ -21261,7 +21258,7 @@
 /obj/item/storage/box/explosive_mines,
 /obj/structure/cable,
 /turf/open/shuttle/elevator/grating,
-/area/bigredv2/caves/northwest)
+/area/bigredv2/outside/space_port)
 "jZz" = (
 /turf/open/floor/plating/ground/mars/dirttosand{
 	dir = 5
@@ -21541,7 +21538,7 @@
 /obj/structure/cable,
 /obj/item/storage/box/sentry,
 /turf/open/shuttle/elevator/grating,
-/area/bigredv2/caves/northwest)
+/area/bigredv2/outside/space_port)
 "loj" = (
 /obj/docking_port/stationary/crashmode,
 /turf/open/floor/engine/cult,
@@ -21892,7 +21889,7 @@
 /obj/item/ammo_magazine/shotgun/incendiary,
 /obj/item/ammo_magazine/shotgun/incendiary,
 /turf/open/shuttle/elevator/grating,
-/area/bigredv2/caves/northwest)
+/area/bigredv2/outside/space_port)
 "mSl" = (
 /obj/structure/cable,
 /obj/structure/largecrate/random/barrel/blue,
@@ -21926,7 +21923,7 @@
 /obj/structure/cable,
 /obj/structure/largecrate/supply/supplies/mre,
 /turf/open/shuttle/elevator/grating,
-/area/bigredv2/caves/northwest)
+/area/bigredv2/outside/space_port)
 "nbw" = (
 /obj/structure/prop/mainship/mission_planning_system,
 /turf/open/shuttle/escapepod,
@@ -22606,7 +22603,7 @@
 	name = "Secure window"
 	},
 /turf/open/floor/tile/dark,
-/area/bigredv2/caves/northwest)
+/area/bigredv2/outside/space_port)
 "pYh" = (
 /obj/effect/landmark/xeno_resin_door,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -22952,9 +22949,6 @@
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/general_offices)
-"raF" = (
-/turf/open/floor/asteroidfloor,
-/area/space)
 "rdd" = (
 /obj/structure/table,
 /obj/item/trash/tray,
@@ -23068,9 +23062,6 @@
 	dir = 1
 	},
 /area/bigredv2/caves/lambda_lab)
-"rJW" = (
-/turf/open/floor/asteroidfloor,
-/area/bigredv2/caves/northwest)
 "rKr" = (
 /obj/structure/barricade/metal{
 	dir = 8
@@ -23118,7 +23109,7 @@
 	dir = 1
 	},
 /turf/open/floor/asteroidfloor,
-/area/bigredv2/caves/northwest)
+/area/bigredv2/outside/space_port)
 "rQB" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/open/floor/plating/ground/mars/random/dirt,
@@ -23376,7 +23367,7 @@
 /area/bigredv2/caves/southeast)
 "tfF" = (
 /turf/open/shuttle/elevator/grating,
-/area/bigredv2/caves/northwest)
+/area/bigredv2/outside/space_port)
 "tjQ" = (
 /obj/effect/decal/cleanable/blood/gibs/up,
 /turf/open/floor/tile/dark2,
@@ -23819,7 +23810,7 @@
 "vgq" = (
 /obj/structure/cable,
 /turf/open/shuttle/elevator/grating,
-/area/bigredv2/caves/northwest)
+/area/bigredv2/outside/space_port)
 "vhj" = (
 /obj/effect/landmark/weed_node,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -24004,9 +23995,6 @@
 	},
 /turf/open/floor/wood,
 /area/bigredv2/outside/library)
-"vWE" = (
-/turf/closed/mineral/bigred,
-/area/space)
 "vWM" = (
 /obj/item/ammo_casing/shell,
 /obj/item/ammo_casing/bullet,
@@ -24035,7 +24023,7 @@
 /area/bigredv2/caves/south)
 "wdL" = (
 /turf/open/floor/plating/plating_catwalk,
-/area/bigredv2/caves/northwest)
+/area/bigredv2/outside/space_port)
 "weF" = (
 /obj/effect/decal/cleanable/blood/xeno,
 /turf/open/floor/tile/dark2,
@@ -25167,9 +25155,9 @@ tku
 aac
 aac
 aac
-vWE
-vWE
-vWE
+aac
+aac
+aac
 aac
 aac
 aac
@@ -25384,9 +25372,9 @@ tku
 aac
 aac
 aac
-vWE
-vWE
-vWE
+aac
+aac
+aac
 aac
 aac
 aac
@@ -25601,9 +25589,9 @@ aac
 aac
 aac
 aac
-vWE
-vWE
-vWE
+aac
+aac
+aac
 aac
 aac
 aac
@@ -26038,7 +26026,7 @@ aac
 aac
 aac
 aac
-vWE
+aac
 aac
 ktH
 aac
@@ -27120,12 +27108,12 @@ aac
 aac
 aac
 ktH
-vWE
-vWE
-vWE
-vWE
-vWE
-vWE
+aac
+aac
+aac
+aac
+aac
+aac
 aac
 huI
 wdL
@@ -27337,12 +27325,12 @@ aac
 aac
 aac
 ktH
-vWE
-vWE
-vWE
-vWE
-vwf
-vWE
+aac
+aac
+aac
+aac
+aac
+aac
 aac
 huI
 pXc
@@ -27554,15 +27542,15 @@ aac
 aac
 aac
 ktH
-vWE
-vWE
-vWE
-vWE
-vwf
-vWE
 aac
-ajT
-rJW
+aac
+aac
+aac
+aac
+aac
+aac
+aae
+aaf
 aaf
 aaf
 gkA
@@ -27771,14 +27759,14 @@ aac
 aac
 aac
 ktH
-vWE
-vWE
-vWE
-vWE
-vwf
-vWE
 aac
-ajT
+aac
+aac
+aac
+aac
+aac
+aac
+aae
 rPj
 aaf
 aaf
@@ -27988,15 +27976,15 @@ aac
 aac
 aac
 ktH
-oCk
 aae
 aae
 aae
 aae
-oCk
-ajT
-ajT
-rJW
+aae
+aae
+aae
+aae
+aaf
 aaf
 aaf
 aas
@@ -28205,12 +28193,12 @@ aac
 aac
 aac
 ktH
-oCk
-raF
+aae
+aaf
 aaf
 aaf
 abC
-raF
+aaf
 aaf
 aaf
 aaf
