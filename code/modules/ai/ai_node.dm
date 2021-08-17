@@ -80,14 +80,14 @@
 	for(var/obj/effect/ai_node/node AS in GLOB.allnodes)
 		if(node == src || get_dist_euclide_square(src, node) > MAX_NODE_RANGE_SQUARED)
 			continue
-		if(!is_in_LOS(get_turf(node)))
+		if(!is_in_line_of_sight(get_turf(node)))
 			continue
 
 		LAZYDISTINCTADD(adjacent_nodes ,node)
 		LAZYDISTINCTADD(node.adjacent_nodes, src)
 
 ///Returns true if the turf in argument is in line of sight
-/obj/effect/ai_node/proc/is_in_LOS(turf/target_loc)
+/obj/effect/ai_node/proc/is_in_line_of_sight(turf/target_loc)
 	var/turf/turf_to_check = get_turf(src)
 
 	while(turf_to_check != target_loc)
