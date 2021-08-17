@@ -674,6 +674,8 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 		to_chat(source, span_warning("You cannot illuminate this place. It is probably underground."))
 		return
 	var/turf/target = get_turf(A)
+	if(!target)
+		return
 	new /obj/effect/overwatch_light(target)
 	use_power(10000)	//Huge light needs big power. Still less than autodocs.
 	TIMER_COOLDOWN_START(src, COOLDOWN_ORBITAL_SPOTLIGHT, SPOTLIGHT_COOLDOWN_DURATION)
