@@ -43,7 +43,6 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 	. = ..()
 	deltimer(anti_stuck_timer)
 	current_node = null
-	anti_stuck_timer = null
 	escorted_atom = null
 	mob_parent = null
 	atom_to_walk_to = null
