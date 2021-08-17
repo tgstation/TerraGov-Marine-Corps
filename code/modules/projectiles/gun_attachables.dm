@@ -1452,9 +1452,9 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	master_gun = attached_to
 
 	var/datum/action/new_action = new /datum/action/item_action/toggle(src, master_gun)
-	if(!isliving(master_gun.loc))
+	if(!isliving(user))
 		return
-	var/mob/living/living_user = master_gun.loc
+	var/mob/living/living_user = user
 	if(master_gun == living_user.get_inactive_held_item() || master_gun == living_user.get_active_held_item())
 		new_action.give_action(living_user)
 
@@ -1466,12 +1466,21 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 			continue
 		QDEL_NULL(action_to_delete)
 		break
+	icon_state = initial(icon_state)
+	update_icon(user)
 	master_gun = null
 
 /obj/item/weapon/gun/proc/activate(mob/user)
 	if(master_gun.active_attachable)
 		master_gun.active_attachable = null
+		icon_state = initial(icon_state)
+		update_icon(user)
 		to_chat(user, span_notice("You stop using [src]."))
-		return
-	master_gun.active_attachable = src
-	to_chat(user, span_notice("You start using [src]."))
+	else
+		master_gun.active_attachable = src
+		icon_state = icon_state + "-on"
+		to_chat(user, span_notice("You start using [src]."))
+	for(var/action_to_update in master_gun.actions)
+		var/datum/action/action = action_to_update
+		action.update_button_icon()
+

@@ -237,6 +237,13 @@
 /obj/item/weapon/gun/equipped(mob/user, slot)
 	unwield(user)
 	if(ishandslot(slot))
+		for(var/key in slots)
+			var/obj/item/attachable = slots[key]
+			if(!attachable || !istype(attachable, /obj/item/weapon/gun))
+				continue
+			var/obj/item/weapon/gun/attachment_gun = attachable
+			attachment_gun.set_gun_user(user)
+		active_attachable?.set_gun_user(user)
 		set_gun_user(user)
 		return ..()
 	set_gun_user(null)
@@ -244,6 +251,7 @@
 
 /obj/item/weapon/gun/removed_from_inventory(mob/user)
 	set_gun_user(null)
+	active_attachable?.set_gun_user(null)
 
 ///Set the user in argument as gun_user
 /obj/item/weapon/gun/proc/set_gun_user(mob/user)
@@ -256,6 +264,8 @@
 	if(!user)
 		return
 	gun_user = user
+	if(master_gun)
+		return
 	if(!CHECK_BITFIELD(flags_item, IS_DEPLOYED))
 		RegisterSignal(gun_user, COMSIG_MOB_MOUSEDOWN, .proc/start_fire)
 		RegisterSignal(gun_user, COMSIG_MOB_MOUSEDRAG, .proc/change_target)
@@ -278,8 +288,11 @@
 /obj/item/weapon/gun/update_icon(mob/user)
 	if(!current_mag || current_mag.current_rounds <= 0)
 		icon_state = base_gun_icon + "_e"
+		master_gun?.update_attachment_icon_state(src, attach_icon_state + "_e")
 	else
 		icon_state = base_gun_icon
+		master_gun?.update_attachment_icon_state(src, attach_icon_state)
+
 	update_item_state(user)
 	update_mag_overlay(user)
 
@@ -300,7 +313,7 @@
 		var/obj/item/attachable = slots[key]
 		if(!attachable)
 			continue
-		if(!istype(attachable, /obj/item/weapon/gun))
+		if(istype(attachable, /obj/item/weapon/gun))
 			dat += "It has [icon2html(attachable, user)] [attachable.name]"
 			continue
 		var/obj/item/weapon/gun/gun_attachable = attachable
@@ -579,7 +592,7 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 /obj/item/weapon/gun/proc/start_fire(datum/source, atom/object, turf/location, control, params, bypass_checks = FALSE)
 	SIGNAL_HANDLER
 	if(active_attachable)
-		active_attachable?.start_fire(source, object, location, control, params, TRUE)
+		active_attachable?.start_fire(source, object, location, control, params)
 		return
 	if(gun_on_cooldown(gun_user))
 		return
@@ -597,7 +610,13 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 	set_target(get_turf_on_clickcatcher(object, gun_user, params))
 	var/list/modifiers = params2list(params)
 	if(modifiers["right"] || modifiers["middle"] || modifiers["shift"])
-		active_attachable?.start_fire(source, object, location, control, params, TRUE)
+		for(var/key in slots)
+			var/obj/item/attachment = slots[key]
+			if(!attachment || !istype(attachment, /obj/item/weapon/gun))
+				continue
+			var/obj/item/weapon/gun/attachment_gun = attachment
+			attachment_gun.start_fire(source, object, location, control, params)
+			break
 		return
 	if(gun_firemode == GUN_FIREMODE_SEMIAUTO)
 		if(!Fire() || windup_checked == WEAPON_WINDUP_CHECKING)
@@ -725,6 +744,8 @@ and you're good to go.
 	in_chamber = null //Projectiles live and die fast. It's better to null the reference early so the GC can handle it immediately.
 	if(!projectile_to_fire) //If there is nothing to fire, click.
 		click_empty(gun_user)
+		if(master_gun)
+			activate(gun_user)
 		return
 
 	var/firer
@@ -744,12 +765,12 @@ and you're good to go.
 
 
 	play_fire_sound(loc)
-	muzzle_flash(firing_angle, loc)
+	muzzle_flash(firing_angle, master_gun ? gun_user : loc)
 	simulate_recoil(dual_wield, gun_user)
 
 	//This is where the projectile leaves the barrel and deals with projectile code only.
 	//vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
-	projectile_to_fire.fire_at(target, loc, src, projectile_to_fire.ammo.max_range, projectile_to_fire.ammo.shell_speed, firing_angle, suppress_light = CHECK_BITFIELD(flags_gun_features, GUN_SILENCED))
+	projectile_to_fire.fire_at(target, master_gun ? gun_user : loc, src, projectile_to_fire.ammo.max_range, projectile_to_fire.ammo.shell_speed, firing_angle, suppress_light = CHECK_BITFIELD(flags_gun_features, GUN_SILENCED))
 	//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 	shots_fired++
@@ -934,6 +955,12 @@ and you're good to go.
 	if((flags_gun_features & GUN_WIELDED_STABLE_FIRING_ONLY) && !wielded_stable())//If we must wait to finish wielding before shooting.
 		to_chat(user, "<span class='warning'>You need a more secure grip to fire this weapon!")
 		return FALSE
+	if(master_gun && CHECK_BITFIELD(flags_gun_features, GUN_WIELDED_FIRING_ONLY) && !CHECK_BITFIELD(master_gun.flags_item, WIELDED))
+		to_chat(user, span_warning("You need a more secure grip to fire [src]!"))
+		return FALSE
+	if(master_gun && CHECK_BITFIELD(flags_gun_features, GUN_WIELDED_FIRING_ONLY) && !CHECK_BITFIELD(master_gun.flags_item, WIELDED))
+		to_chat(user, "<span class='warning'>You need a more secure grip to fire [src]!")
+		return FALSE
 	return TRUE
 
 /obj/item/weapon/gun/proc/gun_on_cooldown(mob/user)
@@ -1087,7 +1114,7 @@ and you're good to go.
 	if(CHECK_BITFIELD(flags_item, IS_DEPLOYED) || !user)
 		return TRUE
 	var/total_recoil = recoil_bonus
-	if(flags_item & WIELDED && wielded_stable())
+	if(flags_item & WIELDED && wielded_stable() || master_gun)
 		total_recoil += recoil
 	else
 		total_recoil += recoil_unwielded

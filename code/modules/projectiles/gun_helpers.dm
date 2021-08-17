@@ -108,7 +108,9 @@
 	if(in_hand == src && (flags_item & TWOHANDED))
 		if(active_attachable)
 			active_attachable.unload(user)
-		unload(user)//It has to be held if it's a two hander.
+		else
+			unload(user)//It has to be held if it's a two hander.
+		return
 	else
 		return ..()
 

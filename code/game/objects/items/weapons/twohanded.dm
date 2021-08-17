@@ -255,13 +255,14 @@
 
 /obj/item/weapon/twohanded/spear/tactical
 	name = "M-23 spear"
+	icon = 'icons/Marine/gun64.dmi'
 	desc = "A tactical spear. Used for 'tactical' combat."
 	icon_state = "spear"
 	item_state = "spear"
 
 /obj/item/weapon/twohanded/spear/tactical/Initialize()
 	. = ..()
-	AddComponent(/datum/component/attachment_handler, list(ATTACHMENT_SLOT_RAIL, ATTACHMENT_SLOT_UNDER, ATTACHMENT_SLOT_MUZZLE), list(/obj/item/attachable/bayonet, /obj/item/attachable/suppressor, /obj/item/attachable/reddot, /obj/item/attachable/flashlight, /obj/item/attachable/scope/marine, /obj/item/attachable/lasersight, /obj/item/attachable/angledgrip, /obj/item/attachable/verticalgrip), _attachment_offsets = list("muzzle_x" = 23, "muzzle_y" = 20,"rail_x" = 13, "rail_y" = 23, "under_x" = 19, "under_y" = 13, "stock_x" = 21, "stock_y" = 17), overlays = list())
+	AddComponent(/datum/component/attachment_handler, list(ATTACHMENT_SLOT_RAIL, ATTACHMENT_SLOT_UNDER, ATTACHMENT_SLOT_MUZZLE), list(/obj/item/attachable/bayonet, /obj/item/attachable/suppressor, /obj/item/attachable/reddot, /obj/item/attachable/flashlight, /obj/item/attachable/scope/marine, /obj/item/attachable/lasersight, /obj/item/attachable/angledgrip, /obj/item/attachable/verticalgrip), _attachment_offsets = list("muzzle_x" = 63, "muzzle_y" = 15, "rail_x" = 23, "rail_y" = 20, "under_x" = 34, "under_y" = 9, "stock_x" = 21, "stock_y" = 17), overlays = list())
 
 /obj/item/weapon/twohanded/glaive
 	name = "war glaive"
