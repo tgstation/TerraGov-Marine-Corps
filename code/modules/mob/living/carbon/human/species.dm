@@ -902,7 +902,6 @@
 	return ..()
 
 /mob/living/carbon/human/species/early_synthetic/binarycheck(mob/H)
-	. = ..()
 	return TRUE
 
 
