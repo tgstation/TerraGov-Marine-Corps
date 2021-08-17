@@ -840,7 +840,6 @@
 	AH.add_hud_to(H)
 
 /mob/living/carbon/human/species/synthetic/binarycheck(mob/H)
-	. = ..()
 	return TRUE
 
 
