@@ -615,13 +615,7 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 	set_target(get_turf_on_clickcatcher(object, gun_user, params))
 	var/list/modifiers = params2list(params)
 	if(modifiers["right"] || modifiers["middle"] || modifiers["shift"])
-		for(var/key in slots)
-			var/obj/item/attachment = slots[key]
-			if(!attachment || !istype(attachment, /obj/item/weapon/gun))
-				continue
-			var/obj/item/weapon/gun/attachment_gun = attachment
-			attachment_gun.start_fire(source, object, location, control, params)
-			return
+		fire_attachment(source, object, location, control, params, bypass_checks)
 		return
 	if(gun_firemode == GUN_FIREMODE_SEMIAUTO)
 		if(!Fire() || windup_checked == WEAPON_WINDUP_CHECKING)
@@ -632,6 +626,7 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 	gun_user?.client?.mouse_pointer_icon = 'icons/effects/supplypod_target.dmi'
 
 /obj/item/weapon/gun/proc/fire_attachment(datum/source, atom/object, turf/location, control, params, bypass_checks = FALSE)
+	SIGNAL_HANDLER
 	if(active_attachable)
 		active_attachable.start_fire(source, object, location, control, params, bypass_checks)
 		return
