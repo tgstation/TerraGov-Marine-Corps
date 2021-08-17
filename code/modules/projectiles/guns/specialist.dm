@@ -517,7 +517,7 @@
 
 /obj/item/weapon/gun/launcher/m92/Initialize()
 	. = ..()
-	for(var/i in 1 to 6)
+	for(var/i in 1 to max_grenades)
 		grenades += new /obj/item/explosive/grenade/frag(src)
 
 
@@ -660,6 +660,37 @@
 	. = ..()
 	grenades.Cut(1,0)
 
+
+/obj/item/weapon/gun/launcher/m92/mini_grenade
+	name = "underslung grenade launcher"
+	desc = "A weapon-mounted, reloadable, two-shot grenade launcher."
+	icon = 'icons/Marine/marine-weapons.dmi'
+	icon_state = "grenade"
+	w_class = WEIGHT_CLASS_BULKY
+	max_shells = 2
+	max_grenades = 2
+	fire_delay = 1 SECONDS
+	fire_sound = 'sound/weapons/guns/fire/underbarrel_grenadelauncher.ogg'
+
+	slot = ATTACHMENT_SLOT_UNDER
+	attach_icon_state = "grenade_a"
+	attach_delay = 3 SECONDS
+	detach_delay = 3 SECONDS
+	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_AMMO_COUNTER|GUN_IS_ATTACHMENT|GUN_ATTACHMENT_FIRE_ONLY
+	pixel_shift_x = 14
+	pixel_shift_y = 18
+
+
+/obj/item/weapon/gun/launcher/m92/mini_grenade/update_icon(mob/user)
+	if(!grenades.len)
+		icon_state = base_gun_icon + "_e"
+		master_gun?.update_attachment_icon_state(src, attach_icon_state + "_e")
+	else
+		icon_state = base_gun_icon
+		master_gun?.update_attachment_icon_state(src, attach_icon_state)
+
+	update_item_state(user)
+
 /obj/item/weapon/gun/launcher/m81
 	name = "\improper T-81 grenade launcher"
 	desc = "A lightweight, single-shot grenade launcher used by the TerraGov Marine Corps for area denial and big explosions."
@@ -688,7 +719,6 @@
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 14, "rail_y" = 22, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
 
 	fire_delay = 1.05 SECONDS
-
 
 /obj/item/weapon/gun/launcher/m81/Initialize(mapload, spawn_empty)
 	. = ..()

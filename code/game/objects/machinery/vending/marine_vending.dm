@@ -202,7 +202,10 @@
 			/obj/item/attachable/verticalgrip = -1,
 			/obj/item/attachable/stock/t19stock = -1,
 			/obj/item/attachable/stock/t35stock = -1, 
-			//readd these dear god remember
+			/obj/item/weapon/gun/shotgun/combat/masterkey = -1,
+			/obj/item/weapon/gun/flamer/mini_flamer = -1,
+			/obj/item/ammo_magazine/flamer_tank/mini = -1,
+			/obj/item/weapon/gun/launcher/m92/mini_grenade = -1,
 			/obj/item/attachable/standard_revolver_longbarrel = -1
 		),
 		"Boxes" = list(
@@ -308,7 +311,10 @@
 			/obj/item/attachable/verticalgrip = -1,
 			/obj/item/attachable/stock/t19stock = -1,
 			/obj/item/attachable/stock/t35stock = -1,
-			//these too you mongoloid
+			/obj/item/weapon/gun/flamer/mini_flamer = -1,
+			/obj/item/ammo_magazine/flamer_tank/mini = -1,
+			/obj/item/weapon/gun/launcher/m92/mini_grenade = -1,
+
 		),
 		"Boxes" = list(
 		/obj/item/ammo_magazine/packet/p9mm = 100,

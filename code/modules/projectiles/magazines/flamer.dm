@@ -16,6 +16,15 @@
 	flags_magazine = NONE
 	icon_state_mini = "tank"
 
+/obj/item/ammo_magazine/flamer_tank/mini
+	name = "mini incinerator tank"
+	desc = "A fuel tank of usually ultra thick napthal, a sticky combustable liquid chemical, for use in the underail incinerator unit. Handle with care."
+	icon_state = "flametank_mini"
+	current_rounds = 25
+	max_rounds = 25
+	gun_type = /obj/item/weapon/gun/flamer/mini_flamer
+
+
 
 /obj/item/ammo_magazine/flamer_tank/afterattack(obj/target, mob/user , flag) //refuel at fueltanks when we run out of ammo.
 

@@ -77,8 +77,11 @@
 		/obj/item/attachable/scope,
 		/obj/item/attachable/scope/marine,
 		/obj/item/attachable/scope/mini,
-		/obj/item/weapon/gun/shotgun/combat/masterkey,
 		/obj/item/weapon/gun/pistol/plasma_pistol,
+		/obj/item/weapon/gun/shotgun/combat/masterkey = -1,
+		/obj/item/weapon/gun/flamer/mini_flamer = -1,
+		/obj/item/weapon/gun/launcher/m92/mini_grenade = -1,
+		
 	)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER

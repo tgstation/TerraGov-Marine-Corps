@@ -1380,13 +1380,13 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 		if(user)
 			to_chat(user, span_notice("You are no longer using [src]."))
 		master_gun.active_attachable = null
-		icon_state = initial(icon_state)
+		overlays -= image('icons/Marine/marine-weapons.dmi', src, "active")
 		. = FALSE
 	else
 		if(user)
 			to_chat(user, span_notice("You are now using [src]."))
 		master_gun.active_attachable = src
-		icon_state += "-on"
+		overlays += image('icons/Marine/marine-weapons.dmi', src, "active")
 		. = TRUE
 	for(var/X in master_gun.actions)
 		var/datum/action/A = X
@@ -1450,7 +1450,8 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	if(!istype(attached_to, /obj/item/weapon/gun))
 		return
 	master_gun = attached_to
-
+	if(gun_user)
+		UnregisterSignal(gun_user, list(COMSIG_MOB_MOUSEDOWN, COMSIG_MOB_MOUSEUP, COMSIG_ITEM_ZOOM, COMSIG_ITEM_UNZOOM, COMSIG_MOB_MOUSEDRAG, COMSIG_KB_RAILATTACHMENT, COMSIG_KB_UNDERRAILATTACHMENT, COMSIG_KB_UNLOADGUN, COMSIG_KB_FIREMODE, COMSIG_KB_GUN_SAFETY, COMSIG_KB_UNIQUEACTION, COMSIG_PARENT_QDELETING,  COMSIG_MOB_CLICK_RIGHT))
 	var/datum/action/new_action = new /datum/action/item_action/toggle(src, master_gun)
 	if(!isliving(user))
 		return
@@ -1467,18 +1468,23 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 		QDEL_NULL(action_to_delete)
 		break
 	icon_state = initial(icon_state)
+	overlays -= image('icons/Marine/marine-weapons.dmi', src, "active")
 	update_icon(user)
+	if(master_gun.active_attachable == src)
+		master_gun.active_attachable = null
 	master_gun = null
 
 /obj/item/weapon/gun/proc/activate(mob/user)
 	if(master_gun.active_attachable)
+		if(master_gun.active_attachable != src)
+			master_gun.active_attachable.activate(user)
+			return
 		master_gun.active_attachable = null
-		icon_state = initial(icon_state)
-		update_icon(user)
+		overlays -= image('icons/Marine/marine-weapons.dmi', src, "active")
 		to_chat(user, span_notice("You stop using [src]."))
 	else
 		master_gun.active_attachable = src
-		icon_state = icon_state + "-on"
+		overlays += image('icons/Marine/marine-weapons.dmi', src, "active")
 		to_chat(user, span_notice("You start using [src]."))
 	for(var/action_to_update in master_gun.actions)
 		var/datum/action/action = action_to_update

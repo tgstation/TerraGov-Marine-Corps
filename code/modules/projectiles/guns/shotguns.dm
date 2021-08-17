@@ -288,7 +288,18 @@ can cause issues with ammo types getting mixed up during the burst.
 	flags_gun_features = GUN_IS_ATTACHMENT|GUN_INTERNAL_MAG|GUN_SHOTGUN_CHAMBER|GUN_AMMO_COUNTER|GUN_ATTACHMENT_FIRE_ONLY|GUN_WIELDED_STABLE_FIRING_ONLY
 	current_mag = /obj/item/ammo_magazine/internal/shotgun/masterkey
 	recoil = 0
+	pixel_shift_x = 14
+	pixel_shift_y = 18
 
+/obj/item/weapon/gun/shotgun/combat/masterkey/update_icon(mob/user)
+	if(!current_mag || current_mag.current_rounds <= 0)
+		icon_state = base_gun_icon + "_e"
+		master_gun?.update_attachment_icon_state(src, attach_icon_state + "_e")
+	else
+		icon_state = base_gun_icon
+		master_gun?.update_attachment_icon_state(src, attach_icon_state)
+
+	update_item_state(user)
 
 
 

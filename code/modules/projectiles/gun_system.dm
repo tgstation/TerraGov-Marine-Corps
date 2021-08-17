@@ -243,7 +243,6 @@
 				continue
 			var/obj/item/weapon/gun/attachment_gun = attachable
 			attachment_gun.set_gun_user(user)
-		active_attachable?.set_gun_user(user)
 		set_gun_user(user)
 		return ..()
 	set_gun_user(null)
@@ -251,14 +250,19 @@
 
 /obj/item/weapon/gun/removed_from_inventory(mob/user)
 	set_gun_user(null)
-	active_attachable?.set_gun_user(null)
+	for(var/key in slots)
+		var/obj/item/attachable = slots[key]
+		if(!attachable || !istype(attachable, /obj/item/weapon/gun))
+			continue
+		var/obj/item/weapon/gun/attachment_gun = attachable
+		attachment_gun.set_gun_user(null)
 
 ///Set the user in argument as gun_user
 /obj/item/weapon/gun/proc/set_gun_user(mob/user)
 	if(user == gun_user)
 		return
 	if(gun_user)
-		UnregisterSignal(gun_user, list(COMSIG_MOB_MOUSEDOWN, COMSIG_MOB_MOUSEUP, COMSIG_ITEM_ZOOM, COMSIG_ITEM_UNZOOM, COMSIG_MOB_MOUSEDRAG, COMSIG_KB_RAILATTACHMENT, COMSIG_KB_UNDERRAILATTACHMENT, COMSIG_KB_UNLOADGUN, COMSIG_KB_FIREMODE, COMSIG_KB_GUN_SAFETY, COMSIG_KB_UNIQUEACTION, COMSIG_PARENT_QDELETING))
+		UnregisterSignal(gun_user, list(COMSIG_MOB_MOUSEDOWN, COMSIG_MOB_MOUSEUP, COMSIG_ITEM_ZOOM, COMSIG_ITEM_UNZOOM, COMSIG_MOB_MOUSEDRAG, COMSIG_KB_RAILATTACHMENT, COMSIG_KB_UNDERRAILATTACHMENT, COMSIG_KB_UNLOADGUN, COMSIG_KB_FIREMODE, COMSIG_KB_GUN_SAFETY, COMSIG_KB_UNIQUEACTION, COMSIG_PARENT_QDELETING,  COMSIG_MOB_CLICK_RIGHT))
 		gun_user.client?.mouse_pointer_icon = initial(gun_user.client.mouse_pointer_icon)
 		gun_user = null
 	if(!user)
@@ -269,6 +273,7 @@
 	if(!CHECK_BITFIELD(flags_item, IS_DEPLOYED))
 		RegisterSignal(gun_user, COMSIG_MOB_MOUSEDOWN, .proc/start_fire)
 		RegisterSignal(gun_user, COMSIG_MOB_MOUSEDRAG, .proc/change_target)
+		RegisterSignal(gun_user, COMSIG_MOB_CLICK_RIGHT, .proc/fire_attachment)
 	else
 		RegisterSignal(gun_user, COMSIG_KB_UNIQUEACTION, .proc/unique_action)
 	RegisterSignal(gun_user, COMSIG_PARENT_QDELETING, .proc/clean_gun_user)
@@ -313,7 +318,7 @@
 		var/obj/item/attachable = slots[key]
 		if(!attachable)
 			continue
-		if(istype(attachable, /obj/item/weapon/gun))
+		if(!istype(attachable, /obj/item/weapon/gun))
 			dat += "It has [icon2html(attachable, user)] [attachable.name]"
 			continue
 		var/obj/item/weapon/gun/gun_attachable = attachable
@@ -616,7 +621,7 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 				continue
 			var/obj/item/weapon/gun/attachment_gun = attachment
 			attachment_gun.start_fire(source, object, location, control, params)
-			break
+			return
 		return
 	if(gun_firemode == GUN_FIREMODE_SEMIAUTO)
 		if(!Fire() || windup_checked == WEAPON_WINDUP_CHECKING)
@@ -625,6 +630,18 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 		return
 	SEND_SIGNAL(src, COMSIG_GUN_FIRE)
 	gun_user?.client?.mouse_pointer_icon = 'icons/effects/supplypod_target.dmi'
+
+/obj/item/weapon/gun/proc/fire_attachment(datum/source, atom/object, turf/location, control, params, bypass_checks = FALSE)
+	if(active_attachable)
+		active_attachable.start_fire(source, object, location, control, params, bypass_checks)
+		return
+	for(var/key in slots)
+		var/obj/item/attachment = slots[key]
+		if(!istype(attachment, /obj/item/weapon/gun))
+			continue
+		var/obj/item/weapon/gun/attached_gun = attachment
+		attached_gun.start_fire(source, object, location, control, params, bypass_checks)
+		return
 
 ///Set the target and take care of hard delete
 /obj/item/weapon/gun/proc/set_target(atom/object)
@@ -744,8 +761,6 @@ and you're good to go.
 	in_chamber = null //Projectiles live and die fast. It's better to null the reference early so the GC can handle it immediately.
 	if(!projectile_to_fire) //If there is nothing to fire, click.
 		click_empty(gun_user)
-		if(master_gun)
-			activate(gun_user)
 		return
 
 	var/firer
@@ -944,7 +959,7 @@ and you're good to go.
 	if(flags_gun_features & GUN_TRIGGER_SAFETY)
 		to_chat(user, span_warning("The safety is on!"))
 		return FALSE
-	if((flags_gun_features & GUN_WIELDED_FIRING_ONLY) && !(flags_item & WIELDED)) //If we're not holding the weapon with both hands when we should.
+	if((flags_gun_features & GUN_WIELDED_FIRING_ONLY) && !(flags_item & WIELDED) && !master_gun) //If we're not holding the weapon with both hands when we should.
 		to_chat(user, "<span class='warning'>You need a more secure grip to fire this weapon!")
 		return FALSE
 	if(LAZYACCESS(user.do_actions, src))
@@ -952,7 +967,7 @@ and you're good to go.
 		return FALSE
 	if((flags_gun_features & GUN_POLICE) && !police_allowed_check(user))
 		return FALSE
-	if((flags_gun_features & GUN_WIELDED_STABLE_FIRING_ONLY) && !wielded_stable())//If we must wait to finish wielding before shooting.
+	if((flags_gun_features & GUN_WIELDED_STABLE_FIRING_ONLY) && !wielded_stable() && !master_gun)//If we must wait to finish wielding before shooting.
 		to_chat(user, "<span class='warning'>You need a more secure grip to fire this weapon!")
 		return FALSE
 	if(master_gun && CHECK_BITFIELD(flags_gun_features, GUN_WIELDED_FIRING_ONLY) && !CHECK_BITFIELD(master_gun.flags_item, WIELDED))

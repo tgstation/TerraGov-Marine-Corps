@@ -28,6 +28,40 @@
 	fire_delay = 4
 
 
+/obj/item/weapon/gun/flamer/mini_flamer
+	name = "mini flamethrower"
+	desc = "A weapon-mounted refillable flamethrower attachment.\nIt is designed for short bursts."
+	icon = 'icons/Marine/marine-weapons.dmi'
+	icon_state = "flamethrower"
+	
+	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY|GUN_WIELDED_STABLE_FIRING_ONLY|GUN_IS_ATTACHMENT|GUN_ATTACHMENT_FIRE_ONLY
+	w_class = WEIGHT_CLASS_BULKY
+	fire_delay = 2.5 SECONDS
+	fire_sound = 'sound/weapons/guns/fire/flamethrower3.ogg'
+
+
+	current_mag = /obj/item/ammo_magazine/flamer_tank/mini
+	slot = ATTACHMENT_SLOT_UNDER
+	attach_icon_state = "flamethrower_a"
+	attach_delay = 3 SECONDS
+	detach_delay = 3 SECONDS
+	pixel_shift_x = 15
+	pixel_shift_y = 18
+
+
+/obj/item/weapon/gun/flamer/mini_flamer/light_pilot(mob/user, mustlit)
+	if (lit == mustlit)//You can't lit what is already lit
+		return
+	lit = mustlit
+	playsound(user, lit ? 'sound/weapons/guns/interact/flamethrower_off.ogg' : 'sound/weapons/guns/interact/flamethrower_on.ogg', 25, 1)
+
+
+	if(!mustlit)
+		master_gun?.update_attachment_icon_state(src, attach_icon_state + "_e")
+	else
+		master_gun?.update_attachment_icon_state(src, attach_icon_state)
+	return TRUE
+
 /obj/item/weapon/gun/flamer/Initialize()
 	. = ..()
 	if (current_mag) //A flamer spawing with a mag will be lit up
@@ -250,7 +284,7 @@
 			continue
 		if((T.density && !istype(T, /turf/closed/wall/resin)) || isspaceturf(T))
 			break
-		if(loc != user)
+		if(loc != user && !master_gun && !CHECK_BITFIELD(flags_item, IS_DEPLOYED))
 			break
 		if(!current_mag?.current_rounds)
 			break
