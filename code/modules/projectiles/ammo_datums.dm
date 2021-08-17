@@ -660,28 +660,21 @@ datum/ammo/bullet/revolver/tp44
 	icon_state = "flechette"
 	hud_state = "shotgun_flechette"
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
-	bonus_projectiles_type = /datum/ammo/bullet/shotgun/flechette_spread
+	bonus_projectiles_type = /datum/ammo/bullet/shotgun/flechette/spread
 	bonus_projectiles_amount = 2
 	bonus_projectiles_scatter = 3
 	accuracy_var_low = 8
 	accuracy_var_high = 8
 	max_range = 15
-	damage = 50
+	damage = 45
 	damage_falloff = 0.5
 	penetration = 35
-	sundering = 3
+	sundering = 2.5
 
-/datum/ammo/bullet/shotgun/flechette_spread
+/datum/ammo/bullet/shotgun/flechette/spread
 	name = "additional flechette"
 	icon_state = "flechette"
-	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
-	accuracy_var_low = 8
-	accuracy_var_high = 8
-	max_range = 15
-	damage = 40
-	damage_falloff = 1
-	penetration = 35
-	sundering = 2.5
+	bonus_projectiles_amount = 0
 
 /datum/ammo/bullet/shotgun/buckshot
 	name = "shotgun buckshot shell"
