@@ -344,3 +344,25 @@
   - qol: Clarify silo and larva generation
   KornFlaks:
   - bugfix: Reduced observe warning text at post round start.
+2021-08-16:
+  BraveMole:
+  - bugfix: Fix sg having infinite sg goggles with loadout vendor
+  - balance: You can attach motion detectors to guns, and they are free in attachments
+      tab
+  - balance: Standing still mobs are not detected by the motion detector
+  SplinterGP:
+  - code_imp: changed the TL-127 bolt action rifle code to behave more like a bolt
+      action, it also now doenst autochamber on loading another magazine.
+2021-08-17:
+  BraveMole:
+  - qol: Larvas sources are shown at the end of the game
+  KornFlaks:
+  - bugfix: Fixed blue crown xeno for leadership disappearing upon evolution.
+  - bugfix: Made FOB drone console indestructable by both marines and xenos.
+  - bugfix: Marines and other unskilled mobs can now decorrupt generators that have
+      previously been decorrupted and repaired.
+  QualityVan:
+  - bugfix: You need to actually have antibiotics in your system to benefit from them
+  Surrealaser:
+  - balance: Transvitox bonus damage now also applies to burn damage converted as
+      well as brute damage dealt to a victim under its effects.
