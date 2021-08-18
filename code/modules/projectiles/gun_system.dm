@@ -90,12 +90,18 @@
 	var/ammo_diff		= null					//what ammo to use for overcharge
 
 	//Attachments.
+	///List of offsets to make attachment overlays not look wonky.
 	var/list/attachable_offset 		= null		//Is a list, see examples of from the other files. Initiated on New() because lists don't initial() properly.
+	///List of allowed attachments, does not have to inclue the starting attachment types.
 	var/list/attachable_allowed		= null		//Must be the exact path to the attachment present in the list. Empty list for a default.
 
-	var/obj/item/weapon/gun/active_attachable = null //This will link to one of the above four, or remain null.
-	var/list/starting_attachment_types = null //What attachments this gun starts with THAT CAN BE REMOVED. Important to avoid nuking the attachments on restocking! Added on New()
+	///This is only !null when a weapon attachment is activated. All procs of firing get passed to this when it is !null.
+	var/obj/item/weapon/gun/active_attachable = null
+	///The attachments this gun starts with on Init
+	var/list/starting_attachment_types = null
+	///Image list of attachments overlays.
 	var/list/attachment_overlays = list()
+	///List of slots a gun can have.
 	var/list/slots = list(
 		ATTACHMENT_SLOT_MUZZLE,
 		ATTACHMENT_SLOT_RAIL,
@@ -152,14 +158,21 @@
 	///IFF signal for sentries. If it is set here it will be this signal forever. If null the IFF signal will be dependant on the deployer.
 	var/sentry_iff_signal = NONE
 
-
+	///Gun reference if src is an attachment and is attached to a gun. This will be the gun that src is attached to.
 	var/obj/item/weapon/gun/master_gun
+	///Slot the gun fits into.
 	var/slot
+	///Icon state for the attach overlay.
 	var/attach_icon_state
+	///Pixel shift on the X Axis for the attached overlay.
 	var/pixel_shift_x = 16
+	///Pixel shift on the Y Axis for the attached overlay.
 	var/pixel_shift_y = 16
+	///Flags for attachment functions.
 	var/flags_attach_features = ATTACH_REMOVABLE
+	///Time it takes to attach src to a master gun.
 	var/attach_delay = 0 SECONDS
+	///Time it takes to detach src to a master gun.
 	var/detach_delay = 0 SECONDS
 
 
@@ -632,6 +645,7 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 	SEND_SIGNAL(src, COMSIG_GUN_FIRE)
 	gun_user?.client?.mouse_pointer_icon = 'icons/effects/supplypod_target.dmi'
 
+///This is called on Right Click and gets the first weapon attachment in slots and fires it.
 /obj/item/weapon/gun/proc/fire_attachment(datum/source, atom/object, turf/location, control, params, bypass_checks = FALSE)
 	SIGNAL_HANDLER
 	if(active_attachable)

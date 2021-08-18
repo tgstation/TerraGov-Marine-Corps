@@ -1445,7 +1445,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	pixel_shift_y = 0
 	flags_attach_features = NONE
 
-
+///This is called when an attachment gun (src) attaches to a gun.
 /obj/item/weapon/gun/proc/on_attach(obj/item/attached_to, mob/user)
 	if(!istype(attached_to, /obj/item/weapon/gun))
 		return
@@ -1460,6 +1460,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 		new_action.give_action(living_user)
 	update_icon()
 
+///This is called when an attachment gun (src) detaches from a gun.
 /obj/item/weapon/gun/proc/on_detach(obj/item/attached_to, mob/user)
 	if(!istype(attached_to, /obj/item/weapon/gun))
 		return
@@ -1475,6 +1476,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	master_gun = null
 	update_icon(user)
 
+///This activates the weapon for use.
 /obj/item/weapon/gun/proc/activate(mob/user)
 	if(master_gun.active_attachable)
 		if(master_gun.active_attachable != src)
