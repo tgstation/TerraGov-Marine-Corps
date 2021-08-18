@@ -277,8 +277,7 @@
 ///Deletes the attachments when the parent deletes.
 /datum/component/attachment_handler/proc/clean_references()
 	SIGNAL_HANDLER
-	for(var/key in slots)
-		QDEL_NULL(slots[key])
+	QDEL_LIST_ASSOC_VAL(slots)
 
 ///This calls update_overlay_icon_state
 /datum/component/attachment_handler/proc/overlay_icon_update(datum/source, obj/item/attachment, new_icon_state)

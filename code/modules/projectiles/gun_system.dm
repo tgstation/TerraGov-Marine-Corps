@@ -1280,7 +1280,7 @@ and you're good to go.
 	if(!CHECK_BITFIELD(flags_gun_features, GUN_FLASHLIGHT_ON))
 		return
 	var/obj/item/attachment = slots[ATTACHMENT_SLOT_RAIL]
-	if(!attachment || !istype(attachment, /obj/item/attachable))
+	if(!istype(attachment, /obj/item/attachable))
 		return
 	var/obj/item/attachable/attachable = attachment
 	attachable.turn_light(null, FALSE)
