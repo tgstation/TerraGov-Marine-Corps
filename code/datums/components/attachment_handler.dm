@@ -298,7 +298,7 @@
 	return SEND_SIGNAL(attachment, COMSIG_ITEM_IS_ATTACHMENT) & IS_ATTACHMENT
 
 ///Returns an assoc list from the _attachment's element with all the attachment data.
-/datum/component/attachment_handler/proc/get_attachment_data(obj/item/_attachment)
+/datum/component/attachment_handler/proc/get_attachment_data(obj/item/attachment)
 	var/list/attachment_data = list()
-	SEND_SIGNAL(_attachment, COMSIG_ITEM_GET_ATTACHMENT_DATA, attachment_data)
+	SEND_SIGNAL(attachment, COMSIG_ITEM_GET_ATTACHMENT_DATA, attachment_data)
 	return attachment_data
