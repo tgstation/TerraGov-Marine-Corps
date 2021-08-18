@@ -520,6 +520,9 @@
 	for(var/i in 1 to max_grenades)
 		grenades += new /obj/item/explosive/grenade/frag(src)
 
+/obj/item/weapon/gun/launcher/m92/update_icon(mob/user)
+	update_item_state(user)
+	update_mag_overlay(user)
 
 /obj/item/weapon/gun/launcher/m92/examine_ammo_count(mob/user)
 	if(!length(grenades) || (get_dist(user, src) > 2 && user != loc))
@@ -543,7 +546,14 @@
 	to_chat(user, span_notice("You put [I] in the grenade launcher."))
 	to_chat(user, span_info("Now storing: [grenades.len] / [max_grenades] grenades."))
 
-
+/obj/item/weapon/gun/launcher/m92/start_fire(datum/source, atom/object, turf/location, control, params, bypass_checks) //Please I wish to learn who wrote the rest of this /launcher code. Someone tell me their adress so I can kick sand in their eyes! Fuckit it'll be me who has to rewrite this I'm sure.
+	if(!master_gun)
+		return
+	var/new_target = get_turf_on_clickcatcher(object, source, params)
+	if(!new_target)
+		return
+	set_target(new_target)
+	afterattack(target, gun_user)
 
 /obj/item/weapon/gun/launcher/m92/afterattack(atom/target, mob/user, flag)
 	if(user.do_actions)
@@ -553,6 +563,12 @@
 	if(gun_on_cooldown(user))
 		return
 	if(user.skills.getRating("firearms") < 0 && !do_after(user, 0.8 SECONDS, TRUE, src))
+		return
+	if(CHECK_BITFIELD(flags_gun_features, GUN_DEPLOYED_FIRE_ONLY) && !CHECK_BITFIELD(flags_item, IS_DEPLOYED))
+		to_chat(user, span_notice("You cannot fire [src] while it is not deployed."))
+		return
+	if(CHECK_BITFIELD(flags_gun_features, GUN_IS_ATTACHMENT) && !master_gun && CHECK_BITFIELD(flags_gun_features, GUN_ATTACHMENT_FIRE_ONLY))
+		to_chat(user, span_notice("You cannot fire [src] without it attached to a gun!"))
 		return
 	if(get_dist(target,user) <= 2)
 		to_chat(user, span_warning("The grenade launcher beeps a warning noise. You are too close!"))
@@ -676,20 +692,9 @@
 	attach_icon_state = "grenade_a"
 	attach_delay = 3 SECONDS
 	detach_delay = 3 SECONDS
-	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_AMMO_COUNTER|GUN_IS_ATTACHMENT|GUN_ATTACHMENT_FIRE_ONLY
+	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_AMMO_COUNTER|GUN_IS_ATTACHMENT|GUN_ATTACHMENT_FIRE_ONLY|GUN_WIELDED_STABLE_FIRING_ONLY
 	pixel_shift_x = 14
 	pixel_shift_y = 18
-
-
-/obj/item/weapon/gun/launcher/m92/mini_grenade/update_icon(mob/user)
-	if(!grenades.len)
-		icon_state = base_gun_icon + "_e"
-		master_gun?.update_attachment_icon_state(src, attach_icon_state + "_e")
-	else
-		icon_state = base_gun_icon
-		master_gun?.update_attachment_icon_state(src, attach_icon_state)
-
-	update_item_state(user)
 
 /obj/item/weapon/gun/launcher/m81
 	name = "\improper T-81 grenade launcher"

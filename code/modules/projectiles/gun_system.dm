@@ -298,6 +298,10 @@
 		icon_state = base_gun_icon
 		master_gun?.update_attachment_icon_state(src, attach_icon_state)
 
+	for(var/action_to_update in actions)
+		var/datum/action/action = action_to_update
+		action.update_button_icon()
+
 	update_item_state(user)
 	update_mag_overlay(user)
 
@@ -318,11 +322,14 @@
 		var/obj/item/attachable = slots[key]
 		if(!attachable)
 			continue
+		dat += "It has [icon2html(attachable, user)] [attachable.name]"
 		if(!istype(attachable, /obj/item/weapon/gun))
-			dat += "It has [icon2html(attachable, user)] [attachable.name]"
 			continue
 		var/obj/item/weapon/gun/gun_attachable = attachable
-		dat += " ([gun_attachable.current_mag.current_rounds + gun_attachable.in_chamber ? 1 : 0]/[gun_attachable.current_mag.max_rounds])"
+		if(istype(attachable, /obj/item/weapon/gun/launcher))
+			continue
+		var/chamber = in_chamber ? 1 : 0
+		dat += " ([gun_attachable.current_mag.current_rounds + chamber]/[gun_attachable.current_mag.max_rounds])"
 
 	if(dat)
 		to_chat(user, "[dat.Join(" ")]")
@@ -451,7 +458,7 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 	if(user)
 		if(magazine.reload_delay > 1)
 			to_chat(user, span_notice("You begin reloading [src]. Hold still..."))
-			if(do_after(user, magazine.reload_delay, TRUE, CHECK_BITFIELD(flags_item, IS_DEPLOYED) ? loc : src, BUSY_ICON_GENERIC))
+			if(do_after(user, magazine.reload_delay, TRUE, CHECK_BITFIELD(flags_item, IS_DEPLOYED) || master_gun ? loc : src, BUSY_ICON_GENERIC))
 				replace_magazine(user, magazine)
 			else
 				to_chat(user, span_warning("Your reload was interrupted!"))
@@ -954,23 +961,25 @@ and you're good to go.
 	if(flags_gun_features & GUN_TRIGGER_SAFETY)
 		to_chat(user, span_warning("The safety is on!"))
 		return FALSE
-	if((flags_gun_features & GUN_WIELDED_FIRING_ONLY) && !(flags_item & WIELDED) && !master_gun) //If we're not holding the weapon with both hands when we should.
-		to_chat(user, "<span class='warning'>You need a more secure grip to fire this weapon!")
-		return FALSE
+	if(CHECK_BITFIELD(flags_gun_features, GUN_WIELDED_FIRING_ONLY)) //If we're not holding the weapon with both hands when we should.
+		if(!master_gun && !CHECK_BITFIELD(flags_item, WIELDED))
+			to_chat(user, "<span class='warning'>You need a more secure grip to fire this weapon!")
+			return FALSE
+		if(master_gun && !CHECK_BITFIELD(master_gun.flags_item, WIELDED))
+			to_chat(user, span_warning("You need a more secure grip to fire [src]!"))
+			return FALSE
 	if(LAZYACCESS(user.do_actions, src))
 		to_chat(user, "<span class='warning'>You are doing something else currently.")
 		return FALSE
 	if((flags_gun_features & GUN_POLICE) && !police_allowed_check(user))
 		return FALSE
-	if((flags_gun_features & GUN_WIELDED_STABLE_FIRING_ONLY) && !wielded_stable() && !master_gun)//If we must wait to finish wielding before shooting.
-		to_chat(user, "<span class='warning'>You need a more secure grip to fire this weapon!")
-		return FALSE
-	if(master_gun && CHECK_BITFIELD(flags_gun_features, GUN_WIELDED_FIRING_ONLY) && !CHECK_BITFIELD(master_gun.flags_item, WIELDED))
-		to_chat(user, span_warning("You need a more secure grip to fire [src]!"))
-		return FALSE
-	if(master_gun && CHECK_BITFIELD(flags_gun_features, GUN_WIELDED_FIRING_ONLY) && !CHECK_BITFIELD(master_gun.flags_item, WIELDED))
-		to_chat(user, "<span class='warning'>You need a more secure grip to fire [src]!")
-		return FALSE
+	if(CHECK_BITFIELD(flags_gun_features, GUN_WIELDED_STABLE_FIRING_ONLY))//If we must wait to finish wielding before shooting.
+		if(!master_gun && !wielded_stable())
+			to_chat(user, "<span class='warning'>You need a more secure grip to fire this weapon!")
+			return FALSE
+		if(master_gun && !master_gun.wielded_stable())
+			to_chat(user, "<span class='warning'>You need a more secure grip to fire [src]!")
+			return FALSE
 	return TRUE
 
 /obj/item/weapon/gun/proc/gun_on_cooldown(mob/user)

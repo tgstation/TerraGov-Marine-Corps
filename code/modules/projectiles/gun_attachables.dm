@@ -1458,6 +1458,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	var/mob/living/living_user = user
 	if(master_gun == living_user.get_inactive_held_item() || master_gun == living_user.get_active_held_item())
 		new_action.give_action(living_user)
+	update_icon()
 
 /obj/item/weapon/gun/proc/on_detach(obj/item/attached_to, mob/user)
 	if(!istype(attached_to, /obj/item/weapon/gun))
@@ -1469,10 +1470,10 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 		break
 	icon_state = initial(icon_state)
 	overlays -= image('icons/Marine/marine-weapons.dmi', src, "active")
-	update_icon(user)
 	if(master_gun.active_attachable == src)
 		master_gun.active_attachable = null
 	master_gun = null
+	update_icon(user)
 
 /obj/item/weapon/gun/proc/activate(mob/user)
 	if(master_gun.active_attachable)
