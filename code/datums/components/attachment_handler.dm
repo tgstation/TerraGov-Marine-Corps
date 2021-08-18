@@ -29,7 +29,7 @@
 	attachable_overlays += slots 
 	overlay_icon_states += slots 
 
-	if(starting_attachmments?.len) //Attaches starting attachments
+	if(length(starting_attachmments)) //Attaches starting attachments
 		for(var/starting_attachment_type in starting_attachmments)
 			finish_handle_attachment(new starting_attachment_type())
 
@@ -212,7 +212,7 @@
 ///Actually detaches the attachment. This can be called directly to bypass checks.
 /datum/component/attachment_handler/proc/finish_detach(obj/item/attachment, list/attachment_data, mob/living/carbon/human/user)
 	if(user)
-		user.put_in_hands(attachment)
+		user?.put_in_hands(attachment)
 	slots[attachment_data["slot"]] = null
 
 	update_parent_overlay()
