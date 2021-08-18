@@ -366,3 +366,10 @@
   Surrealaser:
   - balance: Transvitox bonus damage now also applies to burn damage converted as
       well as brute damage dealt to a victim under its effects.
+2021-08-18:
+  BraveMole:
+  - balance: Mortar and minigun can be bought in civil war
+  - expansion: In civil war, becoming undefibbable will make your job available again
+  lbnesquik:
+  - admin: added some missing species to the player panel
+  - qol: Added couple LZ cameras to LZ
