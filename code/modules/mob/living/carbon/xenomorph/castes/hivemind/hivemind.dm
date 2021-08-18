@@ -33,6 +33,8 @@
 	hud_possible = list(PLASMA_HUD, HEALTH_HUD_XENO, PHEROMONE_HUD, QUEEN_OVERWATCH_HUD)
 	///The core of our hivemind
 	var/obj/effect/alien/hivemindcore/core
+	///If we can move or not
+	var/can_move = TRUE
 
 /mob/living/carbon/xenomorph/hivemind/Initialize(mapload)
 	. = ..()
@@ -83,6 +85,7 @@
 		return
 	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_HIVEMIND_MANIFESTATION))
 		return
+	can_move = FALSE
 	wound_overlay.icon_state = "none"
 	TIMER_COOLDOWN_START(src, COOLDOWN_HIVEMIND_MANIFESTATION, TIME_TO_TRANSFORM)
 	invisibility = 0
@@ -104,6 +107,7 @@
 		add_abilities()
 		update_wounds()
 		update_icon()
+		can_move = TRUE
 		return
 	invisibility = initial(invisibility)
 	status_flags =initial(status_flags)
@@ -118,6 +122,7 @@
 	add_abilities()
 	update_wounds()
 	update_icon()
+	can_move = TRUE
 	if(!check_weeds(get_turf(src)))
 		return_to_core()
 
@@ -125,12 +130,12 @@
 	forceMove(get_turf(core))
 	to_chat(src, "<span class='xenonotice'>We were on top of fire, we got moved to our core.")
 
-/mob/living/carbon/xenomorph/hivemind/proc/check_weeds(turf/T)
+/mob/living/carbon/xenomorph/hivemind/proc/check_weeds(turf/T, strict_turf_check = FALSE)
 	SHOULD_BE_PURE(TRUE)
 	. = TRUE
 	if(locate(/obj/flamer_fire) in T)
 		return FALSE
-	for(var/obj/effect/alien/weeds/W in range(1, T ? T : get_turf(src)))
+	for(var/obj/effect/alien/weeds/W in range(strict_turf_check ? 0 : 1, T ? T : get_turf(src)))
 		if(QDESTROYING(W))
 			continue
 		return
@@ -146,8 +151,23 @@
 /mob/living/carbon/xenomorph/hivemind/proc/return_to_core()
 	forceMove(get_turf(core))
 
+///Start the teleportation process to send the hivemind manifestation to the selected turf
+/mob/living/carbon/xenomorph/hivemind/proc/start_teleport(turf/T)
+	flick("Hivemind_materialisation_reverse", src)
+	can_move = FALSE
+	addtimer(CALLBACK(src, .proc/end_teleport, T), TIME_TO_TRANSFORM)
+
+///Finish the teleportation process to send the hivemind manifestation to the selected turf
+/mob/living/carbon/xenomorph/hivemind/proc/end_teleport(turf/T)
+	flick("Hivemind_materialisation", src)
+	if(!check_weeds(T, TRUE))
+		to_chat(src, span_warning("The weeds on our destination were destroyed"))
+	else
+		forceMove(T)
+	addtimer(VARSET_CALLBACK(src, can_move, TRUE), TIME_TO_TRANSFORM)
+
 /mob/living/carbon/xenomorph/hivemind/Move(NewLoc, Dir = 0)
-	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_HIVEMIND_MANIFESTATION))//Do not move while transorming
+	if(!can_move)
 		return
 	if(!(status_flags & INCORPOREAL))
 		return ..()
@@ -163,8 +183,6 @@
 	forceMove(NewLoc)
 
 /mob/living/carbon/xenomorph/hivemind/receive_hivemind_message(mob/living/carbon/xenomorph/speaker, message)
-	if(!(status_flags & INCORPOREAL))
-		return ..()
 	var/track =  "<a href='?src=[REF(src)];hivemind_jump=[REF(speaker)]'>(F)</a>"
 	show_message("[track] [speaker.hivemind_start()] [span_message("hisses, '[message]'")][speaker.hivemind_end()]", 2)
 
@@ -172,15 +190,15 @@
 	. = ..()
 	if(.)
 		return
-	if(!(status_flags & INCORPOREAL))
-		to_chat(src, span_warning("We cannot jump in this form."))
-		return
 	if(href_list["hivemind_jump"])
 		var/mob/living/carbon/xenomorph/xeno = locate(href_list["hivemind_jump"])
 		if(!istype(xeno))
 			return
-		if(!check_weeds(get_turf(xeno)))
+		if(!check_weeds(get_turf(xeno), TRUE))
 			to_chat(src, span_warning("They are not near any weeds we can jump to."))
+			return
+		if(!(status_flags & INCORPOREAL))
+			start_teleport(get_turf(xeno))
 			return
 		forceMove(get_turf(xeno))
 
@@ -208,12 +226,13 @@
 	holder.icon_state = "xenohealth[amount]"
 
 /mob/living/carbon/xenomorph/hivemind/DblClickOn(atom/A, params)
+	var/turf/target_turf = get_turf(A)
+	if(!check_weeds(target_turf, TRUE))
+		return
 	if(!(status_flags & INCORPOREAL))
+		start_teleport(target_turf)
 		return
-	if(!istype(A, /obj/effect/alien/weeds))
-		return
-
-	forceMove(get_turf(A))
+	forceMove(target_turf)
 
 /mob/living/carbon/xenomorph/hivemind/CtrlClick(mob/user)
 	if(!(status_flags & INCORPOREAL))
