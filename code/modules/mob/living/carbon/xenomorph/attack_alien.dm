@@ -73,6 +73,10 @@
 	if(!can_xeno_slash(X))
 		return FALSE
 
+	if(isanimal(src) && (stat == DEAD))
+		to_chat(X, span_notice("This thing is already dead. Why bother touching it?"))
+		return
+
 	var/damage = X.xeno_caste.melee_damage * X.xeno_melee_damage_modifier
 	if(!damage)
 		return FALSE
