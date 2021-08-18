@@ -29,7 +29,7 @@
 	attachable_overlays += slots 
 	overlay_icon_states += slots 
 
-	if(starting_attachmments?.len) //Attaches starting attachments
+	if(length(starting_attachmments)) //Attaches starting attachments
 		for(var/starting_attachment_type in starting_attachmments)
 			finish_handle_attachment(new starting_attachment_type())
 
