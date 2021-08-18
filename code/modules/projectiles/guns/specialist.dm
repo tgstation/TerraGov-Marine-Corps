@@ -547,39 +547,32 @@
 	to_chat(user, span_notice("You put [I] in the grenade launcher."))
 	to_chat(user, span_info("Now storing: [grenades.len] / [max_grenades] grenades."))
 
-/obj/item/weapon/gun/launcher/m92/start_fire(datum/source, atom/object, turf/location, control, params, bypass_checks) //Please I wish to learn who wrote the rest of this /launcher code. Someone tell me their adress so I can kick sand in their eyes! Fuckit it'll be me who has to rewrite this I'm sure.
-	if(!master_gun)
+/obj/item/weapon/gun/launcher/m92/Fire()
+	if(!gun_user || !target)
 		return
-	var/new_target = get_turf_on_clickcatcher(object, source, params)
-	if(!new_target)
+	if(gun_user.do_actions)
 		return
-	set_target(new_target)
-	afterattack(target, gun_user)
-
-/obj/item/weapon/gun/launcher/m92/afterattack(atom/target, mob/user, flag)
-	if(user.do_actions)
+	if(!able_to_fire(gun_user))
 		return
-	if(!able_to_fire(user))
+	if(gun_on_cooldown(gun_user))
 		return
-	if(gun_on_cooldown(user))
-		return
-	if(user.skills.getRating("firearms") < 0 && !do_after(user, 0.8 SECONDS, TRUE, src))
+	if(gun_user.skills.getRating("firearms") < 0 && !do_after(gun_user, 0.8 SECONDS, TRUE, src))
 		return
 	if(CHECK_BITFIELD(flags_gun_features, GUN_DEPLOYED_FIRE_ONLY) && !CHECK_BITFIELD(flags_item, IS_DEPLOYED))
-		to_chat(user, span_notice("You cannot fire [src] while it is not deployed."))
+		to_chat(gun_user, span_notice("You cannot fire [src] while it is not deployed."))
 		return
 	if(CHECK_BITFIELD(flags_gun_features, GUN_IS_ATTACHMENT) && !master_gun && CHECK_BITFIELD(flags_gun_features, GUN_ATTACHMENT_FIRE_ONLY))
-		to_chat(user, span_notice("You cannot fire [src] without it attached to a gun!"))
+		to_chat(gun_user, span_notice("You cannot fire [src] without it attached to a gun!"))
 		return
-	if(get_dist(target,user) <= 2)
-		to_chat(user, span_warning("The grenade launcher beeps a warning noise. You are too close!"))
+	if(get_dist(target, gun_user) <= 2)
+		to_chat(gun_user, span_warning("The grenade launcher beeps a warning noise. You are too close!"))
 		return
 	if(!length(grenades))
-		to_chat(user, span_warning("The grenade launcher is empty."))
+		to_chat(gun_user, span_warning("The grenade launcher is empty."))
 		return
-	fire_grenade(target,user)
-	var/obj/screen/ammo/A = user.hud_used.ammo
-	A.update_hud(user)
+	fire_grenade(target, gun_user)
+	var/obj/screen/ammo/A = gun_user.hud_used.ammo
+	A.update_hud(gun_user)
 
 
 //Doesn't use most of any of these. Listed for reference.
