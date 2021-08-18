@@ -202,8 +202,10 @@ GLOBAL_PROTECT(exp_specialmap)
 		var/datum/job/scaled_job = SSjob.GetJobType(index)
 		if(!(scaled_job in SSjob.active_joinable_occupations))
 			continue
-		if(isxenosjob(scaled_job) && respawn && (SSticker.mode?.flags_round_type & MODE_SILO_RESPAWN))
-			continue
+		if(isxenosjob(scaled_job))
+			if(respawn && (SSticker.mode?.flags_round_type & MODE_SILO_RESPAWN))
+				continue
+			GLOB.round_statistics.larva_from_marine_spawning += jobworth[index] / scaled_job.job_points_needed
 		scaled_job.add_job_points(jobworth[index])
 	return TRUE
 

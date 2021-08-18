@@ -277,10 +277,12 @@
 	if(gun_user)
 		UnregisterSignal(gun_user, list(COMSIG_MOB_MOUSEDOWN, COMSIG_MOB_MOUSEUP, COMSIG_ITEM_ZOOM, COMSIG_ITEM_UNZOOM, COMSIG_MOB_MOUSEDRAG, COMSIG_KB_RAILATTACHMENT, COMSIG_KB_UNDERRAILATTACHMENT, COMSIG_KB_UNLOADGUN, COMSIG_KB_FIREMODE, COMSIG_KB_GUN_SAFETY, COMSIG_KB_UNIQUEACTION, COMSIG_PARENT_QDELETING,  COMSIG_MOB_CLICK_RIGHT))
 		gun_user.client?.mouse_pointer_icon = initial(gun_user.client.mouse_pointer_icon)
+		SEND_SIGNAL(gun_user, COMSIG_GUN_USER_UNSET)
 		gun_user = null
 	if(!user)
 		return
 	gun_user = user
+	SEND_SIGNAL(gun_user, COMSIG_GUN_USER_SET, src)
 	if(master_gun)
 		return
 	if(!CHECK_BITFIELD(flags_item, IS_DEPLOYED))
@@ -495,7 +497,7 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 	current_mag = magazine
 	replace_ammo(user,magazine)
 	if(!in_chamber)
-		ready_in_chamber(user)
+		load_into_chamber()
 		if(!(flags_gun_features & GUN_ENERGY))
 			cock_gun(user)
 	user.visible_message(span_notice("[user] loads [magazine] into [src]!"),
@@ -664,7 +666,7 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 	if(active_attachable)
 		active_attachable.set_target(object)
 		return
-	if(object == target || target == gun_user)
+	if(object == target || object == gun_user)
 		return
 	if(target)
 		UnregisterSignal(target, COMSIG_PARENT_QDELETING)

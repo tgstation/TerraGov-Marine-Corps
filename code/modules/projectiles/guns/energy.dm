@@ -555,6 +555,8 @@
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/scope/marine,
 		/obj/item/attachable/scope/mini,
+		/obj/item/weapon/gun/flamer/mini_flamer,
+		/obj/item/attachable/motiondetector,
 	)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ENERGY|GUN_AMMO_COUNTER
@@ -700,6 +702,9 @@
 		/obj/item/attachable/lasersight,
 		/obj/item/attachable/flashlight,
 		/obj/item/attachable/magnetic_harness,
+		/obj/item/weapon/gun/launcher/m92/mini_grenade,
+		/obj/item/weapon/gun/flamer/mini_flamer,
+		/obj/item/attachable/motiondetector,
 	)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ENERGY|GUN_AMMO_COUNTER
@@ -775,6 +780,9 @@
 		/obj/item/attachable/bayonetknife,
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/scope/unremovable/laser_sniper_scope,
+		/obj/item/weapon/gun/launcher/m92/mini_grenade,
+		/obj/item/weapon/gun/flamer/mini_flamer,
+		/obj/item/attachable/motiondetector,
 	)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ENERGY|GUN_AMMO_COUNTER
@@ -842,6 +850,9 @@
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/scope/marine,
 		/obj/item/attachable/scope/mini,
+		/obj/item/weapon/gun/launcher/m92/mini_grenade,
+		/obj/item/weapon/gun/flamer/mini_flamer,
+		/obj/item/attachable/motiondetector,
 	)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ENERGY|GUN_AMMO_COUNTER
