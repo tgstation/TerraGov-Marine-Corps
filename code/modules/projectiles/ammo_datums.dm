@@ -1621,19 +1621,19 @@ datum/ammo/bullet/revolver/tp44
 /datum/ammo/xeno/toxin
 	name = "neurotoxic spit"
 	flags_ammo_behavior = AMMO_XENO|AMMO_EXPLOSIVE|AMMO_SKIPS_ALIENS
-	spit_cost = 70
-	added_spit_delay = 3
+	spit_cost = 60
+	added_spit_delay = 0
 	damage_type = STAMINA
 	accurate_range = 5
 	max_range = 10
 	accuracy_var_low = 3
 	accuracy_var_high = 3
-	damage = 45
+	damage = 50
 	stagger_stacks = 1.5
 	slowdown_stacks = 1.5
 	smoke_strength = 0.5
 	smoke_range = 0
-	reagent_transfer_amount = 8
+	reagent_transfer_amount = 9
 
 ///Set up the list of reagents the spit transfers upon impact
 /datum/ammo/xeno/toxin/proc/set_reagents()
@@ -1696,15 +1696,15 @@ datum/ammo/bullet/revolver/tp44
 
 /datum/ammo/xeno/toxin/upgrade1
 	smoke_strength = 0.6
-	reagent_transfer_amount = 8.5
+	reagent_transfer_amount = 9
 
 /datum/ammo/xeno/toxin/upgrade2
 	smoke_strength = 0.7
-	reagent_transfer_amount = 9
+	reagent_transfer_amount = 9.5
 
 /datum/ammo/xeno/toxin/upgrade3
 	smoke_strength = 0.8
-	reagent_transfer_amount = 9.5
+	reagent_transfer_amount = 10
 
 /datum/ammo/xeno/toxin/medium //Queen
 	name = "neurotoxic spatter"
@@ -1731,21 +1731,21 @@ datum/ammo/bullet/revolver/tp44
 	name = "neurotoxic splash"
 	added_spit_delay = 0
 	spit_cost = 150
-	damage = 40
-	smoke_strength = 0.8
-	reagent_transfer_amount = 9
-
-/datum/ammo/xeno/toxin/heavy/upgrade1
-	smoke_strength = 0.85
+	damage = 55
+	smoke_strength = 0.9
 	reagent_transfer_amount = 9.5
 
-/datum/ammo/xeno/toxin/heavy/upgrade2
-	smoke_strength = 0.95
+/datum/ammo/xeno/toxin/heavy/upgrade1
+	smoke_strength = 1
 	reagent_transfer_amount = 10
 
+/datum/ammo/xeno/toxin/heavy/upgrade2
+	smoke_strength = 1.05
+	reagent_transfer_amount = 10.5
+
 /datum/ammo/xeno/toxin/heavy/upgrade3
-	smoke_strength = 1
-	reagent_transfer_amount = 10.5  
+	smoke_strength = 1.1
+	reagent_transfer_amount = 11  
 
 
 /datum/ammo/xeno/sticky
