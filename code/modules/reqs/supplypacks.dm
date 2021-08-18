@@ -45,7 +45,7 @@ OPERATIONS
 /datum/supply_packs/operations/fulton_extraction_pack
 	name = "fulton extraction pack"
 	contains = list(/obj/item/fulton_extraction_pack)
-	cost = 5
+	cost = 10
 
 /datum/supply_packs/operations/cas_flares
 	name = "CAS flare pack"
@@ -63,11 +63,6 @@ OPERATIONS
 	contains = list(/obj/item/binoculars/tactical)
 	cost = 30
 	available_against_xeno_only = TRUE
-
-/datum/supply_packs/operations/motion_detector
-	name = "motion detector crate"
-	contains = list(/obj/item/motiondetector/scout)
-	cost = 20
 
 /datum/supply_packs/operations/pinpointer
 	name = "pool tracker crate"
@@ -94,7 +89,7 @@ OPERATIONS
 /datum/supply_packs/operations/exportpad
 	name = "ASRS Bluespace Export Point"
 	contains = list(/obj/machinery/exportpad)
-	cost = 50
+	cost = 30
 
 /datum/supply_packs/operations/warhead_cluster
 	name = "Cluster orbital warhead"
@@ -159,12 +154,12 @@ WEAPONS
 /datum/supply_packs/weapons/sentry
 	name = "UA 571-C Base Defense Sentry"
 	contains = list(/obj/item/storage/box/sentry)
-	cost = 60
+	cost = 40
 
 /datum/supply_packs/weapons/minisentry
 	name = "UA-580 Portable Sentry"
 	contains = list(/obj/item/storage/box/minisentry)
-	cost = 30
+	cost = 40
 
 /datum/supply_packs/weapons/m56d_emplacement
 	name = "TL-102 Mounted Heavy Smartgun"
@@ -226,7 +221,6 @@ WEAPONS
 	name = "MIC-A7 Vindicator Minigun"
 	contains = list(/obj/item/weapon/gun/minigun)
 	cost = MINIGUN_PRICE
-	available_against_xeno_only = TRUE
 
 /datum/supply_packs/weapons/smartgun
 	name = "T-29 Smart Machinegun"
@@ -308,7 +302,6 @@ WEAPONS
 	name = "M402 mortar crate"
 	contains = list(/obj/item/mortar_kit)
 	cost = 40
-	available_against_xeno_only = TRUE
 
 /datum/supply_packs/weapons/detpack
 	name = "detpack explosives"
@@ -571,25 +564,21 @@ AMMO
 	name = "M402 mortar HE shell"
 	contains = list(/obj/item/mortal_shell/he)
 	cost = 2
-	available_against_xeno_only = TRUE
 
 /datum/supply_packs/ammo/mortar_ammo_incend
 	name = "M402 mortar incendiary shell"
 	contains = list(/obj/item/mortal_shell/incendiary)
 	cost = 2
-	available_against_xeno_only = TRUE
 
 /datum/supply_packs/ammo/mortar_ammo_flare
 	name = "M402 mortar flare shell"
 	contains = list(/obj/item/mortal_shell/flare)
 	cost = 1
-	available_against_xeno_only = TRUE
 
 /datum/supply_packs/ammo/mortar_ammo_smoke
 	name = "M402 mortar smoke shell"
 	contains = list(/obj/item/mortal_shell/smoke)
 	cost = 1
-	available_against_xeno_only = TRUE
 
 /datum/supply_packs/ammo/mortar_ammo_plasmaloss
 	name = "M402 mortar tanglefoot shell"
@@ -600,7 +589,7 @@ AMMO
 /datum/supply_packs/ammo/minisentry
 	name = "UA-580 point defense sentry ammo"
 	contains = list(/obj/item/ammo_magazine/minisentry)
-	cost = 5
+	cost = 10
 
 /datum/supply_packs/ammo/m56d
 	name = "TL-102 mounted heavy smartgun ammo"
@@ -627,7 +616,6 @@ AMMO
 	name = "Minigun Powerpack"
 	contains = list(/obj/item/minigun_powerpack)
 	cost = 5
-	available_against_xeno_only = TRUE
 
 /datum/supply_packs/ammo/back_fuel_tank
 	name = "Standard back fuel tank"
@@ -691,13 +679,11 @@ ARMOR
 	name = "Scout Cloak"
 	contains = list(/obj/item/storage/backpack/marine/satchel/scout_cloak/scout)
 	cost = 50
-	available_against_xeno_only = TRUE
 
 /datum/supply_packs/armor/sniper_cloak
 	name = "Sniper Cloak"
 	contains = list(/obj/item/storage/backpack/marine/satchel/scout_cloak/sniper)
 	cost = 50
-	available_against_xeno_only = TRUE
 
 /datum/supply_packs/armor/grenade_belt
 	name = "High Capacity Grenade Belt"
@@ -802,6 +788,7 @@ ARMOR
 	name = "Jaeger Tyr mark 2 module"
 	contains = list(
 		/obj/item/armor_module/attachable/tyr_extra_armor,
+		/obj/item/helmet_module/attachable/tyr_head,
 	)
 	cost = 12
 
@@ -1153,6 +1140,11 @@ ENGINEERING
 	name = "50 wooden planks"
 	contains = list(/obj/item/stack/sheet/wood/large_stack)
 	cost = 10
+
+/datum/supply_packs/engineering/plasmacutter
+	name = "plasma cutter"
+	contains = list(/obj/item/tool/pickaxe/plasmacutter/)
+	cost = 30
 
 /datum/supply_packs/engineering/quikdeploycade
 	name = "quikdeploy barricade"

@@ -183,12 +183,12 @@
 		to_chat(user, "[src] is anchored to the ground.")
 		return
 
-	var/remove_successful = TRUE
+	set_throwing(FALSE)
+
 	if(istype(loc, /obj/item/storage))
 		var/obj/item/storage/S = loc
-		remove_successful = S.remove_from_storage(src, user.loc, user)
-
-	set_throwing(FALSE)
+		if(!S.remove_from_storage(src, user.loc, user))
+			return
 
 	if(loc == user && !user.temporarilyRemoveItemFromInventory(src))
 		return
@@ -197,7 +197,7 @@
 		return
 
 	pickup(user)
-	if(!user.put_in_active_hand(src) || !remove_successful)
+	if(!user.put_in_active_hand(src))
 		user.dropItemToGround(src)
 		dropped(user)
 

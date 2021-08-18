@@ -1050,8 +1050,7 @@
 	gamemode_flags = ABILITY_DISTRESS
 	/// How long does it take to build
 	var/build_time = 10 SECONDS
-	/// Pyschic point cost
-	var/psych_cost = SILO_PRICE
+	psych_cost = SILO_PRICE
 
 /datum/action/xeno_action/activable/build_silo/can_use_ability(atom/A, silent, override_flags)
 	. = ..()
@@ -1115,9 +1114,7 @@
 	gamemode_flags = ABILITY_DISTRESS
 	/// How long does it take to build
 	var/build_time = 15 SECONDS
-	/// Pyschic point cost
-	var/psych_cost = XENO_TURRET_PRICE
-
+	psych_cost = XENO_TURRET_PRICE
 
 /datum/action/xeno_action/activable/build_turret/can_use_ability(atom/A, silent, override_flags)
 	. = ..()
@@ -1307,7 +1304,8 @@
 
 	SSpoints.add_psy_points(X.hivenumber, psy_points_reward)
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
-	xeno_job.add_job_points(larva_point_reward, COCOON_ORIGIN)
+	xeno_job.add_job_points(larva_point_reward)
+	GLOB.round_statistics.larva_from_psydrain +=larva_point_reward / xeno_job.job_points_needed
 
 	log_combat(victim, owner, "was drained.")
 	log_game("[key_name(victim)] was drained at [AREACOORD(victim.loc)].")

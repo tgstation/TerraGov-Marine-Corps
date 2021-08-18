@@ -141,6 +141,8 @@
 	var/bomb_strength = 0
 	///Delay between firing the bombard ability for boilers
 	var/bomb_delay = 0
+	///Used to reduce cooldown for the boiler
+	var/ammo_multiplier = 0
 
 	// *** Carrier Abilities *** //
 	///maximum amount of huggers a carrier can carry at one time.
@@ -183,11 +185,17 @@
 	///Base range of Blink
 	var/wraith_blink_range = WRAITH_BLINK_RANGE
 
+	// *** Hunter Abilities ***
+	///Damage breakpoint to knock out of stealth
+	var/stealth_break_threshold = 0
+
 	///the 'abilities' available to a caste.
 	var/list/actions
 
 	///The iconstate for the xeno on the minimap
 	var/minimap_icon = "xeno"
+	///The iconstate for leadered xenos on the minimap
+	var/minimap_leadered_icon = "xenoleader"
 	///The iconstate of the plasma bar, format used is "[plasma_icon_state][amount]"
 	var/plasma_icon_state = "plasma"
 
@@ -257,7 +265,6 @@
 
 	var/obj/structure/xeno/tunnel/start_dig = null
 	var/datum/ammo/xeno/ammo = null //The ammo datum for our spit projectiles. We're born with this, it changes sometimes.
-	var/pslash_delay = 0
 
 	var/evo_points = 0 //Current # of evolution points. Max is 1000.
 	var/list/upgrades_bought = list()

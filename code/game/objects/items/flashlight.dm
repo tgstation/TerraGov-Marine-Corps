@@ -22,8 +22,8 @@
 	GLOB.nightfall_toggleable_lights += src
 
 /obj/item/flashlight/Destroy()
-	. = ..()
 	GLOB.nightfall_toggleable_lights -= src
+	return ..()
 
 /obj/item/flashlight/turn_light(mob/user, toggle_on, cooldown = 1 SECONDS, sparks = FALSE, forced = FALSE)
 	if(forced && nightfall_immune)
@@ -223,7 +223,7 @@
 		user.visible_message(span_notice("[user] activates the flare."), span_notice("You pull the cord on the flare, activating it!"))
 		force = on_damage
 		heat = 1500
-		damtype = "fire"
+		damtype = BURN
 		addtimer(CALLBACK(src, .proc/turn_off), fuel)
 		if(iscarbon(user))
 			var/mob/living/carbon/C = usr
@@ -235,7 +235,7 @@
 	heat = 1500
 	turn_light(null, TRUE)
 	force = on_damage
-	damtype = "fire"
+	damtype = BURN
 	addtimer(CALLBACK(src, .proc/turn_off), fuel)
 
 /obj/item/flashlight/slime

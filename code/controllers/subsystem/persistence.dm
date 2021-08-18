@@ -187,8 +187,8 @@ SUBSYSTEM_DEF(persistence)
 		)
 
 /datum/season_datum/weapons/guns/pistol_seasonal_one
-	name = "Small revolver and average revolver"
-	description = "Additional revolvers available at vendors."
+	name = "Bouncy revolver and average revolver"
+	description = "A rather average revolver and it's far bouncier smaller cousin."
 	item_list = list(
 		/obj/item/weapon/gun/revolver/small = -1,
 		/obj/item/ammo_magazine/revolver/small = -1,

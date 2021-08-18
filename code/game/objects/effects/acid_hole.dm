@@ -26,7 +26,7 @@
 		holed_wall.opacity = initial(holed_wall.opacity)
 		holed_wall.acided_hole = null
 		holed_wall = null
-	. = ..()
+	return ..()
 
 
 /obj/effect/acid_hole/fire_act()

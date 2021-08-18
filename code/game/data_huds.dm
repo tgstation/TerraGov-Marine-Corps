@@ -468,9 +468,9 @@
 
 	if(assigned_squad)
 		var/squad_color = assigned_squad.color
-		var/rank = job.title
+		var/rank = job.comm_title
 		if(assigned_squad.squad_leader == src)
-			rank = SQUAD_LEADER
+			rank = JOB_COMM_TITLE_SQUAD_LEADER
 		if(job.job_flags & JOB_FLAG_PROVIDES_SQUAD_HUD)
 			var/image/IMG = image('icons/mob/hud.dmi', src, "hudmarine")
 			IMG.color = squad_color
@@ -483,7 +483,7 @@
 			holder.overlays += IMG2
 
 	else if(job.job_flags & JOB_FLAG_PROVIDES_SQUAD_HUD)
-		holder.overlays += image('icons/mob/hud.dmi', src, "hudmarine [job.title]")
+		holder.overlays += image('icons/mob/hud.dmi', src, "hudmarine [job.comm_title]")
 
 	hud_list[hud_type] = holder
 
@@ -532,20 +532,6 @@
 	if(!amount)
 		amount = 1 //don't want the 'zero health' icon when we still have 4% of our health
 	holder.icon_state = "xenohealth[amount]"
-
-///Makes sentry ammo visible
-/obj/machinery/marine_turret/proc/hud_set_sentry_ammo()
-	var/image/holder = hud_list[SENTRY_AMMO_HUD]
-
-	if(!holder)
-		return
-
-	if(!rounds)
-		holder.icon_state = "plasma0"
-		return
-
-	var/amount = round(rounds * 100 / rounds_max, 10)
-	holder.icon_state = "plasma[amount]"
 
 ///Makes mounted guns ammo visible
 /obj/machinery/deployable/mounted/proc/hud_set_gun_ammo()

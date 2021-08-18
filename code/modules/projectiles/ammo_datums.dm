@@ -173,9 +173,9 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 		//Scatter here is how many degrees extra stuff deviate from the main projectile, first two the same amount, one to each side, and from then on the extra pellets keep widening the arc.
 		var/new_angle = angle + (main_proj.ammo.bonus_projectiles_scatter * ((i % 2) ? (-(i + 1) * 0.5) : (i * 0.5)))
 		if(new_angle < 0)
-			new_angle += 380
-		else if(new_angle > 380)
-			new_angle -= 380
+			new_angle += 360
+		else if(new_angle > 360)
+			new_angle -= 360
 		new_proj.fire_at(null, shooter, source, range, speed, new_angle, TRUE) //Angle-based fire. No target.
 
 
@@ -497,8 +497,15 @@ datum/ammo/bullet/revolver/tp44
 	name = "high-velocity rifle bullet"
 	hud_state = "hivelo"
 	damage = 20
+	penetration = 20
+	sundering = 1.25
+
+/datum/ammo/bullet/rifle/heavy
+	name = "heavy rifle bullet"
+	hud_state = "hivelo"
+	damage = 30
 	penetration = 10
-	sundering = 1
+	sundering = 1.5
 
 /datum/ammo/bullet/rifle/incendiary
 	name = "incendiary rifle bullet"
@@ -1026,32 +1033,27 @@ datum/ammo/bullet/revolver/tp44
 
 /datum/ammo/bullet/turret
 	name = "autocannon bullet"
-	icon_state 	= "redbullet" //Red bullets to indicate friendly fire restriction
+	icon_state = "redbullet"
+	hud_state = "smartgun"
+	hud_state_empty = "smartgun_empty"
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING|AMMO_SENTRY
 	accurate_range = 10
-	accuracy_var_low = 3
-	accuracy_var_high = 3
-	damage = 20
-	penetration = 10
-	sundering = 3 //small damage big sunder
-	damage_falloff = 0.5 //forgot to add this
+	damage = 50
+	penetration = 5
+	damage_falloff = 0.5
 
 /datum/ammo/bullet/turret/dumb
-	icon_state 	= "bullet"
+	icon_state = "bullet"
 
 /datum/ammo/bullet/turret/gauss
 	name = "heavy gauss turret slug"
-	damage = 25
-	penetration = 30
-	accurate_range = 3
-	sundering = 0
-
+	damage = 60
 
 /datum/ammo/bullet/turret/mini
 	name = "small caliber autocannon bullet"
-	damage = 15
-	penetration = 10
-	sundering = 2
+	damage = 25
+	penetration = 5
+	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SENTRY
 
 
 /datum/ammo/bullet/machinegun //Adding this for the MG Nests (~Art)
@@ -2079,33 +2081,6 @@ datum/ammo/bullet/revolver/tp44
 /datum/ammo/water
 	name = "water"
 	hud_state = "water"
-
-/datum/ammo/flare
-	name = "flare"
-	ping = null //no bounce off.
-	damage_type = BURN
-	flags_ammo_behavior = AMMO_INCENDIARY
-	damage = 15
-	accuracy = 15
-	max_range = 15
-
-/datum/ammo/flare/on_hit_mob(mob/M,obj/projectile/P)
-	drop_nade(get_turf(P))
-
-/datum/ammo/flare/on_hit_obj(obj/O,obj/projectile/P)
-	drop_nade(get_turf(P))
-
-/datum/ammo/flare/on_hit_turf(turf/T,obj/projectile/P)
-	drop_nade(T)
-
-/datum/ammo/flare/do_at_max_range(obj/projectile/P)
-	drop_nade(get_turf(P))
-
-/datum/ammo/flare/drop_nade(turf/T)
-	var/obj/item/explosive/grenade/flare/G = new (T)
-	G.visible_message(span_warning("\A [G] bursts into brilliant light nearby!"))
-	G.turn_on()
-
 /datum/ammo/rocket/toy
 	name = "\improper toy rocket"
 	damage = 1

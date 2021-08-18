@@ -36621,7 +36621,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/obj/machinery/marine_turret/premade/dumb{
+/obj/machinery/deployable/mounted/sentry{
 	dir = 4
 	},
 /obj/structure/closet/walllocker/emerglocker/full,
@@ -37703,7 +37703,7 @@
 /turf/open/floor/plating,
 /area/prison/pirate)
 "cnH" = (
-/obj/machinery/marine_turret/premade/dumb{
+/obj/machinery/deployable/mounted/sentry{
 	dir = 1
 	},
 /turf/open/floor/plating,
@@ -38117,7 +38117,7 @@
 /turf/open/floor/plating/platebot,
 /area/prison/pirate)
 "cpb" = (
-/obj/machinery/marine_turret/premade/dumb{
+/obj/machinery/deployable/mounted/sentry{
 	dir = 1
 	},
 /turf/open/floor/plating/platebot,
@@ -40493,6 +40493,9 @@
 /obj/machinery/light/small{
 	dir = 4
 	},
+/obj/structure/window/reinforced/toughened{
+	dir = 1
+	},
 /turf/open/floor/plating,
 /area/prison/pirate)
 "cxj" = (
@@ -42608,6 +42611,10 @@
 /obj/structure/cable,
 /turf/open/floor/prison/darkred/full,
 /area/prison/cellblock/maxsec/north)
+"ljW" = (
+/obj/structure/closet/secure_closet/engineering_electrical,
+/turf/open/floor/plating/platebot,
+/area/prison/pirate)
 "lvG" = (
 /obj/structure/bed,
 /obj/item/bedsheet/red,
@@ -42880,6 +42887,10 @@
 "naL" = (
 /turf/open/floor/wood/broken,
 /area/prison/residential/south)
+"ndm" = (
+/obj/structure/closet/secure_closet/engineering_welding,
+/turf/open/floor/plating/platebot,
+/area/prison/pirate)
 "ndE" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/prison/darkpurple/corner{
@@ -43919,6 +43930,10 @@
 	},
 /turf/open/floor/wood,
 /area/prison/residential/south)
+"tnK" = (
+/obj/machinery/camera/autoname/lz_camera,
+/turf/open/floor/plating,
+/area/prison/hangar/civilian)
 "tnU" = (
 /obj/machinery/light,
 /turf/open/floor/prison,
@@ -49188,6 +49203,7 @@ amu
 gyL
 hEZ
 aok
+tnK
 aok
 aok
 aok
@@ -49196,6 +49212,7 @@ aok
 aok
 aok
 aok
+tnK
 aok
 aok
 aok
@@ -49204,9 +49221,7 @@ aok
 aok
 aok
 aok
-aok
-aok
-aok
+tnK
 aok
 cto
 aok
@@ -66226,7 +66241,7 @@ ctG
 cio
 cwn
 cio
-ckn
+ljW
 cwZ
 cxn
 cxn
@@ -69053,7 +69068,7 @@ cio
 cnd
 cuh
 cio
-ckn
+ndm
 cxi
 cxv
 cxv

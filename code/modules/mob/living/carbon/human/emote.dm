@@ -401,7 +401,7 @@
 /datum/emote/living/carbon/human/snap
 	key = "snap"
 	key_third_person = "snaps"
-	message = "snaps their fingers."
+	message = "snaps their fingers"
 	emote_type = EMOTE_AUDIBLE
 	flags_emote = EMOTE_RESTRAINT_CHECK|EMOTE_MUZZLE_IGNORE|EMOTE_ARMS_CHECK
 	sound = 'sound/misc/fingersnap.ogg'
@@ -409,7 +409,7 @@
 /datum/emote/living/carbon/human/hug
 	key = "hug"
 	key_third_person = "hugs"
-	message = "hugs themself."
+	message = "hugs themself"
 	message_param = "hugs %t."
 	flags_emote = EMOTE_RESTRAINT_CHECK
 	emote_type = EMOTE_AUDIBLE

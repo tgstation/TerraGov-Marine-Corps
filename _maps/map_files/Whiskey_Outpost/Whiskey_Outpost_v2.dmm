@@ -1985,7 +1985,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/whiskey_outpost/outside/east)
 "ij" = (
-/obj/machinery/marine_turret/premade,
+/obj/item/weapon/gun/sentry/premade,
 /turf/open/floor/plating/platebot,
 /area/whiskey_outpost/outside/east)
 "ik" = (
@@ -2004,15 +2004,11 @@
 	},
 /area/whiskey_outpost/outside/east)
 "in" = (
-/obj/machinery/marine_turret/premade{
-	dir = 4
-	},
+/obj/item/weapon/gun/sentry/premade,
 /turf/open/floor/plating/platebot,
 /area/whiskey_outpost/outside/east)
 "io" = (
-/obj/machinery/marine_turret/premade{
-	dir = 8
-	},
+/obj/item/weapon/gun/sentry/premade,
 /turf/open/floor/plating/platebot,
 /area/whiskey_outpost/outside/east)
 "iq" = (
@@ -2056,7 +2052,7 @@
 	},
 /area/whiskey_outpost/outside/west)
 "iy" = (
-/obj/machinery/marine_turret/premade,
+/obj/item/weapon/gun/sentry/premade,
 /turf/open/floor/plating/platebot,
 /area/whiskey_outpost/outside/west)
 "iz" = (
@@ -2093,15 +2089,11 @@
 /turf/open/floor/plating/ground/dirt,
 /area/whiskey_outpost/outside/east)
 "iH" = (
-/obj/machinery/marine_turret/premade{
-	dir = 4
-	},
+/obj/item/weapon/gun/sentry/premade,
 /turf/open/floor/plating/platebot,
 /area/whiskey_outpost/outside/west)
 "iI" = (
-/obj/machinery/marine_turret/premade{
-	dir = 8
-	},
+/obj/item/weapon/gun/sentry/premade,
 /turf/open/floor/plating/platebot,
 /area/whiskey_outpost/outside/west)
 "iJ" = (
@@ -4040,11 +4032,11 @@
 /area/whiskey_outpost)
 "rl" = (
 /obj/structure/rack,
-/obj/item/motiondetector,
-/obj/item/motiondetector,
-/obj/item/motiondetector,
-/obj/item/motiondetector,
-/obj/item/motiondetector,
+/obj/item/attachable/motiondetector,
+/obj/item/attachable/motiondetector,
+/obj/item/attachable/motiondetector,
+/obj/item/attachable/motiondetector,
+/obj/item/attachable/motiondetector,
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost)
 "rm" = (
@@ -5336,9 +5328,7 @@
 /area/whiskey_outpost)
 "Jw" = (
 /obj/structure/barricade/metal,
-/obj/machinery/marine_turret/premade{
-	dir = 4
-	},
+/obj/item/weapon/gun/sentry/premade,
 /turf/open/floor/plating/platebot,
 /area/whiskey_outpost/outside/west)
 "JB" = (
@@ -5625,7 +5615,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/whiskey_outpost/outside/north)
 "Ok" = (
-/obj/machinery/marine_turret/premade,
+/obj/item/weapon/gun/sentry/premade,
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost/outside/west)
 "Ol" = (
@@ -5683,7 +5673,7 @@
 /area/whiskey_outpost)
 "OY" = (
 /obj/structure/barricade/sandbags,
-/obj/machinery/marine_turret/premade,
+/obj/item/weapon/gun/sentry/premade,
 /turf/open/floor/plating/ground/dirtgrassborder/corner2{
 	dir = 4
 	},
@@ -5883,7 +5873,7 @@
 /area/whiskey_outpost)
 "SL" = (
 /obj/structure/barricade/sandbags,
-/obj/machinery/marine_turret/premade,
+/obj/item/weapon/gun/sentry/premade,
 /obj/machinery/light{
 	dir = 1
 	},

@@ -35,10 +35,10 @@
 
 /obj/structure/table/proc/update_adjacent(location = loc)
 	for(var/direction in CARDINAL_ALL_DIRS)
-		var/obj/structure/table/T = locate(/obj/structure/table, get_step(location,direction))
-		if(!T)
+		var/obj/structure/table/table = locate(/obj/structure/table, get_step(location,direction))
+		if(!table)
 			continue
-		T.update_icon()
+		INVOKE_NEXT_TICK(table, /atom/proc.update_icon)
 
 
 /obj/structure/table/Initialize()
@@ -62,8 +62,8 @@
 
 /obj/structure/table/Destroy()
 	var/tableloc = loc
-	. = ..()
 	update_adjacent(tableloc) //so neighbouring tables get updated correctly
+	return ..()
 
 /obj/structure/table/update_icon()
 	if(flipped)
@@ -219,7 +219,7 @@
 			return TRUE
 
 
-/obj/structure/table/CheckExit(atom/movable/mover, turf/target)
+/obj/structure/table/CheckExit(atom/movable/mover, direction)
 	. = ..()
 	if(istype(mover) && CHECK_BITFIELD(mover.flags_pass, PASSTABLE))
 		return TRUE

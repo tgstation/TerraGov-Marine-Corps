@@ -14,7 +14,7 @@
 
 /obj/item/explosive/plastique/Destroy()
 	plant_target = null
-	. = ..()
+	return ..()
 
 /obj/item/explosive/plastique/attack_self(mob/user)
 	if(user.skills.getRating("engineer") < SKILL_ENGINEER_METAL)

@@ -103,6 +103,12 @@
 
 /obj/effect/alien/resin/sticky/Crossed(atom/movable/AM)
 	. = ..()
+
+	if(isvehicle(AM))
+		var/obj/vehicle/vehicle = AM
+		vehicle.next_move_slowdown += slow_amt
+		return
+
 	if(!ishuman(AM))
 		return
 

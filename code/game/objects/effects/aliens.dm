@@ -65,7 +65,7 @@
 	return ..()
 
 /// Signal handler to check if an human is entering the acid spray turf
-/obj/effect/xenomorph/spray/proc/atom_enter_turf(datum/source, atom/movable/moved_in)
+/obj/effect/xenomorph/spray/proc/atom_enter_turf(datum/source, atom/movable/moved_in, direction)
 	SIGNAL_HANDLER
 	if(!ishuman(moved_in))
 		return
@@ -160,7 +160,7 @@
 /obj/effect/xenomorph/acid/Destroy()
 	STOP_PROCESSING(SSslowprocess, src)
 	acid_t = null
-	. = ..()
+	return ..()
 
 /obj/effect/xenomorph/acid/process(delta_time)
 	if(!acid_t || !acid_t.loc)

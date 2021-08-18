@@ -421,8 +421,8 @@
 	var/partialTag = "" //Set by a partial tagger the first time round, then put in destinationTag if it goes through again.
 
 /obj/structure/disposalholder/Destroy()
-		active = 0
-		. = ..()
+	active = 0
+	return ..()
 
 //initialize a holder from the contents of a disposal unit
 /obj/structure/disposalholder/proc/init(obj/machinery/disposal/D)
@@ -564,6 +564,7 @@
 	. = ..()
 	base_icon_state = icon_state
 	GLOB.disposal_list += src
+	AddElement(/datum/element/undertile, TRAIT_T_RAY_VISIBLE)
 
 
 //Pipe is deleted
@@ -588,7 +589,7 @@
 		if(H)
 			expel(H, T, 0)
 	GLOB.disposal_list -= src
-	. = ..()
+	return ..()
 
 //Returns the direction of the next pipe object, given the entrance dir by default, returns the bitmask of remaining directions
 /obj/structure/disposalpipe/proc/nextdir(fromdir)

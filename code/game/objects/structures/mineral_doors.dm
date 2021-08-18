@@ -108,7 +108,7 @@
 				else
 					multiplier += PLASMACUTTER_RESIN_MULTIPLIER * 0.5 //Plasma cutters are particularly good at destroying resin structures.
 				P.cut_apart(user, src.name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD) //Minimal energy cost.
-		if(W.damtype == "fire" && is_resin) //Burn damage deals extra vs resin structures (mostly welders).
+		if(W.damtype == BURN && is_resin) //Burn damage deals extra vs resin structures (mostly welders).
 			multiplier += 1
 		user.do_attack_animation(src, used_item = W)
 		hardness -= W.force * multiplier * 0.01
