@@ -14,8 +14,8 @@
 	speed = 2.5
 
 	// *** Plasma *** //
-	plasma_max = 150 //  75 is the cost of plant_weeds
-	plasma_gain = 15 // This is 1 weed every 10 secs.
+	plasma_max = 450 //  75 is the cost of plant_weeds
+	plasma_gain = 45
 
 	// *** Health *** //
 	max_health = 100
@@ -48,14 +48,14 @@
 	upgrade = XENO_UPGRADE_MANIFESTATION
 
 	// *** Flags *** //
-	caste_flags = CASTE_INNATE_PLASMA_REGEN|CASTE_IS_BUILDER
+	caste_flags = CASTE_IS_BUILDER
 
 	aura_strength = 4 //Good pheros
 
 		// *** Abilities *** //
 	actions = list(
 		/datum/action/xeno_action/change_form,
-		/datum/action/xeno_action/plant_weeds,
+		/datum/action/xeno_action/activable/plant_weeds/ranged,
 		/datum/action/xeno_action/activable/psychic_cure,
 		/datum/action/xeno_action/toggle_pheromones,
 		/datum/action/xeno_action/activable/secrete_resin/ranged/slow,

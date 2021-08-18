@@ -73,6 +73,7 @@
 		QDEL_NULL(core)
 	else
 		core = null
+	upgrade = XENO_UPGRADE_BASETYPE
 	return ..()
 
 ///Initiate the form changing of the hivemind

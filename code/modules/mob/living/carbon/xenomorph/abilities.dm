@@ -107,17 +107,28 @@
 // ***************************************
 // *********** Drone-y abilities
 // ***************************************
-/datum/action/xeno_action/plant_weeds
+/datum/action/xeno_action/activable/plant_weeds
 	name = "Plant Weeds"
 	action_icon_state = "plant_weeds"
 	plasma_cost = 75
 	mechanics_text = "Plant a weed node (purple sac) on your tile."
 	keybind_signal = COMSIG_XENOABILITY_DROP_WEEDS
 	use_state_flags = XACT_USE_LYING
+	///the maximum range of the ability
+	var/max_range = 0
 
 
-/datum/action/xeno_action/plant_weeds/action_activate()
-	var/turf/T = get_turf(owner)
+/datum/action/xeno_action/activable/plant_weeds/action_activate()
+	if(max_range)
+		return ..()
+	plant_weeds(owner)
+
+/datum/action/xeno_action/activable/plant_weeds/use_ability(atom/A)
+	plant_weeds(A)
+
+////Plant a weeds node on the selected atom
+/datum/action/xeno_action/activable/plant_weeds/proc/plant_weeds(atom/A)
+	var/turf/T = get_turf(A)
 
 	if(!T.check_alien_construction(owner, FALSE))
 		return fail_activate()
@@ -136,18 +147,18 @@
 
 	owner.visible_message(span_xenonotice("\The [owner] regurgitates a pulsating node and plants it on the ground!"), \
 		span_xenonotice("We regurgitate a pulsating node and plant it on the ground!"), null, 5)
-	new /obj/effect/alien/weeds/node(owner.loc)
-	playsound(owner.loc, "alien_resin_build", 25)
+	new /obj/effect/alien/weeds/node(T)
+	playsound(T, "alien_resin_build", 25)
 	GLOB.round_statistics.weeds_planted++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "weeds_planted")
 	add_cooldown()
 	return succeed_activate()
 
 //AI stuff
-/datum/action/xeno_action/plant_weeds/ai_should_start_consider()
+/datum/action/xeno_action/activable/plant_weeds/ai_should_start_consider()
 	return TRUE
 
-/datum/action/xeno_action/plant_weeds/ai_should_use(target)
+/datum/action/xeno_action/activable/plant_weeds/ai_should_use(target)
 	if(!can_use_action(override_flags = XACT_IGNORE_SELECTED_ABILITY))
 		return ..()
 	if(locate(/obj/effect/alien/weeds/node) in owner.loc) //NODE SPAMMMM
@@ -155,16 +166,9 @@
 		return ..()
 	return TRUE
 
-/datum/action/xeno_action/plant_weeds/slow
-	cooldown_timer = 12 SECONDS
-
-/datum/action/xeno_action/plant_weeds/slow/action_activate()
-	if(locate(/obj/effect/alien/weeds) in range(1, owner.loc))
-		return ..()
-	var/mob/living/carbon/xenomorph/hivemind/hiveminde = owner
-	hiveminde.forceMove(get_turf(hiveminde.core))
-	to_chat(hiveminde, span_xenonotice("We can't plant a node without weeds nearby, we've been moved back to our core."))
-	return fail_activate()
+/datum/action/xeno_action/activable/plant_weeds/ranged
+	max_range = 5
+	cooldown_timer = 5 SECONDS
 
 // Secrete Resin
 /datum/action/xeno_action/activable/secrete_resin
