@@ -24,11 +24,12 @@
 
 	if(M == user)
 
-		if(istype(M,/mob/living/carbon/human))
-			var/mob/living/carbon/human/H = M
-			if(H.species.species_flags & IS_SYNTHETIC)
-				to_chat(H, span_warning("You have a monitor for a head, where do you think you're going to put that?"))
-				return
+		if(istype(M,/mob/living/carbon))
+			var/mob/living/carbon/H = M
+			if(ishuman(H))
+				if(H.species.species_flags & IS_SYNTHETIC)
+					to_chat(H, span_warning("You have a monitor for a head, where do you think you're going to put that?"))
+					return
 
 		to_chat(M,span_notice("You swallow a gulp from \the [src]."))
 		if(reagents.total_volume)
@@ -37,12 +38,13 @@
 
 		playsound(M.loc,'sound/items/drink.ogg', 15, 1)
 		return TRUE
-	else if(istype(M,/mob/living/carbon/human))
+	else if(istype(M,/mob/living/carbon))
 
-		var/mob/living/carbon/human/H = M
-		if(H.species.species_flags & IS_SYNTHETIC)
-			to_chat(H, span_warning("They have a monitor for a head, where do you think you're going to put that?"))
-			return
+		var/mob/living/carbon/H = M
+		if(ishuman(H))
+			if(H.species.species_flags & IS_SYNTHETIC)
+				to_chat(H, span_warning("They have a monitor for a head, where do you think you're going to put that?"))
+				return
 
 		visible_message(span_warning("[user] attempts to feed [M] [src]."))
 		if(!do_mob(user, M, 30, BUSY_ICON_FRIENDLY))
