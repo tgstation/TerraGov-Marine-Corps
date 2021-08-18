@@ -1621,16 +1621,16 @@ datum/ammo/bullet/revolver/tp44
 /datum/ammo/xeno/toxin
 	name = "neurotoxic spit"
 	flags_ammo_behavior = AMMO_XENO|AMMO_EXPLOSIVE|AMMO_SKIPS_ALIENS
-	spit_cost = 60
+	spit_cost = 70
 	added_spit_delay = 0
 	damage_type = STAMINA
 	accurate_range = 5
 	max_range = 10
 	accuracy_var_low = 3
 	accuracy_var_high = 3
-	damage = 50
-	stagger_stacks = 1.5
-	slowdown_stacks = 1.5
+	damage = 40
+	stagger_stacks = 1.1
+	slowdown_stacks = 1.1
 	smoke_strength = 0.5
 	smoke_range = 0
 	reagent_transfer_amount = 9
