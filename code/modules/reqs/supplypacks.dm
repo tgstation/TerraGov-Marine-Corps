@@ -434,7 +434,7 @@ AMMO
 
 /datum/supply_packs/ammo/standard_ammo
 	name = "Surplus Standard Ammo Crate"
-	notes = "Contains 22 ammo boxes of a wide variety which come prefilled. You lazy bum."
+	notes = "Contains 21 ammo boxes of a wide variety which come prefilled. You lazy bum."
 	contains = list(/obj/structure/largecrate/supply/ammo/standard_ammo)
 	containertype = null
 	cost = 20
@@ -454,6 +454,12 @@ AMMO
 /datum/supply_packs/ammo/incendiaryslugs
 	name = "Box of Incendiary Slugs"
 	contains = list(/obj/item/ammo_magazine/shotgun/incendiary)
+	cost = 10
+	available_against_xeno_only = TRUE
+
+/datum/supply_packs/ammo/flechette
+	name = "Box of Flechette Shells"
+	contains = list(/obj/item/ammo_magazine/shotgun/flechette)
 	cost = 10
 	available_against_xeno_only = TRUE
 
