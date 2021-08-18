@@ -1,15 +1,20 @@
 /datum/component/attachment_handler
+	///Assoc list that stores the refs of the attachments to the parent. 'slot = reference'
 	var/list/slots = list()
+	///Typepath list that stores type data of allowed attachments. The attachment needs the attachment element to be able to attach regardless of what is stored here.
 	var/list/attachables_allowed = list()
+	///Proc the parent calls on attach.
 	var/datum/callback/on_attach
+	///Proc the parent calls on detach.
 	var/datum/callback/on_detach
+	///Pixel offsets 
 	var/list/attachment_offsets = list()
 	var/list/attachable_overlays = list()
 	var/list/overlay_icon_states = list()
 	var/list/extra_vars = list()
 
 
-/datum/component/attachment_handler/Initialize(_slots, list/_attachables_allowed, list/_attachment_offsets, list/_extra_vars, datum/callback/_on_attach, datum/callback/_on_detach, list/starting_attachmments, list/overlays = list())
+/datum/component/attachment_handler/Initialize(_slots, list/_attachables_allowed, list/_attachment_offsets, list/starting_attachmments, datum/callback/_on_attach, datum/callback/_on_detach, list/_extra_vars, list/overlays = list())
 	. = ..()
 	if(!isitem(parent))
 		return COMPONENT_INCOMPATIBLE
