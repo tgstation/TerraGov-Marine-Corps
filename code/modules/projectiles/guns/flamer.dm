@@ -50,6 +50,9 @@
 	pixel_shift_x = 15
 	pixel_shift_y = 18
 
+/obj/item/weapon/gun/flamer/mini_flamer/unremovable
+	flags_attach_features = NONE
+
 
 /obj/item/weapon/gun/flamer/mini_flamer/light_pilot(mob/user, mustlit)
 	if (lit == mustlit)//You can't lit what is already lit

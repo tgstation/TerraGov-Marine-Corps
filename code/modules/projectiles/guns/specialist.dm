@@ -323,6 +323,10 @@
 		/obj/item/attachable/scope/mini,
 		/obj/item/attachable/scope/marine,
 		/obj/item/attachable/angledgrip,
+		/obj/item/weapon/gun/pistol/plasma_pistol,
+		/obj/item/weapon/gun/shotgun/combat/masterkey = -1,
+		/obj/item/weapon/gun/flamer/mini_flamer = -1,
+		/obj/item/weapon/gun/launcher/m92/mini_grenade = -1,
 	)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER|GUN_IFF
@@ -689,6 +693,11 @@
 	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_AMMO_COUNTER|GUN_IS_ATTACHMENT|GUN_ATTACHMENT_FIRE_ONLY|GUN_WIELDED_STABLE_FIRING_ONLY
 	pixel_shift_x = 14
 	pixel_shift_y = 18
+
+
+/obj/item/weapon/gun/launcher/m92/mini_grenade/invisable
+	attach_icon_state = "invisable"
+	flags_attach_features = NONE
 
 /obj/item/weapon/gun/launcher/m81
 	name = "\improper T-81 grenade launcher"
