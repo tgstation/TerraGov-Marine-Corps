@@ -49,7 +49,7 @@
 		var/obj/item/weapon/gun/attachment_type = item_type
 		if(!(initial(attachment_type.flags_attach_features) & ATTACH_REMOVABLE))
 			bypass_vendor_check = TRUE
-		var/obj/item/weapong/gun/gun = instantiate_object(seller, null, user)
+		var/obj/item/weapon/gun/gun = instantiate_object(seller, null, user)
 		gun_to_attach.attach_to(gun)
 
 /**
