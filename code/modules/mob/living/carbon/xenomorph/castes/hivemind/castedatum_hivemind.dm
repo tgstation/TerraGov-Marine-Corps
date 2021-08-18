@@ -32,6 +32,8 @@
 	spit_delay = 0 SECONDS
 	spit_types = list()
 
+	aura_strength = 0
+
 	// *** Abilities *** //
 	actions = list(
 		/datum/action/xeno_action/return_to_core,
@@ -48,8 +50,14 @@
 	// *** Flags *** //
 	caste_flags = CASTE_INNATE_PLASMA_REGEN|CASTE_IS_BUILDER
 
+	aura_strength = 4 //Good pheros
+
 		// *** Abilities *** //
 	actions = list(
 		/datum/action/xeno_action/change_form,
+		/datum/action/xeno_action/plant_weeds,
+		/datum/action/xeno_action/activable/psychic_cure,
+		/datum/action/xeno_action/toggle_pheromones,
+		/datum/action/xeno_action/activable/secrete_resin/ranged/slow,
 		/datum/action/xeno_action/activable/rally_hive/hivemind,
 	)

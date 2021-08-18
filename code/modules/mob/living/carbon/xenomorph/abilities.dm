@@ -325,13 +325,6 @@
 
 	plasma_cost = initial(plasma_cost) //Reset the plasma cost
 
-// Slower version of the secret resin
-/datum/action/xeno_action/activable/secrete_resin/slow
-	cooldown_timer = 5 SECONDS
-	base_wait = 2.5 SECONDS
-	scaling_wait = 0
-
-
 /datum/action/xeno_action/toggle_pheromones
 	name = "Open/Collapse Pheromone Options"
 	action_icon_state = "emit_pheromones"

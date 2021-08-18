@@ -6,6 +6,11 @@
 /datum/action/xeno_action/return_to_core/action_activate()
 	SEND_SIGNAL(owner, COMSIG_XENOMORPH_CORE_RETURN)
 
+/datum/action/xeno_action/activable/secrete_resin/ranged/slow
+	cooldown_timer = 5 SECONDS
+	base_wait = 2.5 SECONDS
+	max_range = 5
+
 /datum/action/xeno_action/change_form
 	name = "Change form"
 	action_icon_state = "manifest"

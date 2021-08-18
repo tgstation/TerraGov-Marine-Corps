@@ -57,7 +57,7 @@
 		/datum/action/xeno_action/plant_weeds,
 		/datum/action/xeno_action/activable/healing_infusion,
 		/datum/action/xeno_action/place_acidwell,
-		/datum/action/xeno_action/activable/secrete_resin/hivelord,
+		/datum/action/xeno_action/activable/secrete_resin/ranged,
 		/datum/action/xeno_action/activable/build_silo,
 		/datum/action/xeno_action/activable/build_hunt_den,
 		/datum/action/xeno_action/activable/build_turret,
