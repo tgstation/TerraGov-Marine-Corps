@@ -253,6 +253,7 @@
 
 /obj/effect/alien/hivemindcore/Initialize(mapload)
 	. = ..()
+	new /obj/effect/alien/weeds/node(loc)
 	set_light(7, 5, LIGHT_COLOR_PURPLE)
 
 /obj/effect/alien/hivemindcore/Destroy()
