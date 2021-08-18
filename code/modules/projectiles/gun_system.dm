@@ -252,7 +252,7 @@
 	if(ishandslot(slot))
 		for(var/key in slots)
 			var/obj/item/attachable = slots[key]
-			if(!isgun(attachable)))
+			if(!isgun(attachable))
 				continue
 			var/obj/item/weapon/gun/attachment_gun = attachable
 			attachment_gun.set_gun_user(user)
