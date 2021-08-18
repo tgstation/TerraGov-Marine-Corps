@@ -11439,8 +11439,8 @@
 /area/lv624/lazarus/kitchen)
 "bmX" = (
 /obj/structure/rack,
-/obj/item/attachable/attached_gun/grenade,
-/obj/item/attachable/attached_gun/grenade,
+/obj/item/weapon/gun/launcher/m92/mini_grenade,
+/obj/item/weapon/gun/launcher/m92/mini_grenade,
 /turf/open/floor/tile/vault{
 	dir = 8
 	},
