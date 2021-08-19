@@ -55,5 +55,5 @@
 
 // Jelly for drones, has a higher CD than Hivelord.
 
-/datum/action/xeno_action/create_jelly/drone
+/datum/action/xeno_action/create_jelly/slow
 	cooldown_timer = 35 SECONDS
