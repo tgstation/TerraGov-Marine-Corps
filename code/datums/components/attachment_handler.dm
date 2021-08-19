@@ -15,16 +15,16 @@
 	var/list/overlay_icon_states = list()
 
 
-/datum/component/attachment_handler/Initialize(_slots, list/_attachables_allowed, list/_attachment_offsets, list/starting_attachmments, datum/callback/_on_attach, datum/callback/_on_detach, list/overlays = list())
+/datum/component/attachment_handler/Initialize(slots, list/attachables_allowed, list/attachment_offsets, list/starting_attachmments, datum/callback/on_attach, datum/callback/on_detach, list/overlays = list())
 	. = ..()
 	if(!isitem(parent))
 		return COMPONENT_INCOMPATIBLE
 
-	slots = _slots
-	attachables_allowed = _attachables_allowed
-	on_attach = _on_attach
-	on_detach = _on_detach
-	attachment_offsets = _attachment_offsets
+	src.slots = slots
+	src.attachables_allowed = _attachables_allowed
+	src.on_attach = on_attach
+	src.on_detach = on_detach
+	src.attachment_offsets = attachment_offsets
 	attachable_overlays = overlays //This is incase the parent wishes to have a stored reference to this list.
 	attachable_overlays += slots 
 	overlay_icon_states += slots 
