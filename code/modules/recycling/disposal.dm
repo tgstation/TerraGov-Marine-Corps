@@ -27,7 +27,7 @@
 //Create a new disposal, find the attached trunk (if present) and init gas resvr.
 /obj/machinery/disposal/Initialize()
 	. = ..()
-	set_trunk(locate() in loc)
+	set_trunk(locate(/obj/structure/disposalpipe/trunk) in loc)
 	if(!trunk)
 		mode = 0
 		flush = 0
