@@ -124,7 +124,7 @@
 
 ///Checks the current slots of the parent and if there are attachments that can be removed in those slots. Basically it makes sure theres room for the attachment. 
 /datum/component/attachment_handler/proc/can_attach(obj/item/attachment, mob/living/carbon/human/user, list/attachment_data)
-	if(!slots.len)
+	if(!length(slots))
 		return FALSE
 
 	var/slot = attachment_data["slot"]
@@ -298,7 +298,7 @@
 	return SEND_SIGNAL(attachment, COMSIG_ITEM_IS_ATTACHMENT) & IS_ATTACHMENT
 
 ///Returns an assoc list from the _attachment's element with all the attachment data.
-/datum/component/attachment_handler/proc/get_attachment_data(obj/item/_attachment)
+/datum/component/attachment_handler/proc/get_attachment_data(obj/item/attachment)
 	var/list/attachment_data = list()
-	SEND_SIGNAL(_attachment, COMSIG_ITEM_GET_ATTACHMENT_DATA, attachment_data)
+	SEND_SIGNAL(attachment, COMSIG_ITEM_GET_ATTACHMENT_DATA, attachment_data)
 	return attachment_data
