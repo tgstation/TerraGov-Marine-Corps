@@ -303,6 +303,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 
 /datum/supply_ui/Destroy(force, ...)
 	source_object = null
+	return ..()
 
 /datum/supply_ui/ui_host()
 	return source_object
