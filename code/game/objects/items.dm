@@ -377,12 +377,17 @@
 // Set disable_warning to 1 if you wish it to not give you outputs.
 // warning_text is used in the case that you want to provide a specific warning for why the item cannot be equipped.
 
+//Attachment procs used to send signals to /datum/component/attachment_handler. None of these will have any function without the component.
+
+///Sends a signal to the component to activate an attachment on a specific slot.
 /obj/item/proc/activate_attachment(slot, mob/user)
 	return SEND_SIGNAL(src, COMSIG_ITEM_ACTIVATE_ATTACHMENT, slot, user)
 
+///Attaches attachment to src using the component without the need for a user.
 /obj/item/proc/attach_to(obj/item/attachment, list/input_attachment_data, mob/attacker)
 	return SEND_SIGNAL(src, COMSIG_ITEM_ATTACH_WITHOUT_USER, attachment, input_attachment_data)
 
+///Updates attachment's icon state to new_icon_state using src's component.
 /obj/item/proc/update_attachment_icon_state(obj/item/attachment, new_icon_state)
 	return SEND_SIGNAL(src, COMSIG_ITEM_UPDATE_ATTACHMENT_ICON, attachment, new_icon_state)
 

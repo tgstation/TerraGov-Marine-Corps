@@ -92,7 +92,6 @@
 //flags_attach_features
 #define ATTACH_REMOVABLE (1<<0)
 #define ATTACH_ACTIVATION (1<<1)
-#define ATTACH_UTILITY (1<<5) //for attachments with utility that trigger by 'shooting'
 
 //Ammo magazine defines, for flags_magazine
 #define AMMUNITION_REFILLABLE 1

@@ -185,7 +185,7 @@
 
 #define isattachmentflashlight(A) (istype(A, /obj/item/attachable/flashlight))
 
-#define isgunattachment(A) (istype(A, /obj/item/attachable))
+#define isgunattachment(A) (istype(A, /obj/item/attachable) || istype(A, /obj/item/weapon/gun))
 
 #define ishandful(A) (istype(A, /obj/item/ammo_magazine/handful))
 
