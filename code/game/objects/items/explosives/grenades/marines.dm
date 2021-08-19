@@ -248,6 +248,10 @@
 	. = ..()
 	smoke = new(src)
 
+/obj/item/explosive/grenade/phosphorus/Destroy()
+	QDEL_NULL(smoke)
+	return ..()
+
 /obj/item/explosive/grenade/phosphorus/prime()
 	playsound(loc, 'sound/effects/smoke.ogg', 25, 1, 4)
 	smoke.set_up(6, loc, 7)
