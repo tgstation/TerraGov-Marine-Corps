@@ -83,11 +83,23 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 	for(var/obj/machinery/gear/G in GLOB.machines)
 		if(G.id == "supply_elevator_gear")
 			gears += G
+			RegisterSignal(G, COMSIG_PARENT_QDELETING, .proc/clean_gear)
 	for(var/obj/machinery/door/poddoor/railing/R in GLOB.machines)
 		if(R.id == "supply_elevator_railing")
 			railings += R
+			RegisterSignal(R, COMSIG_PARENT_QDELETING, .proc/clean_railing)
 			R.linked_pad = src
 			R.open()
+
+///Signal handler when a gear is destroyed
+/obj/docking_port/mobile/supply/proc/clean_gear(datum/source)
+	SIGNAL_HANDLER
+	gears -= source
+
+///Signal handler when a railing is destroyed
+/obj/docking_port/mobile/supply/proc/clean_railing(datum/source)
+	SIGNAL_HANDLER
+	railings -= source
 
 /obj/docking_port/mobile/supply/canMove()
 	if(is_station_level(z))

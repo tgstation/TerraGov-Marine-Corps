@@ -56,6 +56,7 @@ GLOBAL_VAR_INIT(current_orbit,STANDARD_ORBIT)
 
 /obj/machinery/computer/navigation/Destroy()
 	deltimer(timer_id)
+	return ..()
 
 /obj/machinery/computer/navigation/proc/reset(wire)
 	switch(wire)
