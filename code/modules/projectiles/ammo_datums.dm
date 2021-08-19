@@ -331,6 +331,17 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 		P.visible_message(span_danger("The [src] chimpers furiously!"))
 		new /mob/living/carbon/human/species/monkey(P.loc)
 
+#ifdef REFERENCE_TRACKING
+/datum/ammo/bullet/pistol/mankey/on_hit_mob(mob/M, obj/projectile/P)
+	message_admins("DELETING [M]")
+	qdel(M)
+
+/datum/ammo/bullet/pistol/mankey/qdel_machine/on_hit_obj(obj/O, obj/projectile/proj)
+	message_admins("DELETING [O]")
+	qdel(O)
+
+#endif
+
 /*
 //================================================
 					Revolver Ammo
