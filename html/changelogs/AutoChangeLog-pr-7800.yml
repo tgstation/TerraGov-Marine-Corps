@@ -1,4 +1,4 @@
 author: "BraveMole"
 delete-after: True
 changes: 
-  - bugfix: "Fix jaeger coloring in hvh"
+  - bugfix: "Fix xeno able to open shutters"

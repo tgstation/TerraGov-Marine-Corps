@@ -1,0 +1,5 @@
+author: "lbnesquik"
+delete-after: True
+changes: 
+  - bugfix: "fixes the northern sl vendor on theseus from being only working with alpha squads"
+  - bugfix: "adds an hypersleep console in preps"

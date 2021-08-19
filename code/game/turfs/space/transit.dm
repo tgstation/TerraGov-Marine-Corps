@@ -12,6 +12,7 @@
 	name = "\proper high atmosphere"
 	baseturfs = /turf/open/space/transit/atmos
 	available_icon_state_amounts = 8
+	plane = FLOOR_PLANE
 
 //Overwrite because we dont want people building rods in space.
 /turf/open/space/transit/attackby(obj/item/I, mob/user, params)

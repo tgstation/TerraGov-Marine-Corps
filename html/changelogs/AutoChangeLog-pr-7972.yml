@@ -1,0 +1,4 @@
+author: "KornFlaks"
+delete-after: True
+changes: 
+  - code_imp: "Properly pulls the correct leadership string for xeno leaders upon evolution."
