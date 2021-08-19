@@ -195,7 +195,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 
 /datum/export_report/New(_points, _export_name, _faction)
 	points = _points
-	export_name = _export_name 
+	export_name = _export_name
 	faction = _faction
 
 /obj/docking_port/mobile/supply/proc/sell()
@@ -294,6 +294,15 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 /datum/supply_ui/New(atom/source_object)
 	. = ..()
 	src.source_object = source_object
+	RegisterSignal(source_object, COMSIG_PARENT_QDELETING, .proc/clean_ui)
+
+///Signal handler to delete the ui when the source object is deleting
+/datum/supply_ui/proc/clean_ui()
+	SIGNAL_HANDLER
+	qdel(src)
+
+/datum/supply_ui/Destroy(force, ...)
+	source_object = null
 
 /datum/supply_ui/ui_host()
 	return source_object
@@ -600,3 +609,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 	if(!SU)
 		SU = new(src)
 	return SU.interact(user)
+
+/obj/machinery/computer/ordercomp/Destroy()
+	. = ..()
+
