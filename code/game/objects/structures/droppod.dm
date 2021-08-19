@@ -154,9 +154,11 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 /obj/structure/droppod/proc/launchpod(mob/user)
 	if(!occupant)
 		return
+	#ifndef TESTING
 	if(!operation_started && world.time < SSticker.round_start_time + SSticker.mode.deploy_time_lock + DROPPOD_DEPLOY_DELAY)
 		to_chat(user, span_notice("Unable to launch, the ship has not yet reached the combat area."))
 		return
+	#endif
 	if(!launch_allowed)
 		to_chat(user, span_notice("Error. Ship calibration unavailable. Please %#&ç:*"))
 		return
