@@ -2,20 +2,31 @@
 // These are the main datums that emit light.
 
 /datum/dynamic_light_source
-	var/atom/source_atom     // The atom that we belong to.
-	var/atom/movable/contained_atom		//The atom that the source atom is contained inside
-	var/atom/cached_loc	//The loc where we were
+	///source atom that we belong to
+	var/atom/source_atom
+	///The atom that the source atom is contained inside
+	var/atom/movable/contained_atom
+	///our last loc
+	var/atom/cached_loc
+	//the turf where cached loc was
+	var/turf/source_turf
+	///the turf the contained atom appears to be covering
+	var/turf/pixel_turf
+	/// Intensity of the emitter light.
+	var/light_power = 0
+	/// The range of the emitted light.
+	var/light_range = 0
+	/// The colour of the light, string, decomposed by PARSE_LIGHT_COLOR()
+	var/light_color = NONSENSICAL_VALUE
 
-	var/turf/source_turf     // The turf under the above.
-	var/turf/pixel_turf      // The turf the top_atom appears to over.
-	var/light_power = 0    					// Intensity of the emitter light.
-	var/light_range = 0      				// The range of the emitted light.
-	var/light_color = NONSENSICAL_VALUE    // The colour of the light, string, decomposed by PARSE_LIGHT_COLOR()
+	/// Whether we have applied our light yet or not.
+	var/applied = FALSE
 
-	var/applied = FALSE // Whether we have applied our light yet or not.
-
+	///typepath for the mask type we are using
 	var/mask_type
+	///reference to the mask holder effect
 	var/obj/effect/lighting_mask_holder/mask_holder
+	///reference to the mask contained within the mask_holder objects vis_contents
 	var/atom/movable/lighting_mask/our_mask
 
 /datum/dynamic_light_source/New(atom/movable/owner, mask_type = /atom/movable/lighting_mask)
@@ -51,6 +62,7 @@
 	our_mask = null//deletion handled on holder
 	return ..()
 
+///Updates containing atom
 /datum/dynamic_light_source/proc/find_containing_atom()
 	//Remove ourselves from the old containing atoms light sources
 	if(contained_atom && contained_atom != source_atom)
@@ -72,7 +84,7 @@
 	if(contained_atom != source_atom)
 		LAZYADD(contained_atom.hybrid_light_sources, src)
 
-//Update light if changed.
+///Update light if changed.
 /datum/dynamic_light_source/proc/set_light(l_range, l_power, l_color = NONSENSICAL_VALUE)
 	if(!our_mask)
 		return

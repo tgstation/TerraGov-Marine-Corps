@@ -72,9 +72,11 @@
 	//Best keep them within 10 units of a multiple of 32, as when the light is closer to a wall, the probability
 	//that a shadow extends to opposite corners of the light mask square is increased, resulting in more shadow
 	//overlays.
+	///x offset for dynamic lights on this atom
 	var/light_pixel_x
+	///y offset for dynamic lights on this atom
 	var/light_pixel_y
-	///typepath for dynamic light sources
+	///typepath for the lighting maskfor dynamic light sources
 	var/light_mask_type = null
 
 	// popup chat messages

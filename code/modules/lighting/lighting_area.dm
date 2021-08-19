@@ -1,9 +1,13 @@
 /area
 	luminosity = 1
+	///The mutable appearance we underlay to show light
 	var/mutable_appearance/lighting_effect = null
+	///Whether this area has a currently active base lighting, bool
 	var/area_has_base_lighting = FALSE
+	///alpha 0-255 of lighting_effect and thus baselighting intensity
 	var/base_lighting_alpha = 0
-	var/base_lighting_color = null	//The colour of the light acting on this area
+	///The colour of the light acting on this area
+	var/base_lighting_color = null
 
 /area/proc/set_base_lighting(new_base_lighting_color = -1, new_alpha = -1)
 	if(base_lighting_alpha == new_alpha && base_lighting_color == new_base_lighting_color)
