@@ -40,6 +40,11 @@
 	tracker = null
 	return ..()
 
+///Signal handler for when the target orbited is qdeled
+/datum/component/orbiter/proc/clean_target()
+	SIGNAL_HANDLER
+	qdel(src)
+
 /datum/component/orbiter/InheritComponent(datum/component/orbiter/newcomp, original, atom/movable/orbiter, radius, clockwise, rotation_speed, rotation_segments, pre_rotation)
 	if(!newcomp)
 		begin_orbit(arglist(args.Copy(3)))
