@@ -353,3 +353,27 @@
   SplinterGP:
   - code_imp: changed the TL-127 bolt action rifle code to behave more like a bolt
       action, it also now doenst autochamber on loading another magazine.
+2021-08-17:
+  BraveMole:
+  - qol: Larvas sources are shown at the end of the game
+  KornFlaks:
+  - bugfix: Fixed blue crown xeno for leadership disappearing upon evolution.
+  - bugfix: Made FOB drone console indestructable by both marines and xenos.
+  - bugfix: Marines and other unskilled mobs can now decorrupt generators that have
+      previously been decorrupted and repaired.
+  QualityVan:
+  - bugfix: You need to actually have antibiotics in your system to benefit from them
+  Surrealaser:
+  - balance: Transvitox bonus damage now also applies to burn damage converted as
+      well as brute damage dealt to a victim under its effects.
+2021-08-18:
+  BraveMole:
+  - balance: Mortar and minigun can be bought in civil war
+  - expansion: In civil war, becoming undefibbable will make your job available again
+  lbnesquik:
+  - admin: added some missing species to the player panel
+  - qol: Added couple LZ cameras to LZ
+2021-08-19:
+  lbnesquik:
+  - expansion: Expanded a few random spawners to be more useful to mappers. This doesn't
+      help you, COMMON PLAYER.
