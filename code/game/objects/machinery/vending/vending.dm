@@ -72,6 +72,8 @@
 	var/datum/vending_product/currently_vending = null
 	///If this vendor uses a global list for items.
 	var/isshared = FALSE
+	///The sound the vendor makes when it vends something
+	var/vending_sound
 
 	/*These are lists that are made null after they're used, their use is solely to fill the inventory of the vendor on Init.
 	They use the following pattern in case if it doenst pertain to a tab:
@@ -629,6 +631,10 @@
 		else
 			return
 	SSblackbox.record_feedback("tally", "vendored", 1, R.product_name)
+	if(vending_sound)
+		playsound(src, vending_sound, 25, 0)
+	else
+		playsound(src, "vending", 25, 0)
 	if(ispath(R.product_path,/obj/item/weapon/gun))
 		return new R.product_path(get_turf(src), 1)
 	else
