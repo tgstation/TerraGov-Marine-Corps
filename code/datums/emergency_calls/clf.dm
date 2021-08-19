@@ -1,7 +1,7 @@
 //Colonial Liberation Front
 /datum/emergency_call/clf
 	name = "CLF Cell"
-	base_probability = 20
+	base_probability = 0
 	alignement_factor = 0
 
 
