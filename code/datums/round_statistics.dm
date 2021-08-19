@@ -76,3 +76,8 @@ GLOBAL_DATUM_INIT(round_statistics, /datum/round_statistics, new)
 	var/hunter_silence_targets = 0
 	var/xeno_acid_wells = 0
 	var/ravager_rages = 0
+	var/larva_from_marine_spawning = 0
+	var/larva_from_silo = 0
+	var/larva_from_cocoon = 0
+	var/larva_from_psydrain = 0
+	var/larva_from_siloing_body
