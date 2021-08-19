@@ -6,7 +6,11 @@
 	icon = 'icons/effects/landmarks_static.dmi'
 	icon_state = "x6" //Pure white 'X' with black borders
 	anchored = TRUE //No pulling those nodes yo
-	invisibility = INVISIBILITY_OBSERVER //Visible towards ghosts
+	#ifdef TESTING
+	invisibility = 0
+	#else
+	invisibility = INVISIBILITY_ABSTRACT
+	#endif
 	///list of adjacent landmark nodes
 	var/list/adjacent_nodes
 
@@ -16,8 +20,9 @@
 		)
 
 /obj/effect/ai_node/Initialize()
-	. = ..()
+	..()
 	GLOB.allnodes += src
+	return INITIALIZE_HINT_LATELOAD
 
 /obj/effect/ai_node/LateInitialize()
 	make_adjacents()
@@ -36,18 +41,8 @@
 	for(var/nodes in adjacent_nodes)
 		var/obj/effect/ai_node/node = nodes
 		node.adjacent_nodes -= src
+	adjacent_nodes.Cut()
 	return ..()
-
-///Returns a node that is in the direction of this node; must be in the src's adjacent node list
-/obj/effect/ai_node/proc/get_node_in_dir_in_adj(dir)
-	if(!length(adjacent_nodes))
-		return
-
-	for(var/i in adjacent_nodes)
-		var/obj/effect/ai_node/node = i
-		if(get_dir(src, node) != dir)
-			continue
-		return node
 
 /**
  * A proc that gets the "best" adjacent node in src based on score
@@ -57,7 +52,7 @@
  * the node has been visited by a particular thing, while something like NODE_ENEMY_COUNT represents the amount of enemies
  * Parameter call example
  * GetBestAdjNode(list(NODE_LAST_VISITED = -1), IDENTIFIER_XENO)
- * Returns an adjacent node that was last visited; when a AI visits a node, it will set NODE_LAST_VISITED to world.time
+ * Returns an adjacent node that was last visited; when a AI chose to visit a node, it will set NODE_LAST_VISITED to world.time
  */
 /obj/effect/ai_node/proc/get_best_adj_node(list/weight_modifiers, identifier)
 	//No weight modifiers, return a adjacent random node
@@ -66,9 +61,8 @@
 
 	var/obj/effect/ai_node/node_to_return
 	var/current_best_node_score = -INFINITY
-	var/current_score
-	for(var/thing in shuffle_inplace(adjacent_nodes)) //We keep a score for the nodes and see which one is best
-		var/obj/effect/ai_node/node = thing
+	var/current_score = 0
+	for(var/obj/effect/ai_node/node AS in adjacent_nodes) //We keep a score for the nodes and see which one is best
 		current_score = 0
 		for(var/weight in weight_modifiers)
 			current_score += NODE_GET_VALUE_OF_WEIGHT(identifier, node, weight) * weight_modifiers[weight]
@@ -79,25 +73,30 @@
 
 	if(node_to_return)
 		return node_to_return
-	else //Just in case no applicable scores are located
-		return pick(adjacent_nodes)
+	return pick(adjacent_nodes)
 
-///Clears the adjacencies of src and repopulates it, it will consider nodes "adjacent" to src should it be less 15 turfs away and get_dir(src, potential_adjacent_node) returns a cardinal direction
+///Clears the adjacencies of src and repopulates it, it will consider nodes "adjacent" to src should it be less 15 turfs away
 /obj/effect/ai_node/proc/make_adjacents()
-	adjacent_nodes = list()
-	for(var/atom/node in GLOB.allnodes)
-		if(node == src)
+	for(var/obj/effect/ai_node/node AS in GLOB.allnodes)
+		if(node == src || get_dist_euclide_square(src, node) > MAX_NODE_RANGE_SQUARED)
 			continue
-		if(!(get_dist(src, node) < 16))
+		if(!is_in_line_of_sight(get_turf(node)))
 			continue
-		if(ISDIAGONALDIR(get_dir(src, node)))
-			continue
-		adjacent_nodes += node
 
-	//If there's no adjacent nodes then let's throw a runtime (for mappers) and at admins (if they by any chance were spawning these in)
-	if(!length(adjacent_nodes))
-		message_admins("[ADMIN_VERBOSEJMP(loc)] was unable to connect to any considered-adjacent nodes; place them correctly if you were spawning these in, otherwise report this.")
-		CRASH("An ai node was repopulating it's node adjacencies but there were no considered-adjacent nodes nearby; this can be because of a mapping/admin spawning issue. Location: AREACOORD(src)")
+		LAZYDISTINCTADD(adjacent_nodes ,node)
+		LAZYDISTINCTADD(node.adjacent_nodes, src)
+
+///Returns true if the turf in argument is in line of sight
+/obj/effect/ai_node/proc/is_in_line_of_sight(turf/target_loc)
+	var/turf/turf_to_check = get_turf(src)
+
+	while(turf_to_check != target_loc)
+		if(turf_to_check.density || !can_cross_lava_turf(turf_to_check))
+			return FALSE
+		turf_to_check = get_step(turf_to_check, get_dir(turf_to_check, target_loc))
+
+	return TRUE
+
 /obj/effect/ai_node/debug //A debug version of the AINode; makes it visible to allow for easy var editing
 	icon_state = "x6" //Pure white 'X' with black borders
 	color = "#ffffff"
