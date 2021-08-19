@@ -228,12 +228,3 @@
 	icon_state = "c70"
 	max_rounds = 300
 	gun_type = /obj/item/weapon/gun/pistol/chimp
-
-#ifdef REFERENCE_TRACKING
-/obj/item/ammo_magazine/pistol/chimp/qdel_machine
-	name = "\improper CHIMP70 magazine (.70M), but a bit more powerfull"
-	max_rounds = INFINITY
-	default_ammo = /datum/ammo/bullet/pistol/mankey/qdel_machine
-	gun_type = /obj/item/weapon/gun/pistol/chimp/qdel_machine
-
-#endif

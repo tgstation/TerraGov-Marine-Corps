@@ -426,7 +426,7 @@
 	cocked_sound = 'sound/weapons/guns/interact/hp_cocked.ogg'
 	current_mag = /obj/item/ammo_magazine/pistol/highpower
 	force = 10
-
+	
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
 	attachable_offset = list("muzzle_x" = 27, "muzzle_y" = 20,"rail_x" = 8, "rail_y" = 22, "under_x" = 18, "under_y" = 15, "stock_x" = 16, "stock_y" = 15)
 
@@ -555,13 +555,6 @@ It is a modified Beretta 93R, and can fire three round burst or single fire. Whe
 	fire_delay = 0.3 SECONDS
 	burst_delay = 0.2 SECONDS
 	burst_amount = 2
-
-#ifdef REFERENCE_TRACKING
-/obj/item/weapon/gun/pistol/chimp/qdel_machine
-	name = "UNLIMITED POWER MACHINE"
-	desc = "nothing can stop you..."
-	current_mag = /obj/item/ammo_magazine/pistol/chimp/qdel_machine
-#endif
 
 
 /obj/item/weapon/gun/pistol/knife
