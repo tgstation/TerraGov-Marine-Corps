@@ -79,6 +79,7 @@
 		parent.children.Add(src)
 	if(mob_owner)
 		owner = mob_owner
+		RegisterSignal(owner, COMSIG_PARENT_QDELETING, .proc/clean_owner)
 	soft_armor = getArmor()
 	hard_armor = getArmor()
 	return ..()
@@ -92,11 +93,10 @@
 	hard_armor = null
 	return ..()
 
-/*
-/datum/limb/proc/get_icon(icon/race_icon, icon/deform_icon)
-	return icon('icons/mob/human.dmi',"blank")
-*/
-
+///Signal handler to clean owner and prevent hardel
+/datum/limb/proc/clean_owner()
+	SIGNAL_HANDLER
+	owner = null
 
 //Germs
 /datum/limb/proc/handle_antibiotics()

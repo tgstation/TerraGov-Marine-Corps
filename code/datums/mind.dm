@@ -54,8 +54,9 @@
 /datum/mind/proc/clean_current()
 	SIGNAL_HANDLER
 	current?.mind = null
-	UnregisterSignal(current, COMSIG_PARENT_QDELETING)
-	current = null
+	if(current)
+		UnregisterSignal(current, COMSIG_PARENT_QDELETING)
+		current = null
 
 /datum/mind/proc/set_current(mob/new_character)
 	if(new_character.mind)
