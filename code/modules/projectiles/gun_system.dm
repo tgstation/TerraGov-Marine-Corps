@@ -95,14 +95,14 @@
 	///List of allowed attachments, does not have to inclue the starting attachment types.
 	var/list/attachable_allowed		= null		//Must be the exact path to the attachment present in the list. Empty list for a default.
 
-	///This is only !null when a weapon attachment is activated. All procs of firing get passed to this when it is !null.
+	///This is only not null when a weapon attachment is activated. All procs of firing get passed to this when it is not null.
 	var/obj/item/weapon/gun/active_attachable = null
 	///The attachments this gun starts with on Init
 	var/list/starting_attachment_types = null
 	///Image list of attachments overlays.
-	var/list/attachment_overlays = list()
+	var/list/image/attachment_overlays = list()
 	///List of slots a gun can have.
-	var/list/slots = list(
+	var/list/attachments_by_slot = list(
 		ATTACHMENT_SLOT_MUZZLE,
 		ATTACHMENT_SLOT_RAIL,
 		ATTACHMENT_SLOT_STOCK,

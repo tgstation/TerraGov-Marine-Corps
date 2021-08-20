@@ -133,15 +133,18 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	///what gun this attachment is currently attached to, if any.
 	var/obj/item/weapon/gun/master_gun
 
+	///Skill used to attach src to something.
 	var/attach_skill = "firearms"
+	///Skill threshold where the time to attach is halved.
 	var/attach_skill_upper_threshold = SKILL_FIREARMS_TRAINED
-	var/attach_sound
+	///Sound played on attach
+	var/attach_sound = 'sound/machines/click.ogg'
 
 /obj/item/attachable/Initialize()
 	. = ..()
-	AddElement(/datum/element/attachment, slot, icon, attach_icon_state, CALLBACK(src, .proc/on_attach), CALLBACK(src, .proc/on_detach), CALLBACK(src,.proc/activate), pixel_shift_x, pixel_shift_y, flags_attach_features, attach_delay, detach_delay, attach_skill, attach_skill_upper_threshold, 'sound/machines/click.ogg')
+	AddElement(/datum/element/attachment, slot, icon, attach_icon_state, CALLBACK(src, .proc/on_attach), CALLBACK(src, .proc/on_detach), CALLBACK(src,.proc/activate), pixel_shift_x, pixel_shift_y, flags_attach_features, attach_delay, detach_delay, attach_skill, attach_skill_upper_threshold, attach_sound)
 
-
+///Called when the attachment is attached to something. If it is a gun it will update the guns stats.
 /obj/item/attachable/proc/on_attach(attaching_item, mob/user)
 
 	if(!istype(attaching_item, /obj/item/weapon/gun))
@@ -198,7 +201,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 				action_to_update.give_action(living_user)
 
 
-
+///Called when the attachment is detached from something. If the thing is a gun, it returns its stats to what they were before being attached.
 /obj/item/attachable/proc/on_detach(attaching_item, mob/user)
 	if(!isgun(attaching_item))
 		return
@@ -269,6 +272,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	if(activate_attachment(user)) //success
 		playsound(user, activation_sound, 15, 1)
 
+///Called when the attachment is activated.
 /obj/item/attachable/proc/activate(mob/user, turn_off) //This is for activating stuff like flamethrowers, or switching weapon modes.
 	return
 

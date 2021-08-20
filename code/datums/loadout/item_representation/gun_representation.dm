@@ -45,12 +45,13 @@
 			bypass_vendor_check = TRUE
 		var/obj/item/attachable/attachment = instantiate_object(seller, null, user)
 		gun_to_attach.attach_to(attachment)
-	if(ispath(item_type, /obj/item/weapon/gun))
-		var/obj/item/weapon/gun/attachment_type = item_type
-		if(!(initial(attachment_type.flags_attach_features) & ATTACH_REMOVABLE))
-			bypass_vendor_check = TRUE
-		var/obj/item/weapon/gun/gun = instantiate_object(seller, null, user)
-		gun_to_attach.attach_to(gun)
+	if(!ispath(item_type, /obj/item/weapon/gun))
+		return
+	var/obj/item/weapon/gun/attachment_type = item_type
+	if(!(initial(attachment_type.flags_attach_features) & ATTACH_REMOVABLE))
+		bypass_vendor_check = TRUE
+	var/obj/item/weapon/gun/gun = instantiate_object(seller, null, user)
+	gun_to_attach.attach_to(gun)
 
 /**
  * Able to representate a handfull

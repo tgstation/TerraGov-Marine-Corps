@@ -38,4 +38,4 @@
 ///Fills list_to_fill with attachment_data
 /datum/element/attachment/proc/return_attachment_data(datum/source, list/list_to_fill)
 	SIGNAL_HANDLER
-	return list_to_fill.Add(attachment_data)
+	list_to_fill.Add(attachment_data)

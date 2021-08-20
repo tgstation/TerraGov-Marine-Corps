@@ -108,8 +108,8 @@
 	if(in_hand == src && (flags_item & TWOHANDED))
 		if(active_attachable)
 			active_attachable.unload(user)
-		else
-			unload(user)//It has to be held if it's a two hander.
+			return
+		unload(user)//It has to be held if it's a two hander.
 		return
 	else
 		return ..()
@@ -332,6 +332,7 @@ should be alright.
 /obj/item/weapon/gun/proc/is_wielded() //temporary proc until we get traits going
 	return CHECK_BITFIELD(flags_item, WIELDED)
 
+///Checks the gun to see if it has an attachment of type attachment_type
 /obj/item/weapon/gun/proc/has_attachment(attachment_type)
 	for(var/key in slots)
 		var/obj/item/attachment = slots[key]

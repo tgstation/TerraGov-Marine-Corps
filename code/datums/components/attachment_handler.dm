@@ -46,6 +46,7 @@
 
 ///Starts processing the attack, and whether or not the attachable can attack.
 /datum/component/attachment_handler/proc/start_handle_attachment(datum/source, obj/attacking, mob/attacker)
+	SIGNAL_HANDLER
 	if(!is_attachment(attacking))
 		return
 
@@ -94,7 +95,7 @@
 		to_chat(user, span_warning("You have to hold [parent] to do that!"))
 		return FALSE
 
-	var/idisplay = BUSY_ICON_GENERIC
+	var/do_after_icon_type = BUSY_ICON_GENERIC
 	var/attach_delay = attachment_data["attach_delay"]
 
 	var/skill_used = attachment_data["attach_skill"]
@@ -110,9 +111,9 @@
 			attach_delay *= 2
 			user.visible_message(span_notice("[user] begins fumbling about, trying to attach [attachment] to [parent]."),
 			span_notice("You begin fumbling about, trying to attach [attachment] to [parent]."), null, 4)
-			idisplay = BUSY_ICON_UNSKILLED
+			do_after_icon_type = BUSY_ICON_UNSKILLED
 
-	if(!do_after(user, attach_delay, TRUE, parent, idisplay))
+	if(!do_after(user, attach_delay, TRUE, parent, do_after_icon_type))
 		return FALSE
 	
 
@@ -183,7 +184,7 @@
 
 	var/list/attachment_data = get_attachment_data(attachment_to_remove)
 
-	var/idisplay = BUSY_ICON_GENERIC
+	var/do_after_icon_type = BUSY_ICON_GENERIC
 	var/detach_delay = attachment_data["detach_delay"]
 
 	var/skill_used = attachment_data["attach_skill"]
@@ -199,9 +200,9 @@
 			detach_delay *= 2
 			user.visible_message(span_notice("[user] begins fumbling about, trying to detach [attachment_to_remove] from [parent]."),
 			span_notice("You begin fumbling about, trying to detach [attachment_to_remove] from [parent]."), null, 4)
-			idisplay = BUSY_ICON_UNSKILLED
+			do_after_icon_type = BUSY_ICON_UNSKILLED
 
-	if(!do_after(user, detach_delay, TRUE, parent, idisplay))
+	if(!do_after(user, detach_delay, TRUE, parent, do_after_icon_type))
 		return FALSE
 
 	user.visible_message(span_notice("[user] detaches [attachment_to_remove] to [parent]."),
@@ -285,7 +286,7 @@
 ///This calls update_overlay_icon_state
 /datum/component/attachment_handler/proc/overlay_icon_update(datum/source, obj/item/attachment, new_icon_state)
 	SIGNAL_HANDLER
-	return update_overlay_icon_state(attachment, new_icon_state)
+	update_overlay_icon_state(attachment, new_icon_state)
 
 ///This updates the overlay icon state of the inputted attachment
 /datum/component/attachment_handler/proc/update_overlay_icon_state(obj/item/attachment, new_icon_state)

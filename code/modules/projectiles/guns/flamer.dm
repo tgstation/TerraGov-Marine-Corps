@@ -59,12 +59,8 @@
 		return
 	lit = mustlit
 	playsound(user, lit ? 'sound/weapons/guns/interact/flamethrower_off.ogg' : 'sound/weapons/guns/interact/flamethrower_on.ogg', 25, 1)
+	mustlit ? master_gun?.update_attachment_icon_state(src, attach_icon_state) : master_gun?.update_attachment_icon_state(src, attach_icon_state + "_e")
 
-
-	if(!mustlit)
-		master_gun?.update_attachment_icon_state(src, attach_icon_state + "_e")
-	else
-		master_gun?.update_attachment_icon_state(src, attach_icon_state)
 	return TRUE
 
 /obj/item/weapon/gun/flamer/Initialize()
