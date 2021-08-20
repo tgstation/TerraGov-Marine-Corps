@@ -11,7 +11,7 @@
 	var/locked = TRUE
 
 /obj/machinery/bot/Destroy()
-	botcard = null
+	QDEL_NULL(botcard)
 	return ..()
 
 
