@@ -184,7 +184,7 @@
 	smoke = new(src)
 
 /obj/item/explosive/grenade/smokebomb/Destroy()
-	smoke = null
+	QDEL_NULL(smoke)
 	return ..()
 
 /obj/item/explosive/grenade/smokebomb/prime()
