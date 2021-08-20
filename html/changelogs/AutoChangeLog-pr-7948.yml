@@ -1,4 +1,0 @@
-author: "lbnesquik"
-delete-after: True
-changes: 
-  - bugfix: "Ensures wraiths can't reach planetside telecoms."

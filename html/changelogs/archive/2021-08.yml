@@ -377,3 +377,23 @@
   lbnesquik:
   - expansion: Expanded a few random spawners to be more useful to mappers. This doesn't
       help you, COMMON PLAYER.
+2021-08-20:
+  BraveMole:
+  - bugfix: Tadpole is in cloud again
+  - bugfix: Fix rock layer on magmoor
+  - refactor: Ai node refactor
+  - bugfix: Bucket are no longer DENSE
+  - bugfix: Fix xeno able to open shutters
+  KornFlaks:
+  - code_imp: Properly pulls the correct leadership string for xeno leaders upon evolution.
+  Pariah919:
+  - qol: ts-34 can now be vended without the belt, and also saves in loadouts without
+      the belt
+  QualityVan:
+  - bugfix: Handheld chargers can only be used one time at a time
+  lbnesquik:
+  - soundadd: added vending sounds to vending machines.
+  - bugfix: fixes the northern sl vendor on theseus from being only working with alpha
+      squads
+  - bugfix: adds an hypersleep console in preps
+  - bugfix: Ensures wraiths can't reach planetside telecoms.
