@@ -41,7 +41,6 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 
 /datum/ai_behavior/Destroy(force, ...)
 	. = ..()
-	deltimer(anti_stuck_timer)
 	current_node = null
 	escorted_atom = null
 	mob_parent = null
