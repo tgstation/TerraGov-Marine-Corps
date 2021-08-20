@@ -22,6 +22,6 @@
 	var/mob/living/carbon/xenomorph/furious = source
 	if(attacked.stat == DEAD)
 		to_chat(furious, span_notice("This thing is already dead. Why bother touching it?"))
-		return
+		return NONE
 	furious.gain_plasma(damage * damage_plasma_multiplier)
 
