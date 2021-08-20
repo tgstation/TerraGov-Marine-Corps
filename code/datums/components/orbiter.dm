@@ -24,6 +24,7 @@
 	target.orbiters = src
 	if(ismovableatom(target))
 		tracker = new(target, CALLBACK(src, .proc/move_react))
+		RegisterSignal(target, COMSIG_PARENT_QDELETING, .proc/clean_target)
 
 /datum/component/orbiter/UnregisterFromParent()
 	UnregisterSignal(parent, COMSIG_MOVABLE_UPDATE_GLIDE_SIZE)
