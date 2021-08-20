@@ -92,7 +92,7 @@
 	//Attachments.
 	///List of offsets to make attachment overlays not look wonky.
 	var/list/attachable_offset 		= null		//Is a list, see examples of from the other files. Initiated on New() because lists don't initial() properly.
-	///List of allowed attachments, does not have to inclue the starting attachment types.
+	///List of allowed attachments, does not have to include the starting attachment types.
 	var/list/attachable_allowed		= null		//Must be the exact path to the attachment present in the list. Empty list for a default.
 
 	///This is only !null when a weapon attachment is activated. All procs of firing get passed to this when it is !null.
