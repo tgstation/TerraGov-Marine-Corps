@@ -72,38 +72,6 @@
 	attacked.attack_alien(xeno, xeno.xeno_caste.melee_damage * xeno.xeno_melee_damage_modifier)
 	xeno.changeNext_move(xeno.xeno_caste.attack_delay)
 
-/* OLD CODE, REMOVED IN ANOTHER PR DISREGARD
-/datum/ai_behavior/carbon/xeno/deal_with_obstacle()
-	if(world.time < mob_parent.next_move)
-		return
-
-	var/list/things_nearby = range(mob_parent, 1) //Rather than doing multiple range() checks we can just archive it here for just this deal_with_obstacle
-	for(var/obj/structure/obstacle in things_nearby)
-		if(obstacle.resistance_flags & XENO_DAMAGEABLE)
-			var/mob/living/carbon/xenomorph/xeno = mob_parent
-			INVOKE_ASYNC(obstacle, /atom.proc/attack_alien, xeno)
-			mob_parent.face_atom(obstacle)
-			xeno.changeNext_move(xeno.xeno_caste.attack_delay)
-			return
-
-	//Cheat mode: insta open airlocks
-	for(var/obj/machinery/door/airlock/lock in things_nearby)
-		if(!lock.density) //Airlock is already open no need to force it open again
-			continue
-		if(lock.operating) //Airlock already doing something
-			continue
-		if(lock.welded) //It's welded, can't force that open
-			continue
-		lock.open(TRUE)
-		return //Don't try going on window frames after opening up airlocks dammit
-
-	//Teleport onto those window frames, we also can't attempt to attack said window frames so this isn't in the obstacles loop
-	for(var/obj/structure/window_frame/frame in things_nearby)
-		mob_parent.loc = frame.loc
-		return
-
-*/
-
 /datum/ai_behavior/xeno/register_action_signals(action_type)
 	switch(action_type)
 		if(MOVING_TO_ATOM)
