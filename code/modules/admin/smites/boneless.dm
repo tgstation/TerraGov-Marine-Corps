@@ -14,5 +14,5 @@
 	for(var/datum/limb/limb_to_break AS in target.limbs)
 		if(limb_to_break.limb_status & (LIMB_BROKEN | LIMB_DESTROYED | LIMB_AMPUTATED))
 			continue
-		addtimer(CALLBACK(limb_to_break, /datum/limb.proc/fracture), timer - 0.4 SECONDS)
 		timer += 2 SECONDS
+		addtimer(CALLBACK(limb_to_break, /datum/limb.proc/fracture), timer)
