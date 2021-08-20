@@ -142,14 +142,14 @@
 
 ///Adds the luminosity and source for the afected movable atoms to keep track of their visibility.
 /datum/component/overlay_lighting/proc/add_dynamic_lumi(atom/movable/affected_movable)
-	LAZYSET(affected_movable.affected_dynamic_lights, src, lumcount_range + 1)
+	LAZYSET(affected_movable.affected_movable_lights, src, lumcount_range + 1)
 	affected_movable.underlays += visible_mask
 	affected_movable.update_dynamic_luminosity()
 
 
 ///Removes the luminosity and source for the afected movable atoms to keep track of their visibility.
 /datum/component/overlay_lighting/proc/remove_dynamic_lumi(atom/movable/affected_movable)
-	LAZYREMOVE(affected_movable.affected_dynamic_lights, src)
+	LAZYREMOVE(affected_movable.affected_movable_lights, src)
 	affected_movable.underlays -= visible_mask
 	affected_movable.update_dynamic_luminosity()
 
@@ -200,6 +200,7 @@
 
 ///Called when parent changes loc.
 /datum/component/overlay_lighting/proc/on_parent_moved(atom/movable/source, OldLoc, Dir, Forced)
+	SIGNAL_HANDLER
 	check_holder()
 	if(!(overlay_lighting_flags & LIGHTING_ON) || !current_holder)
 		return
@@ -208,6 +209,7 @@
 
 ///Changes the range which the light reaches. 0 means no light, 6 is the maximum value.
 /datum/component/overlay_lighting/proc/set_range(atom/source, new_range)
+	SIGNAL_HANDLER
 	if(range == new_range)
 		return
 	if(range == 0)
