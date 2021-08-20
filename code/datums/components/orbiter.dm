@@ -24,7 +24,6 @@
 	target.orbiters = src
 	if(ismovableatom(target))
 		tracker = new(target, CALLBACK(src, .proc/move_react))
-		RegisterSignal(target, COMSIG_PARENT_QDELETING, .proc/clean_target)
 
 /datum/component/orbiter/UnregisterFromParent()
 	UnregisterSignal(parent, COMSIG_MOVABLE_UPDATE_GLIDE_SIZE)
@@ -38,13 +37,8 @@
 	for(var/i in orbiters)
 		end_orbit(i)
 	orbiters = null
-	tracker = null
+	QDEL_NULL(tracker)
 	return ..()
-
-///Signal handler for when the target orbited is qdeled
-/datum/component/orbiter/proc/clean_target()
-	SIGNAL_HANDLER
-	qdel(src)
 
 /datum/component/orbiter/InheritComponent(datum/component/orbiter/newcomp, original, atom/movable/orbiter, radius, clockwise, rotation_speed, rotation_segments, pre_rotation)
 	if(!newcomp)
