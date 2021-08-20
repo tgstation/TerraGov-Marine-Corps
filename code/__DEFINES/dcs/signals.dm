@@ -248,10 +248,7 @@
 #define COMSIG_ITEM_UNZOOM "item_unzoom"
 #define COMSIG_ITEM_ZOOM "item_zoom"                            //from base of /obj/item/zoom(), used for telling when a scope zooms and for checking if another zoom is already on mob.
 	#define COMSIG_ITEM_ALREADY_ZOOMED (1<<0)                         //bitshift that tells to a item when zoom checking that there already soemthing zooming user.
-#define COMSIG_ITEM_UNIQUE_ACTION "item_unique_action"
-			//from base of /obj/item/unique_action(): (atom/target, mob/user)
-
-
+#define COMSIG_ITEM_UNIQUE_ACTION "item_unique_action" //from base of /obj/item/unique_action(): (atom/target, mob/user)
 #define COMSIG_ITEM_IS_ATTACHMENT "item_is_attachment" //From base of /datum/component/attachment_handler/is_attachment(obj/item/attachment). Used to check if the thing its sending too has the element, /datum/element/attachment.
 #define COMSIG_ITEM_GET_ATTACHMENT_DATA "item_get_attachment_data" //From base of /datum/component/attachment_handler/get_attachment_data(obj/item/attachment). Used to get the attachment_data list from the element of type, /datum/element/attachment, on attachment. 
 #define COMSIG_ITEM_ACTIVATE_ATTACHMENT "item_activate_attachment" //From base of /obj/item/proc/activate_attachment(slot, mob/user). Used to activate an attachment on basis of slot.

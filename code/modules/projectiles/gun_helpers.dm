@@ -324,7 +324,7 @@ should be alright.
 	if(user)
 		var/obj/item/weapon/gun/in_handL = user.l_hand
 		var/obj/item/weapon/gun/in_handR = user.r_hand
-		if( in_handL != src && in_handR != src && !master_gun) //It has to be held.
+		if(in_handL != src && in_handR != src && !master_gun) //It has to be held.
 			to_chat(user, span_warning("You have to hold [src] to do that!"))
 			return
 	return 1

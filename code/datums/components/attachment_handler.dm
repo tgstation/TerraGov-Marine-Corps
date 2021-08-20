@@ -115,9 +115,6 @@
 
 	if(!do_after(user, attach_delay, TRUE, parent, do_after_icon_type))
 		return FALSE
-	
-
-
 	user.visible_message(span_notice("[user] attaches [attachment] to [parent]."),
 	span_notice("You attach [attachment] to [parent]."), null, 4)
 	playsound(user, attachment_data["attach_sound"], 15, 1, 4)
