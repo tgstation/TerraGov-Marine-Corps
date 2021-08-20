@@ -6,7 +6,6 @@
 	icon_state = "0"
 	can_bloody = FALSE
 	light_power = 0.25
-	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
 
 
 /turf/open/space/basic/New()	//Do not convert to Initialize
@@ -29,11 +28,7 @@
 	vis_contents.Cut() //removes inherited overlays
 	visibilityChanged()
 
-	var/area/A = loc
-	if(!IS_DYNAMIC_LIGHTING(src) && IS_DYNAMIC_LIGHTING(A))
-		add_overlay(/obj/effect/fullbright)
-
-	if(light_system == STATIC_LIGHT && light_power && light_range)
+	if(light_system != MOVABLE_LIGHT && light_power && light_range)
 		update_light()
 
 	if(opacity)

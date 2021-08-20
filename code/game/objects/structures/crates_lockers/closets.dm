@@ -9,8 +9,12 @@
 	icon = 'icons/obj/structures/closet.dmi'
 	icon_state = "closed"
 	density = TRUE
+	anchored = TRUE
 	layer = BELOW_OBJ_LAYER
 	hit_sound = 'sound/effects/metalhit.ogg'
+	blocks_emissive = EMISSIVE_BLOCK_GENERIC
+	max_integrity = 200
+	soft_armor = list("melee" = 20, "bullet" = 10, "laser" = 10, "energy" = 0, "bomb" = 10, "bio" = 0, "rad" = 0, "fire" = 70, "acid" = 60)
 	var/icon_closed = "closed"
 	var/icon_opened = "open"
 	var/overlay_welded = "welded"
@@ -18,8 +22,6 @@
 	var/welded = FALSE
 	var/locked = FALSE
 	var/wall_mounted = FALSE //never solid (You can always pass over it)
-	max_integrity = 200
-	soft_armor = list("melee" = 20, "bullet" = 10, "laser" = 10, "energy" = 0, "bomb" = 10, "bio" = 0, "rad" = 0, "fire" = 70, "acid" = 60)
 	var/breakout_time = 2 MINUTES
 	var/lastbang = FALSE
 	var/closet_flags = NONE
@@ -34,7 +36,6 @@
 
 	var/closet_stun_delay = 2 SECONDS
 
-	anchored = TRUE
 
 
 /obj/structure/closet/Initialize(mapload, ...)
@@ -189,7 +190,7 @@
 	if(X.status_flags & INCORPOREAL)
 		return FALSE
 
-	if(X.a_intent == INTENT_HARM && !CHECK_BITFIELD(resistance_flags, UNACIDABLE|INDESTRUCTIBLE))
+	if(X.a_intent == INTENT_HARM && !CHECK_BITFIELD(resistance_flags, RESIST_ALL))
 		X.do_attack_animation(src, ATTACK_EFFECT_SMASH)
 		if(!opened && prob(70))
 			break_open()
