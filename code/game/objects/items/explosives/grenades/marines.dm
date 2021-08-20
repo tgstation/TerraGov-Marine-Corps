@@ -183,6 +183,10 @@
 	. = ..()
 	smoke = new(src)
 
+/obj/item/explosive/grenade/smokebomb/Destroy()
+	smoke = null
+	return ..()
+
 /obj/item/explosive/grenade/smokebomb/prime()
 	playsound(loc, 'sound/effects/smoke.ogg', 25, 1, 4)
 	smoke.set_up(7, loc, 11)
