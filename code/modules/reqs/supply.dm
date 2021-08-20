@@ -622,7 +622,3 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 	if(!SU)
 		SU = new(src)
 	return SU.interact(user)
-
-/obj/machinery/computer/ordercomp/Destroy()
-	. = ..()
-
