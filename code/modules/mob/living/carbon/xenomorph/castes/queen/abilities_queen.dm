@@ -109,6 +109,10 @@
 	succeed_activate()
 	add_cooldown()
 
+	// Adds on average 5 seconds of slowdown on the screeching xeno.
+	X.add_movespeed_modifier(type, TRUE, 0, NONE, TRUE, 2)
+	addtimer(CALLBACK(src, .proc/reset_speed), rand(4 SECONDS, 6 SECONDS))
+
 	playsound(X.loc, 'sound/voice/alien_queen_screech.ogg', 75, 0)
 	X.visible_message(span_xenohighdanger("\The [X] emits an ear-splitting guttural roar!"))
 	GLOB.round_statistics.queen_screech++
@@ -125,6 +129,12 @@
 		if(get_dist(L, X) > WORLD_VIEW_NUM)
 			continue
 		L.screech_act(X, WORLD_VIEW_NUM, L in nearby_living)
+
+/datum/action/xeno_action/activable/screech/proc/reset_speed()
+	var/mob/living/carbon/xenomorph/queen/X = owner
+	if(QDELETED(X))
+		return
+	X.remove_movespeed_modifier(type)
 
 /datum/action/xeno_action/activable/screech/ai_should_start_consider()
 	return TRUE
