@@ -273,6 +273,10 @@
 	soft_armor = list("melee" = 40, "bullet" = 60, "laser" = 60, "energy" = 45, "bomb" = 45, "bio" = 45, "rad" = 45, "fire" = 45, "acid" = 50)
 	slowdown = 0.5 //a bit less
 	light_range = 6
+	pockets = /obj/item/storage/internal/suit/marine/pasvest
+
+/obj/item/storage/internal/suit/marine/pasvest
+	max_w_class = 3
 
 
 //===========================SPECIALIST================================
