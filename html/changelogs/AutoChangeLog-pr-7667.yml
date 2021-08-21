@@ -1,0 +1,4 @@
+author: "QualityVan"
+delete-after: True
+changes: 
+  - rscadd: "Most things on fire will ignite fuel puddles."

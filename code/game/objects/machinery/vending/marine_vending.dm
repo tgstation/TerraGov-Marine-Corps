@@ -126,6 +126,7 @@
 			/obj/item/weapon/gun/shotgun/pump/t35 = -1,
 			/obj/item/weapon/gun/shotgun/combat/standardmarine = -1,
 			/obj/item/weapon/gun/shotgun/pump/cmb = -1,
+			/obj/item/weapon/gun/shotgun/double/marine = -1,
 			/obj/item/storage/belt/gun/ts34/full = -1,
 			/obj/item/ammo_magazine/shotgun = -1,
 			/obj/item/ammo_magazine/shotgun/buckshot = -1,
@@ -206,7 +207,7 @@
 			/obj/item/attachable/attached_gun/flamer = -1,
 			/obj/item/attachable/attached_gun/shotgun = -1,
 			/obj/item/attachable/attached_gun/grenade = -1,
-			/obj/item/attachable/standard_revolver_longbarrel = -1
+			/obj/item/attachable/motiondetector = -1,
 		),
 		"Boxes" = list(
 		/obj/item/ammo_magazine/packet/p9mm = 100,
@@ -317,6 +318,7 @@
 			/obj/item/attachable/attached_gun/flamer = -1,
 			/obj/item/attachable/attached_gun/shotgun = -1,
 			/obj/item/attachable/attached_gun/grenade = -1,
+			/obj/item/attachable/motiondetector = -1,
 		),
 		"Boxes" = list(
 		/obj/item/ammo_magazine/packet/p9mm = 100,
@@ -769,7 +771,6 @@
 		/obj/item/explosive/plastique = 1,
 		/obj/item/explosive/grenade/smokebomb = 3,
 		/obj/item/binoculars/tactical = 1,
-		/obj/item/motiondetector = 1,
 		/obj/item/ammo_magazine/pistol/hp = 2,
 		/obj/item/ammo_magazine/pistol/ap = 1,
 		/obj/item/storage/backpack/marine/satchel = 2,

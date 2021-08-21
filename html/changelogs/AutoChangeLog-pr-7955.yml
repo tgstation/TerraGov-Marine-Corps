@@ -1,0 +1,5 @@
+author: "lbnesquik"
+delete-after: True
+changes: 
+  - rscadd: "Switched a katana type to another sword for fluff reasons."
+  - code_imp: "Added some extra comments to blades.dm"

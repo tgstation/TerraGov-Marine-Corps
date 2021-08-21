@@ -1,0 +1,5 @@
+author: "QualityVan"
+delete-after: True
+changes: 
+  - bugfix: "You don't need medical training to use bar machines now"
+  - bugfix: "Hacking dispensers with a multitool works"
