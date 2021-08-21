@@ -725,3 +725,10 @@
 	log_game("[key_name(X)] has created a pod in [AREACOORD(X)]")
 	xeno_message("<B>[X] has created a king pod at [get_area(X)]. Defend it until the Queen Mother summons a king!</B>", hivenumber = X.hivenumber, target = king_pod, arrow_type = /obj/screen/arrow/leader_tracker_arrow)
 	priority_announce("WARNING: Psychic anomaly detected at [get_area(X)]. Assault of the area reccomended.", "TGMC Intel Division")
+
+
+// ***************************************
+// *********** Queen Jelly
+// ***************************************
+/datum/action/xeno_action/create_jelly/queen
+	cooldown_timer = 60 SECONDS
