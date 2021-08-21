@@ -1,0 +1,4 @@
+author: "lovegreenstuff"
+delete-after: True
+changes: 
+  - balance: "increased slug damage and sunder at the cost of AP"
