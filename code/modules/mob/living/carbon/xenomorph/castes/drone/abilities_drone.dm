@@ -56,5 +56,5 @@
 // ***************************************
 // *********** Drone Jelly
 // ***************************************
-/datum/action/xeno_action/create_jelly/drone
+/datum/action/xeno_action/create_jelly/slow
 	cooldown_timer = 35 SECONDS
