@@ -188,7 +188,7 @@
 	icon_state = "chest"
 	supplies = list(
 		/obj/item/shotgunbox = 1,
-		/obj/item/shotgunbox/buckshot = 1,,
+		/obj/item/shotgunbox/buckshot = 1,
 		/obj/item/storage/box/visual/magazine/compact/standard_pistol/full = 1,
 		/obj/item/storage/box/visual/magazine/compact/standard_heavypistol/full = 1,
 		/obj/item/storage/box/visual/magazine/compact/standard_revolver/full = 1,
