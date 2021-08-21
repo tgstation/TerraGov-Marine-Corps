@@ -1,0 +1,4 @@
+author: "BraveMole"
+delete-after: True
+changes: 
+  - code_imp: "Remove clean bot internal behavior (this is not the roomba, it's the clean bot on magmoor)"
