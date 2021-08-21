@@ -307,7 +307,6 @@
 	var/mob/living/carbon/carbon_target = target
 
 	carbon_target.reagents.add_reagent(X.selected_reagent, DEFILER_REAGENT_SLASH_INJECT_AMOUNT)
-	carbon_target.reagents.add_reagent(/datum/reagent/toxin/xeno_growthtoxin, DEFILER_REAGENT_SLASH_INJECT_AMOUNT, no_overdose = TRUE) //Inject larval growth without ODing
 	playsound(carbon_target, 'sound/effects/spray3.ogg', 15, TRUE)
 	X.visible_message(carbon_target, span_danger("[carbon_target] is pricked by [X]'s spines!"))
 

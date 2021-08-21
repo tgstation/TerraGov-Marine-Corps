@@ -404,6 +404,16 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 		dat += "[GLOB.round_statistics.ravager_rages] number of times Ravagers raged."
 	if(GLOB.round_statistics.hunter_silence_targets)
 		dat += "[GLOB.round_statistics.hunter_silence_targets] number of targets silenced by Hunters."
+	if(GLOB.round_statistics.larva_from_psydrain)
+		dat += "[GLOB.round_statistics.larva_from_psydrain] larvas came from psydrain."
+	if(GLOB.round_statistics.larva_from_silo)
+		dat += "[GLOB.round_statistics.larva_from_silo] larvas came from silos."
+	if(GLOB.round_statistics.larva_from_cocoon)
+		dat += "[GLOB.round_statistics.larva_from_cocoon] larvas came from cocoons."
+	if(GLOB.round_statistics.larva_from_marine_spawning)
+		dat += "[GLOB.round_statistics.larva_from_marine_spawning] larvas came from marine spawning."
+	if(GLOB.round_statistics.larva_from_siloing_body)
+		dat += "[GLOB.round_statistics.larva_from_siloing_body] larvas came from siloing bodies."
 
 	var/output = jointext(dat, "<br>")
 	for(var/mob/player in GLOB.player_list)
@@ -644,7 +654,7 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 	preferred_squads.len = max_squad_num
 	SSjob.active_squads[FACTION_TERRAGOV] = list()
 	for(var/name in preferred_squads) //Back from weight to instantiate var
-		SSjob.active_squads[FACTION_TERRAGOV] += SSjob.squads_by_name[name]
+		SSjob.active_squads[FACTION_TERRAGOV] += LAZYACCESSASSOC(SSjob.squads_by_name, FACTION_TERRAGOV, name)
 	return TRUE
 
 

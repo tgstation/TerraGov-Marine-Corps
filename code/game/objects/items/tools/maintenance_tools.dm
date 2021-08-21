@@ -463,3 +463,86 @@
 	icon_state = "marine_flamerpack"
 	w_class = WEIGHT_CLASS_BULKY
 	max_fuel = 500 //Because the marine backpack can carry 260, and still allows you to take items, there should be a reason to still use this one.
+
+/obj/item/tool/handheld_charger
+	name = "handheld charger"
+	desc = "A hand-held, lightweight cell charger. It isn't going to give you tons of power, but it can help in a pinch."
+	icon = 'icons/obj/items/items.dmi'
+	icon_state = "handheldcharger_black_empty"
+	item_state = "handheldcharger_black_empty"
+	w_class = WEIGHT_CLASS_SMALL
+	flags_atom = CONDUCT
+	force = 6.0
+	throw_speed = 2
+	throw_range = 9
+	flags_equip_slot = ITEM_SLOT_BELT
+	materials = list(/datum/material/metal = 50, /datum/material/glass = 20)
+	/// This is the cell we ar charging
+	var/obj/item/cell/cell
+	///Are we currently recharging something.
+	var/recharging = FALSE
+
+/obj/item/tool/handheld_charger/Initialize()
+	. = ..()
+	cell = null
+
+/obj/item/tool/handheld_charger/attack_self(mob/user)
+	if(!cell)
+		to_chat(user, span_notice("You need a cell to recharge, idiot"))
+		return
+
+	if(cell.charge >= cell.maxcharge)
+		to_chat(user, span_notice("\The [cell] is already fully charged."))
+		return
+
+	if(user.do_actions)
+		to_chat(user, span_notice("You're busy doing something else right now!"))
+		return
+
+	while(do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_GENERIC))
+		cell.charge = min(cell.charge + 200, cell.maxcharge)
+		to_chat(user, span_notice("You squeeze the handle a few times, putting in a few volts of charge."))
+		playsound(user, 'sound/weapons/guns/interact/rifle_reload.ogg', 15, 1, 5)
+		flick("handheldcharger_black_pumping", src)
+		if(cell.charge >= cell.maxcharge)
+			to_chat(user, span_notice("\The [cell] is fully charged."))
+			return
+	to_chat(user, span_notice("You stop using the recharger."))
+
+
+/obj/item/tool/handheld_charger/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+	if(!istype(I, /obj/item/cell))
+		return
+	if(!user.drop_held_item())
+		return
+
+	I.forceMove(src)
+	var/replace_install = "You replace the cell in \the [src]"
+	if(!cell)
+		replace_install = "You install a cell in \the [src]"
+	else
+		cell.update_icon()
+		user.put_in_hands(cell)
+	cell = I
+	to_chat(user, span_notice("[replace_install]. <b>Charge Remaining: [cell.charge]/[cell.maxcharge]</b>"))
+	playsound(user, 'sound/weapons/guns/interact/rifle_reload.ogg', 20, 1, 5)
+	icon_state = "handheldcharger_black"
+
+/obj/item/tool/handheld_charger/attack_hand(mob/living/user)
+	if(user.get_inactive_held_item() != src)
+		return ..()
+	if(!cell)
+		return ..()
+	cell.update_icon()
+	user.put_in_active_hand(cell)
+	cell = null
+	playsound(user, 'sound/machines/click.ogg', 20, 1, 5)
+	to_chat(user, span_notice("You remove the cell from [src]."))
+	icon_state = "handheldcharger_black_empty"
+
+
+/obj/item/tool/handheld_charger/Destroy()
+	QDEL_NULL(cell)
+	return ..()

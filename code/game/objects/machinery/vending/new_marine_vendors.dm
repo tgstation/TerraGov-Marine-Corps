@@ -42,6 +42,7 @@
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
 		if(!allowed(H))
+			to_chat(user, span_warning("Access denied. Your assigned role doesn't have access to this machinery."))
 			return FALSE
 
 		var/obj/item/card/id/I = H.get_idcard()
@@ -52,9 +53,11 @@
 			return FALSE
 
 		if(lock_flags & JOB_LOCK && vendor_role && !istype(H.job, vendor_role))
+			to_chat(user, span_warning("Access denied. This vendor is heavily restricted."))
 			return FALSE
 
 		if(lock_flags & SQUAD_LOCK && (!H.assigned_squad || (squad_tag && H.assigned_squad.name != squad_tag)))
+			to_chat(user, span_warning("Access denied. Your assigned squad isn't allowed to access this machinery."))
 			return FALSE
 
 	return TRUE
@@ -120,6 +123,12 @@
 
 			var/list/L = listed_products[idx]
 			var/cost = L[3]
+
+			if(SSticker.mode?.flags_round_type & MODE_HUMAN_ONLY && is_type_in_typecache(idx, GLOB.hvh_restricted_items_list))
+				to_chat(usr, span_warning("This item is banned by the Space Geneva Convention."))
+				if(icon_deny)
+					flick(icon_deny, src)
+				return
 
 			if(use_points && I.marine_points < cost)
 				to_chat(usr, span_warning("Not enough points."))
@@ -774,8 +783,8 @@
 		/obj/item/beacon/orbital_bombardment_beacon,
 		/obj/item/whistle,
 		/obj/item/radio,
-		/obj/item/motiondetector,
 		/obj/item/binoculars/tactical,
+		/obj/item/attachable/motiondetector,
 		/obj/item/pinpointer/pool,
 		/obj/item/clothing/glasses/hud/health,
 	)
@@ -788,7 +797,7 @@
 		/obj/item/roller/medevac,
 		/obj/item/medevac_beacon,
 		/obj/item/whistle,
-		/obj/item/motiondetector,
+		/obj/item/attachable/motiondetector,
 		/obj/item/clothing/suit/modular,
 		/obj/item/facepaint/green,
 	)
@@ -799,6 +808,7 @@
 		/obj/item/stack/sheet/metal/large_stack,
 		/obj/item/lightreplacer,
 		/obj/item/healthanalyzer,
+		/obj/item/tool/handheld_charger,
 		/obj/item/defibrillator,
 		/obj/item/medevac_beacon,
 		/obj/item/roller/medevac,

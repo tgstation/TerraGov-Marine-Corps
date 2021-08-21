@@ -1237,7 +1237,6 @@
 /obj/item/camera,
 /obj/item/tool/extinguisher,
 /obj/item/reagent_containers/spray/cleaner,
-/obj/item/storage/box/monkeycubes,
 /obj/machinery/vending/nanomed,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/medical_science)
@@ -4094,6 +4093,10 @@
 	dir = 4
 	},
 /area/mainship/squads/general)
+"nF" = (
+/obj/machinery/floor_warn_light/self_destruct,
+/turf/open/floor/mainship/black/full,
+/area/mainship/command/self_destruct)
 "nG" = (
 /obj/structure/prop/mainship/missile_tube,
 /obj/effect/decal/warning_stripes/thin,
@@ -50435,7 +50438,7 @@ oM
 eG
 xe
 jb
-Lb
+Yy
 jc
 rp
 bk
@@ -51977,7 +51980,7 @@ oM
 eZ
 fG
 wo
-dh
+nF
 eZ
 fG
 wo
@@ -55061,7 +55064,7 @@ bk
 eZ
 fG
 wo
-dh
+nF
 eZ
 fG
 wo

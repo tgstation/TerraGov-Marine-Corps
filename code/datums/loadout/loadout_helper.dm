@@ -45,6 +45,8 @@
 		if(item_to_buy_type != item_type)
 			continue
 		item_info = listed_products[item_type]
+		if(item_info[1] == CAT_ESS)
+			return FALSE
 		if(seller.available_points < item_info[3])
 			return FALSE
 		seller.available_points -= item_info[3]
@@ -111,7 +113,7 @@
 	return FALSE
 
 /// Will give a headset corresponding to the user job to the user
-/proc/give_free_headset(mob/living/carbon/human/user)
+/proc/give_free_headset(mob/living/carbon/human/user, faction)
 	if(user.wear_ear)
 		return
 	if(user.job.outfit.ears)
@@ -119,7 +121,8 @@
 		return
 	if(!user.assigned_squad)
 		return
-	user.equip_to_slot_or_del(new /obj/item/radio/headset/mainship/marine(null, user.assigned_squad, user.job.type), SLOT_EARS, override_nodrop = TRUE)
+	var/headset_type = faction == FACTION_TERRAGOV_REBEL ? /obj/item/radio/headset/mainship/marine/rebel : /obj/item/radio/headset/mainship/marine
+	user.equip_to_slot_or_del(new headset_type(null, user.assigned_squad, user.job.type), SLOT_EARS, override_nodrop = TRUE)
 
 /// Will check if the selected category can be bought according to the buying_bitfield
 /proc/can_buy_category(category, buying_bitfield)

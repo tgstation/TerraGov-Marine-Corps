@@ -13,7 +13,7 @@
 	bound_width = 128
 	bound_height = 64
 	bound_y = 64
-	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
+	resistance_flags = RESIST_ALL
 	var/obj/structure/orbital_tray/tray
 	var/chambered_tray = FALSE
 	var/loaded_tray = FALSE
@@ -228,7 +228,7 @@
 	layer = LADDER_LAYER + 0.01
 	bound_width = 64
 	bound_height = 32
-	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
+	resistance_flags = RESIST_ALL
 	pixel_y = -9
 	pixel_x = -6
 	var/obj/structure/ob_ammo/warhead/warhead
@@ -237,13 +237,11 @@
 
 
 /obj/structure/orbital_tray/Destroy()
-	if(warhead)
-		qdel(warhead)
-		warhead = null
+	QDEL_NULL(warhead)
 	if(linked_ob)
 		linked_ob.tray = null
 		linked_ob = null
-	. = ..()
+	return ..()
 
 
 /obj/structure/orbital_tray/update_overlays()
@@ -536,7 +534,7 @@
 	bound_width = 128
 	bound_height = 64
 	bound_y = 64
-	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
+	resistance_flags = RESIST_ALL
 	var/cannon_busy = FALSE
 	var/last_firing = 0 //stores the last time it was fired to check when we can fire again
 	var/obj/structure/ship_ammo/heavygun/railgun/rail_gun_ammo

@@ -204,7 +204,7 @@
 /obj/machinery/door/airlock/multi_tile/mainship/dropshiprear
 	opacity = TRUE
 	width = 3
-	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
+	resistance_flags = RESIST_ALL
 	no_panel = TRUE
 	not_weldable = TRUE
 

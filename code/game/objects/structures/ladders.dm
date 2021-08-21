@@ -8,7 +8,7 @@
 	var/obj/structure/ladder/down = null	//The ladder below this one
 	var/obj/structure/ladder/up = null		//The ladder above this one
 	anchored = TRUE
-	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
+	resistance_flags = RESIST_ALL
 	layer = LADDER_LAYER
 	var/is_watching = 0
 	var/obj/machinery/camera/cam
@@ -50,7 +50,7 @@
 		qdel(cam)
 		cam = null
 	GLOB.ladder_list -= src
-	. = ..()
+	return ..()
 
 /obj/structure/ladder/update_icon_state()
 	if(up && down)

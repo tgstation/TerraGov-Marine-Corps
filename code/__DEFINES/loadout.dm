@@ -76,6 +76,7 @@ GLOBAL_LIST_INIT(engineer_gear_listed_products, list(
 		/obj/item/explosive/plastique = list(CAT_ENGSUP, "Plastique explosive", 3, "black"),
 		/obj/item/detpack = list(CAT_ENGSUP, "Detonation pack", 5, "black"),
 		/obj/item/tool/shovel/etool = list(CAT_ENGSUP, "Entrenching tool", 1, "black"),
+		/obj/item/tool/handheld_charger = list(CAT_ENGSUP, "Hand-held cell charger", 3, "black"),
 		/obj/item/binoculars/tactical/range = list(CAT_ENGSUP, "Range Finder", 10, "black"),
 		/obj/item/cell/high = list(CAT_ENGSUP, "High capacity powercell", 1, "black"),
 		/obj/item/storage/box/explosive_mines = list(CAT_ENGSUP, "M20 mine box", 18, "black"),
@@ -135,7 +136,6 @@ GLOBAL_LIST_INIT(leader_gear_listed_products, list(
 		/obj/item/whistle = list(CAT_LEDSUP, "Whistle", 5, "black"),
 		/obj/item/radio = list(CAT_LEDSUP, "Station bounced radio", 1, "black"),
 		/obj/item/assembly/signaler = list(CAT_LEDSUP, "Signaler (for detpacks)", 1, "black"),
-		/obj/item/motiondetector = list(CAT_LEDSUP, "Motion detector", 5, "black"),
 		/obj/item/storage/firstaid/adv = list(CAT_LEDSUP, "Advanced firstaid kit", 10, "orange"),
 		/obj/item/reagent_containers/hypospray/autoinjector/synaptizine = list(CAT_MEDSUP, "Injector (Synaptizine)", 10, "black"),
 		/obj/item/reagent_containers/hypospray/autoinjector/combat_advanced = list(CAT_MEDSUP, "Injector (Advanced)", 15, "orange"),
@@ -143,6 +143,7 @@ GLOBAL_LIST_INIT(leader_gear_listed_products, list(
 		/obj/structure/closet/bodybag/tarp = list(CAT_LEDSUP, "V1 thermal-dampening tarp", 5, "black"),
 		/obj/item/storage/box/m94/cas = list(CAT_LEDSUP, "CAS flare box", 10, "orange"),
 		/obj/item/deployable_camera = list(CAT_LEDSUP, "Deployable Overwatch Camera", 2, "orange"),
+		/obj/item/fulton_extraction_pack = list(CAT_LEDSUP, "Fulton Extraction Pack", 20, "orange"),
 	))
 
 GLOBAL_LIST_INIT(smartgunner_gear_listed_products, list(
@@ -516,7 +517,6 @@ GLOBAL_LIST_INIT(loadout_role_essential_set, list(
 		/obj/item/beacon/orbital_bombardment_beacon = 1,
 		/obj/item/whistle = 1,
 		/obj/item/radio = 1,
-		/obj/item/motiondetector = 1,
 		/obj/item/binoculars/tactical = 1,
 		/obj/item/pinpointer/pool = 1,
 		/obj/item/clothing/glasses/hud/health = 1,
