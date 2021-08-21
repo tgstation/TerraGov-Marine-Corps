@@ -276,7 +276,7 @@
 	pockets = /obj/item/storage/internal/suit/marine/pasvest
 
 /obj/item/storage/internal/suit/marine/pasvest
-	max_w_class = 3
+	max_w_class = WEIGHT_CLASS_NORMAL
 
 
 //===========================SPECIALIST================================
