@@ -360,9 +360,9 @@ GLOBAL_LIST_EMPTY(tagger_locations)
 
 /obj/machinery/disposal/deliveryChute/Initialize()
 	. = ..()
-	set_trunk(locate(/obj/structure/disposalpipe/trunk) in loc)
+	trunk = locate() in loc
 	if(trunk)
-		trunk.set_linked(src)	// link the pipe trunk to self
+		trunk.linked = src	// link the pipe trunk to self
 
 /obj/machinery/disposal/deliveryChute/interact()
 	return

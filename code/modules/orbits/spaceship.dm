@@ -30,8 +30,6 @@ GLOBAL_VAR_INIT(current_orbit,STANDARD_ORBIT)
 	var/shorted = FALSE
 	///boolean this machine can be interacted with by the AI player. FELSE = can interact
 	var/aidisabled = FALSE
-	///timer id to prevent hardel from the varset call back
-	var/timer_id
 
 //-------------------------------------------
 // Standard procs
@@ -52,11 +50,7 @@ GLOBAL_VAR_INIT(current_orbit,STANDARD_ORBIT)
 /obj/machinery/computer/navigation/Initialize() //need anything special?
 	. = ..()
 	desc = "The navigation console for the [SSmapping.configs[SHIP_MAP].map_name]."
-	timer_id = addtimer(VARSET_CALLBACK(src, changing_orbit, FALSE), 30 MINUTES, TIMER_STOPPABLE) //people running away far too quickly it seems
-
-/obj/machinery/computer/navigation/Destroy()
-	deltimer(timer_id)
-	return ..()
+	addtimer(VARSET_CALLBACK(src, changing_orbit, FALSE), 30 MINUTES) //people running away far too quickly it seems
 
 /obj/machinery/computer/navigation/proc/reset(wire)
 	switch(wire)

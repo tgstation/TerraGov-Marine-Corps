@@ -79,7 +79,6 @@
 		parent.children.Add(src)
 	if(mob_owner)
 		owner = mob_owner
-		RegisterSignal(owner, COMSIG_PARENT_QDELETING, .proc/clean_owner)
 	soft_armor = getArmor()
 	hard_armor = getArmor()
 	return ..()
@@ -93,10 +92,11 @@
 	hard_armor = null
 	return ..()
 
-///Signal handler to clean owner and prevent hardel
-/datum/limb/proc/clean_owner()
-	SIGNAL_HANDLER
-	owner = null
+/*
+/datum/limb/proc/get_icon(icon/race_icon, icon/deform_icon)
+	return icon('icons/mob/human.dmi',"blank")
+*/
+
 
 //Germs
 /datum/limb/proc/handle_antibiotics()
@@ -1113,8 +1113,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 /datum/limb/proc/remove_limb_soft_armor(datum/armor/removed_armor)
 	soft_armor = soft_armor.detachArmor(removed_armor)
 	var/datum/armor/scaled_armor = removed_armor.scaleAllRatings(cover_index * 0.01, 1)
-	if(owner)
-		owner.soft_armor = owner.soft_armor.detachArmor(scaled_armor)
+	owner.soft_armor = owner.soft_armor.detachArmor(scaled_armor)
 
 
 /datum/limb/proc/add_limb_hard_armor(datum/armor/added_armor)
@@ -1126,8 +1125,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 /datum/limb/proc/remove_limb_hard_armor(datum/armor/removed_armor)
 	hard_armor = hard_armor.detachArmor(removed_armor)
 	var/datum/armor/scaled_armor = removed_armor.scaleAllRatings(cover_index * 0.01, 1)
-	if(owner)
-		owner.hard_armor = owner.hard_armor.detachArmor(scaled_armor)
+	owner.hard_armor = owner.hard_armor.detachArmor(scaled_armor)
 
 
 /****************************************************

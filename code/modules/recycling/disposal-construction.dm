@@ -274,7 +274,7 @@
 							var/obj/structure/disposaloutlet/P = new /obj/structure/disposaloutlet(src.loc)
 							P.setDir(dir)
 							var/obj/structure/disposalpipe/trunk/Trunk = CP
-							Trunk.set_linked(P)
+							Trunk.linked = P
 
 						else if(ptype==8) // Disposal outlet
 

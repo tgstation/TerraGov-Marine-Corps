@@ -68,7 +68,6 @@
 
 /obj/machinery/bot/mulebot/Destroy()
 	QDEL_NULL(wires)
-	QDEL_NULL(cell)
 	return ..()
 
 
