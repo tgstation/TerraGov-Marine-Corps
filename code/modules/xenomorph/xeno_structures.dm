@@ -186,6 +186,7 @@ TUNNEL
 	GLOB.xeno_tunnels -= src
 	if(creator)
 		creator.tunnels -= src
+	creator = null
 
 	for(var/datum/atom_hud/xeno_tactical/xeno_tac_hud in GLOB.huds) //HUD clean up
 		xeno_tac_hud.remove_from_hud(src)
