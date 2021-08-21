@@ -167,4 +167,4 @@
 // *********** Crusher Zoom
 // ***************************************
 /datum/action/xeno_action/toggle_long_range/crusher
-	zoom_tileoffset = 6 // Additional half screen of zoom
+	zoom_tileoffset = 5 // Additional half screen of zoom, same as a miniscope.
