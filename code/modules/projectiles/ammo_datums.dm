@@ -695,11 +695,12 @@ datum/ammo/bullet/revolver/tp44
 
 
 /datum/ammo/bullet/shotgun/buckshot/on_hit_mob(mob/M,obj/projectile/P)
-	staggerstun(M, P, stagger = 2, slowdown = 0.5, max_range = 5)
+	staggerstun(M, P, stagger = 2, knockback = 1, slowdown = 0.5, max_range = 5)
 
 /datum/ammo/bullet/shotgun/buckshot/spread
 	name = "additional buckshot"
 	icon_state = "buckshot"
+	bonus_projectiles_amount = 0
 
 /datum/ammo/bullet/shotgun/buckshot/spread/on_hit_mob(mob/M,obj/projectile/P)
 	staggerstun(M, P, shake = 0)
