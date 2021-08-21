@@ -227,8 +227,8 @@
 
 /datum/component/riding/creature/crusher/handle_specials()
 	. = ..()
-	set_riding_offsets(RIDING_OFFSET_ALL, list(TEXT_NORTH = list(7, 0), TEXT_SOUTH = list(6, 9), TEXT_EAST = list(-5, 7), TEXT_WEST = list(20, 7)))
-	set_riding_offsets(/mob/living/carbon/xenomorph/runner, list(TEXT_NORTH = list(0, 12), TEXT_SOUTH = list(0, 20), TEXT_EAST = list(-5, 10), TEXT_WEST = list(10, 10)))
+	set_riding_offsets(RIDING_OFFSET_ALL, list(TEXT_NORTH = list(-9, -3), TEXT_SOUTH = list(-10, 6), TEXT_EAST = list(-21, 4), TEXT_WEST = list(4, 4)))
+	set_riding_offsets(/mob/living/carbon/xenomorph/runner, list(TEXT_NORTH = list(-16, 9), TEXT_SOUTH = list(-16, 17), TEXT_EAST = list(-21, 7), TEXT_WEST = list(-6, 7)))
 	set_vehicle_dir_layer(SOUTH, ABOVE_MOB_LAYER)
 	set_vehicle_dir_layer(NORTH, ABOVE_LYING_MOB_LAYER)
 	set_vehicle_dir_layer(EAST, ABOVE_LYING_MOB_LAYER)
