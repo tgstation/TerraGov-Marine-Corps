@@ -1,4 +1,0 @@
-author: "KornFlaks"
-delete-after: True
-changes: 
-  - code_imp: "Replaced all mentions of the two flags (Unacidable | Indestructable) with a singular Resist_All."

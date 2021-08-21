@@ -397,3 +397,15 @@
       squads
   - bugfix: adds an hypersleep console in preps
   - bugfix: Ensures wraiths can't reach planetside telecoms.
+2021-08-21:
+  BraveMole:
+  - refactor: Ai behavior refactor
+  KornFlaks:
+  - code_imp: Replaced all mentions of the two flags (Unacidable | Indestructable)
+      with a singular Resist_All.
+  QualityVan:
+  - bugfix: Space cleaner works on humans even if you're wearing shoes.
+  TiviPlus:
+  - refactor: Lighting rework
+  lbnesquik:
+  - bugfix: fixes ravager getting free rage from hitting simple mobs.
