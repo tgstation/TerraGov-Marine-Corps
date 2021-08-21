@@ -117,16 +117,15 @@
 		shake_camera(victim, 2, 1)
 
 	var/facing = get_dir(owner, victim)
-	var/fling_distance = (isitem(victim)) ? 4 : 3 //Objects get flung further away.
 	var/turf/T = victim.loc
 	var/turf/temp
 
-	for(var/x in 1 to fling_distance)
+	for(var/x in 1 to SHRIKE_THROW_DISTANCE)
 		temp = get_step(T, facing)
 		if(!temp)
 			break
 		T = temp
-	victim.throw_at(T, fling_distance, 1, owner, TRUE)
+	victim.throw_at(T, SHRIKE_THROW_DISTANCE, 1, owner, TRUE)
 
 
 // ***************************************
@@ -186,9 +185,13 @@
 				H.apply_effects(1, 1) 	// Stun
 				shake_camera(H, 2, 1)
 			var/throwlocation = affected.loc //first we get the target's location
-			for(var/x in 1 to 6)
-				throwlocation = get_step(throwlocation, owner.dir) //then we find where they're being thrown to, checking tile by tile.
-			affected.throw_at(throwlocation, 6, 1, owner, TRUE)
+			var/turf/temp // Temporary turf variable holder to ensure destination exists.
+			for(var/x in 1 to SHRIKE_THROW_DISTANCE) // Identical check to that of Shrike Fling,
+				temp = get_step(throwlocation, owner.dir) //then we find where they're being thrown to, checking tile by tile.
+				if(!temp)
+					break
+				throwlocation = temp
+			affected.throw_at(throwlocation, SHRIKE_THROW_DISTANCE, 1, owner, TRUE)
 
 	owner.visible_message(span_xenowarning("[owner] sends out a huge blast of psychic energy!"), \
 	span_xenowarning("We send out a huge blast of psychic energy!"))
