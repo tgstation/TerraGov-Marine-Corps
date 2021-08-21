@@ -47,6 +47,7 @@
 		/datum/action/xeno_action/activable/stomp,
 		/datum/action/xeno_action/ready_charge,
 		/datum/action/xeno_action/activable/cresttoss,
+		/datum/action/xeno_action/toggle_long_range/crusher,
 	)
 
 /datum/xeno_caste/crusher/young

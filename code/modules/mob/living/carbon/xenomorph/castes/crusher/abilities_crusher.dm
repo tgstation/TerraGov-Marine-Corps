@@ -162,3 +162,9 @@
 	if(!can_use_ability(target, override_flags = XACT_IGNORE_SELECTED_ABILITY))
 		return ..()
 	return TRUE
+
+// ***************************************
+// *********** Crusher Zoom
+// ***************************************
+/datum/action/xeno_action/toggle_long_range/crusher
+	zoom_tileoffset = 6 // Additional half screen of zoom

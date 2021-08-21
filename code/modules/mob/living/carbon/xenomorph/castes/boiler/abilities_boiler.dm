@@ -8,6 +8,8 @@
 	mechanics_text = "Activates your weapon sight in the direction you are facing. Must remain stationary to use."
 	plasma_cost = 20
 	keybind_signal = COMSIG_XENOABILITY_LONG_RANGE_SIGHT
+	/// Number of visible tiles to zoom in direction of xeno.
+	var/zoom_tileoffset = 11
 
 /datum/action/xeno_action/toggle_long_range/action_activate()
 	var/mob/living/carbon/xenomorph/boiler/X = owner
@@ -20,7 +22,7 @@
 			span_notice("We start focusing your sight to look off into the distance."), null, 5)
 		if(!do_after(X, 1 SECONDS, FALSE, null, BUSY_ICON_GENERIC) || X.is_zoomed)
 			return
-		X.zoom_in(11)
+		X.zoom_in(zoom_tileoffset)
 		..()
 
 // ***************************************
