@@ -1043,11 +1043,16 @@ Note that amputating the affected organ does in fact remove the infection from t
 	if (!c_hand)
 		return
 
+	if(!is_usable())
+		owner.dropItemToGround(c_hand)
+		owner.emote("me", 1, "drop[owner.p_s()] what [owner.p_they()] [owner.p_were()] holding in [owner.p_their()] [hand_name], [owner.p_their()] [display_name] unresponsive!")
+		return
 	if(is_broken())
 		if(prob(15))
 			owner.dropItemToGround(c_hand)
 			var/emote_scream = pick("screams in pain and", "lets out a sharp cry and", "cries out and")
 			owner.emote("me", 1, "[(owner.species && owner.species.species_flags & NO_PAIN) ? "" : emote_scream ] drops what they were holding in their [hand_name]!")
+			return
 	if(is_malfunctioning())
 		if(prob(5))
 			owner.dropItemToGround(c_hand)
