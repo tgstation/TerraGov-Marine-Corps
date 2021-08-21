@@ -22,9 +22,11 @@
 				if(pod.z == z)
 					LAZYADD(linked_pods, pod)
 		if("launchall")
+			#ifndef TESTING
 			if(world.time < SSticker.round_start_time + SSticker.mode.deploy_time_lock)
 				to_chat(usr, span_notice("Unable to launch drop pods, the ship has not yet reached the combat area."))
 				return
+			#endif
 			log_game("[usr] has dropped all currently linked droppods, total:[LAZYLEN(linked_pods)]")
 			for(var/p in linked_pods)
 				var/obj/structure/droppod/pod = p

@@ -241,6 +241,8 @@
 			status += " <b>(STABILIZED)</b>"
 		if(org.limb_status & LIMB_MUTATED)
 			status = "weirdly shapen."
+		if(org.limb_status & LIMB_NECROTIZED)
+			status = "rotting"
 		if(org.limb_status & LIMB_DESTROYED)
 			status = "MISSING!"
 

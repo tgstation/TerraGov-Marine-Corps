@@ -350,6 +350,7 @@
 	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "minigun"
 	item_state = "minigun"
+	fire_animation = "minigun_fire"
 	max_shells = 500 //codex
 	caliber = CALIBER_762X51 //codex
 	load_method = MAGAZINE //codex

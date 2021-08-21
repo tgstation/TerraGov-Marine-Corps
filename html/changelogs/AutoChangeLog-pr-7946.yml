@@ -1,0 +1,4 @@
+author: "lbnesquik"
+delete-after: True
+changes: 
+  - qol: "made the AI able to use the chem master. or at least, access it."

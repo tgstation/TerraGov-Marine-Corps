@@ -45,15 +45,29 @@
 
 
 /datum/mind/Destroy(force, ...)
-	current = null
+	clean_current()
 	if(initial_account)
 		QDEL_NULL(initial_account)
 	return ..()
 
+///Signal handler to clean out current and prevent hard del
+/datum/mind/proc/clean_current()
+	SIGNAL_HANDLER
+	current?.mind = null
+	if(current)
+		UnregisterSignal(current, COMSIG_PARENT_QDELETING)
+		current = null
+
+/datum/mind/proc/set_current(mob/new_character)
+	if(new_character.mind)
+		new_character.mind.clean_current()
+	current = new_character
+	RegisterSignal(current, COMSIG_PARENT_QDELETING, .proc/clean_current)
+	new_character.mind = src
 
 /datum/mind/proc/transfer_to(mob/new_character, force_key_move = FALSE)
 	if(current)	// remove ourself from our old body's mind variable
-		current.mind = null
+		clean_current()
 		SStgui.on_transfer(current, new_character)
 
 	if(key)
@@ -62,11 +76,7 @@
 	else
 		key = new_character.key
 
-	if(new_character.mind)								//disassociate any mind currently in our new body's mind variable
-		new_character.mind.current = null
-
-	current = new_character								//associate ourself with our new body
-	new_character.mind = src							//and associate our new body with ourself
+	set_current(new_character)								//associate ourself with our new body
 
 	if(active || force_key_move)
 		new_character.key = key		//now transfer the key to link the client to our new body
@@ -101,4 +111,4 @@
 		mind = new /datum/mind(key)
 	if(!mind.name)
 		mind.name = real_name
-	mind.current = src
+	mind.set_current(src)

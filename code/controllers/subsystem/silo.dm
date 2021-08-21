@@ -23,7 +23,8 @@ SUBSYSTEM_DEF(silo)
 	//We are processing wether we hijacked or not (hijacking gives a bonus)
 	current_larva_spawn_rate *= SSmonitor.gamestate == SHIPSIDE ? 3 : 1
 	current_larva_spawn_rate += larva_spawn_rate_temporary_buff
-	xeno_job.add_job_points(current_larva_spawn_rate, SILO_ORIGIN)
+	GLOB.round_statistics.larva_from_silo += current_larva_spawn_rate / xeno_job.job_points_needed
+	xeno_job.add_job_points(current_larva_spawn_rate)
 
 ///Activate the subsystem when shutters open and remove the free spawning when marines are joining
 /datum/controller/subsystem/silo/proc/start_spawning()
