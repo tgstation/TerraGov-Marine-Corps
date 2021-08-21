@@ -137,10 +137,9 @@
 	if(!LAZYLEN(AM.buckled_mobs))
 		return
 
-	for(var/m in AM.buckled_mobs)
+	for(var/mob/living/buckled_mob AS in AM.buckled_mobs)
 		passindex++
-		var/mob/living/buckled_mob = m
-		var/list/offsets = get_offsets(passindex)
+		var/list/offsets = get_offsets(passindex, buckled_mob.type)
 		buckled_mob.setDir(dir)
 		dir_loop:
 			for(var/offsetdir in offsets)
@@ -169,10 +168,12 @@
 	directional_vehicle_offsets["[dir]"] = list(x, y)
 
 //Override this to set your vehicle's various pixel offsets
-/datum/component/riding/proc/get_offsets(pass_index) // list(dir = x, y, layer)
+/datum/component/riding/proc/get_offsets(pass_index, mob_type) // list(dir = x, y, layer)
 	. = list(TEXT_NORTH = list(0, 0), TEXT_SOUTH = list(0, 0), TEXT_EAST = list(0, 0), TEXT_WEST = list(0, 0))
 	if(riding_offsets["[pass_index]"])
 		. = riding_offsets["[pass_index]"]
+	else if (riding_offsets["[mob_type]"])
+		. = riding_offsets["[mob_type]"]
 	else if(riding_offsets["[RIDING_OFFSET_ALL]"])
 		. = riding_offsets["[RIDING_OFFSET_ALL]"]
 
