@@ -101,6 +101,8 @@
 	if(isnull(.)) //you can set it to null to not change it.
 		. = AM.layer
 	AM.layer = .
+	for(var/mob/M AS in AM.buckled_mobs) //ensure proper layering of piggyback and carry, sometimes weird offsets get applied
+		M.layer = MOB_LAYER
 
 /datum/component/riding/proc/set_vehicle_dir_layer(dir, layer)
 	directional_vehicle_layers["[dir]"] = layer
