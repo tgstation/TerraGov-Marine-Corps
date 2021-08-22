@@ -8,6 +8,7 @@
 
 /datum/ai_behavior/xeno/New(loc, parent_to_assign, escorted_atom)
 	..()
+	RegisterSignal(mob_parent, COMSIG_OBSTRUCTED_MOVE, /datum/ai_behavior.proc/deal_with_obstacle)
 	RegisterSignal(mob_parent, list(ACTION_GIVEN, ACTION_REMOVED), .proc/refresh_abilities)
 	refresh_abilities()
 	mob_parent.a_intent = INTENT_HARM //Killing time

@@ -38,7 +38,6 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 	//We always use the escorted atom as our reference point for looking for target. So if we don't have any escorted atom, we take ourselve as the reference
 	src.escorted_atom = escorted_atom ? escorted_atom : parent_to_assign
 	mob_parent = parent_to_assign
-	RegisterSignal(mob_parent, COMSIG_OBSTRUCTED_MOVE, .proc/deal_with_obstacle)
 	START_PROCESSING(SSprocessing, src)
 
 /datum/ai_behavior/Destroy(force, ...)
