@@ -265,3 +265,11 @@
 		carrying_crusher.visible_message("<span class='danger'>[rider] topples off of [carrying_crusher] as they both fall to the ground!</span>", \
 					"<span class='warning'>You fall to the ground, bringing [rider] with you!</span>", "<span class='hear'>You hear two consecutive thuds.</span>")
 		to_chat(rider, "<span class='danger'>[carrying_crusher] falls to the ground, bringing you with [carrying_crusher.p_them()]!</span>")
+
+//Override this to set your vehicle's various pixel offsets
+/datum/component/riding/creature/crusher/get_offsets(pass_index, mob_type) // list(dir = x, y, layer)
+	. = list(TEXT_NORTH = list(0, 0), TEXT_SOUTH = list(0, 0), TEXT_EAST = list(0, 0), TEXT_WEST = list(0, 0))
+	else if (riding_offsets["[mob_type]"])
+		. = riding_offsets["[mob_type]"]
+	else if(riding_offsets["[RIDING_OFFSET_ALL]"])
+		. = riding_offsets["[RIDING_OFFSET_ALL]"]

@@ -162,8 +162,6 @@
 	. = list(TEXT_NORTH = list(0, 0), TEXT_SOUTH = list(0, 0), TEXT_EAST = list(0, 0), TEXT_WEST = list(0, 0))
 	if(riding_offsets["[pass_index]"])
 		. = riding_offsets["[pass_index]"]
-	else if (riding_offsets["[mob_type]"])
-		. = riding_offsets["[mob_type]"]
 	else if(riding_offsets["[RIDING_OFFSET_ALL]"])
 		. = riding_offsets["[RIDING_OFFSET_ALL]"]
 
