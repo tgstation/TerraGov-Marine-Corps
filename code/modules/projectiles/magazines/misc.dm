@@ -57,11 +57,11 @@
 
 /obj/item/ammo_magazine/packet/t25
 	name = "box of 10x26mm (T-25)"
-	desc = "A box containing 200 rounds of 10x26mm caseless tuned for a T-25 smartrifle.."
+	desc = "A box containing 320 rounds of 10x26mm caseless tuned for a T-25 smartrifle.."
 	icon_state = "box_t25"
 	default_ammo = /datum/ammo/bullet/smartgun/smartrifle
 	caliber = CALIBER_10x26_CASELESS
-	max_rounds = 200
+	max_rounds = 320
 
 // pistol packets
 
