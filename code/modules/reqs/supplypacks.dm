@@ -1264,6 +1264,12 @@ SUPPLIES
 		/obj/item/paper/janitor,
 	)
 	cost = 5
+	
+/datum/supply_packs/supplies/monkey
+	name = "monkey cube crate"
+	notes = "Contains a box of 5 monkey cubes"
+	contains = list(/obj/item/storage/box/monkeycubes)
+	cost = 30
 
 /*******************************************************************************
 Imports
