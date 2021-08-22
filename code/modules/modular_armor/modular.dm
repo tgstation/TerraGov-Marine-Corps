@@ -664,7 +664,8 @@
 	item_icons = list(
 		slot_head_str = 'icons/mob/modular/m10.dmi',
 		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
-		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',)
+		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',
+	)
 	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_PRISON_VARIANT)
 	greyscale_colors = null
 	greyscale_config = null
