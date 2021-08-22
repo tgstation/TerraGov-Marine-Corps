@@ -596,7 +596,7 @@
 		return FALSE
 	if(isobj(A))
 		var/obj/O = A
-		if(CHECK_BITFIELD(O.resistance_flags, UNACIDABLE|INDESTRUCTIBLE))
+		if(CHECK_BITFIELD(O.resistance_flags, RESIST_ALL))
 			if(!silent)
 				to_chat(owner, span_warning("We cannot dissolve \the [O]."))
 			return FALSE
@@ -1335,7 +1335,8 @@
 
 	SSpoints.add_psy_points(X.hivenumber, psy_points_reward)
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
-	xeno_job.add_job_points(larva_point_reward, COCOON_ORIGIN)
+	xeno_job.add_job_points(larva_point_reward)
+	GLOB.round_statistics.larva_from_psydrain +=larva_point_reward / xeno_job.job_points_needed
 
 	log_combat(victim, owner, "was drained.")
 	log_game("[key_name(victim)] was drained at [AREACOORD(victim.loc)].")

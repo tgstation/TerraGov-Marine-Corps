@@ -14,8 +14,7 @@
 	set desc = "Evolve into a higher form."
 	set category = "Alien"
 
-	hive.ui_interact(src)
-
+	GLOB.evo_panel.ui_interact(src)
 
 /mob/living/carbon/xenomorph/verb/regress()
 	set name = "Regress"
@@ -359,6 +358,13 @@
 		new_xeno.hud_set_queen_overwatch()
 		if(hive.living_xeno_queen)
 			new_xeno.handle_xeno_leader_pheromones(hive.living_xeno_queen)
+
+		// Retaining blue crowned leadership on minimap past evolution.
+		var/datum/xeno_caste/original = /datum/xeno_caste
+		// Xenos with specialized icons (Queen, King, Shrike) do not need to have their icon returned to normal
+		if(new_xeno.xeno_caste.minimap_icon == initial(original.minimap_icon))	
+			SSminimaps.remove_marker(new_xeno)
+			SSminimaps.add_marker(new_xeno, new_xeno.z, MINIMAP_FLAG_XENO, new_xeno.xeno_caste.minimap_leadered_icon)
 
 	if(upgrade == XENO_UPGRADE_THREE)
 		switch(tier)

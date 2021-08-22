@@ -1,14 +1,20 @@
 /obj/item/fulton_extraction_pack
 	name = "fulton extraction pack"
-	desc = "A balloon that can be used to extract equipment or personnel to a Fulton Recovery Beacon. Anything not bolted down can be moved. Link the pack to a beacon by using the pack in hand."
+	desc = "A balloon that can be used to extract equipment or personnel. Anything not bolted down can be moved."
 	icon = 'icons/obj/items/fulton.dmi'
 	icon_state = "extraction_pack"
 	w_class = WEIGHT_CLASS_NORMAL
 	tool_behaviour = TOOL_FULTON
-	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
+	resistance_flags = RESIST_ALL
 	///Reference to the balloon vis obj effect
 	var/atom/movable/vis_obj/fulton_baloon/baloon
 	var/obj/effect/fulton_extraction_holder/holder_obj
+	/// How many times you can use the fulton before it goes poof
+	var/uses = 3
+
+/obj/item/fulton_extraction_pack/examine(mob/user)
+	. = ..()
+	to_chat(user, "It has [uses] uses remaining.")
 
 
 /obj/item/fulton_extraction_pack/Initialize()
@@ -32,6 +38,10 @@
 		SSpoints.export_history += export_report
 	user.visible_message(span_notice("[user] finishes attaching [src] to [spirited_away] and activates it."),\
 	span_notice("You attach the pack to [spirited_away] and activate it. This looks like it will yield [export_report.points ? export_report.points : "no"] point[export_report.points == 1 ? "" : "s"]."), null, 5)
+	uses--
+	if(uses < 1)
+		user.temporarilyRemoveItemFromInventory(src) //Removes the item without qdeling it, qdeling it this early will break the rest of the procs
+		moveToNullspace()
 
 	qdel(spirited_away)
 
@@ -92,6 +102,8 @@
 	holder_obj.pixel_z = initial(pixel_z)
 	holder_obj.vis_contents -= baloon
 	baloon.icon_state = initial(baloon.icon_state)
+	if(uses < 1)
+		qdel(src)
 	active = FALSE
 
 

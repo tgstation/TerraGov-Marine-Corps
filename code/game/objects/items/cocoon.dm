@@ -31,7 +31,7 @@
 	victim = _victim
 	victim.forceMove(src)
 	START_PROCESSING(SSslowprocess, src)
-	addtimer(CALLBACK(src, .proc/life_draining_over, TRUE), null, cocoon_life_time)
+	addtimer(CALLBACK(src, .proc/life_draining_over, null, TRUE), cocoon_life_time)
 	RegisterSignal(SSdcs, COMSIG_GLOB_DROPSHIP_HIJACKED, .proc/life_draining_over)
 
 /obj/structure/cocoon/examine(mob/user, distance, infix, suffix)
@@ -62,7 +62,8 @@
 		unanchor_from_nest()
 	if(must_release_victim)
 		var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
-		xeno_job.add_job_points(larva_point_reward, PSY_DRAIN_ORIGIN)
+		xeno_job.add_job_points(larva_point_reward)
+		GLOB.round_statistics.larva_from_cocoon += larva_point_reward / xeno_job.job_points_needed
 		release_victim()
 	update_icon()
 

@@ -292,6 +292,7 @@ You are in charge of logistics and the overwatch system. You are also in line to
 		<b>Gamemode Availability</b>: Distress<br /><br /><br />
 		<b>Duty</b>: Listen and coordinate your crew for the sole dropship you will use. Provide transport and close air support for the marines during the mission. Ensure no threats come aboard your dropship and by extension, the vessel which houses the crew.
 	"}
+	minimap_icon = "pilot"
 
 /datum/job/terragov/command/pilot/rebel
 	title = REBEL_PILOT_OFFICER
@@ -560,6 +561,7 @@ requisitions line and later on to be ready to send supplies for marines who are 
 		<b>Gamemode Availability</b>: Distress<br /><br /><br />
 		Requisition supplies to the battlefield. Ensure that the marines are reparing miners for more points. Supply the marines with deluxe equipment to ensure success.
 	"}
+	minimap_icon = "requisition"
 
 /datum/job/terragov/requisitions/officer/rebel
 	title = REBEL_REQUISITIONS_OFFICER
@@ -964,6 +966,7 @@ Use your office fax machine to communicate with corporate headquarters or to acq
 		<b>Gamemode Availability</b>: Crash, Distress<br /><br /><br />
 		<b>Duty</b>: Support and assist in every department of the TerraGov Marine Corps, use your incredibly developed skills to help the marines during their missions. Serve your purpose.
 	"}
+	minimap_icon = "synth"
 
 /datum/job/terragov/silicon/synthetic/rebel
 	title = REBEL_SYNTHETIC
