@@ -10099,11 +10099,6 @@
 	},
 /turf/open/floor/prison/bright_clean,
 /area/sulaco/hangar)
-"bvh" = (
-/obj/structure/cable,
-/obj/machinery/floor_warn_light/self_destruct,
-/turf/open/floor/prison/bright_clean,
-/area/mainship/command/self_destruct)
 "bvu" = (
 /obj/machinery/computer/droppod_control,
 /obj/structure/table/mainship,
@@ -14100,13 +14095,6 @@
 /obj/machinery/door/poddoor/telecomms,
 /turf/open/floor/plating/platebotc,
 /area/sulaco/telecomms/office)
-"jnt" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/obj/machinery/floor_warn_light/self_destruct,
-/turf/open/floor/prison/bright_clean,
-/area/sulaco/hangar)
 "joP" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
@@ -60298,7 +60286,7 @@ sKM
 aPF
 aPF
 bbh
-jnt
+aRQ
 gHU
 aPF
 aPF
@@ -61840,7 +61828,7 @@ aNE
 aUy
 aOm
 aOm
-bvh
+aKP
 aOm
 aOm
 aUy
@@ -63382,7 +63370,7 @@ aNE
 aUy
 aOv
 aOv
-bvh
+aKP
 aOv
 aOv
 aUy

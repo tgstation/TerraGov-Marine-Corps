@@ -178,7 +178,6 @@
 	light_range = MINIMUM_USEFUL_LIGHT_RANGE
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	light_system = MOVABLE_LIGHT
-	blocks_emissive = NONE
 
 /obj/effect/dummy/lighting_obj/Initialize(mapload, _color, _range, _power, _duration)
 	. = ..()
@@ -207,5 +206,5 @@
 	icon = 'icons/effects/alphacolors.dmi'
 	icon_state = "white"
 	plane = LIGHTING_PLANE
-	layer = BACKGROUND_LAYER + LIGHTING_PRIMARY_LAYER
+	layer = LIGHTING_LAYER
 	blend_mode = BLEND_ADD

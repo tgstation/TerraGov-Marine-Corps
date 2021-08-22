@@ -49,7 +49,7 @@
 	var/list/client_mobs_in_contents // This contains all the client mobs within this container
 
 	///Lazylist to keep track on the sources of illumination.
-	var/list/affected_movable_lights
+	var/list/affected_dynamic_lights
 	///Highest-intensity light affecting us, which determines our visibility.
 	var/affecting_dynamic_lumi = 0
 
@@ -372,13 +372,9 @@
 		update_parallax_contents()
 	if(pulledby)
 		SEND_SIGNAL(src, COMSIG_MOVABLE_PULL_MOVED, old_loc, movement_dir, forced, old_locs)
-	//Cycle through the light sources on this atom and tell them to update.
-	for(var/datum/dynamic_light_source/light AS in hybrid_light_sources)
-		light.source_atom.update_light()
-		if(!isturf(loc))
-			light.find_containing_atom()
-	for(var/datum/static_light_source/L AS in static_light_sources) // Cycle through the light sources on this atom and tell them to update.
-		L.source_atom.static_update_light()
+	for(var/thing in light_sources) // Cycle through the light sources on this atom and tell them to update.
+		var/datum/light_source/L = thing
+		L.source_atom.update_light()
 	return TRUE
 
 

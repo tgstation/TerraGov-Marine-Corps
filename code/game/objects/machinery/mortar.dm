@@ -338,10 +338,9 @@
 /obj/effect/mortar_flare
 	invisibility = INVISIBILITY_MAXIMUM
 	resistance_flags = RESIST_ALL
-	mouse_opacity = 0
-	light_system = HYBRID_LIGHT
-	light_mask_type = /atom/movable/lighting_mask/flicker
-	light_range = 9 //Way brighter than most lights
+	light_system = STATIC_LIGHT
+	light_color = COLOR_VERY_SOFT_YELLOW
+	light_power = 7 //Magnesium/sodium fires (White star) really are bright
 
 /obj/effect/mortar_flare/Initialize()
 	. = ..()

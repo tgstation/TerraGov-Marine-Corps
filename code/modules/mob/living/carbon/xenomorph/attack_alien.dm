@@ -184,7 +184,7 @@
 				to_chat(X, span_warning("We disable the creatures hivemind sight apparatus."))
 				return FALSE
 
-		if(length(static_light_sources) || length(hybrid_light_sources) || length(affected_movable_lights))
+		if(length(light_sources) || length(affected_dynamic_lights))
 			playsound(loc, "alien_claw_metal", 25, 1)
 			X.do_attack_animation(src, ATTACK_EFFECT_CLAW)
 			disable_lights(sparks = TRUE)

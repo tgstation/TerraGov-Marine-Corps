@@ -5,6 +5,7 @@
 /area/shuttle
 	name = "Shuttle"
 	requires_power = FALSE
+	dynamic_lighting = DYNAMIC_LIGHTING_FORCED
 	always_unpowered = FALSE
 //	valid_territory = FALSE
 	icon_state = "shuttle"
@@ -58,8 +59,7 @@
 /area/shuttle/transit
 	name = "Hyperspace"
 	desc = "Weeeeee"
-	base_lighting_alpha = 255
-	base_lighting_color = LIGHT_COLOR_WHITE
+	dynamic_lighting = DYNAMIC_LIGHTING_ENABLED //Different from /tg/
 
 /area/shuttle/escape_pod
 	name = "Escape Pod"
