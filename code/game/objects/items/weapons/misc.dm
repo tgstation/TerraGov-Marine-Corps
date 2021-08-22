@@ -108,13 +108,7 @@
 	var/atom/throw_target = get_edge_target_turf(M, get_dir(src, get_step_away(M, src)))
 	var/throw_distance = setting * LERP(5 , 2, M.mob_size / MOB_SIZE_BIG)
 	M.throw_at(throw_target, throw_distance, 0.5 + (setting / 2))
-
- 	// Minor stun upon being thrown that scales with power level of the fist.
-	var/stun_multi = isxeno(M) ? 5 : 1 // This is required to make the stun actually do something to xenos other than a flicker of icon.
-	 // Actual stun for xenos mainly occurs during the flight-time following fist attack and results in a practical stun once the xeno stops flying of around half a second.
-	 // Marines on the other hand get knocked over and get up immediately with a stun lasting [setting] seconds.
-	M.apply_effects(setting * stun_multi, 0.1 * setting * stun_multi)
-
+	M.apply_effects(setting, 0.1 * setting)
 	cell.charge -= powerused
 	return ..()
 
