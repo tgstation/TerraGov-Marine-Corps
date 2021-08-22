@@ -1,6 +1,0 @@
-author: "RipGrayson"
-delete-after: True
-changes: 
-  - expansion: "Added two more smites to the smite system"
-  - bugfix: "The first option in bloodloss now actually does something"
-  - refactor: "Changed some smite code to be slightly better"

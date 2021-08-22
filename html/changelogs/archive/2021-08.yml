@@ -409,3 +409,43 @@
   - refactor: Lighting rework
   lbnesquik:
   - bugfix: fixes ravager getting free rage from hitting simple mobs.
+2021-08-22:
+  AseFantome:
+  - expansion: Added tanglefoot mini rockets for CAS. Justice has been served.
+  BraveMole:
+  - balance: Diagonal move delay reduced from 2 to 1.6
+  - code_imp: Remove clean bot internal behavior (this is not the roomba, it's the
+      clean bot on magmoor)
+  KornFlaks:
+  - bugfix: Fixes quick equip gun insertion into various storages failing to de-register
+      user firing action.
+  Pariah919:
+  - balance: tp-44 revolver snubnoses are gone, tp-44 no longer staggers at all, revolver
+      now fits normally everywhere again, knockback is gone
+  QualityVan:
+  - rscadd: Most things on fire will ignite fuel puddles.
+  - bugfix: You can't hold stuff in a necrotic arm.
+  - bugfix: Necrotic limbs hurt the same way amputated ones do.
+  - bugfix: Dead fingers can't snap.
+  - bugfix: Dead hands can't roll a wheelchair.
+  - rscadd: You can tell if any of your limbs are dead when checking yourself for
+      wounds.
+  - bugfix: You don't need medical training to use bar machines now
+  - bugfix: Hacking dispensers with a multitool works
+  RipGrayson:
+  - expansion: Added two more smites to the smite system
+  - bugfix: The first option in bloodloss now actually does something
+  - refactor: Changed some smite code to be slightly better
+  Surrealaser:
+  - balance: Endure loses all bonus crit HP; it now only provides slow/stagger immunity,
+      explosive resistance, and immunity to KOing while at negative HP.
+  - balance: If active, Endure grants bonus crit HP that scales with the Ravager's
+      rage power  (up to 100 HP) when the Ravager uses Rage while at negative HP (Super
+      Rages) and its duration increases by 2 seconds each time the Ravager slashes
+      a living mob.
+  lbnesquik:
+  - rscadd: Switched a katana type to another sword for fluff reasons.
+  - code_imp: Added some extra comments to blades.dm
+  - qol: made the AI able to use the chem master. or at least, access it.
+  lovegreenstuff:
+  - balance: increased slug damage and sunder at the cost of AP
