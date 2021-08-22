@@ -18,7 +18,7 @@
 	icon_state = "shuttlecomputer"
 	req_one_access = list(ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LEADER)
 	density = FALSE
-	interaction_flags = INTERACT_MACHINE_TGUI
+	interaction_flags = INTERACT_OBJ_UI
 	resistance_flags = RESIST_ALL
 	shuttleId = "minidropship"
 	lock_override = CAMERA_LOCK_GROUND
@@ -189,7 +189,7 @@
 /obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/ui_interact(mob/user, datum/tgui/ui)
 	. = ..()
 	ui = SStgui.try_update_ui(user, src, ui)
-	if(ui_user || isAI(ui_user))
+	if(ui_user)
 		return
 
 	if(!ui)
