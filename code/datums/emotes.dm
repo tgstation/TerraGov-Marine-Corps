@@ -65,14 +65,15 @@
 	if(tmp_sound && (!(flags_emote & EMOTE_FORCED_AUDIO) || !intentional))
 		playsound(user, tmp_sound, 50, flags_emote & EMOTE_VARY)
 
-	for(var/i in GLOB.dead_mob_list)
-		var/mob/M = i
-		if(isnewplayer(M) || !M.client)
-			continue
-		var/T = get_turf(user)
-		if(!(M.client.prefs.toggles_chat & CHAT_GHOSTSIGHT) || (M in viewers(T, null)))
-			continue
-		M.show_message("[FOLLOW_LINK(M, user)] [dchatmsg]")
+	if(user.client)
+		for(var/i in GLOB.dead_mob_list)
+			var/mob/M = i
+			if(isnewplayer(M) || !M.client)
+				continue
+			var/T = get_turf(user)
+			if(!(M.client.prefs.toggles_chat & CHAT_GHOSTSIGHT) || (M in viewers(T, null)))
+				continue
+			M.show_message("[FOLLOW_LINK(M, user)] [dchatmsg]")
 
 	if(emote_type == EMOTE_AUDIBLE)
 		user.audible_message(msg, audible_message_flags = EMOTE_MESSAGE, emote_prefix = prefix)

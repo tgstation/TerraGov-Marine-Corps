@@ -1,4 +1,0 @@
-author: "KornFlaks"
-delete-after: True
-changes: 
-  - bugfix: "Fixes quick equip gun insertion into various storages failing to de-register user firing action."

@@ -1,5 +1,0 @@
-author: "Surrealaser"
-delete-after: True
-changes: 
-  - balance: "Endure loses all bonus crit HP; it now only provides slow/stagger immunity, explosive resistance, and immunity to KOing while at negative HP."
-  - balance: "If active, Endure grants bonus crit HP that scales with the Ravager's rage power  (up to 100 HP) when the Ravager uses Rage while at negative HP (Super Rages) and its duration increases by 2 seconds each time the Ravager slashes a living mob."
