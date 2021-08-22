@@ -439,6 +439,12 @@ AMMO
 	containertype = null
 	cost = 20
 
+/datum/supply_packs/ammo/flechettecrate
+	name = "Crate of Flechette Shells"
+	contains = list(/obj/item/shotgunbox/flechette)
+	cost = 10
+	available_against_xeno_only = TRUE
+
 /datum/supply_packs/ammo/mateba
 	name = "Mateba magazine"
 	contains = list(/obj/item/ammo_magazine/revolver/mateba)
@@ -460,7 +466,7 @@ AMMO
 /datum/supply_packs/ammo/flechette
 	name = "Box of Flechette Shells"
 	contains = list(/obj/item/ammo_magazine/shotgun/flechette)
-	cost = 10
+	cost = 2
 	available_against_xeno_only = TRUE
 
 /datum/supply_packs/ammo/scout_regular
