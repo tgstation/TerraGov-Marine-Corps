@@ -694,7 +694,7 @@ datum/ammo/bullet/revolver/tp44
 	accurate_range = 5
 	max_range = 10
 	damage = 40
-	damage_falloff = 3
+	damage_falloff = 1
 	penetration = 0
 
 
@@ -710,7 +710,7 @@ datum/ammo/bullet/revolver/tp44
 	accurate_range = 5
 	max_range = 10
 	damage = 40
-	damage_falloff = 3
+	damage_falloff = 1
 	penetration = 0
 
 //buckshot variant only used by the masterkey shotgun attachment.
