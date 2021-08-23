@@ -73,7 +73,7 @@
 				mob_parent.face_atom(obstacle)
 				INVOKE_ASYNC(src, .proc/attack_target, null, obstacle)
 				return COMSIG_OBSTACLE_DEALT_WITH
-		if(istype(thing, /obj/machinery/door/airlock))
+		else if(istype(thing, /obj/machinery/door/airlock))
 			var/obj/machinery/door/airlock/lock = thing
 			if(!lock.density) //Airlock is already open no need to force it open again
 				continue
