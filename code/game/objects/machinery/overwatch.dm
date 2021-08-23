@@ -693,8 +693,8 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 
 	if(!(command_aura in command_aura_allowed))
 		return
-	command_aura_cooldown = 45 //40 ticks, or 90 seconds overall CD, 35 practical.
-	command_aura_tick = 25 //25 ticks, or 50 seconds apprx.
+	command_aura_cooldown = 45 //40 ticks, or 90 seconds overall CD, 60 practical.
+	command_aura_tick = 15//15 ticks, or 30 seconds apprx.
 	var/message = ""
 	switch(command_aura)
 		if("move")
