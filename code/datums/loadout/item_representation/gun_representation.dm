@@ -33,7 +33,7 @@
 /datum/item_representation/gun_attachement/New(obj/item/item_to_copy)
 	if(!item_to_copy)
 		return
-	if(!isgunattachment(item_to_copy))
+	if(!isgunattachment(item_to_copy) && !isgun(item_to_copy))
 		CRASH("/datum/item_representation/gun_attachement created from an item that is not a gun attachment")
 	..()
 
