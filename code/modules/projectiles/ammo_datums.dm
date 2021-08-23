@@ -1005,9 +1005,9 @@ datum/ammo/bullet/revolver/tp44
 
 /datum/ammo/bullet/smartgun/smartrifle
 	name = "smartrifle bullet"
-	damage = 25
-	penetration = 15
-	sundering = 1
+	damage = 20
+	penetration = 10
+	sundering = 1.5
 
 /datum/ammo/bullet/smartgun/lethal
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
