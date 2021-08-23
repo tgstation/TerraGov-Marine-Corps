@@ -112,7 +112,7 @@
 			if(telegraph_message)
 				to_chat(M, telegraph_message)
 			if(M?.client?.prefs?.toggles_sound & SOUND_WEATHER)
-				return
+				continue
 			if(telegraph_sound)
 				SEND_SOUND(M, sound(telegraph_sound, volume = 60))
 
@@ -134,7 +134,7 @@
 			if(weather_message)
 				to_chat(M, weather_message)
 			if(M?.client?.prefs?.toggles_sound & SOUND_WEATHER)
-				return
+				continue
 			if(weather_sound)
 				SEND_SOUND(M, sound(weather_sound))
 
