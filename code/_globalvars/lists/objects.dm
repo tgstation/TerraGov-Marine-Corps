@@ -50,6 +50,8 @@ GLOBAL_LIST_EMPTY(shuttle_controls_list)
 GLOBAL_LIST_EMPTY(lz1_shuttle_console_turfs_list)
 GLOBAL_LIST_EMPTY(lz2_shuttle_console_turfs_list)
 
+GLOBAL_LIST_EMPTY(unmanned_vehicles)
+
 GLOBAL_LIST_INIT(supply_drops, typecacheof(list(
 	/obj/structure/closet/crate,
 	/obj/machinery/vending)))
