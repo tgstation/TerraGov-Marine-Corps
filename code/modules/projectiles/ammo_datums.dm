@@ -691,10 +691,10 @@ datum/ammo/bullet/revolver/tp44
 	bonus_projectiles_scatter = 10
 	accuracy_var_low = 9
 	accuracy_var_high = 9
-	accurate_range = 3
+	accurate_range = 5
 	max_range = 10
 	damage = 40
-	damage_falloff = 4
+	damage_falloff = 1
 	penetration = 0
 
 
@@ -707,10 +707,10 @@ datum/ammo/bullet/revolver/tp44
 	shell_speed = 2
 	accuracy_var_low = 9
 	accuracy_var_high = 9
-	accurate_range = 3
+	accurate_range = 5
 	max_range = 10
 	damage = 40
-	damage_falloff = 4
+	damage_falloff = 1
 	penetration = 0
 
 //buckshot variant only used by the masterkey shotgun attachment.
