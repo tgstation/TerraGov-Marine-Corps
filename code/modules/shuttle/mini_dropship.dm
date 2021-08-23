@@ -175,7 +175,7 @@
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/attack_hand(mob/user)
 	if(damaged)
-		to_chat(user, span_warning("[src] blink and let some weirds sounds, its broken!"))
+		to_chat(user, span_warning("[src] blinks and lets out a crackling noise. Its broken!"))
 		return
 
 	if(fly_state == SHUTTLE_IN_ATMOSPHERE && last_valid_ground_port)
