@@ -55,7 +55,7 @@
 #endif
 
 ///Used to find the sources of harddels, quite laggy, don't be surpised if it freezes your client for a good while
-#define REFERENCE_TRACKING
+//#define REFERENCE_TRACKING
 #ifdef REFERENCE_TRACKING
 
 ///Should we be logging our findings or not
@@ -65,7 +65,7 @@
 //#define REFERENCE_TRACKING_DEBUG
 
 ///Run a lookup on things hard deleting by default.
-#define GC_FAILURE_HARD_LOOKUP
+//#define GC_FAILURE_HARD_LOOKUP
 #ifdef GC_FAILURE_HARD_LOOKUP
 #define FIND_REF_NO_CHECK_TICK
 #endif //ifdef GC_FAILURE_HARD_LOOKUP
