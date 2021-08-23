@@ -1705,6 +1705,25 @@ datum/ammo/bullet/revolver/tp44
 /datum/ammo/xeno/toxin/upgrade3
 	smoke_strength = 0.8
 	reagent_transfer_amount = 10
+	/datum/ammo/xeno/toxin/medium //Queen
+	name = "neurotoxic spatter"
+	added_spit_delay = 10
+	spit_cost = 85
+	damage = 45
+	smoke_strength = 0.7
+	reagent_transfer_amount = 8.5
+
+/datum/ammo/xeno/toxin/medium/upgrade1
+	smoke_strength = 0.75
+	reagent_transfer_amount = 9
+
+/datum/ammo/xeno/toxin/medium/upgrade2
+	smoke_strength = 0.8
+	reagent_transfer_amount = 9.5
+
+/datum/ammo/xeno/toxin/medium/upgrade3
+	smoke_strength = 0.85
+	reagent_transfer_amount = 10
 
 /datum/ammo/xeno/toxin/heavy //Praetorian
 	name = "neurotoxic splash"
