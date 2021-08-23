@@ -1,3 +1,24 @@
+/* Weapons
+* Contains:
+*		Claymore
+*		Harvester
+*		mercsword
+*		Energy Shield
+*		Energy Shield
+*		Energy Shield
+*		Ceremonial Sword
+*		M2132 machete
+*		Officers sword
+*		Commissars sword
+*		Katana
+*		M5 survival knife
+*		Upp Type 30 survival knife
+*		M11 throwing knife
+*		Unathi duelling knife
+*		Chainsword
+*/
+
+
 /obj/item/weapon/claymore
 	name = "claymore"
 	desc = "What are you standing around staring at this for? Get to killing!"
@@ -244,25 +265,34 @@
 	force = 27
 	throwforce = 7
 
+/obj/item/weapon/katana/samurai
+	name = "\improper tachi"
+	desc = "A genuine replica of an ancient blade. This one is in remarkably good condition. It could do some damage to everyone, including yourself."
+	icon_state = "samurai_open"
+	force = 60
+	attack_speed = 12
+	w_class = WEIGHT_CLASS_BULKY
+
+
 /obj/item/weapon/katana/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
 	playsound(loc, 'sound/weapons/bladeslice.ogg', 25, 1)
 	return ..()
 
 /obj/item/weapon/combat_knife
-	name = "\improper M5 'Night Raider' survival knife"
+	name = "\improper M5 survival knife"
 	icon = 'icons/obj/items/weapons.dmi'
 	icon_state = "combat_knife"
 	item_state = "combat_knife"
-	desc = "A standard survival knife of decent quality. You can slide this knife into your boots, and can be field-modified to attach to the end of a rifle with cable coil."
+	desc = "A standard survival knife of high quality. You can slide this knife into your boots, and can be field-modified to attach to the end of a rifle with cable coil."
 	flags_atom = CONDUCT
 	sharp = IS_SHARP_ITEM_ACCURATE
 	materials = list(/datum/material/metal = 200)
-	force = 25
+	force = 30
 	w_class = WEIGHT_CLASS_SMALL
 	throwforce = 20
 	throw_speed = 3
 	throw_range = 6
-	attack_speed = 7
+	attack_speed = 8
 	hitsound = 'sound/weapons/slash.ogg'
 	attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 

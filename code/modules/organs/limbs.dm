@@ -79,6 +79,7 @@
 		parent.children.Add(src)
 	if(mob_owner)
 		owner = mob_owner
+		RegisterSignal(owner, COMSIG_PARENT_QDELETING, .proc/clean_owner)
 	soft_armor = getArmor()
 	hard_armor = getArmor()
 	return ..()
@@ -92,11 +93,10 @@
 	hard_armor = null
 	return ..()
 
-/*
-/datum/limb/proc/get_icon(icon/race_icon, icon/deform_icon)
-	return icon('icons/mob/human.dmi',"blank")
-*/
-
+///Signal handler to clean owner and prevent hardel
+/datum/limb/proc/clean_owner()
+	SIGNAL_HANDLER
+	owner = null
 
 //Germs
 /datum/limb/proc/handle_antibiotics()
@@ -109,17 +109,17 @@
 	if (!germ_level || (spaceacillin + polyhexanide) < MIN_ANTIBIOTICS)
 		return
 
-	var/infection_level = 0
+	var/infection_level = 1
 	switch(germ_level)
 		if(-INFINITY to 10)
 			germ_level = 0
 			return // cure instantly
 		if(11 to INFECTION_LEVEL_ONE)
-			infection_level = 1
-		if(INFECTION_LEVEL_ONE - 1 to INFECTION_LEVEL_TWO)
 			infection_level = 2
-		if(INFECTION_LEVEL_TWO - 1 to INFINITY)
+		if(INFECTION_LEVEL_ONE - 1 to INFECTION_LEVEL_TWO)
 			infection_level = 3
+		if(INFECTION_LEVEL_TWO - 1 to INFINITY)
+			infection_level = 4
 
 	if (spaceacillin >= MIN_ANTIBIOTICS)
 		germ_level -= spaceacillin_curve[infection_level]
@@ -1043,11 +1043,16 @@ Note that amputating the affected organ does in fact remove the infection from t
 	if (!c_hand)
 		return
 
+	if(!is_usable())
+		owner.dropItemToGround(c_hand)
+		owner.emote("me", 1, "drop[owner.p_s()] what [owner.p_they()] [owner.p_were()] holding in [owner.p_their()] [hand_name], [owner.p_their()] [display_name] unresponsive!")
+		return
 	if(is_broken())
 		if(prob(15))
 			owner.dropItemToGround(c_hand)
 			var/emote_scream = pick("screams in pain and", "lets out a sharp cry and", "cries out and")
 			owner.emote("me", 1, "[(owner.species && owner.species.species_flags & NO_PAIN) ? "" : emote_scream ] drops what they were holding in their [hand_name]!")
+			return
 	if(is_malfunctioning())
 		if(prob(5))
 			owner.dropItemToGround(c_hand)
@@ -1108,7 +1113,8 @@ Note that amputating the affected organ does in fact remove the infection from t
 /datum/limb/proc/remove_limb_soft_armor(datum/armor/removed_armor)
 	soft_armor = soft_armor.detachArmor(removed_armor)
 	var/datum/armor/scaled_armor = removed_armor.scaleAllRatings(cover_index * 0.01, 1)
-	owner.soft_armor = owner.soft_armor.detachArmor(scaled_armor)
+	if(owner)
+		owner.soft_armor = owner.soft_armor.detachArmor(scaled_armor)
 
 
 /datum/limb/proc/add_limb_hard_armor(datum/armor/added_armor)
@@ -1120,7 +1126,8 @@ Note that amputating the affected organ does in fact remove the infection from t
 /datum/limb/proc/remove_limb_hard_armor(datum/armor/removed_armor)
 	hard_armor = hard_armor.detachArmor(removed_armor)
 	var/datum/armor/scaled_armor = removed_armor.scaleAllRatings(cover_index * 0.01, 1)
-	owner.hard_armor = owner.hard_armor.detachArmor(scaled_armor)
+	if(owner)
+		owner.hard_armor = owner.hard_armor.detachArmor(scaled_armor)
 
 
 /****************************************************
@@ -1270,14 +1277,14 @@ Note that amputating the affected organ does in fact remove the infection from t
 	if (!disfigured)
 		if (brute_dam > 40)
 			if (prob(50))
-				disfigure("brute")
+				disfigure(BRUTE)
 		if (burn_dam > 40)
 			disfigure("burn")
 
-/datum/limb/head/proc/disfigure(type = "brute")
+/datum/limb/head/proc/disfigure(type = BRUTE)
 	if (disfigured)
 		return
-	if(type == "brute")
+	if(type == BRUTE)
 		owner.visible_message(span_warning(" You hear a sickening cracking sound coming from \the [owner]'s face."),	\
 		span_danger("Your face becomes an unrecognizible mangled mess!"),	\
 		span_warning(" You hear a sickening crack."))

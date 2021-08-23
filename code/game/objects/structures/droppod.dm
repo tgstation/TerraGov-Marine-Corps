@@ -48,12 +48,12 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 	UnregisterSignal(SSdcs, list(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_XENO_HIVEMIND, COMSIG_GLOB_OPEN_SHUTTERS_EARLY, COMSIG_GLOB_TADPOLE_LAUNCHED))
 
 /obj/structure/droppod/Destroy()
-	. = ..()
 	if(occupant)
 		exitpod(occupant, TRUE)
 	userimg = null
 	QDEL_NULL(reserved_area)
 	GLOB.droppod_list -= src
+	return ..()
 
 /obj/structure/droppod/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
 	. = ..()
@@ -154,9 +154,11 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 /obj/structure/droppod/proc/launchpod(mob/user)
 	if(!occupant)
 		return
+	#ifndef TESTING
 	if(!operation_started && world.time < SSticker.round_start_time + SSticker.mode.deploy_time_lock + DROPPOD_DEPLOY_DELAY)
 		to_chat(user, span_notice("Unable to launch, the ship has not yet reached the combat area."))
 		return
+	#endif
 	if(!launch_allowed)
 		to_chat(user, span_notice("Error. Ship calibration unavailable. Please %#&ç:*"))
 		return

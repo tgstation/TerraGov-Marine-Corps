@@ -105,7 +105,7 @@
 					continue
 				statpanel(listed_turf.name, null, A)
 
-/mob/proc/show_message(msg, type, alt_msg, alt_type)
+/mob/proc/show_message(msg, type, alt_msg, alt_type, avoid_highlight)
 	if(!client)
 		return
 
@@ -114,7 +114,7 @@
 	to_chat(src, msg)
 
 
-/mob/living/show_message(msg, type, alt_msg, alt_type)
+/mob/living/show_message(msg, type, alt_msg, alt_type, avoid_highlight)
 	if(!client)
 		return
 
@@ -139,8 +139,8 @@
 
 	if(stat == UNCONSCIOUS && type == EMOTE_AUDIBLE)
 		to_chat(src, "<i>... You can almost hear something ...</i>")
-	else
-		to_chat(src, msg)
+		return
+	to_chat(src, msg, avoid_highlighting = avoid_highlight)
 
 // Show a message to all player mobs who sees this atom
 // Show a message to the src mob (if the src is a mob)
@@ -680,23 +680,24 @@
 			end_of_conga = TRUE //Only mobs can continue the cycle.
 	var/area/new_area = get_area(destination)
 	for(var/atom/movable/AM in conga_line)
+		var/move_dir = get_dir(AM, destination)
 		var/oldLoc
 		if(AM.loc)
 			oldLoc = AM.loc
-			AM.loc.Exited(AM,destination)
+			AM.loc.Exited(AM, move_dir)
 		AM.loc = destination
-		AM.loc.Entered(AM,oldLoc)
+		AM.loc.Entered(AM, oldLoc)
 		var/area/old_area
 		if(oldLoc)
 			old_area = get_area(oldLoc)
 		if(new_area && old_area != new_area)
-			new_area.Entered(AM,oldLoc)
+			new_area.Entered(AM, oldLoc)
 		for(var/atom/movable/CR in destination)
 			if(CR in conga_line)
 				continue
 			CR.Crossed(AM)
 		if(oldLoc)
-			AM.Moved(oldLoc)
+			AM.Moved(oldLoc, move_dir)
 		var/mob/M = AM
 		if(istype(M))
 			M.reset_perspective(destination)

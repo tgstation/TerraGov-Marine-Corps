@@ -64,6 +64,9 @@
 		if(6 to 10) //sip 2
 			L.adjustStaminaLoss(-0.5*effect_str)
 			L.heal_limb_damage(0.1*effect_str, 0.1*effect_str)
+		if(11 to INFINITY) //anything after
+			L.adjustStaminaLoss(-0.15*effect_str)
+			L.heal_limb_damage(0.1*effect_str, 0.1*effect_str)
 	return ..()
 
 /datum/reagent/water/overdose_process(mob/living/L, metabolism)
@@ -486,10 +489,11 @@
 				if(H.w_uniform.clean_blood())
 					H.update_inv_w_uniform(0)
 			if(H.shoes)
+				H.clean_blood(FALSE)
 				if(H.shoes.clean_blood())
 					H.update_inv_shoes(0)
 			else
-				H.clean_blood(1)
+				H.clean_blood(TRUE)
 			return
 	L.clean_blood()
 

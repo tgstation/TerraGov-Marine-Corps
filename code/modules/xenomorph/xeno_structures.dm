@@ -24,7 +24,6 @@
 	max_integrity = 5
 	layer = RESIN_STRUCTURE_LAYER
 	destroy_sound = "alien_resin_break"
-	xeno_structure_flags = IGNORE_WEED_REMOVAL
 	///The hugger inside our trap
 	var/obj/item/clothing/mask/facehugger/hugger = null
 
@@ -187,6 +186,7 @@ TUNNEL
 	GLOB.xeno_tunnels -= src
 	if(creator)
 		creator.tunnels -= src
+	creator = null
 
 	for(var/datum/atom_hud/xeno_tactical/xeno_tac_hud in GLOB.huds) //HUD clean up
 		xeno_tac_hud.remove_from_hud(src)
@@ -710,7 +710,7 @@ TUNNEL
 	COOLDOWN_START(src, silo_damage_alert_cooldown, XENO_SILO_HEALTH_ALERT_COOLDOWN) //set the cooldown.
 
 ///Alerts the Hive when hostiles get too close to their resin silo
-/obj/structure/xeno/resin/silo/proc/resin_silo_proxy_alert(datum/source, atom/hostile)
+/obj/structure/xeno/resin/silo/proc/resin_silo_proxy_alert(datum/source, atom/movable/hostile, direction)
 	SIGNAL_HANDLER
 
 	if(!COOLDOWN_CHECK(src, silo_proxy_alert_cooldown)) //Proxy alert triggered too recently; abort
@@ -788,6 +788,7 @@ TUNNEL
 
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
 	xeno_job.add_job_points(1.75) //4.5 corpses per burrowed; 8 points per larva
+	GLOB.round_statistics.larva_from_siloing_body += 1.75 / xeno_job.job_points_needed
 
 	log_combat(victim, user, "was consumed by a resin silo")
 	log_game("[key_name(victim)] was consumed by a resin silo at [AREACOORD(victim.loc)].")
@@ -933,7 +934,7 @@ TUNNEL
 
 	var/damage = I.force
 	var/multiplier = 1
-	if(I.damtype == "fire") //Burn damage deals extra vs resin structures (mostly welders).
+	if(I.damtype == BURN) //Burn damage deals extra vs resin structures (mostly welders).
 		multiplier += 1
 
 	if(istype(I, /obj/item/tool/pickaxe/plasmacutter) && !user.do_actions)

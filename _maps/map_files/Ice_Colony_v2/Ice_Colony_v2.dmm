@@ -286,6 +286,11 @@
 "abj" = (
 /turf/closed/ice/junction,
 /area/ice_colony/exterior/surface/cliff)
+"abl" = (
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 10
+	},
+/area/ice_colony/exterior/surface/taxiway)
 "abm" = (
 /turf/open/floor/tile/dark,
 /area/ice_colony/exterior/surface/landing_pad2)
@@ -14825,12 +14830,12 @@
 "aYn" = (
 /obj/structure/cable,
 /turf/open/floor/plating/icefloor,
-/area/ice_colony/exterior/surface/landing_pad)
+/area/ice_colony/exterior/surface/taxiway)
 "aYo" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plating/icefloor,
-/area/ice_colony/exterior/surface/landing_pad)
+/area/ice_colony/exterior/surface/taxiway)
 "aYp" = (
 /obj/machinery/landinglight/ds1{
 	dir = 4
@@ -14899,12 +14904,12 @@
 "aYF" = (
 /obj/structure/cable,
 /turf/open/floor/plating/icefloor/warnplate,
-/area/ice_colony/exterior/surface/landing_pad)
+/area/ice_colony/exterior/surface/taxiway)
 "aYG" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plating/icefloor/warnplate,
-/area/ice_colony/exterior/surface/landing_pad)
+/area/ice_colony/exterior/surface/taxiway)
 "aYH" = (
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 6
@@ -15012,7 +15017,7 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/plating/icefloor,
-/area/ice_colony/exterior/surface/landing_pad)
+/area/ice_colony/exterior/surface/taxiway)
 "aZc" = (
 /obj/effect/turf_underlay/tiles/dark2,
 /turf/closed/shuttle{
@@ -15028,7 +15033,7 @@
 	dir = 8
 	},
 /turf/open/floor/plating/icefloor,
-/area/ice_colony/exterior/surface/landing_pad)
+/area/ice_colony/exterior/surface/taxiway)
 "aZg" = (
 /turf/closed/shuttle{
 	icon_state = "swall13"
@@ -15114,7 +15119,7 @@
 "aZu" = (
 /obj/item/lightstick,
 /turf/open/floor/plating/icefloor,
-/area/ice_colony/exterior/surface/landing_pad)
+/area/ice_colony/exterior/surface/taxiway)
 "aZv" = (
 /obj/machinery/landinglight/ds1/delaytwo{
 	dir = 8
@@ -15646,7 +15651,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 8
 	},
-/area/ice_colony/exterior/surface/landing_pad)
+/area/ice_colony/exterior/surface/taxiway)
 "bbf" = (
 /obj/structure/ice_sign,
 /turf/open/floor/plating/ground/ice,
@@ -15721,7 +15726,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 8
 	},
-/area/ice_colony/exterior/surface/landing_pad)
+/area/ice_colony/exterior/surface/taxiway)
 "bbp" = (
 /obj/effect/decal/cleanable/blood/oil,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -15732,7 +15737,7 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/plating/icefloor,
-/area/ice_colony/exterior/surface/landing_pad)
+/area/ice_colony/exterior/surface/taxiway)
 "bbq" = (
 /turf/open/floor/plating,
 /area/ice_colony/exterior/underground/caves/open)
@@ -16045,11 +16050,11 @@
 "bcF" = (
 /obj/vehicle/train/cargo/trolley,
 /turf/open/floor/plating/icefloor,
-/area/ice_colony/exterior/surface/landing_pad)
+/area/ice_colony/exterior/surface/taxiway)
 "bcG" = (
 /obj/vehicle/train/cargo/engine,
 /turf/open/floor/plating/icefloor,
-/area/ice_colony/exterior/surface/landing_pad)
+/area/ice_colony/exterior/surface/taxiway)
 "bcH" = (
 /turf/open/floor/freezer,
 /area/ice_colony/underground/requesition/storage)
@@ -17094,6 +17099,10 @@
 	dir = 5
 	},
 /area/ice_colony/exterior/surface/valley/southwest)
+"bgd" = (
+/obj/effect/decal/cleanable/blood/oil,
+/turf/open/floor/plating/icefloor,
+/area/ice_colony/exterior/surface/taxiway)
 "bge" = (
 /obj/effect/turf_underlay/icefloor,
 /turf/closed/ice/thin/junction{
@@ -28561,7 +28570,7 @@
 /area/ice_colony/underground/hallway/south_east)
 "bSt" = (
 /turf/open/floor/tile/dark2,
-/area/ice_colony/exterior/surface/landing_pad)
+/area/ice_colony/exterior/surface/taxiway)
 "bSu" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark/brown2{
@@ -31295,7 +31304,7 @@
 "cYG" = (
 /obj/machinery/floodlight/colony,
 /turf/open/floor/plating/icefloor,
-/area/ice_colony/exterior/surface/landing_pad)
+/area/ice_colony/exterior/surface/taxiway)
 "dfU" = (
 /obj/structure/cable,
 /obj/structure/sign/greencross{
@@ -32041,6 +32050,11 @@
 /obj/machinery/floodlight/colony,
 /turf/open/floor/plating/ground/snow/layer1,
 /area/ice_colony/exterior/surface/valley/south)
+"jKJ" = (
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 1
+	},
+/area/ice_colony/exterior/surface/taxiway)
 "jMW" = (
 /turf/closed/ice/end{
 	dir = 8
@@ -32144,6 +32158,9 @@
 	dir = 8
 	},
 /area/ice_colony/exterior/surface/cliff)
+"kzj" = (
+/turf/open/floor/plating/icefloor,
+/area/ice_colony/exterior/surface/taxiway)
 "kCS" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating,
@@ -32293,6 +32310,11 @@
 /obj/machinery/floodlight/colony,
 /turf/open/floor/plating/ground/snow/layer1,
 /area/ice_colony/exterior/surface/clearing/south)
+"meD" = (
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 6
+	},
+/area/ice_colony/exterior/surface/taxiway)
 "mhm" = (
 /turf/closed/ice/end{
 	dir = 4
@@ -32408,7 +32430,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 9
 	},
-/area/ice_colony/exterior/surface/landing_pad)
+/area/ice_colony/exterior/surface/taxiway)
 "mTO" = (
 /obj/machinery/miner/damaged,
 /turf/open/floor/plating/ground/snow/layer1,
@@ -32641,7 +32663,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 8
 	},
-/area/ice_colony/exterior/surface/landing_pad)
+/area/ice_colony/exterior/surface/taxiway)
 "oFx" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/closed/ice/corner{
@@ -33412,9 +33434,17 @@
 	dir = 1
 	},
 /area/ice_colony/exterior/surface/landing_pad2)
+"vhY" = (
+/turf/open/floor/plating/icefloor/warnplate,
+/area/ice_colony/exterior/surface/taxiway)
 "viy" = (
 /turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/valley/north)
+"vjK" = (
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 8
+	},
+/area/ice_colony/exterior/surface/taxiway)
 "vnY" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/closed/ice/corner{
@@ -67555,8 +67585,8 @@ aOf
 mTI
 bbe
 bbo
-bbu
-bbu
+vjK
+vjK
 bbe
 oEX
 aZE
@@ -67809,13 +67839,13 @@ aPH
 aXk
 btU
 aOf
-aYB
-aYC
+jKJ
+kzj
 aZb
-aYC
-aYC
-aYC
-aYC
+kzj
+kzj
+kzj
+kzj
 aYa
 baC
 aUq
@@ -68066,14 +68096,14 @@ aPF
 aPF
 aZN
 baO
-aYB
-aYC
+jKJ
+kzj
 aZb
-aYC
-aYC
-aYC
-aYC
-aYC
+kzj
+kzj
+kzj
+kzj
+kzj
 bcE
 aUq
 aaQ
@@ -68323,14 +68353,14 @@ aPH
 aPH
 aPH
 baP
-aYC
-aYC
+kzj
+kzj
 bbp
-aYC
-aYC
-aYC
-aYC
-aYC
+kzj
+kzj
+kzj
+kzj
+kzj
 aYa
 baC
 aaQ
@@ -68580,15 +68610,15 @@ aPH
 aPH
 aPH
 baP
-aYC
-aYC
+kzj
+kzj
 aZb
-aYC
-aYC
-aYC
-aYC
-aYC
-aYC
+kzj
+kzj
+kzj
+kzj
+kzj
+kzj
 bcE
 aaQ
 acj
@@ -68837,15 +68867,15 @@ aSf
 aZc
 aZO
 baP
-aYC
-aYC
+kzj
+kzj
 aZb
-aYC
-aYC
-aYC
-aYC
-aYC
-aYC
+kzj
+kzj
+kzj
+kzj
+kzj
+kzj
 bcE
 aaQ
 aaC
@@ -69094,15 +69124,15 @@ aWb
 aSj
 aPH
 baP
-aYC
-aYC
+kzj
+kzj
 aZb
-aYC
-aYC
-aYC
-aYC
-aYC
-aYC
+kzj
+kzj
+kzj
+kzj
+kzj
+kzj
 aWF
 aaQ
 aaC
@@ -69351,16 +69381,16 @@ aYg
 aZg
 aPH
 baP
-aYC
-aYC
+kzj
+kzj
 aZb
-aYC
-aYC
-aYC
-aYC
-aYC
-aYC
-aYC
+kzj
+kzj
+kzj
+kzj
+kzj
+kzj
+kzj
 aaQ
 aaC
 aaC
@@ -69608,16 +69638,16 @@ aWe
 aTZ
 aPH
 baP
-aYC
-aYC
+kzj
+kzj
 aZb
-aYC
-aYC
-aYC
-aYC
-aYC
+kzj
+kzj
+kzj
+kzj
+kzj
 bcF
-aYC
+kzj
 aaQ
 aaC
 aaC
@@ -69865,16 +69895,16 @@ aPH
 aXn
 aZP
 baP
-aYC
-aYC
+kzj
+kzj
 aZb
-aYC
-aYC
-aYC
-aYC
-aYC
+kzj
+kzj
+kzj
+kzj
+kzj
 bcF
-aYC
+kzj
 aaR
 abb
 aaC
@@ -70122,17 +70152,17 @@ aPH
 aPH
 aPH
 baP
-aYC
-aYC
+kzj
+kzj
 aZb
-aYC
+kzj
 aZu
-aYC
-aYC
-aYC
+kzj
+kzj
+kzj
 bcF
-aYC
-aZR
+kzj
+vhY
 aaQ
 aaC
 acm
@@ -70379,17 +70409,17 @@ aPH
 aPH
 aPH
 baP
-aYC
-aYC
+kzj
+kzj
 aZb
-aYC
-aYC
-aYC
-aYC
-aYC
+kzj
+kzj
+kzj
+kzj
+kzj
 bcF
-aYC
-aZR
+kzj
+vhY
 aaQ
 aaC
 acm
@@ -70636,17 +70666,17 @@ aPM
 aPM
 aZW
 baQ
-aYB
-aYC
+jKJ
+kzj
 aZb
-aYC
-aYC
-aYC
-aZn
-aYC
+kzj
+kzj
+kzj
+bgd
+kzj
 bcF
-aYC
-aZR
+kzj
+vhY
 aaQ
 aaC
 acm
@@ -70893,17 +70923,17 @@ aPH
 aXo
 buZ
 aOf
-aYB
-aYC
+jKJ
+kzj
 aZb
-aYC
-aYC
-aYC
-aYC
-aYC
+kzj
+kzj
+kzj
+kzj
+kzj
 bcF
-aYC
-aZR
+kzj
+vhY
 aaQ
 aaC
 acm
@@ -71150,17 +71180,17 @@ aWK
 aXp
 aOf
 aOf
-aYB
-aYC
+jKJ
+kzj
 aZb
-aYC
-aYC
-aYC
-aYC
-aYC
+kzj
+kzj
+kzj
+kzj
+kzj
 bcG
-aYC
-aZR
+kzj
+vhY
 aaQ
 aaC
 acj
@@ -71407,17 +71437,17 @@ aSn
 aOf
 aOf
 cYG
-aYE
-aYC
+abl
+kzj
 aZb
-aYC
-aYC
-aYC
-aYC
-aYC
-aYC
-aYC
-aZR
+kzj
+kzj
+kzj
+kzj
+kzj
+kzj
+kzj
+vhY
 aaQ
 aaC
 aaC
@@ -71667,13 +71697,13 @@ aYn
 aYF
 aYn
 aZb
-aYC
-aYC
-aYC
-aYC
-aYC
-aYC
-aYC
+kzj
+kzj
+kzj
+kzj
+kzj
+kzj
+kzj
 aUN
 aaQ
 aaC
@@ -71924,13 +71954,13 @@ aYo
 aYG
 aYo
 aZe
-aYC
-aYC
-aYC
-aYC
-aYC
-aYC
-aYC
+kzj
+kzj
+kzj
+kzj
+kzj
+kzj
+kzj
 bcE
 aaR
 abb
@@ -72178,16 +72208,16 @@ aSo
 aOj
 aOj
 cYG
-aYH
-aYC
-aYC
-aYC
-aYC
-aYC
-aYC
-aYC
-aYC
-aYC
+meD
+kzj
+kzj
+kzj
+kzj
+kzj
+kzj
+kzj
+kzj
+kzj
 bcE
 aUq
 aaQ
@@ -72435,15 +72465,15 @@ aYh
 aZk
 aOj
 aOj
-aYB
-aYC
-aYC
-aYC
-aYC
-aYC
-aYC
-aYC
-aYC
+jKJ
+kzj
+kzj
+kzj
+kzj
+kzj
+kzj
+kzj
+kzj
 aZE
 aZM
 aUq
@@ -72692,15 +72722,15 @@ aPT
 aZm
 bwd
 aOj
-aYB
-aYC
-aYC
-aYC
-aYC
-aYC
-aYC
-aYC
-aYC
+jKJ
+kzj
+kzj
+kzj
+kzj
+kzj
+kzj
+kzj
+kzj
 bcE
 aUq
 aUq
@@ -72949,14 +72979,14 @@ aYj
 aRA
 ban
 baV
-aYB
-aYC
-aYC
-aYC
-aYC
-aYC
-aYC
-aYC
+jKJ
+kzj
+kzj
+kzj
+kzj
+kzj
+kzj
+kzj
 aZE
 aZM
 aUq
@@ -73206,14 +73236,14 @@ aPT
 aPT
 aPT
 baX
-aYC
-aYC
-aYC
-aYC
-aYC
-aYC
-aYC
-aYC
+kzj
+kzj
+kzj
+kzj
+kzj
+kzj
+kzj
+kzj
 bcE
 aUq
 aUq
@@ -73463,14 +73493,14 @@ aPT
 aPT
 aPT
 baX
-aYC
-aYC
-aYC
-aYC
-aYC
-aYC
-aYC
-aYC
+kzj
+kzj
+kzj
+kzj
+kzj
+kzj
+kzj
+kzj
 aYa
 baC
 aUq
@@ -73720,15 +73750,15 @@ aPT
 aZp
 bap
 baX
-aYC
-aYC
-aYC
-aYC
-aYC
-aYC
-aYC
-aYC
-aYC
+kzj
+kzj
+kzj
+kzj
+kzj
+kzj
+kzj
+kzj
+kzj
 aYa
 baC
 abj
@@ -73977,16 +74007,16 @@ aXP
 aSs
 aPT
 baX
-aYC
-aYC
-aYC
-aYC
-aYC
-aYC
-aYC
-aZn
-aYC
-aYC
+kzj
+kzj
+kzj
+kzj
+kzj
+kzj
+kzj
+bgd
+kzj
+kzj
 bcE
 aaQ
 aaC
@@ -74234,16 +74264,16 @@ aYk
 aZq
 aPT
 baX
-aYC
-aYC
-aYC
-aYC
-aYC
-aYC
-aYC
-aYC
-aYC
-aYC
+kzj
+kzj
+kzj
+kzj
+kzj
+kzj
+kzj
+kzj
+kzj
+kzj
 bcE
 aaQ
 aaC
@@ -74491,16 +74521,16 @@ aWn
 aUa
 aPT
 baX
-aYC
-aYC
-aYC
+kzj
+kzj
+kzj
 bSt
-aYC
-aYC
-aYC
-aYC
-aYC
-aYC
+kzj
+kzj
+kzj
+kzj
+kzj
+kzj
 aWF
 aUq
 aUq
@@ -74748,17 +74778,17 @@ aPT
 aXv
 baq
 baX
-aYC
-aYC
-aYC
-aYC
-aYC
-aYC
-aYC
-aYC
-aYC
-aYC
-aZR
+kzj
+kzj
+kzj
+kzj
+kzj
+kzj
+kzj
+kzj
+kzj
+kzj
+vhY
 aUN
 aUq
 aUq
@@ -75005,17 +75035,17 @@ aPT
 aPT
 aPT
 baX
-aYC
-aYC
-aYC
-aZn
-aYC
-aYC
-aYC
-aYC
-aYC
-aYC
-aZR
+kzj
+kzj
+kzj
+bgd
+kzj
+kzj
+kzj
+kzj
+kzj
+kzj
+vhY
 bcE
 aUq
 aUq
@@ -75262,17 +75292,17 @@ aPT
 aPT
 aPT
 baX
-aYC
-aYC
-aYC
-aYC
-aYC
-aYC
-aYC
-aYC
+kzj
+kzj
+kzj
+kzj
+kzj
+kzj
+kzj
+kzj
 aZu
-aYC
-aZR
+kzj
+vhY
 aYa
 baC
 aaS
@@ -75519,17 +75549,17 @@ aPY
 aPY
 baw
 bba
-aYB
-aYC
-aYC
-aYC
-aYC
-aYC
-aYC
-aYC
-aYC
-aYC
-aZR
+jKJ
+kzj
+kzj
+kzj
+kzj
+kzj
+kzj
+kzj
+kzj
+kzj
+vhY
 aUP
 bcE
 abc

@@ -65,7 +65,7 @@
 	desc = "It's beautiful! A certain person might beat you to death if you trample these."
 	icon = 'icons/obj/items/harvest.dmi'
 	icon_state = "sunflower"
-	damtype = "fire"
+	damtype = BURN
 	force = 0
 	flags_atom = NONE
 	throwforce = 1
@@ -83,7 +83,7 @@
 	icon = 'icons/obj/items/weapons.dmi'
 	name = "nettle"
 	icon_state = "nettle"
-	damtype = "fire"
+	damtype = BURN
 	force = 15
 	flags_atom = NONE
 	throwforce = 1

@@ -200,6 +200,8 @@
 
 /obj/item/weapon/gun/revolver/unique_action(mob/user)
 	. = ..()
+	if(!.)
+		return
 	if(catchworking)
 		return unload(user)
 	else
@@ -355,12 +357,9 @@
 		/obj/item/attachable/compensator,
 		/obj/item/attachable/lasersight,
 		/obj/item/attachable/lace,
-		/obj/item/attachable/standard_revolver_longbarrel,
 	)
 	attachable_offset = list("muzzle_x" = 26, "muzzle_y" = 19,"rail_x" = 13, "rail_y" = 21, "under_x" = 22, "under_y" = 14, "stock_x" = 22, "stock_y" = 19)
 	fire_delay = 0.15 SECONDS
-	damage_mult = 0.75
-	damage_falloff_mult = 1.5
 	accuracy_mult_unwielded = 0.85
 	accuracy_mult = 1
 	scatter_unwielded = 15
@@ -425,12 +424,12 @@
 
 
 //-------------------------------------------------------
-//357 REVOLVER //Based on the generic S&W 357.
+//A generic 357 revolver. With a twist.
 
 /obj/item/weapon/gun/revolver/small
-	name = "\improper S&W .357 revolver"
-	desc = "A lean .357 made by Smith & Wesson. A timeless classic, from antiquity to the future."
-	icon_state = "sw357"
+	name = "\improper FFA 'Rebota' revolver"
+	desc = "A lean .357 made by Falffearmeria. A timeless design, from antiquity to the future. This one is well known for it's strange ammo, which ricochets off walls constantly. Which went from being a defect to a feature."
+	icon_state = "rebota"
 	item_state = "sw357"
 	caliber = CALIBER_357 //codex
 	max_shells = 6 //codex

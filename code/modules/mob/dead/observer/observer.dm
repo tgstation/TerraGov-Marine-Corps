@@ -332,11 +332,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 			else
 				stat("Respawn timer:", "[(status_value / 60) % 60]:[add_leading(num2text(status_value % 60), 2, "0")]")
 			if(SSticker.mode?.flags_round_type & MODE_INFESTATION)
-				status_value = (timeofdeath + GLOB.xenorespawntime - world.time) * 0.1
-				if(status_value <= 0)
-					stat("Xeno respawn timer:", "<b>READY</b>")
-				else
-					stat("Xeno respawn timer:", "[(status_value / 60) % 60]:[add_leading(num2text(status_value % 60), 2, "0")]")
+				stat("Xeno respawn timer:", "<b>READY</b>") // There is no longer a timer for xeno respawn. It is always READY.
 				if(larva_position)
 					stat("Position in larva candidate queue: ", "[larva_position]")
 				var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)

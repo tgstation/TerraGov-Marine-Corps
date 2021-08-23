@@ -11,6 +11,10 @@
 	. = ..()
 	add_atom_colour(pipe_color, FIXED_COLOUR_PRIORITY)
 
+/obj/machinery/atmospherics/pipe/Initialize()
+	. = ..()
+	AddElement(/datum/element/undertile, TRAIT_T_RAY_VISIBLE)
+
 /obj/machinery/atmospherics/pipe/nullifyNode(i)
 	var/obj/machinery/atmospherics/oldN = nodes[i]
 	..()
@@ -56,7 +60,7 @@
 		if(meter.target == src)
 			new /obj/item/pipe_meter (T)
 			qdel(meter)
-	. = ..()
+	return ..()
 
 /obj/machinery/atmospherics/pipe/update_icon()
 	. = ..()

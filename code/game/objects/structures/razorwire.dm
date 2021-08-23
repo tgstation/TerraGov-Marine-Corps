@@ -45,6 +45,8 @@
 	if(CHECK_BITFIELD(O.flags_pass, PASSSMALLSTRUCT))
 		return
 	var/mob/living/M = O
+	if(M.status_flags & INCORPOREAL)
+		return
 	if(CHECK_BITFIELD(M.restrained_flags, RESTRAINED_RAZORWIRE))
 		return
 	if(!M.density)
@@ -56,7 +58,7 @@
 	M.apply_damage(RAZORWIRE_BASE_DAMAGE, BRUTE, def_zone, armor_block, TRUE, updating_health = TRUE)
 	razorwire_tangle(M)
 
-/obj/structure/razorwire/CheckExit(atom/movable/mover, turf/target)
+/obj/structure/razorwire/CheckExit(atom/movable/mover, direction)
 	. = ..()
 	if(CHECK_BITFIELD(mover.flags_pass, PASSSMALLSTRUCT))
 		return TRUE

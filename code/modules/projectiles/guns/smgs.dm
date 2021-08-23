@@ -28,6 +28,8 @@
 
 /obj/item/weapon/gun/smg/unique_action(mob/user)
 	. = ..()
+	if(!.)
+		return
 	return cock(user)
 
 /obj/item/weapon/gun/smg/get_ammo_type()
@@ -69,6 +71,7 @@
 		/obj/item/attachable/scope/mini,
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/gyro,
+		/obj/item/attachable/motiondetector,
 	)
 
 	attachable_offset = list("muzzle_x" = 27, "muzzle_y" = 19,"rail_x" = 9, "rail_y" = 20, "under_x" = 21, "under_y" = 14, "stock_x" = 24, "stock_y" = 10)
@@ -113,6 +116,7 @@
 		/obj/item/attachable/heavy_barrel,
 		/obj/item/attachable/scope/mini,
 		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/motiondetector,
 	)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER
@@ -208,6 +212,10 @@
 /obj/item/weapon/gun/smg/m25/elite/pmc
 	starting_attachment_types = list(/obj/item/attachable/magnetic_harness)
 
+/obj/item/weapon/gun/smg/m25/elite/suppressed
+	icon_state = "m25"
+	item_state = "m25"
+	starting_attachment_types = list(/obj/item/attachable/suppressor) //Tacticool
 
 //-------------------------------------------------------
 //MP27, based on the grease gun

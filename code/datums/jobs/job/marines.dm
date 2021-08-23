@@ -210,8 +210,8 @@ Your squaddies will look to you when it comes to construction in the field of ba
 	paygrade = "E3"
 	comm_title = "Med"
 	total_positions = 16
-	access = list(ACCESS_MARINE_PREP, ACCESS_MARINE_MEDPREP, ACCESS_MARINE_MEDBAY)
-	minimal_access = list(ACCESS_MARINE_PREP, ACCESS_MARINE_MEDPREP, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_DROPSHIP)
+	access = list(ACCESS_MARINE_PREP, ACCESS_MARINE_MEDPREP, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_CHEMISTRY)
+	minimal_access = list(ACCESS_MARINE_PREP, ACCESS_MARINE_MEDPREP, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_CHEMISTRY, ACCESS_MARINE_DROPSHIP)
 	skills_type = /datum/skills/combat_medic
 	display_order = JOB_DISPLAY_ORDER_SQUAD_CORPSMAN
 	outfit = /datum/outfit/job/marine/corpsman
@@ -434,12 +434,12 @@ You can serve a variety of roles, so choose carefully."})
 	title = SQUAD_LEADER
 	req_admin_notify = TRUE
 	paygrade = "E5"
-	comm_title = "SL"
+	comm_title = JOB_COMM_TITLE_SQUAD_LEADER
 	total_positions = 4
 	supervisors = "the acting field commander"
 	access = list(ACCESS_MARINE_PREP, ACCESS_MARINE_LEADER, ACCESS_MARINE_DROPSHIP)
 	minimal_access = list(ACCESS_MARINE_PREP, ACCESS_MARINE_LEADER, ACCESS_MARINE_DROPSHIP)
-	skills_type = /datum/skills/SL
+	skills_type = /datum/skills/sl
 	display_order = JOB_DISPLAY_ORDER_SQUAD_LEADER
 	outfit = /datum/outfit/job/marine/leader
 	exp_requirements = XP_REQ_INTERMEDIATE
@@ -516,7 +516,6 @@ You are also in charge of communicating with command and letting them know about
 
 	H.equip_to_slot_or_del(new /obj/item/radio, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/tool/crowbar/red, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/motiondetector, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/whistle, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/binoculars/tactical, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_BACKPACK)

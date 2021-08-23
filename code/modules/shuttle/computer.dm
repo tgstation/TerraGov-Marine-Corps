@@ -50,9 +50,11 @@
 
 	if(href_list["move"])
 		var/obj/docking_port/mobile/M = SSshuttle.getShuttle(shuttleId)
+		#ifndef TESTING
 		if(!(M.shuttle_flags & GAMEMODE_IMMUNE) && world.time < SSticker.round_start_time + SSticker.mode.deploy_time_lock)
 			to_chat(usr, span_warning("The engines are still refueling."))
 			return TRUE
+		#endif
 		if(!M.can_move_topic(usr))
 			return TRUE
 		if(!(href_list["move"] in valid_destinations()))
@@ -71,7 +73,7 @@
 					for(var/mob/living/silicon/ai/AI in GLOB.silicon_mobs)
 						if(!AI.client)
 							continue
-						to_chat(AI, span_info("[src] just took off.."))
+						to_chat(AI, span_info("NOTICE - [M.name] taking off towards [href_list["move"]]"))
 			if(1)
 				to_chat(usr, span_warning("Invalid shuttle requested."))
 				return TRUE

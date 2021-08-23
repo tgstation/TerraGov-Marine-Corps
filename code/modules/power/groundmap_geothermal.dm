@@ -10,7 +10,7 @@
 	desc = "A thermoelectric generator sitting atop a plasma-filled borehole. This one is heavily damaged. Use a blowtorch, then wirecutters, and then a wrench to repair it."
 	anchored = TRUE
 	density = TRUE
-	resistance_flags = UNACIDABLE | INDESTRUCTIBLE | DROPSHIP_IMMUNE
+	resistance_flags = RESIST_ALL | DROPSHIP_IMMUNE
 	var/power_gen_percent = 0 //100,000W at full capacity
 	var/power_generation_max = 100000 //Full capacity
 	var/buildstate = GEOTHERMAL_HEAVY_DAMAGE //What state of building it are we on, 0-3, 1 is "broken", the default
@@ -153,15 +153,21 @@
 		span_danger("We start slashing at \the [src], tearing at it's components!"))
 	fail_rate += 5 // 5% fail rate every attack
 
-/obj/machinery/power/geothermal/attack_hand(mob/living/user)
-	. = ..()
+/obj/machinery/power/geothermal/attack_hand(mob/living/carbon/user)
+	interact_hand(user)
+
+/obj/machinery/power/geothermal/attack_ai(mob/living/silicon/ai/user)
+	interact_hand(user)
+
+
+/obj/machinery/power/geothermal/proc/interact_hand(mob/living/user)
 	if(.)
 		return
 	if(!anchored) //Shouldn't actually be possible
 		return FALSE
 	if(user.incapacitated())
 		return FALSE
-	if(!ishuman(user))
+	if(!ishuman(user) && !issilicon(user))
 		to_chat(user, span_warning("You have no idea how to use that."))
 		return FALSE
 	if(corrupted)
@@ -199,7 +205,7 @@
 			user.visible_message(span_notice("[user] fumbles around figuring out the resin tendrils on [src]."),
 			span_notice("You fumble around figuring out the resin tendrils on [src]."))
 			var/fumbling_time = 10 SECONDS - 2 SECONDS * user.skills.getRating("engineer")
-			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED, extra_checks = CALLBACK(WT, /obj/item/tool/weldingtool/proc/isOn)) || buildstate != GEOTHERMAL_HEAVY_DAMAGE || is_on)
+			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED, extra_checks = CALLBACK(WT, /obj/item/tool/weldingtool/proc/isOn)))
 				return
 
 		if(!WT.remove_fuel(1, user))
