@@ -181,7 +181,6 @@
 		SSshuttle.moveShuttleToDock(shuttleId, last_valid_ground_port, TRUE)
 		return
 
-
 	if(next_fly_state == SHUTTLE_IN_ATMOSPHERE)
 		shuttle_port.set_idle() // don't go up with a broken console, cencel spooling
 		visible_message("Autopilot detects loss of helm control. Halting take off!")
