@@ -1,13 +1,13 @@
 #ifdef REFERENCE_TRACKING
 
 GLOBAL_LIST_INIT(reftracking_blacklisted_types, list(
-	/obj/effect/alien/weeds/node, //This is fixed in weeds refactor
+	/obj/effect/alien/weeds, //This is fixed in weeds refactor
 ))
 
 /datum/proc/find_references(skip_alert)
 	if(GLOB.reftracking_blacklisted_types.Find(type))
 		return
-	message_admins("REF TRACKING ENABLED FOR [type], BRACE YOURSELF THE SERV WILL DIE")
+	message_admins("REF TRACKING ENABLED FOR [type]")
 	GLOB.reftracking_blacklisted_types += type
 	running_find_references = type
 	if(usr?.client)
