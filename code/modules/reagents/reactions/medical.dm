@@ -15,12 +15,6 @@
 	required_reagents = list(/datum/reagent/oxygen = 2, /datum/reagent/toxin/phoron = 0.1)
 	required_catalysts = list(/datum/reagent/toxin/phoron = 5)
 
-/datum/chemical_reaction/dermaline
-	name = "Dermaline"
-	results = list(/datum/reagent/medicine/dermaline = 3)
-	required_reagents = list(/datum/reagent/oxygen = 1, /datum/reagent/phosphorus = 1, /datum/reagent/medicine/kelotane = 1)
-	required_catalysts = list(/datum/reagent/consumable/larvajelly = 5)
-
 /datum/chemical_reaction/dermalime
 	name = "Dermaline"
 	results = list(/datum/reagent/medicine/dermaline = 3)
@@ -35,12 +29,6 @@
 	name = "Bicaridine"
 	results = list(/datum/reagent/medicine/bicaridine = 2)
 	required_reagents = list(/datum/reagent/medicine/inaprovaline = 1, /datum/reagent/carbon = 1)
-
-/datum/chemical_reaction/meralyne
-	name = "Meralyne"
-	results = list(/datum/reagent/medicine/meralyne = 3)
-	required_reagents = list(/datum/reagent/medicine/inaprovaline = 1, /datum/reagent/medicine/bicaridine = 1, /datum/reagent/iron = 1)
-	required_catalysts = list(/datum/reagent/consumable/larvajelly = 5)
 
 /datum/chemical_reaction/meralime
 	name = "Meralyne"
@@ -177,7 +165,12 @@
 	name = "Neuraline"
 	results = list(/datum/reagent/medicine/neuraline = 4, /datum/reagent/toxin/zombiepowder = 1)
 	required_reagents = list(/datum/reagent/medicine/synaptizine = 1, /datum/reagent/medicine/arithrazine = 1, /datum/reagent/medicine/tricordrazine = 2, /datum/reagent/consumable/larvajellyprepared = 1)
-	required_catalysts = list(/datum/reagent/consumable/larvajelly = 5)
+	required_catalysts = list(/datum/reagent/medicine/lemoline = 5)
+
+/datum/chemical_reaction/lemoline
+	name = "Lemoline catalysis"
+	results = list(/datum/reagent/medicine/lemoline = 2)
+	required_reagents = list(/datum/reagent/medicine/lemoline = 1, /datum/reagent/consumable/larvajelly = 1)
 
 // Cloning chemicals
 /datum/chemical_reaction/expanded_biomass
