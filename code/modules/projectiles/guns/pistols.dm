@@ -123,6 +123,12 @@
 	pixel_shift_x = 10
 	pixel_shift_y = 19
 
+/obj/item/weapon/gun/can_attach(obj/item/attaching_to, mob/attacher)
+	if(!attachments_by_slot[ATTACHMENT_SLOT_RAIL])
+		return TRUE
+	to_chat(attacher, span_warning("You cannot attach [src] to [attaching_to] while [attachments_by_slot[ATTACHMENT_SLOT_RAIL]] occupies [src]'s rail slot."))
+	return FALSE
+
 /obj/item/weapon/gun/pistol/plasma_pistol/guardsman_pistol
 	name = "\improper Guardsman\'s plasma pistol"
 	desc = "FOR THE EMPEROR!"

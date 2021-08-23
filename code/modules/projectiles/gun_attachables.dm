@@ -142,7 +142,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 
 /obj/item/attachable/Initialize()
 	. = ..()
-	AddElement(/datum/element/attachment, slot, icon, attach_icon_state, CALLBACK(src, .proc/on_attach), CALLBACK(src, .proc/on_detach), CALLBACK(src,.proc/activate), pixel_shift_x, pixel_shift_y, flags_attach_features, attach_delay, detach_delay, attach_skill, attach_skill_upper_threshold, attach_sound)
+	AddElement(/datum/element/attachment, slot, icon, attach_icon_state, .proc/on_attach, .proc/on_detach, .proc/activate, .proc/can_attach, pixel_shift_x, pixel_shift_y, flags_attach_features, attach_delay, detach_delay, attach_skill, attach_skill_upper_threshold, attach_sound)
 
 ///Called when the attachment is attached to something. If it is a gun it will update the guns stats.
 /obj/item/attachable/proc/on_attach(attaching_item, mob/user)
@@ -275,6 +275,10 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 ///Called when the attachment is activated.
 /obj/item/attachable/proc/activate(mob/user, turn_off) //This is for activating stuff like flamethrowers, or switching weapon modes.
 	return
+
+///Called when the attachment is trying to be attached. If the attachment is allowed to go through, return TRUE.
+/obj/item/attachable/proc/can_attach(obj/item/attaching_to, mob/attacher)
+	return TRUE
 
 
 /////////// Muzzle Attachments /////////////////////////////////
@@ -1378,18 +1382,19 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	slot = ATTACHMENT_SLOT_UNDER
 	flags_attach_features = GUN_ALLOW_SYNTHETIC
 	attachment_action_type = /datum/action/item_action/toggle_hydro
+	var/is_active = FALSE
 
 /obj/item/attachable/hydro_cannon/activate_attachment(attached_item, mob/living/user, turn_off)
-	if(master_gun.active_attachable == src)
+	if(is_active)
 		if(user)
 			to_chat(user, span_notice("You are no longer using [src]."))
-		master_gun.active_attachable = null
+		is_active = FALSE
 		overlays -= image('icons/Marine/marine-weapons.dmi', src, "active")
 		. = FALSE
 	else
 		if(user)
 			to_chat(user, span_notice("You are now using [src]."))
-		master_gun.active_attachable = src
+		is_active = TRUE
 		overlays += image('icons/Marine/marine-weapons.dmi', src, "active")
 		. = TRUE
 	for(var/X in master_gun.actions)
@@ -1462,7 +1467,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	var/mob/living/living_user = user
 	if(master_gun == living_user.get_inactive_held_item() || master_gun == living_user.get_active_held_item())
 		new_action.give_action(living_user)
-	update_icon()
+	update_icon(user)
 
 ///This is called when an attachment gun (src) detaches from a gun.
 /obj/item/weapon/gun/proc/on_detach(obj/item/attached_to, mob/user)
@@ -1497,3 +1502,6 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 		var/datum/action/action = action_to_update
 		action.update_button_icon()
 
+///Called when the attachment is trying to be attached. If the attachment is allowed to go through, return TRUE.
+/obj/item/weapon/gun/proc/can_attach(obj/item/attaching_to, mob/attacher)
+	return TRUE

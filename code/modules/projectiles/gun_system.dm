@@ -204,9 +204,9 @@
 
 	setup_firemodes()
 	AddComponent(/datum/component/automatedfire/autofire, fire_delay, burst_delay, burst_amount, gun_firemode, CALLBACK(src, .proc/set_bursting), CALLBACK(src, .proc/reset_fire), CALLBACK(src, .proc/Fire)) //This should go after handle_starting_attachment() and setup_firemodes() to get the proper values set.
-	AddComponent(/datum/component/attachment_handler, slots, attachable_allowed, attachable_offset, starting_attachment_types, null, null, attachment_overlays)
+	AddComponent(/datum/component/attachment_handler, attachments_by_slot, attachable_allowed, attachable_offset, starting_attachment_types, null, null, attachment_overlays)
 	if(CHECK_BITFIELD(flags_gun_features, GUN_IS_ATTACHMENT))
-		AddElement(/datum/element/attachment, slot, icon, attach_icon_state, CALLBACK(src, .proc/on_attach), CALLBACK(src, .proc/on_detach), CALLBACK(src, .proc/activate), pixel_shift_x, pixel_shift_y, flags_attach_features, attach_delay, detach_delay, "firearms", SKILL_FIREARMS_DEFAULT, 'sound/machines/click.ogg')
+		AddElement(/datum/element/attachment, slot, icon, attach_icon_state, .proc/on_attach, .proc/on_detach, .proc/activate, .proc/can_attach, pixel_shift_x, pixel_shift_y, flags_attach_features, attach_delay, detach_delay, "firearms", SKILL_FIREARMS_DEFAULT, 'sound/machines/click.ogg')
 
 	muzzle_flash = new(src, muzzleflash_iconstate)
 
@@ -237,7 +237,7 @@
 	. = ..()
 	if(. != CHECKS_PASSED)
 		return
-	var/obj/item/attachable = slots[ATTACHMENT_SLOT_RAIL]
+	var/obj/item/attachable = attachments_by_slot[ATTACHMENT_SLOT_RAIL]
 	if(!attachable || !istype(attachable, /obj/item/attachable))
 		return
 	var/obj/item/attachable/attachable_attachment = attachable
@@ -250,8 +250,8 @@
 /obj/item/weapon/gun/equipped(mob/user, slot)
 	unwield(user)
 	if(ishandslot(slot))
-		for(var/key in slots)
-			var/obj/item/attachable = slots[key]
+		for(var/key in attachments_by_slot)
+			var/obj/item/attachable = attachments_by_slot[key]
 			if(!isgun(attachable))
 				continue
 			var/obj/item/weapon/gun/attachment_gun = attachable
@@ -263,8 +263,8 @@
 
 /obj/item/weapon/gun/removed_from_inventory(mob/user)
 	set_gun_user(null)
-	for(var/key in slots)
-		var/obj/item/attachable = slots[key]
+	for(var/key in attachments_by_slot)
+		var/obj/item/attachable = attachments_by_slot[key]
 		if(!isgun(attachable))
 			continue
 		var/obj/item/weapon/gun/attachment_gun = attachable
@@ -317,8 +317,14 @@
 		var/datum/action/action = action_to_update
 		action.update_button_icon()
 
+	if(master_gun)
+		for(var/action_to_update in master_gun.actions)
+			var/datum/action/action = action_to_update
+			action.update_button_icon()
+
 	update_item_state(user)
 	update_mag_overlay(user)
+
 
 
 /obj/item/weapon/gun/update_item_state(mob/user)
@@ -333,8 +339,8 @@
 	else
 		dat += "The safety's off!<br>"
 
-	for(var/key in slots)
-		var/obj/item/attachable = slots[key]
+	for(var/key in attachments_by_slot)
+		var/obj/item/attachable = attachments_by_slot[key]
 		if(!attachable)
 			continue
 		dat += "It has [icon2html(attachable, user)] [attachable.name]"
@@ -619,7 +625,7 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 /obj/item/weapon/gun/proc/start_fire(datum/source, atom/object, turf/location, control, params, bypass_checks = FALSE)
 	SIGNAL_HANDLER
 	if(active_attachable)
-		active_attachable?.start_fire(source, object, location, control, params)
+		fire_attachment(source, object, location, control, params, bypass_checks)
 		return
 	if(gun_on_cooldown(gun_user))
 		return
@@ -645,6 +651,8 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 		reset_fire()
 		return
 	SEND_SIGNAL(src, COMSIG_GUN_FIRE)
+	if(master_gun)
+		SEND_SIGNAL(gun_user, COMSIG_MOB_ATTACHMENT_FIRED, target, src, master_gun)
 	gun_user?.client?.mouse_pointer_icon = 'icons/effects/supplypod_target.dmi'
 
 ///This is called on Right Click and gets the first weapon attachment in slots and fires it.
@@ -653,8 +661,8 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 	if(active_attachable)
 		active_attachable.start_fire(source, object, location, control, params, bypass_checks)
 		return
-	for(var/key in slots)
-		var/obj/item/attachment = slots[key]
+	for(var/key in attachments_by_slot)
+		var/obj/item/attachment = attachments_by_slot[key]
 		if(!istype(attachment, /obj/item/weapon/gun))
 			continue
 		var/obj/item/weapon/gun/attached_gun = attachment
@@ -1279,7 +1287,7 @@ and you're good to go.
 /obj/item/weapon/gun/attack_alien(mob/living/carbon/xenomorph/X, isrightclick = FALSE)
 	if(!CHECK_BITFIELD(flags_gun_features, GUN_FLASHLIGHT_ON))
 		return
-	var/obj/item/attachment = slots[ATTACHMENT_SLOT_RAIL]
+	var/obj/item/attachment = attachments_by_slot[ATTACHMENT_SLOT_RAIL]
 	if(!istype(attachment, /obj/item/attachable))
 		return
 	var/obj/item/attachable/attachable = attachment

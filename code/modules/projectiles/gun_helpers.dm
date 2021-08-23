@@ -334,8 +334,8 @@ should be alright.
 
 ///Checks the gun to see if it has an attachment of type attachment_type
 /obj/item/weapon/gun/proc/has_attachment(attachment_type)
-	for(var/key in slots)
-		var/obj/item/attachment = slots[key]
+	for(var/key in attachments_by_slot)
+		var/obj/item/attachment = attachments_by_slot[key]
 		if(!istype(attachment, attachment_type))
 			continue
 		return TRUE
@@ -676,12 +676,12 @@ should be alright.
 	// rail attachment use the button to toggle flashlight instead.
 	//	if(rail && (rail.flags_attach_features & ATTACH_ACTIVATION) )
 	//		usable_attachments += rail
-	if(!slots.len)
+	if(!length(attachments_by_slot))
 		to_chat(usr, span_warning("[src] does not have any usable attachment!"))
 		return
 
-	for(var/key in slots)
-		var/obj/item/attachment = slots[key]
+	for(var/key in attachments_by_slot)
+		var/obj/item/attachment = attachments_by_slot[key]
 		if(!attachment)
 			continue
 		var/obj/item/attachable/attachable = attachment

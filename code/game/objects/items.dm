@@ -381,15 +381,24 @@
 
 ///Sends a signal to the component to activate an attachment on a specific slot.
 /obj/item/proc/activate_attachment(slot, mob/user)
-	return SEND_SIGNAL(src, COMSIG_ITEM_ACTIVATE_ATTACHMENT, slot, user)
+	var/datum/component/attachment_handler/attachment_handler = GetComponent(/datum/component/attachment_handler)
+	if(!attachment_handler)
+		return
+	attachment_handler.activate_attachment(slot, user)
 
 ///Attaches attachment to src using the component without the need for a user.
-/obj/item/proc/attach_to(obj/item/attachment, list/input_attachment_data, mob/attacker)
-	return SEND_SIGNAL(src, COMSIG_ITEM_ATTACH_WITHOUT_USER, attachment, input_attachment_data)
+/obj/item/proc/attach_to(obj/item/attachment)
+	var/datum/component/attachment_handler/attachment_handler = GetComponent(/datum/component/attachment_handler)
+	if(!attachment_handler)
+		return
+	attachment_handler.attach_without_user(attachment)
 
 ///Updates attachment's icon state to new_icon_state using src's component.
 /obj/item/proc/update_attachment_icon_state(obj/item/attachment, new_icon_state)
-	return SEND_SIGNAL(src, COMSIG_ITEM_UPDATE_ATTACHMENT_ICON, attachment, new_icon_state)
+	var/datum/component/attachment_handler/attachment_handler = GetComponent(/datum/component/attachment_handler)
+	if(!attachment_handler)
+		return
+	attachment_handler.update_overlay_icon_state(attachment, new_icon_state)
 
 /obj/item/proc/mob_can_equip(mob/M, slot, warning = TRUE, override_nodrop = FALSE)
 	if(!slot)

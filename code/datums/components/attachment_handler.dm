@@ -1,6 +1,8 @@
 /datum/component/attachment_handler
 	///Assoc list that stores the refs of the attachments to the parent. 'slot = reference'
 	var/list/slots = list()
+	///Assoc list that stores the attachment data of an attachment in the slot.
+	var/list/attachment_data_by_slot = list()
 	///Typepath list that stores type data of allowed attachments. The attachment needs the attachment element to be able to attach regardless of what is stored here.
 	var/list/attachables_allowed = list()
 	///Proc the parent calls on attach.
@@ -14,13 +16,13 @@
 	///List of the icon states for the attachable_overlays. This exists so the parent or the attachment can change the overlay icon state.
 	var/list/overlay_icon_states = list()
 
-
 /datum/component/attachment_handler/Initialize(slots, list/attachables_allowed, list/attachment_offsets, list/starting_attachmments, datum/callback/on_attach, datum/callback/on_detach, list/overlays = list())
 	. = ..()
 	if(!isitem(parent))
 		return COMPONENT_INCOMPATIBLE
 
 	src.slots = slots
+	attachment_data_by_slot += slots
 	src.attachables_allowed = attachables_allowed
 	src.on_attach = on_attach
 	src.on_detach = on_detach
@@ -31,7 +33,7 @@
 
 	if(length(starting_attachmments)) //Attaches starting attachments
 		for(var/starting_attachment_type in starting_attachmments)
-			finish_handle_attachment(new starting_attachment_type())
+			attach_without_user(new starting_attachment_type())
 
 	update_parent_overlay()
 
@@ -39,42 +41,55 @@
 	RegisterSignal(parent, COMSIG_ATOM_UPDATE_OVERLAYS, .proc/update_parent_overlay) //Updating the attachment overlays.
 
 	RegisterSignal(parent, COMSIG_CLICK_ALT, .proc/start_detach) //For Detaching
-	RegisterSignal(parent, COMSIG_ITEM_ACTIVATE_ATTACHMENT, .proc/activate_attachment) //Activating specific attachments.
-	RegisterSignal(parent, COMSIG_ITEM_ATTACH_WITHOUT_USER, .proc/attach_without_user) //For attaching something without a user.
-	RegisterSignal(parent, COMSIG_ITEM_UPDATE_ATTACHMENT_ICON, .proc/overlay_icon_update) //Updates a specific attachments overlay icon state.
 	RegisterSignal(parent, COMSIG_PARENT_QDELETING, .proc/clean_references) //Dels attachments.
 
 ///Starts processing the attack, and whether or not the attachable can attack.
 /datum/component/attachment_handler/proc/start_handle_attachment(datum/source, obj/attacking, mob/attacker)
 	SIGNAL_HANDLER
-	if(!is_attachment(attacking))
+	INVOKE_ASYNC(src, .proc/handle_attachment, attacking, attacker)
+
+/datum/component/attachment_handler/proc/handle_attachment(obj/attachment, mob/attacher, bypass_checks = FALSE)
+
+	var/list/attachment_data = list()
+	SEND_SIGNAL(attachment, COMSIG_ITEM_IS_ATTACHING, attacher, attachment_data)
+
+	if(!length(attachment_data)) //Something has to provide attaching data here to continue.
 		return
 
-	var/list/attachment_data = get_attachment_data(attacking)
+	if(!bypass_checks)
+		if(attachment_data["can_attach"])
+			var/datum/callback/attachment_can_attach = CALLBACK(attachment, attachment_data["can_attach"])
+			if(!attachment_can_attach.Invoke(parent, attacher))
+				return
+		if(!do_attach(attachment, attacher, attachment_data))
+			return
 
-	if(!do_attach(attacking, attacker, attachment_data))
+	finish_handle_attachment(attachment, attachment_data, attacher)
+
+	if(!attacher)
 		return
+	var/mob/living/carbon/human/human_attacker = attacher
+	human_attacker.temporarilyRemoveItemFromInventory(attachment)
 
-	finish_handle_attachment(attacking, attachment_data, attacker)
-	var/mob/living/carbon/human/human_attacker = attacker
-	human_attacker.temporarilyRemoveItemFromInventory(attacking)
 
 ///Finishes setting up the attachment. This is where the attachment actually attaches. This can be called directly to bypass any checks to directly attach an object.
-/datum/component/attachment_handler/proc/finish_handle_attachment(obj/item/attachment, list/input_attachment_data, mob/attacker)
-	var/list/attachment_data = input_attachment_data
-	if(!input_attachment_data) //This is for when finish_handle_attachment is called directly. If it is called by start_handle_attachment the attachment_data just gets passed.
-		attachment_data = get_attachment_data(attachment)
+/datum/component/attachment_handler/proc/finish_handle_attachment(obj/item/attachment, list/attachment_data, mob/attacker)
 
-	if(slots[attachment_data["slot"]]) //Checks for an attachment in the current slot.
-		var/obj/item/current_attachment = slots[attachment_data["slot"]]
-		finish_detach(current_attachment, get_attachment_data(current_attachment), attacker) //Removes the current attachment.
+	var/slot = attachment_data["slot"]
+
+	if(slots[slot]) //Checks for an attachment in the current slot.
+		var/obj/item/current_attachment = slots[slot]
+		finish_detach(current_attachment, attachment_data_by_slot[slot], attacker) //Removes the current attachment.
 
 	attachment.forceMove(parent)
-	slots[attachment_data["slot"]] = attachment
+	slots[slot] = attachment
+	attachment_data_by_slot[slot] = attachment_data
 
 	on_attach?.Invoke(attachment, attacker)
-	var/datum/callback/attachment_on_attach = attachment_data["on_attach"]
-	attachment_on_attach?.Invoke(parent, attacker)
+
+	if(attachment_data["on_attach"])
+		var/datum/callback/attachment_on_attach = CALLBACK(attachment, attachment_data["on_attach"])
+		attachment_on_attach.Invoke(parent, attacker)
 
 	update_overlay_icon_state(attachment, attachment_data["overlay_icon_state"])
 
@@ -136,7 +151,7 @@
 	if(!current_attachment_in_slot) //If the slot is empty theres room.
 		return TRUE
 
-	var/list/current_attachment_data = get_attachment_data(current_attachment_in_slot)
+	var/list/current_attachment_data = attachment_data_by_slot[slot]
 
 	if(!CHECK_BITFIELD(current_attachment_data["flags_attach_features"], ATTACH_REMOVABLE)) //If the slots attachment is unremovable.
 		to_chat(user, span_warning("You cannot remove [current_attachment_in_slot] from [parent] to make room for [attachment]!"))
@@ -161,7 +176,7 @@
 		var/obj/item/current_attachment = slots[key]
 		if(!current_attachment)
 			continue
-		var/list/current_attachment_data = get_attachment_data(current_attachment)
+		var/list/current_attachment_data = attachment_data_by_slot[key]
 		if(!CHECK_BITFIELD(current_attachment_data["flags_attach_features"], ATTACH_REMOVABLE))
 			continue
 		attachments_to_remove += current_attachment
@@ -179,7 +194,12 @@
 	if(!attachment_to_remove)
 		return
 
-	var/list/attachment_data = get_attachment_data(attachment_to_remove)
+	var/list/attachment_data
+	for(var/key in slots)
+		if(slots[key] != attachment_to_remove)
+			continue
+		attachment_data = attachment_data_by_slot[key]
+		break
 
 	var/do_after_icon_type = BUSY_ICON_GENERIC
 	var/detach_delay = attachment_data["detach_delay"]
@@ -200,7 +220,7 @@
 			do_after_icon_type = BUSY_ICON_UNSKILLED
 
 	if(!do_after(user, detach_delay, TRUE, parent, do_after_icon_type))
-		return FALSE
+		return
 
 	user.visible_message(span_notice("[user] detaches [attachment_to_remove] to [parent]."),
 	span_notice("You detach [attachment_to_remove] to [parent]."), null, 4)
@@ -210,32 +230,34 @@
 
 ///Actually detaches the attachment. This can be called directly to bypass checks.
 /datum/component/attachment_handler/proc/finish_detach(obj/item/attachment, list/attachment_data, mob/living/carbon/human/user)
-	user?.put_in_hands(attachment)
 	slots[attachment_data["slot"]] = null //Sets the slot the attachment is being removed from to null.
-
+	on_detach?.Invoke(attachment, user)
 	update_parent_overlay()
 
-	on_detach?.Invoke(attachment, user)
-	var/datum/callback/attachment_on_detach = attachment_data["on_detach"]
-	attachment_on_detach?.Invoke(parent, user)
+	if(!user)
+		QDEL_NULL(attachment)
+		return
+
+	user.put_in_hands(attachment)
+
+	if(attachment_data["on_detach"])
+		var/datum/callback/attachment_on_detach = CALLBACK(attachment, attachment_data["on_detach"])
+		attachment_on_detach.Invoke(parent, user)
 
 ///This calls the activate proc for the an attachment in slot. This serves to be a slot based way of activating attachments. Whereas if you have the reference of the attachment you want to activate you should just call its activation proc.
 /datum/component/attachment_handler/proc/activate_attachment(slot, mob/user)
-	SIGNAL_HANDLER
 	var/obj/item/attachment_to_activate = slots[slot] //Gets the attachment in the slot to activate.
 	if(!attachment_to_activate)
-		return NONE
-	var/list/attachment_data = get_attachment_data(attachment_to_activate)
-	var/datum/callback/on_activate = attachment_data["on_activate"]
-	if(!on_activate)
-		return NONE //Cant activate if theres no activate callback.
+		return
+	var/list/attachment_data = attachment_data_by_slot[slot]
+	if(!attachment_data["on_activate"])
+		return //Cant activate if theres no activate callback.
+	var/datum/callback/on_activate = CALLBACK(attachment_to_activate, attachment_data["on_activate"])
 	on_activate.Invoke(parent, user)
-	return ATTACHMENT_ACTIVATED
 
 ///This is for other objects to be able to attach things without the need for a user.
-/datum/component/attachment_handler/proc/attach_without_user(datum/source, obj/item/attachment, list/input_attachment_data)
-	SIGNAL_HANDLER
-	return finish_handle_attachment(attachment, input_attachment_data)
+/datum/component/attachment_handler/proc/attach_without_user(obj/item/attachment)
+	handle_attachment(attachment, null, TRUE)
 
 ///This updates the overlays of the parent and apllies the right ones.
 /datum/component/attachment_handler/proc/update_parent_overlay(datum/source)
@@ -252,7 +274,7 @@
 			attachable_overlays[slot] = null
 			continue
 
-		var/list/attachment_data = get_attachment_data(attachment)
+		var/list/attachment_data = attachment_data_by_slot[slot]
 
 		overlay = image(attachment_data["overlay_icon"], parent_item, overlay_icon_states[slot])
 
@@ -280,26 +302,11 @@
 	SIGNAL_HANDLER
 	QDEL_LIST_ASSOC_VAL(slots)
 
-///This calls update_overlay_icon_state
-/datum/component/attachment_handler/proc/overlay_icon_update(datum/source, obj/item/attachment, new_icon_state)
-	SIGNAL_HANDLER
-	update_overlay_icon_state(attachment, new_icon_state)
-
 ///This updates the overlay icon state of the inputted attachment
 /datum/component/attachment_handler/proc/update_overlay_icon_state(obj/item/attachment, new_icon_state)
 	for(var/key in slots)
 		if(attachment != slots[key])
 			continue
-		var/list/attachment_data = get_attachment_data(attachment)
+		var/list/attachment_data = attachment_data_by_slot[key]
 		overlay_icon_states[attachment_data["slot"]] = new_icon_state
 		return update_parent_overlay()
-
-///Sends a signal to the attachment, will return TRUE if the attachment recieves the signal and has the attachable element that will return the bitfield IS_ATTACHMENT.
-/datum/component/attachment_handler/proc/is_attachment(obj/item/attachment)
-	return SEND_SIGNAL(attachment, COMSIG_ITEM_IS_ATTACHMENT) & IS_ATTACHMENT
-
-///Returns an assoc list from the _attachment's element with all the attachment data.
-/datum/component/attachment_handler/proc/get_attachment_data(obj/item/attachment)
-	var/list/attachment_data = list()
-	SEND_SIGNAL(attachment, COMSIG_ITEM_GET_ATTACHMENT_DATA, attachment_data)
-	return attachment_data

@@ -249,12 +249,8 @@
 #define COMSIG_ITEM_ZOOM "item_zoom"                            //from base of /obj/item/zoom(), used for telling when a scope zooms and for checking if another zoom is already on mob.
 	#define COMSIG_ITEM_ALREADY_ZOOMED (1<<0)                         //bitshift that tells to a item when zoom checking that there already soemthing zooming user.
 #define COMSIG_ITEM_UNIQUE_ACTION "item_unique_action" //from base of /obj/item/unique_action(): (atom/target, mob/user)
-#define COMSIG_ITEM_IS_ATTACHMENT "item_is_attachment" //From base of /datum/component/attachment_handler/is_attachment(obj/item/attachment). Used to check if the thing its sending too has the element, /datum/element/attachment.
-#define COMSIG_ITEM_GET_ATTACHMENT_DATA "item_get_attachment_data" //From base of /datum/component/attachment_handler/get_attachment_data(obj/item/attachment). Used to get the attachment_data list from the element of type, /datum/element/attachment, on attachment. 
-#define COMSIG_ITEM_ACTIVATE_ATTACHMENT "item_activate_attachment" //From base of /obj/item/proc/activate_attachment(slot, mob/user). Used to activate an attachment on basis of slot.
-#define COMSIG_ITEM_ATTACH_WITHOUT_USER "item_attach_without_user" //From base of /obj/item/proc/attach_to(obj/item/attachment, list/input_attachment_data, mob/attacker). Used to attach an attachment wihtout the need for a user.
-#define COMSIG_ITEM_UPDATE_ATTACHMENT_ICON "item_update_attachment_icon" //From base of /obj/item/proc/update_attachment_icon_state(obj/item/attachment, new_icon_state). Used to update the icon_state of an attachments overlay.
 
+#define COMSIG_ITEM_IS_ATTACHING "item_is_attaching" //from base of /datum/component/attachment_handler/handle_attachment : (/obj/item, /mob)
 
 #define COMSIG_ITEM_TOGGLE_ACTION "item_toggle_action"			//from base of obj/item/ui_interact(): (/mob/user)
 #define COMSIG_ITEM_TOGGLE_ACTIVE "item_toggle_active"			//from base of /obj/item/toggle_active(): (new_state)

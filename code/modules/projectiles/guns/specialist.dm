@@ -124,7 +124,7 @@
 	. = ..()
 
 /obj/item/weapon/gun/rifle/sniper/antimaterial/process()
-	var/obj/item/attachable/scope = LAZYACCESS(slots, ATTACHMENT_SLOT_RAIL)
+	var/obj/item/attachable/scope = LAZYACCESS(attachments_by_slot, ATTACHMENT_SLOT_RAIL)
 	if(!scope.zoom)
 		laser_off()
 		return
@@ -143,7 +143,7 @@
 
 /obj/item/weapon/gun/rifle/sniper/antimaterial/zoom(mob/living/user, tileoffset = 11, viewsize = 12) //tileoffset is client view offset in the direction the user is facing. viewsize is how far out this thing zooms. 7 is normal view
 	. = ..()
-	var/obj/item/attachable/scope = LAZYACCESS(slots, ATTACHMENT_SLOT_RAIL)
+	var/obj/item/attachable/scope = LAZYACCESS(attachments_by_slot, ATTACHMENT_SLOT_RAIL)
 	if(!scope.zoom && (targetmarker_on || targetmarker_primed) )
 		laser_off(user)
 
@@ -184,7 +184,7 @@
 
 
 /obj/item/weapon/gun/rifle/sniper/antimaterial/proc/laser_on(mob/user)
-	var/obj/item/attachable/scope = LAZYACCESS(slots, ATTACHMENT_SLOT_RAIL)
+	var/obj/item/attachable/scope = LAZYACCESS(attachments_by_slot, ATTACHMENT_SLOT_RAIL)
 	if(!scope.zoom) //Can only use and prime the laser targeter when zoomed.
 		to_chat(user, span_warning("You must be zoomed in to use your target marker!"))
 		return TRUE
@@ -324,9 +324,9 @@
 		/obj/item/attachable/scope/marine,
 		/obj/item/attachable/angledgrip,
 		/obj/item/weapon/gun/pistol/plasma_pistol,
-		/obj/item/weapon/gun/shotgun/combat/masterkey = -1,
-		/obj/item/weapon/gun/flamer/mini_flamer = -1,
-		/obj/item/weapon/gun/launcher/m92/mini_grenade = -1,
+		/obj/item/weapon/gun/shotgun/combat/masterkey,
+		/obj/item/weapon/gun/flamer/mini_flamer,
+		/obj/item/weapon/gun/launcher/m92/mini_grenade,
 	)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER|GUN_IFF

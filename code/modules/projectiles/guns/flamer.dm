@@ -537,7 +537,7 @@
 	. = ..()
 	if(!.)
 		return
-	var/obj/item/attachable/hydro_cannon/hydro = LAZYACCESS(slots, ATTACHMENT_SLOT_UNDER)
+	var/obj/item/attachable/hydro_cannon/hydro = LAZYACCESS(attachments_by_slot, ATTACHMENT_SLOT_UNDER)
 	if(!istype(hydro))
 		return FALSE
 	playsound(user, hydro.activation_sound, 15, 1)
@@ -582,7 +582,9 @@
 	A.update_hud(user, src)
 
 /obj/item/weapon/gun/flamer/marinestandard/Fire()
-	if(active_attachable && istype(active_attachable, /obj/item/attachable/hydro_cannon) && (world.time > last_use + 10))
+	if(!target)
+		return
+	if(hydro_active && (world.time > last_use + 10))
 		INVOKE_ASYNC(src, .proc/extinguish, target, gun_user) //Fire it.
 		water_count -=7//reagents is not updated in this proc, we need water_count for a updated HUD
 		last_fired = world.time

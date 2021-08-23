@@ -261,9 +261,9 @@ can cause issues with ammo types getting mixed up during the burst.
 		/obj/item/attachable/compensator,
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/weapon/gun/pistol/plasma_pistol,
-		/obj/item/weapon/gun/shotgun/combat/masterkey = -1,
-		/obj/item/weapon/gun/flamer/mini_flamer = -1,
-		/obj/item/weapon/gun/launcher/m92/mini_grenade = -1,
+		/obj/item/weapon/gun/shotgun/combat/masterkey,
+		/obj/item/weapon/gun/flamer/mini_flamer,
+		/obj/item/weapon/gun/launcher/m92/mini_grenade,
 		/obj/item/attachable/motiondetector,
 	)
 
@@ -504,8 +504,8 @@ can cause issues with ammo types getting mixed up during the burst.
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/stock/shotgun,
 		/obj/item/weapon/gun/pistol/plasma_pistol,
-		/obj/item/weapon/gun/shotgun/combat/masterkey = -1,
-		/obj/item/weapon/gun/flamer/mini_flamer = -1,
+		/obj/item/weapon/gun/shotgun/combat/masterkey,
+		/obj/item/weapon/gun/flamer/mini_flamer,
 	)
 
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 10, "rail_y" = 21, "under_x" = 20, "under_y" = 14, "stock_x" = 20, "stock_y" = 14)
@@ -826,7 +826,7 @@ can cause issues with ammo types getting mixed up during the burst.
 		/obj/item/attachable/suppressor,
 		/obj/item/attachable/verticalgrip,
 		/obj/item/weapon/gun/pistol/plasma_pistol,
-		/obj/item/weapon/gun/flamer/mini_flamer = -1,
+		/obj/item/weapon/gun/flamer/mini_flamer,
 	)
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 17,"rail_x" = 12, "rail_y" = 19, "under_x" = 27, "under_y" = 16, "stock_x" = 0, "stock_y" = 0)
 
@@ -863,8 +863,8 @@ can cause issues with ammo types getting mixed up during the burst.
 		/obj/item/attachable/stock/t35stock,
 		/obj/item/attachable/motiondetector,
 		/obj/item/weapon/gun/pistol/plasma_pistol,
-		/obj/item/weapon/gun/shotgun/combat/masterkey = -1,
-		/obj/item/weapon/gun/flamer/mini_flamer = -1,
+		/obj/item/weapon/gun/shotgun/combat/masterkey,
+		/obj/item/weapon/gun/flamer/mini_flamer,
 	)
 
 	attachable_offset = list("muzzle_x" = 31, "muzzle_y" = 18,"rail_x" = 10, "rail_y" = 20, "under_x" = 21, "under_y" = 12, "stock_x" = 20, "stock_y" = 16)
