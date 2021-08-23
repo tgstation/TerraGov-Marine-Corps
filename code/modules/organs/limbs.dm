@@ -245,12 +245,7 @@
 		if(updating_health)
 			owner.updatehealth()
 		return update_icon()
-	var/obj/item/clothing/worn_helmet = owner.head
-	if(body_part == HEAD && worn_helmet && (worn_helmet.flags_armor_features & ARMOR_NO_DECAP)) //Early return if the body part is a head but target is wearing decap-protecting headgear.
-		if(updating_health)
-			owner.updatehealth()
-		return update_icon()
-	if(CONFIG_GET(flag/limbs_can_break) && brute_dam >= max_damage * CONFIG_GET(number/organ_health_multiplier))
+	if(body_part != HEAD && CONFIG_GET(flag/limbs_can_break) && brute_dam >= max_damage * CONFIG_GET(number/organ_health_multiplier))
 		droplimb() //Reached max damage threshold through brute damage, that limb is going bye bye
 		return
 

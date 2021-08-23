@@ -15,7 +15,6 @@
 	max_heat_protection_temperature = HELMET_MAX_HEAT_PROTECTION_TEMPERATURE
 	siemens_coefficient = 0.7
 	w_class = WEIGHT_CLASS_NORMAL
-	flags_armor_features = ARMOR_NO_DECAP
 	flags_item = SYNTH_RESTRICTED
 
 /obj/item/clothing/head/ruggedhelm

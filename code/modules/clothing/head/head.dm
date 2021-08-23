@@ -292,7 +292,6 @@
 	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
 	flags_inventory = BLOCKSHARPOBJ
 	flags_inv_hide = HIDEEARS
-	flags_armor_features = ARMOR_NO_DECAP
 
 /obj/item/clothing/head/uppcap/beret
 	name = "\improper armored USL beret"
@@ -314,7 +313,6 @@
 	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
 	flags_inventory = BLOCKSHARPOBJ
 	flags_inv_hide = HIDEEARS
-	flags_armor_features = ARMOR_NO_DECAP
 
 /obj/item/clothing/head/frelancer/beret
 	name = "\improper armored Freelancer beret"
@@ -336,7 +334,6 @@
 	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
 	flags_inventory = BLOCKSHARPOBJ
 	flags_inv_hide = HIDEEARS|HIDETOPHAIR
-	flags_armor_features = ARMOR_NO_DECAP
 
 /obj/item/clothing/head/admiral
 	name = "\improper armored admiral cap"
@@ -360,7 +357,6 @@
 	icon = 'icons/obj/clothing/cm_hats.dmi'
 	icon_state = "commissar_cap"
 	soft_armor = list("melee" = 30, "bullet" = 30, "laser" = 30, "energy" = 30, "bomb" = 15, "bio" = 10, "rad" = 0, "fire" = 20, "acid" = 20)
-	flags_armor_features = ARMOR_NO_DECAP
 
 /obj/item/clothing/head/strawhat
 	name = "\improper straw hat"
