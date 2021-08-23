@@ -88,6 +88,7 @@
 	mechanics_text = "Store an egg on your body for future use. The egg has to be unplanted."
 	ability_name = "retrieve egg"
 	keybind_signal = COMSIG_XENOABILITY_RETRIEVE_EGG
+	use_state_flags = XACT_USE_LYING
 
 /datum/action/xeno_action/activable/retrieve_egg/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/carrier/X = owner
@@ -144,6 +145,7 @@
 	mechanics_text = "Place a hole on weeds that can be filled with a hugger. Activates when a marine steps on it."
 	plasma_cost = 400
 	keybind_signal = COMSIG_XENOABILITY_PLACE_TRAP
+	use_state_flags = XACT_USE_LYING
 
 /datum/action/xeno_action/place_trap/can_use_action(silent = FALSE, override_flags)
 	. = ..()
@@ -188,6 +190,7 @@
 	plasma_cost = 200
 	cooldown_timer = 10 SECONDS
 	keybind_signal = COMSIG_XENOABILITY_SPAWN_HUGGER
+	use_state_flags = XACT_USE_LYING
 
 /datum/action/xeno_action/spawn_hugger/on_cooldown_finish()
 	to_chat(owner, "<span class='xenodanger'>We can now spawn another young one.</span>")
