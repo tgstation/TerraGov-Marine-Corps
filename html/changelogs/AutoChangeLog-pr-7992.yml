@@ -1,5 +1,0 @@
-author: "KornFlaks"
-delete-after: True
-changes: 
-  - rscadd: "Grants resin jelly creation to drones (45 sec)."
-  - rscadd: "Drones can also hold resin jelly and apply it to other xenos."
