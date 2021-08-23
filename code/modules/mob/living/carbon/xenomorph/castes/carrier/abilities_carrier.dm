@@ -146,7 +146,6 @@
 	plasma_cost = 400
 	keybind_signal = COMSIG_XENOABILITY_PLACE_TRAP
 
-
 /datum/action/xeno_action/place_trap/can_use_action(silent = FALSE, override_flags)
 	. = ..()
 	var/turf/T = get_turf(owner)
