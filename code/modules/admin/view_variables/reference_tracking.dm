@@ -7,6 +7,7 @@ GLOBAL_LIST_INIT(reftracking_blacklisted_types, list(
 /datum/proc/find_references(skip_alert)
 	if(GLOB.reftracking_blacklisted_types.Find(type))
 		return
+	message_admins("REF TRACKING ENABLED FOR [type], BRACE YOURSELF THE SERV WILL DIE")
 	GLOB.reftracking_blacklisted_types += type
 	running_find_references = type
 	if(usr?.client)
