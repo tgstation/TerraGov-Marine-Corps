@@ -231,6 +231,7 @@
 ///Actually detaches the attachment. This can be called directly to bypass checks.
 /datum/component/attachment_handler/proc/finish_detach(obj/item/attachment, list/attachment_data, mob/living/carbon/human/user)
 	slots[attachment_data["slot"]] = null //Sets the slot the attachment is being removed from to null.
+	attachment_data_by_slot[attachment_data["slot"]] = null
 	on_detach?.Invoke(attachment, user)
 	update_parent_overlay()
 
