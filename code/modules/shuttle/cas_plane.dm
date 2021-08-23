@@ -131,12 +131,12 @@
 
 /obj/docking_port/stationary/marine_dropship/cas
 	name = "CAS plane hangar pad"
-	id = "casplane"
+	id = "cas_dock"
 	roundstart_template = /datum/map_template/shuttle/cas
 
 /obj/docking_port/mobile/marine_dropship/casplane
 	name = "Condor Jet"
-	id = "casplane"
+	id = "cas_dock"
 	width = 11
 	height = 12
 
