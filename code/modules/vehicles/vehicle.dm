@@ -88,6 +88,9 @@
 		insert_cell(I, user)
 
 	else if(iswelder(I))
+		if(user.do_actions)
+			to_chat(user, span_notice("You are too busy doing something else"))
+			return
 		var/obj/item/tool/weldingtool/WT = I
 		if(user.skills.getRating("engineer") < SKILL_ENGINEER_ENGI)
 			user.visible_message("<span class='notice'>[user] fumbles around figuring out [src]'s internals.</span>",
