@@ -25,6 +25,8 @@ can cause issues with ammo types getting mixed up during the burst.
 	wield_delay = 0.6 SECONDS //Shotguns are really easy to put up to fire, since they are designed for CQC (at least compared to a rifle)
 	gun_skill_category = GUN_SKILL_SHOTGUNS
 	flags_item_map_variant = NONE
+	actions_types = list(/datum/action/item_action/aim_mode)
+	aim_fire_delay = 0.3 SECONDS
 
 	fire_delay = 6
 	accuracy_mult = 1.15
