@@ -36,10 +36,13 @@
 #endif
 
 #ifdef REFERENCE_TRACKING_LOG
-#define log_reftracker(msg) log_world("## REF SEARCH [msg]")
+#define log_reftracker(msg) log_harddel("## REF SEARCH [msg]")
 #else
 #define log_reftracker(msg)
 #endif
+
+/proc/log_harddel(text)
+	WRITE_LOG(GLOB.world_harddel_log, text)
 
 /* Items with private are stripped from public logs. */
 /proc/log_admin(text)

@@ -103,6 +103,7 @@ GLOBAL_VAR(restart_counter)
 	GLOB.sql_error_log = "[GLOB.log_directory]/sql.log"
 	GLOB.world_telecomms_log = "[GLOB.log_directory]/telecomms.log"
 	GLOB.world_qdel_log = "[GLOB.log_directory]/qdel.log"
+	GLOB.world_harddel_log = "[GLOB.log_directory]/harddel.log"
 	GLOB.world_runtime_log = "[GLOB.log_directory]/runtime.log"
 	GLOB.world_debug_log = "[GLOB.log_directory]/debug.log"
 	GLOB.world_paper_log = "[GLOB.log_directory]/paper.log"
@@ -118,6 +119,7 @@ GLOBAL_VAR(restart_counter)
 	start_log(GLOB.sql_error_log)
 	start_log(GLOB.world_telecomms_log)
 	start_log(GLOB.world_qdel_log)
+	start_log(GLOB.world_harddel_log)
 	start_log(GLOB.world_runtime_log)
 	start_log(GLOB.world_debug_log)
 	start_log(GLOB.world_paper_log)

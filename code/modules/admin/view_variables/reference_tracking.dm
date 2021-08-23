@@ -1,6 +1,13 @@
 #ifdef REFERENCE_TRACKING
 
+GLOBAL_LIST_INIT(reftracking_blacklisted_types, list(
+	/obj/effect/alien/weeds/node, //This is fixed in weeds refactor
+))
+
 /datum/proc/find_references(skip_alert)
+	if(GLOB.reftracking_blacklisted_types.Find(type))
+		return
+	GLOB.reftracking_blacklisted_types += type
 	running_find_references = type
 	if(usr?.client)
 		if(usr.client.running_find_references)
@@ -39,9 +46,10 @@
 	log_reftracker("Finished searching datums")
 
 	//Warning, attempting to search clients like this will cause crashes if done on live. Watch yourself
-	for(var/client/thing) //clients
+	/*for(var/client/thing) //clients
 		DoSearchVar(thing, "Clients -> [thing.type]", search_time = starting_time)
 	log_reftracker("Finished searching clients")
+	*/
 
 	log_reftracker("Completed search for references to a [type].")
 
