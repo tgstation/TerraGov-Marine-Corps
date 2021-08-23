@@ -181,15 +181,16 @@
 		SSshuttle.moveShuttleToDock(shuttleId, last_valid_ground_port, TRUE)
 		return
 
+
+	if(next_fly_state == SHUTTLE_IN_ATMOSPHERE)
+		shuttle_port.set_idle() // don't go up with a broken console, cencel spooling
+		visible_message("Autopilot detects loss of helm control. Halting take off!")
+
 /obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/attack_hand(mob/user)
 	if(damaged)
 		to_chat(user, span_warning("The [src] blinks and lets out a crackling noise. Its broken!"))
 		return
 	return ..()
-
-	if(next_fly_state == SHUTTLE_IN_ATMOSPHERE)
-		shuttle_port.set_idle() // don't go up with a broken console, cencel spooling
-		visible_message("Autopilot detects loss of helm control. Halting take off!")
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/ui_state(mob/user)
 	return GLOB.dropship_state
