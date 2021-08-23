@@ -355,10 +355,7 @@ datum/ammo/bullet/revolver/tp44
 	damage = 40
 
 /datum/ammo/bullet/revolver/tp44/on_hit_mob(mob/M,obj/projectile/P)
-	if(SEND_SIGNAL(P.shot_from, COMSIG_REVOLVER_AMMO_HIT_MOB) & COMSIG_REVOLVER_AMMO_SNUBNOSE_BARREL)
-		staggerstun(M, P, stagger = 1, slowdown = 0.5, knockback = 1, shake = 0)
-	else
-		staggerstun(M, P, slowdown = 0.5, shake = 0)
+	staggerstun(M, P, stagger = 0, slowdown = 0.5, knockback = 0, shake = 0)
 
 /datum/ammo/bullet/revolver/small
 	name = "small revolver bullet"
@@ -603,9 +600,9 @@ datum/ammo/bullet/revolver/tp44
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
 	shell_speed = 3
 	max_range = 15
-	damage = 80
-	penetration = 40
-	sundering = 7
+	damage = 100
+	penetration = 20
+	sundering = 15
 
 /datum/ammo/bullet/shotgun/slug/on_hit_mob(mob/M,obj/projectile/P)
 	staggerstun(M, P, weaken = 1, stagger = 2, knockback = 1, slowdown = 2)

@@ -443,7 +443,7 @@
 /obj/machinery/computer/shuttle/marine_dropship
 	icon = 'icons/Marine/shuttle-parts.dmi'
 	icon_state = "console"
-	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
+	resistance_flags = RESIST_ALL
 	req_one_access = list(ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LEADER) // TLs can only operate the remote console
 	possible_destinations = "lz1;lz2;alamo"
 
@@ -1163,10 +1163,11 @@
 		return FALSE
 
 	var/obj/docking_port/mobile/M = SSshuttle.getShuttle(shuttleId)
+	#ifndef TESTING
 	if(!(M.shuttle_flags & GAMEMODE_IMMUNE) && world.time < SSticker.round_start_time + SSticker.mode.deploy_time_lock)
 		to_chat(usr, span_warning("The engines are still refueling."))
 		return TRUE
-
+	#endif
 	if(!M.can_move_topic(usr))
 		return TRUE
 
@@ -1260,7 +1261,7 @@
 	desc = "The remote controls for the 'Alamo' Dropship. Named after the Alamo Mission, stage of the Battle of the Alamo in the United States' state of Texas in the Spring of 1836. The defenders held to the last, encouraging other Texans to rally to the flag."
 	icon = 'icons/obj/machines/computer.dmi'
 	icon_state = "shuttle"
-	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
+	resistance_flags = RESIST_ALL
 	req_one_access = list(ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LEADER) // TLs can only operate the remote console
 	shuttleId = "alamo"
 	possible_destinations = "lz1;lz2;alamo"
@@ -1291,7 +1292,7 @@
 	desc = "The remote controls for the 'Canterbury' shuttle."
 	icon = 'icons/obj/machines/computer.dmi'
 	icon_state = "shuttle"
-	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
+	resistance_flags = RESIST_ALL
 	shuttleId = "tgs_canterbury"
 	possible_destinations = "canterbury_loadingdock"
 
@@ -1330,9 +1331,11 @@
 	message_admins("[ADMIN_TPMONTY(usr)] is launching the canterbury[!length(GLOB.active_nuke_list)? " early" : ""].")
 
 	var/obj/docking_port/mobile/M = SSshuttle.getShuttle(shuttleId)
+	#ifndef TESTING
 	if(!(M.shuttle_flags & GAMEMODE_IMMUNE) && world.time < SSticker.round_start_time + SSticker.mode.deploy_time_lock)
 		to_chat(usr, span_warning("The engines are still refueling."))
 		return TRUE
+	#endif
 	if(!M.can_move_topic(usr))
 		return TRUE
 

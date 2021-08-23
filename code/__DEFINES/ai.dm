@@ -13,6 +13,9 @@
 ///AI component state where it's moving towards a node
 #define MOVING_TO_NODE "moving_to_a_node" //Move to a node
 
+///AI component state where we're escorting something and looking for a target nearby
+#define ESCORTING_ATOM "escorting_atom"
+
 ///AI component state where we're moving towards *something*, probably something we want to hit
 #define MOVING_TO_ATOM "moving_to_an_atom"
 
@@ -25,3 +28,23 @@
  * This is mainly used for deciding what weights are to be looked at when determing a node waypoint of going towards
  */
 #define IDENTIFIER_XENO "identifies_xeno"
+
+//Flags for the get_nearest_target
+#define TARGET_HUMAN_TURRETS (1<<0)
+#define TARGET_XENO_TURRETS (1<<1)
+#define TARGET_HUMAN (1<<2)
+#define TARGET_XENO (1<<3)
+
+#define TARGET_ALL (TARGET_HUMAN_TURRETS|TARGET_XENO_TURRETS|TARGET_HUMAN|TARGET_XENO)
+
+#define MAX_NODE_RANGE_SQUARED 256
+
+GLOBAL_LIST_EMPTY(allnodes)
+
+///A GLOB of all /datum/component/ai_controller that currently exist
+GLOBAL_LIST_EMPTY(ai_instances_active)
+
+//To be implemented in later updates
+GLOBAL_LIST_EMPTY(nodes_with_enemies)
+GLOBAL_LIST_EMPTY(nodes_with_construction)
+#define can_cross_lava_turf(turf_to_check) (!islava(turf_to_check) || locate(/turf/open/lavaland/catwalk) in turf_to_check)

@@ -269,12 +269,12 @@ GLOBAL_PROTECT(exp_specialmap)
 	job = assigned_role
 	skills = getSkillsType(job.return_skills_type(player?.prefs))
 	faction = job.faction
-	LAZYADD(GLOB.alive_human_list_faction[faction], src)
 	job.announce(src)
 
 
 /mob/living/carbon/human/apply_assigned_role_to_spawn(datum/job/assigned_role, client/player, datum/squad/assigned_squad, admin_action = FALSE)
 	. = ..()
+	LAZYADD(GLOB.alive_human_list_faction[faction], src)
 	comm_title = job.comm_title
 	if(job.outfit)
 		var/id_type = job.outfit.id ? job.outfit.id : /obj/item/card/id

@@ -207,6 +207,7 @@
 // /turf signals
 #define COMSIG_TURF_CHANGE "turf_change"						//from base of turf/ChangeTurf(): (path, list/new_baseturfs, flags, list/transferring_comps)
 #define COMSIG_TURF_WEED_REMOVED "turf_weed_removed"
+#define COMSIG_TURF_THROW_ENDED_HERE "turf_throw_ended_here"						//From atom/movable/throw_at, sent right after a throw ends
 
 // /obj signals
 #define COMSIG_OBJ_SETANCHORED "obj_setanchored"				//called in /obj/structure/setAnchored(): (value)
@@ -291,9 +292,6 @@
 #define COMSIG_GUN_USER_SET "gun_user_set"
 #define COMSIG_MOB_GUN_FIRED "mob_gun_fired"
 #define COMSIG_MOB_GUN_AUTOFIRED "mob_gun_autofired"
-
-#define COMSIG_REVOLVER_AMMO_HIT_MOB "gun_revolver_ammo_hit"
-	#define COMSIG_REVOLVER_AMMO_SNUBNOSE_BARREL (1<<0)
 
 // /obj/item/clothing signals
 #define COMSIG_SHOES_STEP_ACTION "shoes_step_action"			//from base of obj/item/clothing/shoes/proc/step_action(): ()
