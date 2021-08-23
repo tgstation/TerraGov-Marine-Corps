@@ -1,4 +1,4 @@
 author: "BraveMole"
 delete-after: True
 changes: 
-  - rscdel: "Remove parralax slowdown"
+  - refactor: "Refactor pathfinder for xeno"

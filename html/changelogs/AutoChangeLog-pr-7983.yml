@@ -1,4 +1,0 @@
-author: "TiviPlus"
-delete-after: True
-changes: 
-  - bugfix: "Ghost emotes are only sent from player mobs to reduce clog"

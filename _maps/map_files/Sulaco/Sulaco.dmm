@@ -11105,7 +11105,14 @@
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /obj/structure/cable,
 /turf/open/floor/prison,
-/area/sulaco/hangar/storage)
+/area/sulaco/maintenance/lower_maint)
+"dpY" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/obj/vehicle/unmanned/droid/scout,
+/turf/open/floor/plating,
+/area/sulaco/maintenance/lower_maint)
 "drG" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/cyan/hidden/layer1{
@@ -17345,6 +17352,7 @@
 /obj/effect/decal/cleanable/cobweb{
 	dir = 4
 	},
+/obj/item/uav_turret/droid,
 /turf/open/floor/plating,
 /area/sulaco/maintenance/lower_maint)
 "oXn" = (
@@ -20511,6 +20519,10 @@
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /turf/open/floor/prison/darkyellow/corner,
 /area/sulaco/engineering)
+"uDw" = (
+/obj/vehicle/unmanned/droid,
+/turf/open/floor/plating,
+/area/sulaco/maintenance/lower_maint)
 "uDI" = (
 /obj/machinery/vending/cigarette,
 /turf/open/floor/prison/kitchen,
@@ -61829,10 +61841,10 @@ kOr
 aTt
 pWS
 sFd
-pWS
-pWS
-bYM
-kxY
+cdy
+cdy
+aPY
+dpY
 aWh
 fVO
 aZw
@@ -62088,8 +62100,8 @@ pWS
 ron
 pWS
 bbJ
-bYM
-aWh
+aPY
+uDw
 aWh
 aWh
 bam

@@ -449,3 +449,17 @@
   - qol: made the AI able to use the chem master. or at least, access it.
   lovegreenstuff:
   - balance: increased slug damage and sunder at the cost of AP
+2021-08-23:
+  BraveMole:
+  - balance: Crusher can fling objects that are not anchored
+  - rscdel: Remove parralax slowdown
+  KornFlaks:
+  - rscadd: Grants resin jelly creation to drones (45 sec).
+  - rscadd: Drones can also hold resin jelly and apply it to other xenos.
+  Pariah919:
+  - balance: SADAR RPG costs 120 from 90 in req.
+  - spellcheck: the sg nvgs have been renamed, and no longer mention the m56
+  TiviPlus:
+  - bugfix: Ghost emotes are only sent from player mobs to reduce clog
+  - bugfix: Fix flashing with item attacks
+  - bugfix: fixed a missing cas message

@@ -121,6 +121,7 @@
 	DISABLE_BITFIELD(flags_atom, INITIALIZED)
 	soft_armor = null
 	hard_armor = null
+	current_acid = null
 	..()
 	return QDEL_HINT_IWILLGC
 
