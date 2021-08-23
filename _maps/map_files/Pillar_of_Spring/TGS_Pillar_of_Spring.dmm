@@ -6169,7 +6169,7 @@
 /area/mainship/shipboard/weapon_room)
 "ur" = (
 /obj/docking_port/stationary/marine_dropship/crash_target,
-/turf/open/floor/mainship/floor,
+/turf/open/floor/plating,
 /area/mainship/hallways/hangar)
 "us" = (
 /turf/open/floor/mainship/mono,
@@ -14797,7 +14797,6 @@
 /area/mainship/engineering/port_atmos)
 "Vy" = (
 /obj/docking_port/stationary/marine_dropship/hangar/one,
-/obj/docking_port/stationary/marine_dropship/crash_target,
 /turf/open/floor/plating,
 /area/mainship/hallways/hangar)
 "Vz" = (
@@ -45214,7 +45213,7 @@ bn
 se
 eJ
 aT
-bh
+ur
 bh
 bh
 bh
@@ -46253,7 +46252,7 @@ Gm
 MD
 ap
 te
-ur
+eB
 bp
 ao
 fQ
