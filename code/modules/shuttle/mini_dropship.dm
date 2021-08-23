@@ -173,6 +173,10 @@
 	open_prompt = FALSE
 	clean_ui_user()
 
+/obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/attack_hand(mob/user)
+	if(damaged == TRUE)
+		to_chat(user, "The computer blink and let some weirds sounds, its broken!")
+
 	if(fly_state == SHUTTLE_IN_ATMOSPHERE && last_valid_ground_port)
 		visible_message("Autopilot detects loss of helm control. INITIATING EMERGENCY LANDING!")
 		shuttle_port.callTime = SHUTTLE_LANDING_CALLTIME
