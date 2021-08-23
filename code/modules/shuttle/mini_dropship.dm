@@ -173,11 +173,6 @@
 	open_prompt = FALSE
 	clean_ui_user()
 
-/obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/attack_hand(mob/user)
-	if(damaged)
-		to_chat(user, span_warning("The [src] blinks and lets out a crackling noise. Its broken!"))
-		return
-
 	if(fly_state == SHUTTLE_IN_ATMOSPHERE && last_valid_ground_port)
 		visible_message("Autopilot detects loss of helm control. INITIATING EMERGENCY LANDING!")
 		shuttle_port.callTime = SHUTTLE_LANDING_CALLTIME
@@ -185,6 +180,12 @@
 		shuttle_port.set_mode(SHUTTLE_CALL)
 		SSshuttle.moveShuttleToDock(shuttleId, last_valid_ground_port, TRUE)
 		return
+
+/obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/attack_hand(mob/user)
+	if(damaged)
+		to_chat(user, span_warning("The [src] blinks and lets out a crackling noise. Its broken!"))
+		return
+	return ..()
 
 	if(next_fly_state == SHUTTLE_IN_ATMOSPHERE)
 		shuttle_port.set_idle() // don't go up with a broken console, cencel spooling
