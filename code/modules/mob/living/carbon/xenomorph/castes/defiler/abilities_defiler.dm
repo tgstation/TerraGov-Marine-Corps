@@ -14,7 +14,7 @@ GLOBAL_LIST_INIT(defile_purge_list, typecacheof(list(
 	mechanics_text = "Channel to inject an adjacent target with an accelerant that violently reacts with xeno toxins, releasing gas and dealing heavy tox damage in proportion to the amount in their system."
 	ability_name = "defiler sting"
 	plasma_cost = 100
-	cooldown_timer = 15 SECONDS
+	cooldown_timer = 20 SECONDS
 	target_flags = XABB_MOB_TARGET
 	keybind_signal = COMSIG_XENOABILITY_DEFILE
 
