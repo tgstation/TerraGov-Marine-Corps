@@ -1183,3 +1183,87 @@
 			continue
 		limb_to_unfix.fracture()
 		break
+
+
+/datum/reagent/medicine/research
+	name = "Research precursor" //nothing with this subtype should be added to vendors
+	taste_description = "bitterness"
+	reagent_state = LIQUID
+	taste_description = "bitterness"
+
+
+/datum/reagent/medicine/research/quietus
+	name = "Quietus"
+	description = "This is a latent poison, designed to quickly and painlessly kill you in the event that you become unable to fight. Never washes out on it's own, must be purged."
+	color = "#19C832"
+	custom_metabolism = REAGENTS_METABOLISM * 0
+	taste_description = "Victory"
+
+/datum/reagent/medicine/research/quietus/on_mob_life(mob/living/L, metabolism)
+	switch(current_cycle)
+		if(1 to 59)
+			L.adjustStaminaLoss(1*effect_str)
+			if(prob(5))
+				to_chat(L, span_notice("You feel weakened by a chemical."))
+		if(60)
+			to_chat(L, span_notice("You feel the poison settle into your body."))
+		if(61 to INFINITY)
+			if(L.stat == UNCONSCIOUS)
+				L.adjustOxyLoss(25*effect_str)
+	return ..()
+
+/datum/reagent/medicine/research/somolent
+	name = "Somolent"
+	description = "This is a highly potent regenerative drug, designed to heal critically injured personnel. Only functions on unconscious or sleeping people."
+	color = "#19C832"
+	custom_metabolism = REAGENTS_METABOLISM * 2.5 //0.5u/ticc
+	taste_description = "naptime"
+
+/datum/reagent/medicine/research/somolent/on_mob_life(mob/living/L, metabolism)
+	switch(current_cycle)
+		if(1 to 50)
+			if(L.stat == UNCONSCIOUS)
+				L.heal_limb_damage(0.2*current_cycle*effect_str, 0.2*current_cycle*effect_str)
+			if(prob(5))
+				to_chat(L, span_notice("You feel as though you should be sleeping for the medicine to work."))
+	return ..()
+
+
+/datum/reagent/medicine/research/medicalnanites
+	name = "Medical nanites"
+	description = "These are a batch of construction nanites altered for in-vivo replication. They can heal wounds using the iron present in the bloodstream. Medical care is recommended during injection."
+	color = "#19C832"
+	custom_metabolism = REAGENTS_METABOLISM * 0
+	taste_description = "metal, followed by mild burning"
+	overdose_threshold = REAGENTS_OVERDOSE * 1.2 //slight buffer to keep you safe
+
+/datum/reagent/medicine/research/medicalnanites/on_mob_life(mob/living/L, metabolism)
+	switch(current_cycle)
+		if(1 to 150)
+			L.take_limb_damage(0.01*current_cycle*effect_str, 0.01*current_cycle*effect_str)
+			L.adjustToxLoss(1*effect_str)
+			L.adjustStaminaLoss((1)*effect_str)
+			if(prob(5))
+				to_chat(L, span_notice("You feel intense itching!"))
+		if(151 to INFINITY)
+			if(volume < 30) //smol injection will self-replicate up to 30u using 60u of blood.
+				L.reagents.add_reagent(/datum/reagent/medicine/research/medicalnanites, 0.5)
+				L.blood_volume -= 2
+				
+			var/brute_loss = L.getBruteLoss()
+			if(!brute_loss) //If we have no brute damage, cancel out
+				return ..()
+			else if (volume > 5) //And if there's enough remaining, heal some damage and remove some nanites.
+				L.heal_limb_damage(2*effect_str, 0)
+				holder.remove_reagent(/datum/reagent/medicine/research/medicalnanites, 1)
+				
+			var/burn_loss = L.getBurnLoss()
+			if(!burn_loss) //If we have no burn damage, cancel out
+				return ..()
+			else if (volume > 5) //And if there's enough remaining, heal some damage and remove some nanites.
+				L.heal_limb_damage(0, 2*effect_str)
+				holder.remove_reagent(/datum/reagent/medicine/research/medicalnanites, 1)
+	return ..()
+
+/datum/reagent/medicine/research/medicalnanites/overdose_process(mob/living/L, metabolism)
+	L.adjustToxLoss(effect_str) //softcap VS injecting massive amounts of medical nanites for the healing factor with no downsides. Still doable if you're clever about it.
