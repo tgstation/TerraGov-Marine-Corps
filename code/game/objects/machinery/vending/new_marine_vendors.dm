@@ -192,6 +192,9 @@
 
 			if(use_points)
 				I.marine_points -= cost
+			var/mob/living/user = usr
+			user.blood_volume -= 10
+			to_chat(user, span_notice("[src] picks your finger and steals some of your blood!"))
 			. = TRUE
 
 	updateUsrDialog()
