@@ -1250,10 +1250,7 @@
 				L.reagents.add_reagent(/datum/reagent/medicine/research/medicalnanites, 0.5)
 				L.blood_volume -= 2
 				
-			var/brute_loss = L.getBruteLoss()
-			if(!brute_loss) //If we have no brute damage, cancel out
-				return ..()
-			else if (volume > 5) //And if there's enough remaining, heal some damage and remove some nanites.
+			if (volume >5 && L.getBruteLoss()) //If there's no bruteloss, don't waste shit. Also, don't heal if it'd bring you below 5u reserve nanites.
 				L.heal_limb_damage(2*effect_str, 0)
 				holder.remove_reagent(/datum/reagent/medicine/research/medicalnanites, 1)
 				
