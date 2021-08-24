@@ -569,7 +569,7 @@
 		return FALSE
 	if(isobj(A))
 		var/obj/O = A
-		if(CHECK_BITFIELD(O.resistance_flags, UNACIDABLE|INDESTRUCTIBLE))
+		if(CHECK_BITFIELD(O.resistance_flags, RESIST_ALL))
 			if(!silent)
 				to_chat(owner, span_warning("We cannot dissolve \the [O]."))
 			return FALSE

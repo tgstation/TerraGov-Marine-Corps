@@ -61,7 +61,7 @@
 			owner.state = PLANE_STATE_ACTIVATED
 			return
 		if(PLANE_STATE_PREPARED | PLANE_STATE_FLYING)
-			to_chat(span_warning("The plane is in-flight!"))
+			to_chat(user, span_warning("The plane is in-flight!"))
 			return
 		if(PLANE_STATE_ACTIVATED)
 			if(occupant)
@@ -131,12 +131,12 @@
 
 /obj/docking_port/stationary/marine_dropship/cas
 	name = "CAS plane hangar pad"
-	id = "casplane"
+	id = "cas_dock"
 	roundstart_template = /datum/map_template/shuttle/cas
 
 /obj/docking_port/mobile/marine_dropship/casplane
 	name = "Condor Jet"
-	id = "casplane"
+	id = "cas_dock"
 	width = 11
 	height = 12
 

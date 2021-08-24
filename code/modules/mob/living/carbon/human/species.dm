@@ -934,11 +934,11 @@
 
 	// Check if they have a functioning hand.
 	var/datum/limb/E = user.get_limb("l_hand")
-	if(E && !(E.limb_status & LIMB_DESTROYED))
+	if(E?.is_usable())
 		return TRUE
 
 	E = user.get_limb("r_hand")
-	if(E && !(E.limb_status & LIMB_DESTROYED))
+	if(E?.is_usable())
 		return TRUE
 	return FALSE
 

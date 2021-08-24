@@ -74,7 +74,7 @@
 	if(ishuman(src))
 		var/mob/living/carbon/human/M = src
 		for(var/datum/limb/O in M.limbs)
-			if((O.limb_status & LIMB_DESTROYED) && !(O.limb_status & LIMB_AMPUTATED))
+			if(((O.limb_status & LIMB_DESTROYED) && !(O.limb_status & LIMB_AMPUTATED)) || O.limb_status & LIMB_NECROTIZED)
 				traumatic_shock += 40
 			else if(O.limb_status & LIMB_BROKEN || O.surgery_open_stage)
 				if(O.limb_status & LIMB_SPLINTED || O.limb_status & LIMB_STABILIZED)

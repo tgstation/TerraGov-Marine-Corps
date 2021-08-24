@@ -58,6 +58,8 @@
 	)
 
 	var/list/recording_recipe
+	///Whether untrained people get a delay when using it
+	var/needs_medical_training = TRUE
 
 /obj/machinery/chem_dispenser/Initialize()
 	. = ..()
@@ -116,10 +118,10 @@
 	// I dont care about the type of tool, if it triggers multitool act its good enough.
 	hackedcheck = !hackedcheck
 	if(hackedcheck)
-		to_chat(user, emagged_message[0])
+		to_chat(user, emagged_message[1])
 		dispensable_reagents += emagged_reagents
 	else
-		to_chat(user, emagged_message[1])
+		to_chat(user, emagged_message[2])
 		dispensable_reagents -= emagged_reagents
 
 /obj/machinery/chem_dispenser/ui_interact(mob/user, datum/tgui/ui)
@@ -170,7 +172,7 @@
 	if(.)
 		return
 
-	if(ishuman(usr))
+	if(needs_medical_training && ishuman(usr))
 		var/mob/living/carbon/human/user = usr
 		if(!user.skills.getRating("medical"))
 			to_chat(user, span_notice("You start fiddling with \the [src]..."))
@@ -393,6 +395,7 @@
 		/datum/reagent/consumable/ethanol/thirteenloko,
 		/datum/reagent/consumable/drink/grapesoda,
 	)
+	needs_medical_training = FALSE
 
 
 /obj/machinery/chem_dispenser/beer
@@ -432,3 +435,4 @@
 		/datum/reagent/consumable/drink/watermelonjuice,
 		/datum/reagent/consumable/drink/berryjuice,
 	)
+	needs_medical_training = FALSE

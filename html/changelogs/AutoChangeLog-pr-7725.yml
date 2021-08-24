@@ -1,0 +1,10 @@
+author: "vilereaver41"
+delete-after: True
+changes: 
+  - bugfix: "weird blue and green cargo container glitch"
+  - rscadd: "a small miner building in north caves"
+  - rscadd: "supply chamber in lz1 that can't be accessed until button in eta lab directors office is activated"
+  - rscadd: "button in eta lab directors office that can only be used by field commander or higher via their id card"
+  - rscadd: "a building that leads to an underground facility that cannot easily be accessed by marines until the button in eta lab director's office is activated. though a good enough marine squad can use the lambda Xeno entrance that is always open."
+  - rscadd: "medium size underground facility"
+  - rscadd: "lambda entrance to the underground facility"

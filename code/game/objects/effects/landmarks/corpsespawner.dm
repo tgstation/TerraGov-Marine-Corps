@@ -36,6 +36,10 @@
 	. = ..()
 	GLOB.corpse_landmarks_list += src
 
+/obj/effect/landmark/corpsespawner/Destroy()
+	GLOB.corpse_landmarks_list -= src
+	return ..()
+
 /// Create the mob and delete the corpse spawner
 /obj/effect/landmark/corpsespawner/proc/create_mob(death_type)
 	var/mob/living/carbon/human/victim = new(loc)

@@ -207,6 +207,7 @@
 // /turf signals
 #define COMSIG_TURF_CHANGE "turf_change"						//from base of turf/ChangeTurf(): (path, list/new_baseturfs, flags, list/transferring_comps)
 #define COMSIG_TURF_WEED_REMOVED "turf_weed_removed"
+#define COMSIG_TURF_THROW_ENDED_HERE "turf_throw_ended_here"						//From atom/movable/throw_at, sent right after a throw ends
 
 // /obj signals
 #define COMSIG_OBJ_SETANCHORED "obj_setanchored"				//called in /obj/structure/setAnchored(): (value)
@@ -225,6 +226,7 @@
 #define COMSIG_PORTGEN_PROCESS "portgen_process"				/// from /obj/machinery/power/port_gen/process: ()
 
 #define COMSIG_UNMANNED_TURRET_UPDATED "unmanned_turret_update" /// from /obj/vehicle/unmanned/attackby: (newtype)
+#define COMSIG_UNMANNED_ABILITY_UPDATED "unmanned_ability_update"
 
 // /obj/item signals
 #define COMSIG_ITEM_ATTACK "item_attack"						//from base of obj/item/attack(): (/mob/living/target, /mob/living/user)
@@ -289,9 +291,6 @@
 #define COMSIG_GUN_USER_SET "gun_user_set"
 #define COMSIG_MOB_GUN_FIRED "mob_gun_fired"
 #define COMSIG_MOB_GUN_AUTOFIRED "mob_gun_autofired"
-
-#define COMSIG_REVOLVER_AMMO_HIT_MOB "gun_revolver_ammo_hit"
-	#define COMSIG_REVOLVER_AMMO_SNUBNOSE_BARREL (1<<0)
 
 // /obj/item/clothing signals
 #define COMSIG_SHOES_STEP_ACTION "shoes_step_action"			//from base of obj/item/clothing/shoes/proc/step_action(): ()
@@ -649,6 +648,8 @@
 #define COMSIG_REMOTECONTROL_TOGGLE "remotecontrol_toggle"
 #define COMSIG_REMOTECONTROL_UNLINK "remotecontrol_unlink"
 #define COMSIG_REMOTECONTROL_CHANGED "remotecontrol_changed"
+#define COMSIG_RELAYED_SPEECH "relayed_speech"
+	#define COMSIG_RELAYED_SPEECH_DEALT (1<<0)
 
 // human signals for keybindings
 #define COMSIG_KB_QUICKEQUIP "keybinding_quickequip"
@@ -668,6 +669,7 @@
 // Action state signal that's sent whenever the action state has a distance maintained with the target being walked to
 #define COMSIG_STATE_MAINTAINED_DISTANCE "action_state_maintained_dist_with_target"
 #define COMSIG_OBSTRUCTED_MOVE "unable_to_step_towards_thing" //Tried to step in a direction and there was a obstruction
+	#define COMSIG_OBSTACLE_DEALT_WITH (1<<0)
 
 // /datum/song signals
 

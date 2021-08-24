@@ -95,10 +95,10 @@
 	. = ..()
 	if(.)
 		return
-	if(!ishuman(usr))
+	if(!ishuman(usr) || isAI(usr))
 		return
 
-	var/mob/living/carbon/human/user = usr
+	var/mob/living/user = usr
 
 	if(!user.skills.getRating("medical"))
 		to_chat(user, span_notice("You start fiddling with \the [src]..."))

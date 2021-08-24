@@ -155,7 +155,7 @@
 
 		var/turf/selfown = locate((coords["targ_x"] + coords["dial_x"]), (coords["targ_y"] + coords["dial_y"]), z)
 		if(get_dist(loc, selfown) < 7)
-			to_chat(usr, span_warning("You cannot target this coordinate, it is too close to your mortar."))
+			to_chat(user, span_warning("You cannot target this coordinate, it is too close to your mortar."))
 			return
 
 		var/turf/T = locate(coords["targ_x"] + coords["dial_x"] + offset_x, coords["targ_y"]  + coords["dial_x"] + offset_y, z)
@@ -240,7 +240,7 @@
 	max_integrity = 200
 	flags_item = IS_DEPLOYABLE|DEPLOYED_WRENCH_DISASSEMBLE
 
-	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
+	resistance_flags = RESIST_ALL
 	w_class = WEIGHT_CLASS_BULKY //No dumping this in most backpacks. Carry it, fatso
 
 /obj/item/mortar_kit/Initialize()
@@ -338,9 +338,10 @@
 /obj/effect/mortar_flare
 	invisibility = INVISIBILITY_MAXIMUM
 	resistance_flags = RESIST_ALL
-	light_system = STATIC_LIGHT
-	light_color = COLOR_VERY_SOFT_YELLOW
-	light_power = 7 //Magnesium/sodium fires (White star) really are bright
+	mouse_opacity = 0
+	light_system = HYBRID_LIGHT
+	light_mask_type = /atom/movable/lighting_mask/flicker
+	light_range = 9 //Way brighter than most lights
 
 /obj/effect/mortar_flare/Initialize()
 	. = ..()

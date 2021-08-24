@@ -2553,6 +2553,7 @@
 "iX" = (
 /obj/structure/window/reinforced/extratoughened,
 /obj/machinery/camera/autoname/mainship,
+/obj/vehicle/unmanned/droid,
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/airoom)
 "iY" = (
@@ -4093,6 +4094,10 @@
 	dir = 4
 	},
 /area/mainship/squads/general)
+"nF" = (
+/obj/machinery/floor_warn_light/self_destruct,
+/turf/open/floor/mainship/black/full,
+/area/mainship/command/self_destruct)
 "nG" = (
 /obj/structure/prop/mainship/missile_tube,
 /obj/effect/decal/warning_stripes/thin,
@@ -6820,6 +6825,7 @@
 	pixel_x = 5;
 	pixel_y = 10
 	},
+/obj/item/uav_turret/droid,
 /turf/open/floor/mainship/orange/full,
 /area/mainship/command/cic)
 "wu" = (
@@ -10376,6 +10382,7 @@
 /obj/structure/window/reinforced/extratoughened{
 	dir = 1
 	},
+/obj/vehicle/unmanned/droid/scout,
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/airoom)
 "HN" = (
@@ -50434,7 +50441,7 @@ oM
 eG
 xe
 jb
-Lb
+Yy
 jc
 rp
 bk
@@ -51976,7 +51983,7 @@ oM
 eZ
 fG
 wo
-dh
+nF
 eZ
 fG
 wo
@@ -55060,7 +55067,7 @@ bk
 eZ
 fG
 wo
-dh
+nF
 eZ
 fG
 wo

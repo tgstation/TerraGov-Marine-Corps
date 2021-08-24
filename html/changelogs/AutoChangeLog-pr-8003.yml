@@ -1,0 +1,4 @@
+author: "KornFlaks"
+delete-after: True
+changes: 
+  - rscadd: "Powerfist now applies a stun scaling with power level"

@@ -10099,6 +10099,11 @@
 	},
 /turf/open/floor/prison/bright_clean,
 /area/sulaco/hangar)
+"bvh" = (
+/obj/structure/cable,
+/obj/machinery/floor_warn_light/self_destruct,
+/turf/open/floor/prison/bright_clean,
+/area/mainship/command/self_destruct)
 "bvu" = (
 /obj/machinery/computer/droppod_control,
 /obj/structure/table/mainship,
@@ -11100,7 +11105,14 @@
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /obj/structure/cable,
 /turf/open/floor/prison,
-/area/sulaco/hangar/storage)
+/area/sulaco/maintenance/lower_maint)
+"dpY" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/obj/vehicle/unmanned/droid/scout,
+/turf/open/floor/plating,
+/area/sulaco/maintenance/lower_maint)
 "drG" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/cyan/hidden/layer1{
@@ -14095,6 +14107,13 @@
 /obj/machinery/door/poddoor/telecomms,
 /turf/open/floor/plating/platebotc,
 /area/sulaco/telecomms/office)
+"jnt" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/machinery/floor_warn_light/self_destruct,
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hangar)
 "joP" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
@@ -17333,6 +17352,7 @@
 /obj/effect/decal/cleanable/cobweb{
 	dir = 4
 	},
+/obj/item/uav_turret/droid,
 /turf/open/floor/plating,
 /area/sulaco/maintenance/lower_maint)
 "oXn" = (
@@ -20499,6 +20519,10 @@
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /turf/open/floor/prison/darkyellow/corner,
 /area/sulaco/engineering)
+"uDw" = (
+/obj/vehicle/unmanned/droid,
+/turf/open/floor/plating,
+/area/sulaco/maintenance/lower_maint)
 "uDI" = (
 /obj/machinery/vending/cigarette,
 /turf/open/floor/prison/kitchen,
@@ -60286,7 +60310,7 @@ sKM
 aPF
 aPF
 bbh
-aRQ
+jnt
 gHU
 aPF
 aPF
@@ -61817,10 +61841,10 @@ kOr
 aTt
 pWS
 sFd
-pWS
-pWS
-bYM
-kxY
+cdy
+cdy
+aPY
+dpY
 aWh
 fVO
 aZw
@@ -61828,7 +61852,7 @@ aNE
 aUy
 aOm
 aOm
-aKP
+bvh
 aOm
 aOm
 aUy
@@ -62076,8 +62100,8 @@ pWS
 ron
 pWS
 bbJ
-bYM
-aWh
+aPY
+uDw
 aWh
 aWh
 bam
@@ -63370,7 +63394,7 @@ aNE
 aUy
 aOv
 aOv
-aKP
+bvh
 aOv
 aOv
 aUy

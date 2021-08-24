@@ -489,10 +489,11 @@
 				if(H.w_uniform.clean_blood())
 					H.update_inv_w_uniform(0)
 			if(H.shoes)
+				H.clean_blood(FALSE)
 				if(H.shoes.clean_blood())
 					H.update_inv_shoes(0)
 			else
-				H.clean_blood(1)
+				H.clean_blood(TRUE)
 			return
 	L.clean_blood()
 
