@@ -327,7 +327,7 @@
 	description = "Dylovene is a broad-spectrum antitoxin."
 	color = "#A8F59C"
 	scannable = TRUE
-	purge_list = list(/datum/reagent/toxin, /datum/reagent/toxin/xeno_neurotoxin, /datum/reagent/consumable/drink/atomiccoffee, /datum/reagent/medicine/paracetamol, /datum/reagent/medicine/larvaway)
+	purge_list = list(/datum/reagent/toxin, /datum/reagent/medicine/research/stimulon, /datum/reagent/medicine/paracetamol, /datum/reagent/medicine/larvaway)
 	purge_rate = 1
 	overdose_threshold = REAGENTS_OVERDOSE
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
@@ -1250,7 +1250,7 @@
 	overdose_threshold = REAGENTS_OVERDOSE * 1.2 //slight buffer to keep you safe
 
 /datum/reagent/medicine/research/medicalnanites/on_mob_add(mob/living/L, metabolism)
-	to_chat(L, span_danger("You feel like you should stay near medical help until this shot settles in."))
+	to_chat(L, span_userdanger("You feel like you should stay near medical help until this shot settles in."))
 
 /datum/reagent/medicine/research/medicalnanites/on_mob_life(mob/living/L, metabolism)
 	switch(current_cycle)
@@ -1289,10 +1289,14 @@
 	color = "#C8A5DC"
 	scannable = TRUE
 	taste_description = "freezing"
-	adj_temp = 30
-	targ_temp = 100
 
-
+/datum/reagent/medicine/research/cryotox/on_mob_add(mob/living/L, metabolism)
+	var/target_temp = L.get_standard_bodytemperature()
+	if(L.bodytemperature > target_temp - 200)
+		L.adjust_bodytemperature(-30*TEMPERATURE_DAMAGE_COEFFICIENT*effect_str, target_temp)
+	return ..()
+	
+	
 /datum/reagent/medicine/research/stimulon
 	name = "Stimulon"
 	description = "A chemical designed to boost running by driving your body beyond it's normal limits. Can have unpredictable side effects, caution recommended."
@@ -1301,6 +1305,7 @@
 	scannable = TRUE
 
 /datum/reagent/medicine/research/stimulon/on_mob_add(mob/living/L, metabolism)
+	to_chat(L, span_userdanger("You feel jittery and fast! Time to MOVE!"))
 	. = ..()
 	L.add_movespeed_modifier(type, TRUE, 0, NONE, TRUE, -1)
 
@@ -1314,7 +1319,10 @@
 	if(prob(2))
 		L.emote(pick("twitch","blink_r","shiver"))
 	if(volume < 100) //THERE IS NO "MINIMUM SAFE DOSE" MUAHAHAHA!
-		L.reagents.add_reagent(/datum/reagent/medicine/research/stimulon, 0.1)
+		L.reagents.add_reagent(/datum/reagent/medicine/research/stimulon, 0.25)
+	if(current_cycle > 25)
+		if(prob(5))
+			to_chat(L, span_userdanger("You start to ache. Maybe you should get rid of this drug?"))
 	return ..()
 
 
