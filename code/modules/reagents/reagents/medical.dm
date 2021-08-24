@@ -1257,7 +1257,7 @@
 				L.heal_limb_damage(2*effect_str, 0)
 				holder.remove_reagent(/datum/reagent/medicine/research/medicalnanites, 1)
 				
-			var/burn_loss = L.getBurnLoss()
+			var/burn_loss = L.getFireLoss()
 			if(!burn_loss) //If we have no burn damage, cancel out
 				return ..()
 			else if (volume > 5) //And if there's enough remaining, heal some damage and remove some nanites.
