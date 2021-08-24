@@ -12473,6 +12473,10 @@
 	},
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/compound/c)
+"bsC" = (
+/obj/effect/ai_node,
+/turf/open/floor/marking/loadingarea,
+/area/shuttle/drop2/lz2)
 "bvr" = (
 /obj/structure/cargo_container{
 	dir = 1
@@ -13288,6 +13292,10 @@
 	dir = 8
 	},
 /area/lv624/lazarus/engineering)
+"eTt" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/caves/west1)
 "eTI" = (
 /obj/effect/decal/warning_stripes/thick{
 	dir = 8
@@ -13751,6 +13759,10 @@
 	},
 /turf/open/ground/grass,
 /area/lv624/ground/jungle5)
+"gAE" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/sand7)
 "gBh" = (
 /obj/structure/jungle/vines/heavy,
 /turf/open/floor/plating/ground/dirtgrassborder,
@@ -15625,6 +15637,10 @@
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/lv624/lazarus/engineering)
+"obc" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/river1)
 "obw" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
@@ -15816,6 +15832,10 @@
 /obj/structure/catwalk,
 /turf/open/ground/river,
 /area/lv624/ground/river2)
+"oNl" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating,
+/area/lv624/ground/sand7)
 "oPz" = (
 /obj/structure/jungle/vines,
 /turf/open/floor/plating/ground/dirtgrassborder/corner{
@@ -16149,6 +16169,10 @@
 /obj/machinery/floodlight/colony,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/sand2)
+"qpF" = (
+/obj/effect/ai_node,
+/turf/open/floor,
+/area/shuttle/drop2/lz2)
 "qpX" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/open/floor/plating/asteroidfloor,
@@ -16276,6 +16300,10 @@
 	},
 /turf/open/floor/marking/bot,
 /area/shuttle/drop2/lz2)
+"qNJ" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/jungle6)
 "qOb" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/freezer,
@@ -16944,6 +16972,10 @@
 /obj/structure/girder,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/west1)
+"tDp" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/sand1)
 "tEm" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -17124,6 +17156,10 @@
 /obj/effect/landmark/xeno_turret_spawn,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/west1)
+"uki" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/compound/sw)
 "unj" = (
 /obj/effect/spawner/modularmap/lv624/domes,
 /turf/open/space/basic,
@@ -17611,6 +17647,11 @@
 	},
 /turf/open/floor/plating,
 /area/lv624/lazarus/engineering)
+"wpx" = (
+/obj/effect/landmark/weed_node,
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/jungle6)
 "wrw" = (
 /obj/structure/fence,
 /turf/open/floor/plating/ground/dirtgrassborder/corner2{
@@ -17634,6 +17675,11 @@
 /obj/structure/jungle/vines,
 /turf/open/ground/grass/grass2,
 /area/lv624/ground/jungle9)
+"wwp" = (
+/obj/machinery/miner/damaged,
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/jungle6)
 "wwA" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /obj/effect/landmark/xeno_resin_door,
@@ -17734,6 +17780,12 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/compound/ne)
+"wRj" = (
+/obj/effect/ai_node,
+/turf/open/floor/marking/loadingarea{
+	dir = 4
+	},
+/area/shuttle/drop2/lz2)
 "wTm" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/dirt,
@@ -20077,7 +20129,7 @@ abk
 uMG
 abc
 abc
-abc
+eTt
 abb
 abb
 abb
@@ -20620,7 +20672,7 @@ abb
 abc
 abc
 abc
-abc
+eTt
 abc
 abc
 abc
@@ -20811,7 +20863,7 @@ awX
 awC
 awC
 awC
-awC
+gAE
 awC
 awC
 vPT
@@ -21182,13 +21234,13 @@ avc
 avL
 gqX
 avL
-avL
+obc
 avL
 dxb
 wFS
 elu
 xtz
-gSa
+bsC
 aXb
 aXb
 aMV
@@ -21730,14 +21782,14 @@ iAL
 aXb
 aXb
 aXb
+qpF
 aXb
 aXb
 aXb
 aXb
 aXb
 aXb
-aXb
-aXb
+qpF
 aXb
 aXb
 gZo
@@ -22046,13 +22098,13 @@ abc
 fDX
 abc
 abc
-abc
+eTt
 abc
 abd
 ahr
 abc
 abc
-abc
+eTt
 abc
 abc
 abc
@@ -22227,7 +22279,7 @@ abc
 abb
 abc
 abc
-abc
+eTt
 ahr
 abc
 abc
@@ -22464,7 +22516,7 @@ bep
 gSr
 dXO
 dXO
-dXO
+wRj
 dXO
 aXb
 sod
@@ -22640,7 +22692,7 @@ pro
 tEX
 pro
 aXb
-aXb
+qpF
 aXb
 pCx
 eTI
@@ -22982,7 +23034,7 @@ avw
 aCp
 axR
 axR
-axR
+qNJ
 axR
 wNe
 wNe
@@ -23494,7 +23546,7 @@ awC
 awC
 aaM
 mfF
-aaM
+oNl
 aaS
 aaU
 aCl
@@ -23506,6 +23558,7 @@ agd
 aDv
 aCD
 atG
+qNJ
 axR
 axR
 axR
@@ -23514,8 +23567,7 @@ axR
 axR
 axR
 axR
-axR
-axR
+qNJ
 axR
 axR
 atH
@@ -23838,7 +23890,7 @@ abc
 abc
 abd
 abc
-abc
+eTt
 abc
 abc
 abc
@@ -23848,7 +23900,7 @@ ahr
 hIc
 aqD
 aqD
-aqD
+tDp
 aqD
 aqD
 aqD
@@ -24251,10 +24303,10 @@ xVM
 wNx
 bnj
 doR
-aZl
+uki
 hnZ
 mos
-aZl
+uki
 aZl
 aZl
 bpG
@@ -24411,7 +24463,7 @@ avq
 aIZ
 avq
 axR
-tal
+wpx
 axR
 xVM
 xVM
@@ -25119,11 +25171,11 @@ axR
 axR
 tal
 axR
-axR
+qNJ
 awD
 axR
 axR
-axR
+qNJ
 avq
 aNO
 avq
@@ -25443,7 +25495,7 @@ abc
 abc
 abc
 abc
-abc
+eTt
 abc
 abc
 abc
@@ -25457,7 +25509,7 @@ aqD
 aqD
 aqD
 aqD
-aqD
+tDp
 avL
 auZ
 are
@@ -25650,7 +25702,7 @@ avc
 atH
 aBM
 axR
-dMU
+wwp
 axR
 ayo
 axQ
@@ -27241,7 +27293,7 @@ aqD
 aqD
 aqD
 aqD
-aqD
+tDp
 aqD
 aqD
 aqD
@@ -27253,7 +27305,7 @@ aCl
 agd
 aDv
 axO
-axR
+qNJ
 axR
 axR
 axR
@@ -27261,7 +27313,7 @@ aBg
 avQ
 axR
 aCq
-axR
+qNJ
 axR
 aXH
 aXH
