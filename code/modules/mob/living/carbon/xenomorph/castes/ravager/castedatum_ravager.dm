@@ -57,8 +57,8 @@
 
 /datum/xeno_caste/ravager/on_caste_removed(mob/xenomorph)
 	. = ..()
-	xenomorph.RemoveElement(/datum/element/plasma_on_attack)
-	xenomorph.RemoveElement(/datum/element/plasma_on_attacked)
+	xenomorph.RemoveElement(/datum/element/plasma_on_attack, 1.5)
+	xenomorph.RemoveElement(/datum/element/plasma_on_attacked, 0.5)
 
 /datum/xeno_caste/ravager/young
 	upgrade_name = "Young"
