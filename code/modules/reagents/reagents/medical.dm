@@ -1291,9 +1291,7 @@
 	taste_description = "freezing"
 
 /datum/reagent/medicine/research/cryotox/on_mob_add(mob/living/L, metabolism)
-	var/target_temp = L.get_standard_bodytemperature()
-	if(L.bodytemperature > (target_temp - 200))
-		L.adjust_bodytemperature(-30*TEMPERATURE_DAMAGE_COEFFICIENT*effect_str, (target_temp - 200))
+		L.adjust_bodytemperature(-30*TEMPERATURE_DAMAGE_COEFFICIENT*effect_str, 100)
 	return ..()
 	
 	
@@ -1320,8 +1318,8 @@
 		L.emote(pick("twitch","blink_r","shiver"))
 	if(volume < 100) //THERE IS NO "MINIMUM SAFE DOSE" MUAHAHAHA!
 		L.reagents.add_reagent(/datum/reagent/medicine/research/stimulon, 0.25)
-	if(current_cycle > 25)
-		if(prob(5))
+	if(current_cycle > 20)
+		if(prob(10))
 			to_chat(L, span_danger("You start to ache. Maybe you should get rid of this drug?"))
 	return ..()
 
