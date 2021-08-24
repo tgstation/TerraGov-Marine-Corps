@@ -41,6 +41,12 @@
 		/datum/action/xeno_action/activable/rally_hive/hivemind,
 	)
 
+/datum/xeno_caste/hivemind/on_caste_applied(mob/xenomorph)
+	return
+
+/datum/xeno_caste/hivemind/on_caste_removed(mob/xenomorph)
+	return
+
 /datum/xeno_caste/hivemind/hivemind_manifestation
 	caste_desc = "The manifestation of the hivemind"
 	wound_type = "hivemind"

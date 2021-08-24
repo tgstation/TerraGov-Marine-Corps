@@ -58,9 +58,6 @@
 	if(!job) //It might be setup on spawn.
 		setup_job()
 
-	if(!(status_flags & INCORPOREAL))
-		AddComponent(/datum/component/bump_attack)
-
 	ADD_TRAIT(src, TRAIT_BATONIMMUNE, TRAIT_XENO)
 	ADD_TRAIT(src, TRAIT_FLASHBANGIMMUNE, TRAIT_XENO)
 	hive.update_tier_limits()
@@ -74,11 +71,13 @@
 		CRASH("error finding base type")
 	if(!GLOB.xeno_caste_datums[caste_base_type][upgrade])
 		CRASH("error finding datum")
+	if(xeno_caste)
+		xeno_caste.on_caste_removed(src)
 	var/datum/xeno_caste/X = GLOB.xeno_caste_datums[caste_base_type][upgrade]
 	if(!istype(X))
 		CRASH("error with caste datum")
 	xeno_caste = X
-
+	xeno_caste.on_caste_applied(src)
 	plasma_stored = xeno_caste.plasma_max
 	maxHealth = xeno_caste.max_health * GLOB.xeno_stat_multiplicator_buff
 	if(restore_health)

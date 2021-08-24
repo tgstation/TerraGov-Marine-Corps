@@ -206,6 +206,14 @@
 	///Whether the caste enters and crawls through vents silently
 	var/silent_vent_crawl = FALSE
 
+///Add needed component to the xeno
+/datum/xeno_caste/proc/on_caste_applied(mob/xenomorph)
+	xenomorph.AddComponent(/datum/component/bump_attack)
+
+/datum/xeno_caste/proc/on_caste_removed(mob/xenomorph)
+	var/datum/component/bump_attack = xenomorph.GetComponent(/datum/component/bump_attack)
+	bump_attack?.RemoveComponent()
+
 /mob/living/carbon/xenomorph
 	name = "Drone"
 	desc = "What the hell is THAT?"
