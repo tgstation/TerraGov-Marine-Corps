@@ -1220,7 +1220,7 @@
 	taste_description = "naptime"
 
 /datum/reagent/medicine/research/somolent/on_mob_life(mob/living/L, metabolism)
-	if(cycle > 50)
+	if(current_cycle > 50)
 		return ..()
 	if(L.stat == UNCONSCIOUS)
 		L.heal_limb_damage(0.2*current_cycle*effect_str, 0.2*current_cycle*effect_str)
