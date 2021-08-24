@@ -1,0 +1,13 @@
+author: "Surrealaser"
+delete-after: True
+changes: 
+  - balance: "Muted marines can no longer issue orders; a Muted marine will have his ongoing orders cancelled next tick."
+  - bugfix: "Muted marines can no longer issue orders."
+  - balance: "Marines subject to Silence can no longer benefit from orders."
+  - bugfix: "Marines subject to Silence can no longer benefit from orders."
+  - balance: "Silence plasma cost reduced from 75 to 50."
+  - balance: "Silence cooldown reduced from 40 to 30 seconds."
+  - balance: "Silence windup reduced from 0.5 seconds to 0.3 seconds."
+  - qol: "Xenos can now see which marines are subject to Silence via a HUD element."
+  - bugfix: "Silence duration fixed; it is now actually 10 seconds.
+remove: Haunt removed."

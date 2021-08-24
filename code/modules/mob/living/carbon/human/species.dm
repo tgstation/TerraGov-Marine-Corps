@@ -839,6 +839,9 @@
 	var/datum/atom_hud/AH = GLOB.huds[DATA_HUD_MEDICAL_ADVANCED_SYNTH]
 	AH.add_hud_to(H)
 
+/mob/living/carbon/human/species/synthetic/binarycheck(mob/H)
+	return TRUE
+
 
 /datum/species/synthetic/post_species_loss(mob/living/carbon/human/H)
 	var/datum/atom_hud/AH = GLOB.huds[DATA_HUD_MEDICAL_ADVANCED_SYNTH]
@@ -897,6 +900,9 @@
 	var/datum/atom_hud/AH = GLOB.huds[DATA_HUD_MEDICAL_ADVANCED_SYNTH]
 	AH.remove_hud_from(H)
 	return ..()
+
+/mob/living/carbon/human/species/early_synthetic/binarycheck(mob/H)
+	return TRUE
 
 
 /mob/living/carbon/human/proc/reset_jitteriness() //todo kill this
