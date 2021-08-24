@@ -47,7 +47,7 @@
 	name = "Unstable mutagen"
 	description = "Might cause unpredictable mutations. Keep away from children."
 	color = "#13BC5E" // rgb: 19, 188, 94
-	toxpwr = 0
+	toxpwr = 2
 	taste_description = "slime"
 	taste_multi = 0.9
 
@@ -93,10 +93,9 @@
 	description = "A highly toxic chemical."
 	color = "#CF3600" // rgb: 207, 54, 0
 	toxpwr = 3
-	custom_metabolism = REAGENTS_METABOLISM * 2
 
 /datum/reagent/toxin/cyanide/on_mob_life(mob/living/L, metabolism)
-	L.adjustOxyLoss(2*effect_str)
+	L.adjustOxyLoss(0.5 * effect_str * current_cycle)
 	if(current_cycle > 10)
 		L.Sleeping(40)
 	return ..()
@@ -189,7 +188,7 @@
 /datum/reagent/toxin/plantbgone/reaction_obj(obj/O, volume)
 	if(istype(O,/obj/effect/alien/weeds))
 		var/obj/effect/alien/A = O
-		A.take_damage(min(0.5 * volume))
+		A.take_damage(min(5 * volume))
 	else if(istype(O,/obj/effect/glowshroom)) //even a small amount is enough to kill it
 		qdel(O)
 	else if(istype(O,/obj/effect/plantsegment))
@@ -256,7 +255,6 @@
 	reagent_state = SOLID
 	color = "#000067" // rgb: 0, 0, 103
 	toxpwr = 0
-	custom_metabolism = REAGENTS_METABOLISM * 0.5
 	overdose_threshold = REAGENTS_OVERDOSE/2
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL/2
 
@@ -461,7 +459,7 @@
 			power = (2*effect_str) //While stamina loss is going, stamina regen apparently doesn't happen, so I can keep this smaller.
 			L.reagent_pain_modifier -= PAIN_REDUCTION_LIGHT
 		if(21 to 45)
-			power = (6*effect_str)
+			power = (8*effect_str)
 			L.reagent_pain_modifier -= PAIN_REDUCTION_HEAVY
 			L.jitter(4) //Shows that things are bad
 		if(46 to INFINITY)
