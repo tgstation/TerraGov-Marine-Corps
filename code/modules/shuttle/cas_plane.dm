@@ -13,7 +13,7 @@
 	icon_state = "chair"
 	layer = ABOVE_MOB_LAYER
 	req_access = list(ACCESS_MARINE_PILOT)
-	interaction_flags = INTERACT_MACHINE_TGUI|INTERACT_MACHINE_NOSILICON
+	interaction_flags = INTERACT_MACHINE_TGUI
 	resistance_flags = RESIST_ALL
 	///The docking port we are handling control for
 	var/obj/docking_port/mobile/marine_dropship/casplane/owner
@@ -48,6 +48,9 @@
 	side = image('icons/Marine/casship.dmi', src, "6")
 	side.pixel_x = -32
 	add_overlay(side)
+
+/obj/structure/caspart/caschair/attack_ai(mob/living/silicon/ai/user)
+	ui_interact(user)
 
 /obj/structure/caspart/caschair/attack_hand(mob/living/user)
 	if(!allowed(user))
@@ -248,6 +251,9 @@
 
 ///Runs checks and creates a new eye/hands over control to the eye
 /obj/docking_port/mobile/marine_dropship/casplane/proc/begin_cas_mission(mob/living/user)
+	if(issilicon(usr))
+		to_chat(usr, span_warning("You need to be the pilot for this."))
+		return
 	if(!fuel_left)
 		to_chat(user, span_warning("No fuel remaining!"))
 		return
@@ -418,6 +424,9 @@
 				if(PLANE_STATE_PREPARED)
 					owner.turn_off_engines()
 		if("cycle_attackdir")
+			if(issilicon(usr))
+				to_chat(usr, span_warning("You need to be the pilot for this."))
+				return
 			owner.attackdir = turn(owner.attackdir, 90)
 			. = TRUE
 
