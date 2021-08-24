@@ -178,7 +178,7 @@
 	fuel_left--
 	if((fuel_left <= LOW_FUEL_LANDING_THRESHOLD) && (state == PLANE_STATE_FLYING))
 		to_chat(chair.occupant, span_warning("Out of fuel, landing."))
-		SSshuttle.moveShuttle(id, "casplane", TRUE)
+		SSshuttle.moveShuttle(id, "cas_dock", TRUE)
 		end_cas_mission(chair.occupant)
 	if (fuel_left <= 0)
 		fuel_left = 0
@@ -399,7 +399,7 @@
 				return
 			SSshuttle.moveShuttleToDock(owner.id, SSshuttle.generate_transit_dock(owner), TRUE)
 		if("land")
-			SSshuttle.moveShuttle(owner.id, "casplane", TRUE)
+			SSshuttle.moveShuttle(owner.id, "cas_dock", TRUE)
 			owner.end_cas_mission(usr)
 		if("deploy")
 			owner.begin_cas_mission(usr)
