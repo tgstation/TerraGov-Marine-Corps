@@ -666,6 +666,18 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 ///This is an orbital light. Basically, huge thing which the CIC can use to light up areas for a bit of time.
 /obj/machinery/computer/camera_advanced/overwatch/proc/attempt_spotlight(datum/source, atom/A, params)
 	SIGNAL_HANDLER
+
+	if(!powered())
+		return 0
+
+	var/area/here_we_are = get_area(src)
+	var/obj/machinery/power/apc/myAPC = here_we_are.get_apc()
+
+	var/power_amount = myAPC?.terminal?.powernet?.avail
+
+	if(power_amount >= 10000)
+		return
+
 	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_ORBITAL_SPOTLIGHT))
 		to_chat(source, span_notice("The Orbital spotlight is still recharging."))
 		return
