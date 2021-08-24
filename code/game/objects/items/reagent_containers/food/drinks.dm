@@ -22,45 +22,38 @@
 		to_chat(user, span_warning("The [src.name] is empty!"))
 		return FALSE
 
-	if(M == user)
-
-		if(istype(M,/mob/living/carbon))
+	if(iscarbon(M))
+		if(M == user)
 			var/mob/living/carbon/H = M
-			if(ishuman(H))
-				if(H.species.species_flags & IS_SYNTHETIC)
-					to_chat(H, span_warning("You have a monitor for a head, where do you think you're going to put that?"))
-					return
-
-		to_chat(M,span_notice("You swallow a gulp from \the [src]."))
-		if(reagents.total_volume)
-			reagents.reaction(M, INGEST)
-			reagents.trans_to(M, gulp_size)
-
-		playsound(M.loc,'sound/items/drink.ogg', 15, 1)
-		return TRUE
-	else if(istype(M,/mob/living/carbon))
-
-		var/mob/living/carbon/H = M
-		if(ishuman(H))
-			if(H.species.species_flags & IS_SYNTHETIC)
-				to_chat(H, span_warning("They have a monitor for a head, where do you think you're going to put that?"))
+			if(ishuman(H) && (H.species.species_flags & IS_SYNTHETIC))
+				to_chat(M, span_warning("You have a monitor for a head, where do you think you're going to put that?"))
 				return
+			to_chat(M,span_notice("You swallow a gulp from \the [src]."))
+			if(reagents.total_volume)
+				reagents.reaction(M, INGEST)
+				reagents.trans_to(M, gulp_size)
+			playsound(M.loc,'sound/items/drink.ogg', 15, 1)
+			return TRUE
+		else
+			var/mob/living/carbon/H = M
+			if(ishuman(H) && (H.species.species_flags & IS_SYNTHETIC))
+				to_chat(user, span_warning("They have a monitor for a head, where do you think you're going to put that?"))
+				return
+			M.visible_message(span_warning("[user] attempts to feed [M] \the [src]."))
+			if(!do_mob(user, M, 30, BUSY_ICON_FRIENDLY))
+				return
+			M.visible_message(span_warning("[user] feeds [M] \the [src]."))
 
-		visible_message(span_warning("[user] attempts to feed [M] [src]."))
-		if(!do_mob(user, M, 30, BUSY_ICON_FRIENDLY))
-			return
-		visible_message(span_warning("[user] feeds [M] [src]."))
+			var/rgt_list_text = get_reagent_list_text()
 
-		var/rgt_list_text = get_reagent_list_text()
+			log_combat(user, M, "fed", src, "Reagents: [rgt_list_text]")
 
-		log_combat(user, M, "fed", src, "Reagents: [rgt_list_text]")
+			if(reagents.total_volume)
+				reagents.reaction(M, INGEST)
+				reagents.trans_to(M, gulp_size)
 
-		if(reagents.total_volume)
-			reagents.reaction(M, INGEST)
-			reagents.trans_to(M, gulp_size)
-
-		playsound(M.loc,'sound/items/drink.ogg', 15, 1)
-		return TRUE
+			playsound(M.loc,'sound/items/drink.ogg', 15, 1)
+			return TRUE
 
 	return FALSE
 

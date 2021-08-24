@@ -27,42 +27,32 @@
 			to_chat(user, span_warning("The [src.name] is empty!"))
 			return 0
 
-		if(M == user)
-			if(istype(M,/mob/living/carbon))
-				var/mob/living/carbon/H = M
-				if(ishuman(H))
-					if(H.species.species_flags & IS_SYNTHETIC)
-						to_chat(H, span_warning("You have a monitor for a head, where do you think you're going to put that?"))
-						return
-			to_chat(M, span_notice("You swallow some of contents of the [src]."))
-			if(reagents.total_volume)
-				reagents.trans_to(M, 10)
-
-			playsound(M.loc,'sound/items/drink.ogg', 15, 1)
-			return 1
-		else if( ishuman(M) )
-			if(istype(M,/mob/living/carbon))
-				var/mob/living/carbon/H = M
-				if(ishuman(H))
-					if(H.species.species_flags & IS_SYNTHETIC)
-						to_chat(H, span_warning("You have a monitor for a head, where do you think you're going to put that?"))
-						return
-
-			visible_message(span_warning("[user] attempts to feed [M] [src]."))
-			if(!do_mob(user, M, 30, BUSY_ICON_FRIENDLY))
-				return
-			visible_message(span_warning("[user] feeds [M] [src]."))
-
-			var/rgt_list_text = get_reagent_list_text()
-
-			log_combat(user, M, "fed", src, "Reagents: [rgt_list_text]")
-
-			if(reagents.total_volume)
-				reagents.reaction(M, INGEST)
-				reagents.trans_to(M, 10)
-
-			playsound(M.loc,'sound/items/drink.ogg', 15, 1)
-			return 1
+		if(iscarbon(M))
+			var/mob/living/carbon/H = M
+			if(M == user)
+				if(ishuman(H) && (H.species.species_flags & IS_SYNTHETIC))
+					to_chat(H, span_warning("You have a monitor for a head, where do you think you're going to put that?"))
+					return
+				to_chat(H, span_notice("You swallow some of contents of the [src]."))
+				if(reagents.total_volume)
+					reagents.trans_to(H, 10)
+				playsound(H.loc,'sound/items/drink.ogg', 15, 1)
+				return 1
+			else
+				if(ishuman(H) && (H.species.species_flags & IS_SYNTHETIC))
+					to_chat(user, span_warning("They have a monitor for a head, where do you think you're going to put that?"))
+					return
+				M.visible_message(span_warning("[user] attempts to feed [M] [src]."))
+				if(!do_mob(user, M, 30, BUSY_ICON_FRIENDLY))
+					return
+				M.visible_message(span_warning("[user] feeds [M] [src]."))
+				var/rgt_list_text = get_reagent_list_text()
+				log_combat(user, M, "fed", src, "Reagents: [rgt_list_text]")
+				if(reagents.total_volume)
+					reagents.reaction(M, INGEST)
+					reagents.trans_to(M, 10)
+				playsound(M.loc,'sound/items/drink.ogg', 15, 1)
+				return 1
 		return 0
 
 	attackby(obj/item/I as obj, mob/user as mob)
@@ -84,7 +74,7 @@
 			to_chat(user, span_notice("You fill [src] with [trans] units of the contents of [target]."))
 
 		//Something like a glass or a food item. Player probably wants to transfer TO it.
-		else if(target.is_injectable())
+		else if(target.is_injectable() && !isliving(target))
 			if(!reagents.total_volume)
 				to_chat(user, span_warning("[src] is empty."))
 				return
