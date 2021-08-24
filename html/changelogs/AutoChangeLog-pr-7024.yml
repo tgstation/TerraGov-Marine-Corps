@@ -1,6 +1,0 @@
-author: "BraveMole"
-delete-after: True
-changes: 
-  - rscadd: "Unmanned vehicles and remote control added to req"
-  - rscadd: "Ai can control unmanned vehicles"
-  - rscadd: "Relayed speech added to droids"

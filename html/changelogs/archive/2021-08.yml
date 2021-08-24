@@ -463,3 +463,27 @@
   - bugfix: Ghost emotes are only sent from player mobs to reduce clog
   - bugfix: Fix flashing with item attacks
   - bugfix: fixed a missing cas message
+2021-08-24:
+  BraveMole:
+  - code_imp: Fix half completed diagonal move returning FALSE
+  - refactor: Refactor pathfinder for xeno
+  - rscadd: Unmanned vehicles and remote control added to req
+  - rscadd: Ai can control unmanned vehicles
+  - rscadd: Relayed speech added to droids
+  Hekzder:
+  - balance: Bull gets all charges at Young instead of time gated to Mature and Ancient
+  Lewdcifer:
+  - balance: Reverts Crusher speed reduction on weeds.
+  Pariah919:
+  - balance: T-25 reworked, it is more like an LMG than a Assault Rifle. 80 rounds
+      instead of 50, 1.5 sunder instead of 1, 10 pen instead of 15. 0.7 aim slowdown
+      instead of 0.8, 0.9 wield delay instead of 0.6. Packet changed to accomdate
+      the higher amount of ammo, it holds 320 rounds instead of 200.
+  SplinterGP:
+  - balance: buckshot has less falloff
+  - balance: buckshot accurate range(not spread) has been increased to 5 tiles.
+  lbnesquik:
+  - expansion: Expanded the special force ERT to have a shield wielding guy.
+  - bugfix: fixed the capitalization of some shuttle id's so they work better with
+      the AI
+  - qol: made it possible for the AI to actually interact with sentries.
