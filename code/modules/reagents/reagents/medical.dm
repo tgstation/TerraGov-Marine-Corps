@@ -1196,7 +1196,7 @@
 	name = "Quietus"
 	description = "This is a latent poison, designed to quickly and painlessly kill you in the event that you become unable to fight. Never washes out on it's own, must be purged."
 	color = "#19C832"
-	custom_metabolism = REAGENTS_METABOLISM * 0
+	custom_metabolism = 0
 	taste_description = "Victory"
 
 /datum/reagent/medicine/research/quietus/on_mob_life(mob/living/L, metabolism)
@@ -1220,12 +1220,12 @@
 	taste_description = "naptime"
 
 /datum/reagent/medicine/research/somolent/on_mob_life(mob/living/L, metabolism)
-	switch(current_cycle)
-		if(1 to 50)
-			if(L.stat == UNCONSCIOUS)
-				L.heal_limb_damage(0.2*current_cycle*effect_str, 0.2*current_cycle*effect_str)
-			if(prob(5))
-				to_chat(L, span_notice("You feel as though you should be sleeping for the medicine to work."))
+	if(cycle > 50)
+		return ..()
+	if(L.stat == UNCONSCIOUS)
+		L.heal_limb_damage(0.2*current_cycle*effect_str, 0.2*current_cycle*effect_str)
+		if(prob(5))
+			to_chat(L, span_notice("You feel as though you should be sleeping for the medicine to work."))
 	return ..()
 
 
@@ -1233,7 +1233,7 @@
 	name = "Medical nanites"
 	description = "These are a batch of construction nanites altered for in-vivo replication. They can heal wounds using the iron present in the bloodstream. Medical care is recommended during injection."
 	color = "#19C832"
-	custom_metabolism = REAGENTS_METABOLISM * 0
+	custom_metabolism = 0
 	taste_description = "metal, followed by mild burning"
 	overdose_threshold = REAGENTS_OVERDOSE * 1.2 //slight buffer to keep you safe
 
