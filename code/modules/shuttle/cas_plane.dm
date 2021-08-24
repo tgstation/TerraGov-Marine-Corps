@@ -38,9 +38,9 @@
 
 /obj/structure/caspart/caschair/proc/receive_laser_cas(datum/source, obj/effect/overlay/temp/laser_target/cas/incoming_laser)
 	SIGNAL_HANDLER
+	playsound(src, 'sound/effects/binoctarget.ogg', 15)
 	if(occupant)
 		to_chat(occupant, span_notice("CAS laser detected. Target: [AREACOORD_NO_Z(incoming_laser)]"))
-		playsound(src, 'sound/effects/binoctarget.ogg', 15)
 
 ///Handles updating the cockpit overlay
 /obj/structure/caspart/caschair/proc/set_cockpit_overlay(new_state)
