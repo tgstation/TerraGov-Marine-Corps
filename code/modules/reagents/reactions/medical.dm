@@ -169,7 +169,7 @@
 
 /datum/chemical_reaction/lemoline
 	name = "Lemoline catalysis"
-	results = list(/datum/reagent/medicine/lemoline = 2)
+	results = list(/datum/reagent/medicine/lemoline = 4) //3 to one multiplication ratio
 	required_reagents = list(/datum/reagent/medicine/lemoline = 1, /datum/reagent/consumable/larvajelly = 1)
 
 // Cloning chemicals
