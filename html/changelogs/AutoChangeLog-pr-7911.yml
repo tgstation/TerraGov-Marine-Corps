@@ -1,0 +1,5 @@
+author: "SplinterGP"
+delete-after: True
+changes: 
+  - expansion: "PAS-11 armor and M10 helmet have been fitted with attach points to be able to take modules like jaeger, a X has been added on end of their name to imply that."
+  - balance: "PAS-11X and M10X can take modules."
