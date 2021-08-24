@@ -74,6 +74,14 @@
 	freq_listening = list(FREQ_COMMON)
 	autolinkers = list("processor4", "common")
 
+//proper cicbackup bus
+/obj/machinery/telecomms/bus/preset_four/cicbackup
+	on = 0
+	id = "Backup Bus 4"
+	network = "tcommsat"
+	freq_listening = list(FREQ_COMMON)
+	autolinkers = list("processor4", "common")
+
 /obj/machinery/telecomms/bus/preset_one/rebel
 	id = "Bus 1 rebel"
 	freq_listening = list(FREQ_COMMAND_REBEL, FREQ_CAS_REBEL, FREQ_MEDICAL_REBEL, FREQ_ENGINEERING_REBEL, FREQ_REQUISITIONS_REBEL)
