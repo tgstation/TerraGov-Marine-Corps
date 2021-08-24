@@ -48,7 +48,7 @@
 		if(!cube.package)
 			cube.Expand()
 
-/datum/reagent/water/reaction_mob(mob/living/L, method = TOUCH, volume, metabolism, show_message = TRUE, touch_protection = 0) //Splashing people with water can help put them out!
+/datum/reagent/water/reaction_mob(mob/living/L, method = TOUCH, volume, show_message = TRUE, touch_protection = 0) //Splashing people with water can help put them out!
 	. = ..()
 	if(method in list(TOUCH, VAPOR))
 		L.adjust_fire_stacks(-(volume / 10))
@@ -432,7 +432,7 @@
 	L.adjustToxLoss(1)
 	return ..()
 
-/datum/reagent/fuel/reaction_mob(mob/living/L, method = TOUCH, volume, metabolism, show_message = TRUE, touch_protection = 0)//Splashing people with welding fuel to make them easy to ignite!
+/datum/reagent/fuel/reaction_mob(mob/living/L, method = TOUCH, volume, show_message = TRUE, touch_protection = 0)//Splashing people with welding fuel to make them easy to ignite!
 	. = ..()
 	if(method in list(TOUCH, VAPOR))
 		L.adjust_fire_stacks(volume / 10)
@@ -466,7 +466,7 @@
 			reaction_obj(C, volume)
 			qdel(C)
 
-/datum/reagent/space_cleaner/reaction_mob(mob/living/L, method = TOUCH, volume, metabolism, show_message = TRUE, touch_protection = 0)
+/datum/reagent/space_cleaner/reaction_mob(mob/living/L, method = TOUCH, volume, show_message = TRUE, touch_protection = 0)
 	. = ..()
 	if(iscarbon(L))
 		var/mob/living/carbon/C = L
@@ -637,7 +637,7 @@
 	color = "#C8A5DC" // rgb: 200, 165, 220
 
 
-/datum/reagent/sterilizine/reaction_mob(mob/living/L, method = TOUCH, volume, metabolism, show_message = TRUE, touch_protection = 0)
+/datum/reagent/sterilizine/reaction_mob(mob/living/L, method = TOUCH, volume, show_message = TRUE, touch_protection = 0)
 	if(!(method in list(TOUCH, VAPOR, PATCH)))
 		return
 	L.germ_level -= min(volume * 20 * touch_protection, L.germ_level)

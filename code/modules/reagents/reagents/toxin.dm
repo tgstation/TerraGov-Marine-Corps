@@ -207,7 +207,7 @@
 			tray.check_level_sanity()
 			tray.update_icon()
 
-/datum/reagent/toxin/plantbgone/reaction_mob(mob/living/L, method = TOUCH, volume, metabolism, show_message = TRUE, touch_protection = 0)
+/datum/reagent/toxin/plantbgone/reaction_mob(mob/living/L, method = TOUCH, volume, show_message = TRUE, touch_protection = 0)
 	. = ..()
 	if(!ishuman(L))
 		return
@@ -356,7 +356,7 @@
 	L.take_limb_damage(0, 0.5*effect_str)
 	return ..()
 
-/datum/reagent/toxin/acid/reaction_mob(mob/living/L, method = TOUCH, volume, metabolism, show_message = TRUE, touch_protection = 0)
+/datum/reagent/toxin/acid/reaction_mob(mob/living/L, method = TOUCH, volume, show_message = TRUE, touch_protection = 0)
 	. = ..()
 	if(!(method in list(TOUCH, VAPOR, PATCH)))
 		return
