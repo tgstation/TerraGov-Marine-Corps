@@ -1401,12 +1401,12 @@
 /datum/action/xeno_action/activable/cocoon
 	name = "Cocoon"
 	action_icon_state = "regurgitate"
-	mechanics_text = "Devour your victim to cocoon it in your belly. This cocoon will automatically be ejected later, and while the marine inside it still has life force it will give psychic points."
+	mechanics_text = "Spin a resin cocoon to extract the lingering life energy from a host. Until the host is drained, we will gain psy points over time."
 	use_state_flags = XACT_USE_STAGGERED|XACT_USE_FORTIFIED|XACT_USE_CRESTED //can't use while staggered, defender fortified or crest down
 	keybind_signal = COMSIG_XENOABILITY_REGURGITATE
 	plasma_cost = 100
 	gamemode_flags = ABILITY_DISTRESS
-	///In how much time the cocoon will be ejected
+	///In how much time the cocoon will be produced
 	var/cocoon_production_time = 3 SECONDS
 
 /datum/action/xeno_action/activable/cocoon/can_use_ability(atom/A, silent, override_flags)
@@ -1414,7 +1414,7 @@
 	if(!.)
 		return
 	if(!ishuman(A) || issynth(A))
-		to_chat(owner, span_warning("That wouldn't taste very good."))
+		to_chat(owner, span_warning("That doesn't have suitable energies!."))
 		return FALSE
 	var/mob/living/carbon/human/victim = A
 	if(owner.do_actions) //can't use if busy
@@ -1423,7 +1423,7 @@
 		return FALSE
 	if(victim.stat != DEAD)
 		if(!silent)
-			to_chat(owner, span_warning("This creature is struggling too much for us to devour it."))
+			to_chat(owner, span_warning("This creature is struggling too much for us to entangle it!"))
 		return FALSE
 	if(HAS_TRAIT(victim, TRAIT_PSY_DRAINED))
 		if(!silent)
@@ -1438,47 +1438,40 @@
 		if(!silent)
 			to_chat(X, span_warning("We're too busy being on fire to do this!"))
 		return FALSE
-	if(LAZYLEN(X.stomach_contents)) //Only one thing in the stomach at a time, please
+	if(X.do_actions)
 		if(!silent)
-			to_chat(X, span_warning("We already have something in our stomach, there's no way that will fit."))
+			to_chat(X, span_warning("We are busy focusing on something else right now!"))
 		return FALSE
 	for(var/obj/effect/forcefield/fog in range(1, X))
 		if(!silent)
 			to_chat(X, span_warning("We are too close to the fog."))
 		return FALSE
 	X.face_atom(victim)
-	X.visible_message(span_danger("[X] starts to devour [victim]!"), \
-	span_danger("We start to devour [victim]!"), null, 5)
+	X.visible_message(span_danger("[X] starts to vomit resin strings over [victim]!"), \
+	span_danger("We start to coat [victim] with our resin!"), null, 5)
 
 	succeed_activate()
 
 /datum/action/xeno_action/activable/cocoon/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/X = owner
 	var/mob/living/carbon/human/victim = A
-	var/channel = SSsounds.random_available_channel()
-	playsound(X, 'sound/vore/struggle.ogg', 40, channel = channel)
 	if(!do_after(X, 7 SECONDS, FALSE, victim, BUSY_ICON_DANGER, extra_checks = CALLBACK(owner, /mob.proc/break_do_after_checks, list("health" = X.health))))
-		to_chat(owner, span_warning("We stop devouring \the [victim]. They probably tasted gross anyways."))
-		X.stop_sound_channel(channel)
+		to_chat(owner, span_warning("We stop coating [victim] in resin."))
 		return fail_activate()
 	if(HAS_TRAIT(victim, TRAIT_PSY_DRAINED))
-		to_chat(owner, span_warning("Someone drained the life force of our victim before we could devour it!"))
+		to_chat(owner, span_warning("Someone drained the life force of our victim before we could ensnare it!"))
 		return fail_activate()
-	owner.visible_message(span_warning("[X] devours [victim]!"), \
-	span_warning("We devour [victim]!"), null, 5)
-	to_chat(owner, span_warning("We will eject the cocoon in [cocoon_production_time / 10] seconds! Do not move until it is done."))
-	LAZYADD(X.stomach_contents, victim)
-	var/turf/starting_turf = get_turf(victim)
-	victim.forceMove(X)
+	owner.visible_message(span_warning("[X] coats [victim] in a layer of stringy resin!"), \
+	span_warning("We begin shaping [victim]'s shell!"), null, 5)
+	to_chat(owner, span_warning("We will finish the cocoon in [cocoon_production_time / 10] seconds! Do not move until it is done."))
 	X.do_jitter_animation()
 	succeed_activate()
-	channel = SSsounds.random_available_channel()
-	playsound(X, 'sound/vore/escape.ogg', 40, channel = channel)
 	if(!do_after(X, cocoon_production_time, FALSE, null, BUSY_ICON_DANGER))
-		to_chat(owner, span_warning("We moved too soon and we will have to devour our victim again!"))
-		X.eject_victim(FALSE, starting_turf)
-		X.stop_sound_channel(channel)
+		to_chat(owner, span_warning("We moved too soon! We will need to begin our weaving from the start!"))
 		return fail_activate()
 	victim.dead_ticks = 0
 	ADD_TRAIT(victim, TRAIT_STASIS, TRAIT_STASIS)
-	X.eject_victim(TRUE, starting_turf)
+	ADD_TRAIT(victim, TRAIT_PSY_DRAINED, TRAIT_PSY_DRAINED)
+	if(HAS_TRAIT(victim, TRAIT_UNDEFIBBABLE))
+		victim.med_hud_set_status()
+	new /obj/structure/cocoon(X.loc, X.hivenumber, victim)
