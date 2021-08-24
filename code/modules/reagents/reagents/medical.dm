@@ -1216,9 +1216,9 @@
 				L.adjustStaminaLoss(1*effect_str)
 	return ..()
 	
-	/datum/reagent/medicine/research/quietus/on_mob_delete(mob/living/L, metabolism)
-		to_chat(L, span_danger("You convulse as your body violently rejects the suicide drug!"))
-		L.adjustToxLoss(30*effect_str)
+/datum/reagent/medicine/research/quietus/on_mob_delete(mob/living/L, metabolism)
+	to_chat(L, span_danger("You convulse as your body violently rejects the suicide drug!"))
+	L.adjustToxLoss(30*effect_str)
 	
 	
 
