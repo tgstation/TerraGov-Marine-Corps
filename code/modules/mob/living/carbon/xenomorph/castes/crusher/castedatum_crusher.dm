@@ -55,7 +55,7 @@
 
 /datum/xeno_caste/crusher/on_caste_removed(mob/xenomorph)
 	. = ..()
-	xenomorph.RemoveElement(/datum/element/ridable)
+	xenomorph.RemoveElement(/datum/element/ridable, /datum/component/riding/creature/crusher)
 	xenomorph.UnregisterSignal(xenomorph, COMSIG_GRAB_SELF_ATTACK)
 
 /datum/xeno_caste/crusher/young
