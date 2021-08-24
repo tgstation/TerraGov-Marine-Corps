@@ -47,7 +47,7 @@
 	scannable = TRUE
 	custom_metabolism = REAGENTS_METABOLISM * 0.125
 	purge_list = list(/datum/reagent/toxin)
-	purge_rate = 5
+	purge_rate = 3
 	overdose_threshold = REAGENTS_OVERDOSE
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
 
@@ -307,8 +307,8 @@
 /datum/reagent/medicine/tricordrazine/on_mob_life(mob/living/L, metabolism)
 
 	L.adjustOxyLoss(-0.5*effect_str)
-	L.adjustToxLoss(-0.4*effect_str)
-	L.heal_limb_damage(0.8*effect_str, 0.8*effect_str)
+	L.adjustToxLoss(-0.25*effect_str)
+	L.heal_limb_damage(0.5*effect_str, 0.5*effect_str)
 	if(volume > 10)
 		L.reagent_pain_modifier -= PAIN_REDUCTION_LIGHT
 	if(volume > 20)
@@ -1060,11 +1060,11 @@
 			if(prob(25))
 				L.adjustStaminaLoss(0.5*effect_str)
 		if(101 to 200)
-			L.adjustToxLoss(effect_str)
+			L.adjustToxLoss(0.75*effect_str)
 			if(prob(25))
 				L.adjustStaminaLoss(20*effect_str)
 		if(201 to INFINITY)
-			L.adjustToxLoss(3*effect_str)
+			L.adjustToxLoss(1.5*effect_str)
 	return ..()
 
 /datum/reagent/medicine/larvaway/overdose_process(mob/living/L, metabolism)
@@ -1250,7 +1250,7 @@
 	overdose_threshold = REAGENTS_OVERDOSE * 1.2 //slight buffer to keep you safe
 
 /datum/reagent/medicine/research/medicalnanites/on_mob_add(mob/living/L, metabolism)
-	to_chat(L, span_warning("You feel like you should stay near medical help until this shot settles in."))
+	to_chat(L, span_danger("You feel like you should stay near medical help until this shot settles in."))
 
 /datum/reagent/medicine/research/medicalnanites/on_mob_life(mob/living/L, metabolism)
 	switch(current_cycle)
@@ -1265,17 +1265,57 @@
 			to_chat(L, span_warning("The pain rapidly subsides. Looks like they've adapted to you."))
 		if(152 to INFINITY)
 			if(volume < 30) //smol injection will self-replicate up to 30u using 60u of blood.
-				L.reagents.add_reagent(/datum/reagent/medicine/research/medicalnanites, 0.5)
-				L.blood_volume -= 2
+				L.reagents.add_reagent(/datum/reagent/medicine/research/medicalnanites, 0.25)
+				L.blood_volume -= 1
 				
 			if (volume >5 && L.getBruteLoss()) //Unhealed IB wasting nanites is an INTENTIONAL feature.
 				L.heal_limb_damage(2*effect_str, 0)
+				L.adjustToxLoss(0.1*effect_str)
 				holder.remove_reagent(/datum/reagent/medicine/research/medicalnanites, 1)
 				
 			if (volume > 5 && L.getFireLoss())
 				L.heal_limb_damage(0, 2*effect_str)
+				L.adjustToxLoss(0.1*effect_str)
 				holder.remove_reagent(/datum/reagent/medicine/research/medicalnanites, 1)
 	return ..()
 
 /datum/reagent/medicine/research/medicalnanites/overdose_process(mob/living/L, metabolism)
 	L.adjustToxLoss(effect_str) //softcap VS injecting massive amounts of medical nanites for the healing factor with no downsides. Still doable if you're clever about it.
+
+
+/datum/reagent/medicine/research/cryotox
+	name = "Cryotox"
+	description = "A toxin that massively lowers internal body temperature."
+	color = "#C8A5DC"
+	scannable = TRUE
+	taste_description = "freezing"
+	adj_temp = 30
+	targ_temp = 100
+
+
+/datum/reagent/medicine/research/stimulon
+	name = "Stimulon"
+	description = "A chemical designed to boost running by driving your body beyond it's normal limits. Can have unpredictable side effects, caution recommended."
+	color = "#19C832"
+	custom_metabolism = 0
+	scannable = TRUE
+
+/datum/reagent/medicine/research/stimulon/on_mob_add(mob/living/L, metabolism)
+	. = ..()
+	L.add_movespeed_modifier(type, TRUE, 0, NONE, TRUE, -1)
+
+/datum/reagent/medicine/research/stimulon/on_mob_delete(mob/living/L, metabolism)
+	L.remove_movespeed_modifier(type)
+
+/datum/reagent/medicine/research/stimulon/on_mob_life(mob/living/L, metabolism)
+	L.adjustStaminaLoss(1*effect_str)
+	L.take_limb_damage(rand(0.5*effect_str, 3*effect_str), 0)
+	L.adjustCloneLoss(rand (0, 0.05) * effect_str * current_cycle)
+	if(prob(2))
+		L.emote(pick("twitch","blink_r","shiver"))
+	if(volume < 100) //THERE IS NO "MINIMUM SAFE DOSE" MUAHAHAHA!
+		L.reagents.add_reagent(/datum/reagent/medicine/research/stimulon, 0.1)
+	return ..()
+
+
+
