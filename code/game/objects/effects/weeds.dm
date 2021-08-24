@@ -179,18 +179,17 @@
 /obj/effect/alien/weeds/node/Initialize(mapload, obj/effect/alien/weeds/node/node)
 	var/swapped = FALSE
 	for(var/obj/effect/alien/weeds/W in loc)
-		W.swapped = TRUE
-		swapped = TRUE
 		if(W != src)
+			W.swapped = TRUE
+			swapped = TRUE
 			qdel(W) //replaces the previous weed
 			break
 	. = ..(mapload, node, swapped)
 
-	update_icon()
-
 	// Generate our full graph before adding to SSweeds
 	node_turfs = filled_turfs(src, node_range, "square")
 	SSweeds.add_node(src)
+	swapped = FALSE
 
 /obj/effect/alien/weeds/node/Destroy()
 	. = ..()
