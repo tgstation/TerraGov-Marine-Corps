@@ -1,5 +1,0 @@
-author: "QualityVan"
-delete-after: True
-changes: 
-  - bugfix: "Stasis bags prevent metabolizing chemicals"
-  - bugfix: "Some negative status effects will be paused while in stasis, resuming once you leave"

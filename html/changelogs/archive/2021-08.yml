@@ -487,3 +487,51 @@
   - bugfix: fixed the capitalization of some shuttle id's so they work better with
       the AI
   - qol: made it possible for the AI to actually interact with sentries.
+2021-08-25:
+  BraveMole:
+  - bugfix: Fix cas
+  KornFlaks:
+  - rscadd: Powerfist now applies a stun scaling with power level
+  KrabSpider:
+  - balance: Berets get a ARMOR_NO_DECAP too. Have fun snowflakes, you're still going
+      to die a horrible, unceromoneous death because they still get crap armor.
+  Passe2142:
+  - balance: Grapple toss distance from 3 tiles to 4 with 0.5 seconds of stun from
+      1s.
+  QualityVan:
+  - bugfix: Stasis bags prevent metabolizing chemicals
+  - bugfix: Some negative status effects will be paused while in stasis, resuming
+      once you leave
+  SplinterGP:
+  - expansion: PAS-11 armor and M10 helmet have been fitted with attach points to
+      be able to take modules like jaeger, a X has been added on end of their name
+      to imply that.
+  - balance: PAS-11X and M10X can take modules.
+  Surrealaser:
+  - balance: Muted marines can no longer issue orders; a Muted marine will have his
+      ongoing orders cancelled next tick.
+  - bugfix: Muted marines can no longer issue orders.
+  - balance: Marines subject to Silence can no longer benefit from orders.
+  - bugfix: Marines subject to Silence can no longer benefit from orders.
+  - balance: Silence plasma cost reduced from 75 to 50.
+  - balance: Silence cooldown reduced from 40 to 30 seconds.
+  - balance: Silence windup reduced from 0.5 seconds to 0.3 seconds.
+  - qol: Xenos can now see which marines are subject to Silence via a HUD element.
+  - bugfix: 'Silence duration fixed; it is now actually 10 seconds. remove: Haunt
+      removed.'
+  lbnesquik:
+  - rscadd: Added an orbital spotlight, activate from the CIC overwatch.
+  - qol: Brought Binary radio for synths
+  vilereaver41:
+  - bugfix: weird blue and green cargo container glitch
+  - rscadd: a small miner building in north caves
+  - rscadd: supply chamber in lz1 that can't be accessed until button in eta lab directors
+      office is activated
+  - rscadd: button in eta lab directors office that can only be used by field commander
+      or higher via their id card
+  - rscadd: a building that leads to an underground facility that cannot easily be
+      accessed by marines until the button in eta lab director's office is activated.
+      though a good enough marine squad can use the lambda Xeno entrance that is always
+      open.
+  - rscadd: medium size underground facility
+  - rscadd: lambda entrance to the underground facility
