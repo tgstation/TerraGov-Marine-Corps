@@ -118,7 +118,7 @@
 	///The seleted type of weeds
 	var/obj/effect/alien/weeds/node/weed_type = /obj/effect/alien/weeds/node
 
-/datum/action/xeno_action/plant_weeds/can_use_ability(atom/A, silent = FALSE, override_flags)
+/datum/action/xeno_action/plant_weeds/can_use_action(atom/A, silent = FALSE, override_flags)
 	plasma_cost = initial(plasma_cost) * initial(weed_type.plasma_cost_mult)
 	return ..()
 
