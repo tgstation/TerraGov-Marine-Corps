@@ -120,6 +120,6 @@
 	caliber = CALIBER_10X20_CASELESS
 	default_ammo = /datum/ammo/bullet/smg
 	w_class = WEIGHT_CLASS_SMALL
-	current_rounds = 125
+	current_rounds = 150
 	max_rounds = 150
 
