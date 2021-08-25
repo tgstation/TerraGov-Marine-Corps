@@ -185,6 +185,12 @@
 		shuttle_port.set_idle() // don't go up with a broken console, cencel spooling
 		visible_message("Autopilot detects loss of helm control. Halting take off!")
 
+/obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/can_interact(mob/user)
+	if(damaged)
+		to_chat(user, span_warning("The [src] blinks and lets out a crackling noise. Its broken!"))
+		return
+	return ..()
+
 /obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/ui_state(mob/user)
 	return GLOB.dropship_state
 
