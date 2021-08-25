@@ -823,6 +823,7 @@ TUNNEL
 	bound_height = 32
 	obj_integrity = 600
 	max_integrity = 1500
+	hard_armor = list("melee" = 0, "bullet" = 10, "laser" = 10, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
 	layer =  ABOVE_MOB_LAYER
 	density = TRUE
 	resistance_flags = UNACIDABLE | DROPSHIP_IMMUNE
