@@ -133,10 +133,10 @@ datum/chemical_reaction/wpsmoke
 /datum/chemical_reaction/wpsmoke/on_reaction(datum/reagents/holder, created_volume)
 	var/smoke_radius = round(sqrt(created_volume), 1)
 	var/location = get_turf(holder.my_atom)
-	var/datum/effect_system/smoke_spread/phosphorus/S = new(location)
+	var/datum/effect_system/smoke_spread/phosphorus/smoke = new
+	smoke.set_up(smoke_radius, location, 11)
+	smoke.start()
 	playsound(location, 'sound/effects/smoke.ogg', 50, 1, -3)
-	S?.set_up(holder, smoke_radius, location)
-	S?.start()
 	if(holder?.my_atom)
 		holder.clear_reagents()
 
