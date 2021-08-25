@@ -62,7 +62,6 @@
 	desc = "A deployable, semi-automated turret with AI targeting capabilities. Armed with a M30 autocannon and a 25-round box magazine. Use Alt-Click to remove its battery."
 	icon_state = "sentry"
 
-	turret_range = 7
 	deploy_time = 8 SECONDS
 	max_shells = 50
 	fire_delay = 0.2 SECONDS
