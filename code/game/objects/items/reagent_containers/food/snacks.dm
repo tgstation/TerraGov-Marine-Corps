@@ -2074,6 +2074,19 @@
 	bitesize = 2
 	tastes = list("bread" = 10, "cheese" = 10)
 
+/obj/item/reagent_containers/food/snacks/marinebread //meme bread for breadify smite
+	name = "Bread"
+	desc = "Some plain old Earthen bread. An air of penance surrounds it."
+	icon_state = "breadtg"
+	list_reagents = list(/datum/reagent/consumable/nutriment = 60)
+	filling_color = "#FFF896"
+	bitesize = 2
+	tastes = list("guilt" = 1, "salt" = 1)
+
+/obj/item/reagent_containers/food/snacks/marinebread/Destroy() //delete the marine trapped inside, tasty!
+	for(var/i in contents)
+		qdel(i)
+	return ..()
 
 /obj/item/reagent_containers/food/snacks/watermelonslice
 	name = "Watermelon Slice"

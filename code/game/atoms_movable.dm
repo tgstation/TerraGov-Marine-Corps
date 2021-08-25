@@ -291,6 +291,8 @@
 			if(moving_diagonally == SECOND_DIAG_STEP)
 				if(!. && !(flags_atom & DIRLOCK))
 					setDir(first_step_dir)
+				moving_diagonally = 0
+				return TRUE
 			moving_diagonally = 0
 			return
 
@@ -668,7 +670,7 @@
 		// Scale the icon.
 		I.transform *= 0.75
 		// The icon should not rotate.
-		I.appearance_flags = APPEARANCE_UI_IGNORE_ALPHA
+		I.appearance_flags = APPEARANCE_UI
 
 		// Set the direction of the icon animation.
 		var/direction = get_dir(src, A)

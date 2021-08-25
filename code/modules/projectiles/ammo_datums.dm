@@ -600,9 +600,9 @@ datum/ammo/bullet/revolver/tp44
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
 	shell_speed = 3
 	max_range = 15
-	damage = 80
-	penetration = 40
-	sundering = 7
+	damage = 100
+	penetration = 20
+	sundering = 15
 
 /datum/ammo/bullet/shotgun/slug/on_hit_mob(mob/M,obj/projectile/P)
 	staggerstun(M, P, weaken = 1, stagger = 2, knockback = 1, slowdown = 2)
@@ -691,10 +691,10 @@ datum/ammo/bullet/revolver/tp44
 	bonus_projectiles_scatter = 10
 	accuracy_var_low = 9
 	accuracy_var_high = 9
-	accurate_range = 3
+	accurate_range = 5
 	max_range = 10
 	damage = 40
-	damage_falloff = 4
+	damage_falloff = 1
 	penetration = 0
 
 
@@ -707,10 +707,10 @@ datum/ammo/bullet/revolver/tp44
 	shell_speed = 2
 	accuracy_var_low = 9
 	accuracy_var_high = 9
-	accurate_range = 3
+	accurate_range = 5
 	max_range = 10
 	damage = 40
-	damage_falloff = 4
+	damage_falloff = 1
 	penetration = 0
 
 //buckshot variant only used by the masterkey shotgun attachment.
@@ -1005,9 +1005,9 @@ datum/ammo/bullet/revolver/tp44
 
 /datum/ammo/bullet/smartgun/smartrifle
 	name = "smartrifle bullet"
-	damage = 25
-	penetration = 15
-	sundering = 1
+	damage = 20
+	penetration = 10
+	sundering = 1.5
 
 /datum/ammo/bullet/smartgun/lethal
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
