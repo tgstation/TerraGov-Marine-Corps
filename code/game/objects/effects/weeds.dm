@@ -185,7 +185,6 @@
 	node_turfs = filled_turfs(src, node_range, "square")
 	SSweeds.add_node(src)
 	swapped = FALSE
-	AddElement(/datum/element/accelerate_on_crossed)
 
 /obj/effect/alien/weeds/node/Destroy()
 	. = ..()
