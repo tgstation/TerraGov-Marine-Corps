@@ -1293,8 +1293,8 @@
 
 /datum/reagent/medicine/research/cryotox/on_mob_add(mob/living/L, metabolism)
 	to_chat(L, span_userdanger("You feel your bodily processes slow, then halt!"))
-	ADD_TRAIT(L, TRAIT_STASIS)
-	addtimer(CALLBACK(REMOVE_TRAIT(L, TRAIT_STASIS)), (10 SECONDS* volume))
+	ADD_TRAIT(L, TRAIT_STASIS, STASIS_BAG_TRAIT)
+	addtimer(CALLBACK(REMOVE_TRAIT(L, TRAIT_STASIS, STASIS_BAG_TRAIT)), (10 SECONDS* volume))
 	return ..()
 	
 	
