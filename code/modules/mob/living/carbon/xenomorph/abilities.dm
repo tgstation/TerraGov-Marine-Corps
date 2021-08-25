@@ -116,7 +116,11 @@
 	alternate_keybind_signal = COMSIG_XENOABILITY_CHOOSE_WEEDS
 	use_state_flags = XACT_USE_LYING
 	///The seleted type of weeds
-	var/obj/effect/alien/weeds/node/weed_type = /obj/effect/alien/weeds/node/speed
+	var/obj/effect/alien/weeds/node/weed_type = /obj/effect/alien/weeds/node
+
+/datum/action/xeno_action/plant_weeds/can_use_ability(atom/A, silent = FALSE, override_flags)
+	plasma_cost = initial(plasma_cost) * initial(weed_type.plasma_cost_mult)
+	return ..()
 
 /datum/action/xeno_action/plant_weeds/action_activate()
 	var/turf/T = get_turf(owner)

@@ -9,8 +9,8 @@
 
 // base weed type
 /obj/effect/alien/weeds
-	name = "weeds"
-	desc = "Weird black weeds..."
+	name = "speed weeds"
+	desc = "A layer of oozy slime, it feels slick, but not as slick for you to slip."
 	icon = 'icons/Xeno/weeds.dmi'
 	icon_state = "base"
 	anchored = TRUE
@@ -41,6 +41,7 @@
 			CRASH("Weed created with non-weed node. Type: [node.type]")
 		parent_node = node
 	update_icon()
+	AddElement(/datum/element/accelerate_on_crossed)
 	if(!swapped)
 		update_neighbours()
 
@@ -95,14 +96,6 @@
 	else
 		icon_state = "weed_dir[my_dir]"
 	icon_state += color_variant
-
-/obj/effect/alien/weeds/speed
-	name = "speed weeds"
-	desc = "A layer of oozy slime, it feels slick, but not as slick for you to slip."
-
-/obj/effect/alien/weeds/speed/Initialize(mapload, obj/effect/alien/weeds/node/node)
-	. = ..()
-	AddElement(/datum/element/accelerate_on_crossed)
 
 /obj/effect/alien/weeds/sticky
 	name = "sticky weeds"
@@ -165,8 +158,8 @@
 // =================
 // weed node - grows other weeds
 /obj/effect/alien/weeds/node
-	name = "purple sac"
-	desc = "A weird, pulsating node."
+	name = "speed weed sac"
+	desc = "A weird, pulsating purple node."
 	max_integrity = 60
 	var/node_icon = "weednode"
 	/// list of all potential turfs that we can expand to
@@ -174,7 +167,9 @@
 	/// How far this node can spread weeds
 	var/node_range = 2
 	/// What type of weeds this node spreads
-	var/obj/effect/alien/weeds/weed_type
+	var/obj/effect/alien/weeds/weed_type = /obj/effect/alien/weeds
+	///The plasma cost multiplier for this node
+	var/plasma_cost_mult = 1
 
 /obj/effect/alien/weeds/node/Initialize(mapload, obj/effect/alien/weeds/node/node)
 	var/swapped = FALSE
@@ -190,6 +185,7 @@
 	node_turfs = filled_turfs(src, node_range, "square")
 	SSweeds.add_node(src)
 	swapped = FALSE
+	AddElement(/datum/element/accelerate_on_crossed)
 
 /obj/effect/alien/weeds/node/Destroy()
 	. = ..()
@@ -214,16 +210,6 @@
 	overlays.Cut()
 	overlays += node_icon
 
-//Speed weed node
-/obj/effect/alien/weeds/node/speed
-	name = "speed weed sac"
-	desc = "A weird, pulsating purple node."
-	weed_type = /obj/effect/alien/weeds/speed
-
-/obj/effect/alien/weeds/node/speed/Initialize(mapload, obj/effect/alien/weeds/node/node)
-	. = ..()
-	AddElement(/datum/element/accelerate_on_crossed)
-
 //Sticky weed node
 /obj/effect/alien/weeds/node/sticky
 	name = "sticky weed sac"
@@ -231,6 +217,7 @@
 	weed_type = /obj/effect/alien/weeds/sticky
 	color_variant = STICKY_COLOR
 	node_icon = "weednodegreen"
+	plasma_cost_mult = 5
 
 /obj/effect/alien/weeds/node/sticky/Initialize(mapload, obj/effect/alien/weeds/node/node)
 	. = ..()
@@ -244,3 +231,4 @@
 	color_variant = RESTING_COLOR
 	node_icon = "weednodewhite"
 	resting_buff = RESTING_BUFF
+	plasma_cost_mult = 2
