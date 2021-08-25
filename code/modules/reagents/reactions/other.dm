@@ -100,15 +100,9 @@
 
 /datum/chemical_reaction/napalm/on_reaction(datum/reagents/holder, created_volume, radius)
 	var/location = get_turf(holder.my_atom)
-	radius = round(sqrt(created_volume * 0.15)) //allows a nice, healthy fire if using 2 120u beakers fully filled up.
+	radius = round(sqrt(created_volume * 0.0375)) //allows a nice, healthy 3-tile fire if using 2 120u beakers fully filled up.
 	if(radius < 0) radius = 0
-
-	for(var/turf/T in range(radius,location))
-		if(T.density)
-			continue
-		if(istype(T,/turf/open/space))
-			continue
-		T.ignite(5 + rand(0,11))
+	flame_radius(radius, location)
 
 
 /datum/chemical_reaction/chemsmoke
@@ -131,7 +125,7 @@ datum/chemical_reaction/wpsmoke
 	required_reagents = list(/datum/reagent/phosphorus = 2, /datum/reagent/silicon = 1, /datum/reagent/oxygen = 1)
 
 /datum/chemical_reaction/wpsmoke/on_reaction(datum/reagents/holder, created_volume)
-	var/smoke_radius = round(sqrt(created_volume), 1)
+	var/smoke_radius = round(sqrt(created_volume * 0.66), 1)
 	var/location = get_turf(holder.my_atom)
 	var/datum/effect_system/smoke_spread/phosphorus/smoke = new
 	smoke.set_up(smoke_radius, location, 11)
