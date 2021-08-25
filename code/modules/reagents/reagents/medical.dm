@@ -1281,21 +1281,6 @@
 
 /datum/reagent/medicine/research/medicalnanites/overdose_process(mob/living/L, metabolism)
 	L.adjustToxLoss(effect_str) //softcap VS injecting massive amounts of medical nanites for the healing factor with no downsides. Still doable if you're clever about it.
-
-
-/datum/reagent/medicine/research/cryotox
-	name = "Cryotox"
-	description = "A toxin that suspends most body processes and chemical intake. Length of suspension depends on initial dose injection."
-	color = "#C8A5DC"
-	custom_metabolism = 15 //rapidly remove all of it from you once the stasis clears
-	scannable = TRUE
-	taste_description = "freezing"
-
-/datum/reagent/medicine/research/cryotox/on_mob_add(mob/living/L, metabolism)
-	to_chat(L, span_userdanger("You feel your bodily processes slow, then halt!"))
-	ADD_TRAIT(L, TRAIT_STASIS, STASIS_BAG_TRAIT)
-	addtimer(CALLBACK(REMOVE_TRAIT(L, TRAIT_STASIS, STASIS_BAG_TRAIT)), (10 SECONDS* volume))
-	return ..()
 	
 	
 /datum/reagent/medicine/research/stimulon
