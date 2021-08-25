@@ -77,8 +77,9 @@
 
 /obj/effect/particle_effect/smoke/Crossed(atom/movable/O)
 	. = ..()
-	if(CHECK_BITFIELD(smoke_traits, SMOKE_CAMO) && isliving(O))
+	if(isliving(O))
 		O.effect_smoke(src)
+		return
 	if(CHECK_BITFIELD(smoke_traits, SMOKE_NERF_BEAM) && istype(O, /obj/projectile))
 		O.effect_smoke(src)
 
