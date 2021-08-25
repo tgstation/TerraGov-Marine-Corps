@@ -96,13 +96,12 @@
 
 /datum/chemical_reaction/napalm
 	name = "Napalm"
-	required_reagents = list(/datum/reagent/aluminum = 1, /datum/reagent/toxin/phoron = 1, /datum/reagent/toxin/acid = 1 )
+	required_reagents = list(/datum/reagent/aluminum = 1, /datum/reagent/toxin/phoron = 2, /datum/reagent/toxin/acid = 1 )
 
 /datum/chemical_reaction/napalm/on_reaction(datum/reagents/holder, created_volume, radius)
 	var/location = get_turf(holder.my_atom)
-	radius = round(created_volume/45)
+	radius = round(sqrt(created_volume))
 	if(radius < 0) radius = 0
-	if(radius > 3) radius = 3
 
 	for(var/turf/T in range(radius,location))
 		if(T.density)
@@ -120,6 +119,21 @@
 	var/smoke_radius = round(sqrt(created_volume * 1.5), 1)
 	var/location = get_turf(holder.my_atom)
 	var/datum/effect_system/smoke_spread/chem/S = new(location)
+	playsound(location, 'sound/effects/smoke.ogg', 50, 1, -3)
+	S?.set_up(holder, smoke_radius, location)
+	S?.start()
+	if(holder?.my_atom)
+		holder.clear_reagents()
+
+
+datum/chemical_reaction/wpsmoke
+	name = "White Phosphorous smoke"
+	required_reagents = list(/datum/reagent/phosphorus = 2, /datum/reagent/silicon = 1, /datum/reagent/oxygen = 1)
+
+/datum/chemical_reaction/wpsmoke/on_reaction(datum/reagents/holder, created_volume)
+	var/smoke_radius = round(sqrt(created_volume), 1)
+	var/location = get_turf(holder.my_atom)
+	var/datum/effect_system/smoke_spread/phosphorus/S = new(location)
 	playsound(location, 'sound/effects/smoke.ogg', 50, 1, -3)
 	S?.set_up(holder, smoke_radius, location)
 	S?.start()
