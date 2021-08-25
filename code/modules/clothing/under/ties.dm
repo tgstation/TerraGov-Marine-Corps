@@ -19,7 +19,7 @@
 	if(inv_overlay)
 		qdel(inv_overlay)
 		inv_overlay = null
-	. = ..()
+	return ..()
 
 //when user attached an accessory to S
 /obj/item/clothing/tie/proc/on_attached(obj/item/clothing/under/S, mob/living/user)
@@ -260,7 +260,7 @@
 	if(hold)
 		qdel(hold)
 		hold = null
-	. = ..()
+	return ..()
 
 /obj/item/clothing/tie/storage/on_attached(obj/item/clothing/under/S, mob/user)
 	. = ..()

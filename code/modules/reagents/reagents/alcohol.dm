@@ -65,7 +65,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 		else
 			to_chat(usr, span_warning("[O]'s ink is smeared by [name], but doesn't wash away!"))
 
-/datum/reagent/consumable/ethanol/reaction_mob(mob/living/L, method = TOUCH, volume, metabolism, show_message = TRUE, touch_protection = 0)
+/datum/reagent/consumable/ethanol/reaction_mob(mob/living/L, method = TOUCH, volume, show_message = TRUE, touch_protection = 0)
 	. = ..()
 	if(method in list(TOUCH, VAPOR, PATCH))
 		L.adjust_fire_stacks(round(volume * 0.65))

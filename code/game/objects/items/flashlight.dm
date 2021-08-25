@@ -9,10 +9,10 @@
 	flags_equip_slot = ITEM_SLOT_BELT
 	materials = list(/datum/material/metal = 50, /datum/material/glass = 20)
 	actions_types = list(/datum/action/item_action)
-	light_system = MOVABLE_LIGHT
 	light_range = 5
 	light_power = 3 //luminosity when on
-	var/raillight_compatible = TRUE //Can this be turned into a rail light ?
+	///Can this be turned into a rail light ?
+	var/raillight_compatible = TRUE
 	var/activation_sound = 'sound/items/flashlight.ogg'
 	///If this flashlight affected by nightfall
 	var/nightfall_immune = FALSE
@@ -22,8 +22,8 @@
 	GLOB.nightfall_toggleable_lights += src
 
 /obj/item/flashlight/Destroy()
-	. = ..()
 	GLOB.nightfall_toggleable_lights -= src
+	return ..()
 
 /obj/item/flashlight/turn_light(mob/user, toggle_on, cooldown = 1 SECONDS, sparks = FALSE, forced = FALSE)
 	if(forced && nightfall_immune)

@@ -1,5 +1,5 @@
 /mob/living/proc/Life()
-	if(stat == DEAD || notransform) //If we're dead or notransform don't bother processing life
+	if(stat == DEAD || notransform || HAS_TRAIT(src, TRAIT_STASIS)) //If we're dead or notransform don't bother processing life
 		return
 
 	handle_status_effects() //all special effects, stun, knockdown, jitteryness, hallucination, sleeping, etc
@@ -500,6 +500,8 @@
 	XI.remove_from_hud(src)
 	var/datum/atom_hud/xeno_reagents/RE = GLOB.huds[DATA_HUD_XENO_REAGENTS]
 	RE.remove_from_hud(src)
+	var/datum/atom_hud/xeno_debuff/xeno_debuff_visuals = GLOB.huds[DATA_HUD_XENO_DEBUFF]
+	xeno_debuff_visuals.remove_from_hud(src)
 
 	smokecloaked = TRUE
 
@@ -516,6 +518,8 @@
 	XI.add_to_hud(src)
 	var/datum/atom_hud/xeno_reagents/RE = GLOB.huds[DATA_HUD_XENO_REAGENTS]
 	RE.add_to_hud(src)
+	var/datum/atom_hud/xeno_debuff/xeno_debuff_visuals = GLOB.huds[DATA_HUD_XENO_DEBUFF]
+	xeno_debuff_visuals.add_to_hud(src)
 
 	smokecloaked = FALSE
 
@@ -830,3 +834,8 @@ below 100 is not dizzy
 	else if(. >= GRAB_NECK) //Released from neckgrab.
 		REMOVE_TRAIT(pulling, TRAIT_IMMOBILE, NECKGRAB_TRAIT)
 		REMOVE_TRAIT(pulling, TRAIT_FLOORED, NECKGRAB_TRAIT)
+
+///Set the remote_control and reset the perspective
+/mob/living/proc/set_remote_control(atom/movable/controlled)
+	remote_control = controlled
+	reset_perspective(controlled)

@@ -5,6 +5,9 @@
 #define HIDE_ON_GROUND 1
 #define HIDE_ON_SHIP 2
 
+#define SPOTLIGHT_COOLDOWN_DURATION 6 MINUTES
+#define SPOTLIGHT_DURATION 2 MINUTES
+
 GLOBAL_LIST_EMPTY(active_orbital_beacons)
 GLOBAL_LIST_EMPTY(active_laser_targets)
 GLOBAL_LIST_EMPTY(active_cas_targets)
@@ -118,11 +121,13 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	. = ..()
 	RegisterSignal(user, COMSIG_MOB_CLICK_SHIFT, .proc/send_order)
 	RegisterSignal(user, COMSIG_ORDER_SELECTED, .proc/set_order)
+	RegisterSignal(user, COMSIG_MOB_MIDDLE_CLICK, .proc/attempt_spotlight)
 
 /obj/machinery/computer/camera_advanced/overwatch/remove_eye_control(mob/living/user)
 	. = ..()
 	UnregisterSignal(user, COMSIG_MOB_CLICK_SHIFT)
 	UnregisterSignal(user, COMSIG_ORDER_SELECTED)
+	UnregisterSignal(user, COMSIG_MOB_MIDDLE_CLICK)
 
 /obj/machinery/computer/camera_advanced/overwatch/can_interact(mob/user)
 	. = ..()
@@ -658,6 +663,53 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	visible_message(span_boldnotice("[transfer_marine] has been transfered from squad '[old_squad]' to squad '[new_squad]'. Logging to enlistment file."))
 	to_chat(transfer_marine, "[icon2html(src, transfer_marine)] <font size='3' color='blue'><B>\[Overwatch\]:</b> You've been transfered to [new_squad]!</font>")
 
+///This is an orbital light. Basically, huge thing which the CIC can use to light up areas for a bit of time.
+/obj/machinery/computer/camera_advanced/overwatch/proc/attempt_spotlight(datum/source, atom/A, params)
+	SIGNAL_HANDLER
+
+	if(!powered())
+		return 0
+
+	var/area/here_we_are = get_area(src)
+	var/obj/machinery/power/apc/myAPC = here_we_are.get_apc()
+
+	var/power_amount = myAPC?.terminal?.powernet?.avail
+
+	if(power_amount >= 10000)
+		return
+
+	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_ORBITAL_SPOTLIGHT))
+		to_chat(source, span_notice("The Orbital spotlight is still recharging."))
+		return
+	var/area/place = get_area(A)
+	if(istype(place) && place.ceiling >= CEILING_UNDERGROUND)
+		to_chat(source, span_warning("You cannot illuminate this place. It is probably underground."))
+		return
+	var/turf/target = get_turf(A)
+	if(!target)
+		return
+	new /obj/effect/overwatch_light(target)
+	use_power(10000)	//Huge light needs big power. Still less than autodocs.
+	TIMER_COOLDOWN_START(src, COOLDOWN_ORBITAL_SPOTLIGHT, SPOTLIGHT_COOLDOWN_DURATION)
+	to_chat(source, span_notice("Orbital spotlight activated. Duration : [SPOTLIGHT_DURATION]"))
+
+//This is an effect to be sure it is properly deleted and it does not interfer with existing lights too much.
+/obj/effect/overwatch_light
+	name = "overwatch beam of light"
+	desc = "You are not supposed to see this. Please report it."
+	icon_state = "" //No sprite
+	invisibility = INVISIBILITY_MAXIMUM
+	resistance_flags = RESIST_ALL
+	light_system = STATIC_LIGHT
+	light_color = COLOR_TESLA_BLUE
+	light_power = 11	//This is a HUGE light.
+
+/obj/effect/overwatch_light/Initialize()
+	. = ..()
+	set_light(light_power)
+	playsound(src,'sound/mecha/heavylightswitch.ogg', 25, 1, 20)
+	visible_message(span_warning("You see a twinkle in the sky before your surroundings are hit with a beam of light!"))
+	QDEL_IN(src, SPOTLIGHT_DURATION)
 
 //This is perhaps one of the weirdest places imaginable to put it, but it's a leadership skill, so
 
@@ -670,6 +722,10 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 
 	if(stat)
 		to_chat(src, span_warning("You cannot give an order in your current state."))
+		return
+
+	if(IsMute())
+		to_chat(src, span_warning("You cannot give an order while muted."))
 		return
 
 	if(command_aura_cooldown > 0)
@@ -693,8 +749,8 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 
 	if(!(command_aura in command_aura_allowed))
 		return
-	command_aura_cooldown = 45 //45 ticks
-	command_aura_tick = 10 //10 ticks
+	command_aura_cooldown = 45 //40 ticks, or 90 seconds overall CD, 60 practical.
+	command_aura_tick = 15//15 ticks, or 30 seconds apprx.
 	var/message = ""
 	switch(command_aura)
 		if("move")
@@ -929,6 +985,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	if(!current_order)
 		var/mob/user = source
 		to_chat(user, span_warning("You have no order selected."))
+		return
 	current_order.send_order(target, faction = faction)
 
 ///Setter for the current order

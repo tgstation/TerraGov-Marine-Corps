@@ -95,10 +95,15 @@
 	. = ..()
 	if(.)
 		return
-	if(!ishuman(usr))
+	if(!ishuman(usr) || isAI(usr))
 		return
 
-	var/mob/living/carbon/human/user = usr
+	var/mob/living/user = usr
+
+	if(!user.skills.getRating("medical"))
+		to_chat(user, span_notice("You start fiddling with \the [src]..."))
+		if(!do_after(user, SKILL_TASK_EASY, TRUE, src, BUSY_ICON_UNSKILLED))
+			return
 
 	if (href_list["ejectp"])
 		if(loaded_pill_bottle)
@@ -295,7 +300,7 @@
 			return
 
 		else if(href_list["change_autoinjector"])
-			#define MAX_AUTOINJECTOR_SPRITE 11 //max icon state of the autoinjector sprites
+			#define MAX_AUTOINJECTOR_SPRITE 12 //max icon state of the autoinjector sprites
 			var/dat = "<table>"
 			for(var/i = 1 to MAX_AUTOINJECTOR_SPRITE)
 				dat += "<tr><td><a href=\"?src=\ref[src]&autoinjector_sprite=[i]\">Select</a><img src=\"autoinjector-[i].png\" /><br></td></tr>"

@@ -27,6 +27,7 @@
 
 // --- Rifles ---
 #define CALIBER_10X24_CASELESS "10x24mm caseless"
+#define CALIBER_10X25_CASELESS "10x25mm caseless"
 #define CALIBER_10x27_CASELESS "10x27mm caseless"
 #define CALIBER_762X39 "7.62x39mm"
 #define CALIBER_556X45 "5.56x45mm"
@@ -68,3 +69,6 @@
 #define CALIBER_12X40 "12x40mm Gauss" //Gauss Sentries
 #define CALIBER_10X20 "10x20mm" //Minisentry
 #define CALIBER_10X30 "10x30mm caseless"
+
+///Unmanned vehicles
+#define CALIBER_11X35 "11x35mm"

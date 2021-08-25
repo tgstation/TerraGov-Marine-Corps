@@ -10,13 +10,6 @@
 	description = ""
 	keybind_signal = COMSIG_KB_QUICKEQUIP
 
-/datum/keybinding/human/holster
-	hotkey_keys = list("H")
-	name = "holster"
-	full_name = "Holster"
-	description = ""
-	keybind_signal = COMSIG_KB_HOLSTER
-
 /datum/keybinding/human/unique_action
 	hotkey_keys = list("Space")
 	name = "unique_action"

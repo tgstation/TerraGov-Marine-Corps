@@ -3,8 +3,8 @@
 	config_tag = "Civil War"
 	flags_round_type = MODE_LZ_SHUTTERS|MODE_TWO_HUMAN_FACTIONS|MODE_HUMAN_ONLY|MODE_WIN_POINTS
 	flags_landmarks = MODE_LANDMARK_SPAWN_SPECIFIC_SHUTTLE_CONSOLE
-	respawn_time = 10 MINUTES
 	shutters_drop_time = 15 MINUTES
+	respawn_time = 5 MINUTES
 
 	valid_job_types = list(
 		/datum/job/terragov/command/captain = 1,

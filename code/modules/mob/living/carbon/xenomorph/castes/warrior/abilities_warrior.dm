@@ -256,9 +256,9 @@
 /datum/action/xeno_action/activable/toss/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/X = owner
 	var/atom/movable/target = owner.pulling
-	var/fling_distance = 3
+	var/fling_distance = 4
 	var/stagger_slow_stacks = 3
-	var/stun_duration = 1 SECONDS
+	var/stun_duration = 0.5 SECONDS
 	var/big_mob_message
 
 	X.face_atom(A)
@@ -325,12 +325,12 @@
 	if(!.)
 		return
 
-	if(A.resistance_flags & (UNACIDABLE|INDESTRUCTIBLE)) //no bolting down indestructible airlocks
+	if(A.resistance_flags & (INDESTRUCTIBLE|CRUSHER_IMMUNE)) //no bolting down indestructible airlocks
 		if(!silent)
 			to_chat(owner, span_xenodanger("We cannot damage this target!"))
 		return FALSE
 
-	if(!isliving(A) && !isstructure(A) && !ismachinery(A))
+	if(!isliving(A) && !isstructure(A) && !ismachinery(A) && !isuav(A))
 		if(!silent)
 			to_chat(owner, span_xenodanger("We can't punch this target!"))
 		return FALSE
@@ -376,7 +376,8 @@
 /obj/machinery/punch_act(mob/living/carbon/xenomorph/X, damage, target_zone) //Break open the machine
 	X.do_attack_animation(src, ATTACK_EFFECT_YELLOWPUNCH)
 	X.do_attack_animation(src, ATTACK_EFFECT_DISARM2)
-	attack_generic(X, damage * 4, BRUTE, "", FALSE) //Deals 4 times regular damage to machines
+	if(!CHECK_BITFIELD(resistance_flags, UNACIDABLE) || resistance_flags == (UNACIDABLE|XENO_DAMAGEABLE)) //If it's acidable or we can't acid it but it has the xeno damagable flag, we can damage it
+		attack_generic(X, damage * 4, BRUTE, "", FALSE) //Deals 4 times regular damage to machines
 	X.visible_message(span_xenodanger("\The [X] smashes [src] with a devastating punch!"), \
 		span_xenodanger("We smash [src] with a devastating punch!"), visible_message_flags = COMBAT_MESSAGE)
 	playsound(src, pick('sound/effects/bang.ogg','sound/effects/metal_crash.ogg','sound/effects/meteorimpact.ogg'), 50, 1)
@@ -405,6 +406,16 @@
 /obj/machinery/light/punch_act(mob/living/carbon/xenomorph/X)
 	. = ..()
 	attack_alien(X) //Smash it
+
+/obj/machinery/camera/punch_act(mob/living/carbon/xenomorph/X)
+	. = ..()
+	var/datum/effect_system/spark_spread/sparks = new //Avoid the slash text, go direct to sparks
+	sparks.set_up(2, 0, src)
+	sparks.attach(src)
+	sparks.start()
+
+	deactivate()
+	visible_message(span_danger("\The [src]'s wires snap apart in a rain of sparks!")) //Smash it
 
 /obj/machinery/power/apc/punch_act(mob/living/carbon/xenomorph/X)
 	. = ..()

@@ -223,7 +223,7 @@
 	if(!istype(possible_bumped_door))
 		return
 	for(var/occupant in movable_parent.buckled_mobs)
-		INVOKE_ASYNC(possible_bumped_door, /obj/machinery/door/.proc/bumpopen, occupant)
+		INVOKE_ASYNC(possible_bumped_door, /atom.proc/Bumped, occupant)
 
 /datum/component/riding/proc/Unbuckle(atom/movable/M)
 	addtimer(CALLBACK(parent, /atom/movable/.proc/unbuckle_mob, M), 0, TIMER_UNIQUE)

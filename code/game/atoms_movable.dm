@@ -49,7 +49,7 @@
 	var/list/client_mobs_in_contents // This contains all the client mobs within this container
 
 	///Lazylist to keep track on the sources of illumination.
-	var/list/affected_dynamic_lights
+	var/list/affected_movable_lights
 	///Highest-intensity light affecting us, which determines our visibility.
 	var/affecting_dynamic_lumi = 0
 
@@ -291,6 +291,8 @@
 			if(moving_diagonally == SECOND_DIAG_STEP)
 				if(!. && !(flags_atom & DIRLOCK))
 					setDir(first_step_dir)
+				moving_diagonally = 0
+				return TRUE
 			moving_diagonally = 0
 			return
 
@@ -372,9 +374,13 @@
 		update_parallax_contents()
 	if(pulledby)
 		SEND_SIGNAL(src, COMSIG_MOVABLE_PULL_MOVED, old_loc, movement_dir, forced, old_locs)
-	for(var/thing in light_sources) // Cycle through the light sources on this atom and tell them to update.
-		var/datum/light_source/L = thing
-		L.source_atom.update_light()
+	//Cycle through the light sources on this atom and tell them to update.
+	for(var/datum/dynamic_light_source/light AS in hybrid_light_sources)
+		light.source_atom.update_light()
+		if(!isturf(loc))
+			light.find_containing_atom()
+	for(var/datum/static_light_source/L AS in static_light_sources) // Cycle through the light sources on this atom and tell them to update.
+		L.source_atom.static_update_light()
 	return TRUE
 
 
@@ -475,7 +481,7 @@
 			continue
 		if(isliving(A))
 			var/mob/living/L = A
-			if(!L.density || L.throwpass)
+			if((!L.density || L.throwpass) && !(SEND_SIGNAL(A, COMSIG_LIVING_PRE_THROW_IMPACT, src) & COMPONENT_PRE_THROW_IMPACT_HIT))
 				continue
 			throw_impact(A, speed)
 		if(isobj(A) && A.density && !(A.flags_atom & ON_BORDER) && (!A.throwpass || iscarbon(src)) && !flying)
@@ -577,6 +583,7 @@
 		throw_impact(get_turf(src), speed)
 	if(loc)
 		stop_throw()
+		SEND_SIGNAL(loc, COMSIG_TURF_THROW_ENDED_HERE, src)
 	SEND_SIGNAL(src, COMSIG_MOVABLE_POST_THROW)
 
 /// Annul all throw var to ensure a clean exit out of throw state
@@ -663,7 +670,7 @@
 		// Scale the icon.
 		I.transform *= 0.75
 		// The icon should not rotate.
-		I.appearance_flags = APPEARANCE_UI_IGNORE_ALPHA
+		I.appearance_flags = APPEARANCE_UI
 
 		// Set the direction of the icon animation.
 		var/direction = get_dir(src, A)
