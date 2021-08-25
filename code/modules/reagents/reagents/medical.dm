@@ -1285,13 +1285,16 @@
 
 /datum/reagent/medicine/research/cryotox
 	name = "Cryotox"
-	description = "A toxin that massively lowers internal body temperature."
+	description = "A toxin that suspends most body processes and chemical intake. Length of suspension depends on initial dose injection."
 	color = "#C8A5DC"
+	custom_metabolism = 15 //rapidly remove all of it from you once the stasis clears
 	scannable = TRUE
 	taste_description = "freezing"
 
 /datum/reagent/medicine/research/cryotox/on_mob_add(mob/living/L, metabolism)
-		L.adjust_bodytemperature(-30*TEMPERATURE_DAMAGE_COEFFICIENT*effect_str, 100)
+	to_chat(L, span_userdanger("You feel your bodily processes slow, then halt!"))
+	ADD_TRAIT(L, TRAIT_STASIS)
+	addtimer(CALLBACK(REMOVE_TRAIT(L, TRAIT_STASIS)), (10 SECONDS* volume))
 	return ..()
 	
 	
