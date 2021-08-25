@@ -472,7 +472,6 @@
 
 //human signals
 #define COMSIG_CLICK_QUICKEQUIP "click_quickequip"
-#define COMSIG_KB_HOLSTER "keybinding_holster"
 
 // /obj/item/radio signals
 #define COMSIG_RADIO_NEW_FREQUENCY "radio_new_frequency"		//called from base of /obj/item/radio/proc/set_frequency(): (list/args)
