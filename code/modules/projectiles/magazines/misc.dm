@@ -121,5 +121,5 @@
 	default_ammo = /datum/ammo/bullet/smg
 	w_class = WEIGHT_CLASS_SMALL
 	current_rounds = 125
-	max_rounds = 125
+	max_rounds = 150
 
