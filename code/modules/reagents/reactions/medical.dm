@@ -219,11 +219,6 @@
 	results = list(/datum/reagent/medicine/research/medicalnanites = 1)
 	required_reagents = list(/datum/reagent/toxin/nanites = 10, /datum/reagent/radium = 5, /datum/reagent/iron = 100, /datum/reagent/medicine/lemoline = 5)
 
-/datum/chemical_reaction/cryotox
-	name = "Cryotox"
-	results = list(/datum/reagent/medicine/research/cryotox = 15)
-	required_reagents = list(/datum/reagent/medicine/cryoxadone = 2, /datum/reagent/medicine/leporazine = 2, /datum/reagent/consumable/drink/cold/ice = 10, /datum/reagent/medicine/lemoline = 1)
-
 /datum/chemical_reaction/stimulum
 	name = "Stimulum"
 	results = list(/datum/reagent/medicine/research/stimulon = 1)
