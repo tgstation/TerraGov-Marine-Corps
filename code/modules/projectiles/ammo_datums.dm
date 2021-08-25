@@ -1921,7 +1921,7 @@ datum/ammo/bullet/revolver/tp44
 	if(!istype(victim) || victim.stat == DEAD || victim.issamexenohive(proj.firer))
 		return
 
-	victim.Paralyze(0.5 SECONDS)
+	victim.Paralyze(1 SECONDS)
 	victim.blur_eyes(11)
 	victim.adjustDrowsyness(12)
 
@@ -1974,7 +1974,7 @@ datum/ammo/bullet/revolver/tp44
 
 /datum/ammo/xeno/boiler_gas/corrosive/on_hit_mob(mob/living/victim, obj/projectile/proj)
 	drop_nade(get_turf(proj), proj.firer)
-	victim.Paralyze(0.1 SECONDS)
+	victim.Paralyze(1 SECONDS)
 	victim.blur_eyes(1)
 	victim.adjustDrowsyness(1)
 
