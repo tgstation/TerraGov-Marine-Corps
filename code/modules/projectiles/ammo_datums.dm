@@ -1035,10 +1035,10 @@ datum/ammo/bullet/revolver/tp44
 	hud_state_empty = "smartgun_empty"
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING|AMMO_SENTRY
 	accurate_range = 10
-	damage = 30
+	damage = 25
 	penetration = 15
 	damage_falloff = 0.05
-	sundering = 1
+	sundering = 1.25
 
 /datum/ammo/bullet/turret/dumb
 	icon_state = "bullet"
@@ -1051,7 +1051,7 @@ datum/ammo/bullet/revolver/tp44
 	name = "small caliber autocannon bullet"
 	damage = 15
 	penetration = 30
-	sundering = 2
+	sundering = 1.5
 
 
 /datum/ammo/bullet/machinegun //Adding this for the MG Nests (~Art)
