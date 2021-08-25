@@ -1,0 +1,4 @@
+author: "QualityVan"
+delete-after: True
+changes: 
+  - bugfix: "Acid will now tell you when it melts your helmet or mask (sulphuric/polytrinic, not xeno acid)"
