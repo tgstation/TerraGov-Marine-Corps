@@ -131,8 +131,19 @@ datum/chemical_reaction/wpsmoke
 	smoke.set_up(smoke_radius, location, 11)
 	smoke.start()
 	playsound(location, 'sound/effects/smoke.ogg', 50, 1, -3)
-	if(holder?.my_atom)
-		holder.clear_reagents()
+
+
+datum/chemical_reaction/plasmalosssmoke
+	name = "Tanglefoot smoke"
+	required_reagents = list(/datum/reagent/toxin/sleeptoxin = 2, /datum/reagent/medicine/synaptizine = 1, /datum/reagent/sulfur = 1)
+
+/datum/chemical_reaction/plasmalosssmoke/on_reaction(datum/reagents/holder, created_volume)
+	var/smoke_radius = round(sqrt(created_volume), 1)
+	var/location = get_turf(holder.my_atom)
+	var/datum/effect_system/smoke_spread/plasmaloss/smoke = new
+	smoke.set_up(smoke_radius, location, 11)
+	smoke.start()
+	playsound(location, 'sound/effects/smoke.ogg', 50, 1, -3)
 
 
 /datum/chemical_reaction/chloralhydrate
