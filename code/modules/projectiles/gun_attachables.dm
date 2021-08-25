@@ -1799,6 +1799,35 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 		var/datum/action/A = X
 		A.update_button_icon()
 
+
+/obj/item/attachable/standard_revolver_longbarrel
+	name = "TP-44 long barrel"
+	desc = "A longer barrel for the TP-44, makes the gun more accurate and deal more damage on impact."
+	icon_state = "tp44_barrel"
+	attach_icon = "tp44_barrel"
+	slot = ATTACHMENT_BARREL_MOD
+	damage_mod = 0.25
+	scatter_mod = -2.5
+	recoil_unwielded_mod = 0.25
+	damage_falloff_mod = -0.5
+	pixel_shift_x = 0
+	pixel_shift_y = 0
+	size_mod = 1
+	detach_delay = 0
+	gun_attachment_offset_mod = list("muzzle_x" = 7)
+
+/obj/item/attachable/standard_revolver_longbarrel/attach_to_gun(obj/item/weapon/gun/gun_to_attach, mob/user)
+	. = ..()
+	RegisterSignal(gun_to_attach, COMSIG_REVOLVER_AMMO_HIT_MOB, .proc/ammo_hit_mob)
+
+/obj/item/attachable/standard_revolver_longbarrel/detach_from_master_gun(mob/user)
+	UnregisterSignal(master_gun, COMSIG_REVOLVER_AMMO_HIT_MOB)
+	return ..()
+
+/obj/item/attachable/standard_revolver_longbarrel/proc/ammo_hit_mob()
+	SIGNAL_HANDLER
+	return COMSIG_REVOLVER_AMMO_SNUBNOSE_BARREL
+
 /obj/item/attachable/mateba_longbarrel
 	name = "Mateba long barrel"
 	desc = "A longer barrel for the Mateba, makes the gun more accurate and deal more damage on impact."
