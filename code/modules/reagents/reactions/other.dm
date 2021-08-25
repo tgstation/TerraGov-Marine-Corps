@@ -100,7 +100,7 @@
 
 /datum/chemical_reaction/napalm/on_reaction(datum/reagents/holder, created_volume, radius)
 	var/location = get_turf(holder.my_atom)
-	radius = round(sqrt(created_volume))
+	radius = round(sqrt(created_volume * 0.3)) //allows a nice, healthy fire if using 2 120u beakers fully filled up.
 	if(radius < 0) radius = 0
 
 	for(var/turf/T in range(radius,location))
