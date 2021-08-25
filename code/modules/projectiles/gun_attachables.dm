@@ -1806,10 +1806,8 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	icon_state = "tp44_barrel"
 	attach_icon = "tp44_barrel"
 	slot = ATTACHMENT_BARREL_MOD
-	damage_mod = 0.25
 	scatter_mod = -2.5
 	recoil_unwielded_mod = 0.25
-	damage_falloff_mod = -0.5
 	pixel_shift_x = 0
 	pixel_shift_y = 0
 	size_mod = 1
