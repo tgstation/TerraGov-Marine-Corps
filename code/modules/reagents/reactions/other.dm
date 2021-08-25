@@ -135,8 +135,6 @@ datum/chemical_reaction/wpsmoke
 	var/location = get_turf(holder.my_atom)
 	var/datum/effect_system/smoke_spread/phosphorus/S = new(location)
 	playsound(location, 'sound/effects/smoke.ogg', 50, 1, -3)
-	smoke.set_up(smoke_radius, location, 11) //stick around longer than standard WP, cause no fire included by default.
-	smoke.start()
 	S?.set_up(holder, smoke_radius, location)
 	S?.start()
 	if(holder?.my_atom)
