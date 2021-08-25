@@ -62,9 +62,11 @@
 	desc = "A deployable, semi-automated turret with AI targeting capabilities. Armed with a M30 autocannon and a 25-round box magazine. Use Alt-Click to remove its battery."
 	icon_state = "sentry"
 
-	turret_range = 8
+	turret_range = 7
 	deploy_time = 8 SECONDS
 	max_shells = 50
+	fire_delay = 0.2 SECONDS
+	max_integrity = 400
 
 	ammo = /datum/ammo/bullet/turret
 	current_mag = /obj/item/ammo_magazine/sentry
@@ -124,11 +126,12 @@
 	ammo = /datum/ammo/bullet/turret/mini
 	current_mag = /obj/item/ammo_magazine/minisentry
 
-	fire_delay = 0.3 SECONDS
+	fire_delay = 0.15 SECONDS
 	burst_delay = 0.2 SECONDS
 	burst_amount = 3
 	extra_delay = 0.3 SECONDS
 	scatter = 2
+	max_integrity = 600
 
 	deploy_time = 3 SECONDS
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
