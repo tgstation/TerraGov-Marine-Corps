@@ -274,7 +274,7 @@
 
 datum/chemical_reaction/wpsmoke
 	name = "White Phosphorous smoke"
-	required_reagents = list(/datum/reagent/phosphorus = 2, /datum/reagent/silicon = 1, /datum/reagent/oxygen = 1)
+	required_reagents = list(/datum/reagent/phosphorus = 2, /datum/reagent/silicon = 1, /datum/reagent/chlorine = 1)
 
 /datum/chemical_reaction/wpsmoke/on_reaction(datum/reagents/holder, created_volume)
 	var/smoke_radius = round(sqrt(created_volume * 0.66), 1)
@@ -296,25 +296,12 @@ datum/chemical_reaction/plasmalosssmoke
 	smoke.start()
 	playsound(location, 'sound/effects/smoke.ogg', 50, 1, -3)
 
-datum/chemical_reaction/wpsmoke
-	name = "White Phosphorous smoke"
-	required_reagents = list(/datum/reagent/phosphorus = 2, /datum/reagent/silicon = 1, /datum/reagent/oxygen = 1)
-
-/datum/chemical_reaction/wpsmoke/on_reaction(datum/reagents/holder, created_volume)
-	var/smoke_radius = round(sqrt(created_volume * 0.66), 1)
-	var/location = get_turf(holder.my_atom)
-	var/datum/effect_system/smoke_spread/phosphorus/smoke = new
-	smoke.set_up(smoke_radius, location, 11)
-	smoke.start()
-	playsound(location, 'sound/effects/smoke.ogg', 50, 1, -3)
-
-
 datum/chemical_reaction/explosive/gunpowder
 	name = "Gunpowder"
 	required_reagents = list(/datum/reagent/potassium = 1, /datum/reagent/oxygen = 3, /datum/reagent/sulfur = 1, /datum/reagent/carbon = 1)
 
 /datum/chemical_reaction/explosive/gunpowder/on_reaction(datum/reagents/holder, created_volume)
-	var/radius = round(sqrt(created_volume* 0.5), 1) // should be a max of 1 more tile than the M15
+	var/radius = round(sqrt(created_volume* 0.5), 1) // should be about equal to the M15, maybe one tile more
 	var/location = get_turf(holder.my_atom)
 	var/datum/effect_system/smoke_spread/bad/smoke = new
 	smoke.set_up((radius - 1), location, 2)
@@ -331,5 +318,4 @@ datum/chemical_reaction/explosive/anfo
 	var/location = get_turf(holder.my_atom)
 	if(radius > 2) radius = 2 //enforced by a hardcap. Sorry!
 	explosion(location, heavy_impact_range = radius, small_animation = TRUE)
-
 
