@@ -1892,7 +1892,7 @@ datum/ammo/bullet/revolver/tp44
 	bonus_projectiles_type = /datum/ammo/xeno/acid/heavy/scatter
 	bonus_projectiles_amount = 6
 	bonus_projectiles_scatter = 3
-	max_range = 12
+	max_range = 8
 	puddle_duration = 1 SECONDS //Lasts 2-4 seconds
 
 /datum/ammo/xeno/boiler_gas
