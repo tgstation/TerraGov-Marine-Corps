@@ -897,6 +897,7 @@
 		/obj/item/attachable/t42barrel,
 		/obj/item/attachable/bipod,
 		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/scope/mini,
 		/obj/item/attachable/motiondetector,
 	)
 
