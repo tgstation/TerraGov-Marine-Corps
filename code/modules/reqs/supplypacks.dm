@@ -235,7 +235,7 @@ WEAPONS
 /datum/supply_packs/weapons/flamethrower
 	name = "TL-84 Flamethrower"
 	contains = list(/obj/item/weapon/gun/flamer/marinestandard)
-	cost = 45
+	cost = 30
 
 /datum/supply_packs/weapons/rpgoneuse
 	name = "T-72 Disposable RPG"
