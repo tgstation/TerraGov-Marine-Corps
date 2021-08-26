@@ -1776,7 +1776,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 /obj/item/attachable/hydro_cannon
 	name = "TL-84 Hydro Cannon"
 	desc = "An integrated component of the TL-84 flamethrower, the hydro cannon fires high pressure sprays of water; mainly to extinguish any wayward allies or unintended collateral damage."
-	icon_state = ""
+	icon_state = "hydrocannon"
 	attach_icon = ""
 	slot = ATTACHMENT_SLOT_UNDER
 	flags_attach_features = ATTACH_UTILITY|GUN_ALLOW_SYNTHETIC
