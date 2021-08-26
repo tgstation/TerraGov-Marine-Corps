@@ -271,7 +271,7 @@
 	if(radius < 0) radius = 0
 		flame_radius(radius, get_turf(holder.my_atom)
 
-datum/chemical_reaction/wpsmoke
+/datum/chemical_reaction/wpsmoke
 	name = "White Phosphorous smoke"
 	required_reagents = list(/datum/reagent/phosphorus = 2, /datum/reagent/silicon = 1, /datum/reagent/chlorine = 1)
 
@@ -282,7 +282,7 @@ datum/chemical_reaction/wpsmoke
 	smoke.start()
 	playsound(location, 'sound/effects/smoke.ogg', 50, 1, -3)
 
-datum/chemical_reaction/plasmalosssmoke
+/datum/chemical_reaction/plasmalosssmoke
 	name = "Tanglefoot smoke"
 	required_reagents = list(/datum/reagent/toxin/sleeptoxin = 2, /datum/reagent/medicine/synaptizine = 1, /datum/reagent/sulfur = 1)
 
@@ -293,7 +293,7 @@ datum/chemical_reaction/plasmalosssmoke
 	smoke.start()
 	playsound(location, 'sound/effects/smoke.ogg', 50, 1, -3)
 
-datum/chemical_reaction/explosive/gunpowder
+/datum/chemical_reaction/explosive/gunpowder
 	name = "Gunpowder"
 	required_reagents = list(/datum/reagent/potassium = 1, /datum/reagent/oxygen = 3, /datum/reagent/sulfur = 1, /datum/reagent/carbon = 1)
 
@@ -305,7 +305,7 @@ datum/chemical_reaction/explosive/gunpowder
 	explosion(get_turf(holder.my_atom), light_impact_range = radius, small_animation = TRUE)
 
 
-datum/chemical_reaction/explosive/anfo
+/datum/chemical_reaction/explosive/anfo
 	name = "ANFO"
 	required_reagents = list(/datum/reagent/ammonia = 1, /datum/reagent/fuel = 3)
 
