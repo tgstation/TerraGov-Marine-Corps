@@ -153,7 +153,6 @@
 	usr.client.update_ambience_pref()
 
 
-
 /client/verb/toggle_special(role in BE_SPECIAL_FLAGS)
 	set category = "Preferences"
 	set name = "Toggle Special Roles"
@@ -332,6 +331,26 @@ GLOBAL_LIST_INIT(ghost_others_options, list(GHOST_OTHERS_SIMPLE, GHOST_OTHERS_DE
 	usr.client.prefs.save_preferences()
 
 	to_chat(usr, span_notice("You will [(usr.client.prefs.toggles_sound & SOUND_INSTRUMENTS_OFF) ? "no longer" : "now"] hear instruments."))
+
+/client/verb/toggle_weather_sounds()
+	set category = "Preferences"
+	set name = "Toggle Weather Sound"
+
+	usr.client.prefs.toggles_sound ^= SOUND_WEATHER
+	prefs.save_preferences()
+
+	to_chat(usr, span_notice("You will [(usr.client.prefs.toggles_sound & SOUND_WEATHER) ? "no longer" : "now"] hear weather."))
+
+/client/verb/toggle_gas_mask_sound()
+	set category = "Preferences"
+	set name = "Toggle Gas Mask sounds."
+
+	usr.client.prefs.toggles_sound ^= SOUND_GAS_MASK
+	usr.client.prefs.save_preferences()
+
+	to_chat(usr, span_notice("You will [(usr.client.prefs.toggles_sound & SOUND_GAS_MASK) ? "no longer" : "now"] hear gas masks breathy noises."))
+
+
 
 ///Toggles whether or not you need to hold shift to access the right click menu
 /client/verb/toggle_right_click()

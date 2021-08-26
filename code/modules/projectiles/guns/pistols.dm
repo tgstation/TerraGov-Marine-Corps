@@ -38,6 +38,8 @@
 
 /obj/item/weapon/gun/pistol/unique_action(mob/user)
 	. = ..()
+	if(!.)
+		return
 	return cock(user)
 
 /obj/item/weapon/gun/pistol/get_ammo_type()
@@ -173,6 +175,9 @@
 	accuracy_mult_unwielded = 0.95
 	recoil = -2
 	recoil_unwielded = -2
+
+/obj/item/weapon/gun/pistol/standard_heavypistol/suppressed
+	starting_attachment_types = list(/obj/item/attachable/suppressor, /obj/item/attachable/flashlight) //Tacticool
 
 //-------------------------------------------------------
 //M1911
@@ -378,11 +383,13 @@
 /obj/item/weapon/gun/pistol/standard_pocketpistol
 	name = "\improper TP-17 pocket pistol"
 	desc = "A tiny pistol used by the TGMC as an emergency handgun meant to be stored about anywhere. Fits in boots. Uses .380 ACP stored in an eight round magazine."
+	icon = 'icons/Marine/gun64.dmi' // This is here here for the empty sprite.
 	icon_state = "tp17"
 	item_state = "tp17"
+	fire_animation = "tp17_fire"
 	caliber = CALIBER_380ACP //codex
 	max_shells = 8 //codex
-	fire_sound = 'sound/weapons/guns/fire/pistol_holdout.ogg'
+	fire_sound = 'sound/weapons/guns/fire/tp17.ogg'
 	current_mag = /obj/item/ammo_magazine/pistol/standard_pocketpistol
 	w_class = WEIGHT_CLASS_TINY
 	force = 5
@@ -394,7 +401,7 @@
 	)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
-	attachable_offset = list("muzzle_x" = 28, "muzzle_y" = 20,"rail_x" = 21, "rail_y" = 13, "under_x" = 17, "under_y" = 15, "stock_x" = 22, "stock_y" = 17)
+	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 20,"rail_x" = 21, "rail_y" = 15, "under_x" = 17, "under_y" = 15, "stock_x" = 22, "stock_y" = 17)
 
 	fire_delay = 0.125 SECONDS
 	recoil = -2
@@ -422,16 +429,18 @@
 	cocked_sound = 'sound/weapons/guns/interact/hp_cocked.ogg'
 	current_mag = /obj/item/ammo_magazine/pistol/highpower
 	force = 10
+
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
 	attachable_offset = list("muzzle_x" = 27, "muzzle_y" = 20,"rail_x" = 8, "rail_y" = 22, "under_x" = 18, "under_y" = 15, "stock_x" = 16, "stock_y" = 15)
 
 	fire_delay = 1 SECONDS
+	burst_delay = 0.5 SECONDS
 	damage_mult = 1.2
 	recoil = 1
 	recoil_unwielded = 2
 	accuracy_mult = 1.5
-	scatter = 0
-	scatter_unwielded = 15
+	scatter = 5
+	scatter_unwielded = 20
 
 //-------------------------------------------------------
 //VP70

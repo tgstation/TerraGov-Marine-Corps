@@ -317,14 +317,21 @@
 	dropship_equipment_flags = IS_INTERACTABLE
 	point_cost = 500
 	var/deployment_cooldown
-	var/obj/machinery/marine_turret/premade/dropship/deployed_turret
+	var/obj/machinery/deployable/mounted/sentry/deployed_turret
+	var/sentry_type = /obj/item/weapon/gun/sentry/big_sentry/dropship
 
 /obj/structure/dropship_equipment/sentry_holder/Initialize()
 	. = ..()
 	if(!deployed_turret)
-		deployed_turret = new(src)
-		deployed_turret.deployment_system = src
+		var/obj/new_gun = new sentry_type(src)
+		deployed_turret = new_gun.loc
+		RegisterSignal(deployed_turret, COMSIG_OBJ_DECONSTRUCT, .proc/clean_refs)
 
+///This cleans the deployed_turret ref when the sentry is destroyed.
+/obj/structure/dropship_equipment/sentry_holder/proc/clean_refs(atom/source, disassembled)
+	SIGNAL_HANDLER
+	UnregisterSignal(deployed_turret, COMSIG_OBJ_DECONSTRUCT)
+	deployed_turret = null
 
 /obj/structure/dropship_equipment/sentry_holder/examine(mob/user)
 	. = ..()
@@ -385,7 +392,7 @@
 			deployed_turret.pixel_x = 0
 			deployed_turret.loc = src
 			deployed_turret.setDir(dir)
-			DISABLE_BITFIELD(deployed_turret.turret_flags, TURRET_ON)
+			deployed_turret.set_on(FALSE)
 		else
 			icon_state = "sentry_system_destroyed"
 
@@ -396,7 +403,7 @@
 	deployed_turret.setDir(dir)
 	playsound(loc, 'sound/machines/hydraulics_1.ogg', 40, 1)
 	deployment_cooldown = world.time + 50
-	ENABLE_BITFIELD(deployed_turret.turret_flags, TURRET_ON)
+	deployed_turret.set_on(TRUE)
 	deployed_turret.update_icon()
 	deployed_turret.loc = get_step(src, dir)
 	icon_state = "sentry_system_deployed"
@@ -407,10 +414,12 @@
 	playsound(loc, 'sound/machines/hydraulics_2.ogg', 40, 1)
 	deployment_cooldown = world.time + 50
 	deployed_turret.loc = src
-	DISABLE_BITFIELD(deployed_turret.turret_flags, TURRET_ON)
+	deployed_turret.set_on(FALSE)
 	deployed_turret.update_icon()
 	icon_state = "sentry_system_installed"
 
+/obj/structure/dropship_equipment/sentry_holder/rebel
+	sentry_type = /obj/item/weapon/gun/sentry/big_sentry/dropship/rebel
 
 
 /obj/structure/dropship_equipment/mg_holder

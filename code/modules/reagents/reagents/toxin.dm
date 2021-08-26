@@ -207,7 +207,7 @@
 			tray.check_level_sanity()
 			tray.update_icon()
 
-/datum/reagent/toxin/plantbgone/reaction_mob(mob/living/L, method = TOUCH, volume, metabolism, show_message = TRUE, touch_protection = 0)
+/datum/reagent/toxin/plantbgone/reaction_mob(mob/living/L, method = TOUCH, volume, show_message = TRUE, touch_protection = 0)
 	. = ..()
 	if(!ishuman(L))
 		return
@@ -356,7 +356,7 @@
 	L.take_limb_damage(0, 0.5*effect_str)
 	return ..()
 
-/datum/reagent/toxin/acid/reaction_mob(mob/living/L, method = TOUCH, volume, metabolism, show_message = TRUE, touch_protection = 0)
+/datum/reagent/toxin/acid/reaction_mob(mob/living/L, method = TOUCH, volume, show_message = TRUE, touch_protection = 0)
 	. = ..()
 	if(!(method in list(TOUCH, VAPOR, PATCH)))
 		return
@@ -364,7 +364,7 @@
 		var/mob/living/carbon/human/H = L
 
 		if(H.head)
-			if(prob(meltprob) && !CHECK_BITFIELD(H.head.resistance_flags, UNACIDABLE|INDESTRUCTIBLE))
+			if(prob(meltprob) && !CHECK_BITFIELD(H.head.resistance_flags, RESIST_ALL))
 				if(show_message)
 					to_chat(H, span_danger("Your headgear melts away but protects you from the acid!"))
 				qdel(H.head)
@@ -375,7 +375,7 @@
 			return
 
 		if(H.wear_mask)
-			if(prob(meltprob) && !CHECK_BITFIELD(H.wear_mask.resistance_flags, UNACIDABLE|INDESTRUCTIBLE))
+			if(prob(meltprob) && !CHECK_BITFIELD(H.wear_mask.resistance_flags, RESIST_ALL))
 				if(show_message)
 					to_chat(H, span_danger("Your mask melts away but protects you from the acid!"))
 				qdel(H.wear_mask)
@@ -386,7 +386,7 @@
 			return
 
 		if(H.glasses) //Doesn't protect you from the acid but can melt anyways!
-			if(prob(meltprob) && !CHECK_BITFIELD(H.glasses.resistance_flags, UNACIDABLE|INDESTRUCTIBLE))
+			if(prob(meltprob) && !CHECK_BITFIELD(H.glasses.resistance_flags, RESIST_ALL))
 				if(show_message)
 					to_chat(H, span_danger("Your glasses melts away!"))
 				qdel(H.glasses)
@@ -409,7 +409,7 @@
 
 /datum/reagent/toxin/acid/reaction_obj(obj/O, volume)
 	if((istype(O,/obj/item) || istype(O,/obj/effect/glowshroom)) && prob(meltprob * 3))
-		if(!CHECK_BITFIELD(O.resistance_flags, UNACIDABLE|INDESTRUCTIBLE))
+		if(!CHECK_BITFIELD(O.resistance_flags, RESIST_ALL))
 			var/obj/effect/decal/cleanable/molten_item/I = new/obj/effect/decal/cleanable/molten_item(O.loc)
 			I.desc = "Looks like this was \an [O] some time ago."
 			O.visible_message(span_warning("\the [O] melts."), null, 5)
@@ -591,7 +591,7 @@
 		dam = fire_loss
 
 	L.heal_limb_damage(burn = dam, updating_health = TRUE) //Heal damage equal to toxin damage dealt; heal before applying toxin damage so we don't flash kill the target
-	L.adjustToxLoss(dam)
+	L.adjustToxLoss(dam * (1 + 0.1 * tox_cap_multiplier)) //Apply toxin damage. Deal extra toxin damage equal to 10% * the tox cap multiplier
 
 	return ..()
 

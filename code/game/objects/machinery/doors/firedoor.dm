@@ -63,7 +63,7 @@
 /obj/machinery/door/firedoor/Destroy()
 	for(var/area/A in areas_added)
 		LAZYREMOVE(A.all_fire_doors, src)
-	. = ..()
+	return ..()
 
 
 /obj/machinery/door/firedoor/examine(mob/user)
@@ -213,6 +213,7 @@
 		user.visible_message(span_danger("\The [user] [blocked ? "welds" : "unwelds"] \the [src] with \a [W]."),\
 		"You [blocked ? "weld" : "unweld"] \the [src] with \the [W].",\
 		"You hear something being welded.")
+		playsound(src, 'sound/items/welder.ogg', 25, 1)
 		update_icon()
 
 	else if(blocked)
@@ -329,7 +330,7 @@
 		return TRUE
 
 
-/obj/machinery/door/firedoor/border_only/CheckExit(atom/movable/mover, turf/target)
+/obj/machinery/door/firedoor/border_only/CheckExit(atom/movable/mover, direction)
 	. = ..()
 	if(istype(mover) && CHECK_BITFIELD(mover.flags_pass, PASSGLASS))
 		return TRUE

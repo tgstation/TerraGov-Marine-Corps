@@ -6,7 +6,7 @@
 
 	hud_possible = list(MACHINE_HEALTH_HUD)
 
-/obj/machinery/deployable/Initialize(mapload, _internal_item)
+/obj/machinery/deployable/Initialize(mapload, _internal_item, deployer)
 	. = ..()
 	internal_item = _internal_item
 
@@ -22,6 +22,12 @@
 		sentry_status_hud.add_to_hud(src)
 
 	update_icon_state()
+
+/obj/machinery/deployable/Destroy()
+	for(var/datum/atom_hud/squad/sentry_status_hud in GLOB.huds) //Add to the squad HUD
+		sentry_status_hud.remove_from_hud(src)
+	return ..()
+
 
 /obj/machinery/deployable/update_icon_state()
 	. = ..()

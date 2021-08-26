@@ -183,6 +183,10 @@
 	. = ..()
 	smoke = new(src)
 
+/obj/item/explosive/grenade/smokebomb/Destroy()
+	QDEL_NULL(smoke)
+	return ..()
+
 /obj/item/explosive/grenade/smokebomb/prime()
 	playsound(loc, 'sound/effects/smoke.ogg', 25, 1, 4)
 	smoke.set_up(7, loc, 11)
@@ -247,6 +251,10 @@
 /obj/item/explosive/grenade/phosphorus/Initialize()
 	. = ..()
 	smoke = new(src)
+
+/obj/item/explosive/grenade/phosphorus/Destroy()
+	QDEL_NULL(smoke)
+	return ..()
 
 /obj/item/explosive/grenade/phosphorus/prime()
 	playsound(loc, 'sound/effects/smoke.ogg', 25, 1, 4)
@@ -343,7 +351,7 @@
 	ENABLE_BITFIELD(resistance_flags, ON_FIRE)
 	item_fire_stacks = 5
 	heat = 1500
-	damtype = "fire"
+	damtype = BURN
 	update_brightness()
 	playsound(src,'sound/items/flare.ogg', 15, 1)
 	START_PROCESSING(SSobj, src)
@@ -377,7 +385,7 @@
 	throwforce = 10
 	ENABLE_BITFIELD(resistance_flags, ON_FIRE)
 	item_fire_stacks = 5
-	damtype = "fire"
+	damtype = BURN
 	START_PROCESSING(SSobj, src)
 
 /obj/item/explosive/grenade/flare/proc/update_brightness()

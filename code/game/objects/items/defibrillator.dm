@@ -123,13 +123,14 @@
 /mob/living/proc/get_ghost()
 	if(client) //Let's call up the correct ghost!
 		return null
-	for(var/g in GLOB.observer_list)
-		if(!g) //Observers hard del often so lets just be safe
+	for(var/mob/dead/observer/ghost AS in GLOB.observer_list)
+		if(!ghost) //Observers hard del often so lets just be safe
 			continue
-		var/mob/dead/observer/ghost = g
-		if(ghost.mind.current != src)
+		if(isnull(ghost.can_reenter_corpse))
 			continue
-		if(ghost.client && ghost.can_reenter_corpse)
+		if(ghost.can_reenter_corpse.resolve() != src)
+			continue
+		if(ghost.client)
 			return ghost
 	return null
 
@@ -232,6 +233,12 @@
 	if((HAS_TRAIT(H, TRAIT_UNDEFIBBABLE ) && !issynth(H)) || H.suiciding) //synthetic species have no expiration date
 		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Patient's brain has decayed too much."))
 		return
+
+	if(H.species.species_flags & DETACHABLE_HEAD)	//But if their head's missing, they're still not coming back
+		var/datum/limb/head/braincase = H.get_limb("head")
+		if(braincase.limb_status & LIMB_DESTROYED)
+			user.visible_message("[icon2html(src, viewers(user))] \The [src] buzzes: Positronic brain missing, cannot reboot.")
+			return
 
 	if(!H.client) //Freak case, no client at all. This is a braindead mob (like a colonist)
 		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: No soul detected, Attempting to revive..."))

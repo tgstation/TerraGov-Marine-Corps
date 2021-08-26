@@ -70,7 +70,7 @@ GLOBAL_LIST_INIT(name2reagent, build_name2reagent())
 	return ..()
 
 /// Applies this reagent to a [/mob/living]
-/datum/reagent/proc/reaction_mob(mob/living/L, method = TOUCH, volume, metabolism, show_message = TRUE, touch_protection = 0)
+/datum/reagent/proc/reaction_mob(mob/living/L, method = TOUCH, volume, show_message = TRUE, touch_protection = 0)
 	if(!istype(L))
 		return FALSE
 	if(method == VAPOR && L.reagents) //foam, spray

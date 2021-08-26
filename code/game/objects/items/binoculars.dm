@@ -65,7 +65,7 @@
 /obj/item/binoculars/tactical/Destroy()
 	if(laser)
 		QDEL_NULL(laser)
-	. = ..()
+	return ..()
 
 
 /obj/item/binoculars/tactical/InterceptClickOn(mob/user, params, atom/object)
@@ -203,6 +203,9 @@
 		to_chat(user, span_notice("INITIATING LASER TARGETING. Stand still."))
 		if(!do_after(user, max(1.5 SECONDS, target_acquisition_delay - (2.5 SECONDS * user.skills.getRating("leadership"))), TRUE, TU, BUSY_ICON_GENERIC) || world.time < laser_cooldown || laser)
 			return
+	if(targ_area.flags_area & OB_CAS_IMMUNE)
+		to_chat(user, span_warning("Our payload won't reach this target!"))
+		return
 	switch(mode)
 		if(MODE_CAS)
 			to_chat(user, span_notice("TARGET ACQUIRED. LASER TARGETING IS ONLINE. DON'T MOVE."))

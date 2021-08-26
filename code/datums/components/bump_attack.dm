@@ -33,7 +33,7 @@
 	if(should_enable == active)
 		return
 	var/mob/living/bumper = parent
-	to_chat(bumper, span_notice("You will now [should_enable ? "attack" : "push"] enemies who are in your way."))
+	bumper.balloon_alert(bumper, "Will now [should_enable ? "attack" : "push"] enemies in your way.")
 	toggle_action?.update_button_icon(should_enable)
 	if(should_enable)
 		active = TRUE
@@ -51,7 +51,7 @@
 	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_BUMP_ATTACK))
 		return NONE
 	var/mob/living/bumper = parent
-	if(!isliving(target) || bumper.throwing || bumper.incapacitated())
+	if(!(target.flags_atom & BUMP_ATTACKABLE) || bumper.throwing || bumper.incapacitated())
 		return NONE
 
 

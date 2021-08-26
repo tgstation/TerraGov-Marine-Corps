@@ -48,7 +48,7 @@
 		if(!cube.package)
 			cube.Expand()
 
-/datum/reagent/water/reaction_mob(mob/living/L, method = TOUCH, volume, metabolism, show_message = TRUE, touch_protection = 0) //Splashing people with water can help put them out!
+/datum/reagent/water/reaction_mob(mob/living/L, method = TOUCH, volume, show_message = TRUE, touch_protection = 0) //Splashing people with water can help put them out!
 	. = ..()
 	if(method in list(TOUCH, VAPOR))
 		L.adjust_fire_stacks(-(volume / 10))
@@ -63,6 +63,9 @@
 			L.heal_limb_damage(effect_str, effect_str)
 		if(6 to 10) //sip 2
 			L.adjustStaminaLoss(-0.5*effect_str)
+			L.heal_limb_damage(0.1*effect_str, 0.1*effect_str)
+		if(11 to INFINITY) //anything after
+			L.adjustStaminaLoss(-0.15*effect_str)
 			L.heal_limb_damage(0.1*effect_str, 0.1*effect_str)
 	return ..()
 
@@ -429,7 +432,7 @@
 	L.adjustToxLoss(1)
 	return ..()
 
-/datum/reagent/fuel/reaction_mob(mob/living/L, method = TOUCH, volume, metabolism, show_message = TRUE, touch_protection = 0)//Splashing people with welding fuel to make them easy to ignite!
+/datum/reagent/fuel/reaction_mob(mob/living/L, method = TOUCH, volume, show_message = TRUE, touch_protection = 0)//Splashing people with welding fuel to make them easy to ignite!
 	. = ..()
 	if(method in list(TOUCH, VAPOR))
 		L.adjust_fire_stacks(volume / 10)
@@ -463,7 +466,7 @@
 			reaction_obj(C, volume)
 			qdel(C)
 
-/datum/reagent/space_cleaner/reaction_mob(mob/living/L, method = TOUCH, volume, metabolism, show_message = TRUE, touch_protection = 0)
+/datum/reagent/space_cleaner/reaction_mob(mob/living/L, method = TOUCH, volume, show_message = TRUE, touch_protection = 0)
 	. = ..()
 	if(iscarbon(L))
 		var/mob/living/carbon/C = L
@@ -486,10 +489,11 @@
 				if(H.w_uniform.clean_blood())
 					H.update_inv_w_uniform(0)
 			if(H.shoes)
+				H.clean_blood(FALSE)
 				if(H.shoes.clean_blood())
 					H.update_inv_shoes(0)
 			else
-				H.clean_blood(1)
+				H.clean_blood(TRUE)
 			return
 	L.clean_blood()
 
@@ -634,7 +638,7 @@
 	color = "#C8A5DC" // rgb: 200, 165, 220
 
 
-/datum/reagent/sterilizine/reaction_mob(mob/living/L, method = TOUCH, volume, metabolism, show_message = TRUE, touch_protection = 0)
+/datum/reagent/sterilizine/reaction_mob(mob/living/L, method = TOUCH, volume, show_message = TRUE, touch_protection = 0)
 	if(!(method in list(TOUCH, VAPOR, PATCH)))
 		return
 	L.germ_level -= min(volume * 20 * touch_protection, L.germ_level)

@@ -96,7 +96,7 @@
 
 //medical hud used by ghosts
 /datum/atom_hud/medical/observer
-	hud_icons = list(HEALTH_HUD, XENO_EMBRYO_HUD, XENO_REAGENT_HUD, STATUS_HUD, MACHINE_HEALTH_HUD, SENTRY_AMMO_HUD)
+	hud_icons = list(HEALTH_HUD, XENO_EMBRYO_HUD, XENO_REAGENT_HUD, STATUS_HUD, MACHINE_HEALTH_HUD, MACHINE_AMMO_HUD)
 
 
 /datum/atom_hud/medical/pain
@@ -183,12 +183,14 @@
 	var/image/infection_hud = hud_list[XENO_EMBRYO_HUD] //State of the xeno embryo.
 	var/image/simple_status_hud = hud_list[STATUS_HUD_SIMPLE] //Status for the naked eye.
 	var/image/xeno_reagent = hud_list[XENO_REAGENT_HUD] // Displays active xeno reagents
+	var/image/xeno_debuff = hud_list[XENO_DEBUFF_HUD] //Displays active xeno specific debuffs
 	var/static/image/neurotox_image = image('icons/mob/hud.dmi', icon_state = "neurotoxin")
 	var/static/image/hemodile_image = image('icons/mob/hud.dmi', icon_state = "hemodile")
 	var/static/image/transvitox_image = image('icons/mob/hud.dmi', icon_state = "transvitox")
 	var/static/image/neurotox_high_image = image('icons/mob/hud.dmi', icon_state = "neurotoxin_high")
 	var/static/image/hemodile_high_image = image('icons/mob/hud.dmi', icon_state = "hemodile_high")
 	var/static/image/transvitox_high_image = image('icons/mob/hud.dmi', icon_state = "transvitox_high")
+	var/static/image/hunter_silence_image = image('icons/mob/hud.dmi', icon_state = "silence_debuff")
 
 	xeno_reagent.overlays.Cut()
 	xeno_reagent.icon_state = ""
@@ -213,6 +215,15 @@
 			xeno_reagent.overlays += transvitox_image
 
 	hud_list[XENO_REAGENT_HUD] = xeno_reagent
+
+	//Xeno debuff section start
+	xeno_debuff.overlays.Cut()
+	xeno_debuff.icon_state = ""
+	if(stat != DEAD)
+		if(IsMute())
+			xeno_debuff.overlays += hunter_silence_image
+
+	hud_list[XENO_DEBUFF_HUD] = xeno_debuff
 
 	if(species.species_flags & IS_SYNTHETIC)
 		simple_status_hud.icon_state = ""
@@ -338,6 +349,10 @@
 /datum/atom_hud/xeno_tactical
 	hud_icons = list(XENO_TACTICAL_HUD)
 
+///hud component for revealing xeno specific status effect debuffs to xenos
+/datum/atom_hud/xeno_debuff
+	hud_icons = list(XENO_DEBUFF_HUD)
+
 //Xeno status hud, for xenos
 /datum/atom_hud/xeno
 	hud_icons = list(HEALTH_HUD_XENO, PLASMA_HUD, PHEROMONE_HUD, QUEEN_OVERWATCH_HUD, ARMOR_SUNDER_HUD)
@@ -450,10 +465,10 @@
 
 
 /datum/atom_hud/squad
-	hud_icons = list(SQUAD_HUD_TERRAGOV, MACHINE_HEALTH_HUD, SENTRY_AMMO_HUD)
+	hud_icons = list(SQUAD_HUD_TERRAGOV, MACHINE_HEALTH_HUD, MACHINE_AMMO_HUD)
 
 /datum/atom_hud/squad_rebel
-	hud_icons = list(SQUAD_HUD_REBEL, MACHINE_HEALTH_HUD, SENTRY_AMMO_HUD)
+	hud_icons = list(SQUAD_HUD_REBEL, MACHINE_HEALTH_HUD, MACHINE_AMMO_HUD)
 
 
 /mob/proc/hud_set_job(faction = FACTION_TERRAGOV)
@@ -468,9 +483,9 @@
 
 	if(assigned_squad)
 		var/squad_color = assigned_squad.color
-		var/rank = job.title
+		var/rank = job.comm_title
 		if(assigned_squad.squad_leader == src)
-			rank = SQUAD_LEADER
+			rank = JOB_COMM_TITLE_SQUAD_LEADER
 		if(job.job_flags & JOB_FLAG_PROVIDES_SQUAD_HUD)
 			var/image/IMG = image('icons/mob/hud.dmi', src, "hudmarine")
 			IMG.color = squad_color
@@ -483,7 +498,7 @@
 			holder.overlays += IMG2
 
 	else if(job.job_flags & JOB_FLAG_PROVIDES_SQUAD_HUD)
-		holder.overlays += image('icons/mob/hud.dmi', src, "hudmarine [job.title]")
+		holder.overlays += image('icons/mob/hud.dmi', src, "hudmarine [job.comm_title]")
 
 	hud_list[hud_type] = holder
 
@@ -518,7 +533,7 @@
 	hud_list[ORDER_HUD] = holder
 
 ///Makes sentry health visible
-/obj/machinery/proc/hud_set_machine_health()
+/obj/proc/hud_set_machine_health()
 	var/image/holder = hud_list[MACHINE_HEALTH_HUD]
 
 	if(!holder)
@@ -533,20 +548,6 @@
 		amount = 1 //don't want the 'zero health' icon when we still have 4% of our health
 	holder.icon_state = "xenohealth[amount]"
 
-///Makes sentry ammo visible
-/obj/machinery/marine_turret/proc/hud_set_sentry_ammo()
-	var/image/holder = hud_list[SENTRY_AMMO_HUD]
-
-	if(!holder)
-		return
-
-	if(!rounds)
-		holder.icon_state = "plasma0"
-		return
-
-	var/amount = round(rounds * 100 / rounds_max, 10)
-	holder.icon_state = "plasma[amount]"
-
 ///Makes mounted guns ammo visible
 /obj/machinery/deployable/mounted/proc/hud_set_gun_ammo()
 	var/image/holder = hud_list[SENTRY_AMMO_HUD]
@@ -558,4 +559,18 @@
 		holder.icon_state = "plasma0"
 		return
 	var/amount = round(gun.current_mag.current_rounds * 100 / gun.current_mag.max_rounds, 10)
+	holder.icon_state = "plasma[amount]"
+
+///Makes unmanned vehicle ammo visible
+/obj/vehicle/unmanned/proc/hud_set_uav_ammo()
+	var/image/holder = hud_list[MACHINE_AMMO_HUD]
+
+	if(!holder)
+		return
+
+	if(!current_rounds)
+		holder.icon_state = "plasma0"
+		return
+
+	var/amount = round(current_rounds * 100 / max_rounds, 10)
 	holder.icon_state = "plasma[amount]"

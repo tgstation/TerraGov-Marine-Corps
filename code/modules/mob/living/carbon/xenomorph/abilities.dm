@@ -221,7 +221,7 @@
 		if(/obj/effect/alien/resin/sticky)
 			build_resin_modifier = 0.5
 		if(/obj/structure/mineral_door/resin)
-			build_resin_modifier = 3
+			build_resin_modifier = 2
 
 	return (base_wait + scaling_wait - max(0, (scaling_wait * X.health / X.maxHealth))) * build_resin_modifier
 
@@ -572,7 +572,7 @@
 		return FALSE
 	if(isobj(A))
 		var/obj/O = A
-		if(CHECK_BITFIELD(O.resistance_flags, UNACIDABLE|INDESTRUCTIBLE))
+		if(CHECK_BITFIELD(O.resistance_flags, RESIST_ALL))
 			if(!silent)
 				to_chat(owner, span_warning("We cannot dissolve \the [O]."))
 			return FALSE
@@ -1057,8 +1057,7 @@
 	gamemode_flags = ABILITY_DISTRESS
 	/// How long does it take to build
 	var/build_time = 10 SECONDS
-	/// Pyschic point cost
-	var/psych_cost = SILO_PRICE
+	psych_cost = SILO_PRICE
 
 /datum/action/xeno_action/activable/build_silo/can_use_ability(atom/A, silent, override_flags)
 	. = ..()
@@ -1122,9 +1121,7 @@
 	gamemode_flags = ABILITY_DISTRESS
 	/// How long does it take to build
 	var/build_time = 15 SECONDS
-	/// Pyschic point cost
-	var/psych_cost = XENO_TURRET_PRICE
-
+	psych_cost = XENO_TURRET_PRICE
 
 /datum/action/xeno_action/activable/build_turret/can_use_ability(atom/A, silent, override_flags)
 	. = ..()
@@ -1314,7 +1311,8 @@
 
 	SSpoints.add_psy_points(X.hivenumber, psy_points_reward)
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
-	xeno_job.add_job_points(larva_point_reward, COCOON_ORIGIN)
+	xeno_job.add_job_points(larva_point_reward)
+	GLOB.round_statistics.larva_from_psydrain +=larva_point_reward / xeno_job.job_points_needed
 
 	log_combat(victim, owner, "was drained.")
 	log_game("[key_name(victim)] was drained at [AREACOORD(victim.loc)].")

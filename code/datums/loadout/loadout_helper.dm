@@ -12,8 +12,11 @@
 	if(is_type_in_typecache(item_to_buy_type, GLOB.bypass_loadout_check_item))
 		return TRUE
 
+	if(seller.faction != FACTION_NEUTRAL && is_type_in_typecache(item_to_buy_type, GLOB.hvh_restricted_items_list))
+		return FALSE
+
 	//If we can find it for in a shared vendor, we buy it
-	for(var/type in GLOB.loadout_linked_vendor)
+	for(var/type in GLOB.loadout_linked_vendor[seller.faction])
 		for(var/datum/vending_product/item_datum AS in GLOB.vending_records[type])
 			if(item_datum.product_path == item_to_buy_type && item_datum.amount != 0)
 				item_datum.amount--
@@ -42,6 +45,8 @@
 		if(item_to_buy_type != item_type)
 			continue
 		item_info = listed_products[item_type]
+		if(item_info[1] == CAT_ESS)
+			return FALSE
 		if(seller.available_points < item_info[3])
 			return FALSE
 		seller.available_points -= item_info[3]
@@ -69,16 +74,6 @@
 		var/points_cost = round(amount / base_amount) * base_price
 		seller.available_points -= points_cost
 		return TRUE
-
-/// Will put back an item in a linked vendor
-/proc/sell_back_item_in_vendor(item_to_give_back_type)
-	for(var/type in GLOB.loadout_linked_vendor)
-		for(var/datum/vending_product/item_datum AS in GLOB.vending_records[type])
-			if(item_datum.product_path != item_to_give_back_type)
-				continue
-			if(item_datum.amount >= 0)
-				item_datum.amount++
-			return
 
 ///Return wich type of item_representation should representate any item_type
 /proc/item2representation_type(item_type)
@@ -118,7 +113,7 @@
 	return FALSE
 
 /// Will give a headset corresponding to the user job to the user
-/proc/give_free_headset(mob/living/carbon/human/user)
+/proc/give_free_headset(mob/living/carbon/human/user, faction)
 	if(user.wear_ear)
 		return
 	if(user.job.outfit.ears)
@@ -126,7 +121,8 @@
 		return
 	if(!user.assigned_squad)
 		return
-	user.equip_to_slot_or_del(new /obj/item/radio/headset/mainship/marine(null, user.assigned_squad, user.job.type), SLOT_EARS, override_nodrop = TRUE)
+	var/headset_type = faction == FACTION_TERRAGOV_REBEL ? /obj/item/radio/headset/mainship/marine/rebel : /obj/item/radio/headset/mainship/marine
+	user.equip_to_slot_or_del(new headset_type(null, user.assigned_squad, user.job.type), SLOT_EARS, override_nodrop = TRUE)
 
 /// Will check if the selected category can be bought according to the buying_bitfield
 /proc/can_buy_category(category, buying_bitfield)

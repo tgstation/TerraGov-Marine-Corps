@@ -108,6 +108,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	mechanics_text = "Store an egg on your body for future use. The egg has to be unplanted."
 	ability_name = "retrieve egg"
 	keybind_signal = COMSIG_XENOABILITY_RETRIEVE_EGG
+	use_state_flags = XACT_USE_LYING
 
 /datum/action/xeno_action/activable/retrieve_egg/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/carrier/X = owner
@@ -202,6 +203,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	plasma_cost = 200
 	cooldown_timer = 10 SECONDS
 	keybind_signal = COMSIG_XENOABILITY_SPAWN_HUGGER
+	use_state_flags = XACT_USE_LYING
 
 /datum/action/xeno_action/spawn_hugger/on_cooldown_finish()
 	to_chat(owner, span_xenodanger("We can now spawn another young one."))

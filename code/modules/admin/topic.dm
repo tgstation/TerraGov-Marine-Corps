@@ -423,8 +423,20 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 				newmob = M.change_mob_type(/mob/living/carbon/xenomorph/wraith, location, null, delmob)
 			if("human")
 				newmob = M.change_mob_type(/mob/living/carbon/human, location, null, delmob)
+			if("synthetic")
+				newmob = M.change_mob_type(/mob/living/carbon/human/species/synthetic, location, null, delmob)
+			if("early_synth")
+				newmob = M.change_mob_type(/mob/living/carbon/human/species/early_synthetic, location, null, delmob)
+			if("sectoid")
+				newmob = M.change_mob_type(/mob/living/carbon/human/species/sectoid, location, null, delmob)
+			if("vatborn")
+				newmob = M.change_mob_type(/mob/living/carbon/human/species/vatborn, location, null, delmob)
+			if("vatgrown")
+				newmob = M.change_mob_type(/mob/living/carbon/human/species/vatgrown, location, null, delmob)
+			if("SKELETON")
+				newmob = M.change_mob_type(/mob/living/carbon/human/species/skeleton, location, null, delmob)
 			if("monkey")
-				newmob = M.change_mob_type(/mob/living/carbon/human/species/monkey, location, null, delmob, "Monkey") //tivi todo doublecheck this
+				newmob = M.change_mob_type(/mob/living/carbon/human/species/monkey, location, null, delmob, "Monkey") //todo doublecheck this
 			if("moth")
 				newmob = M.change_mob_type(/mob/living/carbon/human/species/moth, location, null, delmob, "Moth")
 			if("ai")
@@ -533,7 +545,18 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 
 		log_admin("[key_name(M)] got their fortune cookie, spawned by [key_name(usr)]")
 		message_admins("[ADMIN_TPMONTY(M)] got their fortune cookie, spawned by [ADMIN_TPMONTY(usr)].")
+	
+	else if(href_list["adminsmite"])
+		if(!check_rights(R_ADMIN|R_FUN))
+			return
 
+		var/mob/living/carbon/human/H = locate(href_list["adminsmite"]) in GLOB.mob_list
+		if(!H || !istype(H))
+			to_chat(usr, "This can only be used on instances of type /mob/living/carbon/human")
+			return
+
+		usr.client.smite(H)
+		
 	else if(href_list["reply"])
 		var/mob/living/carbon/human/H = locate(href_list["reply"])
 
