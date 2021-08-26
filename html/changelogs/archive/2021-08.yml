@@ -535,3 +535,28 @@
       open.
   - rscadd: medium size underground facility
   - rscadd: lambda entrance to the underground facility
+2021-08-26:
+  BraveMole:
+  - rscdel: Remove unused holster keybind
+  - bugfix: Fix minds and related harddels
+  - bugfix: Fix fire light lag
+  Lewdcifer:
+  - balance: Increased Defiler's armor by 5.
+  Matlap:
+  - rscadd: 'Monkey cubes are now back in research. bal: Facehuggers will now ignore
+      AI monkeys.'
+  Pariah919:
+  - balance: marine orders last 30 seconds longer
+  - expansion: 10x20mm packets added.
+  QualityVan:
+  - bugfix: Acid will now tell you when it melts your helmet or mask (sulphuric/polytrinic,
+      not xeno acid)
+  SpaceLoveSs13:
+  - bugfix: fixed thesus wrong leader vendor
+  bobmancer343:
+  - qol: Carrier can use retrieve egg and spawn hugger while resting.
+  jroinc:
+  - balance: Boiler acid glob direct hits now stun for 1 full second rather than 0.5
+      or 0.1 seconds.
+  lbnesquik:
+  - rscadd: Added a way to disable weather noises locally
