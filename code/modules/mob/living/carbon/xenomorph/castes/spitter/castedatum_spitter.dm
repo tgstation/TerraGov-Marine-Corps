@@ -58,6 +58,14 @@
 		/datum/action/xeno_action/activable/spray_acid/line,
 	)
 
+/datum/xeno_caste/spitter/on_caste_applied(mob/xenomorph)
+	. = ..()
+	xenomorph.RegisterSignal(xenomorph, COMSIG_GRAB_SELF_ATTACK, /mob/living/carbon/xenomorph.proc/grabbed_self_attack)
+
+/datum/xeno_caste/spitter/on_caste_removed(mob/xenomorph)
+	. = ..()
+	xenomorph.UnregisterSignal(xenomorph, COMSIG_GRAB_SELF_ATTACK)
+
 /datum/xeno_caste/spitter/young
 	upgrade_name = "Young"
 

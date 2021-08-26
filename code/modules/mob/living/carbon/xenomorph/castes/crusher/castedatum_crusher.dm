@@ -51,7 +51,7 @@
 /datum/xeno_caste/crusher/on_caste_applied(mob/xenomorph)
 	. = ..()
 	xenomorph.AddElement(/datum/element/ridable, /datum/component/riding/creature/crusher)
-	xenomorph.RegisterSignal(xenomorph, COMSIG_GRAB_SELF_ATTACK, /mob/living/carbon/xenomorph/crusher.proc/grabbed_self_attack)
+	xenomorph.RegisterSignal(xenomorph, COMSIG_GRAB_SELF_ATTACK, /mob/living/carbon/xenomorph.proc/grabbed_self_attack)
 
 /datum/xeno_caste/crusher/on_caste_removed(mob/xenomorph)
 	. = ..()

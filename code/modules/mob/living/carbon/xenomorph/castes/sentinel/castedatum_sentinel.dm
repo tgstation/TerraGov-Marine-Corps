@@ -47,6 +47,14 @@
 		/datum/action/xeno_action/activable/neurotox_sting,
 	)
 
+/datum/xeno_caste/sentinel/on_caste_applied(mob/xenomorph)
+	. = ..()
+	xenomorph.RegisterSignal(xenomorph, COMSIG_GRAB_SELF_ATTACK, /mob/living/carbon/xenomorph.proc/grabbed_self_attack)
+
+/datum/xeno_caste/sentinel/on_caste_removed(mob/xenomorph)
+	. = ..()
+	xenomorph.UnregisterSignal(xenomorph, COMSIG_GRAB_SELF_ATTACK)
+
 /datum/xeno_caste/sentinel/young
 	upgrade_name = "Young"
 
