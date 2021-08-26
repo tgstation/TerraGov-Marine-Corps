@@ -51,6 +51,7 @@
 	handle_specials()
 	riding_mob.updating_glide_size = FALSE
 	ride_check_flags |= args_to_flags(check_loc, lying_buckle, hands_needed, target_hands_needed)//buckle_mob_flags
+	vehicle_moved()
 
 ///converts buckle args to their flags. We use this proc since I dont want to add a buckle refactor to this riding refactor port
 /datum/component/riding/proc/args_to_flags(check_loc, lying_buckle, hands_needed, target_hands_needed)
@@ -126,7 +127,7 @@
 /datum/component/riding/proc/vehicle_turned(datum/source, _old_dir, new_dir)
 	SIGNAL_HANDLER
 
-	vehicle_moved(source, new_dir)
+	vehicle_moved(source, null, new_dir)
 
 /// Check to see if we have all of the necessary bodyparts and not-falling-over statuses we need to stay onboard
 /datum/component/riding/proc/ride_check(mob/living/rider)
