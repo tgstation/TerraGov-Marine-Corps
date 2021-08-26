@@ -411,10 +411,6 @@
 
 	X.face_atom(A)
 
-	if(!do_after(X, HUNTER_SILENCE_WINDUP, TRUE, target, BUSY_ICON_HOSTILE)) //Slight wind up
-		to_chat(X, span_xenodanger("We abort silencing...") )
-		return fail_activate()
-
 	var/mob/living/mark_target
 	var/datum/action/xeno_action/activable/hunter_mark/hunter_mark_ability = X.actions_by_path[/datum/action/xeno_action/activable/hunter_mark]
 	if(hunter_mark_ability.hunter_mark_target && !X.issamexenohive(hunter_mark_ability.hunter_mark_target))
