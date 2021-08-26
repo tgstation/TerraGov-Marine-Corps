@@ -430,6 +430,11 @@
 	item_state = "tl84"
 	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER|GUN_WIELDED_STABLE_FIRING_ONLY
 	attachable_offset = list("rail_x" = 10, "rail_y" = 23, "stock_x" = 16, "stock_y" = 13)
+	attachable_allowed = list(
+						/obj/item/attachable/hydro_cannon,
+						/obj/item/attachable/attached_gun/shotgun,
+						/obj/item/attachable/attached_gun/grenade,
+						)
 	starting_attachment_types = list(
 		/obj/item/attachable/stock/t84stock,
 	)
@@ -438,13 +443,6 @@
 	var/hydro_active = FALSE
 	///How much water the hydro cannon has
 	var/water_count = 0
-
-/obj/item/weapon/gun/flamer/marinestandard/Initialize()
-	. = ..()
-	reagents = new /datum/reagents(FLAMER_WATER)
-	reagents.my_atom = src
-	reagents.add_reagent(/datum/reagent/water, reagents.maximum_volume)
-	water_count = reagents.maximum_volume
 
 /obj/item/weapon/gun/flamer/marinestandard/reload(mob/user, obj/item/ammo_magazine/magazine)
 	if(!magazine || !istype(magazine))
