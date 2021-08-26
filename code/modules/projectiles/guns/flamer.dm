@@ -424,17 +424,12 @@
 
 /obj/item/weapon/gun/flamer/marinestandard
 	name = "\improper TL-84 flamethrower"
-	desc = "The TL-84 flamethrower is the current standard issue flamethrower of the TGMC, and is used for area control and urban combat. Use unique action to use hydro cannon"
+	desc = "The TL-84 flamethrower is the current standard issue flamethrower of the TGMC, and is used for area control and urban combat."
 	current_mag = /obj/item/ammo_magazine/flamer_tank/large
 	icon_state = "tl84"
 	item_state = "tl84"
 	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER|GUN_WIELDED_STABLE_FIRING_ONLY
 	attachable_offset = list("rail_x" = 10, "rail_y" = 23, "stock_x" = 16, "stock_y" = 13)
-	attachable_allowed = list(
-						/obj/item/attachable/hydro_cannon,
-						/obj/item/attachable/attached_gun/shotgun,
-						/obj/item/attachable/attached_gun/grenade,
-						)
 	starting_attachment_types = list(
 		/obj/item/attachable/stock/t84stock,
 	)
