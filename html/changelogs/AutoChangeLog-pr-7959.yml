@@ -1,4 +1,4 @@
 author: "BraveMole"
 delete-after: True
 changes: 
-  - refactor: "Ai behavior refactor"
+  - bugfix: "Fix ai breaking tadpole"

@@ -141,7 +141,7 @@
 	. = ..()
 
 	if((direct & (direct - 1)) && mob.loc == n) //moved diagonally successfully
-		add_delay *= 2
+		add_delay *= DIAG_MOVEMENT_ADDED_DELAY_MULTIPLIER
 	move_delay += add_delay
 
 #undef MOVEMENT_DELAY_BUFFER

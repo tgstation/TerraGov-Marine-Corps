@@ -10,7 +10,7 @@
 	soft_armor = list("melee" = 50, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = 50, "bio" = 100, "rad" = 0, "fire" = 80, "acid" = 50)
 
 	///Spark system for making sparks
-	var/datum/effect_system/spark_spread/spark_system 
+	var/datum/effect_system/spark_spread/spark_system
 	///Camera for viewing with cam consoles
 	var/obj/machinery/camera/camera
 	///View and fire range of the sentry
@@ -85,7 +85,7 @@
 /obj/machinery/deployable/mounted/sentry/on_deconstruction()
 	sentry_alert(SENTRY_ALERT_DESTROYED)
 	return ..()
-	
+
 //-----------------------------------------------------------------
 // Interaction
 
@@ -139,7 +139,7 @@
 
 	if(CHECK_BITFIELD(machine_stat, KNOCKED_DOWN))
 		return TRUE
-	
+
 	if(CHECK_BITFIELD(gun.turret_flags, TURRET_IMMOBILE))
 		to_chat(user, span_warning("[src]'s panel is completely locked, you can't do anything."))
 		return TRUE
@@ -185,7 +185,9 @@
 	if(.)
 		return
 	var/obj/item/weapon/gun/gun = internal_item
-	var/mob/living/carbon/human/user = usr
+	if(isxeno(usr))
+		return
+	var/mob/living/user = usr
 	if(!istype(user) || CHECK_BITFIELD(gun.turret_flags, TURRET_IMMOBILE) || CHECK_BITFIELD(machine_stat, KNOCKED_DOWN))
 		return
 	switch(action)
@@ -204,6 +206,8 @@
 			. = TRUE
 
 		if("manual")
+			if(isAI(user))
+				return
 			if(operator)
 				user.unset_interaction()
 			else
@@ -429,7 +433,7 @@
 
 		if(!check_target_path(nearby_target))
 			continue
-		
+
 		sentry_alert(SENTRY_ALERT_HOSTILE, nearby_target)
 
 		distance = buffer_distance

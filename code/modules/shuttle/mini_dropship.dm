@@ -18,7 +18,7 @@
 	icon_state = "shuttlecomputer"
 	req_one_access = list(ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LEADER)
 	density = FALSE
-	interaction_flags = INTERACT_MACHINE_TGUI
+	interaction_flags = INTERACT_OBJ_UI
 	resistance_flags = RESIST_ALL
 	shuttleId = "minidropship"
 	lock_override = CAMERA_LOCK_GROUND
@@ -184,6 +184,12 @@
 	if(next_fly_state == SHUTTLE_IN_ATMOSPHERE)
 		shuttle_port.set_idle() // don't go up with a broken console, cencel spooling
 		visible_message("Autopilot detects loss of helm control. Halting take off!")
+
+/obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/can_interact(mob/user)
+	if(damaged)
+		to_chat(user, span_warning("The [src] blinks and lets out a crackling noise. Its broken!"))
+		return
+	return ..()
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/ui_state(mob/user)
 	return GLOB.dropship_state

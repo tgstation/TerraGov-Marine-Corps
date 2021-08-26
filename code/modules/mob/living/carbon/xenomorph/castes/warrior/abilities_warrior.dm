@@ -256,9 +256,9 @@
 /datum/action/xeno_action/activable/toss/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/X = owner
 	var/atom/movable/target = owner.pulling
-	var/fling_distance = 3
+	var/fling_distance = 4
 	var/stagger_slow_stacks = 3
-	var/stun_duration = 1 SECONDS
+	var/stun_duration = 0.5 SECONDS
 	var/big_mob_message
 
 	X.face_atom(A)
@@ -330,7 +330,7 @@
 			to_chat(owner, span_xenodanger("We cannot damage this target!"))
 		return FALSE
 
-	if(!isliving(A) && !isstructure(A) && !ismachinery(A))
+	if(!isliving(A) && !isstructure(A) && !ismachinery(A) && !isuav(A))
 		if(!silent)
 			to_chat(owner, span_xenodanger("We can't punch this target!"))
 		return FALSE

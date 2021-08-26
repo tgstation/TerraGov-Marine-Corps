@@ -207,13 +207,13 @@
 			/obj/item/attachable/attached_gun/flamer = -1,
 			/obj/item/attachable/attached_gun/shotgun = -1,
 			/obj/item/attachable/attached_gun/grenade = -1,
-			/obj/item/attachable/standard_revolver_longbarrel = -1,
 			/obj/item/attachable/motiondetector = -1,
 		),
 		"Boxes" = list(
 		/obj/item/ammo_magazine/packet/p9mm = 100,
 		/obj/item/ammo_magazine/packet/acp = 100,
 		/obj/item/ammo_magazine/packet/magnum = 100,
+		/obj/item/ammo_magazine/packet/p10x20mm = 100,
 		/obj/item/ammo_magazine/packet/p10x24mm = 100,
 		/obj/item/ammo_magazine/packet/p10x25mm = 100,
 		/obj/item/ammo_magazine/packet/p10x26mm = 100,
@@ -676,7 +676,7 @@
 
 	products = list(
 		/obj/item/clothing/under/marine/corpsman = 4,
-		/obj/item/clothing/head/helmet/marine/corpsman = 4,
+		/obj/item/clothing/head/modular/marine/m10x/corpsman = 4,
 		/obj/item/storage/backpack/marine/corpsman = 4,
 		/obj/item/storage/backpack/marine/satchel/corpsman = 4,
 		/obj/item/encryptionkey/med = 4,
@@ -765,7 +765,7 @@
 
 	products = list(
 		/obj/item/clothing/suit/storage/marine/leader = 1,
-		/obj/item/clothing/head/helmet/marine/leader = 1,
+		/obj/item/clothing/head/modular/marine/m10x/leader = 1,
 		/obj/item/clothing/tie/storage/webbing = 1,
 		/obj/item/beacon/supply_beacon = 1,
 		/obj/item/beacon/orbital_bombardment_beacon = 1,
@@ -796,15 +796,15 @@
 	product_ads = "If it moves, it's hostile!;How many enemies have you killed today?;Shoot first, perform autopsy later!;Your ammo is right here.;Guns!;Die, scumbag!;Don't shoot me bro!;Shoot them, bro.;Why not have a donut?"
 	products = list(
 		"Armors" = list(
-			/obj/item/clothing/suit/storage/marine/pasvest = -1,
+			/obj/item/clothing/suit/modular/pas11x = -1,
 			/obj/item/clothing/suit/modular = -1,
 			/obj/item/clothing/suit/storage/marine/harness = -1,
 			/obj/item/clothing/suit/armor/vest/pilot = -1,
 			/obj/item/facepaint/green = -1,
 		),
 		"Helmets" = list(
-			/obj/item/clothing/head/helmet/marine = -1,
-			/obj/item/clothing/head/helmet/marine/heavy = -1,
+			/obj/item/clothing/head/modular/marine/m10x = -1,
+			/obj/item/clothing/head/modular/marine/m10x/heavy = -1,
 			/obj/item/clothing/head/modular/marine/skirmisher = -1,
 			/obj/item/clothing/head/modular/marine = -1,
 			/obj/item/clothing/head/modular/marine/eva = -1,

@@ -37,7 +37,7 @@
 	for(var/i in orbiters)
 		end_orbit(i)
 	orbiters = null
-	tracker = null
+	QDEL_NULL(tracker)
 	return ..()
 
 /datum/component/orbiter/InheritComponent(datum/component/orbiter/newcomp, original, atom/movable/orbiter, radius, clockwise, rotation_speed, rotation_segments, pre_rotation)

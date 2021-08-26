@@ -286,7 +286,7 @@
 		/obj/item/weapon/baseballbat/metal,
 		/obj/item/weapon/butterfly,
 		/obj/item/weapon/butterfly/switchblade,
-		/obj/item/weapon/butterfly/katana,
+		/obj/item/weapon/katana/samurai,
 	)
 
 /obj/effect/landmark/weapon_spawn/tier2_weapon_spawn

@@ -5669,6 +5669,7 @@
 /obj/machinery/power/apc/mainship{
 	dir = 8
 	},
+/obj/machinery/computer/cryopod,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/cryo_cells)
 "bCp" = (
@@ -6064,12 +6065,6 @@
 /obj/docking_port/stationary/marine_dropship/crash_target,
 /turf/open/floor/mainship/floor,
 /area/mainship/living/cafeteria_starboard)
-"bHy" = (
-/obj/machinery/computer/cryopod{
-	dir = 8
-	},
-/turf/open/floor/mainship/mono,
-/area/mainship/living/cryo_cells)
 "bHE" = (
 /obj/machinery/disposal,
 /obj/structure/disposalpipe/trunk{
@@ -19437,7 +19432,7 @@
 	},
 /area/mainship/hull/port_hull)
 "xvC" = (
-/obj/machinery/marine_selector/clothes/leader/alpha,
+/obj/machinery/marine_selector/clothes/leader,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/alpha)
 "xwJ" = (
@@ -65364,7 +65359,7 @@ bzu
 kyh
 aLt
 bnI
-bHy
+uFy
 tPx
 uFy
 bnI
