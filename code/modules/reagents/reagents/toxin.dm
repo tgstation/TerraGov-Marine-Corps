@@ -456,16 +456,24 @@
 
 /datum/reagent/toxin/xeno_neurotoxin/on_mob_life(mob/living/L, metabolism)
 	var/power
+	var/tox_cap_multiplier = 1
+
+	if(L.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_hemodile)) //Each other Defiler toxin doubles the multiplier
+		tox_cap_multiplier *= 2
+
+	if(L.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_transvitox))
+		tox_cap_multiplier *= 2
+
 	switch(current_cycle)
 		if(1 to 20)
-			power = (2*effect_str) //While stamina loss is going, stamina regen apparently doesn't happen, so I can keep this smaller.
+			power = (2*effect_str*tox_cap_multiplier) //While stamina loss is going, stamina regen apparently doesn't happen, so I can keep this smaller.
 			L.reagent_pain_modifier -= PAIN_REDUCTION_LIGHT
 		if(21 to 45)
-			power = (6*effect_str)
+			power = (6*effect_str*tox_cap_multiplier)
 			L.reagent_pain_modifier -= PAIN_REDUCTION_HEAVY
 			L.jitter(4) //Shows that things are bad
 		if(46 to INFINITY)
-			power = (15*effect_str)
+			power = (15*effect_str*tox_cap_multiplier)
 			L.reagent_pain_modifier -= PAIN_REDUCTION_VERY_HEAVY
 			L.jitter(8) //Shows that things are *really* bad
 
