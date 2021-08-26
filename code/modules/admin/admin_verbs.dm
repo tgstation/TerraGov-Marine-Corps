@@ -16,7 +16,6 @@
 		ghost.reenter_corpse()
 		return
 
-	var/oldkey = M.key
 	var/mob/dead/observer/ghost = M.ghostize(TRUE)
 
 	log_admin("[key_name(ghost)] admin ghosted at [AREACOORD(ghost)].")
