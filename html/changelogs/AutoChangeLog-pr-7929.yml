@@ -1,8 +1,0 @@
-author: "QualityVan"
-delete-after: True
-changes: 
-  - bugfix: "You can't hold stuff in a necrotic arm."
-  - bugfix: "Necrotic limbs hurt the same way amputated ones do."
-  - bugfix: "Dead fingers can't snap."
-  - bugfix: "Dead hands can't roll a wheelchair."
-  - rscadd: "You can tell if any of your limbs are dead when checking yourself for wounds."

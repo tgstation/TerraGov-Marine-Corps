@@ -1237,6 +1237,7 @@
 /obj/item/camera,
 /obj/item/tool/extinguisher,
 /obj/item/reagent_containers/spray/cleaner,
+/obj/item/storage/box/monkeycubes,
 /obj/machinery/vending/nanomed,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/medical_science)
@@ -2553,6 +2554,7 @@
 "iX" = (
 /obj/structure/window/reinforced/extratoughened,
 /obj/machinery/camera/autoname/mainship,
+/obj/vehicle/unmanned/droid,
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/airoom)
 "iY" = (
@@ -6824,6 +6826,7 @@
 	pixel_x = 5;
 	pixel_y = 10
 	},
+/obj/item/uav_turret/droid,
 /turf/open/floor/mainship/orange/full,
 /area/mainship/command/cic)
 "wu" = (
@@ -10380,6 +10383,7 @@
 /obj/structure/window/reinforced/extratoughened{
 	dir = 1
 	},
+/obj/vehicle/unmanned/droid/scout,
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/airoom)
 "HN" = (
