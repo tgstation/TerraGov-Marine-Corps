@@ -40,6 +40,7 @@
 #define COOLDOWN_TADPOLE_LAUNCHING "cooldown_tadpole_launching"
 #define COOLDOWN_BOMBVEST_SHIELD_DROP "cooldown_bombvest_shield_drop"
 #define COOLDOWN_GAS_BREATH "cooldown_gas_breath"
+#define COOLDOWN_SIGNALLER_SEND "cooldown_signaller_send"
 
 //// COOLDOWN SYSTEMS
 /*
