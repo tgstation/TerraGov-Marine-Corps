@@ -267,10 +267,9 @@
 	required_reagents = list(/datum/reagent/aluminum = 1, /datum/reagent/toxin/phoron = 2, /datum/reagent/toxin/acid = 1 )
 
 /datum/chemical_reaction/napalm/on_reaction(datum/reagents/holder, created_volume, radius)
-	var/location = get_turf(holder.my_atom)
 	radius = round(sqrt(created_volume * 0.15)) //allows a nice, healthy 3-tile fire if using 2 120u beakers fully filled up.
 	if(radius < 0) radius = 0
-	flame_radius(radius, location)
+		flame_radius(radius, get_turf(holder.my_atom)
 
 datum/chemical_reaction/wpsmoke
 	name = "White Phosphorous smoke"
@@ -278,9 +277,8 @@ datum/chemical_reaction/wpsmoke
 
 /datum/chemical_reaction/wpsmoke/on_reaction(datum/reagents/holder, created_volume)
 	var/smoke_radius = round(sqrt(created_volume * 0.66), 1)
-	var/location = get_turf(holder.my_atom)
 	var/datum/effect_system/smoke_spread/phosphorus/smoke = new
-	smoke.set_up(smoke_radius, location, 11)
+	smoke.set_up(smoke_radius, get_turf(holder.my_atom), 11)
 	smoke.start()
 	playsound(location, 'sound/effects/smoke.ogg', 50, 1, -3)
 
@@ -290,9 +288,8 @@ datum/chemical_reaction/plasmalosssmoke
 
 /datum/chemical_reaction/plasmalosssmoke/on_reaction(datum/reagents/holder, created_volume)
 	var/smoke_radius = round(sqrt(created_volume), 1)
-	var/location = get_turf(holder.my_atom)
 	var/datum/effect_system/smoke_spread/plasmaloss/smoke = new
-	smoke.set_up(smoke_radius, location, 11)
+	smoke.set_up(smoke_radius, get_turf(holder.my_atom), 11)
 	smoke.start()
 	playsound(location, 'sound/effects/smoke.ogg', 50, 1, -3)
 
@@ -302,11 +299,10 @@ datum/chemical_reaction/explosive/gunpowder
 
 /datum/chemical_reaction/explosive/gunpowder/on_reaction(datum/reagents/holder, created_volume)
 	var/radius = round(sqrt(created_volume* 0.5), 1) // should be about equal to the M15, maybe one tile more
-	var/location = get_turf(holder.my_atom)
 	var/datum/effect_system/smoke_spread/bad/smoke = new
-	smoke.set_up((radius - 1), location, 2)
+	smoke.set_up((radius - 1), get_turf(holder.my_atom), 2)
 	smoke.start()
-	explosion(location, light_impact_range = radius, small_animation = TRUE)
+	explosion(get_turf(holder.my_atom), light_impact_range = radius, small_animation = TRUE)
 
 
 datum/chemical_reaction/explosive/anfo
@@ -315,7 +311,6 @@ datum/chemical_reaction/explosive/anfo
 
 /datum/chemical_reaction/explosive/anfo/on_reaction(datum/reagents/holder, created_volume)
 	var/radius = round(sqrt(created_volume* 0.25), 1) // should be a max of 2 tiles
-	var/location = get_turf(holder.my_atom)
 	if(radius > 2) radius = 2 //enforced by a hardcap. Sorry!
-	explosion(location, heavy_impact_range = radius, small_animation = TRUE)
+		explosion(get_turf(holder.my_atom), heavy_impact_range = radius, small_animation = TRUE)
 
