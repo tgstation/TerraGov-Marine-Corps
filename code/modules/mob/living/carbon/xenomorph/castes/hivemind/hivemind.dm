@@ -80,6 +80,7 @@
 
 ///Initiate the form changing of the hivemind
 /mob/living/carbon/xenomorph/hivemind/proc/change_form()
+	SIGNAL_HANDLER
 	if(status_flags & INCORPOREAL && health != maxHealth)
 		to_chat(src, span_xenowarning("You do not have the strength to manifest yet!"))
 		return
