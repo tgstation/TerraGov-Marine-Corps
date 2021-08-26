@@ -1,8 +1,15 @@
 /mob/living/proc/robot_talk(message)
 	log_talk(message, LOG_SAY)
+	//Capitalization
+	message = capitalize(message)
+	//checks for and apply punctuation
+	var/end = copytext(message, length(message))
+	if(!(end in list("!", ".", "?", ":", "\"", "-")))
+		message += "."
+
 	var/desig = "Silicon"
-	if(issilicon(src))
-		var/mob/living/silicon/S = src
+	if(issilicon(src) || issynth(src))
+		var/mob/living/S = src
 		desig = trim_left(S.job.title)
 	var/message_a = say_quote(message)
 	var/rendered = "Robotic Talk, [span_name("[name]")] [span_message("[message_a]")]"

@@ -267,7 +267,8 @@
 	var/reagent_slash_count = 0
 	///Timer ID for the Reagent Slashes timer; we reference this to delete the timer if the effect lapses before the timer does
 	var/reagent_slash_duration_timer_id
-
+	///Defines the reagent being used for reagent slashes; locks it to the selected reagent on activation
+	var/reagent_slash_reagent
 
 /datum/action/xeno_action/reagent_slash/action_activate()
 	. = ..()
@@ -277,6 +278,7 @@
 
 	reagent_slash_count = DEFILER_REAGENT_SLASH_COUNT //Set the number of slashes
 	reagent_slash_duration_timer_id = addtimer(CALLBACK(src, .proc/reagent_slash_deactivate, X), DEFILER_REAGENT_SLASH_DURATION, TIMER_STOPPABLE) //Initiate the timer and set the timer ID for reference
+	reagent_slash_reagent = X.selected_reagent
 
 	to_chat(X, span_xenodanger("Our spines fill with virulent toxins!")) //Let the user know
 	X.playsound_local(X, 'sound/voice/alien_drool2.ogg', 25)
@@ -291,6 +293,7 @@
 	reagent_slash_count = 0 //Zero out vars
 	deltimer(reagent_slash_duration_timer_id) //delete the timer so we don't have mismatch issues, and so we don't potentially try to deactivate the ability twice
 	reagent_slash_duration_timer_id = null
+	reagent_slash_reagent = null
 
 	to_chat(X, span_xenodanger("We are no longer benefitting from [src].")) //Let the user know
 	X.playsound_local(X, 'sound/voice/hiss5.ogg', 25)
@@ -306,7 +309,7 @@
 	var/mob/living/carbon/xenomorph/X = owner
 	var/mob/living/carbon/carbon_target = target
 
-	carbon_target.reagents.add_reagent(X.selected_reagent, DEFILER_REAGENT_SLASH_INJECT_AMOUNT)
+	carbon_target.reagents.add_reagent(reagent_slash_reagent, DEFILER_REAGENT_SLASH_INJECT_AMOUNT)
 	playsound(carbon_target, 'sound/effects/spray3.ogg', 15, TRUE)
 	X.visible_message(carbon_target, span_danger("[carbon_target] is pricked by [X]'s spines!"))
 

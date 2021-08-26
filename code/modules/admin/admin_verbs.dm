@@ -13,13 +13,11 @@
 
 	if(isobserver(M))
 		var/mob/dead/observer/ghost = M
-		ghost.can_reenter_corpse = TRUE
 		ghost.reenter_corpse()
 		return
 
 	var/oldkey = M.key
 	var/mob/dead/observer/ghost = M.ghostize(TRUE)
-	M.key = "@[oldkey]"
 
 	log_admin("[key_name(ghost)] admin ghosted at [AREACOORD(ghost)].")
 	if(M.stat != DEAD)

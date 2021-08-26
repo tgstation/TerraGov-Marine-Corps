@@ -64,7 +64,6 @@
 	if(z) //Larva are initiated in null space
 		SSminimaps.add_marker(src, z, hud_flags = MINIMAP_FLAG_XENO, iconstate = xeno_caste.minimap_icon)
 
-/mob/living/carbon/xenomorph/proc/set_datum(restore_health = TRUE)
 	if(!caste_base_type)
 		CRASH("xeno spawned without a caste_base_type set")
 	if(!GLOB.xeno_caste_datums[caste_base_type])
@@ -172,6 +171,16 @@
 	if(!xeno_job)
 		CRASH("Unemployment has reached to a xeno, who has failed to become a [xeno_caste.job_type]")
 	apply_assigned_role_to_spawn(xeno_job)
+
+/mob/living/carbon/xenomorph/proc/grabbed_self_attack()
+	SIGNAL_HANDLER
+	if(!(xeno_caste.caste_flags & CAN_RIDE_CRUSHER) || !isxenocrusher(pulling))
+		return NONE
+	var/mob/living/carbon/xenomorph/crusher/grabbed = pulling
+	if(grabbed.stat == CONSCIOUS && stat == CONSCIOUS)
+		INVOKE_ASYNC(grabbed, /mob/living/carbon/xenomorph/crusher/proc.carry_xeno, src, TRUE)
+		return COMSIG_GRAB_SUCCESSFUL_SELF_ATTACK
+	return NONE
 
 
 /mob/living/carbon/xenomorph/examine(mob/user)

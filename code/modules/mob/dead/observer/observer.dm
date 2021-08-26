@@ -37,7 +37,8 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	var/lastsetting = null	//Stores the last setting that ghost_others was set to, for a little more efficiency when we update ghost images. Null means no update is necessary
 
 	var/inquisitive_ghost = FALSE
-	var/can_reenter_corpse = FALSE
+	///A weakref to the original corpse of the observer
+	var/datum/weakref/can_reenter_corpse
 	var/started_as_observer //This variable is set to 1 when you enter the game as an observer.
 							//If you died in the game and are a ghsot - this will remain as null.
 							//Note that this is not a reliable way to determine if admins started as observers, since they change mobs a lot.
@@ -256,14 +257,12 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	ghost.name = ghost.real_name
 	ghost.gender = gender
 	ghost.alpha = 127
-	ghost.can_reenter_corpse = can_reenter_corpse
+	ghost.can_reenter_corpse = can_reenter_corpse ? WEAKREF(src) : null
 	ghost.timeofdeath = timeofdeath
 	ghost.mind = mind
 	mind = null
 	ghost.key = key
-
-	if(!can_reenter_corpse)
-		ghost.mind?.current = ghost
+	ghost.mind?.current = ghost
 
 	if(!T)
 		T = SAFEPICK(GLOB.latejoin)
@@ -351,21 +350,22 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	if(!client)
 		return FALSE
 
-	if(!mind || QDELETED(mind.current))
-		to_chat(src, span_warning("You have no body."))
-		return FALSE
-
-
-	if(!can_reenter_corpse)
+	if(isnull(can_reenter_corpse))
 		to_chat(src, span_warning("You cannot re-enter your body."))
 		return FALSE
 
-	if(mind.current.key && !isaghost(mind.current))
+	var/mob/old_mob = can_reenter_corpse.resolve()
+
+	if(!mind || QDELETED(old_mob))
+		to_chat(src, span_warning("You have no body."))
+		return FALSE
+
+	if(old_mob.key)
 		to_chat(src, span_warning("Another consciousness is in your body...It is resisting you."))
 		return FALSE
 
 	client.view_size.set_default(get_screen_size(client.prefs.widescreenpref))//Let's reset so people can't become allseeing gods
-	mind.transfer_to(mind.current, TRUE)
+	mind.transfer_to(old_mob, TRUE)
 	return TRUE
 
 
@@ -852,12 +852,12 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	set name = "Do Not Revive"
 	set desc = "Noone will be able to revive you."
 
-	if(can_reenter_corpse && tgui_alert(usr, "Are you sure? You won't be able to get revived.", "Confirmation", list("Yes", "No")) == "Yes")
-		can_reenter_corpse = FALSE
+	if(!isnull(can_reenter_corpse) && tgui_alert(usr, "Are you sure? You won't be able to get revived.", "Confirmation", list("Yes", "No")) == "Yes")
+		can_reenter_corpse = null
 		to_chat(usr, span_notice("You can no longer be revived."))
 		mind.current.med_hud_set_status()
-	else if(!can_reenter_corpse)
-		to_chat(usr, span_warning("You already can't be revived."))
+		return
+	to_chat(usr, span_warning("You already can't be revived."))
 
 
 /mob/dead/observer/verb/toggle_inquisition()
