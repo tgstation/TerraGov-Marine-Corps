@@ -280,7 +280,7 @@
 	var/datum/effect_system/smoke_spread/phosphorus/smoke = new
 	smoke.set_up(smoke_radius, get_turf(holder.my_atom), 11)
 	smoke.start()
-	playsound(location, 'sound/effects/smoke.ogg', 50, 1, -3)
+	playsound(get_turf(holder.my_atom), 'sound/effects/smoke.ogg', 50, 1, -3)
 
 /datum/chemical_reaction/plasmalosssmoke
 	name = "Tanglefoot smoke"
@@ -291,7 +291,7 @@
 	var/datum/effect_system/smoke_spread/plasmaloss/smoke = new
 	smoke.set_up(smoke_radius, get_turf(holder.my_atom), 11)
 	smoke.start()
-	playsound(location, 'sound/effects/smoke.ogg', 50, 1, -3)
+	playsound(get_turf(holder.my_atom), 'sound/effects/smoke.ogg', 50, 1, -3)
 
 /datum/chemical_reaction/explosive/gunpowder
 	name = "Gunpowder"
