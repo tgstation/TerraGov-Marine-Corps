@@ -1,4 +1,4 @@
-#define FLAMER_WATER 200
+#define FLAMER_WATER 50
 
 //FLAMETHROWER
 
@@ -432,7 +432,6 @@
 	attachable_offset = list("rail_x" = 10, "rail_y" = 23, "stock_x" = 16, "stock_y" = 13)
 	starting_attachment_types = list(
 		/obj/item/attachable/stock/t84stock,
-		/obj/item/attachable/hydro_cannon,
 	)
 	var/last_use
 	///If we are using the hydro cannon when clicking
