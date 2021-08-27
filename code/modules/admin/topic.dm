@@ -545,7 +545,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 
 		log_admin("[key_name(M)] got their fortune cookie, spawned by [key_name(usr)]")
 		message_admins("[ADMIN_TPMONTY(M)] got their fortune cookie, spawned by [ADMIN_TPMONTY(usr)].")
-	
+
 	else if(href_list["adminsmite"])
 		if(!check_rights(R_ADMIN|R_FUN))
 			return
@@ -556,7 +556,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 			return
 
 		usr.client.smite(H)
-		
+
 	else if(href_list["reply"])
 		var/mob/living/carbon/human/H = locate(href_list["reply"])
 
@@ -587,8 +587,8 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		message_admins("[ADMIN_TPMONTY(usr)] has denied a distress beacon, requested by [ADMIN_TPMONTY(M)]")
 
 
-	if(href_list["distress"])
-		var/mob/M = locate(href_list["distress"])
+	if(href_list[SHUTTLE_DISTRESS])
+		var/mob/M = locate(href_list[SHUTTLE_DISTRESS])
 
 		if(!istype(M))
 			return
