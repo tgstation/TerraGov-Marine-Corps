@@ -63,12 +63,19 @@ GLOBAL_LIST_INIT(defile_purge_list, typecacheof(list(
 	var/defile_strength_multiplier = 0.5
 	var/defile_reagent_amount
 	var/defile_power
+	var/neuro_applied
 
 	for(var/datum/reagent/current_reagent AS in living_target.reagents.reagent_list) //Cycle through all chems
 		defile_reagent_amount += living_target.reagents.get_reagent_amount(current_reagent.type)
-		if(is_type_in_typecache(current_reagent, GLOB.defile_purge_list)) //For each xeno toxin reagent, double the strength multiplire
-			defile_strength_multiplier *= 2
 		living_target.reagents.remove_reagent(current_reagent.type,defile_reagent_amount) //Purge current chem
+		if(is_type_in_typecache(current_reagent, GLOB.defile_purge_list)) //For each xeno toxin reagent, double the strength multiplier
+			if(istype(current_reagent, /datum/reagent/toxin/xeno_neurotoxin)) //Make sure neurotoxin isn't double counted
+				if(neuro_applied)
+					continue
+				else
+					neuro_applied = TRUE
+			defile_strength_multiplier *= 2
+
 
 	defile_power = defile_reagent_amount * defile_strength_multiplier //Total amount of toxin damage we deal
 
