@@ -1,0 +1,4 @@
+author: "lbnesquik"
+delete-after: True
+changes: 
+  - qol: "Gave the CAS plane an alert for whenever it receives a new valid target (flare/laze)"
