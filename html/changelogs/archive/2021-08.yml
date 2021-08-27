@@ -560,3 +560,22 @@
       or 0.1 seconds.
   lbnesquik:
   - rscadd: Added a way to disable weather noises locally
+2021-08-27:
+  BraveMole:
+  - bugfix: Fix ai breaking tadpole
+  - balance: Spitter, drone and sentinel can ride crusher too
+  - expansion: The rider can initiate the riding (grab the croosh, and click yourself
+      to mount the crusher)
+  Lewdcifer:
+  - balance: Reverts Powerfist Stun.
+  Losenis:
+  - balance: T-29 Smartmachinegun can now mount miniscope
+  SplinterGP:
+  - bugfix: fixes missing PAS slowdown, now it has proper slowdown and armor same
+      as a medium jaeger.
+  Surrealaser:
+  - balance: Reagent Claws is now locked to injecting the reagent selected when it
+      is activated.
+  - balance: Transvitox no longer has fractional gas reagent transfer strength for
+      some reason.
+  - balance: Hunter Silence no longer has wind up.

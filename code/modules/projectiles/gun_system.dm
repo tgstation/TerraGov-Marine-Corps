@@ -573,7 +573,7 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 			dual_wield = TRUE
 		if(gun_user.in_throw_mode)
 			return
-		if(gun_user.Adjacent(object)) //Dealt with by attack code
+		if(gun_user.Adjacent(object) && !isopenturf(object)) //Dealt with by attack code
 			return
 	if(QDELETED(object))
 		return

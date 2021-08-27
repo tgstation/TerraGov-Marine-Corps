@@ -502,7 +502,7 @@ datum/ammo/bullet/revolver/tp44
 	hud_state = "hivelo"
 	damage = 30
 	penetration = 10
-	sundering = 1.5
+	sundering = 1.25
 
 /datum/ammo/bullet/rifle/incendiary
 	name = "incendiary rifle bullet"
@@ -1887,13 +1887,13 @@ datum/ammo/bullet/revolver/tp44
 
 ///For the Spitter's Scatterspit ability
 /datum/ammo/xeno/acid/heavy/scatter
-	damage = 15
+	damage = 10
 	flags_ammo_behavior = AMMO_XENO|AMMO_EXPLOSIVE|AMMO_SKIPS_ALIENS
 	bonus_projectiles_type = /datum/ammo/xeno/acid/heavy/scatter
-	bonus_projectiles_amount = 5
-	bonus_projectiles_scatter = 10
+	bonus_projectiles_amount = 6
+	bonus_projectiles_scatter = 3
 	max_range = 8
-	puddle_duration = 2 SECONDS //Lasts 2-4 seconds
+	puddle_duration = 1 SECONDS //Lasts 2-4 seconds
 
 /datum/ammo/xeno/boiler_gas
 	name = "glob of gas"
