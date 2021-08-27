@@ -502,7 +502,7 @@ datum/ammo/bullet/revolver/tp44
 	hud_state = "hivelo"
 	damage = 30
 	penetration = 10
-	sundering = 1.5
+	sundering = 1.25
 
 /datum/ammo/bullet/rifle/incendiary
 	name = "incendiary rifle bullet"
