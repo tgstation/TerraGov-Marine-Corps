@@ -108,7 +108,7 @@
 	action_icon_state = "scatter_spit"
 	mechanics_text = "Spits a spread of acid projectiles that splatter on the ground."
 	ability_name = "scatter spit"
-	plasma_cost = 250
+	plasma_cost = 280
 	cooldown_timer = 5 SECONDS
 	keybind_signal = COMSIG_XENOABILITY_SCATTER_SPIT
 
