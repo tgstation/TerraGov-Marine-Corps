@@ -58,7 +58,7 @@
 
 	aura_strength = 4 //Good pheros
 
-		// *** Abilities *** //
+	// *** Abilities *** //
 	actions = list(
 		/datum/action/xeno_action/change_form,
 		/datum/action/xeno_action/activable/plant_weeds/ranged,
