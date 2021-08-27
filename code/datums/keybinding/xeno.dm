@@ -279,6 +279,12 @@
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_TOGGLE_STEALTH
 
+/datum/keybinding/xeno/mirage
+	name = "mirage"
+	full_name = "Hunter: Mirage"
+	description = "Creates multiple mirror images of the xeno."
+	keybind_signal = COMSIG_XENOABILITY_MIRAGE
+
 /datum/keybinding/xeno/haunt
 	name = "impair senses"
 	full_name = "Hunter: Silence"
@@ -512,7 +518,7 @@
 	description = "Recall a target from netherspace, ending Banish's effect."
 	keybind_signal = COMSIG_XENOABILITY_RECALL
 
-/datum/keybinding/xeno/nightfall 
+/datum/keybinding/xeno/nightfall
 	name = "nightfall"
 	full_name = "King: Nightfall"
 	description = "Shut down all nearby electric lights for 10 seconds"
