@@ -587,8 +587,8 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		message_admins("[ADMIN_TPMONTY(usr)] has denied a distress beacon, requested by [ADMIN_TPMONTY(M)]")
 
 
-	if(href_list[SHUTTLE_DISTRESS])
-		var/mob/M = locate(href_list[SHUTTLE_DISTRESS])
+	if(href_list["distress"])
+		var/mob/M = locate(href_list["distress"])
 
 		if(!istype(M))
 			return

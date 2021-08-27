@@ -187,7 +187,7 @@
 
 			state = STATE_EVACUATION_CANCEL
 
-		if(SHUTTLE_DISTRESS)
+		if("distress")
 			if(state == STATE_DISTRESS)
 				if(!CONFIG_GET(flag/infestation_ert_allowed))
 					log_admin_private("[key_name(usr)] may have attempted a href exploit on a [src]. [AREACOORD(usr)].")

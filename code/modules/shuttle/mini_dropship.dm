@@ -203,7 +203,7 @@
 	if(!ui)
 		ui_user = user
 		RegisterSignal(ui_user, list(COMSIG_PARENT_QDELETING, COMSIG_MOVABLE_MOVED), .proc/clean_ui_user)
-		ui = new(user, src, SHUTTLE_TADPOLE, name)
+		ui = new(user, src, "Minidropship", name)
 		ui.open()
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/ui_close(mob/user)
