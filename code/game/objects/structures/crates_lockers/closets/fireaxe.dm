@@ -171,10 +171,6 @@
 			to_chat(usr, span_notice("The [src.name] is closed."))
 		update_icon()
 
-	attack_paw(mob/user as mob)
-		attack_hand(user) //Nope
-		return
-
 	attack_ai(mob/user as mob)
 		if(src.smashed)
 			to_chat(user, span_warning("The security of the cabinet is compromised."))

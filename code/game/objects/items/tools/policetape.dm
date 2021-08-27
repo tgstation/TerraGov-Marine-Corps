@@ -138,8 +138,6 @@
 	else
 		breaktape(null, user)
 
-/obj/item/tape/attack_paw(mob/living/carbon/human/user)
-	breaktape(/obj/item/tool/wirecutters,user)
 
 /obj/item/tape/proc/breaktape(obj/item/W as obj, mob/user as mob)
 	if(user.a_intent == INTENT_HELP && ((!can_puncture(W) && src.allowed(user))))
