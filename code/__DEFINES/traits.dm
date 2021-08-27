@@ -91,12 +91,17 @@
 #define RAGE_TRAIT "rage" //Ravager Rage ability.
 #define UNMANNED_VEHICLE "unmanned"
 #define STEALTH_TRAIT "stealth" //From hunter stealth
+/// inherited from riding vehicles
+#define VEHICLE_TRAIT "vehicle"
+
 
 //mob traits
 #define TRAIT_KNOCKEDOUT "knockedout" //Forces the user to stay unconscious.
 #define TRAIT_INCAPACITATED "incapacitated"
 #define TRAIT_FLOORED "floored" //User is forced to the ground on a prone position.
 #define TRAIT_IMMOBILE "immobile" //User is unable to move by its own volition.
+/// Prevents usage of manipulation appendages (picking, holding or using items, manipulating storage).
+#define TRAIT_HANDS_BLOCKED "handsblocked"
 #define TRAIT_STUNIMMUNE "stun_immunity"
 #define TRAIT_FIRERESISTANT "fire_resistant" // Won't catch on fire
 #define TRAIT_BATONIMMUNE "baton_immunity"

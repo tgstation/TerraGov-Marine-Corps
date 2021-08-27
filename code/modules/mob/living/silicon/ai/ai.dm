@@ -139,6 +139,7 @@
 	to_chat(src, span_notice("NOTICE - [shuttleId] taking off towards \the [D]"))
 
 /mob/living/silicon/ai/restrained(ignore_checks)
+	SHOULD_CALL_PARENT(FALSE)
 	return FALSE
 
 

@@ -3266,7 +3266,7 @@
 	},
 /area/mainship/hallways/hangar)
 "lb" = (
-/obj/vehicle/powerloader,
+/obj/vehicle/ridden/powerloader,
 /obj/machinery/light{
 	dir = 1
 	},
@@ -4545,7 +4545,7 @@
 	},
 /area/mainship/medical/medical_science)
 "oW" = (
-/obj/vehicle/powerloader,
+/obj/vehicle/ridden/powerloader,
 /obj/machinery/light{
 	dir = 1
 	},
@@ -4637,7 +4637,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/starboard_hallway)
 "pn" = (
-/obj/vehicle/powerloader,
+/obj/vehicle/ridden/powerloader,
 /turf/open/floor/mainship/cargo,
 /area/mainship/squads/req)
 "po" = (
@@ -13315,7 +13315,7 @@
 /turf/open/floor/mainship/sterile,
 /area/mainship/medical/surgery_hallway)
 "QG" = (
-/obj/vehicle/powerloader,
+/obj/vehicle/ridden/powerloader,
 /turf/open/floor/mainship/cargo,
 /area/mainship/shipboard/weapon_room)
 "QH" = (
