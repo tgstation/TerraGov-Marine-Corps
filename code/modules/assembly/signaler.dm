@@ -93,7 +93,7 @@ Code:
 
 	if(href_list["send"])
 		if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_SIGNALLER_SEND))
-			to_chat(usr, span_warning("You must wait!"))
+			to_chat(usr, span_warning("[src] is still recharging..."))
 			return
 		TIMER_COOLDOWN_START(src, COOLDOWN_SIGNALLER_SEND, 1 SECONDS)
 		INVOKE_ASYNC(src, .proc/signal)
