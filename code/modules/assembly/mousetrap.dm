@@ -82,7 +82,7 @@
 /obj/item/assembly/mousetrap/on_found(mob/finder)
 	if(armed)
 		if(finder)
-			finder.visible_message(span_warning("[finder] accidentally sets off [src], breaking their fingers."), \
+			finder.visible_message(span_warning("[finder] accidentally sets off [src], breaking [finder.p_their()] fingers."), \
 								span_warning("You accidentally trigger [src]!"))
 			triggered(finder, pick(BODY_ZONE_PRECISE_R_HAND, BODY_ZONE_PRECISE_L_HAND))
 			return TRUE	//end the search!
