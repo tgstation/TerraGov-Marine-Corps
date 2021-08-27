@@ -1840,8 +1840,8 @@ datum/ammo/bullet/revolver/tp44
 
 /datum/ammo/xeno/acid/heavy
 	name = "acid splash"
-	added_spit_delay = 8
-	spit_cost = 75
+	added_spit_delay = 0
+	spit_cost = 150
 	damage = 30
 
 /datum/ammo/xeno/acid/heavy/turret
