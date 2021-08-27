@@ -51,8 +51,7 @@
 /obj/vehicle/ridden/atv/bullet_act(obj/projectile/P)
 	if(prob(50) || !buckled_mobs)
 		return ..()
-	for(var/m in buckled_mobs)
-		var/mob/buckled_mob = m
+	for(var/mob/buckled_mob AS in buckled_mobs)
 		buckled_mob.bullet_act(P)
 	return TRUE
 

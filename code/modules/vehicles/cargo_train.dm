@@ -4,9 +4,9 @@
 	desc = "A ridable electric car designed for pulling cargo trolleys."
 	icon = 'icons/obj/vehicles.dmi'
 	icon_state = "cargo_engine"
-	var/on = 0
-	var/powered = 1
-	var/locked = 0
+	var/on = FALSE
+	var/powered = TRUE
+	var/locked = FALSE
 	var/charge_use = 15
 
 
