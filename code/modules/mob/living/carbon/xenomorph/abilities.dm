@@ -561,6 +561,7 @@
 	plasma_cost = 100
 	var/acid_type = /obj/effect/xenomorph/acid
 	keybind_signal = COMSIG_XENOABILITY_CORROSIVE_ACID
+	use_state_flags = XACT_USE_BUCKLED
 
 /datum/action/xeno_action/activable/corrosive_acid/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
@@ -734,6 +735,7 @@
 
 /datum/action/xeno_action/activable/spray_acid
 	keybind_signal = COMSIG_XENOABILITY_SPRAY_ACID
+	use_state_flags = XACT_USE_BUCKLED
 
 /datum/action/xeno_action/activable/spray_acid/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
@@ -775,7 +777,7 @@
 	mechanics_text = "Spit neurotoxin or acid at your target up to 7 tiles away."
 	ability_name = "xeno spit"
 	keybind_signal = COMSIG_XENOABILITY_XENO_SPIT
-	use_state_flags = XACT_USE_LYING
+	use_state_flags = XACT_USE_LYING|XACT_USE_BUCKLED
 	plasma_cost = 10
 	target_flags = XABB_MOB_TARGET
 
@@ -883,6 +885,7 @@
 	plasma_cost = 150
 	keybind_signal = COMSIG_XENOABILITY_NEUROTOX_STING
 	target_flags = XABB_MOB_TARGET
+	use_state_flags = XACT_USE_BUCKLED
 
 /datum/action/xeno_action/activable/neurotox_sting/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
@@ -1198,7 +1201,8 @@
 	keybind_signal = COMSIG_XENOABILITY_RALLY_HIVE
 	keybind_flags = XACT_KEYBIND_USE_ABILITY
 	cooldown_timer = 60 SECONDS
-	use_state_flags = XACT_USE_LYING
+	use_state_flags = XACT_USE_LYING|XACT_USE_BUCKLED
+
 
 /datum/action/xeno_action/activable/rally_hive/use_ability()
 
