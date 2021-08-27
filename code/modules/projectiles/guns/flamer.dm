@@ -651,7 +651,7 @@
 	icon = 'icons/effects/fire.dmi'
 	icon_state = "red_2"
 	layer = BELOW_OBJ_LAYER
-	light_system = HYBRID_LIGHT
+	light_system = MOVABLE_LIGHT
 	light_mask_type = /atom/movable/lighting_mask/flicker
 	light_on = TRUE
 	light_range = 3

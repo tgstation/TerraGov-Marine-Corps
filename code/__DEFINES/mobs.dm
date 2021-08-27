@@ -492,6 +492,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define CASTE_CAN_CORRUPT_GENERATOR (1<<17) //Can corrupt a generator
 #define CASTE_IS_BUILDER (1<<18) //whether we are classified as a builder caste
 #define CAN_BECOME_KING (1<<19) //Can be choose to become a king
+#define CAN_RIDE_CRUSHER (1<<20) //Can ride a crusher
 
 //Charge-Crush
 #define CHARGE_OFF 0
@@ -526,13 +527,13 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define HUNTER_MARK_WINDUP 1 SECONDS //Windup of the Hunter's Mark
 #define HUNTER_PSYCHIC_TRACE_COOLDOWN 5 SECONDS //Cooldown of the Hunter's Psychic Trace, and duration of its arrow
 #define HUNTER_SILENCE_STAGGER_STACKS 1 //Silence imposes this many stagger stacks
-#define HUNTER_SILENCE_SENSORY_STACKS 6 //Silence imposes this many eyeblur, mute and deafen stacks.
-#define HUNTER_SILENCE_DURATION 10 SECONDS //Removes mute from the Hunter's Silence after this delay.
+#define HUNTER_SILENCE_SENSORY_STACKS 7 //Silence imposes this many eyeblur and deafen stacks.
+#define HUNTER_SILENCE_MUTE_DURATION 10 SECONDS //Silence imposes this many seconds of the mute status effect.
 #define HUNTER_SILENCE_RANGE 5 //Range in tiles of the Hunter's Silence.
 #define HUNTER_SILENCE_AOE 2 //AoE size of Silence in tiles
-#define HUNTER_SILENCE_WINDUP 0.5 SECONDS //Windup of the Hunter's Silence
 #define HUNTER_SILENCE_MULTIPLIER 1.5 //Multiplier of stacks vs Hunter's Mark targets
 #define HUNTER_SILENCE_WHIFF_COOLDOWN 3 SECONDS //If we fail to target anyone with Silence, partial cooldown to prevent spam.
+#define HUNTER_SILENCE_COOLDOWN 30 SECONDS //Silence's cooldown
 #define HUNTER_VENT_CRAWL_TIME 2 SECONDS //Hunters can enter vents fast
 
 //Ravager defines:

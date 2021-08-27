@@ -502,7 +502,7 @@ datum/ammo/bullet/revolver/tp44
 	hud_state = "hivelo"
 	damage = 30
 	penetration = 10
-	sundering = 1.5
+	sundering = 1.25
 
 /datum/ammo/bullet/rifle/incendiary
 	name = "incendiary rifle bullet"
@@ -691,10 +691,10 @@ datum/ammo/bullet/revolver/tp44
 	bonus_projectiles_scatter = 10
 	accuracy_var_low = 9
 	accuracy_var_high = 9
-	accurate_range = 3
+	accurate_range = 5
 	max_range = 10
 	damage = 40
-	damage_falloff = 4
+	damage_falloff = 1
 	penetration = 0
 
 
@@ -707,10 +707,10 @@ datum/ammo/bullet/revolver/tp44
 	shell_speed = 2
 	accuracy_var_low = 9
 	accuracy_var_high = 9
-	accurate_range = 3
+	accurate_range = 5
 	max_range = 10
 	damage = 40
-	damage_falloff = 4
+	damage_falloff = 1
 	penetration = 0
 
 //buckshot variant only used by the masterkey shotgun attachment.
@@ -1005,9 +1005,9 @@ datum/ammo/bullet/revolver/tp44
 
 /datum/ammo/bullet/smartgun/smartrifle
 	name = "smartrifle bullet"
-	damage = 25
-	penetration = 15
-	sundering = 1
+	damage = 20
+	penetration = 10
+	sundering = 1.5
 
 /datum/ammo/bullet/smartgun/lethal
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
@@ -1840,8 +1840,8 @@ datum/ammo/bullet/revolver/tp44
 
 /datum/ammo/xeno/acid/heavy
 	name = "acid splash"
-	added_spit_delay = 8
-	spit_cost = 75
+	added_spit_delay = 0
+	spit_cost = 150
 	damage = 30
 
 /datum/ammo/xeno/acid/heavy/turret
@@ -1887,13 +1887,13 @@ datum/ammo/bullet/revolver/tp44
 
 ///For the Spitter's Scatterspit ability
 /datum/ammo/xeno/acid/heavy/scatter
-	damage = 15
+	damage = 10
 	flags_ammo_behavior = AMMO_XENO|AMMO_EXPLOSIVE|AMMO_SKIPS_ALIENS
 	bonus_projectiles_type = /datum/ammo/xeno/acid/heavy/scatter
-	bonus_projectiles_amount = 5
-	bonus_projectiles_scatter = 10
+	bonus_projectiles_amount = 6
+	bonus_projectiles_scatter = 3
 	max_range = 8
-	puddle_duration = 2 SECONDS //Lasts 2-4 seconds
+	puddle_duration = 1 SECONDS //Lasts 2-4 seconds
 
 /datum/ammo/xeno/boiler_gas
 	name = "glob of gas"
@@ -1921,7 +1921,7 @@ datum/ammo/bullet/revolver/tp44
 	if(!istype(victim) || victim.stat == DEAD || victim.issamexenohive(proj.firer))
 		return
 
-	victim.Paralyze(0.5 SECONDS)
+	victim.Paralyze(1 SECONDS)
 	victim.blur_eyes(11)
 	victim.adjustDrowsyness(12)
 
@@ -1974,7 +1974,7 @@ datum/ammo/bullet/revolver/tp44
 
 /datum/ammo/xeno/boiler_gas/corrosive/on_hit_mob(mob/living/victim, obj/projectile/proj)
 	drop_nade(get_turf(proj), proj.firer)
-	victim.Paralyze(0.1 SECONDS)
+	victim.Paralyze(1 SECONDS)
 	victim.blur_eyes(1)
 	victim.adjustDrowsyness(1)
 

@@ -51,6 +51,7 @@
 	handle_specials()
 	riding_mob.updating_glide_size = FALSE
 	ride_check_flags |= args_to_flags(check_loc, lying_buckle, hands_needed, target_hands_needed)//buckle_mob_flags
+	vehicle_moved()
 
 ///converts buckle args to their flags. We use this proc since I dont want to add a buckle refactor to this riding refactor port
 /datum/component/riding/proc/args_to_flags(check_loc, lying_buckle, hands_needed, target_hands_needed)
@@ -101,6 +102,8 @@
 	if(isnull(.)) //you can set it to null to not change it.
 		. = AM.layer
 	AM.layer = .
+	for(var/mob/M AS in AM.buckled_mobs) //ensure proper layering of piggyback and carry, sometimes weird offsets get applied
+		M.layer = MOB_LAYER
 
 /datum/component/riding/proc/set_vehicle_dir_layer(dir, layer)
 	directional_vehicle_layers["[dir]"] = layer
@@ -124,7 +127,7 @@
 /datum/component/riding/proc/vehicle_turned(datum/source, _old_dir, new_dir)
 	SIGNAL_HANDLER
 
-	vehicle_moved(source, new_dir)
+	vehicle_moved(source, null, new_dir)
 
 /// Check to see if we have all of the necessary bodyparts and not-falling-over statuses we need to stay onboard
 /datum/component/riding/proc/ride_check(mob/living/rider)
@@ -137,10 +140,9 @@
 	if(!LAZYLEN(AM.buckled_mobs))
 		return
 
-	for(var/m in AM.buckled_mobs)
+	for(var/mob/living/buckled_mob AS in AM.buckled_mobs)
 		passindex++
-		var/mob/living/buckled_mob = m
-		var/list/offsets = get_offsets(passindex)
+		var/list/offsets = get_offsets(passindex, buckled_mob.type)
 		buckled_mob.setDir(dir)
 		dir_loop:
 			for(var/offsetdir in offsets)
@@ -152,24 +154,12 @@
 					if(diroffsets.len == 3)
 						buckled_mob.layer = diroffsets[3]
 					break dir_loop
-	var/list/static/default_vehicle_pixel_offsets = list(TEXT_NORTH = list(0, 0), TEXT_SOUTH = list(0, 0), TEXT_EAST = list(0, 0), TEXT_WEST = list(0, 0))
-	var/px = default_vehicle_pixel_offsets[AM_dir]
-	var/py = default_vehicle_pixel_offsets[AM_dir]
-	if(directional_vehicle_offsets[AM_dir])
-		if(isnull(directional_vehicle_offsets[AM_dir]))
-			px = AM.pixel_x
-			py = AM.pixel_y
-		else
-			px = directional_vehicle_offsets[AM_dir][1]
-			py = directional_vehicle_offsets[AM_dir][2]
-	AM.pixel_x = px
-	AM.pixel_y = py
 
 /datum/component/riding/proc/set_vehicle_dir_offsets(dir, x, y)
 	directional_vehicle_offsets["[dir]"] = list(x, y)
 
 //Override this to set your vehicle's various pixel offsets
-/datum/component/riding/proc/get_offsets(pass_index) // list(dir = x, y, layer)
+/datum/component/riding/proc/get_offsets(pass_index, mob_type) // list(dir = x, y, layer)
 	. = list(TEXT_NORTH = list(0, 0), TEXT_SOUTH = list(0, 0), TEXT_EAST = list(0, 0), TEXT_WEST = list(0, 0))
 	if(riding_offsets["[pass_index]"])
 		. = riding_offsets["[pass_index]"]

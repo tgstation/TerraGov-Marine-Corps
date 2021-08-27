@@ -188,6 +188,9 @@
 	recoil = -2
 	recoil_unwielded = -2
 
+/obj/item/weapon/gun/pistol/standard_heavypistol/suppressed
+	starting_attachment_types = list(/obj/item/attachable/suppressor, /obj/item/attachable/flashlight) //Tacticool
+
 //-------------------------------------------------------
 //M1911
 
@@ -438,7 +441,7 @@
 	cocked_sound = 'sound/weapons/guns/interact/hp_cocked.ogg'
 	current_mag = /obj/item/ammo_magazine/pistol/highpower
 	force = 10
-	
+
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
 	attachable_offset = list("muzzle_x" = 27, "muzzle_y" = 20,"rail_x" = 8, "rail_y" = 22, "under_x" = 18, "under_y" = 15, "stock_x" = 16, "stock_y" = 15)
 
