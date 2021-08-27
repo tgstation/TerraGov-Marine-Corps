@@ -1,0 +1,4 @@
+author: "lbnesquik"
+delete-after: True
+changes: 
+  - bugfix: "fixes CAS not being able to equip anything but the default minigun."

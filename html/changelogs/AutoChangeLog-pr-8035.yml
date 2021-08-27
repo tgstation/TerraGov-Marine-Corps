@@ -1,4 +1,0 @@
-author: "jroinc"
-delete-after: True
-changes: 
-  - balance: "Boiler acid glob direct hits now stun for 1 full second rather than 0.5 or 0.1 seconds."
