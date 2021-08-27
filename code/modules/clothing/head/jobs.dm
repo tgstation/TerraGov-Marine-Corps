@@ -78,6 +78,8 @@
 	name = "engineering beret"
 	desc = "A beret with the engineering insignia emblazoned on it. For engineers that are more inclined towards style than safety."
 	icon_state = "e_beret_badge"
+	flags_armor_features = ARMOR_NO_DECAP
+
 /obj/item/clothing/head/beret/jan
 	name = "purple beret"
 	desc = "A stylish, if purple, beret."
