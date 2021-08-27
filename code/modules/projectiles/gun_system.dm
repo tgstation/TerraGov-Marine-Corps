@@ -162,8 +162,6 @@
 	var/obj/item/weapon/gun/master_gun
 	///Slot the gun fits into.
 	var/slot
-	///Icon state for the attach overlay.
-	var/attach_icon_state
 	///Pixel shift on the X Axis for the attached overlay.
 	var/pixel_shift_x = 16
 	///Pixel shift on the Y Axis for the attached overlay.
@@ -206,7 +204,7 @@
 	AddComponent(/datum/component/automatedfire/autofire, fire_delay, burst_delay, burst_amount, gun_firemode, CALLBACK(src, .proc/set_bursting), CALLBACK(src, .proc/reset_fire), CALLBACK(src, .proc/Fire)) //This should go after handle_starting_attachment() and setup_firemodes() to get the proper values set.
 	AddComponent(/datum/component/attachment_handler, attachments_by_slot, attachable_allowed, attachable_offset, starting_attachment_types, null, null, attachment_overlays)
 	if(CHECK_BITFIELD(flags_gun_features, GUN_IS_ATTACHMENT))
-		AddElement(/datum/element/attachment, slot, icon, attach_icon_state, .proc/on_attach, .proc/on_detach, .proc/activate, .proc/can_attach, pixel_shift_x, pixel_shift_y, flags_attach_features, attach_delay, detach_delay, "firearms", SKILL_FIREARMS_DEFAULT, 'sound/machines/click.ogg')
+		AddElement(/datum/element/attachment, slot, icon, .proc/on_attach, .proc/on_detach, .proc/activate, .proc/can_attach, pixel_shift_x, pixel_shift_y, flags_attach_features, attach_delay, detach_delay, "firearms", SKILL_FIREARMS_DEFAULT, 'sound/machines/click.ogg')
 
 	muzzle_flash = new(src, muzzleflash_iconstate)
 
@@ -306,12 +304,12 @@
 	set_gun_user(null)
 
 /obj/item/weapon/gun/update_icon(mob/user)
-	if(!current_mag || current_mag.current_rounds <= 0)
+	if(!current_mag)
 		icon_state = base_gun_icon + "_e"
-		master_gun?.update_attachment_icon_state(src, attach_icon_state + "_e")
 	else
 		icon_state = base_gun_icon
-		master_gun?.update_attachment_icon_state(src, attach_icon_state)
+
+	. = ..()
 
 	for(var/action_to_update in actions)
 		var/datum/action/action = action_to_update
@@ -324,7 +322,6 @@
 
 	update_item_state(user)
 	update_mag_overlay(user)
-
 
 
 /obj/item/weapon/gun/update_item_state(mob/user)
@@ -350,7 +347,7 @@
 		if(istype(attachable, /obj/item/weapon/gun/launcher))
 			continue
 		var/chamber = in_chamber ? 1 : 0
-		dat += " ([gun_attachable.current_mag.current_rounds + chamber]/[gun_attachable.current_mag.max_rounds])"
+		dat += gun_attachable.current_mag ? "([gun_attachable.current_mag.current_rounds + chamber]/[gun_attachable.current_mag.max_rounds])" : "(Unloaded)"
 
 	if(dat)
 		to_chat(user, "[dat.Join(" ")]")

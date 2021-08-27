@@ -44,7 +44,6 @@
 
 	current_mag = /obj/item/ammo_magazine/flamer_tank/mini
 	slot = ATTACHMENT_SLOT_UNDER
-	attach_icon_state = "flamethrower_a"
 	attach_delay = 3 SECONDS
 	detach_delay = 3 SECONDS
 	pixel_shift_x = 15
@@ -59,7 +58,7 @@
 		return
 	lit = mustlit
 	playsound(user, lit ? 'sound/weapons/guns/interact/flamethrower_off.ogg' : 'sound/weapons/guns/interact/flamethrower_on.ogg', 25, 1)
-	mustlit ? master_gun?.update_attachment_icon_state(src, attach_icon_state) : master_gun?.update_attachment_icon_state(src, attach_icon_state + "_e")
+	update_icon(user)
 
 	return TRUE
 
@@ -68,15 +67,11 @@
 	if (current_mag) //A flamer spawing with a mag will be lit up
 		light_pilot(null,TRUE)
 
-/obj/item/weapon/gun/flamer/update_icon(mob/user)
-	if(!current_mag)
-		icon_state = base_gun_icon + "_e"
-	else if(istype(current_mag,/obj/item/ammo_magazine/flamer_tank/backtank))
-		icon_state = base_gun_icon + "_l"
-	else
-		icon_state = base_gun_icon
-	update_item_state(user)
-	update_mag_overlay(user)
+/obj/item/weapon/gun/flamer/update_icon()
+	. = ..()
+	if(!istype(current_mag, /obj/item/ammo_magazine/flamer_tank/backtank))
+		return
+	icon_state = base_gun_icon + "_l"
 
 /obj/item/weapon/gun/flamer/examine_ammo_count(mob/user)
 	if(current_mag)
@@ -541,7 +536,7 @@
 	if(!istype(hydro))
 		return FALSE
 	playsound(user, hydro.activation_sound, 15, 1)
-	if (hydro.activate_attachment(user))
+	if (hydro.activate(user))
 		hydro_active = TRUE
 		light_pilot(user, FALSE)
 	else

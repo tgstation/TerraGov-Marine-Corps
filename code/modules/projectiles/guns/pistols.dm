@@ -119,7 +119,6 @@
 	slot = ATTACHMENT_SLOT_UNDER
 	attach_delay = 3 SECONDS
 	detach_delay = 3 SECONDS
-	attach_icon_state = "tx7_a"
 	pixel_shift_x = 10
 	pixel_shift_y = 19
 

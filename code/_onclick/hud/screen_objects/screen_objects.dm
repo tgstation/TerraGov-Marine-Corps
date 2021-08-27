@@ -591,7 +591,7 @@
 	if(!G)
 		return
 	var/obj/item/attachable/flashlight/F = LAZYACCESS(G.attachments_by_slot, ATTACHMENT_SLOT_RAIL)
-	if(F?.activate_attachment(usr))
+	if(F?.activate(usr))
 		playsound(usr, F.activation_sound, 15, 1)
 
 /obj/screen/firearms/magazine

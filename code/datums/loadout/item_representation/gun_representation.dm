@@ -39,19 +39,22 @@
 
 ///Attach the instantiated attachment to the gun
 /datum/item_representation/gun_attachement/proc/install_on_gun(seller, obj/item/weapon/gun/gun_to_attach, mob/living/user)
+	var/attachment_to_vend
 	if(ispath(item_type, /obj/item/attachable))
 		var/obj/item/attachable/attachment_type = item_type
 		if(!(initial(attachment_type.flags_attach_features) & ATTACH_REMOVABLE))//Unremovable attachment are not in vendors
 			bypass_vendor_check = TRUE
-		var/obj/item/attachable/attachment = instantiate_object(seller, null, user)
-		gun_to_attach.attach_to(attachment)
-	if(!ispath(item_type, /obj/item/weapon/gun))
+		attachment_to_vend = instantiate_object(seller, null, user)
+	else if(ispath(item_type, /obj/item/weapon/gun))
+		var/obj/item/weapon/gun/attachment_type = item_type
+		if(!(initial(attachment_type.flags_attach_features) & ATTACH_REMOVABLE))
+			bypass_vendor_check = TRUE
+		attachment_to_vend = instantiate_object(seller, null, user)
+
+	if(!attachment_to_vend)
 		return
-	var/obj/item/weapon/gun/attachment_type = item_type
-	if(!(initial(attachment_type.flags_attach_features) & ATTACH_REMOVABLE))
-		bypass_vendor_check = TRUE
-	var/obj/item/weapon/gun/gun = instantiate_object(seller, null, user)
-	gun_to_attach.attach_to(gun)
+
+	SEND_SIGNAL(gun_to_attach, COMSIG_LOADOUT_VENDOR_VENDED_ATTACHMENT, attachment_to_vend)
 
 /**
  * Able to representate a handfull

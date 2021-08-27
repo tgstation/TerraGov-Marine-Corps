@@ -687,7 +687,6 @@
 	fire_sound = 'sound/weapons/guns/fire/underbarrel_grenadelauncher.ogg'
 
 	slot = ATTACHMENT_SLOT_UNDER
-	attach_icon_state = "grenade_a"
 	attach_delay = 3 SECONDS
 	detach_delay = 3 SECONDS
 	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_AMMO_COUNTER|GUN_IS_ATTACHMENT|GUN_ATTACHMENT_FIRE_ONLY|GUN_WIELDED_STABLE_FIRING_ONLY
@@ -696,7 +695,6 @@
 
 
 /obj/item/weapon/gun/launcher/m92/mini_grenade/invisable
-	attach_icon_state = "invisable"
 	flags_attach_features = NONE
 
 /obj/item/weapon/gun/launcher/m81

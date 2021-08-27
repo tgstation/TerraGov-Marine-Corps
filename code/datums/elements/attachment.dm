@@ -5,15 +5,14 @@
 	var/attachment_data
 
 //on_attach, on_detach, on_activate and can_attach are all proc paths that get turned into callbacks when they are called.
-/datum/element/attachment/Attach(datum/target, slot, overlay_icon, overlay_icon_state, on_attach, on_detach, on_activate, can_attach, pixel_shift_x, pixel_shift_y, flags_attach_features, attach_delay, detach_delay, attach_skill, attach_skill_upper_threshold, attach_sound, extra_vars)
+/datum/element/attachment/Attach(datum/target, slot, overlay_icon, on_attach, on_detach, on_activate, can_attach, pixel_shift_x, pixel_shift_y, flags_attach_features, attach_delay, detach_delay, attach_skill, attach_skill_upper_threshold, attach_sound, extra_vars)
 	. = ..()
 	if(!isitem(target))
 		return ELEMENT_INCOMPATIBLE
 	var/obj/item/target_item = target
 	attachment_data = list(
 		slot = slot, //Slot the attachment fits into, is a string.
-		overlay_icon = overlay_icon ? overlay_icon : target_item.icon, //Icon sheet of the overlay
-		overlay_icon_state = overlay_icon_state ? overlay_icon_state : target_item.icon_state, //Icon state of the overlay
+		overlay_icon = overlay_icon ? overlay_icon : target_item.icon, //Icon sheet of the overlay.
 		on_attach = on_attach, //Callback for what the attachment does on attach. Can be null.
 		on_detach = on_detach, //Callback for what the attachment does on detach. Can be null. 
 		on_activate = on_activate, //Activation proc for attachment. Can be null.

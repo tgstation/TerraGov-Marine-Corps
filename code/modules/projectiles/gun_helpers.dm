@@ -596,6 +596,20 @@ should be alright.
 /obj/item/weapon/gun/energy/remove_ammo_mod()
 	ammo_diff = initial(ammo_diff)
 
+///Gets the attachents by slot and activates them.
+/obj/item/weapon/gun/proc/activate_attachment(slot, mob/user)
+	if(!(slot in attachments_by_slot))
+		return FALSE
+	var/obj/item/attachment = attachments_by_slot[slot]
+	if(!attachment)
+		return FALSE
+
+	if(isgun(attachment)) //I wish I had a way to do this with the component. So that I wouldnt have to manually call the activate proc.
+		var/obj/item/weapon/gun/gun = attachment
+		return gun.activate(user)
+	if(isgunattachment(attachment))
+		var/obj/item/attachable/attachable = attachment
+		return attachable.activate(user)
 
 /mob/living/carbon/human/verb/empty_mag()
 	set category = "Weapons"
@@ -717,7 +731,7 @@ should be alright.
 	set name = "Toggle Rail Attachment (Weapon)"
 	set desc = "Uses the rail attachement currently attached to the gun."
 
-	if(activate_attachment(ATTACHMENT_SLOT_RAIL, usr) & ATTACHMENT_ACTIVATED)
+	if(activate_attachment(ATTACHMENT_SLOT_RAIL, usr))
 		return
 	to_chat(usr, span_warning("[src] does not have any usable rail attachment!"))
 

@@ -378,29 +378,6 @@
 // Set disable_warning to 1 if you wish it to not give you outputs.
 // warning_text is used in the case that you want to provide a specific warning for why the item cannot be equipped.
 
-//Attachment procs used to send signals to /datum/component/attachment_handler. None of these will have any function without the component.
-
-///Sends a signal to the component to activate an attachment on a specific slot.
-/obj/item/proc/activate_attachment(slot, mob/user)
-	var/datum/component/attachment_handler/attachment_handler = GetComponent(/datum/component/attachment_handler)
-	if(!attachment_handler)
-		return
-	attachment_handler.activate_attachment(slot, user)
-
-///Attaches attachment to src using the component without the need for a user.
-/obj/item/proc/attach_to(obj/item/attachment)
-	var/datum/component/attachment_handler/attachment_handler = GetComponent(/datum/component/attachment_handler)
-	if(!attachment_handler)
-		return
-	attachment_handler.attach_without_user(attachment)
-
-///Updates attachment's icon state to new_icon_state using src's component.
-/obj/item/proc/update_attachment_icon_state(obj/item/attachment, new_icon_state)
-	var/datum/component/attachment_handler/attachment_handler = GetComponent(/datum/component/attachment_handler)
-	if(!attachment_handler)
-		return
-	attachment_handler.update_overlay_icon_state(attachment, new_icon_state)
-
 /obj/item/proc/mob_can_equip(mob/M, slot, warning = TRUE, override_nodrop = FALSE)
 	if(!slot)
 		return FALSE

@@ -273,6 +273,8 @@
 
 #define COMSIG_ITEM_UNDEPLOY "item_undeploy" //from base of /obj/machinery/deployable
 
+#define COMSIG_LOADOUT_VENDOR_VENDED_ATTACHMENT "loadout_vended_attachment" //from base of /datum/item_representation/gun_attachement/proc/install_on_gun() : (/obj/item/attachment)
+
 // /obj/item/armor_module signals
 #define COMSIG_ARMOR_MODULE_ATTACHING "armor_module_attaching"
 #define COMSIG_ARMOR_MODULE_DETACHED "armor_module_detached"
