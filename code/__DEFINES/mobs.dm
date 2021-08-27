@@ -492,6 +492,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define CASTE_CAN_CORRUPT_GENERATOR (1<<17) //Can corrupt a generator
 #define CASTE_IS_BUILDER (1<<18) //whether we are classified as a builder caste
 #define CAN_BECOME_KING (1<<19) //Can be choose to become a king
+#define CAN_RIDE_CRUSHER (1<<20) //Can ride a crusher
 
 //Charge-Crush
 #define CHARGE_OFF 0
