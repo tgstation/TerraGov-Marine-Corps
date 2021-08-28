@@ -1,0 +1,4 @@
+author: "lbnesquik"
+delete-after: True
+changes: 
+  - code_imp: "Moved all shuttle ID's to defines."
