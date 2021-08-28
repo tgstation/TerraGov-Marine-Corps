@@ -15,7 +15,7 @@
 	center_of_mass = list("x"=16, "y"=6)
 	volume = 50
 
-/obj/item/reagent_containers/food/condiment/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/reagent_containers/food/condiment/attackby(obj/item/W, mob/user)
 		return
 
 /obj/item/reagent_containers/food/condiment/attack_self(mob/user as mob)
