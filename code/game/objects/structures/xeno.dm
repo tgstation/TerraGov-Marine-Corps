@@ -140,15 +140,6 @@
 		return TRUE
 
 
-/obj/structure/mineral_door/resin/attack_paw(mob/living/carbon/human/user)
-	if(user.a_intent == INTENT_HARM)
-		user.visible_message(span_xenowarning("\The [user] claws at \the [src]."), \
-		span_xenowarning("You claw at \the [src]."))
-		playsound(loc, "alien_resin_break", 25)
-		take_damage(rand(40, 60))
-	else
-		return TryToSwitchState(user)
-
 /obj/structure/mineral_door/resin/attack_larva(mob/living/carbon/xenomorph/larva/M)
 	var/turf/cur_loc = M.loc
 	if(!istype(cur_loc))

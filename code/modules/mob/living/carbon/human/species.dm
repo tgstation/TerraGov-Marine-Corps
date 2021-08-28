@@ -419,7 +419,7 @@
 
 /datum/species/monkey/spec_unarmedattack(mob/living/carbon/human/user, atom/target)
 	if(!iscarbon(target))
-		target.attack_paw(user)
+		target.attack_hand(user)
 		return TRUE
 	var/mob/living/carbon/victim = target
 	if(prob(25))
@@ -431,7 +431,7 @@
 	victim.visible_message(span_danger("[name] bites [victim]!"),
 		span_userdanger("[name] bites you!"), span_hear("You hear a chomp!"))
 	to_chat(user, span_danger("You bite [victim]!"))
-	target.attack_paw(user)
+	target.attack_hand(user)
 	return TRUE
 
 /datum/species/monkey/random_name(gender,unique,lastname)

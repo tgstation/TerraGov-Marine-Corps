@@ -282,11 +282,6 @@
 		if(EXPLODE_LIGHT)
 			take_damage(rand(0, 250))
 
-//Interactions
-/turf/closed/wall/attack_paw(mob/living/carbon/human/user)
-	return attack_hand(user)
-
-
 /turf/closed/wall/attack_animal(mob/living/M as mob)
 	if(M.wall_smash)
 		if((isrwallturf(src)) || (resistance_flags & INDESTRUCTIBLE))
