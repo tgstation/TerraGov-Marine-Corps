@@ -36909,8 +36909,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/obj/item/weapon/gun/sentry/premade/dumb,
 /obj/structure/closet/walllocker/emerglocker/full,
+/obj/item/weapon/gun/sentry/big_sentry/premade,
 /turf/open/shuttle/blackfloor,
 /area/prison/pirate)
 "ckG" = (
@@ -38000,7 +38000,7 @@
 /turf/open/floor/plating,
 /area/prison/pirate)
 "cnH" = (
-/obj/item/weapon/gun/sentry/premade/dumb,
+/obj/item/weapon/gun/sentry/big_sentry/premade,
 /turf/open/floor/plating,
 /area/prison/pirate)
 "cnI" = (
@@ -38412,7 +38412,7 @@
 /turf/open/floor/plating/platebot,
 /area/prison/pirate)
 "cpb" = (
-/obj/item/weapon/gun/sentry/premade/dumb,
+/obj/item/weapon/gun/sentry/big_sentry/premade,
 /turf/open/floor/plating/platebot,
 /area/prison/pirate)
 "cpc" = (
