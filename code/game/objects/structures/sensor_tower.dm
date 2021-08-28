@@ -12,8 +12,6 @@
 
 /obj/structure/sensor_tower/Initialize()
 	. = ..()
-	var/area/area_to_control = get_area(src)
-	area_to_control.set_to_contested()
 	GLOB.zones_to_control += src
 
 /obj/structure/sensor_tower/Destroy()

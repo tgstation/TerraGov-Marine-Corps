@@ -44,6 +44,15 @@
 
 	win_points_needed = 1000
 
+/datum/game_mode/civil_war/post_setup()
+	..()
+	for(var/turf/T in GLOB.fob_sentries)
+		new /obj/item/weapon/gun/sentry/big_sentry/fob_sentry(T)
+	for(var/turf/T in GLOB.fob_sentries_rebel)
+		new /obj/item/weapon/gun/sentry/big_sentry/fob_sentry/rebel(T)
+	for(var/turf/T AS in GLOB.sensor_towers)
+		new /obj/structure/sensor_tower(T)
+
 /datum/game_mode/civil_war/announce()
 	to_chat(world, "<b>The current game mode is - Civil War!</b>")
 	to_chat(world, "<b>Capture and defend the constested zones to win. They are in blue on the minimap. Every 5 minutes (starting at 12:35), every controlled zone gives one point to your faction. The first to [win_points_needed] wins!</b>")

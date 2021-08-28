@@ -98,7 +98,7 @@
 	ammo = /datum/ammo/bullet/turret/gauss
 	sentry_iff_signal = TGMC_LOYALIST_IFF
 	flags_item = IS_DEPLOYABLE|DEPLOY_ON_INITIALIZE|DEPLOYED_NO_PICKUP
-	turret_flags = TURRET_IMMOBILE
+	turret_flags = TURRET_IMMOBILE|TURRET_RADIAL|TURRET_LOCKED|TURRET_ON
 	current_mag = /obj/item/ammo_magazine/sentry/fob_sentry
 	sentry_battery_type = /obj/item/cell/lasgun/fob_sentry/cell
 
