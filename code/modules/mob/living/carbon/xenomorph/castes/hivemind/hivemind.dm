@@ -79,9 +79,7 @@
 	upgrade = XENO_UPGRADE_BASETYPE
 	return ..()
 
-///Initiate the form changing of the hivemind
-/mob/living/carbon/xenomorph/hivemind/proc/change_form()
-	SIGNAL_HANDLER
+/mob/living/carbon/xenomorph/hivemind/change_form()
 	if(status_flags & INCORPOREAL && health != maxHealth)
 		to_chat(src, span_xenowarning("You do not have the strength to manifest yet!"))
 		return
@@ -274,6 +272,7 @@
 	icon = 'icons/Xeno/weeds.dmi'
 	icon_state = "weed_hivemind4"
 	var/mob/living/carbon/xenomorph/hivemind/parent
+	ignore_weed_destruction = TRUE
 
 /obj/effect/alien/hivemindcore/Initialize(mapload)
 	. = ..()

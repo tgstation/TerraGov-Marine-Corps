@@ -17,4 +17,5 @@
 	mechanics_text = "Change from your incorporal form to your physical on and vice-versa."
 
 /datum/action/xeno_action/change_form/action_activate()
-	SEND_SIGNAL(owner, COMSIG_XENOMORPH_HIVEMIND_CHANGE_FORM)
+	var/mob/living/carbon/xenomorph/xenomorph_owner = owner
+	xenomorph_owner.change_form()

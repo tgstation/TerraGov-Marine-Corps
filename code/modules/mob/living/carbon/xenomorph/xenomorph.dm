@@ -184,6 +184,9 @@
 		return COMSIG_GRAB_SUCCESSFUL_SELF_ATTACK
 	return NONE
 
+///Initiate of form changing on the xeno
+/mob/living/carbon/xenomorph/proc/change_form()
+	return
 
 /mob/living/carbon/xenomorph/examine(mob/user)
 	..()
