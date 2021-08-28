@@ -18,7 +18,7 @@
 /obj/item/reagent_containers/food/condiment/attackby(obj/item/W, mob/user)
 		return
 
-/obj/item/reagent_containers/food/condiment/attack_self(mob/user as mob)
+/obj/item/reagent_containers/food/condiment/attack_self(mob/user)
 		return
 
 /obj/item/reagent_containers/food/condiment/attack(mob/M as mob, mob/user as mob, def_zone)
