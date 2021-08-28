@@ -33,7 +33,6 @@
 	START_PROCESSING(SSslowprocess, src)
 	addtimer(CALLBACK(src, .proc/life_draining_over, null, TRUE), cocoon_life_time)
 	RegisterSignal(SSdcs, COMSIG_GLOB_DROPSHIP_HIJACKED, .proc/life_draining_over)
-	new /obj/effect/alien/weeds/node(loc)
 
 /obj/structure/cocoon/examine(mob/user, distance, infix, suffix)
 	. = ..()
@@ -117,4 +116,3 @@
 /obj/structure/cocoon/opened_cocoon/Initialize()
 	. = ..()
 	new /obj/structure/bed/nest(loc)
-	new /obj/effect/alien/weeds/node(loc)

@@ -1,9 +1,0 @@
-author: "vilereaver41"
-delete-after: True
-changes: 
-  - balance: "Scatterspit damage down from 15 to 10"
-  - balance: "Plasma costs from 150 to 250"
-  - balance: "Projectile from 5 to 6"
-  - balance: "Scatter from 10 to 3"
-  - balance: "Puddle duration from 2 seconds to 1 second"
-  - balance: "6-second cooldown to 5 seconds"

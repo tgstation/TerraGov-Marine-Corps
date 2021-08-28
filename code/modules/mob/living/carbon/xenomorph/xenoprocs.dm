@@ -276,14 +276,14 @@
 
 //A simple handler for checking your state. Used in pretty much all the procs.
 /mob/living/carbon/xenomorph/proc/check_state()
-	if(incapacitated() || lying_angle || buckled)
+	if(incapacitated() || lying_angle)
 		to_chat(src, span_warning("We cannot do this in our current state."))
 		return 0
 	return 1
 
 ///A simple handler for checking your state. Will ignore if the xeno is lying down
 /mob/living/carbon/xenomorph/proc/check_concious_state()
-	if(incapacitated() || buckled)
+	if(incapacitated())
 		to_chat(src, span_warning("We cannot do this in our current state."))
 		return FALSE
 	return TRUE
