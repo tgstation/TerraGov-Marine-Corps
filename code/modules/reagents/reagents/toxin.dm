@@ -611,3 +611,31 @@
 		return
 
 	L.setToxLoss(clamp(tox_loss + min(L.getBruteLoss() * 0.1 * tox_cap_multiplier, damage * 0.1 * tox_cap_multiplier), tox_loss, DEFILER_TRANSVITOX_CAP)) //Deal bonus tox damage equal to a % of the lesser of the damage taken or the target's brute damage; capped at DEFILER_TRANSVITOX_CAP.
+
+/datum/reagent/toxin/xeno_sanguinal //deals brute damage and causes persistant bleeding. Causes additional damage for each other xeno chem in the system
+	name = "Sanguinal"
+	description = "Potent blood coloured toxin that causes constant bleeding and reacts with other xeno toxins to cause rapid tissue damage."
+	reagent_state = LIQUID
+	color = "#bb0a1e"
+	custom_metabolism = 0.4
+	overdose_threshold = 10000
+	scannable = TRUE
+	toxpwr = 0
+
+/datum/reagent/toxin/xeno_sanguinal/on_mob_life(mob/living/L, metabolism)
+	if(L.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_hemodile)) //Each other Defiler toxin doubles the multiplier
+		L.adjustStaminaLoss(DEFILER_SANGUINAL_DAMAGE)
+
+	if(L.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_neurotoxin))
+		L.adjustToxLoss(DEFILER_SANGUINAL_DAMAGE)
+
+	if(L.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_transvitox))
+		L.adjustFireLoss(DEFILER_SANGUINAL_DAMAGE)
+
+	L.apply_damage(DEFILER_SANGUINAL_DAMAGE, BRUTE, sharp = TRUE) //Causes brute damage
+
+	if(iscarbon(L))
+		var/mob/living/carbon/C = L
+		C.drip(DEFILER_SANGUINAL_DAMAGE) //Causes bleeding
+
+	return ..()

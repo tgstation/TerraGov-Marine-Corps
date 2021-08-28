@@ -1,4 +1,4 @@
 author: "BraveMole"
 delete-after: True
 changes: 
-  - rscdel: "Remove unused holster keybind"
+  - rscadd: "Ai nodes added on every map"

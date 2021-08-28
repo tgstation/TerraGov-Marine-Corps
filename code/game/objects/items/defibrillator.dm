@@ -123,13 +123,14 @@
 /mob/living/proc/get_ghost()
 	if(client) //Let's call up the correct ghost!
 		return null
-	for(var/g in GLOB.observer_list)
-		if(!g) //Observers hard del often so lets just be safe
+	for(var/mob/dead/observer/ghost AS in GLOB.observer_list)
+		if(!ghost) //Observers hard del often so lets just be safe
 			continue
-		var/mob/dead/observer/ghost = g
-		if(ghost.mind.current != src)
+		if(isnull(ghost.can_reenter_corpse))
 			continue
-		if(ghost.client && ghost.can_reenter_corpse)
+		if(ghost.can_reenter_corpse.resolve() != src)
+			continue
+		if(ghost.client)
 			return ghost
 	return null
 
