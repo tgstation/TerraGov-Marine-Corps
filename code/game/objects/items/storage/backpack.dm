@@ -152,9 +152,6 @@
 	storage_slots = null
 	max_storage_space = 15
 	access_delay = 0
-	cant_hold = list(
-
-	)
 
 /obj/item/storage/backpack/satchel/withwallet/Initialize(mapload, ...)
 	. = ..()
