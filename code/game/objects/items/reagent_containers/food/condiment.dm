@@ -22,7 +22,7 @@
 		return
 
 /obj/item/reagent_containers/food/condiment/attack(mob/M, mob/user, def_zone)
-	var/datum/reagents/R = src.reagents
+	var/datum/reagents/R = reagents
 
 	if(!R || !R.total_volume)
 		to_chat(user, span_warning("The [src.name] is empty!"))
