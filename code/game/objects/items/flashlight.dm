@@ -38,6 +38,8 @@
 	update_icon()
 
 /obj/item/flashlight/attack_alien(mob/living/carbon/xenomorph/X, isrightclick = FALSE)
+	if(!light_on)
+		return ..()
 	turn_light(X, FALSE)
 	playsound(loc, "alien_claw_metal", 25, 1)
 	X.do_attack_animation(src, ATTACK_EFFECT_CLAW)
