@@ -1035,7 +1035,7 @@ datum/ammo/bullet/revolver/tp44
 	hud_state_empty = "smartgun_empty"
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING|AMMO_SENTRY
 	accurate_range = 10
-	damage = 30
+	damage = 25
 	penetration = 20
 	damage_falloff = 0.05
 	sundering = 0.5
