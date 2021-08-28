@@ -85,7 +85,7 @@
 	ship_tag = "triumph"
 
 /obj/effect/attach_point/weapon/cas
-	ship_tag = "casplane"
+	ship_tag = "cas_dock"
 	icon = 'icons/Marine/casship.dmi'
 	icon_state = "15"
 

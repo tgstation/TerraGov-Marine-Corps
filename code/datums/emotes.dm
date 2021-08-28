@@ -65,14 +65,15 @@
 	if(tmp_sound && (!(flags_emote & EMOTE_FORCED_AUDIO) || !intentional))
 		playsound(user, tmp_sound, 50, flags_emote & EMOTE_VARY)
 
-	for(var/i in GLOB.dead_mob_list)
-		var/mob/M = i
-		if(isnewplayer(M) || !M.client)
-			continue
-		var/T = get_turf(user)
-		if(!(M.client.prefs.toggles_chat & CHAT_GHOSTSIGHT) || (M in viewers(T, null)))
-			continue
-		M.show_message("[FOLLOW_LINK(M, user)] [dchatmsg]")
+	if(user.client)
+		for(var/i in GLOB.dead_mob_list)
+			var/mob/M = i
+			if(isnewplayer(M) || !M.client)
+				continue
+			var/T = get_turf(user)
+			if(!(M.client.prefs.toggles_chat & CHAT_GHOSTSIGHT) || (M in viewers(T, null)))
+				continue
+			M.show_message("[FOLLOW_LINK(M, user)] [dchatmsg]")
 
 	if(emote_type == EMOTE_AUDIBLE)
 		user.audible_message(msg, audible_message_flags = EMOTE_MESSAGE, emote_prefix = prefix)
@@ -184,8 +185,8 @@
 			var/mob/living/carbon/snapper = user
 			var/datum/limb/left_hand = snapper.get_limb("l_hand")
 			var/datum/limb/right_hand = snapper.get_limb("r_hand")
-			if((left_hand.limb_status & LIMB_DESTROYED) && (right_hand.limb_status & LIMB_DESTROYED))
-				to_chat(user, span_notice("You cannot [key] without an arm."))
+			if((!left_hand.is_usable()) && (!right_hand.is_usable()))
+				to_chat(user, span_notice("You cannot [key] without a working hand."))
 				return FALSE
 
 		if((flags_emote & EMOTE_RESTRAINT_CHECK) && user.restrained())

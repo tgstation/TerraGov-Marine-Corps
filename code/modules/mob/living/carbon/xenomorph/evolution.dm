@@ -364,7 +364,7 @@
 		// Xenos with specialized icons (Queen, King, Shrike) do not need to have their icon returned to normal
 		if(new_xeno.xeno_caste.minimap_icon == initial(original.minimap_icon))	
 			SSminimaps.remove_marker(new_xeno)
-			SSminimaps.add_marker(new_xeno, new_xeno.z, MINIMAP_FLAG_XENO, new_xeno.xeno_caste.minimap_icon)
+			SSminimaps.add_marker(new_xeno, new_xeno.z, MINIMAP_FLAG_XENO, new_xeno.xeno_caste.minimap_leadered_icon)
 
 	if(upgrade == XENO_UPGRADE_THREE)
 		switch(tier)

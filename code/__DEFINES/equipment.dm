@@ -28,6 +28,8 @@
 #define PREVENT_CONTENTS_EXPLOSION (1<<13)
 /// was this spawned by an admin? used for stat tracking stuff.
 #define ADMIN_SPAWNED (1<<14)
+/// Can this atom be bumped attack
+#define BUMP_ATTACKABLE (1<<15)
 /// Should we use the initial icon for display? Mostly used by overlay only objects
 #define HTML_USE_INITAL_ICON_1 (1<<21)
 

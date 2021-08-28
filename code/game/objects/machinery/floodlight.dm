@@ -4,6 +4,8 @@
 	icon_state = "flood00"
 	anchored = TRUE
 	density = TRUE
+	light_system = HYBRID_LIGHT
+	light_power = 5
 	///The brightness of the floodlight
 	var/brightness_on = 7
 
@@ -88,6 +90,8 @@
 	idle_power_usage = 50
 	active_power_usage = 2500
 	wrenchable = TRUE
+	light_power = 5
+	light_system = HYBRID_LIGHT
 	/// Determines how much light does the floodlight make , every light tube adds 4 tiles distance.
 	var/brightness = 0
 	/// Used to show if the object is tipped
@@ -374,9 +378,6 @@
 /obj/machinery/colony_floodlight_switch/proc/toggle_lights(switch_on)
 	turned_on = switch_on
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_FLOODLIGHT_SWITCH, src, switch_on)
-
-/obj/machinery/colony_floodlight_switch/attack_paw(mob/living/carbon/human/user)
-	return attack_hand(user)
 
 /obj/machinery/colony_floodlight_switch/attack_hand(mob/living/user)
 	. = ..()

@@ -897,6 +897,7 @@
 		/obj/item/attachable/t42barrel,
 		/obj/item/attachable/bipod,
 		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/scope/mini,
 		/obj/item/attachable/motiondetector,
 	)
 
@@ -916,15 +917,15 @@
 
 /obj/item/weapon/gun/rifle/standard_smartrifle
 	name = "\improper T-25 smartrifle"
-	desc = "The T-25 is the TGMC's current standard IFF-capable  rifle. It's known for its ability to lay down quick fire support very well. Requires special training and it cannot turn off IFF. It uses 10x26mm ammunition."
+	desc = "The T-25 is the TGMC's current standard IFF-capable rifle. It's known for its ability to lay down quick fire support very well. Requires special training and it cannot turn off IFF. It uses 10x26mm ammunition."
 	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "t25"
 	item_state = "t25"
 	caliber = CALIBER_10x26_CASELESS //codex
-	max_shells = 50 //codex
+	max_shells = 80 //codex
 	force = 35
-	aim_slowdown = 0.55
-	wield_delay = 0.6 SECONDS
+	aim_slowdown = 0.7
+	wield_delay = 0.9 SECONDS
 	fire_sound = "gun_smartgun"
 	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/T42_unload.ogg'

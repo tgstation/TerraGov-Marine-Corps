@@ -234,10 +234,6 @@
 	var/burntime = loaded_ammo.burntime
 	var/fire_color = loaded_ammo.fire_color
 	fire_delay = loaded_ammo.fire_delay
-	if(istype(loaded_ammo, /datum/ammo/flamethrower/green))
-		playsound(user, fire_sound, 50, 1)
-		triangular_flame(target, user, burntime, burnlevel, loaded_ammo.max_range)
-		return
 
 	var/list/turf/turfs = getline(user,target)
 	playsound(user, fire_sound, 50, 1)
@@ -341,73 +337,6 @@
 		M.IgniteMob()
 
 		to_chat(M, "[isxeno(M)?"<span class='xenodanger'>":"<span class='highdanger'>"]Augh! You are roasted by the flames!")
-
-/obj/item/weapon/gun/flamer/proc/triangular_flame(atom/target, mob/living/user, burntime, burnlevel, max_range = 4)
-	set waitfor = 0
-
-	var/unleash_dir = user.dir //don't want the player to turn around mid-unleash to bend the fire.
-	var/list/turf/turfs = getline(user,target)
-	playsound(user, fire_sound, 50, 1)
-	var/distance = 1
-	var/turf/prev_T
-
-	for(var/turf/T in turfs)
-		if(T == user.loc)
-			prev_T = T
-			continue
-		if(T.density)
-			break
-		if(locate(/obj/effect/forcefield/fog) in T)
-			break
-		if(loc != user)
-			break
-		if(!current_mag || !current_mag.current_rounds)
-			break
-		if(distance > max_range)
-			break
-		if(prev_T && LinkBlocked(prev_T, T))
-			break
-		current_mag.current_rounds--
-		flame_turf(T,user, burntime, burnlevel, "green")
-		prev_T = T
-		sleep(1)
-
-		var/list/turf/right = list()
-		var/list/turf/left = list()
-		var/turf/right_turf = T
-		var/turf/left_turf = T
-		var/right_dir = turn(unleash_dir, 90)
-		var/left_dir = turn(unleash_dir, -90)
-		for (var/i = 0, i < distance - 1, i++)
-			right_turf = get_step(right_turf, right_dir)
-			right += right_turf
-			left_turf = get_step(left_turf, left_dir)
-			left += left_turf
-
-		var/turf/prev_R = T
-		for (var/turf/R in right)
-
-			if (R.density)
-				break
-			if(prev_R && LinkBlocked(prev_R, R))
-				break
-
-			flame_turf(R, user, burntime, burnlevel, "green")
-			prev_R = R
-			sleep(1)
-
-		var/turf/prev_L = T
-		for (var/turf/L in left)
-			if (L.density)
-				break
-			if(prev_L && LinkBlocked(prev_L, L))
-				break
-
-			flame_turf(L, user, burntime, burnlevel, "green")
-			prev_L = L
-			sleep(1)
-
-		distance++
 
 /obj/item/weapon/gun/flamer/get_ammo_type()
 	if(!ammo)
@@ -551,7 +480,7 @@
 /obj/item/weapon/gun/flamer/marinestandard/Fire()
 	if(active_attachable && istype(active_attachable, /obj/item/attachable/hydro_cannon) && (world.time > last_use + 10))
 		INVOKE_ASYNC(src, .proc/extinguish, target, gun_user) //Fire it.
-		water_count -=7//reagents is not updated in this proc, we need water_count for a updated HUD
+		water_count -= 7//reagents is not updated in this proc, we need water_count for a updated HUD
 		last_fired = world.time
 		last_use = world.time
 		var/obj/screen/ammo/A = gun_user.hud_used.ammo
@@ -617,7 +546,9 @@
 	icon_state = "red_2"
 	layer = BELOW_OBJ_LAYER
 	light_system = MOVABLE_LIGHT
+	light_mask_type = /atom/movable/lighting_mask/flicker
 	light_on = TRUE
+	light_range = 3
 	light_power = 3
 	light_color = LIGHT_COLOR_LAVA
 	var/firelevel = 12 //Tracks how much "fire" there is. Basically the timer of how long the fire burns

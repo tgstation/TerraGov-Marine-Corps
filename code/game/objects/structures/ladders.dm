@@ -8,7 +8,7 @@
 	var/obj/structure/ladder/down = null	//The ladder below this one
 	var/obj/structure/ladder/up = null		//The ladder above this one
 	anchored = TRUE
-	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
+	resistance_flags = RESIST_ALL
 	layer = LADDER_LAYER
 	var/is_watching = 0
 	var/obj/machinery/camera/cam
@@ -110,9 +110,6 @@
 	visible_message(span_notice("[user] climbs [ladder_dir_name] [src].")) //Hack to give a visible message to the people here without duplicating user message
 	user.visible_message(span_notice("[user] climbs [ladder_dir_name] [src]."),
 	span_notice("You climb [ladder_dir_name] [src]."))
-
-/obj/structure/ladder/attack_paw(mob/living/carbon/human/user)
-	return attack_hand(user)
 
 
 /obj/structure/ladder/attack_ghost(mob/dead/observer/user)

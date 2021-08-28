@@ -160,7 +160,8 @@
 /datum/hive_status/proc/add_to_lists(mob/living/carbon/xenomorph/X)
 	xenos_by_tier[X.tier] += X
 	xenos_by_upgrade[X.upgrade] += X
-	LAZYADD(xenos_by_zlevel["[X.z]"], X)
+	if(X.z)
+		LAZYADD(xenos_by_zlevel["[X.z]"], X)
 	RegisterSignal(X, COMSIG_MOVABLE_Z_CHANGED, .proc/xeno_z_changed)
 
 	if(!xenos_by_typepath[X.caste_base_type])
@@ -1052,6 +1053,10 @@ to_chat will check for valid clients itself already so no need to double check f
 
 /mob/living/carbon/xenomorph/get_xeno_hivenumber()
 	return hivenumber
+
+/mob/illusion/xeno/get_xeno_hivenumber()
+	var/mob/living/carbon/xenomorph/original_xeno = original_mob
+	return original_xeno.hivenumber
 
 /obj/structure/xeno/tunnel/get_xeno_hivenumber()
 	return hivenumber

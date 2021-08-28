@@ -48,19 +48,9 @@
 	/// Flat-damage-reduction-based armor.
 	var/datum/armor/hard_armor
 
-	var/dynamic_lighting = TRUE
-
-
-	var/tmp/lighting_corners_initialised = FALSE
-
 	///Lumcount added by sources other than lighting datum objects, such as the overlay lighting component.
 	var/dynamic_lumcount = 0
 	///List of light sources affecting this turf.
-	var/tmp/list/datum/light_source/affecting_lights
-	///Our lighting object.
-	var/tmp/atom/movable/lighting_object/lighting_object
-	var/tmp/list/datum/lighting_corner/corners
-
 	///Which directions does this turf block the vision of, taking into account both the turf's opacity and the movable opacity_sources.
 	var/directional_opacity = NONE
 	///Lazylist of movable atoms providing opacity sources.
@@ -85,12 +75,14 @@
 	for(var/atom/movable/AM in src)
 		Entered(AM)
 
-	var/area/A = loc
-	if(!IS_DYNAMIC_LIGHTING(src) && IS_DYNAMIC_LIGHTING(A))
-		add_overlay(/obj/effect/fullbright)
 
 	if(light_power && light_range)
 		update_light()
+
+	//Get area light
+	var/area/A = loc
+	if(A?.lighting_effect)
+		add_overlay(A.lighting_effect)
 
 	if(opacity)
 		directional_opacity = ALL_CARDINALS
@@ -113,7 +105,6 @@
 
 
 /turf/Destroy(force)
-
 	if(!changing_turf)
 		stack_trace("Incorrect turf deletion")
 	changing_turf = FALSE
@@ -130,6 +121,7 @@
 	DISABLE_BITFIELD(flags_atom, INITIALIZED)
 	soft_armor = null
 	hard_armor = null
+	current_acid = null
 	..()
 	return QDEL_HINT_IWILLGC
 
@@ -262,10 +254,14 @@
 	if(flags & CHANGETURF_SKIP)
 		return new path(src)
 
-	var/old_dynamic_lighting = dynamic_lighting
-	var/old_affecting_lights = affecting_lights
-	var/old_lighting_object = lighting_object
-	var/old_corners = corners
+	//static lighting
+	var/old_lighting_object = static_lighting_object
+	var/old_lighting_corner_NE = lighting_corner_NE
+	var/old_lighting_corner_SE = lighting_corner_SE
+	var/old_lighting_corner_SW = lighting_corner_SW
+	var/old_lighting_corner_NW = lighting_corner_NW
+	//hybrid lighting
+	var/list/old_hybrid_lights_affecting = hybrid_lights_affecting?.Copy()
 	var/old_directional_opacity = directional_opacity
 
 	var/list/old_baseturfs = baseturfs
@@ -291,22 +287,40 @@
 	if(!(flags & CHANGETURF_DEFER_CHANGE))
 		W.AfterChange(flags)
 
+	W.hybrid_lights_affecting = old_hybrid_lights_affecting
+
+	lighting_corner_NE = old_lighting_corner_NE
+	lighting_corner_SE = old_lighting_corner_SE
+	lighting_corner_SW = old_lighting_corner_SW
+	lighting_corner_NW = old_lighting_corner_NW
+
+	//static Update
 	if(SSlighting.initialized)
-		lighting_object = old_lighting_object
-		affecting_lights = old_affecting_lights
-		corners = old_corners
-		directional_opacity = old_directional_opacity
 		recalculate_directional_opacity()
 
-		if(dynamic_lighting != old_dynamic_lighting)
-			if (IS_DYNAMIC_LIGHTING(src))
-				lighting_build_overlay()
-			else
-				lighting_clear_overlay()
+		W.static_lighting_object = old_lighting_object
+
+		var/area/A = loc
+
+		if(A.static_lighting && !old_lighting_object)
+			W.static_lighting_build_overlay()
+		else if(!A.static_lighting && old_lighting_object)
+			W.static_lighting_clear_overlay()
+
+		else if(static_lighting_object && !static_lighting_object.needs_update)
+			static_lighting_object.update()
+
+	//Since the old turf was removed from hybrid_lights_affecting, readd the new turf here
+	if(W.hybrid_lights_affecting)
+		for(var/atom/movable/lighting_mask/mask AS in W.hybrid_lights_affecting)
+			LAZYADD(mask.affecting_turfs, W)
+
+	if(W.directional_opacity != old_directional_opacity)
+		W.reconsider_lights()
 
 	return W
 
-// Take off the top layer turf and replace it with the next baseturf down
+/// Take off the top layer turf and replace it with the next baseturf down
 /turf/proc/ScrapeAway(amount=1, flags)
 	if(!amount)
 		return
@@ -330,7 +344,7 @@
 
 /turf/proc/empty(turf_type=/turf/open/space, baseturf_type, list/ignore_typecache, flags)
 	// Remove all atoms except observers, landmarks, docking ports
-	var/static/list/ignored_atoms = typecacheof(list(/mob/dead, /obj/effect/landmark, /obj/docking_port, /atom/movable/lighting_object))
+	var/static/list/ignored_atoms = typecacheof(list(/mob/dead, /obj/effect/landmark, /obj/docking_port))
 	var/list/allowed_contents = typecache_filter_list_reverse(GetAllContentsIgnoring(ignore_typecache), ignored_atoms)
 	allowed_contents -= src
 	for(var/i in 1 to allowed_contents.len)
@@ -357,7 +371,7 @@
 	return L
 
 /turf/proc/AdjacentTurfsSpace()
-	var/L[] = new()
+	var/list/L = list()
 	for(var/turf/t in oview(src,1))
 		if(!t.density)
 			if(!LinkBlocked(src, t) && !TurfBlockedNonWindow(t))
@@ -517,7 +531,6 @@
 /turf/open/floor/plating/ground/snow/is_weedable()
 	return !slayer && ..()
 
-
 /**
  * Checks for whether we can build advanced xeno structures here
  * Returns TRUE if present, FALSE otherwise
@@ -551,10 +564,7 @@
 			if(!silent)
 				to_chat(builder, span_warning("There's already a resin structure here!"))
 			return FALSE
-		if(istype(O, /obj/structure/mineral_door) || istype(O, /obj/effect/alien/resin))
-			has_obstacle = TRUE
-			break
-		if(istype(O, /obj/structure/ladder))
+		if(istype(O, /obj/structure/mineral_door) || istype(O, /obj/structure/ladder) || istype(O, /obj/effect/alien/resin))
 			has_obstacle = TRUE
 			break
 		if(istype(O, /obj/structure/bed))
@@ -737,10 +747,11 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 		var/obj/O
 		if(underlays.len)	//we have underlays, which implies some sort of transparency, so we want to a snapshot of the previous turf as an underlay
 			O = new()
-			O.underlays.Add(T)
+			O.underlays += T
 		T.ChangeTurf(type)
 		if(underlays.len)
-			T.underlays = O.underlays
+			T.underlays.Cut()
+			T.underlays += O.underlays
 	if(T.icon_state != icon_state)
 		T.icon_state = icon_state
 	if(T.icon != icon)
