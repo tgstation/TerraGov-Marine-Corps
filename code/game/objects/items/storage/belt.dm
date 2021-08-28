@@ -610,7 +610,7 @@
 	w_class = WEIGHT_CLASS_BULKY
 	max_w_class = 3
 	storage_type_limits = list(
-		/obj/item/weapon/gun = 1,
+		/obj/item/weapon/gun = 2,
 	)
 	icon_state= "sparepouch"
 	item_state= "sparepouch"
