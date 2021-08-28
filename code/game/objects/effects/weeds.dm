@@ -216,7 +216,7 @@
 	weed_type = /obj/effect/alien/weeds/sticky
 	color_variant = STICKY_COLOR
 	node_icon = "weednodegreen"
-	plasma_cost_mult = 5
+	plasma_cost_mult = 3
 
 /obj/effect/alien/weeds/node/sticky/Initialize(mapload, obj/effect/alien/weeds/node/node)
 	. = ..()
