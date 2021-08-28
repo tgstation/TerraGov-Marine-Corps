@@ -419,7 +419,7 @@
 	icon_state = "sentry"
 
 /obj/effect/landmark/fob_sentry/Initialize()
-	. =	..()
+	. = ..()
 	GLOB.fob_sentries += loc
 	return INITIALIZE_HINT_QDEL
 
