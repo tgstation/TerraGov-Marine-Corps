@@ -214,7 +214,7 @@
 	name = "\improper M2132 machete"
 	desc = "Latest issue of the TGMC Machete. Great for clearing out jungle or brush on outlying colonies. Found commonly in the hands of scouts and trackers, but difficult to carry with the usual kit."
 	icon_state = "machete"
-	force = 70
+	force = 75
 	attack_speed = 12
 	w_class = WEIGHT_CLASS_BULKY
 
@@ -233,7 +233,7 @@
 	desc = "This appears to be a rather old blade that has been well taken care of, it is probably a family heirloom. Oddly despite its probable non-combat purpose it is sharpened and not blunt."
 	icon_state = "officer_sword"
 	item_state = "officer_sword"
-	force = 70
+	force = 75
 	attack_speed = 12
 	w_class = WEIGHT_CLASS_BULKY
 
