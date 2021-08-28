@@ -39,7 +39,7 @@
 	user.visible_message(span_notice("[user] starts to capture [src]!"), span_notice("You start to capture [src]."))
 	if(!do_after(user, 5 SECONDS, TRUE, src))
 		return
-	user.visible_message(span_notice("[user] captured [src]! For the [human_user.faction]'s"), span_notice("You captured [src]! For the [human_user.faction]'s"))
+	user.visible_message(span_notice("[user] captured [src]! For the [human_user.faction]s"), span_notice("You captured [src]! For the [human_user.faction]s"))
 	faction = human_user.faction
 	update_icon()
 
@@ -58,4 +58,5 @@
 			SSminimaps.add_marker(src, z, MINIMAP_FLAG_ALL, "rebel_zone")
 		else
 			SSminimaps.remove_marker(src)
+			SSminimaps.add_marker(src, z, MINIMAP_FLAG_ALL, "neutral_zone")
 
