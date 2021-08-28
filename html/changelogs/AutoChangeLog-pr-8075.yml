@@ -1,4 +1,0 @@
-author: "lbnesquik"
-delete-after: True
-changes: 
-  - bugfix: "fixes the metal riot shield not having a proper in hand sprite."
