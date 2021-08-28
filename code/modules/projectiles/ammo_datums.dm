@@ -1038,7 +1038,7 @@ datum/ammo/bullet/revolver/tp44
 	damage = 30
 	penetration = 20
 	damage_falloff = 0.05
-	sundering = 1
+	sundering = 0.5
 
 /datum/ammo/bullet/turret/dumb
 	icon_state = "bullet"
@@ -1051,7 +1051,7 @@ datum/ammo/bullet/revolver/tp44
 	name = "small caliber autocannon bullet"
 	damage = 22.5
 	penetration = 30
-	sundering = 0.5
+	sundering = 1
 
 
 /datum/ammo/bullet/machinegun //Adding this for the MG Nests (~Art)
