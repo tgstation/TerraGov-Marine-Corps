@@ -528,7 +528,6 @@
 	new /obj/item/weapon/gun/flamer/marinestandard(src)
 	new /obj/item/ammo_magazine/flamer_tank/large(src)
 	new /obj/item/ammo_magazine/flamer_tank/large(src)
-	new /obj/item/ammo_magazine/flamer_tank/large/B(src)
 	new /obj/item/ammo_magazine/flamer_tank/large/X(src)
 
 
@@ -1053,7 +1052,6 @@
 	new /obj/item/ammo_magazine/flamer_tank/large(src)
 	new /obj/item/ammo_magazine/flamer_tank/large(src)
 	new /obj/item/ammo_magazine/flamer_tank/large(src)
-	new /obj/item/ammo_magazine/flamer_tank/large/B(src)
 	new /obj/item/ammo_magazine/flamer_tank/large/X(src)
 	new /obj/item/clothing/tie/storage/brown_vest(src)
 	new /obj/item/ammo_magazine/smg/standard_smg(src)

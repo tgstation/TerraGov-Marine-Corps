@@ -20,16 +20,6 @@
 	return INITIALIZE_HINT_LATELOAD
 
 
-/turf/closed/wall/resin/LateInitialize(mapload)
-	if(!locate(/obj/effect/alien/weeds) in loc)
-		new /obj/effect/alien/weeds(loc)
-
-
-/turf/closed/wall/resin/ChangeTurf(path, new_baseturf, flags)
-	. = ..()
-	new /obj/effect/alien/weeds(.)
-
-
 /turf/closed/wall/resin/flamer_fire_act()
 	take_damage(50, BURN, "fire")
 

@@ -111,12 +111,18 @@
 	name = "Plant Weeds"
 	action_icon_state = "plant_weeds"
 	plasma_cost = 75
-	mechanics_text = "Plant a weed node (purple sac) on your tile."
+	mechanics_text = "Plant a weed node on your tile."
 	keybind_signal = COMSIG_XENOABILITY_DROP_WEEDS
+	alternate_keybind_signal = COMSIG_XENOABILITY_CHOOSE_WEEDS
 	use_state_flags = XACT_USE_LYING
 	///the maximum range of the ability
 	var/max_range = 0
+	///The seleted type of weeds
+	var/obj/effect/alien/weeds/node/weed_type = /obj/effect/alien/weeds/node
 
+/datum/action/xeno_action/plant_weeds/can_use_action(atom/A, silent = FALSE, override_flags)
+	plasma_cost = initial(plasma_cost) * initial(weed_type.plasma_cost_mult)
+	return ..()
 
 /datum/action/xeno_action/activable/plant_weeds/action_activate()
 	if(max_range)
@@ -141,18 +147,39 @@
 		to_chat(owner, span_warning("Bad place for a garden!"))
 		return fail_activate()
 
-	if(locate(/obj/effect/alien/weeds/node) in T)
+	if(locate(weed_type) in T)
 		to_chat(owner, span_warning("There's a pod here already!"))
 		return fail_activate()
 
 	owner.visible_message(span_xenonotice("\The [owner] regurgitates a pulsating node and plants it on the ground!"), \
 		span_xenonotice("We regurgitate a pulsating node and plant it on the ground!"), null, 5)
-	new /obj/effect/alien/weeds/node(T)
+	new weed_type(T)
 	playsound(T, "alien_resin_build", 25)
 	GLOB.round_statistics.weeds_planted++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "weeds_planted")
 	add_cooldown()
 	return succeed_activate()
+
+/datum/action/xeno_action/plant_weeds/alternate_action_activate()
+	INVOKE_ASYNC(src, .proc/choose_weed)
+	return COMSIG_KB_ACTIVATED
+
+///Chose which weed will be planted by the xeno owner
+/datum/action/xeno_action/plant_weeds/proc/choose_weed()
+	var/weed_choice = show_radial_menu(owner, owner, GLOB.weed_images_list, radius = 48)
+	if(!weed_choice)
+		return
+	for(var/obj/effect/alien/weeds/node/weed_type_possible AS in GLOB.weed_type_list)
+		if(initial(weed_type_possible.name) == weed_choice)
+			weed_type = weed_type_possible
+			break
+	to_chat(owner, "<span class='notice'>We will now spawn <b>[weed_choice]\s</b> when using the plant weeds ability.</span>")
+	update_button_icon()
+
+/datum/action/xeno_action/plant_weeds/update_button_icon()
+	button.overlays.Cut()
+	button.overlays += image('icons/mob/actions.dmi', button, initial(weed_type.name))
+	return ..()
 
 //AI stuff
 /datum/action/xeno_action/activable/plant_weeds/ai_should_start_consider()
@@ -186,7 +213,8 @@
 	var/list/buildable_structures = list(
 		/turf/closed/wall/resin/regenerating,
 		/obj/effect/alien/resin/sticky,
-		/obj/structure/mineral_door/resin)
+		/obj/structure/mineral_door/resin,
+		)
 
 /datum/action/xeno_action/activable/secrete_resin/update_button_icon()
 	var/mob/living/carbon/xenomorph/X = owner
@@ -558,6 +586,7 @@
 	plasma_cost = 100
 	var/acid_type = /obj/effect/xenomorph/acid
 	keybind_signal = COMSIG_XENOABILITY_CORROSIVE_ACID
+	use_state_flags = XACT_USE_BUCKLED
 
 /datum/action/xeno_action/activable/corrosive_acid/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
@@ -731,6 +760,7 @@
 
 /datum/action/xeno_action/activable/spray_acid
 	keybind_signal = COMSIG_XENOABILITY_SPRAY_ACID
+	use_state_flags = XACT_USE_BUCKLED
 
 /datum/action/xeno_action/activable/spray_acid/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
@@ -772,7 +802,7 @@
 	mechanics_text = "Spit neurotoxin or acid at your target up to 7 tiles away."
 	ability_name = "xeno spit"
 	keybind_signal = COMSIG_XENOABILITY_XENO_SPIT
-	use_state_flags = XACT_USE_LYING
+	use_state_flags = XACT_USE_LYING|XACT_USE_BUCKLED
 	plasma_cost = 10
 	target_flags = XABB_MOB_TARGET
 
@@ -880,6 +910,7 @@
 	plasma_cost = 150
 	keybind_signal = COMSIG_XENOABILITY_NEUROTOX_STING
 	target_flags = XABB_MOB_TARGET
+	use_state_flags = XACT_USE_BUCKLED
 
 /datum/action/xeno_action/activable/neurotox_sting/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
@@ -1195,7 +1226,8 @@
 	keybind_signal = COMSIG_XENOABILITY_RALLY_HIVE
 	keybind_flags = XACT_KEYBIND_USE_ABILITY
 	cooldown_timer = 60 SECONDS
-	use_state_flags = XACT_USE_LYING
+	use_state_flags = XACT_USE_LYING|XACT_USE_BUCKLED
+
 
 /datum/action/xeno_action/activable/rally_hive/use_ability()
 

@@ -560,3 +560,47 @@
       or 0.1 seconds.
   lbnesquik:
   - rscadd: Added a way to disable weather noises locally
+2021-08-27:
+  BraveMole:
+  - bugfix: Fix ai breaking tadpole
+  - balance: Spitter, drone and sentinel can ride crusher too
+  - expansion: The rider can initiate the riding (grab the croosh, and click yourself
+      to mount the crusher)
+  Lewdcifer:
+  - balance: Reverts Powerfist Stun.
+  Losenis:
+  - balance: T-29 Smartmachinegun can now mount miniscope
+  SplinterGP:
+  - bugfix: fixes missing PAS slowdown, now it has proper slowdown and armor same
+      as a medium jaeger.
+  Surrealaser:
+  - balance: Reagent Claws is now locked to injecting the reagent selected when it
+      is activated.
+  - balance: Transvitox no longer has fractional gas reagent transfer strength for
+      some reason.
+  - balance: Hunter Silence no longer has wind up.
+2021-08-28:
+  BraveMole:
+  - balance: You can use some xeno abilities while riding
+  Hekzder:
+  - balance: T-21 has it's sunder reduced from 1.5 to 1.25
+  SplinterGP:
+  - bugfix: you're now able to start shooting guns on adjacent tiles.
+  TiviPlus:
+  - bugfix: fixed a server crash exploit
+  disappointedButNotSuprised:
+  - rscadd: Added engineering beret to engineer vendors as another option for headgear
+  lbnesquik:
+  - bugfix: fixes CAS not being able to equip anything but the default minigun.
+  - bugfix: fixes the metal riot shield not having a proper in hand sprite.
+  - qol: Gave the CAS plane an alert for whenever it receives a new valid target (flare/laze)
+  vilereaver41:
+  - balance: Scatterspit damage down from 15 to 10
+  - balance: Plasma costs from 150 to 250
+  - balance: Projectile from 5 to 6
+  - balance: Scatter from 10 to 3
+  - balance: Puddle duration from 2 seconds to 1 second
+  - balance: 6-second cooldown to 5 seconds
+  - balance: acid splash delay changed to 1.2 young, 1.1 mature, 1 elder, and 0.9
+      ancient.
+  - balance: acid splash now 150 plasma a shot up from 75 a shot
