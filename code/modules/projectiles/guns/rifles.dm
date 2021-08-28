@@ -829,6 +829,10 @@
 	accuracy_mult_unwielded = 0.8
 	damage_mult = 1.3
 
+/obj/item/weapon/gun/rifle/type71/seasonal
+	desc = "The primary rifle of many space pirates and militias, the Type 71 is a reliable rifle chambered in 7.62x39mm, firing in three round bursts to conserve ammunition."
+
+
 //-------------------------------------------------------
 //TX-16 AUTOMATIC SHOTGUN
 
@@ -1231,22 +1235,22 @@
 	damage_falloff_mult = 0.5
 
 //-------------------------------------------------------
-//T-18B MACHINEcarbine
+//AF-51B MACHINEcarbine
 
-/obj/item/weapon/gun/rifle/t18b
-	name = "\improper T-18B machinecarbine"
-	desc = "The T-18B is an unoffical modification of a T-18 carbine, modified to SMG length of barrel, rechambered for a stronger round, and belt based. Truly the peak of CQC. Useless past that. Aiming is impossible. Uses 10x25mm caseless ammunition."
-	icon_state = "t18b"
-	item_state = "t18"
-	fire_animation = "t18b_fire"
+/obj/item/weapon/gun/rifle/alf51b
+	name = "\improper ALF-51B machinecarbine"
+	desc = "The ALF-51B is an unoffical modification of a ALF-4, or better known as the T-18 carbine, modified to SMG length of barrel, rechambered for a stronger round, and belt based. Truly the peak of CQC. Useless past that. Aiming is impossible. Uses 10x25mm caseless ammunition."
+	icon_state = "alf51b"
+	item_state = "alf51b"
+	fire_animation = "alf51b_fire"
 	fire_sound = 'sound/weapons/guns/fire/t18b.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/t18_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/t18_reload.ogg'
 	caliber = CALIBER_10X25_CASELESS //codex
-	max_shells = 100 //codex
+	max_shells = 80 //codex
 	force = 20
-	current_mag = /obj/item/ammo_magazine/t18b
+	current_mag = /obj/item/ammo_magazine/rifle/alf51b
 	attachable_allowed = list(
 		/obj/item/attachable/flashlight,
 		/obj/item/attachable/bipod,
