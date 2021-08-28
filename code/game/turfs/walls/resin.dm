@@ -79,9 +79,9 @@
 		if(EXPLODE_DEVASTATE)
 			take_damage(600)
 		if(EXPLODE_HEAVY)
-			take_damage(rand(140, 300))
+			take_damage(rand(100, 200))
 		if(EXPLODE_LIGHT)
-			take_damage(rand(50, 100))
+			take_damage(rand(25, 50))
 
 
 /turf/closed/wall/resin/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
