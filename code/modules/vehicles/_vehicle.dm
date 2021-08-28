@@ -9,7 +9,8 @@
 	anchored = FALSE
 	blocks_emissive = EMISSIVE_BLOCK_GENERIC
 	COOLDOWN_DECLARE(cooldown_vehicle_move)
-	var/list/mob/occupants //mob = bitflags of their control level.
+	///mob = bitflags of their control level.
+	var/list/mob/occupants
 	///Maximum amount of passengers plus drivers
 	var/max_occupants = 1
 	////Maximum amount of drivers
@@ -26,9 +27,12 @@
 	var/obj/item/key/inserted_key
 	/// Whether the vehicle is currently able to move
 	var/canmove = TRUE
-	var/list/autogrant_actions_passenger //plain list of typepaths
-	var/list/autogrant_actions_controller //assoc list "[bitflag]" = list(typepaths)
-	var/list/mob/occupant_actions //assoc list mob = list(type = action datum assigned to mob)
+	///plain list of typepaths
+	var/list/autogrant_actions_passenger
+	///assoc list "[bitflag]" = list(typepaths)
+	var/list/autogrant_actions_controller
+	///assoc list mob = list(type = action datum assigned to mob)
+	var/list/mob/occupant_actions
 	///This vehicle will follow us when we move (like atrailer duh)
 	var/obj/vehicle/trailer
 	var/are_legs_exposed = FALSE
@@ -117,6 +121,7 @@
 	return TRUE
 
 /obj/vehicle/proc/after_remove_occupant(mob/M)
+	return
 
 /obj/vehicle/relaymove(mob/living/user, direction)
 	if(!canmove)

@@ -21,7 +21,7 @@
 	if(lying_angle)
 		return FALSE
 	if(HAS_TRAIT(src, TRAIT_HANDS_BLOCKED))
-		return
+		return FALSE
 
 	A.attack_larva(src)
 
