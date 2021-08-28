@@ -63,14 +63,6 @@
 		/datum/action/xeno_action/toggle_pheromones,
 	)
 
-/datum/xeno_caste/drone/on_caste_applied(mob/xenomorph)
-	. = ..()
-	xenomorph.RegisterSignal(xenomorph, COMSIG_GRAB_SELF_ATTACK, /mob/living/carbon/xenomorph.proc/grabbed_self_attack)
-
-/datum/xeno_caste/drone/on_caste_removed(mob/xenomorph)
-	. = ..()
-	xenomorph.UnregisterSignal(xenomorph, COMSIG_GRAB_SELF_ATTACK)
-
 /datum/xeno_caste/drone/young
 	upgrade_name = "Young"
 

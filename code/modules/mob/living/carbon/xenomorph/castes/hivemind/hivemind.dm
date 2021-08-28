@@ -33,8 +33,6 @@
 	hud_possible = list(PLASMA_HUD, HEALTH_HUD_XENO, PHEROMONE_HUD, QUEEN_OVERWATCH_HUD)
 	///The core of our hivemind
 	var/obj/effect/alien/hivemindcore/core
-	///If we can move or not
-	var/can_move = TRUE
 
 /mob/living/carbon/xenomorph/hivemind/Initialize(mapload)
 	. = ..()
@@ -51,12 +49,12 @@
 		setFireLoss(maxHealth - 1)
 		change_form()
 	med_hud_set_health()
-	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_HIVEMIND_MANIFESTATION))//Don't show wounds if you are transforming
+	if(notransform)//Don't show wounds if you are transforming
 		return
 	update_wounds()
 
 /mob/living/carbon/xenomorph/hivemind/handle_living_health_updates()
-	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_HIVEMIND_MANIFESTATION))//No damage while changing form
+	if(notransform)//No damage while changing form
 		return
 	var/turf/T = loc
 	if(!T || !istype(T))
@@ -86,7 +84,7 @@
 		return
 	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_HIVEMIND_MANIFESTATION))
 		return
-	can_move = FALSE
+	notransform = TRUE
 	wound_overlay.icon_state = "none"
 	TIMER_COOLDOWN_START(src, COOLDOWN_HIVEMIND_MANIFESTATION, TIME_TO_TRANSFORM)
 	invisibility = 0
@@ -108,7 +106,7 @@
 		add_abilities()
 		update_wounds()
 		update_icon()
-		can_move = TRUE
+		notransform = FALSE
 		return
 	invisibility = initial(invisibility)
 	status_flags =initial(status_flags)
@@ -123,7 +121,7 @@
 	add_abilities()
 	update_wounds()
 	update_icon()
-	can_move = TRUE
+	notransform = FALSE
 	if(!check_weeds(get_turf(src)))
 		return_to_core()
 
@@ -154,8 +152,11 @@
 
 ///Start the teleportation process to send the hivemind manifestation to the selected turf
 /mob/living/carbon/xenomorph/hivemind/proc/start_teleport(turf/T)
+	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_HIVEMIND_MANIFESTATION))
+		return
+	TIMER_COOLDOWN_START(src, COOLDOWN_HIVEMIND_MANIFESTATION, 2 * TIME_TO_TRANSFORM)
 	flick("Hivemind_materialisation_reverse", src)
-	can_move = FALSE
+	notransform = TRUE
 	addtimer(CALLBACK(src, .proc/end_teleport, T), TIME_TO_TRANSFORM)
 
 ///Finish the teleportation process to send the hivemind manifestation to the selected turf
@@ -165,10 +166,10 @@
 		to_chat(src, span_warning("The weeds on our destination were destroyed"))
 	else
 		forceMove(T)
-	addtimer(VARSET_CALLBACK(src, can_move, TRUE), TIME_TO_TRANSFORM)
+	addtimer(VARSET_CALLBACK(src, notransform, FALSE), TIME_TO_TRANSFORM)
 
 /mob/living/carbon/xenomorph/hivemind/Move(NewLoc, Dir = 0)
-	if(!can_move)
+	if(notransform)
 		return
 	if(!(status_flags & INCORPOREAL))
 		return ..()
