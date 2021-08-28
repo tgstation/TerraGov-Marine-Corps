@@ -8,12 +8,13 @@
 	2. [Headcoder](#headcoder)
 	3. [Art Director](#art-director)
 	4. [Maintainers](#maintainers)
-5. [Specifications](#specifications)
-6. [Pull Request Process](#pull-request-process)
-7. [Porting features/sprites/sounds/tools from other codebases](#porting-featuresspritessoundstools-from-other-codebases)
-8. [Banned content](#banned-content)
-9. [Content that requires prior approval](#content-that-requires-prior-approval)
-10. [A word on Git](#a-word-on-git)
+5. [Code specifications](#code-specifications)
+6. [Map specifications](#map-specifications)
+7. [Pull Request Process](#pull-request-process)
+8. [Porting features/sprites/sounds/tools from other codebases](#porting-featuresspritessoundstools-from-other-codebases)
+9. [Banned content](#banned-content)
+10. [Content that requires prior approval](#content-that-requires-prior-approval)
+11. [A word on Git](#a-word-on-git)
 
 ## Reporting Issues
 
@@ -59,7 +60,7 @@ Maintainers are the quality control. If a proposed pull request doesn't meet the
 
 Maintainers can revert changes if they feel they are not worth maintaining or if they did not live up to the quality specifications.
 
-## Specifications
+## Code specifications
 
 As mentioned before, you are expected to follow these specifications in order to make everyone's lives easier. It'll save both your time and ours, by making sure you don't have to make any changes and we don't have to ask you to. Thank you for reading this section!
 
@@ -796,6 +797,30 @@ File comments
  * This file has things in it
  */
 ```
+
+## Map specifications
+
+Any new map or map change must comply to these specifications.
+
+## Working ai nodes network for ship maps and ground maps
+
+Ais should be able to go everywhere on the map and it should be a single network if possible (two levels maps get a pass). Nodes can be placed up to 15 tiles apart, including diagonally. Any walls or lava between two nodes will block the link between them. Remember that ais are stupid, and that some obstacles are impossible to cross for them, so make their paths simple.
+
+## Anti fob area system implemented
+
+Xenos should not be able to build near the fob before shutters are down. As such, wide enough areas around FOB must be placed. An area is set as non-buildable if it contains a shutter.
+
+## Working electrical system
+
+Every area must have an APC. A ground map must have roughly 10 generators, with working SMES nearby. A shipmap must be fully wired and its electrical system fully working at the start of the game
+
+## Xenos related items (walls, weeds, silos, etc.)
+
+Everything related to xenos must be placed on map via a landmark, and not be directly added. This allows the map to be clean in HvH modes
+
+## Fog around silos
+
+Any silo placed on map must be protected by enough fog. This fog only appears in crash gamemode and is here to prevent marines to go near xenos spawn locations
 
 ## Pull Request Process
 
