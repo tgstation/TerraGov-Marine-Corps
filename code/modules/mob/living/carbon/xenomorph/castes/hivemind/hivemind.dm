@@ -9,7 +9,7 @@
 	icon_state = "hivemind_marker"
 	icon = 'icons/Xeno/48x48_Xenos.dmi'
 	status_flags = GODMODE | INCORPOREAL
-	resistance_flags = RESIST_ALL
+	resistance_flags = RESIST_ALL|BANISH_IMMUNE
 	flags_pass = PASSFIRE //to prevent hivemind eye to catch fire when crossing lava
 	density = FALSE
 	throwpass = TRUE
@@ -96,7 +96,7 @@
 	if(status_flags & INCORPOREAL)
 		status_flags = NONE
 		upgrade = XENO_UPGRADE_ZERO
-		resistance_flags = NONE
+		resistance_flags = BANISH_IMMUNE
 		flags_pass = NONE
 		density = TRUE
 		throwpass = FALSE
@@ -146,12 +146,12 @@
 	return FALSE
 
 /mob/living/carbon/xenomorph/hivemind/proc/return_to_core()
+	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_HIVEMIND_MANIFESTATION))
+		return
 	forceMove(get_turf(core))
 
 ///Start the teleportation process to send the hivemind manifestation to the selected turf
 /mob/living/carbon/xenomorph/hivemind/proc/start_teleport(turf/T)
-	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_HIVEMIND_MANIFESTATION))
-		return
 	TIMER_COOLDOWN_START(src, COOLDOWN_HIVEMIND_MANIFESTATION, TIME_TO_TRANSFORM)
 	flick("Hivemind_materialisation_fast_reverse", src)
 	addtimer(CALLBACK(src, .proc/end_teleport, T), TIME_TO_TRANSFORM / 2)
@@ -187,6 +187,8 @@
 /mob/living/carbon/xenomorph/hivemind/Topic(href, href_list)
 	. = ..()
 	if(.)
+		return
+	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_HIVEMIND_MANIFESTATION))
 		return
 	if(href_list["hivemind_jump"])
 		var/mob/living/carbon/xenomorph/xeno = locate(href_list["hivemind_jump"])
@@ -224,6 +226,8 @@
 	holder.icon_state = "xenohealth[amount]"
 
 /mob/living/carbon/xenomorph/hivemind/DblClickOn(atom/A, params)
+	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_HIVEMIND_MANIFESTATION))
+		return
 	var/turf/target_turf = get_turf(A)
 	if(!check_weeds(target_turf, TRUE))
 		return
