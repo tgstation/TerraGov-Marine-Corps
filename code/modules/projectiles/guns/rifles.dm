@@ -832,7 +832,6 @@
 /obj/item/weapon/gun/rifle/type71/seasonal
 	desc = "The primary rifle of many space pirates and militias, the Type 71 is a reliable rifle chambered in 7.62x39mm, firing in three round bursts to conserve ammunition."
 
-
 //-------------------------------------------------------
 //TX-16 AUTOMATIC SHOTGUN
 
