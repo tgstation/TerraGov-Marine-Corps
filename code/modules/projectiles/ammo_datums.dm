@@ -1050,7 +1050,7 @@ datum/ammo/bullet/revolver/tp44
 /datum/ammo/bullet/turret/mini
 	name = "small caliber autocannon bullet"
 	damage = 22.5
-	penetration = 30
+	penetration = 20
 	sundering = 1
 
 
