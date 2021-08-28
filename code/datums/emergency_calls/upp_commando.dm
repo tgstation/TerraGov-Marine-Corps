@@ -1,7 +1,7 @@
 /datum/emergency_call/upp_commando
 	name = "USL Pirate Band Elites"
 	base_probability = 0
-	shuttle_id = "distress_upp"
+	shuttle_id = SHUTTLE_DISTRESS_UPP
 	spawn_type = /mob/living/carbon/human/species/moth
 
 

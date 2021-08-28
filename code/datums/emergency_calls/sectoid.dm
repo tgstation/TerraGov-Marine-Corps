@@ -3,7 +3,7 @@
 	name = "Sectoid Expedition"
 	base_probability = 26
 	spawn_type = /mob/living/carbon/human/species/sectoid
-	shuttle_id = "distress_ufo"
+	shuttle_id = SHUTTLE_DISTRESS_UFO
 	alignement_factor = 0
 
 /datum/emergency_call/sectoid/print_backstory(mob/living/carbon/human/H)
