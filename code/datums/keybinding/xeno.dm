@@ -292,6 +292,12 @@
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_TOGGLE_STEALTH
 
+/datum/keybinding/xeno/mirage
+	name = "mirage"
+	full_name = "Hunter: Mirage"
+	description = "Creates multiple mirror images of the xeno."
+	keybind_signal = COMSIG_XENOABILITY_MIRAGE
+
 /datum/keybinding/xeno/haunt
 	name = "impair senses"
 	full_name = "Hunter: Silence"
