@@ -52,12 +52,12 @@
 		setFireLoss(maxHealth - 1)
 		change_form()
 	med_hud_set_health()
-	if(notransform)//Don't show wounds if you are transforming
+	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_HIVEMIND_MANIFESTATION))
 		return
 	update_wounds()
 
 /mob/living/carbon/xenomorph/hivemind/handle_living_health_updates()
-	if(notransform)//No damage while changing form
+	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_HIVEMIND_MANIFESTATION))
 		return
 	var/turf/T = loc
 	if(!T || !istype(T))
@@ -85,7 +85,6 @@
 		return
 	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_HIVEMIND_MANIFESTATION))
 		return
-	notransform = TRUE
 	wound_overlay.icon_state = "none"
 	TIMER_COOLDOWN_START(src, COOLDOWN_HIVEMIND_MANIFESTATION, TIME_TO_TRANSFORM)
 	invisibility = 0
@@ -107,7 +106,6 @@
 		add_abilities()
 		update_wounds()
 		update_icon()
-		notransform = FALSE
 		return
 	invisibility = initial(invisibility)
 	status_flags =initial(status_flags)
@@ -122,7 +120,6 @@
 	add_abilities()
 	update_wounds()
 	update_icon()
-	notransform = FALSE
 	if(!check_weeds(get_turf(src)))
 		return_to_core()
 
@@ -155,22 +152,20 @@
 /mob/living/carbon/xenomorph/hivemind/proc/start_teleport(turf/T)
 	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_HIVEMIND_MANIFESTATION))
 		return
-	TIMER_COOLDOWN_START(src, COOLDOWN_HIVEMIND_MANIFESTATION, 2 * TIME_TO_TRANSFORM)
-	flick("Hivemind_materialisation_reverse", src)
-	notransform = TRUE
-	addtimer(CALLBACK(src, .proc/end_teleport, T), TIME_TO_TRANSFORM)
+	TIMER_COOLDOWN_START(src, COOLDOWN_HIVEMIND_MANIFESTATION, TIME_TO_TRANSFORM)
+	flick("Hivemind_materialisation_fast_reverse", src)
+	addtimer(CALLBACK(src, .proc/end_teleport, T), TIME_TO_TRANSFORM / 2)
 
 ///Finish the teleportation process to send the hivemind manifestation to the selected turf
 /mob/living/carbon/xenomorph/hivemind/proc/end_teleport(turf/T)
-	flick("Hivemind_materialisation", src)
+	flick("Hivemind_materialisation_fast", src)
 	if(!check_weeds(T, TRUE))
 		to_chat(src, span_warning("The weeds on our destination were destroyed"))
 	else
 		forceMove(T)
-	addtimer(VARSET_CALLBACK(src, notransform, FALSE), TIME_TO_TRANSFORM)
 
 /mob/living/carbon/xenomorph/hivemind/Move(NewLoc, Dir = 0)
-	if(notransform)
+	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_HIVEMIND_MANIFESTATION))
 		return
 	if(!(status_flags & INCORPOREAL))
 		return ..()
