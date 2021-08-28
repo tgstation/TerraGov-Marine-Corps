@@ -21,6 +21,13 @@
 	description = "Drop weeds to help grow your hive."
 	keybind_signal = COMSIG_XENOABILITY_DROP_WEEDS
 
+/datum/keybinding/xeno/choose_weeds
+	hotkey_keys = list("Space")
+	name = "choose_weeds"
+	full_name = "Choose Weed"
+	description = "Choose what weed you will drop."
+	keybind_signal = COMSIG_XENOABILITY_CHOOSE_WEEDS
+
 /datum/keybinding/xeno/secrete_resin
 	name = "secrete_resin"
 	full_name = "Secrete Resin"
@@ -248,6 +255,12 @@
 	full_name = "Defiler: Reagent Slash"
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_REAGENT_SLASH
+
+/datum/keybinding/xeno/defile
+	name = "defile"
+	full_name = "Defiler: Defile"
+	description = "Purges xeno toxins in exchange for dealing toxin damage and generating toxic sanguinal smoke."
+	keybind_signal = COMSIG_XENOABILITY_DEFILE
 
 /datum/keybinding/xeno/resin_walker
 	name = "resin_walker"

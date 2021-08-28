@@ -30,7 +30,7 @@
 	var/cooldown = 0 //shield bash cooldown. based on world.time
 
 /obj/item/weapon/shield/riot/metal
-	icon_state = "metal"
+	icon_state = "riot_metal"
 
 /obj/item/weapon/shield/riot/examine(mob/user, distance, infix, suffix)
 	. = ..()

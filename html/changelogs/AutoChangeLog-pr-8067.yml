@@ -1,4 +1,0 @@
-author: "SplinterGP"
-delete-after: True
-changes: 
-  - bugfix: "fixes missing PAS slowdown, now it has proper slowdown and armor same as a medium jaeger."

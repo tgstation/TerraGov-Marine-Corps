@@ -25,14 +25,22 @@
 /obj/structure/caspart/caschair/Initialize()
 	. = ..()
 	set_cockpit_overlay("cockpit_closed")
+	RegisterSignal(SSdcs, COMSIG_GLOB_CAS_LASER_CREATED, .proc/receive_laser_cas)
 
 /obj/structure/caspart/caschair/Destroy()
 	owner?.chair = null
 	owner = null
+	UnregisterSignal(SSdcs, COMSIG_GLOB_CAS_LASER_CREATED)
 	if(occupant)
 		INVOKE_ASYNC(src, .proc/eject_user, TRUE)
 	QDEL_NULL(cockpit)
 	return ..()
+
+/obj/structure/caspart/caschair/proc/receive_laser_cas(datum/source, obj/effect/overlay/temp/laser_target/cas/incoming_laser)
+	SIGNAL_HANDLER
+	playsound(src, 'sound/effects/binoctarget.ogg', 15)
+	if(occupant)
+		to_chat(occupant, span_notice("CAS laser detected. Target: [AREACOORD_NO_Z(incoming_laser)]"))
 
 ///Handles updating the cockpit overlay
 /obj/structure/caspart/caschair/proc/set_cockpit_overlay(new_state)

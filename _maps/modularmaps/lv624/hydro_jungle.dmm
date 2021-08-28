@@ -3,6 +3,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 10
 	},
+/obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle7)
 "aW" = (
@@ -94,6 +95,12 @@
 /obj/structure/flora/ausbushes/fullgrass,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle7)
+"iF" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/structure/jungle/vines,
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/jungle9)
 "iO" = (
 /obj/item/trash/pistachios,
 /turf/open/ground/grass,
@@ -133,9 +140,18 @@
 	},
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle9)
+"mb" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/compound/ne)
 "nd" = (
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle7)
+"oY" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/jungle9)
 "qe" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /obj/structure/jungle/vines,
@@ -157,6 +173,13 @@
 /area/lv624/ground/jungle7)
 "uA" = (
 /obj/structure/flora/ausbushes/fullgrass,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/jungle9)
+"vS" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle9)
 "vT" = (
@@ -525,7 +548,7 @@ Vq
 WT
 Ix
 Ix
-ly
+vS
 Ix
 xw
 jf
@@ -772,14 +795,14 @@ Js
 Aq
 Js
 Js
-JU
+iF
 Js
 JU
 Bz
 Js
 Js
 Js
-Js
+oY
 Vg
 "}
 (13,1,1) = {"
@@ -948,7 +971,7 @@ CE
 xR
 Vy
 Mk
-Mk
+mb
 Mk
 vT
 Sx
