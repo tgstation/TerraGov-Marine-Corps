@@ -18,6 +18,7 @@ GLOBAL_LIST_INIT(huds, list(
 	DATA_HUD_MEDICAL_PAIN = new /datum/atom_hud/medical/pain,
 	DATA_HUD_XENO_TACTICAL = new /datum/atom_hud/xeno_tactical,
 	DATA_HUD_SQUAD_REBEL = new /datum/atom_hud/squad_rebel,
+	DATA_HUD_XENO_DEBUFF = new /datum/atom_hud/xeno_debuff,
 	))
 
 

@@ -124,12 +124,6 @@ LINEN BINS
 		hidden = I
 		to_chat(user, span_notice("You hide [I] among the sheets."))
 
-
-
-/obj/structure/bedsheetbin/attack_paw(mob/living/carbon/human/user)
-	return attack_hand(user)
-
-
 /obj/structure/bedsheetbin/attack_hand(mob/living/user)
 	. = ..()
 	if(.)

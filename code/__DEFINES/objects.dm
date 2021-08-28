@@ -252,3 +252,14 @@ GLOBAL_LIST_INIT(restricted_camera_networks, list( //Those networks can only be 
 #define TURRET_SCAN_RANGE 25
 #define TURRET_SCAN_FREQUENCY 16 SECONDS
 #define TURRET_HEALTH_REGEN 8
+
+//Unmanned vehicle define
+#define OVERLAY_TURRET (1<<0)
+#define HAS_LIGHTS (1<<1)
+#define UNDERCARRIAGE (1<<2)
+#define GIVE_NIGHT_VISION (1<<3)
+
+//Motion detector define
+#define MOTION_DETECTOR_HOSTILE "hostile"
+#define MOTION_DETECTOR_FRIENDLY "friendly"
+#define MOTION_DETECTOR_DEAD "dead"

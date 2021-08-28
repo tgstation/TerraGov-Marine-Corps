@@ -108,6 +108,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	mechanics_text = "Store an egg on your body for future use. The egg has to be unplanted."
 	ability_name = "retrieve egg"
 	keybind_signal = COMSIG_XENOABILITY_RETRIEVE_EGG
+	use_state_flags = XACT_USE_LYING
 
 /datum/action/xeno_action/activable/retrieve_egg/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/carrier/X = owner
@@ -202,6 +203,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	plasma_cost = 200
 	cooldown_timer = 10 SECONDS
 	keybind_signal = COMSIG_XENOABILITY_SPAWN_HUGGER
+	use_state_flags = XACT_USE_LYING
 
 /datum/action/xeno_action/spawn_hugger/on_cooldown_finish()
 	to_chat(owner, span_xenodanger("We can now spawn another young one."))
@@ -252,7 +254,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	button.overlays += image('icons/mob/actions.dmi', button, initial(A.name))
 	return ..()
 
-/datum/action/xeno_action/choose_hugger_type/alternate_keybind_action()
+/datum/action/xeno_action/choose_hugger_type/alternate_action_activate()
 	var/mob/living/carbon/xenomorph/X = owner
 	var/i = GLOB.hugger_type_list.Find(X.selected_hugger_type)
 	if(length(GLOB.hugger_type_list) == i)
@@ -263,7 +265,8 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	var/atom/A = X.selected_hugger_type
 	to_chat(X, span_notice("We will now spawn <b>[initial(A.name)]\s</b> when using the Spawn Hugger ability."))
 	update_button_icon()
-	return succeed_activate()
+	succeed_activate()
+	return COMSIG_KB_ACTIVATED
 
 /datum/action/xeno_action/choose_hugger_type/action_activate()
 	var/hugger_choice = show_radial_menu(owner, owner, GLOB.hugger_images_list, radius = 48)

@@ -445,18 +445,26 @@
 
 	body += {"<br>
 		<b>Transformation:</b>
-		<br> Special: <a href='?src=[ref];transform=observer;mob=[REF(M)]'>Observer</a> |
+		<br> Special:
+		<a href='?src=[ref];transform=observer;mob=[REF(M)]'>Observer</a> |
 		<a href='?src=[ref];transform=ai;mob=[REF(M)]'>AI</a>
-		<br> Humanoid: <a href='?src=[ref];transform=human;mob=[REF(M)]'>Human</a> |
+		<a href='?src=[ref];transform=sectoid;mob=[REF(M)]'>Sectoid</a> |
+		<a href='?src=[ref];transform=SKELETON;mob=[REF(M)]'>SKELETON</a>
+		<br> Humanoid:
+		<a href='?src=[ref];transform=human;mob=[REF(M)]'>Human</a> |
+		<a href='?src=[ref];transform=synthetic;mob=[REF(M)]'>Synthetic</a> |
+		<a href='?src=[ref];transform=early_synth;mob=[REF(M)]'>Early_Synth</a> |
+		<a href='?src=[ref];transform=vatborn;mob=[REF(M)]'>Vatborn</a> |
+		<a href='?src=[ref];transform=vatgrown;mob=[REF(M)]'>Vatgrown</a> |
 		<a href='?src=[ref];transform=monkey;mob=[REF(M)]'>Monkey</a> |
-		<a href='?src=[ref];transform=moth;mob=[REF(M)]'>Moth</a>
+		<a href='?src=[ref];transform=moth;mob=[REF(M)]'>Moth</a> |
 		<br> Alien Tier 0:
-		<a href='?src=[ref];transform=larva;mob=[REF(M)]'>Larva</a>
+		<a href='?src=[ref];transform=larva;mob=[REF(M)]'>Larva</a> |
 		<br> Alien Tier 1:
 		<a href='?src=[ref];transform=runner;mob=[REF(M)]'>Runner</a> |
 		<a href='?src=[ref];transform=drone;mob=[REF(M)]'>Drone</a> |
 		<a href='?src=[ref];transform=sentinel;mob=[REF(M)]'>Sentinel</a> |
-		<a href='?src=[ref];transform=defender;mob=[REF(M)]'>Defender</a>
+		<a href='?src=[ref];transform=defender;mob=[REF(M)]'>Defender</a> |
 		<br> Alien Tier 2:
 		<a href='?src=[ref];transform=hunter;mob=[REF(M)]'>Hunter</a> |
 		<a href='?src=[ref];transform=bull;mob=[REF(M)]'>Bull</a> |
@@ -475,7 +483,7 @@
 		<a href='?src=[ref];transform=queen;mob=[REF(M)]'>Queen</a> |
 		<a href='?src=[ref];transform=shrike;mob=[REF(M)]'>Shrike</a> |
 		<a href='?src=[ref];transform=hivemind;mob=[REF(M)]'>Hivemind</a> |
-		<a href='?src=[ref];transform=king;mob=[REF(M)]'>King</a>
+		<a href='?src=[ref];transform=king;mob=[REF(M)]'>King</a> |
 		<br>
 	"}
 

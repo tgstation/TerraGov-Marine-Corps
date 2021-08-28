@@ -357,7 +357,7 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 	else
 		dat += "No grenades exploded."
 	if(GLOB.round_statistics.total_human_deaths)
-		dat += "[GLOB.round_statistics.total_human_deaths] people were killed, among which [GLOB.round_statistics.total_human_revives] were revived. For a [(GLOB.round_statistics.total_human_revives / max(GLOB.round_statistics.total_human_deaths, 1)) * 100]% medical revival rate."
+		dat += "[GLOB.round_statistics.total_human_deaths] people were killed, among which [GLOB.round_statistics.total_human_revives] were revived and [GLOB.round_statistics.total_human_respawns] respawned. For a [(GLOB.round_statistics.total_human_revives / max(GLOB.round_statistics.total_human_deaths, 1)) * 100]% revival rate and a [(GLOB.round_statistics.total_human_respawns / max(GLOB.round_statistics.total_human_deaths, 1)) * 100]% respawn rate."
 	if(GLOB.round_statistics.now_pregnant)
 		dat += "[GLOB.round_statistics.now_pregnant] people infected among which [GLOB.round_statistics.total_larva_burst] burst. For a [(GLOB.round_statistics.total_larva_burst / max(GLOB.round_statistics.now_pregnant, 1)) * 100]% successful delivery rate!"
 	if(GLOB.round_statistics.queen_screech)
@@ -404,6 +404,16 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 		dat += "[GLOB.round_statistics.ravager_rages] number of times Ravagers raged."
 	if(GLOB.round_statistics.hunter_silence_targets)
 		dat += "[GLOB.round_statistics.hunter_silence_targets] number of targets silenced by Hunters."
+	if(GLOB.round_statistics.larva_from_psydrain)
+		dat += "[GLOB.round_statistics.larva_from_psydrain] larvas came from psydrain."
+	if(GLOB.round_statistics.larva_from_silo)
+		dat += "[GLOB.round_statistics.larva_from_silo] larvas came from silos."
+	if(GLOB.round_statistics.larva_from_cocoon)
+		dat += "[GLOB.round_statistics.larva_from_cocoon] larvas came from cocoons."
+	if(GLOB.round_statistics.larva_from_marine_spawning)
+		dat += "[GLOB.round_statistics.larva_from_marine_spawning] larvas came from marine spawning."
+	if(GLOB.round_statistics.larva_from_siloing_body)
+		dat += "[GLOB.round_statistics.larva_from_siloing_body] larvas came from siloing bodies."
 
 	var/output = jointext(dat, "<br>")
 	for(var/mob/player in GLOB.player_list)

@@ -45,6 +45,8 @@
 		if(item_to_buy_type != item_type)
 			continue
 		item_info = listed_products[item_type]
+		if(item_info[1] == CAT_ESS)
+			return FALSE
 		if(seller.available_points < item_info[3])
 			return FALSE
 		seller.available_points -= item_info[3]

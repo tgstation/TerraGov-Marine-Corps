@@ -202,8 +202,10 @@ GLOBAL_PROTECT(exp_specialmap)
 		var/datum/job/scaled_job = SSjob.GetJobType(index)
 		if(!(scaled_job in SSjob.active_joinable_occupations))
 			continue
-		if(isxenosjob(scaled_job) && respawn && (SSticker.mode?.flags_round_type & MODE_SILO_RESPAWN))
-			continue
+		if(isxenosjob(scaled_job))
+			if(respawn && (SSticker.mode?.flags_round_type & MODE_SILO_RESPAWN))
+				continue
+			GLOB.round_statistics.larva_from_marine_spawning += jobworth[index] / scaled_job.job_points_needed
 		scaled_job.add_job_points(jobworth[index])
 	return TRUE
 
@@ -267,12 +269,12 @@ GLOBAL_PROTECT(exp_specialmap)
 	job = assigned_role
 	skills = getSkillsType(job.return_skills_type(player?.prefs))
 	faction = job.faction
-	LAZYADD(GLOB.alive_human_list_faction[faction], src)
 	job.announce(src)
 
 
 /mob/living/carbon/human/apply_assigned_role_to_spawn(datum/job/assigned_role, client/player, datum/squad/assigned_squad, admin_action = FALSE)
 	. = ..()
+	LAZYADD(GLOB.alive_human_list_faction[faction], src)
 	comm_title = job.comm_title
 	if(job.outfit)
 		var/id_type = job.outfit.id ? job.outfit.id : /obj/item/card/id

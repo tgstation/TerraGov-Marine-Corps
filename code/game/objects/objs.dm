@@ -131,11 +131,6 @@
 	return
 
 
-/obj/attack_paw(mob/living/carbon/human/user)
-	if(buckle_flags & CAN_BUCKLE)
-		return attack_hand(user)
-	return ..()
-
 
 /obj/effect_smoke(obj/effect/particle_effect/smoke/S)
 	. = ..()

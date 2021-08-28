@@ -9,15 +9,6 @@
 	return
 
 
-
-/*
-	Monkeys //todo kill this proc :)
-*/
-
-/atom/proc/attack_paw(mob/living/carbon/human/user)
-	return
-
-
 /atom/proc/attack_hand(mob/living/user)
 	. = FALSE
 	if(QDELETED(src))
