@@ -1143,7 +1143,7 @@
 /turf/open/floor/mainship/tcomms,
 /area/mainship/shipboard/port_point_defense)
 "adP" = (
-/obj/vehicle/powerloader,
+/obj/vehicle/ridden/powerloader,
 /turf/open/floor/mech_bay_recharge_floor,
 /area/mainship/shipboard/port_point_defense)
 "adQ" = (
@@ -5950,7 +5950,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
 "bGj" = (
-/obj/vehicle/powerloader,
+/obj/vehicle/ridden/powerloader,
 /turf/open/floor/mainship/cargo,
 /area/mainship/squads/req)
 "bGk" = (
@@ -20140,7 +20140,7 @@
 	},
 /area/mainship/hallways/aft_hallway)
 "xSH" = (
-/obj/vehicle/powerloader,
+/obj/vehicle/ridden/powerloader,
 /obj/machinery/light{
 	dir = 1
 	},
@@ -20235,7 +20235,7 @@
 /turf/open/floor/mainship/cargo,
 /area/mainship/engineering/engine_core)
 "yay" = (
-/obj/vehicle/powerloader,
+/obj/vehicle/ridden/powerloader,
 /obj/machinery/light{
 	dir = 1
 	},

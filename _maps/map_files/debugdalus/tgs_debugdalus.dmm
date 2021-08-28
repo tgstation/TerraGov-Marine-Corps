@@ -993,7 +993,7 @@
 /turf/open/floor/mainship,
 /area/mainship/hallways/hangar)
 "aet" = (
-/obj/vehicle/powerloader,
+/obj/vehicle/ridden/powerloader,
 /turf/open/floor/mainship,
 /area/mainship/squads/req)
 "aev" = (
@@ -1152,7 +1152,7 @@
 /turf/open/floor/mainship,
 /area/mainship/hallways/hangar)
 "afg" = (
-/obj/vehicle/powerloader,
+/obj/vehicle/ridden/powerloader,
 /turf/open/floor/mainship,
 /area/mainship/hallways/hangar)
 "afh" = (
@@ -1597,7 +1597,7 @@
 /area/mainship/shipboard/weapon_room)
 "ahs" = (
 /obj/machinery/light,
-/obj/vehicle/powerloader,
+/obj/vehicle/ridden/powerloader,
 /turf/open/floor/mainship,
 /area/mainship/shipboard/weapon_room)
 "aht" = (

@@ -1112,7 +1112,7 @@ ENGINEERING
 
 /datum/supply_packs/engineering/powerloader
 	name = "RPL-Y Cargo Loader"
-	contains = list(/obj/vehicle/powerloader)
+	contains = list(/obj/vehicle/ridden/powerloader)
 	cost = 20
 	containertype = null
 
