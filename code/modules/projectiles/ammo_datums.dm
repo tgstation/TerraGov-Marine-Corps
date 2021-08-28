@@ -2055,16 +2055,6 @@ datum/ammo/bullet/revolver/tp44
 		return
 	flame_radius(2, T)
 
-/datum/ammo/flamethrower/green
-	name = "green flame"
-	hud_state = "flame_green"
-	max_range = 4
-	fire_color = "green"
-	burnlevel = 10
-	burntime = 50
-	fire_delay = 35
-	bullet_color = LIGHT_COLOR_GREEN
-
 /datum/ammo/flamethrower/blue
 	name = "blue flame"
 	hud_state = "flame_blue"
