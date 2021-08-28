@@ -58,6 +58,7 @@
 	remove_filter("illusion_hit")
 	add_filter("illusion_hit", 2, wave_filter(10, 10, 10, 8))
 	last_hit_time = world.time
+	return FALSE
 
 /mob/illusion/xeno/Initialize(mapload, mob/living/carbon/xenomorph/original_mob, atom/escorted_atom, life_time)
 	. = ..()
