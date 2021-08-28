@@ -42,6 +42,9 @@
 	RegisterSignal(src, COMSIG_XENOMORPH_CORE_RETURN, .proc/return_to_core)
 	RegisterSignal(src, COMSIG_XENOMORPH_HIVEMIND_CHANGE_FORM, .proc/change_form)
 
+/mob/living/carbon/xenomorph/hivemind/upgrade_possible()
+	return FALSE
+
 /mob/living/carbon/xenomorph/hivemind/updatehealth()
 	health = maxHealth - getFireLoss() - getBruteLoss() //Xenos can only take brute and fire damage.
 	if(health <= 0)
