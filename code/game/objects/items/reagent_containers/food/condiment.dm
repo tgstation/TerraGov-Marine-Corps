@@ -56,7 +56,7 @@
 			return 1
 	return 0
 
-/obj/item/reagent_containers/food/condiment/attackby(obj/item/I as obj, mob/user as mob)
+/obj/item/reagent_containers/food/condiment/attackby(obj/item/I, mob/user)
 	return
 
 /obj/item/reagent_containers/food/condiment/afterattack(obj/target, mob/user , flag)
