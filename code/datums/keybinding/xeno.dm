@@ -21,6 +21,13 @@
 	description = "Drop weeds to help grow your hive."
 	keybind_signal = COMSIG_XENOABILITY_DROP_WEEDS
 
+/datum/keybinding/xeno/choose_weeds
+	hotkey_keys = list("Space")
+	name = "choose_weeds"
+	full_name = "Choose Weed"
+	description = "Choose what weed you will drop."
+	keybind_signal = COMSIG_XENOABILITY_CHOOSE_WEEDS
+
 /datum/keybinding/xeno/secrete_resin
 	name = "secrete_resin"
 	full_name = "Secrete Resin"
@@ -512,7 +519,7 @@
 	description = "Recall a target from netherspace, ending Banish's effect."
 	keybind_signal = COMSIG_XENOABILITY_RECALL
 
-/datum/keybinding/xeno/nightfall 
+/datum/keybinding/xeno/nightfall
 	name = "nightfall"
 	full_name = "King: Nightfall"
 	description = "Shut down all nearby electric lights for 10 seconds"

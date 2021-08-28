@@ -1810,7 +1810,7 @@ datum/ammo/bullet/revolver/tp44
 		if(is_type_in_typecache(O, GLOB.no_sticky_resin))
 			return
 
-	new /obj/effect/alien/resin/sticky/thin(T)
+	new /obj/effect/alien/resin/sticky(T)
 
 /datum/ammo/xeno/acid
 	name = "acid spit"
