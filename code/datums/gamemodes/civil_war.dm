@@ -43,6 +43,8 @@
 	)
 
 	win_points_needed = 1000
+	///How many points per zone to control, determined by the number of zones
+	var/points_per_zone_per_second = 1
 
 /datum/game_mode/civil_war/post_setup()
 	..()
@@ -55,7 +57,7 @@
 				area_to_lit.set_base_lighting(COLOR_WHITE, 255)
 			if(CEILING_METAL)
 				area_to_lit.set_base_lighting(COLOR_WHITE, 150)
-			if(CEILING_UNDERGROUND)
+			if(CEILING_UNDERGROUND to CEILING_UNDERGROUND_METAL)
 				area_to_lit.set_base_lighting(COLOR_WHITE, 50)
 	for(var/turf/T AS in GLOB.fob_sentries)
 		new /obj/item/weapon/gun/sentry/big_sentry/fob_sentry(T)
@@ -63,6 +65,7 @@
 		new /obj/item/weapon/gun/sentry/big_sentry/fob_sentry/rebel(T)
 	for(var/turf/T AS in GLOB.sensor_towers)
 		new /obj/structure/sensor_tower(T)
+	points_per_zone_per_second = 1 / GLOB.zones_to_control.len
 
 /datum/game_mode/civil_war/announce()
 	to_chat(world, "<b>The current game mode is - Civil War!</b>")
@@ -93,7 +96,7 @@
 
 	for(var/obj/structure/sensor_tower/sensor_tower AS in GLOB.zones_to_control)
 		if(sensor_tower.faction)
-			LAZYINCREMENT(points_per_faction, sensor_tower.faction)
+			LAZYSET(points_per_faction, sensor_tower.faction, LAZYACCESS(points_per_faction, sensor_tower.faction) + points_per_zone_per_second)
 
 	if(LAZYACCESS(points_per_faction, FACTION_TERRAGOV) >= win_points_needed)
 		if(LAZYACCESS(points_per_faction, FACTION_TERRAGOV_REBEL) >= win_points_needed)

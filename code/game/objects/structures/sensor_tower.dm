@@ -13,6 +13,7 @@
 /obj/structure/sensor_tower/Initialize()
 	. = ..()
 	GLOB.zones_to_control += src
+	update_icon()
 
 /obj/structure/sensor_tower/Destroy()
 	GLOB.zones_to_control -= src
