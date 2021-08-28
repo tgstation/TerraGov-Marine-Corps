@@ -12,7 +12,7 @@
 	max_integrity = 200
 	layer = RESIN_STRUCTURE_LAYER
 	tiles_with = list(/turf/closed/wall/resin, /turf/closed/wall/resin/membrane, /obj/structure/mineral_door/resin)
-	soft_armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
+	soft_armor = list("melee" = 0, "bullet" = 60, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
 
 
 /turf/closed/wall/resin/Initialize()
@@ -31,7 +31,7 @@
 
 
 /turf/closed/wall/resin/flamer_fire_act()
-	take_damage(50, BURN, "fire")
+	take_damage(15, BURN, "fire")
 
 
 /turf/closed/wall/resin/proc/thicken()
@@ -157,10 +157,10 @@
  * Regenerating walls that start with lower health, but grow to a much higher hp over time
  */
 /turf/closed/wall/resin/regenerating
-	max_integrity = 100
+	max_integrity = 150
 
 	/// Total health possible for a wall after regenerating at max health
-	var/max_upgradable_health = 600
+	var/max_upgradable_health = 300
 	/// How much the walls integrity heals per tick (5 seconds)
 	var/heal_per_tick = 25
 	/// How much the walls max_integrity increases per tick (5 seconds)
@@ -207,4 +207,4 @@
 
 /* Hivelord walls, they start off stronger */
 /turf/closed/wall/resin/regenerating/thick
-	max_integrity = 200
+	max_integrity = 250
