@@ -105,6 +105,7 @@
 #define SHUTTLE_TRIUMPH "triumph"
 #define SHUTTLE_CANTERBURY "tgs_canterbury"
 #define SHUTTLE_CAS "casplane"
+#define SHUTTLE_CAS_DOCK "cas_dock"
 #define SHUTTLE_BIGBURY "tgs_bigbury"
 #define SHUTTLE_ESCAPE_SHUTTLE "escape_shuttle"
 #define SHUTTLE_BIG_ERT "big_ert"
