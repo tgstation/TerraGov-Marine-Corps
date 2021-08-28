@@ -261,12 +261,12 @@
 
 	check_level_sanity()
 	update_icon()
-	return
 
 //Process reagents being input into the tray.
 /obj/machinery/portable_atmospherics/hydroponics/proc/process_reagents()
 
-	if(!reagents) return
+	if(!reagents)
+		return
 
 	if(reagents.total_volume <= 0)
 		return
@@ -342,11 +342,11 @@
 
 	check_level_sanity()
 	update_icon()
-	return
 
 //Clears out a dead plant.
 /obj/machinery/portable_atmospherics/hydroponics/proc/remove_dead(mob/user)
-	if(!user || !dead) return
+	if(!user || !dead)
+		return
 
 	if(closed_system)
 		to_chat(user, "You can't remove the dead plant while the lid is shut.")
@@ -362,7 +362,6 @@
 	to_chat(user, "You remove the dead plant from the [src].")
 	check_level_sanity()
 	update_icon()
-	return
 
 //Refreshes the icon and sets the luminosity
 /obj/machinery/portable_atmospherics/hydroponics/update_icon()
@@ -417,7 +416,7 @@
 			return
 
 	set_light(0)
-	return
+
 
 // If a weed growth is sufficient, this proc is called.
 /obj/machinery/portable_atmospherics/hydroponics/proc/weed_invasion()
@@ -425,7 +424,8 @@
 	//Remove the seed if something is already planted.
 	if(seed) seed = null
 	seed = GLOB.seed_types[pick(list("reishi","nettles","amanita","mushrooms","plumphelmet","towercap","harebells","weeds"))]
-	if(!seed) return //Weed does not exist, someone fucked up.
+	if(!seed)
+		return //Weed does not exist, someone fucked up.
 
 	dead = 0
 	age = 0
@@ -436,9 +436,8 @@
 	pestlevel = 0
 	sampled = 0
 	update_icon()
-	visible_message("<span class='notice'> [src] has been overtaken by [seed.display_name].</span>")
+	visible_message(span_notice(" [src] has been overtaken by [seed.display_name]."))
 
-	return
 
 /obj/machinery/portable_atmospherics/hydroponics/proc/mutate(severity)
 
@@ -458,7 +457,6 @@
 		seed = seed.diverge()
 	seed.mutate(severity,get_turf(src))
 
-	return
 
 /obj/machinery/portable_atmospherics/hydroponics/proc/check_level_sanity()
 	//Make sure various values are sane.
@@ -490,9 +488,8 @@
 	weedlevel = 0
 
 	update_icon()
-	visible_message("<span class='warning'> The <span class='notice'> [previous_plant] <span class='warning'> has suddenly mutated into <span class='notice'> [seed.display_name]!</span>")
+	visible_message(span_warning(" The <span class='notice'> [previous_plant] <span class='warning'> has suddenly mutated into <span class='notice'> [seed.display_name]!"))
 
-	return
 
 /obj/machinery/portable_atmospherics/hydroponics/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -543,7 +540,7 @@
 		var/obj/item/seeds/S = I
 
 		if(seed)
-			to_chat(user, "<span class='warning'>\The [src] already has seeds in it!</span>")
+			to_chat(user, span_warning("\The [src] already has seeds in it!"))
 			return
 
 		user.drop_held_item()
@@ -580,10 +577,10 @@
 
 	else if(istype(I, /obj/item/tool/minihoe))  // The minihoe
 		if(weedlevel <= 0)
-			to_chat(user, "<span class='warning'>This plot is completely devoid of weeds. It doesn't need uprooting.</span>")
+			to_chat(user, span_warning("This plot is completely devoid of weeds. It doesn't need uprooting."))
 			return
 
-		user.visible_message("<span class='warning'> [user] starts uprooting the weeds.</span>", "<span class='warning'> You remove the weeds from the [src].</span>")
+		user.visible_message(span_warning(" [user] starts uprooting the weeds."), span_warning(" You remove the weeds from the [src]."))
 		weedlevel = 0
 		update_icon()
 
@@ -627,17 +624,17 @@
 
 	else
 		if(seed && !dead)
-			to_chat(usr, "[src] has <span class='notice'> [seed.display_name] \black planted.</span>")
+			to_chat(usr, "[src] has [span_notice(" [seed.display_name] \black planted.")]")
 			if(health <= (seed.endurance / 2))
-				to_chat(usr, "The plant looks <span class='warning'> unhealthy.</span>")
+				to_chat(usr, "The plant looks [span_warning(" unhealthy.")]")
 		else
 			to_chat(usr, "[src] is empty.")
 		to_chat(usr, "Water: [round(waterlevel,0.1)]/100")
 		to_chat(usr, "Nutrient: [round(nutrilevel,0.1)]/10")
 		if(weedlevel >= 5)
-			to_chat(usr, "[src] is <span class='warning'> filled with weeds!</span>")
+			to_chat(usr, "[src] is [span_warning(" filled with weeds!")]")
 		if(pestlevel >= 5)
-			to_chat(usr, "[src] is <span class='warning'> filled with tiny worms!</span>")
+			to_chat(usr, "[src] is [span_warning(" filled with tiny worms!")]")
 
 
 /obj/machinery/portable_atmospherics/hydroponics/verb/close_lid()

@@ -1,15 +1,10 @@
 /mob/living/carbon/Initialize()
 	. = ..()
-	RegisterSignal(src, COMSIG_CARBON_DEVOURED_BY_XENO, .proc/on_devour_by_xeno)
 	adjust_nutrition_speed(0)
-
 
 /mob/living/carbon/Destroy()
 	if(afk_status == MOB_RECENTLY_DISCONNECTED)
 		set_afk_status(MOB_DISCONNECTED)
-	if(isxeno(loc))
-		var/mob/living/carbon/xenomorph/devourer = loc
-		devourer.do_regurgitate(src)
 	QDEL_NULL(back)
 	QDEL_NULL(internal)
 	QDEL_NULL(handcuffed)
@@ -18,7 +13,7 @@
 
 /mob/living/carbon/on_death()
 	if(species)
-		to_chat(src,"<b><span class='deadsay'><p style='font-size:1.5em'>[species.special_death_message]</p></span></b>")
+		to_chat(src,"<b>[span_deadsay("<p style='font-size:1.5em'>[species.special_death_message]</p>")]</b>")
 	return ..()
 
 /mob/living/carbon/Move(NewLoc, direct)
@@ -39,7 +34,7 @@
 		L.initiate_burst(src)
 
 
-/mob/living/carbon/attack_paw(mob/living/carbon/monkey/user)
+/mob/living/carbon/attack_paw(mob/living/carbon/human/user)
 	user.changeNext_move(CLICK_CD_MELEE) //Adds some lag to the 'attack'
 
 
@@ -54,9 +49,9 @@
 	playsound(loc, "sparks", 25, TRUE)
 	if (shock_damage > 10)
 		src.visible_message(
-			"<span class='warning'> [src] was shocked by the [source]!</span>", \
-			"<span class='danger'>You feel a powerful shock course through your body!</span>", \
-			"<span class='warning'> You hear a heavy electrical crack.</span>" \
+			span_warning(" [src] was shocked by the [source]!"), \
+			span_danger("You feel a powerful shock course through your body!"), \
+			span_warning(" You hear a heavy electrical crack.") \
 		)
 		if(isxeno(src))
 			if(mob_size != MOB_SIZE_BIG)
@@ -65,9 +60,9 @@
 			Paralyze(8 SECONDS)
 	else
 		src.visible_message(
-			"<span class='warning'> [src] was mildly shocked by the [source].</span>", \
-			"<span class='warning'> You feel a mild shock course through your body.</span>", \
-			"<span class='warning'> You hear a light zapping.</span>" \
+			span_warning(" [src] was mildly shocked by the [source]."), \
+			span_warning(" You feel a mild shock course through your body."), \
+			span_warning(" You hear a light zapping.") \
 		)
 
 	var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
@@ -82,7 +77,7 @@
 	if(wielded_item && (wielded_item.flags_item & WIELDED)) //this segment checks if the item in your hand is twohanded.
 		var/obj/item/weapon/twohanded/offhand/offhand = get_inactive_held_item()
 		if(offhand && (offhand.flags_item & WIELDED))
-			to_chat(src, "<span class='warning'>Your other hand is too busy holding \the [offhand.name]</span>")
+			to_chat(src, span_warning("Your other hand is too busy holding \the [offhand.name]"))
 			return
 		else
 			wielded_item.unwield(src) //Get rid of it.
@@ -124,7 +119,9 @@
 
 
 /mob/living/carbon/proc/do_vomit()
-	Stun(10 SECONDS)
+	adjust_stagger(3)
+	add_slowdown(3)
+
 	visible_message("<spawn class='warning'>[src] throws up!","<spawn class='warning'>You throw up!", null, 5)
 	playsound(loc, 'sound/effects/splat.ogg', 25, TRUE, 7)
 
@@ -144,7 +141,7 @@
 		return
 
 	if(IsAdminSleeping())
-		to_chat(shaker, "<span class='highdanger'>This player has been admin slept, do not interfere with them.</span>")
+		to_chat(shaker, span_highdanger("This player has been admin slept, do not interfere with them."))
 		return
 
 	if(lying_angle || IsSleeping())
@@ -171,8 +168,8 @@
 		playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, TRUE, 5)
 		return
 
-	shaker.visible_message("<span class='notice'>[shaker] hugs [src] to make [p_them()] feel better!</span>",
-		"<span class='notice'>You hug [src] to make [p_them()] feel better!</span>", null, 4)
+	shaker.visible_message(span_notice("[shaker] hugs [src] to make [p_them()] feel better!"),
+		span_notice("You hug [src] to make [p_them()] feel better!"), null, 4)
 	playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, TRUE, 5)
 
 
@@ -201,7 +198,7 @@
 
 /mob/living/carbon/throw_item(atom/target)
 	. = ..()
-	src.throw_mode_off()
+	throw_mode_off()
 	if(is_ventcrawling) //NOPE
 		return
 	if(usr.stat || !target)
@@ -216,6 +213,7 @@
 
 	var/spin_throw = TRUE
 
+	//todo port tg's on_thrown
 	if (istype(I, /obj/item/grab))
 		var/obj/item/grab/G = I
 		if(ismob(G.grabbed_thing))
@@ -231,11 +229,12 @@
 
 					log_combat(usr, M, "thrown", addition="from [start_T_descriptor] with the target [end_T_descriptor]")
 			else
-				to_chat(src, "<span class='warning'>You need a better grip!</span>")
+				to_chat(src, span_warning("You need a better grip!"))
 	else if(istype(I, /obj/item/riding_offhand))
 		var/obj/item/riding_offhand/riding_item = I
 		spin_throw = FALSE
 		thrown_thing = riding_item.rider
+		unbuckle_mob(riding_item.rider)
 		var/turf/start_T = get_turf(loc) //Get the start and target tile for the descriptors
 		var/turf/end_T = get_turf(target)
 		if(start_T && end_T)
@@ -246,7 +245,7 @@
 
 	//actually throw it!
 	if (thrown_thing)
-		visible_message("<span class='warning'>[src] has thrown [thrown_thing].</span>", null, null, 5)
+		visible_message(span_warning("[src] has thrown [thrown_thing]."), null, null, 5)
 
 		if(!lastarea)
 			lastarea = get_area(src.loc)
@@ -304,9 +303,9 @@
 	set category = "IC"
 
 	if(IsSleeping())
-		to_chat(src, "<span class='warning'>You are already sleeping</span>")
+		to_chat(src, span_warning("You are already sleeping"))
 		return
-	if(tgui_alert(src,"You sure you want to sleep for a while?","Sleep", list("Yes","No")) == "Yes")
+	if(tgui_alert(src, "You sure you want to sleep for a while?", "Sleep", list("Yes","No")) == "Yes")
 		SetSleeping(40 SECONDS) //Short nap
 
 
@@ -322,7 +321,7 @@
 	if(lying_angle)
 		return FALSE //can't slip if already lying down.
 	stop_pulling()
-	to_chat(src, "<span class='warning'>You slipped on \the [slip_source_name? slip_source_name : "floor"]!</span>")
+	to_chat(src, span_warning("You slipped on \the [slip_source_name? slip_source_name : "floor"]!"))
 	playsound(src.loc, 'sound/misc/slip.ogg', 25, 1)
 	Stun(stun_level)
 	Paralyze(weaken_level)
@@ -416,6 +415,10 @@
 	if(see_override)
 		see_invisible = see_override
 
+	if(HAS_TRAIT(src, TRAIT_SEE_IN_DARK))
+		see_in_dark = max(see_in_dark, 8)
+		lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
+
 	return ..()
 
 
@@ -467,7 +470,7 @@
 
 	SSticker.mode.transfer_xeno(picked, src)
 
-	to_chat(src, "<span class='xenoannounce'>We are an old xenomorph re-awakened from slumber!</span>")
+	to_chat(src, span_xenoannounce("We are an old xenomorph re-awakened from slumber!"))
 	playsound_local(get_turf(src), 'sound/effects/xeno_newlarva.ogg')
 
 
@@ -481,3 +484,11 @@
 	else if(. == UNCONSCIOUS)
 		adjust_blindness(-1)
 		disabilities &= ~DEAF
+
+/mob/living/carbon/human/set_stat(new_stat) //registers/unregisters critdragging signals
+	. = ..()
+	if(new_stat == UNCONSCIOUS)
+		RegisterSignal(src, COMSIG_MOVABLE_PULL_MOVED, /mob/living/carbon/human.proc/oncritdrag)
+		return
+	if(. == UNCONSCIOUS)
+		UnregisterSignal(src, COMSIG_MOVABLE_PULL_MOVED)

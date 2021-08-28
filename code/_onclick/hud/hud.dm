@@ -224,6 +224,7 @@
 	mymob.update_action_buttons(TRUE)
 	reorganize_alerts(screenmob)
 	mymob.reload_fullscreens()
+	update_parallax_pref(screenmob)
 
 	// ensure observers get an accurate and up-to-date view
 	if(!viewmob)
@@ -241,12 +242,14 @@
 	if(!.)
 		return
 	var/mob/screenmob = viewmob || mymob
+	if(!screenmob.client)
+		return FALSE
 	hidden_inventory_update(screenmob)
 
 	if(hud_version == HUD_STYLE_STANDARD)
-		mymob.client.screen += ammo
+		screenmob.client.screen += ammo
 		var/obj/screen/ammo/A = ammo
-		A.update_hud(mymob)
+		A.update_hud(screenmob)
 
 
 /datum/hud/proc/hidden_inventory_update(mob/viewer)

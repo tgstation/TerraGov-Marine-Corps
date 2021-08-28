@@ -36,7 +36,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 		return
 
 	if(!A || !IsValidSrc(A))
-		to_chat(starting_client, "<span class='warning'>Error: callproc_datum(): owner of proc no longer exists.</span>")
+		to_chat(starting_client, span_warning("Error: callproc_datum(): owner of proc no longer exists."))
 		return
 
 	log_admin("[key_name(usr)] called [A]'s [procname]() with [length(lst) ? "the arguments [list2params(lst)]" : "no arguments"].")
@@ -90,12 +90,16 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 
 	var/procpath
 	if(targetselected && !hascall(target, procname))
-		to_chat(usr, "<font color='red'>Error: callproc(): type [target.type] has no [proctype] named [procname].</font>")
+		to_chat(usr,
+			type = MESSAGE_TYPE_DEBUG,
+			html = "<font color='red'>Error: callproc(): type [target.type] has no [proctype] named [procname].</font>",)
 		return
 	else if(!targetselected)
 		procpath = text2path("/[proctype]/[procname]")
 		if(!procpath)
-			to_chat(usr, "<font color='red'>Error: callproc(): proc [procname] does not exist. (Did you forget the /proc/ part?)</font>")
+			to_chat(usr,
+				type = MESSAGE_TYPE_DEBUG,
+				html = "<font color='red'>Error: callproc(): proc [procname] does not exist. (Did you forget the /proc/ part?)</font>")
 			return
 
 	var/list/lst = usr.client.holder.get_callproc_args()
@@ -104,7 +108,9 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 
 	if(targetselected)
 		if(!target)
-			to_chat(usr, "<font color='red'>Error: callproc(): owner of proc no longer exists.</font>")
+			to_chat(usr,
+				type = MESSAGE_TYPE_DEBUG,
+				html = "<font color='red'>Error: callproc(): owner of proc no longer exists.</font>")
 			return
 		log_admin("[key_name(usr)] called [target]'s [procname]() with [length(lst) ? "the arguments [list2params(lst)]" : "no arguments"].")
 		message_admins("[ADMIN_TPMONTY(usr)] called [target]'s [procname]() with [length(lst) ? "the arguments [list2params(lst)]" : "no arguments"].")
@@ -180,7 +186,9 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 		return
 
 	if(!ispath(/mob) && !ispath(/obj))
-		to_chat(usr, "<span class = 'warning'>Only works for types of /obj or /mob.</span>")
+		to_chat(usr,
+			type = MESSAGE_TYPE_DEBUG,
+			html = "<span class = 'warning'>Only works for types of /obj or /mob.</span>")
 		return
 
 	var/hsbitem = input(usr, "Choose an object to delete.", "Delete:") as null|anything in typesof(chosen_deletion)
@@ -401,7 +409,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 		return
 
 	if(!CONFIG_GET(flag/sql_enabled))
-		to_chat(usr, "<span class='adminnotice'>The Database is not enabled!</span>")
+		to_chat(usr, span_adminnotice("The Database is not enabled!"))
 		return
 
 	if(SSdbcore.IsConnected(TRUE))
@@ -430,7 +438,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 	set name = "View Runtimes"
 	set desc = "Open the runtime Viewer"
 
-	if(!check_rights(R_DEBUG))
+	if(!check_rights(R_RUNTIME|R_DEBUG))
 		return
 
 	GLOB.error_cache.show_to(usr.client)
@@ -647,6 +655,8 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 	for(var/path in SSgarbage.items)
 		var/datum/qdel_item/I = SSgarbage.items[path]
 		dellog += "<li><u>[path]</u><ul>"
+		if (I.qdel_flags & QDEL_ITEM_SUSPENDED_FOR_LAG)
+			dellog += "<li>SUSPENDED FOR LAG</li>"
 		if (I.failures)
 			dellog += "<li>Failures: [I.failures]</li>"
 		dellog += "<li>qdel() Count: [I.qdels]</li>"
@@ -654,6 +664,9 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 		if (I.hard_deletes)
 			dellog += "<li>Total Hard Deletes [I.hard_deletes]</li>"
 			dellog += "<li>Time Spent Hard Deleting: [I.hard_delete_time]ms</li>"
+			dellog += "<li>Highest Time Spent Hard Deleting: [I.hard_delete_max]ms</li>"
+			if (I.hard_deletes_over_threshold)
+				dellog += "<li>Hard Deletes Over Threshold: [I.hard_deletes_over_threshold]</li>"
 		if (I.slept_destroy)
 			dellog += "<li>Sleeps: [I.slept_destroy]</li>"
 		if (I.no_respect_force)

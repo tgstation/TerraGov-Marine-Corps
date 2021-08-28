@@ -26,7 +26,7 @@
 	update_icon()
 
 
-/obj/machinery/button/update_icon()
+/obj/machinery/button/update_icon_state()
 	if(machine_stat & (NOPOWER|BROKEN))
 		icon_state = "[initial(icon_state)]-p"
 	else
@@ -46,7 +46,7 @@
 		return
 
 	if(!allowed(user))
-		to_chat(user, "<span class='danger'>Access Denied</span>")
+		to_chat(user, span_danger("Access Denied"))
 		flick("[initial(icon_state)]-denied", src)
 		return
 
@@ -105,7 +105,9 @@
 	resistance_flags = RESIST_ALL
 	req_access = list(ACCESS_MARINE_DROPSHIP)
 
-
+/obj/machinery/button/door/open_only/landing_zone/pulsed()
+	. = ..()
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_OPEN_SHUTTERS_EARLY)
 
 /obj/machinery/button/door/open_only/landing_zone/lz2
 	id = "landing_zone_2"
@@ -189,7 +191,7 @@
 	if(!istype(user))
 		return
 	if(machine_stat & (NOPOWER|BROKEN))
-		to_chat(user, "<span class='warning'>[src] doesn't seem to be working.</span>")
+		to_chat(user, span_warning("[src] doesn't seem to be working."))
 		return
 	if(active)
 		return
@@ -206,7 +208,7 @@
 	active = FALSE
 	update_icon()
 
-/obj/machinery/medical_help_button/update_icon()
+/obj/machinery/medical_help_button/update_icon_state()
 	if(machine_stat & NOPOWER)
 		icon_state = "doorctrl-p"
 	else

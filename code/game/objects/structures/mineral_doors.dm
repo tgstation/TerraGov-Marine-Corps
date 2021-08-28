@@ -12,6 +12,7 @@
 
 	icon = 'icons/obj/doors/mineral_doors.dmi'
 	icon_state = "metal"
+	resistance_flags = DROPSHIP_IMMUNE
 
 	var/mineralType = "metal"
 	var/state = D_CLOSED
@@ -26,12 +27,11 @@
 
 
 /obj/structure/mineral_door/Bumped(atom/user)
-	..()
+	. = ..()
 	if(!state)
 		return TryToSwitchState(user)
-	return
 
-/obj/structure/mineral_door/attack_paw(mob/living/carbon/monkey/user)
+/obj/structure/mineral_door/attack_paw(mob/living/carbon/human/user)
 	return TryToSwitchState(user)
 
 /obj/structure/mineral_door/attack_hand(mob/living/user)
@@ -108,16 +108,15 @@
 				else
 					multiplier += PLASMACUTTER_RESIN_MULTIPLIER * 0.5 //Plasma cutters are particularly good at destroying resin structures.
 				P.cut_apart(user, src.name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD) //Minimal energy cost.
-		if(W.damtype == "fire" && is_resin) //Burn damage deals extra vs resin structures (mostly welders).
+		if(W.damtype == BURN && is_resin) //Burn damage deals extra vs resin structures (mostly welders).
 			multiplier += 1
 		user.do_attack_animation(src, used_item = W)
 		hardness -= W.force * multiplier * 0.01
 		if(!P)
 			to_chat(user, "You hit the [name] with your [W.name]!")
 		CheckHardness()
-	else
-		attack_hand(user)
-	return
+		return
+	attack_hand(user)
 
 /obj/structure/mineral_door/proc/CheckHardness()
 	if(hardness <= 0)

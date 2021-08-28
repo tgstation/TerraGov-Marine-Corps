@@ -1,0 +1,187 @@
+2019-04-01:
+  Alterist:
+  - imageadd: Fixes revolver sprite
+  Hughgent:
+  - rscadd: knife attachments
+  JJRcop:
+  - rscadd: SDQL2 now features a list constructor that takes a selector query.
+  - tweak: The MAP statement will unwrap lone lists that are the only result. This
+      means the parent query begins directly iterating over the list rather than a
+      list that contains the list.
+  Jalordon:
+  - bugfix: Leader pheromones now function again while the queen is ovipositored
+  by Surrealistik:
+  - balance: ERT reinforcements now scale in proportion to the difference between
+      the number of xenos and marines. Further an ERT call will fail if humans outnumber
+      Xenos more than 3 to 1.
+  - tweak: Smartgun base accuracy multiplier slightly increased, from 1.05 to 1.1
+2019-04-02:
+  Alterist:
+  - bugfix: corrercts SD maint walls being outer walls to regular hull walls
+  LaKiller8:
+  - rscdel: All of predator code has been purged.
+  Shadow-Quill:
+  - bugfix: Fixes Oxycodone OD.
+2019-04-03:
+  Alterist:
+  - balance: SL armor is now lighter, this means that SLs should now be able to keep
+      up with all members of their squad
+  Ondrej008:
+  - rscadd: Adds boots, helmets, armour, headset for the Imperial boys.
+  - rscadd: Guardsmen ERT
+  Rohesie:
+  - balance: Doctor medical skill buffed to CMO/Synth level, so they are all on par.
+2019-04-04:
+  Ghommie:
+  - imageadd: Added directional sprites for several wall objects, such as APC and
+      alarms.
+  - rscadd: Fire alarms' color display will change accordingly to the alert level
+      now.
+  - bugfix: Fixes mobs/objects with larger sprites being possibly seen over an opaque
+      atom if standing by its corners. (e.g. an alien queen behind a wall).
+  Jalordon:
+  - bugfix: Xeno tail critical hits now use the proper config value, critical hit
+      cooldown changed to 3 seconds from 2.5.
+  Rohesie:
+  - rscdel: Removed autopsy.
+  by Surrealistik:
+  - tweak: Slow stacks on laser targeted hits reduced by 1.
+  - balance: Slow stacks overlap rather than stacking; when receiving slow stacks,
+      the amount is set to the higher of current stacks and stacks to be added.
+  - balance: Crusher is immune to receiving further slow and stagger stacks while
+      at half its maximum charge speed or higher.
+  spookydonut:
+  - bugfix: Pointblank attacks with guns without ammo no longer does double damage
+2019-04-05:
+  Ghommie:
+  - bugfix: Fixes a missing inhand for oxygen first aid kits and some related pixel
+      precision dilemmas.
+  - imageadd: Adds an inhand for radiation first aid kits.
+  by Surrealistik:
+  - tweak: Projectile speed parameters increased by +1 across the board (they will
+      travel +1 tile per decisecond).
+  - tweak: Barrel Charger projectile speed adjustment increased from +1 to +2. Extended
+      Barrel adjustment increased from +0.1 to +1. Suppressor adjustment decreased
+      from -0.1 to -1.
+  by Surrealistk:
+  - tweak: Tunnel cooldown reduced from 4 minutes to 2. Tunnels are easier to destroy
+      with grenades (2 frag grenades required). Tunnel travel time is now proportionate
+      to distance between tunnels with a minimum travel time of 2 seconds, and a maximum
+      of 4 or 6 for large Xenos.
+  - tweak: If a tunnel is destroyed, its corresponding tunnel will also be destroyed.
+  - tweak: Hivelords can dismantle their own tunnels by attacking them while on Harm
+      intent.
+  - balance: Hivelords may only have up to 4 tunnel sets in play at once (the current
+      amount is displayed in the Status panel). Tunnel sets created beyond this amount
+      will destroy the oldest tunnel set.
+  - tweak: Increased slow down stacks from sticky spit hits.
+  spookydonut:
+  - bugfix: defilers can now vent crawl
+  - bugfix: drones evolving to queen should no longer get the incorrect failure message.
+2019-04-06:
+  Ghommie:
+  - bugfix: Fixes big grenade boxes turning invisible upon update_icon().
+  - bugfix: Fixes chemical grenades not initializing properly and thus be uninteractable.
+2019-04-07:
+  Menshin:
+  - bugfix: Xeno pen cells are accessible again
+  - bugfix: acid should now properly work again
+2019-04-23:
+  Anonmare:
+  - rscadd: Adds the corpsmen webbing, a vest with one extra slot but can't carry
+      non-medical equipment.
+  - tweak: Renames the white webbing vest to the surgical vest and allows it to carry
+      surgical masks and gloves
+  KitKetKetrai:
+  - balance: Acid spit is now cheaper. Praetorians can spit acid longer, whilst spitters
+      get lower plasma and regen to compensate. This should make it easier for drones
+      and hivelords to keep spitters topped off.
+  MoXuT0:
+  - soundadd: Added sound for throwing stuff
+2019-04-25:
+  Alterist:
+  - balance: Removed some timegates on Prison, mostly ones near the research branch
+  - bugfix: Fixed some issues with doors with walls on Prison, removed a bunch of
+      unnecessary wiring
+  Jalordon:
+  - tweak: focus order's sprite is now a crosshair instead of a '!', and order issuers
+      now use correctly sprited text bubbles.
+  MoXuT0:
+  - bugfix: Fixed holsters having different colors in suit slot and added some missing
+      ones.
+  grinkgo:
+  - rscadd: You can now headpat by using help intent on someone's head
+  - tweak: help intent on a xeno changed from "poke" to "pet"
+2019-04-26:
+  Alterist:
+  - bugfix: Fixed Dropship hanger control room access
+  Ghommie:
+  - bugfix: fixes synthetics being stingable by defilers.
+  - bugfix: fixing defilers being unable to use the larval growth serum on nested
+      hosts.
+  - bugfix: Fixes a couple old procs not respecting the INDESTRUCTIBLE and UNACIDABLE
+      resistance flags. fix Fixes things going through prison hull windows frames
+      and shutters.
+  - bugfix: Possibly fixes a runtime with boiler smokes cause projectiles live and
+      die fast.
+  Ketrai:
+  - balance: Removes queen neurotoxin, adds queen sticky spit. Queen acid spit is
+      now stronger.
+  MoXuT0:
+  - bugfix: Powerpack inhand icon is now proper color.
+  - imageadd: Added sprites for different nade boxes.
+  Rohesie:
+  - bugfix: Webbings can once again hold splints, kits and other stacks that are not
+      razorwire, sheets, filled sandbags or snow.
+  by Surrealistik:
+  - tweak: RNG on grab breaking removed; now whenever you resist, you increment your
+      grab resist level by 1 until it exceeds the level of a grab, thereby breaking
+      it.
+  - tweak: 'Hunters gain armor penetration on stationary/stalk sneak attacks: 20%
+      while on harm intent, and 50% while on disarm intent.'
+  - tweak: Stagger, slowdown stacks decreased by 33% for running sneak attacks. Stagger
+      and slowdown stacks increased by 33% for stationary/stalk sneak attacks. Knockout
+      stacks reduced by 50% for running sneak attacks.
+  - tweak: Hunter sneak attack multiplier now declines by 0.2 per tile moved while
+      running to a minimum of 1.25x. This is recovered at a rate of +1 per tick while
+      stationary/destealthed, or per tile moved while walking/stalking.
+  psykzz:
+  - tweak: Xeno huds are now rounded up.
+2019-04-27:
+  Ghommie:
+  - balance: Reverts the way smoke opaqueness works to make smaller clouds decent
+      at shrouding line of sight again.
+  Rohesie:
+  - balance: You can no longer build on water tiles.
+2019-04-28:
+  Ghommie:
+  - bugfix: Fixes a couple things about the APC, such as overlays and their examine()
+      act.
+  psykzz:
+  - tweak: Queen's screech is no longer blocked by LoS.
+  - tweak: Moves Game Preferences to Preferences tab
+2019-04-29:
+  Ghommie:
+  - rscadd: Gives the CSE job outfit superior welding googles with less vision burden.
+  - tweak: The other job outfits' welding googles now initialize pushed up.
+  - imageadd: Ports in some loosely adapted bs12 on-mob beret sprites to replace some
+      of the older ones.
+  - balance: sligthy buffed boiler neurotoxin smoke to account the fast depletion
+      rate of the associated chemical.
+  - code_imp: Deleting some remaining orphan data corcerning predators.
+2019-04-30:
+  Ghommie:
+  - bugfix: 'Fixes some xeno interaction with closets: Harm intent will now properly
+      break closets open, while locked secure closets/crates won''t be manually unlockable
+      by them anymore.'
+  - bugfix: Fixes the rocket launcher backblast smoke being located on the user's
+      turf instead of the tile behind.
+  LaKiller8:
+  - tweak: Job restrictions have been enabled, with 3 hours for CPT, Synth, SL, FCDR,
+      one hour for head departments and the rest of command, and one hour for the
+      xeno queen
+  MoXuT0:
+  - imageadd: Corpsman and engineer satchels now look different from regular satchel.
+  psykzz:
+  - rscadd: Ghosts will automatically takeover available Xenos if their preferences
+      allow it.

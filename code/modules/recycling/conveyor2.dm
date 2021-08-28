@@ -133,7 +133,7 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 
 	//get the first 30 items in contents
 	var/turf/locturf = loc
-	var/list/items = locturf.contents - src - locturf.lighting_object
+	var/list/items = locturf.contents - src
 	if(!LAZYLEN(items))//Dont do anything at all if theres nothing there but the conveyor
 		return
 	var/list/affecting
@@ -161,12 +161,12 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 	conveying = FALSE
 
 /obj/machinery/conveyor/crowbar_act(mob/living/user, obj/item/I)
-	user.visible_message("<span class='notice'>[user] struggles to pry up \the [src] with \the [I].</span>", \
-	"<span class='notice'>You struggle to pry up \the [src] with \the [I].</span>")
+	user.visible_message(span_notice("[user] struggles to pry up \the [src] with \the [I]."), \
+	span_notice("You struggle to pry up \the [src] with \the [I]."))
 	if(I.use_tool(src, user, 40, volume=40))
 		if(!(machine_stat & BROKEN))
 			new /obj/item/stack/conveyor(loc, 1, TRUE, id)
-		to_chat(user, "<span class='notice'>You remove [src].</span>")
+		to_chat(user, span_notice("You remove [src]."))
 		qdel(src)
 	return TRUE
 
@@ -176,7 +176,7 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 	I.play_tool_sound(src)
 	setDir(turn(dir,-45))
 	update_move_direction()
-	to_chat(user, "<span class='notice'>You rotate [src].</span>")
+	to_chat(user, span_notice("You rotate [src]."))
 	return TRUE
 
 /obj/machinery/conveyor/screwdriver_act(mob/living/user, obj/item/I)
@@ -184,7 +184,7 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 		return TRUE
 	verted = verted * -1
 	update_move_direction()
-	to_chat(user, "<span class='notice'>You reverse [src]'s direction.</span>")
+	to_chat(user, span_notice("You reverse [src]'s direction."))
 	return TRUE
 
 /obj/machinery/conveyor/attackby(obj/item/I, mob/living/user, def_zone)
@@ -330,7 +330,7 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 /obj/machinery/conveyor_switch/crowbar_act(mob/living/user, obj/item/I)
 	var/obj/item/conveyor_switch_construct/C = new/obj/item/conveyor_switch_construct(src.loc)
 	C.id = id
-	to_chat(user, "<span class='notice'>You detach the conveyor switch.</span>")
+	to_chat(user, span_notice("You detach the conveyor switch."))
 	qdel(src)
 
 
@@ -359,7 +359,7 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 /obj/item/conveyor_switch_construct/attack_self(mob/user)
 	for(var/obj/item/stack/conveyor/C in view())
 		C.id = id
-	to_chat(user, "<span class='notice'>You have linked all nearby conveyor belt assemblies to this switch.</span>")
+	to_chat(user, span_notice("You have linked all nearby conveyor belt assemblies to this switch."))
 
 /obj/item/conveyor_switch_construct/afterattack(atom/A, mob/user, proximity)
 	. = ..()
@@ -397,7 +397,7 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 		return
 	var/cdir = get_dir(A, user)
 	if(A == user.loc)
-		to_chat(user, "<span class='warning'>You cannot place a conveyor belt under yourself!</span>")
+		to_chat(user, span_warning("You cannot place a conveyor belt under yourself!"))
 		return
 	new/obj/machinery/conveyor(A, cdir, id)
 	use(1)
@@ -405,7 +405,7 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 /obj/item/stack/conveyor/attackby(obj/item/I, mob/user, params)
 	..()
 	if(istype(I, /obj/item/conveyor_switch_construct))
-		to_chat(user, "<span class='notice'>You link the switch to the conveyor belt assembly.</span>")
+		to_chat(user, span_notice("You link the switch to the conveyor belt assembly."))
 		var/obj/item/conveyor_switch_construct/C = I
 		id = C.id
 

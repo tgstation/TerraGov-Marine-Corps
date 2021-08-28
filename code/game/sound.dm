@@ -132,7 +132,7 @@ A good representation is: 'byond applies a volume reduction to the sound every X
 		music_extra_data["start"] = text2num(SSticker.login_music[2])
 		music_extra_data["end"] = text2num(SSticker.login_music[3])
 
-		chatOutput.sendMusic(web_sound_url,music_extra_data)
+		tgui_panel?.play_music(web_sound_url,music_extra_data)
 
 /client/proc/play_title_music_legacy(vol = 85)
 	if(!SSticker?.login_music)
@@ -145,7 +145,7 @@ A good representation is: 'byond applies a volume reduction to the sound every X
 ///Play sound for all online mobs on a given Z-level. Good for ambient sounds.
 /proc/playsound_z(z, soundin, _volume)
 	soundin = sound(get_sfx(soundin), channel = SSsounds.random_available_channel(), volume = _volume)
-	for(var/mob/M as() in GLOB.player_list)
+	for(var/mob/M AS in GLOB.player_list)
 		if(isnewplayer(M))
 			continue
 		if (M.z == z)
@@ -154,20 +154,20 @@ A good representation is: 'byond applies a volume reduction to the sound every X
 ///Play a sound for all cliented humans and ghosts by zlevel
 /proc/playsound_z_humans(z, soundin, _volume)
 	soundin = sound(get_sfx(soundin), channel = SSsounds.random_available_channel(), volume = _volume)
-	for(var/mob/living/carbon/human/H as() in GLOB.humans_by_zlevel["[z]"])
+	for(var/mob/living/carbon/human/H AS in GLOB.humans_by_zlevel["[z]"])
 		if(H.client)
 			SEND_SOUND(H, soundin)
-	for(var/mob/dead/observer/O as() in GLOB.observers_by_zlevel["[z]"])
+	for(var/mob/dead/observer/O AS in GLOB.observers_by_zlevel["[z]"])
 		if(O.client)
 			SEND_SOUND(O, soundin)
 
 ///Play a sound for all cliented xenos and ghosts by hive on a zlevel
 /proc/playsound_z_xenos(z, soundin, _volume, hive_type = XENO_HIVE_NORMAL)
 	soundin = sound(get_sfx(soundin), channel = SSsounds.random_available_channel(), volume = _volume)
-	for(var/mob/living/carbon/xenomorph/X as() in GLOB.hive_datums[hive_type].xenos_by_zlevel["[z]"])
+	for(var/mob/living/carbon/xenomorph/X AS in GLOB.hive_datums[hive_type].xenos_by_zlevel["[z]"])
 		if(X.client)
 			SEND_SOUND(X, soundin)
-	for(var/mob/dead/observer/O as() in GLOB.observers_by_zlevel["[z]"])
+	for(var/mob/dead/observer/O AS in GLOB.observers_by_zlevel["[z]"])
 		if(O.client)
 			SEND_SOUND(O, soundin)
 
@@ -199,10 +199,14 @@ A good representation is: 'byond applies a volume reduction to the sound every X
 			S = pick('sound/weapons/genhit1.ogg', 'sound/weapons/genhit2.ogg', 'sound/weapons/genhit3.ogg')
 		if("pageturn")
 			S = pick('sound/effects/pageturn1.ogg', 'sound/effects/pageturn2.ogg','sound/effects/pageturn3.ogg')
+		if("gasbreath")
+			S = pick('sound/effects/gasmaskbreath.ogg', 'sound/effects/gasmaskbreath2.ogg')
 		if("terminal_type")
 			S = pick('sound/machines/terminal_button01.ogg', 'sound/machines/terminal_button02.ogg', 'sound/machines/terminal_button03.ogg', \
 				'sound/machines/terminal_button04.ogg', 'sound/machines/terminal_button05.ogg', 'sound/machines/terminal_button06.ogg', \
 				'sound/machines/terminal_button07.ogg', 'sound/machines/terminal_button08.ogg')
+		if("vending")
+			S = pick('sound/machines/vending_cans.ogg', 'sound/machines/vending_drop.ogg')
 		// Weapons/bullets
 		if("ballistic_hit")
 			S = pick('sound/bullets/bullet_impact1.ogg','sound/bullets/bullet_impact2.ogg','sound/bullets/bullet_impact3.ogg')

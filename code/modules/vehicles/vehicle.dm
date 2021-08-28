@@ -24,6 +24,8 @@
 
 	var/obj/item/cell/cell
 	var/charge_use = 5	//set this to adjust the amount of power the vehicle uses per move
+	///Temporary additional delay for the next move
+	var/next_move_slowdown = 0
 
 //-------------------------------------------
 // Standard procs
@@ -45,12 +47,12 @@
 	if(direction in GLOB.diagonals)
 		return FALSE
 
-	if(world.time < last_move_time + move_delay)
+	if(world.time < last_move_time + move_delay + next_move_slowdown)
 		return
-
+	next_move_slowdown = 0
 	if(powered)
 		if(!on)
-			to_chat(user, "<span class='warning'>Turn on the engine first.</span>")
+			to_chat(user, span_warning("Turn on the engine first."))
 			return FALSE
 		if(cell && cell.charge < charge_use)
 			turn_off()
@@ -77,7 +79,7 @@
 
 		open = !open
 		update_icon()
-		to_chat(user, "<span class='notice'>Maintenance panel is now [open ? "opened" : "closed"].</span>")
+		to_chat(user, span_notice("Maintenance panel is now [open ? "opened" : "closed"]."))
 
 	else if(iscrowbar(I) && cell && open)
 		remove_cell(user)
@@ -86,20 +88,32 @@
 		insert_cell(I, user)
 
 	else if(iswelder(I))
+		if(user.do_actions)
+			to_chat(user, span_notice("You are too busy doing something else"))
+			return
 		var/obj/item/tool/weldingtool/WT = I
+		if(user.skills.getRating("engineer") < SKILL_ENGINEER_ENGI)
+			user.visible_message("<span class='notice'>[user] fumbles around figuring out [src]'s internals.</span>",
+			"<span class='notice'>You fumble around figuring out [src]'s internals.</span>")
+			var/fumbling_time = 10 SECONDS - 2 SECONDS * user.skills.getRating("engineer")
+			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED, extra_checks = CALLBACK(WT, /obj/item/tool/weldingtool/proc/isOn)))
+				return FALSE
+
 		if(!WT.remove_fuel(1, user))
 			return
 
 		if(obj_integrity >= max_integrity)
-			to_chat(user, "<span class='notice'>[src] does not need repairs.</span>")
+			to_chat(user, span_notice("[src] does not need repairs."))
 			return
+		playsound(loc, 'sound/items/weldingtool_weld.ogg', 25)
 
-		user.visible_message("<span class='notice'>[user] starts to repair [src].</span>","<span class='notice'>You start to repair [src]</span>")
+		user.visible_message(span_notice("[user] starts to repair [src]."),span_notice("You start to repair [src]"))
 		if(!do_after(user, 20, TRUE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(WT, /obj/item/tool/weldingtool/proc/isOn)))
 			return
+		playsound(loc, 'sound/items/welder2.ogg', 25, TRUE)
 
-		repair_damage(10)
-		user.visible_message("<span class='notice'>[user] repairs [src].</span>","<span class='notice'>You repair [src].</span>")
+		repair_damage(50)
+		user.visible_message(span_notice("[user] repairs [src]."), span_notice("You repair [src]."))
 
 
 /obj/vehicle/ex_act(severity)
@@ -144,7 +158,7 @@
 
 /obj/vehicle/deconstruct(disassembled = TRUE)
 	if(!disassembled)
-		visible_message("<span class='danger'>[src] blows apart!</span>")
+		visible_message(span_danger("[src] blows apart!"))
 
 	new /obj/item/stack/rods(loc)
 	new /obj/item/stack/rods(loc)
@@ -206,13 +220,13 @@
 	H.transferItemToLoc(C, src)
 	set_cell(C)
 	powercheck()
-	to_chat(usr, "<span class='notice'>You install [C] in [src].</span>")
+	to_chat(usr, span_notice("You install [C] in [src]."))
 
 /obj/vehicle/proc/remove_cell(mob/living/carbon/human/H)
 	if(!cell)
 		return
 
-	to_chat(usr, "<span class='notice'>You remove [cell] from [src].</span>")
+	to_chat(usr, span_notice("You remove [cell] from [src]."))
 	cell.forceMove(get_turf(H))
 	H.put_in_hands(cell)
 	set_cell(null)
@@ -220,7 +234,6 @@
 
 /obj/vehicle/proc/RunOver(mob/living/carbon/human/H)
 	return		//write specifics for different vehicles
-
 
 /obj/vehicle/post_buckle_mob(mob/buckling_mob)
 	. = ..()

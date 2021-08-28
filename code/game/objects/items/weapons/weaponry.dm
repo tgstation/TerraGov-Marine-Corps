@@ -12,7 +12,7 @@
 	attack_verb = list("banned")
 
 /obj/item/weapon/banhammer/suicide_act(mob/user)
-	user.visible_message("<span class='danger'>[user] is hitting [p_them()]self with the [name]! It looks like [user.p_theyre()] trying to ban [p_them()]self from life.</span>")
+	user.visible_message(span_danger("[user] is hitting [p_them()]self with the [name]! It looks like [user.p_theyre()] trying to ban [p_them()]self from life."))
 	return (BRUTELOSS|FIRELOSS|TOXLOSS|OXYLOSS)
 
 /obj/item/weapon/nullrod
@@ -28,7 +28,7 @@
 	w_class = WEIGHT_CLASS_SMALL
 
 /obj/item/weapon/nullrod/suicide_act(mob/user)
-	user.visible_message("<span class='danger'>[user] is impaling [p_them()]self with the [name]! It looks like [user.p_theyre()] trying to commit suicide.</span>")
+	user.visible_message(span_danger("[user] is impaling [p_them()]self with the [name]! It looks like [user.p_theyre()] trying to commit suicide."))
 	return (BRUTELOSS|FIRELOSS)
 
 /obj/item/weapon/harpoon
@@ -87,7 +87,7 @@
 /obj/item/weapon/butterfly/attack_self(mob/user)
 	active = !active
 	if(active)
-		to_chat(user, "<span class='notice'>You flip out your [src].</span>")
+		to_chat(user, span_notice("You flip out your [src]."))
 		playsound(user, 'sound/weapons/flipblade.ogg', 15, 1)
 		force = 15
 		throwforce = 12
@@ -98,7 +98,7 @@
 		w_class = WEIGHT_CLASS_NORMAL
 		attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 		return
-	to_chat(user, "<span class='notice'>The [src] can now be concealed.</span>")
+	to_chat(user, span_notice("The [src] can now be concealed."))
 	force = initial(force)
 	edge = FALSE
 	sharp = IS_NOT_SHARP_ITEM
@@ -111,16 +111,6 @@
 	name = "switchblade"
 	desc = "A classic switchblade with gold engraving. Just holding it makes you feel like a gangster."
 	icon_state = "switchblade"
-
-/obj/item/weapon/butterfly/katana
-	name = "katana"
-	desc = "A ancient weapon from Japan."
-	icon_state = "samurai"
-	force = 50
-
-
-
-
 
 
 /obj/item/weapon/wirerod
@@ -142,7 +132,7 @@
 		var/obj/item/weapon/twohanded/spear/S = new
 
 		user.put_in_hands(S)
-		to_chat(user, "<span class='notice'>You fasten the glass shard to the top of the rod with the cable.</span>")
+		to_chat(user, span_notice("You fasten the glass shard to the top of the rod with the cable."))
 		qdel(I)
 		qdel(src)
 
@@ -150,7 +140,7 @@
 		var/obj/item/weapon/baton/cattleprod/P = new
 
 		user.put_in_hands(P)
-		to_chat(user, "<span class='notice'>You fasten the wirecutters to the top of the rod with the cable, prongs outward.</span>")
+		to_chat(user, span_notice("You fasten the wirecutters to the top of the rod with the cable, prongs outward."))
 		qdel(I)
 		qdel(src)
 

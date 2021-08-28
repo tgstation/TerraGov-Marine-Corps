@@ -42,15 +42,15 @@
 		return
 
 	if(istype(I, /obj/item/evidencebag))
-		to_chat(user, "<span class='notice'>You find putting an evidence bag in another evidence bag to be slightly absurd.</span>")
+		to_chat(user, span_notice("You find putting an evidence bag in another evidence bag to be slightly absurd."))
 		return
 
 	if(I.w_class > 3)
-		to_chat(user, "<span class='notice'>[I] won't fit in [src].</span>")
+		to_chat(user, span_notice("[I] won't fit in [src]."))
 		return
 
 	if(contents.len)
-		to_chat(user, "<span class='notice'>[src] already has something inside it.</span>")
+		to_chat(user, span_notice("[src] already has something inside it."))
 		return
 
 	user.visible_message("[user] puts [I] into [src]", "You put [I] inside [src].",\
@@ -72,7 +72,7 @@
 	I.loc = src
 	stored_item = I
 	w_class = I.w_class
-	return
+
 
 
 /obj/item/evidencebag/attack_self(mob/user as mob)
@@ -91,11 +91,11 @@
 	else
 		to_chat(user, "[src] is empty.")
 		icon_state = "evidenceobj"
-	return
+
 
 /obj/item/evidencebag/examine(mob/user)
-	..()
-	if (stored_item) stored_item.examine(user)
+	. = ..()
+	stored_item?.examine(user)
 
 /obj/item/storage/box/evidence
 	name = "evidence bag box"

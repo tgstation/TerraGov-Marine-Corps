@@ -59,7 +59,7 @@
 
 					if(ispath(mobtype, /mob/living/carbon/human) || ispath(mobtype, /mob/living/brain))
 						race = "Humanoid"
-					else if(ispath(mobtype, /mob/living/carbon/monkey))
+					else if(ispath(mobtype, /mob/living/carbon/human/species/monkey))
 						race = "Monkey"
 					// sometimes M gets deleted prematurely for AIs... just check the job
 					else if(ispath(mobtype, /mob/living/silicon) || C.parameters["job"] == "AI")
@@ -141,7 +141,7 @@
 
 	else if(href_list["delete"])
 		if(!allowed(usr))
-			to_chat(usr, "<span class='danger'>ACCESS DENIED.</span>")
+			to_chat(usr, span_danger("ACCESS DENIED."))
 			return
 
 		if(SelectedServer)

@@ -156,7 +156,7 @@
 			src.reagent_glass.loc = get_turf(src)
 			src.reagent_glass = null
 		else
-			to_chat(usr, "<span class='notice'>You cannot eject the beaker because the panel is locked.</span>")
+			to_chat(usr, span_notice("You cannot eject the beaker because the panel is locked."))
 
 	else if ((href_list["togglevoice"]) && (!src.locked || issilicon(usr)))
 		src.shut_up = !src.shut_up
@@ -173,23 +173,23 @@
 	if(istype(I, /obj/item/card/id))
 		if(allowed(user) && !open)
 			locked = !locked
-			to_chat(user, "<span class='notice'>Controls are now [src.locked ? "locked." : "unlocked."]</span>")
+			to_chat(user, span_notice("Controls are now [src.locked ? "locked." : "unlocked."]"))
 			updateUsrDialog()
 		else if(open)
-			to_chat(user, "<span class='warning'>Please close the access panel before locking it.</span>")
+			to_chat(user, span_warning("Please close the access panel before locking it."))
 		else
-			to_chat(user, "<span class='warning'>Access denied.</span>")
+			to_chat(user, span_warning("Access denied."))
 
 	else if(istype(I, /obj/item/reagent_containers/glass))
 		if(locked)
-			to_chat(user, "<span class='notice'>You cannot insert a beaker because the panel is locked.</span>")
+			to_chat(user, span_notice("You cannot insert a beaker because the panel is locked."))
 			return
 		if(!isnull(reagent_glass))
-			to_chat(user, "<span class='notice'>There is already a beaker loaded.</span>")
+			to_chat(user, span_notice("There is already a beaker loaded."))
 			return
 		if(user.transferItemToLoc(I, src))
 			reagent_glass = I
-			to_chat(user, "<span class='notice'>You insert [I].</span>")
+			to_chat(user, span_notice("You insert [I]."))
 			updateUsrDialog()
 
 	if(obj_integrity < max_integrity && !isscrewdriver(I) && I.force)
@@ -283,10 +283,9 @@
 				step_to(src, src.path[1])
 				src.path -= src.path[1]
 
-	if(src.path.len > 8 && src.patient)
-		src.frustration++
+	if(path.len > 8 && src.patient)
+		frustration++
 
-	return
 
 /obj/machinery/bot/medbot/proc/assess_patient(mob/living/carbon/C as mob)
 	//Time to see if they need medical help!
@@ -382,7 +381,7 @@
 		return
 	else
 		src.icon_state = "medibots"
-		visible_message("<span class='danger'>[src] is trying to inject [src.patient]!</span>")
+		visible_message(span_danger("[src] is trying to inject [src.patient]!"))
 		spawn(30)
 			if ((get_dist(src, src.patient) <= 1) && (src.on))
 				if(reagent_id == "internal_beaker" && reagent_glass && reagent_glass.reagents.total_volume)
@@ -390,7 +389,7 @@
 					src.reagent_glass.reagents.reaction(src.patient, 2)
 				else
 					src.patient.reagents.add_reagent(reagent_id,src.injection_amount)
-				visible_message("<span class='danger'>[src] injects [src.patient] with the syringe!</span>")
+				visible_message(span_danger("[src] injects [src.patient] with the syringe!"))
 
 			src.icon_state = "medibot[src.on]"
 			src.currently_healing = 0
@@ -398,14 +397,12 @@
 
 //	src.speak(reagent_id)
 	reagent_id = null
-	return
 
 
 /obj/machinery/bot/medbot/proc/speak(message)
 	if((!src.on) || (!message))
 		return
 	visible_message("[src] beeps, \"[message]\"")
-	return
 
 /obj/machinery/bot/medbot/deconstruct(disassembled = TRUE)
 	new /obj/item/storage/firstaid(loc)
@@ -444,7 +441,7 @@
 
 	//Making a medibot!
 	if(length(contents) >= 1)
-		to_chat(user, "<span class='notice'>You need to empty [src] out first.</span>")
+		to_chat(user, span_notice("You need to empty [src] out first."))
 		return
 
 	var/obj/item/frame/firstaid_arm_assembly/A = new
@@ -458,6 +455,6 @@
 
 	qdel(I)
 	user.put_in_hands(A)
-	to_chat(user, "<span class='notice'>You add the robot arm to the first aid kit.</span>")
+	to_chat(user, span_notice("You add the robot arm to the first aid kit."))
 	user.temporarilyRemoveItemFromInventory(src)
 	qdel(src)

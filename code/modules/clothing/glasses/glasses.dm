@@ -67,18 +67,18 @@
 	desc = "Yarr."
 	icon_state = "eyepatch"
 	item_state = "eyepatch"
-	flags_armor_protection = 0
+	flags_armor_protection = NONE
 
 /obj/item/clothing/glasses/eyepatch/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
 	if(istype(I, /obj/item/clothing/glasses/hud/health))
 		var/obj/item/clothing/glasses/hud/medpatch/P = new
-		to_chat(user, "<span class='notice'>You fasten the medical hud projector to the inside of the eyepatch.</span>")
+		to_chat(user, span_notice("You fasten the medical hud projector to the inside of the eyepatch."))
 		qdel(I)
 		qdel(src)
 		user.put_in_hands(P)
-	
+
 		update_icon(user)
 
 /obj/item/clothing/glasses/monocle
@@ -86,7 +86,7 @@
 	desc = "Such a dapper eyepiece!"
 	icon_state = "monocle"
 	item_state = "headset" // lol
-	flags_armor_protection = 0
+	flags_armor_protection = NONE
 
 /obj/item/clothing/glasses/material
 	name = "optical material scanner"
@@ -109,11 +109,11 @@
 
 	if(istype(I, /obj/item/clothing/glasses/hud/health))
 		var/obj/item/clothing/glasses/hud/medglasses/P = new
-		to_chat(user, "<span class='notice'>You fasten the medical hud projector to the inside of the glasses.</span>")
+		to_chat(user, span_notice("You fasten the medical hud projector to the inside of the glasses."))
 		qdel(I)
 		qdel(src)
 		user.put_in_hands(P)
-	
+
 		update_icon(user)
 
 /obj/item/clothing/glasses/regular/hipster
@@ -127,14 +127,14 @@
 	name = "3D glasses"
 	icon_state = "3d"
 	item_state = "3d"
-	flags_armor_protection = 0
+	flags_armor_protection = NONE
 
 /obj/item/clothing/glasses/gglasses
 	name = "green glasses"
 	desc = "Forest green glasses, like the kind you'd wear when hatching a nasty scheme."
 	icon_state = "gglasses"
 	item_state = "gglasses"
-	flags_armor_protection = 0
+	flags_armor_protection = NONE
 
 /obj/item/clothing/glasses/mgoggles
 	name = "marine ballistic goggles"
@@ -157,17 +157,17 @@
 	if(istype(I, /obj/item/clothing/glasses/hud/health))
 		if(prescription)
 			var/obj/item/clothing/glasses/hud/medgoggles/prescription/P = new
-			to_chat(user, "<span class='notice'>You fasten the medical hud projector to the inside of the goggles.</span>")
+			to_chat(user, span_notice("You fasten the medical hud projector to the inside of the goggles."))
 			qdel(I)
 			qdel(src)
 			user.put_in_hands(P)
 		else
 			var/obj/item/clothing/glasses/hud/medgoggles/S = new
-			to_chat(user, "<span class='notice'>You fasten the medical hud projector to the inside of the goggles.</span>")
+			to_chat(user, span_notice("You fasten the medical hud projector to the inside of the goggles."))
 			qdel(I)
 			qdel(src)
 			user.put_in_hands(S)
-	
+
 		update_icon(user)
 
 /obj/item/clothing/glasses/m42_goggles

@@ -15,7 +15,7 @@
 /obj/item/clothing/glasses/thermal/emp_act(severity)
 	if(ishuman(loc))
 		var/mob/living/carbon/human/M = src.loc
-		to_chat(M, "<span class='warning'>The Optical Thermal Scanner overloads and blinds you!</span>")
+		to_chat(M, span_warning("The Optical Thermal Scanner overloads and blinds you!"))
 		if(M.glasses == src)
 			M.blind_eyes(3)
 			M.blur_eyes(5)
@@ -38,7 +38,7 @@
 	icon_state = "thermoncle"
 	flags_atom = null //doesn't protect eyes because it's a monocle, duh
 	toggleable = 0
-	flags_armor_protection = 0
+	flags_armor_protection = NONE
 
 /obj/item/clothing/glasses/thermal/eyepatch
 	name = "Optical Thermal Eyepatch"
@@ -46,7 +46,7 @@
 	icon_state = "eyepatch"
 	item_state = "eyepatch"
 	toggleable = 0
-	flags_armor_protection = 0
+	flags_armor_protection = NONE
 
 /obj/item/clothing/glasses/thermal/jensen
 	name = "Optical Thermal Implants"

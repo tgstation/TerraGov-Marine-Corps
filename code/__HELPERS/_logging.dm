@@ -35,6 +35,12 @@
 #define testing(msg)
 #endif
 
+#ifdef REFERENCE_TRACKING_LOG
+#define log_reftracker(msg) log_world("## REF SEARCH [msg]")
+#else
+#define log_reftracker(msg)
+#endif
+
 /* Items with private are stripped from public logs. */
 /proc/log_admin(text)
 	LAZYADD(GLOB.admin_log, "\[[stationTimestamp()]\] ADMIN: [text]")
@@ -323,8 +329,6 @@
 				. += "/([M.name])"
 		else if(fallback_name)
 			. += "/([fallback_name])"
-
-	return .
 
 
 /proc/key_name_admin(whom, include_name = TRUE)

@@ -89,8 +89,8 @@
 			//						   	  \\
 //----------------------------------------------------------
 
-/obj/item/weapon/gun/RightClick(mob/user)
-	toggle_gun_safety()
+/obj/item/weapon/gun/attack_hand_alternate(mob/user)
+	return toggle_gun_safety()
 
 
 /obj/item/weapon/gun/mob_can_equip(mob/user)
@@ -111,7 +111,7 @@
 
 /obj/item/weapon/gun/throw_at(atom/target, range, speed, thrower)
 	if( harness_check(thrower) )
-		to_chat(usr, "<span class='warning'>\The [src] clanks on the ground.</span>")
+		to_chat(usr, span_warning("\The [src] clanks on the ground."))
 	else
 		return ..()
 
@@ -140,7 +140,7 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 		return TRUE
 	if(user.mind && allowed(user))
 		return TRUE
-	to_chat(user, "<span class='warning'>[src] flashes a warning sign indicating unauthorized use!</span>")
+	to_chat(user, span_warning("[src] flashes a warning sign indicating unauthorized use!"))
 
 
 /obj/item/weapon/gun/proc/wielded_stable() //soft wield-delay
@@ -165,7 +165,7 @@ should be alright.
 	if(!ishuman(user))
 		return FALSE
 	var/mob/living/carbon/human/owner = user
-	if(!has_attachment(/obj/item/attachable/magnetic_harness) && !istype(src,/obj/item/weapon/gun/smartgun))
+	if(!has_attachment(/obj/item/attachable/magnetic_harness))
 		var/obj/item/B = owner.belt	//if they don't have a magharness, are they wearing a harness belt?
 		if(!istype(B, /obj/item/belt_harness))
 			return FALSE
@@ -183,13 +183,13 @@ should be alright.
 	user.equip_to_slot_if_possible(src, SLOT_S_STORE, warning = FALSE)
 	if(user.s_store == src)
 		var/obj/item/I = user.wear_suit
-		to_chat(user, "<span class='warning'>[src] snaps into place on [I].</span>")
+		to_chat(user, span_warning("[src] snaps into place on [I]."))
 		user.update_inv_s_store()
 		return
 
 	user.equip_to_slot_if_possible(src, SLOT_BACK, warning = FALSE)
 	if(user.back == src)
-		to_chat(user, "<span class='warning'>[src] snaps into place on your back.</span>")
+		to_chat(user, span_warning("[src] snaps into place on your back."))
 	user.update_inv_back()
 
 
@@ -224,42 +224,76 @@ should be alright.
 	if(active_attachable?.flags_attach_features & ATTACH_RELOADABLE && check_inactive_hand(user) && active_attachable.reload_attachment(I, user, TRUE))
 		return
 
+	if(istype(I, /obj/item/cell) && CHECK_BITFIELD(flags_gun_features, GUN_IS_SENTRY))
+		if(sentry_battery)
+			to_chat(user, span_warning("[src] already has a battery installed! Use Alt-Click to remove it!"))
+			return
+		if(!istype(I, sentry_battery_type))
+			to_chat(user, span_warning("[I] wont fit there!"))
+			return
+		var/obj/item/cell/new_cell = I
+		if(!new_cell.charge)
+			to_chat(user, span_warning("[new_cell] is out of charge!"))
+			return
+		playsound(src, 'sound/weapons/guns/interact/standard_laser_rifle_reload.ogg', 20)
+		sentry_battery = new_cell
+		user.temporarilyRemoveItemFromInventory(new_cell)
+		new_cell.forceMove(src)
+		to_chat(user, span_notice("You install the [new_cell] into the [src]."))
+		return
+
 	if((istype(I, /obj/item/ammo_magazine) || istype(I, /obj/item/cell/lasgun)) && check_inactive_hand(user))
 		reload(user, I)
 		return
 
+/obj/item/weapon/gun/AltClick(mob/user)
+	. = ..()
+	if(!user.Adjacent(src) || !ishuman(user) || !CHECK_BITFIELD(flags_gun_features, GUN_IS_SENTRY))
+		return
+	var/mob/living/carbon/human/human = user
+	if(!sentry_battery)
+		to_chat(human, "<span class='warning'> There is no battery to remove from [src].</span>")
+		return
+	if(human.get_active_held_item() != src && human.get_inactive_held_item() != src && !CHECK_BITFIELD(flags_item, IS_DEPLOYED))
+		to_chat(human, "<span class='notice'>You have to hold [src] to take out its battery.</span>")
+		return
+	playsound(src, 'sound/weapons/flipblade.ogg', 20)
+	human.put_in_hands(sentry_battery)
+	sentry_battery = null
 
 //tactical reloads
 /obj/item/weapon/gun/MouseDrop_T(atom/dropping, mob/living/carbon/human/user)
 	if(istype(dropping, /obj/item/ammo_magazine))
-		var/obj/item/ammo_magazine/AM = dropping
-		if(!istype(user) || user.incapacitated(TRUE))
-			return
-		if(src != user.r_hand && src != user.l_hand)
-			to_chat(user, "<span class='warning'>[src] must be in your hand to do that.</span>")
-			return
-		if(flags_gun_features & GUN_INTERNAL_MAG)
-			to_chat(user, "<span class='warning'>Can't do tactical reloads with [src].</span>")
-			return
-		//no tactical reload for the untrained.
-		if(!user.skills.getRating("firearms"))
-			to_chat(user, "<span class='warning'>You don't know how to do tactical reloads.</span>")
-			return
-		if(istype(src, AM.gun_type))
-			if(current_mag)
-				unload(user,0,1)
-				to_chat(user, "<span class='notice'>You start a tactical reload.</span>")
-			var/tac_reload_time = max(0.5 SECONDS, 1.5 SECONDS - user.skills.getRating("firearms") * 5)
-			if(do_after(user,tac_reload_time, TRUE, AM) && loc == user)
-				if(istype(AM.loc, /obj/item/storage))
-					var/obj/item/storage/S = AM.loc
-					S.remove_from_storage(AM, get_turf(user))
-				user.put_in_any_hand_if_possible(AM)
-				reload(user, AM)
-	else
-		..()
+		tactical_reload(dropping,user)
+	return ..()
 
-
+///This performs a tactical reload with src using new_magazine to load the gun.
+/obj/item/weapon/gun/proc/tactical_reload(obj/item/ammo_magazine/new_magazine, mob/living/carbon/human/user)
+	if(!istype(user) || user.incapacitated(TRUE))
+		return
+	if(src != user.r_hand && src != user.l_hand)
+		to_chat(user, span_warning("[src] must be in your hand to do that."))
+		return
+	if(flags_gun_features & GUN_INTERNAL_MAG)
+		to_chat(user, span_warning("Can't do tactical reloads with [src]."))
+		return
+	//no tactical reload for the untrained.
+	if(!user.skills.getRating("firearms"))
+		to_chat(user, span_warning("You don't know how to do tactical reloads."))
+		return
+	if(!istype(src, new_magazine.gun_type))
+		return
+	if(current_mag)
+		unload(user,0,1)
+		to_chat(user, span_notice("You start a tactical reload."))
+	var/tac_reload_time = max(0.5 SECONDS, 1.5 SECONDS - user.skills.getRating("firearms") * 5)
+	if(!do_after(user,tac_reload_time, TRUE, new_magazine, ignore_turf_checks = TRUE) && loc == user)
+		return
+	if(istype(new_magazine.loc, /obj/item/storage))
+		var/obj/item/storage/S = new_magazine.loc
+		S.remove_from_storage(new_magazine, get_turf(user), user)
+	user.put_in_any_hand_if_possible(new_magazine)
+	reload(user, new_magazine)
 
 //----------------------------------------------------------
 				//						 \\
@@ -271,7 +305,7 @@ should be alright.
 	if(user)
 		var/obj/item/weapon/gun/in_hand = user.get_inactive_held_item()
 		if( in_hand != src ) //It has to be held.
-			to_chat(user, "<span class='warning'>You have to hold [src] to do that!</span>")
+			to_chat(user, span_warning("You have to hold [src] to do that!"))
 			return
 	return TRUE
 
@@ -281,7 +315,7 @@ should be alright.
 		var/obj/item/weapon/gun/in_handL = user.l_hand
 		var/obj/item/weapon/gun/in_handR = user.r_hand
 		if( in_handL != src && in_handR != src ) //It has to be held.
-			to_chat(user, "<span class='warning'>You have to hold [src] to do that!</span>")
+			to_chat(user, span_warning("You have to hold [src] to do that!"))
 			return
 	return 1
 
@@ -291,111 +325,93 @@ should be alright.
 /obj/item/weapon/gun/proc/has_attachment(A)
 	if(!A)
 		return
-	if(istype(muzzle,A))
-		return TRUE
-	if(istype(under,A))
-		return TRUE
-	if(istype(rail,A))
-		return TRUE
-	if(istype(stock,A))
-		return TRUE
+	if(!attachments)
+		return FALSE
+	for(var/slot in attachments)
+		if(istype(attachments[slot], A))
+			return TRUE
+
 
 
 /obj/item/weapon/gun/proc/attach_to_gun(mob/user, obj/item/attachable/attachment)
 	if(attachable_allowed && !(attachment.type in attachable_allowed) )
-		to_chat(user, "<span class='warning'>[attachment] doesn't fit on [src]!</span>")
+		to_chat(user, span_warning("[attachment] doesn't fit on [src]!"))
 		return
 
 	if(overcharge == TRUE)
-		to_chat(user, "<span class='warning'>You need to disable overcharge on [src]!</span>")
+		to_chat(user, span_warning("You need to disable overcharge on [src]!"))
 		return
 
-	//Checks if they can attach the thing in the first place, like with fixed attachments.
-	var/can_attach = 1
-	switch(attachment.slot)
-		if("rail")
-			if(rail && !(rail.flags_attach_features & ATTACH_REMOVABLE))
-				can_attach = FALSE
-		if("muzzle")
-			if(muzzle && !(muzzle.flags_attach_features & ATTACH_REMOVABLE))
-				can_attach = FALSE
-		if("under")
-			if(under && !(under.flags_attach_features & ATTACH_REMOVABLE))
-				can_attach = FALSE
-		if("stock")
-			if(stock && !(stock.flags_attach_features & ATTACH_REMOVABLE))
-				can_attach = FALSE
-
-	if(!can_attach)
-		to_chat(user, "<span class='warning'>The attachment on [src]'s [attachment.slot] cannot be removed!</span>")
+	//Checks if there is any unremovable attachment on our slot, if true, return.
+	var/obj/item/attachable/currently_in_slot = LAZYACCESS(attachments, attachment.slot)
+	if(currently_in_slot && !(currently_in_slot.flags_attach_features & ATTACH_REMOVABLE))
+		to_chat(user, span_warning("The attachment on [src]'s [attachment.slot] cannot be removed!"))
 		return
 
 	var/final_delay = attachment.attach_delay
 	var/idisplay = BUSY_ICON_GENERIC
 	if(user.skills.getRating("firearms"))
-		user.visible_message("<span class='notice'>[user] begins attaching [attachment] to [src].</span>",
-		"<span class='notice'>You begin attaching [attachment] to [src].</span>", null, 4)
+		user.visible_message(span_notice("[user] begins attaching [attachment] to [src]."),
+		span_notice("You begin attaching [attachment] to [src]."), null, 4)
 		if(user.skills.getRating("firearms") >= SKILL_FIREARMS_DEFAULT) //See if the attacher is super skilled/panzerelite born to defeat never retreat etc
 			final_delay *= 0.5
 	else //If the user has no training, attaching takes twice as long and they fumble about.
 		final_delay *= 2
-		user.visible_message("<span class='notice'>[user] begins fumbling about, trying to attach [attachment] to [src].</span>",
-		"<span class='notice'>You begin fumbling about, trying to attach [attachment] to [src].</span>", null, 4)
+		user.visible_message(span_notice("[user] begins fumbling about, trying to attach [attachment] to [src]."),
+		span_notice("You begin fumbling about, trying to attach [attachment] to [src]."), null, 4)
 		idisplay = BUSY_ICON_UNSKILLED
-	if(do_after(user, final_delay, TRUE, src, idisplay))
-		user.visible_message("<span class='notice'>[user] attaches [attachment] to [src].</span>",
-		"<span class='notice'>You attach [attachment] to [src].</span>", null, 4)
-		user.temporarilyRemoveItemFromInventory(attachment)
-		attachment.Attach(src, user)
-		playsound(user, 'sound/machines/click.ogg', 15, 1, 4)
+	if(!do_after(user, final_delay, TRUE, src, idisplay))
+		return
+	user.visible_message(span_notice("[user] attaches [attachment] to [src]."),
+	span_notice("You attach [attachment] to [src]."), null, 4)
+	user.temporarilyRemoveItemFromInventory(attachment)
+	attachment.attach_to_gun(src, user)
+	playsound(user, 'sound/machines/click.ogg', 15, 1, 4)
+
+///Updates everything. You generally don't need to use this.
+/obj/item/weapon/gun/proc/update_attachables()
+	if(!attachable_offset) //Even if the attachment doesn't exist, we're going to try and remove it.
+		return
+
+	if(!attachments)
+		return
+	for(var/slot in attachments)
+		var/obj/item/attachable/attachie = LAZYACCESS(attachments, slot)
+		update_overlays(attachie, attachie.slot)
 
 
-/obj/item/weapon/gun/proc/update_attachables() //Updates everything. You generally don't need to use this.
-	//overlays.Cut()
-	if(attachable_offset) //Even if the attachment doesn't exist, we're going to try and remove it.
-		update_overlays(muzzle, "muzzle")
-		update_overlays(stock, "stock")
-		update_overlays(under, "under")
-		update_overlays(rail, "rail")
+/obj/item/weapon/gun/proc/update_attachable(slot) //Updates individually.
+	if(!attachable_offset)
+		return
 
+	update_overlays(LAZYACCESS(attachments, slot), slot)
 
-/obj/item/weapon/gun/proc/update_attachable(attachable) //Updates individually.
-	if(attachable_offset)
-		switch(attachable)
-			if("muzzle") update_overlays(muzzle, attachable)
-			if("stock") update_overlays(stock, attachable)
-			if("under") update_overlays(under, attachable)
-			if("rail") update_overlays(rail, attachable)
-
-
-/obj/item/weapon/gun/update_overlays(obj/item/attachable/A, slot)
+/obj/item/weapon/gun/update_overlays(obj/item/attachable/attachie, slot)
 	. = ..()
-	var/image/I = attachable_overlays[slot]
-	overlays -= I
-	qdel(I)
-	if(A) //Only updates if the attachment exists for that slot.
-		var/item_icon = A.icon_state
-		if(A.attach_icon)
-			item_icon = A.attach_icon
-		I = image(A.icon,src, item_icon)
-		I.pixel_x = attachable_offset["[slot]_x"] - A.pixel_shift_x
-		I.pixel_y = attachable_offset["[slot]_y"] - A.pixel_shift_y
-		attachable_overlays[slot] = I
-		overlays += I
-	else
+	var/image/overlay = attachable_overlays[slot]
+	overlays -= overlay
+	if(!attachie) //Only updates if the attachment exists for that slot.
 		attachable_overlays[slot] = null
+		return
+	var/item_icon = attachie.icon_state
+	if(attachie.attach_icon)
+		item_icon = attachie.attach_icon
+	overlay = image(attachie.icon, src, item_icon)
+	overlay.pixel_x = attachable_offset["[slot]_x"] - attachie.pixel_shift_x
+	overlay.pixel_y = attachable_offset["[slot]_y"] - attachie.pixel_shift_y
+	attachable_overlays[slot] = overlay
+	overlays += overlay
 
-
+///updates the magazine overlay if it needs to be updated
 /obj/item/weapon/gun/proc/update_mag_overlay(mob/user)
-	var/image/I = attachable_overlays["mag"]
-	overlays -= I
-	qdel(I)
+	var/image/overlay = attachable_overlays[ATTACHMENT_SLOT_MAGAZINE]
+	overlays -= overlay
 	if(current_mag && current_mag.bonus_overlay)
-		I = image(current_mag.icon,src,current_mag.bonus_overlay)
-		attachable_overlays["mag"] = I
-		overlays += I
+		overlay = image(current_mag.icon, src, current_mag.bonus_overlay)
+		attachable_overlays[ATTACHMENT_SLOT_MAGAZINE] = overlay
+		overlays += overlay
 	else
-		attachable_overlays["mag"] = null
+		attachable_overlays[ATTACHMENT_SLOT_MAGAZINE] = null
 
 
 /obj/item/weapon/gun/proc/update_force_list()
@@ -410,11 +426,11 @@ should be alright.
 
 /proc/get_active_firearm(mob/user)
 	if(!user.dextrous)
-		to_chat(user, "<span class='warning'>You don't have the dexterity to do this.</span>")
+		to_chat(user, span_warning("You don't have the dexterity to do this."))
 		return
 
-	if( user.incapacitated() || !isturf(user.loc))
-		to_chat(user, "<span class='warning'>You can't do this right now.</span>")
+	if(user.incapacitated() || !isturf(user.loc))
+		to_chat(user, span_warning("You can't do this right now."))
 		return
 
 	var/obj/item/weapon/gun/G = user.get_active_held_item()
@@ -422,13 +438,22 @@ should be alright.
 		G = user.get_inactive_held_item()
 
 	if(!istype(G))
-		to_chat(user, "<span class='warning'>You need a gun in your hands to do that!</span>")
+		to_chat(user, span_warning("You need a gun in your hands to do that!"))
 		return
 
 	if(G.flags_gun_features & GUN_BURST_FIRING)
 		return
 
 	return G
+
+///Helper proc that processes a clicked target, if the target is not black tiles, it will not change it. If they are it will return the turf of the black tiles. It will return null if the object is a screen object other than black tiles.
+/proc/get_turf_on_clickcatcher(atom/target, mob/user, params)
+	var/list/modifiers = params2list(params)
+	if(!istype(target, /obj/screen))
+		return target
+	if(!istype(target, /obj/screen/click_catcher))
+		return null
+	return params2turf(modifiers["screen-loc"], get_turf(user), user.client)
 
 //----------------------------------------------------------
 					//				   \\
@@ -437,51 +462,54 @@ should be alright.
 					//				   \\
 //----------------------------------------------------------
 
-/obj/item/weapon/gun/verb/field_strip()
+/mob/living/carbon/human/verb/field_strip()
 	set category = "Weapons"
 	set name = "Field Strip Weapon"
 	set desc = "Remove all attachables from a weapon."
 
 	var/obj/item/weapon/gun/G = get_active_firearm(usr)
-
 	if(!G)
 		return
+	G.field_strip()
+
+
+/obj/item/weapon/gun/verb/field_strip()
+	set category = null
+	set name = "Field Strip (Weapon)"
+	set desc = "Remove all attachables from a weapon."
 
 	if(usr.do_actions)
 		return
 
 	if(zoom)
-		to_chat(usr, "<span class='warning'>You cannot conceviably do that while looking down \the [src]'s scope!</span>")
+		to_chat(usr, span_warning("You cannot conceviably do that while looking down \the [src]'s scope!"))
 		return
 
-	if(G.overcharge == TRUE)
+	if(overcharge)
 		to_chat(usr, "[icon2html(src, usr)] You need to disable overcharge mode to remove attachments.")
 		return
 
-	if(!rail && !muzzle && !under && !stock)
-		to_chat(usr, "<span class='warning'>This weapon has no attachables. You can only field strip enhanced weapons!</span>")
+	if(!attachments)
+		to_chat(usr, span_warning("This weapon has no attachables. You can only field strip enhanced weapons!"))
 		return
 
 	var/list/possible_attachments = list()
 
-	if(rail && (rail.flags_attach_features & ATTACH_REMOVABLE))
-		possible_attachments += rail
-	if(muzzle && (muzzle.flags_attach_features & ATTACH_REMOVABLE))
-		possible_attachments += muzzle
-	if(under && (under.flags_attach_features & ATTACH_REMOVABLE))
-		possible_attachments += under
-	if(stock && (stock.flags_attach_features & ATTACH_REMOVABLE))
-		possible_attachments += stock
+	for(var/slotties in attachments)
+		var/obj/item/attachable/possible_attachment = attachments[slotties]
+		if(!(possible_attachment.flags_attach_features & ATTACH_REMOVABLE))
+			continue
+		possible_attachments += possible_attachment
 
-	if(!possible_attachments.len)
-		to_chat(usr, "<span class='warning'>[src] has no removable attachments.</span>")
+	if(!length(possible_attachments))
+		to_chat(usr, span_warning("[src] has no removable attachments."))
 		return
 
 	var/obj/item/attachable/A
-	if(possible_attachments.len == 1)
+	if(length(possible_attachments) == 1)
 		A = possible_attachments[1]
 	else
-		A = tgui_input_list(usr, "Which attachment to remove?", null,possible_attachments)
+		A = tgui_input_list(usr, "Which attachment to remove?", null, possible_attachments)
 
 	if(!A)
 		return
@@ -495,7 +523,7 @@ should be alright.
 	if(zoom)
 		return
 
-	if(A != rail && A != muzzle && A != under && A != stock)
+	if(A != LAZYACCESS(attachments, A.slot))
 		return
 	if(!(A.flags_attach_features & ATTACH_REMOVABLE))
 		return
@@ -503,32 +531,32 @@ should be alright.
 	var/final_delay = A.detach_delay
 	var/idisplay = BUSY_ICON_GENERIC
 	if(usr.skills.getRating("firearms"))
-		usr.visible_message("<span class='notice'>[usr] begins stripping [A] from [src].</span>",
-		"<span class='notice'>You begin stripping [A] from [src].</span>", null, 4)
+		usr.visible_message(span_notice("[usr] begins stripping [A] from [src]."),
+		span_notice("You begin stripping [A] from [src]."), null, 4)
 		if(usr.skills.getRating("firearms") > SKILL_FIREARMS_DEFAULT) //See if the attacher is super skilled/panzerelite born to defeat never retreat etc
 			final_delay *= 0.5 //Half normal time
 	else //If the user has no training, attaching takes twice as long and they fumble about.
 		final_delay *= 2
-		usr.visible_message("<span class='notice'>[usr] begins fumbling about, trying to strip [A] from [src].</span>",
-		"<span class='notice'>You begin fumbling about, trying to strip [A] from [src].</span>", null, 4)
+		usr.visible_message(span_notice("[usr] begins fumbling about, trying to strip [A] from [src]."),
+		span_notice("You begin fumbling about, trying to strip [A] from [src]."), null, 4)
 		idisplay = BUSY_ICON_UNSKILLED
 	if(!do_after(usr,final_delay, TRUE, src, idisplay))
 		return
 
-	if(A != rail && A != muzzle && A != under && A != stock)
+	if(A != LAZYACCESS(attachments, A.slot))
 		return
+
 	if(!(A.flags_attach_features & ATTACH_REMOVABLE))
 		return
 
 	if(zoom)
 		return
 
-	usr.visible_message("<span class='notice'>[usr] strips [A] from [src].</span>",
-	"<span class='notice'>You strip [A] from [src].</span>", null, 4)
-	A.Detach(usr)
+	usr.visible_message(span_notice("[usr] strips [A] from [src]."),
+	span_notice("You strip [A] from [src]."), null, 4)
+	A.detach_from_master_gun(usr)
 
 	playsound(src, 'sound/machines/click.ogg', 15, 1, 4)
-	update_attachables()
 
 
 /obj/item/weapon/gun/ui_action_click(mob/user, datum/action/item_action/action)
@@ -537,86 +565,103 @@ should be alright.
 	var/datum/action/item_action/firemode/firemode_action = action
 	if(!istype(firemode_action))
 		return ..()
-	do_toggle_firemode(user)
+	do_toggle_firemode()
 	user.update_action_buttons()
 
 
-/obj/item/weapon/gun/verb/toggle_autofire()
+/mob/living/carbon/human/verb/toggle_autofire()
 	set category = "Weapons"
 	set name = "Toggle Auto Fire"
 	set desc = "Toggle automatic firemode, if the gun has it."
-	set src = usr.contents
-
-	var/obj/item/weapon/gun/automatic_gun = get_active_firearm(usr)
-	if(!automatic_gun)
-		return
-	automatic_gun.do_toggle_automatic(usr)
-
-
-/obj/item/weapon/gun/proc/do_toggle_automatic(mob/user)
-	var/new_firemode
-	switch(gun_firemode)
-		if(GUN_FIREMODE_SEMIAUTO)
-			new_firemode = GUN_FIREMODE_AUTOMATIC
-		if(GUN_FIREMODE_BURSTFIRE)
-			new_firemode = GUN_FIREMODE_AUTOBURST
-		if(GUN_FIREMODE_AUTOMATIC)
-			new_firemode = GUN_FIREMODE_SEMIAUTO
-		if(GUN_FIREMODE_AUTOBURST)
-			new_firemode = GUN_FIREMODE_BURSTFIRE
-	if(!(new_firemode in gun_firemode_list))
-		to_chat(user, "<span class='warning'>[src] lacks a [new_firemode]!</span>")
-		return
-	do_toggle_firemode(user, new_firemode)
-
-
-/obj/item/weapon/gun/verb/toggle_burstfire()
-	set category = "Weapons"
-	set name = "Toggle Burst Fire"
-	set desc = "Toggle burst firemode, if the gun has it."
-	set src = usr.contents
-
-	var/obj/item/weapon/gun/automatic_gun = get_active_firearm(usr)
-	if(!automatic_gun)
-		return
-	automatic_gun.do_toggle_burst(usr)
-
-
-/obj/item/weapon/gun/proc/do_toggle_burst(mob/user)
-	var/new_firemode
-	switch(gun_firemode)
-		if(GUN_FIREMODE_SEMIAUTO)
-			new_firemode = GUN_FIREMODE_BURSTFIRE
-		if(GUN_FIREMODE_BURSTFIRE)
-			new_firemode = GUN_FIREMODE_SEMIAUTO
-		if(GUN_FIREMODE_AUTOMATIC)
-			new_firemode = GUN_FIREMODE_AUTOBURST
-		if(GUN_FIREMODE_AUTOBURST)
-			new_firemode = GUN_FIREMODE_AUTOMATIC
-	if(!(new_firemode in gun_firemode_list))
-		to_chat(user, "<span class='warning'>[src] lacks a [new_firemode]!</span>")
-		return
-	do_toggle_firemode(user, new_firemode)
-
-
-/obj/item/weapon/gun/verb/toggle_firemode()
-	set category = "Weapons"
-	set name = "Toggle Fire Mode"
-	set desc = "Toggle between fire modes, if the gun has more than has one."
-	set src = usr.contents
 
 	var/obj/item/weapon/gun/G = get_active_firearm(usr)
 	if(!G)
 		return
-	G.do_toggle_firemode(usr)
+	G.toggle_autofire()
 
 
-/obj/item/weapon/gun/proc/do_toggle_firemode(mob/user, new_firemode)
+/obj/item/weapon/gun/verb/toggle_autofire()
+	set category = null
+	set name = "Toggle Auto Fire (Weapon)"
+	set desc = "Toggle automatic firemode, if the gun has it."
+
+	var/new_firemode
+	switch(gun_firemode)
+		if(GUN_FIREMODE_SEMIAUTO)
+			new_firemode = GUN_FIREMODE_AUTOMATIC
+		if(GUN_FIREMODE_BURSTFIRE)
+			new_firemode = GUN_FIREMODE_AUTOBURST
+		if(GUN_FIREMODE_AUTOMATIC)
+			new_firemode = GUN_FIREMODE_SEMIAUTO
+		if(GUN_FIREMODE_AUTOBURST)
+			new_firemode = GUN_FIREMODE_BURSTFIRE
+	if(!(new_firemode in gun_firemode_list))
+		to_chat(usr, span_warning("[src] lacks a [new_firemode]!"))
+		return
+	do_toggle_firemode(new_firemode = new_firemode)
+
+
+/mob/living/carbon/human/verb/toggle_burstfire()
+	set category = "Weapons"
+	set name = "Toggle Burst Fire"
+	set desc = "Toggle burst firemode, if the gun has it."
+
+	var/obj/item/weapon/gun/G = get_active_firearm(usr)
+	if(!G)
+		return
+	G.toggle_burstfire()
+
+
+/obj/item/weapon/gun/verb/toggle_burstfire()
+	set category = null
+	set name = "Toggle Burst Fire (Weapon)"
+	set desc = "Toggle burst firemode, if the gun has it."
+
+	var/new_firemode
+	switch(gun_firemode)
+		if(GUN_FIREMODE_SEMIAUTO)
+			new_firemode = GUN_FIREMODE_BURSTFIRE
+		if(GUN_FIREMODE_BURSTFIRE)
+			new_firemode = GUN_FIREMODE_SEMIAUTO
+		if(GUN_FIREMODE_AUTOMATIC)
+			new_firemode = GUN_FIREMODE_AUTOBURST
+		if(GUN_FIREMODE_AUTOBURST)
+			new_firemode = GUN_FIREMODE_AUTOMATIC
+	if(!(new_firemode in gun_firemode_list))
+		to_chat(usr, span_warning("[src] lacks a [new_firemode]!"))
+		return
+	do_toggle_firemode(new_firemode = new_firemode)
+
+
+/mob/living/carbon/human/verb/toggle_firemode()
+	set category = "Weapons"
+	set name = "Toggle Fire Mode"
+	set desc = "Toggle between fire modes, if the gun has more than has one."
+
+	var/obj/item/weapon/gun/G = get_active_firearm(usr)
+	if(!G)
+		return
+	G.toggle_firemode()
+
+
+/obj/item/weapon/gun/verb/toggle_firemode()
+	set category = null
+	set name = "Toggle Fire Mode (Weapon)"
+	set desc = "Toggle between fire modes, if the gun has more than has one."
+
+	do_toggle_firemode()
+
+
+/obj/item/weapon/gun/proc/do_toggle_firemode(datum/source, new_firemode)
+	SIGNAL_HANDLER
 	if(flags_gun_features & GUN_BURST_FIRING)//can't toggle mid burst
 		return
 
 	if(!length(gun_firemode_list))
 		CRASH("[src] called do_toggle_firemode() with an empty gun_firemode_list")
+
+	if(length(gun_firemode) == 1)
+		return
 
 	if(new_firemode)
 		if(!(new_firemode in gun_firemode_list))
@@ -629,12 +674,12 @@ should be alright.
 		else
 			gun_firemode = gun_firemode_list[1]
 
-	if(user)
-		playsound(usr, 'sound/weapons/guns/interact/selector.ogg', 15, 1)
-		to_chat(user, "<span class='notice'>[icon2html(src, user)] You switch to <b>[gun_firemode]</b>.</span>")
-		user.update_action_buttons()
-
-	SEND_SIGNAL(src, COMSIG_GUN_FIREMODE_TOGGLE, gun_firemode, user.client)
+	if(ishuman(source))
+		to_chat(source, span_notice("[icon2html(src, source)] You switch to <b>[gun_firemode]</b>."))
+		if(source == gun_user)
+			gun_user.update_action_buttons()
+	playsound(src, 'sound/weapons/guns/interact/selector.ogg', 15, 1)
+	SEND_SIGNAL(src, COMSIG_GUN_FIRE_MODE_TOGGLE, gun_firemode)
 
 
 /obj/item/weapon/gun/proc/add_firemode(added_firemode, mob/user)
@@ -650,7 +695,7 @@ should be alright.
 			var/datum/action/new_action = new /datum/action/item_action/firemode(src)
 			if(user)
 				var/mob/living/living_user = user
-				if(src == living_user.l_hand || src == living_user.r_hand)
+				if((src == living_user.l_hand || src == living_user.r_hand) && !CHECK_BITFIELD(flags_item, IS_DEPLOYED))
 					new_action.give_action(living_user)
 		else //The action should already be there by now.
 			return
@@ -665,7 +710,7 @@ should be alright.
 			var/datum/action/old_action = locate(/datum/action/item_action/firemode) in actions
 			if(user)
 				var/mob/living/living_user = user
-				if(src == living_user.l_hand || src == living_user.r_hand)
+				if((src == living_user.l_hand || src == living_user.r_hand) && !CHECK_BITFIELD(flags_item, IS_DEPLOYED))
 					old_action.remove_action(living_user)
 			qdel(old_action)
 
@@ -707,7 +752,7 @@ should be alright.
 	ammo_diff = initial(ammo_diff)
 
 
-/obj/item/weapon/gun/verb/empty_mag()
+/mob/living/carbon/human/verb/empty_mag()
 	set category = "Weapons"
 	set name = "Unload Weapon"
 	set desc = "Removes the magazine from your current gun and drops it on the ground, or clears the chamber if your gun is already empty."
@@ -715,10 +760,18 @@ should be alright.
 	var/obj/item/weapon/gun/G = get_active_firearm(usr)
 	if(!G)
 		return
+	G.empty_mag()
+
+
+/obj/item/weapon/gun/verb/empty_mag()
+	set category = null
+	set name = "Unload Weapon (Weapon)"
+	set desc = "Removes the magazine from your current gun and drops it on the ground, or clears the chamber if your gun is already empty."
 
 	unload(usr,,1) //We want to drop the mag on the ground.
 
-/obj/item/weapon/gun/verb/use_unique_action()
+
+/mob/living/carbon/human/verb/use_unique_action()
 	set category = "Weapons"
 	set name = "Unique Action"
 	set desc = "Use anything unique your firearm is capable of. Includes pumping a shotgun or spinning a revolver."
@@ -726,11 +779,18 @@ should be alright.
 	var/obj/item/weapon/gun/G = get_active_firearm(usr)
 	if(!G)
 		return
+	G.use_unique_action()
+
+
+/obj/item/weapon/gun/verb/use_unique_action()
+	set category = null
+	set name = "Unique Action (Weapon)"
+	set desc = "Use anything unique your firearm is capable of. Includes pumping a shotgun or spinning a revolver."
 
 	unique_action(usr)
 
 
-/obj/item/weapon/gun/verb/toggle_gun_safety()
+/mob/living/carbon/human/verb/toggle_gun_safety()
 	set category = "Weapons"
 	set name = "Toggle Gun Safety"
 	set desc = "Toggle the safety of the held gun."
@@ -738,13 +798,20 @@ should be alright.
 	var/obj/item/weapon/gun/G = get_active_firearm(usr)
 	if(!G)
 		return
+	G.toggle_gun_safety()
 
-	to_chat(usr, "<span class='notice'>You toggle the safety [flags_gun_features & GUN_TRIGGER_SAFETY ? "<b>off</b>" : "<b>on</b>"].</span>")
+
+/obj/item/weapon/gun/verb/toggle_gun_safety()
+	set category = null
+	set name = "Toggle Gun Safety (Weapon)"
+	set desc = "Toggle the safety of the held gun."
+
+	to_chat(usr, span_notice("You toggle the safety [flags_gun_features & GUN_TRIGGER_SAFETY ? "<b>off</b>" : "<b>on</b>"]."))
 	playsound(usr, 'sound/weapons/guns/interact/selector.ogg', 15, 1)
 	flags_gun_features ^= GUN_TRIGGER_SAFETY
 
 
-/obj/item/weapon/gun/verb/activate_attachment_verb()
+/mob/living/carbon/human/verb/activate_attachment_verb()
 	set category = "Weapons"
 	set name = "Load From Attachment"
 	set desc = "Load from a gun attachment, such as a mounted grenade launcher, shotgun, or flamethrower."
@@ -752,52 +819,74 @@ should be alright.
 	var/obj/item/weapon/gun/G = get_active_firearm(usr)
 	if(!G)
 		return
+	G.activate_attachment_verb()
 
-	var/obj/item/attachable/A
 
-	var/list/usable_attachments = list() //Basic list of attachments to compare later.
-// rail attachment use the button to toggle flashlight instead.
-//	if(rail && (rail.flags_attach_features & ATTACH_ACTIVATION) )
-//		usable_attachments += rail
-	if(under && (under.flags_attach_features & ATTACH_ACTIVATION) )
-		usable_attachments += under
-	if(stock  && (stock.flags_attach_features & ATTACH_ACTIVATION) )
-		usable_attachments += stock
-	if(muzzle && (muzzle.flags_attach_features & ATTACH_ACTIVATION) )
-		usable_attachments += muzzle
+/obj/item/weapon/gun/verb/activate_attachment_verb()
+	set category = null
+	set name = "Load From Attachment (Weapon)"
+	set desc = "Load from a gun attachment, such as a mounted grenade launcher, shotgun, or flamethrower."
 
-	if(!usable_attachments.len) //No usable attachments.
-		to_chat(usr, "<span class='warning'>[src] does not have any usable attachment!</span>")
+	var/list/usable_attachments = list()
+	// rail attachment use the button to toggle flashlight instead.
+	//	if(rail && (rail.flags_attach_features & ATTACH_ACTIVATION) )
+	//		usable_attachments += rail
+	if(!attachments)
+		to_chat(usr, span_warning("[src] does not have any usable attachment!"))
 		return
 
-	if(usable_attachments.len == 1) //Activates the only attachment if there is only one.
-		A = usable_attachments[1]
+	for(var/slot in attachments)
+		var/obj/item/attachable/attachment = attachments[slot]
+		if(attachment?.flags_attach_features & ATTACH_ACTIVATION)
+			usable_attachments += attachment
+
+	if(!length(usable_attachments)) //No usable attachments.
+		to_chat(usr, span_warning("[src] does not have any usable attachment!"))
+		return
+	var/obj/item/attachable/usable_attachment
+	if(length(usable_attachments) == 1)
+		usable_attachment = usable_attachments[1]
 	else
-		A = input("Which attachment to activate?") as null|anything in usable_attachments
-		if(!A || A.loc != src)
-			return
-	if(A)
-		A.ui_action_click(usr, null, src)
+		usable_attachment = tgui_input_list(usr, "Which attachment to activate?", null, usable_attachments)
+
+	if(!usable_attachment)
+		return
+	usable_attachment.ui_action_click(usr, null, src)
 
 
-/obj/item/weapon/gun/verb/toggle_rail_attachment()
+/mob/living/carbon/human/verb/toggle_rail_attachment()
 	set category = "Weapons"
 	set name = "Toggle Rail Attachment"
 	set desc = "Uses the rail attachement currently attached to the gun."
-	set src = usr.contents
 
 	var/obj/item/weapon/gun/G = get_active_firearm(usr)
 	if(!G)
 		return
+	G.toggle_rail_attachment()
 
-	if(!G.rail)
-		to_chat(usr, "<span class='warning'>[src] does not have any usable rail attachment!</span>")
+/obj/item/weapon/gun/verb/toggle_rail_attachment()
+	set category = null
+	set name = "Toggle Rail Attachment (Weapon)"
+	set desc = "Uses the rail attachement currently attached to the gun."
+
+	var/obj/item/attachable/rail_attachment = LAZYACCESS(attachments, ATTACHMENT_SLOT_RAIL)
+	if(!rail_attachment)
+		to_chat(usr, span_warning("[src] does not have any usable rail attachment!"))
 		return
+	rail_attachment.activate_attachment(usr)
 
-	G.rail.activate_attachment(usr)
+/obj/item/weapon/gun/verb/toggle_underrail_attachment()
+	set category = null
+	set name = "Toggle Underrail Attachment (Weapon)"
+	set desc = "Uses the underrail attachement currently attached to the gun."
 
+	var/obj/item/attachable/underrail_attachment = LAZYACCESS(attachments, ATTACHMENT_SLOT_UNDER)
+	if(!underrail_attachment)
+		to_chat(usr, span_warning("[src] does not have any usable rail attachment!"))
+		return
+	underrail_attachment.activate_attachment(usr)
 
-/obj/item/weapon/gun/verb/toggle_ammo_hud()
+/mob/living/carbon/human/verb/toggle_ammo_hud()
 	set category = "Weapons"
 	set name = "Toggle Ammo HUD"
 	set desc = "Toggles the Ammo HUD for this weapon."
@@ -805,16 +894,23 @@ should be alright.
 	var/obj/item/weapon/gun/G = get_active_firearm(usr)
 	if(!G)
 		return
+	G.toggle_ammo_hud()
+
+
+/obj/item/weapon/gun/verb/toggle_ammo_hud()
+	set category = null
+	set name = "Toggle Ammo HUD (Weapon)"
+	set desc = "Toggles the Ammo HUD for this weapon."
 
 	hud_enabled = !hud_enabled
 	var/obj/screen/ammo/A = usr.hud_used.ammo
-	hud_enabled ? A.add_hud(usr) : A.remove_hud(usr)
+	hud_enabled ? A.add_hud(usr, src) : A.remove_hud(usr, src)
 	A.update_hud(usr)
-	to_chat(usr, "<span class='notice'>[hud_enabled ? "You enable the Ammo HUD for this weapon." : "You disable the Ammo HUD for this weapon."]</span>")
+	to_chat(usr, span_notice("[hud_enabled ? "You enable the Ammo HUD for this weapon." : "You disable the Ammo HUD for this weapon."]"))
 
 
 /obj/item/weapon/gun/item_action_slot_check(mob/user, slot)
-	if(slot != SLOT_L_HAND && slot != SLOT_R_HAND)
+	if(slot != SLOT_L_HAND && slot != SLOT_R_HAND && !CHECK_BITFIELD(flags_item, IS_DEPLOYED))
 		return FALSE
 	return TRUE
 
@@ -827,15 +923,15 @@ should be alright.
 
 /obj/item/weapon/gun/proc/modify_fire_delay(value, mob/user)
 	fire_delay += value
-	SEND_SIGNAL(src, COMSIG_GUN_FIREDELAY_MODIFIED, fire_delay)
+	SEND_SIGNAL(src, COMSIG_GUN_AUTOFIREDELAY_MODIFIED, fire_delay)
 
 /obj/item/weapon/gun/proc/modify_burst_delay(value, mob/user)
 	burst_delay += value
-	SEND_SIGNAL(src, COMSIG_GUN_BURSTDELAY_MODIFIED, fire_delay)
+	SEND_SIGNAL(src, COMSIG_GUN_BURST_SHOT_DELAY_MODIFIED, burst_delay)
 
 /obj/item/weapon/gun/proc/modify_burst_amount(value, mob/user)
 	burst_amount += value
-	SEND_SIGNAL(src, COMSIG_GUN_BURSTAMOUNT_MODIFIED, fire_delay)
+	SEND_SIGNAL(src, COMSIG_GUN_BURST_SHOTS_TO_FIRE_MODIFIED, burst_amount)
 
 	if(burst_amount < 2)
 		if(GUN_FIREMODE_BURSTFIRE in gun_firemode_list)
@@ -850,15 +946,15 @@ should be alright.
 
 /obj/item/weapon/gun/proc/toggle_auto_aim_mode(mob/living/carbon/human/user) //determines whether toggle_aim_mode activates at the end of gun/wield proc
 
-	if(CHECK_BITFIELD(flags_item, WIELDED)) //if gun is wielded it toggles aim mode directly instead
+	if(CHECK_BITFIELD(flags_item, WIELDED) || CHECK_BITFIELD(flags_item, IS_DEPLOYED)) //if gun is wielded it toggles aim mode directly instead
 		toggle_aim_mode(user)
 		return
 
 	if(!CHECK_BITFIELD(flags_gun_features, AUTO_AIM_MODE))
-		to_chat(user, "<span class='notice'>You will immediately aim upon wielding your weapon.</b></span>")
+		to_chat(user, span_notice("You will immediately aim upon wielding your weapon.</b>"))
 		ENABLE_BITFIELD(flags_gun_features, AUTO_AIM_MODE)
 	else
-		to_chat(user, "<span class='notice'>You will wield your weapon without aiming with precision.</b></span>")
+		to_chat(user, span_notice("You will wield your weapon without aiming with precision.</b>"))
 		DISABLE_BITFIELD(flags_gun_features, AUTO_AIM_MODE)
 
 /obj/item/weapon/gun/proc/toggle_aim_mode(mob/living/carbon/human/user)
@@ -867,33 +963,58 @@ should be alright.
 		user.overlays -= aim_mode_visual
 		DISABLE_BITFIELD(flags_gun_features, GUN_IS_AIMING)
 		user.remove_movespeed_modifier(MOVESPEED_ID_AIM_MODE_SLOWDOWN)
-		gun_iff_signal = null
 		modify_fire_delay(-aim_fire_delay)
-		to_chat(user, "<span class='notice'>You cease aiming.</b></span>")
+		to_chat(user, span_notice("You cease aiming.</b>"))
 		return
-	if(!CHECK_BITFIELD(flags_item, WIELDED))
-		to_chat(user, "<span class='notice'>You need to wield your gun before aiming.</b></span>")
+	if(!CHECK_BITFIELD(flags_item, WIELDED) && !CHECK_BITFIELD(flags_item, IS_DEPLOYED))
+		to_chat(user, span_notice("You need to wield your gun before aiming.</b>"))
 		return
 	if(!user.wear_id)
-		to_chat(user, "<span class='notice'>You don't have distinguished allies you want to avoid shooting.</b></span>")
+		to_chat(user, span_notice("You don't have distinguished allies you want to avoid shooting.</b>"))
 		return
-	to_chat(user, "<span class='notice'>You steady your breathing...</b></span>")
+	to_chat(user, span_notice("You steady your breathing...</b>"))
 
-	if(user.do_actions)
+	if(user.do_actions && !CHECK_BITFIELD(flags_item, IS_DEPLOYED))
 		return
-	if(!do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_BAR, ignore_turf_checks = TRUE))
-		to_chat(user, "<span class='warning'>Your concentration is interrupted!</b></span>")
-		return
-	if(!CHECK_BITFIELD(flags_item, WIELDED))
-		to_chat(user, "<span class='notice'>You need to wield your gun before aiming.</b></span>")
-		return
+	if(!user.marksman_aura)
+		if(!do_after(user, 1 SECONDS, TRUE, CHECK_BITFIELD(flags_item, IS_DEPLOYED) ? loc : src, BUSY_ICON_BAR, ignore_turf_checks = TRUE))
+			to_chat(user, span_warning("Your concentration is interrupted!</b>"))
+			return
 	user.overlays += aim_mode_visual
 	ENABLE_BITFIELD(flags_gun_features, GUN_IS_AIMING)
 	user.add_movespeed_modifier(MOVESPEED_ID_AIM_MODE_SLOWDOWN, TRUE, 0, NONE, TRUE, aim_speed_modifier)
-	var/obj/item/card/id/C = user.wear_id
-	gun_iff_signal = C.access
 	modify_fire_delay(aim_fire_delay)
-	to_chat(user, "<span class='notice'>You line up your aim, allowing you to shoot past allies.</b></span>")
+	to_chat(user, span_notice("You line up your aim, allowing you to shoot past allies.</b>"))
+
+/// Signal handler to activate the rail attachement of that gun if it's in our active hand
+/obj/item/weapon/gun/proc/activate_rail_attachment()
+	SIGNAL_HANDLER
+	if(gun_user?.get_active_held_item() != src && !CHECK_BITFIELD(flags_item, IS_DEPLOYED))
+		return
+	var/obj/item/attachable/underrail_attachment = LAZYACCESS(attachments, ATTACHMENT_SLOT_RAIL)
+	underrail_attachment?.activate_attachment(gun_user)
+	return COMSIG_KB_ACTIVATED
+
+/// Signal handler to activate the underrail attachement of that gun if it's in our active hand
+/obj/item/weapon/gun/proc/activate_underrail_attachment()
+	SIGNAL_HANDLER
+	if(gun_user?.get_active_held_item() != src && !CHECK_BITFIELD(flags_item, IS_DEPLOYED))
+		return
+	var/obj/item/attachable/rail_attachment = LAZYACCESS(attachments, ATTACHMENT_SLOT_UNDER)
+	rail_attachment?.activate_attachment(gun_user)
+	return COMSIG_KB_ACTIVATED
+
+/// Signal handler to unload that gun if it's in our active hand
+/obj/item/weapon/gun/proc/unload_gun()
+	SIGNAL_HANDLER
+	unload(gun_user)
+	return COMSIG_KB_ACTIVATED
+
+/// Signal handler to toggle the safety of the gun
+/obj/item/weapon/gun/proc/toggle_gun_safety_keybind()
+	SIGNAL_HANDLER
+	toggle_gun_safety()
+	return COMSIG_KB_ACTIVATED
 
 //----------------------------------------------------------
 				//				   	   \\

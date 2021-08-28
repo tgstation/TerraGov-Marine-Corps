@@ -3,6 +3,10 @@
 
 /obj/item/clothing/shoes/
 	var/track_blood = 0
+	///Whether these shoes have laces that can be tied/untied
+	var/can_be_tied = TRUE
+	///Are we currently tied? Can either be SHOES_TIED or SHOES_KNOTTED
+	var/tied = SHOES_TIED
 
 /obj/item/reagent_containers/glass/rag
 	name = "damp rag"
@@ -20,18 +24,18 @@
 
 /obj/item/reagent_containers/glass/rag/attack(atom/target as obj|turf|area, mob/user as mob , flag)
 	if(ismob(target) && target.reagents && reagents.total_volume)
-		user.visible_message("<span class='warning'> \The [target] has been smothered with \the [src] by \the [user]!</span>", "<span class='warning'> You smother \the [target] with \the [src]!</span>", "You hear some struggling and muffled cries of surprise")
+		user.visible_message(span_warning(" \The [target] has been smothered with \the [src] by \the [user]!"), span_warning(" You smother \the [target] with \the [src]!"), "You hear some struggling and muffled cries of surprise")
 		src.reagents.reaction(target, TOUCH)
 		addtimer(CALLBACK(reagents, /datum/reagents.proc/clear_reagents), 5)
 		return
-	else
-		..()
+	return ..()
 
 /obj/item/reagent_containers/glass/rag/afterattack(atom/A as obj|turf|area, mob/user as mob, proximity)
-	if(!proximity) return
+	if(!proximity)
+		return
 	if(istype(A) && (src in user))
 		user.visible_message("[user] starts to wipe down [A] with [src]!")
 		if(do_after(user,30, TRUE, A, , BUSY_ICON_GENERIC))
 			user.visible_message("[user] finishes wiping off the [A]!")
 			A.clean_blood()
-	return
+

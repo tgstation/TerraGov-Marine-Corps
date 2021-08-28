@@ -21,7 +21,7 @@
 
 /datum/action/xeno_action/toggle_agility/on_cooldown_finish()
 	var/mob/living/carbon/xenomorph/X = owner
-	to_chat(X, "<span class='notice'>We can [X.agility ? "raise ourselves back up" : "lower ourselves back down"] again.</span>")
+	to_chat(X, span_notice("We can [X.agility ? "raise ourselves back up" : "lower ourselves back down"] again."))
 	return ..()
 
 /datum/action/xeno_action/toggle_agility/action_activate()
@@ -32,14 +32,14 @@
 	GLOB.round_statistics.warrior_agility_toggles++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "warrior_agility_toggles")
 	if(X.agility)
-		to_chat(X, "<span class='xenowarning'>We lower ourselves to all fours and loosen our armored scales to ease our movement.</span>")
+		to_chat(X, span_xenowarning("We lower ourselves to all fours and loosen our armored scales to ease our movement."))
 		X.add_movespeed_modifier(MOVESPEED_ID_WARRIOR_AGILITY , TRUE, 0, NONE, TRUE, X.xeno_caste.agility_speed_increase)
 		var/armor_change = X.xeno_caste.agility_speed_armor
 		X.soft_armor = X.soft_armor.modifyAllRatings(armor_change)
 		last_agility_bonus = armor_change
 		owner.toggle_move_intent(MOVE_INTENT_RUN) //By default we swap to running when activating agility
 	else
-		to_chat(X, "<span class='xenowarning'>We raise ourselves to stand on two feet, hard scales setting back into place.</span>")
+		to_chat(X, span_xenowarning("We raise ourselves to stand on two feet, hard scales setting back into place."))
 		X.remove_movespeed_modifier(MOVESPEED_ID_WARRIOR_AGILITY)
 		X.soft_armor = X.soft_armor.modifyAllRatings(-last_agility_bonus)
 		last_agility_bonus = 0
@@ -60,9 +60,11 @@
 	cooldown_timer = 20 SECONDS
 	keybind_signal = COMSIG_XENOABILITY_LUNGE
 	target_flags = XABB_MOB_TARGET
+	/// The target of our lunge, we keep it to check if we are adjacent everytime we move
+	var/atom/lunge_target
 
 /datum/action/xeno_action/activable/lunge/on_cooldown_finish()
-	to_chat(owner, "<span class='xenodanger'>We ready ourselves to lunge again.</span>")
+	to_chat(owner, span_xenodanger("We ready ourselves to lunge again."))
 	owner.playsound_local(owner, 'sound/effects/xeno_newlarva.ogg', 25, 0, 1)
 	return ..()
 
@@ -73,7 +75,7 @@
 
 	if(!isliving(A)) //We can only lunge at the living; expanded to xenos in order to allow for supportive applications; lunging > throwing to safety
 		if(!silent)
-			to_chat(owner, "<span class='xenodanger'>We can't [name] at that!</span>")
+			to_chat(owner, span_xenodanger("We can't [name] at that!"))
 		return FALSE
 
 /datum/action/xeno_action/activable/lunge/ai_should_start_consider()
@@ -93,28 +95,40 @@
 
 	GLOB.round_statistics.warrior_lunges++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "warrior_lunges")
-	X.visible_message("<span class='xenowarning'>\The [X] lunges towards [A]!</span>", \
-	"<span class='xenowarning'>We lunge at [A]!</span>")
+	X.visible_message(span_xenowarning("\The [X] lunges towards [A]!"), \
+	span_xenowarning("We lunge at [A]!"))
 
 	X.add_filter("warrior_lunge", 2, gauss_blur_filter(3))
-	var/distance = get_dist(X, A)
 
-	X.throw_at(get_step_towards(A, X), 6, 2, X)
-
-	if(distance > 1) //No zero timers
-		addtimer(CALLBACK(src, .proc/lunge_grab, X, A), min(0.05 SECONDS * max(0.01, distance - 1), 1 SECONDS)) //Minor delay so we're guaranteed to grab
-	else
-		lunge_grab(X,A)
-
+	lunge_target = A
+	RegisterSignal(lunge_target, COMSIG_PARENT_QDELETING, .proc/clean_lunge_target)
+	RegisterSignal(X, COMSIG_MOVABLE_MOVED, .proc/check_if_lunge_possible)
+	RegisterSignal(X, COMSIG_MOVABLE_POST_THROW, .proc/clean_lunge_target)
 	succeed_activate()
 	add_cooldown()
+	X.throw_at(get_step_towards(A, X), 6, 2, X)
 	return TRUE
 
-/datum/action/xeno_action/activable/lunge/proc/lunge_grab(mob/living/carbon/xenomorph/warrior/X, atom/A)
-	X.remove_filter("warrior_lunge")
-	if (!X.Adjacent(A))
+///Check if we are close enough to lunge, and if yes, grab neck
+/datum/action/xeno_action/activable/lunge/proc/check_if_lunge_possible(datum/source)
+	SIGNAL_HANDLER
+	if(!lunge_target.Adjacent(source))
 		return
+	lunge_grab(source, lunge_target)
 
+/// Null lunge target and reset throw vars
+/datum/action/xeno_action/activable/lunge/proc/clean_lunge_target()
+	SIGNAL_HANDLER
+	UnregisterSignal(lunge_target, COMSIG_PARENT_QDELETING)
+	UnregisterSignal(owner, COMSIG_MOVABLE_POST_THROW)
+	lunge_target = null
+	UnregisterSignal(owner, COMSIG_MOVABLE_MOVED)
+	owner.remove_filter("warrior_lunge")
+	owner.stop_throw()
+
+///Do the grab on the target, and clean all previous vars
+/datum/action/xeno_action/activable/lunge/proc/lunge_grab(mob/living/carbon/xenomorph/warrior/X, atom/A)
+	clean_lunge_target()
 	X.swap_hand()
 	X.start_pulling(A, lunge = TRUE)
 	X.swap_hand()
@@ -132,16 +146,8 @@
 	keybind_signal = COMSIG_XENOABILITY_FLING
 	target_flags = XABB_MOB_TARGET
 
-/datum/action/xeno_action/activable/fling/give_action(mob/living/L)
-	. = ..()
-	RegisterSignal(owner, COMSIG_WARRIOR_USED_GRAPPLE_TOSS, .proc/add_cooldown) //Shared cooldown with Grapple Toss
-
-/datum/action/xeno_action/activable/fling/remove_action(mob/living/L)
-	UnregisterSignal(owner, COMSIG_WARRIOR_USED_GRAPPLE_TOSS)
-	return ..()
-
 /datum/action/xeno_action/activable/fling/on_cooldown_finish()
-	to_chat(owner, "<span class='xenodanger'>We gather enough strength to fling something again.</span>")
+	to_chat(owner, span_xenodanger("We gather enough strength to fling something again."))
 	owner.playsound_local(owner, 'sound/effects/xeno_newlarva.ogg', 25, 0, 1)
 	return ..()
 
@@ -157,6 +163,9 @@
 
 	if(!isliving(A))
 		return FALSE
+	var/mob/living/L = A
+	if(L.stat == DEAD)
+		return FALSE
 
 /datum/action/xeno_action/activable/fling/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/X = owner
@@ -169,8 +178,8 @@
 	GLOB.round_statistics.warrior_flings++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "warrior_flings")
 
-	X.visible_message("<span class='xenowarning'>\The [X] effortlessly flings [victim] away!</span>", \
-	"<span class='xenowarning'>We effortlessly fling [victim] away!</span>")
+	X.visible_message(span_xenowarning("\The [X] effortlessly flings [victim] away!"), \
+	span_xenowarning("We effortlessly fling [victim] away!"))
 	playsound(victim,'sound/weapons/alien_claw_block.ogg', 75, 1)
 
 	if(victim.mob_size >= MOB_SIZE_BIG) //Penalize fling distance for big creatures
@@ -192,7 +201,9 @@
 	succeed_activate()
 	add_cooldown()
 
-	SEND_SIGNAL(owner, COMSIG_WARRIOR_USED_FLING)  //Shared cooldown with Grapple Toss
+	var/datum/action/xeno_action/toss = X.actions_by_path[/datum/action/xeno_action/activable/toss]
+	if(toss)
+		toss.add_cooldown()
 
 	if(isxeno(victim))
 		var/mob/living/carbon/xenomorph/x_victim = victim
@@ -220,24 +231,15 @@
 /datum/action/xeno_action/activable/toss
 	name = "Grapple Toss"
 	action_icon_state = "grapple_toss"
-	mechanics_text = "Throw a creature you're grappling up to 5 tiles away."
+	mechanics_text = "Throw a creature you're grappling up to 3 tiles away."
 	ability_name = "grapple toss"
 	plasma_cost = 18
 	cooldown_timer = 20 SECONDS //Shared cooldown with Fling
 	keybind_signal = COMSIG_XENOABILITY_GRAPPLE_TOSS
 	target_flags = XABB_TURF_TARGET
 
-
-/datum/action/xeno_action/activable/toss/give_action(mob/living/L)
-	. = ..()
-	RegisterSignal(owner, COMSIG_WARRIOR_USED_FLING, .proc/add_cooldown) //Shared cooldown with Fling
-
-/datum/action/xeno_action/activable/toss/remove_action(mob/living/L)
-	UnregisterSignal(owner, COMSIG_WARRIOR_USED_FLING)
-	return ..()
-
 /datum/action/xeno_action/activable/toss/on_cooldown_finish()
-	to_chat(owner, "<span class='xenodanger'>We gather enough strength to toss something again.</span>")
+	to_chat(owner, span_xenodanger("We gather enough strength to toss something again."))
 	owner.playsound_local(owner, 'sound/effects/xeno_newlarva.ogg', 25, 0, 1)
 	return ..()
 
@@ -248,15 +250,15 @@
 
 	if(!owner.pulling) //If we're not grappling something, we should be flinging something living and adjacent
 		if(!silent)
-			to_chat(owner, "<span class='xenodanger'>We have nothing to toss!</span>")
+			to_chat(owner, span_xenodanger("We have nothing to toss!"))
 		return FALSE
 
 /datum/action/xeno_action/activable/toss/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/X = owner
 	var/atom/movable/target = owner.pulling
-	var/fling_distance = 5
+	var/fling_distance = 4
 	var/stagger_slow_stacks = 3
-	var/stun_duration = 1 SECONDS
+	var/stun_duration = 0.5 SECONDS
 	var/big_mob_message
 
 	X.face_atom(A)
@@ -289,13 +291,15 @@
 	X.do_attack_animation(target, ATTACK_EFFECT_DISARM2)
 	target.throw_at(get_turf(A), fling_distance, 1, X, 1)
 
-	X.visible_message("<span class='xenowarning'>\The [X] throws [target] away[big_mob_message]!</span>", \
-	"<span class='xenowarning'>We throw [target] away[big_mob_message]!</span>")
+	X.visible_message(span_xenowarning("\The [X] throws [target] away[big_mob_message]!"), \
+	span_xenowarning("We throw [target] away[big_mob_message]!"))
 
 	succeed_activate()
 	add_cooldown()
 
-	SEND_SIGNAL(owner, COMSIG_WARRIOR_USED_GRAPPLE_TOSS) //Shared cooldown with Fling
+	var/datum/action/xeno_action/fling = X.actions_by_path[/datum/action/xeno_action/activable/fling]
+	if(fling)
+		fling.add_cooldown()
 
 // ***************************************
 // *********** Punch
@@ -312,7 +316,7 @@
 
 /datum/action/xeno_action/activable/punch/on_cooldown_finish()
 	var/mob/living/carbon/xenomorph/X = owner
-	to_chat(X, "<span class='xenodanger'>We gather enough strength to punch again.</span>")
+	to_chat(X, span_xenodanger("We gather enough strength to punch again."))
 	owner.playsound_local(owner, 'sound/effects/xeno_newlarva.ogg', 25, 0, 1)
 	return ..()
 
@@ -321,26 +325,26 @@
 	if(!.)
 		return
 
-	if(A.resistance_flags == RESIST_ALL || A.resistance_flags == INDESTRUCTIBLE) //no bolting down indestructible airlocks
+	if(A.resistance_flags & (INDESTRUCTIBLE|CRUSHER_IMMUNE)) //no bolting down indestructible airlocks
 		if(!silent)
-			to_chat(owner, "<span class='xenodanger'>We cannot damage this target!</span>")
+			to_chat(owner, span_xenodanger("We cannot damage this target!"))
 		return FALSE
 
-	if(!isliving(A) && !isstructure(A) && !ismachinery(A))
+	if(!isliving(A) && !isstructure(A) && !ismachinery(A) && !isuav(A))
 		if(!silent)
-			to_chat(owner, "<span class='xenodanger'>We can't punch this target!</span>")
+			to_chat(owner, span_xenodanger("We can't punch this target!"))
 		return FALSE
 
 	if(isliving(A))
 		var/mob/living/L = A
 		if(L.stat == DEAD)
 			if(!silent)
-				to_chat(owner, "<span class='xenodanger'>We don't care about the dead!</span>")
+				to_chat(owner, span_xenodanger("We don't care about the dead!"))
 			return FALSE
 
 	if(!owner.Adjacent(A))
 		if(!silent)
-			to_chat(owner, "<span class='xenodanger'>Our target must be adjacent!</span>")
+			to_chat(owner, span_xenodanger("Our target must be adjacent!"))
 		return FALSE
 
 
@@ -357,7 +361,7 @@
 	if(!target_zone)
 		target_zone = "chest"
 
-	if(!A.punch_act(X, X.xeno_caste.melee_damage, target_zone))
+	if(!A.punch_act(X, X.xeno_caste.melee_damage * X.xeno_melee_damage_modifier, target_zone))
 		return fail_activate()
 
 	GLOB.round_statistics.warrior_punches++
@@ -372,9 +376,10 @@
 /obj/machinery/punch_act(mob/living/carbon/xenomorph/X, damage, target_zone) //Break open the machine
 	X.do_attack_animation(src, ATTACK_EFFECT_YELLOWPUNCH)
 	X.do_attack_animation(src, ATTACK_EFFECT_DISARM2)
-	attack_generic(X, damage * 4, BRUTE, "", FALSE) //Deals 4 times regular damage to machines
-	X.visible_message("<span class='xenodanger'>\The [X] smashes [src] with a devastating punch!</span>", \
-		"<span class='xenodanger'>We smash [src] with a devastating punch!</span>", visible_message_flags = COMBAT_MESSAGE)
+	if(!CHECK_BITFIELD(resistance_flags, UNACIDABLE) || resistance_flags == (UNACIDABLE|XENO_DAMAGEABLE)) //If it's acidable or we can't acid it but it has the xeno damagable flag, we can damage it
+		attack_generic(X, damage * 4, BRUTE, "", FALSE) //Deals 4 times regular damage to machines
+	X.visible_message(span_xenodanger("\The [X] smashes [src] with a devastating punch!"), \
+		span_xenodanger("We smash [src] with a devastating punch!"), visible_message_flags = COMBAT_MESSAGE)
 	playsound(src, pick('sound/effects/bang.ogg','sound/effects/metal_crash.ogg','sound/effects/meteorimpact.ogg'), 50, 1)
 	Shake(4, 4, 2 SECONDS)
 
@@ -385,10 +390,14 @@
 		var/allcut = wires.is_all_cut()
 		if(!allcut) //Considered prohibiting this vs airlocks, but tbh, I can see clever warriors using this to keep airlocks bolted open or closed as is most advantageous
 			wires.cut_all()
-			visible_message("<span class='danger'>\The [src]'s wires snap apart in a rain of sparks!</span>", null, null, 5)
+			visible_message(span_danger("\The [src]'s wires snap apart in a rain of sparks!"), null, null, 5)
 
 	update_icon()
 	return TRUE
+
+/obj/machinery/deployable/mounted/sentry/punch_act(mob/living/carbon/xenomorph/X, damage, target_zone)
+	knock_down()
+	return ..()
 
 /obj/machinery/computer/punch_act(mob/living/carbon/xenomorph/X, damage, target_zone) //Break open the machine
 	set_disabled() //Currently only computers use this; falcon punch away its density
@@ -398,6 +407,16 @@
 	. = ..()
 	attack_alien(X) //Smash it
 
+/obj/machinery/camera/punch_act(mob/living/carbon/xenomorph/X)
+	. = ..()
+	var/datum/effect_system/spark_spread/sparks = new //Avoid the slash text, go direct to sparks
+	sparks.set_up(2, 0, src)
+	sparks.attach(src)
+	sparks.start()
+
+	deactivate()
+	visible_message(span_danger("\The [src]'s wires snap apart in a rain of sparks!")) //Smash it
+
 /obj/machinery/power/apc/punch_act(mob/living/carbon/xenomorph/X)
 	. = ..()
 	beenhit += 4 //Break it open instantly
@@ -405,16 +424,16 @@
 /obj/machinery/vending/punch_act(mob/living/carbon/xenomorph/X)
 	. = ..()
 	if(tipped_level < 2) //Knock it down if it isn't
-		X.visible_message("<span class='danger'>\The [X] knocks \the [src] down!</span>", \
-		"<span class='danger'>You knock \the [src] down!</span>", null, 5)
+		X.visible_message(span_danger("\The [X] knocks \the [src] down!"), \
+		span_danger("You knock \the [src] down!"), null, 5)
 		tip_over()
 
 /obj/structure/punch_act(mob/living/carbon/xenomorph/X, damage, target_zone) //Smash structures
 	X.do_attack_animation(src, ATTACK_EFFECT_YELLOWPUNCH)
 	X.do_attack_animation(src, ATTACK_EFFECT_DISARM2)
 	attack_alien(X, damage * 4, BRUTE, "", FALSE) //Deals 4 times regular damage to structures
-	X.visible_message("<span class='xenodanger'>\The [X] smashes [src] with a devastating punch!</span>", \
-		"<span class='xenodanger'>We smash [src] with a devastating punch!</span>", visible_message_flags = COMBAT_MESSAGE)
+	X.visible_message(span_xenodanger("\The [X] smashes [src] with a devastating punch!"), \
+		span_xenodanger("We smash [src] with a devastating punch!"), visible_message_flags = COMBAT_MESSAGE)
 	playsound(src, pick('sound/effects/bang.ogg','sound/effects/metal_crash.ogg','sound/effects/meteorimpact.ogg'), 50, 1)
 	Shake(4, 4, 2 SECONDS)
 	return TRUE
@@ -436,12 +455,12 @@
 		var/datum/limb/L = carbon_victim.get_limb(target_zone)
 
 		if (!L || (L.limb_status & LIMB_DESTROYED))
-			to_chat(X, "<span class='xenodanger'>Our target is missing that limb!</span>")
+			to_chat(X, span_xenodanger("Our target is missing that limb!"))
 			return FALSE
 
 		if(L.limb_status & LIMB_SPLINTED) //If they have it splinted, the splint won't hold.
 			L.remove_limb_flags(LIMB_SPLINTED)
-			to_chat(src, "<span class='danger'>The splint on your [L.display_name] comes apart!</span>")
+			to_chat(src, span_danger("The splint on your [L.display_name] comes apart!"))
 
 		L.take_damage_limb(damage, 0, FALSE, FALSE, run_armor_check(target_zone))
 
@@ -455,8 +474,8 @@
 
 	var/target_location_feedback = get_living_limb_descriptive_name(target_zone)
 
-	X.visible_message("<span class='xenodanger'>\The [X] hits [src] in the [target_location_feedback] with a [punch_description] punch!</span>", \
-		"<span class='xenodanger'>We hit [src] in the [target_location_feedback] with a [punch_description] punch!</span>", visible_message_flags = COMBAT_MESSAGE)
+	X.visible_message(span_xenodanger("\The [X] hits [src] in the [target_location_feedback] with a [punch_description] punch!"), \
+		span_xenodanger("We hit [src] in the [target_location_feedback] with a [punch_description] punch!"), visible_message_flags = COMBAT_MESSAGE)
 
 	adjust_stagger(stagger_stacks)
 	add_slowdown(slowdown_stacks)

@@ -5,6 +5,12 @@
 /mob/living/proc/getBruteLoss()
 	return bruteloss
 
+///We straight up set bruteloss/brute damage to a desired amount unless godmode is enabled
+/mob/living/proc/setBruteLoss(amount)
+	if(status_flags & GODMODE)
+		return FALSE
+	bruteloss = amount
+
 /mob/living/proc/adjustBruteLoss(amount, updating_health = FALSE)
 	if(status_flags & GODMODE)
 		return FALSE	//godmode
@@ -15,6 +21,12 @@
 
 /mob/living/proc/getFireLoss()
 	return fireloss
+
+///We straight up set fireloss/burn damage to a desired amount unless godmode is enabled
+/mob/living/proc/setFireLoss(amount)
+	if(status_flags & GODMODE)
+		return FALSE
+	fireloss = amount
 
 /mob/living/proc/adjustFireLoss(amount, updating_health = FALSE)
 	if(status_flags & GODMODE)
@@ -59,7 +71,14 @@
 /mob/living/proc/adjustStaminaLoss(amount, update = TRUE, feedback = TRUE)
 	if(status_flags & GODMODE)
 		return FALSE	//godmode
-	staminaloss = clamp(staminaloss + amount, -max_stamina_buffer, maxHealth * 2)
+
+	var/stamina_loss_adjustment = staminaloss + amount
+	var/health_limit = maxHealth * 2
+	if(stamina_loss_adjustment > health_limit) //If we exceed maxHealth * 2 stamina damage, half of any excess as oxyloss
+		adjustOxyLoss((stamina_loss_adjustment - health_limit) * 0.5)
+
+	staminaloss = clamp(stamina_loss_adjustment, -max_stamina_buffer, health_limit)
+
 	if(amount > 0)
 		last_staminaloss_dmg = world.time
 	if(update)
@@ -73,13 +92,18 @@
 		updateStamina(feedback)
 
 /mob/living/proc/updateStamina(feedback = TRUE)
-	if(staminaloss < max(health * 1.5,0))
+	if(staminaloss < max(health * 1.5,0) || !(COOLDOWN_CHECK(src, last_stamina_exhaustion))) //If we're on cooldown for stamina exhaustion, don't bother
 		return
-	if(!IsParalyzed())
-		if(feedback)
-			visible_message("<span class='warning'>\The [src] slumps to the ground, too weak to continue fighting.</span>",
-				"<span class='warning'>You slump to the ground, you're too exhausted to keep going...</span>")
-	Paralyze(80)
+
+	if(feedback)
+		visible_message(span_warning("\The [src] slumps to the ground, too weak to continue fighting."),
+			span_warning("You slump to the ground, you're too exhausted to keep going..."))
+
+	ParalyzeNoChain(1 SECONDS) //Short stun
+	adjust_stagger(STAMINA_EXHAUSTION_DEBUFF_STACKS)
+	add_slowdown(STAMINA_EXHAUSTION_DEBUFF_STACKS)
+	adjust_blurriness(STAMINA_EXHAUSTION_DEBUFF_STACKS)
+	COOLDOWN_START(src, last_stamina_exhaustion, LIVING_STAMINA_EXHAUSTION_COOLDOWN) //set the cooldown.
 
 
 /mob/living/carbon/human/updateStamina(feedback = TRUE)
@@ -230,6 +254,7 @@
 	. = ..()
 	revive_grace_time = initial(revive_grace_time)
 	GLOB.alive_human_list += src
+	LAZYADD(GLOB.alive_human_list_faction[faction], src)
 	GLOB.dead_human_list -= src
 	LAZYADD(GLOB.humans_by_zlevel["[z]"], src)
 	RegisterSignal(src, COMSIG_MOVABLE_Z_CHANGED, .proc/human_z_changed)
@@ -333,7 +358,9 @@
 		I.damage = 0
 
 	reagents.clear_reagents() //and clear all reagents in them
-	undefibbable = FALSE
+	REMOVE_TRAIT(src, TRAIT_UNDEFIBBABLE, TRAIT_UNDEFIBBABLE)
+	REMOVE_TRAIT(src, TRAIT_PSY_DRAINED, TRAIT_PSY_DRAINED)
+	dead_ticks = 0
 	chestburst = 0
 	headbitten = FALSE
 	update_body()

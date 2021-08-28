@@ -52,6 +52,7 @@
 	icon_state = "beret"
 	soft_armor = list("melee" = 15, "bullet" = 15, "laser" = 15, "energy" = 15, "bomb" = 10, "bio" = 5, "rad" = 0, "fire" = 5, "acid" = 5)
 	flags_item_map_variant = NONE
+	flags_armor_features = ARMOR_NO_DECAP
 
 /obj/item/clothing/head/tgmcberet/tan
 	icon_state = "berettan"
@@ -63,6 +64,18 @@
 
 /obj/item/clothing/head/tgmcberet/red2
 	icon_state = "beretred2"
+	flags_item_map_variant = NONE
+
+/obj/item/clothing/head/tgmcberet/bloodred
+	icon_state = "bloodred_beret"
+	flags_item_map_variant = NONE
+
+/obj/item/clothing/head/tgmcberet/blueberet
+	icon_state = "blue_beret"
+	flags_item_map_variant = NONE
+
+/obj/item/clothing/head/tgmcberet/darkgreen
+	icon_state = "darkgreen_beret"
 	flags_item_map_variant = NONE
 
 /obj/item/clothing/head/tgmcberet/green

@@ -36,7 +36,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	materials = list(/datum/material/metal = 100)
 	w_class = WEIGHT_CLASS_SMALL
 	force = 1.0
-	///"muzzle", "rail", "under", "stock" the particular 'slot' the attachment can attach to. must always be a singular slot.
+	///ATTACHMENT_SLOT_MUZZLE, ATTACHMENT_SLOT_RAIL, ATTACHMENT_SLOT_UNDER, ATTACHMENT_SLOT_STOCK the particular 'slot' the attachment can attach to. must always be a singular slot.
 	var/slot = null
 
 	///Modifier to firing accuracy, works off a multiplier.
@@ -91,6 +91,14 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	var/aim_mode_movement_mult = 0
 	///Modifies projectile damage by a % when a marine gets passed, but not hit
 	var/shot_marine_damage_falloff = 0
+	///How much of the aim mode fire rate debuff is removed %-wise
+	var/aim_mode_fire_rate_debuff_reduction = 0
+	/*
+	 * Contains the removed amount from the aim mode fire rate debuff
+	 * so that the same amount that was removed is returned
+	 * in the case of multiple things modifying the gun's var by a %
+	 */
+	var/cached_aim_mode_debuff_fire_rate = 0
 
 	///the delay between shots, for attachments that fire stuff
 	var/attachment_firing_delay = 0
@@ -123,6 +131,8 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	var/charge_mod = 0
 	///what firemodes this attachment allows/adds.
 	var/gun_firemode_list_mod = null
+	///lazylist of attachment slot offsets for a gun.
+	var/list/gun_attachment_offset_mod
 
 	///what gun this attachment is currently attached to, if any.
 	var/obj/item/weapon/gun/master_gun
@@ -133,7 +143,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 
 	if(flags_attach_features & ATTACH_RELOADABLE)
 		if(user.get_inactive_held_item() != src)
-			to_chat(user, "<span class='warning'>You have to hold [src] to do that!</span>")
+			to_chat(user, span_warning("You have to hold [src] to do that!"))
 		else
 			reload_attachment(I, user)
 		return TRUE
@@ -144,8 +154,14 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 		return
 	return ..()
 
-
-/obj/item/attachable/proc/Attach(obj/item/weapon/gun/gun_to_attach, mob/user)
+/**
+ * Attaches this attachment to a gun
+ * Arguments:
+ * * gun_to_attach: the gun we are being attached to
+ * * user: optional user for detaching this gun
+ */
+/obj/item/attachable/proc/attach_to_gun(obj/item/weapon/gun/gun_to_attach, mob/user)
+	SHOULD_CALL_PARENT(TRUE)
 	if(!istype(gun_to_attach))
 		return //Guns only
 	master_gun = gun_to_attach
@@ -157,19 +173,9 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	removed on a gun. can_be_removed is instead used when they
 	try to strip the gun.
 	*/
-	switch(slot)
-		if("rail")
-			master_gun.rail?.Detach(user)
-			master_gun.rail = src
-		if("muzzle")
-			master_gun.muzzle?.Detach(user)
-			master_gun.muzzle = src
-		if("under")
-			master_gun.under?.Detach(user)
-			master_gun.under = src
-		if("stock")
-			master_gun.stock?.Detach(user)
-			master_gun.stock = src
+	var/obj/item/attachable/current_attachment = LAZYACCESS(master_gun.attachments, slot)
+	current_attachment?.detach_from_master_gun(user)
+	LAZYSET(master_gun.attachments, slot, src)
 
 	if(ishuman(user))
 		var/mob/living/carbon/human/wielder = user
@@ -186,6 +192,8 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	master_gun.scatter_unwielded			+= scatter_unwielded_mod
 	master_gun.aim_speed_modifier			+= initial(master_gun.aim_speed_modifier)*aim_mode_movement_mult
 	master_gun.iff_marine_damage_falloff	+= shot_marine_damage_falloff
+	cached_aim_mode_debuff_fire_rate = master_gun.aim_fire_delay * aim_mode_fire_rate_debuff_reduction
+	master_gun.aim_fire_delay 				-= cached_aim_mode_debuff_fire_rate
 	if(delay_mod)
 		master_gun.modify_fire_delay(delay_mod)
 	if(burst_delay_mod)
@@ -195,6 +203,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	master_gun.recoil						+= recoil_mod
 	master_gun.recoil_unwielded				+= recoil_unwielded_mod
 	master_gun.force						+= melee_mod
+	master_gun.sharp						+= sharp
 	master_gun.aim_slowdown					+= aim_speed_mod
 	master_gun.wield_delay					+= wield_delay_mod
 	master_gun.burst_scatter_mult			+= burst_scatter_mod
@@ -207,6 +216,10 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 		master_gun.charge_cost				+= charge_mod
 	for(var/i in gun_firemode_list_mod)
 		master_gun.add_firemode(i, user)
+	if(LAZYLEN(gun_attachment_offset_mod))
+		for(var/overlay_mod in gun_attachment_offset_mod)
+			master_gun.attachable_offset[overlay_mod] += gun_attachment_offset_mod[overlay_mod]
+		master_gun.update_attachables()
 
 	master_gun.update_force_list() //This updates the gun to use proper force verbs.
 
@@ -225,20 +238,18 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 				action_to_update.give_action(living_user)
 
 
-
-/obj/item/attachable/proc/Detach(mob/user)
+/**
+ * Detaches this attachment from whatever gun it is connected to
+ * Arguments:
+ * user: Mob that is detaching this attachment
+ */
+/obj/item/attachable/proc/detach_from_master_gun(mob/user)
+	SHOULD_CALL_PARENT(TRUE)
 	if(flags_attach_features & ATTACH_ACTIVATION)
 		activate_attachment(null, TRUE)
 
-	switch(slot)
-		if("rail")
-			master_gun.rail = null
-		if("muzzle")
-			master_gun.muzzle = null
-		if("under")
-			master_gun.under = null
-		if("stock")
-			master_gun.stock = null
+	LAZYREMOVE(master_gun.attachments, slot)
+
 
 	master_gun.accuracy_mult				-= accuracy_mod
 	master_gun.accuracy_mult_unwielded		-= accuracy_unwielded_mod
@@ -249,6 +260,10 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	master_gun.scatter_unwielded			-= scatter_unwielded_mod
 	master_gun.aim_speed_modifier			-= initial(master_gun.aim_speed_modifier)*aim_mode_movement_mult
 	master_gun.iff_marine_damage_falloff	-= shot_marine_damage_falloff
+	master_gun.aim_fire_delay 				+= cached_aim_mode_debuff_fire_rate
+	if(CHECK_BITFIELD(master_gun.flags_gun_features, GUN_IS_AIMING))
+		master_gun.modify_fire_delay(cached_aim_mode_debuff_fire_rate)
+	cached_aim_mode_debuff_fire_rate = 0
 	if(delay_mod)
 		master_gun.modify_fire_delay(-delay_mod)
 	if(burst_delay_mod)
@@ -258,18 +273,24 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	master_gun.recoil						-= recoil_mod
 	master_gun.recoil_unwielded				-= recoil_unwielded_mod
 	master_gun.force						-= melee_mod
+	master_gun.sharp						-= sharp
 	master_gun.aim_slowdown					-= aim_speed_mod
 	master_gun.wield_delay					-= wield_delay_mod
 	master_gun.burst_scatter_mult			-= burst_scatter_mod
 	master_gun.movement_acc_penalty_mult	-= movement_acc_penalty_mod
-	master_gun.shell_speed_mod				-=attach_shell_speed_mod
+	master_gun.shell_speed_mod				-= attach_shell_speed_mod
 	master_gun.scope_zoom					-= scope_zoom_mod
 	if(ammo_mod)
 		master_gun.remove_ammo_mod(ammo_mod)
 	if(master_gun.charge_cost)
-		master_gun.charge_cost				-= charge_mod
+		master_gun.charge_cost -= charge_mod
 	for(var/i in gun_firemode_list_mod)
 		master_gun.remove_firemode(i, user)
+
+	if(LAZYLEN(gun_attachment_offset_mod))
+		for(var/overlay_mod in gun_attachment_offset_mod)
+			master_gun.attachable_offset[overlay_mod] -= gun_attachment_offset_mod[overlay_mod]
+		master_gun.update_attachables()
 
 
 	master_gun.update_force_list()
@@ -279,27 +300,34 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 		master_gun.muzzle_flash = initial(master_gun.muzzle_flash)
 		master_gun.fire_sound = initial(master_gun.fire_sound)
 
-	for(var/i in master_gun.actions)
-		var/datum/action/action_to_update = i
+	master_gun.update_attachable(slot)
+
+	for(var/datum/action/action_to_update AS in master_gun.actions)
 		if(action_to_update.target != src)
 			continue
 		qdel(action_to_update)
 		break
 
-	forceMove(get_turf(master_gun))
+	var/turf/master_gun_turf = get_turf(master_gun)
+	if(master_gun_turf)
+		forceMove(master_gun_turf)
 
 	master_gun = null
 
 
 /obj/item/attachable/ui_action_click(mob/living/user, datum/action/item_action/action, obj/item/weapon/gun/G)
-	if(G == user.get_active_held_item() || G == user.get_inactive_held_item())
+	if(G == user.get_active_held_item() || G == user.get_inactive_held_item() || CHECK_BITFIELD(G.flags_item, IS_DEPLOYED))
 		if(activate_attachment(user)) //success
 			playsound(user, activation_sound, 15, 1)
 	else
-		to_chat(user, "<span class='warning'>[G] must be in our hands to do this.</span>")
+		to_chat(user, span_warning("[G] must be in our hands to do this."))
 
-
-
+/obj/item/attachable/hydro_cannon/ui_action_click(mob/living/user, datum/action/item_action/action, obj/item/weapon/gun/G)
+	if(G == user.get_active_held_item() || G == user.get_inactive_held_item() || CHECK_BITFIELD(G.flags_item, IS_DEPLOYED))
+		G.unique_action(user)
+		return
+	if(activate_attachment(user)) //success
+		playsound(user, activation_sound, 15, 1)
 
 /obj/item/attachable/proc/activate_attachment(mob/user, turn_off) //This is for activating stuff like flamethrowers, or switching weapon modes.
 	return
@@ -318,7 +346,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	name = "suppressor"
 	desc = "A small tube with exhaust ports to expel noise and gas.\nDoes not completely silence a weapon, but does make it much quieter and a little more accurate and stable at the cost of bullet speed."
 	icon_state = "suppressor"
-	slot = "muzzle"
+	slot = ATTACHMENT_SLOT_MUZZLE
 	silence_mod = TRUE
 	pixel_shift_y = 16
 	attach_icon = "suppressor_a"
@@ -346,7 +374,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 
 /obj/item/attachable/bayonet
 	name = "bayonet"
-	desc = "A sharp blade for mounting on a weapon. It can be used to stab manually on anything but harm intent."
+	desc = "A sharp blade for mounting on a weapon. It can be used to stab manually on anything but harm intent. Slightly reduces the accuracy of the gun when mounted."
 	icon_state = "bayonet"
 	attach_icon = "bayonet_a"
 	force = 20
@@ -355,25 +383,23 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	detach_delay = 10
 	attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	melee_mod = 25
-	slot = "muzzle"
+	slot = ATTACHMENT_SLOT_MUZZLE
 	pixel_shift_x = 14 //Below the muzzle.
 	pixel_shift_y = 18
 	accuracy_mod = -0.05
 	accuracy_unwielded_mod = -0.1
 	size_mod = 1
+	sharp = IS_SHARP_ITEM_ACCURATE
 
-/obj/item/attachable/bayonet/attackby(obj/item/I, mob/user)
-	. = ..()
-
-	if(istype(I,/obj/item/tool/screwdriver))
-		to_chat(user, "<span class='notice'>You modify the bayonet back into a combat knife.</span>")
-		if(loc == user)
-			user.dropItemToGround(src)
-		var/obj/item/weapon/combat_knife/F = new(loc)
-		user.put_in_hands(F) //This proc tries right, left, then drops it all-in-one.
-		if(F.loc != user) //It ended up on the floor, put it whereever the old flashlight is.
-			F.forceMove(loc)
-		qdel(src) //Delete da old bayonet
+/obj/item/attachable/bayonet/screwdriver_act(mob/living/user, obj/item/I)
+	to_chat(user, span_notice("You modify the bayonet back into a combat knife."))
+	if(loc == user)
+		user.dropItemToGround(src)
+	var/obj/item/weapon/combat_knife/knife = new(loc)
+	user.put_in_hands(knife) //This proc tries right, left, then drops it all-in-one.
+	if(knife.loc != user) //It ended up on the floor, put it whereever the old flashlight is.
+		knife.forceMove(loc)
+	qdel(src) //Delete da old bayonet
 
 /obj/item/attachable/bayonetknife
 	name = "M-22 bayonet"
@@ -390,12 +416,13 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	detach_delay = 10
 	attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	melee_mod = 25
-	slot = "muzzle"
+	slot = ATTACHMENT_SLOT_MUZZLE
 	pixel_shift_x = 14 //Below the muzzle.
 	pixel_shift_y = 18
 	accuracy_mod = -0.05
 	accuracy_unwielded_mod = -0.1
 	size_mod = 1
+	sharp = IS_SHARP_ITEM_ACCURATE
 
 /obj/item/attachable/bayonetknife/Initialize()
 	. = ..()
@@ -404,7 +431,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 /obj/item/attachable/extended_barrel
 	name = "extended barrel"
 	desc = "A lengthened barrel allows for lessened scatter, greater accuracy and muzzle velocity due to increased stabilization and shockwave exposure."
-	slot = "muzzle"
+	slot = ATTACHMENT_SLOT_MUZZLE
 	icon_state = "ebarrel"
 	attach_icon = "ebarrel_a"
 	attach_shell_speed_mod = 1
@@ -416,20 +443,18 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 
 /obj/item/attachable/heavy_barrel
 	name = "barrel charger"
-	desc = "A fitted barrel extender that goes on the muzzle, with a small shaped charge that propels a bullet much faster.\nGreatly increases projectile damage and increases projectile speed at the cost of accuracy and firing speed."
-	slot = "muzzle"
+	desc = "A fitted barrel extender that goes on the muzzle, with a small shaped charge that propels a bullet much faster.\nGreatly increases projectile speed."
+	slot = ATTACHMENT_SLOT_MUZZLE
 	icon_state = "hbarrel"
 	attach_icon = "hbarrel_a"
-	accuracy_mod = -0.6
-	damage_mod = 0.1
-	scatter_mod = 25
-	accuracy_unwielded_mod = -0.3
+	attach_shell_speed_mod = 2
+	accuracy_mod = -0.1
 
 
 /obj/item/attachable/compensator
 	name = "recoil compensator"
 	desc = "A muzzle attachment that reduces recoil and scatter by diverting expelled gasses upwards. \nSignificantly reduces recoil and scatter, regardless of if the weapon is wielded."
-	slot = "muzzle"
+	slot = ATTACHMENT_SLOT_MUZZLE
 	icon_state = "comp"
 	attach_icon = "comp_a"
 	pixel_shift_x = 17
@@ -438,24 +463,11 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	scatter_unwielded_mod = -15
 	recoil_unwielded_mod = -2
 
-
-/obj/item/attachable/slavicbarrel
-	name = "sniper barrel"
-	icon_state = "slavicbarrel"
-	desc = "A heavy barrel. CANNOT BE REMOVED."
-	slot = "muzzle"
-
-	pixel_shift_x = 20
-	pixel_shift_y = 16
-	flags_attach_features = NONE
-	accuracy_mod = 0.05
-	scatter_mod = -15
-
 /obj/item/attachable/sniperbarrel
 	name = "sniper barrel"
 	icon_state = "sniperbarrel"
 	desc = "A heavy barrel. CANNOT BE REMOVED."
-	slot = "muzzle"
+	slot = ATTACHMENT_SLOT_MUZZLE
 	flags_attach_features = NONE
 	accuracy_mod = 0.15
 	scatter_mod = -15
@@ -464,7 +476,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	name = "auto sniper barrel"
 	icon_state = "t81barrel"
 	desc = "A heavy barrel. CANNOT BE REMOVED."
-	slot = "under"
+	slot = ATTACHMENT_SLOT_UNDER
 	flags_attach_features = NONE
 	pixel_shift_x = 7
 	pixel_shift_y = 14
@@ -475,13 +487,13 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	name = "smartgun barrel"
 	icon_state = "smartbarrel"
 	desc = "A heavy rotating barrel. CANNOT BE REMOVED."
-	slot = "muzzle"
+	slot = ATTACHMENT_SLOT_MUZZLE
 	flags_attach_features = NONE
 
 /obj/item/attachable/focuslens
 	name = "M43 focused lens"
 	desc = "Directs the beam into one specialized lens, allowing the lasgun to use the deadly focused bolts on overcharge, making it more like a high damage sniper."
-	slot = "muzzle"
+	slot = ATTACHMENT_SLOT_MUZZLE
 	icon_state = "focus"
 	attach_icon = "focus_a"
 	pixel_shift_x = 17
@@ -492,7 +504,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 /obj/item/attachable/widelens
 	name = "M43 wide lens"
 	desc = "Splits the lens into three, allowing the lasgun to use a deadly close-range blast on overcharge akin to a traditional pellet based shotgun shot."
-	slot = "muzzle"
+	slot = ATTACHMENT_SLOT_MUZZLE
 	icon_state = "wide"
 	attach_icon = "wide_a"
 	pixel_shift_x = 18
@@ -503,7 +515,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 /obj/item/attachable/heatlens
 	name = "M43 heat lens"
 	desc = "Changes the intensity and frequency of the laser. This makes your target be set on fire at a cost of upfront damage and penetration."
-	slot = "muzzle"
+	slot = ATTACHMENT_SLOT_MUZZLE
 	icon_state = "heat"
 	attach_icon = "heat_a"
 	pixel_shift_x = 18
@@ -514,7 +526,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 /obj/item/attachable/efflens
 	name = "M43 efficient lens"
 	desc = "Makes the lens smaller and lighter to use, allowing the lasgun to use its energy much more efficiently. \nDecreases energy output of the lasgun."
-	slot = "muzzle"
+	slot = ATTACHMENT_SLOT_MUZZLE
 	icon_state = "efficient"
 	attach_icon = "efficient_a"
 	pixel_shift_x = 18
@@ -524,14 +536,14 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 /obj/item/attachable/sx16barrel
 	name = "SX-16 barrel"
 	desc = "The standard barrel on the SX-16. CANNOT BE REMOVED."
-	slot = "muzzle"
+	slot = ATTACHMENT_SLOT_MUZZLE
 	icon_state = "sx16barrel"
 	flags_attach_features = NONE
 
 /obj/item/attachable/pulselens
 	name = "M43 pulse lens"
 	desc = "Agitates the lens, allowing the lasgun to discharge at a rapid rate. \nAllows the weapon to be fired automatically."
-	slot = "muzzle"
+	slot = ATTACHMENT_SLOT_MUZZLE
 	icon_state = "pulse"
 	attach_icon = "pulse_a"
 	pixel_shift_x = 18
@@ -542,21 +554,21 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 /obj/item/attachable/t42barrel
 	name = "T-42 barrel"
 	desc = "The standard barrel on the T-42. CANNOT BE REMOVED."
-	slot = "muzzle"
+	slot = ATTACHMENT_SLOT_MUZZLE
 	icon_state = "t42barrel"
 	flags_attach_features = NONE
 
 /obj/item/attachable/t18barrel
 	name = "T-18 barrel"
 	desc = "The standard barrel on the T-18. CANNOT BE REMOVED."
-	slot = "muzzle"
+	slot = ATTACHMENT_SLOT_MUZZLE
 	icon_state = "t18barrel"
 	flags_attach_features = NONE
 
 /obj/item/attachable/t12barrel
 	name = "T-12 barrel"
 	desc = "The standard barrel on the T-12. CANNOT BE REMOVED."
-	slot = "muzzle"
+	slot = ATTACHMENT_SLOT_MUZZLE
 	icon_state = "t12barrel"
 	flags_attach_features = NONE
 
@@ -564,27 +576,27 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	name = "T-29 barrel"
 	icon_state = "t29barrel"
 	desc = "A heavy barrel. CANNOT BE REMOVED."
-	slot = "muzzle"
+	slot = ATTACHMENT_SLOT_MUZZLE
 	flags_attach_features = NONE
 
 ///////////// Rail attachments ////////////////////////
 
 /obj/item/attachable/reddot
 	name = "red-dot sight"
-	desc = "A red-dot sight for short to medium range. Does not have a zoom feature, but does increase weapon accuracy by a good amount. \nNo drawbacks."
+	desc = "A red-dot sight for short to medium range. Does not have a zoom feature, but does increase weapon accuracy and fire rate while aiming by a good amount. \nNo drawbacks."
 	icon_state = "reddot"
 	attach_icon = "reddot_a"
-	slot = "rail"
+	slot = ATTACHMENT_SLOT_RAIL
 	accuracy_mod = 0.15
 	accuracy_unwielded_mod = 0.1
-
+	aim_mode_fire_rate_debuff_reduction = 0.5
 
 /obj/item/attachable/m16sight
 	name = "M16 iron sights"
 	desc = "The iconic carry-handle iron sights for the m16. Usually removed once the user finds something worthwhile to attach to the rail."
 	icon_state = "m16sight"
 	attach_icon = "m16sight_a"
-	slot = "rail"
+	slot = ATTACHMENT_SLOT_RAIL
 	accuracy_mod = 0.1
 	accuracy_unwielded_mod = 0.05
 	movement_acc_penalty_mod = -0.1
@@ -596,32 +608,41 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	icon_state = "flashlight"
 	attach_icon = "flashlight_a"
 	light_mod = 6
-	slot = "rail"
+	light_system = MOVABLE_LIGHT
+	slot = ATTACHMENT_SLOT_RAIL
 	materials = list(/datum/material/metal = 100, /datum/material/glass = 20)
 	flags_attach_features = ATTACH_REMOVABLE|ATTACH_ACTIVATION
 	attachment_action_type = /datum/action/item_action/toggle
 	activation_sound = 'sound/items/flashlight.ogg'
 
-/obj/item/attachable/flashlight/activate_attachment(mob/living/user, turn_off)
-	if(turn_off && !(master_gun.flags_gun_features & GUN_FLASHLIGHT_ON))
+
+/obj/item/attachable/flashlight/activate_attachment(mob/living/user)
+	turn_light(user, !light_on)
+
+/obj/item/attachable/flashlight/turn_light(mob/user, toggle_on)
+	. = ..()
+
+	if(. != CHECKS_PASSED)
 		return
 
 	if(ismob(master_gun.loc) && !user)
 		user = master_gun.loc
-
-	if(master_gun.flags_gun_features & GUN_FLASHLIGHT_ON)
+	if(!toggle_on && light_on)
 		icon_state = "flashlight"
 		attach_icon = "flashlight_a"
 		master_gun.set_light_range(0)
 		master_gun.set_light_power(0)
 		master_gun.set_light_on(FALSE)
-	else
+		light_on = FALSE
+	else if(toggle_on & !light_on)
 		icon_state = "flashlight-on"
 		attach_icon = "flashlight_a-on"
 		master_gun.set_light_range(light_mod)
 		master_gun.set_light_power(3)
 		master_gun.set_light_on(TRUE)
-
+		light_on = TRUE
+	else
+		return
 	master_gun.flags_gun_features ^= GUN_FLASHLIGHT_ON
 
 	master_gun.update_attachable(slot)
@@ -629,16 +650,13 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	for(var/X in master_gun.actions)
 		var/datum/action/A = X
 		A.update_button_icon()
-	return TRUE
-
-
 
 
 /obj/item/attachable/flashlight/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
 	if(istype(I,/obj/item/tool/screwdriver))
-		to_chat(user, "<span class='notice'>You modify the rail flashlight back into a normal flashlight.</span>")
+		to_chat(user, span_notice("You modify the rail flashlight back into a normal flashlight."))
 		if(loc == user)
 			user.temporarilyRemoveItemFromInventory(src)
 		var/obj/item/flashlight/F = new(user)
@@ -650,7 +668,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 /obj/item/attachable/quickfire
 	name = "quickfire adapter"
 	desc = "An enhanced and upgraded autoloading mechanism to fire rounds more quickly. \nHowever, it also reduces accuracy and the number of bullets fired on burst."
-	slot = "rail"
+	slot = ATTACHMENT_SLOT_RAIL
 	icon_state = "autoloader"
 	attach_icon = "autoloader_a"
 	accuracy_mod = -0.15
@@ -666,7 +684,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	desc = "A magnetically attached harness kit that attaches to the rail mount of a weapon. When dropped, the weapon will sling to a TGMC armor."
 	icon_state = "magnetic"
 	attach_icon = "magnetic_a"
-	slot = "rail"
+	slot = ATTACHMENT_SLOT_RAIL
 	pixel_shift_x = 13
 
 
@@ -675,7 +693,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	icon_state = "sniperscope"
 	attach_icon = "sniperscope_a"
 	desc = "A rail mounted zoom sight scope. Allows zoom by activating the attachment. Use F12 if your HUD doesn't come back."
-	slot = "rail"
+	slot = ATTACHMENT_SLOT_RAIL
 	aim_speed_mod = 0.06 SECONDS //Extra slowdown when aiming
 	wield_delay_mod = 0.4 SECONDS
 	accuracy_mod = 0.1
@@ -716,6 +734,17 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 /obj/item/attachable/scope/unremovable
 	flags_attach_features = ATTACH_ACTIVATION
 
+
+/obj/item/attachable/scope/unremovable/flaregun
+	name = "long range ironsights"
+	desc = "An unremovable set of long range ironsights for a flaregun."
+	attach_icon = "none"
+	aim_speed_mod = 0
+	wield_delay_mod = 0
+	zoom_offset = 5
+	zoom_viewsize = 7
+	scoped_accuracy_mod = SCOPE_RAIL_MINI
+
 /obj/item/attachable/scope/unremovable/tl127
 	name = "T-45 rail scope"
 	aim_speed_mod = 0
@@ -724,15 +753,36 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	desc = "A rail mounted zoom sight scope specialized for the T-127 sniper rifle. Allows zoom by activating the attachment. Use F12 if your HUD doesn't come back."
 	flags_attach_features = ATTACH_ACTIVATION
 
+/obj/item/attachable/scope/unremovable/heavymachinegun
+	name = "MG-08/495 long range ironsights"
+	desc = "An unremovable set of long range ironsights for an MG-08/495 machinegun."
+	flags_attach_features = ATTACH_ACTIVATION
+	attach_icon = "none"
+	zoom_offset = 3
+	zoom_viewsize = 7
+
+
+/obj/item/attachable/scope/unremovable/tl102
+	name = "TL-102 smart sight"
+	desc = "An unremovable smart sight built for use with the tl102, it does nearly all the aiming work for the gun's integrated IFF systems."
+	attach_icon = "none"
+	zoom_offset = 3
+	zoom_viewsize = 7
+
+/obj/item/attachable/scope/unremovable/tl102/nest
+	zoom_offset = 6
+
 /obj/item/attachable/scope/activate_attachment(mob/living/carbon/user, turn_off)
 	if(turn_off)
 		zoom(user, zoom_offset, zoom_viewsize)
 		return TRUE
 
-	if(!master_gun.zoom && !(master_gun.flags_item & WIELDED))
+	if(!master_gun.zoom && !(master_gun.flags_item & WIELDED) && !CHECK_BITFIELD(master_gun.flags_item, IS_DEPLOYED))
 		if(user)
-			to_chat(user, "<span class='warning'>You must hold [master_gun] with two hands to use [src].</span>")
+			to_chat(user, span_warning("You must hold [master_gun] with two hands to use [src]."))
 		return FALSE
+	if(CHECK_BITFIELD(master_gun.flags_item, IS_DEPLOYED) && user.dir != master_gun.loc.dir)
+		user.setDir(master_gun.loc.dir)
 	zoom(user, zoom_offset, zoom_viewsize)
 	return TRUE
 
@@ -767,12 +817,18 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	user.sync_lighting_plane_alpha()
 	return TRUE
 
+/obj/item/attachable/scope/unremovable/laser_sniper_scope
+	name = "Terra Experimental laser sniper rifle rail scope"
+	desc = "A marine standard mounted zoom sight scope made for the Terra Experimental laser sniper rifle otherwise known as TE-S abbreviated, allows zoom by activating the attachment. Use F12 if your HUD doesn't come back."
+	icon_state = "tes"
+	attach_icon = "tes"
+
 /obj/item/attachable/scope/mini
 	name = "mini rail scope"
 	icon_state = "miniscope"
 	attach_icon = "miniscope_a"
 	desc = "A small rail mounted zoom sight scope. Allows zoom by activating the attachment. Use F12 if your HUD doesn't come back."
-	slot = "rail"
+	slot = ATTACHMENT_SLOT_RAIL
 	wield_delay_mod = 0.2 SECONDS
 	accuracy_mod = 0.05
 	accuracy_unwielded_mod = -0.05
@@ -788,18 +844,12 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	icon_state = "tx11scope"
 	attach_icon = "tx11scope"
 
-/obj/item/attachable/scope/mini/m4ra
-	name = "T-45 rail scope"
-	aim_speed_mod = 0
-	attach_icon = "none"
-	desc = "A rail mounted zoom sight scope specialized for the T-45 Battle Rifle . Allows zoom by activating the attachment. Use F12 if your HUD doesn't come back."
-	flags_attach_features = ATTACH_ACTIVATION
-
 /obj/item/attachable/scope/antimaterial
 	name = "antimaterial rail scope"
 	attach_icon = "none"
 	desc = "A rail mounted zoom sight scope specialized for the antimaterial Sniper Rifle . Allows zoom by activating the attachment. Can activate its targeting laser while zoomed to take aim for increased damage and penetration. Use F12 if your HUD doesn't come back."
 	scoped_accuracy_mod = SCOPE_RAIL_SNIPER
+	has_nightvision = TRUE
 	flags_attach_features = ATTACH_ACTIVATION
 
 /obj/item/attachable/scope/slavic
@@ -824,7 +874,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	name = "default stock"
 	desc = "Default parent object, not meant for use."
 	icon_state = "stock"
-	slot = "stock"
+	slot = ATTACHMENT_SLOT_STOCK
 	wield_delay_mod = 0.2 SECONDS
 	melee_mod = 5
 	size_mod = 2
@@ -843,7 +893,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 /obj/item/attachable/stock/shotgun
 	name = "\improper shotgun stock"
 	desc = "A non-standard heavy wooden stock for the old V10 shotgun. Less quick and more cumbersome than the standard issue stakeout, but reduces recoil and improves accuracy. Allegedly makes a pretty good club in a fight too."
-	slot = "stock"
+	slot = ATTACHMENT_SLOT_STOCK
 	wield_delay_mod = 0.3 SECONDS
 	icon_state = "stock"
 	accuracy_mod = 0.1
@@ -868,19 +918,6 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	accuracy_mod = 0.05
 	recoil_mod = -2
 	scatter_mod = -5
-
-/obj/item/attachable/stock/slavic
-	name = "wooden stock"
-	desc = "A standard heavy wooden stock for Slavic firearms."
-	icon_state = "slavicstock"
-	wield_delay_mod = 0.6 SECONDS
-	pixel_shift_x = 32
-	pixel_shift_y = 13
-	flags_attach_features = NONE
-	accuracy_mod = 0.05
-	recoil_mod = -3
-	scatter_mod = -20
-	movement_acc_penalty_mod = 0.1
 
 /obj/item/attachable/stock/mosin
 	name = "mosin wooden stock"
@@ -928,7 +965,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 /obj/item/attachable/stock/rifle
 	name = "\improper M412 solid stock"
 	desc = "A common stock used by the M412 pulse rifle series, used for long rifles. This stock reduces recoil and improves accuracy, but at a reduction to handling and agility. Seemingly a bit more effective in a brawl."
-	slot = "stock"
+	slot = ATTACHMENT_SLOT_STOCK
 	wield_delay_mod = 0.2 SECONDS
 	melee_mod = 5
 	size_mod = 1
@@ -947,12 +984,6 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	attach_icon = "riflestock_a"
 	pixel_shift_x = 32
 	pixel_shift_y = 13
-
-/obj/item/attachable/stock/rifle/marksman
-	name = "\improper T-45 marksman stock"
-	icon_state = "m4markstock"
-	attach_icon = "m4markstock"
-	flags_attach_features = NONE
 
 /obj/item/attachable/stock/sx16
 	name = "\improper SX-16 stock"
@@ -996,7 +1027,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 /obj/item/attachable/stock/revolver
 	name = "\improper M44 magnum sharpshooter stock"
 	desc = "A wooden stock modified for use on a 44-magnum. Increases accuracy and reduces recoil at the expense of handling and agility."
-	slot = "stock"
+	slot = ATTACHMENT_SLOT_STOCK
 	wield_delay_mod = 0.2 SECONDS
 	size_mod = 2
 	icon_state = "44stock"
@@ -1014,7 +1045,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 /obj/item/attachable/stock/lasgun
 	name = "\improper M43 Sunfury lasgun stock"
 	desc = "The standard stock for the M43 Sunfury lasgun."
-	slot = "stock"
+	slot = ATTACHMENT_SLOT_STOCK
 	wield_delay_mod = null
 	icon_state = "laserstock"
 	attach_icon = "laserstock"
@@ -1025,7 +1056,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 /obj/item/attachable/stock/lasgun/practice
 	name = "\improper M43-P Sunfury lasgun stock"
 	desc = "The standard stock for the M43-P Sunfury lasgun, seems the stock is made out of plastic."
-	slot = "stock"
+	slot = ATTACHMENT_SLOT_STOCK
 	wield_delay_mod = null
 	melee_mod = 0
 	icon_state = "laserstock"
@@ -1107,7 +1138,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 /obj/item/attachable/stock/t19stock
 	name = "\improper T-19 machinepistol stock"
 	desc = "A submachinegun stock distributed in small numbers to TGMC forces. Compatible with the T-19, this stock reduces recoil and improves accuracy, but at a reduction to handling and agility. Seemingly a bit more effective in a brawl."
-	slot = "stock"
+	slot = ATTACHMENT_SLOT_STOCK
 	wield_delay_mod = 0.1 SECONDS
 	melee_mod = 5
 	size_mod = 1
@@ -1122,7 +1153,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 /obj/item/attachable/stock/t35stock
 	name = "\improper T-35 stock"
 	desc = "A non-standard heavy stock for the T-35 shotgun. Less quick and more cumbersome than the standard issue stakeout, but reduces recoil and improves accuracy. Allegedly makes a pretty good club in a fight too."
-	slot = "stock"
+	slot = ATTACHMENT_SLOT_STOCK
 	wield_delay_mod = 0.4 SECONDS
 	icon_state = "t35stock"
 	accuracy_mod = 0.15
@@ -1221,17 +1252,17 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 
 /obj/item/attachable/attached_gun/activate_attachment(mob/living/user, turn_off)
 	if(master_gun.active_attachable == src)
-		if(user)
-			to_chat(user, "<span class='notice'>You are no longer using [src].</span>")
-			UnregisterSignal(user, COMSIG_ITEM_EXCLUSIVE_TOGGLE)
-		master_gun.on_gun_attachment_detach(null, src)
+		if(master_gun.gun_user)
+			to_chat(master_gun.gun_user, span_notice("You are no longer using [src]."))
+			UnregisterSignal(master_gun.gun_user, COMSIG_ITEM_EXCLUSIVE_TOGGLE)
+		master_gun.active_attachable = null
 		icon_state = initial(icon_state)
 	else if(!turn_off)
 		if(user)
-			to_chat(user, "<span class='notice'>You are now using [src].</span>")
+			to_chat(user, span_notice("You are now using [src]."))
 			SEND_SIGNAL(user, COMSIG_ITEM_EXCLUSIVE_TOGGLE, user)
 			RegisterSignal(user, COMSIG_ITEM_EXCLUSIVE_TOGGLE, .proc/deactivate)
-		master_gun.on_gun_attachment_attach(src)
+		master_gun.active_attachable = src
 		icon_state += "-on"
 
 	for(var/X in master_gun.actions)
@@ -1246,25 +1277,27 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 //The requirement for an attachable being alt fire is AMMO CAPACITY > 0.
 /obj/item/attachable/attached_gun/grenade
 	name = "underslung grenade launcher"
-	desc = "A weapon-mounted, reloadable, one-shot grenade launcher."
+	desc = "A weapon-mounted, reloadable, two-shot grenade launcher."
 	icon_state = "grenade"
 	attach_icon = "grenade_a"
 	w_class = WEIGHT_CLASS_BULKY
 	current_rounds = 0
 	max_rounds = 2
 	max_range = 7
-	slot = "under"
+	attachment_firing_delay = 10
+	slot = ATTACHMENT_SLOT_UNDER
 	fire_sound = 'sound/weapons/guns/fire/underbarrel_grenadelauncher.ogg'
 	flags_attach_features = ATTACH_REMOVABLE|ATTACH_ACTIVATION|ATTACH_RELOADABLE|ATTACH_WEAPON
 	///list of grenade types loaded in the UGL
 	var/list/loaded_grenades = list()
-	attachment_firing_delay = 21
+	COOLDOWN_DECLARE(last_fired)
 
 /obj/item/attachable/attached_gun/grenade/unremovable
 	flags_attach_features = ATTACH_ACTIVATION|ATTACH_RELOADABLE|ATTACH_WEAPON
 
 /obj/item/attachable/attached_gun/grenade/unremovable/invisible
 	icon_state = "invisible"
+	attach_icon = "invisible"
 
 /obj/item/attachable/attached_gun/grenade/examine(mob/user)
 	..()
@@ -1277,23 +1310,23 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 /obj/item/attachable/attached_gun/grenade/reload_attachment(obj/item/explosive/grenade/G, mob/user, silent)
 	if(!istype(G))
 		if(!silent)
-			to_chat(user, "<span class='warning'>[src] doesn't accept that type of grenade.</span>")
+			to_chat(user, span_warning("[src] doesn't accept that type of grenade."))
 		return FALSE
 	if(G.active) //can't load live grenades
 		return FALSE
 	if(!G.underslug_launchable)
 		if(!silent)
-			to_chat(user, "<span class='warning'>[src] doesn't accept that type of grenade.</span>")
+			to_chat(user, span_warning("[src] doesn't accept that type of grenade."))
 		return FALSE
 	if(current_rounds >= max_rounds)
 		if(!silent)
-			to_chat(user, "<span class='warning'>[src] is full.</span>")
+			to_chat(user, span_warning("[src] is full."))
 		return FALSE
 	playsound(user, 'sound/weapons/guns/interact/shotgun_shell_insert.ogg', 25, 1)
 	current_rounds++
 	loaded_grenades += G.type
 	if(!silent)
-		to_chat(user, "<span class='notice'>You load [G] in [src].</span>")
+		to_chat(user, span_notice("You load [G] in [src]."))
 	user.temporarilyRemoveItemFromInventory(G)
 	qdel(G)
 	return TRUE
@@ -1302,9 +1335,9 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 /obj/item/attachable/attached_gun/grenade/fire_attachment(atom/target,obj/item/weapon/gun/gun,mob/living/user)
 	. = ..()
 	if(get_dist(user,target) > max_range)
-		to_chat(user, "<span class='warning'>Too far to fire the attachment!</span>")
+		to_chat(user, span_warning("Too far to fire the attachment!"))
 		return
-	if(current_rounds > 0)
+	if(current_rounds > 0 && COOLDOWN_CHECK(src, last_fired))
 		prime_grenade(target,gun,user)
 
 
@@ -1312,6 +1345,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	set waitfor = FALSE
 	var/nade_type = loaded_grenades[1]
 	var/obj/item/explosive/grenade/frag/G = new nade_type (get_turf(gun))
+	COOLDOWN_START(src, last_fired, attachment_firing_delay)
 	playsound(user.loc, fire_sound, 50, 1)
 	log_explosion("[key_name(user)] fired a grenade [G] from [src] at [AREACOORD(user.loc)].")
 	log_combat(user, src, "fired a grenade [G] from")
@@ -1335,10 +1369,10 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	current_rounds = 20
 	max_rounds = 20
 	max_range = 4
-	slot = "under"
+	attachment_firing_delay = 25
+	slot = ATTACHMENT_SLOT_UNDER
 	fire_sound = 'sound/weapons/guns/fire/flamethrower3.ogg'
 	flags_attach_features = ATTACH_REMOVABLE|ATTACH_ACTIVATION|ATTACH_RELOADABLE|ATTACH_WEAPON
-	attachment_firing_delay = 25
 	COOLDOWN_DECLARE(last_fired)
 
 
@@ -1358,69 +1392,69 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 		var/obj/item/ammo_magazine/flamer_tank/I = object
 		if(current_rounds >= max_rounds)
 			if(!silent)
-				to_chat(user, "<span class='warning'>[src] is full.</span>")
+				to_chat(user, span_warning("[src] is full."))
 		else if(I.current_rounds <= 0)
 			if(!silent)
-				to_chat(user, "<span class='warning'>[I] is empty!</span>")
+				to_chat(user, span_warning("[I] is empty!"))
 		else
 			var/transfered_rounds = min(max_rounds - current_rounds, I.current_rounds)
 			current_rounds += transfered_rounds
 			I.current_rounds -= transfered_rounds
 			playsound(user, 'sound/effects/refill.ogg', 25, 1, 3)
 			if(!silent)
-				to_chat(user, "<span class='notice'>You refill [src] with [I].</span>")
+				to_chat(user, span_notice("You refill [src] with [I]."))
 	else if(istype(object, /obj/item/tool/weldpack))
 		var/obj/item/tool/weldpack/FT = object
 		if(current_rounds >= max_rounds)
 			if(!silent)
-				to_chat(user, "<span class='warning'>[src] is full.</span>")
+				to_chat(user, span_warning("[src] is full."))
 		else if(!FT.reagents.get_reagent_amount(/datum/reagent/fuel))
 			if(!silent)
-				to_chat(user, "<span class='warning'>The [FT] doesn't have any welding fuel!</span>")
+				to_chat(user, span_warning("The [FT] doesn't have any welding fuel!"))
 		else
 			var/transfered_rounds = min(max_rounds - current_rounds, FT.reagents.get_reagent_amount(/datum/reagent/fuel))
 			current_rounds += transfered_rounds
 			FT.reagents.remove_reagent(/datum/reagent/fuel, transfered_rounds)
 			if(!silent)
-				to_chat(user, "<span class='notice'>You refill [src] with [FT].</span>")
+				to_chat(user, span_notice("You refill [src] with [FT]."))
 			playsound(user, 'sound/effects/refill.ogg', 25, 1, 3)
 	else if(istype(object, /obj/item/storage/backpack/marine/engineerpack))
 		var/obj/item/storage/backpack/marine/engineerpack/FT = object
 		if(current_rounds >= max_rounds)
 			if(!silent)
-				to_chat(user, "<span class='warning'>[src] is full.</span>")
+				to_chat(user, span_warning("[src] is full."))
 		else if(!FT.reagents.get_reagent_amount(/datum/reagent/fuel))
 			if(!silent)
-				to_chat(user, "<span class='warning'>The [FT] doesn't have any welding fuel!</span>")
+				to_chat(user, span_warning("The [FT] doesn't have any welding fuel!"))
 		else
 			var/transfered_rounds = min(max_rounds - current_rounds, FT.reagents.get_reagent_amount(/datum/reagent/fuel))
 			current_rounds += transfered_rounds
 			FT.reagents.remove_reagent(/datum/reagent/fuel, transfered_rounds)
 			if(!silent)
-				to_chat(user, "<span class='notice'>You refill [src] with [FT].</span>")
+				to_chat(user, span_notice("You refill [src] with [FT]."))
 			playsound(user, 'sound/effects/refill.ogg', 25, 1, 3)
 	else if(istype(object, /obj/item/reagent_containers))
 		var/obj/item/reagent_containers/FT = object
 		if(current_rounds >= max_rounds)
 			if(!silent)
-				to_chat(user, "<span class='warning'>[src] is full.</span>")
+				to_chat(user, span_warning("[src] is full."))
 		else if(!FT.reagents.get_reagent_amount(/datum/reagent/fuel))
 			if(!silent)
-				to_chat(user, "<span class='warning'>The [FT] doesn't have any welding fuel!</span>")
+				to_chat(user, span_warning("The [FT] doesn't have any welding fuel!"))
 		else
 			var/transfered_rounds = min(max_rounds - current_rounds, FT.reagents.get_reagent_amount(/datum/reagent/fuel))
 			current_rounds += transfered_rounds
 			FT.reagents.remove_reagent(/datum/reagent/fuel, transfered_rounds)
 			if(!silent)
-				to_chat(user, "<span class='notice'>You refill [src] with [FT].</span>")
+				to_chat(user, span_notice("You refill [src] with [FT]."))
 			playsound(user, 'sound/effects/refill.ogg', 25, 1, 3)
 	else if(!silent)
-		to_chat(user, "<span class='warning'>[src] can be refilled only with welding fuel.</span>")
+		to_chat(user, span_warning("[src] can be refilled only with welding fuel."))
 
 /obj/item/attachable/attached_gun/flamer/fire_attachment(atom/target, obj/item/weapon/gun/gun, mob/living/user)
 	. = ..()
 	if(get_dist(user,target) > max_range+3)
-		to_chat(user, "<span class='warning'>Too far to fire the attachment!</span>")
+		to_chat(user, span_warning("Too far to fire the attachment!"))
 		return
 	if(current_rounds && COOLDOWN_CHECK(src, last_fired))
 		unleash_flame(target, user)
@@ -1472,7 +1506,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 			var/mob/living/carbon/xenomorph/X = M
 			if(X.xeno_caste.caste_flags & CASTE_FIRE_IMMUNE)
 				continue
-			fire_mod = clamp(X.xeno_caste.fire_resist + X.fire_resist_modifier, 0, 1)
+			fire_mod = X.get_fire_resist()
 		else if(ishuman(M))
 			var/mob/living/carbon/human/H = M
 
@@ -1501,7 +1535,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	max_rounds = 3
 	current_rounds = 3
 	ammo = /datum/ammo/bullet/shotgun/buckshot/masterkey
-	slot = "under"
+	slot = ATTACHMENT_SLOT_UNDER
 	fire_sound = 'sound/weapons/guns/fire/shotgun.ogg'
 	type_of_casings = "shell"
 	flags_attach_features = ATTACH_REMOVABLE|ATTACH_ACTIVATION|ATTACH_PROJECTILE|ATTACH_RELOADABLE|ATTACH_WEAPON
@@ -1519,30 +1553,30 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 		if(mag.default_ammo == /datum/ammo/bullet/shotgun/buckshot)
 			if(current_rounds >= max_rounds)
 				if(!silent)
-					to_chat(user, "<span class='warning'>[src] is full.</span>")
+					to_chat(user, span_warning("[src] is full."))
 			else
 				current_rounds++
 				mag.current_rounds--
 				mag.update_icon()
 				if(!silent)
-					to_chat(user, "<span class='notice'>You load one shotgun shell in [src].</span>")
+					to_chat(user, span_notice("You load one shotgun shell in [src]."))
 				playsound(user, 'sound/weapons/guns/interact/shotgun_shell_insert.ogg', 25, 1)
 				if(mag.current_rounds <= 0)
 					user.temporarilyRemoveItemFromInventory(mag)
 					qdel(mag)
 			return
 	if(!silent)
-		to_chat(user, "<span class='warning'>[src] only accepts shotgun buckshot.</span>")
+		to_chat(user, span_warning("[src] only accepts shotgun buckshot."))
 
 
 /obj/item/attachable/verticalgrip
 	name = "vertical grip"
-	desc = "A custom-built improved foregrip for better accuracy, less recoil, and less scatter when wielded especially during burst fire. \nHowever, it also increases weapon size, slightly increases wield delay and makes unwielded fire more cumbersome."
+	desc = "A custom-built improved foregrip for better accuracy, moderately faster aimed movement speed, less recoil, and less scatter when wielded especially during burst fire. \nHowever, it also increases weapon size, slightly increases wield delay and makes unwielded fire more cumbersome."
 	icon_state = "verticalgrip"
 	attach_icon = "verticalgrip_a"
 	wield_delay_mod = 0.2 SECONDS
 	size_mod = 1
-	slot = "under"
+	slot = ATTACHMENT_SLOT_UNDER
 	pixel_shift_x = 20
 	accuracy_mod = 0.1
 	recoil_mod = -2
@@ -1550,6 +1584,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	burst_scatter_mod = -1
 	accuracy_unwielded_mod = -0.05
 	scatter_unwielded_mod = 5
+	aim_mode_movement_mult = -0.2
 
 
 /obj/item/attachable/angledgrip
@@ -1559,9 +1594,10 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	attach_icon = "angledgrip_a"
 	wield_delay_mod = -0.3 SECONDS
 	size_mod = 1
-	slot = "under"
+	slot = ATTACHMENT_SLOT_UNDER
 	pixel_shift_x = 20
 	recoil_mod = -1
+	scatter_mod = 5
 	accuracy_unwielded_mod = -0.1
 	scatter_unwielded_mod = 5
 
@@ -1572,7 +1608,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	desc = "A set of weights and balances to stabilize the weapon when burst firing or moving, especially while shooting one-handed. Greatly reduces movement penalties to accuracy. Significantly reduces burst scatter, recoil and general scatter. By increasing accuracy while moving, it let you move faster when taking aim."
 	icon_state = "gyro"
 	attach_icon = "gyro_a"
-	slot = "under"
+	slot = ATTACHMENT_SLOT_UNDER
 	scatter_mod = -5
 	recoil_mod = -2
 	movement_acc_penalty_mod = -0.5
@@ -1583,10 +1619,10 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 
 /obj/item/attachable/lasersight
 	name = "laser sight"
-	desc = "A laser sight placed under the barrel. Significantly increases one-handed accuracy and significantly reduces movement penalties to accuracy."
+	desc = "A laser sight placed under the barrel. Significantly increases one-handed accuracy and significantly reduces unwielded penalties to accuracy."
 	icon_state = "lasersight"
 	attach_icon = "lasersight_a"
-	slot = "under"
+	slot = ATTACHMENT_SLOT_UNDER
 	pixel_shift_x = 17
 	pixel_shift_y = 17
 	accuracy_mod = 0.1
@@ -1595,10 +1631,10 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 
 /obj/item/attachable/bipod
 	name = "bipod"
-	desc = "A simple set of telescopic poles to keep a weapon stabilized during firing. \nGreatly increases accuracy and reduces recoil when properly placed, but also increases weapon size."
+	desc = "A simple set of telescopic poles to keep a weapon stabilized during firing. \nGreatly increases accuracy and reduces recoil and scatter when properly placed, but also increases weapon size."
 	icon_state = "bipod"
 	attach_icon = "bipod_a"
-	slot = "under"
+	slot = ATTACHMENT_SLOT_UNDER
 	size_mod = 2
 	melee_mod = -10
 	flags_attach_features = ATTACH_REMOVABLE|ATTACH_ACTIVATION
@@ -1618,7 +1654,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 /obj/item/attachable/bipod/activate_attachment(mob/living/user, turn_off)
 	if(bipod_deployed)
 		bipod_deployed = FALSE
-		to_chat(user, "<span class='notice'>You retract [src].</span>")
+		to_chat(user, span_notice("You retract [src]."))
 		master_gun.aim_slowdown -= 1
 		master_gun.wield_delay -= 0.4 SECONDS
 		master_gun.accuracy_mult -= deployment_accuracy_mod
@@ -1640,7 +1676,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 		if(bipod_deployed)
 			return
 		bipod_deployed = TRUE
-		to_chat(user, "<span class='notice'>You deploy [src].</span>")
+		to_chat(user, span_notice("You deploy [src]."))
 		master_user = user
 		RegisterSignal(master_user, COMSIG_MOVABLE_MOVED, .proc/retract_bipod)
 		RegisterSignal(master_gun, list(COMSIG_ITEM_DROPPED, COMSIG_ITEM_EQUIPPED), .proc/retract_bipod)
@@ -1666,7 +1702,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	if(!ismob(source))
 		return
 	INVOKE_ASYNC(src, .proc/activate_attachment, source, TRUE)
-	to_chat(source, "<span class='warning'>Losing support, the bipod retracts!</span>")
+	to_chat(source, span_warning("Losing support, the bipod retracts!"))
 	playsound(source, 'sound/machines/click.ogg', 15, 1, 4)
 
 
@@ -1692,14 +1728,14 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	desc = "A simple lace to wrap around your wrist."
 	icon_state = "lace"
 	attach_icon = "lace_a"
-	slot = "muzzle" //so you cannot have this and RC at once aka balance
+	slot = ATTACHMENT_SLOT_MUZZLE //so you cannot have this and RC at once aka balance
 	flags_attach_features = ATTACH_REMOVABLE|ATTACH_ACTIVATION
 	attachment_action_type = /datum/action/item_action/toggle
 
 /obj/item/attachable/lace/activate_attachment(mob/living/user, turn_off)
 	if(lace_deployed)
 		DISABLE_BITFIELD(master_gun.flags_item, NODROP)
-		to_chat(user, "<span class='notice'>You feel the [src] loosen around your wrist!</span>")
+		to_chat(user, span_notice("You feel the [src] loosen around your wrist!"))
 		playsound(user, 'sound/weapons/fistunclamp.ogg', 25, 1, 7)
 		icon_state = "lace"
 		attach_icon = "lace_a"
@@ -1708,9 +1744,9 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 			return
 		if(!do_after(user, 0.5 SECONDS, TRUE, src, BUSY_ICON_BAR))
 			return
-		to_chat(user, "<span class='notice'>You deploy the [src].</span>")
+		to_chat(user, span_notice("You deploy the [src]."))
 		ENABLE_BITFIELD(master_gun.flags_item, NODROP)
-		to_chat(user, "<span class='warning'>You feel the [src] shut around your wrist!</span>")
+		to_chat(user, span_warning("You feel the [src] shut around your wrist!"))
 		playsound(user, 'sound/weapons/fistclamp.ogg', 25, 1, 7)
 		icon_state = "lace-on"
 		attach_icon = "lace_a_on"
@@ -1729,7 +1765,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	desc = "A mechanism re-assembly kit that allows for automatic fire, or more shots per burst if the weapon already has the ability. \nIncreases scatter and decreases accuracy."
 	icon_state = "rapidfire"
 	attach_icon = "rapidfire_a"
-	slot = "under"
+	slot = ATTACHMENT_SLOT_UNDER
 	accuracy_mod = -0.10
 	burst_mod = 2
 	scatter_mod = 15
@@ -1742,20 +1778,20 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	desc = "An integrated component of the TL-84 flamethrower, the hydro cannon fires high pressure sprays of water; mainly to extinguish any wayward allies or unintended collateral damage."
 	icon_state = ""
 	attach_icon = ""
-	slot = "under"
-	flags_attach_features = ATTACH_ACTIVATION|ATTACH_UTILITY|GUN_ALLOW_SYNTHETIC
-	attachment_action_type = /datum/action/item_action/toggle
+	slot = ATTACHMENT_SLOT_UNDER
+	flags_attach_features = ATTACH_UTILITY|GUN_ALLOW_SYNTHETIC
+	attachment_action_type = /datum/action/item_action/toggle_hydro
 
 /obj/item/attachable/hydro_cannon/activate_attachment(mob/living/user, turn_off)
 	if(master_gun.active_attachable == src)
 		if(user)
-			to_chat(user, "<span class='notice'>You are no longer using [src].</span>")
+			to_chat(user, span_notice("You are no longer using [src]."))
 		master_gun.active_attachable = null
 		icon_state = initial(icon_state)
 		. = FALSE
 	else if(!turn_off)
 		if(user)
-			to_chat(user, "<span class='notice'>You are now using [src].</span>")
+			to_chat(user, span_notice("You are now using [src]."))
 		master_gun.active_attachable = src
 		icon_state += "-on"
 		. = TRUE
@@ -1763,3 +1799,27 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 		var/datum/action/A = X
 		A.update_button_icon()
 
+/obj/item/attachable/mateba_longbarrel
+	name = "Mateba long barrel"
+	desc = "A longer barrel for the Mateba, makes the gun more accurate and deal more damage on impact."
+	icon_state = "mateba_barrel"
+	attach_icon = "mateba_barrel"
+	slot = ATTACHMENT_BARREL_MOD
+	damage_mod = 0.20
+	scatter_mod = -3.5
+	damage_falloff_mod = -0.5
+	pixel_shift_x = 0
+	pixel_shift_y = 0
+	size_mod = 1
+	detach_delay = 0
+	gun_attachment_offset_mod = list("muzzle_x" = 8)
+
+
+/obj/item/attachable/slavicbarrel
+	name = "sniper barrel"
+	icon_state = "svdbarrel"
+	desc = "A heavy barrel. CANNOT BE REMOVED."
+	slot = ATTACHMENT_BARREL_MOD
+	pixel_shift_x = -40
+	pixel_shift_y = 0
+	flags_attach_features = NONE

@@ -1,7 +1,7 @@
 /datum/emergency_call/pizza
 	name = "Pizza Delivery"
 	mob_max = 3
-	probability = 0
+	base_probability = 0
 
 /datum/emergency_call/pizza/print_backstory(mob/living/carbon/human/H)
 	to_chat(H, "<B>You are a pizza deliverer who's employed by the Zippy Pizza Corporation.</b>")
@@ -26,4 +26,4 @@
 
 	var/datum/job/J = SSjob.GetJobType(/datum/job/pizza)
 	H.apply_assigned_role_to_spawn(J)
-	to_chat(H, "<p style='font-size:1.5em'><span class='notice'>You are a Zippy Pizza delivery person and are assigned by your employers to... deliver pizza on the ship via distress signal!</span></p>")
+	to_chat(H, "<p style='font-size:1.5em'>[span_notice("You are a Zippy Pizza delivery person and are assigned by your employers to... deliver pizza on the ship via distress signal!")]</p>")

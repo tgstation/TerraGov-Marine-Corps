@@ -10,7 +10,7 @@ can cause issues with ammo types getting mixed up during the burst.
 /obj/item/weapon/gun/shotgun
 	w_class = WEIGHT_CLASS_BULKY
 	force = 14.0
-	caliber = "12 gauge shotgun shells" //codex
+	caliber = CALIBER_12G //codex
 	max_shells = 9 //codex
 	load_method = SINGLE_CASING //codex
 	fire_sound = 'sound/weapons/guns/fire/shotgun.ogg'
@@ -45,6 +45,12 @@ can cause issues with ammo types getting mixed up during the burst.
 /obj/item/weapon/gun/shotgun/update_icon() //Shotguns do not currently have empty states, as they look exactly the same. Other than double barrel.
 	return
 
+/obj/item/weapon/gun/shotgun/unique_action(mob/user)
+	. = ..()
+	if(!.)
+		return
+	return cock(user)
+
 /obj/item/weapon/gun/shotgun/proc/replace_tube(number_to_replace)
 	current_mag.chamber_contents = list()
 	current_mag.chamber_contents.len = current_mag.max_rounds
@@ -71,7 +77,7 @@ can cause issues with ammo types getting mixed up during the burst.
 			update_icon()
 		return TRUE
 	if(!in_chamber)
-		to_chat(user, "<span class='warning'>[src] is already empty.</span>")
+		to_chat(user, span_warning("[src] is already empty."))
 		return TRUE
 	QDEL_NULL(in_chamber)
 	var/obj/item/ammo_magazine/handful/new_handful = retrieve_shell(ammo.type)
@@ -97,22 +103,27 @@ can cause issues with ammo types getting mixed up during the burst.
 		//this is the most resource efficient way to do it.
 /obj/item/weapon/gun/shotgun/proc/retrieve_shell(selection)
 	var/obj/item/ammo_magazine/handful/new_handful = new /obj/item/ammo_magazine/handful()
-	new_handful.generate_handful(selection, "12g", 5, 1, /obj/item/weapon/gun/shotgun)
+	new_handful.generate_handful(selection, CALIBER_12G, 1, /obj/item/weapon/gun/shotgun)
 	return new_handful
 
 /obj/item/weapon/gun/shotgun/pump/bolt/retrieve_shell(selection)
 	var/obj/item/ammo_magazine/handful/new_handful = new /obj/item/ammo_magazine/handful()
-	new_handful.generate_handful(selection, "7.62x54mmR", 5, 1, /obj/item/weapon/gun/shotgun)
+	new_handful.generate_handful(selection, CALIBER_762X54, 1, /obj/item/weapon/gun/shotgun)
+	return new_handful
+
+/obj/item/weapon/gun/shotgun/double/martini/retrieve_shell(selection)
+	var/obj/item/ammo_magazine/handful/new_handful = new /obj/item/ammo_magazine/handful()
+	new_handful.generate_handful(selection, CALIBER_557, 1, /obj/item/weapon/gun/shotgun)
 	return new_handful
 
 /obj/item/weapon/gun/shotgun/pump/lever/retrieve_shell(selection)
 	var/obj/item/ammo_magazine/handful/new_handful = new /obj/item/ammo_magazine/handful()
-	new_handful.generate_handful(selection, ".44", 8, 1, /obj/item/weapon/gun/shotgun)
+	new_handful.generate_handful(selection, CALIBER_44, 1, /obj/item/weapon/gun/shotgun)
 	return new_handful
 
 /obj/item/weapon/gun/shotgun/pump/lever/mbx900/retrieve_shell(selection)
 	var/obj/item/ammo_magazine/handful/new_handful = new /obj/item/ammo_magazine/handful()
-	new_handful.generate_handful(selection, ".410", 8, 1, /obj/item/weapon/gun/shotgun)
+	new_handful.generate_handful(selection, CALIBER_410, 1, /obj/item/weapon/gun/shotgun)
 	return new_handful
 
 
@@ -125,11 +136,11 @@ can cause issues with ammo types getting mixed up during the burst.
 		return FALSE
 
 	if(!istype(magazine)) //Can only reload with handfuls.
-		to_chat(user, "<span class='warning'>You can't use that to reload!</span>")
+		to_chat(user, span_warning("You can't use that to reload!"))
 		return FALSE
 
 	if(!check_chamber_position()) //For the double barrel.
-		to_chat(user, "<span class='warning'>[src] has to be open!</span>")
+		to_chat(user, span_warning("[src] has to be open!"))
 		return FALSE
 
 	//From here we know they are using shotgun type ammo and reloading via handful.
@@ -238,7 +249,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	icon_state = "t39"
 	item_state = "t39"
 	fire_sound = 'sound/weapons/guns/fire/shotgun_automatic.ogg'
-	flags_gun_features = GUN_CAN_POINTBLANK|GUN_INTERNAL_MAG|GUN_SHOTGUN_CHAMBER|GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_INTERNAL_MAG|GUN_SHOTGUN_CHAMBER|GUN_AMMO_COUNTER
 	current_mag = /obj/item/ammo_magazine/internal/shotgun/combat
 	attachable_allowed = list(
 		/obj/item/attachable/bayonet,
@@ -254,6 +265,7 @@ can cause issues with ammo types getting mixed up during the burst.
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/attached_gun/flamer,
 		/obj/item/attachable/attached_gun/shotgun,
+		/obj/item/attachable/motiondetector,
 	)
 
 	attachable_offset = list("muzzle_x" = 41, "muzzle_y" = 20,"rail_x" = 18, "rail_y" = 20, "under_x" = 23, "under_y" = 12, "stock_x" = 13, "stock_y" = 14)
@@ -275,7 +287,7 @@ can cause issues with ammo types getting mixed up during the burst.
 
 /obj/item/weapon/gun/shotgun/double
 	name = "double barrel shotgun"
-	desc = "A double barreled shotgun of archaic, but sturdy design. Uses 12 gauge shells, but can only hold 2 at a time."
+	desc = "A double barreled over and under shotgun of archaic, but sturdy design. Uses 12 gauge shells, but can only hold 2 at a time."
 	flags_equip_slot = ITEM_SLOT_BACK
 	icon_state = "dshotgun"
 	item_state = "dshotgun"
@@ -296,7 +308,6 @@ can cause issues with ammo types getting mixed up during the burst.
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 21,"rail_x" = 15, "rail_y" = 22, "under_x" = 21, "under_y" = 16, "stock_x" = 21, "stock_y" = 16)
 
 	fire_delay = 2
-	burst_amount = 2
 	burst_delay = 2
 	accuracy_mult = 1.15
 	accuracy_mult_unwielded = 0.85
@@ -305,14 +316,14 @@ can cause issues with ammo types getting mixed up during the burst.
 	recoil = 2
 	recoil_unwielded = 4
 
+	///Animation that plays when you eject SPENT shells
+	var/shell_eject_animation = null
+
 /obj/item/weapon/gun/shotgun/double/examine_ammo_count(mob/user)
 	if(current_mag.chamber_closed)
 		to_chat(user, "It's closed.")
 	else
 		to_chat(user, "It's open with [current_mag.current_rounds] shell\s loaded.")
-
-/obj/item/weapon/gun/shotgun/double/unique_action(mob/user)
-	return empty_chamber(user)
 
 //Turns out it has some attachments.
 /obj/item/weapon/gun/shotgun/double/update_icon()
@@ -322,6 +333,11 @@ can cause issues with ammo types getting mixed up during the burst.
 	if(current_mag.chamber_closed)
 		return
 	return TRUE
+
+/obj/item/weapon/gun/shotgun/double/unload(mob/user)
+	if(flags_gun_features & GUN_BURST_FIRING)
+		return FALSE
+	return cock(user)
 
 /obj/item/weapon/gun/shotgun/double/add_to_tube(mob/user,selection) //Load it on the go, nothing chambered.
 	current_mag.chamber_position++
@@ -333,10 +349,10 @@ can cause issues with ammo types getting mixed up during the burst.
 	. = ..()
 	if(. && istype(user))
 		if(!current_mag.chamber_closed)
-			to_chat(user, "<span class='warning'>Close the chamber!</span>")
+			to_chat(user, span_warning("Close the chamber!"))
 			return 0
 
-/obj/item/weapon/gun/shotgun/double/empty_chamber(mob/user)
+/obj/item/weapon/gun/shotgun/double/cock(mob/user)
 	if(current_mag.chamber_closed) //Has to be closed.
 		if(current_mag.current_rounds) //We want to empty out the bullets.
 			var/i
@@ -365,6 +381,8 @@ can cause issues with ammo types getting mixed up during the burst.
 	if(current_mag.used_casings)
 		. = ..()
 		current_mag.used_casings = 0
+		if(shell_eject_animation)
+			flick("[shell_eject_animation]", src)
 
 /obj/item/weapon/gun/shotgun/double/delete_bullet(obj/projectile/projectile_to_fire, refund = 0)
 	qdel(projectile_to_fire)
@@ -383,12 +401,12 @@ can cause issues with ammo types getting mixed up during the burst.
 
 /obj/item/weapon/gun/shotgun/double/sawn
 	name = "sawn-off shotgun"
-	desc = "A double barreled shotgun whose barrel has been artificially shortened to reduce range but increase damage and spread."
+	desc = "A double barreled shotgun whose barrel has been artificially shortened to reduce range for further CQC potiential."
 	icon_state = "sshotgun"
 	item_state = "sshotgun"
 	flags_equip_slot = ITEM_SLOT_BELT
 	attachable_allowed = list()
-	flags_gun_features = GUN_CAN_POINTBLANK|GUN_INTERNAL_MAG|GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_INTERNAL_MAG|GUN_AMMO_COUNTER
 	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 20,"rail_x" = 11, "rail_y" = 22, "under_x" = 18, "under_y" = 16, "stock_x" = 18, "stock_y" = 16)
 
 	fire_delay = 2
@@ -421,6 +439,9 @@ can cause issues with ammo types getting mixed up during the burst.
 		/obj/item/attachable/gyro,
 		/obj/item/attachable/flashlight,
 		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/scope,
+		/obj/item/attachable/scope/marine,
+		/obj/item/attachable/scope/mini,
 	)
 
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_INTERNAL_MAG|GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY
@@ -483,10 +504,6 @@ can cause issues with ammo types getting mixed up during the burst.
 	recoil_unwielded = 4
 	pump_delay = 14
 
-
-/obj/item/weapon/gun/shotgun/pump/unique_action(mob/user)
-	return pump_shotgun(user)
-
 /obj/item/weapon/gun/shotgun/pump/ready_in_chamber() //If there wasn't a shell loaded through pump, this returns null.
 	return
 
@@ -503,7 +520,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	*/
 
 //More or less chambers the round instead of load_into_chamber(). Also ejects used casings.
-/obj/item/weapon/gun/shotgun/pump/proc/pump_shotgun(mob/user)	//We can't fire bursts with pumps.
+/obj/item/weapon/gun/shotgun/pump/cock(mob/user)	//We can't fire bursts with pumps.
 	if(world.time < (recent_pump + pump_delay) ) //Don't spam it.
 		return FALSE
 	if(pump_lock)
@@ -537,11 +554,11 @@ can cause issues with ammo types getting mixed up during the burst.
 
 /obj/item/weapon/gun/shotgun/pump/proc/pump_fail_notice(mob/user)
 	playsound(user,'sound/weapons/throwtap.ogg', 25, 1)
-	to_chat(user,"<span class='warning'><b>[src] has already been pumped, locking the pump mechanism; fire or unload a shell to unlock it.</b></span>")
+	to_chat(user,span_warning("<b>[src] has already been pumped, locking the pump mechanism; fire or unload a shell to unlock it.</b>"))
 	recent_notice = world.time
 
 /obj/item/weapon/gun/shotgun/pump/proc/pump_notice(mob/user)
-	to_chat(user, "<span class='notice'><b>You pump [src].</b></span>")
+	to_chat(user, span_notice("<b>You pump [src].</b>"))
 
 /obj/item/weapon/gun/shotgun/pump/reload_into_chamber(mob/user)
 	if(active_attachable && active_attachable.flags_attach_features & ATTACH_PROJECTILE)
@@ -559,7 +576,7 @@ can cause issues with ammo types getting mixed up during the burst.
 
 /obj/item/weapon/gun/shotgun/pump/unload(mob/user)
 	if(pump_lock)
-		to_chat(user, "<span class='notice'><b>You disengage [src]'s pump lock with the slide release.</b></span>")
+		to_chat(user, span_notice("<b>You disengage [src]'s pump lock with the slide release.</b>"))
 		pump_lock = FALSE //we're operating the slide release to unload, thus unlocking the pump
 	return ..()
 
@@ -582,6 +599,7 @@ can cause issues with ammo types getting mixed up during the burst.
 		/obj/item/attachable/compensator,
 		/obj/item/attachable/scope/mini,
 		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/motiondetector,
 	)
 	flags_item_map_variant = NONE
 	attachable_offset = list("muzzle_x" = 38, "muzzle_y" = 19,"rail_x" = 14, "rail_y" = 19, "under_x" = 37, "under_y" = 16, "stock_x" = 15, "stock_y" = 14)
@@ -611,7 +629,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	fire_sound = 'sound/weapons/guns/fire/mosin.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/sniper_empty.ogg'
 	reload_sound = 'sound/weapons/guns/interact/mosin_reload.ogg'
-	caliber = "7.62x54mm Rimmed" //codex
+	caliber = CALIBER_762X54 //codex
 	load_method = SINGLE_CASING //codex
 	max_shells = 5 //codex
 	current_mag = /obj/item/ammo_magazine/internal/shotgun/pump/bolt
@@ -627,6 +645,7 @@ can cause issues with ammo types getting mixed up during the burst.
 		/obj/item/attachable/scope/marine,
 		/obj/item/attachable/flashlight,
 		/obj/item/attachable/bayonet,
+		/obj/item/attachable/motiondetector,
 	)
 	flags_item_map_variant = NONE
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_INTERNAL_MAG|GUN_AMMO_COUNTER
@@ -635,8 +654,6 @@ can cause issues with ammo types getting mixed up during the burst.
 		/obj/item/attachable/scope/mosin,
 		/obj/item/attachable/stock/mosin,
 	)
-	actions_types = list(/datum/action/item_action/aim_mode)
-	aim_fire_delay = 1
 
 	fire_delay = 17.5
 	accuracy_mult = 1.45
@@ -649,22 +666,67 @@ can cause issues with ammo types getting mixed up during the burst.
 	aim_slowdown = 1
 	wield_delay = 1 SECONDS
 
-/obj/item/weapon/gun/shotgun/pump/bolt/unique_action(mob/user)
-	return pump_shotgun(user)
-
 /obj/item/weapon/gun/shotgun/pump/bolt/pump_fail_notice(mob/user)
 	playsound(user,'sound/weapons/throwtap.ogg', 25, 1)
-	to_chat(user,"<span class='warning'><b>[src] bolt has already been worked, locking the bolt; fire or unload a round to unlock it.</b></span>")
+	to_chat(user,span_warning("<b>[src] bolt has already been worked, locking the bolt; fire or unload a round to unlock it.</b>"))
 	recent_notice = world.time
 
 /obj/item/weapon/gun/shotgun/pump/bolt/pump_notice(mob/user)
-	to_chat(user, "<span class='notice'><b>You work [src] bolt.</b></span>")
+	to_chat(user, span_notice("<b>You work [src] bolt.</b>"))
 
 /obj/item/weapon/gun/shotgun/pump/bolt/unload(mob/user)
 	if(pump_lock)
-		to_chat(user, "<span class='notice'><b>You open [src]'s breechloader, ejecting the cartridge.</b></span>")
+		to_chat(user, span_notice("<b>You open [src]'s breechloader, ejecting the cartridge.</b>"))
 		pump_lock = FALSE //we're operating the slide release to unload, thus unlocking the pump
 	return ..()
+
+//***********************************************************
+// Martini Henry
+
+/obj/item/weapon/gun/shotgun/double/martini
+	name = "\improper Martini Henry lever action rifle"
+	desc = "A lever action with room for a single round of .557/440 ball. Perfect for any kind of hunt, be it elephant or xeno."
+	flags_equip_slot = ITEM_SLOT_BACK
+	icon = 'icons/Marine/gun64.dmi'
+	icon_state = "martini"
+	item_state = "martini"
+	shell_eject_animation = "martini_flick"
+	caliber = CALIBER_557 //codex
+	muzzle_flash_lum = 7
+	max_shells = 1 //codex
+	ammo = /datum/ammo/bullet/sniper/martini
+	current_mag = /obj/item/ammo_magazine/internal/shotgun/martini
+	gun_skill_category = GUN_SKILL_RIFLES
+	type_of_casings = "cartridge"
+	fire_sound = 'sound/weapons/guns/fire/martini.ogg'
+	reload_sound = 'sound/weapons/guns/interact/martini_reload.ogg'
+	cocked_sound = 'sound/weapons/guns/interact/martini_cocked.ogg'
+	opened_sound = 'sound/weapons/guns/interact/martini_open.ogg'
+	attachable_allowed = list(
+		/obj/item/attachable/bayonet,
+		/obj/item/attachable/bayonetknife,
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/scope/mini,
+		/obj/item/attachable/scope/marine,
+		/obj/item/attachable/motiondetector,
+	)
+
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_INTERNAL_MAG|GUN_AMMO_COUNTER
+	attachable_offset = list("muzzle_x" = 45, "muzzle_y" = 23,"rail_x" = 17, "rail_y" = 25, "under_x" = 19, "under_y" = 14, "stock_x" = 15, "stock_y" = 12)
+
+	fire_delay = 1 SECONDS
+	accuracy_mult = 1.45
+
+	scatter = -25
+	scatter_unwielded = 30
+
+	recoil = 2
+	recoil_unwielded = 4
+
+	aim_slowdown = 1
+	wield_delay = 1 SECONDS
 
 //***********************************************************
 // Yee Haw it's a cowboy lever action gun!
@@ -673,11 +735,11 @@ can cause issues with ammo types getting mixed up during the burst.
 	name = "lever action rifle"
 	desc = "A .44 magnum lever action rifle with side loading port. It has a low fire rate, but it packs quite a punch in hunting."
 	icon_state = "mares_leg"
-	item_state = "mares_leg" //With thanks to D4n0w4r https://youtu.be/PV4uWGGb4xM
+	item_state = "mbx900"
 	fire_sound = 'sound/weapons/guns/fire/leveraction.ogg'//I like how this one sounds.
 	dry_fire_sound = 'sound/weapons/guns/fire/sniper_empty.ogg'
 	reload_sound = 'sound/weapons/guns/interact/mosin_reload.ogg'
-	caliber = ".44 Magnum" //codex
+	caliber = CALIBER_44 //codex
 	load_method = SINGLE_CASING //codex
 	max_shells = 10 //codex
 	current_mag = /obj/item/ammo_magazine/internal/shotgun/pump/lever
@@ -704,20 +766,17 @@ can cause issues with ammo types getting mixed up during the burst.
 	recoil_unwielded = 4
 	pump_delay = 6
 
-/obj/item/weapon/gun/shotgun/pump/lever/unique_action(mob/user)
-	return pump_shotgun(user)
-
 /obj/item/weapon/gun/shotgun/pump/lever/pump_fail_notice(mob/user)
 	playsound(user,'sound/weapons/throwtap.ogg', 25, 1)
-	to_chat(user,"<span class='warning'><b>[src] lever has already been worked, locking the lever; fire or unload a round to unlock it.</b></span>")
+	to_chat(user,span_warning("<b>[src] lever has already been worked, locking the lever; fire or unload a round to unlock it.</b>"))
 	recent_notice = world.time
 
 /obj/item/weapon/gun/shotgun/pump/lever/pump_notice(mob/user)
-	to_chat(user, "<span class='notice'><b>You work [src] lever.</b></span>")
+	to_chat(user, span_notice("<b>You work [src] lever.</b>"))
 
 /obj/item/weapon/gun/shotgun/pump/lever/unload(mob/user)
 	if(pump_lock)
-		to_chat(user, "<span class='notice'><b>You pull [src]'s lever downward, ejecting the cartridge.</b></span>")
+		to_chat(user, span_notice("<b>You pull [src]'s lever downward, ejecting the cartridge.</b>"))
 		pump_lock = FALSE //we're operating the slide release to unload, thus unlocking the pump
 	return ..()
 
@@ -729,7 +788,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	fire_sound = 'sound/weapons/guns/fire/shotgun_light.ogg'//I like how this one sounds.
 	dry_fire_sound = 'sound/weapons/guns/fire/sniper_empty.ogg'
 	reload_sound = 'sound/weapons/guns/interact/mosin_reload.ogg'
-	caliber = ".410 bore"
+	caliber = CALIBER_410
 	load_method = SINGLE_CASING
 	max_shells = 10
 	current_mag = /obj/item/ammo_magazine/internal/shotgun/pump/lever/mbx900
@@ -791,6 +850,7 @@ can cause issues with ammo types getting mixed up during the burst.
 		/obj/item/attachable/attached_gun/flamer,
 		/obj/item/attachable/attached_gun/shotgun,
 		/obj/item/attachable/stock/t35stock,
+		/obj/item/attachable/motiondetector,
 	)
 
 	attachable_offset = list("muzzle_x" = 31, "muzzle_y" = 18,"rail_x" = 10, "rail_y" = 20, "under_x" = 21, "under_y" = 12, "stock_x" = 20, "stock_y" = 16)

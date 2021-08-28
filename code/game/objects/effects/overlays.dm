@@ -6,7 +6,6 @@
 	name="beam"
 	icon='icons/effects/beam.dmi'
 	icon_state="b_beam"
-	var/tmp/atom/BeamSource
 
 /obj/effect/overlay/beam/Initialize()
 	. = ..()
@@ -51,6 +50,14 @@
 	mouse_opacity = 0 //can't click to examine it
 	var/effect_duration = 10 //in deciseconds
 
+/obj/effect/overlay/blinking_laser //Used to indicate incoming CAS
+	name = "blinking laser"
+	anchored = TRUE
+	mouse_opacity = 0
+	icon = 'icons/obj/items/projectiles.dmi'
+	icon_state = "laser_target3"
+	layer = ABOVE_FLY_LAYER
+
 /obj/effect/overlay/temp/Initialize()
 	. = ..()
 	flick(icon_state, src)
@@ -82,7 +89,7 @@
 	if(source_binoc)
 		source_binoc.laser_cooldown = world.time + source_binoc.cooldown_duration
 		source_binoc = null
-	. = ..()
+	return ..()
 
 /obj/effect/overlay/temp/laser_target
 	name = "laser"
@@ -116,7 +123,7 @@
 	if(linked_cam)
 		qdel(linked_cam)
 		linked_cam = null
-	. = ..()
+	return ..()
 
 /obj/effect/overlay/temp/laser_target/ex_act(severity) //immune to explosions
 	return
@@ -124,7 +131,7 @@
 /obj/effect/overlay/temp/laser_target/examine(user)
 	. = ..()
 	if(ishuman(user))
-		to_chat(usr, "<span class='danger'>It's a laser to designate artillery targets, get away from it!</span>")
+		to_chat(usr, span_danger("It's a laser to designate artillery targets, get away from it!"))
 
 /obj/effect/overlay/temp/laser_target/cas
 	icon_state = "laser_target_coordinate"
@@ -133,29 +140,30 @@
 	. = ..()
 	linked_cam = new(loc, name)
 	GLOB.active_cas_targets += src
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_CAS_LASER_CREATED, src)
 
 /obj/effect/overlay/temp/laser_target/cas/Destroy()
-	. = ..()
 	GLOB.active_cas_targets -= src
+	return ..()
 
 /obj/effect/overlay/temp/laser_target/cas/examine(user)
 	. = ..()
 	if(ishuman(user))
-		to_chat(usr, "<span class='danger'>It's a laser to designate cas targets, get away from it!</span>")
+		to_chat(usr, span_danger("It's a laser to designate cas targets, get away from it!"))
 
 /obj/effect/overlay/temp/laser_target/OB
 	icon_state = "laser_target2"
 
 /obj/effect/overlay/temp/laser_target/OB/Initialize(mapload, named, assigned_squad)
 	. = ..()
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_OB_LASER_CREATED, src)
 	GLOB.active_laser_targets += src
 
 /obj/effect/overlay/temp/laser_target/OB/Destroy()
-	. = ..()
 	GLOB.active_laser_targets -= src
+	return ..()
 
-//used to show where dropship ordnance will impact.
-/obj/effect/overlay/temp/blinking_laser
+/obj/effect/overlay/temp/blinking_laser //not used for CAS anymore but some admin buttons still use it
 	name = "blinking laser"
 	anchored = TRUE
 	effect_duration = 10
@@ -252,3 +260,4 @@
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	alpha = 0
 	vis_flags = NONE
+	blocks_emissive = NONE

@@ -4,14 +4,11 @@
 	upgrade_name = ""
 	caste_desc = "The mind of the hive"
 	caste_type_path = /mob/living/carbon/xenomorph/hivemind
-	tier = XENO_TIER_THREE
+	tier = XENO_TIER_ZERO
 	upgrade = XENO_UPGRADE_BASETYPE
 	wound_type = "hivemind" //used to match appropriate wound overlays
 	// *** Melee Attacks *** //
 	melee_damage = 0
-
-	// *** Tackle *** //
-	tackle_damage = 0
 
 	// *** Speed *** //
 	speed = 0
@@ -31,7 +28,7 @@
 	evolves_to = list()
 
 	// *** Flags *** //
-	caste_flags = CASTE_INNATE_PLASMA_REGEN | CASTE_FIRE_IMMUNE
+	caste_flags = CASTE_INNATE_PLASMA_REGEN|CASTE_FIRE_IMMUNE|CASTE_IS_BUILDER
 
 	can_hold_eggs = CANNOT_HOLD_EGGS
 
@@ -68,7 +65,7 @@
 	plasma_gain = 45 // This is 3 weed every 10 secs.
 
 	// *** Evolution *** //
-	upgrade_threshold = 500
+	upgrade_threshold = 800
 
 	// *** Abilities *** //
 	actions = list(
@@ -92,7 +89,7 @@
 	max_health = 1000
 
 	// *** Evolution *** //
-	upgrade_threshold = 700
+	upgrade_threshold = 1500
 
 	// *** Abilities *** //
 	actions = list(
@@ -117,7 +114,7 @@
 	max_health = 1000
 
 	// *** Evolution *** //
-	upgrade_threshold = 1000
+	upgrade_threshold = 2500
 
 	// *** Abilities *** //
 	actions = list(
@@ -125,7 +122,6 @@
 		/datum/action/xeno_action/plant_weeds/slow,
 		/datum/action/xeno_action/psychic_whisper,
 		/datum/action/xeno_action/activable/psychic_cure,
-		/datum/action/xeno_action/choose_resin,
 		/datum/action/xeno_action/toggle_pheromones,
 		/datum/action/xeno_action/activable/secrete_resin/slow,
 		/datum/action/xeno_action/activable/rally_hive/hivemind,

@@ -18,9 +18,14 @@
 	scatter_unwielded = 40
 	recoil_unwielded = 4
 	damage_falloff_mult = 0.5
+	upper_akimbo_accuracy = 5
+	lower_akimbo_accuracy = 3
 
 
 /obj/item/weapon/gun/rifle/unique_action(mob/user)
+	. = ..()
+	if(!.)
+		return
 	return cock(user)
 
 
@@ -48,7 +53,7 @@
 	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/t18_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/t18_reload.ogg'
-	caliber = "10x24mm caseless" //codex
+	caliber = CALIBER_10X24_CASELESS //codex
 	max_shells = 36 //codex
 	force = 20
 	current_mag = /obj/item/ammo_magazine/rifle/standard_carbine
@@ -75,6 +80,7 @@
 		/obj/item/attachable/scope/marine,
 		/obj/item/attachable/scope/mini,
 		/obj/item/attachable/attached_gun/shotgun,
+		/obj/item/attachable/motiondetector,
 	)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER
@@ -87,6 +93,7 @@
 
 	fire_delay = 0.2 SECONDS
 	burst_delay = 0.1 SECONDS
+	extra_delay = 0.5 SECONDS
 	accuracy_mult = 1.10
 	scatter = -5
 	burst_amount = 4
@@ -111,7 +118,7 @@
 	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/t18_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/t18_reload.ogg'
-	caliber = "10x24mm caseless" //codex
+	caliber = CALIBER_10X24_CASELESS //codex
 	max_shells = 50 //codex
 	force = 20
 	current_mag = /obj/item/ammo_magazine/rifle/standard_assaultrifle
@@ -138,6 +145,7 @@
 		/obj/item/attachable/attached_gun/flamer,
 		/obj/item/attachable/angledgrip,
 		/obj/item/attachable/attached_gun/shotgun,
+		/obj/item/attachable/motiondetector,
 	)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER
@@ -173,13 +181,14 @@
 	icon_state = "t37"
 	item_state = "t37"
 	muzzleflash_iconstate = "muzzle_flash_medium"
-	fire_sound = "sound/weapons/guns/fire/DMR.ogg"
+	fire_sound = 'sound/weapons/guns/fire/DMR.ogg'
+	fire_rattle = 'sound/weapons/guns/fire/DMR_low.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/m41a_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/m41a_reload.ogg'
-	caliber = "10x27mm caseless" //codex
+	caliber = CALIBER_10x27_CASELESS //codex
 	aim_slowdown = 0.75
-	wield_delay = 1 SECONDS
+	wield_delay = 0.8 SECONDS
 	force = 20
 	max_shells = 10 //codex
 	current_mag = /obj/item/ammo_magazine/rifle/standard_dmr
@@ -204,6 +213,7 @@
 		/obj/item/attachable/scope,
 		/obj/item/attachable/scope/marine,
 		/obj/item/attachable/scope/mini/dmr,
+		/obj/item/attachable/motiondetector,
 	)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER|GUN_CAN_POINTBLANK
@@ -212,7 +222,7 @@
 	attachable_offset = list("muzzle_x" = 48, "muzzle_y" = 21,"rail_x" = 21, "rail_y" = 24, "under_x" = 31, "under_y" = 15, "stock_x" = 14, "stock_y" = 10)
 	actions_types = list(/datum/action/item_action/aim_mode)
 	aim_fire_delay = 0.2 SECONDS
-	aim_speed_modifier = 3
+	aim_speed_modifier = 2
 
 	fire_delay = 0.8 SECONDS
 	accuracy_mult = 1.25
@@ -233,11 +243,12 @@
 	icon_state = "t64"
 	item_state = "t64"
 	muzzleflash_iconstate = "muzzle_flash_medium"
-	fire_sound = "sound/weapons/guns/fire/t64.ogg"
+	fire_sound = 'sound/weapons/guns/fire/t64.ogg'
+	fire_rattle = 'sound/weapons/guns/fire/t64_low.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/m41a_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/m41a_reload.ogg'
-	caliber = "10x27mm caseless" //codex
+	caliber = CALIBER_10x27_CASELESS //codex
 	aim_slowdown = 0.55
 	wield_delay = 0.7 SECONDS
 	force = 20
@@ -250,6 +261,7 @@
 		/obj/item/attachable/compensator,
 		/obj/item/attachable/reddot,
 		/obj/item/attachable/verticalgrip,
+		/obj/item/attachable/angledgrip,
 		/obj/item/attachable/lasersight,
 		/obj/item/attachable/flashlight,
 		/obj/item/attachable/bipod,
@@ -264,6 +276,7 @@
 		/obj/item/attachable/scope,
 		/obj/item/attachable/scope/marine,
 		/obj/item/attachable/scope/mini,
+		/obj/item/attachable/motiondetector,
 	)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER|GUN_CAN_POINTBLANK
@@ -294,7 +307,7 @@
 	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/m41a_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/m41a_reload.ogg'
-	caliber = "10x24mm caseless" //codex
+	caliber = CALIBER_10X24_CASELESS //codex
 	max_shells = 40 //codex
 	current_mag = /obj/item/ammo_magazine/rifle
 	attachable_allowed = list(
@@ -366,7 +379,7 @@
 	)
 
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 19,"rail_x" = 8, "rail_y" = 21, "under_x" = 22, "under_y" = 15, "stock_x" = 9, "stock_y" = 15)
-	starting_attachment_types = list(/obj/item/attachable/attached_gun/grenade, /obj/item/attachable/stock/irremoveable/rifle)
+	starting_attachment_types = list(/obj/item/attachable/attached_gun/grenade, /obj/item/attachable/stock/irremoveable/rifle, /obj/item/attachable/magnetic_harness)
 
 
 	burst_delay = 0.2 SECONDS
@@ -426,7 +439,7 @@
 	desc = "A crude, cheaply produced assault rifle capable of automatic fire. A replicant of the 1947 Kalashnikov rifle made with wood coloured plating, chambering the orginal 7.62x39mm round. Despite lacking attachment points, remains a popular product on the black market with its cheap cost and armor punching rounds."
 	icon_state = "ak47"
 	item_state = "ak47"
-	caliber = "7.62x39mm" //codex
+	caliber = CALIBER_762X39 //codex
 	muzzleflash_iconstate = "muzzle_flash_medium"
 	max_shells = 40 //codex
 	fire_sound = 'sound/weapons/guns/fire/ak47.ogg'
@@ -443,7 +456,7 @@
 
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_AUTOMATIC)
-	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 17,"rail_x" = 15, "rail_y" = 17, "under_x" = 24, "under_y" = 13, "stock_x" = 17, "stock_y" = 12)
+	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 17,"rail_x" = 15, "rail_y" = 17, "under_x" = 24, "under_y" = 13, "stock_x" = 0, "stock_y" = 12)
 	starting_attachment_types = list(/obj/item/attachable/stock/ak47)
 
 	accuracy_mult = 1
@@ -462,7 +475,7 @@
 	icon_state = "m16a4"
 	item_state = "m16a4"
 	muzzleflash_iconstate = "muzzle_flash_medium"
-	caliber = "5.56x45mm" //codex
+	caliber = CALIBER_556X45 //codex
 	max_shells = 30 //codex
 	fire_sound = 'sound/weapons/guns/fire/m16.ogg'
 	unload_sound = 'sound/weapons/guns/interact/m16_unload.ogg'
@@ -507,6 +520,18 @@
 	wield_delay = 0.5 SECONDS
 	damage_mult = 1.2
 
+/obj/item/weapon/gun/rifle/m16/freelancerleader
+	starting_attachment_types = list(/obj/item/attachable/verticalgrip, /obj/item/attachable/scope/mini, /obj/item/attachable/extended_barrel)
+
+/obj/item/weapon/gun/rifle/m16/freelancer
+	starting_attachment_types = list(/obj/item/attachable/verticalgrip, /obj/item/attachable/extended_barrel)
+
+/obj/item/weapon/gun/rifle/m16/somleader
+	starting_attachment_types = list(/obj/item/attachable/reddot)
+
+/obj/item/weapon/gun/rifle/m16/somvet
+	starting_attachment_types = list(/obj/item/attachable/magnetic_harness)
+
 //-------------------------------------------------------
 //FAMAS rifle, based on the F1
 
@@ -517,7 +542,7 @@
 	icon_state = "famas"
 	item_state = "famas"
 	muzzleflash_iconstate = "muzzle_flash_medium"
-	caliber = "5.56x45mm" //codex
+	caliber = CALIBER_556X45 //codex
 	max_shells = 24 //codex
 	fire_sound = 'sound/weapons/guns/fire/famas.ogg'
 	unload_sound = 'sound/weapons/guns/interact/m16_unload.ogg'
@@ -556,6 +581,8 @@
 	damage_mult = 1.2
 	scatter = 5
 
+/obj/item/weapon/gun/rifle/famas/freelancermedic
+	starting_attachment_types = list(/obj/item/attachable/lasersight, /obj/item/attachable/suppressor)
 
 
 //-------------------------------------------------------
@@ -566,7 +593,7 @@
 	desc = "The T-42 is the TGMC's current standard non-IFF-capable LMG. It's known for its ability to lay down heavy fire support very well. It is generally used when someone wants to hold a position or provide fire support. It uses 10x24mm ammunition."
 	icon_state = "t42"
 	item_state = "t42"
-	caliber = "10x24mm caseless" //codex
+	caliber = CALIBER_10X24_CASELESS //codex
 	max_shells = 120 //codex
 	force = 30
 	aim_slowdown = 0.8
@@ -582,6 +609,7 @@
 		/obj/item/attachable/flashlight,
 		/obj/item/attachable/lasersight,
 		/obj/item/attachable/bipod,
+		/obj/item/attachable/angledgrip,
 		/obj/item/attachable/extended_barrel,
 		/obj/item/attachable/heavy_barrel,
 		/obj/item/attachable/suppressor,
@@ -593,6 +621,10 @@
 		/obj/item/attachable/compensator,
 		/obj/item/attachable/stock/t42stock,
 		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/attached_gun/grenade,
+		/obj/item/attachable/attached_gun/flamer,
+		/obj/item/attachable/attached_gun/shotgun,
+		/obj/item/attachable/motiondetector,
 	)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER
@@ -604,7 +636,7 @@
 	aim_fire_delay = 0.18 SECONDS
 	aim_speed_modifier = 5
 
-	fire_delay = 0.18 SECONDS
+	fire_delay = 0.2 SECONDS
 	burst_amount = 1
 	accuracy_mult_unwielded = 0.5
 	accuracy_mult = 1
@@ -620,12 +652,13 @@
 	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "t60"
 	item_state = "t60"
-	caliber = "10x26mm caseless" //codex
+	caliber = CALIBER_10x26_CASELESS //codex
 	max_shells = 250 //codex
 	force = 35
 	aim_slowdown = 1.2
 	wield_delay = 1.5 SECONDS
 	fire_sound =  'sound/weapons/guns/fire/GPMG.ogg'
+	fire_rattle =  'sound/weapons/guns/fire/GPMG_low.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/T42_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/T42_reload.ogg'
@@ -645,6 +678,7 @@
 		/obj/item/attachable/scope/mini,
 		/obj/item/attachable/stock/t60stock,
 		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/motiondetector,
 	)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER|GUN_WIELDED_FIRING_ONLY
@@ -653,11 +687,11 @@
 	gun_skill_category = GUN_SKILL_HEAVY_WEAPONS
 	attachable_offset = list("muzzle_x" = 41, "muzzle_y" = 21,"rail_x" = 8, "rail_y" = 23, "under_x" = 25, "under_y" = 14, "stock_x" = 11, "stock_y" = 14)
 	actions_types = list(/datum/action/item_action/aim_mode)
-	aim_fire_delay = 0.1 SECONDS
+	aim_fire_delay = 0.2 SECONDS
 	aim_speed_modifier = 6
 
-	fire_delay = 0.165 SECONDS
-	damage_falloff_mult = 0.25
+	fire_delay = 0.15 SECONDS
+	damage_falloff_mult = 0.5
 	burst_amount = 1
 	accuracy_mult_unwielded = 0.4
 	accuracy_mult = 1
@@ -676,7 +710,7 @@
 	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "m412l1"
 	item_state = "m412l1"
-	caliber = "10x24mm caseless" //codex
+	caliber = CALIBER_10X24_CASELESS //codex
 	max_shells = 200 //codex
 	aim_slowdown = 0.8
 	wield_delay = 2 SECONDS
@@ -723,13 +757,13 @@
 
 /obj/item/weapon/gun/rifle/type71
 	name = "\improper Type 71 pulse rifle"
-	desc = "The primary rifle of the USL forces, the Type 71 is a reliable rifle chambered in 7.62x39mm, firing in two round bursts to conserve ammunition. A newer model for surpression roles to comply with overmatch doctrines is in progress and only issued to a limited number of privates in the USL."
+	desc = "The primary rifle of the USL pirates, the Type 71 is a reliable rifle chambered in 7.62x39mm, firing in three round bursts to conserve ammunition. A newer model for surpression roles to comply with overmatch doctrines is in progress and only issued to a limited number of privates in the USL."
 	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "type71"
 	item_state = "type71"
 	muzzleflash_iconstate = "muzzle_flash_medium"
-	caliber = "7.62x39mm" //codex
-	max_shells = 40 //codex
+	caliber = CALIBER_762X39 //codex
+	max_shells = 42 //codex
 	fire_sound = 'sound/weapons/guns/fire/type71.ogg'
 	unload_sound = 'sound/weapons/guns/interact/type71_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/type71_reload.ogg'
@@ -769,7 +803,7 @@
 	aim_speed_modifier = 2
 
 	fire_delay = 0.25 SECONDS
-	burst_amount = 2
+	burst_amount = 3
 	accuracy_mult = 1.1
 	accuracy_mult_unwielded = 0.8
 
@@ -782,9 +816,9 @@
 
 /obj/item/weapon/gun/rifle/type71/commando
 	name = "\improper Type 73 'Commando' pulse carbine"
-	desc = "An much rarer variant of the standard Type 71, this version contains an integrated supressor, a scope, and lots of fine-tuning. Many parts have been replaced, filed down, and improved upon. As a result, this variant is rarely seen issued outside of commando units."
-	icon_state = "type73"
-	item_state = "type73"
+	desc = "An much rarer variant of the standard Type 71, this version contains an integrated supressor, a scope, and lots of fine-tuning. Many parts have been replaced, filed down, and improved upon. As a result, this variant is rarely seen outside of elite units."
+	icon_state = "type71"
+	item_state = "type71"
 	wield_delay = 0 //Ends up being .5 seconds due to scope
 	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 19,"rail_x" = 10, "rail_y" = 22, "under_x" = 21, "under_y" = 18, "stock_x" = 21, "stock_y" = 18)
 	starting_attachment_types = list(/obj/item/attachable/suppressor/unremovable/invisible, /obj/item/attachable/scope/unremovable)
@@ -805,7 +839,7 @@
 	item_state = "tx15"
 	fire_sound = 'sound/weapons/guns/fire/shotgun.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/shotgun_empty.ogg'
-	caliber = "16 gauge" //codex
+	caliber = CALIBER_16G //codex
 	max_shells = 12 //codex
 	force = 20
 	current_mag = /obj/item/ammo_magazine/rifle/tx15_slug
@@ -824,6 +858,7 @@
 		/obj/item/attachable/compensator,
 		/obj/item/attachable/extended_barrel,
 		/obj/item/attachable/heavy_barrel,
+		/obj/item/attachable/motiondetector,
 	)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER|GUN_WIELDED_FIRING_ONLY //Its a shotgun type weapon effectively, most shotgun type weapons shouldn't be able to point blank 1 handed.
@@ -844,7 +879,7 @@
 	desc = "The T-29 is the TGMC's current standard IFF-capable medium machine gun. It's known for its ability to lay down heavy fire support very well. It is generally used when someone wants to hold a position or provide fire support. Requires special training and it cannot turn off IFF. It uses 10x26mm ammunition."
 	icon_state = "t29"
 	item_state = "t29"
-	caliber = "10x26mm caseless" //codex
+	caliber = CALIBER_10x26_CASELESS //codex
 	max_shells = 300 //codex
 	force = 30
 	aim_slowdown = 0.95
@@ -862,10 +897,11 @@
 		/obj/item/attachable/t42barrel,
 		/obj/item/attachable/bipod,
 		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/scope/mini,
+		/obj/item/attachable/motiondetector,
 	)
 
-	flags_gun_features = GUN_AUTO_EJECTOR|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER|GUN_WIELDED_FIRING_ONLY
-	gun_iff_signal = list(ACCESS_IFF_MARINE)
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER|GUN_WIELDED_FIRING_ONLY|GUN_IFF
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_AUTOMATIC)
 	starting_attachment_types = list(/obj/item/attachable/stock/t29stock, /obj/item/attachable/t29barrel)
 	gun_skill_category = GUN_SKILL_SMARTGUN //Uses SG skill for the penalties.
@@ -877,9 +913,58 @@
 	scatter = -20
 	scatter_unwielded = 80
 
-/obj/item/weapon/gun/rifle/standard_smartmachinegun/pmc
-	name = "\improper R-25 smart machine gun"
-	desc = "The R-25 is a rather common IFF-capable medium machine gun. It's known for its ability to lay down heavy fire support very well. It is generally used when someone wants to hold a position or provide fire support. Requires special training and it cannot turn off IFF. It uses 10x26mm ammunition."
+// T-25 Smartrifle
+
+/obj/item/weapon/gun/rifle/standard_smartrifle
+	name = "\improper T-25 smartrifle"
+	desc = "The T-25 is the TGMC's current standard IFF-capable rifle. It's known for its ability to lay down quick fire support very well. Requires special training and it cannot turn off IFF. It uses 10x26mm ammunition."
+	icon = 'icons/Marine/gun64.dmi'
+	icon_state = "t25"
+	item_state = "t25"
+	caliber = CALIBER_10x26_CASELESS //codex
+	max_shells = 80 //codex
+	force = 35
+	aim_slowdown = 0.7
+	wield_delay = 0.9 SECONDS
+	fire_sound = "gun_smartgun"
+	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
+	unload_sound = 'sound/weapons/guns/interact/T42_unload.ogg'
+	reload_sound = 'sound/weapons/guns/interact/T42_reload.ogg'
+	current_mag = /obj/item/ammo_magazine/rifle/standard_smartrifle
+	attachable_allowed = list(
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/verticalgrip,
+		/obj/item/attachable/lasersight,
+		/obj/item/attachable/gyro,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/bipod,
+		/obj/item/attachable/burstfire_assembly,
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/extended_barrel,
+		/obj/item/attachable/heavy_barrel,
+		/obj/item/attachable/suppressor,
+		/obj/item/attachable/bayonet,
+		/obj/item/attachable/bayonetknife,
+		/obj/item/attachable/compensator,
+		/obj/item/attachable/scope,
+		/obj/item/attachable/scope/mini,
+		/obj/item/attachable/scope/marine,
+		/obj/item/attachable/attached_gun/grenade,
+		/obj/item/attachable/attached_gun/flamer,
+		/obj/item/attachable/attached_gun/shotgun,
+		/obj/item/attachable/motiondetector,
+	)
+
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER|GUN_WIELDED_FIRING_ONLY|GUN_IFF
+	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_AUTOMATIC)
+	gun_skill_category = GUN_SKILL_SMARTGUN //Uses SG skill for the penalties.
+	attachable_offset = list("muzzle_x" = 42, "muzzle_y" = 17,"rail_x" = 15, "rail_y" = 21, "under_x" = 24, "under_y" = 14, "stock_x" = 12, "stock_y" = 13)
+	fire_delay = 0.2 SECONDS
+	burst_amount = 0
+	accuracy_mult_unwielded = 0.5
+	accuracy_mult = 1.2
+	scatter = -5
+	scatter_unwielded = 60
 
 //-------------------------------------------------------
 //Sectoid Rifle
@@ -890,6 +975,7 @@
 	icon_state = "alien_rifle"
 	item_state = "alien_rifle"
 	fire_sound = 'sound/weapons/guns/fire/alienplasma.ogg'
+	fire_rattle = 'sound/weapons/guns/fire/alienplasma.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/vp70_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/m41a_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/m4ra_reload.ogg'
@@ -905,6 +991,7 @@
 
 	fire_delay = 0.5 SECONDS
 	burst_amount = 3
+	burst_delay = 0.15 SECONDS
 	accuracy_mult = 2
 	accuracy_mult_unwielded = 0.8
 
@@ -917,7 +1004,7 @@
 		return FALSE
 	var/mob/living/carbon/human/H = user
 	if(!(H.species.species_flags & USES_ALIEN_WEAPONS))
-		to_chat(user, "<span class='warning'>There's no trigger on this gun, you have no idea how to fire it!</span>")
+		to_chat(user, span_warning("There's no trigger on this gun, you have no idea how to fire it!"))
 		return FALSE
 	return TRUE
 
@@ -932,10 +1019,12 @@
 	icon_state = "tl127"
 	item_state = "tl127"
 	fire_sound = 'sound/weapons/guns/fire/tl127.ogg'
+	fire_rattle = 'sound/weapons/guns/fire/tl127_low.ogg'
+	cocked_sound = 'sound/weapons/guns/interact/tl-127_bolt.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/sniper_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/m41a_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/m41a_reload.ogg'
-	caliber = "8.6x70mm" //codex
+	caliber = CALIBER_86X70 //codex
 	max_shells = 7 //codex
 	current_mag = /obj/item/ammo_magazine/rifle/chamberedrifle
 	type_of_casings = "cartridge"
@@ -951,12 +1040,13 @@
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO)
 	attachable_offset = list("muzzle_x" = 41, "muzzle_y" = 19,"rail_x" = 8, "rail_y" = 21, "under_x" = 37, "under_y" = 16, "stock_x" = 9, "stock_y" = 12)
+	actions_types = list(/datum/action/item_action/aim_mode)
+	aim_fire_delay = 1 SECONDS
+
 	starting_attachment_types = list(
 		/obj/item/attachable/scope/unremovable/tl127,
 		/obj/item/attachable/stock/tl127stock,
 	)
-	actions_types = list(/datum/action/item_action/aim_mode)
-	aim_fire_delay = 0.3 SECONDS
 
 	burst_amount = 0
 	fire_delay = 1.35 SECONDS
@@ -968,37 +1058,27 @@
 	recoil_unwielded = 4
 	aim_slowdown = 1
 	wield_delay = 1.3 SECONDS
+	cock_delay = 0.7 SECONDS
 
-	var/rack_delay = 7
-	var/rack_sound = 'sound/weapons/guns/interact/tl-127_bolt.ogg'
-	var/racked_bolt = TRUE
-	var/cooldown_time
-
-/obj/item/weapon/gun/rifle/chambered/able_to_fire(mob/user)
-	. = ..()
-	if(!.)
+/obj/item/weapon/gun/rifle/chambered/cock(mob/user)
+	if(cock_cooldown < world.time && in_chamber)
+		to_chat(user, span_warning("[src] already has a round chambered!"))
 		return
-	if(!racked_bolt)
-		to_chat(user, "<span class='warning'>[src] does not have a round chambered!</span>")
-		return FALSE
+	return ..()
 
-/obj/item/weapon/gun/rifle/chambered/unique_action(mob/user)
-	if(racked_bolt)
-		to_chat(user, "<span class='warning'>[src] already has a round chambered!</span>")
+/obj/item/weapon/gun/rifle/chambered/load_into_chamber(mob/user)
+	if(CHECK_BITFIELD(flags_gun_features, GUN_DEPLOYED_FIRE_ONLY) && !CHECK_BITFIELD(flags_item, IS_DEPLOYED))
+		to_chat(user, span_notice("You cannot fire [src] while it is not deployed."))
 		return
-	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_RACK_BOLT))
-		return
-	return rack_bolt(user)
-
-/obj/item/weapon/gun/rifle/chambered/proc/rack_bolt(mob/user)
-	to_chat(user, "<span class='notice'>You cycle the bolt of the [src], loading in a new round!</span>")
-	TIMER_COOLDOWN_START(src, COOLDOWN_RACK_BOLT, rack_delay)
-	racked_bolt = TRUE
-	playsound(loc, rack_sound, 25, 1, 4)
+	return in_chamber
 
 /obj/item/weapon/gun/rifle/chambered/reload_into_chamber(mob/user)
-	. = ..()
-	racked_bolt = FALSE
+	make_casing(type_of_casings)
+	if(in_chamber)
+		QDEL_NULL(in_chamber)
+	if(current_mag.current_rounds <= 0 && flags_gun_features & GUN_AUTO_EJECTOR)
+		unload(user, TRUE, TRUE)
+		playsound(src, empty_sound, 25, 1)
 
 //-------------------------------------------------------
 //T-81 Auto-Sniper
@@ -1012,7 +1092,7 @@
 	dry_fire_sound = 'sound/weapons/guns/fire/sniper_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/m41a_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/m41a_reload.ogg'
-	caliber = "8.6x70mm" //codex
+	caliber = CALIBER_86X70 //codex
 	max_shells = 7 //codex
 	current_mag = /obj/item/ammo_magazine/rifle/autosniper
 	type_of_casings = "cartridge"
@@ -1026,10 +1106,9 @@
 		/obj/item/attachable/compensator,
 	)
 
-	flags_gun_features = GUN_AUTO_EJECTOR|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
-	gun_iff_signal = list(ACCESS_IFF_MARINE)
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER|GUN_IFF
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_AUTOMATIC)
-	attachable_offset = list("muzzle_x" = 48, "muzzle_y" = 18,"rail_x" = 23, "rail_y" = 23, "under_x" = 37, "under_y" = 16, "stock_x" = 9, "stock_y" = 12)
+	attachable_offset = list("muzzle_x" = 48, "muzzle_y" = 18,"rail_x" = 23, "rail_y" = 23, "under_x" = 38, "under_y" = 16, "stock_x" = 9, "stock_y" = 12)
 	starting_attachment_types = list(
 		/obj/item/attachable/autosniperbarrel,
 		/obj/item/attachable/scope/nightvision,
@@ -1054,7 +1133,7 @@
 	desc = "The TX-11 is the former standard issue rifle of the TGMC. Most of them have been mothballed into storage long ago, but some still pop up in marine or mercenary hands. It is known for its large magazine size and great burst fire, but rather awkward to use, especially during combat. It uses 4.92×34mm caseless HV ammunition."
 	icon_state = "tx11"
 	item_state = "tx11"
-	caliber = "4.92x34mm caseless" //codex
+	caliber = CALIBER_492X34_CASELESS //codex
 	max_shells = 70 //codex
 	wield_delay = 0.65 SECONDS
 	fire_sound = "sound/weapons/guns/fire/m412.ogg"
@@ -1071,6 +1150,7 @@
 		/obj/item/attachable/scope/mini/tx11,
 		/obj/item/attachable/stock/irremoveable/tx11,
 		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/motiondetector,
 	)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER
@@ -1079,9 +1159,9 @@
 	attachable_offset = list("muzzle_x" = 31, "muzzle_y" = 17,"rail_x" = 8, "rail_y" = 20, "under_x" = 16, "under_y" = 13, "stock_x" = 19, "stock_y" = 23)
 	actions_types = list(/datum/action/item_action/aim_mode)
 	aim_fire_delay = 0.125 SECONDS
-	aim_speed_modifier = 2
 
 	fire_delay = 0.225 SECONDS
+	extra_delay = 0.5 SECONDS
 	burst_amount = 3
 	burst_delay = 0.05 SECONDS
 	accuracy_mult_unwielded = 0.5
@@ -1089,3 +1169,63 @@
 	scatter = -10
 	scatter_unwielded = 30
 	aim_slowdown = 0.45
+
+/obj/item/weapon/gun/rifle/tx11/scopeless
+	starting_attachment_types = list(/obj/item/attachable/stock/irremoveable/tx11)
+
+//-------------------------------------------------------
+//T-21 Assault Rifle
+
+/obj/item/weapon/gun/rifle/standard_skirmishrifle
+	name = "\improper T-21 skirmish rifle"
+	desc = "The T-21 is a versatile rifle is developed to bridge a gap between higher caliber weaponry and a normal rifle. It fires a strong 10x25 round, which has decent stopping power. It however suffers in magazine size and movement capablity compared to smaller peers. It uses 10x25mm caseless ammunition."
+	icon = 'icons/Marine/gun64.dmi'
+	icon_state = "t21"
+	item_state = "t21"
+	fire_sound = 'sound/weapons/guns/fire/t21.ogg'
+	dry_fire_sound = 'sound/weapons/guns/fire/t21_empty.ogg'
+	unload_sound = 'sound/weapons/guns/interact/t21_unload.ogg'
+	reload_sound = 'sound/weapons/guns/interact/t21_reload.ogg'
+	caliber = CALIBER_10X25_CASELESS //codex
+	max_shells = 30 //codex
+	force = 20
+	current_mag = /obj/item/ammo_magazine/rifle/standard_skirmishrifle
+	attachable_allowed = list(
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/verticalgrip,
+		/obj/item/attachable/lasersight,
+		/obj/item/attachable/gyro,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/bipod,
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/extended_barrel,
+		/obj/item/attachable/heavy_barrel,
+		/obj/item/attachable/suppressor,
+		/obj/item/attachable/bayonet,
+		/obj/item/attachable/bayonetknife,
+		/obj/item/attachable/compensator,
+		/obj/item/attachable/scope,
+		/obj/item/attachable/scope/mini,
+		/obj/item/attachable/scope/marine,
+		/obj/item/attachable/attached_gun/grenade,
+		/obj/item/attachable/attached_gun/flamer,
+		/obj/item/attachable/angledgrip,
+		/obj/item/attachable/attached_gun/shotgun,
+	)
+
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER
+	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_AUTOMATIC)
+//	starting_attachment_types = list(/obj/item/attachable/stock/t12stock)
+	attachable_offset = list("muzzle_x" = 46, "muzzle_y" = 16,"rail_x" = 18, "rail_y" = 19, "under_x" = 34, "under_y" = 12, "stock_x" = 0, "stock_y" = 13)
+	actions_types = list(/datum/action/item_action/aim_mode)
+	aim_fire_delay = 0.15 SECONDS
+	aim_speed_modifier = 2.5
+
+	fire_delay = 0.25 SECONDS
+	burst_amount = 1
+	burst_delay = 0.15 SECONDS
+	accuracy_mult = 1.15
+	scatter = -10
+	wield_delay = 0.6 SECONDS
+	aim_slowdown = 0.5
+	damage_falloff_mult = 0.5

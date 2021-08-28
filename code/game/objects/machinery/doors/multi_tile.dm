@@ -99,6 +99,15 @@
 /obj/machinery/door/airlock/multi_tile/mainship/generic/garden
 	name = "\improper Garden"
 
+/obj/machinery/door/airlock/multi_tile/mainship/generic/prep
+	name = "\improper Squad Preparation Room"
+
+/obj/machinery/door/airlock/multi_tile/mainship/generic/range
+	name = "\improper Firing Range"
+
+/obj/machinery/door/airlock/multi_tile/mainship/generic/rnr
+	name = "\improper Rest and Recreation"
+
 /obj/machinery/door/airlock/multi_tile/mainship/medidoor
 	name = "\improper Medical Airlock"
 	icon = 'icons/obj/doors/mainship/2x1medidoor.dmi'
@@ -125,6 +134,9 @@
 	opacity = FALSE
 	glass = TRUE
 	req_access = list(ACCESS_MARINE_BRIDGE)
+
+/obj/machinery/door/airlock/multi_tile/mainship/comdoor/rebel
+	req_access = list(ACCESS_MARINE_BRIDGE_REBEL)
 
 /obj/machinery/door/airlock/multi_tile/mainship/comdoor/free_access
 	req_access = null
@@ -192,7 +204,7 @@
 /obj/machinery/door/airlock/multi_tile/mainship/dropshiprear
 	opacity = TRUE
 	width = 3
-	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
+	resistance_flags = RESIST_ALL
 	no_panel = TRUE
 	not_weldable = TRUE
 

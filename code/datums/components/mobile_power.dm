@@ -42,7 +42,7 @@
 /// Remove all machines in our machine list
 /datum/component/mobile_power/proc/clear_machines()
 	if(LAZYLEN(machines_to_power))
-		for(var/obj/machinery/M as() in machines_to_power)
+		for(var/obj/machinery/M AS in machines_to_power)
 			UnregisterSignal(M, list(
 				COMSIG_OBJ_SETANCHORED,
 				COMSIG_MACHINERY_POWERED,
@@ -111,13 +111,13 @@
 
 /// Enable power
 /datum/component/mobile_power/proc/activate()
-	for(var/obj/machinery/M as() in machines_to_power)
+	for(var/obj/machinery/M AS in machines_to_power)
 		RegisterSignal(M, COMSIG_MACHINERY_POWERED, .proc/powered)
 		RegisterSignal(M, COMSIG_MACHINERY_USE_POWER, .proc/use_power)
 
 /// Disable power
 /datum/component/mobile_power/proc/deactivate()
-	for(var/obj/machinery/M as() in machines_to_power)
+	for(var/obj/machinery/M AS in machines_to_power)
 		UnregisterSignal(M, list(
 			COMSIG_MACHINERY_POWERED,
 			COMSIG_MACHINERY_USE_POWER

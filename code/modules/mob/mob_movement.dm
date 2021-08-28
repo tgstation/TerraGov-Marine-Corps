@@ -101,7 +101,7 @@
 			return
 		else if(L.restrained(RESTRAINED_NECKGRAB))
 			move_delay = world.time + 1 SECONDS //to reduce the spam
-			to_chat(src, "<span class='warning'>You're restrained! You can't move!</span>")
+			to_chat(src, span_warning("You're restrained! You can't move!"))
 			return
 		else
 			move_delay = world.time + 1 SECONDS
@@ -141,7 +141,7 @@
 	. = ..()
 
 	if((direct & (direct - 1)) && mob.loc == n) //moved diagonally successfully
-		add_delay *= 2
+		add_delay *= DIAG_MOVEMENT_ADDED_DELAY_MULTIPLIER
 	move_delay += add_delay
 
 #undef MOVEMENT_DELAY_BUFFER
@@ -161,7 +161,7 @@
 
 	//Check to see if we slipped
 	if(prob(Process_Spaceslipping(5)))
-		to_chat(src, "<span class='boldnotice'>You slipped!</span>")
+		to_chat(src, span_boldnotice("You slipped!"))
 		step(src, src.inertia_dir)
 		return 0
 	//If not then we can reset inertia and move
@@ -380,16 +380,6 @@
 			add_movespeed_modifier(MOVESPEED_ID_MOB_WALK_RUN_CONFIG_SPEED, TRUE, 100, NONE, TRUE, 4 + CONFIG_GET(number/movedelay/walk_delay))
 		if(MOVE_INTENT_RUN)
 			add_movespeed_modifier(MOVESPEED_ID_MOB_WALK_RUN_CONFIG_SPEED, TRUE, 100, NONE, TRUE, 3 + CONFIG_GET(number/movedelay/run_delay))
-
-
-/mob/living/carbon/human/update_move_intent_effects()
-	. = ..()
-	switch(m_intent)
-		if(MOVE_INTENT_WALK)
-			melee_accuracy = initial(melee_accuracy)
-		if(MOVE_INTENT_RUN)
-			melee_accuracy = 80
-
 
 /mob/proc/cadecheck()
 	var/list/coords = list(list(x + 1, y, z), list(x, y + 1, z), list(x - 1, y, z), list(x, y - 1, z))

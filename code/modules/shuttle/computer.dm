@@ -45,14 +45,16 @@
 		return
 
 	if(!allowed(usr))
-		to_chat(usr, "<span class='danger'>Access denied.</span>")
+		to_chat(usr, span_danger("Access denied."))
 		return TRUE
 
 	if(href_list["move"])
 		var/obj/docking_port/mobile/M = SSshuttle.getShuttle(shuttleId)
+		#ifndef TESTING
 		if(!(M.shuttle_flags & GAMEMODE_IMMUNE) && world.time < SSticker.round_start_time + SSticker.mode.deploy_time_lock)
-			to_chat(usr, "<span class='warning'>The engines are still refueling.</span>")
+			to_chat(usr, span_warning("The engines are still refueling."))
 			return TRUE
+		#endif
 		if(!M.can_move_topic(usr))
 			return TRUE
 		if(!(href_list["move"] in valid_destinations()))
@@ -64,14 +66,19 @@
 		switch(SSshuttle.moveShuttle(shuttleId, href_list["move"], 1))
 			if(0)
 				if(previous_status != SHUTTLE_IDLE)
-					visible_message("<span class='notice'>Destination updated, recalculating route.</span>")
+					visible_message(span_notice("Destination updated, recalculating route."))
 				else
-					visible_message("<span class='notice'>Shuttle departing. Please stand away from the doors.</span>")
+					visible_message(span_notice("Shuttle departing. Please stand away from the doors."))
+
+					for(var/mob/living/silicon/ai/AI in GLOB.silicon_mobs)
+						if(!AI.client)
+							continue
+						to_chat(AI, span_info("NOTICE - [M.name] taking off towards [href_list["move"]]"))
 			if(1)
-				to_chat(usr, "<span class='warning'>Invalid shuttle requested.</span>")
+				to_chat(usr, span_warning("Invalid shuttle requested."))
 				return TRUE
 			else
-				to_chat(usr, "<span class='notice'>Unable to comply.</span>")
+				to_chat(usr, span_notice("Unable to comply."))
 				return TRUE
 
 /obj/machinery/computer/shuttle/connect_to_shuttle(obj/docking_port/mobile/port, obj/docking_port/stationary/dock, idnum, override=FALSE)

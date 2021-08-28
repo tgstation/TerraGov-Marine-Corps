@@ -2,19 +2,21 @@
 	name = "Space"
 	requires_power = 1
 	always_unpowered = 1
-	dynamic_lighting = DYNAMIC_LIGHTING_ENABLED
+	base_lighting_alpha = 255
+	base_lighting_color = COLOR_WHITE
 	power_light = 0
 	power_equip = 0
 	power_environ = 0
 	ambience = list('sound/ambience/ambispace.ogg')
 	temperature = TCMB
 	pressure = 0
+	flags_area = NO_DROPPOD
 
-/area/space/Entered(atom/movable/AM, atom/oldloc)
+/area/space/Entered(atom/movable/arrived, atom/old_loc, list/atom/old_locs)
 	. = ..()
-	if(isliving(AM))
-		to_chat(AM, "<span class='danger'>The cold vacuum instantly freezes you, maybe this was a bad idea?</span>")
-		var/mob/living/spaceman = AM
+	if(isliving(arrived))
+		to_chat(arrived, span_danger("The cold vacuum instantly freezes you, maybe this was a bad idea?"))
+		var/mob/living/spaceman = arrived
 		spaceman.adjustFireLoss(600) //Bad idea, spessman.
 
 /area/engine/
@@ -40,8 +42,8 @@
 
 /area/shuttle //DO NOT TURN THE dynamic_lighting STUFF ON FOR SHUTTLES. IT BREAKS THINGS.
 	requires_power = 0
-	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
 	outside = FALSE
+	flags_area = OB_CAS_IMMUNE
 
 /area/shuttle/arrival
 	name = "Abandoned Arrival Shuttle"
@@ -219,8 +221,9 @@
 	name = "start area"
 	icon_state = "start"
 	requires_power = 0
-	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
-
+	static_lighting = FALSE
+	base_lighting_alpha = 255
+	base_lighting_color = LIGHT_COLOR_WHITE
 
 /area/syndicate_mothership
 	name = "Abandoned Syndicate Base"
@@ -259,7 +262,8 @@
 	name = "Abandoned Thunderdome"
 	icon_state = "thunder"
 	requires_power = FALSE
-	dynamic_lighting = DYNAMIC_LIGHTING_FORCED
+	base_lighting_alpha = 255
+	base_lighting_color = LIGHT_COLOR_WHITE
 
 
 /area/tdome/tdome1
@@ -285,6 +289,8 @@
 /area/deathmatch
 	name = "End of Round Deathmatch Arena"
 	icon_state = "green"
+	base_lighting_alpha = 255
+	base_lighting_color = LIGHT_COLOR_WHITE
 	requires_power = 0
 
 
@@ -721,7 +727,9 @@
 /area/holodeck
 	name = "Abandoned Holodeck"
 	icon_state = "Holodeck"
-	dynamic_lighting = 0
+	static_lighting = FALSE
+	base_lighting_alpha = 255
+	base_lighting_color = LIGHT_COLOR_WHITE
 
 /area/holodeck/alphadeck
 	name = "Abandoned Holodeck Alpha"
@@ -860,7 +868,8 @@
 /area/solar
 	requires_power = 1
 	always_unpowered = 1
-	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
+	static_lighting = FALSE
+	base_lighting_alpha = 255
 
 	auxport
 		name = "Abandoned Fore Port Solar Array"
@@ -1293,6 +1302,8 @@
 	requires_power = 0
 	name = "Abandoned Test Room"
 	icon_state = "storage"
+	flags_area = NO_DROPPOD
+
 
 //DJSTATION
 

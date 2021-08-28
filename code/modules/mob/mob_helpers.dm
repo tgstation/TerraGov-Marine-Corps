@@ -341,22 +341,13 @@ GLOBAL_LIST_INIT(organ_rel_size, list(
 	set name = "a-intent"
 	set hidden = 1
 
-	if(ismonkey(src))
-		switch(input)
-			if(INTENT_HELP)
-				a_intent = INTENT_HELP
-			if(INTENT_HARM)
-				a_intent = INTENT_HARM
-			if(INTENT_HOTKEY_RIGHT,INTENT_HOTKEY_LEFT)
-				a_intent = intent_numeric(intent_numeric(a_intent) - 3)
-	else
-		switch(input)
-			if(INTENT_HELP,INTENT_DISARM,INTENT_GRAB,INTENT_HARM)
-				a_intent = input
-			if(INTENT_HOTKEY_RIGHT)
-				a_intent = intent_numeric((intent_numeric(a_intent)+1) % 4)
-			if(INTENT_HOTKEY_LEFT)
-				a_intent = intent_numeric((intent_numeric(a_intent)+3) % 4)
+	switch(input)
+		if(INTENT_HELP,INTENT_DISARM,INTENT_GRAB,INTENT_HARM)
+			a_intent = input
+		if(INTENT_HOTKEY_RIGHT)
+			a_intent = intent_numeric((intent_numeric(a_intent)+1) % 4)
+		if(INTENT_HOTKEY_LEFT)
+			a_intent = intent_numeric((intent_numeric(a_intent)+3) % 4)
 
 
 	if(hud_used && hud_used.action_intent)
@@ -444,7 +435,7 @@ mob/proc/get_standard_bodytemperature()
 	var/full_enter_link
 	if (enter_link)
 		full_enter_link = "<a href='byond://?src=[REF(O)];[enter_link]'>[(enter_text) ? "[enter_text]" : "(Claim)"]</a>"
-	to_chat(O, "[(extra_large) ? "<br><hr>" : ""]<span class='deadsay'>[message][(enter_link) ? " [full_enter_link]" : ""][track_link]</span>[(extra_large) ? "<hr><br>" : ""]")
+	to_chat(O, "[(extra_large) ? "<br><hr>" : ""][span_deadsay("[message][(enter_link) ? " [full_enter_link]" : ""][track_link]")][(extra_large) ? "<hr><br>" : ""]")
 	if(ghost_sound)
 		SEND_SOUND(O, sound(ghost_sound, volume = notify_volume, channel = CHANNEL_NOTIFY))
 	if(flashwindow)
@@ -500,7 +491,7 @@ mob/proc/get_standard_bodytemperature()
 	. = list("[type]")
 
 
-/// Try to perform a unique action on the current active held item.
+/// Try to perform a unique action on the held items
 /mob/living/carbon/human/proc/do_unique_action()
 	SIGNAL_HANDLER
 	. = COMSIG_KB_ACTIVATED //The return value must be a flag compatible with the signals triggering this.
@@ -508,14 +499,8 @@ mob/proc/get_standard_bodytemperature()
 		return
 
 	var/obj/item/active_item = get_active_held_item()
-	if(!istype(active_item))
+	if((istype(active_item) && active_item.unique_action(src) != COMSIG_KB_NOT_ACTIVATED) || client?.prefs.unique_action_use_active_hand)
 		return
-
-	active_item.unique_action(src)
-
-/mob/living/carbon/human/proc/do_activate_rail_attachment()
-	SIGNAL_HANDLER
-
-	var/obj/item/weapon/gun/active_gun = get_active_firearm(src)
-	active_gun?.toggle_rail_attachment()
-	return COMSIG_KB_ACTIVATED
+	var/obj/item/inactive_item = get_inactive_held_item()
+	if(istype(inactive_item))
+		inactive_item.unique_action(src)

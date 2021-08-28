@@ -40,6 +40,8 @@
 
 /datum/element/egrill/proc/attack_alien(obj/source, mob/living/carbon/xenomorph/attacker)
 	SIGNAL_HANDLER
+	if(attacker.status_flags & INCORPOREAL)
+		return FALSE
 	shock(source, attacker)
 
 /datum/element/egrill/proc/shock(obj/source, mob/living/user)
