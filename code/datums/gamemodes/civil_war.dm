@@ -46,9 +46,20 @@
 
 /datum/game_mode/civil_war/post_setup()
 	..()
-	for(var/turf/T in GLOB.fob_sentries)
+	for(var/area/area_to_lit AS in GLOB.sorted_areas)
+		var/turf/first_turf = area_to_lit.contents[1]
+		if(first_turf.z != 2)
+			continue
+		switch(area_to_lit.ceiling)
+			if(CEILING_NONE to CEILING_GLASS)
+				area_to_lit.set_base_lighting(COLOR_WHITE, 255)
+			if(CEILING_METAL)
+				area_to_lit.set_base_lighting(COLOR_WHITE, 150)
+			if(CEILING_UNDERGROUND)
+				area_to_lit.set_base_lighting(COLOR_WHITE, 50)
+	for(var/turf/T AS in GLOB.fob_sentries)
 		new /obj/item/weapon/gun/sentry/big_sentry/fob_sentry(T)
-	for(var/turf/T in GLOB.fob_sentries_rebel)
+	for(var/turf/T AS in GLOB.fob_sentries_rebel)
 		new /obj/item/weapon/gun/sentry/big_sentry/fob_sentry/rebel(T)
 	for(var/turf/T AS in GLOB.sensor_towers)
 		new /obj/structure/sensor_tower(T)
