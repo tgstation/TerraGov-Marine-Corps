@@ -115,10 +115,10 @@
 	smoke.start()
 
 /obj/vehicle/ridden/motorbike/bullet_act(obj/projectile/P)
-	if(prob(50) || !buckled_mobs)
+	if(!buckled_mobs)
 		return ..()
-	for(var/mob/buckled_mob AS in buckled_mobs)
-		buckled_mob.bullet_act(P)
+	var/mob/buckled_mob = pick(buckled_mobs)
+	buckled_mob.bullet_act(P)
 	return TRUE
 
 /obj/vehicle/ridden/motorbike/obj_destruction()
