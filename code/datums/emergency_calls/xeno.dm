@@ -17,7 +17,6 @@
 	if(istype(drop_spawn))
 		new /obj/effect/alien/weeds/node(drop_spawn) //Drop some weeds for xeno plasma regen.
 
-
 /datum/emergency_call/xenomorphs/create_member(datum/mind/M)
 	. = ..()
 	if(!.)

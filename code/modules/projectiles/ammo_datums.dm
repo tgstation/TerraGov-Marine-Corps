@@ -688,7 +688,7 @@ datum/ammo/bullet/revolver/tp44
 	flags_ammo_behavior = AMMO_BALLISTIC
 	bonus_projectiles_type = /datum/ammo/bullet/shotgun/spread
 	bonus_projectiles_amount = 5
-	bonus_projectiles_scatter = 10
+	bonus_projectiles_scatter = 4
 	accuracy_var_low = 9
 	accuracy_var_high = 9
 	accurate_range = 5
@@ -1810,7 +1810,7 @@ datum/ammo/bullet/revolver/tp44
 		if(is_type_in_typecache(O, GLOB.no_sticky_resin))
 			return
 
-	new /obj/effect/alien/resin/sticky/thin(T)
+	new /obj/effect/alien/resin/sticky(T)
 
 /datum/ammo/xeno/acid
 	name = "acid spit"
@@ -2054,16 +2054,6 @@ datum/ammo/bullet/revolver/tp44
 	if(!istype(T))
 		return
 	flame_radius(2, T)
-
-/datum/ammo/flamethrower/green
-	name = "green flame"
-	hud_state = "flame_green"
-	max_range = 4
-	fire_color = "green"
-	burnlevel = 10
-	burntime = 50
-	fire_delay = 35
-	bullet_color = LIGHT_COLOR_GREEN
 
 /datum/ammo/flamethrower/blue
 	name = "blue flame"

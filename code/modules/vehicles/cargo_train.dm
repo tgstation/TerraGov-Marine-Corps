@@ -1,16 +1,23 @@
+//shitcode and broken
 /obj/vehicle/train/cargo/engine
 	name = "cargo train tug"
 	desc = "A ridable electric car designed for pulling cargo trolleys."
 	icon = 'icons/obj/vehicles.dmi'
 	icon_state = "cargo_engine"
-	on = 0
-	powered = 1
-	locked = 0
-	charge_use = 15
+	var/on = FALSE
+	var/powered = TRUE
+	var/locked = FALSE
+	var/charge_use = 15
+
 
 	var/car_limit = 3		//how many cars an engine can pull before performance degrades
 	active_engines = 1
+	var/obj/item/cell/cell
 	var/obj/item/key/cargo_train/key
+
+
+/obj/vehicle/train/cargo
+	var/open = FALSE
 
 /obj/item/key/cargo_train
 	name = "key"
@@ -24,7 +31,6 @@
 	icon = 'icons/obj/vehicles.dmi'
 	icon_state = "cargo_trailer"
 	anchored = FALSE
-	locked = 0
 
 //-------------------------------------------
 // Standard procs
@@ -40,7 +46,6 @@
 /obj/vehicle/train/cargo/engine/Move()
 	if(on && cell.charge < charge_use)
 		turn_off()
-		update_stats()
 
 	if(is_train_head() && !on)
 		return FALSE
@@ -66,28 +71,16 @@
 	else
 		icon_state = initial(icon_state)
 
-/obj/vehicle/train/cargo/trolley/insert_cell(obj/item/cell/C, mob/living/carbon/human/H)
-	return
-
-/obj/vehicle/train/cargo/engine/insert_cell(obj/item/cell/C, mob/living/carbon/human/H)
-	..()
-	update_stats()
-
-/obj/vehicle/train/cargo/engine/remove_cell(mob/living/carbon/human/H)
-	..()
-	update_stats()
 
 
 
 //-------------------------------------------
 // Train procs
 //-------------------------------------------
-/obj/vehicle/train/cargo/engine/turn_on()
+/obj/vehicle/train/cargo/engine/proc/turn_on()
 	if(!key)
 		return
 	else
-		..()
-		update_stats()
 
 		verbs -= /obj/vehicle/train/cargo/engine/verb/stop_engine
 		verbs -= /obj/vehicle/train/cargo/engine/verb/start_engine
@@ -97,8 +90,7 @@
 		else
 			verbs += /obj/vehicle/train/cargo/engine/verb/start_engine
 
-/obj/vehicle/train/cargo/engine/turn_off()
-	..()
+/obj/vehicle/train/cargo/engine/proc/turn_off()
 
 	verbs -= /obj/vehicle/train/cargo/engine/verb/stop_engine
 	verbs -= /obj/vehicle/train/cargo/engine/verb/start_engine
@@ -127,7 +119,7 @@
 		return
 	if(get_dist(user,src) <= 1)
 		to_chat(user, "The power light is [on ? "on" : "off"].\nThere are[key ? "" : " no"] keys in the ignition.")
-		to_chat(user, "The charge meter reads [cell? round(cell.percent(), 0.01) : 0]%")
+		to_chat(user, "The charge meter reads [cell ? round(cell.percent(), 0.01) : 0]%")
 
 /obj/vehicle/train/cargo/engine/verb/start_engine()
 	set name = "Start engine"

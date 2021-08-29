@@ -579,3 +579,68 @@
   - balance: Transvitox no longer has fractional gas reagent transfer strength for
       some reason.
   - balance: Hunter Silence no longer has wind up.
+2021-08-28:
+  BraveMole:
+  - balance: You can use some xeno abilities while riding
+  Hekzder:
+  - balance: T-21 has it's sunder reduced from 1.5 to 1.25
+  SplinterGP:
+  - bugfix: you're now able to start shooting guns on adjacent tiles.
+  TiviPlus:
+  - bugfix: fixed a server crash exploit
+  disappointedButNotSuprised:
+  - rscadd: Added engineering beret to engineer vendors as another option for headgear
+  lbnesquik:
+  - bugfix: fixes CAS not being able to equip anything but the default minigun.
+  - bugfix: fixes the metal riot shield not having a proper in hand sprite.
+  - qol: Gave the CAS plane an alert for whenever it receives a new valid target (flare/laze)
+  vilereaver41:
+  - balance: Scatterspit damage down from 15 to 10
+  - balance: Plasma costs from 150 to 250
+  - balance: Projectile from 5 to 6
+  - balance: Scatter from 10 to 3
+  - balance: Puddle duration from 2 seconds to 1 second
+  - balance: 6-second cooldown to 5 seconds
+  - balance: acid splash delay changed to 1.2 young, 1.1 mature, 1 elder, and 0.9
+      ancient.
+  - balance: acid splash now 150 plasma a shot up from 75 a shot
+2021-08-29:
+  BraveMole:
+  - rscadd: Ai nodes added on every map
+  - rscadd: 'Hunter ability: Mirror image. Create double of yourself, mess with your
+      ennemy head! In harm intent, mirage images will escort you, in help intent,
+      they''ll disperse'
+  - rscadd: Weeds type, xeno have now access to three different weeds. Base weeds,
+      resting weeds, sticky weeds. You won't regen sunder if not on resting weeds.
+      All weeds are making xenos faster, but better weeds are more expensive
+  - balance: Weeds are decaying faster
+  GradusNL:
+  - expansion: Logs respawns to lobby and displays them alongside revives as round
+      statistic.
+  Pariah919:
+  - balance: Buckshot extra projectiles have less scatter.
+  Surrealaser:
+  - balance: Defile wind up reduced from 1.5 seconds to 0.5 seconds.
+  - balance: Defile plasma cost reduced from 150 to 100.
+  - balance: Defile Brute damage reduced from 10 to 5 and Stamina damage reduced from
+      100 to 50.
+  - rscadd: Defile no longer injects larva; instead it purges all chemicals in the
+      victim and deals toxin damage equal to half the total U of chemical purged from
+      the victim's system multiplied by 2 for each unique xeno toxin in its system.
+      The victim also exudes a cloud of blood red Sanguinal smoke that scales in size
+      with the amount of toxin damage dealt in this way.
+  - rscadd: New Sanguinal toxin added; deals minor brute and bleeding each tick.  For
+      each other unique xeno toxin in the victim's system, it will also deal minor
+      damage of a corresponding type (Stamina for Hemodile, Toxin for Neurotoxin and
+      Burn for Transvitox).
+  TiviPlus:
+  - refactor: Monkeys now can interact like humans
+  - bugfix: Some messages will now use pronouns correctly instead of their/they
+  - bugfix: the powerloader is now offset correctly
+  - refactor: redid the vehicle code completely
+  lbnesquik:
+  - bugfix: fixes CAS for good this time. Right?
+  - qol: allowed xenos to be fed food for the sake of fluff
+  - code_imp: Moved all shuttle ID's to defines.
+  lovegreenstuff:
+  - bugfix: TP44 attachment offsets reverted to pre-snubnose values

@@ -6,7 +6,7 @@
 	action_icon_state = "savage_on"
 	mechanics_text = "Toggle on to add a vicious attack to your pounce."
 	keybind_signal = COMSIG_XENOABILITY_TOGGLE_SAVAGE
-	use_state_flags = XACT_USE_LYING
+	use_state_flags = XACT_USE_LYING|XACT_USE_BUCKLED
 
 /datum/action/xeno_action/toggle_savage/action_activate()
 	var/mob/living/carbon/xenomorph/X = owner
@@ -76,6 +76,7 @@
 	ability_name = "pounce"
 	plasma_cost = 10
 	keybind_signal = COMSIG_XENOABILITY_POUNCE
+	use_state_flags = XACT_USE_BUCKLED
 	///How far can we pounce.
 	var/range = 6
 	///For how long will we stun the victim
@@ -141,6 +142,8 @@
 /datum/action/xeno_action/activable/pounce/proc/prepare_to_pounce()
 	if(owner.layer == XENO_HIDING_LAYER) //Xeno is currently hiding, unhide him
 		owner.layer = MOB_LAYER
+	if(owner.buckled)
+		owner.buckled.unbuckle_mob(owner)
 
 /datum/action/xeno_action/activable/pounce/get_cooldown()
 	var/mob/living/carbon/xenomorph/X = owner

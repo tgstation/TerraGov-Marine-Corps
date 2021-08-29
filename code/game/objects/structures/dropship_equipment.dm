@@ -76,21 +76,21 @@
 	base_category = DROPSHIP_WEAPON
 
 /obj/effect/attach_point/weapon/dropship1
-	ship_tag = "alamo"
+	ship_tag = SHUTTLE_ALAMO
 
 /obj/effect/attach_point/weapon/dropship2
-	ship_tag = "normandy"
+	ship_tag = SHUTTLE_NORMANDY
 
 /obj/effect/attach_point/weapon/dropship3
-	ship_tag = "triumph"
+	ship_tag = SHUTTLE_TRIUMPH
 
 /obj/effect/attach_point/weapon/cas
-	ship_tag = "cas_dock"
+	ship_tag = SHUTTLE_CAS_DOCK
 	icon = 'icons/Marine/casship.dmi'
 	icon_state = "15"
 
 /obj/effect/attach_point/weapon/minidropship
-	ship_tag = "minidropship"
+	ship_tag = SHUTTLE_TADPOLE
 	icon_state = "equip_base"
 
 /obj/effect/attach_point/weapon/minidropship/pointing_east
@@ -104,19 +104,19 @@
 	base_category = DROPSHIP_CREW_WEAPON
 
 /obj/effect/attach_point/crew_weapon/dropship1
-	ship_tag = "alamo"
+	ship_tag = SHUTTLE_ALAMO
 
 /obj/effect/attach_point/crew_weapon/dropship2
-	ship_tag = "normandy"
+	ship_tag = SHUTTLE_NORMANDY
 
 /obj/effect/attach_point/crew_weapon/minidropship
-	ship_tag = "minidropship"
+	ship_tag = SHUTTLE_TADPOLE
 
 /obj/effect/attach_point/crew_weapon/dropship1
-	ship_tag = "alamo"
+	ship_tag = SHUTTLE_ALAMO
 
 /obj/effect/attach_point/crew_weapon/dropship3
-	ship_tag = "alamo"
+	ship_tag = SHUTTLE_ALAMO
 
 /obj/effect/attach_point/electronics
 	name = "electronic system attach point"
@@ -124,13 +124,13 @@
 	icon_state = "equip_base_front"
 
 /obj/effect/attach_point/electronics/dropship1
-	ship_tag = "alamo"
+	ship_tag = SHUTTLE_ALAMO
 
 /obj/effect/attach_point/electronics/dropship2
-	ship_tag = "normandy"
+	ship_tag = SHUTTLE_NORMANDY
 
 /obj/effect/attach_point/electronics/dropship3
-	ship_tag = "triumph"
+	ship_tag = SHUTTLE_TRIUMPH
 
 
 /obj/effect/attach_point/fuel
@@ -140,23 +140,23 @@
 	base_category = DROPSHIP_FUEL_EQP
 
 /obj/effect/attach_point/fuel/dropship1
-	ship_tag = "alamo"
+	ship_tag = SHUTTLE_ALAMO
 
 /obj/effect/attach_point/fuel/dropship2
-	ship_tag = "normandy"
+	ship_tag = SHUTTLE_NORMANDY
 
 /obj/effect/attach_point/fuel/dropship3
-	ship_tag = "triumph"
+	ship_tag = SHUTTLE_TRIUMPH
 
 
 /obj/effect/attach_point/computer
 	base_category = DROPSHIP_COMPUTER
 
 /obj/effect/attach_point/computer/dropship1
-	ship_tag = "alamo"
+	ship_tag = SHUTTLE_ALAMO
 
 /obj/effect/attach_point/computer/dropship2
-	ship_tag = "normandy"
+	ship_tag = SHUTTLE_NORMANDY
 
 
 
@@ -366,7 +366,7 @@
 		if(deployed_turret)
 			deployed_turret.setDir(dir)
 			if(linked_shuttle && deployed_turret.camera)
-				if(linked_shuttle.id == "alamo")
+				if(linked_shuttle.id == SHUTTLE_ALAMO)
 					deployed_turret.camera.network.Add("dropship1") //accessible via the dropship camera console
 				else
 					deployed_turret.camera.network.Add("dropship2")
