@@ -2240,3 +2240,9 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		var/datum/poll_question/poll = locate(href_list["submitoptionpoll"]) in GLOB.polls
 		poll_option_parse_href(href_list, poll, option)
 
+	else if(href_list["cancelob"])
+		var/timerid_to_cancel = href_list["cancelob"]
+		deltimer(timerid_to_cancel)
+		var/logtext = "[key_name(usr)] has cancelled an OB with the timerid [timerid_to_cancel]"
+		message_admins(logtext)
+		log_admin(logtext)
