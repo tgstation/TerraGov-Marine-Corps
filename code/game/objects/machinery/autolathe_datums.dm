@@ -283,12 +283,12 @@ GLOBAL_LIST_EMPTY(autolathe_categories)
 	path = /obj/item/frame/camera
 	category = "Devices and Components"
 
-/datum/autolathe/recipe/conveyors
+/datum/autolathe/recipe/conveyorbelts
 	name = "30 conveyors"
 	path = /obj/item/stack/conveyor/thirty
 	category = "Devices and Components"
 
-/datum/autolathe/recipe/conveyors
+/datum/autolathe/recipe/conveyorswitch
 	name = "Conveyor Switch"
 	path = /obj/item/conveyor_switch_construct
 	category = "Devices and Components"
