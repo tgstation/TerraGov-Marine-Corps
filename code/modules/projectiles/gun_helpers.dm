@@ -740,7 +740,7 @@ should be alright.
 	set name = "Toggle Underrail Attachment (Weapon)"
 	set desc = "Uses the underrail attachement currently attached to the gun."
 
-	if(activate_attachment(ATTACHMENT_SLOT_UNDER, usr) & ATTACHMENT_ACTIVATED)
+	if(activate_attachment(ATTACHMENT_SLOT_UNDER, usr))
 		return
 	to_chat(usr, span_warning("[src] does not have any usable rail attachment!"))
 

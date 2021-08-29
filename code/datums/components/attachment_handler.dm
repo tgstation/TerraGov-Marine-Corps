@@ -1,20 +1,20 @@
 /datum/component/attachment_handler
 	///Assoc list that stores the refs of the attachments to the parent. 'slot = reference'
-	var/list/slots = list()
+	var/list/slots
 	///Assoc list that stores the attachment data of an attachment in the slot.
 	var/list/attachment_data_by_slot = list()
 	///Typepath list that stores type data of allowed attachments. The attachment needs the attachment element to be able to attach regardless of what is stored here.
-	var/list/attachables_allowed = list()
+	var/list/attachables_allowed
 	///Proc the parent calls on attach.
 	var/datum/callback/on_attach
 	///Proc the parent calls on detach.
 	var/datum/callback/on_detach
 	///List of offsets for the parent that adjusts the attachment overlay. slot1_x = 1, slot1_y = 1, slot2_x = 3, slot2_y = 7, etc. Can be null, in that case the offsets for all the attachments default to 0.
-	var/list/attachment_offsets = list()
+	var/list/attachment_offsets
 	///List of the attachment overlay images. This is so that we can easily swap overlays in and out.
-	var/list/attachable_overlays = list()
+	var/list/attachable_overlays
 
-/datum/component/attachment_handler/Initialize(slots, list/attachables_allowed, list/attachment_offsets, list/starting_attachmments, datum/callback/on_attach, datum/callback/on_detach, list/overlays = list())
+/datum/component/attachment_handler/Initialize(list/slots, list/attachables_allowed, list/attachment_offsets, list/starting_attachmments, datum/callback/on_attach, datum/callback/on_detach, list/overlays = list())
 	. = ..()
 	if(!isitem(parent))
 		return COMPONENT_INCOMPATIBLE
@@ -55,8 +55,8 @@
 		return
 
 	if(!bypass_checks)
-		if(attachment_data["can_attach"])
-			var/datum/callback/attachment_can_attach = CALLBACK(attachment, attachment_data["can_attach"])
+		if(attachment_data[CAN_ATTACH])
+			var/datum/callback/attachment_can_attach = CALLBACK(attachment, attachment_data[CAN_ATTACH])
 			if(!attachment_can_attach.Invoke(parent, attacher))
 				return
 		if(!do_attach(attachment, attacher, attachment_data))
@@ -71,8 +71,7 @@
 
 ///Finishes setting up the attachment. This is where the attachment actually attaches. This can be called directly to bypass any checks to directly attach an object.
 /datum/component/attachment_handler/proc/finish_handle_attachment(obj/item/attachment, list/attachment_data, mob/attacker)
-
-	var/slot = attachment_data["slot"]
+	var/slot = attachment_data[SLOT]
 
 	if(slots[slot]) //Checks for an attachment in the current slot.
 		var/obj/item/current_attachment = slots[slot]
@@ -84,8 +83,8 @@
 
 	on_attach?.Invoke(attachment, attacker)
 
-	if(attachment_data["on_attach"])
-		var/datum/callback/attachment_on_attach = CALLBACK(attachment, attachment_data["on_attach"])
+	if(attachment_data[ON_ATTACH])
+		var/datum/callback/attachment_on_attach = CALLBACK(attachment, attachment_data[ON_ATTACH])
 		attachment_on_attach.Invoke(parent, attacker)
 
 	RegisterSignal(attachment, COMSIG_ATOM_UPDATE_ICON, .proc/update_parent_overlay)
@@ -93,10 +92,10 @@
 
 ///This is the do_after and user checks for attaching.
 /datum/component/attachment_handler/proc/do_attach(obj/item/attachment, mob/attacher, list/attachment_data)
-	if(!ishuman(attacher))
+	if(!isliving(attacher))
 		return FALSE
 
-	var/mob/living/carbon/human/user = attacher
+	var/mob/living/user = attacher
 
 	if(!can_attach(attachment, user, attachment_data))
 		return FALSE
@@ -107,10 +106,10 @@
 		return FALSE
 
 	var/do_after_icon_type = BUSY_ICON_GENERIC
-	var/attach_delay = attachment_data["attach_delay"]
+	var/attach_delay = attachment_data[ATTACH_DELAY]
 
-	var/skill_used = attachment_data["attach_skill"]
-	var/skill_upper_threshold = attachment_data["attach_skill_upper_threshold"]
+	var/skill_used = attachment_data[ATTACH_SKILL]
+	var/skill_upper_threshold = attachment_data[ATTACH_SKILL_UPPER_THRESHOLD]
 
 	if(skill_used) //This is so we can make many attachments with different skills used to attach.
 		if(user.skills.getRating(skill_used))
@@ -128,7 +127,7 @@
 		return FALSE
 	user.visible_message(span_notice("[user] attaches [attachment] to [parent]."),
 	span_notice("You attach [attachment] to [parent]."), null, 4)
-	playsound(user, attachment_data["attach_sound"], 15, 1, 4)
+	playsound(user, attachment_data[ATTACH_SOUND], 15, 1, 4)
 	return TRUE
 
 ///Checks the current slots of the parent and if there are attachments that can be removed in those slots. Basically it makes sure theres room for the attachment. 
@@ -136,20 +135,20 @@
 	if(!length(slots)) //If there is no slots, it cannot be attached to. Currently this has no use. But I had a thought about making attachments that can add/remove slots.
 		return FALSE
 
-	var/slot = attachment_data["slot"]
+	var/slot = attachment_data[SLOT]
 
 	if(!(slot in slots) || !(attachment.type in attachables_allowed)) //If theres no slot on parent, or if the attachment type isnt allowed, returns FALSE.
 		to_chat(user, span_warning("You cannot attach [attachment] to [parent]!"))
 		return FALSE
 
-	var/obj/item/current_attachment_in_slot = slots["slot"]
+	var/obj/item/current_attachment_in_slot = slots[SLOT]
 
 	if(!current_attachment_in_slot) //If the slot is empty theres room.
 		return TRUE
 
 	var/list/current_attachment_data = attachment_data_by_slot[slot]
 
-	if(!CHECK_BITFIELD(current_attachment_data["flags_attach_features"], ATTACH_REMOVABLE)) //If the slots attachment is unremovable.
+	if(!CHECK_BITFIELD(current_attachment_data[FLAGS_ATTACH_FEATURES], ATTACH_REMOVABLE)) //If the slots attachment is unremovable.
 		to_chat(user, span_warning("You cannot remove [current_attachment_in_slot] from [parent] to make room for [attachment]!"))
 		return FALSE
 
@@ -158,13 +157,13 @@
 ///Starts with the detach, is called when the user Alt-Clicks the parent.
 /datum/component/attachment_handler/proc/start_detach(datum/source, mob/user)
 	SIGNAL_HANDLER
-	var/mob/living/carbon/human/human_user = user
+	var/mob/living/living_user = user
 
-	if(human_user.get_active_held_item() != parent && human_user.get_inactive_held_item() != parent)
-		to_chat(human_user, span_warning("You must be holding [parent] to field strip it!"))
+	if(living_user.get_active_held_item() != parent && living_user.get_inactive_held_item() != parent)
+		to_chat(living_user, span_warning("You must be holding [parent] to field strip it!"))
 		return
-	if((human_user.get_active_held_item() == parent && human_user.get_inactive_held_item()) || (human_user.get_inactive_held_item() == parent && human_user.get_active_held_item()))
-		to_chat(human_user, span_warning("You need a free hand to field strip [parent]!"))
+	if((living_user.get_active_held_item() == parent && living_user.get_inactive_held_item()) || (living_user.get_inactive_held_item() == parent && living_user.get_active_held_item()))
+		to_chat(living_user, span_warning("You need a free hand to field strip [parent]!"))
 		return
 
 	var/list/attachments_to_remove = list()
@@ -173,15 +172,15 @@
 		if(!current_attachment)
 			continue
 		var/list/current_attachment_data = attachment_data_by_slot[key]
-		if(!CHECK_BITFIELD(current_attachment_data["flags_attach_features"], ATTACH_REMOVABLE))
+		if(!CHECK_BITFIELD(current_attachment_data[FLAGS_ATTACH_FEATURES], ATTACH_REMOVABLE))
 			continue
 		attachments_to_remove += current_attachment
 	
 	if(!length(attachments_to_remove))
-		to_chat(human_user, span_warning("There are no attachments that can be removed from [parent]!"))
+		to_chat(living_user, span_warning("There are no attachments that can be removed from [parent]!"))
 		return
 
-	INVOKE_ASYNC(src, .proc/do_detach, human_user, attachments_to_remove)
+	INVOKE_ASYNC(src, .proc/do_detach, living_user, attachments_to_remove)
 
 ///Does the detach, shows the user the removable attachments and handles the do_after.
 /datum/component/attachment_handler/proc/do_detach(mob/living/user, list/attachments_to_remove)
@@ -198,10 +197,10 @@
 		break
 
 	var/do_after_icon_type = BUSY_ICON_GENERIC
-	var/detach_delay = attachment_data["detach_delay"]
+	var/detach_delay = attachment_data[DETACH_DELAY]
 
-	var/skill_used = attachment_data["attach_skill"]
-	var/skill_upper_threshold = attachment_data["attach_skill_upper_threshold"]
+	var/skill_used = attachment_data[ATTACH_SKILL]
+	var/skill_upper_threshold = attachment_data[ATTACH_SKILL_UPPER_THRESHOLD]
 
 	if(skill_used) //Same as up in do_attach
 		if(user.skills.getRating(skill_used))
@@ -220,14 +219,14 @@
 
 	user.visible_message(span_notice("[user] detaches [attachment_to_remove] to [parent]."),
 	span_notice("You detach [attachment_to_remove] to [parent]."), null, 4)
-	playsound(user, attachment_data["attach_sound"], 15, 1, 4)
+	playsound(user, attachment_data[ATTACH_SOUND], 15, 1, 4)
 
 	finish_detach(attachment_to_remove, attachment_data, user)
 
 ///Actually detaches the attachment. This can be called directly to bypass checks.
 /datum/component/attachment_handler/proc/finish_detach(obj/item/attachment, list/attachment_data, mob/living/user)
-	slots[attachment_data["slot"]] = null //Sets the slot the attachment is being removed from to null.
-	attachment_data_by_slot[attachment_data["slot"]] = null
+	slots[attachment_data[SLOT]] = null //Sets the slot the attachment is being removed from to null.
+	attachment_data_by_slot[attachment_data[SLOT]] = null
 	on_detach?.Invoke(attachment, user)
 	UnregisterSignal(attachment, COMSIG_ATOM_UPDATE_ICON)
 	update_parent_overlay()
@@ -238,8 +237,8 @@
 
 	user.put_in_hands(attachment)
 
-	if(attachment_data["on_detach"])
-		var/datum/callback/attachment_on_detach = CALLBACK(attachment, attachment_data["on_detach"])
+	if(attachment_data[ON_DETACH])
+		var/datum/callback/attachment_on_detach = CALLBACK(attachment, attachment_data[ON_DETACH])
 		attachment_on_detach.Invoke(parent, user)
 
 ///This is for other objects to be able to attach things without the need for a user.
@@ -264,7 +263,7 @@
 
 		var/list/attachment_data = attachment_data_by_slot[slot]
 
-		overlay = image(attachment_data["overlay_icon"], parent_item, attachment.icon_state + "_a")
+		overlay = image(attachment_data[OVERLAY_ICON], parent_item, attachment.icon_state + "_a")
 
 		var/slot_x = 0 //This and slot_y are for the event that the parent did not have an overlay_offsets. In that case the offsets default to 0
 		var/slot_y = 0
@@ -276,8 +275,8 @@
 				slot_y = attachment_offsets["[slot]_y"]
 				continue
 
-		var/pixel_shift_x = attachment_data["pixel_shift_x"] ? attachment_data["pixel_shift_x"] : 0 //This also is incase the attachments pixel_shift_x and y are null. If so it defaults to 0.
-		var/pixel_shift_y = attachment_data["pixel_shift_y"] ? attachment_data["pixel_shift_y"] : 0
+		var/pixel_shift_x = attachment_data[PIXEL_SHIFT_X] ? attachment_data[PIXEL_SHIFT_X] : 0 //This also is incase the attachments pixel_shift_x and y are null. If so it defaults to 0.
+		var/pixel_shift_y = attachment_data[PIXEL_SHIFT_Y] ? attachment_data[PIXEL_SHIFT_Y] : 0
 
 		overlay.pixel_x = slot_x - pixel_shift_x
 		overlay.pixel_y = slot_y - pixel_shift_y    
