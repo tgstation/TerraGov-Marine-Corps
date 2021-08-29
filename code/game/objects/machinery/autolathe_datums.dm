@@ -288,7 +288,7 @@ GLOBAL_LIST_EMPTY(autolathe_categories)
 	path = /obj/item/stack/conveyor/thirty
 	category = "Devices and Components"
 
-/datum/autolathe/recipe/conveyors
+/datum/autolathe/recipe/conveyorswitch
 	name = "Conveyor Switch"
 	path = /obj/item/conveyor_switch_construct
 	category = "Devices and Components"
