@@ -228,7 +228,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 			else
 				to_chat(user, span_warning("You try to light your [src] with the [L] but your power cell has no charge!"))
 		else if(istype(LAZYACCESS(G.attachments_by_slot, ATTACHMENT_SLOT_UNDER), /obj/item/weapon/gun/flamer))
-			light(span_notice("[user] lights [user.p_their()] [src] with the underbarrel [LAZYACCESS(G.attachments, ATTACHMENT_SLOT_UNDER)]."))
+			light(span_notice("[user] lights [user.p_their()] [src] with the underbarrel [LAZYACCESS(G.attachments_by_slot, ATTACHMENT_SLOT_UNDER)]."))
 
 	else if(istype(W, /obj/item/tool/surgery/cautery))
 		light(span_notice("[user] lights [user.p_their()] [src] with the [W]."))
