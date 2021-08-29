@@ -80,9 +80,10 @@
 
 
 /obj/attacked_by(obj/item/I, mob/living/user, def_zone)
-	user.visible_message(span_warning("[user] hits [src] with [I]!"),
+	user?.visible_message(span_warning("[user] hits [src] with [I]!"),
 		span_warning("You hit [src] with [I]!"), visible_message_flags = COMBAT_MESSAGE)
-	log_combat(user, src, "attacked", I)
+	if(user)
+		log_combat(user, src, "attacked", I)
 	var/power = I.force + round(I.force * 0.3 * user.skills.getRating("melee_weapons")) //30% bonus per melee level
 	take_damage(power, I.damtype, "melee")
 	return TRUE
