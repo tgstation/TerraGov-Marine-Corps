@@ -33,28 +33,33 @@
 	if(maturity_stage != stage_ready_to_burst)
 		return
 	for(var/turf/turf_to_watch AS in filled_turfs(src, trigger_size, "circle", FALSE))
-		RegisterSignal(turf_to_watch, COMSIG_MOVABLE_CROSSED_BY, .proc/enemy_crossed)
+		RegisterSignal(turf_to_watch, COMSIG_ATOM_ENTERED, .proc/enemy_crossed)
 
 ///Bursts the egg.
 /obj/effect/alien/egg/proc/burst(kill)
+	SHOULD_CALL_PARENT(TRUE)
 	if(kill)
 		advance_maturity(stage_ready_to_burst + 2)
 	else
 		advance_maturity(stage_ready_to_burst + 1)
 	for(var/turf/turf_to_watch AS in filled_turfs(src, trigger_size, "circle", FALSE))
-		UnregisterSignal(turf_to_watch, COMSIG_MOVABLE_CROSSED_BY)
+		UnregisterSignal(turf_to_watch, COMSIG_ATOM_ENTERED)
 
-///Signal handler to check if the atom crossing nearby is an enemy
-/obj/effect/alien/egg/proc/enemy_crossed(datum/source, atom/movable/mover)
+///Signal handler to check if the atom moving nearby is an enemy
+/obj/effect/alien/egg/proc/enemy_crossed(datum/source, atom/movable/entered)
 	SIGNAL_HANDLER
-	if(!iscarbon(mover))
+	if(!iscarbon(entered))
 		return
-	if(!should_proc_burst(mover))
+	if(!should_proc_burst(entered))
 		return
 	burst()
 
 /obj/effect/alien/egg/proc/should_proc_burst(mob/living/carbon/carbon_mover)
-	return FALSE
+	if(issamexenohive(carbon_mover))
+		return FALSE
+	if(carbon_mover.stat == DEAD)
+		return FALSE
+	return TRUE
 
 /obj/effect/alien/egg/flamer_fire_act()
 	burst(FALSE)
@@ -133,28 +138,37 @@
 
 	if(!istype(I, /obj/item/clothing/mask/facehugger))
 		return FALSE
-	var/obj/item/clothing/mask/facehugger/facehugger = I
+	return insert_new_hugger(I, user)
+
+///Try to insert a new hugger into the egg
+/obj/effect/alien/egg/hugger/proc/insert_new_hugger(obj/item/clothing/mask/facehugger/facehugger, mob/user)
 	if(facehugger.stat == DEAD)
-		to_chat(user, span_xenowarning("This child is dead."))
+		if(user)
+			to_chat(user, span_xenowarning("This child is dead."))
 		return FALSE
 
 	if(maturity_stage != stage_ready_to_burst + 1)
-		to_chat(user, span_xenowarning("This egg is not usable"))
+		if(user)
+			to_chat(user, span_xenowarning("This egg is not usable"))
 		return FALSE
 
 	if(hugger_type)
-		to_chat(user, span_xenowarning("This one is occupied with a child."))
+		if(user)
+			to_chat(user, span_xenowarning("This one is occupied with a child."))
 		return FALSE
-
-	visible_message(span_xenowarning("[user] slides [facehugger] back into [src]."),span_xenonotice("You place the child into [src]."))
+	if(user)
+		visible_message(span_xenowarning("[user] slides [facehugger] back into [src]."),span_xenonotice("You place the child into [src]."))
 	hugger_type = facehugger.type
 	qdel(facehugger)
 	advance_maturity(stage_ready_to_burst)
 	return TRUE
 
-
 /obj/effect/alien/egg/gas
-	icon_state = "Egg"
+	desc = "It looks like a weird egg"
+	name = "Hugger egg"
+	icon_state = "egg_hugger"
+	maturity_time = 15 SECONDS
+	stage_ready_to_burst = 1
 	trigger_size = 2
 	///Holds a typepath for the gas particle to create
 	var/gas_type = /datum/effect_system/smoke_spread/xeno/neuro/medium
@@ -162,13 +176,12 @@
 	var/gas_size_bonus = 0
 
 /obj/effect/alien/egg/gas/burst(kill)
+	..()
 	var/spread = EGG_GAS_DEFAULT_SPREAD
 	if(kill) // Kill is more violent
 		spread = EGG_GAS_KILL_SPREAD
 	spread += gas_size_bonus
-	advance_maturity(4)
-	flick("Egg Exploding", src)
-	playsound(loc, "sound/effects/alien_egg_burst.ogg", 30)
+	advance_maturity(3)
 
 	var/datum/effect_system/smoke_spread/xeno/NS = new gas_type(src)
 	NS.set_up(spread, get_turf(src))
