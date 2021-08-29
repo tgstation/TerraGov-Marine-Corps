@@ -12893,6 +12893,11 @@
 	},
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/sulaco/hallway/lower_foreship)
+"gDf" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/vehicle/ridden/motorbike,
+/turf/open/floor/prison/plate,
+/area/sulaco/cargo)
 "gEE" = (
 /obj/structure/largecrate/random,
 /turf/open/floor/plating,
@@ -48492,7 +48497,7 @@ aaa
 nzi
 mDu
 bOh
-eKx
+gDf
 bPM
 bPM
 bPM
@@ -48749,7 +48754,7 @@ aaa
 nzi
 mDu
 baT
-eKx
+gDf
 bPM
 bPM
 bPM

@@ -10980,6 +10980,12 @@
 	dir = 8
 	},
 /area/mainship/medical/medical_science)
+"gSD" = (
+/obj/vehicle/ridden/motorbike{
+	dir = 4
+	},
+/turf/open/floor/mainship/cargo,
+/area/mainship/squads/req)
 "gSF" = (
 /obj/machinery/door/firedoor/mainship,
 /obj/structure/disposalpipe/segment{
@@ -62486,8 +62492,8 @@ hPS
 bPo
 vaF
 qNt
-hit
-hit
+gSD
+gSD
 acl
 qqs
 wcO
