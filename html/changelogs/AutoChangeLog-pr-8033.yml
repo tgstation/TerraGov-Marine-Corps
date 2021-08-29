@@ -1,8 +1,0 @@
-author: "Surrealaser"
-delete-after: True
-changes: 
-  - balance: "Defile wind up reduced from 1.5 seconds to 0.5 seconds."
-  - balance: "Defile plasma cost reduced from 150 to 100."
-  - balance: "Defile Brute damage reduced from 10 to 5 and Stamina damage reduced from 100 to 50."
-  - rscadd: "Defile no longer injects larva; instead it purges all chemicals in the victim and deals toxin damage equal to half the total U of chemical purged from the victim's system multiplied by 2 for each unique xeno toxin in its system. The victim also exudes a cloud of blood red Sanguinal smoke that scales in size with the amount of toxin damage dealt in this way."
-  - rscadd: "New Sanguinal toxin added; deals minor brute and bleeding each tick.  For each other unique xeno toxin in the victim's system, it will also deal minor damage of a corresponding type (Stamina for Hemodile, Toxin for Neurotoxin and Burn for Transvitox)."
