@@ -1236,7 +1236,7 @@
 //-------------------------------------------------------
 //AF-51B MACHINEcarbine
 
-/obj/item/weapon/gun/rifle/alf51b
+/obj/item/weapon/gun/rifle/alf_machinecarbine
 	name = "\improper ALF-51B machinecarbine"
 	desc = "The ALF-51B is an unoffical modification of a ALF-4, or better known as the T-18 carbine, modified to SMG length of barrel, rechambered for a stronger round, and belt based. Truly the peak of CQC. Useless past that. Aiming is impossible. Uses 10x25mm caseless ammunition."
 	icon_state = "alf51b"
@@ -1249,7 +1249,7 @@
 	caliber = CALIBER_10X25_CASELESS //codex
 	max_shells = 80 //codex
 	force = 20
-	current_mag = /obj/item/ammo_magazine/rifle/alf51b
+	current_mag = /obj/item/ammo_magazine/rifle/alf_machinecarbine
 	attachable_allowed = list(
 		/obj/item/attachable/flashlight,
 		/obj/item/attachable/bipod,

@@ -192,8 +192,8 @@ SUBSYSTEM_DEF(persistence)
 	item_list = list(
 		/obj/item/weapon/gun/rifle/type71/seasonal = -1,
 		/obj/item/ammo_magazine/rifle/type71 = -1,
-		/obj/item/weapon/gun/rifle/alf51b = -1,
-		/obj/item/ammo_magazine/rifle/alf51b = -1,
+		/obj/item/weapon/gun/rifle/alf_machinecarbine = -1,
+		/obj/item/ammo_magazine/rifle/alf_machinecarbine = -1,
 		)
 
 /datum/season_datum/weapons/guns/pistol_seasonal_one

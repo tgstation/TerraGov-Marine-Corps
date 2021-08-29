@@ -330,7 +330,7 @@
 		/obj/item/weapon/gun/rifle/ak47,
 		/obj/item/weapon/gun/rifle/m16,
 		/obj/item/weapon/gun/rifle/famas,
-		/obj/item/weapon/gun/rifle/alf51b,
+		/obj/item/weapon/gun/rifle/alf_machinecarbine,
 		/obj/item/weapon/gun/rifle/standard_lmg,
 		/obj/item/weapon/gun/rifle/standard_gpmg,
 		/obj/item/weapon/gun/rifle/m412l1_hpr,
