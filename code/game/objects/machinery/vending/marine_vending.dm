@@ -213,6 +213,7 @@
 		/obj/item/ammo_magazine/packet/p9mm = 100,
 		/obj/item/ammo_magazine/packet/acp = 100,
 		/obj/item/ammo_magazine/packet/magnum = 100,
+		/obj/item/ammo_magazine/packet/p10x20mm = 100,
 		/obj/item/ammo_magazine/packet/p10x24mm = 100,
 		/obj/item/ammo_magazine/packet/p10x25mm = 100,
 		/obj/item/ammo_magazine/packet/p10x26mm = 100,
@@ -227,7 +228,7 @@
 		/obj/item/weapon/combat_knife = -1,
 		/obj/item/binoculars = -1,
 		/obj/item/compass = -1,
-		/obj/item/assembly/signaler = -1,
+		/obj/item/assembly/signaler = 20,
 		/obj/item/weapon/gun/launcher/m81/flare/marine = -1,
 		),
 	)

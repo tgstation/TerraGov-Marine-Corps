@@ -379,9 +379,6 @@
 	turned_on = switch_on
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_FLOODLIGHT_SWITCH, src, switch_on)
 
-/obj/machinery/colony_floodlight_switch/attack_paw(mob/living/carbon/human/user)
-	return attack_hand(user)
-
 /obj/machinery/colony_floodlight_switch/attack_hand(mob/living/user)
 	. = ..()
 	if(.)

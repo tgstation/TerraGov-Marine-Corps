@@ -114,6 +114,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
+/obj/effect/ai_node,
 /turf/open/floor/plating/warning{
 	dir = 4
 	},
@@ -210,6 +211,7 @@
 /turf/open/floor/tile/vault,
 /area/lv624/lazarus/robotics)
 "BJ" = (
+/obj/effect/ai_node,
 /turf/open/floor/plating/warning{
 	dir = 8
 	},
@@ -258,6 +260,7 @@
 "GE" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
+/obj/effect/ai_node,
 /turf/open/floor/plating/warning{
 	dir = 1
 	},
@@ -283,6 +286,7 @@
 "Ne" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
+/obj/effect/ai_node,
 /turf/open/floor/plating/warning,
 /area/lv624/lazarus/robotics)
 "Ny" = (
@@ -356,6 +360,7 @@
 "Yr" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold4w/supply/hidden/layer1,
+/obj/effect/ai_node,
 /turf/open/floor/tile/vault{
 	dir = 8
 	},

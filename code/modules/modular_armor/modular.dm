@@ -327,6 +327,7 @@
 	soft_armor = list("melee" = 40, "bullet" = 60, "laser" = 60, "energy" = 45, "bomb" = 45, "bio" = 45, "rad" = 45, "fire" = 45, "acid" = 50)
 	icon_state = "pas11_icon"
 	item_state = "pas11"
+	slowdown = 0.5
 	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_PRISON_VARIANT)
 
 /obj/item/clothing/suit/modular/pas11x/can_attach(mob/living/user, obj/item/armor_module/module, silent)

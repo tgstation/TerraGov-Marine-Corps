@@ -17,6 +17,7 @@
 
 //These don't do much currently. Or anything? Only around for legacy code.
 /mob/living/carbon/xenomorph/restrained(ignore_checks)
+	SHOULD_CALL_PARENT(FALSE)
 	return FALSE
 
 /mob/living/carbon/xenomorph/get_death_threshold()

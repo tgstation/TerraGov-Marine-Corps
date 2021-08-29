@@ -1,7 +1,7 @@
 /datum/emergency_call/deathsquad
 	name = "NT Deathsquad"
 	base_probability = 0
-	shuttle_id = "distress_pmc"
+	shuttle_id = SHUTTLE_DISTRESS_PMC
 
 
 /datum/emergency_call/deathsquad/print_backstory(mob/living/carbon/human/H)

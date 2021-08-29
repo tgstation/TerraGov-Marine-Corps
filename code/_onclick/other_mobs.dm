@@ -2,19 +2,12 @@
 	Animals & All Unspecified
 */
 /mob/living/UnarmedAttack(atom/A, has_proximity, modifiers)
+	if(HAS_TRAIT(src, TRAIT_HANDS_BLOCKED))
+		return
 	A.attack_animal(src)
 
 
 /atom/proc/attack_animal(mob/user as mob)
-	return
-
-
-
-/*
-	Monkeys //todo kill this proc :)
-*/
-
-/atom/proc/attack_paw(mob/living/carbon/human/user)
 	return
 
 

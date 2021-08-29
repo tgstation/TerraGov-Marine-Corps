@@ -31,9 +31,6 @@
 	if(!state)
 		return TryToSwitchState(user)
 
-/obj/structure/mineral_door/attack_paw(mob/living/carbon/human/user)
-	return TryToSwitchState(user)
-
 /obj/structure/mineral_door/attack_hand(mob/living/user)
 	. = ..()
 	if(.)

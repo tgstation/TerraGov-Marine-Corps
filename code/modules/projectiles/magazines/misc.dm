@@ -113,3 +113,13 @@
 	current_rounds = 100
 	max_rounds = 100
 
+/obj/item/ammo_magazine/packet/p10x20mm
+	name = "packet of 10x20mm"
+	desc = "A packet containing 125 rounds of 10x20mm caseless.."
+	icon_state = "box_10x20mm"
+	caliber = CALIBER_10X20_CASELESS
+	default_ammo = /datum/ammo/bullet/smg
+	w_class = WEIGHT_CLASS_SMALL
+	current_rounds = 150
+	max_rounds = 150
+

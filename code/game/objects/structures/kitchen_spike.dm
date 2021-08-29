@@ -12,8 +12,6 @@
 	var/meattype = 0 // 0 - Nothing, 1 - Monkey, 2 - Xeno
 
 /obj/structure/kitchenspike
-	attack_paw(mob/user as mob)
-		return src.attack_hand(usr)
 
 	attackby(obj/item/grab/G, mob/user)
 		if(!istype(G, /obj/item/grab))
