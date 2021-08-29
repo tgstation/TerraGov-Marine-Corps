@@ -25,7 +25,7 @@
 	living_activation_toggle(should_enable = enabled, silent_activation = silent_activation)
 
 /datum/component/bump_attack/UnregisterFromParent()
-	toggle_action.remove_action(parent)
+	toggle_action?.remove_action(parent)
 
 /datum/component/bump_attack/Destroy(force, silent)
 	QDEL_NULL(toggle_action)
