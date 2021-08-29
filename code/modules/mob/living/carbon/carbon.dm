@@ -34,10 +34,6 @@
 		L.initiate_burst(src)
 
 
-/mob/living/carbon/attack_paw(mob/living/carbon/human/user)
-	user.changeNext_move(CLICK_CD_MELEE) //Adds some lag to the 'attack'
-
-
 /mob/living/carbon/electrocute_act(shock_damage, obj/source, siemens_coeff = 1.0, def_zone = null)
 	if(status_flags & GODMODE)	return 0	//godmode
 	shock_damage *= siemens_coeff

@@ -97,3 +97,22 @@
 //Shuttle control flags
 #define SHUTTLE_MARINE_PRIMARY_DROPSHIP (1<<0)
 #define SHUTTLE_REBEL_PRIMARY_DROPSHIP  (1<<1)
+
+//Shuttle name defines used for a whole load of stuff
+#define SHUTTLE_ALAMO "alamo"
+#define SHUTTLE_NORMANDY "normandy"
+#define SHUTTLE_TADPOLE "minidropship"
+#define SHUTTLE_TRIUMPH "triumph"
+#define SHUTTLE_CANTERBURY "tgs_canterbury"
+#define SHUTTLE_CAS "casplane"
+#define SHUTTLE_CAS_DOCK "cas_dock"
+#define SHUTTLE_BIGBURY "tgs_bigbury"
+#define SHUTTLE_ESCAPE_SHUTTLE "escape_shuttle"
+#define SHUTTLE_BIG_ERT "big_ert"
+#define SHUTTLE_DISTRESS_UFO "distress_ufo"
+#define SHUTTLE_DISTRESS_UPP "distress_upp"
+#define SHUTTLE_DISTRESS_PMC "distress_pmc"
+#define SHUTTLE_DISTRESS "distress"
+#define SHUTTLE_ESCAPE_POD "escape_pod"
+#define SHUTTLE_SUPPLY "supply"
+

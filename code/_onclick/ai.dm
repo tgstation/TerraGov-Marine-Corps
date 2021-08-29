@@ -85,6 +85,8 @@
 	it functions and re-insert it above.
 */
 /mob/living/silicon/ai/UnarmedAttack(atom/A, has_proximity, modifiers)
+	if(HAS_TRAIT(src, TRAIT_HANDS_BLOCKED))
+		return
 	A.attack_ai(src)
 
 /mob/living/silicon/ai/RangedAttack(atom/A)

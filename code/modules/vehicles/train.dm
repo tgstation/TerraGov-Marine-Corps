@@ -1,3 +1,5 @@
+
+///broken and in need of refactor
 /obj/vehicle/train
 	name = "train"
 	dir = 4
@@ -5,9 +7,6 @@
 	move_delay = 5
 
 	max_integrity = 100
-	fire_dam_coeff = 0.7
-	brute_dam_coeff = 0.5
-	buckling_y = 4
 
 	var/active_engines = 0
 	var/train_length = 0
@@ -117,7 +116,6 @@
 	if(user && !silent)
 		to_chat(user, span_notice("You hitch [src] to [T]."))
 
-	update_stats()
 
 
 //detaches the train from whatever is towing it
@@ -130,13 +128,10 @@
 		return
 
 	lead.tow = null
-	lead.update_stats()
 
 	if(!silent)
 		to_chat(user, span_notice("You unhitch [src] from [lead]."))
 	lead = null
-
-	update_stats()
 
 /obj/vehicle/train/proc/latch(obj/vehicle/train/T, mob/user, silent=FALSE)
 	if(!istype(T) || !Adjacent(T))
@@ -162,17 +157,15 @@
 // These are useful for calculating speed based on the
 // size of the train, to limit super long trains.
 //-------------------------------------------------------
-/obj/vehicle/train/update_stats()
+/obj/vehicle/train/proc/update_stats()
 	//first, seek to the end of the train
 	var/obj/vehicle/train/T = src
 	while(T.tow)
 		//check for cyclic train.
 		if (T.tow == src)
 			lead.tow = null
-			lead.update_stats()
 
 			lead = null
-			update_stats()
 			return
 		T = T.tow
 
@@ -181,8 +174,6 @@
 	var/train_length = 0
 	while(T)
 		train_length++
-		if (powered && on)
-			active_engines++
 		T.update_car(train_length, active_engines)
 		T = T.lead
 

@@ -87,6 +87,7 @@
 	if(!multiplicator_buff_wanted)
 		return
 	GLOB.xeno_stat_multiplicator_buff = multiplicator_buff_wanted
+	SSmonitor.is_automatic_balance_on = FALSE
 	SSmonitor.apply_balance_changes()
 
 	var/logging = "[usr.ckey] has multiplied all health, melee damage and regen of xeno by [multiplicator_buff_wanted * 100]%"
