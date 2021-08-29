@@ -118,8 +118,7 @@
 	if(!buckled_mobs)
 		return ..()
 	var/mob/buckled_mob = pick(buckled_mobs)
-	buckled_mob.bullet_act(P)
-	return TRUE
+	return buckled_mob.bullet_act(P)
 
 /obj/vehicle/ridden/motorbike/obj_destruction()
 	explosion(src, light_impact_range = 2, flash_range = 0)
