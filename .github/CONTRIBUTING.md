@@ -816,7 +816,10 @@ Every area must have an APC. A ground map must have roughly 10 generators, with 
 
 ## Xenos related items (walls, weeds, silos, etc.)
 
-Everything related to xenos must be placed on map via a landmark, and not be directly added. This allows the map to be clean in HvH modes
+Everything related to xenos must be placed on map via a landmark, and not be directly added. This allows the map to be clean in HvH modes.
+Silos must be placed around the map for crash and hunt gamemode. A reasonable amount of turrets must be placed around the map, preferrably in caves and near silos.
+A reasonnable amount of weeds must be placed, near silos and turrets. You don't have to add resin walls or doors if you don't want to, but they add to the atmostphere.
+Adding corpse spawner also add to the atmospher, but they are not mandatory.
 
 ## Fog around silos
 
