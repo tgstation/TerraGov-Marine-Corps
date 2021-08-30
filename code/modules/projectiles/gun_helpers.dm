@@ -118,9 +118,6 @@
 /obj/item/weapon/gun/attack_hand(mob/living/user)
 	var/obj/item/weapon/gun/in_hand = user.get_inactive_held_item()
 	if(in_hand == src && (flags_item & TWOHANDED))
-		if(active_attachable)
-			active_attachable.unload(user)
-			return
 		unload(user)//It has to be held if it's a two hander.
 		return
 	else

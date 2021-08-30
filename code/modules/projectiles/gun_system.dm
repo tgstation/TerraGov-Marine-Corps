@@ -641,6 +641,9 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 	SIGNAL_HANDLER
 	if(!active_attachable)
 		return
+	
+	if(object == src)
+		return
 
 	active_attachable.start_fire(source, object, bypass_checks = TRUE)
 
