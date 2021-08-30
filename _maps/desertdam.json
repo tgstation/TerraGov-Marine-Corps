@@ -1,5 +1,5 @@
 {
-    "map_name": "Shigusa Dam",
+    "map_name": "Shigusa Hydroelectric Dam",
     "map_path": "map_files/desertdam",
     "map_file": "desertdam.dmm",
     "map_item_type": "/obj/item/map/desert_dam",
