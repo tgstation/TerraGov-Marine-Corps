@@ -161,7 +161,6 @@
 "aaK" = (
 /obj/machinery/power/apc{
 	dir = 1;
-	pixel_y = 0;
 	start_charge = 0
 	},
 /turf/closed/shuttle{
