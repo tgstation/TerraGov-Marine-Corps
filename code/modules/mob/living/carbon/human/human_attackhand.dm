@@ -223,7 +223,7 @@
 			if(60 to 100)
 				status += "brutalized"
 			if(100 to INFINITY)
-				status += "eviscerated"
+				status += "mutilated"
 
 		if(brutedamage > 0 && burndamage > 0)
 			status += " and "
