@@ -62,6 +62,14 @@
 		balloon_alert(user, "You repair damage")
 	return TRUE
 
+/obj/vehicle/ridden/motorbike/relaymove(mob/living/user, direction)
+	if(fuel_count <= 0)
+		if(!TIMER_COOLDOWN_CHECK(src, COOLDOWN_BIKE_FUEL_MESSAGE))
+			to_chat(user, span_warning("There is no fuel left!"))
+			TIMER_COOLDOWN_START(src, COOLDOWN_BIKE_FUEL_MESSAGE, 1 SECONDS)
+		return FALSE
+	return ..()
+
 /obj/vehicle/ridden/motorbike/attack_hand(mob/living/user)
 	return motor_pack.open(user)
 
@@ -114,11 +122,11 @@
 	smoke.set_up(0, src)
 	smoke.start()
 
-/obj/vehicle/ridden/motorbike/bullet_act(obj/projectile/P)
+/obj/vehicle/ridden/motorbike/projectile_hit(obj/projectile/P)
 	if(!buckled_mobs)
 		return ..()
 	var/mob/buckled_mob = pick(buckled_mobs)
-	return buckled_mob.bullet_act(P)
+	return buckled_mob.projectile_hit(P)
 
 /obj/vehicle/ridden/motorbike/obj_destruction()
 	explosion(src, light_impact_range = 2, flash_range = 0)
