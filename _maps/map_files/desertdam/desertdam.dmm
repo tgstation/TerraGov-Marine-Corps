@@ -49294,6 +49294,14 @@
 	dir = 8
 	},
 /area/desert_dam/exterior/river/riverside_east)
+"etY" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/warning_stripes{
+	icon_state = "W"
+	},
+/obj/effect/landmark/weed_node,
+/turf/open/floor/plating/ground/desertdam/asphalt,
+/area/desert_dam/exterior/valley/valley_civilian)
 "eud" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable,
@@ -50216,6 +50224,12 @@
 	dir = 1
 	},
 /area/desert_dam/exterior/river/riverside_central_north)
+"fJq" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/plating/ground/mars/dirttosand{
+	dir = 9
+	},
+/area/desert_dam/interior/caves/east_caves)
 "fKd" = (
 /obj/structure/cable,
 /turf/closed/wall{
@@ -51580,6 +51594,13 @@
 	icon_state = "sterile_white"
 	},
 /area/desert_dam/building/medical/east_wing_hallway)
+"hHW" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/prison{
+	dir = 10;
+	icon_state = "whitegreenfull"
+	},
+/area/desert_dam/building/water_treatment_two/purification)
 "hIO" = (
 /obj/structure/desertdam/decals/road/edge{
 	icon_state = "road_edge_decal4"
@@ -52070,6 +52091,14 @@
 	icon_state = "bright_clean"
 	},
 /area/desert_dam/building/hydroponics/hydroponics)
+"inl" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/prison{
+	dir = 10;
+	icon_state = "whitegreenfull"
+	},
+/area/desert_dam/building/water_treatment_two/purification)
 "ioK" = (
 /obj/machinery/light{
 	dir = 1
@@ -54856,7 +54885,7 @@
 /area/desert_dam/interior/dam_interior/workshop)
 "mth" = (
 /obj/structure/showcase/two{
-	color = "#880808";
+	color = #880808;
 	desc = "A large red statue dawned in ancient armor, it stares into your soul.";
 	name = "The Titan"
 	},
@@ -55943,6 +55972,14 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/exterior/valley/valley_medical)
+"nVf" = (
+/obj/structure/cable,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/prison{
+	dir = 10;
+	icon_state = "whitegreenfull"
+	},
+/area/desert_dam/building/water_treatment_two/purification)
 "nWf" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 4;
@@ -56208,6 +56245,13 @@
 /obj/structure/cable,
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/exterior/valley/valley_hydro)
+"owg" = (
+/obj/structure/desertdam/decals/road/edge{
+	icon_state = "road_edge_decal3"
+	},
+/obj/effect/landmark/weed_node,
+/turf/open/floor/plating/ground/desertdam/asphalt,
+/area/desert_dam/exterior/valley/valley_mining)
 "owV" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -58059,6 +58103,12 @@
 	icon_state = "sterile_white"
 	},
 /area/desert_dam/building/dorms/restroom)
+"qQV" = (
+/obj/structure/disposalpipe/segment,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/plating/ground/desertdam/asphalt,
+/area/desert_dam/exterior/valley/valley_mining)
 "qSs" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable,
@@ -60101,6 +60151,16 @@
 	dir = 1
 	},
 /area/desert_dam/exterior/river/riverside_east)
+"tMn" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/effect/landmark/weed_node,
+/turf/open/floor/prison{
+	dir = 10;
+	icon_state = "whitegreenfull"
+	},
+/area/desert_dam/building/water_treatment_two/purification)
 "tNg" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/prison{
@@ -61443,6 +61503,10 @@
 	icon_state = "cement_sunbleached3"
 	},
 /area/desert_dam/exterior/valley/valley_civilian)
+"vEj" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/desert_dam/exterior/valley/valley_civilian)
 "vFL" = (
 /turf/open/ground/river/desertdam/clean/shallow_edge{
 	dir = 1
@@ -61462,6 +61526,12 @@
 	icon_state = "dark2"
 	},
 /area/desert_dam/interior/lab_northeast/east_lab_west_entrance)
+"vGO" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached{
+	icon_state = "cement_sunbleached11"
+	},
+/area/desert_dam/exterior/valley/valley_crashsite)
 "vHj" = (
 /obj/effect/decal/warning_stripes{
 	icon_state = "N"
@@ -63385,6 +63455,7 @@
 	icon_state = "road_edge_decal3"
 	},
 /obj/effect/decal/cleanable/dirt,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/exterior/valley/valley_civilian)
 "yfw" = (
@@ -104321,7 +104392,7 @@ aGE
 yiP
 aGE
 aGc
-aGc
+vGO
 aGc
 aGc
 mQY
@@ -104782,7 +104853,7 @@ aGw
 aGw
 aGw
 aGw
-aGc
+vGO
 aHA
 aBk
 aBk
@@ -110507,7 +110578,7 @@ aKm
 aKm
 aKm
 tKg
-aKm
+vEj
 aKm
 aKm
 jYx
@@ -110699,7 +110770,7 @@ aOz
 aOH
 aPc
 aPc
-aPc
+hHW
 aPc
 aPc
 aXq
@@ -110936,7 +111007,7 @@ aPc
 tGI
 aPc
 aPc
-aPc
+hHW
 aOH
 aTM
 aVV
@@ -110969,7 +111040,7 @@ bYK
 bWL
 cto
 cto
-crW
+kmr
 aKm
 aKm
 xxl
@@ -111199,7 +111270,7 @@ bnA
 bWL
 bTW
 bTW
-bYK
+owg
 bWL
 cto
 cto
@@ -111443,7 +111514,7 @@ cko
 cko
 cko
 cko
-cko
+xkF
 cko
 cko
 cko
@@ -111863,13 +111934,13 @@ caH
 aOz
 aOH
 aOB
+hHW
 aPc
 aPc
 aPc
 aPc
 aPc
-aPc
-kPA
+tMn
 aPc
 aPc
 aPc
@@ -112135,7 +112206,7 @@ bZC
 bYM
 bYM
 caf
-bYM
+qQV
 bYM
 cBN
 cBP
@@ -112374,7 +112445,7 @@ bTX
 dbU
 dWZ
 cwn
-dbU
+etY
 cto
 cto
 cnU
@@ -113268,12 +113339,12 @@ aOA
 tCZ
 hkg
 jqa
+nVf
 jqa
 jqa
 jqa
 jqa
-jqa
-jqa
+nVf
 jqa
 jqa
 hkg
@@ -113740,7 +113811,7 @@ aOB
 aOB
 aOB
 aOB
-aOB
+inl
 aOB
 aOB
 aPc
@@ -118772,7 +118843,7 @@ dTs
 xGe
 dTs
 dTs
-bcH
+aiN
 bcH
 bcH
 gYT
@@ -119710,7 +119781,7 @@ bcH
 aqq
 bcH
 aqX
-bMD
+fJq
 aRx
 aRx
 aRx
