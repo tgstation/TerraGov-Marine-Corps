@@ -54,7 +54,7 @@
 		return
 	if(user.a_intent != INTENT_HARM)
 		return
-	tgui_alert(user, "Are you really sure to want to try your luck with the devilish roomba?", "The roomba rulette", list("Yes", "Yes!", "Yes?"))
+	tgui_alert(user, "Are you really sure to want to try your luck with the devilish roomba?", "The roomba roulette", list("Yes", "Yes!", "Yes?"))
 	if(prob(50))
 		explosion(user, 1, 0, 0, 0, 0, 4, "[user] lost at the roomba roulette")
 		return
