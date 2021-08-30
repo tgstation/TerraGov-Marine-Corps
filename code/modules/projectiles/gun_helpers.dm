@@ -90,10 +90,22 @@
 //----------------------------------------------------------
 
 /obj/item/weapon/gun/attack_hand_alternate(mob/user)
-	if(active_attachable)
-		return active_attachable.toggle_gun_safety()
-	return toggle_gun_safety()
+	. = ..()
+	if(!active_attachable)
+		return toggle_gun_safety()
 
+	var/mob/living/living_user = user
+	if(living_user.get_active_held_item() != src && living_user.get_inactive_held_item() != src)
+		return
+
+	active_attachable.unload(living_user)
+
+/obj/item/weapon/gun/attackby_alternate(obj/item/I, mob/user, params)
+	. = ..()
+	if(!active_attachable)
+		return
+
+	active_attachable.attackby(I, user, params)
 
 /obj/item/weapon/gun/mob_can_equip(mob/user)
 	//Cannot equip wielded items or items burst firing.
@@ -222,10 +234,6 @@ should be alright.
 	if(flags_gun_features & GUN_BURST_FIRING)
 		return
 
-	if(active_attachable)
-		active_attachable.attackby(I, user, params)
-		return
-
 	if(istype(I, /obj/item/cell) && CHECK_BITFIELD(flags_gun_features, GUN_IS_SENTRY))
 		if(sentry_battery)
 			to_chat(user, span_warning("[src] already has a battery installed! Use Alt-Click to remove it!"))
@@ -248,11 +256,14 @@ should be alright.
 		reload(user, I)
 		return
 
+/obj/item/weapon/gun/AltRightClick(mob/user)
+	. = ..()
+	if(!active_attachable)
+		return
+	active_attachable.AltClick(user)
+
 /obj/item/weapon/gun/AltClick(mob/user)
 	. = ..()
-	if(active_attachable)
-		active_attachable.AltClick(user)
-		return
 
 	if(!user.Adjacent(src) || !ishuman(user) || !CHECK_BITFIELD(flags_gun_features, GUN_IS_SENTRY) && !master_gun)
 		return

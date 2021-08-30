@@ -41,7 +41,6 @@
 	fire_delay = 2.5 SECONDS
 	fire_sound = 'sound/weapons/guns/fire/flamethrower3.ogg'
 
-
 	current_mag = /obj/item/ammo_magazine/flamer_tank/mini
 	slot = ATTACHMENT_SLOT_UNDER
 	attach_delay = 3 SECONDS

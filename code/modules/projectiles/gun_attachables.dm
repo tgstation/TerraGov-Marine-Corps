@@ -1413,10 +1413,12 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 			master_gun.active_attachable.activate(user)
 			return TRUE
 		master_gun.active_attachable = null
+		set_gun_user(null)
 		overlays -= image('icons/Marine/marine-weapons.dmi', src, "active")
 		to_chat(user, span_notice("You stop using [src]."))
 	else
 		master_gun.active_attachable = src
+		set_gun_user(master_gun.gun_user)
 		overlays += image('icons/Marine/marine-weapons.dmi', src, "active")
 		to_chat(user, span_notice("You start using [src]."))
 	for(var/action_to_update in master_gun.actions)

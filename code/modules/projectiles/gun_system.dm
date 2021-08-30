@@ -248,12 +248,6 @@
 /obj/item/weapon/gun/equipped(mob/user, slot)
 	unwield(user)
 	if(ishandslot(slot))
-		for(var/key in attachments_by_slot)
-			var/obj/item/attachable = attachments_by_slot[key]
-			if(!isgun(attachable))
-				continue
-			var/obj/item/weapon/gun/attachment_gun = attachable
-			attachment_gun.set_gun_user(user)
 		set_gun_user(user)
 		return ..()
 	set_gun_user(null)
@@ -286,7 +280,7 @@
 	if(!CHECK_BITFIELD(flags_item, IS_DEPLOYED))
 		RegisterSignal(gun_user, COMSIG_MOB_MOUSEDOWN, .proc/start_fire)
 		RegisterSignal(gun_user, COMSIG_MOB_MOUSEDRAG, .proc/change_target)
-		RegisterSignal(gun_user, COMSIG_MOB_CLICK_RIGHT, .proc/fire_attachment)
+		RegisterSignal(gun_user, list(COMSIG_MOB_CLICK_RIGHT, COMSIG_MOB_MIDDLE_CLICK), .proc/fire_attachment)
 	else
 		RegisterSignal(gun_user, COMSIG_KB_UNIQUEACTION, .proc/unique_action)
 	RegisterSignal(gun_user, COMSIG_PARENT_QDELETING, .proc/clean_gun_user)
@@ -416,9 +410,6 @@
 
 /obj/item/weapon/gun/unique_action(mob/user)
 	. = ..()
-	if(active_attachable)
-		active_attachable.unique_action(user)
-		return FALSE
 	if(CHECK_BITFIELD(flags_item, IS_DEPLOYABLE) && !CHECK_BITFIELD(flags_item, IS_DEPLOYED) && master_gun) //If the gun can be deployed, it deploys when unique_action is called.
 		return FALSE
 
@@ -513,9 +504,6 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 //Drop out the magazine. Keep the ammo type for next time so we don't need to replace it every time.
 //This can be passed with a null user, so we need to check for that as well.
 /obj/item/weapon/gun/proc/unload(mob/user, reload_override = 0, drop_override = 0) //Override for reloading mags after shooting, so it doesn't interrupt burst. Drop is for dropping the magazine on the ground.
-	if(active_attachable)
-		active_attachable.unload(user, reload_override, drop_override)
-		return FALSE
 	if(!reload_override && (flags_gun_features & (GUN_BURST_FIRING|GUN_UNUSUAL_DESIGN|GUN_INTERNAL_MAG)))
 		return FALSE
 
@@ -621,8 +609,9 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 ///Check if the gun can fire and add it to bucket auto_fire system if needed, or just fire the gun if not
 /obj/item/weapon/gun/proc/start_fire(datum/source, atom/object, turf/location, control, params, bypass_checks = FALSE)
 	SIGNAL_HANDLER
-	if(active_attachable)
-		fire_attachment(source, object, location, control, params, bypass_checks)
+
+	var/list/modifiers = params2list(params)
+	if(modifiers["right"] || modifiers["middle"] || modifiers["shift"])
 		return
 	if(gun_on_cooldown(gun_user))
 		return
@@ -638,10 +627,6 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 	if(QDELETED(object))
 		return
 	set_target(get_turf_on_clickcatcher(object, gun_user, params))
-	var/list/modifiers = params2list(params)
-	if(modifiers["right"] || modifiers["middle"] || modifiers["shift"])
-		fire_attachment(source, object, location, control, params, bypass_checks)
-		return
 	if(gun_firemode == GUN_FIREMODE_SEMIAUTO)
 		if(!Fire() || windup_checked == WEAPON_WINDUP_CHECKING)
 			return
@@ -653,24 +638,25 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 	gun_user?.client?.mouse_pointer_icon = 'icons/effects/supplypod_target.dmi'
 
 ///This is called on Right Click and gets the first weapon attachment in slots and fires it.
-/obj/item/weapon/gun/proc/fire_attachment(datum/source, atom/object, turf/location, control, params, bypass_checks = FALSE)
+/obj/item/weapon/gun/proc/fire_attachment(datum/source, atom/object)
 	SIGNAL_HANDLER
-	if(active_attachable)
-		active_attachable.start_fire(source, object, location, control, params, bypass_checks)
+	if(!active_attachable)
 		return
-	for(var/key in attachments_by_slot)
-		var/obj/item/attachment = attachments_by_slot[key]
-		if(!istype(attachment, /obj/item/weapon/gun))
-			continue
-		var/obj/item/weapon/gun/attached_gun = attachment
-		attached_gun.start_fire(source, object, location, control, params, bypass_checks)
+
+	if(object == src)
+		active_attachable.unique_action(gun_user)
 		return
+
+	if(ismob(object) && gun_user.Adjacent(object))
+		INVOKE_ASYNC(active_attachable, .proc/attack, object, gun_user)
+		return
+
+	active_attachable.start_fire(source, object)
 
 ///Set the target and take care of hard delete
 /obj/item/weapon/gun/proc/set_target(atom/object)
 	if(active_attachable)
 		active_attachable.set_target(object)
-		return
 	if(object == target || object == gun_user)
 		return
 	if(target)
@@ -847,10 +833,6 @@ and you're good to go.
 	if(M != user && user.a_intent == INTENT_HARM)
 		. = ..()
 		if(!.)
-			return
-
-		if(active_attachable)
-			active_attachable.attack(M, user, def_zone)
 			return
 
 		if(!active_attachable && gun_firemode == GUN_FIREMODE_BURSTFIRE && burst_amount > 1)
