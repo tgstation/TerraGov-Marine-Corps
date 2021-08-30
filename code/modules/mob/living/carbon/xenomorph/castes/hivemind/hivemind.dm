@@ -108,7 +108,7 @@
 		update_icon()
 		return
 	invisibility = initial(invisibility)
-	status_flags =initial(status_flags)
+	status_flags = initial(status_flags)
 	upgrade = initial(upgrade)
 	resistance_flags = initial(resistance_flags)
 	flags_pass = initial(flags_pass)

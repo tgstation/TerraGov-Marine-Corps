@@ -199,7 +199,8 @@
 	cooldown_timer = 5 SECONDS
 
 /datum/action/xeno_action/activable/plant_weeds/ranged/can_use_ability(atom/A, silent = FALSE, override_flags)
-	if(is_type_in_typecache((get_area(A)), GLOB.wraith_no_incorporeal_pass_areas) && SSmonitor.gamestate == SHUTTERS_CLOSED)
+	var/area/a_area = get_area(A)
+	if(is_type_in_typecache(a_area, GLOB.wraith_no_incorporeal_pass_areas) && SSmonitor.gamestate == SHUTTERS_CLOSED)
 		to_chat(owner, span_warning("You cannot plant weeds here yet!"))
 		return FALSE
 	if(!owner.line_of_sight(get_turf(A)))
