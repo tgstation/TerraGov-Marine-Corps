@@ -21,14 +21,14 @@
 		new result(loc)
 		qdel(src)
 		return
-	next_machine = recipe[stage]["next_machine"]
+	next_machine = recipe[stage][STEP_NEXT_MACHINE]
 	icon_state = recipe[stage]["icon_state"]
 
 GLOBAL_LIST_INIT(phosnade_recipe, list(
-			list("next_machine" = FACTORY_MACHINE_CUTTER, "icon_state" = "decompiler"),
-			list("next_machine" = FACTORY_MACHINE_HEATER, "icon_state" = "battererburnt"),
-			list("next_machine" = FACTORY_MACHINE_FORMER, "icon_state" = "batterer"),
-			))
+	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_CUTTER, "icon_state" = "decompiler"),
+	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_HEATER, "icon_state" = "battererburnt"),
+	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_FORMER, "icon_state" = "batterer"),
+	))
 
 /obj/item/factory_part/phosnade
 	name = "Phosphorus Grenade assembly"
@@ -40,14 +40,14 @@ GLOBAL_LIST_INIT(phosnade_recipe, list(
 	recipe = GLOB.phosnade_recipe
 
 GLOBAL_LIST_INIT(m15_recipe,  list(
-		list("next_machine" = FACTORY_MACHINE_FORMER, "icon_state" = "r_arm"),
-		list("next_machine" = FACTORY_MACHINE_CUTTER, "icon_state" = "r_leg"),
-		))
+	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_FORMER, "icon_state" = "r_arm"),
+	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_CUTTER, "icon_state" = "r_leg"),
+	))
 
 /obj/item/factory_part/m15_nade
 	name = "M15 grenade assembly"
 	desc = "An incomplete M15 grenade"
-	icon = 'icons/unused/r_predator.dmi'//aaaaaaa
+	icon = 'icons/unused/r_predator.dmi'
 	icon_state = "r_foot"
 	result = /obj/item/explosive/grenade/frag/m15
 	next_machine = FACTORY_MACHINE_CUTTER

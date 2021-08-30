@@ -109,7 +109,7 @@
 	var/production_amount_left = 0
 	///Maximum amount of resource we can hold
 	var/max_fill_amount = 100
-	///Typepath for the result we want
+	///Typepath for the result we want outputted
 	var/production_type = /obj/item/factory_part
 	///Bool for whether the outputter is producing things
 	var/on = FALSE
@@ -120,19 +120,19 @@
 
 /obj/machinery/outputter/wrench_act(mob/living/user, obj/item/I)
 	anchored = !anchored
-	user.visible_message("<span class='notice'>[user] [anchored ? "" : "un"]anchors [src]</span>" ,"<span class='notice'>You [anchored ? "" : "un"]anchor [src].</span>")
+	balloon_alert("[anchored ? "" : "un"]anchored")
 
 /obj/machinery/outputter/attack_hand(mob/living/user)
 	if(!anchored)
-		to_chat(user, "<span class='warning'>The machine must be anchored to turn it on!.</span>")
+		balloon_alert(user, "Must be anchored!")
 		return
 	on = !on
 	if(on)
 		START_PROCESSING(SSmachines, src)
-		visible_message("<span class='notice'>\The [src] rumbles to life.</span>")
+		balloon_alert_to_viewers("turns on!")
 	else
 		STOP_PROCESSING(SSmachines, src)
-		visible_message("<span class='notice'>\The [src] slows and becomes quiet.</span>")
+		balloon_alert_to_viewers("turns off!")
 
 /obj/machinery/outputter/attack_ai(mob/living/silicon/ai/user)
 	return attack_hand(user)
