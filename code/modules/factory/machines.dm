@@ -1,15 +1,19 @@
 /obj/machinery/factory
-	name = "generic heater"
+	name = "generic root heater"
 	desc = "You shouldnt be seeing this."
-	icon = 'icons/obj/machines/mining_machines.dmi'
-	icon_state = "furnace"
+	icon = 'icons/obj/factory/factory_machines.dmi'
+	icon_state = "heater_inactive"
 	density = TRUE
 	anchored = FALSE // start off unanchored so its easier to move
 	resistance_flags = XENO_DAMAGEABLE
+	///process type we will use to determine what step of the production process this machine will do
 	var/process_type = FACTORY_MACHINE_HEATER
+	///Time in ticks that this machine takes to process one item
 	var/cooldown_time = 1 SECONDS
+	///Curent item being processed
 	var/obj/item/factory_part/held_item
-	var/processiconstate
+	///Icon state displayed while something is being processed in the machine
+	var/processiconstate = "heater"
 	COOLDOWN_DECLARE(process_cooldown)
 
 /obj/machinery/factory/Destroy()
@@ -19,20 +23,23 @@
 /obj/machinery/factory/examine(mob/user, distance, infix, suffix)
 	. = ..()
 	to_chat(user, "It is currently facing [dir2text(dir)] and [anchored ? "" : "un"]secured.")
+	to_chat(user, "Processes one package every [cooldown_time*10] seconds.")
 
 /obj/machinery/factory/wrench_act(mob/living/user, obj/item/I)
 	anchored = !anchored
-	user.visible_message("<span class='notice'>[user] [anchored ? "" : "un"]anchors [src]</span>" ,"<span class='notice'>You [anchored ? "" : "un"]anchor [src].</span>")
+	balloon_alert("[anchored ? "" : "un"]anchored")
 
 
 /obj/machinery/factory/Bumped(atom/movable/bumper)
 	. = ..()
+	if(!isitem(bumper))
+		return
 	if(!(bumper.dir & dir))//need to be bumping into the back
 		return
 	if(!anchored)
 		return
 	if(!isfactorypart(bumper))
-		held_item.forceMove(get_step(src, pick(GLOB.alldirs)))//just find a random tile and throw it there to stop it from clogging
+		bumper.forceMove(get_step(src, pick(GLOB.alldirs)))//just find a random tile and throw it there to stop it from clogging
 		return
 	if(!COOLDOWN_CHECK(src, process_cooldown))
 		return
@@ -41,10 +48,10 @@
 	COOLDOWN_START(src, process_cooldown, cooldown_time)
 	if(processiconstate)
 		icon_state = processiconstate
-	INVOKE_ASYNC(src, .proc/finish_process)
+	addtimer(CALLBACK(src, .proc/finish_process), cooldown_time)
 
+///Once the timer for processing is over this resets the machine and spits out the new result
 /obj/machinery/factory/proc/finish_process()
-	sleep(cooldown_time)
 	var/turf/target = get_step(src, dir)
 	held_item.forceMove(target)
 	if(held_item.next_machine == process_type)
@@ -59,126 +66,27 @@
 /obj/machinery/factory/flatter
 	name = "Industrial flatter"
 	desc = "An industrial level flatter"
-	icon = 'icons/obj/machines/research.dmi'
-	icon_state = "circuit_imprinter"
-	processiconstate = "circuit_imprinter"
+	icon_state = "flatter_inactive"
+	processiconstate = "flatter"
 	process_type = FACTORY_MACHINE_FLATTER
 
 /obj/machinery/factory/cutter
 	name = "Industrial cutter"
 	desc = "An industrial level cutter"
-	icon = 'icons/obj/machines/research.dmi'
-	icon_state = "circuit_imprinter"
-	processiconstate = "circuit_imprinter"
+	icon_state = "cutter_inactive"
+	processiconstate = "cutter"
 	process_type = FACTORY_MACHINE_CUTTER
 
 /obj/machinery/factory/former
 	name = "Industrial former"
 	desc = "An industrial level former"
-	icon = 'icons/obj/machines/research.dmi'
-	icon_state = "protolathe"
-	processiconstate = "protolate_n"
+	icon_state = "former_inactive"
+	processiconstate = "former"
 	process_type = FACTORY_MACHINE_FORMER
 
-
-
-
-/obj/item/factory_refill
-	name = "generic refiller"
-	desc = "you shouldnt be seeing this."
-	icon = 'icons/obj/factory_refill.dmi'
-	icon_state = "empty"
-	///Typepath for the output machine we want to be ejecting
-	var/refill_type = /obj/machinery/outputter
-	///By how much we wan to refill the target machine
-	var/refill_amount = 30
-
-/obj/item/factory_refill/examine(mob/user, distance, infix, suffix)
-	. = ..()
-	to_chat(user, "It has [refill_amount] resources remaining.")
-
-/obj/machinery/outputter
-	name = "Unboxer"
-	desc = "An industrial resourcing unboxer."
-	icon = 'icons/obj/machines/mining_machines.dmi'
-	icon_state = "stacker"
-	resistance_flags = XENO_DAMAGEABLE
-	density = TRUE
-	anchored = FALSE
-	///the amount of resouce we have left to output factory_parts
-	var/production_amount_left = 0
-	///Maximum amount of resource we can hold
-	var/max_fill_amount = 100
-	///Typepath for the result we want outputted
-	var/production_type = /obj/item/factory_part
-	///Bool for whether the outputter is producing things
-	var/on = FALSE
-
-/obj/machinery/outputter/examine(mob/user, distance, infix, suffix)
-	. = ..()
-//tivi	to_chat(user, "It is currently facing [dir2text(dir)], and outputting [initial(production_type.name)]. It has [production_amount_left] resources remaining.")
-
-/obj/machinery/outputter/wrench_act(mob/living/user, obj/item/I)
-	anchored = !anchored
-	balloon_alert("[anchored ? "" : "un"]anchored")
-
-/obj/machinery/outputter/attack_hand(mob/living/user)
-	if(!anchored)
-		balloon_alert(user, "Must be anchored!")
-		return
-	on = !on
-	if(on)
-		START_PROCESSING(SSmachines, src)
-		balloon_alert_to_viewers("turns on!")
-	else
-		STOP_PROCESSING(SSmachines, src)
-		balloon_alert_to_viewers("turns off!")
-
-/obj/machinery/outputter/attack_ai(mob/living/silicon/ai/user)
-	return attack_hand(user)
-
-/obj/machinery/outputter/process()
-	if(!production_amount_left)
-		visible_message("<span class='notice'>The low material light on \the [src] flashes!</span>")
-		return PROCESS_KILL
-	new production_type(get_step(src, dir))
-	production_amount_left--
-
-/obj/machinery/outputter/attackby(obj/item/I, mob/living/user, def_zone)
-	if(!isfactoryrefill(I) || user.a_intent == INTENT_HARM)
-		return ..()
-	var/obj/item/factory_refill/refill = I
-	if(!istype(src, refill.refill_type))
-		to_chat(user, "<span class='warning'>This type of refiller is incompatible.</span>")
-		return
-	var/to_refill = min(max_fill_amount - production_amount_left, refill.refill_amount)
-	production_amount_left += to_refill
-	refill.refill_amount -= to_refill
-	visible_message("<span class='notice'>[user] restocks \the [src] with \the [refill]!</span>", "<span class='notice'>You restock \the [src] with [refill]!</span>")
-	if(refill.refill_amount <= 0)
-		qdel(refill)
-		new /obj/item/stack/sheet/metal(user.loc)//trash
-
-/obj/machinery/outputter/phosnade
-	name = "Phosphorus resistant plate outputter"
-	desc = "A machine outputting large plates with phosphorus resistant laminate."
-	max_fill_amount = 70
-	production_type = /obj/item/factory_part/phosnade
-
-/obj/item/factory_refill/phosnade
-	name = "Phosphorus resistant laminate plates"
-	desc = "A box with what seem to be strangely colored metal plates inside. Used to refill Outputters."
-	icon_state = "phosphorus"
-	refill_type = /obj/machinery/outputter/phosnade
-
-/obj/machinery/outputter/m15_nade
-	name = "rounded grenade plate outputter"
-	desc = "A large machine that produces plating for grenade casings."
-	max_fill_amount = 120
-	production_type = /obj/item/factory_part/m15_nade
-
-/obj/item/factory_refill/m15_nade
-	name = "box of rounded metal plates"
-	desc = "A box with round metal plates inside. Used to refill Outputters."
-	icon_state = "grenade"
-	refill_type = /obj/machinery/outputter/m15_nade
+/obj/machinery/factory/reconstructor
+	name = "Atomic reconstructor"
+	desc = "An industrial level former"
+	icon_state = "constructor_inactive"
+	processiconstate = "constructor"
+	process_type = FACTORY_MACHINE_CONSTRUCTOR

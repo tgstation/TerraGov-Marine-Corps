@@ -1639,14 +1639,14 @@ FACTORY
 /datum/supply_packs/factory/m15refill
 	name = "Rounded plates outputter"
 	contains = list(
-		/obj/machinery/outputter/m15_nade
+		/obj/machinery/outputter/bignade
 	)
 	cost = 10
 
 /datum/supply_packs/factory/m15outputter
 	name = "2x rounded plates refill"
 	contains = list(
-		/obj/item/factory_refill/m15_nade,
-		/obj/item/factory_refill/m15_nade
+		/obj/item/factory_refill/bignade,
+		/obj/item/factory_refill/bignade
 	)
 	cost = 10
