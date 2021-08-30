@@ -249,25 +249,22 @@
 	unwield(user)
 	if(ishandslot(slot))
 		set_gun_user(user)
+		active_attachable?.set_gun_user(user)
 		return ..()
 	set_gun_user(null)
+	active_attachable?.set_gun_user(null)
 	return ..()
 
 /obj/item/weapon/gun/removed_from_inventory(mob/user)
 	set_gun_user(null)
-	for(var/key in attachments_by_slot)
-		var/obj/item/attachable = attachments_by_slot[key]
-		if(!isgun(attachable))
-			continue
-		var/obj/item/weapon/gun/attachment_gun = attachable
-		attachment_gun.set_gun_user(null)
+	active_attachable?.set_gun_user(null)
 
 ///Set the user in argument as gun_user
 /obj/item/weapon/gun/proc/set_gun_user(mob/user)
 	if(user == gun_user)
 		return
 	if(gun_user)
-		UnregisterSignal(gun_user, list(COMSIG_MOB_MOUSEDOWN, COMSIG_MOB_MOUSEUP, COMSIG_ITEM_ZOOM, COMSIG_ITEM_UNZOOM, COMSIG_MOB_MOUSEDRAG, COMSIG_KB_RAILATTACHMENT, COMSIG_KB_UNDERRAILATTACHMENT, COMSIG_KB_UNLOADGUN, COMSIG_KB_FIREMODE, COMSIG_KB_GUN_SAFETY, COMSIG_KB_UNIQUEACTION, COMSIG_PARENT_QDELETING,  COMSIG_MOB_CLICK_RIGHT))
+		UnregisterSignal(gun_user, list(COMSIG_MOB_MOUSEDOWN, COMSIG_MOB_MOUSEUP, COMSIG_ITEM_ZOOM, COMSIG_ITEM_UNZOOM, COMSIG_MOB_MOUSEDRAG, COMSIG_KB_RAILATTACHMENT, COMSIG_KB_UNDERRAILATTACHMENT, COMSIG_KB_UNLOADGUN, COMSIG_KB_FIREMODE, COMSIG_KB_GUN_SAFETY, COMSIG_KB_UNIQUEACTION, COMSIG_PARENT_QDELETING,  COMSIG_MOB_CLICK_RIGHT, COMSIG_MOB_MIDDLE_CLICK))
 		gun_user.client?.mouse_pointer_icon = initial(gun_user.client.mouse_pointer_icon)
 		SEND_SIGNAL(gun_user, COMSIG_GUN_USER_UNSET)
 		gun_user = null
@@ -643,15 +640,7 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 	if(!active_attachable)
 		return
 
-	if(object == src)
-		active_attachable.unique_action(gun_user)
-		return
-
-	if(ismob(object) && gun_user.Adjacent(object))
-		INVOKE_ASYNC(active_attachable, .proc/attack, object, gun_user)
-		return
-
-	active_attachable.start_fire(source, object)
+	active_attachable.start_fire(source, object, bypass_checks = TRUE)
 
 ///Set the target and take care of hard delete
 /obj/item/weapon/gun/proc/set_target(atom/object)
@@ -835,7 +824,7 @@ and you're good to go.
 		if(!.)
 			return
 
-		if(!active_attachable && gun_firemode == GUN_FIREMODE_BURSTFIRE && burst_amount > 1)
+		if(gun_firemode == GUN_FIREMODE_BURSTFIRE && burst_amount > 1)
 			set_target(M)
 			SEND_SIGNAL(src, COMSIG_GUN_FIRE)
 			return TRUE
@@ -940,6 +929,11 @@ and you're good to go.
 	reload_into_chamber(user) //Reload the sucker.
 	ENABLE_BITFIELD(flags_gun_features, GUN_CAN_POINTBLANK)
 
+/obj/item/weapon/gun/attack_alternate(mob/living/M, mob/living/user)
+	. = ..()
+	if(!active_attachable)
+		return
+	active_attachable.attack(M, user)
 
 /obj/item/weapon/gun/proc/delete_bullet(obj/projectile/projectile_to_fire, refund = FALSE)
 	return FALSE
