@@ -45374,6 +45374,9 @@
 	dir = 8
 	},
 /area/desert_dam/exterior/valley/valley_hydro)
+"dNT" = (
+/turf/closed/wall/mineral/sandstone,
+/area/desert_dam/exterior/rock)
 "dNU" = (
 /obj/structure/disposalpipe/segment,
 /obj/effect/decal/cleanable/dirt,
@@ -56908,7 +56911,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/cement,
 /area/desert_dam/interior/dam_interior/south_tunnel)
 "mdB" = (
-/obj/structure/xeno/resin/xeno_turret,
+/obj/effect/landmark/xeno_turret_spawn,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/desert_dam/interior/caves/east_caves)
 "mdP" = (
@@ -59916,7 +59919,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/exterior/valley/valley_northwest)
 "ppo" = (
-/obj/structure/xeno/resin/xeno_turret,
+/obj/effect/landmark/xeno_turret_spawn,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/desert_dam/exterior/valley/valley_crashsite)
 "ppA" = (
@@ -61494,7 +61497,7 @@
 	},
 /area/desert_dam/exterior/valley/valley_hydro)
 "qQv" = (
-/obj/structure/xeno/resin/xeno_turret,
+/obj/effect/landmark/xeno_turret_spawn,
 /turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached{
 	icon_state = "cement_sunbleached1"
 	},
@@ -61870,7 +61873,7 @@
 	},
 /area/desert_dam/interior/dam_interior/northeastern_tunnel)
 "rnF" = (
-/obj/structure/xeno/resin/xeno_turret,
+/obj/effect/landmark/xeno_turret_spawn,
 /turf/open/floor/plating/ground/mars/random/dirt,
 /area/desert_dam/interior/caves/east_caves)
 "rnI" = (
@@ -63807,7 +63810,7 @@
 /turf/open/floor/prison,
 /area/desert_dam/building/hydroponics/hydroponics_storage)
 "try" = (
-/obj/structure/xeno/resin/xeno_turret,
+/obj/effect/landmark/xeno_turret_spawn,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/desert_dam/interior/caves/temple)
 "trV" = (
@@ -67061,7 +67064,7 @@
 	},
 /area/desert_dam/exterior/valley/valley_civilian)
 "wFi" = (
-/obj/structure/xeno/resin/xeno_turret,
+/obj/effect/landmark/xeno_turret_spawn,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/desert_dam/interior/caves/central_caves)
 "wFv" = (
@@ -120573,8 +120576,8 @@ dTs
 dTs
 dTs
 gGC
-dTs
-gGC
+dNT
+rrQ
 aBm
 eAb
 aBm
