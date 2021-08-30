@@ -243,6 +243,9 @@
 		return
 	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_XENO) && (stat == DEAD || isnestedhost(src)))
 		return FALSE
+	if(LAZYACCESS(smoke_delays, S.type) > world.time)
+		return FALSE
+	LAZYSET(smoke_delays, S.type, world.time + S.minimum_effect_delay)
 	smoke_contact(S)
 
 /mob/living/proc/smoke_contact(obj/effect/particle_effect/smoke/S)
