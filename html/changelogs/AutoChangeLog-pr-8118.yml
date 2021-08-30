@@ -1,0 +1,4 @@
+author: "Pariah919"
+delete-after: True
+changes: 
+  - balance: "marines have more messages telling them the severity of their wounds when they self examine"
