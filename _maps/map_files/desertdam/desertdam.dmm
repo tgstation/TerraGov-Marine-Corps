@@ -3549,6 +3549,12 @@
 	icon_state = "darkred2"
 	},
 /area/desert_dam/interior/lab_northeast/east_lab_security_armory)
+"aoe" = (
+/obj/effect/turf_underlay/tiles/dark2,
+/turf/closed/shuttle{
+	icon_state = "swall_f9"
+	},
+/area/desert_dam/interior/dam_interior/hanger)
 "aoh" = (
 /obj/structure/table/reinforced,
 /obj/machinery/light{
@@ -5015,6 +5021,7 @@
 /area/desert_dam/building/water_treatment_two/floodgate_control)
 "asR" = (
 /obj/effect/decal/cleanable/dirt,
+/obj/effect/turf_underlay/tiles/dark2,
 /turf/closed/shuttle/diagonal{
 	icon_state = "swall_f6"
 	},
@@ -15161,6 +15168,7 @@
 	},
 /area/desert_dam/interior/dam_interior/hanger)
 "biG" = (
+/obj/effect/turf_underlay/tiles/dark2,
 /turf/closed/shuttle/diagonal{
 	icon_state = "swall_f10"
 	},
@@ -16271,6 +16279,7 @@
 /turf/open/floor/wood,
 /area/desert_dam/building/security/marshals_office)
 "bnc" = (
+/obj/effect/turf_underlay/tiles/dark2,
 /turf/closed/shuttle/diagonal{
 	icon_state = "swall_f5"
 	},
@@ -16288,6 +16297,7 @@
 	},
 /area/desert_dam/interior/dam_interior/hanger)
 "bnf" = (
+/obj/effect/turf_underlay/tiles/dark2,
 /turf/closed/shuttle/diagonal{
 	icon_state = "swall_f9"
 	},
@@ -57615,9 +57625,8 @@
 /area/desert_dam/building/administration/meetingrooom)
 "qbS" = (
 /obj/effect/turf_underlay/tiles/dark2,
-/turf/open/floor/prison{
-	dir = 10;
-	icon_state = "floor_plate"
+/turf/closed/shuttle{
+	icon_state = "swall0"
 	},
 /area/desert_dam/interior/dam_interior/hanger)
 "qbZ" = (
@@ -69758,7 +69767,7 @@ bke
 xlV
 bkp
 bne
-qbS
+aoe
 bjz
 bhP
 bhP
@@ -69991,7 +70000,7 @@ bjk
 blx
 bjA
 bmD
-qbS
+aoe
 bhP
 qbS
 bnc
