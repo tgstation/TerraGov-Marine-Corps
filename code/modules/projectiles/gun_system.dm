@@ -257,7 +257,7 @@
 
 /obj/item/weapon/gun/removed_from_inventory(mob/user)
 	set_gun_user(null)
-	active_attachable?.set_gun_user(null)
+	active_attachable?.removed_from_inventory(user)
 
 ///Set the user in argument as gun_user
 /obj/item/weapon/gun/proc/set_gun_user(mob/user)
@@ -297,6 +297,8 @@
 /obj/item/weapon/gun/update_icon(mob/user)
 	if(!current_mag)
 		icon_state = base_gun_icon + "_e"
+	else if(istype(current_mag, /obj/item/ammo_magazine/flamer_tank/backtank)) //Moved this here so that the flamer icon change will function with attachables.
+		icon_state = base_gun_icon + "_l"
 	else
 		icon_state = base_gun_icon
 

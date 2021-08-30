@@ -286,6 +286,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	desc = "A weapon-mounted, three-shot shotgun. Reloadable with buckshot. The short barrel reduces the ammo's effectiveness, but allows it to be fired one handed."
 	icon = 'icons/Marine/marine-weapons.dmi'
 	icon_state = "masterkey"
+	attachable_allowed = list()
 	slot = ATTACHMENT_SLOT_UNDER
 	attach_delay = 3 SECONDS
 	detach_delay = 3 SECONDS

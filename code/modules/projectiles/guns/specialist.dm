@@ -685,6 +685,7 @@
 	max_grenades = 2
 	fire_delay = 1 SECONDS
 	fire_sound = 'sound/weapons/guns/fire/underbarrel_grenadelauncher.ogg'
+	attachable_allowed = list()
 
 	slot = ATTACHMENT_SLOT_UNDER
 	attach_delay = 3 SECONDS

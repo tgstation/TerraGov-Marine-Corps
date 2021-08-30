@@ -42,6 +42,7 @@
 	fire_sound = 'sound/weapons/guns/fire/flamethrower3.ogg'
 
 	current_mag = /obj/item/ammo_magazine/flamer_tank/mini
+	attachable_allowed = list()
 	slot = ATTACHMENT_SLOT_UNDER
 	attach_delay = 3 SECONDS
 	detach_delay = 3 SECONDS
@@ -65,12 +66,6 @@
 	. = ..()
 	if (current_mag) //A flamer spawing with a mag will be lit up
 		light_pilot(null,TRUE)
-
-/obj/item/weapon/gun/flamer/update_icon()
-	. = ..()
-	if(!istype(current_mag, /obj/item/ammo_magazine/flamer_tank/backtank))
-		return
-	icon_state = base_gun_icon + "_l"
 
 /obj/item/weapon/gun/flamer/examine_ammo_count(mob/user)
 	if(current_mag)

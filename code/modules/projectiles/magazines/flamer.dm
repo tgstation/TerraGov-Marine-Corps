@@ -84,7 +84,7 @@
 
 	var/mob/living/carbon/human/humanuser = user
 
-	if (!humanuser.is_item_in_slots(src))
+	if (!humanuser.is_item_in_slots(src) && !FLT.master_gun)
 		to_chat(user, span_warning("You must equip or hold this fuel tank to be able to link it to a flamer"))
 		return
 
@@ -98,6 +98,14 @@
 
 	FLT.attach_fueltank(user,src)
 
+/obj/item/ammo_magazine/flamer_tank/attackby_alternate(obj/item/I, mob/user, params)
+	. = ..()
+	if(!isgun(I))
+		return
+	var/obj/item/weapon/gun/gun = I
+	if(!istype(gun.active_attachable, /obj/item/weapon/gun/flamer))
+		return
+	attackby(gun.active_attachable, user, params)
 
 
 /obj/item/ammo_magazine/flamer_tank/backtank/removed_from_inventory(mob/user) //Dropping the tank should unlink it from the flamer
