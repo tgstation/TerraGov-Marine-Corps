@@ -65,6 +65,8 @@
 				display_class = "headminooc"
 			if("Headmentor")
 				display_class = "headmentorooc"
+			if("Senior Admin")
+				display_class = "senioradminooc"
 			if("Admin")
 				display_class = "adminooc"
 			if("Trial Admin")
