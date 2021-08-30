@@ -51990,13 +51990,6 @@
 	icon_state = "catwalk-255"
 	},
 /area/desert_dam/exterior/river/riverside_central_south)
-"gQH" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "N"
-	},
-/obj/effect/ai_node,
-/turf/open/floor/plating/ground/desertdam/asphalt,
-/area/desert_dam/interior/dam_interior/east_tunnel_entrance)
 "gRl" = (
 /obj/structure/window/framed/colony,
 /obj/structure/cable,
@@ -52830,13 +52823,6 @@
 	icon_state = "darkred2"
 	},
 /area/desert_dam/building/security/southern_hallway)
-"hKl" = (
-/obj/structure/desertdam/decals/road/edge{
-	icon_state = "road_edge_decal1"
-	},
-/obj/effect/ai_node,
-/turf/open/floor/plating/ground/desertdam/asphalt,
-/area/desert_dam/exterior/valley/bar_valley_dam)
 "hKV" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -58034,10 +58020,6 @@
 	icon_state = "cement3"
 	},
 /area/desert_dam/interior/dam_interior/workshop)
-"npd" = (
-/obj/effect/ai_node,
-/turf/open/floor/plating/ground/desertdam/asphalt/cement,
-/area/desert_dam/interior/dam_interior/east_tunnel_entrance)
 "npw" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
@@ -62191,12 +62173,6 @@
 	icon_state = "cement4"
 	},
 /area/desert_dam/interior/dam_interior/central_tunnel)
-"rCJ" = (
-/obj/effect/ai_node,
-/turf/open/floor/plating/ground/desertdam/asphalt{
-	icon_state = "cement_sunbleached9"
-	},
-/area/desert_dam/exterior/valley/bar_valley_dam)
 "rDe" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -63416,10 +63392,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/exterior/valley/valley_medical)
-"sTx" = (
-/obj/effect/ai_node,
-/turf/open/floor/plating/ground/mars/random/sand,
-/area/desert_dam/interior/dam_interior/south_tunnel)
 "sUr" = (
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/exterior/valley/valley_labs)
@@ -87836,7 +87808,7 @@ dTs
 dTs
 qKe
 qKe
-sTx
+qKe
 xnv
 cfj
 wzl
@@ -89244,7 +89216,7 @@ oIP
 cEv
 bgn
 cAN
-gQH
+cAP
 bha
 cCG
 ncm
@@ -89474,7 +89446,7 @@ aDD
 aDx
 bNg
 ncm
-npd
+ncm
 cEv
 bgn
 cAM
@@ -90878,7 +90850,7 @@ dTs
 dTs
 wgv
 tUF
-rCJ
+ekH
 dod
 tyc
 jmd
@@ -91116,7 +91088,7 @@ tUF
 iYI
 tyc
 jmd
-lhk
+eft
 xpj
 iYI
 mTj
@@ -92047,7 +92019,7 @@ pLm
 iwh
 mMm
 mMm
-rqT
+pij
 pal
 coE
 tyc
@@ -92293,7 +92265,7 @@ rJK
 rJK
 rJK
 rJK
-hKl
+rJK
 rJK
 rJK
 rJK
@@ -92526,7 +92498,7 @@ ctF
 eft
 eft
 ctF
-eft
+lhk
 eft
 ctF
 eft
@@ -92993,7 +92965,7 @@ jSS
 jSS
 jSS
 jSS
-gve
+jSS
 jSS
 jSS
 jSS
