@@ -54885,7 +54885,7 @@
 /area/desert_dam/interior/dam_interior/workshop)
 "mth" = (
 /obj/structure/showcase/two{
-	color = #880808;
+	color = "#880808";
 	desc = "A large red statue dawned in ancient armor, it stares into your soul.";
 	name = "The Titan"
 	},
