@@ -60085,6 +60085,13 @@
 	icon_state = "bright_clean2"
 	},
 /area/desert_dam/interior/lab_northeast/east_lab_east_entrance)
+"pvZ" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/effect/landmark/weed_node,
+/turf/open/floor,
+/area/desert_dam/interior/lab_northeast/east_lab_lobby)
 "pwc" = (
 /obj/effect/landmark/xeno_resin_wall,
 /obj/effect/landmark/xeno_resin_wall,
@@ -110277,7 +110284,7 @@ aGH
 aGH
 aBk
 aHb
-aHA
+uXk
 aBk
 aBk
 aBk
@@ -118185,7 +118192,7 @@ vWS
 asL
 anP
 auQ
-avh
+pvZ
 aww
 vPF
 iTp
@@ -122640,7 +122647,7 @@ dTs
 bAw
 bAw
 bAw
-bAw
+qew
 bGp
 dTs
 dTs
