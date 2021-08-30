@@ -537,7 +537,7 @@
 
 /obj/item/weapon/gun/launcher/m92/attackby(obj/item/I, mob/user, params)
 	if(!istype(I, /obj/item/explosive/grenade))
-		return
+		return ..()
 
 	if(length(grenades) >= max_grenades)
 		to_chat(user, span_warning("The grenade launcher cannot hold more grenades!"))
@@ -744,7 +744,7 @@
 
 /obj/item/weapon/gun/launcher/m81/attackby(obj/item/I, mob/user, params)
 	if(!istype(I, /obj/item/explosive/grenade))
-		return
+		return ..()
 
 	if(!istype(I, grenade_type_allowed))
 		to_chat(user, span_warning("[src] can't use this type of grenade!"))

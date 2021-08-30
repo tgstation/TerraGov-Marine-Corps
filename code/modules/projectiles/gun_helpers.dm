@@ -228,6 +228,9 @@ should be alright.
 	if(.)
 		return
 
+	if(istype(src, /obj/item/weapon/gun/launcher)) //This is to allow the parent proc to call and not fuck up GLs. This is temporary until I unfuck Gls.
+		return
+
 	if(flags_gun_features & GUN_BURST_FIRING)
 		return
 
