@@ -7,7 +7,7 @@
 	icon = 'icons/obj/factory_refill.dmi'
 	icon_state = "empty"
 	///Typepath for the output machine we want to be ejecting
-	var/refill_type = /obj/machinery/outputter
+	var/refill_type = /obj/item/factory_part
 	///By how much we wan to refill the target machine
 	var/refill_amount = 30
 
@@ -76,9 +76,11 @@
 	if(!isfactoryrefill(I) || user.a_intent == INTENT_HARM)
 		return ..()
 	var/obj/item/factory_refill/refill = I
-	if(!istype(src, refill.refill_type))
-		balloon_alert(user, "Filler incompatible")
-		return
+	if(!ispath(production_type, refill.refill_type))
+		if(production_amount_left)
+			balloon_alert(user, "Filler incompatible")
+			return
+		production_type = refill.refill_type
 	var/to_refill = min(max_fill_amount - production_amount_left, refill.refill_amount)
 	production_amount_left += to_refill
 	refill.refill_amount -= to_refill
@@ -87,26 +89,58 @@
 		qdel(refill)
 		new /obj/item/stack/sheet/metal(user.loc)//simulates leftover trash
 
-/obj/machinery/outputter/phosnade
-	name = "Phosphorus resistant plate outputter"
-	desc = "A machine outputting large plates with phosphorus resistant laminate."
-	max_fill_amount = 70
-	production_type = /obj/item/factory_part/phosnade
-
 /obj/item/factory_refill/phosnade
-	name = "Phosphorus resistant laminate plates"
-	desc = "A box with what seem to be strangely colored metal plates inside. Used to refill Outputters."
-	icon_state = "phosphorus"
-	refill_type = /obj/machinery/outputter/phosnade
-
-/obj/machinery/outputter/bignade
-	name = "rounded grenade plate outputter"
-	desc = "A large machine that produces plating for grenade casings."
-	max_fill_amount = 120
-	production_type = /obj/item/factory_part/bignade
+	name = "box of rounded metal plates"
+	desc = "A box with round metal plates inside. Used to refill Outputters."
+	icon_state = "grenade"
 
 /obj/item/factory_refill/bignade
 	name = "box of rounded metal plates"
 	desc = "A box with round metal plates inside. Used to refill Outputters."
 	icon_state = "grenade"
-	refill_type = /obj/machinery/outputter/bignade
+
+
+/obj/item/factory_refill/pizza
+	name = "box of rounded metal plates"
+	desc = "A box with round metal plates inside. Used to refill Outputters."
+	icon_state = "grenade"
+
+/obj/item/factory_refill/sadar_wp
+	name = "box of rounded metal plates"
+	desc = "A box with round metal plates inside. Used to refill Outputters."
+	icon_state = "grenade"
+
+/obj/item/factory_refill/sadar_ap
+	name = "box of rounded metal plates"
+	desc = "A box with round metal plates inside. Used to refill Outputters."
+	icon_state = "grenade"
+
+/obj/item/factory_refill/sadar_he
+	name = "box of rounded metal plates"
+	desc = "A box with round metal plates inside. Used to refill Outputters."
+	icon_state = "grenade"
+
+/obj/item/factory_refill/light_rr_missile
+	name = "box of rounded metal plates"
+	desc = "A box with round metal plates inside. Used to refill Outputters."
+	icon_state = "grenade"
+
+/obj/item/factory_refill/normal_rr_missile
+	name = "box of rounded metal plates"
+	desc = "A box with round metal plates inside. Used to refill Outputters."
+	icon_state = "grenade"
+
+/obj/item/factory_refill/sadar_he
+	name = "box of rounded metal plates"
+	desc = "A box with round metal plates inside. Used to refill Outputters."
+	icon_state = "grenade"
+
+/obj/item/factory_refill/claymore
+	name = "box of rounded metal plates"
+	desc = "A box with round metal plates inside. Used to refill Outputters."
+	icon_state = "grenade"
+
+/obj/item/factory_refill/smartgunner_rifle_box
+	name = "box of rounded metal plates"
+	desc = "A box with round metal plates inside. Used to refill Outputters."
+	icon_state = "grenade"

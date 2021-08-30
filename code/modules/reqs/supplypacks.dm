@@ -1589,64 +1589,43 @@ FACTORY
 		/obj/machinery/factory/cutter,
 		/obj/machinery/factory/heater,
 		/obj/machinery/factory/flatter,
-		/obj/machinery/factory/former
+		/obj/machinery/factory/former,
+		/obj/machinery/outputter,
+		/obj/item/paper/factoryhowto,
 	)
 	cost = 40
 
 /datum/supply_packs/factory/cutter
 	name = "Industrial cutter"
-	contains = list(
-		/obj/machinery/factory/cutter
-	)
+	contains = list(/obj/machinery/factory/cutter)
 	cost = 10
 
 /datum/supply_packs/factory/heater
 	name = "Industrial heater"
-	contains = list(
-		/obj/machinery/factory/heater
-	)
+	contains = list(/obj/machinery/factory/heater)
 	cost = 10
 
 /datum/supply_packs/factory/flatter
 	name = "Industrial flatter"
-	contains = list(
-		/obj/machinery/factory/flatter
-	)
+	contains = list(/obj/machinery/factory/flatter)
 	cost = 10
 
 /datum/supply_packs/factory/former
 	name = "Industrial former"
-	contains = list(
-		/obj/machinery/factory/former
-	)
+	contains = list(/obj/machinery/factory/former)
 	cost = 10
 
-/datum/supply_packs/factory/phosrefill
-	name = "Phosphorus-resistant plates outputter"
-	contains = list(
-		/obj/machinery/outputter/phosnade
-	)
+/datum/supply_packs/factory/outputter
+	name = "Industrial outputter"
+	contains = list(/obj/machinery/outputter)
 	cost = 10
 
-/datum/supply_packs/factory/phosoutputter
-	name = "2x Phosphorus-resistant plates refill"
-	contains = list(
-		/obj/item/factory_refill/phosnade,
-		/obj/item/factory_refill/phosnade
-	)
+/datum/supply_packs/factory/phosphosrefill
+	name = "Phosphorus-resistant plates refill"
+	contains = list(/obj/item/factory_refill/phosnade)
 	cost = 10
 
-/datum/supply_packs/factory/m15refill
-	name = "Rounded plates outputter"
-	contains = list(
-		/obj/machinery/outputter/bignade
-	)
-	cost = 10
-
-/datum/supply_packs/factory/m15outputter
-	name = "2x rounded plates refill"
-	contains = list(
-		/obj/item/factory_refill/bignade,
-		/obj/item/factory_refill/bignade
-	)
+/datum/supply_packs/factory/bignaderefill
+	name = "Rounded M15 plates refill"
+	contains = list(/obj/item/factory_refill/bignade)
 	cost = 10
