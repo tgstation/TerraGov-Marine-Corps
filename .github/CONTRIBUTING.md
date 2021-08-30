@@ -798,7 +798,7 @@ File comments
  */
 ```
 
-## Map specifications
+### Map specifications
 
 Any new map or map change must comply to these specifications.
 
@@ -813,6 +813,10 @@ Xenos should not be able to build near the fob before shutters are down. As such
 ## Working electrical system
 
 Every area must have an APC. A ground map must have roughly 10 generators, with working SMES nearby. A shipmap must be fully wired and its electrical system fully working at the start of the game
+
+## Connected pipenet
+
+Every ship should have a believable and complete pipe system (ventilation, scrubbers). All pipes must belong to the same network. No pipes ending nowhere. Pipes groundside are not mandatory, but they add to the atmosphere and are usefull to xeno. 
 
 ## Xenos related items (walls, weeds, silos, etc.)
 
