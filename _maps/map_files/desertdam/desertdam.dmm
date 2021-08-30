@@ -13899,13 +13899,14 @@
 /turf/open/floor/wood,
 /area/desert_dam/building/administration/overseer_office)
 "bdD" = (
-/obj/machinery/door/poddoor/shutters/mainship{
-	dir = 2;
-	id = "hangar_dam_1";
-	name = "\improper Hangar Shutters"
-	},
 /obj/effect/decal/warning_stripes{
 	icon_state = "S"
+	},
+/obj/machinery/door/poddoor/mainship/indestructible{
+	desc = "Heavy shutters reinforced to prevent breaches, no way to get through here.";
+	dir = 2;
+	id = "hangar_dam_1";
+	name = "\improper Hangar Blast Doors"
 	},
 /turf/open/floor/prison{
 	dir = 10;
