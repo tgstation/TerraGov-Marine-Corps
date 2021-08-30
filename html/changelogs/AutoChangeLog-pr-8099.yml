@@ -1,4 +1,0 @@
-author: "TiviPlus"
-delete-after: True
-changes: 
-  - admin: "Admins can now cancel OB's and OB firing now has a game log"
