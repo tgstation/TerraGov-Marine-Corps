@@ -127,7 +127,8 @@
 /datum/action/xeno_action/activable/plant_weeds/action_activate()
 	if(max_range)
 		return ..()
-	plant_weeds(owner)
+	if(can_use_action())
+		plant_weeds(owner)
 
 /datum/action/xeno_action/activable/plant_weeds/use_ability(atom/A)
 	plant_weeds(A)
