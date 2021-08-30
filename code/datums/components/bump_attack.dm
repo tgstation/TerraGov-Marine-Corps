@@ -26,6 +26,7 @@
 
 /datum/component/bump_attack/UnregisterFromParent()
 	toggle_action?.remove_action(parent)
+	qdel(src)
 
 /datum/component/bump_attack/Destroy(force, silent)
 	QDEL_NULL(toggle_action)

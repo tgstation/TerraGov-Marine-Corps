@@ -129,6 +129,8 @@
 
 /mob/living/carbon/xenomorph/hivemind/proc/check_weeds(turf/T, strict_turf_check = FALSE)
 	SHOULD_BE_PURE(TRUE)
+	if(isnull(T))
+		return FALSE
 	. = TRUE
 	if(locate(/obj/flamer_fire) in T)
 		return FALSE
