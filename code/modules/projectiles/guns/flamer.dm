@@ -3,10 +3,8 @@
 //FLAMETHROWER
 
 /obj/item/weapon/gun/flamer
-	name = "\improper M240A1 incinerator unit"
-	desc = "The M240A1 has proven to be one of the most effective weapons at clearing out soft-targets. This is a weapon to be feared and respected as it is quite deadly."
-	icon_state = "m240"
-	item_state = "m240"
+	name = "flamer"
+	desc = "flame go froosh"
 	flags_equip_slot = ITEM_SLOT_BACK
 	w_class = WEIGHT_CLASS_BULKY
 	force = 15
@@ -29,6 +27,11 @@
 	attachable_offset = list("rail_x" = 12, "rail_y" = 23)
 	fire_delay = 4
 
+/obj/item/weapon/gun/flamer/big_flamer
+	name = "\improper M240A1 incinerator unit"
+	desc = "The M240A1 has proven to be one of the most effective weapons at clearing out soft-targets. This is a weapon to be feared and respected as it is quite deadly."
+	icon_state = "m240"
+	item_state = "m240"
 
 /obj/item/weapon/gun/flamer/mini_flamer
 	name = "mini flamethrower"
@@ -373,7 +376,7 @@
 		return current_mag.current_rounds
 
 
-/obj/item/weapon/gun/flamer/marinestandard
+/obj/item/weapon/gun/flamer/big_flamer/marinestandard
 	name = "\improper TL-84 flamethrower"
 	desc = "The TL-84 flamethrower is the current standard issue flamethrower of the TGMC, and is used for area control and urban combat. Use unique action to use hydro cannon"
 	current_mag = /obj/item/ammo_magazine/flamer_tank/large
@@ -391,14 +394,14 @@
 	///How much water the hydro cannon has
 	var/water_count = 0
 
-/obj/item/weapon/gun/flamer/marinestandard/Initialize()
+/obj/item/weapon/gun/flamer/big_flamer/marinestandard/Initialize()
 	. = ..()
 	reagents = new /datum/reagents(FLAMER_WATER)
 	reagents.my_atom = src
 	reagents.add_reagent(/datum/reagent/water, reagents.maximum_volume)
 	water_count = reagents.maximum_volume
 
-/obj/item/weapon/gun/flamer/marinestandard/reload(mob/user, obj/item/ammo_magazine/magazine)
+/obj/item/weapon/gun/flamer/big_flamer/marinestandard/reload(mob/user, obj/item/ammo_magazine/magazine)
 	if(!magazine || !istype(magazine))
 		to_chat(user, span_warning("That's not a magazine!"))
 		return
@@ -432,7 +435,7 @@
 	update_icon()
 	return TRUE
 
-/obj/item/weapon/gun/flamer/marinestandard/wield(mob/user)//Auto linking
+/obj/item/weapon/gun/flamer/big_flamer/marinestandard/wield(mob/user)//Auto linking
 	if (!current_mag)
 		var/mob/living/carbon/human/human_user = user
 		var/obj/item/ammo_magazine/flamer_tank/backtank/back_tank = human_user.get_type_in_slots(/obj/item/ammo_magazine/flamer_tank/backtank)
@@ -440,18 +443,18 @@
 			attach_fueltank(user, back_tank)
 	return ..()
 
-/obj/item/weapon/gun/flamer/marinestandard/able_to_fire(mob/user)
+/obj/item/weapon/gun/flamer/big_flamer/marinestandard/able_to_fire(mob/user)
 	. = ..()
 	if(.)
 		if(!current_mag || !current_mag.current_rounds)
 			return
 
-/obj/item/weapon/gun/flamer/marinestandard/examine(mob/user)
+/obj/item/weapon/gun/flamer/big_flamer/marinestandard/examine(mob/user)
 	. = ..()
 	to_chat(user, span_notice("Its hydro cannon contains [reagents.get_reagent_amount(/datum/reagent/water)]/[reagents.maximum_volume] units of water!"))
 
 
-/obj/item/weapon/gun/flamer/marinestandard/unique_action(mob/user)
+/obj/item/weapon/gun/flamer/big_flamer/marinestandard/unique_action(mob/user)
 	. = ..()
 	if(!.)
 		return
@@ -471,7 +474,7 @@
 	SEND_SIGNAL(src, COMSIG_ITEM_HYDRO_CANNON_TOGGLED)
 	return TRUE
 
-/obj/item/weapon/gun/flamer/marinestandard/attach_fueltank(mob/user, obj/item/ammo_magazine/flamer_tank/backtank/fueltank)
+/obj/item/weapon/gun/flamer/big_flamer/marinestandard/attach_fueltank(mob/user, obj/item/ammo_magazine/flamer_tank/backtank/fueltank)
 	if (!istype(fueltank))
 		to_chat(user, span_warning("That's not an attachable fuel tank!"))
 		return
@@ -499,7 +502,7 @@
 	var/obj/screen/ammo/A = user.hud_used.ammo
 	A.update_hud(user, src)
 
-/obj/item/weapon/gun/flamer/marinestandard/Fire()
+/obj/item/weapon/gun/flamer/big_flamer/marinestandard/Fire()
 	if(!target)
 		return
 	if(hydro_active && (world.time > last_use + 10))
@@ -520,7 +523,7 @@
 	return ..()
 
 ///Flamer windup called before firing
-/obj/item/weapon/gun/flamer/marinestandard/proc/do_windup()
+/obj/item/weapon/gun/flamer/big_flamer/marinestandard/proc/do_windup()
 	windup_checked = WEAPON_WINDUP_CHECKING
 	if(!do_after(gun_user, 1 SECONDS, TRUE, src))
 		windup_checked = WEAPON_WINDUP_NOT_CHECKED
@@ -528,7 +531,7 @@
 	windup_checked = WEAPON_WINDUP_CHECKED
 	Fire()
 
-/obj/item/weapon/gun/flamer/marinestandard/afterattack(atom/target, mob/user)
+/obj/item/weapon/gun/flamer/big_flamer/marinestandard/afterattack(atom/target, mob/user)
 	. = ..()
 	if(istype(target, /obj/structure/reagent_dispensers/watertank) && get_dist(user,target) <= 1)
 		var/obj/o = target
@@ -540,12 +543,12 @@
 		A.update_hud(user, src)
 		return
 
-/obj/item/weapon/gun/flamer/marinestandard/get_ammo_count()
+/obj/item/weapon/gun/flamer/big_flamer/marinestandard/get_ammo_count()
 	if (hydro_active)
 		return max(water_count,0)
 	return ..()
 
-/obj/item/weapon/gun/flamer/marinestandard/get_ammo_type()
+/obj/item/weapon/gun/flamer/big_flamer/marinestandard/get_ammo_type()
 	if (hydro_active)
 		return list("water","water_empty")
 	return ..()

@@ -369,7 +369,7 @@
 		/obj/item/weapon/gun/shotgun/pump/cmb,
 		/obj/item/weapon/gun/shotgun/double,
 		/obj/item/weapon/gun/shotgun/double/sawn,
-		/obj/item/weapon/gun/flamer/marinestandard,
+		/obj/item/weapon/gun/flamer/big_flamer/marinestandard,
 		/obj/item/weapon/gun/rifle/standard_autosniper,
 		/obj/item/weapon/energy/axe,
 	)

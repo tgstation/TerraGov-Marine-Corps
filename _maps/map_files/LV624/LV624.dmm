@@ -11767,7 +11767,7 @@
 /area/lv624/lazarus/secure_storage)
 "bou" = (
 /obj/structure/table/mainship,
-/obj/item/weapon/gun/flamer,
+/obj/item/weapon/gun/flamer/big_flamer,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/secure_storage)
 "bov" = (
