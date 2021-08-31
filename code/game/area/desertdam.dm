@@ -164,6 +164,10 @@
 	name = "Engineering"
 	icon_state = ""
 
+/area/desert_dam/interior/east_engineering
+	name = "Eastern Engineering"
+	icon_state = "yellow"
+
 /area/desert_dam/interior/dam_interior/north_tunnel_entrance
 	name = "Engineering North Tunnel Entrance"
 	icon_state = "yellow"
@@ -700,7 +704,7 @@
 /area/desert_dam/exterior/landing_pad_one_external
 	name = "Airstrip Landing Valley"
 	icon_state = "landing_pad_ext"
-	minimap_color = MINIMAP_AREA_LZ
+	minimap_color = MINIMAP_AREA_COLONY
 
 
 //Landing Pad for the Normandy. THIS IS NOT THE SHUTTLE AREA
@@ -711,7 +715,7 @@
 /area/desert_dam/exterior/landing_pad_two_external
 	name = "Aerodrome Landing Valley"
 	icon_state = "landing_pad_ext"
-	minimap_color = MINIMAP_AREA_LZ
+	minimap_color = MINIMAP_AREA_COLONY
 
 //Valleys
 //Near LZ
