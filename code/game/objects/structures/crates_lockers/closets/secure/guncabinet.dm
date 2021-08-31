@@ -104,7 +104,7 @@
 	req_access = list(ACCESS_MARINE_RESEARCH)
 
 /obj/structure/closet/secure_closet/guncabinet/incendiary/PopulateContents()
-	new /obj/item/weapon/gun/flamer(src)
+	new /obj/item/weapon/gun/flamer/big_flamer(src)
 	new /obj/item/explosive/grenade/incendiary(src)
 
 
