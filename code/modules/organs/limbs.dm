@@ -455,12 +455,12 @@ Note that amputating the affected organ does in fact remove the infection from t
 	for(var/datum/wound/W in wounds)
 		//Open wounds can become infected
 		if (owner.germ_level > W.germ_level && W.infection_check() && W.damage)
-			W.germ_level += min(1,round(W.damage/20)) //The bigger the wound, the more germs will enter
+			W.germ_level += max(1,round(W.damage/20)) //The bigger the wound, the more germs will enter
 
 		if (antibiotics < MIN_ANTIBIOTICS)
 			//Infected wounds raise the organ's germ level.
 			if (W.germ_level)
-				germ_level += min(1,round(W.germ_level/35))
+				germ_level += max(1,round(W.germ_level/35))
 		else if (W.germ_level && prob(80)) //Antibiotics wont be very effective it the wound is still open
 			germ_level++
 
