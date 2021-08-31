@@ -19,7 +19,6 @@
 
 	ignored_terrains = list(
 		/obj/machinery/deployable/mounted,
-		/turf/closed/glass,
 		/obj/machinery/miner,
 	)
 
