@@ -829,6 +829,14 @@ Adding corpse spawner also add to the atmospher, but they are not mandatory.
 
 Any silo placed on map must be protected by enough fog. This fog only appears in crash gamemode and is here to prevent marines to go near xenos spawn locations
 
+## Intel and nuke disk computers 
+
+There should be a reasonnable amount of intel computers placed in areas with apc. 3 nuke disk computer (yellow, red, blue) must be placed around the map. A nuke landmark has to be present as well somewhere.
+
+## LZ requirements
+
+LZ must be marqued (lz1, lz2). The appropriate shuttle console landmark should be placed inside the fob. It must be surrounded by shutters. It has to have an apc to power the area, and a button to open the shutters.
+
 ## Pull Request Process
 
 There is no strict process when it comes to merging pull requests. Pull requests will sometimes take a while before they are looked at by a maintainer; the bigger the change, the more time it will take before they are accepted into the code. Every team member is a volunteer who is giving up their own time to help maintain and contribute, so please be courteous and respectful. Here are some helpful ways to make it easier for you and for the maintainers when making a pull request.
