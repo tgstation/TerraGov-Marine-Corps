@@ -65,7 +65,7 @@
 		SSminimaps.add_marker(src, z, hud_flags = MINIMAP_FLAG_XENO, iconstate = xeno_caste.minimap_icon)
 
 ///Change the caste of the xeno. If restore health is true, then health is set to the new max health
-/mob/living/carbon/xenomorph/proc/set_datum(restore_health = TRUE)
+/mob/living/carbon/xenomorph/proc/set_datum(restore_health_and_plasma = TRUE)
 	if(!caste_base_type)
 		CRASH("xeno spawned without a caste_base_type set")
 	if(!GLOB.xeno_caste_datums[caste_base_type])
@@ -79,9 +79,9 @@
 		CRASH("error with caste datum")
 	xeno_caste = X
 	xeno_caste.on_caste_applied(src)
-	plasma_stored = xeno_caste.plasma_max
 	maxHealth = xeno_caste.max_health * GLOB.xeno_stat_multiplicator_buff
-	if(restore_health)
+	if(restore_health_and_plasma)
+		plasma_stored = xeno_caste.plasma_max
 		health = maxHealth
 	setXenoCasteSpeed(xeno_caste.speed)
 	soft_armor = getArmor(arglist(xeno_caste.soft_armor))
