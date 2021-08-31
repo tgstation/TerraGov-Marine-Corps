@@ -67632,7 +67632,7 @@
 /obj/machinery/door/poddoor/shutters/mainship{
 	id = "port_authority1"
 	},
-/turf/open/space/basic,
+/turf/open/floor/prison,
 /area/desert_dam/exterior/landing_pad_two_external)
 "wcc" = (
 /obj/effect/decal/warning_stripes{
