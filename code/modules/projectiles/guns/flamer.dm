@@ -277,7 +277,8 @@
 			break
 		if(!current_mag?.current_rounds)
 			break
-		if(distance > loaded_ammo.max_range)
+		var/range = istype(src, /obj/item/weapon/gun/flamer/mini_flamer) ? 4 : loaded_ammo.max_range //Temporary hardcode range of miniflamer.
+		if(distance > range) 
 			break
 
 		var/blocked = FALSE
