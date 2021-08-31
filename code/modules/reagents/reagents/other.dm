@@ -641,7 +641,11 @@
 	if(!(method in list(TOUCH, VAPOR, PATCH)))
 		return
 	L.germ_level -= min(volume * 20 * touch_protection, L.germ_level)
-	if((L.getFireLoss() > 30 || L.getBruteLoss() > 30) && prob(10)) // >Spraying space bleach on open wounds
+	if(ishuman(L))
+		var/mob/living/carbon/human/disinfectee = L
+		for(var/datum/limb/nub AS in disinfectee.limbs)
+			nub.disinfect() //Only removes germs from individual external wounds. Won't help with the limb itself having a high germ level.
+	if(prob(L.getFireLoss() + L.getBruteLoss())) // >Spraying space bleach on open wounds
 		if(iscarbon(L))
 			var/mob/living/carbon/C = L
 			if(C.species.species_flags & NO_PAIN)
