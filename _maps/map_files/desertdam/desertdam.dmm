@@ -59292,7 +59292,7 @@
 "odS" = (
 /obj/structure/window/framed/colony/reinforced,
 /obj/machinery/door/poddoor/shutters/mainship{
-	id = port_authority1
+	id = "port_authority1"
 	},
 /turf/closed/wall/r_wall/chigusa,
 /area/desert_dam/exterior/landing_pad_two_external)
@@ -60272,7 +60272,7 @@
 /obj/structure/cable,
 /obj/machinery/door/poddoor/shutters/mainship{
 	dir = 1;
-	id = port_authority1
+	id = "port_authority1"
 	},
 /turf/open/floor/prison,
 /area/desert_dam/exterior/landing_pad_two_external)
@@ -61570,7 +61570,7 @@
 /obj/item/tool/crowbar,
 /obj/effect/spawner/random/tool,
 /obj/machinery/door_control{
-	id = port_authority1;
+	id = "port_authority1";
 	name = "Port Admin Lockdown Shutters"
 	},
 /turf/open/floor/prison,
@@ -67630,7 +67630,7 @@
 "wbR" = (
 /obj/structure/window/framed/colony/reinforced,
 /obj/machinery/door/poddoor/shutters/mainship{
-	id = port_authority1
+	id = "port_authority1"
 	},
 /turf/open/space/basic,
 /area/desert_dam/exterior/landing_pad_two_external)
@@ -68129,7 +68129,7 @@
 /area/desert_dam/exterior/valley/valley_crashsite)
 "wCZ" = (
 /obj/machinery/door/poddoor/shutters/mainship{
-	id = port_authority1
+	id = "port_authority1"
 	},
 /turf/closed/wall/r_wall/chigusa,
 /area/desert_dam/exterior/landing_pad_two_external)
