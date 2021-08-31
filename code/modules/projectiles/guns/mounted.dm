@@ -63,6 +63,7 @@
 	undeploy_time = 3 SECONDS
 
 	max_integrity = 125
+	soft_armor = list("melee" = 0, "bullet" = 50, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 100, "rad" = 0, "fire" = 0, "acid" = 0)
 
 ///This and get_ammo_count is to make sure the ammo counter functions.
 /obj/item/weapon/gun/tl102/get_ammo_type()
@@ -147,4 +148,5 @@
 	undeploy_time = 3 SECONDS
 
 	max_integrity = 150
+	soft_armor = list("melee" = 0, "bullet" = 50, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 100, "rad" = 0, "fire" = 0, "acid" = 0)
 
