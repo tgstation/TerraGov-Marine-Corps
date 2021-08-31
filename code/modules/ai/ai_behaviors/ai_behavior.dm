@@ -37,6 +37,7 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 		return
 	//We always use the escorted atom as our reference point for looking for target. So if we don't have any escorted atom, we take ourselve as the reference
 	src.escorted_atom = escorted_atom ? escorted_atom : parent_to_assign
+	RegisterSignal(src.escorted_atom, COMSIG_PARENT_QDELETING, .proc/escorted_atom_destroyed)
 	mob_parent = parent_to_assign
 	START_PROCESSING(SSprocessing, src)
 
@@ -46,6 +47,14 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 	escorted_atom = null
 	mob_parent = null
 	atom_to_walk_to = null
+
+///Signal handler to prevent escorted_atom harddel
+/datum/ai_behavior/proc/escorted_atom_destroyed()
+	SIGNAL_HANDLER
+	if(escorted_atom != mob_parent)
+		escorted_atom = mob_parent
+		return
+	escorted_atom = null
 
 ///Initiate our base behavior
 /datum/ai_behavior/proc/late_initialize()
@@ -74,8 +83,15 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 		current_action = next_action
 	if(next_target)
 		atom_to_walk_to = next_target
+		RegisterSignal(atom_to_walk_to, COMSIG_PARENT_QDELETING, .proc/clean_atom_to_walk_to)
 		mob_parent.AddElement(/datum/element/pathfinder, atom_to_walk_to, distance_to_maintain, sidestep_prob)
 	register_action_signals(current_action)
+
+///Signal handler when the target is destroyed, to get back to initial behavior
+/datum/ai_behavior/proc/clean_atom_to_walk_to()
+	SIGNAL_HANDLER
+	atom_to_walk_to = null
+	late_initialize()
 
 ///Try to find a node to go to. If ignore_current_node is true, we will just find the closest current_node, and not the current_node best adjacent node
 /datum/ai_behavior/proc/look_for_next_node(ignore_current_node = TRUE)
