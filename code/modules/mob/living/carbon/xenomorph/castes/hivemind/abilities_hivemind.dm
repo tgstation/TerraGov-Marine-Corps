@@ -8,7 +8,7 @@
 
 /datum/action/xeno_action/activable/secrete_resin/ranged/slow
 	base_wait = 2.5 SECONDS
-	max_range = 5
+	max_range = 3
 
 /datum/action/xeno_action/change_form
 	name = "Change form"
