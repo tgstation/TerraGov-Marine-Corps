@@ -1,5 +1,3 @@
-#define MINIMAP_AREA_FILTRATION "#0ef1f1f6" //we won't be needing this one on any other map
-
 //Base Instance
 /area/desert_dam
 	name = "Desert Dam"
@@ -9,7 +7,6 @@
 // areas under rock
 /area/desert_dam/interior
 	ceiling = CEILING_METAL
-	minimap_color = MINIMAP_AREA_SCIENCE
 	outside = FALSE
 //NorthEastern Lab Section
 /area/desert_dam/interior/lab_northeast
@@ -104,7 +101,6 @@
 /area/desert_dam/interior/dam_interior/northwestern_tunnel
 	name = "Engineering Northwestern Tunnel"
 	icon_state = "green"
-	minimap_color = MINIMAP_AREA_HANG
 /area/desert_dam/interior/dam_interior/north_tunnel
 	name = "Engineering Northern Tunnel"
 	icon_state = "blue-red"
@@ -133,11 +129,9 @@
 /area/desert_dam/interior/dam_interior/hanger
 	name = "Engineering Hangar"
 	icon_state = "hangar"
-	minimap_color = MINIMAP_AREA_HANG
 /area/desert_dam/interior/dam_interior/hangar_storage
 	name = "Engineering Hangar Storage"
 	icon_state = "storage"
-	minimap_color = MINIMAP_AREA_HANG
 /area/desert_dam/interior/dam_interior/auxilary_tool_storage
 	name = "Engineering Auxiliary Tool Storage"
 	icon_state = "red"
@@ -250,8 +244,6 @@
 	icon_state = "western_ss"
 
 //Administration
-/area/desert_dam/building/administration
-	minimap_color = MINIMAP_AREA_CIVILIAN
 /area/desert_dam/building/administration/control_room
 	name = "Administration Landing Control Room"
 	icon_state = "yellow"
@@ -276,8 +268,6 @@
 
 
 //Bar
-/area/desert_dam/building/bar
-	minimap_color = MINIMAP_AREA_CIVILIAN
 /area/desert_dam/building/bar/bar
 	name = "Bar"
 	icon_state = "yellow"
@@ -290,8 +280,6 @@
 
 
 //Cafe
-/area/desert_dam/building/cafeteria
-	minimap_color = MINIMAP_AREA_CIVILIAN
 /area/desert_dam/building/cafeteria/cafeteria
 	name = "Cafeteria"
 	icon_state = "yellow"
@@ -310,8 +298,6 @@
 
 
 //Dorms
-/area/desert_dam/building/dorms/
-	minimap_color = MINIMAP_AREA_CIVILIAN
 /area/desert_dam/building/dorms/hallway_northwing
 	name = "Dormitory North Wing"
 	icon_state = "yellow"
@@ -398,8 +384,6 @@
 
 
 //Warehouse
-/area/desert_dam/building/warehouse
-	minimap_color = MINIMAP_AREA_HANG
 /area/desert_dam/building/warehouse/warehouse
 	name = "Warehouse"
 	icon_state = "yellow"
@@ -412,8 +396,6 @@
 
 
 //Hydroponics
-/area/desert_dam/building/hydroponics
-	minimap_color = MINIMAP_AREA_BOTANY
 /area/desert_dam/building/hydroponics/hydroponics
 	name = "Hydroponics"
 	icon_state = "hydro"
@@ -435,8 +417,6 @@
 	minimap_color = MINIMAP_AREA_ENGI
 
 //Water Treatment Plant 1
-/area/desert_dam/building/water_treatment_one
-	minimap_color = MINIMAP_AREA_FILTRATION
 /area/desert_dam/building/water_treatment_one
 	name = "Water Treatment One"
 	icon_state = "yellow"
@@ -465,7 +445,6 @@
 /area/desert_dam/building/water_treatment_one/purification
 	name = "Water Treatment One Purification"
 	icon_state = "green"
-	minimap_color = MINIMAP_AREA_FILTRATION
 /area/desert_dam/building/water_treatment_one/floodgate_control
 	name = "Water Treatment One Floodgate Control"
 	icon_state = "green"
@@ -479,8 +458,6 @@
 	icon_state = "green"
 
 //Water Treatment Plant 2
-/area/desert_dam/building/water_treatment_two
-	minimap_color = MINIMAP_AREA_FILTRATION
 /area/desert_dam/building/water_treatment_two
 	name = "Water Treatment Two"
 	icon_state = "yellow"
@@ -508,7 +485,6 @@
 /area/desert_dam/building/water_treatment_two/purification
 	name = "Water Treatment Two Purification"
 	icon_state = "green"
-	minimap_color = MINIMAP_AREA_FILTRATION
 /area/desert_dam/building/water_treatment_two/floodgate_control
 	name = "Water Treatment Two Floodgate Control"
 	icon_state = "green"
@@ -589,7 +565,6 @@
 /area/desert_dam/building/church
 	name = "Church"
 	icon_state = "courtroom"
-	minimap_color = MINIMAP_AREA_CIVILIAN
 
 //Mining area
 /area/desert_dam/building/mining
@@ -642,8 +617,6 @@
 
 
 //NorthWest Lab Buildings
-/area/desert_dam/building/lab_northwest
-	minimap_color = MINIMAP_AREA_SCIENCE
 /area/desert_dam/building/lab_northwest/west_lab_robotics
 	name = "West Lab Robotics"
 	icon_state = "ass_line"
@@ -677,7 +650,6 @@
 /area/desert_dam/building/lab_northwest/west_lab_xenoflora
 	name = "West Lab Xenoflora"
 	icon_state = "purple"
-	minimap_color = MINIMAP_AREA_BOTANY
 /area/desert_dam/building/lab_northeast/checkpoint
 	name = "East Lab Checkpoint"
 	icon_state = "red"
@@ -769,8 +741,6 @@
 
 
 //End of the river areas, no Next
-/area/desert_dam/exterior/river
-	minimap_color = MINIMAP_AREA_RIVER
 /area/desert_dam/exterior/river/riverside_northwest
 	name = "Northwestern Riverbed"
 	icon_state = "bluenew"
@@ -793,11 +763,9 @@
 
 /area/desert_dam/exterior/river/filtration_a
 	name = "Filtration Plant A"
-	minimap_color = MINIMAP_AREA_FILTRATION
 
 /area/desert_dam/exterior/river/filtration_b
 	name = "Filtration Plant B"
-	minimap_color = MINIMAP_AREA_FILTRATION
 
 //Areas that are rivers, but will not change because they're before the floodgates
 /area/desert_dam/exterior/river_mouth/southern
@@ -835,4 +803,3 @@
 /area/shuttle/tri_trans2/omega
 	icon_state = "shuttle2"
 
-#undef MINIMAP_AREA_FILTRATION
