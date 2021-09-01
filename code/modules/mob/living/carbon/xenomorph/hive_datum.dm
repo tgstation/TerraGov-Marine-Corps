@@ -703,11 +703,12 @@ to_chat will check for valid clients itself already so no need to double check f
 	var/difference = round(players[2] - (players[1] * 0.5)) // no of xenos - half the no of players
 
 	var/left_behind = 0
-	for(var/i in get_all_xenos())
-		var/mob/living/carbon/xenomorph/boarder = i
+	for(var/mob/living/carbon/xenomorph/boarder AS in get_all_xenos())
 		if(isdropshiparea(get_area(boarder)))
 			continue
 		if(!is_ground_level(boarder.z))
+			continue
+		if(isxenohivemind(boarder))
 			continue
 		INVOKE_ASYNC(boarder, /mob/living.proc/gib)
 		left_behind++

@@ -79,6 +79,12 @@
 	upgrade = XENO_UPGRADE_BASETYPE
 	return ..()
 
+/mob/living/carbon/xenomorph/hivemind/on_death()
+	upgrade = XENO_UPGRADE_BASETYPE
+	if(!QDELETED(core))
+		QDEL_NULL(core)
+	return ..()
+
 /mob/living/carbon/xenomorph/hivemind/change_form()
 	if(status_flags & INCORPOREAL && health != maxHealth)
 		to_chat(src, span_xenowarning("You do not have the strength to manifest yet!"))
