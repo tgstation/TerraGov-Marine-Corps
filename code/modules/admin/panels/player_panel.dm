@@ -399,6 +399,13 @@
 			body += "<b>Mob Role:</b> [L.job.title]<br>"
 
 	body += "<b>CID:</b> [M.computer_id] | <b>IP:</b> [M.ip_address]<br>"
+	if(M.client)
+		body += "<br>\[<b>First Seen:</b> [M.client.player_join_date]\]\[<b>Byond account registered on:</b> [M.client.account_join_date]\]"
+		if(M.client.related_accounts_cid || M.client.related_accounts_ip)
+			//if(M.client.related_accounts_cid != "Requires database" && M.client.related_accounts_ip != "Requires database")
+			body += "<br><b><font color=red>Player has related accounts</font></b> "
+		body += "\[ <a href='?_src_=holder;[HrefToken()];showrelatedacc=cid;client=[REF(M.client)]'>CID related accounts</a> | "
+		body += "<a href='?_src_=holder;[HrefToken()];showrelatedacc=ip;client=[REF(M.client)]'>IP related accounts</a> \]<br>"
 
 	body += "<b>CentCom Galactic Ban DB: </b> "
 	if(CONFIG_GET(string/centcom_ban_db))

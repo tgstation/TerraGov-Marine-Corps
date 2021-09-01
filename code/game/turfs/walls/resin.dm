@@ -12,7 +12,7 @@
 	max_integrity = 200
 	layer = RESIN_STRUCTURE_LAYER
 	tiles_with = list(/turf/closed/wall/resin, /turf/closed/wall/resin/membrane, /obj/structure/mineral_door/resin)
-	soft_armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
+	soft_armor = list("melee" = 0, "bullet" = 60, "laser" = 60, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
 
 
 /turf/closed/wall/resin/Initialize()
@@ -21,7 +21,7 @@
 
 
 /turf/closed/wall/resin/flamer_fire_act()
-	take_damage(50, BURN, "fire")
+	take_damage(15, BURN, "fire")
 
 
 /turf/closed/wall/resin/proc/thicken()
@@ -69,9 +69,9 @@
 		if(EXPLODE_DEVASTATE)
 			take_damage(600)
 		if(EXPLODE_HEAVY)
-			take_damage(rand(140, 300))
+			take_damage(rand(100, 200))
 		if(EXPLODE_LIGHT)
-			take_damage(rand(50, 100))
+			take_damage(rand(25, 50))
 
 
 /turf/closed/wall/resin/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
@@ -147,10 +147,10 @@
  * Regenerating walls that start with lower health, but grow to a much higher hp over time
  */
 /turf/closed/wall/resin/regenerating
-	max_integrity = 100
+	max_integrity = 150
 
 	/// Total health possible for a wall after regenerating at max health
-	var/max_upgradable_health = 600
+	var/max_upgradable_health = 300
 	/// How much the walls integrity heals per tick (5 seconds)
 	var/heal_per_tick = 25
 	/// How much the walls max_integrity increases per tick (5 seconds)
@@ -197,4 +197,4 @@
 
 /* Hivelord walls, they start off stronger */
 /turf/closed/wall/resin/regenerating/thick
-	max_integrity = 200
+	max_integrity = 250
