@@ -216,9 +216,6 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	else if(istype(W, /obj/item/assembly/igniter))
 		light(span_notice("[user] fiddles with [W], and manages to light [user.p_their()] [name]."))
 
-	else if(istype(W, /obj/item/attachable/attached_gun/flamer))
-		light(span_notice("[user] lights [user.p_their()] [src] with the [W]."))
-
 	else if(istype(W, /obj/item/weapon/gun/flamer))
 		light(span_notice("[user] lights [user.p_their()] [src] with the pilot light of the [W]."))
 
@@ -230,9 +227,8 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 				light(span_notice("[user] deftly lights [user.p_their()] [src] with the [L]'s low power setting."))
 			else
 				to_chat(user, span_warning("You try to light your [src] with the [L] but your power cell has no charge!"))
-		else if(istype(LAZYACCESS(G.attachments, ATTACHMENT_SLOT_UNDER), /obj/item/attachable/attached_gun/flamer))
-			light(span_notice("[user] lights [user.p_their()] [src] with the underbarrel [LAZYACCESS(G.attachments, ATTACHMENT_SLOT_UNDER)]."))
-
+		else if(istype(LAZYACCESS(G.attachments_by_slot, ATTACHMENT_SLOT_UNDER), /obj/item/weapon/gun/flamer))
+			light(span_notice("[user] lights [user.p_their()] [src] with the underbarrel [LAZYACCESS(G.attachments_by_slot, ATTACHMENT_SLOT_UNDER)]."))
 
 	else if(istype(W, /obj/item/tool/surgery/cautery))
 		light(span_notice("[user] lights [user.p_their()] [src] with the [W]."))

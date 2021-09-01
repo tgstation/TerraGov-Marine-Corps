@@ -663,3 +663,15 @@
   - bugfix: fixed some conveyors not pushing things in the direction they appeared
       to be facing
   - bugfix: Fixes autolathe not having conveyors
+2021-08-31:
+  BraveMole:
+  - balance: You can't put more than 2 guns in bags anymore.
+  - balance: Hunter illusion flickers when hit by projectiles
+  - bugfix: Prevent from dragging while riding a crusher
+  Pariah919:
+  - balance: marines have more messages telling them the severity of their wounds
+      when they self examine
+  vilereaver41:
+  - balance: neurotoxic spit for Sentinel, Praetorian,
+  - balance: After extensive testing the values have been increased slightly and should
+      now be the best they can be without gameplay being unfair.

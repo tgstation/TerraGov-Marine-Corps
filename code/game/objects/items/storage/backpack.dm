@@ -12,6 +12,9 @@
 	storage_slots = null
 	max_storage_space = 24
 	access_delay = 1.5 SECONDS
+	storage_type_limits = list(
+		/obj/item/weapon/gun = 2,
+	)
 
 /obj/item/storage/backpack/should_access_delay(obj/item/item, mob/user, taking_out)
 	if(!taking_out) // Always allow items to be tossed in instantly
@@ -707,18 +710,6 @@
 		playsound(loc, 'sound/effects/refill.ogg', 25, 1, 3)
 		FT.caliber = CALIBER_FUEL
 		to_chat(user, span_notice("You refill [FT] with [lowertext(FT.caliber)]."))
-		FT.update_icon()
-
-	else if(istype(I, /obj/item/attachable/attached_gun/flamer))
-		var/obj/item/attachable/attached_gun/flamer/FT = I
-		if(FT.current_rounds == FT.max_rounds || !reagents.total_volume)
-			return ..()
-
-		var/fuel_transfer_amount = min(reagents.total_volume, (FT.max_rounds - FT.current_rounds))
-		reagents.remove_reagent(/datum/reagent/fuel, fuel_transfer_amount)
-		FT.current_rounds += fuel_transfer_amount
-		playsound(loc, 'sound/effects/refill.ogg', 25, TRUE, 3)
-		to_chat(user, span_notice("You refill [FT] with fuel."))
 		FT.update_icon()
 
 	else

@@ -342,7 +342,7 @@
 		/obj/item/weapon/gun/shotgun/pump/t35,
 		/obj/item/weapon/gun/shotgun/combat,
 		/obj/item/weapon/gun/shotgun/combat/standardmarine,
-		/obj/item/weapon/gun/flamer,
+		/obj/item/weapon/gun/flamer/big_flamer,
 		/obj/item/weapon/gun/pistol/auto9,
 		/obj/item/weapon/gun/rifle/chambered,
 		/obj/item/weapon/gun/rifle/tx11,
@@ -369,7 +369,7 @@
 		/obj/item/weapon/gun/shotgun/pump/cmb,
 		/obj/item/weapon/gun/shotgun/double,
 		/obj/item/weapon/gun/shotgun/double/sawn,
-		/obj/item/weapon/gun/flamer/marinestandard,
+		/obj/item/weapon/gun/flamer/big_flamer/marinestandard,
 		/obj/item/weapon/gun/rifle/standard_autosniper,
 		/obj/item/weapon/energy/axe,
 	)
