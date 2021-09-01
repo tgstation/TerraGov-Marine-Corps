@@ -171,17 +171,14 @@ can cause issues with ammo types getting mixed up during the burst.
 	return ready_shotgun_tube()
 
 /obj/item/weapon/gun/shotgun/reload_into_chamber(mob/user)
-	if(active_attachable && active_attachable.flags_attach_features & ATTACH_PROJECTILE)
-		make_casing(active_attachable.type_of_casings)
-	else
-		make_casing(type_of_casings)
-		if(in_chamber)
-			QDEL_NULL(in_chamber)
+	make_casing(type_of_casings)
+	if(in_chamber)
+		QDEL_NULL(in_chamber)
 
-		//Time to move the tube position.
-		ready_in_chamber() //We're going to try and reload. If we don't get anything, icon change.
-		if(!current_mag.current_rounds && !in_chamber) //No rounds, nothing chambered.
-			update_icon()
+	//Time to move the tube position.
+	ready_in_chamber() //We're going to try and reload. If we don't get anything, icon change.
+	if(!current_mag.current_rounds && !in_chamber) //No rounds, nothing chambered.
+		update_icon()
 
 	return TRUE
 
@@ -221,7 +218,7 @@ can cause issues with ammo types getting mixed up during the burst.
 		/obj/item/attachable/stock/tactical,
 	)
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 19,"rail_x" = 10, "rail_y" = 21, "under_x" = 14, "under_y" = 16, "stock_x" = 14, "stock_y" = 16)
-	starting_attachment_types = list(/obj/item/attachable/attached_gun/grenade/unremovable/invisible)
+	starting_attachment_types = list(/obj/item/weapon/gun/launcher/m92/mini_grenade/invisable)
 
 	fire_delay = 15 //one shot every 1.5 seconds.
 	accuracy_mult = 1.15
@@ -263,8 +260,10 @@ can cause issues with ammo types getting mixed up during the burst.
 		/obj/item/attachable/heavy_barrel,
 		/obj/item/attachable/compensator,
 		/obj/item/attachable/magnetic_harness,
-		/obj/item/attachable/attached_gun/flamer,
-		/obj/item/attachable/attached_gun/shotgun,
+		/obj/item/weapon/gun/pistol/plasma_pistol,
+		/obj/item/weapon/gun/shotgun/combat/masterkey,
+		/obj/item/weapon/gun/flamer/mini_flamer,
+		/obj/item/weapon/gun/launcher/m92/mini_grenade,
 		/obj/item/attachable/motiondetector,
 	)
 
@@ -281,6 +280,21 @@ can cause issues with ammo types getting mixed up during the burst.
 	recoil_unwielded = 2
 	aim_slowdown = 0.6
 	wield_delay = 1 SECONDS
+
+/obj/item/weapon/gun/shotgun/combat/masterkey
+	name = "masterkey shotgun"
+	desc = "A weapon-mounted, three-shot shotgun. Reloadable with buckshot. The short barrel reduces the ammo's effectiveness, but allows it to be fired one handed."
+	icon = 'icons/Marine/marine-weapons.dmi'
+	icon_state = "masterkey"
+	attachable_allowed = list()
+	slot = ATTACHMENT_SLOT_UNDER
+	attach_delay = 3 SECONDS
+	detach_delay = 3 SECONDS
+	flags_gun_features = GUN_IS_ATTACHMENT|GUN_INTERNAL_MAG|GUN_SHOTGUN_CHAMBER|GUN_AMMO_COUNTER|GUN_ATTACHMENT_FIRE_ONLY|GUN_WIELDED_STABLE_FIRING_ONLY|GUN_CAN_POINTBLANK
+	current_mag = /obj/item/ammo_magazine/internal/shotgun/masterkey
+	recoil = 0
+	pixel_shift_x = 14
+	pixel_shift_y = 18
 
 //-------------------------------------------------------
 //DOUBLE SHOTTY
@@ -488,9 +502,10 @@ can cause issues with ammo types getting mixed up during the burst.
 		/obj/item/attachable/heavy_barrel,
 		/obj/item/attachable/compensator,
 		/obj/item/attachable/magnetic_harness,
-		/obj/item/attachable/attached_gun/flamer,
-		/obj/item/attachable/attached_gun/shotgun,
 		/obj/item/attachable/stock/shotgun,
+		/obj/item/weapon/gun/pistol/plasma_pistol,
+		/obj/item/weapon/gun/shotgun/combat/masterkey,
+		/obj/item/weapon/gun/flamer/mini_flamer,
 	)
 
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 10, "rail_y" = 21, "under_x" = 20, "under_y" = 14, "stock_x" = 20, "stock_y" = 14)
@@ -561,16 +576,13 @@ can cause issues with ammo types getting mixed up during the burst.
 	to_chat(user, span_notice("<b>You pump [src].</b>"))
 
 /obj/item/weapon/gun/shotgun/pump/reload_into_chamber(mob/user)
-	if(active_attachable && active_attachable.flags_attach_features & ATTACH_PROJECTILE)
-		make_casing(active_attachable.type_of_casings)
-	else
-		pump_lock = FALSE //fired successfully; unlock the pump
-		current_mag.used_casings++ //The shell was fired successfully. Add it to used.
-		if(in_chamber)
-			QDEL_NULL(in_chamber)
-		//Time to move the tube position.
-		if(!current_mag.current_rounds)
-			update_icon()//No rounds, nothing chambered.
+	pump_lock = FALSE //fired successfully; unlock the pump
+	current_mag.used_casings++ //The shell was fired successfully. Add it to used.
+	if(in_chamber)
+		QDEL_NULL(in_chamber)
+	//Time to move the tube position.
+	if(!current_mag.current_rounds)
+		update_icon()//No rounds, nothing chambered.
 
 	return TRUE
 
@@ -798,7 +810,6 @@ can cause issues with ammo types getting mixed up during the burst.
 
 	attachable_allowed = list(
 		/obj/item/attachable/angledgrip,
-		/obj/item/attachable/attached_gun/flamer,
 		/obj/item/attachable/bayonet,
 		/obj/item/attachable/bipod,
 		/obj/item/attachable/compensator,
@@ -814,6 +825,8 @@ can cause issues with ammo types getting mixed up during the burst.
 		/obj/item/attachable/scope/mini,
 		/obj/item/attachable/suppressor,
 		/obj/item/attachable/verticalgrip,
+		/obj/item/weapon/gun/pistol/plasma_pistol,
+		/obj/item/weapon/gun/flamer/mini_flamer,
 	)
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 17,"rail_x" = 12, "rail_y" = 19, "under_x" = 27, "under_y" = 16, "stock_x" = 0, "stock_y" = 0)
 
@@ -847,10 +860,11 @@ can cause issues with ammo types getting mixed up during the burst.
 		/obj/item/attachable/heavy_barrel,
 		/obj/item/attachable/compensator,
 		/obj/item/attachable/magnetic_harness,
-		/obj/item/attachable/attached_gun/flamer,
-		/obj/item/attachable/attached_gun/shotgun,
 		/obj/item/attachable/stock/t35stock,
 		/obj/item/attachable/motiondetector,
+		/obj/item/weapon/gun/pistol/plasma_pistol,
+		/obj/item/weapon/gun/shotgun/combat/masterkey,
+		/obj/item/weapon/gun/flamer/mini_flamer,
 	)
 
 	attachable_offset = list("muzzle_x" = 31, "muzzle_y" = 18,"rail_x" = 10, "rail_y" = 20, "under_x" = 21, "under_y" = 12, "stock_x" = 20, "stock_y" = 16)
