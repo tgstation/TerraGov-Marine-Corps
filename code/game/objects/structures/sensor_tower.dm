@@ -1,6 +1,6 @@
 /obj/structure/sensor_tower
 	name = "sensor tower"
-	desc = ""//Need a desc
+	desc = "A tall tower with a sensor array at the top and a control box at the bottom. Used to hack into colony control."
 	icon = 'icons/obj/structures/sensor.dmi'
 	icon_state = "sensor"
 	obj_flags = NONE

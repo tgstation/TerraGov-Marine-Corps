@@ -400,7 +400,7 @@
 	icon_state = "shuttle"
 
 /obj/effect/landmark/dropship_console_spawn_lz1/Initialize()
-	. =	..()
+	. = ..()
 	GLOB.lz1_shuttle_console_turfs_list += loc
 	return INITIALIZE_HINT_QDEL
 
@@ -410,7 +410,7 @@
 	icon_state = "shuttle"
 
 /obj/effect/landmark/dropship_console_spawn_lz2/Initialize()
-	. =	..()
+	. = ..()
 	GLOB.lz2_shuttle_console_turfs_list += loc
 	return INITIALIZE_HINT_QDEL
 
@@ -421,7 +421,7 @@
 
 /obj/effect/landmark/fob_sentry/Initialize()
 	. = ..()
-	GLOB.fob_sentries += loc
+	GLOB.fob_sentries_loc += loc
 	return INITIALIZE_HINT_QDEL
 
 /obj/effect/landmark/fob_sentry_rebel
@@ -430,8 +430,8 @@
 	icon_state = "sentry"
 
 /obj/effect/landmark/fob_sentry_rebel/Initialize()
-	. =	..()
-	GLOB.fob_sentries_rebel += loc
+	. = ..()
+	GLOB.fob_sentries_rebel_loc += loc
 	return INITIALIZE_HINT_QDEL
 
 /obj/effect/landmark/sensor_tower
@@ -440,7 +440,7 @@
 	icon_state = "sensor"
 
 /obj/effect/landmark/sensor_tower/Initialize()
-	. =	..()
+	. = ..()
 	var/area/area_to_control = get_area(src)
 	area_to_control.set_to_contested()
 	GLOB.sensor_towers += loc
