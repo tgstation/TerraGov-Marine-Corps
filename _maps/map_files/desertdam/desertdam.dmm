@@ -13542,6 +13542,7 @@
 	dir = 4
 	},
 /obj/structure/platform{
+	density = 0;
 	dir = 1
 	},
 /obj/structure/disposalpipe/segment{
@@ -13587,7 +13588,9 @@
 /obj/structure/stairs{
 	dir = 4
 	},
-/obj/structure/platform,
+/obj/structure/platform{
+	density = 0
+	},
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached{
@@ -14416,6 +14419,7 @@
 "bfB" = (
 /obj/structure/stairs,
 /obj/structure/platform{
+	density = 0;
 	dir = 8
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached{
@@ -14425,6 +14429,7 @@
 "bfC" = (
 /obj/structure/stairs,
 /obj/structure/platform{
+	density = 0;
 	dir = 4
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached{
@@ -18366,6 +18371,7 @@
 	dir = 1
 	},
 /obj/structure/platform{
+	density = 0;
 	dir = 4
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt/cement{
@@ -18945,6 +18951,7 @@
 	dir = 1
 	},
 /obj/structure/platform{
+	density = 0;
 	dir = 8
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt/cement{
@@ -20056,8 +20063,7 @@
 /area/desert_dam/building/security/courtroom)
 "bBU" = (
 /obj/machinery/power/apc{
-	dir = 8;
-	pixel_x = -30;
+	dir = 4;
 	start_charge = 0
 	},
 /obj/structure/cable,
@@ -22571,6 +22577,10 @@
 	icon_state = "darkyellow2"
 	},
 /area/desert_dam/interior/dam_interior/primary_tool_storage)
+"bLk" = (
+/obj/machinery/miner/damaged/platinum,
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/desert_dam/exterior/valley/valley_hydro)
 "bLm" = (
 /obj/effect/spawner/random/toolbox,
 /obj/structure/table/reinforced,
@@ -49745,6 +49755,10 @@
 	icon_state = "cell_stripe"
 	},
 /area/desert_dam/interior/dam_interior/hanger)
+"eLd" = (
+/obj/machinery/miner/damaged,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/desert_dam/exterior/valley/valley_hydro)
 "eLo" = (
 /obj/structure/cable,
 /turf/open/floor{
@@ -49759,6 +49773,10 @@
 	icon_state = "grimy"
 	},
 /area/desert_dam/building/bar/bar)
+"eLU" = (
+/obj/machinery/miner/damaged,
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/desert_dam/exterior/rock)
 "eLZ" = (
 /obj/structure/disposalpipe/segment,
 /obj/effect/decal/cleanable/dirt,
@@ -51162,6 +51180,10 @@
 /obj/docking_port/stationary/crashmode,
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/exterior/valley/valley_cargo)
+"grm" = (
+/obj/machinery/miner/damaged,
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/desert_dam/exterior/valley/valley_telecoms)
 "grx" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -51409,6 +51431,10 @@
 	icon_state = "tile"
 	},
 /area/desert_dam/exterior/valley/north_valley_dam)
+"gIF" = (
+/obj/machinery/miner/damaged/platinum,
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/desert_dam/exterior/valley/valley_crashsite)
 "gIR" = (
 /obj/docking_port/stationary/crashmode,
 /turf/open/floor/plating/ground/desertdam/asphalt,
@@ -51479,6 +51505,10 @@
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/desert_dam/interior/dam_interior/control_room)
+"gSq" = (
+/obj/machinery/miner/damaged,
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/desert_dam/exterior/valley/north_valley_dam)
 "gTc" = (
 /turf/open/ground/river/desertdam/clean/shallow_edge/corner2{
 	dir = 1
@@ -51773,6 +51803,10 @@
 /obj/structure/cable,
 /turf/open/floor/wood,
 /area/desert_dam/building/security/courtroom)
+"hls" = (
+/obj/machinery/miner/damaged/platinum,
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/desert_dam/exterior/valley/valley_civilian)
 "hlu" = (
 /obj/structure/cable,
 /turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached{
@@ -52486,6 +52520,10 @@
 	icon_state = "warnplate"
 	},
 /area/mainship/hull/upper_hull)
+"hUz" = (
+/obj/machinery/miner/damaged/platinum,
+/turf/open/floor/plating/ground/mars/random/dirt,
+/area/desert_dam/exterior/valley/valley_crashsite)
 "hUM" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -52816,6 +52854,10 @@
 	icon_state = "bright_clean"
 	},
 /area/desert_dam/building/hydroponics/hydroponics)
+"ini" = (
+/obj/machinery/miner/damaged/platinum,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/desert_dam/interior/caves/east_caves)
 "inl" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/landmark/weed_node,
@@ -52883,6 +52925,10 @@
 	icon_state = "bright_clean"
 	},
 /area/desert_dam/building/mining/workshop)
+"iui" = (
+/obj/machinery/miner/damaged,
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/desert_dam/exterior/valley/valley_cargo)
 "ivr" = (
 /obj/structure/desertdam/decals/road/edge{
 	icon_state = "road_edge_decal5"
@@ -52890,13 +52936,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/exterior/valley/valley_hydro)
-"ivs" = (
-/obj/machinery/door/airlock/sandstone{
-	name = "Strange Temple"
-	},
-/obj/effect/landmark/lv624/fog_blocker,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/desert_dam/interior/caves/temple)
 "ivy" = (
 /turf/open/floor/plating/ground/dirt{
 	dir = 8
@@ -53448,6 +53487,10 @@
 	icon_state = "bright_clean2"
 	},
 /area/desert_dam/interior/lab_northeast/east_lab_biology)
+"jjV" = (
+/obj/machinery/miner/damaged/platinum,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/desert_dam/interior/caves/temple)
 "jkk" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -56238,6 +56281,10 @@
 "mrg" = (
 /turf/open/ground/river/desertdam/clean/shallow_edge/corner2,
 /area/desert_dam/exterior/river_mouth/southern)
+"mrC" = (
+/obj/machinery/miner/damaged/platinum,
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/desert_dam/exterior/valley/valley_wilderness)
 "mrN" = (
 /obj/structure/cable,
 /obj/effect/ai_node,
@@ -57308,6 +57355,12 @@
 	icon_state = "whitegreenfull"
 	},
 /area/desert_dam/building/medical/virology_wing)
+"nzU" = (
+/obj/machinery/miner/damaged/platinum,
+/turf/open/floor/plating/ground/mars/random/cave{
+	dir = 5
+	},
+/area/desert_dam/interior/caves/east_caves)
 "nAm" = (
 /obj/structure/desertdam/decals/road/edge{
 	icon_state = "road_edge_decal1"
@@ -57488,6 +57541,10 @@
 	icon_state = "kitchen"
 	},
 /area/desert_dam/building/cafeteria/cafeteria)
+"nJw" = (
+/obj/machinery/miner/damaged,
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/desert_dam/exterior/valley/valley_labs)
 "nJZ" = (
 /obj/machinery/landinglight/ds1/delaythree{
 	dir = 8
@@ -58011,6 +58068,10 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/exterior/valley/valley_mining)
+"owP" = (
+/obj/machinery/miner/damaged/platinum,
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/desert_dam/exterior/valley/valley_medical)
 "owU" = (
 /obj/effect/decal/warning_stripes{
 	icon_state = "W"
@@ -58337,6 +58398,10 @@
 /obj/structure/cable,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/desert_dam/interior/dam_interior/south_tunnel)
+"oOD" = (
+/obj/machinery/miner/damaged,
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/desert_dam/exterior/valley/bar_valley_dam)
 "oOO" = (
 /obj/structure/desertdam/decals/road/edge{
 	icon_state = "road_edge_decal2"
@@ -60471,6 +60536,10 @@
 /obj/docking_port/stationary/crashmode,
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/interior/dam_interior/northwestern_tunnel)
+"qYY" = (
+/obj/machinery/miner/damaged/platinum,
+/turf/open/floor/plating/ground/mars/random/dirt,
+/area/desert_dam/interior/caves/east_caves)
 "qZq" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -63234,6 +63303,11 @@
 	},
 /turf/open/floor/prison,
 /area/desert_dam/building/cafeteria/loading)
+"uof" = (
+/obj/item/stack/sheet/metal/large_stack,
+/obj/item/stack/sheet/metal/large_stack,
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/desert_dam/exterior/valley/valley_cargo)
 "uqe" = (
 /obj/structure/cable,
 /obj/effect/ai_node,
@@ -64506,6 +64580,10 @@
 	icon_state = "dark2"
 	},
 /area/desert_dam/interior/lab_northeast/east_lab_west_entrance)
+"vGq" = (
+/obj/machinery/miner/damaged/platinum,
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/desert_dam/interior/caves/central_caves)
 "vGO" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached{
@@ -70139,7 +70217,7 @@ cdh
 ceD
 ceD
 cwl
-ceA
+grm
 ceA
 ceA
 axk
@@ -70209,7 +70287,7 @@ cxN
 kkH
 cQm
 doE
-bam
+uof
 doE
 doE
 doE
@@ -74652,7 +74730,7 @@ sAs
 cjO
 cxr
 cwz
-doE
+bam
 doE
 doE
 gNP
@@ -79505,7 +79583,7 @@ aFx
 axk
 ceA
 ceA
-ceA
+grm
 ceA
 ceA
 ceA
@@ -81681,7 +81759,7 @@ doE
 doE
 doE
 doE
-doE
+iui
 doE
 doE
 cQm
@@ -82822,7 +82900,7 @@ taH
 taH
 eOD
 taH
-taH
+eLd
 taH
 taH
 taH
@@ -88637,7 +88715,7 @@ dTs
 pXe
 lNu
 lNu
-lNu
+oOD
 lNu
 lNu
 lNu
@@ -89243,7 +89321,7 @@ jMC
 afX
 agc
 aeA
-aeA
+nJw
 agv
 agz
 agR
@@ -89738,7 +89816,7 @@ biP
 bjo
 blM
 bhi
-bhi
+gSq
 cMI
 dTs
 dTs
@@ -95888,7 +95966,7 @@ dTs
 dTs
 tWE
 cdw
-cdw
+owP
 coI
 ciU
 cfw
@@ -98317,7 +98395,7 @@ jOe
 gdW
 lrx
 sZG
-sZG
+eLU
 fww
 pcS
 pcS
@@ -99917,7 +99995,7 @@ ciQ
 djx
 dtY
 gdW
-tLl
+bLk
 tLl
 dda
 dea
@@ -102364,7 +102442,7 @@ dTs
 aYz
 bRg
 bRg
-bRg
+mrC
 bRg
 aXY
 bgH
@@ -104719,7 +104797,7 @@ bij
 afl
 bRg
 bRg
-bRg
+mrC
 bRg
 aeE
 bgH
@@ -105576,7 +105654,7 @@ aKm
 cJl
 cPz
 aKm
-aKm
+hls
 aKm
 aKm
 ctm
@@ -106258,7 +106336,7 @@ lJD
 cko
 tKg
 aKm
-aKm
+hls
 csb
 aKm
 aKm
@@ -106473,7 +106551,7 @@ aKm
 vpQ
 aKm
 aKm
-aKm
+hls
 aKm
 aKm
 cko
@@ -107550,7 +107628,7 @@ dTs
 dTs
 tKQ
 tKQ
-tKQ
+hUz
 tKQ
 aEV
 aBk
@@ -109923,7 +110001,7 @@ ciu
 chr
 ciU
 cdw
-cdw
+owP
 cdw
 cdw
 aMz
@@ -111019,7 +111097,7 @@ dTs
 vCe
 tKQ
 njF
-aBk
+gIF
 aBk
 aBk
 aBk
@@ -112276,7 +112354,7 @@ cbD
 civ
 eCi
 cdw
-cdw
+owP
 cdw
 cdw
 cdv
@@ -112311,7 +112389,7 @@ dTs
 cwu
 cxm
 aKm
-aKm
+hls
 aKm
 pfV
 dTs
@@ -113618,7 +113696,7 @@ aBk
 aBk
 aBk
 aBk
-aBk
+gIF
 aBk
 aFT
 aBk
@@ -117803,7 +117881,7 @@ vnK
 ccK
 dUz
 aFz
-aFz
+vGq
 aFz
 aFS
 aFz
@@ -119452,7 +119530,7 @@ aFz
 vrk
 aFz
 aFz
-aFz
+vGq
 aFz
 aFz
 aFz
@@ -121767,7 +121845,7 @@ bAw
 bAw
 kvS
 bAw
-lLB
+nzU
 bAw
 mdB
 bAw
@@ -121827,7 +121905,7 @@ xOH
 xBM
 xBM
 xBM
-gGC
+onL
 wLU
 dTs
 dTs
@@ -122061,7 +122139,7 @@ xBM
 xBM
 xJQ
 onL
-ivs
+onL
 xBM
 dTs
 dTs
@@ -122294,8 +122372,8 @@ xBM
 xOH
 xBM
 onL
-gGC
-gGC
+xBM
+jjV
 xBM
 xBM
 dTs
@@ -122927,7 +123005,7 @@ aRx
 aRx
 rrw
 aRx
-aRx
+qYY
 aRx
 aRT
 bAw
@@ -122953,7 +123031,7 @@ bAw
 bAw
 bAw
 bGp
-bAw
+ini
 bAw
 bAw
 dTs
