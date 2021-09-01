@@ -6270,7 +6270,6 @@
 /area/sulaco/disposal)
 "aEk" = (
 /obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /obj/machinery/camera/autoname{
 	dir = 8
 	},
