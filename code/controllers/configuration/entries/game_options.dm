@@ -113,8 +113,3 @@
 	config_entry_value = 30 MINUTES
 	max_val = 30 MINUTES
 	min_val = 0
-
-/datum/config_entry/number/xeno_respawn
-	config_entry_value = 30 MINUTES
-	max_val = 30 MINUTES
-	min_val = 0

@@ -104,13 +104,6 @@
 	desc = "A specialized fuel tank of ultra thick napthal type X for use with the TL-84 flamethrower and M240A1 incinerator unit."
 	default_ammo = /datum/ammo/flamethrower/blue
 
-/obj/item/ammo_magazine/flamer_tank/large/B
-	name = "large flamethrower tank (B)"
-	desc = "A large fuel tank of ultra thick napthal type B, a wide-spreading sticky combustable liquid chemical, for use in the TL-84 flamethrower. Handle with care."
-	icon_state = "flametank_large_green"
-	default_ammo = /datum/ammo/flamethrower/green
-	icon_state_mini = "tank_green"
-
 /obj/item/ammo_magazine/flamer_tank/large/X
 	name = "large flamethrower tank (X)"
 	desc = "A large fuel tank of ultra thick napthal Fuel type X, a sticky combustable liquid chemical that burns extremely hot, for use in the TL-84 flamethrower. Handle with care."

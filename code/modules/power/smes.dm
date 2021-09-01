@@ -62,7 +62,7 @@
 /obj/machinery/power/smes/Destroy()
 	if(terminal)
 		disconnect_terminal()
-	. = ..()
+	return ..()
 
 /obj/machinery/power/smes/should_have_node()
 	return TRUE

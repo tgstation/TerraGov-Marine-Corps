@@ -34,7 +34,7 @@
 /obj/machinery/door/window/Destroy()
 	density = FALSE
 	playsound(src, "shatter", 50, 1)
-	. = ..()
+	return ..()
 
 
 /obj/machinery/door/window/update_icon()

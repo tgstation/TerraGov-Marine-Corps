@@ -8,6 +8,8 @@ SUBSYSTEM_DEF(weeds)
 	var/list/creating = list()
 	var/list/pending = list()
 	var/list/currentrun
+	/// How many time each turf will check if it is weedable.
+	var/list/spawn_attempts_by_node = list()
 
 /datum/controller/subsystem/weeds/stat_entry()
 	return ..("Nodes: [length(pending)]")
@@ -17,89 +19,82 @@ SUBSYSTEM_DEF(weeds)
 		currentrun = pending.Copy()
 		creating = list()
 
-	for(var/A in currentrun)
+	for(var/turf/T AS in currentrun)
 		if(MC_TICK_CHECK)
 			return
 
-		var/obj/effect/alien/weeds/node/N = currentrun[A]
-		currentrun -= A
-		var/turf/T = A
+		var/obj/effect/alien/weeds/node/node = currentrun[T]
+		currentrun -= T
 
-		if(QDELETED(N) || QDELETED(T))
+		if(QDELETED(node) || QDELETED(T) || !T.is_weedable() || locate(/obj/effect/alien/weeds/node) in T)
 			pending -= T
-			continue
-
-		if ((locate(/obj/effect/alien/weeds) in T) || (locate(/obj/effect/alien/weeds/node) in T))
-			pending -= T
-			continue
-
-		if (!T.is_weedable())
-			pending -= T
+			spawn_attempts_by_node -= T
 			continue
 
 		for(var/direction in GLOB.cardinals)
 			var/turf/AdjT = get_step(T, direction)
-			if (!(AdjT in N.node_turfs)) // only count our weed graph as eligble
-				continue
 			if (!(locate(/obj/effect/alien/weeds) in AdjT))
 				continue
 
-			creating[T] = N
+			creating[T] = node
+			pending -= T
 			break
+		spawn_attempts_by_node[T]--
+		if(spawn_attempts_by_node[T] <= 0)
+			pending -= T
+			spawn_attempts_by_node -= T
 
 
 	// We create weeds outside of the loop to not influence new weeds within the loop
-	for(var/A in creating)
+	for(var/turf/T AS in creating)
 		if(MC_TICK_CHECK)
 			return
-		var/turf/T = A
+		// Adds a bit of jitter to the spawning weeds.
+		addtimer(CALLBACK(src, .proc/create_weed, T, creating[T]), rand(1, 3 SECONDS))
+		pending -= T
+		spawn_attempts_by_node -= T
 		creating -= T
 
-		var/obj/effect/alien/weeds/node/N = creating[T]
-		// Adds a bit of jitter to the spawning weeds.
-		addtimer(CALLBACK(src, .proc/create_weed, T, N), rand(1, 3 SECONDS))
-		pending -= T
 
 
-
-/datum/controller/subsystem/weeds/proc/add_node(obj/effect/alien/weeds/node/N)
-	if(!N)
+/datum/controller/subsystem/weeds/proc/add_node(obj/effect/alien/weeds/node/node)
+	if(!node)
 		stack_trace("SSweed.add_node called with a null obj")
 		return FALSE
 
-	for(var/X in N.node_turfs)
-		var/turf/T = X
-
-		// Skip if there is a node there
-		var/obj/effect/alien/weeds/W = locate() in T
-		if(W)
-			W.parent_node = N // new parent
+	for(var/turf/T AS in node.node_turfs)
+		if(pending[T] && (get_dist_euclide_square(node, T) >= get_dist_euclide_square(get_step(pending[T], 0), T)))
 			continue
+		pending[T] = node
+		spawn_attempts_by_node[T] = 5 //5 attempts maximum
 
-		pending[T] = N
-
-/datum/controller/subsystem/weeds/proc/add_weed(obj/effect/alien/weeds/W)
-	if(!W)
-		stack_trace("SSweed.add_weed called with a null obj")
-		return FALSE
-
-	var/turf/T = get_turf(W)
-	pending[T] = W.parent_node
-
-
-/datum/controller/subsystem/weeds/proc/create_weed(turf/T, obj/effect/alien/weeds/node/N)
-	if(iswallturf(T))
-		new /obj/effect/alien/weeds/weedwall(T)
+/datum/controller/subsystem/weeds/proc/create_weed(turf/T, obj/effect/alien/weeds/node/node)
+	if(QDELETED(node))
 		return
 
+	if(iswallturf(T))
+		new /obj/effect/alien/weeds/weedwall(T, node)
+		return
+	var/swapped = FALSE
 	for (var/obj/O in T)
 		if(istype(O, /obj/structure/window/framed))
-			new /obj/effect/alien/weeds/weedwall/window(T)
+			new /obj/effect/alien/weeds/weedwall/window(T, node)
 			return
 		else if(istype(O, /obj/structure/window_frame))
-			new /obj/effect/alien/weeds/weedwall/frame(T)
+			new /obj/effect/alien/weeds/weedwall/frame(T, node)
 			return
-		else if(istype(O, /obj/machinery/door) && O.density /*&& (!(O.flags_atom & ON_BORDER) || O.dir != dirn)*/)
+		else if(istype(O, /obj/machinery/door) && O.density)
 			return
-
-	new /obj/effect/alien/weeds(T, N)
+		else if(istype(O, /obj/effect/alien/weeds))
+			if(istype(O, /obj/effect/alien/weeds/node))
+				return
+			var/obj/effect/alien/weeds/weed = O
+			if(get_dist_euclide_square(node, weed) >= get_dist_euclide_square(weed.parent_node, weed))
+				return
+			if(weed.type == node.weed_type)
+				weed.parent_node = node
+				return
+			weed.swapped = TRUE
+			swapped = TRUE
+			qdel(O)
+	new node.weed_type(T, node, swapped)

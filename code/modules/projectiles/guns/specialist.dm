@@ -117,7 +117,7 @@
 /obj/item/weapon/gun/rifle/sniper/antimaterial/Destroy()
 	laser_off()
 	QDEL_NULL(integrated_laze)
-	. = ..()
+	return ..()
 
 /obj/item/weapon/gun/rifle/sniper/antimaterial/dropped()
 	laser_off()
@@ -350,6 +350,7 @@
 	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "minigun"
 	item_state = "minigun"
+	fire_animation = "minigun_fire"
 	max_shells = 500 //codex
 	caliber = CALIBER_762X51 //codex
 	load_method = MAGAZINE //codex
@@ -388,8 +389,8 @@
 	SSmonitor.stats.miniguns_in_use += src
 
 /obj/item/weapon/gun/minigun/Destroy()
-	. = ..()
 	SSmonitor.stats.miniguns_in_use -= src
+	return ..()
 
 
 /obj/item/weapon/gun/minigun/examine_ammo_count(mob/user)
@@ -684,49 +685,48 @@
 	gun_skill_category = GUN_SKILL_FIREARMS
 	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_AMMO_COUNTER
 	attachable_allowed = list()
-	var/grenade
-	var/grenade_type_allowed = /obj/item/explosive/grenade
-	var/riot_version
 	general_codex_key = "explosive weapons"
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 14, "rail_y" = 22, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
-
 	fire_delay = 1.05 SECONDS
+	/// The loaded grenade
+	var/obj/item/explosive/grenade/grenade
+	/// What type of grenade can be loaded
+	var/grenade_type_allowed = /obj/item/explosive/grenade
 
 
 /obj/item/weapon/gun/launcher/m81/Initialize(mapload, spawn_empty)
 	. = ..()
 	if(!spawn_empty)
-		if(riot_version)
-			grenade = new /obj/item/explosive/grenade/chem_grenade/teargas(src)
-		else
-			grenade = new /obj/item/explosive/grenade/frag(src)
+		grenade = new grenade_type_allowed()
+
+/obj/item/weapon/gun/launcher/m81/update_icon()
+	icon_state = grenade ? base_gun_icon : base_gun_icon + "_e"
 
 
 /obj/item/weapon/gun/launcher/m81/examine_ammo_count(mob/user)
 	if(!grenade || (get_dist(user, src) > 2 && user != loc))
 		return
-	to_chat(user, span_notice(" It is loaded with a grenade."))
+	to_chat(user, span_notice("It is loaded with [grenade]."))
 
 
 /obj/item/weapon/gun/launcher/m81/attackby(obj/item/I, mob/user, params)
-	if(istype(I, /obj/item/explosive/grenade))
-		if(!istype(I, grenade_type_allowed))
-			to_chat(user, span_warning("[src] can't use this type of grenade!"))
-			return
-
-		if(grenade)
-			to_chat(user, span_warning("The grenade launcher cannot hold more grenades!"))
-			return
-
-		if(!user.transferItemToLoc(I, src))
-			return
-
-		grenade = I
-		to_chat(user, span_notice("You put [I] in the grenade launcher."))
-
-	else if(istype(I, /obj/item/attachable) && check_inactive_hand(user))
+	if(istype(I, /obj/item/attachable) && check_inactive_hand(user))
 		attach_to_gun(user, I)
+		return
+	if(!istype(I, grenade_type_allowed))
+		to_chat(user, span_warning("[src] can't use this type of grenade!"))
+		return
 
+	if(grenade)
+		to_chat(user, span_warning("[src] cannot hold more grenades!"))
+		return
+
+	if(!user.transferItemToLoc(I, src))
+		return
+
+	grenade = I
+	to_chat(user, span_notice("You put [I] in [src]."))
+	update_icon()
 
 /obj/item/weapon/gun/launcher/m81/afterattack(atom/target, mob/user, flag)
 	if(!able_to_fire(user))
@@ -734,54 +734,51 @@
 	if(gun_on_cooldown(user))
 		return
 	if(get_dist(target,user) <= 2)
-		to_chat(user, span_warning("The grenade launcher beeps a warning noise. You are too close!"))
+		to_chat(user, span_warning("[src] beeps a warning noise. You are too close!"))
 		return
 	if(!grenade)
-		to_chat(user, span_warning("The grenade launcher is empty."))
+		to_chat(user, span_warning("[src] is empty."))
 		return
-	fire_grenade(target,user)
+	fire_grenade(target, user)
 	playsound(user.loc, cocked_sound, 25, 1)
-
 
 //Doesn't use most of any of these. Listed for reference.
 /obj/item/weapon/gun/launcher/m81/load_into_chamber()
 	return
 
-
 /obj/item/weapon/gun/launcher/m81/reload_into_chamber()
 	return
 
-
 /obj/item/weapon/gun/launcher/m81/unload(mob/user)
-	if(grenade)
-		var/obj/item/explosive/grenade/nade = grenade
-		if(user)
-			user.put_in_hands(nade)
-			playsound(user, unload_sound, 25, 1)
-		else
-			nade.loc = get_turf(src)
-		grenade = null
-	else
+	if(!grenade)
 		to_chat(user, span_warning("It's empty!"))
+		return TRUE
+	if(user)
+		user.put_in_hands(grenade)
+		playsound(user, unload_sound, 25, 1)
+	else
+		grenade.loc = get_turf(src)
+	grenade = null
+	update_icon()
 	return TRUE
-
 
 /obj/item/weapon/gun/launcher/m81/proc/fire_grenade(atom/target, mob/user)
 	set waitfor = 0
 	last_fired = world.time
-	user.visible_message(span_danger("[user] fired a grenade!"), \
-						span_warning("You fire the grenade launcher!"))
+	user.visible_message(span_danger("[user] fired [grenade]!"), \
+						span_warning("You fire [src]!"))
 	var/obj/item/explosive/grenade/F = grenade
 	grenade = null
 	F.launched = TRUE
 	F.loc = user.loc
 	F.throw_range = 20
 	F.throw_at(target, 20, 2, user)
+	update_icon()
 	if(F?.loc) //Apparently it can get deleted before the next thing takes place, so it runtimes.
 		log_explosion("[key_name(user)] fired a grenade [F] from \a [src] at [AREACOORD(user.loc)].")
 		message_admins("[ADMIN_TPMONTY(user)] fired a grenade [F] from \a [src].")
 		F.icon_state = initial(F.icon_state) + "_active"
-		F.activate()
+		F.activate(user)
 		F.updateicon()
 		playsound(F.loc, fire_sound, 50, 1)
 		addtimer(CALLBACK(F, /obj/item/explosive/grenade.proc/prime), 1 SECONDS)
@@ -790,7 +787,6 @@
 	name = "\improper M81 riot grenade launcher"
 	desc = "A lightweight, single-shot grenade launcher to launch tear gas grenades. Used by Nanotrasen security during riots."
 	grenade_type_allowed = /obj/item/explosive/grenade/chem_grenade
-	riot_version = TRUE
 	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_POLICE|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
 	req_access = list(ACCESS_MARINE_BRIG)
 
@@ -1014,8 +1010,8 @@
 	SSmonitor.stats.sadar_in_use += src
 
 /obj/item/weapon/gun/launcher/rocket/sadar/Destroy()
-	. = ..()
 	SSmonitor.stats.sadar_in_use -= src
+	return ..()
 
 //-------------------------------------------------------
 //M5 RPG'S MEAN FUCKING COUSIN

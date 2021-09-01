@@ -12,7 +12,8 @@
 6. [Pull Request Process](#pull-request-process)
 7. [Porting features/sprites/sounds/tools from other codebases](#porting-featuresspritessoundstools-from-other-codebases)
 8. [Banned content](#banned-content)
-9. [A word on Git](#a-word-on-git)
+9. [Content that requires prior approval](#content-that-requires-prior-approval)
+10. [A word on Git](#a-word-on-git)
 
 ## Reporting Issues
 
@@ -835,6 +836,11 @@ Do not add any of the following in a pull request or it will get closed:
 * Anything that would be against our rules.
 
 Just because something isn't on this list doesn't mean that it's acceptable. Use common sense above all else.
+
+## Content that requires prior approval
+
+The following content requires prior approval from Maintainers, Head Coders or Project Leads before making a Pull Request:
+* Changes to Rank names, rank times or job ranks
 
 ## A word on Git
 Yes, we know that the files have a tonne of mixed Windows and Linux line endings. Attempts to fix this have been met with less than stellar success, and as such we have decided to give up caring until there comes a time when it matters.

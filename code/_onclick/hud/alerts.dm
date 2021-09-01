@@ -216,7 +216,6 @@ Override makes it so the alert is not replaced until cleared by a clear_alert wi
 		return usr.client.Click(master, location, control, params)
 
 /obj/screen/alert/Destroy()
-	. = ..()
-	// nulling the obj references.
 	master = null
 	owner = null
+	return ..()

@@ -79,7 +79,7 @@
 	if (CHECK_MULTIPLE_BITFIELDS(M.flags_pass, HOVERING))
 		return ..()
 
-	playsound(loc, 'sound/effects/glass_step.ogg', 25, TRUE)
+	pick(playsound(loc, 'sound/effects/shard1.ogg', 35, TRUE), playsound(loc, 'sound/effects/shard2.ogg', 35, TRUE), playsound(loc, 'sound/effects/shard3.ogg', 35, TRUE), playsound(loc, 'sound/effects/shard4.ogg', 35, TRUE), playsound(loc, 'sound/effects/shard5.ogg', 35, TRUE))
 	if(prob(20))
 		to_chat(M, span_danger("[isxeno(M) ? "We" : "You"] step on \the [src], shattering it!"))
 		qdel(src)
@@ -93,7 +93,7 @@
 			if(H.species.species_flags & IS_SYNTHETIC || H.species.insulated)
 				return
 
-			if( !H.shoes && ( !H.wear_suit || !(H.wear_suit.flags_armor_protection & FEET) ) )
+			if(!H.shoes && !(H.wear_suit?.flags_armor_protection & FEET))
 				var/datum/limb/affecting = H.get_limb(pick("l_foot", "r_foot"))
 				if(affecting.limb_status & LIMB_ROBOT)
 					return

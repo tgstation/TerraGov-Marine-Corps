@@ -6,7 +6,8 @@
 
 import { createLogger } from 'common/logging.js';
 import fs from 'fs';
-import os from 'os'; import { basename } from 'path';
+import os from 'os';
+import { basename } from 'path';
 import { resolveGlob, resolvePath } from './util.js';
 import { regQuery } from './winreg.js';
 import { DreamSeeker } from './dreamseeker.js';

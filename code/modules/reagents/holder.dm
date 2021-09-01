@@ -26,7 +26,6 @@
 	reagent_flags = new_flags
 
 /datum/reagents/Destroy()
-	. = ..()
 	var/list/cached_reagents = reagent_list
 	for(var/reagent in cached_reagents)
 		var/datum/reagent/R = reagent
@@ -36,6 +35,7 @@
 	if(my_atom && my_atom.reagents == src)
 		my_atom.reagents = null
 	my_atom = null
+	return ..()
 
 /**
  * Used in attack logs for reagents in pills and such

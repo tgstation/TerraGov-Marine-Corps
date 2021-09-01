@@ -57,7 +57,7 @@ SUBSYSTEM_DEF(monitor)
 	set_state(current_points)
 
 	//Automatic buff system for the xeno, if they have too much burrowed yet are still losing
-	var/proposed_balance_buff = 1
+	var/proposed_balance_buff = GLOB.xeno_stat_multiplicator_buff
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
 	if(is_automatic_balance_on && current_state < STATE_BALANCED && ((xeno_job.total_positions - xeno_job.current_positions) > (length(GLOB.alive_xeno_list) * TOO_MUCH_BURROWED_PROPORTION)) && gamestate == GROUNDSIDE)
 		proposed_balance_buff = balance_xeno_team()

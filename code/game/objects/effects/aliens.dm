@@ -160,7 +160,7 @@
 /obj/effect/xenomorph/acid/Destroy()
 	STOP_PROCESSING(SSslowprocess, src)
 	acid_t = null
-	. = ..()
+	return ..()
 
 /obj/effect/xenomorph/acid/process(delta_time)
 	if(!acid_t || !acid_t.loc)

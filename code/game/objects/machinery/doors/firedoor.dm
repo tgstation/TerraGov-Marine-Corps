@@ -63,7 +63,7 @@
 /obj/machinery/door/firedoor/Destroy()
 	for(var/area/A in areas_added)
 		LAZYREMOVE(A.all_fire_doors, src)
-	. = ..()
+	return ..()
 
 
 /obj/machinery/door/firedoor/examine(mob/user)

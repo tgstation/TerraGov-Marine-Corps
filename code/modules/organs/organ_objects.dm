@@ -32,8 +32,9 @@
 
 
 /obj/item/organ/Destroy()
-	if(!robotic) STOP_PROCESSING(SSobj, src)
-	. = ..()
+	if(!robotic)
+		STOP_PROCESSING(SSobj, src)
+	return ..()
 
 /obj/item/organ/process()
 

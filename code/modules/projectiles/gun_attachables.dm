@@ -91,6 +91,14 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	var/aim_mode_movement_mult = 0
 	///Modifies projectile damage by a % when a marine gets passed, but not hit
 	var/shot_marine_damage_falloff = 0
+	///How much of the aim mode fire rate debuff is removed %-wise
+	var/aim_mode_fire_rate_debuff_reduction = 0
+	/*
+	 * Contains the removed amount from the aim mode fire rate debuff
+	 * so that the same amount that was removed is returned
+	 * in the case of multiple things modifying the gun's var by a %
+	 */
+	var/cached_aim_mode_debuff_fire_rate = 0
 
 	///the delay between shots, for attachments that fire stuff
 	var/attachment_firing_delay = 0
@@ -184,6 +192,8 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	master_gun.scatter_unwielded			+= scatter_unwielded_mod
 	master_gun.aim_speed_modifier			+= initial(master_gun.aim_speed_modifier)*aim_mode_movement_mult
 	master_gun.iff_marine_damage_falloff	+= shot_marine_damage_falloff
+	cached_aim_mode_debuff_fire_rate = master_gun.aim_fire_delay * aim_mode_fire_rate_debuff_reduction
+	master_gun.aim_fire_delay 				-= cached_aim_mode_debuff_fire_rate
 	if(delay_mod)
 		master_gun.modify_fire_delay(delay_mod)
 	if(burst_delay_mod)
@@ -250,6 +260,10 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	master_gun.scatter_unwielded			-= scatter_unwielded_mod
 	master_gun.aim_speed_modifier			-= initial(master_gun.aim_speed_modifier)*aim_mode_movement_mult
 	master_gun.iff_marine_damage_falloff	-= shot_marine_damage_falloff
+	master_gun.aim_fire_delay 				+= cached_aim_mode_debuff_fire_rate
+	if(CHECK_BITFIELD(master_gun.flags_gun_features, GUN_IS_AIMING))
+		master_gun.modify_fire_delay(cached_aim_mode_debuff_fire_rate)
+	cached_aim_mode_debuff_fire_rate = 0
 	if(delay_mod)
 		master_gun.modify_fire_delay(-delay_mod)
 	if(burst_delay_mod)
@@ -569,13 +583,13 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 
 /obj/item/attachable/reddot
 	name = "red-dot sight"
-	desc = "A red-dot sight for short to medium range. Does not have a zoom feature, but does increase weapon accuracy by a good amount. \nNo drawbacks."
+	desc = "A red-dot sight for short to medium range. Does not have a zoom feature, but does increase weapon accuracy and fire rate while aiming by a good amount. \nNo drawbacks."
 	icon_state = "reddot"
 	attach_icon = "reddot_a"
 	slot = ATTACHMENT_SLOT_RAIL
 	accuracy_mod = 0.15
 	accuracy_unwielded_mod = 0.1
-
+	aim_mode_fire_rate_debuff_reduction = 0.5
 
 /obj/item/attachable/m16sight
 	name = "M16 iron sights"
@@ -1797,35 +1811,6 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	for(var/X in master_gun.actions)
 		var/datum/action/A = X
 		A.update_button_icon()
-
-
-/obj/item/attachable/standard_revolver_longbarrel
-	name = "TP-44 long barrel"
-	desc = "A longer barrel for the TP-44, makes the gun more accurate and deal more damage on impact."
-	icon_state = "tp44_barrel"
-	attach_icon = "tp44_barrel"
-	slot = ATTACHMENT_BARREL_MOD
-	damage_mod = 0.25
-	scatter_mod = -2.5
-	recoil_unwielded_mod = 0.25
-	damage_falloff_mod = -0.5
-	pixel_shift_x = 0
-	pixel_shift_y = 0
-	size_mod = 1
-	detach_delay = 0
-	gun_attachment_offset_mod = list("muzzle_x" = 7)
-
-/obj/item/attachable/standard_revolver_longbarrel/attach_to_gun(obj/item/weapon/gun/gun_to_attach, mob/user)
-	. = ..()
-	RegisterSignal(gun_to_attach, COMSIG_REVOLVER_AMMO_HIT_MOB, .proc/ammo_hit_mob)
-
-/obj/item/attachable/standard_revolver_longbarrel/detach_from_master_gun(mob/user)
-	UnregisterSignal(master_gun, COMSIG_REVOLVER_AMMO_HIT_MOB)
-	return ..()
-
-/obj/item/attachable/standard_revolver_longbarrel/proc/ammo_hit_mob()
-	SIGNAL_HANDLER
-	return COMSIG_REVOLVER_AMMO_SNUBNOSE_BARREL
 
 /obj/item/attachable/mateba_longbarrel
 	name = "Mateba long barrel"

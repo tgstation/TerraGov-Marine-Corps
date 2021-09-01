@@ -243,10 +243,12 @@
 	if(gun_user)
 		UnregisterSignal(gun_user, list(COMSIG_MOB_MOUSEDOWN, COMSIG_MOB_MOUSEUP, COMSIG_ITEM_ZOOM, COMSIG_ITEM_UNZOOM, COMSIG_MOB_MOUSEDRAG, COMSIG_KB_RAILATTACHMENT, COMSIG_KB_UNDERRAILATTACHMENT, COMSIG_KB_UNLOADGUN, COMSIG_KB_FIREMODE, COMSIG_KB_GUN_SAFETY, COMSIG_KB_UNIQUEACTION, COMSIG_PARENT_QDELETING))
 		gun_user.client?.mouse_pointer_icon = initial(gun_user.client.mouse_pointer_icon)
+		SEND_SIGNAL(gun_user, COMSIG_GUN_USER_UNSET)
 		gun_user = null
 	if(!user)
 		return
 	gun_user = user
+	SEND_SIGNAL(gun_user, COMSIG_GUN_USER_SET, src)
 	if(!CHECK_BITFIELD(flags_item, IS_DEPLOYED))
 		RegisterSignal(gun_user, COMSIG_MOB_MOUSEDOWN, .proc/start_fire)
 		RegisterSignal(gun_user, COMSIG_MOB_MOUSEDRAG, .proc/change_target)
@@ -444,7 +446,7 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 	current_mag = magazine
 	replace_ammo(user,magazine)
 	if(!in_chamber)
-		ready_in_chamber(user)
+		load_into_chamber()
 		if(!(flags_gun_features & GUN_ENERGY))
 			cock_gun(user)
 	user.visible_message(span_notice("[user] loads [magazine] into [src]!"),
@@ -571,7 +573,7 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 			dual_wield = TRUE
 		if(gun_user.in_throw_mode)
 			return
-		if(gun_user.Adjacent(object)) //Dealt with by attack code
+		if(gun_user.Adjacent(object) && !isopenturf(object)) //Dealt with by attack code
 			return
 	if(QDELETED(object))
 		return
@@ -591,7 +593,7 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 
 ///Set the target and take care of hard delete
 /obj/item/weapon/gun/proc/set_target(atom/object)
-	if(object == target)
+	if(object == target || object == gun_user)
 		return
 	if(target)
 		UnregisterSignal(target, COMSIG_PARENT_QDELETING)
@@ -878,7 +880,7 @@ and you're good to go.
 			user.apply_damage(200, STAMINA)
 		else
 			user.apply_damage(projectile_to_fire.damage * 2.5, projectile_to_fire.ammo.damage_type, "head", 0, TRUE)
-			user.apply_damage(100, OXY)
+			user.apply_damage(200, OXY)
 			if(ishuman(user) && user == M)
 				var/mob/living/carbon/human/HM = user
 				HM.set_undefibbable() //can't be defibbed back from self inflicted gunshot to head
@@ -902,7 +904,7 @@ and you're good to go.
 //----------------------------------------------------------
 
 /obj/item/weapon/gun/proc/able_to_fire(mob/user)
-	if(user.stat != CONSCIOUS || user.lying_angle)
+	if(!user || user.stat != CONSCIOUS || user.lying_angle)
 		return
 
 	if(!user.dextrous)

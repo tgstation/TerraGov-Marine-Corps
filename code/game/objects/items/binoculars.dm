@@ -67,7 +67,7 @@
 /obj/item/binoculars/tactical/Destroy()
 	if(laser)
 		QDEL_NULL(laser)
-	. = ..()
+	return ..()
 
 
 /obj/item/binoculars/tactical/InterceptClickOn(mob/user, params, atom/object)

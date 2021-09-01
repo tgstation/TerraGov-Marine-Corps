@@ -49,6 +49,9 @@
 	name = "Toggle [target]"
 	button.name = name
 
+/datum/action/item_action/toggle/motion_detector/action_activate()
+	. = ..()
+	update_button_icon()
 
 /datum/action/item_action/firemode
 	var/action_firemode

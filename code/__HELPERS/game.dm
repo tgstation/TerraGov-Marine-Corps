@@ -99,11 +99,6 @@
 		if(O.client.inactivity / 600 > ALIEN_SELECT_AFK_BUFFER + 5)
 			continue
 
-		//Recently dead observers cannot be drafted.
-		var/deathtime = world.time - O.timeofdeath
-		if(deathtime < GLOB.xenorespawntime)
-			continue
-
 		//Aghosted admins don't get picked
 		if(O.mind?.current && isclientedaghost(O.mind.current))
 			continue

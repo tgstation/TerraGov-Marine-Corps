@@ -85,7 +85,6 @@
 	source = null
 
 /obj/item/clothing/mask/facehugger/Destroy()
-	. = ..()
 	deltimer(jumptimer)
 	deltimer(lifetimer)
 	remove_danger_overlay() //Remove the danger overlay
@@ -93,6 +92,7 @@
 	jumptimer = null
 	if(source)
 		clear_hugger_source()
+	return ..()
 
 /obj/item/clothing/mask/facehugger/update_icon()
 	if(stat == DEAD)
@@ -457,6 +457,10 @@
 
 	return TRUE
 
+/mob/living/carbon/human/species/monkey/can_be_facehugged(obj/item/clothing/mask/facehugger/F, check_death = TRUE, check_mask = TRUE, provoked = FALSE)
+	if(mind)
+		return ..() //facehuggers still attack player monkeys
+	return FALSE //ai monkeys are ignored by facehuggers
 
 /////////////////////////////
 // ATTACHING AND IMPREGNATION

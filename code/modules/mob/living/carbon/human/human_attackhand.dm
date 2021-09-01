@@ -31,12 +31,12 @@
 				help_shake_act(H)
 				return 1
 
-			if((head && (head.flags_inventory & COVERMOUTH)) || (wear_mask && (wear_mask.flags_inventory & COVERMOUTH)))
-				to_chat(H, span_boldnotice("Remove his mask!"))
+			if(HAS_TRAIT(src, TRAIT_UNDEFIBBABLE ))
+				to_chat(H, span_boldnotice("Can't help this one. Body has gone cold."))
 				return FALSE
 
-			if(HAS_TRAIT(H, TRAIT_UNDEFIBBABLE ))
-				to_chat(H, span_boldnotice("Can't help this one. Body has gone cold."))
+			if((head && (head.flags_inventory & COVERMOUTH)) || (wear_mask && (wear_mask.flags_inventory & COVERMOUTH)))
+				to_chat(H, span_boldnotice("Remove [p_their()] mask!"))
 				return FALSE
 
 			if((H.head && (H.head.flags_inventory & COVERMOUTH)) || (H.wear_mask && (H.wear_mask.flags_inventory & COVERMOUTH)))
@@ -218,19 +218,27 @@
 				status += "bruised"
 			if(20 to 40)
 				status += "battered"
-			if(40 to INFINITY)
+			if(40 to 60)
 				status += "mangled"
+			if(60 to 100)
+				status += "brutalized"
+			if(100 to INFINITY)
+				status += "mutilated"
 
 		if(brutedamage > 0 && burndamage > 0)
 			status += " and "
 
 		switch(burndamage)
-			if(1 to 10)
+			if(1 to 20)
 				status += "numb"
-			if(10 to 40)
+			if(20 to 40)
 				status += "blistered"
-			if(40 to INFINITY)
+			if(40 to 60)
 				status += "peeling away"
+			if(60 to 100)
+				status += "searing away"
+			if(100 to INFINITY)
+				status += "burnt to a crisp"
 
 		if(!status)
 			status = "OK"
@@ -241,6 +249,8 @@
 			status += " <b>(STABILIZED)</b>"
 		if(org.limb_status & LIMB_MUTATED)
 			status = "weirdly shapen."
+		if(org.limb_status & LIMB_NECROTIZED)
+			status = "rotting"
 		if(org.limb_status & LIMB_DESTROYED)
 			status = "MISSING!"
 

@@ -66,10 +66,10 @@
 	var/ruler_healing_penalty = 0.5
 	if(hive?.living_xeno_ruler?.loc?.z == T.z || xeno_caste.caste_flags & CASTE_CAN_HEAL_WITHOUT_QUEEN) //if the living queen's z-level is the same as ours.
 		ruler_healing_penalty = 1
-
-	if(locate(/obj/effect/alien/weeds) in T || xeno_caste.caste_flags & CASTE_INNATE_HEALING) //We regenerate on weeds or can on our own.
+	var/obj/effect/alien/weeds/weed = locate() in T
+	if(weed || xeno_caste.caste_flags & CASTE_INNATE_HEALING) //We regenerate on weeds or can on our own.
 		if(lying_angle || resting || xeno_caste.caste_flags & CASTE_QUICK_HEAL_STANDING)
-			heal_wounds(XENO_RESTING_HEAL * ruler_healing_penalty, TRUE)
+			heal_wounds(XENO_RESTING_HEAL * ruler_healing_penalty * weed ? weed.resting_buff : 1, TRUE)
 		else
 			heal_wounds(XENO_STANDING_HEAL * ruler_healing_penalty, TRUE) //Major healing nerf if standing.
 	updatehealth()
@@ -85,7 +85,7 @@
 	if(resting) //Resting doubles sunder recovery
 		sunder_recov *= 2
 
-	if(locate(/obj/effect/alien/weeds) in loc) //Weeds double sunder recovery
+	if(locate(/obj/effect/alien/weeds/resting) in loc) //Resting weeds double sunder recovery
 		sunder_recov *= 2
 
 	if(recovery_aura)
@@ -150,7 +150,9 @@
 	for(var/i in plasma_mod)
 		plasma_gain_multiplier *= i
 
-	if(!(locate(/obj/effect/alien/weeds) in T) && !(xeno_caste.caste_flags & CASTE_INNATE_PLASMA_REGEN))
+	var/obj/effect/alien/weeds/weeds = locate() in T
+
+	if(!weeds && !(xeno_caste.caste_flags & CASTE_INNATE_PLASMA_REGEN))
 		hud_set_plasma() // since we used some plasma via the aura
 		return
 
@@ -159,6 +161,7 @@
 	if(lying_angle || resting)
 		plasma_gain *= 2  // Doubled for resting
 
+	plasma_gain *= weeds ? weeds.resting_buff : 1
 
 	gain_plasma(plasma_gain * plasma_gain_multiplier)
 	hud_set_plasma() //update plasma amount on the plasma mob_hud

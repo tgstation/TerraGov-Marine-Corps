@@ -105,7 +105,7 @@
 	if(terminal)
 		disconnect_terminal()
 
-	. = ..()
+	return ..()
 
 /obj/machinery/power/apc/Initialize(mapload, ndir, building = FALSE)
 	// offset 32 pixels in direction of dir

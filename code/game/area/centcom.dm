@@ -2,7 +2,9 @@
 	name = "Centcom"
 	icon_state = "centcom"
 	requires_power = FALSE
-	dynamic_lighting = DYNAMIC_LIGHTING_FORCED
+	static_lighting = FALSE
+	base_lighting_alpha = 255
+	base_lighting_color = LIGHT_COLOR_WHITE
 
 
 /area/centcom/control
@@ -25,7 +27,7 @@
 /area/centcom/supplypod
 	name = "Supplypod Facility"
 	icon_state = "supplypod"
-	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
+	static_lighting = FALSE
 
 
 /area/centcom/supplypod/podStorage

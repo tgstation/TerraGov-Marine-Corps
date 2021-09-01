@@ -10,8 +10,10 @@
 /datum/game_mode/infestation/post_setup()
 	. = ..()
 	TIMER_COOLDOWN_START(src, COOLDOWN_BIOSCAN, bioscan_interval)
-	for(var/i in GLOB.xeno_weed_node_turfs)
-		new /obj/effect/alien/weeds/node(i)
+	var/weed_type
+	for(var/turf/T in GLOB.xeno_weed_node_turfs)
+		weed_type = pickweight(GLOB.weed_prob_list)
+		new weed_type(T)
 	for(var/turf/T AS in GLOB.xeno_resin_wall_turfs)
 		T.ChangeTurf(/turf/closed/wall/resin, T.type)
 	for(var/i in GLOB.xeno_resin_door_turfs)

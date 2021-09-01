@@ -65,6 +65,8 @@
 				display_class = "headminooc"
 			if("Headmentor")
 				display_class = "headmentorooc"
+			if("Senior Admin")
+				display_class = "senioradminooc"
 			if("Admin")
 				display_class = "adminooc"
 			if("Trial Admin")
@@ -98,11 +100,11 @@
 		// Admins open straight to player panel
 		if(check_other_rights(C, R_ADMIN, FALSE))
 			display_name = "<a class='hidelink' href='?_src_=holder;[HrefToken(TRUE)];playerpanel=[REF(usr)]'>[display_name]</a>"
-
+		var/avoid_highlight = C == src
 		if(display_colour)
-			to_chat(C, "<font color='[display_colour]'>[span_ooc("<span class='prefix'>OOC: [display_name]")]: <span class='message linkify'>[msg]</span></span></font>")
+			to_chat(C, "<font color='[display_colour]'>[span_ooc("<span class='prefix'>OOC: [display_name]")]: <span class='message linkify'>[msg]</span></span></font>", avoid_highlighting = avoid_highlight)
 		else
-			to_chat(C, "<span class='[display_class]'>[span_prefix("OOC: [display_name]")]: <span class='message linkify'>[msg]</span></span>")
+			to_chat(C, "<span class='[display_class]'>[span_prefix("OOC: [display_name]")]: <span class='message linkify'>[msg]</span></span>", avoid_highlighting = avoid_highlight)
 
 
 /client/verb/looc_wrapper()

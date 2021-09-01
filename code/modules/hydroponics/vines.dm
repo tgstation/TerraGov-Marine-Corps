@@ -27,7 +27,7 @@
 	if(master)
 		master.vines -= src
 		master.growth_queue -= src
-	. = ..()
+	return ..()
 
 /obj/effect/plantsegment/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -67,10 +67,6 @@
 		update()
 		return
 
-	manual_unbuckle(user)
-
-
-/obj/effect/plantsegment/attack_paw(mob/living/carbon/human/user)
 	manual_unbuckle(user)
 
 
@@ -284,7 +280,7 @@
 
 /obj/effect/plant_controller/Destroy()
 	STOP_PROCESSING(SSobj, src)
-	. = ..()
+	return ..()
 
 /obj/effect/plant_controller/proc/spawn_piece(turf/location)
 	var/obj/effect/plantsegment/SV = new(location)

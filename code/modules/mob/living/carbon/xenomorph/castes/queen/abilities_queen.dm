@@ -699,8 +699,7 @@
 	plasma_cost = 0 //hive points cost
 	keybind_signal = COMSIG_XENOABILITY_SUMMON_KING_POD
 	gamemode_flags = ABILITY_DISTRESS
-	/// Pyschic point cost
-	var/psych_cost = XENO_KING_PRICE
+	psych_cost = XENO_KING_PRICE
 
 /datum/action/xeno_action/summon_king/can_use_action(silent, override_flags)
 	. = ..()

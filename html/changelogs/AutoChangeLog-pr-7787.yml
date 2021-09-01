@@ -1,4 +1,0 @@
-author: "lovegreenstuff"
-delete-after: True
-changes: 
-  - bugfix: "bonus projectile math when shooting directly up."

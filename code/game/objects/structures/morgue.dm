@@ -19,10 +19,8 @@
 	connected = new tray_path(src)
 
 /obj/structure/morgue/Destroy()
-	. = ..()
-	if(connected)
-		qdel(connected)
-		connected = null
+	QDEL_NULL(connected)
+	return ..()
 
 /obj/structure/morgue/update_icon()
 	if (morgue_open)
@@ -45,9 +43,6 @@
 		A.forceMove(loc)
 		ex_act(severity)
 	qdel(src)
-
-/obj/structure/morgue/attack_paw(mob/living/carbon/human/user)
-	toggle_morgue(user)
 
 /obj/structure/morgue/attack_hand(mob/living/user)
 	. = ..()
@@ -131,11 +126,8 @@
 		linked_morgue = morgue_source
 
 /obj/structure/morgue_tray/Destroy()
-	. = ..()
 	linked_morgue = null
-
-/obj/structure/morgue_tray/attack_paw(mob/living/carbon/human/user)
-	return src.attack_hand(user)
+	return ..()
 
 /obj/structure/morgue_tray/attack_hand(mob/living/user)
 	. = ..()

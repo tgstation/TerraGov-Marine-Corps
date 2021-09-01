@@ -42,7 +42,7 @@ REAGENT SCANNER
 
 		for(var/obj/O in T.contents)
 
-			if(O.level != 1)
+			if(!HAS_TRAIT(O, TRAIT_T_RAY_VISIBLE))
 				continue
 
 			if(O.invisibility == INVISIBILITY_MAXIMUM)

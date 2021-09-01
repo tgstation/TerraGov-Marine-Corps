@@ -45,7 +45,7 @@ OPERATIONS
 /datum/supply_packs/operations/fulton_extraction_pack
 	name = "fulton extraction pack"
 	contains = list(/obj/item/fulton_extraction_pack)
-	cost = 5
+	cost = 10
 
 /datum/supply_packs/operations/cas_flares
 	name = "CAS flare pack"
@@ -63,11 +63,6 @@ OPERATIONS
 	contains = list(/obj/item/binoculars/tactical)
 	cost = 30
 	available_against_xeno_only = TRUE
-
-/datum/supply_packs/operations/motion_detector
-	name = "motion detector crate"
-	contains = list(/obj/item/motiondetector/scout)
-	cost = 20
 
 /datum/supply_packs/operations/pinpointer
 	name = "pool tracker crate"
@@ -94,7 +89,7 @@ OPERATIONS
 /datum/supply_packs/operations/exportpad
 	name = "ASRS Bluespace Export Point"
 	contains = list(/obj/machinery/exportpad)
-	cost = 50
+	cost = 30
 
 /datum/supply_packs/operations/warhead_cluster
 	name = "Cluster orbital warhead"
@@ -226,7 +221,6 @@ WEAPONS
 	name = "MIC-A7 Vindicator Minigun"
 	contains = list(/obj/item/weapon/gun/minigun)
 	cost = MINIGUN_PRICE
-	available_against_xeno_only = TRUE
 
 /datum/supply_packs/weapons/smartgun
 	name = "T-29 Smart Machinegun"
@@ -308,7 +302,6 @@ WEAPONS
 	name = "M402 mortar crate"
 	contains = list(/obj/item/mortar_kit)
 	cost = 40
-	available_against_xeno_only = TRUE
 
 /datum/supply_packs/weapons/detpack
 	name = "detpack explosives"
@@ -571,25 +564,21 @@ AMMO
 	name = "M402 mortar HE shell"
 	contains = list(/obj/item/mortal_shell/he)
 	cost = 2
-	available_against_xeno_only = TRUE
 
 /datum/supply_packs/ammo/mortar_ammo_incend
 	name = "M402 mortar incendiary shell"
 	contains = list(/obj/item/mortal_shell/incendiary)
 	cost = 2
-	available_against_xeno_only = TRUE
 
 /datum/supply_packs/ammo/mortar_ammo_flare
 	name = "M402 mortar flare shell"
 	contains = list(/obj/item/mortal_shell/flare)
 	cost = 1
-	available_against_xeno_only = TRUE
 
 /datum/supply_packs/ammo/mortar_ammo_smoke
 	name = "M402 mortar smoke shell"
 	contains = list(/obj/item/mortal_shell/smoke)
 	cost = 1
-	available_against_xeno_only = TRUE
 
 /datum/supply_packs/ammo/mortar_ammo_plasmaloss
 	name = "M402 mortar tanglefoot shell"
@@ -627,7 +616,6 @@ AMMO
 	name = "Minigun Powerpack"
 	contains = list(/obj/item/minigun_powerpack)
 	cost = 5
-	available_against_xeno_only = TRUE
 
 /datum/supply_packs/ammo/back_fuel_tank
 	name = "Standard back fuel tank"
@@ -691,13 +679,11 @@ ARMOR
 	name = "Scout Cloak"
 	contains = list(/obj/item/storage/backpack/marine/satchel/scout_cloak/scout)
 	cost = 50
-	available_against_xeno_only = TRUE
 
 /datum/supply_packs/armor/sniper_cloak
 	name = "Sniper Cloak"
 	contains = list(/obj/item/storage/backpack/marine/satchel/scout_cloak/sniper)
 	cost = 50
-	available_against_xeno_only = TRUE
 
 /datum/supply_packs/armor/grenade_belt
 	name = "High Capacity Grenade Belt"
@@ -1126,7 +1112,7 @@ ENGINEERING
 
 /datum/supply_packs/engineering/powerloader
 	name = "RPL-Y Cargo Loader"
-	contains = list(/obj/vehicle/powerloader)
+	contains = list(/obj/vehicle/ridden/powerloader)
 	cost = 20
 	containertype = null
 
@@ -1154,6 +1140,11 @@ ENGINEERING
 	name = "50 wooden planks"
 	contains = list(/obj/item/stack/sheet/wood/large_stack)
 	cost = 10
+
+/datum/supply_packs/engineering/plasmacutter
+	name = "plasma cutter"
+	contains = list(/obj/item/tool/pickaxe/plasmacutter/)
+	cost = 30
 
 /datum/supply_packs/engineering/quikdeploycade
 	name = "quikdeploy barricade"
@@ -1234,6 +1225,67 @@ ENGINEERING
 	name = "Wireless power generator"
 	contains = list(/obj/machinery/power/port_gen/pacman/mobile_power)
 	cost = 20
+
+/datum/supply_packs/engineering/droid_combat
+	name = "Combat droid with weapon equipped"
+	contains = list(/obj/vehicle/unmanned/droid)
+	cost = 40
+
+/datum/supply_packs/engineering/droid_scout
+	name = "Scout droid"
+	contains = list(/obj/vehicle/unmanned/droid/scout)
+	cost = 30
+
+/datum/supply_packs/engineering/droid_weapon
+	name = "Droid weapon"
+	contains = list(/obj/item/uav_turret/droid)
+	cost = 20
+	containertype = /obj/structure/closet/crate/weapon
+
+/datum/supply_packs/engineering/light_uv
+	name = "Light unmanned vehicle"
+	contains = list(/obj/vehicle/unmanned)
+	cost = 30
+
+/datum/supply_packs/engineering/medium_uv
+	name = "Medium unmanned vehicle"
+	contains = list(/obj/vehicle/unmanned/medium)
+	cost = 50
+
+/datum/supply_packs/engineering/heavy_uv
+	name = "Heavy unmanned vehicle"
+	contains = list(/obj/vehicle/unmanned/heavy)
+	cost = 70
+
+/datum/supply_packs/engineering/uv_light_weapon
+	name = "Light UV weapon"
+	contains = list(/obj/item/uav_turret)
+	cost = 20
+	containertype = /obj/structure/closet/crate/weapon
+
+/datum/supply_packs/engineering/uv_heavy_weapon
+	name = "Heavy UV weapon"
+	contains = list(/obj/item/uav_turret/heavy)
+	cost = 20
+	containertype = /obj/structure/closet/crate/weapon
+
+/datum/supply_packs/engineering/uv_light_ammo
+	name = "Light UV ammo"
+	contains = list(/obj/item/uav_turret)
+	cost = 10
+	containertype = /obj/structure/closet/crate/ammo
+
+/datum/supply_packs/engineering/uv_heavy_ammo
+	name = "Heavy UV ammo"
+	contains = list(/obj/item/ammo_magazine/box12x40mm)
+	cost = 10
+	containertype = /obj/structure/closet/crate/ammo
+
+/datum/supply_packs/engineering/vehicle_remote
+	name = "Vehicle remote"
+	contains = list(/obj/item/unmanned_vehicle_remote)
+	cost = 10
+	containertype = /obj/structure/closet/crate
 
 /*******************************************************************************
 SUPPLIES

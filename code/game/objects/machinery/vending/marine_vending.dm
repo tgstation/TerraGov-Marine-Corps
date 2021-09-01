@@ -69,8 +69,8 @@
 	GLOB.marine_vendors.Add(src)
 
 /obj/machinery/vending/marine/Destroy()
-	. = ..()
 	GLOB.marine_vendors.Remove(src)
+	return ..()
 
 //What do grenade do against candy machine?
 /obj/machinery/vending/marine/ex_act(severity)
@@ -88,6 +88,8 @@
 			/obj/item/ammo_magazine/rifle/standard_assaultrifle = -1,
 			/obj/item/weapon/gun/rifle/standard_carbine = -1,
 			/obj/item/ammo_magazine/rifle/standard_carbine = -1,
+			/obj/item/weapon/gun/rifle/standard_skirmishrifle = -1,
+			/obj/item/ammo_magazine/rifle/standard_skirmishrifle = -1,
 			/obj/item/weapon/gun/rifle/tx11 = -1,
 			/obj/item/ammo_magazine/rifle/tx11 = -1,
 		),
@@ -124,6 +126,7 @@
 			/obj/item/weapon/gun/shotgun/pump/t35 = -1,
 			/obj/item/weapon/gun/shotgun/combat/standardmarine = -1,
 			/obj/item/weapon/gun/shotgun/pump/cmb = -1,
+			/obj/item/weapon/gun/shotgun/double/marine = -1,
 			/obj/item/storage/belt/gun/ts34/full = -1,
 			/obj/item/ammo_magazine/shotgun = -1,
 			/obj/item/ammo_magazine/shotgun/buckshot = -1,
@@ -167,7 +170,6 @@
 			/obj/item/weapon/shield/riot/marine = 6,
 			/obj/item/weapon/powerfist = -1,
 			/obj/item/weapon/throwing_knife = -1,
-			/obj/item/weapon/combat_knife = -1,
 			/obj/item/weapon/twohanded/spear/tactical = -1,
 			/obj/item/ammo_magazine/standard_smartmachinegun = 4,
 		),
@@ -205,13 +207,15 @@
 			/obj/item/attachable/attached_gun/flamer = -1,
 			/obj/item/attachable/attached_gun/shotgun = -1,
 			/obj/item/attachable/attached_gun/grenade = -1,
-			/obj/item/attachable/standard_revolver_longbarrel = -1
+			/obj/item/attachable/motiondetector = -1,
 		),
 		"Boxes" = list(
 		/obj/item/ammo_magazine/packet/p9mm = 100,
 		/obj/item/ammo_magazine/packet/acp = 100,
 		/obj/item/ammo_magazine/packet/magnum = 100,
+		/obj/item/ammo_magazine/packet/p10x20mm = 100,
 		/obj/item/ammo_magazine/packet/p10x24mm = 100,
+		/obj/item/ammo_magazine/packet/p10x25mm = 100,
 		/obj/item/ammo_magazine/packet/p10x26mm = 100,
 		/obj/item/ammo_magazine/packet/p10x27mm = 100,
 		/obj/item/ammo_magazine/packet/p492x34mm = 100,
@@ -220,10 +224,12 @@
 		),
 		"Utility" = list(
 		/obj/item/flashlight/combat = -1,
+		/obj/item/attachable/bayonetknife = -1,
+		/obj/item/weapon/combat_knife = -1,
 		/obj/item/binoculars = -1,
 		/obj/item/compass = -1,
-		/obj/item/assembly/signaler = -1,
-		/obj/item/weapon/gun/flare/marine = -1,
+		/obj/item/assembly/signaler = 20,
+		/obj/item/weapon/gun/launcher/m81/flare/marine = -1,
 		),
 	)
 
@@ -313,6 +319,7 @@
 			/obj/item/attachable/attached_gun/flamer = -1,
 			/obj/item/attachable/attached_gun/shotgun = -1,
 			/obj/item/attachable/attached_gun/grenade = -1,
+			/obj/item/attachable/motiondetector = -1,
 		),
 		"Boxes" = list(
 		/obj/item/ammo_magazine/packet/p9mm = 100,
@@ -349,6 +356,7 @@
 			/obj/item/bodybag/tarp = 2,
 			/obj/item/explosive/plastique = 2,
 			/obj/item/minerupgrade/automatic = 3,
+			/obj/item/fulton_extraction_pack = 2,
 			/obj/item/clothing/suit/storage/marine/harness/boomvest = 20,
 			/obj/item/radio/headset/mainship/marine/alpha = -1,
 			/obj/item/radio/headset/mainship/marine/bravo = -1,
@@ -668,7 +676,7 @@
 
 	products = list(
 		/obj/item/clothing/under/marine/corpsman = 4,
-		/obj/item/clothing/head/helmet/marine/corpsman = 4,
+		/obj/item/clothing/head/modular/marine/m10x/corpsman = 4,
 		/obj/item/storage/backpack/marine/corpsman = 4,
 		/obj/item/storage/backpack/marine/satchel/corpsman = 4,
 		/obj/item/encryptionkey/med = 4,
@@ -710,6 +718,19 @@
 
 	prices = list()
 
+/obj/machinery/vending/shared_vending/marine_engi/rebel
+	products = list(
+		/obj/structure/closet/crate/mortar_ammo/mortar_kit = 1,
+		/obj/item/storage/box/sentry = 5,
+		/obj/item/storage/box/tl102 = 1,
+	)
+
+/obj/machinery/vending/shared_vending/marine_engi/loyalist
+	products = list(
+		/obj/structure/closet/crate/mortar_ammo/mortar_kit = 1,
+		/obj/item/storage/box/sentry = 5,
+		/obj/item/storage/box/tl102 = 1,
+	)
 
 /obj/machinery/vending/marine_smartgun
 	name = "\improper TerraGovTech Smartgun Vendor"
@@ -744,14 +765,13 @@
 
 	products = list(
 		/obj/item/clothing/suit/storage/marine/leader = 1,
-		/obj/item/clothing/head/helmet/marine/leader = 1,
+		/obj/item/clothing/head/modular/marine/m10x/leader = 1,
 		/obj/item/clothing/tie/storage/webbing = 1,
 		/obj/item/beacon/supply_beacon = 1,
 		/obj/item/beacon/orbital_bombardment_beacon = 1,
 		/obj/item/explosive/plastique = 1,
 		/obj/item/explosive/grenade/smokebomb = 3,
 		/obj/item/binoculars/tactical = 1,
-		/obj/item/motiondetector = 1,
 		/obj/item/ammo_magazine/pistol/hp = 2,
 		/obj/item/ammo_magazine/pistol/ap = 1,
 		/obj/item/storage/backpack/marine/satchel = 2,
@@ -776,15 +796,15 @@
 	product_ads = "If it moves, it's hostile!;How many enemies have you killed today?;Shoot first, perform autopsy later!;Your ammo is right here.;Guns!;Die, scumbag!;Don't shoot me bro!;Shoot them, bro.;Why not have a donut?"
 	products = list(
 		"Armors" = list(
-			/obj/item/clothing/suit/storage/marine/pasvest = -1,
+			/obj/item/clothing/suit/modular/pas11x = -1,
 			/obj/item/clothing/suit/modular = -1,
 			/obj/item/clothing/suit/storage/marine/harness = -1,
 			/obj/item/clothing/suit/armor/vest/pilot = -1,
 			/obj/item/facepaint/green = -1,
 		),
 		"Helmets" = list(
-			/obj/item/clothing/head/helmet/marine = -1,
-			/obj/item/clothing/head/helmet/marine/heavy = -1,
+			/obj/item/clothing/head/modular/marine/m10x = -1,
+			/obj/item/clothing/head/modular/marine/m10x/heavy = -1,
 			/obj/item/clothing/head/modular/marine/skirmisher = -1,
 			/obj/item/clothing/head/modular/marine = -1,
 			/obj/item/clothing/head/modular/marine/eva = -1,
@@ -825,7 +845,7 @@
 			/obj/item/armor_module/storage/medical = -1,
 			/obj/item/helmet_module/welding = -1,
 			/obj/item/helmet_module/binoculars = -1,
-			/obj/item/helmet_module/attachable/tyr_head = 1,
+			/obj/item/helmet_module/attachable/tyr_head = -1,
 			/obj/item/helmet_module/antenna = -1,
 			/obj/item/helmet_module/attachable/mimir_environment_protection/mark1 = -1,
 			/obj/item/armor_module/attachable/mimir_environment_protection/mark1 = -1,

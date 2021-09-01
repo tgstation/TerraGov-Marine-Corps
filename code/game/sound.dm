@@ -199,10 +199,14 @@ A good representation is: 'byond applies a volume reduction to the sound every X
 			S = pick('sound/weapons/genhit1.ogg', 'sound/weapons/genhit2.ogg', 'sound/weapons/genhit3.ogg')
 		if("pageturn")
 			S = pick('sound/effects/pageturn1.ogg', 'sound/effects/pageturn2.ogg','sound/effects/pageturn3.ogg')
+		if("gasbreath")
+			S = pick('sound/effects/gasmaskbreath.ogg', 'sound/effects/gasmaskbreath2.ogg')
 		if("terminal_type")
 			S = pick('sound/machines/terminal_button01.ogg', 'sound/machines/terminal_button02.ogg', 'sound/machines/terminal_button03.ogg', \
 				'sound/machines/terminal_button04.ogg', 'sound/machines/terminal_button05.ogg', 'sound/machines/terminal_button06.ogg', \
 				'sound/machines/terminal_button07.ogg', 'sound/machines/terminal_button08.ogg')
+		if("vending")
+			S = pick('sound/machines/vending_cans.ogg', 'sound/machines/vending_drop.ogg')
 		// Weapons/bullets
 		if("ballistic_hit")
 			S = pick('sound/bullets/bullet_impact1.ogg','sound/bullets/bullet_impact2.ogg','sound/bullets/bullet_impact3.ogg')

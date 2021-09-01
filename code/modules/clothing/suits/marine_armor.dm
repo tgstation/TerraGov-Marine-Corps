@@ -297,8 +297,8 @@
 	SSmonitor.stats.b18_in_use += src
 
 /obj/item/clothing/suit/storage/marine/specialist/Destroy()
-	. = ..()
 	SSmonitor.stats.b18_in_use -= src
+	return ..()
 
 /obj/item/clothing/suit/storage/marine/B17
 	name = "\improper B17 defensive armor"
@@ -316,8 +316,8 @@
 	SSmonitor.stats.b17_in_use += src
 
 /obj/item/clothing/suit/storage/marine/B17/Destroy()
-	. = ..()
 	SSmonitor.stats.b17_in_use -= src
+	return ..()
 
 /obj/item/clothing/suit/storage/marine/M3T
 	name = "\improper M3-T light armor"
@@ -426,9 +426,6 @@
 	. = ..()
 	AddComponent(/datum/component/suit_autodoc)
 	AddElement(/datum/element/limb_support, supporting_limbs)
-
-/obj/item/clothing/suit/storage/marine/veteran/PMC/commando/Destroy()
-	. = ..()
 
 /*===========================DISTRESS================================*/
 

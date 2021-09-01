@@ -89,7 +89,7 @@
 	if(source_binoc)
 		source_binoc.laser_cooldown = world.time + source_binoc.cooldown_duration
 		source_binoc = null
-	. = ..()
+	return ..()
 
 /obj/effect/overlay/temp/laser_target
 	name = "laser"
@@ -123,7 +123,7 @@
 	if(linked_cam)
 		qdel(linked_cam)
 		linked_cam = null
-	. = ..()
+	return ..()
 
 /obj/effect/overlay/temp/laser_target/ex_act(severity) //immune to explosions
 	return
@@ -143,8 +143,8 @@
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_CAS_LASER_CREATED, src)
 
 /obj/effect/overlay/temp/laser_target/cas/Destroy()
-	. = ..()
 	GLOB.active_cas_targets -= src
+	return ..()
 
 /obj/effect/overlay/temp/laser_target/cas/examine(user)
 	. = ..()
@@ -160,8 +160,8 @@
 	GLOB.active_laser_targets += src
 
 /obj/effect/overlay/temp/laser_target/OB/Destroy()
-	. = ..()
 	GLOB.active_laser_targets -= src
+	return ..()
 
 /obj/effect/overlay/temp/blinking_laser //not used for CAS anymore but some admin buttons still use it
 	name = "blinking laser"
@@ -260,3 +260,4 @@
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	alpha = 0
 	vis_flags = NONE
+	blocks_emissive = NONE

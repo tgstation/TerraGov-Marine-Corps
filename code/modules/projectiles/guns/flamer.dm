@@ -21,7 +21,9 @@
 
 	attachable_allowed = list( //give it some flexibility.
 						/obj/item/attachable/flashlight,
-						/obj/item/attachable/magnetic_harness)
+						/obj/item/attachable/magnetic_harness,
+						/obj/item/attachable/motiondetector,
+						)
 	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY|GUN_WIELDED_STABLE_FIRING_ONLY
 	gun_skill_category = GUN_SKILL_HEAVY_WEAPONS
 	attachable_offset = list("rail_x" = 12, "rail_y" = 23)
@@ -189,7 +191,7 @@
 	playsound(user, reload_sound, 25, 1, 5)
 	update_icon(user)
 	var/obj/screen/ammo/A = user.hud_used.ammo
-	A.update_hud(user)
+	A.update_hud(user, src)
 
 
 /**Proced when unlinking the back fuel tank, making the flamer unlit and unable to fire
@@ -206,7 +208,7 @@
 	light_pilot(user,FALSE)
 	update_icon(user)
 	var/obj/screen/ammo/A = user.hud_used.ammo
-	A.update_hud(user)
+	A.update_hud(user, src)
 
 
 /obj/item/weapon/gun/flamer/removed_from_inventory(mob/user)
@@ -232,10 +234,6 @@
 	var/burntime = loaded_ammo.burntime
 	var/fire_color = loaded_ammo.fire_color
 	fire_delay = loaded_ammo.fire_delay
-	if(istype(loaded_ammo, /datum/ammo/flamethrower/green))
-		playsound(user, fire_sound, 50, 1)
-		triangular_flame(target, user, burntime, burnlevel, loaded_ammo.max_range)
-		return
 
 	var/list/turf/turfs = getline(user,target)
 	playsound(user, fire_sound, 50, 1)
@@ -288,7 +286,7 @@
 		prev_T = T
 		sleep(1)
 	var/obj/screen/ammo/A = user.hud_used.ammo
-	A.update_hud(user)
+	A.update_hud(user, src)
 
 /obj/item/weapon/gun/flamer/proc/flame_turf(turf/T, mob/living/user, heat, burn, f_color = "red")
 	if(!istype(T))
@@ -339,73 +337,6 @@
 		M.IgniteMob()
 
 		to_chat(M, "[isxeno(M)?"<span class='xenodanger'>":"<span class='highdanger'>"]Augh! You are roasted by the flames!")
-
-/obj/item/weapon/gun/flamer/proc/triangular_flame(atom/target, mob/living/user, burntime, burnlevel, max_range = 4)
-	set waitfor = 0
-
-	var/unleash_dir = user.dir //don't want the player to turn around mid-unleash to bend the fire.
-	var/list/turf/turfs = getline(user,target)
-	playsound(user, fire_sound, 50, 1)
-	var/distance = 1
-	var/turf/prev_T
-
-	for(var/turf/T in turfs)
-		if(T == user.loc)
-			prev_T = T
-			continue
-		if(T.density)
-			break
-		if(locate(/obj/effect/forcefield/fog) in T)
-			break
-		if(loc != user)
-			break
-		if(!current_mag || !current_mag.current_rounds)
-			break
-		if(distance > max_range)
-			break
-		if(prev_T && LinkBlocked(prev_T, T))
-			break
-		current_mag.current_rounds--
-		flame_turf(T,user, burntime, burnlevel, "green")
-		prev_T = T
-		sleep(1)
-
-		var/list/turf/right = list()
-		var/list/turf/left = list()
-		var/turf/right_turf = T
-		var/turf/left_turf = T
-		var/right_dir = turn(unleash_dir, 90)
-		var/left_dir = turn(unleash_dir, -90)
-		for (var/i = 0, i < distance - 1, i++)
-			right_turf = get_step(right_turf, right_dir)
-			right += right_turf
-			left_turf = get_step(left_turf, left_dir)
-			left += left_turf
-
-		var/turf/prev_R = T
-		for (var/turf/R in right)
-
-			if (R.density)
-				break
-			if(prev_R && LinkBlocked(prev_R, R))
-				break
-
-			flame_turf(R, user, burntime, burnlevel, "green")
-			prev_R = R
-			sleep(1)
-
-		var/turf/prev_L = T
-		for (var/turf/L in left)
-			if (L.density)
-				break
-			if(prev_L && LinkBlocked(prev_L, L))
-				break
-
-			flame_turf(L, user, burntime, burnlevel, "green")
-			prev_L = L
-			sleep(1)
-
-		distance++
 
 /obj/item/weapon/gun/flamer/get_ammo_type()
 	if(!ammo)
@@ -514,7 +445,7 @@
 		if (current_mag?.current_rounds > 0)
 			light_pilot(user, TRUE)
 	var/obj/screen/ammo/A = user.hud_used.ammo
-	A.update_hud(user)
+	A.update_hud(user, src)
 	SEND_SIGNAL(src, COMSIG_ITEM_HYDRO_CANNON_TOGGLED)
 	return TRUE
 
@@ -544,16 +475,16 @@
 	playsound(user, reload_sound, 25, 1, 5)
 	update_icon(user)
 	var/obj/screen/ammo/A = user.hud_used.ammo
-	A.update_hud(user)
+	A.update_hud(user, src)
 
 /obj/item/weapon/gun/flamer/marinestandard/Fire()
 	if(active_attachable && istype(active_attachable, /obj/item/attachable/hydro_cannon) && (world.time > last_use + 10))
 		INVOKE_ASYNC(src, .proc/extinguish, target, gun_user) //Fire it.
-		water_count -=7//reagents is not updated in this proc, we need water_count for a updated HUD
+		water_count -= 7//reagents is not updated in this proc, we need water_count for a updated HUD
 		last_fired = world.time
 		last_use = world.time
 		var/obj/screen/ammo/A = gun_user.hud_used.ammo
-		A.update_hud(gun_user)
+		A.update_hud(gun_user, src)
 		return
 	if(gun_user.skills.getRating("firearms") < 0)
 		switch(windup_checked)
@@ -582,7 +513,7 @@
 		to_chat(user, span_notice("\The [src]'s hydro cannon is refilled with water."))
 		playsound(src.loc, 'sound/effects/refill.ogg', 25, 1, 3)
 		var/obj/screen/ammo/A = user.hud_used.ammo
-		A.update_hud(user)
+		A.update_hud(user, src)
 		return
 
 /obj/item/weapon/gun/flamer/marinestandard/get_ammo_count()
@@ -615,7 +546,9 @@
 	icon_state = "red_2"
 	layer = BELOW_OBJ_LAYER
 	light_system = MOVABLE_LIGHT
+	light_mask_type = /atom/movable/lighting_mask/flicker
 	light_on = TRUE
+	light_range = 3
 	light_power = 3
 	light_color = LIGHT_COLOR_LAVA
 	var/firelevel = 12 //Tracks how much "fire" there is. Basically the timer of how long the fire burns

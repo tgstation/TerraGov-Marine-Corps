@@ -30,15 +30,12 @@
 
 /obj/item/radio/intercom/Destroy()
 	STOP_PROCESSING(SSobj, src)
-	. = ..()
+	return ..()
 
 
 /obj/item/radio/intercom/attack_ai(mob/user as mob)
 	spawn (0)
 		attack_self(user)
-
-/obj/item/radio/intercom/attack_paw(mob/living/carbon/human/user)
-	return src.attack_hand(user)
 
 
 /obj/item/radio/intercom/attack_hand(mob/living/user)

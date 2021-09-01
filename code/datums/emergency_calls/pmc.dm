@@ -2,7 +2,7 @@
 	name = "NT Private Military Contractor Squad"
 	base_probability = 11
 	alignement_factor = -2
-	shuttle_id = "distress_pmc"
+	shuttle_id = SHUTTLE_DISTRESS_PMC
 
 
 /datum/emergency_call/pmc/print_backstory(mob/living/carbon/human/H)
