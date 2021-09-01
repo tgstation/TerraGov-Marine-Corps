@@ -1515,3 +1515,7 @@
 	victim.dead_ticks = 0
 	ADD_TRAIT(victim, TRAIT_STASIS, TRAIT_STASIS)
 	X.eject_victim(TRUE, starting_turf)
+
+/datum/action/xeno_action/activable/command_minion
+	name = "Command Minions"
+

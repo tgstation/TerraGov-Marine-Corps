@@ -701,3 +701,6 @@
 
 //Signals for CIC orders
 #define COMSIG_ORDER_SENT "order_updated"
+
+//Signals for AI
+#define COMSIG_MINION_TARGET_CHANGED "minion target changed"
