@@ -320,7 +320,7 @@
 	if(isliving(A))
 		var/mob/living/L = A
 
-		if(mob_size < L.mob_size) //Can't go around pushing things larger than us.
+		if(mob_size < L.mob_size && mob_size != MOB_SIZE_XENO) //Can't go around pushing things larger than us.
 			return
 
 
@@ -341,16 +341,7 @@
 			return
 
 		if(!L.buckled && !L.anchored)
-			var/mob_swap = FALSE
-			//the puller can always swap with its victim if on grab intent
-			if(L.pulledby == src && a_intent == INTENT_GRAB)
-				mob_swap = TRUE
-			//restrained people act if they were on 'help' intent to prevent a person being pulled from being seperated from their puller
-			else if((L.restrained() || L.a_intent == INTENT_HELP) && (restrained() || a_intent == INTENT_HELP))
-				mob_swap = TRUE
-			else if(mob_size > L.mob_size && a_intent == INTENT_HELP) //Larger mobs can shove aside smaller ones.
-				mob_swap = TRUE
-			if(mob_swap)
+			if((L.pulledby == src && a_intent == INTENT_GRAB) || a_intent == INTENT_HELP)
 				//switch our position with L
 				if(loc && !loc.Adjacent(L.loc))
 					return
