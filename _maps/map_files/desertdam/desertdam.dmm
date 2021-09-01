@@ -258,12 +258,8 @@
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/exterior/valley/valley_labs)
 "abg" = (
-/obj/structure/stairs{
-	dir = 8
-	},
-/obj/structure/platform{
-	density = 0;
-	dir = 1
+/obj/structure/stairs/railstairs{
+	icon_state = "stairleftrailup"
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt{
 	icon_state = "cement_sunbleached2"
@@ -2682,13 +2678,8 @@
 	},
 /area/desert_dam/exterior/valley/valley_northwest)
 "alr" = (
-/obj/structure/stairs{
-	dir = 1
-	},
-/obj/structure/platform{
-	density = 0;
-	dir = 8;
-	layer = 2.7
+/obj/structure/stairs/railstairs{
+	icon_state = "stairuprailleft"
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt{
 	icon_state = "tile"
@@ -2842,13 +2833,8 @@
 /turf/open/floor/plating,
 /area/desert_dam/interior/lab_northeast/east_lab_excavation)
 "alQ" = (
-/obj/structure/stairs{
-	dir = 1
-	},
-/obj/structure/platform{
-	density = 0;
-	dir = 4;
-	layer = 2.7
+/obj/structure/stairs/railstairs{
+	icon_state = "stairuprailright"
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt{
 	icon_state = "tile"
@@ -4241,11 +4227,8 @@
 	},
 /area/desert_dam/interior/lab_northeast/east_lab_security_armory)
 "aqw" = (
-/obj/structure/stairs{
-	dir = 8
-	},
-/obj/structure/platform{
-	density = 0
+/obj/structure/stairs/railstairs{
+	icon_state = "stairleftraildown"
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached{
 	icon_state = "cement_sunbleached14"
@@ -5084,12 +5067,8 @@
 	},
 /area/desert_dam/interior/caves/east_caves)
 "ate" = (
-/obj/structure/stairs{
-	dir = 4
-	},
-/obj/structure/platform{
-	density = 0;
-	dir = 1
+/obj/structure/stairs/railstairs{
+	icon_state = "stairrightrailup"
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt{
 	icon_state = "tile"
@@ -5508,12 +5487,8 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/cement,
 /area/desert_dam/interior/dam_interior/west_tunnel)
 "auv" = (
-/obj/structure/stairs{
-	dir = 1
-	},
-/obj/structure/platform{
-	density = 0;
-	dir = 8
+/obj/structure/stairs/railstairs{
+	icon_state = "stairuprailleft"
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached{
 	icon_state = "cement_sunbleached3"
@@ -5692,12 +5667,8 @@
 	},
 /area/desert_dam/interior/lab_northeast/east_lab_lobby)
 "auX" = (
-/obj/structure/stairs{
-	dir = 1
-	},
-/obj/structure/platform{
-	density = 0;
-	dir = 4
+/obj/structure/stairs/railstairs{
+	icon_state = "stairuprailright"
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached{
 	icon_state = "cement_sunbleached1"
@@ -6042,11 +6013,8 @@
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/desert_dam/interior/caves/east_caves)
 "awn" = (
-/obj/structure/stairs{
-	dir = 4
-	},
-/obj/structure/platform{
-	density = 0
+/obj/structure/stairs/railstairs{
+	icon_state = "stairrightraildown"
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt{
 	icon_state = "tile"
@@ -7312,12 +7280,8 @@
 	},
 /area/desert_dam/interior/dam_interior/south_tunnel)
 "aBq" = (
-/obj/structure/stairs{
-	dir = 4
-	},
-/obj/structure/platform{
-	density = 0;
-	dir = 1
+/obj/structure/stairs/railstairs{
+	icon_state = "stairleftrailup"
 	},
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/desert_dam/exterior/valley/valley_crashsite)
@@ -7361,11 +7325,8 @@
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/desert_dam/exterior/valley/valley_wilderness)
 "aBF" = (
-/obj/structure/stairs{
-	dir = 4
-	},
-/obj/structure/platform{
-	density = 0
+/obj/structure/stairs/railstairs{
+	icon_state = "stairleftraildown"
 	},
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/desert_dam/exterior/valley/valley_crashsite)
@@ -8062,24 +8023,16 @@
 	},
 /area/desert_dam/building/medical/west_wing_hallway)
 "aEv" = (
-/obj/structure/stairs{
-	dir = 1
-	},
-/obj/structure/platform{
-	density = 0;
-	dir = 8
+/obj/structure/stairs/railstairs{
+	icon_state = "stairuprailleft"
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt{
 	icon_state = "tile"
 	},
 /area/desert_dam/exterior/valley/valley_crashsite)
 "aEw" = (
-/obj/structure/stairs{
-	dir = 1
-	},
-/obj/structure/platform{
-	density = 0;
-	dir = 4
+/obj/structure/stairs/railstairs{
+	icon_state = "stairuprailright"
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt{
 	icon_state = "tile"
@@ -8686,21 +8639,15 @@
 	},
 /area/desert_dam/exterior/valley/valley_crashsite)
 "aHK" = (
-/obj/structure/stairs,
-/obj/structure/platform{
-	density = 0;
-	dir = 8
+/obj/structure/stairs/railstairs{
+	icon_state = "stairdownrailleft"
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt{
 	icon_state = "tile"
 	},
 /area/desert_dam/exterior/valley/valley_crashsite)
 "aHM" = (
-/obj/structure/stairs,
-/obj/structure/platform{
-	density = 0;
-	dir = 4
-	},
+/obj/structure/stairs/railstairs,
 /turf/open/floor/plating/ground/desertdam/asphalt{
 	icon_state = "tile"
 	},
@@ -8845,24 +8792,16 @@
 	},
 /area/desert_dam/exterior/river/riverside_central_north)
 "aIB" = (
-/obj/structure/stairs{
-	dir = 4
-	},
-/obj/structure/platform{
-	density = 0;
-	dir = 1
+/obj/structure/stairs/railstairs{
+	icon_state = "stairrightrailup"
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt{
 	icon_state = "cement_sunbleached9"
 	},
 /area/desert_dam/exterior/valley/valley_crashsite)
 "aID" = (
-/obj/structure/stairs{
-	dir = 8
-	},
-/obj/structure/platform{
-	density = 0;
-	dir = 1
+/obj/structure/stairs/railstairs{
+	icon_state = "stairleftrailup"
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt{
 	icon_state = "cement_sunbleached9"
@@ -8930,31 +8869,16 @@
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/desert_dam/exterior/valley/valley_telecoms)
 "aIR" = (
-/obj/structure/stairs{
-	dir = 4
-	},
-/obj/structure/platform{
-	density = 0
+/obj/structure/stairs/railstairs{
+	icon_state = "stairrightraildown"
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt{
 	icon_state = "cement_sunbleached15"
 	},
 /area/desert_dam/exterior/valley/valley_crashsite)
-"aIT" = (
-/obj/structure/stairs,
-/obj/structure/platform{
-	dir = 8
-	},
-/turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached{
-	icon_state = "cement_sunbleached3"
-	},
-/area/desert_dam/exterior/valley/valley_telecoms)
 "aIW" = (
-/obj/structure/stairs{
-	dir = 8
-	},
-/obj/structure/platform{
-	density = 0
+/obj/structure/stairs/railstairs{
+	icon_state = "stairleftraildown"
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt{
 	icon_state = "cement_sunbleached15"
@@ -9265,26 +9189,18 @@
 	},
 /area/desert_dam/exterior/valley/valley_crashsite)
 "aKR" = (
-/obj/structure/stairs{
-	dir = 1
-	},
-/obj/structure/platform{
-	density = 0;
-	dir = 8
+/obj/structure/stairs/railstairs{
+	icon_state = "stairuprailleft"
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached{
 	icon_state = "cement_sunbleached3"
 	},
 /area/desert_dam/exterior/valley/valley_crashsite)
 "aKS" = (
-/obj/structure/stairs{
-	dir = 1
-	},
-/obj/structure/platform{
-	density = 0;
-	dir = 4
-	},
 /obj/effect/decal/cleanable/dirt,
+/obj/structure/stairs/railstairs{
+	icon_state = "stairuprailright"
+	},
 /turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached{
 	icon_state = "cement_sunbleached1"
 	},
@@ -9491,22 +9407,16 @@
 	},
 /area/desert_dam/exterior/valley/valley_labs)
 "aLw" = (
-/obj/structure/stairs,
-/obj/structure/platform{
-	density = 0;
-	dir = 8
-	},
 /obj/effect/decal/cleanable/dirt,
+/obj/structure/stairs/railstairs{
+	icon_state = "stairdownrailleft"
+	},
 /turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached{
 	icon_state = "cement_sunbleached3"
 	},
 /area/desert_dam/exterior/valley/valley_crashsite)
 "aLx" = (
-/obj/structure/stairs,
-/obj/structure/platform{
-	density = 0;
-	dir = 4
-	},
+/obj/structure/stairs/railstairs,
 /turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached{
 	icon_state = "cement_sunbleached1"
 	},
@@ -10773,12 +10683,8 @@
 	},
 /area/desert_dam/exterior/landing_pad_one_external)
 "aRi" = (
-/obj/structure/stairs{
-	dir = 8
-	},
-/obj/structure/platform{
-	density = 0;
-	dir = 1
+/obj/structure/stairs/railstairs{
+	icon_state = "stairleftrailup"
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt{
 	icon_state = "cement_sunbleached2"
@@ -10907,11 +10813,8 @@
 	},
 /area/shuttle/tri_trans2/alpha)
 "aRH" = (
-/obj/structure/stairs{
-	dir = 8
-	},
-/obj/structure/platform{
-	density = 0
+/obj/structure/stairs/railstairs{
+	icon_state = "stairleftraildown"
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached{
 	icon_state = "cement_sunbleached14"
@@ -12387,12 +12290,8 @@
 	},
 /area/desert_dam/building/administration/hallway)
 "aXT" = (
-/obj/structure/stairs{
-	dir = 8
-	},
-/obj/structure/platform{
-	density = 0;
-	dir = 1
+/obj/structure/stairs/railstairs{
+	icon_state = "stairleftrailup"
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt{
 	icon_state = "tile"
@@ -12569,11 +12468,8 @@
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/desert_dam/exterior/valley/valley_labs)
 "aYy" = (
-/obj/structure/stairs{
-	dir = 8
-	},
-/obj/structure/platform{
-	density = 0
+/obj/structure/stairs/railstairs{
+	icon_state = "stairleftraildown"
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt{
 	icon_state = "tile"
@@ -13538,19 +13434,15 @@
 	},
 /area/desert_dam/interior/lab_northeast/east_lab_containment)
 "bbZ" = (
-/obj/structure/stairs{
-	dir = 4
-	},
-/obj/structure/platform{
-	density = 0;
-	dir = 1
-	},
 /obj/structure/disposalpipe/segment{
 	dir = 4;
 	icon_state = "pipe-c"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 6
+	},
+/obj/structure/stairs/railstairs{
+	icon_state = "stairrightrailup"
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached{
 	icon_state = "cement_sunbleached4"
@@ -13585,14 +13477,11 @@
 	},
 /area/desert_dam/building/administration/meetingrooom)
 "bcs" = (
-/obj/structure/stairs{
-	dir = 4
-	},
-/obj/structure/platform{
-	density = 0
-	},
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/structure/stairs/railstairs{
+	icon_state = "stairrightraildown"
+	},
 /turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached{
 	icon_state = "cement_sunbleached12"
 	},
@@ -14417,21 +14306,15 @@
 /turf/open/floor/wood,
 /area/desert_dam/building/administration/overseer_office)
 "bfB" = (
-/obj/structure/stairs,
-/obj/structure/platform{
-	density = 0;
-	dir = 8
+/obj/structure/stairs/railstairs{
+	icon_state = "stairdownrailleft"
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached{
 	icon_state = "cement_sunbleached3"
 	},
 /area/desert_dam/exterior/valley/valley_labs)
 "bfC" = (
-/obj/structure/stairs,
-/obj/structure/platform{
-	density = 0;
-	dir = 4
-	},
+/obj/structure/stairs/railstairs,
 /turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached{
 	icon_state = "cement_sunbleached1"
 	},
@@ -15009,12 +14892,8 @@
 	},
 /area/desert_dam/exterior/valley/north_valley_dam)
 "bic" = (
-/obj/structure/stairs{
-	dir = 4
-	},
-/obj/structure/platform{
-	density = 0;
-	dir = 1
+/obj/structure/stairs/railstairs{
+	icon_state = "stairrightrailup"
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt{
 	icon_state = "tile"
@@ -15095,11 +14974,8 @@
 	},
 /area/desert_dam/exterior/valley/north_valley_dam)
 "biu" = (
-/obj/structure/stairs{
-	dir = 4
-	},
-/obj/structure/platform{
-	density = 0
+/obj/structure/stairs/railstairs{
+	icon_state = "stairrightraildown"
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt{
 	icon_state = "tile"
@@ -15361,21 +15237,15 @@
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/exterior/valley/north_valley_dam)
 "bjs" = (
-/obj/structure/stairs,
-/obj/structure/platform{
-	density = 0;
-	dir = 8
+/obj/structure/stairs/railstairs{
+	icon_state = "stairdownrailleft"
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached{
 	icon_state = "cement_sunbleached14"
 	},
 /area/desert_dam/exterior/valley/north_valley_dam)
 "bjt" = (
-/obj/structure/stairs,
-/obj/structure/platform{
-	density = 0;
-	dir = 4
-	},
+/obj/structure/stairs/railstairs,
 /turf/open/floor/plating/ground/desertdam/asphalt{
 	icon_state = "cement_sunbleached15"
 	},
@@ -18367,12 +18237,8 @@
 	},
 /area/desert_dam/building/mining/workshop)
 "bvr" = (
-/obj/structure/stairs{
-	dir = 1
-	},
-/obj/structure/platform{
-	density = 0;
-	dir = 4
+/obj/structure/stairs/railstairs{
+	icon_state = "stairuprailright"
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt/cement{
 	icon_state = "cement1"
@@ -18947,12 +18813,8 @@
 	},
 /area/desert_dam/interior/dam_interior/northeastern_tunnel)
 "bxs" = (
-/obj/structure/stairs{
-	dir = 1
-	},
-/obj/structure/platform{
-	density = 0;
-	dir = 8
+/obj/structure/stairs/railstairs{
+	icon_state = "stairuprailleft"
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt/cement{
 	icon_state = "cement3"
@@ -19933,14 +19795,12 @@
 	},
 /area/desert_dam/interior/dam_interior/engine_east_wing)
 "bBs" = (
-/obj/structure/stairs{
-	dir = 8
+/obj/structure/stairs/railstairs{
+	icon_state = "stairleftrailup"
 	},
-/obj/structure/platform{
-	density = 0;
-	dir = 1
+/turf/open/floor/plating/ground/desertdam/asphalt/cement{
+	icon_state = "cement4"
 	},
-/turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/interior/dam_interior/north_tunnel)
 "bBv" = (
 /obj/machinery/power/apc{
@@ -20089,13 +19949,12 @@
 	},
 /area/desert_dam/interior/dam_interior/tech_storage)
 "bCh" = (
-/obj/structure/stairs{
-	dir = 4
+/obj/structure/stairs/railstairs{
+	icon_state = "stairrightraildown"
 	},
-/obj/structure/platform{
-	density = 0
+/turf/open/floor/plating/ground/desertdam/asphalt/cement{
+	icon_state = "cement12"
 	},
-/turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/interior/dam_interior/northwestern_tunnel)
 "bCi" = (
 /obj/structure/platform_decoration{
@@ -20110,13 +19969,12 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/cement,
 /area/desert_dam/interior/dam_interior/north_tunnel)
 "bCk" = (
-/obj/structure/stairs{
-	dir = 8
+/obj/structure/stairs/railstairs{
+	icon_state = "stairleftraildown"
 	},
-/obj/structure/platform{
-	density = 0
+/turf/open/floor/plating/ground/desertdam/asphalt/cement{
+	icon_state = "cement12"
 	},
-/turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/interior/dam_interior/north_tunnel)
 "bCm" = (
 /obj/machinery/power/apc{
@@ -20287,14 +20145,10 @@
 	},
 /area/desert_dam/interior/dam_interior/northwestern_tunnel)
 "bCW" = (
-/obj/structure/stairs{
-	dir = 4
+/obj/structure/stairs/railstairs{
+	icon_state = "stairrightrailup"
 	},
-/obj/structure/platform{
-	density = 0;
-	dir = 1
-	},
-/turf/open/floor/plating/ground/desertdam/asphalt,
+/turf/open/floor/plating/ground/desertdam/asphalt/cement,
 /area/desert_dam/interior/dam_interior/north_tunnel)
 "bCX" = (
 /obj/structure/platform_decoration{
@@ -20316,14 +20170,10 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/cement,
 /area/desert_dam/interior/dam_interior/northeastern_tunnel)
 "bDa" = (
-/obj/structure/stairs{
-	dir = 8
+/obj/structure/stairs/railstairs{
+	icon_state = "stairleftrailup"
 	},
-/obj/structure/platform{
-	density = 0;
-	dir = 1
-	},
-/turf/open/floor/plating/ground/desertdam/asphalt,
+/turf/open/floor/plating/ground/desertdam/asphalt/cement,
 /area/desert_dam/interior/dam_interior/northeastern_tunnel)
 "bDb" = (
 /turf/open/floor/plating/ground/desertdam/asphalt/cement{
@@ -20594,21 +20444,15 @@
 	},
 /area/desert_dam/interior/dam_interior/hangar_storage)
 "bEg" = (
-/obj/structure/stairs,
-/obj/structure/platform{
-	density = 0;
-	dir = 8
+/obj/structure/stairs/railstairs{
+	icon_state = "stairdownrailleft"
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt/cement{
 	icon_state = "cement3"
 	},
 /area/desert_dam/interior/dam_interior/northwestern_tunnel)
 "bEh" = (
-/obj/structure/stairs,
-/obj/structure/platform{
-	density = 0;
-	dir = 4
-	},
+/obj/structure/stairs/railstairs,
 /turf/open/floor/plating/ground/desertdam/asphalt/cement{
 	icon_state = "cement1"
 	},
@@ -20646,13 +20490,10 @@
 	},
 /area/desert_dam/interior/dam_interior/northwestern_tunnel)
 "bEq" = (
-/obj/structure/stairs{
-	dir = 4
+/obj/structure/stairs/railstairs{
+	icon_state = "stairrightraildown"
 	},
-/obj/structure/platform{
-	density = 0
-	},
-/turf/open/floor/plating/ground/desertdam/asphalt,
+/turf/open/floor/plating/ground/desertdam/asphalt/cement,
 /area/desert_dam/interior/dam_interior/north_tunnel)
 "bEr" = (
 /obj/structure/platform,
@@ -20666,13 +20507,10 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/cement,
 /area/desert_dam/interior/dam_interior/northeastern_tunnel)
 "bEv" = (
-/obj/structure/stairs{
-	dir = 8
+/obj/structure/stairs/railstairs{
+	icon_state = "stairleftraildown"
 	},
-/obj/structure/platform{
-	density = 0
-	},
-/turf/open/floor/plating/ground/desertdam/asphalt,
+/turf/open/floor/plating/ground/desertdam/asphalt/cement,
 /area/desert_dam/interior/dam_interior/northeastern_tunnel)
 "bEw" = (
 /turf/open/floor/plating/ground/desertdam/asphalt,
@@ -21719,14 +21557,12 @@
 	},
 /area/desert_dam/interior/dam_interior/hangar_storage)
 "bHR" = (
-/obj/structure/stairs{
-	dir = 4
+/obj/structure/stairs/railstairs{
+	icon_state = "stairrightrailup"
 	},
-/obj/structure/platform{
-	density = 0;
-	dir = 1
+/turf/open/floor/plating/ground/desertdam/asphalt/cement{
+	icon_state = "cement4"
 	},
-/turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/interior/dam_interior/northwestern_tunnel)
 "bHS" = (
 /obj/structure/desertdam/decals/road/stop{
@@ -22054,10 +21890,8 @@
 	},
 /area/desert_dam/interior/dam_interior/north_tunnel)
 "bJi" = (
-/obj/structure/stairs,
-/obj/structure/platform{
-	density = 0;
-	dir = 8
+/obj/structure/stairs/railstairs{
+	icon_state = "stairdownrailleft"
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt/cement{
 	icon_state = "cement3"
@@ -23525,22 +23359,14 @@
 	},
 /area/desert_dam/interior/dam_interior/central_tunnel)
 "bOZ" = (
-/obj/structure/stairs,
-/obj/structure/platform{
-	density = 0;
-	dir = 4
-	},
+/obj/structure/stairs/railstairs,
 /turf/open/floor/plating/ground/desertdam/asphalt/cement{
 	icon_state = "cement1"
 	},
 /area/desert_dam/interior/dam_interior/north_tunnel)
 "bPa" = (
-/obj/structure/stairs{
-	dir = 1
-	},
-/obj/structure/platform{
-	density = 0;
-	dir = 8
+/obj/structure/stairs/railstairs{
+	icon_state = "stairuprailleft"
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt/cement{
 	icon_state = "cement3"
@@ -23765,12 +23591,8 @@
 	},
 /area/desert_dam/interior/dam_interior/central_tunnel)
 "bQa" = (
-/obj/structure/stairs{
-	dir = 1
-	},
-/obj/structure/platform{
-	density = 0;
-	dir = 4
+/obj/structure/stairs/railstairs{
+	icon_state = "stairuprailright"
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt/cement{
 	icon_state = "cement1"
@@ -25296,19 +25118,15 @@
 	},
 /area/desert_dam/interior/dam_interior/workshop)
 "bVS" = (
-/obj/structure/stairs{
-	dir = 4
-	},
-/obj/structure/platform{
-	density = 0;
-	dir = 1
-	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
+	},
+/obj/structure/stairs/railstairs{
+	icon_state = "stairrightrailup"
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt/cement{
 	icon_state = "cement4"
@@ -25367,19 +25185,15 @@
 	},
 /area/desert_dam/interior/dam_interior/central_tunnel)
 "bVX" = (
-/obj/structure/stairs{
-	dir = 8
-	},
-/obj/structure/platform{
-	density = 0;
-	dir = 1
-	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 10
+	},
+/obj/structure/stairs/railstairs{
+	icon_state = "stairleftrailup"
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt/cement{
 	icon_state = "cement4"
@@ -25620,11 +25434,8 @@
 	},
 /area/desert_dam/interior/dam_interior/hangar_storage)
 "bWT" = (
-/obj/structure/stairs{
-	dir = 4
-	},
-/obj/structure/platform{
-	density = 0
+/obj/structure/stairs/railstairs{
+	icon_state = "stairrightraildown"
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt/cement{
 	icon_state = "cement12"
@@ -25648,13 +25459,10 @@
 	},
 /area/desert_dam/interior/dam_interior/central_tunnel)
 "bWX" = (
-/obj/structure/stairs{
-	dir = 8
-	},
-/obj/structure/platform{
-	density = 0
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/structure/stairs/railstairs{
+	icon_state = "stairleftraildown"
+	},
 /turf/open/floor/plating/ground/desertdam/asphalt/cement{
 	icon_state = "cement12"
 	},
@@ -27528,24 +27336,16 @@
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/desert_dam/exterior/valley/valley_medical)
 "cdy" = (
-/obj/structure/stairs{
-	dir = 1
-	},
-/obj/structure/platform{
-	density = 0;
-	dir = 8
+/obj/structure/stairs/railstairs{
+	icon_state = "stairuprailleft"
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt{
 	icon_state = "cement_sunbleached2"
 	},
 /area/desert_dam/exterior/valley/valley_medical)
 "cdz" = (
-/obj/structure/stairs{
-	dir = 1
-	},
-/obj/structure/platform{
-	density = 0;
-	dir = 4
+/obj/structure/stairs/railstairs{
+	icon_state = "stairuprailright"
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt{
 	icon_state = "cement_sunbleached9"
@@ -27617,24 +27417,15 @@
 	},
 /area/desert_dam/building/security/prison)
 "cdO" = (
-/obj/structure/stairs,
-/obj/structure/platform{
-	density = 0;
-	dir = 8
+/obj/structure/stairs/railstairs{
+	icon_state = "stairdownrailleft"
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt/cement{
 	icon_state = "cement3"
 	},
 /area/desert_dam/interior/dam_interior/west_tunnel)
 "cdP" = (
-/obj/structure/platform{
-	dir = 4
-	},
-/obj/structure/stairs,
-/obj/structure/platform{
-	density = 0;
-	dir = 4
-	},
+/obj/structure/stairs/railstairs,
 /turf/open/floor/plating/ground/desertdam/asphalt/cement{
 	icon_state = "cement1"
 	},
@@ -27785,12 +27576,8 @@
 	},
 /area/desert_dam/building/medical/chemistry)
 "cex" = (
-/obj/structure/stairs{
-	dir = 8
-	},
-/obj/structure/platform{
-	density = 0;
-	dir = 1
+/obj/structure/stairs/railstairs{
+	icon_state = "stairleftrailup"
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached{
 	icon_state = "cement_sunbleached4"
@@ -27936,11 +27723,8 @@
 	},
 /area/desert_dam/interior/dam_interior/office)
 "cfp" = (
-/obj/structure/stairs{
-	dir = 8
-	},
-/obj/structure/platform{
-	density = 0
+/obj/structure/stairs/railstairs{
+	icon_state = "stairleftraildown"
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached{
 	icon_state = "cement_sunbleached12"
@@ -29432,12 +29216,11 @@
 	},
 /area/desert_dam/interior/dam_interior/central_tunnel)
 "clV" = (
-/obj/structure/stairs,
-/obj/structure/platform{
-	dir = 8
+/obj/structure/cable,
+/obj/structure/cable,
+/obj/structure/stairs/railstairs{
+	icon_state = "stairdownrailleft"
 	},
-/obj/structure/cable,
-/obj/structure/cable,
 /turf/open/floor/plating/ground/desertdam/asphalt/cement{
 	icon_state = "cement3"
 	},
@@ -31685,10 +31468,8 @@
 	},
 /area/desert_dam/building/telecommunication)
 "cvD" = (
-/obj/structure/stairs,
-/obj/structure/platform{
-	density = 0;
-	dir = 8
+/obj/structure/stairs/railstairs{
+	icon_state = "stairdownrailleft"
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached{
 	icon_state = "cement_sunbleached3"
@@ -33152,12 +32933,8 @@
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/interior/dam_interior/east_tunnel_entrance)
 "cAQ" = (
-/obj/structure/stairs{
-	dir = 4
-	},
-/obj/structure/platform{
-	density = 0;
-	dir = 1
+/obj/structure/stairs/railstairs{
+	icon_state = "stairrightrailup"
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached{
 	icon_state = "cement_sunbleached4"
@@ -33723,11 +33500,8 @@
 /turf/open/floor/plating/ground/mars/random/dirt,
 /area/desert_dam/exterior/valley/valley_cargo)
 "cCO" = (
-/obj/structure/stairs{
-	dir = 4
-	},
-/obj/structure/platform{
-	density = 0
+/obj/structure/stairs/railstairs{
+	icon_state = "stairrightraildown"
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached{
 	icon_state = "cement_sunbleached12"
@@ -34350,15 +34124,6 @@
 	icon_state = "cement_sunbleached1"
 	},
 /area/desert_dam/exterior/landing_pad_two_external)
-"cFd" = (
-/obj/structure/stairs,
-/obj/structure/platform{
-	dir = 4
-	},
-/turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached{
-	icon_state = "cement_sunbleached1"
-	},
-/area/desert_dam/exterior/valley/valley_telecoms)
 "cFe" = (
 /obj/machinery/landinglight/ds2/delaythree{
 	dir = 8
@@ -36301,21 +36066,15 @@
 	},
 /area/desert_dam/exterior/landing_pad_two_external)
 "cMN" = (
-/obj/structure/stairs,
-/obj/structure/platform{
-	density = 0;
-	dir = 8
+/obj/structure/stairs/railstairs{
+	icon_state = "stairdownrailleft"
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt{
 	icon_state = "tile"
 	},
 /area/desert_dam/exterior/valley/valley_medical)
 "cMO" = (
-/obj/structure/stairs,
-/obj/structure/platform{
-	density = 0;
-	dir = 4
-	},
+/obj/structure/stairs/railstairs,
 /turf/open/floor/plating/ground/desertdam/asphalt{
 	icon_state = "tile"
 	},
@@ -38775,24 +38534,16 @@
 	},
 /area/desert_dam/exterior/valley/valley_cargo)
 "cXn" = (
-/obj/structure/stairs{
-	dir = 1
-	},
-/obj/structure/platform{
-	density = 0;
-	dir = 8
+/obj/structure/stairs/railstairs{
+	icon_state = "stairuprailleft"
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt{
 	icon_state = "tile"
 	},
 /area/desert_dam/exterior/valley/valley_hydro)
 "cXo" = (
-/obj/structure/stairs{
-	dir = 1
-	},
-/obj/structure/platform{
-	density = 0;
-	dir = 4
+/obj/structure/stairs/railstairs{
+	icon_state = "stairuprailright"
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt{
 	icon_state = "tile"
@@ -41242,24 +40993,16 @@
 	},
 /area/desert_dam/building/hydroponics/hydroponics_loading)
 "dkb" = (
-/obj/structure/stairs{
-	dir = 1
-	},
-/obj/structure/platform{
-	density = 0;
-	dir = 8
+/obj/structure/stairs/railstairs{
+	icon_state = "stairuprailleft"
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt{
 	icon_state = "cement_sunbleached2"
 	},
 /area/desert_dam/exterior/valley/valley_hydro)
 "dkc" = (
-/obj/structure/stairs{
-	dir = 1
-	},
-/obj/structure/platform{
-	density = 0;
-	dir = 4
+/obj/structure/stairs/railstairs{
+	icon_state = "stairuprailright"
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt{
 	icon_state = "cement_sunbleached9"
@@ -41545,15 +41288,9 @@
 	},
 /area/desert_dam/interior/dam_interior/smes_backup)
 "dlP" = (
-/obj/structure/platform{
-	dir = 4
-	},
-/obj/structure/stairs,
-/obj/structure/platform{
-	dir = 4
-	},
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/structure/stairs/railstairs,
 /turf/open/floor/plating/ground/desertdam/asphalt/cement{
 	icon_state = "cement1"
 	},
@@ -44323,12 +44060,8 @@
 	},
 /area/desert_dam/exterior/valley/valley_hydro)
 "dIC" = (
-/obj/structure/stairs{
-	dir = 4
-	},
-/obj/structure/platform{
-	density = 0;
-	dir = 1
+/obj/structure/stairs/railstairs{
+	icon_state = "stairrightrailup"
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt{
 	icon_state = "cement_sunbleached9"
@@ -44460,11 +44193,8 @@
 	},
 /area/desert_dam/building/dorms/pool)
 "dJd" = (
-/obj/structure/stairs{
-	dir = 4
-	},
-/obj/structure/platform{
-	density = 0
+/obj/structure/stairs/railstairs{
+	icon_state = "stairrightraildown"
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt{
 	icon_state = "cement_sunbleached15"
@@ -50674,11 +50404,7 @@
 	},
 /area/desert_dam/interior/east_engineering)
 "fRy" = (
-/obj/structure/stairs,
-/obj/structure/platform{
-	density = 0;
-	dir = 4
-	},
+/obj/structure/stairs/railstairs,
 /turf/open/floor/plating/ground/desertdam/asphalt{
 	icon_state = "cement_sunbleached15"
 	},
@@ -51735,10 +51461,8 @@
 	},
 /area/desert_dam/interior/east_engineering)
 "hhj" = (
-/obj/structure/stairs,
-/obj/structure/platform{
-	density = 0;
-	dir = 8
+/obj/structure/stairs/railstairs{
+	icon_state = "stairdownrailleft"
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached{
 	icon_state = "cement_sunbleached14"
@@ -52337,12 +52061,10 @@
 /turf/open/floor/prison,
 /area/desert_dam/exterior/landing_pad_two_external)
 "hOc" = (
-/obj/structure/stairs,
-/obj/structure/platform{
-	density = 0;
-	dir = 8
-	},
 /obj/structure/cable,
+/obj/structure/stairs/railstairs{
+	icon_state = "stairdownrailleft"
+	},
 /turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached{
 	icon_state = "cement_sunbleached3"
 	},
@@ -52372,11 +52094,7 @@
 	},
 /area/desert_dam/building/hydroponics/hydroponics_breakroom)
 "hOB" = (
-/obj/structure/stairs,
-/obj/structure/platform{
-	density = 0;
-	dir = 4
-	},
+/obj/structure/stairs/railstairs,
 /turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached{
 	icon_state = "cement_sunbleached1"
 	},
@@ -53619,12 +53337,8 @@
 	},
 /area/desert_dam/interior/dam_interior/engine_room)
 "jqO" = (
-/obj/structure/stairs{
-	dir = 4
-	},
-/obj/structure/platform{
-	density = 0;
-	dir = 1
+/obj/structure/stairs/railstairs{
+	icon_state = "stairrightrailup"
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt/cement,
 /area/desert_dam/interior/dam_interior/northwestern_tunnel)
@@ -55840,11 +55554,8 @@
 	},
 /area/desert_dam/exterior/valley/valley_civilian)
 "lQM" = (
-/obj/structure/stairs{
-	dir = 4
-	},
-/obj/structure/platform{
-	density = 0
+/obj/structure/stairs/railstairs{
+	icon_state = "stairrightraildown"
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt{
 	icon_state = "tile"
@@ -56524,11 +56235,8 @@
 	},
 /area/desert_dam/exterior/valley/valley_hydro)
 "mDA" = (
-/obj/structure/stairs{
-	dir = 4
-	},
-/obj/structure/platform{
-	density = 0
+/obj/structure/stairs/railstairs{
+	icon_state = "stairrightraildown"
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt/cement,
 /area/desert_dam/interior/dam_interior/northwestern_tunnel)
@@ -58356,11 +58064,7 @@
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/desert_dam/exterior/valley/valley_cargo)
 "oNS" = (
-/obj/structure/stairs,
-/obj/structure/platform{
-	density = 0;
-	dir = 4
-	},
+/obj/structure/stairs/railstairs,
 /turf/open/floor/plating/ground/desertdam/asphalt{
 	icon_state = "cement_sunbleached15"
 	},
@@ -59645,10 +59349,8 @@
 	},
 /area/desert_dam/exterior/landing_pad_two_external)
 "pWn" = (
-/obj/structure/stairs,
-/obj/structure/platform{
-	density = 0;
-	dir = 8
+/obj/structure/stairs/railstairs{
+	icon_state = "stairdownrailleft"
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached{
 	icon_state = "cement_sunbleached14"
@@ -61655,12 +61357,8 @@
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/exterior/valley/valley_medical)
 "soS" = (
-/obj/structure/stairs{
-	dir = 4
-	},
-/obj/structure/platform{
-	density = 0;
-	dir = 1
+/obj/structure/stairs/railstairs{
+	icon_state = "stairrightrailup"
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt{
 	icon_state = "tile"
@@ -64757,14 +64455,10 @@
 /turf/open/floor/prison,
 /area/desert_dam/building/dorms/hallway_northwing)
 "vOI" = (
-/obj/structure/stairs{
-	dir = 8
-	},
-/obj/structure/platform{
-	density = 0;
-	dir = 1
-	},
 /obj/structure/cable,
+/obj/structure/stairs/railstairs{
+	icon_state = "stairleftrailup"
+	},
 /turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached{
 	icon_state = "cement_sunbleached4"
 	},
@@ -65071,12 +64765,8 @@
 /turf/open/floor/prison,
 /area/desert_dam/interior/dam_interior/engine_room)
 "win" = (
-/obj/structure/stairs,
-/obj/structure/platform{
-	density = 0;
-	dir = 4
-	},
 /obj/structure/cable,
+/obj/structure/stairs/railstairs,
 /turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached{
 	icon_state = "cement_sunbleached1"
 	},
@@ -66734,13 +66424,10 @@
 	},
 /area/desert_dam/interior/dam_interior/hanger)
 "xVI" = (
-/obj/structure/stairs{
-	dir = 8
-	},
-/obj/structure/platform{
-	density = 0
-	},
 /obj/structure/cable,
+/obj/structure/stairs/railstairs{
+	icon_state = "stairleftraildown"
+	},
 /turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached{
 	icon_state = "cement_sunbleached12"
 	},
@@ -71434,7 +71121,7 @@ jNU
 ceA
 cjO
 cjO
-aIT
+cvD
 cxv
 ruR
 beO
@@ -71902,7 +71589,7 @@ cwl
 ceA
 cjO
 cjO
-cFd
+hOB
 cgb
 dzh
 aSL
