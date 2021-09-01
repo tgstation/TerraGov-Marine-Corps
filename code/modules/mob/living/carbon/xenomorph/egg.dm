@@ -17,8 +17,7 @@
 /obj/effect/alien/egg/Initialize(mapload, hivenumber)
 	. = ..()
 	src.hivenumber = hivenumber
-	addtimer(CALLBACK(src, .proc/advance_maturity), maturity_time)
-	update_icon()
+	advance_maturity(maturity_stage)
 
 /obj/effect/alien/egg/update_icon_state()
 	icon_state = initial(icon_state) + "[maturity_stage]"
@@ -168,6 +167,7 @@
 	name = "Hugger egg"
 	icon_state = "egg_hugger"
 	maturity_time = 15 SECONDS
+	maturity_stage = 1
 	stage_ready_to_burst = 1
 	trigger_size = 2
 	///Holds a typepath for the gas particle to create
@@ -179,7 +179,12 @@
 	..()
 	var/spread = EGG_GAS_DEFAULT_SPREAD
 	if(kill) // Kill is more violent
+		playsound(loc, "sound/effects/alien_egg_burst.ogg", 30)
+		flick("egg exploding", src)
 		spread = EGG_GAS_KILL_SPREAD
+	else
+		playsound(src.loc, "sound/effects/alien_egg_move.ogg", 25)
+		flick("egg opening", src)
 	spread += gas_size_bonus
 	advance_maturity(3)
 
