@@ -218,19 +218,27 @@
 				status += "bruised"
 			if(20 to 40)
 				status += "battered"
-			if(40 to INFINITY)
+			if(40 to 60)
 				status += "mangled"
+			if(60 to 100)
+				status += "brutalized"
+			if(100 to INFINITY)
+				status += "mutilated"
 
 		if(brutedamage > 0 && burndamage > 0)
 			status += " and "
 
 		switch(burndamage)
-			if(1 to 10)
+			if(1 to 20)
 				status += "numb"
-			if(10 to 40)
+			if(20 to 40)
 				status += "blistered"
-			if(40 to INFINITY)
+			if(40 to 60)
 				status += "peeling away"
+			if(60 to 100)
+				status += "searing away"
+			if(100 to INFINITY)
+				status += "burnt to a crisp"
 
 		if(!status)
 			status = "OK"

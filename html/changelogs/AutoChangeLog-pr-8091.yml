@@ -1,4 +1,0 @@
-author: "lovegreenstuff"
-delete-after: True
-changes: 
-  - bugfix: "TP44 attachment offsets reverted to pre-snubnose values"

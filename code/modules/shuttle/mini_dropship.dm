@@ -1,11 +1,11 @@
 /obj/docking_port/stationary/marine_dropship/minidropship
 	name = "Minidropship hangar pad"
-	id = "minidropship"
+	id = SHUTTLE_TADPOLE
 	roundstart_template = /datum/map_template/shuttle/minidropship
 
 /obj/docking_port/mobile/marine_dropship/minidropship
 	name = "Tadpole"
-	id = "minidropship"
+	id = SHUTTLE_TADPOLE
 	dwidth = 0
 	dheight = 0
 	width = 7
@@ -20,7 +20,7 @@
 	density = FALSE
 	interaction_flags = INTERACT_OBJ_UI
 	resistance_flags = RESIST_ALL
-	shuttleId = "minidropship"
+	shuttleId = SHUTTLE_TADPOLE
 	lock_override = CAMERA_LOCK_GROUND
 	shuttlePortId = "minidropship_custom"
 	view_range = "26x26"
@@ -39,7 +39,7 @@
 	/// If the next destination is a transit
 	var/to_transit = TRUE
 	/// The id of the stationary docking port on the ship
-	var/origin_port_id = "minidropship"
+	var/origin_port_id = SHUTTLE_TADPOLE
 	/// The user of the ui
 	var/mob/living/ui_user
 	/// If this computer was damaged by a xeno

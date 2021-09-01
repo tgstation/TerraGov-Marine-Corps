@@ -122,6 +122,9 @@ also doesn't really matter. You can only reload them with handfuls.
 /obj/item/ammo_magazine/internal/shotgun/pump/CMB
 	max_rounds = 8
 
+/obj/item/ammo_magazine/internal/shotgun/masterkey
+	max_rounds = 2
+
 /obj/item/ammo_magazine/internal/shotgun/pump/bolt
 	name = "internal magazine"
 	default_ammo = /datum/ammo/bullet/sniper/svd

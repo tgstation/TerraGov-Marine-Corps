@@ -1,5 +1,0 @@
-author: "BraveMole"
-delete-after: True
-changes: 
-  - rscadd: "Weeds type, xeno have now access to three different weeds. Base weeds, resting weeds, sticky weeds. You won't regen sunder if not on resting weeds. All weeds are making xenos faster, but better weeds are more expensive"
-  - balance: "Weeds are decaying faster"

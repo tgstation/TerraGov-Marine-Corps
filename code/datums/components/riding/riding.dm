@@ -180,9 +180,9 @@
 	if(!keytype)
 		return TRUE
 
-	//if(isvehicle(parent))
-	//	var/obj/vehicle/vehicle_parent = parent
-	//	return istype(vehicle_parent.inserted_key, keytype)
+	if(isvehicle(parent))
+		var/obj/vehicle/vehicle_parent = parent
+		return istype(vehicle_parent.inserted_key, keytype)
 
 	return user.is_holding_item_of_type(keytype)
 

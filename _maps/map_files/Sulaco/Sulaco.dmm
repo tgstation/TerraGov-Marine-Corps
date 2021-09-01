@@ -8062,7 +8062,7 @@
 /area/mainship/shipboard/weapon_room)
 "aPa" = (
 /obj/machinery/light/small,
-/obj/vehicle/powerloader,
+/obj/vehicle/ridden/powerloader,
 /turf/open/floor/prison,
 /area/mainship/shipboard/weapon_room)
 "aPd" = (
@@ -8207,7 +8207,7 @@
 /turf/open/floor/prison/whitegreen/full,
 /area/sulaco/research)
 "aQp" = (
-/obj/vehicle/powerloader,
+/obj/vehicle/ridden/powerloader,
 /turf/open/floor/prison,
 /area/sulaco/hangar/storage)
 "aQr" = (
@@ -15615,7 +15615,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/vehicle/powerloader,
+/obj/vehicle/ridden/powerloader,
 /obj/machinery/camera/autoname{
 	dir = 4
 	},
@@ -18130,7 +18130,7 @@
 /turf/open/floor/plating,
 /area/sulaco/briefing)
 "pGN" = (
-/obj/vehicle/powerloader,
+/obj/vehicle/ridden/powerloader,
 /turf/open/floor/prison/plate,
 /area/sulaco/cargo)
 "pHg" = (
