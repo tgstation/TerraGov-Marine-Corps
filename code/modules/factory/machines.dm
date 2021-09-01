@@ -16,6 +16,10 @@
 	var/processiconstate = "heater"
 	COOLDOWN_DECLARE(process_cooldown)
 
+/obj/machinery/factory/Initialize()
+	. = ..()
+	add_overlay(image(icon, "direction_arrow"))
+
 /obj/machinery/factory/Destroy()
 	QDEL_NULL(held_item)
 	return ..()
@@ -27,8 +31,11 @@
 
 /obj/machinery/factory/wrench_act(mob/living/user, obj/item/I)
 	anchored = !anchored
-	balloon_alert("[anchored ? "" : "un"]anchored")
+	balloon_alert(user, "[anchored ? "" : "un"]anchored")
 
+/obj/machinery/factory/screwdriver_act(mob/living/user, obj/item/I)
+	setDir(turn(dir, 90))
+	balloon_alert(user, "Facing [dir2text(dir)]")
 
 /obj/machinery/factory/Bumped(atom/movable/bumper)
 	. = ..()
@@ -46,7 +53,7 @@
 	bumper.forceMove(src)
 	held_item = bumper
 	COOLDOWN_START(src, process_cooldown, cooldown_time)
-	if(processiconstate)
+	if(processiconstate && icon_state != processiconstate)//avoid resetting the animation
 		icon_state = processiconstate
 	addtimer(CALLBACK(src, .proc/finish_process), cooldown_time)
 
@@ -56,6 +63,8 @@
 	held_item.forceMove(target)
 	if(held_item.next_machine == process_type)
 		held_item.advance_stage()
+	if(!locate(held_item.type) in get_step(src, REVERSE_DIR(dir)))
+		icon_state = initial(icon_state)
 	held_item = null
 	icon_state = initial(icon_state)
 
@@ -87,6 +96,6 @@
 /obj/machinery/factory/reconstructor
 	name = "Atomic reconstructor"
 	desc = "An industrial level former"
-	icon_state = "constructor_inactive"
-	processiconstate = "constructor"
+	icon_state = "reconstructor_inactive"
+	processiconstate = "reconstructor"
 	process_type = FACTORY_MACHINE_CONSTRUCTOR

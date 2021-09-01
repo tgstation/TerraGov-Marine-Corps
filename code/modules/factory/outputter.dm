@@ -7,9 +7,15 @@
 	icon = 'icons/obj/factory_refill.dmi'
 	icon_state = "empty"
 	///Typepath for the output machine we want to be ejecting
-	var/refill_type = /obj/item/factory_part
+	var/obj/item/factory_part/refill_type = /obj/item/factory_part
 	///By how much we wan to refill the target machine
 	var/refill_amount = 30
+
+/obj/item/factory_refill/Initialize()
+	. = ..()
+	var/obj/path = initial(refill_type.result)
+	var/image/result_image = image(initial(path.icon), initial(path.icon_state))
+	add_overlay(result_image)
 
 /obj/item/factory_refill/examine(mob/user, distance, infix, suffix)
 	. = ..()
@@ -32,13 +38,21 @@
 	///Bool for whether the outputter is producing things
 	var/on = FALSE
 
+/obj/machinery/outputter/Initialize()
+	. = ..()
+	add_overlay(image(icon, "direction_arrow"))
+
 /obj/machinery/outputter/examine(mob/user, distance, infix, suffix)
 	. = ..()
 	to_chat(user, "It is currently facing [dir2text(dir)], and is outputting [initial(production_type.name)]. It has [production_amount_left] resources remaining.")
 
 /obj/machinery/outputter/wrench_act(mob/living/user, obj/item/I)
 	anchored = !anchored
-	balloon_alert("[anchored ? "" : "un"]anchored")
+	balloon_alert(user, "[anchored ? "" : "un"]anchored")
+
+/obj/machinery/outputter/screwdriver_act(mob/living/user, obj/item/I)
+	setDir(turn(dir, 90))
+	balloon_alert(user, "Facing [dir2text(dir)]")
 
 /obj/machinery/outputter/update_icon_state()
 	if(datum_flags & DF_ISPROCESSING)
@@ -76,7 +90,7 @@
 	if(!isfactoryrefill(I) || user.a_intent == INTENT_HARM)
 		return ..()
 	var/obj/item/factory_refill/refill = I
-	if(!ispath(production_type, refill.refill_type))
+	if(refill.refill_type != production_type)
 		if(production_amount_left)
 			balloon_alert(user, "Filler incompatible")
 			return
@@ -92,55 +106,55 @@
 /obj/item/factory_refill/phosnade
 	name = "box of rounded metal plates"
 	desc = "A box with round metal plates inside. Used to refill Outputters."
-	icon_state = "grenade"
+	refill_type = /obj/item/factory_part/phosnade
 
 /obj/item/factory_refill/bignade
 	name = "box of rounded metal plates"
 	desc = "A box with round metal plates inside. Used to refill Outputters."
-	icon_state = "grenade"
+	refill_type = /obj/item/factory_part/bignade
 
 
 /obj/item/factory_refill/pizza
 	name = "box of rounded metal plates"
 	desc = "A box with round metal plates inside. Used to refill Outputters."
-	icon_state = "grenade"
+	refill_type = /obj/item/factory_part/pizza
 
 /obj/item/factory_refill/sadar_wp
 	name = "box of rounded metal plates"
 	desc = "A box with round metal plates inside. Used to refill Outputters."
-	icon_state = "grenade"
+	refill_type = /obj/item/factory_part/sadar_wp
 
 /obj/item/factory_refill/sadar_ap
 	name = "box of rounded metal plates"
 	desc = "A box with round metal plates inside. Used to refill Outputters."
-	icon_state = "grenade"
+	refill_type = /obj/item/factory_part/sadar_ap
 
 /obj/item/factory_refill/sadar_he
 	name = "box of rounded metal plates"
 	desc = "A box with round metal plates inside. Used to refill Outputters."
-	icon_state = "grenade"
+	refill_type = /obj/item/factory_part/sadar_he
 
 /obj/item/factory_refill/light_rr_missile
 	name = "box of rounded metal plates"
 	desc = "A box with round metal plates inside. Used to refill Outputters."
-	icon_state = "grenade"
+	refill_type = /obj/item/factory_part/light_rr_missile
 
 /obj/item/factory_refill/normal_rr_missile
 	name = "box of rounded metal plates"
 	desc = "A box with round metal plates inside. Used to refill Outputters."
-	icon_state = "grenade"
+	refill_type = /obj/item/factory_part/normal_rr_missile
 
 /obj/item/factory_refill/sadar_he
 	name = "box of rounded metal plates"
 	desc = "A box with round metal plates inside. Used to refill Outputters."
-	icon_state = "grenade"
+	refill_type = /obj/item/factory_part/sadar_he
 
 /obj/item/factory_refill/claymore
 	name = "box of rounded metal plates"
 	desc = "A box with round metal plates inside. Used to refill Outputters."
-	icon_state = "grenade"
+	refill_type = /obj/item/factory_part/claymore
 
 /obj/item/factory_refill/smartgunner_rifle_box
 	name = "box of rounded metal plates"
 	desc = "A box with round metal plates inside. Used to refill Outputters."
-	icon_state = "grenade"
+	refill_type = /obj/item/factory_part/smartgunner_rifle_box
