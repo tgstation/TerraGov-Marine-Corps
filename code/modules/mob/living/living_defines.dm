@@ -97,7 +97,7 @@
 	var/reagent_pain_modifier = 0 //same as above, except can potentially mask damage
 
 	///Lazy assoc list of smoke type mapped to the next world time that smoke can affect this mob
-	var/smoke_delays
+	var/list/smoke_delays
 	var/smokecloaked = FALSE //For the new Smoke Grenade
 
 	var/no_stun = FALSE
