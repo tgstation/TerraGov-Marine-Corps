@@ -949,16 +949,16 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 /turf/bullet_act(obj/projectile/proj)
 	bullet_ping(proj)
 
-	var/list/livings_list = list() //Let's built a list of mobs on the bullet turf and grab one.
-	for(var/mob/living/L in src)
-		if(proj.permutated[L])
+	var/list/mob_list = list() //Let's built a list of mobs on the bullet turf and grab one.
+	for(var/mob/possible_target in src)
+		if(proj.permutated[possible_target])
 			continue
-		livings_list += L
+		mob_list += possible_target
 
-	if(!length(livings_list))
+	if(!length(mob_list))
 		return FALSE
 
-	var/mob/living/picked_mob = pick(livings_list)
+	var/mob/picked_mob = pick(mob_list)
 	if(proj.projectile_hit(picked_mob))
 		picked_mob.bullet_act(proj)
 		return TRUE

@@ -37,6 +37,13 @@
 	update_action_button_icons()
 	update_icon()
 
+/obj/item/flashlight/attack_alien(mob/living/carbon/xenomorph/X, isrightclick = FALSE)
+	if(turn_light(X, FALSE) != CHECKS_PASSED)
+		return
+	playsound(loc, "alien_claw_metal", 25, 1)
+	X.do_attack_animation(src, ATTACK_EFFECT_CLAW)
+	to_chat(X, span_warning("We disable the metal thing's lights.") )
+
 /obj/item/flashlight/update_icon()
 	. = ..()
 	if(light_on)
@@ -204,6 +211,9 @@
 	force = initial(force)
 	damtype = initial(damtype)
 	icon_state = "[initial(icon_state)]-empty"
+
+/obj/item/flashlight/flare/attack_alien(mob/living/carbon/xenomorph/X, isrightclick)
+	return
 
 /obj/item/flashlight/flare/proc/turn_off()
 	turn_light(null, FALSE, 0, FALSE, TRUE)

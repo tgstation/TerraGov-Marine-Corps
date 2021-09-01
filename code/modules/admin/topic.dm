@@ -77,6 +77,23 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		var/mob/M = locate(href_list["playerpanel"])
 		show_player_panel(M)
 
+	else if(href_list["showrelatedacc"])
+		if(!check_rights(R_ADMIN))
+			return
+		var/client/C = locate(href_list["client"]) in GLOB.clients
+		var/thing_to_check
+		if(href_list["showrelatedacc"] == "cid")
+			thing_to_check = C.related_accounts_cid
+		else
+			thing_to_check = C.related_accounts_ip
+		thing_to_check = splittext(thing_to_check, ", ")
+
+
+		var/list/dat = list("Related accounts by [uppertext(href_list["showrelatedacc"])]:")
+		dat += thing_to_check
+
+		usr << browse(dat.Join("<br>"), "window=related_[C];size=420x300")
+
 	else if(href_list["centcomlookup"])
 		if(!check_rights(R_ADMIN))
 			return
@@ -2240,3 +2257,9 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		var/datum/poll_question/poll = locate(href_list["submitoptionpoll"]) in GLOB.polls
 		poll_option_parse_href(href_list, poll, option)
 
+	else if(href_list["cancelob"])
+		var/timerid_to_cancel = href_list["cancelob"]
+		deltimer(timerid_to_cancel)
+		var/logtext = "[key_name(usr)] has cancelled an OB with the timerid [timerid_to_cancel]"
+		message_admins(logtext)
+		log_admin(logtext)
