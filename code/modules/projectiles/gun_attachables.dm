@@ -704,7 +704,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	///how many tiles to shift the users viewpoint
 	var/zoom_offset = 11
 	///how many tiles to increase the users view box
-	var/zoom_viewsize = 12
+	var/zoom_viewsize = 10
 	scoped_accuracy_mod = SCOPE_RAIL
 	///boolean as to whether a scope can apply nightvision
 	var/has_nightvision = FALSE
@@ -742,7 +742,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	aim_speed_mod = 0
 	wield_delay_mod = 0
 	zoom_offset = 5
-	zoom_viewsize = 7
+	zoom_viewsize = 0
 	scoped_accuracy_mod = SCOPE_RAIL_MINI
 
 /obj/item/attachable/scope/unremovable/tl127
@@ -759,7 +759,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	flags_attach_features = ATTACH_ACTIVATION
 	attach_icon = "none"
 	zoom_offset = 3
-	zoom_viewsize = 7
+	zoom_viewsize = 0
 
 
 /obj/item/attachable/scope/unremovable/tl102
@@ -767,7 +767,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	desc = "An unremovable smart sight built for use with the tl102, it does nearly all the aiming work for the gun's integrated IFF systems."
 	attach_icon = "none"
 	zoom_offset = 3
-	zoom_viewsize = 7
+	zoom_viewsize = 0
 
 /obj/item/attachable/scope/unremovable/tl102/nest
 	zoom_offset = 6
@@ -834,7 +834,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	accuracy_unwielded_mod = -0.05
 	aim_speed_mod = 0.04 SECONDS
 	zoom_offset = 5
-	zoom_viewsize = 7
+	zoom_viewsize = 0
 	scoped_accuracy_mod = SCOPE_RAIL_MINI
 	scope_zoom_mod = TRUE
 	has_nightvision = FALSE

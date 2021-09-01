@@ -83,7 +83,7 @@
 
 /obj/item/helmet_module/binoculars/toggle_module(mob/living/user, obj/item/clothing/head/modular/parent)
 	if(!active && !zoom)
-		zoom(user, 11, 12)
+		zoom(user, 11, 10)
 	else
 		if(zoom)
 			zoom(user)

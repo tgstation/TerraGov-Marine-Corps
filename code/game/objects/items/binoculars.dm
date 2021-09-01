@@ -13,7 +13,7 @@
 
 
 /obj/item/binoculars/attack_self(mob/user)
-	zoom(user, 11, 12)
+	zoom(user, 11, 10)
 
 #define MODE_CAS 0
 #define MODE_RAILGUN 1
