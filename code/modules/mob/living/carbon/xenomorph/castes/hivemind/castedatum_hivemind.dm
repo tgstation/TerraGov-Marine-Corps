@@ -11,7 +11,7 @@
 	melee_damage = 0
 
 	// *** Speed *** //
-	speed = 2.5
+	speed = 0
 
 	// *** Plasma *** //
 	plasma_max = 450 //  75 is the cost of plant_weeds
@@ -57,6 +57,8 @@
 	caste_flags = CASTE_IS_BUILDER
 
 	aura_strength = 4 //Good pheros
+
+	speed = 2.5
 
 	// *** Abilities *** //
 	actions = list(
