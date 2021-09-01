@@ -8,6 +8,7 @@
 	desc = "A robust flashlight designed to be held in the hand, or attached to a rifle"
 	force = 10 //This is otherwise no different from a normal flashlight minus the flavour.
 	throwforce = 12 //"combat" flashlight
+	resistance_flags = UNACIDABLE
 
 
 /obj/item/coin/marine
