@@ -56,8 +56,8 @@
 	new /obj/item/healthanalyzer(src)
 	new /obj/item/storage/pill_bottle/kelotane(src)
 	new /obj/item/storage/pill_bottle/tramadol(src)
-	new /obj/item/stack/medical/advanced/ointment(src)
-	new /obj/item/stack/medical/advanced/ointment(src)
+	new /obj/item/stack/medical/heal_pack/advanced/ointment(src)
+	new /obj/item/stack/medical/heal_pack/advanced/ointment(src)
 	new /obj/item/storage/pill_bottle/packet/leporazine(src)
 	new /obj/item/storage/syringe_case/burn(src)
 
@@ -67,8 +67,8 @@
 
 /obj/item/storage/firstaid/regular/fill_firstaid_kit()
 	new /obj/item/healthanalyzer(src)
-	new /obj/item/stack/medical/bruise_pack(src)
-	new /obj/item/stack/medical/ointment(src)
+	new /obj/item/stack/medical/heal_pack/bruise_pack(src)
+	new /obj/item/stack/medical/heal_pack/ointment(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/tricordrazine(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/tramadol(src)
 	new /obj/item/stack/medical/splint(src)
@@ -116,8 +116,8 @@
 
 /obj/item/storage/firstaid/adv/fill_firstaid_kit()
 	new /obj/item/healthanalyzer(src)
-	new /obj/item/stack/medical/advanced/bruise_pack(src)
-	new /obj/item/stack/medical/advanced/ointment(src)
+	new /obj/item/stack/medical/heal_pack/advanced/bruise_pack(src)
+	new /obj/item/stack/medical/heal_pack/advanced/ointment(src)
 	new /obj/item/storage/pill_bottle/bicaridine(src)
 	new /obj/item/storage/pill_bottle/kelotane(src)
 	new /obj/item/storage/pill_bottle/tramadol(src)

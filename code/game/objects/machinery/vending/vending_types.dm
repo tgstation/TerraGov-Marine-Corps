@@ -221,10 +221,10 @@
 			/obj/item/storage/pill_bottle/russian_red = 2,
 		),
 		"Heal Pack" = list(
-			/obj/item/stack/medical/advanced/bruise_pack = 5,
-			/obj/item/stack/medical/advanced/ointment = 5,
-			/obj/item/stack/medical/ointment = 10,
-			/obj/item/stack/medical/bruise_pack = 10,
+			/obj/item/stack/medical/heal_pack/advanced/bruise_pack = 5,
+			/obj/item/stack/medical/heal_pack/advanced/ointment = 5,
+			/obj/item/stack/medical/heal_pack/ointment = 10,
+			/obj/item/stack/medical/heal_pack/bruise_pack = 10,
 			/obj/item/stack/medical/splint = 5,
 		),
 		"Misc" = list(
@@ -267,8 +267,8 @@
 		/obj/item/reagent_containers/hypospray/autoinjector/tricordrazine = 1,
 		/obj/item/reagent_containers/hypospray/autoinjector/tramadol = 1,
 		/obj/item/reagent_containers/hypospray/autoinjector/hypervene = 1,
-		/obj/item/stack/medical/bruise_pack = 2,
-		/obj/item/stack/medical/ointment = 2,
+		/obj/item/stack/medical/heal_pack/bruise_pack = 2,
+		/obj/item/stack/medical/heal_pack/ointment = 2,
 		/obj/item/healthanalyzer = 1,
 		/obj/item/stack/medical/splint = 1,
 	)
