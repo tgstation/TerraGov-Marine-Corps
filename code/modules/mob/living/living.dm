@@ -609,11 +609,8 @@ below 100 is not dizzy
 
 	GLOB.offered_mob_list -= src
 
-	if(isxeno(src))
-		SSticker.mode.transfer_xeno(M, src, TRUE)
-		return TRUE
+	transfer_mob(M)
 
-	M.mind.transfer_to(src, TRUE)
 	fully_replace_character_name(M.real_name, real_name)
 	return TRUE
 
