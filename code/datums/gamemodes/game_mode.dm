@@ -557,36 +557,39 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 		X.get_up()
 
 
-/datum/game_mode/proc/attempt_to_join_as_xeno(mob/xeno_candidate, instant_join = FALSE)
-	var/list/available_xenos = list()
-	for(var/hive in GLOB.hive_datums)
-		var/datum/hive_status/HS = GLOB.hive_datums[hive]
-		available_xenos += HS.get_ssd_xenos(instant_join)
+/datum/game_mode/proc/attempt_to_join_as_ssd_mob(mob/mob_candidate, instant_join = FALSE)
+	var/list/mob/living/free_ssd_mobs = list()
+	for(var/mob/living/ssd_mob AS in GLOB.ssd_living_mobs)
+		if(is_centcom_level(ssd_mob.z))
+			continue
+		if(only_away && ssd_mob.afk_status == MOB_RECENTLY_DISCONNECTED)
+			continue
+		free_ssd_mobs += ssd_mob
 
-	if(!available_xenos.len)
-		to_chat(xeno_candidate, span_warning("There aren't any available already living xenomorphs. You can try waiting for a larva to burst if you have the preference enabled."))
+	if(!free_ssd_mobs.len)
+		to_chat(mob_candidate, span_warning("There aren't any available already living xenomorphs. You can try waiting for a larva to burst if you have the preference enabled."))
 		return FALSE
 
 	if(instant_join)
-		return pick(available_xenos) //Just picks something at random.
+		return pick(free_ssd_mobs) //Just picks something at random.
 
-	var/mob/living/carbon/xenomorph/new_xeno = tgui_input_list(usr, null, "Available Xenomorphs", available_xenos)
-	if(!istype(new_xeno) || !xeno_candidate?.client)
+	var/mob/living/new_mob = tgui_input_list(usr, null, "Available Mobs", free_ssd_mobs)
+	if(!istype(new_mob) || !mob_candidate?.client)
 		return FALSE
 
-	if(new_xeno.stat == DEAD)
-		to_chat(xeno_candidate, span_warning("You cannot join if the xenomorph is dead."))
+	if(new_mob.stat == DEAD)
+		to_chat(mob_candidate, span_warning("You cannot join if the mob is dead."))
 		return FALSE
 
-	if(new_xeno.client)
-		to_chat(xeno_candidate, span_warning("That xenomorph has been occupied."))
+	if(new_mob.client)
+		to_chat(mob_candidate, span_warning("That mob has been occupied."))
 		return FALSE
 
-	if(new_xeno.afk_status == MOB_RECENTLY_DISCONNECTED) //We do not want to occupy them if they've only been gone for a little bit.
-		to_chat(xeno_candidate, span_warning("That player hasn't been away long enough. Please wait [round(timeleft(new_xeno.afk_timer_id) * 0.1)] second\s longer."))
+	if(new_mob.afk_status == MOB_RECENTLY_DISCONNECTED) //We do not want to occupy them if they've only been gone for a little bit.
+		to_chat(mob_candidate, span_warning("That player hasn't been away long enough. Please wait [round(timeleft(new_mob.afk_timer_id) * 0.1)] second\s longer."))
 		return FALSE
 
-	return new_xeno
+	return new_mob
 
 /datum/game_mode/proc/set_valid_job_types()
 	if(!SSjob?.initialized)

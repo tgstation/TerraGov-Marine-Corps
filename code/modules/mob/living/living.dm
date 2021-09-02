@@ -93,6 +93,7 @@
 	GLOB.offered_mob_list -= src
 	SSmobs.stop_processing(src)
 	job = null
+	LAZYREMOVE(GLOB.ssd_living_mobs, src)
 	. = ..()
 	hard_armor = null
 	soft_armor = null
