@@ -1,5 +1,6 @@
-#define FUEL_PER_CAN_POUR 50
-
+#define FUEL_PER_CAN_POUR 25
+///Fuel limit when you will recieve an alert for low fuel message
+#define LOW_FUEL_LEFT_MESSAGE 100
 /obj/vehicle/ridden/motorbike
 	name = "all-terrain motorbike"
 	desc = "An all-terrain vehicle built for traversing rough terrain with ease. \"TGMC CAVALRY\" is stamped on the side of the engine."
@@ -18,7 +19,7 @@
 	///Fuel count, fuel usage is one per tile moved
 	var/fuel_count = 0
 	///max fuel that this bike can hold
-	var/fuel_max = 400
+	var/fuel_max = 800
 	COOLDOWN_DECLARE(enginesound_cooldown)
 
 /obj/vehicle/ridden/motorbike/Initialize()
@@ -84,6 +85,9 @@
 	if(!LAZYLEN(buckled_mobs)) // dont use fuel or make noise unless we're being used
 		return
 	fuel_count--
+	if(fuel_count == LOW_FUEL_LEFT_MESSAGE)
+		for(var/mob/rider AS in buckled_mobs)
+			balloon_alert(rider, "[fuel_count/fuel_max*100]% fuel left")
 
 	if(COOLDOWN_CHECK(src, enginesound_cooldown))
 		COOLDOWN_START(src, enginesound_cooldown, 20)
@@ -142,3 +146,4 @@
 	max_storage_space = 8
 
 #undef FUEL_PER_CAN_POUR
+#undef LOW_FUEL_LEFT_MESSAGE
