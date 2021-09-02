@@ -101,8 +101,11 @@
 		to_chat(src, span_warning("That player hasn't been away long enough. Please wait [round(timeleft(new_mob.afk_timer_id) * 0.1)] second\s longer."))
 		return FALSE
 
-	
+	if(is_banned_from(ckey, new_mob?.job.title))
+		to_chat(src, span_warning("You are jobbaned from the [new_mob?.job.title] role."))
+		return
 
+	transfer_mob(new_mob)
 
 /mob/living/verb/point_to(atom/A in view(client.view, loc))
 	set name = "Point To"
