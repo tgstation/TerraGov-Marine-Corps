@@ -10,7 +10,7 @@
 	hud_possible = list(MACHINE_HEALTH_HUD, SENTRY_AMMO_HUD)
 
 ///generates the icon based on how much ammo it has.
-/obj/machinery/deployable/mounted/update_icon_state(mob/user)
+/obj/machinery/deployable/mounted/update_icon(mob/user)
 	. = ..()
 	var/obj/item/weapon/gun/gun = internal_item
 	if(!gun.current_mag)
@@ -62,10 +62,10 @@
 
 	if(gun.current_mag)
 		gun.unload(user,0,1)
-		update_icon_state()
+		update_icon()
 
 	gun.reload(user, ammo)
-	update_icon_state()
+	update_icon()
 
 
 ///This is called when a user tries to operate the gun
@@ -173,7 +173,7 @@
 	if((dir & angle) && target.loc != loc && target.loc != operator.loc)
 		operator.setDir(dir)
 		gun.set_target(target)
-		update_icon_state()
+		update_icon()
 		return TRUE
 	if(CHECK_BITFIELD(gun.flags_item, DEPLOYED_NO_ROTATE))
 		to_chat(operator, "This one is anchored in place and cannot be rotated.")

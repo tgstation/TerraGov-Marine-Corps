@@ -21,7 +21,7 @@
 	for(var/datum/atom_hud/squad/sentry_status_hud in GLOB.huds) //Add to the squad HUD
 		sentry_status_hud.add_to_hud(src)
 
-	update_icon_state()
+	update_icon()
 
 /obj/machinery/deployable/Destroy()
 	for(var/datum/atom_hud/squad/sentry_status_hud in GLOB.huds) //Add to the squad HUD
@@ -29,7 +29,7 @@
 	return ..()
 
 
-/obj/machinery/deployable/update_icon_state()
+/obj/machinery/deployable/update_icon()
 	. = ..()
 	hud_set_machine_health()
 
@@ -78,7 +78,7 @@
 	span_notice("You repair [src]."))
 	playsound(loc, 'sound/items/welder2.ogg', 25, TRUE)
 	repair_damage(120)
-	update_icon_state()
+	update_icon()
 	return TRUE
 
 ///Dissassembles the device

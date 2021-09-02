@@ -23,6 +23,11 @@
 
 	RegisterSignal(attached_item, COMSIG_ITEM_UNIQUE_ACTION, .proc/deploy)
 
+
+/datum/element/deployable_item/Detach(datum/source, force)
+	. = ..()
+	UnregisterSignal(source, COMSIG_ITEM_UNIQUE_ACTION)
+
 ///Wrapper for proc/finish_deploy
 /datum/element/deployable_item/proc/deploy(datum/source, mob/user, location, direction)
 	SIGNAL_HANDLER

@@ -82,6 +82,7 @@
 #define GUN_IS_SENTRY (1<<21)
 #define GUN_IS_ATTACHMENT (1<<22)
 #define GUN_ATTACHMENT_FIRE_ONLY (1<<23)
+#define GUN_PUMP_REQUIRED (1<<24)
 
 #define GUN_FIREMODE_SEMIAUTO "semi-auto fire mode"
 #define GUN_FIREMODE_BURSTFIRE "burst-fire mode"

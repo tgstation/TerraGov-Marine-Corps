@@ -353,6 +353,7 @@
 		/obj/item/attachable/compensator,
 		/obj/item/attachable/lasersight,
 		/obj/item/attachable/lace,
+		/obj/item/attachable/buildasentry,
 	)
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 19,"rail_x" = 13, "rail_y" = 23, "under_x" = 22, "under_y" = 14, "stock_x" = 22, "stock_y" = 19)
 	fire_delay = 0.15 SECONDS
@@ -473,6 +474,7 @@
 		/obj/item/attachable/compensator,
 		/obj/item/attachable/lace,
 		/obj/item/attachable/mateba_longbarrel,
+		/obj/item/attachable/buildasentry,
 	)
 	starting_attachment_types = list(
 		/obj/item/attachable/mateba_longbarrel,

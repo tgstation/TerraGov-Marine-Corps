@@ -21,6 +21,7 @@
 						/obj/item/attachable/flashlight,
 						/obj/item/attachable/magnetic_harness,
 						/obj/item/attachable/motiondetector,
+						/obj/item/attachable/buildasentry,
 						)
 	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY|GUN_WIELDED_STABLE_FIRING_ONLY
 	gun_skill_category = GUN_SKILL_HEAVY_WEAPONS

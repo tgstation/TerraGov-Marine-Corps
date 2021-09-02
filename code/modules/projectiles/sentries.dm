@@ -62,7 +62,7 @@
 	GLOB.marine_turrets += src
 	set_on(TRUE)
 
-/obj/machinery/deployable/mounted/sentry/update_icon_state()
+/obj/machinery/deployable/mounted/sentry/update_icon()
 	. = ..()
 	if(!CHECK_BITFIELD(machine_stat, KNOCKED_DOWN))
 		return
@@ -131,6 +131,10 @@
 /obj/machinery/deployable/mounted/sentry/reload(mob/user, ammo_magazine)
 	. = ..()
 	update_static_data(user)
+	var/obj/item/weapon/gun/internal_gun = internal_item
+	if(!CHECK_BITFIELD(internal_gun.flags_gun_features, GUN_PUMP_REQUIRED))
+		return
+	internal_gun.cock()
 
 /obj/machinery/deployable/mounted/sentry/interact(mob/user, manual_mode = FALSE)
 	var/obj/item/weapon/gun/gun = internal_item
@@ -242,7 +246,7 @@
 		DISABLE_BITFIELD(gun.turret_flags, TURRET_ON)
 		gun.set_target(null)
 		set_light(0)
-		update_icon_state()
+		update_icon()
 		STOP_PROCESSING(SSobj, src)
 		UnregisterSignal(gun, COMSIG_MOB_GUN_FIRED)
 		return
@@ -252,7 +256,7 @@
 	set_light_range(initial(light_power))
 	set_light_color(initial(light_color))
 	set_light(SENTRY_LIGHT_POWER)
-	update_icon_state()
+	update_icon()
 	START_PROCESSING(SSobj, src)
 	RegisterSignal(gun, COMSIG_MOB_GUN_FIRED, .proc/check_next_shot)
 
@@ -265,7 +269,7 @@
 	ENABLE_BITFIELD(machine_stat, KNOCKED_DOWN)
 	density = FALSE
 	set_on(FALSE)
-	update_icon_state()
+	update_icon()
 
 /obj/machinery/deployable/mounted/sentry/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
 	SEND_SIGNAL(X, COMSIG_XENOMORPH_ATTACK_SENTRY)
@@ -283,7 +287,7 @@
 	if(!internal_item)
 		return
 	sentry_alert(SENTRY_ALERT_DAMAGE)
-	update_icon_state()
+	update_icon()
 
 /obj/machinery/deployable/mounted/sentry/ex_act(severity)
 	switch(severity)
@@ -360,15 +364,19 @@
 /obj/machinery/deployable/mounted/sentry/proc/check_next_shot(datum/source, atom/gun_target, obj/item/weapon/gun/gun)
 	SIGNAL_HANDLER
 	var/obj/item/weapon/gun/internal_gun = internal_item
-	if(get_dist(src, gun_target) <= range && (CHECK_BITFIELD(get_dir(src, gun_target), dir) || CHECK_BITFIELD(internal_gun.turret_flags, TURRET_RADIAL)) && check_target_path(gun_target))
+	if(get_dist(src, gun_target) > range || !(CHECK_BITFIELD(get_dir(src, gun_target), dir) && !CHECK_BITFIELD(internal_gun.turret_flags, TURRET_RADIAL)) || !check_target_path(gun_target))
+		internal_gun.stop_fire()
+	if(CHECK_BITFIELD(internal_gun.flags_gun_features, GUN_PUMP_REQUIRED))
+		internal_gun.cock()
+	if(internal_gun.gun_firemode != GUN_FIREMODE_SEMIAUTO || !internal_gun.current_mag || !internal_gun.current_mag.current_rounds)
 		return
-	internal_gun.stop_fire()
+	addtimer(CALLBACK(internal_gun, /obj/item/weapon/gun/proc/start_fire, source, gun_target, null, null, null, TRUE), internal_gun.fire_delay)
 
 ///Sees if theres a target to shoot, then handles firing.
 /obj/machinery/deployable/mounted/sentry/proc/sentry_start_fire()
 	var/obj/item/weapon/gun/gun = internal_item
 	var/mob/living/target = get_target()
-	update_icon_state()
+	update_icon()
 	if(target != gun.target || get_dist(src, target) > range)
 		gun.stop_fire()
 	if(!gun.current_mag)
@@ -438,3 +446,43 @@
 
 		distance = buffer_distance
 		return nearby_target
+
+
+/obj/machinery/deployable/mounted/sentry/buildasentry
+	var/overlay_icon_state
+
+/obj/machinery/deployable/mounted/sentry/buildasentry/Initialize(mapload, _internal_item, deployer)
+	. = ..()
+	name = "Deployed " + internal_item.name
+	icon = 'icons/Marine/sentry.dmi'
+	default_icon_state = "build_a_sentry"
+	if(istype(internal_item, /obj/item/weapon/gun/shotgun/double/martini) || istype(internal_item, /obj/item/weapon/gun/shotgun/pump/bolt))
+		overlay_icon_state = "wood"
+	else if(istype(internal_item, /obj/item/weapon/gun/rifle/standard_gpmg) || istype(internal_item, /obj/item/weapon/gun/rifle/m412l1_hpr))
+		overlay_icon_state = "lmg"
+	else if(istype(internal_item, /obj/item/weapon/gun/smg/standard_smg))
+		overlay_icon_state = "t90"
+	else if(istype(internal_item, /obj/item/weapon/gun/launcher/rocket))
+		overlay_icon_state = "sadar"
+	else if(istype(internal_item, /obj/item/weapon/gun/rifle/standard_assaultrifle))
+		overlay_icon_state = "t12"
+	else if(istype(internal_item, /obj/item/weapon/gun/shotgun/pump/t35))
+		overlay_icon_state = "t35"
+	else if(istype(internal_item, /obj/item/weapon/gun/shotgun))
+		overlay_icon_state = "shotgun"
+	else if(istype(internal_item, /obj/item/weapon/gun/flamer))
+		overlay_icon_state = "flamer"
+	else if(istype(internal_item, /obj/item/weapon/gun/rifle/pepperball))
+		overlay_icon_state = "pepper"
+	else if(istype(internal_item, /obj/item/weapon/gun/revolver))
+		overlay_icon_state = "revolver"
+	else if(istype(internal_item, /obj/item/weapon/gun/pistol))
+		overlay_icon_state = "pistol"
+	else
+		overlay_icon_state = "rifle"
+	update_icon()
+
+/obj/machinery/deployable/mounted/sentry/buildasentry/update_icon()
+	. = ..()
+	overlays.Cut()
+	overlays += image('icons/Marine/sentry.dmi', src, overlay_icon_state, dir = dir)

@@ -1375,6 +1375,85 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	pixel_shift_y = 0
 	flags_attach_features = NONE
 
+/obj/item/attachable/buildasentry
+	name = "Build-A-Sentry"
+	icon = 'icons/Marine/sentry.dmi'
+	icon_state = "build_a_sentry_attachment"
+	desc = ""
+	slot = ATTACHMENT_SLOT_RAIL
+	pixel_shift_x = 10
+	pixel_shift_y = 15
+
+	var/obj/item/cell/lasgun/lasrifle/marine/battery
+
+/obj/item/attachable/buildasentry/Initialize()
+	. = ..()
+	battery = new(src)
+	
+/obj/item/attachable/buildasentry/update_icon()
+	icon_state = battery ? initial(icon_state) : initial(icon_state) + "_e"
+	. = ..()
+
+/obj/item/attachable/buildasentry/attackby(obj/item/I, mob/user, params)
+	. = ..()
+	if(!istype(I, /obj/item/cell/lasgun/lasrifle/marine))
+		return
+	if(battery)
+		to_chat(user, span_warning("[src] already has a [battery] installed!"))
+		return
+	to_chat(user, span_notice("You install [I] into [src]."))
+	battery = I
+	battery.forceMove(src)
+	user.temporarilyRemoveItemFromInventory(I)
+	playsound(src, 'sound/weapons/guns/interact/standard_laser_rifle_reload.ogg', 20)
+	update_icon()
+
+/obj/item/attachable/buildasentry/attack_hand(mob/living/user)
+	if(user.get_inactive_held_item() != src)
+		return ..()
+	if(!battery)
+		to_chat(user, span_warning("There is no battery to remove from [src]."))
+		return
+	user.put_in_hands(battery)
+	battery = null
+	playsound(src, 'sound/weapons/guns/interact/standard_laser_rifle_reload.ogg', 20)
+	update_icon()
+
+/obj/item/attachable/buildasentry/can_attach(obj/item/attaching_to, mob/attacher)
+	if(!isgun(attaching_to))
+		return FALSE
+	var/obj/item/weapon/gun/attaching_gun = attaching_to
+	if(CHECK_BITFIELD(attaching_gun.flags_gun_features, GUN_IS_SENTRY))
+		to_chat(attacher, span_warning("[attaching_gun] is already a sentry!"))
+		return FALSE
+	return ..()
+
+/obj/item/attachable/buildasentry/on_attach(attaching_item, mob/user)
+	. = ..()
+	ENABLE_BITFIELD(master_gun.flags_gun_features, GUN_IS_SENTRY)
+	ENABLE_BITFIELD(master_gun.flags_item, IS_DEPLOYABLE)
+	master_gun.sentry_battery_type = /obj/item/cell/lasgun/lasrifle/marine
+	master_gun.sentry_battery = battery
+
+	master_gun.AddElement(/datum/element/deployable_item, /obj/machinery/deployable/mounted/sentry/buildasentry, 5 SECONDS, 5 SECONDS)
+	RegisterSignal(master_gun, list(COMSIG_MOB_CLICK_ALT, COMSIG_PARENT_ATTACKBY), .proc/update_battery)
+
+/obj/item/attachable/buildasentry/proc/update_battery(obj/object)
+	SIGNAL_HANDLER
+	battery = master_gun.sentry_battery
+
+/obj/item/attachable/buildasentry/on_detach(attaching_item, mob/user)
+	. = ..()
+	var/obj/item/weapon/gun/detaching_item = attaching_item
+	DISABLE_BITFIELD(detaching_item.flags_gun_features, GUN_IS_SENTRY)
+	DISABLE_BITFIELD(detaching_item.flags_item, IS_DEPLOYABLE)
+
+	update_battery()
+	master_gun.sentry_battery = null
+	master_gun.RemoveElement(/datum/element/deployable_item)
+	UnregisterSignal(detaching_item, list(COMSIG_MOB_CLICK_ALT, COMSIG_PARENT_ATTACKBY))
+
+
 ///This is called when an attachment gun (src) attaches to a gun.
 /obj/item/weapon/gun/proc/on_attach(obj/item/attached_to, mob/user)
 	if(!istype(attached_to, /obj/item/weapon/gun))
