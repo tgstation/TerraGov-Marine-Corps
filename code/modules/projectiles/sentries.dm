@@ -128,6 +128,13 @@
 	density = TRUE
 	set_on(TRUE)
 
+/obj/machinery/deployable/mounted/sentry/attack_hand_alternate(mob/living/user)
+	. = ..()
+	if(!Adjacent(user))	
+		return
+	var/obj/item/weapon/gun/internal_gun = internal_item
+	internal_gun.cock(user)
+
 /obj/machinery/deployable/mounted/sentry/reload(mob/user, ammo_magazine)
 	. = ..()
 	update_static_data(user)
@@ -338,6 +345,7 @@
 
 
 /obj/machinery/deployable/mounted/sentry/process()
+	update_icon()
 	if(!scan())
 		var/obj/item/weapon/gun/gun = internal_item
 		gun.stop_fire()
@@ -364,11 +372,10 @@
 /obj/machinery/deployable/mounted/sentry/proc/check_next_shot(datum/source, atom/gun_target, obj/item/weapon/gun/gun)
 	SIGNAL_HANDLER
 	var/obj/item/weapon/gun/internal_gun = internal_item
-	if(get_dist(src, gun_target) > range || !(CHECK_BITFIELD(get_dir(src, gun_target), dir) && !CHECK_BITFIELD(internal_gun.turret_flags, TURRET_RADIAL)) || !check_target_path(gun_target))
-		internal_gun.stop_fire()
 	if(CHECK_BITFIELD(internal_gun.flags_gun_features, GUN_PUMP_REQUIRED))
 		internal_gun.cock()
-	if(internal_gun.gun_firemode != GUN_FIREMODE_SEMIAUTO || !internal_gun.current_mag || !internal_gun.current_mag.current_rounds)
+	if(get_dist(src, gun_target) > range || !(CHECK_BITFIELD(get_dir(src, gun_target), dir) && !CHECK_BITFIELD(internal_gun.turret_flags, TURRET_RADIAL)) || !check_target_path(gun_target) || internal_gun.gun_firemode != GUN_FIREMODE_SEMIAUTO || !internal_gun.current_mag || !internal_gun.current_mag.current_rounds)
+		internal_gun.stop_fire()
 		return
 	addtimer(CALLBACK(internal_gun, /obj/item/weapon/gun/proc/start_fire, source, gun_target, null, null, null, TRUE), internal_gun.fire_delay)
 
@@ -450,6 +457,12 @@
 
 /obj/machinery/deployable/mounted/sentry/buildasentry
 	var/overlay_icon_state
+
+/obj/machinery/deployable/mounted/sentry/buildasentry/examine(mob/user)
+	. = ..()
+	if(!istype(internal_item, /obj/item/weapon/gun/revolver))
+		return
+	to_chat(user, span_notice("It is as if he were still with us."))
 
 /obj/machinery/deployable/mounted/sentry/buildasentry/Initialize(mapload, _internal_item, deployer)
 	. = ..()

@@ -104,8 +104,6 @@
 
 /obj/item/weapon/gun/rifle/sniper/antimaterial/unique_action(mob/user)
 	. = ..()
-	if(!.)
-		return
 	if(!targetmarker_primed && !targetmarker_on)
 		return laser_on(user)
 	else
@@ -820,7 +818,7 @@
 	name = "\improper M81 riot grenade launcher"
 	desc = "A lightweight, single-shot grenade launcher to launch tear gas grenades. Used by Nanotrasen security during riots."
 	grenade_type_allowed = /obj/item/explosive/grenade/chem_grenade
-	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_POLICE|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
+	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
 	req_access = list(ACCESS_MARINE_BRIG)
 
 

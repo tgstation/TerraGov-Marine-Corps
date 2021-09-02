@@ -25,13 +25,6 @@
 	burst_amount = 3
 	recoil_unwielded = 0.5
 
-
-/obj/item/weapon/gun/smg/unique_action(mob/user)
-	. = ..()
-	if(!.)
-		return
-	return cock(user)
-
 /obj/item/weapon/gun/smg/get_ammo_type()
 	if(!ammo)
 		return list("unknown", "unknown")

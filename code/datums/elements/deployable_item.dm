@@ -21,7 +21,7 @@
 	if(CHECK_BITFIELD(attached_item.flags_item, DEPLOY_ON_INITIALIZE))
 		finish_deploy(attached_item, null, attached_item.loc, attached_item.dir)
 
-	RegisterSignal(attached_item, COMSIG_ITEM_UNIQUE_ACTION, .proc/deploy)
+	RegisterSignal(attached_item, COMSIG_CLICK_ALT_RIGHT, .proc/deploy)
 
 
 /datum/element/deployable_item/Detach(datum/source, force)

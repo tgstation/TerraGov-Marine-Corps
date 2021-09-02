@@ -409,8 +409,7 @@
 
 /obj/item/weapon/gun/unique_action(mob/user)
 	. = ..()
-	if(CHECK_BITFIELD(flags_item, IS_DEPLOYABLE) && !CHECK_BITFIELD(flags_item, IS_DEPLOYED)) //If the gun can be deployed, it deploys when unique_action is called.
-		return FALSE
+	return cock(user)
 
 //----------------------------------------------------------
 			//							        \\
@@ -610,6 +609,9 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 	SIGNAL_HANDLER
 
 	var/list/modifiers = params2list(params)
+	if(modifiers["right"] && modifiers["alt"] && object != src)
+		AltRightClick(gun_user)
+		return
 	if(modifiers["right"] || modifiers["middle"] || modifiers["shift"])
 		return
 	if(gun_on_cooldown(gun_user))
@@ -973,8 +975,6 @@ and you're good to go.
 	if(LAZYACCESS(user.do_actions, src))
 		to_chat(user, "<span class='warning'>You are doing something else currently.")
 		return FALSE
-	if((flags_gun_features & GUN_POLICE) && !police_allowed_check(user))
-		return FALSE
 	if(CHECK_BITFIELD(flags_gun_features, GUN_WIELDED_STABLE_FIRING_ONLY))//If we must wait to finish wielding before shooting.
 		if(!master_gun && !wielded_stable())
 			to_chat(user, "<span class='warning'>You need a more secure grip to fire this weapon!")
@@ -1051,7 +1051,7 @@ and you're good to go.
 	var/gun_accuracy_mod = 0
 	var/gun_scatter = scatter_unwielded
 
-	if(flags_item & WIELDED && wielded_stable())
+	if(flags_item & WIELDED && wielded_stable() || CHECK_BITFIELD(flags_item, IS_DEPLOYED))
 		gun_accuracy_mult = accuracy_mult
 		gun_scatter = scatter
 

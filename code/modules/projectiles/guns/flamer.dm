@@ -458,8 +458,6 @@
 
 /obj/item/weapon/gun/flamer/big_flamer/marinestandard/unique_action(mob/user)
 	. = ..()
-	if(!.)
-		return
 	var/obj/item/attachable/hydro_cannon/hydro = LAZYACCESS(attachments_by_slot, ATTACHMENT_SLOT_UNDER)
 	if(!istype(hydro))
 		return FALSE
