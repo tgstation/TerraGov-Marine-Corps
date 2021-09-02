@@ -206,7 +206,7 @@ GLOBAL_LIST_INIT(defile_purge_list, typecacheof(list(
 /datum/action/xeno_action/activable/inject_egg_neurogas/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/Defiler/X = owner
 
-	if(!istype(A, /obj/effect/alien/egg/hugger))
+	if(!istype(A, /obj/effect/alien/egg))
 		return fail_activate()
 
 	if(istype(A, /obj/effect/alien/egg/gas))
@@ -214,7 +214,7 @@ GLOBAL_LIST_INIT(defile_purge_list, typecacheof(list(
 		return fail_activate()
 
 	var/obj/effect/alien/egg/alien_egg = A
-	if(alien_egg.maturity_stage != alien_egg.stage_ready_to_burst)
+	if(alien_egg.status != EGG_GROWN)
 		to_chat(X, span_warning("That egg isn't strong enough to hold our gases."))
 		return fail_activate()
 
@@ -228,7 +228,7 @@ GLOBAL_LIST_INIT(defile_purge_list, typecacheof(list(
 	succeed_activate()
 	add_cooldown()
 
-	var/obj/effect/alien/egg/gas/newegg = new(A.loc, X.hivenumber)
+	var/obj/effect/alien/egg/gas/newegg = new(A.loc)
 	switch(X.selected_reagent)
 		if(/datum/reagent/toxin/xeno_neurotoxin)
 			newegg.gas_type = /datum/effect_system/smoke_spread/xeno/neuro/medium
