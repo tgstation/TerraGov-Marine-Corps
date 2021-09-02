@@ -1434,6 +1434,11 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	ENABLE_BITFIELD(master_gun.flags_item, IS_DEPLOYABLE)
 	master_gun.sentry_battery_type = /obj/item/cell/lasgun/lasrifle/marine
 	master_gun.sentry_battery = battery
+	master_gun.ignored_terrains = list(
+		/obj/machinery/deployable/mounted,
+		/obj/machinery/miner,
+	)
+
 
 	master_gun.AddElement(/datum/element/deployable_item, /obj/machinery/deployable/mounted/sentry/buildasentry, 5 SECONDS, 5 SECONDS)
 	RegisterSignal(master_gun, list(COMSIG_CLICK_ALT, COMSIG_PARENT_ATTACKBY), .proc/update_battery)
@@ -1450,6 +1455,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	var/obj/item/weapon/gun/detaching_item = attaching_item
 	DISABLE_BITFIELD(detaching_item.flags_gun_features, GUN_IS_SENTRY)
 	DISABLE_BITFIELD(detaching_item.flags_item, IS_DEPLOYABLE)
+	master_gun.ignored_terrains = null
 
 	detaching_item.sentry_battery = null
 	detaching_item.RemoveElement(/datum/element/deployable_item, /obj/machinery/deployable/mounted/sentry/buildasentry, 5 SECONDS, 5 SECONDS)

@@ -114,7 +114,7 @@
 	if(gun_on_cooldown(gun_user))
 		return
 
-	var/turf/curloc = get_turf(gun_user) //In case the target or we are expired.
+	var/turf/curloc = get_turf(src) //In case the target or we are expired.
 	var/turf/targloc = get_turf(target)
 	if(!targloc || !curloc)
 		return //Something has gone wrong...
@@ -261,20 +261,20 @@
 	var/fire_color = loaded_ammo.fire_color
 	fire_delay = loaded_ammo.fire_delay
 
-	var/list/turf/turfs = getline(user,target)
-	playsound(user, fire_sound, 50, 1)
+	var/list/turf/turfs = getline(loc, target)
+	playsound(loc, fire_sound, 50, 1)
 	var/distance = 1
 	var/turf/prev_T
 
 	for(var/F in turfs)
 		var/turf/T = F
 
-		if(T == user.loc)
+		if(T == get_turf(src))
 			prev_T = T
 			continue
 		if((T.density && !istype(T, /turf/closed/wall/resin)) || isspaceturf(T))
 			break
-		if(loc != user && !master_gun && !CHECK_BITFIELD(flags_item, IS_DEPLOYED))
+		if(!CHECK_BITFIELD(flags_item, IS_DEPLOYED) && loc != user && !master_gun)
 			break
 		if(!current_mag?.current_rounds)
 			break
@@ -312,6 +312,8 @@
 		distance++
 		prev_T = T
 		sleep(1)
+	if(!user)
+		return
 	var/obj/screen/ammo/A = user.hud_used.ammo
 	A.update_hud(user, src)
 
@@ -512,13 +514,14 @@
 		var/obj/screen/ammo/A = gun_user.hud_used.ammo
 		A.update_hud(gun_user, src)
 		return
-	if(gun_user.skills.getRating("firearms") < 0)
-		switch(windup_checked)
-			if(WEAPON_WINDUP_NOT_CHECKED)
-				INVOKE_ASYNC(src, .proc/do_windup)
-				return
-			if(WEAPON_WINDUP_CHECKING)
-				return
+	if(gun_user)
+		if(gun_user.skills.getRating("firearms") < 0)
+			switch(windup_checked)
+				if(WEAPON_WINDUP_NOT_CHECKED)
+					INVOKE_ASYNC(src, .proc/do_windup)
+					return
+				if(WEAPON_WINDUP_CHECKING)
+					return
 	return ..()
 
 ///Flamer windup called before firing

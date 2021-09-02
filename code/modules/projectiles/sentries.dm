@@ -463,7 +463,7 @@
 	. = ..()
 	if(!istype(internal_item, /obj/item/weapon/gun/revolver))
 		return
-	to_chat(user, span_notice("It is as if he were still with us."))
+	to_chat(user, span_notice("It is as if he were still with us.")) //I miss ye already Ocelot.
 
 /obj/machinery/deployable/mounted/sentry/buildasentry/Initialize(mapload, _internal_item, deployer)
 	. = ..()
@@ -492,7 +492,7 @@
 		overlay_icon_state = "revolver"
 	else if(istype(internal_item, /obj/item/weapon/gun/pistol))
 		overlay_icon_state = "pistol"
-	else if(istype(internal_item, /obj/item/weapon/gun/energy/lasgun/lasrifle))
+	else if(istype(internal_item, /obj/item/weapon/gun/energy/lasgun/lasrifle)) //This is for when we get lasrifles working here.
 		overlay_icon_state = "laser"
 	else
 		overlay_icon_state = "rifle"

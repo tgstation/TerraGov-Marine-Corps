@@ -861,7 +861,7 @@
 	return ..()
 
 /obj/item/weapon/gun/launcher/rocket/Fire()
-	if((!CHECK_BITFIELD(flags_item, IS_DEPLOYED) && !able_to_fire(gun_user)) || gun_user.do_actions)
+	if((!CHECK_BITFIELD(flags_item, IS_DEPLOYED) && !able_to_fire(gun_user)) || gun_user?.do_actions)
 		return
 
 	if(gun_on_cooldown(gun_user))
@@ -892,12 +892,19 @@
 	if(has_attachment(/obj/item/attachable/scope/mini))
 		delay += 0.2 SECONDS
 
-	if(gun_user.skills.getRating("firearms") < 0)
+	if(gun_user && gun_user.skills.getRating("firearms") < 0)
 		delay += 0.6 SECONDS
 
-	if(!do_after(gun_user, delay, TRUE, src, BUSY_ICON_DANGER)) //slight wind up
-		windup_checked = WEAPON_WINDUP_NOT_CHECKED
+	if(gun_user)
+		if(!do_after(gun_user, delay, TRUE, src, BUSY_ICON_DANGER)) //slight wind up
+			windup_checked = WEAPON_WINDUP_NOT_CHECKED
+			return
+		finish_windup()
 		return
+	
+	addtimer(CALLBACK(src, .proc/finish_windup), delay)
+
+/obj/item/weapon/gun/launcher/rocket/proc/finish_windup()
 	windup_checked = WEAPON_WINDUP_CHECKED
 	if(Fire())
 		playsound(loc,'sound/weapons/guns/fire/launcher.ogg', 50, TRUE)
