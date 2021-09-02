@@ -385,7 +385,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 		free_ssd_mobs += ssd_mob
 
 	if(!free_ssd_mobs.len)
-		to_chat(src, span_warning("There aren't any available already living xenomorphs. You can try waiting for a larva to burst if you have the preference enabled."))
+		to_chat(src, span_warning("There aren't any ssd mobs."))
 		return FALSE
 
 	var/mob/living/new_mob = tgui_input_list(src, null, "Available Mobs", free_ssd_mobs)
@@ -404,7 +404,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 		to_chat(src, span_warning("That player hasn't been away long enough. Please wait [round(timeleft(new_mob.afk_timer_id) * 0.1)] second\s longer."))
 		return FALSE
 
-	if(is_banned_from(ckey, new_mob?.job.title))
+	if(is_banned_from(ckey, new_mob?.job?.title))
 		to_chat(src, span_warning("You are jobbaned from the [new_mob?.job.title] role."))
 		return
 
