@@ -132,7 +132,7 @@
 	///If the gun is deployable, the time it takes for the weapon to undeploy.
 	var/undeploy_time = 0
 	///List of turf/objects/structures that will be ignored in the sentries targeting.
-	var/list/ignored_terrains = list()
+	var/list/ignored_terrains
 	///Flags that the deployed sentry uses upon deployment.
 	var/turret_flags = NONE
 	///Damage threshold for whether a turret will be knocked down.
