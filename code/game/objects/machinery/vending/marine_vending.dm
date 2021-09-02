@@ -233,6 +233,7 @@
 		/obj/item/compass = -1,
 		/obj/item/assembly/signaler = 20,
 		/obj/item/weapon/gun/launcher/m81/flare/marine = -1,
+		/obj/item/jetpack_marine = 3,
 		),
 	)
 
