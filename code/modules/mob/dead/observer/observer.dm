@@ -276,7 +276,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	. = ..()
 	if(!. || can_reenter_corpse)
 		return
-	if(!aghosting && job.job_flags & (JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE))//Only some jobs cost you your respawn timer.
+	if(!aghosting && job?.job_flags & (JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE))//Only some jobs cost you your respawn timer.
 		GLOB.key_to_time_of_death[key] = world.time
 		set_afk_status(MOB_RECENTLY_DISCONNECTED, 5 SECONDS)
 
@@ -371,6 +371,44 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	client.view_size.set_default(get_screen_size(client.prefs.widescreenpref))//Let's reset so people can't become allseeing gods
 	mind.transfer_to(old_mob, TRUE)
 	return TRUE
+
+/mob/dead/observer/verb/take_ssd_mob()
+	set category = "Ghost"
+	set name = "Try to take SSD mob"
+
+	var/list/mob/living/free_ssd_mobs = list()
+	for(var/mob/living/ssd_mob AS in GLOB.ssd_living_mobs)
+		if(is_centcom_level(ssd_mob.z))
+			continue
+		if(ssd_mob.afk_status == MOB_RECENTLY_DISCONNECTED)
+			continue
+		free_ssd_mobs += ssd_mob
+
+	if(!free_ssd_mobs.len)
+		to_chat(src, span_warning("There aren't any available already living xenomorphs. You can try waiting for a larva to burst if you have the preference enabled."))
+		return FALSE
+
+	var/mob/living/new_mob = tgui_input_list(src, null, "Available Mobs", free_ssd_mobs)
+	if(!istype(new_mob) || !client)
+		return FALSE
+
+	if(new_mob.stat == DEAD)
+		to_chat(src, span_warning("You cannot join if the mob is dead."))
+		return FALSE
+
+	if(new_mob.client)
+		to_chat(src, span_warning("That mob has been occupied."))
+		return FALSE
+
+	if(new_mob.afk_status == MOB_RECENTLY_DISCONNECTED) //We do not want to occupy them if they've only been gone for a little bit.
+		to_chat(src, span_warning("That player hasn't been away long enough. Please wait [round(timeleft(new_mob.afk_timer_id) * 0.1)] second\s longer."))
+		return FALSE
+
+	if(is_banned_from(ckey, new_mob?.job.title))
+		to_chat(src, span_warning("You are jobbaned from the [new_mob?.job.title] role."))
+		return
+
+	new_mob.transfer_mob(src)
 
 
 /mob/dead/observer/verb/toggle_HUDs()

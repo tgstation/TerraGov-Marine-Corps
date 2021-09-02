@@ -69,44 +69,6 @@
 	message_admins("[ADMIN_TPMONTY(usr)] has ghosted.")
 	ghostize(FALSE)
 
-/mob/living/verb/take_ssd_mob()
-	set category = "OOC"
-	set name = "Try to take SSD mob"
-
-	var/list/mob/living/free_ssd_mobs = list()
-	for(var/mob/living/ssd_mob AS in GLOB.ssd_living_mobs)
-		if(is_centcom_level(ssd_mob.z))
-			continue
-		if(ssd_mob.afk_status == MOB_RECENTLY_DISCONNECTED)
-			continue
-		free_ssd_mobs += ssd_mob
-
-	if(!free_ssd_mobs.len)
-		to_chat(src, span_warning("There aren't any available already living xenomorphs. You can try waiting for a larva to burst if you have the preference enabled."))
-		return FALSE
-
-	var/mob/living/new_mob = tgui_input_list(src, null, "Available Mobs", free_ssd_mobs)
-	if(!istype(new_mob) || !client)
-		return FALSE
-
-	if(new_mob.stat == DEAD)
-		to_chat(src, span_warning("You cannot join if the mob is dead."))
-		return FALSE
-
-	if(new_mob.client)
-		to_chat(src, span_warning("That mob has been occupied."))
-		return FALSE
-
-	if(new_mob.afk_status == MOB_RECENTLY_DISCONNECTED) //We do not want to occupy them if they've only been gone for a little bit.
-		to_chat(src, span_warning("That player hasn't been away long enough. Please wait [round(timeleft(new_mob.afk_timer_id) * 0.1)] second\s longer."))
-		return FALSE
-
-	if(is_banned_from(ckey, new_mob?.job.title))
-		to_chat(src, span_warning("You are jobbaned from the [new_mob?.job.title] role."))
-		return
-
-	transfer_mob(new_mob)
-
 /mob/living/verb/point_to(atom/A in view(client.view, loc))
 	set name = "Point To"
 	set category = "Object"
