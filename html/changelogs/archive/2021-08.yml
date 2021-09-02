@@ -644,3 +644,34 @@
   - code_imp: Moved all shuttle ID's to defines.
   lovegreenstuff:
   - bugfix: TP44 attachment offsets reverted to pre-snubnose values
+2021-08-30:
+  BraveMole:
+  - balance: you can slash flashlights off
+  - bugfix: Fix admins xeno buff not staying
+  Pariah919:
+  - balance: machete/officer sword have bump attacks and deal 15 more damage
+  - rscadd: machinecarbine, has the stats of a t-18, but with worse slowdown, incredibly
+      high falloff, has a bigger damaging/sundering bullet, has more in the magazine.
+      Also no aim mode.
+  - expansion: Machinecarbine/Type-71 bucket for seasonals.
+  - balance: Wall rework, max HP lowered, they've been given armor against bullets/lasers
+      so their TTK is about the same, they're less effective against fire, high armor
+      piercing weapons, explosions are about the same, but fire is much worse at killing
+      walls quickly, but it still kills a lot of walls at the same time.
+  TiviPlus:
+  - admin: Admins can now cancel OB's and OB firing now has a game log
+  - bugfix: fixed some conveyors not pushing things in the direction they appeared
+      to be facing
+  - bugfix: Fixes autolathe not having conveyors
+2021-08-31:
+  BraveMole:
+  - balance: You can't put more than 2 guns in bags anymore.
+  - balance: Hunter illusion flickers when hit by projectiles
+  - bugfix: Prevent from dragging while riding a crusher
+  Pariah919:
+  - balance: marines have more messages telling them the severity of their wounds
+      when they self examine
+  vilereaver41:
+  - balance: neurotoxic spit for Sentinel, Praetorian,
+  - balance: After extensive testing the values have been increased slightly and should
+      now be the best they can be without gameplay being unfair.

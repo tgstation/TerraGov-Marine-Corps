@@ -90,8 +90,22 @@
 //----------------------------------------------------------
 
 /obj/item/weapon/gun/attack_hand_alternate(mob/user)
-	return toggle_gun_safety()
+	. = ..()
+	if(!active_attachable)
+		return toggle_gun_safety()
 
+	var/mob/living/living_user = user
+	if(living_user.get_active_held_item() != src && living_user.get_inactive_held_item() != src)
+		return
+
+	active_attachable.unload(living_user)
+
+/obj/item/weapon/gun/attackby_alternate(obj/item/I, mob/user, params)
+	. = ..()
+	if(!active_attachable)
+		return
+
+	active_attachable.attackby(I, user, params)
 
 /obj/item/weapon/gun/mob_can_equip(mob/user)
 	//Cannot equip wielded items or items burst firing.
@@ -105,6 +119,7 @@
 	var/obj/item/weapon/gun/in_hand = user.get_inactive_held_item()
 	if(in_hand == src && (flags_item & TWOHANDED))
 		unload(user)//It has to be held if it's a two hander.
+		return
 	else
 		return ..()
 
@@ -213,15 +228,10 @@ should be alright.
 	if(.)
 		return
 
+	if(istype(src, /obj/item/weapon/gun/launcher/m92) || istype(src, /obj/item/weapon/gun/launcher/m81)) //This is to allow the parent proc to call and not fuck up GLs. This is temporary until I unfuck Gls.
+		return
+
 	if(flags_gun_features & GUN_BURST_FIRING)
-		return
-
-	if(istype(I,/obj/item/attachable) && check_inactive_hand(user))
-		attach_to_gun(user, I)
-		return
-
-	//the active attachment is reloadable
-	if(active_attachable?.flags_attach_features & ATTACH_RELOADABLE && check_inactive_hand(user) && active_attachable.reload_attachment(I, user, TRUE))
 		return
 
 	if(istype(I, /obj/item/cell) && CHECK_BITFIELD(flags_gun_features, GUN_IS_SENTRY))
@@ -246,9 +256,16 @@ should be alright.
 		reload(user, I)
 		return
 
+/obj/item/weapon/gun/AltRightClick(mob/user)
+	. = ..()
+	if(!active_attachable)
+		return
+	active_attachable.AltClick(user)
+
 /obj/item/weapon/gun/AltClick(mob/user)
 	. = ..()
-	if(!user.Adjacent(src) || !ishuman(user) || !CHECK_BITFIELD(flags_gun_features, GUN_IS_SENTRY))
+
+	if(!user.Adjacent(src) || !ishuman(user) || !CHECK_BITFIELD(flags_gun_features, GUN_IS_SENTRY) && !master_gun)
 		return
 	var/mob/living/carbon/human/human = user
 	if(!sentry_battery)
@@ -269,6 +286,10 @@ should be alright.
 
 ///This performs a tactical reload with src using new_magazine to load the gun.
 /obj/item/weapon/gun/proc/tactical_reload(obj/item/ammo_magazine/new_magazine, mob/living/carbon/human/user)
+	if(active_attachable)
+		active_attachable.tactical_reload(new_magazine, user)
+		return
+
 	if(!istype(user) || user.incapacitated(TRUE))
 		return
 	if(src != user.r_hand && src != user.l_hand)
@@ -304,7 +325,7 @@ should be alright.
 /obj/item/weapon/gun/proc/check_inactive_hand(mob/user)
 	if(user)
 		var/obj/item/weapon/gun/in_hand = user.get_inactive_held_item()
-		if( in_hand != src ) //It has to be held.
+		if( in_hand != src && !master_gun) //It has to be held.
 			to_chat(user, span_warning("You have to hold [src] to do that!"))
 			return
 	return TRUE
@@ -314,7 +335,7 @@ should be alright.
 	if(user)
 		var/obj/item/weapon/gun/in_handL = user.l_hand
 		var/obj/item/weapon/gun/in_handR = user.r_hand
-		if( in_handL != src && in_handR != src ) //It has to be held.
+		if(in_handL != src && in_handR != src && !master_gun) //It has to be held.
 			to_chat(user, span_warning("You have to hold [src] to do that!"))
 			return
 	return 1
@@ -322,96 +343,25 @@ should be alright.
 /obj/item/weapon/gun/proc/is_wielded() //temporary proc until we get traits going
 	return CHECK_BITFIELD(flags_item, WIELDED)
 
-/obj/item/weapon/gun/proc/has_attachment(A)
-	if(!A)
-		return
-	if(!attachments)
-		return FALSE
-	for(var/slot in attachments)
-		if(istype(attachments[slot], A))
-			return TRUE
-
-
-
-/obj/item/weapon/gun/proc/attach_to_gun(mob/user, obj/item/attachable/attachment)
-	if(attachable_allowed && !(attachment.type in attachable_allowed) )
-		to_chat(user, span_warning("[attachment] doesn't fit on [src]!"))
-		return
-
-	if(overcharge == TRUE)
-		to_chat(user, span_warning("You need to disable overcharge on [src]!"))
-		return
-
-	//Checks if there is any unremovable attachment on our slot, if true, return.
-	var/obj/item/attachable/currently_in_slot = LAZYACCESS(attachments, attachment.slot)
-	if(currently_in_slot && !(currently_in_slot.flags_attach_features & ATTACH_REMOVABLE))
-		to_chat(user, span_warning("The attachment on [src]'s [attachment.slot] cannot be removed!"))
-		return
-
-	var/final_delay = attachment.attach_delay
-	var/idisplay = BUSY_ICON_GENERIC
-	if(user.skills.getRating("firearms"))
-		user.visible_message(span_notice("[user] begins attaching [attachment] to [src]."),
-		span_notice("You begin attaching [attachment] to [src]."), null, 4)
-		if(user.skills.getRating("firearms") >= SKILL_FIREARMS_DEFAULT) //See if the attacher is super skilled/panzerelite born to defeat never retreat etc
-			final_delay *= 0.5
-	else //If the user has no training, attaching takes twice as long and they fumble about.
-		final_delay *= 2
-		user.visible_message(span_notice("[user] begins fumbling about, trying to attach [attachment] to [src]."),
-		span_notice("You begin fumbling about, trying to attach [attachment] to [src]."), null, 4)
-		idisplay = BUSY_ICON_UNSKILLED
-	if(!do_after(user, final_delay, TRUE, src, idisplay))
-		return
-	user.visible_message(span_notice("[user] attaches [attachment] to [src]."),
-	span_notice("You attach [attachment] to [src]."), null, 4)
-	user.temporarilyRemoveItemFromInventory(attachment)
-	attachment.attach_to_gun(src, user)
-	playsound(user, 'sound/machines/click.ogg', 15, 1, 4)
-
-///Updates everything. You generally don't need to use this.
-/obj/item/weapon/gun/proc/update_attachables()
-	if(!attachable_offset) //Even if the attachment doesn't exist, we're going to try and remove it.
-		return
-
-	if(!attachments)
-		return
-	for(var/slot in attachments)
-		var/obj/item/attachable/attachie = LAZYACCESS(attachments, slot)
-		update_overlays(attachie, attachie.slot)
-
-
-/obj/item/weapon/gun/proc/update_attachable(slot) //Updates individually.
-	if(!attachable_offset)
-		return
-
-	update_overlays(LAZYACCESS(attachments, slot), slot)
-
-/obj/item/weapon/gun/update_overlays(obj/item/attachable/attachie, slot)
-	. = ..()
-	var/image/overlay = attachable_overlays[slot]
-	overlays -= overlay
-	if(!attachie) //Only updates if the attachment exists for that slot.
-		attachable_overlays[slot] = null
-		return
-	var/item_icon = attachie.icon_state
-	if(attachie.attach_icon)
-		item_icon = attachie.attach_icon
-	overlay = image(attachie.icon, src, item_icon)
-	overlay.pixel_x = attachable_offset["[slot]_x"] - attachie.pixel_shift_x
-	overlay.pixel_y = attachable_offset["[slot]_y"] - attachie.pixel_shift_y
-	attachable_overlays[slot] = overlay
-	overlays += overlay
+///Checks the gun to see if it has an attachment of type attachment_type
+/obj/item/weapon/gun/proc/has_attachment(attachment_type)
+	for(var/key in attachments_by_slot)
+		var/obj/item/attachment = attachments_by_slot[key]
+		if(!istype(attachment, attachment_type))
+			continue
+		return TRUE
+	return FALSE
 
 ///updates the magazine overlay if it needs to be updated
 /obj/item/weapon/gun/proc/update_mag_overlay(mob/user)
-	var/image/overlay = attachable_overlays[ATTACHMENT_SLOT_MAGAZINE]
+	var/image/overlay = attachment_overlays[ATTACHMENT_SLOT_MAGAZINE]
 	overlays -= overlay
 	if(current_mag && current_mag.bonus_overlay)
 		overlay = image(current_mag.icon, src, current_mag.bonus_overlay)
-		attachable_overlays[ATTACHMENT_SLOT_MAGAZINE] = overlay
+		attachment_overlays[ATTACHMENT_SLOT_MAGAZINE] = overlay
 		overlays += overlay
 	else
-		attachable_overlays[ATTACHMENT_SLOT_MAGAZINE] = null
+		attachment_overlays[ATTACHMENT_SLOT_MAGAZINE] = null
 
 
 /obj/item/weapon/gun/proc/update_force_list()
@@ -462,108 +412,14 @@ should be alright.
 					//				   \\
 //----------------------------------------------------------
 
-/mob/living/carbon/human/verb/field_strip()
-	set category = "Weapons"
-	set name = "Field Strip Weapon"
-	set desc = "Remove all attachables from a weapon."
-
-	var/obj/item/weapon/gun/G = get_active_firearm(usr)
-	if(!G)
-		return
-	G.field_strip()
-
-
-/obj/item/weapon/gun/verb/field_strip()
-	set category = null
-	set name = "Field Strip (Weapon)"
-	set desc = "Remove all attachables from a weapon."
-
-	if(usr.do_actions)
-		return
-
-	if(zoom)
-		to_chat(usr, span_warning("You cannot conceviably do that while looking down \the [src]'s scope!"))
-		return
-
-	if(overcharge)
-		to_chat(usr, "[icon2html(src, usr)] You need to disable overcharge mode to remove attachments.")
-		return
-
-	if(!attachments)
-		to_chat(usr, span_warning("This weapon has no attachables. You can only field strip enhanced weapons!"))
-		return
-
-	var/list/possible_attachments = list()
-
-	for(var/slotties in attachments)
-		var/obj/item/attachable/possible_attachment = attachments[slotties]
-		if(!(possible_attachment.flags_attach_features & ATTACH_REMOVABLE))
-			continue
-		possible_attachments += possible_attachment
-
-	if(!length(possible_attachments))
-		to_chat(usr, span_warning("[src] has no removable attachments."))
-		return
-
-	var/obj/item/attachable/A
-	if(length(possible_attachments) == 1)
-		A = possible_attachments[1]
-	else
-		A = tgui_input_list(usr, "Which attachment to remove?", null, possible_attachments)
-
-	if(!A)
-		return
-
-	if(get_active_firearm(usr) != src)//dropped the gun
-		return
-
-	if(usr.do_actions)
-		return
-
-	if(zoom)
-		return
-
-	if(A != LAZYACCESS(attachments, A.slot))
-		return
-	if(!(A.flags_attach_features & ATTACH_REMOVABLE))
-		return
-
-	var/final_delay = A.detach_delay
-	var/idisplay = BUSY_ICON_GENERIC
-	if(usr.skills.getRating("firearms"))
-		usr.visible_message(span_notice("[usr] begins stripping [A] from [src]."),
-		span_notice("You begin stripping [A] from [src]."), null, 4)
-		if(usr.skills.getRating("firearms") > SKILL_FIREARMS_DEFAULT) //See if the attacher is super skilled/panzerelite born to defeat never retreat etc
-			final_delay *= 0.5 //Half normal time
-	else //If the user has no training, attaching takes twice as long and they fumble about.
-		final_delay *= 2
-		usr.visible_message(span_notice("[usr] begins fumbling about, trying to strip [A] from [src]."),
-		span_notice("You begin fumbling about, trying to strip [A] from [src]."), null, 4)
-		idisplay = BUSY_ICON_UNSKILLED
-	if(!do_after(usr,final_delay, TRUE, src, idisplay))
-		return
-
-	if(A != LAZYACCESS(attachments, A.slot))
-		return
-
-	if(!(A.flags_attach_features & ATTACH_REMOVABLE))
-		return
-
-	if(zoom)
-		return
-
-	usr.visible_message(span_notice("[usr] strips [A] from [src]."),
-	span_notice("You strip [A] from [src]."), null, 4)
-	A.detach_from_master_gun(usr)
-
-	playsound(src, 'sound/machines/click.ogg', 15, 1, 4)
-
-
 /obj/item/weapon/gun/ui_action_click(mob/user, datum/action/item_action/action)
 	if(flags_gun_features & GUN_BURST_FIRING)
 		return
 	var/datum/action/item_action/firemode/firemode_action = action
 	if(!istype(firemode_action))
+		if(master_gun)
+			activate(user)
+			return
 		return ..()
 	do_toggle_firemode()
 	user.update_action_buttons()
@@ -751,6 +607,20 @@ should be alright.
 /obj/item/weapon/gun/energy/remove_ammo_mod()
 	ammo_diff = initial(ammo_diff)
 
+///Gets the attachents by slot and activates them.
+/obj/item/weapon/gun/proc/activate_attachment(slot, mob/user)
+	if(!(slot in attachments_by_slot))
+		return FALSE
+	var/obj/item/attachment = attachments_by_slot[slot]
+	if(!attachment)
+		return FALSE
+
+	if(isgun(attachment)) //I wish I had a way to do this with the component. So that I wouldnt have to manually call the activate proc.
+		var/obj/item/weapon/gun/gun = attachment
+		return gun.activate(user)
+	if(isgunattachment(attachment))
+		var/obj/item/attachable/attachable = attachment
+		return attachable.activate(user)
 
 /mob/living/carbon/human/verb/empty_mag()
 	set category = "Weapons"
@@ -831,13 +701,16 @@ should be alright.
 	// rail attachment use the button to toggle flashlight instead.
 	//	if(rail && (rail.flags_attach_features & ATTACH_ACTIVATION) )
 	//		usable_attachments += rail
-	if(!attachments)
+	if(!length(attachments_by_slot))
 		to_chat(usr, span_warning("[src] does not have any usable attachment!"))
 		return
 
-	for(var/slot in attachments)
-		var/obj/item/attachable/attachment = attachments[slot]
-		if(attachment?.flags_attach_features & ATTACH_ACTIVATION)
+	for(var/key in attachments_by_slot)
+		var/obj/item/attachment = attachments_by_slot[key]
+		if(!attachment)
+			continue
+		var/obj/item/attachable/attachable = attachment
+		if(attachable.flags_attach_features & ATTACH_ACTIVATION)
 			usable_attachments += attachment
 
 	if(!length(usable_attachments)) //No usable attachments.
@@ -869,22 +742,20 @@ should be alright.
 	set name = "Toggle Rail Attachment (Weapon)"
 	set desc = "Uses the rail attachement currently attached to the gun."
 
-	var/obj/item/attachable/rail_attachment = LAZYACCESS(attachments, ATTACHMENT_SLOT_RAIL)
-	if(!rail_attachment)
-		to_chat(usr, span_warning("[src] does not have any usable rail attachment!"))
+	if(activate_attachment(ATTACHMENT_SLOT_RAIL, usr))
 		return
-	rail_attachment.activate_attachment(usr)
+	to_chat(usr, span_warning("[src] does not have any usable rail attachment!"))
 
 /obj/item/weapon/gun/verb/toggle_underrail_attachment()
 	set category = null
 	set name = "Toggle Underrail Attachment (Weapon)"
 	set desc = "Uses the underrail attachement currently attached to the gun."
 
-	var/obj/item/attachable/underrail_attachment = LAZYACCESS(attachments, ATTACHMENT_SLOT_UNDER)
-	if(!underrail_attachment)
-		to_chat(usr, span_warning("[src] does not have any usable rail attachment!"))
+	if(activate_attachment(ATTACHMENT_SLOT_UNDER, usr))
 		return
-	underrail_attachment.activate_attachment(usr)
+	to_chat(usr, span_warning("[src] does not have any usable rail attachment!"))
+
+
 
 /mob/living/carbon/human/verb/toggle_ammo_hud()
 	set category = "Weapons"
@@ -991,8 +862,7 @@ should be alright.
 	SIGNAL_HANDLER
 	if(gun_user?.get_active_held_item() != src && !CHECK_BITFIELD(flags_item, IS_DEPLOYED))
 		return
-	var/obj/item/attachable/underrail_attachment = LAZYACCESS(attachments, ATTACHMENT_SLOT_RAIL)
-	underrail_attachment?.activate_attachment(gun_user)
+	activate_attachment(ATTACHMENT_SLOT_RAIL, gun_user)
 	return COMSIG_KB_ACTIVATED
 
 /// Signal handler to activate the underrail attachement of that gun if it's in our active hand
@@ -1000,8 +870,7 @@ should be alright.
 	SIGNAL_HANDLER
 	if(gun_user?.get_active_held_item() != src && !CHECK_BITFIELD(flags_item, IS_DEPLOYED))
 		return
-	var/obj/item/attachable/rail_attachment = LAZYACCESS(attachments, ATTACHMENT_SLOT_UNDER)
-	rail_attachment?.activate_attachment(gun_user)
+	activate_attachment(ATTACHMENT_SLOT_UNDER, gun_user)
 	return COMSIG_KB_ACTIVATED
 
 /// Signal handler to unload that gun if it's in our active hand

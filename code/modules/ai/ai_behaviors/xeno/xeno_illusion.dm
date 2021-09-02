@@ -25,6 +25,8 @@
 	layer = BELOW_MOB_LAYER
 	///The parent mob the illusion is a copy of
 	var/mob/original_mob
+	///Last time it was hit by a projectile
+	var/last_hit_time = 0
 
 /mob/illusion/Initialize(mapload, mob/original_mob, atom/escorted_atom, life_time)
 	. = ..()
@@ -48,6 +50,15 @@
 
 /mob/illusion/process()
 	appearance = original_mob.appearance
+	if(last_hit_time >= world.time + 1 SECONDS)
+		remove_filter("illusion_hit")
+		last_hit_time = 0
+
+/mob/illusion/projectile_hit()
+	remove_filter("illusion_hit")
+	add_filter("illusion_hit", 2, wave_filter(10, 10, 10, 8))
+	last_hit_time = world.time
+	return FALSE
 
 /mob/illusion/xeno/Initialize(mapload, mob/living/carbon/xenomorph/original_mob, atom/escorted_atom, life_time)
 	. = ..()

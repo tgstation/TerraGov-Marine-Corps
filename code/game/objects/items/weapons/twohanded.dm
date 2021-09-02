@@ -259,6 +259,43 @@
 	icon_state = "spear"
 	item_state = "spear"
 
+/obj/item/weapon/twohanded/spear/tactical/tacticool
+	name = "M-23 TACTICOOL spear"
+	icon = 'icons/Marine/gun64.dmi'
+	desc = "A TACTICOOL spear. Used for TACTICOOLNESS in combat."
+
+/obj/item/weapon/twohanded/spear/tactical/tacticool/Initialize()
+	. = ..()
+	AddComponent(/datum/component/attachment_handler, \
+	list(ATTACHMENT_SLOT_RAIL, ATTACHMENT_SLOT_UNDER, ATTACHMENT_SLOT_MUZZLE), \
+	list(
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/verticalgrip,
+		/obj/item/attachable/lasersight,
+		/obj/item/attachable/gyro,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/bipod,
+		/obj/item/attachable/stock/t12stock,
+		/obj/item/attachable/burstfire_assembly,
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/extended_barrel,
+		/obj/item/attachable/heavy_barrel,
+		/obj/item/attachable/suppressor,
+		/obj/item/attachable/bayonet,
+		/obj/item/attachable/bayonetknife,
+		/obj/item/attachable/compensator,
+		/obj/item/attachable/scope,
+		/obj/item/attachable/scope/mini,
+		/obj/item/attachable/scope/marine,
+		/obj/item/attachable/angledgrip,
+		/obj/item/weapon/gun/pistol/plasma_pistol,
+		/obj/item/weapon/gun/shotgun/combat/masterkey,
+		/obj/item/weapon/gun/flamer/mini_flamer,
+		/obj/item/weapon/gun/launcher/m92/mini_grenade,
+		/obj/item/attachable/motiondetector,
+	), \
+	attachment_offsets = list("muzzle_x" = 59, "muzzle_y" = 16, "rail_x" = 26, "rail_y" = 18, "under_x" = 40, "under_y" = 12))
+
 /obj/item/weapon/twohanded/glaive
 	name = "war glaive"
 	icon_state = "glaive"

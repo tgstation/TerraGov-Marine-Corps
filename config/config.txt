@@ -158,9 +158,12 @@ MINUTE_TOPIC_LIMIT 100
 ##Name of the place to send people rejected by the bunker
 #PANIC_SERVER_NAME [Put the name here]
 
-## Notify admins when a new player connects for the first x days a player's been around. (0 for first connection only, -1 for never)
-##	Requres database
+## Notify admins when a new player connects for the first x days a player's been around on this server. (0 for first connection only, -1 for never)
+##	Requires database
 NOTIFY_NEW_PLAYER_AGE 0
+
+## Notify admins when a new byond account connects for the first x days after its creation. (-1 for never)
+NOTIFY_NEW_ACCOUNT_AGE 7
 
 ##Note: all population caps can be used with each other if desired.
 
@@ -206,7 +209,7 @@ IS_AUTOMATIC_BALANCE_ON
 ##  15x15 would be the standard square view. 21x15 is what goonstation uses for widescreen.
 ##  Setting this to something different from DEFAULT_VIEW_SQUARE will enable widescreen toggles
 ##	Do note that changing this value will affect the title screen. The title screen will have to be updated manually if this is changed.
-DEFAULT_VIEW 19x15
+DEFAULT_VIEW 15x15
 
 ##Default view size, in tiles. Should *always* be square.
 ## The alternative square viewport size if you're using a widescreen view size
