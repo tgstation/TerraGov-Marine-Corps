@@ -23,6 +23,12 @@
 
 	update_icon_state()
 
+/obj/machinery/deployable/Destroy()
+	for(var/datum/atom_hud/squad/sentry_status_hud in GLOB.huds) //Add to the squad HUD
+		sentry_status_hud.remove_from_hud(src)
+	return ..()
+
+
 /obj/machinery/deployable/update_icon_state()
 	. = ..()
 	hud_set_machine_health()

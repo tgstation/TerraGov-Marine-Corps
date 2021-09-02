@@ -112,8 +112,12 @@ Some defines to generalise colours used in lighting.
 Important note: colors can end up significantly different from the basic html picture, especially when saturated
 */
 
+/// Full white. rgb(255, 255, 255)
+#define LIGHT_COLOR_WHITE "#FFFFFF"
 /// Bright but quickly dissipating neon green. rgb(100, 200, 100)
 #define LIGHT_COLOR_GREEN "#64C864"
+/// Warm red color rgb(250, 66, 66)
+#define LIGHT_COLOR_RED "#ff3b3b"
 /// Electric green. rgb(0, 255, 0)
 #define LIGHT_COLOR_ELECTRIC_GREEN "#00FF00"
 /// Cold, diluted blue. rgb(100, 150, 250)

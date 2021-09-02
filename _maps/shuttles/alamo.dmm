@@ -334,6 +334,7 @@
 /area/shuttle/dropship/alamo)
 "bk" = (
 /obj/item/radio/intercom/dropship,
+/obj/machinery/holopad,
 /turf/open/shuttle/dropship/five,
 /area/shuttle/dropship/alamo)
 "bl" = (

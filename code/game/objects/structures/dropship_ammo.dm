@@ -376,6 +376,22 @@
 	S.set_up(7, impact)// Large radius, but dissipates quickly
 	S.start()
 
+/obj/structure/ship_ammo/minirocket/tangle
+	name = "Tanglefoot mini rocket stack"
+	desc = "A pack of laser guided mini rockets loaded with plasma-draining Tanglefoot gas."
+	icon_state = "minirocket_tfoot"
+	point_cost = 50
+
+/obj/structure/ship_ammo/minirocket/tangle/detonate_on(turf/impact, attackdir = NORTH)
+	impact.ceiling_debris_check(2)
+	explosion(impact, 0, 0, 2, 2, throw_range = 0)// Smaller explosion
+	var/datum/effect_system/expl_particles/P = new
+	P.set_up(4, 0, impact)
+	P.start()
+	var/datum/effect_system/smoke_spread/plasmaloss/S = new
+	S.set_up(9, impact, 9)// Between grenade and mortar
+	S.start()
+
 /obj/structure/ship_ammo/minirocket/illumination
 	name = "illumination rocket-launched flare stack"
 	desc = "A pack of laser guided mini rockets, each loaded with a payload of white-star illuminant and a parachute, while extremely ineffective at damaging the enemy, it is very effective at lighting the battlefield so marines can damage the enemy."
@@ -403,9 +419,9 @@
 	icon_state = "" //No sprite
 	invisibility = INVISIBILITY_MAXIMUM
 	resistance_flags = RESIST_ALL
-	light_system = STATIC_LIGHT
 	light_color = COLOR_VERY_SOFT_YELLOW
-	light_power = 7 //Magnesium/sodium fires (White star) really are bright
+	light_system = HYBRID_LIGHT
+	light_power = 8 //Magnesium/sodium fires (White star) really are bright
 
 /obj/effect/cas_flare/Initialize()
 	. = ..()

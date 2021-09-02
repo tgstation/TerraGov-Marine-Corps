@@ -236,11 +236,6 @@
 	if(stat != DEAD && user.a_intent == INTENT_HELP)
 		handle_automated_speech(1) //assured speak/emote
 
-
-/mob/living/simple_animal/parrot/attack_paw(mob/living/carbon/human/user)
-	return attack_hand(user)
-
-
 /mob/living/simple_animal/parrot/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
 	return attack_hand(X)
 

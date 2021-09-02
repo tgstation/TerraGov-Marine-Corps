@@ -208,7 +208,7 @@
 		new /obj/item/storage/box/visual/grenade/frag (get_turf(src))
 		return
 
-	if(istype(gun_to_spawn, /obj/item/weapon/gun/flare))
+	if(istype(gun_to_spawn, /obj/item/weapon/gun/launcher/m81/flare))
 		new /obj/item/storage/box/m94 (get_turf(src))
 		return
 
@@ -254,7 +254,7 @@
 	weapon_list = list(
 		/obj/item/weapon/gun/energy/lasgun/M43/practice,
 		/obj/item/weapon/gun/energy/lasgun/tesla,
-		/obj/item/weapon/gun/flare,
+		/obj/item/weapon/gun/launcher/m81/flare,
 		/obj/item/weapon/gun/pistol/standard_pistol,
 		/obj/item/weapon/gun/pistol/standard_pocketpistol,
 		/obj/item/weapon/gun/pistol/rt3,
@@ -286,7 +286,7 @@
 		/obj/item/weapon/baseballbat/metal,
 		/obj/item/weapon/butterfly,
 		/obj/item/weapon/butterfly/switchblade,
-		/obj/item/weapon/butterfly/katana,
+		/obj/item/weapon/katana/samurai,
 	)
 
 /obj/effect/landmark/weapon_spawn/tier2_weapon_spawn
@@ -330,6 +330,7 @@
 		/obj/item/weapon/gun/rifle/ak47,
 		/obj/item/weapon/gun/rifle/m16,
 		/obj/item/weapon/gun/rifle/famas,
+		/obj/item/weapon/gun/rifle/alf_machinecarbine,
 		/obj/item/weapon/gun/rifle/standard_lmg,
 		/obj/item/weapon/gun/rifle/standard_gpmg,
 		/obj/item/weapon/gun/rifle/m412l1_hpr,
@@ -341,7 +342,7 @@
 		/obj/item/weapon/gun/shotgun/pump/t35,
 		/obj/item/weapon/gun/shotgun/combat,
 		/obj/item/weapon/gun/shotgun/combat/standardmarine,
-		/obj/item/weapon/gun/flamer,
+		/obj/item/weapon/gun/flamer/big_flamer,
 		/obj/item/weapon/gun/pistol/auto9,
 		/obj/item/weapon/gun/rifle/chambered,
 		/obj/item/weapon/gun/rifle/tx11,
@@ -368,7 +369,7 @@
 		/obj/item/weapon/gun/shotgun/pump/cmb,
 		/obj/item/weapon/gun/shotgun/double,
 		/obj/item/weapon/gun/shotgun/double/sawn,
-		/obj/item/weapon/gun/flamer/marinestandard,
+		/obj/item/weapon/gun/flamer/big_flamer/marinestandard,
 		/obj/item/weapon/gun/rifle/standard_autosniper,
 		/obj/item/weapon/energy/axe,
 	)

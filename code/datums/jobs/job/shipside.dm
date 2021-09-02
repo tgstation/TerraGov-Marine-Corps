@@ -173,7 +173,7 @@ Make the TGMC proud!"})
 	belt = /obj/item/storage/large_holster/blade/officer/full
 	ears = /obj/item/radio/headset/mainship/mcom
 	w_uniform = /obj/item/clothing/under/marine/officer/exec
-	wear_suit = /obj/item/clothing/suit/storage/marine/pasvest
+	wear_suit = /obj/item/clothing/suit/modular/pas11x
 	shoes = /obj/item/clothing/shoes/marine/full
 	gloves = /obj/item/clothing/gloves/marine/officer
 	head = /obj/item/clothing/head/tgmcberet/fc
@@ -292,6 +292,7 @@ You are in charge of logistics and the overwatch system. You are also in line to
 		<b>Gamemode Availability</b>: Distress<br /><br /><br />
 		<b>Duty</b>: Listen and coordinate your crew for the sole dropship you will use. Provide transport and close air support for the marines during the mission. Ensure no threats come aboard your dropship and by extension, the vessel which houses the crew.
 	"}
+	minimap_icon = "pilot"
 
 /datum/job/terragov/command/pilot/rebel
 	title = REBEL_PILOT_OFFICER
@@ -560,6 +561,7 @@ requisitions line and later on to be ready to send supplies for marines who are 
 		<b>Gamemode Availability</b>: Distress<br /><br /><br />
 		Requisition supplies to the battlefield. Ensure that the marines are reparing miners for more points. Supply the marines with deluxe equipment to ensure success.
 	"}
+	minimap_icon = "requisition"
 
 /datum/job/terragov/requisitions/officer/rebel
 	title = REBEL_REQUISITIONS_OFFICER
@@ -962,8 +964,9 @@ Use your office fax machine to communicate with corporate headquarters or to acq
 		<b>You answer to the</b> acting Command Staff and the human crew<br /><br />
 		<b>Unlock Requirement</b>: Starting Role<br /><br />
 		<b>Gamemode Availability</b>: Crash, Distress<br /><br /><br />
-		<b>Duty</b>: Support and assist in every department of the TerraGov Marine Corps, use your incredibly developed skills to help the marines during their missions. Serve your purpose.
+		<b>Duty</b>: Support and assist in every department of the TerraGov Marine Corps, use your incredibly developed skills to help the marines during their missions. You can talk to other synthetics or the AI on the :n channel. Serve your purpose.
 	"}
+	minimap_icon = "synth"
 
 /datum/job/terragov/silicon/synthetic/rebel
 	title = REBEL_SYNTHETIC

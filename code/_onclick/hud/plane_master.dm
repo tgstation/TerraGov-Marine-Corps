@@ -26,9 +26,10 @@
 
 /obj/screen/plane_master/openspace/Initialize()
 	. = ..()
-	add_filter("first_stage_openspace", 1, drop_shadow_filter(color = "#04080FAA", size = -10))
-	add_filter("second_stage_openspace", 2, drop_shadow_filter(color = "#04080FAA", size = -15))
-	add_filter("third_stage_openspace", 2, drop_shadow_filter(color = "#04080FAA", size = -20))
+	add_filter("multiz_lighting_mask", 1, alpha_mask_filter(render_source = LIGHTING_RENDER_TARGET, flags = MASK_INVERSE))
+	add_filter("first_stage_openspace", 2, drop_shadow_filter(color = "#04080FAA", size = -10))
+	add_filter("second_stage_openspace", 3, drop_shadow_filter(color = "#04080FAA", size = -15))
+	add_filter("third_stage_openspace", 4, drop_shadow_filter(color = "#04080FAA", size = -20))
 
 ///Contains just the floor
 /obj/screen/plane_master/floor
@@ -74,8 +75,8 @@
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
 /obj/screen/plane_master/lighting/backdrop(mob/mymob)
-	mymob.overlay_fullscreen("lighting_backdrop_lit", /obj/screen/fullscreen/lighting_backdrop/lit)
-	mymob.overlay_fullscreen("lighting_backdrop_unlit", /obj/screen/fullscreen/lighting_backdrop/unlit)
+	mymob.overlay_fullscreen("lighting_backdrop", /obj/screen/fullscreen/lighting_backdrop/backplane)
+	mymob.overlay_fullscreen("lighting_backdrop_lit_secondary", /obj/screen/fullscreen/lighting_backdrop/lit_secondary)
 
 /obj/screen/plane_master/lighting/Initialize()
 	. = ..()

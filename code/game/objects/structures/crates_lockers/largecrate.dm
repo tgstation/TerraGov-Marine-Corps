@@ -236,7 +236,7 @@
 					/obj/item/weapon/gun/shotgun/pump/t35 = /obj/item/ammo_magazine/shotgun,
 					/obj/item/weapon/gun/shotgun/pump/t35 = /obj/item/ammo_magazine/shotgun/incendiary,
 					/obj/item/weapon/gun/shotgun/combat = /obj/item/ammo_magazine/shotgun,
-					/obj/item/weapon/gun/flamer = /obj/item/ammo_magazine/flamer_tank,
+					/obj/item/weapon/gun/flamer/big_flamer = /obj/item/ammo_magazine/flamer_tank,
 					/obj/item/weapon/gun/pistol/rt3 = /obj/item/ammo_magazine/pistol/incendiary,
 					/obj/item/weapon/gun/rifle/standard_assaultrifle = /obj/item/ammo_magazine/rifle/standard_assaultrifle,
 					/obj/item/weapon/gun/rifle/standard_lmg = /obj/item/ammo_magazine/standard_lmg,

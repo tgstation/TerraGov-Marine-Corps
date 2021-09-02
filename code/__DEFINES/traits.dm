@@ -89,13 +89,19 @@
 #define TRAIT_STASIS "stasis"//Subject to the stasis effect
 #define ENDURE_TRAIT "endure" //Ravager Endure ability.
 #define RAGE_TRAIT "rage" //Ravager Rage ability.
+#define UNMANNED_VEHICLE "unmanned"
 #define STEALTH_TRAIT "stealth" //From hunter stealth
+/// inherited from riding vehicles
+#define VEHICLE_TRAIT "vehicle"
+
 
 //mob traits
 #define TRAIT_KNOCKEDOUT "knockedout" //Forces the user to stay unconscious.
 #define TRAIT_INCAPACITATED "incapacitated"
 #define TRAIT_FLOORED "floored" //User is forced to the ground on a prone position.
 #define TRAIT_IMMOBILE "immobile" //User is unable to move by its own volition.
+/// Prevents usage of manipulation appendages (picking, holding or using items, manipulating storage).
+#define TRAIT_HANDS_BLOCKED "handsblocked"
 #define TRAIT_STUNIMMUNE "stun_immunity"
 #define TRAIT_FIRERESISTANT "fire_resistant" // Won't catch on fire
 #define TRAIT_BATONIMMUNE "baton_immunity"
@@ -109,6 +115,7 @@
 #define TRAIT_PSY_DRAINED "psy_drained"//mob was drained of life force by a xenos
 #define TRAIT_STAGGERIMMUNE	"stagger_immunity" //Immunity to stagger
 #define TRAIT_SLOWDOWNIMMUNE "slowdown_immunity" //Immunity to slowdown
+#define TRAIT_SEE_IN_DARK "see_in_dark" //Able to see in dark
 #define TRAIT_MUTED "muted" //target is mute and can't speak
 #define TRAIT_TURRET_HIDDEN "turret_hidden" //target gets passed over by turrets choosing a victim
 /// Prevents mob from riding mobs when buckled onto something

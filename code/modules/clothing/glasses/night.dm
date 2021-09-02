@@ -42,8 +42,8 @@
 
 
 /obj/item/clothing/glasses/night/m56_goggles
-	name = "\improper M26 head mounted sight"
-	desc = "A headset and goggles system for use with the T-26 smart machinegun. Has a low-res short range imager, allowing for view of terrain."
+	name = "\improper KTLD head mounted sight"
+	desc = "A headset and goggles system made to pair with any KTLD weapon, such as a smartmachinegun. Has a low-res short range imager, allowing for view of terrain."
 	icon = 'icons/obj/clothing/glasses.dmi'
 	icon_state = "m56_goggles"
 	deactive_state = "m56_goggles_0"

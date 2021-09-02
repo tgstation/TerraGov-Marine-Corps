@@ -46,7 +46,7 @@ These act as a respawn mechanic growning a body and offering it up to ghosts.
 	anchored = TRUE
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 50
-	resistance_flags = UNACIDABLE | INDESTRUCTIBLE // For now, we should work out how we want xenos to counter this
+	resistance_flags = RESIST_ALL // For now, we should work out how we want xenos to counter this
 
 	var/obj/machinery/cloning/vats/linked_machine
 	var/obj/item/radio/headset/mainship/mcom/radio //God forgive me

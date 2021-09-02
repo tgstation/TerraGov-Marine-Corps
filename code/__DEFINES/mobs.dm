@@ -1,6 +1,9 @@
 //Some mob defines below
 #define AI_CAMERA_LUMINOSITY 6
 
+//Mob movement define
+#define DIAG_MOVEMENT_ADDED_DELAY_MULTIPLIER 1.6
+
 
 //Pain or shock reduction for different reagents
 #define PAIN_REDUCTION_VERY_LIGHT -10 //alkysine
@@ -30,7 +33,7 @@
 #define INFECTION_LEVEL_TWO 500
 #define INFECTION_LEVEL_THREE 800
 
-#define MIN_ANTIBIOTICS 0
+#define MIN_ANTIBIOTICS 0.1
 
 
 #define LIVING_PERM_COEFF 0
@@ -489,6 +492,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define CASTE_CAN_CORRUPT_GENERATOR (1<<17) //Can corrupt a generator
 #define CASTE_IS_BUILDER (1<<18) //whether we are classified as a builder caste
 #define CAN_BECOME_KING (1<<19) //Can be choose to become a king
+#define CAN_RIDE_CRUSHER (1<<20) //Can ride a crusher
 
 //Charge-Crush
 #define CHARGE_OFF 0
@@ -523,13 +527,13 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define HUNTER_MARK_WINDUP 1 SECONDS //Windup of the Hunter's Mark
 #define HUNTER_PSYCHIC_TRACE_COOLDOWN 5 SECONDS //Cooldown of the Hunter's Psychic Trace, and duration of its arrow
 #define HUNTER_SILENCE_STAGGER_STACKS 1 //Silence imposes this many stagger stacks
-#define HUNTER_SILENCE_SENSORY_STACKS 6 //Silence imposes this many eyeblur, mute and deafen stacks.
-#define HUNTER_SILENCE_DURATION 10 SECONDS //Removes mute from the Hunter's Silence after this delay.
+#define HUNTER_SILENCE_SENSORY_STACKS 7 //Silence imposes this many eyeblur and deafen stacks.
+#define HUNTER_SILENCE_MUTE_DURATION 10 SECONDS //Silence imposes this many seconds of the mute status effect.
 #define HUNTER_SILENCE_RANGE 5 //Range in tiles of the Hunter's Silence.
 #define HUNTER_SILENCE_AOE 2 //AoE size of Silence in tiles
-#define HUNTER_SILENCE_WINDUP 0.5 SECONDS //Windup of the Hunter's Silence
 #define HUNTER_SILENCE_MULTIPLIER 1.5 //Multiplier of stacks vs Hunter's Mark targets
 #define HUNTER_SILENCE_WHIFF_COOLDOWN 3 SECONDS //If we fail to target anyone with Silence, partial cooldown to prevent spam.
+#define HUNTER_SILENCE_COOLDOWN 30 SECONDS //Silence's cooldown
 #define HUNTER_VENT_CRAWL_TIME 2 SECONDS //Hunters can enter vents fast
 
 //Ravager defines:
@@ -540,7 +544,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 
 #define RAVAGER_ENDURE_DURATION				10 SECONDS
 #define RAVAGER_ENDURE_DURATION_WARNING		0.7
-#define RAVAGER_ENDURE_HP_LIMIT				-150
+#define RAVAGER_ENDURE_HP_LIMIT				-100
 
 #define RAVAGER_RAGE_DURATION							10 SECONDS
 #define RAVAGER_RAGE_WARNING							0.7
@@ -548,7 +552,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define RAVAGER_RAGE_NEGATIVE_HP_POWER_MULTIPLIER		-0.0075 //How much we multiply our negative HP by to determine Rage Power
 #define RAVAGER_RAGE_MIN_HEALTH_THRESHOLD				0.5 //The maximum % of HP we can have to trigger Rage
 #define RAVAGER_RAGE_SUPER_RAGE_THRESHOLD				0.5 //The minimum amount of Rage Power we need to trigger the bonus Rage effects
-
+#define RAVAGER_RAGE_ENDURE_INCREASE_PER_SLASH			2 SECONDS //The amount of time each slash during Super Rage increases Endure's duration
 
 //crusher defines
 #define CRUSHER_STOMP_LOWER_DMG 40
@@ -565,12 +569,15 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 //Defiler defines
 #define DEFILER_GAS_CHANNEL_TIME 0.5 SECONDS
 #define DEFILER_GAS_DELAY 1 SECONDS
-#define DEFILER_STING_CHANNEL_TIME 1.5 SECONDS
-#define DEFILER_CLAW_AMOUNT 6.5
-#define DEFILER_STING_AMOUNT_RECURRING 10
 #define DEFILER_REAGENT_SLASH_COUNT 3
-#define DEFILER_REAGENT_SLASH_INJECT_AMOUNT 4
+#define DEFILER_REAGENT_SLASH_INJECT_AMOUNT 7
 #define DEFILER_REAGENT_SLASH_DURATION 4 SECONDS
+#define DEFILER_TRANSVITOX_CAP 180 //Max toxin damage transvitox will allow
+#define DEFILER_DEFILE_CHANNEL_TIME 0.5 SECONDS //Wind up time for the Defile ability
+#define DEFILER_DEFILE_FAIL_COOLDOWN 5 SECONDS //Time Defile goes on cooldown for when it fails
+#define DEFILER_DEFILE_STRENGTH_MULTIPLIER 0.5 //Base multiplier for determining the power of Defile
+#define DEFILER_SANGUINAL_DAMAGE 1 //Damage dealt per tick per xeno toxin by the sanguinal toxin
+#define DEFILER_SANGUINAL_SMOKE_MULTIPLIER 0.03 //Amount the defile power is multiplied by which determines sanguinal smoke strength/size
 
 //Drone defines
 #define DRONE_HEAL_RANGE 1
@@ -636,8 +643,6 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 
 //Larva defines
 #define LARVA_VENT_CRAWL_TIME 1 SECONDS //Larva can crawl into vents fast
-
-#define DEFILER_TRANSVITOX_CAP 180 //Max toxin damage transvitox will allow
 
 //misc
 

@@ -475,7 +475,7 @@
 	icon = 'icons/obj/flora/rocks2.dmi'
 	density = TRUE
 	max_integrity = 250
-	layer = ABOVE_FLY_LAYER
+	layer = ABOVE_TURF_LAYER
 	coverage = 100
 	icon_state = "basalt"
 

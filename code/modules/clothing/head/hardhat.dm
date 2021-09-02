@@ -7,7 +7,6 @@
 	actions_types = list(/datum/action/item_action/toggle)
 	siemens_coefficient = 0.9
 	flags_inventory = BLOCKSHARPOBJ
-	light_system = MOVABLE_LIGHT
 	light_range = 4
 	light_power = 2
 	var/hardhat_color = "yellow" //Determines used sprites: hardhat[on]_[hardhat_color]

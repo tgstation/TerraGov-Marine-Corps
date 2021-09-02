@@ -4,6 +4,8 @@
 	blocks_emissive = EMISSIVE_BLOCK_GENERIC
 	mouse_drag_pointer = MOUSE_ACTIVE_POINTER
 	materials = list(/datum/material/metal = 50)
+	light_system = MOVABLE_LIGHT
+	flags_pass = PASSTABLE
 
 	var/image/blood_overlay = null //this saves our blood splatter overlay, which will be processed not to go over the edges of the sprite
 	///The iconstate that the items use for blood on blood.dmi when drawn on the mob.
@@ -36,7 +38,6 @@
 	//Since any item can now be a piece of clothing, this has to be put here so all items share it.
 	var/flags_inventory = NONE //This flag is used for various clothing/equipment item stuff
 	var/flags_inv_hide = NONE //This flag is used to determine when items in someone's inventory cover others. IE helmets making it so you can't see glasses, etc.
-	flags_pass = PASSTABLE
 
 	var/obj/item/master = null
 
@@ -376,6 +377,7 @@
 // If you are making custom procs but would like to retain partial or complete functionality of this one, include a 'return ..()' to where you want this to happen.
 // Set disable_warning to 1 if you wish it to not give you outputs.
 // warning_text is used in the case that you want to provide a specific warning for why the item cannot be equipped.
+
 /obj/item/proc/mob_can_equip(mob/M, slot, warning = TRUE, override_nodrop = FALSE)
 	if(!slot)
 		return FALSE

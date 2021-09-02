@@ -296,6 +296,10 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/bullet/pistol/superheavy/on_hit_mob(mob/M,obj/projectile/P)
 	staggerstun(M, P, stagger = 1, slowdown = 1, shake = 0)
 
+/datum/ammo/bullet/pistol/superheavy/derringer
+	handful_amount = 2
+	handful_icon_state = "derringer"
+
 /datum/ammo/bullet/pistol/incendiary
 	name = "incendiary pistol bullet"
 	hud_state = "pistol_fire"
@@ -355,10 +359,7 @@ datum/ammo/bullet/revolver/tp44
 	damage = 40
 
 /datum/ammo/bullet/revolver/tp44/on_hit_mob(mob/M,obj/projectile/P)
-	if(SEND_SIGNAL(P.shot_from, COMSIG_REVOLVER_AMMO_HIT_MOB) & COMSIG_REVOLVER_AMMO_SNUBNOSE_BARREL)
-		staggerstun(M, P, stagger = 1, slowdown = 0.5, knockback = 1, shake = 0)
-	else
-		staggerstun(M, P, slowdown = 0.5, shake = 0)
+	staggerstun(M, P, stagger = 0, slowdown = 0.5, knockback = 0, shake = 0)
 
 /datum/ammo/bullet/revolver/small
 	name = "small revolver bullet"
@@ -500,6 +501,13 @@ datum/ammo/bullet/revolver/tp44
 	penetration = 20
 	sundering = 1.25
 
+/datum/ammo/bullet/rifle/heavy
+	name = "heavy rifle bullet"
+	hud_state = "hivelo"
+	damage = 30
+	penetration = 10
+	sundering = 1.25
+
 /datum/ammo/bullet/rifle/incendiary
 	name = "incendiary rifle bullet"
 	hud_state = "rifle_fire"
@@ -596,9 +604,9 @@ datum/ammo/bullet/revolver/tp44
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
 	shell_speed = 3
 	max_range = 15
-	damage = 80
-	penetration = 40
-	sundering = 7
+	damage = 100
+	penetration = 20
+	sundering = 15
 
 /datum/ammo/bullet/shotgun/slug/on_hit_mob(mob/M,obj/projectile/P)
 	staggerstun(M, P, weaken = 1, stagger = 2, knockback = 1, slowdown = 2)
@@ -684,13 +692,13 @@ datum/ammo/bullet/revolver/tp44
 	flags_ammo_behavior = AMMO_BALLISTIC
 	bonus_projectiles_type = /datum/ammo/bullet/shotgun/spread
 	bonus_projectiles_amount = 5
-	bonus_projectiles_scatter = 10
+	bonus_projectiles_scatter = 4
 	accuracy_var_low = 9
 	accuracy_var_high = 9
-	accurate_range = 3
+	accurate_range = 5
 	max_range = 10
 	damage = 40
-	damage_falloff = 4
+	damage_falloff = 1
 	penetration = 0
 
 
@@ -703,10 +711,10 @@ datum/ammo/bullet/revolver/tp44
 	shell_speed = 2
 	accuracy_var_low = 9
 	accuracy_var_high = 9
-	accurate_range = 3
+	accurate_range = 5
 	max_range = 10
 	damage = 40
-	damage_falloff = 4
+	damage_falloff = 1
 	penetration = 0
 
 //buckshot variant only used by the masterkey shotgun attachment.
@@ -1001,9 +1009,9 @@ datum/ammo/bullet/revolver/tp44
 
 /datum/ammo/bullet/smartgun/smartrifle
 	name = "smartrifle bullet"
-	damage = 25
-	penetration = 15
-	sundering = 1
+	damage = 20
+	penetration = 10
+	sundering = 1.5
 
 /datum/ammo/bullet/smartgun/lethal
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
@@ -1621,19 +1629,19 @@ datum/ammo/bullet/revolver/tp44
 /datum/ammo/xeno/toxin
 	name = "neurotoxic spit"
 	flags_ammo_behavior = AMMO_XENO|AMMO_EXPLOSIVE|AMMO_SKIPS_ALIENS
-	spit_cost = 50
-	added_spit_delay = 5
+	spit_cost = 70
+	added_spit_delay = 0
 	damage_type = STAMINA
 	accurate_range = 5
 	max_range = 10
 	accuracy_var_low = 3
 	accuracy_var_high = 3
-	damage = 30
-	stagger_stacks = 1
-	slowdown_stacks = 1
+	damage = 40
+	stagger_stacks = 1.1
+	slowdown_stacks = 1.1
 	smoke_strength = 0.5
 	smoke_range = 0
-	reagent_transfer_amount = 6.5
+	reagent_transfer_amount = 7
 
 ///Set up the list of reagents the spit transfers upon impact
 /datum/ammo/xeno/toxin/proc/set_reagents()
@@ -1695,58 +1703,37 @@ datum/ammo/bullet/revolver/tp44
 	smoke_system.start()
 
 /datum/ammo/xeno/toxin/upgrade1
-	smoke_strength = 0.55
-	reagent_transfer_amount = 7
+	smoke_strength = 0.6
+	reagent_transfer_amount = 8
 
 /datum/ammo/xeno/toxin/upgrade2
-	smoke_strength = 0.6
-	reagent_transfer_amount = 7.5
-
-/datum/ammo/xeno/toxin/upgrade3
-	smoke_strength = 0.65
-	reagent_transfer_amount = 8
-
-
-/datum/ammo/xeno/toxin/medium //Queen
-	name = "neurotoxic spatter"
-	added_spit_delay = 10
-	spit_cost = 75
-	damage = 35
-	smoke_strength = 0.6
-	reagent_transfer_amount = 7.5
-
-/datum/ammo/xeno/toxin/medium/upgrade1
-	smoke_strength = 0.65
-	reagent_transfer_amount = 8
-
-/datum/ammo/xeno/toxin/medium/upgrade2
 	smoke_strength = 0.7
-	reagent_transfer_amount = 8.5
-
-/datum/ammo/xeno/toxin/medium/upgrade3
-	smoke_strength = 0.75
 	reagent_transfer_amount = 9
+	
+/datum/ammo/xeno/toxin/upgrade3
+	smoke_strength = 0.75
+	reagent_transfer_amount = 9.5
 
 
 /datum/ammo/xeno/toxin/heavy //Praetorian
 	name = "neurotoxic splash"
-	added_spit_delay = 15
-	spit_cost = 100
+	added_spit_delay = 0
+	spit_cost = 120
 	damage = 40
-	smoke_strength = 0.65
-	reagent_transfer_amount = 8.5
+	smoke_strength = 0.9
+	reagent_transfer_amount = 9.5
 
 /datum/ammo/xeno/toxin/heavy/upgrade1
-	smoke_strength = 0.7
+	smoke_strength = 0.9
 	reagent_transfer_amount = 9
 
 /datum/ammo/xeno/toxin/heavy/upgrade2
-	smoke_strength = 0.75
+	smoke_strength = 0.95
 	reagent_transfer_amount = 9.5
 
 /datum/ammo/xeno/toxin/heavy/upgrade3
-	smoke_strength = 0.8
-	reagent_transfer_amount = 10
+	smoke_strength = 1
+	reagent_transfer_amount = 10  
 
 
 /datum/ammo/xeno/sticky
@@ -1806,7 +1793,7 @@ datum/ammo/bullet/revolver/tp44
 		if(is_type_in_typecache(O, GLOB.no_sticky_resin))
 			return
 
-	new /obj/effect/alien/resin/sticky/thin(T)
+	new /obj/effect/alien/resin/sticky(T)
 
 /datum/ammo/xeno/acid
 	name = "acid spit"
@@ -1836,8 +1823,8 @@ datum/ammo/bullet/revolver/tp44
 
 /datum/ammo/xeno/acid/heavy
 	name = "acid splash"
-	added_spit_delay = 8
-	spit_cost = 75
+	added_spit_delay = 0
+	spit_cost = 150
 	damage = 30
 
 /datum/ammo/xeno/acid/heavy/turret
@@ -1883,13 +1870,13 @@ datum/ammo/bullet/revolver/tp44
 
 ///For the Spitter's Scatterspit ability
 /datum/ammo/xeno/acid/heavy/scatter
-	damage = 15
+	damage = 10
 	flags_ammo_behavior = AMMO_XENO|AMMO_EXPLOSIVE|AMMO_SKIPS_ALIENS
 	bonus_projectiles_type = /datum/ammo/xeno/acid/heavy/scatter
-	bonus_projectiles_amount = 5
-	bonus_projectiles_scatter = 10
+	bonus_projectiles_amount = 6
+	bonus_projectiles_scatter = 3
 	max_range = 8
-	puddle_duration = 2 SECONDS //Lasts 2-4 seconds
+	puddle_duration = 1 SECONDS //Lasts 2-4 seconds
 
 /datum/ammo/xeno/boiler_gas
 	name = "glob of gas"
@@ -1917,7 +1904,7 @@ datum/ammo/bullet/revolver/tp44
 	if(!istype(victim) || victim.stat == DEAD || victim.issamexenohive(proj.firer))
 		return
 
-	victim.Paralyze(0.5 SECONDS)
+	victim.Paralyze(1 SECONDS)
 	victim.blur_eyes(11)
 	victim.adjustDrowsyness(12)
 
@@ -1970,7 +1957,7 @@ datum/ammo/bullet/revolver/tp44
 
 /datum/ammo/xeno/boiler_gas/corrosive/on_hit_mob(mob/living/victim, obj/projectile/proj)
 	drop_nade(get_turf(proj), proj.firer)
-	victim.Paralyze(0.1 SECONDS)
+	victim.Paralyze(1 SECONDS)
 	victim.blur_eyes(1)
 	victim.adjustDrowsyness(1)
 
@@ -2051,16 +2038,6 @@ datum/ammo/bullet/revolver/tp44
 		return
 	flame_radius(2, T)
 
-/datum/ammo/flamethrower/green
-	name = "green flame"
-	hud_state = "flame_green"
-	max_range = 4
-	fire_color = "green"
-	burnlevel = 10
-	burntime = 50
-	fire_delay = 35
-	bullet_color = LIGHT_COLOR_GREEN
-
 /datum/ammo/flamethrower/blue
 	name = "blue flame"
 	hud_state = "flame_blue"
@@ -2074,33 +2051,6 @@ datum/ammo/bullet/revolver/tp44
 /datum/ammo/water
 	name = "water"
 	hud_state = "water"
-
-/datum/ammo/flare
-	name = "flare"
-	ping = null //no bounce off.
-	damage_type = BURN
-	flags_ammo_behavior = AMMO_EXPLOSIVE|AMMO_INCENDIARY
-	damage = 15
-	accuracy = 15
-	max_range = 15
-
-/datum/ammo/flare/on_hit_mob(mob/M,obj/projectile/P)
-	drop_nade(get_turf(P))
-
-/datum/ammo/flare/on_hit_obj(obj/O,obj/projectile/P)
-	drop_nade(get_turf(P))
-
-/datum/ammo/flare/on_hit_turf(turf/T,obj/projectile/P)
-	drop_nade(T)
-
-/datum/ammo/flare/do_at_max_range(obj/projectile/P)
-	drop_nade(get_turf(P))
-
-/datum/ammo/flare/drop_nade(turf/T)
-	var/obj/item/explosive/grenade/flare/G = new (T)
-	G.visible_message(span_warning("\A [G] bursts into brilliant light nearby!"))
-	G.turn_on()
-
 /datum/ammo/rocket/toy
 	name = "\improper toy rocket"
 	damage = 1

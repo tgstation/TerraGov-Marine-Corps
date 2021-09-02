@@ -88,6 +88,10 @@
 
 	ignore_weed_destruction = TRUE
 
+/obj/effect/alien/resin/sticky/Initialize()
+	. = ..()
+	AddElement(/datum/element/slowing_on_crossed, slow_amt)
+
 /obj/effect/alien/resin/sticky/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
 	if(X.status_flags & INCORPOREAL)
 		return FALSE
@@ -99,29 +103,6 @@
 		return
 
 	return ..()
-
-
-/obj/effect/alien/resin/sticky/Crossed(atom/movable/AM)
-	. = ..()
-
-	if(isvehicle(AM))
-		var/obj/vehicle/vehicle = AM
-		vehicle.next_move_slowdown += slow_amt
-		return
-
-	if(!ishuman(AM))
-		return
-
-	if(CHECK_MULTIPLE_BITFIELDS(AM.flags_pass, HOVERING))
-		return
-
-	var/mob/living/carbon/human/H = AM
-
-	if(H.lying_angle)
-		return
-
-	H.next_move_slowdown += slow_amt
-
 
 // Praetorian Sticky Resin spit uses this.
 /obj/effect/alien/resin/sticky/thin
@@ -158,15 +139,6 @@
 		Open()
 		return TRUE
 
-
-/obj/structure/mineral_door/resin/attack_paw(mob/living/carbon/human/user)
-	if(user.a_intent == INTENT_HARM)
-		user.visible_message(span_xenowarning("\The [user] claws at \the [src]."), \
-		span_xenowarning("You claw at \the [src]."))
-		playsound(loc, "alien_resin_break", 25)
-		take_damage(rand(40, 60))
-	else
-		return TryToSwitchState(user)
 
 /obj/structure/mineral_door/resin/attack_larva(mob/living/carbon/xenomorph/larva/M)
 	var/turf/cur_loc = M.loc

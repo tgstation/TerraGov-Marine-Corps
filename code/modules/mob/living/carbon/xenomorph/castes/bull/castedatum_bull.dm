@@ -41,6 +41,8 @@
 		/datum/action/xeno_action/activable/devour,
 		/datum/action/xeno_action/ready_charge/bull_charge,
 		/datum/action/xeno_action/activable/bull_charge,
+		/datum/action/xeno_action/activable/bull_charge/headbutt,
+		/datum/action/xeno_action/activable/bull_charge/gore,
 	)
 
 /datum/xeno_caste/bull/young
@@ -70,16 +72,6 @@
 	// *** Defense *** //
 	soft_armor = list("melee" = 30, "bullet" = 40, "laser" = 30, "energy" = 30, "bomb" = XENO_BOMB_RESIST_0, "bio" = 28, "rad" = 28, "fire" = 40, "acid" = 28)
 
-	actions = list(
-		/datum/action/xeno_action/xeno_resting,
-		/datum/action/xeno_action/activable/psydrain,
-		/datum/action/xeno_action/activable/headbite,
-		/datum/action/xeno_action/activable/devour,
-		/datum/action/xeno_action/ready_charge/bull_charge,
-		/datum/action/xeno_action/activable/bull_charge,
-		/datum/action/xeno_action/activable/bull_charge/headbutt,
-	)
-
 /datum/xeno_caste/bull/elder
 	upgrade_name = "Elder"
 	caste_desc = "A bright red alien with a matching temper. It looks pretty strong."
@@ -105,16 +97,6 @@
 	// *** Defense *** //
 	soft_armor = list("melee" = 35, "bullet" = 45, "laser" = 35, "energy" = 35, "bomb" = XENO_BOMB_RESIST_0, "bio" = 30, "rad" = 30, "fire" = 45, "acid" = 30)
 
-	actions = list(
-		/datum/action/xeno_action/xeno_resting,
-		/datum/action/xeno_action/activable/psydrain,
-		/datum/action/xeno_action/activable/headbite,
-		/datum/action/xeno_action/activable/devour,
-		/datum/action/xeno_action/ready_charge/bull_charge,
-		/datum/action/xeno_action/activable/bull_charge,
-		/datum/action/xeno_action/activable/bull_charge/headbutt,
-	)
-
 /datum/xeno_caste/bull/ancient
 	upgrade_name = "Ancient"
 	caste_desc = "The only red it will be seeing is your blood."
@@ -139,14 +121,3 @@
 
 	// *** Defense *** //
 	soft_armor = list("melee" = 40, "bullet" = 50, "laser" = 40, "energy" = 40, "bomb" = XENO_BOMB_RESIST_0, "bio" = 33, "rad" = 33, "fire" = 50, "acid" = 33)
-
-	actions = list(
-		/datum/action/xeno_action/xeno_resting,
-		/datum/action/xeno_action/activable/psydrain,
-		/datum/action/xeno_action/activable/headbite,
-		/datum/action/xeno_action/activable/devour,
-		/datum/action/xeno_action/ready_charge/bull_charge,
-		/datum/action/xeno_action/activable/bull_charge,
-		/datum/action/xeno_action/activable/bull_charge/headbutt,
-		/datum/action/xeno_action/activable/bull_charge/gore,
-	)

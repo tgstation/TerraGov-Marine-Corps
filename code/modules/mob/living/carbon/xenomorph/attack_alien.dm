@@ -7,7 +7,7 @@
 //#define DEBUG_ATTACK_ALIEN
 
 /mob/living/proc/attack_alien_grab(mob/living/carbon/xenomorph/X)
-	if(X == src || anchored || buckled)
+	if(X == src || anchored || buckled || X.buckled)
 		return FALSE
 
 	if(!Adjacent(X))
@@ -17,7 +17,6 @@
 	return TRUE
 
 /mob/living/carbon/human/attack_alien_grab(mob/living/carbon/xenomorph/X)
-
 	if(check_shields(COMBAT_TOUCH_ATTACK, X.xeno_caste.melee_damage, "melee"))
 		return ..()
 	X.visible_message(span_danger("\The [X]'s grab is blocked by [src]'s shield!"),
@@ -184,7 +183,7 @@
 				to_chat(X, span_warning("We disable the creatures hivemind sight apparatus."))
 				return FALSE
 
-		if(length(light_sources) || length(affected_dynamic_lights))
+		if(length(static_light_sources) || length(hybrid_light_sources) || length(affected_movable_lights))
 			playsound(loc, "alien_claw_metal", 25, 1)
 			X.do_attack_animation(src, ATTACK_EFFECT_CLAW)
 			disable_lights(sparks = TRUE)

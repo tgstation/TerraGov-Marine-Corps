@@ -1,7 +1,7 @@
 #define UPLOAD_LIMIT 1000000	//Restricts client uploads to the server to 1MB
 #define UPLOAD_LIMIT_ADMIN 10000000	//Restricts admin uploads to the server to 10MB
 
-#define MAX_RECOMMENDED_CLIENT 1557
+#define MAX_RECOMMENDED_CLIENT 1561
 #define MIN_RECOMMENDED_CLIENT 1526
 #define REQUIRED_CLIENT_MAJOR 513
 #define REQUIRED_CLIENT_MINOR 1493
@@ -228,6 +228,10 @@
 		to_chat(src, span_userdanger("Your version of byond has known client crash issues, it's recommended you update your version."))
 		to_chat(src, span_danger("Please download a new version of byond. If [byond_build] is the latest, you can go to <a href=\"https://secure.byond.com/download/build\">BYOND's website</a> to download other versions."))
 
+	if(byond_build < 1555)
+		to_chat(src, span_userdanger("Your version of byond might have rendering lag issues, it is recommended you update your version to above Byond version 1555 if you encounter them."))
+		to_chat(src, span_danger("You can go to <a href=\"https://secure.byond.com/download/build\">BYOND's website</a> to download other versions."))
+
 	if(byond_build > MAX_RECOMMENDED_CLIENT)
 		to_chat(src, span_userdanger("Your version of byond is likely to be very buggy."))
 		to_chat(src, span_danger("Please download a old version of byond. If [byond_build] is the latest, you can go to <a href=\"https://secure.byond.com/download/build\">BYOND's website</a> to download other versions."))
@@ -260,10 +264,10 @@
 		if(nnpa >= 0)
 			message_admins("New user: [key_name_admin(src)] is connecting here for the first time.")
 	else if(isnum(cached_player_age) && cached_player_age < nnpa)
-		message_admins("New user: [key_name_admin(src)] just connected with an age of [cached_player_age] day[(player_age == 1 ? "" : "s")]")
+		message_admins("New user: [key_name_admin(src)] just connected with a DB saved age of [cached_player_age] day[(player_age == 1 ? "" : "s")]")
 	if(CONFIG_GET(flag/use_account_age_for_jobs) && account_age >= 0)
 		player_age = account_age
-	if(account_age >= 0 && account_age < nnpa)
+	if(account_age >= 0 && account_age < CONFIG_GET(number/notify_new_account_age))
 		message_admins("[key_name_admin(src)] (IP: [address], ID: [computer_id]) is a new BYOND account [account_age] day[(account_age == 1 ? "" : "s")] old, created on [account_join_date].")
 
 

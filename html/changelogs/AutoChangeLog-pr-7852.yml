@@ -1,9 +1,0 @@
-author: "SplinterGP"
-delete-after: True
-changes: 
-  - code_imp: "Added an autofocus argument to tgui_alert, defaults on, that can be used to prevent accidental inputs from surprise alerts when used."
-  - bugfix: "Hover effect on tgui Tabs made less visually laggy."
-  - qol: "Chat Highlighting now works with more symbols and can be case sensitive and/or match whole words only."
-  - bugfix: "Fixed Chat Highlighting only working for the first comma separated entry."
-  - bugfix: "Your own messages sent over a radio and dchat now properly avoid_highlighting."
-  - bugfix: "Fixed Chat Highlighting working on your own OOC messages."

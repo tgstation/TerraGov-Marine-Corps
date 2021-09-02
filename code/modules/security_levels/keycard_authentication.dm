@@ -12,6 +12,8 @@
 	var/obj/machinery/keycard_auth/event_source
 	var/mob/event_triggered_by
 	var/mob/event_confirmed_by
+	/// Has this event been authorized by a silicon. Most of the time, this means the AI.
+	var/synth_activation = 0
 	//1 = select event
 	//2 = authenticate
 	anchored = TRUE
@@ -59,6 +61,9 @@
 	if(.)
 		return
 
+	if(issilicon(user))
+		synth_activation = 1
+
 	var/dat
 	dat += "This device is used to trigger some high security events. It requires the simultaneous swipe of two high-level ID cards."
 	dat += "<br><hr><br>"
@@ -75,6 +80,11 @@
 		dat += "Please swipe your card to authorize the following event: <b>[event]</b>"
 		dat += "<p><A href='?src=\ref[src];reset=1'>Back</A>"
 
+	else if(screen == 3)
+		dat += "Do you want to trigger the following event using your Silicon Privileges: <b>[event]</b>"
+		dat += "<p><A href='?src=\ref[src];silicon_activate_event=1'>Activate</A>"
+		dat += "<p><A href='?src=\ref[src];reset=1'>Back</A>"
+
 	var/datum/browser/popup = new(user, "keycard_auth", "<div align='center'>Keycard Authentication Device</div>", 500, 250)
 	popup.set_content(dat)
 	popup.open(FALSE)
@@ -87,7 +97,16 @@
 
 	if(href_list["trigger_event"])
 		event = href_list["trigger_event"]
-		screen = 2
+		if(synth_activation)
+			screen = 3
+		else
+			screen = 2
+
+	if(href_list["silicon_activate_event"])
+		trigger_event(event)
+		log_game("[key_name(event_triggered_by)] triggered event [event].")
+		message_admins("[ADMIN_TPMONTY(event_triggered_by)] triggered event [event].")
+		reset()
 
 	if(href_list["reset"])
 		reset()
@@ -99,6 +118,7 @@
 	event = ""
 	screen = 1
 	confirmed = FALSE
+	synth_activation = 0
 	event_source = null
 	icon_state = "auth_off"
 	event_triggered_by = null

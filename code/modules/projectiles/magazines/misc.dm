@@ -37,6 +37,15 @@
 	current_rounds = 100
 	max_rounds = 100
 
+/obj/item/ammo_magazine/packet/p10x25mm
+	name = "box of 10x25mm"
+	desc = "A box containing 125 rounds of 10x25mm caseless.."
+	caliber = CALIBER_10X25_CASELESS
+	icon_state = "box_10x25mm"
+	default_ammo = /datum/ammo/bullet/rifle/heavy
+	current_rounds = 125
+	max_rounds = 125
+
 /obj/item/ammo_magazine/packet/p492x34mm
 	name = "box of 4.92x34mm"
 	desc = "A box containing 210 rounds of 4.92x34mm caseless.."
@@ -48,11 +57,11 @@
 
 /obj/item/ammo_magazine/packet/t25
 	name = "box of 10x26mm (T-25)"
-	desc = "A box containing 200 rounds of 10x26mm caseless tuned for a T-25 smartrifle.."
+	desc = "A box containing 320 rounds of 10x26mm caseless tuned for a T-25 smartrifle.."
 	icon_state = "box_t25"
 	default_ammo = /datum/ammo/bullet/smartgun/smartrifle
 	caliber = CALIBER_10x26_CASELESS
-	max_rounds = 200
+	max_rounds = 320
 
 // pistol packets
 
@@ -103,4 +112,14 @@
 	w_class = WEIGHT_CLASS_SMALL
 	current_rounds = 100
 	max_rounds = 100
+
+/obj/item/ammo_magazine/packet/p10x20mm
+	name = "packet of 10x20mm"
+	desc = "A packet containing 125 rounds of 10x20mm caseless.."
+	icon_state = "box_10x20mm"
+	caliber = CALIBER_10X20_CASELESS
+	default_ammo = /datum/ammo/bullet/smg
+	w_class = WEIGHT_CLASS_SMALL
+	current_rounds = 150
+	max_rounds = 150
 

@@ -156,7 +156,13 @@
 /// The layer you should use if you _really_ don't want an emissive overlay to be blocked.
 #define EMISSIVE_LAYER_UNBLOCKABLE 9999
 
+
+#define LIGHTING_BACKPLANE_LAYER 14.5
+
 #define LIGHTING_PLANE 15
+#define LIGHTING_RENDER_TARGET "LIGHT_PLANE"
+
+#define SHADOW_RENDER_TARGET "SHADOW_RENDER_TARGET"
 
 /// Plane for balloon text (text that fades up)
 #define BALLOON_CHAT_PLANE 17
@@ -165,34 +171,43 @@
 #define O_LIGHTING_VISUAL_LAYER 16
 #define O_LIGHTING_VISUAL_RENDER_TARGET "O_LIGHT_VISUAL_PLANE"
 
-#define ABOVE_LIGHTING_PLANE 17
-#define ABOVE_LIGHTING_LAYER 17
+#define LIGHTING_PRIMARY_LAYER 15	//The layer for the main lights of the station
+#define LIGHTING_PRIMARY_DIMMER_LAYER 15.1	//The layer that dims the main lights of the station
+#define LIGHTING_SECONDARY_LAYER 16	//The colourful, usually small lights that go on top
 
+#define LIGHTING_SHADOW_LAYER 17	//Where the shadows happen
 
-#define BELOW_FULLSCREEN_LAYER 17.9 //blip from motion detector
+#define ABOVE_LIGHTING_PLANE 18
+#define ABOVE_LIGHTING_LAYER 18
+
+#define BYOND_LIGHTING_PLANE 19
+#define BYOND_LIGHTING_LAYER 19
 
 #define CAMERA_STATIC_PLANE 20
-#define CAMERA_STATIC_LAYER 18
+#define CAMERA_STATIC_LAYER 20
 
-#define FULLSCREEN_LAYER 18
-#define FULLSCREEN_IMPAIRED_LAYER 18.02 //visual impairment from wearing welding helmet, etc
-#define FULLSCREEN_DRUGGY_LAYER 18.03
-#define FULLSCREEN_BLURRY_LAYER 18.04
-#define FULLSCREEN_INFECTION_LAYER 18.041 //purple cloud
-#define FULLSCREEN_FLASH_LAYER 18.05 //flashed
-#define FULLSCREEN_DAMAGE_LAYER 18.1 //red circles when hurt
-#define FULLSCREEN_BLIND_LAYER 18.15 //unconscious
-#define FULLSCREEN_PAIN_LAYER 18.2 //pain flashes
-#define FULLSCREEN_CRIT_LAYER 18.25 //in critical
-#define FULLSCREEN_MACHINE_LAYER 18.3
-#define FULLSCREEN_INTRO_LAYER 18.4 //black screen when you spawn
 
-#define FULLSCREEN_PLANE 22
+#define BELOW_FULLSCREEN_LAYER 20.9 //blip from motion detector
 
-#define HUD_PLANE 23
-#define HUD_LAYER 21
-#define ABOVE_HUD_PLANE 24
-#define ABOVE_HUD_LAYER 22
+#define FULLSCREEN_LAYER 22
+#define FULLSCREEN_IMPAIRED_LAYER 22.02 //visual impairment from wearing welding helmet, etc
+#define FULLSCREEN_DRUGGY_LAYER 22.03
+#define FULLSCREEN_BLURRY_LAYER 22.04
+#define FULLSCREEN_INFECTION_LAYER	22.041 //purple cloud
+#define FULLSCREEN_FLASH_LAYER 22.05 //flashed
+#define FULLSCREEN_DAMAGE_LAYER 22.1 //red circles when hurt
+#define FULLSCREEN_BLIND_LAYER 22.15 //unconscious
+#define FULLSCREEN_PAIN_LAYER	22.2 //pain flashes
+#define FULLSCREEN_CRIT_LAYER 22.25 //in critical
+#define FULLSCREEN_MACHINE_LAYER 22.3
+#define FULLSCREEN_INTRO_LAYER 22.4 //black screen when you spawn
 
-#define SPLASHSCREEN_LAYER 25
-#define SPLASHSCREEN_PLANE 23
+#define FULLSCREEN_PLANE 23
+
+#define HUD_PLANE 24
+#define HUD_LAYER 24
+#define ABOVE_HUD_PLANE 25
+#define ABOVE_HUD_LAYER 25
+
+#define SPLASHSCREEN_LAYER 26
+#define SPLASHSCREEN_PLANE 26

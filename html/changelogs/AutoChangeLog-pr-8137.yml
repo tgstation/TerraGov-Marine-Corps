@@ -1,0 +1,4 @@
+author: "SplinterGP"
+delete-after: True
+changes: 
+  - config: "default config setting of view has been changed to 15x15 other than default 19x15, basically only affects local server settings for anyone downloading code from github."

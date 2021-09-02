@@ -83,27 +83,19 @@
 		power_equip = TRUE
 		power_environ = TRUE
 
-		if(dynamic_lighting == DYNAMIC_LIGHTING_FORCED)
-			dynamic_lighting = DYNAMIC_LIGHTING_ENABLED
-			luminosity = 0
-		else
-			dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
-
 	. = ..()
 
 	blend_mode = BLEND_MULTIPLY // Putting this in the constructor so that it stops the icons being screwed up in the map editor.
 
-	if(!IS_DYNAMIC_LIGHTING(src))
-		add_overlay(/obj/effect/fullbright)
-
 	reg_in_areas_in_z()
+
+	update_base_lighting()
 
 	return INITIALIZE_HINT_LATELOAD
 
 
 /area/LateInitialize()
 	power_change()		// all machines set to current power level, also updates icon
-
 
 
 /area/Destroy()

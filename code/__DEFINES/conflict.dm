@@ -80,6 +80,8 @@
 #define GUN_IFF (1<<19)
 #define GUN_DEPLOYED_FIRE_ONLY (1<<20)
 #define GUN_IS_SENTRY (1<<21)
+#define GUN_IS_ATTACHMENT (1<<22)
+#define GUN_ATTACHMENT_FIRE_ONLY (1<<23)
 
 #define GUN_FIREMODE_SEMIAUTO "semi-auto fire mode"
 #define GUN_FIREMODE_BURSTFIRE "burst-fire mode"
@@ -90,10 +92,6 @@
 //flags_attach_features
 #define ATTACH_REMOVABLE (1<<0)
 #define ATTACH_ACTIVATION (1<<1)
-#define ATTACH_PROJECTILE (1<<2) //for attachments that fire bullets
-#define ATTACH_RELOADABLE (1<<3)
-#define ATTACH_WEAPON (1<<4) //is a weapon that fires stuff
-#define ATTACH_UTILITY (1<<5) //for attachments with utility that trigger by 'shooting'
 
 //Ammo magazine defines, for flags_magazine
 #define AMMUNITION_REFILLABLE 1
@@ -148,6 +146,7 @@
 #define SMOKE_EXTINGUISH (1<<15) //Extinguishes fires and mobs that are on fire
 #define SMOKE_NEURO_LIGHT (1<<16) //Effectively a sub-flag of Neuro; precludes higher impact effects
 #define SMOKE_HUGGER_PACIFY (1<<17) //Smoke that pacifies huggers in its area; mainly used for vision blocking smoke
+#define SMOKE_XENO_SANGUINAL (1<<18) //Toxic crimson smoke created by the Defiler's Defile ability.
 
 //Incapacitated
 #define INCAPACITATED_IGNORE_RESTRAINED (1<<0)

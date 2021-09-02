@@ -27,12 +27,13 @@
 //Create a new disposal, find the attached trunk (if present) and init gas resvr.
 /obj/machinery/disposal/Initialize()
 	. = ..()
-	trunk = locate() in loc
+	set_trunk(locate(/obj/structure/disposalpipe/trunk) in loc)
 	if(!trunk)
 		mode = 0
 		flush = 0
 	else
-		trunk.linked = src	//Link the pipe trunk to self
+		trunk.set_linked(src)	//Link the pipe trunk to self
+
 
 	update()
 	start_processing()
@@ -48,6 +49,19 @@
 		trunk = null
 	return ..()
 
+///Set the trunk of the disposal
+/obj/machinery/disposal/proc/set_trunk(obj/future_trunk)
+	if(trunk)
+		UnregisterSignal(trunk, COMSIG_PARENT_QDELETING)
+	trunk = null
+	if(future_trunk)
+		trunk = future_trunk
+		RegisterSignal(trunk, COMSIG_PARENT_QDELETING, .proc/clean_trunk)
+
+///Signal handler to clean trunk to prevent harddel
+/obj/machinery/disposal/proc/clean_trunk()
+	SIGNAL_HANDLER
+	set_trunk(null)
 
 //Attack by item places it in to disposal
 /obj/machinery/disposal/attackby(obj/item/I, mob/user, params)
@@ -564,6 +578,7 @@
 	. = ..()
 	base_icon_state = icon_state
 	GLOB.disposal_list += src
+	AddElement(/datum/element/undertile, TRAIT_T_RAY_VISIBLE)
 
 
 //Pipe is deleted
@@ -1149,17 +1164,30 @@
 	getlinked()
 	update()
 
-/obj/structure/disposalpipe/trunk/proc/getlinked()
+///Set the linked atom
+/obj/structure/disposalpipe/trunk/proc/set_linked(obj/to_link)
+	if(linked)
+		UnregisterSignal(linked, COMSIG_PARENT_QDELETING)
 	linked = null
+	if(to_link)
+		linked = to_link
+		RegisterSignal(linked, COMSIG_PARENT_QDELETING, .proc/clean_linked)
+
+///Signal handler to clean linked from harddeling
+/obj/structure/disposalpipe/trunk/proc/clean_linked()
+	SIGNAL_HANDLER
+	set_linked(null)
+
+/obj/structure/disposalpipe/trunk/proc/getlinked()
 	var/obj/machinery/disposal/D = locate() in loc
 	if(D)
-		linked = D
+		set_linked(D)
 		if(!D.trunk)
-			D.trunk = src
+			D.set_trunk(src)
 
 	var/obj/structure/disposaloutlet/O = locate() in loc
 	if(O)
-		linked = O
+		set_linked(O)
 	update()
 
 //Override attackby so we disallow trunkremoval when somethings ontop
@@ -1258,7 +1286,7 @@
 	target = get_ranged_target_turf(src, dir, 10)
 	var/obj/structure/disposalpipe/trunk/trunk = locate() in loc
 	if(trunk)
-		trunk.linked = src	//Link the pipe trunk to self
+		trunk.set_linked(src)	//Link the pipe trunk to self
 
 //Expel the contents of the holder object, then delete it. Called when the holder exits the outlet
 /obj/structure/disposaloutlet/proc/expel(obj/structure/disposalholder/H)
