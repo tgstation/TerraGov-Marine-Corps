@@ -145,5 +145,21 @@
 	max_w_class = WEIGHT_CLASS_SMALL
 	max_storage_space = 8
 
+
+/obj/item/storage/internal/motorbike_pack/handle_mousedrop(mob/user, obj/over_object)
+	if(!ishuman(user))
+		return FALSE
+
+	if(user.lying_angle || user.incapacitated()) //Can't use your inventory when lying
+		return FALSE
+
+	if(istype(user.loc, /obj/vehicle/multitile/root/cm_armored)) //Stops inventory actions in a mech/tank
+		return FALSE
+
+	if(over_object == user && Adjacent(user)) //This must come before the screen objects only block
+		open(user)
+		return FALSE
+
+
 #undef FUEL_PER_CAN_POUR
 #undef LOW_FUEL_LEFT_MESSAGE
