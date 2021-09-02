@@ -136,7 +136,7 @@
 	desc = "Designed for mounting on the Jaeger Combat Exoskeleton. When activated, this system provides substantial resistance to environmental hazards, such as gases, and radiological exposure. This newer version provides resistance to acid. Best paired with the Mimir Environmental Helmet System and a gas mask. Will impact mobility." // Add the toggable thing to the description when you are done, okay? ~XS300
 	icon_state = "mod_biohazard_icon"
 	item_state = "mod_biohazard"
-	soft_armor = list("bio" = 20, "rad" = 50, "acid" = 20)
+	soft_armor = list("bio" = 40, "rad" = 50, "acid" = 30)
 	slowdown = 0.2
 	module_type = ARMOR_MODULE_TOGGLE
 	var/siemens_coefficient_mod = -0.9
@@ -165,7 +165,7 @@
 	desc = "Designed for mounting on the Jaeger Combat Exoskeleton. When activated, this system provides substantial resistance to environmental hazards, such as gases and radiological exposure. This older version provides no protection to acid. Best paired with the Mimir Environmental Helmet System. Will impact mobility." // Add the toggable thing to the description when you are done, okay? ~XS300
 	icon_state = "mod_biohazard_icon"
 	item_state = "mod_biohazard"
-	soft_armor = list("bio" = 0, "rad" = 10, "acid" = 0) //None, nada. This is made to protect you from gas and nothing else.
+	soft_armor = list("bio" = 15, "rad" = 10, "acid" = 15)
 	slowdown = 0.2 //So it isn't literally 100% better than running stock jaeger.
 	module_type = ARMOR_MODULE_TOGGLE
 

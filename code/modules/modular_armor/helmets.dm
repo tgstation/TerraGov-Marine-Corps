@@ -45,7 +45,7 @@
 	desc = "Designed for mounting on a Jaeger Helmet. When attached, this system provides substantial resistance to environmental hazards, such as gases, acidic elements, and radiological exposure. Best paired with the Mimir Environmental Resistance System. Will impact mobility when attached."
 	icon_state = "mimir_head_obj"
 	item_state = "mimir_head"
-	soft_armor = list("bio" = 20, "rad" = 50, "acid" = 20)
+	soft_armor = list("bio" = 40, "rad" = 50, "acid" = 30)
 	module_type = ARMOR_MODULE_TOGGLE
 	var/siemens_coefficient_mod = -0.9
 	var/permeability_coefficient_mod = -1
@@ -70,7 +70,8 @@
 	desc = "Designed for mounting on a Jaeger Helmet. When attached, this system provides substantial resistance to environmental hazards, such as gases and radiological exposure. This older version has no acidic resistance. Best paired with the Mimir Environmental Resistance System and a gas mask."
 	icon_state = "mimir_head_obj"
 	item_state = "mimir_head"
-	soft_armor = null
+	soft_armor = list("bio" = 15, "acid" = 15)
+
 
 /obj/item/helmet_module/binoculars
 	name = "Binocular Helmet Module"
