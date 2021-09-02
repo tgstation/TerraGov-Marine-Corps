@@ -1656,7 +1656,7 @@ FACTORY
 	cost = 20
 
 /datum/supply_packs/factory/pizzarefill
-	name = "Nanotransen \"Eat healthy!\" margerita pizza kit refill"
+	name = "Nanotrasen \"Eat healthy!\" margerita pizza kit refill"
 	contains = list(/obj/item/factory_refill/pizza)
 	cost = 20
 
