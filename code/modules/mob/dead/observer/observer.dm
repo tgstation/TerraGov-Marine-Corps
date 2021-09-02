@@ -795,33 +795,6 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	popup.set_content(dat)
 	popup.open(FALSE)
 
-
-/mob/dead/verb/join_as_xeno()
-	set category = "Ghost"
-	set name = "Join as Xeno"
-	set desc = "Select an alive but logged-out Xenomorph to rejoin the game."
-
-	if(!client)
-		return
-
-	if(!SSticker?.mode || SSticker.current_state < GAME_STATE_PLAYING)
-		to_chat(src, span_warning("The game hasn't started yet!"))
-		return
-
-	if(is_banned_from(ckey, ROLE_XENOMORPH))
-		to_chat(src, span_warning("You are jobbaned from the [ROLE_XENOMORPH] role."))
-		return
-
-	var/choice = tgui_alert(usr, "Would you like to join as a larva or as a xeno?", "Join as Xeno", list("Xeno", "Larva", "Cancel"), 0)
-	switch(choice)
-		if("Xeno")
-			var/mob/new_xeno = SSticker.mode.attempt_to_join_as_xeno(src)
-			if(new_xeno)
-				SSticker.mode.transfer_xeno(src, new_xeno)
-		if("Larva")
-			SSticker.mode.attempt_to_join_as_larva(src)
-
-
 /mob/dead/observer/verb/observe()
 	set name = "Observe"
 	set category = "Ghost"

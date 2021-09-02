@@ -857,3 +857,19 @@ below 100 is not dizzy
 			afk_timer_id = addtimer(CALLBACK(src, .proc/on_sdd_grace_period_end), afk_timer, TIMER_STOPPABLE)
 	afk_status = new_status
 	SEND_SIGNAL(src, COMSIG_CARBON_SETAFKSTATUS, new_status, afk_timer)
+
+///Set the mob as afk after AFK_TIMER
+/mob/living/proc/on_sdd_grace_period_end()
+	if(stat == DEAD)
+		return FALSE
+	if(isclientedaghost(src))
+		return FALSE
+	set_afk_status(MOB_DISCONNECTED)
+	return TRUE
+
+/mob/living/carbon/human/on_sdd_grace_period_end()
+	. = ..()
+	if(!.)
+		return
+	log_admin("[key_name(src)] (Job: [(job) ? job.title : "Unassigned"]) has been away for [AFK_TIMER] minutes.")
+	message_admins("[ADMIN_TPMONTY(src)] (Job: [(job) ? job.title : "Unassigned"]) has been away for [AFK_TIMER] minutes.")

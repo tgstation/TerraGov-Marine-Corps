@@ -417,40 +417,6 @@
 
 	return ..()
 
-/mob/living/carbon/proc/on_sdd_grace_period_end()
-	if(stat == DEAD)
-		return FALSE
-	if(isclientedaghost(src))
-		return FALSE
-	set_afk_status(MOB_DISCONNECTED)
-	return TRUE
-
-/mob/living/carbon/human/on_sdd_grace_period_end()
-	. = ..()
-	if(!.)
-		return
-	log_admin("[key_name(src)] (Job: [(job) ? job.title : "Unassigned"]) has been away for 15 minutes.")
-	message_admins("[ADMIN_TPMONTY(src)] (Job: [(job) ? job.title : "Unassigned"]) has been away for 15 minutes.")
-
-/mob/living/carbon/xenomorph/on_sdd_grace_period_end()
-	. = ..()
-	if(!.)
-		return
-	if(client)
-		return
-	if (SSticker.current_state != GAME_STATE_PLAYING)
-		return
-
-	var/mob/picked = get_alien_candidate()
-	if(!picked)
-		return
-
-	SSticker.mode.transfer_xeno(picked, src)
-
-	to_chat(src, span_xenoannounce("We are an old xenomorph re-awakened from slumber!"))
-	playsound_local(get_turf(src), 'sound/effects/xeno_newlarva.ogg')
-
-
 /mob/living/carbon/set_stat(new_stat)
 	. = ..()
 	if(isnull(.))

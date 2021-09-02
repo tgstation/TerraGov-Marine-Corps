@@ -557,21 +557,18 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 		X.get_up()
 
 
-/datum/game_mode/proc/attempt_to_join_as_ssd_mob(mob/mob_candidate, instant_join = FALSE)
+/datum/game_mode/proc/attempt_to_join_as_ssd_mob(mob/mob_candidate)
 	var/list/mob/living/free_ssd_mobs = list()
 	for(var/mob/living/ssd_mob AS in GLOB.ssd_living_mobs)
 		if(is_centcom_level(ssd_mob.z))
 			continue
-		if(only_away && ssd_mob.afk_status == MOB_RECENTLY_DISCONNECTED)
+		if(ssd_mob.afk_status == MOB_RECENTLY_DISCONNECTED)
 			continue
 		free_ssd_mobs += ssd_mob
 
 	if(!free_ssd_mobs.len)
 		to_chat(mob_candidate, span_warning("There aren't any available already living xenomorphs. You can try waiting for a larva to burst if you have the preference enabled."))
 		return FALSE
-
-	if(instant_join)
-		return pick(free_ssd_mobs) //Just picks something at random.
 
 	var/mob/living/new_mob = tgui_input_list(usr, null, "Available Mobs", free_ssd_mobs)
 	if(!istype(new_mob) || !mob_candidate?.client)
