@@ -36,10 +36,6 @@
 	scatter = 0
 	scatter_unwielded = 0
 
-/obj/item/weapon/gun/pistol/unique_action(mob/user)
-	. = ..()
-	return cock(user)
-
 /obj/item/weapon/gun/pistol/get_ammo_type()
 	if(!ammo)
 		return list("unknown", "unknown")
