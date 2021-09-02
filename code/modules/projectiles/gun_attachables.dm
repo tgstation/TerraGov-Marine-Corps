@@ -1382,7 +1382,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	desc = ""
 	slot = ATTACHMENT_SLOT_RAIL
 	pixel_shift_x = 10
-	pixel_shift_y = 15
+	pixel_shift_y = 18
 
 	var/obj/item/cell/lasgun/lasrifle/marine/battery
 
@@ -1436,11 +1436,14 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	master_gun.sentry_battery = battery
 
 	master_gun.AddElement(/datum/element/deployable_item, /obj/machinery/deployable/mounted/sentry/buildasentry, 5 SECONDS, 5 SECONDS)
-	RegisterSignal(master_gun, list(COMSIG_MOB_CLICK_ALT, COMSIG_PARENT_ATTACKBY), .proc/update_battery)
+	RegisterSignal(master_gun, list(COMSIG_CLICK_ALT, COMSIG_PARENT_ATTACKBY), .proc/update_battery)
 
-/obj/item/attachable/buildasentry/proc/update_battery(obj/object)
+/obj/item/attachable/buildasentry/proc/update_battery()
 	SIGNAL_HANDLER
+	if(!master_gun)
+		return
 	battery = master_gun.sentry_battery
+	update_icon()
 
 /obj/item/attachable/buildasentry/on_detach(attaching_item, mob/user)
 	. = ..()
@@ -1448,10 +1451,9 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	DISABLE_BITFIELD(detaching_item.flags_gun_features, GUN_IS_SENTRY)
 	DISABLE_BITFIELD(detaching_item.flags_item, IS_DEPLOYABLE)
 
-	update_battery()
-	master_gun.sentry_battery = null
-	master_gun.RemoveElement(/datum/element/deployable_item)
-	UnregisterSignal(detaching_item, list(COMSIG_MOB_CLICK_ALT, COMSIG_PARENT_ATTACKBY))
+	detaching_item.sentry_battery = null
+	detaching_item.RemoveElement(/datum/element/deployable_item, /obj/machinery/deployable/mounted/sentry/buildasentry, 5 SECONDS, 5 SECONDS)
+	UnregisterSignal(detaching_item, list(COMSIG_CLICK_ALT, COMSIG_PARENT_ATTACKBY))
 
 
 ///This is called when an attachment gun (src) attaches to a gun.

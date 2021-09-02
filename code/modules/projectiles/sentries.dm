@@ -374,10 +374,9 @@
 	var/obj/item/weapon/gun/internal_gun = internal_item
 	if(CHECK_BITFIELD(internal_gun.flags_gun_features, GUN_PUMP_REQUIRED))
 		internal_gun.cock()
-	if(get_dist(src, gun_target) > range || !(CHECK_BITFIELD(get_dir(src, gun_target), dir) && !CHECK_BITFIELD(internal_gun.turret_flags, TURRET_RADIAL)) || !check_target_path(gun_target) || internal_gun.gun_firemode != GUN_FIREMODE_SEMIAUTO || !internal_gun.current_mag || !internal_gun.current_mag.current_rounds)
-		internal_gun.stop_fire()
+	if(internal_gun.gun_firemode != GUN_FIREMODE_SEMIAUTO)
 		return
-	addtimer(CALLBACK(internal_gun, /obj/item/weapon/gun/proc/start_fire, source, gun_target, null, null, null, TRUE), internal_gun.fire_delay)
+	addtimer(CALLBACK(src, .proc/sentry_start_fire), internal_gun.fire_delay)
 
 ///Sees if theres a target to shoot, then handles firing.
 /obj/machinery/deployable/mounted/sentry/proc/sentry_start_fire()
@@ -491,6 +490,8 @@
 		overlay_icon_state = "revolver"
 	else if(istype(internal_item, /obj/item/weapon/gun/pistol))
 		overlay_icon_state = "pistol"
+	else if(istype(internal_item, /obj/item/weapon/gun/energy/lasgun/lasrifle))
+		overlay_icon_state = "laser"
 	else
 		overlay_icon_state = "rifle"
 	update_icon()

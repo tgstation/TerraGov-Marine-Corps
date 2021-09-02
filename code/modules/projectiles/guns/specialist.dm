@@ -861,7 +861,7 @@
 	return ..()
 
 /obj/item/weapon/gun/launcher/rocket/Fire()
-	if(!able_to_fire(gun_user) || gun_user.do_actions)
+	if((!CHECK_BITFIELD(flags_item, IS_DEPLOYED) && !able_to_fire(gun_user)) || gun_user.do_actions)
 		return
 
 	if(gun_on_cooldown(gun_user))
@@ -1015,6 +1015,7 @@
 	attachable_allowed = list(
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/scope/mini,
+		/obj/item/attachable/buildasentry,
 	)
 
 	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER

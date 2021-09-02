@@ -108,7 +108,7 @@
 
 
 /obj/item/weapon/gun/flamer/Fire()
-	if(!able_to_fire(gun_user))
+	if((!CHECK_BITFIELD(flags_item, IS_DEPLOYED) && !able_to_fire(gun_user)))
 		return
 
 	if(gun_on_cooldown(gun_user))
