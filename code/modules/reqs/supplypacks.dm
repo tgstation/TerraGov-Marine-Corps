@@ -1623,9 +1623,49 @@ FACTORY
 /datum/supply_packs/factory/phosphosrefill
 	name = "Phosphorus-resistant plates refill"
 	contains = list(/obj/item/factory_refill/phosnade)
-	cost = 10
+	cost = 12
 
 /datum/supply_packs/factory/bignaderefill
 	name = "Rounded M15 plates refill"
 	contains = list(/obj/item/factory_refill/bignade)
+	cost = 10
+
+/datum/supply_packs/factory/sadar_refill_he
+	name = "SADAR HE missile assembly refill"
+	contains = list(/obj/item/factory_refill/sadar_he)
+	cost = 40
+
+/datum/supply_packs/factory/sadar_refill_ap
+	name = "SADAR AP missile assembly refill"
+	contains = list(/obj/item/factory_refill/sadar_ap)
+	cost = 40
+
+/datum/supply_packs/factory/sadar_refill_wp
+	name = "SADAR WP missile assembly refill"
+	contains = list(/obj/item/factory_refill/sadar_wp)
+	cost = 40
+
+/datum/supply_packs/factory/standard_recoilless_refill
+	name = "Recoilless standard missile assembly refill"
+	contains = list(/obj/item/factory_refill/normal_rr_missile)
+	cost = 20
+
+/datum/supply_packs/factory/light_recoilless_refill
+	name = "Recoilless light missile assembly refill"
+	contains = list(/obj/item/factory_refill/light_rr_missile)
+	cost = 20
+
+/datum/supply_packs/factory/pizzarefill
+	name = "Nanotransen \"Eat healthy!\" margerita pizza kit refill"
+	contains = list(/obj/item/factory_refill/pizza)
+	cost = 20
+
+/datum/supply_packs/factory/smartrifle_ammo_refill
+	name = "Smart rifle bullet parts refill"
+	contains = list(/obj/item/factory_refill/smartgunner_rifle_box)
+	cost = 20
+
+/datum/supply_packs/factory/claymorerefill
+	name = "Claymore parts refill"
+	contains = list(/obj/item/factory_refill/claymore)
 	cost = 10

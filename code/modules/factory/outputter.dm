@@ -4,8 +4,8 @@
 /obj/item/factory_refill
 	name = "generic refiller"
 	desc = "you shouldnt be seeing this."
-	icon = 'icons/obj/factory_refill.dmi'
-	icon_state = "empty"
+	icon = 'icons/obj/factory/factoryparts.dmi'
+	icon_state = "refillbox"
 	///Typepath for the output machine we want to be ejecting
 	var/obj/item/factory_part/refill_type = /obj/item/factory_part
 	///By how much we wan to refill the target machine
@@ -14,7 +14,9 @@
 /obj/item/factory_refill/Initialize()
 	. = ..()
 	var/obj/path = initial(refill_type.result)
-	var/image/result_image = image(initial(path.icon), initial(path.icon_state))
+	var/matrix/shift = matrix().Scale(0.4,0.4)
+	var/image/result_image = image(initial(path.icon), initial(path.icon_state), pixel_x = 6, pixel_y = -6)
+	result_image.transform = shift
 	add_overlay(result_image)
 
 /obj/item/factory_refill/examine(mob/user, distance, infix, suffix)
@@ -158,3 +160,4 @@
 	name = "box of rounded metal plates"
 	desc = "A box with round metal plates inside. Used to refill Outputters."
 	refill_type = /obj/item/factory_part/smartgunner_rifle_box
+	refill_amount = 15
