@@ -277,7 +277,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	if(!. || can_reenter_corpse)
 		return
 	if(!aghosting && job.job_flags & (JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE))//Only some jobs cost you your respawn timer.
-		key_to_time_of_death[key] = world.time
+		GLOB.key_to_time_of_death[key] = world.time
 		set_afk_status(MOB_RECENTLY_DISCONNECTED, 5 SECONDS)
 
 
@@ -332,7 +332,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 			if(siloless_countdown)
 				stat("<b>Silo less hive collapse timer:</b>", siloless_countdown)
 		if(GLOB.respawn_allowed)
-			status_value = (key_to_time_of_death[key] + SSticker.mode?.respawn_time - world.time) * 0.1
+			status_value = (GLOB.key_to_time_of_death[key] + SSticker.mode?.respawn_time - world.time) * 0.1
 			if(status_value <= 0)
 				stat("Respawn timer:", "<b>READY</b>")
 			else
@@ -345,9 +345,6 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 				var/stored_larva = xeno_job.total_positions - xeno_job.current_positions
 				if(stored_larva)
 					stat("Burrowed larva:", stored_larva)
-				var/datum/hive_status/normal/normal_hive = GLOB.hive_datums[XENO_HIVE_NORMAL]
-				if(LAZYLEN(normal_hive.ssd_xenos))
-					stat("SSD xenos:", normal_hive.ssd_xenos.Join(", "))
 
 
 /mob/dead/observer/verb/reenter_corpse()

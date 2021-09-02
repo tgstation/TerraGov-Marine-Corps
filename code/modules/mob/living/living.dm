@@ -840,3 +840,20 @@ below 100 is not dizzy
 /mob/living/proc/set_remote_control(atom/movable/controlled)
 	remote_control = controlled
 	reset_perspective(controlled)
+
+///Set the afk status of the mob
+/mob/living/proc/set_afk_status(new_status, afk_timer)
+	switch(new_status)
+		if(MOB_CONNECTED, MOB_DISCONNECTED)
+			if(afk_timer_id)
+				deltimer(afk_timer_id)
+				afk_timer_id = null
+		if(MOB_RECENTLY_DISCONNECTED)
+			if(afk_status == MOB_RECENTLY_DISCONNECTED)
+				if(timeleft(afk_timer_id) > afk_timer)
+					deltimer(afk_timer_id) //We'll go with the shorter timer.
+				else
+					return
+			afk_timer_id = addtimer(CALLBACK(src, .proc/on_sdd_grace_period_end), afk_timer, TIMER_STOPPABLE)
+	afk_status = new_status
+	SEND_SIGNAL(src, COMSIG_CARBON_SETAFKSTATUS, new_status, afk_timer)
