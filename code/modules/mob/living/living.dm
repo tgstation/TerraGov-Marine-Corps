@@ -873,3 +873,16 @@ below 100 is not dizzy
 		return
 	log_admin("[key_name(src)] (Job: [(job) ? job.title : "Unassigned"]) has been away for [AFK_TIMER] minutes.")
 	message_admins("[ADMIN_TPMONTY(src)] (Job: [(job) ? job.title : "Unassigned"]) has been away for [AFK_TIMER] minutes.")
+
+///Transfer the candidate mind into src
+/mob/living/proc/transfer_mob(mob/candidate)
+	if(QDELETED(src))
+		stack_trace("[candidate was put into a qdeleted mob [src]")
+		return
+	candidate.mind.transfer_to(src, TRUE)
+
+/mob/living/carbon/xenomorph/transfer_mob(mob/candidate)
+	. = ..()
+	if(is_ventcrawling)  //If we are in a vent, fetch a fresh vent map
+		add_ventcrawl(loc)
+		get_up()

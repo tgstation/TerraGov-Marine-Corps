@@ -545,49 +545,6 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 	to_chat(xeno_candidate, span_warning("This is unavailable in this gamemode."))
 	return FALSE
 
-/datum/game_mode/proc/transfer_xeno(mob/xeno_candidate, mob/living/carbon/xenomorph/X, silent = FALSE)
-	if(QDELETED(X))
-		stack_trace("[xeno_candidate] was put into a qdeleted mob [X]")
-		return
-	if(!silent)
-		message_admins("[key_name(xeno_candidate)] has joined as [ADMIN_TPMONTY(X)].")
-	xeno_candidate.mind.transfer_to(X, TRUE)
-	if(X.is_ventcrawling)  //If we are in a vent, fetch a fresh vent map
-		X.add_ventcrawl(X.loc)
-		X.get_up()
-
-
-/datum/game_mode/proc/attempt_to_join_as_ssd_mob(mob/mob_candidate)
-	var/list/mob/living/free_ssd_mobs = list()
-	for(var/mob/living/ssd_mob AS in GLOB.ssd_living_mobs)
-		if(is_centcom_level(ssd_mob.z))
-			continue
-		if(ssd_mob.afk_status == MOB_RECENTLY_DISCONNECTED)
-			continue
-		free_ssd_mobs += ssd_mob
-
-	if(!free_ssd_mobs.len)
-		to_chat(mob_candidate, span_warning("There aren't any available already living xenomorphs. You can try waiting for a larva to burst if you have the preference enabled."))
-		return FALSE
-
-	var/mob/living/new_mob = tgui_input_list(usr, null, "Available Mobs", free_ssd_mobs)
-	if(!istype(new_mob) || !mob_candidate?.client)
-		return FALSE
-
-	if(new_mob.stat == DEAD)
-		to_chat(mob_candidate, span_warning("You cannot join if the mob is dead."))
-		return FALSE
-
-	if(new_mob.client)
-		to_chat(mob_candidate, span_warning("That mob has been occupied."))
-		return FALSE
-
-	if(new_mob.afk_status == MOB_RECENTLY_DISCONNECTED) //We do not want to occupy them if they've only been gone for a little bit.
-		to_chat(mob_candidate, span_warning("That player hasn't been away long enough. Please wait [round(timeleft(new_mob.afk_timer_id) * 0.1)] second\s longer."))
-		return FALSE
-
-	return new_mob
-
 /datum/game_mode/proc/set_valid_job_types()
 	if(!SSjob?.initialized)
 		to_chat(world, span_boldnotice("Error setting up valid jobs, no job subsystem found initialized."))
