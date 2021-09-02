@@ -5,7 +5,7 @@ Using a multitool on a lasgun battery will turn it into an improvised explosive 
 In a pinch, you can use lasgun batteries to power APCs and sentry guns.
 Lasgun batteries can be recharged in APCs and power cell rechargers, if the generators are on.
 As a marine, if you aren't a PFC, then you have a special room in prep with special gear vendors.
-Sidearms aren't complete garbage. They are often faster than reloading if in a very tight situation, it may save your life. 
+Sidearms aren't complete garbage. They are often faster than reloading if in a very tight situation, it may save your life.
 The Revolver and Service Pistol can be decent primary weapons if used properly, though with the short magazine capacity, expect to run dry on ammo quick!
 There is no "best" loadout. Experiment and find what works for you.
 You have a variety of weaponry inside the Automated Weapon Closets, do not be afraid to experiment which one is best suited for your playstyle.
@@ -17,7 +17,7 @@ Removing weeds as a marine means you can move faster and that xenomorphs cannot 
 During Self Destruct, green control rods are armed control rods; collect all six!
 A fit marine can carry many weapons: in their armor, belt, even hanging from their back.
 Requisitions have many supplies to enhance the combat power of marine units, such as attachments, ammunition, and other toys; ask their crew what's on store and you may be pleasantly surprised. DISCLAIMER: Extra gear's availability is dependent on supply.
-Cargo points are valuable: Some crates, like SL armour, standard weaponry or attachments, may be a waste of points which could be better spent on other stuff. 
+Cargo points are valuable: Some crates, like SL armour, standard weaponry or attachments, may be a waste of points which could be better spent on other stuff.
 As a human, you can climb over waist-high obstacles like sandbags, window frames or tables by "SpecialClicking" (Default: CTRL) on them or drag-clicking yourself on them.
 The TX-73 Lasrifle has a mode selector that can be switched using the Unique Action command (Default: Spacebar). Some modes are better than other modes in specific circumstances.
 You can remove armor pieces (leg pieces, arm pieces and chest pieces) and armor modules (Valkyrie, Baldur, etc.) from the XM-02 Combat Exoskeleton using the crowbar and screwdriver espectively.
@@ -79,4 +79,5 @@ As the PO, pay attention to the radio! Who knows if someone needs immediate surg
 As the Captain, you have a unique Mateba revolver that takes a chunk of a target's healthpool down. However, you are important for completing the mission, so do not participate in active combat using the Mateba!
 Even if a patient dies a second after being successfully revived by a defibrillator, this resets the time it takes for them to become permanently brain dead.
 Don't forget that xenomorphs spawn infinitely during the Crash gamemode. Don't waste too much time hunting xenomorphs down!
+The AI and synthetics can talk together on their own channel using the :n key.
 You can memorialize fallen marines by using their dogtags on the ship's memorial! Memorialized solders will be displayed at the end of the round.
