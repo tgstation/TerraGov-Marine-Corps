@@ -877,7 +877,7 @@ below 100 is not dizzy
 ///Transfer the candidate mind into src
 /mob/living/proc/transfer_mob(mob/candidate)
 	if(QDELETED(src))
-		stack_trace("[candidate was put into a qdeleted mob [src]")
+		stack_trace("[candidate] was put into a qdeleted mob [src]")
 		return
 	candidate.mind.transfer_to(src, TRUE)
 
