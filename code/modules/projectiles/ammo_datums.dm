@@ -296,6 +296,10 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/bullet/pistol/superheavy/on_hit_mob(mob/M,obj/projectile/P)
 	staggerstun(M, P, stagger = 1, slowdown = 1, shake = 0)
 
+/datum/ammo/bullet/pistol/superheavy/derringer
+	handful_amount = 2
+	handful_icon_state = "derringer"
+
 /datum/ammo/bullet/pistol/incendiary
 	name = "incendiary pistol bullet"
 	hud_state = "pistol_fire"
