@@ -272,9 +272,13 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 
 	return ghost
 
-/mob/living/ghostize()
-	if(job.job_flags & (JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE))//Only some jobs cost you your respawn timer.
+/mob/living/ghostize(can_reenter_corpse = TRUE, aghosting = FALSE)
+	. = ..()
+	if(!. || can_reenter_corpse)
+		return
+	if(!aghosting && job.job_flags & (JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE))//Only some jobs cost you your respawn timer.
 		key_to_time_of_death[key] = world.time
+		set_afk_status(MOB_RECENTLY_DISCONNECTED, 5 SECONDS)
 
 
 /mob/dead/observer/Move(atom/newloc, direct)
