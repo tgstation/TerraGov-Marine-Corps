@@ -69,7 +69,7 @@
 	message_admins("[ADMIN_TPMONTY(usr)] has ghosted.")
 	ghostize(FALSE)
 
-/mob/living/verb/take_ssd_mob
+/mob/living/verb/take_ssd_mob()
 	set category = "OOC"
 	set name = "Try to take SSD mob"
 
