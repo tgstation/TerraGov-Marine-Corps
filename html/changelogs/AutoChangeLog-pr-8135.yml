@@ -1,0 +1,4 @@
+author: "lbnesquik"
+delete-after: True
+changes: 
+  - rscadd: "Added a tip and note to synths referring them towards binary radio"
