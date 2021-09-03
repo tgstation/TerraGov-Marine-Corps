@@ -61563,6 +61563,7 @@
 	start_charge = 0
 	},
 /obj/item/storage/firstaid/fire,
+/obj/structure/cable,
 /turf/open/floor{
 	icon_state = "whiteblue"
 	},
