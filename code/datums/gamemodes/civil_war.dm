@@ -3,7 +3,7 @@
 	config_tag = "Civil War"
 	flags_round_type = MODE_LZ_SHUTTERS|MODE_TWO_HUMAN_FACTIONS|MODE_HUMAN_ONLY|MODE_WIN_POINTS
 	flags_landmarks = MODE_LANDMARK_SPAWN_SPECIFIC_SHUTTLE_CONSOLE
-	shutters_drop_time = 15 MINUTES
+	shutters_drop_time = 18 MINUTES
 	respawn_time = 5 MINUTES
 
 	valid_job_types = list(
@@ -69,7 +69,7 @@
 
 /datum/game_mode/civil_war/announce()
 	to_chat(world, "<b>The current game mode is - Civil War!</b>")
-	to_chat(world, "<b>Capture and defend the constested zones to win. They are in blue on the minimap, and you must activate the sensor towers to capture them. Every seconds (starting at 12:18), every controlled zone gives one point to your faction. The first to [win_points_needed] wins!</b>")
+	to_chat(world, "<b>Capture and defend the constested zones to win. They are in blue on the minimap, and you must activate the sensor towers to capture them. Every seconds (starting at 12:21), every controlled zone gives one point to your faction. The first to [win_points_needed] wins!</b>")
 	to_chat(world, "<b>WIP, report bugs on the github!</b>")
 
 /datum/game_mode/civil_war/set_valid_squads()
