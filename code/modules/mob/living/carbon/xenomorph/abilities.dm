@@ -195,8 +195,7 @@
 	return TRUE
 
 /datum/action/xeno_action/activable/plant_weeds/ranged
-	max_range = 5
-	cooldown_timer = 5 SECONDS
+	max_range = 4
 
 /datum/action/xeno_action/activable/plant_weeds/ranged/can_use_ability(atom/A, silent = FALSE, override_flags)
 	var/area/a_area = get_area(A)

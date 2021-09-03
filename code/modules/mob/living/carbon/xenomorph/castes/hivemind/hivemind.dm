@@ -99,6 +99,7 @@
 
 ///Finish the form changing of the hivemind and give the needed stats
 /mob/living/carbon/xenomorph/hivemind/proc/do_change_form()
+	ExtinguishMob()
 	if(status_flags & INCORPOREAL)
 		status_flags = NONE
 		upgrade = XENO_UPGRADE_ZERO
@@ -235,6 +236,9 @@
 
 /mob/living/carbon/xenomorph/hivemind/DblClickOn(atom/A, params)
 	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_HIVEMIND_MANIFESTATION))
+		return
+	var/list/modifiers = params2list(params)
+	if(modifiers["right"])
 		return
 	var/turf/target_turf = get_turf(A)
 	if(!check_weeds(target_turf, TRUE))

@@ -36,8 +36,8 @@
 
 	// *** Abilities *** //
 	actions = list(
-		/datum/action/xeno_action/return_to_core,
 		/datum/action/xeno_action/change_form,
+		/datum/action/xeno_action/return_to_core,
 		/datum/action/xeno_action/activable/rally_hive/hivemind,
 	)
 
