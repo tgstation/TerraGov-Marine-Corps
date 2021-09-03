@@ -48,8 +48,6 @@
 /obj/machinery/holosign_switch/attack_ai(mob/user as mob)
 	return src.attack_hand(user)
 
-/obj/machinery/holosign_switch/attack_paw(mob/living/carbon/human/user)
-	return src.attack_hand(user)
 
 /obj/machinery/holosign_switch/attackby(obj/item/I, mob/user, params)
 	. = ..()

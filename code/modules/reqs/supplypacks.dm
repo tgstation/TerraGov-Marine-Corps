@@ -234,7 +234,7 @@ WEAPONS
 
 /datum/supply_packs/weapons/flamethrower
 	name = "TL-84 Flamethrower"
-	contains = list(/obj/item/weapon/gun/flamer/marinestandard)
+	contains = list(/obj/item/weapon/gun/flamer/big_flamer/marinestandard)
 	cost = 15
 
 /datum/supply_packs/weapons/rpgoneuse
@@ -393,12 +393,12 @@ ATTACHMENTS
 
 /datum/supply_packs/attachments/underbarrel_shotgun
 	name = "underbarrel shotgun attachment"
-	contains = list(/obj/item/attachable/attached_gun/shotgun)
+	contains = list(/obj/item/weapon/gun/shotgun/combat/masterkey)
 	cost = 1
 
 /datum/supply_packs/attachments/underbarrel_flamer
 	name = "underbarrel flamer attachment"
-	contains = list(/obj/item/attachable/attached_gun/flamer)
+	contains = list(/obj/item/weapon/gun/flamer/mini_flamer)
 	cost = 1
 
 /datum/supply_packs/attachments/underbarrel_burstfire_assembly
@@ -1112,7 +1112,7 @@ ENGINEERING
 
 /datum/supply_packs/engineering/powerloader
 	name = "RPL-Y Cargo Loader"
-	contains = list(/obj/vehicle/powerloader)
+	contains = list(/obj/vehicle/ridden/powerloader)
 	cost = 20
 	containertype = null
 

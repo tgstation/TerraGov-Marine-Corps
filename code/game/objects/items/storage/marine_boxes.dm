@@ -525,10 +525,9 @@
 	new /obj/item/clothing/head/helmet/marine/pyro(src)
 	new /obj/item/clothing/shoes/marine/pyro(src)
 	new /obj/item/ammo_magazine/flamer_tank/backtank(src)
-	new /obj/item/weapon/gun/flamer/marinestandard(src)
+	new /obj/item/weapon/gun/flamer/big_flamer/marinestandard(src)
 	new /obj/item/ammo_magazine/flamer_tank/large(src)
 	new /obj/item/ammo_magazine/flamer_tank/large(src)
-	new /obj/item/ammo_magazine/flamer_tank/large/B(src)
 	new /obj/item/ammo_magazine/flamer_tank/large/X(src)
 
 
@@ -1045,7 +1044,7 @@
 	new /obj/item/reagent_containers/food/snacks/enrg_bar(src)
 	new /obj/item/clothing/shoes/marine/pyro(src)
 	new /obj/item/ammo_magazine/flamer_tank/backtank(src)
-	new /obj/item/weapon/gun/flamer/marinestandard(src)
+	new /obj/item/weapon/gun/flamer/big_flamer/marinestandard(src)
 	new /obj/item/attachable/magnetic_harness(src)
 	new /obj/item/storage/large_holster/t19(src)
 	new /obj/item/weapon/gun/smg/standard_smg/nonstandard(src)
@@ -1053,7 +1052,6 @@
 	new /obj/item/ammo_magazine/flamer_tank/large(src)
 	new /obj/item/ammo_magazine/flamer_tank/large(src)
 	new /obj/item/ammo_magazine/flamer_tank/large(src)
-	new /obj/item/ammo_magazine/flamer_tank/large/B(src)
 	new /obj/item/ammo_magazine/flamer_tank/large/X(src)
 	new /obj/item/clothing/tie/storage/brown_vest(src)
 	new /obj/item/ammo_magazine/smg/standard_smg(src)

@@ -342,3 +342,17 @@
 	max_rounds = 30
 	gun_type = /obj/item/weapon/gun/rifle/standard_skirmishrifle
 	icon_state_mini = "mag_rifle"
+
+//ALF-51B
+
+/obj/item/ammo_magazine/rifle/alf_machinecarbine
+	name = "\improper ALF-51B box magazine (10x25mm)"
+	desc = "A box magazine for the ALF-51B machinecarbine."
+	icon_state = "t60"
+	caliber = CALIBER_10X25_CASELESS
+	default_ammo = /datum/ammo/bullet/rifle/heavy
+	w_class = WEIGHT_CLASS_NORMAL
+	max_rounds = 80
+	reload_delay = 1 SECONDS
+	gun_type = /obj/item/weapon/gun/rifle/alf_machinecarbine
+	icon_state_mini = "mag_t42"

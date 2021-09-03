@@ -313,7 +313,7 @@
 			if((!user.hand && affecting.body_part == ARM_RIGHT) || (user.hand && affecting.body_part == ARM_LEFT))
 				to_chat(user, span_warning("You can't apply a splint to the arm you're using!"))
 				return
-			user.visible_message(span_warning("[user] starts to apply [src] to their [limb]."),
+			user.visible_message(span_warning("[user] starts to apply [src] to [user.p_their()] [limb]."),
 			span_notice("You start to apply [src] to your [limb], hold still."))
 
 		if(affecting.apply_splints(src, user == M ? (applied_splint_health*max(user.skills.getRating("medical") - 1, 0)) : applied_splint_health*user.skills.getRating("medical"), user, M)) // Referenced in external organ helpers.

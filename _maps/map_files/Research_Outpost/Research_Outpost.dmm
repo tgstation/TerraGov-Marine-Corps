@@ -222,6 +222,14 @@
 	dir = 10
 	},
 /area/outpost/cargo)
+"bh" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/ai_node,
+/turf/open/floor/tile/dark/brown2{
+	dir = 8
+	},
+/area/outpost/hallway/east)
 "bi" = (
 /obj/machinery/light/small{
 	dir = 8
@@ -262,6 +270,12 @@
 	},
 /turf/open/floor/tile/dark,
 /area/outpost/brig/armoury)
+"bt" = (
+/obj/effect/ai_node,
+/turf/open/floor/marking/asteroidwarning{
+	dir = 4
+	},
+/area/outpost/yard/north_east)
 "bw" = (
 /obj/structure/table,
 /obj/machinery/cell_charger,
@@ -279,6 +293,7 @@
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 1
 	},
+/obj/effect/ai_node,
 /turf/open/floor/tile/dark/brown2/corner,
 /area/outpost/dormitories)
 "bA" = (
@@ -452,6 +467,12 @@
 	dir = 4
 	},
 /area/outpost/hallway/south_west)
+"cy" = (
+/obj/effect/ai_node,
+/turf/open/floor/tile/dark/brown2{
+	dir = 4
+	},
+/area/outpost/hallway/south_west)
 "cB" = (
 /turf/open/floor/plating/ground/mars/dirttosand{
 	dir = 8
@@ -537,6 +558,7 @@
 	dir = 4
 	},
 /obj/effect/decal/cleanable/blood/drip,
+/obj/effect/ai_node,
 /turf/open/floor/tile/dark/brown2{
 	dir = 4
 	},
@@ -622,6 +644,13 @@
 	dir = 1
 	},
 /area/outpost/medbay/chemistry)
+"dE" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 8
+	},
+/obj/effect/ai_node,
+/turf/open/floor/tile/dark/brown2,
+/area/outpost/hallway/south_west)
 "dF" = (
 /turf/open/floor/plating/ground/mars/dirttosand{
 	dir = 4
@@ -648,6 +677,7 @@
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 1
 	},
+/obj/effect/ai_node,
 /turf/open/floor/tile/dark/blue2{
 	dir = 8
 	},
@@ -656,6 +686,7 @@
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 1
 	},
+/obj/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/outpost/hallway/central)
 "dN" = (
@@ -696,6 +727,11 @@
 	dir = 4
 	},
 /area/outpost/engineering)
+"dU" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/ai_node,
+/turf/open/floor/tile/dark,
+/area/outpost/medbay)
 "dY" = (
 /obj/machinery/light{
 	dir = 1
@@ -784,6 +820,12 @@
 	},
 /turf/open/floor/tile/dark,
 /area/outpost/medbay)
+"et" = (
+/obj/effect/ai_node,
+/turf/open/floor/marking/asteroidwarning{
+	dir = 4
+	},
+/area/outpost/yard/west)
 "eu" = (
 /turf/open/floor/plating/ground/mars/cavetodirt{
 	dir = 8
@@ -882,6 +924,10 @@
 /obj/machinery/atmospherics/components/unary/vent_pump,
 /turf/open/floor/tile/dark,
 /area/outpost/hallway/east)
+"eT" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/mars/random/dirt,
+/area/outpost/caves/north)
 "eU" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 8
@@ -938,6 +984,12 @@
 	dir = 10
 	},
 /area/outpost/hallway/south_west)
+"fj" = (
+/obj/effect/ai_node,
+/turf/open/floor/tile/dark/brown2{
+	dir = 1
+	},
+/area/outpost/cargo)
 "fm" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 1
@@ -1008,6 +1060,13 @@
 	dir = 10
 	},
 /area/outpost/cargo)
+"fB" = (
+/obj/machinery/landinglight/ds2/delayone{
+	dir = 1
+	},
+/obj/effect/ai_node,
+/turf/open/floor/plating/asteroidwarning,
+/area/outpost/lz2)
 "fC" = (
 /obj/machinery/light{
 	dir = 4
@@ -1133,6 +1192,12 @@
 	dir = 5
 	},
 /area/outpost/hallway/east)
+"ge" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/asteroidwarning{
+	dir = 8
+	},
+/area/outpost/yard/central)
 "gg" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark/brown2{
@@ -1169,6 +1234,11 @@
 	dir = 1
 	},
 /area/outpost/medbay/storage)
+"gn" = (
+/obj/effect/landmark/weed_node,
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/outpost/caves/north)
 "go" = (
 /obj/machinery/biogenerator,
 /turf/open/floor/tile/dark/purple2,
@@ -1230,6 +1300,7 @@
 /turf/open/floor/tile/dark,
 /area/outpost/science/xenobiology)
 "gA" = (
+/obj/effect/ai_node,
 /turf/open/floor/plating/asteroidwarning{
 	dir = 10
 	},
@@ -1239,6 +1310,14 @@
 /obj/machinery/landinglight/ds2/delaytwo,
 /turf/open/floor/marking/asteroidwarning,
 /area/outpost/lz1)
+"gE" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 1
+	},
+/obj/effect/ai_node,
+/turf/open/floor/tile/dark,
+/area/outpost/hallway/south_east)
 "gH" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -1258,6 +1337,7 @@
 /area/outpost/engineering/engine)
 "gL" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/ai_node,
 /turf/open/floor/tile/dark/brown2{
 	dir = 1
 	},
@@ -1298,6 +1378,13 @@
 	dir = 1
 	},
 /area/outpost/lz2)
+"gV" = (
+/obj/effect/decal/cleanable/blood/writing{
+	dir = 6
+	},
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/outpost/caves/north_east)
 "gW" = (
 /turf/open/floor/marking/asteroidwarning{
 	dir = 1
@@ -1309,6 +1396,10 @@
 	dir = 8
 	},
 /area/outpost/engineering)
+"gZ" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/asteroidfloor,
+/area/outpost/yard/south_east)
 "ha" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -1407,6 +1498,10 @@
 	dir = 8
 	},
 /area/outpost/yard/west)
+"hz" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/outpost/caves/south)
 "hA" = (
 /turf/open/floor/plating/ground/mars/cavetodirt{
 	dir = 4
@@ -1525,6 +1620,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
+/obj/effect/ai_node,
 /turf/open/floor/tile/dark/brown2/corner{
 	dir = 8
 	},
@@ -1553,6 +1649,7 @@
 /obj/structure/cable,
 /obj/machinery/light/small,
 /obj/item/trash/candy,
+/obj/effect/ai_node,
 /turf/open/floor/tile/dark/brown2,
 /area/outpost/hallway/south_cent)
 "ij" = (
@@ -1607,12 +1704,17 @@
 /obj/docking_port/stationary/crashmode,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/outpost/yard/west)
+"iv" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating,
+/area/outpost/engineering/engine)
 "iw" = (
 /turf/open/floor/marking/asteroidwarning{
 	dir = 5
 	},
 /area/outpost/yard/west)
 "ix" = (
+/obj/effect/ai_node,
 /turf/open/floor/tile/dark/brown2{
 	dir = 5
 	},
@@ -1673,6 +1775,12 @@
 	dir = 1
 	},
 /area/outpost/medbay/surgery)
+"iK" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/mars/cavetodirt{
+	dir = 4
+	},
+/area/outpost/caves/south)
 "iL" = (
 /turf/open/floor/tile/dark/brown2{
 	dir = 6
@@ -1688,6 +1796,7 @@
 "iN" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/ai_node,
 /turf/open/floor/tile/dark/brown2/corner,
 /area/outpost/hallway/south_west)
 "iO" = (
@@ -1699,6 +1808,11 @@
 	dir = 1
 	},
 /area/outpost/engineering)
+"iQ" = (
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/tile/dark/brown2,
+/area/outpost/hallway/south_cent)
 "iR" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 1
@@ -1766,6 +1880,7 @@
 /area/outpost/science/xenobiology)
 "jj" = (
 /obj/effect/spawner/random/toolbox,
+/obj/effect/ai_node,
 /turf/open/floor/tile/dark/yellow2{
 	dir = 9
 	},
@@ -1780,6 +1895,10 @@
 	dir = 8
 	},
 /area/outpost/yard/south_east)
+"jn" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/mars/cavetodirt,
+/area/outpost/caves/north)
 "jo" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 2
@@ -1821,6 +1940,7 @@
 "jz" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/ai_node,
 /turf/open/floor/tile/dark/brown2/corner{
 	dir = 8
 	},
@@ -2008,6 +2128,10 @@
 /obj/structure/window/framed/colony/reinforced,
 /turf/open/floor/tile/dark2,
 /area/outpost/cargo/office)
+"ky" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/outpost/caves/north_east)
 "kz" = (
 /obj/machinery/button/door/open_only/landing_zone,
 /obj/structure/window/reinforced{
@@ -2031,10 +2155,11 @@
 /turf/open/floor/wood,
 /area/outpost/dormitories)
 "kF" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/floor/tile/dark/red2,
-/area/outpost/brig)
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/mars/cavetodirt{
+	dir = 4
+	},
+/area/outpost/caves/north_east)
 "kG" = (
 /obj/effect/landmark/corpsespawner/doctor{
 	corpsebelt = /obj/item/storage/belt/medical;
@@ -2168,6 +2293,10 @@
 	dir = 1
 	},
 /area/outpost/medbay)
+"la" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/mars/random/dirt,
+/area/outpost/caves/east)
 "lb" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -2177,6 +2306,11 @@
 	dir = 8
 	},
 /area/outpost/hallway/west)
+"ld" = (
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/tile/dark/brown2,
+/area/outpost/hallway/south_west)
 "le" = (
 /obj/machinery/atmospherics/components/unary/vent_pump,
 /turf/open/floor/tile/dark/purple2{
@@ -2190,6 +2324,7 @@
 "lg" = (
 /obj/structure/cable,
 /obj/docking_port/stationary/crashmode,
+/obj/effect/ai_node,
 /turf/open/floor/tile/dark/red2,
 /area/outpost/brig)
 "lh" = (
@@ -2251,6 +2386,7 @@
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 4
 	},
+/obj/effect/ai_node,
 /turf/open/floor/tile/dark/yellow2{
 	dir = 10
 	},
@@ -2322,6 +2458,13 @@
 	dir = 4
 	},
 /area/outpost/yard/east)
+"lM" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/ai_node,
+/turf/open/floor/tile/dark/brown2{
+	dir = 8
+	},
+/area/outpost/hallway/south_west)
 "lN" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 1
@@ -2332,6 +2475,12 @@
 	},
 /turf/open/floor/tile/dark,
 /area/outpost/cargo)
+"lR" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/asteroidwarning{
+	dir = 4
+	},
+/area/outpost/yard/south_east)
 "lS" = (
 /turf/open/floor/tile/dark/brown2{
 	dir = 8
@@ -2391,6 +2540,7 @@
 "mh" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/ai_node,
 /turf/open/floor/tile/dark/purple2{
 	dir = 8
 	},
@@ -2444,6 +2594,7 @@
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 1
 	},
+/obj/effect/ai_node,
 /turf/open/floor/tile/dark/brown2/corner,
 /area/outpost/hallway/west)
 "mx" = (
@@ -2487,6 +2638,10 @@
 	dir = 1
 	},
 /area/outpost/yard/east)
+"mI" = (
+/obj/effect/ai_node,
+/turf/open/floor/marking/asteroidwarning,
+/area/outpost/caves/east)
 "mJ" = (
 /turf/closed/wall/r_wall,
 /area/outpost/hallway/south_east)
@@ -2708,6 +2863,12 @@
 	dir = 8
 	},
 /area/outpost/medbay/storage)
+"nX" = (
+/obj/effect/ai_node,
+/turf/open/floor/marking/asteroidwarning{
+	dir = 4
+	},
+/area/outpost/caves/east)
 "nZ" = (
 /obj/structure/bed/chair/office/dark,
 /obj/effect/landmark/start/job/survivor,
@@ -2732,6 +2893,12 @@
 	dir = 5
 	},
 /area/outpost/cargo)
+"oi" = (
+/obj/effect/ai_node,
+/turf/open/floor/marking/asteroidwarning{
+	dir = 6
+	},
+/area/outpost/yard/south)
 "ok" = (
 /obj/structure/table,
 /obj/item/tool/pen,
@@ -2875,6 +3042,10 @@
 	dir = 10
 	},
 /area/outpost/hallway/central)
+"oT" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/outpost/caves/south_east)
 "oU" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/closed/mineral/bigred,
@@ -3133,6 +3304,18 @@
 	dir = 8
 	},
 /area/outpost/hallway/central)
+"qn" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/mars/dirttosand{
+	dir = 5
+	},
+/area/outpost/caves/south_east)
+"qq" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/mars/cavetodirt{
+	dir = 9
+	},
+/area/outpost/caves/south)
 "qr" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 1
@@ -3169,6 +3352,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 10
 	},
+/obj/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/outpost/medbay)
 "qA" = (
@@ -3222,6 +3406,10 @@
 	dir = 9
 	},
 /area/outpost/brig/gear_room)
+"qL" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/outpost/caves/south)
 "qM" = (
 /obj/machinery/light{
 	dir = 8
@@ -3313,6 +3501,12 @@
 /obj/machinery/miner/damaged,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/outpost/yard/central)
+"rh" = (
+/obj/effect/ai_node,
+/turf/open/floor/tile/dark/brown2{
+	dir = 1
+	},
+/area/outpost/hallway/south_cent)
 "rj" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/tile/dark,
@@ -3322,6 +3516,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 10
 	},
+/obj/effect/ai_node,
 /turf/open/floor/tile/dark/red2{
 	dir = 4
 	},
@@ -3339,6 +3534,10 @@
 /obj/structure/window/framed/colony/reinforced,
 /turf/open/floor/tile/dark2,
 /area/outpost/science/xenobiology)
+"rp" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/outpost/caves/west)
 "rq" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -3423,6 +3622,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 6
 	},
+/obj/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/outpost/hallway/central)
 "rH" = (
@@ -3450,6 +3650,7 @@
 /area/outpost/science/rd_office)
 "rN" = (
 /obj/structure/cable,
+/obj/effect/ai_node,
 /turf/open/floor/tile/dark/brown2{
 	dir = 6
 	},
@@ -3557,6 +3758,10 @@
 	dir = 8
 	},
 /area/outpost/hallway/south_west)
+"su" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/outpost/caves/north_west)
 "sv" = (
 /turf/open/floor/plating/ground/mars/dirttosand,
 /area/outpost/lz1)
@@ -3597,6 +3802,12 @@
 /obj/structure/cable,
 /turf/open/floor/tile/dark/brown2/corner,
 /area/outpost/dormitories)
+"sB" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/mars/cavetodirt{
+	dir = 4
+	},
+/area/outpost/caves/north_west)
 "sC" = (
 /obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/plating/ground/mars/dirttosand{
@@ -3639,6 +3850,19 @@
 	dir = 1
 	},
 /area/outpost/caves/south_east)
+"sQ" = (
+/obj/effect/ai_node,
+/turf/open/floor/marking/asteroidwarning{
+	dir = 4
+	},
+/area/outpost/lz1)
+"sR" = (
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/tile/dark/brown2{
+	dir = 4
+	},
+/area/outpost/hallway/south_west)
 "sT" = (
 /obj/structure/table,
 /obj/machinery/power/apc/drained{
@@ -3759,6 +3983,11 @@
 	dir = 4
 	},
 /area/outpost/hallway/northern)
+"tx" = (
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/tile/dark/red2,
+/area/outpost/brig)
 "ty" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -3816,6 +4045,14 @@
 	dir = 1
 	},
 /area/outpost/hallway/west)
+"tP" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/ai_node,
+/turf/open/floor/tile/dark/purple2{
+	dir = 4
+	},
+/area/outpost/science)
 "tQ" = (
 /obj/machinery/light/small,
 /turf/open/floor/tile/dark/brown2{
@@ -3843,6 +4080,13 @@
 	},
 /turf/open/floor/tile/dark/brown2/corner,
 /area/outpost/hallway/south_cent)
+"tV" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/effect/ai_node,
+/turf/open/floor/tile/dark,
+/area/outpost/arrivals)
 "tY" = (
 /turf/open/floor/tile/dark/brown2{
 	dir = 10
@@ -3895,6 +4139,14 @@
 	dir = 1
 	},
 /area/outpost/lz1)
+"uq" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/manifold4w/green/hidden,
+/obj/effect/ai_node,
+/turf/open/floor/tile/dark/purple2{
+	dir = 4
+	},
+/area/outpost/science)
 "ur" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/open/floor/marking/asteroidwarning{
@@ -3927,6 +4179,15 @@
 	dir = 1
 	},
 /area/outpost/caves/north_west)
+"uz" = (
+/obj/machinery/landinglight/ds2/delaythree{
+	dir = 4
+	},
+/obj/effect/ai_node,
+/turf/open/floor/plating/asteroidwarning{
+	dir = 8
+	},
+/area/outpost/lz2)
 "uB" = (
 /turf/open/floor/tile/dark/blue2{
 	dir = 8
@@ -3966,11 +4227,16 @@
 	dir = 8
 	},
 /area/outpost/hallway/south_west)
+"uU" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/outpost/caves/north)
 "uW" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 8
 	},
 /obj/structure/cable,
+/obj/effect/ai_node,
 /turf/open/floor/tile/dark2,
 /area/outpost/cargo)
 "uY" = (
@@ -4074,6 +4340,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 1
 	},
+/obj/effect/ai_node,
 /turf/open/floor/tile/dark/brown2,
 /area/outpost/hallway/south_east)
 "vz" = (
@@ -4112,6 +4379,7 @@
 /obj/structure/table,
 /obj/effect/spawner/random/powercell,
 /obj/effect/spawner/random/powercell,
+/obj/effect/ai_node,
 /turf/open/floor/tile/dark/yellow2{
 	dir = 4
 	},
@@ -4155,6 +4423,10 @@
 	dir = 1
 	},
 /area/outpost/medbay)
+"vT" = (
+/obj/effect/ai_node,
+/turf/open/floor/tile/dark2,
+/area/outpost/cargo)
 "vV" = (
 /obj/structure/window/framed/colony/reinforced,
 /turf/open/floor/tile/dark,
@@ -4389,6 +4661,11 @@
 	},
 /turf/open/floor/tile/dark,
 /area/outpost/science/research)
+"xb" = (
+/obj/effect/landmark/start/job/xenomorph,
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/outpost/caves/north_east)
 "xc" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 8
@@ -4424,13 +4701,25 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 6
 	},
+/obj/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/outpost/brig/gear_room)
+"xl" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/ai_node,
+/turf/open/floor/tile/dark/brown2{
+	dir = 4
+	},
+/area/outpost/hallway/south_west)
 "xm" = (
 /turf/open/floor/tile/dark/brown2{
 	dir = 10
 	},
 /area/outpost/hallway/south_cent)
+"xr" = (
+/obj/effect/ai_node,
+/turf/open/floor/tile/dark/brown2,
+/area/outpost/hallway/east)
 "xs" = (
 /obj/structure/cable,
 /turf/open/floor/plating/asteroidfloor,
@@ -4508,6 +4797,12 @@
 	},
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/outpost/caves/north_east)
+"xL" = (
+/obj/effect/ai_node,
+/turf/open/floor/tile/dark/brown2{
+	dir = 1
+	},
+/area/outpost/hallway/central)
 "xM" = (
 /obj/machinery/landinglight/ds2{
 	dir = 4
@@ -4519,6 +4814,7 @@
 "xN" = (
 /obj/effect/landmark/weed_node,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/obj/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/outpost/science/xenobiology)
 "xO" = (
@@ -4678,6 +4974,15 @@
 	},
 /turf/open/floor/plating/asteroidfloor,
 /area/outpost/arrivals)
+"yS" = (
+/obj/structure/cable,
+/obj/machinery/light/small,
+/obj/machinery/atmospherics/components/unary/vent_pump{
+	dir = 1
+	},
+/obj/effect/ai_node,
+/turf/open/floor/tile/dark/red2,
+/area/outpost/brig)
 "yT" = (
 /obj/machinery/light/small,
 /turf/open/floor/tile/dark/brown2{
@@ -4729,6 +5034,10 @@
 	dir = 1
 	},
 /area/outpost/brig/wardens_office)
+"zh" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/mars/random/dirt,
+/area/outpost/caves/west)
 "zi" = (
 /obj/machinery/light{
 	dir = 4
@@ -4754,6 +5063,7 @@
 /turf/open/floor/tile/dark/brown2,
 /area/outpost/hallway/west)
 "zl" = (
+/obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/dirttosand,
 /area/outpost/yard/north_east)
 "zm" = (
@@ -5009,6 +5319,7 @@
 /turf/open/floor/tile/dark,
 /area/outpost/hallway/south_east)
 "AH" = (
+/obj/effect/ai_node,
 /turf/open/floor/marking/asteroidwarning{
 	dir = 10
 	},
@@ -5019,6 +5330,10 @@
 	dir = 6
 	},
 /area/outpost/cargo)
+"AL" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/outpost/caves/north_west)
 "AO" = (
 /obj/structure/cable,
 /turf/open/floor/tile/dark/brown2{
@@ -5232,6 +5547,16 @@
 	dir = 6
 	},
 /area/outpost/brig)
+"BV" = (
+/obj/effect/ai_node,
+/turf/open/floor/marking/asteroidwarning{
+	dir = 1
+	},
+/area/outpost/yard/west)
+"BX" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/mars/random,
+/area/outpost/caves/north_west)
 "BY" = (
 /turf/open/floor/plating/ground/mars/dirttosand{
 	dir = 9
@@ -5268,6 +5593,10 @@
 	dir = 9
 	},
 /area/outpost/lz1)
+"Ck" = (
+/obj/effect/ai_node,
+/turf/open/floor/tile/dark,
+/area/outpost/arrivals)
 "Cl" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
@@ -5314,6 +5643,12 @@
 "Cy" = (
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/outpost/caves/south)
+"Cz" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/mars/dirttosand{
+	dir = 8
+	},
+/area/outpost/yard/west)
 "CB" = (
 /turf/open/floor/tile/dark/red2,
 /area/outpost/brig/gear_room)
@@ -5350,6 +5685,7 @@
 	},
 /area/outpost/science/rd_office)
 "CJ" = (
+/obj/effect/ai_node,
 /turf/open/floor/plating/asteroidwarning{
 	dir = 5
 	},
@@ -5369,6 +5705,7 @@
 /area/outpost/engineering/engine)
 "CX" = (
 /obj/item/attachable/quickfire,
+/obj/effect/ai_node,
 /turf/open/floor/tile/dark/brown2{
 	dir = 1
 	},
@@ -5530,9 +5867,7 @@
 /turf/open/floor/tile/dark/brown2,
 /area/outpost/arrivals)
 "DR" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 10
-	},
+/obj/effect/ai_node,
 /turf/open/floor/tile/dark/brown2/corner{
 	dir = 4
 	},
@@ -5700,6 +6035,12 @@
 "EA" = (
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/outpost/yard/central)
+"EC" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/asteroidwarning{
+	dir = 1
+	},
+/area/outpost/lz2)
 "ED" = (
 /turf/open/floor/plating/ground/mars/random/dirt,
 /area/outpost/yard/north)
@@ -5759,6 +6100,12 @@
 	dir = 4
 	},
 /area/outpost/caves/north_west)
+"ES" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/mars/dirttosand{
+	dir = 1
+	},
+/area/outpost/yard/south)
 "ET" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic,
 /obj/structure/cable,
@@ -5837,6 +6184,7 @@
 /area/outpost/hallway/south_east)
 "Fk" = (
 /obj/structure/cable,
+/obj/effect/ai_node,
 /turf/open/floor/tile/dark/brown2{
 	dir = 10
 	},
@@ -5945,6 +6293,12 @@
 	dir = 8
 	},
 /area/outpost/medbay)
+"FF" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/ai_node,
+/turf/open/floor/tile/dark/red2,
+/area/outpost/brig)
 "FG" = (
 /turf/open/floor/tile/dark/red2,
 /area/outpost/brig/wardens_office)
@@ -5962,10 +6316,25 @@
 /obj/item/trash/raisins,
 /turf/open/floor/plating,
 /area/outpost/engineering/engine)
+"FK" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/mars/cavetodirt{
+	dir = 9
+	},
+/area/outpost/yard/west)
 "FM" = (
 /obj/structure/cable,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/outpost/lz1)
+"FP" = (
+/obj/machinery/landinglight/ds2/delaythree{
+	dir = 8
+	},
+/obj/effect/ai_node,
+/turf/open/floor/plating/asteroidwarning{
+	dir = 4
+	},
+/area/outpost/lz2)
 "FR" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark/purple2{
@@ -5990,6 +6359,10 @@
 	},
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/outpost/caves/north_east)
+"FZ" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/mars/random/dirt,
+/area/outpost/caves/north_west)
 "Gf" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 1
@@ -6209,6 +6582,10 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark,
 /area/outpost/medbay/chemistry)
+"Hx" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/outpost/caves/north)
 "Hy" = (
 /obj/machinery/landinglight/ds2/delaytwo{
 	dir = 4
@@ -6268,6 +6645,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
+/obj/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/outpost/hallway/central)
 "HK" = (
@@ -6323,6 +6701,7 @@
 /area/outpost/hallway/south_west)
 "Ia" = (
 /obj/machinery/light,
+/obj/effect/ai_node,
 /turf/open/floor/tile/dark/brown2,
 /area/outpost/hallway/east)
 "Ie" = (
@@ -6330,6 +6709,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
+/obj/effect/ai_node,
 /turf/open/floor/tile/dark/brown2/corner,
 /area/outpost/hallway/northern)
 "Ii" = (
@@ -6466,6 +6846,7 @@
 /turf/open/floor/tile/dark/brown2,
 /area/outpost/arrivals)
 "IT" = (
+/obj/effect/ai_node,
 /turf/open/floor/marking/asteroidwarning{
 	dir = 9
 	},
@@ -6759,6 +7140,7 @@
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 8
 	},
+/obj/effect/ai_node,
 /turf/open/floor/tile/dark/brown2{
 	dir = 6
 	},
@@ -6929,6 +7311,7 @@
 "KV" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/components/unary/vent_pump,
+/obj/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/outpost/engineering)
 "KW" = (
@@ -6953,6 +7336,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 8
 	},
+/obj/effect/ai_node,
 /turf/open/floor/tile/dark/yellow2/corner{
 	dir = 8
 	},
@@ -7082,6 +7466,11 @@
 	dir = 8
 	},
 /area/outpost/dormitories)
+"LY" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/ai_node,
+/turf/open/floor/tile/dark2,
+/area/outpost/cargo)
 "LZ" = (
 /turf/open/floor/tile/dark,
 /area/outpost/hallway/south_east)
@@ -7089,7 +7478,12 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark/red2,
 /area/outpost/brig)
+"Mb" = (
+/obj/effect/ai_node,
+/turf/open/floor/marking/asteroidwarning,
+/area/outpost/yard/south)
 "Mc" = (
+/obj/effect/ai_node,
 /turf/open/floor/tile/dark/brown2{
 	dir = 4
 	},
@@ -7158,6 +7552,12 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/outpost/caves/south_east)
+"Ml" = (
+/obj/effect/ai_node,
+/turf/open/floor/marking/asteroidwarning{
+	dir = 8
+	},
+/area/outpost/yard/west)
 "Mm" = (
 /turf/open/floor/plating/ground/mars/dirttosand{
 	dir = 6
@@ -7177,6 +7577,12 @@
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/tile/dark/yellow2,
 /area/outpost/engineering/hallway)
+"Mp" = (
+/obj/effect/ai_node,
+/turf/open/floor/marking/asteroidwarning{
+	dir = 8
+	},
+/area/outpost/arrivals)
 "Mq" = (
 /obj/structure/bed/chair{
 	dir = 8
@@ -7188,6 +7594,10 @@
 	dir = 4
 	},
 /area/outpost/arrivals)
+"Mr" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/mars/random/dirt,
+/area/outpost/caves/south)
 "Ms" = (
 /turf/open/floor/tile/dark/brown2{
 	dir = 4
@@ -7355,6 +7765,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 8
 	},
+/obj/effect/ai_node,
 /turf/open/floor/tile/dark/brown2/corner{
 	dir = 8
 	},
@@ -7373,6 +7784,12 @@
 	dir = 1
 	},
 /area/outpost/engineering)
+"Nl" = (
+/obj/effect/ai_node,
+/turf/open/floor/marking/asteroidwarning{
+	dir = 1
+	},
+/area/outpost/caves/east)
 "Nm" = (
 /turf/open/floor/marking/asteroidwarning{
 	dir = 4
@@ -7510,6 +7927,13 @@
 	},
 /turf/open/floor/tile/dark,
 /area/outpost/science/security)
+"NV" = (
+/obj/machinery/atmospherics/components/unary/vent_pump{
+	dir = 1
+	},
+/obj/effect/ai_node,
+/turf/open/floor/tile/dark,
+/area/outpost/arrivals)
 "NX" = (
 /turf/closed/wall/r_wall,
 /area/outpost/cargo/security)
@@ -7538,6 +7962,12 @@
 	dir = 6
 	},
 /area/outpost/science)
+"Of" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/asteroidwarning{
+	dir = 4
+	},
+/area/outpost/yard/central)
 "Og" = (
 /obj/structure/window/framed/colony,
 /turf/open/floor/tile/dark,
@@ -7643,6 +8073,7 @@
 	},
 /area/outpost/hallway/south_west)
 "OB" = (
+/obj/effect/ai_node,
 /turf/open/floor/plating/asteroidwarning{
 	dir = 6
 	},
@@ -7659,6 +8090,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 5
 	},
+/obj/effect/ai_node,
 /turf/open/floor/tile/dark/brown2/corner{
 	dir = 8
 	},
@@ -7699,6 +8131,10 @@
 /obj/machinery/bodyscanner,
 /turf/open/floor/tile/dark,
 /area/outpost/medbay)
+"OO" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/asteroidfloor,
+/area/outpost/yard/east)
 "OP" = (
 /obj/machinery/power/apc/drained{
 	dir = 4
@@ -7808,6 +8244,7 @@
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 4
 	},
+/obj/effect/ai_node,
 /turf/open/floor/tile/dark/brown2{
 	dir = 4
 	},
@@ -8070,6 +8507,7 @@
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/outpost/yard/east)
 "QN" = (
+/obj/effect/ai_node,
 /turf/open/floor/marking/asteroidwarning{
 	dir = 6
 	},
@@ -8085,6 +8523,7 @@
 /obj/item/ammo_magazine/shotgun,
 /obj/item/ammo_magazine/shotgun,
 /obj/item/weapon/gun/shotgun/double,
+/obj/effect/ai_node,
 /turf/open/floor/tile/dark/red2,
 /area/outpost/cargo/security)
 "QR" = (
@@ -8112,6 +8551,10 @@
 "QY" = (
 /turf/closed/wall/r_wall,
 /area/outpost/cargo)
+"QZ" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/mars/dirttosand,
+/area/outpost/caves/north)
 "Ra" = (
 /turf/open/floor/plating/ground/mars/dirttosand{
 	dir = 9
@@ -8172,6 +8615,10 @@
 	dir = 1
 	},
 /area/outpost/science/research)
+"Rl" = (
+/obj/effect/ai_node,
+/turf/open/floor/tile/dark,
+/area/outpost/science/xenobiology)
 "Rn" = (
 /obj/structure/bed/chair{
 	dir = 8
@@ -8250,6 +8697,7 @@
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 8
 	},
+/obj/effect/ai_node,
 /turf/open/floor/tile/dark/purple2{
 	dir = 4
 	},
@@ -8267,6 +8715,12 @@
 	},
 /turf/open/floor/plating,
 /area/outpost/engineering/engine)
+"RC" = (
+/obj/effect/ai_node,
+/turf/open/floor/tile/dark/brown2/corner{
+	dir = 4
+	},
+/area/outpost/hallway/central)
 "RD" = (
 /turf/open/floor/plating/ground/mars/dirttosand,
 /area/outpost/caves/east)
@@ -8280,6 +8734,7 @@
 "RG" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/ai_node,
 /turf/open/floor/tile/dark/brown2,
 /area/outpost/hallway/east)
 "RH" = (
@@ -8301,6 +8756,10 @@
 	dir = 8
 	},
 /area/outpost/caves/north_east)
+"RN" = (
+/obj/effect/ai_node,
+/turf/open/floor/marking/asteroidwarning,
+/area/outpost/lz1)
 "RO" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 4
@@ -8399,6 +8858,12 @@
 	},
 /turf/open/floor/tile/dark/yellow2,
 /area/outpost/engineering/engine)
+"Sj" = (
+/obj/effect/ai_node,
+/turf/open/floor/marking/asteroidwarning{
+	dir = 4
+	},
+/area/outpost/yard/east)
 "Sk" = (
 /obj/machinery/vending/security,
 /turf/open/floor/tile/dark/red2{
@@ -8461,6 +8926,17 @@
 "Sz" = (
 /turf/open/floor/tile/dark,
 /area/outpost/engineering/engine)
+"SB" = (
+/obj/effect/ai_node,
+/turf/open/floor/tile/dark/brown2,
+/area/outpost/hallway/west)
+"SD" = (
+/obj/effect/decal/cleanable/blood/writing{
+	dir = 9
+	},
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/outpost/caves/north_east)
 "SG" = (
 /obj/effect/decal/cleanable/blood/writing{
 	dir = 8
@@ -8573,6 +9049,7 @@
 "Th" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold4w/green/hidden,
+/obj/effect/ai_node,
 /turf/open/floor/tile/dark/brown2,
 /area/outpost/cargo)
 "Tl" = (
@@ -8592,6 +9069,10 @@
 	dir = 1
 	},
 /area/outpost/lz2)
+"To" = (
+/obj/effect/ai_node,
+/turf/open/floor/tile/dark,
+/area/outpost/medbay)
 "Tp" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/components/unary/vent_pump{
@@ -8693,6 +9174,13 @@
 	},
 /turf/open/floor/tile/dark,
 /area/outpost/arrivals)
+"TN" = (
+/obj/machinery/landinglight/ds2/delaythree{
+	dir = 4
+	},
+/obj/effect/ai_node,
+/turf/open/floor/plating/asteroidfloor,
+/area/outpost/lz2)
 "TO" = (
 /turf/open/floor/tile/dark/brown2{
 	dir = 1
@@ -8711,6 +9199,10 @@
 "TR" = (
 /turf/open/floor/tile/dark/blue2/corner,
 /area/outpost/medbay)
+"TS" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/mars/cavetodirt,
+/area/outpost/caves/north_west)
 "TT" = (
 /obj/structure/closet/cabinet,
 /obj/item/clothing/under/colonist,
@@ -8762,6 +9254,10 @@
 	dir = 6
 	},
 /area/outpost/yard/east)
+"Ug" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/asteroidfloor,
+/area/outpost/yard/north)
 "Uh" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
@@ -8882,6 +9378,10 @@
 /obj/item/trash/kepler,
 /turf/open/floor/wood,
 /area/outpost/dormitories)
+"UL" = (
+/obj/effect/ai_node,
+/turf/open/floor/tile/dark,
+/area/outpost/medbay/storage)
 "UN" = (
 /turf/open/floor/plating/ground/mars/cavetodirt{
 	dir = 10
@@ -8914,6 +9414,10 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark/blue2,
 /area/outpost/medbay)
+"UV" = (
+/obj/effect/ai_node,
+/turf/open/floor/tile/dark,
+/area/outpost/brig/gear_room)
 "UW" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -8963,6 +9467,10 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/outpost/caves/south_east)
+"Vj" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/asteroidfloor,
+/area/outpost/lz1)
 "Vk" = (
 /obj/effect/decal/cleanable/blood/writing{
 	dir = 6
@@ -8989,6 +9497,12 @@
 "Vt" = (
 /turf/open/floor/tile/dark,
 /area/outpost/arrivals)
+"Vu" = (
+/obj/effect/ai_node,
+/turf/open/floor/marking/asteroidwarning{
+	dir = 8
+	},
+/area/outpost/lz1)
 "Vv" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 1
@@ -9168,6 +9682,10 @@
 	},
 /turf/open/floor/tile/dark,
 /area/outpost/medbay)
+"Wj" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/asteroidfloor,
+/area/outpost/yard/west)
 "Wk" = (
 /turf/open/floor/plating/ground/mars/dirttosand{
 	dir = 4
@@ -9411,6 +9929,7 @@
 "Xx" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
+/obj/effect/ai_node,
 /turf/open/floor/tile/dark/brown2{
 	dir = 6
 	},
@@ -9503,6 +10022,12 @@
 	dir = 10
 	},
 /area/outpost/engineering/security)
+"XV" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/asteroidwarning{
+	dir = 1
+	},
+/area/outpost/caves/east)
 "XX" = (
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/outpost/caves/west)
@@ -9538,6 +10063,7 @@
 /area/outpost/yard/west)
 "Yh" = (
 /obj/effect/landmark/weed_node,
+/obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/outpost/caves/north_east)
 "Yi" = (
@@ -9677,6 +10203,7 @@
 	},
 /area/outpost/yard/east)
 "YS" = (
+/obj/effect/ai_node,
 /turf/open/floor/tile/dark/red2,
 /area/outpost/brig)
 "YT" = (
@@ -9709,6 +10236,7 @@
 "Zb" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/landinglight/ds2/delayone,
+/obj/effect/ai_node,
 /turf/open/floor/plating/asteroidwarning{
 	dir = 1
 	},
@@ -9738,6 +10266,10 @@
 "Zl" = (
 /turf/open/floor/plating/asteroidfloor,
 /area/outpost/arrivals)
+"Zm" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/outpost/caves/east)
 "Zn" = (
 /obj/machinery/door/airlock/mainship/research/glass/free_access{
 	dir = 8
@@ -9880,6 +10412,7 @@
 	dir = 4
 	},
 /obj/effect/decal/cleanable/blood,
+/obj/effect/ai_node,
 /turf/open/floor/tile/dark/brown2/corner,
 /area/outpost/hallway/central)
 "ZO" = (
@@ -16834,14 +17367,14 @@ WU
 WU
 WU
 cq
-cq
+AL
 Yj
 rQ
 rQ
 Nu
 Hg
 Hg
-bO
+zh
 bO
 bO
 nR
@@ -17106,7 +17639,7 @@ XX
 XX
 XX
 XX
-XX
+rp
 dR
 dR
 dR
@@ -17643,21 +18176,21 @@ JF
 JF
 JF
 JF
+Vu
 JF
 JF
 JF
 JF
 JF
 JF
+Vu
 JF
 JF
 JF
 JF
 JF
 JF
-JF
-JF
-JF
+Vu
 JF
 fb
 Hc
@@ -18635,12 +19168,12 @@ wY
 Cp
 Cp
 Cp
-Xc
+TS
 hX
 JA
 hX
 uw
-Cp
+su
 IU
 Vt
 YV
@@ -19159,18 +19692,18 @@ Cp
 Cp
 dw
 rJ
-yh
+tV
 mm
 Ff
 gv
 wK
 wK
 wK
-xV
+NV
 OH
 Xw
 Bq
-Bq
+Mp
 wB
 rQ
 rQ
@@ -19402,7 +19935,7 @@ WU
 WU
 WU
 wY
-Cp
+su
 mo
 Cp
 Cp
@@ -19465,7 +19998,7 @@ Ql
 Ql
 Ql
 QK
-gh
+RN
 Hc
 VS
 mu
@@ -19693,13 +20226,13 @@ Zl
 dP
 Zl
 RW
+Vj
 Eb
 Eb
 Eb
 Eb
 Eb
-Eb
-Eb
+Vj
 XS
 Ql
 Ql
@@ -19937,7 +20470,7 @@ TM
 mm
 Ff
 VC
-Vt
+Ck
 ud
 Vt
 Vt
@@ -20950,7 +21483,7 @@ hX
 hX
 hX
 Dk
-hA
+sB
 hA
 KY
 gH
@@ -21254,7 +21787,7 @@ Eb
 Eb
 Eb
 Eb
-Eb
+Vj
 qG
 qG
 qG
@@ -21262,14 +21795,14 @@ qG
 qG
 qG
 qG
+sQ
 qG
 qG
 qG
 qG
 qG
 qG
-qG
-qG
+sQ
 qG
 sh
 Hc
@@ -21479,13 +22012,13 @@ Xc
 hX
 hX
 rn
-Hh
+BX
 Hh
 Hh
 Hh
 mG
 LI
-hk
+SB
 lf
 cc
 cc
@@ -21717,7 +22250,7 @@ WU
 WU
 WU
 WU
-Cp
+su
 Cp
 DG
 WU
@@ -21728,7 +22261,7 @@ WU
 WU
 hX
 hX
-hX
+FZ
 hX
 hX
 AU
@@ -22009,7 +22542,7 @@ cc
 SH
 SH
 cc
-zU
+FK
 KZ
 KZ
 SH
@@ -22497,7 +23030,7 @@ WU
 WU
 bY
 oQ
-aK
+UL
 lj
 aQ
 ZR
@@ -23009,7 +23542,7 @@ WU
 WU
 hX
 hX
-hX
+FZ
 WU
 bY
 it
@@ -23576,7 +24109,7 @@ yc
 Eb
 Eb
 xs
-gh
+RN
 dr
 dr
 XE
@@ -23796,7 +24329,7 @@ qz
 Ey
 Ux
 PX
-Ux
+dU
 PX
 fF
 es
@@ -24323,7 +24856,7 @@ eX
 eX
 Zd
 FA
-hk
+SB
 oI
 Jb
 Jb
@@ -24841,7 +25374,7 @@ Zd
 FA
 hk
 fz
-QE
+Ml
 QE
 QE
 QE
@@ -25331,7 +25864,7 @@ Fy
 Fy
 OR
 OR
-vj
+QZ
 IY
 ZP
 jR
@@ -25598,7 +26131,7 @@ tr
 tr
 YU
 MH
-qy
+To
 Rf
 TR
 kl
@@ -25645,13 +26178,13 @@ hQ
 hQ
 hQ
 hQ
-hQ
+LY
 hQ
 kf
 Jc
 Jc
 Jc
-Jc
+vT
 Jc
 Jc
 Tr
@@ -26141,15 +26674,15 @@ iw
 Nm
 Nm
 Nm
+et
 Nm
 Nm
 Nm
-Nm
-mC
+Wj
 mC
 Nm
 Bb
-IG
+fj
 Jc
 Jc
 Jc
@@ -26652,7 +27185,7 @@ SH
 SH
 SH
 cc
-hx
+Cz
 Qq
 Jb
 Jb
@@ -26874,7 +27407,7 @@ Fy
 Pb
 pi
 pi
-Pb
+gn
 pi
 pi
 Pb
@@ -27435,7 +27968,7 @@ SH
 SH
 hx
 hx
-FH
+BV
 sY
 cc
 ku
@@ -27644,7 +28177,7 @@ Fy
 Fy
 gb
 pi
-pi
+uU
 Pb
 Fy
 Fy
@@ -27910,7 +28443,7 @@ Fy
 Fy
 Fy
 Pb
-pi
+uU
 Co
 VY
 OR
@@ -28173,7 +28706,7 @@ Co
 VY
 OR
 OR
-vj
+QZ
 IY
 IY
 lW
@@ -28200,7 +28733,7 @@ GM
 qQ
 OA
 vH
-vH
+lM
 vH
 Kc
 Ke
@@ -28443,7 +28976,7 @@ cW
 tv
 rf
 PU
-TO
+xL
 qs
 gM
 ww
@@ -28467,7 +29000,7 @@ SH
 Ke
 DA
 iN
-nD
+xl
 nD
 nD
 nD
@@ -28481,7 +29014,7 @@ Xx
 Ke
 Zc
 gS
-gS
+Mr
 gS
 wM
 hK
@@ -28718,7 +29251,7 @@ pe
 pe
 Ke
 ZV
-Jt
+dE
 Ke
 Ke
 Ke
@@ -28937,10 +29470,10 @@ gb
 gb
 pi
 pi
-Pb
+gn
 pi
 pi
-pi
+uU
 pi
 gb
 Fy
@@ -29235,9 +29768,9 @@ ai
 pe
 dN
 cx
-cx
+cy
 Wb
-zD
+sR
 zD
 zD
 Ki
@@ -29478,7 +30011,7 @@ Wm
 ww
 ww
 Me
-TF
+RC
 PU
 PU
 mK
@@ -29518,7 +30051,7 @@ Zc
 Zc
 gS
 wM
-hK
+hz
 hK
 Zc
 Zc
@@ -30004,14 +30537,14 @@ ww
 EA
 Ei
 Fc
-Fc
+ge
 Fc
 Fc
 Fc
 Fc
 On
 aP
-Yn
+ld
 On
 jF
 jF
@@ -30232,7 +30765,7 @@ Fy
 Fy
 Fy
 OR
-OR
+eT
 iH
 pi
 Fy
@@ -30277,9 +30810,9 @@ Np
 Np
 Np
 kN
-qN
+Mb
 mN
-Dn
+ES
 RV
 Ip
 Ip
@@ -30496,7 +31029,7 @@ pi
 pi
 Fy
 IY
-IY
+Hx
 IY
 Dg
 CX
@@ -30750,7 +31283,7 @@ Fy
 Fy
 pi
 pi
-pi
+uU
 pi
 Fy
 OW
@@ -31060,13 +31593,13 @@ RV
 RV
 Ip
 kQ
-mZ
+iQ
 KD
 Cy
-Cy
+qL
 Cy
 my
-gS
+Mr
 gS
 Zc
 Zc
@@ -31526,7 +32059,7 @@ OR
 Uq
 pi
 pi
-Co
+jn
 OR
 Fy
 Fy
@@ -31540,15 +32073,15 @@ oJ
 GU
 hh
 Om
-Om
+Ug
 hh
 hh
 hh
 bS
 jG
-Gy
+xr
 bS
-hB
+Of
 hB
 bP
 CY
@@ -32100,7 +32633,7 @@ gS
 gS
 Uv
 Bn
-hK
+hz
 hK
 hK
 hK
@@ -32326,7 +32859,7 @@ di
 EA
 UC
 hB
-hB
+Of
 tK
 ZD
 ki
@@ -32341,7 +32874,7 @@ rP
 tK
 Np
 Np
-rA
+oi
 mN
 Dn
 wa
@@ -32604,7 +33137,7 @@ mN
 Dn
 wa
 BQ
-wb
+rh
 Fe
 Ip
 Ip
@@ -32811,7 +33344,7 @@ Fy
 Fy
 Fy
 Fy
-OR
+eT
 OR
 OR
 rM
@@ -33577,10 +34110,10 @@ Fy
 VP
 Gn
 wP
-Gn
+Rl
 lk
 Dv
-Gn
+Rl
 rj
 aO
 Je
@@ -33871,7 +34404,7 @@ JR
 RG
 DD
 ZZ
-rt
+bh
 rt
 rt
 RE
@@ -33890,11 +34423,11 @@ ET
 eR
 eR
 Fj
-Fj
+gE
 pP
 Sp
 Fj
-Fj
+gE
 jt
 Fj
 vx
@@ -33906,13 +34439,13 @@ Cy
 Cy
 Cy
 Cy
-Cy
+qL
 xv
 Zc
 Zc
 gS
 gS
-Uv
+qq
 hK
 hK
 Zc
@@ -34365,7 +34898,7 @@ wO
 yn
 Zr
 tu
-Uo
+tP
 Uo
 Uo
 Gx
@@ -34373,7 +34906,7 @@ Oe
 sg
 GH
 Uo
-Gx
+uq
 RQ
 GT
 pK
@@ -34947,7 +35480,7 @@ Zc
 Zc
 Zc
 wy
-wy
+iK
 hK
 Zc
 Zc
@@ -35158,7 +35691,7 @@ pv
 wt
 ye
 ZT
-wH
+yS
 ye
 va
 lK
@@ -35926,19 +36459,19 @@ Wd
 Pi
 zZ
 xz
-uM
+bt
 uM
 uM
 uM
 om
 tz
-cN
+tx
 om
 NC
-NC
+Sj
 NC
 no
-no
+OO
 tK
 ZD
 ki
@@ -35955,10 +36488,10 @@ wf
 wf
 wf
 wf
-HP
+gZ
 HP
 wf
-wf
+lR
 BC
 BJ
 uf
@@ -36692,7 +37225,7 @@ Yx
 cg
 cg
 cg
-Js
+SD
 Gu
 FD
 Tm
@@ -37198,7 +37731,7 @@ cg
 cg
 cg
 Yx
-Yx
+ky
 Yx
 mM
 mM
@@ -37276,7 +37809,7 @@ cR
 fg
 dl
 fE
-MG
+iv
 MG
 MU
 MG
@@ -37480,7 +38013,7 @@ Ss
 ev
 yY
 uh
-kF
+FF
 re
 BN
 KX
@@ -37750,7 +38283,7 @@ Xi
 Xi
 Xi
 RD
-ZQ
+Nl
 Cq
 eA
 HS
@@ -37974,7 +38507,7 @@ Yx
 Yx
 TP
 Yx
-Yx
+ky
 Yx
 cg
 cg
@@ -38288,7 +38821,7 @@ LU
 LU
 LU
 Hm
-Hm
+oT
 iF
 UT
 UT
@@ -38498,7 +39031,7 @@ cg
 cg
 Yx
 SG
-Yx
+ky
 cg
 cg
 lp
@@ -38512,7 +39045,7 @@ Yc
 dS
 dm
 au
-kF
+FF
 re
 BN
 KX
@@ -38529,7 +39062,7 @@ Ar
 xg
 xB
 uo
-xg
+nX
 xg
 xg
 xg
@@ -38537,7 +39070,7 @@ JI
 JI
 ae
 zf
-eA
+Zm
 eA
 Xi
 Xi
@@ -39008,7 +39541,7 @@ Yo
 Cx
 Cx
 Yx
-Yx
+ky
 Yx
 Yx
 Yx
@@ -39270,7 +39803,7 @@ cg
 Yx
 Yx
 Js
-Ao
+gV
 Yx
 Yx
 Yx
@@ -39333,7 +39866,7 @@ AW
 AW
 cE
 Hm
-Hm
+oT
 Hm
 LU
 LU
@@ -39524,7 +40057,7 @@ WB
 WB
 jQ
 Yx
-Yx
+ky
 FW
 xI
 Vk
@@ -39565,7 +40098,7 @@ Xi
 Xi
 Xi
 RD
-Hb
+XV
 Gm
 Xi
 Xi
@@ -39575,7 +40108,7 @@ Xi
 wQ
 uf
 uf
-zK
+qn
 HH
 HH
 sP
@@ -39838,7 +40371,7 @@ Qw
 Qw
 tN
 np
-Hm
+oT
 Hm
 Hm
 Hm
@@ -40052,7 +40585,7 @@ cg
 Rs
 TQ
 eO
-wr
+UV
 fv
 Rs
 XO
@@ -40101,7 +40634,7 @@ TD
 Hm
 Hm
 YO
-Hm
+oT
 Hm
 Hm
 Yb
@@ -40324,8 +40857,8 @@ wz
 gJ
 wz
 JI
-Pp
-Ls
+mI
+la
 RD
 ss
 hY
@@ -40814,13 +41347,13 @@ WB
 Yo
 Cx
 cg
-Yx
+ky
 TP
 Yx
 cg
 cg
 Yx
-Yx
+ky
 Yx
 cg
 Rs
@@ -41104,7 +41637,7 @@ Xi
 eF
 KR
 mv
-gT
+EC
 kY
 AT
 Ax
@@ -41113,7 +41646,7 @@ SN
 AT
 Ax
 YK
-kY
+TN
 iI
 IE
 Hy
@@ -41121,7 +41654,7 @@ QW
 qX
 IE
 Hy
-QW
+uz
 qX
 IE
 Hy
@@ -41324,18 +41857,18 @@ Yo
 Yx
 Yo
 WB
-WB
+xb
 WB
 qa
 qO
 DB
 Yx
+kF
 ZB
-ZB
 Yx
 Yx
 Yx
-Yx
+ky
 Yx
 cg
 cg
@@ -41851,7 +42384,7 @@ cg
 cg
 cg
 cg
-Yx
+ky
 Yx
 qO
 Yx
@@ -41860,7 +42393,7 @@ Yx
 Yx
 Yx
 Yx
-Yx
+ky
 jc
 se
 se
@@ -42674,7 +43207,7 @@ vo
 vo
 vo
 vo
-Hq
+fB
 io
 KR
 eF
@@ -44209,7 +44742,7 @@ Ox
 TH
 tq
 vM
-JQ
+FP
 TH
 tq
 vM
@@ -44217,7 +44750,7 @@ JQ
 TH
 tq
 vM
-JQ
+FP
 TH
 tq
 vM

@@ -152,7 +152,7 @@
 	agony_start = 3
 	agony_amount = 4
 
-/datum/reagent/consumable/capsaicin/condensed/reaction_mob(mob/living/L, method = TOUCH, volume, metabolism, show_message = TRUE, touch_protection = 0)
+/datum/reagent/consumable/capsaicin/condensed/reaction_mob(mob/living/L, method = TOUCH, volume, show_message = TRUE, touch_protection = 0)
 	. = ..()
 	if(!(method in list(TOUCH, VAPOR)) || !ishuman(L))
 		return

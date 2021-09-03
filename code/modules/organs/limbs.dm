@@ -460,7 +460,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 		if (antibiotics < MIN_ANTIBIOTICS)
 			//Infected wounds raise the organ's germ level.
 			if (W.germ_level)
-				germ_level += min(1,round(W.germ_level/35))
+				germ_level += max(1,round(W.germ_level/35))
 		else if (W.germ_level && prob(80)) //Antibiotics wont be very effective it the wound is still open
 			germ_level++
 
@@ -597,7 +597,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 			W.germ_level = 0
 
 	// sync the organ's damage with its wounds
-	src.update_damages()
+	update_damages()
 	if (update_icon())
 		owner.UpdateDamageIcon(1)
 
@@ -988,8 +988,8 @@ Note that amputating the affected organ does in fact remove the infection from t
 /datum/limb/proc/has_infected_wound()
 	for(var/datum/wound/W in wounds)
 		if(W.germ_level > INFECTION_LEVEL_ONE)
-			return 1
-	return 0
+			return TRUE
+	return FALSE
 
 ///Returns the first non-internal wound at non-zero damage if any exist
 /datum/limb/proc/has_external_wound()
@@ -1000,13 +1000,12 @@ Note that amputating the affected organ does in fact remove the infection from t
 			continue
 		return wound_to_check
 
-/datum/limb/proc/get_icon(icon/race_icon, icon/deform_icon,gender="")
-
-	if (limb_status & LIMB_ROBOT && !(owner.species && owner.species.species_flags & IS_SYNTHETIC))
-		return new /icon('icons/mob/human_races/robotic.dmi', "[icon_name][gender ? "_[gender]" : ""]")
+/datum/limb/proc/get_icon(icon/race_icon, icon/deform_icon, gender="")
+	if(limb_status & LIMB_ROBOT && !(owner.species.species_flags & IS_SYNTHETIC))
+		return icon('icons/mob/human_races/robotic.dmi', "[icon_name][gender ? "_[gender]" : ""]")
 
 	if (limb_status & LIMB_MUTATED)
-		return new /icon(deform_icon, "[icon_name][gender ? "_[gender]" : ""]")
+		return icon(deform_icon, "[icon_name][gender ? "_[gender]" : ""]")
 
 	var/datum/ethnicity/E = GLOB.ethnicities_list[owner.ethnicity]
 	var/datum/body_type/B = GLOB.body_types_list[owner.body_type]
@@ -1024,7 +1023,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	else
 		b_icon = B.icon_name
 
-	return new /icon(race_icon, "[get_limb_icon_name(owner.species, b_icon, owner.gender, icon_name, e_icon)]")
+	return icon(race_icon, "[get_limb_icon_name(owner.species, b_icon, owner.gender, icon_name, e_icon)]")
 
 	//return new /icon(race_icon, "[icon_name][gender ? "_[gender]" : ""]")
 
@@ -1094,7 +1093,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 		return TRUE
 
 
-//called when limb is removed or robotized, any ongoing surgery and related vars are reset
+///called when limb is removed or robotized, any ongoing surgery and related vars are reset
 /datum/limb/proc/reset_limb_surgeries()
 	surgery_open_stage = 0
 	bone_repair_stage = 0

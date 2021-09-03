@@ -29,7 +29,6 @@
 		STOP_PROCESSING(SSslowprocess, src)
 		user.clear_fullscreen("machine", 5)
 
-
 ///stealth droid, like the normal droid but with stealthing ability on rclick
 /obj/vehicle/unmanned/droid/scout
 	name = "XN-43-S combat droid"

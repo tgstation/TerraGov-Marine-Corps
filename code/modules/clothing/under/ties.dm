@@ -70,11 +70,6 @@
 		if(user.a_intent == INTENT_HELP)
 			var/body_part = parse_zone(user.zone_selected)
 			if(body_part)
-				var/their = "their"
-				switch(M.gender)
-					if(MALE)	their = "his"
-					if(FEMALE)	their = "her"
-
 				var/sound = "pulse"
 				var/sound_strength
 
@@ -94,7 +89,7 @@
 						else
 							sound_strength = "hear a weak"
 
-				user.visible_message("[user] places [src] against [M]'s [body_part] and listens attentively.", "You place [src] against [their] [body_part]. You [sound_strength] [sound].")
+				user.visible_message("[user] places [src] against [M]'s [body_part] and listens attentively.", "You place [src] against [M.p_their()] [body_part]. You [sound_strength] [sound].")
 				return
 	return ..(M,user)
 
@@ -515,7 +510,7 @@
 		to_chat(user, "Waving around a badge before swiping an ID would be pretty pointless.")
 		return
 	if(isliving(user))
-		user.visible_message(span_warning(" [user] displays their TGMC Internal Security Legal Authorization Badge.\nIt reads: [stored_name], TGMC Security."),span_warning(" You display your TGMC Internal Security Legal Authorization Badge.\nIt reads: [stored_name], TGMC Security."))
+		user.visible_message(span_warning(" [user] displays [user.p_their()] TGMC Internal Security Legal Authorization Badge.\nIt reads: [stored_name], TGMC Security."),span_warning(" You display your TGMC Internal Security Legal Authorization Badge.\nIt reads: [stored_name], TGMC Security."))
 
 /obj/item/clothing/tie/holobadge/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -535,7 +530,7 @@
 
 /obj/item/clothing/tie/holobadge/attack(mob/living/carbon/human/M, mob/living/user)
 	if(isliving(user))
-		user.visible_message(span_warning(" [user] invades [M]'s personal space, thrusting [src] into their face insistently."),span_warning(" You invade [M]'s personal space, thrusting [src] into their face insistently. You are the law."))
+		user.visible_message(span_warning(" [user] invades [M]'s personal space, thrusting [src] into [M.p_their()] face insistently."),span_warning(" You invade [M]'s personal space, thrusting [src] into [M.p_their()] face insistently. You are the law."))
 
 /obj/item/storage/box/holobadge
 	name = "holobadge box"

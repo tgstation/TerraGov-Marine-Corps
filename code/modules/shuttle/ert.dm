@@ -1,7 +1,7 @@
 // small ert shuttles
 /obj/docking_port/stationary/ert
 	name = "ert shuttle"
-	id = "distress"
+	id = SHUTTLE_DISTRESS
 	dir = SOUTH
 	dwidth = 3
 	width = 7

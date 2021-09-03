@@ -32,7 +32,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 
 /obj/docking_port/mobile/supply
 	name = "supply shuttle"
-	id = "supply"
+	id = SHUTTLE_SUPPLY
 	callTime = 15 SECONDS
 
 	dir = WEST
@@ -231,7 +231,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 	w_class = WEIGHT_CLASS_NORMAL
 	var/datum/supply_ui/SU
 	///Id of the shuttle controlled
-	var/shuttle_id = "supply"
+	var/shuttle_id = SHUTTLE_SUPPLY
 	/// Id of the home docking port
 	var/home_id = "supply_home"
 	/// Faction of the tablet
@@ -260,12 +260,12 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 	name = "ASRS console"
 	desc = "A console for an Automated Storage and Retrieval System"
 	icon = 'icons/obj/machines/computer.dmi'
-	icon_state = "supply"
+	icon_state = SHUTTLE_SUPPLY
 	req_access = list(ACCESS_MARINE_CARGO)
 	circuit = null
 	var/datum/supply_ui/SU
 	///Id of the shuttle controlled
-	var/shuttle_id = "supply"
+	var/shuttle_id = SHUTTLE_SUPPLY
 	/// Id of the home docking port
 	var/home_id = "supply_home"
 	/// Faction of the computer

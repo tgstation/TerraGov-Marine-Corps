@@ -108,8 +108,6 @@
 	var/atom/throw_target = get_edge_target_turf(M, get_dir(src, get_step_away(M, src)))
 	var/throw_distance = setting * LERP(5 , 2, M.mob_size / MOB_SIZE_BIG)
 	M.throw_at(throw_target, throw_distance, 0.5 + (setting / 2))
-	M.apply_effects(setting, STUN)
-	M.apply_effects(0.1 * setting, WEAKEN)
 	cell.charge -= powerused
 	return ..()
 

@@ -25,14 +25,22 @@
 /obj/structure/caspart/caschair/Initialize()
 	. = ..()
 	set_cockpit_overlay("cockpit_closed")
+	RegisterSignal(SSdcs, COMSIG_GLOB_CAS_LASER_CREATED, .proc/receive_laser_cas)
 
 /obj/structure/caspart/caschair/Destroy()
 	owner?.chair = null
 	owner = null
+	UnregisterSignal(SSdcs, COMSIG_GLOB_CAS_LASER_CREATED)
 	if(occupant)
 		INVOKE_ASYNC(src, .proc/eject_user, TRUE)
 	QDEL_NULL(cockpit)
 	return ..()
+
+/obj/structure/caspart/caschair/proc/receive_laser_cas(datum/source, obj/effect/overlay/temp/laser_target/cas/incoming_laser)
+	SIGNAL_HANDLER
+	playsound(src, 'sound/effects/binoctarget.ogg', 15)
+	if(occupant)
+		to_chat(occupant, span_notice("CAS laser detected. Target: [AREACOORD_NO_Z(incoming_laser)]"))
 
 ///Handles updating the cockpit overlay
 /obj/structure/caspart/caschair/proc/set_cockpit_overlay(new_state)
@@ -131,12 +139,12 @@
 
 /obj/docking_port/stationary/marine_dropship/cas
 	name = "CAS plane hangar pad"
-	id = "cas_dock"
+	id = SHUTTLE_CAS_DOCK
 	roundstart_template = /datum/map_template/shuttle/cas
 
 /obj/docking_port/mobile/marine_dropship/casplane
 	name = "Condor Jet"
-	id = "cas_dock"
+	id = SHUTTLE_CAS_DOCK
 	width = 11
 	height = 12
 
@@ -178,7 +186,7 @@
 	fuel_left--
 	if((fuel_left <= LOW_FUEL_LANDING_THRESHOLD) && (state == PLANE_STATE_FLYING))
 		to_chat(chair.occupant, span_warning("Out of fuel, landing."))
-		SSshuttle.moveShuttle(id, "cas_dock", TRUE)
+		SSshuttle.moveShuttle(id, SHUTTLE_CAS_DOCK, TRUE)
 		end_cas_mission(chair.occupant)
 	if (fuel_left <= 0)
 		fuel_left = 0
@@ -399,7 +407,7 @@
 				return
 			SSshuttle.moveShuttleToDock(owner.id, SSshuttle.generate_transit_dock(owner), TRUE)
 		if("land")
-			SSshuttle.moveShuttle(owner.id, "cas_dock", TRUE)
+			SSshuttle.moveShuttle(owner.id, SHUTTLE_CAS_DOCK, TRUE)
 			owner.end_cas_mission(usr)
 		if("deploy")
 			owner.begin_cas_mission(usr)

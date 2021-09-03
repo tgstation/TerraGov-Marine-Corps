@@ -143,10 +143,6 @@
 	var/state = 0 //closed, 1 == open
 	var/isSwitchingStates = 0
 
-
-/obj/structure/inflatable/door/attack_paw(mob/living/carbon/human/user)
-	return TryToSwitchState(user)
-
 /obj/structure/inflatable/door/attack_hand(mob/living/user)
 	. = ..()
 	if(.)

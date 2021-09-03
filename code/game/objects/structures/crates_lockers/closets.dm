@@ -201,7 +201,7 @@
 			span_danger("We smash \the [src]!"), null, 5)
 		SEND_SIGNAL(X, COMSIG_XENOMORPH_ATTACK_CLOSET)
 	else if(!opened)
-		return attack_paw(X)
+		return attack_hand(X)
 
 /obj/structure/closet/attackby(obj/item/I, mob/user, params)
 	if(user in src)
@@ -311,10 +311,6 @@
 			for(var/mob/M in hearers(src, null))
 				to_chat(M, text("<FONT size=[]>BANG, bang!</FONT>", max(0, 5 - get_dist(src, M))))
 			addtimer(VARSET_CALLBACK(src, lastbang, FALSE), 3 SECONDS)
-
-
-/obj/structure/closet/attack_paw(mob/living/carbon/human/user)
-	return attack_hand(user)
 
 
 /obj/structure/closet/attack_hand(mob/living/user)

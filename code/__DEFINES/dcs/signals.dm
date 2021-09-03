@@ -250,7 +250,9 @@
 #define COMSIG_ITEM_UNZOOM "item_unzoom"
 #define COMSIG_ITEM_ZOOM "item_zoom"                            //from base of /obj/item/zoom(), used for telling when a scope zooms and for checking if another zoom is already on mob.
 	#define COMSIG_ITEM_ALREADY_ZOOMED (1<<0)                         //bitshift that tells to a item when zoom checking that there already soemthing zooming user.
-#define COMSIG_ITEM_UNIQUE_ACTION "item_unique_action"			//from base of /obj/item/unique_action(): (atom/target, mob/user)
+#define COMSIG_ITEM_UNIQUE_ACTION "item_unique_action" //from base of /obj/item/unique_action(): (atom/target, mob/user)
+
+#define COMSIG_ITEM_IS_ATTACHING "item_is_attaching" //from base of /datum/component/attachment_handler/handle_attachment : (/obj/item, /mob)
 
 #define COMSIG_ITEM_TOGGLE_ACTION "item_toggle_action"			//from base of obj/item/ui_interact(): (/mob/user)
 #define COMSIG_ITEM_TOGGLE_ACTIVE "item_toggle_active"			//from base of /obj/item/toggle_active(): (new_state)
@@ -270,6 +272,8 @@
 	#define COMPONENT_CLOTHING_MECHANICS_TINTED (1<<0)
 
 #define COMSIG_ITEM_UNDEPLOY "item_undeploy" //from base of /obj/machinery/deployable
+
+#define COMSIG_LOADOUT_VENDOR_VENDED_ATTACHMENT "loadout_vended_attachment" //from base of /datum/item_representation/gun_attachement/proc/install_on_gun() : (/obj/item/attachment)
 
 // /obj/item/armor_module signals
 #define COMSIG_ARMOR_MODULE_ATTACHING "armor_module_attaching"
@@ -472,7 +476,6 @@
 
 //human signals
 #define COMSIG_CLICK_QUICKEQUIP "click_quickequip"
-#define COMSIG_KB_HOLSTER "keybinding_holster"
 
 // /obj/item/radio signals
 #define COMSIG_RADIO_NEW_FREQUENCY "radio_new_frequency"		//called from base of /obj/item/radio/proc/set_frequency(): (list/args)
@@ -535,6 +538,7 @@
 #define COMSIG_XENOABILITY_HEADBITE "xenoability_headbite"
 #define COMSIG_XENOABILITY_REGURGITATE "xenoability_regurgitate"
 #define COMSIG_XENOABILITY_DROP_WEEDS "xenoability_drop_weeds"
+#define COMSIG_XENOABILITY_CHOOSE_WEEDS "xenoability_choose_weeds"
 #define COMSIG_XENOABILITY_SECRETE_RESIN "xenoability_secrete_resin"
 #define COMSIG_XENOABILITY_SECRETE_RESIN_SILO "xenoability_secrete_resin_silo"
 #define COMSIG_XENOABILITY_EMIT_RECOVERY "xenoability_emit_recovery"
@@ -580,6 +584,7 @@
 #define COMSIG_XENOABILITY_SELECT_REAGENT "xenoability_select_reagent"
 #define COMSIG_XENOABILITY_RADIAL_SELECT_REAGENT "xenoability_radial_select_reagent"
 #define COMSIG_XENOABILITY_REAGENT_SLASH "xenoability_reagent_slash"
+#define COMSIG_XENOABILITY_DEFILE "xenoability_defile"
 
 #define COMSIG_XENOABILITY_RESIN_WALKER "xenoability_resin_walker"
 #define COMSIG_XENOABILITY_BUILD_TUNNEL "xenoability_build_tunnel"
@@ -588,6 +593,7 @@
 #define COMSIG_XENOABILITY_HEALING_INFUSION "xenoability_healing_infusion"
 
 #define COMSIG_XENOABILITY_TOGGLE_STEALTH "xenoability_toggle_stealth"
+#define COMSIG_XENOABILITY_MIRAGE "xenoability_mirage"
 
 #define COMSIG_XENOABILITY_SCREECH "xenoability_screech"
 #define COMSIG_XENOABILITY_WATCH_XENO "xenoability_watch_xeno"
