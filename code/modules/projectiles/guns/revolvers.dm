@@ -533,7 +533,7 @@
 	desc = "you should not be seeing this."
 	current_mag = /obj/item/ammo_magazine/internal/revolver/m44
 
-/obj/item/weapon/gun/revolver/single_action/update_icon()
+/obj/item/weapon/gun/revolver/single_action/update_icon_state()
 	. = ..()
 	if(in_chamber)
 		return
