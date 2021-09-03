@@ -611,7 +611,8 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 	SIGNAL_HANDLER
 
 	var/list/modifiers = params2list(params)
-	if(modifiers["right"] && modifiers["alt"] && object != src)
+	if(modifiers["right"] && modifiers["alt"] && object != src && gun_user.Adjacent(object))
+		gun_user.setDir(get_cardinal_dir(gun_user, object))
 		AltRightClick(gun_user)
 		return
 	if(modifiers["right"] || modifiers["middle"] || modifiers["shift"])
