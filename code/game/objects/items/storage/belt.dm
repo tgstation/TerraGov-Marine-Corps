@@ -125,7 +125,7 @@
 		/obj/item/roller,
 	)
 	storage_type_limits = list(
-		/obj/item/ammo_magazine = 2,
+		/obj/item/ammo_magazine = 3,
 	)
 
 /obj/item/storage/belt/medical/Initialize()
