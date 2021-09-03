@@ -840,6 +840,10 @@ Any silo placed on map must be protected by enough fog. This fog only appears in
 
 There should be a reasonnable amount of intel computers placed in areas with apc. 3 nuke disk computer (yellow, red, blue) must be placed around the map. A nuke landmark has to be present as well somewhere.
 
+#### Miners
+
+Miners must be placed around the map. Platinium miners must be in locations easily defendable by xenos, typically caves. Phoron miners must not be placed too close to LZ, it should be somewhat an effort to secure any miner.
+
 #### LZ requirements
 
 LZ must be marqued (lz1, lz2). The appropriate shuttle console landmark should be placed inside the fob. It must be surrounded by shutters. It has to have an apc to power the area, and a button to open the shutters.
