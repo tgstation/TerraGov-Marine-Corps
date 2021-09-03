@@ -60,6 +60,8 @@
 	var/list/recording_recipe
 	///Whether untrained people get a delay when using it
 	var/needs_medical_training = TRUE
+	///If TRUE, we'll clear a recipe we click on instead of dispensing it
+	var/clearing_recipe = FALSE
 
 /obj/machinery/chem_dispenser/Initialize()
 	. = ..()
@@ -222,6 +224,13 @@
 		if("dispense_recipe")
 			if(!is_operational() || QDELETED(cell))
 				return
+			if(clearing_recipe)
+				var/actually_clear = tgui_alert(usr, "Clear recipe [params["recipe"]]?", null, list("Yes","No"))
+				if(actually_clear == "Yes")
+					usr.client.prefs.chem_macros.Remove(params["recipe"])
+					usr.client.prefs.save_preferences()
+				clearing_recipe = FALSE
+				return TRUE
 			var/list/chemicals_to_dispense = usr.client.prefs.chem_macros[params["recipe"]]
 			if(!LAZYLEN(chemicals_to_dispense))
 				return
@@ -249,8 +258,11 @@
 		if("clear_recipes")
 			if(!is_operational())
 				return
-			var/yesno = tgui_alert(usr, "Clear all recipes?", null, list("Yes","No"))
-			if(yesno == "Yes")
+			var/confirm_clear = tgui_alert(usr, "Clear all recipes?", null, list("Yes","No", "Only one"))
+			if(confirm_clear == "Only one")
+				clearing_recipe = TRUE
+				return TRUE
+			if(confirm_clear == "Yes")
 				usr.client.prefs.chem_macros = list()
 				usr.client.prefs.save_preferences()
 			. = TRUE
