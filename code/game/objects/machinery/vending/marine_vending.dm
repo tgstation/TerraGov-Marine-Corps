@@ -808,6 +808,7 @@
 			/obj/item/facepaint/green = -1,
 		),
 		"Helmets" = list(
+			/obj/item/clothing/head/helmet/marine = -1,
 			/obj/item/clothing/head/modular/marine/m10x = -1,
 			/obj/item/clothing/head/modular/marine/m10x/heavy = -1,
 			/obj/item/clothing/head/modular/marine/skirmisher = -1,
