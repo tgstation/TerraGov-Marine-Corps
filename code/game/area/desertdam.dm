@@ -10,6 +10,8 @@
 	outside = FALSE
 //NorthEastern Lab Section
 /area/desert_dam/interior/lab_northeast
+	ceiling = CEILING_DEEP_UNDERGROUND
+/area/desert_dam/interior/lab_northeast
 	name = "Northeastern Lab"
 	icon_state = "purple"
 /area/desert_dam/interior/lab_northeast/east_lab_lobby
@@ -351,7 +353,7 @@
 /area/desert_dam/building/medical/surgery_room_two
 	name = "Medical Surgery Room Two"
 	icon_state = "purple"
-/area/desert_dam/building/medical/surgury_observation
+/area/desert_dam/building/medical/surgery_observation
 	name = "Medical Surgery Observation"
 	icon_state = "medbay2"
 /area/desert_dam/building/medical/morgue
@@ -378,6 +380,9 @@
 /area/desert_dam/building/medical/virology_isolation
 	name = "Medical Virology Isolation"
 	icon_state = "medbay"
+/area/desert_dam/building/medical/medsecure
+	name = "Medical Virology Isolation"
+	icon_state = "red"
 /area/desert_dam/building/medical
 	name = "Medical"
 	icon_state = "medbay2"
@@ -793,8 +798,6 @@
 	icon_state = "shuttle"
 /area/shuttle/tri_trans1/away
 	icon_state = "away1"
-/area/shuttle/tri_trans1/omega
-	icon_state = "shuttle2"
 
 /area/shuttle/tri_trans2/alpha
 	icon_state = "shuttlered"
