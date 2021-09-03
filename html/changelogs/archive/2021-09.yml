@@ -29,3 +29,24 @@
       attachment with the object. Right clicking and Middle clicking will fire the
       Active attachment. Left click will always fire the main gun. Right clicking
       an adjacent move will attempt to point blank the mob with the active attachment.
+2021-09-03:
+  Anystar1:
+  - rscadd: Captain now has level 1 surgery.
+  BraveMole:
+  - balance: Xeno turret projectiles go faster
+  - balance: 3 jetpacks free in vendors
+  QualityVan:
+  - rscadd: Sprayed sterilizine disinfects existing wounds. It won't help directly
+      with infected limbs though.
+  - balance: Spraying sterilizine on people with existing wounds is more likely to
+      cause pain.
+  - bugfix: Wounds no longer infect limbs more slowly when you have antibiotics
+  - bugfix: Sterilizine made in chemistry works and isn't called 'medicine'.
+  SplinterGP:
+  - config: default config setting of view has been changed to 15x15 other than default
+      19x15, basically only affects local server settings for anyone downloading code
+      from github.
+  hyper2snyper:
+  - rscadd: New pocket pistol, the "R-2395 Derringer". Available in marine vendors.
+  lbnesquik:
+  - rscadd: Added a tip and note to synths referring them towards binary radio
