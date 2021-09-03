@@ -203,7 +203,7 @@
 			/obj/item/attachable/lasersight = -1,
 			/obj/item/attachable/verticalgrip = -1,
 			/obj/item/attachable/stock/t19stock = -1,
-			/obj/item/attachable/stock/t35stock = -1, 
+			/obj/item/attachable/stock/t35stock = -1,
 			/obj/item/weapon/gun/shotgun/combat/masterkey = -1,
 			/obj/item/weapon/gun/flamer/mini_flamer = -1,
 			/obj/item/ammo_magazine/flamer_tank/mini = -1,
@@ -721,6 +721,7 @@
 	prices = list()
 
 /obj/machinery/vending/shared_vending/marine_engi/rebel
+	req_access = list(ACCESS_MARINE_ENGPREP_REBEL)
 	products = list(
 		/obj/structure/closet/crate/mortar_ammo/mortar_kit = 1,
 		/obj/item/storage/box/sentry = 5,
