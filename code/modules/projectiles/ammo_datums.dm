@@ -1830,6 +1830,7 @@ datum/ammo/bullet/revolver/tp44
 /datum/ammo/xeno/acid/heavy/turret
 	damage = 20
 	name = "acid turret splash"
+	shell_speed = 2
 
 /datum/ammo/xeno/acid/heavy/on_hit_mob(mob/M,obj/projectile/P)
 	var/turf/T = get_turf(M)
