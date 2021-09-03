@@ -154,7 +154,8 @@
 			return FALSE
 		if(!can_attach(user, module))
 			return FALSE
-		module.do_attach(user, src)
+
+		do_attach(user, module)
 		update_overlays()
 		return
 
@@ -172,13 +173,17 @@
 	if(!istype(module))
 		return FALSE
 
-	if(ismob(loc) && (user.r_hand != src && user.l_hand != src))
-		if(!silent)
-			to_chat(user, span_warning("You need to remove the armor first."))
-		return FALSE
-
 	if(!do_after(user, equip_delay, TRUE, user, BUSY_ICON_GENERIC))
 		return FALSE
+
+///Temporarily unequips and then requips the armor during the attach process to keep armor datums/actions up to date if needed
+/obj/item/clothing/suit/modular/proc/do_attach(mob/living/user, obj/item/armor_module/module)
+	var/needs_requip = user.get_item_by_slot(SLOT_WEAR_SUIT) == src
+	if(needs_requip)
+		unequipped(user, SLOT_WEAR_SUIT)
+	module.do_attach(user, src)
+	if(needs_requip)
+		equipped(user, SLOT_WEAR_SUIT)
 
 /obj/item/clothing/suit/modular/proc/can_detach(mob/living/user, obj/item/armor_module/module, silent = FALSE)
 	. = TRUE
@@ -186,6 +191,14 @@
 	if(!do_after(user, equip_delay, TRUE, user, BUSY_ICON_GENERIC))
 		return FALSE
 
+///Temporarily unequips and then requips the armor during the detach process to keep armor datums/actions up to date if needed
+/obj/item/clothing/suit/modular/proc/do_detach(mob/living/user, obj/item/armor_module/module)
+	var/needs_requip = user.get_item_by_slot(SLOT_WEAR_SUIT) == src
+	if(needs_requip)
+		unequipped(user, SLOT_WEAR_SUIT)
+	module.do_detach(user, src)
+	if(needs_requip)
+		equipped(user, SLOT_WEAR_SUIT)
 
 /obj/item/clothing/suit/modular/screwdriver_act(mob/living/user, obj/item/I)
 	. = ..()
@@ -199,10 +212,6 @@
 		to_chat(user, span_notice("There is nothing to remove"))
 		return TRUE
 
-	if(ismob(loc) && (user.r_hand != src && user.l_hand != src))
-		to_chat(user, span_warning("You need to remove the armor first."))
-		return TRUE
-
 	var/obj/item/armor_module/attachable/attachment
 	if(LAZYLEN(installed_modules) == 1) // Single item (just take it)
 		attachment = installed_modules[1]
@@ -214,7 +223,7 @@
 	if(!can_detach(user, attachment))
 		return TRUE
 
-	attachment.do_detach(user, src)
+	do_detach(user, attachment)
 	update_overlays()
 	return TRUE
 
@@ -226,10 +235,6 @@
 
 	if(user.do_actions)
 		return FALSE
-
-	if(ismob(loc) && (user.r_hand != src && user.l_hand != src))
-		to_chat(user, span_warning("You need to remove the armor first."))
-		return TRUE
 
 	var/list/obj/item/armor_module/armor/armor_slots = list()
 	if(slot_chest)
@@ -253,7 +258,7 @@
 
 	if(!can_detach(user, armor_slot))
 		return TRUE
-	armor_slot.do_detach(user, src)
+	do_detach(user, armor_slot)
 	update_overlays()
 	return TRUE
 
@@ -270,13 +275,9 @@
 		to_chat(user, span_notice("There is nothing to remove"))
 		return TRUE
 
-	if(ismob(loc) && (user.r_hand != src && user.l_hand != src))
-		to_chat(user, span_warning("You need to remove the armor first."))
-		return TRUE
-
 	if(!can_detach(user, installed_storage))
 		return TRUE
-	installed_storage.do_detach(user, src)
+	do_detach(user, installed_storage)
 	update_overlays()
 	return TRUE
 
