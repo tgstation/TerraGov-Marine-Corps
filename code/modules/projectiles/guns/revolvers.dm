@@ -17,7 +17,7 @@
 	var/thud_sound = 'sound/effects/thud.ogg'
 	///Delay between gun tricks
 	var/trick_delay = 6
-	///Time of last truck
+	///Time of last trick
 	var/recent_trick //So they're not spamming tricks.
 	///If the gun is able to play Russian Roulette
 	var/russian_roulette = 0 //God help you if you do this.
