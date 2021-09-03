@@ -133,7 +133,7 @@
 /** Environment protecttion module */
 /obj/item/armor_module/attachable/mimir_environment_protection
 	name = "\improper Mark 2 Mimir Environmental Resistance System"
-	desc = "Designed for mounting on the Jaeger Combat Exoskeleton. When activated, this system provides substantial resistance to environmental hazards, such as gases, and radiological exposure. This newer version provides resistance to acid. Best paired with the Mimir Environmental Helmet System and a gas mask. Will impact mobility." // Add the toggable thing to the description when you are done, okay? ~XS300
+	desc = "Designed for mounting on the Jaeger Combat Exoskeleton. When activated, this system provides substantial resistance to environmental hazards, such as gases, biological and radiological exposure. This newer version provides a large amount of resistance to acid. Best paired with the Mimir Environmental Helmet System and a gas mask. Will impact mobility." // Add the toggable thing to the description when you are done, okay? ~XS300
 	icon_state = "mod_biohazard_icon"
 	item_state = "mod_biohazard"
 	soft_armor = list("bio" = 40, "rad" = 50, "acid" = 30)
@@ -162,7 +162,7 @@
 // The mark 1 version, made to protect you from just gas.
 /obj/item/armor_module/attachable/mimir_environment_protection/mark1
 	name = "\improper Mark 1 Mimir Environmental Resistance System"
-	desc = "Designed for mounting on the Jaeger Combat Exoskeleton. When activated, this system provides substantial resistance to environmental hazards, such as gases and radiological exposure. This older version provides no protection to acid. Best paired with the Mimir Environmental Helmet System. Will impact mobility." // Add the toggable thing to the description when you are done, okay? ~XS300
+	desc = "Designed for mounting on the Jaeger Combat Exoskeleton. When activated, this system provides substantial resistance to environmental hazards, such as gases, biological and radiological exposure. This older version provides a small amount of protection to acid. Best paired with the Mimir Environmental Helmet System. Will impact mobility." // Add the toggable thing to the description when you are done, okay? ~XS300
 	icon_state = "mod_biohazard_icon"
 	item_state = "mod_biohazard"
 	soft_armor = list("bio" = 15, "rad" = 10, "acid" = 15)
