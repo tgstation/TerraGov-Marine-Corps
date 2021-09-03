@@ -1,0 +1,4 @@
+author: "TiviPlus"
+delete-after: True
+changes: 
+  - admin: "Doors will now only log when the bullet impacts and only send the FF message before the hijack ship launches"
