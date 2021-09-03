@@ -1385,14 +1385,17 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	pixel_shift_y = 18
 
 	var/obj/item/cell/lasgun/lasrifle/marine/battery
+	
+	var/deploy_time = 2 SECONDS
+	var/undeploy_time = 2 SECONDS
 
 /obj/item/attachable/buildasentry/Initialize()
 	. = ..()
 	battery = new(src)
 	
 /obj/item/attachable/buildasentry/update_icon()
-	icon_state = battery ? initial(icon_state) : initial(icon_state) + "_e"
 	. = ..()
+	icon_state = battery ? initial(icon_state) : initial(icon_state) + "_e"
 
 /obj/item/attachable/buildasentry/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -1438,9 +1441,10 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 		/obj/machinery/deployable/mounted,
 		/obj/machinery/miner,
 	)
+	master_gun.turret_flags = TURRET_HAS_CAMERA|TURRET_SAFETY|TURRET_ALERTS
 
 
-	master_gun.AddElement(/datum/element/deployable_item, /obj/machinery/deployable/mounted/sentry/buildasentry, 5 SECONDS, 5 SECONDS)
+	master_gun.AddElement(/datum/element/deployable_item, /obj/machinery/deployable/mounted/sentry/buildasentry, deploy_time, undeploy_time)
 	RegisterSignal(master_gun, list(COMSIG_CLICK_ALT, COMSIG_PARENT_ATTACKBY), .proc/update_battery)
 
 /obj/item/attachable/buildasentry/proc/update_battery()
@@ -1455,10 +1459,10 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	var/obj/item/weapon/gun/detaching_item = attaching_item
 	DISABLE_BITFIELD(detaching_item.flags_gun_features, GUN_IS_SENTRY)
 	DISABLE_BITFIELD(detaching_item.flags_item, IS_DEPLOYABLE)
-	master_gun.ignored_terrains = null
-
+	detaching_item.ignored_terrains = null
+	detaching_item.turret_flags = NONE
 	detaching_item.sentry_battery = null
-	detaching_item.RemoveElement(/datum/element/deployable_item, /obj/machinery/deployable/mounted/sentry/buildasentry, 5 SECONDS, 5 SECONDS)
+	detaching_item.RemoveElement(/datum/element/deployable_item, /obj/machinery/deployable/mounted/sentry/buildasentry, deploy_time, undeploy_time)
 	UnregisterSignal(detaching_item, list(COMSIG_CLICK_ALT, COMSIG_PARENT_ATTACKBY))
 
 

@@ -73,7 +73,7 @@
 	QDEL_NULL(camera)
 	QDEL_NULL(spark_system)
 	STOP_PROCESSING(SSobj, src)
-	UnregisterSignal(internal_item, COMSIG_MOB_GUN_FIRED)
+	internal_item ? UnregisterSignal(internal_item, COMSIG_MOB_GUN_FIRED)
 	GLOB.marine_turrets -= src
 	return ..()
 
@@ -490,6 +490,8 @@
 		overlay_icon_state = "pepper"
 	else if(istype(internal_item, /obj/item/weapon/gun/revolver))
 		overlay_icon_state = "revolver"
+	else if(istype(internal_item, /obj/item/weapon/gun/pistol/plasma_pistol))
+		overlay_icon_state = "tx7"
 	else if(istype(internal_item, /obj/item/weapon/gun/pistol))
 		overlay_icon_state = "pistol"
 	else if(istype(internal_item, /obj/item/weapon/gun/energy/lasgun/lasrifle)) //This is for when we get lasrifles working here.
@@ -501,4 +503,4 @@
 /obj/machinery/deployable/mounted/sentry/buildasentry/update_icon()
 	. = ..()
 	overlays.Cut()
-	overlays += image('icons/Marine/sentry.dmi', src, overlay_icon_state, dir = dir)
+	overlays += image('icons/Marine/sentry.dmi', src, overlay_icon_state, dir = src.dir)
