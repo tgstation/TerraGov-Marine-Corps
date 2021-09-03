@@ -7898,10 +7898,14 @@
 	},
 /area/desert_dam/interior/dam_interior/east_tunnel_entrance)
 "aDT" = (
+/obj/machinery/door_control{
+	id = "medstorage3";
+	name = "Medical Secure Shutters"
+	},
 /turf/closed/wall{
 	name = "reinforced metal wall"
 	},
-/area/desert_dam/exterior/valley/valley_medical)
+/area/desert_dam/building/medical/medsecure)
 "aDU" = (
 /obj/structure/flora/tree/joshua,
 /turf/open/floor/plating/ground/mars/dirttosand{
@@ -8017,15 +8021,11 @@
 /obj/effect/decal/warning_stripes{
 	icon_state = "S"
 	},
-/obj/machinery/door_control{
-	id = "medstorage3";
-	name = "Medical Secure Shutters"
-	},
 /turf/open/floor/prison{
 	dir = 8;
 	icon_state = "sterile_white"
 	},
-/area/desert_dam/exterior/valley/valley_medical)
+/area/desert_dam/building/medical/medsecure)
 "aEv" = (
 /obj/structure/stairs/railstairs{
 	icon_state = "stairuprailleft"
