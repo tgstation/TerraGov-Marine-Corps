@@ -1,0 +1,4 @@
+author: "QualityVan"
+delete-after: True
+changes: 
+  - balance: "Medical belts can only hold up to three magazines. Their total storage isn't changed."
