@@ -612,7 +612,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	icon_state = "sniperscope"
 	desc = "A rail mounted zoom sight scope. Allows zoom by activating the attachment. Use F12 if your HUD doesn't come back."
 	slot = ATTACHMENT_SLOT_RAIL
-	aim_speed_mod = 0.06 //Extra slowdown when aiming
+	aim_speed_mod = 0.5 //Extra slowdown when aiming
 	wield_delay_mod = 0.4 SECONDS
 	accuracy_mod = 0.1
 	scoped_accuracy_mod = SCOPE_RAIL
@@ -624,7 +624,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	zoom_viewsize = 12
 	zoom_allow_movement = TRUE
 	///how much slowdown the scope gives when zoomed. You want this to be slowdown you want minus aim_speed_mod
-	var/zoom_slowdown = 1.44
+	var/zoom_slowdown = 1
 	///boolean as to whether a scope can apply nightvision
 	var/has_nightvision = FALSE
 	///boolean as to whether the attachment is currently giving nightvision
@@ -754,12 +754,12 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	wield_delay_mod = 0.2 SECONDS
 	accuracy_mod = 0.05
 	accuracy_unwielded_mod = -0.05
-	aim_speed_mod = 0.04
+	aim_speed_mod = 0.2
 	scoped_accuracy_mod = SCOPE_RAIL_MINI
 	scope_zoom_mod = TRUE
 	has_nightvision = FALSE
 	zoom_allow_movement = TRUE
-	zoom_slowdown = 0.46
+	zoom_slowdown = 0.3
 	zoom_tile_offset = 5
 	zoom_viewsize = 7
 
