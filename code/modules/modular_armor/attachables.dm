@@ -38,7 +38,7 @@
 	icon_state = "mod_lamp_icon"
 	item_state = "mod_lamp"
 	slowdown = 0
-	var/power_boost = 7 /// The boost to armor shoulder light
+	var/power_boost = 5 /// The boost to armor shoulder light
 
 /obj/item/armor_module/attachable/better_shoulder_lamp/do_attach(mob/living/user, obj/item/clothing/suit/modular/parent)
 	. = ..()
