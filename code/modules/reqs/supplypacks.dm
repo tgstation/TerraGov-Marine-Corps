@@ -764,7 +764,7 @@ ARMOR
 	cost = 40
 
 /datum/supply_packs/armor/modular/attachments/lamp
-	name = "Jaeger baldur modules"
+	name = "Jaeger Baldur Mk2"
 	contains = list(
 		/obj/item/armor_module/attachable/better_shoulder_lamp,
 	)
