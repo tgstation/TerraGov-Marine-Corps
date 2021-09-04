@@ -50,3 +50,19 @@
   - rscadd: New pocket pistol, the "R-2395 Derringer". Available in marine vendors.
   lbnesquik:
   - rscadd: Added a tip and note to synths referring them towards binary radio
+2021-09-04:
+  QualityVan:
+  - balance: Medical belts can only hold up to three magazines. Their total storage
+      isn't changed.
+  Sebbe9123:
+  - balance: Rebalances Mimir Bio and Acid armor.
+  TiviPlus:
+  - admin: Doors will now only log when the bullet impacts and only send the FF message
+      before the hijack ship launches
+  - rscadd: Add a boxing ring to Pillar
+  hyper2snyper:
+  - balance: Sentries can now shoot past other deployed items and Miners.
+  - bugfix: Fixes the issue with null internal guns on sentries.
+  - bugfix: Fixes Comrade sentry.
+  - code_imp: Updates /deployable and makes armor values dependent on the deploying
+      item.

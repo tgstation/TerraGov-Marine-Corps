@@ -1,7 +1,0 @@
-author: "hyper2snyper"
-delete-after: True
-changes: 
-  - balance: "Sentries can now shoot past other deployed items and Miners."
-  - bugfix: "Fixes the issue with null internal guns on sentries."
-  - bugfix: "Fixes Comrade sentry."
-  - code_imp: "Updates /deployable and makes armor values dependent on the deploying item."
