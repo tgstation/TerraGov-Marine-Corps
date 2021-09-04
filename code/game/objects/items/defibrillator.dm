@@ -223,7 +223,7 @@
 		return
 
 	var/datum/internal_organ/heart/heart = H.internal_organs_by_name["heart"]
-	if(!issynth(H) && heart)
+	if(!issynth(H) && heart && prob(25))
 		heart.take_damage(10) //Allow the defibrilator to possibly worsen heart damage. Still rare enough to just be the "clone damage" of the defib
 
 	if(!H.has_working_organs())
@@ -275,6 +275,7 @@
 	H.regenerate_icons()
 	H.reload_fullscreens()
 	H.flash_act()
+	heart.take_damage(10) //10 heart damage on a successful revive.
 	H.apply_effect(10, EYE_BLUR)
 	H.apply_effect(10, PARALYZE)
 	H.handle_regular_hud_updates()
