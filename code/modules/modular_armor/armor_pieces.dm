@@ -119,16 +119,16 @@
 	name = "\improper Jaeger Pattern Medium Infantry chestplates"
 	desc = "Designed for use with the Jaeger Combat Exoskeleton. It provides moderate protection and encumbrance when attached and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. This armor appears to be marked as a Infantry armor piece."
 	icon_state = "infantry_chest"
-	soft_armor = list("melee" = 40, "bullet" = 40, "laser" = 40, "energy" = 30, "bomb" = 30, "bio" = 30, "rad" = 30, "fire" = 30, "acid" = 35)
-	slowdown = 0.3
+	soft_armor = list("melee" = 35, "bullet" = 40, "laser" = 40, "energy" = 30, "bomb" = 30, "bio" = 30, "rad" = 30, "fire" = 30, "acid" = 35)
+	slowdown = 0.5
 	greyscale_config = /datum/greyscale_config/modularchest_infantry
 
 /obj/item/armor_module/armor/chest/marine/skirmisher
 	name = "\improper Jaeger Pattern Light Skirmisher chestplates"
 	desc = "Designed for use with the Jaeger Combat Exoskeleton. It provides minor protection and encumbrance when attached and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. This armor appears to be marked as a Skirmisher armor piece."
 	icon_state = "skirmisher_chest"
-	soft_armor = list("melee" = 30, "bullet" = 35, "laser" = 35, "energy" = 30, "bomb" = 25, "bio" = 30, "rad" = 30, "fire" = 30, "acid" = 30)
-	slowdown = 0.1
+	soft_armor = list("melee" = 25, "bullet" = 35, "laser" = 35, "energy" = 30, "bomb" = 25, "bio" = 30, "rad" = 30, "fire" = 30, "acid" = 30)
+	slowdown = 0.3
 	greyscale_config = /datum/greyscale_config/modularchest_skirmisher
 
 /obj/item/armor_module/armor/chest/marine/skirmisher/scout
@@ -141,8 +141,8 @@
 	name = "\improper Jaeger Pattern Heavy Assault chestplates"
 	desc = "Designed for use with the Jaeger Combat Exoskeleton. It provides high protection and encumbrance when attached and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. This armor appears to be marked as a Assault armor piece."
 	icon_state = "assault_chest"
-	soft_armor = list("melee" = 50, "bullet" = 45, "laser" = 45, "energy" = 10, "bomb" = 35, "bio" = 10, "rad" = 10, "fire" = 30, "acid" = 20)
-	slowdown = 0.5
+	soft_armor = list("melee" = 45, "bullet" = 45, "laser" = 45, "energy" = 10, "bomb" = 35, "bio" = 10, "rad" = 10, "fire" = 30, "acid" = 20)
+	slowdown = 0.7
 	greyscale_config = /datum/greyscale_config/modularchest_assault
 
 /obj/item/armor_module/armor/chest/marine/eva //Medium armor alt look
