@@ -137,7 +137,7 @@
 	icon = 'icons/obj/items/weapons.dmi'
 	icon_state = "marine_shield"
 	flags_equip_slot = ITEM_SLOT_BACK
-	max_integrity = 400
+	max_integrity = 300
 	integrity_failure = 100
 	soft_armor = list("melee" = 50, "bullet" = 50, "laser" = 0, "energy" = 100, "bomb" = 15, "bio" = 50, "rad" = 0, "fire" = 0, "acid" = 35)
 	hard_armor = list("melee" = 0, "bullet" = 5, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
