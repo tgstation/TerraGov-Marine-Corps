@@ -282,7 +282,7 @@
 /obj/machinery/miner/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
 	if(X.status_flags & INCORPOREAL) //Incorporeal xenos cannot attack physically.
 		return
-	if(miner_upgrade_type == MINER_RESISTANT && !((X.mob_size == MOB_SIZE_BIG || X.xeno_caste.caste_flags & CASTE_IS_STRONG)) ) //Reinforced miners can't be attacked unless the caste is strong
+	if(miner_upgrade_type == MINER_RESISTANT && !(X.mob_size == MOB_SIZE_BIG || X.xeno_caste.caste_flags & CASTE_IS_STRONG) ) //Reinforced miners can't be attacked unless the caste is strong
 		X.visible_message(span_notice("[X]'s claws bounce off of [src]'s reinforced plating."),
 		span_notice("You can't slash through [src]'s reinforced plating!"))
 		return
