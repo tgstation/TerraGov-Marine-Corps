@@ -29,3 +29,40 @@
       attachment with the object. Right clicking and Middle clicking will fire the
       Active attachment. Left click will always fire the main gun. Right clicking
       an adjacent move will attempt to point blank the mob with the active attachment.
+2021-09-03:
+  Anystar1:
+  - rscadd: Captain now has level 1 surgery.
+  BraveMole:
+  - balance: Xeno turret projectiles go faster
+  - balance: 3 jetpacks free in vendors
+  QualityVan:
+  - rscadd: Sprayed sterilizine disinfects existing wounds. It won't help directly
+      with infected limbs though.
+  - balance: Spraying sterilizine on people with existing wounds is more likely to
+      cause pain.
+  - bugfix: Wounds no longer infect limbs more slowly when you have antibiotics
+  - bugfix: Sterilizine made in chemistry works and isn't called 'medicine'.
+  SplinterGP:
+  - config: default config setting of view has been changed to 15x15 other than default
+      19x15, basically only affects local server settings for anyone downloading code
+      from github.
+  hyper2snyper:
+  - rscadd: New pocket pistol, the "R-2395 Derringer". Available in marine vendors.
+  lbnesquik:
+  - rscadd: Added a tip and note to synths referring them towards binary radio
+2021-09-04:
+  QualityVan:
+  - balance: Medical belts can only hold up to three magazines. Their total storage
+      isn't changed.
+  Sebbe9123:
+  - balance: Rebalances Mimir Bio and Acid armor.
+  TiviPlus:
+  - admin: Doors will now only log when the bullet impacts and only send the FF message
+      before the hijack ship launches
+  - rscadd: Add a boxing ring to Pillar
+  hyper2snyper:
+  - balance: Sentries can now shoot past other deployed items and Miners.
+  - bugfix: Fixes the issue with null internal guns on sentries.
+  - bugfix: Fixes Comrade sentry.
+  - code_imp: Updates /deployable and makes armor values dependent on the deploying
+      item.
