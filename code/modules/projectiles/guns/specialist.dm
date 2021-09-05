@@ -101,7 +101,13 @@
 	remove_overlay(X_LASER_LAYER)
 	return TRUE
 
-/obj/item/weapon/gun/rifle/sniper/antimaterial/do_unique_action(mob/user)
+/obj/item/weapon/gun/rifle/sniper/antimaterial/cock(mob/user)
+	return TRUE
+
+/obj/item/weapon/gun/rifle/sniper/antimaterial/unique_action(mob/user)
+	. = ..()
+	if(!.)
+		return
 	if(!targetmarker_primed && !targetmarker_on)
 		return laser_on(user)
 	return laser_off(user)

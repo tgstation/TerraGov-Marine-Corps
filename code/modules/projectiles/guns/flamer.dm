@@ -454,8 +454,13 @@
 	. = ..()
 	to_chat(user, span_notice("Its hydro cannon contains [reagents.get_reagent_amount(/datum/reagent/water)]/[reagents.maximum_volume] units of water!"))
 
+/obj/item/weapon/gun/flamer/big_flamer/marinestandard/cock(mob/user)
+	return TRUE
 
-/obj/item/weapon/gun/flamer/big_flamer/marinestandard/do_unique_action(mob/user)
+/obj/item/weapon/gun/flamer/big_flamer/marinestandard/unique_action(mob/user)
+	. = ..()
+	if(!.)
+		return
 	var/obj/item/attachable/hydro_cannon/hydro = LAZYACCESS(attachments_by_slot, ATTACHMENT_SLOT_UNDER)
 	if(!istype(hydro))
 		return FALSE

@@ -411,11 +411,8 @@
 	. = ..()
 	if(CHECK_BITFIELD(flags_item, IS_DEPLOYABLE) && !CHECK_BITFIELD(flags_item, IS_DEPLOYED)) //If the gun can be deployed, it deploys when unique_action is called.
 		return FALSE
-	return do_unique_action(user)
-
-///Proc that is called in unique_action. This functions so that unique_action can call parent and do_unique_action can be overwritten.
-/obj/item/weapon/gun/proc/do_unique_action(mob/user)
 	return cock(user)
+
 
 //----------------------------------------------------------
 			//							        \\
