@@ -284,7 +284,7 @@
 		return
 	if(miner_upgrade_type == MINER_RESISTANT && !(X.mob_size == MOB_SIZE_BIG || X.xeno_caste.caste_flags & CASTE_IS_STRONG) ) //Reinforced miners can't be attacked unless the caste is strong
 		X.visible_message(span_notice("[X]'s claws bounce off of [src]'s reinforced plating."),
-		span_notice("You can't slash through [src]'s reinforced plating!"))
+		span_notice("We can't slash through [src]'s reinforced plating!"))
 		return
 	while(miner_status != MINER_DESTROYED)
 		if(!do_after(X, 3 SECONDS, TRUE, src, BUSY_ICON_DANGER, BUSY_ICON_HOSTILE))
