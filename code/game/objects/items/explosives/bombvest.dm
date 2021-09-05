@@ -52,7 +52,7 @@
 		if(istype(appendage, /datum/limb/chest) || istype(appendage, /datum/limb/groin) || istype(appendage, /datum/limb/head))
 			continue
 		appendage.droplimb()
-	explosion(loc, 2, 2, 6, 5, 5)
+	explosion(loc, 3, 2, 6, 5, 5)
 	qdel(src)
 
 ///Gets a warcry to scream on Control Click, checks for non allowed warcries.
