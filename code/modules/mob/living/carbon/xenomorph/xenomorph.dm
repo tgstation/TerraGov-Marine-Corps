@@ -77,7 +77,7 @@
 	var/datum/xeno_caste/X = GLOB.xeno_caste_datums[caste_base_type][upgrade]
 	if(!istype(X))
 		CRASH("error with caste datum")
-	movespeed_modification.Cut() //Slowdowns tend to stick while changing form/upgrading, this prevents that.
+	LAZYCLEARLIST(movespeed_modification) //Slowdowns tend to stick while changing form/upgrading, this prevents that.
 	xeno_caste = X
 	xeno_caste.on_caste_applied(src)
 	maxHealth = xeno_caste.max_health * GLOB.xeno_stat_multiplicator_buff
