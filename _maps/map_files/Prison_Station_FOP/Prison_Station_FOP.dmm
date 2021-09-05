@@ -45246,7 +45246,7 @@
 	},
 /area/prison/cellblock/mediumsec/east)
 "shF" = (
-/turf/open/ground/desertdam/river/clean/shallow_edge,
+/turf/open/ground/river/desertdam/clean/shallow_edge,
 /area/prison/hallway/central)
 "sjr" = (
 /obj/machinery/miner/damaged,
