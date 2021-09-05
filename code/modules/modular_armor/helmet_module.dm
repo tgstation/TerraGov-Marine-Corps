@@ -27,7 +27,7 @@
 	if(!parent.can_attach(user, src))
 		return
 
-	do_attach(user, parent)
+	parent.do_attach(user, src)
 
 /// Called when the module is added to the armor
 /obj/item/helmet_module/proc/do_attach(mob/living/user, obj/item/clothing/head/modular/parent)

@@ -178,11 +178,11 @@
 
 ///Temporarily unequips and then requips the armor during the attach process to keep armor datums/actions up to date if needed
 /obj/item/clothing/suit/modular/proc/do_attach(mob/living/user, obj/item/armor_module/module)
-	var/needs_requip = user.get_item_by_slot(SLOT_WEAR_SUIT) == src
-	if(needs_requip)
+	var/needs_reequip = user.get_item_by_slot(SLOT_WEAR_SUIT) == src
+	if(needs_reequip)
 		unequipped(user, SLOT_WEAR_SUIT)
 	module.do_attach(user, src)
-	if(needs_requip)
+	if(needs_reequip)
 		equipped(user, SLOT_WEAR_SUIT)
 
 /obj/item/clothing/suit/modular/proc/can_detach(mob/living/user, obj/item/armor_module/module, silent = FALSE)
@@ -193,11 +193,11 @@
 
 ///Temporarily unequips and then requips the armor during the detach process to keep armor datums/actions up to date if needed
 /obj/item/clothing/suit/modular/proc/do_detach(mob/living/user, obj/item/armor_module/module)
-	var/needs_requip = user.get_item_by_slot(SLOT_WEAR_SUIT) == src
-	if(needs_requip)
+	var/needs_reequip = user.get_item_by_slot(SLOT_WEAR_SUIT) == src
+	if(needs_reequip)
 		unequipped(user, SLOT_WEAR_SUIT)
 	module.do_detach(user, src)
-	if(needs_requip)
+	if(needs_reequip)
 		equipped(user, SLOT_WEAR_SUIT)
 
 /obj/item/clothing/suit/modular/screwdriver_act(mob/living/user, obj/item/I)
@@ -540,11 +540,11 @@
 		to_chat(user, span_notice("There is nothing to remove"))
 		return TRUE
 
-	var/obj/item/armor_module/attachable/attachment = installed_module
+	var/obj/item/helmet_module/attachment = installed_module
 	if(!can_detach(user, attachment))
 		return TRUE
 
-	attachment.do_detach(user, src)
+	do_detach(user, attachment)
 	update_overlays()
 	return TRUE
 
@@ -570,11 +570,6 @@
 	if(!istype(module))
 		return FALSE
 
-	if(ismob(loc) && (user.r_hand != src && user.l_hand != src))
-		if(!silent)
-			to_chat(user, span_warning("You need to remove the armor first."))
-		return FALSE
-
 	if(installed_module)
 		if(!silent)
 			to_chat(user,span_warning("There is already an installed module."))
@@ -587,12 +582,30 @@
 		return FALSE
 	update_overlays()
 
+///Temporarily unequips and then requips the helmet during the module attach process to keep armor datums/actions up to date if needed
+/obj/item/clothing/head/modular/proc/do_attach(mob/living/user, obj/item/helmet_module/module)
+	var/needs_reequip = user.get_item_by_slot(SLOT_HEAD) == src
+	if(needs_reequip)
+		unequipped(user, SLOT_HEAD)
+	module.do_attach(user, src)
+	if(needs_reequip)
+		equipped(user, SLOT_HEAD)
+
 /obj/item/clothing/head/modular/proc/can_detach(mob/living/user, obj/item/helmet_module/module, silent = FALSE)
 	. = TRUE
 
 	if(!do_after(user, equip_delay, TRUE, user, BUSY_ICON_GENERIC))
 		return FALSE
 	update_overlays()
+
+///Temporarily unequips and then requips the helmet during the module attach process to keep armor datums/actions up to date if needed
+/obj/item/clothing/head/modular/proc/do_detach(mob/living/user, obj/item/helmet_module/module)
+	var/needs_reequip = user.get_item_by_slot(SLOT_HEAD) == src
+	if(needs_reequip)
+		unequipped(user, SLOT_HEAD)
+	module.do_detach(user, src)
+	if(needs_reequip)
+		equipped(user, SLOT_HEAD)
 
 /obj/item/clothing/head/modular/marine
 	name = "Jaeger Pattern Infantry Helmet"
