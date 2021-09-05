@@ -155,7 +155,7 @@
 		if(!can_attach(user, module))
 			return FALSE
 		module.do_attach(user, src)
-		update_overlays()
+		update_icon()
 		return
 
 	if(!storage)
@@ -215,7 +215,7 @@
 		return TRUE
 
 	attachment.do_detach(user, src)
-	update_overlays()
+	update_icon()
 	return TRUE
 
 
@@ -254,7 +254,7 @@
 	if(!can_detach(user, armor_slot))
 		return TRUE
 	armor_slot.do_detach(user, src)
-	update_overlays()
+	update_icon()
 	return TRUE
 
 
@@ -277,27 +277,24 @@
 	if(!can_detach(user, installed_storage))
 		return TRUE
 	installed_storage.do_detach(user, src)
-	update_overlays()
+	update_icon()
 	return TRUE
 
 /obj/item/clothing/suit/modular/update_overlays()
 	. = ..()
 
-	if(overlays)
-		cut_overlays()
-
 	if(slot_chest)
-		add_overlay(image(slot_chest.icon, slot_chest.icon_state))
+		. += image(slot_chest.icon, slot_chest.icon_state)
 	if(slot_arms)
-		add_overlay(image(slot_arms.icon, slot_arms.icon_state))
+		. += image(slot_arms.icon, slot_arms.icon_state)
 	if(slot_legs)
-		add_overlay(image(slot_legs.icon, slot_legs.icon_state))
+		. += image(slot_legs.icon, slot_legs.icon_state)
 
 	// we intentionally do not add modules here
 	// as the icons are not made to be added in world, only on mobs.
 
 	if(installed_storage)
-		add_overlay(image(installed_storage.icon, installed_storage.icon_state))
+		. += image(installed_storage.icon, installed_storage.icon_state)
 
 	update_clothing_icon()
 
@@ -362,6 +359,8 @@
 
 	/// Reference to the installed module
 	var/obj/item/helmet_module/installed_module
+	/// Holder for the actual storage implementation
+	var/obj/item/storage/internal/storage
 
 	/// How long it takes to attach or detach to this item
 	var/equip_delay = 3 SECONDS
@@ -426,40 +425,51 @@
 		to_chat(user, "Right click the helmet to toggle the visor internal lighting.")
 		to_chat(user, "Right click the helmet with paint to color the visor internal lighting.")
 
+/obj/item/clothing/head/modular/attack_hand(mob/living/user)
+	if(!storage)
+		return ..()
+	if(storage.handle_attack_hand(user))
+		return ..()
+
+/obj/item/clothing/head/modular/MouseDrop(over_object, src_location, over_location)
+	if(!storage)
+		return ..()
+	if(storage.handle_mousedrop(usr, over_object))
+		return ..()
+
 /obj/item/clothing/head/modular/attackby(obj/item/I, mob/user, params)
 	. = ..()
 	if(.)
 		return
 
-	if(!istype(I, /obj/item/facepaint))
+	if(istype(I, /obj/item/facepaint))
+		if(greyscale_config)
+			var/obj/item/facepaint/paint = I
+			if(paint.uses < 1)
+				to_chat(user, span_warning("\the [paint] is out of color!"))
+				return TRUE
+			paint.uses--
+			var/new_color
+			if(colorable_colors)
+				new_color = colorable_colors[tgui_input_list(user, "Pick a color", "Pick color", colorable_colors)]
+			else
+				new_color = input(user, "Pick a color", "Pick color") as null|color
+
+			if(!new_color)
+				return
+
+			if(!do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_GENERIC))
+				return TRUE
+
+			main_color_hex = new_color
+			var/list/split_colors = list(new_color)
+			if(visor_color_hex)
+				split_colors += visor_color_hex
+			set_greyscale_colors(split_colors)
+			return TRUE
+	if(!storage)
 		return FALSE
-
-	if(!greyscale_config)
-		return FALSE
-
-	var/obj/item/facepaint/paint = I
-	if(paint.uses < 1)
-		to_chat(user, span_warning("\the [paint] is out of color!"))
-		return TRUE
-	paint.uses--
-	var/new_color
-	if(colorable_colors)
-		new_color = colorable_colors[tgui_input_list(user, "Pick a color", "Pick color", colorable_colors)]
-	else
-		new_color = input(user, "Pick a color", "Pick color") as null|color
-
-	if(!new_color)
-		return
-
-	if(!do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_GENERIC))
-		return TRUE
-
-	main_color_hex = new_color
-	var/list/split_colors = list(new_color)
-	if(visor_color_hex)
-		split_colors += visor_color_hex
-	set_greyscale_colors(split_colors)
-	return TRUE
+	return storage.attackby(I, user, params)
 
 /obj/item/clothing/head/modular/attackby_alternate(obj/item/I, mob/user, params)
 	. = ..()
@@ -544,20 +554,28 @@
 		return TRUE
 
 	attachment.do_detach(user, src)
-	update_overlays()
+	update_icon()
 	return TRUE
 
 
 /obj/item/clothing/head/modular/update_overlays()
 	. = ..()
-	if(installed_module)
-		. += image(installed_module.icon, installed_module.item_state)
+
+	/*if(installed_module)
+		. += image(installed_module.icon, ITEM_STATE_IF_SET(installed_module))*/ //these look whack because they dont have non-singl direction spritos.
 	if(visor_emissive_on)
 		. += emissive_appearance('icons/mob/modular/infantry.dmi', "visor")
+
+	update_clothing_icon()
 
 /obj/item/clothing/head/modular/apply_custom(image/standing)
 	if(installed_module)
 		standing.overlays += image(installed_module.icon, ITEM_STATE_IF_SET(installed_module))
+	if(!storage)
+		return
+	for(var/obj/item/stored in storage.contents)
+		standing.overlays += image('icons/mob/modular/modular_helmet_storage.dmi', icon_state = stored.icon_state)
+
 
 /obj/item/clothing/head/modular/get_mechanics_info()
 	. = ..()
@@ -584,14 +602,14 @@
 
 	if(!do_after(user, equip_delay, TRUE, user, BUSY_ICON_GENERIC))
 		return FALSE
-	update_overlays()
+	update_icon()
 
 /obj/item/clothing/head/modular/proc/can_detach(mob/living/user, obj/item/helmet_module/module, silent = FALSE)
 	. = TRUE
 
 	if(!do_after(user, equip_delay, TRUE, user, BUSY_ICON_GENERIC))
 		return FALSE
-	update_overlays()
+	update_icon()
 
 /obj/item/clothing/head/modular/marine
 	name = "Jaeger Pattern Infantry Helmet"

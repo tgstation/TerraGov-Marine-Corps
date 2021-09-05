@@ -36,7 +36,7 @@
 	SEND_SIGNAL(parent, COMSIG_ITEM_TOGGLE_ACTION, user)
 	to_chat(user, span_notice("You toggle \the [src]. [active ? "enabling" : "disabling"] it."))
 	item_state = "welding_head_[active ? "" : "in"]active"
-	parent.update_overlays()
+	parent.update_icon()
 	user.update_inv_head()
 
 
@@ -92,7 +92,7 @@
 	active = !active
 	to_chat(user, span_notice("You toggle \the [src]. [active ? "enabling" : "disabling"] it."))
 	item_state = "binocular_head_[active ? "" : "in"]active"
-	parent.update_overlays()
+	parent.update_icon()
 	user.update_inv_head()
 	return COMSIG_MOB_CLICK_CANCELED
 
@@ -153,3 +153,23 @@
 /obj/item/helmet_module/attachable/tyr_head/do_detach(mob/living/user, obj/item/clothing/suit/modular/parent)
 	parent.soft_armor = parent.soft_armor.detachArmor(soft_armor)
 	return ..()
+
+/obj/item/helmet_module/storage
+	name = "Storage 'Rubber Band' helmet module"
+	desc = "A rubber band to hold small items close to the helmet with stickers to easily stick in any helmet. Designed after the M10 helmet integrated storage, now modular."
+	icon_state = "band_head_obj"
+	item_state = "band_head"
+	/// Internal storage type
+	var/storage_type = /obj/item/storage/internal/marinehelmet
+
+/obj/item/helmet_module/storage/do_detach(mob/living/user, obj/item/clothing/head/modular/parent)
+	if(parent.storage && length(parent.storage.contents))
+		to_chat(user, "You can't remove this while there are still items inside")
+		return FALSE
+
+	QDEL_NULL(parent.storage)
+	return ..()
+
+/obj/item/helmet_module/storage/do_attach(mob/living/user, obj/item/clothing/head/modular/parent)
+	. = ..()
+	parent.storage = new storage_type(parent)
