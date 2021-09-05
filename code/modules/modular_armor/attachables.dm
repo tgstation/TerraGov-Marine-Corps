@@ -49,10 +49,10 @@
 	return ..()
 
 /obj/item/armor_module/attachable/better_shoulder_lamp/mark1
-	name = "\improper Mark 1 Baldur Light Amplification System"
-	desc = "Designed for mounting on the Jaeger Combat Exoskeleton. Substantially increases the power output of the Jaeger Combat Exoskeleton's mounted flashlight. Slows you down minorly."
+	name = "\improper Baldur Light Amplification System"
+	desc = "Designed for mounting on the Jaeger Combat Exoskeleton. Substantially increases the power output of the Jaeger Combat Exoskeleton's mounted flashlight."
 	power_boost = 4 /// The boost to armor shoulder light
-	slowdown = 0.1
+	slowdown = 0
 
 /** Mini autodoc module */
 /obj/item/armor_module/attachable/valkyrie_autodoc
