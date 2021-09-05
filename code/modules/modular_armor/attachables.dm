@@ -33,7 +33,7 @@
 
 /** Shoulder lamp strength module */
 /obj/item/armor_module/attachable/better_shoulder_lamp
-	name = "\improper Baldur Light Amplification System"
+	name = "\improper Mark 2 Baldur Light Amplification System"
 	desc = "Designed for mounting on the Jaeger Combat Exoskeleton. Substantially increases the power output of the Jaeger Combat Exoskeleton's mounted flashlight."
 	icon_state = "mod_lamp_icon"
 	item_state = "mod_lamp"
@@ -48,6 +48,11 @@
 	parent.set_light_range(parent.light_range - power_boost)
 	return ..()
 
+/obj/item/armor_module/attachable/better_shoulder_lamp/mark1
+	name = "\improper Baldur Light Amplification System"
+	desc = "Designed for mounting on the Jaeger Combat Exoskeleton. Substantially increases the power output of the Jaeger Combat Exoskeleton's mounted flashlight."
+	var/power_boost = 4 /// The boost to armor shoulder light
+	slowdown = 0
 
 /** Mini autodoc module */
 /obj/item/armor_module/attachable/valkyrie_autodoc
