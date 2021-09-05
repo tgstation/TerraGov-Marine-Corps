@@ -1021,7 +1021,7 @@ TUNNEL
 			continue
 		potential_hostiles += nearby_xeno
 	for(var/obj/vehicle/unmanned/vehicle AS in GLOB.unmanned_vehicles)
-		if(get_dist(vehicle, src) <= range)
+		if(vehicle.z == z && get_dist(vehicle, src) <= range)
 			potential_hostiles += vehicle
 
 
