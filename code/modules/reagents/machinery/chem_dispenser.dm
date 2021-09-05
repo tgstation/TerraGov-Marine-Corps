@@ -168,6 +168,7 @@
 	.["recipes"] = user.client.prefs.chem_macros
 
 	.["recordingRecipe"] = recording_recipe
+	.["clearingRecipe"] = clearing_recipe
 
 /obj/machinery/chem_dispenser/ui_act(action, list/params)
 	. = ..()
@@ -177,6 +178,8 @@
 	if(needs_medical_training && ishuman(usr))
 		var/mob/living/carbon/human/user = usr
 		if(!user.skills.getRating("medical"))
+			if(user.do_actions)
+				return
 			to_chat(user, span_notice("You start fiddling with \the [src]..."))
 			if(!do_after(user, SKILL_TASK_EASY, TRUE, src, BUSY_ICON_UNSKILLED))
 				return
@@ -258,17 +261,21 @@
 		if("clear_recipes")
 			if(!is_operational())
 				return
-			var/confirm_clear = tgui_alert(usr, "Clear all recipes?", null, list("Yes","No", "Only one"))
-			if(confirm_clear == "Only one")
-				clearing_recipe = TRUE
+			if(clearing_recipe)
+				clearing_recipe = FALSE
 				return TRUE
-			if(confirm_clear == "Yes")
-				usr.client.prefs.chem_macros = list()
-				usr.client.prefs.save_preferences()
+			var/confirm_clear = tgui_alert(usr, "Clear all recipes?", null, list("Yes","No", "Only one"))
+			switch(confirm_clear)
+				if("Only one")
+					clearing_recipe = TRUE
+				if("Yes")
+					usr.client.prefs.chem_macros = list()
+					usr.client.prefs.save_preferences()
 			. = TRUE
 		if("record_recipe")
 			if(!is_operational())
 				return
+			clearing_recipe = FALSE
 			recording_recipe = list()
 			. = TRUE
 		if("save_recording")
