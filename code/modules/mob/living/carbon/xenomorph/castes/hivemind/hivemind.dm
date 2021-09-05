@@ -85,6 +85,9 @@
 		QDEL_NULL(core)
 	return ..()
 
+/mob/living/carbon/xenomorph/hivemind/gib()
+	return_to_core()
+
 /mob/living/carbon/xenomorph/hivemind/change_form()
 	if(status_flags & INCORPOREAL && health != maxHealth)
 		to_chat(src, span_xenowarning("You do not have the strength to manifest yet!"))
@@ -99,7 +102,6 @@
 
 ///Finish the form changing of the hivemind and give the needed stats
 /mob/living/carbon/xenomorph/hivemind/proc/do_change_form()
-	ExtinguishMob()
 	if(status_flags & INCORPOREAL)
 		status_flags = NONE
 		upgrade = XENO_UPGRADE_ZERO
@@ -155,8 +157,8 @@
 	return FALSE
 
 /mob/living/carbon/xenomorph/hivemind/proc/return_to_core()
-	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_HIVEMIND_MANIFESTATION))
-		return
+	if(!(status_flags & INCORPOREAL))
+		do_change_form()
 	forceMove(get_turf(core))
 
 ///Start the teleportation process to send the hivemind manifestation to the selected turf

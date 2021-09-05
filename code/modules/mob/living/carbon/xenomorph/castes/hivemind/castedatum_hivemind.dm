@@ -54,7 +54,7 @@
 	upgrade = XENO_UPGRADE_MANIFESTATION
 
 	// *** Flags *** //
-	caste_flags = CASTE_IS_BUILDER
+	caste_flags = CASTE_IS_BUILDER|CASTE_FIRE_IMMUNE
 
 	aura_strength = 4 //Good pheros
 
