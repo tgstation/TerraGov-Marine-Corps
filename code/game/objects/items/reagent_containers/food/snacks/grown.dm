@@ -167,7 +167,7 @@
 /obj/item/reagent_containers/food/snacks/grown/shand/attack_self(mob/user as mob)
 	if(istype(user.loc,/turf/open/space))
 		return
-	var/obj/item/stack/medical/heal_pack/bruise_pack/tajaran/poultice = new /obj/item/stack/medical/heal_pack/bruise_pack/tajaran(user.loc)
+	var/obj/item/stack/medical/heal_pack/gauze/tajaran/poultice = new /obj/item/stack/medical/heal_pack/gauze/tajaran(user.loc)
 
 	poultice.heal_brute = potency
 	qdel(src)

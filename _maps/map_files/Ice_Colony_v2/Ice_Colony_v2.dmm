@@ -796,7 +796,7 @@
 /area/ice_colony/surface/engineering)
 "ady" = (
 /obj/structure/table,
-/obj/item/stack/medical/ointment,
+/obj/item/stack/medical/heal_pack/ointment,
 /turf/open/floor/tile/dark/yellow2{
 	dir = 9
 	},
@@ -1014,7 +1014,7 @@
 /area/ice_colony/surface/engineering)
 "aev" = (
 /obj/structure/table/reinforced,
-/obj/item/stack/medical/bruise_pack,
+/obj/item/stack/medical/heal_pack/gauze,
 /obj/item/cell,
 /obj/item/clothing/gloves/yellow,
 /turf/open/floor/tile/dark/yellow2{
@@ -29729,7 +29729,7 @@
 /area/ice_colony/underground/hangar)
 "bWB" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/item/stack/medical/ointment{
+/obj/item/stack/medical/heal_pack/ointment{
 	amount = 6;
 	pixel_x = 11;
 	pixel_y = 14

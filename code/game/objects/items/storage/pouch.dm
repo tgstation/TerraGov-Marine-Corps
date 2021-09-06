@@ -98,7 +98,7 @@
 	can_hold = list(
 		/obj/item/flashlight,
 		/obj/item/reagent_containers/pill,
-		/obj/item/stack/medical/heal_pack/bruise_pack,
+		/obj/item/stack/medical/heal_pack/gauze,
 		/obj/item/stack/sheet/metal,
 		/obj/item/stack/sheet/plasteel,
 		/obj/item/tool/weldingtool,
@@ -108,7 +108,7 @@
 	. = ..()
 	new /obj/item/flashlight(src)
 	new /obj/item/reagent_containers/pill/tramadol(src)
-	new /obj/item/stack/medical/heal_pack/bruise_pack(src, 3)
+	new /obj/item/stack/medical/heal_pack/gauze(src, 3)
 	new /obj/item/stack/sheet/metal(src, 40)
 	new /obj/item/stack/sheet/plasteel(src, 15)
 	new /obj/item/tool/weldingtool(src)
@@ -124,7 +124,7 @@
 	can_hold = list(
 		/obj/item/stack/medical/heal_pack/ointment,
 		/obj/item/reagent_containers/hypospray/autoinjector,
-		/obj/item/stack/medical/heal_pack/bruise_pack,
+		/obj/item/stack/medical/heal_pack/gauze,
 		/obj/item/storage/pill_bottle/packet/tricordrazine,
 		/obj/item/stack/medical/splint,
 	)
@@ -137,7 +137,7 @@
 	new /obj/item/stack/medical/heal_pack/ointment (src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/tramadol (src)
 	new /obj/item/storage/pill_bottle/packet/tricordrazine (src)
-	new /obj/item/stack/medical/heal_pack/bruise_pack (src)
+	new /obj/item/stack/medical/heal_pack/gauze (src)
 	new /obj/item/stack/medical/splint (src)
 
 
@@ -167,7 +167,7 @@
 	can_hold = list(
 		/obj/item/stack/medical/heal_pack/ointment,
 		/obj/item/reagent_containers/hypospray/autoinjector,
-		/obj/item/stack/medical/heal_pack/bruise_pack,
+		/obj/item/stack/medical/heal_pack/gauze,
 		/obj/item/storage/pill_bottle/packet/tricordrazine,
 		/obj/item/stack/medical/splint,
 	)
@@ -182,7 +182,7 @@
 	new /obj/item/stack/medical/heal_pack/ointment(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/tramadol(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/tricordrazine(src)
-	new /obj/item/stack/medical/heal_pack/bruise_pack(src)
+	new /obj/item/stack/medical/heal_pack/gauze(src)
 	new /obj/item/stack/medical/splint(src)
 
 
@@ -397,7 +397,7 @@
 /obj/item/storage/pouch/medical/full/Initialize()
 	. = ..()
 	new /obj/item/stack/medical/heal_pack/advanced/bruise_pack(src)
-	new /obj/item/stack/medical/heal_pack/advanced/ointment(src)
+	new /obj/item/stack/medical/heal_pack/advanced/burn_pack(src)
 	new /obj/item/stack/medical/splint(src)
 
 /obj/item/storage/pouch/medical/equippedcorpsman/Initialize()
@@ -517,8 +517,8 @@
 	new /obj/item/healthanalyzer(src)
 	new /obj/item/stack/medical/heal_pack/advanced/bruise_pack(src)
 	new /obj/item/stack/medical/heal_pack/advanced/bruise_pack(src)
-	new /obj/item/stack/medical/heal_pack/advanced/ointment(src)
-	new /obj/item/stack/medical/heal_pack/advanced/ointment(src)
+	new /obj/item/stack/medical/heal_pack/advanced/burn_pack(src)
+	new /obj/item/stack/medical/heal_pack/advanced/burn_pack(src)
 	new /obj/item/stack/medical/splint(src)
 	new /obj/item/stack/medical/splint(src)
 
@@ -526,7 +526,7 @@
 	. = ..()
 	new /obj/item/healthanalyzer(src)
 	new /obj/item/stack/medical/heal_pack/advanced/bruise_pack(src)
-	new /obj/item/stack/medical/heal_pack/advanced/ointment(src)
+	new /obj/item/stack/medical/heal_pack/advanced/burn_pack(src)
 	new /obj/item/storage/pill_bottle/bicaridine(src)
 	new /obj/item/storage/pill_bottle/kelotane(src)
 	new /obj/item/storage/pill_bottle/tramadol(src)
