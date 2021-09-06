@@ -133,7 +133,7 @@
 		return_to_core()
 
 /mob/living/carbon/xenomorph/hivemind/flamer_fire_act()
-	forceMove(get_turf(core))
+	return_to_core()
 	to_chat(src, "<span class='xenonotice'>We were on top of fire, we got moved to our core.")
 
 /mob/living/carbon/xenomorph/hivemind/proc/check_weeds(turf/T, strict_turf_check = FALSE)
