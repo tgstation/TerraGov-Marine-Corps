@@ -454,6 +454,7 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 
 /obj/structure/bed/medevac_stretcher/proc/on_mob_unbuckle(datum/source, mob/living/buckled_mob, force = FALSE)
 	SIGNAL_HANDLER
+	busy = FALSE
 	UnregisterSignal(src, COMSIG_MOVABLE_UNBUCKLE)
 	deltimer(teleport_timer)
 	playsound(loc,'sound/machines/buzz-two.ogg', 25, FALSE)
