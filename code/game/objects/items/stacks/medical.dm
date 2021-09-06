@@ -105,7 +105,7 @@
 	user.visible_message(span_notice("[user] treats the wounds on [patient]'s [target_limb.display_name] with [src]."),
 	span_notice("You treat the wounds on [patient]'s [target_limb.display_name] with [src].") )
 
-/obj/item/stack/medical/heal_pack/bruise_pack
+/obj/item/stack/medical/heal_pack/gauze
 	name = "roll of gauze"
 	singular_name = "medical gauze"
 	desc = "Some sterile gauze to wrap around bloody stumps."
@@ -113,7 +113,7 @@
 	heal_brute = 3
 	heal_flags = BANDAGE
 
-/obj/item/stack/medical/heal_pack/bruise_pack/generate_treatment_messages(mob/user, mob/patient, datum/limb/target_limb, success)
+/obj/item/stack/medical/heal_pack/gauze/generate_treatment_messages(mob/user, mob/patient, datum/limb/target_limb, success)
 	if(!success)
 		to_chat(user, span_warning("The wounds on [patient]'s [target_limb.display_name] have already been treated."))
 		return
@@ -143,7 +143,7 @@
 	user.visible_message(span_notice("[user] salves wounds on [patient]'s [target_limb.display_name]."),
 	span_notice("You salve wounds on [patient]'s [target_limb.display_name]."))
 
-/obj/item/stack/medical/heal_pack/bruise_pack/tajaran
+/obj/item/stack/medical/heal_pack/gauze/tajaran
 	name = "\improper S'rendarr's Hand leaf"
 	singular_name = "S'rendarr's Hand leaf"
 	desc = "A poultice made of soft leaves that is rubbed on bruises."
@@ -161,7 +161,7 @@
 	heal_burn = 7
 
 
-/obj/item/stack/medical/heal_pack/bruise_pack/sectoid
+/obj/item/stack/medical/heal_pack/gauze/sectoid
 	name = "\improper healing resin pack"
 	singular_name = "healing resin pack"
 	desc = "A strange tool filled with a sticky, alien resin. It seems it is meant for covering wounds."
@@ -169,11 +169,14 @@
 	icon_state = "predator_fixovein"
 	heal_brute = 20
 	heal_burn = 20
+	heal_flags = BANDAGE | SALVE | DISINFECT
 
 
 /obj/item/stack/medical/heal_pack/advanced
 	dir = NORTH
 	flags_atom = DIRLOCK
+	skill_level_needed = SKILL_MEDICAL_PRACTICED
+	unskilled_delay = SKILL_TASK_EASY
 
 /obj/item/stack/medical/heal_pack/advanced/update_icon_state()
 	if(max_amount < 1 || amount > max_amount)
@@ -216,7 +219,7 @@
 			user.visible_message(span_notice("[user] smears some bioglue over [W.desc] on [patient]'s [target_limb.display_name]."),
 			span_notice("You smear some bioglue over [W.desc] on [patient]'s [target_limb.display_name]."))
 
-/obj/item/stack/medical/heal_pack/advanced/ointment
+/obj/item/stack/medical/heal_pack/advanced/burn_pack
 	name = "advanced burn kit"
 	singular_name = "advanced burn kit"
 	desc = "An advanced treatment kit for severe burns."
@@ -224,7 +227,7 @@
 	heal_burn = 12
 	heal_flags = SALVE | DISINFECT
 
-/obj/item/stack/medical/heal_pack/advanced/ointment/generate_treatment_messages(mob/user, mob/patient, datum/limb/target_limb, success)
+/obj/item/stack/medical/heal_pack/advanced/burn_pack/generate_treatment_messages(mob/user, mob/patient, datum/limb/target_limb, success)
 	if(!success)
 		to_chat(user, span_warning("The wounds on [patient]'s [target_limb.display_name] have already been treated."))
 		return
@@ -237,6 +240,8 @@
 	icon_state = "splint"
 	amount = 5
 	max_amount = 5
+	skill_level_needed = SKILL_MEDICAL_PRACTICED
+	unskilled_delay = SKILL_TASK_TOUGH
 	///How much splint health per medical skill is applied
 	var/applied_splint_health = 15
 
