@@ -66,7 +66,8 @@
 	var/vital = FALSE
 	///INTERNAL germs inside the organ, this is BAD if it's greater than INFECTION_LEVEL_ONE
 	var/germ_level = 0
-
+	///Keeps track of the last time the limb bothered its owner about infection to prevent spam.
+	var/next_infection_message
 	///What % of the body does this limb cover. Make sure that the sum is always 100.
 	var/cover_index = 0
 
@@ -452,17 +453,36 @@ Note that amputating the affected organ does in fact remove the infection from t
 
 /datum/limb/proc/handle_germ_sync()
 	var/antibiotics = owner.reagents.get_reagent_amount(/datum/reagent/medicine/spaceacillin)
-	for(var/datum/wound/W in wounds)
-		//Open wounds can become infected
-		if (owner.germ_level > W.germ_level && W.infection_check() && W.damage)
-			W.germ_level += min(1,round(W.damage/20)) //The bigger the wound, the more germs will enter
+	var/infection_checked = FALSE
+	var/white_cell_chance = 0
 
-		if (antibiotics < MIN_ANTIBIOTICS)
-			//Infected wounds raise the organ's germ level.
-			if (W.germ_level)
-				germ_level += max(1,round(W.germ_level/35))
-		else if (W.germ_level && prob(80)) //Antibiotics wont be very effective it the wound is still open
-			germ_level++
+	for(var/datum/wound/W in wounds)
+		infection_checked = W.infection_check()
+
+		//Open wounds can become infected - spaceacillin won't help here.
+		if (owner.germ_level > W.germ_level && infection_checked && W.damage >= 20)
+			W.germ_level++
+
+		if(!W.germ_level)
+			continue
+
+		//Once they're healed up, slowly clean out any infection if it's small enough or treated
+		if (!infection_checked)
+			white_cell_chance = max(0, 40 - W.germ_level/2.5) //Base 0% chance once we hit 100 wound germs, or just over 3 minutes without healing.
+			if(W.is_treated())
+				white_cell_chance += 25
+			if(antibiotics)
+				white_cell_chance += 25
+			if(prob(white_cell_chance))
+				W.germ_level--
+
+		//Infected wounds raise the organ's germ level steadily over time. Can outpace antibiotics if it gets bad enough.
+		if (W.germ_level)
+			if(!antibiotics)
+				germ_level += round((W.germ_level + 10)/30) //One point per tick at 20, then another every 30
+			else if(prob(W.germ_level - 20)) //Light infections mostly won't pass to the limb with spaceacillin, heavy ones will pass much more slowly.
+				germ_level++
+
 
 /datum/limb/proc/handle_germ_effects()
 	var/spaceacillin = owner.reagents.get_reagent_amount(/datum/reagent/medicine/spaceacillin)
@@ -479,11 +499,12 @@ Note that amputating the affected organ does in fact remove the infection from t
 		if(prob(round(germ_level/10)))
 			if (spaceacillin < MIN_ANTIBIOTICS)
 				germ_level++
+				if (world.time > next_infection_message && (germ_level <= INFECTION_LEVEL_TWO) && !(limb_status & LIMB_NECROTIZED))
+					to_chat(owner, span_notice("Your [display_name] itches and feels warm..."))
+					next_infection_message = world.time + 60 SECONDS + rand(0, 300) //Next message 60-90 seconds from now.
 
 			if (prob(15))	//adjust this to tweak how fast people take toxin damage from infections
 				owner.adjustToxLoss(1)
-			if (prob(1) && (germ_level <= INFECTION_LEVEL_TWO))
-				to_chat(owner, span_notice("You have a slight fever..."))
 //LEVEL II
 	if(germ_level >= INFECTION_LEVEL_TWO && spaceacillin < 3)
 		//spread the infection to internal organs
@@ -496,8 +517,9 @@ Note that amputating the affected organ does in fact remove the infection from t
 		if(prob(round(germ_level/10)))
 			if (spaceacillin < MIN_ANTIBIOTICS)
 				germ_level++
-		if (prob(1) && (germ_level <= INFECTION_LEVEL_THREE))
-			to_chat(owner, span_notice("Your infected wound itches and badly hurts!"))
+				if (world.time > next_infection_message && (germ_level <= INFECTION_LEVEL_THREE) && !(limb_status & LIMB_NECROTIZED))
+					to_chat(owner, span_warning("Your infected [display_name] is turning off-color and stings like hell!"))
+					next_infection_message = world.time + 25 SECONDS + rand(0, 150) //Next message 25-40 seconds from now.
 
 		if (prob(25))	//adjust this to tweak how fast people take toxin damage from infections
 			owner.adjustToxLoss(1)
@@ -590,11 +612,6 @@ Note that amputating the affected organ does in fact remove the infection from t
 			// making it look prettier on scanners
 			heal_amt = round(heal_amt,0.1)
 			W.heal_wound_damage(heal_amt)
-
-		// Salving also helps against infection, but only if it is small enoough
-		if((W.germ_level > 0 && W.germ_level < 50) && W.salved && prob(2))
-			W.disinfected = 1
-			W.germ_level = 0
 
 	// sync the organ's damage with its wounds
 	update_damages()
@@ -987,7 +1004,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 
 /datum/limb/proc/has_infected_wound()
 	for(var/datum/wound/W in wounds)
-		if(W.germ_level > INFECTION_LEVEL_ONE)
+		if(W.germ_level > 30) //About the point at which you should worry about reaching a light infection without treatment
 			return TRUE
 	return FALSE
 

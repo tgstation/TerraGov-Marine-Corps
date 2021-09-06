@@ -175,7 +175,7 @@
 	damage += initial_damage
 	bleed_timer += damage
 
-	var/damage_per_wound = initial_damage / amount
+	var/damage_per_wound = damage / amount
 	while(current_stage > 1 && damage_list[current_stage - 1] <= damage_per_wound)
 		current_stage--
 
