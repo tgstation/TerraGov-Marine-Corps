@@ -228,11 +228,9 @@
 			if(!is_operational() || QDELETED(cell))
 				return
 			if(clearing_recipe)
-				var/actually_clear = tgui_alert(usr, "Clear recipe [params["recipe"]]?", null, list("Yes","No"))
-				if(actually_clear == "Yes")
+				if(tgui_alert(usr, "Clear recipe [params["recipe"]]?", null, list("Yes","No")) == "Yes")
 					usr.client.prefs.chem_macros.Remove(params["recipe"])
 					usr.client.prefs.save_preferences()
-				clearing_recipe = FALSE
 				return TRUE
 			var/list/chemicals_to_dispense = usr.client.prefs.chem_macros[params["recipe"]]
 			if(!LAZYLEN(chemicals_to_dispense))
@@ -264,8 +262,7 @@
 			if(clearing_recipe)
 				clearing_recipe = FALSE
 				return TRUE
-			var/confirm_clear = tgui_alert(usr, "Clear all recipes?", null, list("Yes","No", "Only one"))
-			switch(confirm_clear)
+			switch(tgui_alert(usr, "Clear all recipes?", null, list("Yes","No", "Only one")))
 				if("Only one")
 					clearing_recipe = TRUE
 				if("Yes")
