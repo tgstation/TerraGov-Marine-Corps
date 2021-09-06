@@ -35,6 +35,8 @@
 	attachable_allowed = list(
 		/obj/item/attachable/bipod,
 		/obj/item/attachable/lasersight,
+		/obj/item/attachable/scope/antimaterial,
+		/obj/item/attachable/buildasentry,
 	)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER|GUN_IFF
@@ -1063,7 +1065,9 @@
 	load_method = MAGAZINE //codex
 	current_mag = /obj/item/ammo_magazine/rocket/m57a4/ds
 	aim_slowdown = 2.75
-	attachable_allowed = list()
+	attachable_allowed = list(
+		/obj/item/attachable/buildasentry,
+	)
 	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
 	general_codex_key = "explosive weapons"
 

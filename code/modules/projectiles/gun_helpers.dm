@@ -263,8 +263,6 @@ should be alright.
 	active_attachable.AltClick(user)
 
 /obj/item/weapon/gun/AltClick(mob/user)
-	. = ..()
-
 	if(!user.Adjacent(src) || !ishuman(user) || !CHECK_BITFIELD(flags_gun_features, GUN_IS_SENTRY) && !master_gun)
 		return
 	var/mob/living/carbon/human/human = user

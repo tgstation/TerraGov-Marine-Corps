@@ -73,7 +73,8 @@
 	QDEL_NULL(camera)
 	QDEL_NULL(spark_system)
 	STOP_PROCESSING(SSobj, src)
-	internal_item ? UnregisterSignal(internal_item, COMSIG_MOB_GUN_FIRED)
+	if(internal_item)
+		UnregisterSignal(internal_item, COMSIG_MOB_GUN_FIRED)
 	GLOB.marine_turrets -= src
 	return ..()
 
@@ -170,17 +171,30 @@
 
 /obj/machinery/deployable/mounted/sentry/ui_data(mob/user)
 	var/obj/item/weapon/gun/gun = internal_item
+	var/current_rounds
+	if(istype(internal_item, /obj/item/weapon/gun/energy))
+		var/obj/item/weapon/gun/energy/internal_gun = internal_item
+		current_rounds = internal_gun.cell ? internal_gun.cell.charge : 0
+	else
+		current_rounds = gun.current_mag ? gun.current_mag.current_rounds : 0
 	. = list(
-		"rounds" = (gun.current_mag ? gun.current_mag.current_rounds : 0),
+		"rounds" =  current_rounds,
 		"cell_charge" = gun.sentry_battery ? gun.sentry_battery.charge : 0,
 		"health" = obj_integrity
 	)
 
 /obj/machinery/deployable/mounted/sentry/ui_static_data(mob/user)
 	var/obj/item/weapon/gun/gun = internal_item
+	var/rounds_max
+	if(istype(internal_item, /obj/item/weapon/gun/energy))
+		var/obj/item/weapon/gun/energy/internal_gun = internal_item
+		var/obj/item/cell/gun_cell_type = internal_gun.cell_type
+		rounds_max = internal_gun.cell ? internal_gun.cell.maxcharge : initial(gun_cell_type.maxcharge)
+	else
+		rounds_max = gun.current_mag ? gun.current_mag.max_rounds : gun.max_shells
 	. = list(
 		"name" = copytext(name, 2),
-		"rounds_max" = (gun.current_mag ? gun.current_mag.max_rounds : gun.max_shells),
+		"rounds_max" = rounds_max,
 		"fire_mode" = gun.gun_firemode,
 		"has_cell" = (gun.sentry_battery ? 1 : 0),
 		"cell_maxcharge" = gun.sentry_battery ? gun.sentry_battery.maxcharge : 0,
@@ -387,21 +401,17 @@
 	update_icon()
 	if(target != gun.target || get_dist(src, target) > range)
 		gun.stop_fire()
-	if(!gun.current_mag)
+	var/has_mag
+	if(istype(gun, /obj/item/weapon/gun/energy))
+		var/obj/item/weapon/gun/energy/energy_gun = gun
+		has_mag = energy_gun.cell
+	else
+		has_mag = gun.current_mag
+	if(!has_mag)
 		sentry_alert(SENTRY_ALERT_AMMO)
 		return
 	if(CHECK_BITFIELD(gun.turret_flags, TURRET_RADIAL))
-		var/new_dir = get_dir(src, target)
-		switch(new_dir)
-			if(NORTHWEST)
-				new_dir = NORTH
-			if(NORTHEAST)
-				new_dir = EAST
-			if(SOUTHWEST)
-				new_dir = WEST
-			if(SOUTHEAST)
-				new_dir = SOUTH
-		setDir(new_dir)
+		setDir(get_cardinal_dir(src, target))
 		if(gun.sentry_battery.charge <= 0)
 			sentry_alert(SENTRY_ALERT_BATTERY)
 	if(CHECK_BITFIELD(gun.flags_gun_features, GUN_BURST_FIRING))
@@ -472,35 +482,43 @@
 	default_icon_state = "build_a_sentry"
 	if(istype(internal_item, /obj/item/weapon/gun/shotgun/double/martini) || istype(internal_item, /obj/item/weapon/gun/shotgun/pump/bolt))
 		overlay_icon_state = "wood"
-	else if(istype(internal_item, /obj/item/weapon/gun/rifle/standard_gpmg) || istype(internal_item, /obj/item/weapon/gun/rifle/m412l1_hpr))
-		overlay_icon_state = "lmg"
 	else if(istype(internal_item, /obj/item/weapon/gun/smg/standard_smg))
 		overlay_icon_state = "t90"
-	else if(istype(internal_item, /obj/item/weapon/gun/launcher/rocket))
-		overlay_icon_state = "sadar"
+	else if(istype(internal_item, /obj/item/weapon/gun/launcher/rocket/m57a4))
+		overlay_icon_state = "thermo"
 	else if(istype(internal_item, /obj/item/weapon/gun/rifle/standard_assaultrifle))
 		overlay_icon_state = "t12"
 	else if(istype(internal_item, /obj/item/weapon/gun/shotgun/pump/t35))
 		overlay_icon_state = "t35"
+	else if(istype(internal_item, /obj/item/weapon/gun/pistol/plasma_pistol))
+		overlay_icon_state = "tx7"
+	else if(istype(internal_item, /obj/item/weapon/gun/rifle/standard_smartmachinegun))
+		overlay_icon_state = "smartgun"
+	else if(istype(internal_item, /obj/item/weapon/gun/rifle/ak47))
+		overlay_icon_state = "ak47"
+	else if(istype(internal_item, /obj/item/weapon/gun/rifle/sniper/antimaterial))
+		overlay_icon_state = "antimat"
+	else if(istype(internal_item, /obj/item/weapon/gun/rifle/standard_gpmg) || istype(internal_item, /obj/item/weapon/gun/rifle/m412l1_hpr))
+		overlay_icon_state = "lmg"
+	else if(istype(internal_item, /obj/item/weapon/gun/rifle/pepperball))
+		overlay_icon_state = "pepper"
+	else if(istype(internal_item, /obj/item/weapon/gun/launcher/rocket))
+		overlay_icon_state = "sadar"
 	else if(istype(internal_item, /obj/item/weapon/gun/shotgun))
 		overlay_icon_state = "shotgun"
 	else if(istype(internal_item, /obj/item/weapon/gun/flamer))
 		overlay_icon_state = "flamer"
-	else if(istype(internal_item, /obj/item/weapon/gun/rifle/pepperball))
-		overlay_icon_state = "pepper"
 	else if(istype(internal_item, /obj/item/weapon/gun/revolver))
 		overlay_icon_state = "revolver"
-	else if(istype(internal_item, /obj/item/weapon/gun/pistol/plasma_pistol))
-		overlay_icon_state = "tx7"
 	else if(istype(internal_item, /obj/item/weapon/gun/pistol))
 		overlay_icon_state = "pistol"
-	else if(istype(internal_item, /obj/item/weapon/gun/energy/lasgun/lasrifle)) //This is for when we get lasrifles working here.
+	else if(istype(internal_item, /obj/item/weapon/gun/energy))
 		overlay_icon_state = "laser"
 	else
 		overlay_icon_state = "rifle"
 	update_icon()
 
-/obj/machinery/deployable/mounted/sentry/buildasentry/update_icon()
+/obj/machinery/deployable/mounted/sentry/buildasentry/update_overlays()
 	. = ..()
 	overlays.Cut()
 	overlays += image('icons/Marine/sentry.dmi', src, overlay_icon_state, dir = src.dir)
