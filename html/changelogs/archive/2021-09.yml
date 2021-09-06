@@ -66,3 +66,16 @@
   - bugfix: Fixes Comrade sentry.
   - code_imp: Updates /deployable and makes armor values dependent on the deploying
       item.
+2021-09-06:
+  BraveMole:
+  - bugfix: Fix xeno turrets trying to shoot droids on other z levels
+  Pariah919:
+  - soundadd: fart gun returns, the m41a has the old pulse rifle sounds once again.
+  RipGrayson:
+  - rscadd: Added Shigusa Hydroelectric Dam, a map for more than 100 players.
+  - imageadd: Added a new couple icons for shallow water transitions, broken generators,
+      and stairs.
+  - code_imp: Cleaned up some unused turfs.
+  - bugfix: Fixed an unmapped area in Big Red LZ.
+  hyper2snyper:
+  - bugfix: Fixes that thing with the derringer.
