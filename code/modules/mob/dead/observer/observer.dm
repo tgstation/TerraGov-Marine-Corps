@@ -377,7 +377,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	set name = "Try to take SSD mob"
 
 	if(GLOB.key_to_time_of_death[key] + AFK_TIMER < world.time)
-		to_chat(src, span_warning("You died too recently to be able to take a new mob"))
+		to_chat(src, span_warning("You died too recently to be able to take a new mob."))
 		return
 
 	var/list/mob/living/free_ssd_mobs = list()
