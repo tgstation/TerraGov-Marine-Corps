@@ -478,11 +478,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 
 		//Infected wounds raise the organ's germ level steadily over time. Can outpace antibiotics if it gets bad enough.
 		if (W.germ_level)
-			if(!antibiotics)
-				germ_level += round((W.germ_level + 10)/30) //One point per tick at 20, then another every 30
-			else if(prob(W.germ_level - 20)) //Light infections mostly won't pass to the limb with spaceacillin, heavy ones will pass much more slowly.
-				germ_level++
-
+			germ_level += round((W.germ_level + 10)/35) //One point per tick at 20, then another every 35
 
 /datum/limb/proc/handle_germ_effects()
 	var/spaceacillin = owner.reagents.get_reagent_amount(/datum/reagent/medicine/spaceacillin)
