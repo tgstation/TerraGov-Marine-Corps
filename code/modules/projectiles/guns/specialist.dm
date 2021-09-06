@@ -1018,8 +1018,7 @@
 	aim_slowdown = 1.75
 	general_codex_key = "explosive weapons"
 	attachable_allowed = list(
-		/obj/item/attachable/magnetic_harness,
-		/obj/item/attachable/scope/mini,
+		/obj/item/attachable/magnetic_harness
 	)
 
 	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
