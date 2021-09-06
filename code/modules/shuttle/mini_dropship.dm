@@ -200,6 +200,9 @@
 	if(ui_user)
 		return
 
+	if(isAI(user))
+		return
+
 	if(!ui)
 		ui_user = user
 		RegisterSignal(ui_user, list(COMSIG_PARENT_QDELETING, COMSIG_MOVABLE_MOVED), .proc/clean_ui_user)
