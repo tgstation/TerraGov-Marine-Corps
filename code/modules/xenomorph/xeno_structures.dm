@@ -653,7 +653,7 @@ TUNNEL
 		newt.tunnel_desc = "[AREACOORD_NO_Z(newt)]"
 		newt.name += " [name]"
 
-/obj/structure/xeno/resin/silo/obj_destruction(damage_amount, damage_type, damage_flag)
+/obj/structure/xeno/resin/silo/Destroy()
 	if(associated_hive)
 		UnregisterSignal(associated_hive, list(COMSIG_HIVE_XENO_MOTHER_PRE_CHECK, COMSIG_HIVE_XENO_MOTHER_CHECK))
 		associated_hive.xeno_message("A resin silo has been destroyed at [AREACOORD_NO_Z(src)]!", "xenoannounce", 5, FALSE,src.loc, 'sound/voice/alien_help2.ogg',FALSE , null, /obj/screen/arrow/silo_damaged_arrow)
@@ -661,10 +661,6 @@ TUNNEL
 		associated_hive = null
 		notify_ghosts("\ A resin silo has been destroyed at [AREACOORD_NO_Z(src)]!", source = get_turf(src), action = NOTIFY_JUMP)
 		playsound(loc,'sound/effects/alien_egg_burst.ogg', 75)
-	return ..()
-
-
-/obj/structure/xeno/resin/silo/Destroy()
 	GLOB.xeno_resin_silos -= src
 
 	for(var/i in contents)
