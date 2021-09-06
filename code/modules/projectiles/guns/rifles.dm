@@ -21,14 +21,6 @@
 	upper_akimbo_accuracy = 5
 	lower_akimbo_accuracy = 3
 
-
-/obj/item/weapon/gun/rifle/unique_action(mob/user)
-	. = ..()
-	if(!.)
-		return
-	return cock(user)
-
-
 /obj/item/weapon/gun/rifle/get_ammo_type()
 	if(!ammo)
 		return list("unknown", "unknown")
