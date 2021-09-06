@@ -554,15 +554,17 @@
 		to_chat(user, span_notice("You prime the [src]"))
 		playsound(user, reload_sound, 25, 1)
 		update_icon()
-		return
+		return TRUE
 	if(catchworking)
-		return unload(user)
+		unload(user)
+		return TRUE
 	if(!current_mag.chamber_closed)
-		return
+		return FALSE
 	current_mag.chamber_position = rand(1,current_mag.max_rounds)
 	to_chat(user, span_notice("You spin the cylinder."))
 	playsound(user, cocked_sound, 25, 1)
 	russian_roulette = !russian_roulette //Sets to play RR. Resets when the gun is emptied.
+	return TRUE
 
 /obj/item/weapon/gun/revolver/single_action/ready_in_chamber()
 	if(current_mag.current_rounds <= 0 || current_mag.chamber_contents[current_mag.chamber_position] != "bullet")
