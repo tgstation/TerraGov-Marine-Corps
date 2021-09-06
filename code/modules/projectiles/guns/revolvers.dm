@@ -17,10 +17,10 @@
 	var/thud_sound = 'sound/effects/thud.ogg'
 	///Delay between gun tricks
 	var/trick_delay = 6
-	///Time of last truck
+	///Time of last trick
 	var/recent_trick //So they're not spamming tricks.
 	///If the gun is able to play Russian Roulette
-	var/russian_roulette = 0 //God help you if you do this.
+	var/russian_roulette = FALSE //God help you if you do this.
 	///Whether the chamber can be spun for Russian Roulette. If False the chamber can be spun.
 	var/catchworking = TRUE
 	load_method = SINGLE_CASING|SPEEDLOADER //codex
@@ -535,7 +535,7 @@
 	desc = "you should not be seeing this."
 	current_mag = /obj/item/ammo_magazine/internal/revolver/m44
 
-/obj/item/weapon/gun/revolver/single_action/update_icon()
+/obj/item/weapon/gun/revolver/single_action/update_icon_state()
 	. = ..()
 	if(in_chamber)
 		return
@@ -556,15 +556,17 @@
 		to_chat(user, span_notice("You prime the [src]"))
 		playsound(user, reload_sound, 25, 1)
 		update_icon()
-		return
+		return TRUE
 	if(catchworking)
-		return unload(user)
+		unload(user)
+		return TRUE
 	if(!current_mag.chamber_closed)
-		return
+		return FALSE
 	current_mag.chamber_position = rand(1,current_mag.max_rounds)
 	to_chat(user, span_notice("You spin the cylinder."))
 	playsound(user, cocked_sound, 25, 1)
 	russian_roulette = !russian_roulette //Sets to play RR. Resets when the gun is emptied.
+	return TRUE
 
 /obj/item/weapon/gun/revolver/single_action/ready_in_chamber()
 	if(current_mag.current_rounds <= 0 || current_mag.chamber_contents[current_mag.chamber_position] != "bullet")

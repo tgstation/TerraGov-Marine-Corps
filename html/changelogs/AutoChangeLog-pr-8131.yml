@@ -1,7 +1,0 @@
-author: "QualityVan"
-delete-after: True
-changes: 
-  - rscadd: "Sprayed sterilizine disinfects existing wounds. It won't help directly with infected limbs though."
-  - balance: "Spraying sterilizine on people with existing wounds is more likely to cause pain."
-  - bugfix: "Wounds no longer infect limbs more slowly when you have antibiotics"
-  - bugfix: "Sterilizine made in chemistry works and isn't called 'medicine'."
