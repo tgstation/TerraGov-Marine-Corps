@@ -345,6 +345,11 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 				var/stored_larva = xeno_job.total_positions - xeno_job.current_positions
 				if(stored_larva)
 					stat("Burrowed larva:", stored_larva)
+		var/datum/game_mode/mode = SSticker.mode
+		if(mode?.flags_round_type & MODE_WIN_POINTS)
+			stat("Points needed to win:", mode.win_points_needed)
+			stat("Loyalists team points:", LAZYACCESS(mode.points_per_faction, FACTION_TERRAGOV) ? LAZYACCESS(mode.points_per_faction, FACTION_TERRAGOV) : 0)
+			stat("Rebels team points:", LAZYACCESS(mode.points_per_faction, FACTION_TERRAGOV_REBEL) ? LAZYACCESS(mode.points_per_faction, FACTION_TERRAGOV_REBEL) : 0)
 
 
 /mob/dead/observer/verb/reenter_corpse()

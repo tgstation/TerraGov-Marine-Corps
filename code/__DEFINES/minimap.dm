@@ -34,3 +34,4 @@ GLOBAL_LIST_INIT(all_minimap_flags, bitfield2list(MINIMAP_FLAG_ALL))
 #define MINIMAP_AREA_JUNGLE "#2b5b2bee"
 #define MINIMAP_AREA_COLONY "#6c6767ee"
 #define MINIMAP_AREA_LZ "#ebe5e5ee"
+#define MINIMAP_AREA_CONTESTED_ZONE "#0603c4ee"

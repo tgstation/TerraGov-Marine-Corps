@@ -213,6 +213,8 @@
 	lifetimer = addtimer(CALLBACK(src, .proc/check_lifecycle), FACEHUGGER_DEATH, TIMER_STOPPABLE|TIMER_UNIQUE)
 
 /obj/item/clothing/mask/facehugger/proc/go_active(unhybernate = FALSE, reset_life_timer = FALSE)
+	if(QDELETED(src))
+		return
 	if(unhybernate)
 		stasis = FALSE
 
@@ -231,6 +233,8 @@
 
 ///Called before we leap
 /obj/item/clothing/mask/facehugger/proc/pre_leap(activation_time = jump_cooldown)
+	if(QDELETED(src))
+		return
 	jumptimer = addtimer(CALLBACK(src, .proc/leap_at_nearest_target), activation_time, TIMER_STOPPABLE|TIMER_UNIQUE)
 	if(activation_time >= 2 SECONDS) //If activation timer is equal to or greater than two seconds, we trigger the danger overlay at 1 second, otherwise we do so immediately.
 		addtimer(CALLBACK(src, .proc/apply_danger_overlay), 1 SECONDS)
@@ -306,14 +310,8 @@
 		return FALSE
 
 	if(isturf(loc))
-		var/obj/effect/alien/egg/E = locate() in loc
-		if(E?.status == EGG_BURST)
-			visible_message(span_xenowarning("[src] crawls back into [E]!"))
-			forceMove(E)
-			E.hugger = src
-			E.update_status(EGG_GROWN)
-			E.deploy_egg_triggers()
-			go_idle(TRUE)
+		var/obj/effect/alien/egg/hugger/E = locate() in loc
+		if(E.insert_new_hugger(src))
 			return FALSE
 		var/obj/structure/xeno/trap/T = locate() in loc
 		if(T && !T.hugger)

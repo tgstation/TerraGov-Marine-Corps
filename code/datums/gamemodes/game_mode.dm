@@ -22,6 +22,12 @@
 	var/deploy_time_lock = 15 MINUTES
 	///The respawn time for marines
 	var/respawn_time = 30 MINUTES
+	///How many points do you need to win in a point gamemode
+	var/win_points_needed = 0
+	///The points per faction, assoc list
+	var/list/points_per_faction
+	/// When are the shutters dropping
+	var/shutters_drop_time = 30 MINUTES
 
 //Distress call variables.
 	var/list/datum/emergency_call/all_calls = list() //initialized at round start and stores the datums.
@@ -236,7 +242,7 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 		addtimer(CALLBACK(src, .proc/remove_fog), FOG_DELAY_INTERVAL + SSticker.round_start_time + rand(-5 MINUTES, 5 MINUTES))
 
 	if(flags_round_type & MODE_LZ_SHUTTERS)
-		addtimer(CALLBACK(GLOBAL_PROC, .proc/send_global_signal, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE), SSticker.round_start_time + 30 MINUTES)
+		addtimer(CALLBACK(GLOBAL_PROC, .proc/send_global_signal, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE), SSticker.round_start_time + shutters_drop_time)
 			//Called late because there used to be shutters opened earlier. To re-add them just copy the logic.
 
 	if(flags_round_type & MODE_XENO_SPAWN_PROTECT)

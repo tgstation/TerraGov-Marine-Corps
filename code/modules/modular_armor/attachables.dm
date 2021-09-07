@@ -33,12 +33,12 @@
 
 /** Shoulder lamp strength module */
 /obj/item/armor_module/attachable/better_shoulder_lamp
-	name = "\improper Mark 2 Baldur Light Amplification System"
-	desc = "Designed for mounting on the Jaeger Combat Exoskeleton. Substantially increases the power output of the Jaeger Combat Exoskeleton's mounted flashlight. Slows you down minorly."
+	name = "\improper Baldur Light Amplification System"
+	desc = "Designed for mounting on the Jaeger Combat Exoskeleton. Substantially increases the power output of the Jaeger Combat Exoskeleton's mounted flashlight."
 	icon_state = "mod_lamp_icon"
 	item_state = "mod_lamp"
 	slowdown = 0
-	var/power_boost = 5 /// The boost to armor shoulder light
+	var/power_boost = 4 /// The boost to armor shoulder light
 
 /obj/item/armor_module/attachable/better_shoulder_lamp/do_attach(mob/living/user, obj/item/clothing/suit/modular/parent)
 	. = ..()
@@ -48,11 +48,6 @@
 	parent.set_light_range(parent.light_range - power_boost)
 	return ..()
 
-/obj/item/armor_module/attachable/better_shoulder_lamp/mark1
-	name = "\improper Mark 1 Baldur Light Amplification System"
-	desc = "Designed for mounting on the Jaeger Combat Exoskeleton. Substantially increases the power output of the Jaeger Combat Exoskeleton's mounted flashlight. Slows you down minorly."
-	power_boost = 4 /// The boost to armor shoulder light
-	slowdown = 0.1
 
 /** Mini autodoc module */
 /obj/item/armor_module/attachable/valkyrie_autodoc
@@ -133,10 +128,10 @@
 /** Environment protecttion module */
 /obj/item/armor_module/attachable/mimir_environment_protection
 	name = "\improper Mark 2 Mimir Environmental Resistance System"
-	desc = "Designed for mounting on the Jaeger Combat Exoskeleton. When activated, this system provides substantial resistance to environmental hazards, such as gases, and radiological exposure. This newer version provides resistance to acid. Best paired with the Mimir Environmental Helmet System and a gas mask. Will impact mobility." // Add the toggable thing to the description when you are done, okay? ~XS300
+	desc = "Designed for mounting on the Jaeger Combat Exoskeleton. When activated, this system provides substantial resistance to environmental hazards, such as gases, biological and radiological exposure. This newer version provides a large amount of resistance to acid. Best paired with the Mimir Environmental Helmet System and a gas mask. Will impact mobility." // Add the toggable thing to the description when you are done, okay? ~XS300
 	icon_state = "mod_biohazard_icon"
 	item_state = "mod_biohazard"
-	soft_armor = list("bio" = 20, "rad" = 50, "acid" = 20)
+	soft_armor = list("bio" = 40, "rad" = 50, "acid" = 30)
 	slowdown = 0.2
 	module_type = ARMOR_MODULE_TOGGLE
 	var/siemens_coefficient_mod = -0.9
@@ -162,10 +157,10 @@
 // The mark 1 version, made to protect you from just gas.
 /obj/item/armor_module/attachable/mimir_environment_protection/mark1
 	name = "\improper Mark 1 Mimir Environmental Resistance System"
-	desc = "Designed for mounting on the Jaeger Combat Exoskeleton. When activated, this system provides substantial resistance to environmental hazards, such as gases and radiological exposure. This older version provides no protection to acid. Best paired with the Mimir Environmental Helmet System. Will impact mobility." // Add the toggable thing to the description when you are done, okay? ~XS300
+	desc = "Designed for mounting on the Jaeger Combat Exoskeleton. When activated, this system provides substantial resistance to environmental hazards, such as gases, biological and radiological exposure. This older version provides a small amount of protection to acid. Best paired with the Mimir Environmental Helmet System. Will impact mobility." // Add the toggable thing to the description when you are done, okay? ~XS300
 	icon_state = "mod_biohazard_icon"
 	item_state = "mod_biohazard"
-	soft_armor = list("bio" = 0, "rad" = 10, "acid" = 0) //None, nada. This is made to protect you from gas and nothing else.
+	soft_armor = list("bio" = 15, "rad" = 10, "acid" = 15)
 	slowdown = 0.2 //So it isn't literally 100% better than running stock jaeger.
 	module_type = ARMOR_MODULE_TOGGLE
 

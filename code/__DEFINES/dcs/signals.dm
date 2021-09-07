@@ -342,6 +342,7 @@
 #define COMSIG_MOB_LOGOUT "mob_logout"							//from /mob/Logout(): ()
 #define COMSIG_MOB_ATTACHMENT_FIRED "mob_attachment_fired"
 #define COMSIG_MOB_TOGGLEMOVEINTENT "mob_togglemoveintent"		//drom base of mob/toggle_move_intent(): (new_intent)
+#define COMSIG_MOB_FACE_DIR "mob_face_dir"
 #define COMSIG_MOB_ENABLE_STEALTH "mob_togglestealth"
 	#define STEALTH_ALREADY_ACTIVE (1<<0)
 

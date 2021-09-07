@@ -45,12 +45,6 @@ can cause issues with ammo types getting mixed up during the burst.
 /obj/item/weapon/gun/shotgun/update_icon() //Shotguns do not currently have empty states, as they look exactly the same. Other than double barrel.
 	return
 
-/obj/item/weapon/gun/shotgun/unique_action(mob/user)
-	. = ..()
-	if(!.)
-		return
-	return cock(user)
-
 /obj/item/weapon/gun/shotgun/proc/replace_tube(number_to_replace)
 	current_mag.chamber_contents = list()
 	current_mag.chamber_contents.len = current_mag.max_rounds
@@ -99,33 +93,11 @@ can cause issues with ammo types getting mixed up during the burst.
 	current_mag.chamber_position--
 	return 1
 
-		//While there is a much smaller way to do this,
-		//this is the most resource efficient way to do it.
+///Generates a handful of 1 bullet from the gun.
 /obj/item/weapon/gun/shotgun/proc/retrieve_shell(selection)
-	var/obj/item/ammo_magazine/handful/new_handful = new /obj/item/ammo_magazine/handful()
-	new_handful.generate_handful(selection, CALIBER_12G, 1, /obj/item/weapon/gun/shotgun)
+	var/obj/item/ammo_magazine/handful/new_handful = new()
+	new_handful.generate_handful(selection, caliber, 1, /obj/item/weapon/gun/shotgun)
 	return new_handful
-
-/obj/item/weapon/gun/shotgun/pump/bolt/retrieve_shell(selection)
-	var/obj/item/ammo_magazine/handful/new_handful = new /obj/item/ammo_magazine/handful()
-	new_handful.generate_handful(selection, CALIBER_762X54, 1, /obj/item/weapon/gun/shotgun)
-	return new_handful
-
-/obj/item/weapon/gun/shotgun/double/martini/retrieve_shell(selection)
-	var/obj/item/ammo_magazine/handful/new_handful = new /obj/item/ammo_magazine/handful()
-	new_handful.generate_handful(selection, CALIBER_557, 1, /obj/item/weapon/gun/shotgun)
-	return new_handful
-
-/obj/item/weapon/gun/shotgun/pump/lever/retrieve_shell(selection)
-	var/obj/item/ammo_magazine/handful/new_handful = new /obj/item/ammo_magazine/handful()
-	new_handful.generate_handful(selection, CALIBER_44, 1, /obj/item/weapon/gun/shotgun)
-	return new_handful
-
-/obj/item/weapon/gun/shotgun/pump/lever/mbx900/retrieve_shell(selection)
-	var/obj/item/ammo_magazine/handful/new_handful = new /obj/item/ammo_magazine/handful()
-	new_handful.generate_handful(selection, CALIBER_410, 1, /obj/item/weapon/gun/shotgun)
-	return new_handful
-
 
 /obj/item/weapon/gun/shotgun/proc/check_chamber_position()
 	return 1
@@ -341,7 +313,7 @@ can cause issues with ammo types getting mixed up during the burst.
 
 //Turns out it has some attachments.
 /obj/item/weapon/gun/shotgun/double/update_icon()
-	icon_state = "[initial(icon_state)][current_mag.chamber_closed ? "" : "_o"]"
+	icon_state = "[base_gun_icon][current_mag.chamber_closed ? "" : "_o"]"
 
 /obj/item/weapon/gun/shotgun/double/check_chamber_position()
 	if(current_mag.chamber_closed)
@@ -739,6 +711,43 @@ can cause issues with ammo types getting mixed up during the burst.
 
 	aim_slowdown = 1
 	wield_delay = 1 SECONDS
+
+//***********************************************************
+// Derringer
+
+/obj/item/weapon/gun/shotgun/double/derringer
+	name = "R-2395 Derringer"
+	desc = "The R-2395 Derringer has been a classic for centuries. This latest iteration combines plasma propulsion powder with the classic design to make an assasination weapon that will leave little to chance."
+	icon_state = "derringer"
+	item_state = "tp17"
+	gun_skill_category = GUN_SKILL_PISTOLS
+	w_class = WEIGHT_CLASS_TINY
+	type_of_casings = "cartridge"
+	caliber = CALIBER_41RIM //codex
+	muzzle_flash_lum = 5
+	max_shells = 2 //codex
+	ammo = /datum/ammo/bullet/pistol/superheavy/derringer
+	current_mag = /obj/item/ammo_magazine/internal/shotgun/derringer
+	fire_sound = 'sound/weapons/guns/fire/mateba.ogg'
+	reload_sound = 'sound/weapons/guns/interact/shotgun_db_insert.ogg'
+	cocked_sound = 'sound/weapons/guns/interact/martini_cocked.ogg'
+	opened_sound = 'sound/weapons/guns/interact/martini_open.ogg'
+	attachable_allowed = list()
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_INTERNAL_MAG|GUN_AMMO_COUNTER
+
+	fire_delay = 0.5 SECONDS
+	scatter = 30
+	recoil = 1
+	recoil_unwielded = 1
+	aim_slowdown = 0
+	wield_delay = 0.5 SECONDS
+
+/obj/item/weapon/gun/shotgun/double/derringer/Initialize()
+	. = ..()
+	if(round(rand(1, 10), 1) != 1)
+		return
+	base_gun_icon = "derringerw"
+	update_icon()
 
 //***********************************************************
 // Yee Haw it's a cowboy lever action gun!

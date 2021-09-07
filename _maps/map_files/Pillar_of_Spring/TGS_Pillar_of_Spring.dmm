@@ -851,6 +851,12 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/command/corporateliaison)
+"cP" = (
+/obj/structure/barricade/metal{
+	dir = 1
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/hull/lower_hull)
 "cQ" = (
 /obj/effect/decal/siding{
 	dir = 5
@@ -2203,6 +2209,9 @@
 	},
 /turf/open/floor/mainship/floor,
 /area/mainship/command/self_destruct)
+"hh" = (
+/turf/open/floor/wood,
+/area/mainship/hull/lower_hull)
 "hi" = (
 /obj/machinery/light/small{
 	dir = 8
@@ -2395,6 +2404,13 @@
 /obj/machinery/firealarm,
 /turf/open/floor/mainship/sterile/corner,
 /area/mainship/medical/surgery_hallway)
+"ig" = (
+/obj/structure/closet/boxinggloves,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/hull/lower_hull)
 "ih" = (
 /obj/machinery/door/airlock/mainship/generic/pilot/bunk{
 	dir = 8
@@ -2446,9 +2462,6 @@
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment/corner{
 	dir = 1
-	},
-/obj/machinery/light/small{
-	dir = 8
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/lower_hull)
@@ -6319,6 +6332,12 @@
 "un" = (
 /turf/open/floor/plating/mainship,
 /area/mainship/shipboard/weapon_room)
+"uo" = (
+/obj/structure/barricade/metal{
+	dir = 8
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/hull/lower_hull)
 "up" = (
 /obj/structure/prop/mainship/cannon_cables,
 /turf/open/floor/plating/mainship,
@@ -7481,6 +7500,12 @@
 /obj/item/radio,
 /turf/open/floor/mainship/stripesquare,
 /area/mainship/hallways/port_umbilical)
+"xR" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/hull/lower_hull)
 "xS" = (
 /obj/machinery/door/airlock/mainship/marine/requisitions{
 	dir = 2
@@ -7587,6 +7612,12 @@
 /obj/machinery/portable_atmospherics/canister/nitrogen,
 /turf/open/floor/engine,
 /area/mainship/engineering/port_atmos)
+"yi" = (
+/obj/structure/barricade/metal{
+	dir = 4
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/hull/lower_hull)
 "yj" = (
 /obj/machinery/atmospherics/components/unary/outlet_injector/on{
 	dir = 1
@@ -8775,6 +8806,10 @@
 	},
 /turf/open/floor/wood,
 /area/mainship/living/numbertwobunks)
+"BX" = (
+/obj/structure/bed/chair/wood/wings,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/hull/lower_hull)
 "BY" = (
 /turf/open/floor/mainship/black{
 	dir = 9
@@ -15200,6 +15235,9 @@
 /obj/structure/lattice,
 /turf/open/space,
 /area/space)
+"VL" = (
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/hull/lower_hull)
 "VM" = (
 /obj/structure/table/mainship,
 /obj/structure/paper_bin,
@@ -15566,6 +15604,12 @@
 /obj/machinery/vending/nanomed,
 /turf/closed/wall/mainship,
 /area/mainship/command/corporateliaison)
+"Xe" = (
+/obj/machinery/line_nexter,
+/turf/open/floor/mainship/cargo/arrow{
+	dir = 8
+	},
+/area/mainship/hull/lower_hull)
 "Xf" = (
 /obj/structure/table/mainship,
 /obj/item/pizzabox,
@@ -16200,6 +16244,10 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/engineering_workshop)
+"Zb" = (
+/obj/structure/barricade/metal,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/hull/lower_hull)
 "Zc" = (
 /obj/effect/landmark/start/job/squadleader,
 /obj/effect/landmark/start/latejoin,
@@ -36134,15 +36182,15 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
 tG
+Lw
+Lw
+Lw
+Lw
+Lw
+Lw
+Lw
+Lw
 Lw
 Lw
 Lw
@@ -36391,15 +36439,15 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
 Tm
+rc
+rc
+rc
+rc
+rc
+rc
+rc
+rc
 rc
 rc
 rc
@@ -36648,16 +36696,16 @@ fI
 fI
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
 Tm
 rc
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+ad
 ad
 ad
 ad
@@ -36905,16 +36953,16 @@ fI
 fI
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
 Tm
 rc
+ad
+ig
+VL
+yi
+yi
+yi
+yi
+VL
 ad
 aW
 gt
@@ -37162,16 +37210,16 @@ fI
 fI
 aa
 aa
-aa
-aa
-aa
-aa
-fI
-fI
-fI
-aa
 Tm
 rc
+ad
+BX
+Zb
+hh
+hh
+hh
+hh
+cP
 ad
 LA
 LU
@@ -37419,16 +37467,16 @@ fI
 fI
 aa
 aa
-aa
-aa
-aa
-aa
-fI
-fI
-fI
-fI
 Tm
 rc
+ad
+BX
+Zb
+hh
+hh
+hh
+hh
+cP
 ad
 gt
 LV
@@ -37676,16 +37724,16 @@ fI
 fI
 aa
 aa
-aa
-aa
-aa
-fI
-fI
-fI
-fI
-fI
 Tm
 rc
+ad
+BX
+Zb
+hh
+hh
+hh
+hh
+cP
 ad
 LW
 UQ
@@ -37933,16 +37981,16 @@ aa
 fI
 fI
 fI
-fI
-fI
-fI
-fI
-fI
-fI
-fI
-fI
 Tm
 rc
+ad
+BX
+Zb
+hh
+hh
+hh
+hh
+cP
 ad
 LW
 ta
@@ -38190,16 +38238,16 @@ Lw
 Lw
 Lw
 Lw
-Lw
-Lw
-Lw
-Lw
-Lw
-Lw
-Lw
-Lw
 rc
 rc
+ad
+BX
+VL
+Xe
+uo
+uo
+Xe
+xR
 ad
 LW
 UQ
@@ -38452,10 +38500,10 @@ ad
 ad
 ad
 ad
+rj
 ad
 ad
-ad
-ad
+rj
 ad
 ad
 GM
@@ -38710,7 +38758,7 @@ td
 td
 td
 iq
-aW
+Nw
 aW
 aW
 aW
