@@ -763,13 +763,6 @@ ARMOR
 	)
 	cost = 40
 
-/datum/supply_packs/armor/modular/attachments/lamp
-	name = "Jaeger baldur modules"
-	contains = list(
-		/obj/item/armor_module/attachable/better_shoulder_lamp,
-	)
-	cost = 10
-
 /datum/supply_packs/armor/modular/attachments/valkyrie_autodoc
 	name = "Jaeger Valkyrie autodoc module"
 	contains = list(
