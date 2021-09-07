@@ -767,6 +767,11 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	name = "TX-11 mini rail scope"
 	icon_state = "tx11scope"
 
+/obj/item/attachable/scope/mini/sadar
+	name = "sadar mini rail scope"
+	icon_state = "miniscope"
+	zoom_allow_movement = FALSE
+
 /obj/item/attachable/scope/antimaterial
 	name = "antimaterial rail scope"
 	desc = "A rail mounted zoom sight scope specialized for the antimaterial Sniper Rifle . Allows zoom by activating the attachment. Can activate its targeting laser while zoomed to take aim for increased damage and penetration. Use F12 if your HUD doesn't come back."
