@@ -654,7 +654,7 @@
 	contraband = list()
 
 /obj/machinery/vending/MarineMed/Blood/rebel
-	req_access = list(ACCESS_MARINE_MEDBAY_REBEL, ACCESS_MARINE_CHEMISTRY_REBEL)
+	req_one_access = list(ACCESS_MARINE_MEDBAY_REBEL, ACCESS_MARINE_CHEMISTRY_REBEL)
 
 /obj/machinery/vending/MarineMed/Blood/build_inventory(list/productlist, category)
 	. = ..()
@@ -724,6 +724,7 @@
 	prices = list()
 
 /obj/machinery/vending/shared_vending/marine_engi/rebel
+	req_access = list(ACCESS_MARINE_ENGPREP_REBEL)
 	products = list(
 		/obj/structure/closet/crate/mortar_ammo/mortar_kit = 1,
 		/obj/item/storage/box/sentry = 5,
