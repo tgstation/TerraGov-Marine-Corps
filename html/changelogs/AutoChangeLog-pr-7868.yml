@@ -1,5 +1,0 @@
-author: "hyper2snyper"
-delete-after: True
-changes: 
-  - code_imp: "Single Action Revolver Support"
-  - refactor: "Cock() Refactor and removes some Unique_Action() bloat"
