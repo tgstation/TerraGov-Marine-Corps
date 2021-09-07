@@ -97,7 +97,7 @@
 	Returns TRUE on success.
 */
 /mob/proc/put_in_active_hand(obj/item/W)
-	if(status_flags & INCORPOREAL) // INCORPOREAL things don't have hands
+	if(status_flags & INCORPOREAL || status_flags & CANNOT_HOLD) // INCORPOREAL things don't have hands
 		return FALSE
 	if(hand)
 		return put_in_l_hand(W)
