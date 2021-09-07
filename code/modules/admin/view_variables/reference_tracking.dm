@@ -1,8 +1,6 @@
 #ifdef REFERENCE_TRACKING
 
-GLOBAL_LIST_INIT(reftracking_blacklisted_types, list(
-	/obj/effect/alien/weeds, //This is fixed in weeds refactor
-))
+GLOBAL_LIST_EMPTY(reftracking_blacklisted_types)
 
 /datum/proc/find_references(skip_alert)
 	if(GLOB.reftracking_blacklisted_types.Find(type))
