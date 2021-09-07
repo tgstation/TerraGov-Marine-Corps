@@ -768,8 +768,8 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	icon_state = "tx11scope"
 
 /obj/item/attachable/scope/mini/sadar
-	name = "sadar mini rail scope"
-	icon_state = "miniscope"
+	name = "sadar rail scope"
+	icon_state = "sniperscope"
 	zoom_allow_movement = FALSE
 
 /obj/item/attachable/scope/antimaterial
