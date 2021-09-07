@@ -242,6 +242,7 @@ should be alright.
 		reload(user, I)
 		return
 
+///Reloads the sentry battery. This is used both in the gun, and called from /deployed/mounted/sentry
 /obj/item/weapon/gun/proc/reload_sentry_cell(obj/item/cell/cell, mob/user)
 	if(!istype(cell, sentry_battery_type))
 		to_chat(user, span_warning("[cell] wont fit there!"))
@@ -267,6 +268,7 @@ should be alright.
 	. = ..()
 	remove_sentry_cell(user)
 
+///Removes the sentry battery. This is used both in the gun, and called from /deployed/mounted/sentry.
 /obj/item/weapon/gun/proc/remove_sentry_cell(mob/user)
 	if(!user.Adjacent(src) || !ishuman(user) || !CHECK_BITFIELD(flags_gun_features, GUN_IS_SENTRY))
 		return
