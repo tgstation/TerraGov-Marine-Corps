@@ -518,7 +518,7 @@
 /obj/item/weapon/gun/launcher/m92/Initialize()
 	. = ..()
 	for(var/i in 1 to max_grenades)
-		grenades += new /obj/item/explosive/grenade/frag(src)
+		grenades += new /obj/item/explosive/grenade(src)
 
 /obj/item/weapon/gun/launcher/m92/update_icon(mob/user)
 	update_item_state(user)
@@ -725,7 +725,7 @@
 /obj/item/weapon/gun/launcher/m81/Initialize(mapload, spawn_empty)
 	. = ..()
 	if(!spawn_empty)
-		grenade = new grenade_type_allowed()
+		grenade = new /obj/item/explosive/grenade()
 
 /obj/item/weapon/gun/launcher/m81/update_icon()
 	icon_state = grenade ? base_gun_icon : base_gun_icon + "_e"

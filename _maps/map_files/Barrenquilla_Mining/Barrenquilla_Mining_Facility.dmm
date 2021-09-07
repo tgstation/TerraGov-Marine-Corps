@@ -7036,7 +7036,7 @@
 	dir = 1
 	},
 /obj/effect/decal/cleanable/dirt,
-/obj/item/explosive/grenade/frag/PMC,
+/obj/item/explosive/grenade/PMC,
 /obj/item/clothing/under/marine/veteran/PMC,
 /obj/item/clothing/under/marine/veteran/PMC,
 /obj/item/clothing/under/marine/veteran/PMC,
