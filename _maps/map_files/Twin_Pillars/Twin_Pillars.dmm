@@ -547,10 +547,10 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/lower_medical/rebel)
 "azJ" = (
-/obj/machinery/vending/medical,
 /obj/machinery/camera/autoname/mainship/rebelship{
 	dir = 4
 	},
+/obj/machinery/vending/medical/rebel,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/lower_medical/rebel)
 "aAf" = (
@@ -12656,7 +12656,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/lower_engineering)
 "lof" = (
-/obj/machinery/vending/medical,
+/obj/machinery/vending/medical/rebel,
 /turf/open/floor/mainship/sterile/corner,
 /area/mainship/medical/chemistry/rebel)
 "lpj" = (
