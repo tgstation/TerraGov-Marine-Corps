@@ -1394,10 +1394,10 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	flags_attach_features = NONE
 
 /obj/item/attachable/buildasentry
-	name = "Build-A-Sentry"
+	name = "\improper Build-A-Sentry Attachment System"
 	icon = 'icons/Marine/sentry.dmi'
 	icon_state = "build_a_sentry_attachment"
-	desc = ""
+	desc = "The Build-A-Sentry is the latest design in cheap, automated, defense. Simple attach it the rail of a gun and deploy. Its that easy!"
 	slot = ATTACHMENT_SLOT_RAIL
 	pixel_shift_x = 10
 	pixel_shift_y = 18
