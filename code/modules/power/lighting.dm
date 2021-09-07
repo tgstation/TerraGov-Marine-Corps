@@ -666,14 +666,14 @@
 
 /obj/machinery/landinglight/ds1/Initialize(mapload, ...)
 	. = ..()
-	id = "alamo"
+	id = SHUTTLE_ALAMO
 
 /obj/machinery/landinglight/ds2
 
 
 /obj/machinery/landinglight/ds2/Initialize(mapload, ...)
 	. = ..()
-	id = "normandy" // ID for landing zone
+	id = SHUTTLE_NORMANDY // ID for landing zone
 
 /obj/machinery/landinglight/proc/turn_on()
 	icon_state = "landingstripe0"

@@ -19,6 +19,7 @@
 /obj/structure/desertdam/decals/road
 	name = "road"
 	icon_state = "road"
+	layer = BELOW_MOB_LAYER
 
 /obj/structure/desertdam/decals/road/edge
 	icon_state = "edge"

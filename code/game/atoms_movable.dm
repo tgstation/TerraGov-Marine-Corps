@@ -291,6 +291,8 @@
 			if(moving_diagonally == SECOND_DIAG_STEP)
 				if(!. && !(flags_atom & DIRLOCK))
 					setDir(first_step_dir)
+				moving_diagonally = 0
+				return TRUE
 			moving_diagonally = 0
 			return
 

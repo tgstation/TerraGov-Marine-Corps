@@ -463,3 +463,215 @@
   - bugfix: Ghost emotes are only sent from player mobs to reduce clog
   - bugfix: Fix flashing with item attacks
   - bugfix: fixed a missing cas message
+2021-08-24:
+  BraveMole:
+  - code_imp: Fix half completed diagonal move returning FALSE
+  - refactor: Refactor pathfinder for xeno
+  - rscadd: Unmanned vehicles and remote control added to req
+  - rscadd: Ai can control unmanned vehicles
+  - rscadd: Relayed speech added to droids
+  Hekzder:
+  - balance: Bull gets all charges at Young instead of time gated to Mature and Ancient
+  Lewdcifer:
+  - balance: Reverts Crusher speed reduction on weeds.
+  Pariah919:
+  - balance: T-25 reworked, it is more like an LMG than a Assault Rifle. 80 rounds
+      instead of 50, 1.5 sunder instead of 1, 10 pen instead of 15. 0.7 aim slowdown
+      instead of 0.8, 0.9 wield delay instead of 0.6. Packet changed to accomdate
+      the higher amount of ammo, it holds 320 rounds instead of 200.
+  SplinterGP:
+  - balance: buckshot has less falloff
+  - balance: buckshot accurate range(not spread) has been increased to 5 tiles.
+  lbnesquik:
+  - expansion: Expanded the special force ERT to have a shield wielding guy.
+  - bugfix: fixed the capitalization of some shuttle id's so they work better with
+      the AI
+  - qol: made it possible for the AI to actually interact with sentries.
+2021-08-25:
+  BraveMole:
+  - bugfix: Fix cas
+  KornFlaks:
+  - rscadd: Powerfist now applies a stun scaling with power level
+  KrabSpider:
+  - balance: Berets get a ARMOR_NO_DECAP too. Have fun snowflakes, you're still going
+      to die a horrible, unceromoneous death because they still get crap armor.
+  Passe2142:
+  - balance: Grapple toss distance from 3 tiles to 4 with 0.5 seconds of stun from
+      1s.
+  QualityVan:
+  - bugfix: Stasis bags prevent metabolizing chemicals
+  - bugfix: Some negative status effects will be paused while in stasis, resuming
+      once you leave
+  SplinterGP:
+  - expansion: PAS-11 armor and M10 helmet have been fitted with attach points to
+      be able to take modules like jaeger, a X has been added on end of their name
+      to imply that.
+  - balance: PAS-11X and M10X can take modules.
+  Surrealaser:
+  - balance: Muted marines can no longer issue orders; a Muted marine will have his
+      ongoing orders cancelled next tick.
+  - bugfix: Muted marines can no longer issue orders.
+  - balance: Marines subject to Silence can no longer benefit from orders.
+  - bugfix: Marines subject to Silence can no longer benefit from orders.
+  - balance: Silence plasma cost reduced from 75 to 50.
+  - balance: Silence cooldown reduced from 40 to 30 seconds.
+  - balance: Silence windup reduced from 0.5 seconds to 0.3 seconds.
+  - qol: Xenos can now see which marines are subject to Silence via a HUD element.
+  - bugfix: 'Silence duration fixed; it is now actually 10 seconds. remove: Haunt
+      removed.'
+  lbnesquik:
+  - rscadd: Added an orbital spotlight, activate from the CIC overwatch.
+  - qol: Brought Binary radio for synths
+  vilereaver41:
+  - bugfix: weird blue and green cargo container glitch
+  - rscadd: a small miner building in north caves
+  - rscadd: supply chamber in lz1 that can't be accessed until button in eta lab directors
+      office is activated
+  - rscadd: button in eta lab directors office that can only be used by field commander
+      or higher via their id card
+  - rscadd: a building that leads to an underground facility that cannot easily be
+      accessed by marines until the button in eta lab director's office is activated.
+      though a good enough marine squad can use the lambda Xeno entrance that is always
+      open.
+  - rscadd: medium size underground facility
+  - rscadd: lambda entrance to the underground facility
+2021-08-26:
+  BraveMole:
+  - rscdel: Remove unused holster keybind
+  - bugfix: Fix minds and related harddels
+  - bugfix: Fix fire light lag
+  Lewdcifer:
+  - balance: Increased Defiler's armor by 5.
+  Matlap:
+  - rscadd: 'Monkey cubes are now back in research. bal: Facehuggers will now ignore
+      AI monkeys.'
+  Pariah919:
+  - balance: marine orders last 30 seconds longer
+  - expansion: 10x20mm packets added.
+  QualityVan:
+  - bugfix: Acid will now tell you when it melts your helmet or mask (sulphuric/polytrinic,
+      not xeno acid)
+  SpaceLoveSs13:
+  - bugfix: fixed thesus wrong leader vendor
+  bobmancer343:
+  - qol: Carrier can use retrieve egg and spawn hugger while resting.
+  jroinc:
+  - balance: Boiler acid glob direct hits now stun for 1 full second rather than 0.5
+      or 0.1 seconds.
+  lbnesquik:
+  - rscadd: Added a way to disable weather noises locally
+2021-08-27:
+  BraveMole:
+  - bugfix: Fix ai breaking tadpole
+  - balance: Spitter, drone and sentinel can ride crusher too
+  - expansion: The rider can initiate the riding (grab the croosh, and click yourself
+      to mount the crusher)
+  Lewdcifer:
+  - balance: Reverts Powerfist Stun.
+  Losenis:
+  - balance: T-29 Smartmachinegun can now mount miniscope
+  SplinterGP:
+  - bugfix: fixes missing PAS slowdown, now it has proper slowdown and armor same
+      as a medium jaeger.
+  Surrealaser:
+  - balance: Reagent Claws is now locked to injecting the reagent selected when it
+      is activated.
+  - balance: Transvitox no longer has fractional gas reagent transfer strength for
+      some reason.
+  - balance: Hunter Silence no longer has wind up.
+2021-08-28:
+  BraveMole:
+  - balance: You can use some xeno abilities while riding
+  Hekzder:
+  - balance: T-21 has it's sunder reduced from 1.5 to 1.25
+  SplinterGP:
+  - bugfix: you're now able to start shooting guns on adjacent tiles.
+  TiviPlus:
+  - bugfix: fixed a server crash exploit
+  disappointedButNotSuprised:
+  - rscadd: Added engineering beret to engineer vendors as another option for headgear
+  lbnesquik:
+  - bugfix: fixes CAS not being able to equip anything but the default minigun.
+  - bugfix: fixes the metal riot shield not having a proper in hand sprite.
+  - qol: Gave the CAS plane an alert for whenever it receives a new valid target (flare/laze)
+  vilereaver41:
+  - balance: Scatterspit damage down from 15 to 10
+  - balance: Plasma costs from 150 to 250
+  - balance: Projectile from 5 to 6
+  - balance: Scatter from 10 to 3
+  - balance: Puddle duration from 2 seconds to 1 second
+  - balance: 6-second cooldown to 5 seconds
+  - balance: acid splash delay changed to 1.2 young, 1.1 mature, 1 elder, and 0.9
+      ancient.
+  - balance: acid splash now 150 plasma a shot up from 75 a shot
+2021-08-29:
+  BraveMole:
+  - rscadd: Ai nodes added on every map
+  - rscadd: 'Hunter ability: Mirror image. Create double of yourself, mess with your
+      ennemy head! In harm intent, mirage images will escort you, in help intent,
+      they''ll disperse'
+  - rscadd: Weeds type, xeno have now access to three different weeds. Base weeds,
+      resting weeds, sticky weeds. You won't regen sunder if not on resting weeds.
+      All weeds are making xenos faster, but better weeds are more expensive
+  - balance: Weeds are decaying faster
+  GradusNL:
+  - expansion: Logs respawns to lobby and displays them alongside revives as round
+      statistic.
+  Pariah919:
+  - balance: Buckshot extra projectiles have less scatter.
+  Surrealaser:
+  - balance: Defile wind up reduced from 1.5 seconds to 0.5 seconds.
+  - balance: Defile plasma cost reduced from 150 to 100.
+  - balance: Defile Brute damage reduced from 10 to 5 and Stamina damage reduced from
+      100 to 50.
+  - rscadd: Defile no longer injects larva; instead it purges all chemicals in the
+      victim and deals toxin damage equal to half the total U of chemical purged from
+      the victim's system multiplied by 2 for each unique xeno toxin in its system.
+      The victim also exudes a cloud of blood red Sanguinal smoke that scales in size
+      with the amount of toxin damage dealt in this way.
+  - rscadd: New Sanguinal toxin added; deals minor brute and bleeding each tick.  For
+      each other unique xeno toxin in the victim's system, it will also deal minor
+      damage of a corresponding type (Stamina for Hemodile, Toxin for Neurotoxin and
+      Burn for Transvitox).
+  TiviPlus:
+  - refactor: Monkeys now can interact like humans
+  - bugfix: Some messages will now use pronouns correctly instead of their/they
+  - bugfix: the powerloader is now offset correctly
+  - refactor: redid the vehicle code completely
+  lbnesquik:
+  - bugfix: fixes CAS for good this time. Right?
+  - qol: allowed xenos to be fed food for the sake of fluff
+  - code_imp: Moved all shuttle ID's to defines.
+  lovegreenstuff:
+  - bugfix: TP44 attachment offsets reverted to pre-snubnose values
+2021-08-30:
+  BraveMole:
+  - balance: you can slash flashlights off
+  - bugfix: Fix admins xeno buff not staying
+  Pariah919:
+  - balance: machete/officer sword have bump attacks and deal 15 more damage
+  - rscadd: machinecarbine, has the stats of a t-18, but with worse slowdown, incredibly
+      high falloff, has a bigger damaging/sundering bullet, has more in the magazine.
+      Also no aim mode.
+  - expansion: Machinecarbine/Type-71 bucket for seasonals.
+  - balance: Wall rework, max HP lowered, they've been given armor against bullets/lasers
+      so their TTK is about the same, they're less effective against fire, high armor
+      piercing weapons, explosions are about the same, but fire is much worse at killing
+      walls quickly, but it still kills a lot of walls at the same time.
+  TiviPlus:
+  - admin: Admins can now cancel OB's and OB firing now has a game log
+  - bugfix: fixed some conveyors not pushing things in the direction they appeared
+      to be facing
+  - bugfix: Fixes autolathe not having conveyors
+2021-08-31:
+  BraveMole:
+  - balance: You can't put more than 2 guns in bags anymore.
+  - balance: Hunter illusion flickers when hit by projectiles
+  - bugfix: Prevent from dragging while riding a crusher
+  Pariah919:
+  - balance: marines have more messages telling them the severity of their wounds
+      when they self examine
+  vilereaver41:
+  - balance: neurotoxic spit for Sentinel, Praetorian,
+  - balance: After extensive testing the values have been increased slightly and should
+      now be the best they can be without gameplay being unfair.

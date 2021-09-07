@@ -7,7 +7,6 @@
 
 #define CARDINAL_DIRS list(1,2,4,8)
 #define CARDINAL_ALL_DIRS list(1,2,4,5,6,8,9,10)
-#define cheap_hypotenuse(Ax,Ay,Bx,By) (sqrt(abs(Ax - Bx)**2 + abs(Ay - By)**2)) //A squared + B squared = C squared
 #define get_dist_euclide_square(A, B) (A && B ? A.z == B.z ? (A.x - B.x)**2 + (A.y - B.y)**2 : INFINITY : INFINITY)
 #define get_dist_euclide(A, B) (sqrt(get_dist_euclide_square(A, B)))
 

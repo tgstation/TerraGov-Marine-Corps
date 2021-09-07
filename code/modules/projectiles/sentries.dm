@@ -6,11 +6,8 @@
 	req_one_access = list(ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_ENGPREP, ACCESS_MARINE_LEADER)
 	hud_possible = list(MACHINE_HEALTH_HUD, SENTRY_AMMO_HUD)
 
-
-	soft_armor = list("melee" = 50, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = 50, "bio" = 100, "rad" = 0, "fire" = 80, "acid" = 50)
-
 	///Spark system for making sparks
-	var/datum/effect_system/spark_spread/spark_system 
+	var/datum/effect_system/spark_spread/spark_system
 	///Camera for viewing with cam consoles
 	var/obj/machinery/camera/camera
 	///View and fire range of the sentry
@@ -32,6 +29,8 @@
 	///Iff signal of the sentry. If the /gun has a set IFF then this will be the same as that. If not the sentry will get its IFF signal from the deployer
 	var/iff_signal = NONE
 
+	var/list/ignored_terrains
+
 //------------------------------------------------------------------
 //Setup and Deletion
 
@@ -47,6 +46,7 @@
 
 	knockdown_threshold = gun.knockdown_threshold
 	range = gun.turret_range
+	ignored_terrains = gun.ignored_terrains
 
 	radio = new(src)
 
@@ -85,7 +85,7 @@
 /obj/machinery/deployable/mounted/sentry/on_deconstruction()
 	sentry_alert(SENTRY_ALERT_DESTROYED)
 	return ..()
-	
+
 //-----------------------------------------------------------------
 // Interaction
 
@@ -139,7 +139,7 @@
 
 	if(CHECK_BITFIELD(machine_stat, KNOCKED_DOWN))
 		return TRUE
-	
+
 	if(CHECK_BITFIELD(gun.turret_flags, TURRET_IMMOBILE))
 		to_chat(user, span_warning("[src]'s panel is completely locked, you can't do anything."))
 		return TRUE
@@ -185,7 +185,9 @@
 	if(.)
 		return
 	var/obj/item/weapon/gun/gun = internal_item
-	var/mob/living/carbon/human/user = usr
+	if(isxeno(usr))
+		return
+	var/mob/living/user = usr
 	if(!istype(user) || CHECK_BITFIELD(gun.turret_flags, TURRET_IMMOBILE) || CHECK_BITFIELD(machine_stat, KNOCKED_DOWN))
 		return
 	switch(action)
@@ -204,6 +206,8 @@
 			. = TRUE
 
 		if("manual")
+			if(isAI(user))
+				return
 			if(operator)
 				user.unset_interaction()
 			else
@@ -256,6 +260,8 @@
 /obj/machinery/deployable/mounted/sentry/proc/knock_down()
 	if(CHECK_BITFIELD(machine_stat, KNOCKED_DOWN))
 		return
+	var/obj/item/weapon/gun/internal_gun = internal_item 
+	internal_gun.stop_fire() //Comrade sentry has been sent to the gulags. He served the revolution well.
 	visible_message(span_highdanger("The [name] is knocked over!"))
 	sentry_alert(SENTRY_ALERT_FALLEN)
 	ENABLE_BITFIELD(machine_stat, KNOCKED_DOWN)
@@ -400,15 +406,15 @@
 		if(smoke && smoke.opacity)
 			return FALSE
 
-		if(IS_OPAQUE_TURF(T) || T.density && T.throwpass == FALSE)
+		if(IS_OPAQUE_TURF(T) || T.density && T.throwpass == FALSE && !(T.type in ignored_terrains))
 			return FALSE
 
 		for(var/obj/machinery/MA in T)
-			if(MA.density && MA.throwpass == FALSE)
+			if(MA.density && MA.throwpass == FALSE && !(MA.type in ignored_terrains))
 				return FALSE
 
 		for(var/obj/structure/S in T)
-			if(S.density && S.throwpass == FALSE )
+			if(S.density && S.throwpass == FALSE && !(S.type in ignored_terrains))
 				return FALSE
 
 	return TRUE
@@ -429,7 +435,7 @@
 
 		if(!check_target_path(nearby_target))
 			continue
-		
+
 		sentry_alert(SENTRY_ALERT_HOSTILE, nearby_target)
 
 		distance = buffer_distance

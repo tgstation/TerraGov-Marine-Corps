@@ -34,9 +34,6 @@
 	else
 		. += image('icons/obj/kitchen.dmi', "gridle")
 
-/obj/machinery/gibber/attack_paw(mob/living/carbon/human/user)
-	return attack_hand(user)
-
 /obj/machinery/gibber/relaymove(mob/user)
 	if(user.incapacitated(TRUE))
 		return

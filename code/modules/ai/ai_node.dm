@@ -41,7 +41,7 @@
 	for(var/nodes in adjacent_nodes)
 		var/obj/effect/ai_node/node = nodes
 		node.adjacent_nodes -= src
-	adjacent_nodes.Cut()
+	adjacent_nodes?.Cut()
 	return ..()
 
 /**

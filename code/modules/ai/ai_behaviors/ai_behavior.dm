@@ -35,7 +35,8 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 		stack_trace("An ai behavior was initialized without a parent to assign it to; destroying mind. Mind type: [type]")
 		qdel(src)
 		return
-	src.escorted_atom = escorted_atom
+	//We always use the escorted atom as our reference point for looking for target. So if we don't have any escorted atom, we take ourselve as the reference
+	src.escorted_atom = escorted_atom ? escorted_atom : parent_to_assign
 	mob_parent = parent_to_assign
 	START_PROCESSING(SSprocessing, src)
 
@@ -102,6 +103,10 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 		current_node = pick(current_node.adjacent_nodes)
 	current_node.set_weight(identifier, NODE_LAST_VISITED, world.time)
 	change_action(MOVING_TO_NODE, current_node)
+
+///Signal handler when the ai is blocked by an obstacle
+/datum/ai_behavior/proc/deal_with_obstacle(datum/source, direction)
+	SIGNAL_HANDLER
 
 //Generic process(), this is used for mainly looking at the world around the AI and determining if a new action must be considered and executed
 /datum/ai_behavior/process()

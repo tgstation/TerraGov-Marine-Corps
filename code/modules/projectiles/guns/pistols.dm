@@ -35,13 +35,6 @@
 	scatter = 0
 	scatter_unwielded = 0
 
-
-/obj/item/weapon/gun/pistol/unique_action(mob/user)
-	. = ..()
-	if(!.)
-		return
-	return cock(user)
-
 /obj/item/weapon/gun/pistol/get_ammo_type()
 	if(!ammo)
 		return list("unknown", "unknown")
@@ -104,7 +97,7 @@
 	)
 
 	muzzleflash_iconstate = "muzzle_flash_laser"
-	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_ENERGY|GUN_AMMO_COUNTER
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_ENERGY|GUN_AMMO_COUNTER|GUN_IS_ATTACHMENT
 	actions_types = list()
 	wield_delay = 0.5 SECONDS
 	muzzle_flash_color = COLOR_GREEN
@@ -116,6 +109,18 @@
 	scatter_unwielded = 2
 	recoil = -2
 	recoil_unwielded = -2
+
+	slot = ATTACHMENT_SLOT_UNDER
+	attach_delay = 3 SECONDS
+	detach_delay = 3 SECONDS
+	pixel_shift_x = 10
+	pixel_shift_y = 19
+
+/obj/item/weapon/gun/can_attach(obj/item/attaching_to, mob/attacher)
+	if(!attachments_by_slot[ATTACHMENT_SLOT_RAIL])
+		return TRUE
+	to_chat(attacher, span_warning("You cannot attach [src] to [attaching_to] while [attachments_by_slot[ATTACHMENT_SLOT_RAIL]] occupies [src]'s rail slot."))
+	return FALSE
 
 /obj/item/weapon/gun/pistol/plasma_pistol/guardsman_pistol
 	name = "\improper Guardsman\'s plasma pistol"
@@ -593,9 +598,6 @@ It is a modified Beretta 93R, and can fire three round burst or single fire. Whe
 		/obj/item/attachable/burstfire_assembly,
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/stock/rifle,
-		/obj/item/attachable/attached_gun/grenade,
-		/obj/item/attachable/attached_gun/flamer,
-		/obj/item/attachable/attached_gun/shotgun,
 		/obj/item/attachable/scope,
 		/obj/item/attachable/scope/mini,
 		/obj/item/attachable/lace,

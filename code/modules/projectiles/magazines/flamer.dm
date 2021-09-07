@@ -11,10 +11,20 @@
 	current_rounds = 50
 	reload_delay = 2 SECONDS
 	w_class = WEIGHT_CLASS_NORMAL //making sure you can't sneak this onto your belt.
-	gun_type = /obj/item/weapon/gun/flamer
+	gun_type = /obj/item/weapon/gun/flamer/big_flamer
 	caliber = CALIBER_FUEL_THICK //Ultra Thick Napthal Fuel, from the lore book.
 	flags_magazine = NONE
 	icon_state_mini = "tank"
+
+/obj/item/ammo_magazine/flamer_tank/mini
+	name = "mini incinerator tank"
+	desc = "A fuel tank of usually ultra thick napthal, a sticky combustable liquid chemical, for use in the underail incinerator unit. Handle with care."
+	icon_state = "flametank_mini"
+	reload_delay = 0 SECONDS
+	current_rounds = 25
+	max_rounds = 25
+	gun_type = /obj/item/weapon/gun/flamer/mini_flamer
+
 
 
 /obj/item/ammo_magazine/flamer_tank/afterattack(obj/target, mob/user , flag) //refuel at fueltanks when we run out of ammo.
@@ -47,7 +57,7 @@
 	max_rounds = 75
 	current_rounds = 75
 	reload_delay = 3 SECONDS
-	gun_type = /obj/item/weapon/gun/flamer/marinestandard
+	gun_type = /obj/item/weapon/gun/flamer/big_flamer
 	icon_state_mini = "tank_orange"
 
 /obj/item/ammo_magazine/flamer_tank/backtank
@@ -74,7 +84,7 @@
 
 	var/mob/living/carbon/human/humanuser = user
 
-	if (!humanuser.is_item_in_slots(src))
+	if (!humanuser.is_item_in_slots(src) && !FLT.master_gun)
 		to_chat(user, span_warning("You must equip or hold this fuel tank to be able to link it to a flamer"))
 		return
 
@@ -88,6 +98,14 @@
 
 	FLT.attach_fueltank(user,src)
 
+/obj/item/ammo_magazine/flamer_tank/attackby_alternate(obj/item/I, mob/user, params)
+	. = ..()
+	if(!isgun(I))
+		return
+	var/obj/item/weapon/gun/gun = I
+	if(!istype(gun.active_attachable, /obj/item/weapon/gun/flamer))
+		return
+	attackby(gun.active_attachable, user, params)
 
 
 /obj/item/ammo_magazine/flamer_tank/backtank/removed_from_inventory(mob/user) //Dropping the tank should unlink it from the flamer
@@ -103,13 +121,6 @@
 	name = "back fuel tank (X)"
 	desc = "A specialized fuel tank of ultra thick napthal type X for use with the TL-84 flamethrower and M240A1 incinerator unit."
 	default_ammo = /datum/ammo/flamethrower/blue
-
-/obj/item/ammo_magazine/flamer_tank/large/B
-	name = "large flamethrower tank (B)"
-	desc = "A large fuel tank of ultra thick napthal type B, a wide-spreading sticky combustable liquid chemical, for use in the TL-84 flamethrower. Handle with care."
-	icon_state = "flametank_large_green"
-	default_ammo = /datum/ammo/flamethrower/green
-	icon_state_mini = "tank_green"
 
 /obj/item/ammo_magazine/flamer_tank/large/X
 	name = "large flamethrower tank (X)"

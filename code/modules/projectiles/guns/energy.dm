@@ -75,10 +75,6 @@
 
 // energy guns, however, do not use gun rattles.
 /obj/item/weapon/gun/energy/play_fire_sound(mob/user)
-	if(active_attachable && active_attachable.flags_attach_features & ATTACH_PROJECTILE)
-		if(active_attachable.fire_sound) //If we're firing from an attachment, use that noise instead.
-			playsound(user, active_attachable.fire_sound, 50)
-		return
 	if(flags_gun_features & GUN_SILENCED)
 		playsound(user, fire_sound, 25)
 		return
@@ -148,12 +144,6 @@
 	upper_akimbo_accuracy = 5
 	lower_akimbo_accuracy = 3
 
-/obj/item/weapon/gun/energy/lasgun/unique_action(mob/user)
-	. = ..()
-	if(!.)
-		return
-	return cock(user)
-
 /obj/item/weapon/gun/energy/lasgun/tesla
 	name = "\improper M43-T tesla shock rifle"
 	desc = "A prototype TGMC energy rifle that fires balls of elecricity that shock all those near them, it is meant to drain the plasma of unidentified creatures from within, limiting their abilities. Handle only with insulated clothing. Reloaded with power cells."
@@ -194,10 +184,7 @@
 		/obj/item/attachable/flashlight,
 		/obj/item/attachable/bipod,
 		/obj/item/attachable/magnetic_harness,
-		/obj/item/attachable/attached_gun/grenade,
 		/obj/item/attachable/scope,
-		/obj/item/attachable/attached_gun/flamer,
-		/obj/item/attachable/attached_gun/shotgun,
 		/obj/item/attachable/scope/mini,
 		/obj/item/attachable/focuslens,
 		/obj/item/attachable/widelens,
@@ -207,7 +194,7 @@
 	)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ENERGY|GUN_AMMO_COUNTER
-	starting_attachment_types = list(/obj/item/attachable/attached_gun/grenade, /obj/item/attachable/stock/lasgun)
+	starting_attachment_types = list(/obj/item/attachable/stock/lasgun)
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 23, "under_x" = 23, "under_y" = 15, "stock_x" = 22, "stock_y" = 12)
 
 	accuracy_mult_unwielded = 0.5 //Heavy and unwieldy; you don't one hand this.
@@ -266,17 +253,6 @@
 	return TRUE
 
 /obj/item/weapon/gun/energy/lasgun/load_into_chamber(mob/user)
-		//Let's check on the active attachable. It loads ammo on the go, so it never chambers anything
-	if(active_attachable && active_attachable.flags_attach_features & ATTACH_PROJECTILE)
-		if(active_attachable.current_rounds > 0) //If it's still got ammo and stuff.
-			active_attachable.current_rounds--
-			return create_bullet(active_attachable.ammo)
-		else
-			to_chat(user, span_warning("[active_attachable] is empty!"))
-			to_chat(user, span_notice("You disable [active_attachable]."))
-			playsound(user, active_attachable.activation_sound, 15, 1)
-			active_attachable.activate_attachment(null, TRUE)
-
 	if(!cell?.use(charge_cost))
 		return
 	in_chamber = create_bullet(ammo)
@@ -284,14 +260,6 @@
 	return in_chamber
 
 /obj/item/weapon/gun/energy/lasgun/reload_into_chamber(mob/user)
-	/*
-	ATTACHMENT POST PROCESSING
-	This should only apply to the masterkey, since it's the only attachment that shoots through Fire()
-	instead of its own thing through fire_attachment(). If any other bullet attachments are added, they would fire here.
-	*/
-	if(active_attachable && active_attachable.flags_attach_features & ATTACH_PROJECTILE)
-		make_casing(active_attachable.type_of_casings) // Attachables can drop their own casings.
-
 	if(!active_attachable && cell) //We don't need to check for the mag if an attachment was used to shoot.
 		if(cell) //If there is no mag, we can't reload.
 			if(overcharge && cell.charge < ENERGY_OVERCHARGE_AMMO_COST && cell.charge >= ENERGY_STANDARD_AMMO_COST) //Revert to standard shot if we don't have enough juice for overcharge, but enough for the standard mode
@@ -471,11 +439,8 @@
 		/obj/item/attachable/flashlight,
 		/obj/item/attachable/bipod,
 		/obj/item/attachable/magnetic_harness,
-		/obj/item/attachable/attached_gun/grenade,
 		/obj/item/attachable/scope,
 		/obj/item/attachable/scope/marine,
-		/obj/item/attachable/attached_gun/flamer,
-		/obj/item/attachable/attached_gun/shotgun,
 		/obj/item/attachable/scope/mini,
 	)
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ENERGY|GUN_AMMO_COUNTER
@@ -582,10 +547,9 @@
 		/obj/item/attachable/lasersight,
 		/obj/item/attachable/flashlight,
 		/obj/item/attachable/magnetic_harness,
-		/obj/item/attachable/attached_gun/grenade,
 		/obj/item/attachable/scope/marine,
 		/obj/item/attachable/scope/mini,
-		/obj/item/attachable/attached_gun/flamer,
+		/obj/item/weapon/gun/flamer/mini_flamer,
 		/obj/item/attachable/motiondetector,
 	)
 
@@ -732,8 +696,8 @@
 		/obj/item/attachable/lasersight,
 		/obj/item/attachable/flashlight,
 		/obj/item/attachable/magnetic_harness,
-		/obj/item/attachable/attached_gun/grenade,
-		/obj/item/attachable/attached_gun/flamer,
+		/obj/item/weapon/gun/launcher/m92/mini_grenade,
+		/obj/item/weapon/gun/flamer/mini_flamer,
 		/obj/item/attachable/motiondetector,
 	)
 
@@ -810,8 +774,8 @@
 		/obj/item/attachable/bayonetknife,
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/scope/unremovable/laser_sniper_scope,
-		/obj/item/attachable/attached_gun/grenade,
-		/obj/item/attachable/attached_gun/flamer,
+		/obj/item/weapon/gun/launcher/m92/mini_grenade,
+		/obj/item/weapon/gun/flamer/mini_flamer,
 		/obj/item/attachable/motiondetector,
 	)
 
@@ -880,8 +844,8 @@
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/scope/marine,
 		/obj/item/attachable/scope/mini,
-		/obj/item/attachable/attached_gun/grenade,
-		/obj/item/attachable/attached_gun/flamer,
+		/obj/item/weapon/gun/launcher/m92/mini_grenade,
+		/obj/item/weapon/gun/flamer/mini_flamer,
 		/obj/item/attachable/motiondetector,
 	)
 

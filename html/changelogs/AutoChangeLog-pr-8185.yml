@@ -1,0 +1,5 @@
+author: "hyper2snyper"
+delete-after: True
+changes: 
+  - bugfix: "Fixes attachment weapons firing when the gun is not in hand."
+  - bugfix: "Fixes attachment weapons firing at inventory objects."

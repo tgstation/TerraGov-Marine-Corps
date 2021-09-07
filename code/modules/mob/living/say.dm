@@ -342,6 +342,7 @@ GLOBAL_LIST_INIT(department_radio_keys_rebel, list(
 	say("#[message]", bubble_type, spans, sanitize, language, ignore_spam, forced)
 
 
+///Returns false by default
 /mob/proc/binarycheck()
 	return FALSE
 

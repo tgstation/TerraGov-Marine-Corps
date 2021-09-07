@@ -14,12 +14,6 @@
 		if(!usr.get_active_held_item())		//if active hand is empty
 			attack_hand(usr, 1, 1)
 
-	return
-
-
-/obj/structure/paper_bin/attack_paw(mob/living/carbon/human/user)
-	return attack_hand(user)
-
 
 /obj/structure/paper_bin/attack_hand(mob/living/user)
 	. = ..()

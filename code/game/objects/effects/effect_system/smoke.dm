@@ -20,6 +20,8 @@
 	var/datum/effect_system/smoke_spread/cloud // for associated chemical smokes.
 	var/fraction = 0.2
 	var/smoke_can_spread_through = FALSE
+	///Delay in ticks before this smoke can affect a given mob again, applied in living's effect_smoke
+	var/minimum_effect_delay = 1 SECONDS
 
 	//Remove this bit to use the old smoke
 	icon = 'icons/effects/96x96.dmi'
@@ -77,8 +79,9 @@
 
 /obj/effect/particle_effect/smoke/Crossed(atom/movable/O)
 	. = ..()
-	if(CHECK_BITFIELD(smoke_traits, SMOKE_CAMO) && isliving(O))
+	if(isliving(O))
 		O.effect_smoke(src)
+		return
 	if(CHECK_BITFIELD(smoke_traits, SMOKE_NERF_BEAM) && istype(O, /obj/projectile))
 		O.effect_smoke(src)
 
@@ -305,6 +308,12 @@
 	color = "#C0FF94"
 	smoke_traits = SMOKE_XENO|SMOKE_XENO_TRANSVITOX|SMOKE_COUGH
 
+//Toxic smoke when the Defiler successfully uses Defile
+/obj/effect/particle_effect/smoke/xeno/sanguinal
+	color = "#bb0a1e" //Blood red
+	smoke_can_spread_through = TRUE
+	smoke_traits = SMOKE_XENO|SMOKE_XENO_SANGUINAL|SMOKE_GASP|SMOKE_COUGH
+
 /////////////////////////////////////////////
 // Smoke spreads
 /////////////////////////////////////////////
@@ -354,7 +363,9 @@ datum/effect_system/smoke_spread/tactical
 
 /datum/effect_system/smoke_spread/xeno/transvitox
 	smoke_type = /obj/effect/particle_effect/smoke/xeno/transvitox
-	strength = 0.75
+
+/datum/effect_system/smoke_spread/xeno/sanguinal
+	smoke_type = /obj/effect/particle_effect/smoke/xeno/sanguinal
 
 /////////////////////////////////////////////
 // Chem smoke

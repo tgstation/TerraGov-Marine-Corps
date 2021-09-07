@@ -1,0 +1,97 @@
+2021-09-01:
+  TiviPlus:
+  - admin: Adminplayer panel improvements
+  lKiseki:
+  - rscadd: Added a custom OOC color for a new admin rank.
+  lbnesquik:
+  - balance: Improved AI skills, they're now a master of all, for whatever the AI
+      can use their skills for.
+2021-09-02:
+  EvilMelonTheSecond:
+  - balance: Combat flashlight is now unacidable
+  QualityVan:
+  - balance: Smoke clouds can apply their effects when you walk into one.
+  - bugfix: Stacked smoke clouds will both apply their effects instead of only one.
+  TiviPlus:
+  - config: split a server config
+  hyper2snyper:
+  - rscadd: Masterkey Shotgun can use more than just Buckshot.
+  - rscadd: Miniflamer now needs a magazine.
+  - rscadd: New Admeme spear called the Tacticool Spear.
+  - rscadd: Plasma Pistol will now double as an underbarrel attachment.
+  - qol: You can fire weapon attachments with Right-Click
+  - imageadd: New Tactical Spear Sprite
+  - code_imp: Gun attachments are now guns.
+  - refactor: Refactored Attachment code.
+  - rscadd: New control scheme for attached weapons. Attachment must be active to
+      be used. Right clicking the gun with an empty hand will unload the active attachment.
+      Right clicking the gun with an object in hand will attempt to reload the active
+      attachment with the object. Right clicking and Middle clicking will fire the
+      Active attachment. Left click will always fire the main gun. Right clicking
+      an adjacent move will attempt to point blank the mob with the active attachment.
+2021-09-03:
+  Anystar1:
+  - rscadd: Captain now has level 1 surgery.
+  BraveMole:
+  - balance: Xeno turret projectiles go faster
+  - balance: 3 jetpacks free in vendors
+  QualityVan:
+  - rscadd: Sprayed sterilizine disinfects existing wounds. It won't help directly
+      with infected limbs though.
+  - balance: Spraying sterilizine on people with existing wounds is more likely to
+      cause pain.
+  - bugfix: Wounds no longer infect limbs more slowly when you have antibiotics
+  - bugfix: Sterilizine made in chemistry works and isn't called 'medicine'.
+  SplinterGP:
+  - config: default config setting of view has been changed to 15x15 other than default
+      19x15, basically only affects local server settings for anyone downloading code
+      from github.
+  hyper2snyper:
+  - rscadd: New pocket pistol, the "R-2395 Derringer". Available in marine vendors.
+  lbnesquik:
+  - rscadd: Added a tip and note to synths referring them towards binary radio
+2021-09-04:
+  QualityVan:
+  - balance: Medical belts can only hold up to three magazines. Their total storage
+      isn't changed.
+  Sebbe9123:
+  - balance: Rebalances Mimir Bio and Acid armor.
+  TiviPlus:
+  - admin: Doors will now only log when the bullet impacts and only send the FF message
+      before the hijack ship launches
+  - rscadd: Add a boxing ring to Pillar
+  hyper2snyper:
+  - balance: Sentries can now shoot past other deployed items and Miners.
+  - bugfix: Fixes the issue with null internal guns on sentries.
+  - bugfix: Fixes Comrade sentry.
+  - code_imp: Updates /deployable and makes armor values dependent on the deploying
+      item.
+2021-09-06:
+  BraveMole:
+  - bugfix: Fix xeno turrets trying to shoot droids on other z levels
+  Pariah919:
+  - soundadd: fart gun returns, the m41a has the old pulse rifle sounds once again.
+  RipGrayson:
+  - rscadd: Added Shigusa Hydroelectric Dam, a map for more than 100 players.
+  - imageadd: Added a new couple icons for shallow water transitions, broken generators,
+      and stairs.
+  - code_imp: Cleaned up some unused turfs.
+  - bugfix: Fixed an unmapped area in Big Red LZ.
+  hyper2snyper:
+  - bugfix: Fixes that thing with the derringer.
+2021-09-07:
+  BraveMole:
+  - refactor: Refactor eggs
+  EvilMelonTheSecond:
+  - balance: Miner reinforcement upgrade protects against non-strong castes
+  QualityVan:
+  - rscadd: You can choose to only remove a single chem recipe instead of all of them
+      when using a dispenser.
+  - bugfix: You can't start fiddling with a chem dispenser while you're busy doing
+      something else.
+  Surrealaser:
+  - balance: Ravager's Rage now has maximum power when used at any negative HP amount
+      instead of -57 HP or less.
+  hyper2snyper:
+  - code_imp: Single Action Revolver Support
+  - refactor: Cock() Refactor and removes some Unique_Action() bloat

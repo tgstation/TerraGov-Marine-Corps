@@ -8,6 +8,7 @@
 
 /datum/ai_behavior/xeno/New(loc, parent_to_assign, escorted_atom)
 	..()
+	RegisterSignal(mob_parent, COMSIG_OBSTRUCTED_MOVE, /datum/ai_behavior.proc/deal_with_obstacle)
 	RegisterSignal(mob_parent, list(ACTION_GIVEN, ACTION_REMOVED), .proc/refresh_abilities)
 	refresh_abilities()
 	mob_parent.a_intent = INTENT_HARM //Killing time
@@ -54,6 +55,36 @@
 			if(next_target == atom_to_walk_to)//We didn't find a better target
 				return
 			change_action(null, next_target)//We found a better target, change course!
+
+/datum/ai_behavior/xeno/deal_with_obstacle(datum/source, direction)
+	var/turf/obstacle_turf = get_step(mob_parent, direction)
+	for(var/thing in obstacle_turf.contents)
+		if(isstructure(thing))
+			if(istype(thing, /obj/structure/window_frame))
+				mob_parent.loc = obstacle_turf
+				return COMSIG_OBSTACLE_DEALT_WITH
+			if(istype(thing, /obj/structure/closet))
+				var/obj/structure/closet/closet = thing
+				if(closet.open(mob_parent))
+					return COMSIG_OBSTACLE_DEALT_WITH
+				return
+			var/obj/structure/obstacle = thing
+			if(obstacle.resistance_flags & XENO_DAMAGEABLE)
+				mob_parent.face_atom(obstacle)
+				INVOKE_ASYNC(src, .proc/attack_target, null, obstacle)
+				return COMSIG_OBSTACLE_DEALT_WITH
+		else if(istype(thing, /obj/machinery/door/airlock))
+			var/obj/machinery/door/airlock/lock = thing
+			if(!lock.density) //Airlock is already open no need to force it open again
+				continue
+			if(lock.operating) //Airlock already doing something
+				continue
+			if(lock.welded) //It's welded, can't force that open
+				continue
+			lock.open(TRUE)
+			return COMSIG_OBSTACLE_DEALT_WITH
+	if(ISDIAGONALDIR(direction))
+		return deal_with_obstacle(null, turn(direction, -45)) || deal_with_obstacle(null, turn(direction, 45))
 
 ///Signal handler to try to attack our target
 /datum/ai_behavior/xeno/proc/attack_target(datum/soure, atom/attacked)

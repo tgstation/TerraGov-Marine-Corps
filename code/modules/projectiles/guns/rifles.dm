@@ -21,14 +21,6 @@
 	upper_akimbo_accuracy = 5
 	lower_akimbo_accuracy = 3
 
-
-/obj/item/weapon/gun/rifle/unique_action(mob/user)
-	. = ..()
-	if(!.)
-		return
-	return cock(user)
-
-
 /obj/item/weapon/gun/rifle/get_ammo_type()
 	if(!ammo)
 		return list("unknown", "unknown")
@@ -74,12 +66,13 @@
 		/obj/item/attachable/bayonet,
 		/obj/item/attachable/bayonetknife,
 		/obj/item/attachable/compensator,
-		/obj/item/attachable/attached_gun/grenade,
-		/obj/item/attachable/attached_gun/flamer,
 		/obj/item/attachable/scope,
 		/obj/item/attachable/scope/marine,
 		/obj/item/attachable/scope/mini,
-		/obj/item/attachable/attached_gun/shotgun,
+		/obj/item/weapon/gun/pistol/plasma_pistol,
+		/obj/item/weapon/gun/shotgun/combat/masterkey,
+		/obj/item/weapon/gun/flamer/mini_flamer,
+		/obj/item/weapon/gun/launcher/m92/mini_grenade,
 		/obj/item/attachable/motiondetector,
 	)
 
@@ -141,10 +134,11 @@
 		/obj/item/attachable/scope,
 		/obj/item/attachable/scope/mini,
 		/obj/item/attachable/scope/marine,
-		/obj/item/attachable/attached_gun/grenade,
-		/obj/item/attachable/attached_gun/flamer,
 		/obj/item/attachable/angledgrip,
-		/obj/item/attachable/attached_gun/shotgun,
+		/obj/item/weapon/gun/pistol/plasma_pistol,
+		/obj/item/weapon/gun/shotgun/combat/masterkey,
+		/obj/item/weapon/gun/flamer/mini_flamer,
+		/obj/item/weapon/gun/launcher/m92/mini_grenade,
 		/obj/item/attachable/motiondetector,
 	)
 
@@ -166,7 +160,7 @@
 	damage_falloff_mult = 0.5
 
 /obj/item/weapon/gun/rifle/standard_assaultrifle/rifleman
-	starting_attachment_types = list(/obj/item/attachable/stock/t18stock, /obj/item/attachable/reddot, /obj/item/attachable/t12barrel, /obj/item/attachable/attached_gun/grenade)
+	starting_attachment_types = list(/obj/item/attachable/stock/t18stock, /obj/item/attachable/reddot, /obj/item/attachable/t12barrel, /obj/item/weapon/gun/launcher/m92/mini_grenade)
 
 /obj/item/weapon/gun/rifle/standard_assaultrifle/engineer
 	starting_attachment_types = list(/obj/item/attachable/stock/t18stock, /obj/item/attachable/magnetic_harness, /obj/item/attachable/t12barrel, /obj/item/attachable/angledgrip)
@@ -207,13 +201,14 @@
 		/obj/item/attachable/extended_barrel,
 		/obj/item/attachable/heavy_barrel,
 		/obj/item/attachable/magnetic_harness,
-		/obj/item/attachable/attached_gun/grenade,
-		/obj/item/attachable/attached_gun/flamer,
-		/obj/item/attachable/attached_gun/shotgun,
 		/obj/item/attachable/scope,
 		/obj/item/attachable/scope/marine,
 		/obj/item/attachable/scope/mini/dmr,
 		/obj/item/attachable/motiondetector,
+		/obj/item/weapon/gun/pistol/plasma_pistol,
+		/obj/item/weapon/gun/shotgun/combat/masterkey,
+		/obj/item/weapon/gun/flamer/mini_flamer,
+		/obj/item/weapon/gun/launcher/m92/mini_grenade,
 	)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER|GUN_CAN_POINTBLANK
@@ -270,13 +265,14 @@
 		/obj/item/attachable/extended_barrel,
 		/obj/item/attachable/heavy_barrel,
 		/obj/item/attachable/magnetic_harness,
-		/obj/item/attachable/attached_gun/grenade,
-		/obj/item/attachable/attached_gun/flamer,
-		/obj/item/attachable/attached_gun/shotgun,
 		/obj/item/attachable/scope,
 		/obj/item/attachable/scope/marine,
 		/obj/item/attachable/scope/mini,
 		/obj/item/attachable/motiondetector,
+		/obj/item/weapon/gun/pistol/plasma_pistol,
+		/obj/item/weapon/gun/shotgun/combat/masterkey,
+		/obj/item/weapon/gun/flamer/mini_flamer,
+		/obj/item/weapon/gun/launcher/m92/mini_grenade,
 	)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER|GUN_CAN_POINTBLANK
@@ -326,16 +322,17 @@
 		/obj/item/attachable/heavy_barrel,
 		/obj/item/attachable/burstfire_assembly,
 		/obj/item/attachable/magnetic_harness,
-		/obj/item/attachable/attached_gun/grenade,
-		/obj/item/attachable/attached_gun/flamer,
-		/obj/item/attachable/attached_gun/shotgun,
 		/obj/item/attachable/scope,
 		/obj/item/attachable/scope/mini,
+		/obj/item/weapon/gun/pistol/plasma_pistol,
+		/obj/item/weapon/gun/shotgun/combat/masterkey,
+		/obj/item/weapon/gun/flamer/mini_flamer,
+		/obj/item/weapon/gun/launcher/m92/mini_grenade,
 	)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
-	starting_attachment_types = list(/obj/item/attachable/attached_gun/grenade)
+	starting_attachment_types = list(/obj/item/weapon/gun/launcher/m92/mini_grenade)
 	attachable_offset = list("muzzle_x" = 41, "muzzle_y" = 19,"rail_x" = 17, "rail_y" = 20, "under_x" = 27, "under_y" = 14, "stock_x" = 9, "stock_y" = 15)
 
 	fire_delay = 0.2 SECONDS
@@ -371,15 +368,16 @@
 		/obj/item/attachable/bipod,
 		/obj/item/attachable/burstfire_assembly,
 		/obj/item/attachable/magnetic_harness,
-		/obj/item/attachable/attached_gun/grenade,
-		/obj/item/attachable/attached_gun/flamer,
-		/obj/item/attachable/attached_gun/shotgun,
 		/obj/item/attachable/scope,
 		/obj/item/attachable/scope/mini,
+		/obj/item/weapon/gun/pistol/plasma_pistol,
+		/obj/item/weapon/gun/shotgun/combat/masterkey,
+		/obj/item/weapon/gun/flamer/mini_flamer,
+		/obj/item/weapon/gun/launcher/m92/mini_grenade,
 	)
 
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 19,"rail_x" = 8, "rail_y" = 21, "under_x" = 22, "under_y" = 15, "stock_x" = 9, "stock_y" = 15)
-	starting_attachment_types = list(/obj/item/attachable/attached_gun/grenade, /obj/item/attachable/stock/irremoveable/rifle, /obj/item/attachable/magnetic_harness)
+	starting_attachment_types = list(/obj/item/attachable/stock/irremoveable/rifle, /obj/item/attachable/magnetic_harness, /obj/item/weapon/gun/launcher/m92/mini_grenade)
 
 
 	burst_delay = 0.2 SECONDS
@@ -397,7 +395,7 @@
 	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "m41a"
 	item_state = "m41a"
-	fire_sound = "sound/weapons/guns/fire/m412.ogg"
+	fire_sound = "gun_pulse"
 	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/m41a_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/m41a_reload.ogg'
@@ -421,7 +419,7 @@
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
-	starting_attachment_types = list(/obj/item/attachable/stock/irremoveable/m41a, /obj/item/attachable/attached_gun/grenade/unremovable/invisible)
+	starting_attachment_types = list(/obj/item/attachable/stock/irremoveable/m41a, /obj/item/weapon/gun/launcher/m92/mini_grenade/invisable)
 	attachable_offset = list("muzzle_x" = 41, "muzzle_y" = 19,"rail_x" = 12, "rail_y" = 24, "under_x" = 24, "under_y" = 13, "stock_x" = 21, "stock_y" = 16)
 
 	burst_amount = 4
@@ -499,12 +497,13 @@
 		/obj/item/attachable/compensator,
 		/obj/item/attachable/burstfire_assembly,
 		/obj/item/attachable/magnetic_harness,
-		/obj/item/attachable/attached_gun/grenade,
-		/obj/item/attachable/attached_gun/flamer,
-		/obj/item/attachable/attached_gun/shotgun,
 		/obj/item/attachable/m16sight,
 		/obj/item/attachable/scope,
 		/obj/item/attachable/scope/mini,
+		/obj/item/weapon/gun/pistol/plasma_pistol,
+		/obj/item/weapon/gun/shotgun/combat/masterkey,
+		/obj/item/weapon/gun/flamer/mini_flamer,
+		/obj/item/weapon/gun/launcher/m92/mini_grenade,
 	)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
@@ -565,9 +564,10 @@
 		/obj/item/attachable/compensator,
 		/obj/item/attachable/burstfire_assembly,
 		/obj/item/attachable/magnetic_harness,
-		/obj/item/attachable/attached_gun/grenade,
-		/obj/item/attachable/attached_gun/flamer,
-		/obj/item/attachable/attached_gun/shotgun,
+		/obj/item/weapon/gun/pistol/plasma_pistol,
+		/obj/item/weapon/gun/shotgun/combat/masterkey,
+		/obj/item/weapon/gun/flamer/mini_flamer,
+		/obj/item/weapon/gun/launcher/m92/mini_grenade,
 	)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
@@ -621,10 +621,10 @@
 		/obj/item/attachable/compensator,
 		/obj/item/attachable/stock/t42stock,
 		/obj/item/attachable/magnetic_harness,
-		/obj/item/attachable/attached_gun/grenade,
-		/obj/item/attachable/attached_gun/flamer,
-		/obj/item/attachable/attached_gun/shotgun,
-		/obj/item/attachable/motiondetector,
+		/obj/item/weapon/gun/pistol/plasma_pistol,
+		/obj/item/weapon/gun/shotgun/combat/masterkey,
+		/obj/item/weapon/gun/flamer/mini_flamer,
+		/obj/item/weapon/gun/launcher/m92/mini_grenade,
 	)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER
@@ -731,6 +731,10 @@
 		/obj/item/attachable/scope,
 		/obj/item/attachable/scope/marine,
 		/obj/item/attachable/scope/mini,
+		/obj/item/weapon/gun/pistol/plasma_pistol,
+		/obj/item/weapon/gun/shotgun/combat/masterkey,
+		/obj/item/weapon/gun/flamer/mini_flamer,
+		/obj/item/weapon/gun/launcher/m92/mini_grenade,
 	)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY|GUN_LOAD_INTO_CHAMBER
@@ -789,10 +793,11 @@
 		/obj/item/attachable/scope,
 		/obj/item/attachable/scope/mini,
 		/obj/item/attachable/scope/marine,
-		/obj/item/attachable/attached_gun/grenade,
-		/obj/item/attachable/attached_gun/flamer,
 		/obj/item/attachable/angledgrip,
-		/obj/item/attachable/attached_gun/shotgun,
+		/obj/item/weapon/gun/pistol/plasma_pistol,
+		/obj/item/weapon/gun/shotgun/combat/masterkey,
+		/obj/item/weapon/gun/flamer/mini_flamer,
+		/obj/item/weapon/gun/launcher/m92/mini_grenade,
 	)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
@@ -812,7 +817,7 @@
 	name = "\improper Type 71 pulse rifle"
 	desc = " This appears to be a less common variant of the usual Type 71, with an undermounted flamethrower and improved iron sights."
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 23, "under_x" = 20, "under_y" = 13, "stock_x" = 24, "stock_y" = 13)
-	starting_attachment_types = list(/obj/item/attachable/attached_gun/flamer/unremovable)
+	starting_attachment_types = list(/obj/item/weapon/gun/flamer/mini_flamer/unremovable)
 
 /obj/item/weapon/gun/rifle/type71/commando
 	name = "\improper Type 73 'Commando' pulse carbine"
@@ -828,6 +833,9 @@
 	accuracy_mult = 2
 	accuracy_mult_unwielded = 0.8
 	damage_mult = 1.3
+
+/obj/item/weapon/gun/rifle/type71/seasonal
+	desc = "The primary rifle of many space pirates and militias, the Type 71 is a reliable rifle chambered in 7.62x39mm, firing in three round bursts to conserve ammunition."
 
 //-------------------------------------------------------
 //TX-16 AUTOMATIC SHOTGUN
@@ -852,13 +860,15 @@
 		/obj/item/attachable/gyro,
 		/obj/item/attachable/flashlight,
 		/obj/item/attachable/magnetic_harness,
-		/obj/item/attachable/attached_gun/flamer,
-		/obj/item/attachable/attached_gun/shotgun,
 		/obj/item/attachable/stock/tx15,
 		/obj/item/attachable/compensator,
 		/obj/item/attachable/extended_barrel,
 		/obj/item/attachable/heavy_barrel,
 		/obj/item/attachable/motiondetector,
+		/obj/item/weapon/gun/pistol/plasma_pistol,
+		/obj/item/weapon/gun/shotgun/combat/masterkey,
+		/obj/item/weapon/gun/flamer/mini_flamer,
+		/obj/item/weapon/gun/launcher/m92/mini_grenade,
 	)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER|GUN_WIELDED_FIRING_ONLY //Its a shotgun type weapon effectively, most shotgun type weapons shouldn't be able to point blank 1 handed.
@@ -897,6 +907,7 @@
 		/obj/item/attachable/t42barrel,
 		/obj/item/attachable/bipod,
 		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/scope/mini,
 		/obj/item/attachable/motiondetector,
 	)
 
@@ -916,15 +927,15 @@
 
 /obj/item/weapon/gun/rifle/standard_smartrifle
 	name = "\improper T-25 smartrifle"
-	desc = "The T-25 is the TGMC's current standard IFF-capable  rifle. It's known for its ability to lay down quick fire support very well. Requires special training and it cannot turn off IFF. It uses 10x26mm ammunition."
+	desc = "The T-25 is the TGMC's current standard IFF-capable rifle. It's known for its ability to lay down quick fire support very well. Requires special training and it cannot turn off IFF. It uses 10x26mm ammunition."
 	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "t25"
 	item_state = "t25"
 	caliber = CALIBER_10x26_CASELESS //codex
-	max_shells = 50 //codex
+	max_shells = 80 //codex
 	force = 35
-	aim_slowdown = 0.55
-	wield_delay = 0.6 SECONDS
+	aim_slowdown = 0.7
+	wield_delay = 0.9 SECONDS
 	fire_sound = "gun_smartgun"
 	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/T42_unload.ogg'
@@ -948,9 +959,10 @@
 		/obj/item/attachable/scope,
 		/obj/item/attachable/scope/mini,
 		/obj/item/attachable/scope/marine,
-		/obj/item/attachable/attached_gun/grenade,
-		/obj/item/attachable/attached_gun/flamer,
-		/obj/item/attachable/attached_gun/shotgun,
+		/obj/item/weapon/gun/pistol/plasma_pistol,
+		/obj/item/weapon/gun/shotgun/combat/masterkey,
+		/obj/item/weapon/gun/flamer/mini_flamer,
+		/obj/item/weapon/gun/launcher/m92/mini_grenade,
 		/obj/item/attachable/motiondetector,
 	)
 
@@ -1206,10 +1218,12 @@
 		/obj/item/attachable/scope,
 		/obj/item/attachable/scope/mini,
 		/obj/item/attachable/scope/marine,
-		/obj/item/attachable/attached_gun/grenade,
-		/obj/item/attachable/attached_gun/flamer,
 		/obj/item/attachable/angledgrip,
-		/obj/item/attachable/attached_gun/shotgun,
+		/obj/item/weapon/gun/pistol/plasma_pistol,
+		/obj/item/weapon/gun/shotgun/combat/masterkey,
+		/obj/item/weapon/gun/flamer/mini_flamer,
+		/obj/item/weapon/gun/launcher/m92/mini_grenade,
+		/obj/item/attachable/motiondetector,
 	)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER
@@ -1228,3 +1242,45 @@
 	wield_delay = 0.6 SECONDS
 	aim_slowdown = 0.5
 	damage_falloff_mult = 0.5
+
+//-------------------------------------------------------
+//AF-51B MACHINEcarbine
+
+/obj/item/weapon/gun/rifle/alf_machinecarbine
+	name = "\improper ALF-51B machinecarbine"
+	desc = "The ALF-51B is an unoffical modification of a ALF-4, or better known as the T-18 carbine, modified to SMG length of barrel, rechambered for a stronger round, and belt based. Truly the peak of CQC. Useless past that. Aiming is impossible. Uses 10x25mm caseless ammunition."
+	icon_state = "alf51b"
+	item_state = "alf51b"
+	fire_animation = "alf51b_fire"
+	fire_sound = 'sound/weapons/guns/fire/t18b.ogg'
+	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
+	unload_sound = 'sound/weapons/guns/interact/t18_unload.ogg'
+	reload_sound = 'sound/weapons/guns/interact/t18_reload.ogg'
+	caliber = CALIBER_10X25_CASELESS //codex
+	max_shells = 80 //codex
+	force = 20
+	current_mag = /obj/item/ammo_magazine/rifle/alf_machinecarbine
+	attachable_allowed = list(
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/bipod,
+		/obj/item/attachable/verticalgrip,
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/heavy_barrel,
+		/obj/item/attachable/suppressor,
+		/obj/item/attachable/bayonet,
+		/obj/item/attachable/bayonetknife,
+	)
+
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER
+	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
+	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 16,"rail_x" = 10, "rail_y" = 19, "under_x" = 18, "under_y" = 13, "stock_x" = 0, "stock_y" = 13)
+
+	fire_delay = 0.2 SECONDS
+	burst_delay = 0.1 SECONDS
+	extra_delay = 0.5 SECONDS
+	accuracy_mult = 1
+	scatter = 20
+	burst_amount = 4
+	aim_slowdown = 0.3
+	wield_delay = 0.4 SECONDS
+	damage_falloff_mult = 3

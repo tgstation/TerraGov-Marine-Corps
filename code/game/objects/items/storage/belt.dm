@@ -124,6 +124,9 @@
 		/obj/item/storage/pill_bottle/packet,
 		/obj/item/roller,
 	)
+	storage_type_limits = list(
+		/obj/item/ammo_magazine = 3,
+	)
 
 /obj/item/storage/belt/medical/Initialize()
 	. = ..()
@@ -609,6 +612,9 @@
 	storage_slots = 3
 	w_class = WEIGHT_CLASS_BULKY
 	max_w_class = 3
+	storage_type_limits = list(
+		/obj/item/weapon/gun = 2,
+	)
 	icon_state= "sparepouch"
 	item_state= "sparepouch"
 

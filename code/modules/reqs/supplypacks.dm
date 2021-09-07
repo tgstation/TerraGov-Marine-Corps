@@ -234,7 +234,7 @@ WEAPONS
 
 /datum/supply_packs/weapons/flamethrower
 	name = "TL-84 Flamethrower"
-	contains = list(/obj/item/weapon/gun/flamer/marinestandard)
+	contains = list(/obj/item/weapon/gun/flamer/big_flamer/marinestandard)
 	cost = 15
 
 /datum/supply_packs/weapons/rpgoneuse
@@ -393,12 +393,12 @@ ATTACHMENTS
 
 /datum/supply_packs/attachments/underbarrel_shotgun
 	name = "underbarrel shotgun attachment"
-	contains = list(/obj/item/attachable/attached_gun/shotgun)
+	contains = list(/obj/item/weapon/gun/shotgun/combat/masterkey)
 	cost = 1
 
 /datum/supply_packs/attachments/underbarrel_flamer
 	name = "underbarrel flamer attachment"
-	contains = list(/obj/item/attachable/attached_gun/flamer)
+	contains = list(/obj/item/weapon/gun/flamer/mini_flamer)
 	cost = 1
 
 /datum/supply_packs/attachments/underbarrel_burstfire_assembly
@@ -763,13 +763,6 @@ ARMOR
 	)
 	cost = 40
 
-/datum/supply_packs/armor/modular/attachments/lamp
-	name = "Jaeger baldur modules"
-	contains = list(
-		/obj/item/armor_module/attachable/better_shoulder_lamp,
-	)
-	cost = 10
-
 /datum/supply_packs/armor/modular/attachments/valkyrie_autodoc
 	name = "Jaeger Valkyrie autodoc module"
 	contains = list(
@@ -1112,7 +1105,7 @@ ENGINEERING
 
 /datum/supply_packs/engineering/powerloader
 	name = "RPL-Y Cargo Loader"
-	contains = list(/obj/vehicle/powerloader)
+	contains = list(/obj/vehicle/ridden/powerloader)
 	cost = 20
 	containertype = null
 
@@ -1225,6 +1218,67 @@ ENGINEERING
 	name = "Wireless power generator"
 	contains = list(/obj/machinery/power/port_gen/pacman/mobile_power)
 	cost = 20
+
+/datum/supply_packs/engineering/droid_combat
+	name = "Combat droid with weapon equipped"
+	contains = list(/obj/vehicle/unmanned/droid)
+	cost = 40
+
+/datum/supply_packs/engineering/droid_scout
+	name = "Scout droid"
+	contains = list(/obj/vehicle/unmanned/droid/scout)
+	cost = 30
+
+/datum/supply_packs/engineering/droid_weapon
+	name = "Droid weapon"
+	contains = list(/obj/item/uav_turret/droid)
+	cost = 20
+	containertype = /obj/structure/closet/crate/weapon
+
+/datum/supply_packs/engineering/light_uv
+	name = "Light unmanned vehicle"
+	contains = list(/obj/vehicle/unmanned)
+	cost = 30
+
+/datum/supply_packs/engineering/medium_uv
+	name = "Medium unmanned vehicle"
+	contains = list(/obj/vehicle/unmanned/medium)
+	cost = 50
+
+/datum/supply_packs/engineering/heavy_uv
+	name = "Heavy unmanned vehicle"
+	contains = list(/obj/vehicle/unmanned/heavy)
+	cost = 70
+
+/datum/supply_packs/engineering/uv_light_weapon
+	name = "Light UV weapon"
+	contains = list(/obj/item/uav_turret)
+	cost = 20
+	containertype = /obj/structure/closet/crate/weapon
+
+/datum/supply_packs/engineering/uv_heavy_weapon
+	name = "Heavy UV weapon"
+	contains = list(/obj/item/uav_turret/heavy)
+	cost = 20
+	containertype = /obj/structure/closet/crate/weapon
+
+/datum/supply_packs/engineering/uv_light_ammo
+	name = "Light UV ammo"
+	contains = list(/obj/item/uav_turret)
+	cost = 10
+	containertype = /obj/structure/closet/crate/ammo
+
+/datum/supply_packs/engineering/uv_heavy_ammo
+	name = "Heavy UV ammo"
+	contains = list(/obj/item/ammo_magazine/box12x40mm)
+	cost = 10
+	containertype = /obj/structure/closet/crate/ammo
+
+/datum/supply_packs/engineering/vehicle_remote
+	name = "Vehicle remote"
+	contains = list(/obj/item/unmanned_vehicle_remote)
+	cost = 10
+	containertype = /obj/structure/closet/crate
 
 /*******************************************************************************
 SUPPLIES

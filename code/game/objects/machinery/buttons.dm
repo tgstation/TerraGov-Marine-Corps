@@ -161,9 +161,6 @@
 	var/otherarea = null
 	var/id = 1
 
-	attack_paw(mob/user as mob)
-		return
-
 /obj/machinery/medical_help_button
 	name = "Medical attention required"
 	icon = 'icons/obj/stationobjs.dmi'

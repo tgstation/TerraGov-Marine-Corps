@@ -194,6 +194,13 @@
 /obj/structure/prop/mainship/hangar_stencil/two
 	icon_state = "dropship2"
 
+/obj/structure/prop/mainship/brokengen //all the aesthetics of having a generator without any of the function
+	name = "\improper G-11 geothermal generator"
+	desc = "A thermoelectric generator sitting atop a plasma-filled borehole. The powercell is missing and strange lines of text scroll by on its status panel, you get the feeling there's no fixing it."
+	icon = 'icons/turf/geothermal.dmi'
+	icon_state = "destroyedgen"
+	resistance_flags = RESIST_ALL //normal generators can't be destroyed, so for appearances our fake ones can't be destroyed either.
+
 /obj/structure/prop/mainship/cannon_cables
 	name = "\improper Cannon cables"
 	desc = "Some large cables."

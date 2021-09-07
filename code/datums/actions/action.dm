@@ -64,6 +64,11 @@
 		return FALSE
 	return TRUE
 
+///Signal Handler for alternate actions
+/datum/action/proc/alternate_action_activate()
+	SIGNAL_HANDLER
+	return
+
 /datum/action/proc/fail_activate()
 	return
 

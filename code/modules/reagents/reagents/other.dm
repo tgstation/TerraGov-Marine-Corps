@@ -48,7 +48,7 @@
 		if(!cube.package)
 			cube.Expand()
 
-/datum/reagent/water/reaction_mob(mob/living/L, method = TOUCH, volume, metabolism, show_message = TRUE, touch_protection = 0) //Splashing people with water can help put them out!
+/datum/reagent/water/reaction_mob(mob/living/L, method = TOUCH, volume, show_message = TRUE, touch_protection = 0) //Splashing people with water can help put them out!
 	. = ..()
 	if(method in list(TOUCH, VAPOR))
 		L.adjust_fire_stacks(-(volume / 10))
@@ -432,7 +432,7 @@
 	L.adjustToxLoss(1)
 	return ..()
 
-/datum/reagent/fuel/reaction_mob(mob/living/L, method = TOUCH, volume, metabolism, show_message = TRUE, touch_protection = 0)//Splashing people with welding fuel to make them easy to ignite!
+/datum/reagent/fuel/reaction_mob(mob/living/L, method = TOUCH, volume, show_message = TRUE, touch_protection = 0)//Splashing people with welding fuel to make them easy to ignite!
 	. = ..()
 	if(method in list(TOUCH, VAPOR))
 		L.adjust_fire_stacks(volume / 10)
@@ -466,7 +466,7 @@
 			reaction_obj(C, volume)
 			qdel(C)
 
-/datum/reagent/space_cleaner/reaction_mob(mob/living/L, method = TOUCH, volume, metabolism, show_message = TRUE, touch_protection = 0)
+/datum/reagent/space_cleaner/reaction_mob(mob/living/L, method = TOUCH, volume, show_message = TRUE, touch_protection = 0)
 	. = ..()
 	if(iscarbon(L))
 		var/mob/living/carbon/C = L
@@ -638,11 +638,15 @@
 	color = "#C8A5DC" // rgb: 200, 165, 220
 
 
-/datum/reagent/sterilizine/reaction_mob(mob/living/L, method = TOUCH, volume, metabolism, show_message = TRUE, touch_protection = 0)
+/datum/reagent/sterilizine/reaction_mob(mob/living/L, method = TOUCH, volume, show_message = TRUE, touch_protection = 0)
 	if(!(method in list(TOUCH, VAPOR, PATCH)))
 		return
 	L.germ_level -= min(volume * 20 * touch_protection, L.germ_level)
-	if((L.getFireLoss() > 30 || L.getBruteLoss() > 30) && prob(10)) // >Spraying space bleach on open wounds
+	if(ishuman(L))
+		var/mob/living/carbon/human/disinfectee = L
+		for(var/datum/limb/limb AS in disinfectee.limbs)
+			limb.disinfect() //Only removes germs from individual external wounds. Won't help with the limb itself having a high germ level.
+	if(prob(L.getFireLoss() + L.getBruteLoss())) // >Spraying space bleach on open wounds
 		if(iscarbon(L))
 			var/mob/living/carbon/C = L
 			if(C.species.species_flags & NO_PAIN)
@@ -656,7 +660,7 @@
 /datum/reagent/sterilizine/reaction_obj(obj/O, volume)
 	O.germ_level -= min(volume*20, O.germ_level)
 
-/datum/reagent/medicine/sterilizine/reaction_turf(turf/T, volume)
+/datum/reagent/sterilizine/reaction_turf(turf/T, volume)
 	T.germ_level -= min(volume*20, T.germ_level)
 
 /datum/reagent/sterilizine/on_mob_life(mob/living/L, metabolism)

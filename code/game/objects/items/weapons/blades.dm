@@ -214,9 +214,17 @@
 	name = "\improper M2132 machete"
 	desc = "Latest issue of the TGMC Machete. Great for clearing out jungle or brush on outlying colonies. Found commonly in the hands of scouts and trackers, but difficult to carry with the usual kit."
 	icon_state = "machete"
-	force = 60
+	force = 75
 	attack_speed = 12
 	w_class = WEIGHT_CLASS_BULKY
+
+/obj/item/weapon/claymore/mercsword/machete/equipped(mob/user, slot)
+	. = ..()
+	toggle_item_bump_attack(user, TRUE)
+
+/obj/item/weapon/claymore/mercsword/machete/dropped(mob/user)
+	. = ..()
+	toggle_item_bump_attack(user, FALSE)
 
 //FC's sword.
 
@@ -225,9 +233,17 @@
 	desc = "This appears to be a rather old blade that has been well taken care of, it is probably a family heirloom. Oddly despite its probable non-combat purpose it is sharpened and not blunt."
 	icon_state = "officer_sword"
 	item_state = "officer_sword"
-	force = 60
+	force = 75
 	attack_speed = 12
 	w_class = WEIGHT_CLASS_BULKY
+
+/obj/item/weapon/claymore/mercsword/machete/equipped(mob/user, slot)
+	. = ..()
+	toggle_item_bump_attack(user, TRUE)
+
+/obj/item/weapon/claymore/mercsword/machete/dropped(mob/user)
+	. = ..()
+	toggle_item_bump_attack(user, FALSE)
 
 /obj/item/weapon/claymore/mercsword/commissar_sword
 	name = "\improper commissars sword"

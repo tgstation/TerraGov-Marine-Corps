@@ -111,9 +111,6 @@
 	user.visible_message(span_notice("[user] climbs [ladder_dir_name] [src]."),
 	span_notice("You climb [ladder_dir_name] [src]."))
 
-/obj/structure/ladder/attack_paw(mob/living/carbon/human/user)
-	return attack_hand(user)
-
 
 /obj/structure/ladder/attack_ghost(mob/dead/observer/user)
 	. = ..()
