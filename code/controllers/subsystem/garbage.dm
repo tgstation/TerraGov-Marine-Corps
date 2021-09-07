@@ -365,7 +365,7 @@ SUBSYSTEM_DEF(garbage)
 			#ifdef REFERENCE_TRACKING
 			if (QDEL_HINT_FINDREFERENCE) //qdel will, if REFERENCE_TRACKING is enabled, display all references to this object, then queue the object for deletion.
 				SSgarbage.Queue(D)
-				D.find_references()
+				INVOKE_ASYNC(D, /datum/proc/find_references)
 			if (QDEL_HINT_IFFAIL_FINDREFERENCE) //qdel will, if REFERENCE_TRACKING is enabled and the object fails to collect, display all references to this object.
 				SSgarbage.Queue(D)
 				SSgarbage.reference_find_on_fail["\ref[D]"] = TRUE
