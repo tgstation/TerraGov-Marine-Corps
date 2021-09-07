@@ -47,6 +47,8 @@
 	accuracy_mult = 1.50
 	recoil = 2
 
+	placed_overlay_iconstate = "antimat"
+
 
 /obj/item/weapon/gun/rifle/sniper/antimaterial/Initialize()
 	. = ..()
@@ -859,6 +861,8 @@
 	recoil = 3
 	scatter = -100
 
+	placed_overlay_iconstate = "sadar"
+
 
 /obj/item/weapon/gun/launcher/rocket/Initialize(mapload, spawn_empty)
 	. = ..()
@@ -1076,6 +1080,8 @@
 	burst_amount = 4
 	accuracy_mult = 0.8
 
+	placed_overlay_iconstate = "thermo"
+
 /obj/item/weapon/gun/launcher/rocket/m57a4/t57
 	name = "\improper T-57 quad thermobaric launcher"
 	desc = "The T-57 is posssibly the most awful man portable weapon. It is a 4-barreled missile launcher capable of burst-firing 4 thermobaric missiles with nearly no force to the rocket. Enough said."
@@ -1220,3 +1226,5 @@
 	accuracy_mult_unwielded = 0.75
 	scatter = -5
 	scatter_unwielded = 5
+
+	placed_overlay_iconstate = "pepper"

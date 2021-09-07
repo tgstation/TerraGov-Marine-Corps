@@ -36,6 +36,8 @@
 	scatter = 0
 	scatter_unwielded = 0
 
+	placed_overlay_iconstate = "pistol"
+
 /obj/item/weapon/gun/pistol/get_ammo_type()
 	if(!ammo)
 		return list("unknown", "unknown")
@@ -117,6 +119,8 @@
 	detach_delay = 3 SECONDS
 	pixel_shift_x = 10
 	pixel_shift_y = 19
+
+	placed_overlay_iconstate = "tx7"
 
 /obj/item/weapon/gun/can_attach(obj/item/attaching_to, mob/attacher)
 	if(!attachments_by_slot[ATTACHMENT_SLOT_RAIL])

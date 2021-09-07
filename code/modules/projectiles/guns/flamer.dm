@@ -28,6 +28,8 @@
 	attachable_offset = list("rail_x" = 12, "rail_y" = 23)
 	fire_delay = 4
 
+	placed_overlay_iconstate = "flamer"
+
 /obj/item/weapon/gun/flamer/big_flamer
 	name = "\improper M240A1 incinerator unit"
 	desc = "The M240A1 has proven to be one of the most effective weapons at clearing out soft-targets. This is a weapon to be feared and respected as it is quite deadly."

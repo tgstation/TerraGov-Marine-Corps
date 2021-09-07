@@ -161,6 +161,8 @@
 	aim_slowdown = 0.4
 	damage_falloff_mult = 0.5
 
+	placed_overlay_iconstate = "t12"
+
 /obj/item/weapon/gun/rifle/standard_assaultrifle/rifleman
 	starting_attachment_types = list(/obj/item/attachable/stock/t18stock, /obj/item/attachable/reddot, /obj/item/attachable/t12barrel, /obj/item/weapon/gun/launcher/m92/mini_grenade)
 
@@ -471,6 +473,8 @@
 	scatter = 5
 	wield_delay = 0.7 SECONDS
 
+	placed_overlay_iconstate = "ak47"
+
 //-------------------------------------------------------
 //M16 RIFLE
 
@@ -708,6 +712,8 @@
 	scatter = 25
 	scatter_unwielded = 80
 
+	placed_overlay_iconstate = "lmg"
+
 /obj/item/weapon/gun/rifle/standard_lmg/autorifleman
 	starting_attachment_types = list(/obj/item/attachable/verticalgrip, /obj/item/attachable/t42barrel, /obj/item/attachable/reddot)
 
@@ -765,6 +771,8 @@
 	scatter = 15
 	scatter_unwielded = 80
 	recoil_unwielded = 5
+
+	placed_overlay_iconstate = "lmg"
 
 
 //-------------------------------------------------------
@@ -934,6 +942,8 @@
 	accuracy_mult = 1.2
 	scatter = -20
 	scatter_unwielded = 80
+
+	placed_overlay_iconstate = "smartgun"
 
 // T-25 Smartrifle
 

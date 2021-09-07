@@ -247,7 +247,7 @@ should be alright.
 		to_chat(user, span_warning("[cell] wont fit there!"))
 		return
 	if(sentry_battery)
-		to_chat(user, span_warning("[src] already has a battery installed! Use Ctrl-Click to remove it!"))
+		to_chat(user, span_warning("[src] already has a battery installed! Use Alt-Right-Click to remove it!"))
 		return
 	if(!cell.charge)
 		to_chat(user, span_warning("[cell] is out of charge!"))
@@ -257,9 +257,13 @@ should be alright.
 	user.temporarilyRemoveItemFromInventory(cell)
 	cell.forceMove(src)
 	to_chat(user, span_notice("You install the [cell] into the [src]."))
-	return
+	if(!istype(attachments_by_slot[ATTACHMENT_SLOT_RAIL], /obj/item/attachable/buildasentry)) //This and the piece of code below that is the same are here because the build-a-sentry attachment does not keep track of the sentry battery when it is attached to the gun. Therefore this is so the overlay updates.
+		return
+	var/obj/item/attachable/buildasentry/sentry = attachments_by_slot[ATTACHMENT_SLOT_RAIL]
+	sentry.icon_state = "build_a_sentry_attachment"
+	sentry.update_icon()
 
-/obj/item/weapon/gun/CtrlClick(mob/user)
+/obj/item/weapon/gun/AltRightClick(mob/user)
 	. = ..()
 	remove_sentry_cell(user)
 
@@ -276,6 +280,11 @@ should be alright.
 	playsound(src, 'sound/weapons/flipblade.ogg', 20)
 	human.put_in_hands(sentry_battery)
 	sentry_battery = null
+	if(!istype(attachments_by_slot[ATTACHMENT_SLOT_RAIL], /obj/item/attachable/buildasentry))
+		return
+	var/obj/item/attachable/buildasentry/sentry = attachments_by_slot[ATTACHMENT_SLOT_RAIL]
+	sentry.icon_state = "build_a_sentry_attachment_e"
+	sentry.update_icon()
 
 //tactical reloads
 /obj/item/weapon/gun/MouseDrop_T(atom/dropping, mob/living/carbon/human/user)

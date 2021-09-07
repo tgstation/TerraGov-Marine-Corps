@@ -34,6 +34,8 @@ can cause issues with ammo types getting mixed up during the burst.
 	recoil = 2
 	recoil_unwielded = 4
 
+	placed_overlay_iconstate = "shotgun"
+
 
 /obj/item/weapon/gun/shotgun/Initialize()
 	. = ..()
@@ -653,6 +655,8 @@ can cause issues with ammo types getting mixed up during the burst.
 	aim_slowdown = 1
 	wield_delay = 1 SECONDS
 
+	placed_overlay_iconstate = "wood"
+
 /obj/item/weapon/gun/shotgun/pump/bolt/pump_fail_notice(mob/user)
 	playsound(user,'sound/weapons/throwtap.ogg', 25, 1)
 	to_chat(user,span_warning("<b>[src] bolt has already been worked, locking the bolt; fire or unload a round to unlock it.</b>"))
@@ -715,6 +719,8 @@ can cause issues with ammo types getting mixed up during the burst.
 
 	aim_slowdown = 1
 	wield_delay = 1 SECONDS
+
+	placed_overlay_iconstate = "wood"
 
 //***********************************************************
 // Derringer
@@ -894,6 +900,8 @@ can cause issues with ammo types getting mixed up during the burst.
 	recoil_unwielded = 4
 	aim_slowdown = 0.55
 	pump_delay = 14
+
+	placed_overlay_iconstate = "t35"
 
 //buckshot variants
 /obj/item/weapon/gun/shotgun/pump/t35/pointman

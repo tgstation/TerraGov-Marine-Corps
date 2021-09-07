@@ -457,8 +457,6 @@
 
 
 /obj/machinery/deployable/mounted/sentry/buildasentry
-	///overlay icon state of the attached weapon.
-	var/overlay_icon_state
 
 /obj/machinery/deployable/mounted/sentry/buildasentry/examine(mob/user)
 	. = ..()
@@ -471,45 +469,10 @@
 	name = "Deployed " + internal_item.name
 	icon = 'icons/Marine/sentry.dmi'
 	default_icon_state = "build_a_sentry"
-	if(istype(internal_item, /obj/item/weapon/gun/shotgun/double/martini) || istype(internal_item, /obj/item/weapon/gun/shotgun/pump/bolt)) 
-		overlay_icon_state = "wood"
-	else if(istype(internal_item, /obj/item/weapon/gun/smg/standard_smg))
-		overlay_icon_state = "t90"
-	else if(istype(internal_item, /obj/item/weapon/gun/launcher/rocket/m57a4))
-		overlay_icon_state = "thermo"
-	else if(istype(internal_item, /obj/item/weapon/gun/rifle/standard_assaultrifle))
-		overlay_icon_state = "t12"
-	else if(istype(internal_item, /obj/item/weapon/gun/shotgun/pump/t35))
-		overlay_icon_state = "t35"
-	else if(istype(internal_item, /obj/item/weapon/gun/pistol/plasma_pistol))
-		overlay_icon_state = "tx7"
-	else if(istype(internal_item, /obj/item/weapon/gun/rifle/standard_smartmachinegun))
-		overlay_icon_state = "smartgun"
-	else if(istype(internal_item, /obj/item/weapon/gun/rifle/ak47))
-		overlay_icon_state = "ak47"
-	else if(istype(internal_item, /obj/item/weapon/gun/rifle/sniper/antimaterial))
-		overlay_icon_state = "antimat"
-	else if(istype(internal_item, /obj/item/weapon/gun/rifle/standard_gpmg) || istype(internal_item, /obj/item/weapon/gun/rifle/m412l1_hpr))
-		overlay_icon_state = "lmg"
-	else if(istype(internal_item, /obj/item/weapon/gun/rifle/pepperball))
-		overlay_icon_state = "pepper"
-	else if(istype(internal_item, /obj/item/weapon/gun/launcher/rocket))
-		overlay_icon_state = "sadar"
-	else if(istype(internal_item, /obj/item/weapon/gun/shotgun))
-		overlay_icon_state = "shotgun"
-	else if(istype(internal_item, /obj/item/weapon/gun/flamer))
-		overlay_icon_state = "flamer"
-	else if(istype(internal_item, /obj/item/weapon/gun/revolver))
-		overlay_icon_state = "revolver"
-	else if(istype(internal_item, /obj/item/weapon/gun/pistol))
-		overlay_icon_state = "pistol"
-	else if(istype(internal_item, /obj/item/weapon/gun/energy))
-		overlay_icon_state = "laser"
-	else
-		overlay_icon_state = "rifle"
 	update_icon()
 
 /obj/machinery/deployable/mounted/sentry/buildasentry/update_overlays()
 	. = ..()
+	var/obj/item/weapon/gun/internal_gun = internal_item
 	overlays.Cut()
-	overlays += image('icons/Marine/sentry.dmi', src, overlay_icon_state, dir = src.dir)
+	overlays += image('icons/Marine/sentry.dmi', src, internal_gun.placed_overlay_iconstate, dir = src.dir)

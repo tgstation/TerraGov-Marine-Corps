@@ -174,9 +174,8 @@
 	var/attach_delay = 0 SECONDS
 	///Time it takes to detach src to a master gun.
 	var/detach_delay = 0 SECONDS
-
-
-
+	///Icon state used for an added overlay for a sentry. Currently only used in Build-A-Sentry.
+	var/placed_overlay_iconstate = "rifle"
 
 //----------------------------------------------------------
 				//				    \\
@@ -348,9 +347,9 @@
 	examine_ammo_count(user)
 	if(!CHECK_BITFIELD(flags_item, IS_DEPLOYED))
 		if(CHECK_BITFIELD(flags_item, IS_DEPLOYABLE))
-			to_chat(user, span_notice("Use Alt-Right-Click to deploy."))
+			to_chat(user, span_notice("Use Ctrl-Click to deploy."))
 		if(CHECK_BITFIELD(flags_gun_features, GUN_IS_SENTRY))
-			to_chat(user, span_notice("Use Ctrl-Click to remove the sentries battery."))
+			to_chat(user, span_notice("Use Alt-Right-Click to remove the sentries battery."))
 	else
 		to_chat(user, span_notice("Click-Drag to yourself to undeploy."))
 		to_chat(user, span_notice("Alt-Click to unload."))
@@ -620,12 +619,13 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 	SIGNAL_HANDLER
 
 	var/list/modifiers = params2list(params)
-	if(modifiers["right"] && modifiers["alt"] && object != src && (get_turf(gun_user) != get_turf(object) && isturf(object)) && gun_user.Adjacent(object)) //This is so we can simulate it like we are deploying to a tile.
-		gun_user.setDir(get_cardinal_dir(gun_user, object))
-		AltRightClick(gun_user)
-		return
 	if(modifiers["shift"] || modifiers["alt"])
 		return
+	if(modifiers["ctrl"] && !modifiers["right"] && gun_user.get_active_held_item() == src && isturf(object) && get_turf(gun_user) != object && gun_user.Adjacent(object)) //This is so we can simulate it like we are deploying to a tile.
+		gun_user.setDir(get_cardinal_dir(gun_user, object))
+		CtrlClick(gun_user)
+		return
+
 	if(modifiers["right"] || modifiers["middle"])
 		active_attachable?.start_fire(source, object)
 		return

@@ -1453,6 +1453,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	ENABLE_BITFIELD(master_gun.flags_item, IS_DEPLOYABLE)
 	master_gun.sentry_battery_type = /obj/item/cell/lasgun/lasrifle/marine
 	master_gun.sentry_battery = battery
+	battery?.forceMove(master_gun)
 	master_gun.ignored_terrains = list(
 		/obj/machinery/deployable/mounted,
 		/obj/machinery/miner,
@@ -1468,18 +1469,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 			/obj/structure/window/framed/prison,
 		)
 	master_gun.turret_flags = TURRET_HAS_CAMERA|TURRET_SAFETY|TURRET_ALERTS
-
-
 	master_gun.AddElement(/datum/element/deployable_item, /obj/machinery/deployable/mounted/sentry/buildasentry, deploy_time, undeploy_time)
-	RegisterSignal(master_gun, list(COMSIG_CLICK_CTRL, COMSIG_PARENT_ATTACKBY), .proc/update_battery)
-
-///Called when master_gun is attacked, or the proc to remove the battery is called. This way you dont get situations where the battery is here, but the master gun moved it.
-/obj/item/attachable/buildasentry/proc/update_battery()
-	SIGNAL_HANDLER
-	if(!master_gun)
-		return
-	battery = master_gun.sentry_battery
-	icon_state = battery ? "build_a_sentry_attachment" : "build_a_sentry_attachment_e"
 	update_icon()
 
 /obj/item/attachable/buildasentry/on_detach(attaching_item, mob/user)
@@ -1489,9 +1479,10 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	DISABLE_BITFIELD(detaching_item.flags_item, IS_DEPLOYABLE)
 	detaching_item.ignored_terrains = null
 	detaching_item.turret_flags = NONE
+	battery = detaching_item.sentry_battery
+	battery?.forceMove(src)
 	detaching_item.sentry_battery = null
 	detaching_item.RemoveElement(/datum/element/deployable_item, /obj/machinery/deployable/mounted/sentry/buildasentry, deploy_time, undeploy_time)
-	UnregisterSignal(detaching_item, list(COMSIG_CLICK_CTRL, COMSIG_PARENT_ATTACKBY))
 
 
 ///This is called when an attachment gun (src) attaches to a gun.

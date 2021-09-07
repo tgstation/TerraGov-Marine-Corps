@@ -39,6 +39,8 @@
 	recoil = 2
 	recoil_unwielded = 3
 
+	placed_overlay_iconstate = "revolver"
+
 
 /obj/item/weapon/gun/revolver/Initialize()
 	. = ..()
