@@ -124,14 +124,3 @@
 				return
 
 	return ..()
-
-///Attach this ai to the selected xeno. He will listen to his order
-/datum/ai_behavior/xeno/proc/attach_to_commander(mob/living/carbon/xenomorph/commander)
-	RegisterSignal(commander, COMSIG_MINION_TARGET_CHANGED, .proc/atom_to_walk_to_changed)
-
-///Signal handler to change the targeted
-/datum/ai_behavior/xeno/proc/atom_to_walk_to_changed(atom/atom_to_walk_to)
-	SIGNAL_HANDLER
-	if(src.atom_to_walk_to == atom_to_walk_to)
-		return
-	change_action(MOVING_TO_ATOM, atom_to_walk_to)

@@ -149,3 +149,16 @@ These are parameter based so the ai behavior can choose to (un)register the sign
 		if(MOVING_TO_NODE)
 			UnregisterSignal(mob_parent, COMSIG_STATE_MAINTAINED_DISTANCE)
 			deltimer(anti_stuck_timer)
+
+
+///Attach this ai to the selected mob. He will listen to its order
+/datum/ai_behavior/proc/attach_to_commander(mob/commander)
+	RegisterSignal(commander, COMSIG_MINION_TARGET_CHANGED, .proc/atom_to_walk_to_changed)
+
+///Signal handler to change the targeted atom
+/datum/ai_behavior/xeno/proc/atom_to_walk_to_changed(atom/atom_to_walk_to)
+	SIGNAL_HANDLER
+	if(src.atom_to_walk_to == atom_to_walk_to)
+		return
+	change_action(MOVING_TO_ATOM, atom_to_walk_to)
+

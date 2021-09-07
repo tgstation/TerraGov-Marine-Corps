@@ -477,9 +477,9 @@
 	add_cooldown()
 	switch(owner.a_intent)
 		if(INTENT_HARM) //Escort us and attack nearby enemy
-			var/mob/illusion/xeno/center_illusion = new (owner.loc, owner, owner, illusion_life_time)
+			var/mob/illusion/xeno/center_illusion = new (owner.loc, owner, owner, illusion_life_time, owner)
 			for(var/i in 1 to (illusion_count - 1))
-				new /mob/illusion/xeno(owner.loc, owner, center_illusion, illusion_life_time)
+				new /mob/illusion/xeno(owner.loc, owner, center_illusion, illusion_life_time, owner)
 		if(INTENT_HELP, INTENT_GRAB, INTENT_DISARM) //Disperse
 			for(var/i in 1 to illusion_count)
-				new /mob/illusion/xeno(owner.loc, owner, null, illusion_life_time)
+				new /mob/illusion/xeno(owner.loc, owner, null, illusion_life_time, owner)
