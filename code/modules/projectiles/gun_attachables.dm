@@ -570,7 +570,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	for(var/X in master_gun.actions)
 		var/datum/action/A = X
 		A.update_button_icon()
-	
+
 	update_icon()
 
 /obj/item/attachable/flashlight/attackby(obj/item/I, mob/user, params)
@@ -612,18 +612,19 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	icon_state = "sniperscope"
 	desc = "A rail mounted zoom sight scope. Allows zoom by activating the attachment. Use F12 if your HUD doesn't come back."
 	slot = ATTACHMENT_SLOT_RAIL
-	aim_speed_mod = 0.06 SECONDS //Extra slowdown when aiming
+	aim_speed_mod = 0.5 //Extra slowdown when aiming
 	wield_delay_mod = 0.4 SECONDS
 	accuracy_mod = 0.1
+	scoped_accuracy_mod = SCOPE_RAIL
 	flags_attach_features = ATTACH_REMOVABLE|ATTACH_ACTIVATION
 	attachment_action_type = /datum/action/item_action/toggle
 	scope_zoom_mod = TRUE // codex
 	accuracy_unwielded_mod = -0.05
-	///how many tiles to shift the users viewpoint
-	var/zoom_offset = 11
-	///how many tiles to increase the users view box
-	var/zoom_viewsize = 12
-	scoped_accuracy_mod = SCOPE_RAIL
+	zoom_tile_offset = 11
+	zoom_viewsize = 12
+	zoom_allow_movement = TRUE
+	///how much slowdown the scope gives when zoomed. You want this to be slowdown you want minus aim_speed_mod
+	var/zoom_slowdown = 1
 	///boolean as to whether a scope can apply nightvision
 	var/has_nightvision = FALSE
 	///boolean as to whether the attachment is currently giving nightvision
@@ -655,9 +656,10 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	desc = "An unremovable set of long range ironsights for a flaregun."
 	aim_speed_mod = 0
 	wield_delay_mod = 0
-	zoom_offset = 5
+	zoom_tile_offset = 5
 	zoom_viewsize = 7
 	scoped_accuracy_mod = SCOPE_RAIL_MINI
+	zoom_slowdown = 0.50
 
 /obj/item/attachable/scope/unremovable/tl127
 	name = "T-45 rail scope"
@@ -670,31 +672,31 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	name = "MG-08/495 long range ironsights"
 	desc = "An unremovable set of long range ironsights for an MG-08/495 machinegun."
 	flags_attach_features = ATTACH_ACTIVATION
-	zoom_offset = 3
+	zoom_tile_offset = 3
 	zoom_viewsize = 7
 
 
 /obj/item/attachable/scope/unremovable/tl102
 	name = "TL-102 smart sight"
 	desc = "An unremovable smart sight built for use with the tl102, it does nearly all the aiming work for the gun's integrated IFF systems."
-	zoom_offset = 3
+	zoom_tile_offset = 3
 	zoom_viewsize = 7
 
 /obj/item/attachable/scope/unremovable/tl102/nest
-	zoom_offset = 6
+	zoom_tile_offset = 6
 
 /obj/item/attachable/scope/activate(mob/living/carbon/user, turn_off)
 	if(turn_off)
-		zoom(user, zoom_offset, zoom_viewsize)
+		zoom(user)
 		return TRUE
 
-	if(!master_gun.zoom && !(master_gun.flags_item & WIELDED) && !CHECK_BITFIELD(master_gun.flags_item, IS_DEPLOYED))
+	if(!(master_gun.flags_item & WIELDED) && !CHECK_BITFIELD(master_gun.flags_item, IS_DEPLOYED))
 		if(user)
 			to_chat(user, span_warning("You must hold [master_gun] with two hands to use [src]."))
 		return FALSE
 	if(CHECK_BITFIELD(master_gun.flags_item, IS_DEPLOYED) && user.dir != master_gun.loc.dir)
 		user.setDir(master_gun.loc.dir)
-	zoom(user, zoom_offset, zoom_viewsize)
+	zoom(user)
 	update_icon()
 	return TRUE
 
@@ -705,7 +707,13 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 		activate(user, TRUE)
 
 /obj/item/attachable/scope/onzoom(mob/living/user)
-	RegisterSignal(user, list(COMSIG_MOVABLE_MOVED, COMSIG_CARBON_SWAPPED_HANDS), .proc/zoom_item_turnoff)
+	if(zoom_allow_movement)
+		user.add_movespeed_modifier(MOVESPEED_ID_SCOPE_SLOWDOWN, TRUE, 0, NONE, TRUE, zoom_slowdown)
+		RegisterSignal(user, COMSIG_CARBON_SWAPPED_HANDS, .proc/zoom_item_turnoff)
+	else
+		RegisterSignal(user, list(COMSIG_MOVABLE_MOVED, COMSIG_CARBON_SWAPPED_HANDS), .proc/zoom_item_turnoff)
+	if(!(master_gun.flags_gun_features & IS_DEPLOYED))
+		RegisterSignal(user, COMSIG_MOB_FACE_DIR, .proc/change_zoom_offset)
 	RegisterSignal(master_gun, list(COMSIG_ITEM_EQUIPPED, COMSIG_ITEM_UNWIELD, COMSIG_ITEM_DROPPED), .proc/zoom_item_turnoff)
 	master_gun.accuracy_mult += scoped_accuracy_mod
 	if(has_nightvision)
@@ -714,7 +722,11 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 		active_nightvision = TRUE
 
 /obj/item/attachable/scope/onunzoom(mob/living/user)
-	UnregisterSignal(user, list(COMSIG_MOVABLE_MOVED, COMSIG_CARBON_SWAPPED_HANDS))
+	if(zoom_allow_movement)
+		user.remove_movespeed_modifier(MOVESPEED_ID_SCOPE_SLOWDOWN)
+		UnregisterSignal(user, list(COMSIG_CARBON_SWAPPED_HANDS, COMSIG_MOB_FACE_DIR))
+	else
+		UnregisterSignal(user, list(COMSIG_MOVABLE_MOVED, COMSIG_CARBON_SWAPPED_HANDS, COMSIG_MOB_FACE_DIR))
 	UnregisterSignal(master_gun, list(COMSIG_ITEM_EQUIPPED, COMSIG_ITEM_UNWIELD, COMSIG_ITEM_DROPPED))
 	master_gun.accuracy_mult -= scoped_accuracy_mod
 	if(has_nightvision)
@@ -742,12 +754,14 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	wield_delay_mod = 0.2 SECONDS
 	accuracy_mod = 0.05
 	accuracy_unwielded_mod = -0.05
-	aim_speed_mod = 0.04 SECONDS
-	zoom_offset = 5
-	zoom_viewsize = 7
+	aim_speed_mod = 0.2
 	scoped_accuracy_mod = SCOPE_RAIL_MINI
 	scope_zoom_mod = TRUE
 	has_nightvision = FALSE
+	zoom_allow_movement = TRUE
+	zoom_slowdown = 0.3
+	zoom_tile_offset = 5
+	zoom_viewsize = 7
 
 /obj/item/attachable/scope/mini/tx11
 	name = "TX-11 mini rail scope"
@@ -1352,7 +1366,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	for(var/X in master_gun.actions)
 		var/datum/action/A = X
 		A.update_button_icon()
-	
+
 	update_icon()
 
 /obj/item/attachable/mateba_longbarrel

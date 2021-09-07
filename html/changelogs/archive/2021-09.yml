@@ -79,3 +79,19 @@
   - bugfix: Fixed an unmapped area in Big Red LZ.
   hyper2snyper:
   - bugfix: Fixes that thing with the derringer.
+2021-09-07:
+  BraveMole:
+  - refactor: Refactor eggs
+  EvilMelonTheSecond:
+  - balance: Miner reinforcement upgrade protects against non-strong castes
+  QualityVan:
+  - rscadd: You can choose to only remove a single chem recipe instead of all of them
+      when using a dispenser.
+  - bugfix: You can't start fiddling with a chem dispenser while you're busy doing
+      something else.
+  Surrealaser:
+  - balance: Ravager's Rage now has maximum power when used at any negative HP amount
+      instead of -57 HP or less.
+  hyper2snyper:
+  - code_imp: Single Action Revolver Support
+  - refactor: Cock() Refactor and removes some Unique_Action() bloat

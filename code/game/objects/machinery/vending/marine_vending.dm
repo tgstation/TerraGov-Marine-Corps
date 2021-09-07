@@ -205,7 +205,7 @@
 			/obj/item/attachable/lasersight = -1,
 			/obj/item/attachable/verticalgrip = -1,
 			/obj/item/attachable/stock/t19stock = -1,
-			/obj/item/attachable/stock/t35stock = -1, 
+			/obj/item/attachable/stock/t35stock = -1,
 			/obj/item/weapon/gun/shotgun/combat/masterkey = -1,
 			/obj/item/weapon/gun/flamer/mini_flamer = -1,
 			/obj/item/ammo_magazine/flamer_tank/mini = -1,
@@ -654,7 +654,7 @@
 	contraband = list()
 
 /obj/machinery/vending/MarineMed/Blood/rebel
-	req_access = list(ACCESS_MARINE_MEDBAY_REBEL, ACCESS_MARINE_CHEMISTRY_REBEL)
+	req_one_access = list(ACCESS_MARINE_MEDBAY_REBEL, ACCESS_MARINE_CHEMISTRY_REBEL)
 
 /obj/machinery/vending/MarineMed/Blood/build_inventory(list/productlist, category)
 	. = ..()
@@ -724,6 +724,7 @@
 	prices = list()
 
 /obj/machinery/vending/shared_vending/marine_engi/rebel
+	req_access = list(ACCESS_MARINE_ENGPREP_REBEL)
 	products = list(
 		/obj/structure/closet/crate/mortar_ammo/mortar_kit = 1,
 		/obj/item/storage/box/sentry = 5,
@@ -856,7 +857,7 @@
 			/obj/item/armor_module/attachable/mimir_environment_protection/mark1 = -1,
 			/obj/item/armor_module/attachable/tyr_extra_armor/mark1 = -1,
 			/obj/item/armor_module/attachable/ballistic_armor = -1,
-			/obj/item/armor_module/attachable/better_shoulder_lamp/mark1 = -1,
+			/obj/item/armor_module/attachable/better_shoulder_lamp = -1,
 			/obj/item/armor_module/attachable/chemsystem = -1,
 		),
 	)

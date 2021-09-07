@@ -1,0 +1,5 @@
+author: "SplinterGP"
+delete-after: True
+changes: 
+  - balance: "scopes now incur slowdown instead of unscoping when moving away."
+  - qol: "you can now change which direction you're scoping with ctrl+wasd(or whatever you use to face without moving)."

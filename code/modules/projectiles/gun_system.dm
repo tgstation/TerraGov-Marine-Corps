@@ -251,10 +251,8 @@
 	unwield(user)
 	if(ishandslot(slot))
 		set_gun_user(user)
-		active_attachable?.set_gun_user(user)
 		return ..()
 	set_gun_user(null)
-	active_attachable?.set_gun_user(null)
 	return ..()
 
 /obj/item/weapon/gun/removed_from_inventory(mob/user)
@@ -263,10 +261,11 @@
 
 ///Set the user in argument as gun_user
 /obj/item/weapon/gun/proc/set_gun_user(mob/user)
+	active_attachable?.set_gun_user(user)
 	if(user == gun_user)
 		return
 	if(gun_user)
-		UnregisterSignal(gun_user, list(COMSIG_MOB_MOUSEDOWN, COMSIG_MOB_MOUSEUP, COMSIG_ITEM_ZOOM, COMSIG_ITEM_UNZOOM, COMSIG_MOB_MOUSEDRAG, COMSIG_KB_RAILATTACHMENT, COMSIG_KB_UNDERRAILATTACHMENT, COMSIG_KB_UNLOADGUN, COMSIG_KB_FIREMODE, COMSIG_KB_GUN_SAFETY, COMSIG_KB_UNIQUEACTION, COMSIG_PARENT_QDELETING,  COMSIG_MOB_CLICK_RIGHT, COMSIG_MOB_MIDDLE_CLICK))
+		UnregisterSignal(gun_user, list(COMSIG_MOB_MOUSEDOWN, COMSIG_MOB_MOUSEUP, COMSIG_ITEM_ZOOM, COMSIG_ITEM_UNZOOM, COMSIG_MOB_MOUSEDRAG, COMSIG_KB_RAILATTACHMENT, COMSIG_KB_UNDERRAILATTACHMENT, COMSIG_KB_UNLOADGUN, COMSIG_KB_FIREMODE, COMSIG_KB_GUN_SAFETY, COMSIG_KB_UNIQUEACTION, COMSIG_PARENT_QDELETING))
 		gun_user.client?.mouse_pointer_icon = initial(gun_user.client.mouse_pointer_icon)
 		SEND_SIGNAL(gun_user, COMSIG_GUN_USER_UNSET)
 		gun_user = null
@@ -279,7 +278,6 @@
 	if(!CHECK_BITFIELD(flags_item, IS_DEPLOYED))
 		RegisterSignal(gun_user, COMSIG_MOB_MOUSEDOWN, .proc/start_fire)
 		RegisterSignal(gun_user, COMSIG_MOB_MOUSEDRAG, .proc/change_target)
-		RegisterSignal(gun_user, list(COMSIG_MOB_CLICK_RIGHT, COMSIG_MOB_MIDDLE_CLICK), .proc/fire_attachment)
 	else
 		RegisterSignal(gun_user, COMSIG_KB_UNIQUEACTION, .proc/unique_action)
 	RegisterSignal(gun_user, COMSIG_PARENT_QDELETING, .proc/clean_gun_user)
@@ -622,15 +620,20 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 	SIGNAL_HANDLER
 
 	var/list/modifiers = params2list(params)
-	if(modifiers["right"] && modifiers["alt"] && object != src && gun_user.Adjacent(object))
+	if(modifiers["right"] && modifiers["alt"] && object != src && (get_turf(gun_user) != get_turf(object) && isturf(object)) && gun_user.Adjacent(object)) //This is so we can simulate it like we are deploying to a tile.
 		gun_user.setDir(get_cardinal_dir(gun_user, object))
 		AltRightClick(gun_user)
 		return
-	if(modifiers["right"] || modifiers["middle"] || modifiers["shift"])
+	if(modifiers["shift"] || modifiers["alt"])
+		return
+	if(modifiers["right"] || modifiers["middle"])
+		active_attachable?.start_fire(source, object)
 		return
 	if(gun_on_cooldown(gun_user))
 		return
 	if(!bypass_checks)
+		if(master_gun && gun_user.get_active_held_item() != master_gun)
+			return
 		if(gun_user.hand && !isgun(gun_user.l_hand) || !gun_user.hand && !isgun(gun_user.r_hand)) // If the object in our active hand is not a gun, abort
 			return
 		if(gun_user.hand && isgun(gun_user.r_hand) || !gun_user.hand && isgun(gun_user.l_hand)) // If we have a gun in our inactive hand too, both guns get innacuracy maluses
@@ -652,21 +655,9 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 		SEND_SIGNAL(gun_user, COMSIG_MOB_ATTACHMENT_FIRED, target, src, master_gun)
 	gun_user?.client?.mouse_pointer_icon = 'icons/effects/supplypod_target.dmi'
 
-///This is called on Right Click and gets the first weapon attachment in slots and fires it.
-/obj/item/weapon/gun/proc/fire_attachment(datum/source, atom/object)
-	SIGNAL_HANDLER
-	if(!active_attachable)
-		return
-	
-	if(object == src)
-		return
-
-	active_attachable.start_fire(source, object, bypass_checks = TRUE)
-
 ///Set the target and take care of hard delete
 /obj/item/weapon/gun/proc/set_target(atom/object)
-	if(active_attachable)
-		active_attachable.set_target(object)
+	active_attachable?.set_target(object)
 	if(object == target || object == gun_user)
 		return
 	if(target)
@@ -678,6 +669,7 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 ///Set the target to it's turf, so we keep shooting even when it was qdeled
 /obj/item/weapon/gun/proc/clean_target()
 	SIGNAL_HANDLER
+	active_attachable?.clean_target()
 	target = get_turf(target)
 
 ///Reset variables used in firing and remove the gun from the autofire system

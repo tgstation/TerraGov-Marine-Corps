@@ -1,5 +1,0 @@
-author: "QualityVan"
-delete-after: True
-changes: 
-  - rscadd: "You can choose to only remove a single chem recipe instead of all of them when using a dispenser."
-  - bugfix: "You can't start fiddling with a chem dispenser while you're busy doing something else."
