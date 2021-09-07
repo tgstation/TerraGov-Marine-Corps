@@ -60,7 +60,7 @@
 	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_HIVEMIND_MANIFESTATION))
 		return
 	var/turf/T = loc
-	if(!T || !istype(T))
+	if(!istype(T))
 		return
 	if(status_flags & INCORPOREAL || locate(/obj/effect/alien/weeds) in T)
 		if((health >= maxHealth) || on_fire) //can't regenerate.
