@@ -296,6 +296,10 @@
 	if(flags_gun_features & (GUN_BURST_FIRING|GUN_UNUSUAL_DESIGN|GUN_INTERNAL_MAG))
 		return
 
+	if(CHECK_BITFIELD(flags_gun_features, GUN_IS_SENTRY) && ((cell_type == sentry_battery_type && !sentry_battery && cell) || (cell_type != sentry_battery_type && istype(new_cell, sentry_battery_type))))
+		reload_sentry_cell(new_cell, user)
+		return
+
 	if(!new_cell || !istype(new_cell))
 		to_chat(user, span_warning("That's not a power cell!"))
 		return

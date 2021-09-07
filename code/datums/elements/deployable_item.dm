@@ -101,10 +101,11 @@
 		sentry?.set_on(TRUE)
 		return
 
+	DISABLE_BITFIELD(attached_item.flags_item, IS_DEPLOYED)
+
 	user.unset_interaction()
 	user.put_in_hands(attached_item)
 
-	DISABLE_BITFIELD(attached_item.flags_item, IS_DEPLOYED)
 	UnregisterSignal(deployed_machine, COMSIG_CLICK_ALT_RIGHT)
 
 	attached_item.max_integrity = deployed_machine.max_integrity

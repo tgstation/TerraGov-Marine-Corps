@@ -92,15 +92,16 @@
 
 /obj/machinery/deployable/mounted/sentry/attackby(obj/item/I, mob/user, params)
 	var/obj/item/weapon/gun/gun = internal_item
-	if(istype(I, gun.sentry_battery_type))
-		internal_item.attackby(I, user, params)
+	if(istype(I, gun.sentry_battery_type) && !istype(gun, /obj/item/weapon/gun/energy))
+		gun.reload_sentry_cell(I, user)
 		update_static_data(user)
 		return
 	return ..()
 
-/obj/machinery/deployable/mounted/sentry/AltClick(mob/user)
+/obj/machinery/deployable/mounted/sentry/CtrlClick(mob/user)
 	. = ..()
-	internal_item.AltClick(user)
+	var/obj/item/weapon/gun/internal_gun = internal_item
+	internal_gun.remove_sentry_cell(user)
 
 /obj/machinery/deployable/mounted/sentry/on_set_interaction(mob/user)
 	. = ..()
@@ -129,20 +130,9 @@
 	density = TRUE
 	set_on(TRUE)
 
-/obj/machinery/deployable/mounted/sentry/attack_hand_alternate(mob/living/user)
-	. = ..()
-	if(!Adjacent(user))	
-		return
-	var/obj/item/weapon/gun/internal_gun = internal_item
-	internal_gun.cock(user)
-
 /obj/machinery/deployable/mounted/sentry/reload(mob/user, ammo_magazine)
 	. = ..()
 	update_static_data(user)
-	var/obj/item/weapon/gun/internal_gun = internal_item
-	if(!CHECK_BITFIELD(internal_gun.flags_gun_features, GUN_PUMP_REQUIRED))
-		return
-	internal_gun.cock()
 
 /obj/machinery/deployable/mounted/sentry/interact(mob/user, manual_mode = FALSE)
 	var/obj/item/weapon/gun/gun = internal_item
@@ -392,7 +382,7 @@
 		internal_gun.cock()
 	if(internal_gun.gun_firemode != GUN_FIREMODE_SEMIAUTO)
 		return
-	addtimer(CALLBACK(src, .proc/sentry_start_fire), internal_gun.fire_delay)
+	addtimer(CALLBACK(src, .proc/sentry_start_fire), internal_gun.fire_delay) //This schedules the next shot if the gun is on semi-automatic. This is so that semi-automatic guns fire once every two seconds.
 
 ///Sees if theres a target to shoot, then handles firing.
 /obj/machinery/deployable/mounted/sentry/proc/sentry_start_fire()
@@ -467,6 +457,7 @@
 
 
 /obj/machinery/deployable/mounted/sentry/buildasentry
+	///overlay icon state of the attached weapon.
 	var/overlay_icon_state
 
 /obj/machinery/deployable/mounted/sentry/buildasentry/examine(mob/user)
@@ -475,12 +466,12 @@
 		return
 	to_chat(user, span_notice("It is as if he were still with us.")) //I miss ye already Ocelot.
 
-/obj/machinery/deployable/mounted/sentry/buildasentry/Initialize(mapload, _internal_item, deployer)
+/obj/machinery/deployable/mounted/sentry/buildasentry/Initialize(mapload, _internal_item, deployer) //I know the istype spam is a bit much, but I don't think there is a better way.
 	. = ..()
 	name = "Deployed " + internal_item.name
 	icon = 'icons/Marine/sentry.dmi'
 	default_icon_state = "build_a_sentry"
-	if(istype(internal_item, /obj/item/weapon/gun/shotgun/double/martini) || istype(internal_item, /obj/item/weapon/gun/shotgun/pump/bolt))
+	if(istype(internal_item, /obj/item/weapon/gun/shotgun/double/martini) || istype(internal_item, /obj/item/weapon/gun/shotgun/pump/bolt)) 
 		overlay_icon_state = "wood"
 	else if(istype(internal_item, /obj/item/weapon/gun/smg/standard_smg))
 		overlay_icon_state = "t90"

@@ -1396,10 +1396,6 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 /obj/item/attachable/buildasentry/Initialize()
 	. = ..()
 	battery = new(src)
-	
-/obj/item/attachable/buildasentry/update_icon()
-	. = ..()
-	icon_state = battery ? initial(icon_state) : initial(icon_state) + "_e"
 
 /obj/item/attachable/buildasentry/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -1413,6 +1409,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	battery.forceMove(src)
 	user.temporarilyRemoveItemFromInventory(I)
 	playsound(src, 'sound/weapons/guns/interact/standard_laser_rifle_reload.ogg', 20)
+	icon_state = "build_a_sentry_attachment"
 	update_icon()
 
 /obj/item/attachable/buildasentry/attack_hand(mob/living/user)
@@ -1424,6 +1421,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	user.put_in_hands(battery)
 	battery = null
 	playsound(src, 'sound/weapons/guns/interact/standard_laser_rifle_reload.ogg', 20)
+	icon_state = "build_a_sentry_attachment_e"
 	update_icon()
 
 /obj/item/attachable/buildasentry/can_attach(obj/item/attaching_to, mob/attacher)
@@ -1445,17 +1443,29 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 		/obj/machinery/deployable/mounted,
 		/obj/machinery/miner,
 	)
+	if(master_gun.ammo && CHECK_BITFIELD(master_gun.ammo.flags_ammo_behavior, AMMO_ENERGY) || istype(master_gun, /obj/item/weapon/gun/energy)) //If the guns ammo is energy, the sentry will shoot at things past windows.
+		master_gun.ignored_terrains += list(
+			/obj/structure/window,
+			/obj/structure/window/reinforced,
+			/obj/machinery/door/window,
+			/obj/structure/window/framed,
+			/obj/structure/window/framed/colony,
+			/obj/structure/window/framed/mainship,
+			/obj/structure/window/framed/prison,
+		)
 	master_gun.turret_flags = TURRET_HAS_CAMERA|TURRET_SAFETY|TURRET_ALERTS
 
 
 	master_gun.AddElement(/datum/element/deployable_item, /obj/machinery/deployable/mounted/sentry/buildasentry, deploy_time, undeploy_time)
-	RegisterSignal(master_gun, list(COMSIG_CLICK_ALT, COMSIG_PARENT_ATTACKBY), .proc/update_battery)
+	RegisterSignal(master_gun, list(COMSIG_CLICK_CTRL, COMSIG_PARENT_ATTACKBY), .proc/update_battery)
 
+///Called when master_gun is attacked, or the proc to remove the battery is called. This way you dont get situations where the battery is here, but the master gun moved it.
 /obj/item/attachable/buildasentry/proc/update_battery()
 	SIGNAL_HANDLER
 	if(!master_gun)
 		return
 	battery = master_gun.sentry_battery
+	icon_state = battery ? "build_a_sentry_attachment" : "build_a_sentry_attachment_e"
 	update_icon()
 
 /obj/item/attachable/buildasentry/on_detach(attaching_item, mob/user)
@@ -1467,7 +1477,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	detaching_item.turret_flags = NONE
 	detaching_item.sentry_battery = null
 	detaching_item.RemoveElement(/datum/element/deployable_item, /obj/machinery/deployable/mounted/sentry/buildasentry, deploy_time, undeploy_time)
-	UnregisterSignal(detaching_item, list(COMSIG_CLICK_ALT, COMSIG_PARENT_ATTACKBY))
+	UnregisterSignal(detaching_item, list(COMSIG_CLICK_CTRL, COMSIG_PARENT_ATTACKBY))
 
 
 ///This is called when an attachment gun (src) attaches to a gun.

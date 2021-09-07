@@ -12,10 +12,17 @@
 /obj/machinery/deployable/mounted/update_icon(mob/user)
 	. = ..()
 	var/obj/item/weapon/gun/gun = internal_item
-	if(!gun.current_mag)
+	var/has_mag
+	if(istype(gun, /obj/item/weapon/gun/energy))
+		var/obj/item/weapon/gun/energy/energy_gun = gun
+		has_mag = energy_gun.cell
+	else
+		has_mag = gun.current_mag
+	if(!has_mag)
 		icon_state = default_icon_state + "_e"
 	else
 		icon_state = default_icon_state
+
 	hud_set_gun_ammo()
 
 /obj/machinery/deployable/mounted/Initialize(mapload, _internal_item, deployer)
@@ -26,6 +33,18 @@
 	var/obj/item/weapon/gun/new_gun = internal_item
 
 	new_gun.set_gun_user(null)
+
+/obj/machinery/deployable/mounted/AltClick(mob/user)
+	. = ..()
+	var/obj/item/weapon/gun/internal_gun = internal_item
+	internal_gun.unload(user)
+
+/obj/machinery/deployable/mounted/attack_hand_alternate(mob/living/user)
+	. = ..()
+	if(!Adjacent(user))	
+		return
+	var/obj/item/weapon/gun/internal_gun = internal_item
+	internal_gun.cock(user)
 
 /obj/machinery/deployable/mounted/attackby(obj/item/I, mob/user, params) //This handles reloading the gun, if its in acid cant touch it.
 	. = ..()
@@ -40,12 +59,16 @@
 
 	reload(user, I)
 
+///Reloades the internal_item
 /obj/machinery/deployable/mounted/proc/reload(mob/user, ammo_magazine)
+	var/obj/item/weapon/gun/gun = internal_item
+	if(istype(ammo_magazine, /obj/item/cell) && istype(gun, /obj/item/weapon/gun/energy))
+		gun.reload(user, ammo_magazine)
+		return
 	if(!istype(ammo_magazine, /obj/item/ammo_magazine))
 		return
 
 	var/obj/item/ammo_magazine/ammo = ammo_magazine
-	var/obj/item/weapon/gun/gun = internal_item
 
 	if(istype(ammo_magazine, /obj/item/ammo_magazine/handful))
 		gun.reload(user, ammo)
@@ -65,6 +88,10 @@
 
 	gun.reload(user, ammo)
 	update_icon()
+
+	if(!CHECK_BITFIELD(gun.flags_gun_features, GUN_PUMP_REQUIRED))
+		return
+	gun.cock()
 
 
 ///This is called when a user tries to operate the gun
