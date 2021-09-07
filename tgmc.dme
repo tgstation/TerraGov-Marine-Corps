@@ -1348,6 +1348,7 @@
 #include "code\modules\mob\living\carbon\human\human_movement.dm"
 #include "code\modules\mob\living\carbon\human\human_species.dm"
 #include "code\modules\mob\living\carbon\human\human_status_procs.dm"
+#include "code\modules\mob\living\carbon\human\husk.dm"
 #include "code\modules\mob\living\carbon\human\inventory.dm"
 #include "code\modules\mob\living\carbon\human\life.dm"
 #include "code\modules\mob\living\carbon\human\login.dm"
