@@ -20,9 +20,10 @@ GLOBAL_LIST_INIT(reftracking_blacklisted_types, list(
 			SSgarbage.next_fire = world.time + world.tick_lag
 			return
 
-		if(!skip_alert && tgui_alert(usr,"Running this will lock everything up for about 5 minutes.  Would you like to begin the search?", "Find References", list("Yes", "No")) != "Yes")
+		/*if(!skip_alert && tgui_alert(usr,"Running this will lock everything up for about 5 minutes.  Would you like to begin the search?", "Find References", list("Yes", "No")) != "Yes")
 			running_find_references = null
 			return
+		*/
 
 	//this keeps the garbage collector from failing to collect objects being searched for in here
 	SSgarbage.can_fire = FALSE
