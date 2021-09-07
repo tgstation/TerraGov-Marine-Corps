@@ -1,0 +1,4 @@
+author: "BraveMole"
+delete-after: True
+changes: 
+  - bugfix: "Fix lighter in cigarette packet can be removed"
