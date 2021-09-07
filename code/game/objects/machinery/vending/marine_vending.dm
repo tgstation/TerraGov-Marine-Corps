@@ -154,6 +154,8 @@
 			/obj/item/ammo_magazine/pistol/vp70 = -1,
 			/obj/item/weapon/gun/pistol/plasma_pistol = -1,
 			/obj/item/ammo_magazine/pistol/plasma_pistol = -1,
+			/obj/item/weapon/gun/shotgun/double/derringer = 10,
+			/obj/item/ammo_magazine/pistol/derringer = 15,
 		),
 		"Specialized" = list(
 			/obj/item/weapon/gun/launcher/m92/standardmarine = -1,
@@ -231,6 +233,7 @@
 		/obj/item/compass = -1,
 		/obj/item/assembly/signaler = 20,
 		/obj/item/weapon/gun/launcher/m81/flare/marine = -1,
+		/obj/item/jetpack_marine = 3,
 		),
 	)
 
@@ -854,7 +857,7 @@
 			/obj/item/armor_module/attachable/mimir_environment_protection/mark1 = -1,
 			/obj/item/armor_module/attachable/tyr_extra_armor/mark1 = -1,
 			/obj/item/armor_module/attachable/ballistic_armor = -1,
-			/obj/item/armor_module/attachable/better_shoulder_lamp/mark1 = -1,
+			/obj/item/armor_module/attachable/better_shoulder_lamp = -1,
 			/obj/item/armor_module/attachable/chemsystem = -1,
 		),
 	)

@@ -7,6 +7,7 @@
 	reload_sound = 'sound/weapons/guns/interact/smartgun_unload.ogg'
 
 	max_integrity = 200
+	soft_armor = list("melee" = 50, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = 50, "bio" = 100, "rad" = 0, "fire" = 80, "acid" = 50)
 
 	fire_delay = 0.6 SECONDS
 	extra_delay = 0.6 SECONDS
@@ -15,6 +16,11 @@
 	scatter_unwielded = 0
 	burst_scatter_mult = 0
 	burst_amount = 4
+
+	ignored_terrains = list(
+		/obj/machinery/deployable/mounted,
+		/obj/machinery/miner,
+	)
 
 	turret_flags = TURRET_HAS_CAMERA|TURRET_SAFETY|TURRET_ALERTS
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER|GUN_DEPLOYED_FIRE_ONLY|GUN_WIELDED_FIRING_ONLY|GUN_IS_SENTRY|GUN_IFF

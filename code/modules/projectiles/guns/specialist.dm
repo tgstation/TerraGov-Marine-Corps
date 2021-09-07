@@ -101,6 +101,8 @@
 	remove_overlay(X_LASER_LAYER)
 	return TRUE
 
+/obj/item/weapon/gun/rifle/sniper/antimaterial/cock(mob/user)
+	return TRUE
 
 /obj/item/weapon/gun/rifle/sniper/antimaterial/unique_action(mob/user)
 	. = ..()
@@ -108,11 +110,7 @@
 		return
 	if(!targetmarker_primed && !targetmarker_on)
 		return laser_on(user)
-	else
-		return laser_off(user)
-
-/obj/item/weapon/gun/rifle/sniper/antimaterial/cock(mob/user)
-	return
+	return laser_off(user)
 
 /obj/item/weapon/gun/rifle/sniper/antimaterial/Destroy()
 	laser_off()
@@ -430,10 +428,7 @@
 		return in_chamber ? 1 : 0
 	return in_chamber ? (current_mag.current_rounds + 1) : current_mag.current_rounds
 
-/obj/item/weapon/gun/minigun/unique_action(mob/living/carbon/user)
-	. = ..()
-	if(!.)
-		return
+/obj/item/weapon/gun/minigun/cock(mob/living/carbon/user)
 	var/obj/item/minigun_powerpack/power_pack = user.back
 	if(!istype(power_pack))
 		return FALSE

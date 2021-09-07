@@ -19438,9 +19438,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/cave/rock,
 /area/bigredv2/caves/south)
-"cxt" = (
-/turf/open/floor/asteroidfloor,
-/area/space)
 "cyp" = (
 /turf/open/floor/plating/ground/mars/dirttosand{
 	dir = 9
@@ -25554,7 +25551,7 @@ bLG
 aaf
 aaf
 aaf
-cxt
+aaf
 alH
 aae
 cQC

@@ -21,14 +21,6 @@
 	upper_akimbo_accuracy = 5
 	lower_akimbo_accuracy = 3
 
-
-/obj/item/weapon/gun/rifle/unique_action(mob/user)
-	. = ..()
-	if(!.)
-		return
-	return cock(user)
-
-
 /obj/item/weapon/gun/rifle/get_ammo_type()
 	if(!ammo)
 		return list("unknown", "unknown")
@@ -403,7 +395,7 @@
 	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "m41a"
 	item_state = "m41a"
-	fire_sound = "sound/weapons/guns/fire/m412.ogg"
+	fire_sound = "gun_pulse"
 	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/m41a_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/m41a_reload.ogg'

@@ -460,7 +460,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 		if (antibiotics < MIN_ANTIBIOTICS)
 			//Infected wounds raise the organ's germ level.
 			if (W.germ_level)
-				germ_level += min(1,round(W.germ_level/35))
+				germ_level += max(1,round(W.germ_level/35))
 		else if (W.germ_level && prob(80)) //Antibiotics wont be very effective it the wound is still open
 			germ_level++
 
