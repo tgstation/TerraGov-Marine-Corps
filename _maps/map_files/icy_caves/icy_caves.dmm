@@ -1742,7 +1742,7 @@
 /area/icy_caves/caves/west)
 "jE" = (
 /obj/structure/table/reinforced,
-/obj/machinery/computer/shuttle/shuttle_control/dropship,
+/obj/effect/landmark/dropship_console_spawn_lz1,
 /turf/open/floor/plating/ground/snow,
 /area/lv624/lazarus/console)
 "jH" = (
@@ -2744,6 +2744,14 @@
 /obj/item/ammo_casing,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/refinery)
+"pR" = (
+/obj/effect/landmark/fob_sentry,
+/turf/open/floor/plating/ground/snow/layer2,
+/area/icy_caves/outpost/outside)
+"pT" = (
+/obj/effect/landmark/fob_sentry,
+/turf/open/floor/plating/ground/snow/layer0,
+/area/icy_caves/outpost/outside)
 "pU" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 6
@@ -4955,9 +4963,9 @@
 /area/icy_caves/outpost/medbay)
 "El" = (
 /obj/structure/table/reinforced,
-/obj/machinery/computer/shuttle/shuttle_control/dropship/two,
+/obj/effect/landmark/dropship_console_spawn_lz2,
 /turf/open/floor/tile/dark,
-/area/icy_caves/outpost/LZ2)
+/area/lv624/lazarus/console)
 "En" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
 	dir = 2
@@ -4989,6 +4997,10 @@
 /obj/structure/reagent_dispensers/fueltank,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/refinery)
+"Ey" = (
+/obj/effect/landmark/fob_sentry_rebel,
+/turf/open/floor/plating/ground/snow/layer1,
+/area/icy_caves/outpost/outside)
 "Ez" = (
 /obj/structure/bed,
 /turf/open/floor/wood,
@@ -5067,6 +5079,7 @@
 	dir = 9
 	},
 /obj/structure/cable,
+/obj/effect/landmark/sensor_tower,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/dorms)
 "Ff" = (
@@ -6194,6 +6207,12 @@
 "Nr" = (
 /turf/closed/ice/thin/corner,
 /area/icy_caves/outpost/LZ1)
+"Ns" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/structure/cable,
+/obj/effect/landmark/fob_sentry,
+/turf/open/floor/tile/dark,
+/area/icy_caves/outpost/outside)
 "Nt" = (
 /obj/item/ammo_magazine/smg/m25,
 /turf/open/floor/tile/dark,
@@ -7373,6 +7392,10 @@
 	},
 /turf/open/floor/plating,
 /area/icy_caves/outpost/LZ1)
+"Wg" = (
+/obj/effect/landmark/fob_sentry_rebel,
+/turf/open/floor/plating/ground/snow/layer2,
+/area/icy_caves/outpost/outside)
 "Wj" = (
 /turf/closed/ice/thin/end{
 	dir = 4
@@ -10433,7 +10456,7 @@ aG
 TW
 qz
 nu
-nu
+Wg
 Tm
 Uu
 Vk
@@ -11841,7 +11864,7 @@ XO
 XO
 of
 of
-XO
+Ey
 XO
 XO
 HS
@@ -11863,7 +11886,7 @@ Za
 SI
 HS
 Za
-XO
+Ey
 XO
 XO
 qz
@@ -25070,7 +25093,7 @@ np
 np
 np
 np
-np
+Ns
 np
 np
 np
@@ -25088,7 +25111,7 @@ np
 np
 np
 vy
-np
+Ns
 np
 np
 np
@@ -25532,7 +25555,7 @@ XO
 XO
 XO
 Za
-nu
+pR
 GI
 Vc
 VG
@@ -26032,7 +26055,7 @@ vf
 vf
 QO
 WA
-Za
+pT
 XO
 Za
 XO

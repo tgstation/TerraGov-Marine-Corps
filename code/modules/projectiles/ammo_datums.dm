@@ -296,6 +296,10 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/bullet/pistol/superheavy/on_hit_mob(mob/M,obj/projectile/P)
 	staggerstun(M, P, stagger = 1, slowdown = 1, shake = 0)
 
+/datum/ammo/bullet/pistol/superheavy/derringer
+	handful_amount = 2
+	handful_icon_state = "derringer"
+
 /datum/ammo/bullet/pistol/incendiary
 	name = "incendiary pistol bullet"
 	hud_state = "pistol_fire"
@@ -1826,6 +1830,7 @@ datum/ammo/bullet/revolver/tp44
 /datum/ammo/xeno/acid/heavy/turret
 	damage = 20
 	name = "acid turret splash"
+	shell_speed = 2
 
 /datum/ammo/xeno/acid/heavy/on_hit_mob(mob/M,obj/projectile/P)
 	var/turf/T = get_turf(M)

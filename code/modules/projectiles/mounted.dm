@@ -6,7 +6,6 @@
 	density = TRUE
 	layer = ABOVE_MOB_LAYER
 	use_power = FALSE
-	soft_armor = list("melee" = 0, "bullet" = 50, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 100, "rad" = 0, "fire" = 0, "acid" = 0)
 	hud_possible = list(MACHINE_HEALTH_HUD, SENTRY_AMMO_HUD)
 
 ///generates the icon based on how much ammo it has.
@@ -215,7 +214,10 @@
 	var/obj/screen/ammo/hud = operator.hud_used.ammo
 	hud.remove_hud(operator)
 
-	for(var/attachable in gun.attachments)
+	for(var/key in gun.attachments_by_slot)
+		var/obj/item/attachable = gun.attachments_by_slot[key]
+		if(!attachable)
+			continue
 		if(!istype(attachable, /obj/item/attachable/scope))
 			continue
 		var/obj/item/attachable/scope/scope = attachable
