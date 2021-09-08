@@ -654,3 +654,4 @@
 	if(prob(5))
 		L.emote("gasp")
 	L.adjustOxyLoss(3)
+	L.adjustToxLoss(3)
