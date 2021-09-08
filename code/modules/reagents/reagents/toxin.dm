@@ -639,3 +639,21 @@
 		C.drip(DEFILER_SANGUINAL_DAMAGE) //Causes bleeding
 
 	return ..()
+
+/datum/reagent/toxin/zombium
+	name = "Zombium"
+	description = "Powerfull chemical able to raise the dead"
+	reagent_state = LIQUID
+	color = "#ac0abb"
+	custom_metabolism = 0.4
+	scannable = TRUE
+	overdose_threshold = 20
+	overdose_crit_threshold = 40
+	toxpwr = 0
+
+/datum/reagent/toxin/zombium/overdose_process(mob/living/L, metabolism)
+	L.emote(pick("twitch","drool","moan"))
+
+/datum/reagent/toxin/zombium/overdose_crit_process(mob/living/L, metabolism)
+	L.emote("gasp")
+	L.adjustOxyLoss(3)
