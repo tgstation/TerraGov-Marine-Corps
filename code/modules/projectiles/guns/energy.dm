@@ -10,7 +10,7 @@
 	flags_gun_features = GUN_AMMO_COUNTER
 	general_codex_key = "energy weapons"
 
-	placed_overlay_iconstate = "energy"
+	placed_overlay_iconstate = "laser"
 
 /obj/item/weapon/gun/energy/examine_ammo_count(mob/user)
 	var/list/dat = list()
@@ -278,6 +278,7 @@
 /obj/item/weapon/gun/energy/lasgun/update_icon(mob/user)
 	var/cell_charge = (!cell || cell.charge <= 0) ? 0 : CEILING((cell.charge / max(cell.maxcharge, 1)) * 100, 25)
 	icon_state = "[base_gun_icon]_[cell_charge]"
+	update_overlays()
 	update_mag_overlay(user)
 	update_item_state(user)
 

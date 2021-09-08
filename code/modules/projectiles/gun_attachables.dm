@@ -1412,6 +1412,15 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	. = ..()
 	battery = new(src)
 
+/obj/item/attachable/buildasentry/update_icon_state()
+	. = ..()
+	var/has_battery
+	if(master_gun)
+		has_battery = master_gun.sentry_battery
+	else
+		has_battery = battery
+	icon_state = has_battery ? "build_a_sentry_attachment" : "build_a_sentry_attachment_e"
+
 /obj/item/attachable/buildasentry/attackby(obj/item/I, mob/user, params)
 	. = ..()
 	if(!istype(I, /obj/item/cell/lasgun/lasrifle/marine))
@@ -1424,7 +1433,6 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	battery.forceMove(src)
 	user.temporarilyRemoveItemFromInventory(I)
 	playsound(src, 'sound/weapons/guns/interact/standard_laser_rifle_reload.ogg', 20)
-	icon_state = "build_a_sentry_attachment"
 	update_icon()
 
 /obj/item/attachable/buildasentry/attack_hand(mob/living/user)
@@ -1436,7 +1444,6 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	user.put_in_hands(battery)
 	battery = null
 	playsound(src, 'sound/weapons/guns/interact/standard_laser_rifle_reload.ogg', 20)
-	icon_state = "build_a_sentry_attachment_e"
 	update_icon()
 
 /obj/item/attachable/buildasentry/can_attach(obj/item/attaching_to, mob/attacher)

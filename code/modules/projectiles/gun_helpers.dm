@@ -258,11 +258,10 @@ should be alright.
 	user.temporarilyRemoveItemFromInventory(cell)
 	cell.forceMove(src)
 	to_chat(user, span_notice("You install the [cell] into the [src]."))
-	if(!istype(attachments_by_slot[ATTACHMENT_SLOT_RAIL], /obj/item/attachable/buildasentry)) //This and the piece of code below that is the same are here because the build-a-sentry attachment does not keep track of the sentry battery when it is attached to the gun. Therefore this is so the overlay updates.
-		return
-	var/obj/item/attachable/buildasentry/sentry = attachments_by_slot[ATTACHMENT_SLOT_RAIL]
-	sentry.icon_state = "build_a_sentry_attachment"
-	sentry.update_icon()
+	if(istype(attachments_by_slot[ATTACHMENT_SLOT_RAIL], /obj/item/attachable/buildasentry)) //This and the piece of code below that is the same are here because the build-a-sentry attachment does not keep track of the sentry battery when it is attached to the gun. Therefore this is so the overlay updates.
+		var/obj/item/attachable/buildasentry/sentry = attachments_by_slot[ATTACHMENT_SLOT_RAIL]
+		sentry.update_icon_state()
+	update_icon()
 
 /obj/item/weapon/gun/AltRightClick(mob/user)
 	. = ..()
@@ -282,11 +281,10 @@ should be alright.
 	playsound(src, 'sound/weapons/flipblade.ogg', 20)
 	human.put_in_hands(sentry_battery)
 	sentry_battery = null
-	if(!istype(attachments_by_slot[ATTACHMENT_SLOT_RAIL], /obj/item/attachable/buildasentry))
-		return
-	var/obj/item/attachable/buildasentry/sentry = attachments_by_slot[ATTACHMENT_SLOT_RAIL]
-	sentry.icon_state = "build_a_sentry_attachment_e"
-	sentry.update_icon()
+	if(istype(attachments_by_slot[ATTACHMENT_SLOT_RAIL], /obj/item/attachable/buildasentry)) //This and the piece of code below that is the same are here because the build-a-sentry attachment does not keep track of the sentry battery when it is attached to the gun. Therefore this is so the overlay updates.
+		var/obj/item/attachable/buildasentry/sentry = attachments_by_slot[ATTACHMENT_SLOT_RAIL]
+		sentry.update_icon_state()
+	update_icon()
 
 //tactical reloads
 /obj/item/weapon/gun/MouseDrop_T(atom/dropping, mob/living/carbon/human/user)
