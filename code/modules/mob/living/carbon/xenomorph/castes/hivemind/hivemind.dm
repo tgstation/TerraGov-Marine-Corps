@@ -166,6 +166,9 @@
 
 ///Start the teleportation process to send the hivemind manifestation to the selected turf
 /mob/living/carbon/xenomorph/hivemind/proc/start_teleport(turf/T)
+	if(!isopenturf(T))
+		to_chat(src, span_notice("You cannot teleport into a wall"))
+		return
 	TIMER_COOLDOWN_START(src, COOLDOWN_HIVEMIND_MANIFESTATION, TIME_TO_TRANSFORM)
 	flick("Hivemind_materialisation_fast_reverse", src)
 	addtimer(CALLBACK(src, .proc/end_teleport, T), TIME_TO_TRANSFORM / 2)
