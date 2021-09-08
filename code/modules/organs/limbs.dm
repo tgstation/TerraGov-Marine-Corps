@@ -67,7 +67,7 @@
 	///INTERNAL germs inside the organ, this is BAD if it's greater than INFECTION_LEVEL_ONE
 	var/germ_level = 0
 	///Keeps track of the last time the limb bothered its owner about infection to prevent spam.
-	var/next_infection_message
+	COOLDOWN_DECLARE(next_infection_message)
 	///What % of the body does this limb cover. Make sure that the sum is always 100.
 	var/cover_index = 0
 
