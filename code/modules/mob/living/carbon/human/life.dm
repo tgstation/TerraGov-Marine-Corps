@@ -63,5 +63,5 @@
 	var/datum/reagent/toxin/zombium/zombium
 
 	if(reagents.get_reagent_amount(/datum/reagent/toxin/zombium) > initial(zombium.overdose_threshold))
-		addtimer(CALLBACK(src, .proc/revive_to_crit, TRUE, TRUE), 5 SECONDS)
+		addtimer(CALLBACK(src, .proc/revive_to_crit, TRUE, TRUE), SSticker.mode?.zombie_transformation_time)
 
