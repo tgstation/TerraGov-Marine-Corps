@@ -521,14 +521,13 @@
 		var/obj/screen/ammo/A = gun_user.hud_used.ammo
 		A.update_hud(gun_user, src)
 		return
-	if(gun_user)
-		if(gun_user.skills.getRating("firearms") < 0)
-			switch(windup_checked)
-				if(WEAPON_WINDUP_NOT_CHECKED)
-					INVOKE_ASYNC(src, .proc/do_windup)
-					return
-				if(WEAPON_WINDUP_CHECKING)
-					return
+	if(gun_user?.skills.getRating("firearms") < 0)
+		switch(windup_checked)
+			if(WEAPON_WINDUP_NOT_CHECKED)
+				INVOKE_ASYNC(src, .proc/do_windup)
+				return
+			if(WEAPON_WINDUP_CHECKING)
+				return
 	return ..()
 
 ///Flamer windup called before firing

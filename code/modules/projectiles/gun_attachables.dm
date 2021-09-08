@@ -1401,10 +1401,11 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	slot = ATTACHMENT_SLOT_RAIL
 	pixel_shift_x = 10
 	pixel_shift_y = 18
-
+	///Battery of the deployed sentry. This is stored here only when the this is not attached to a gun.
 	var/obj/item/cell/lasgun/lasrifle/marine/battery
-	
+	///Deploy time for the build-a-sentry
 	var/deploy_time = 2 SECONDS
+	///Undeploy tim for the build-a-sentry
 	var/undeploy_time = 2 SECONDS
 
 /obj/item/attachable/buildasentry/Initialize()

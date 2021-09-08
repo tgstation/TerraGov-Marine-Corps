@@ -457,12 +457,8 @@
 
 
 /obj/machinery/deployable/mounted/sentry/buildasentry
-
-/obj/machinery/deployable/mounted/sentry/buildasentry/examine(mob/user)
-	. = ..()
-	if(!istype(internal_item, /obj/item/weapon/gun/revolver))
-		return
-	to_chat(user, span_notice("It is as if he were still with us.")) //I miss ye already Ocelot.
+	name = "broken build-a-sentry"
+	desc = "You should not be seeing this unless a mapper, coder or admin screwed up."
 
 /obj/machinery/deployable/mounted/sentry/buildasentry/Initialize(mapload, _internal_item, deployer) //I know the istype spam is a bit much, but I don't think there is a better way.
 	. = ..()
@@ -470,6 +466,13 @@
 	icon = 'icons/Marine/sentry.dmi'
 	default_icon_state = "build_a_sentry"
 	update_icon()
+
+/obj/machinery/deployable/mounted/sentry/buildasentry/examine(mob/user)
+	. = ..()
+	if(!istype(internal_item, /obj/item/weapon/gun/revolver))
+		return
+	to_chat(user, span_notice("It is as if he were still with us.")) //I miss ye already Ocelot.
+
 
 /obj/machinery/deployable/mounted/sentry/buildasentry/update_overlays()
 	. = ..()

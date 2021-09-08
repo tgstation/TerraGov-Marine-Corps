@@ -916,6 +916,7 @@
 	
 	addtimer(CALLBACK(src, .proc/finish_windup), delay)
 
+///Proc that finishes the windup, this fires the gun.
 /obj/item/weapon/gun/launcher/rocket/proc/finish_windup()
 	windup_checked = WEAPON_WINDUP_CHECKED
 	if(Fire())

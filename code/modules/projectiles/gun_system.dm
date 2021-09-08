@@ -350,12 +350,12 @@
 			to_chat(user, span_notice("Use Ctrl-Click to deploy."))
 		if(CHECK_BITFIELD(flags_gun_features, GUN_IS_SENTRY))
 			to_chat(user, span_notice("Use Alt-Right-Click to remove the sentries battery."))
-	else
-		to_chat(user, span_notice("Click-Drag to yourself to undeploy."))
-		to_chat(user, span_notice("Alt-Click to unload."))
-		to_chat(user, span_notice("Right-Click to perform the guns unique action."))
-		if(CHECK_BITFIELD(flags_gun_features, GUN_IS_SENTRY))
-			to_chat(user, span_notice("Ctrl-Click to remove the sentries battery."))
+		return
+	to_chat(user, span_notice("Click-Drag to yourself to undeploy."))
+	to_chat(user, span_notice("Alt-Click to unload."))
+	to_chat(user, span_notice("Right-Click to perform the guns unique action."))
+	if(CHECK_BITFIELD(flags_gun_features, GUN_IS_SENTRY))
+		to_chat(user, span_notice("Ctrl-Click to remove the sentries battery."))
 
 /obj/item/weapon/gun/proc/examine_ammo_count(mob/user)
 	var/list/dat = list()
