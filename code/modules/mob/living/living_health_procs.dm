@@ -243,6 +243,12 @@
 /mob/living/proc/restore_all_organs()
 	return
 
+///Heal limbs until the total mob health went up by health_to_heal
+/mob/living/carbon/human/proc/heal_limbs(health_to_heal)
+	var/proportion_to_heal = (health_to_heal < (species.total_health - health)) ? (health_to_heal / (species.total_health - health)) : (species.total_health - health)
+	for(var/datum/limb/limb AS in limbs)
+		limb.heal_limb_damage(limb.brute_dam * proportion_to_heal, limb.burn_dam * proportion_to_heal, limb.brute_dam * proportion_to_heal)
+	updatehealth()
 
 /mob/living/proc/on_revive()
 	SEND_SIGNAL(src, COMSIG_MOB_REVIVE)
@@ -376,3 +382,28 @@
 	if(stat == DEAD)
 		hive?.on_xeno_revive(src)
 	return ..()
+
+///Revive the huamn up to X health points
+/mob/living/carbon/human/proc/revive_to_crit()
+	if(!has_working_organs() || on_fire)
+		return
+	if(health > 0)
+		return
+	var/mob/dead/observer/ghost = get_ghost()
+	if(istype(ghost))
+		notify_ghost(ghost, "<font size=3>Your body slowly regenerated. Return to it if you want to be resurrected!</font>", ghost_sound = 'sound/effects/adminhelp.ogg', enter_text = "Enter", enter_link = "reentercorpse=1", source = src, action = NOTIFY_JUMP)
+	addtimer(CALLBACK(src, .proc/finishing_reviving_to_crit, TRUE), 5 SECONDS)
+
+///Check if we have a mind, and finish the revive if we do
+/mob/living/carbon/human/proc/finishing_reviving_to_crit(first_try)
+	var/mob/dead/observer/ghost = get_ghost()
+	if(istype(ghost))
+		if(first_try)
+			notify_ghost(ghost, "<font size=3>Your body slowly regenerated. Return to it if you want to be resurrected!</font>", ghost_sound = 'sound/effects/adminhelp.ogg', enter_text = "Enter", enter_link = "reentercorpse=1", source = src, action = NOTIFY_JUMP)
+			addtimer(CALLBACK(src, .proc/finishing_reviving_to_crit, FALSE), 5 SECONDS)
+		return
+	if(!client)
+		return
+	heal_limbs(-health)
+	set_stat(CONSCIOUS)
+	SSmobs.start_processing(src)
