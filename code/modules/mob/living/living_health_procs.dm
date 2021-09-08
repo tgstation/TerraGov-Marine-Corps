@@ -406,4 +406,6 @@
 		return
 	heal_limbs(-health)
 	set_stat(CONSCIOUS)
+	overlay_fullscreen_timer(0.5 SECONDS, 10, "roundstart1", /obj/screen/fullscreen/black)
+	overlay_fullscreen_timer(2 SECONDS, 20, "roundstart2", /obj/screen/fullscreen/spawning_in)
 	SSmobs.start_processing(src)

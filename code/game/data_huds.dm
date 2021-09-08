@@ -239,6 +239,12 @@
 		infection_hud.icon_state = "hudsynth" //Xenos can feel synths are not human.
 		return TRUE
 
+	if(species.species_flags & NO_HEALTH_HUD)
+		status_hud.icon_state = "huddead"
+		infection_hud.icon_state = ""
+		simple_status_hud.icon_state = ""
+		return TRUE
+
 	if(status_flags & XENO_HOST)
 		var/obj/item/alien_embryo/E = locate(/obj/item/alien_embryo) in src
 		if(E)
