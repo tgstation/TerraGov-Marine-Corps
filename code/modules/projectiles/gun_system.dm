@@ -612,7 +612,7 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 	SIGNAL_HANDLER
 
 	var/list/modifiers = params2list(params)
-	if(modifiers["shift"] || modifiers["alt"])
+	if(modifiers["shift"])
 		return
 	if(modifiers["right"] || modifiers["middle"])
 		active_attachable?.start_fire(source, object)
