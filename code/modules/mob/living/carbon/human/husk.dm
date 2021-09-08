@@ -24,6 +24,8 @@
 /datum/species/husk/on_species_gain(mob/living/carbon/human/H, datum/species/old_species)
 	H.language_holder = new default_language_holder()
 	H.status_flags |= CANNOT_HOLD //Failsafe if something manage to skip the attack_hand check
+	H.setOxyLoss(0)
+	H.setToxLoss(0)
 	H.dropItemToGround(H.r_hand)
 	H.dropItemToGround(H.l_hand)
 	//remove larva
