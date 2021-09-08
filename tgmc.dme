@@ -1244,6 +1244,7 @@
 #include "code\modules\language\unathi.dm"
 #include "code\modules\language\vox.dm"
 #include "code\modules\language\xenocommon.dm"
+#include "code\modules\language\zombie.dm"
 #include "code\modules\lighting\emissive_blocker.dm"
 #include "code\modules\lighting\lighting_area.dm"
 #include "code\modules\lighting\lighting_atom.dm"
