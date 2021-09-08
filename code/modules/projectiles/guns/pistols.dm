@@ -56,7 +56,7 @@
 	icon_state = "tp14"
 	item_state = "tp14"
 	caliber = CALIBER_9X19 //codex
-	max_shells = 14 //codex
+	max_shells = 21 //codex
 	fire_sound = 'sound/weapons/guns/fire/tp14.ogg'
 	reload_sound = 'sound/weapons/guns/interact/tp14_reload.ogg'
 	current_mag = /obj/item/ammo_magazine/pistol/standard_pistol
