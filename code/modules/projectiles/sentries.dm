@@ -62,7 +62,7 @@
 	GLOB.marine_turrets += src
 	set_on(TRUE)
 
-/obj/machinery/deployable/mounted/sentry/update_icon()
+/obj/machinery/deployable/mounted/sentry/update_icon_state()
 	. = ..()
 	if(!CHECK_BITFIELD(machine_stat, KNOCKED_DOWN))
 		return

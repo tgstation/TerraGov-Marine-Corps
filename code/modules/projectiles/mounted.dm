@@ -41,8 +41,6 @@
 
 /obj/machinery/deployable/mounted/attack_hand_alternate(mob/living/user)
 	. = ..()
-	if(!Adjacent(user))	
-		return
 	var/obj/item/weapon/gun/internal_gun = internal_item
 	internal_gun.cock(user)
 
@@ -59,7 +57,7 @@
 
 	reload(user, I)
 
-///Reloades the internal_item
+///Reloads the internal_item
 /obj/machinery/deployable/mounted/proc/reload(mob/user, ammo_magazine)
 	var/obj/item/weapon/gun/gun = internal_item
 	if(istype(ammo_magazine, /obj/item/cell) && istype(gun, /obj/item/weapon/gun/energy))

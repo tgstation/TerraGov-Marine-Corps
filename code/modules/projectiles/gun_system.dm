@@ -312,7 +312,6 @@
 			var/datum/action/action = action_to_update
 			action.update_button_icon()
 
-	update_overlays()
 	update_item_state(user)
 	update_mag_overlay(user)
 
