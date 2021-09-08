@@ -86,3 +86,11 @@
 
 /mob/living/carbon/human/species/husk
 	race = "Husk"
+
+/mob/living/carbon/human/species/husk/ai
+	faction = FACTION_XENO
+
+/mob/living/carbon/human/species/husk/ai/Initialize()
+	. = ..()
+	AddComponent(/datum/component/ai_controller, /datum/ai_behavior/xeno/zombie)
+	a_intent = INTENT_HARM

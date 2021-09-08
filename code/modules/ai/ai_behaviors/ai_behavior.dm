@@ -19,7 +19,7 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 	///The standard ation of the AI, aka what it should do at the init or when going back to "normal" behavior
 	var/base_action = MOVING_TO_NODE
 	///Ref to the parent associated with this mind
-	var/mob/mob_parent
+	var/mob/living/mob_parent
 	///An identifier associated with this behavior, used for accessing specific values of a node's weights
 	var/identifier
 	///How far will we look for targets
@@ -29,7 +29,7 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 	///When this timer is up, we force a change of node to ensure that the ai will never stay stuck trying to go to a specific node
 	var/anti_stuck_timer
 
-/datum/ai_behavior/New(loc, parent_to_assign, escorted_atom)
+/datum/ai_behavior/New(loc, mob/parent_to_assign, atom/escorted_atom)
 	..()
 	if(isnull(parent_to_assign))
 		stack_trace("An ai behavior was initialized without a parent to assign it to; destroying mind. Mind type: [type]")
