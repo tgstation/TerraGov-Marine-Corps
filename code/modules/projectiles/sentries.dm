@@ -477,5 +477,4 @@
 /obj/machinery/deployable/mounted/sentry/buildasentry/update_overlays()
 	. = ..()
 	var/obj/item/weapon/gun/internal_gun = internal_item
-	overlays.Cut()
-	overlays += image('icons/Marine/sentry.dmi', src, internal_gun.placed_overlay_iconstate, dir = src.dir)
+	. += image('icons/Marine/sentry.dmi', src, internal_gun.placed_overlay_iconstate, dir = dir)
