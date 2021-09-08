@@ -7,7 +7,7 @@
 	desc = "A pistol magazine."
 	caliber = CALIBER_9X19
 	icon_state = "tp14"
-	max_rounds = 21
+	max_rounds = 14
 	w_class = WEIGHT_CLASS_SMALL
 	default_ammo = /datum/ammo/bullet/pistol
 	gun_type = /obj/item/weapon/gun/pistol/standard_pistol
