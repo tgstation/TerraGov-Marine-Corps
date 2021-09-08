@@ -645,15 +645,12 @@
 	description = "Powerfull chemical able to raise the dead"
 	reagent_state = LIQUID
 	color = "#ac0abb"
-	custom_metabolism = 0.4
+	custom_metabolism = REAGENTS_METABOLISM * 0.25
 	scannable = TRUE
 	overdose_threshold = 20
-	overdose_crit_threshold = 40
 	toxpwr = 0
 
 /datum/reagent/toxin/zombium/overdose_process(mob/living/L, metabolism)
-	L.emote(pick("twitch","drool","moan"))
-
-/datum/reagent/toxin/zombium/overdose_crit_process(mob/living/L, metabolism)
-	L.emote("gasp")
+	if(prob(5))
+		L.emote("gasp")
 	L.adjustOxyLoss(3)

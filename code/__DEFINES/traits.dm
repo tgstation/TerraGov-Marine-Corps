@@ -91,6 +91,7 @@
 #define RAGE_TRAIT "rage" //Ravager Rage ability.
 #define UNMANNED_VEHICLE "unmanned"
 #define STEALTH_TRAIT "stealth" //From hunter stealth
+#define REVIVE_TO_CRIT_TRAIT "revive_to_crit"
 /// inherited from riding vehicles
 #define VEHICLE_TRAIT "vehicle"
 
@@ -100,6 +101,7 @@
 #define TRAIT_INCAPACITATED "incapacitated"
 #define TRAIT_FLOORED "floored" //User is forced to the ground on a prone position.
 #define TRAIT_IMMOBILE "immobile" //User is unable to move by its own volition.
+#define TRAIT_IS_RESURRECTING "resurrecting"
 /// Prevents usage of manipulation appendages (picking, holding or using items, manipulating storage).
 #define TRAIT_HANDS_BLOCKED "handsblocked"
 #define TRAIT_STUNIMMUNE "stun_immunity"
