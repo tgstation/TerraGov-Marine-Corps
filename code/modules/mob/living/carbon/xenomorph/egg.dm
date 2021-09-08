@@ -194,7 +194,7 @@
 	NS.start()
 
 /obj/effect/alien/egg/gas/attack_alien(mob/living/carbon/xenomorph/xenomorph, damage_amount = xenomorph.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
-	if(maturity_stage == 4)
+	if(maturity_stage > stage_ready_to_burst)
 		xenomorph.visible_message(span_xenonotice("\The [xenomorph] clears the hatched egg."), \
 		span_xenonotice("We clear the broken egg."))
 		playsound(loc, "alien_resin_break", 25)
