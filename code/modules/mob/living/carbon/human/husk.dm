@@ -53,7 +53,7 @@
 
 /datum/species/husk/handle_death(mob/living/carbon/human/H)
 	if(!H.on_fire && H.has_working_organs())
-		addtimer(CALLBACK(H, /mob/living/carbon/human.proc/revive_to_crit, TRUE, FALSE), 5 SECONDS)
+		addtimer(CALLBACK(H, /mob/living/carbon/human.proc/revive_to_crit, TRUE, FALSE), 1 MINUTES)
 
 /datum/unarmed_attack/husk
 	attack_verb = list("scratch", "claw")
