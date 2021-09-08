@@ -144,6 +144,9 @@
 /datum/language_holder/sectoid
 	languages = list(/datum/language/sectoid)
 
+/datum/language_holder/zombie
+	languages = list(/datum/language/zombie)
+
 
 /mob/living/verb/language_menu()
 	set category = "IC"

@@ -11,6 +11,7 @@
 	hair_color = "#000000"
 	slowdown = 1.5
 	unarmed_type = /datum/unarmed_attack/husk
+	default_language_holder = /datum/language_holder/zombie
 	///Sounds made randomly by the zombie
 	var/list/sounds = list('sound/hallucinations/growl1.ogg','sound/hallucinations/growl2.ogg','sound/hallucinations/growl3.ogg','sound/hallucinations/veryfar_noise.ogg','sound/hallucinations/wail.ogg')
 	///Time before resurrecting if dead
@@ -21,6 +22,7 @@
 	var/zombium_per_hit = 5
 
 /datum/species/husk/on_species_gain(mob/living/carbon/human/H, datum/species/old_species)
+	H.language_holder = new default_language_holder()
 	H.status_flags |= CANNOT_HOLD //Failsafe if something manage to skip the attack_hand check
 	H.dropItemToGround(H.r_hand)
 	H.dropItemToGround(H.l_hand)
@@ -56,7 +58,10 @@
 			return TRUE
 		human_target.reagents.add_reagent(/datum/reagent/toxin/zombium, zombium_per_hit)
 		return FALSE
-	return target.resistance_flags & XENO_DAMAGEABLE
+	if(isobj(target) && target.resistance_flags & XENO_DAMAGEABLE)
+		var/obj/obj_target = target
+		obj_target.attack_generic(user, initial(unarmed_type.damage))
+	return TRUE
 
 /datum/species/husk/handle_death(mob/living/carbon/human/H)
 	if(!H.on_fire && H.has_working_organs())

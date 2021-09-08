@@ -394,17 +394,17 @@
 		notify_ghost(ghost, "<font size=3>Your body slowly regenerated. Return to it if you want to be resurrected!</font>", ghost_sound = 'sound/effects/adminhelp.ogg', enter_text = "Enter", enter_link = "reentercorpse=1", source = src, action = NOTIFY_JUMP)
 	do_jitter_animation(1000)
 	ADD_TRAIT(src, TRAIT_IS_RESURRECTING, REVIVE_TO_CRIT_TRAIT)
-	addtimer(CALLBACK(src, .proc/finishing_reviving_to_crit, TRUE, should_offer_to_ghost, should_zombify), 10 SECONDS)
+	addtimer(CALLBACK(src, .proc/finishing_reviving_to_crit, should_offer_to_ghost, should_zombify), 10 SECONDS)
 
 ///Check if we have a mind, and finish the revive if we do
-/mob/living/carbon/human/proc/finishing_reviving_to_crit(should_get_ghost = TRUE, should_offer_to_ghost = FALSE, should_zombify = FALSE)
+/mob/living/carbon/human/proc/finishing_reviving_to_crit(should_offer_to_ghost = FALSE, should_zombify = FALSE)
 	if(!client)
 		if(should_offer_to_ghost)
 			if(GLOB.offered_mob_list.Find(src)) //TODO bravemole, if no one took the zomby make it an ai
 				GLOB.offered_mob_list -= src
 				return
 			offer_mob()
-			addtimer(CALLBACK(src, .proc/finishing_reviving_to_crit, FALSE), 10 SECONDS)
+			addtimer(CALLBACK(src, .proc/finishing_reviving_to_crit, FALSE, TRUE), 10 SECONDS)
 			return
 		REMOVE_TRAIT(src, TRAIT_IS_RESURRECTING, REVIVE_TO_CRIT_TRAIT)
 		return
