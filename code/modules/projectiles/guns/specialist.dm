@@ -725,7 +725,7 @@
 /obj/item/weapon/gun/launcher/m81/Initialize(mapload, spawn_empty)
 	. = ..()
 	if(!spawn_empty)
-		grenade = new /obj/item/explosive/grenade()
+		grenade = new
 
 /obj/item/weapon/gun/launcher/m81/update_icon()
 	icon_state = grenade ? base_gun_icon : base_gun_icon + "_e"
