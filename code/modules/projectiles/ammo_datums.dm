@@ -228,7 +228,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 20
 	penetration = 5
 	accurate_range = 5
-	sundering = 1.65
+	sundering = 0.5
 
 /datum/ammo/bullet/pistol/tiny
 	name = "light pistol bullet"
@@ -264,7 +264,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	hud_state = "pistol_hollow"
 	accuracy = -15
 	shrapnel_chance = 45
-	sundering = 2
+	sundering = 0.6
 
 /datum/ammo/bullet/pistol/hollow/on_hit_mob(mob/M,obj/projectile/P)
 	staggerstun(M, P, stagger = 1, slowdown = 0.5, knockback = 1)
