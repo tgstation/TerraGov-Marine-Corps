@@ -380,6 +380,9 @@
 	var/obj/item/weapon/gun/internal_gun = internal_item
 	if(CHECK_BITFIELD(internal_gun.flags_gun_features, GUN_PUMP_REQUIRED))
 		internal_gun.cock()
+	if(get_dist(src, gun_target) <= range && (CHECK_BITFIELD(get_dir(src, gun_target), dir) || CHECK_BITFIELD(internal_gun.turret_flags, TURRET_RADIAL)) && check_target_path(gun_target))
+		internal_gun.stop_fire()
+		return
 	if(internal_gun.gun_firemode != GUN_FIREMODE_SEMIAUTO)
 		return
 	addtimer(CALLBACK(src, .proc/sentry_start_fire), internal_gun.fire_delay) //This schedules the next shot if the gun is on semi-automatic. This is so that semi-automatic guns fire once every two seconds.

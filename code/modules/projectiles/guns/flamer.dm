@@ -263,7 +263,7 @@
 	var/fire_color = loaded_ammo.fire_color
 	fire_delay = loaded_ammo.fire_delay
 
-	var/list/turf/turfs = getline(loc, target)
+	var/list/turf/turfs = getline(get_turf(src), target)
 	playsound(loc, fire_sound, 50, 1)
 	var/distance = 1
 	var/turf/prev_T
