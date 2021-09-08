@@ -392,23 +392,18 @@
 	var/mob/dead/observer/ghost = get_ghost()
 	if(istype(ghost))
 		notify_ghost(ghost, "<font size=3>Your body slowly regenerated. Return to it if you want to be resurrected!</font>", ghost_sound = 'sound/effects/adminhelp.ogg', enter_text = "Enter", enter_link = "reentercorpse=1", source = src, action = NOTIFY_JUMP)
-	addtimer(CALLBACK(src, .proc/finishing_reviving_to_crit, TRUE, zombify, zombify), 5 SECONDS)
+	do_jitter_animation(1000)
+	addtimer(CALLBACK(src, .proc/finishing_reviving_to_crit, TRUE, should_offer_to_ghost, should_zombify), 10 SECONDS)
 
 ///Check if we have a mind, and finish the revive if we do
-/mob/living/carbon/human/proc/finishing_reviving_to_crit(first_try, should_get_ghost = TRUE, should_offer_to_ghost = FALSE, should_zombify = FALSE)
-	if(should_get_ghost)
-		var/mob/dead/observer/ghost = get_ghost()
-		if(istype(ghost) && first_try)
-			notify_ghost(ghost, "<font size=3>Your body slowly regenerated. Return to it if you want to be resurrected!</font>", ghost_sound = 'sound/effects/adminhelp.ogg', enter_text = "Enter", enter_link = "reentercorpse=1", source = src, action = NOTIFY_JUMP)
-			addtimer(CALLBACK(src, .proc/finishing_reviving_to_crit, FALSE), 5 SECONDS)
-			return
+/mob/living/carbon/human/proc/finishing_reviving_to_crit(should_get_ghost = TRUE, should_offer_to_ghost = FALSE, should_zombify = FALSE)
 	if(!client)
 		if(should_offer_to_ghost)
 			if(GLOB.offered_mob_list.Find(src)) //TODO bravemole, if no one took the zomby make it an ai
 				GLOB.offered_mob_list -= src
 				return
 			offer_mob()
-			addtimer(CALLBACK(src, .proc/finishing_reviving_to_crit, FALSE), 5 SECONDS)
+			addtimer(CALLBACK(src, .proc/finishing_reviving_to_crit, FALSE), 10 SECONDS)
 		return
 	if(should_zombify)
 		set_species("Husk")
