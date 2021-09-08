@@ -245,7 +245,7 @@
 
 ///Heal limbs until the total mob health went up by health_to_heal
 /mob/living/carbon/human/proc/heal_limbs(health_to_heal)
-	var/proportion_to_heal = (health_to_heal < (species.total_health - health)) ? (health_to_heal / (species.total_health - health)) : (species.total_health - health)
+	var/proportion_to_heal = (health_to_heal < (species.total_health - health)) ? (health_to_heal / (species.total_health - health)) : 1
 	for(var/datum/limb/limb AS in limbs)
 		limb.heal_limb_damage(limb.brute_dam * proportion_to_heal, limb.burn_dam * proportion_to_heal, limb.brute_dam * proportion_to_heal)
 	updatehealth()
@@ -384,7 +384,7 @@
 	return ..()
 
 ///Revive the huamn up to X health points
-/mob/living/carbon/human/proc/revive_to_crit()
+/mob/living/carbon/human/proc/revive_to_crit(should_offer_to_ghost = FALSE, should_zombify = FALSE)
 	if(!has_working_organs() || on_fire)
 		return
 	if(health > 0)
@@ -392,18 +392,27 @@
 	var/mob/dead/observer/ghost = get_ghost()
 	if(istype(ghost))
 		notify_ghost(ghost, "<font size=3>Your body slowly regenerated. Return to it if you want to be resurrected!</font>", ghost_sound = 'sound/effects/adminhelp.ogg', enter_text = "Enter", enter_link = "reentercorpse=1", source = src, action = NOTIFY_JUMP)
-	addtimer(CALLBACK(src, .proc/finishing_reviving_to_crit, TRUE), 5 SECONDS)
+	addtimer(CALLBACK(src, .proc/finishing_reviving_to_crit, TRUE, zombify, zombify), 5 SECONDS)
 
 ///Check if we have a mind, and finish the revive if we do
-/mob/living/carbon/human/proc/finishing_reviving_to_crit(first_try)
-	var/mob/dead/observer/ghost = get_ghost()
-	if(istype(ghost))
-		if(first_try)
+/mob/living/carbon/human/proc/finishing_reviving_to_crit(first_try, should_get_ghost = TRUE, should_offer_to_ghost = FALSE, should_zombify = FALSE)
+	if(should_get_ghost)
+		var/mob/dead/observer/ghost = get_ghost()
+		if(istype(ghost) && first_try)
 			notify_ghost(ghost, "<font size=3>Your body slowly regenerated. Return to it if you want to be resurrected!</font>", ghost_sound = 'sound/effects/adminhelp.ogg', enter_text = "Enter", enter_link = "reentercorpse=1", source = src, action = NOTIFY_JUMP)
 			addtimer(CALLBACK(src, .proc/finishing_reviving_to_crit, FALSE), 5 SECONDS)
-		return
+			return
 	if(!client)
+		if(should_offer_to_ghost)
+			if(GLOB.offered_mob_list.Find(src)) //TODO bravemole, if no one took the zomby make it an ai
+				GLOB.offered_mob_list -= src
+				return
+			offer_mob()
+			addtimer(CALLBACK(src, .proc/finishing_reviving_to_crit, FALSE), 5 SECONDS)
 		return
+	if(should_zombify)
+		set_species("Husk")
+		faction = FACTION_XENO
 	heal_limbs(-health)
 	set_stat(CONSCIOUS)
 	overlay_fullscreen_timer(0.5 SECONDS, 10, "roundstart1", /obj/screen/fullscreen/black)
