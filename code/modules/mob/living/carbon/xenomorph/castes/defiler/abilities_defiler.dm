@@ -206,11 +206,11 @@ GLOBAL_LIST_INIT(defile_purge_list, typecacheof(list(
 /datum/action/xeno_action/activable/inject_egg_neurogas/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/Defiler/X = owner
 
-	if(!istype(A, /obj/effect/alien/egg/hugger))
-		return fail_activate()
-
 	if(istype(A, /obj/effect/alien/egg/gas))
 		to_chat(X, span_warning("That egg has already been filled with toxic gas.") )
+		return fail_activate()
+
+	if(!istype(A, /obj/effect/alien/egg/hugger))
 		return fail_activate()
 
 	var/obj/effect/alien/egg/alien_egg = A
