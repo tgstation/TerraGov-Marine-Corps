@@ -356,3 +356,16 @@
 	reload_delay = 1 SECONDS
 	gun_type = /obj/item/weapon/gun/rifle/alf_machinecarbine
 	icon_state_mini = "mag_t42"
+
+//-------------------------------------------------------
+//MKH98
+
+/obj/item/ammo_magazine/rifle/mkh
+	name = "\improper MKH-98 storm rifle magazine"
+	desc = "A magazine filled with 7.62X39 rifle rounds for the MKH."
+	caliber = CALIBER_762X39
+	icon_state = "mkh98"
+	default_ammo = /datum/ammo/bullet/rifle/heavy
+	max_rounds = 26
+	gun_type = /obj/item/weapon/gun/rifle/mkh
+	icon_state_mini = "mag_rifle"
