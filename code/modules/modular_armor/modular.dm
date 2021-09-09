@@ -447,7 +447,6 @@
 	if(!istype(I, /obj/item/facepaint))
 		if(storage?.attackby(I, user, params))
 			update_icon()
-			update_clothing_icon()
 			return TRUE
 		return FALSE
 	if(!greyscale_config)
