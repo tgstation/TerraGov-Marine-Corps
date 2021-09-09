@@ -1024,6 +1024,7 @@
 #include "code\modules\ai\spawners\human.dm"
 #include "code\modules\ai\spawners\spawner.dm"
 #include "code\modules\ai\spawners\xeno.dm"
+#include "code\modules\ai\spawners\zombie.dm"
 #include "code\modules\animations\animation_library.dm"
 #include "code\modules\assembly\assembly.dm"
 #include "code\modules\assembly\helpers.dm"
