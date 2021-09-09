@@ -156,22 +156,3 @@
 	parent.soft_armor = parent.soft_armor.detachArmor(soft_armor)
 	return ..()
 
-/obj/item/helmet_module/storage
-	name = "Storage 'Rubber Band' helmet module"
-	desc = "A rubber band to hold small items close to the helmet with stickers to easily stick in any helmet. Designed after the M10 helmet integrated storage, now modular."
-	icon_state = "band_head_obj"
-	item_state = "band_head"
-	/// Internal storage type
-	var/storage_type = /obj/item/storage/internal/marinehelmet
-
-/obj/item/helmet_module/storage/do_detach(mob/living/user, obj/item/clothing/head/modular/parent)
-	if(parent.storage && length(parent.storage.contents))
-		to_chat(user, "You can't remove this while there are still items inside")
-		return FALSE
-
-	QDEL_NULL(parent.storage)
-	return ..()
-
-/obj/item/helmet_module/storage/do_attach(mob/living/user, obj/item/clothing/head/modular/parent)
-	. = ..()
-	parent.storage = new storage_type(parent)

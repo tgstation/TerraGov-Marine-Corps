@@ -378,7 +378,9 @@
 
 /obj/item/clothing/head/modular/Initialize(mapload)
 	. = ..()
+	storage = new /obj/item/storage/internal/marinehelmet(src)
 	if(!visor_emissive_on || !visor_greyscale_config)
+		update_icon()
 		return
 	AddElement(/datum/element/special_clothing_overlay/modular_helmet_visor, HEAD_LAYER, visor_greyscale_config, visor_color_hex)
 	update_icon()
@@ -442,34 +444,37 @@
 	if(.)
 		return
 
-	if(istype(I, /obj/item/facepaint))
-		if(greyscale_config)
-			var/obj/item/facepaint/paint = I
-			if(paint.uses < 1)
-				to_chat(user, span_warning("\the [paint] is out of color!"))
-				return TRUE
-			paint.uses--
-			var/new_color
-			if(colorable_colors)
-				new_color = colorable_colors[tgui_input_list(user, "Pick a color", "Pick color", colorable_colors)]
-			else
-				new_color = input(user, "Pick a color", "Pick color") as null|color
-
-			if(!new_color)
-				return
-
-			if(!do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_GENERIC))
-				return TRUE
-
-			main_color_hex = new_color
-			var/list/split_colors = list(new_color)
-			if(visor_color_hex)
-				split_colors += visor_color_hex
-			set_greyscale_colors(split_colors)
+	if(!istype(I, /obj/item/facepaint))
+		if(storage?.attackby(I, user, params))
+			update_icon()
+			update_clothing_icon()
 			return TRUE
-	if(!storage)
 		return FALSE
-	return storage.attackby(I, user, params)
+	if(!greyscale_config)
+		return FALSE
+	var/obj/item/facepaint/paint = I
+	if(paint.uses < 1)
+		to_chat(user, span_warning("\the [paint] is out of color!"))
+		return TRUE
+	paint.uses--
+	var/new_color
+	if(colorable_colors)
+		new_color = colorable_colors[tgui_input_list(user, "Pick a color", "Pick color", colorable_colors)]
+	else
+		new_color = input(user, "Pick a color", "Pick color") as null|color
+
+	if(!new_color)
+		return
+
+	if(!do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_GENERIC))
+		return TRUE
+
+	main_color_hex = new_color
+	var/list/split_colors = list(new_color)
+	if(visor_color_hex)
+		split_colors += visor_color_hex
+	set_greyscale_colors(split_colors)
+	return TRUE
 
 /obj/item/clothing/head/modular/attackby_alternate(obj/item/I, mob/user, params)
 	. = ..()
@@ -560,8 +565,8 @@
 
 /obj/item/clothing/head/modular/update_overlays()
 	. = ..()
-
-	/*if(installed_module)
+	/*
+	if(installed_module)
 		. += image(installed_module.icon, ITEM_STATE_IF_SET(installed_module))*/ //these look whack because they dont have non-singl direction spritos.
 	if(visor_emissive_on)
 		. += emissive_appearance('icons/mob/modular/infantry.dmi', "visor")
@@ -571,10 +576,9 @@
 /obj/item/clothing/head/modular/apply_custom(image/standing)
 	if(installed_module)
 		standing.overlays += image(installed_module.icon, ITEM_STATE_IF_SET(installed_module))
-	if(!storage)
-		return
-	for(var/obj/item/stored in storage.contents)
-		standing.overlays += image('icons/mob/modular/modular_helmet_storage.dmi', icon_state = stored.icon_state)
+	if(storage)
+		for(var/obj/item/stored in storage.contents)
+			standing.overlays += image('icons/mob/modular/modular_helmet_storage.dmi', icon_state = stored.icon_state)
 
 
 /obj/item/clothing/head/modular/get_mechanics_info()
