@@ -53,7 +53,7 @@ GLOBAL_LIST_INIT(bitfields, list(
 		"GUN_IS_AIMING" = GUN_IS_AIMING,
 		"AUTO_AIM_MODE" = AUTO_AIM_MODE,
 		"GUN_TRIGGER_SAFETY" = GUN_TRIGGER_SAFETY,
-	)
+		)
 	"be_special" = list(
 		"BE_ALIEN" = BE_ALIEN,
 		"BE_QUEEN" = BE_QUEEN,
