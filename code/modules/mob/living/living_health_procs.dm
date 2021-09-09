@@ -398,6 +398,7 @@
 
 ///Check if we have a mind, and finish the revive if we do
 /mob/living/carbon/human/proc/finish_revive_to_crit(should_offer_to_ghost = FALSE, should_zombify = FALSE)
+	do_jitter_animation(1000)
 	if(!client)
 		if(should_offer_to_ghost)
 			offer_mob()
@@ -406,7 +407,7 @@
 		REMOVE_TRAIT(src, TRAIT_IS_RESURRECTING, REVIVE_TO_CRIT_TRAIT)
 		if(!should_zombify)
 			return
-		AddComponent(/datum/component/ai_controller, /datum/ai_behavior/xeno/zombie)
+		AddComponent(/datum/component/ai_controller, /datum/ai_behavior/xeno/zombie, get_turf(src)) //Zombie stay near
 		a_intent = INTENT_HARM
 	if(should_zombify)
 		set_species("Husk")
