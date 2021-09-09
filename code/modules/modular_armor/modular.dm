@@ -428,15 +428,11 @@
 		to_chat(user, "Right click the helmet with paint to color the visor internal lighting.")
 
 /obj/item/clothing/head/modular/attack_hand(mob/living/user)
-	if(!storage)
-		return ..()
-	if(storage.handle_attack_hand(user))
+	if(!storage || storage.handle_attack_hand(user))
 		return ..()
 
 /obj/item/clothing/head/modular/MouseDrop(over_object, src_location, over_location)
-	if(!storage)
-		return ..()
-	if(storage.handle_mousedrop(usr, over_object))
+	if(!storage || storage.handle_mousedrop(usr, over_object))
 		return ..()
 
 /obj/item/clothing/head/modular/attackby(obj/item/I, mob/user, params)
