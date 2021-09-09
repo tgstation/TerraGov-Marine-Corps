@@ -1,24 +1,4 @@
-
-///***GRENADES***///
-/obj/item/explosive/grenade/frag
-	name = "\improper M40 HEDP grenade"
-	desc = "A small, but deceptively strong high explosive grenade that has been phasing out the M15 fragmentation grenades. Capable of being loaded in the any grenade launcher, or thrown by hand."
-	icon_state = "grenade"
-	det_time = 40
-	item_state = "grenade"
-	underslug_launchable = TRUE
-	icon_state_mini = "grenade_red"
-
-/obj/item/explosive/grenade/frag/prime()
-	explosion(loc, light_impact_range = 4, small_animation = TRUE)
-	qdel(src)
-
-/obj/item/explosive/grenade/frag/flamer_fire_act()
-	activate()
-
-
-
-/obj/item/explosive/grenade/frag/training
+/obj/item/explosive/grenade/training
 	name = "M07 training grenade"
 	desc = "A harmless reusable version of the M40 HEDP, used for training. Capable of being loaded in the any grenade launcher, or thrown by hand."
 	icon_state = "training_grenade"
@@ -27,7 +7,7 @@
 	dangerous = FALSE
 	icon_state_mini = "grenade_white"
 
-/obj/item/explosive/grenade/frag/training/prime()
+/obj/item/explosive/grenade/training/prime()
 	playsound(loc, 'sound/items/detector.ogg', 80, 0, 7)
 	active = FALSE //so we can reuse it
 	overlays.Cut()
@@ -36,12 +16,12 @@
 	throw_range = initial(throw_range)
 
 
-/obj/item/explosive/grenade/frag/training/flamer_fire_act()
+/obj/item/explosive/grenade/training/flamer_fire_act()
 	return
 
 
 
-/obj/item/explosive/grenade/frag/PMC
+/obj/item/explosive/grenade/PMC
 	desc = "A fragmentation grenade produced for private security firms. It explodes 3 seconds after the pin has been pulled."
 	icon_state = "grenade_pmc"
 	item_state = "grenade_ex"
@@ -50,12 +30,12 @@
 	underslug_launchable = FALSE
 	icon_state_mini = "grenade_red_white"
 
-/obj/item/explosive/grenade/frag/PMC/prime()
+/obj/item/explosive/grenade/PMC/prime()
 	explosion(loc, light_impact_range = 5, small_animation = TRUE)
 	qdel(src)
 
 
-/obj/item/explosive/grenade/frag/m15
+/obj/item/explosive/grenade/m15
 	name = "\improper M15 fragmentation grenade"
 	desc = "An outdated TGMC fragmentation grenade. With decades of service in the TGMC, the old M15 Fragmentation Grenade is slowly being replaced with the slightly safer M40 HEDP. It is set to detonate in 4 seconds."
 	icon_state = "grenade_ex"
@@ -65,12 +45,12 @@
 	underslug_launchable = FALSE
 	icon_state_mini = "grenade_yellow"
 
-/obj/item/explosive/grenade/frag/m15/prime()
+/obj/item/explosive/grenade/m15/prime()
 	explosion(loc, light_impact_range = 5, small_animation = TRUE)
 	qdel(src)
 
 
-/obj/item/explosive/grenade/frag/stick
+/obj/item/explosive/grenade/stick
 	name = "\improper Webley Mk15 stick grenade"
 	desc = "A fragmentation grenade produced in the colonies, most commonly using old designs and schematics. It explodes 3 seconds after the pin has been pulled."
 	icon_state = "grenade_stick"
@@ -84,12 +64,12 @@
 	throw_range = 7
 	underslug_launchable = FALSE
 
-/obj/item/explosive/grenade/frag/stick/prime()
+/obj/item/explosive/grenade/stick/prime()
 	explosion(loc, light_impact_range = 4, small_animation = TRUE)
 	qdel(src)
 
 
-/obj/item/explosive/grenade/frag/upp
+/obj/item/explosive/grenade/upp
 	name = "\improper Type 5 shrapnel grenade"
 	desc = "A fragmentation grenade found within the ranks of the USL. Designed to explode into shrapnel and rupture the bodies of opponents. It explodes 3 seconds after the pin has been pulled."
 	icon_state = "grenade_upp"
@@ -100,12 +80,12 @@
 	throw_range = 6
 	underslug_launchable = FALSE
 
-/obj/item/explosive/grenade/frag/upp/prime()
+/obj/item/explosive/grenade/upp/prime()
 	explosion(loc, light_impact_range = 4, small_animation = TRUE)
 	qdel(src)
 
 
-/obj/item/explosive/grenade/frag/sectoid
+/obj/item/explosive/grenade/sectoid
 	name = "alien bomb"
 	desc = "An odd, squishy, organ-like grenade. It will explode 3 seconds after squeezing it."
 	icon_state = "alien_grenade"
@@ -113,7 +93,7 @@
 	hud_state = "grenade_frag"
 	underslug_launchable = FALSE
 
-/obj/item/explosive/grenade/frag/sectoid/prime()
+/obj/item/explosive/grenade/sectoid/prime()
 	explosion(loc, light_impact_range = 6)// no animation cus space tech and so
 	qdel(src)
 

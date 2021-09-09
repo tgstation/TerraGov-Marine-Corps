@@ -21,14 +21,6 @@
 	upper_akimbo_accuracy = 5
 	lower_akimbo_accuracy = 3
 
-
-/obj/item/weapon/gun/rifle/unique_action(mob/user)
-	. = ..()
-	if(!.)
-		return
-	return cock(user)
-
-
 /obj/item/weapon/gun/rifle/get_ammo_type()
 	if(!ammo)
 		return list("unknown", "unknown")
@@ -1292,3 +1284,43 @@
 	aim_slowdown = 0.3
 	wield_delay = 0.4 SECONDS
 	damage_falloff_mult = 3
+
+//-------------------------------------------------------
+// MKH-98
+
+/obj/item/weapon/gun/rifle/mkh
+	name = "\improper MKH-98 storm rifle"
+	desc = "A certified classic, this design was hailed as the first successful assault rifle concept, generally termed a 'storm rifle'. This version of it chambers 7.62x39mm."
+	icon = 'icons/Marine/gun64.dmi'
+	icon_state = "mkh98"
+	item_state = "mkh98"
+	caliber = CALIBER_762X39 //codex
+	muzzleflash_iconstate = "muzzle_flash_medium"
+	max_shells = 26 //codex
+	fire_sound = 'sound/weapons/guns/fire/ak47.ogg'
+	unload_sound = 'sound/weapons/guns/interact/ak47_unload.ogg'
+	reload_sound = 'sound/weapons/guns/interact/ak47_reload.ogg'
+	cocked_sound = 'sound/weapons/guns/interact/ak47_cocked.ogg'
+	current_mag = /obj/item/ammo_magazine/rifle/mkh
+	aim_slowdown = 0.45
+	type_of_casings = "cartridge"
+	attachable_allowed = list(
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/bipod,
+		/obj/item/attachable/scope/mini,
+		/obj/item/attachable/verticalgrip,
+		/obj/item/attachable/heavy_barrel,
+		/obj/item/attachable/suppressor,
+		/obj/item/attachable/bayonet,
+		/obj/item/attachable/bayonetknife,
+	)
+
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER|GUN_AUTO_EJECTOR
+	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_AUTOMATIC)
+	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 17,"rail_x" = 15, "rail_y" = 17, "under_x" = 24, "under_y" = 13, "stock_x" = 0, "stock_y" = 12)
+
+	accuracy_mult = 1.1
+	burst_amount = 1
+	fire_delay = 0.25 SECONDS
+	scatter = 2
+	wield_delay = 0.6 SECONDS

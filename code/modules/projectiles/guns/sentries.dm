@@ -98,6 +98,19 @@
 /obj/item/weapon/gun/sentry/big_sentry/dropship/rebel
 	sentry_iff_signal = TGMC_REBEL_IFF
 
+/obj/item/weapon/gun/sentry/big_sentry/fob_sentry
+	max_integrity = INFINITY //Good luck killing it
+	fire_delay = 0.2 SECONDS
+	ammo = /datum/ammo/bullet/turret/gauss
+	sentry_iff_signal = TGMC_LOYALIST_IFF
+	flags_item = IS_DEPLOYABLE|DEPLOY_ON_INITIALIZE|DEPLOYED_NO_PICKUP
+	turret_flags = TURRET_IMMOBILE|TURRET_RADIAL|TURRET_LOCKED|TURRET_ON
+	current_mag = /obj/item/ammo_magazine/sentry/fob_sentry
+	sentry_battery_type = /obj/item/cell/lasgun/fob_sentry/cell
+
+/obj/item/weapon/gun/sentry/big_sentry/fob_sentry/rebel
+	sentry_iff_signal = TGMC_REBEL_IFF
+
 /obj/item/storage/box/minisentry
 	name = "\improper UA-580 point defense sentry crate"
 	desc = "A large case containing all you need to set up an UA-580 point defense sentry."

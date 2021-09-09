@@ -341,7 +341,7 @@
 	)
 
 /obj/item/storage/pouch/explosive/full
-	fill_type = /obj/item/explosive/grenade/frag
+	fill_type = /obj/item/explosive/grenade
 	fill_number = 4
 
 /obj/item/storage/pouch/explosive/detpack/Initialize()
@@ -359,7 +359,7 @@
 	new /obj/item/explosive/grenade/chem_grenade/razorburn_large(src)
 
 /obj/item/storage/pouch/explosive/upp
-	fill_type = /obj/item/explosive/grenade/frag/upp
+	fill_type = /obj/item/explosive/grenade/upp
 	fill_number = 4
 
 /obj/item/storage/pouch/grenade
@@ -372,7 +372,7 @@
 	)
 
 /obj/item/storage/pouch/grenade/slightlyfull
-	fill_type = /obj/item/explosive/grenade/frag
+	fill_type = /obj/item/explosive/grenade
 	fill_number = 4
 
 /obj/item/storage/pouch/medical
