@@ -112,3 +112,13 @@
   hyper2snyper:
   - bugfix: Fixes attachment weapons firing when the gun is not in hand.
   - bugfix: Fixes attachment weapons firing at inventory objects.
+2021-09-09:
+  BraveMole:
+  - code_imp: Repath grenade frag to grenade
+  - balance: Most grenades will prime when subject to fire
+  - bugfix: Fix being able to send two people with one medevac
+  Pariah919:
+  - rscadd: MKH98 rifle, and PPSH/MKH98 seasonal. MKH basically feels like a lower
+      capacity higher mobility AK.
+  hyper2snyper:
+  - bugfix: You can shoot while sprinting again.

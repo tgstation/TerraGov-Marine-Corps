@@ -1,5 +1,0 @@
-author: "BraveMole"
-delete-after: True
-changes: 
-  - code_imp: "Repath grenade frag to grenade"
-  - balance: "Most grenades will prime when subject to fire"
