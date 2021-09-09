@@ -1,3 +1,6 @@
+#define MAXIMUM_GROUNDSIDE_HUMANS_FOR_HIJACK 5
+#define MAXIMUM_GROUNDSIDE_HUMANS_FOR_CAPTURE 5
+
 // marine dropships
 /obj/docking_port/stationary/marine_dropship
 	name = "dropship landing zone"
@@ -623,6 +626,9 @@
 		if(!(X.hive.hive_flags & HIVE_CAN_HIJACK))
 			to_chat(X, span_warning("Our hive lacks the psychic prowess to hijack the bird."))
 			return
+		if(groundside_humans > MAXIMUM_GROUNDSIDE_HUMANS_FOR_HIJACK)
+			to_chat(X, span_xenowarning("There is still prey left to hunt!"))
+			return
 		switch(M.mode)
 			if(SHUTTLE_RECHARGING)
 				to_chat(X, span_xenowarning("The bird is still cooling down."))
@@ -644,7 +650,7 @@
 				continue
 			groundside_humans++
 
-		if(groundside_humans > 5)
+		if(groundside_humans > MAXIMUM_GROUNDSIDE_HUMANS_FOR_CAPTURE)
 			to_chat(X, span_xenowarning("There is still prey left to hunt!"))
 			return
 
