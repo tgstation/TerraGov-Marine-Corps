@@ -1,0 +1,4 @@
+author: "Joniroq"
+delete-after: True
+changes: 
+  - bugfix: "Fixed a mapping oversight on Ice Colony's LZ2, no more cheesing resin walls right up against the shutters."
