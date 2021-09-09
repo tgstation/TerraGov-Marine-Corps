@@ -162,12 +162,11 @@ WEAPONS
 	cost = 40
 
 /datum/supply_packs/weapons/buildasentry
-	name = "Build-A-Sentry Two-Pack"
+	name = "Build-A-Sentry Attachment System"
 	contains = list(
 		/obj/item/attachable/buildasentry,
-		/obj/item/attachable/buildasentry,
 	)
-	cost = 10
+	cost = 25
 	
 
 /datum/supply_packs/weapons/m56d_emplacement

@@ -380,7 +380,7 @@
 	var/obj/item/weapon/gun/internal_gun = internal_item
 	if(CHECK_BITFIELD(internal_gun.flags_gun_features, GUN_PUMP_REQUIRED))
 		internal_gun.cock()
-	if(get_dist(src, gun_target) <= range && (CHECK_BITFIELD(get_dir(src, gun_target), dir) || CHECK_BITFIELD(internal_gun.turret_flags, TURRET_RADIAL)) && check_target_path(gun_target))
+	if(get_dist(src, gun_target) >= range || (!CHECK_BITFIELD(get_dir(src, gun_target), dir) && !CHECK_BITFIELD(internal_gun.turret_flags, TURRET_RADIAL)) || !check_target_path(gun_target))
 		internal_gun.stop_fire()
 		return
 	if(internal_gun.gun_firemode != GUN_FIREMODE_SEMIAUTO)
