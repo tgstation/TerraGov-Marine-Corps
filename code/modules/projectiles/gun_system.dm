@@ -971,8 +971,6 @@ and you're good to go.
 	if(LAZYACCESS(user.do_actions, src))
 		to_chat(user, "<span class='warning'>You are doing something else currently.")
 		return FALSE
-	if((flags_gun_innate_features & GUN_POLICE) && !police_allowed_check(user))
-		return FALSE
 	if(CHECK_BITFIELD(flags_gun_innate_features, GUN_INNATE_WIELDED_STABLE_FIRING_ONLY))//If we must wait to finish wielding before shooting.
 		if(!master_gun && !wielded_stable())
 			to_chat(user, "<span class='warning'>You need a more secure grip to fire this weapon!")

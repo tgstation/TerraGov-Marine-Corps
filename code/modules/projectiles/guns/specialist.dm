@@ -815,7 +815,7 @@
 	name = "\improper M81 riot grenade launcher"
 	desc = "A lightweight, single-shot grenade launcher to launch tear gas grenades. Used by Nanotrasen security during riots."
 	grenade_type_allowed = /obj/item/explosive/grenade/chem_grenade
-	flags_gun_innate_features = GUN_INNATE_UNUSUAL_DESIGN|GUN_POLICE|GUN_INNATE_WIELDED_FIRING_ONLY|GUN_INNATE_AMMO_COUNTER
+	flags_gun_innate_features = GUN_INNATE_UNUSUAL_DESIGN|GUN_INNATE_WIELDED_FIRING_ONLY|GUN_INNATE_AMMO_COUNTER
 	req_access = list(ACCESS_MARINE_BRIG)
 
 
