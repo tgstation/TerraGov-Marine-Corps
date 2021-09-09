@@ -524,7 +524,6 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define HUNTER_SNEAKATTACK_RUN_REDUCTION 0.2
 #define HUNTER_SNEAKATTACK_WALK_INCREASE 1
 #define HUNTER_SNEAKATTACK_MULTI_RECOVER_DELAY 10
-#define HUNTER_MARK_WINDUP 1 SECONDS //Windup of the Hunter's Mark
 #define HUNTER_PSYCHIC_TRACE_COOLDOWN 5 SECONDS //Cooldown of the Hunter's Psychic Trace, and duration of its arrow
 #define HUNTER_SILENCE_STAGGER_STACKS 1 //Silence imposes this many stagger stacks
 #define HUNTER_SILENCE_SENSORY_STACKS 7 //Silence imposes this many eyeblur and deafen stacks.
