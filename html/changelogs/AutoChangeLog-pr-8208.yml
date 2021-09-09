@@ -1,0 +1,5 @@
+author: "Surrealaser"
+delete-after: True
+changes: 
+  - balance: "Reduced Hunter's Mark plasma cost from 75 to 25."
+  - balance: "Removed Hunter's Mark wind up time."
