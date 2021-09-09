@@ -109,8 +109,10 @@
 		ATTACHMENT_SLOT_UNDER,
 		ATTACHMENT_SLOT_MAGAZINE,
 	)
-
-	var/flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK
+	///Innate carateristics of that gun
+	var/flags_gun_innate_features = GUN_INNATE_AUTO_EJECTOR|GUN_INNATE_CAN_POINTBLANK
+	///Temporary or added features of that gun
+	var/flags_gun_added_features
 
 	var/gun_firemode = GUN_FIREMODE_SEMIAUTO
 	var/list/gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO)
@@ -190,13 +192,13 @@
 	base_gun_icon = icon_state
 
 	if(current_mag)
-		if(spawn_empty && !(flags_gun_features & GUN_INTERNAL_MAG)) //Internal mags will still spawn, but they won't be filled.
+		if(spawn_empty && !(flags_gun_innate_features & GUN_INNATE_INTERNAL_MAG)) //Internal mags will still spawn, but they won't be filled.
 			current_mag = null
 			update_icon()
 		else
 			current_mag = new current_mag(src, spawn_empty ? TRUE : FALSE)
 			ammo = current_mag.default_ammo ? GLOB.ammo_list[current_mag.default_ammo] : GLOB.ammo_list[/datum/ammo/bullet] //Latter should never happen, adding as a precaution.
-		if(flags_gun_features & GUN_LOAD_INTO_CHAMBER && current_mag?.current_rounds > 0)
+		if(flags_gun_innate_features & GUN_INNATE_LOAD_INTO_CHAMBER && current_mag?.current_rounds > 0)
 			load_into_chamber()
 	else
 		ammo = GLOB.ammo_list[ammo] //If they don't have a mag, they fire off their own thing.
@@ -205,13 +207,13 @@
 	setup_firemodes()
 	AddComponent(/datum/component/automatedfire/autofire, fire_delay, burst_delay, burst_amount, gun_firemode, CALLBACK(src, .proc/set_bursting), CALLBACK(src, .proc/reset_fire), CALLBACK(src, .proc/Fire)) //This should go after handle_starting_attachment() and setup_firemodes() to get the proper values set.
 	AddComponent(/datum/component/attachment_handler, attachments_by_slot, attachable_allowed, attachable_offset, starting_attachment_types, null, null, attachment_overlays)
-	if(CHECK_BITFIELD(flags_gun_features, GUN_IS_ATTACHMENT))
+	if(CHECK_BITFIELD(flags_gun_innate_features, GUN_INNATE_IS_ATTACHMENT))
 		AddElement(/datum/element/attachment, slot, icon, .proc/on_attach, .proc/on_detach, .proc/activate, .proc/can_attach, pixel_shift_x, pixel_shift_y, flags_attach_features, attach_delay, detach_delay, "firearms", SKILL_FIREARMS_DEFAULT, 'sound/machines/click.ogg')
 
 	muzzle_flash = new(src, muzzleflash_iconstate)
 
 	if(flags_item & IS_DEPLOYABLE)
-		if(flags_gun_features & GUN_IS_SENTRY)
+		if(flags_gun_innate_features & GUN_INNATE_IS_SENTRY)
 			AddElement(/datum/element/deployable_item, /obj/machinery/deployable/mounted/sentry, deploy_time, undeploy_time)
 			sentry_battery = new sentry_battery_type(src)
 			return
@@ -324,7 +326,7 @@
 /obj/item/weapon/gun/examine(mob/user)
 	. = ..()
 	var/list/dat = list()
-	if(flags_gun_features & GUN_TRIGGER_SAFETY)
+	if(flags_gun_added_features & GUN_TRIGGER_SAFETY)
 		dat += "The safety's on!<br>"
 	else
 		dat += "The safety's off!<br>"
@@ -349,9 +351,9 @@
 
 /obj/item/weapon/gun/proc/examine_ammo_count(mob/user)
 	var/list/dat = list()
-	if(!(flags_gun_features & (GUN_INTERNAL_MAG|GUN_UNUSUAL_DESIGN))) //Internal mags and unusual guns have their own stuff set.
+	if(!(flags_gun_innate_features & (GUN_INNATE_INTERNAL_MAG|GUN_INNATE_UNUSUAL_DESIGN))) //Internal mags and unusual guns have their own stuff set.
 		if(current_mag?.current_rounds > 0)
-			if(flags_gun_features & GUN_AMMO_COUNTER)
+			if(flags_gun_innate_features & GUN_INNATE_AMMO_COUNTER)
 				dat += "Ammo counter shows [current_mag.current_rounds] round\s remaining.<br>"
 			else
 				dat += "It's loaded[in_chamber?" and has a round chambered":""].<br>"
@@ -361,7 +363,7 @@
 		to_chat(user, "[dat.Join(" ")]")
 
 /obj/item/weapon/gun/wield(mob/user)
-	if(CHECK_BITFIELD(flags_gun_features, GUN_DEPLOYED_FIRE_ONLY))
+	if(CHECK_BITFIELD(flags_gun_innate_features, GUN_INNATE_DEPLOYED_FIRE_ONLY))
 		to_chat(user, span_notice("[src] cannot be fired by hand and must be deployed."))
 		return
 
@@ -387,7 +389,7 @@
 	A.add_hud(user, src)
 	A.update_hud(user, src)
 	do_wield(user, wdelay)
-	if(CHECK_BITFIELD(flags_gun_features, AUTO_AIM_MODE))
+	if(CHECK_BITFIELD(flags_gun_added_features, AUTO_AIM_MODE))
 		toggle_aim_mode(user)
 
 
@@ -402,7 +404,7 @@
 	if(A)
 		A.remove_hud(user)
 
-	if(CHECK_BITFIELD(flags_gun_features, GUN_IS_AIMING))
+	if(CHECK_BITFIELD(flags_gun_added_features, GUN_IS_AIMING))
 		toggle_aim_mode(user)
 
 	return TRUE
@@ -440,7 +442,7 @@ This sets all the initial datum's stuff. The bullet does the rest.
 User can be passed as null, (a gun reloading itself for instance), so we need to watch for that constantly.
 */
 /obj/item/weapon/gun/proc/reload(mob/user, obj/item/ammo_magazine/magazine)
-	if(flags_gun_features & (GUN_BURST_FIRING|GUN_UNUSUAL_DESIGN|GUN_INTERNAL_MAG))
+	if((flags_gun_innate_features & (GUN_INNATE_UNUSUAL_DESIGN|GUN_INNATE_INTERNAL_MAG)) || (flags_gun_added_features & GUN_BURST_FIRING))
 		return
 
 	if(!magazine || !istype(magazine))
@@ -493,7 +495,7 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 	replace_ammo(user,magazine)
 	if(!in_chamber)
 		load_into_chamber()
-		if(!(flags_gun_features & GUN_ENERGY))
+		if(!(flags_gun_innate_features & GUN_INNATE_ENERGY))
 			cock_gun(user)
 	user.visible_message(span_notice("[user] loads [magazine] into [src]!"),
 	span_notice("You load [magazine] into [src]!"), null, 3)
@@ -505,10 +507,10 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 //Drop out the magazine. Keep the ammo type for next time so we don't need to replace it every time.
 //This can be passed with a null user, so we need to check for that as well.
 /obj/item/weapon/gun/proc/unload(mob/user, reload_override = 0, drop_override = 0) //Override for reloading mags after shooting, so it doesn't interrupt burst. Drop is for dropping the magazine on the ground.
-	if(!reload_override && (flags_gun_features & (GUN_BURST_FIRING|GUN_UNUSUAL_DESIGN|GUN_INTERNAL_MAG)))
+	if(!reload_override && ((flags_gun_innate_features & (GUN_INNATE_UNUSUAL_DESIGN|GUN_INNATE_INTERNAL_MAG)) || (flags_gun_added_features & GUN_BURST_FIRING)))
 		return FALSE
 
-	if((!current_mag || isnull(current_mag) || current_mag.loc != src) && !(flags_gun_features & GUN_ENERGY))
+	if((!current_mag || isnull(current_mag) || current_mag.loc != src) && !(flags_gun_innate_features & GUN_INNATE_ENERGY))
 		return cock(user)
 
 	if(drop_override || !user) //If we want to drop it on the ground or there's no user.
@@ -530,7 +532,7 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 //Manually cock the gun
 //This only works on weapons NOT marked with UNUSUAL_DESIGN or INTERNAL_MAG or ENERGY
 /obj/item/weapon/gun/proc/cock(mob/user)
-	if(flags_gun_features & (GUN_BURST_FIRING|GUN_UNUSUAL_DESIGN|GUN_INTERNAL_MAG|GUN_ENERGY))
+	if((flags_gun_innate_features & (GUN_INNATE_UNUSUAL_DESIGN|GUN_INNATE_INTERNAL_MAG|GUN_INNATE_ENERGY)) || (flags_gun_added_features & GUN_BURST_FIRING))
 		return FALSE
 	if(cock_cooldown > world.time)
 		return FALSE
@@ -665,7 +667,7 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 	SIGNAL_HANDLER
 	active_attachable?.stop_fire()
 	gun_user?.client?.mouse_pointer_icon = initial(gun_user.client.mouse_pointer_icon)
-	if(!CHECK_BITFIELD(flags_gun_features, GUN_BURST_FIRING))
+	if(!CHECK_BITFIELD(flags_gun_added_features, GUN_BURST_FIRING))
 		reset_fire()
 	SEND_SIGNAL(src, COMSIG_GUN_STOP_FIRE)
 
@@ -680,9 +682,9 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 ///Inform the gun if he is currently bursting, to prevent reloading
 /obj/item/weapon/gun/proc/set_bursting(bursting)
 	if(bursting)
-		ENABLE_BITFIELD(flags_gun_features, GUN_BURST_FIRING)
+		ENABLE_BITFIELD(flags_gun_added_features, GUN_BURST_FIRING)
 		return
-	DISABLE_BITFIELD(flags_gun_features, GUN_BURST_FIRING)
+	DISABLE_BITFIELD(flags_gun_added_features, GUN_BURST_FIRING)
 
 ///Update the target if you draged your mouse
 /obj/item/weapon/gun/proc/change_target(datum/source, atom/src_object, atom/over_object, turf/src_location, turf/over_location, src_control, over_control, params)
@@ -696,10 +698,10 @@ If you need to change up how a gun fires, just change these procs for that subty
 and you're good to go.
 */
 /obj/item/weapon/gun/proc/load_into_chamber(mob/user)
-	if(CHECK_BITFIELD(flags_gun_features, GUN_DEPLOYED_FIRE_ONLY) && !CHECK_BITFIELD(flags_item, IS_DEPLOYED))
+	if(CHECK_BITFIELD(flags_gun_innate_features, GUN_INNATE_DEPLOYED_FIRE_ONLY) && !CHECK_BITFIELD(flags_item, IS_DEPLOYED))
 		to_chat(user, span_notice("You cannot fire [src] while it is not deployed."))
 		return
-	if(CHECK_BITFIELD(flags_gun_features, GUN_IS_ATTACHMENT) && !master_gun && CHECK_BITFIELD(flags_gun_features, GUN_ATTACHMENT_FIRE_ONLY))
+	if(CHECK_BITFIELD(flags_gun_innate_features, GUN_INNATE_IS_ATTACHMENT) && !master_gun && CHECK_BITFIELD(flags_gun_innate_features, GUN_INNATE_ATTACHMENT_FIRE_ONLY))
 		to_chat(user, span_notice("You cannot fire [src] without it attached to a gun!"))
 		return
 	//The workhorse of the bullet procs.
@@ -738,7 +740,7 @@ and you're good to go.
 
 	if(current_mag) //If there is no mag, we can't reload.
 		ready_in_chamber(user)
-		if(current_mag.current_rounds <= 0 && flags_gun_features & GUN_AUTO_EJECTOR) // This is where the magazine is auto-ejected.
+		if(current_mag.current_rounds <= 0 && flags_gun_innate_features & GUN_INNATE_AUTO_EJECTOR) // This is where the magazine is auto-ejected.
 			unload(user, TRUE, TRUE) // We want to quickly autoeject the magazine. This proc does the rest based on magazine type. User can be passed as null.
 			playsound(src, empty_sound, 25, 1)
 
@@ -784,7 +786,7 @@ and you're good to go.
 
 	//This is where the projectile leaves the barrel and deals with projectile code only.
 	//vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
-	projectile_to_fire.fire_at(target, master_gun ? gun_user : loc, src, projectile_to_fire.ammo.max_range, projectile_to_fire.ammo.shell_speed, firing_angle, suppress_light = CHECK_BITFIELD(flags_gun_features, GUN_SILENCED))
+	projectile_to_fire.fire_at(target, master_gun ? gun_user : loc, src, projectile_to_fire.ammo.max_range, projectile_to_fire.ammo.shell_speed, firing_angle, suppress_light = CHECK_BITFIELD(flags_gun_added_features, GUN_SILENCED))
 	//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 	shots_fired++
@@ -798,7 +800,7 @@ and you're good to go.
 		var/obj/screen/ammo/A = gun_user.hud_used.ammo //The ammo HUD
 		A.update_hud(gun_user, src)
 	SEND_SIGNAL(src, COMSIG_MOB_GUN_FIRED, target, src)
-	if(CHECK_BITFIELD(flags_gun_features, GUN_IS_SENTRY) && CHECK_BITFIELD(flags_item, IS_DEPLOYED) && CHECK_BITFIELD(turret_flags, TURRET_RADIAL) && !gun_user)
+	if(CHECK_BITFIELD(flags_gun_innate_features, GUN_INNATE_IS_SENTRY) && CHECK_BITFIELD(flags_item, IS_DEPLOYED) && CHECK_BITFIELD(turret_flags, TURRET_RADIAL) && !gun_user)
 		sentry_battery.charge -= sentry_battery_drain
 		if(sentry_battery.charge <= 0)
 			DISABLE_BITFIELD(turret_flags, TURRET_RADIAL)
@@ -808,7 +810,7 @@ and you're good to go.
 	return TRUE
 
 /obj/item/weapon/gun/attack(mob/living/M, mob/living/user, def_zone)
-	if(!CHECK_BITFIELD(flags_gun_features, GUN_CAN_POINTBLANK)) // If it can't point blank, you can't suicide and such.
+	if(!CHECK_BITFIELD(flags_gun_innate_features, GUN_INNATE_CAN_POINTBLANK)) // If it can't point blank, you can't suicide and such.
 		return ..()
 
 	if(!able_to_fire(user))
@@ -872,14 +874,14 @@ and you're good to go.
 	if(M != user || user.zone_selected != "mouth")
 		return ..()
 
-	DISABLE_BITFIELD(flags_gun_features, GUN_CAN_POINTBLANK) //If they try to click again, they're going to hit themselves.
+	DISABLE_BITFIELD(flags_gun_innate_features, GUN_INNATE_CAN_POINTBLANK) //If they try to click again, they're going to hit themselves.
 
 	user.visible_message(span_warning("[user] sticks their gun in their mouth, ready to pull the trigger."))
 	log_combat(user, null, "is trying to commit suicide")
 
 	if(!do_after(user, 40, TRUE, src, BUSY_ICON_DANGER))
 		M.visible_message(span_notice("[user] decided life was worth living."))
-		ENABLE_BITFIELD(flags_gun_features, GUN_CAN_POINTBLANK)
+		ENABLE_BITFIELD(flags_gun_innate_features, GUN_INNATE_CAN_POINTBLANK)
 		return
 
 	var/obj/projectile/projectile_to_fire = load_into_chamber(user)
@@ -887,12 +889,12 @@ and you're good to go.
 
 	if(!projectile_to_fire) //We actually have a projectile, let's move on.
 		click_empty(user)//If there's no projectile, we can't do much.
-		ENABLE_BITFIELD(flags_gun_features, GUN_CAN_POINTBLANK)
+		ENABLE_BITFIELD(flags_gun_innate_features, GUN_INNATE_CAN_POINTBLANK)
 		return
 
 	user.visible_message("<span class = 'warning'>[user] pulls the trigger!</span>")
 	var/actual_sound = (active_attachable?.fire_sound) ? active_attachable.fire_sound : fire_sound
-	var/sound_volume = (CHECK_BITFIELD(flags_gun_features, GUN_SILENCED) && !active_attachable) ? 25 : 60
+	var/sound_volume = (CHECK_BITFIELD(flags_gun_added_features, GUN_SILENCED) && !active_attachable) ? 25 : 60
 	playsound(user, actual_sound, sound_volume, 1)
 	simulate_recoil(2, user)
 	var/obj/item/weapon/gun/revolver/current_revolver = src
@@ -904,7 +906,7 @@ and you're good to go.
 		user.death()
 		to_chat(user, span_highdanger("Your life flashes before you as your spirit is torn from your body!"))
 		user.ghostize(0) //No return.
-		ENABLE_BITFIELD(flags_gun_features, GUN_CAN_POINTBLANK)
+		ENABLE_BITFIELD(flags_gun_innate_features, GUN_INNATE_CAN_POINTBLANK)
 		return
 
 	switch(projectile_to_fire.ammo.damage_type)
@@ -928,7 +930,7 @@ and you're good to go.
 		QDEL_NULL(projectile_to_fire)
 
 	reload_into_chamber(user) //Reload the sucker.
-	ENABLE_BITFIELD(flags_gun_features, GUN_CAN_POINTBLANK)
+	ENABLE_BITFIELD(flags_gun_innate_features, GUN_INNATE_CAN_POINTBLANK)
 
 /obj/item/weapon/gun/attack_alternate(mob/living/M, mob/living/user)
 	. = ..()
@@ -953,13 +955,13 @@ and you're good to go.
 	if(!user.dextrous)
 		to_chat(user, span_warning("You don't have the dexterity to do this!"))
 		return FALSE
-	if(!(flags_gun_features & GUN_ALLOW_SYNTHETIC) && !CONFIG_GET(flag/allow_synthetic_gun_use) && issynth(user))
+	if(!(flags_gun_innate_features & GUN_INNATE_ALLOW_SYNTHETIC) && !CONFIG_GET(flag/allow_synthetic_gun_use) && issynth(user))
 		to_chat(user, span_warning("Your program does not allow you to use this firearm."))
 		return FALSE
-	if(flags_gun_features & GUN_TRIGGER_SAFETY)
+	if(flags_gun_added_features & GUN_TRIGGER_SAFETY)
 		to_chat(user, span_warning("The safety is on!"))
 		return FALSE
-	if(CHECK_BITFIELD(flags_gun_features, GUN_WIELDED_FIRING_ONLY)) //If we're not holding the weapon with both hands when we should.
+	if(CHECK_BITFIELD(flags_gun_innate_features, GUN_INNATE_WIELDED_FIRING_ONLY)) //If we're not holding the weapon with both hands when we should.
 		if(!master_gun && !CHECK_BITFIELD(flags_item, WIELDED))
 			to_chat(user, "<span class='warning'>You need a more secure grip to fire this weapon!")
 			return FALSE
@@ -969,9 +971,9 @@ and you're good to go.
 	if(LAZYACCESS(user.do_actions, src))
 		to_chat(user, "<span class='warning'>You are doing something else currently.")
 		return FALSE
-	if((flags_gun_features & GUN_POLICE) && !police_allowed_check(user))
+	if((flags_gun_innate_features & GUN_POLICE) && !police_allowed_check(user))
 		return FALSE
-	if(CHECK_BITFIELD(flags_gun_features, GUN_WIELDED_STABLE_FIRING_ONLY))//If we must wait to finish wielding before shooting.
+	if(CHECK_BITFIELD(flags_gun_innate_features, GUN_INNATE_WIELDED_STABLE_FIRING_ONLY))//If we must wait to finish wielding before shooting.
 		if(!master_gun && !wielded_stable())
 			to_chat(user, "<span class='warning'>You need a more secure grip to fire this weapon!")
 			return FALSE
@@ -1015,7 +1017,7 @@ and you're good to go.
 /obj/item/weapon/gun/proc/play_fire_sound(mob/user)
 	//Guns with low ammo have their firing sound
 	var/firing_sndfreq = ((current_mag?.current_rounds / current_mag?.max_rounds) > 0.25) ? FALSE : 55000
-	if(flags_gun_features & GUN_SILENCED)
+	if(flags_gun_added_features & GUN_SILENCED)
 		playsound(user, fire_sound, 25, firing_sndfreq ? TRUE : FALSE, frequency = firing_sndfreq)
 		return
 	if(firing_sndfreq && fire_rattle)
@@ -1029,7 +1031,7 @@ and you're good to go.
 	projectile_to_fire.damage *= damage_mult
 	projectile_to_fire.damage_falloff *= damage_falloff_mult
 	projectile_to_fire.projectile_speed += shell_speed_mod
-	if(flags_gun_features & GUN_IFF || flags_gun_features & GUN_IS_AIMING|| projectile_to_fire.ammo.flags_ammo_behavior & AMMO_IFF)
+	if(flags_gun_innate_features & GUN_INNATE_IFF || flags_gun_added_features & GUN_IS_AIMING|| projectile_to_fire.ammo.flags_ammo_behavior & AMMO_IFF)
 		var/iff_signal
 		if(ishuman(firer))
 			var/mob/living/carbon/human/_firer = firer
@@ -1135,7 +1137,7 @@ and you're good to go.
 		total_recoil += recoil
 	else
 		total_recoil += recoil_unwielded
-		if(flags_gun_features & GUN_BURST_FIRING)
+		if(flags_gun_added_features & GUN_BURST_FIRING)
 			total_recoil += 1
 	if(!user.skills.getRating("firearms")) //no training in any firearms
 		total_recoil += 2
@@ -1259,7 +1261,7 @@ and you're good to go.
 
 //For letting xenos turn off the flashlights on any guns left lying around.
 /obj/item/weapon/gun/attack_alien(mob/living/carbon/xenomorph/X, isrightclick = FALSE)
-	if(!CHECK_BITFIELD(flags_gun_features, GUN_FLASHLIGHT_ON))
+	if(!CHECK_BITFIELD(flags_gun_added_features, GUN_FLASHLIGHT_ON))
 		return
 	var/obj/item/attachment = attachments_by_slot[ATTACHMENT_SLOT_RAIL]
 	if(!istype(attachment, /obj/item/attachable))

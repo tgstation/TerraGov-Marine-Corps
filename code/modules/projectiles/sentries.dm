@@ -390,7 +390,7 @@
 		setDir(new_dir)
 		if(gun.sentry_battery.charge <= 0)
 			sentry_alert(SENTRY_ALERT_BATTERY)
-	if(CHECK_BITFIELD(gun.flags_gun_features, GUN_BURST_FIRING))
+	if(CHECK_BITFIELD(gun.flags_gun_added_features, GUN_BURST_FIRING))
 		gun.set_target(target)
 		return
 	gun.start_fire(src, target, bypass_checks = TRUE)

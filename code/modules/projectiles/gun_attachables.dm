@@ -187,7 +187,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	master_gun.update_force_list() //This updates the gun to use proper force verbs.
 
 	if(silence_mod)
-		master_gun.flags_gun_features |= GUN_SILENCED
+		master_gun.flags_gun_added_features |= GUN_SILENCED
 		master_gun.muzzle_flash = null
 		master_gun.fire_sound = "gun_silenced"
 
@@ -215,7 +215,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	master_gun.aim_speed_modifier			-= initial(master_gun.aim_speed_modifier)*aim_mode_movement_mult
 	master_gun.iff_marine_damage_falloff	-= shot_marine_damage_falloff
 	master_gun.aim_fire_delay 				+= cached_aim_mode_debuff_fire_rate
-	if(CHECK_BITFIELD(master_gun.flags_gun_features, GUN_IS_AIMING))
+	if(CHECK_BITFIELD(master_gun.flags_gun_added_features, GUN_IS_AIMING))
 		master_gun.modify_fire_delay(cached_aim_mode_debuff_fire_rate)
 	cached_aim_mode_debuff_fire_rate = 0
 	if(delay_mod)
@@ -244,7 +244,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	master_gun.update_force_list()
 
 	if(silence_mod) //Built in silencers always come as an attach, so the gun can't be silenced right off the bat.
-		master_gun.flags_gun_features &= ~GUN_SILENCED
+		master_gun.flags_gun_ADDED_features &= ~GUN_SILENCED
 		master_gun.muzzle_flash = initial(master_gun.muzzle_flash)
 		master_gun.fire_sound = initial(master_gun.fire_sound)
 
@@ -565,7 +565,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 		light_on = TRUE
 	else
 		return
-	master_gun.flags_gun_features ^= GUN_FLASHLIGHT_ON
+	master_gun.flags_gun_added_features ^= GUN_FLASHLIGHT_ON
 
 	for(var/X in master_gun.actions)
 		var/datum/action/A = X
@@ -712,7 +712,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 		RegisterSignal(user, COMSIG_CARBON_SWAPPED_HANDS, .proc/zoom_item_turnoff)
 	else
 		RegisterSignal(user, list(COMSIG_MOVABLE_MOVED, COMSIG_CARBON_SWAPPED_HANDS), .proc/zoom_item_turnoff)
-	if(!(master_gun.flags_gun_features & IS_DEPLOYED))
+	if(!(master_gun.flags_gun_innate_features & IS_DEPLOYED))
 		RegisterSignal(user, COMSIG_MOB_FACE_DIR, .proc/change_zoom_offset)
 	RegisterSignal(master_gun, list(COMSIG_ITEM_EQUIPPED, COMSIG_ITEM_UNWIELD, COMSIG_ITEM_DROPPED), .proc/zoom_item_turnoff)
 	master_gun.accuracy_mult += scoped_accuracy_mod
@@ -1342,7 +1342,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	desc = "An integrated component of the TL-84 flamethrower, the hydro cannon fires high pressure sprays of water; mainly to extinguish any wayward allies or unintended collateral damage."
 	icon_state = ""
 	slot = ATTACHMENT_SLOT_UNDER
-	flags_attach_features = GUN_ALLOW_SYNTHETIC
+	flags_attach_features = GUN_INNATE_ALLOW_SYNTHETIC
 	attachment_action_type = /datum/action/item_action/toggle_hydro
 	var/is_active = FALSE
 

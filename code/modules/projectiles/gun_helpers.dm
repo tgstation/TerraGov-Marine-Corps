@@ -109,7 +109,7 @@
 
 /obj/item/weapon/gun/mob_can_equip(mob/user)
 	//Cannot equip wielded items or items burst firing.
-	if(flags_gun_features & GUN_BURST_FIRING)
+	if(flags_gun_added_features & GUN_BURST_FIRING)
 		return
 	unwield(user)
 	return ..()
@@ -231,10 +231,10 @@ should be alright.
 	if(istype(src, /obj/item/weapon/gun/launcher/m92) || istype(src, /obj/item/weapon/gun/launcher/m81)) //This is to allow the parent proc to call and not fuck up GLs. This is temporary until I unfuck Gls.
 		return
 
-	if(flags_gun_features & GUN_BURST_FIRING)
+	if(flags_gun_added_features & GUN_BURST_FIRING)
 		return
 
-	if(istype(I, /obj/item/cell) && CHECK_BITFIELD(flags_gun_features, GUN_IS_SENTRY))
+	if(istype(I, /obj/item/cell) && CHECK_BITFIELD(flags_gun_innate_features, GUN_INNATE_IS_SENTRY))
 		if(sentry_battery)
 			to_chat(user, span_warning("[src] already has a battery installed! Use Alt-Click to remove it!"))
 			return
@@ -265,7 +265,7 @@ should be alright.
 /obj/item/weapon/gun/AltClick(mob/user)
 	. = ..()
 
-	if(!user.Adjacent(src) || !ishuman(user) || !CHECK_BITFIELD(flags_gun_features, GUN_IS_SENTRY) && !master_gun)
+	if(!user.Adjacent(src) || !ishuman(user) || !CHECK_BITFIELD(flags_gun_innate_features, GUN_INNATE_IS_SENTRY) && !master_gun)
 		return
 	var/mob/living/carbon/human/human = user
 	if(!sentry_battery)
@@ -295,7 +295,7 @@ should be alright.
 	if(src != user.r_hand && src != user.l_hand)
 		to_chat(user, span_warning("[src] must be in your hand to do that."))
 		return
-	if(flags_gun_features & GUN_INTERNAL_MAG)
+	if(flags_gun_innate_features & GUN_INNATE_INTERNAL_MAG)
 		to_chat(user, span_warning("Can't do tactical reloads with [src]."))
 		return
 	//no tactical reload for the untrained.
@@ -391,7 +391,7 @@ should be alright.
 		to_chat(user, span_warning("You need a gun in your hands to do that!"))
 		return
 
-	if(G.flags_gun_features & GUN_BURST_FIRING)
+	if(G.flags_gun_added_features & GUN_BURST_FIRING)
 		return
 
 	return G
@@ -413,7 +413,7 @@ should be alright.
 //----------------------------------------------------------
 
 /obj/item/weapon/gun/ui_action_click(mob/user, datum/action/item_action/action)
-	if(flags_gun_features & GUN_BURST_FIRING)
+	if(flags_gun_added_features & GUN_BURST_FIRING)
 		return
 	var/datum/action/item_action/firemode/firemode_action = action
 	if(!istype(firemode_action))
@@ -510,7 +510,7 @@ should be alright.
 
 /obj/item/weapon/gun/proc/do_toggle_firemode(datum/source, new_firemode)
 	SIGNAL_HANDLER
-	if(flags_gun_features & GUN_BURST_FIRING)//can't toggle mid burst
+	if(flags_gun_added_features & GUN_BURST_FIRING)//can't toggle mid burst
 		return
 
 	if(!length(gun_firemode_list))
@@ -676,9 +676,9 @@ should be alright.
 	set name = "Toggle Gun Safety (Weapon)"
 	set desc = "Toggle the safety of the held gun."
 
-	to_chat(usr, span_notice("You toggle the safety [flags_gun_features & GUN_TRIGGER_SAFETY ? "<b>off</b>" : "<b>on</b>"]."))
+	to_chat(usr, span_notice("You toggle the safety [flags_gun_added_features & GUN_TRIGGER_SAFETY ? "<b>off</b>" : "<b>on</b>"]."))
 	playsound(usr, 'sound/weapons/guns/interact/selector.ogg', 15, 1)
-	flags_gun_features ^= GUN_TRIGGER_SAFETY
+	flags_gun_added_features ^= GUN_TRIGGER_SAFETY
 
 
 /mob/living/carbon/human/verb/activate_attachment_verb()
@@ -821,18 +821,18 @@ should be alright.
 		toggle_aim_mode(user)
 		return
 
-	if(!CHECK_BITFIELD(flags_gun_features, AUTO_AIM_MODE))
+	if(!CHECK_BITFIELD(flags_gun_added_features, AUTO_AIM_MODE))
 		to_chat(user, span_notice("You will immediately aim upon wielding your weapon.</b>"))
-		ENABLE_BITFIELD(flags_gun_features, AUTO_AIM_MODE)
+		ENABLE_BITFIELD(flags_gun_added_features, AUTO_AIM_MODE)
 	else
 		to_chat(user, span_notice("You will wield your weapon without aiming with precision.</b>"))
-		DISABLE_BITFIELD(flags_gun_features, AUTO_AIM_MODE)
+		DISABLE_BITFIELD(flags_gun_added_features, AUTO_AIM_MODE)
 
 /obj/item/weapon/gun/proc/toggle_aim_mode(mob/living/carbon/human/user)
 	var/static/image/aim_mode_visual = image('icons/mob/hud.dmi', null, "aim_mode")
-	if(CHECK_BITFIELD(flags_gun_features, GUN_IS_AIMING))
+	if(CHECK_BITFIELD(flags_gun_added_features, GUN_IS_AIMING))
 		user.overlays -= aim_mode_visual
-		DISABLE_BITFIELD(flags_gun_features, GUN_IS_AIMING)
+		DISABLE_BITFIELD(flags_gun_added_features, GUN_IS_AIMING)
 		user.remove_movespeed_modifier(MOVESPEED_ID_AIM_MODE_SLOWDOWN)
 		modify_fire_delay(-aim_fire_delay)
 		to_chat(user, span_notice("You cease aiming.</b>"))
@@ -852,7 +852,7 @@ should be alright.
 			to_chat(user, span_warning("Your concentration is interrupted!</b>"))
 			return
 	user.overlays += aim_mode_visual
-	ENABLE_BITFIELD(flags_gun_features, GUN_IS_AIMING)
+	ENABLE_BITFIELD(flags_gun_added_features, GUN_IS_AIMING)
 	user.add_movespeed_modifier(MOVESPEED_ID_AIM_MODE_SLOWDOWN, TRUE, 0, NONE, TRUE, aim_speed_modifier)
 	modify_fire_delay(aim_fire_delay)
 	to_chat(user, span_notice("You line up your aim, allowing you to shoot past allies.</b>"))

@@ -7,7 +7,7 @@
 	fire_sound = 'sound/weapons/guns/fire/flare.ogg'
 	w_class = WEIGHT_CLASS_TINY
 	fire_sound = 'sound/weapons/guns/fire/flare.ogg'
-	flags_gun_features = GUN_UNUSUAL_DESIGN
+	flags_gun_innate_features = GUN_INNATE_UNUSUAL_DESIGN
 	gun_skill_category = GUN_SKILL_PISTOLS
 	grenade_type_allowed = /obj/item/explosive/grenade/flare
 	general_codex_key = "explosive weapons"

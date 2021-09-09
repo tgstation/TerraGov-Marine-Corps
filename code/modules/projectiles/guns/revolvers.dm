@@ -25,7 +25,7 @@
 	var/catchworking = TRUE
 	load_method = SINGLE_CASING|SPEEDLOADER //codex
 	type_of_casings = "bullet"
-	flags_gun_features = GUN_CAN_POINTBLANK|GUN_INTERNAL_MAG|GUN_AMMO_COUNTER
+	flags_gun_innate_features = GUN_INNATE_CAN_POINTBLANK|GUN_INNATE_INTERNAL_MAG|GUN_INNATE_AMMO_COUNTER
 	actions_types = list(/datum/action/item_action/aim_mode)
 	aim_speed_modifier = 0.75
 	aim_fire_delay = 0.25 SECONDS
@@ -92,7 +92,7 @@
 	return TRUE
 
 /obj/item/weapon/gun/revolver/reload(mob/user, obj/item/ammo_magazine/magazine)
-	if(flags_gun_features & GUN_BURST_FIRING)
+	if(flags_gun_added_features & GUN_BURST_FIRING)
 		return
 
 	if(!magazine || !istype(magazine))
@@ -142,7 +142,7 @@
 
 
 /obj/item/weapon/gun/revolver/unload(mob/user)
-	if(flags_gun_features & GUN_BURST_FIRING)
+	if(flags_gun_added_features & GUN_BURST_FIRING)
 		return FALSE
 
 	if(current_mag.chamber_closed) //If it's actually closed.
@@ -324,7 +324,7 @@
 
 // revolvers do not make any sense when they have a rattle sound, so this is ignored.
 /obj/item/weapon/gun/revolver/play_fire_sound(mob/user)
-	if(flags_gun_features & GUN_SILENCED)
+	if(flags_gun_added_features & GUN_SILENCED)
 		playsound(user, fire_sound, 25)
 		return
 	playsound(user, fire_sound, 60)

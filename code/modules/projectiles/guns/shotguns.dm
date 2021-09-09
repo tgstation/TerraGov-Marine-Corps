@@ -20,7 +20,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	var/opened_sound = 'sound/weapons/guns/interact/shotgun_open.ogg'
 	type_of_casings = "shell"
 	accuracy_mult = 1.15
-	flags_gun_features = GUN_CAN_POINTBLANK|GUN_INTERNAL_MAG|GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY
+	flags_gun_innate_features = GUN_INNATE_CAN_POINTBLANK|GUN_INNATE_INTERNAL_MAG|GUN_INNATE_AMMO_COUNTER|GUN_INNATE_WIELDED_FIRING_ONLY
 	aim_slowdown = 0.35
 	wield_delay = 0.6 SECONDS //Shotguns are really easy to put up to fire, since they are designed for CQC (at least compared to a rifle)
 	gun_skill_category = GUN_SKILL_SHOTGUNS
@@ -38,7 +38,7 @@ can cause issues with ammo types getting mixed up during the burst.
 /obj/item/weapon/gun/shotgun/Initialize()
 	. = ..()
 	replace_tube(current_mag.current_rounds) //Populate the chamber.
-	if(flags_gun_features & GUN_SHOTGUN_CHAMBER)
+	if(flags_gun_innate_features & GUN_INNATE_SHOTGUN_CHAMBER)
 		load_into_chamber()
 
 
@@ -104,7 +104,7 @@ can cause issues with ammo types getting mixed up during the burst.
 
 
 /obj/item/weapon/gun/shotgun/reload(mob/user, obj/item/ammo_magazine/handful/magazine)
-	if(flags_gun_features & GUN_BURST_FIRING)
+	if(flags_gun_added_features & GUN_BURST_FIRING)
 		return FALSE
 
 	if(!istype(magazine)) //Can only reload with handfuls.
@@ -124,7 +124,7 @@ can cause issues with ammo types getting mixed up during the burst.
 
 
 /obj/item/weapon/gun/shotgun/unload(mob/user)
-	if(flags_gun_features & GUN_BURST_FIRING)
+	if(flags_gun_added_features & GUN_BURST_FIRING)
 		return FALSE
 	return empty_chamber(user)
 
@@ -178,7 +178,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	icon_state = "mk221"
 	item_state = "mk221"
 	fire_sound = 'sound/weapons/guns/fire/shotgun_automatic.ogg'
-	flags_gun_features = GUN_CAN_POINTBLANK|GUN_INTERNAL_MAG|GUN_SHOTGUN_CHAMBER|GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY
+	flags_gun_innate_features = GUN_INNATE_CAN_POINTBLANK|GUN_INNATE_INTERNAL_MAG|GUN_INNATE_SHOTGUN_CHAMBER|GUN_INNATE_AMMO_COUNTER|GUN_INNATE_WIELDED_FIRING_ONLY
 	current_mag = /obj/item/ammo_magazine/internal/shotgun/combat
 	attachable_allowed = list(
 		/obj/item/attachable/bayonet,
@@ -218,7 +218,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	icon_state = "t39"
 	item_state = "t39"
 	fire_sound = 'sound/weapons/guns/fire/shotgun_automatic.ogg'
-	flags_gun_features = GUN_CAN_POINTBLANK|GUN_INTERNAL_MAG|GUN_SHOTGUN_CHAMBER|GUN_AMMO_COUNTER
+	flags_gun_innate_features = GUN_INNATE_CAN_POINTBLANK|GUN_INNATE_INTERNAL_MAG|GUN_INNATE_SHOTGUN_CHAMBER|GUN_INNATE_AMMO_COUNTER
 	current_mag = /obj/item/ammo_magazine/internal/shotgun/combat
 	attachable_allowed = list(
 		/obj/item/attachable/bayonet,
@@ -262,7 +262,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	slot = ATTACHMENT_SLOT_UNDER
 	attach_delay = 3 SECONDS
 	detach_delay = 3 SECONDS
-	flags_gun_features = GUN_IS_ATTACHMENT|GUN_INTERNAL_MAG|GUN_SHOTGUN_CHAMBER|GUN_AMMO_COUNTER|GUN_ATTACHMENT_FIRE_ONLY|GUN_WIELDED_STABLE_FIRING_ONLY|GUN_CAN_POINTBLANK
+	flags_gun_innate_features = GUN_INNATE_IS_ATTACHMENT|GUN_INNATE_INTERNAL_MAG|GUN_INNATE_SHOTGUN_CHAMBER|GUN_INNATE_AMMO_COUNTER|GUN_INNATE_ATTACHMENT_FIRE_ONLY|GUN_INNATE_WIELDED_STABLE_FIRING_ONLY|GUN_INNATE_CAN_POINTBLANK
 	current_mag = /obj/item/ammo_magazine/internal/shotgun/masterkey
 	recoil = 0
 	pixel_shift_x = 14
@@ -290,7 +290,7 @@ can cause issues with ammo types getting mixed up during the burst.
 		/obj/item/attachable/magnetic_harness,
 	)
 
-	flags_gun_features = GUN_CAN_POINTBLANK|GUN_INTERNAL_MAG|GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY
+	flags_gun_innate_features = GUN_INNATE_CAN_POINTBLANK|GUN_INNATE_INTERNAL_MAG|GUN_INNATE_AMMO_COUNTER|GUN_INNATE_WIELDED_FIRING_ONLY
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 21,"rail_x" = 15, "rail_y" = 22, "under_x" = 21, "under_y" = 16, "stock_x" = 21, "stock_y" = 16)
 
 	fire_delay = 2
@@ -321,7 +321,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	return TRUE
 
 /obj/item/weapon/gun/shotgun/double/unload(mob/user)
-	if(flags_gun_features & GUN_BURST_FIRING)
+	if(flags_gun_added_features & GUN_BURST_FIRING)
 		return FALSE
 	return cock(user)
 
@@ -392,7 +392,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	item_state = "sshotgun"
 	flags_equip_slot = ITEM_SLOT_BELT
 	attachable_allowed = list()
-	flags_gun_features = GUN_CAN_POINTBLANK|GUN_INTERNAL_MAG|GUN_AMMO_COUNTER
+	flags_gun_innate_features = GUN_INNATE_CAN_POINTBLANK|GUN_INNATE_INTERNAL_MAG|GUN_INNATE_AMMO_COUNTER
 	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 20,"rail_x" = 11, "rail_y" = 22, "under_x" = 18, "under_y" = 16, "stock_x" = 18, "stock_y" = 16)
 
 	fire_delay = 2
@@ -430,7 +430,7 @@ can cause issues with ammo types getting mixed up during the burst.
 		/obj/item/attachable/scope/mini,
 	)
 
-	flags_gun_features = GUN_CAN_POINTBLANK|GUN_INTERNAL_MAG|GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY
+	flags_gun_innate_features = GUN_INNATE_CAN_POINTBLANK|GUN_INNATE_INTERNAL_MAG|GUN_INNATE_AMMO_COUNTER|GUN_INNATE_WIELDED_FIRING_ONLY
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 17,"rail_x" = 15, "rail_y" = 19, "under_x" = 21, "under_y" = 13, "stock_x" = 13, "stock_y" = 16)
 
 	fire_delay = 5
@@ -632,7 +632,7 @@ can cause issues with ammo types getting mixed up during the burst.
 		/obj/item/attachable/motiondetector,
 	)
 	flags_item_map_variant = NONE
-	flags_gun_features = GUN_CAN_POINTBLANK|GUN_INTERNAL_MAG|GUN_AMMO_COUNTER
+	flags_gun_innate_features = GUN_INNATE_CAN_POINTBLANK|GUN_INNATE_INTERNAL_MAG|GUN_INNATE_AMMO_COUNTER
 	attachable_offset = list("muzzle_x" = 37, "muzzle_y" = 18,"rail_x" = 14, "rail_y" = 19, "under_x" = 19, "under_y" = 14, "stock_x" = 15, "stock_y" = 12)
 	starting_attachment_types = list(
 		/obj/item/attachable/scope/mosin,
@@ -697,7 +697,7 @@ can cause issues with ammo types getting mixed up during the burst.
 		/obj/item/attachable/motiondetector,
 	)
 
-	flags_gun_features = GUN_CAN_POINTBLANK|GUN_INTERNAL_MAG|GUN_AMMO_COUNTER
+	flags_gun_innate_features = GUN_INNATE_CAN_POINTBLANK|GUN_INNATE_INTERNAL_MAG|GUN_INNATE_AMMO_COUNTER
 	attachable_offset = list("muzzle_x" = 45, "muzzle_y" = 23,"rail_x" = 17, "rail_y" = 25, "under_x" = 19, "under_y" = 14, "stock_x" = 15, "stock_y" = 12)
 
 	fire_delay = 1 SECONDS
@@ -733,7 +733,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	cocked_sound = 'sound/weapons/guns/interact/martini_cocked.ogg'
 	opened_sound = 'sound/weapons/guns/interact/martini_open.ogg'
 	attachable_allowed = list()
-	flags_gun_features = GUN_CAN_POINTBLANK|GUN_INTERNAL_MAG|GUN_AMMO_COUNTER
+	flags_gun_innate_features = GUN_INNATE_CAN_POINTBLANK|GUN_INNATE_INTERNAL_MAG|GUN_INNATE_AMMO_COUNTER
 
 	fire_delay = 0.5 SECONDS
 	scatter = 30
@@ -776,7 +776,7 @@ can cause issues with ammo types getting mixed up during the burst.
 		/obj/item/attachable/bayonet,
 	)
 	attachable_offset = list("muzzle_x" = 50, "muzzle_y" = 21,"rail_x" = 8, "rail_y" = 21, "under_x" = 37, "under_y" = 16, "stock_x" = 20, "stock_y" = 14)
-	flags_gun_features = GUN_CAN_POINTBLANK|GUN_INTERNAL_MAG|GUN_AMMO_COUNTER
+	flags_gun_innate_features = GUN_INNATE_CAN_POINTBLANK|GUN_INNATE_INTERNAL_MAG|GUN_INNATE_AMMO_COUNTER
 
 	fire_delay = 8
 	accuracy_mult = 1.30

@@ -22,7 +22,7 @@
 						/obj/item/attachable/magnetic_harness,
 						/obj/item/attachable/motiondetector,
 						)
-	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY|GUN_WIELDED_STABLE_FIRING_ONLY
+	flags_gun_innate_features = GUN_INNATE_UNUSUAL_DESIGN|GUN_INNATE_AMMO_COUNTER|GUN_INNATE_WIELDED_FIRING_ONLY|GUN_INNATE_WIELDED_STABLE_FIRING_ONLY
 	gun_skill_category = GUN_SKILL_HEAVY_WEAPONS
 	attachable_offset = list("rail_x" = 12, "rail_y" = 23)
 	fire_delay = 4
@@ -39,7 +39,7 @@
 	icon = 'icons/Marine/marine-weapons.dmi'
 	icon_state = "flamethrower"
 	
-	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY|GUN_WIELDED_STABLE_FIRING_ONLY|GUN_IS_ATTACHMENT|GUN_ATTACHMENT_FIRE_ONLY
+	flags_gun_innate_features = GUN_INNATE_UNUSUAL_DESIGN|GUN_INNATE_AMMO_COUNTER|GUN_INNATE_WIELDED_FIRING_ONLY|GUN_INNATE_WIELDED_STABLE_FIRING_ONLY|GUN_INNATE_IS_ATTACHMENT|GUN_INNATE_ATTACHMENT_FIRE_ONLY
 	w_class = WEIGHT_CLASS_BULKY
 	fire_delay = 2.5 SECONDS
 	fire_sound = 'sound/weapons/guns/fire/flamethrower3.ogg'
@@ -383,7 +383,7 @@
 	current_mag = /obj/item/ammo_magazine/flamer_tank/large
 	icon_state = "tl84"
 	item_state = "tl84"
-	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER|GUN_WIELDED_STABLE_FIRING_ONLY
+	flags_gun_innate_features = GUN_INNATE_UNUSUAL_DESIGN|GUN_INNATE_WIELDED_FIRING_ONLY|GUN_INNATE_AMMO_COUNTER|GUN_INNATE_WIELDED_STABLE_FIRING_ONLY
 	attachable_offset = list("rail_x" = 10, "rail_y" = 23, "stock_x" = 16, "stock_y" = 13)
 	starting_attachment_types = list(
 		/obj/item/attachable/stock/t84stock,

@@ -14,13 +14,13 @@
 	. = ..()
 	var/list/traits = list()
 
-	if(flags_gun_features & GUN_WIELDED_FIRING_ONLY)
+	if(flags_gun_innate_features & GUN_INNATE_WIELDED_FIRING_ONLY)
 		traits += "This can only be fired with a two-handed grip."
 	else
 		traits += "It's best fired with a two-handed grip."
 
 
-	if(flags_gun_features & GUN_TRIGGER_SAFETY)
+	if(flags_gun_added_features & GUN_TRIGGER_SAFETY)
 		traits += "It has a safety switch. Alt-Click it to toggle safety."
 
 	if(scope_zoom) //flawed, unless you check the codex for the first time when the scope is attached, this won't show. works for sniper rifles though.

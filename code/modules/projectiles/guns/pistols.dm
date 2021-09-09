@@ -29,7 +29,7 @@
 		/obj/item/attachable/lace,
 	)
 
-	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
+	flags_gun_innate_features = GUN_INNATE_AUTO_EJECTOR|GUN_INNATE_CAN_POINTBLANK|GUN_INNATE_LOAD_INTO_CHAMBER|GUN_INNATE_AMMO_COUNTER
 	actions_types = list(/datum/action/item_action/aim_mode) // all pistols can aim mode
 	aim_speed_modifier = 0.65
 	scatter = 0
@@ -97,7 +97,7 @@
 	)
 
 	muzzleflash_iconstate = "muzzle_flash_laser"
-	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_ENERGY|GUN_AMMO_COUNTER|GUN_IS_ATTACHMENT
+	flags_gun_innate_features = GUN_INNATE_AUTO_EJECTOR|GUN_INNATE_CAN_POINTBLANK|GUN_INNATE_ENERGY|GUN_INNATE_AMMO_COUNTER|GUN_INNATE_IS_ATTACHMENT
 	actions_types = list()
 	wield_delay = 0.5 SECONDS
 	muzzle_flash_color = COLOR_GREEN
@@ -172,7 +172,7 @@
 		/obj/item/attachable/lace,
 	)
 
-	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
+	flags_gun_innate_features = GUN_INNATE_AUTO_EJECTOR|GUN_INNATE_CAN_POINTBLANK|GUN_INNATE_LOAD_INTO_CHAMBER|GUN_INNATE_AMMO_COUNTER
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 22,"rail_x" = 13, "rail_y" = 24, "under_x" = 21, "under_y" = 17, "stock_x" = 21, "stock_y" = 17)
 
 	fire_delay = 0.175 SECONDS
@@ -220,7 +220,7 @@
 		/obj/item/attachable/quickfire,
 		/obj/item/attachable/lace,
 	)
-	flags_gun_features = GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
+	flags_gun_innate_features = GUN_INNATE_CAN_POINTBLANK|GUN_INNATE_LOAD_INTO_CHAMBER|GUN_INNATE_AMMO_COUNTER
 	attachable_offset = list("muzzle_x" = 28, "muzzle_y" = 20,"rail_x" = 12, "rail_y" = 22, "under_x" = 21, "under_y" = 15, "stock_x" = 21, "stock_y" = 17)
 
 	fire_delay = 0.15 SECONDS
@@ -297,7 +297,7 @@
 		/obj/item/attachable/lace,
 	)
 
-	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
+	flags_gun_innate_features = GUN_INNATE_AUTO_EJECTOR|GUN_INNATE_CAN_POINTBLANK|GUN_INNATE_LOAD_INTO_CHAMBER|GUN_INNATE_AMMO_COUNTER
 	attachable_offset = list("muzzle_x" = 31, "muzzle_y" = 19,"rail_x" = 9, "rail_y" = 23, "under_x" = 22, "under_y" = 14, "stock_x" = 20, "stock_y" = 17)
 
 	fire_delay = 0.7 SECONDS
@@ -336,7 +336,7 @@
 		/obj/item/attachable/lace,
 	)
 
-	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
+	flags_gun_innate_features = GUN_INNATE_AUTO_EJECTOR|GUN_INNATE_CAN_POINTBLANK|GUN_INNATE_LOAD_INTO_CHAMBER|GUN_INNATE_AMMO_COUNTER
 	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 19,"rail_x" = 10, "rail_y" = 22, "under_x" = 21, "under_y" = 18, "stock_x" = 21, "stock_y" = 18)
 	//Making the gun have an invisible silencer since it's supposed to have one.
 	starting_attachment_types = list(/obj/item/attachable/suppressor/unremovable/invisible)
@@ -377,7 +377,7 @@
 		/obj/item/attachable/lace,
 	)
 
-	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
+	flags_gun_innate_features = GUN_INNATE_AUTO_EJECTOR|GUN_INNATE_CAN_POINTBLANK|GUN_INNATE_LOAD_INTO_CHAMBER|GUN_INNATE_AMMO_COUNTER
 	attachable_offset = list("muzzle_x" = 25, "muzzle_y" = 20,"rail_x" = 12, "rail_y" = 22, "under_x" = 17, "under_y" = 15, "stock_x" = 22, "stock_y" = 17)
 
 	fire_delay = 0.15 SECONDS
@@ -405,7 +405,7 @@
 		/obj/item/attachable/lace,
 	)
 
-	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
+	flags_gun_innate_features = GUN_INNATE_AUTO_EJECTOR|GUN_INNATE_CAN_POINTBLANK|GUN_INNATE_LOAD_INTO_CHAMBER|GUN_INNATE_AMMO_COUNTER
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 20,"rail_x" = 21, "rail_y" = 15, "under_x" = 17, "under_y" = 15, "stock_x" = 22, "stock_y" = 17)
 
 	fire_delay = 0.125 SECONDS
@@ -435,7 +435,7 @@
 	current_mag = /obj/item/ammo_magazine/pistol/highpower
 	force = 10
 
-	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
+	flags_gun_innate_features = GUN_INNATE_AUTO_EJECTOR|GUN_INNATE_CAN_POINTBLANK|GUN_INNATE_LOAD_INTO_CHAMBER|GUN_INNATE_AMMO_COUNTER
 	attachable_offset = list("muzzle_x" = 27, "muzzle_y" = 20,"rail_x" = 8, "rail_y" = 22, "under_x" = 18, "under_y" = 15, "stock_x" = 16, "stock_y" = 15)
 
 	fire_delay = 1 SECONDS
@@ -558,7 +558,7 @@ It is a modified Beretta 93R, and can fire three round burst or single fire. Whe
 	type_of_casings = null
 	gun_skill_category = GUN_SKILL_PISTOLS
 	attachable_allowed = list()
-	flags_gun_features = GUN_AUTO_EJECTOR|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
+	flags_gun_innate_features = GUN_INNATE_AUTO_EJECTOR|GUN_INNATE_LOAD_INTO_CHAMBER|GUN_INNATE_AMMO_COUNTER
 
 	fire_delay = 0.3 SECONDS
 	burst_delay = 0.2 SECONDS
