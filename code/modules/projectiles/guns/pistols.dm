@@ -70,8 +70,8 @@
 	scatter_unwielded = 0
 	recoil = -2
 	recoil_unwielded = -2
-	upper_akimbo_accuracy = 5
-	lower_akimbo_accuracy = 3
+	upper_akimbo_accuracy = 9
+	lower_akimbo_accuracy = 7
 
 //-------------------------------------------------------
 //TX-7 Plasma Pistol
