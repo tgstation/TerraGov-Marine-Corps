@@ -6,7 +6,7 @@
 /mob/living/carbon/human/species/husk/ai/Initialize()
 	. = ..()
 	var/datum/outfit/outfit = pick(GLOB.survivor_outfits)
-	INVOKE_ASYNC(outfit, datum/outfit.proc/equip, src)
+	INVOKE_ASYNC(outfit, /datum/outfit.proc/equip, src)
 	AddComponent(/datum/component/ai_controller, /datum/ai_behavior/xeno/zombie, should_patrol ? null : get_turf(src))
 	a_intent = INTENT_HARM
 
