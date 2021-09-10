@@ -6,9 +6,7 @@
 	exclaim_verb = "moans"
 	sing_verb = "moans melodically"
 	key = "z"
-	syllables = list("BRAAAAIIINS", "oRr" ,"ggrr" ,"orR" ,"RRROO", "aaHHh" ,"grrr" ,"RRaa" ,"gRRr" ,"GrR" ,"ara" ,"raaAAA" ,"mMmRrR", "ssRR",\
-	"oOORRrr" ,"GrRRR" ,"uRRRRR" ,"ssRr" ,"OrR" ,"RrrOo" ,"AhhhH" ,"ara" ,"UuUrRRrrR" ,"RrrAA" ,"RaAAAaaA" ,"Rrrrrr" ,"araa" ,"RAa" ,"gRRrRr" ,"araa" ,"RrRRAa", "Ooooo",\
-	"nuurg", "gGGgRR", "MmmRR")
+	syllables = list("Brains...","guhh...","argh...","duhhh...","buhh...","farf...","uhhh...","blarg...","yarg...","yahh...","bleurg...","fuuur...","ughugh...")
 	default_priority = 50
 
 	icon_state = "aphasia"
