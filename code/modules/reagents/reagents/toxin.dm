@@ -650,8 +650,17 @@
 	overdose_threshold = 20
 	toxpwr = 0
 
+/datum/reagent/toxin/zombium/on_overdose_start(mob/living/L, metabolism)
+	RegisterSignal(L, COMSIG_HUMAN_SET_UNDEFIBBABLE, .proc/zombify)
+
+/datum/reagent/toxin/zombium/on_overdose_stop(mob/living/L, metabolism)
+	UnregisterSignal(L, COMSIG_HUMAN_SET_UNDEFIBBABLE)
+
 /datum/reagent/toxin/zombium/overdose_process(mob/living/L, metabolism)
 	if(prob(5))
 		L.emote("gasp")
 	L.adjustOxyLoss(3)
 	L.adjustToxLoss(3)
+
+/datum/reagent/toxin/zombium/proc/zombify(datum/source)
+	addtimer(CALLBACK(source, /mob/living/carbon/human.proc/revive_to_crit, TRUE, TRUE), SSticker.mode?.zombie_transformation_time)

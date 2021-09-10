@@ -128,7 +128,6 @@
 #define CANUNCONSCIOUS (1<<9)
 #define CANCONFUSE (1<<10)
 #define INCORPOREAL (1<<11) // Whether not this unit should be detectable by automated means (like turrets). Used by hivemind
-#define CANNOT_HOLD (1<<12) //Whether or not we can hold anything in hands
 
 // =============================
 // hive types
@@ -321,7 +320,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define USES_ALIEN_WEAPONS (1<<17)
 #define NO_DAMAGE_OVERLAY (1<<18)
 #define CAN_VENTCRAWL (1<<19)
-#define NO_HEALTH_HUD (1<<20)
+#define HEALTH_HUD_ALWAYS_DEAD (1<<20)
 //=================================================
 
 //Some on_mob_life() procs check for alien races.

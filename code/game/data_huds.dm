@@ -239,7 +239,7 @@
 		infection_hud.icon_state = "hudsynth" //Xenos can feel synths are not human.
 		return TRUE
 
-	if(species.species_flags & NO_HEALTH_HUD)
+	if(species.species_flags & HEALTH_HUD_ALWAYS_DEAD)
 		status_hud.icon_state = "huddead"
 		infection_hud.icon_state = ""
 		simple_status_hud.icon_state = ""

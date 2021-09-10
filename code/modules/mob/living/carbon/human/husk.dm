@@ -4,7 +4,7 @@
 	icobase = 'icons/mob/human_races/r_husk.dmi'
 	deform = 'icons/mob/human_races/r_husk.dmi'
 	total_health = 200
-	species_flags = NO_BREATHE|NO_SCAN|NO_BLOOD|NO_POISON|NO_PAIN|NO_CHEM_METABOLIZATION|NO_STAMINA|DETACHABLE_HEAD|HAS_UNDERWEAR|NO_HEALTH_HUD
+	species_flags = NO_BREATHE|NO_SCAN|NO_BLOOD|NO_POISON|NO_PAIN|NO_CHEM_METABOLIZATION|NO_STAMINA|DETACHABLE_HEAD|HAS_UNDERWEAR|HEALTH_HUD_ALWAYS_DEAD
 	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
 	see_in_dark = 8
 	blood_color = "#110a0a"
@@ -23,7 +23,6 @@
 
 /datum/species/husk/on_species_gain(mob/living/carbon/human/H, datum/species/old_species)
 	H.language_holder = new default_language_holder()
-	H.status_flags |= CANNOT_HOLD //Failsafe if something manage to skip the attack_hand check
 	H.setOxyLoss(0)
 	H.setToxLoss(0)
 	H.setCloneLoss(0)
@@ -34,9 +33,6 @@
 	if(alien_embryo)
 		qdel(alien_embryo)
 		return
-
-/datum/species/husk/post_species_loss(mob/living/carbon/human/H)
-	H.status_flags &= ~CANNOT_HOLD
 
 /datum/species/husk/handle_unique_behavior(mob/living/carbon/human/H)
 	if(prob(10))
