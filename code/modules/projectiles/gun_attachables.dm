@@ -672,7 +672,6 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	name = "MG-08/495 long range ironsights"
 	desc = "An unremovable set of long range ironsights for an MG-08/495 machinegun."
 	flags_attach_features = ATTACH_ACTIVATION
-	attach_icon = "none"
 	zoom_viewsize = 0
 	zoom_tile_offset = 3
 
