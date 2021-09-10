@@ -39,7 +39,7 @@ SUBSYSTEM_DEF(persistence)
 	///The saved list of custom outfits names
 	var/list/custom_loadouts = list()
 	///When was the last civil war round played
-	var/last_civil_war_round_date
+	var/last_civil_war_round_date = 0
 
 ///Loads data at the start of the round
 /datum/controller/subsystem/persistence/Initialize()
