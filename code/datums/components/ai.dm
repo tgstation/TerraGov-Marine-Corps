@@ -38,7 +38,6 @@ The main purpose of this is to handle cleanup and setting up the initial ai beha
 	RegisterSignal(parent, list(COMSIG_PARENT_PREQDELETED, COMSIG_MOB_DEATH), .proc/clean_up)
 	RegisterSignal(parent, COMSIG_COMBAT_LOG, .proc/handle_combat_log)
 	RegisterSignal(parent, COMSIG_MOB_LOGIN, .proc/stop_controlling)
-	RegisterSignal(parent, COMSIG_MOB_LOGOUT, .proc/resume_controlling)
 	GLOB.ai_instances_active += src
 
 //Removes registered signals and action states, useful for scenarios like when the parent is destroyed or a client is taking over
@@ -61,10 +60,12 @@ The main purpose of this is to handle cleanup and setting up the initial ai beha
 	STOP_PROCESSING(SSprocessing, ai_behavior)
 	ai_behavior.cleanup_current_action()
 	GLOB.ai_instances_active -= src
+	RegisterSignal(parent, COMSIG_MOB_LOGOUT, .proc/resume_controlling)
 
 ///Resume this ai controller process
 /datum/component/ai_controller/proc/resume_controlling()
 	SIGNAL_HANDLER
+	UnregisterSignal(parent, COMSIG_MOB_LOGOUT)
 	if((length(GLOB.ai_instances_active) + 1) >= AI_INSTANCE_HARDCAP)
 		message_admins("Notice: An AI controller was resumed but because there's already too many AI controllers existing.")
 		return
