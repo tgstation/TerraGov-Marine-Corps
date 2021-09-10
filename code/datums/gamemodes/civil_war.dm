@@ -80,11 +80,12 @@
 		SSjob.active_squads[squad.faction] += squad
 	return TRUE
 
-/datum/game_mode/civil_war/get_joinable_factions()
-	if(length(GLOB.alive_human_list_faction[FACTION_TERRAGOV]) > length(GLOB.alive_human_list_faction[FACTION_TERRAGOV_REBEL]) * MAX_UNBALANCED_RATIO_TWO_HUMAN_FACTIONS)
-		return list(FACTION_TERRAGOV_REBEL)
-	if(length(GLOB.alive_human_list_faction[FACTION_TERRAGOV_REBEL]) > length(GLOB.alive_human_list_faction[FACTION_TERRAGOV]) * MAX_UNBALANCED_RATIO_TWO_HUMAN_FACTIONS)
-		return list(FACTION_TERRAGOV)
+/datum/game_mode/civil_war/get_joinable_factions(should_look_balance)
+	if(should_look_balance)
+		if(length(GLOB.alive_human_list_faction[FACTION_TERRAGOV]) > length(GLOB.alive_human_list_faction[FACTION_TERRAGOV_REBEL]) * MAX_UNBALANCED_RATIO_TWO_HUMAN_FACTIONS)
+			return list(FACTION_TERRAGOV_REBEL)
+		if(length(GLOB.alive_human_list_faction[FACTION_TERRAGOV_REBEL]) > length(GLOB.alive_human_list_faction[FACTION_TERRAGOV]) * MAX_UNBALANCED_RATIO_TWO_HUMAN_FACTIONS)
+			return list(FACTION_TERRAGOV)
 	return list(FACTION_TERRAGOV, FACTION_TERRAGOV_REBEL)
 
 /datum/game_mode/civil_war/check_finished()
