@@ -146,7 +146,7 @@
 	smoke.start()
 	qdel(src)
 
-/obj/item/explosive/grenade/smokebomb/cloack
+/obj/item/explosive/grenade/smokebomb/cloak
 	name = "\improper M40-2 SCDP smoke grenade"
 	desc = "A sophisticated version of the M40 HSDP with a slighty improved smoke screen payload. It's set to detonate in 2 seconds."
 	icon_state = "grenade_cloak"
