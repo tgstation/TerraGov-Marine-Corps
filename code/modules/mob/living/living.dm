@@ -847,10 +847,9 @@ below 100 is not dizzy
 				afk_timer_id = null
 		if(MOB_RECENTLY_DISCONNECTED)
 			if(afk_status == MOB_RECENTLY_DISCONNECTED)
-				if(timeleft(afk_timer_id) > afk_timer)
-					deltimer(afk_timer_id) //We'll go with the shorter timer.
-				else
+				if(timeleft(afk_timer_id) <= afk_timer)
 					return
+				deltimer(afk_timer_id) //We'll go with the shorter timer.
 			afk_timer_id = addtimer(CALLBACK(src, .proc/on_sdd_grace_period_end), afk_timer, TIMER_STOPPABLE)
 	afk_status = new_status
 	SEND_SIGNAL(src, COMSIG_CARBON_SETAFKSTATUS, new_status, afk_timer)
