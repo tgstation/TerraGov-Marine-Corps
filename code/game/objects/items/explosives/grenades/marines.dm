@@ -29,11 +29,7 @@
 	hud_state = "grenade_frag"
 	underslug_launchable = FALSE
 	icon_state_mini = "grenade_red_white"
-
-/obj/item/explosive/grenade/PMC/prime()
-	explosion(loc, light_impact_range = 5, small_animation = TRUE)
-	qdel(src)
-
+	light_impact_range = 5
 
 /obj/item/explosive/grenade/m15
 	name = "\improper M15 fragmentation grenade"
@@ -44,11 +40,7 @@
 	hud_state = "grenade_frag"
 	underslug_launchable = FALSE
 	icon_state_mini = "grenade_yellow"
-
-/obj/item/explosive/grenade/m15/prime()
-	explosion(loc, light_impact_range = 5, small_animation = TRUE)
-	qdel(src)
-
+	light_impact_range = 5
 
 /obj/item/explosive/grenade/stick
 	name = "\improper Webley Mk15 stick grenade"
@@ -64,11 +56,6 @@
 	throw_range = 7
 	underslug_launchable = FALSE
 
-/obj/item/explosive/grenade/stick/prime()
-	explosion(loc, light_impact_range = 4, small_animation = TRUE)
-	qdel(src)
-
-
 /obj/item/explosive/grenade/upp
 	name = "\improper Type 5 shrapnel grenade"
 	desc = "A fragmentation grenade found within the ranks of the USL. Designed to explode into shrapnel and rupture the bodies of opponents. It explodes 3 seconds after the pin has been pulled."
@@ -80,10 +67,6 @@
 	throw_range = 6
 	underslug_launchable = FALSE
 
-/obj/item/explosive/grenade/upp/prime()
-	explosion(loc, light_impact_range = 4, small_animation = TRUE)
-	qdel(src)
-
 
 /obj/item/explosive/grenade/sectoid
 	name = "alien bomb"
@@ -92,11 +75,7 @@
 	item_state = "grenade_ex"
 	hud_state = "grenade_frag"
 	underslug_launchable = FALSE
-
-/obj/item/explosive/grenade/sectoid/prime()
-	explosion(loc, light_impact_range = 6)// no animation cus space tech and so
-	qdel(src)
-
+	light_impact_range = 6
 
 /obj/item/explosive/grenade/incendiary
 	name = "\improper M40 HIDP incendiary grenade"
@@ -156,66 +135,35 @@
 	hud_state = "grenade_smoke"
 	underslug_launchable = TRUE
 	dangerous = FALSE
-	var/datum/effect_system/smoke_spread/bad/smoke
 	icon_state_mini = "grenade_blue"
-
-/obj/item/explosive/grenade/smokebomb/Initialize()
-	. = ..()
-	smoke = new(src)
-
-/obj/item/explosive/grenade/smokebomb/Destroy()
-	QDEL_NULL(smoke)
-	return ..()
+	/// smoke type created when the grenade is primed
+	var/datum/effect_system/smoke_spread/smoketype = /datum/effect_system/smoke_spread/bad
 
 /obj/item/explosive/grenade/smokebomb/prime()
+	var/datum/effect_system/smoke_spread/smoke = new smoketype()
 	playsound(loc, 'sound/effects/smoke.ogg', 25, 1, 4)
 	smoke.set_up(7, loc, 11)
 	smoke.start()
 	qdel(src)
 
-
-/obj/item/explosive/grenade/cloakbomb
+/obj/item/explosive/grenade/smokebomb/cloack
 	name = "\improper M40-2 SCDP smoke grenade"
 	desc = "A sophisticated version of the M40 HSDP with a slighty improved smoke screen payload. It's set to detonate in 2 seconds."
 	icon_state = "grenade_cloak"
-	det_time = 20
 	item_state = "grenade_cloak"
 	hud_state = "grenade_hide"
-	dangerous = FALSE
-	underslug_launchable = TRUE
-	var/datum/effect_system/smoke_spread/tactical/smoke
 	icon_state_mini = "grenade_green"
+	smoketype = /datum/effect_system/smoke_spread/tactical
 
-/obj/item/explosive/grenade/cloakbomb/Initialize()
-	. = ..()
-	smoke = new(src)
-
-/obj/item/explosive/grenade/cloakbomb/prime()
-	playsound(loc, 'sound/effects/smoke.ogg', 25, 1, 4)
-	smoke.set_up(7, loc, 11)
-	smoke.start()
-	qdel(src)
-
-/obj/item/explosive/grenade/drainbomb
+/obj/item/explosive/grenade/smokebomb/drain
 	name = "\improper M40-T smoke grenade"
 	desc = "The M40-T is a small, but powerful Tanglefoot grenade, designed to remove plasma with minimal side effects. Based off the same platform as the M40 HEDP. It is set to detonate in 6 seconds."
 	icon_state = "grenade_pgas"
 	det_time = 60
 	item_state = "grenade_pgas"
-	underslug_launchable = TRUE
-	var/datum/effect_system/smoke_spread/plasmaloss/smoke
 	icon_state_mini = "grenade_blue"
-
-/obj/item/explosive/grenade/drainbomb/Initialize()
-	. = ..()
-	smoke = new(src)
-
-/obj/item/explosive/grenade/drainbomb/prime()
-	playsound(loc, 'sound/effects/smoke.ogg', 25, 1, 4)
-	smoke.set_up(7, loc, 11)
-	smoke.start()
-	qdel(src)
-
+	dangerous = TRUE
+	smoketype = /datum/effect_system/smoke_spread/plasmaloss
 
 /obj/item/explosive/grenade/phosphorus
 	name = "\improper M40 HPDP grenade"
@@ -261,14 +209,7 @@
 	dangerous = TRUE
 	underslug_launchable = TRUE
 	icon_state_mini = "grenade_blue_white"
-
-/obj/item/explosive/grenade/impact/prime()
-	explosion(loc, light_impact_range = 3)
-	qdel(src)
-
-/obj/item/explosive/grenade/impact/flamer_fire_act()
-	explosion(loc, light_impact_range = 3)
-	qdel(src)
+	light_impact_range = 3
 
 /obj/item/explosive/grenade/impact/throw_impact(atom/hit_atom, speed)
 	. = ..()
@@ -303,6 +244,9 @@
 		return
 	if(!active)
 		turn_on()
+
+/obj/item/explosive/grenade/flare/prime()
+	return
 
 /obj/item/explosive/grenade/flare/Destroy()
 	turn_off()

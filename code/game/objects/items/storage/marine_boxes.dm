@@ -392,9 +392,9 @@
 	new /obj/item/ammo_magazine/pistol/vp70(src)
 	new /obj/item/storage/backpack/marine/satchel/scout_cloak/sniper(src)
 	new /obj/item/weapon/gun/rifle/sniper/antimaterial(src)
-	new /obj/item/explosive/grenade/cloakbomb(src)
-	new /obj/item/explosive/grenade/cloakbomb(src)
-	new /obj/item/explosive/grenade/cloakbomb(src)
+	new /obj/item/explosive/grenade/smokebomb/cloack(src)
+	new /obj/item/explosive/grenade/smokebomb/cloack(src)
+	new /obj/item/explosive/grenade/smokebomb/cloack(src)
 	new /obj/item/bodybag/tarp(src)
 	if(SSmapping.configs[GROUND_MAP].environment_traits[MAP_COLD])
 		new /obj/item/clothing/head/modular/marine/m10x/standard(src)
@@ -436,9 +436,9 @@
 	new /obj/item/weapon/gun/rifle/tx8(src)
 	new /obj/item/storage/backpack/marine/satchel/scout_cloak/scout(src)
 	new /obj/item/attachable/motiondetector(src)
-	new /obj/item/explosive/grenade/cloakbomb(src)
-	new /obj/item/explosive/grenade/cloakbomb(src)
-	new /obj/item/explosive/grenade/cloakbomb(src)
+	new /obj/item/explosive/grenade/smokebomb/cloack(src)
+	new /obj/item/explosive/grenade/smokebomb/cloack(src)
+	new /obj/item/explosive/grenade/smokebomb/cloack(src)
 	new /obj/item/bodybag/tarp(src)
 
 
@@ -467,9 +467,9 @@
 	new /obj/item/ammo_magazine/shotgun/incendiary(src)
 	new /obj/item/storage/backpack/marine/satchel/scout_cloak/scout(src)
 	new /obj/item/attachable/motiondetector(src)
-	new /obj/item/explosive/grenade/cloakbomb(src)
-	new /obj/item/explosive/grenade/cloakbomb(src)
-	new /obj/item/explosive/grenade/cloakbomb(src)
+	new /obj/item/explosive/grenade/smokebomb/cloack(src)
+	new /obj/item/explosive/grenade/smokebomb/cloack(src)
+	new /obj/item/explosive/grenade/smokebomb/cloack(src)
 
 
 /obj/item/storage/box/spec/tracker
@@ -502,9 +502,9 @@
 	new /obj/item/ammo_magazine/pistol/m1911(src)
 	new /obj/item/storage/backpack/marine/satchel/scout_cloak/scout(src)
 	new /obj/item/attachable/motiondetector(src)
-	new /obj/item/explosive/grenade/cloakbomb(src)
-	new /obj/item/explosive/grenade/cloakbomb(src)
-	new /obj/item/explosive/grenade/cloakbomb(src)
+	new /obj/item/explosive/grenade/smokebomb/cloack(src)
+	new /obj/item/explosive/grenade/smokebomb/cloack(src)
+	new /obj/item/explosive/grenade/smokebomb/cloack(src)
 	new /obj/item/bodybag/tarp(src)
 
 /obj/item/storage/box/spec/pyro
@@ -959,9 +959,9 @@
 	new /obj/item/ammo_magazine/pistol/vp70(src)
 	new /obj/item/ammo_magazine/pistol/vp70(src)
 	new /obj/item/clothing/tie/storage/webbing(src)
-	new /obj/item/explosive/grenade/cloakbomb(src)
-	new /obj/item/explosive/grenade/cloakbomb(src)
-	new /obj/item/explosive/grenade/cloakbomb(src)
+	new /obj/item/explosive/grenade/smokebomb/cloack(src)
+	new /obj/item/explosive/grenade/smokebomb/cloack(src)
+	new /obj/item/explosive/grenade/smokebomb/cloack(src)
 	new /obj/item/clothing/mask/rebreather/scarf(src)
 
 /obj/item/storage/box/squadmarine/scout
@@ -991,9 +991,9 @@
 	new /obj/item/attachable/motiondetector(src)
 	new /obj/item/bodybag/tarp(src)
 	new /obj/item/clothing/tie/storage/webbing(src)
-	new /obj/item/explosive/grenade/cloakbomb(src)
-	new /obj/item/explosive/grenade/cloakbomb(src)
-	new /obj/item/explosive/grenade/cloakbomb(src)
+	new /obj/item/explosive/grenade/smokebomb/cloack(src)
+	new /obj/item/explosive/grenade/smokebomb/cloack(src)
+	new /obj/item/explosive/grenade/smokebomb/cloack(src)
 	new /obj/item/clothing/mask/rebreather/scarf(src)
 
 /obj/item/storage/box/squadmarine/tracker
@@ -1024,9 +1024,9 @@
 	new /obj/item/binoculars/tactical/scout(src)
 	new /obj/item/weapon/gun/pistol/m1911(src)
 	new /obj/item/attachable/motiondetector(src)
-	new /obj/item/explosive/grenade/cloakbomb(src)
-	new /obj/item/explosive/grenade/cloakbomb(src)
-	new /obj/item/explosive/grenade/cloakbomb(src)
+	new /obj/item/explosive/grenade/smokebomb/cloack(src)
+	new /obj/item/explosive/grenade/smokebomb/cloack(src)
+	new /obj/item/explosive/grenade/smokebomb/cloack(src)
 	new /obj/item/bodybag/tarp(src)
 	new /obj/item/clothing/tie/storage/brown_vest(src)
 	new /obj/item/clothing/mask/rebreather/scarf(src)

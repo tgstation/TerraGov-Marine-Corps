@@ -1024,14 +1024,14 @@
 	name = "\improper M40-2 SCDP grenade box"
 	desc = "A secure box holding 25 M40-2 SCDP cloak grenades. Don't blindly shoot into the smoke."
 	spawn_number = 25
-	spawn_type = /obj/item/explosive/grenade/cloakbomb
+	spawn_type = /obj/item/explosive/grenade/smokebomb/cloack
 	closed_overlay = "grenade_box_overlay_cloak"
 
 /obj/item/storage/box/visual/grenade/drain
 	name = "\improper M40-T grenade box"
 	desc = "A secure box holding 25 M40-T gas grenades. 100% safe to use around masked marines."
 	spawn_number = 25
-	spawn_type = /obj/item/explosive/grenade/drainbomb
+	spawn_type = /obj/item/explosive/grenade/smokebomb/drain
 	closed_overlay = "grenade_box_overlay_drain"
 
 /obj/item/storage/box/visual/grenade/razorburn
