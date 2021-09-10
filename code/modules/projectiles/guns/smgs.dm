@@ -69,12 +69,12 @@
 
 	attachable_offset = list("muzzle_x" = 27, "muzzle_y" = 19,"rail_x" = 9, "rail_y" = 20, "under_x" = 21, "under_y" = 14, "stock_x" = 24, "stock_y" = 10)
 
-	accuracy_mult = 1.5
-	accuracy_mult_unwielded = 0.85
+	accuracy_mult = 1.2
+	accuracy_mult_unwielded = 0.95
 	recoil_unwielded = 0
 	scatter = 0
 	fire_delay = 0.15 SECONDS
-	scatter_unwielded = 5 //Made to be better used one handed.
+	scatter_unwielded = 2 //Made to be better used one handed.
 	aim_slowdown = 0.15
 	burst_amount = 5
 	movement_acc_penalty_mult = 0
@@ -115,12 +115,15 @@
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_AUTOMATIC)
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 15,"rail_x" = 22, "rail_y" = 22, "under_x" = 17, "under_y" = 15, "stock_x" = 24, "stock_y" = 10)
+	actions_types = list(/datum/action/item_action/aim_mode)
+	aim_fire_delay = 0.05 SECONDS
+	aim_speed_modifier = 0.55
 
 	accuracy_mult = 1.15
-	accuracy_mult_unwielded = 0.8
-	scatter = 0
+	accuracy_mult_unwielded = 0.9
+	scatter = -2
 	fire_delay = 0.15 SECONDS
-	scatter_unwielded = 30
+	scatter_unwielded = 20
 	aim_slowdown = 0.25
 	burst_amount = 0
 
