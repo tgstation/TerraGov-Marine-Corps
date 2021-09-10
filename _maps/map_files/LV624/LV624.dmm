@@ -250,7 +250,7 @@
 /area/lv624/ground/caves/central1)
 "abE" = (
 /obj/effect/decal/remains/human,
-/obj/item/explosive/grenade/frag,
+/obj/item/explosive/grenade,
 /turf/open/floor/plating,
 /area/lv624/ground/sand6)
 "abG" = (
@@ -343,7 +343,7 @@
 /turf/open/floor/tile/dark,
 /area/lv624/ground/sand6)
 "acX" = (
-/obj/item/explosive/grenade/frag/m15,
+/obj/item/explosive/grenade/m15,
 /turf/open/floor/tile/dark,
 /area/lv624/ground/sand6)
 "acY" = (
@@ -502,7 +502,7 @@
 /area/lv624/ground/caves/central3)
 "adx" = (
 /obj/item/tool/crowbar,
-/obj/item/explosive/grenade/frag/m15,
+/obj/item/explosive/grenade/m15,
 /turf/open/floor/vault,
 /area/lv624/ground/sand6)
 "ady" = (
@@ -7307,6 +7307,7 @@
 /area/shuttle/drop2/lz2)
 "aPO" = (
 /obj/structure/flora/ausbushes/ywflowers,
+/obj/effect/landmark/fob_sentry,
 /turf/open/floor/plating/ground/dirtgrassborder/corner2{
 	dir = 8
 	},
@@ -10839,10 +10840,10 @@
 /turf/open/floor/marking/warning,
 /area/shuttle/drop1/lz1)
 "bjw" = (
-/obj/machinery/computer/shuttle/shuttle_control/dropship,
 /obj/structure/table/reinforced/flipped{
 	dir = 1
 	},
+/obj/effect/landmark/dropship_console_spawn_lz1,
 /turf/open/floor/marking/warning{
 	dir = 1
 	},
@@ -11516,9 +11517,9 @@
 /area/lv624/lazarus/secure_storage)
 "bnf" = (
 /obj/structure/rack,
-/obj/item/explosive/grenade/frag,
-/obj/item/explosive/grenade/frag,
-/obj/item/explosive/grenade/frag,
+/obj/item/explosive/grenade,
+/obj/item/explosive/grenade,
+/obj/item/explosive/grenade,
 /turf/open/floor/tile/vault{
 	dir = 8
 	},
@@ -12696,6 +12697,12 @@
 /obj/effect/spawner/random/tool,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/compound/sw)
+"cmM" = (
+/obj/effect/landmark/fob_sentry_rebel,
+/turf/open/floor/plating/ground/dirtgrassborder{
+	dir = 1
+	},
+/area/lv624/ground/compound/ne)
 "cmQ" = (
 /obj/effect/decal/remains/xeno,
 /obj/effect/landmark/weed_node,
@@ -13216,6 +13223,12 @@
 	dir = 4
 	},
 /area/shuttle/drop2/lz2)
+"dYM" = (
+/obj/effect/landmark/fob_sentry_rebel,
+/turf/open/floor/plating/ground/dirtgrassborder/corner{
+	dir = 4
+	},
+/area/lv624/ground/jungle1)
 "dZV" = (
 /obj/machinery/floodlight/colony,
 /turf/open/ground/grass,
@@ -13271,6 +13284,12 @@
 "enr" = (
 /turf/open/floor/plating/ground/dirtgrassborder,
 /area/lv624/ground/jungle4)
+"enI" = (
+/obj/effect/landmark/fob_sentry,
+/turf/open/floor/plating/ground/dirtgrassborder/corner{
+	dir = 8
+	},
+/area/lv624/ground/jungle6)
 "esj" = (
 /obj/structure/cargo_container/nt{
 	dir = 8
@@ -13422,6 +13441,11 @@
 /obj/machinery/vending/snack,
 /turf/open/floor/plating,
 /area/lv624/lazarus/engineering)
+"eVy" = (
+/obj/structure/cable,
+/obj/effect/landmark/fob_sentry_rebel,
+/turf/open/floor/tile/white,
+/area/lv624/lazarus/main_hall)
 "eVO" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/green/greentaupe{
@@ -15453,7 +15477,7 @@
 /area/lv624/ground/sand7)
 "mgx" = (
 /obj/structure/table/reinforced,
-/obj/machinery/computer/shuttle/shuttle_control/dropship/two,
+/obj/effect/landmark/dropship_console_spawn_lz2,
 /turf/open/floor,
 /area/lv624/lazarus/console)
 "mhw" = (
@@ -15808,6 +15832,10 @@
 /obj/structure/jungle/vines/heavy,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle1)
+"nrS" = (
+/obj/effect/landmark/fob_sentry,
+/turf/open/floor/plating/ground/dirtgrassborder,
+/area/lv624/ground/compound/sw)
 "ntP" = (
 /obj/item/tool/surgery/retractor,
 /obj/effect/landmark/weed_node,
@@ -16631,6 +16659,10 @@
 	},
 /turf/open/floor/tile/blue/taupebluecorner,
 /area/lv624/lazarus/sleep_male)
+"qCo" = (
+/obj/effect/landmark/sensor_tower,
+/turf/open/floor/tile/blue/whitebluecorner,
+/area/lv624/lazarus/medbay)
 "qCM" = (
 /obj/structure/jungle/planttop1,
 /turf/open/floor/plating/ground/dirt,
@@ -17806,6 +17838,10 @@
 /obj/structure/rack,
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/quart)
+"vbf" = (
+/obj/effect/landmark/sensor_tower,
+/turf/open/floor,
+/area/lv624/ground/southcargo)
 "veV" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/gm/dense,
@@ -18302,6 +18338,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
+/obj/effect/landmark/sensor_tower,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/engineering)
 "wQQ" = (
@@ -18355,6 +18392,10 @@
 	dir = 9
 	},
 /area/lv624/ground/southcargo)
+"xcQ" = (
+/obj/effect/landmark/fob_sentry_rebel,
+/turf/open/floor/tile/dark,
+/area/lv624/lazarus/quartstorage)
 "xcZ" = (
 /obj/structure/jungle/plantbot1/alien,
 /turf/open/floor,
@@ -21292,7 +21333,7 @@ avL
 avL
 avL
 ayY
-auG
+enI
 unZ
 xEp
 gWo
@@ -24357,7 +24398,7 @@ xVM
 xVM
 xVM
 atj
-bnj
+nrS
 qkd
 aZl
 bpG
@@ -31352,7 +31393,7 @@ xkJ
 xkJ
 xkJ
 xkJ
-xkJ
+vbf
 xkJ
 xkJ
 xkJ
@@ -33090,7 +33131,7 @@ ixx
 amN
 axU
 awn
-awn
+qCo
 azD
 awn
 awn
@@ -43155,7 +43196,7 @@ dnE
 yaU
 aNz
 aNz
-aYF
+eVy
 aNz
 aNz
 dnE
@@ -43681,7 +43722,7 @@ kGz
 aFL
 aRQ
 aKB
-aEk
+xcQ
 tQa
 oQb
 aVh
@@ -44244,7 +44285,7 @@ cbi
 bjv
 axZ
 kuh
-bkl
+dYM
 bdh
 bhQ
 bdi
@@ -46362,7 +46403,7 @@ puV
 aDc
 aDc
 aDc
-aNL
+cmM
 wPI
 aJG
 aSB

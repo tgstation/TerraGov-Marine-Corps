@@ -228,7 +228,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 20
 	penetration = 5
 	accurate_range = 5
-	sundering = 1.65
+	sundering = 1
 
 /datum/ammo/bullet/pistol/tiny
 	name = "light pistol bullet"
@@ -2072,7 +2072,7 @@ datum/ammo/bullet/revolver/tp44
 	name = "grenade shell"
 	ping = null
 	damage_type = BRUTE
-	var/nade_type = /obj/item/explosive/grenade/frag
+	var/nade_type = /obj/item/explosive/grenade
 	icon_state = "grenade"
 	armor_type = "bomb"
 	damage = 15

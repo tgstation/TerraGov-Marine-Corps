@@ -1,0 +1,4 @@
+author: "MiniMeatwad"
+delete-after: True
+changes: 
+  - balance: "The TP-14 sunder is reduced to 1 from 1.65, and its akimbo scatter range from (30 to 40) to (40 to 50). This will come out as 5 to 15 with attachments instead of -5 to 5."

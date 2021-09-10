@@ -53,7 +53,7 @@
 		/obj/item/ammo_magazine/rifle/tx15_flechette = 25,
 		/obj/item/weapon/gun/launcher/m92/standardmarine = 10,
 		/obj/item/weapon/gun/launcher/m81 = 15,
-		/obj/item/explosive/grenade/frag = 30,
+		/obj/item/explosive/grenade = 30,
 		/obj/item/attachable/bayonetknife = 20,
 		/obj/item/weapon/throwing_knife = 5,
 		/obj/item/storage/box/m94 = 5,
@@ -106,9 +106,6 @@
 			/obj/item/ammo_magazine/smg/standard_smg = -1,
 			/obj/item/weapon/gun/smg/standard_machinepistol = -1,
 			/obj/item/ammo_magazine/smg/standard_machinepistol = -1,
-			/obj/item/weapon/gun/smg/ppsh = -1,
-			/obj/item/ammo_magazine/smg/ppsh = -1,
-			/obj/item/ammo_magazine/smg/ppsh/extended = -1,
 		),
 		"Marksman" = list(
 			/obj/item/weapon/gun/rifle/standard_dmr = -1,
@@ -176,8 +173,8 @@
 			/obj/item/ammo_magazine/standard_smartmachinegun = 4,
 		),
 		"Grenades" = list(
-			/obj/item/explosive/grenade/frag = 600,
-			/obj/item/explosive/grenade/frag/m15 = 30,
+			/obj/item/explosive/grenade = 600,
+			/obj/item/explosive/grenade/m15 = 30,
 			/obj/item/explosive/grenade/impact = 125,
 			/obj/item/explosive/grenade/incendiary = 50,
 			/obj/item/explosive/grenade/cloakbomb = 25,
@@ -294,8 +291,8 @@
 			/obj/item/ammo_magazine/standard_smartmachinegun = 4,
 		),
 		"Grenades" = list(
-			/obj/item/explosive/grenade/frag = 600,
-			/obj/item/explosive/grenade/frag/m15 = 50,
+			/obj/item/explosive/grenade = 600,
+			/obj/item/explosive/grenade/m15 = 50,
 			/obj/item/explosive/grenade/incendiary = 50,
 			/obj/item/explosive/grenade/cloakbomb = 50,
 			/obj/item/explosive/grenade/drainbomb = 10,
@@ -654,7 +651,7 @@
 	contraband = list()
 
 /obj/machinery/vending/MarineMed/Blood/rebel
-	req_access = list(ACCESS_MARINE_MEDBAY_REBEL, ACCESS_MARINE_CHEMISTRY_REBEL)
+	req_one_access = list(ACCESS_MARINE_MEDBAY_REBEL, ACCESS_MARINE_CHEMISTRY_REBEL)
 
 /obj/machinery/vending/MarineMed/Blood/build_inventory(list/productlist, category)
 	. = ..()
@@ -724,6 +721,7 @@
 	prices = list()
 
 /obj/machinery/vending/shared_vending/marine_engi/rebel
+	req_access = list(ACCESS_MARINE_ENGPREP_REBEL)
 	products = list(
 		/obj/structure/closet/crate/mortar_ammo/mortar_kit = 1,
 		/obj/item/storage/box/sentry = 5,
@@ -856,7 +854,7 @@
 			/obj/item/armor_module/attachable/mimir_environment_protection/mark1 = -1,
 			/obj/item/armor_module/attachable/tyr_extra_armor/mark1 = -1,
 			/obj/item/armor_module/attachable/ballistic_armor = -1,
-			/obj/item/armor_module/attachable/better_shoulder_lamp/mark1 = -1,
+			/obj/item/armor_module/attachable/better_shoulder_lamp = -1,
 			/obj/item/armor_module/attachable/chemsystem = -1,
 		),
 	)

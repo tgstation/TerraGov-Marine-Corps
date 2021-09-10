@@ -35,12 +35,6 @@
 	scatter = 0
 	scatter_unwielded = 0
 
-/obj/item/weapon/gun/pistol/unique_action(mob/user)
-	. = ..()
-	if(!.)
-		return
-	return cock(user)
-
 /obj/item/weapon/gun/pistol/get_ammo_type()
 	if(!ammo)
 		return list("unknown", "unknown")
@@ -76,8 +70,8 @@
 	scatter_unwielded = 0
 	recoil = -2
 	recoil_unwielded = -2
-	upper_akimbo_accuracy = 4
-	lower_akimbo_accuracy = 3
+	upper_akimbo_accuracy = 5
+	lower_akimbo_accuracy = 4
 
 //-------------------------------------------------------
 //TX-7 Plasma Pistol

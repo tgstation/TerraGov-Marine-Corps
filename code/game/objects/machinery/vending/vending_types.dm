@@ -246,6 +246,8 @@
 
 	idle_power_usage = 211
 
+/obj/machinery/vending/medical/rebel
+	req_access = list(ACCESS_MARINE_MEDBAY_REBEL, ACCESS_MARINE_CHEMISTRY_REBEL)
 
 //This one's from bay12
 /obj/machinery/vending/phoronresearch

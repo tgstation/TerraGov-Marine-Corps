@@ -1,6 +1,0 @@
-author: "RipGrayson"
-delete-after: True
-changes: 
-  - rscadd: "Added Shigusa Hydroelectric Dam, a map for more than 100 players."
-  - imageadd: "Added a new couple icons for shallow water transitions, broken generators, and stairs."
-  - code_imp: "Cleaned up some unused turfs."
