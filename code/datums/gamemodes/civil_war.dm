@@ -121,3 +121,4 @@
 
 	announce_medal_awards()
 	announce_round_stats()
+	SSpersistence.last_civil_war_round_date = world.realtime

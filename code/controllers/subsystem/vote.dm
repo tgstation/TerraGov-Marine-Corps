@@ -207,6 +207,11 @@ SUBSYSTEM_DEF(vote)
 			if("gamemode")
 				for(var/datum/game_mode/mode AS in config.votable_modes)
 					var/players = length(GLOB.clients)
+					if(mode.name == "Civil War")
+						if((world.realtime - SSpersistence.last_civil_war_round_date) < CONFIG_GET(number/hard_deletes_overrun_limit))
+							continue
+						if(SSticker.current_state < GAME_STATE_PLAYING && SSmapping.configs[SHIP_MAP].map_name != MAP_TWIN_PILLARS)
+							continue
 					if(players > mode.maximum_players)
 						continue
 					if(players < mode.required_players)
