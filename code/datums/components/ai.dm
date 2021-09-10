@@ -67,7 +67,7 @@ The main purpose of this is to handle cleanup and setting up the initial ai beha
 	SIGNAL_HANDLER
 	UnregisterSignal(parent, COMSIG_MOB_LOGOUT)
 	if((length(GLOB.ai_instances_active) + 1) >= AI_INSTANCE_HARDCAP)
-		message_admins("Notice: An AI controller was resumed but because there's already too many AI controllers existing.")
+		message_admins("Notice: An AI controller failed resume because there's already too many AI controllers existing.")
 		return
 	START_PROCESSING(SSprocessing, ai_behavior)
 	ai_behavior.late_initialize()
