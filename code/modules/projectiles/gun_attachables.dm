@@ -680,7 +680,6 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 /obj/item/attachable/scope/unremovable/tl102
 	name = "TL-102 smart sight"
 	desc = "An unremovable smart sight built for use with the tl102, it does nearly all the aiming work for the gun's integrated IFF systems."
-	attach_icon = "none"
 	zoom_viewsize = 0
 	zoom_tile_offset = 3
 
