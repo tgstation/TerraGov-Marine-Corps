@@ -122,3 +122,14 @@
       capacity higher mobility AK.
   hyper2snyper:
   - bugfix: You can shoot while sprinting again.
+2021-09-10:
+  BraveMole:
+  - bugfix: Fix flaregun shooting nades
+  - rscadd: Roomba roulette. Just click on the roomba!
+  - config: You can vote for civil war now
+  Joniroq:
+  - bugfix: Fixed a mapping oversight on Ice Colony's LZ2, no more cheesing resin
+      walls right up against the shutters.
+  Surrealaser:
+  - balance: Reduced Hunter's Mark plasma cost from 75 to 25.
+  - balance: Removed Hunter's Mark wind up time.
