@@ -1,6 +1,6 @@
-#define BANDAGE 1
-#define SALVE 2
-#define DISINFECT 4
+#define BANDAGE (1<<0)
+#define SALVE (1<<1)
+#define DISINFECT (1<<2)
 
 /obj/item/stack/medical
 	name = "medical pack"
@@ -82,14 +82,11 @@
 
 	var/affected = FALSE
 	if(heal_flags & BANDAGE)
-		if(affecting.bandage())
-			affected = TRUE
+		affected |= affecting.bandage()
 	if(heal_flags & SALVE)
-		if(affecting.salve())
-			affected = TRUE
+		affected |= affecting.salve()
 	if(heal_flags & DISINFECT)
-		if(affecting.disinfect())
-			affected = TRUE
+		affected |= affecting.disinfect()
 
 	generate_treatment_messages(user, patient, affecting, affected)
 	if(affected)
@@ -117,7 +114,7 @@
 	if(!success)
 		to_chat(user, span_warning("The wounds on [patient]'s [target_limb.display_name] have already been treated."))
 		return
-	for (var/datum/wound/W in target_limb.wounds)
+	for (var/datum/wound/W AS in target_limb.wounds)
 		if (W.internal)
 			continue
 		if (W.damage_type == CUT)
@@ -206,7 +203,7 @@
 	if(!success)
 		to_chat(user, span_warning("The wounds on [patient]'s [target_limb.display_name] have already been treated."))
 		return
-	for(var/datum/wound/W in target_limb.wounds)
+	for(var/datum/wound/W AS in target_limb.wounds)
 		if(W.internal)
 			continue
 		if(W.current_stage <= W.max_bleeding_stage)

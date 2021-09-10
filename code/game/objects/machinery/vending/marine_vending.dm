@@ -205,7 +205,7 @@
 			/obj/item/attachable/lasersight = -1,
 			/obj/item/attachable/verticalgrip = -1,
 			/obj/item/attachable/stock/t19stock = -1,
-			/obj/item/attachable/stock/t35stock = -1, 
+			/obj/item/attachable/stock/t35stock = -1,
 			/obj/item/weapon/gun/shotgun/combat/masterkey = -1,
 			/obj/item/weapon/gun/flamer/mini_flamer = -1,
 			/obj/item/ammo_magazine/flamer_tank/mini = -1,
@@ -617,9 +617,9 @@
 		),
 		"Heal Pack" = list(
 			/obj/item/stack/medical/heal_pack/advanced/bruise_pack = 32,
-			/obj/item/stack/medical/heal_pack/gauze = -1,
+			/obj/item/stack/medical/heal_pack/gauze = 32,
 			/obj/item/stack/medical/heal_pack/advanced/burn_pack = 32,
-			/obj/item/stack/medical/heal_pack/ointment = -1,
+			/obj/item/stack/medical/heal_pack/ointment = 32,
 			/obj/item/stack/medical/splint = 16,
 		),
 		"Misc" = list(
