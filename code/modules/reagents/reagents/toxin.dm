@@ -662,5 +662,8 @@
 	L.adjustOxyLoss(3)
 	L.adjustToxLoss(3)
 
-/datum/reagent/toxin/zombium/proc/zombify(datum/source)
-	addtimer(CALLBACK(source, /mob/living/carbon/human.proc/revive_to_crit, TRUE, TRUE), SSticker.mode?.zombie_transformation_time)
+///Signal handler preparing the source to become a zombie
+/datum/reagent/toxin/zombium/proc/zombify(mob/living/L)
+	SIGNAL_HANDLER
+	L.do_jitter_animation(1000)
+	addtimer(CALLBACK(L, /mob/living/carbon/human.proc/revive_to_crit, TRUE, TRUE), SSticker.mode?.zombie_transformation_time)
