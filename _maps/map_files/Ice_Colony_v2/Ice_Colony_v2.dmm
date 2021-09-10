@@ -32710,7 +32710,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 1
 	},
-/area/ice_colony/exterior/surface/landing_pad)
+/area/ice_colony/exterior/surface/taxiway)
 "ltv" = (
 /turf/open/floor/plating/ground/snow/layer1,
 /area/ice_colony/exterior/underground/caves/ice_nw)

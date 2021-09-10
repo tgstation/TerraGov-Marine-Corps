@@ -518,7 +518,7 @@
 /obj/item/weapon/gun/launcher/m92/Initialize()
 	. = ..()
 	for(var/i in 1 to max_grenades)
-		grenades += new /obj/item/explosive/grenade/frag(src)
+		grenades += new /obj/item/explosive/grenade(src)
 
 /obj/item/weapon/gun/launcher/m92/update_icon(mob/user)
 	update_item_state(user)

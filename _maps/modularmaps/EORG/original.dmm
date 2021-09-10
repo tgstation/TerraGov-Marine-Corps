@@ -738,6 +738,7 @@
 /area/deathmatch)
 "cV" = (
 /obj/structure/flora/ausbushes/ywflowers,
+/obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirt,
 /area/deathmatch)
 "cW" = (
@@ -790,6 +791,7 @@
 /area/deathmatch)
 "df" = (
 /obj/effect/landmark/weapon_spawn/tier3_weapon_spawn,
+/obj/effect/ai_node,
 /turf/open/floor/mainship/mono,
 /area/deathmatch)
 "dg" = (
@@ -919,6 +921,7 @@
 /area/deathmatch)
 "dE" = (
 /obj/structure/flora/ausbushes/palebush,
+/obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirt,
 /area/deathmatch)
 "dF" = (
@@ -1120,6 +1123,7 @@
 /turf/open/floor/mainship/mono,
 /area/deathmatch)
 "es" = (
+/obj/effect/ai_node,
 /turf/open/floor/stairs/rampbottom{
 	dir = 4
 	},
@@ -1346,6 +1350,78 @@
 /obj/structure/dropship_piece/one/engine/rightbottom,
 /turf/open/ground/river,
 /area/deathmatch)
+"fI" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/asteroidfloor,
+/area/deathmatch)
+"hA" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/dirtgrassborder/corner{
+	dir = 1
+	},
+/area/deathmatch)
+"hM" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/asteroidwarning,
+/area/deathmatch)
+"lu" = (
+/obj/effect/ai_node,
+/turf/open/floor/freezer,
+/area/deathmatch)
+"rW" = (
+/obj/effect/ai_node,
+/turf/open/ground/coast{
+	dir = 8
+	},
+/area/deathmatch)
+"tf" = (
+/obj/effect/ai_node,
+/turf/open/ground/coast,
+/area/deathmatch)
+"xX" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/dirt,
+/area/deathmatch)
+"GL" = (
+/obj/effect/ai_node,
+/turf/open/ground/coast/corner{
+	dir = 4
+	},
+/area/deathmatch)
+"LP" = (
+/obj/effect/ai_node,
+/turf/open/ground/grass,
+/area/deathmatch)
+"Tu" = (
+/obj/effect/ai_node,
+/turf/open/ground/coast{
+	dir = 6
+	},
+/area/deathmatch)
+"TE" = (
+/obj/machinery/floodlight{
+	name = "Floodlight"
+	},
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/dirt,
+/area/deathmatch)
+"TP" = (
+/obj/effect/ai_node,
+/turf/open/ground/river,
+/area/deathmatch)
+"UN" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/effect/ai_node,
+/turf/open/floor/plating/asteroidfloor,
+/area/deathmatch)
+"VE" = (
+/obj/effect/ai_node,
+/turf/open/ground/coast{
+	dir = 5
+	},
+/area/deathmatch)
 
 (1,1,1) = {"
 aa
@@ -1439,49 +1515,49 @@ ad
 al
 ad
 ad
-ad
+xX
 ac
 ab
 "}
 (3,1,1) = {"
 ab
-ad
+xX
 ad
 al
 aB
 ae
-ae
+fI
 aB
 ad
 ad
 al
 aB
 bY
-cd
+hM
 ad
 ad
 ad
 ad
 af
-aG
+tf
 ap
 aj
 bT
 ai
 ai
-ai
+TP
 ai
 ai
 aq
 am
-ad
+xX
 ae
 ae
 ad
 ad
 ad
 ad
-ae
+fI
 ae
 ad
 ad
@@ -1637,11 +1713,11 @@ ab
 "}
 (7,1,1) = {"
 ab
-ae
+fI
 ae
 ae
 aD
-aD
+lu
 aD
 bh
 as
@@ -1720,14 +1796,14 @@ ae
 ae
 ae
 ae
-dH
+UN
 ae
 ae
 ae
 cx
 ae
 ae
-ae
+fI
 ae
 ab
 "}
@@ -1931,13 +2007,13 @@ av
 aD
 aD
 aY
-aD
+lu
 aY
 aD
 aD
 bS
 ae
-ae
+fI
 ci
 ci
 ci
@@ -2034,7 +2110,7 @@ bh
 as
 bZ
 ce
-ae
+fI
 ae
 cx
 ae
@@ -2049,22 +2125,22 @@ cT
 cT
 cT
 dA
-ae
+fI
 ce
 ae
 ae
 ae
 cx
 ae
-ae
-ae
-dH
-ae
-ae
+fI
 ae
 dH
 ae
 ae
+ae
+dH
+ae
+fI
 ab
 "}
 (16,1,1) = {"
@@ -2368,7 +2444,7 @@ an
 an
 an
 an
-ah
+Tu
 ai
 ai
 ai
@@ -2376,7 +2452,7 @@ ai
 ai
 ai
 aH
-ai
+TP
 ai
 ai
 ai
@@ -2385,7 +2461,7 @@ do
 ai
 ai
 ai
-ai
+TP
 aH
 ai
 bk
@@ -2447,7 +2523,7 @@ ai
 ai
 ai
 ai
-bk
+VE
 bj
 ab
 "}
@@ -2505,7 +2581,7 @@ ag
 an
 ah
 ai
-ai
+TP
 ai
 ap
 bw
@@ -2723,7 +2799,7 @@ ad
 ad
 ad
 aG
-ai
+TP
 ai
 ai
 ai
@@ -2824,7 +2900,7 @@ ad
 ad
 ad
 cK
-aj
+rW
 bT
 ai
 ai
@@ -2863,7 +2939,7 @@ aj
 bT
 aq
 ad
-cc
+TE
 ad
 ad
 ad
@@ -2890,14 +2966,14 @@ ai
 ai
 ai
 ai
+TP
 ai
 ai
 ai
 ai
 ai
 ai
-ai
-ai
+TP
 ai
 ai
 ap
@@ -2927,7 +3003,7 @@ ad
 al
 cK
 bT
-ai
+TP
 ai
 ab
 "}
@@ -3030,7 +3106,7 @@ ab
 (36,1,1) = {"
 ab
 ai
-ai
+TP
 ai
 ai
 ai
@@ -3297,7 +3373,7 @@ bu
 bu
 bu
 bu
-bu
+LP
 bu
 bu
 bu
@@ -3311,7 +3387,7 @@ bu
 bu
 bR
 bu
-bX
+hA
 bW
 ab
 "}
@@ -3366,7 +3442,7 @@ ab
 (43,1,1) = {"
 ab
 aj
-ar
+GL
 al
 aN
 aU
@@ -3376,17 +3452,7 @@ bu
 bu
 bu
 bu
-bu
-bu
-bu
-bu
-bu
-bu
-bu
-bR
-bu
-bu
-bu
+LP
 bu
 bu
 bu
@@ -3403,6 +3469,16 @@ bu
 bu
 bu
 bu
+bR
+bu
+bu
+bu
+bu
+bu
+bu
+bu
+bu
+LP
 bu
 bu
 bu
@@ -3433,7 +3509,7 @@ bu
 bu
 bu
 bu
-bu
+LP
 bu
 bu
 bu

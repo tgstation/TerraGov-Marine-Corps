@@ -250,7 +250,7 @@
 /area/lv624/ground/caves/central1)
 "abE" = (
 /obj/effect/decal/remains/human,
-/obj/item/explosive/grenade/frag,
+/obj/item/explosive/grenade,
 /turf/open/floor/plating,
 /area/lv624/ground/sand6)
 "abG" = (
@@ -343,7 +343,7 @@
 /turf/open/floor/tile/dark,
 /area/lv624/ground/sand6)
 "acX" = (
-/obj/item/explosive/grenade/frag/m15,
+/obj/item/explosive/grenade/m15,
 /turf/open/floor/tile/dark,
 /area/lv624/ground/sand6)
 "acY" = (
@@ -502,7 +502,7 @@
 /area/lv624/ground/caves/central3)
 "adx" = (
 /obj/item/tool/crowbar,
-/obj/item/explosive/grenade/frag/m15,
+/obj/item/explosive/grenade/m15,
 /turf/open/floor/vault,
 /area/lv624/ground/sand6)
 "ady" = (
@@ -11517,9 +11517,9 @@
 /area/lv624/lazarus/secure_storage)
 "bnf" = (
 /obj/structure/rack,
-/obj/item/explosive/grenade/frag,
-/obj/item/explosive/grenade/frag,
-/obj/item/explosive/grenade/frag,
+/obj/item/explosive/grenade,
+/obj/item/explosive/grenade,
+/obj/item/explosive/grenade,
 /turf/open/floor/tile/vault{
 	dir = 8
 	},

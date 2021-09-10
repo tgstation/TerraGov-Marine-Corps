@@ -95,3 +95,41 @@
   hyper2snyper:
   - code_imp: Single Action Revolver Support
   - refactor: Cock() Refactor and removes some Unique_Action() bloat
+2021-09-08:
+  BraveMole:
+  - expansion: 'Add objectives to Civil War: capture and defend zones on the map (the
+      blue one on minimap)'
+  - expansion: Add barrenquilla and Icy caves to HvH
+  - bugfix: Fix lighter in cigarette packet can be removed
+  Passe2142:
+  - balance: 'Baldur Mk1 loses slowdown, and Mk2 is removed. Also upon inspection
+      now it doesn''t say that it slows down. The name for the Mk1 now is : Baldur
+      Light Amplification System'
+  SplinterGP:
+  - balance: scopes now incur slowdown instead of unscoping when moving away.
+  - qol: you can now change which direction you're scoping with ctrl+wasd(or whatever
+      you use to face without moving).
+  hyper2snyper:
+  - bugfix: Fixes attachment weapons firing when the gun is not in hand.
+  - bugfix: Fixes attachment weapons firing at inventory objects.
+2021-09-09:
+  BraveMole:
+  - code_imp: Repath grenade frag to grenade
+  - balance: Most grenades will prime when subject to fire
+  - bugfix: Fix being able to send two people with one medevac
+  Pariah919:
+  - rscadd: MKH98 rifle, and PPSH/MKH98 seasonal. MKH basically feels like a lower
+      capacity higher mobility AK.
+  hyper2snyper:
+  - bugfix: You can shoot while sprinting again.
+2021-09-10:
+  BraveMole:
+  - bugfix: Fix flaregun shooting nades
+  - rscadd: Roomba roulette. Just click on the roomba!
+  - config: You can vote for civil war now
+  Joniroq:
+  - bugfix: Fixed a mapping oversight on Ice Colony's LZ2, no more cheesing resin
+      walls right up against the shutters.
+  Surrealaser:
+  - balance: Reduced Hunter's Mark plasma cost from 75 to 25.
+  - balance: Removed Hunter's Mark wind up time.
