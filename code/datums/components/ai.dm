@@ -71,8 +71,7 @@ The main purpose of this is to handle cleanup and setting up the initial ai beha
 		return
 	START_PROCESSING(SSprocessing, ai_behavior)
 	ai_behavior.late_initialize()
-	GLOB.ai_instances_active |= src
-
+	GLOB.ai_instances_active += src
 /datum/component/ai_controller/Destroy()
 	clean_up()
 	return ..()
