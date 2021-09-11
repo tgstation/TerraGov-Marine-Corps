@@ -165,28 +165,32 @@
 
 	mob.log_talk(msg, LOG_OOC)
 
-	for(var/client/C in GLOB.clients)
+	// Send chat message to non-admins
+	for(var/client/C AS in GLOB.clients)
 		if(!(C.prefs.toggles_chat & CHAT_OOC))
 			continue
-		if(!(C.mob in GLOB.xeno_mob_list) && !(C.mob in GLOB.observer_list) || check_other_rights(C, R_ADMIN, FALSE))
+		if(!(C.mob in GLOB.xeno_mob_list) && !(C.mob in GLOB.observer_list) || check_other_rights(C, R_ADMIN, FALSE)) // If the client is a xeno, an observer, or not an admin.
 			continue
 
 		var/display_name = mob.name
-		if(admin && !(mob in GLOB.xeno_mob_list))
+		if(admin && !(mob in GLOB.xeno_mob_list)) // If the verb caller is an admin and is not a xeno mob, use their ckey instead.
 			display_name = mob.key
 
-		// Admins open straight to player panel
+		// Replace display_name with itself and turn it into a clickable player panel href for admins.
 		if(check_other_rights(C, R_ADMIN, FALSE))
 			display_name = "<a class='hidelink' href='?_src_=holder;[HrefToken(TRUE)];playerpanel=[REF(usr)]'>[display_name]</a>"
 		var/avoid_highlight = C == src
 		to_chat(C, "<font color='#665544'>[span_ooc("<span class='prefix'>XOOC: [display_name]")]: <span class='message linkify'>[msg]</span></span></font>", avoid_highlighting = avoid_highlight)
 
-	for(var/client/C in GLOB.admins)
-		if(!check_other_rights(C, R_ADMIN, FALSE) && (C.mob in GLOB.xeno_mob_list) && (C.mob in GLOB.observer_list))
+	// Send chat message to admins
+	for(var/client/C AS in GLOB.admins)
+		if(!check_other_rights(C, R_ADMIN, FALSE) && (C.mob in GLOB.xeno_mob_list) && (C.mob in GLOB.observer_list)) // If the client is an admin, not a xeno, and not an observer.
 			continue
 		var/display_name = mob.name
-		if(admin && !(mob in GLOB.xeno_mob_list))
+		if(admin && !(mob in GLOB.xeno_mob_list)) // If the verb caller is an admin and is not a xeno mob, use their ckey instead.
 			display_name = mob.key
+
+		// Replace display_name with itself and turn it into a clickable player panel href for admins.
 		if(check_other_rights(C, R_ADMIN, FALSE))
 			display_name = "<a class='hidelink' href='?_src_=holder;[HrefToken(TRUE)];playerpanel=[REF(usr)]'>[display_name]</a>"
 		var/avoid_highlight = C == src
@@ -251,30 +255,31 @@
 
 	mob.log_talk(msg, LOG_OOC)
 
-	for(var/client/C in GLOB.clients)
+	// Send chat message to non-admins
+	for(var/client/C AS in GLOB.clients)
 		if(!(C.prefs.toggles_chat & CHAT_OOC))
 			continue
-		if(!(C.mob in GLOB.human_mob_list) && !(C.mob in GLOB.observer_list) || check_other_rights(C, R_ADMIN, FALSE))
+		if(!(C.mob in GLOB.human_mob_list) && !(C.mob in GLOB.observer_list) || check_other_rights(C, R_ADMIN, FALSE)) // If the client is a human, an observer, or not an admin.
 			continue
 
 		var/display_name = mob.name
-		if(admin && !(mob in GLOB.human_mob_list))
+		if(admin && !(mob in GLOB.human_mob_list)) // If the verb caller is an admin and is not a human mob, use their ckey instead.
 			display_name = mob.key
 
-		// Admins open straight to player panel
-		if(check_other_rights(C, R_ADMIN, FALSE))
-			display_name = "<a class='hidelink' href='?_src_=holder;[HrefToken(TRUE)];playerpanel=[REF(usr)]'>[display_name]</a>"
 		var/avoid_highlight = C == src
 		to_chat(C, "<font color='#665544'>[span_ooc("<span class='prefix'>MOOC: [display_name]")]: <span class='message linkify'>[msg]</span></span></font>", avoid_highlighting = avoid_highlight)
 
-	for(var/client/C in GLOB.admins)
+	// Send chat message to admins
+	for(var/client/C AS in GLOB.admins)
 		if(!(C.prefs.toggles_chat & CHAT_OOC))
 			continue
-		if(!check_other_rights(C, R_ADMIN, FALSE) && (C.mob in GLOB.human_mob_list) && (C.mob in GLOB.observer_list))
+		if(!check_other_rights(C, R_ADMIN, FALSE) && (C.mob in GLOB.human_mob_list) && (C.mob in GLOB.observer_list)) // If the client is still an admin, not a xeno, and not an observer.
 			continue
 		var/display_name = mob.name
-		if(admin && !(mob in GLOB.human_mob_list))
+		if(admin && !(mob in GLOB.human_mob_list)) // If the verb caller is an admin and is not a human mob, use their ckey instead.
 			display_name = mob.key
+
+		// Replace display_name with itself and turn it into a clickable player panel href for admins.
 		if(check_other_rights(C, R_ADMIN, FALSE))
 			display_name = "<a class='hidelink' href='?_src_=holder;[HrefToken(TRUE)];playerpanel=[REF(usr)]'>[display_name]</a>"
 		var/avoid_highlight = C == src
