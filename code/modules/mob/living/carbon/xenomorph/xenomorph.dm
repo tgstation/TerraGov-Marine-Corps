@@ -78,7 +78,9 @@
 	var/datum/xeno_caste/X = GLOB.xeno_caste_datums[caste_base_type][upgrade]
 	if(!istype(X))
 		CRASH("error with caste datum")
+	var/marked_target = xeno_caste?.marked_target
 	xeno_caste = X
+	xeno_caste.marked_target = marked_target
 
 	plasma_stored = xeno_caste.plasma_max
 	maxHealth = xeno_caste.max_health * GLOB.xeno_stat_multiplicator_buff
