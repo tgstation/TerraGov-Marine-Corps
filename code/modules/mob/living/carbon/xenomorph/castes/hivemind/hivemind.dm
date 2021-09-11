@@ -33,6 +33,8 @@
 	hud_possible = list(PLASMA_HUD, HEALTH_HUD_XENO, PHEROMONE_HUD, QUEEN_OVERWATCH_HUD)
 	///The core of our hivemind
 	var/obj/effect/alien/hivemindcore/core
+	///The minimum health we can have
+	var/minimum_health = -300
 
 /mob/living/carbon/xenomorph/hivemind/Initialize(mapload)
 	. = ..()
@@ -48,8 +50,8 @@
 /mob/living/carbon/xenomorph/hivemind/updatehealth()
 	health = maxHealth - getFireLoss() - getBruteLoss() //Xenos can only take brute and fire damage.
 	if(health <= 0 && !(status_flags & INCORPOREAL))
-		setBruteLoss(maxHealth * 1.5)
-		setFireLoss(maxHealth * 1.5)
+		setBruteLoss(0)
+		setFireLoss(-minimum_health)
 		change_form()
 	health = maxHealth - getFireLoss() - getBruteLoss()
 	med_hud_set_health()
@@ -64,6 +66,9 @@
 	if(!istype(T))
 		return
 	if(status_flags & INCORPOREAL || locate(/obj/effect/alien/weeds) in T)
+		if(health < minimum_health + maxHealth)
+			setBruteLoss(0)
+			setFireLoss(-minimum_health)
 		if((health >= maxHealth) || on_fire) //can't regenerate.
 			updatehealth() //Update health-related stats, like health itself (using brute and fireloss), health HUD and status.
 			return
