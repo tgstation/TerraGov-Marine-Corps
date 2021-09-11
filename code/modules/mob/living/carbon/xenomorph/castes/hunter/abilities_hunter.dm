@@ -74,6 +74,7 @@
 
 	old_appearance = xenoowner.appearance
 	xenoowner.appearance = xenoowner.xeno_caste.marked_target.appearance
+	xenoowner.underlays.Cut()
 	addtimer(CALLBACK(src, .proc/sneak_attack_cooldown), HUNTER_POUNCE_SNEAKATTACK_DELAY) //Short delay before we can sneak attack.
 
 /datum/action/xeno_action/stealth/proc/cancel_stealth() //This happens if we take damage, attack, pounce, toggle stealth off, and do other such exciting stealth breaking activities.
@@ -224,19 +225,17 @@
 			to_chat(X, span_xenowarning("We cannot psychically mark this target!"))
 		return FALSE
 
-	var/mob/living/mark_target = A
-
-	if(mark_target == X.xeno_caste.marked_target)
+	if(A == X.xeno_caste.marked_target)
 		if(!silent)
 			to_chat(X, span_xenowarning("This is already our target!"))
 		return FALSE
 
-	if(mark_target == X)
+	if(A == X)
 		if(!silent)
 			to_chat(X, span_xenowarning("Why would we target ourselves?"))
 		return FALSE
 
-	if(!X.line_of_sight(mark_target)) //Need line of sight.
+	if(!X.line_of_sight(A)) //Need line of sight.
 		if(!silent)
 			to_chat(X, span_xenowarning("We require line of sight to mark them!"))
 		return FALSE
@@ -253,24 +252,21 @@
 /datum/action/xeno_action/activable/hunter_mark/use_ability(atom/A)
 
 	var/mob/living/carbon/xenomorph/X = owner
-	var/mob/living/victim = A
 
-	X.face_atom(victim) //Face towards the target so we don't look silly
+	X.face_atom(A) //Face towards the target so we don't look silly
 
-	to_chat(X, span_xenodanger("We prepare to psychically mark [victim] as our quarry."))
-
-	if(!X.line_of_sight(victim)) //Need line of sight.
+	if(!X.line_of_sight(A)) //Need line of sight.
 		to_chat(X, span_xenowarning("We lost line of sight to the target!"))
 		return fail_activate()
 
 	if(X.xeno_caste.marked_target) //If we have an existing target, remove the registration.
 		UnregisterSignal(X.xeno_caste.marked_target, COMSIG_PARENT_QDELETING)
 
-	X.xeno_caste.marked_target = victim //Set our target
+	X.xeno_caste.marked_target = A //Set our target
 
 	RegisterSignal(X.xeno_caste.marked_target, COMSIG_PARENT_QDELETING, .proc/unset_target) //For var clean up
 
-	to_chat(X, span_xenodanger("We psychically mark [victim] as our quarry."))
+	to_chat(X, span_xenodanger("We psychically mark [A] as our quarry."))
 	X.playsound_local(X, 'sound/effects/ghost.ogg', 25, 0, 1)
 
 	succeed_activate()
