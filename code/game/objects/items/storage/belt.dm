@@ -314,7 +314,7 @@
 	w_class = WEIGHT_CLASS_BULKY
 	storage_slots = 7
 	max_w_class = 3
-	max_storage_space = 21
+	max_storage_space = 18
 	can_hold = list(
 		/obj/item/weapon/combat_knife,
 		/obj/item/attachable/bayonetknife,
