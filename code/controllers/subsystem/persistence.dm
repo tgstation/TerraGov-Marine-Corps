@@ -86,7 +86,7 @@ SUBSYSTEM_DEF(persistence)
 /datum/controller/subsystem/persistence/proc/save_last_civil_war_round_time()
 	var/json_file = file("data/last_civil_war_round_date.json")
 	fdel(json_file)
-	WRITE_FILE(json_file, 0)//json_encode(last_civil_war_round_date))
+	WRITE_FILE(json_file, json_encode(last_civil_war_round_date))
 
 ///Saves the list of custom outfits names
 /datum/controller/subsystem/persistence/proc/save_custom_loadouts_list()
