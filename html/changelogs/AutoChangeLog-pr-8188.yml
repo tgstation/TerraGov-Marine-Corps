@@ -1,0 +1,4 @@
+author: "QualityVan"
+delete-after: True
+changes: 
+  - refactor: "Repathed non-splint medkits, minimal functional changes."

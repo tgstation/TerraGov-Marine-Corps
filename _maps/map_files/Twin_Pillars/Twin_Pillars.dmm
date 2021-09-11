@@ -547,10 +547,10 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/lower_medical/rebel)
 "azJ" = (
-/obj/machinery/vending/medical,
 /obj/machinery/camera/autoname/mainship/rebelship{
 	dir = 4
 	},
+/obj/machinery/vending/medical/rebel,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/lower_medical/rebel)
 "aAf" = (
@@ -1894,9 +1894,9 @@
 /area/mainship/medical/lower_medical)
 "bSd" = (
 /obj/structure/table/mainship,
-/obj/item/explosive/grenade/frag/training,
-/obj/item/explosive/grenade/frag/training,
-/obj/item/explosive/grenade/frag/training,
+/obj/item/explosive/grenade/training,
+/obj/item/explosive/grenade/training,
+/obj/item/explosive/grenade/training,
 /obj/item/tool/extinguisher/mini,
 /obj/item/tool/extinguisher/mini,
 /obj/item/tool/extinguisher/mini,
@@ -11201,9 +11201,9 @@
 /area/mainship/living/port_emb/rebel)
 "kfg" = (
 /obj/structure/table/mainship,
-/obj/item/explosive/grenade/frag/training,
-/obj/item/explosive/grenade/frag/training,
-/obj/item/explosive/grenade/frag/training,
+/obj/item/explosive/grenade/training,
+/obj/item/explosive/grenade/training,
+/obj/item/explosive/grenade/training,
 /obj/item/tool/extinguisher/mini,
 /obj/item/tool/extinguisher/mini,
 /obj/item/tool/extinguisher/mini,
@@ -12144,7 +12144,7 @@
 /turf/open/floor/mainship,
 /area/mainship/engineering/ce_room)
 "kVO" = (
-/obj/docking_port/stationary/marine_dropship/hangar/rebel,
+/obj/docking_port/stationary/marine_dropship/hangar/one,
 /turf/open/floor/plating,
 /area/mainship/hallways/hangar)
 "kWe" = (
@@ -12656,7 +12656,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/lower_engineering)
 "lof" = (
-/obj/machinery/vending/medical,
+/obj/machinery/vending/medical/rebel,
 /turf/open/floor/mainship/sterile/corner,
 /area/mainship/medical/chemistry/rebel)
 "lpj" = (

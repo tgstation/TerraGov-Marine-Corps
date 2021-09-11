@@ -124,6 +124,9 @@
 		/obj/item/storage/pill_bottle/packet,
 		/obj/item/roller,
 	)
+	storage_type_limits = list(
+		/obj/item/ammo_magazine = 3,
+	)
 
 /obj/item/storage/belt/medical/Initialize()
 	. = ..()
@@ -165,10 +168,10 @@
 
 /obj/item/storage/belt/combatLifesaver/Initialize()  //The belt, with all it's magic inside!
 	. = ..()
-	new /obj/item/stack/medical/advanced/bruise_pack(src)
-	new /obj/item/stack/medical/advanced/bruise_pack(src)
-	new /obj/item/stack/medical/advanced/ointment(src)
-	new /obj/item/stack/medical/advanced/ointment(src)
+	new /obj/item/stack/medical/heal_pack/advanced/bruise_pack(src)
+	new /obj/item/stack/medical/heal_pack/advanced/bruise_pack(src)
+	new /obj/item/stack/medical/heal_pack/advanced/burn_pack(src)
+	new /obj/item/stack/medical/heal_pack/advanced/burn_pack(src)
 	new /obj/item/stack/medical/splint(src)
 	new /obj/item/stack/medical/splint(src)
 	new /obj/item/storage/pill_bottle/bicaridine(src)
@@ -209,12 +212,12 @@
 
 /obj/item/storage/belt/medicLifesaver/Initialize()  //The belt, with all it's magic inside!
 	. = ..()
-	new /obj/item/stack/medical/advanced/bruise_pack(src)
-	new /obj/item/stack/medical/advanced/bruise_pack(src)
-	new /obj/item/stack/medical/advanced/bruise_pack(src)
-	new /obj/item/stack/medical/advanced/ointment(src)
-	new /obj/item/stack/medical/advanced/ointment(src)
-	new /obj/item/stack/medical/advanced/ointment(src)
+	new /obj/item/stack/medical/heal_pack/advanced/bruise_pack(src)
+	new /obj/item/stack/medical/heal_pack/advanced/bruise_pack(src)
+	new /obj/item/stack/medical/heal_pack/advanced/bruise_pack(src)
+	new /obj/item/stack/medical/heal_pack/advanced/burn_pack(src)
+	new /obj/item/stack/medical/heal_pack/advanced/burn_pack(src)
+	new /obj/item/stack/medical/heal_pack/advanced/burn_pack(src)
 	new /obj/item/stack/medical/splint(src)
 	new /obj/item/stack/medical/splint(src)
 	new /obj/item/stack/medical/splint(src)
@@ -571,10 +574,10 @@
 	new /obj/item/explosive/grenade/incendiary(src)
 	new /obj/item/explosive/grenade/incendiary(src)
 	new /obj/item/explosive/grenade/incendiary(src)
-	new /obj/item/explosive/grenade/frag(src)
-	new /obj/item/explosive/grenade/frag(src)
-	new /obj/item/explosive/grenade/frag(src)
-	new /obj/item/explosive/grenade/frag(src)
+	new /obj/item/explosive/grenade(src)
+	new /obj/item/explosive/grenade(src)
+	new /obj/item/explosive/grenade(src)
+	new /obj/item/explosive/grenade(src)
 
 /obj/item/storage/belt/grenade/b17
 	name = "\improper M276 pattern M40 HEDP rig Mk II"
@@ -594,14 +597,14 @@
 	new /obj/item/explosive/grenade/incendiary(src)
 	new /obj/item/explosive/grenade/incendiary(src)
 	new /obj/item/explosive/grenade/incendiary(src)
-	new /obj/item/explosive/grenade/frag(src)
-	new /obj/item/explosive/grenade/frag(src)
-	new /obj/item/explosive/grenade/frag(src)
-	new /obj/item/explosive/grenade/frag(src)
-	new /obj/item/explosive/grenade/frag(src)
-	new /obj/item/explosive/grenade/frag(src)
-	new /obj/item/explosive/grenade/frag(src)
-	new /obj/item/explosive/grenade/frag(src)
+	new /obj/item/explosive/grenade(src)
+	new /obj/item/explosive/grenade(src)
+	new /obj/item/explosive/grenade(src)
+	new /obj/item/explosive/grenade(src)
+	new /obj/item/explosive/grenade(src)
+	new /obj/item/explosive/grenade(src)
+	new /obj/item/explosive/grenade(src)
+	new /obj/item/explosive/grenade(src)
 
 /obj/item/storage/belt/sparepouch
 	name= "\improper G8 general utility pouch"

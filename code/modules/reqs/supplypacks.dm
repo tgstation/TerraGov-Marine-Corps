@@ -763,13 +763,6 @@ ARMOR
 	)
 	cost = 40
 
-/datum/supply_packs/armor/modular/attachments/lamp
-	name = "Jaeger baldur modules"
-	contains = list(
-		/obj/item/armor_module/attachable/better_shoulder_lamp,
-	)
-	cost = 10
-
 /datum/supply_packs/armor/modular/attachments/valkyrie_autodoc
 	name = "Jaeger Valkyrie autodoc module"
 	contains = list(
@@ -1075,16 +1068,16 @@ MEDICAL
 	name = "Advanced medical packs"
 	notes = "Contains 5 advanced packs of each type and 5 splints."
 	contains = list(
-		/obj/item/stack/medical/advanced/bruise_pack,
-		/obj/item/stack/medical/advanced/bruise_pack,
-		/obj/item/stack/medical/advanced/bruise_pack,
-		/obj/item/stack/medical/advanced/bruise_pack,
-		/obj/item/stack/medical/advanced/bruise_pack,
-		/obj/item/stack/medical/advanced/ointment,
-		/obj/item/stack/medical/advanced/ointment,
-		/obj/item/stack/medical/advanced/ointment,
-		/obj/item/stack/medical/advanced/ointment,
-		/obj/item/stack/medical/advanced/ointment,
+		/obj/item/stack/medical/heal_pack/advanced/bruise_pack,
+		/obj/item/stack/medical/heal_pack/advanced/bruise_pack,
+		/obj/item/stack/medical/heal_pack/advanced/bruise_pack,
+		/obj/item/stack/medical/heal_pack/advanced/bruise_pack,
+		/obj/item/stack/medical/heal_pack/advanced/bruise_pack,
+		/obj/item/stack/medical/heal_pack/advanced/burn_pack,
+		/obj/item/stack/medical/heal_pack/advanced/burn_pack,
+		/obj/item/stack/medical/heal_pack/advanced/burn_pack,
+		/obj/item/stack/medical/heal_pack/advanced/burn_pack,
+		/obj/item/stack/medical/heal_pack/advanced/burn_pack,
 		/obj/item/stack/medical/splint,
 		/obj/item/stack/medical/splint,
 		/obj/item/stack/medical/splint,

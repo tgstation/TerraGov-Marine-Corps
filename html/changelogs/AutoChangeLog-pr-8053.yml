@@ -1,5 +1,0 @@
-author: "QualityVan"
-delete-after: True
-changes: 
-  - balance: "Smoke clouds can apply their effects when you walk into one."
-  - bugfix: "Stacked smoke clouds will both apply their effects instead of only one."
