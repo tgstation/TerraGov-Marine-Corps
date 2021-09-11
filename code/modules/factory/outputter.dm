@@ -80,7 +80,7 @@
 	return attack_hand(user)
 
 /obj/machinery/outputter/process()
-	if(!production_amount_left)
+	if(production_amount_left <= 0)
 		balloon_alert_to_viewers("No material left!")
 		STOP_PROCESSING(SSmachines, src)
 		update_icon()
