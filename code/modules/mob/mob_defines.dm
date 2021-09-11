@@ -91,5 +91,5 @@
 
 	/// Can they interact with station electronics
 	var/has_unlimited_silicon_privilege = 0
-	///The faction this medevac belongs to
+	///The faction this mob belongs to
 	var/faction

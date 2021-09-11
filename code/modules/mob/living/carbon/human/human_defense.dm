@@ -440,6 +440,7 @@ Contains most of the procs that are called when a mob is attacked by something
 	if(!internal_organs_by_name["heart"])
 		to_chat(user, span_notice("The heart is no longer here!"))
 		return
+	log_combat(user, src, "ripped [src]'s heart", I)
 	visible_message(span_notice("[user] ripped off [src]'s heart!"), span_notice("You ripped off [src]'s heart!"))
 	internal_organs_by_name -= "heart"
 	var/obj/item/organ/heart/heart = new
