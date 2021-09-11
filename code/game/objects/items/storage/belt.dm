@@ -312,7 +312,7 @@
 	icon_state = "marinebelt"
 	item_state = "marinebelt"
 	w_class = WEIGHT_CLASS_BULKY
-	storage_slots = 7
+	storage_slots = 6
 	max_w_class = 3
 	max_storage_space = 18
 	can_hold = list(
