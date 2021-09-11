@@ -1,4 +1,4 @@
-#define FUEL_PER_CAN_POUR 25
+#define FUEL_PER_CAN_POUR 100
 ///Fuel limit when you will recieve an alert for low fuel message
 #define LOW_FUEL_LEFT_MESSAGE 100
 /obj/vehicle/ridden/motorbike
@@ -19,7 +19,7 @@
 	///Fuel count, fuel usage is one per tile moved
 	var/fuel_count = 0
 	///max fuel that this bike can hold
-	var/fuel_max = 800
+	var/fuel_max = 1000
 	COOLDOWN_DECLARE(enginesound_cooldown)
 
 /obj/vehicle/ridden/motorbike/Initialize()
@@ -46,6 +46,9 @@
 	return ..()
 
 /obj/vehicle/ridden/motorbike/welder_act(mob/living/user, obj/item/I)
+	if(user.do_actions)
+		balloon_alert(user, "Already busy!")
+		return FALSE
 	if(obj_integrity >= max_integrity)
 		return TRUE
 	balloon_alert_to_viewers("[user] starts repairs", ignored_mobs = user)
