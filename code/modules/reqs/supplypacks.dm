@@ -1515,7 +1515,7 @@ Imports
 
 /datum/supply_packs/imports/rev44
 	name = "M-44 SAA Revolver"
-	contains = list(/obj/item/weapon/gun/revolver/m44)
+	contains = list(/obj/item/weapon/gun/revolver/single_action/m44)
 	cost = 7
 
 /datum/supply_packs/imports/rev357/ammo
