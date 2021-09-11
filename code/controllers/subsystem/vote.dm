@@ -26,6 +26,8 @@ SUBSYSTEM_DEF(vote)
 	var/list/voting = list()
 	/// If a vote is currently taking place
 	var/vote_happening = FALSE
+	/// The timer id of the shipmap vote
+	var/shipmap_timer_id
 
 // Called by master_controller
 /datum/controller/subsystem/vote/fire()
@@ -128,6 +130,10 @@ SUBSYSTEM_DEF(vote)
 				if(. == "Restart Round")
 					restart = TRUE
 			if("gamemode")
+				if(. == "Civil War")
+					deltimer(shipmap_timer_id)
+					var/datum/map_config/VM = config.maplist[SHIP_MAP]["Twin Pillars"]
+					SSmapping.changemap(VM, SHIP_MAP)
 				if(GLOB.master_mode != .)
 					SSticker.save_mode(.)
 					if(SSticker.HasRoundStarted())
@@ -289,7 +295,7 @@ SUBSYSTEM_DEF(vote)
 ///Starts the automatic map vote at the end of each round
 /datum/controller/subsystem/vote/proc/automatic_vote()
 	initiate_vote("gamemode", null, TRUE)
-	addtimer(CALLBACK(src, .proc/initiate_vote, "shipmap", null, TRUE), CONFIG_GET(number/vote_period) + 3 SECONDS)
+	shipmap_timer_id = addtimer(CALLBACK(src, .proc/initiate_vote, "shipmap", null, TRUE), CONFIG_GET(number/vote_period) + 3 SECONDS, TIMER_STOPPABLE)
 	addtimer(CALLBACK(src, .proc/initiate_vote, "groundmap", null, TRUE), CONFIG_GET(number/vote_period) * 2 + 6 SECONDS)
 
 /datum/controller/subsystem/vote/ui_state()

@@ -454,6 +454,8 @@
 	. = ..()
 	to_chat(user, span_notice("Its hydro cannon contains [reagents.get_reagent_amount(/datum/reagent/water)]/[reagents.maximum_volume] units of water!"))
 
+/obj/item/weapon/gun/flamer/big_flamer/marinestandard/cock(mob/user)
+	return TRUE
 
 /obj/item/weapon/gun/flamer/big_flamer/marinestandard/unique_action(mob/user)
 	. = ..()

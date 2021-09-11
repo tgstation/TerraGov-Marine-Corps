@@ -642,7 +642,11 @@
 	if(!(method in list(TOUCH, VAPOR, PATCH)))
 		return
 	L.germ_level -= min(volume * 20 * touch_protection, L.germ_level)
-	if((L.getFireLoss() > 30 || L.getBruteLoss() > 30) && prob(10)) // >Spraying space bleach on open wounds
+	if(ishuman(L))
+		var/mob/living/carbon/human/disinfectee = L
+		for(var/datum/limb/limb AS in disinfectee.limbs)
+			limb.disinfect() //Only removes germs from individual external wounds. Won't help with the limb itself having a high germ level.
+	if(prob(L.getFireLoss() + L.getBruteLoss())) // >Spraying space bleach on open wounds
 		if(iscarbon(L))
 			var/mob/living/carbon/C = L
 			if(C.species.species_flags & NO_PAIN)
@@ -656,7 +660,7 @@
 /datum/reagent/sterilizine/reaction_obj(obj/O, volume)
 	O.germ_level -= min(volume*20, O.germ_level)
 
-/datum/reagent/medicine/sterilizine/reaction_turf(turf/T, volume)
+/datum/reagent/sterilizine/reaction_turf(turf/T, volume)
 	T.germ_level -= min(volume*20, T.germ_level)
 
 /datum/reagent/sterilizine/on_mob_life(mob/living/L, metabolism)

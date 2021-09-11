@@ -18012,9 +18012,9 @@
 /area/mainship/command/cic)
 "tJw" = (
 /obj/structure/table/mainship,
-/obj/item/explosive/grenade/frag/training,
-/obj/item/explosive/grenade/frag/training,
-/obj/item/explosive/grenade/frag/training,
+/obj/item/explosive/grenade/training,
+/obj/item/explosive/grenade/training,
+/obj/item/explosive/grenade/training,
 /turf/open/floor/mainship/mono,
 /area/mainship/shipboard/firing_range)
 "tJz" = (

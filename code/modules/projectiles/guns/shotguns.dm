@@ -45,12 +45,6 @@ can cause issues with ammo types getting mixed up during the burst.
 /obj/item/weapon/gun/shotgun/update_icon() //Shotguns do not currently have empty states, as they look exactly the same. Other than double barrel.
 	return
 
-/obj/item/weapon/gun/shotgun/unique_action(mob/user)
-	. = ..()
-	if(!.)
-		return
-	return cock(user)
-
 /obj/item/weapon/gun/shotgun/proc/replace_tube(number_to_replace)
 	current_mag.chamber_contents = list()
 	current_mag.chamber_contents.len = current_mag.max_rounds
@@ -99,33 +93,11 @@ can cause issues with ammo types getting mixed up during the burst.
 	current_mag.chamber_position--
 	return 1
 
-		//While there is a much smaller way to do this,
-		//this is the most resource efficient way to do it.
+///Generates a handful of 1 bullet from the gun.
 /obj/item/weapon/gun/shotgun/proc/retrieve_shell(selection)
-	var/obj/item/ammo_magazine/handful/new_handful = new /obj/item/ammo_magazine/handful()
-	new_handful.generate_handful(selection, CALIBER_12G, 1, /obj/item/weapon/gun/shotgun)
+	var/obj/item/ammo_magazine/handful/new_handful = new()
+	new_handful.generate_handful(selection, caliber, 1, /obj/item/weapon/gun/shotgun)
 	return new_handful
-
-/obj/item/weapon/gun/shotgun/pump/bolt/retrieve_shell(selection)
-	var/obj/item/ammo_magazine/handful/new_handful = new /obj/item/ammo_magazine/handful()
-	new_handful.generate_handful(selection, CALIBER_762X54, 1, /obj/item/weapon/gun/shotgun)
-	return new_handful
-
-/obj/item/weapon/gun/shotgun/double/martini/retrieve_shell(selection)
-	var/obj/item/ammo_magazine/handful/new_handful = new /obj/item/ammo_magazine/handful()
-	new_handful.generate_handful(selection, CALIBER_557, 1, /obj/item/weapon/gun/shotgun)
-	return new_handful
-
-/obj/item/weapon/gun/shotgun/pump/lever/retrieve_shell(selection)
-	var/obj/item/ammo_magazine/handful/new_handful = new /obj/item/ammo_magazine/handful()
-	new_handful.generate_handful(selection, CALIBER_44, 1, /obj/item/weapon/gun/shotgun)
-	return new_handful
-
-/obj/item/weapon/gun/shotgun/pump/lever/mbx900/retrieve_shell(selection)
-	var/obj/item/ammo_magazine/handful/new_handful = new /obj/item/ammo_magazine/handful()
-	new_handful.generate_handful(selection, CALIBER_410, 1, /obj/item/weapon/gun/shotgun)
-	return new_handful
-
 
 /obj/item/weapon/gun/shotgun/proc/check_chamber_position()
 	return 1
