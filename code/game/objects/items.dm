@@ -414,7 +414,7 @@
 		mob_equip = H.species.hud.equip_slots
 
 	if(H.species && !(slot in mob_equip))
-		if(!species_exception || !is_type_in_list(H.species, species_exception))
+		if(!is_type_in_list(H.species, species_exception))
 			return FALSE
 
 	if(issynth(H) && CHECK_BITFIELD(flags_item, SYNTH_RESTRICTED) && !CONFIG_GET(flag/allow_synthetic_gun_use))
