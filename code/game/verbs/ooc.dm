@@ -128,7 +128,7 @@
 		to_chat(src, span_warning("You must be alive to use XOOC."))
 		return
 	if(!(mob in GLOB.xeno_mob_list) && !admin)
-		to_chat(src, span_warning("You must be a human to use XOOC."))
+		to_chat(src, span_warning("You must be a xeno to use XOOC."))
 		return
 
 	msg = copytext_char(sanitize(msg), 1, MAX_MESSAGE_LEN)
