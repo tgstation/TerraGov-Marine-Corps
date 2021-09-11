@@ -433,8 +433,8 @@
 //-------------------------------------------------------
 
 /obj/item/weapon/gun/rifle/ak47
-	name = "\improper AK-47 assault rifle"
-	desc = "A crude, cheaply produced assault rifle capable of automatic fire. A replicant of the 1947 Kalashnikov rifle made with wood coloured plating, chambering the orginal 7.62x39mm round. Despite lacking attachment points, remains a popular product on the black market with its cheap cost and armor punching rounds."
+	name = "\improper MPi-KM assault rifle"
+	desc = "A cheap and robust rifle, sometimes better known as an 'AK'. Chambers 7.62x39mm. Despite lacking attachment points, remains a popular product on the black market with its cheap cost and higher than usual caliber rounds."
 	icon_state = "ak47"
 	item_state = "ak47"
 	caliber = CALIBER_762X39 //codex
