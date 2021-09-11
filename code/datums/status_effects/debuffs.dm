@@ -1,4 +1,5 @@
 #define TRAIT_STATUS_EFFECT(effect_id) "[effect_id]-trait"
+#define BASE_HEAL_RATE -0.003125
 
 //Largely negative status effects go here, even if they have small benificial effects
 //STUN EFFECTS
@@ -126,15 +127,15 @@
 /datum/status_effect/incapacitating/sleeping/tick()
 	if(owner.maxHealth)
 		var/health_ratio = owner.health / owner.maxHealth
-		var/healing = -0.003125 //set for a base of 0.25 healed per 2-second interval asleep in a bed with covers.
+		var/healing = BASE_HEAL_RATE //set for a base of 0.25 healed per 2-second interval asleep in a bed with covers.
 		if((locate(/obj/structure/bed) in owner.loc))
-			healing -= 0.00625
+			healing += (2 * BASE_HEAL_RATE)
 		else if((locate(/obj/structure/table) in owner.loc))
-			healing -= 0.003125
+			healing += BASE_HEAL_RATE
 		for(var/obj/item/bedsheet/bedsheet in range(owner.loc,0))
 			if(bedsheet.loc != owner.loc) //bedsheets in your backpack/neck don't give you comfort
 				continue
-			healing -= 0.003125
+			healing += BASE_HEAL_RATE
 			break //Only count the first bedsheet
 		if(health_ratio > -0.5)
 			owner.adjustBruteLoss(healing)
